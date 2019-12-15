@@ -32,6 +32,7 @@
 	initialize_field()
 
 /datum/tetris_field/proc/initialize_field()
+	QDEL_LIST(pieces)
 	playing_field = list()
 	playing_field.len = field_height
 	for(var/i in 1 to field_height)
@@ -41,15 +42,22 @@
 
 
 
+/datum/tetris_field/proc/attempt_lineclear(row)
+	if(check_lineclear(row))
+		handle_lineclear(row)
+		return TRUE
+	return FALSE
 
-
-
+/datum/tetris_field/proc/check_lineclear(row)
+	for(var/i in 1 to field_width)
+		if(playing_field[row][i] != null)
+			return FALSE
+	return TRUE
 
 /datum/tetris_field/proc/get_piece(row, column)
-	if((row > field_height) || (column > field_width))
-		return
 	return playing_field[row][column]
 
+/datum/tetris_field/proc/handle_lineclear(row)
 
 
 
