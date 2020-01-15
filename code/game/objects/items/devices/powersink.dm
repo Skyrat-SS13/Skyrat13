@@ -1,9 +1,8 @@
 // Powersink - used to drain station power
 
-/obj/item/powersink
+/obj/item/device/powersink
 	desc = "A nulling power sink which drains energy from electrical systems."
 	name = "power sink"
-	icon = 'icons/obj/device.dmi'
 	icon_state = "powersink0"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
@@ -26,10 +25,10 @@
 
 	var/obj/structure/cable/attached		// the attached cable
 
-/obj/item/powersink/update_icon()
+/obj/item/device/powersink/update_icon()
 	icon_state = "powersink[mode == OPERATING]"
 
-/obj/item/powersink/proc/set_mode(value)
+/obj/item/device/powersink/proc/set_mode(value)
 	if(value == mode)
 		return
 	switch(value)
@@ -56,7 +55,7 @@
 	update_icon()
 	set_light(0)
 
-/obj/item/powersink/attackby(obj/item/I, mob/user, params)
+/obj/item/device/powersink/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/screwdriver))
 		if(mode == DISCONNECTED)
 			var/turf/T = loc
@@ -81,16 +80,13 @@
 	else
 		return ..()
 
-/obj/item/powersink/attack_paw()
+/obj/item/device/powersink/attack_paw()
 	return
 
-/obj/item/powersink/attack_ai()
+/obj/item/device/powersink/attack_ai()
 	return
 
-/obj/item/powersink/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
+/obj/item/device/powersink/attack_hand(mob/user)
 	switch(mode)
 		if(DISCONNECTED)
 			..()
@@ -100,8 +96,8 @@
 				"[user] activates \the [src]!", \
 				"<span class='notice'>You activate \the [src].</span>",
 				"<span class='italics'>You hear a click.</span>")
-			message_admins("Power sink activated by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(src)]")
-			log_game("Power sink activated by [key_name(user)] at [AREACOORD(src)]")
+			message_admins("Power sink activated by [ADMIN_LOOKUPFLW(user)] at [ADMIN_COORDJMP(src)]")
+			log_game("Power sink activated by [key_name(user)] at [COORD(src)]")
 			set_mode(OPERATING)
 
 		if(OPERATING)
@@ -111,7 +107,7 @@
 				"<span class='italics'>You hear a click.</span>")
 			set_mode(CLAMPED_OFF)
 
-/obj/item/powersink/process()
+/obj/item/device/powersink/process()
 	if(!attached)
 		set_mode(DISCONNECTED)
 		return
@@ -122,8 +118,8 @@
 
 		// found a powernet, so drain up to max power from it
 
-		var/drained = min ( drain_rate, attached.newavail() )
-		attached.add_delayedload(drained)
+		var/drained = min ( drain_rate, PN.avail )
+		PN.load += drained
 		power_drained += drained
 
 		// if tried to drain more than available on powernet
@@ -137,8 +133,6 @@
 						power_drained += 50
 						if(A.charging == 2) // If the cell was full
 							A.charging = 1 // It's no longer full
-				if(drained >= drain_rate)
-					break
 
 	if(power_drained > max_power * 0.98)
 		if (!admins_warned)

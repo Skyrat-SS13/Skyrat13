@@ -1,13 +1,9 @@
 //Vars that will not be copied when using /DuplicateObject
-GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
-	"tag", "datum_components", "area", "type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key",
-	"power_supply", "contents", "reagents", "stat", "x", "y", "z", "group", "atmos_adjacent_turfs", "comp_lookup"
-	))
+GLOBAL_LIST_INIT(duplicate_forbidden_vars,list("tag","area","type","loc","locs","vars", "parent","parent_type", "verbs","ckey","key","power_supply","contents","reagents","stat","x","y","z","group","atmos_adjacent_turfs"))
 
 /proc/DuplicateObject(atom/original, perfectcopy = TRUE, sameloc = FALSE, atom/newloc = null, nerf = FALSE, holoitem=FALSE)
-	RETURN_TYPE(original.type)
 	if(!original)
-		return
+		return null
 	var/atom/O
 
 	if(sameloc)
@@ -40,7 +36,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 			M.power_change()
 
 	if(holoitem)
-		O.flags_1 |= HOLOGRAM_1
+		O.flags_2 |= HOLOGRAM_2
 	return O
 
 
@@ -123,7 +119,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 
 	if(toupdate.len)
 		for(var/turf/T1 in toupdate)
-			CALCULATE_ADJACENT_TURFS(T1)
+			T1.CalculateAdjacentTurfs()
 			SSair.add_to_active(T1,1)
 
 

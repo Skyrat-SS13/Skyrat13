@@ -1,5 +1,5 @@
 //The code execution of the emote datum is located at code/datums/emotes.dm
-/mob/proc/emote(act, m_type = null, message = null, intentional = FALSE)
+/mob/proc/emote(act, m_type = null, message = null)
 	act = lowertext(act)
 	var/param = message
 	var/custom_param = findchar(act, " ")
@@ -12,7 +12,7 @@
 	if(!E)
 		to_chat(src, "<span class='notice'>Unusable emote '[act]'. Say *help for a list.</span>")
 		return
-	E.run_emote(src, param, m_type, intentional)
+	E.run_emote(src, param, m_type)
 
 /datum/emote/flip
 	key = "flip"
@@ -40,7 +40,7 @@
 
 		if(iscyborg(user) && user.has_buckled_mobs())
 			var/mob/living/silicon/robot/R = user
-			var/datum/component/riding/riding_datum = R.GetComponent(/datum/component/riding)
+			GET_COMPONENT_FROM(riding_datum, /datum/component/riding, R)
 			if(riding_datum)
 				for(var/mob/M in R.buckled_mobs)
 					riding_datum.force_dismount(M)

@@ -2,21 +2,12 @@
 
 /**********************Mineral processing unit console**************************/
 
-/obj/machinery/mineral
-	var/input_dir = NORTH
-	var/output_dir = SOUTH
-
-/obj/machinery/mineral/proc/unload_mineral(atom/movable/S)
-	S.forceMove(drop_location())
-	var/turf/T = get_step(src,output_dir)
-	if(T)
-		S.forceMove(T)
-
 /obj/machinery/mineral/processing_unit_console
 	name = "production machine console"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	density = TRUE
+	anchored = TRUE
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/machinedir = EAST
 	speed_process = TRUE
@@ -29,8 +20,8 @@
 	else
 		return INITIALIZE_HINT_QDEL
 
-/obj/machinery/mineral/processing_unit_console/ui_interact(mob/user)
-	. = ..()
+/obj/machinery/mineral/processing_unit_console/attack_hand(mob/user)
+
 	if(!machine)
 		return
 
@@ -73,6 +64,7 @@
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "furnace"
 	density = TRUE
+	anchored = TRUE
 	var/obj/machinery/mineral/CONSOLE = null
 	var/on = FALSE
 	var/selected_material = MAT_METAL
@@ -82,7 +74,7 @@
 /obj/machinery/mineral/processing_unit/Initialize()
 	. = ..()
 	proximity_monitor = new(src, 1)
-	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS, MAT_SILVER, MAT_GOLD, MAT_DIAMOND, MAT_PLASMA, MAT_URANIUM, MAT_BANANIUM, MAT_TITANIUM, MAT_BLUESPACE), INFINITY, TRUE, /obj/item/stack)
+	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS, MAT_SILVER, MAT_GOLD, MAT_DIAMOND, MAT_PLASMA, MAT_URANIUM, MAT_BANANIUM, MAT_TITANIUM, MAT_BLUESPACE), INFINITY)
 	stored_research = new /datum/techweb/specialized/autounlocking/smelter
 
 /obj/machinery/mineral/processing_unit/Destroy()
@@ -91,11 +83,11 @@
 	return ..()
 
 /obj/machinery/mineral/processing_unit/HasProximity(atom/movable/AM)
-	if(istype(AM, /obj/item/stack/ore) && AM.loc == get_step(src, input_dir))
+	if(istype(AM, /obj/item/ore) && AM.loc == get_step(src, input_dir))
 		process_ore(AM)
 
-/obj/machinery/mineral/processing_unit/proc/process_ore(obj/item/stack/ore/O)
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+/obj/machinery/mineral/processing_unit/proc/process_ore(obj/item/ore/O)
+	GET_COMPONENT(materials, /datum/component/material_container)
 	var/material_amount = materials.get_item_material_amount(O)
 	if(!materials.has_space(material_amount))
 		unload_mineral(O)
@@ -107,7 +99,7 @@
 
 /obj/machinery/mineral/processing_unit/proc/get_machine_data()
 	var/dat = "<b>Smelter control console</b><br><br>"
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	GET_COMPONENT(materials, /datum/component/material_container)
 	for(var/mat_id in materials.materials)
 		var/datum/material/M = materials.materials[mat_id]
 		dat += "<span class=\"res_name\">[M.name]: </span>[M.amount] cm&sup3;"
@@ -121,7 +113,7 @@
 	dat += "<b>Smelt Alloys</b><br>"
 
 	for(var/v in stored_research.researched_designs)
-		var/datum/design/D = SSresearch.techweb_design_by_id(v)
+		var/datum/design/D = stored_research.researched_designs[v]
 		dat += "<span class=\"res_name\">[D.name] "
 		if (selected_alloy == D.id)
 			dat += " <i>Smelting</i>"
@@ -152,7 +144,7 @@
 			CONSOLE.updateUsrDialog()
 
 /obj/machinery/mineral/processing_unit/proc/smelt_ore()
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	GET_COMPONENT(materials, /datum/component/material_container)
 	var/datum/material/mat = materials.materials[selected_material]
 	if(mat)
 		var/sheets_to_remove = (mat.amount >= (MINERAL_MATERIAL_AMOUNT * SMELT_AMOUNT) ) ? SMELT_AMOUNT : round(mat.amount /  MINERAL_MATERIAL_AMOUNT)
@@ -175,7 +167,7 @@
 		on = FALSE
 		return
 
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	GET_COMPONENT(materials, /datum/component/material_container)
 	materials.use_amount(alloy.materials, amount)
 
 	generate_mineral(alloy.build_path)
@@ -186,7 +178,7 @@
 
 	var/build_amount = SMELT_AMOUNT
 
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	GET_COMPONENT(materials, /datum/component/material_container)
 
 	for(var/mat_id in D.materials)
 		var/M = D.materials[mat_id]
@@ -204,7 +196,7 @@
 	unload_mineral(O)
 
 /obj/machinery/mineral/processing_unit/on_deconstruction()
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	GET_COMPONENT(materials, /datum/component/material_container)
 	materials.retrieve_all()
 	..()
 

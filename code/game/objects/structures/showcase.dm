@@ -18,7 +18,7 @@
 	icon_state = "computer"
 
 /obj/structure/showcase/fakeid/Initialize()
-	. = ..()
+	..()
 	add_overlay("id")
 	add_overlay("id_key")
 
@@ -29,7 +29,7 @@
 	icon_state = "computer"
 
 /obj/structure/showcase/fakesec/Initialize()
-	. = ..()
+	..()
 	add_overlay("security")
 	add_overlay("security_key")
 
@@ -112,17 +112,18 @@
 	if(istype(W, /obj/item/screwdriver) && !anchored)
 		if(deconstruction_state == SHOWCASE_SCREWDRIVERED)
 			to_chat(user, "<span class='notice'>You screw the screws back into the showcase.</span>")
-			W.play_tool_sound(src, 100)
+			playsound(loc, W.usesound, 100, 1)
 			deconstruction_state = SHOWCASE_CONSTRUCTED
 		else if (deconstruction_state == SHOWCASE_CONSTRUCTED)
 			to_chat(user, "<span class='notice'>You unscrew the screws.</span>")
-			W.play_tool_sound(src, 100)
+			playsound(loc, W.usesound, 100, 1)
 			deconstruction_state = SHOWCASE_SCREWDRIVERED
 
 	if(istype(W, /obj/item/crowbar) && deconstruction_state == SHOWCASE_SCREWDRIVERED)
-		if(W.use_tool(src, user, 20, volume=100))
+		if(do_after(user, 20*W.toolspeed, target = src))
+			playsound(loc, W.usesound, 100, 1)
 			to_chat(user, "<span class='notice'>You start to crowbar the showcase apart...</span>")
-			new /obj/item/stack/sheet/metal(drop_location(), 4)
+			new /obj/item/stack/sheet/metal (get_turf(src), 4)
 			qdel(src)
 
 	if(deconstruction_state == SHOWCASE_CONSTRUCTED && default_unfasten_wrench(user, W))
@@ -131,11 +132,12 @@
 //Feedback is given in examine because showcases can basically have any sprite assigned to them
 
 /obj/structure/showcase/examine(mob/user)
-	. = ..()
+	..()
+
 	switch(deconstruction_state)
 		if(SHOWCASE_CONSTRUCTED)
-			. += "The showcase is fully constructed."
+			to_chat(user, "The showcase is fully constructed.")
 		if(SHOWCASE_SCREWDRIVERED)
-			. += "The showcase has its screws loosened."
+			to_chat(user, "The showcase has its screws loosened.")
 		else
-			. += "If you see this, something is wrong."
+			to_chat(user, "If you see this, something is wrong.")

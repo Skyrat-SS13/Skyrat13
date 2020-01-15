@@ -11,6 +11,7 @@
 	desc = "A device that uses station power to create points of magnetic energy."
 	level = 1		// underfloor
 	layer = LOW_OBJ_LAYER
+	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
 
@@ -46,10 +47,10 @@
 // update the invisibility and icon
 /obj/machinery/magnetic_module/hide(intact)
 	invisibility = intact ? INVISIBILITY_MAXIMUM : 0
-	update_icon()
+	updateicon()
 
 // update the icon_state
-/obj/machinery/magnetic_module/update_icon()
+/obj/machinery/magnetic_module/proc/updateicon()
 	var/state="floor_magnet"
 	var/onstate=""
 	if(!on)
@@ -161,7 +162,7 @@
 	else
 		use_power = NO_POWER_USE
 
-	update_icon()
+	updateicon()
 
 
 /obj/machinery/magnetic_module/proc/magnetic_process() // proc that actually does the magneting
@@ -194,6 +195,7 @@
 	icon = 'icons/obj/airlock_machines.dmi' // uses an airlock machine icon, THINK GREEN HELP THE ENVIRONMENT - RECYCLING!
 	icon_state = "airlock_control_standby"
 	density = FALSE
+	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 45
 	var/frequency = FREQ_MAGNETS
@@ -236,8 +238,14 @@
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
 
-/obj/machinery/magnetic_controller/ui_interact(mob/user)
-	. = ..()
+
+/obj/machinery/magnetic_controller/attack_ai(mob/user)
+	return src.attack_hand(user)
+
+/obj/machinery/magnetic_controller/attack_hand(mob/user)
+	if(stat & (BROKEN|NOPOWER))
+		return
+	user.set_machine(src)
 	var/dat = "<B>Magnetic Control Console</B><BR><BR>"
 	if(!autolink)
 		dat += {"

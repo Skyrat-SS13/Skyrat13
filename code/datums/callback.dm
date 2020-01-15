@@ -78,13 +78,11 @@
 		if(W)
 			var/mob/M = W.resolve()
 			if(M)
-				if (length(args))
-					return world.PushUsr(arglist(list(M, src) + args))
 				return world.PushUsr(M, src)
-
+		
 	if (!object)
 		return
-
+		
 	var/list/calling_arguments = arguments
 	if (length(args))
 		if (length(arguments))
@@ -106,13 +104,11 @@
 		if(W)
 			var/mob/M = W.resolve()
 			if(M)
-				if (length(args))
-					return world.PushUsr(arglist(list(M, src) + args))
 				return world.PushUsr(M, src)
-
+	
 	if (!object)
 		return
-
+		
 	var/list/calling_arguments = arguments
 	if (length(args))
 		if (length(arguments))
@@ -173,7 +169,7 @@
 	var/datum/callback_select/CS = new(count, savereturns)
 	for (var/i in 1 to count)
 		CS.invoke_callback(i, callbacks[i], callback_args[i], savereturns)
-
+	
 	while(CS.pendingcount)
 		sleep(resolution*world.tick_lag)
 	return CS.finished

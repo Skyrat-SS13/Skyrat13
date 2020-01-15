@@ -43,10 +43,10 @@
 	var/can_see_clockwork = is_servant_of_ratvar(user) || isobserver(user)
 	if(can_see_clockwork && clockwork_desc)
 		desc = clockwork_desc
-	. = ..()
+	..()
 	desc = initial(desc)
 	if(unanchored_icon)
-		. += "<span class='notice'>[src] is [anchored ? "":"not "]secured to the floor.</span>"
+		to_chat(user, "<span class='notice'>[src] is [anchored ? "":"not "]secured to the floor.</span>")
 
 /obj/structure/destructible/clockwork/examine_status(mob/user)
 	if(is_servant_of_ratvar(user) || isobserver(user))
@@ -85,7 +85,7 @@
 
 /obj/structure/destructible/clockwork/attack_ai(mob/user)
 	if(is_servant_of_ratvar(user))
-		return attack_hand(user)
+		attack_hand(user)
 
 /obj/structure/destructible/clockwork/attack_animal(mob/living/simple_animal/M)
 	if(is_servant_of_ratvar(M))
@@ -117,9 +117,6 @@
 			to_chat(user, "<span class='warning'>As you unsecure [src] from the floor, you see cracks appear in its surface!</span>")
 
 /obj/structure/destructible/clockwork/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
 	if(anchored && unanchored_icon)
 		anchored = FALSE
 		update_anchored(null, obj_integrity > max_integrity * 0.25)
@@ -155,12 +152,12 @@
 	var/inactive_icon = null //icon_state while process() isn't being called
 
 /obj/structure/destructible/clockwork/powered/examine(mob/user)
-	. = ..()
+	..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
 		if(!can_access_clockwork_power(src))
-			. += "<span class='alloy'>It has no access to the power network! Create a sigil of transmission nearby.</span>"
+			to_chat(user, "<span class='alloy'>It has no access to the power network! Create a sigil of transmission nearby.</span>")
 		else
-			. += "<span class='brass'>It has access to <b>[DisplayPower(get_clockwork_power())]</b> of power.</span>"
+			to_chat(user, "<span class='brass'>It has access to <b>[DisplayPower(get_clockwork_power())]</b> of power.</span>")
 
 /obj/structure/destructible/clockwork/powered/Destroy()
 	SSfastprocess.processing -= src
@@ -206,9 +203,6 @@
 		toggle()
 
 /obj/structure/destructible/clockwork/powered/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
 	if(forced_disable(TRUE))
 		new /obj/effect/temp_visual/emp(loc)
 

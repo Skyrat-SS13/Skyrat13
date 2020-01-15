@@ -5,7 +5,6 @@
 	desc = "An underfloor disposal pipe with a sorting mechanism."
 	icon_state = "pipe-j1s"
 	initialize_dirs = DISP_DIR_RIGHT | DISP_DIR_FLIP
-	canclank = TRUE
 
 /obj/structure/disposalpipe/sorting/nextdir(obj/structure/disposalholder/H)
 	var/sortdir = dpdir & ~(dir | turn(dir, 180))
@@ -50,18 +49,18 @@
 					sortTypes |= n
 
 /obj/structure/disposalpipe/sorting/mail/examine(mob/user)
-	. = ..()
+	..()
 	if(sortTypes.len)
-		. += "It is tagged with the following tags:"
+		to_chat(user, "It is tagged with the following tags:")
 		for(var/t in sortTypes)
-			. += "\t[GLOB.TAGGERLOCATIONS[t]]."
+			to_chat(user, "\t[GLOB.TAGGERLOCATIONS[t]].")
 	else
-		. += "It has no sorting tags set."
+		to_chat(user, "It has no sorting tags set.")
 
 
 /obj/structure/disposalpipe/sorting/mail/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/destTagger))
-		var/obj/item/destTagger/O = I
+	if(istype(I, /obj/item/device/destTagger))
+		var/obj/item/device/destTagger/O = I
 
 		if(O.currTag)// Tagger has a tag set
 			if(O.currTag in sortTypes)

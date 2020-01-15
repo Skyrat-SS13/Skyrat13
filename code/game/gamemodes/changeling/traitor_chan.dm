@@ -46,10 +46,10 @@
 		for(var/j = 0, j < num_changelings, j++)
 			if(!possible_changelings.len)
 				break
-			var/datum/mind/changeling = antag_pick(possible_changelings)
+			var/datum/mind/changeling = pick(possible_changelings)
 			antag_candidates -= changeling
 			possible_changelings -= changeling
-			changeling.special_role = ROLE_CHANGELING
+			changeling.special_role = "Changeling"
 			changelings += changeling
 			changeling.restricted_roles = restricted_jobs
 		return ..()
@@ -69,13 +69,11 @@
 		return
 	if(changelings.len <= (changelingcap - 2) || prob(100 / (csc * 4)))
 		if(ROLE_CHANGELING in character.client.prefs.be_special)
-			if(!jobban_isbanned(character, ROLE_CHANGELING) && !QDELETED(character) && !jobban_isbanned(character, ROLE_SYNDICATE) && !QDELETED(character))
+			if(!jobban_isbanned(character, ROLE_CHANGELING) && !jobban_isbanned(character, "Syndicate"))
 				if(age_check(character.client))
 					if(!(character.job in restricted_jobs))
-						character.mind.make_Changeling()
+						character.mind.make_Changling()
 						changelings += character.mind
-	if(QDELETED(character))
-		return
 	..()
 
 /datum/game_mode/traitor/changeling/generate_report()

@@ -47,21 +47,18 @@
 		STOP_PROCESSING(SSprocessing, src)
 
 /obj/structure/destructible/clockwork/heralds_beacon/examine(mob/user)
-	. = ..()
+	..()
 	if(isobserver(user) || is_servant_of_ratvar(user))
 		if(!available)
 			if(!GLOB.ratvar_approaches)
-				. += "<span class='bold alloy'>It can no longer be activated.</span>"
+				to_chat(user, "<span class='bold alloy'>It can no longer be activated.</span>")
 			else
-				. += "<span class='bold neovgre_small'>It has been activated!</span>"
+				to_chat(user, "<span class='bold neovgre_small'>It has been activated!</span>")
 		else
-			. += "<span class='brass'>There are <b>[time_remaining]</b> second[time_remaining != 1 ? "s" : ""] remaining to vote.</span>"
-			. += "<span class='big brass'>There are <b>[voters.len]/[votes_needed]</b> votes to activate the beacon!</span>"
+			to_chat(user, "<span class='brass'>There are <b>[time_remaining]</b> second[time_remaining != 1 ? "s" : ""] remaining to vote.</span>")
+			to_chat(user, "<span class='big brass'>There are <b>[voters.len]/[votes_needed]</b> votes to activate the beacon!</span>")
 
 /obj/structure/destructible/clockwork/heralds_beacon/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
 	if(!is_servant_of_ratvar(user))
 		to_chat(user, "<span class='notice'>You can tell how powerful [src] is; you know better than to touch it.</span>")
 		return
@@ -78,7 +75,7 @@
 			return
 		voters += user.key
 	else
-		if(!(user.key in voters))
+		if(!user.key in voters)
 			return
 		voters -= user.key
 	var/votes_left = votes_needed - voters.len

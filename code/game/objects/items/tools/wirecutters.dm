@@ -7,7 +7,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = SLOT_BELT
 	force = 6
 	throw_speed = 3
 	throw_range = 7
@@ -19,7 +19,7 @@
 
 	tool_behaviour = TOOL_WIRECUTTER
 	toolspeed = 1
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 30)
 	var/random_color = TRUE
 	var/static/list/wirecutter_colors = list(
 		"blue" = "#1861d5",
@@ -63,18 +63,11 @@
 
 /obj/item/wirecutters/brass
 	name = "brass wirecutters"
-	desc = "A pair of eloquent wirecutters made of brass. The handle feels freezing cold to the touch."
+	desc = "A pair of wirecutters made of brass. The handle feels freezing cold to the touch."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	icon_state = "cutters_clock"
-	random_color = FALSE
-	toolspeed = 0.5
-
-/obj/item/wirecutters/bronze
-	name = "bronze plated wirecutters"
-	desc = "A pair of wirecutters plated with bronze."
 	icon_state = "cutters_brass"
 	random_color = FALSE
-	toolspeed = 0.95 //Wire cutters have 0 time bars though
+	toolspeed = 0.5
 
 /obj/item/wirecutters/abductor
 	name = "alien wirecutters"
@@ -82,15 +75,13 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "cutters"
 	toolspeed = 0.1
+
 	random_color = FALSE
 
 /obj/item/wirecutters/cyborg
 	name = "wirecutters"
 	desc = "This cuts wires."
-	icon = 'icons/obj/items_cyborg.dmi'
-	icon_state = "wirecutters_cyborg"
 	toolspeed = 0.5
-	random_color = FALSE
 
 /obj/item/wirecutters/power
 	name = "jaws of life"
@@ -108,7 +99,7 @@
 	playsound(loc, 'sound/items/jaws_cut.ogg', 50, 1, -1)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		var/obj/item/bodypart/BP = C.get_bodypart(BODY_ZONE_HEAD)
+		var/obj/item/bodypart/BP = C.get_bodypart("head")
 		if(BP)
 			BP.drop_limb()
 			playsound(loc,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
@@ -116,32 +107,15 @@
 
 /obj/item/wirecutters/power/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
-	var/obj/item/crowbar/power/pryjaws = new /obj/item/crowbar/power(drop_location())
+	var/obj/item/crowbar/power/pryjaws = new /obj/item/crowbar/power
 	to_chat(user, "<span class='notice'>You attach the pry jaws to [src].</span>")
 	qdel(src)
 	user.put_in_active_hand(pryjaws)
 
 /obj/item/wirecutters/power/attack(mob/living/carbon/C, mob/user)
-	if(istype(C))
-		if(C.handcuffed)
-			user.visible_message("<span class='notice'>[user] cuts [C]'s restraints with [src]!</span>")
-			qdel(C.handcuffed)
-			return
-		else if(C.has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
-			var/man = C == user ? "your" : "[C]'\s"
-			user.visible_message("<span class='notice'>[user] attempts to remove the durathread strand from around [man] neck.</span>", \
-								"<span class='notice'>You attempt to remove the durathread strand from around [man] neck.</span>")
-			if(do_after(user, 15, null, C))
-				user.visible_message("<span class='notice'>[user] succesfuly removes the durathread strand.</span>",
-									"<span class='notice'>You succesfuly remove the durathread strand.</span>")
-				C.remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
-			return
-	..()
-
-/obj/item/wirecutters/advanced
-	name = "advanced wirecutters"
-	desc = "A set of reproduction alien wirecutters, they have a silver handle with an exceedingly sharp blade."
-	icon = 'icons/obj/advancedtools.dmi'
-	icon_state = "cutters"
-	toolspeed = 0.2
-	random_color = FALSE
+	if(istype(C) && C.handcuffed)
+		user.visible_message("<span class='notice'>[user] cuts [C]'s restraints with [src]!</span>")
+		qdel(C.handcuffed)
+		return
+	else
+		..()

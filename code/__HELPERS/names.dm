@@ -1,3 +1,5 @@
+#define ION_FILE "ion_laws.json"
+
 /proc/lizard_name(gender)
 	if(gender == MALE)
 		return "[pick(GLOB.lizard_names_male)]-[pick(GLOB.lizard_names_male)]"
@@ -8,7 +10,7 @@
 	return "[pick(GLOB.plasmaman_names)] \Roman[rand(1,99)]"
 
 /proc/moth_name()
-	return "[pick(GLOB.moth_first)] [pick(GLOB.moth_last)]"
+	return "[pick(GLOB.moth_names)]"
 
 /proc/church_name()
 	var/static/church_name
@@ -150,10 +152,6 @@ GLOBAL_VAR(command_name)
 //Traitors and traitor silicons will get these. Revs will not.
 GLOBAL_VAR(syndicate_code_phrase) //Code phrase for traitors.
 GLOBAL_VAR(syndicate_code_response) //Code response for traitors.
-
-//Cached regex search - for checking if codewords are used.
-GLOBAL_DATUM(syndicate_code_phrase_regex, /regex)
-GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 
 	/*
 	Should be expanded.

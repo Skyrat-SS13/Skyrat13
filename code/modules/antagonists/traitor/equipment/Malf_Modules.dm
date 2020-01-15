@@ -3,7 +3,7 @@
 
 GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		/obj/machinery/field/containment,
-		/obj/machinery/power/supermatter_crystal,
+		/obj/machinery/power/supermatter_shard,
 		/obj/machinery/doomsday_device,
 		/obj/machinery/nuclearbomb,
 		/obj/machinery/nuclearbomb/selfdestruct,
@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	var/unlock_text = "<span class='notice'>Hello World!</span>" //Text shown when an ability is unlocked
 	var/unlock_sound //Sound played when an ability is unlocked
 
-/datum/AI_Module/proc/upgrade(mob/living/silicon/ai/AI) //Apply upgrades!
+/datum/AI_Module/proc/upgrade(mob/living/silicon/AI/AI) //Apply upgrades!
 	return
 
 /datum/AI_Module/large //Big, powerful stuff that can only be used once.
@@ -304,7 +304,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	sleep(30)
 	if(!owner || QDELETED(owner))
 		return
-	priority_announce("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", "Anomaly Alert", "aimalf")
+	priority_announce("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", "Anomaly Alert", 'sound/ai/aimalf.ogg')
 	set_security_level("delta")
 	var/obj/machinery/doomsday_device/DOOM = new(owner_AI)
 	owner_AI.nuking = TRUE
@@ -319,6 +319,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	name = "doomsday device"
 	icon_state = "nuclearbomb_base"
 	desc = "A weapon which disintegrates all organic life in a large area."
+	anchored = TRUE
 	density = TRUE
 	verb_exclaim = "blares"
 	var/timing = FALSE
@@ -397,7 +398,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_text = "<span class='notice'>You establish a power diversion to your turrets, upgrading their health and damage.</span>"
 	unlock_sound = 'sound/items/rped.ogg'
 
-/datum/AI_Module/large/upgrade_turrets/upgrade(mob/living/silicon/ai/AI)
+/datum/AI_Module/large/upgrade_turrets/upgrade(mob/living/silicon/AI/AI)
 	for(var/obj/machinery/porta_turret/ai/turret in GLOB.machines)
 		turret.obj_integrity += 30
 		turret.lethal_projectile = /obj/item/projectile/beam/laser/heavylaser //Once you see it, you will know what it means to FEAR.
@@ -505,7 +506,6 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		if(!is_station_level(F.z))
 			continue
 		F.obj_flags |= EMAGGED
-		F.update_icon()
 	to_chat(owner, "<span class='notice'>All thermal sensors on the station have been disabled. Fire alerts will no longer be recognized.</span>")
 	owner.playsound_local(owner, 'sound/machines/terminal_off.ogg', 50, 0)
 
@@ -533,7 +533,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		if(!is_station_level(AA.z))
 			continue
 		AA.obj_flags |= EMAGGED
-	to_chat(owner, "<span class='notice'>All air alarm safeties on the station have been overridden. Air alarms may now use the Flood environmental mode.</span>")
+	to_chat(owner, "<span class='notice'>All air alarm safeties on the station have been overriden. Air alarms may now use the Flood environmental mode.</span>")
 	owner.playsound_local(owner, 'sound/machines/terminal_off.ogg', 50, 0)
 
 
@@ -556,9 +556,6 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 /datum/action/innate/ai/ranged/overload_machine/proc/detonate_machine(obj/machinery/M)
 	if(M && !QDELETED(M))
-		var/turf/T = get_turf(M)
-		message_admins("[ADMIN_LOOKUPFLW(usr)] overloaded [M.name] at [ADMIN_VERBOSEJMP(T)].")
-		log_game("[key_name(usr)] overloaded [M.name] at [AREACOORD(T)].")
 		explosion(get_turf(M), 0, 2, 3, 0)
 		if(M) //to check if the explosion killed it before we try to delete it
 			qdel(M)
@@ -626,7 +623,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		to_chat(ranged_ability_user, "<span class='warning'>You can only animate machines!</span>")
 		return
 	if(!target.can_be_overridden() || is_type_in_typecache(target, GLOB.blacklisted_malf_machines))
-		to_chat(ranged_ability_user, "<span class='warning'>That machine can't be overridden!</span>")
+		to_chat(ranged_ability_user, "<span class='warning'>That machine can't be overriden!</span>")
 		return
 	ranged_ability_user.playsound_local(ranged_ability_user, 'sound/misc/interference.ogg', 50, 0)
 	attached_action.adjust_uses(-1)
@@ -669,7 +666,6 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		active = FALSE
 		return
 	if(!owner_AI.can_place_transformer(src))
-		active = FALSE
 		return
 	var/turf/T = get_turf(owner_AI.eyeobj)
 	var/obj/machinery/transformer/conveyor = new(T)
@@ -807,7 +803,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		desc = "[initial(desc)] There are [uses] reactivations remaining."
 
 
-//Upgrade Camera Network: EMP-proofs all cameras, in addition to giving them X-ray vision.
+//Upgrade Camera Network: EMP-proofs all cameras, in addition to giving them x-ray vision.
 /datum/AI_Module/large/upgrade_cameras
 	module_name = "Upgrade Camera Network"
 	mod_pick_name = "upgradecam"

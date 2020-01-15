@@ -17,13 +17,13 @@
 
 	var/obj/item/cavity_object
 
-	var/obj/item/bodypart/chest/CH = get_bodypart(BODY_ZONE_CHEST)
+	var/obj/item/bodypart/chest/CH = get_bodypart("chest")
 	if(CH.cavity_item)
 		cavity_object = CH.cavity_item
 		CH.cavity_item = null
 
 	if(tr_flags & TR_KEEPITEMS)
-		var/Itemlist = get_equipped_items(TRUE)
+		var/Itemlist = get_equipped_items()
 		Itemlist += held_items
 		for(var/obj/item/W in Itemlist)
 			dropItemToGround(W)
@@ -62,9 +62,9 @@
 
 	//keep viruses?
 	if (tr_flags & TR_KEEPVIRUS)
-		O.diseases = diseases
-		diseases = list()
-		for(var/thing in O.diseases)
+		O.viruses = viruses
+		viruses = list()
+		for(var/thing in O.viruses)
 			var/datum/disease/D = thing
 			D.affected_mob = O
 
@@ -75,10 +75,12 @@
 		O.setOxyLoss(getOxyLoss(), 0)
 		O.setCloneLoss(getCloneLoss(), 0)
 		O.adjustFireLoss(getFireLoss(), 0)
-		O.setOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN), 0)
-		O.adjustStaminaLoss(getStaminaLoss(), 0)//CIT CHANGE - makes monkey transformations inherit stamina
+		O.setBrainLoss(getBrainLoss(), 0)
 		O.updatehealth()
 		O.radiation = radiation
+		for(var/T in get_traumas())
+			var/datum/brain_trauma/BT = T
+			O.gain_trauma(BT.type, BT.permanent)
 
 	//re-add implants to new mob
 	if (tr_flags & TR_KEEPIMPLANTS)
@@ -96,9 +98,7 @@
 			mind.transfer_to(O)
 			var/datum/antagonist/changeling/changeling = O.mind.has_antag_datum(/datum/antagonist/changeling)
 			if(changeling)
-				var/obj/effect/proc_holder/changeling/humanform/HF = new /obj/effect/proc_holder/changeling/humanform(null)
-				changeling.purchasedpowers += HF
-				HF.action.Grant(O)
+				changeling.purchasedpowers += new /obj/effect/proc_holder/changeling/humanform(null)
 
 		for(var/X in internal_organs)
 			var/obj/item/organ/I = X
@@ -109,7 +109,7 @@
 			var/obj/item/organ/I = X
 			I.Insert(O, 1)
 
-	var/obj/item/bodypart/chest/torso = O.get_bodypart(BODY_ZONE_CHEST)
+	var/obj/item/bodypart/chest/torso = O.get_bodypart("chest")
 	if(cavity_object)
 		torso.cavity_item = cavity_object //cavity item is given to the new chest
 		cavity_object.forceMove(O)
@@ -131,9 +131,8 @@
 		mind.transfer_to(O)
 		var/datum/antagonist/changeling/changeling = O.mind.has_antag_datum(/datum/antagonist/changeling)
 		if(changeling)
-			var/obj/effect/proc_holder/changeling/humanform/HF = new /obj/effect/proc_holder/changeling/humanform(null)
-			changeling.purchasedpowers += HF
-			HF.action.Grant(O)
+			changeling.purchasedpowers += new /obj/effect/proc_holder/changeling/humanform(null)
+
 
 	if (tr_flags & TR_DEFAULTMSG)
 		to_chat(O, "<B>You are now a monkey.</B>")
@@ -170,14 +169,14 @@
 
 	var/obj/item/cavity_object
 
-	var/obj/item/bodypart/chest/CH = get_bodypart(BODY_ZONE_CHEST)
+	var/obj/item/bodypart/chest/CH = get_bodypart("chest")
 	if(CH.cavity_item)
 		cavity_object = CH.cavity_item
 		CH.cavity_item = null
 
 	//now the rest
 	if (tr_flags & TR_KEEPITEMS)
-		var/Itemlist = get_equipped_items(TRUE)
+		var/Itemlist = get_equipped_items()
 		Itemlist += held_items
 		for(var/obj/item/W in Itemlist)
 			dropItemToGround(W, TRUE)
@@ -222,9 +221,9 @@
 
 	//keep viruses?
 	if (tr_flags & TR_KEEPVIRUS)
-		O.diseases = diseases
-		diseases = list()
-		for(var/thing in O.diseases)
+		O.viruses = viruses
+		viruses = list()
+		for(var/thing in O.viruses)
 			var/datum/disease/D = thing
 			D.affected_mob = O
 		O.med_hud_set_status()
@@ -236,10 +235,12 @@
 		O.setOxyLoss(getOxyLoss(), 0)
 		O.setCloneLoss(getCloneLoss(), 0)
 		O.adjustFireLoss(getFireLoss(), 0)
-		O.setOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN), 0)
-		O.adjustStaminaLoss(getStaminaLoss(), 0)//CIT CHANGE - makes monkey transformations inherit stamina
+		O.setBrainLoss(getBrainLoss(), 0)
 		O.updatehealth()
 		O.radiation = radiation
+		for(var/T in get_traumas())
+			var/datum/brain_trauma/BT = T
+			O.gain_trauma(BT.type, BT.permanent)
 
 	//re-add implants to new mob
 	if (tr_flags & TR_KEEPIMPLANTS)
@@ -269,7 +270,7 @@
 			I.Insert(O, 1)
 
 
-	var/obj/item/bodypart/chest/torso = get_bodypart(BODY_ZONE_CHEST)
+	var/obj/item/bodypart/chest/torso = get_bodypart("chest")
 	if(cavity_object)
 		torso.cavity_item = cavity_object //cavity item is given to the new chest
 		cavity_object.forceMove(O)
@@ -328,31 +329,30 @@
 	return ..()
 
 /mob/proc/AIize(transfer_after = TRUE)
-	var/list/turf/landmark_loc = list()
-	for(var/obj/effect/landmark/start/ai/sloc in GLOB.landmarks_list)
-		if(locate(/mob/living/silicon/ai) in sloc.loc)
-			continue
-		if(sloc.primary_ai)
-			LAZYCLEARLIST(landmark_loc)
-			landmark_loc += sloc.loc
-			break
-		landmark_loc += sloc.loc
-	if(!landmark_loc.len)
-		to_chat(src, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
-		for(var/obj/effect/landmark/start/ai/sloc in GLOB.landmarks_list)
-			landmark_loc += sloc.loc
-
-	if(!landmark_loc.len)
-		message_admins("Could not find ai landmark for [src]. Yell at a mapper! We are spawning them at their current location.")
-		landmark_loc += loc
-
 	if(client)
 		stop_sound_channel(CHANNEL_LOBBYMUSIC)
+
+	var/turf/loc_landmark
+	for(var/obj/effect/landmark/start/sloc in GLOB.landmarks_list)
+		if(sloc.name != "AI")
+			continue
+		if(locate(/mob/living/silicon/ai) in sloc.loc)
+			continue
+		loc_landmark = sloc.loc
+	if(!loc_landmark)
+		for(var/obj/effect/landmark/tripai/L in GLOB.landmarks_list)
+			if(locate(/mob/living/silicon/ai) in L.loc)
+				continue
+			loc_landmark = L.loc
+	if(!loc_landmark)
+		to_chat(src, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
+		for(var/obj/effect/landmark/start/ai/sloc in GLOB.landmarks_list)
+			loc_landmark = sloc.loc
 
 	if(!transfer_after)
 		mind.active = FALSE
 
-	. = new /mob/living/silicon/ai(pick(landmark_loc), null, src)
+	. = new /mob/living/silicon/ai(loc_landmark, null, src)
 
 	qdel(src)
 
@@ -374,6 +374,9 @@
 
 	var/mob/living/silicon/robot/R = new /mob/living/silicon/robot(loc)
 
+	// cyborgs produced by Robotize get an automatic power cell
+	R.cell = new /obj/item/stock_parts/cell/high(R, 7500)
+
 	R.gender = gender
 	R.invisibility = 0
 
@@ -382,9 +385,10 @@
 			mind.active = FALSE
 		mind.transfer_to(R)
 	else if(transfer_after)
-		transfer_ckey(R)
+		R.key = key
 
-	R.apply_pref_name("cyborg")
+	if (CONFIG_GET(flag/rename_cyborg))
+		R.rename_self("cyborg")
 
 	if(R.mmi)
 		R.mmi.name = "Man-Machine Interface: [real_name]"
@@ -401,7 +405,7 @@
 	qdel(src)
 
 //human -> alien
-/mob/living/carbon/human/proc/Alienize(mind_transfer = TRUE)
+/mob/living/carbon/human/proc/Alienize()
 	if (notransform)
 		return
 	for(var/obj/item/W in src)
@@ -425,16 +429,13 @@
 			new_xeno = new /mob/living/carbon/alien/humanoid/drone(loc)
 
 	new_xeno.a_intent = INTENT_HARM
-	if(mind && mind_transfer)
-		mind.transfer_to(new_xeno)
-	else
-		transfer_ckey(new_xeno)
+	new_xeno.key = key
 
 	to_chat(new_xeno, "<B>You are now an alien.</B>")
 	. = new_xeno
 	qdel(src)
 
-/mob/living/carbon/human/proc/slimeize(reproduce, mind_transfer = TRUE)
+/mob/living/carbon/human/proc/slimeize(reproduce as num)
 	if (notransform)
 		return
 	for(var/obj/item/W in src)
@@ -460,26 +461,20 @@
 	else
 		new_slime = new /mob/living/simple_animal/slime(loc)
 	new_slime.a_intent = INTENT_HARM
-	if(mind && mind_transfer)
-		mind.transfer_to(new_slime)
-	else
-		transfer_ckey(new_slime)
+	new_slime.key = key
 
 	to_chat(new_slime, "<B>You are now a slime. Skreee!</B>")
 	. = new_slime
 	qdel(src)
 
-/mob/proc/become_overmind(starting_points = 60, mind_transfer = FALSE)
+/mob/proc/become_overmind(starting_points = 60)
 	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(src), starting_points)
-	if(mind && mind_transfer)
-		mind.transfer_to(B)
-	else
-		transfer_ckey(B)
+	B.key = key
 	. = B
 	qdel(src)
 
 
-/mob/living/carbon/human/proc/corgize(mind_transfer = TRUE)
+/mob/living/carbon/human/proc/corgize()
 	if (notransform)
 		return
 	for(var/obj/item/W in src)
@@ -494,22 +489,17 @@
 
 	var/mob/living/simple_animal/pet/dog/corgi/new_corgi = new /mob/living/simple_animal/pet/dog/corgi (loc)
 	new_corgi.a_intent = INTENT_HARM
-	if(mind && mind_transfer)
-		mind.transfer_to(new_corgi)
-	else
-		transfer_ckey(new_corgi)
+	new_corgi.key = key
 
 	to_chat(new_corgi, "<B>You are now a Corgi. Yap Yap!</B>")
 	. = new_corgi
 	qdel(src)
 
-/mob/living/carbon/proc/gorillize(mind_transfer = TRUE)
+/mob/living/carbon/proc/gorillize()
 	if(notransform)
 		return
 
-	SSblackbox.record_feedback("amount", "gorillas_created", 1)
-
-	var/Itemlist = get_equipped_items(TRUE)
+	var/Itemlist = get_equipped_items()
 	Itemlist += held_items
 	for(var/obj/item/W in Itemlist)
 		dropItemToGround(W, TRUE)
@@ -521,22 +511,22 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	var/mob/living/simple_animal/hostile/gorilla/new_gorilla = new (get_turf(src))
 	new_gorilla.a_intent = INTENT_HARM
-	if(mind && mind_transfer)
+	if(mind)
 		mind.transfer_to(new_gorilla)
 	else
-		transfer_ckey(new_gorilla)
+		new_gorilla.key = key
 	to_chat(new_gorilla, "<B>You are now a gorilla. Ooga ooga!</B>")
 	. = new_gorilla
 	qdel(src)
 
-/mob/living/carbon/human/Animalize(mind_transfer = TRUE)
+/mob/living/carbon/human/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
-	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") as null|anything in mobtypes
-	if(!mobpath)
+	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
+
+	if(!safe_animal(mobpath))
+		to_chat(usr, "<span class='danger'>Sorry but this mob type is currently unavailable.</span>")
 		return
-	if(mind)
-		mind_transfer = alert("Want to transfer their mind into the new mob", "Mind Transfer", "Yes", "No") == "Yes" ? TRUE : FALSE
 
 	if(notransform)
 		return
@@ -544,8 +534,8 @@
 		dropItemToGround(W)
 
 	regenerate_icons()
-	notransform = TRUE
-	canmove = FALSE
+	notransform = 1
+	canmove = 0
 	icon = null
 	invisibility = INVISIBILITY_MAXIMUM
 
@@ -553,10 +543,8 @@
 		qdel(t)
 
 	var/mob/new_mob = new mobpath(src.loc)
-	if(mind && mind_transfer)
-		mind.transfer_to(new_mob)
-	else
-		transfer_ckey(new_mob)
+
+	new_mob.key = key
 	new_mob.a_intent = INTENT_HARM
 
 
@@ -564,23 +552,59 @@
 	. = new_mob
 	qdel(src)
 
-/mob/proc/Animalize(mind_transfer = TRUE)
+/mob/proc/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
-	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") as null|anything in mobtypes
-	if(!mobpath)
+	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
+
+	if(!safe_animal(mobpath))
+		to_chat(usr, "<span class='danger'>Sorry but this mob type is currently unavailable.</span>")
 		return
-	if(mind)
-		mind_transfer = alert("Want to transfer their mind into the new mob", "Mind Transfer", "Yes", "No") == "Yes" ? TRUE : FALSE
 
 	var/mob/new_mob = new mobpath(src.loc)
 
-	if(mind && mind_transfer)
-		mind.transfer_to(new_mob)
-	else
-		transfer_ckey(new_mob)
+	new_mob.key = key
 	new_mob.a_intent = INTENT_HARM
 	to_chat(new_mob, "You feel more... animalistic")
 
 	. = new_mob
 	qdel(src)
+
+/* Certain mob types have problems and should not be allowed to be controlled by players.
+ *
+ * This proc is here to force coders to manually place their mob in this list, hopefully tested.
+ * This also gives a place to explain -why- players shouldnt be turn into certain mobs and hopefully someone can fix them.
+ */
+/mob/proc/safe_animal(MP)
+
+//Bad mobs! - Remember to add a comment explaining what's wrong with the mob
+	if(!MP)
+		return 0	//Sanity, this should never happen.
+
+	if(ispath(MP, /mob/living/simple_animal/hostile/construct))
+		return 0 //Verbs do not appear for players.
+
+//Good mobs!
+	if(ispath(MP, /mob/living/simple_animal/pet/cat))
+		return 1
+	if(ispath(MP, /mob/living/simple_animal/pet/dog/corgi))
+		return 1
+	if(ispath(MP, /mob/living/simple_animal/crab))
+		return 1
+	if(ispath(MP, /mob/living/simple_animal/hostile/carp))
+		return 1
+	if(ispath(MP, /mob/living/simple_animal/hostile/mushroom))
+		return 1
+	if(ispath(MP, /mob/living/simple_animal/shade))
+		return 1
+	if(ispath(MP, /mob/living/simple_animal/hostile/killertomato))
+		return 1
+	if(ispath(MP, /mob/living/simple_animal/mouse))
+		return 1 //It is impossible to pull up the player panel for mice (Fixed! - Nodrak)
+	if(ispath(MP, /mob/living/simple_animal/hostile/bear))
+		return 1 //Bears will auto-attack mobs, even if they're player controlled (Fixed! - Nodrak)
+	if(ispath(MP, /mob/living/simple_animal/parrot))
+		return 1 //Parrots are no longer unfinished! -Nodrak
+
+	//Not in here? Must be untested!
+	return 0

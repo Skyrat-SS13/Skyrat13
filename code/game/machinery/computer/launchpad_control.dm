@@ -18,8 +18,8 @@
 	return
 
 /obj/machinery/computer/launchpad/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/multitool))
-		var/obj/item/multitool/M = W
+	if(istype(W, /obj/item/device/multitool))
+		var/obj/item/device/multitool/M = W
 		if(M.buffer && istype(M.buffer, /obj/machinery/launchpad))
 			if(LAZYLEN(launchpads) < maximum_pads)
 				launchpads |= M.buffer
@@ -29,6 +29,14 @@
 				to_chat(user, "<span class='warning'>[src] cannot handle any more connections!</span>")
 	else
 		return ..()
+
+/obj/machinery/computer/launchpad/attack_ai(mob/user)
+	attack_hand(user)
+
+/obj/machinery/computer/launchpad/attack_hand(mob/user)
+	if(..())
+		return
+	interact(user)
 
 /obj/machinery/computer/launchpad/proc/pad_exists(number)
 	var/obj/machinery/launchpad/pad = launchpads[number]
@@ -40,8 +48,7 @@
 	var/obj/machinery/launchpad/pad = launchpads[number]
 	return pad
 
-/obj/machinery/computer/launchpad/ui_interact(mob/user)
-	. = ..()
+/obj/machinery/computer/launchpad/interact(mob/user)
 	var/list/t = list()
 	if(!LAZYLEN(launchpads))
 		obj_flags &= ~IN_USE     //Yeah so if you deconstruct teleporter while its in the process of shooting it wont disable the console
@@ -74,8 +81,8 @@
 			t += "<A href='?src=[REF(src)];lowery=1;raisex=1;pad=[current_pad]'>O</A><BR>"//down-right
 			t += "<BR>"
 			t += "<div class='statusDisplay'>Current offset:</div><BR>"
-			t += "<div class='statusDisplay'>[abs(pad.y_offset)] [pad.y_offset > 0 ? "N":"S"] <a href='?src=[REF(src)];sety=1;pad=[current_pad]'>\[SET\]</a></div><BR>"
-			t += "<div class='statusDisplay'>[abs(pad.x_offset)] [pad.x_offset > 0 ? "E":"W"] <a href='?src=[REF(src)];setx=1;pad=[current_pad]'>\[SET\]</a></div><BR>"
+			t += "<div class='statusDisplay'>[abs(pad.y_offset)] [pad.y_offset > 0 ? "N":"S"]</div><BR>"
+			t += "<div class='statusDisplay'>[abs(pad.x_offset)] [pad.x_offset > 0 ? "E":"W"]</div><BR>"
 
 			t += "<BR><A href='?src=[REF(src)];launch=1;pad=[current_pad]'>Launch</A>"
 			t += " <A href='?src=[REF(src)];pull=1;pad=[current_pad]'>Pull</A>"
@@ -128,20 +135,10 @@
 		pad.x_offset = 0
 
 	if(href_list["change_name"])
-		var/new_name = stripped_input(usr, "What do you wish to name the launchpad?", "Launchpad", pad.display_name, 15)
+		var/new_name = stripped_input(usr, "What do you wish to name the launchpad?", "Launchpad", pad.display_name, 15) as text|null
 		if(!new_name)
 			return
 		pad.display_name = new_name
-	
-	if(href_list["setx"])
-		var/newx = input(usr, "Input new x offset", pad.display_name, pad.x_offset) as null|num
-		if(!isnull(newx))
-			pad.x_offset = CLAMP(newx, -pad.range, pad.range)
-
-	if(href_list["sety"])
-		var/newy = input(usr, "Input new y offset", pad.display_name, pad.y_offset) as null|num
-		if(!isnull(newy))
-			pad.y_offset = CLAMP(newy, -pad.range, pad.range)
 
 	if(href_list["remove"])
 		if(usr && alert(usr, "Are you sure?", "Remove Launchpad", "I'm Sure", "Abort") != "Abort")

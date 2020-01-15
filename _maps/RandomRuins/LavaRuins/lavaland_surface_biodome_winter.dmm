@@ -303,7 +303,6 @@
 /obj/machinery/light/built{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/pod/dark{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
@@ -311,15 +310,8 @@
 "qt" = (
 /obj/machinery/door/airlock/silver,
 /obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
-"tb" = (
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
 "tl" = (
 /turf/open/floor/pod/light,
 /area/ruin/powered/snow_biodome)
@@ -385,9 +377,6 @@
 "PD" = (
 /obj/machinery/door/airlock/hatch,
 /obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
 "PK" = (
@@ -396,11 +385,6 @@
 /obj/item/paper_bin,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
-"Qa" = (
-/obj/effect/mapping_helpers/no_lava,
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
 "QI" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
@@ -422,7 +406,7 @@
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
 "UM" = (
-/obj/machinery/computer/monitor/secret{
+/obj/machinery/computer/monitor{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
@@ -588,7 +572,7 @@ ak
 Wg
 Wg
 QI
-tb
+QI
 aa
 "}
 (6,1,1) = {"
@@ -620,7 +604,7 @@ ak
 ak
 Wg
 QI
-tb
+QI
 aa
 "}
 (7,1,1) = {"
@@ -652,7 +636,7 @@ ak
 bM
 Wg
 Wg
-tb
+QI
 aa
 "}
 (8,1,1) = {"
@@ -684,8 +668,8 @@ ak
 az
 ak
 Wg
-tb
-tb
+QI
+QI
 "}
 (9,1,1) = {"
 aa
@@ -717,7 +701,7 @@ ak
 ak
 Wg
 hA
-tb
+QI
 "}
 (10,1,1) = {"
 Wg
@@ -748,8 +732,8 @@ ak
 ak
 ak
 Wg
-tb
-tb
+QI
+QI
 "}
 (11,1,1) = {"
 Wg
@@ -781,7 +765,7 @@ Wg
 Wg
 Wg
 Wg
-tb
+QI
 "}
 (12,1,1) = {"
 Wg
@@ -813,7 +797,7 @@ Wg
 Dd
 Dd
 Wg
-tb
+QI
 "}
 (13,1,1) = {"
 Wg
@@ -845,7 +829,7 @@ Wg
 Mp
 dS
 Wg
-tb
+QI
 "}
 (14,1,1) = {"
 Wg
@@ -877,7 +861,7 @@ Wg
 tl
 tl
 Wg
-tb
+QI
 "}
 (15,1,1) = {"
 Wg
@@ -909,7 +893,7 @@ aO
 tl
 tl
 Ez
-Qa
+QI
 "}
 (16,1,1) = {"
 Wg
@@ -941,7 +925,7 @@ aP
 tl
 tl
 aP
-Qa
+QI
 "}
 (17,1,1) = {"
 Wg
@@ -973,7 +957,7 @@ Wg
 tl
 tl
 Wg
-tb
+QI
 "}
 (18,1,1) = {"
 Wg
@@ -1005,7 +989,7 @@ Wg
 HP
 dS
 Wg
-tb
+QI
 "}
 (19,1,1) = {"
 Wg
@@ -1037,7 +1021,7 @@ Wg
 QK
 AM
 Wg
-tb
+QI
 "}
 (20,1,1) = {"
 Wg
@@ -1069,7 +1053,7 @@ Wg
 Wg
 Wg
 Wg
-tb
+QI
 "}
 (21,1,1) = {"
 Wg
@@ -1100,8 +1084,8 @@ ak
 ak
 ak
 Wg
-tb
-tb
+QI
+QI
 "}
 (22,1,1) = {"
 aa
@@ -1133,7 +1117,7 @@ ak
 ak
 Wg
 hA
-tb
+QI
 "}
 (23,1,1) = {"
 aa
@@ -1164,8 +1148,8 @@ ak
 ak
 ak
 Wg
-tb
-tb
+QI
+QI
 "}
 (24,1,1) = {"
 aa
@@ -1196,7 +1180,7 @@ ak
 bM
 Wg
 Wg
-tb
+QI
 aa
 "}
 (25,1,1) = {"
@@ -1228,7 +1212,7 @@ aC
 ak
 Wg
 QI
-tb
+QI
 aa
 "}
 (26,1,1) = {"

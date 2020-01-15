@@ -15,15 +15,17 @@
 	setDir(pick(GLOB.cardinals))
 	air_update_turf(1)
 
+/obj/structure/emergency_shield/Destroy()
+	density = FALSE
+	air_update_turf(1)
+	return ..()
+
 /obj/structure/emergency_shield/Move()
 	var/turf/T = loc
 	. = ..()
 	move_update_air(T)
 
 /obj/structure/emergency_shield/emp_act(severity)
-	. = ..()
-	if (. & EMP_PROTECT_SELF)
-		return
 	switch(severity)
 		if(1)
 			qdel(src)
@@ -57,11 +59,9 @@
 	color = "#FF0000"
 	max_integrity = 20
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/emergency_shield/invoker/emp_act(severity)
 	return
-
 
 /obj/machinery/shieldgen
 	name = "anti-breach shielding projector"
@@ -117,11 +117,8 @@
 			locked = pick(0,1)
 			update_icon()
 
-/obj/machinery/shieldgen/interact(mob/user)
-	. = ..()
-	if(.)
-		return
-	if(locked && !issilicon(user))
+/obj/machinery/shieldgen/attack_hand(mob/user)
+	if(locked)
 		to_chat(user, "<span class='warning'>The machine is locked, you are unable to use it!</span>")
 		return
 	if(panel_open)
@@ -145,7 +142,7 @@
 
 /obj/machinery/shieldgen/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/screwdriver))
-		W.play_tool_sound(src, 100)
+		playsound(src.loc, W.usesound, 100, 1)
 		panel_open = !panel_open
 		if(panel_open)
 			to_chat(user, "<span class='notice'>You open the panel and expose the wiring.</span>")
@@ -171,16 +168,16 @@
 			to_chat(user, "<span class='warning'>The bolts are covered! Unlocking this would retract the covers.</span>")
 			return
 		if(!anchored && !isinspace())
-			W.play_tool_sound(src, 100)
+			playsound(src.loc, W.usesound, 100, 1)
 			to_chat(user, "<span class='notice'>You secure \the [src] to the floor!</span>")
-			setAnchored(TRUE)
+			anchored = TRUE
 		else if(anchored)
-			W.play_tool_sound(src, 100)
+			playsound(src.loc, W.usesound, 100, 1)
 			to_chat(user, "<span class='notice'>You unsecure \the [src] from the floor!</span>")
 			if(active)
 				to_chat(user, "<span class='notice'>\The [src] shuts off!</span>")
 				shields_down()
-			setAnchored(FALSE)
+			anchored = FALSE
 
 	else if(W.GetID())
 		if(allowed(user) && !(obj_flags & EMAGGED))
@@ -195,7 +192,6 @@
 		return ..()
 
 /obj/machinery/shieldgen/emag_act(mob/user)
-	. = ..()
 	if(obj_flags & EMAGGED)
 		to_chat(user, "<span class='warning'>The access controller is damaged!</span>")
 		return
@@ -203,7 +199,6 @@
 	locked = FALSE
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, "<span class='warning'>You short out the access controller.</span>")
-	return TRUE
 
 /obj/machinery/shieldgen/update_icon()
 	if(active)
@@ -360,10 +355,7 @@
 		add_fingerprint(user)
 		return ..()
 
-/obj/machinery/shieldwallgen/interact(mob/user)
-	. = ..()
-	if(.)
-		return
+/obj/machinery/shieldwallgen/attack_hand(mob/user)
 	if(!anchored)
 		to_chat(user, "<span class='warning'>\The [src] needs to be firmly secured to the floor first!</span>")
 		return
@@ -389,7 +381,6 @@
 	add_fingerprint(user)
 
 /obj/machinery/shieldwallgen/emag_act(mob/user)
-	. = ..()
 	if(obj_flags & EMAGGED)
 		to_chat(user, "<span class='warning'>The access controller is damaged!</span>")
 		return
@@ -397,7 +388,6 @@
 	locked = FALSE
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, "<span class='warning'>You short out the access controller.</span>")
-	return TRUE
 
 //////////////Containment Field START
 /obj/machinery/shieldwall
@@ -405,6 +395,7 @@
 	desc = "An energy shield."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shieldwall"
+	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	light_range = 3
@@ -427,6 +418,9 @@
 	gen_primary = null
 	gen_secondary = null
 	return ..()
+
+/obj/machinery/shieldwall/attack_hand(mob/user)
+	return
 
 /obj/machinery/shieldwall/process()
 	if(needs_power)

@@ -140,7 +140,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			return
 		user.visible_message("[user] cuts the cable.", "<span class='notice'>You cut the cable.</span>")
 		stored.add_fingerprint(user)
-		investigate_log("was cut by [key_name(usr)] in [AREACOORD(src)]", INVESTIGATE_WIRES)
+		investigate_log("was cut by [key_name(usr, usr.client)] in [get_area(T)]", INVESTIGATE_WIRES)
 		deconstruct()
 		return
 
@@ -157,7 +157,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			R.loaded.cable_join(src, user)
 			R.is_empty(user)
 
-	else if(istype(W, /obj/item/multitool))
+	else if(istype(W, /obj/item/device/multitool))
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			to_chat(user, "<span class='danger'>[DisplayPower(powernet.avail)] in power network.</span>")
 		else
@@ -199,10 +199,6 @@ By design, d1 is the smallest direction and d2 is the highest
 // Power related
 ///////////////////////////////////////////
 
-// All power generation handled in add_avail()
-// Machines should use add_load(), surplus(), avail()
-// Non-machines should use add_delayedload(), delayed_surplus(), newavail()
-
 /obj/structure/cable/proc/add_avail(amount)
 	if(powernet)
 		powernet.newavail += amount
@@ -213,29 +209,13 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/proc/surplus()
 	if(powernet)
-		return CLAMP(powernet.avail-powernet.load, 0, powernet.avail)
+		return powernet.avail-powernet.load
 	else
 		return 0
 
-/obj/structure/cable/proc/avail(amount)
+/obj/structure/cable/proc/avail()
 	if(powernet)
-		return amount ? powernet.avail >= amount : powernet.avail
-	else
-		return 0
-
-/obj/structure/cable/proc/add_delayedload(amount)
-	if(powernet)
-		powernet.delayedload += amount
-
-/obj/structure/cable/proc/delayed_surplus()
-	if(powernet)
-		return CLAMP(powernet.newavail - powernet.delayedload, 0, powernet.newavail)
-	else
-		return 0
-
-/obj/structure/cable/proc/newavail()
-	if(powernet)
-		return powernet.newavail
+		return powernet.avail
 	else
 		return 0
 
@@ -486,12 +466,11 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	throw_range = 5
 	materials = list(MAT_METAL=10, MAT_GLASS=5)
 	flags_1 = CONDUCT_1
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	singular_name = "cable piece"
 	full_w_class = WEIGHT_CLASS_SMALL
-	grind_results = list(/datum/reagent/copper = 2) //2 copper per cable in the coil
-	usesound = 'sound/items/deconstruct.ogg'
+	grind_results = list("copper" = 2) //2 copper per cable in the coil
 
 /obj/item/stack/cable_coil/cyborg
 	is_cyborg = 1
@@ -553,9 +532,6 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	add_atom_colour(item_color, FIXED_COLOUR_PRIORITY)
 
 /obj/item/stack/cable_coil/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	var/obj/item/stack/cable_coil/new_cable = ..()
 	if(istype(new_cable))
 		new_cable.item_color = item_color
@@ -639,7 +615,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 
 // called when cable_coil is click on an installed obj/cable
 // or click on a turf that already contains a "node" cable
-/obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user, showerror = TRUE, forceddir)
+/obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user, var/showerror = TRUE)
 	var/turf/U = user.loc
 	if(!isturf(U))
 		return
@@ -654,14 +630,14 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 		return
 
 
-	if(U == T && !forceddir) //if clicked on the turf we're standing on and a direction wasn't supplied, try to put a cable in the direction we're facing
+	if(U == T) //if clicked on the turf we're standing on, try to put a cable in the direction we're facing
 		place_turf(T,user)
 		return
 
 	var/dirn = get_dir(C, user)
 
-	// one end of the clicked cable is pointing towards us and no direction was supplied
-	if((C.d1 == dirn || C.d2 == dirn) && !forceddir)
+	// one end of the clicked cable is pointing towards us
+	if(C.d1 == dirn || C.d2 == dirn)
 		if(!U.can_have_cabling())						//checking if it's a plating or catwalk
 			if (showerror)
 				to_chat(user, "<span class='warning'>You can only lay cables on catwalks and plating!</span>")
@@ -706,7 +682,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 
 			return
 
-	// exisiting cable doesn't point at our position or we have a supplied direction, so see if it's a stub
+	// exisiting cable doesn't point at our position, so see if it's a stub
 	else if(C.d1 == 0)
 							// if so, make it a full cable pointing from it's old direction to our dirn
 		var/nd1 = C.d2	// these will be the new directions

@@ -5,8 +5,8 @@
 	width = 7
 	height = 7
 
-/obj/docking_port/mobile/assault_pod/request(obj/docking_port/stationary/S)
-	if(!(z in SSmapping.levels_by_trait(ZTRAIT_STATION))) //No launching pods that have already launched
+/obj/docking_port/mobile/assault_pod/request()
+	if(z == initial(src.z)) //No launching pods that have already launched
 		return ..()
 
 
@@ -17,9 +17,8 @@
 
 
 
-/obj/item/assault_pod
-	name = "Assault Pod Targeting Device"
-	icon = 'icons/obj/device.dmi'
+/obj/item/device/assault_pod
+	name = "Assault Pod Targetting Device"
 	icon_state = "gangtool-red"
 	item_state = "radio"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
@@ -33,11 +32,9 @@
 	var/lz_dir = 1
 
 
-/obj/item/assault_pod/attack_self(mob/living/user)
+/obj/item/device/assault_pod/attack_self(mob/living/user)
 	var/target_area
-	target_area = input("Area to land", "Select a Landing Zone", target_area) as null|anything in GLOB.teleportlocs
-	if(!target_area)
-		return
+	target_area = input("Area to land", "Select a Landing Zone", target_area) in GLOB.teleportlocs
 	var/area/picked_area = GLOB.teleportlocs[target_area]
 	if(!src || QDELETED(src))
 		return

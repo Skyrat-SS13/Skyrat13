@@ -10,7 +10,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	desc = "A mysterious being that stands by its charge, ever vigilant."
 	speak_emote = list("hisses")
 	gender = NEUTER
-	mob_biotypes = list(MOB_INORGANIC)
 	bubble_icon = "guardian"
 	response_help  = "passes through"
 	response_disarm = "flails at"
@@ -20,7 +19,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	icon_living = "magicOrange"
 	icon_dead = "magicOrange"
 	speed = 0
-	blood_volume = 0
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
 	movement_type = FLYING // Immunity to chasms and landmines, etc.
@@ -39,13 +37,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	melee_damage_upper = 15
 	butcher_results = list(/obj/item/ectoplasm = 1)
 	AIStatus = AI_OFF
-	hud_type = /datum/hud/guardian
 	dextrous_hud_type = /datum/hud/dextrous/guardian //if we're set to dextrous, account for it.
 	var/list/guardian_overlays[GUARDIAN_TOTAL_LAYERS]
 	var/reset = 0 //if the summoner has reset the guardian already
 	var/cooldown = 0
-	var/mob/living/carbon/summoner
-	var/range = 13 //how far from the user the spirit can be
+	var/mob/living/summoner
+	var/range = 10 //how far from the user the spirit can be
 	var/toggle_button_type = /obj/screen/guardian/ToggleMode/Inactive //what sort of toggle button the hud uses
 	var/datum/guardianname/namedatum = new/datum/guardianname()
 	var/playstyle_string = "<span class='holoparasite bold'>You are a standard Guardian. You shouldn't exist!</span>"
@@ -123,8 +120,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		to_chat(src, "<span class='holoparasite bold'>For some reason, somehow, you have no summoner. Please report this bug immediately.</span>")
 		return
 	to_chat(src, "<span class='holoparasite'>You are <font color=\"[namedatum.colour]\"><b>[real_name]</b></font>, bound to serve [summoner.real_name].</span>")
-	to_chat(src, "<span class='holoparasite'>You are capable of manifesting or recalling to your master with the buttons on your HUD. You will also find a button to communicate with [summoner.p_them()] privately there.</span>")
-	to_chat(src, "<span class='holoparasite'>While personally invincible, you will die if [summoner.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.p_them()] as you feed upon [summoner.p_them()] to sustain yourself.</span>")
+	to_chat(src, "<span class='holoparasite'>You are capable of manifesting or recalling to your master with the buttons on your HUD. You will also find a button to communicate with them privately there.</span>")
+	to_chat(src, "<span class='holoparasite'>While personally invincible, you will die if [summoner.real_name] does, and any damage dealt to you will have a portion passed on to them as you feed upon them to sustain yourself.</span>")
 	to_chat(src, playstyle_string)
 
 /mob/living/simple_animal/hostile/guardian/Life() //Dies if the summoner dies
@@ -150,9 +147,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		death(TRUE)
 		qdel(src)
 	snapback()
-	if(HAS_TRAIT(summoner, TRAIT_NODEATH) && (istype(summoner.wear_neck, /obj/item/clothing/neck/necklace/memento_mori)))
-		REMOVE_TRAIT(summoner, TRAIT_NODEATH, "memento_mori")
-		to_chat(summoner,"<span class='danger'>You feel incredibly vulnerable as the memento mori pulls your life force in one too many directions!")
 
 /mob/living/simple_animal/hostile/guardian/Stat()
 	..()
@@ -375,7 +369,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			var/link = FOLLOW_LINK(M, src)
 			to_chat(M, "[link] [my_message]")
 
-		src.log_talk(input, LOG_SAY, tag="guardian")
+		log_talk(src,"GUARDIAN:[key_name(src)]: [input]",LOGSAY)
 
 /mob/living/proc/guardian_comm()
 	set name = "Communicate"
@@ -397,7 +391,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		var/link = FOLLOW_LINK(M, src)
 		to_chat(M, "[link] [my_message]")
 
-	src.log_talk(input, LOG_SAY, tag="guardian")
+	log_talk(src,"GUARDIAN:[key_name(src)]: [input]",LOGSAY)
 
 //FORCE RECALL/RESET
 
@@ -424,15 +418,16 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		var/mob/living/simple_animal/hostile/guardian/G = input(src, "Pick the guardian you wish to reset", "Guardian Reset") as null|anything in guardians
 		if(G)
 			to_chat(src, "<span class='holoparasite'>You attempt to reset <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>'s personality...</span>")
-			var/list/mob/candidates = pollGhostCandidates("Do you want to play as [src.real_name]'s [G.real_name]?", ROLE_PAI, null, FALSE, 100)
-			if(LAZYLEN(candidates))
-				var/mob/C = pick(candidates)
+			var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as [src.real_name]'s [G.real_name]?", "pAI", null, FALSE, 100)
+			var/mob/dead/observer/new_stand = null
+			if(candidates.len)
+				new_stand = pick(candidates)
 				to_chat(G, "<span class='holoparasite'>Your user reset you, and your body was taken over by a ghost. Looks like they weren't happy with your performance.</span>")
 				to_chat(src, "<span class='holoparasite bold'>Your <font color=\"[G.namedatum.colour]\">[G.real_name]</font> has been successfully reset.</span>")
-				message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(G)])")
-				G.ghostize(FALSE)
+				message_admins("[key_name_admin(new_stand)] has taken control of ([key_name_admin(G)])")
+				G.ghostize(0)
 				G.setthemename(G.namedatum.theme) //give it a new color, to show it's a new person
-				C.transfer_ckey(G)
+				G.key = new_stand.key
 				G.reset = 1
 				switch(G.namedatum.theme)
 					if("tech")
@@ -498,11 +493,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		return
 	used = TRUE
 	to_chat(user, "[use_message]")
-	var/list/mob/candidates = pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
+	var/mob/dead/observer/theghost = null
 
-	if(LAZYLEN(candidates))
-		var/mob/C = pick(candidates)
-		spawn_guardian(user, C.key)
+	if(candidates.len)
+		theghost = pick(candidates)
+		spawn_guardian(user, theghost.key)
 	else
 		to_chat(user, "[failure_message]")
 		used = FALSE
@@ -600,9 +596,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /obj/item/guardiancreator/tech/choose/traitor
 	possible_guardians = list("Assassin", "Chaos", "Charger", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support")
 
-/obj/item/guardiancreator/tech/choose/traitor/check_uplink_validity()
-	return !used
-
 /obj/item/guardiancreator/tech/choose
 	random = FALSE
 
@@ -665,9 +658,11 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /obj/item/storage/box/syndie_kit/guardian
 	name = "holoparasite injector kit"
 
-/obj/item/storage/box/syndie_kit/guardian/PopulateContents()
+/obj/item/storage/box/syndie_kit/guardian/Initialize()
+	. = ..()
 	new /obj/item/guardiancreator/tech/choose/traitor(src)
 	new /obj/item/paper/guides/antag/guardian(src)
+	return
 
 /obj/item/guardiancreator/carp
 	name = "holocarp fishsticks"

@@ -9,30 +9,52 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
-	component_type = /datum/component/storage/concrete/rped
-	var/works_from_distance = FALSE
+	can_hold = list(/obj/item/stock_parts)
+	storage_slots = 50
+	use_to_pickup = 1
+	allow_quick_gather = 1
+	allow_quick_empty = 1
+	collection_mode = 1
+	display_contents_with_number = 1
+	max_w_class = WEIGHT_CLASS_NORMAL
+	max_combined_w_class = 100
+	var/works_from_distance = 0
 	var/pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/rped.ogg'
 	var/alt_sound = null
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE	//cutting down on exploits
 
-/obj/item/storage/part_replacer/pre_attack(obj/machinery/T, mob/living/user, params)
-	if(!istype(T) || !T.component_parts)
-		return ..()
-	if(user.Adjacent(T)) // no TK upgrading.
-		if(works_from_distance)
-			user.Beam(T, icon_state = "rped_upgrade", time = 5)
-		T.exchange_parts(user, src)
-		return FALSE
-	return ..()
-
-/obj/item/storage/part_replacer/afterattack(obj/machinery/T, mob/living/user, adjacent, params)
-	if(adjacent || !istype(T) || !T.component_parts)
-		return ..()
-	if(works_from_distance)
-		user.Beam(T, icon_state = "rped_upgrade", time = 5)
-		T.exchange_parts(user, src)
+/obj/item/storage/part_replacer/afterattack(obj/machinery/T, mob/living/carbon/human/user, flag, params)
+	if(flag)
 		return
-	return ..()
+	else if(works_from_distance)
+		if(istype(T))
+			if(T.component_parts)
+				T.exchange_parts(user, src)
+				user.Beam(T,icon_state="rped_upgrade",time=5)
+	return
+
+/obj/item/storage/part_replacer/bluespace
+	name = "bluespace rapid part exchange device"
+	desc = "A version of the RPED that allows for replacement of parts and scanning from a distance, along with higher capacity for parts."
+	icon_state = "BS_RPED"
+	w_class = WEIGHT_CLASS_NORMAL
+	storage_slots = 400
+	max_w_class = WEIGHT_CLASS_NORMAL
+	max_combined_w_class = 800
+	works_from_distance = 1
+	pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/pshoom.ogg'
+	alt_sound = 'sound/items/pshoom_2.ogg'
+
+/obj/item/storage/part_replacer/bluespace/dump_content_at(atom/dest_object, mob/user)
+	if(Adjacent(user))
+		var/atom/dumping_location = dest_object.get_dumping_location()
+		if(get_dist(user, dumping_location) < 8)
+			if(dumping_location.storage_contents_dump_act(src, user))
+				play_rped_sound()
+				user.Beam(dumping_location,icon_state="rped_upgrade",time=5)
+				return 1
+		to_chat(user, "The [src.name] buzzes.")
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
+	return 0
 
 /obj/item/storage/part_replacer/proc/play_rped_sound()
 	//Plays the sound for RPED exhanging or installing parts.
@@ -41,74 +63,10 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	else
 		playsound(src, pshoom_or_beepboopblorpzingshadashwoosh, 40, 1)
 
-/obj/item/storage/part_replacer/bluespace
-	name = "bluespace rapid part exchange device"
-	desc = "A version of the RPED that allows for replacement of parts and scanning from a distance, along with higher capacity for parts. Definitely not just a BSRPED painted orange."
-	icon_state = "BS_RPED"
-	w_class = WEIGHT_CLASS_NORMAL
-	works_from_distance = TRUE
-	pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/pshoom.ogg'
-	alt_sound = 'sound/items/pshoom_2.ogg'
-	component_type = /datum/component/storage/concrete/bluespace/rped
-
-/obj/item/storage/part_replacer/bluespace/tier1
-
-/obj/item/storage/part_replacer/bluespace/tier1/PopulateContents()
-	for(var/i in 1 to 10)
-		new /obj/item/stock_parts/capacitor(src)
-		new /obj/item/stock_parts/scanning_module(src)
-		new /obj/item/stock_parts/manipulator(src)
-		new /obj/item/stock_parts/micro_laser(src)
-		new /obj/item/stock_parts/matter_bin(src)
-
-/obj/item/storage/part_replacer/bluespace/tier2
-
-/obj/item/storage/part_replacer/bluespace/tier2/PopulateContents()
-	for(var/i in 1 to 10)
-		new /obj/item/stock_parts/capacitor/adv(src)
-		new /obj/item/stock_parts/scanning_module/adv(src)
-		new /obj/item/stock_parts/manipulator/nano(src)
-		new /obj/item/stock_parts/micro_laser/high(src)
-		new /obj/item/stock_parts/matter_bin/adv(src)
-
-/obj/item/storage/part_replacer/bluespace/tier3
-
-/obj/item/storage/part_replacer/bluespace/tier3/PopulateContents()
-	for(var/i in 1 to 10)
-		new /obj/item/stock_parts/capacitor/super(src)
-		new /obj/item/stock_parts/scanning_module/phasic(src)
-		new /obj/item/stock_parts/manipulator/pico(src)
-		new /obj/item/stock_parts/micro_laser/ultra(src)
-		new /obj/item/stock_parts/matter_bin/super(src)
-
-/obj/item/storage/part_replacer/bluespace/tier4
-
-/obj/item/storage/part_replacer/bluespace/tier4/PopulateContents()
-	for(var/i in 1 to 10)
-		new /obj/item/stock_parts/capacitor/quadratic(src)
-		new /obj/item/stock_parts/scanning_module/triphasic(src)
-		new /obj/item/stock_parts/manipulator/femto(src)
-		new /obj/item/stock_parts/micro_laser/quadultra(src)
-		new /obj/item/stock_parts/matter_bin/bluespace(src)
-
-/obj/item/storage/part_replacer/cargo //used in a cargo crate
-
-/obj/item/storage/part_replacer/cargo/PopulateContents()
-	for(var/i in 1 to 10)
-		new /obj/item/stock_parts/capacitor(src)
-		new /obj/item/stock_parts/scanning_module(src)
-		new /obj/item/stock_parts/manipulator(src)
-		new /obj/item/stock_parts/micro_laser(src)
-		new /obj/item/stock_parts/matter_bin(src)
-
-/obj/item/storage/part_replacer/cyborg
-	icon_state = "borgrped"
-
-/obj/item/storage/part_replacer/bluespace/cyborg
-	icon_state = "borg_BS_RPED"
-
-/proc/cmp_rped_sort(obj/item/A, obj/item/B)
-	return B.get_part_rating() - A.get_part_rating()
+//Sorts stock parts inside an RPED by their rating.
+//Only use /obj/item/stock_parts/ with this sort proc!
+/proc/cmp_rped_sort(obj/item/stock_parts/A, obj/item/stock_parts/B)
+	return B.rating - A.rating
 
 /obj/item/stock_parts
 	name = "stock part"
@@ -116,15 +74,11 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon = 'icons/obj/stock_parts.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	var/rating = 1
-	rad_flags = RAD_NO_CONTAMINATE
 
 /obj/item/stock_parts/Initialize()
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
-
-/obj/item/stock_parts/get_part_rating()
-	return rating
 
 //Rating 1
 

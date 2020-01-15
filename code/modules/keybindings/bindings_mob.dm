@@ -29,9 +29,6 @@
 			else
 				dropItemToGround(I)
 			return
-		if("E")
-			quick_equip()
-			return
 		if("Alt")
 			toggle_move_intent()
 			return

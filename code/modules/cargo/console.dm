@@ -3,12 +3,11 @@
 	desc = "Used to order supplies, approve requests, and control the shuttle."
 	icon_screen = "supply"
 	circuit = /obj/item/circuitboard/computer/cargo
-	req_access = list(ACCESS_CARGO)
 	var/requestonly = FALSE
 	var/contraband = FALSE
-	var/safety_warning = "For safety reasons, the automated supply shuttle \
-		cannot transport live organisms, human remains, classified nuclear weaponry \
-		or homing beacons."
+	var/safety_warning = "For safety reasons the automated supply shuttle \
+		cannot transport live organisms, classified nuclear weaponry or \
+		homing beacons."
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
 
 	light_color = "#E2853D"//orange
@@ -18,7 +17,6 @@
 	desc = "Used to request supplies from cargo."
 	icon_screen = "request"
 	circuit = /obj/item/circuitboard/computer/cargo/request
-	req_access = list()
 	requestonly = TRUE
 
 /obj/machinery/computer/cargo/Initialize()
@@ -30,15 +28,7 @@
 	else
 		obj_flags &= ~EMAGGED
 
-/obj/machinery/computer/cargo/proc/get_export_categories()
-	. = EXPORT_CARGO
-	if(contraband)
-		. |= EXPORT_CONTRABAND
-	if(obj_flags & EMAGGED)
-		. |= EXPORT_EMAG
-
 /obj/machinery/computer/cargo/emag_act(mob/user)
-	. = ..()
 	if(obj_flags & EMAGGED)
 		return
 	user.visible_message("<span class='warning'>[user] swipes a suspicious card through [src]!</span>",
@@ -51,8 +41,6 @@
 	var/obj/item/circuitboard/computer/cargo/board = circuit
 	board.contraband = TRUE
 	board.obj_flags |= EMAGGED
-	req_access = list()
-	return TRUE
 
 /obj/machinery/computer/cargo/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
@@ -89,8 +77,7 @@
 		data["supplies"][P.group]["packs"] += list(list(
 			"name" = P.name,
 			"cost" = P.cost,
-			"id" = pack,
-			"desc" = P.desc || P.name // If there is a description, use it. Otherwise use the pack's name.
+			"id" = pack
 		))
 
 	data["cart"] = list()
@@ -116,9 +103,6 @@
 /obj/machinery/computer/cargo/ui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
-	if(!allowed(usr))
-		to_chat(usr, "<span class='notice'>Access denied.</span>")
-		return
 	if(action != "add" && requestonly)
 		return
 	switch(action)
@@ -130,9 +114,13 @@
 				say(blockade_warning)
 				return
 			if(SSshuttle.supply.getDockedId() == "supply_home")
-				SSshuttle.supply.export_categories = get_export_categories()
+				if (obj_flags & EMAGGED)
+					SSshuttle.supply.obj_flags |= EMAGGED
+				else
+					SSshuttle.supply.obj_flags = (SSshuttle.supply.obj_flags & ~EMAGGED)
+				SSshuttle.supply.contraband = contraband
 				SSshuttle.moveShuttle("supply", "supply_away", TRUE)
-				say("The supply shuttle is departing.")
+				say("The supply shuttle has departed.")
 				investigate_log("[key_name(usr)] sent the supply shuttle away.", INVESTIGATE_CARGO)
 			else
 				investigate_log("[key_name(usr)] called the supply shuttle.", INVESTIGATE_CARGO)
@@ -167,7 +155,7 @@
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				name = H.get_authentification_name()
-				rank = H.get_assignment(hand_first = TRUE)
+				rank = H.get_assignment()
 			else if(issilicon(usr))
 				name = usr.real_name
 				rank = "Silicon"

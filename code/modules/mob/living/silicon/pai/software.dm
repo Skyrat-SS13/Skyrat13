@@ -140,7 +140,7 @@
 			radio.attack_self(src)
 
 		if("image")
-			var/newImage = input("Select your new display image.", "Display Image", "Happy") in list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What" , "Exclamation" ,"Question", "Sunglasses")
+			var/newImage = input("Select your new display image.", "Display Image", "Happy") in list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What")
 			var/pID = 1
 
 			switch(newImage)
@@ -164,20 +164,13 @@
 					pID = 9
 				if("Null")
 					pID = 10
-				if("Exclamation")
-					pID = 11
-				if("Question")
-					pID = 12
-				if("Sunglasses")
-					pID = 13
 			card.setEmotion(pID)
 
 		if("signaller")
 
 			if(href_list["send"])
 				signaler.send_activation()
-				audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*")
-				playsound(src, 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
+				audible_message("[icon2html(src, world)] *beep* *beep*")
 
 			if(href_list["freq"])
 				var/new_frequency = (signaler.frequency + text2num(href_list["freq"]))
@@ -215,7 +208,7 @@
 					pda.silent = !pda.silent
 				else if(href_list["target"])
 					if(silent)
-						return alert("Communications circuits remain uninitialized.")
+						return alert("Communications circuits remain unitialized.")
 
 					var/target = locate(href_list["target"])
 					pda.create_message(src, target)
@@ -242,8 +235,7 @@
 			if(href_list["toggle"])
 				secHUD = !secHUD
 				if(secHUD)
-					var/datum/atom_hud/sec = GLOB.huds[sec_hud]
-					sec.add_hud_to(src)
+					add_sec_hud()
 				else
 					var/datum/atom_hud/sec = GLOB.huds[sec_hud]
 					sec.remove_hud_from(src)
@@ -251,14 +243,15 @@
 			if(href_list["toggle"])
 				medHUD = !medHUD
 				if(medHUD)
-					var/datum/atom_hud/med = GLOB.huds[med_hud]
-					med.add_hud_to(src)
+					add_med_hud()
+
 				else
 					var/datum/atom_hud/med = GLOB.huds[med_hud]
 					med.remove_hud_from(src)
 		if("translator")
 			if(href_list["toggle"])
-				grant_all_languages(TRUE)
+				if(!(flags_2 & OMNITONGUE_2))
+					grant_all_languages(TRUE)
 					// this is PERMAMENT.
 		if("doorjack")
 			if(href_list["jack"])
@@ -283,10 +276,7 @@
 	dat += "<A href='byond://?src=[REF(src)];software=refresh'>Refresh</A><br>"
 	// Built-in
 	dat += "<A href='byond://?src=[REF(src)];software=directives'>Directives</A><br>"
-	if(radio_short)
-		dat += "\[RADIO SHORTED - Recalibrating!\]"
-	else
-		dat += "<A href='byond://?src=[REF(src)];software=radio;sub=0'>Radio Configuration</A><br>"
+	dat += "<A href='byond://?src=[REF(src)];software=radio;sub=0'>Radio Configuration</A><br>"
 	dat += "<A href='byond://?src=[REF(src)];software=image'>Screen Display</A><br>"
 	//dat += "Text Messaging <br>"
 	dat += "<br>"
@@ -320,8 +310,8 @@
 		if(s == "medical HUD")
 			dat += "<a href='byond://?src=[REF(src)];software=medicalhud;sub=0'>Medical Analysis Suite</a>[(medHUD) ? "<font color=#55FF55> On</font>" : "<font color=#FF5555> Off</font>"] <br>"
 		if(s == "universal translator")
-			var/datum/language_holder/H = get_language_holder()
-			dat += "<a href='byond://?src=[REF(src)];software=translator;sub=0'>Universal Translator</a>[H.omnitongue ? "<font color=#55FF55> On</font>" : "<font color=#FF5555> Off</font>"] <br>"
+			var/translator_on = (flags_2 & OMNITONGUE_2)
+			dat += "<a href='byond://?src=[REF(src)];software=translator;sub=0'>Universal Translator</a>[translator_on ? "<font color=#55FF55> On</font>" : "<font color=#FF5555> Off</font>"] <br>"
 		if(s == "projection array")
 			dat += "<a href='byond://?src=[REF(src)];software=projectionarray;sub=0'>Projection Array</a> <br>"
 		if(s == "camera jack")
@@ -392,7 +382,7 @@
 		else
 			to_chat(P, "<b>DNA does not match stored Master DNA.</b>")
 	else
-		to_chat(P, "[M] does not seem like [M.p_theyre()] going to provide a DNA sample willingly.")
+		to_chat(P, "[M] does not seem like [M.p_they()] [M.p_are()] going to provide a DNA sample willingly.")
 
 // -=-=-=-= Software =-=-=-=-=- //
 
@@ -472,10 +462,10 @@
 
 // Universal Translator
 /mob/living/silicon/pai/proc/softwareTranslator()
-	var/datum/language_holder/H = get_language_holder()
+	var/translator_on = (flags_2 & OMNITONGUE_2)
 	. = {"<h3>Universal Translator</h3><br>
 				When enabled, this device will permamently be able to speak and understand all known forms of communication.<br><br>
-				The device is currently [H.omnitongue ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled.</font><br>[H.omnitongue ? "" : "<a href='byond://?src=[REF(src)];software=translator;sub=0;toggle=1'>Activate Translation Module</a><br>"]"}
+				The device is currently [translator_on ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled.</font><br>[translator_on ? "" : "<a href='byond://?src=[REF(src)];software=translator;sub=0;toggle=1'>Activate Translation Module</a><br>"]"}
 	return .
 
 // Security HUD
@@ -520,7 +510,7 @@
 		Structural Integrity: [M.getBruteLoss() > 50 ? "<font color=#FF5555>" : "<font color=#55FF55>"][M.getBruteLoss()]</font><br>
 		Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)<br>
 		"}
-		for(var/thing in M.diseases)
+		for(var/thing in M.viruses)
 			var/datum/disease/D = thing
 			dat += {"<h4>Infection Detected.</h4><br>
 					 Name: [D.name]<br>
@@ -549,9 +539,9 @@
 
 		if (total_moles)
 			for(var/id in env_gases)
-				var/gas_level = env_gases[id]/total_moles
+				var/gas_level = env_gases[id][MOLES]/total_moles
 				if(gas_level > 0.01)
-					dat += "[GLOB.meta_gas_names[id]]: [round(gas_level*100)]%<br>"
+					dat += "[env_gases[id][GAS_META][META_GAS_NAME]]: [round(gas_level*100)]%<br>"
 		dat += "Temperature: [round(environment.temperature-T0C)]&deg;C<br>"
 	dat += "<a href='byond://?src=[REF(src)];software=atmosensor;sub=0'>Refresh Reading</a> <br>"
 	dat += "<br>"
@@ -621,7 +611,7 @@
 	[(pda.silent) ? "<font color='red'>\[Off\]</font>" : "<font color='green'>\[On\]</font>"]</a><br><br>"}
 	dat += "<ul>"
 	if(!pda.toff)
-		for (var/obj/item/pda/P in sortNames(get_viewable_pdas()))
+		for (var/obj/item/device/pda/P in sortNames(get_viewable_pdas()))
 			if (P == pda)
 				continue
 			dat += "<li><a href='byond://?src=[REF(src)];software=pdamessage;target=[REF(P)]'>[P]</a>"

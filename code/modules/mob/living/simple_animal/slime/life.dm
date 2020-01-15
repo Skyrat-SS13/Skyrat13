@@ -61,7 +61,7 @@
 				break
 
 			if(Target in view(1,src))
-				if(!CanFeedon(Target)) //If they're not able to be fed upon, ignore them.
+				if(issilicon(Target))
 					if(!Atkcool)
 						Atkcool = 1
 						spawn(45)
@@ -69,7 +69,7 @@
 
 						if(Target.Adjacent(src))
 							Target.attack_slime(src)
-					break
+					return
 				if(!Target.lying && prob(80))
 
 					if(Target.client && Target.health >= 20)
@@ -112,7 +112,7 @@
 
 	var/loc_temp = get_temperature(environment)
 
-	adjust_bodytemperature(adjust_body_temperature(bodytemperature, loc_temp, 1))
+	bodytemperature += adjust_body_temperature(bodytemperature, loc_temp, 1)
 
 	//Account for massive pressure differences
 
@@ -132,7 +132,7 @@
 	if(stat != DEAD)
 		var/bz_percentage =0
 		if(environment.gases[/datum/gas/bz])
-			bz_percentage = environment.gases[/datum/gas/bz] / environment.total_moles()
+			bz_percentage = environment.gases[/datum/gas/bz][MOLES] / environment.total_moles()
 		var/stasis = (bz_percentage >= 0.05 && bodytemperature < (T0C + 100)) || force_stasis
 
 		if(stat == CONSCIOUS && stasis)
@@ -181,7 +181,7 @@
 	var/mob/M = buckled
 
 	if(stat)
-		Feedstop(silent = TRUE)
+		Feedstop(silent = 1)
 
 	if(M.stat == DEAD) // our victim died
 		if(!client)
@@ -415,7 +415,7 @@
 	else if (docile)
 		newmood = ":3"
 	else if (Target)
-		newmood = "mischievous"
+		newmood = "mischevous"
 
 	if (!newmood)
 		if (Discipline && prob(25))
@@ -600,8 +600,7 @@
 				phrases += "[M]... friend..."
 				if (nutrition < get_hunger_nutrition())
 					phrases += "[M]... feed me..."
-			if(!stat)
-				say (pick(phrases))
+			say (pick(phrases))
 
 /mob/living/simple_animal/slime/proc/get_max_nutrition() // Can't go above it
 	if (is_adult)

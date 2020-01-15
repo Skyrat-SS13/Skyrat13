@@ -10,7 +10,7 @@
 	var/used_capacity = 0
 	var/list/stored_files = list()		// List of stored files on this drive. DO NOT MODIFY DIRECTLY!
 
-/obj/item/computer_hardware/hard_drive/on_remove(obj/item/modular_computer/MC, mob/user)
+/obj/item/computer_hardware/hard_drive/on_remove(obj/item/device/modular_computer/MC, mob/user)
 	MC.shutdown_computer()
 
 /obj/item/computer_hardware/hard_drive/proc/install_default_programs()
@@ -19,8 +19,8 @@
 	store_file(new/datum/computer_file/program/filemanager(src))		// File manager, allows text editor functions and basic file manipulation.
 
 /obj/item/computer_hardware/hard_drive/examine(user)
-	. = ..()
-	. += "<span class='notice'>It has [max_capacity] GQ of storage capacity.</span>"
+	..()
+	to_chat(user, "<span class='notice'>It has [max_capacity] GQ of storage capacity.</span>")
 
 /obj/item/computer_hardware/hard_drive/diagnostics(var/mob/user)
 	..()
@@ -121,7 +121,7 @@
 	return ..()
 
 /obj/item/computer_hardware/hard_drive/Initialize()
-	. = ..()
+	. = ..()	
 	install_default_programs()
 
 

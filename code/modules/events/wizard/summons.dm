@@ -3,8 +3,7 @@
 	weight = 1
 	typepath = /datum/round_event/wizard/summonguns
 	max_occurrences = 1
-	earliest_start = 0 MINUTES
-	can_be_midround_wizard = FALSE // not removing it completely yet
+	earliest_start = 0
 
 /datum/round_event_control/wizard/summonguns/New()
 	if(CONFIG_GET(flag/no_summon_guns))
@@ -19,8 +18,7 @@
 	weight = 1
 	typepath = /datum/round_event/wizard/summonmagic
 	max_occurrences = 1
-	earliest_start = 0 MINUTES
-	can_be_midround_wizard = FALSE // not removing it completely yet
+	earliest_start = 0
 
 /datum/round_event_control/wizard/summonmagic/New()
 	if(CONFIG_GET(flag/no_summon_magic))

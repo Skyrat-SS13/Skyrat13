@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	name = "Blob Overmind"
 	real_name = "Blob Overmind"
 	desc = "The overmind. It controls the blob."
-	icon = 'icons/mob/cameramob.dmi'
+	icon = 'icons/mob/blob.dmi'
 	icon_state = "marker"
 	mouse_opacity = MOUSE_OPACITY_ICON
 	move_on_shuttle = 1
@@ -18,10 +18,8 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	layer = FLY_LAYER
 
 	pass_flags = PASSBLOB
-	faction = list(ROLE_BLOB)
+	faction = list("blob")
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	call_life = TRUE
-	hud_type = /datum/hud/blob_overmind
 	var/obj/structure/blob/core/blob_core = null // The blob overmind's core
 	var/blob_points = 0
 	var/max_blob_points = 100
@@ -69,7 +67,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if(!T)
 		CRASH("No blobspawnpoints and blob spawned in nullspace.")
 	forceMove(T)
-
+	
 /mob/camera/blob/proc/is_valid_turf(turf/T)
 	var/area/A = get_area(T)
 	if((A && !A.blob_allowed) || !T || !is_station_level(T.z) || isspaceturf(T))
@@ -117,16 +115,15 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		if(!Ablob.blob_allowed)
 			continue
 
-		if(!(ROLE_BLOB in L.faction))
+		if(!("blob" in L.faction))
 			playsound(L, 'sound/effects/splat.ogg', 50, 1)
 			L.death()
 			new/mob/living/simple_animal/hostile/blob/blobspore(T)
 		else
 			L.fully_heal()
 
-		for(var/area/A in GLOB.sortedAreas)
-			if(!(A.type in GLOB.the_station_areas))
-				continue
+		for(var/V in GLOB.sortedAreas)
+			var/area/A = V
 			if(!A.blob_allowed)
 				continue
 			A.color = blob_reagent_datum.color
@@ -170,9 +167,9 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	add_points(0)
 
 /mob/camera/blob/examine(mob/user)
-	. = ..()
+	..()
 	if(blob_reagent_datum)
-		. += "Its chemical is <font color=\"[blob_reagent_datum.color]\">[blob_reagent_datum.name]</font>."
+		to_chat(user, "Its chemical is <font color=\"[blob_reagent_datum.color]\">[blob_reagent_datum.name]</font>.")
 
 /mob/camera/blob/update_health_hud()
 	if(blob_core)
@@ -185,7 +182,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	blob_points = CLAMP(blob_points + points, 0, max_blob_points)
 	hud_used.blobpwrdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[round(blob_points)]</font></div>"
 
-/mob/camera/blob/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/camera/blob/say(message)
 	if (!message)
 		return
 
@@ -208,9 +205,9 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if (!message)
 		return
 
-	src.log_talk(message, LOG_SAY)
+	log_talk(src,"[key_name(src)] : [message]",LOGSAY)
 
-	var/message_a = say_quote(message)
+	var/message_a = say_quote(message, get_spans())
 	var/rendered = "<span class='big'><font color=\"#EE4000\"><b>\[Blob Telepathy\] [name](<font color=\"[blob_reagent_datum.color]\">[blob_reagent_datum.name]</font>)</b> [message_a]</font></span>"
 
 	for(var/mob/M in GLOB.mob_list)
@@ -219,6 +216,9 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		if(isobserver(M))
 			var/link = FOLLOW_LINK(M, src)
 			to_chat(M, "[link] [rendered]")
+
+/mob/camera/blob/emote(act,m_type=1,message = null)
+	return
 
 /mob/camera/blob/blob_act(obj/structure/blob/B)
 	return

@@ -13,17 +13,10 @@
 
 		if(!client)
 			if(stat == CONSCIOUS)
-				if(on_fire || buckled || restrained() || (resting && canmove)) //CIT CHANGE - makes it so monkeys attempt to resist if they're resting)
-					if(!resisting && prob(MONKEY_RESIST_PROB))
-						resisting = TRUE
-						walk_to(src,0)
-						resist()
-				else if(resisting)
-					resisting = FALSE
-				else if((mode == MONKEY_IDLE && !pickupTarget && !prob(MONKEY_SHENANIGAN_PROB)) || !handle_combat())
-					if(prob(25) && canmove && isturf(loc) && !pulledby)
+				if(!handle_combat())
+					if(prob(33) && canmove && isturf(loc) && !pulledby)
 						step(src, pick(GLOB.cardinals))
-					else if(prob(1))
+					if(prob(1))
 						emote(pick("scratch","jump","roll","tail"))
 			else
 				walk_to(src,0)
@@ -72,16 +65,16 @@
 	var/loc_temp = get_temperature(environment)
 
 	if(stat != DEAD)
-		adjust_bodytemperature(natural_bodytemperature_stabilization())
+		bodytemperature += natural_bodytemperature_stabilization()
 
 	if(!on_fire) //If you're on fire, you do not heat up or cool down based on surrounding gases
 		if(loc_temp < bodytemperature)
-			adjust_bodytemperature(max((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX))
+			bodytemperature += max((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX)
 		else
-			adjust_bodytemperature(min((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
+			bodytemperature += min((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX)
 
 
-	if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTHEAT))
+	if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
 		switch(bodytemperature)
 			if(360 to 400)
 				throw_alert("temp", /obj/screen/alert/hot, 1)
@@ -96,7 +89,7 @@
 				else
 					apply_damage(HEAT_DAMAGE_LEVEL_2, BURN)
 
-	else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTCOLD))
+	else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
 		if(!istype(loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 			switch(bodytemperature)
 				if(200 to 260)
@@ -140,7 +133,7 @@
 
 /mob/living/carbon/monkey/has_smoke_protection()
 	if(wear_mask)
-		if(wear_mask.clothing_flags & BLOCK_GAS_SMOKE_EFFECT)
+		if(wear_mask.flags_1 & BLOCK_GAS_SMOKE_EFFECT_1)
 			return 1
 
 /mob/living/carbon/monkey/handle_fire()
@@ -168,5 +161,5 @@
 			if(!(I.resistance_flags & FIRE_PROOF))
 				I.take_damage(fire_stacks, BURN, "fire", 0)
 
-		adjust_bodytemperature(BODYTEMP_HEATING_MAX)
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
+		bodytemperature += BODYTEMP_HEATING_MAX
+

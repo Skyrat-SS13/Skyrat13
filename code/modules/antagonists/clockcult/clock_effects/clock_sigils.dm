@@ -11,8 +11,6 @@
 	var/stat_affected = CONSCIOUS
 	var/sigil_name = "Sigil"
 	var/resist_string = "glows blinding white" //string for when a null rod blocks its effects, "glows [resist_string]"
-	var/check_antimagic = TRUE
-	var/check_holy = FALSE
 
 /obj/effect/clockwork/sigil/attackby(obj/item/I, mob/living/user, params)
 	if(I.force)
@@ -26,15 +24,14 @@
 /obj/effect/clockwork/sigil/attack_tk(mob/user)
 	return //you can't tk stomp sigils, but you can hit them with something
 
-//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/effect/clockwork/sigil/attack_hand(mob/user)
 	if(iscarbon(user) && !user.stat)
 		if(is_servant_of_ratvar(user) && user.a_intent != INTENT_HARM)
 			return ..()
 		user.visible_message("<span class='warning'>[user] stamps out [src]!</span>", "<span class='danger'>You stomp on [src], scattering it into thousands of particles.</span>")
 		qdel(src)
-		return TRUE
-	. = ..()
+		return 1
+	..()
 
 /obj/effect/clockwork/sigil/ex_act(severity)
 	visible_message("<span class='warning'>[src] scatters into thousands of particles.</span>")
@@ -46,18 +43,17 @@
 		var/mob/living/L = AM
 		if(L.stat <= stat_affected)
 			if((!is_servant_of_ratvar(L) || (affects_servants && is_servant_of_ratvar(L))) && (L.mind || L.has_status_effect(STATUS_EFFECT_SIGILMARK)) && !isdrone(L))
-				var/atom/I = L.anti_magic_check(check_antimagic, check_holy)
+				var/obj/item/I = L.null_rod_check()
 				if(I)
-					if(isitem(I))
-						L.visible_message("<span class='warning'>[L]'s [I.name] [resist_string], protecting [L.p_them()] from [src]'s effects!</span>", \
-						"<span class='userdanger'>Your [I.name] [resist_string], protecting you!</span>")
+					L.visible_message("<span class='warning'>[L]'s [I.name] [resist_string], protecting them from [src]'s effects!</span>", \
+					"<span class='userdanger'>Your [I.name] [resist_string], protecting you!</span>")
 					return
 				sigil_effects(L)
 
 /obj/effect/clockwork/sigil/proc/sigil_effects(mob/living/L)
 
 
-//Sigil of Transgression: Stuns the first non-servant to walk on it and flashes all nearby non_servants. Nar'Sian cultists are damaged and knocked down for a longer time
+//Sigil of Transgression: Stuns the first non-servant to walk on it and flashes all nearby non_servants. Nar-Sian cultists are damaged and knocked down for a longer time
 /obj/effect/clockwork/sigil/transgression
 	name = "dull sigil"
 	desc = "A dull, barely-visible golden sigil. It's as though light was carved into the ground."
@@ -77,16 +73,13 @@
 	for(var/mob/living/M in viewers(5, src))
 		if(!is_servant_of_ratvar(M) && M != L)
 			M.flash_act()
-	if(iscultist(L)) //No longer stuns cultists, instead sets them on fire and burns them
+	if(iscultist(L))
 		to_chat(L, "<span class='heavy_brass'>\"Watch your step, wretch.\"</span>")
-		L.adjustFireLoss(10)
-		L.Knockdown(20, FALSE)
-		L.adjust_fire_stacks(5) //Burn!
-		L.IgniteMob()
-	else
-		L.Stun(40)
+		L.adjustBruteLoss(10)
+		L.Knockdown(80, FALSE)
 	L.visible_message("<span class='warning'>[src] appears around [L] in a burst of light!</span>", \
-	"<span class='userdanger'>[target_flashed ? "An unseen force":"The glowing sigil around you"] [iscultist(L) ? "painfully bursts into flames!" : "holds you in place!"]</span>")
+	"<span class='userdanger'>[target_flashed ? "An unseen force":"The glowing sigil around you"] holds you in place!</span>")
+	L.Stun(40)
 	L.apply_status_effect(STATUS_EFFECT_BELLIGERENT)
 	new /obj/effect/temp_visual/ratvar/sigil/transgression(get_turf(src))
 	qdel(src)
@@ -146,15 +139,10 @@
 			GLOB.application_scripture_unlocked = TRUE
 			hierophant_message("<span class='large_brass bold'>With the conversion of a new servant the Ark's power grows. Application scriptures are now available.</span>")
 	if(add_servant_of_ratvar(L))
-		L.log_message("conversion was done with a [sigil_name]", LOG_ATTACK, color="BE8700")
+		L.log_message("<font color=#BE8700>Conversion was done with a [sigil_name].</font>", INDIVIDUAL_ATTACK_LOG)
 		if(iscarbon(L))
 			var/mob/living/carbon/M = L
 			M.uncuff()
-		var/brutedamage = L.getBruteLoss()
-		var/burndamage = L.getFireLoss()
-		if(brutedamage || burndamage)
-			L.adjustBruteLoss(-(brutedamage * 0.25))
-			L.adjustFireLoss(-(burndamage * 0.25))
 	L.Knockdown(50) //Completely defenseless for five seconds - mainly to give them time to read over the information they've just been presented with
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -199,15 +187,15 @@
 		..()
 
 /obj/effect/clockwork/sigil/transmission/examine(mob/user)
-	. = ..()
+	..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
 		var/structure_number = 0
 		for(var/obj/structure/destructible/clockwork/powered/P in range(SIGIL_ACCESS_RANGE, src))
 			structure_number++
-		. += "<span class='[get_clockwork_power() ? "brass":"alloy"]'>It is storing <b>[DisplayPower(get_clockwork_power())]</b> of shared power, \
-		and <b>[structure_number]</b> clockwork structure[structure_number == 1 ? " is":"s are"] in range.</span>"
+		to_chat(user, "<span class='[get_clockwork_power() ? "brass":"alloy"]'>It is storing <b>[DisplayPower(get_clockwork_power())]</b> of shared power, \
+		and <b>[structure_number]</b> clockwork structure[structure_number == 1 ? " is":"s are"] in range.</span>")
 		if(iscyborg(user))
-			. += "<span class='brass'>You can recharge from the [sigil_name] by crossing it.</span>"
+			to_chat(user, "<span class='brass'>You can recharge from the [sigil_name] by crossing it.</span>")
 
 /obj/effect/clockwork/sigil/transmission/sigil_effects(mob/living/L)
 	if(is_servant_of_ratvar(L))
@@ -251,17 +239,14 @@
 	return TRUE
 
 /obj/effect/clockwork/sigil/transmission/update_icon()
-	var/power_charge = get_clockwork_power()
 	if(GLOB.ratvar_awakens)
 		alpha = 255
-	else
-		alpha = min(CEILING(initial(alpha) + power_charge * 0.02, 35), 255)
-	var/r = alpha * 0.02
-	var/p = max(alpha * 0.01, 0.1)
-	if(!power_charge && light_range != 0)
+	var/power_charge = get_clockwork_power()
+	alpha = min(initial(alpha) + power_charge * 0.02, 255)
+	if(!power_charge)
 		set_light(0)
-	else if(r != light_range || p != light_power)
-		set_light(r, p)
+	else
+		set_light(max(alpha * 0.02, 1.4), max(alpha * 0.01, 0.1))
 
 //Vitality Matrix: Drains health from non-servants to heal or even revive servants.
 /obj/effect/clockwork/sigil/vitality
@@ -270,7 +255,7 @@
 	clockwork_desc = "A sigil that will drain non-Servants that remain on it. Servants that remain on it will be healed if it has any vitality drained."
 	icon_state = "sigilvitality"
 	layer = SIGIL_LAYER
-	alpha = 125
+	alpha = 75
 	color = "#123456"
 	affects_servants = TRUE
 	stat_affected = DEAD
@@ -282,13 +267,13 @@
 	var/static/list/damage_heal_order = list(CLONE, TOX, BURN, BRUTE, OXY) //we heal damage in this order
 
 /obj/effect/clockwork/sigil/vitality/examine(mob/user)
-	. = ..()
+	..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		. += "<span class='[GLOB.clockwork_vitality ? "inathneq_small":"alloy"]'>It has access to <b>[GLOB.ratvar_awakens ? "INFINITE":GLOB.clockwork_vitality]</b> units of vitality.</span>"
+		to_chat(user, "<span class='[GLOB.clockwork_vitality ? "inathneq_small":"alloy"]'>It has access to <b>[GLOB.ratvar_awakens ? "INFINITE":GLOB.clockwork_vitality]</b> units of vitality.</span>")
 		if(GLOB.ratvar_awakens)
-			. += "<span class='inathneq_small'>It can revive Servants at no cost!</span>"
+			to_chat(user, "<span class='inathneq_small'>It can revive Servants at no cost!</span>")
 		else
-			. += "<span class='inathneq_small'>It can revive Servants at a cost of <b>[revive_cost]</b> vitality.</span>"
+			to_chat(user, "<span class='inathneq_small'>It can revive Servants at a cost of <b>[revive_cost]</b> vitality.</span>")
 
 /obj/effect/clockwork/sigil/vitality/sigil_effects(mob/living/L)
 	if((is_servant_of_ratvar(L) && L.suiciding) || sigil_active)
@@ -352,12 +337,12 @@
 			if(!L.client || L.client.is_afk())
 				set waitfor = FALSE
 				var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [L.name], an inactive clock cultist?", ROLE_SERVANT_OF_RATVAR, null, ROLE_SERVANT_OF_RATVAR, 50, L)
-				if(LAZYLEN(candidates))
-					var/mob/dead/observer/C = pick(candidates)
+				var/mob/dead/observer/theghost = null
+				if(candidates.len)
 					to_chat(L, "<span class='userdanger'>Your physical form has been taken over by another soul due to your inactivity! Ahelp if you wish to regain your form!</span>")
-					message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(L)]) to replace an inactive clock cultist.")
+					message_admins("[key_name_admin(theghost)] has taken control of ([key_name_admin(L)]) to replace an inactive clock cultist.")
 					L.ghostize(0)
-					C.transfer_ckey(L, FALSE)
+					L.key = theghost.key
 					var/obj/effect/temp_visual/ratvar/sigil/vitality/V = new /obj/effect/temp_visual/ratvar/sigil/vitality(get_turf(src))
 					animate(V, alpha = 0, transform = matrix()*2, time = 8)
 					playsound(L, 'sound/magic/staff_healing.ogg', 50, 1)
@@ -374,8 +359,6 @@
 				break
 
 			if(!GLOB.ratvar_awakens)
-				if(GLOB.clockwork_vitality <= 0)
-					break
 				GLOB.clockwork_vitality -= vitality_used
 
 		sleep(2)

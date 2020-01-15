@@ -8,7 +8,6 @@
 GLOBAL_VAR_INIT(clockwork_construction_value, 0) //The total value of all structures built by the clockwork cult
 GLOBAL_VAR_INIT(clockwork_vitality, 0) //How much Vitality is stored, total
 GLOBAL_VAR_INIT(clockwork_power, 0) //How many watts of power are globally available to the clockwork cult
-GLOBAL_VAR_INIT(neovgre_exists, 0) //Does neovgre exist?
 
 GLOBAL_LIST_EMPTY(all_clockwork_objects) //All clockwork items, structures, and effects in existence
 GLOBAL_LIST_EMPTY(all_clockwork_mobs) //All clockwork SERVANTS (not creatures) in existence
@@ -29,9 +28,9 @@ GLOBAL_LIST_EMPTY(all_scripture) //a list containing scripture instances; not us
 #define SCRIPTURE_APPLICATION "Application"
 
 //Various costs related to power.
-#define MAX_CLOCKWORK_POWER 80000 //The max power in W that the cult can stockpile
-#define SCRIPT_UNLOCK_THRESHOLD 35000 //Scripts will unlock if the total power reaches this amount
-#define APPLICATION_UNLOCK_THRESHOLD 50000 //Applications will unlock if the total powre reaches this amount
+#define MAX_CLOCKWORK_POWER 50000 //The max power in W that the cult can stockpile
+#define SCRIPT_UNLOCK_THRESHOLD 25000 //Scripts will unlock if the total power reaches this amount
+#define APPLICATION_UNLOCK_THRESHOLD 40000 //Applications will unlock if the total powre reaches this amount
 
 #define ABSCOND_ABDUCTION_COST 95
 
@@ -64,6 +63,8 @@ GLOBAL_LIST_EMPTY(all_scripture) //a list containing scripture instances; not us
 #define GATEWAY_RATVAR_COMING 480 //when progress is at or above this, ratvar has entered and is coming through the gateway
 
 #define GATEWAY_RATVAR_ARRIVAL 600 //when progress is at or above this, game over ratvar's here everybody go home
+
+#define ARK_SUMMON_COST 5 //how many of each component an Ark costs to summon
 
 //Objective text define
 #define CLOCKCULT_OBJECTIVE "Construct the Ark of the Clockwork Justicar and free Ratvar."

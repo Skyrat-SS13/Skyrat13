@@ -118,17 +118,17 @@ GLOBAL_LIST_EMPTY(allCasters)
 	newChannel.is_admin_channel = adminChannel
 	network_channels += newChannel
 
-/datum/newscaster/feed_network/proc/SubmitArticle(msg, author, channel_name, datum/picture/picture, adminMessage = 0, allow_comments = 1)
+/datum/newscaster/feed_network/proc/SubmitArticle(msg, author, channel_name, obj/item/photo/photo, adminMessage = 0, allow_comments = 1)
 	var/datum/newscaster/feed_message/newMsg = new /datum/newscaster/feed_message
 	newMsg.author = author
 	newMsg.body = msg
-	newMsg.time_stamp = "[STATION_TIME_TIMESTAMP("hh:mm:ss")]"
+	newMsg.time_stamp = "[worldtime2text()]"
 	newMsg.is_admin_message = adminMessage
 	newMsg.locked = !allow_comments
-	if(picture)
-		newMsg.img = picture.picture_image
-		newMsg.caption = picture.caption
-		newMsg.photo_file = save_photo(picture.picture_image)
+	if(photo)
+		newMsg.img = photo.img
+		newMsg.caption = photo.scribble
+		newMsg.photo_file = save_photo(photo.img)
 	for(var/datum/newscaster/feed_channel/FC in network_channels)
 		if(FC.channel_name == channel_name)
 			FC.messages += newMsg
@@ -138,15 +138,15 @@ GLOBAL_LIST_EMPTY(allCasters)
 	lastAction ++
 	newMsg.creationTime = lastAction
 
-/datum/newscaster/feed_network/proc/submitWanted(criminal, body, scanned_user, datum/picture/picture, adminMsg = 0, newMessage = 0)
+/datum/newscaster/feed_network/proc/submitWanted(criminal, body, scanned_user, obj/item/photo/photo, adminMsg = 0, newMessage = 0)
 	wanted_issue.active = 1
 	wanted_issue.criminal = criminal
 	wanted_issue.body = body
 	wanted_issue.scannedUser = scanned_user
 	wanted_issue.isAdminMsg = adminMsg
-	if(picture)
-		wanted_issue.img = picture.picture_image
-		wanted_issue.photo_file = save_photo(picture.picture_image)
+	if(photo)
+		wanted_issue.img = photo.img
+		wanted_issue.photo_file = save_photo(photo.img)
 	if(newMessage)
 		for(var/obj/machinery/newscaster/N in GLOB.allCasters)
 			N.newsAlert()
@@ -164,10 +164,8 @@ GLOBAL_LIST_EMPTY(allCasters)
 /datum/newscaster/feed_network/proc/save_photo(icon/photo)
 	var/photo_file = copytext(md5("\icon[photo]"), 1, 6)
 	if(!fexists("[GLOB.log_directory]/photos/[photo_file].png"))
-		//Clean up repeated frames
-		var/icon/clean = new /icon()
-		clean.Insert(photo, "", SOUTH, 1, 0)
-		fcopy(clean, "[GLOB.log_directory]/photos/[photo_file].png")
+		var/icon/p = icon(photo, frame = 1)
+		fcopy(p, "[GLOB.log_directory]/photos/[photo_file].png")
 	return photo_file
 
 /obj/item/wallframe/newscaster
@@ -186,7 +184,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	verb_say = "beeps"
 	verb_ask = "beeps"
 	verb_exclaim = "beeps"
-	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
+	armor = list(melee = 50, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 30)
 	max_integrity = 200
 	integrity_failure = 50
 	var/screen = 0
@@ -197,11 +195,12 @@ GLOBAL_LIST_EMPTY(allCasters)
 	var/alert = FALSE
 	var/scanned_user = "Unknown"
 	var/msg = ""
-	var/datum/picture/picture
+	var/obj/item/photo/photo = null
 	var/channel_name = ""
 	var/c_locked=0
 	var/datum/newscaster/feed_channel/viewing_channel = null
 	var/allow_comments = 1
+	anchored = TRUE
 
 /obj/machinery/newscaster/security_unit
 	name = "security newscaster"
@@ -221,7 +220,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 /obj/machinery/newscaster/Destroy()
 	GLOB.allCasters -= src
 	viewing_channel = null
-	picture = null
+	photo = null
 	return ..()
 
 /obj/machinery/newscaster/update_icon()
@@ -262,8 +261,12 @@ GLOBAL_LIST_EMPTY(allCasters)
 	. = ..()
 	update_icon()
 
-/obj/machinery/newscaster/ui_interact(mob/user)
-	. = ..()
+/obj/machinery/newscaster/attack_ai(mob/user)
+	return attack_hand(user)
+
+/obj/machinery/newscaster/attack_hand(mob/user)
+	if(stat & (NOPOWER|BROKEN))
+		return
 	if(ishuman(user) || issilicon(user))
 		var/mob/living/human_or_robot_user = user
 		var/dat
@@ -298,7 +301,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 						if(CHANNEL.is_admin_channel)
 							dat+="<B><FONT style='BACKGROUND-COLOR: LightGreen '><A href='?src=[REF(src)];show_channel=[REF(CHANNEL)]'>[CHANNEL.channel_name]</A></FONT></B><BR>"
 						else
-							dat+="<B><A href='?src=[REF(src)];show_channel=[REF(CHANNEL)]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : ""]<BR></B>"
+							dat+="<B><A href='?src=[REF(src)];show_channel=[REF(CHANNEL)]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : ()]<BR></B>"
 				dat+="<BR><HR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
 				dat+="<BR><A href='?src=[REF(src)];setScreen=[0]'>Back</A>"
 			if(2)
@@ -312,7 +315,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 				dat+="<HR><B><A href='?src=[REF(src)];set_channel_receiving=1'>Receiving Channel</A>:</B> [channel_name]<BR>"
 				dat+="<B>Message Author:</B> <FONT COLOR='green'>[scanned_user]</FONT><BR>"
 				dat+="<B><A href='?src=[REF(src)];set_new_message=1'>Message Body</A>:</B> <BR><font face=\"[PEN_FONT]\">[parsemarkdown(msg, user)]</font><BR>"
-				dat+="<B><A href='?src=[REF(src)];set_attachment=1'>Attach Photo</A>:</B>  [(picture ? "Photo Attached" : "No Photo")]</BR>"
+				dat+="<B><A href='?src=[REF(src)];set_attachment=1'>Attach Photo</A>:</B>  [(photo ? "Photo Attached" : "No Photo")]</BR>"
 				dat+="<B><A href='?src=[REF(src)];set_comment=1'>Comments [allow_comments ? "Enabled" : "Disabled"]</A></B><BR>"
 				dat+="<BR><A href='?src=[REF(src)];submit_new_message=1'>Submit</A><BR><BR><A href='?src=[REF(src)];setScreen=[0]'>Cancel</A><BR>"
 			if(4)
@@ -403,7 +406,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 					dat+="<I>No feed channels found active...</I><BR>"
 				else
 					for(var/datum/newscaster/feed_channel/CHANNEL in GLOB.news_network.network_channels)
-						dat+="<A href='?src=[REF(src)];pick_censor_channel=[REF(CHANNEL)]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : ""]<BR>"
+						dat+="<A href='?src=[REF(src)];pick_censor_channel=[REF(CHANNEL)]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : ()]<BR>"
 				dat+="<BR><A href='?src=[REF(src)];setScreen=[0]'>Cancel</A>"
 			if(11)
 				dat+="<B>Nanotrasen D-Notice Handler</B><HR>"
@@ -414,7 +417,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 					dat+="<I>No feed channels found active...</I><BR>"
 				else
 					for(var/datum/newscaster/feed_channel/CHANNEL in GLOB.news_network.network_channels)
-						dat+="<A href='?src=[REF(src)];pick_d_notice=[REF(CHANNEL)]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : ""]<BR>"
+						dat+="<A href='?src=[REF(src)];pick_d_notice=[REF(CHANNEL)]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : ()]<BR>"
 				dat+="<BR><A href='?src=[REF(src)];setScreen=[0]'>Back</A>"
 			if(12)
 				dat+="<B>[viewing_channel.channel_name]: </B><FONT SIZE=1>\[ created by: <FONT COLOR='maroon'>[viewing_channel.returnAuthor(-1)]</FONT> \]</FONT><BR>"
@@ -454,7 +457,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 				dat+="<HR>"
 				dat+="<A href='?src=[REF(src)];set_wanted_name=1'>Criminal Name</A>: [channel_name] <BR>"
 				dat+="<A href='?src=[REF(src)];set_wanted_desc=1'>Description</A>: [msg] <BR>"
-				dat+="<A href='?src=[REF(src)];set_attachment=1'>Attach Photo</A>: [(picture ? "Photo Attached" : "No Photo")]</BR>"
+				dat+="<A href='?src=[REF(src)];set_attachment=1'>Attach Photo</A>: [(photo ? "Photo Attached" : "No Photo")]</BR>"
 				if(wanted_already)
 					dat+="<B>Wanted Issue created by:</B><FONT COLOR='green'>[GLOB.news_network.wanted_issue.scannedUser]</FONT><BR>"
 				else
@@ -515,7 +518,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		if(href_list["set_channel_name"])
 			channel_name = stripped_input(usr, "Provide a Feed Channel Name", "Network Channel Handler", "", MAX_NAME_LEN)
 			while (findtext(channel_name," ") == 1)
-				channel_name = copytext(channel_name,2,length(channel_name)+1)
+				channel_name = copytext(channel_name,2,lentext(channel_name)+1)
 			updateUsrDialog()
 		else if(href_list["set_channel_lock"])
 			c_locked = !c_locked
@@ -561,7 +564,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 			if(msg =="" || msg=="\[REDACTED\]" || scanned_user == "Unknown" || channel_name == "" )
 				screen=6
 			else
-				GLOB.news_network.SubmitArticle("<font face=\"[PEN_FONT]\">[parsemarkdown(msg, usr)]</font>", scanned_user, channel_name, picture, 0, allow_comments)
+				GLOB.news_network.SubmitArticle("<font face=\"[PEN_FONT]\">[parsemarkdown(msg, usr)]</font>", scanned_user, channel_name, photo, 0, allow_comments)
 				SSblackbox.record_feedback("amount", "newscaster_stories", 1)
 				screen=4
 				msg = ""
@@ -612,13 +615,13 @@ GLOBAL_LIST_EMPTY(allCasters)
 				if(choice=="Confirm")
 					scan_user(usr)
 					if(input_param==1)          //If input_param == 1 we're submitting a new wanted issue. At 2 we're just editing an existing one.
-						GLOB.news_network.submitWanted(channel_name, msg, scanned_user, picture, 0 , 1)
+						GLOB.news_network.submitWanted(channel_name, msg, scanned_user, photo, 0 , 1)
 						screen = 15
 					else
 						if(GLOB.news_network.wanted_issue.isAdminMsg)
 							alert("The wanted issue has been distributed by a Nanotrasen higherup. You cannot edit it.","Ok")
 							return
-						GLOB.news_network.submitWanted(channel_name, msg, scanned_user, picture)
+						GLOB.news_network.submitWanted(channel_name, msg, scanned_user, photo)
 						screen = 19
 			updateUsrDialog()
 		else if(href_list["cancel_wanted"])
@@ -696,17 +699,16 @@ GLOBAL_LIST_EMPTY(allCasters)
 				var/datum/newscaster/feed_comment/FC = new/datum/newscaster/feed_comment
 				FC.author = scanned_user
 				FC.body = cominput
-				FC.time_stamp = STATION_TIME_TIMESTAMP("hh:mm:ss")
+				FC.time_stamp = worldtime2text()
 				FM.comments += FC
-				usr.log_message("(as [scanned_user]) commented on message [FM.returnBody(-1)] -- [FC.body]", LOG_COMMENT)
+				log_talk(usr,"[key_name(usr)] as [scanned_user] commented on message [FM.returnBody(-1)] -- [FC.body]",LOGCOMMENT)
 			updateUsrDialog()
 		else if(href_list["del_comment"])
 			var/datum/newscaster/feed_comment/FC = locate(href_list["del_comment"])
 			var/datum/newscaster/feed_message/FM = locate(href_list["del_comment_msg"])
-			if(istype(FC) && istype(FM))
-				FM.comments -= FC
-				qdel(FC)
-				updateUsrDialog()
+			FM.comments -= FC
+			qdel(FC)
+			updateUsrDialog()
 		else if(href_list["lock_comment"])
 			var/datum/newscaster/feed_message/FM = locate(href_list["lock_comment"])
 			FM.locked ^= 1
@@ -720,8 +722,8 @@ GLOBAL_LIST_EMPTY(allCasters)
 /obj/machinery/newscaster/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/wrench))
 		to_chat(user, "<span class='notice'>You start [anchored ? "un" : ""]securing [name]...</span>")
-		I.play_tool_sound(src)
-		if(I.use_tool(src, user, 60))
+		playsound(loc, I.usesound, 50, 1)
+		if(do_after(user, 60*I.toolspeed, target = src))
 			playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 			if(stat & BROKEN)
 				to_chat(user, "<span class='warning'>The broken remains of [src] fall on the ground.</span>")
@@ -733,19 +735,21 @@ GLOBAL_LIST_EMPTY(allCasters)
 				new /obj/item/wallframe/newscaster(loc)
 			qdel(src)
 	else if(istype(I, /obj/item/weldingtool) && user.a_intent != INTENT_HARM)
+		var/obj/item/weldingtool/WT = I
 		if(stat & BROKEN)
-			if(!I.tool_start_check(user, amount=0))
-				return
-			user.visible_message("[user] is repairing [src].", \
-							"<span class='notice'>You begin repairing [src]...</span>", \
-							"<span class='italics'>You hear welding.</span>")
-			if(I.use_tool(src, user, 40, volume=50))
-				if(!(stat & BROKEN))
-					return
-				to_chat(user, "<span class='notice'>You repair [src].</span>")
-				obj_integrity = max_integrity
-				stat &= ~BROKEN
-				update_icon()
+			if(WT.remove_fuel(0,user))
+				user.visible_message("[user] is repairing [src].", \
+								"<span class='notice'>You begin repairing [src]...</span>", \
+								"<span class='italics'>You hear welding.</span>")
+				playsound(loc, WT.usesound, 40, 1)
+				if(do_after(user,40*WT.toolspeed, 1, target = src))
+					if(!WT.isOn() || !(stat & BROKEN))
+						return
+					to_chat(user, "<span class='notice'>You repair [src].</span>")
+					playsound(loc, 'sound/items/welder2.ogg', 50, 1)
+					obj_integrity = max_integrity
+					stat &= ~BROKEN
+					update_icon()
 		else
 			to_chat(user, "<span class='notice'>[src] does not need repairs.</span>")
 	else
@@ -783,11 +787,22 @@ GLOBAL_LIST_EMPTY(allCasters)
 		take_damage(5, BRUTE, "melee")
 
 /obj/machinery/newscaster/proc/AttachPhoto(mob/user)
-	var/obj/item/photo/photo = user.is_holding_item_of_type(/obj/item/photo)
 	if(photo)
-		picture = photo.picture
+		if(!photo.sillynewscastervar)
+			photo.forceMove(drop_location())
+			if(!issilicon(user))
+				user.put_in_inactive_hand(photo)
+		else
+			qdel(photo)
+		photo = null
+	photo = user.is_holding_item_of_type(/obj/item/photo)
+	if(photo && !user.transferItemToLoc(photo, src))
+		photo = null
 	if(issilicon(user))
-		var/obj/item/camera/siliconcam/targetcam
+		var/list/nametemp = list()
+		var/find
+		var/datum/picture/selection
+		var/obj/item/device/camera/siliconcam/targetcam = null
 		if(isAI(user))
 			var/mob/living/silicon/ai/R = user
 			targetcam = R.aicamera
@@ -799,19 +814,28 @@ GLOBAL_LIST_EMPTY(allCasters)
 				targetcam = R.aicamera
 		else
 			to_chat(user, "<span class='warning'>You cannot interface with silicon photo uploading!</span>")
-		if(!targetcam.stored.len)
+		if(targetcam.aipictures.len == 0)
 			to_chat(usr, "<span class='boldannounce'>No images saved</span>")
 			return
-		var/datum/picture/selection = targetcam.selectpicture(user)
-		if(selection)
-			picture = selection
+		for(var/datum/picture/t in targetcam.aipictures)
+			nametemp += t.fields["name"]
+		find = input("Select image (numbered in order taken)") in nametemp
+		var/obj/item/photo/P = new/obj/item/photo()
+		for(var/datum/picture/q in targetcam.aipictures)
+			if(q.fields["name"] == find)
+				selection = q
+				break
+		P.photocreate(selection.fields["icon"], selection.fields["img"], selection.fields["desc"])
+		P.sillynewscastervar = 1
+		photo = P
+		qdel(P)
 
 /obj/machinery/newscaster/proc/scan_user(mob/living/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		if(human_user.wear_id)
-			if(istype(human_user.wear_id, /obj/item/pda))
-				var/obj/item/pda/P = human_user.wear_id
+			if(istype(human_user.wear_id, /obj/item/device/pda))
+				var/obj/item/device/pda/P = human_user.wear_id
 				if(P.id)
 					scanned_user = "[P.id.registered_name] ([P.id.assignment])"
 				else
@@ -845,17 +869,14 @@ GLOBAL_LIST_EMPTY(allCasters)
 	NEWSPAPER.creationTime = GLOB.news_network.lastAction
 	paper_remaining--
 
-
-/obj/machinery/newscaster/proc/remove_alert()
-	alert = FALSE
-	update_icon()
-
 /obj/machinery/newscaster/proc/newsAlert(channel)
 	if(channel)
 		say("Breaking news from [channel]!")
-		alert = TRUE
+		alert ++
 		update_icon()
-		addtimer(CALLBACK(src,.proc/remove_alert),alert_delay,TIMER_UNIQUE|TIMER_OVERRIDE)
+		spawn(alert_delay)
+			alert --
+			update_icon()
 		playsound(loc, 'sound/machines/twobeep.ogg', 75, 1)
 	else
 		say("Attention! Wanted issue distributed!")
@@ -885,7 +906,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 
 /obj/item/newspaper/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is focusing intently on [src]! It looks like [user.p_theyre()] trying to commit sudoku... until [user.p_their()] eyes light up with realization!</span>")
-	user.say(";JOURNALISM IS MY CALLING! EVERYBODY APPRECIATES UNBIASED REPORTI-GLORF", forced="newspaper suicide")
+	user.say(";JOURNALISM IS MY CALLING! EVERYBODY APPRECIATES UNBIASED REPORTI-GLORF")
 	var/mob/living/carbon/human/H = user
 	var/obj/W = new /obj/item/reagent_containers/food/drinks/bottle/whiskey(H.loc)
 	playsound(H.loc, 'sound/items/drink.ogg', rand(10,50), 1)
@@ -1019,16 +1040,13 @@ GLOBAL_LIST_EMPTY(allCasters)
 
 /obj/item/newspaper/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pen))
-		if(!user.is_literate())
-			to_chat(user, "<span class='notice'>You scribble illegibly on [src]!</span>")
-			return
 		if(scribble_page == curr_page)
 			to_chat(user, "<span class='notice'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</span>")
 		else
 			var/s = stripped_input(user, "Write something", "Newspaper")
 			if (!s)
 				return
-			if(!user.canUseTopic(src, BE_CLOSE))
+			if (!in_range(src, usr) && loc != usr)
 				return
 			scribble_page = curr_page
 			scribble = s

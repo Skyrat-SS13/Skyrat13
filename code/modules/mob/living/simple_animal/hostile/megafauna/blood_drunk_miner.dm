@@ -1,5 +1,5 @@
 #define MINER_DASH_RANGE 4
-
+#define MEDAL_PREFIX "Blood-drunk Miner"
 /*
 
 BLOOD-DRUNK MINER
@@ -28,12 +28,11 @@ Difficulty: Medium
 	icon_state = "miner"
 	icon_living = "miner"
 	icon = 'icons/mob/broadMobs.dmi'
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	light_color = "#E4C7C5"
 	movement_type = GROUND
 	speak_emote = list("roars")
 	speed = 1
-	move_to_delay = 2
+	move_to_delay = 3
 	projectiletype = /obj/item/projectile/kinetic/miner
 	projectilesound = 'sound/weapons/kenetic_accel.ogg'
 	ranged = 1
@@ -44,7 +43,7 @@ Difficulty: Medium
 	wander = FALSE
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_NORMAL
-	medal_type = BOSS_MEDAL_MINER
+	medal_type = MEDAL_PREFIX
 	var/obj/item/melee/transforming/cleaving_saw/miner/miner_saw
 	var/time_until_next_transform = 0
 	var/dashing = FALSE
@@ -52,8 +51,6 @@ Difficulty: Medium
 	var/guidance = FALSE
 	deathmessage = "falls to the ground, decaying into glowing particles."
 	death_sound = "bodyfall"
-
-	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/guidance
 	guidance = TRUE
@@ -80,7 +77,7 @@ Difficulty: Medium
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/Initialize()
 	. = ..()
-	internal = new/obj/item/gps/internal/miner(src)
+	internal = new/obj/item/device/gps/internal/miner(src)
 	miner_saw = new(src)
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
@@ -132,7 +129,7 @@ Difficulty: Medium
 	INVOKE_ASYNC(src, .proc/quick_attack_loop)
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
+/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect, end_pixel_y)
 	if(!used_item && !isturf(A))
 		used_item = miner_saw
 	..()
@@ -258,10 +255,11 @@ Difficulty: Medium
 	sleep(4)
 	animate(src, alpha = 0, time = 6, easing = EASE_OUT, flags = ANIMATION_PARALLEL)
 
-/obj/item/gps/internal/miner
+/obj/item/device/gps/internal/miner
 	icon_state = null
 	gpstag = "Resonant Signal"
 	desc = "The sweet blood, oh, it sings to me."
 	invisibility = 100
 
 #undef MINER_DASH_RANGE
+#undef MEDAL_PREFIX

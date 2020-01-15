@@ -2,8 +2,7 @@
 	category_text = "Output"
 
 /obj/item/integrated_circuit/output/screen
-	name = "screen"
-	extended_desc = " use &lt;br&gt; to start a new line"
+	name = "small screen"
 	desc = "Takes any data type as an input, and displays it to the user upon examining."
 	icon_state = "screen"
 	inputs = list("displayed data" = IC_PINTYPE_ANY)
@@ -11,7 +10,6 @@
 	activators = list("load data" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 10
-	var/eol = "&lt;br&gt;"
 	var/stuff_to_display = null
 
 /obj/item/integrated_circuit/output/screen/disconnect_all()
@@ -23,7 +21,7 @@
 	if(displayed_name && displayed_name != name)
 		shown_label = " labeled '[displayed_name]'"
 
-	return "There is \a [src][shown_label], which displays [!isnull(stuff_to_display) ? "'[stuff_to_display]'" : "nothing"]."
+	to_chat(user, "There is \a [src][shown_label], which displays [!isnull(stuff_to_display) ? "'[stuff_to_display]'" : "nothing"].")
 
 /obj/item/integrated_circuit/output/screen/do_work()
 	var/datum/integrated_io/I = inputs[1]
@@ -32,34 +30,31 @@
 		if(d)
 			stuff_to_display = "[d]"
 	else
-		stuff_to_display = replacetext("[I.data]", eol , "<br>")
+		stuff_to_display = I.data
 
-/obj/item/integrated_circuit/output/screen/large
-	name = "large screen"
-	desc = "Takes any data type as an input and displays it to anybody near the device when pulsed. \
-	It can also be examined to see the last thing it displayed."
+/obj/item/integrated_circuit/output/screen/medium
+	name = "screen"
+	desc = "Takes any data type as an input and displays it to the user upon examining, and to adjacent beings when pulsed."
 	icon_state = "screen_medium"
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/output/screen/large/do_work()
+/obj/item/integrated_circuit/output/screen/medium/do_work()
 	..()
-
-	if(isliving(assembly.loc))//this whole block just returns if the assembly is neither in a mobs hands or on the ground
-		var/mob/living/H = assembly.loc
-		if(H.get_active_held_item() != assembly && H.get_inactive_held_item() != assembly)
-			return
-	else
-		if(!isturf(assembly.loc))
-			return
-
 	var/list/nearby_things = range(0, get_turf(src))
 	for(var/mob/M in nearby_things)
 		var/obj/O = assembly ? assembly : src
 		to_chat(M, "<span class='notice'>[icon2html(O.icon, world, O.icon_state)] [stuff_to_display]</span>")
-	if(assembly)
-		assembly.investigate_log("displayed \"[html_encode(stuff_to_display)]\" with [type].", INVESTIGATE_CIRCUIT)
-	else
-		investigate_log("displayed \"[html_encode(stuff_to_display)]\" as [type].", INVESTIGATE_CIRCUIT)
+
+/obj/item/integrated_circuit/output/screen/large
+	name = "large screen"
+	desc = "Takes any data type as an input and displays it to the user upon examining, and to all nearby beings when pulsed."
+	icon_state = "screen_large"
+	power_draw_per_use = 40
+
+/obj/item/integrated_circuit/output/screen/large/do_work()
+	..()
+	var/obj/O = assembly ? loc : assembly
+	O.visible_message("<span class='notice'>[icon2html(O.icon, world, O.icon_state)]  [stuff_to_display]</span>")
 
 /obj/item/integrated_circuit/output/light
 	name = "light"
@@ -82,11 +77,22 @@
 /obj/item/integrated_circuit/output/light/proc/update_lighting()
 	if(light_toggled)
 		if(assembly)
-			assembly.set_light(l_range = light_brightness, l_power = 1, l_color = light_rgb)
+			assembly.set_light(l_range = light_brightness, l_power = light_brightness, l_color = light_rgb)
 	else
 		if(assembly)
 			assembly.set_light(0)
 	power_draw_idle = light_toggled ? light_brightness * 2 : 0
+
+/obj/item/integrated_circuit/output/light/advanced/update_lighting()
+	var/new_color = get_pin_data(IC_INPUT, 1)
+	var/brightness = get_pin_data(IC_INPUT, 2)
+
+	if(new_color && isnum(brightness))
+		brightness = CLAMP(brightness, 0, 6)
+		light_rgb = new_color
+		light_brightness = brightness
+
+	..()
 
 /obj/item/integrated_circuit/output/light/power_fail() // Turns off the flashlight if there's no power left.
 	light_toggled = FALSE
@@ -94,7 +100,7 @@
 
 /obj/item/integrated_circuit/output/light/advanced
 	name = "advanced light"
-	desc = "A light that takes a hexadecimal color value and a brightness value, and can be toggled on/off by pulsing it."
+	desc = "A light that takes a hexadecimal color value and a brightness value, and can be toggled on/off with a pulse."
 	icon_state = "light_adv"
 	complexity = 8
 	inputs = list(
@@ -106,17 +112,6 @@
 
 /obj/item/integrated_circuit/output/light/advanced/on_data_written()
 	update_lighting()
-
-/obj/item/integrated_circuit/output/light/advanced/update_lighting()
-	var/new_color = get_pin_data(IC_INPUT, 1)
-	var/brightness = get_pin_data(IC_INPUT, 2)
-
-	if(new_color && isnum(brightness))
-		brightness = CLAMP(brightness, 0, 10)
-		light_rgb = new_color
-		light_brightness = brightness
-
-	..()
 
 /obj/item/integrated_circuit/output/sound
 	name = "speaker circuit"
@@ -153,8 +148,6 @@
 			return
 		vol = CLAMP(vol ,0 , 100)
 		playsound(get_turf(src), selected_sound, vol, freq, -1)
-		var/atom/A = get_object()
-		A.investigate_log("played a sound ([selected_sound]) as [type].", INVESTIGATE_CIRCUIT)
 
 /obj/item/integrated_circuit/output/sound/on_data_written()
 	power_draw_per_use =  get_pin_data(IC_INPUT, 2) * 15
@@ -178,14 +171,14 @@
 	name = "securitron sound circuit"
 	desc = "Takes a sound name as an input, and will play said sound when pulsed. This circuit is similar to those used in Securitrons."
 	sounds = list(
-		"creep"			= 'sound/voice/beepsky/creep.ogg',
-		"criminal"		= 'sound/voice/beepsky/criminal.ogg',
-		"freeze"		= 'sound/voice/beepsky/freeze.ogg',
-		"god"			= 'sound/voice/beepsky/god.ogg',
-		"i am the law"	= 'sound/voice/beepsky/iamthelaw.ogg',
-		"insult"		= 'sound/voice/beepsky/insult.ogg',
-		"radio"			= 'sound/voice/beepsky/radio.ogg',
-		"secure day"	= 'sound/voice/beepsky/secureday.ogg',
+		"creep"			= 'sound/voice/bcreep.ogg',
+		"criminal"		= 'sound/voice/bcriminal.ogg',
+		"freeze"		= 'sound/voice/bfreeze.ogg',
+		"god"			= 'sound/voice/bgod.ogg',
+		"i am the law"	= 'sound/voice/biamthelaw.ogg',
+		"insult"		= 'sound/voice/binsult.ogg',
+		"radio"			= 'sound/voice/bradio.ogg',
+		"secure day"	= 'sound/voice/bsecureday.ogg',
 		)
 	spawn_flags = IC_SPAWN_RESEARCH
 
@@ -193,21 +186,21 @@
 	name = "medbot sound circuit"
 	desc = "Takes a sound name as an input, and will play said sound when pulsed. This circuit is often found in medical robots."
 	sounds = list(
-		"surgeon"		= 'sound/voice/medbot/surgeon.ogg',
-		"radar"			= 'sound/voice/medbot/radar.ogg',
-		"feel better"	= 'sound/voice/medbot/feelbetter.ogg',
-		"patched up"	= 'sound/voice/medbot/patchedup.ogg',
-		"injured"		= 'sound/voice/medbot/injured.ogg',
-		"insult"		= 'sound/voice/medbot/insult.ogg',
-		"coming"		= 'sound/voice/medbot/coming.ogg',
-		"help"			= 'sound/voice/medbot/help.ogg',
-		"live"			= 'sound/voice/medbot/live.ogg',
-		"lost"			= 'sound/voice/medbot/lost.ogg',
-		"flies"			= 'sound/voice/medbot/flies.ogg',
-		"catch"			= 'sound/voice/medbot/catch.ogg',
-		"delicious"		= 'sound/voice/medbot/delicious.ogg',
-		"apple"			= 'sound/voice/medbot/apple.ogg',
-		"no"			= 'sound/voice/medbot/no.ogg',
+		"surgeon"		= 'sound/voice/msurgeon.ogg',
+		"radar"			= 'sound/voice/mradar.ogg',
+		"feel better"	= 'sound/voice/mfeelbetter.ogg',
+		"patched up"	= 'sound/voice/mpatchedup.ogg',
+		"injured"		= 'sound/voice/minjured.ogg',
+		"insult"		= 'sound/voice/minsult.ogg',
+		"coming"		= 'sound/voice/mcoming.ogg',
+		"help"			= 'sound/voice/mhelp.ogg',
+		"live"			= 'sound/voice/mlive.ogg',
+		"lost"			= 'sound/voice/mlost.ogg',
+		"flies"			= 'sound/voice/mflies.ogg',
+		"catch"			= 'sound/voice/mcatch.ogg',
+		"delicious"		= 'sound/voice/mdelicious.ogg',
+		"apple"			= 'sound/voice/mapple.ogg',
+		"no"			= 'sound/voice/mno.ogg',
 		)
 	spawn_flags = IC_SPAWN_RESEARCH
 
@@ -226,7 +219,6 @@
 	desc = "Takes any string as an input and will make the device say the string when pulsed."
 	extended_desc = "This unit is more advanced than the plain speaker circuit, able to transpose any valid text to speech."
 	icon_state = "speaker"
-	cooldown_per_use = 10
 	complexity = 12
 	inputs = list("text" = IC_PINTYPE_STRING)
 	outputs = list()
@@ -238,30 +230,24 @@
 	text = get_pin_data(IC_INPUT, 1)
 	if(!isnull(text))
 		var/atom/movable/A = get_object()
-		var/sanitized_text = sanitize(text)
-		A.say(sanitized_text)
-		if (assembly)
-			log_say("[assembly] [REF(assembly)] : [sanitized_text]")
-		else
-			log_say("[name] ([type]) : [sanitized_text]")
+		A.say(sanitize(text))
+
 
 /obj/item/integrated_circuit/output/video_camera
 	name = "video camera circuit"
-	desc = "Takes a string as a name and a boolean to determine whether it is on, and uses this to be a camera linked to a list of networks you choose."
-	extended_desc = "The camera is linked to a list of camera networks of your choosing. Common choices are 'rd' for the research network, 'ss13' for the main station network (visible to AI), 'mine' for the mining network, and 'thunder' for the thunderdome network (viewable from bar)."
+	desc = "Takes a string as a name and a boolean to determine whether it is on, and uses this to be a camera linked to the research network."
+	extended_desc = "The camera is linked to the Research camera network."
 	icon_state = "video_camera"
-	w_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_SMALL
 	complexity = 10
 	inputs = list(
 		"camera name" = IC_PINTYPE_STRING,
-		"camera active" = IC_PINTYPE_BOOLEAN,
-		"camera network" = IC_PINTYPE_LIST
+		"camera active" = IC_PINTYPE_BOOLEAN
 		)
-	inputs_default = list("1" = "video camera circuit", "3" = list("rd"))
+	inputs_default = list("1" = "video camera circuit")
 	outputs = list()
 	activators = list()
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	action_flags = IC_ACTION_LONG_RANGE
 	power_draw_idle = 0 // Raises to 20 when on.
 	var/obj/machinery/camera/camera
 	var/updating = FALSE
@@ -269,7 +255,7 @@
 /obj/item/integrated_circuit/output/video_camera/New()
 	..()
 	camera = new(src)
-	camera.network = list("rd")
+	camera.network = list("RD")
 	on_data_written()
 
 /obj/item/integrated_circuit/output/video_camera/Destroy()
@@ -289,11 +275,8 @@
 	if(camera)
 		var/cam_name = get_pin_data(IC_INPUT, 1)
 		var/cam_active = get_pin_data(IC_INPUT, 2)
-		var/list/new_network = get_pin_data(IC_INPUT, 3)
 		if(!isnull(cam_name))
 			camera.c_tag = cam_name
-		if(!isnull(new_network))
-			camera.network = new_network
 		set_camera_status(cam_active)
 
 /obj/item/integrated_circuit/output/video_camera/power_fail()
@@ -345,69 +328,11 @@
 	set_pin_data(IC_INPUT, 1, FALSE)
 
 /obj/item/integrated_circuit/output/led/external_examine(mob/user)
-	. = "There is "
+	var/text_output = "There is "
 
 	if(name == displayed_name)
-		. += "\an [name]"
+		text_output += "\an [name]"
 	else
-		. += "\an ["\improper[name]"] labeled '[displayed_name]'"
-	. += " which is currently [get_pin_data(IC_INPUT, 1) ? "lit <font color=[led_color]>*</font>" : "unlit"]."
-
-/obj/item/integrated_circuit/output/diagnostic_hud
-	name = "AR interface"
-	desc = "Takes an icon name as an input, and will update the status hud when data is written to it."
-	extended_desc = "Takes an icon name as an input, and will update the status hud when data is written to it, this means it can change the icon and have the icon stay that way even if the circuit is removed. The acceptable inputs are 'alert', 'move', 'working', 'patrol', 'called', and 'heart'. Any input other than that will return the icon to its default state."
-	var/list/icons = list(
-		"alert" = "hudalert",
-		"move" = "hudmove",
-		"working" = "hudworkingleft",
-		"patrol" = "hudpatrolleft",
-		"called" = "hudcalledleft",
-		"heart" = "hudsentientleft"
-		)
-	complexity = 1
-	icon_state = "led"
-	inputs = list(
-		"icon" = IC_PINTYPE_STRING
-	)
-	outputs = list()
-	activators = list()
-	power_draw_idle = 0
-	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-
-/obj/item/integrated_circuit/output/diagnostic_hud/on_data_written()
-	var/ID = get_pin_data(IC_INPUT, 1)
-	var/selected_icon = icons[ID]
-	if(assembly)
-		if(selected_icon)
-			assembly.prefered_hud_icon = selected_icon
-		else
-			assembly.prefered_hud_icon = "hudstat"
-		//update the diagnostic hud
-		assembly.diag_hud_set_circuitstat()
-
-
-//Hippie Ported Code--------------------------------------------------------------------------------------------------------
-
-
-
-/obj/item/radio/headset/integrated
-
-/obj/item/integrated_circuit/output/screen/large
-	name = "medium screen"
-
-/obj/item/integrated_circuit/output/screen/extralarge // the subtype is called "extralarge" because tg brought back medium screens and they named the subtype /screen/large
-	name = "large screen"
-	desc = "Takes any data type as an input and displays it to the user upon examining, and to all nearby beings when pulsed."
-	icon_state = "screen_large"
-	power_draw_per_use = 40
-	cooldown_per_use = 10
-
-/obj/item/integrated_circuit/output/screen/extralarge/do_work()
-	..()
-	var/obj/O = assembly ? get_turf(assembly) : loc
-	O.visible_message("<span class='notice'>[icon2html(O.icon, world, O.icon_state)]  [stuff_to_display]</span>")
-	if(assembly)
-		assembly.investigate_log("displayed \"[html_encode(stuff_to_display)]\" with [type].", INVESTIGATE_CIRCUIT)
-	else
-		investigate_log("displayed \"[html_encode(stuff_to_display)]\" as [type].", INVESTIGATE_CIRCUIT)
+		text_output += "\an ["\improper[name]"] labeled '[displayed_name]'"
+	text_output += " which is currently [get_pin_data(IC_INPUT, 1) ? "lit <font color=[led_color]>*</font>" : "unlit"]."
+	to_chat(user, text_output)

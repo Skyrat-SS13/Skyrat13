@@ -18,11 +18,8 @@
 /mob/living/carbon/human/bee_friendly()
 	if(dna && dna.species && dna.species.id == "pod") //bees pollinate plants, duh.
 		return 1
-	if (wear_suit && head && istype(wear_suit, /obj/item/clothing) && istype(head, /obj/item/clothing))
-		var/obj/item/clothing/CS = wear_suit
-		var/obj/item/clothing/CH = head
-		if (CS.clothing_flags & CH.clothing_flags & THICKMATERIAL)
-			return 1
+	if((wear_suit && (wear_suit.flags_1 & THICKMATERIAL_1)) && (head && (head.flags_1 & THICKMATERIAL_1)))
+		return 1
 	return 0
 
 
@@ -65,7 +62,7 @@
 	var/datum/reagent/R = null
 	if(random_reagent)
 		R = pick(subtypesof(/datum/reagent))
-		R = GLOB.chemical_reagents_list[R]
+		R = GLOB.chemical_reagents_list[initial(R.id)]
 
 	queen_bee = new(src)
 	queen_bee.beehome = src
@@ -95,7 +92,7 @@
 				bee_resources = max(bee_resources-BEE_RESOURCE_HONEYCOMB_COST, 0)
 				var/obj/item/reagent_containers/honeycomb/HC = new(src)
 				if(queen_bee.beegent)
-					HC.set_reagent(queen_bee.beegent.type)
+					HC.set_reagent(queen_bee.beegent.id)
 				honeycombs += HC
 
 		if(bees.len < get_max_bees())
@@ -123,25 +120,26 @@
 
 
 /obj/structure/beebox/examine(mob/user)
-	. = ..()
+	..()
 
 	if(!queen_bee)
-		. += "<span class='warning'>There is no queen bee! There won't bee any honeycomb without a queen!</span>"
+		to_chat(user, "<span class='warning'>There is no queen bee! There won't bee any honeycomb without a queen!</span>")
 
 	var/half_bee = get_max_bees()*0.5
 	if(half_bee && (bees.len >= half_bee))
-		. += "<span class='notice'>This place is aBUZZ with activity... there are lots of bees!</span>"
+		to_chat(user, "<span class='notice'>This place is aBUZZ with activity... there are lots of bees!</span>")
 
-	. += "<span class='notice'>[bee_resources]/100 resource supply.</span>"
-	. += "<span class='notice'>[bee_resources]% towards a new honeycomb.</span>"
-	. += "<span class='notice'>[bee_resources*2]% towards a new bee.</span>"
+	to_chat(user, "<span class='notice'>[bee_resources]/100 resource supply.</span>")
+	to_chat(user, "<span class='notice'>[bee_resources]% towards a new honeycomb.</span>")
+	to_chat(user, "<span class='notice'>[bee_resources*2]% towards a new bee.</span>")
 
 	if(honeycombs.len)
 		var/plural = honeycombs.len > 1
-		. += "<span class='notice'>There [plural? "are" : "is"] [honeycombs.len] uncollected honeycomb[plural ? "s":""] in the apiary.</span>"
+		to_chat(user, "<span class='notice'>There [plural? "are" : "is"] [honeycombs.len] uncollected honeycomb[plural ? "s":""] in the apiary.</span>")
 
 	if(honeycombs.len >= get_max_honeycomb())
-		. += "<span class='warning'>There's no room for more honeycomb!</span>"
+		to_chat(user, "<span class='warning'>There's no room for more honeycomb!</span>")
+
 
 /obj/structure/beebox/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/honey_frame))
@@ -194,8 +192,8 @@
 
 	..()
 
-/obj/structure/beebox/interact(mob/user)
-	. = ..()
+
+/obj/structure/beebox/attack_hand(mob/user)
 	if(!user.bee_friendly())
 		//Time to get stung!
 		var/bees = FALSE
@@ -262,6 +260,3 @@
 		if(HF.loc == src)
 			HF.forceMove(drop_location())
 	qdel(src)
-
-/obj/structure/beebox/unwrenched
-		anchored = FALSE

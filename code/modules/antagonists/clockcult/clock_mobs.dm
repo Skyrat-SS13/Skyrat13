@@ -19,13 +19,15 @@
 	bubble_icon = "clock"
 	light_color = "#E42742"
 	death_sound = 'sound/magic/clockwork/anima_fragment_death.ogg'
-	speech_span = SPAN_ROBOT
 	var/playstyle_string = "<span class='heavy_brass'>You are a bug, yell at whoever spawned you!</span>"
 	var/empower_string = "<span class='heavy_brass'>You have nothing to empower, yell at the coders!</span>" //Shown to the mob when the herald beacon activates
 
 /mob/living/simple_animal/hostile/clockwork/Initialize()
 	. = ..()
 	update_values()
+
+/mob/living/simple_animal/hostile/clockwork/get_spans()
+	return ..() | SPAN_ROBOT
 
 /mob/living/simple_animal/hostile/clockwork/Login()
 	..()
@@ -57,7 +59,7 @@
 		msg += "[addendum]\n"
 	msg += "*---------*</span>"
 
-	return list(msg)
+	to_chat(user, msg)
 
 /mob/living/simple_animal/hostile/clockwork/proc/examine_info() //Override this on a by-mob basis to have unique examine info
 	return

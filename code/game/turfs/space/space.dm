@@ -12,12 +12,11 @@
 	var/destination_x
 	var/destination_y
 
-	var/static/datum/gas_mixture/immutable/space/space_gas = new
+	var/global/datum/gas_mixture/immutable/space/space_gas = new
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
 	light_power = 0.25
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-	bullet_bounce_sound = null
 
 
 /turf/open/space/basic/New()	//Do not convert to Initialize
@@ -27,12 +26,10 @@
 /turf/open/space/Initialize()
 	icon_state = SPACE_ICON_STATE
 	air = space_gas
-	vis_contents.Cut() //removes inherited overlays
-	visibilityChanged()
 
-	if(flags_1 & INITIALIZED_1)
+	if(initialized)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	flags_1 |= INITIALIZED_1
+	initialized = TRUE
 
 	var/area/A = loc
 	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
@@ -51,7 +48,6 @@
 
 	return INITIALIZE_HINT_NORMAL
 
-//ATTACK GHOST IGNORING PARENT RETURN VALUE
 /turf/open/space/attack_ghost(mob/dead/observer/user)
 	if(destination_z)
 		var/turf/T = locate(destination_x, destination_y, destination_z)
@@ -83,13 +79,10 @@
 		set_light(0)
 
 /turf/open/space/attack_paw(mob/user)
-	return attack_hand(user)
+	return src.attack_hand(user)
 
 /turf/open/space/proc/CanBuildHere()
 	return TRUE
-
-/turf/open/space/handle_slip()
-	return
 
 /turf/open/space/attackby(obj/item/C, mob/user, params)
 	..()
@@ -125,7 +118,7 @@
 				qdel(L)
 				playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You build a floor.</span>")
-				PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+				PlaceOnTop(/turf/open/floor/plating)
 			else
 				to_chat(user, "<span class='warning'>You need one floor tile to build a floor!</span>")
 		else
@@ -136,40 +129,27 @@
 	if ((!(A) || src != A.loc))
 		return
 
-	if(destination_z && destination_x && destination_y && !(A.pulledby || !A.can_be_z_moved))
-		var/tx = destination_x
-		var/ty = destination_y
-		var/turf/DT = locate(tx, ty, destination_z)
-		var/itercount = 0
-		while(DT.density || istype(DT.loc,/area/shuttle)) // Extend towards the center of the map, trying to look for a better place to arrive
-			if (itercount++ >= 100)
-				log_game("SPACE Z-TRANSIT ERROR: Could not find a safe place to land [A] within 100 iterations.")
-				break
-			if (tx < 128)
-				tx++
-			else
-				tx--
-			if (ty < 128)
-				ty++
-			else
-				ty--
-			DT = locate(tx, ty, destination_z)
+	if(destination_z)
+		var/old_z = A.z
+		A.x = destination_x
+		A.y = destination_y
+		A.z = destination_z
+		if (old_z != destination_z)
+			A.onTransitZ(old_z, destination_z)
 
-		var/atom/movable/AM = A.pulling
-		A.forceMove(DT)
-		if(AM)
-			var/turf/T = get_step(A.loc,turn(A.dir, 180))
-			AM.can_be_z_moved = FALSE
-			AM.forceMove(T)
-			A.start_pulling(AM)
-			AM.can_be_z_moved = TRUE
+		if(isliving(A))
+			var/mob/living/L = A
+			var/atom/movable/AM = L.pulling
+			if(AM)
+				var/turf/T = get_step(L.loc,turn(A.dir, 180))
+				AM.forceMove(T)
+				L.start_pulling(AM)
 
 		//now we're on the new z_level, proceed the space drifting
 		stoplag()//Let a diagonal move finish, if necessary
 		A.newtonian_move(A.inertia_dir)
 
-
-/turf/open/space/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
+/turf/open/space/handle_slip()
 	return
 
 /turf/open/space/singularity_act()
@@ -212,7 +192,7 @@
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, "<span class='notice'>You build a floor.</span>")
-			PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+			PlaceOnTop(/turf/open/floor/plating)
 			return TRUE
 	return FALSE
 

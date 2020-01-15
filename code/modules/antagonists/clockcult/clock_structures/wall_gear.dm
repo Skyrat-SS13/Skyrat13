@@ -5,6 +5,7 @@
 	unanchored_icon = "wall_gear"
 	climbable = TRUE
 	max_integrity = 100
+	layer = BELOW_OBJ_LAYER
 	construction_value = 3
 	desc = "A massive brass gear. You could probably secure or unsecure it with a wrench, or just climb over it."
 	break_message = "<span class='warning'>The gear breaks apart into shards of alloy!</span>"
@@ -30,8 +31,9 @@
 		if(anchored)
 			to_chat(user, "<span class='warning'>[src] needs to be unsecured to disassemble it!</span>")
 		else
+			playsound(src, I.usesound, 100, 1)
 			user.visible_message("<span class='warning'>[user] starts to disassemble [src].</span>", "<span class='notice'>You start to disassemble [src]...</span>")
-			if(I.use_tool(src, user, 30, volume=100) && !anchored)
+			if(do_after(user, 30*I.toolspeed, target = src) && !anchored)
 				to_chat(user, "<span class='notice'>You disassemble [src].</span>")
 				deconstruct(TRUE)
 		return 1
@@ -59,7 +61,7 @@
 				if(anchored)
 					T.PlaceOnTop(/turf/closed/wall/clockwork)
 				else
-					T.PlaceOnTop(/turf/open/floor/clockwork, flags = CHANGETURF_INHERIT_AIR)
+					T.PlaceOnTop(/turf/open/floor/clockwork)
 					new /obj/structure/falsewall/brass(T)
 				qdel(src)
 			else

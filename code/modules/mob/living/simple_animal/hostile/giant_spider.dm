@@ -6,7 +6,7 @@
 
 /mob/living/simple_animal/hostile/poison
 	var/poison_per_bite = 5
-	var/poison_type = /datum/reagent/toxin
+	var/poison_type = "toxin"
 
 /mob/living/simple_animal/hostile/poison/AttackingTarget()
 	. = ..()
@@ -22,7 +22,6 @@
 	icon_state = "guard"
 	icon_living = "guard"
 	icon_dead = "guard_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BUG)
 	speak_emote = list("chitters")
 	emote_hear = list("chitters")
 	speak_chance = 5
@@ -52,8 +51,6 @@
 	var/datum/action/innate/spider/lay_web/lay_web
 	var/directive = "" //Message passed down to children, to relay the creator's orders
 
-	do_footstep = TRUE
-
 /mob/living/simple_animal/hostile/poison/giant_spider/Initialize()
 	. = ..()
 	lay_web = new
@@ -76,26 +73,20 @@
 		to_chat(src, "<span class='spider'><b>[directive]</b></span>")
 
 /mob/living/simple_animal/hostile/poison/giant_spider/attack_ghost(mob/user)
-	. = ..()
-	if(.)
-		return
-	humanize_spider(user)
+	if(!humanize_spider(user))
+		return ..()
 
 /mob/living/simple_animal/hostile/poison/giant_spider/proc/humanize_spider(mob/user)
-	if(key || !playable_spider || stat)//Someone is in it, it's dead, or the fun police are shutting it down
-		return FALSE
-	if(isobserver(user))
-		var/mob/dead/observer/O = user
-		if(!O.can_reenter_round())
-			return FALSE
+	if(key || !playable_spider)//Someone is in it or the fun police are shutting it down
+		return 0
 	var/spider_ask = alert("Become a spider?", "Are you australian?", "Yes", "No")
 	if(spider_ask == "No" || !src || QDELETED(src))
-		return TRUE
+		return 1
 	if(key)
 		to_chat(user, "<span class='notice'>Someone else already took this spider.</span>")
-		return TRUE
-	user.transfer_ckey(src, FALSE)
-	return TRUE
+		return 1
+	key = user.key
+	return 1
 
 //nursemaids - these create webs and eggs
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse
@@ -158,7 +149,7 @@
 	melee_damage_upper = 1
 	poison_per_bite = 12
 	move_to_delay = 4
-	poison_type = /datum/reagent/toxin/venom //all in venom, glass cannon. you bite 5 times and they are DEFINITELY dead, but 40 health and you are extremely obvious. Ambush, maybe?
+	poison_type = "venom" //all in venom, glass cannon. you bite 5 times and they are DEFINITELY dead, but 40 health and you are extremely obvious. Ambush, maybe?
 	speed = 1
 	gold_core_spawnable = NO_SPAWN
 
@@ -179,17 +170,14 @@
 	status_flags = NONE
 	mob_size = MOB_SIZE_LARGE
 	gold_core_spawnable = NO_SPAWN
-	var/slowed_by_webs = FALSE
 
-/mob/living/simple_animal/hostile/poison/giant_spider/tarantula/Moved(atom/oldloc, dir)
+/mob/living/simple_animal/hostile/poison/giant_spider/tarantula/movement_delay()
+	var/turf/T = get_turf(src)
+	if(locate(/obj/structure/spider/stickyweb) in T)
+		speed = 2
+	else
+		speed = 7
 	. = ..()
-	if(slowed_by_webs)
-		if(!(locate(/obj/structure/spider/stickyweb) in loc))
-			remove_movespeed_modifier(MOVESPEED_ID_TARANTULA_WEB)
-			slowed_by_webs = FALSE
-	else if(locate(/obj/structure/spider/stickyweb) in loc)
-		add_movespeed_modifier(MOVESPEED_ID_TARANTULA_WEB, priority=100, multiplicative_slowdown=3)
-		slowed_by_webs = TRUE
 
 //midwives are the queen of the spiders, can send messages to all them and web faster. That rare round where you get a queen spider and turn your 'for honor' players into 'r6siege' players will be a fun one.
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife
@@ -217,7 +205,7 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
-	poison_type = /datum/reagent/consumable/frostoil
+	poison_type = "frost_oil"
 	color = rgb(114,228,250)
 	gold_core_spawnable = NO_SPAWN
 
@@ -226,7 +214,7 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
-	poison_type = /datum/reagent/consumable/frostoil
+	poison_type = "frost_oil"
 	color = rgb(114,228,250)
 	gold_core_spawnable = NO_SPAWN
 
@@ -235,7 +223,7 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
-	poison_type = /datum/reagent/consumable/frostoil
+	poison_type = "frost_oil"
 	color = rgb(114,228,250)
 	gold_core_spawnable = NO_SPAWN
 
@@ -355,9 +343,9 @@
 	button_icon_state = "lay_web"
 
 /datum/action/innate/spider/lay_web/Activate()
-	if(!istype(owner, /mob/living/simple_animal/hostile/poison/giant_spider))
+	if(!istype(owner, /mob/living/simple_animal/hostile/poison/giant_spider/nurse))
 		return
-	var/mob/living/simple_animal/hostile/poison/giant_spider/S = owner
+	var/mob/living/simple_animal/hostile/poison/giant_spider/nurse/S = owner
 
 	if(!isturf(S.loc))
 		return
@@ -529,7 +517,7 @@
 	for(var/M in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(M, user)
 		to_chat(M, "[link] [my_message]")
-	usr.log_talk(message, LOG_SAY, tag="spider command")
+	log_talk(user, "SPIDERCOMMAND: [key_name(user)] : [message]",LOGSAY)
 
 /mob/living/simple_animal/hostile/poison/giant_spider/handle_temperature_damage()
 	if(bodytemperature < minbodytemp)

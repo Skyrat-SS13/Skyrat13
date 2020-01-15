@@ -1,7 +1,5 @@
 // Disposal pipes
 
-#define IFFY 2
-
 /obj/structure/disposalpipe
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
@@ -14,11 +12,9 @@
 	max_integrity = 200
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
 	layer = DISPOSAL_PIPE_LAYER			// slightly lower than wires and other pipes
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	var/dpdir = NONE					// bitmask of pipe directions
 	var/initialize_dirs = NONE			// bitflags of pipe directions added on init, see \code\_DEFINES\pipe_construction.dm
 	var/flip_type						// If set, the pipe is flippable and becomes this type when flipped
-	var/canclank = FALSE				// Determines if the pipe will cause a clank sound when holders pass by it. use the IFFY define for weird-ass edge cases like the segment subtype
 	var/obj/structure/disposalconstruct/stored
 
 
@@ -46,6 +42,10 @@
 			dpdir |= turn(dir, 180)
 	update()
 
+/obj/structure/disposalpipe/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION)
+
 // pipe is deleted
 // ensure if holder is present, it is expelled
 /obj/structure/disposalpipe/Destroy()
@@ -62,7 +62,7 @@
 	return dpdir & (~turn(H.dir, 180))
 
 // transfer the holder through this pipe segment
-// overridden for special behaviour
+// overriden for special behaviour
 /obj/structure/disposalpipe/proc/transfer(obj/structure/disposalholder/H)
 	return transfer_to_dir(H, nextdir(H))
 
@@ -78,8 +78,6 @@
 			H.merge(H2)
 
 		H.forceMove(P)
-		if(P.canclank == TRUE || (P.canclank == IFFY && P.dpdir != 3 && P.dpdir != 12))
-			playsound(P, H.hasmob ? "clang" : "clangsmall", H.hasmob ? 50 : 25, 1)
 		return P
 	else			// if wasn't a pipe, then they're now in our turf
 		H.forceMove(get_turf(src))
@@ -143,19 +141,26 @@
 	return ..()
 
 
-//welding tool: unfasten and convert to obj/disposalconstruct
-/obj/structure/disposalpipe/welder_act(mob/living/user, obj/item/I)
-	if(!can_be_deconstructed(user))
-		return TRUE
+//attack by item
+//weldingtool: unfasten and convert to obj/disposalconstruct
+/obj/structure/disposalpipe/attackby(obj/item/I, mob/user, params)
+	add_fingerprint(user)
+	if(istype(I, /obj/item/weldingtool))
+		if(!can_be_deconstructed(user))
+			return
 
-	if(!I.tool_start_check(user, amount=0))
-		return TRUE
-
-	to_chat(user, "<span class='notice'>You start slicing [src]...</span>")
-	if(I.use_tool(src, user, 30, volume=50))
-		deconstruct()
-		to_chat(user, "<span class='notice'>You slice [src].</span>")
-	return TRUE
+		var/obj/item/weldingtool/W = I
+		if(W.remove_fuel(0, user))
+			playsound(src, I.usesound, 50, 1)
+			to_chat(user, "<span class='notice'>You start slicing [src]...</span>")
+			// check if anything changed over 2 seconds
+			if(do_after(user, 30*I.toolspeed, target = src))
+				if(!W.isOn())
+					return
+				deconstruct()
+				to_chat(user, "<span class='notice'>You slice [src].</span>")
+	else
+		return ..()
 
 //checks if something is blocking the deconstruction (e.g. trunk with a bin still linked to it)
 /obj/structure/disposalpipe/proc/can_be_deconstructed()
@@ -189,7 +194,6 @@
 /obj/structure/disposalpipe/segment
 	icon_state = "pipe"
 	initialize_dirs = DISP_DIR_FLIP
-	canclank = IFFY
 
 
 // A three-way junction with dir being the dominant direction
@@ -197,7 +201,6 @@
 	icon_state = "pipe-j1"
 	initialize_dirs = DISP_DIR_RIGHT | DISP_DIR_FLIP
 	flip_type = /obj/structure/disposalpipe/junction/flip
-	canclank = TRUE
 
 // next direction to move
 // if coming in from secondary dirs, then next is primary dir
@@ -236,7 +239,6 @@
 //a trunk joining to a disposal bin or outlet on the same turf
 /obj/structure/disposalpipe/trunk
 	icon_state = "pipe-t"
-	canclank = TRUE
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
 
 /obj/structure/disposalpipe/trunk/Initialize()
@@ -307,5 +309,3 @@
 
 /obj/structure/disposalpipe/broken/deconstruct()
 	qdel(src)
-
-#undef IFFY

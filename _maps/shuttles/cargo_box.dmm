@@ -49,13 +49,14 @@
 	},
 /obj/docking_port/mobile/supply{
 	dwidth = 5;
-	width = 12
+	width = 12;
+	timid = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "j" = (
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 4;
 	id = "QMLoad"
 	},
 /obj/machinery/door/poddoor{

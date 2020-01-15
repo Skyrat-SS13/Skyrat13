@@ -59,7 +59,9 @@
 		return
 	var/area/AS = get_area(src)
 	if(istype(AS, /area/holodeck))
-		log_mapping("Holodeck computer cannot be in a holodeck, This would cause circular power dependency.")
+		log_world("### MAPPING ERROR")
+		log_world("Holodeck computer cannot be in a holodeck.")
+		log_world("This would cause circular power dependency.")
 		qdel(src)
 		return
 	else
@@ -109,11 +111,6 @@
 			if(A)
 				load_program(A)
 		if("safety")
-			if(!issilicon(usr) && !IsAdminGhost(usr))
-				var/msg = "[key_name(usr)] attempted to emag the holodeck using a href they shouldn't have!"
-				message_admins(msg)
-				log_admin(msg)
-				return
 			obj_flags ^= EMAGGED
 			if((obj_flags & EMAGGED) && program && emag_programs[program.name])
 				emergency_shutdown()
@@ -139,7 +136,7 @@
 			if(prob(30))
 				do_sparks(2, 1, T)
 			T.ex_act(EXPLODE_LIGHT)
-			T.hotspot_expose(700,25,1)
+			T.hotspot_expose(1000,500,1)
 
 	if(!(obj_flags & EMAGGED))
 		for(var/item in spawned)
@@ -152,7 +149,6 @@
 	active_power_usage = 50 + spawned.len * 3 + effects.len * 5
 
 /obj/machinery/computer/holodeck/emag_act(mob/user)
-	. = ..()
 	if(obj_flags & EMAGGED)
 		return
 	if(!LAZYLEN(emag_programs))
@@ -164,13 +160,10 @@
 	to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call Nanotrasen maintenance and do not use the simulator.")
 	log_game("[key_name(user)] emagged the Holodeck Control Console")
 	nerf(!(obj_flags & EMAGGED))
-	return TRUE
 
 /obj/machinery/computer/holodeck/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
 	emergency_shutdown()
+	return ..()
 
 /obj/machinery/computer/holodeck/ex_act(severity, target)
 	emergency_shutdown()
@@ -182,7 +175,7 @@
 
 /obj/machinery/computer/holodeck/proc/generate_program_list()
 	for(var/typekey in subtypesof(program_type))
-		var/area/holodeck/A = GLOB.areas_by_type[typekey]
+		var/area/holodeck/A = locate(typekey) in GLOB.sortedAreas
 		if(!A || !A.contents.len)
 			continue
 		var/list/info_this = list()

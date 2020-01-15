@@ -3,17 +3,15 @@
 	desc = "It charges power cells."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "ccharger"
+	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 60
 	power_channel = EQUIP
-	circuit = /obj/item/circuitboard/machine/cell_charger
-	pass_flags = PASSTABLE
 	var/obj/item/stock_parts/cell/charging = null
 	var/chargelevel = -1
-	var/charge_rate = 500
 
-/obj/machinery/cell_charger/update_icon()
+/obj/machinery/cell_charger/proc/updateicon()
 	cut_overlays()
 	if(charging)
 		add_overlay(image(charging.icon, charging.icon_state))
@@ -24,13 +22,13 @@
 			add_overlay("ccharger-o[newlevel]")
 
 /obj/machinery/cell_charger/examine(mob/user)
-	. = ..()
-	. += "There's [charging ? "a" : "no"] cell in the charger."
+	..()
+	to_chat(user, "There's [charging ? "a" : "no"] cell in the charger.")
 	if(charging)
-		. += "Current charge: [round(charging.percent(), 1)]%."
+		to_chat(user, "Current charge: [round(charging.percent(), 1)]%.")
 
 /obj/machinery/cell_charger/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/stock_parts/cell) && !panel_open)
+	if(istype(W, /obj/item/stock_parts/cell))
 		if(stat & BROKEN)
 			to_chat(user, "<span class='warning'>[src] is broken!</span>")
 			return
@@ -53,35 +51,26 @@
 			charging = W
 			user.visible_message("[user] inserts a cell into [src].", "<span class='notice'>You insert a cell into [src].</span>")
 			chargelevel = -1
-			update_icon()
+			updateicon()
+	else if(istype(W, /obj/item/wrench))
+		if(charging)
+			to_chat(user, "<span class='warning'>Remove the cell first!</span>")
+			return
+
+		anchored = !anchored
+		to_chat(user, "<span class='notice'>You [anchored ? "attach" : "detach"] [src] [anchored ? "to" : "from"] the ground</span>")
+		playsound(src.loc, W.usesound, 75, 1)
 	else
-		if(!charging && default_deconstruction_screwdriver(user, icon_state, icon_state, W))
-			return
-		if(default_deconstruction_crowbar(W))
-			return
-		if(!charging && default_unfasten_wrench(user, W))
-			return
 		return ..()
 
-/obj/machinery/cell_charger/deconstruct()
-	if(charging)
-		charging.forceMove(drop_location())
-	return ..()
-
-/obj/machinery/cell_charger/Destroy()
-	QDEL_NULL(charging)
-	return ..()
 
 /obj/machinery/cell_charger/proc/removecell()
 	charging.update_icon()
 	charging = null
 	chargelevel = -1
-	update_icon()
+	updateicon()
 
 /obj/machinery/cell_charger/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	if(!charging)
 		return
 
@@ -105,18 +94,14 @@
 	return
 
 /obj/machinery/cell_charger/emp_act(severity)
-	. = ..()
-
-	if(stat & (BROKEN|NOPOWER) || . & EMP_PROTECT_CONTENTS)
+	if(stat & (BROKEN|NOPOWER))
 		return
 
 	if(charging)
 		charging.emp_act(severity)
 
-/obj/machinery/cell_charger/RefreshParts()
-	charge_rate = 500
-	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		charge_rate *= C.rating
+	..(severity)
+
 
 /obj/machinery/cell_charger/process()
 	if(!charging || !anchored || (stat & (BROKEN|NOPOWER)))
@@ -124,7 +109,8 @@
 
 	if(charging.percent() >= 100)
 		return
-	use_power(charge_rate)
-	charging.give(charge_rate)	//this is 2558, efficient batteries exist
 
-	update_icon()
+	use_power(200)		//this used to use CELLRATE, but CELLRATE is fucking awful. feel free to fix this properly!
+	charging.give(175)	//inefficiency.
+
+	updateicon()

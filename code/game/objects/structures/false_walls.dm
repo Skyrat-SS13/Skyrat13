@@ -7,7 +7,11 @@
 	anchored = TRUE
 	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall"
-	layer = CLOSED_TURF_LAYER
+	var/mineral = /obj/item/stack/sheet/metal
+	var/mineral_amount = 2
+	var/walltype = /turf/closed/wall
+	var/girder_type = /obj/structure/girder/displaced
+	var/opening = FALSE
 	density = TRUE
 	opacity = 1
 	max_integrity = 100
@@ -24,17 +28,19 @@
 	smooth = SMOOTH_TRUE
 	can_be_unanchored = FALSE
 	CanAtmosPass = ATMOS_PASS_DENSITY
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
-	rad_insulation = RAD_MEDIUM_INSULATION
-	var/mineral = /obj/item/stack/sheet/metal
-	var/mineral_amount = 2
-	var/walltype = /turf/closed/wall
-	var/girder_type = /obj/structure/girder/displaced
-	var/opening = FALSE
 
 /obj/structure/falsewall/Initialize()
 	. = ..()
 	air_update_turf(TRUE)
+
+/obj/structure/falsewall/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/rad_insulation, RAD_MEDIUM_INSULATION)
+
+/obj/structure/falsewall/Destroy()
+	density = FALSE
+	air_update_turf(1)
+	return ..()
 
 /obj/structure/falsewall/ratvar_act()
 	new /obj/structure/falsewall/brass(loc)
@@ -42,9 +48,6 @@
 
 /obj/structure/falsewall/attack_hand(mob/user)
 	if(opening)
-		return
-	. = ..()
-	if(.)
 		return
 
 	opening = TRUE
@@ -55,6 +58,7 @@
 			opening = FALSE
 			return
 	addtimer(CALLBACK(src, /obj/structure/falsewall/proc/toggle_open), 5)
+	air_update_turf(1)
 
 /obj/structure/falsewall/proc/toggle_open()
 	if(!QDELETED(src))
@@ -62,7 +66,6 @@
 		set_opacity(density)
 		opening = FALSE
 		update_icon()
-		air_update_turf(TRUE)
 
 /obj/structure/falsewall/update_icon()//Calling icon_update will refresh the smoothwalls if it's closed, otherwise it will make sure the icon is correct if it's open
 	if(opening)
@@ -106,11 +109,15 @@
 		else
 			to_chat(user, "<span class='warning'>You can't reach, close it first!</span>")
 
-	else if(istype(W, /obj/item/weldingtool) || istype(W, /obj/item/gun/energy/plasmacutter))
-		if(W.use_tool(src, user, 0, volume=50))
+	else if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
+		if(WT.remove_fuel(0,user))
 			dismantle(user, TRUE)
+	else if(istype(W, /obj/item/gun/energy/plasmacutter))
+		dismantle(user, TRUE)
 	else if(istype(W, /obj/item/pickaxe/drill/jackhammer))
-		W.play_tool_sound(src)
+		var/obj/item/pickaxe/drill/jackhammer/D = W
+		D.playDigSound()
 		dismantle(user, TRUE)
 	else
 		return ..()
@@ -118,7 +125,7 @@
 /obj/structure/falsewall/proc/dismantle(mob/user, disassembled=TRUE, obj/item/tool = null)
 	user.visible_message("[user] dismantles the false wall.", "<span class='notice'>You dismantle the false wall.</span>")
 	if(tool)
-		tool.play_tool_sound(src, 100)
+		playsound(src, tool.usesound, 100, 1)
 	else
 		playsound(src, 'sound/items/welder.ogg', 100, 1)
 	deconstruct(disassembled)
@@ -181,7 +188,7 @@
 
 /obj/structure/falsewall/uranium/attack_hand(mob/user)
 	radiate()
-	. = ..()
+	..()
 
 /obj/structure/falsewall/uranium/proc/radiate()
 	if(!active)
@@ -236,10 +243,10 @@
 	canSmoothWith = list(/obj/structure/falsewall/plasma, /turf/closed/wall/mineral/plasma)
 
 /obj/structure/falsewall/plasma/attackby(obj/item/W, mob/user, params)
-	if(W.get_temperature() > 300)
+	if(W.is_hot() > 300)
 		var/turf/T = get_turf(src)
-		message_admins("Plasma falsewall ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)]")
-		log_game("Plasma falsewall ignited by [key_name(user)] in [AREACOORD(T)]")
+		message_admins("Plasma falsewall ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_COORDJMP(T)]",0,1)
+		log_game("Plasma falsewall ignited by [key_name(user)] in [COORD(T)]")
 		burnbabyburn()
 	else
 		return ..()
@@ -288,7 +295,6 @@
 	icon = 'icons/turf/walls/iron_wall.dmi'
 	icon_state = "iron"
 	mineral = /obj/item/stack/rods
-	mineral_amount = 5
 	walltype = /turf/closed/wall/mineral/iron
 	canSmoothWith = list(/obj/structure/falsewall/iron, /turf/closed/wall/mineral/iron)
 

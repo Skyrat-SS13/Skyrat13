@@ -73,10 +73,10 @@
 // For really fat machines.
 /obj/item/integrated_circuit/passive/power/relay/large
 	name = "large tesla power relay"
-	desc = "A seemingly enigmatic device which connects to nearby APCs wirelessly and draws power from them, now in industrial size!"
+	desc = "A seemingly enigmatic device which connects to nearby APCs wirelessly and draws power from them, now in industiral size!"
 	w_class = WEIGHT_CLASS_BULKY
 	extended_desc = "The siphon drains 2 kW of power from an APC in the same room as it as long as it has charge remaining. It will always drain \
-	from the 'equipment' power channel."
+ 	from the 'equipment' power channel."
 	icon_state = "power_relay"
 	complexity = 15
 	spawn_flags = IC_SPAWN_RESEARCH
@@ -89,23 +89,19 @@
 	desc = "Produces electricity from chemicals."
 	icon_state = "chemical_cell"
 	extended_desc = "This is effectively an internal beaker. It will consume and produce power from plasma, slime jelly, welding fuel, carbon,\
-	 ethanol, nutriment, and blood in order of decreasing efficiency. It will consume fuel only if the battery can take more energy."
+	 ethanol, nutriments, and blood in order of decreasing efficiency. It will consume fuel only if the battery can take more energy."
+	container_type = OPENCONTAINER
 	complexity = 4
 	inputs = list()
-	outputs = list("volume used" = IC_PINTYPE_NUMBER, "self reference" = IC_PINTYPE_SELFREF)
-	activators = list("push ref" = IC_PINTYPE_PULSE_IN)
+	outputs = list("volume used" = IC_PINTYPE_NUMBER, "self reference" = IC_PINTYPE_REF)
+	activators = list()
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	var/volume = 60
-	var/list/fuel = list(/datum/reagent/toxin/plasma = 50000, /datum/reagent/fuel = 15000, /datum/reagent/carbon = 10000,
-						/datum/reagent/consumable/ethanol = 10000, /datum/reagent/consumable/nutriment = 8000)
-	var/multi = 1
-	var/lfwb =TRUE
+	var/list/fuel = list("plasma" = 10000, "welding_fuel" = 3000, "carbon" = 2000, "ethanol" = 2000, "nutriment" = 1600, "blood" = 1000)
 
-/obj/item/integrated_circuit/passive/power/chemical_cell/Initialize()
+/obj/item/integrated_circuit/passive/power/chemical_cell/New()
 	..()
-	create_reagents(volume, OPENCONTAINER)
-	extended_desc +="But no fuel can be compared with blood of living human."
-
+	create_reagents(volume)
 
 /obj/item/integrated_circuit/passive/power/chemical_cell/interact(mob/user)
 	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
@@ -119,22 +115,7 @@
 /obj/item/integrated_circuit/passive/power/chemical_cell/make_energy()
 	if(assembly)
 		if(assembly.battery)
-			var/bp = 5000
-			if(reagents.get_reagent_amount(/datum/reagent/blood)) //only blood is powerful enough to power the station(c)
-				var/datum/reagent/blood/B = locate() in reagents.reagent_list
-				if(lfwb)
-					if(B && B.data["cloneable"])
-						var/mob/M = B.data["donor"]
-						if(M && (M.stat != DEAD) && (M.client))
-							bp = 500000
-				if((assembly.battery.maxcharge-assembly.battery.charge) / GLOB.CELLRATE > bp)
-					if(reagents.remove_reagent(/datum/reagent/blood, 1))
-						assembly.give_power(bp)
 			for(var/I in fuel)
 				if((assembly.battery.maxcharge-assembly.battery.charge) / GLOB.CELLRATE > fuel[I])
 					if(reagents.remove_reagent(I, 1))
-						assembly.give_power(fuel[I]*multi)
-
-/obj/item/integrated_circuit/passive/power/chemical_cell/do_work()
-	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
-	push_data()
+						assembly.give_power(fuel[I])

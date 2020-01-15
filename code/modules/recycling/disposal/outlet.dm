@@ -6,7 +6,6 @@
 	icon_state = "outlet"
 	density = TRUE
 	anchored = TRUE
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	var/active = FALSE
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	var/obj/structure/disposalpipe/trunk/trunk // the attached pipe trunk
@@ -28,6 +27,10 @@
 	trunk = locate() in loc
 	if(trunk)
 		trunk.linked = src	// link the pipe trunk to self
+
+/obj/structure/disposaloutlet/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION)
 
 /obj/structure/disposaloutlet/Destroy()
 	if(trunk)
@@ -66,16 +69,21 @@
 	H.vent_gas(T)
 	qdel(H)
 
-/obj/structure/disposaloutlet/welder_act(mob/living/user, obj/item/I)
-	if(!I.tool_start_check(user, amount=0))
-		return TRUE
 
-	playsound(src, 'sound/items/welder2.ogg', 100, 1)
-	to_chat(user, "<span class='notice'>You start slicing the floorweld off [src]...</span>")
-	if(I.use_tool(src, user, 20))
-		to_chat(user, "<span class='notice'>You slice the floorweld off [src].</span>")
-		stored.forceMove(loc)
-		transfer_fingerprints_to(stored)
-		stored = null
-		qdel(src)
-	return TRUE
+/obj/structure/disposaloutlet/attackby(obj/item/I, mob/user, params)
+	add_fingerprint(user)
+	if(istype(I, /obj/item/weldingtool))
+		var/obj/item/weldingtool/W = I
+		if(W.remove_fuel(0,user))
+			playsound(src, 'sound/items/welder2.ogg', 100, 1)
+			to_chat(user, "<span class='notice'>You start slicing the floorweld off [src]...</span>")
+			if(do_after(user, 20*I.toolspeed, target = src))
+				if(!W.isOn())
+					return
+				to_chat(user, "<span class='notice'>You slice the floorweld off [src].</span>")
+				stored.forceMove(loc)
+				transfer_fingerprints_to(stored)
+				stored = null
+				qdel(src)
+	else
+		return ..()

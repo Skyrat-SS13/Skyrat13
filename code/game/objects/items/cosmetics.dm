@@ -53,13 +53,13 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.is_mouth_covered())
-			to_chat(user, "<span class='warning'>Remove [ H == user ? "your" : "[H.p_their()]" ] mask!</span>")
+			to_chat(user, "<span class='warning'>Remove [ H == user ? "your" : "their" ] mask!</span>")
 			return
 		if(H.lip_style)	//if they already have lipstick on
 			to_chat(user, "<span class='warning'>You need to wipe off the old lipstick first!</span>")
 			return
 		if(H == user)
-			user.visible_message("<span class='notice'>[user] does [user.p_their()] lips with \the [src].</span>", \
+			user.visible_message("<span class='notice'>[user] does their lips with \the [src].</span>", \
 								 "<span class='notice'>You take a moment to apply \the [src]. Perfect!</span>")
 			H.lip_style = "lipstick"
 			H.lip_color = colour
@@ -78,7 +78,7 @@
 
 //you can wipe off lipstick with paper!
 /obj/item/paper/attack(mob/M, mob/user)
-	if(user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
+	if(user.zone_selected == "mouth")
 		if(!ismob(M))
 			return
 
@@ -109,12 +109,12 @@
 
 /obj/item/razor/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins shaving [user.p_them()]self without the razor guard! It looks like [user.p_theyre()] trying to commit suicide!</span>")
-	shave(user, BODY_ZONE_PRECISE_MOUTH)
-	shave(user, BODY_ZONE_HEAD)//doesnt need to be BODY_ZONE_HEAD specifically, but whatever
+	shave(user, "mouth")
+	shave(user, "head")//doesnt need to be "head" specifically, but whatever 
 	return BRUTELOSS
 
-/obj/item/razor/proc/shave(mob/living/carbon/human/H, location = BODY_ZONE_PRECISE_MOUTH)
-	if(location == BODY_ZONE_PRECISE_MOUTH)
+/obj/item/razor/proc/shave(mob/living/carbon/human/H, location = "mouth")
+	if(location == "mouth")
 		H.facial_hair_style = "Shaved"
 	else
 		H.hair_style = "Skinhead"
@@ -127,10 +127,10 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/location = user.zone_selected
-		if((location in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_HEAD)) && !H.get_bodypart(BODY_ZONE_HEAD))
+		if((location in list("eyes", "mouth", "head")) && !H.get_bodypart("head"))
 			to_chat(user, "<span class='warning'>[H] doesn't have a head!</span>")
 			return
-		if(location == BODY_ZONE_PRECISE_MOUTH)
+		if(location == "mouth")
 			if(!(FACEHAIR in H.dna.species.species_traits))
 				to_chat(user, "<span class='warning'>There is no facial hair to shave!</span>")
 				return
@@ -142,10 +142,10 @@
 				return
 
 			if(H == user) //shaving yourself
-				user.visible_message("[user] starts to shave [user.p_their()] facial hair with [src].", \
+				user.visible_message("[user] starts to shave their facial hair with [src].", \
 									 "<span class='notice'>You take a moment to shave your facial hair with [src]...</span>")
 				if(do_after(user, 50, target = H))
-					user.visible_message("[user] shaves [user.p_their()] facial hair clean with [src].", \
+					user.visible_message("[user] shaves his facial hair clean with [src].", \
 										 "<span class='notice'>You finish shaving with [src]. Fast and clean!</span>")
 					shave(H, location)
 			else
@@ -158,7 +158,7 @@
 											 "<span class='notice'>You shave [H]'s facial hair clean off.</span>")
 						shave(H, location)
 
-		else if(location == BODY_ZONE_HEAD)
+		else if(location == "head")
 			if(!(HAIR in H.dna.species.species_traits))
 				to_chat(user, "<span class='warning'>There is no hair to shave!</span>")
 				return
@@ -170,10 +170,10 @@
 				return
 
 			if(H == user) //shaving yourself
-				user.visible_message("[user] starts to shave [user.p_their()] head with [src].", \
+				user.visible_message("[user] starts to shave their head with [src].", \
 									 "<span class='notice'>You start to shave your head with [src]...</span>")
 				if(do_after(user, 5, target = H))
-					user.visible_message("[user] shaves [user.p_their()] head with [src].", \
+					user.visible_message("[user] shaves his head with [src].", \
 										 "<span class='notice'>You finish shaving with [src].</span>")
 					shave(H, location)
 			else

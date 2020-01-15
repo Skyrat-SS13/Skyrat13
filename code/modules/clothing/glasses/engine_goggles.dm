@@ -4,7 +4,6 @@
 #define MODE_MESON "meson"
 #define MODE_TRAY "t-ray"
 #define MODE_RAD "radiation"
-#define MODE_SHUTTLE "shuttle"
 
 /obj/item/clothing/glasses/meson/engine
 	name = "engineering scanner goggles"
@@ -20,11 +19,6 @@
 	var/list/modes = list(MODE_NONE = MODE_MESON, MODE_MESON = MODE_TRAY, MODE_TRAY = MODE_RAD, MODE_RAD = MODE_NONE)
 	var/mode = MODE_NONE
 	var/range = 1
-
-/obj/item/clothing/glasses/meson/engine/prescription
-	name = "prescription engineering scanner goggles"
-	desc = "Goggles used by engineers. The Meson Scanner mode lets you see basic structural and terrain layouts through walls, the T-ray Scanner mode lets you see underfloor objects such as cables and pipes, and the Radiation Scanner mode let's you see objects contaminated by radiation. Each lens has been replaced with a corrective lens."
-	vision_correction = 1
 
 /obj/item/clothing/glasses/meson/engine/Initialize()
 	. = ..()
@@ -43,7 +37,7 @@
 		if(MODE_MESON)
 			vision_flags = SEE_TURFS
 			darkness_view = 1
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+			lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
 		if(MODE_TRAY) //undoes the last mode, meson
 			vision_flags = NONE
@@ -64,18 +58,21 @@
 	toggle_mode(user, TRUE)
 
 /obj/item/clothing/glasses/meson/engine/process()
+	if(mode == MODE_MESON)
+		var/turf/T = get_turf(src)
+		if(T && is_mining_level(T.z))
+			toggle_mode(loc)
+		return
+
 	if(!ishuman(loc))
 		return
 	var/mob/living/carbon/human/user = loc
 	if(user.glasses != src || !user.client)
 		return
-	switch(mode)
-		if(MODE_TRAY)
-			t_ray_scan(user, 8, range)
-		if(MODE_RAD)
-			show_rads()
-		if(MODE_SHUTTLE)
-			show_shuttle()
+	if(mode == MODE_TRAY)
+		t_ray_scan(user, 8, range)
+	else if(mode == MODE_RAD)
+		show_rads()
 
 /obj/item/clothing/glasses/meson/engine/proc/show_rads()
 	var/mob/living/carbon/human/user = loc
@@ -90,35 +87,17 @@
 
 	for(var/i in rad_places)
 		var/turf/place = i
-		if(get_dist(user, place) >= range*8)	//Rads are easier to see than wires under the floor
+		if(get_dist(user, place) >= range*2)	//Rads are easier to see than wires under the floor
 			continue
 		var/strength = round(rad_places[i] / 1000, 0.1)
 		var/image/pic = new(loc = place)
 		var/mutable_appearance/MA = new()
-		MA.alpha = 180
+		MA.alpha = 128
 		MA.maptext = "[strength]k"
 		MA.color = "#64C864"
-		MA.layer = FLY_LAYER
+		MA.layer = AREA_LAYER
 		pic.appearance = MA
 		flick_overlay(pic, list(user.client), 8)
-
-/obj/item/clothing/glasses/meson/engine/proc/show_shuttle()
-	var/mob/living/carbon/human/user = loc
-	var/obj/docking_port/mobile/port = SSshuttle.get_containing_shuttle(user)
-	if(!port)
-		return
-	var/list/shuttle_areas = port.shuttle_areas
-	for(var/r in shuttle_areas)
-		var/area/region = r
-		for(var/turf/place in region.contents)
-			if(get_dist(user, place) > 7)
-				continue
-			var/image/pic
-			if(isshuttleturf(place))
-				pic = new('icons/turf/overlays.dmi', place, "greenOverlay", AREA_LAYER)
-			else
-				pic = new('icons/turf/overlays.dmi', place, "redOverlay", AREA_LAYER)
-			flick_overlay(pic, list(user.client), 8)
 
 /obj/item/clothing/glasses/meson/engine/update_icon()
 	icon_state = "trayson-[mode]"
@@ -128,7 +107,7 @@
 	item_state = icon_state
 	if(isliving(loc))
 		var/mob/living/user = loc
-		if(user.get_item_by_slot(SLOT_GLASSES) == src)
+		if(user.get_item_by_slot(slot_glasses) == src)
 			user.update_inv_glasses()
 		else
 			user.update_inv_hands()
@@ -139,22 +118,10 @@
 	item_state = "trayson-t-ray"
 	desc = "Used by engineering staff to see underfloor objects such as cables and pipes."
 	range = 2
+
 	modes = list(MODE_NONE = MODE_TRAY, MODE_TRAY = MODE_NONE)
-
-/obj/item/clothing/glasses/meson/engine/tray/prescription
-	name = "prescription optical t-ray scanner"
-	desc = "Goggles used by engineers. The Meson Scanner mode lets you see basic structural and terrain layouts through walls, the T-ray Scanner mode lets you see underfloor objects such as cables and pipes, and the Radiation Scanner mode let's you see objects contaminated by radiation. This one has a lens that help correct eye sight."
-	vision_correction = 1
-
-/obj/item/clothing/glasses/meson/engine/shuttle
-	name = "shuttle region scanner"
-	icon_state = "trayson-shuttle"
-	item_state = "trayson-shuttle"
-	desc = "Used to see the boundaries of shuttle regions."
-	modes = list(MODE_NONE = MODE_SHUTTLE, MODE_SHUTTLE = MODE_NONE)
 
 #undef MODE_NONE
 #undef MODE_MESON
 #undef MODE_TRAY
 #undef MODE_RAD
-#undef MODE_SHUTTLE

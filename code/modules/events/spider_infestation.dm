@@ -2,7 +2,6 @@
 	name = "Spider Infestation"
 	typepath = /datum/round_event/spider_infestation
 	weight = 5
-	gamemode_blacklist = list("dynamic")
 	max_occurrences = 1
 	min_players = 15
 
@@ -17,14 +16,12 @@
 	spawncount = rand(5, 8)
 
 /datum/round_event/spider_infestation/announce(fake)
-	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", "aliens")
+	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", 'sound/ai/aliens.ogg')
 
 
 /datum/round_event/spider_infestation/start()
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in GLOB.machines)
-		if(QDELETED(temp_vent))
-			continue
+	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in world)
 		if(is_station_level(temp_vent.loc.z) && !temp_vent.welded)
 			var/datum/pipeline/temp_vent_parent = temp_vent.parents[1]
 			if(temp_vent_parent.other_atmosmch.len > 20)

@@ -10,7 +10,7 @@
 	required_players = 20
 	required_enemies = 1
 	recommended_enemies = 1
-	enemy_minimum_age = 7
+	enemy_minimum_age = 14
 	round_ends_with_antag_death = 1
 	announce_span = "danger"
 	announce_text = "There is a space wizard attacking the station!\n\
@@ -19,17 +19,17 @@
 	var/finished = 0
 
 /datum/game_mode/wizard/pre_setup()
-	var/datum/mind/wizard = antag_pick(antag_candidates)
+	var/datum/mind/wizard = pick(antag_candidates)
 	wizards += wizard
-	wizard.assigned_role = ROLE_WIZARD
-	wizard.special_role = ROLE_WIZARD
-	log_game("[key_name(wizard)] has been selected as a Wizard") //TODO: Move these to base antag datum
+	wizard.assigned_role = "Wizard"
+	wizard.special_role = "Wizard"
+	log_game("[wizard.key] (ckey) has been selected as a Wizard") //TODO: Move these to base antag datum
 	if(GLOB.wizardstart.len == 0)
-		setup_error = "No wizard starting location found"
-		return FALSE
+		to_chat(wizard.current, "<span class='boldannounce'>A starting location for you could not be found, please report this bug!</span>")
+		return 0
 	for(var/datum/mind/wiz in wizards)
 		wiz.current.forceMove(pick(GLOB.wizardstart))
-	return TRUE
+	return 1
 
 
 /datum/game_mode/wizard/post_setup()

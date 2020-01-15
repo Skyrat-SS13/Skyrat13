@@ -25,10 +25,3 @@
 
 /obj/effect/projectile/muzzle/heavy_laser
 	icon_state = "muzzle_beam_heavy"
-
-/obj/effect/projectile/muzzle/wormhole
-	icon_state = "wormhole_g"
-
-/obj/effect/projectile/muzzle/laser/wavemotion
-	name = "particle backblast"
-	icon_state = "muzzle_wavemotion"

@@ -27,27 +27,26 @@
 	var/OldLoc = loc
 	if(NewLoc && !istype(NewLoc, /turf/open/indestructible/reebe_void))
 		var/turf/T = get_turf(NewLoc)
-		if(!GLOB.ratvar_awakens)
-			if(locate(/obj/effect/blessing, T))
-				if(last_failed_turf != T)
-					T.visible_message("<span class='warning'>[T] suddenly emits a ringing sound!</span>", null, null, null, src)
-					playsound(T, 'sound/machines/clockcult/ark_damage.ogg', 75, FALSE)
-					last_failed_turf = T
-				if((world.time - lastWarning) >= 30)
-					lastWarning = world.time
-					to_chat(src, "<span class='warning'>This turf is consecrated and can't be crossed!</span>")
-				return
-			if(istype(get_area(T), /area/chapel))
-				if((world.time - lastWarning) >= 30)
-					lastWarning = world.time
-					to_chat(src, "<span class='warning'>The Chapel is hallowed ground under a heretical deity, and can't be accessed!</span>")
-				return
-		else
-			for(var/turf/TT in range(5, src))
-				if(prob(166 - (get_dist(src, TT) * 33)))
-					TT.ratvar_act() //Causes moving to leave a swath of proselytized area behind the Eminence
+		if (locate(/obj/effect/blessing, T))
+			if(last_failed_turf != T)
+				T.visible_message("<span class='warning'>[T] suddenly emits a ringing sound!</span>", null, null, null, src)
+				playsound(T, 'sound/machines/clockcult/ark_damage.ogg', 75, FALSE)
+				last_failed_turf = T
+			if ((world.time - lastWarning) >= 30) 
+				lastWarning = world.time
+				to_chat(src, "<span class='warning'>This turf is consecrated and can't be crossed!</span>")
+			return
+		if(!GLOB.ratvar_awakens && istype(get_area(T), /area/chapel))
+			if ((world.time - lastWarning) >= 30) 
+				lastWarning = world.time
+				to_chat(src, "<span class='warning'>The Chapel is hallowed ground under a heretical deity, and can't be accessed!</span>")
+			return
 		forceMove(T)
-		Moved(OldLoc, direct)
+	Moved(OldLoc, direct)
+	if(GLOB.ratvar_awakens)
+		for(var/turf/T in range(5, src))
+			if(prob(166 - (get_dist(src, T) * 33)))
+				T.ratvar_act() //Causes moving to leave a swath of proselytized area behind the Eminence
 
 /mob/camera/eminence/Process_Spacemove(movement_dir = 0)
 	return TRUE
@@ -76,7 +75,7 @@
 		E = new V
 		E.Grant(src)
 
-/mob/camera/eminence/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/camera/eminence/say(message)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "You cannot send IC messages (muted).")
@@ -86,7 +85,7 @@
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message)
 		return
-	src.log_talk(message, LOG_SAY, tag="clockwork eminence")
+	log_talk(src, "[key_name(src)] : [message]", LOGSAY)
 	if(GLOB.ratvar_awakens)
 		visible_message("<span class='brass'><b>You feel light slam into your mind and form words:</b> \"[capitalize(message)]\"</span>")
 		playsound(src, 'sound/machines/clockcult/ark_scream.ogg', 50, FALSE)
@@ -98,8 +97,7 @@
 		else
 			to_chat(M, message)
 
-/mob/camera/eminence/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode, atom/movable/source)
-	. = ..()
+/mob/camera/eminence/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
 	if(is_reebe(z) || is_servant_of_ratvar(speaker) || GLOB.ratvar_approaches || GLOB.ratvar_awakens) //Away from Reebe, the Eminence can't hear anything
 		to_chat(src, message)
 		return

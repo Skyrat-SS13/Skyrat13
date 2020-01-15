@@ -125,7 +125,7 @@ Bonus
 		symptom_delay_max = 140
 	if(A.properties["stage_rate"] >= 8) //serious boom when wet
 		explosion_power = 2
-	if(A.properties["transmittable"] >= 8) //extra chemicals
+	if(A.properties["transmission"] >= 8) //extra chemicals
 		chems = TRUE
 
 /datum/symptom/alkali/Activate(datum/disease/advance/A)
@@ -156,7 +156,7 @@ Bonus
 	M.adjust_fire_stacks(get_stacks)
 	M.adjustFireLoss(get_stacks/2)
 	if(chems)
-		M.reagents.add_reagent(/datum/reagent/clf3, 2 * power)
+		M.reagents.add_reagent("clf3", 2 * power)
 	return 1
 
 /datum/symptom/alkali/proc/Alkali_fire_stage_5(mob/living/M, datum/disease/advance/A)
@@ -164,5 +164,5 @@ Bonus
 	M.adjust_fire_stacks(get_stacks)
 	M.adjustFireLoss(get_stacks)
 	if(chems)
-		M.reagents.add_reagent_list(list(/datum/reagent/napalm = 4 * power, /datum/reagent/clf3 = 4 * power))
+		M.reagents.add_reagent_list(list("napalm" = 4 * power, "clf3" = 4 * power))
 	return 1

@@ -28,8 +28,8 @@ Pipelines + Other Objects -> Pipe network
 	var/piping_layer = PIPING_LAYER_DEFAULT
 	var/pipe_flags = NONE
 
-	var/static/list/iconsetids = list()
-	var/static/list/pipeimages = list()
+	var/global/list/iconsetids = list()
+	var/global/list/pipeimages = list()
 
 	var/image/pipe_vision_img = null
 
@@ -38,14 +38,13 @@ Pipelines + Other Objects -> Pipe network
 
 	var/construction_type
 	var/pipe_state //icon_state as a pipe item
-	var/on = FALSE
 
 /obj/machinery/atmospherics/examine(mob/user)
-	. = ..()
+	..()
 	if(is_type_in_list(src, GLOB.ventcrawl_machinery) && isliving(user))
 		var/mob/living/L = user
 		if(L.ventcrawler)
-			. += "<span class='notice'>Alt-click to crawl through it.</span>"
+			to_chat(L, "<span class='notice'>Alt-click to crawl through it.</span>")
 
 /obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
 	if(!isnull(setdir))
@@ -54,7 +53,7 @@ Pipelines + Other Objects -> Pipe network
 		normalize_cardinal_directions()
 	nodes = new(device_type)
 	if (!armor)
-		armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
+		armor = list(melee = 25, bullet = 10, laser = 10, energy = 100, bomb = 0, bio = 100, rad = 100, fire = 100, acid = 70)
 	..()
 	if(process)
 		SSair.atmos_machinery += src
@@ -125,7 +124,7 @@ Pipelines + Other Objects -> Pipe network
 	pixel_y = (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y
 	layer = initial(layer) + ((piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE)
 
-/obj/machinery/atmospherics/proc/can_be_node(obj/machinery/atmospherics/target, iteration)
+/obj/machinery/atmospherics/proc/can_be_node(obj/machinery/atmospherics/target)
 	return connection_check(target, piping_layer)
 
 //Find a connecting /obj/machinery/atmospherics in specified direction
@@ -184,43 +183,38 @@ Pipelines + Other Objects -> Pipe network
 		if(user.dropItemToGround(pipe))
 			pipe.setPipingLayer(piping_layer) //align it with us
 			return TRUE
+	if(istype(W, /obj/item/wrench))
+		if(can_unwrench(user))
+			var/turf/T = get_turf(src)
+			if (level==1 && isturf(T) && T.intact)
+				to_chat(user, "<span class='warning'>You must remove the plating first!</span>")
+				return TRUE
+			var/datum/gas_mixture/int_air = return_air()
+			var/datum/gas_mixture/env_air = loc.return_air()
+			add_fingerprint(user)
+
+			var/unsafe_wrenching = FALSE
+			var/internal_pressure = int_air.return_pressure()-env_air.return_pressure()
+
+			playsound(src, W.usesound, 50, 1)
+			to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
+			if (internal_pressure > 2*ONE_ATMOSPHERE)
+				to_chat(user, "<span class='warning'>As you begin unwrenching \the [src] a gush of air blows in your face... maybe you should reconsider?</span>")
+				unsafe_wrenching = TRUE //Oh dear oh dear
+
+			if (do_after(user, 20*W.toolspeed, target = src) && !QDELETED(src))
+				user.visible_message( \
+					"[user] unfastens \the [src].", \
+					"<span class='notice'>You unfasten \the [src].</span>", \
+					"<span class='italics'>You hear ratchet.</span>")
+				investigate_log("was <span class='warning'>REMOVED</span> by [key_name(usr)]", INVESTIGATE_ATMOS)
+
+				//You unwrenched a pipe full of pressure? Let's splat you into the wall, silly.
+				if(unsafe_wrenching)
+					unsafe_pressure_release(user, internal_pressure)
+				deconstruct(TRUE)
 	else
 		return ..()
-
-/obj/machinery/atmospherics/wrench_act(mob/living/user, obj/item/I)
-	if(!can_unwrench(user))
-		return ..()
-
-	var/turf/T = get_turf(src)
-	if (level==1 && isturf(T) && T.intact)
-		to_chat(user, "<span class='warning'>You must remove the plating first!</span>")
-		return TRUE
-
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	add_fingerprint(user)
-
-	var/unsafe_wrenching = FALSE
-	var/internal_pressure = int_air.return_pressure()-env_air.return_pressure()
-
-	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
-
-	if (internal_pressure > 2*ONE_ATMOSPHERE)
-		to_chat(user, "<span class='warning'>As you begin unwrenching \the [src] a gush of air blows in your face... maybe you should reconsider?</span>")
-		unsafe_wrenching = TRUE //Oh dear oh dear
-
-	if(I.use_tool(src, user, 20, volume=50))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			"<span class='notice'>You unfasten \the [src].</span>", \
-			"<span class='italics'>You hear ratchet.</span>")
-		investigate_log("was <span class='warning'>REMOVED</span> by [key_name(usr)]", INVESTIGATE_ATMOS)
-
-		//You unwrenched a pipe full of pressure? Let's splat you into the wall, silly.
-		if(unsafe_wrenching)
-			unsafe_pressure_release(user, internal_pressure)
-		deconstruct(TRUE)
-	return TRUE
 
 /obj/machinery/atmospherics/proc/can_unwrench(mob/user)
 	return can_unwrench
@@ -332,15 +326,16 @@ Pipelines + Other Objects -> Pipe network
 	else if(is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
 		user.forceMove(loc)
 		user.visible_message("<span class='notice'>You hear something squeezing through the ducts...</span>","<span class='notice'>You climb out the ventilation system.")
-
+	
 	user.canmove = FALSE
 	addtimer(VARSET_CALLBACK(user, canmove, TRUE), 1)
 
 
 /obj/machinery/atmospherics/AltClick(mob/living/L)
-	if(is_type_in_typecache(src, GLOB.ventcrawl_machinery))
-		return L.handle_ventcrawl(src)
-	return ..()
+	if(is_type_in_list(src, GLOB.ventcrawl_machinery))
+		L.handle_ventcrawl(src)
+		return
+	..()
 
 
 /obj/machinery/atmospherics/proc/can_crawl_through()

@@ -19,6 +19,7 @@
 	var/obj/machinery/rnd/R = holder
 	var/list/status = list()
 	status += "The red light is [R.disabled ? "off" : "on"]."
+	status += "The green light is [R.shocked ? "off" : "on"]."
 	status += "The blue light is [R.hacked ? "off" : "on"]."
 	return status
 
@@ -30,6 +31,12 @@
 			R.hacked = !R.hacked
 		if(WIRE_DISABLE)
 			R.disabled = !R.disabled
+		if(WIRE_SHOCK)
+			R.shocked = TRUE
+			sleep(100)
+			if(R)
+				R.shocked = FALSE
+
 /datum/wires/rnd/on_cut(wire, mend)
 	var/obj/machinery/rnd/R = holder
 	switch(wire)
@@ -37,3 +44,5 @@
 			R.hacked = !mend
 		if(WIRE_DISABLE)
 			R.disabled = !mend
+		if(WIRE_SHOCK)
+			R.shocked = !mend

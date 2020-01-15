@@ -3,8 +3,11 @@
 // (
 
 #define NUM_E 2.71828183
+#define NUM_SQRT2 1.41421356
 
-#define PI						3.1416
+#define PI						3.1415
+#define SPEED_OF_LIGHT			3e8		//not exact but hey!
+#define SPEED_OF_LIGHT_SQ		9e+16
 #define INFINITY				1e31	//closer then enough
 
 #define SHORT_REAL_LIMIT 16777216
@@ -16,6 +19,7 @@
 #define TICK_USAGE_TO_MS(starting_tickusage) (TICK_DELTA_TO_MS(TICK_USAGE_REAL - starting_tickusage))
 
 #define PERCENT(val) (round((val)*100, 0.1))
+#define CLAMP01(x) (CLAMP(x, 0, 1))
 
 //time of day but automatically adjusts to the server going into the next day within the same round.
 //for when you need a reliable time number that doesn't depend on byond time.
@@ -29,11 +33,16 @@
 // round() acts like floor(x, 1) by default but can't handle other values
 #define FLOOR(x, y) ( round((x) / (y)) * (y) )
 
+#define CLAMP(CLVALUE,CLMIN,CLMAX) ( max( (CLMIN), min((CLVALUE), (CLMAX)) ) )
+
 // Similar to clamp but the bottom rolls around to the top and vice versa. min is inclusive, max is exclusive
 #define WRAP(val, min, max) ( min == max ? min : (val) - (round(((val) - (min))/((max) - (min))) * ((max) - (min))) )
 
 // Real modulus that handles decimals
 #define MODULUS(x, y) ( (x) - (y) * round((x) / (y)) )
+
+// Tangent
+#define TAN(x) (sin(x) / cos(x))
 
 // Cotangent
 #define COT(x) (1 / TAN(x))
@@ -43,6 +52,8 @@
 
 // Cosecant
 #define CSC(x) (1 / sin(x))
+
+#define ATAN2(x, y) ( !(x) && !(y) ? 0 : (y) >= 0 ? arccos((x) / sqrt((x)*(x) + (y)*(y))) : -arccos((x) / sqrt((x)*(x) + (y)*(y))) )
 
 // Greatest Common Divisor - Euclid's algorithm
 /proc/Gcd(a, b)
@@ -66,7 +77,7 @@
 #define ISINRANGE(val, min, max) (min <= val && val <= max)
 
 // Same as above, exclusive.
-#define ISINRANGE_EX(val, min, max) (min < val && val < max)
+#define ISINRANGE_EX(val, min, max) (min < val && val > max)
 
 #define ISINTEGER(x) (round(x) == x)
 
@@ -105,20 +116,6 @@
 
 #define GET_ANGLE_OF_INCIDENCE(face, input) (MODULUS((face) - (input), 360))
 
-//Finds the shortest angle that angle A has to change to get to angle B. Aka, whether to move clock or counterclockwise.
-/proc/closer_angle_difference(a, b)
-	if(!isnum(a) || !isnum(b))
-		return
-	a = SIMPLIFY_DEGREES(a)
-	b = SIMPLIFY_DEGREES(b)
-	var/inc = b - a
-	if(inc < 0)
-		inc += 360
-	var/dec = a - b
-	if(dec < 0)
-		dec += 360
-	. = inc > dec? -dec : inc
-
 //A logarithm that converts an integer to a number scaled between 0 and 1.
 //Currently, this is used for hydroponics-produce sprite transforming, but could be useful for other transform functions.
 #define TRANSFORM_USING_VARIABLE(input, max) ( sin((90*(input))/(max))**2 )
@@ -148,6 +145,22 @@
 		gaussian_next = R2 * working
 	return (mean + stddev * R1)
 #undef ACCURACY
+
+/proc/mouse_angle_from_client(client/client)
+	var/list/mouse_control = params2list(client.mouseParams)
+	if(mouse_control["screen-loc"] && client)
+		var/list/screen_loc_params = splittext(mouse_control["screen-loc"], ",")
+		var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+		var/list/screen_loc_Y = splittext(screen_loc_params[2],":")
+		var/x = (text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 32)
+		var/y = (text2num(screen_loc_Y[1]) * 32 + text2num(screen_loc_Y[2]) - 32)
+		var/list/screenview = getviewsize(client.view)
+		var/screenviewX = screenview[1] * world.icon_size
+		var/screenviewY = screenview[2] * world.icon_size
+		var/ox = round(screenviewX/2) - client.pixel_x //"origin" x
+		var/oy = round(screenviewY/2) - client.pixel_y //"origin" y
+		var/angle = SIMPLIFY_DEGREES(ATAN2(y - oy, x - ox))
+		return angle
 
 /proc/get_turf_in_angle(angle, turf/starting, increments)
 	var/pixel_x = 0
@@ -193,10 +206,4 @@
 
 	return list(region_x1 & region_x2, region_y1 & region_y2)
 
-#define EXP_DISTRIBUTION(desired_mean) ( -(1/(1/desired_mean)) * log(rand(1, 1000) * 0.001) )
-
-#define LORENTZ_DISTRIBUTION(x, s) ( s*TAN(TODEGREES(PI*(rand()-0.5))) + x )
-#define LORENTZ_CUMULATIVE_DISTRIBUTION(x, y, s) ( (1/PI)*TORADIANS(arctan((x-y)/s)) + 1/2 )
-
-#define RULE_OF_THREE(a, b, x) ((a*x)/b)
 // )

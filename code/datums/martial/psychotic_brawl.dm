@@ -1,7 +1,5 @@
 /datum/martial_art/psychotic_brawling
 	name = "Psychotic Brawling"
-	id = MARTIALART_PSYCHOBRAWL
-	pacifism_check = FALSE //Quite uncontrollable and unpredictable, people will still end up harming others with it.
 
 /datum/martial_art/psychotic_brawling/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	return psycho_attack(A,D)
@@ -31,12 +29,12 @@
 					D.drop_all_held_items()
 					D.stop_pulling()
 					if(A.a_intent == INTENT_GRAB)
-						log_combat(A, D, "grabbed", addition="aggressively")
+						add_logs(A, D, "grabbed", addition="aggressively")
 						D.visible_message("<span class='warning'>[A] violently grabs [D]!</span>", \
 						  "<span class='userdanger'>[A] violently grabs you!</span>")
 						A.grab_state = GRAB_AGGRESSIVE //Instant aggressive grab
 					else
-						log_combat(A, D, "grabbed", addition="passively")
+						add_logs(A, D, "grabbed", addition="passively")
 						A.grab_state = GRAB_PASSIVE
 		if(4)
 			A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
@@ -44,12 +42,12 @@
 			D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
 					  "<span class='userdanger'>[A] [atk_verb] you!</span>")
 			playsound(get_turf(D), 'sound/weapons/punch1.ogg', 40, 1, -1)
-			D.apply_damage(rand(5,10), BRUTE, BODY_ZONE_HEAD)
-			A.apply_damage(rand(5,10), BRUTE, BODY_ZONE_HEAD)
+			D.apply_damage(rand(5,10), BRUTE, "head")
+			A.apply_damage(rand(5,10), BRUTE, "head")
 			if(!istype(D.head,/obj/item/clothing/head/helmet/) && !istype(D.head,/obj/item/clothing/head/hardhat))
-				D.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
+				D.adjustBrainLoss(5)
 			A.Stun(rand(10,45))
-			D.Knockdown(rand(5,30))//CIT CHANGE - makes stuns from martial arts always use Knockdown instead of Stun for the sake of consistency
+			D.Stun(rand(5,30))
 		if(5,6)
 			A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 			atk_verb = pick("punches", "kicks", "hits", "slams into")
@@ -64,5 +62,5 @@
 			basic_hit(A,D)
 
 	if(atk_verb)
-		log_combat(A, D, "[atk_verb] (Psychotic Brawling)")
+		add_logs(A, D, "[atk_verb] (Psychotic Brawling)")
 	return 1

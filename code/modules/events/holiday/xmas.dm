@@ -37,7 +37,7 @@
 	icon_state = "xmashat"
 	desc = "A crappy paper hat that you are REQUIRED to wear."
 	flags_inv = 0
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0)
 
 /obj/effect/landmark/xmastree
 	name = "christmas tree spawner"
@@ -64,7 +64,7 @@
 	typepath = /datum/round_event/santa
 	weight = 20
 	max_occurrences = 1
-	earliest_start = 30 MINUTES
+	earliest_start = 20000
 
 /datum/round_event/santa
 	var/mob/living/carbon/human/santa //who is our santa?
@@ -75,9 +75,22 @@
 /datum/round_event/santa/start()
 	var/list/candidates = pollGhostCandidates("Santa is coming to town! Do you want to be Santa?", poll_time=150)
 	if(LAZYLEN(candidates))
-		var/mob/C = pick(candidates)
+		var/mob/dead/observer/Z = pick(candidates)
 		santa = new /mob/living/carbon/human(pick(GLOB.blobstart))
-		C.transfer_ckey(santa, FALSE)
+		santa.key = Z.key
+		qdel(Z)
 
-		var/datum/antagonist/santa/A = new
-		santa.mind.add_antag_datum(A)
+		santa.equipOutfit(/datum/outfit/santa)
+		santa.update_icons()
+
+		var/datum/objective/santa_objective = new()
+		santa_objective.explanation_text = "Bring joy and presents to the station!"
+		santa_objective.completed = 1 //lets cut our santas some slack.
+		santa_objective.owner = santa.mind
+		santa.mind.objectives += santa_objective
+		santa.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/presents)
+		var/obj/effect/proc_holder/spell/targeted/area_teleport/teleport/telespell = new(santa)
+		telespell.clothes_req = 0 //santa robes aren't actually magical.
+		santa.mind.AddSpell(telespell) //does the station have chimneys? WHO KNOWS!
+
+		to_chat(santa, "<span class='boldannounce'>You are Santa! Your objective is to bring joy to the people on this station. You can conjure more presents using a spell, and there are several presents in your bag.</span>")

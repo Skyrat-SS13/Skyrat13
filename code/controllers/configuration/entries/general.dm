@@ -7,9 +7,6 @@
 
 /datum/config_entry/string/servername	// server name (the name of the game window)
 
-/datum/config_entry/string/servertagline
-	config_entry_value = "We forgot to set the server's tagline in config.txt"
-
 /datum/config_entry/string/serversqlname	// short form server name used for the DB
 
 /datum/config_entry/string/stationname	// station name (the name of the station in-game)
@@ -39,8 +36,6 @@
 
 /datum/config_entry/flag/log_game	// log game events
 
-/datum/config_entry/flag/log_virus	// log virology data
-
 /datum/config_entry/flag/log_vote	// log voting
 
 /datum/config_entry/flag/log_whisper	// log client whisper
@@ -54,15 +49,11 @@
 
 /datum/config_entry/flag/log_pda	// log pda messages
 
-/datum/config_entry/flag/log_telecomms	// log telecomms messages
-
 /datum/config_entry/flag/log_twitter	// log certain expliotable parrots and other such fun things in a JSON file of twitter valid phrases.
 
 /datum/config_entry/flag/log_world_topic	// log all world.Topic() calls
 
 /datum/config_entry/flag/log_manifest	// log crew manifest to seperate file
-
-/datum/config_entry/flag/log_job_debug	// log roundstart divide occupations debug information to a file
 
 /datum/config_entry/flag/allow_admin_ooccolor	// Allows admins with relevant permissions to have their own ooc colour
 
@@ -129,23 +120,6 @@
 /datum/config_entry/flag/admin_legacy_system	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system
 	protection = CONFIG_ENTRY_LOCKED
 
-/datum/config_entry/flag/protect_legacy_admins	//Stops any admins loaded by the legacy system from having their rank edited by the permissions panel
-	protection = CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/flag/protect_legacy_ranks	//Stops any ranks loaded by the legacy system from having their flags edited by the permissions panel
-	protection = CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/flag/enable_localhost_rank	//Gives the !localhost! rank to any client connecting from 127.0.0.1 or ::1
-	protection = CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/flag/load_legacy_ranks_only	//Loads admin ranks only from legacy admin_ranks.txt, while enabled ranks are mirrored to the database
-	protection = CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/flag/mentors_mobname_only
-
-/datum/config_entry/flag/mentor_legacy_system	//Defines whether the server uses the legacy mentor system with mentors.txt or the SQL system
-	protection = CONFIG_ENTRY_LOCKED
-
 /datum/config_entry/string/hostedby
 
 /datum/config_entry/flag/norespawn
@@ -180,9 +154,6 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	config_entry_value = "https://katlin.dog/citadel-wiki"
-
-/datum/config_entry/string/wikiurltg
 	config_entry_value = "http://www.tgstation13.org/wiki"
 
 /datum/config_entry/string/forumurl
@@ -193,10 +164,6 @@
 
 /datum/config_entry/string/githuburl
 	config_entry_value = "https://www.github.com/tgstation/-tg-station"
-
-/datum/config_entry/string/roundstatsurl
-
-/datum/config_entry/string/gamelogurl
 
 /datum/config_entry/number/githubrepoid
 	config_entry_value = null
@@ -262,8 +229,6 @@
 	integer = FALSE
 
 /datum/config_entry/flag/maprotation
-
-/datum/config_entry/flag/tgstyle_maprotation
 
 /datum/config_entry/number/maprotatechancedelta
 	config_entry_value = 0.75
@@ -341,9 +306,12 @@
 
 /datum/config_entry/flag/allow_map_voting
 
+/datum/config_entry/flag/generate_minimaps
+
 /datum/config_entry/number/client_warn_version
 	config_entry_value = null
 	min_val = 500
+	max_val = DM_VERSION - 1
 
 /datum/config_entry/string/client_warn_message
 	config_entry_value = "Your version of byond may have issues or be blocked from accessing this server in the future."
@@ -353,6 +321,7 @@
 /datum/config_entry/number/client_error_version
 	config_entry_value = null
 	min_val = 500
+	max_val = DM_VERSION - 1
 
 /datum/config_entry/string/client_error_message
 	config_entry_value = "Your version of byond is too old, may have issues, and is blocked from accessing this server."
@@ -363,14 +332,6 @@
 
 /datum/config_entry/number/second_topic_limit
 	config_entry_value = null
-	min_val = 0
-
-/datum/config_entry/number/minute_click_limit
-	config_entry_value = 400
-	min_val = 0
-
-/datum/config_entry/number/second_click_limit
-	config_entry_value = 15
 	min_val = 0
 
 /datum/config_entry/number/error_cooldown	// The "cooldown" time for each occurrence of a unique error
@@ -425,7 +386,3 @@
 
 /datum/config_entry/string/default_view
 	config_entry_value = "15x15"
-
-/datum/config_entry/flag/log_pictures
-
-/datum/config_entry/flag/picture_logging_camera

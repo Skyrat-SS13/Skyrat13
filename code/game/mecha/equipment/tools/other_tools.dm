@@ -17,7 +17,7 @@
 		return
 	var/turf/T = get_turf(target)
 	if(T)
-		do_teleport(chassis, T, 4, channel = TELEPORT_CHANNEL_BLUESPACE)
+		do_teleport(chassis, T, 4)
 		return 1
 
 
@@ -58,8 +58,8 @@
 		return
 	var/list/obj/effect/portal/created = create_portal_pair(get_turf(src), target_turf, src, 300, 1, /obj/effect/portal/anom)
 	var/turf/T = get_turf(target)
-	message_admins("[ADMIN_LOOKUPFLW(chassis.occupant)] used a Wormhole Generator in [ADMIN_VERBOSEJMP(T)]")
-	log_game("[key_name(chassis.occupant)] used a Wormhole Generator in [AREACOORD(T)]")
+	message_admins("[ADMIN_LOOKUPFLW(chassis.occupant)] used a Wormhole Generator in [ADMIN_COORDJMP(T)]",0,1)
+	log_game("[key_name(chassis.occupant)] used a Wormhole Generator in [COORD(T)]")
 	src = null
 	QDEL_LIST_IN(created, rand(150,300))
 	return 1
@@ -97,7 +97,7 @@
 					locked.throw_at(target, 14, 1.5)
 					locked = null
 					send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
-					log_game("[key_name(chassis.occupant)] used a Gravitational Catapult to throw [locked] (From [AREACOORD(orig)]) at [target] ([AREACOORD(targ)]).")
+					log_game("[key_name(chassis.occupant)] used a Gravitational Catapult to throw [locked]([COORD(orig)]) at [target]([COORD(targ)]).")
 					return TRUE
 				else
 					locked = null
@@ -118,7 +118,7 @@
 						step_away(A,target)
 						sleep(2)
 			var/turf/T = get_turf(target)
-			log_game("[key_name(chassis.occupant)] used a Gravitational Catapult repulse wave on [AREACOORD(T)]")
+			log_game("[key_name(chassis.occupant)] used a Gravitational Catapult repulse wave on ([COORD(T)])")
 			return TRUE
 
 
@@ -367,7 +367,8 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/generator/proc/generator_init()
-	fuel = new /obj/item/stack/sheet/mineral/plasma(src, 0)
+	fuel = new /obj/item/stack/sheet/mineral/plasma(src)
+	fuel.amount = 0
 
 /obj/item/mecha_parts/mecha_equipment/generator/detach()
 	STOP_PROCESSING(SSobj, src)
@@ -421,13 +422,14 @@
 	if(!istype(T))
 		return
 	var/datum/gas_mixture/GM = new
+	GM.add_gas(/datum/gas/plasma)
 	if(prob(10))
-		GM.gases[/datum/gas/plasma] += 100
+		GM.gases[/datum/gas/plasma][MOLES] += 100
 		GM.temperature = 1500+T0C //should be enough to start a fire
 		T.visible_message("[src] suddenly disgorges a cloud of heated plasma.")
 		qdel(src)
 	else
-		GM.gases[/datum/gas/plasma] += 5
+		GM.gases[/datum/gas/plasma][MOLES] += 5
 		GM.temperature = istype(T) ? T.air.return_temperature() : T20C
 		T.visible_message("[src] suddenly disgorges a cloud of plasma.")
 	T.assume_air(GM)
@@ -467,10 +469,11 @@
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30
 	power_per_cycle = 50
-	var/rad_per_cycle = 30
+	var/rad_per_cycle = 3
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/generator_init()
-	fuel = new /obj/item/stack/sheet/mineral/uranium(src, 0)
+	fuel = new /obj/item/stack/sheet/mineral/uranium(src)
+	fuel.amount = 0
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/critfail()
 	return

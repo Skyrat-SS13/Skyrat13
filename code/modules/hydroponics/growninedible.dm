@@ -7,7 +7,6 @@
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	resistance_flags = FLAMMABLE
 	var/obj/item/seeds/seed = null // type path, gets converted to item on New(). It's safe to assume it's always a seed item.
-	var/tastes = list("indescribable" = 1) //Stops runtimes. Grown are un-eatable anyways so if you do then its a bug
 
 /obj/item/grown/Initialize(newloc, obj/item/seeds/new_seed)
 	. = ..()
@@ -35,7 +34,7 @@
 
 /obj/item/grown/attackby(obj/item/O, mob/user, params)
 	..()
-	if (istype(O, /obj/item/plant_analyzer))
+	if (istype(O, /obj/item/device/plant_analyzer))
 		var/msg = "<span class='info'>*---------*\n This is \a <span class='name'>[src]</span>\n"
 		if(seed)
 			msg += seed.get_analyzer_text()
@@ -48,13 +47,20 @@
 		return 1
 	return 0
 
+
+/obj/item/grown/Crossed(atom/movable/AM)
+	if(seed)
+		for(var/datum/plant_gene/trait/T in seed.genes)
+			T.on_cross(src, AM)
+	..()
+
 /obj/item/grown/throw_impact(atom/hit_atom)
 	if(!..()) //was it caught by a mob?
 		if(seed)
 			for(var/datum/plant_gene/trait/T in seed.genes)
 				T.on_throw_impact(src, hit_atom)
 
-/obj/item/grown/microwave_act(obj/machinery/microwave/M)
+/obj/item/grown/microwave_act(obj/machine/microwave/M)
 	return
 
 /obj/item/grown/on_grind()

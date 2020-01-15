@@ -2,9 +2,9 @@
 	var/too_spooky = TRUE //will it spawn a new instrument?
 
 /datum/component/spooky/Initialize()
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/spectral_attack)
+	RegisterSignal(COMSIG_ITEM_ATTACK, .proc/spectral_attack)
 
-/datum/component/spooky/proc/spectral_attack(datum/source, mob/living/carbon/C, mob/user)
+/datum/component/spooky/proc/spectral_attack(mob/living/carbon/C, mob/user)
 	if(ishuman(user)) //this weapon wasn't meant for mortals.
 		var/mob/living/carbon/human/U = user
 		if(!istype(U.dna.species, /datum/species/skeleton))
@@ -27,7 +27,7 @@
 		C.stuttering = 20
 		if((!istype(H.dna.species, /datum/species/skeleton)) && (!istype(H.dna.species, /datum/species/golem)) && (!istype(H.dna.species, /datum/species/android)) && (!istype(H.dna.species, /datum/species/jelly)))
 			C.adjustStaminaLoss(25) //boneless humanoids don't lose the will to live
-		to_chat(C, "<font color='red' size='4'><B>DOOT</B></font>")
+		to_chat(C, "<font color='red' size='4'><B>DOOT</B></span>")
 		spectral_change(H)
 
 	else //the sound will spook monkeys.
@@ -42,11 +42,11 @@
 		var/T = get_turf(H)
 		if(too_spooky)
 			if(prob(30))
-				new/obj/item/instrument/saxophone/spectral(T)
+				new/obj/item/device/instrument/saxophone/spectral(T)
 			else if(prob(30))
-				new/obj/item/instrument/trumpet/spectral(T)
+				new/obj/item/device/instrument/trumpet/spectral(T)
 			else if(prob(30))
-				new/obj/item/instrument/trombone/spectral(T)
+				new/obj/item/device/instrument/trombone/spectral(T)
 			else
 				to_chat(H, "The spooky gods forgot to ship your instrument. Better luck next unlife.")
 		to_chat(H, "<B>You are the spooky skeleton!</B>")

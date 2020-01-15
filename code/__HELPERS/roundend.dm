@@ -19,11 +19,8 @@
 		var/list/mob_data = list()
 		if(isnewplayer(m))
 			continue
-		if (m.client && m.client.prefs && m.client.prefs.auto_ooc)
-			if (!(m.client.prefs.chat_toggles & CHAT_OOC))
-				m.client.prefs.chat_toggles ^= CHAT_OOC
 		if(m.mind)
-			if(m.stat != DEAD && !isbrain(m) && !iscameramob(m))
+			if(m.stat != DEAD && !isbrain(m))
 				num_survivors++
 			mob_data += list("name" = m.name, "ckey" = ckey(m.mind.key))
 			if(isobserver(m))
@@ -44,9 +41,9 @@
 					if(iscyborg(L))
 						var/mob/living/silicon/robot/R = L
 						mob_data += list("module" = R.module)
-			else
-				category = "others"
-				mob_data += list("typepath" = m.type)
+				else
+					category = "others"
+					mob_data += list("typepath" = L.type)
 		if(!escaped)
 			if(EMERGENCY_ESCAPED_OR_ENDGAMED && (m.onCentCom() || m.onSyndieBase()))
 				escaped = "escapees"
@@ -63,12 +60,8 @@
 				file_data["[escaped]"]["npcs"]["[initial(m.name)]"] = 1
 		else
 			if(isobserver(m))
-				var/pos = length(file_data["[escaped]"]) + 1
-				file_data["[escaped]"]["[pos]"] = mob_data
+				file_data["[escaped]"] = mob_data
 			else
-				if(!category)
-					category = "others"
-					mob_data += list("name" = m.name, "typepath" = m.type)
 				var/pos = length(file_data["[escaped]"]["[category]"]) + 1
 				file_data["[escaped]"]["[category]"]["[pos]"] = mob_data
 	var/datum/station_state/end_state = new /datum/station_state()
@@ -169,11 +162,6 @@
 	if(LAZYLEN(GLOB.round_end_notifiees))
 		send2irc("Notice", "[GLOB.round_end_notifiees.Join(", ")] the round has ended.")
 
-	for(var/I in round_end_events)
-		var/datum/callback/cb = I
-		cb.InvokeAsync()
-	LAZYCLEARLIST(round_end_events)
-
 	for(var/client/C in GLOB.clients)
 		if(!C.credits)
 			C.RollCredits()
@@ -195,16 +183,10 @@
 	//Set news report and mode result
 	mode.set_round_result()
 
-	var/survival_rate = GLOB.joined_player_list.len ? "[PERCENT(popcount[POPCOUNT_SURVIVORS]/GLOB.joined_player_list.len)]%" : "there's literally no player"
+	send2irc("Server", "Round just ended.")
 
-	send2irc("Server", "A round of [mode.name] just ended[mode_result == "undefined" ? "." : " with a [mode_result]."] Survival rate: [survival_rate]")
-
-	if(length(CONFIG_GET(keyed_list/cross_server)))
+	if(length(CONFIG_GET(keyed_string_list/cross_server)))
 		send_news_report()
-
-	//tell the nice people on discord what went on before the salt cannon happens.
-	world.TgsTargetedChatBroadcast("The current round has ended. Please standby for your shift interlude Nanotrasen News Network's report!", FALSE)
-	world.TgsTargetedChatBroadcast(send_news_report(),FALSE)
 
 	CHECK_TICK
 
@@ -212,23 +194,24 @@
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()
 	//Look into all mobs in world, dead or alive
-	for(var/datum/antagonist/A in GLOB.antagonists)
-		if(!A.owner)
-			continue
-		if(!(A.name in total_antagonists))
-			total_antagonists[A.name] = list()
-		total_antagonists[A.name] += "[key_name(A.owner)]"
+	for(var/datum/mind/Mind in minds)
+		var/temprole = Mind.special_role
+		if(temprole)							//if they are an antagonist of some sort.
+			if(temprole in total_antagonists)	//If the role exists already, add the name to it
+				total_antagonists[temprole] += ", [Mind.name]([Mind.key])"
+			else
+				total_antagonists.Add(temprole) //If the role doesnt exist in the list, create it and add the mob
+				total_antagonists[temprole] += ": [Mind.name]([Mind.key])"
 
 	CHECK_TICK
 
 	//Now print them all into the log!
 	log_game("Antagonists at round end were...")
-	for(var/antag_name in total_antagonists)
-		var/list/L = total_antagonists[antag_name]
-		log_game("[antag_name]s :[L.Join(", ")].")
+	for(var/i in total_antagonists)
+		log_game("[i]s[total_antagonists[i]].")
 
 	CHECK_TICK
-	SSdbcore.SetRoundEnd()
+
 	//Collects persistence features
 	if(mode.allow_persistence_save)
 		SSpersistence.CollectData()
@@ -280,73 +263,30 @@
 	var/list/parts = list()
 	var/station_evacuated = EMERGENCY_ESCAPED_OR_ENDGAMED
 
-	if(GLOB.round_id)
-		var/statspage = CONFIG_GET(string/roundstatsurl)
-		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
-		parts += "[FOURSPACES]Round ID: <b>[info]</b>"
-
-	var/list/voting_results = SSvote.stored_gamemode_votes
-
-	if(length(voting_results))
-		parts += "[FOURSPACES]Voting: "
-		var/total_score = 0
-		for(var/choice in voting_results)
-			var/score = voting_results[choice]
-			total_score += score
-			parts += "[FOURSPACES][FOURSPACES][choice]: [score]"
-
-	parts += "[FOURSPACES]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
-	parts += "[FOURSPACES]Station Integrity: <B>[mode.station_was_nuked ? "<span class='redtext'>Destroyed</span>" : "[popcount["station_integrity"]]%"]</B>"
+	parts += "[GLOB.TAB]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
+	parts += "[GLOB.TAB]Station Integrity: <B>[mode.station_was_nuked ? "<span class='redtext'>Destroyed</span>" : "[popcount["station_integrity"]]%"]</B>"
 	var/total_players = GLOB.joined_player_list.len
 	if(total_players)
-		parts+= "[FOURSPACES]Total Population: <B>[total_players]</B>"
+		parts+= "[GLOB.TAB]Total Population: <B>[total_players]</B>"
 		if(station_evacuated)
-			parts += "<BR>[FOURSPACES]Evacuation Rate: <B>[popcount[POPCOUNT_ESCAPEES]] ([PERCENT(popcount[POPCOUNT_ESCAPEES]/total_players)]%)</B>"
-			parts += "[FOURSPACES](on emergency shuttle): <B>[popcount[POPCOUNT_SHUTTLE_ESCAPEES]] ([PERCENT(popcount[POPCOUNT_SHUTTLE_ESCAPEES]/total_players)]%)</B>"
-		parts += "[FOURSPACES]Survival Rate: <B>[popcount[POPCOUNT_SURVIVORS]] ([PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)]%)</B>"
-		if(SSblackbox.first_death)
-			var/list/ded = SSblackbox.first_death
-			if(ded.len)
-				parts += "[FOURSPACES]First Death: <b>[ded["name"]], [ded["role"]], at [ded["area"]]. Damage taken: [ded["damage"]].[ded["last_words"] ? " Their last words were: \"[ded["last_words"]]\"" : ""]</b>"
-			//ignore this comment, it fixes the broken sytax parsing caused by the " above
-			else
-				parts += "[FOURSPACES]<i>Nobody died this shift!</i>"
-	if(istype(SSticker.mode, /datum/game_mode/dynamic))
-		var/datum/game_mode/dynamic/mode = SSticker.mode
-		parts += "[FOURSPACES]Threat level: [mode.threat_level]"
-		parts += "[FOURSPACES]Threat left: [mode.threat]"
-		parts += "[FOURSPACES]Executed rules:"
-		for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
-			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
-		parts += "[FOURSPACES]Other threat changes:"
-		for(var/str in mode.threat_log)
-			parts += "[FOURSPACES][FOURSPACES][str]"
-		for(var/entry in mode.threat_tallies)
-			parts += "[FOURSPACES][FOURSPACES][entry] added [mode.threat_tallies[entry]]"
-		SSblackbox.record_feedback("tally","dynamic_threat",mode.threat_level,"Final threat level")
-		SSblackbox.record_feedback("tally","dynamic_threat",mode.threat,"Threat left")
+			parts += "<BR>[GLOB.TAB]Evacuation Rate: <B>[popcount[POPCOUNT_ESCAPEES]] ([PERCENT(popcount[POPCOUNT_ESCAPEES]/total_players)]%)</B>"
+			parts += "[GLOB.TAB](on emergency shuttle): <B>[popcount[POPCOUNT_SHUTTLE_ESCAPEES]] ([PERCENT(popcount[POPCOUNT_SHUTTLE_ESCAPEES]/total_players)]%)</B>"
+		parts += "[GLOB.TAB]Survival Rate: <B>[popcount[POPCOUNT_SURVIVORS]] ([PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)]%)</B>"
 	return parts.Join("<br>")
 
-/client/proc/roundend_report_file()
-	return "data/roundend_reports/[ckey].html"
+/datum/controller/subsystem/ticker/proc/show_roundend_report(client/C,common_report, popcount)
+	var/list/report_parts = list()
 
-/datum/controller/subsystem/ticker/proc/show_roundend_report(client/C, previous = FALSE)
+	report_parts += personal_report(C, popcount)
+	report_parts += common_report
+
 	var/datum/browser/roundend_report = new(C, "roundend")
 	roundend_report.width = 800
 	roundend_report.height = 600
-	var/content
-	var/filename = C.roundend_report_file()
-	if(!previous)
-		var/list/report_parts = list(personal_report(C), GLOB.common_report)
-		content = report_parts.Join()
-		C.verbs -= /client/proc/show_previous_roundend_report
-		fdel(filename)
-		text2file(content, filename)
-	else
-		content = file2text(filename)
-	roundend_report.set_content(content)
+	roundend_report.set_content(report_parts.Join())
 	roundend_report.stylesheets = list()
-	roundend_report.add_stylesheet("roundend", 'html/browser/roundend.css')
+	roundend_report.add_stylesheet("roundend",'html/browser/roundend.css')
+
 	roundend_report.open(0)
 
 /datum/controller/subsystem/ticker/proc/personal_report(client/C, popcount)
@@ -371,6 +311,8 @@
 	else
 		parts += "<div class='panel stationborder'>"
 	parts += "<br>"
+	if(!GLOB.survivor_report)
+		GLOB.survivor_report = survivor_report(popcount)
 	parts += GLOB.survivor_report
 	parts += "</div>"
 
@@ -378,45 +320,38 @@
 
 /datum/controller/subsystem/ticker/proc/display_report(popcount)
 	GLOB.common_report = build_roundend_report()
-	GLOB.survivor_report = survivor_report(popcount)
 	for(var/client/C in GLOB.clients)
-		show_roundend_report(C, FALSE)
+		show_roundend_report(C,GLOB.common_report, popcount)
 		give_show_report_button(C)
 		CHECK_TICK
 
 /datum/controller/subsystem/ticker/proc/law_report()
 	var/list/parts = list()
-	var/borg_spacer = FALSE //inserts an extra linebreak to seperate AIs from independent borgs, and then multiple independent borgs.
 	//Silicon laws report
 	for (var/i in GLOB.ai_list)
 		var/mob/living/silicon/ai/aiPlayer = i
 		if(aiPlayer.mind)
-			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was <span class='redtext'>deactivated</span>"] were:"
+			parts += "<b>[aiPlayer.name] (Played by: [aiPlayer.mind.key])'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was deactivated"] were:</b>"
 			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
 
 		parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
 
 		if (aiPlayer.connected_robots.len)
-			var/borg_num = aiPlayer.connected_robots.len
-			var/robolist = "<br><b>[aiPlayer.real_name]</b>'s minions were: "
+			var/robolist = "<b>[aiPlayer.real_name]'s minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
-				borg_num--
 				if(robo.mind)
-					robolist += "<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>)[robo.stat == DEAD ? " <span class='redtext'>(Deactivated)</span>" : ""][borg_num ?", ":""]<br>"
+					robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.mind.key]), ":" (Played by: [robo.mind.key]), "]"
 			parts += "[robolist]"
-		if(!borg_spacer)
-			borg_spacer = TRUE
 
 	for (var/mob/living/silicon/robot/robo in GLOB.silicon_mobs)
 		if (!robo.connected_ai && robo.mind)
-			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>) [(robo.stat != DEAD)? "<span class='greentext'>survived</span> as an AI-less borg!" : "was <span class='redtext'>unable to survive</span> the rigors of being a cyborg without an AI."] Its laws were:"
+			if (robo.stat != DEAD)
+				parts += "<b>[robo.name] (Played by: [robo.mind.key]) survived as an AI-less borg! Its laws were:</b>"
+			else
+				parts += "<b>[robo.name] (Played by: [robo.mind.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>"
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				parts += robo.laws.get_law_list(include_zeroth=TRUE)
-
-			if(!borg_spacer)
-				borg_spacer = TRUE
-
 	if(parts.len)
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	else
@@ -497,11 +432,11 @@
 
 /datum/action/report
 	name = "Show roundend report"
-	button_icon_state = "round_end"
+	button_icon_state = "vote"
 
 /datum/action/report/Trigger()
 	if(owner && GLOB.common_report && SSticker.current_state == GAME_STATE_FINISHED)
-		SSticker.show_roundend_report(owner.client, FALSE)
+		SSticker.show_roundend_report(owner.client,GLOB.common_report)
 
 /datum/action/report/IsAvailable()
 	return 1
@@ -544,79 +479,13 @@
 	return parts.Join()
 
 
-/proc/printobjectives(list/objectives)
-	if(!objectives || !objectives.len)
-		return
+/proc/printobjectives(datum/mind/ply)
 	var/list/objective_parts = list()
 	var/count = 1
-	for(var/datum/objective/objective in objectives)
+	for(var/datum/objective/objective in ply.objectives)
 		if(objective.check_completion())
 			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</span>"
 		else
 			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
 		count++
 	return objective_parts.Join("<br>")
-
-/datum/controller/subsystem/ticker/proc/save_admin_data()
-	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Admin rank DB Sync blocked: Advanced ProcCall detected.</span>")
-		return
-	if(CONFIG_GET(flag/admin_legacy_system)) //we're already using legacy system so there's nothing to save
-		return
-	else if(load_admins(TRUE)) //returns true if there was a database failure and the backup was loaded from
-		return
-	sync_ranks_with_db()
-	var/list/sql_admins = list()
-	for(var/i in GLOB.protected_admins)
-		var/datum/admins/A = GLOB.protected_admins[i]
-		var/sql_ckey = sanitizeSQL(A.target)
-		var/sql_rank = sanitizeSQL(A.rank.name)
-		sql_admins += list(list("ckey" = "'[sql_ckey]'", "rank" = "'[sql_rank]'"))
-	SSdbcore.MassInsert(format_table_name("admin"), sql_admins, duplicate_key = TRUE)
-	var/datum/DBQuery/query_admin_rank_update = SSdbcore.NewQuery("UPDATE [format_table_name("player")] p INNER JOIN [format_table_name("admin")] a ON p.ckey = a.ckey SET p.lastadminrank = a.rank")
-	query_admin_rank_update.Execute()
-	qdel(query_admin_rank_update)
-
-	//json format backup file generation stored per server
-	var/json_file = file("data/admins_backup.json")
-	var/list/file_data = list("ranks" = list(), "admins" = list())
-	for(var/datum/admin_rank/R in GLOB.admin_ranks)
-		file_data["ranks"]["[R.name]"] = list()
-		file_data["ranks"]["[R.name]"]["include rights"] = R.include_rights
-		file_data["ranks"]["[R.name]"]["exclude rights"] = R.exclude_rights
-		file_data["ranks"]["[R.name]"]["can edit rights"] = R.can_edit_rights
-	for(var/i in GLOB.admin_datums+GLOB.deadmins)
-		var/datum/admins/A = GLOB.admin_datums[i]
-		if(!A)
-			A = GLOB.deadmins[i]
-			if (!A)
-				continue
-		file_data["admins"]["[i]"] = A.rank.name
-	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(file_data))
-
-/datum/controller/subsystem/ticker/proc/update_everything_flag_in_db()
-	for(var/datum/admin_rank/R in GLOB.admin_ranks)
-		var/list/flags = list()
-		if(R.include_rights == R_EVERYTHING)
-			flags += "flags"
-		if(R.exclude_rights == R_EVERYTHING)
-			flags += "exclude_flags"
-		if(R.can_edit_rights == R_EVERYTHING)
-			flags += "can_edit_flags"
-		if(!flags.len)
-			continue
-		var/sql_rank = sanitizeSQL(R.name)
-		var/flags_to_check = flags.Join(" != [R_EVERYTHING] AND ") + " != [R_EVERYTHING]"
-		var/datum/DBQuery/query_check_everything_ranks = SSdbcore.NewQuery("SELECT flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")] WHERE rank = '[sql_rank]' AND ([flags_to_check])")
-		if(!query_check_everything_ranks.Execute())
-			qdel(query_check_everything_ranks)
-			return
-		if(query_check_everything_ranks.NextRow()) //no row is returned if the rank already has the correct flag value
-			var/flags_to_update = flags.Join(" = [R_EVERYTHING], ") + " = [R_EVERYTHING]"
-			var/datum/DBQuery/query_update_everything_ranks = SSdbcore.NewQuery("UPDATE [format_table_name("admin_ranks")] SET [flags_to_update] WHERE rank = '[sql_rank]'")
-			if(!query_update_everything_ranks.Execute())
-				qdel(query_update_everything_ranks)
-				return
-			qdel(query_update_everything_ranks)
-		qdel(query_check_everything_ranks)

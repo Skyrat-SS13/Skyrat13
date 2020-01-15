@@ -12,14 +12,12 @@ SUBSYSTEM_DEF(server_maint)
 /datum/controller/subsystem/server_maint/Initialize(timeofday)
 	if (CONFIG_GET(flag/hub))
 		world.update_hub_visibility(TRUE)
-	return ..()
+	..()
 
 /datum/controller/subsystem/server_maint/fire(resumed = FALSE)
 	if(!resumed)
 		if(listclearnulls(GLOB.clients))
 			log_world("Found a null in clients list!")
-		if(listclearnulls(GLOB.player_list))
-			log_world("Found a null in player list!")
 		src.currentrun = GLOB.clients.Copy()
 
 	var/list/currentrun = src.currentrun
@@ -57,8 +55,8 @@ SUBSYSTEM_DEF(server_maint)
 			co.ehjax_send(data = "roundrestart")
 		if(server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[server]")
-	var/tgsversion = world.TgsVersion()
-	if(tgsversion)
-		SSblackbox.record_feedback("text", "server_tools", 1, tgsversion)
+	if(SERVER_TOOLS_PRESENT)
+		SSblackbox.record_feedback("text", "server_tools", 1, SERVER_TOOLS_VERSION)
+	SSblackbox.record_feedback("text", "server_tools_api", 1, SERVER_TOOLS_API_VERSION)
 
 #undef PING_BUFFER_TIME

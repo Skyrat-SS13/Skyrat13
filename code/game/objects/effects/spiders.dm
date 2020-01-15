@@ -37,16 +37,14 @@
 
 /obj/structure/spider/stickyweb/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /mob/living/simple_animal/hostile/poison/giant_spider))
-		return TRUE
+		return 1
 	else if(isliving(mover))
-		if(istype(mover.pulledby, /mob/living/simple_animal/hostile/poison/giant_spider))
-			return TRUE
 		if(prob(50))
 			to_chat(mover, "<span class='danger'>You get stuck in \the [src] for a moment.</span>")
-			return FALSE
+			return 0
 	else if(istype(mover, /obj/item/projectile))
 		return prob(30)
-	return TRUE
+	return 1
 
 /obj/structure/spider/eggcluster
 	name = "egg cluster"
@@ -101,11 +99,10 @@
 	. = ..()
 
 /obj/structure/spider/spiderling/Initialize()
-	. = ..()
 	pixel_x = rand(6,-6)
 	pixel_y = rand(6,-6)
 	START_PROCESSING(SSobj, src)
-	AddComponent(/datum/component/swarming)
+	. = ..()
 
 /obj/structure/spider/spiderling/hunter
 	grow_as = /mob/living/simple_animal/hostile/poison/giant_spider/hunter
@@ -122,7 +119,7 @@
 /obj/structure/spider/spiderling/tarantula
 	grow_as = /mob/living/simple_animal/hostile/poison/giant_spider/tarantula
 
-/obj/structure/spider/spiderling/Bump(atom/user)
+/obj/structure/spider/spiderling/Collide(atom/user)
 	if(istype(user, /obj/structure/table))
 		forceMove(user.loc)
 	else
@@ -144,7 +141,7 @@
 				return
 			var/obj/machinery/atmospherics/components/unary/vent_pump/exit_vent = pick(vents)
 			if(prob(50))
-				visible_message("<B>[src] scrambles into the ventilation ducts!</B>", \
+				visible_message("<B>[src] scrambles into the ventillation ducts!</B>", \
 								"<span class='italics'>You hear something scampering through the ventilation ducts.</span>")
 
 			spawn(rand(20,60))
@@ -201,7 +198,7 @@
 			S.directive = directive
 			if(player_spiders)
 				S.playable_spider = TRUE
-				notify_ghosts("Spider [S.name] can be controlled", null, enter_link="<a href=?src=[REF(S)];activate=1>(Click to play)</a>", source=S, action=NOTIFY_ATTACK, ignore_key = POLL_IGNORE_SPIDER, ignore_dnr_observers = TRUE)
+				notify_ghosts("Spider [S.name] can be controlled", null, enter_link="<a href=?src=[REF(S)];activate=1>(Click to play)</a>", source=S, action=NOTIFY_ATTACK)
 			qdel(src)
 
 

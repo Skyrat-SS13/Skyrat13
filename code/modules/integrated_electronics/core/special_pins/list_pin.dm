@@ -12,8 +12,6 @@
 	t += "List length: [my_list.len]<br>"
 	t += "<a href='?src=[REF(src)]'>\[Refresh\]</a>  |  "
 	t += "<a href='?src=[REF(src)];add=1'>\[Add\]</a>  |  "
-	t += "<a href='?src=[REF(src)];remove=1'>\[Remove\]</a>  |  "
-	t += "<a href='?src=[REF(src)];edit=1'>\[Edit\]</a>  |  "
 	t += "<a href='?src=[REF(src)];swap=1'>\[Swap\]</a>  |  "
 	t += "<a href='?src=[REF(src)];clear=1'>\[Clear\]</a><br>"
 	t += "<hr>"
@@ -44,7 +42,7 @@
 		return
 	if(!position)
 		return
-	var/target_entry = my_list[position]
+	var/target_entry = my_list.Find(position)
 	if(target_entry)
 		my_list.Remove(target_entry)
 
@@ -68,7 +66,7 @@
 	if(holder.check_interactivity(user) && target_entry)
 		var/edited_entry = ask_for_data_type(user, target_entry)
 		if(edited_entry)
-			my_list[my_list.Find(target_entry)] = edited_entry
+			target_entry = edited_entry
 
 /datum/integrated_io/lists/proc/edit_in_list_by_position(mob/user, var/position)
 	var/list/my_list = data
@@ -77,11 +75,11 @@
 		return
 	if(!position)
 		return
-	var/target_entry = my_list[position]
+	var/target_entry = my_list.Find(position)
 	if(target_entry)
 		var/edited_entry = ask_for_data_type(user, target_entry)
 		if(edited_entry)
-			my_list[position] = edited_entry
+			target_entry = edited_entry
 
 /datum/integrated_io/lists/proc/swap_inside_list(mob/user, var/first_target, var/second_target)
 	var/list/my_list = data

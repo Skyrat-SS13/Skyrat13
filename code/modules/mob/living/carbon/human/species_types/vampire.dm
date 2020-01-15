@@ -1,10 +1,9 @@
 /datum/species/vampire
-	name = "Vampire"
+	name = "vampire"
 	id = "vampire"
 	default_color = "FFFFFF"
-	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,DRINKSBLOOD)
-	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_NOBREATH)
-	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
+	species_traits = list(SPECIES_UNDEAD,EYECOLOR,HAIR,FACEHAIR,LIPS,NOHUNGER,NOBREATH,DRINKSBLOOD)
+	mutant_bodyparts = list("tail_human", "ears", "wings")
 	default_features = list("mcolor" = "FFF", "tail_human" = "None", "ears" = "None", "wings" = "None")
 	exotic_bloodtype = "U"
 	use_skintones = TRUE
@@ -39,20 +38,20 @@
 
 /datum/species/vampire/spec_life(mob/living/carbon/human/C)
 	. = ..()
-	if(istype(C.loc, /obj/structure/closet/crate/coffin))
+	if(istype(C.loc, /obj/structure/closet/coffin))
 		C.heal_overall_damage(4,4)
 		C.adjustToxLoss(-4)
 		C.adjustOxyLoss(-4)
 		C.adjustCloneLoss(-4)
 		return
-	C.blood_volume -= 0.75 //Will take roughly 19.5 minutes to die from standard blood volume, roughly 83 minutes to die from max blood volume.
-	if(C.blood_volume <= (BLOOD_VOLUME_SURVIVE*C.blood_ratio))
+	C.blood_volume -= 0.75
+	if(C.blood_volume <= BLOOD_VOLUME_SURVIVE)
 		to_chat(C, "<span class='danger'>You ran out of blood!</span>")
 		C.dust()
 	var/area/A = get_area(C)
 	if(istype(A, /area/chapel))
 		to_chat(C, "<span class='danger'>You don't belong here!</span>")
-		C.adjustFireLoss(5)
+		C.adjustFireLoss(20)
 		C.adjust_fire_stacks(6)
 		C.IgniteMob()
 
@@ -88,10 +87,6 @@
 				to_chat(H, "<span class='notice'>[victim] doesn't have blood!</span>")
 				return
 			V.drain_cooldown = world.time + 30
-			if(victim.anti_magic_check(FALSE, TRUE, FALSE, 0))
-				to_chat(victim, "<span class='warning'>[H] tries to bite you, but stops before touching you!</span>")
-				to_chat(H, "<span class='warning'>[victim] is blessed! You stop just in time to avoid catching fire.</span>")
-				return
 			if(!do_after(H, 30, target = victim))
 				return
 			var/blood_volume_difference = BLOOD_VOLUME_MAXIMUM - H.blood_volume //How much capacity we have left to absorb blood
@@ -128,23 +123,3 @@
 	charge_max = 50
 	cooldown_min = 50
 	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/bat
-	var/ventcrawl_nude_only = TRUE
-	var/transfer_name = TRUE
-
-/obj/effect/proc_holder/spell/targeted/shapeshift/bat/Shapeshift(mob/living/caster)			//cit change
-	var/obj/shapeshift_holder/H = locate() in caster
-	if(H)
-		to_chat(caster, "<span class='warning'>You're already shapeshifted!</span>")
-		return
-
-	var/mob/living/shape = new shapeshift_type(caster.loc)
-	H = new(shape,src,caster)
-	if(istype(H, /mob/living/simple_animal))
-		var/mob/living/simple_animal/SA = H
-		if((caster.blood_volume >= (BLOOD_VOLUME_BAD*caster.blood_ratio)) || (ventcrawl_nude_only && length(caster.get_equipped_items(include_pockets = TRUE))))
-			SA.ventcrawler = FALSE
-	if(transfer_name)
-		H.name = caster.name
-
-	clothes_req = 0
-	human_req = 0

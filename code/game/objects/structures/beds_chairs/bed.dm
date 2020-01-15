@@ -23,9 +23,9 @@
 	var/bolts = TRUE
 
 /obj/structure/bed/examine(mob/user)
-	. = ..()
+	..()
 	if(bolts)
-		. += "<span class='notice'>It's held together by a couple of <b>bolts</b>.</span>"
+		to_chat(user, "<span class='notice'>It's held together by a couple of <b>bolts</b>.</span>")
 
 /obj/structure/bed/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -38,7 +38,7 @@
 
 /obj/structure/bed/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/wrench) && !(flags_1&NODECONSTRUCT_1))
-		W.play_tool_sound(src)
+		playsound(src.loc, W.usesound, 50, 1)
 		deconstruct(TRUE)
 	else
 		return ..()
@@ -78,9 +78,12 @@
 /obj/structure/bed/roller/MouseDrop(over_object, src_location, over_location)
 	. = ..()
 	if(over_object == usr && Adjacent(usr))
-		if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
+		if(!ishuman(usr))
 			return 0
 		if(has_buckled_mobs())
+			return 0
+		if(usr.incapacitated())
+			to_chat(usr, "<span class='warning'>You can't do that right now!</span>")
 			return 0
 		usr.visible_message("[usr] collapses \the [src.name].", "<span class='notice'>You collapse \the [src.name].</span>")
 		var/obj/structure/bed/roller/B = new foldabletype(get_turf(src))
@@ -127,7 +130,6 @@
 	deploy_roller(user, user.loc)
 
 /obj/item/roller/afterattack(obj/target, mob/user , proximity)
-	. = ..()
 	if(!proximity)
 		return
 	if(isopenturf(target))
@@ -148,8 +150,8 @@
 	..()
 
 /obj/item/roller/robo/examine(mob/user)
-	. = ..()
-	. += "The dock is [loaded ? "loaded" : "empty"]."
+	..()
+	to_chat(user, "The dock is [loaded ? "loaded" : "empty"].")
 
 /obj/item/roller/robo/deploy_roller(mob/user, atom/location)
 	if(loaded)

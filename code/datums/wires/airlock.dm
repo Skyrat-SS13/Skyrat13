@@ -1,34 +1,9 @@
 /datum/wires/airlock
 	holder_type = /obj/machinery/door/airlock
-	proper_name = "Generic Airlock"
-	var/wiretype
+	proper_name = "Airlock"
 
 /datum/wires/airlock/secure
 	randomize = TRUE
-
-/datum/wires/airlock/command
-	proper_name = "Command Airlock"
-	wiretype = "commandairlock"
-
-/datum/wires/airlock/security
-	proper_name = "Security Airlock"
-	wiretype = "securityairlock"
-
-/datum/wires/airlock/engineering
-	proper_name = "Engineering Airlock"
-	wiretype = "engineeringairlock"
-
-/datum/wires/airlock/science
-	proper_name = "Science Airlock"
-	wiretype = "scienceairlock"
-
-/datum/wires/airlock/medical
-	proper_name = "Medical Airlock"
-	wiretype = "medicalairlock"
-
-/datum/wires/airlock/cargo
-	proper_name = "Cargo Airlock"
-	wiretype = "cargoairlock"
 
 /datum/wires/airlock/New(atom/holder)
 	wires = list(
@@ -39,16 +14,7 @@
 		WIRE_ZAP1, WIRE_ZAP2
 	)
 	add_duds(2)
-	. = ..()
-	if(randomize || !wiretype)
-		return
-	if(!GLOB.wire_color_directory[wiretype])
-		colors = list()
-		randomize()
-		GLOB.wire_color_directory[wiretype] = colors
-		GLOB.wire_name_directory[wiretype] = proper_name
-	else
-		colors = GLOB.wire_color_directory[wiretype]
+	..()
 
 /datum/wires/airlock/interactable(mob/user)
 	var/obj/machinery/door/airlock/A = holder
@@ -82,17 +48,17 @@
 				return
 			if(!A.requiresID() || A.check_access(null))
 				if(A.density)
-					INVOKE_ASYNC(A, /obj/machinery/door/airlock.proc/open)
+					A.open()
 				else
-					INVOKE_ASYNC(A, /obj/machinery/door/airlock.proc/close)
-			else
-				holder.visible_message("<span class='notice'>You hear a a grinding noise coming from the airlock.</span>")
+					A.close()
 		if(WIRE_BOLTS) // Pulse to toggle bolts (but only raise if power is on).
 			if(!A.locked)
 				A.bolt()
+				A.audible_message("<span class='italics'>You hear a click from the bottom of the door.</span>", null,  1)
 			else
 				if(A.hasPower())
 					A.unbolt()
+					A.audible_message("<span class='italics'>You hear a click from the bottom of the door.</span>", null, 1)
 			A.update_icon()
 		if(WIRE_IDSCAN) // Pulse to disable emergency access and flash red lights.
 			if(A.hasPower() && A.density)
@@ -115,8 +81,15 @@
 			if(!A.secondsElectrified)
 				A.set_electrified(30)
 				if(usr)
-					LAZYADD(A.shockedby, text("\[[TIME_STAMP("hh:mm:ss", FALSE)]\] [key_name(usr)]"))
-					log_combat(usr, A, "electrified")
+					A.shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
+				add_logs(usr, A, "electrified")
+				sleep(10)
+				if(A)
+					while (A.secondsElectrified > 0)
+						A.secondsElectrified -= 1
+						if(A.secondsElectrified < 0)
+							A.set_electrified(0)
+						sleep(10)
 		if(WIRE_SAFETY)
 			A.safe = !A.safe
 			if(!A.density)
@@ -170,8 +143,8 @@
 				if(A.secondsElectrified != -1)
 					A.set_electrified(-1)
 					if(usr)
-						LAZYADD(A.shockedby, text("\[[TIME_STAMP("hh:mm:ss", FALSE)]\] [key_name(usr)]"))
-						log_combat(usr, A, "electrified")
+						A.shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
+					add_logs(usr, A, "electrified")
 		if(WIRE_SAFETY) // Cut to disable safeties, mend to re-enable.
 			A.safe = mend
 		if(WIRE_TIMING) // Cut to disable auto-close, mend to re-enable.

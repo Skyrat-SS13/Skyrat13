@@ -1,4 +1,4 @@
-/obj/item/onetankbomb
+/obj/item/device/onetankbomb
 	name = "bomb"
 	icon = 'icons/obj/tank.dmi'
 	item_state = "assembly"
@@ -10,17 +10,14 @@
 	throw_range = 4
 	flags_1 = CONDUCT_1
 	var/status = FALSE   //0 - not readied //1 - bomb finished with welder
-	var/obj/item/assembly_holder/bombassembly = null   //The first part of the bomb is an assembly holder, holding an igniter+some device
+	var/obj/item/device/assembly_holder/bombassembly = null   //The first part of the bomb is an assembly holder, holding an igniter+some device
 	var/obj/item/tank/bombtank = null //the second part of the bomb is a plasma tank
 
-/obj/item/onetankbomb/IsSpecialAssembly()
-	return TRUE
 
-/obj/item/onetankbomb/examine(mob/user)
+/obj/item/device/onetankbomb/examine(mob/user)
 	bombtank.examine(user)
 
-/obj/item/onetankbomb/update_icon()
-	cut_overlays()
+/obj/item/device/onetankbomb/update_icon()
 	if(bombtank)
 		icon = bombtank.icon
 		icon_state = bombtank.icon_state
@@ -29,95 +26,67 @@
 		copy_overlays(bombassembly)
 		add_overlay("bomb_assembly")
 
-/obj/item/onetankbomb/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, "<span class='notice'>You disassemble [src]!</span>")
-	if(bombassembly)
+/obj/item/device/onetankbomb/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/device/analyzer))
+		bombtank.attackby(W, user)
+		return
+	if(istype(W, /obj/item/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
+
+		to_chat(user, "<span class='notice'>You disassemble [src].</span>")
+
 		bombassembly.forceMove(drop_location())
 		bombassembly.master = null
 		bombassembly = null
-	if(bombtank)
+
 		bombtank.forceMove(drop_location())
 		bombtank.master = null
 		bombtank = null
-	qdel(src)
-	return TRUE
 
-/obj/item/onetankbomb/welder_act(mob/living/user, obj/item/I)
-	. = FALSE
-	if(status)
-		to_chat(user, "<span class='notice'>[bombtank] already has a pressure hole!</span>")
+		qdel(src)
 		return
-	if(!I.tool_start_check(user, amount=0))
-		return
-	if(I.use_tool(src, user, 0, volume=40))
-		status = TRUE
-		GLOB.bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
-		message_admins("[ADMIN_LOOKUPFLW(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]")
-		to_chat(user, "<span class='notice'>A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited.</span>")
-		add_fingerprint(user)
-		return TRUE
+	var/obj/item/weldingtool/WT = W
+	if((istype(WT) && WT.welding))
+		if(!status)
+			status = TRUE
+			GLOB.bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
+			message_admins("[key_name_admin(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]")
+			to_chat(user, "<span class='notice'>A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited.</span>")
+	add_fingerprint(user)
+	..()
 
-
-/obj/item/onetankbomb/analyzer_act(mob/living/user, obj/item/I)
-	bombtank.analyzer_act(user, I)
-
-/obj/item/onetankbomb/attack_self(mob/user) //pressing the bomb accesses its assembly
+/obj/item/device/onetankbomb/attack_self(mob/user) //pressing the bomb accesses its assembly
 	bombassembly.attack_self(user, TRUE)
 	add_fingerprint(user)
 	return
 
-/obj/item/onetankbomb/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
-	audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*")
-	playsound(src, 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
+/obj/item/device/onetankbomb/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
+	visible_message("[icon2html(src, viewers(src))] *beep* *beep*", "*beep* *beep*")
 	sleep(10)
-	if(QDELETED(src))
+	if(!src)
 		return
 	if(status)
 		bombtank.ignite()	//if its not a dud, boom (or not boom if you made shitty mix) the ignite proc is below, in this file
 	else
 		bombtank.release()
 
-//Assembly / attached device memes
-
-/obj/item/onetankbomb/Crossed(atom/movable/AM as mob|obj) //for mousetraps
-	. = ..()
+/obj/item/device/onetankbomb/Crossed(atom/movable/AM as mob|obj) //for mousetraps
 	if(bombassembly)
 		bombassembly.Crossed(AM)
 
-/obj/item/onetankbomb/on_found(mob/finder) //for mousetraps
+/obj/item/device/onetankbomb/on_found(mob/finder) //for mousetraps
 	if(bombassembly)
 		bombassembly.on_found(finder)
-
-/obj/item/onetankbomb/attack_hand() //also for mousetraps
-	. = ..()
-	if(.)
-		return
-	if(bombassembly)
-		bombassembly.attack_hand()
-
-/obj/item/onetankbomb/Move()
-	. = ..()
-	if(bombassembly)
-		bombassembly.setDir(dir)
-		bombassembly.Move()
-
-/obj/item/onetankbomb/dropped()
-	. = ..()
-	if(bombassembly)
-		bombassembly.dropped()
-
-
 
 
 // ---------- Procs below are for tanks that are used exclusively in 1-tank bombs ----------
 
 //Bomb assembly proc. This turns assembly+tank into a bomb
-/obj/item/tank/proc/bomb_assemble(obj/item/assembly_holder/assembly, mob/living/user)
+/obj/item/tank/proc/bomb_assemble(obj/item/device/assembly_holder/assembly, mob/living/user)
 	//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it
 	if(isigniter(assembly.a_left) == isigniter(assembly.a_right))
 		return
 
-	if((src in user.get_equipped_items(TRUE)) && !user.canUnEquip(src))
+	if((src in user.get_equipped_items()) && !user.canUnEquip(src))
 		to_chat(user, "<span class='warning'>[src] is stuck to you!</span>")
 		return
 
@@ -125,7 +94,7 @@
 		to_chat(user, "<span class='warning'>[assembly] is stuck to your hand!</span>")
 		return
 
-	var/obj/item/onetankbomb/bomb = new
+	var/obj/item/device/onetankbomb/bomb = new
 	user.transferItemToLoc(src, bomb)
 	user.transferItemToLoc(assembly, bomb)
 
@@ -143,8 +112,9 @@
 	return
 
 /obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
-	var/fuel_moles = air_contents.gases[/datum/gas/plasma] + air_contents.gases[/datum/gas/oxygen]/6
-	GAS_GARBAGE_COLLECT(air_contents.gases)
+	air_contents.assert_gases(/datum/gas/plasma, /datum/gas/oxygen)
+	var/fuel_moles = air_contents.gases[/datum/gas/plasma][MOLES] + air_contents.gases[/datum/gas/oxygen][MOLES]/6
+	air_contents.garbage_collect()
 	var/datum/gas_mixture/bomb_mixture = air_contents.copy()
 	var/strength = 1
 

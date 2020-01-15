@@ -12,20 +12,16 @@
 	var/dna_cost = -1 //cost of the sting in dna points. 0 = auto-purchase, -1 = cannot be purchased
 	var/req_dna = 0  //amount of dna needed to use this ability. Changelings always have atleast 1
 	var/req_human = 0 //if you need to be human to use this ability
-	var/req_absorbs = 0 //similar to req_dna, but only gained from absorbing, not DNA sting
 	var/req_stat = CONSCIOUS // CONSCIOUS, UNCONSCIOUS or DEAD
 	var/always_keep = 0 // important for abilities like revive that screw you if you lose them.
 	var/ignores_fakedeath = FALSE // usable with the FAKEDEATH flag
-	var/loudness = 0 //Determines how much having this ability will affect changeling blood tests. At 4, the blood will react violently and turn to ash, creating a unique message in the process. At 10, the blood will explode when heated.
 
 
 /obj/effect/proc_holder/changeling/proc/on_purchase(mob/user, is_respec)
-	action.Grant(user)
 	if(!is_respec)
 		SSblackbox.record_feedback("tally", "changeling_power_purchase", 1, name)
 
 /obj/effect/proc_holder/changeling/proc/on_refund(mob/user)
-	action.Remove(user)
 	return
 
 /obj/effect/proc_holder/changeling/Click()
@@ -63,22 +59,20 @@
 	if(c.absorbedcount < req_dna)
 		to_chat(user, "<span class='warning'>We require at least [req_dna] sample\s of compatible DNA.</span>")
 		return 0
-	if(c.trueabsorbs < req_absorbs)
-		to_chat(user, "<span class='warning'>We require at least [req_absorbs] sample\s of DNA gained through our Absorb ability.</span>")
 	if(req_stat < user.stat)
 		to_chat(user, "<span class='warning'>We are incapacitated.</span>")
 		return 0
-	if((HAS_TRAIT(user, TRAIT_DEATHCOMA)) && (!ignores_fakedeath))
+	if((user.has_trait(TRAIT_FAKEDEATH)) && (!ignores_fakedeath))
 		to_chat(user, "<span class='warning'>We are incapacitated.</span>")
 		return 0
 	return 1
 
 //used in /mob/Stat()
 /obj/effect/proc_holder/changeling/proc/can_be_used_by(mob/user)
-	if(QDELETED(user))
-		return FALSE
+	if(!user || QDELETED(user))
+		return 0
 	if(!ishuman(user) && !ismonkey(user))
-		return FALSE
+		return 0
 	if(req_human && !ishuman(user))
-		return FALSE
-	return TRUE
+		return 0
+	return 1

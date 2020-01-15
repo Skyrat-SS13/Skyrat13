@@ -6,7 +6,6 @@
 	name = "traitor+brothers"
 	config_tag = "traitorbro"
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster")
 
 	announce_span = "danger"
 	announce_text = "There are Syndicate agents and Blood Brothers on the station!\n\
@@ -38,13 +37,13 @@
 		var/datum/team/brother_team/team = new
 		var/team_size = prob(10) ? min(3, possible_brothers.len) : 2
 		for(var/k = 1 to team_size)
-			var/datum/mind/bro = antag_pick(possible_brothers)
+			var/datum/mind/bro = pick(possible_brothers)
 			possible_brothers -= bro
 			antag_candidates -= bro
 			team.add_member(bro)
 			bro.special_role = "brother"
 			bro.restricted_roles = restricted_jobs
-			log_game("[key_name(bro)] has been selected as a Brother")
+			log_game("[bro.key] (ckey) has been selected as a Brother")
 		pre_brother_teams += team
 	return ..()
 

@@ -1,6 +1,5 @@
 /datum/martial_art/krav_maga
 	name = "Krav Maga"
-	id = MARTIALART_KRAVMAGA
 	var/datum/action/neck_chop/neckchop = new/datum/action/neck_chop()
 	var/datum/action/leg_sweep/legsweep = new/datum/action/leg_sweep()
 	var/datum/action/lung_punch/lungpunch = new/datum/action/lung_punch()
@@ -19,9 +18,6 @@
 		owner.visible_message("<span class='danger'>[owner] assumes a neutral stance.</span>", "<b><i>Your next attack is cleared.</i></b>")
 		H.mind.martial_art.streak = ""
 	else
-		if(HAS_TRAIT(H, TRAIT_PACIFISM))
-			to_chat(H, "<span class='warning'>You don't want to harm other people!</span>")
-			return
 		owner.visible_message("<span class='danger'>[owner] assumes the Neck Chop stance!</span>", "<b><i>Your next attack will be a Neck Chop.</i></b>")
 		H.mind.martial_art.streak = "neck_chop"
 
@@ -39,9 +35,6 @@
 		owner.visible_message("<span class='danger'>[owner] assumes a neutral stance.</span>", "<b><i>Your next attack is cleared.</i></b>")
 		H.mind.martial_art.streak = ""
 	else
-		if(HAS_TRAIT(H, TRAIT_PACIFISM))
-			to_chat(H, "<span class='warning'>You don't want to harm other people!</span>")
-			return
 		owner.visible_message("<span class='danger'>[owner] assumes the Leg Sweep stance!</span>", "<b><i>Your next attack will be a Leg Sweep.</i></b>")
 		H.mind.martial_art.streak = "leg_sweep"
 
@@ -59,9 +52,6 @@
 		owner.visible_message("<span class='danger'>[owner] assumes a neutral stance.</span>", "<b><i>Your next attack is cleared.</i></b>")
 		H.mind.martial_art.streak = ""
 	else
-		if(HAS_TRAIT(H, TRAIT_PACIFISM))
-			to_chat(H, "<span class='warning'>You don't want to harm other people!</span>")
-			return
 		owner.visible_message("<span class='danger'>[owner] assumes the Lung Punch stance!</span>", "<b><i>Your next attack will be a Lung Punch.</i></b>")
 		H.mind.martial_art.streak = "quick_choke"//internal name for lung punch
 
@@ -95,15 +85,15 @@
 			return 1
 	return 0
 
-/datum/martial_art/krav_maga/proc/leg_sweep(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(D.lying || D.IsKnockdown())
+/datum/martial_art/krav_maga/proc/leg_sweep(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+	if(D.stat || D.IsKnockdown())
 		return 0
 	D.visible_message("<span class='warning'>[A] leg sweeps [D]!</span>", \
 					  	"<span class='userdanger'>[A] leg sweeps you!</span>")
 	playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 	D.apply_damage(5, BRUTE)
-	D.Knockdown(40, override_hardstun = 0.01, override_stamdmg = 25)
-	log_combat(A, D, "leg sweeped")
+	D.Knockdown(40)
+	add_logs(A, D, "leg sweeped")
 	return 1
 
 /datum/martial_art/krav_maga/proc/quick_choke(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)//is actually lung punch
@@ -113,7 +103,7 @@
 	if(D.losebreath <= 10)
 		D.losebreath = CLAMP(D.losebreath + 5, 0, 10)
 	D.adjustOxyLoss(10)
-	log_combat(A, D, "quickchoked")
+	add_logs(A, D, "quickchoked")
 	return 1
 
 /datum/martial_art/krav_maga/proc/neck_chop(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
@@ -123,19 +113,19 @@
 	D.apply_damage(5, BRUTE)
 	if(D.silent <= 10)
 		D.silent = CLAMP(D.silent + 10, 0, 10)
-	log_combat(A, D, "neck chopped")
+	add_logs(A, D, "neck chopped")
 	return 1
 
 /datum/martial_art/krav_maga/grab_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	if(check_streak(A,D))
 		return 1
-	log_combat(A, D, "grabbed (Krav Maga)")
+	add_logs(A, D, "grabbed with krav maga")
 	..()
 
 /datum/martial_art/krav_maga/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	if(check_streak(A,D))
 		return 1
-	log_combat(A, D, "punched")
+	add_logs(A, D, "punched")
 	var/picked_hit_type = pick("punches", "kicks")
 	var/bonus_damage = 10
 	if(D.IsKnockdown() || D.resting || D.lying)
@@ -150,10 +140,12 @@
 		playsound(get_turf(D), 'sound/effects/hit_punch.ogg', 50, 1, -1)
 	D.visible_message("<span class='danger'>[A] [picked_hit_type] [D]!</span>", \
 					  "<span class='userdanger'>[A] [picked_hit_type] you!</span>")
-	log_combat(A, D, "[picked_hit_type] with [name]")
+	add_logs(A, D, "[picked_hit_type] with [name]")
 	return 1
 
 /datum/martial_art/krav_maga/disarm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+	if(check_streak(A,D))
+		return 1
 	var/obj/item/I = null
 	if(prob(60))
 		I = D.get_active_held_item()
@@ -167,7 +159,7 @@
 		D.visible_message("<span class='danger'>[A] attempted to disarm [D]!</span>", \
 							"<span class='userdanger'>[A] attempted to disarm [D]!</span>")
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-	log_combat(A, D, "disarmed (Krav Maga)", "[I ? " removing \the [I]" : ""]")
+	add_logs(A, D, "disarmed with krav maga", "[I ? " removing \the [I]" : ""]")
 	return 1
 
 //Krav Maga Gloves
@@ -178,7 +170,7 @@
 /obj/item/clothing/gloves/krav_maga/equipped(mob/user, slot)
 	if(!ishuman(user))
 		return
-	if(slot == SLOT_GLOVES)
+	if(slot == slot_gloves)
 		var/mob/living/carbon/human/H = user
 		style.teach(H,1)
 
@@ -186,7 +178,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.get_item_by_slot(SLOT_GLOVES) == src)
+	if(H.get_item_by_slot(slot_gloves) == src)
 		style.remove(H)
 
 /obj/item/clothing/gloves/krav_maga/sec//more obviously named, given to sec
@@ -199,18 +191,3 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
-
-/obj/item/clothing/gloves/krav_maga/combatglovesplus
-	name = "combat gloves plus"
-	desc = "These tactical gloves are fireproof and shock resistant, and using nanochip technology it teaches you the powers of krav maga."
-	icon_state = "combat"
-	item_state = "blackgloves"
-	siemens_coefficient = 0
-	permeability_coefficient = 0.05
-	strip_delay = 80
-	cold_protection = HANDS
-	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
-	heat_protection = HANDS
-	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
-	resistance_flags = NONE
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50)

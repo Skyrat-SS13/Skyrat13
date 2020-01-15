@@ -25,6 +25,8 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 			pixel_x = oldPY
 			pixel_y = (oldPX*(-1))
 
+	SendSignal(COMSIG_ATOM_ROTATE, rotation, params)
+
 /************************************Turf rotate procs************************************/
 
 /turf/closed/mineral/shuttleRotate(rotation, params)
@@ -106,13 +108,6 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 
 /obj/machinery/door/airlock/shuttleRotate(rotation, params)
 	. = ..()
-	if(cyclelinkeddir && (params & ROTATE_DIR))
+	if(cyclelinkeddir)
 		cyclelinkeddir = angle2dir(rotation+dir2angle(cyclelinkeddir))
-		// If we update the linked airlock here, the partner airlock might
-		// not be present yet, so don't do that. Just assume we're still
-		// partnered with the same airlock as before.
-
-/obj/machinery/porta_turret/shuttleRotate(rotation, params)
-	. = ..()
-	if(wall_turret_direction && (params & ROTATE_DIR))
-		wall_turret_direction = turn(wall_turret_direction,rotation)
+		cyclelinkairlock()

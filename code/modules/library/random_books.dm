@@ -60,7 +60,8 @@
 			B.dat		=	query_get_random_books.item[4]
 			B.name		=	"Book: [B.title]"
 			B.icon_state=	"book[rand(1,8)]"
-	qdel(query_get_random_books)
+	else
+		return
 
 /obj/structure/bookcase/random/fiction
 	name = "bookcase (Fiction)"

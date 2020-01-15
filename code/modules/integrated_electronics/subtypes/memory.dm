@@ -19,7 +19,7 @@
 	. = ..()
 
 /obj/item/integrated_circuit/memory/examine(mob/user)
-	. = ..()
+	..()
 	var/i
 	for(i = 1, i <= outputs.len, i++)
 		var/datum/integrated_io/O = outputs[i]
@@ -30,7 +30,7 @@
 				data = "[d]"
 		else if(!isnull(O.data))
 			data = O.data
-		. += "\The [src] has [data] saved to address [i]."
+		to_chat(user, "\The [src] has [data] saved to address [i].")
 
 /obj/item/integrated_circuit/memory/do_work()
 	for(var/i = 1 to inputs.len)
@@ -56,14 +56,14 @@
 
 /obj/item/integrated_circuit/memory/large
 	name = "large memory circuit"
-	desc = "This big circuit can store eight pieces of data."
+	desc = "This big circuit can hold eight pieces of data."
 	icon_state = "memory8"
 	power_draw_per_use = 4
 	number_of_pins = 8
 
 /obj/item/integrated_circuit/memory/huge
 	name = "large memory stick"
-	desc = "This stick of memory can store up up to sixteen pieces of data."
+	desc = "This stick of memory can hold up up to sixteen pieces of data."
 	icon_state = "memory16"
 	w_class = WEIGHT_CLASS_SMALL
 	spawn_flags = IC_SPAWN_RESEARCH
@@ -79,26 +79,10 @@
 	activators = list("push data" = IC_PINTYPE_PULSE_IN)
 	var/accepting_refs = FALSE
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	number_of_pins = 0
 
 /obj/item/integrated_circuit/memory/constant/do_work()
 	var/datum/integrated_io/O = outputs[1]
 	O.push_data()
-
-/obj/item/integrated_circuit/memory/constant/emp_act()
-	for(var/i in 1 to activators.len)
-		var/datum/integrated_io/activate/A = activators[i]
-		A.scramble()
-
-/obj/item/integrated_circuit/memory/constant/save_special()
-	var/datum/integrated_io/O = outputs[1]
-	if(istext(O.data) || isnum(O.data))
-		return O.data
-
-/obj/item/integrated_circuit/memory/constant/load_special(special_data)
-	var/datum/integrated_io/O = outputs[1]
-	if(istext(special_data) || isnum(special_data))
-		O.data = special_data
 
 /obj/item/integrated_circuit/memory/constant/attack_self(mob/user)
 	var/datum/integrated_io/O = outputs[1]
@@ -129,7 +113,6 @@
 			to_chat(user, "<span class='notice'>You set \the [src]'s memory to absolutely nothing.</span>")
 
 /obj/item/integrated_circuit/memory/constant/afterattack(atom/target, mob/living/user, proximity)
-	. = ..()
 	if(accepting_refs && proximity)
 		var/datum/integrated_io/O = outputs[1]
 		O.data = WEAKREF(target)

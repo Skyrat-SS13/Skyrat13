@@ -6,24 +6,15 @@
 	name = "Shuttle"
 	requires_power = FALSE
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
-	has_gravity = STANDARD_GRAVITY
+	has_gravity = TRUE
 	always_unpowered = FALSE
 	valid_territory = FALSE
 	icon_state = "shuttle"
-	// Loading the same shuttle map at a different time will produce distinct area instances.
-	unique = FALSE
 
 /area/shuttle/Initialize()
 	if(!canSmoothWithAreas)
 		canSmoothWithAreas = type
 	. = ..()
-
-/area/shuttle/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
-	. = ..()
-	if(length(new_baseturfs) > 1 || fake_turf_type)
-		return // More complicated larger changes indicate this isn't a player
-	if(ispath(new_baseturfs[1], /turf/open/floor/plating))
-		new_baseturfs.Insert(1, /turf/baseturf_skipover/shuttle)
 
 ////////////////////////////Multi-area shuttles////////////////////////////
 
@@ -64,48 +55,17 @@
 	name = "Pirate Shuttle Vault"
 	requires_power = FALSE
 
-////////////////////////////White Ship////////////////////////////
-
-/area/shuttle/abandoned
-	name = "Abandoned Ship"
-	blob_allowed = FALSE
-	requires_power = TRUE
-	canSmoothWithAreas = /area/shuttle/abandoned
-
-/area/shuttle/abandoned/bridge
-	name = "Abandoned Ship Bridge"
-
-/area/shuttle/abandoned/engine
-	name = "Abandoned Ship Engine"
-
-/area/shuttle/abandoned/bar
-	name = "Abandoned Ship Bar"
-
-/area/shuttle/abandoned/crew
-	name = "Abandoned Ship Crew Quarters"
-
-/area/shuttle/abandoned/cargo
-	name = "Abandoned Ship Cargo Bay"
-
-/area/shuttle/abandoned/medbay
-	name = "Abandoned Ship Medbay"
-
-/area/shuttle/abandoned/pod
-	name = "Abandoned Ship Pod"
-
 ////////////////////////////Single-area shuttles////////////////////////////
 
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/custom
 	name = "Custom player shuttle"
 
 /area/shuttle/arrival
 	name = "Arrival Shuttle"
-	unique = TRUE  // SSjob refers to this area for latejoiners
 
 /area/shuttle/pod_1
 	name = "Escape Pod One"
@@ -155,6 +115,10 @@
 
 /area/shuttle/assault_pod
 	name = "Steel Rain"
+	blob_allowed = FALSE
+
+/area/shuttle/abandoned
+	name = "Abandoned Ship"
 	blob_allowed = FALSE
 
 /area/shuttle/sbc_starfury

@@ -23,13 +23,18 @@
 			transfer_fingerprints_to(F)
 			qdel(src)
 	else if(istype(I, /obj/item/weldingtool))
-		if(!I.tool_start_check(user, amount=0))
+		var/obj/item/weldingtool/WT = I
+		if(!WT.remove_fuel(0, user))
 			return
 		to_chat(user, "<span class='notice'>You begin cutting \the [src] apart...</span>")
-		if(I.use_tool(src, user, 50, volume=50))
+		playsound(src.loc, WT.usesound, 40, 1)
+		if(do_after(user, 40*WT.toolspeed, 1, target = src))
+			if(!WT.isOn())
+				return
+			playsound(src.loc, WT.usesound, 50, 1)
 			visible_message("<span class='notice'>[user] slices apart \the [src].</span>",
-				"<span class='notice'>You cut \the [src] apart with \the [I].</span>",
-				"<span class='italics'>You hear welding.</span>")
+							"<span class='notice'>You cut \the [src] apart with \the [WT].</span>",
+							"<span class='italics'>You hear welding.</span>")
 			new /obj/item/stack/sheet/metal(src.loc, 4)
 			qdel(src)
 		return
@@ -47,20 +52,23 @@
 	can_buckle = 1
 	max_integrity = 250
 
+
 /obj/structure/kitchenspike/attack_paw(mob/user)
-	return attack_hand(user)
+	return src.attack_hand(usr)
 
-/obj/structure/kitchenspike/crowbar_act(mob/living/user, obj/item/I)
-	if(has_buckled_mobs())
-		to_chat(user, "<span class='notice'>You can't do that while something's on the spike!</span>")
-		return TRUE
 
-	if(I.use_tool(src, user, 20, volume=100))
-		to_chat(user, "<span class='notice'>You pry the spikes out of the frame.</span>")
-		deconstruct(TRUE)
-	return TRUE
+/obj/structure/kitchenspike/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/crowbar))
+		if(!has_buckled_mobs())
+			playsound(loc, I.usesound, 100, 1)
+			if(do_after(user, 20*I.toolspeed, target = src))
+				to_chat(user, "<span class='notice'>You pry the spikes out of the frame.</span>")
+				deconstruct(TRUE)
+		else
+			to_chat(user, "<span class='notice'>You can't do that while something's on the spike!</span>")
+	else
+		return ..()
 
-//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/kitchenspike/attack_hand(mob/user)
 	if(VIABLE_MOB_CHECK(user.pulling) && user.a_intent == INTENT_GRAB && !has_buckled_mobs())
 		var/mob/living/L = user.pulling
@@ -75,11 +83,7 @@
 			L.visible_message("<span class='danger'>[user] slams [L] onto the meat spike!</span>", "<span class='userdanger'>[user] slams you onto the meat spike!</span>", "<span class='italics'>You hear a squishy wet noise.</span>")
 			L.forceMove(drop_location())
 			L.emote("scream")
-			if(iscarbon(L))
-				var/mob/living/carbon/C = L
-				C.bleed(30)
-			else
-				L.add_splatter_floor()
+			L.add_splatter_floor()
 			L.adjustBruteLoss(30)
 			L.setDir(2)
 			buckle_mob(L, force=1)

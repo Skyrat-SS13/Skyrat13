@@ -13,8 +13,7 @@ Contents:
 	name = "Space Ninja"
 	typepath = /datum/round_event/ghost_role/ninja
 	max_occurrences = 1
-	earliest_start = 40 MINUTES
-	gamemode_blacklist = list("dynamic")
+	earliest_start = 30000 // 1 hour
 	min_players = 15
 
 /datum/round_event/ghost_role/ninja
@@ -34,6 +33,7 @@ Contents:
 		control.occurrences--
 	return ..()
 
+
 /datum/round_event/ghost_role/ninja/spawn_role()
 	//selecting a spawn_loc
 	if(!spawn_loc)
@@ -48,7 +48,7 @@ Contents:
 		return MAP_ERROR
 
 	//selecting a candidate player
-	var/list/candidates = get_candidates(ROLE_NINJA, null, ROLE_NINJA)
+	var/list/candidates = get_candidates("ninja", null, ROLE_NINJA)
 	if(!candidates.len)
 		return NOT_ENOUGH_PLAYERS
 
@@ -57,8 +57,8 @@ Contents:
 
 	//Prepare ninja player mind
 	var/datum/mind/Mind = new /datum/mind(key)
-	Mind.assigned_role = ROLE_NINJA
-	Mind.special_role = ROLE_NINJA
+	Mind.assigned_role = "Space Ninja"
+	Mind.special_role = "Space Ninja"
 	Mind.active = 1
 
 	//spawn the ninja and assign the candidate
@@ -72,9 +72,8 @@ Contents:
 		throw EXCEPTION("Ninja created with incorrect mind")
 
 	spawned_mobs += Ninja
-	message_admins("[ADMIN_LOOKUPFLW(Ninja)] has been made into a ninja by an event.")
+	message_admins("[key_name_admin(Ninja)] has been made into a ninja by an event.")
 	log_game("[key_name(Ninja)] was spawned as a ninja by an event.")
-	success_spawn = TRUE
 
 	return SUCCESSFUL_SPAWN
 

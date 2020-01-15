@@ -12,7 +12,6 @@
 	var/cell_type = /obj/item/stock_parts/cell/high
 	var/obj/item/stock_parts/cell/cell
 	var/recharging = FALSE
-	var/gun_charger = FALSE
 
 /obj/item/inducer/Initialize()
 	. = ..()
@@ -30,8 +29,8 @@
 	return cell
 
 /obj/item/inducer/emp_act(severity)
-	. = ..()
-	if(cell && !(. & EMP_PROTECT_CONTENTS))
+	..()
+	if(cell)
 		cell.emp_act(severity)
 
 /obj/item/inducer/attack_obj(obj/O, mob/living/carbon/user)
@@ -63,7 +62,7 @@
 
 /obj/item/inducer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/screwdriver))
-		W.play_tool_sound(src)
+		playsound(src, W.usesound, 50, 1)
 		if(!opened)
 			to_chat(user, "<span class='notice'>You unscrew the battery compartment.</span>")
 			opened = TRUE
@@ -103,11 +102,12 @@
 	else
 		recharging = TRUE
 	var/obj/item/stock_parts/cell/C = A.get_cell()
+	var/obj/item/gun/energy/E
 	var/obj/O
 	var/coefficient = 1
-	if(istype(A, /obj/item/gun/energy) && gun_charger != TRUE)
-		to_chat(user,"Error unable to interface with device")
-		return FALSE
+	if(istype(A, /obj/item/gun/energy))
+		coefficient = 0.075 // 14 loops to recharge an egun from 0-1000
+		E = A
 	if(istype(A, /obj))
 		O = A
 	if(C)
@@ -118,6 +118,8 @@
 			return TRUE
 		user.visible_message("[user] starts recharging [A] with [src].","<span class='notice'>You start recharging [A] with [src].</span>")
 		while(C.charge < C.maxcharge)
+			if(E)
+				E.semicd = TRUE  // Prevents someone from firing continuously while recharging the gun.
 			if(do_after(user, 10, target = user) && cell.charge)
 				done_any = TRUE
 				induce(C, coefficient)
@@ -126,6 +128,8 @@
 					O.update_icon()
 			else
 				break
+		if(E)
+			E.reset_semicd() //We're done charging, so we'll let someone fire it now.
 		if(done_any) // Only show a message if we succeeded at least once
 			user.visible_message("[user] recharged [A]!","<span class='notice'>You recharged [A]!</span>")
 		recharging = FALSE
@@ -155,13 +159,13 @@
 
 
 /obj/item/inducer/examine(mob/living/M)
-	. = ..()
+	..()
 	if(cell)
-		. += "<span class='notice'>Its display shows: [DisplayEnergy(cell.charge)].</span>"
+		to_chat(M, "<span class='notice'>Its display shows: [DisplayEnergy(cell.charge)].</span>")
 	else
-		. += "<span class='notice'>Its display is dark.</span>"
+		to_chat(M,"<span class='notice'>Its display is dark.</span>")
 	if(opened)
-		. += "<span class='notice'>Its battery compartment is open.</span>"
+		to_chat(M,"<span class='notice'>Its battery compartment is open.</span>")
 
 /obj/item/inducer/update_icon()
 	cut_overlays()
@@ -183,29 +187,4 @@
 	. = ..()
 	update_icon()
 
-/obj/item/inducer/sci/combat
-	icon_state = "inducer-combat"
-	item_state = "inducer-combat"
-	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = SLOT_BELT
-	desc = "A tool for inductively charging internal power cells. This one has been modified and upgraded to be able to charge into guns as well as normal electronics."
-	cell_type = /obj/item/stock_parts/cell/hyper
-	powertransfer = 1300
-	opened = FALSE
-	gun_charger = TRUE
 
-/obj/item/inducer/sci/combat/dry
-	cell_type = null
-	opened = TRUE
-
-/obj/item/inducer/sci/combat/dry/Initialize() //Just in case
-	. = ..()
-	update_icon()
-
-/obj/item/inducer/sci/combat/Initialize()
-	. = ..()
-	update_icon()
-
-/obj/item/inducer/sci/supply
-	opened = FALSE
-	cell_type = /obj/item/stock_parts/cell/inducer_supply

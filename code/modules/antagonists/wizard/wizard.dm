@@ -3,7 +3,6 @@
 	roundend_category = "wizards/witches"
 	antagpanel_category = "Wizard"
 	job_rank = ROLE_WIZARD
-	antag_moodlet = /datum/mood_event/focused
 	var/give_objectives = TRUE
 	var/strip = TRUE //strip before equipping
 	var/allow_rename = TRUE
@@ -12,13 +11,12 @@
 	var/move_to_lair = TRUE
 	var/outfit_type = /datum/outfit/wizard
 	var/wiz_age = WIZARD_AGE_MIN /* Wizards by nature cannot be too young. */
-	can_hijack = HIJACK_HIJACKER
 
 /datum/antagonist/wizard/on_gain()
 	register()
-	equip_wizard()
 	if(give_objectives)
 		create_objectives()
+	equip_wizard()
 	if(move_to_lair)
 		send_to_lair()
 	. = ..()
@@ -57,22 +55,61 @@
 	if(!GLOB.wizardstart.len)
 		SSjob.SendToLateJoin(owner.current)
 		to_chat(owner, "HOT INSERTION, GO GO GO")
-	else
-		owner.current.forceMove(pick(GLOB.wizardstart))
+	owner.current.forceMove(pick(GLOB.wizardstart))
 
 /datum/antagonist/wizard/proc/create_objectives()
-	var/datum/objective/new_objective = new("Cause as much creative mayhem as you can aboard the station! The more outlandish your methods of achieving this, the better! Make sure there's a decent amount of crew alive to tell of your tale.")
-	new_objective.completed = TRUE //So they can greentext without admin intervention.
-	new_objective.owner = owner
-	objectives += new_objective
+	switch(rand(1,100))
+		if(1 to 30)
+			var/datum/objective/assassinate/kill_objective = new
+			kill_objective.owner = owner
+			kill_objective.find_target()
+			objectives += kill_objective
 
-	if (!(locate(/datum/objective/escape) in objectives))
-		var/datum/objective/escape/escape_objective = new
-		escape_objective.owner = owner
-		objectives += escape_objective
+			if (!(locate(/datum/objective/escape) in owner.objectives))
+				var/datum/objective/escape/escape_objective = new
+				escape_objective.owner = owner
+				objectives += escape_objective
+
+		if(31 to 60)
+			var/datum/objective/steal/steal_objective = new
+			steal_objective.owner = owner
+			steal_objective.find_target()
+			objectives += steal_objective
+
+			if (!(locate(/datum/objective/escape) in owner.objectives))
+				var/datum/objective/escape/escape_objective = new
+				escape_objective.owner = owner
+				objectives += escape_objective
+
+		if(61 to 85)
+			var/datum/objective/assassinate/kill_objective = new
+			kill_objective.owner = owner
+			kill_objective.find_target()
+			objectives += kill_objective
+
+			var/datum/objective/steal/steal_objective = new
+			steal_objective.owner = owner
+			steal_objective.find_target()
+			objectives += steal_objective
+
+			if (!(locate(/datum/objective/survive) in owner.objectives))
+				var/datum/objective/survive/survive_objective = new
+				survive_objective.owner = owner
+				objectives += survive_objective
+
+		else
+			if (!(locate(/datum/objective/hijack) in owner.objectives))
+				var/datum/objective/hijack/hijack_objective = new
+				hijack_objective.owner = owner
+				objectives += hijack_objective
+
+	for(var/datum/objective/O in objectives)
+		owner.objectives += O
 
 /datum/antagonist/wizard/on_removal()
 	unregister()
+	for(var/objective in objectives)
+		owner.objectives -= objective
 	owner.RemoveAllSpells() // TODO keep track which spells are wizard spells which innate stuff
 	return ..()
 
@@ -119,12 +156,12 @@
 /datum/antagonist/wizard/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_wiz_icons_added(M, wiz_team ? TRUE : FALSE) //Don't bother showing the icon if you're solo wizard
-	M.faction |= ROLE_WIZARD
+	M.faction |= "wizard"
 
 /datum/antagonist/wizard/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_wiz_icons_removed(M)
-	M.faction -= ROLE_WIZARD
+	M.faction -= "wizard"
 
 
 /datum/antagonist/wizard/get_admin_commands()
@@ -143,7 +180,7 @@
 	wiz_age = APPRENTICE_AGE_MIN
 
 /datum/antagonist/wizard/apprentice/greet()
-	to_chat(owner, "<B>You are [master.current.real_name]'s apprentice! You are bound by magic contract to follow [master.p_their()] orders and help [master.p_them()] in accomplishing [master.p_their()] goals.")
+	to_chat(owner, "<B>You are [master.current.real_name]'s apprentice! You are bound by magic contract to follow their orders and help them in accomplishing their goals.")
 	owner.announce_objectives()
 
 /datum/antagonist/wizard/apprentice/register()
@@ -165,7 +202,7 @@
 			owner.AddSpell(new /obj/effect/proc_holder/spell/aimed/fireball(null))
 			to_chat(owner, "<B>Your service has not gone unrewarded, however. Studying under [master.current.real_name], you have learned powerful, destructive spells. You are able to cast magic missile and fireball.")
 		if(APPRENTICE_BLUESPACE)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/turf_teleport/blink(null))
+			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/area_teleport/teleport(null))
 			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt(null))
 			to_chat(owner, "<B>Your service has not gone unrewarded, however. Studying under [master.current.real_name], you have learned reality bending mobility spells. You are able to cast teleport and ethereal jaunt.")
 		if(APPRENTICE_HEALING)
@@ -177,16 +214,13 @@
 			owner.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock(null))
 			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/mind_transfer(null))
 			to_chat(owner, "<B>Your service has not gone unrewarded, however. Studying under [master.current.real_name], you have learned stealthy, robeless spells. You are able to cast knock and mindswap.")
-		if(APPRENTICE_MARTIAL)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/nuclear_fist(null))
-			H.put_in_hands(new /obj/item/book/granter/martial/plasma_fist(H))
-			to_chat(owner, "<B>Your service has not gone unrewarded, however. Studying under [master.current.real_name], you have learned mystical martial abilities. You are also able to use the Nuclear Fist at will.")
 
 /datum/antagonist/wizard/apprentice/create_objectives()
 	var/datum/objective/protect/new_objective = new /datum/objective/protect
 	new_objective.owner = owner
 	new_objective.target = master
 	new_objective.explanation_text = "Protect [master.current.real_name], the wizard."
+	owner.objectives += new_objective
 	objectives += new_objective
 
 //Random event wizard
@@ -205,17 +239,17 @@
 	if(!istype(master_mob) || !istype(H))
 		return
 	if(master_mob.ears)
-		H.equip_to_slot_or_del(new master_mob.ears.type, SLOT_EARS)
+		H.equip_to_slot_or_del(new master_mob.ears.type, slot_ears)
 	if(master_mob.w_uniform)
-		H.equip_to_slot_or_del(new master_mob.w_uniform.type, SLOT_W_UNIFORM)
+		H.equip_to_slot_or_del(new master_mob.w_uniform.type, slot_w_uniform)
 	if(master_mob.shoes)
-		H.equip_to_slot_or_del(new master_mob.shoes.type, SLOT_SHOES)
+		H.equip_to_slot_or_del(new master_mob.shoes.type, slot_shoes)
 	if(master_mob.wear_suit)
-		H.equip_to_slot_or_del(new master_mob.wear_suit.type, SLOT_WEAR_SUIT)
+		H.equip_to_slot_or_del(new master_mob.wear_suit.type, slot_wear_suit)
 	if(master_mob.head)
-		H.equip_to_slot_or_del(new master_mob.head.type, SLOT_HEAD)
+		H.equip_to_slot_or_del(new master_mob.head.type, slot_head)
 	if(master_mob.back)
-		H.equip_to_slot_or_del(new master_mob.back.type, SLOT_BACK)
+		H.equip_to_slot_or_del(new master_mob.back.type, slot_back)
 
 	//Operation: Fuck off and scare people
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/area_teleport/teleport(null))
@@ -248,12 +282,13 @@
 	if(!istype(M))
 		return
 
-	var/obj/item/implant/exile/Implant = new
+	var/obj/item/implant/exile/Implant = new/obj/item/implant/exile(M)
 	Implant.implant(M)
 
 /datum/antagonist/wizard/academy/create_objectives()
 	var/datum/objective/new_objective = new("Protect Wizard Academy from the intruders")
 	new_objective.owner = owner
+	owner.objectives += new_objective
 	objectives += new_objective
 
 //Solo wizard report

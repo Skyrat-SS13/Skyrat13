@@ -79,10 +79,10 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone
 	name = "Summon Soulstone"
-	desc = "This spell reaches into Nar'Sie's realm, summoning one of the legendary fragments across time and space."
+	desc = "This spell reaches into Nar-Sie's realm, summoning one of the legendary fragments across time and space."
 
 	school = "conjuration"
-	charge_max = 2400
+	charge_max = 3000
 	clothes_req = 0
 	invocation = "none"
 	invocation_type = "none"
@@ -91,28 +91,32 @@
 	action_icon_state = "summonsoulstone"
 	action_background_icon_state = "bg_demon"
 
-	summon_type = list(/obj/item/soulstone)
+	summon_type = list(/obj/item/device/soulstone)
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone/cult
 	cult_req = 1
-	charge_max = 3600
+	charge_max = 4000
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone/noncult
-	summon_type = list(/obj/item/soulstone/anybody)
+	summon_type = list(/obj/item/device/soulstone/anybody)
 
-/obj/effect/proc_holder/spell/targeted/forcewall/cult
+
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/lesserforcewall
 	name = "Shield"
 	desc = "This spell creates a temporary forcefield to shield yourself and allies from incoming fire."
+
 	school = "transmutation"
-	charge_max = 400
-	clothes_req = FALSE
+	charge_max = 300
+	clothes_req = 0
 	invocation = "none"
 	invocation_type = "none"
-	wall_type = /obj/effect/forcefield/cult
+	range = 0
+	summon_type = list(/obj/effect/forcefield/cult)
+	summon_lifespan = 200
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
 	action_icon_state = "cultforcewall"
 	action_background_icon_state = "bg_demon"
-
 
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift
@@ -146,14 +150,11 @@
 	clothes_req = 0
 	invocation = "none"
 	invocation_type = "none"
-	proj_type = "/obj/effect/proc_holder/spell/targeted/inflict_handler/magic_missile/lesser"
 	proj_lifespan = 10
 	max_targets = 6
 	action_icon_state = "magicm"
 	action_background_icon_state = "bg_demon"
 
-/obj/effect/proc_holder/spell/targeted/inflict_handler/magic_missile/lesser
-	amt_knockdown = 84
 
 /obj/effect/proc_holder/spell/targeted/smoke/disable
 	name = "Paralysing Smoke"
@@ -205,16 +206,12 @@
 		revert_cast()
 		return
 
-	if(target.anti_magic_check(TRUE, TRUE))
-		to_chat(target, "<span class='warning'>You feel a freezing darkness closing in on you, but it rapidly dissipates.</span>")
-		return
-
 	to_chat(target, "<span class='userdanger'>A freezing darkness surrounds you...</span>")
 	target.playsound_local(get_turf(target), 'sound/hallucinations/i_see_you1.ogg', 50, 1)
 	user.playsound_local(get_turf(user), 'sound/effects/ghost2.ogg', 50, 1)
 	target.become_blind(ABYSSAL_GAZE_BLIND)
 	addtimer(CALLBACK(src, .proc/cure_blindness, target), 40)
-	target.adjust_bodytemperature(-200)
+	target.bodytemperature -= 200
 
 /obj/effect/proc_holder/spell/targeted/abyssal_gaze/proc/cure_blindness(mob/target)
 	if(isliving(target))
@@ -223,7 +220,7 @@
 
 /obj/effect/proc_holder/spell/targeted/dominate
 	name = "Dominate"
-	desc = "This spell dominates the mind of a lesser creature to the will of Nar'Sie, allying it only to her direct followers."
+	desc = "This spell dominates the mind of a lesser creature, causing it to see you as an ally."
 
 	charge_max = 600
 	range = 7
@@ -283,40 +280,3 @@
 	charge_max = 800
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/cult/phase
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/cult/phase/out
-
-
-/obj/effect/proc_holder/spell/dumbfire/juggernaut
-	name = "Gauntlet Echo"
-	desc = "Channels energy into your gauntlet - firing its essence forward in a slow moving, yet devastating, attack."
-	proj_icon_state = "cultfist"
-	proj_name = "gauntlet echo"
-	proj_type = "/obj/effect/proc_holder/spell/targeted/inflict_handler/juggernaut" //IMPORTANT use only subtypes of this
-	proj_lifespan = 15
-	proj_step_delay = 7
-	charge_max = 350
-	clothes_req = FALSE
-	action_icon = 'icons/mob/actions/actions_cult.dmi'
-	action_icon_state = "cultfist"
-	action_background_icon_state = "bg_demon"
-	sound = 'sound/weapons/resonator_blast.ogg'
-	proj_trigger_range = 0
-	ignore_factions = list("cult")
-	check_holy = TRUE
-
-/obj/effect/proc_holder/spell/targeted/inflict_handler/juggernaut
-	name = "Gauntlet Echo"
-	alpha = 180
-	amt_dam_brute = 30
-	amt_knockdown = 84
-	amt_dam_stam = 30
-	sound = 'sound/weapons/punch3.ogg'
-
-/obj/effect/proc_holder/spell/targeted/inflict_handler/juggernaut/cast(list/targets,mob/user = usr)
-	var/turf/T = get_turf(src)
-	playsound(T, 'sound/weapons/resonator_blast.ogg', 100, FALSE)
-	new /obj/effect/temp_visual/cult/sac(T)
-	for(var/obj/O in range(src,1))
-		if(O.density && !istype(O, /obj/structure/destructible/cult))
-			O.take_damage(90, BRUTE, "melee", 0)
-			new /obj/effect/temp_visual/cult/turf/floor
-	..()

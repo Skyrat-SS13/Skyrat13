@@ -19,9 +19,9 @@
 	-	IMPORTANT NOTE 2, if you want a player to become a ghost, use mob.ghostize() It does all the hard work for you.
 
 	-	When creating a new mob which will be a new IC character (e.g. putting a shade in a construct or randomly selecting
-		a ghost to become a xeno during an event), use this mob proc.
+		a ghost to become a xeno during an event). Simply assign the key or ckey like you've always done.
 
-			mob.transfer_ckey(new_mob)
+			new_mob.key = key
 
 		The Login proc will handle making a new mind for that mobtype (including setting up stuff like mind.name). Simple!
 		However if you want that mind to have any special properties like being a traitor etc you will have to do that
@@ -41,8 +41,14 @@
 	var/special_role
 	var/list/restricted_roles = list()
 
+	var/datum/job/assigned_job
+
+	var/list/datum/objective/objectives = list()
+
 	var/list/spell_list = list() // Wizard mode & "Give Spell" badmin button.
 
+	var/datum/faction/faction 			//associated faction
+	var/datum/changeling/changeling		//changeling holder
 	var/linglink
 	var/datum/martial_art/martial_art
 	var/static/default_martial_art = new/datum/martial_art
@@ -59,10 +65,6 @@
 	var/datum/language_holder/language_holder
 	var/unconvertable = FALSE
 	var/late_joiner = FALSE
-
-	var/force_escaped = FALSE  // Set by Into The Sunset command of the shuttle manipulator
-
-	var/list/learned_recipes //List of learned recipe TYPES.
 
 /datum/mind/New(var/key)
 	src.key = key
@@ -87,24 +89,17 @@
 	return language_holder
 
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
-	var/old_character = current
-	var/signals = SEND_SIGNAL(new_character, COMSIG_MOB_PRE_PLAYER_CHANGE, new_character, old_character) | SEND_SIGNAL(src, COMSIG_PRE_MIND_TRANSFER, new_character, old_character)
-	if(signals & COMPONENT_STOP_MIND_TRANSFER)
-		return
 	if(current)	// remove ourself from our old body's mind variable
 		current.mind = null
 		SStgui.on_transfer(current, new_character)
-		if(iscarbon(current))
-			var/mob/living/carbon/C = current
-			if(C.combatmode)
-				C.toggle_combat_mode(TRUE, TRUE)
+
 	if(!language_holder)
 		var/datum/language_holder/mob_holder = new_character.get_language_holder(shadow = FALSE)
 		language_holder = mob_holder.copy(src)
 
 	if(key)
 		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
-			new_character.ghostize(TRUE, TRUE)						//we'll need to ghostize so that key isn't mobless.
+			new_character.ghostize(1)						//we'll need to ghostize so that key isn't mobless.
 	else
 		key = new_character.key
 
@@ -116,7 +111,7 @@
 	if(current)
 		current.transfer_observers_to(new_character)	//transfer anyone observing the old character to the new one
 	current = new_character								//associate ourself with our new body
-	new_character.mind = src							//and associate our new body with ourself
+	new_character.mind = src							//and associate our new body with ourself		
 	for(var/a in antag_datums)	//Makes sure all antag datums effects are applied in the new body
 		var/datum/antagonist/A = a
 		A.on_body_transfer(old_current, current)
@@ -129,22 +124,8 @@
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
 
-//CIT CHANGE - makes arousal update when transfering bodies
-	if(isliving(new_character)) //New humans and such are by default enabled arousal. Let's always use the new mind's prefs.
-		var/mob/living/L = new_character
-		if(L.client && L.client.prefs)
-			L.canbearoused = L.client.prefs.arousable //Technically this should make taking over a character mean the body gain the new minds setting...
-			L.update_arousal_hud() //Removes the old icon
-			if (L.client.prefs.auto_ooc)
-				if (L.client.prefs.chat_toggles & CHAT_OOC)
-					L.client.prefs.chat_toggles ^= CHAT_OOC
-
-	SEND_SIGNAL(src, COMSIG_MIND_TRANSFER, new_character, old_character)
-	SEND_SIGNAL(new_character, COMSIG_MOB_ON_NEW_MIND)
-
 /datum/mind/proc/store_memory(new_text)
-	if((length(memory) + length(new_text)) <= MAX_MESSAGE_LEN)
-		memory += "[new_text]<BR>"
+	memory += "[new_text]<BR>"
 
 /datum/mind/proc/wipe_memory()
 	memory = null
@@ -214,7 +195,9 @@
 		special_role = null
 
 /datum/mind/proc/remove_traitor()
-	remove_antag_datum(/datum/antagonist/traitor)
+	if(src in SSticker.mode.traitors)
+		remove_antag_datum(/datum/antagonist/traitor)
+	SSticker.mode.update_traitor_icons_removed(src)
 
 /datum/mind/proc/remove_brother()
 	if(src in SSticker.mode.brothers)
@@ -247,10 +230,13 @@
 /datum/mind/proc/remove_antag_equip()
 	var/list/Mob_Contents = current.get_contents()
 	for(var/obj/item/I in Mob_Contents)
-		var/datum/component/uplink/O = I.GetComponent(/datum/component/uplink)
-//Todo make this reset signal
-		if(O)
-			O.unlock_code = null
+		if(istype(I, /obj/item/device/pda))
+			var/obj/item/device/pda/P = I
+			P.lock_code = ""
+
+		else if(istype(I, /obj/item/device/radio))
+			var/obj/item/device/radio/R = I
+			R.traitor_frequency = 0
 
 /datum/mind/proc/remove_all_antag() //For the Lazy amongst us.
 	remove_changeling()
@@ -259,6 +245,7 @@
 	remove_wizard()
 	remove_cultist()
 	remove_rev()
+	SSticker.mode.update_traitor_icons_removed(src)
 	SSticker.mode.update_cult_icons_removed(src)
 
 /datum/mind/proc/equip_traitor(employer = "The Syndicate", silent = FALSE, datum/antagonist/uplink_owner)
@@ -267,10 +254,11 @@
 	var/mob/living/carbon/human/traitor_mob = current
 	if (!istype(traitor_mob))
 		return
+	. = TRUE
 
 	var/list/all_contents = traitor_mob.GetAllContents()
-	var/obj/item/pda/PDA = locate() in all_contents
-	var/obj/item/radio/R = locate() in all_contents
+	var/obj/item/device/pda/PDA = locate() in all_contents
+	var/obj/item/device/radio/R = locate() in all_contents
 	var/obj/item/pen/P
 
 	if (PDA) // Prioritize PDA pen, otherwise the pocket protector pens will be chosen, which causes numerous ahelps about missing uplink
@@ -314,23 +302,33 @@
 			to_chat(traitor_mob, "Unfortunately, [employer] wasn't able to get you an Uplink.")
 		. = 0
 	else
-		. = uplink_loc
-		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key)
-		if(!U)
-			CRASH("Uplink creation failed.")
-		U.setup_unlock_code()
-		if(!silent)
-			if(uplink_loc == R)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [R.name]. Simply dial the frequency [format_frequency(U.unlock_code)] to unlock its hidden features.")
-			else if(uplink_loc == PDA)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [PDA.name]. Simply enter the code \"[U.unlock_code]\" into the ringtone select to unlock its hidden features.")
-			else if(uplink_loc == P)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [P.name]. Simply twist the top of the pen [U.unlock_code] from its starting position to unlock its hidden features.")
+		uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key)
+		var/unlock_note
+		
+		if(uplink_loc == R)
+			R.traitor_frequency = sanitize_frequency(rand(MIN_FREQ, MAX_FREQ))
 
+			if(!silent)
+				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [R.name]. Simply dial the frequency [format_frequency(R.traitor_frequency)] to unlock its hidden features.")
+			unlock_note = "<B>Radio Frequency:</B> [format_frequency(R.traitor_frequency)] ([R.name])."
+		else if(uplink_loc == PDA)
+			PDA.lock_code = "[rand(100,999)] [pick(GLOB.phonetic_alphabet)]"
+
+			if(!silent)
+				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [PDA.name]. Simply enter the code \"[PDA.lock_code]\" into the ringtone select to unlock its hidden features.")
+			unlock_note = "<B>Uplink Passcode:</B> [PDA.lock_code] ([PDA.name])."
+
+		else if(uplink_loc == P)
+			P.traitor_unlock_degrees = rand(1, 360)
+
+			if(!silent)
+				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [P.name]. Simply twist the top of the pen [P.traitor_unlock_degrees] from its starting position to unlock its hidden features.")
+			unlock_note = "<B>Uplink Degrees:</B> [P.traitor_unlock_degrees] ([P.name])."
+		
 		if(uplink_owner)
-			uplink_owner.antag_memory += U.unlock_note + "<br>"
+			uplink_owner.antag_memory += unlock_note + "<br>"
 		else
-			traitor_mob.mind.store_memory(U.unlock_note)
+			traitor_mob.mind.store_memory(unlock_note)
 
 //Link a new mobs mind to the creator of said mob. They will join any team they are currently on, and will only switch teams when their creator does.
 
@@ -360,7 +358,7 @@
 
 	if(creator.mind.special_role)
 		message_admins("[ADMIN_LOOKUPFLW(current)] has been created by [ADMIN_LOOKUPFLW(creator)], an antagonist.")
-		to_chat(current, "<span class='userdanger'>Despite your creators current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed.</span>")
+		to_chat(current, "<span class='userdanger'>Despite your creators current allegiances, your true master remains [creator.real_name]. If their loyalities change, so do yours. This will never change unless your creator's body is destroyed.</span>")
 
 /datum/mind/proc/show_memory(mob/recipient, window=1)
 	if(!recipient)
@@ -369,15 +367,13 @@
 	output += memory
 
 
-	var/list/all_objectives = list()
 	for(var/datum/antagonist/A in antag_datums)
 		output += A.antag_memory
-		all_objectives |= A.objectives
 
-	if(all_objectives.len)
+	if(objectives.len)
 		output += "<B>Objectives:</B>"
 		var/obj_count = 1
-		for(var/datum/objective/objective in all_objectives)
+		for(var/datum/objective/objective in objectives)
 			output += "<br><B>Objective #[obj_count++]</B>: [objective.explanation_text]"
 			var/list/datum/mind/other_owners = objective.get_owners() - src
 			if(other_owners.len)
@@ -388,7 +384,7 @@
 
 	if(window)
 		recipient << browse(output,"window=memory")
-	else if(all_objectives.len || memory)
+	else if(objectives.len || memory)
 		to_chat(recipient, "<i>[output]</i>")
 
 /datum/mind/Topic(href, href_list)
@@ -419,24 +415,34 @@
 		memory = new_memo
 
 	else if (href_list["obj_edit"] || href_list["obj_add"])
-		var/objective_pos //Edited objectives need to keep same order in antag objective list
+		var/datum/objective/objective
+		var/objective_pos
 		var/def_value
-		var/datum/antagonist/target_antag
-		var/datum/objective/old_objective //The old objective we're replacing/editing
-		var/datum/objective/new_objective //New objective we're be adding
 
-		if(href_list["obj_edit"])
-			for(var/datum/antagonist/A in antag_datums)
-				old_objective = locate(href_list["obj_edit"]) in A.objectives
-				if(old_objective)
-					target_antag = A
-					objective_pos = A.objectives.Find(old_objective)
-					break
-			if(!old_objective)
-				to_chat(usr,"Invalid objective.")
+		var/datum/antagonist/target_antag
+
+		if (href_list["obj_edit"])
+			objective = locate(href_list["obj_edit"])
+			if (!objective)
 				return
 
+			for(var/datum/antagonist/A in antag_datums)
+				if(objective in A.objectives)
+					target_antag = A
+					objective_pos = A.objectives.Find(objective)
+					break
+
+			if(!target_antag) //Shouldn't happen anymore
+				stack_trace("objective without antagonist found")
+				objective_pos = objectives.Find(objective)
+
+			//Text strings are easy to manipulate. Revised for simplicity.
+			var/temp_obj_type = "[objective.type]"//Convert path into a text string.
+			def_value = copytext(temp_obj_type, 19)//Convert last part of path into an objective keyword.
+			if(!def_value)//If it's a custom objective, it will be an empty string.
+				def_value = "custom"
 		else
+			//We're adding this objective
 			if(href_list["target_antag"])
 				var/datum/antagonist/X = locate(href_list["target_antag"]) in antag_datums
 				if(X)
@@ -448,7 +454,7 @@
 					if(1)
 						target_antag = antag_datums[1]
 					else
-						var/datum/antagonist/target = input("Which antagonist gets the objective:", "Antagonist", "(new custom antag)") as null|anything in antag_datums + "(new custom antag)"
+						var/datum/antagonist/target = input("Which antagonist gets the objective:", "Antagonist", def_value) as null|anything in antag_datums + "(new custom antag)"
 						if (QDELETED(target))
 							return
 						else if(target == "(new custom antag)")
@@ -456,88 +462,149 @@
 						else
 							target_antag = target
 
-		var/static/list/choices
-		if(!choices)
-			choices = list()
-
-			var/list/allowed_types = list(
-				/datum/objective/assassinate,
-				/datum/objective/maroon,
-				/datum/objective/debrain,
-				/datum/objective/protect,
-				/datum/objective/destroy,
-				/datum/objective/hijack,
-				/datum/objective/escape,
-				/datum/objective/survive,
-				/datum/objective/martyr,
-				/datum/objective/steal,
-				/datum/objective/download,
-				/datum/objective/nuclear,
-				/datum/objective/capture,
-				/datum/objective/absorb,
-				/datum/objective/custom
-			)
-
-			for(var/T in allowed_types)
-				var/datum/objective/X = T
-				choices[initial(X.name)] = T
-
-		if(old_objective)
-			if(old_objective.name in choices)
-				def_value = old_objective.name
-
-		var/selected_type = input("Select objective type:", "Objective type", def_value) as null|anything in choices
-		selected_type = choices[selected_type]
-		if (!selected_type)
+		var/new_obj_type = input("Select objective type:", "Objective type", def_value) as null|anything in list("assassinate", "maroon", "debrain", "protect", "destroy", "prevent", "hijack", "escape", "survive", "martyr", "steal", "download", "nuclear", "capture", "absorb", "custom")
+		if (!new_obj_type)
 			return
 
-		if(!old_objective)
-			//Add new one
-			new_objective = new selected_type
-			new_objective.owner = src
-			new_objective.admin_edit(usr)
-			target_antag.objectives += new_objective
+		var/datum/objective/new_objective = null
 
-			message_admins("[key_name_admin(usr)] added a new objective for [current]: [new_objective.explanation_text]")
-			log_admin("[key_name(usr)] added a new objective for [current]: [new_objective.explanation_text]")
-		else
-			if(old_objective.type == selected_type)
-				//Edit the old
-				old_objective.admin_edit(usr)
-				new_objective = old_objective
-			else
-				//Replace the old
-				new_objective = new selected_type
+		switch (new_obj_type)
+			if ("assassinate","protect","debrain","maroon")
+				var/list/possible_targets = list("Free objective")
+				for(var/datum/mind/possible_target in SSticker.minds)
+					if ((possible_target != src) && ishuman(possible_target.current))
+						possible_targets += possible_target.current
+
+				var/mob/def_target = null
+				var/list/objective_list = typecacheof(list(/datum/objective/assassinate, /datum/objective/protect, /datum/objective/debrain, /datum/objective/maroon))
+				if (is_type_in_typecache(objective, objective_list) && objective.target)
+					def_target = objective.target.current
+
+				var/mob/new_target = input("Select target:", "Objective target", def_target) as null|anything in possible_targets
+				if (!new_target)
+					return
+
+				var/objective_path = text2path("/datum/objective/[new_obj_type]")
+				if (new_target == "Free objective")
+					new_objective = new objective_path
+					new_objective.owner = src
+					new_objective.target = null
+					new_objective.explanation_text = "Free objective"
+				else
+					new_objective = new objective_path
+					new_objective.owner = src
+					new_objective.target = new_target.mind
+					//Will display as special role if the target is set as MODE. Ninjas/commandos/nuke ops.
+					new_objective.update_explanation_text()
+
+			if ("destroy")
+				var/list/possible_targets = active_ais(1)
+				if(possible_targets.len)
+					var/mob/new_target = input("Select target:", "Objective target") as null|anything in possible_targets
+					new_objective = new /datum/objective/destroy
+					new_objective.target = new_target.mind
+					new_objective.owner = src
+					new_objective.update_explanation_text()
+				else
+					to_chat(usr, "No active AIs with minds")
+
+			if ("prevent")
+				new_objective = new /datum/objective/block
 				new_objective.owner = src
-				new_objective.admin_edit(usr)
-				target_antag.objectives -= old_objective
-				target_antag.objectives.Insert(objective_pos, new_objective)
+
+			if ("hijack")
+				new_objective = new /datum/objective/hijack
+				new_objective.owner = src
+
+			if ("escape")
+				new_objective = new /datum/objective/escape
+				new_objective.owner = src
+
+			if ("survive")
+				new_objective = new /datum/objective/survive
+				new_objective.owner = src
+
+			if("martyr")
+				new_objective = new /datum/objective/martyr
+				new_objective.owner = src
+
+			if ("nuclear")
+				new_objective = new /datum/objective/nuclear
+				new_objective.owner = src
+
+			if ("steal")
+				if (!istype(objective, /datum/objective/steal))
+					new_objective = new /datum/objective/steal
+					new_objective.owner = src
+				else
+					new_objective = objective
+				var/datum/objective/steal/steal = new_objective
+				if (!steal.select_target())
+					return
+
+			if("download","capture","absorb")
+				var/def_num
+				if(objective&&objective.type==text2path("/datum/objective/[new_obj_type]"))
+					def_num = objective.target_amount
+
+				var/target_number = input("Input target number:", "Objective", def_num) as num | null
+				if (isnull(target_number))//Ordinarily, you wouldn't need isnull. In this case, the value may already exist.
+					return
+
+				switch(new_obj_type)
+					if("download")
+						new_objective = new /datum/objective/download
+						new_objective.explanation_text = "Download [target_number] research node\s."
+					if("capture")
+						new_objective = new /datum/objective/capture
+						new_objective.explanation_text = "Capture [target_number] lifeforms with an energy net. Live, rare specimens are worth more."
+					if("absorb")
+						new_objective = new /datum/objective/absorb
+						new_objective.explanation_text = "Absorb [target_number] compatible genomes."
+				new_objective.owner = src
+				new_objective.target_amount = target_number
+
+			if ("custom")
+				var/expl = stripped_input(usr, "Custom objective:", "Objective", objective ? objective.explanation_text : "")
+				if (!expl)
+					return
+				new_objective = new /datum/objective
+				new_objective.owner = src
+				new_objective.explanation_text = expl
+
+		if (!new_objective)
+			return
+
+		if (objective)
+			if(target_antag)
+				target_antag.objectives -= objective
+			objectives -= objective
+			target_antag.objectives.Insert(objective_pos, new_objective)
 			message_admins("[key_name_admin(usr)] edited [current]'s objective to [new_objective.explanation_text]")
 			log_admin("[key_name(usr)] edited [current]'s objective to [new_objective.explanation_text]")
+		else
+			if(target_antag)
+				target_antag.objectives += new_objective
+			objectives += new_objective
+			message_admins("[key_name_admin(usr)] added a new objective for [current]: [new_objective.explanation_text]")
+			log_admin("[key_name(usr)] added a new objective for [current]: [new_objective.explanation_text]")
 
 	else if (href_list["obj_delete"])
-		var/datum/objective/objective
+		var/datum/objective/objective = locate(href_list["obj_delete"])
+		if(!istype(objective))
+			return
 
 		for(var/datum/antagonist/A in antag_datums)
-			objective = locate(href_list["obj_delete"]) in A.objectives
-			if(istype(objective))
+			if(objective in A.objectives)
+				A.objectives -= objective
 				break
-		if(!objective)
-			to_chat(usr,"Invalid objective.")
-			return
-		qdel(objective) //TODO: Needs cleaning objective destroys (whatever that means)
+		objectives -= objective
 		message_admins("[key_name_admin(usr)] removed an objective for [current]: [objective.explanation_text]")
 		log_admin("[key_name(usr)] removed an objective for [current]: [objective.explanation_text]")
 
 	else if(href_list["obj_completed"])
-		var/datum/objective/objective
-		for(var/datum/antagonist/A in antag_datums)
-			objective = locate(href_list["obj_completed"]) in A.objectives
-			if(istype(objective))
-				objective = objective
-				break
-		if(!objective)
-			to_chat(usr,"Invalid objective.")
+		var/datum/objective/objective = locate(href_list["obj_completed"])
+		if(!istype(objective))
 			return
 		objective.completed = !objective.completed
 		log_admin("[key_name(usr)] toggled the win state for [current]'s objective: [objective.explanation_text]")
@@ -592,16 +659,10 @@
 		usr = current
 	traitor_panel()
 
-/datum/mind/proc/get_all_objectives()
-	var/list/all_objectives = list()
-	for(var/datum/antagonist/A in antag_datums)
-		all_objectives |= A.objectives
-	return all_objectives
-
 /datum/mind/proc/announce_objectives()
 	var/obj_count = 1
 	to_chat(current, "<span class='notice'>Your current objectives:</span>")
-	for(var/objective in get_all_objectives())
+	for(var/objective in objectives)
 		var/datum/objective/O = objective
 		to_chat(current, "<B>Objective #[obj_count]</B>: [O.explanation_text]")
 		obj_count++
@@ -621,33 +682,33 @@
 	if(!(has_antag_datum(/datum/antagonist/traitor)))
 		add_antag_datum(/datum/antagonist/traitor)
 
-/datum/mind/proc/make_Changeling()
+/datum/mind/proc/make_Changling()
 	var/datum/antagonist/changeling/C = has_antag_datum(/datum/antagonist/changeling)
 	if(!C)
 		C = add_antag_datum(/datum/antagonist/changeling)
-		special_role = ROLE_CHANGELING
+		special_role = "Changeling"
 	return C
 
 /datum/mind/proc/make_Wizard()
 	if(!has_antag_datum(/datum/antagonist/wizard))
-		special_role = ROLE_WIZARD
-		assigned_role = ROLE_WIZARD
+		special_role = "Wizard"
+		assigned_role = "Wizard"
 		add_antag_datum(/datum/antagonist/wizard)
 
 
 /datum/mind/proc/make_Cultist()
 	if(!has_antag_datum(/datum/antagonist/cult,TRUE))
 		SSticker.mode.add_cultist(src,FALSE,equip=TRUE)
-		special_role = ROLE_CULTIST
-		to_chat(current, "<font color=\"purple\"><b><i>You catch a glimpse of the Realm of Nar'Sie, The Geometer of Blood. You now see how flimsy your world is, you see that it should be open to the knowledge of Nar'Sie.</b></i></font>")
-		to_chat(current, "<font color=\"purple\"><b><i>Assist your new brethren in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
+		special_role = "Cultist"
+		to_chat(current, "<font color=\"purple\"><b><i>You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy your world is, you see that it should be open to the knowledge of Nar-Sie.</b></i></font>")
+		to_chat(current, "<font color=\"purple\"><b><i>Assist your new bretheren in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
 
 /datum/mind/proc/make_Rev()
 	var/datum/antagonist/rev/head/head = new()
 	head.give_flash = TRUE
 	head.give_hud = TRUE
 	add_antag_datum(head)
-	special_role = ROLE_REV_HEAD
+	special_role = "Head Revolutionary"
 
 /datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S)
 	spell_list += S
@@ -689,11 +750,6 @@
 	for(var/X in spell_list)
 		var/obj/effect/proc_holder/spell/S = X
 		S.action.Grant(new_character)
-	var/datum/antagonist/changeling/changeling = new_character.mind.has_antag_datum(/datum/antagonist/changeling)
-	if(changeling &&(ishuman(new_character) || ismonkey(new_character)))
-		for(var/P in changeling.purchasedpowers)
-			var/obj/effect/proc_holder/changeling/I = P
-			I.action.Grant(new_character)
 
 /datum/mind/proc/disrupt_spells(delay, list/exceptions = New())
 	for(var/X in spell_list)
@@ -718,21 +774,9 @@
 	if(G)
 		G.reenter_corpse()
 
-
-/datum/mind/proc/has_objective(objective_type)
-	for(var/datum/antagonist/A in antag_datums)
-		for(var/O in A.objectives)
-			if(istype(O,objective_type))
-				return TRUE
-
 /mob/proc/sync_mind()
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)
 	mind.active = 1		//indicates that the mind is currently synced with a client
-
-/datum/mind/proc/has_martialart(var/string)
-	if(martial_art && martial_art.id == string)
-		return martial_art
-	return FALSE
 
 /mob/dead/new_player/sync_mind()
 	return
@@ -748,7 +792,6 @@
 	else
 		mind = new /datum/mind(key)
 		SSticker.minds += mind
-		SEND_SIGNAL(src, COMSIG_MOB_ON_NEW_MIND)
 	if(!mind.name)
 		mind.name = real_name
 	mind.current = src
@@ -763,6 +806,11 @@
 	if(!mind.assigned_role)
 		mind.assigned_role = "Unassigned" //default
 
+//XENO
+/mob/living/carbon/alien/mind_initialize()
+	..()
+	mind.special_role = "Alien"
+
 //AI
 /mob/living/silicon/ai/mind_initialize()
 	..()
@@ -776,5 +824,5 @@
 //PAI
 /mob/living/silicon/pai/mind_initialize()
 	..()
-	mind.assigned_role = ROLE_PAI
+	mind.assigned_role = "pAI"
 	mind.special_role = ""

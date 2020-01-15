@@ -13,13 +13,13 @@
 	if(!placement_override)
 		if(!pop_override)
 			for(var/mob/living/M in range(7, src))
-				if(ROLE_BLOB in M.faction)
+				if("blob" in M.faction)
 					continue
 				if(M.client)
 					to_chat(src, "<span class='warning'>There is someone too close to place your blob core!</span>")
 					return 0
 			for(var/mob/living/M in view(13, src))
-				if(ROLE_BLOB in M.faction)
+				if("blob" in M.faction)
 					continue
 				if(M.client)
 					to_chat(src, "<span class='warning'>Someone could see your blob core from here!</span>")
@@ -113,22 +113,12 @@
 
 /mob/camera/blob/verb/create_shield_power()
 	set category = "Blob"
-	set name = "Create/Upgrade Shield Blob (15)"
-	set desc = "Create a shield blob, which will block fire and is hard to kill. Using this on an existing shield blob turns it into a reflective blob, capable of reflecting most projectiles but making it much weaker than usual to brute attacks."
+	set name = "Create Shield Blob (15)"
+	set desc = "Create a shield blob, which will block fire and is hard to kill."
 	create_shield()
 
 /mob/camera/blob/proc/create_shield(turf/T)
-	var/obj/structure/blob/shield/S = locate(/obj/structure/blob/shield) in T
-	if(S)
-		if(!can_buy(15))
-			return
-		if(S.obj_integrity < S.max_integrity * 0.5)
-			to_chat(src, "<span class='warning'>This shield blob is too damaged to be modified properly!</span>")
-			return
-		to_chat(src, "<span class='warning'>You secrete a reflective ooze over the shield blob, allowing it to reflect projectiles at the cost of reduced intregrity.</span>")
-		S.change_to(/obj/structure/blob/shield/reflective, src)
-	else
-		createSpecial(15, /obj/structure/blob/shield, 0, 0, T)
+	createSpecial(15, /obj/structure/blob/shield, 0, 0, T)
 
 /mob/camera/blob/verb/create_resource()
 	set category = "Blob"
@@ -166,8 +156,8 @@
 	if(!can_buy(40))
 		return
 
-	var/list/mob/candidates = pollGhostCandidates("Do you want to play as a [blob_reagent_datum.name] blobbernaut?", ROLE_BLOB, null, ROLE_BLOB, 50) //players must answer rapidly
-	if(LAZYLEN(candidates)) //if we got at least one candidate, they're a blobbernaut now.
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as a [blob_reagent_datum.name] blobbernaut?", ROLE_BLOB, null, ROLE_BLOB, 50) //players must answer rapidly
+	if(candidates.len) //if we got at least one candidate, they're a blobbernaut now.
 		B.max_integrity = initial(B.max_integrity) * 0.25 //factories that produced a blobbernaut have much lower health
 		B.obj_integrity = min(B.obj_integrity, B.max_integrity)
 		B.update_icon()
@@ -181,8 +171,8 @@
 		blobber.update_icons()
 		blobber.adjustHealth(blobber.maxHealth * 0.5)
 		blob_mobs += blobber
-		var/mob/C = pick(candidates)
-		C.transfer_ckey(blobber)
+		var/client/C = pick(candidates)
+		blobber.key = C.key
 		SEND_SOUND(blobber, sound('sound/effects/blobattack.ogg'))
 		SEND_SOUND(blobber, sound('sound/effects/attackblob.ogg'))
 		to_chat(blobber, "<b>You are a blobbernaut!</b>")
@@ -261,7 +251,7 @@
 	if(can_buy(4))
 		var/attacksuccess = FALSE
 		for(var/mob/living/L in T)
-			if(ROLE_BLOB in L.faction) //no friendly/dead fire
+			if("blob" in L.faction) //no friendly/dead fire
 				continue
 			if(L.stat != DEAD)
 				attacksuccess = TRUE
@@ -369,7 +359,7 @@
 	to_chat(src, "<b>You can expand, which will attack people, damage objects, or place a Normal Blob if the tile is clear.</b>")
 	to_chat(src, "<i>Normal Blobs</i> will expand your reach and can be upgraded into special blobs that perform certain functions.")
 	to_chat(src, "<b>You can upgrade normal blobs into the following types of blob:</b>")
-	to_chat(src, "<i>Shield Blobs</i> are strong and expensive blobs which take more damage. In additon, they are fireproof and can block air, use these to protect yourself from station fires. Upgrading them again will result in a reflective blob, capable of reflecting most projectiles at the cost of the strong blob's extra health.")
+	to_chat(src, "<i>Shield Blobs</i> are strong and expensive blobs which take more damage. In additon, they are fireproof and can block air, use these to protect yourself from station fires.")
 	to_chat(src, "<i>Resource Blobs</i> are blobs which produce more resources for you, build as many of these as possible to consume the station. This type of blob must be placed near node blobs or your core to work.")
 	to_chat(src, "<i>Factory Blobs</i> are blobs that spawn blob spores which will attack nearby enemies. This type of blob must be placed near node blobs or your core to work.")
 	to_chat(src, "<i>Blobbernauts</i> can be produced from factories for a cost, and are hard to kill, powerful, and moderately smart. The factory used to create one will become fragile and briefly unable to produce spores.")

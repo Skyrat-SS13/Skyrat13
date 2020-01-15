@@ -40,12 +40,12 @@
 	if(hotspot && istype(T) && T.air)
 		qdel(hotspot)
 		var/datum/gas_mixture/G = T.air
-		var/plas_amt = min(30,G.gases[/datum/gas/plasma]) //Absorb some plasma
-		G.gases[/datum/gas/plasma] -= plas_amt
+		var/plas_amt = min(30,G.gases[/datum/gas/plasma][MOLES]) //Absorb some plasma
+		G.gases[/datum/gas/plasma][MOLES] -= plas_amt
 		absorbed_plasma += plas_amt
 		if(G.temperature > T20C)
 			G.temperature = max(G.temperature/2,T20C)
-		GAS_GARBAGE_COLLECT(G.gases)
+		G.garbage_collect()
 		T.air_update_turf()
 
 /obj/effect/particle_effect/foam/firefighting/kill_foam()
@@ -55,7 +55,7 @@
 		var/obj/effect/decal/cleanable/plasma/P = (locate(/obj/effect/decal/cleanable/plasma) in get_turf(src))
 		if(!P)
 			P = new(loc)
-		P.reagents.add_reagent(/datum/reagent/stable_plasma, absorbed_plasma)
+		P.reagents.add_reagent("stable_plasma", absorbed_plasma)
 
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
@@ -88,8 +88,6 @@
 	name = "resin foam"
 	metal = RESIN_FOAM
 
-/obj/effect/particle_effect/foam/long_life
-	lifetime = 150
 
 /obj/effect/particle_effect/foam/Initialize()
 	. = ..()
@@ -123,7 +121,7 @@
 	if(metal)
 		var/turf/T = get_turf(src)
 		if(isspaceturf(T)) //Block up any exposed space
-			T.PlaceOnTop(/turf/open/floor/plating/foam, flags = CHANGETURF_INHERIT_AIR)
+			T.PlaceOnTop(/turf/open/floor/plating/foam)
 		for(var/direction in GLOB.cardinals)
 			var/turf/cardinal_turf = get_step(T, direction)
 			if(get_area(cardinal_turf) != get_area(T)) //We're at an area boundary, so let's block off this turf!
@@ -217,9 +215,6 @@
 	effect_type = /obj/effect/particle_effect/foam/smart
 
 
-/datum/effect_system/foam_spread/long
-	effect_type = /obj/effect/particle_effect/foam/long_life
-
 /datum/effect_system/foam_spread/New()
 	..()
 	chemholder = new /obj()
@@ -239,19 +234,23 @@
 		location = get_turf(loca)
 
 	amount = round(sqrt(amt / 2), 1)
-	carry.copy_to(chemholder, carry.total_volume)
+	carry.copy_to(chemholder, carry.total_volume, 4) //The foam holds 4 times the total reagents volume for balance purposes.
 
 /datum/effect_system/foam_spread/metal/set_up(amt=5, loca, datum/reagents/carry = null, metaltype)
 	..()
 	metal = metaltype
 
 /datum/effect_system/foam_spread/start()
-	var/obj/effect/particle_effect/foam/F = new effect_type(location)
-	var/foamcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
-	chemholder.reagents.copy_to(F, chemholder.reagents.total_volume/amount)
-	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
-	F.amount = amount
-	F.metal = metal
+	var/obj/effect/particle_effect/foam/foundfoam = locate() in location
+	if(foundfoam)//If there was already foam where we start, we add our foaminess to it.
+		foundfoam.amount += amount
+	else
+		var/obj/effect/particle_effect/foam/F = new effect_type(location)
+		var/foamcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
+		chemholder.reagents.copy_to(F, chemholder.reagents.total_volume/amount)
+		F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
+		F.amount = amount
+		F.metal = metal
 
 
 //////////////////////////////////////////////////////////
@@ -270,9 +269,15 @@
 	max_integrity = 20
 	CanAtmosPass = ATMOS_PASS_DENSITY
 
-/obj/structure/foamedmetal/Initialize()
-	. = ..()
+/obj/structure/foamedmetal/New()
+	..()
 	air_update_turf(1)
+
+
+/obj/structure/foamedmetal/Destroy()
+	density = FALSE
+	air_update_turf(1)
+	return ..()
 
 /obj/structure/foamedmetal/Move()
 	var/turf/T = loc
@@ -280,15 +285,12 @@
 	move_update_air(T)
 
 /obj/structure/foamedmetal/attack_paw(mob/user)
-	return attack_hand(user)
+	attack_hand(user)
 
 /obj/structure/foamedmetal/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	playsound(src.loc, 'sound/weapons/tap.ogg', 100, 1)
 
 /obj/structure/foamedmetal/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	to_chat(user, "<span class='warning'>You hit [src] but bounce off it!</span>")
@@ -324,8 +326,8 @@
 			for(var/I in G_gases)
 				if(I == /datum/gas/oxygen || I == /datum/gas/nitrogen)
 					continue
-				G_gases[I] = 0
-			GAS_GARBAGE_COLLECT(G.gases)
+				G_gases[I][MOLES] = 0
+			G.garbage_collect()
 			O.air_update_turf()
 		for(var/obj/machinery/atmospherics/components/unary/U in O)
 			if(!U.welded)

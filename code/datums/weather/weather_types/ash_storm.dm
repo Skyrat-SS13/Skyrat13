@@ -23,8 +23,6 @@
 
 	probability = 90
 
-	barometer_predictable = TRUE
-
 	var/datum/looping_sound/active_outside_ashstorm/sound_ao = new(list(), FALSE, TRUE)
 	var/datum/looping_sound/active_inside_ashstorm/sound_ai = new(list(), FALSE, TRUE)
 	var/datum/looping_sound/weak_outside_ashstorm/sound_wo = new(list(), FALSE, TRUE)
@@ -80,22 +78,14 @@
 			return TRUE
 		if(ishuman(L)) //Are you immune?
 			var/mob/living/carbon/human/H = L
-			var/thermal_protection = H.easy_thermal_protection()
-			if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT)
+			var/thermal_protection = H.get_thermal_protection()
+			if(thermal_protection >= FIRE_IMMUNITY_SUIT_MAX_TEMP_PROTECT)
 				return TRUE
-		if(isliving(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
-			var/mob/living/the_mob = L
-			if("ash" in the_mob.weather_immunities)
-				return TRUE
-		L = L.loc //Check parent items immunities (recurses up to the turf)
+		L = L.loc //Matryoshka check
 	return FALSE //RIP you
 
 /datum/weather/ash_storm/weather_act(mob/living/L)
 	if(is_ash_immune(L))
-		return
-	if(is_species(L, /datum/species/lizard/ashwalker))
-		if(L.getStaminaLoss() <= STAMINA_SOFTCRIT)
-			L.adjustStaminaLossBuffered(4)
 		return
 	L.adjustFireLoss(4)
 

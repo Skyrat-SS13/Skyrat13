@@ -4,7 +4,7 @@
 	typepath = /datum/round_event/spooky
 	weight = -1							//forces it to be called, regardless of weight
 	max_occurrences = 1
-	earliest_start = 0 MINUTES
+	earliest_start = 0
 
 /datum/round_event/spooky/start()
 	..()
@@ -18,7 +18,6 @@
 	for(var/mob/living/simple_animal/parrot/Poly/Poly in GLOB.mob_living_list)
 		new /mob/living/simple_animal/parrot/Poly/ghost(Poly.loc)
 		qdel(Poly)
-
 
 /datum/round_event/spooky/announce(fake)
 	priority_announce(pick("RATTLE ME BONES!","THE RIDE NEVER ENDS!", "A SKELETON POPS OUT!", "SPOOKY SCARY SKELETONS!", "CREWMEMBERS BEWARE, YOU'RE IN FOR A SCARE!") , "THE CALL IS COMING FROM INSIDE THE HOUSE")

@@ -8,13 +8,13 @@ SUBSYSTEM_DEF(pai)
 	var/spam_delay = 100
 	var/list/pai_card_list = list()
 
-/datum/controller/subsystem/pai/Topic(href, href_list)
+/datum/controller/subsystem/pai/Topic(href, href_list[])
 	if(href_list["download"])
 		var/datum/paiCandidate/candidate = locate(href_list["candidate"]) in candidates
-		var/obj/item/paicard/card = locate(href_list["device"]) in pai_card_list
+		var/obj/item/device/paicard/card = locate(href_list["device"]) in pai_card_list
 		if(card.pai)
 			return
-		if(istype(card, /obj/item/paicard) && istype(candidate, /datum/paiCandidate))
+		if(istype(card, /obj/item/device/paicard) && istype(candidate, /datum/paiCandidate))
 			if(check_ready(candidate) != candidate)
 				return FALSE
 			var/mob/living/silicon/pai/pai = new(card)
@@ -69,13 +69,9 @@ SUBSYSTEM_DEF(pai)
 					candidate.comments = copytext(sanitize(candidate.comments),1,MAX_MESSAGE_LEN)
 
 			if("submit")
-				if(isobserver(usr))
-					var/mob/dead/observer/O = usr
-					if(!O.can_reenter_round())
-						return FALSE
 				if(candidate)
 					candidate.ready = 1
-					for(var/obj/item/paicard/p in pai_card_list)
+					for(var/obj/item/device/paicard/p in pai_card_list)
 						if(!p.pai)
 							p.alertUpdate()
 				usr << browse(null, "window=paiRecruit")
@@ -144,7 +140,7 @@ SUBSYSTEM_DEF(pai)
 			return C
 	return FALSE
 
-/datum/controller/subsystem/pai/proc/findPAI(obj/item/paicard/p, mob/user)
+/datum/controller/subsystem/pai/proc/findPAI(obj/item/device/paicard/p, mob/user)
 	if(!ghost_spam)
 		ghost_spam = TRUE
 		for(var/mob/dead/observer/G in GLOB.player_list)
@@ -152,8 +148,6 @@ SUBSYSTEM_DEF(pai)
 				continue
 			if(!(ROLE_PAI in G.client.prefs.be_special))
 				continue
-			if(!G.can_reenter_round()) // this should use notify_ghosts() instead one day.
-				return FALSE
 			to_chat(G, "<span class='ghostalert'>[user] is requesting a pAI personality! Use the pAI button to submit yourself as one.</span>")
 		addtimer(CALLBACK(src, .proc/spam_again), spam_delay)
 	var/list/available = list()

@@ -15,13 +15,12 @@
 	return dat
 
 /obj/item/implant/krav_maga/activate()
-	. = ..()
 	var/mob/living/carbon/human/H = imp_in
 	if(!ishuman(H))
 		return
 	if(!H.mind)
 		return
-	if(H.mind.has_martialart(MARTIALART_KRAVMAGA))
+	if(istype(H.mind.martial_art, /datum/martial_art/krav_maga))
 		style.remove(H)
 	else
 		style.teach(H,1)

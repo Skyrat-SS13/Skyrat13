@@ -14,6 +14,7 @@
 
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "shield"
+	anchored = TRUE
 	density = TRUE
 	dir = NORTH
 	use_power = NO_POWER_USE//Living things generally dont use power
@@ -39,7 +40,7 @@
 
 /obj/machinery/am_shielding/proc/collapse()
 	visible_message("<span class='notice'>[src] collapses back into a container!</span>")
-	new /obj/item/am_shielding_container(drop_location())
+	new /obj/item/device/am_shielding_container(drop_location())
 	qdel(src)
 
 /obj/machinery/am_shielding/proc/controllerscan(priorscan = 0)
@@ -92,7 +93,7 @@
 
 
 /obj/machinery/am_shielding/emp_act()//Immune due to not really much in the way of electronics.
-	return
+	return 0
 
 /obj/machinery/am_shielding/ex_act(severity, target)
 	stability -= (80 - (severity * 20))
@@ -230,7 +231,7 @@
 
 
 
-/obj/item/am_shielding_container
+/obj/item/device/am_shielding_container
 	name = "packaged antimatter reactor section"
 	desc = "A small storage unit containing an antimatter reactor section.  To use place near an antimatter control unit or deployed antimatter reactor section and use a multitool to activate this package."
 	icon = 'icons/obj/machines/antimatter.dmi'
@@ -245,8 +246,8 @@
 	throw_range = 2
 	materials = list(MAT_METAL=100)
 
-/obj/item/am_shielding_container/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/multitool) && istype(src.loc, /turf))
+/obj/item/device/am_shielding_container/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/device/multitool) && istype(src.loc, /turf))
 		new/obj/machinery/am_shielding(src.loc)
 		qdel(src)
 	else

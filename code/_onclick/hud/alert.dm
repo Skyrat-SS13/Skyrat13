@@ -101,8 +101,7 @@
 
 
 /obj/screen/alert/MouseEntered(location,control,params)
-	if(!QDELETED(src))
-		openToolTip(usr,src,params,title = name,content = desc,theme = alerttooltipstyle)
+	openToolTip(usr,src,params,title = name,content = desc,theme = alerttooltipstyle)
 
 
 /obj/screen/alert/MouseExited()
@@ -213,22 +212,6 @@ or something covering your eyes."
 	desc = "Whoa man, you're tripping balls! Careful you don't get addicted... if you aren't already."
 	icon_state = "high"
 
-/obj/screen/alert/mind_control
-	name = "Mind Control"
-	desc = "Your mind has been hijacked! Click to view the mind control command."
-	icon_state = "mind_control"
-	var/command
-
-/obj/screen/alert/mind_control/Click()
-	var/mob/living/L = usr
-	to_chat(L, "<span class='mind_control'>[command]</span>")
-
-/obj/screen/alert/hypnosis
-	name = "Hypnosis"
-	desc = "Something's hypnotizing you, but you're not really sure about what."
-	icon_state = "hypnosis"
-	var/phrase
-
 /obj/screen/alert/drunk //Not implemented
 	name = "Drunk"
 	desc = "All that alcohol you've been drinking is impairing your speech, motor skills, and mental cognition. Make sure to act like it."
@@ -252,16 +235,6 @@ wall or lattice, to push yourself off if you want to move. A jetpack would enabl
 magboots would let you walk around normally on the floor. Barring those, you can throw things, use a fire extinguisher, \
 or shoot a gun to move around via Newton's 3rd Law of Motion."
 	icon_state = "weightless"
-
-/obj/screen/alert/highgravity
-	name = "High Gravity"
-	desc = "You're getting crushed by high gravity, picking up items and movement will be slowed."
-	icon_state = "paralysis"
-
-/obj/screen/alert/veryhighgravity
-	name = "Crushing Gravity"
-	desc = "You're getting crushed by high gravity, picking up items and movement will be slowed. You'll also accumulate brute damage!"
-	icon_state = "paralysis"
 
 /obj/screen/alert/fire
 	name = "On Fire"
@@ -330,9 +303,6 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 /obj/screen/alert/bloodsense/process()
 	var/atom/blood_target
 
-	if(!mob_viewer.mind)
-		return
-
 	var/datum/antagonist/cult/antag = mob_viewer.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 	if(!antag)
 		return
@@ -354,32 +324,28 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 			angle = 0
 			cut_overlays()
 			icon_state = "runed_sense0"
-			desc = "Nar'Sie demands that [sac_objective.target] be sacrificed before the summoning ritual can begin."
+			desc = "Nar-Sie demands that [sac_objective.target] be sacrificed before the summoning ritual can begin."
 			add_overlay(sac_objective.sac_image)
 		else
 			var/datum/objective/eldergod/summon_objective = locate() in antag.cult_team.objectives
 			if(!summon_objective)
 				return
-			desc = "The sacrifice is complete, summon Nar'Sie! The summoning can only take place in [english_list(summon_objective.summon_spots)]!"
 			if(icon_state == "runed_sense1")
 				return
 			animate(src, transform = null, time = 1, loop = 0)
 			angle = 0
 			cut_overlays()
 			icon_state = "runed_sense1"
+			desc = "The sacrifice is complete, summon Nar-Sie! The summoning can only take place in [english_list(summon_objective.summon_spots)]!"
 			add_overlay(narnar)
 		return
 	var/turf/P = get_turf(blood_target)
 	var/turf/Q = get_turf(mob_viewer)
-	if(!P || !Q || (P.z != Q.z)) //The target is on a different Z level, we cannot sense that far.
+	if(P.z != Q.z) //The target is on a different Z level, we cannot sense that far.
 		icon_state = "runed_sense2"
-		desc = "You can no longer sense your target's presence."
+		desc = "[blood_target] is no longer in your sector, you cannot sense its presence here."
 		return
-	if(isliving(blood_target))
-		var/mob/living/real_target = blood_target
-		desc = "You are currently tracking [real_target.real_name] in [get_area_name(blood_target)]."
-	else
-		desc = "You are currently tracking [blood_target] in [get_area_name(blood_target)]."
+	desc = "You are currently tracking [blood_target] in [get_area_name(blood_target)]."
 	var/target_angle = Get_Angle(Q, P)
 	var/target_dist = get_dist(P, Q)
 	cut_overlays()
@@ -617,6 +583,7 @@ so as to remain in compliance with the most up-to-date laws."
 // Re-render all alerts - also called in /datum/hud/show_hud() because it's needed there
 /datum/hud/proc/reorganize_alerts()
 	var/list/alerts = mymob.alerts
+	var/icon_pref
 	if(!hud_shown)
 		for(var/i = 1, i <= alerts.len, i++)
 			mymob.client.screen -= alerts[alerts[i]]
@@ -624,7 +591,9 @@ so as to remain in compliance with the most up-to-date laws."
 	for(var/i = 1, i <= alerts.len, i++)
 		var/obj/screen/alert/alert = alerts[alerts[i]]
 		if(alert.icon_state == "template")
-			alert.icon = ui_style
+			if(!icon_pref)
+				icon_pref = ui_style2icon(mymob.client.prefs.UI_style)
+			alert.icon = icon_pref
 		switch(i)
 			if(1)
 				. = ui_alert1

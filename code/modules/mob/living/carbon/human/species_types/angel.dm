@@ -2,11 +2,11 @@
 	name = "Angel"
 	id = "angel"
 	default_color = "FFFFFF"
-	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
-	mutant_bodyparts = list("wings")
+	species_traits = list(SPECIES_ORGANIC,EYECOLOR,HAIR,FACEHAIR,LIPS)
+	mutant_bodyparts = list("tail_human", "ears", "wings")
 	default_features = list("mcolor" = "FFF", "tail_human" = "None", "ears" = "None", "wings" = "Angel")
 	use_skintones = 1
-	no_equip = list(SLOT_BACK)
+	no_equip = list(slot_back)
 	blacklisted = 1
 	limbs_id = "human"
 	skinned_type = /obj/item/stack/sheet/animalhide/human
@@ -15,28 +15,22 @@
 
 /datum/species/angel/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	..()
-	if(H.dna && H.dna.species && (H.dna.features["wings"] != "Angel"))
-		if(!("wings" in H.dna.species.mutant_bodyparts))
-			H.dna.species.mutant_bodyparts |= "wings"
+	if(H.dna && H.dna.species &&((H.dna.features["wings"] != "Angel") && ("wings" in H.dna.species.mutant_bodyparts)))
 		H.dna.features["wings"] = "Angel"
 		H.update_body()
 	if(ishuman(H) && !fly)
 		fly = new
 		fly.Grant(H)
-	ADD_TRAIT(H, TRAIT_HOLY, SPECIES_TRAIT)
 
 /datum/species/angel/on_species_loss(mob/living/carbon/human/H)
 	if(fly)
 		fly.Remove(H)
 	if(H.movement_type & FLYING)
-		H.setMovetype(H.movement_type & ~FLYING)
+		H.movement_type &= ~FLYING
 	ToggleFlight(H,0)
-	if(H.dna && H.dna.species && (H.dna.features["wings"] == "Angel"))
-		if("wings" in H.dna.species.mutant_bodyparts)
-			H.dna.species.mutant_bodyparts -= "wings"
+	if(H.dna && H.dna.species &&((H.dna.features["wings"] != "None") && ("wings" in H.dna.species.mutant_bodyparts)))
 		H.dna.features["wings"] = "None"
 		H.update_body()
-	REMOVE_TRAIT(H, TRAIT_HOLY, SPECIES_TRAIT)
 	..()
 
 /datum/species/angel/spec_life(mob/living/carbon/human/H)
@@ -132,14 +126,14 @@
 	if(flight && CanFly(H))
 		stunmod = 2
 		speedmod = -0.35
-		H.setMovetype(H.movement_type | FLYING)
+		H.movement_type |= FLYING
 		override_float = TRUE
 		H.pass_flags |= PASSTABLE
 		H.OpenWings()
 	else
 		stunmod = 1
 		speedmod = 0
-		H.setMovetype(H.movement_type & ~FLYING)
+		H.movement_type &= ~FLYING
 		override_float = FALSE
 		H.pass_flags &= ~PASSTABLE
 		H.CloseWings()

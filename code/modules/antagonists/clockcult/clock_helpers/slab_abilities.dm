@@ -35,13 +35,13 @@
 	if(iscarbon(target) && target.Adjacent(ranged_ability_user))
 		var/mob/living/carbon/L = target
 		if(is_servant_of_ratvar(L))
-			to_chat(ranged_ability_user, "<span class='neovgre'>\"[L.p_theyre(TRUE)] a servant.\"</span>")
+			to_chat(ranged_ability_user, "<span class='neovgre'>\"They're a servant.\"</span>")
 			return TRUE
 		else if(L.stat)
 			to_chat(ranged_ability_user, "<span class='neovgre'>\"There is use in shackling the dead, but for examples.\"</span>")
 			return TRUE
-		else if (istype(L.handcuffed,/obj/item/restraints/handcuffs/clockwork))
-			to_chat(ranged_ability_user, "<span class='neovgre'>\"[L.p_theyre(TRUE)] already helpless, no?\"</span>")
+		else if(L.handcuffed)
+			to_chat(ranged_ability_user, "<span class='neovgre'>\"They are already helpless, no?\"</span>")
 			return TRUE
 
 		playsound(loc, 'sound/weapons/handcuffs.ogg', 30, TRUE)
@@ -49,11 +49,11 @@
 		"<span class='neovgre_small'>You begin shaping replicant alloy into manacles around [L]'s wrists...</span>")
 		to_chat(L, "<span class='userdanger'>[ranged_ability_user] begins forming manacles around your wrists!</span>")
 		if(do_mob(ranged_ability_user, L, 30))
-			if(!(istype(L.handcuffed,/obj/item/restraints/handcuffs/clockwork)))
+			if(!L.handcuffed)
 				L.handcuffed = new/obj/item/restraints/handcuffs/clockwork(L)
 				L.update_handcuffed()
 				to_chat(ranged_ability_user, "<span class='neovgre_small'>You shackle [L].</span>")
-				log_combat(ranged_ability_user, L, "handcuffed")
+				add_logs(ranged_ability_user, L, "handcuffed")
 		else
 			to_chat(ranged_ability_user, "<span class='warning'>You fail to shackle [L].</span>")
 
@@ -67,8 +67,7 @@
 	name = "replicant manacles"
 	desc = "Heavy manacles made out of freezing-cold metal. It looks like brass, but feels much more solid."
 	icon_state = "brass_manacles"
-	item_state = "brass_manacles"
-	item_flags = DROPDEL
+	flags_1 = DROPDEL_1
 
 /obj/item/restraints/handcuffs/clockwork/dropped(mob/user)
 	user.visible_message("<span class='danger'>[user]'s [name] come apart at the seams!</span>", \
@@ -93,14 +92,14 @@
 			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L] does not yet serve Ratvar.\"</span>")
 			return TRUE
 		if(L.stat == DEAD)
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_theyre(TRUE)] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>")
+			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_they(TRUE)] [L.p_are()] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>")
 			return TRUE
 
 		var/brutedamage = L.getBruteLoss()
 		var/burndamage = L.getFireLoss()
 		var/oxydamage = L.getOxyLoss()
 		var/totaldamage = brutedamage + burndamage + oxydamage
-		if(!totaldamage && (!L.reagents || !L.reagents.has_reagent(/datum/reagent/water/holywater)))
+		if(!totaldamage && (!L.reagents || !L.reagents.has_reagent("holywater")))
 			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L] is unhurt and untainted.\"</span>")
 			return TRUE
 
@@ -108,7 +107,7 @@
 
 		to_chat(ranged_ability_user, "<span class='brass'>You bathe [L == ranged_ability_user ? "yourself":"[L]"] in Inath-neq's power!</span>")
 		var/targetturf = get_turf(L)
-		var/has_holy_water = (L.reagents && L.reagents.has_reagent(/datum/reagent/water/holywater))
+		var/has_holy_water = (L.reagents && L.reagents.has_reagent("holywater"))
 		var/healseverity = max(round(totaldamage*0.05, 1), 1) //shows the general severity of the damage you just healed, 1 glow per 20
 		for(var/i in 1 to healseverity)
 			new /obj/effect/temp_visual/heal(targetturf, "#1E8CE1")
@@ -118,18 +117,18 @@
 			L.adjustOxyLoss(-oxydamage)
 			L.adjustToxLoss(totaldamage * 0.5, TRUE, TRUE)
 			clockwork_say(ranged_ability_user, text2ratvar("[has_holy_water ? "Heal tainted" : "Mend wounded"] flesh!"))
-			log_combat(ranged_ability_user, L, "healed with Sentinel's Compromise")
+			add_logs(ranged_ability_user, L, "healed with Sentinel's Compromise")
 			L.visible_message("<span class='warning'>A blue light washes over [L], [has_holy_water ? "causing [L.p_them()] to briefly glow as it mends" : " mending"] [L.p_their()] bruises and burns!</span>", \
 			"<span class='heavy_brass'>You feel Inath-neq's power healing your wounds[has_holy_water ? " and purging the darkness within you" : ""], but a deep nausea overcomes you!</span>")
 		else
 			clockwork_say(ranged_ability_user, text2ratvar("Purge foul darkness!"))
-			log_combat(ranged_ability_user, L, "purged of holy water with Sentinel's Compromise")
+			add_logs(ranged_ability_user, L, "purged of holy water with Sentinel's Compromise")
 			L.visible_message("<span class='warning'>A blue light washes over [L], causing [L.p_them()] to briefly glow!</span>", \
 			"<span class='heavy_brass'>You feel Inath-neq's power purging the darkness within you!</span>")
 		playsound(targetturf, 'sound/magic/staff_healing.ogg', 50, 1)
 
 		if(has_holy_water)
-			L.reagents.del_reagent(/datum/reagent/water/holywater)
+			L.reagents.remove_reagent("holywater", 1000)
 
 		remove_ranged_ability()
 
@@ -154,7 +153,7 @@
 		var/turf/U = get_turf(target)
 		to_chat(ranged_ability_user, "<span class='brass'>You release the light of Ratvar!</span>")
 		clockwork_say(ranged_ability_user, text2ratvar("Purge all untruths and honor Engine!"))
-		log_combat(ranged_ability_user, U, "fired at with Kindle")
+		add_logs(ranged_ability_user, U, "fired at with Kindle")
 		playsound(ranged_ability_user, 'sound/magic/blink.ogg', 50, TRUE, frequency = 0.5)
 		var/obj/item/projectile/kindle/A = new(T)
 		A.preparePixelProjectile(target, caller, params)
@@ -183,36 +182,21 @@
 		var/mob/living/L = target
 		if(is_servant_of_ratvar(L) || L.stat || L.has_status_effect(STATUS_EFFECT_KINDLE))
 			return
-		var/atom/O = L.anti_magic_check()
+		var/obj/O = L.null_rod_check()
 		playsound(L, 'sound/magic/fireball.ogg', 50, TRUE, frequency = 1.25)
 		if(O)
-			if(isitem(O))
-				L.visible_message("<span class='warning'>[L]'s eyes flare with dim light!</span>", \
-				"<span class='userdanger'>Your [O] glows white-hot against you as it absorbs [src]'s power!</span>")
-			else if(ismob(O))
-				L.visible_message("<span class='warning'>[L]'s eyes flare with dim light!</span>")
+			L.visible_message("<span class='warning'>[L]'s eyes flare with dim light as they stumble!</span>", \
+			"<span class='userdanger'>Your [O] glows white-hot against you as it absorbs some sort of power!</span>")
+			L.adjustFireLoss(5)
+			L.Stun(40)
 			playsound(L, 'sound/weapons/sear.ogg', 50, TRUE)
 		else
-			if(!iscultist(L))
-				L.visible_message("<span class='warning'>[L]'s eyes blaze with brilliant light!</span>", \
-				"<span class='userdanger'>Your vision suddenly screams with white-hot light!</span>")
-				L.Knockdown(15, TRUE, FALSE, 15)
-				L.apply_status_effect(STATUS_EFFECT_KINDLE)
-				L.flash_act(1, 1)
-				if(issilicon(target))
-					var/mob/living/silicon/S = L
-					S.emp_act(EMP_HEAVY)
-			else //for Nar'sian weaklings
-				to_chat(L, "<span class='heavy_brass'>\"How does it feel to see the light, dog?\"</span>")
-				L.visible_message("<span class='warning'>[L]'s eyes flare with burning light!</span>", \
-				"<span class='userdanger'>Your vision suddenly screams with a flash of burning hot light!</span>")  //Debuffs Narsian cultists hard + deals some burn instead of just hardstunning them; Only the confusion part can stack
-				L.flash_act(1,1)
-				if(iscarbon(target))
-					var/mob/living/carbon/C = L
-					C.stuttering = max(8, C.stuttering)
-					C.drowsyness = max(8, C.drowsyness)
-					C.confused += CLAMP(16 - C.confused, 0, 8)
-					C.apply_status_effect(STATUS_EFFECT_BELLIGERENT)
+			L.visible_message("<span class='warning'>[L]'s eyes blaze with brilliant light!</span>", \
+			"<span class='userdanger'>Your vision suddenly screams with white-hot light!</span>")
+			L.Knockdown(15)
+			L.apply_status_effect(STATUS_EFFECT_KINDLE)
+			L.flash_act(1, 1)
+			if(iscultist(L))
 				L.adjustFireLoss(15)
 	..()
 
@@ -235,10 +219,10 @@
 			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L] does not yet serve Ratvar.\"</span>")
 			return TRUE
 		if(L.stat == DEAD)
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_theyre(TRUE)] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>")
+			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_they(TRUE)] [L.p_are()] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>")
 			return TRUE
 		if(islist(L.stun_absorption) && L.stun_absorption["vanguard"] && L.stun_absorption["vanguard"]["end_time"] > world.time)
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_theyre(TRUE)] already shielded by a Vanguard.\"</span>")
+			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_they(TRUE)] [L.p_are()] already shielded by a Vanguard.\"</span>")
 			return TRUE
 
 		successful = TRUE
@@ -280,7 +264,7 @@
 		"<span class='heavy_brass'>You direct the judicial force to [target].</span>")
 		var/turf/targetturf = get_turf(target)
 		new/obj/effect/clockwork/judicial_marker(targetturf, ranged_ability_user)
-		log_combat(ranged_ability_user, targetturf, "created a judicial marker")
+		add_logs(ranged_ability_user, targetturf, "created a judicial marker")
 		remove_ranged_ability()
 
 	return TRUE

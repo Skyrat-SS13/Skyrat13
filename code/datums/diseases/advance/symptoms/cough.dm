@@ -6,7 +6,7 @@ Coughing
 	Noticable.
 	Little Resistance.
 	Doesn't increase stage speed much.
-	Transmissibile.
+	Transmittable.
 	Low Level.
 
 BONUS
@@ -40,7 +40,7 @@ BONUS
 		return
 	if(A.properties["stealth"] >= 4)
 		suppress_warning = TRUE
-	if(A.spread_flags &= DISEASE_SPREAD_AIRBORNE) //infect bystanders
+	if(A.spread_flags &= VIRUS_SPREAD_AIRBORNE) //infect bystanders
 		infective = TRUE
 	if(A.properties["resistance"] >= 3) //strong enough to drop items
 		power = 1.5
@@ -70,6 +70,6 @@ BONUS
 				addtimer(CALLBACK(M, /mob/.proc/emote, "cough"), 6)
 				addtimer(CALLBACK(M, /mob/.proc/emote, "cough"), 12)
 				addtimer(CALLBACK(M, /mob/.proc/emote, "cough"), 18)
-			if(infective && M.CanSpreadAirborneDisease())
+			if(infective)
 				A.spread(1)
 

@@ -1,6 +1,13 @@
 
 // see _DEFINES/is_helpers.dm for mob type checks
 
+/mob/proc/isloyal() //Checks to see if the person contains a mindshield implant, then checks that the implant is actually inside of them
+	return 0
+
+/mob/living/carbon/isloyal()
+	for(var/obj/item/implant/mindshield/L in implants)
+		return TRUE
+
 /mob/proc/lowest_buckled_mob()
 	. = src
 	if(buckled && ismob(buckled))
@@ -9,34 +16,51 @@
 
 /proc/check_zone(zone)
 	if(!zone)
-		return BODY_ZONE_CHEST
+		return "chest"
 	switch(zone)
-		if(BODY_ZONE_PRECISE_EYES)
-			zone = BODY_ZONE_HEAD
-		if(BODY_ZONE_PRECISE_MOUTH)
-			zone = BODY_ZONE_HEAD
-		if(BODY_ZONE_PRECISE_L_HAND)
-			zone = BODY_ZONE_L_ARM
-		if(BODY_ZONE_PRECISE_R_HAND)
-			zone = BODY_ZONE_R_ARM
-		if(BODY_ZONE_PRECISE_L_FOOT)
-			zone = BODY_ZONE_L_LEG
-		if(BODY_ZONE_PRECISE_R_FOOT)
-			zone = BODY_ZONE_R_LEG
-		if(BODY_ZONE_PRECISE_GROIN)
-			zone = BODY_ZONE_CHEST
+		if("eyes")
+			zone = "head"
+		if("mouth")
+			zone = "head"
+		if("l_hand")
+			zone = "l_arm"
+		if("r_hand")
+			zone = "r_arm"
+		if("l_foot")
+			zone = "l_leg"
+		if("r_foot")
+			zone = "r_leg"
+		if("groin")
+			zone = "chest"
 	return zone
 
 
 /proc/ran_zone(zone, probability = 80)
+
+	zone = check_zone(zone)
+
 	if(prob(probability))
-		zone = check_zone(zone)
-	else
-		zone = pickweight(list(BODY_ZONE_HEAD = 6, BODY_ZONE_CHEST = 6, BODY_ZONE_L_ARM = 22, BODY_ZONE_R_ARM = 22, BODY_ZONE_L_LEG = 22, BODY_ZONE_R_LEG = 22))
+		return zone
+
+	var/t = rand(1, 18) // randomly pick a different zone, or maybe the same one
+	switch(t)
+		if(1)
+			return "head"
+		if(2)
+			return "chest"
+		if(3 to 6)
+			return "l_arm"
+		if(7 to 10)
+			return "r_arm"
+		if(11 to 14)
+			return "l_leg"
+		if(15 to 18)
+			return "r_leg"
+
 	return zone
 
 /proc/above_neck(zone)
-	var/list/zones = list(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_EYES)
+	var/list/zones = list("head", "mouth", "eyes")
 	if(zones.Find(zone))
 		return 1
 	else
@@ -64,16 +88,15 @@
 		p++
 	return sanitize(t)
 
-/proc/slur(n,var/strength=50)
-	strength = min(strength,50)
+/proc/slur(n)
 	var/phrase = html_decode(n)
-	var/leng = length(phrase)
-	var/counter=length(phrase)
+	var/leng = lentext(phrase)
+	var/counter=lentext(phrase)
 	var/newphrase=""
 	var/newletter=""
 	while(counter>=1)
 		newletter=copytext(phrase,(leng-counter)+1,(leng-counter)+2)
-		if(rand(1,100)<=strength*0.5)
+		if(rand(1,3)==3)
 			if(lowertext(newletter)=="o")
 				newletter="u"
 			if(lowertext(newletter)=="s")
@@ -84,17 +107,17 @@
 				newletter="oo"
 			if(lowertext(newletter)=="c")
 				newletter="k"
-		if(rand(1,100) <= strength*0.25)
+		if(rand(1,20)==20)
 			if(newletter==" ")
 				newletter="...huuuhhh..."
 			if(newletter==".")
-				newletter=" BURP!"
-		if(rand(1,100) <= strength*0.5)
-			if(rand(1,5) == 1)
+				newletter=" *BURP*."
+		switch(rand(1,20))
+			if(1)
 				newletter+="'"
-			if(rand(1,5) == 1)
+			if(10)
 				newletter+="[newletter]"
-			if(rand(1,5) == 1)
+			if(20)
 				newletter+="[newletter][newletter]"
 		newphrase+="[newletter]";counter-=1
 	return newphrase
@@ -102,8 +125,8 @@
 
 /proc/cultslur(n) // Inflicted on victims of a stun talisman
 	var/phrase = html_decode(n)
-	var/leng = length(phrase)
-	var/counter=length(phrase)
+	var/leng = lentext(phrase)
+	var/counter=lentext(phrase)
 	var/newphrase=""
 	var/newletter=""
 	while(counter>=1)
@@ -231,7 +254,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /proc/shake_camera(mob/M, duration, strength=1)
-	if(!M || !M.client || duration < 1)
+	if(!M || !M.client || duration <= 0)
 		return
 	var/client/C = M.client
 	var/oldx = C.pixel_x
@@ -313,7 +336,14 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		return FALSE
 	if(issilicon(M))
 		if(iscyborg(M)) //For cyborgs, returns 1 if the cyborg has a law 0 and special_role. Returns 0 if the borg is merely slaved to an AI traitor.
-			return FALSE
+			var/mob/living/silicon/robot/R = M
+			if(R.mind && R.mind.special_role)
+				if(R.laws && R.laws.zeroth && R.syndicate)
+					if(R.connected_ai)
+						if(is_special_character(R.connected_ai) && R.connected_ai.laws && (R.connected_ai.laws.zeroth_borg == R.laws.zeroth || R.connected_ai.laws.zeroth == R.laws.zeroth))
+							return 0 //AI is the real traitor here, so the borg itself is not a traitor
+						return TRUE//Slaved but also a traitor
+					return TRUE //Unslaved, traitor
 		else if(isAI(M))
 			var/mob/living/silicon/ai/A = M
 			if(A.laws && A.laws.zeroth && A.mind && A.mind.special_role)
@@ -340,10 +370,8 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 				if(M.mind in SSticker.mode.apprentices)
 					return 2
 			if("monkey")
-				if(isliving(M))
-					var/mob/living/L = M
-					if(L.diseases && (locate(/datum/disease/transformation/jungle_fever) in L.diseases))
-						return 2
+				if(M.viruses && (locate(/datum/disease/transformation/jungle_fever) in M.viruses))
+					return 2
 		return TRUE
 	if(M.mind && LAZYLEN(M.mind.antag_datums)) //they have an antag datum!
 		return TRUE
@@ -352,13 +380,11 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /mob/proc/reagent_check(datum/reagent/R) // utilized in the species code
 	return 1
 
-/proc/notify_ghosts(message, ghost_sound, enter_link, atom/source, mutable_appearance/alert_overlay, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, ignore_dnr_observers = FALSE) //Easy notification of ghosts.
+/proc/notify_ghosts(var/message, var/ghost_sound = null, var/enter_link = null, var/atom/source = null, var/mutable_appearance/alert_overlay = null, var/action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE) //Easy notification of ghosts.
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
 		return
 	for(var/mob/dead/observer/O in GLOB.player_list)
 		if(O.client)
-			if ((ignore_key && (O.ckey in GLOB.poll_ignore[ignore_key])) || (ignore_dnr_observers && !O.can_reenter_round(TRUE)))
-				continue
 			to_chat(O, "<span class='ghostalert'>[message][(enter_link) ? " [enter_link]" : ""]</span>")
 			if(ghost_sound)
 				SEND_SOUND(O, sound(ghost_sound))
@@ -387,7 +413,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		else
 			dam = 0
 		if((brute_heal > 0 && affecting.brute_dam > 0) || (burn_heal > 0 && affecting.burn_dam > 0))
-			if(affecting.heal_damage(brute_heal, burn_heal, 0, TRUE, FALSE))
+			if(affecting.heal_damage(brute_heal, burn_heal, 1, 0))
 				H.update_damage_overlays()
 			user.visible_message("[user] has fixed some of the [dam ? "dents on" : "burnt wires in"] [H]'s [affecting.name].", \
 			"<span class='notice'>You fix some of the [dam ? "dents on" : "burnt wires in"] [H]'s [affecting.name].</span>")
@@ -413,7 +439,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	to_chat(M, "Control of your mob has been offered to dead players.")
 	if(usr)
 		log_admin("[key_name(usr)] has offered control of ([key_name(M)]) to ghosts.")
-		message_admins("[key_name_admin(usr)] has offered control of ([ADMIN_LOOKUPFLW(M)]) to ghosts")
+		message_admins("[key_name_admin(usr)] has offered control of ([key_name_admin(M)]) to ghosts")
 	var/poll_message = "Do you want to play as [M.real_name]?"
 	if(M.mind && M.mind.assigned_role)
 		poll_message = "[poll_message] Job:[M.mind.assigned_role]."
@@ -423,18 +449,19 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		var/datum/antagonist/A = M.mind.has_antag_datum(/datum/antagonist/)
 		if(A)
 			poll_message = "[poll_message] Status:[A.name]."
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob(poll_message, ROLE_PAI, null, FALSE, 100, M)
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob(poll_message, "pAI", null, FALSE, 100, M)
+	var/mob/dead/observer/theghost = null
 
-	if(LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
+	if(candidates.len)
+		theghost = pick(candidates)
 		to_chat(M, "Your mob has been taken over by a ghost!")
-		message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(M)])")
-		M.ghostize(FALSE, TRUE)
-		C.transfer_ckey(M, FALSE)
+		message_admins("[key_name_admin(theghost)] has taken control of ([key_name_admin(M)])")
+		M.ghostize(0)
+		M.key = theghost.key
 		return TRUE
 	else
 		to_chat(M, "There were no ghosts willing to take control.")
-		message_admins("No ghosts were willing to take control of [ADMIN_LOOKUPFLW(M)])")
+		message_admins("No ghosts were willing to take control of [key_name_admin(M)])")
 		return FALSE
 
 /mob/proc/is_flying(mob/M = src)
@@ -452,87 +479,16 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		var/mob/living/T = pick(nearby_mobs)
 		ClickOn(T)
 
-// Logs a message in a mob's individual log, and in the global logs as well if log_globally is true
-/mob/log_message(message, message_type, color=null, log_globally = TRUE)
-	if(!LAZYLEN(message))
-		stack_trace("Empty message")
+/mob/proc/log_message(message, message_type)
+	if(!LAZYLEN(message) || !message_type)
 		return
 
-	// Cannot use the list as a map if the key is a number, so we stringify it (thank you BYOND)
-	var/smessage_type = num2text(message_type)
+	if(!islist(logging[message_type]))
+		logging[message_type] = list()
 
-	if(client)
-		if(!islist(client.player_details.logging[smessage_type]))
-			client.player_details.logging[smessage_type] = list()
+	var/list/timestamped_message = list("[LAZYLEN(logging[message_type]) + 1]\[[time_stamp()]\] [key_name(src)]" = message)
 
-	if(!islist(logging[smessage_type]))
-		logging[smessage_type] = list()
-
-	var/colored_message = message
-	if(color)
-		if(color[1] == "#")
-			colored_message = "<font color=[color]>[message]</font>"
-		else
-			colored_message = "<font color='[color]'>[message]</font>"
-
-	var/list/timestamped_message = list("[LAZYLEN(logging[smessage_type]) + 1]\[[TIME_STAMP("hh:mm:ss", FALSE)]\] [key_name(src)] [loc_name(src)]" = colored_message)
-
-	logging[smessage_type] += timestamped_message
-
-	if(client)
-		client.player_details.logging[smessage_type] += timestamped_message
-
-	..()
+	logging[message_type] += timestamped_message
 
 /mob/proc/can_hear()
 	. = TRUE
-
-/proc/bloodtype_to_color(var/type)
-	. = BLOOD_COLOR_HUMAN
-	switch(type)
-		if("U")//Universal blood; a bit orange
-			. = BLOOD_COLOR_UNIVERSAL
-		if("SY")//Synthetics blood; blue
-			. = BLOOD_COLOR_SYNTHETIC
-		if("L")//lizard, a bit pink/purple
-			. = BLOOD_COLOR_LIZARD
-		if("X*")//xeno blood; greenish yellow
-			. = BLOOD_COLOR_XENO
-		if("HF")// Oil/Hydraulic blood. something something why not. reee
-			. = BLOOD_COLOR_OIL
-		if("GEL")// slimepeople blood, rgb 0, 255, 144
-			. = BLOOD_COLOR_SLIME
-		if("BUG")// yellowish, like, y'know bug guts I guess.
-			. = BLOOD_COLOR_BUG
-		//add more stuff to the switch if you have more blood colors for different types
-		// the defines are in _DEFINES/misc.dm
-
-//Examine text for traits shared by multiple types. I wish examine was less copypasted.
-/mob/proc/common_trait_examine()
-	if(HAS_TRAIT(src, TRAIT_DISSECTED))
-		var/dissectionmsg = ""
-		if(HAS_TRAIT_FROM(src, TRAIT_DISSECTED,"Extraterrestrial Dissection"))
-			dissectionmsg = " via Extraterrestrial Dissection. It is no longer worth experimenting on"
-		else if(HAS_TRAIT_FROM(src, TRAIT_DISSECTED,"Experimental Dissection"))
-			dissectionmsg = " via Experimental Dissection"
-		else if(HAS_TRAIT_FROM(src, TRAIT_DISSECTED,"Thorough Dissection"))
-			dissectionmsg = " via Thorough Dissection"
-		. += "<span class='notice'>This body has been dissected and analyzed[dissectionmsg].</span><br>"
-
-//gets ID card object from special clothes slot or null.
-/mob/proc/get_idcard(hand_first = TRUE)
-	var/obj/item/held_item = get_active_held_item()
-	. = held_item ? held_item.GetID() : null
-	if(!.) //If so, then check the inactive hand
-		held_item = get_inactive_held_item()
-		. = held_item ? held_item.GetID() : null
-
-/mob/proc/get_id_in_hand()
-	var/obj/item/held_item = get_active_held_item()
-	if(!held_item)
-		return
-	return held_item.GetID()
-
-//Can the mob see reagents inside of containers?
-/mob/proc/can_see_reagents()
-	return stat == DEAD || has_unlimited_silicon_privilege //Dead guys and silicons can always see reagents

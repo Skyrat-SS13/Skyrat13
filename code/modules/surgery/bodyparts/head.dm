@@ -1,18 +1,16 @@
 /obj/item/bodypart/head
-	name = BODY_ZONE_HEAD
+	name = "head"
 	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
 	icon = 'icons/mob/human_parts.dmi'
 	icon_state = "default_human_head"
 	max_damage = 200
-	body_zone = BODY_ZONE_HEAD
+	body_zone = "head"
 	body_part = HEAD
 	w_class = WEIGHT_CLASS_BULKY //Quite a hefty load
 	slowdown = 1 //Balancing measure
 	throw_range = 2 //No head bowling
 	px_x = 0
 	px_y = -8
-	stam_damage_coeff = 1
-	max_stamina_damage = 0 //Setting this to 0 since this has the same exact effects as the chest when disabled
 
 	var/mob/living/brain/brainmob = null //The current occupant.
 	var/obj/item/organ/brain/brain = null //The brain organ
@@ -32,13 +30,6 @@
 
 	var/lip_style = null
 	var/lip_color = "white"
-	//If the head is a special sprite
-	var/custom_head
-
-/obj/item/bodypart/head/can_dismember(obj/item/I)
-	if(!((owner.stat == DEAD) || owner.InFullCritical()))
-		return FALSE
-	return ..()
 
 /obj/item/bodypart/head/drop_organs(mob/user)
 	var/turf/T = get_turf(src)
@@ -70,7 +61,7 @@
 		C = owner
 
 	real_name = C.real_name
-	if(HAS_TRAIT(C, TRAIT_HUSK))
+	if(C.has_trait(TRAIT_HUSK))
 		real_name = "Unknown"
 		hair_style = "Bald"
 		facial_hair_style = "Shaved"
@@ -120,8 +111,6 @@
 	..()
 
 /obj/item/bodypart/head/update_icon_dropped()
-	if(custom_head)
-		return
 	var/list/standing = get_limb_icon(1)
 	if(!standing.len)
 		icon_state = initial(icon_state)//no overlays found, we default back to initial icon.
@@ -132,8 +121,6 @@
 	add_overlay(standing)
 
 /obj/item/bodypart/head/get_limb_icon(dropped)
-	if(custom_head)
-		return
 	cut_overlays()
 	. = ..()
 	if(dropped) //certain overlays only appear when the limb is being detached from its owner.

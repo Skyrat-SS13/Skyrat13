@@ -1,18 +1,16 @@
 /datum/component
+	var/enabled = FALSE
 	var/dupe_mode = COMPONENT_DUPE_HIGHLANDER
 	var/dupe_type
+	var/list/signal_procs
 	var/datum/parent
-	//only set to true if you are able to properly transfer this component
-	//At a minimum RegisterWithParent and UnregisterFromParent should be used
-	//Make sure you also implement PostTransfer for any post transfer handling
-	var/can_transfer = FALSE
 
 /datum/component/New(datum/P, ...)
 	parent = P
 	var/list/arguments = args.Copy(2)
 	if(Initialize(arglist(arguments)) == COMPONENT_INCOMPATIBLE)
 		qdel(src, TRUE, TRUE)
-		CRASH("Incompatible [type] assigned to a [P.type]! args: [json_encode(arguments)]")
+		CRASH("Incompatible [type] assigned to a [P]!")
 
 	_JoinParent(P)
 
@@ -49,21 +47,18 @@
 		else	//only component of this type, no list
 			dc[I] = src
 
-	RegisterWithParent()
-
-// If you want/expect to be moving the component around between parents, use this to register on the parent for signals
-/datum/component/proc/RegisterWithParent()
-	SEND_SIGNAL(src, COMSIG_COMPONENT_REGISTER_PARENT) //CITADEL EDIT
-
 /datum/component/proc/Initialize(...)
 	return
 
 /datum/component/Destroy(force=FALSE, silent=FALSE)
-	if(!force && parent)
+	enabled = FALSE
+	var/datum/P = parent
+	if(!force)
 		_RemoveFromParent()
 	if(!silent)
-		SEND_SIGNAL(parent, COMSIG_COMPONENT_REMOVING, src)
+		P.SendSignal(COMSIG_COMPONENT_REMOVING, src)
 	parent = null
+	LAZYCLEARLIST(signal_procs)
 	return ..()
 
 /datum/component/proc/_RemoveFromParent()
@@ -82,80 +77,32 @@
 	if(!dc.len)
 		P.datum_components = null
 
-	UnregisterFromParent()
-
-/datum/component/proc/UnregisterFromParent()
-	SEND_SIGNAL(src, COMSIG_COMPONENT_UNREGISTER_PARENT) //CITADEL EDIT
-
-/datum/proc/RegisterSignal(datum/target, sig_type_or_types, proctype, override = FALSE)
-	if(QDELETED(src) || QDELETED(target))
+/datum/component/proc/RegisterSignal(sig_type_or_types, proc_or_callback, override = FALSE)
+	if(QDELETED(src))
 		return
-
 	var/list/procs = signal_procs
 	if(!procs)
-		signal_procs = procs = list()
-	if(!procs[target])
-		procs[target] = list()
-	var/list/lookup = target.comp_lookup
-	if(!lookup)
-		target.comp_lookup = lookup = list()
+		procs = list()
+		signal_procs = procs
 
 	var/list/sig_types = islist(sig_type_or_types) ? sig_type_or_types : list(sig_type_or_types)
 	for(var/sig_type in sig_types)
-		if(!override && procs[target][sig_type])
-			stack_trace("[sig_type] overridden. Use override = TRUE to suppress this warning")
+		if(!override)
+			. = procs[sig_type]
+			if(.)
+				stack_trace("[sig_type] overridden. Use override = TRUE to suppress this warning")
 
-		procs[target][sig_type] = proctype
+		if(!istype(proc_or_callback, /datum/callback)) //if it wasnt a callback before, it is now
+			proc_or_callback = CALLBACK(src, proc_or_callback)
+		procs[sig_type] = proc_or_callback
 
-		if(!lookup[sig_type]) // Nothing has registered here yet
-			lookup[sig_type] = src
-		else if(lookup[sig_type] == src) // We already registered here
-			continue
-		else if(!length(lookup[sig_type])) // One other thing registered here
-			lookup[sig_type] = list(lookup[sig_type]=TRUE)
-			lookup[sig_type][src] = TRUE
-		else // Many other things have registered here
-			lookup[sig_type][src] = TRUE
-
-	signal_enabled = TRUE
-
-/datum/proc/UnregisterSignal(datum/target, sig_type_or_types)
-	var/list/lookup = target.comp_lookup
-	if(!signal_procs || !signal_procs[target] || !lookup)
-		return
-	if(!islist(sig_type_or_types))
-		sig_type_or_types = list(sig_type_or_types)
-	for(var/sig in sig_type_or_types)
-		switch(length(lookup[sig]))
-			if(2)
-				lookup[sig] = (lookup[sig]-src)[1]
-			if(1)
-				stack_trace("[target] ([target.type]) somehow has single length list inside comp_lookup")
-				if(src in lookup[sig])
-					lookup -= sig
-					if(!length(lookup))
-						target.comp_lookup = null
-						break
-			if(0)
-				lookup -= sig
-				if(!length(lookup))
-					target.comp_lookup = null
-					break
-			else
-				lookup[sig] -= src
-
-	signal_procs[target] -= sig_type_or_types
-	if(!signal_procs[target].len)
-		signal_procs -= target
+	enabled = TRUE
 
 /datum/component/proc/InheritComponent(datum/component/C, i_am_original)
 	return
 
-/datum/component/proc/PreTransfer()
+/datum/component/proc/OnTransfer(datum/new_parent)
 	return
-
-/datum/component/proc/PostTransfer()
-	return COMPONENT_INCOMPATIBLE //Do not support transfer by default as you must properly support it
 
 /datum/component/proc/_GetInverseTypeList(our_type = type)
 	//we can do this one simple trick
@@ -166,27 +113,31 @@
 		current_type = type2parent(current_type)
 		. += current_type
 
-/datum/proc/_SendSignal(sigtype, list/arguments)
-	var/target = comp_lookup[sigtype]
+/datum/proc/SendSignal(sigtype, ...)
+	var/list/comps = datum_components
+	if(!comps)
+		return NONE
+	var/list/arguments = args.Copy(2)
+	var/target = comps[/datum/component]
 	if(!length(target))
-		var/datum/C = target
-		if(!C.signal_enabled)
+		var/datum/component/C = target
+		if(!C.enabled)
 			return NONE
-		var/proctype = C.signal_procs[src][sigtype]
-		return NONE | CallAsync(C, proctype, arguments)
+		var/datum/callback/CB = C.signal_procs[sigtype]
+		if(!CB)
+			return NONE
+		return CB.InvokeAsync(arglist(arguments))
 	. = NONE
 	for(var/I in target)
-		var/datum/C = I
-		if(!C.signal_enabled)
+		var/datum/component/C = I
+		if(!C.enabled)
 			continue
-		var/proctype = C.signal_procs[src][sigtype]
-		. |= CallAsync(C, proctype, arguments)
+		var/datum/callback/CB = C.signal_procs[sigtype]
+		if(!CB)
+			continue
+		. |= CB.InvokeAsync(arglist(arguments))
 
-// The type arg is casted so initial works, you shouldn't be passing a real instance into this
-/datum/proc/GetComponent(datum/component/c_type)
-	RETURN_TYPE(c_type)
-	if(initial(c_type.dupe_mode) == COMPONENT_DUPE_ALLOWED)
-		stack_trace("GetComponent was called to get a component of which multiple copies could be on an object. This can easily break and should be changed. Type: \[[c_type]\]")
+/datum/proc/GetComponent(c_type)
 	var/list/dc = datum_components
 	if(!dc)
 		return null
@@ -225,9 +176,12 @@
 	if(ispath(nt))
 		if(nt == /datum/component)
 			CRASH("[nt] attempted instantiation!")
+		if(!isnum(dm))
+			CRASH("[nt]: Invalid dupe_mode ([dm])!")
+		if(dt && !ispath(dt))
+			CRASH("[nt]: Invalid dupe_type ([dt])!")
 	else
 		new_comp = nt
-		nt = new_comp.type
 
 	args[1] = src
 
@@ -262,7 +216,7 @@
 		new_comp = new nt(arglist(args)) // Dupes are allowed, act like normal
 
 	if(!old_comp && !QDELETED(new_comp)) // Nothing related to duplicate components happened and the new component is healthy
-		SEND_SIGNAL(src, COMSIG_COMPONENT_ADDED, new_comp)
+		SendSignal(COMSIG_COMPONENT_ADDED, new_comp)
 		return new_comp
 	return old_comp
 
@@ -271,30 +225,21 @@
 	if(!.)
 		return AddComponent(arglist(args))
 
-/datum/component/proc/RemoveComponent()
-	if(!parent)
+/datum/proc/TakeComponent(datum/component/C)
+	if(!C)
 		return
-	var/datum/old_parent = parent
-	PreTransfer()
-	_RemoveFromParent()
-	parent = null
-	SEND_SIGNAL(old_parent, COMSIG_COMPONENT_REMOVING, src)
-
-/datum/proc/TakeComponent(datum/component/target)
-	if(!target || target.parent == src)
+	var/datum/helicopter = C.parent
+	if(helicopter == src)
+		//if we're taking to the same thing no need for anything
 		return
-	if(target.parent)
-		target.RemoveComponent()
-	target.parent = src
-	var/result = target.PostTransfer()
-	switch(result)
-		if(COMPONENT_INCOMPATIBLE)
-			var/c_type = target.type
-			qdel(target)
-			CRASH("Incompatible [c_type] transfer attempt to a [type]!")
-
-	if(target == AddComponent(target))
-		target._JoinParent()
+	if(C.OnTransfer(src) == COMPONENT_INCOMPATIBLE)
+		qdel(C)
+		return
+	C._RemoveFromParent()
+	helicopter.SendSignal(COMSIG_COMPONENT_REMOVING, C)
+	C.parent = src
+	if(C == AddComponent(C))
+		C._JoinParent()
 
 /datum/proc/TransferComponents(datum/target)
 	var/list/dc = datum_components
@@ -302,13 +247,10 @@
 		return
 	var/comps = dc[/datum/component]
 	if(islist(comps))
-		for(var/datum/component/I in comps)
-			if(I.can_transfer)
-				target.TakeComponent(I)
+		for(var/I in comps)
+			target.TakeComponent(I)
 	else
-		var/datum/component/C = comps
-		if(C.can_transfer)
-			target.TakeComponent(comps)
+		target.TakeComponent(comps)
 
 /datum/component/ui_host()
 	return parent

@@ -58,7 +58,7 @@
 
 /obj/item/paper/fluff/awaymissions/academy/grade/failure
 	name = "Pyromancy Evaluation"
-	info = "Current Grade: F. Educator's Notes: No improvement shown despite multiple private lessons.  Suggest additional tutelage."
+	info = "Current Grade: F. Educator's Notes: No improvement shown despite multiple private lessons.  Suggest additional tutilage."
 
 
 /obj/singularity/academy
@@ -92,7 +92,7 @@
 	var/mob/living/current_wizard = null
 	var/next_check = 0
 	var/cooldown = 600
-	var/faction = ROLE_WIZARD
+	var/faction = "wizard"
 	var/braindead_check = 0
 
 /obj/structure/academy_wizard_spawner/New()
@@ -128,12 +128,13 @@
 	if(!current_wizard)
 		return
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as Wizard Academy Defender?", ROLE_WIZARD, null, ROLE_WIZARD, 50, current_wizard)
+	var/mob/dead/observer/chosen = null
 
-	if(LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
-		message_admins("[ADMIN_LOOKUPFLW(C)] was spawned as Wizard Academy Defender")
+	if(candidates.len)
+		chosen = pick(candidates)
+		message_admins("[key_name_admin(chosen)] was spawned as Wizard Academy Defender")
 		current_wizard.ghostize() // on the off chance braindead defender gets back in
-		C.transfer_ckey(current_wizard, FALSE)
+		current_wizard.key = chosen.key
 
 /obj/structure/academy_wizard_spawner/proc/summon_wizard()
 	var/turf/T = src.loc
@@ -210,6 +211,8 @@
 		if(4)
 			//Destroy Equipment
 			for (var/obj/item/I in user)
+				if (istype(I, /obj/item/implant))
+					continue
 				qdel(I)
 		if(5)
 			//Monkeying
@@ -230,8 +233,8 @@
 			explosion(loc,-1,0,2, flame_range = 2)
 		if(9)
 			//Cold
-			var/datum/disease/D = new /datum/disease/cold()
-			user.ForceContractDisease(D, FALSE, TRUE)
+			var/datum/disease/D = new /datum/disease/cold
+			user.ForceContractDisease(D)
 		if(10)
 			//Nothing
 			visible_message("<span class='notice'>[src] roll perfectly.</span>")
@@ -258,22 +261,22 @@
 			new /obj/item/gun/ballistic/revolver/mateba(drop_location())
 		if(15)
 			//Random One-use spellbook
-			new /obj/item/book/granter/spell/random(drop_location())
+			new /obj/item/spellbook/oneuse/random(drop_location())
 		if(16)
 			//Servant & Servant Summon
 			var/mob/living/carbon/human/H = new(drop_location())
 			H.equipOutfit(/datum/outfit/butler)
 			var/datum/mind/servant_mind = new /datum/mind()
-			var/datum/antagonist/magic_servant/A = new
-			servant_mind.add_antag_datum(A)
-			A.setup_master(user)
+			var/datum/objective/O = new("Serve [user.real_name].")
+			servant_mind.objectives += O
 			servant_mind.transfer_to(H)
 
 			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [user.real_name] Servant?", ROLE_WIZARD, null, ROLE_WIZARD, 50, H)
-			if(LAZYLEN(candidates))
-				var/mob/dead/observer/C = pick(candidates)
-				message_admins("[ADMIN_LOOKUPFLW(C)] was spawned as Dice Servant")
-				C.transfer_ckey(H, FALSE)
+			var/mob/dead/observer/chosen = null
+			if(candidates.len)
+				chosen = pick(candidates)
+				message_admins("[key_name_admin(chosen)] was spawned as Dice Servant")
+				H.key = chosen.key
 
 			var/obj/effect/proc_holder/spell/targeted/summonmob/S = new
 			S.target_mob = H

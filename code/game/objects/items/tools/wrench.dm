@@ -6,17 +6,16 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = SLOT_BELT
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/ratchet.ogg'
-	materials = list(MAT_METAL=150)
-
+	materials = list(MAT_METAL=150)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	tool_behaviour = TOOL_WRENCH
 	toolspeed = 1
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 30)
 
 /obj/item/wrench/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is beating [user.p_them()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -26,22 +25,14 @@
 /obj/item/wrench/cyborg
 	name = "automatic wrench"
 	desc = "An advanced robotic wrench. Can be found in construction cyborgs."
-	icon = 'icons/obj/items_cyborg.dmi'
-	icon_state = "wrench_cyborg"
 	toolspeed = 0.5
 
 /obj/item/wrench/brass
 	name = "brass wrench"
 	desc = "A brass wrench. It's faintly warm to the touch."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	icon_state = "wrench_clock"
-	toolspeed = 0.5
-
-/obj/item/wrench/bronze
-	name = "bronze plated wrench"
-	desc = "A bronze plated wrench."
 	icon_state = "wrench_brass"
-	toolspeed = 0.95
+	toolspeed = 0.5
 
 /obj/item/wrench/abductor
 	name = "alien wrench"
@@ -49,7 +40,7 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "wrench"
 	usesound = 'sound/effects/empulse.ogg'
-	toolspeed = 0.1
+	toolspeed = 0.1
 
 /obj/item/wrench/power
 	name = "hand drill"
@@ -59,8 +50,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	usesound = 'sound/items/drill_use.ogg'
-	materials = list(MAT_METAL=150,MAT_SILVER=50,MAT_TITANIUM=25)
- //done for balance reasons, making them high value for research, but harder to get
+	materials = list(MAT_METAL=150,MAT_SILVER=50,MAT_TITANIUM=25) //done for balance reasons, making them high value for research, but harder to get
 	force = 8 //might or might not be too high, subject to change
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 8
@@ -69,7 +59,7 @@
 
 /obj/item/wrench/power/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
-	var/obj/item/wirecutters/power/s_drill = new /obj/item/screwdriver/power(drop_location())
+	var/obj/item/wirecutters/power/s_drill = new /obj/item/screwdriver/power
 	to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
 	qdel(src)
 	user.put_in_active_hand(s_drill)
@@ -83,8 +73,7 @@
 	desc = "A medical wrench with common(medical?) uses. Can be found in your hand."
 	icon_state = "wrench_medical"
 	force = 2 //MEDICAL
-	throwforce = 4
-
+	throwforce = 4
 	attack_verb = list("wrenched", "medicaled", "tapped", "jabbed", "whacked")
 
 /obj/item/wrench/medical/suicide_act(mob/living/user)
@@ -115,11 +104,3 @@
 	user.dust()
 
 	return OXYLOSS
-
-/obj/item/wrench/advanced
-	name = "advanced wrench"
-	desc = "A wrench that uses the same magnetic technology that abductor tools use, but slightly more ineffeciently."
-	icon = 'icons/obj/advancedtools.dmi'
-	icon_state = "wrench"
-	usesound = 'sound/effects/empulse.ogg'
-	toolspeed = 0.2

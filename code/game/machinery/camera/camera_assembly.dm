@@ -13,8 +13,8 @@
 	icon = 'icons/obj/machines/camera.dmi'
 	icon_state = "camera1"
 	max_integrity = 150
-	//	Motion, EMP-Proof, X-ray
-	var/static/list/possible_upgrades = typecacheof(list(/obj/item/assembly/prox_sensor, /obj/item/stack/sheet/mineral/plasma, /obj/item/analyzer))
+	//	Motion, EMP-Proof, X-Ray
+	var/static/list/possible_upgrades = typecacheof(list(/obj/item/device/assembly/prox_sensor, /obj/item/stack/sheet/mineral/plasma, /obj/item/device/analyzer))
 	var/list/upgrades
 	var/state = 1
 
@@ -42,7 +42,7 @@
 			if(istype(W, /obj/item/weldingtool))
 				if(weld(W, user))
 					to_chat(user, "<span class='notice'>You weld the assembly securely into place.</span>")
-					setAnchored(TRUE)
+					anchored = TRUE
 					state = 2
 				return
 		if(2)
@@ -62,7 +62,7 @@
 				if(weld(W, user))
 					to_chat(user, "<span class='notice'>You unweld the assembly from its place.</span>")
 					state = 1
-					setAnchored(TRUE)
+					anchored = TRUE
 				return
 
 	// Upgrades!
@@ -80,20 +80,17 @@
 		return FALSE
 	var/obj/U = locate(/obj) in upgrades
 	if(U)
-		to_chat(user, "<span class='notice'>You detach an upgrade from the assembly.</span>")
-		tool.play_tool_sound(src)
+		to_chat(user, "<span class='notice'>You unattach an upgrade from the assembly.</span>")
+		playsound(src, tool.usesound, 50, 1)
 		U.forceMove(drop_location())
 		upgrades -= U
 	return TRUE
 
 /obj/structure/camera_assembly/screwdriver_act(mob/user, obj/item/tool)
-	. = ..()
-	if(.)
-		return TRUE
 	if(state != 3)
 		return FALSE
 
-	tool.play_tool_sound(src)
+	playsound(src, tool.usesound, 50, 1)
 	var/input = stripped_input(user, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Set Network", "SS13")
 	if(!input)
 		to_chat(user, "<span class='warning'>No input found, please hang up and try your call again!</span>")
@@ -102,9 +99,6 @@
 	if(tempnetwork.len < 1)
 		to_chat(user, "<span class='warning'>No network found, please hang up and try your call again!</span>")
 		return
-	for(var/i in tempnetwork)
-		tempnetwork -= i
-		tempnetwork += lowertext(i)
 	state = 4
 	var/obj/machinery/camera/C = new(loc, src)
 	forceMove(C)
@@ -115,32 +109,35 @@
 	C.c_tag = "[A.name] ([rand(1, 999)])"
 	return TRUE
 
-/obj/structure/camera_assembly/wirecutter_act(mob/user, obj/item/I)
+/obj/structure/camera_assembly/wirecutter_act(mob/user, obj/item/tool)
 	if(state != 3)
 		return FALSE
 
-	new /obj/item/stack/cable_coil(drop_location(), 2)
-	I.play_tool_sound(src)
+	new /obj/item/stack/cable_coil(get_turf(src), 2)
+	playsound(src, tool.usesound, 50, 1)
 	to_chat(user, "<span class='notice'>You cut the wires from the circuits.</span>")
 	state = 2
 	return TRUE
 
-/obj/structure/camera_assembly/wrench_act(mob/user, obj/item/I)
+/obj/structure/camera_assembly/wrench_act(mob/user, obj/item/tool)
 	if(state != 1)
 		return FALSE
-	I.play_tool_sound(src)
-	to_chat(user, "<span class='notice'>You detach the assembly from its place.</span>")
-	new /obj/item/wallframe/camera(drop_location())
+	playsound(src, tool.usesound, 50, 1)
+	to_chat(user, "<span class='notice'>You unattach the assembly from its place.</span>")
+	new /obj/item/wallframe/camera(get_turf(src))
 	qdel(src)
 	return TRUE
 
-/obj/structure/camera_assembly/proc/weld(obj/item/weldingtool/W, mob/living/user)
-	if(!W.tool_start_check(user, amount=0))
-		return FALSE
+/obj/structure/camera_assembly/proc/weld(obj/item/weldingtool/WT, mob/living/user)
+	if(!WT.remove_fuel(0, user))
+		return 0
 	to_chat(user, "<span class='notice'>You start to weld \the [src]...</span>")
-	if(W.use_tool(src, user, 20, volume=50))
-		return TRUE
-	return FALSE
+	playsound(src.loc, WT.usesound, 50, 1)
+	if(do_after(user, 20*WT.toolspeed, target = src))
+		if(WT.isOn())
+			playsound(loc, 'sound/items/welder2.ogg', 50, 1)
+			return 1
+	return 0
 
 /obj/structure/camera_assembly/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

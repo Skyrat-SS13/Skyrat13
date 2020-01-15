@@ -87,22 +87,9 @@
 	object_path = /obj/item/clockwork/construct_chassis/clockwork_marauder
 	construct_type = /mob/living/simple_animal/hostile/clockwork/marauder
 	combat_construct = TRUE
-	var/static/last_marauder = 0
-
-/datum/clockwork_scripture/create_object/construct/clockwork_marauder/post_recital()
-	last_marauder = world.time
-	return ..()
-
-/datum/clockwork_scripture/create_object/construct/clockwork_marauder/pre_recital()
-	if(!is_reebe(invoker.z))
-		if(!CONFIG_GET(flag/allow_clockwork_marauder_on_station))
-			to_chat(invoker, "<span class='brass'>This particular station is too far from the influence of the Hierophant Network. You can not summon a marauder here.</span>")
-			return FALSE
-		if(world.time < (last_marauder + CONFIG_GET(number/marauder_delay_non_reebe)))
-			to_chat(invoker, "<span class='brass'>The hierophant network is still strained from the last summoning of a marauder on a plane without the strong energy connection of Reebe to support it. \
-			You must wait another [DisplayTimeText((last_marauder + CONFIG_GET(number/marauder_delay_non_reebe)) - world.time, TRUE)]!</span>")
-			return FALSE
-	return ..()
+	var/static/recent_marauders = 0
+	var/static/time_since_last_marauder = 0
+	var/static/scaled_recital_time = 0
 
 /datum/clockwork_scripture/create_object/construct/clockwork_marauder/update_construct_limit()
 	var/human_servants = 0
@@ -111,34 +98,32 @@
 		var/mob/living/L = M.current
 		if(ishuman(L) && L.stat != DEAD)
 			human_servants++
-	construct_limit = round(CLAMP((human_servants / 4), 1, 3))	//1 per 4 human servants, maximum of 3
+	construct_limit = human_servants / 4 //1 per 4 human servants, and a maximum of 3 marauders
+	construct_limit = CLAMP(construct_limit - recent_marauders, 1, 3)
+	if(recent_marauders)
+		to_chat(invoker, "<span class='warning'>The Hierophant Network needs [MARAUDER_SCRIPTURE_SCALING_THRESHOLD / 10] seconds to recover from marauder summoning; recent summoning has limited the number of available marauders by [recent_marauders]!</span>")
 
-//Summon Neovgre: Summon a very powerful combat mech that explodes when destroyed for massive damage.
-/datum/clockwork_scripture/create_object/summon_arbiter
-	descname = "Powerful Assault Mech"
-	name = "Summon Neovgre, the Anima Bulwark"
-	desc = "Calls forth the mighty Anima Bulwark, a weapon of unmatched power,\
-			 mech with superior defensive and offensive capabilities. It will \
-			 steadily regenerate HP and triple its regeneration speed while standing \
-			 on a clockwork tile. It will automatically draw power from nearby sigils of \
-			 transmission should the need arise. Its Arbiter laser cannon can decimate foes \
-			 from a range and is capable of smashing through any barrier presented to it. \
-			 Be warned, choosing to pilot Neovgre is a lifetime commitment, once you are \
-			 in you cannot leave and when it is destroyed it will explode catastrophically with you inside."
-	invocations = list("By the strength of the alloy...!!", "...call forth the Arbiter!!")
-	channel_time = 200 // This is a strong fucking weapon, 20 seconds channel time is getting off light I tell ya.
-	power_cost = 75000 //75 KW
-	usage_tip = "Neovgre is a powerful mech that will crush your enemies!"
-	invokers_required = 5
-	multiple_invokers_used = TRUE
-	object_path = /obj/mecha/combat/neovgre
-	tier = SCRIPTURE_APPLICATION
-	primary_component = BELLIGERENT_EYE
-	sort_priority = 2
-	creator_message = "<span class='brass'>Neovgre, the Anima Bulwark towers over you... your enemies reckoning has come.</span>"
+/datum/clockwork_scripture/create_object/construct/clockwork_marauder/pre_recital()
+	channel_time = initial(channel_time)
+	calculate_scaling()
+	if(scaled_recital_time)
+		to_chat(invoker, "<span class='warning'>The Hierophant Network is under strain from repeated summoning, making this scripture [scaled_recital_time / 10] seconds slower!</span>")
+		channel_time += scaled_recital_time
+	return TRUE
 
-/datum/clockwork_scripture/create_object/summon_arbiter/check_special_requirements()
-	if(GLOB.neovgre_exists)
-		to_chat(invoker, "<span class='nezbere'>\"Only one of my weapons may exist in this temporal stream!\"</span>")
-		return FALSE
-	return ..()
+/datum/clockwork_scripture/create_object/construct/clockwork_marauder/scripture_effects()
+	. = ..()
+	time_since_last_marauder = world.time
+	recent_marauders++
+	calculate_scaling()
+
+/datum/clockwork_scripture/create_object/construct/clockwork_marauder/proc/calculate_scaling()
+	var/WT = world.time
+	var/MT = time_since_last_marauder //Cast it for quicker reference
+	var/marauders_to_exclude = 0
+	if(world.time >= time_since_last_marauder + MARAUDER_SCRIPTURE_SCALING_THRESHOLD)
+		marauders_to_exclude = round(WT - MT) / MARAUDER_SCRIPTURE_SCALING_THRESHOLD //If at least 20 seconds have passed, lose one marauder for each 20 seconds
+		//i.e. world.time = 10000, last marauder = 9000, so we lose 5 marauders from the recent count since 10k - 9k = 1k, 1k / 200 = 5
+		time_since_last_marauder = world.time //So that it can't be spammed to make the marauder exclusion plummet; this emulates "ticking"
+	recent_marauders = max(0, recent_marauders - marauders_to_exclude)
+	scaled_recital_time = min(recent_marauders * MARAUDER_SCRIPTURE_SCALING_TIME, MARAUDER_SCRIPTURE_SCALING_MAX)

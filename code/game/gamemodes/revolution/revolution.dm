@@ -12,10 +12,9 @@
 	config_tag = "revolution"
 	antag_flag = ROLE_REV
 	false_report_weight = 10
-	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster")
-	required_players = 20
-	required_enemies = 1
+	restricted_jobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg","Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
+	required_players = 30
+	required_enemies = 2
 	recommended_enemies = 3
 	enemy_minimum_age = 14
 
@@ -27,17 +26,15 @@
 	var/finished = 0
 	var/check_counter = 0
 	var/max_headrevs = 3
-	var/completioncheckstart
 	var/datum/team/revolution/revolution
 	var/list/datum/mind/headrev_candidates = list()
-	var/end_when_heads_dead = TRUE
 
 ///////////////////////////
 //Announces the game type//
 ///////////////////////////
 /datum/game_mode/revolution/announce()
 	to_chat(world, "<B>The current game mode is - Revolution!</B>")
-	to_chat(world, "<B>Some crewmembers are attempting to start a revolution!<BR>\nRevolutionaries - Kill the Captain, HoP, HoS, CE, RD, QM and CMO. Convert other crewmembers (excluding the heads of staff, and security officers) to your cause by flashing them. Protect your leaders.<BR>\nPersonnel - Protect the heads of staff. Kill the leaders of the revolution, and brainwash the other revolutionaries (by beating them in the head).</B>")
+	to_chat(world, "<B>Some crewmembers are attempting to start a revolution!<BR>\nRevolutionaries - Kill the Captain, HoP, HoS, CE, RD and CMO. Convert other crewmembers (excluding the heads of staff, and security officers) to your cause by flashing them. Protect your leaders.<BR>\nPersonnel - Protect the heads of staff. Kill the leaders of the revolution, and brainwash the other revolutionaries (by beating them in the head).</B>")
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -54,23 +51,20 @@
 	for (var/i=1 to max_headrevs)
 		if (antag_candidates.len==0)
 			break
-		var/datum/mind/lenin = antag_pick(antag_candidates)
+		var/datum/mind/lenin = pick(antag_candidates)
 		antag_candidates -= lenin
 		headrev_candidates += lenin
 		lenin.restricted_roles = restricted_jobs
 
 	if(headrev_candidates.len < required_enemies)
-		setup_error = "Not enough headrev candidates"
 		return FALSE
-
-	completioncheckstart = world.time + 10 MINUTES
 
 	return TRUE
 
 /datum/game_mode/revolution/post_setup()
 	var/list/heads = SSjob.get_living_heads()
 	var/list/sec = SSjob.get_living_sec()
-	var/weighted_score = CLAMP(round(heads.len - ((3 - sec.len) / 3)), 1, max_headrevs)
+	var/weighted_score = min(max(round(heads.len - ((8 - sec.len) / 3)),1),max_headrevs)
 
 	for(var/datum/mind/rev_mind in headrev_candidates)	//People with return to lobby may still be in the lobby. Let's pick someone else in that case.
 		if(isnewplayer(rev_mind.current))
@@ -101,7 +95,7 @@
 	revolution = new()
 
 	for(var/datum/mind/rev_mind in headrev_candidates)
-		log_game("[key_name(rev_mind)] has been selected as a head rev")
+		log_game("[rev_mind.key] (ckey) has been selected as a head rev")
 		var/datum/antagonist/rev/head/new_head = new()
 		new_head.give_flash = TRUE
 		new_head.give_hud = TRUE
@@ -118,7 +112,7 @@
 /datum/game_mode/revolution/process()
 	check_counter++
 	if(check_counter >= 5)
-		if(!finished && world.time >= completioncheckstart)
+		if(!finished)
 			SSticker.mode.check_win()
 		check_counter = 0
 	return FALSE
@@ -137,11 +131,11 @@
 //Checks if the round is over//
 ///////////////////////////////
 /datum/game_mode/revolution/check_finished()
-	if(CONFIG_GET(keyed_list/continuous)["revolution"])
+	if(CONFIG_GET(keyed_flag_list/continuous)["revolution"])
 		if(finished)
 			SSshuttle.clearHostileEnvironment(src)
 		return ..()
-	if(finished != 0 && end_when_heads_dead)
+	if(finished != 0)
 		return TRUE
 	else
 		return ..()
@@ -196,30 +190,3 @@
 	return "Employee unrest has spiked in recent weeks, with several attempted mutinies on heads of staff. Some crew have been observed using flashbulb devices to blind their colleagues, \
 		who then follow their orders without question and work towards dethroning departmental leaders. Watch for behavior such as this with caution. If the crew attempts a mutiny, you and \
 		your heads of staff are fully authorized to execute them using lethal weaponry - they will be later cloned and interrogated at Central Command."
-
-/datum/game_mode/revolution/extended
-	name = "extended_revolution"
-	config_tag = "extended_revolution"
-	end_when_heads_dead = FALSE
-
-/datum/game_mode/revolution/speedy
-	name = "speedy_revolution"
-	config_tag = "speedy_revolution"
-	end_when_heads_dead = FALSE
-	var/endtime = null
-	var/fuckingdone = FALSE
-
-/datum/game_mode/revolution/speedy/pre_setup()
-	endtime = world.time + 20 MINUTES
-	return ..()
-
-/datum/game_mode/revolution/speedy/process()
-	. = ..()
-	if(check_counter == 0)
-		if (world.time > endtime && !fuckingdone)
-			fuckingdone = TRUE
-			for (var/obj/machinery/nuclearbomb/N in GLOB.nuke_list)
-				if (!N.timing)
-					N.timer_set = 200
-					N.set_safety()
-					N.set_active()

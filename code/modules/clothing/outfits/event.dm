@@ -7,12 +7,12 @@
 	head = /obj/item/clothing/head/santa
 	back = /obj/item/storage/backpack/santabag
 	mask = /obj/item/clothing/mask/breath
-	r_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/device/flashlight
 	gloves = /obj/item/clothing/gloves/color/red
 	belt = /obj/item/tank/internals/emergency_oxygen/double
 	id = /obj/item/card/id/gold
 
-/datum/outfit/santa/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
+/datum/outfit/santa/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 	H.fully_replace_character_name(H.real_name, "Santa Claus")
@@ -26,5 +26,6 @@
 
 	var/obj/item/storage/backpack/bag = H.back
 	var/obj/item/a_gift/gift = new(H)
-	while(SEND_SIGNAL(bag, COMSIG_TRY_STORAGE_INSERT, gift, null, TRUE, FALSE))
+	while(bag.can_be_inserted(gift, 1))
+		bag.handle_item_insertion(gift, 1)
 		gift = new(H)

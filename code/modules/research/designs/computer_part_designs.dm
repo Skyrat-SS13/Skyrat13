@@ -62,6 +62,7 @@
 	id = "netcard_basic"
 	build_type = IMPRINTER
 	materials = list(MAT_METAL = 250, MAT_GLASS = 100)
+	reagents_list = list("sacid" = 20)
 	build_path = /obj/item/computer_hardware/network_card
 	category = list("Computer Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
@@ -90,6 +91,7 @@
 	id = "portadrive_basic"
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 800)
+	reagents_list = list("sacid" = 20)
 	build_path = /obj/item/computer_hardware/hard_drive/portable
 	category = list("Computer Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING

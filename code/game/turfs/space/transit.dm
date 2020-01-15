@@ -1,5 +1,4 @@
 /turf/open/space/transit
-	name = "\proper hyperspace"
 	icon_state = "black"
 	dir = SOUTH
 	baseturfs = /turf/open/space/transit
@@ -26,30 +25,7 @@
 /turf/open/space/transit/east
 	dir = EAST
 
-/turf/open/space/transit/border
-	opacity = TRUE
-
-/turf/open/space/transit/border/south
-	dir = SOUTH
-
-/turf/open/space/transit/border/north
-	dir = NORTH
-
-/turf/open/space/transit/border/west
-	dir = WEST
-
-/turf/open/space/transit/border/east
-	dir = EAST
-
-/turf/open/space/transit/centcom
-	dir = SOUTH
-
-/turf/open/space/transit/centcom/Entered(atom/movable/AM, atom/OldLoc)
-	..()
-	if(!locate(/obj/structure/lattice) in src)
-		throw_atom(AM)
-
-/turf/open/space/transit/border/Entered(atom/movable/AM, atom/OldLoc)
+/turf/open/space/transit/Entered(atom/movable/AM, atom/OldLoc)
 	..()
 	if(!locate(/obj/structure/lattice) in src)
 		throw_atom(AM)
@@ -64,10 +40,12 @@
 	var/min = 1+TRANSITIONEDGE
 
 	var/list/possible_transtitons = list()
-	for(var/A in SSmapping.z_list)
-		var/datum/space_level/D = A
-		if (D.linkage == CROSSLINKED)
-			possible_transtitons += D.z_value
+	var/k = 1
+	var/list/config_list = SSmapping.config.transition_config
+	for(var/a in config_list)
+		if(config_list[a] == CROSSLINKED) // Only pick z-levels connected to station space
+			possible_transtitons += k
+		k++
 	var/_z = pick(possible_transtitons)
 
 	//now select coordinates for a border turf
@@ -89,8 +67,6 @@
 
 	var/turf/T = locate(_x, _y, _z)
 	AM.forceMove(T)
-	var/turf/throwturf = get_ranged_target_turf(T, dir, 1)
-	AM.safe_throw_at(throwturf, 1, 4, null, FALSE)
 
 
 /turf/open/space/transit/CanBuildHere()
@@ -103,12 +79,9 @@
 	for(var/atom/movable/AM in src)
 		throw_atom(AM)
 
-/turf/open/space/transit/update_icon()
-	. = ..()
-	transform = turn(matrix(), get_transit_angle(src))
-
-/turf/open/space/transit/update_icon_state()
+/turf/open/space/transit/proc/update_icon()
 	icon_state = "speedspace_ns_[get_transit_state(src)]"
+	transform = turn(matrix(), get_transit_angle(src))
 
 /proc/get_transit_state(turf/T)
 	var/p = 9

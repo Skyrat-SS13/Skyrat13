@@ -16,10 +16,9 @@
 /obj/item/soapstone/examine(mob/user)
 	. = ..()
 	if(remaining_uses != -1)
-		. += "It has [remaining_uses] uses left."
+		to_chat(user, "It has [remaining_uses] uses left.")
 
 /obj/item/soapstone/afterattack(atom/target, mob/user, proximity)
-	. = ..()
 	var/turf/T = get_turf(target)
 	if(!proximity)
 		return
@@ -57,7 +56,7 @@
 	playsound(loc, 'sound/items/gavel.ogg', 50, 1, -1)
 	user.visible_message("<span class='notice'>[user] starts engraving a message into [T]...</span>", "<span class='notice'>You start engraving a message into [T]...</span>", "<span class='italics'>You hear a chipping sound.</span>")
 	if(can_use() && do_after(user, tool_speed, target = T) && can_use()) //This looks messy but it's actually really clever!
-		if(!locate(/obj/structure/chisel_message) in T)
+		if(!locate(/obj/structure/chisel_message in T))
 			user.visible_message("<span class='notice'>[user] leaves a message for future spacemen!</span>", "<span class='notice'>You engrave a message into [T]!</span>", "<span class='italics'>You hear a chipping sound.</span>")
 			playsound(loc, 'sound/items/gavel.ogg', 50, 1, -1)
 			var/obj/structure/chisel_message/M = new(T)
@@ -117,7 +116,6 @@
 	anchored = TRUE
 	max_integrity = 30
 	layer = LATTICE_LAYER
-	light_power = 0.3
 
 	var/hidden_message
 	var/creator_key
@@ -194,7 +192,7 @@
 	update_icon()
 
 /obj/structure/chisel_message/examine(mob/user)
-	. = ..()
+	..()
 	ui_interact(user)
 
 /obj/structure/chisel_message/Destroy()

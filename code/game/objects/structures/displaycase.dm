@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = ACID_PROOF
-	armor = list("melee" = 30, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 100)
+	armor = list(melee = 30, bullet = 0, laser = 0, energy = 0, bomb = 10, bio = 0, rad = 0, fire = 70, acid = 100)
 	max_integrity = 200
 	integrity_failure = 50
 	var/obj/item/showpiece = null
@@ -15,17 +15,9 @@
 	var/openable = TRUE
 	var/obj/item/electronics/airlock/electronics
 	var/start_showpiece_type = null //add type for items on display
-	var/list/start_showpieces = list() //Takes sublists in the form of list("type" = /obj/item/bikehorn, "trophy_message" = "henk")
-	var/trophy_message = ""
 
 /obj/structure/displaycase/Initialize()
 	. = ..()
-	if(start_showpieces.len && !start_showpiece_type)
-		var/list/showpiece_entry = pick(start_showpieces)
-		if (showpiece_entry && showpiece_entry["type"])
-			start_showpiece_type = showpiece_entry["type"]
-			if (showpiece_entry["trophy_message"])
-				trophy_message = showpiece_entry["trophy_message"]
 	if(start_showpiece_type)
 		showpiece = new start_showpiece_type (src)
 	update_icon()
@@ -38,14 +30,11 @@
 	return ..()
 
 /obj/structure/displaycase/examine(mob/user)
-	. = ..()
+	..()
 	if(alert)
-		. += "<span class='notice'>Hooked up with an anti-theft system.</span>"
+		to_chat(user, "<span class='notice'>Hooked up with an anti-theft system.</span>")
 	if(showpiece)
-		. += "<span class='notice'>There's [showpiece] inside.</span>"
-	if(trophy_message)
-		. += "The plaque reads:"
-		. += trophy_message
+		to_chat(user, "<span class='notice'>There's [showpiece] inside.</span>")
 
 
 /obj/structure/displaycase/proc/dump()
@@ -107,13 +96,13 @@
 		else
 			to_chat(user,  "<span class='warning'>Access denied.</span>")
 	else if(istype(W, /obj/item/weldingtool) && user.a_intent == INTENT_HELP && !broken)
-		if(obj_integrity < max_integrity)
-			if(!W.tool_start_check(user, amount=5))
-				return
-
+		var/obj/item/weldingtool/WT = W
+		if(obj_integrity < max_integrity && WT.remove_fuel(5, user))
 			to_chat(user, "<span class='notice'>You begin repairing [src].</span>")
-			if(W.use_tool(src, user, 40, amount=5, volume=50))
+			playsound(loc, WT.usesound, 40, 1)
+			if(do_after(user, 40*W.toolspeed, target = src))
 				obj_integrity = max_integrity
+				playsound(loc, 'sound/items/welder2.ogg', 50, 1)
 				update_icon()
 				to_chat(user, "<span class='notice'>You repair [src].</span>")
 		else
@@ -128,7 +117,7 @@
 				qdel(src)
 		else
 			to_chat(user, "<span class='notice'>You start to [open ? "close":"open"] [src].</span>")
-			if(W.use_tool(src, user, 20))
+			if(do_after(user, 20*W.toolspeed, target = src))
 				to_chat(user,  "<span class='notice'>You [open ? "close":"open"] [src].</span>")
 				toggle_lock(user)
 	else if(open && !showpiece)
@@ -155,16 +144,12 @@
 	update_icon()
 
 /obj/structure/displaycase/attack_paw(mob/user)
-	return attack_hand(user)
+	return src.attack_hand(user)
 
 /obj/structure/displaycase/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (showpiece && (broken || open))
 		to_chat(user, "<span class='notice'>You deactivate the hover field built into the case.</span>")
-		log_combat(user, src, "deactivates the hover field of")
 		dump()
 		src.add_fingerprint(user)
 		update_icon()
@@ -174,9 +159,10 @@
 		if (!Adjacent(user))
 			return
 		user.visible_message("<span class='danger'>[user] kicks the display case.</span>", null, null, COMBAT_MESSAGE_RANGE)
-		log_combat(user, src, "kicks")
 		user.do_attack_animation(src, ATTACK_EFFECT_KICK)
 		take_damage(2)
+
+
 
 /obj/structure/displaycase_chassis
 	anchored = TRUE
@@ -191,15 +177,15 @@
 /obj/structure/displaycase_chassis/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/wrench)) //The player can only deconstruct the wooden frame
 		to_chat(user, "<span class='notice'>You start disassembling [src]...</span>")
-		I.play_tool_sound(src)
-		if(I.use_tool(src, user, 30))
+		playsound(src.loc, I.usesound, 50, 1)
+		if(do_after(user, 30*I.toolspeed, target = src))
 			playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 			new /obj/item/stack/sheet/mineral/wood(get_turf(src), 5)
 			qdel(src)
 
 	else if(istype(I, /obj/item/electronics/airlock))
 		to_chat(user, "<span class='notice'>You start installing the electronics into [src]...</span>")
-		I.play_tool_sound(src)
+		playsound(src.loc, I.usesound, 50, 1)
 		if(do_after(user, 30, target = src) && user.transferItemToLoc(I,src))
 			electronics = I
 			to_chat(user, "<span class='notice'>You install the airlock electronics.</span>")
@@ -227,7 +213,7 @@
 //The captains display case requiring specops ID access is intentional.
 //The lab cage and captains display case do not spawn with electronics, which is why req_access is needed.
 /obj/structure/displaycase/captain
-	alert = TRUE
+	alert = 1
 	start_showpiece_type = /obj/item/gun/energy/laser/captain
 	req_access = list(ACCESS_CENT_SPECOPS)
 
@@ -237,15 +223,12 @@
 	start_showpiece_type = /obj/item/clothing/mask/facehugger/lamarr
 	req_access = list(ACCESS_RD)
 
-/obj/structure/displaycase/clown
-	desc = "In the event of clown, honk glass."
-	alert = TRUE
-	start_showpiece_type = /obj/item/bikehorn
-	req_access = list(ACCESS_CENT_GENERAL)
+
 
 /obj/structure/displaycase/trophy
 	name = "trophy display case"
 	desc = "Store your trophies of accomplishment in here, and they will stay forever."
+	var/trophy_message = ""
 	var/placer_key = ""
 	var/added_roundstart = TRUE
 	var/is_locked = TRUE
@@ -261,6 +244,12 @@
 /obj/structure/displaycase/trophy/Destroy()
 	GLOB.trophy_cases -= src
 	return ..()
+
+/obj/structure/displaycase/trophy/examine(mob/user)
+	..()
+	if(trophy_message)
+		to_chat(user, "The plaque reads:")
+		to_chat(user, trophy_message)
 
 /obj/structure/displaycase/trophy/attackby(obj/item/W, mob/user, params)
 

@@ -3,8 +3,7 @@
 	weight = 3
 	typepath = /datum/round_event/wizard/cursed_items
 	max_occurrences = 3
-	earliest_start = 0 MINUTES
-	can_be_midround_wizard = FALSE
+	earliest_start = 0
 
 //Note about adding items to this: Because of how NODROP_1 works if an item spawned to the hands can also be equiped to a slot
 //it will be able to be put into that slot from the hand, but then get stuck there. To avoid this make a new subtype of any
@@ -12,29 +11,29 @@
 
 /datum/round_event/wizard/cursed_items/start()
 	var/item_set = pick("wizardmimic", "swords", "bigfatdoobie", "boxing", "voicemodulators", "catgirls2015")
-	var/list/loadout[SLOTS_AMT]
+	var/list/loadout[slots_amt]
 	var/ruins_spaceworthiness
 	var/ruins_wizard_loadout
 
 	switch(item_set)
 		if("wizardmimic")
-			loadout[SLOT_WEAR_SUIT] = /obj/item/clothing/suit/wizrobe
-			loadout[SLOT_SHOES] = /obj/item/clothing/shoes/sandal/magic
-			loadout[SLOT_HEAD] = /obj/item/clothing/head/wizard
+			loadout[slot_wear_suit] = /obj/item/clothing/suit/wizrobe
+			loadout[slot_shoes] = /obj/item/clothing/shoes/sandal/magic
+			loadout[slot_head] = /obj/item/clothing/head/wizard
 			ruins_spaceworthiness = 1
 		if("swords")
-			loadout[SLOT_HANDS] = /obj/item/katana/cursed
+			loadout[slot_hands] = /obj/item/katana/cursed
 		if("bigfatdoobie")
-			loadout[SLOT_WEAR_MASK] = /obj/item/clothing/mask/cigarette/rollie/trippy
+			loadout[slot_wear_mask] = /obj/item/clothing/mask/cigarette/rollie/trippy
 			ruins_spaceworthiness = 1
 		if("boxing")
-			loadout[SLOT_WEAR_MASK] = /obj/item/clothing/mask/luchador
-			loadout[SLOT_GLOVES] = /obj/item/clothing/gloves/boxing
+			loadout[slot_wear_mask] = /obj/item/clothing/mask/luchador
+			loadout[slot_gloves] = /obj/item/clothing/gloves/boxing
 			ruins_spaceworthiness = 1
 		if("voicemodulators")
-			loadout[SLOT_WEAR_MASK] = /obj/item/clothing/mask/chameleon
+			loadout[slot_wear_mask] = /obj/item/clothing/mask/chameleon
 		if("catgirls2015")
-			loadout[SLOT_HEAD] = /obj/item/clothing/head/kitty
+			loadout[slot_head] = /obj/item/clothing/head/kitty
 			ruins_spaceworthiness = 1
 			ruins_wizard_loadout = 1
 
@@ -51,8 +50,7 @@
 				var/obj/item/I = new J //dumb but required because of byond throwing a fit anytime new gets too close to a list
 				H.dropItemToGround(H.get_item_by_slot(i), TRUE)
 				H.equip_to_slot_or_del(I, i)
-				ADD_TRAIT(I, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-				I.item_flags |= DROPDEL
+				I.flags_1 |= NODROP_1 | DROPDEL_1
 				I.name = "cursed " + I.name
 
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)

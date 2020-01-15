@@ -9,8 +9,10 @@
 	var/screen = 0
 	var/stored_data
 
-/obj/machinery/computer/mecha/ui_interact(mob/user)
-	. = ..()
+/obj/machinery/computer/mecha/attack_hand(mob/user)
+	if(..())
+		return
+	user.set_machine(src)
 	var/dat = "<html><head><title>[src.name]</title><style>h3 {margin: 0px; padding: 0px;}</style></head><body>"
 	if(screen == 0)
 		dat += "<h3>Tracking beacons data</h3>"
@@ -21,9 +23,8 @@
 			var/answer = TR.get_mecha_info()
 			if(answer)
 				dat += {"<hr>[answer]<br/>
-						<a href='?src=[REF(src)];send_message=[REF(TR)]'>Send message</a><br/>
-						<a href='?src=[REF(src)];get_log=[REF(TR)]'>Show exosuit log</a><br/>
-						[TR.recharging?"Recharging EMP Pulse...<br>":"<a style='color: #f00;' href='?src=[REF(src)];shock=[REF(TR)]'>(EMP Pulse)</a><br>"]"}
+						  <a href='?src=[REF(src)];send_message=[REF(TR)]'>Send message</a><br/>
+						  <a href='?src=[REF(src)];get_log=[REF(TR)]'>Show exosuit log</a> | <a style='color: #f00;' href='?src=[REF(src)];shock=[REF(TR)]'>(EMP pulse)</a><br>"}
 
 	if(screen==1)
 		dat += "<h3>Log contents</h3>"
@@ -35,6 +36,7 @@
 
 	user << browse(dat, "window=computer;size=400x500")
 	onclose(user, "computer")
+	return
 
 /obj/machinery/computer/mecha/Topic(href, href_list)
 	if(..())
@@ -66,7 +68,6 @@
 	icon_state = "motion2"
 	w_class = WEIGHT_CLASS_SMALL
 	var/ai_beacon = FALSE //If this beacon allows for AI control. Exists to avoid using istype() on checking.
-	var/recharging = 0
 
 /obj/item/mecha_parts/mecha_tracking/proc/get_mecha_info()
 	if(!in_mecha())
@@ -87,9 +88,7 @@
 	return answer
 
 /obj/item/mecha_parts/mecha_tracking/emp_act()
-	. = ..()
-	if(!(. & EMP_PROTECT_SELF))
-		qdel(src)
+	qdel(src)
 
 /obj/item/mecha_parts/mecha_tracking/Destroy()
 	if(ismecha(loc))
@@ -104,16 +103,10 @@
 	return 0
 
 /obj/item/mecha_parts/mecha_tracking/proc/shock()
-	if(recharging)
-		return
 	var/obj/mecha/M = in_mecha()
 	if(M)
-		M.emp_act(EMP_HEAVY)
-		addtimer(CALLBACK(src, /obj/item/mecha_parts/mecha_tracking/proc/recharge), 15 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-		recharging = 1
-
-/obj/item/mecha_parts/mecha_tracking/proc/recharge()
-	recharging = 0
+		M.emp_act(EMP_LIGHT)
+	qdel(src)
 
 /obj/item/mecha_parts/mecha_tracking/proc/get_mecha_log()
 	if(!ismecha(loc))

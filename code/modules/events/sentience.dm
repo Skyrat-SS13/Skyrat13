@@ -31,7 +31,7 @@
 	var/list/potential = list()
 	for(var/mob/living/simple_animal/L in GLOB.alive_mob_list)
 		var/turf/T = get_turf(L)
-		if(!T || !is_station_level(T.z))
+		if(!is_station_level(T.z))
 			continue
 		if(!(L in GLOB.player_list) && !L.mind)
 			potential += L
@@ -48,9 +48,10 @@
 
 		spawned_animals++
 
-		SG.transfer_ckey(SA, FALSE)
+		SA.key = SG.key
 
-		SA.grant_all_languages(TRUE)
+		SA.grant_language(/datum/language/common)
+		SA.flags_2 |= OMNITONGUE_2
 
 		SA.sentience_act()
 

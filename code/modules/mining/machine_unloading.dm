@@ -6,6 +6,7 @@
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "unloader"
 	density = TRUE
+	anchored = TRUE
 	input_dir = WEST
 	output_dir = EAST
 	speed_process = TRUE
@@ -15,7 +16,7 @@
 	if(T)
 		var/limit
 		for(var/obj/structure/ore_box/B in T)
-			for (var/obj/item/stack/ore/O in B)
+			for (var/obj/item/ore/O in B)
 				B.contents -= O
 				unload_mineral(O)
 				limit++

@@ -9,7 +9,7 @@
 	<span class='brass'>Siphons <b>5 W</b> of power per second while in an APC.</span>"
 	icon_state = "wall_gear"
 	w_class = WEIGHT_CLASS_TINY
-	item_flags = NOBLUDGEON
+	flags_1 = NOBLUDGEON_1
 	var/obj/machinery/power/apc/apc
 
 /obj/item/clockwork/integration_cog/Initialize()
@@ -30,8 +30,6 @@
 		var/obj/item/stock_parts/cell/cell = apc.cell
 		if(cell && (cell.charge / cell.maxcharge > COG_MAX_SIPHON_THRESHOLD))
 			cell.use(1)
-			adjust_clockwork_power(2) //Power is shared, so only do it once; this runs very quickly so it's about 10 W/second
-		else
-			adjust_clockwork_power(1) //Continue generating power when the cell has run dry; 5 W/second
+			adjust_clockwork_power(	) //Power is shared, so only do it once; this runs very quickly so it's about 5 W/second
 
 #undef COG_MAX_SIPHON_THRESHOLD

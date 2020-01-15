@@ -18,7 +18,4 @@
 			else
 				user.invisimin()
 			return
-		if("F10")
-			user.get_dead_say()
-			return
 	..()

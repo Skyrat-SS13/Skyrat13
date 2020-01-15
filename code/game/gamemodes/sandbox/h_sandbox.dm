@@ -25,23 +25,23 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 	var/canisterinfo = null
 	var/hsbinfo = null
 	//items that shouldn't spawn on the floor because they would bug or act weird
-	var/static/list/spawn_forbidden = list(
+	var/global/list/spawn_forbidden = list(
 		/obj/item/tk_grab, /obj/item/implant, // not implanter, the actual thing that is inside you
-		/obj/item/assembly, /obj/item/onetankbomb, /obj/item/pda/ai,
+		/obj/item/assembly, /obj/item/device/onetankbomb, /obj/item/device/pda/ai,
 		/obj/item/smallDelivery, /obj/item/projectile,
 		/obj/item/borg/sight, /obj/item/borg/stun, /obj/item/robot_module)
 
 /datum/hSB/proc/update()
-	var/static/list/hrefs = list(
+	var/global/list/hrefs = list(
 			"Space Gear",
 			"Suit Up (Space Travel Gear)"		= "hsbsuit",
 			"Spawn Gas Mask"					= "hsbspawn&path=[/obj/item/clothing/mask/gas]",
 			"Spawn Emergency Air Tank"			= "hsbspawn&path=[/obj/item/tank/internals/emergency_oxygen/double]",
 
 			"Standard Tools",
-			"Spawn Flashlight"					= "hsbspawn&path=[/obj/item/flashlight]",
+			"Spawn Flashlight"					= "hsbspawn&path=[/obj/item/device/flashlight]",
 			"Spawn Toolbox"						= "hsbspawn&path=[/obj/item/storage/toolbox/mechanical]",
-			"Spawn Light Replacer"				= "hsbspawn&path=[/obj/item/lightreplacer]",
+			"Spawn Light Replacer"				= "hsbspawn&path=[/obj/item/device/lightreplacer]",
 			"Spawn Medical Kit"					= "hsbspawn&path=[/obj/item/storage/firstaid/regular]",
 			"Spawn All-Access ID"				= "hsbaaid",
 

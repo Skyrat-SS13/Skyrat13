@@ -63,13 +63,16 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
 
+	anchored = TRUE
 	density = TRUE
 	use_power = NO_POWER_USE
 
 	var/chargesa = 1
 	var/insistinga = 0
 
-/obj/machinery/wish_granter_dark/interact(mob/living/carbon/human/user)
+/obj/machinery/wish_granter_dark/attack_hand(mob/living/carbon/human/user)
+	usr.set_machine(src)
+
 	if(chargesa <= 0)
 		to_chat(user, "The Wish Granter lies silent.")
 		return
@@ -110,7 +113,14 @@
 			if("To Kill")
 				to_chat(user, "<B>Your wish is granted, but at a terrible cost...</B>")
 				to_chat(user, "The Wish Granter punishes you for your wickedness, claiming your soul and warping your body to match the darkness in your heart.")
-				user.mind.add_antag_datum(/datum/antagonist/wishgranter)
+				user.mind.special_role = "traitor"
+				
+				var/datum/objective/hijack/hijack = new
+				hijack.owner = user.mind
+				user.mind.objectives += hijack
+				user.mind.add_antag_datum(/datum/antagonist/auto_custom)
+				to_chat(user, "<B>Your inhibitions are swept away, the bonds of loyalty broken, you are free to murder as you please!</B>")
+				user.mind.announce_objectives()
 				user.set_species(/datum/species/shadow)
 			if("Peace")
 				to_chat(user, "<B>Whatever alien sentience that the Wish Granter possesses is satisfied with your wish. There is a distant wailing as the last of the Faithless begin to die, then silence.</B>")
@@ -132,9 +142,9 @@
 	var/triggered = 0
 
 /obj/effect/meatgrinder/Crossed(atom/movable/AM)
-	Bumped(AM)
+	CollidedWith(AM)
 
-/obj/effect/meatgrinder/Bumped(atom/movable/AM)
+/obj/effect/meatgrinder/CollidedWith(atom/movable/AM)
 
 	if(triggered)
 		return

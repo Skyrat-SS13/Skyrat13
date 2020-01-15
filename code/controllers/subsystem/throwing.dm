@@ -1,4 +1,4 @@
-#define MAX_THROWING_DIST 1280 // 5 z-levels on default width
+#define MAX_THROWING_DIST 512 // 2 z-levels on default width
 #define MAX_TICKS_TO_MAKE_UP 3 //how many missed ticks will we attempt to make up for this run.
 
 SUBSYSTEM_DEF(throwing)
@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(throwing)
 		var/atom/movable/AM = currentrun[currentrun.len]
 		var/datum/thrownthing/TT = currentrun[AM]
 		currentrun.len--
-		if (QDELETED(AM) || QDELETED(TT))
+		if (!AM || !TT)
 			processing -= AM
 			if (MC_TICK_CHECK)
 				return
@@ -43,7 +43,6 @@ SUBSYSTEM_DEF(throwing)
 	var/atom/movable/thrownthing
 	var/atom/target
 	var/turf/target_turf
-	var/target_zone
 	var/init_dir
 	var/maxrange
 	var/speed
@@ -61,15 +60,6 @@ SUBSYSTEM_DEF(throwing)
 	var/paused = FALSE
 	var/delayed_time = 0
 	var/last_move = 0
-
-/datum/thrownthing/Destroy()
-	SSthrowing.processing -= thrownthing
-	thrownthing.throwing = null
-	thrownthing = null
-	target = null
-	thrower = null
-	callback = null
-	return ..()
 
 /datum/thrownthing/proc/tick()
 	var/atom/movable/AM = thrownthing
@@ -123,16 +113,15 @@ SUBSYSTEM_DEF(throwing)
 			return
 
 /datum/thrownthing/proc/finalize(hit = FALSE, target=null)
-	set waitfor = FALSE
+	set waitfor = 0
+	SSthrowing.processing -= thrownthing
 	//done throwing, either because it hit something or it finished moving
-	if(!thrownthing)
-		return
 	thrownthing.throwing = null
 	if (!hit)
 		for (var/thing in get_turf(thrownthing)) //looking for our target on the turf we land on.
 			var/atom/A = thing
 			if (A == target)
-				hit = TRUE
+				hit = 1
 				thrownthing.throw_impact(A, src)
 				break
 		if (!hit)
@@ -147,20 +136,13 @@ SUBSYSTEM_DEF(throwing)
 	if (callback)
 		callback.Invoke()
 
-	if(!thrownthing.zfalling) // I don't think you can zfall while thrown but hey, just in case.
-		var/turf/T = get_turf(thrownthing)
-		if(T && thrownthing.has_gravity(T))
-			T.zFall(thrownthing)
-
-	qdel(src)
-
 /datum/thrownthing/proc/hit_atom(atom/A)
 	finalize(hit=TRUE, target=A)
 
 /datum/thrownthing/proc/hitcheck()
 	for (var/thing in get_turf(thrownthing))
 		var/atom/movable/AM = thing
-		if (AM == thrownthing || (AM == thrower && !ismob(thrownthing)))
+		if (AM == thrownthing)
 			continue
 		if (AM.density && !(AM.pass_flags & LETPASSTHROW) && !(AM.flags_1 & ON_BORDER_1))
 			finalize(hit=TRUE, target=AM)

@@ -8,6 +8,7 @@
 
 	icon = 'icons/obj/machines/droneDispenser.dmi'
 	icon_state = "on"
+	anchored = TRUE
 	density = TRUE
 
 	max_integrity = 250
@@ -50,7 +51,7 @@
 
 /obj/machinery/droneDispenser/Initialize()
 	. = ..()
-	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS), MINERAL_MATERIAL_AMOUNT * MAX_STACK_SIZE * 2, TRUE, /obj/item/stack)
+	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS), MINERAL_MATERIAL_AMOUNT * MAX_STACK_SIZE * 2, TRUE)
 	materials.insert_amount(starting_amount)
 	materials.precise_insertion = TRUE
 	using_materials = list(MAT_METAL=metal_cost, MAT_GLASS=glass_cost)
@@ -129,9 +130,9 @@
 	break_message = "slowly falls dark, lights stuttering."
 
 /obj/machinery/droneDispenser/examine(mob/user)
-	. = ..()
+	..()
 	if((mode == DRONE_RECHARGING) && !stat && recharging_text)
-		. += "<span class='warning'>[recharging_text]</span>"
+		to_chat(user, "<span class='warning'>[recharging_text]</span>")
 
 /obj/machinery/droneDispenser/power_change()
 	..()
@@ -146,7 +147,7 @@
 	if((stat & (NOPOWER|BROKEN)) || !anchored)
 		return
 
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	GET_COMPONENT(materials, /datum/component/material_container)
 	if(!materials.has_materials(using_materials))
 		return // We require more minerals
 
@@ -173,7 +174,7 @@
 				use_power(power_used)
 
 			var/atom/A = new dispense_type(loc)
-			A.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
+			A.admin_spawned = admin_spawned
 
 			if(create_sound)
 				playsound(src, create_sound, 50, 1)
@@ -209,26 +210,35 @@
 	else
 		icon_state = icon_on
 
-/obj/machinery/droneDispenser/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/crowbar))
-		var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+/obj/machinery/droneDispenser/attackby(obj/item/O, mob/living/user)
+	if(istype(O, /obj/item/crowbar))
+		GET_COMPONENT(materials, /datum/component/material_container)
 		materials.retrieve_all()
-		I.play_tool_sound(src)
+		playsound(loc, O.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You retrieve the materials from [src].</span>")
 
-	else if(istype(I, /obj/item/weldingtool))
+	else if(istype(O, /obj/item/weldingtool))
 		if(!(stat & BROKEN))
 			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 			return
 
-		if(!I.tool_start_check(user, amount=1))
+		var/obj/item/weldingtool/WT = O
+
+		if(!WT.isOn())
 			return
 
+		if(WT.get_fuel() < 1)
+			to_chat(user, "<span class='warning'>You need more fuel to complete this task!</span>")
+			return
+
+		playsound(src, WT.usesound, 50, 1)
 		user.visible_message(
-			"<span class='notice'>[user] begins patching up [src] with [I].</span>",
+			"<span class='notice'>[user] begins patching up [src] with [WT].</span>",
 			"<span class='notice'>You begin restoring the damage to [src]...</span>")
 
-		if(!I.use_tool(src, user, 40, volume=50, amount=1))
+		if(!do_after(user, 40*O.toolspeed, target = src))
+			return
+		if(!src || !WT.remove_fuel(1, user))
 			return
 
 		user.visible_message(

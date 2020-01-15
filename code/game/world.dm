@@ -1,27 +1,23 @@
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
 
+GLOBAL_VAR(security_mode)
 GLOBAL_VAR(restart_counter)
+GLOBAL_PROTECT(security_mode)
 
-GLOBAL_VAR(topic_status_lastcache)
-GLOBAL_LIST(topic_status_cache)
-
-//This happens after the Master subsystem new(s) (it's a global datum)
+//This happens after the Master subsystem news (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-
-	log_world("World loaded at [TIME_STAMP("hh:mm:ss", FALSE)]!")
+	log_world("World loaded at [time_stamp()]")
 
 	SetupExternalRSC()
 
-	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
+	GLOB.config_error_log = GLOB.manifest_log = GLOB.world_pda_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = file("data/logs/config_error.log") //temporary file used to record errors with loading config, moved to log directory once logging is set bl
+
+	CheckSecurityMode()
 
 	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
 
-	TgsNew()
-
-	GLOB.revdata = new
-
-	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
+	config.Load()
 
 	//SetupLogs depends on the RoundID, so lets check
 	//DB schema and set RoundID if we can
@@ -29,16 +25,13 @@ GLOBAL_LIST(topic_status_cache)
 	SSdbcore.SetRoundID()
 	SetupLogs()
 
-#ifndef USE_CUSTOM_ERROR_HANDLER
-	world.log = file("[GLOB.log_directory]/dd.log")
-#endif
+	SERVER_TOOLS_ON_NEW
 
 	load_admins()
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
 	LoadBans()
-	reload_custom_roundstart_items_list()//Cit change - loads donator items. Remind me to remove when I port over bay's loadout system
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
@@ -49,9 +42,7 @@ GLOBAL_LIST(topic_status_cache)
 	if(NO_INIT_PARAMETER in params)
 		return
 
-	cit_initialize()
-
-	Master.Initialize(10, FALSE, TRUE)
+	Master.Initialize(10, FALSE)
 
 	if(TEST_RUN_PARAMETER in params)
 		HandleTestRun()
@@ -61,13 +52,11 @@ GLOBAL_LIST(topic_status_cache)
 	Master.sleep_offline_after_initializations = FALSE
 	SSticker.start_immediately = TRUE
 	CONFIG_SET(number/round_end_countdown, 0)
-	var/datum/callback/cb
 #ifdef UNIT_TESTS
-	cb = CALLBACK(GLOBAL_PROC, /proc/RunUnitTests)
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/RunUnitTests))
 #else
-	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
+	SSticker.force_ending = TRUE
 #endif
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
 
 /world/proc/SetupExternalRSC()
 #if (PRELOAD_RSC == 0)
@@ -83,56 +72,31 @@ GLOBAL_LIST(topic_status_cache)
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
 	if(!override_dir)
-		var/realtime = world.realtime
-		var/texttime = time2text(realtime, "YYYY/MM/DD")
-		GLOB.log_directory = "data/logs/[texttime]/round-"
-		GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD")]_"
-		GLOB.picture_log_directory = "data/picture_logs/[texttime]/round-"
+		GLOB.log_directory = "data/logs/[time2text(world.realtime, "YYYY/MM/DD")]/round-"
 		if(GLOB.round_id)
 			GLOB.log_directory += "[GLOB.round_id]"
-			GLOB.picture_logging_prefix += "R_[GLOB.round_id]_"
-			GLOB.picture_log_directory += "[GLOB.round_id]"
 		else
-			var/timestamp = replacetext(TIME_STAMP("hh:mm:ss", FALSE), ":", ".")
-			GLOB.log_directory += "[timestamp]"
-			GLOB.picture_log_directory += "[timestamp]"
-			GLOB.picture_logging_prefix += "T_[timestamp]_"
+			GLOB.log_directory += "[replacetext(time_stamp(), ":", ".")]"
 	else
 		GLOB.log_directory = "data/logs/[override_dir]"
-		GLOB.picture_logging_prefix = "O_[override_dir]_"
-		GLOB.picture_log_directory = "data/picture_logs/[override_dir]"
-
-	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
-	GLOB.world_virus_log = "[GLOB.log_directory]/virus.log"
-	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
-	GLOB.world_pda_log = "[GLOB.log_directory]/pda.log"
-	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
-	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
-	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
-	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
-	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
-	GLOB.world_map_error_log = "[GLOB.log_directory]/map_errors.log"
-	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
-	GLOB.query_debug_log = "[GLOB.log_directory]/query_debug.log"
-	GLOB.world_job_debug_log = "[GLOB.log_directory]/job_debug.log"
-	GLOB.subsystem_log = "[GLOB.log_directory]/subsystem.log"
-
+	GLOB.world_game_log = file("[GLOB.log_directory]/game.log")
+	GLOB.world_attack_log = file("[GLOB.log_directory]/attack.log")
+	GLOB.world_runtime_log = file("[GLOB.log_directory]/runtime.log")
+	GLOB.world_qdel_log = file("[GLOB.log_directory]/qdel.log")
+	GLOB.world_href_log = file("[GLOB.log_directory]/hrefs.html")
+	GLOB.world_pda_log = file("[GLOB.log_directory]/pda.log")
+	GLOB.sql_error_log = file("[GLOB.log_directory]/sql.log")
+	GLOB.manifest_log = file("[GLOB.log_directory]/manifest.log")
 #ifdef UNIT_TESTS
 	GLOB.test_log = file("[GLOB.log_directory]/tests.log")
-	start_log(GLOB.test_log)
+	WRITE_FILE(GLOB.test_log, "\n\nStarting up round ID [GLOB.round_id]. [time_stamp()]\n---------------------")
 #endif
-	start_log(GLOB.world_game_log)
-	start_log(GLOB.world_attack_log)
-	start_log(GLOB.world_pda_log)
-	start_log(GLOB.world_telecomms_log)
-	start_log(GLOB.world_manifest_log)
-	start_log(GLOB.world_href_log)
-	start_log(GLOB.world_qdel_log)
-	start_log(GLOB.world_runtime_log)
-	start_log(GLOB.world_job_debug_log)
-	start_log(GLOB.subsystem_log)
-
-	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
+	WRITE_FILE(GLOB.world_game_log, "\n\nStarting up round ID [GLOB.round_id]. [time_stamp()]\n---------------------")
+	WRITE_FILE(GLOB.world_attack_log, "\n\nStarting up round ID [GLOB.round_id]. [time_stamp()]\n---------------------")
+	WRITE_FILE(GLOB.world_runtime_log, "\n\nStarting up round ID [GLOB.round_id]. [time_stamp()]\n---------------------")
+	WRITE_FILE(GLOB.world_pda_log, "\n\nStarting up round ID [GLOB.round_id]. [time_stamp()]\n---------------------")
+	WRITE_FILE(GLOB.manifest_log, "\n\nStarting up round ID [GLOB.round_id]. [time_stamp()]\n---------------------")
+	GLOB.changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))
 		fcopy(GLOB.config_error_log, "[GLOB.log_directory]/config_error.log")
 		fdel(GLOB.config_error_log)
@@ -140,21 +104,23 @@ GLOBAL_LIST(topic_status_cache)
 	if(GLOB.round_id)
 		log_game("Round ID: [GLOB.round_id]")
 
-	// This was printed early in startup to the world log and config_error.log,
-	// but those are both private, so let's put the commit info in the runtime
-	// log which is ultimately public.
-	log_runtime(GLOB.revdata.get_log_message())
+/world/proc/CheckSecurityMode()
+	//try to write to data
+	if(!text2file("The world is running at least safe mode", "data/server_security_check.lock"))
+		GLOB.security_mode = SECURITY_ULTRASAFE
+		warning("/tg/station 13 is not supported in ultrasafe security mode. Everything will break!")
+		return
+
+	//try to shell
+	if(shell("echo \"The world is running in trusted mode\"") != null)
+		GLOB.security_mode = SECURITY_TRUSTED
+	else
+		GLOB.security_mode = SECURITY_SAFE
+		warning("/tg/station 13 uses many file operations, a few shell()s, and some external call()s. Trusted mode is recommended. You can download our source code for your own browsing and compilation at https://github.com/tgstation/tgstation")
 
 /world/Topic(T, addr, master, key)
-	TGS_TOPIC	//redirect to server tools if necessary
 
-	if(!SSfail2topic)
-		return "Server not initialized."
-	else if(SSfail2topic.IsRateLimited(addr))
-		return "Rate limited."
-
-	if(length(T) > CONFIG_GET(number/topic_max_size))
-		return "Payload too large!"
+	SERVER_TOOLS_ON_TOPIC	//redirect to server tools if necessary
 
 	var/static/list/topic_handlers = TopicHandlers()
 
@@ -166,13 +132,13 @@ GLOBAL_LIST(topic_status_cache)
 			break
 
 	if((!handler || initial(handler.log)) && config && CONFIG_GET(flag/log_world_topic))
-		log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
+		WRITE_FILE(GLOB.world_game_log, "TOPIC: \"[T]\", from:[addr], master:[master], key:[key]")
 
 	if(!handler)
 		return
 
 	handler = new handler()
-	return handler.TryRun(input, addr)
+	return handler.TryRun(input)
 
 /world/proc/AnnouncePR(announcement, list/payload)
 	var/static/list/PRcounts = list()	//PR id -> number of times announced this round
@@ -210,7 +176,7 @@ GLOBAL_LIST(topic_status_cache)
 	qdel(src)	//shut it down
 
 /world/Reboot(reason = 0, fast_track = FALSE)
-	TgsReboot()
+	SERVER_TOOLS_ON_REBOOT
 	if (reason || fast_track) //special reboot, do none of the normal stuff
 		if (usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
@@ -224,7 +190,7 @@ GLOBAL_LIST(topic_status_cache)
 		FinishTestRun()
 		return
 
-	if(TgsAvailable())
+	if(SERVER_TOOLS_PRESENT)
 		var/do_hard_reboot
 		// check the hard reboot counter
 		var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
@@ -241,23 +207,21 @@ GLOBAL_LIST(topic_status_cache)
 					do_hard_reboot = FALSE
 
 		if(do_hard_reboot)
-			log_world("World hard rebooted at [TIME_STAMP("hh:mm:ss", FALSE)]")
-			shutdown_logging() // See comment below.
-			TgsEndProcess()
+			log_world("World hard rebooted at [time_stamp()]")
+			SERVER_TOOLS_REBOOT_BYOND
 
-	log_world("World rebooted at [TIME_STAMP("hh:mm:ss", FALSE)]")
-	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
+	log_world("World rebooted at [time_stamp()]")
 	..()
 
 /world/proc/update_status()
 
 	var/list/features = list()
 
-	/*if(GLOB.master_mode) CIT CHANGE - hides the gamemode from the hub entry, removes some useless info from the hub entry
+	if(GLOB.master_mode)
 		features += GLOB.master_mode
 
 	if (!GLOB.enter_allowed)
-		features += "closed"*/
+		features += "closed"
 
 	var/s = ""
 	var/hostedby
@@ -265,31 +229,24 @@ GLOBAL_LIST(topic_status_cache)
 		var/server_name = CONFIG_GET(string/servername)
 		if (server_name)
 			s += "<b>[server_name]</b> &#8212; "
-		/*features += "[CONFIG_GET(flag/norespawn) ? "no " : ""]respawn" CIT CHANGE - removes some useless info from the hub entry
+		features += "[CONFIG_GET(flag/norespawn) ? "no " : ""]respawn"
 		if(CONFIG_GET(flag/allow_vote_mode))
 			features += "vote"
 		if(CONFIG_GET(flag/allow_ai))
-			features += "AI allowed"*/
+			features += "AI allowed"
 		hostedby = CONFIG_GET(string/hostedby)
 
 	s += "<b>[station_name()]</b>";
 	s += " ("
-	s += "<a href=\"https://citadel-station.net/home/\">" //Change this to wherever you want the hub to link to. CIT CHANGE - links to cit's website on the hub
-	s += "Citadel"  //Replace this with something else. Or ever better, delete it and uncomment the game version. CIT CHANGE - modifies the hub entry link
+	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
+	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
 	s += "</a>"
-	s += ")\]" //CIT CHANGE - encloses the server title in brackets to make the hub entry fancier
-	s += "<br>[CONFIG_GET(string/servertagline)]<br>" //CIT CHANGE - adds a tagline!
+	s += ")"
 
 	var/n = 0
 	for (var/mob/M in GLOB.player_list)
 		if (M.client)
 			n++
-
-	if(SSmapping.config) // this just stops the runtime, honk.
-		features += "[SSmapping.config.map_name]"	//CIT CHANGE - makes the hub entry display the current map
-
-	if(get_security_level())//CIT CHANGE - makes the hub entry show the security level
-		features += "[get_security_level()] alert"
 
 	if (n > 1)
 		features += "~[n] players"
@@ -300,7 +257,7 @@ GLOBAL_LIST(topic_status_cache)
 		features += "hosted by <b>[hostedby]</b>"
 
 	if (features)
-		s += "\[[jointext(features, ", ")]" //CIT CHANGE - replaces the colon here with a left bracket
+		s += ": [jointext(features, ", ")]"
 
 	status = s
 

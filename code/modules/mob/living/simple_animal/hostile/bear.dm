@@ -6,7 +6,6 @@
 	icon_living = "bear"
 	icon_dead = "bear_dead"
 	icon_gib = "bear_gib"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	speak = list("RAWR!","Rawr!","GRR!","Growl!")
 	speak_emote = list("growls", "roars")
 	emote_hear = list("rawrs.","grumbles.","grawls.")
@@ -39,8 +38,6 @@
 	faction = list("russian")
 	gold_core_spawnable = HOSTILE_SPAWN
 
-	do_footstep = TRUE
-
 //SPACE BEARS! SQUEEEEEEEE~     OW! FUCK! IT BIT MY HAND OFF!!
 /mob/living/simple_animal/hostile/bear/Hudson
 	name = "Hudson"
@@ -53,7 +50,6 @@
 	icon_living = "snowbear"
 	icon_dead = "snowbear_dead"
 	desc = "It's a polar bear, in space, but not actually in space."
-	weather_immunities = list("snow")
 
 /mob/living/simple_animal/hostile/bear/russian
 	name = "combat bear"
@@ -83,7 +79,6 @@
 	icon_state = "bear_armor_upgrade"
 
 /obj/item/bear_armor/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
 	if(istype(target, /mob/living/simple_animal/hostile/bear) && proximity_flag)
 		var/mob/living/simple_animal/hostile/bear/A = target
 		if(A.armored)

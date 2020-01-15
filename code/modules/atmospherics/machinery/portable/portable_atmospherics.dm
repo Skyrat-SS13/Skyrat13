@@ -3,8 +3,8 @@
 	icon = 'icons/obj/atmos.dmi'
 	use_power = NO_POWER_USE
 	max_integrity = 250
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 60, "acid" = 30)
-	anchored = FALSE
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 100, bomb = 0, bio = 100, rad = 100, fire = 60, acid = 30)
+
 
 	var/datum/gas_mixture/air_contents
 	var/obj/machinery/atmospherics/components/unary/portables_connector/connected_port
@@ -35,7 +35,7 @@
 
 /obj/machinery/portable_atmospherics/process_atmos()
 	if(!connected_port) // Pipe network handles reactions if connected.
-		air_contents.react(src)
+		air_contents.react()
 	else
 		update_icon()
 
@@ -80,47 +80,19 @@
 /obj/machinery/portable_atmospherics/portableConnectorReturnAir()
 	return air_contents
 
-/obj/machinery/portable_atmospherics/AltClick(mob/living/user)
-	. = ..()
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, !ismonkey(user)))
-		return
-	if(holding)
-		to_chat(user, "<span class='notice'>You remove [holding] from [src].</span>")
-		replace_tank(user, TRUE)
-		return TRUE
-
-/obj/machinery/portable_atmospherics/examine(mob/user)
-	. = ..()
-	if(holding)
-		. += "<span class='notice'>\The [src] contains [holding]. Alt-click [src] to remove it.</span>"
-		. += "<span class='notice'>Click [src] with another gas tank to hot swap [holding].</span>"
-
-/obj/machinery/portable_atmospherics/proc/replace_tank(mob/living/user, close_valve, obj/item/tank/new_tank)
-	if(holding)
-		holding.forceMove(drop_location())
-		if(Adjacent(user) && !issilicon(user))
-			user.put_in_hands(holding)
-	if(new_tank)
-		holding = new_tank
-	else
-		holding = null
-	update_icon()
-	return TRUE
-
 /obj/machinery/portable_atmospherics/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/tank))
 		if(!(stat & BROKEN))
 			var/obj/item/tank/T = W
-			if(!user.transferItemToLoc(T, src))
+			if(holding || !user.transferItemToLoc(T, src))
 				return
-			to_chat(user, "<span class='notice'>[holding ? "In one smooth motion you pop [holding] out of [src]'s connector and replace it with [T]" : "You insert [T] into [src]"].</span>")
-			replace_tank(user, FALSE, T)
+			holding = T
 			update_icon()
 	else if(istype(W, /obj/item/wrench))
 		if(!(stat & BROKEN))
 			if(connected_port)
 				disconnect()
-				W.play_tool_sound(src)
+				playsound(src.loc, W.usesound, 50, 1)
 				user.visible_message( \
 					"[user] disconnects [src].", \
 					"<span class='notice'>You unfasten [src] from the port.</span>", \
@@ -135,17 +107,16 @@
 				if(!connect(possible_port))
 					to_chat(user, "<span class='notice'>[name] failed to connect to the port.</span>")
 					return
-				W.play_tool_sound(src)
+				playsound(src.loc, W.usesound, 50, 1)
 				user.visible_message( \
 					"[user] connects [src].", \
 					"<span class='notice'>You fasten [src] to the port.</span>", \
 					"<span class='italics'>You hear a ratchet.</span>")
 				update_icon()
+	else if(istype(W, /obj/item/device/analyzer) && Adjacent(user))
+		atmosanalyzer_scan(air_contents, user)
 	else
 		return ..()
-
-/obj/machinery/portable_atmospherics/analyzer_act(mob/living/user, obj/item/I)
-	atmosanalyzer_scan(air_contents, user, src)
 
 /obj/machinery/portable_atmospherics/attacked_by(obj/item/I, mob/user)
 	if(I.force < 10 && !(stat & BROKEN))

@@ -5,9 +5,6 @@
 	dna_cost = 2
 	chemical_cost = 25
 	req_human = 1
-	action_icon = 'icons/mob/actions/actions_changeling.dmi'
-	action_icon_state = "ling_camouflage"
-	action_background_icon_state = "bg_ling"
 
 /obj/effect/proc_holder/changeling/chameleon_skin/sting_action(mob/user)
 	var/mob/living/carbon/human/H = user //SHOULD always be human, because req_human = 1
@@ -21,7 +18,6 @@
 	return TRUE
 
 /obj/effect/proc_holder/changeling/chameleon_skin/on_refund(mob/user)
-	action.Remove(user)
 	if(user.has_dna())
 		var/mob/living/carbon/C = user
 		var/datum/mutation/human/HM = GLOB.mutations_list[CHAMELEON]

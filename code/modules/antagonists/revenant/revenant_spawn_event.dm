@@ -4,8 +4,8 @@
 	name = "Spawn Revenant" // Did you mean 'griefghost'?
 	typepath = /datum/round_event/ghost_role/revenant
 	weight = 7
-	gamemode_blacklist = list("dynamic")
 	max_occurrences = 1
+	earliest_start = 12000 //Meant to mix things up early-game.
 	min_players = 5
 
 
@@ -26,7 +26,7 @@
 			message_admins("Event attempted to spawn a revenant, but there were only [deadMobs]/[REVENANT_SPAWN_THRESHOLD] dead mobs.")
 			return WAITING_FOR_SOMETHING
 
-	var/list/candidates = get_candidates(ROLE_REVENANT, null, ROLE_REVENANT)
+	var/list/candidates = get_candidates("revenant", null, ROLE_REVENANT)
 	if(!candidates.len)
 		return NOT_ENOUGH_PLAYERS
 
@@ -53,8 +53,8 @@
 		return MAP_ERROR
 
 	var/mob/living/simple_animal/revenant/revvie = new(pick(spawn_locs))
-	selected.transfer_ckey(revvie, FALSE)
-	message_admins("[ADMIN_LOOKUPFLW(revvie)] has been made into a revenant by an event.")
+	revvie.key = selected.key
+	message_admins("[key_name_admin(revvie)] has been made into a revenant by an event.")
 	log_game("[key_name(revvie)] was spawned as a revenant by an event.")
 	spawned_mobs += revvie
 	return SUCCESSFUL_SPAWN

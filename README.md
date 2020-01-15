@@ -1,33 +1,21 @@
+## /tg/station codebase
 
-##Citadel Station 13 <BR>
-Based and maintained from /tg/station.<BR>
+[![Build Status](https://travis-ci.org/tgstation/tgstation.png)](https://travis-ci.org/tgstation/tgstation) [![Krihelimeter](https://www.krihelinator.xyz/badge/tgstation/tgstation)](https://www.krihelinator.xyz)  
+[![Percentage of issues still open](https://isitmaintained.com/badge/open/tgstation/tgstation.svg)](https://isitmaintained.com/project/tgstation/tgstation "Percentage of issues still open") [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/tgstation/tgstation.svg)](https://isitmaintained.com/project/tgstation/tgstation "Average time to resolve an issue") ![Coverage](https://img.shields.io/badge/coverage---2%25-red.svg)  
+[![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://forthebadge.com) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-[![forthebadge](http://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](https://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/pretty-risque.svg)](https://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](http://forthebadge.com)
-
-[![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
-
-[![Build Status](https://api.travis-ci.org/Citadel-Station-13/Citadel-Station-13.png)](https://travis-ci.org/Citadel-Station-13/Citadel-Station-13) [![Krihelimeter](http://www.krihelinator.xyz/badge/Citadel-Station-13/Citadel-Station-13)](http://www.krihelinator.xyz)
-
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/Citadel-Station-13/Citadel-Station-13.svg)](http://isitmaintained.com/project/Citadel-Station-13/Citadel-Station-13 "Percentage of issues still open") [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Citadel-Station-13/Citadel-Station-13.svg)](http://isitmaintained.com/project/Citadel-Station-13/Citadel-Station-13 "Average time to resolve an issue")
-
-**Upstream Information** <BR>
-**Website:** http://www.tgstation13.org <BR>
+**Website:** https://www.tgstation13.org <BR>
 **Code:** https://github.com/tgstation/tgstation <BR>
-**Wiki** http://tgstation13.org/wiki/Main_Page <BR>
+**Wiki** https://tgstation13.org/wiki/Main_Page <BR>
 **IRC:** irc://irc.rizon.net/coderbus or if you dont have an IRC client, you can click  [here](https://kiwiirc.com/client/irc.rizon.net:6667/?&theme=cli#coderbus).<BR>
 
-**Citadel Station Information** <BR>
-**Forums:** http://citadel-station.net/forum/ <BR>
-**Ban Appeals:** http://citadel-station.net/forum/forumdisplay.php?fid=8 <BR>
-**Code:** https://github.com/Citadel-Station-13/Citadel-Station-13 <BR>
-**Discord:**  [Here](https://discord.gg/E6SQuhz). <BR>
 
 ## DOWNLOADING
 
-There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at http://www.tgstation13.org/wiki/Downloading_the_source_code
+There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://www.tgstation13.org/wiki/Downloading_the_source_code
 
 Option 1:
-Follow this: http://www.tgstation13.org/wiki/Setting_up_git
+Follow this: https://www.tgstation13.org/wiki/Setting_up_git
 
 Option 2: Download the source code as a zip by clicking the ZIP button in the
 code tab of https://github.com/tgstation/tgstation
@@ -76,11 +64,6 @@ byondkey = Rank
 
 where the admin rank must be properly capitalised.
 
-This codebase also depends on a native library called rust-g. A precompiled
-Windows DLL is included in this repository, but Linux users will need to build
-and install it themselves. Directions can be found at the [rust-g
-repo](https://github.com/tgstation13/rust-g).
-
 Finally, to start the server, run Dream Daemon and enter the path to your
 compiled tgstation.dmb file. Make sure to set the port to the one you
 specified in the config.txt, and set the Security box to 'Safe'. Then press GO
@@ -108,7 +91,7 @@ https://github.com/tgstation/tgstation-server
 
 /tg/station currently comes equipped with five maps.
 
-* [BoxStation (default)](http://tgstation13.org/wiki/Boxstation)
+* [BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
 * [MetaStation](https://tgstation13.org/wiki/MetaStation)
 * [DeltaStation](https://tgstation13.org/wiki/DeltaStation)
 * [OmegaStation](https://tgstation13.org/wiki/OmegaStation)
@@ -121,7 +104,7 @@ The map that will be loaded for the upcoming round is determined by reading data
 
 If you are hosting a server, and want randomly picked maps to be played each round, you can enable map rotation in [config.txt](config/config.txt) and then set the maps to be picked in the [maps.txt](config/maps.txt) file.
 
-Anytime you want to make changes to a map it's imperative you use the [Map Merging tools](http://tgstation13.org/wiki/Map_Merger)
+Anytime you want to make changes to a map it's imperative you use the [Map Merging tools](https://tgstation13.org/wiki/Map_Merger)
 
 ## AWAY MISSIONS
 
@@ -155,7 +138,7 @@ Please see [CONTRIBUTING.md](.github/CONTRIBUTING.md)
 
 ## LICENSE
 
-All code after [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU AGPL v3](http://www.gnu.org/licenses/agpl-3.0.html).
+All code after [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.html).
 
 All code before [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html).
 (Including tools unless their readme specifies otherwise.)
@@ -164,11 +147,11 @@ See LICENSE and GPLv3.txt for more details.
 
 tgui clientside is licensed as a subproject under the MIT license.
 Font Awesome font files, used by tgui, are licensed under the SIL Open Font License v1.1
-tgui assets are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+tgui assets are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
 The TGS3 API is licensed as a subproject under the MIT license.
 
 See tgui/LICENSE.md for the MIT license.
 See tgui/assets/fonts/SIL-OFL-1.1-LICENSE.md for the SIL Open Font License.
 See the footers of code/\_\_DEFINES/server\_tools.dm, code/modules/server\_tools/st\_commands.dm, and code/modules/server\_tools/st\_inteface.dm for the MIT license.
 
-All assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](http://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.
+All assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.

@@ -9,8 +9,7 @@
 	blacklisted = 1
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
-	species_traits = list(NOBLOOD,NOEYES)
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH)
+	species_traits = list(SPECIES_ORGANIC,NOBREATH,NOBLOOD,RADIMMUNE,VIRUSIMMUNE)
 
 	dangerous_existence = 1
 	mutanteyes = /obj/item/organ/eyes/night_vision
@@ -37,9 +36,8 @@
 	limbs_id = "shadow"
 	burnmod = 1.5
 	blacklisted = TRUE
-	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE)
-	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYES,NOGENITALS,NOAROUSAL)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_CHUNKYFINGERS,TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
+	no_equip = list(slot_wear_mask, slot_wear_suit, slot_gloves, slot_shoes, slot_w_uniform, slot_s_store)
+	species_traits = list(NOBREATH,RESISTCOLD,RESISTPRESSURE,NOGUNS,NOBLOOD,RADIMMUNE,VIRUSIMMUNE,PIERCEIMMUNE,NODISMEMBER,NO_UNDERWEAR,NOHUNGER,NO_DNA_COPY,NOTRANSSTING)
 	mutanteyes = /obj/item/organ/eyes/night_vision/nightmare
 	mutant_organs = list(/obj/item/organ/heart/nightmare)
 	mutant_brain = /obj/item/organ/brain/nightmare
@@ -51,7 +49,11 @@
 	. = ..()
 	to_chat(C, "[info_text]")
 
-	C.fully_replace_character_name("[pick(GLOB.nightmare_names)]")
+	C.real_name = "[pick(GLOB.nightmare_names)]"
+	C.name = C.real_name
+	if(C.mind)
+		C.mind.name = C.real_name
+	C.dna.real_name = C.real_name
 
 /datum/species/shadow/nightmare/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
@@ -74,11 +76,11 @@
 	icon_state = "brain-x-d"
 	var/obj/effect/proc_holder/spell/targeted/shadowwalk/shadowwalk
 
-/obj/item/organ/brain/nightmare/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+/obj/item/organ/brain/nightmare/Insert(mob/living/carbon/M, special = 0)
 	..()
 	if(M.dna.species.id != "nightmare")
 		M.set_species(/datum/species/shadow/nightmare)
-		visible_message("<span class='warning'>[M] thrashes as [src] takes root in [M.p_their()] body!</span>")
+		visible_message("<span class='warning'>[M] thrashes as [src] takes root in their body!</span>")
 	var/obj/effect/proc_holder/spell/targeted/shadowwalk/SW = new
 	M.AddSpell(SW)
 	shadowwalk = SW
@@ -98,13 +100,12 @@
 	color = "#1C1C1C"
 	var/respawn_progress = 0
 	var/obj/item/light_eater/blade
-	decay_factor = 0
 
 
 /obj/item/organ/heart/nightmare/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)
 		return ..()
-	user.visible_message("<span class='warning'>[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!</span>", \
+	user.visible_message("<span class='warning'>[user] raises [src] to their mouth and tears into it with their teeth!</span>", \
 						 "<span class='danger'>[src] feels unnaturally cold in your hands. You raise [src] your mouth and devour it!</span>")
 	playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
 
@@ -114,17 +115,19 @@
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	Insert(user)
 
-/obj/item/organ/heart/nightmare/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+/obj/item/organ/heart/nightmare/Insert(mob/living/carbon/M, special = 0)
 	..()
 	if(special != HEART_SPECIAL_SHADOWIFY)
 		blade = new/obj/item/light_eater
 		M.put_in_hands(blade)
+	START_PROCESSING(SSobj, src)
 
 /obj/item/organ/heart/nightmare/Remove(mob/living/carbon/M, special = 0)
+	STOP_PROCESSING(SSobj, src)
 	respawn_progress = 0
 	if(blade && special != HEART_SPECIAL_SHADOWIFY)
-		M.visible_message("<span class='warning'>\The [blade] disintegrates!</span>")
 		QDEL_NULL(blade)
+		M.visible_message("<span class='warning'>\The [blade] disintegrates!</span>")
 	..()
 
 /obj/item/organ/heart/nightmare/Stop()
@@ -133,8 +136,9 @@
 /obj/item/organ/heart/nightmare/update_icon()
 	return //always beating visually
 
-/obj/item/organ/heart/nightmare/on_death()
-	if(!owner)
+/obj/item/organ/heart/nightmare/process()
+	if(QDELETED(owner) || owner.stat != DEAD)
+		respawn_progress = 0
 		return
 	var/turf/T = get_turf(owner)
 	if(istype(T))
@@ -151,49 +155,36 @@
 			Insert(old_owner, HEART_SPECIAL_SHADOWIFY)
 			to_chat(owner, "<span class='userdanger'>You feel the shadows invade your skin, leaping into the center of your chest! You're alive!</span>")
 			SEND_SOUND(owner, sound('sound/effects/ghost.ogg'))
-		owner.visible_message("<span class='warning'>[owner] staggers to [owner.p_their()] feet!</span>")
+		owner.visible_message("<span class='warning'>[owner] staggers to their feet!</span>")
 		playsound(owner, 'sound/hallucinations/far_noise.ogg', 50, 1)
 		respawn_progress = 0
 
 //Weapon
 
 /obj/item/light_eater
-	name = "light eater" //as opposed to heavy eater
+	name = "light eater"
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
 	force = 25
 	armour_penetration = 35
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
-	item_flags = ABSTRACT | DROPDEL
+	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = IS_SHARP
-	total_mass = TOTAL_MASS_HAND_REPLACEMENT
-
-/obj/item/light_eater/Initialize()
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
-	AddComponent(/datum/component/butchering, 80, 70)
 
 /obj/item/light_eater/afterattack(atom/movable/AM, mob/user, proximity)
-	. = ..()
 	if(!proximity)
 		return
-	if(isopenturf(AM))
-		var/turf/open/T = AM
-		if(T.light_range && !isspaceturf(T)) //no fairy grass or light tile can escape the fury of the darkness.
-			to_chat(user, "<span class='notice'>You scrape away [T] with your [name] and snuff out its lights.</span>")
-			T.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-	else if(isliving(AM))
+	if(isopenturf(AM)) //So you can actually melee with it
+		return
+	if(isliving(AM))
 		var/mob/living/L = AM
 		if(iscyborg(AM))
 			var/mob/living/silicon/robot/borg = AM
-			if(borg.lamp_intensity)
+			if(!borg.lamp_cooldown)
 				borg.update_headlamp(TRUE, INFINITY)
 				to_chat(borg, "<span class='danger'>Your headlamp is fried! You'll need a human to help replace it.</span>")
-			for(var/obj/item/assembly/flash/cyborg/F in borg.held_items)
-				if(!F.crit_fail)
-					F.burn_out()
 		else
 			for(var/obj/item/O in AM)
 				if(O.light_range && O.light_power)
@@ -206,10 +197,10 @@
 			disintegrate(I)
 
 /obj/item/light_eater/proc/disintegrate(obj/item/O)
-	if(istype(O, /obj/item/pda))
-		var/obj/item/pda/PDA = O
+	if(istype(O, /obj/item/device/pda))
+		var/obj/item/device/pda/PDA = O
 		PDA.set_light(0)
-		PDA.fon = FALSE
+		PDA.fon = 0
 		PDA.f_lum = 0
 		PDA.update_icon()
 		visible_message("<span class='danger'>The light in [PDA] shorts out!</span>")

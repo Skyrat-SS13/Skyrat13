@@ -11,7 +11,7 @@
 	var/outfit
 	var/landmark_type
 	var/greet_text
-
+	
 
 /datum/antagonist/abductor/agent
 	name = "Abductor Agent"
@@ -26,7 +26,7 @@
 	sub_role = "Scientist"
 	outfit = /datum/outfit/abductor/scientist
 	landmark_type = /obj/effect/landmark/abductor/scientist
-	greet_text = "Use your experimental console and surgical equipment to monitor your agent and experiment upon abducted humans."
+	greet_text = "Use your stealth technology and equipment to incapacitate humans for your scientist to retrieve."
 	show_in_antagpanel = TRUE
 
 /datum/antagonist/abductor/create_team(datum/team/abductor_team/new_team)
@@ -40,24 +40,22 @@
 	return team
 
 /datum/antagonist/abductor/on_gain()
-	owner.special_role = "[name]"
-	owner.assigned_role = "[name]"
-	objectives += team.objectives
+	owner.special_role = "[name] [sub_role]"
+	owner.assigned_role = "[name] [sub_role]"
+	owner.objectives += team.objectives
 	finalize_abductor()
-	ADD_TRAIT(owner, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
 	return ..()
 
 /datum/antagonist/abductor/on_removal()
+	owner.objectives -= team.objectives
 	if(owner.current)
 		to_chat(owner.current,"<span class='userdanger'>You are no longer the [owner.special_role]!</span>")
 	owner.special_role = null
-	REMOVE_TRAIT(owner, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
 	return ..()
 
 /datum/antagonist/abductor/greet()
 	to_chat(owner.current, "<span class='notice'>You are the [owner.special_role]!</span>")
 	to_chat(owner.current, "<span class='notice'>With the help of your teammate, kidnap and experiment on station crew members!</span>")
-	to_chat(owner.current, "<span class='notice'>Try not to disturb the habitat, it could lead to dead specimens.</span>")
 	to_chat(owner.current, "<span class='notice'>[greet_text]</span>")
 	owner.announce_objectives()
 
@@ -65,9 +63,6 @@
 	//Equip
 	var/mob/living/carbon/human/H = owner.current
 	H.set_species(/datum/species/abductor)
-	var/obj/item/organ/tongue/abductor/T = H.getorganslot(ORGAN_SLOT_TONGUE)
-	T.mothership = "[team.name]"
-
 	H.real_name = "[team.name] [sub_role]"
 	H.equipOutfit(outfit)
 
@@ -79,15 +74,11 @@
 
 	update_abductor_icons_added(owner,"abductor")
 
-/datum/antagonist/abductor/scientist/on_gain()
-	ADD_TRAIT(owner, TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
-	ADD_TRAIT(owner, TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
-	. = ..()
-
-/datum/antagonist/abductor/scientist/on_removal()
-	REMOVE_TRAIT(owner, TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
-	REMOVE_TRAIT(owner, TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
-	. = ..()
+/datum/antagonist/abductor/scientist/finalize_abductor()
+	..()
+	var/mob/living/carbon/human/H = owner.current
+	var/datum/species/abductor/A = H.dna.species
+	A.scientist = TRUE
 
 /datum/antagonist/abductor/admin_add(datum/mind/new_owner,mob/admin)
 	var/list/current_teams = list()
@@ -101,8 +92,8 @@
 	else
 		return
 	new_owner.add_antag_datum(src)
-	log_admin("[key_name(usr)] made [key_name(new_owner)] [name] on [choice]!")
-	message_admins("[key_name_admin(usr)] made [key_name_admin(new_owner)] [name] on [choice] !")
+	log_admin("[key_name(usr)] made [key_name(new_owner.current)] [name] on [choice]!")
+	message_admins("[key_name_admin(usr)] made [key_name_admin(new_owner.current)] [name] on [choice] !")
 
 /datum/antagonist/abductor/get_admin_commands()
 	. = ..()
@@ -155,9 +146,9 @@
 	result += "<span class='header'>The abductors of [name] were:</span>"
 	for(var/datum/mind/abductor_mind in members)
 		result += printplayer(abductor_mind)
-	result += printobjectives(objectives)
+		result += printobjectives(abductor_mind)
 
-	return "<div class='panel redborder'>[result.Join("<br>")]</div>"
+	return result.Join("<br>")
 
 /datum/antagonist/abductee
 	name = "Abductee"
@@ -176,10 +167,11 @@
 /datum/antagonist/abductee/proc/give_objective()
 	var/mob/living/carbon/human/H = owner.current
 	if(istype(H))
-		H.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
+		H.gain_trauma_type(BRAIN_TRAUMA_MILD)
 	var/objtype = (prob(75) ? /datum/objective/abductee/random : pick(subtypesof(/datum/objective/abductee/) - /datum/objective/abductee/random))
 	var/datum/objective/abductee/O = new objtype()
 	objectives += O
+	owner.objectives += objectives
 
 /datum/antagonist/abductee/apply_innate_effects(mob/living/mob_override)
 	update_abductor_icons_added(mob_override ? mob_override.mind : owner,"abductee")

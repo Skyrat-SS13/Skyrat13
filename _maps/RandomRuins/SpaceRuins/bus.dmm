@@ -128,7 +128,7 @@
 /area/ruin/unpowered/no_grav)
 "av" = (
 /obj/structure/table,
-/obj/item/paicard,
+/obj/item/device/paicard,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered/no_grav)
 "aw" = (
@@ -260,7 +260,7 @@
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered/no_grav)
 "aQ" = (
-/obj/item/reagent_containers/rag,
+/obj/item/reagent_containers/glass/rag,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered/no_grav)
 "aR" = (
@@ -333,16 +333,6 @@
 "bb" = (
 /obj/item/stack/sheet/metal/fifty,
 /turf/open/floor/plating/asteroid/airless,
-/area/ruin/unpowered/no_grav)
-"XA" = (
-/obj/structure/fluff/bus/passable/seat{
-	icon_state = "backseat"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/toy/plush/awakenedplushie,
-/turf/open/floor/plasteel/airless/dark{
-	icon_state = "bus"
-	},
 /area/ruin/unpowered/no_grav)
 
 (1,1,1) = {"
@@ -494,7 +484,7 @@ ab
 ae
 ad
 aj
-XA
+am
 az
 aK
 ad

@@ -1,5 +1,5 @@
 #define BUTTON_COOLDOWN 60 // cant delay the bomb forever
-#define BUTTON_DELAY	20 // two seconds
+#define BUTTON_DELAY	50 //five seconds
 
 /obj/machinery/syndicatebomb
 	icon = 'icons/obj/assemblies.dmi'
@@ -11,8 +11,6 @@
 	density = FALSE
 	layer = BELOW_MOB_LAYER //so people can't hide it and it's REALLY OBVIOUS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-
-	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_OFFLINE
 
 	var/minimum_timer = 90
 	var/timer_set = 90
@@ -99,8 +97,8 @@
 	return ..()
 
 /obj/machinery/syndicatebomb/examine(mob/user)
-	. = ..()
-	. += "A digital display on it reads \"[seconds_remaining()]\"."
+	..()
+	to_chat(user, "A digital display on it reads \"[seconds_remaining()]\".")
 
 /obj/machinery/syndicatebomb/update_icon()
 	icon_state = "[initial(icon_state)][active ? "-active" : "-inactive"][open_panel ? "-wires" : ""]"
@@ -118,15 +116,15 @@
 				to_chat(user, "<span class='notice'>The bomb must be placed on solid ground to attach it.</span>")
 			else
 				to_chat(user, "<span class='notice'>You firmly wrench the bomb to the floor.</span>")
-				I.play_tool_sound(src)
-				setAnchored(TRUE)
+				playsound(loc, I.usesound, 50, 1)
+				anchored = TRUE
 				if(active)
 					to_chat(user, "<span class='notice'>The bolts lock in place.</span>")
 		else
 			if(!active)
 				to_chat(user, "<span class='notice'>You wrench the bomb from the floor.</span>")
-				I.play_tool_sound(src)
-				setAnchored(FALSE)
+				playsound(loc, I.usesound, 50, 1)
+				anchored = FALSE
 			else
 				to_chat(user, "<span class='warning'>The bolts are locked down!</span>")
 
@@ -161,12 +159,18 @@
 	else if(istype(I, /obj/item/weldingtool))
 		if(payload || !wires.is_all_cut() || !open_panel)
 			return
-
-		if(!I.tool_start_check(user, amount=5))  //uses up 5 fuel
+		var/obj/item/weldingtool/WT = I
+		if(!WT.isOn())
+			return
+		if(WT.get_fuel() < 5) //uses up 5 fuel.
+			to_chat(user, "<span class='warning'>You need more fuel to complete this task!</span>")
 			return
 
+		playsound(loc, WT.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You start to cut [src] apart...</span>")
-		if(I.use_tool(src, user, 20, volume=50, amount=5)) //uses up 5 fuel
+		if(do_after(user, 20*I.toolspeed, target = src))
+			if(!WT.isOn() || !WT.remove_fuel(5, user))
+				return
 			to_chat(user, "<span class='notice'>You cut [src] apart.</span>")
 			new /obj/item/stack/sheet/plasteel( loc, 5)
 			qdel(src)
@@ -175,6 +179,12 @@
 		. = ..()
 		if((old_integ > obj_integrity) && active && !defused && (payload in src))
 			to_chat(user, "<span class='warning'>That seems like a really bad idea...</span>")
+
+/obj/machinery/syndicatebomb/attack_hand(mob/user)
+	interact(user)
+
+/obj/machinery/syndicatebomb/attack_ai()
+	return
 
 /obj/machinery/syndicatebomb/interact(mob/user)
 	wires.interact(user)
@@ -209,9 +219,10 @@
 			add_fingerprint(user)
 
 			var/turf/bombturf = get_turf(src)
+			var/area/A = get_area(bombturf)
 			if(payload && !istype(payload, /obj/item/bombcore/training))
-				message_admins("[ADMIN_LOOKUPFLW(user)] has primed a [name] ([payload]) for detonation at [ADMIN_VERBOSEJMP(bombturf)]</a>.")
-				log_game("[key_name(user)] has primed a [name] ([payload]) for detonation at [AREACOORD(bombturf)]")
+				message_admins("[ADMIN_LOOKUPFLW(user)] has primed a [name] ([payload]) for detonation at [A.name] [ADMIN_JMP(bombturf)]</a>.")
+				log_game("[key_name(user)] has primed a [name] ([payload]) for detonation at [A.name][COORD(bombturf)]")
 				payload.adminlog = "The [name] that [key_name(user)] had primed detonated!"
 
 ///Bomb Subtypes///
@@ -437,7 +448,7 @@
 
 /obj/item/bombcore/chemical/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/crowbar) && beakers.len > 0)
-		I.play_tool_sound(src)
+		playsound(loc, I.usesound, 50, 1)
 		for (var/obj/item/B in beakers)
 			B.forceMove(drop_location())
 			beakers -= B
@@ -498,9 +509,9 @@
 
 ///Syndicate Detonator (aka the big red button)///
 
-/obj/item/syndicatedetonator
+/obj/item/device/syndicatedetonator
 	name = "big red button"
-	desc = "Your standard issue bomb synchronizing button. Two second safety delay to prevent 'accidents'."
+	desc = "Your standard issue bomb synchronizing button. Five second safety delay to prevent 'accidents'."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "bigred"
 	item_state = "electronic"
@@ -509,26 +520,27 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/timer = 0
 	var/detonated =	0
-	var/existent =	0
+	var/existant =	0
 
-/obj/item/syndicatedetonator/attack_self(mob/user)
+/obj/item/device/syndicatedetonator/attack_self(mob/user)
 	if(timer < world.time)
 		for(var/obj/machinery/syndicatebomb/B in GLOB.machines)
 			if(B.active)
 				B.detonation_timer = world.time + BUTTON_DELAY
 				detonated++
-			existent++
+			existant++
 		playsound(user, 'sound/machines/click.ogg', 20, 1)
-		to_chat(user, "<span class='notice'>[existent] found, [detonated] triggered.</span>")
+		to_chat(user, "<span class='notice'>[existant] found, [detonated] triggered.</span>")
 		if(detonated)
 			var/turf/T = get_turf(src)
+			var/area/A = get_area(T)
 			detonated--
-			var/log_str = "[ADMIN_LOOKUPFLW(user)] has remotely detonated [detonated ? "syndicate bombs" : "a syndicate bomb"] using a [name] at [ADMIN_VERBOSEJMP(T)]</a>."
+			var/log_str = "[ADMIN_LOOKUPFLW(user)] has remotely detonated [detonated ? "syndicate bombs" : "a syndicate bomb"] using a [name] at [A.name] [ADMIN_JMP(T)]</a>."
 			GLOB.bombers += log_str
 			message_admins(log_str)
-			log_game("[key_name(user)] has remotely detonated [detonated ? "syndicate bombs" : "a syndicate bomb"] using a [name] at [AREACOORD(T)]")
+			log_game("[key_name(user)] has remotely detonated [detonated ? "syndicate bombs" : "a syndicate bomb"] using a [name] at [A.name][COORD(T)]")
 		detonated =	0
-		existent =	0
+		existant =	0
 		timer = world.time + BUTTON_COOLDOWN
 
 

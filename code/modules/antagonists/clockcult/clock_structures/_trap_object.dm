@@ -16,22 +16,22 @@
 	return ..()
 
 /obj/structure/destructible/clockwork/trap/examine(mob/user)
-	. = ..()
+	..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		. += "It's wired to:"
+		to_chat(user, "It's wired to:")
 		if(!wired_to.len)
-			. += "Nothing."
+			to_chat(user, "Nothing.")
 		else
 			for(var/V in wired_to)
 				var/obj/O = V
 				var/distance = get_dist(src, O)
-				. += "[O] ([distance == 0 ? "same tile" : "[distance] tiles [dir2text(get_dir(src, O))]"])"
+				to_chat(user, "[O] ([distance == 0 ? "same tile" : "[distance] tiles [dir2text(get_dir(src, O))]"])")
 
-/obj/structure/destructible/clockwork/trap/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/destructible/clockwork/trap/wrench_act(mob/living/user, obj/item/wrench)
 	if(!is_servant_of_ratvar(user))
 		return ..()
 	to_chat(user, "<span class='notice'>You break down the delicate components of [src] into brass.</span>")
-	I.play_tool_sound(src)
+	playsound(src, wrench.usesound, 50, TRUE)
 	new/obj/item/stack/tile/brass(get_turf(src))
 	qdel(src)
 	return TRUE
@@ -56,14 +56,14 @@
 		return
 	..()
 
-/obj/structure/destructible/clockwork/trap/wirecutter_act(mob/living/user, obj/item/I)
+/obj/structure/destructible/clockwork/trap/wirecutter_act(mob/living/user, obj/item/wirecutters)
 	if(!is_servant_of_ratvar(user))
 		return
 	if(!wired_to.len)
 		to_chat(user, "<span class='warning'>[src] has no connections!</span>")
 		return
 	to_chat(user, "<span class='notice'>You sever all connections to [src].</span>")
-	I.play_tool_sound(src)
+	playsound(src, wirecutters.usesound, 50, TRUE)
 	for(var/V in wired_to)
 		var/obj/structure/destructible/clockwork/trap/T = V
 		T.wired_to -= src
@@ -71,7 +71,6 @@
 	return TRUE
 
 /obj/structure/destructible/clockwork/trap/proc/activate()
-	return
 
 //These objects send signals to normal traps to activate
 /obj/structure/destructible/clockwork/trap/trigger
@@ -79,14 +78,6 @@
 	max_integrity = 5
 	break_message = "<span class='warning'>The trigger breaks apart!</span>"
 	density = FALSE
-
-/obj/structure/destructible/clockwork/trap/trigger/Initialize()
-	. = ..()
-	for(var/obj/structure/destructible/clockwork/trap/T in get_turf(src))
-		if(!istype(T, /obj/structure/destructible/clockwork/trap/trigger))
-			wired_to += T
-			T.wired_to += src
-			to_chat(usr, "<span class='alloy'>[src] automatically links with [T] beneath it.</span>")
 
 /obj/structure/destructible/clockwork/trap/trigger/activate()
 	for(var/obj/structure/destructible/clockwork/trap/T in wired_to)

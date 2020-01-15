@@ -26,7 +26,7 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 15
-	faction = list(ROLE_ALIEN)
+	faction = list("alien")
 	status_flags = CANPUSH
 	minbodytemp = 0
 	see_in_dark = 8
@@ -35,8 +35,6 @@
 	gold_core_spawnable = NO_SPAWN
 	death_sound = 'sound/voice/hiss6.ogg'
 	deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw..."
-
-	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/alien/drone
 	name = "alien drone"
@@ -168,7 +166,7 @@
 
 /mob/living/simple_animal/hostile/alien/maid/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/cleaning)
+	AddComponent(/datum/component/cleaning)
 
 /mob/living/simple_animal/hostile/alien/maid/AttackingTarget()
 	if(ismovableatom(target))
@@ -177,7 +175,6 @@
 			qdel(target)
 			return TRUE
 		var/atom/movable/M = target
-		SEND_SIGNAL(M, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
-		M.clean_blood()
+		M.SendSignal(COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
 		visible_message("[src] polishes \the [target].")
 		return TRUE

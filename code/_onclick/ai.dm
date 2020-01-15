@@ -10,6 +10,10 @@
 	Note that AI have no need for the adjacency proc, and so this proc is a lot cleaner.
 */
 /mob/living/silicon/ai/DblClickOn(var/atom/A, params)
+	if(client.click_intercept)
+		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
+			return
+
 	if(control_disabled || incapacitated())
 		return
 
@@ -23,19 +27,9 @@
 		return
 	next_click = world.time + 1
 
-	if(!can_interact_with(A))
-		return
-
-	if(multicam_on)
-		var/turf/T = get_turf(A)
-		if(T)
-			for(var/obj/screen/movable/pic_in_pic/ai/P in T.vis_locs)
-				if(P.ai == src)
-					P.Click(params)
-					break
-
-	if(check_click_intercept(params,A))
-		return
+	if(client.click_intercept)
+		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
+			return
 
 	if(control_disabled || incapacitated())
 		return
@@ -46,8 +40,8 @@
 	if(!can_see(A))
 		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
 			return //So there's no point messaging admins
-		message_admins("[ADMIN_LOOKUPFLW(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
-		var/message = "[key_name(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)]))"
+		message_admins("[key_name_admin(src)] might be running a modified client! (failed can_see on AI click of [A]([ADMIN_COORDJMP(pixel_turf)]))")
+		var/message = "[key_name(src)] might be running a modified client! (failed can_see on AI click of [A]([COORD(pixel_turf)]))"
 		log_admin(message)
 		if(REALTIMEOFDAY >= chnotify + 9000)
 			chnotify = REALTIMEOFDAY
@@ -63,6 +57,7 @@
 			controlled_mech.click_action(A, src, params) //Override AI normal click behavior.
 		return
 
+		return
 	if(modifiers["shift"])
 		ShiftClickOn(A)
 		return
@@ -114,8 +109,7 @@
 /mob/living/silicon/ai/CtrlClickOn(var/atom/A)
 	A.AICtrlClick(src)
 /mob/living/silicon/ai/AltClickOn(var/atom/A)
-	if(!A.AIAltClick(src))
-		altclick_listed_turf(A)
+	A.AIAltClick(src)
 
 /*
 	The following criminally helpful code is just the previous code cleaned up;
@@ -126,10 +120,9 @@
 /* Atom Procs */
 /atom/proc/AICtrlClick()
 	return
-
 /atom/proc/AIAltClick(mob/living/silicon/ai/user)
-	return AltClick(user)
-
+	AltClick(user)
+	return
 /atom/proc/AIShiftClick()
 	return
 /atom/proc/AICtrlShiftClick()
@@ -153,7 +146,6 @@
 		shock_perm(usr)
 	else
 		shock_restore(usr)
-	return TRUE
 
 /obj/machinery/door/airlock/AIShiftClick()  // Opens and closes doors!
 	if(obj_flags & EMAGGED)
@@ -178,22 +170,11 @@
 
 /* AI Turrets */
 /obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
-	if(ailock)
-		return
 	toggle_lethal()
 	add_fingerprint(usr)
-
 /obj/machinery/turretid/AICtrlClick() //turns off/on Turrets
-	if(ailock)
-		return
 	toggle_on()
 	add_fingerprint(usr)
-	return TRUE
-
-/* Holopads */
-/obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
-	hangup_all_calls()
-	return TRUE
 
 //
 // Override TurfAdjacent for AltClicking

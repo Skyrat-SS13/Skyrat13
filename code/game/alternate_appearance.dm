@@ -125,32 +125,6 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 /datum/atom_hud/alternate_appearance/basic/observers/mobShouldSee(mob/M)
 	return isobserver(M)
 
-/datum/atom_hud/alternate_appearance/basic/noncult
-
-/datum/atom_hud/alternate_appearance/basic/noncult/New()
-	..()
-	for(var/mob in GLOB.player_list)
-		if(mobShouldSee(mob))
-			add_hud_to(mob)
-
-/datum/atom_hud/alternate_appearance/basic/noncult/mobShouldSee(mob/M)
-	if(!iscultist(M))
-		return TRUE
-	return FALSE
-
-/datum/atom_hud/alternate_appearance/basic/cult
-
-/datum/atom_hud/alternate_appearance/basic/cult/New()
-	..()
-	for(var/mob in GLOB.player_list)
-		if(mobShouldSee(mob))
-			add_hud_to(mob)
-
-/datum/atom_hud/alternate_appearance/basic/cult/mobShouldSee(mob/M)
-	if(iscultist(M))
-		return TRUE
-	return FALSE
-
 /datum/atom_hud/alternate_appearance/basic/blessedAware
 
 /datum/atom_hud/alternate_appearance/basic/blessedAware/New()
@@ -167,16 +141,3 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	if(isrevenant(M) || iseminence(M) || iswizard(M))
 		return TRUE
 	return FALSE
-
-datum/atom_hud/alternate_appearance/basic/onePerson
-	var/mob/seer
-
-/datum/atom_hud/alternate_appearance/basic/onePerson/mobShouldSee(mob/M)
-	if(M == seer)
-		return TRUE
-	return FALSE
-
-/datum/atom_hud/alternate_appearance/basic/onePerson/New(key, image/I, mob/living/M)
-	..(key, I, FALSE)
-	seer = M
-	add_hud_to(seer)

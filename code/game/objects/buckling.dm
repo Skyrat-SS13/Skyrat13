@@ -11,8 +11,6 @@
 //Interaction
 /atom/movable/attack_hand(mob/living/user)
 	. = ..()
-	if(.)
-		return
 	if(can_buckle && has_buckled_mobs())
 		if(buckled_mobs.len > 1)
 			var/unbuckled = input(user, "Who do you wish to unbuckle?","Unbuckle Who?") as null|mob in buckled_mobs
@@ -70,7 +68,7 @@
 	M.throw_alert("buckled", /obj/screen/alert/restrained/buckled)
 	post_buckle_mob(M)
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, M, force)
+	SendSignal(COMSIG_MOVABLE_BUCKLE, M, force)
 	return TRUE
 
 /obj/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
@@ -88,7 +86,7 @@
 		buckled_mob.update_canmove()
 		buckled_mob.clear_alert("buckled")
 		buckled_mobs -= buckled_mob
-		SEND_SIGNAL(src, COMSIG_MOVABLE_UNBUCKLE, buckled_mob, force)
+		SendSignal(COMSIG_MOVABLE_UNBUCKLE, buckled_mob, force)
 
 		post_unbuckle_mob(.)
 
@@ -107,7 +105,7 @@
 
 //Wrapper procs that handle sanity and user feedback
 /atom/movable/proc/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
-	if(!in_range(user, src) || !isturf(user.loc) || user.incapacitated() || M.anchored || !user.can_buckle_others(M, src))
+	if(!in_range(user, src) || !isturf(user.loc) || user.incapacitated())
 		return FALSE
 
 	add_fingerprint(user)

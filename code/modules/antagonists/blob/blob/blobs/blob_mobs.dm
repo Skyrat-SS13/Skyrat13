@@ -7,7 +7,7 @@
 /mob/living/simple_animal/hostile/blob
 	icon = 'icons/mob/blob.dmi'
 	pass_flags = PASSBLOB
-	faction = list(ROLE_BLOB)
+	faction = list("blob")
 	bubble_icon = "blob"
 	speak_emote = null //so we use verb_yell/verb_say/etc
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -57,7 +57,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/blob/proc/blob_chat(msg)
-	var/spanned_message = say_quote(msg)
+	var/spanned_message = say_quote(msg, get_spans())
 	var/rendered = "<font color=\"#EE4000\"><b>\[Blob Telepathy\] [real_name]</b> [spanned_message]</font>"
 	for(var/M in GLOB.mob_list)
 		if(isovermind(M) || istype(M, /mob/living/simple_animal/hostile/blob))
@@ -120,7 +120,6 @@
 	health = maxHealth
 	name = "blob zombie"
 	desc = "A shambling corpse animated by the blob."
-	mob_biotypes += MOB_HUMANOID
 	melee_damage_lower += 8
 	melee_damage_upper += 11
 	movement_type = GROUND
@@ -143,13 +142,13 @@
 	create_reagents(10)
 
 	if(overmind && overmind.blob_reagent_datum)
-		reagents.add_reagent(overmind.blob_reagent_datum.type, 10)
+		reagents.add_reagent(overmind.blob_reagent_datum.id, 10)
 	else
-		reagents.add_reagent(/datum/reagent/toxin/spore, 10)
+		reagents.add_reagent("spore", 10)
 
 	// Attach the smoke spreader and setup/start it.
 	S.attach(location)
-	S.set_up(reagents, death_cloud_size, location, silent = TRUE)
+	S.set_up(reagents, death_cloud_size, location, silent=1)
 	S.start()
 	if(factory)
 		factory.spore_delay = world.time + factory.spore_cooldown //put the factory on cooldown
@@ -213,7 +212,6 @@
 	mob_size = MOB_SIZE_LARGE
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	hud_type = /datum/hud/blobbernaut
 	var/independent = FALSE
 
 /mob/living/simple_animal/hostile/blob/blobbernaut/Initialize()

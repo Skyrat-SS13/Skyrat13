@@ -5,7 +5,7 @@
 	blob_allowed = FALSE //Nope, no winning in space as a blob. Gotta eat the station.
 
 /area/ruin/space/has_grav
-	has_gravity = STANDARD_GRAVITY
+	has_gravity = TRUE
 
 /area/ruin/space/has_grav/powered
 	requires_power = FALSE
@@ -54,9 +54,6 @@
 
 /area/ruin/space/has_grav/powered/dinner_for_two
 	name = "Dinner for Two"
-
-/area/ruin/space/has_grav/powered/cat_man
-	name = "Kitty Den"
 
 /area/ruin/space/has_grav/powered/authorship
 	name = "Authorship"
@@ -413,13 +410,13 @@
 /area/ruin/space/djstation
 	name = "Ruskie DJ Station"
 	icon_state = "DJ"
-	has_gravity = STANDARD_GRAVITY
+	has_gravity = TRUE
 	blob_allowed = FALSE //Nope, no winning on the DJ station as a blob. Gotta eat the main station.
 
 /area/ruin/space/djstation/solars
 	name = "DJ Station Solars"
 	icon_state = "DJ"
-	has_gravity = STANDARD_GRAVITY
+	has_gravity = TRUE
 
 
 //ABANDONED TELEPORTER
@@ -462,13 +459,4 @@
 
 /area/ruin/space/has_grav/listeningstation
 	name = "Listening Post"
-	icon_state = "yellow"
-
-/area/ruin/space/has_grav/powered/ancient_shuttle
-	name = "Ancient Shuttle"
-	icon_state = "yellow"
-
-// Abductor Replication Lab
-/area/ruin/space/has_grav/powered/advancedlab
-	name = "Abductor Replication Lab"
 	icon_state = "yellow"

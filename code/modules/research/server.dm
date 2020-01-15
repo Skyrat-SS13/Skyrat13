@@ -41,12 +41,10 @@
 		working = TRUE
 
 /obj/machinery/rnd/server/emp_act()
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
 	stat |= EMPED
 	addtimer(CALLBACK(src, .proc/unemp), 600)
 	refresh_working()
+	return ..()
 
 /obj/machinery/rnd/server/proc/unemp()
 	stat &= ~EMPED
@@ -54,7 +52,7 @@
 
 /obj/machinery/rnd/server/proc/mine()
 	. = base_mining_income
-	var/penalty = max((get_env_temp() - temp_tolerance_high), 0) * temp_penalty_coefficient
+	var/penalty = max((get_env_temp() - temp_tolerance_low), 0) / temp_penalty_coefficient
 	. = max(. - penalty, 0)
 
 /obj/machinery/rnd/server/proc/get_env_temp()
@@ -81,6 +79,13 @@
 
 				env.merge(removed)
 				air_update_turf()
+
+/obj/machinery/rnd/server/attack_hand(mob/user as mob) // I guess only exists to stop ninjas or hell does it even work I dunno.  See also ninja gloves.
+	if (disabled)
+		return
+	if (shocked)
+		shock(user,50)
+	return
 
 /proc/fix_noid_research_servers()
 	var/list/no_id_servers = list()
@@ -133,8 +138,10 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/rdservercontrol/ui_interact(mob/user)
-	. = ..()
+/obj/machinery/computer/rdservercontrol/attack_hand(mob/user)
+	if(..())
+		return
+	user.set_machine(src)
 	var/dat = ""
 
 	switch(screen)
@@ -142,7 +149,8 @@
 			dat += "Connected Servers:<BR><BR>"
 
 			for(var/obj/machinery/rnd/server/S in GLOB.machines)
-				dat += "[S.name]<BR>"
+				dat += "[S.name] || "
+				dat += "<BR>"
 
 		//Mining status here
 
@@ -155,10 +163,8 @@
 	src.updateUsrDialog()
 
 /obj/machinery/computer/rdservercontrol/emag_act(mob/user)
-	. = ..()
 	if(obj_flags & EMAGGED)
 		return
 	playsound(src, "sparks", 75, 1)
 	obj_flags |= EMAGGED
-	to_chat(user, "<span class='notice'>You disable the security protocols.</span>")
-	return TRUE
+	to_chat(user, "<span class='notice'>You you disable the security protocols.</span>")

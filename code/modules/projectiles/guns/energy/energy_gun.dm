@@ -22,7 +22,7 @@
 	can_flashlight = 0 // Can't attach or detach the flashlight, and override it's icon update
 
 /obj/item/gun/energy/e_gun/mini/Initialize()
-	gun_light = new /obj/item/flashlight/seclite(src)
+	gun_light = new /obj/item/device/flashlight/seclite(src)
 	return ..()
 
 /obj/item/gun/energy/e_gun/mini/update_icon()
@@ -55,7 +55,7 @@
 	desc = "This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time."
 	icon_state = "hoslaser"
 	force = 10
-	ammo_type = list(/obj/item/ammo_casing/energy/electrode/hos, /obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser/hos)
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode/hos, /obj/item/ammo_casing/energy/laser/hos, /obj/item/ammo_casing/energy/disabler)
 	ammo_x_offset = 4
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
@@ -97,8 +97,8 @@
 	pin = null
 	can_charge = 0
 	ammo_x_offset = 1
-	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
-	selfcharge = EGUN_SELFCHARGE
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/disabler)
+	selfcharge = 1
 	var/fail_tick = 0
 	var/fail_chance = 0
 
@@ -118,18 +118,16 @@
 		switch(fail_tick)
 			if(0 to 200)
 				fail_tick += (2*(fail_chance))
-				M.rad_act(400)
+				M.rad_act(40)
 				to_chat(M, "<span class='userdanger'>Your [name] feels warmer.</span>")
 			if(201 to INFINITY)
 				SSobj.processing.Remove(src)
-				M.rad_act(800)
+				M.rad_act(80)
 				crit_fail = 1
 				to_chat(M, "<span class='userdanger'>Your [name]'s reactor overloads!</span>")
 
 /obj/item/gun/energy/e_gun/nuclear/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
+	..()
 	fail_chance = min(fail_chance + round(15/severity), 100)
 
 /obj/item/gun/energy/e_gun/nuclear/update_icon()

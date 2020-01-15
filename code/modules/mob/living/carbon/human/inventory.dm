@@ -4,39 +4,39 @@
 // Return the item currently in the slot ID
 /mob/living/carbon/human/get_item_by_slot(slot_id)
 	switch(slot_id)
-		if(SLOT_BACK)
+		if(slot_back)
 			return back
-		if(SLOT_WEAR_MASK)
+		if(slot_wear_mask)
 			return wear_mask
-		if(SLOT_NECK)
+		if(slot_neck)
 			return wear_neck
-		if(SLOT_HANDCUFFED)
+		if(slot_handcuffed)
 			return handcuffed
-		if(SLOT_LEGCUFFED)
+		if(slot_legcuffed)
 			return legcuffed
-		if(SLOT_BELT)
+		if(slot_belt)
 			return belt
-		if(SLOT_WEAR_ID)
+		if(slot_wear_id)
 			return wear_id
-		if(SLOT_EARS)
+		if(slot_ears)
 			return ears
-		if(SLOT_GLASSES)
+		if(slot_glasses)
 			return glasses
-		if(SLOT_GLOVES)
+		if(slot_gloves)
 			return gloves
-		if(SLOT_HEAD)
+		if(slot_head)
 			return head
-		if(SLOT_SHOES)
+		if(slot_shoes)
 			return shoes
-		if(SLOT_WEAR_SUIT)
+		if(slot_wear_suit)
 			return wear_suit
-		if(SLOT_W_UNIFORM)
+		if(slot_w_uniform)
 			return w_uniform
-		if(SLOT_L_STORE)
+		if(slot_l_store)
 			return l_store
-		if(SLOT_R_STORE)
+		if(slot_r_store)
 			return r_store
-		if(SLOT_S_STORE)
+		if(slot_s_store)
 			return s_store
 	return null
 
@@ -79,23 +79,22 @@
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
 /mob/living/carbon/human/equip_to_slot(obj/item/I, slot)
-	. = ..()
-	if(!.) //a check failed or the item has already found its slot
+	if(!..()) //a check failed or the item has already found its slot
 		return
 
 	var/not_handled = FALSE //Added in case we make this type path deeper one day
 	switch(slot)
-		if(SLOT_BELT)
+		if(slot_belt)
 			belt = I
 			update_inv_belt()
-		if(SLOT_WEAR_ID)
+		if(slot_wear_id)
 			wear_id = I
 			sec_hud_set_ID()
 			update_inv_wear_id()
-		if(SLOT_EARS)
+		if(slot_ears)
 			ears = I
 			update_inv_ears()
-		if(SLOT_GLASSES)
+		if(slot_glasses)
 			glasses = I
 			var/obj/item/clothing/glasses/G = I
 			if(G.glass_colour_type)
@@ -108,13 +107,13 @@
 			if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
 				update_sight()
 			update_inv_glasses()
-		if(SLOT_GLOVES)
+		if(slot_gloves)
 			gloves = I
 			update_inv_gloves()
-		if(SLOT_SHOES)
+		if(slot_shoes)
 			shoes = I
 			update_inv_shoes()
-		if(SLOT_WEAR_SUIT)
+		if(slot_wear_suit)
 			wear_suit = I
 			if(I.flags_inv & HIDEJUMPSUIT)
 				update_inv_w_uniform()
@@ -122,22 +121,21 @@
 				stop_pulling() //can't pull if restrained
 				update_action_buttons_icon() //certain action buttons will no longer be usable.
 			update_inv_wear_suit()
-		if(SLOT_W_UNIFORM)
+		if(slot_w_uniform)
 			w_uniform = I
 			update_suit_sensors()
 			update_inv_w_uniform()
-		if(SLOT_L_STORE)
+		if(slot_l_store)
 			l_store = I
 			update_inv_pockets()
-		if(SLOT_R_STORE)
+		if(slot_r_store)
 			r_store = I
 			update_inv_pockets()
-		if(SLOT_S_STORE)
+		if(slot_s_store)
 			s_store = I
 			update_inv_s_store()
 		else
 			to_chat(src, "<span class='danger'>You are trying to equip this item to an unsupported inventory slot. Report this to a coder!</span>")
-			not_handled = TRUE
 
 	//Item is handled and in slot, valid to call callback, for this proc should always be true
 	if(!not_handled)
@@ -169,9 +167,9 @@
 				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
 			if(l_store)
 				dropItemToGround(l_store, TRUE)
-			if(wear_id && !CHECK_BITFIELD(wear_id.item_flags, NO_UNIFORM_REQUIRED))
+			if(wear_id)
 				dropItemToGround(wear_id)
-			if(belt && !CHECK_BITFIELD(belt.item_flags, NO_UNIFORM_REQUIRED))
+			if(belt)
 				dropItemToGround(belt)
 		w_uniform = null
 		update_suit_sensors()
@@ -189,8 +187,9 @@
 		if(G.tint)
 			update_tint()
 		if(G.vision_correction)
-			if(HAS_TRAIT(src, TRAIT_NEARSIGHT))
+			if(has_trait(TRAIT_NEARSIGHT))
 				overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
+			adjust_eye_damage(0)
 		if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
 			update_sight()
 		if(!QDELETED(src))
@@ -250,7 +249,7 @@
 	sec_hud_set_security_status()
 	..()
 
-/mob/living/carbon/human/proc/equipOutfit(outfit, visualsOnly = FALSE, client/preference_source)
+/mob/living/carbon/human/proc/equipOutfit(outfit, visualsOnly = FALSE)
 	var/datum/outfit/O = null
 
 	if(ispath(outfit))
@@ -262,7 +261,7 @@
 	if(!O)
 		return 0
 
-	return O.equip(src, visualsOnly, preference_source)
+	return O.equip(src, visualsOnly)
 
 
 //delete all equipment without dropping anything

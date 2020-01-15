@@ -3,22 +3,16 @@
 #define CHANNEL_ADMIN 1023
 #define CHANNEL_VOX 1022
 #define CHANNEL_JUKEBOX 1021
-#define CHANNEL_JUKEBOX_START 1016 //The gap between this and CHANNEL_JUKEBOX determines the amount of free jukebox channels. This currently allows 6 jukebox channels to exist.
-#define CHANNEL_JUSTICAR_ARK 1015
-#define CHANNEL_HEARTBEAT 1014 //sound channel for heartbeats
-#define CHANNEL_AMBIENCE 1013
-#define CHANNEL_BUZZ 1012
-#define CHANNEL_BICYCLE 1011
-
-//CIT CHANNELS - TRY NOT TO REGRESS
-#define CHANNEL_PRED 1010
-#define CHANNEL_DIGEST 1009
-#define CHANNEL_PREYLOOP 1008
+#define CHANNEL_JUSTICAR_ARK 1020
+#define CHANNEL_HEARTBEAT 1019 //sound channel for heartbeats
+#define CHANNEL_AMBIENCE 1018
+#define CHANNEL_BUZZ 1017
+#define CHANNEL_BICYCLE 1016
 
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
 
-#define CHANNEL_HIGHEST_AVAILABLE 1008 //CIT CHANGE - COMPENSATES FOR VORESOUND CHANNELS
+#define CHANNEL_HIGHEST_AVAILABLE 1015
 
 
 #define SOUND_MINIMUM_PRESSURE 10
@@ -46,7 +40,7 @@
 									'sound/ambience/ambidanger.ogg', 'sound/ambience/ambidanger2.ogg', 'sound/ambience/ambitech3.ogg',\
 									'sound/ambience/ambimystery.ogg', 'sound/ambience/ambimaint1.ogg')
 
-#define ENGINEERING list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg',\
+#define ENGINEERING list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg', 'sound/ambience/ambieng1.ogg',\
 										'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg', 'sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
 
 #define MINING list('sound/ambience/ambimine.ogg', 'sound/ambience/ambicave.ogg', 'sound/ambience/ambiruin.ogg',\
@@ -71,11 +65,3 @@
 									'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg', 'sound/ambience/ambiodd.ogg')
 
 #define REEBE list('sound/ambience/ambireebe1.ogg', 'sound/ambience/ambireebe2.ogg', 'sound/ambience/ambireebe3.ogg')
-
-
-
-#define CREEPY_SOUNDS list('sound/effects/ghost.ogg', 'sound/effects/ghost2.ogg', 'sound/effects/heart_beat.ogg', 'sound/effects/screech.ogg',\
-	'sound/hallucinations/behind_you1.ogg', 'sound/hallucinations/behind_you2.ogg', 'sound/hallucinations/far_noise.ogg', 'sound/hallucinations/growl1.ogg', 'sound/hallucinations/growl2.ogg',\
-	'sound/hallucinations/growl3.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/im_here2.ogg', 'sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg',\
-	'sound/hallucinations/look_up1.ogg', 'sound/hallucinations/look_up2.ogg', 'sound/hallucinations/over_here1.ogg', 'sound/hallucinations/over_here2.ogg', 'sound/hallucinations/over_here3.ogg',\
-	'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg', 'sound/hallucinations/veryfar_noise.ogg', 'sound/hallucinations/wail.ogg')

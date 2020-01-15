@@ -6,6 +6,8 @@
 	can_unwrench = TRUE
 	desc = "Very useful for mixing gasses."
 
+	var/on = FALSE
+
 	var/target_pressure = ONE_ATMOSPHERE
 	var/node1_concentration = 0.5
 	var/node2_concentration = 0.5
@@ -14,76 +16,10 @@
 	pipe_state = "mixer"
 
 	//node 3 is the outlet, nodes 1 & 2 are intakes
-/obj/machinery/atmospherics/components/trinary/mixer/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>You can hold <b>Ctrl</b> and click on it to toggle it on and off.</span>"
-	. += "<span class='notice'>You can hold <b>Alt</b> and click on it to maximize its pressure.</span>"
-
-/obj/machinery/atmospherics/components/trinary/mixer/CtrlClick(mob/user)
-	var/area/A = get_area(src)
-	var/turf/T = get_turf(src)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE,))
-		on = !on
-		update_icon()
-		investigate_log("Mixer, [src.name], turned on by [key_name(usr)] at [x], [y], [z], [A]", INVESTIGATE_ATMOS)
-		message_admins("Mixer, [src.name], turned [on ? "on" : "off"] by [ADMIN_LOOKUPFLW(usr)] at [ADMIN_COORDJMP(T)], [A]")
-		return ..()
-
-/obj/machinery/atmospherics/components/trinary/mixer/AltClick(mob/user)
-	. = ..()
-	var/area/A = get_area(src)
-	var/turf/T = get_turf(src)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE,))
-		target_pressure = MAX_OUTPUT_PRESSURE
-		to_chat(user,"<span class='notice'>You maximize the pressure on the [src].</span>")
-		investigate_log("Mixer, [src.name], was maximized by [key_name(usr)] at [x], [y], [z], [A]", INVESTIGATE_ATMOS)
-		message_admins("Mixer, [src.name], was maximized by [ADMIN_LOOKUPFLW(usr)] at [ADMIN_COORDJMP(T)], [A]")
-		return TRUE
-
-	//node 3 is the outlet, nodes 1 & 2 are intakes
-/obj/machinery/atmospherics/components/trinary/mixer/layer1
-	piping_layer = PIPING_LAYER_MIN
-	pixel_x = -PIPING_LAYER_P_X
-	pixel_y = -PIPING_LAYER_P_Y
-
-/obj/machinery/atmospherics/components/trinary/mixer/layer3
-	piping_layer = PIPING_LAYER_MAX
-	pixel_x = PIPING_LAYER_P_X
-	pixel_y = PIPING_LAYER_P_Y
 
 /obj/machinery/atmospherics/components/trinary/mixer/flipped
 	icon_state = "mixer_off_f"
 	flipped = TRUE
-
-/obj/machinery/atmospherics/components/trinary/mixer/flipped/layer1
-	piping_layer = PIPING_LAYER_MIN
-	pixel_x = -PIPING_LAYER_P_X
-	pixel_y = -PIPING_LAYER_P_Y
-
-/obj/machinery/atmospherics/components/trinary/mixer/flipped/layer3
-	piping_layer = PIPING_LAYER_MAX
-	pixel_x = PIPING_LAYER_P_X
-	pixel_y = PIPING_LAYER_P_Y
-
-/obj/machinery/atmospherics/components/trinary/mixer/airmix //For standard airmix to distro
-	name = "air mixer"
-	icon_state = "mixer_on"
-	node1_concentration = N2STANDARD
-	node2_concentration = O2STANDARD
-	on = TRUE
-	target_pressure = MAX_OUTPUT_PRESSURE
-
-/obj/machinery/atmospherics/components/trinary/mixer/airmix/inverse
-	node1_concentration = O2STANDARD
-	node2_concentration = N2STANDARD
-
-/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped
-	icon_state = "mixer_on_f"
-	flipped = TRUE
-
-/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped/inverse
-	node1_concentration = O2STANDARD
-	node2_concentration = N2STANDARD
 
 /obj/machinery/atmospherics/components/trinary/mixer/update_icon()
 	cut_overlays()

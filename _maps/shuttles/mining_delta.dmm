@@ -47,20 +47,10 @@
 /turf/open/floor/plasteel,
 /area/shuttle/mining)
 "g" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/chair{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/neutral,
 /area/shuttle/mining)
 "h" = (
 /obj/effect/decal/cleanable/dirt,
@@ -72,7 +62,8 @@
 /area/shuttle/mining)
 "i" = (
 /obj/machinery/door/airlock/shuttle{
-	name = "Mining Shuttle Airlock"
+	name = "Mining Shuttle Airlock";
+	req_access_txt = "0"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -89,9 +80,6 @@
 	port_direction = 8;
 	width = 7
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/mining)
 "j" = (
@@ -102,17 +90,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/mining)
 "k" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/neutral,
 /area/shuttle/mining)
 "l" = (
 /obj/effect/turf_decal/stripes/line{
@@ -122,7 +100,8 @@
 /area/shuttle/mining)
 "m" = (
 /obj/machinery/door/airlock/shuttle{
-	name = "Mining Shuttle Airlock"
+	name = "Mining Shuttle Airlock";
+	req_access_txt = "0"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -130,13 +109,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/mining)
 "n" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/chair{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -146,7 +122,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/mining)
 "o" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/chair{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -159,7 +135,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/mining)
 "p" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/chair{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,

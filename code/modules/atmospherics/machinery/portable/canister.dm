@@ -17,7 +17,7 @@
 	var/can_max_release_pressure = (ONE_ATMOSPHERE * 10)
 	var/can_min_release_pressure = (ONE_ATMOSPHERE / 10)
 
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 50)
+	armor = list(melee = 50, bullet = 50, laser = 50, energy = 100, bomb = 10, bio = 100, rad = 100, fire = 80, acid = 50)
 	max_integrity = 250
 	integrity_failure = 100
 	pressure_resistance = 7 * ONE_ATMOSPHERE
@@ -50,7 +50,6 @@
 		"stimulum" = /obj/machinery/portable_atmospherics/canister/stimulum,
 		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
-		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma
 	)
 
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)
@@ -138,13 +137,6 @@
 	gas_type = /datum/gas/water_vapor
 	filled = 1
 
-/obj/machinery/portable_atmospherics/canister/miasma
-	name = "miasma canister"
-	desc = "Miasma. Makes you wish your nose were blocked."
-	icon_state = "miasma"
-	gas_type = /datum/gas/miasma
-	filled = 1
-
 /obj/machinery/portable_atmospherics/canister/proc/get_time_left()
 	if(timing)
 		. = round(max(0, valve_timer - world.time) / 10, 1)
@@ -204,22 +196,24 @@
 
 /obj/machinery/portable_atmospherics/canister/proc/create_gas()
 	if(gas_type)
+		air_contents.add_gas(gas_type)
 		if(starter_temp)
 			air_contents.temperature = starter_temp
-		air_contents.gases[gas_type] = (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
+		air_contents.gases[gas_type][MOLES] = (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
 		if(starter_temp)
 			air_contents.temperature = starter_temp
 /obj/machinery/portable_atmospherics/canister/air/create_gas()
-	air_contents.gases[/datum/gas/oxygen] = (O2STANDARD * maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
-	air_contents.gases[/datum/gas/nitrogen] = (N2STANDARD * maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
+	air_contents.add_gases(/datum/gas/oxygen, /datum/gas/nitrogen)
+	air_contents.gases[/datum/gas/oxygen][MOLES] = (O2STANDARD * maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
+	air_contents.gases[/datum/gas/nitrogen][MOLES] = (N2STANDARD * maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
 
-#define HOLDING		(1<<0)
-#define CONNECTED	(1<<1)
-#define EMPTY		(1<<2)
-#define LOW			(1<<3)
-#define MEDIUM		(1<<4)
-#define FULL		(1<<5)
-#define DANGER		(1<<6)
+#define HOLDING 1
+#define CONNECTED 2
+#define EMPTY 4
+#define LOW 8
+#define MEDIUM 16
+#define FULL 32
+#define DANGER 64
 /obj/machinery/portable_atmospherics/canister/update_icon()
 	if(stat & BROKEN)
 		cut_overlays()
@@ -284,20 +278,21 @@
 			new /obj/item/stack/sheet/metal (loc, 5)
 	qdel(src)
 
-/obj/machinery/portable_atmospherics/canister/welder_act(mob/living/user, obj/item/I)
-	if(user.a_intent == INTENT_HARM)
-		return FALSE
-
-	if(stat & BROKEN)
-		if(!I.tool_start_check(user, amount=0))
-			return TRUE
-		to_chat(user, "<span class='notice'>You begin cutting [src] apart...</span>")
-		if(I.use_tool(src, user, 30, volume=50))
-			deconstruct(TRUE)
+/obj/machinery/portable_atmospherics/canister/attackby(obj/item/W, mob/user, params)
+	if(user.a_intent != INTENT_HARM && istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
+		if(stat & BROKEN)
+			if(!WT.remove_fuel(0, user))
+				return
+			playsound(loc, WT.usesound, 40, 1)
+			to_chat(user, "<span class='notice'>You begin cutting [src] apart...</span>")
+			if(do_after(user, 30, target = src))
+				deconstruct(TRUE)
+		else
+			to_chat(user, "<span class='notice'>You cannot slice [src] apart when it isn't broken.</span>")
+		return 1
 	else
-		to_chat(user, "<span class='notice'>You cannot slice [src] apart when it isn't broken.</span>")
-
-	return TRUE
+		return ..()
 
 /obj/machinery/portable_atmospherics/canister/obj_break(damage_flag)
 	if((stat & BROKEN) || (flags_1 & NODECONSTRUCT_1))
@@ -320,16 +315,6 @@
 	if(holding)
 		holding.forceMove(T)
 		holding = null
-
-/obj/machinery/portable_atmospherics/canister/replace_tank(mob/living/user, close_valve)
-	. = ..()
-	if(.)
-		if(close_valve)
-			valve_open = FALSE
-			update_icon()
-			investigate_log("Valve was <b>closed</b> by [key_name(user)].<br>", INVESTIGATE_ATMOS)
-		else if(valve_open && holding)
-			investigate_log("[key_name(user)] started a transfer into [holding].<br>", INVESTIGATE_ATMOS)
 
 /obj/machinery/portable_atmospherics/canister/process_atmos()
 	..()
@@ -437,21 +422,21 @@
 					var/list/danger = list()
 					for(var/id in air_contents.gases)
 						var/gas = air_contents.gases[id]
-						if(!GLOB.meta_gas_dangers[id])
+						if(!gas[GAS_META][META_GAS_DANGER])
 							continue
-						if(gas > (GLOB.meta_gas_visibility[id] || MOLES_GAS_VISIBLE)) //if moles_visible is undefined, default to default visibility
-							danger[GLOB.meta_gas_names[id]] = gas //ex. "plasma" = 20
+						if(gas[MOLES] > (gas[GAS_META][META_GAS_MOLES_VISIBLE] || MOLES_GAS_VISIBLE)) //if moles_visible is undefined, default to default visibility
+							danger[gas[GAS_META][META_GAS_NAME]] = gas[MOLES] //ex. "plasma" = 20
 
 					if(danger.len)
-						message_admins("[ADMIN_LOOKUPFLW(usr)] opened a canister that contains the following at [ADMIN_VERBOSEJMP(src)]:")
-						log_admin("[key_name(usr)] opened a canister that contains the following at [AREACOORD(src)]:")
+						message_admins("[ADMIN_LOOKUPFLW(usr)] opened a canister that contains the following: [ADMIN_JMP(src)]")
+						log_admin("[key_name(usr)] opened a canister that contains the following at [COORD(src)]:")
 						for(var/name in danger)
 							var/msg = "[name]: [danger[name]] moles."
 							log_admin(msg)
 							message_admins(msg)
 			else
 				logmsg = "Valve was <b>closed</b> by [key_name(usr)], stopping the transfer into \the [holding || "air"].<br>"
-			investigate_log(logmsg, INVESTIGATE_ATMOS)
+			investigate_log(logmsg, "atmos")
 			release_log += logmsg
 			. = TRUE
 		if("timer")
@@ -478,7 +463,6 @@
 		if("eject")
 			if(holding)
 				if(valve_open)
-					message_admins("[ADMIN_LOOKUPFLW(usr)] removed [holding] from [src] with valve still open at [ADMIN_VERBOSEJMP(src)] releasing contents into the <span class='boldannounce'>air</span><br>.")
 					investigate_log("[key_name(usr)] removed the [holding], leaving the valve open and transferring into the <span class='boldannounce'>air</span><br>", INVESTIGATE_ATMOS)
 				holding.forceMove(get_turf(src))
 				holding = null

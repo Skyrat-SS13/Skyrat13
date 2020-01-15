@@ -21,7 +21,8 @@
 
 /obj/item/tank/internals/oxygen/New()
 	..()
-	air_contents.gases[/datum/gas/oxygen] = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.assert_gas(/datum/gas/oxygen)
+	air_contents.gases[/datum/gas/oxygen][MOLES] = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	return
 
 
@@ -48,8 +49,9 @@
 
 /obj/item/tank/internals/anesthetic/New()
 	..()
-	air_contents.gases[/datum/gas/oxygen] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD
-	air_contents.gases[/datum/gas/nitrous_oxide] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD
+	air_contents.assert_gases(/datum/gas/oxygen, /datum/gas/nitrous_oxide)
+	air_contents.gases[/datum/gas/oxygen][MOLES] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD
+	air_contents.gases[/datum/gas/nitrous_oxide][MOLES] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD
 	return
 
 /*
@@ -65,8 +67,9 @@
 
 /obj/item/tank/internals/air/New()
 	..()
-	air_contents.gases[/datum/gas/oxygen] = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD
-	air_contents.gases[/datum/gas/nitrogen] = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD
+	air_contents.assert_gases(/datum/gas/oxygen, /datum/gas/nitrogen)
+	air_contents.gases[/datum/gas/oxygen][MOLES] = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD
+	air_contents.gases[/datum/gas/nitrogen][MOLES] = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD
 	return
 
 
@@ -84,7 +87,8 @@
 
 /obj/item/tank/internals/plasma/New()
 	..()
-	air_contents.gases[/datum/gas/plasma] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.assert_gas(/datum/gas/plasma)
+	air_contents.gases[/datum/gas/plasma][MOLES] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	return
 
 /obj/item/tank/internals/plasma/attackby(obj/item/W, mob/user, params)
@@ -102,7 +106,7 @@
 
 /obj/item/tank/internals/plasma/full/New()
 	..() // Plasma asserted in parent
-	air_contents.gases[/datum/gas/plasma] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.gases[/datum/gas/plasma][MOLES] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	return
 
 
@@ -120,26 +124,27 @@
 
 /obj/item/tank/internals/plasmaman/New()
 	..()
-	air_contents.gases[/datum/gas/plasma] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.assert_gas(/datum/gas/plasma)
+	air_contents.gases[/datum/gas/plasma][MOLES] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	return
 
 /obj/item/tank/internals/plasmaman/full/New()
 	..() // Plasma asserted in parent
-	air_contents.gases[/datum/gas/plasma] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.gases[/datum/gas/plasma][MOLES] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	return
 
 
 /obj/item/tank/internals/plasmaman/belt
 	icon_state = "plasmaman_tank_belt"
 	item_state = "plasmaman_tank_belt"
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = SLOT_BELT
 	force = 5
 	volume = 6
 	w_class = WEIGHT_CLASS_SMALL //thanks i forgot this
 
 /obj/item/tank/internals/plasmaman/belt/full/New()
 	..() // Plasma asserted in parent
-	air_contents.gases[/datum/gas/plasma] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.gases[/datum/gas/plasma][MOLES] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	return
 
 
@@ -152,7 +157,7 @@
 	desc = "Used for emergencies. Contains very little oxygen, so try to conserve it until you actually need it."
 	icon_state = "emergency"
 	flags_1 = CONDUCT_1
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	force = 4
 	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
@@ -161,7 +166,8 @@
 
 /obj/item/tank/internals/emergency_oxygen/New()
 	..()
-	air_contents.gases[/datum/gas/oxygen] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.assert_gas(/datum/gas/oxygen)
+	air_contents.gases[/datum/gas/oxygen][MOLES] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	return
 
 /obj/item/tank/internals/emergency_oxygen/engi

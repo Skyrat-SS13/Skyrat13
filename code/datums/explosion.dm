@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(explosions)
 //Against my better judgement, I will return the explosion datum
 //If I see any GC errors for it I will find you
 //and I will gib you
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, ignorecap = FALSE, flame_range = 0, silent = FALSE, smoke = FALSE)
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, ignorecap = FALSE, flame_range = 0 , silent = FALSE, smoke = FALSE)
 	return new /datum/explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, ignorecap, flame_range, silent, smoke)
 
 //This datum creates 3 async tasks
@@ -84,15 +84,16 @@ GLOBAL_LIST_EMPTY(explosions)
 
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range)
 
+	var/area/epi_area = get_area(epicenter)
 	if(adminlog)
-		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
-		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)]")
+		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in area: [epi_area] [ADMIN_COORDJMP(epicenter)]")
+		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z])")
 
 	var/x0 = epicenter.x
 	var/y0 = epicenter.y
 	var/z0 = epicenter.z
-	var/area/areatype = get_area(epicenter)
-	SSblackbox.record_feedback("associative", "explosion", 1, list("dev" = devastation_range, "heavy" = heavy_impact_range, "light" = light_impact_range, "flash" = flash_range, "flame" = flame_range, "orig_dev" = orig_dev_range, "orig_heavy" = orig_heavy_range, "orig_light" = orig_light_range, "x" = x0, "y" = y0, "z" = z0, "area" = areatype.type, "time" = TIME_STAMP("YYYY-MM-DD hh:mm:ss", 1)))
+
+	SSblackbox.record_feedback("associative", "explosion", 1, list("dev" = devastation_range, "heavy" = heavy_impact_range, "light" = light_impact_range, "flash" = flash_range, "flame" = flame_range, "orig_dev" = orig_dev_range, "orig_heavy" = orig_heavy_range, "orig_light" = orig_light_range, "x" = x0, "y" = y0, "z" = z0, "area" = epi_area.type))
 
 	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 	// Stereo users will also hear the direction of the explosion!
@@ -198,12 +199,10 @@ GLOBAL_LIST_EMPTY(explosions)
 			var/list/items = list()
 			for(var/I in T)
 				var/atom/A = I
-				if (!(A.flags_1 & PREVENT_CONTENTS_EXPLOSION_1)) //The atom/contents_explosion() proc returns null if the contents ex_acting has been handled by the atom, and TRUE if it hasn't.
-					items += A.GetAllContents()
+				items += A.GetAllContents()
 			for(var/O in items)
 				var/atom/A = O
-				if(!QDELETED(A))
-					A.ex_act(dist)
+				A.ex_act(dist)
 
 		if(flame_dist && prob(40) && !isspaceturf(T) && !T.density)
 			new /obj/effect/hotspot(T) //Mostly for ambience!
@@ -359,7 +358,7 @@ GLOBAL_LIST_EMPTY(explosions)
 			heavy = 5
 			light = 7
 		if("Custom Bomb")
-			dev = input("Devastation range (Tiles):") as num
+			dev = input("Devestation range (Tiles):") as num
 			heavy = input("Heavy impact range (Tiles):") as num
 			light = input("Light impact range (Tiles):") as num
 
@@ -402,7 +401,7 @@ GLOBAL_LIST_EMPTY(explosions)
 		A.color = null
 		A.maptext = ""
 
-/proc/dyn_explosion(turf/epicenter, power, flash_range, adminlog = TRUE, ignorecap = TRUE, flame_range = 0, silent = FALSE, smoke = TRUE)
+/proc/dyn_explosion(turf/epicenter, power, flash_range, adminlog = 1, ignorecap = 1, flame_range = 0 ,silent = 0, smoke = 1)
 	if(!power)
 		return
 	var/range = 0

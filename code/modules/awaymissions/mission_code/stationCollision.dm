@@ -11,7 +11,7 @@
  *		Guns
  *		Safe code hints
  *		Captain's safe
- *		Modified Nar'Sie
+ *		Modified Nar-Sie
  */
 
 
@@ -23,7 +23,7 @@
 	name = "Safecode hint spawner"
 
 /obj/effect/landmark/sc_bible_spawner/New()
-	var/obj/item/storage/book/bible/B = new /obj/item/storage/book/bible/booze(loc)
+	var/obj/item/storage/book/bible/B = new /obj/item/storage/book/bible/booze(src.loc)
 	B.name = "The Holy book of the Geometer"
 	B.deity_name = "Narsie"
 	B.icon_state = "melted"
@@ -128,13 +128,13 @@ GLOBAL_VAR_INIT(sc_safecode5, "[rand(0,9)]")
 	l_code = "[GLOB.sc_safecode1][GLOB.sc_safecode2][GLOB.sc_safecode3][GLOB.sc_safecode4][GLOB.sc_safecode5]"
 	l_set = 1
 	new /obj/item/gun/energy/mindflayer(src)
-	new /obj/item/soulstone(src)
+	new /obj/item/device/soulstone(src)
 	new /obj/item/clothing/suit/space/hardsuit/cult(src)
 	//new /obj/item/teleportation_scroll(src)
-	new /obj/item/stack/ore/diamond(src)
+	new /obj/item/ore/diamond(src)
 
 /*
- * Modified Nar'Sie
+ * Modified Nar-Sie
  */
 /obj/singularity/narsie/mini
 	desc = "Your body becomes weak and your feel your mind slipping away as you try to comprehend what you know can't be possible."

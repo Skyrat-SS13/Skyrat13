@@ -55,7 +55,6 @@
 /obj/structure/fluff/paper{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/indestructible/paper,
 /area/ruin/powered)
 "ak" = (
@@ -537,7 +536,7 @@
 /turf/open/indestructible/paper,
 /area/ruin/powered)
 "bA" = (
-/obj/item/toner,
+/obj/item/device/toner,
 /turf/open/indestructible/paper,
 /area/ruin/powered)
 "bB" = (
@@ -595,7 +594,7 @@
 /obj/item/paper/crumpled/ruins/originalcontent,
 /obj/item/paper/crumpled/ruins/originalcontent,
 /obj/item/paper/crumpled/ruins/originalcontent,
-/obj/item/gps{
+/obj/item/device/gps{
 	gpstag = "Pulpy Signal"
 	},
 /turf/open/indestructible/paper,
@@ -742,7 +741,6 @@
 /turf/open/indestructible/paper,
 /area/ruin/powered)
 "cc" = (
-/obj/item/book/granter/action/origami,
 /mob/living/simple_animal/hostile/boss/paper_wizard,
 /turf/open/indestructible/paper,
 /area/ruin/powered)
@@ -895,26 +893,6 @@
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/stickman/ranged,
-/turf/open/indestructible/paper,
-/area/ruin/powered)
-"wr" = (
-/obj/machinery/door/airlock/freezer{
-	name = "airlock";
-	opacity = 0
-	},
-/obj/structure/fluff/paper{
-	dir = 8
-	},
-/obj/structure/fluff/paper{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/indestructible/paper,
-/area/ruin/powered)
-"Ns" = (
-/obj/item/paper/secretrecipe,
 /turf/open/indestructible/paper,
 /area/ruin/powered)
 
@@ -2251,7 +2229,7 @@ ap
 az
 af
 al
-Ns
+aA
 bW
 ca
 af
@@ -2543,7 +2521,7 @@ aa
 ah
 aj
 an
-wr
+aj
 av
 ap
 ap

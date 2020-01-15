@@ -54,9 +54,6 @@
 		return ..()
 
 /obj/structure/guncase/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	if(iscyborg(user) || isalien(user))
 		return
 	if(contents.len && open)
@@ -84,7 +81,7 @@
 		var/obj/item/O = locate(href_list["retrieve"]) in contents
 		if(!O || !istype(O))
 			return
-		if(!usr.canUseTopic(src, BE_CLOSE) || !open)
+		if(!usr.canUseTopic(src) || !open)
 			return
 		if(ishuman(usr))
 			if(!usr.put_in_hands(O))

@@ -8,7 +8,6 @@
 	var/randomspread = 0 //use random spread for machineguns, instead of shotgun scatter
 	var/projectile_delay = 0
 	var/firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect	//the visual effect appearing when the weapon is fired.
-	var/kickback = TRUE //Will using this weapon in no grav push mecha back.
 
 /obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/combat/M)
 	if(..())
@@ -51,8 +50,6 @@
 
 		sleep(max(0, projectile_delay))
 
-	if(kickback)
-		chassis.newtonian_move(turn(chassis.dir,180))
 	chassis.log_message("Fired from [src.name], targeting [target].")
 	return 1
 
@@ -78,7 +75,6 @@
 	energy_drain = 30
 	projectile = /obj/item/projectile/beam/laser
 	fire_sound = 'sound/weapons/laser.ogg'
-	harmful = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 	equip_cooldown = 15
@@ -106,7 +102,7 @@
 	energy_drain = 500
 	projectile = /obj/item/projectile/energy/tesla/cannon
 	fire_sound = 'sound/magic/lightningbolt.ogg'
-	harmful = TRUE
+
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
 	equip_cooldown = 30
@@ -116,7 +112,6 @@
 	energy_drain = 120
 	projectile = /obj/item/projectile/beam/pulse/heavy
 	fire_sound = 'sound/weapons/marauder.ogg'
-	harmful = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma
 	equip_cooldown = 10
@@ -129,7 +124,6 @@
 	energy_drain = 30
 	projectile = /obj/item/projectile/plasma/adv/mech
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
-	harmful = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/can_attach(obj/mecha/working/M)
 	if(..()) //combat mech
@@ -155,7 +149,6 @@
 	energy_drain = 200
 	equip_cooldown = 150
 	range = MELEE|RANGED
-	kickback = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/honker/can_attach(obj/mecha/combat/honker/M)
 	if(..())
@@ -186,14 +179,14 @@
 
 	log_message("Honked from [src.name]. HONK!")
 	var/turf/T = get_turf(src)
-	message_admins("[ADMIN_LOOKUPFLW(chassis.occupant)] used a Mecha Honker in [ADMIN_VERBOSEJMP(T)]")
-	log_game("[key_name(chassis.occupant)] used a Mecha Honker in [AREACOORD(T)]")
+	message_admins("[ADMIN_LOOKUPFLW(chassis.occupant)] used a Mecha Honker in [ADMIN_COORDJMP(T)]",0,1)
+	log_game("[chassis.occupant.ckey]([chassis.occupant]) used a Mecha Honker in [COORD(T)]")
 	return 1
 
 
 //Base ballistic weapon type
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic
-	name = "general ballistic weapon"
+	name = "general ballisic weapon"
 	fire_sound = 'sound/weapons/gunshot.ogg'
 	var/projectiles
 	var/projectile_energy_cost
@@ -250,7 +243,6 @@
 	projectile = /obj/item/projectile/bullet/incendiary/fnx99
 	projectiles = 24
 	projectile_energy_cost = 15
-	harmful = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/silenced
 	name = "\improper S.H.H. \"Quietus\" Carbine"
@@ -261,7 +253,6 @@
 	projectile = /obj/item/projectile/bullet/mime
 	projectiles = 6
 	projectile_energy_cost = 50
-	harmful = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
 	name = "\improper LBX AC 10 \"Scattershot\""
@@ -273,19 +264,6 @@
 	projectile_energy_cost = 25
 	projectiles_per_shot = 4
 	variance = 25
-	harmful = TRUE
-
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/seedscatter
-	name = "\improper Melon Seed \"Scattershot\""
-	desc = "A weapon for combat exosuits. Shoots a spread of pellets, shaped as seed."
-	icon_state = "mecha_scatter"
-	equip_cooldown = 20
-	projectile = /obj/item/projectile/bullet/seed
-	projectiles = 20
-	projectile_energy_cost = 25
-	projectiles_per_shot = 10
-	variance = 25
-	harmful = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
 	name = "\improper Ultra AC 2"
@@ -299,18 +277,16 @@
 	variance = 6
 	randomspread = 1
 	projectile_delay = 2
-	harmful = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
 	name = "\improper SRM-8 missile rack"
 	desc = "A weapon for combat exosuits. Shoots light explosive missiles."
 	icon_state = "mecha_missilerack"
-	projectile = /obj/item/projectile/bullet/a84mm_he
+	projectile = /obj/item/projectile/bullet/srmrocket
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	projectiles = 8
 	projectile_energy_cost = 1000
 	equip_cooldown = 60
-	harmful = TRUE
 
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher
@@ -326,7 +302,7 @@
 	log_message("Launched a [O.name] from [name], targeting [target].")
 	projectiles--
 	proj_init(O)
-	O.throw_at(target, missile_range, missile_speed, chassis.occupant, FALSE, diagonals_first = diags_first)
+	O.throw_at(target, missile_range, missile_speed, spin = 0, diagonals_first = diags_first)
 	return 1
 
 //used for projectile initilisation (priming flashbang) and additional logging
@@ -348,8 +324,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/proj_init(var/obj/item/grenade/flashbang/F)
 	var/turf/T = get_turf(src)
-	message_admins("[ADMIN_LOOKUPFLW(chassis.occupant)] fired a [src] in [ADMIN_VERBOSEJMP(T)]")
-	log_game("[key_name(chassis.occupant)] fired a [src] in [AREACOORD(T)]")
+	message_admins("[ADMIN_LOOKUPFLW(chassis.occupant)] fired a [src] in [ADMIN_COORDJMP(T)]",0,1)
+	log_game("[key_name(chassis.occupant)] fired a [src] [COORD(T)]")
 	addtimer(CALLBACK(F, /obj/item/grenade/flashbang.proc/prime), det_time)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang //Because I am a heartless bastard -Sieve //Heartless? for making the poor man's honkblast? - Kaze
@@ -381,7 +357,7 @@
 	name = "mousetrap mortar"
 	desc = "Equipment for clown exosuits. Launches armed mousetraps."
 	icon_state = "mecha_mousetrapmrtr"
-	projectile = /obj/item/assembly/mousetrap/armed
+	projectile = /obj/item/device/assembly/mousetrap/armed
 	fire_sound = 'sound/items/bikehorn.ogg'
 	projectiles = 15
 	missile_speed = 1.5
@@ -394,7 +370,7 @@
 			return 1
 	return 0
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar/proj_init(var/obj/item/assembly/mousetrap/armed/M)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar/proj_init(var/obj/item/device/assembly/mousetrap/armed/M)
 	M.secured = 1
 
 
@@ -440,5 +416,6 @@
 	if(!..())
 		if(ismovableatom(hit_atom))
 			var/atom/movable/AM = hit_atom
-			AM.safe_throw_at(get_edge_target_turf(AM,get_dir(src, AM)), 7, 2)
+			AM.throw_at(get_edge_target_turf(AM,get_dir(src, AM)), 7, 2)
 		qdel(src)
+

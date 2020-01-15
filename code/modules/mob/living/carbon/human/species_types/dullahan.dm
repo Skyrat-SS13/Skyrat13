@@ -1,9 +1,9 @@
 /datum/species/dullahan
-	name = "Dullahan"
+	name = "dullahan"
 	id = "dullahan"
 	default_color = "FFFFFF"
-	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
-	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_NOBREATH)
+	species_traits = list(SPECIES_ORGANIC,EYECOLOR,HAIR,FACEHAIR,LIPS,NOBREATH,NOHUNGER)
+	mutant_bodyparts = list("tail_human", "ears", "wings")
 	default_features = list("mcolor" = "FFF", "tail_human" = "None", "ears" = "None", "wings" = "None")
 	use_skintones = TRUE
 	mutant_brain = /obj/item/organ/brain/dullahan
@@ -13,14 +13,9 @@
 	blacklisted = TRUE
 	limbs_id = "human"
 	skinned_type = /obj/item/stack/sheet/animalhide/human
-	var/pumpkin = FALSE
 
 	var/obj/item/dullahan_relay/myhead
 
-/datum/species/dullahan/pumpkin
-	name = "Pumpkin Head Dullahan"
-	id = "pumpkindullahan"
-	pumpkin = TRUE
 
 /datum/species/dullahan/check_roundstart_eligible()
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
@@ -29,39 +24,31 @@
 
 /datum/species/dullahan/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	DISABLE_BITFIELD(H.flags_1, HEAR_1)
-	var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+	H.flags_1 &= ~HEAR_1
+	var/obj/item/bodypart/head/head = H.get_bodypart("head")
 	if(head)
-		if(pumpkin)//Pumpkinhead!
-			head.animal_origin = 100
-			head.icon = 'icons/obj/clothing/hats.dmi'
-			head.icon_state = "hardhat1_pumpkin_j"
-			head.custom_head = TRUE
 		head.drop_limb()
-		if(!QDELETED(head)) //drop_limb() deletes the limb if it's no drop location and dummy humans used for rendering icons are located in nullspace. Do the math.
-			head.throwforce = 25
-			myhead = new /obj/item/dullahan_relay (head, H)
-			H.put_in_hands(head)
-			var/obj/item/organ/eyes/E = H.getorganslot(ORGAN_SLOT_EYES)
-			for(var/datum/action/item_action/organ_action/OA in E.actions)
-				OA.Trigger()
+		head.flags_1 = HEAR_1
+		head.throwforce = 25
+		myhead = new /obj/item/dullahan_relay (head, H)
+		H.put_in_hands(head)
 
 /datum/species/dullahan/on_species_loss(mob/living/carbon/human/H)
-	ENABLE_BITFIELD(H.flags_1, HEAR_1)
+	H.flags_1 |= ~HEAR_1
 	H.reset_perspective(H)
 	if(myhead)
 		var/obj/item/dullahan_relay/DR = myhead
 		myhead = null
 		DR.owner = null
 		qdel(DR)
-	H.regenerate_limb(BODY_ZONE_HEAD,FALSE)
+	H.regenerate_limb("head",FALSE)
 	..()
 
 /datum/species/dullahan/spec_life(mob/living/carbon/human/H)
 	if(QDELETED(myhead))
 		myhead = null
 		H.gib()
-	var/obj/item/bodypart/head/head2 = H.get_bodypart(BODY_ZONE_HEAD)
+	var/obj/item/bodypart/head/head2 = H.get_bodypart("head")
 	if(head2)
 		myhead = null
 		H.gib()
@@ -77,21 +64,21 @@
 
 /obj/item/organ/brain/dullahan
 	decoy_override = TRUE
-	organ_flags = ORGAN_NO_SPOIL//Do not decay
+	vital = FALSE
 
 /obj/item/organ/tongue/dullahan
 	zone = "abstract"
-	modifies_speech = TRUE
 
-/obj/item/organ/tongue/dullahan/handle_speech(datum/source, list/speech_args)
+/obj/item/organ/tongue/dullahan/TongueSpeech(var/message)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		if(isdullahan(H))
+		if(H.dna.species.id == "dullahan")
 			var/datum/species/dullahan/D = H.dna.species
 			if(isobj(D.myhead.loc))
 				var/obj/O = D.myhead.loc
-				O.say(speech_args[SPEECH_MESSAGE])
-	speech_args[SPEECH_MESSAGE] = ""
+				O.say(message)
+	message = ""
+	return message
 
 /obj/item/organ/ears/dullahan
 	zone = "abstract"
@@ -101,7 +88,6 @@
 	desc = "An abstraction."
 	actions_types = list(/datum/action/item_action/organ_action/dullahan)
 	zone = "abstract"
-	tint = INFINITY // used to switch the vision perspective to the head on species_gain().
 
 /datum/action/item_action/organ_action/dullahan
 	name = "Toggle Perspective"
@@ -117,53 +103,36 @@
 
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		if(isdullahan(H))
+		if(H.dna.species.id == "dullahan")
 			var/datum/species/dullahan/D = H.dna.species
 			D.update_vision_perspective(H)
 
 /obj/item/dullahan_relay
-	name = "dullahan relay"
 	var/mob/living/owner
 	flags_1 = HEAR_1
 
-/obj/item/dullahan_relay/Initialize(mapload, mob/living/carbon/human/new_owner)
+/obj/item/dullahan_relay/Initialize(mapload,new_owner)
 	. = ..()
-	if(!new_owner)
-		return INITIALIZE_HINT_QDEL
 	owner = new_owner
 	START_PROCESSING(SSobj, src)
-	RegisterSignal(owner, COMSIG_MOB_EXAMINATE, .proc/examinate_check)
-	RegisterSignal(src, COMSIG_ATOM_HEARER_IN_VIEW, .proc/include_owner)
-	RegisterSignal(owner, COMSIG_LIVING_REGENERATE_LIMBS, .proc/unlist_head)
-	RegisterSignal(owner, COMSIG_LIVING_FULLY_HEAL, .proc/retrieve_head)
-
-/obj/item/dullahan_relay/proc/examinate_check(mob/source, atom/A)
-	if(source.client.eye == src && ((A in view(source.client.view, src)) || (isturf(A) && source.sight & SEE_TURFS) || (ismob(A) && source.sight & SEE_MOBS) || (isobj(A) && source.sight & SEE_OBJS)))
-		return COMPONENT_ALLOW_EXAMINE
-
-/obj/item/dullahan_relay/proc/include_owner(datum/source, list/processing_list, list/hearers)
-	if(!QDELETED(owner))
-		hearers += owner
-
-/obj/item/dullahan_relay/proc/unlist_head(datum/source, noheal = FALSE, list/excluded_limbs)
-	excluded_limbs |= BODY_ZONE_HEAD // So we don't gib when regenerating limbs.
-
-/obj/item/dullahan_relay/proc/retrieve_head(datum/source, admin_revive = FALSE)
-	if(admin_revive) //retrieving the owner's head for ahealing purposes.
-		var/obj/item/bodypart/head/H = loc
-		var/turf/T = get_turf(owner)
-		if(H && istype(H) && T && !(H in owner.GetAllContents()))
-			H.forceMove(T)
 
 /obj/item/dullahan_relay/process()
 	if(!istype(loc, /obj/item/bodypart/head) || QDELETED(owner))
 		. = PROCESS_KILL
 		qdel(src)
 
+/obj/item/dullahan_relay/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	if(!QDELETED(owner))
+		message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
+		to_chat(owner,message)
+	else
+		qdel(src)
+
+
 /obj/item/dullahan_relay/Destroy()
 	if(!QDELETED(owner))
 		var/mob/living/carbon/human/H = owner
-		if(isdullahan(H))
+		if(H.dna.species.id == "dullahan")
 			var/datum/species/dullahan/D = H.dna.species
 			D.myhead = null
 			owner.gib()

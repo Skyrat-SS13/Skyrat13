@@ -9,7 +9,6 @@
 	icon_dead = "human_male"
 	gender = NEUTER
 	a_intent = INTENT_HARM
-	mob_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
 
 	response_help = "touches"
 	response_disarm = "pushes"
@@ -18,7 +17,6 @@
 	maxHealth = 50000
 	health = 50000
 	healable = 0
-	blood_volume = 0
 
 	harm_intent_damage = 10
 	obj_damage = 100
@@ -40,6 +38,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	vision_range = 12
 	aggro_vision_range = 12
+	idle_vision_range = 12
 
 	search_objects = 1 // So that it can see through walls
 
@@ -134,7 +133,7 @@
 
 // Cannot talk
 
-/mob/living/simple_animal/hostile/statue/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/simple_animal/hostile/statue/say()
 	return 0
 
 // Turn to dust when gibbed

@@ -60,7 +60,7 @@
 /datum/symptom/heal/starlight/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["transmittable"] >= 6)
+	if(A.properties["transmission"] >= 6)
 		nearspace_penalty = 1
 	if(A.properties["stage_rate"] >= 6)
 		power = 2
@@ -79,7 +79,7 @@
 	if(M.getToxLoss() && prob(5))
 		to_chat(M, "<span class='notice'>Your skin tingles as the starlight seems to heal you.</span>")
 
-	M.adjustToxLoss(-(4 * heal_amt), forced = TRUE) //most effective on toxins
+	M.adjustToxLoss(-(4 * heal_amt)) //most effective on toxins
 
 	var/list/parts = M.get_damaged_bodyparts(1,1)
 
@@ -117,9 +117,8 @@
 		power = 2
 
 /datum/symptom/heal/chem/Heal(mob/living/M, datum/disease/advance/A, actual_power)
-	for(var/E in M.reagents.reagent_list) //Not just toxins!
-		var/datum/reagent/R = E
-		M.reagents.remove_reagent(R.type, actual_power)
+	for(var/datum/reagent/R in M.reagents.reagent_list) //Not just toxins!
+		M.reagents.remove_reagent(R.id, actual_power)
 		if(food_conversion)
 			M.nutrition += 0.3
 		if(prob(2))
@@ -220,10 +219,8 @@
 	level = 8
 	passive_message = "<span class='notice'>The pain from your wounds makes you feel oddly sleepy...</span>"
 	var/deathgasp = FALSE
-	var/stabilize = FALSE
 	var/active_coma = FALSE //to prevent multiple coma procs
 	threshold_desc = "<b>Stealth 2:</b> Host appears to die when falling into a coma.<br>\
-					<b>Resistance 4:</b> The virus also stabilizes the host while they are in critical condition.<br>\
 					  <b>Stage Speed 7:</b> Increases healing speed."
 
 /datum/symptom/heal/coma/Start(datum/disease/advance/A)
@@ -231,28 +228,12 @@
 		return
 	if(A.properties["stage_rate"] >= 7)
 		power = 1.5
-	if(A.properties["resistance"] >= 4)
-		stabilize = TRUE
 	if(A.properties["stealth"] >= 2)
 		deathgasp = TRUE
 
-/datum/symptom/heal/coma/on_stage_change(datum/disease/advance/A)  //mostly copy+pasted from the code for self-respiration's TRAIT_NOBREATH stuff
-	if(!..())
-		return FALSE
-	if(A.stage >= 4 && stabilize)
-		ADD_TRAIT(A.affected_mob, TRAIT_NOCRITDAMAGE, DISEASE_TRAIT)
-	else
-		REMOVE_TRAIT(A.affected_mob, TRAIT_NOCRITDAMAGE, DISEASE_TRAIT)
-	return TRUE
-
-/datum/symptom/heal/coma/End(datum/disease/advance/A)
-	if(!..())
-		return
-	REMOVE_TRAIT(A.affected_mob, TRAIT_NOCRITDAMAGE, DISEASE_TRAIT)
-
 /datum/symptom/heal/coma/CanHeal(datum/disease/advance/A)
 	var/mob/living/M = A.affected_mob
-	if(HAS_TRAIT(M, TRAIT_DEATHCOMA))
+	if(M.has_trait(TRAIT_FAKEDEATH))
 		return power
 	else if(M.IsUnconscious() || M.stat == UNCONSCIOUS)
 		return power * 0.9
@@ -330,11 +311,11 @@
 	if(M.fire_stacks < 0)
 		M.fire_stacks = min(M.fire_stacks + 1 * absorption_coeff, 0)
 		. += power
-	if(M.reagents.has_reagent(/datum/reagent/water/holywater))
-		M.reagents.remove_reagent(/datum/reagent/water/holywater, 0.5 * absorption_coeff)
+	if(M.reagents.has_reagent("holywater"))
+		M.reagents.remove_reagent("holywater", 0.5 * absorption_coeff)
 		. += power * 0.75
-	else if(M.reagents.has_reagent(/datum/reagent/water))
-		M.reagents.remove_reagent(/datum/reagent/water, 0.5 * absorption_coeff)
+	else if(M.reagents.has_reagent("water"))
+		M.reagents.remove_reagent("water", 0.5 * absorption_coeff)
 		. += power * 0.5
 
 /datum/symptom/heal/water/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
@@ -369,7 +350,7 @@
 	level = 8
 	passive_message = "<span class='notice'>You feel an odd attraction to plasma.</span>"
 	var/temp_rate = 1
-	threshold_desc = "<b>Transmission 6:</b> Increases temperature adjustment rate and heals toxin lovers.<br>\
+	threshold_desc = "<b>Transmission 6:</b> Increases temperature adjustment rate.<br>\
 					  <b>Stage Speed 7:</b> Increases healing speed."
 
 /datum/symptom/heal/plasma/Start(datum/disease/advance/A)
@@ -377,23 +358,23 @@
 		return
 	if(A.properties["stage_rate"] >= 7)
 		power = 2
-	if(A.properties["transmittable"] >= 6)
+	if(A.properties["trasmission"] >= 6)
 		temp_rate = 4
 
 /datum/symptom/heal/plasma/CanHeal(datum/disease/advance/A)
 	var/mob/living/M = A.affected_mob
 	var/datum/gas_mixture/environment
-	var/plasmamount
+	var/list/gases
 
 	. = 0
 
 	if(M.loc)
 		environment = M.loc.return_air()
 	if(environment)
-		plasmamount = environment.gases[/datum/gas/plasma]
-		if(plasmamount && plasmamount > GLOB.meta_gas_visibility[/datum/gas/plasma]) //if there's enough plasma in the air to see
+		gases = environment.gases
+		if(gases["plasma"] && gases["plasma"][MOLES] > gases["plasma"][GAS_META][META_GAS_MOLES_VISIBLE]) //if there's enough plasma in the air to see
 			. += power * 0.5
-	if(M.reagents.has_reagent(/datum/reagent/toxin/plasma))
+	if(M.reagents.has_reagent("plasma"))
 		. +=  power * 0.75
 
 /datum/symptom/heal/plasma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
@@ -403,15 +384,15 @@
 		to_chat(M, "<span class='notice'>You feel yourself absorbing plasma inside and around you...</span>")
 
 	if(M.bodytemperature > BODYTEMP_NORMAL)
-		M.adjust_bodytemperature(-20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
+		M.bodytemperature = max(BODYTEMP_NORMAL, M.bodytemperature - (20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT))
 		if(prob(5))
 			to_chat(M, "<span class='notice'>You feel less hot.</span>")
 	else if(M.bodytemperature < (BODYTEMP_NORMAL + 1))
-		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,0,BODYTEMP_NORMAL)
+		M.bodytemperature = min(BODYTEMP_NORMAL, M.bodytemperature + (20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT))
 		if(prob(5))
 			to_chat(M, "<span class='notice'>You feel warmer.</span>")
 
-	M.adjustToxLoss(-heal_amt, forced = (temp_rate == 4))
+	M.adjustToxLoss(-heal_amt)
 
 	var/list/parts = M.get_damaged_bodyparts(1,1)
 	if(!parts.len)
@@ -436,7 +417,7 @@
 	symptom_delay_max = 1
 	passive_message = "<span class='notice'>Your skin glows faintly for a moment.</span>"
 	var/cellular_damage = FALSE
-	threshold_desc = "<b>Transmission 6:</b> Additionally heals cellular damage and toxin lovers.<br>\
+	threshold_desc = "<b>Transmission 6:</b> Additionally heals cellular damage.<br>\
 					  <b>Resistance 7:</b> Increases healing speed."
 
 /datum/symptom/heal/radiation/Start(datum/disease/advance/A)
@@ -444,7 +425,7 @@
 		return
 	if(A.properties["resistance"] >= 7)
 		power = 2
-	if(A.properties["transmittable"] >= 6)
+	if(A.properties["trasmission"] >= 6)
 		cellular_damage = TRUE
 
 /datum/symptom/heal/radiation/CanHeal(datum/disease/advance/A)
@@ -469,7 +450,7 @@
 	if(cellular_damage)
 		M.adjustCloneLoss(-heal_amt * 0.5)
 
-	M.adjustToxLoss(-(2 * heal_amt), forced = cellular_damage)
+	M.adjustToxLoss(-(2 * heal_amt))
 
 	var/list/parts = M.get_damaged_bodyparts(1,1)
 

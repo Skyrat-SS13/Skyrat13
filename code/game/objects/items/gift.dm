@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/grown/corncob,
 		/obj/item/poster/random_contraband,
 		/obj/item/poster/random_official,
-		/obj/item/book/manual/wiki/barman_recipes,
+		/obj/item/book/manual/barman_recipes,
 		/obj/item/book/manual/chef_recipes,
 		/obj/item/bikehorn,
 		/obj/item/toy/beach_ball,
@@ -64,9 +64,9 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/banhammer,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia/deus,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris,
-		/obj/item/paicard,
-		/obj/item/instrument/violin,
-		/obj/item/instrument/guitar,
+		/obj/item/device/paicard,
+		/obj/item/device/instrument/violin,
+		/obj/item/device/instrument/guitar,
 		/obj/item/storage/belt/utility/full,
 		/obj/item/clothing/neck/tie/horrible,
 		/obj/item/clothing/suit/jacket/leather,
@@ -76,7 +76,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/clothing/suit/poncho/red,
 		/obj/item/clothing/suit/snowman,
 		/obj/item/clothing/head/snowman,
-		/obj/item/stack/sheet/mineral/coal)
+		/obj/item/trash/coal)
 
 	gift_type_list += subtypesof(/obj/item/clothing/head/collectable)
 	gift_type_list += subtypesof(/obj/item/toy) - (((typesof(/obj/item/toy/cards) - /obj/item/toy/cards/deck) + /obj/item/toy/figure + /obj/item/toy/ammo)) //All toys, except for abstract types and syndicate cards.
@@ -95,9 +95,9 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		var/list/gift_types_list = subtypesof(/obj/item)
 		for(var/V in gift_types_list)
 			var/obj/item/I = V
-			if((!initial(I.icon_state)) || (!initial(I.item_state)) || (initial(I.item_flags) & ABSTRACT))
+			if((!initial(I.icon_state)) || (!initial(I.item_state)) || (initial(I.flags_1) & ABSTRACT_1))
 				gift_types_list -= V
-		GLOB.possible_gifts = gift_types_list
+				GLOB.possible_gifts = gift_types_list
 	var/gift_type = pick(GLOB.possible_gifts)
 
 	return gift_type

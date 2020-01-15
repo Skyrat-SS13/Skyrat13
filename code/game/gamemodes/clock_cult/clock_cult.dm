@@ -4,11 +4,11 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 
 CLOCKWORK CULT: Based off of the failed pull requests from /vg/
 
-While Nar'Sie is the oldest and most prominent of the elder gods, there are other forces at work in the universe.
-Ratvar, the Clockwork Justiciar, a homage to Nar'Sie granted sentience by its own power, is one such other force.
+While Nar-Sie is the oldest and most prominent of the elder gods, there are other forces at work in the universe.
+Ratvar, the Clockwork Justiciar, a homage to Nar-Sie granted sentience by its own power, is one such other force.
 Imprisoned within a massive construct known as the Celestial Derelict - or Reebe - an intense hatred of the Blood God festers.
 Ratvar, unable to act in the mortal plane, seeks to return and forms covenants with mortals in order to bolster his influence.
-Due to his mechanical nature, Ratvar is also capable of influencing silicon-based lifeforms, unlike Nar'Sie, who can only influence natural life.
+Due to his mechanical nature, Ratvar is also capable of influencing silicon-based lifeforms, unlike Nar-Sie, who can only influence natural life.
 
 This is a team-based gamemode, and the team's objective is shared by all cultists. Their goal is to defend an object called the Ark on a separate z-level.
 
@@ -37,7 +37,6 @@ Credit where due:
 4. PJB3005 from /vg/ for the failed continuation PR
 5. Xhuis from /tg/ for coding the first iteration of the mode, and the new, reworked version
 6. ChangelingRain from /tg/ for maintaining the gamemode for months after its release prior to its rework
-7. Clockwork cult code as of now, at least the one being pulled from Citadel Station's master branch, is being, or already is, fixed by Coolgat3 and Avunia.
 
 */
 
@@ -46,13 +45,13 @@ Credit where due:
 ///////////
 
 /proc/is_servant_of_ratvar(mob/M)
-	return istype(M) && !isobserver(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/clockcult)
+	return istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/clockcult)
 
 /proc/is_eligible_servant(mob/M)
 	if(!istype(M))
 		return FALSE
 	if(M.mind)
-		if(M.mind.assigned_role in list("Captain", "Chaplain"))
+		if(ishuman(M) && (M.mind.assigned_role in list("Captain", "Chaplain")))
 			return FALSE
 		if(M.mind.enslaved_to && !is_servant_of_ratvar(M.mind.enslaved_to))
 			return FALSE
@@ -60,12 +59,8 @@ Credit where due:
 			return FALSE
 	else
 		return FALSE
-	if(iscultist(M) || isconstruct(M) || ispAI(M))
+	if(iscultist(M) || isconstruct(M) || M.isloyal() || ispAI(M))
 		return FALSE
-	if(isliving(M))
-		var/mob/living/L = M
-		if(HAS_TRAIT(L, TRAIT_MINDSHIELD))
-			return FALSE
 	if(ishuman(M) || isbrain(M) || isguardian(M) || issilicon(M) || isclockmob(M) || istype(M, /mob/living/simple_animal/drone/cogscarab) || istype(M, /mob/camera/eminence))
 		return TRUE
 	return FALSE
@@ -79,14 +74,14 @@ Credit where due:
 	var/datum/antagonist/clockcult/C = new update_type(L.mind)
 	C.make_team = create_team
 	C.show_in_roundend = create_team //tutorial scarabs begone
-
+	
 	if(iscyborg(L))
 		var/mob/living/silicon/robot/R = L
 		if(R.deployed)
 			var/mob/living/silicon/ai/AI = R.mainframe
 			R.undeploy()
 			to_chat(AI, "<span class='userdanger'>Anomaly Detected. Returned to core!</span>") //The AI needs to be in its core to properly be converted
-
+	
 	. = L.mind.add_antag_datum(C)
 
 	if(!silent && L)
@@ -104,7 +99,7 @@ Credit where due:
 			" in an endless grey void.<br>It cannot be allowed to escape"].</span>")
 			L.playsound_local(get_turf(L), 'sound/ambience/antag/clockcultalr.ogg', 40, TRUE, frequency = 100000, pressure_affected = FALSE)
 			flash_color(L, flash_color = list("#BE8700", "#BE8700", "#BE8700", rgb(0,0,0)), flash_time = 5)
-
+	
 
 
 
@@ -131,11 +126,11 @@ Credit where due:
 	config_tag = "clockwork_cult"
 	antag_flag = ROLE_SERVANT_OF_RATVAR
 	false_report_weight = 10
-	required_players = 35
-	required_enemies = 3
-	recommended_enemies = 5
-	enemy_minimum_age = 7
-	protected_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster") //Silicons can eventually be converted
+	required_players = 24
+	required_enemies = 4
+	recommended_enemies = 4
+	enemy_minimum_age = 14
+	protected_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain") //Silicons can eventually be converted
 	restricted_jobs = list("Chaplain", "Captain")
 	announce_span = "brass"
 	announce_text = "Servants of Ratvar are trying to summon the Justiciar!\n\
@@ -148,14 +143,6 @@ Credit where due:
 	var/datum/team/clockcult/main_clockcult
 
 /datum/game_mode/clockwork_cult/pre_setup()
-	var/list/errorList = list()
-	var/list/reebes = SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
-	if(errorList.len)	// reebe failed to load
-		message_admins("Reebe failed to load!")
-		log_game("Reebe failed to load!")
-		return FALSE
-	for(var/datum/parsed_map/PM in reebes)
-		PM.initTemplateBounds()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
@@ -167,13 +154,12 @@ Credit where due:
 		number_players -= 30
 		starter_servants += round(number_players / 10)
 	starter_servants = min(starter_servants, 8) //max 8 servants (that sould only happen with a ton of players)
-	GLOB.clockwork_vitality += 50 * starter_servants //some starter Vitality to help recover from initial fuck ups
 	while(starter_servants)
-		var/datum/mind/servant = antag_pick(antag_candidates)
+		var/datum/mind/servant = pick(antag_candidates)
 		servants_to_serve += servant
 		antag_candidates -= servant
-		servant.assigned_role = ROLE_SERVANT_OF_RATVAR
-		servant.special_role = ROLE_SERVANT_OF_RATVAR
+		servant.assigned_role = "Servant of Ratvar"
+		servant.special_role = "Servant of Ratvar"
 		starter_servants--
 	ark_time = 30 + round((roundstart_player_count / 5)) //In minutes, how long the Ark will wait before activation
 	ark_time = min(ark_time, 35) //35 minute maximum for the activation timer
@@ -182,7 +168,7 @@ Credit where due:
 /datum/game_mode/clockwork_cult/post_setup()
 	for(var/S in servants_to_serve)
 		var/datum/mind/servant = S
-		log_game("[key_name(servant)] was made an initial servant of Ratvar")
+		log_game("[servant.key] was made an initial servant of Ratvar")
 		var/mob/living/L = servant.current
 		var/turf/T = pick(GLOB.servant_spawns)
 		L.forceMove(T)
@@ -212,7 +198,7 @@ Credit where due:
 	L.equipOutfit(/datum/outfit/servant_of_ratvar)
 	var/obj/item/clockwork/slab/S = new
 	var/slot = "At your feet"
-	var/list/slots = list("In your left pocket" = SLOT_L_STORE, "In your right pocket" = SLOT_R_STORE, "In your backpack" = SLOT_IN_BACKPACK, "On your belt" = SLOT_BELT)
+	var/list/slots = list("In your left pocket" = slot_l_store, "In your right pocket" = slot_r_store, "In your backpack" = slot_in_backpack, "On your belt" = slot_belt)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		slot = H.equip_in_one_of_slots(S, slots)
@@ -225,7 +211,7 @@ Credit where due:
 		to_chat(L, "<span class='bold large_brass'>There is a paper in your backpack! It'll tell you if anything's changed, as well as what to expect.</span>")
 		to_chat(L, "<span class='alloy'>[slot] is a <b>clockwork slab</b>, a multipurpose tool used to construct machines and invoke ancient words of power. If this is your first time \
 		as a servant, you can find a concise tutorial in the Recollection category of its interface.</span>")
-		to_chat(L, "<span class='alloy italics'>If you want more information, you can read <a href=\"https://tgstation13.org/wiki/Clockwork_Cult\">the wiki page</a> to learn more.</span>")
+		to_chat(L, "<span class='alloy italics'>If you want more information, you can find a wiki link here!</span> https://tgstation13.org/wiki/Clockwork_Cult")
 		return TRUE
 	return FALSE
 
@@ -269,15 +255,15 @@ Credit where due:
 //Servant of Ratvar outfit
 /datum/outfit/servant_of_ratvar
 	name = "Servant of Ratvar"
-	uniform = /obj/item/clothing/under/rank/engineer //no more chameleon suit for them, as requested
+	uniform = /obj/item/clothing/under/chameleon/ratvar
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	back = /obj/item/storage/backpack
-	ears = /obj/item/radio/headset
+	ears = /obj/item/device/radio/headset
 	gloves = /obj/item/clothing/gloves/color/yellow
 	belt = /obj/item/storage/belt/utility/servant
 	backpack_contents = list(/obj/item/storage/box/engineer = 1, \
-	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1, /obj/item/reagent_containers/food/drinks/bottle/holyoil = 1)
-	id = /obj/item/pda
+	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
+	id = /obj/item/device/pda
 	var/plasmaman //We use this to determine if we should activate internals in post_equip()
 
 /datum/outfit/servant_of_ratvar/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -290,7 +276,7 @@ Credit where due:
 
 /datum/outfit/servant_of_ratvar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/obj/item/card/id/W = new(H)
-	var/obj/item/pda/PDA = H.wear_id
+	var/obj/item/device/pda/PDA = H.wear_id
 	W.assignment = "Assistant"
 	W.access += ACCESS_MAINT_TUNNELS
 	W.registered_name = H.real_name
@@ -349,7 +335,7 @@ Credit where due:
 		changelog_contents += "<li>[entry]</li>"
 	info = replacetext(info, "CLOCKCULTCHANGELOG", changelog_contents)
 
-/obj/item/paper/servant_primer/oui_getcontent(mob/target)
-	if(!is_servant_of_ratvar(target) && !isobserver(target))
-		return "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)]<HR>[stamps]</BODY></HTML>"
-	return ..()
+/obj/item/paper/servant_primer/examine(mob/user)
+	if(!is_servant_of_ratvar(user) && !isobserver(user))
+		to_chat(user, "<span class='danger'>You can't understand any of the words on [src].</span>")
+	..()

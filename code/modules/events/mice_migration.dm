@@ -18,12 +18,10 @@
 	var/movement = pick("migrated", "swarmed", "stampeded", "descended")
 	var/location = pick("maintenance tunnels", "maintenance areas",
 		"\[REDACTED\]", "place with all those juicy wires")
-	if(prob(50))
-		priority_announce("Due to [cause], [plural] [name] have [movement] \
+
+	priority_announce("Due to [cause], [plural] [name] have [movement] \
 		into the [location].", "Migration Alert",
 		'sound/effects/mousesqueek.ogg')
-	else
-		print_command_report("Due to [cause], [plural] [name] have [movement] into the [location].", "Rodent Migration")
 
 /datum/round_event/mice_migration/start()
-	SSminor_mapping.trigger_migration(rand(minimum_mice, maximum_mice))
+	SSsqueak.trigger_migration(rand(minimum_mice, maximum_mice))

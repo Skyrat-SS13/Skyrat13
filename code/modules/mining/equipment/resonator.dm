@@ -8,10 +8,10 @@
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
 	desc = "A handheld device that creates small fields of energy that resonate until they detonate, crushing rock. It does increased damage in low pressure."
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 18
+	force = 15
 	throwforce = 10
 	var/burst_time = 30
-	var/fieldlimit = 6
+	var/fieldlimit = 4
 	var/list/fields = list()
 	var/quick_burst_mod = 0.8
 
@@ -20,8 +20,7 @@
 	desc = "An upgraded version of the resonator that can produce more fields at once, as well as having no damage penalty for bursting a resonance field early."
 	icon_state = "resonator_u"
 	item_state = "resonator_u"
-	force = 20
-	fieldlimit = 8
+	fieldlimit = 6
 	quick_burst_mod = 1
 
 /obj/item/resonator/attack_self(mob/user)
@@ -43,7 +42,7 @@
 		new /obj/effect/temp_visual/resonance(T, user, src, burst_time)
 		user.changeNext_move(CLICK_CD_MELEE)
 
-/obj/item/resonator/pre_attack(atom/target, mob/user, params)
+/obj/item/resonator/pre_attackby(atom/target, mob/user, params)
 	if(check_allowed_items(target, 1))
 		CreateResonance(target, user)
 	return TRUE
@@ -101,7 +100,7 @@
 	playsound(T,'sound/weapons/resonator_blast.ogg',50,1)
 	for(var/mob/living/L in T)
 		if(creator)
-			log_combat(creator, L, "used a resonator field on", "resonator")
+			add_logs(creator, L, "used a resonator field on", "resonator")
 		to_chat(L, "<span class='userdanger'>[src] ruptured with you in it!</span>")
 		L.apply_damage(resonance_damage, BRUTE)
 	qdel(src)

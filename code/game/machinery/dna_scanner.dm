@@ -1,9 +1,10 @@
 /obj/machinery/dna_scannernew
 	name = "\improper DNA scanner"
 	desc = "It scans DNA structures."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "scanner"
 	density = TRUE
+	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
 	active_power_usage = 300
@@ -89,17 +90,17 @@
 			return C
 	return null
 
-/obj/machinery/dna_scannernew/close_machine(atom/movable/target)
+/obj/machinery/dna_scannernew/close_machine(mob/living/carbon/user)
 	if(!state_open)
 		return FALSE
 
-	..(target)
+	..(user)
 
 	// search for ghosts, if the corpse is empty and the scanner is connected to a cloner
 	var/mob/living/mob_occupant = get_mob_or_brainmob(occupant)
 	if(istype(mob_occupant))
 		if(locate_computer(/obj/machinery/computer/cloning))
-			if(!mob_occupant.suiciding && !(HAS_TRAIT(mob_occupant, TRAIT_NOCLONE)) && !mob_occupant.hellbound)
+			if(!mob_occupant.suiciding && !(mob_occupant.has_trait(TRAIT_NOCLONE)) && !mob_occupant.hellbound)
 				mob_occupant.notify_ghost_cloning("Your corpse has been placed into a cloning scanner. Re-enter your corpse if you want to be cloned!", source = src)
 
 	// DNA manipulators cannot operate on severed heads or brains
@@ -111,7 +112,7 @@
 	return TRUE
 
 /obj/machinery/dna_scannernew/open_machine()
-	if(state_open || panel_open)
+	if(state_open)
 		return FALSE
 
 	..()
@@ -126,49 +127,28 @@
 		return
 	open_machine()
 
-/obj/machinery/dna_scannernew/screwdriver_act(mob/living/user, obj/item/I)
-	. = TRUE
-	if(..())
-		return
-	if(occupant)
-		to_chat(user, "<span class='warning'>[src] is currently occupied!</span>")
-		return
-	if(state_open)
-		to_chat(user, "<span class='warning'>[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!</span>")
-		return
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I)) //sent icon_state is irrelevant...
-		update_icon() //..since we're updating the icon here, since the scanner can be unpowered when opened/closed
-		return
-	return FALSE
+/obj/machinery/dna_scannernew/attackby(obj/item/I, mob/user, params)
 
-/obj/machinery/dna_scannernew/wrench_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(default_change_direction_wrench(user, I))
-		return TRUE
+	if(!occupant && default_deconstruction_screwdriver(user, icon_state, icon_state, I))//sent icon_state is irrelevant...
+		update_icon()//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
+		return
 
-/obj/machinery/dna_scannernew/crowbar_act(mob/living/user, obj/item/I)
-	. = ..()
+	if(exchange_parts(user, I))
+		return
+
 	if(default_pry_open(I))
-		return TRUE
-	if(default_deconstruction_crowbar(I))
-		return TRUE
-
-/obj/machinery/dna_scannernew/default_pry_open(obj/item/I) //wew
-	. = !(state_open || panel_open || (flags_1 & NODECONSTRUCT_1)) && I.tool_behaviour == TOOL_CROWBAR
-	if(.)
-		I.play_tool_sound(src, 50)
-		visible_message("<span class='notice'>[usr] pries open [src].</span>", "<span class='notice'>You pry open [src].</span>")
-		open_machine()
-
-/obj/machinery/dna_scannernew/interact(mob/user)
-	toggle_open(user)
-
-/obj/machinery/dna_scannernew/AltClick(mob/user)
-	. = ..()
-	if(!user.canUseTopic(src, !issilicon(user)))
 		return
-	interact(user)
-	return TRUE
+
+	if(default_deconstruction_crowbar(I))
+		return
+
+	return ..()
+
+/obj/machinery/dna_scannernew/attack_hand(mob/user)
+	if(..(user,1,0)) //don't set the machine, since there's no dialog
+		return
+
+	toggle_open(user)
 
 /obj/machinery/dna_scannernew/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())

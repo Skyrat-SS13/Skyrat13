@@ -84,12 +84,14 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	. = ..()
 	GLOB.telecomms_list += src
 	if(mapload && autolinkers.len)
-		return INITIALIZE_HINT_LATELOAD
+		// Links nearby machines
+		if(!long_range_link)
+			for(var/obj/machinery/telecomms/T in urange(20, src, 1))
+				add_link(T)
+		else
+			for(var/obj/machinery/telecomms/T in GLOB.telecomms_list)
+				add_link(T)
 
-/obj/machinery/telecomms/LateInitialize()
-	..()
-	for(var/obj/machinery/telecomms/T in (long_range_link ? GLOB.telecomms_list : urange(20, src, 1)))
-		add_link(T)
 
 /obj/machinery/telecomms/Destroy()
 	GLOB.telecomms_list -= src
@@ -107,7 +109,6 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 			for(var/x in autolinkers)
 				if(x in T.autolinkers)
 					links |= T
-					T.links |= src
 
 /obj/machinery/telecomms/update_icon()
 	if(on)
@@ -141,12 +142,10 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 		traffic -= netspeed
 
 /obj/machinery/telecomms/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
 	if(prob(100/severity))
 		if(!(stat & EMPED))
 			stat |= EMPED
 			var/duration = (300 * 10)/severity
 			spawn(rand(duration - 20, duration + 20)) // Takes a long time for the machines to reboot.
 				stat &= ~EMPED
+	..()

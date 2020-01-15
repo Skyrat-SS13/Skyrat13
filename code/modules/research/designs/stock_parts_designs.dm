@@ -275,7 +275,6 @@
 	materials = list(MAT_METAL = 100, MAT_GOLD = 100, MAT_URANIUM = 100)
 	build_path = /obj/item/stock_parts/subspace/amplifier
 	category = list("Stock Parts")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/subspace_treatment
 	name = "Subspace Treatment Disk"
@@ -288,7 +287,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/subspace_analyzer
-	name = "Subspace Wavelength Analyzer"
+	name = "Subspace Analyzer"
 	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
 	id = "s-analyzer"
 	build_type = PROTOLATHE

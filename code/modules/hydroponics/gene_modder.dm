@@ -4,8 +4,8 @@
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "dnamod"
 	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/circuitboard/machine/plantgenes
-	pass_flags = PASSTABLE
 
 	var/obj/item/seeds/seed
 	var/obj/item/disk/plantgene/disk
@@ -69,7 +69,7 @@
 	if(default_deconstruction_screwdriver(user, "dnamod", "dnamod", I))
 		update_icon()
 		return
-	else if(default_unfasten_wrench(user, I))
+	if(exchange_parts(user, I))
 		return
 	if(default_deconstruction_crowbar(I))
 		return
@@ -87,20 +87,25 @@
 			interact(user)
 		return
 	else if(istype(I, /obj/item/disk/plantgene))
-		if (operation)
-			to_chat(user, "<span class='notice'>Please complete current operation.</span>")
-			return
-		eject_disk()
-		if(!user.transferItemToLoc(I, src))
-			return
-		disk = I
-		to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
-		interact(user)
+		if(disk)
+			to_chat(user, "<span class='warning'>A data disk is already loaded into the machine!</span>")
+		else
+			if(!user.transferItemToLoc(I, src))
+				return
+			disk = I
+			to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
+			interact(user)
 	else
 		..()
 
-/obj/machinery/plantgenes/ui_interact(mob/user)
-	. = ..()
+
+/obj/machinery/plantgenes/attack_hand(mob/user)
+	if(..())
+		return
+	interact(user)
+
+/obj/machinery/plantgenes/interact(mob/user)
+	user.set_machine(src)
 	if(!user)
 		return
 
@@ -201,9 +206,9 @@
 			if(!G)
 				continue
 			dat += "<tr><td width='260px'>[G.get_name()]</td><td>"
-			if(can_extract && G.mutability_flags & PLANT_GENE_EXTRACTABLE)
+			if(can_extract)
 				dat += "<a href='?src=[REF(src)];gene=[REF(G)];op=extract'>Extract</a>"
-			if(can_insert && istype(disk.gene, G.type) && G.mutability_flags & PLANT_GENE_REMOVABLE)
+			if(can_insert && istype(disk.gene, G.type))
 				dat += "<a href='?src=[REF(src)];gene=[REF(G)];op=replace'>Replace</a>"
 			dat += "</td></tr>"
 		dat += "</table></div>"
@@ -232,15 +237,14 @@
 				for(var/a in trait_genes)
 					var/datum/plant_gene/G = a
 					dat += "<tr><td width='260px'>[G.get_name()]</td><td>"
-					if(can_extract && G.mutability_flags & PLANT_GENE_EXTRACTABLE)
+					if(can_extract)
 						dat += "<a href='?src=[REF(src)];gene=[REF(G)];op=extract'>Extract</a>"
-						if(G.mutability_flags & PLANT_GENE_REMOVABLE)
-							dat += "<a href='?src=[REF(src)];gene=[REF(G)];op=remove'>Remove</a>"
+					dat += "<a href='?src=[REF(src)];gene=[REF(G)];op=remove'>Remove</a>"
 					dat += "</td></tr>"
 				dat += "</table>"
 			else
 				dat += "No trait-related genes detected in sample.<br>"
-			if(can_insert && istype(disk.gene, /datum/plant_gene/trait) && !seed.is_gene_forbidden(disk.gene.type))
+			if(can_insert && istype(disk.gene, /datum/plant_gene/trait))
 				dat += "<a href='?src=[REF(src)];op=insert'>Insert: [disk.gene.get_name()]</a>"
 			dat += "</div>"
 	else
@@ -270,13 +274,18 @@
 				to_chat(usr, "<span class='notice'>You add [I] to the machine.</span>")
 		update_icon()
 	else if(href_list["eject_disk"] && !operation)
-		var/obj/item/I = usr.get_active_held_item()
-		eject_disk()
-		if(istype(I, /obj/item/disk/plantgene))
-			if(!usr.transferItemToLoc(I, src))
-				return
-			disk = I
-			to_chat(usr, "<span class='notice'>You add [I] to the machine.</span>")
+		if (disk)
+			disk.forceMove(drop_location())
+			disk.verb_pickup()
+			disk = null
+			update_genes()
+		else
+			var/obj/item/I = usr.get_active_held_item()
+			if(istype(I, /obj/item/disk/plantgene))
+				if(!usr.transferItemToLoc(I, src))
+					return
+				disk = I
+				to_chat(usr, "<span class='notice'>You add [I] to the machine.</span>")
 	else if(href_list["op"] == "insert" && disk && disk.gene && seed)
 		if(!operation) // Wait for confirmation
 			operation = "insert"
@@ -364,16 +373,6 @@
 	update_genes()
 	update_icon()
 
-/obj/machinery/plantgenes/proc/eject_disk()
-	if (disk && !operation)
-		if(Adjacent(usr) && !issilicon(usr))
-			if (!usr.put_in_hands(disk))
-				disk.forceMove(drop_location())
-		else
-			disk.forceMove(drop_location())
-		disk = null
-		update_genes()
-
 /obj/machinery/plantgenes/proc/update_genes()
 	core_genes = list()
 	reagent_genes = list()
@@ -431,7 +430,7 @@
 
 /obj/item/disk/plantgene/proc/update_name()
 	if(gene)
-		name = "[gene.get_name()] (plant data disk)"
+		name = "[gene.get_name()] (Plant Data Disk)"
 	else
 		name = "plant data disk"
 
@@ -440,7 +439,5 @@
 	to_chat(user, "<span class='notice'>You flip the write-protect tab to [src.read_only ? "protected" : "unprotected"].</span>")
 
 /obj/item/disk/plantgene/examine(mob/user)
-	. = ..()
-	if(gene && (istype(gene, /datum/plant_gene/core/potency)))
-		. += "<span class='notice'>Percent is relative to potency, not maximum volume of the plant.</span>"
-	. += "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"]."
+	..()
+	to_chat(user, "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"].")

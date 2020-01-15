@@ -98,7 +98,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	var/threat = 0 // used for determining which meteors are most interesting
 	var/lifetime = DEFAULT_METEOR_LIFETIME
 	var/timerid = null
-	var/list/meteordrop = list(/obj/item/stack/ore/iron)
+	var/list/meteordrop = list(/obj/item/ore/iron)
 	var/dropamt = 2
 
 /obj/effect/meteor/Move()
@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	timerid = QDEL_IN(src, lifetime)
 	chase_target(target)
 
-/obj/effect/meteor/Bump(atom/A)
+/obj/effect/meteor/Collide(atom/A)
 	if(A)
 		ram_turf(get_turf(A))
 		playsound(src.loc, meteorsound, 40, 1)
@@ -164,13 +164,17 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 /obj/effect/meteor/ex_act()
 	return
 
-/obj/effect/meteor/examine(mob/user)
-	if(!(flags_1 & ADMIN_SPAWNED_1) && isliving(user))
-		SSmedals.UnlockMedal(MEDAL_METEOR, user.client)
-	return ..()
+#define METEOR_MEDAL "Your Life Before Your Eyes"
 
-/obj/effect/meteor/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_MINING)
+/obj/effect/meteor/examine(mob/user)
+	if(!admin_spawned && isliving(user))
+		UnlockMedal(METEOR_MEDAL,user.client)
+	..()
+
+#undef METEOR_MEDAL
+
+/obj/effect/meteor/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/pickaxe))
 		make_debris()
 		qdel(src)
 	else
@@ -213,7 +217,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	hits = 1
 	hitpwr = 3
 	meteorsound = 'sound/weapons/gunshot_smg.ogg'
-	meteordrop = list(/obj/item/stack/ore/glass)
+	meteordrop = list(/obj/item/ore/glass)
 	threat = 1
 
 //Medium-sized
@@ -246,7 +250,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	hits = 5
 	heavy = 1
 	meteorsound = 'sound/effects/bamf.ogg'
-	meteordrop = list(/obj/item/stack/ore/plasma)
+	meteordrop = list(/obj/item/ore/plasma)
 	threat = 20
 
 /obj/effect/meteor/flaming/meteor_effect()
@@ -258,7 +262,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	name = "glowing meteor"
 	icon_state = "glowing"
 	heavy = 1
-	meteordrop = list(/obj/item/stack/ore/uranium)
+	meteordrop = list(/obj/item/ore/uranium)
 	threat = 15
 
 
@@ -301,7 +305,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	if(!isspaceturf(T))
 		new /obj/effect/decal/cleanable/blood(T)
 
-/obj/effect/meteor/meaty/Bump(atom/A)
+/obj/effect/meteor/meaty/Collide(atom/A)
 	A.ex_act(hitpwr)
 	get_hit()
 
@@ -317,7 +321,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
 /obj/effect/meteor/meaty/xeno/ram_turf(turf/T)
 	if(!isspaceturf(T))
-		new /obj/effect/decal/cleanable/blood/xeno(T)
+		new /obj/effect/decal/cleanable/xenoblood(T)
 
 //Station buster Tunguska
 /obj/effect/meteor/tunguska
@@ -328,7 +332,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	hitpwr = 1
 	heavy = 1
 	meteorsound = 'sound/effects/bamf.ogg'
-	meteordrop = list(/obj/item/stack/ore/plasma)
+	meteordrop = list(/obj/item/ore/plasma)
 	threat = 50
 
 /obj/effect/meteor/tunguska/Move()
@@ -340,7 +344,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	..()
 	explosion(src.loc, 5, 10, 15, 20, 0)
 
-/obj/effect/meteor/tunguska/Bump()
+/obj/effect/meteor/tunguska/Collide()
 	..()
 	if(prob(20))
 		explosion(src.loc,2,4,6,8)

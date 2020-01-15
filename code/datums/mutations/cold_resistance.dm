@@ -14,18 +14,6 @@
 /datum/mutation/human/cold_resistance/get_visual_indicator(mob/living/carbon/human/owner)
 	return visual_indicators[1]
 
-/datum/mutation/human/cold_resistance/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
-		return
-	ADD_TRAIT(owner, TRAIT_RESISTCOLD, "cold_resistance")
-//	ADD_TRAIT(owner, TRAIT_RESISTLOWPRESSURE, "cold_resistance")  CITADEL CHANGE
-
-/datum/mutation/human/cold_resistance/on_losing(mob/living/carbon/human/owner)
-	if(..())
-		return
-	REMOVE_TRAIT(owner, TRAIT_RESISTCOLD, "cold_resistance")
-//	REMOVE_TRAIT(owner, TRAIT_RESISTLOWPRESSURE, "cold_resistance")   CITADEL CHANGE
-
 /datum/mutation/human/cold_resistance/on_life(mob/living/carbon/human/owner)
 	if(owner.getFireLoss())
 		if(prob(1))

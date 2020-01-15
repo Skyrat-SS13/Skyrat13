@@ -1,14 +1,10 @@
 /obj/effect/proc_holder/changeling/biodegrade
 	name = "Biodegrade"
 	desc = "Dissolves restraints or other objects preventing free movement."
-	helptext = "This is obvious to nearby people, and can destroy standard restraints and closets. This ability is somewhat loud, and carries a small risk of our blood gaining violent sensitivity to heat."
+	helptext = "This is obvious to nearby people, and can destroy standard restraints and closets."
 	chemical_cost = 30 //High cost to prevent spam
-	loudness = 1
 	dna_cost = 2
 	req_human = 1
-	action_icon = 'icons/mob/actions/actions_changeling.dmi'
-	action_icon_state = "ling_freedom"
-	action_background_icon_state = "bg_ling"
 
 /obj/effect/proc_holder/changeling/biodegrade/sting_action(mob/living/carbon/human/user)
 	var/used = FALSE // only one form of shackles removed per use
@@ -17,7 +13,7 @@
 		return 0
 
 	if(user.handcuffed)
-		var/obj/O = user.get_item_by_slot(SLOT_HANDCUFFED)
+		var/obj/O = user.get_item_by_slot(slot_handcuffed)
 		if(!istype(O))
 			return 0
 		user.visible_message("<span class='warning'>[user] vomits a glob of acid on [user.p_their()] [O]!</span>", \
@@ -27,7 +23,7 @@
 		used = TRUE
 
 	if(user.wear_suit && user.wear_suit.breakouttime && !used)
-		var/obj/item/clothing/suit/S = user.get_item_by_slot(SLOT_WEAR_SUIT)
+		var/obj/item/clothing/suit/S = user.get_item_by_slot(slot_wear_suit)
 		if(!istype(S))
 			return 0
 		user.visible_message("<span class='warning'>[user] vomits a glob of acid across the front of [user.p_their()] [S]!</span>", \

@@ -27,6 +27,7 @@
 	desc = "The compressor stage of a gas turbine generator."
 	icon = 'icons/obj/atmospherics/pipes/simple.dmi'
 	icon_state = "compressor"
+	anchored = TRUE
 	density = TRUE
 	resistance_flags = FIRE_PROOF
 	CanAtmosPass = ATMOS_PASS_DENSITY
@@ -47,6 +48,7 @@
 	desc = "A gas turbine used for backup power generation."
 	icon = 'icons/obj/atmospherics/pipes/simple.dmi'
 	icon_state = "turbine"
+	anchored = TRUE
 	density = TRUE
 	resistance_flags = FIRE_PROOF
 	CanAtmosPass = ATMOS_PASS_DENSITY
@@ -79,7 +81,13 @@
 
 
 #define COMPFRICTION 5e5
+#define COMPSTARTERLOAD 2800
 
+
+// Crucial to make things work!!!!
+// OLD FIX - explanation given down below.
+// /obj/machinery/power/compressor/CanPass(atom/movable/mover, turf/target)
+// 		return !density
 
 /obj/machinery/power/compressor/locate_machinery()
 	if(turbine)
@@ -108,6 +116,9 @@
 		else
 			to_chat(user, "<span class='alert'>Turbine not connected.</span>")
 			stat |= BROKEN
+		return
+
+	if(exchange_parts(user, I))
 		return
 
 	default_deconstruction_crowbar(I)
@@ -158,6 +169,7 @@
 // These are crucial to working of a turbine - the stats modify the power output. TurbGenQ modifies how much raw energy can you get from
 // rpms, TurbGenG modifies the shape of the curve - the lower the value the less straight the curve is.
 
+#define TURBPRES 9000000
 #define TURBGENQ 100000
 #define TURBGENG 0.5
 
@@ -168,7 +180,6 @@
 	locate_machinery()
 	if(!compressor)
 		stat |= BROKEN
-	connect_to_network()
 
 /obj/machinery/power/turbine/RefreshParts()
 	var/P = 0
@@ -222,6 +233,13 @@
 
 	updateDialog()
 
+/obj/machinery/power/turbine/attack_hand(mob/user)
+
+	if(..())
+		return
+
+	interact(user)
+
 /obj/machinery/power/turbine/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, initial(icon_state), initial(icon_state), I))
 		return
@@ -238,9 +256,12 @@
 			stat |= BROKEN
 		return
 
+	if(exchange_parts(user, I))
+		return
+
 	default_deconstruction_crowbar(I)
 
-/obj/machinery/power/turbine/ui_interact(mob/user)
+/obj/machinery/power/turbine/interact(mob/user)
 
 	if(!Adjacent(user)  || (stat & (NOPOWER|BROKEN)) && !issilicon(user))
 		user.unset_machine(src)
@@ -306,6 +327,12 @@
 	else
 		compressor = locate(/obj/machinery/power/compressor) in range(5, src)
 
+/obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as mob)
+	if(..())
+		return
+
+	ui_interact(user)
+
 /obj/machinery/computer/turbine_computer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -343,7 +370,3 @@
 		if("reconnect")
 			locate_machinery()
 			. = TRUE
-
-#undef COMPFRICTION
-#undef TURBGENQ
-#undef TURBGENG

@@ -23,7 +23,7 @@
 		var/mob/living/L = buckled_mobs[1]
 		if(iscarbon(L))
 			L.Knockdown(100)
-			L.visible_message("<span class='warning'>[L] is maimed as the skewer shatters while still in [L.p_their()] body!</span>")
+			L.visible_message("<span class='warning'>[L] is maimed as the skewer shatters while still in their body!</span>")
 			L.adjustBruteLoss(15)
 		unbuckle_mob(L)
 	return ..()
@@ -64,18 +64,11 @@
 			squirrel.emote("scream")
 			playsound(squirrel, 'sound/effects/splat.ogg', 50, TRUE)
 			playsound(squirrel, 'sound/misc/desceration-03.ogg', 50, TRUE)
-			squirrel.apply_damage(20, BRUTE, BODY_ZONE_CHEST)
+			squirrel.apply_damage(20, BRUTE, "chest")
 		mouse_opacity = MOUSE_OPACITY_OPAQUE //So players can interact with the tile it's on to pull them off
 		buckle_mob(squirrel, TRUE)
 	else
-		var/obj/mecha/M = locate() in get_turf(src)
-		if(M)
-			M.take_damage(50,BRUTE,"melee")
-			M.visible_message("<span class='danger'>A massive brass spike erupts from the ground, penetrating \the [M] and shattering the trap into pieces!</span>")
-			addtimer(CALLBACK(src, .proc/take_damage, max_integrity), 1)
-		else
-			visible_message("<span class='danger'>A massive brass spike erupts from the ground!</span>")
-
+		visible_message("<span class='danger'>A massive brass spike erupts from the ground!</span>")
 	playsound(src, 'sound/machines/clockcult/brass_skewer.ogg', 75, FALSE)
 	icon_state = "[initial(icon_state)]_extended"
 	density = TRUE //Skewers are one-use only
@@ -103,7 +96,7 @@
 		if(!do_after(user, 300, target = user))
 			user.visible_message("<span class='warning'>[user] slides back down [src]!</span>")
 			user.emote("scream")
-			user.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
+			user.apply_damage(10, BRUTE, "chest")
 			playsound(user, 'sound/misc/desceration-03.ogg', 50, TRUE)
 			wiggle_wiggle = FALSE
 			return
@@ -113,7 +106,7 @@
 		"<span class='danger'>You start tenderly lifting [skewee] off of [src]...</span>")
 		if(!do_after(user, 60, target = skewee))
 			skewee.visible_message("<span class='warning'>[skewee] painfully slides back down [src].</span>")
-			skewee.say("Oof, ouch owwie!!", forced = "fail brass skewer removal")
+			skewee.emote("moan")
 			return
 	skewee.visible_message("<span class='danger'>[skewee] comes free of [src] with a squelching pop!</span>", \
 	"<span class='boldannounce'>You come free of [src]!</span>")

@@ -9,7 +9,7 @@
 #define RADIATION_DURATION_MAX 30
 #define RADIATION_ACCURACY_MULTIPLIER 3			//larger is less accurate
 
-#define RADIATION_IRRADIATION_MULTIPLIER 1		//multiplier for how much radiation a test subject receives
+#define RADIATION_IRRADIATION_MULTIPLIER 1		//multiplier for how much radiation a test subject recieves
 
 #define SCANNER_ACTION_SE 1
 #define SCANNER_ACTION_UI 2
@@ -33,6 +33,7 @@
 	var/obj/machinery/dna_scannernew/connected = null
 	var/obj/item/disk/data/diskette = null
 	var/list/delayed_action = null
+	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 400
@@ -59,8 +60,12 @@
 			break
 	injectorready = world.time + INJECTOR_TIMEOUT
 
-/obj/machinery/computer/scan_consolenew/ui_interact(mob/user, last_change)
-	. = ..()
+/obj/machinery/computer/scan_consolenew/attack_hand(mob/user)
+	if(..())
+		return
+	ShowInterface(user)
+
+/obj/machinery/computer/scan_consolenew/proc/ShowInterface(mob/user, last_change)
 	if(!user)
 		return
 	var/datum/browser/popup = new(user, "scannernew", "DNA Modifier Console", 800, 630) // Set up the popup browser window
@@ -76,7 +81,7 @@
 	if(connected && connected.is_operational())
 		if(connected.occupant)	//set occupant_status message
 			viable_occupant = connected.occupant
-			if(viable_occupant.has_dna() && !HAS_TRAIT(viable_occupant, TRAIT_RADIMMUNE) && !HAS_TRAIT(viable_occupant, TRAIT_NOCLONE) || (connected.scan_level == 3)) //occupant is viable for dna modification
+			if(viable_occupant.has_dna() && (!(RADIMMUNE in viable_occupant.dna.species.species_traits)) && (!(viable_occupant.has_trait(TRAIT_NOCLONE)) || (connected.scan_level == 3))) //occupant is viable for dna modification
 				occupant_status += "[viable_occupant.name] => "
 				switch(viable_occupant.stat)
 					if(CONSCIOUS)
@@ -88,7 +93,7 @@
 				occupant_status += "</div></div>"
 				occupant_status += "<div class='line'><div class='statusLabel'>Health:</div><div class='progressBar'><div style='width: [viable_occupant.health]%;' class='progressFill good'></div></div><div class='statusValue'>[viable_occupant.health] %</div></div>"
 				occupant_status += "<div class='line'><div class='statusLabel'>Radiation Level:</div><div class='progressBar'><div style='width: [viable_occupant.radiation/(RAD_MOB_SAFE/100)]%;' class='progressFill bad'></div></div><div class='statusValue'>[viable_occupant.radiation/(RAD_MOB_SAFE/100)] %</div></div>"
-				var/rejuvenators = viable_occupant.reagents.get_reagent_amount(/datum/reagent/medicine/potass_iodide)
+				var/rejuvenators = viable_occupant.reagents.get_reagent_amount("potass_iodide")
 				occupant_status += "<div class='line'><div class='statusLabel'>Rejuvenators:</div><div class='progressBar'><div style='width: [round((rejuvenators / REJUVENATORS_MAX) * 100)]%;' class='progressFill highlight'></div></div><div class='statusValue'>[rejuvenators] units</div></div>"
 				occupant_status += "<div class='line'><div class='statusLabel'>Unique Enzymes :</div><div class='statusValue'><span class='highlight'>[viable_occupant.dna.unique_enzymes]</span></div></div>"
 				occupant_status += "<div class='line'><div class='statusLabel'>Last Operation:</div><div class='statusValue'>[last_change ? last_change : "----"]</div></div>"
@@ -342,9 +347,9 @@
 			current_screen = href_list["text"]
 		if("rejuv")
 			if(viable_occupant && viable_occupant.reagents)
-				var/potassiodide_amount = viable_occupant.reagents.get_reagent_amount(/datum/reagent/medicine/potass_iodide)
+				var/potassiodide_amount = viable_occupant.reagents.get_reagent_amount("potass_iodide")
 				var/can_add = max(min(REJUVENATORS_MAX - potassiodide_amount, REJUVENATORS_INJECT), 0)
-				viable_occupant.reagents.add_reagent(/datum/reagent/medicine/potass_iodide, can_add)
+				viable_occupant.reagents.add_reagent("potass_iodide", can_add)
 		if("setbufferlabel")
 			var/text = sanitize(input(usr, "Input a new label:", "Input an Text", null) as text|null)
 			if(num && text)
@@ -456,7 +461,7 @@
 				connected.locked = TRUE
 
 				current_screen = "working"
-				ui_interact(usr)
+				ShowInterface(usr)
 
 				sleep(radduration*10)
 				current_screen = "mainmenu"
@@ -468,7 +473,7 @@
 							var/len = length(viable_occupant.dna.uni_identity)
 							num = WRAP(num, 1, len+1)
 							num = randomize_radiation_accuracy(num, radduration + (connected.precision_coeff ** 2), len) //Each manipulator level above 1 makes randomization as accurate as selected time + manipulator lvl^2
-																														//Value is this high for the same reason as with laser - not worth the hassle of upgrading if the bonus is low
+                                                                                                                         //Value is this high for the same reason as with laser - not worth the hassle of upgrading if the bonus is low
 							var/block = round((num-1)/DNA_BLOCK_SIZE)+1
 							var/subblock = num - block*DNA_BLOCK_SIZE
 							last_change = "UI #[block]-[subblock]; "
@@ -502,7 +507,7 @@
 				if(connected)
 					connected.locked = locked_state
 
-	ui_interact(usr,last_change)
+	ShowInterface(usr,last_change)
 
 /obj/machinery/computer/scan_consolenew/proc/scramble(input,rs,rd)
 	var/length = length(input)
@@ -523,7 +528,7 @@
 	var/mob/living/carbon/viable_occupant = null
 	if(connected)
 		viable_occupant = connected.occupant
-		if(!istype(viable_occupant) || !viable_occupant.dna || HAS_TRAIT(viable_occupant, TRAIT_RADIMMUNE) || HAS_TRAIT(viable_occupant, TRAIT_NOCLONE))
+		if(!istype(viable_occupant) || !viable_occupant.dna || (RADIMMUNE in viable_occupant.dna.species.species_traits) || (viable_occupant.has_trait(TRAIT_NOCLONE)))
 			viable_occupant = null
 	return viable_occupant
 
@@ -562,10 +567,11 @@
 					viable_occupant.dna.blood_type = buffer_slot["blood_type"]
 
 /obj/machinery/computer/scan_consolenew/proc/on_scanner_close()
-	if(delayed_action && connected)
-		to_chat(connected.occupant, "<span class='notice'>[src] activates!</span>")
+	to_chat(connected.occupant, "<span class='notice'>[src] activates!</span>")
+	if(delayed_action)
 		apply_buffer(delayed_action["action"],delayed_action["buffer"])
 		delayed_action = null //or make it stick + reset button ?
+	return
 
 /////////////////////////// DNA MACHINES
 #undef INJECTOR_TIMEOUT

@@ -50,6 +50,9 @@
 		return
 	if(!AStar(user, target.loc, /turf/proc/Distance, changeling.sting_range, simulated_only = 0))
 		return
+	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/changeling))
+		sting_feedback(user, target)
+		changeling.chem_charges -= chemical_cost //??
 	return 1
 
 /obj/effect/proc_holder/changeling/sting/sting_feedback(mob/user, mob/target)
@@ -62,17 +65,13 @@
 
 
 /obj/effect/proc_holder/changeling/sting/transformation
-	name = "Temporary Transformation Sting"
-	desc = "We silently sting a human, injecting a chemical that forces them to transform into a chosen being for a limited time. Additional stings extend the duration."
-	helptext = "The victim will transform much like a changeling would for a limited time. Does not provide a warning to others. Mutations will not be transferred, and monkeys will become human. This ability is loud, and might cause our blood to react violently to heat."
+	name = "Transformation Sting"
+	desc = "We silently sting a human, injecting a retrovirus that forces them to transform."
+	helptext = "The victim will transform much like a changeling would. Does not provide a warning to others. Mutations will not be transferred, and monkeys will become human."
 	sting_icon = "sting_transform"
-	chemical_cost = 10
-	dna_cost = 2
-	loudness = 1
+	chemical_cost = 50
+	dna_cost = 3
 	var/datum/changelingprofile/selected_dna = null
-	action_icon = 'icons/mob/actions/actions_changeling.dmi'
-	action_icon_state = "ling_sting_transform"
-	action_background_icon_state = "bg_ling"
 
 /obj/effect/proc_holder/changeling/sting/transformation/Click()
 	var/mob/user = usr
@@ -91,60 +90,58 @@
 /obj/effect/proc_holder/changeling/sting/transformation/can_sting(mob/user, mob/living/carbon/target)
 	if(!..())
 		return
-	if((HAS_TRAIT(target, TRAIT_HUSK)) || !iscarbon(target) || (NOTRANSSTING in target.dna.species.species_traits))
+	if((target.has_trait(TRAIT_HUSK)) || !iscarbon(target) || (NOTRANSSTING in target.dna.species.species_traits))
 		to_chat(user, "<span class='warning'>Our sting appears ineffective against its DNA.</span>")
 		return 0
 	return 1
 
 /obj/effect/proc_holder/changeling/sting/transformation/sting_action(mob/user, mob/target)
-
+	add_logs(user, target, "stung", "transformation sting", " new identity is [selected_dna.dna.real_name]")
+	var/datum/dna/NewDNA = selected_dna.dna
 	if(ismonkey(target))
 		to_chat(user, "<span class='notice'>Our genes cry out as we sting [target.name]!</span>")
 
 	var/mob/living/carbon/C = target
 	. = TRUE
 	if(istype(C))
-		if(C.reagents.has_reagent(/datum/reagent/changeling_string))
-			C.reagents.add_reagent(/datum/reagent/changeling_string,120)
-			log_combat(user, target, "stung", "transformation sting", ", extending the duration.")
-		else
-			C.reagents.add_reagent(/datum/reagent/changeling_string,120,list("desired_dna" = selected_dna.dna))
-			log_combat(user, target, "stung", "transformation sting", " new identity is '[selected_dna.dna.real_name]'")
+		C.real_name = NewDNA.real_name
+		NewDNA.transfer_identity(C)
+		if(ismonkey(C))
+			C.humanize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_DEFAULTMSG)
+		C.updateappearance(mutcolor_update=1)
 
 
 /obj/effect/proc_holder/changeling/sting/false_armblade
 	name = "False Armblade Sting"
 	desc = "We silently sting a human, injecting a retrovirus that mutates their arm to temporarily appear as an armblade."
-	helptext = "The victim will form an armblade much like a changeling would, except the armblade is dull and useless. This ability is somewhat loud, and carries a small risk of our blood gaining violent sensitivity to heat."
+	helptext = "The victim will form an armblade much like a changeling would, except the armblade is dull and useless."
 	sting_icon = "sting_armblade"
 	chemical_cost = 20
 	dna_cost = 1
-	loudness = 1
-	action_icon = 'icons/mob/actions/actions_changeling.dmi'
-	action_icon_state = "ling_sting_fake"
-	action_background_icon_state = "bg_ling"
 
 /obj/item/melee/arm_blade/false
 	desc = "A grotesque mass of flesh that used to be your arm. Although it looks dangerous at first, you can tell it's actually quite dull and useless."
 	force = 5 //Basically as strong as a punch
-	fake = TRUE
+
+/obj/item/melee/arm_blade/false/afterattack(atom/target, mob/user, proximity)
+	return
 
 /obj/effect/proc_holder/changeling/sting/false_armblade/can_sting(mob/user, mob/target)
 	if(!..())
 		return
 	if(isliving(target))
 		var/mob/living/L = target
-		if((HAS_TRAIT(L, TRAIT_HUSK)) || !L.has_dna())
+		if((L.has_trait(TRAIT_HUSK)) || !L.has_dna())
 			to_chat(user, "<span class='warning'>Our sting appears ineffective against its DNA.</span>")
 			return 0
 	return 1
 
 /obj/effect/proc_holder/changeling/sting/false_armblade/sting_action(mob/user, mob/target)
-	log_combat(user, target, "stung", object="false armblade sting")
+	add_logs(user, target, "stung", object="falso armblade sting")
 
 	var/obj/item/held = target.get_active_held_item()
 	if(held && !target.dropItemToGround(held))
-		to_chat(user, "<span class='warning'>[held] is stuck to [target.p_their()] hand, you cannot grow a false armblade over it!</span>")
+		to_chat(user, "<span class='warning'>[held] is stuck to their hand, you cannot grow a false armblade over it!</span>")
 		return
 
 	if(ismonkey(target))
@@ -161,7 +158,7 @@
 /obj/effect/proc_holder/changeling/sting/false_armblade/proc/remove_fake(mob/target, obj/item/melee/arm_blade/false/blade)
 	playsound(target, 'sound/effects/blobattack.ogg', 30, 1)
 	target.visible_message("<span class='warning'>With a sickening crunch, \
-	[target] reforms [target.p_their()] [blade.name] into an arm!</span>",
+	[target] reforms their [blade.name] into an arm!</span>",
 	"<span class='warning'>[blade] reforms back to normal.</span>",
 	"<span class='italics>You hear organic matter ripping and tearing!</span>")
 
@@ -175,9 +172,6 @@
 	sting_icon = "sting_extract"
 	chemical_cost = 25
 	dna_cost = 0
-	action_icon = 'icons/mob/actions/actions_changeling.dmi'
-	action_icon_state = "ling_sting_extract"
-	action_background_icon_state = "bg_ling"
 
 /obj/effect/proc_holder/changeling/sting/extract_dna/can_sting(mob/user, mob/target)
 	if(..())
@@ -185,7 +179,7 @@
 		return changeling.can_absorb_dna(target)
 
 /obj/effect/proc_holder/changeling/sting/extract_dna/sting_action(mob/user, mob/living/carbon/human/target)
-	log_combat(user, target, "stung", "extraction sting")
+	add_logs(user, target, "stung", "extraction sting")
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	if(!(changeling.has_dna(target.dna)))
 		changeling.add_new_profile(target)
@@ -194,34 +188,26 @@
 /obj/effect/proc_holder/changeling/sting/mute
 	name = "Mute Sting"
 	desc = "We silently sting a human, completely silencing them for a short time."
-	helptext = "Does not provide a warning to the victim that they have been stung, until they try to speak and cannot. This ability is loud, and might cause our blood to react violently to heat."
+	helptext = "Does not provide a warning to the victim that they have been stung, until they try to speak and cannot."
 	sting_icon = "sting_mute"
 	chemical_cost = 20
 	dna_cost = 2
-	loudness = 2
-	action_icon = 'icons/mob/actions/actions_changeling.dmi'
-	action_icon_state = "ling_sting_mute"
-	action_background_icon_state = "bg_ling"
 
 /obj/effect/proc_holder/changeling/sting/mute/sting_action(mob/user, mob/living/carbon/target)
-	log_combat(user, target, "stung", "mute sting")
+	add_logs(user, target, "stung", "mute sting")
 	target.silent += 30
 	return TRUE
 
 /obj/effect/proc_holder/changeling/sting/blind
 	name = "Blind Sting"
 	desc = "Temporarily blinds the target."
-	helptext = "This sting completely blinds a target for a short time. This ability is somewhat loud, and carries a small risk of our blood gaining violent sensitivity to heat."
+	helptext = "This sting completely blinds a target for a short time."
 	sting_icon = "sting_blind"
 	chemical_cost = 25
 	dna_cost = 1
-	loudness = 1
-	action_icon = 'icons/mob/actions/actions_changeling.dmi'
-	action_icon_state = "ling_sting_blind"
-	action_background_icon_state = "bg_ling"
 
 /obj/effect/proc_holder/changeling/sting/blind/sting_action(mob/user, mob/living/carbon/target)
-	log_combat(user, target, "stung", "blind sting")
+	add_logs(user, target, "stung", "blind sting")
 	to_chat(target, "<span class='danger'>Your eyes burn horrifically!</span>")
 	target.become_nearsighted(EYE_DAMAGE)
 	target.blind_eyes(20)
@@ -230,37 +216,31 @@
 
 /obj/effect/proc_holder/changeling/sting/LSD
 	name = "Hallucination Sting"
-	desc = "Causes terror in the target and deals a minor amount of toxin damage."
-	helptext = "We evolve the ability to sting a target with a powerful toxic hallucinogenic chemical. The target does not notice they have been stung, and the effect begins instantaneously. This ability is somewhat loud, and carries a small risk of our blood gaining violent sensitivity to heat."
+	desc = "Causes terror in the target."
+	helptext = "We evolve the ability to sting a target with a powerful hallucinogenic chemical. The target does not notice they have been stung, and the effect occurs after 30 to 60 seconds."
 	sting_icon = "sting_lsd"
 	chemical_cost = 10
 	dna_cost = 1
-	loudness = 1
-	action_icon = 'icons/mob/actions/actions_changeling.dmi'
-	action_icon_state = "ling_sting_lsd"
-	action_background_icon_state = "bg_ling"
 
-/obj/effect/proc_holder/changeling/sting/LSD/sting_action(mob/user, mob/target)
-	log_combat(user, target, "stung", "LSD sting")
-	if(target.reagents)
-		target.reagents.add_reagent(/datum/reagent/blob/regenerative_materia, 5)
-		target.reagents.add_reagent(/datum/reagent/toxin/mindbreaker, 5)
+/obj/effect/proc_holder/changeling/sting/LSD/sting_action(mob/user, mob/living/carbon/target)
+	add_logs(user, target, "stung", "LSD sting")
+	addtimer(CALLBACK(src, .proc/hallucination_time, target), rand(300,600))
 	return TRUE
+
+/obj/effect/proc_holder/changeling/sting/LSD/proc/hallucination_time(mob/living/carbon/target)
+	if(target)
+		target.hallucination = max(400, target.hallucination)
 
 /obj/effect/proc_holder/changeling/sting/cryo
 	name = "Cryogenic Sting"
 	desc = "We silently sting a human with a cocktail of chemicals that freeze them."
-	helptext = "Does not provide a warning to the victim, though they will likely realize they are suddenly freezing. This ability is somewhat loud, and carries a small risk of our blood gaining violent sensitivity to heat."
+	helptext = "Does not provide a warning to the victim, though they will likely realize they are suddenly freezing."
 	sting_icon = "sting_cryo"
 	chemical_cost = 15
 	dna_cost = 2
-	loudness = 1
-	action_icon = 'icons/mob/actions/actions_changeling.dmi'
-	action_icon_state = "ling_sting_cryo"
-	action_background_icon_state = "bg_ling"
 
 /obj/effect/proc_holder/changeling/sting/cryo/sting_action(mob/user, mob/target)
-	log_combat(user, target, "stung", "cryo sting")
+	add_logs(user, target, "stung", "cryo sting")
 	if(target.reagents)
-		target.reagents.add_reagent(/datum/reagent/consumable/frostoil, 30)
+		target.reagents.add_reagent("frostoil", 30)
 	return TRUE

@@ -6,6 +6,7 @@
 
 /obj/machinery/doorButtons
 	power_channel = ENVIRON
+	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -13,7 +14,7 @@
 	var/idSelf
 
 /obj/machinery/doorButtons/attackby(obj/O, mob/user)
-	return attack_hand(user)
+	attack_hand(user)
 
 /obj/machinery/doorButtons/proc/findObjsByTag()
 	return
@@ -26,7 +27,6 @@
 	findObjsByTag()
 
 /obj/machinery/doorButtons/emag_act(mob/user)
-	. = ..()
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
@@ -34,7 +34,6 @@
 	req_one_access = list()
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, "<span class='warning'>You short out the access controller.</span>")
-	return TRUE
 
 /obj/machinery/doorButtons/proc/removeMe()
 
@@ -59,7 +58,9 @@
 			door = I
 			break
 
-/obj/machinery/doorButtons/access_button/interact(mob/user)
+/obj/machinery/doorButtons/access_button/attack_hand(mob/user)
+	if(..())
+		return
 	if(busy)
 		return
 	if(!allowed(user))
@@ -258,7 +259,9 @@
 	else
 		icon_state = "access_control_standby"
 
-/obj/machinery/doorButtons/airlock_controller/ui_interact(mob/user)
+/obj/machinery/doorButtons/airlock_controller/attack_hand(mob/user)
+	if(..())
+		return
 	var/datum/browser/popup = new(user, "computer", name)
 	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.set_content(returnText())

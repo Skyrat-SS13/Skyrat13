@@ -26,15 +26,13 @@
 	melee_damage_upper = 20
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	vision_range = 1 // Only attack when target is close
-	wander = FALSE
+	idle_vision_range = 1 // Only attack when target is close
+	wander = 0
 	attacktext = "glomps"
 	attack_sound = 'sound/effects/blobattack.ogg'
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2)
 
 	var/morphed = FALSE
-	var/melee_damage_disguised = 0
-	var/eat_while_disguised = FALSE
 	var/atom/movable/form = null
 	var/morph_time = 0
 	var/static/list/blacklist_typecache = typecacheof(list(
@@ -52,11 +50,12 @@
 
 /mob/living/simple_animal/hostile/morph/examine(mob/user)
 	if(morphed)
-		. = form.examine(user)
+		form.examine(user) // Refactor examine to return desc so it's static? Not sure if worth it
 		if(get_dist(user,src)<=3)
-			. += "<span class='warning'>It doesn't look quite right...</span>"
+			to_chat(user, "<span class='warning'>It doesn't look quite right...</span>")
 	else
-		. = ..()
+		..()
+	return
 
 /mob/living/simple_animal/hostile/morph/med_hud_set_health()
 	if(morphed && !isliving(form))
@@ -76,14 +75,11 @@
 	return !is_type_in_typecache(A, blacklist_typecache) && (isobj(A) || ismob(A))
 
 /mob/living/simple_animal/hostile/morph/proc/eat(atom/movable/A)
-	if(morphed && !eat_while_disguised)
-		to_chat(src, "<span class='warning'>You can not eat anything while you are disguised!</span>")
-		return FALSE
 	if(A && A.loc != src)
 		visible_message("<span class='warning'>[src] swallows [A] whole!</span>")
 		A.forceMove(src)
-		return TRUE
-	return FALSE
+		return 1
+	return 0
 
 /mob/living/simple_animal/hostile/morph/ShiftClickOn(atom/movable/A)
 	if(morph_time <= world.time && !stat)
@@ -113,8 +109,8 @@
 	pixel_x = initial(pixel_x)
 
 	//Morphed is weaker
-	melee_damage_lower = melee_damage_disguised
-	melee_damage_upper = melee_damage_disguised
+	melee_damage_lower = 5
+	melee_damage_upper = 5
 	speed = 0
 
 	morph_time = world.time + MORPH_COOLDOWN
@@ -130,7 +126,6 @@
 	form = null
 	alpha = initial(alpha)
 	color = initial(color)
-	maptext = null
 
 	visible_message("<span class='warning'>[src] suddenly collapses in on itself, dissolving into a pile of green flesh!</span>", \
 					"<span class='notice'>You reform to your normal body.</span>")
@@ -171,7 +166,7 @@
 	restore()
 
 /mob/living/simple_animal/hostile/morph/LoseAggro()
-	vision_range = initial(vision_range)
+	vision_range = idle_vision_range
 
 /mob/living/simple_animal/hostile/morph/AIShouldSleep(var/list/possible_targets)
 	. = ..()
@@ -185,13 +180,10 @@
 
 /mob/living/simple_animal/hostile/morph/can_track(mob/living/user)
 	if(morphed)
-		return FALSE
+		return 0
 	return ..()
 
 /mob/living/simple_animal/hostile/morph/AttackingTarget()
-	if(morphed && !melee_damage_disguised)
-		to_chat(src, "<span class='warning'>You can not attack while disguised!</span>")
-		return
 	if(isliving(target)) //Eat Corpses to regen health
 		var/mob/living/L = target
 		if(L.stat == DEAD)
@@ -220,7 +212,7 @@
 	role_name = "morphling"
 
 /datum/round_event/ghost_role/morph/spawn_role()
-	var/list/candidates = get_candidates(ROLE_ALIEN, null, ROLE_ALIEN)
+	var/list/candidates = get_candidates("alien", null, ROLE_ALIEN)
 	if(!candidates.len)
 		return NOT_ENOUGH_PLAYERS
 
@@ -234,10 +226,10 @@
 	player_mind.transfer_to(S)
 	player_mind.assigned_role = "Morph"
 	player_mind.special_role = "Morph"
-	player_mind.add_antag_datum(/datum/antagonist/morph)
+	player_mind.add_antag_datum(/datum/antagonist/auto_custom)
 	to_chat(S, S.playstyle_string)
 	SEND_SOUND(S, sound('sound/magic/mutate.ogg'))
-	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a morph by an event.")
+	message_admins("[key_name_admin(S)] has been made into a morph by an event.")
 	log_game("[key_name(S)] was spawned as a morph by an event.")
 	spawned_mobs += S
 	return SUCCESSFUL_SPAWN

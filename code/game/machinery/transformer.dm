@@ -6,6 +6,7 @@
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "separator-AO1"
 	layer = ABOVE_ALL_MOB_LAYER // Overhead
+	anchored = TRUE
 	density = FALSE
 	var/transform_dead = 0
 	var/transform_standing = 0
@@ -28,7 +29,8 @@
 /obj/machinery/transformer/examine(mob/user)
 	. = ..()
 	if(cooldown && (issilicon(user) || isobserver(user)))
-		. += "It will be ready in [DisplayTimeText(cooldown_timer - world.time)]."
+		var/seconds_remaining = (cooldown_timer - world.time) / 10
+		to_chat(user, "It will be ready in [max(0, seconds_remaining)] seconds.")
 
 /obj/machinery/transformer/Destroy()
 	QDEL_NULL(countdown)
@@ -45,7 +47,7 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/transformer/Bumped(atom/movable/AM)
+/obj/machinery/transformer/CollidedWith(atom/movable/AM)
 	if(cooldown == 1)
 		return
 

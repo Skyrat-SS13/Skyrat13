@@ -17,6 +17,7 @@
 	dwidth = 4;
 	height = 17;
 	name = "delta arrivals shuttle";
+	timid = 1;
 	width = 9
 	},
 /turf/closed/wall/mineral/plastitanium,
@@ -157,7 +158,8 @@
 /area/shuttle/arrival)
 "n" = (
 /obj/machinery/door/airlock/shuttle{
-	name = "Arrival Shuttle Airlock"
+	name = "Arrival Shuttle Airlock";
+	req_access_txt = "0"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -165,54 +167,31 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/structure/fans/tiny,
 /turf/open/floor/plasteel/white,
 /area/shuttle/arrival)
 "o" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel{
+/turf/open/floor/plasteel/neutral/side{
+	dir = 8;
 	heat_capacity = 1e+006
 	},
 /area/shuttle/arrival)
 "p" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/neutral,
 /area/shuttle/arrival)
 "q" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral/side{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "r" = (
-/obj/machinery/status_display/evac{
+/obj/machinery/status_display{
 	pixel_x = -32
 	},
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel{
+/turf/open/floor/plasteel/neutral/side{
+	dir = 8;
 	heat_capacity = 1e+006
 	},
 /area/shuttle/arrival)
@@ -223,27 +202,25 @@
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "t" = (
-/obj/machinery/status_display/ai{
+/obj/machinery/ai_status_display{
 	pixel_x = 32
 	},
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral/side{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "u" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/chair{
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "v" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/chair{
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
@@ -280,13 +257,8 @@
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel{
+/turf/open/floor/plasteel/neutral/side{
+	dir = 8;
 	heat_capacity = 1e+006
 	},
 /area/shuttle/arrival)
@@ -300,6 +272,7 @@
 "C" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
+	req_access_txt = "0";
 	use_power = 0
 	},
 /turf/closed/wall/mineral/titanium/nodiagonal,
@@ -315,78 +288,43 @@
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral/side{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "F" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/neutral,
 /area/shuttle/arrival)
 "G" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/effect/turf_decal/bot,
-/obj/item/radio/intercom{
-	pixel_x = -30
-	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "H" = (
 /obj/structure/closet/wardrobe/black,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/neutral/side,
 /area/shuttle/arrival)
 "I" = (
 /obj/structure/closet/wardrobe/grey,
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/blue/corner,
 /area/shuttle/arrival)
 "J" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/blue/side,
 /area/shuttle/arrival)
 "K" = (
 /obj/structure/closet/wardrobe/yellow,
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/corner{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "L" = (
 /obj/structure/closet/wardrobe/grey,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/neutral,
 /area/shuttle/arrival)
 "M" = (
 /obj/structure/table/reinforced,
@@ -399,7 +337,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "N" = (
-/obj/machinery/status_display/evac,
+/obj/machinery/status_display,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
 "O" = (
@@ -407,7 +345,8 @@
 	dir = 2
 	},
 /obj/machinery/door/airlock/shuttle{
-	name = "Arrival Shuttle Airlock"
+	name = "Arrival Shuttle Airlock";
+	req_access_txt = "0"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -415,77 +354,47 @@
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "P" = (
-/obj/machinery/status_display/ai,
+/obj/machinery/ai_status_display,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
 "Q" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/side{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "R" = (
 /obj/structure/chair/office/dark,
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "S" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/side{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/shuttle/arrival)
-"T" = (
-/obj/machinery/porta_turret/centcom_shuttle,
-/turf/closed/wall/mineral/plastitanium,
 /area/shuttle/arrival)
 "U" = (
-/obj/machinery/computer{
-	dir = 1;
-	name = "Shuttle computer"
-	},
-/obj/effect/turf_decal/tile/blue{
+/obj/structure/frame/computer{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/blue,
 /area/shuttle/arrival)
 "V" = (
-/obj/machinery/computer{
-	dir = 1;
-	name = "Shuttle computer"
+/obj/structure/frame/computer{
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/blue/side,
 /area/shuttle/arrival)
 
 (1,1,1) = {"
 a
-T
+d
 f
 g
 n
@@ -637,7 +546,7 @@ a
 "}
 (9,1,1) = {"
 a
-T
+d
 f
 g
 n

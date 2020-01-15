@@ -9,7 +9,6 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Arrivals Shuttle Airlock"
 	},
-/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "d" = (
@@ -79,21 +78,21 @@
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "p" = (
-/obj/structure/chair/comfy/shuttle,
+/obj/structure/chair,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "q" = (
-/obj/structure/chair/comfy/shuttle,
+/obj/structure/chair,
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "r" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/chair{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "s" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -105,7 +104,7 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Arrivals Shuttle Airlock"
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "u" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -115,13 +114,13 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
 "v" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/chair{
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "w" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/chair{
 	dir = 1
 	},
 /obj/machinery/light/small{
@@ -138,7 +137,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "z" = (
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -29
 	},
@@ -151,28 +150,21 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
-"B" = (
-/obj/machinery/porta_turret/centcom_shuttle,
-/turf/closed/wall/mineral/titanium,
-/area/shuttle/arrival)
-"S" = (
-/turf/open/floor/mineral/titanium,
-/area/shuttle/arrival)
 
 (1,1,1) = {"
 a
-B
+b
 o
 d
 d
-B
+b
 a
 "}
 (2,1,1) = {"
 a
 b
 p
-S
+f
 v
 b
 a
@@ -181,7 +173,7 @@ a
 a
 b
 q
-S
+f
 w
 b
 a
@@ -198,9 +190,9 @@ b
 (5,1,1) = {"
 b
 e
-S
-S
-S
+f
+f
+f
 x
 b
 "}
@@ -270,9 +262,9 @@ b
 (13,1,1) = {"
 c
 f
-S
-S
-S
+f
+f
+f
 f
 c
 "}

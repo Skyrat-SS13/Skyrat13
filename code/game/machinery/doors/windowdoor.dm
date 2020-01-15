@@ -9,17 +9,16 @@
 	var/base_state = "left"
 	max_integrity = 150 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
 	integrity_failure = 0
-	armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
+	armor = list(melee = 20, bullet = 50, laser = 50, energy = 50, bomb = 10, bio = 100, rad = 100, fire = 70, acid = 100)
 	visible = FALSE
 	flags_1 = ON_BORDER_1
 	opacity = 0
 	CanAtmosPass = ATMOS_PASS_PROC
-	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
 	var/obj/item/electronics/airlock/electronics = null
 	var/reinf = 0
 	var/shards = 2
 	var/rods = 2
-	var/cable = 1
+	var/cable = 2
 	var/list/debris = list()
 
 /obj/machinery/door/window/Initialize(mapload, set_dir)
@@ -36,13 +35,10 @@
 	if(cable)
 		debris += new /obj/item/stack/cable_coil(src, cable)
 
-/obj/machinery/door/window/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/ntnet_interface)
-
 /obj/machinery/door/window/Destroy()
 	density = FALSE
-	QDEL_LIST(debris)
+	for(var/I in debris)
+		qdel(I)
 	if(obj_integrity == 0)
 		playsound(src, "shatter", 70, 1)
 	electronics = null
@@ -62,7 +58,7 @@
 		sleep(20)
 	close()
 
-/obj/machinery/door/window/Bumped(atom/movable/AM)
+/obj/machinery/door/window/CollidedWith(atom/movable/AM)
 	if( operating || !src.density )
 		return
 	if (!( ismob(AM) ))
@@ -205,21 +201,20 @@
 		take_damage(round(exposed_volume / 200), BURN, 0, 0)
 	..()
 
-/obj/machinery/door/window/emag_act(mob/user)
-	. = ..()
-	if(operating || !density || obj_flags & EMAGGED)
-		return
-	obj_flags |= EMAGGED
-	operating = TRUE
-	flick("[src.base_state]spark", src)
-	playsound(src, "sparks", 75, 1)
-	addtimer(CALLBACK(src, .proc/open_windows_me), 6)
-	return TRUE
 
-/obj/machinery/door/window/proc/open_windows_me()
-	operating = FALSE
-	desc += "<BR><span class='warning'>Its access panel is smoking slightly.</span>"
-	open(2)
+/obj/machinery/door/window/attack_ai(mob/user)
+	return src.attack_hand(user)
+
+/obj/machinery/door/window/emag_act(mob/user)
+	if(!operating && density && !(obj_flags & EMAGGED))
+		obj_flags |= EMAGGED
+		operating = TRUE
+		flick("[src.base_state]spark", src)
+		playsound(src, "sparks", 75, 1)
+		sleep(6)
+		operating = FALSE
+		desc += "<BR><span class='warning'>Its access panel is smoking slightly.</span>"
+		open(2)
 
 /obj/machinery/door/window/attackby(obj/item/I, mob/living/user, params)
 
@@ -232,16 +227,17 @@
 			if(density || operating)
 				to_chat(user, "<span class='warning'>You need to open the door to access the maintenance panel!</span>")
 				return
-			I.play_tool_sound(src)
+			playsound(src.loc, I.usesound, 50, 1)
 			panel_open = !panel_open
 			to_chat(user, "<span class='notice'>You [panel_open ? "open":"close"] the maintenance panel of the [src.name].</span>")
 			return
 
 		if(istype(I, /obj/item/crowbar))
 			if(panel_open && !density && !operating)
+				playsound(src.loc, I.usesound, 100, 1)
 				user.visible_message("[user] removes the electronics from the [src.name].", \
 									 "<span class='notice'>You start to remove electronics from the [src.name]...</span>")
-				if(I.use_tool(src, user, 40, volume=50))
+				if(do_after(user,40*I.toolspeed, target = src))
 					if(panel_open && !density && !operating && src.loc)
 						var/obj/structure/windoor_assembly/WA = new /obj/structure/windoor_assembly(src.loc)
 						switch(base_state)
@@ -255,7 +251,7 @@
 							if("rightsecure")
 								WA.facing = "r"
 								WA.secure = TRUE
-						WA.setAnchored(TRUE)
+						WA.anchored = TRUE
 						WA.state= "02"
 						WA.setDir(src.dir)
 						WA.ini_dir = src.dir
@@ -286,9 +282,6 @@
 				return
 	return ..()
 
-/obj/machinery/door/window/interact(mob/user)		//for sillycones
-	try_to_activate_door(user)
-
 /obj/machinery/door/window/try_to_crowbar(obj/item/I, mob/user)
 	if(!hasPower())
 		if(density)
@@ -307,35 +300,6 @@
 		if("deny")
 			flick("[src.base_state]deny", src)
 
-/obj/machinery/door/window/check_access_ntnet(datum/netdata/data)
-	return !requiresID() || ..()
-
-/obj/machinery/door/window/ntnet_receive(datum/netdata/data)
-	// Check if the airlock is powered.
-	if(!hasPower())
-		return
-
-	// Check packet access level.
-	if(!check_access_ntnet(data))
-		return
-
-	// Handle received packet.
-	var/command = lowertext(data.data["data"])
-	var/command_value = lowertext(data.data["data_secondary"])
-	switch(command)
-		if("open")
-			if(command_value == "on" && !density)
-				return
-
-			if(command_value == "off" && density)
-				return
-
-			if(density)
-				INVOKE_ASYNC(src, .proc/open)
-			else
-				INVOKE_ASYNC(src, .proc/close)
-		if("touch")
-			INVOKE_ASYNC(src, .proc/open_and_close)
 
 /obj/machinery/door/window/brigdoor
 	name = "secure door"

@@ -17,6 +17,10 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/powered/shuttle/medium_3)
+"g" = (
+/turf/closed/wall/mineral/plastitanium,
+/turf/closed/wall/mineral/titanium,
+/area/ruin/powered/shuttle/medium_3)
 "h" = (
 /turf/closed/wall/mineral/titanium,
 /area/ruin/powered/shuttle/medium_3)
@@ -68,91 +72,31 @@
 /area/ruin/powered/shuttle/medium_3)
 "v" = (
 /obj/structure/table,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/darkyellow,
 /area/ruin/powered/shuttle/medium_3)
 "w" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/darkyellow,
 /area/ruin/powered/shuttle/medium_3)
 "x" = (
 /obj/structure/chair/comfy{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/darkyellow,
 /area/ruin/powered/shuttle/medium_3)
 "z" = (
 /obj/machinery/sleeper,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/darkblue,
 /area/ruin/powered/shuttle/medium_3)
 "A" = (
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/shuttle/medium_3)
 "C" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/darkblue,
 /area/ruin/powered/shuttle/medium_3)
 "D" = (
 /obj/structure/table,
 /obj/item/storage/firstaid,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/darkblue,
 /area/ruin/powered/shuttle/medium_3)
 "E" = (
 /obj/structure/shuttle/engine/heater,
@@ -267,20 +211,20 @@ a
 a
 a
 c
+g
 h
 h
-h
-h
+g
 c
-h
+g
 j
 j
-h
+g
 c
+g
 h
 h
-h
-h
+g
 c
 a
 a
@@ -339,7 +283,7 @@ a
 c
 c
 c
-h
+g
 G
 l
 l
@@ -352,7 +296,7 @@ l
 l
 l
 G
-h
+g
 c
 c
 c
@@ -387,7 +331,7 @@ a
 a
 c
 c
-h
+g
 G
 p
 G
@@ -400,7 +344,7 @@ A
 G
 p
 G
-h
+g
 c
 c
 a
@@ -459,7 +403,7 @@ a
 a
 c
 c
-h
+g
 G
 p
 G
@@ -472,7 +416,7 @@ A
 G
 p
 G
-h
+g
 c
 c
 a
@@ -507,7 +451,7 @@ a
 c
 c
 c
-h
+g
 G
 l
 l
@@ -520,7 +464,7 @@ l
 l
 l
 G
-h
+g
 c
 c
 c
@@ -579,20 +523,20 @@ a
 a
 a
 c
+g
 h
 h
-h
-h
+g
 c
-h
+g
 j
 j
-h
+g
 c
+g
 h
 h
-h
-h
+g
 c
 a
 a

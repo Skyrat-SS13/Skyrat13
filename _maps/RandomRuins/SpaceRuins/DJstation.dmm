@@ -39,7 +39,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
 "ak" = (
-/obj/item/multitool,
+/obj/item/device/multitool,
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
 "al" = (
@@ -74,6 +74,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
+	dir = 0;
 	name = "Worn-out APC";
 	pixel_y = -24
 	},
@@ -135,18 +136,10 @@
 "az" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/ruin/space/djstation)
 "aA" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/ruin/space/djstation)
 "aB" = (
 /obj/effect/spawner/lootdrop/crate_spawner,
@@ -165,7 +158,7 @@
 /area/ruin/space/djstation)
 "aE" = (
 /obj/structure/table,
-/obj/item/flashlight/lamp,
+/obj/item/device/flashlight/lamp,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/djstation)
 "aF" = (
@@ -173,11 +166,7 @@
 /obj/machinery/microwave{
 	pixel_y = 8
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/ruin/space/djstation)
 "aG" = (
 /obj/machinery/door/airlock/public/glass{
@@ -187,7 +176,7 @@
 /area/ruin/space/djstation)
 "aH" = (
 /obj/structure/table,
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
 	broadcasting = 0;
 	dir = 8;
 	freerange = 1;
@@ -218,29 +207,17 @@
 "aM" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/ruin/space/djstation)
 "aN" = (
 /obj/machinery/light/small,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/ruin/space/djstation)
 "aO" = (
 /obj/structure/chair{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/ruin/space/djstation)
 "aP" = (
 /obj/structure/table,
@@ -249,7 +226,7 @@
 /area/ruin/space/djstation)
 "aQ" = (
 /obj/structure/table,
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
 	broadcasting = 1;
 	dir = 8;
 	freerange = 1;
@@ -360,9 +337,10 @@
 /area/ruin/space/djstation)
 "bi" = (
 /obj/machinery/door/airlock/external{
-	name = "Ruskie DJ Station"
+	name = "Ruskie DJ Station";
+	req_access = null;
+	req_access_txt = "0"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
 "bj" = (
@@ -372,15 +350,6 @@
 /obj/structure/disposaloutlet,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"Co" = (
-/obj/machinery/door/airlock/external{
-	name = "Ruskie DJ Station"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
 
 (1,1,1) = {"
 aa
@@ -655,7 +624,7 @@ bd
 aw
 bi
 ah
-Co
+bi
 "}
 (12,1,1) = {"
 ab

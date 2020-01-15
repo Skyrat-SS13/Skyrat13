@@ -13,7 +13,7 @@
 	ui_y = 400
 	var/last_status = SUPERMATTER_INACTIVE
 	var/list/supermatters
-	var/obj/machinery/power/supermatter_crystal/active		// Currently selected supermatter crystal.
+	var/obj/machinery/power/supermatter_shard/active		// Currently selected supermatter crystal.
 
 
 /datum/computer_file/program/supermatter_monitor/process_tick()
@@ -41,7 +41,7 @@
 	var/turf/T = get_turf(ui_host())
 	if(!T)
 		return
-	for(var/obj/machinery/power/supermatter_crystal/S in GLOB.machines)
+	for(var/obj/machinery/power/supermatter_shard/S in GLOB.machines)
 		// Delaminating, not within coverage, not on a tile.
 		if (!isturf(S.loc) || !(is_station_level(S.z) || is_mining_level(S.z) || S.z == T.z))
 			continue
@@ -52,7 +52,7 @@
 
 /datum/computer_file/program/supermatter_monitor/proc/get_status()
 	. = SUPERMATTER_INACTIVE
-	for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
+	for(var/obj/machinery/power/supermatter_shard/S in supermatters)
 		. = max(., S.get_status())
 
 /datum/computer_file/program/supermatter_monitor/ui_data()
@@ -81,19 +81,19 @@
 		if(air.total_moles())
 			for(var/gasid in air.gases)
 				gasdata.Add(list(list(
-				"name"= GLOB.meta_gas_names[gasid],
-				"amount" = round(100*air.gases[gasid]/air.total_moles(),0.01))))
+				"name"= air.gases[gasid][GAS_META][META_GAS_NAME],
+				"amount" = round(100*air.gases[gasid][MOLES]/air.total_moles(),0.01))))
 
 		else
 			for(var/gasid in air.gases)
 				gasdata.Add(list(list(
-					"name"= GLOB.meta_gas_names[gasid],
+					"name"= air.gases[gasid][GAS_META][META_GAS_NAME],
 					"amount" = 0)))
 
 		data["gases"] = gasdata
 	else
 		var/list/SMS = list()
-		for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
+		for(var/obj/machinery/power/supermatter_shard/S in supermatters)
 			var/area/A = get_area(S)
 			if(A)
 				SMS.Add(list(list(
@@ -120,7 +120,7 @@
 			return TRUE
 		if("PRG_set")
 			var/newuid = text2num(params["target"])
-			for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
+			for(var/obj/machinery/power/supermatter_shard/S in supermatters)
 				if(S.uid == newuid)
 					active = S
 			return TRUE

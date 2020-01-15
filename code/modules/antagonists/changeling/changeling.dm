@@ -7,7 +7,6 @@
 	roundend_category  = "changelings"
 	antagpanel_category = "Changeling"
 	job_rank = ROLE_CHANGELING
-	antag_moodlet = /datum/mood_event/focused
 
 	var/you_are_greet = TRUE
 	var/give_objectives = TRUE
@@ -19,7 +18,6 @@
 	var/datum/changelingprofile/first_prof = null
 	var/dna_max = 6 //How many extra DNA strands the changeling can store for transformation.
 	var/absorbedcount = 0
-	var/trueabsorbs = 0//dna gained using absorb, not dna sting
 	var/chem_charges = 20
 	var/chem_storage = 75
 	var/chem_recharge_rate = 1
@@ -34,8 +32,6 @@
 	var/mimicing = ""
 	var/canrespec = 0
 	var/changeling_speak = 0
-	var/loudfactor = 0 //Used for blood tests. At 4, blood tests will succeed. At 10, blood tests will result in an explosion.
-	var/bloodtestwarnings = 0 //Used to track if the ling has been notified that they will pass blood tests.
 	var/datum/dna/chosen_dna
 	var/obj/effect/proc_holder/changeling/sting/chosen_sting
 	var/datum/cellular_emporium/cellular_emporium
@@ -73,19 +69,15 @@
 	reset_powers()
 	create_initial_profile()
 	if(give_objectives)
+		if(team_mode)
+			forge_team_objectives()
 		forge_objectives()
 	remove_clownmut()
 	. = ..()
 
 /datum/antagonist/changeling/on_removal()
-	//We'll be using this from now on
-	var/mob/living/carbon/C = owner.current
-	if(istype(C))
-		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
-		if(B && (B.decoy_override != initial(B.decoy_override)))
-			B.organ_flags |= ORGAN_VITAL
-			B.decoy_override = FALSE
 	remove_changeling_powers()
+	owner.objectives -= objectives
 	. = ..()
 
 /datum/antagonist/changeling/proc/remove_clownmut()
@@ -123,8 +115,6 @@
 /datum/antagonist/changeling/proc/reset_powers()
 	if(purchasedpowers)
 		remove_changeling_powers()
-	loudfactor = 0
-	bloodtestwarnings = 0
 	//Repurchase free powers.
 	for(var/path in all_powers)
 		var/obj/effect/proc_holder/changeling/S = new path()
@@ -169,20 +159,13 @@
 		to_chat(owner.current, "We have reached our capacity for abilities.")
 		return
 
-	if(HAS_TRAIT(owner.current, TRAIT_DEATHCOMA))//To avoid potential exploits by buying new powers while in stasis, which clears your verblist.
+	if(owner.current.has_trait(TRAIT_FAKEDEATH))//To avoid potential exploits by buying new powers while in stasis, which clears your verblist.
 		to_chat(owner.current, "We lack the energy to evolve new abilities right now.")
 		return
 
 	geneticpoints -= thepower.dna_cost
 	purchasedpowers += thepower
 	thepower.on_purchase(owner.current)
-	loudfactor += thepower.loudness
-	if(loudfactor >= 4 && !bloodtestwarnings)
-		to_chat(owner.current, "<span class='warning'>Our blood is growing flammable. Our blood will react violently to heat.</span>")
-		bloodtestwarnings = 1
-	if(loudfactor >= 10 && bloodtestwarnings < 2)
-		to_chat(owner.current, "<span class='warning'>Our blood has grown extremely flammable. Our blood will react explosively to heat.</span>")
-		bloodtestwarnings = 2
 
 /datum/antagonist/changeling/proc/readapt()
 	if(!ishuman(owner.current))
@@ -191,7 +174,6 @@
 	if(canrespec)
 		to_chat(owner.current, "<span class='notice'>We have removed our evolutions from this form, and are now ready to readapt.</span>")
 		reset_powers()
-		playsound(get_turf(owner.current), 'sound/effects/lingreadapt.ogg', 75, TRUE, 5, soundenvwet = 0)
 		canrespec = 0
 		SSblackbox.record_feedback("tally", "changeling_power_purchase", 1, "Readapt")
 		return 1
@@ -239,7 +221,7 @@
 		if(verbose)
 			to_chat(user, "<span class='warning'>[target] is not compatible with our biology.</span>")
 		return
-	if((HAS_TRAIT(target, TRAIT_NOCLONE)) || (HAS_TRAIT(target, TRAIT_NOCLONE)))
+	if((target.has_trait(TRAIT_NOCLONE)) || (target.has_trait(TRAIT_NOCLONE)))
 		if(verbose)
 			to_chat(user, "<span class='warning'>DNA of [target] is ruined beyond usability!</span>")
 		return
@@ -269,11 +251,8 @@
 	prof.protected = protect
 
 	prof.underwear = H.underwear
-	prof.undie_color = H.undie_color
 	prof.undershirt = H.undershirt
-	prof.shirt_color = H.shirt_color
 	prof.socks = H.socks
-	prof.socks_color = H.socks_color
 
 	var/list/slots = list("head", "wear_mask", "back", "wear_suit", "w_uniform", "shoes", "belt", "gloves", "glasses", "ears", "wear_id", "s_store")
 	for(var/slot in slots)
@@ -340,7 +319,7 @@
 	if(istype(C))
 		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
 		if(B)
-			B.organ_flags &= ~ORGAN_VITAL
+			B.vital = FALSE
 			B.decoy_override = TRUE
 	update_changeling_icons_added()
 	return
@@ -353,7 +332,7 @@
 /datum/antagonist/changeling/greet()
 	if (you_are_greet)
 		to_chat(owner.current, "<span class='boldannounce'>You are [changelingID], a changeling! You have absorbed and taken the form of a human.</span>")
-	to_chat(owner.current, "<span class='boldannounce'>Use say \"[MODE_TOKEN_CHANGELING] message\" to communicate with your fellow changelings.</span>")
+	to_chat(owner.current, "<span class='boldannounce'>Use say \":g message\" to communicate with your fellow changelings.</span>")
 	to_chat(owner.current, "<b>You must complete the following tasks:</b>")
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ling_aler.ogg', 100, FALSE, pressure_affected = FALSE)
 
@@ -366,10 +345,7 @@
 	if(GLOB.changeling_team_objective_type)
 		var/datum/objective/changeling_team_objective/team_objective = new GLOB.changeling_team_objective_type
 		team_objective.owner = owner
-		if(team_objective.prepare())//Setting up succeeded
-			objectives += team_objective
-		else
-			qdel(team_objective)
+		objectives += team_objective
 	return
 
 /datum/antagonist/changeling/proc/forge_objectives()
@@ -384,21 +360,11 @@
 		if(!CTO.escape_objective_compatible)
 			escape_objective_possible = FALSE
 			break
-	var/changeling_objective = rand(1,3)
-	switch(changeling_objective)
-		if(1)
-			var/datum/objective/absorb/absorb_objective = new
-			absorb_objective.owner = owner
-			absorb_objective.gen_amount_goal(6, 8)
-			objectives += absorb_objective
-		if(2)
-			var/datum/objective/absorb_changeling/ac = new
-			ac.owner = owner
-			objectives += ac
-		if(3)
-			var/datum/objective/absorb_most/ac = new
-			ac.owner = owner
-			objectives += ac
+
+	var/datum/objective/absorb/absorb_objective = new
+	absorb_objective.owner = owner
+	absorb_objective.gen_amount_goal(6, 8)
+	objectives += absorb_objective
 
 	if(prob(60))
 		if(prob(85))
@@ -423,7 +389,7 @@
 			var/datum/objective/assassinate/kill_objective = new
 			kill_objective.owner = owner
 			if(team_mode) //No backstabbing while in a team
-				kill_objective.find_target_by_role(role = ROLE_CHANGELING, role_type = 1, invert = 1)
+				kill_objective.find_target_by_role(role = "Changeling", role_type = 1, invert = 1)
 			else
 				kill_objective.find_target()
 			objectives += kill_objective
@@ -431,7 +397,7 @@
 			var/datum/objective/maroon/maroon_objective = new
 			maroon_objective.owner = owner
 			if(team_mode)
-				maroon_objective.find_target_by_role(role = ROLE_CHANGELING, role_type = 1, invert = 1)
+				maroon_objective.find_target_by_role(role = "Changeling", role_type = 1, invert = 1)
 			else
 				maroon_objective.find_target()
 			objectives += maroon_objective
@@ -453,16 +419,18 @@
 			var/datum/objective/escape/escape_with_identity/identity_theft = new
 			identity_theft.owner = owner
 			if(team_mode)
-				identity_theft.find_target_by_role(role = ROLE_CHANGELING, role_type = 1, invert = 1)
+				identity_theft.find_target_by_role(role = "Changeling", role_type = 1, invert = 1)
 			else
 				identity_theft.find_target()
 			objectives += identity_theft
 		escape_objective_possible = FALSE
 
+	owner.objectives |= objectives
+
 /datum/antagonist/changeling/proc/update_changeling_icons_added()
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_CHANGELING]
 	hud.join_hud(owner.current)
-	set_antag_hud(owner.current, "changeling")
+	set_antag_hud(owner.current, "changling")
 
 /datum/antagonist/changeling/proc/update_changeling_icons_removed()
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_CHANGELING]
@@ -504,11 +472,8 @@
 	var/list/item_state_list = list()
 
 	var/underwear
-	var/undie_color
 	var/undershirt
-	var/shirt_color
 	var/socks
-	var/socks_color
 
 /datum/changelingprofile/Destroy()
 	qdel(dna)

@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		H.set_species(/datum/species/human, 1)
 		H.regenerate_icons()
 	give_appropriate_spells()
-	if(istype(owner.current.loc, /obj/effect/dummy/phased_mob/slaughter/))
+	if(istype(owner.current.loc, /obj/effect/dummy/slaughter/))
 		owner.current.forceMove(get_turf(owner.current))//Fixes dying while jaunted leaving you permajaunted.
 	form = BASIC_DEVIL
 
@@ -300,11 +300,11 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	sleep(1)
 	if(!D)
 		return
-	send_to_playing_players("<font size=5><span class='danger'><b>\"SLOTH, WRATH, GLUTTONY, ACEDIA, ENVY, GREED, PRIDE! FIRES OF HELL AWAKEN!!\"</font></span>")
-	sound_to_playing_players('sound/hallucinations/veryfar_noise.ogg')
+	to_chat(world, "<font size=5><span class='danger'><b>\"SLOTH, WRATH, GLUTTONY, ACEDIA, ENVY, GREED, PRIDE! FIRES OF HELL AWAKEN!!\"</font></span>")
+	SEND_SOUND(world, sound('sound/hallucinations/veryfar_noise.ogg'))
 	give_appropriate_spells()
 	D.convert_to_archdevil()
-	if(istype(D.loc, /obj/effect/dummy/phased_mob/slaughter/))
+	if(istype(D.loc, /obj/effect/dummy/slaughter/))
 		D.forceMove(get_turf(D))//Fixes dying while jaunted leaving you permajaunted.
 	var/area/A = get_area(owner.current)
 	if(A)
@@ -384,14 +384,14 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		if(BANISH_WATER)
 			if(iscarbon(body))
 				var/mob/living/carbon/H = body
-				return H.reagents.has_reagent(/datum/reagent/water/holywater)
+				return H.reagents.has_reagent("holy water")
 			return 0
 		if(BANISH_COFFIN)
-			return (body && istype(body.loc, /obj/structure/closet/crate/coffin))
+			return (body && istype(body.loc, /obj/structure/closet/coffin))
 		if(BANISH_FORMALDYHIDE)
 			if(iscarbon(body))
 				var/mob/living/carbon/H = body
-				return H.reagents.has_reagent(/datum/reagent/toxin/formaldehyde)
+				return H.reagents.has_reagent("formaldehyde")
 			return 0
 		if(BANISH_RUNES)
 			if(body)
@@ -430,7 +430,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		update_hud()
 	if(body)
 		body.revive(TRUE, TRUE) //Adminrevive also recovers organs, preventing someone from resurrecting without a heart.
-		if(istype(body.loc, /obj/effect/dummy/phased_mob/slaughter/))
+		if(istype(body.loc, /obj/effect/dummy/slaughter/))
 			body.forceMove(get_turf(body))//Fixes dying while jaunted leaving you permajaunted.
 		if(istype(body, /mob/living/carbon/true_devil))
 			var/mob/living/carbon/true_devil/D = body
@@ -456,10 +456,10 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 			return -1
 		currentMob.change_mob_type( /mob/living/carbon/human, targetturf, null, 1)
 		var/mob/living/carbon/human/H = owner.current
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/lawyer/black(H), SLOT_W_UNIFORM)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), SLOT_SHOES)
-		H.equip_to_slot_or_del(new /obj/item/storage/briefcase(H), SLOT_HANDS)
-		H.equip_to_slot_or_del(new /obj/item/pen(H), SLOT_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/lawyer/black(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/storage/briefcase(H), slot_hands)
+		H.equip_to_slot_or_del(new /obj/item/pen(H), slot_l_store)
 		if(SOULVALUE >= BLOOD_THRESHOLD)
 			H.set_species(/datum/species/lizard, 1)
 			H.underwear = "Nude"
@@ -539,17 +539,29 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	var/list/parts = list()
 	parts += "The devil's true name is: [truename]"
 	parts += "The devil's bans were:"
-	parts += "[FOURSPACES][GLOB.lawlorify[LORE][ban]]"
-	parts += "[FOURSPACES][GLOB.lawlorify[LORE][bane]]"
-	parts += "[FOURSPACES][GLOB.lawlorify[LORE][obligation]]"
-	parts += "[FOURSPACES][GLOB.lawlorify[LORE][banish]]"
+	parts += "[GLOB.TAB][GLOB.lawlorify[LORE][ban]]"
+	parts += "[GLOB.TAB][GLOB.lawlorify[LORE][bane]]"
+	parts += "[GLOB.TAB][GLOB.lawlorify[LORE][obligation]]"
+	parts += "[GLOB.TAB][GLOB.lawlorify[LORE][banish]]"
 	return parts.Join("<br>")
 
 /datum/antagonist/devil/roundend_report()
 	var/list/parts = list()
 	parts += printplayer(owner)
 	parts += printdevilinfo()
-	parts += printobjectives(objectives)
+	parts += printobjectives(owner)
+	return parts.Join("<br>")
+
+/datum/antagonist/devil/roundend_report_footer()
+	//sintouched go here for now as a hack , TODO proper antag datum for these
+	var/list/parts = list()
+	if(SSticker.mode.sintouched.len)
+		parts += "<span class='header'>The sintouched were:</span>"
+		var/list/sintouchedUnique = uniqueList(SSticker.mode.sintouched)
+		for(var/S in sintouchedUnique)
+			var/datum/mind/sintouched_mind = S
+			parts += printplayer(sintouched_mind)
+			parts += printobjectives(sintouched_mind)
 	return parts.Join("<br>")
 
 //A simple super light weight datum for the codex gigas.

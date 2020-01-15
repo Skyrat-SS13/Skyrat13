@@ -31,7 +31,6 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 /obj/structure/bodycontainer/Initialize()
 	. = ..()
 	GLOB.bodycontainers += src
-	recursive_organ_check(src)
 
 /obj/structure/bodycontainer/Destroy()
 	GLOB.bodycontainers -= src
@@ -59,12 +58,9 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	open()
 
 /obj/structure/bodycontainer/attack_paw(mob/user)
-	return attack_hand(user)
+	return src.attack_hand(user)
 
 /obj/structure/bodycontainer/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	if(locked)
 		to_chat(user, "<span class='danger'>It's locked.</span>")
 		return
@@ -85,13 +81,10 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 /obj/structure/bodycontainer/attackby(obj/P, mob/user, params)
 	add_fingerprint(user)
 	if(istype(P, /obj/item/pen))
-		if(!user.is_literate())
-			to_chat(user, "<span class='notice'>You scribble illegibly on the side of [src]!</span>")
-			return
 		var/t = stripped_input(user, "What would you like the label to be?", text("[]", name), null)
 		if (user.get_active_held_item() != P)
 			return
-		if(!user.canUseTopic(src, BE_CLOSE))
+		if ((!in_range(src, usr) && src.loc != user))
 			return
 		if (t)
 			name = text("[]- '[]'", initial(name), t)
@@ -102,7 +95,6 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 /obj/structure/bodycontainer/deconstruct(disassembled = TRUE)
 	new /obj/item/stack/sheet/metal (loc, 5)
-	recursive_organ_check(src)
 	qdel(src)
 
 /obj/structure/bodycontainer/container_resist(mob/living/user)
@@ -122,24 +114,20 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 		open()
 
 /obj/structure/bodycontainer/proc/open()
-	recursive_organ_check(src)
 	playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 	playsound(src, 'sound/effects/roll.ogg', 5, 1)
 	var/turf/T = get_step(src, dir)
-	connected.setDir(dir)
+	connected.dir=dir
 	for(var/atom/movable/AM in src)
 		AM.forceMove(T)
 	update_icon()
 
 /obj/structure/bodycontainer/proc/close()
 	playsound(src, 'sound/effects/roll.ogg', 5, 1)
-	playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
+	playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 	for(var/atom/movable/AM in connected.loc)
 		if(!AM.anchored || AM == connected)
-			if(ismob(AM) && !isliving(AM))
-				continue
 			AM.forceMove(src)
-	recursive_organ_check(src)
 	update_icon()
 
 /obj/structure/bodycontainer/get_remote_view_fullscreens(mob/user)
@@ -150,29 +138,14 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
  */
 /obj/structure/bodycontainer/morgue
 	name = "morgue"
-	desc = "Used to keep bodies in until someone fetches them. Now includes a high-tech alert system."
+	desc = "Used to keep bodies in until someone fetches them."
 	icon_state = "morgue1"
 	dir = EAST
-	var/beeper = TRUE
-	var/beep_cooldown = 50
-	var/next_beep = 0
 
 /obj/structure/bodycontainer/morgue/New()
 	connected = new/obj/structure/tray/m_tray(src)
 	connected.connected = src
 	..()
-
-/obj/structure/bodycontainer/morgue/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.</span>"
-
-/obj/structure/bodycontainer/morgue/AltClick(mob/user)
-	. = ..()
-	if(!user.canUseTopic(src, !issilicon(user)))
-		return
-	beeper = !beeper
-	to_chat(user, "<span class='notice'>You turn the speaker function [beeper ? "on" : "off"].</span>")
-	return TRUE
 
 /obj/structure/bodycontainer/morgue/update_icon()
 	if (!connected || connected.loc != src) // Open or tray is gone.
@@ -189,12 +162,8 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 			for(var/mob/living/M in compiled)
 				var/mob/living/mob_occupant = get_mob_or_brainmob(M)
-				if(mob_occupant.client && !mob_occupant.suiciding && !(HAS_TRAIT(mob_occupant, TRAIT_NOCLONE)) && !mob_occupant.hellbound)
+				if(!mob_occupant.suiciding && !(mob_occupant.has_trait(TRAIT_NOCLONE)) && !mob_occupant.hellbound)
 					icon_state = "morgue4" // Cloneable
-					if(mob_occupant.stat == DEAD && beeper)
-						if(world.time > next_beep)
-							playsound(src, 'sound/machines/beeping_alarm.ogg', 50, 0) //Clone them you blind fucks
-							next_beep = world.time + beep_cooldown
 					break
 
 
@@ -208,7 +177,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 GLOBAL_LIST_EMPTY(crematoriums)
 /obj/structure/bodycontainer/crematorium
 	name = "crematorium"
-	desc = "A human incinerator. Works well on barbecue nights."
+	desc = "A human incinerator. Works well on barbeque nights."
 	icon_state = "crema1"
 	dir = SOUTH
 	var/id = 1
@@ -263,20 +232,24 @@ GLOBAL_LIST_EMPTY(crematoriums)
 			if (M.stat != DEAD)
 				M.emote("scream")
 			if(user)
-				log_combat(user, M, "cremated")
+				user.log_message("Cremated <b>[M]/[M.ckey]</b>", INDIVIDUAL_ATTACK_LOG)
+				log_attack("\[[time_stamp()]\] <b>[user]/[user.ckey]</b> cremated <b>[M]/[M.ckey]</b>")
 			else
-				M.log_message("was cremated", LOG_ATTACK)
-
+				log_attack("\[[time_stamp()]\] <b>UNKNOWN</b> cremated <b>[M]/[M.ckey]</b>")
 			M.death(1)
 			if(M) //some animals get automatically deleted on death.
 				M.ghostize()
 				qdel(M)
 
+		var/ash_check = FALSE
 		for(var/obj/O in conts) //conts defined above, ignores crematorium and tray
+			if(istype(O,/obj/effect/decal/cleanable/ash)) ash_check = TRUE//creates the illusion of ash piling up
 			qdel(O)
 
-		if(!locate(/obj/effect/decal/cleanable/ash) in get_step(src, dir))//prevent pile-up
-			new/obj/effect/decal/cleanable/ash/crematorium(src)
+		var/obj/effect/decal/cleanable/ash/a
+		if(ash_check) a=new/obj/effect/decal/cleanable/ash/large(src)//cont. illusion of more ash
+		else a=new/obj/effect/decal/cleanable/ash(src)
+		a.layer = connected.layer//Makes the ash the same layer as the tray.
 
 		sleep(30)
 
@@ -308,7 +281,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 /obj/structure/tray
 	icon = 'icons/obj/stationobjs.dmi'
 	density = TRUE
-	layer = TRAY_LAYER
+	layer = BELOW_OBJ_LAYER
 	var/obj/structure/bodycontainer/connected = null
 	anchored = TRUE
 	pass_flags = LETPASSTHROW
@@ -326,12 +299,9 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	qdel(src)
 
 /obj/structure/tray/attack_paw(mob/user)
-	return attack_hand(user)
+	return src.attack_hand(user)
 
 /obj/structure/tray/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	if (src.connected)
 		connected.close()
 		add_fingerprint(user)

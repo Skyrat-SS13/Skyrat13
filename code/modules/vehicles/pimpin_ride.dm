@@ -14,7 +14,7 @@
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 7), TEXT_EAST = list(-12, 7), TEXT_WEST = list( 12, 7)))
 
 	if(floorbuffer)
-		AddElement(/datum/element/cleaning)
+		AddComponent(/datum/component/cleaning)
 
 /obj/vehicle/ridden/janicart/Destroy()
 	if(mybag)
@@ -29,9 +29,9 @@
 	icon_state = "upgrade"
 
 /obj/vehicle/ridden/janicart/examine(mob/user)
-	. = ..()
+	..()
 	if(floorbuffer)
-		. += "It has been upgraded with a floor buffer."
+		to_chat(user, "It has been upgraded with a floor buffer.")
 
 /obj/vehicle/ridden/janicart/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/storage/bag/trash))
@@ -50,7 +50,7 @@
 		floorbuffer = TRUE
 		qdel(I)
 		to_chat(user, "<span class='notice'>You upgrade [src] with the floor buffer.</span>")
-		AddElement(/datum/element/cleaning)
+		AddComponent(/datum/component/cleaning)
 		update_icon()
 	else
 		return ..()
@@ -63,9 +63,8 @@
 		add_overlay("cart_buffer")
 
 /obj/vehicle/ridden/janicart/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
+	if(..())
+		return 1
 	else if(mybag)
 		mybag.forceMove(get_turf(user))
 		user.put_in_hands(mybag)

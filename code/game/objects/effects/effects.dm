@@ -18,7 +18,7 @@
 /obj/effect/mech_melee_attack(obj/mecha/M)
 	return 0
 
-/obj/effect/blob_act(obj/structure/blob/B)
+/obj/effect/blob_act()
 	return
 
 /obj/effect/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
@@ -56,9 +56,6 @@
 
 /obj/effect/abstract/singularity_act()
 	return
-
-/obj/effect/abstract/has_gravity(turf/T)
-	return FALSE
 
 /obj/effect/dummy/singularity_pull()
 	return

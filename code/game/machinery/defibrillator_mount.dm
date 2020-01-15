@@ -7,9 +7,11 @@
 	icon = 'icons/obj/machines/defib_mount.dmi'
 	icon_state = "defibrillator_mount"
 	density = FALSE
+	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 1
 	power_channel = EQUIP
+	speed_process = TRUE //GAS GAS GAS
 	req_one_access = list(ACCESS_MEDICAL, ACCESS_HEADS, ACCESS_SECURITY) //used to control clamps
 	var/obj/item/defibrillator/defib //this mount's defibrillator
 	var/clamps_locked = FALSE //if true, and a defib is loaded, it can't be removed without unlocking the clamps
@@ -24,35 +26,36 @@
 	. = ..()
 
 /obj/machinery/defibrillator_mount/examine(mob/user)
-	. = ..()
+	..()
 	if(defib)
-		. += "<span class='notice'>There is a defib unit hooked up. Alt-click to remove it.<span>"
+		to_chat(user, "<span class='notice'>There is a defib unit hooked up. Alt-click to remove it.<span>")
 		if(GLOB.security_level >= SEC_LEVEL_RED)
-			. += "<span class='notice'>Due to a security situation, its locking clamps can be toggled by swiping any ID.</span>"
+			to_chat(user, "<span class='notice'>Due to a security situation, its locking clamps can be toggled by swiping any ID.</span>")
 		else
-			. += "<span class='notice'>Its locking clamps can be [clamps_locked ? "dis" : ""]engaged by swiping an ID with access.</span>"
+			to_chat(user, "<span class='notice'>Its locking clamps can be [clamps_locked ? "dis" : ""]engaged by swiping an ID with access.</span>")
 
 /obj/machinery/defibrillator_mount/process()
-	if(defib && defib.cell && defib.cell.charge < defib.cell.maxcharge && is_operational())
-		use_power(200)
-		defib.cell.give(180) //90% efficiency, slightly better than the cell charger's 87.5%
-		update_icon()
+	if(defib && defib.cell && defib.cell.charge < defib.cell.maxcharge)
+		use_power(20)
+		defib.cell.give(18) //90% efficiency, slightly better than the cell charger's 87.5%
+	if(isliving(defib.paddles.loc))
+		var/mob/living/L = defib.paddles.loc
+		if(!L.Adjacent(src))
+			to_chat(L, "<span class='warning'>[defib]'s paddles overextend and come out of your hands!</span>")
+			L.dropItemToGround(defib.paddles)
+	update_icon()
 
-/obj/machinery/defibrillator_mount/update_overlays()
-	. = ..()
-	if(!defib)
-		return
-
-	. += "defib"
-
-	if(defib.powered)
-		. += (defib.safety ? "online" : "emagged")
-		var/ratio = defib.cell.charge / defib.cell.maxcharge
-		ratio = CEILING(ratio * 4, 1) * 25
-		. += "charge[ratio]"
-
-	if(clamps_locked)
-		. += "clamps"
+/obj/machinery/defibrillator_mount/update_icon()
+	cut_overlays()
+	if(defib)
+		add_overlay("defib")
+		if(defib.powered)
+			add_overlay(defib.safety ? "online" : "emagged")
+			var/ratio = defib.cell.charge / defib.cell.maxcharge
+			ratio = CEILING(ratio * 4, 1) * 25
+			add_overlay("charge[ratio]")
+		if(clamps_locked)
+			add_overlay("clamps")
 
 /obj/machinery/defibrillator_mount/get_cell()
 	if(defib)
@@ -63,17 +66,17 @@
 	if(!defib)
 		to_chat(user, "<span class='warning'>There's no defibrillator unit loaded!</span>")
 		return
-	if(defib.paddles.loc != defib)
+	if(defib.on)
 		to_chat(user, "<span class='warning'>[defib.paddles.loc == user ? "You are already" : "Someone else is"] holding [defib]'s paddles!</span>")
 		return
-	user.put_in_hands(defib.paddles)
+	defib.attack_hand(user)
 
 /obj/machinery/defibrillator_mount/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/defibrillator))
 		if(defib)
 			to_chat(user, "<span class='warning'>There's already a defibrillator in [src]!</span>")
 			return
-		if(HAS_TRAIT(I, TRAIT_NODROP) || !user.transferItemToLoc(I, src))
+		if(I.flags_1 & NODROP_1 || !user.transferItemToLoc(I, src))
 			to_chat(user, "<span class='warning'>[I] is stuck to your hand!</span>")
 			return
 		user.visible_message("<span class='notice'>[user] hooks up [I] to [src]!</span>", \
@@ -81,9 +84,6 @@
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		defib = I
 		update_icon()
-		return
-	else if(I == defib.paddles)
-		defib.paddles.snap_back()
 		return
 	var/obj/item/card/id = I.GetID()
 	if(id)
@@ -118,11 +118,9 @@
 	update_icon()
 	return TRUE
 
-/obj/machinery/defibrillator_mount/AltClick(mob/living/carbon/user)
-	. = ..()
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
+/obj/machinery/defibrillator_mount/AltClick(mob/living/user)
+	if(!user.Adjacent(src) || !istype(user))
 		return
-	. = TRUE
 	if(!defib)
 		to_chat(user, "<span class='warning'>It'd be hard to remove a defib unit from a mount that has none.</span>")
 		return

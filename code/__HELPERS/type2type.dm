@@ -12,8 +12,7 @@
 //Returns an integer given a hex input, supports negative values "-ff"
 //skips preceding invalid characters
 //breaks when hittin invalid characters thereafter
-// If safe=TRUE, returns null on incorrect input strings instead of CRASHing
-/proc/hex2num(hex, safe=FALSE)
+/proc/hex2num(hex)
 	. = 0
 	var/place = 1
 	for(var/i in length(hex) to 1 step -1)
@@ -28,10 +27,7 @@
 			if(45)
 				return . * -1 // -
 			else
-				if(safe)
-					return null
-				else
-					CRASH("Malformed hex number")
+				CRASH("Malformed hex number")
 
 		. += num * place
 		place *= 16
@@ -143,17 +139,6 @@
 		if(337.5 to 360)
 			return NORTH
 
-/proc/angle2dir_cardinal(angle)
-	switch(round(angle, 0.1))
-		if(315.5 to 360, 0 to 45.5)
-			return NORTH
-		if(45.6 to 135.5)
-			return EAST
-		if(135.6 to 225.5)
-			return SOUTH
-		if(225.6 to 315.5)
-			return WEST
-
 //returns the north-zero clockwise angle in degrees, given a direction
 /proc/dir2angle(D)
 	switch(D)
@@ -193,41 +178,54 @@
 			return ICON_OVERLAY
 
 //Converts a rights bitfield into a string
-/proc/rights2text(rights, seperator="", prefix = "+")
-	seperator += prefix
+/proc/rights2text(rights, seperator="", list/adds, list/subs)
 	if(rights & R_BUILDMODE)
-		. += "[seperator]BUILDMODE"
+		. += "[seperator]+BUILDMODE"
 	if(rights & R_ADMIN)
-		. += "[seperator]ADMIN"
+		. += "[seperator]+ADMIN"
 	if(rights & R_BAN)
-		. += "[seperator]BAN"
+		. += "[seperator]+BAN"
 	if(rights & R_FUN)
-		. += "[seperator]FUN"
+		. += "[seperator]+FUN"
 	if(rights & R_SERVER)
-		. += "[seperator]SERVER"
+		. += "[seperator]+SERVER"
 	if(rights & R_DEBUG)
-		. += "[seperator]DEBUG"
+		. += "[seperator]+DEBUG"
 	if(rights & R_POSSESS)
-		. += "[seperator]POSSESS"
+		. += "[seperator]+POSSESS"
 	if(rights & R_PERMISSIONS)
-		. += "[seperator]PERMISSIONS"
+		. += "[seperator]+PERMISSIONS"
 	if(rights & R_STEALTH)
-		. += "[seperator]STEALTH"
+		. += "[seperator]+STEALTH"
 	if(rights & R_POLL)
-		. += "[seperator]POLL"
+		. += "[seperator]+POLL"
 	if(rights & R_VAREDIT)
-		. += "[seperator]VAREDIT"
+		. += "[seperator]+VAREDIT"
 	if(rights & R_SOUNDS)
-		. += "[seperator]SOUND"
+		. += "[seperator]+SOUND"
 	if(rights & R_SPAWN)
-		. += "[seperator]SPAWN"
-	if(rights & R_AUTOLOGIN)
-		. += "[seperator]AUTOLOGIN"
-	if(rights & R_DBRANKS)
-		. += "[seperator]DBRANKS"
-	if(!.)
-		. = "NONE"
+		. += "[seperator]+SPAWN"
+
+	for(var/verbpath in adds)
+		. += "[seperator]+[verbpath]"
+	for(var/verbpath in subs)
+		. += "[seperator]-[verbpath]"
 	return .
+
+/proc/ui_style2icon(ui_style)
+	switch(ui_style)
+		if("Retro")
+			return 'icons/mob/screen_retro.dmi'
+		if("Plasmafire")
+			return 'icons/mob/screen_plasmafire.dmi'
+		if("Slimecore")
+			return 'icons/mob/screen_slimecore.dmi'
+		if("Operative")
+			return 'icons/mob/screen_operative.dmi'
+		if("Clockwork")
+			return 'icons/mob/screen_clockwork.dmi'
+		else
+			return 'icons/mob/screen_midnight.dmi'
 
 //colour formats
 /proc/rgb2hsl(red, green, blue)
@@ -350,72 +348,51 @@
 		return 0
 
 	if(bpc & FULL_BODY)
-		covered_parts |= list(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM,BODY_ZONE_HEAD,BODY_ZONE_CHEST,BODY_ZONE_L_LEG,BODY_ZONE_R_LEG)
+		covered_parts |= list("l_arm","r_arm","head","chest","l_leg","r_leg")
 
 	else
 		if(bpc & HEAD)
-			covered_parts |= list(BODY_ZONE_HEAD)
+			covered_parts |= list("head")
 		if(bpc & CHEST)
-			covered_parts |= list(BODY_ZONE_CHEST)
+			covered_parts |= list("chest")
 		if(bpc & GROIN)
-			covered_parts |= list(BODY_ZONE_CHEST)
+			covered_parts |= list("chest")
 
 		if(bpc & ARMS)
-			covered_parts |= list(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM)
+			covered_parts |= list("l_arm","r_arm")
 		else
 			if(bpc & ARM_LEFT)
-				covered_parts |= list(BODY_ZONE_L_ARM)
+				covered_parts |= list("l_arm")
 			if(bpc & ARM_RIGHT)
-				covered_parts |= list(BODY_ZONE_R_ARM)
+				covered_parts |= list("r_arm")
 
 		if(bpc & HANDS)
-			covered_parts |= list(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM)
+			covered_parts |= list("l_arm","r_arm")
 		else
 			if(bpc & HAND_LEFT)
-				covered_parts |= list(BODY_ZONE_L_ARM)
+				covered_parts |= list("l_arm")
 			if(bpc & HAND_RIGHT)
-				covered_parts |= list(BODY_ZONE_R_ARM)
+				covered_parts |= list("r_arm")
 
 		if(bpc & LEGS)
-			covered_parts |= list(BODY_ZONE_L_LEG,BODY_ZONE_R_LEG)
+			covered_parts |= list("l_leg","r_leg")
 		else
 			if(bpc & LEG_LEFT)
-				covered_parts |= list(BODY_ZONE_L_LEG)
+				covered_parts |= list("l_leg")
 			if(bpc & LEG_RIGHT)
-				covered_parts |= list(BODY_ZONE_R_LEG)
+				covered_parts |= list("r_leg")
 
 		if(bpc & FEET)
-			covered_parts |= list(BODY_ZONE_L_LEG,BODY_ZONE_R_LEG)
+			covered_parts |= list("l_leg","r_leg")
 		else
 			if(bpc & FOOT_LEFT)
-				covered_parts |= list(BODY_ZONE_L_LEG)
+				covered_parts |= list("l_leg")
 			if(bpc & FOOT_RIGHT)
-				covered_parts |= list(BODY_ZONE_R_LEG)
+				covered_parts |= list("r_leg")
 
 	return covered_parts
 
-/proc/slot2body_zone(slot)
-	switch(slot)
-		if(SLOT_BACK, SLOT_WEAR_SUIT, SLOT_W_UNIFORM, SLOT_BELT, SLOT_WEAR_ID)
-			return BODY_ZONE_CHEST
 
-		if(SLOT_GLOVES, SLOT_HANDS, SLOT_HANDCUFFED)
-			return pick(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
-
-		if(SLOT_HEAD, SLOT_NECK, SLOT_NECK, SLOT_EARS)
-			return BODY_ZONE_HEAD
-
-		if(SLOT_WEAR_MASK)
-			return BODY_ZONE_PRECISE_MOUTH
-
-		if(SLOT_GLASSES)
-			return BODY_ZONE_PRECISE_EYES
-
-		if(SLOT_SHOES)
-			return pick(BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
-
-		if(SLOT_LEGCUFFED)
-			return pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
 //adapted from http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
 /proc/heat2colour(temp)
@@ -447,17 +424,6 @@
 			. = 0
 		else
 			. = max(0, min(255, 138.5177312231 * log(temp - 10) - 305.0447927307))
-
-/proc/fusionpower2text(power) //used when displaying fusion power on analyzers
-	switch(power)
-		if(0 to 5)
-			return "low"
-		if(5 to 20)
-			return "mid"
-		if(20 to 50)
-			return "high"
-		if(50 to INFINITY)
-			return "super"
 
 /proc/color2hex(color)	//web colors
 	if(!color)
@@ -616,16 +582,12 @@
 		r+= num2hex(c)
 	return r
 
-// Decodes hex to raw byte string.
-// If safe=TRUE, returns null on incorrect input strings instead of CRASHing
-/proc/hextostr(str, safe=FALSE)
+/proc/hextostr(str)
 	if(!istext(str)||!str)
 		return
 	var/r
 	var/c
 	for(var/i = 1 to length(str)/2)
-		c = hex2num(copytext(str,i*2-1,i*2+1), safe)
-		if(isnull(c))
-			return null
-		r += ascii2text(c)
+		c= hex2num(copytext(str,i*2-1,i*2+1))
+		r+= ascii2text(c)
 	return r

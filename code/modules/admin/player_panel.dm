@@ -1,7 +1,6 @@
 /datum/admins/proc/player_panel_new()//The new one
 	if(!check_rights())
 		return
-	log_admin("[key_name(usr)] checked the player panel.")
 	var/dat = "<html><head><title>Player Panel</title></head>"
 
 	//javascript, the part that does most of the work~
@@ -80,8 +79,6 @@
 					body += "<a href='?_src_=holder;[HrefToken()];showmessageckey="+ckey+"'>N</a> - "
 					body += "<a href='?_src_=vars;[HrefToken()];Vars="+ref+"'>VV</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];traitor="+ref+"'>TP</a> - "
-					if (job == "Cyborg")
-						body += "<a href='?_src_=holder;[HrefToken()];borgpanel="+ref+"'>BP</a> - "
 					body += "<a href='?priv_msg="+ckey+"'>PM</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];subtlemessage="+ref+"'>SM</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];adminplayerobservefollow="+ref+"'>FLW</a> - "
@@ -239,7 +236,7 @@
 						if(islarva(M))
 							M_job = "Alien larva"
 						else
-							M_job = ROLE_ALIEN
+							M_job = "Alien"
 					else
 						M_job = "Carbon-based"
 
@@ -247,7 +244,7 @@
 					if(isAI(M))
 						M_job = "AI"
 					else if(ispAI(M))
-						M_job = ROLE_PAI
+						M_job = "pAI"
 					else if(iscyborg(M))
 						M_job = "Cyborg"
 					else

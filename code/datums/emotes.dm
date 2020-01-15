@@ -1,3 +1,6 @@
+#define EMOTE_VISIBLE 1
+#define EMOTE_AUDIBLE 2
+
 /datum/emote
 	var/key = "" //What calls the emote
 	var/key_third_person = "" //This will also call the emote
@@ -13,7 +16,7 @@
 	var/emote_type = EMOTE_VISIBLE //Whether the emote is visible or audible
 	var/restraint_check = FALSE //Checks if the mob is restrained before performing the emote
 	var/muzzle_ignore = FALSE //Will only work if the emote is EMOTE_AUDIBLE
-	var/list/mob_type_allowed_typecache = /mob //Types that are allowed to use that emote
+	var/list/mob_type_allowed_typecache = list(/mob) //Types that are allowed to use that emote
 	var/list/mob_type_blacklist_typecache //Types that are NOT allowed to use that emote
 	var/list/mob_type_ignore_stat_typecache
 	var/stat_allowed = CONSCIOUS
@@ -22,22 +25,13 @@
 /datum/emote/New()
 	if(key_third_person)
 		emote_list[key_third_person] = src
-	if (ispath(mob_type_allowed_typecache))
-		switch (mob_type_allowed_typecache)
-			if (/mob)
-				mob_type_allowed_typecache = GLOB.typecache_mob
-			if (/mob/living)
-				mob_type_allowed_typecache = GLOB.typecache_living
-			else
-				mob_type_allowed_typecache = typecacheof(mob_type_allowed_typecache)
-	else
-		mob_type_allowed_typecache = typecacheof(mob_type_allowed_typecache)
+	mob_type_allowed_typecache = typecacheof(mob_type_allowed_typecache)
 	mob_type_blacklist_typecache = typecacheof(mob_type_blacklist_typecache)
 	mob_type_ignore_stat_typecache = typecacheof(mob_type_ignore_stat_typecache)
 
-/datum/emote/proc/run_emote(mob/user, params, type_override, intentional = FALSE)
+/datum/emote/proc/run_emote(mob/user, params, type_override)
 	. = TRUE
-	if(!can_run_emote(user, TRUE, intentional))
+	if(!can_run_emote(user))
 		return FALSE
 	var/msg = select_message_type(user)
 	if(params && message_param)
@@ -53,7 +47,7 @@
 	if(!msg)
 		return
 
-	user.log_message(msg, LOG_EMOTE)
+	user.log_message(msg, INDIVIDUAL_EMOTE_LOG)
 	msg = "<b>[user]</b> " + msg
 
 	for(var/mob/M in GLOB.dead_mob_list)
@@ -67,6 +61,7 @@
 		user.audible_message(msg)
 	else
 		user.visible_message(msg)
+	log_talk(user,"[key_name(user)] : [msg]",LOGEMOTE)
 
 /datum/emote/proc/replace_pronoun(mob/user, message)
 	if(findtext(message, "their"))
@@ -99,7 +94,7 @@
 /datum/emote/proc/select_param(mob/user, params)
 	return replacetext(message_param, "%t", params)
 
-/datum/emote/proc/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)
+/datum/emote/proc/can_run_emote(mob/user, status_check = TRUE)
 	. = TRUE
 	if(!is_type_in_typecache(user, mob_type_allowed_typecache))
 		return FALSE
@@ -107,39 +102,20 @@
 		return FALSE
 	if(status_check && !is_type_in_typecache(user, mob_type_ignore_stat_typecache))
 		if(user.stat > stat_allowed)
-			if(!intentional)
-				return FALSE
-			switch(user.stat)
-				if(SOFT_CRIT)
-					to_chat(user, "<span class='notice'>You cannot [key] while in a critical condition.</span>")
-				if(UNCONSCIOUS)
-					to_chat(user, "<span class='notice'>You cannot [key] while unconscious.</span>")
-				if(DEAD)
-					to_chat(user, "<span class='notice'>You cannot [key] while dead.</span>")
+			to_chat(user, "<span class='notice'>You cannot [key] while unconscious.</span>")
 			return FALSE
-		if(restraint_check && (user.IsStun() || user.IsKnockdown()))
-			if(!intentional)
-				return FALSE
-			to_chat(user, "<span class='notice'>You cannot [key] while stunned.</span>")
-			return FALSE
-		if(restraint_check && user.restrained())
-			if(!intentional)
-				return FALSE
+		if(restraint_check && (user.restrained() || user.buckled))
 			to_chat(user, "<span class='notice'>You cannot [key] while restrained.</span>")
 			return FALSE
-
-	if(isliving(user))
-		var/mob/living/L = user
-		if(HAS_TRAIT(L, TRAIT_EMOTEMUTE))
+		if(user.reagents && user.reagents.has_reagent("mimesbane"))
 			return FALSE
 
 /datum/emote/sound
 	var/sound //Sound to play when emote is called
 	var/vary = FALSE	//used for the honk borg emote
-	var/volume = 50
 	mob_type_allowed_typecache = list(/mob/living/brain, /mob/living/silicon)
 
 /datum/emote/sound/run_emote(mob/user, params)
 	. = ..()
 	if(.)
-		playsound(user.loc, sound, volume, vary)
+		playsound(user.loc, sound, 50, vary)

@@ -1,7 +1,3 @@
-GLOBAL_VAR_INIT(singularity_counter, 0)
-
-#define METEOR_DISASTER_MODIFIER 0.5
-
 ////////////////////////////////////////
 //Singularity beacon
 ////////////////////////////////////////
@@ -9,7 +5,7 @@ GLOBAL_VAR_INIT(singularity_counter, 0)
 	name = "ominous beacon"
 	desc = "This looks suspicious..."
 	icon = 'icons/obj/singularity.dmi'
-	icon_state = "beacon0"
+	icon_state = "beacon"
 
 	anchored = FALSE
 	density = TRUE
@@ -17,65 +13,46 @@ GLOBAL_VAR_INIT(singularity_counter, 0)
 	stat = 0
 	verb_say = "states"
 	var/cooldown = 0
-	var/active = FALSE
-	var/meteor_buff = FALSE
+
+	var/active = 0
 	var/icontype = "beacon"
 
+
 /obj/machinery/power/singularity_beacon/proc/Activate(mob/user = null)
-	if(active)
-		return FALSE
 	if(surplus() < 1500)
 		if(user)
 			to_chat(user, "<span class='notice'>The connected wire doesn't have enough current.</span>")
-		return FALSE
-	if(is_station_level(z))
-		increment_meteor_waves()
+		return
 	for(var/obj/singularity/singulo in GLOB.singularities)
 		if(singulo.z == z)
 			singulo.target = src
 	icon_state = "[icontype]1"
-	active = TRUE
+	active = 1
 	if(user)
 		to_chat(user, "<span class='notice'>You activate the beacon.</span>")
-	return TRUE
 
-/obj/machinery/power/singularity_beacon/proc/Deactivate(mob/user)
-	if(!active)
-		return FALSE
+
+/obj/machinery/power/singularity_beacon/proc/Deactivate(mob/user = null)
 	for(var/obj/singularity/singulo in GLOB.singularities)
 		if(singulo.target == src)
 			singulo.target = null
 	icon_state = "[icontype]0"
-	active = FALSE
+	active = 0
 	if(user)
 		to_chat(user, "<span class='notice'>You deactivate the beacon.</span>")
-	if(meteor_buff)
-		decrement_meteor_waves()
-	return TRUE
 
-/obj/machinery/power/singularity_beacon/proc/increment_meteor_waves()
-	meteor_buff = TRUE
-	GLOB.singularity_counter++
-	for(var/datum/round_event_control/meteor_wave/W in SSevents.control)
-		W.weight += round(initial(W.weight) * METEOR_DISASTER_MODIFIER)
-
-/obj/machinery/power/singularity_beacon/proc/decrement_meteor_waves()
-	meteor_buff = FALSE
-	GLOB.singularity_counter--
-	for(var/datum/round_event_control/meteor_wave/W in SSevents.control)
-		W.weight -= round(initial(W.weight) * METEOR_DISASTER_MODIFIER)
 
 /obj/machinery/power/singularity_beacon/attack_ai(mob/user)
 	return
 
+
 /obj/machinery/power/singularity_beacon/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	if(anchored)
 		return active ? Deactivate(user) : Activate(user)
 	else
 		to_chat(user, "<span class='warning'>You need to screw the beacon to the floor first!</span>")
+		return
+
 
 /obj/machinery/power/singularity_beacon/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/screwdriver))
@@ -84,7 +61,7 @@ GLOBAL_VAR_INIT(singularity_counter, 0)
 			return
 
 		if(anchored)
-			setAnchored(FALSE)
+			anchored = FALSE
 			to_chat(user, "<span class='notice'>You unscrew the beacon from the floor.</span>")
 			disconnect_from_network()
 			return
@@ -92,7 +69,7 @@ GLOBAL_VAR_INIT(singularity_counter, 0)
 			if(!connect_to_network())
 				to_chat(user, "<span class='warning'>This device must be placed over an exposed, powered cable node!</span>")
 				return
-			setAnchored(TRUE)
+			anchored = TRUE
 			to_chat(user, "<span class='notice'>You screw the beacon to the floor and attach the cable.</span>")
 			return
 	else
@@ -108,13 +85,7 @@ GLOBAL_VAR_INIT(singularity_counter, 0)
 	if(!active)
 		return
 
-	var/is_on_station = is_station_level(z)
-	if(meteor_buff && !is_on_station)
-		decrement_meteor_waves()
-	else if(!meteor_buff && is_on_station)
-		increment_meteor_waves()
-
-	if(surplus() >= 1500)
+	if(surplus() > 1500)
 		add_load(1500)
 		if(cooldown <= world.time)
 			cooldown = world.time + 80
@@ -131,9 +102,9 @@ GLOBAL_VAR_INIT(singularity_counter, 0)
 	icon_state = "beaconsynd0"
 
 // SINGULO BEACON SPAWNER
-/obj/item/sbeacondrop
+/obj/item/device/sbeacondrop
 	name = "suspicious beacon"
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/radio.dmi'
 	icon_state = "beacon"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
@@ -142,7 +113,7 @@ GLOBAL_VAR_INIT(singularity_counter, 0)
 	var/droptype = /obj/machinery/power/singularity_beacon/syndicate
 
 
-/obj/item/sbeacondrop/attack_self(mob/user)
+/obj/item/device/sbeacondrop/attack_self(mob/user)
 	if(user)
 		to_chat(user, "<span class='notice'>Locked In.</span>")
 		new droptype( user.loc )
@@ -150,16 +121,14 @@ GLOBAL_VAR_INIT(singularity_counter, 0)
 		qdel(src)
 	return
 
-/obj/item/sbeacondrop/bomb
+/obj/item/device/sbeacondrop/bomb
 	desc = "A label on it reads: <i>Warning: Activating this device will send a high-ordinance explosive to your location</i>."
 	droptype = /obj/machinery/syndicatebomb
 
-/obj/item/sbeacondrop/powersink
+/obj/item/device/sbeacondrop/powersink
 	desc = "A label on it reads: <i>Warning: Activating this device will send a power draining device to your location</i>."
-	droptype = /obj/item/powersink
+	droptype = /obj/item/device/powersink
 
-/obj/item/sbeacondrop/clownbomb
+/obj/item/device/sbeacondrop/clownbomb
 	desc = "A label on it reads: <i>Warning: Activating this device will send a silly explosive to your location</i>."
 	droptype = /obj/machinery/syndicatebomb/badmin/clown
-
-#undef METEOR_DISASTER_MODIFIER

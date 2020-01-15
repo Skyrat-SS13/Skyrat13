@@ -24,6 +24,7 @@
 	icon_state = "frame"
 	desc = "A remote control for a door."
 	req_access = list(ACCESS_SECURITY)
+	anchored = TRUE
 	density = FALSE
 	var/id = null // id of linked machinery/lockers
 
@@ -32,7 +33,7 @@
 
 	var/timing = FALSE		// boolean, true/1 timer is on, false/0 means it's not timing
 	var/list/obj/machinery/targets = list()
-	var/obj/item/radio/Radio //needed to send messages to sec radio
+	var/obj/item/device/radio/Radio //needed to send messages to sec radio
 
 	maptext_height = 26
 	maptext_width = 32
@@ -40,7 +41,7 @@
 /obj/machinery/door_timer/Initialize()
 	. = ..()
 
-	Radio = new/obj/item/radio(src)
+	Radio = new/obj/item/device/radio(src)
 	Radio.listening = 0
 
 /obj/machinery/door_timer/Initialize()
@@ -71,7 +72,7 @@
 		return
 
 	if(timing)
-		if(world.realtime - activation_time >= timer_duration)
+		if(world.time - activation_time >= timer_duration)
 			timer_end() // open doors, reset timer, clear status screen
 		update_icon()
 
@@ -87,7 +88,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return 0
 
-	activation_time = world.realtime
+	activation_time = world.time
 	timing = TRUE
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
@@ -136,7 +137,7 @@
 
 
 /obj/machinery/door_timer/proc/time_left(seconds = FALSE)
-	. = max(0,timer_duration - (activation_time ? world.realtime - activation_time : 0))
+	. = max(0,timer_duration - (activation_time ? world.time - activation_time : 0))
 	if(seconds)
 		. /= 10
 
@@ -240,7 +241,7 @@
 					preset_time = PRESET_LONG
 			. = set_timer(preset_time)
 			if(timing)
-				activation_time = world.realtime
+				activation_time = world.time
 		else
 			. = FALSE
 

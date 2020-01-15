@@ -8,12 +8,8 @@
 	if(ismob(mover))
 		if (mover in buckled_mobs)
 			return TRUE
-	return (!mover.density || !density || lying || (mover.throwing && mover.throwing.thrower == src && !ismob(mover)))
+	return (!mover.density || !density || lying)
 
-//DO NOT USE THIS UNLESS YOU ABSOLUTELY HAVE TO. THIS IS BEING PHASED OUT FOR THE MOVESPEED MODIFICATION SYSTEM.
-//See mob_movespeed.dm
-/mob/proc/movement_delay()	//update /living/movement_delay() if you change this
-	return cached_multiplicative_slowdown
 
 /client/verb/drop_item()
 	set hidden = 1
@@ -30,6 +26,7 @@
 			mob.control_object.setDir(direct)
 		else
 			mob.control_object.forceMove(get_step(mob.control_object,direct))
+	return
 
 #define MOVEMENT_DELAY_BUFFER 0.75
 #define MOVEMENT_DELAY_BUFFER_DELTA 1.25
@@ -41,7 +38,7 @@
 		next_move_dir_add = 0
 		next_move_dir_sub = 0
 	var/old_move_delay = move_delay
-	move_delay = world.time + world.tick_lag //this is here because Move() can now be called mutiple times per tick
+	move_delay = world.time+world.tick_lag //this is here because Move() can now be called mutiple times per tick
 	if(!mob || !mob.loc)
 		return FALSE
 	if(!n || !direct)
@@ -114,12 +111,24 @@
 		if(mob.throwing)
 			mob.throwing.finalize(FALSE)
 
-	for(var/obj/O in mob.user_movement_hooks)
-		O.intercept_user_move(direct, mob, n, oldloc)
+	if(LAZYLEN(mob.user_movement_hooks))
+		for(var/obj/O in mob.user_movement_hooks)
+			O.intercept_user_move(direct, mob, n, oldloc)
 
 	var/atom/movable/P = mob.pulling
 	if(P && !ismob(P) && P.density)
-		mob.setDir(turn(mob.dir, 180))
+		mob.dir = turn(mob.dir, 180)
+
+/mob/Moved(oldLoc, dir, Forced = FALSE)
+	. = ..()
+	for(var/obj/O in contents)
+		O.on_mob_move(dir, src, oldLoc, Forced)
+
+/mob/setDir(newDir)
+	. = ..()
+	for(var/obj/O in contents)
+		O.on_mob_turn(newDir, src)
+
 
 ///Process_Grab()
 ///Called by client/Move()
@@ -148,7 +157,7 @@
 		if(INCORPOREAL_MOVE_BASIC)
 			var/T = get_step(L,direct)
 			if(T)
-				L.forceMove(T)
+				L.loc = T
 			L.setDir(direct)
 		if(INCORPOREAL_MOVE_SHADOW)
 			if(prob(50))
@@ -190,7 +199,7 @@
 				new /obj/effect/temp_visual/dir_setting/ninja/shadow(mobloc, L.dir)
 				var/T = get_step(L,direct)
 				if(T)
-					L.forceMove(T)
+					L.loc = T
 			L.setDir(direct)
 		if(INCORPOREAL_MOVE_JAUNT) //Incorporeal move, but blocked by holy-watered tiles and salt piles.
 			var/turf/open/floor/stepTurf = get_step(L, direct)
@@ -209,7 +218,7 @@
 					to_chat(L, "<span class='warning'>Holy energies block your path!</span>")
 					return
 
-				L.forceMove(stepTurf)
+				L.loc = get_step(L, direct)
 			L.setDir(direct)
 	return TRUE
 
@@ -285,12 +294,12 @@
 
 	var/next_in_line
 	switch(mob.zone_selected)
-		if(BODY_ZONE_HEAD)
-			next_in_line = BODY_ZONE_PRECISE_EYES
-		if(BODY_ZONE_PRECISE_EYES)
-			next_in_line = BODY_ZONE_PRECISE_MOUTH
+		if("head")
+			next_in_line = "eyes"
+		if("eyes")
+			next_in_line = "mouth"
 		else
-			next_in_line = BODY_ZONE_HEAD
+			next_in_line = "head"
 
 	var/obj/screen/zone_sel/selector = mob.hud_used.zone_select
 	selector.set_selected_zone(next_in_line, mob)
@@ -303,7 +312,7 @@
 		return
 
 	var/obj/screen/zone_sel/selector = mob.hud_used.zone_select
-	selector.set_selected_zone(BODY_ZONE_R_ARM, mob)
+	selector.set_selected_zone("r_arm", mob)
 
 /client/verb/body_chest()
 	set name = "body-chest"
@@ -313,7 +322,7 @@
 		return
 
 	var/obj/screen/zone_sel/selector = mob.hud_used.zone_select
-	selector.set_selected_zone(BODY_ZONE_CHEST, mob)
+	selector.set_selected_zone("chest", mob)
 
 /client/verb/body_l_arm()
 	set name = "body-l-arm"
@@ -323,7 +332,7 @@
 		return
 
 	var/obj/screen/zone_sel/selector = mob.hud_used.zone_select
-	selector.set_selected_zone(BODY_ZONE_L_ARM, mob)
+	selector.set_selected_zone("l_arm", mob)
 
 /client/verb/body_r_leg()
 	set name = "body-r-leg"
@@ -333,7 +342,7 @@
 		return
 
 	var/obj/screen/zone_sel/selector = mob.hud_used.zone_select
-	selector.set_selected_zone(BODY_ZONE_R_LEG, mob)
+	selector.set_selected_zone("r_leg", mob)
 
 /client/verb/body_groin()
 	set name = "body-groin"
@@ -343,7 +352,7 @@
 		return
 
 	var/obj/screen/zone_sel/selector = mob.hud_used.zone_select
-	selector.set_selected_zone(BODY_ZONE_PRECISE_GROIN, mob)
+	selector.set_selected_zone("groin", mob)
 
 /client/verb/body_l_leg()
 	set name = "body-l-leg"
@@ -353,55 +362,16 @@
 		return
 
 	var/obj/screen/zone_sel/selector = mob.hud_used.zone_select
-	selector.set_selected_zone(BODY_ZONE_L_LEG, mob)
+	selector.set_selected_zone("l_leg", mob)
 
 /client/verb/toggle_walk_run()
 	set name = "toggle-walk-run"
 	set hidden = TRUE
 	set instant = TRUE
 	if(mob)
-		mob.toggle_move_intent(usr)
+		mob.toggle_move_intent()
 
-/mob/proc/toggle_move_intent(mob/user)
-	if(m_intent == MOVE_INTENT_RUN)
-		m_intent = MOVE_INTENT_WALK
-	else
-		if (HAS_TRAIT(src,TRAIT_NORUNNING))	// FULPSTATION 7/10/19 So you can't run during fortitude.
-			to_chat(src, "You find yourself unable to run.")
-			return FALSE
-		m_intent = MOVE_INTENT_RUN
+/mob/proc/toggle_move_intent()
 	if(hud_used && hud_used.static_inventory)
 		for(var/obj/screen/mov_intent/selector in hud_used.static_inventory)
-			selector.update_icon()
-
-/mob/verb/up()
-	set name = "Move Upwards"
-	set category = "IC"
-
-	if(zMove(UP, TRUE))
-		to_chat(src, "<span class='notice'>You move upwards.</span>")
-
-/mob/verb/down()
-	set name = "Move Down"
-	set category = "IC"
-
-	if(zMove(DOWN, TRUE))
-		to_chat(src, "<span class='notice'>You move down.</span>")
-
-/mob/proc/zMove(dir, feedback = FALSE)
-	if(dir != UP && dir != DOWN)
-		return FALSE
-	var/turf/target = get_step_multiz(src, dir)
-	if(!target)
-		if(feedback)
-			to_chat(src, "<span class='warning'>There's nothing in that direction!</span>")
-		return FALSE
-	if(!canZMove(dir, target))
-		if(feedback)
-			to_chat(src, "<span class='warning'>You couldn't move there!</span>")
-		return FALSE
-	forceMove(target)
-	return TRUE
-
-/mob/proc/canZMove(direction, turf/target)
-	return FALSE
+			selector.toggle(src)

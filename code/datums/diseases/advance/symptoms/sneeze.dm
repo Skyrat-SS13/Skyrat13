@@ -6,7 +6,7 @@ Sneezing
 	Very Noticable.
 	Increases resistance.
 	Doesn't increase stage speed.
-	Very transmissible.
+	Very transmittable.
 	Low Level.
 
 Bonus
@@ -48,5 +48,4 @@ Bonus
 				M.emote("sniff")
 		else
 			M.emote("sneeze")
-			if(M.CanSpreadAirborneDisease()) //don't spread germs if they covered their mouth
-				A.spread(4 + power)
+			A.spread(4 + power)

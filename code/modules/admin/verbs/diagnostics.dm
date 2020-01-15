@@ -7,11 +7,12 @@
 		if(T.active_hotspot)
 			burning = TRUE
 
-	var/list/lines = list("<span class='adminnotice'>[AREACOORD(target)]: [env.temperature] K ([env.temperature - T0C] C), [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]</span>")
+	var/list/lines = list("<span class='adminnotice'>[COORD(target)]: [env.temperature] K ([env.temperature - T0C] C), [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]</span>")
 	for(var/id in env_gases)
-		var/moles = env_gases[id]
+		var/gas = env_gases[id]
+		var/moles = gas[MOLES]
 		if (moles >= 0.00001)
-			lines += "[GLOB.meta_gas_names[id]]: [moles] mol"
+			lines += "[gas[GAS_META][META_GAS_NAME]]: [moles] mol"
 	to_chat(usr, lines.Join("\n"))
 
 /client/proc/air_status(turf/target)
@@ -48,8 +49,8 @@
 		log_admin("DEBUG: [key_name(M)]  next_move = [M.next_move]  lastDblClick = [M.next_click]  world.time = [world.time]")
 		M.next_move = 1
 		M.next_click = 0
-	message_admins("[ADMIN_LOOKUPFLW(largest_move_mob)] had the largest move delay with [largest_move_time] frames / [DisplayTimeText(largest_move_time)]!")
-	message_admins("[ADMIN_LOOKUPFLW(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [DisplayTimeText(largest_click_time)]!")
+	message_admins("[key_name_admin(largest_move_mob)] had the largest move delay with [largest_move_time] frames / [DisplayTimeText(largest_move_time)]!")
+	message_admins("[key_name_admin(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [DisplayTimeText(largest_click_time)]!")
 	message_admins("world.time = [world.time]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unfreeze Everyone") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
@@ -61,7 +62,7 @@
 	var/output = "<b>Radio Report</b><hr>"
 	for (var/fq in SSradio.frequencies)
 		output += "<b>Freq: [fq]</b><br>"
-		var/datum/radio_frequency/fqs = SSradio.frequencies[fq]
+		var/list/datum/radio_frequency/fqs = SSradio.frequencies[fq]
 		if (!fqs)
 			output += "&nbsp;&nbsp;<b>ERROR</b><br>"
 			continue
@@ -74,7 +75,7 @@
 			for (var/device in f)
 				if (istype(device, /atom))
 					var/atom/A = device
-					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device] ([AREACOORD(A)])<br>"
+					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device] ([A.x],[A.y],[A.z] in area [get_area(device)])<br>"
 				else
 					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device]<br>"
 

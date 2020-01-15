@@ -48,12 +48,6 @@
 /proc/_image(icon, loc, icon_state, layer, dir)
 	return image(icon, loc, icon_state, layer, dir)
 
-/proc/_istype(object, type)
-	return istype(object, type)
-
-/proc/_ispath(path, type)
-	return ispath(path, type)
-
 /proc/_length(E)
 	return length(E)
 
@@ -184,9 +178,6 @@
 /proc/_list_swap(list/L, Index1, Index2)
 	L.Swap(Index1, Index2)
 
-/proc/_list_get(list/L, index)
-	return L[index]
-
 /proc/_walk(ref, dir, lag)
 	walk(ref, dir, lag)
 
@@ -216,8 +207,5 @@
 
 /proc/_step_away(ref, trg, max)
 	step_away(ref, trg, max)
-
-/proc/_instantiate_at(thing, location)
-	new thing(location)
 
 

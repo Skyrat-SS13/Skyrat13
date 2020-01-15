@@ -28,7 +28,7 @@
 "g" = (
 /obj/structure/reagent_dispensers/water_cooler{
 	name = "punch cooler";
-	reagent_id = /datum/reagent/consumable/ethanol/bacchus_blessing
+	reagent_id = "bacchus_blessing"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood{
@@ -57,7 +57,11 @@
 /area/ruin/unpowered)
 "k" = (
 /obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/pizzaparty,
+/obj/effect/spawner/lootdrop{
+	loot = list(/obj/item/pizzabox/margherita = 3, /obj/item/pizzabox/meat = 3, /obj/item/pizzabox/mushroom = 3, /obj/item/pizzabox/bomb = 1);
+	lootdoubles = 0;
+	name = "pizza spawner"
+	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
@@ -68,7 +72,11 @@
 	dir = 4
 	},
 /obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/pizzaparty,
+/obj/effect/spawner/lootdrop{
+	loot = list(/obj/item/pizzabox/margherita = 3, /obj/item/pizzabox/meat = 3, /obj/item/pizzabox/mushroom = 3, /obj/item/pizzabox/bomb = 1);
+	lootdoubles = 0;
+	name = "pizza spawner"
+	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/wood{
@@ -153,7 +161,11 @@
 /area/ruin/unpowered)
 "x" = (
 /obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/pizzaparty,
+/obj/effect/spawner/lootdrop{
+	loot = list(/obj/item/pizzabox/margherita = 3, /obj/item/pizzabox/meat = 3, /obj/item/pizzabox/mushroom = 3, /obj/item/pizzabox/bomb = 1);
+	lootdoubles = 0;
+	name = "pizza spawner"
+	},
 /turf/open/floor/wood{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
@@ -183,6 +195,7 @@
 /area/ruin/unpowered)
 "C" = (
 /obj/structure/chair/wood/wings{
+	icon_state = "wooden_chair_wings";
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -240,6 +253,7 @@
 /area/ruin/unpowered)
 "K" = (
 /obj/structure/chair/wood/wings{
+	icon_state = "wooden_chair_wings";
 	dir = 1
 	},
 /obj/effect/decal/remains/human,

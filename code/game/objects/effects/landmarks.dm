@@ -35,11 +35,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	layer = MOB_LAYER
 	var/jobspawn_override = FALSE
 	var/delete_after_roundstart = TRUE
-	var/used = FALSE
-
-/obj/effect/landmark/start/proc/after_round_start()
-	if(delete_after_roundstart)
-		qdel(src)
 
 /obj/effect/landmark/start/New()
 	GLOB.start_landmarks_list += src
@@ -191,19 +186,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "AI"
 	icon_state = "AI"
 	delete_after_roundstart = FALSE
-	var/primary_ai = TRUE
-	var/latejoin_active = TRUE
 
-/obj/effect/landmark/start/ai/after_round_start()
-	if(latejoin_active && !used)
-		new /obj/structure/AIcore/latejoin_inactive(loc)
-	return ..()
-
-/obj/effect/landmark/start/ai/secondary
-	icon = 'icons/effects/landmarks_static.dmi'
-	icon_state = "ai_spawn"
-	primary_ai = FALSE
-	latejoin_active = FALSE
 
 //Department Security spawns
 
@@ -290,6 +273,17 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/observer_start
 	name = "Observer-Start"
 	icon_state = "observer_start"
+
+// revenant spawn.
+/obj/effect/landmark/revenantspawn
+	name = "revnantspawn"
+	icon_state = "revenant_spawn"
+
+// triple ais.
+/obj/effect/landmark/tripai
+	name = "tripai"
+	icon_state = "ai_spawn"
+	layer = MOB_LAYER
 
 // xenos.
 /obj/effect/landmark/xeno_spawn
@@ -432,52 +426,3 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	GLOB.ruin_landmarks -= src
 	ruin_template = null
 	. = ..()
-
-//------Station Rooms Landmarks------------//
-/obj/effect/landmark/stationroom
-	var/list/templates = list()
-	layer = BULLET_HOLE_LAYER
-
-/obj/effect/landmark/stationroom/New()
-	..()
-	GLOB.stationroom_landmarks += src
-
-/obj/effect/landmark/stationroom/Destroy()
-	if(src in GLOB.stationroom_landmarks)
-		GLOB.stationroom_landmarks -= src
-	return ..()
-
-/obj/effect/landmark/stationroom/proc/load(template_name)
-	var/turf/T = get_turf(src)
-	if(!T)
-		return FALSE
-	if(!template_name)
-		for(var/t in templates)
-			if(!SSmapping.station_room_templates[t])
-				log_world("Station room spawner placed at ([T.x], [T.y], [T.z]) has invalid ruin name of \"[t]\" in its list")
-				templates -= t
-		template_name = pickweight(templates)
-	if(!template_name)
-		GLOB.stationroom_landmarks -= src
-		qdel(src)
-		return FALSE
-	var/datum/map_template/template = SSmapping.station_room_templates[template_name]
-	if(!template)
-		return FALSE
-	testing("Room \"[template_name]\" placed at ([T.x], [T.y], [T.z])")
-	template.load(T, centered = FALSE)
-	template.loaded++
-	GLOB.stationroom_landmarks -= src
-	qdel(src)
-	return TRUE
-
-// The landmark for the Engine on Box
-
-/obj/effect/landmark/stationroom/box/engine
-	templates = list("Engine SM" = 3, "Engine Singulo" = 3, "Engine Tesla" = 3)
-	icon = 'icons/rooms/box/engine.dmi'
-
-
-/obj/effect/landmark/stationroom/box/engine/New()
-	. = ..()
-	templates = CONFIG_GET(keyed_list/box_random_engine)

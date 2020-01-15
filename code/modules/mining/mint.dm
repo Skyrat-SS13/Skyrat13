@@ -6,6 +6,7 @@
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "coinpress0"
 	density = TRUE
+	anchored = TRUE
 	var/newCoins = 0   //how many coins the machine made in it's last load
 	var/processing = FALSE
 	var/chosen = MAT_METAL //which material will be used to make coins
@@ -15,24 +16,21 @@
 
 /obj/machinery/mineral/mint/Initialize()
 	. = ..()
-	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_PLASMA, MAT_SILVER, MAT_GOLD, MAT_URANIUM, MAT_DIAMOND, MAT_BANANIUM), MINERAL_MATERIAL_AMOUNT * 50, FALSE, /obj/item/stack)
+	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_PLASMA, MAT_SILVER, MAT_GOLD, MAT_URANIUM, MAT_DIAMOND, MAT_BANANIUM), MINERAL_MATERIAL_AMOUNT * 50)
 
 /obj/machinery/mineral/mint/process()
 	var/turf/T = get_step(src, input_dir)
 	if(!T)
 		return
 
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	GET_COMPONENT(materials, /datum/component/material_container)
 	for(var/obj/item/stack/sheet/O in T)
 		materials.insert_stack(O, O.amount)
 
 /obj/machinery/mineral/mint/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	var/dat = "<b>Coin Press</b><br>"
 
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	GET_COMPONENT(materials, /datum/component/material_container)
 	for(var/mat_id in materials.materials)
 		var/datum/material/M = materials.materials[mat_id]
 		if(!M.amount && chosen != mat_id)
@@ -65,7 +63,7 @@
 	if(processing==1)
 		to_chat(usr, "<span class='notice'>The machine is processing.</span>")
 		return
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	GET_COMPONENT(materials, /datum/component/material_container)
 	if(href_list["choose"])
 		if(materials.materials[href_list["choose"]])
 			chosen = href_list["choose"]

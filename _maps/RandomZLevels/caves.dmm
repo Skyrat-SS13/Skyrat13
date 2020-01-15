@@ -188,7 +188,7 @@
 	amount = 25
 	},
 /obj/item/coin/antagtoken,
-/obj/item/book/granter/spell/summonitem{
+/obj/item/spellbook/oneuse/summonitem{
 	name = "an extremely flamboyant book"
 	},
 /turf/open/floor/engine/cult{
@@ -356,7 +356,7 @@
 /area/awaymission/caves/BMP_asteroid/level_four)
 "ba" = (
 /obj/structure/destructible/cult/talisman,
-/obj/item/book/granter/martial/plasma_fist,
+/obj/item/plasma_fist_scroll,
 /turf/open/floor/engine/cult{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -447,7 +447,7 @@
 /area/awaymission/caves/BMP_asteroid/level_four)
 "bo" = (
 /obj/structure/flora/rock,
-/obj/item/soulstone/anybody,
+/obj/item/device/soulstone/anybody,
 /turf/open/floor/plating/asteroid/basalt{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -531,7 +531,7 @@
 /area/awaymission/caves/BMP_asteroid/level_four)
 "bA" = (
 /obj/structure/destructible/cult/tome,
-/obj/item/necromantic_stone,
+/obj/item/device/necromantic_stone,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/engine/cult{
 	initial_gas_mix = "n2=23;o2=14"
@@ -873,7 +873,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/decal/cleanable/xenoblood,
 /turf/open/floor/plating{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -945,7 +945,7 @@
 /area/awaymission/caves/research)
 "cN" = (
 /obj/machinery/door/window/eastleft,
-/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/cleanable/xenoblood/xgibs,
 /turf/open/floor/plating{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -1015,7 +1015,7 @@
 	},
 /area/awaymission/caves/BMP_asteroid/level_two)
 "cV" = (
-/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/cleanable/xenoblood/xgibs,
 /turf/open/floor/plating{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -1379,8 +1379,8 @@
 /area/awaymission/caves/BMP_asteroid)
 "eh" = (
 /obj/structure/table,
-/obj/item/radio,
-/obj/item/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
 /turf/open/floor/plasteel,
 /area/awaymission/caves/BMP_asteroid)
 "ei" = (
@@ -1464,8 +1464,8 @@
 /area/awaymission/caves/BMP_asteroid)
 "ew" = (
 /obj/structure/table,
-/obj/item/mining_scanner,
-/obj/item/mining_scanner,
+/obj/item/device/mining_scanner,
+/obj/item/device/mining_scanner,
 /turf/open/floor/plasteel,
 /area/awaymission/caves/BMP_asteroid)
 "ex" = (
@@ -1500,8 +1500,8 @@
 /area/awaymission/caves/BMP_asteroid)
 "eC" = (
 /obj/structure/table,
-/obj/item/gps/mining,
-/obj/item/gps/mining,
+/obj/item/device/gps/mining,
+/obj/item/device/gps/mining,
 /obj/item/clothing/glasses/meson,
 /obj/item/clothing/glasses/meson,
 /obj/item/clothing/glasses/meson,
@@ -1553,7 +1553,7 @@
 	},
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical,
-/obj/item/multitool,
+/obj/item/device/multitool,
 /turf/open/floor/plasteel,
 /area/awaymission/caves/listeningpost)
 "eN" = (
@@ -1640,7 +1640,7 @@
 	pixel_y = 32
 	},
 /obj/item/paper/fluff/awaymissions/caves/shipment_notice,
-/obj/item/paper/fluff/awaymissions/caves/safety_notice,
+/obj/item/paper/fluff/awaymissions/caves/saftey_notice,
 /turf/open/floor/plasteel,
 /area/awaymission/caves/listeningpost)
 "fb" = (
@@ -1724,7 +1724,8 @@
 /area/awaymission/caves/listeningpost)
 "fn" = (
 /obj/structure/closet/crate{
-	icon_state = "crateopen"
+	icon_state = "crateopen";
+	opened = 1
 	},
 /obj/item/paper/fluff/awaymissions/caves/shipment_receipt,
 /obj/item/organ/eyes/robotic/thermals,
@@ -2076,7 +2077,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/caves/BMP_asteroid)
 "gs" = (
-/obj/item/assembly/igniter,
+/obj/item/device/assembly/igniter,
 /turf/open/floor/plating/asteroid/basalt{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -2251,6 +2252,10 @@
 	initial_gas_mix = "n2=23;o2=14"
 	},
 /area/awaymission/caves/BMP_asteroid)
+"gW" = (
+/obj/effect/mapping_helpers/planet_z,
+/turf/closed/indestructible/rock,
+/area/space/nearstation)
 "gX" = (
 /obj/effect/baseturf_helper/lava,
 /turf/closed/mineral/volcanic,
@@ -2532,7 +2537,7 @@ aa
 aa
 aa
 aa
-aa
+gW
 "}
 (2,1,1) = {"
 aa

@@ -28,7 +28,7 @@
 	var/optioncount = 7
 	// Custom Message Properties
 	var/customsender = "System Administrator"
-	var/obj/item/pda/customrecepient = null
+	var/obj/item/device/pda/customrecepient = null
 	var/customjob		= "Admin"
 	var/custommessage 	= "This is a test, please ignore."
 
@@ -42,23 +42,21 @@
 		return ..()
 
 /obj/machinery/computer/message_monitor/emag_act(mob/user)
-	. = ..()
 	if(obj_flags & EMAGGED)
 		return
-	if(isnull(linkedServer))
+	if(!isnull(linkedServer))
+		obj_flags |= EMAGGED
+		screen = 2
+		spark_system.set_up(5, 0, src)
+		spark_system.start()
+		var/obj/item/paper/monitorkey/MK = new(loc, linkedServer)
+		// Will help make emagging the console not so easy to get away with.
+		MK.info += "<br><br><font color='red'>�%@%(*$%&(�&?*(%&�/{}</font>"
+		var/time = 100 * length(linkedServer.decryptkey)
+		addtimer(CALLBACK(src, .proc/UnmagConsole), time)
+		message = rebootmsg
+	else
 		to_chat(user, "<span class='notice'>A no server error appears on the screen.</span>")
-		return
-	obj_flags |= EMAGGED
-	screen = 2
-	spark_system.set_up(5, 0, src)
-	spark_system.start()
-	var/obj/item/paper/monitorkey/MK = new(loc, linkedServer)
-	// Will help make emagging the console not so easy to get away with.
-	MK.info += "<br><br><font color='red'>�%@%(*$%&(�&?*(%&�/{}</font>"
-	var/time = 100 * length(linkedServer.decryptkey)
-	addtimer(CALLBACK(src, .proc/UnmagConsole), time)
-	message = rebootmsg
-	return TRUE
 
 /obj/machinery/computer/message_monitor/New()
 	. = ..()
@@ -79,8 +77,9 @@
 	GLOB.telecomms_list -= src
 	. = ..()
 
-/obj/machinery/computer/message_monitor/ui_interact(mob/living/user)
-	. = ..()
+/obj/machinery/computer/message_monitor/attack_hand(mob/living/user)
+	if(..())
+		return
 	//If the computer is being hacked or is emagged, display the reboot message.
 	if(hacking || (obj_flags & EMAGGED))
 		message = rebootmsg
@@ -119,8 +118,7 @@
 			else
 				for(var/n = ++i; n <= optioncount; n++)
 					dat += "<dd><font color='blue'>&#09;[n]. ---------------</font><br></dd>"
-			var/mob/living/silicon/S = usr
-			if(istype(S) && S.hack_software)
+			if(issilicon(usr) && is_special_character(usr))
 				//Malf/Traitor AIs can bruteforce into the system to gain the Key.
 				dat += "<dd><A href='?src=[REF(src)];hack=1'><i><font color='Red'>*&@#. Bruteforce Key</font></i></font></a><br></dd>"
 			else
@@ -143,7 +141,7 @@
 					break
 				// Del - Sender   - Recepient - Message
 				// X   - Al Green - Your Mom  - WHAT UP!?
-				dat += "<tr><td width = '5%'><center><A href='?src=[REF(src)];delete_logs=[REF(pda)]' style='color: rgb(255,0,0)'>X</a></center></td><td width='15%'>[pda.sender]</td><td width='15%'>[pda.recipient]</td><td width='300px'>[pda.message][pda.picture ? " <a href='byond://?src=[REF(pda)];photo=1'>(Photo)</a>":""]</td></tr>"
+				dat += "<tr><td width = '5%'><center><A href='?src=[REF(src)];delete_logs=[REF(pda)]' style='color: rgb(255,0,0)'>X</a></center></td><td width='15%'>[pda.sender]</td><td width='15%'>[pda.recipient]</td><td width='300px'>[pda.message][pda.photo ? " <a href='byond://?src=[REF(pda)];photo=1'>(Photo)</a>":""]</td></tr>"
 			dat += "</table>"
 		//Hacking screen.
 		if(2)
@@ -237,6 +235,7 @@
 	popup.set_content(dat)
 	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
+	return
 
 /obj/machinery/computer/message_monitor/proc/BruteForce(mob/user)
 	if(isnull(linkedServer))
@@ -339,8 +338,7 @@
 
 		//Hack the Console to get the password
 		if (href_list["hack"])
-			var/mob/living/silicon/S = usr
-			if(istype(S) && S.hack_software)
+			if(issilicon(usr) && is_special_character(usr))
 				hacking = TRUE
 				screen = 2
 				//Time it takes to bruteforce is dependant on the password length.
@@ -390,7 +388,7 @@
 					//Select Receiver
 					if("Recepient")
 						//Get out list of viable PDAs
-						var/list/obj/item/pda/sendPDAs = get_viewable_pdas()
+						var/list/obj/item/device/pda/sendPDAs = get_viewable_pdas()
 						if(GLOB.PDAs && GLOB.PDAs.len > 0)
 							customrecepient = input(usr, "Select a PDA from the list.") as null|anything in sortNames(sendPDAs)
 						else
@@ -421,12 +419,11 @@
 							"name" = "[customsender]",
 							"job" = "[customjob]",
 							"message" = custommessage,
-							"emoji_message" = emoji_parse(custommessage),
 							"targets" = list("[customrecepient.owner] ([customrecepient.ownjob])")
 						))
 						// this will log the signal and transmit it to the target
 						linkedServer.receive_information(signal, null)
-						usr.log_message("(PDA: [name] | [usr.real_name]) sent \"[custommessage]\" to [signal.format_target()]", LOG_PDA)
+						log_talk(usr, "[key_name(usr)] (PDA: [name]) sent \"[custommessage]\" to [signal.format_target()]", LOGPDA)
 
 
 		//Request Console Logs - KEY REQUIRED
