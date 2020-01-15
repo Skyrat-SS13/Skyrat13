@@ -4,7 +4,7 @@
 	name = "modular computer"
 	desc = "An advanced computer."
 
-	use_power = IDLE_POWER_USE
+	use_power = 1
 	idle_power_usage = 5
 	var/hardware_flag = 0								// A flag that describes this device type
 	var/last_power_usage = 0							// Power usage during last tick
@@ -25,28 +25,25 @@
 	var/base_active_power_usage = 100					// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_idle_power_usage = 10						// Power usage when the computer is idle and screen is off (currently only applies to laptops)
 
-	var/obj/item/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
+	var/obj/item/device/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
 
-/obj/machinery/modular_computer/Initialize()
-	. = ..()
+/obj/machinery/modular_computer/New()
+	..()
 	cpu = new(src)
 	cpu.physical = src
 
 /obj/machinery/modular_computer/Destroy()
-	QDEL_NULL(cpu)
+	if(cpu)
+		qdel(cpu)
+		cpu = null
 	return ..()
 
 /obj/machinery/modular_computer/attack_ghost(mob/dead/observer/user)
-	. = ..()
-	if(.)
-		return
 	if(cpu)
 		cpu.attack_ghost(user)
 
 /obj/machinery/modular_computer/emag_act(mob/user)
-	. = ..()
-	if(cpu)
-		. |= cpu.emag_act(user)
+	return cpu ? cpu.emag_act(user) : 1
 
 /obj/machinery/modular_computer/update_icon()
 	cut_overlays()
@@ -94,34 +91,31 @@
 		cpu.eject_card()
 
 /obj/machinery/modular_computer/AltClick(mob/user)
-	. = ..()
 	if(cpu)
-		return cpu.AltClick(user)
+		cpu.AltClick(user)
 
-//ATTACK HAND IGNORING PARENT RETURN VALUE
 // On-click handling. Turns on the computer if it's off and opens the GUI.
-/obj/machinery/modular_computer/interact(mob/user)
+/obj/machinery/modular_computer/attack_hand(mob/user)
 	if(cpu)
-		return cpu.interact(user) // CPU is an item, that's why we route attack_hand to attack_self
-	else
-		return ..()
+		cpu.attack_self(user) // CPU is an item, that's why we route attack_hand to attack_self
 
 // Process currently calls handle_power(), may be expanded in future if more things are added.
 /obj/machinery/modular_computer/process()
 	if(cpu)
 		// Keep names in sync.
-		cpu.name = name
+		cpu.name = src.name
 		cpu.process()
 
 // Used in following function to reduce copypaste
 /obj/machinery/modular_computer/proc/power_failure(malfunction = 0)
-	var/obj/item/computer_hardware/battery/battery_module = cpu.all_components[MC_CELL]
+	var/obj/item/weapon/computer_hardware/battery/battery_module = cpu.all_components[MC_CELL]
 	if(cpu && cpu.enabled) // Shut down the computer
 		visible_message("<span class='danger'>\The [src]'s screen flickers [battery_module ? "\"BATTERY [malfunction ? "MALFUNCTION" : "CRITICAL"]\"" : "\"EXTERNAL POWER LOSS\""] warning as it shuts down unexpectedly.</span>")
 		if(cpu)
 			cpu.shutdown_computer(0)
 	stat |= NOPOWER
 	update_icon()
+
 
 // Modular computers can have battery in them, we handle power in previous proc, so prevent this from messing it up for us.
 /obj/machinery/modular_computer/power_change()
@@ -132,8 +126,8 @@
 	..()
 	update_icon()
 
-/obj/machinery/modular_computer/attackby(var/obj/item/W as obj, mob/user)
-	if(cpu && !(flags_1 & NODECONSTRUCT_1))
+/obj/machinery/modular_computer/attackby(var/obj/item/weapon/W as obj, mob/user)
+	if(cpu && !(flags & NODECONSTRUCT))
 		return cpu.attackby(W, user)
 	return ..()
 
@@ -147,9 +141,6 @@
 
 // EMPs are similar to explosions, but don't cause physical damage to the casing. Instead they screw up the components
 /obj/machinery/modular_computer/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_CONTENTS)
-		return
 	if(cpu)
 		cpu.emp_act(severity)
 

@@ -35,8 +35,9 @@
 /turf/open/floor/plasteel/airless,
 /area/awaymission/challenge/start)
 "ai" = (
-/obj/item/flashlight{
+/obj/item/device/flashlight{
 	icon_state = "flashlight-on";
+	item_state = "flashlight";
 	on = 1
 	},
 /turf/open/floor/plasteel/airless,
@@ -75,7 +76,7 @@
 /turf/open/floor/plasteel/airless,
 /area/awaymission/challenge/start)
 "ap" = (
-/obj/item/gun/energy/laser/retro,
+/obj/item/weapon/gun/energy/laser/retro,
 /turf/open/floor/plasteel/airless,
 /area/awaymission/challenge/start)
 "aq" = (
@@ -159,13 +160,23 @@
 /turf/open/floor/plasteel/airless,
 /area/awaymission/challenge/main)
 "aI" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 2
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 2;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "aJ" = (
 /obj/machinery/light{
+	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plasteel/airless,
@@ -190,8 +201,17 @@
 /area/awaymission/challenge/main)
 "aO" = (
 /obj/structure/window/reinforced,
-/obj/machinery/power/emitter/ctf{
-	dir = 2
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 2;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
@@ -209,8 +229,17 @@
 /turf/open/floor/plasteel,
 /area/awaymission/challenge/main)
 "aS" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 4
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 4;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
@@ -233,27 +262,46 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "aW" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 8
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 8;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "aX" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	emagged = 1;
+	installation = /obj/item/weapon/gun/energy/lasercannon
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "aY" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end{
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "aZ" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end{
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
@@ -265,7 +313,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/challenge/main)
 "bb" = (
-/obj/item/multitool,
+/obj/item/device/multitool,
 /turf/open/floor/plasteel/airless,
 /area/awaymission/challenge/main)
 "bc" = (
@@ -294,8 +342,17 @@
 /turf/open/floor/plating,
 /area/awaymission/challenge/main)
 "bf" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 1
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 1;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -321,8 +378,17 @@
 /turf/open/floor/plasteel,
 /area/awaymission/challenge/main)
 "bi" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 1
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 1;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -337,8 +403,17 @@
 /turf/open/floor/plating,
 /area/awaymission/challenge/main)
 "bk" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 1
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 1;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -347,8 +422,17 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/power/emitter/ctf{
-	dir = 1
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 1;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -363,8 +447,17 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/awaymission/challenge/main)
 "bo" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 2
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 2;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -383,8 +476,8 @@
 "bq" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	emagged = 1;
+	installation = /obj/item/weapon/gun/energy/lasercannon
 	},
 /turf/open/floor/plating,
 /area/awaymission/challenge/main)
@@ -405,7 +498,7 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "bt" = (
-/obj/item/storage/toolbox/electrical,
+/obj/item/weapon/storage/toolbox/electrical,
 /turf/open/floor/plasteel/airless,
 /area/awaymission/challenge/main)
 "bu" = (
@@ -436,8 +529,17 @@
 /turf/open/floor/plating,
 /area/awaymission/challenge/main)
 "bx" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 8
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 8;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -446,6 +548,7 @@
 /area/awaymission/challenge/main)
 "by" = (
 /obj/machinery/light{
+	icon_state = "tube1";
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line,
@@ -459,7 +562,11 @@
 /turf/open/floor/plasteel,
 /area/awaymission/challenge/main)
 "bA" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle,
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "bB" = (
@@ -473,8 +580,17 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/power/emitter/ctf{
-	dir = 8
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 8;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
@@ -482,13 +598,22 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/power/emitter/ctf{
-	dir = 4
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 4;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "bE" = (
-/obj/item/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/fire,
 /turf/open/floor/plasteel/airless,
 /area/awaymission/challenge/main)
 "bF" = (
@@ -531,8 +656,17 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "bL" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 1
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 1;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -540,14 +674,32 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "bM" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 1
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 1;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "bN" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 1
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 1;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -555,8 +707,17 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "bO" = (
-/obj/machinery/power/emitter/ctf{
-	dir = 1
+/obj/machinery/power/emitter{
+	active = 1;
+	active_power_usage = 0;
+	anchored = 1;
+	dir = 1;
+	idle_power_usage = 0;
+	locked = 1;
+	name = "Energy Cannon";
+	req_access_txt = "100";
+	state = 2;
+	use_power = 0
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -569,7 +730,7 @@
 	},
 /area/awaymission/challenge/end)
 "bQ" = (
-/obj/item/gun/ballistic/revolver/russian,
+/obj/item/weapon/gun/ballistic/revolver/russian,
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
@@ -589,10 +750,11 @@
 	desc = "Used for watching evil areas.";
 	name = "Security Monitor";
 	network = "";
+	pixel_x = 0;
 	pixel_y = 30
 	},
 /obj/structure/table/reinforced,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "bT" = (
 /obj/structure/window/reinforced{
@@ -626,6 +788,7 @@
 	desc = "Used for watching evil areas.";
 	name = "Security Monitor";
 	network = "";
+	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor/carpet,
@@ -654,18 +817,22 @@
 /obj/structure/chair{
 	dir = 1
 	},
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
+	dir = 0;
 	name = "Station Intercom (General)";
+	pixel_x = 0;
 	pixel_y = 28
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "cd" = (
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "ce" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/space,
-/turf/open/floor/plasteel/dark,
+/mob/living/simple_animal/hostile/syndicate/ranged/space{
+	name = "Syndicate Officer"
+	},
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "cf" = (
 /obj/machinery/door/airlock/centcom{
@@ -676,7 +843,8 @@
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "cg" = (
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
+	dir = 0;
 	name = "Station Intercom (General)";
 	pixel_x = -27
 	},
@@ -701,56 +869,53 @@
 /area/awaymission/challenge/end)
 "ck" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/revolver/mateba,
+/obj/item/weapon/gun/ballistic/revolver/mateba,
 /turf/open/floor/wood,
 /area/awaymission/challenge/end)
 "cl" = (
-/mob/living/simple_animal/hostile/syndicate/melee/sword,
-/turf/open/floor/plasteel/dark,
+/mob/living/simple_animal/hostile/syndicate/melee,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "cm" = (
 /obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "cn" = (
 /turf/open/floor/circuit,
 /area/awaymission/challenge/end)
 "co" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/vault{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
 "cp" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "cq" = (
 /obj/structure/table/wood,
-/obj/item/melee/chainofcommand,
-/obj/item/stamp,
+/obj/item/weapon/melee/chainofcommand,
+/obj/item/weapon/stamp,
 /turf/open/floor/carpet,
 /area/awaymission/challenge/end)
 "cr" = (
 /obj/structure/table/wood,
-/obj/item/paper/fluff/gateway,
-/obj/item/folder/blue,
+/obj/item/weapon/paper{
+	info = "Congratulations,<br><br>Your station has been selected to carry out the Gateway Project.<br><br>The equipment will be shipped to you at the start of the next quarter.<br> You are to prepare a secure location to house the equipment as outlined in the attached documents.<br><br>--Nanotrasen Blue Space Research";
+	name = "Confidential Correspondence, Pg 1";
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/item/weapon/folder/blue,
 /turf/open/floor/carpet,
 /area/awaymission/challenge/end)
 "cs" = (
 /obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
+/obj/item/device/flashlight/lamp/green{
 	pixel_x = 1;
 	pixel_y = 5
 	},
@@ -762,7 +927,7 @@
 /turf/open/floor/wood,
 /area/awaymission/challenge/end)
 "cu" = (
-/mob/living/simple_animal/hostile/syndicate/melee/sword,
+/mob/living/simple_animal/hostile/syndicate/melee,
 /turf/open/floor/mineral/plastitanium,
 /area/awaymission/challenge/end)
 "cv" = (
@@ -773,7 +938,7 @@
 /area/awaymission/challenge/end)
 "cw" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/automatic/l6_saw,
+/obj/item/weapon/gun/ballistic/automatic/l6_saw,
 /turf/open/floor/wood,
 /area/awaymission/challenge/end)
 "cx" = (
@@ -782,7 +947,7 @@
 	opacity = 1;
 	req_access_txt = "109"
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "cy" = (
 /obj/structure/window/reinforced,
@@ -790,16 +955,16 @@
 	dir = 4
 	},
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "cz" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "cA" = (
-/obj/structure/sign/warning/securearea,
+/obj/structure/sign/securearea,
 /turf/closed/indestructible{
 	icon_state = "iron0"
 	},
@@ -810,10 +975,10 @@
 	opacity = 1;
 	req_access_txt = "109"
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "cC" = (
-/obj/item/storage/toolbox/electrical,
+/obj/item/weapon/storage/toolbox/electrical,
 /turf/open/floor/circuit,
 /area/awaymission/challenge/end)
 "cD" = (
@@ -824,16 +989,18 @@
 /area/awaymission/challenge/end)
 "cE" = (
 /obj/machinery/light{
+	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/circuit,
 /area/awaymission/challenge/end)
 "cF" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/smg,
-/turf/open/floor/plasteel/dark,
+/mob/living/simple_animal/hostile/syndicate/ranged,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "cG" = (
 /obj/machinery/light{
+	icon_state = "tube1";
 	dir = 4
 	},
 /turf/open/floor/circuit,
@@ -843,7 +1010,7 @@
 	dir = 1
 	},
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "cI" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -852,7 +1019,7 @@
 	dir = 4
 	},
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "cJ" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -861,7 +1028,7 @@
 	dir = 1
 	},
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "cK" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -870,7 +1037,7 @@
 	dir = 1
 	},
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "cL" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -879,163 +1046,129 @@
 	dir = 8
 	},
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "cM" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/directional{
-	dir = 9
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "cN" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle,
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "cO" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/directional{
-	dir = 5
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "cP" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle{
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/open/floor/plating,
+/area/awaymission/challenge/end)
+"cQ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/circuit,
 /area/awaymission/challenge/end)
 "cR" = (
 /obj/machinery/gateway{
 	dir = 9
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/vault{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
 "cS" = (
 /obj/machinery/gateway{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/vault{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
 "cT" = (
 /obj/machinery/gateway{
 	dir = 5
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/vault{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/area/awaymission/challenge/end)
+"cU" = (
+/obj/machinery/light{
+	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/circuit,
 /area/awaymission/challenge/end)
 "cV" = (
 /obj/machinery/gateway{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/vault{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
 "cW" = (
 /obj/machinery/gateway/centeraway{
 	calibrated = 0
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "cX" = (
 /obj/machinery/gateway{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/vault{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
 "cY" = (
 /obj/machinery/gateway{
 	dir = 10
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/vault{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
 "cZ" = (
 /obj/machinery/gateway,
 /obj/structure/cable{
-	icon_state = "0-2"
+	icon_state = "0-2";
+	pixel_y = 1;
+	d2 = 2
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/vault{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
 "da" = (
 /obj/machinery/gateway{
 	dir = 6
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/vault{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
 "db" = (
 /obj/structure/window/reinforced,
@@ -1043,9 +1176,12 @@
 /area/awaymission/challenge/end)
 "dc" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "dd" = (
 /obj/structure/window/reinforced{
@@ -1053,41 +1189,48 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "de" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "df" = (
 /obj/structure/table,
-/obj/item/paper/pamphlet/gateway,
-/turf/open/floor/plasteel/dark,
+/obj/item/weapon/paper/pamphlet,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "dg" = (
 /obj/structure/table,
-/obj/item/storage/firstaid/regular,
-/turf/open/floor/plasteel/dark,
+/obj/item/weapon/storage/firstaid/regular,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "dh" = (
 /obj/structure/table,
 /obj/machinery/recharger{
 	pixel_y = 4
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "di" = (
 /obj/structure/table,
-/obj/item/implanter/explosive,
-/obj/item/implanter/explosive{
+/obj/item/weapon/implanter/explosive,
+/obj/item/weapon/implanter/explosive{
 	pixel_y = 4
 	},
-/obj/item/implanter/explosive{
+/obj/item/weapon/implanter/explosive{
 	pixel_y = 8
 	},
-/obj/item/implanter/explosive{
+/obj/item/weapon/implanter/explosive{
 	pixel_y = 12
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "dj" = (
 /obj/structure/window/reinforced{
@@ -1095,38 +1238,52 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "dk" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Gateway Access";
 	opacity = 1;
 	req_access_txt = "109"
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "dl" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end{
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "dm" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
 	icon_state = "1-4"
 	},
 /mob/living/simple_animal/hostile/syndicate{
 	name = "Syndicate Technician"
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "dn" = (
 /obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "do" = (
 /obj/machinery/light,
@@ -28815,7 +28972,7 @@ cd
 cn
 cH
 cN
-cE
+cQ
 cn
 cn
 db
@@ -29843,7 +30000,7 @@ cd
 cn
 cH
 cN
-cG
+cU
 cn
 cn
 db

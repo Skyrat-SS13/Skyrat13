@@ -1,8 +1,7 @@
 SUBSYSTEM_DEF(time_track)
 	name = "Time Tracking"
 	wait = 600
-	flags = SS_NO_INIT|SS_NO_TICK_CHECK
-	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
+	flags = SS_NO_INIT|SS_FIRE_IN_LOBBY|SS_NO_TICK_CHECK
 
 	var/time_dilation_current = 0
 
@@ -35,4 +34,5 @@ SUBSYSTEM_DEF(time_track)
 	last_tick_realtime = current_realtime
 	last_tick_byond_time = current_byondtime
 	last_tick_tickcount = current_tickcount
-	SSblackbox.record_feedback("associative", "time_dilation_current", 1, list("[SQLtime()]" = list("current" = "[time_dilation_current]", "avg_fast" = "[time_dilation_avg_fast]", "avg" = "[time_dilation_avg]", "avg_slow" = "[time_dilation_avg_slow]")))
+
+

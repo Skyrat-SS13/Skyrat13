@@ -3,20 +3,20 @@
 	desc = "Gets rid of those pesky bloodstains, or your money back!"
 	icon = 'icons/obj/machines/washing_machine.dmi'
 	icon_state = "wm_1_0"
-	density = TRUE
-	state_open = TRUE
-	var/busy = FALSE
+	density = 1
+	anchored = 1
+	state_open = 1
+	var/busy = 0
 	var/bloody_mess = 0
 	var/has_corgi = 0
 	var/obj/item/color_source
 	var/max_wash_capacity = 5
 
 /obj/machinery/washing_machine/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>Alt-click it to start a wash cycle.</span>"
+	..()
+	to_chat(user, "<span class='notice'>Alt-click it to start a wash cycle.</span>")
 
 /obj/machinery/washing_machine/AltClick(mob/user)
-	. = ..()
 	if(!user.canUseTopic(src))
 		return
 
@@ -25,52 +25,34 @@
 
 	if(state_open)
 		to_chat(user, "<span class='notice'>Close the door first</span>")
-		return TRUE
+		return
 
 	if(bloody_mess)
 		to_chat(user, "<span class='warning'>[src] must be cleaned up first.</span>")
-		return TRUE
+		return
 
 	if(has_corgi)
 		bloody_mess = 1
 
-	busy = TRUE
+	busy = 1
 	update_icon()
-	addtimer(CALLBACK(src, .proc/wash_cycle), 200)
-	START_PROCESSING(SSfastprocess, src)
-	return TRUE
-
-/obj/machinery/washing_machine/process()
-	if (!busy)
-		animate(src, transform=matrix(), time=2)
-		return PROCESS_KILL
-	if (anchored)
-		if (prob(5))
-			var/matrix/M = new
-			M.Translate(rand(-1, 1), rand(0, 1))
-			animate(src, transform=M, time=1)
-			animate(transform=matrix(), time=1)
-	else
-		if (prob(1))
-			step(src, pick(GLOB.cardinals))
-		var/matrix/M = new
-		M.Translate(rand(-3, 3), rand(-1, 3))
-		animate(src, transform=M, time=2)
+	sleep(200)
+	wash_cycle()
 
 /obj/machinery/washing_machine/clean_blood()
 	..()
 	if(!busy)
-		bloody_mess = FALSE
+		bloody_mess = 0
 		update_icon()
+
 
 /obj/machinery/washing_machine/proc/wash_cycle()
 	for(var/X in contents)
 		var/atom/movable/AM = X
-		SEND_SIGNAL(AM, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 		AM.clean_blood()
 		AM.machine_wash(src)
 
-	busy = FALSE
+	busy = 0
 	if(color_source)
 		qdel(color_source)
 		color_source = null
@@ -82,22 +64,17 @@
 	return
 
 /obj/item/stack/sheet/hairlesshide/machine_wash(obj/machinery/washing_machine/WM)
-	new /obj/item/stack/sheet/wetleather(drop_location(), amount)
+	var/obj/item/stack/sheet/wetleather/WL = new(loc)
+	WL.amount = amount
 	qdel(src)
 
 /obj/item/clothing/suit/hooded/ian_costume/machine_wash(obj/machinery/washing_machine/WM)
-	new /obj/item/reagent_containers/food/snacks/meat/slab/corgi(loc)
+	new /obj/item/weapon/reagent_containers/food/snacks/meat/slab/corgi(loc)
 	qdel(src)
 
-/obj/item/paper/machine_wash(obj/machinery/washing_machine/WM)
+/obj/item/weapon/paper/machine_wash(obj/machinery/washing_machine/WM)
 	if(WM.color_source)
-		if(istype(WM.color_source, /obj/item/toy/crayon))
-			var/obj/item/toy/crayon/CR = WM.color_source
-			add_atom_colour(CR.paint_color, WASHABLE_COLOUR_PRIORITY)
-
-/obj/item/reagents_containers/rag/towel/machine_wash(obj/machinery/washing_machine/WM)
-	if(WM.color_source)
-		if(istype(WM.color_source, /obj/item/toy/crayon))
+		if(istype(WM.color_source,/obj/item/toy/crayon))
 			var/obj/item/toy/crayon/CR = WM.color_source
 			add_atom_colour(CR.paint_color, WASHABLE_COLOUR_PRIORITY)
 
@@ -152,7 +129,7 @@
 	if(chained)
 		chained = 0
 		slowdown = SHOES_SLOWDOWN
-		new /obj/item/restraints/handcuffs(loc)
+		new /obj/item/weapon/restraints/handcuffs(loc)
 	if(WM.color_source)
 		var/wash_color = WM.color_source.item_color
 		for(var/T in typesof(/obj/item/clothing/shoes/sneakers))
@@ -164,11 +141,11 @@
 				desc = "The colors are a bit dodgy."
 				break
 
-/obj/item/bedsheet/machine_wash(obj/machinery/washing_machine/WM)
+/obj/item/weapon/bedsheet/machine_wash(obj/machinery/washing_machine/WM)
 	if(WM.color_source)
 		var/wash_color = WM.color_source.item_color
-		for(var/T in typesof(/obj/item/bedsheet))
-			var/obj/item/bedsheet/B = T
+		for(var/T in typesof(/obj/item/weapon/bedsheet))
+			var/obj/item/weapon/bedsheet/B = T
 			if(wash_color == initial(B.item_color))
 				icon_state = initial(B.icon_state)
 				item_color = wash_color
@@ -211,17 +188,10 @@
 	if(panel_open)
 		add_overlay("wm_panel")
 
-/obj/machinery/washing_machine/attackby(obj/item/W, mob/user, params)
-	if(panel_open && !busy && default_unfasten_wrench(user, W))
-		return
-
+/obj/machinery/washing_machine/attackby(obj/item/weapon/W, mob/user, params)
 	if(default_deconstruction_screwdriver(user, null, null, W))
 		update_icon()
 		return
-
-	if(istype(W, /obj/item/clothing/head/mob_holder))
-		to_chat(user, "<span class='warning'>It's too unwieldly to put in this way.</span>")
-		return 1
 
 	else if(user.a_intent != INTENT_HARM)
 
@@ -241,7 +211,7 @@
 			to_chat(user, "<span class='warning'>\The [W] is stuck to your hand, you cannot put it in the washing machine!</span>")
 			return 1
 
-		if(istype(W, /obj/item/toy/crayon) || istype(W, /obj/item/stamp))
+		if(istype(W,/obj/item/toy/crayon) || istype(W,/obj/item/weapon/stamp))
 			color_source = W
 		update_icon()
 
@@ -249,9 +219,6 @@
 		return ..()
 
 /obj/machinery/washing_machine/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	if(busy)
 		to_chat(user, "<span class='warning'>[src] is busy.</span>")
 		return
@@ -270,7 +237,7 @@
 	if(!state_open)
 		open_machine()
 	else
-		state_open = FALSE //close the door
+		state_open = 0 //close the door
 		update_icon()
 
 /obj/machinery/washing_machine/deconstruct(disassembled = TRUE)
@@ -279,6 +246,6 @@
 
 /obj/machinery/washing_machine/open_machine(drop = 1)
 	..()
-	density = TRUE //because machinery/open_machine() sets it to 0
+	density = 1 //because machinery/open_machine() sets it to 0
 	color_source = null
 	has_corgi = 0

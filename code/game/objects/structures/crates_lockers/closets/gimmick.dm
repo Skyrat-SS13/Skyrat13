@@ -3,9 +3,8 @@
 	desc = "Old will forever be in fashion."
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE
+	obj_integrity = 70
 	max_integrity = 70
-	material_drop = /obj/item/stack/sheet/mineral/wood
-	cutting_tool = /obj/item/screwdriver
 
 /obj/structure/closet/acloset
 	name = "strange closet"
@@ -19,7 +18,7 @@
 	icon_state = "syndicate"
 
 /obj/structure/closet/gimmick/russian
-	name = "\improper Russian surplus closet"
+	name = "russian surplus closet"
 	desc = "It's a storage unit for Russian standard-issue surplus."
 
 /obj/structure/closet/gimmick/russian/PopulateContents()
@@ -54,7 +53,7 @@
 /obj/structure/closet/thunderdome
 	name = "\improper Thunderdome closet"
 	desc = "Everything you need!"
-	anchored = TRUE
+	anchored = 1
 
 /obj/structure/closet/thunderdome/tdred
 	name = "red-team Thunderdome closet"
@@ -65,13 +64,13 @@
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/suit/armor/tdome/red(src)
 	for(var/i in 1 to 3)
-		new /obj/item/melee/transforming/energy/sword/saber(src)
+		new /obj/item/weapon/melee/energy/sword/saber(src)
 	for(var/i in 1 to 3)
-		new /obj/item/gun/energy/laser(src)
+		new /obj/item/weapon/gun/energy/laser(src)
 	for(var/i in 1 to 3)
-		new /obj/item/melee/baton/loaded(src)
+		new /obj/item/weapon/melee/baton/loaded(src)
 	for(var/i in 1 to 3)
-		new /obj/item/storage/box/flashbangs(src)
+		new /obj/item/weapon/storage/box/flashbangs(src)
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/head/helmet/thunderdome(src)
 
@@ -84,13 +83,13 @@
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/suit/armor/tdome/green(src)
 	for(var/i in 1 to 3)
-		new /obj/item/melee/transforming/energy/sword/saber(src)
+		new /obj/item/weapon/melee/energy/sword/saber(src)
 	for(var/i in 1 to 3)
-		new /obj/item/gun/energy/laser(src)
+		new /obj/item/weapon/gun/energy/laser(src)
 	for(var/i in 1 to 3)
-		new /obj/item/melee/baton/loaded(src)
+		new /obj/item/weapon/melee/baton/loaded(src)
 	for(var/i in 1 to 3)
-		new /obj/item/storage/box/flashbangs(src)
+		new /obj/item/weapon/storage/box/flashbangs(src)
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/head/helmet/thunderdome(src)
 
@@ -100,10 +99,10 @@
 
 /obj/structure/closet/malf/suits/PopulateContents()
 	..()
-	new /obj/item/tank/jetpack/void(src)
+	new /obj/item/weapon/tank/jetpack/void(src)
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/clothing/head/helmet/space/nasavoid(src)
 	new /obj/item/clothing/suit/space/nasavoid(src)
-	new /obj/item/crowbar(src)
-	new /obj/item/stock_parts/cell(src)
-	new /obj/item/multitool(src)
+	new /obj/item/weapon/crowbar(src)
+	new /obj/item/weapon/stock_parts/cell(src)
+	new /obj/item/device/multitool(src)

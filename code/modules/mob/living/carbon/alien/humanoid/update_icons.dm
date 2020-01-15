@@ -4,7 +4,6 @@
 	for(var/I in overlays_standing)
 		add_overlay(I)
 
-	var/asleep = IsSleeping()
 	if(stat == DEAD)
 		//If we mostly took damage from fire
 		if(fireloss > 125)
@@ -12,12 +11,12 @@
 		else
 			icon_state = "alien[caste]_dead"
 
-	else if((stat == UNCONSCIOUS && !asleep) || stat == SOFT_CRIT || IsKnockdown())
+	else if((stat == UNCONSCIOUS && !sleeping) || weakened)
 		icon_state = "alien[caste]_unconscious"
 	else if(leap_on_click)
 		icon_state = "alien[caste]_pounce"
 
-	else if(lying || resting || asleep)
+	else if(lying || resting || sleeping)
 		icon_state = "alien[caste]_sleep"
 	else if(mob_size == MOB_SIZE_LARGE)
 		icon_state = "alien[caste]"
@@ -59,19 +58,15 @@
 
 /mob/living/carbon/alien/humanoid/update_inv_handcuffed()
 	remove_overlay(HANDCUFF_LAYER)
+	var/cuff_icon = "aliencuff"
+	var/dmi_file = 'icons/mob/alien.dmi'
+
+	if(mob_size == MOB_SIZE_LARGE)
+		cuff_icon = "aliencuff_[caste]"
+		dmi_file = 'icons/mob/alienqueen.dmi'
 
 	if(handcuffed)
-		var/cuff_icon = handcuffed.item_state
-		var/dmi_file = 'icons/mob/alien.dmi'
-
-		if(mob_size == MOB_SIZE_LARGE)
-			cuff_icon += "_[caste]"
-			dmi_file = 'icons/mob/alienqueen.dmi'
-
-		var/mutable_appearance/cuffs = mutable_appearance(dmi_file, cuff_icon, -HANDCUFF_LAYER)
-		cuffs.color = handcuffed.color
-
-		overlays_standing[HANDCUFF_LAYER] = cuffs
+		overlays_standing[HANDCUFF_LAYER] = mutable_appearance(dmi_file, cuff_icon, -HANDCUFF_LAYER)
 		apply_overlay(HANDCUFF_LAYER)
 
 //Royals have bigger sprites, so inhand things must be handled differently.

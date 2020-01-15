@@ -5,8 +5,8 @@
 #define MAX_TIMER 9000
 
 #define PRESET_SHORT 1200
-#define PRESET_MEDIUM 1800
-#define PRESET_LONG 3000
+#define PRESET_MEDIUM 3000
+#define PRESET_LONG 6000
 
 
 
@@ -23,8 +23,9 @@
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
 	desc = "A remote control for a door."
-	req_access = list(ACCESS_SECURITY)
-	density = FALSE
+	req_access = list(GLOB.access_security)
+	anchored = 1
+	density = 0
 	var/id = null // id of linked machinery/lockers
 
 	var/activation_time = 0
@@ -32,19 +33,19 @@
 
 	var/timing = FALSE		// boolean, true/1 timer is on, false/0 means it's not timing
 	var/list/obj/machinery/targets = list()
-	var/obj/item/radio/Radio //needed to send messages to sec radio
+	var/obj/item/device/radio/Radio //needed to send messages to sec radio
 
 	maptext_height = 26
 	maptext_width = 32
 
-/obj/machinery/door_timer/Initialize()
-	. = ..()
+/obj/machinery/door_timer/New()
+	..()
 
-	Radio = new/obj/item/radio(src)
+	Radio = new/obj/item/device/radio(src)
 	Radio.listening = 0
 
 /obj/machinery/door_timer/Initialize()
-	. = ..()
+	..()
 	if(id != null)
 		for(var/obj/machinery/door/window/brigdoor/M in urange(20, src))
 			if (M.id == id)
@@ -71,7 +72,7 @@
 		return
 
 	if(timing)
-		if(world.realtime - activation_time >= timer_duration)
+		if(world.time - activation_time >= timer_duration)
 			timer_end() // open doors, reset timer, clear status screen
 		update_icon()
 
@@ -87,7 +88,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return 0
 
-	activation_time = world.realtime
+	activation_time = world.time
 	timing = TRUE
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
@@ -100,7 +101,7 @@
 			continue
 		if(C.opened && !C.close())
 			continue
-		C.locked = TRUE
+		C.locked = 1
 		C.update_icon()
 	return 1
 
@@ -111,8 +112,8 @@
 		return 0
 
 	if(!forced)
-		Radio.set_frequency(FREQ_SECURITY)
-		Radio.talk_into(src, "Timer has expired. Releasing prisoner.", FREQ_SECURITY)
+		Radio.set_frequency(GLOB.SEC_FREQ)
+		Radio.talk_into(src, "Timer has expired. Releasing prisoner.", GLOB.SEC_FREQ, get_default_language())
 
 	timing = FALSE
 	activation_time = null
@@ -129,23 +130,23 @@
 			continue
 		if(C.opened)
 			continue
-		C.locked = FALSE
+		C.locked = 0
 		C.update_icon()
 
 	return 1
 
 
 /obj/machinery/door_timer/proc/time_left(seconds = FALSE)
-	. = max(0,timer_duration - (activation_time ? world.realtime - activation_time : 0))
+	. = max(0,timer_duration - (activation_time ? world.time - activation_time : 0))
 	if(seconds)
 		. /= 10
 
 /obj/machinery/door_timer/proc/set_timer(value)
-	var/new_time = CLAMP(value,0,MAX_TIMER)
+	var/new_time = Clamp(value,0,MAX_TIMER)
 	. = new_time == timer_duration //return 1 on no change
 	timer_duration = new_time
 
-/obj/machinery/door_timer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+/obj/machinery/door_timer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
@@ -211,7 +212,7 @@
 	if(..())
 		return
 	. = TRUE
-
+	
 	if(!allowed(usr))
 		to_chat(usr, "<span class='warning'>Access denied.</span>")
 		return FALSE
@@ -240,7 +241,7 @@
 					preset_time = PRESET_LONG
 			. = set_timer(preset_time)
 			if(timing)
-				activation_time = world.realtime
+				activation_time = world.time
 		else
 			. = FALSE
 

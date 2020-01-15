@@ -18,7 +18,6 @@
 	name = "Asteroid 1"
 	description = "I-spy with my little eye, something beginning with R."
 
-
 /datum/map_template/ruin/space/asteroid2
 	id = "asteroid2"
 	suffix = "asteroid2.dmm"
@@ -83,7 +82,7 @@
 	id = "derelict4"
 	suffix = "derelict4.dmm"
 	name = "Derelict 4"
-	description = "CentCom ferries have never crashed, will never crash, there is no current investigation into a crashed ferry, and we will not let Internal Affairs trample over high security \
+	description = "Centcom ferries have never crashed, will never crash, there is no current investigation into a crashed ferry, and we will not let Internal Affairs trample over high security \
 	information in the name of this baseless witchhunt."
 
 /datum/map_template/ruin/space/derelict5
@@ -148,7 +147,7 @@
 	id = "spacehotel"
 	suffix = "spacehotel.dmm"
 	name = "The Twin-Nexus Hotel"
-	description = "An interstellar hotel, where the weary spaceman can rest their head and relax, assured that the residental staff will not murder them in their sleep. Probably."
+	description = "A interstellar hotel, where the weary spaceman can rest their head and relax, assured that the residental staff will not murder them in their sleep. Probably."
 
 /datum/map_template/ruin/space/turreted_outpost
 	id = "turreted-outpost"
@@ -237,12 +236,6 @@
 	description = "There seems to be a pair of buses that pulled over for repairs. What were they doing..? Their shipment sure  seems to be filled with a strange mix. \
 	Anyway, it looks like some people tried to fix it up for a long time but didn't really get anywhere..."
 
-/datum/map_template/ruin/space/oldstation
-	id = "oldstation"
-	suffix = "oldstation.dmm"
-	name = "Ancient Space Station"
-	description = "The crew of a space station awaken one hundred years after a crisis. Awaking to a derelict space station on the verge of collapse, and a hostile force of invading \
-	hivebots. Can the surviving crew overcome the odds and survive and rebuild, or will the cold embrace of the stars become their new home?"
 
 /datum/map_template/ruin/space/miracle
 	id = "miracle"
@@ -250,69 +243,8 @@
 	name = "Ordinary Space Tile"
 	description = "Absolutely nothing strange going on here please move along, plenty more space to see right this way!"
 
-/datum/map_template/ruin/space/gondoland
-	id = "gondolaasteroid"
-	suffix = "gondolaasteroid.dmm"
-	name = "Gondoland"
-	description = "Just an ordinary rock- wait, what's that thing?"
-
-/datum/map_template/ruin/space/whiteshipruin_box
-	id = "whiteshipruin_box"
-	suffix = "whiteshipruin_box.dmm"
-	name = "NT Medical Ship"
-	description = "An ancient ship, said to be among the first discovered derelicts near Space Station 13 that was still in working order. \
-	Aged and deprecated by time, this relic of a vessel is now broken beyond repair."
-
-/datum/map_template/ruin/space/whiteshipdock
-	id = "whiteshipdock"
-	suffix = "whiteshipdock.dmm"
-	name = "Whiteship Dock"
-	description = "An abandoned but functional vessel parked in deep space, ripe for the taking."
-
-/datum/map_template/ruin/space/cat_experiments
-	id = "meow"
-	suffix = "mrow_thats_right.dmm"
-	name = "Feline-Human Combination Den"
-	description = "With heated debates over the legality of the catperson and their status in the workforce, there's always a place for the blackmarket to slip in for some cash. Whether the results \
-	are morally sound or not is another issue entirely."
-
-/datum/map_template/ruin/space/cloning_facility
-	id = "cloning_facility"
-	suffix = "cloning_facility.dmm"
-	name = "Ancient Cloning Lab"
-	description = "An experimental cloning lab snapped off from an ancient ship. The cloner model inside lacks many modern functionalities and security measures."
-
-/datum/map_template/ruin/space/hilbertresearchfacility
-	id = "hilbert_facility"
-	suffix = "hilbertshoteltestingsite.dmm"
-	name = "Hilbert Research Facility"
-	description = "A research facility of great bluespace discoveries. Long since abandoned, willingly or not..."
-/datum/map_template/ruin/space/augmentation
-	id = "augmentationfacility"
-	suffix = "augmentationfacility.dmm"
-	name = "Roboticst Augmentation Facility"
-	description = "A mysterious lab in the depths of space containing robotics supplies and a one use autosurgeon."
-
-/datum/map_template/ruin/space/harambe
-	id = "bigape"
-	suffix = "bigape.dmm"
-	name = "Big Ape"
-	description = "A gorilla? Out here? But why."
-
-/datum/map_template/ruin/space/space_arcade
-	id = "arcade"
-	suffix = "arcade.dmm"
-	name = "Space Arcade"
-	description = "A lonely arcade in the depths of space."
-
-/datum/map_template/ruin/space/hermit
-	id = "spacehermit"
-	suffix = "spacehermit.dmm"
-	name = "Space Hermit"
-	description = "A late awakening cryo pod in a crashed escape pod wakes up to find what befell of his fellow survivors. Contains all the necessary resources to actually make it out alive. Good luck."
-
-/datum/map_template/ruin/space/advancedlab
-	id = "advancedlab"
-	suffix = "advancedlab.dmm"
-	name = "Abductor Replication Lab"
-	description = "Some scientists tried and almost succeeded to recreate abductor tools. Somewhat slower and a bit less modern than their originals, these tools are the best you can get if you aren't an alien."
+/datum/map_template/ruin/space/dragoon
+	id = "dragoon"
+	suffix = "dragoontomb.dmm"
+	name = "Sky Bulge Tomb"
+	description = "A tomb of a dice-loving dragoon in space. Turns out he got too good and jumped too high. Contains the Sky Bulge, which when thrown, warps the thrower."

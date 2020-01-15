@@ -25,12 +25,11 @@
 	proj_trail_icon_state = "magicmd"
 
 	action_icon_state = "magicm"
-	sound = 'sound/magic/magic_missile.ogg'
+	sound = 'sound/magic/MAGIC_MISSILE.ogg'
 
 /obj/effect/proc_holder/spell/targeted/inflict_handler/magic_missile
-	amt_knockdown = 120
-	amt_hardstun = 5
-	sound = 'sound/magic/mm_hit.ogg'
+	amt_weakened = 3
+	sound = 'sound/magic/MM_Hit.ogg'
 
 /obj/effect/proc_holder/spell/targeted/genetic/mutate
 	name = "Mutate"
@@ -49,7 +48,7 @@
 	cooldown_min = 300 //25 deciseconds reduction per rank
 
 	action_icon_state = "mutate"
-	sound = 'sound/magic/mutate.ogg'
+	sound = 'sound/magic/Mutate.ogg'
 
 
 /obj/effect/proc_holder/spell/targeted/smoke
@@ -101,7 +100,7 @@
 
 	emp_heavy = 6
 	emp_light = 10
-	sound = 'sound/magic/disable_tech.ogg'
+	sound = 'sound/magic/Disable_Tech.ogg'
 
 /obj/effect/proc_holder/spell/targeted/turf_teleport/blink
 	name = "Blink"
@@ -149,8 +148,8 @@
 
 	smoke_spread = 1
 	smoke_amt = 2
-	sound1 = 'sound/magic/teleport_diss.ogg'
-	sound2 = 'sound/magic/teleport_app.ogg'
+	sound1 = 'sound/magic/Teleport_diss.ogg'
+	sound2 = 'sound/magic/Teleport_app.ogg'
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop
 	name = "Stop Time"
@@ -178,12 +177,12 @@
 	range = 1
 
 	summon_type = list(/mob/living/simple_animal/hostile/carp)
-	cast_sound = 'sound/magic/summon_karp.ogg'
+	cast_sound = 'sound/magic/Summon_Karp.ogg'
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/construct
 	name = "Artificer"
-	desc = "This spell conjures a construct which may be controlled by Shades."
+	desc = "This spell conjures a construct which may be controlled by Shades"
 
 	school = "conjuration"
 	charge_max = 600
@@ -195,12 +194,12 @@
 	summon_type = list(/obj/structure/constructshell)
 
 	action_icon_state = "artificer"
-	cast_sound = 'sound/magic/summonitems_generic.ogg'
+	cast_sound = 'sound/magic/SummonItems_generic.ogg'
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/creature
 	name = "Summon Creature Swarm"
-	desc = "This spell tears the fabric of reality, allowing horrific daemons to spill forth."
+	desc = "This spell tears the fabric of reality, allowing horrific daemons to spill forth"
 
 	school = "conjuration"
 	charge_max = 1200
@@ -210,8 +209,8 @@
 	summon_amt = 10
 	range = 3
 
-	summon_type = list(/mob/living/simple_animal/hostile/netherworld)
-	cast_sound = 'sound/magic/summonitems_generic.ogg'
+	summon_type = list(/mob/living/simple_animal/hostile/creature)
+	cast_sound = 'sound/magic/SummonItems_generic.ogg'
 
 /obj/effect/proc_holder/spell/targeted/trigger/blind
 	name = "Blind"
@@ -240,12 +239,12 @@
 /obj/effect/proc_holder/spell/targeted/inflict_handler/blind
 	amt_eye_blind = 10
 	amt_eye_blurry = 20
-	sound = 'sound/magic/blind.ogg'
+	sound = 'sound/magic/Blind.ogg'
 
 /obj/effect/proc_holder/spell/targeted/genetic/blind
 	mutations = list(BLINDMUT)
 	duration = 300
-	sound = 'sound/magic/blind.ogg'
+	sound = 'sound/magic/Blind.ogg'
 /obj/effect/proc_holder/spell/aoe_turf/repulse
 	name = "Repulse"
 	desc = "This spell throws everything around the user away."
@@ -256,14 +255,13 @@
 	range = 5
 	cooldown_min = 150
 	selection_type = "view"
-	sound = 'sound/magic/repulse.ogg'
+	sound = 'sound/magic/Repulse.ogg'
 	var/maxthrow = 5
-	var/sparkle_path = /obj/effect/temp_visual/gravpush
-	var/anti_magic_check = TRUE
+	var/sparkle_path = /obj/effect/overlay/temp/gravpush
 
 	action_icon_state = "repulse"
 
-/obj/effect/proc_holder/spell/aoe_turf/repulse/cast(list/targets,mob/user = usr, stun_amt = 50)
+/obj/effect/proc_holder/spell/aoe_turf/repulse/cast(list/targets,mob/user = usr, var/stun_amt = 2)
 	var/list/thrownatoms = list()
 	var/atom/throwtarget
 	var/distfromcaster
@@ -277,48 +275,41 @@
 		if(AM == user || AM.anchored)
 			continue
 
-		if(ismob(AM))
-			var/mob/M = AM
-			if(M.anti_magic_check(anti_magic_check, FALSE))
-				continue
-
 		throwtarget = get_edge_target_turf(user, get_dir(user, get_step_away(AM, user)))
 		distfromcaster = get_dist(user, AM)
 		if(distfromcaster == 0)
 			if(isliving(AM))
 				var/mob/living/M = AM
-				M.Knockdown(100, override_hardstun = 20)
+				M.Weaken(5)
 				M.adjustBruteLoss(5)
 				to_chat(M, "<span class='userdanger'>You're slammed into the floor by [user]!</span>")
 		else
 			new sparkle_path(get_turf(AM), get_dir(user, AM)) //created sparkles will disappear on their own
 			if(isliving(AM))
 				var/mob/living/M = AM
-				M.Knockdown(stun_amt, override_hardstun = stun_amt * 0.2)
+				M.Weaken(stun_amt)
 				to_chat(M, "<span class='userdanger'>You're thrown back by [user]!</span>")
-			AM.throw_at(throwtarget, ((CLAMP((maxthrow - (CLAMP(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user)//So stuff gets tossed around at the same time.
+			AM.throw_at(throwtarget, ((Clamp((maxthrow - (Clamp(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user)//So stuff gets tossed around at the same time.
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno //i fixed conflicts only to find out that this is in the WIZARD file instead of the xeno file?!
 	name = "Tail Sweep"
 	desc = "Throw back attackers with a sweep of your tail."
-	sound = 'sound/magic/tail_swing.ogg'
+	sound = 'sound/magic/Tail_swing.ogg'
 	charge_max = 150
 	clothes_req = 0
 	range = 2
 	cooldown_min = 150
 	invocation_type = "none"
-	sparkle_path = /obj/effect/temp_visual/dir_setting/tailsweep
-	action_icon = 'icons/mob/actions/actions_xeno.dmi'
+	sparkle_path = /obj/effect/overlay/temp/dir_setting/tailsweep
 	action_icon_state = "tailsweep"
 	action_background_icon_state = "bg_alien"
-	anti_magic_check = FALSE
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno/cast(list/targets,mob/user = usr)
-	if(iscarbon(user))
+	if(istype(user, /mob/living/carbon))
 		var/mob/living/carbon/C = user
 		playsound(C.loc, 'sound/voice/hiss5.ogg', 80, 1, 1)
 		C.spin(6,1)
-	..(targets, user, 60)
+	..(targets, user, 3)
 
 /obj/effect/proc_holder/spell/targeted/sacred_flame
 	name = "Sacred Flame"
@@ -332,17 +323,14 @@
 	include_user = 1
 	selection_type = "view"
 	action_icon_state = "sacredflame"
-	sound = 'sound/magic/fireball.ogg'
+	sound = 'sound/magic/Fireball.ogg'
 
 /obj/effect/proc_holder/spell/targeted/sacred_flame/cast(list/targets, mob/user = usr)
 	for(var/mob/living/L in targets)
-		if(L.anti_magic_check(TRUE, TRUE))
-			continue
 		L.adjust_fire_stacks(20)
 	if(isliving(user))
 		var/mob/living/U = user
-		if(!U.anti_magic_check(TRUE, TRUE))
-			U.IgniteMob()
+		U.IgniteMob()
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket
 	name = "Thrown Lightning"
@@ -367,12 +355,11 @@
 	if(!..())
 		if(isliving(hit_atom))
 			var/mob/living/M = hit_atom
-			if(!M.anti_magic_check())
-				M.electrocute_act(80, src, illusion = 1)
+			M.electrocute_act(80, src, illusion = 1)
 		qdel(src)
 
 /obj/item/spellpacket/lightningbolt/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback)
 	. = ..()
 	if(ishuman(thrower))
 		var/mob/living/carbon/human/H = thrower
-		H.say("LIGHTNINGBOLT!!", forced = "spell")
+		H.say("LIGHTNINGBOLT!!")

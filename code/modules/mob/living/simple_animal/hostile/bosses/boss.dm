@@ -2,7 +2,7 @@
 	name = "A Perfectly Generic Boss Placeholder"
 	desc = ""
 	robust_searching = 1
-	stat_attack = UNCONSCIOUS
+	stat_attack = 1
 	status_flags = 0
 	a_intent = INTENT_HARM
 	gender = NEUTER
@@ -12,7 +12,7 @@
 
 
 /mob/living/simple_animal/hostile/boss/Initialize()
-	. = ..()
+	..()
 
 	atb = new()
 	atb.point_regen_delay = point_regen_delay
@@ -65,7 +65,7 @@
 				return 0
 		if(boss)
 			if(say_when_triggered)
-				boss.say(say_when_triggered, forced = "boss action")
+				boss.say(say_when_triggered)
 			if(!boss.atb.spend(boss_cost))
 				return 0
 

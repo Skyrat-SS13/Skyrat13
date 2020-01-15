@@ -4,6 +4,7 @@
 	actions_types = list(/datum/action/item_action/toggle_hood)
 	var/obj/item/clothing/head/hooded/hood
 	var/hoodtype = /obj/item/clothing/head/hooded/winterhood //so the chaplain hoodie or other hoodies can override this
+	hooded = 1
 
 /obj/item/clothing/suit/hooded/New()
 	MakeHood()
@@ -23,18 +24,18 @@
 /obj/item/clothing/suit/hooded/ui_action_click()
 	ToggleHood()
 
-/obj/item/clothing/suit/hooded/item_action_slot_check(slot, mob/user, datum/action/A)
-	if(slot == SLOT_WEAR_SUIT || slot == SLOT_NECK)
+/obj/item/clothing/suit/hooded/item_action_slot_check(slot, mob/user)
+	if(slot == slot_wear_suit)
 		return 1
 
 /obj/item/clothing/suit/hooded/equipped(mob/user, slot)
-	if(slot != SLOT_WEAR_SUIT && slot != SLOT_NECK)
+	if(slot != slot_wear_suit)
 		RemoveHood()
 	..()
 
 /obj/item/clothing/suit/hooded/proc/RemoveHood()
 	src.icon_state = "[initial(icon_state)]"
-	suittoggled = FALSE
+	suittoggled = 0
 	if(ishuman(hood.loc))
 		var/mob/living/carbon/H = hood.loc
 		H.transferItemToLoc(hood, src, TRUE)
@@ -59,8 +60,8 @@
 			if(H.head)
 				to_chat(H, "<span class='warning'>You're already wearing something on your head!</span>")
 				return
-			else if(H.equip_to_slot_if_possible(hood,SLOT_HEAD,0,0,1))
-				suittoggled = TRUE
+			else if(H.equip_to_slot_if_possible(hood,slot_head,0,0,1))
+				suittoggled = 1
 				src.icon_state = "[initial(icon_state)]_t"
 				H.update_inv_wear_suit()
 				for(var/X in actions)
@@ -83,7 +84,7 @@
 
 /obj/item/clothing/head/hooded/equipped(mob/user, slot)
 	..()
-	if(slot != SLOT_HEAD)
+	if(slot != slot_head)
 		if(suit)
 			suit.RemoveHood()
 		else
@@ -92,11 +93,12 @@
 //Toggle exosuits for different aesthetic styles (hoodies, suit jacket buttons, etc)
 
 /obj/item/clothing/suit/toggle/AltClick(mob/user)
-	. = ..()
-	if(!user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+	..()
+	if(!user.canUseTopic(src, be_close=TRUE))
+		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
 		return
-	suit_toggle(user)
-	return TRUE
+	else
+		suit_toggle(user)
 
 /obj/item/clothing/suit/toggle/ui_action_click()
 	suit_toggle()
@@ -110,23 +112,23 @@
 	to_chat(usr, "<span class='notice'>You toggle [src]'s [togglename].</span>")
 	if(src.suittoggled)
 		src.icon_state = "[initial(icon_state)]"
-		src.suittoggled = FALSE
+		src.suittoggled = 0
 	else if(!src.suittoggled)
 		src.icon_state = "[initial(icon_state)]_t"
-		src.suittoggled = TRUE
+		src.suittoggled = 1
 	usr.update_inv_wear_suit()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
 
 /obj/item/clothing/suit/toggle/examine(mob/user)
-	. = ..()
-	. += "Alt-click on [src] to toggle the [togglename]."
+	..()
+	to_chat(user, "Alt-click on [src] to toggle the [togglename].")
 
 //Hardsuit toggle code
-/obj/item/clothing/suit/space/hardsuit/Initialize()
+/obj/item/clothing/suit/space/hardsuit/New()
 	MakeHelmet()
-	. = ..()
+	..()
 
 /obj/item/clothing/suit/space/hardsuit/Destroy()
 	if(helmet)
@@ -155,14 +157,14 @@
 /obj/item/clothing/suit/space/hardsuit/equipped(mob/user, slot)
 	if(!helmettype)
 		return
-	if(slot != SLOT_WEAR_SUIT)
+	if(slot != slot_wear_suit)
 		RemoveHelmet()
 	..()
 
 /obj/item/clothing/suit/space/hardsuit/proc/RemoveHelmet()
 	if(!helmet)
 		return
-	suittoggled = FALSE
+	suittoggled = 0
 	if(ishuman(helmet.loc))
 		var/mob/living/carbon/H = helmet.loc
 		if(helmet.on)
@@ -179,7 +181,7 @@
 	RemoveHelmet()
 
 /obj/item/clothing/suit/space/hardsuit/proc/ToggleHelmet()
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/carbon/human/H = src.loc
 	if(!helmettype)
 		return
 	if(!helmet)
@@ -192,9 +194,9 @@
 			if(H.head)
 				to_chat(H, "<span class='warning'>You're already wearing something on your head!</span>")
 				return
-			else if(H.equip_to_slot_if_possible(helmet,SLOT_HEAD,0,0,1))
+			else if(H.equip_to_slot_if_possible(helmet,slot_head,0,0,1))
 				to_chat(H, "<span class='notice'>You engage the helmet on the hardsuit.</span>")
-				suittoggled = TRUE
+				suittoggled = 1
 				H.update_inv_wear_suit()
 				playsound(src.loc, 'sound/mecha/mechmove03.ogg', 50, 1)
 	else

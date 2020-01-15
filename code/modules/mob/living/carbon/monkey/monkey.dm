@@ -1,5 +1,6 @@
 /mob/living/carbon/monkey
 	name = "monkey"
+	voice_name = "monkey"
 	verb_say = "chimpers"
 	initial_language_holder = /datum/language_holder/monkey
 	icon = 'icons/mob/monkey.dmi'
@@ -7,17 +8,16 @@
 	gender = NEUTER
 	pass_flags = PASSTABLE
 	ventcrawler = VENTCRAWLER_NUDE
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/monkey = 5, /obj/item/stack/sheet/animalhide/monkey = 1)
-	type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab/monkey
+	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab/monkey = 5, /obj/item/stack/sheet/animalhide/monkey = 1)
+	type_of_meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/monkey
 	gib_type = /obj/effect/decal/cleanable/blood/gibs
-	unique_name = TRUE
+	unique_name = 1
 	bodyparts = list(/obj/item/bodypart/chest/monkey, /obj/item/bodypart/head/monkey, /obj/item/bodypart/l_arm/monkey,
 					 /obj/item/bodypart/r_arm/monkey, /obj/item/bodypart/r_leg/monkey, /obj/item/bodypart/l_leg/monkey)
-	hud_type = /datum/hud/monkey
-	can_be_held = "monkey"
 
-/mob/living/carbon/monkey/Initialize(mapload, cubespawned=FALSE, mob/spawner)
+
+
+/mob/living/carbon/monkey/Initialize()
 	verbs += /mob/living/proc/mob_sleep
 	verbs += /mob/living/proc/lay_down
 
@@ -27,28 +27,15 @@
 
 	//initialize limbs
 	create_bodyparts()
+
 	create_internal_organs()
 
-	. = ..()
+	..()
 
-	if (cubespawned)
-		var/cap = CONFIG_GET(number/monkeycap)
-		if (LAZYLEN(SSmobs.cubemonkeys) > cap)
-			if (spawner)
-				to_chat(spawner, "<span class='warning'>Bluespace harmonics prevent the spawning of more than [cap] monkeys on the station at one time!</span>")
-			return INITIALIZE_HINT_QDEL
-		SSmobs.cubemonkeys += src
-
+/mob/living/carbon/monkey/Initialize()
+	..()
 	create_dna(src)
 	dna.initialize_dna(random_blood_type())
-
-/mob/living/carbon/monkey/Destroy()
-	SSmobs.cubemonkeys -= src
-	return ..()
-
-/mob/living/carbon/monkey/generate_mob_holder()
-	var/obj/item/clothing/head/mob_holder/holder = new(get_turf(src), src, "monkey", 'icons/mob/animals_held.dmi', 'icons/mob/animals_held_lh.dmi', 'icons/mob/animals_held_rh.dmi', TRUE)
-	return holder
 
 /mob/living/carbon/monkey/create_internal_organs()
 	internal_organs += new /obj/item/organ/appendix
@@ -58,35 +45,24 @@
 	internal_organs += new /obj/item/organ/tongue
 	internal_organs += new /obj/item/organ/eyes
 	internal_organs += new /obj/item/organ/ears
-	internal_organs += new /obj/item/organ/liver
-	internal_organs += new /obj/item/organ/stomach
 	..()
 
-/mob/living/carbon/monkey/on_reagent_change()
-	. = ..()
-	remove_movespeed_modifier(MOVESPEED_ID_MONKEY_REAGENT_SPEEDMOD, TRUE)
-	var/amount
-	if(reagents.has_reagent(/datum/reagent/medicine/morphine))
-		amount = -1
-	if(amount)
-		add_movespeed_modifier(MOVESPEED_ID_MONKEY_REAGENT_SPEEDMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = amount)
+/mob/living/carbon/monkey/movement_delay()
+	if(reagents)
+		if(reagents.has_reagent("morphine"))
+			return -1
 
-/mob/living/carbon/monkey/updatehealth()
+		if(reagents.has_reagent("nuka_cola"))
+			return -1
+
 	. = ..()
-	var/slow = 0
 	var/health_deficiency = (100 - health)
 	if(health_deficiency >= 45)
-		slow += (health_deficiency / 25)
-	add_movespeed_modifier(MOVESPEED_ID_MONKEY_HEALTH_SPEEDMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = slow)
+		. += (health_deficiency / 25)
 
-/mob/living/carbon/monkey/adjust_bodytemperature(amount)
-	. = ..()
-	var/slow = 0
 	if (bodytemperature < 283.222)
-		slow += (283.222 - bodytemperature) / 10 * 1.75
-	if(slow <= 0)
-		return
-	add_movespeed_modifier(MOVESPEED_ID_MONKEY_TEMPERATURE_SPEEDMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = amount)
+		. += (283.222 - bodytemperature) / 10 * 1.75
+	return . + config.monkey_delay
 
 /mob/living/carbon/monkey/Stat()
 	..()
@@ -94,10 +70,9 @@
 		stat(null, "Intent: [a_intent]")
 		stat(null, "Move Mode: [m_intent]")
 		if(client && mind)
-			var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
-			if(changeling)
-				stat("Chemical Storage", "[changeling.chem_charges]/[changeling.chem_storage]")
-				stat("Absorbed DNA", changeling.absorbedcount)
+			if(mind.changeling)
+				stat("Chemical Storage", "[mind.changeling.chem_charges]/[mind.changeling.chem_storage]")
+				stat("Absorbed DNA", mind.changeling.absorbedcount)
 	return
 
 
@@ -109,66 +84,70 @@
 
 
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
-	if(mind && is_monkey(mind))
-		return TRUE
-	return FALSE
+	return 0
 
 /mob/living/carbon/monkey/reagent_check(datum/reagent/R) //can metabolize all reagents
-	return FALSE
+	return 0
 
 /mob/living/carbon/monkey/canBeHandcuffed()
-	return TRUE
+	return 1
 
-/mob/living/carbon/monkey/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null)
-	if(judgement_criteria & JUDGE_EMAGGED)
+/mob/living/carbon/monkey/assess_threat(mob/living/simple_animal/bot/secbot/judgebot, lasercolor)
+	if(judgebot.emagged == 2)
 		return 10 //Everyone is a criminal!
-
 	var/threatcount = 0
 
 	//Securitrons can't identify monkeys
-	if( !(judgement_criteria & JUDGE_IGNOREMONKEYS) && (judgement_criteria & JUDGE_IDCHECK) )
+	if(!lasercolor && judgebot.idcheck )
 		threatcount += 4
 
 	//Lasertag bullshit
 	if(lasercolor)
 		if(lasercolor == "b")//Lasertag turrets target the opposing team, how great is that? -Sieve
-			if(is_holding_item_of_type(/obj/item/gun/energy/laser/redtag))
+			if(is_holding_item_of_type(/obj/item/weapon/gun/energy/laser/redtag))
 				threatcount += 4
 
 		if(lasercolor == "r")
-			if(is_holding_item_of_type(/obj/item/gun/energy/laser/bluetag))
+			if(is_holding_item_of_type(/obj/item/weapon/gun/energy/laser/bluetag))
 				threatcount += 4
 
 		return threatcount
 
 	//Check for weapons
-	if( (judgement_criteria & JUDGE_WEAPONCHECK) && weaponcheck )
-		for(var/obj/item/I in held_items) //if they're holding a gun
-			if(weaponcheck.Invoke(I))
+	if(judgebot.weaponscheck)
+		for(var/obj/item/I in held_items)
+			if(judgebot.check_for_weapons(I))
 				threatcount += 4
-		if(weaponcheck.Invoke(back)) //if a weapon is present in the back slot
-			threatcount += 4 //trigger look_for_perp() since they're nonhuman and very likely hostile
 
 	//mindshield implants imply trustworthyness
-	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
+	if(isloyal())
 		threatcount -= 1
 
 	return threatcount
 
+/mob/living/carbon/monkey/get_permeability_protection()
+	var/protection = 0
+	if(head)
+		protection = 1 - head.permeability_coefficient
+	if(wear_mask)
+		protection = max(1 - wear_mask.permeability_coefficient, protection)
+	protection = protection/7 //the rest of the body isn't covered.
+	return protection
+
 /mob/living/carbon/monkey/IsVocal()
-	if(!getorganslot(ORGAN_SLOT_LUNGS))
+	if(!getorganslot("lungs"))
 		return 0
 	return 1
 
-/mob/living/carbon/monkey/can_use_guns(obj/item/G)
-	return TRUE
+/mob/living/carbon/monkey/can_use_guns(var/obj/item/weapon/gun/G)
+	return 1
 
 /mob/living/carbon/monkey/angry
 	aggressive = TRUE
 
 /mob/living/carbon/monkey/angry/Initialize()
-	. = ..()
+	..()
 	if(prob(10))
 		var/obj/item/clothing/head/helmet/justice/escape/helmet = new(src)
-		equip_to_slot_or_del(helmet,SLOT_HEAD)
+		equip_to_slot_or_del(helmet,slot_head)
 		helmet.attack_self(src) // todo encapsulate toggle

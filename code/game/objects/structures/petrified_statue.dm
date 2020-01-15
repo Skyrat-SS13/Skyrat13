@@ -2,8 +2,9 @@
 	name = "statue"
 	desc = "An incredibly lifelike marble carving."
 	icon_state = "human_male"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
+	obj_integrity = 200
 	max_integrity = 200
 	var/timer = 240 //eventually the person will be freed
 	var/mob/living/petrified_mob
@@ -17,7 +18,7 @@
 			L.buckled.unbuckle_mob(L,force=1)
 		L.visible_message("<span class='warning'>[L]'s skin rapidly turns to marble!</span>", "<span class='userdanger'>Your body freezes up! Can't... move... can't...  think...</span>")
 		L.forceMove(src)
-		ADD_TRAIT(L, TRAIT_MUTE, STATUE_MUTE)
+		L.disabilities |= MUTE
 		L.faction += "mimic" //Stops mimics from instaqdeling people in statues
 		L.status_flags |= GODMODE
 		obj_integrity = L.health + 100 //stoning damaged mobs will result in easier to shatter statues
@@ -29,7 +30,7 @@
 	if(!petrified_mob)
 		STOP_PROCESSING(SSobj, src)
 	timer--
-	petrified_mob.Stun(40) //So they can't do anything while petrified
+	petrified_mob.Stun(2) //So they can't do anything while petrified
 	if(timer <= 0)
 		STOP_PROCESSING(SSobj, src)
 		qdel(src)
@@ -49,7 +50,7 @@
 		if(S.mind)
 			if(petrified_mob)
 				S.mind.transfer_to(petrified_mob)
-				petrified_mob.Knockdown(100)
+				petrified_mob.Weaken(5)
 				to_chat(petrified_mob, "<span class='notice'>You slowly come back to your senses. You are in control of yourself again!</span>")
 		qdel(S)
 
@@ -59,7 +60,7 @@
 	if(petrified_mob)
 		petrified_mob.status_flags &= ~GODMODE
 		petrified_mob.forceMove(loc)
-		REMOVE_TRAIT(petrified_mob, TRAIT_MUTE, STATUE_MUTE)
+		petrified_mob.disabilities &= ~MUTE
 		petrified_mob.take_overall_damage((petrified_mob.health - obj_integrity + 100)) //any new damage the statue incurred is transfered to the mob
 		petrified_mob.faction -= "mimic"
 		petrified_mob = null

@@ -4,7 +4,6 @@
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
 	icon_living = "ghost"
-	mob_biotypes = list(MOB_SPIRIT)
 	speak_chance = 0
 	turns_per_move = 5
 	response_help = "passes through"
@@ -24,14 +23,13 @@
 	attack_sound = 'sound/hallucinations/growl1.ogg'
 	speak_emote = list("weeps")
 	deathmessage = "wails, disintegrating into a pile of ectoplasm!"
-	loot = list(/obj/item/ectoplasm)
+	loot = list(/obj/item/weapon/ectoplasm)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
 	movement_type = FLYING
 	pressure_resistance = 300
-	gold_core_spawnable = NO_SPAWN //too spooky for science
-	blood_volume = 0
+	gold_core_spawnable = 0 //too spooky for science
 	var/ghost_hair_style
 	var/ghost_hair_color
 	var/mutable_appearance/ghost_hair
@@ -43,7 +41,6 @@
 /mob/living/simple_animal/hostile/retaliate/ghost/Initialize()
 	. = ..()
 	give_hair()
-	set_light(1, 2) // same glowing as visible player ghosts
 	if(random)
 		switch(rand(0,1))
 			if(0)

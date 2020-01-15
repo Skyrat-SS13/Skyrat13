@@ -1,4 +1,4 @@
-#define WHITELISTFILE "[global.config.directory]/whitelist.txt"
+#define WHITELISTFILE "config/whitelist.txt"
 
 GLOBAL_LIST(whitelist)
 GLOBAL_PROTECT(whitelist)
@@ -10,7 +10,7 @@ GLOBAL_PROTECT(whitelist)
 			continue
 		if(findtextEx(line,"#",1,2))
 			continue
-		GLOB.whitelist += ckey(line)
+		GLOB.whitelist += line
 
 	if(!GLOB.whitelist.len)
 		GLOB.whitelist = null

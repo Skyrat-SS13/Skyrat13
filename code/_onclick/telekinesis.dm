@@ -10,34 +10,24 @@
 	By default, emulate the user's unarmed attack
 */
 
-#define TK_MAXRANGE 15
-
 /atom/proc/attack_tk(mob/user)
-	if(user.stat || !tkMaxRangeCheck(user, src))
+	if(user.stat)
 		return
-	new /obj/effect/temp_visual/telekinesis(get_turf(src))
+	new /obj/effect/overlay/temp/telekinesis(loc)
 	user.UnarmedAttack(src,0) // attack_hand, attack_paw, etc
-	add_hiddenprint(user)
 	return
 
 /obj/attack_tk(mob/user)
 	if(user.stat)
 		return
-	if(anchored)
-		return ..()
-	attack_tk_grab(user)
 
-/obj/item/attack_tk(mob/user)
-	if(user.stat)
-		return
-	attack_tk_grab(user)
-
-/obj/proc/attack_tk_grab(mob/user)
 	var/obj/item/tk_grab/O = new(src)
 	O.tk_user = user
 	if(O.focus_object(src))
 		user.put_in_active_hand(O)
-		add_hiddenprint(user)
+	else
+		qdel(O)
+		..()
 
 /mob/attack_tk(mob/user)
 	return
@@ -70,7 +60,7 @@
 	desc = "Magic"
 	icon = 'icons/obj/magic.dmi'//Needs sprites
 	icon_state = "2"
-	item_flags = NOBLUDGEON | ABSTRACT | DROPDEL
+	flags = NOBLUDGEON | ABSTRACT | DROPDEL
 	//item_state = null
 	w_class = WEIGHT_CLASS_GIGANTIC
 	layer = ABOVE_HUD_LAYER
@@ -80,7 +70,7 @@
 	var/mob/living/carbon/tk_user = null
 
 /obj/item/tk_grab/Initialize()
-	. = ..()
+	..()
 	START_PROCESSING(SSfastprocess, src)
 
 /obj/item/tk_grab/Destroy()
@@ -94,20 +84,18 @@
 /obj/item/tk_grab/dropped(mob/user)
 	if(focus && user && loc != user && loc != user.loc) // drop_item() gets called when you tk-attack a table/closet with an item
 		if(focus.Adjacent(loc))
-			focus.forceMove(loc)
+			focus.loc = loc
 	. = ..()
 
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(mob/user, slot)
-	if(slot == SLOT_HANDS)
+	if(slot == slot_hands)
 		return
 	qdel(src)
 	return
 
-/obj/item/tk_grab/examine(user)
-	if (focus)
-		return focus.examine(user)
-	return ..()
+/obj/item/tk_grab/attack_hand(mob/user)
+	return
 
 /obj/item/tk_grab/attack_self(mob/user)
 	if(!focus)
@@ -119,7 +107,6 @@
 	update_icon()
 
 /obj/item/tk_grab/afterattack(atom/target, mob/living/carbon/user, proximity, params)//TODO: go over this
-	. = ..()
 	if(!target || !user)
 		return
 
@@ -135,10 +122,9 @@
 		return
 
 
-	if(!isturf(target) && isitem(focus) && target.Adjacent(focus))
+	if(!isturf(target) && istype(focus,/obj/item) && target.Adjacent(focus))
 		apply_focus_overlay()
-		var/obj/item/I = focus
-		I.melee_attack_chain(tk_user, target, params) //isn't copying the attack chain fun. we should do it more often.
+		melee_item_attack_chain(tk_user, focus, target, params) //isn't copying the attack chain fun. we should do it more often.
 		if(check_if_focusable(focus))
 			focus.do_attack_animation(target, null, focus)
 	else
@@ -177,7 +163,7 @@
 /obj/item/tk_grab/proc/apply_focus_overlay()
 	if(!focus)
 		return
-	new /obj/effect/temp_visual/telekinesis(get_turf(focus))
+	new /obj/effect/overlay/temp/telekinesis(get_turf(focus))
 
 /obj/item/tk_grab/update_icon()
 	cut_overlays()
@@ -193,6 +179,3 @@
 /obj/item/tk_grab/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is using [user.p_their()] telekinesis to choke [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return (OXYLOSS)
-
-
-#undef TK_MAXRANGE

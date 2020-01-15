@@ -1,7 +1,6 @@
 /datum/game_mode/meteor
 	name = "meteor"
 	config_tag = "meteor"
-	false_report_weight = 1
 	var/meteordelay = 2000
 	var/nometeors = 0
 	var/rampupdelta = 5
@@ -25,35 +24,34 @@
 	if (prob(meteorminutes/2))
 		wavetype = GLOB.meteors_catastrophic
 
-	var/ramp_up_final = CLAMP(round(meteorminutes/rampupdelta), 1, 10)
+	var/ramp_up_final = Clamp(round(meteorminutes/rampupdelta), 1, 10)
 
 	spawn_meteors(ramp_up_final, wavetype)
 
 
-/datum/game_mode/meteor/special_report()
+/datum/game_mode/meteor/declare_completion()
+	var/text
 	var/survivors = 0
-	var/list/survivor_list = list()
 
 	for(var/mob/living/player in GLOB.player_list)
 		if(player.stat != DEAD)
 			++survivors
 
-			if(player.onCentCom())
-				survivor_list += "<span class='greentext'>[player.real_name] escaped to the safety of CentCom.</span>"
+			if(player.onCentcom())
+				text += "<br><b><font size=2>[player.real_name] escaped to the safety of Centcom.</font></b>"
 			else if(player.onSyndieBase())
-				survivor_list += "<span class='greentext'>[player.real_name] escaped to the (relative) safety of Syndicate Space.</span>"
+				text += "<br><b><font size=2>[player.real_name] escaped to the (relative) safety of Syndicate Space.</font></b>"
 			else
-				survivor_list += "<span class='neutraltext'>[player.real_name] survived but is stranded without any hope of rescue.</span>"
+				text += "<br><font size=1>[player.real_name] survived but is stranded without any hope of rescue.</font>"
+
 
 	if(survivors)
-		return "<div class='panel greenborder'><span class='header'>The following survived the meteor storm:</span><br>[survivor_list.Join("<br>")]</div>"
+		to_chat(world, "<span class='boldnotice'>The following survived the meteor storm</span>:[text]")
 	else
-		return "<div class='panel redborder'><span class='redtext big'>Nobody survived the meteor storm!</span></div>"
+		to_chat(world, "<span class='boldnotice'>Nobody survived the meteor storm!</span>")
 
-/datum/game_mode/meteor/set_round_result()
+	SSblackbox.set_details("round_end_result","end - evacuation")
+	SSblackbox.set_val("round_end_result",survivors)
+
 	..()
-	SSticker.mode_result = "end - evacuation"
-
-/datum/game_mode/meteor/generate_report()
-	return "[pick("Asteroids have", "Meteors have", "Large rocks have", "Stellar minerals have", "Space hail has", "Debris has")] been detected near your station, and a collision is possible, \
-			though unlikely.  Be prepared for largescale impacts and destruction.  Please note that the debris will prevent the escape shuttle from arriving quickly."
+	return 1

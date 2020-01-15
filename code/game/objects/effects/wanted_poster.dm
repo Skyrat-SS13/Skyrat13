@@ -1,18 +1,19 @@
-/obj/item/poster/wanted
+/obj/item/weapon/poster/wanted
 	icon_state = "rolled_poster"
 
-/obj/item/poster/wanted/Initialize(mapload, icon/person_icon, wanted_name, description)
-	. = ..(mapload, new /obj/structure/sign/poster/wanted(src, person_icon, wanted_name, description))
+/obj/item/weapon/poster/wanted/New(turf/loc, icon/person_icon, wanted_name, description)
+	var/obj/structure/sign/poster/wanted/wanted_poster = new(person_icon, wanted_name, description)
+	..(loc, wanted_poster)
 	name = "wanted poster ([wanted_name])"
 	desc = "A wanted poster for [wanted_name]."
 
 /obj/structure/sign/poster/wanted
 	var/wanted_name
 
-/obj/structure/sign/poster/wanted/Initialize(mapload, icon/person_icon, person_name, description)
-	. = ..()
+/obj/structure/sign/poster/wanted/New(var/icon/person_icon, var/person_name, var/description)
 	if(!person_icon)
-		return INITIALIZE_HINT_QDEL
+		qdel(src)
+		return
 	name = "wanted poster ([person_name])"
 	wanted_name = person_name
 	desc = description
@@ -32,7 +33,7 @@
 	icon = the_icon
 
 /obj/structure/sign/poster/wanted/roll_and_drop(turf/location)
-	var/obj/item/poster/P = ..(location)
+	var/obj/item/weapon/poster/P = ..(location)
 	P.name = "wanted poster ([wanted_name])"
 	P.desc = "A wanted poster for [wanted_name]."
 	return P

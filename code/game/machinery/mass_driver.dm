@@ -3,7 +3,8 @@
 	desc = "The finest in spring-loaded piston toy technology, now on a space station near you."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mass_driver"
-	use_power = IDLE_POWER_USE
+	anchored = 1
+	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 50
 	var/power = 1
@@ -19,7 +20,7 @@
 	var/O_limit
 	var/atom/target = get_edge_target_turf(src, dir)
 	for(var/atom/movable/O in loc)
-		if(!O.anchored || ismecha(O))	//Mechs need their launch platforms.
+		if(!O.anchored || istype(O, /obj/mecha))	//Mechs need their launch platforms.
 			O_limit++
 			if(O_limit >= 20)
 				audible_message("<span class='notice'>[src] lets out a screech, it doesn't seem to be able to handle the load.</span>")
@@ -30,9 +31,7 @@
 
 
 /obj/machinery/mass_driver/emp_act(severity)
-	. = ..()
-	if (. & EMP_PROTECT_SELF)
-		return
 	if(stat & (BROKEN|NOPOWER))
 		return
 	drive()
+	..(severity)

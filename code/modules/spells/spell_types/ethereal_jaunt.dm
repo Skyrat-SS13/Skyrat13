@@ -13,22 +13,29 @@
 	nonabstract_req = 1
 	var/jaunt_duration = 50 //in deciseconds
 	var/jaunt_in_time = 5
-	var/jaunt_in_type = /obj/effect/temp_visual/wizard
-	var/jaunt_out_type = /obj/effect/temp_visual/wizard/out
+	var/jaunt_in_type = /obj/effect/overlay/temp/wizard
+	var/jaunt_out_type = /obj/effect/overlay/temp/wizard/out
 	action_icon_state = "jaunt"
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/cast(list/targets,mob/user = usr) //magnets, so mostly hardcoded
-	playsound(get_turf(user), 'sound/magic/ethereal_enter.ogg', 50, 1, -1)
+	playsound(get_turf(user), 'sound/magic/Ethereal_Enter.ogg', 50, 1, -1)
 	for(var/mob/living/target in targets)
 		INVOKE_ASYNC(src, .proc/do_jaunt, target)
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/proc/do_jaunt(mob/living/target)
 	target.notransform = 1
 	var/turf/mobloc = get_turf(target)
-	var/obj/effect/dummy/phased_mob/spell_jaunt/holder = new /obj/effect/dummy/phased_mob/spell_jaunt(mobloc)
+	var/obj/effect/dummy/spell_jaunt/holder = new /obj/effect/dummy/spell_jaunt(mobloc)
 	new jaunt_out_type(mobloc, target.dir)
 	target.ExtinguishMob()
-	target.forceMove(holder)
+	if(target.buckled)
+		target.buckled.unbuckle_mob(target,force=1)
+	if(target.pulledby)
+		target.pulledby.stop_pulling()
+	target.stop_pulling()
+	if(target.has_buckled_mobs())
+		target.unbuckle_all_mobs(force=1)
+	target.loc = holder
 	target.reset_perspective(holder)
 	target.notransform=0 //mob is safely inside holder now, no need for protection.
 	jaunt_steam(mobloc)
@@ -42,10 +49,9 @@
 	jaunt_steam(mobloc)
 	target.canmove = 0
 	holder.reappearing = 1
-	playsound(get_turf(target), 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
+	playsound(get_turf(target), 'sound/magic/Ethereal_Exit.ogg', 50, 1, -1)
 	sleep(25 - jaunt_in_time)
-	new jaunt_in_type(mobloc, holder.dir)
-	target.setDir(holder.dir)
+	new jaunt_in_type(mobloc, target.dir)
 	sleep(jaunt_in_time)
 	qdel(holder)
 	if(!QDELETED(target))
@@ -62,42 +68,35 @@
 	steam.set_up(10, 0, mobloc)
 	steam.start()
 
-/obj/effect/dummy/phased_mob/spell_jaunt
+/obj/effect/dummy/spell_jaunt
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
+	var/canmove = 1
 	var/reappearing = 0
-	var/movedelay = 0
-	var/movespeed = 2
-	density = FALSE
-	anchored = TRUE
+	density = 0
+	anchored = 1
 	invisibility = 60
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-/obj/effect/dummy/phased_mob/spell_jaunt/Destroy()
+/obj/effect/dummy/spell_jaunt/Destroy()
 	// Eject contents if deleted somehow
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
 	return ..()
 
-/obj/effect/dummy/phased_mob/spell_jaunt/relaymove(var/mob/user, direction)
-	if ((movedelay > world.time) || reappearing || !direction)
-		return
+/obj/effect/dummy/spell_jaunt/relaymove(var/mob/user, direction)
+	if (!src.canmove || reappearing || !direction) return
 	var/turf/newLoc = get_step(src,direction)
 	setDir(direction)
+	if(!(newLoc.flags & NOJAUNT))
+		loc = newLoc
+	else
+		to_chat(user, "<span class='warning'>Some strange aura is blocking the way!</span>")
+	src.canmove = 0
+	spawn(2) src.canmove = 1
 
-	movedelay = world.time + movespeed
-
-	if(newLoc.flags_1 & NOJAUNT_1)
-		to_chat(user, "<span class='warning'>Some strange aura is blocking the way.</span>")
-		return
-	if (locate(/obj/effect/blessing, newLoc))
-		to_chat(user, "<span class='warning'>Holy energies block your path!</span>")
-		return
-
-	forceMove(newLoc)
-
-/obj/effect/dummy/phased_mob/spell_jaunt/ex_act(blah)
+/obj/effect/dummy/spell_jaunt/ex_act(blah)
 	return
-/obj/effect/dummy/phased_mob/spell_jaunt/bullet_act(blah)
+/obj/effect/dummy/spell_jaunt/bullet_act(blah)
 	return

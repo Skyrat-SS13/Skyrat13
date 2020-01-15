@@ -1,22 +1,22 @@
-/obj/effect/dummy/phased_mob/slaughter //Can't use the wizard one, blocked by jaunt/slow
+/obj/effect/dummy/slaughter //Can't use the wizard one, blocked by jaunt/slow
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	var/canmove = 1
-	density = FALSE
-	anchored = TRUE
+	density = 0
+	anchored = 1
 	invisibility = 60
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-/obj/effect/dummy/phased_mob/slaughter/relaymove(mob/user, direction)
+/obj/effect/dummy/slaughter/relaymove(mob/user, direction)
 	forceMove(get_step(src,direction))
 
-/obj/effect/dummy/phased_mob/slaughter/ex_act()
+/obj/effect/dummy/slaughter/ex_act()
 	return
-/obj/effect/dummy/phased_mob/slaughter/bullet_act()
+/obj/effect/dummy/slaughter/bullet_act()
 	return
 
-/obj/effect/dummy/phased_mob/slaughter/singularity_act()
+/obj/effect/dummy/slaughter/singularity_act()
 	return
 
 
@@ -30,8 +30,8 @@
 			// literally only an option for carbons though
 			to_chat(C, "<span class='warning'>You may not hold items while blood crawling!</span>")
 			return 0
-		var/obj/item/bloodcrawl/B1 = new(C)
-		var/obj/item/bloodcrawl/B2 = new(C)
+		var/obj/item/weapon/bloodcrawl/B1 = new(C)
+		var/obj/item/weapon/bloodcrawl/B2 = new(C)
 		B1.icon_state = "bloodhand_left"
 		B2.icon_state = "bloodhand_right"
 		C.put_in_hands(B1)
@@ -50,7 +50,7 @@
 	playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 100, 1, -1)
 	// Extinguish, unbuckle, stop being pulled, set our location into the
 	// dummy object
-	var/obj/effect/dummy/phased_mob/slaughter/holder = new /obj/effect/dummy/phased_mob/slaughter(mobloc)
+	var/obj/effect/dummy/slaughter/holder = new /obj/effect/dummy/slaughter(mobloc)
 	src.ExtinguishMob()
 
 	// Keep a reference to whatever we're pulling, because forceMove()
@@ -73,7 +73,7 @@
 
 	if(victim.stat == CONSCIOUS)
 		src.visible_message("<span class='warning'>[victim] kicks free of the blood pool just before entering it!</span>", null, "<span class='notice'>You hear splashing and struggling.</span>")
-	else if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/consumable/ethanol/demonsblood))
+	else if(victim.reagents && victim.reagents.has_reagent("demonsblood"))
 		visible_message("<span class='warning'>Something prevents [victim] from entering the pool!</span>", "<span class='warning'>A strange force is blocking [victim] from entering!</span>", "<span class='notice'>You hear a splash and a thud.</span>")
 	else
 		victim.forceMove(src)
@@ -95,7 +95,7 @@
 		var/mob/living/simple_animal/slaughter/SD = src
 		sound = SD.feast_sound
 	else
-		sound = 'sound/magic/demon_consume.ogg'
+		sound = 'sound/magic/Demon_consume.ogg'
 
 	for(var/i in 1 to 3)
 		playsound(get_turf(src),sound, 100, 1)
@@ -104,7 +104,7 @@
 	if(!victim)
 		return FALSE
 
-	if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/consumable/ethanol/devilskiss))
+	if(victim.reagents && victim.reagents.has_reagent("devilskiss"))
 		to_chat(src, "<span class='warning'><b>AAH! THEIR FLESH! IT BURNS!</b></span>")
 		adjustBruteLoss(25) //I can't use adjustHealth() here because bloodcrawl affects /mob/living and adjustHealth() only affects simple mobs
 		var/found_bloodpool = FALSE
@@ -134,25 +134,22 @@
 /mob/living/proc/bloodcrawl_swallow(var/mob/living/victim)
 	qdel(victim)
 
-/obj/item/bloodcrawl
+/obj/item/weapon/bloodcrawl
 	name = "blood crawl"
 	desc = "You are unable to hold anything while in this form."
 	icon = 'icons/effects/blood.dmi'
-	item_flags = ABSTRACT
-
-/obj/item/bloodcrawl/Initialize()
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	flags = NODROP|ABSTRACT
 
 /mob/living/proc/exit_blood_effect(obj/effect/decal/cleanable/B)
 	playsound(get_turf(src), 'sound/magic/exit_blood.ogg', 100, 1, -1)
 	//Makes the mob have the color of the blood pool it came out of
-	var/newcolor = BLOOD_COLOR_HUMAN
-	if(istype(B, /obj/effect/decal/cleanable/blood/xeno))
-		newcolor = BLOOD_COLOR_XENO
+	var/newcolor = rgb(149, 10, 10)
+	if(istype(B, /obj/effect/decal/cleanable/xenoblood))
+		newcolor = rgb(43, 186, 0)
 	add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 	// but only for a few seconds
-	addtimer(CALLBACK(src, /atom/.proc/remove_atom_colour, TEMPORARY_COLOUR_PRIORITY, newcolor), 6 SECONDS)
+	spawn(30)
+		remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, newcolor)
 
 /mob/living/proc/phasein(obj/effect/decal/cleanable/B)
 	if(src.notransform)
@@ -163,14 +160,14 @@
 		return
 	if(!B)
 		return
-	forceMove(B.loc)
+	src.loc = B.loc
 	src.client.eye = src
-	src.visible_message("<span class='warning'><B>[src] rises out of the pool of blood!</B></span>")
+	src.visible_message("<span class='warning'><B>[src] rises out of the pool of blood!</B>")
 	exit_blood_effect(B)
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
-		for(var/obj/item/bloodcrawl/BC in C)
-			BC.flags_1 = null
+		for(var/obj/item/weapon/bloodcrawl/BC in C)
+			BC.flags = null
 			qdel(BC)
 	qdel(src.holder)
 	src.holder = null

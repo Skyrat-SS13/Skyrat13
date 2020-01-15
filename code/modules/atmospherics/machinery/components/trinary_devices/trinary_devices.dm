@@ -2,12 +2,10 @@
 	icon = 'icons/obj/atmospherics/components/trinary_devices.dmi'
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|WEST
-	use_power = IDLE_POWER_USE
+	use_power = 1
 	device_type = TRINARY
-	layer = GAS_FILTER_LAYER
-	pipe_flags = PIPING_ONE_PER_TURF
 
-	var/flipped = FALSE
+	var/flipped = 0
 
 /obj/machinery/atmospherics/components/trinary/SetInitDirections()
 	switch(dir)

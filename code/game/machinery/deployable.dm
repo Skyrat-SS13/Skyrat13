@@ -11,14 +11,15 @@
 /obj/structure/barricade
 	name = "chest high wall"
 	desc = "Looks like this would make good cover."
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
+	obj_integrity = 100
 	max_integrity = 100
 	var/proj_pass_rate = 50 //How many projectiles will pass the cover. Lower means stronger cover
 	var/material = METAL
 
 /obj/structure/barricade/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	if(!(flags & NODECONSTRUCT))
 		make_debris()
 	qdel(src)
 
@@ -26,18 +27,20 @@
 	return
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/weldingtool) && user.a_intent != INTENT_HARM && material == METAL)
+	if(istype(I, /obj/item/weapon/weldingtool) && user.a_intent != INTENT_HARM && material == METAL)
+		var/obj/item/weapon/weldingtool/WT = I
 		if(obj_integrity < max_integrity)
-			if(!I.tool_start_check(user, amount=0))
-				return
-
-			to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
-			if(I.use_tool(src, user, 40, volume=40))
-				obj_integrity = CLAMP(obj_integrity + 20, 0, max_integrity)
+			if(WT.remove_fuel(0,user))
+				to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
+				playsound(loc, WT.usesound, 40, 1)
+				if(do_after(user, 40*I.toolspeed, target = src))
+					obj_integrity = Clamp(obj_integrity + 20, 0, max_integrity)
 	else
 		return ..()
 
-/obj/structure/barricade/CanPass(atom/movable/mover, turf/target)//So bullets will fly over and stuff.
+/obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0)//So bullets will fly over and stuff.
+	if(height==0)
+		return 1
 	if(locate(/obj/structure/barricade) in get_turf(mover))
 		return 1
 	else if(istype(mover, /obj/item/projectile))
@@ -62,40 +65,9 @@
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "woodenbarricade"
 	material = WOOD
-	var/drop_amount = 3
-
-/obj/structure/barricade/wooden/attackby(obj/item/I, mob/user)
-	if(istype(I,/obj/item/stack/sheet/mineral/wood))
-		var/obj/item/stack/sheet/mineral/wood/W = I
-		if(W.amount < 5)
-			to_chat(user, "<span class='warning'>You need at least five wooden planks to make a wall!</span>")
-			return
-		else
-			to_chat(user, "<span class='notice'>You start adding [I] to [src]...</span>")
-			if(do_after(user, 50, target=src))
-				W.use(5)
-				var/turf/T = get_turf(src)
-				T.PlaceOnTop(/turf/closed/wall/mineral/wood/nonmetal)
-				qdel(src)
-				return
-	return ..()
-
-
-/obj/structure/barricade/wooden/crude
-	name = "crude plank barricade"
-	desc = "This space is blocked off by a crude assortment of planks."
-	icon_state = "woodenbarricade-old"
-	drop_amount = 1
-	max_integrity = 50
-	proj_pass_rate = 65
-
-/obj/structure/barricade/wooden/crude/snow
-	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."
-	icon_state = "woodenbarricade-snow-old"
-	max_integrity = 75
 
 /obj/structure/barricade/wooden/make_debris()
-	new /obj/item/stack/sheet/mineral/wood(get_turf(src), drop_amount)
+	new /obj/item/stack/sheet/mineral/wood(get_turf(src), 3)
 
 
 /obj/structure/barricade/sandbags
@@ -103,6 +75,7 @@
 	desc = "Bags of sand. Self explanatory."
 	icon = 'icons/obj/smooth_structures/sandbags.dmi'
 	icon_state = "sandbags"
+	obj_integrity = 280
 	max_integrity = 280
 	proj_pass_rate = 20
 	pass_flags = LETPASSTHROW
@@ -117,49 +90,44 @@
 	desc = "A deployable barrier. Provides good cover in fire fights."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "barrier0"
-	density = FALSE
-	anchored = FALSE
+	density = 0
+	anchored = 0
+	obj_integrity = 180
 	max_integrity = 180
 	proj_pass_rate = 20
-	armor = list("melee" = 10, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 10, "acid" = 0)
+	armor = list(melee = 10, bullet = 50, laser = 50, energy = 50, bomb = 10, bio = 100, rad = 100, fire = 10, acid = 0)
 
 	var/deploy_time = 40
 	var/deploy_message = TRUE
 
 
-/obj/structure/barricade/security/Initialize()
-	. = ..()
+/obj/structure/barricade/security/New()
+	..()
 	addtimer(CALLBACK(src, .proc/deploy), deploy_time)
 
 /obj/structure/barricade/security/proc/deploy()
 	icon_state = "barrier1"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	if(deploy_message)
 		visible_message("<span class='warning'>[src] deploys!</span>")
 
 
-/obj/item/grenade/barrier
+/obj/item/weapon/grenade/barrier
 	name = "barrier grenade"
-	desc = "Instant cover."
+	desc = "Instant cover. Alt+click to toggle modes."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "flashbang"
 	item_state = "flashbang"
 	actions_types = list(/datum/action/item_action/toggle_barrier_spread)
 	var/mode = SINGLE
 
-/obj/item/grenade/barrier/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>Alt-click to toggle modes.</span>"
-
-/obj/item/grenade/barrier/AltClick(mob/living/carbon/user)
-	. = ..()
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
+/obj/item/weapon/grenade/barrier/AltClick(mob/living/user)
+	if(!istype(user) || user.incapacitated())
 		return
 	toggle_mode(user)
-	return TRUE
 
-/obj/item/grenade/barrier/proc/toggle_mode(mob/user)
+/obj/item/weapon/grenade/barrier/proc/toggle_mode(mob/user)
 	switch(mode)
 		if(SINGLE)
 			mode = VERTICAL
@@ -170,7 +138,7 @@
 
 	to_chat(user, "[src] is now in [mode] mode.")
 
-/obj/item/grenade/barrier/prime()
+/obj/item/weapon/grenade/barrier/prime()
 	new /obj/structure/barricade/security(get_turf(src.loc))
 	switch(mode)
 		if(VERTICAL)
@@ -191,7 +159,7 @@
 				new /obj/structure/barricade/security(target_turf2)
 	qdel(src)
 
-/obj/item/grenade/barrier/ui_action_click(mob/user)
+/obj/item/weapon/grenade/barrier/ui_action_click(mob/user)
 	toggle_mode(user)
 
 

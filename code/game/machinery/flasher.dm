@@ -5,37 +5,39 @@
 	desc = "A wall-mounted flashbulb device."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mflash1"
-	max_integrity = 250
-	integrity_failure = 100
-	light_color = LIGHT_COLOR_WHITE
-	light_power = FLASH_LIGHT_POWER
-	var/obj/item/assembly/flash/handheld/bulb
+	var/obj/item/device/assembly/flash/handheld/bulb = null
 	var/id = null
 	var/range = 2 //this is roughly the size of brig cell
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
-	var/strength = 100 //How knocked down targets are when flashed.
+	var/strength = 5 //How weakened targets are when flashed.
 	var/base_state = "mflash"
+	obj_integrity = 250
+	max_integrity = 250
+	integrity_failure = 100
+	anchored = 1
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
 	name = "portable flasher"
 	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
 	icon_state = "pflash1-p"
-	strength = 80
-	anchored = FALSE
+	strength = 4
+	anchored = 0
 	base_state = "pflash"
-	density = TRUE
+	density = 1
 
-/obj/machinery/flasher/Initialize(mapload, ndir = 0, built = 0)
-	. = ..() // ..() is EXTREMELY IMPORTANT, never forget to add it
+/obj/machinery/flasher/New(loc, ndir = 0, built = 0)
+	..() // ..() is EXTREMELY IMPORTANT, never forget to add it
 	if(built)
 		setDir(ndir)
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -28 : 28)
 		pixel_y = (dir & 3)? (dir ==1 ? -28 : 28) : 0
 	else
-		bulb = new(src)
+		bulb = new /obj/item/device/assembly/flash/handheld(src)
 
 /obj/machinery/flasher/Destroy()
-	QDEL_NULL(bulb)
+	if(bulb)
+		qdel(bulb)
+		bulb = null
 	return ..()
 
 /obj/machinery/flasher/power_change()
@@ -50,31 +52,34 @@
 		icon_state = "[base_state]1-p"
 
 //Don't want to render prison breaks impossible
-/obj/machinery/flasher/attackby(obj/item/W, mob/user, params)
+/obj/machinery/flasher/attackby(obj/item/weapon/W, mob/user, params)
 	add_fingerprint(user)
-	if (istype(W, /obj/item/wirecutters))
+	if (istype(W, /obj/item/weapon/wirecutters))
 		if (bulb)
 			user.visible_message("[user] begins to disconnect [src]'s flashbulb.", "<span class='notice'>You begin to disconnect [src]'s flashbulb...</span>")
-			if(W.use_tool(src, user, 30, volume=50) && bulb)
+			playsound(src.loc, W.usesound, 100, 1)
+			if(do_after(user, 30*W.toolspeed, target = src) && bulb)
 				user.visible_message("[user] has disconnected [src]'s flashbulb!", "<span class='notice'>You disconnect [src]'s flashbulb.</span>")
 				bulb.forceMove(loc)
 				bulb = null
 				power_change()
 
-	else if (istype(W, /obj/item/assembly/flash/handheld))
+	else if (istype(W, /obj/item/device/assembly/flash/handheld))
 		if (!bulb)
-			if(!user.transferItemToLoc(W, src))
+			if(!user.drop_item())
 				return
 			user.visible_message("[user] installs [W] into [src].", "<span class='notice'>You install [W] into [src].</span>")
+			W.forceMove(src)
 			bulb = W
 			power_change()
 		else
 			to_chat(user, "<span class='warning'>A flashbulb is already installed in [src]!</span>")
 
-	else if (istype(W, /obj/item/wrench))
+	else if (istype(W, /obj/item/weapon/wrench))
 		if(!bulb)
 			to_chat(user, "<span class='notice'>You start unsecuring the flasher frame...</span>")
-			if(W.use_tool(src, user, 40, volume=50))
+			playsound(loc, W.usesound, 50, 1)
+			if(do_after(user, 40*W.toolspeed, target = src))
 				to_chat(user, "<span class='notice'>You unsecure the flasher frame.</span>")
 				deconstruct(TRUE)
 		else
@@ -102,38 +107,33 @@
 	if(!bulb.flash_recharge(30)) //Bulb can burn out if it's used too often too fast
 		power_change()
 		return
+	bulb.times_used ++
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 	flick("[base_state]_flash", src)
-	flash_lighting_fx(FLASH_LIGHT_RANGE, light_power, light_color)
 	last_flash = world.time
 	use_power(1000)
 
-	var/flashed = FALSE
 	for (var/mob/living/L in viewers(src, null))
 		if (get_dist(src, L) > range)
 			continue
 
 		if(L.flash_act(affect_silicon = 1))
-			L.Knockdown(strength)
-			flashed = TRUE
-
-	if(flashed)
-		bulb.times_used++
+			L.Weaken(strength)
 
 	return 1
 
 
 /obj/machinery/flasher/emp_act(severity)
-	. = ..()
-	if(!(stat & (BROKEN|NOPOWER)) && !(. & EMP_PROTECT_SELF))
+	if(!(stat & (BROKEN|NOPOWER)))
 		if(bulb && prob(75/severity))
 			flash()
 			bulb.burn_out()
 			power_change()
+	..()
 
 /obj/machinery/flasher/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	if(!(flags & NODECONSTRUCT))
 		if(!(stat & BROKEN))
 			stat |= BROKEN
 			if(bulb)
@@ -141,7 +141,7 @@
 				power_change()
 
 /obj/machinery/flasher/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	if(!(flags & NODECONSTRUCT))
 		if(bulb)
 			bulb.forceMove(loc)
 			bulb = null
@@ -149,7 +149,7 @@
 			var/obj/item/wallframe/flasher/F = new(get_turf(src))
 			transfer_fingerprints_to(F)
 			F.id = id
-			playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
+			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		else
 			new /obj/item/stack/sheet/metal (loc, 2)
 	qdel(src)
@@ -167,20 +167,20 @@
 		if (M.m_intent != MOVE_INTENT_WALK && anchored)
 			flash()
 
-/obj/machinery/flasher/portable/attackby(obj/item/W, mob/user, params)
-	if (istype(W, /obj/item/wrench))
-		W.play_tool_sound(src, 100)
+/obj/machinery/flasher/portable/attackby(obj/item/weapon/W, mob/user, params)
+	if (istype(W, /obj/item/weapon/wrench))
+		playsound(src.loc, W.usesound, 100, 1)
 
 		if (!anchored && !isinspace())
 			to_chat(user, "<span class='notice'>[src] is now secured.</span>")
 			add_overlay("[base_state]-s")
-			setAnchored(TRUE)
+			anchored = 1
 			power_change()
 			proximity_monitor.SetRange(range)
 		else
 			to_chat(user, "<span class='notice'>[src] can now be moved.</span>")
 			cut_overlays()
-			setAnchored(FALSE)
+			anchored = 0
 			power_change()
 			proximity_monitor.SetRange(0)
 
@@ -196,8 +196,8 @@
 	var/id = null
 
 /obj/item/wallframe/flasher/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>Its channel ID is '[id]'.</span>"
+	..()
+	to_chat(user, "<span class='notice'>Its channel ID is '[id]'.</span>")
 
 /obj/item/wallframe/flasher/after_attach(var/obj/O)
 	..()

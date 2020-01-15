@@ -10,10 +10,9 @@
 	icon = 'icons/obj/machines/magic_emitter.dmi'
 	icon_state = "wabbajack_statue"
 	icon_state_on = "wabbajack_statue_on"
-	active = FALSE
-	allow_switch_interact = FALSE
 	var/list/active_tables = list()
 	var/tables_required = 2
+	active = FALSE
 
 /obj/machinery/power/emitter/energycannon/magical/Initialize()
 	. = ..()
@@ -41,6 +40,10 @@
 		active = FALSE
 	update_icon()
 
+
+/obj/machinery/power/emitter/energycannon/magical/attack_hand(mob/user)
+	return
+
 /obj/machinery/power/emitter/energycannon/magical/attackby(obj/item/W, mob/user, params)
 	return
 
@@ -48,17 +51,19 @@
 	return
 
 /obj/machinery/power/emitter/energycannon/magical/emag_act(mob/user)
-	return SEND_SIGNAL(src, COMSIG_ATOM_EMAG_ACT)
+	return
 
 /obj/structure/table/abductor/wabbajack
 	name = "wabbajack altar"
-	desc = "Whether you're sleeping or waking, it's going to be quite chaotic."
+	desc = "Whether you're sleeping or waking, it's going to be \
+		quite chaotic."
+	obj_integrity = 1000
 	max_integrity = 1000
 	verb_say = "chants"
 	var/obj/machinery/power/emitter/energycannon/magical/our_statue
 	var/list/mob/living/sleepers = list()
 	var/never_spoken = TRUE
-	flags_1 = NODECONSTRUCT_1
+	flags = NODECONSTRUCT
 
 /obj/structure/table/abductor/wabbajack/Initialize(mapload)
 	. = ..()
@@ -99,7 +104,7 @@
 	// Existing sleepers
 	for(var/i in found)
 		var/mob/living/L = i
-		L.SetSleeping(200)
+		L.SetSleeping(10)
 
 	// Missing sleepers
 	for(var/i in sleepers - found)
@@ -136,7 +141,7 @@
 /mob/living/simple_animal/drone/snowflake/bardrone
 	name = "Bardrone"
 	desc = "A barkeeping drone, an indestructible robot built to tend bars."
-	hacked = TRUE
+	seeStatic = FALSE
 	laws = "1. Serve drinks.\n\
 		2. Talk to patrons.\n\
 		3. Don't get messed up in their affairs."
@@ -146,10 +151,10 @@
 
 /mob/living/simple_animal/drone/snowflake/bardrone/Initialize()
 	. = ..()
-	access_card.access |= ACCESS_CENT_BAR
+	access_card.access |= GLOB.access_cent_bar
 
 /mob/living/simple_animal/hostile/alien/maid/barmaid
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = 0
 	name = "Barmaid"
 	desc = "A barmaid, a maiden found in a bar."
 	pass_flags = PASSTABLE
@@ -161,11 +166,11 @@
 
 /mob/living/simple_animal/hostile/alien/maid/barmaid/Initialize()
 	. = ..()
-	access_card = new /obj/item/card/id(src)
+	access_card = new /obj/item/weapon/card/id(src)
 	var/datum/job/captain/C = new /datum/job/captain
 	access_card.access = C.get_access()
-	access_card.access |= ACCESS_CENT_BAR
-	ADD_TRAIT(access_card, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	access_card.access |= GLOB.access_cent_bar
+	access_card.flags |= NODROP
 
 /mob/living/simple_animal/hostile/alien/maid/barmaid/Destroy()
 	qdel(access_card)
@@ -177,7 +182,8 @@
 
 /obj/structure/table/wood/bar
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	flags_1 = NODECONSTRUCT_1
+	flags = NODECONSTRUCT
+	obj_integrity = 1000
 	max_integrity = 1000
 	var/boot_dir = 1
 
@@ -186,11 +192,15 @@
 		// No climbing on the bar please
 		var/mob/living/M = AM
 		var/throwtarget = get_edge_target_turf(src, boot_dir)
-		M.Knockdown(40)
-		M.throw_at(throwtarget, 5, 1)
+		M.Weaken(2)
+		M.throw_at(throwtarget, 5, 1,src)
 		to_chat(M, "<span class='notice'>No climbing on the bar please.</span>")
 	else
 		. = ..()
+
+/obj/structure/table/wood/bar/shuttleRotate(rotation)
+	. = ..()
+	boot_dir = angle2dir(rotation + dir2angle(boot_dir))
 
 /obj/structure/table/wood/bar/proc/is_barstaff(mob/living/user)
 	. = FALSE
@@ -199,80 +209,52 @@
 		if(H.mind && H.mind.assigned_role == "Bartender")
 			return TRUE
 
-	var/obj/item/card/id/ID = user.get_idcard(FALSE)
-	if(ID && (ACCESS_CENT_BAR in ID.access))
+	var/obj/item/weapon/card/id/ID = user.get_idcard()
+	if(ID && (GLOB.access_cent_bar in ID.access))
 		return TRUE
 
 //Luxury Shuttle Blockers
 
 /obj/effect/forcefield/luxury_shuttle
-	timeleft = 0
 	var/threshold = 500
 	var/static/list/approved_passengers = list()
-	var/static/list/check_times = list()
 
-
-/obj/effect/forcefield/luxury_shuttle/CanPass(atom/movable/mover, turf/target)
+/obj/effect/forcefield/luxury_shuttle/CanPass(atom/movable/mover, turf/target, height=0)
 	if(mover in approved_passengers)
-		return TRUE
+		return 1
 
 	if(!isliving(mover)) //No stowaways
-		return FALSE
-
-	return FALSE
-
-
-#define LUXURY_MESSAGE_COOLDOWN 100
-/obj/effect/forcefield/luxury_shuttle/Bumped(atom/movable/AM)
-	if(!isliving(AM))
-		return ..()
-
-	if(check_times[AM] && check_times[AM] > world.time) //Let's not spam the message
-		return ..()
-
-	check_times[AM] = world.time + LUXURY_MESSAGE_COOLDOWN
+		return 0
 
 	var/total_cash = 0
 	var/list/counted_money = list()
 
-	for(var/obj/item/coin/C in AM.GetAllContents())
+	for(var/obj/item/weapon/coin/C in mover.GetAllContents())
 		total_cash += C.value
 		counted_money += C
 		if(total_cash >= threshold)
 			break
-	for(var/obj/item/stack/spacecash/S in AM.GetAllContents())
+	for(var/obj/item/stack/spacecash/S in mover.GetAllContents())
 		total_cash += S.value * S.amount
 		counted_money += S
 		if(total_cash >= threshold)
 			break
 
-	if(AM.pulling)
-		if(istype(AM.pulling, /obj/item/coin))
-			var/obj/item/coin/C = AM.pulling
-			total_cash += C.value
-			counted_money += C
-
-		else if(istype(AM.pulling, /obj/item/stack/spacecash))
-			var/obj/item/stack/spacecash/S = AM.pulling
-			total_cash += S.value * S.amount
-			counted_money += S
-
 	if(total_cash >= threshold)
 		for(var/obj/I in counted_money)
 			qdel(I)
 
-		to_chat(AM, "Thank you for your payment! Please enjoy your flight.")
-		approved_passengers += AM
-		check_times -= AM
-		return
+		to_chat(mover, "Thank you for your payment! Please enjoy your flight.")
+		approved_passengers += mover
+		return 1
 	else
-		to_chat(AM, "<span class='warning'>You don't have enough money to enter the main shuttle. You'll have to fly coach.</span>")
-		return ..()
+		to_chat(mover, "You don't have enough money to enter the main shuttle. You'll have to fly coach.")
+		return 0
 
 /mob/living/simple_animal/hostile/bear/fightpit
 	name = "fight pit bear"
 	desc = "This bear's trained through ancient Russian secrets to fear the walls of its glass prison."
-	environment_smash = ENVIRONMENT_SMASH_NONE
+	environment_smash = 0
 
 /obj/effect/decal/hammerandsickle
 	name = "hammer and sickle"

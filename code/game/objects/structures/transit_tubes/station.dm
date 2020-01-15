@@ -7,7 +7,6 @@
 /obj/structure/transit_tube/station
 	name = "station tube station"
 	icon_state = "closed_station0"
-	desc = "The lynchpin of the transit system."
 	exit_delay = 1
 	enter_delay = 2
 	tube_construction = /obj/structure/c_transit_tube/station
@@ -59,9 +58,6 @@
 
 
 /obj/structure/transit_tube/station/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	if(!pod_moving)
 		if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
 			if(open_status == STATION_TUBE_OPEN)
@@ -74,7 +70,7 @@
 						pod.visible_message("<span class='warning'>[user] starts putting [GM] into the [pod]!</span>")
 						if(do_after(user, 15, target = src))
 							if(open_status == STATION_TUBE_OPEN && GM && user.grab_state >= GRAB_AGGRESSIVE && user.pulling == GM && !GM.buckled && !GM.has_buckled_mobs())
-								GM.Knockdown(100)
+								GM.Weaken(5)
 								src.Bumped(GM)
 						break
 		else
@@ -97,7 +93,7 @@
 
 
 /obj/structure/transit_tube/station/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/crowbar))
+	if(istype(W, /obj/item/weapon/crowbar))
 		for(var/obj/structure/transit_tube_pod/P in loc)
 			P.deconstruct(FALSE, user)
 	else
@@ -151,11 +147,7 @@
 		sleep(OPEN_DURATION + 2)
 		pod_moving = 0
 		if(!QDELETED(pod))
-			var/datum/gas_mixture/floor_mixture = loc.return_air()
-			ARCHIVE_TEMPERATURE(floor_mixture)
-			ARCHIVE_TEMPERATURE(pod.air_contents)
-			pod.air_contents.share(floor_mixture, 1) //mix the pod's gas mixture with the tile it's on
-			air_update_turf()
+			pod.air_contents.share(loc.return_air()) //mix the pod's gas mixture with the tile it's on
 
 /obj/structure/transit_tube/station/init_tube_dirs()
 	switch(dir)

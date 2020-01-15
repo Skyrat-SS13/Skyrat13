@@ -6,8 +6,8 @@
 GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST))
 
 /datum/lighting_corner
-	var/list/turf/masters
-	var/list/datum/light_source/affecting // Light sources affecting us.
+	var/list/turf/masters                 = list()
+	var/list/datum/light_source/affecting = list() // Light sources affecting us.
 	var/active                            = FALSE  // TRUE if one of our masters has dynamic lighting.
 
 	var/x     = 0
@@ -25,9 +25,11 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 	var/cache_b  = LIGHTING_SOFT_THRESHOLD
 	var/cache_mx = 0
 
+	var/update_gen = 0
+
 /datum/lighting_corner/New(var/turf/new_turf, var/diagonal)
 	. = ..()
-	masters = list()
+
 	masters[new_turf] = turn(diagonal, 180)
 	z = new_turf.z
 
@@ -86,10 +88,6 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
 /datum/lighting_corner/proc/update_lumcount(var/delta_r, var/delta_g, var/delta_b)
-
-	if ((abs(delta_r)+abs(delta_g)+abs(delta_b)) == 0)
-		return
-
 	lum_r += delta_r
 	lum_g += delta_g
 	lum_b += delta_b
@@ -138,6 +136,6 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 	if (!force)
 		return QDEL_HINT_LETMELIVE
 
-	stack_trace("Ok, Look, /tg/, I need you to find whatever fucker decided to call qdel on a fucking lighting corner, then tell him very nicely and politely that he is 100% retarded and needs his head checked. Thanks. Send them my regards by the way.")
-
+	stack_trace("Ok, Look, TG, I need you to find whatever fucker decided to call qdel on a fucking lighting corner, then tell him very nicely and politely that he is 100% retarded and needs his head checked. Thanks. Send them my regards by the way.")
+	
 	return ..()

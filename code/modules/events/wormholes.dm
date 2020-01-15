@@ -21,26 +21,29 @@
 
 /datum/round_event/wormholes/start()
 	for(var/turf/open/floor/T in world)
-		if(is_station_level(T.z))
+		if(T.z == ZLEVEL_STATION)
 			pick_turfs += T
 
 	for(var/i = 1, i <= number_of_wormholes, i++)
 		var/turf/T = pick(pick_turfs)
-		wormholes += new /obj/effect/portal/wormhole(T, null, 0, null, FALSE)
+		wormholes += new /obj/effect/portal/wormhole(T, null, null, -1)
 
-/datum/round_event/wormholes/announce(fake)
-	priority_announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", "spanomalies")
+/datum/round_event/wormholes/announce()
+	priority_announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", 'sound/AI/spanomalies.ogg')
 
 /datum/round_event/wormholes/tick()
 	if(activeFor % shift_frequency == 0)
 		for(var/obj/effect/portal/wormhole/O in wormholes)
 			var/turf/T = pick(pick_turfs)
 			if(T)
-				O.forceMove(T)
+				O.loc = T
 
 /datum/round_event/wormholes/end()
-	QDEL_LIST(wormholes)
-	wormholes = null
+	GLOB.portals.Remove(wormholes)
+	for(var/obj/effect/portal/wormhole/O in wormholes)
+		O.loc = null
+	wormholes.Cut()
+
 
 /obj/effect/portal/wormhole
 	name = "wormhole"
@@ -49,18 +52,25 @@
 	icon_state = "anom"
 	mech_sized = TRUE
 
+/obj/effect/portal/wormhole/attack_hand(mob/user)
+	teleport(user)
+
+/obj/effect/portal/wormhole/attackby(obj/item/I, mob/user, params)
+	teleport(user)
+
 /obj/effect/portal/wormhole/teleport(atom/movable/M)
-	if(iseffect(M))	//sparks don't teleport
+	if(istype(M, /obj/effect))	//sparks don't teleport
 		return
 	if(M.anchored)
-		if(!(ismecha(M) && mech_sized))
+		if(!(istype(M, /obj/mecha) && mech_sized))
 			return
 
-	if(ismovableatom(M))
+	if(istype(M, /atom/movable))
+		var/turf/target
 		if(GLOB.portals.len)
 			var/obj/effect/portal/P = pick(GLOB.portals)
 			if(P && isturf(P.loc))
-				hard_target = P.loc
-		if(!hard_target)
+				target = P.loc
+		if(!target)
 			return
-		do_teleport(M, hard_target, 1, 1, 0, 0, channel = TELEPORT_CHANNEL_WORMHOLE) ///You will appear adjacent to the beacon
+		do_teleport(M, target, 1, 1, 0, 0) ///You will appear adjacent to the beacon

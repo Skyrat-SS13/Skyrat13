@@ -1,4 +1,4 @@
-/obj/item/computer_hardware
+/obj/item/weapon/computer_hardware
 	name = "hardware"
 	desc = "Unknown Hardware."
 	icon = 'icons/obj/module.dmi'
@@ -6,7 +6,7 @@
 
 	w_class = WEIGHT_CLASS_TINY	// w_class limits which devices can contain this component.
 	// 1: PDAs/Tablets, 2: Laptops, 3-4: Consoles only
-	var/obj/item/modular_computer/holder = null
+	var/obj/item/device/modular_computer/holder = null
 	// Computer that holds this hardware, if any.
 
 	var/power_usage = 0 			// If the hardware uses extra power, change this.
@@ -20,20 +20,20 @@
 	var/malfunction_probability = 10// Chance of malfunction when the component is damaged
 	var/device_type
 
-/obj/item/computer_hardware/New(var/obj/L)
+/obj/item/weapon/computer_hardware/New(var/obj/L)
 	..()
 	pixel_x = rand(-8, 8)
 	pixel_y = rand(-8, 8)
 
-/obj/item/computer_hardware/Destroy()
+/obj/item/weapon/computer_hardware/Destroy()
 	if(holder)
 		holder.uninstall_component(src)
 	return ..()
 
 
-/obj/item/computer_hardware/attackby(obj/item/I, mob/living/user)
+/obj/item/weapon/computer_hardware/attackby(obj/item/I, mob/living/user)
 	// Multitool. Runs diagnostics
-	if(istype(I, /obj/item/multitool))
+	if(istype(I, /obj/item/device/multitool))
 		to_chat(user, "***** DIAGNOSTICS REPORT *****")
 		diagnostics(user)
 		to_chat(user, "******************************")
@@ -56,11 +56,11 @@
 	return ..()
 
 // Called on multitool click, prints diagnostic information to the user.
-/obj/item/computer_hardware/proc/diagnostics(var/mob/user)
+/obj/item/weapon/computer_hardware/proc/diagnostics(var/mob/user)
 	to_chat(user, "Hardware Integrity Test... (Corruption: [damage]/[max_damage]) [damage > damage_failure ? "FAIL" : damage > damage_malfunction ? "WARN" : "PASS"]")
 
 // Handles damage checks
-/obj/item/computer_hardware/proc/check_functionality()
+/obj/item/weapon/computer_hardware/proc/check_functionality()
 	if(!enabled) // Disabled.
 		return FALSE
 
@@ -73,31 +73,31 @@
 
 	return TRUE // Good to go.
 
-/obj/item/computer_hardware/examine(var/mob/user)
+/obj/item/weapon/computer_hardware/examine(var/mob/user)
 	. = ..()
 	if(damage > damage_failure)
-		. += "<span class='danger'>It seems to be severely damaged!</span>"
+		to_chat(user, "<span class='danger'>It seems to be severely damaged!</span>")
 	else if(damage > damage_malfunction)
-		. += "<span class='warning'>It seems to be damaged!</span>"
+		to_chat(user, "<span class='warning'>It seems to be damaged!</span>")
 	else if(damage)
-		. += "<span class='notice'>It seems to be slightly damaged.</span>"
+		to_chat(user, "<span class='notice'>It seems to be slightly damaged.</span>")
 
 // Component-side compatibility check.
-/obj/item/computer_hardware/proc/can_install(obj/item/modular_computer/M, mob/living/user = null)
+/obj/item/weapon/computer_hardware/proc/can_install(obj/item/device/modular_computer/M, mob/living/user = null)
 	return can_install
 
 // Called when component is installed into PC.
-/obj/item/computer_hardware/proc/on_install(obj/item/modular_computer/M, mob/living/user = null)
+/obj/item/weapon/computer_hardware/proc/on_install(obj/item/device/modular_computer/M, mob/living/user = null)
 	return
 
 // Called when component is removed from PC.
-/obj/item/computer_hardware/proc/on_remove(obj/item/modular_computer/M, mob/living/user = null)
+/obj/item/weapon/computer_hardware/proc/on_remove(obj/item/device/modular_computer/M, mob/living/user = null)
 	try_eject(forced = 1)
 
 // Called when someone tries to insert something in it - paper in printer, card in card reader, etc.
-/obj/item/computer_hardware/proc/try_insert(obj/item/I, mob/living/user = null)
+/obj/item/weapon/computer_hardware/proc/try_insert(obj/item/I, mob/living/user = null)
 	return FALSE
 
 // Called when someone tries to eject something from it - card from card reader, etc.
-/obj/item/computer_hardware/proc/try_eject(slot=0, mob/living/user = null, forced = 0)
+/obj/item/weapon/computer_hardware/proc/try_eject(slot=0, mob/living/user = null, forced = 0)
 	return FALSE

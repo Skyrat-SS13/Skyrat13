@@ -11,30 +11,31 @@ The console is located at computer/gulag_teleporter.dm
 	desc = "A bluespace teleporter used for teleporting prisoners to the labor camp."
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
-	state_open = FALSE
-	density = TRUE
-	use_power = IDLE_POWER_USE
+	state_open = 0
+	density = 1
+	anchored = 1
+	use_power = 1
 	idle_power_usage = 200
 	active_power_usage = 5000
-	circuit = /obj/item/circuitboard/machine/gulag_teleporter
 	var/locked = FALSE
-	var/message_cooldown
-	var/breakout_time = 600
 	var/jumpsuit_type = /obj/item/clothing/under/rank/prisoner
 	var/shoes_type = /obj/item/clothing/shoes/sneakers/orange
-	var/obj/machinery/gulag_item_reclaimer/linked_reclaimer
-	var/static/list/telegulag_required_items = typecacheof(list(
-		/obj/item/implant,
-		/obj/item/clothing/suit/space/eva/plasmaman,
-		/obj/item/clothing/under/plasmaman,
-		/obj/item/clothing/head/helmet/space/plasmaman,
-		/obj/item/tank/internals,
-		/obj/item/clothing/mask/breath,
-		/obj/item/clothing/mask/gas))
+	var/obj/machinery/gulag_item_reclaimer/linked_reclaimer = null
+	var/list/required_items
 
-/obj/machinery/gulag_teleporter/Initialize()
-	. = ..()
-	locate_reclaimer()
+/obj/machinery/gulag_teleporter/New()
+	..()
+	required_items = typecacheof(list(
+				/obj/item/weapon/implant,
+				/obj/item/clothing/suit/space/eva/plasmaman,
+				/obj/item/clothing/under/plasmaman,
+				/obj/item/clothing/head/helmet/space/plasmaman,
+				/obj/item/weapon/tank/internals,
+				/obj/item/clothing/mask/breath,
+				/obj/item/clothing/mask/gas))
+	var/obj/item/weapon/circuitboard/machine/B = new /obj/item/weapon/circuitboard/machine/gulag_teleporter(null)
+	B.apply_default_parts(src)
+	addtimer(CALLBACK(src, .proc/locate_reclaimer), 5)
 
 /obj/machinery/gulag_teleporter/Destroy()
 	if(linked_reclaimer)
@@ -45,10 +46,10 @@ The console is located at computer/gulag_teleporter.dm
 	..()
 	update_icon()
 
+
 /obj/machinery/gulag_teleporter/interact(mob/user)
-	. = ..()
 	if(locked)
-		to_chat(user, "<span class='warning'>[src] is locked!</span>")
+		to_chat(user, "[src] is locked.")
 		return
 	toggle_open()
 
@@ -91,27 +92,28 @@ The console is located at computer/gulag_teleporter.dm
 	if(user.stat != CONSCIOUS)
 		return
 	if(locked)
-		if(message_cooldown <= world.time)
-			message_cooldown = world.time + 50
-			to_chat(user, "<span class='warning'>[src]'s door won't budge!</span>")
+		to_chat(user, "[src] is locked!")
 		return
 	open_machine()
 
 /obj/machinery/gulag_teleporter/container_resist(mob/living/user)
+	var/breakout_time = 600
 	if(!locked)
 		open_machine()
 		return
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message("<span class='notice'>You see [user] kicking against the door of [src]!</span>", \
-		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
-		"<span class='italics'>You hear a metallic creaking from [src].</span>")
+	to_chat(user, "<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about a minute.)</span>")
+	user.visible_message("<span class='italics'>You hear a metallic creaking from [src]!</span>")
+
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked)
 			return
+
 		locked = FALSE
-		user.visible_message("<span class='warning'>[user] successfully broke out of [src]!</span>", \
-			"<span class='notice'>You successfully break out of [src]!</span>")
+		visible_message("<span class='warning'>[user] successfully broke out of [src]!</span>")
+		to_chat(user, "<span class='notice'>You successfully break out of [src]!</span>")
+
 		open_machine()
 
 /obj/machinery/gulag_teleporter/proc/locate_reclaimer()
@@ -135,19 +137,17 @@ The console is located at computer/gulag_teleporter.dm
 	if(linked_reclaimer)
 		linked_reclaimer.stored_items[occupant] = list()
 	var/mob/living/mob_occupant = occupant
-	for(var/A in mob_occupant.get_equipped_items(TRUE))
-		var/obj/item/I = A
-		if(is_type_in_typecache(I, telegulag_required_items) || !mob_occupant.temporarilyRemoveItemFromInventory(I))
-			continue
-		if(istype(I, /obj/item/restraints/handcuffs))
-			I.forceMove(get_turf(src))
-			continue
-		if(linked_reclaimer)
-			linked_reclaimer.stored_items[mob_occupant] += I
-			linked_reclaimer.contents += I
-			I.forceMove(linked_reclaimer)
-		else
-			I.forceMove(src)
+	for(var/obj/item/W in mob_occupant)
+		if(!is_type_in_typecache(W, required_items) && mob_occupant.temporarilyRemoveItemFromInventory(W))
+			if(istype(W, /obj/item/weapon/restraints/handcuffs))
+				W.forceMove(get_turf(src))
+				continue
+			if(linked_reclaimer)
+				linked_reclaimer.stored_items[mob_occupant] += W
+				linked_reclaimer.contents += W
+				W.forceMove(linked_reclaimer)
+			else
+				W.forceMove(src)
 
 /obj/machinery/gulag_teleporter/proc/handle_prisoner(obj/item/id, datum/data/record/R)
 	if(!ishuman(occupant))
@@ -163,19 +163,19 @@ The console is located at computer/gulag_teleporter.dm
 	if(R)
 		R.fields["criminal"] = "Incarcerated"
 
-/obj/item/circuitboard/machine/gulag_teleporter
+/obj/item/weapon/circuitboard/machine/gulag_teleporter
 	name = "labor camp teleporter (Machine Board)"
 	build_path = /obj/machinery/gulag_teleporter
+	origin_tech = "programming=3;engineering=4;bluespace=4;materials=4"
 	req_components = list(
-							/obj/item/stack/ore/bluespace_crystal = 2,
-							/obj/item/stock_parts/scanning_module,
-							/obj/item/stock_parts/manipulator)
-	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
+							/obj/item/weapon/ore/bluespace_crystal = 2,
+							/obj/item/weapon/stock_parts/scanning_module,
+							/obj/item/weapon/stock_parts/manipulator)
+	def_components = list(/obj/item/weapon/ore/bluespace_crystal = /obj/item/weapon/ore/bluespace_crystal/artificial)
 
 /*  beacon that receives the teleported prisoner */
 /obj/structure/gulag_beacon
 	name = "labor camp bluespace beacon"
-	desc = "A receiving beacon for bluespace teleportations."
+	desc = "A recieving beacon for bluespace teleportations."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "light_on-w"
-	resistance_flags = INDESTRUCTIBLE

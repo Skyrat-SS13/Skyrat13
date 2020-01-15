@@ -1,10 +1,10 @@
 /obj/singularity/narsie //Moving narsie to a child object of the singularity so it can be made to function differently. --NEO
-	name = "Nar'Sie's Avatar"
+	name = "Nar-sie's Avatar"
 	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees."
 	icon = 'icons/obj/magic_terror.dmi'
 	pixel_x = -89
 	pixel_y = -85
-	density = FALSE
+	density = 0
 	current_size = 9 //It moves/eats like a max-size singulo, aside from range. --NEO
 	contained = 0 //Are we going to move around?
 	dissipate = 0 //Do we lose energy over time?
@@ -15,10 +15,10 @@
 	light_range = 15
 	light_color = rgb(255, 0, 0)
 	gender = FEMALE
-	var/clashing = FALSE //If Nar'Sie is fighting Ratvar
+	var/clashing = FALSE //If Nar-Sie is fighting Ratvar
 
 /obj/singularity/narsie/large
-	name = "Nar'Sie"
+	name = "Nar-Sie"
 	icon = 'icons/obj/narsie.dmi'
 	// Pixel stuff centers Narsie.
 	pixel_x = -236
@@ -29,76 +29,24 @@
 
 /obj/singularity/narsie/large/Initialize()
 	. = ..()
-	send_to_playing_players("<span class='narsie'>NAR'SIE HAS RISEN</span>")
-	sound_to_playing_players('sound/creatures/narsie_rises.ogg')
+	send_to_playing_players("<span class='narsie'>NAR-SIE HAS RISEN</span>")
+	send_to_playing_players(pick('sound/hallucinations/im_here1.ogg', 'sound/hallucinations/im_here2.ogg'))
 
 	var/area/A = get_area(src)
 	if(A)
-		var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/cult_effects.dmi', "ghostalertsie")
-		notify_ghosts("Nar'Sie has risen in \the [A.name]. Reach out to the Geometer to be given a new shell for your soul.", source = src, alert_overlay = alert_overlay, action=NOTIFY_ATTACK)
-	INVOKE_ASYNC(src, .proc/narsie_spawn_animation)
+		var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/effects.dmi', "ghostalertsie")
+		notify_ghosts("Nar-Sie has risen in \the [A.name]. Reach out to the Geometer to be given a new shell for your soul.", source = src, alert_overlay = alert_overlay, action=NOTIFY_ATTACK)
 
-/obj/singularity/narsie/large/cult  // For the new cult ending, guaranteed to end the round within 3 minutes
-	var/list/souls_needed = list()
-	var/soul_goal = 0
-	var/souls = 0
-	var/resolved = FALSE
+	narsie_spawn_animation()
 
-/obj/singularity/narsie/large/cult/Initialize()
-	. = ..()
-	GLOB.cult_narsie = src
-	var/list/all_cults = list()
-	for(var/datum/antagonist/cult/C in GLOB.antagonists)
-		if(!C.owner)
-			continue
-		all_cults |= C.cult_team
-	for(var/datum/team/cult/T in all_cults)
-		deltimer(T.blood_target_reset_timer)
-		T.blood_target = src
-		var/datum/objective/eldergod/summon_objective = locate() in T.objectives
-		if(summon_objective)
-			summon_objective.summoned = TRUE
-	for(var/datum/mind/cult_mind in SSticker.mode.cult)
-		if(isliving(cult_mind.current))
-			var/mob/living/L = cult_mind.current
-			L.narsie_act()
-	for(var/mob/living/player in GLOB.player_list)
-		if(player.stat != DEAD && player.loc && is_station_level(player.loc.z) && !iscultist(player) && !isanimal(player))
-			souls_needed[player] = TRUE
-	soul_goal = round(1 + LAZYLEN(souls_needed) * 0.75)
-	INVOKE_ASYNC(src, .proc/begin_the_end)
+	sleep(70)
+	SSshuttle.emergency.request(null, set_coefficient = 0.1) // Cannot recall
 
-/obj/singularity/narsie/large/cult/proc/begin_the_end()
-	sleep(50)
-	priority_announce("An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 60 SECONDS.","Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
-	sleep(500)
-	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: ONE MINUTE. ","Central Command Higher Dimensional Affairs")
-	sleep(50)
-	set_security_level("delta")
-	SSshuttle.registerHostileEnvironment(src)
-	SSshuttle.lockdown = TRUE
-	sleep(600)
-	if(resolved == FALSE)
-		resolved = TRUE
-		sound_to_playing_players('sound/machines/alarm.ogg')
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/cult_ending_helper), 120)
 
-/obj/singularity/narsie/large/cult/Destroy()
-	GLOB.cult_narsie = null
-	return ..()
-
-/proc/ending_helper()
-	SSticker.force_ending = 1
-
-/proc/cult_ending_helper(var/no_explosion = 0)
-	if(no_explosion)
-		Cinematic(CINEMATIC_CULT,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
-	else
-		Cinematic(CINEMATIC_CULT_NUKE,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
-
-//ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/singularity/narsie/large/attack_ghost(mob/dead/observer/user as mob)
-	makeNewConstruct(/mob/living/simple_animal/hostile/construct/harvester, user, cultoverride = TRUE, loc_override = src.loc)
+	makeNewConstruct(/mob/living/simple_animal/hostile/construct/harvester, user, null, 0, loc_override = src.loc)
+	new /obj/effect/particle_effect/smoke/sleeping(src.loc)
+
 
 /obj/singularity/narsie/process()
 	if(clashing)
@@ -121,7 +69,7 @@
 /obj/singularity/narsie/Bump(atom/A)
 	var/turf/T = get_turf(A)
 	if(T == loc)
-		T = get_step(A, A.dir) //please don't slam into a window like a bird, Nar'Sie
+		T = get_step(A, A.dir) //please don't slam into a window like a bird, nar-sie
 	forceMove(T)
 
 
@@ -130,12 +78,11 @@
 		if(M.stat == CONSCIOUS)
 			if(!iscultist(M))
 				to_chat(M, "<span class='cultsmall'>You feel conscious thought crumble away in an instant as you gaze upon [src.name]...</span>")
-				M.apply_effect(60, EFFECT_STUN)
+				M.apply_effect(3, STUN)
 
 
 /obj/singularity/narsie/consume(atom/A)
-	if(isturf(A))
-		A.narsie_act()
+	A.narsie_act()
 
 
 /obj/singularity/narsie/ex_act() //No throwing bombs at her either.
@@ -151,9 +98,9 @@
 		acquire(enemy)
 		return
 
-	for(var/mob/living/carbon/food in GLOB.alive_mob_list) //we don't care about constructs or cult-Ians or whatever. cult-monkeys are fair game i guess
+	for(var/mob/living/carbon/food in GLOB.living_mob_list) //we don't care about constructs or cult-Ians or whatever. cult-monkeys are fair game i guess
 		var/turf/pos = get_turf(food)
-		if(!pos || (pos.z != z))
+		if(pos.z != src.z)
 			continue
 
 		if(iscultist(food))
@@ -174,7 +121,7 @@
 		if(!ghost.client)
 			continue
 		var/turf/pos = get_turf(ghost)
-		if(!pos || (pos.z != z))
+		if(pos.z != src.z)
 			continue
 		cultists += ghost
 	if(cultists.len)
@@ -185,22 +132,23 @@
 /obj/singularity/narsie/proc/acquire(atom/food)
 	if(food == target)
 		return
-	to_chat(target, "<span class='cultsmall'>NAR'SIE HAS LOST INTEREST IN YOU.</span>")
+	to_chat(target, "<span class='cultsmall'>NAR-SIE HAS LOST INTEREST IN YOU.</span>")
 	target = food
-	if(ishuman(target))
-		to_chat(target, "<span class ='cult'>NAR'SIE HUNGERS FOR YOUR SOUL.</span>")
+	if(isliving(target))
+		to_chat(target, "<span class ='cult'>NAR-SIE HUNGERS FOR YOUR SOUL.</span>")
 	else
-		to_chat(target, "<span class ='cult'>NAR'SIE HAS CHOSEN YOU TO LEAD HER TO HER NEXT MEAL.</span>")
+		to_chat(target, "<span class ='cult'>NAR-SIE HAS CHOSEN YOU TO LEAD HER TO HER NEXT MEAL.</span>")
 
 //Wizard narsie
 /obj/singularity/narsie/wizard
 	grav_pull = 0
 
 /obj/singularity/narsie/wizard/eat()
+	set background = BACKGROUND_ENABLED
 //	if(defer_powernet_rebuild != 2)
 //		defer_powernet_rebuild = 1
 	for(var/atom/X in urange(consume_range,src,1))
-		if(isturf(X) || ismovableatom(X))
+		if(isturf(X) || istype(X, /atom/movable))
 			consume(X)
 //	if(defer_powernet_rebuild != 2)
 //		defer_powernet_rebuild = 0
@@ -215,6 +163,4 @@
 	sleep(11)
 	move_self = 1
 	icon = initial(icon)
-
-
 

@@ -44,10 +44,10 @@
 
 
 /datum/station_goal/dna_vault/on_report()
-	var/datum/supply_pack/P = SSshuttle.supply_packs[/datum/supply_pack/engineering/dna_vault]
+	var/datum/supply_pack/P = SSshuttle.supply_packs[/datum/supply_pack/misc/dna_vault]
 	P.special_enabled = TRUE
 
-	P = SSshuttle.supply_packs[/datum/supply_pack/engineering/dna_probes]
+	P = SSshuttle.supply_packs[/datum/supply_pack/misc/dna_probes]
 	P.special_enabled = TRUE
 
 /datum/station_goal/dna_vault/check_completion()
@@ -59,44 +59,42 @@
 	return FALSE
 
 
-/obj/item/dna_probe
+/obj/item/device/dna_probe
 	name = "DNA Sampler"
 	desc = "Can be used to take chemical and genetic samples of pretty much anything."
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "hypo"
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	icon_state = "hypo"
-	item_flags = NOBLUDGEON
+	flags = NOBLUDGEON
 	var/list/animals = list()
 	var/list/plants = list()
 	var/list/dna = list()
 
-/obj/item/dna_probe/proc/clear_data()
+/obj/item/device/dna_probe/proc/clear_data()
 	animals = list()
 	plants = list()
 	dna = list()
 
-/obj/item/dna_probe/afterattack(atom/target, mob/user, proximity)
-	. = ..()
+/obj/item/device/dna_probe/afterattack(atom/target, mob/user, proximity)
+	..()
 	if(!proximity || !target)
 		return
 	//tray plants
-	if(istype(target, /obj/machinery/hydroponics))
+	if(istype(target,/obj/machinery/hydroponics))
 		var/obj/machinery/hydroponics/H = target
 		if(!H.myseed)
 			return
 		if(!H.harvest)// So it's bit harder.
-			to_chat(user, "<span class='warning'>Plant needs to be ready to harvest to perform full data scan.</span>") //Because space dna is actually magic
+			to_chat(user, "<span clas='warning'>Plant needs to be ready to harvest to perform full data scan.</span>") //Because space dna is actually magic
 			return
 		if(plants[H.myseed.type])
-			to_chat(user, "<span class='notice'>Plant data already present in local storage.</span>")
+			to_chat(user, "<span class='notice'>Plant data already present in local storage.<span>")
 			return
 		plants[H.myseed.type] = 1
-		to_chat(user, "<span class='notice'>Plant data added to local storage.</span>")
+		to_chat(user, "<span class='notice'>Plant data added to local storage.<span>")
 
 	//animals
-	var/static/list/non_simple_animals = typecacheof(list(/mob/living/carbon/monkey, /mob/living/carbon/alien))
+	var/static/list/non_simple_animals = typecacheof(list(/mob/living/carbon/monkey,/mob/living/carbon/alien))
 	if(isanimal(target) || is_type_in_typecache(target,non_simple_animals))
 		if(isanimal(target))
 			var/mob/living/simple_animal/A = target
@@ -104,33 +102,41 @@
 				to_chat(user, "<span class='warning'>No compatible DNA detected</span>")
 				return
 		if(animals[target.type])
-			to_chat(user, "<span class='notice'>Animal data already present in local storage.</span>")
+			to_chat(user, "<span class='notice'>Animal data already present in local storage.<span>")
 			return
 		animals[target.type] = 1
-		to_chat(user, "<span class='notice'>Animal data added to local storage.</span>")
+		to_chat(user, "<span class='notice'>Animal data added to local storage.<span>")
 
 	//humans
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(dna[H.dna.uni_identity])
-			to_chat(user, "<span class='notice'>Humanoid data already present in local storage.</span>")
+			to_chat(user, "<span class='notice'>Humanoid data already present in local storage.<span>")
 			return
 		dna[H.dna.uni_identity] = 1
-		to_chat(user, "<span class='notice'>Humanoid data added to local storage.</span>")
+		to_chat(user, "<span class='notice'>Humanoid data added to local storage.<span>")
+
+
+/obj/item/weapon/circuitboard/machine/dna_vault
+	name = "DNA Vault (Machine Board)"
+	build_path = /obj/machinery/dna_vault
+	origin_tech = "engineering=2;combat=2;bluespace=2" //No freebies!
+	req_components = list(
+							/obj/item/weapon/stock_parts/capacitor/super = 5,
+							/obj/item/weapon/stock_parts/manipulator/pico = 5,
+							/obj/item/stack/cable_coil = 2)
 
 /obj/machinery/dna_vault
 	name = "DNA Vault"
 	desc = "Break glass in case of apocalypse."
 	icon = 'icons/obj/machines/dna_vault.dmi'
 	icon_state = "vault"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	idle_power_usage = 5000
 	pixel_x = -32
 	pixel_y = -64
-	light_range = 3
-	light_power = 1.5
-	light_color = LIGHT_COLOR_CYAN
+	light_range = 1
 
 	//High defaults so it's not completed automatically if there's no station goal
 	var/animals_max = 100
@@ -174,7 +180,7 @@
 	. = ..()
 
 
-/obj/machinery/dna_vault/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
+/obj/machinery/dna_vault/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		roll_powers(user)
@@ -225,8 +231,8 @@
 
 
 /obj/machinery/dna_vault/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/dna_probe))
-		var/obj/item/dna_probe/P = I
+	if(istype(I, /obj/item/device/dna_probe))
+		var/obj/item/device/dna_probe/P = I
 		var/uploaded = 0
 		for(var/plant in P.plants)
 			if(!plants[plant])
@@ -255,28 +261,27 @@
 		if(VAULT_TOXIN)
 			to_chat(H, "<span class='notice'>You feel resistant to airborne toxins.</span>")
 			if(locate(/obj/item/organ/lungs) in H.internal_organs)
-				var/obj/item/organ/lungs/L = H.internal_organs_slot[ORGAN_SLOT_LUNGS]
+				var/obj/item/organ/lungs/L = H.internal_organs_slot["lungs"]
 				L.tox_breath_dam_min = 0
 				L.tox_breath_dam_max = 0
-			ADD_TRAIT(H, TRAIT_VIRUSIMMUNE, "dna_vault")
+			S.species_traits |= VIRUSIMMUNE
 		if(VAULT_NOBREATH)
 			to_chat(H, "<span class='notice'>Your lungs feel great.</span>")
-			ADD_TRAIT(H, TRAIT_NOBREATH, "dna_vault")
+			S.species_traits |= NOBREATH
 		if(VAULT_FIREPROOF)
 			to_chat(H, "<span class='notice'>You feel fireproof.</span>")
 			S.burnmod = 0.5
-			ADD_TRAIT(H, TRAIT_RESISTHEAT, "dna_vault")
-			ADD_TRAIT(H, TRAIT_NOFIRE, "dna_vault")
+			S.heatmod = 0
 		if(VAULT_STUNTIME)
 			to_chat(H, "<span class='notice'>Nothing can keep you down for long.</span>")
 			S.stunmod = 0.5
 		if(VAULT_ARMOUR)
 			to_chat(H, "<span class='notice'>You feel tough.</span>")
 			S.armor = 30
-			ADD_TRAIT(H, TRAIT_PIERCEIMMUNE, "dna_vault")
+
 		if(VAULT_SPEED)
 			to_chat(H, "<span class='notice'>Your legs feel faster.</span>")
-			H.add_movespeed_modifier(MOVESPEED_ID_DNA_VAULT, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+			S.speedmod = -1
 		if(VAULT_QUICK)
 			to_chat(H, "<span class='notice'>Your arms move as fast as lightning.</span>")
 			H.next_move_modifier = 0.5

@@ -12,17 +12,17 @@
 		var/turf/T = get_turf(src)
 		for(var/path in items)
 			new path(T)
-	return INITIALIZE_HINT_QDEL
+	qdel(src)
 
 /obj/effect/spawner/bundle/costume/chicken
 	name = "chicken costume spawner"
 	items = list(
 		/obj/item/clothing/suit/chickensuit,
 		/obj/item/clothing/head/chicken,
-		/obj/item/reagent_containers/food/snacks/egg)
+		/obj/item/weapon/reagent_containers/food/snacks/egg)
 
 /obj/effect/spawner/bundle/costume/gladiator
-	name = "gladiator costume spawner"
+	name = "gladitator costume spawner"
 	items = list(
 		/obj/item/clothing/under/gladiator,
 		/obj/item/clothing/head/helmet/gladiator)
@@ -60,7 +60,7 @@
 /obj/effect/spawner/bundle/costume/butler
 	name = "butler costume spawner"
 	items = list(
-		/obj/item/clothing/accessory/waistcoat,
+		/obj/item/clothing/tie/waistcoat,
 		/obj/item/clothing/under/suit_jacket,
 		/obj/item/clothing/head/that)
 
@@ -73,11 +73,11 @@
 /obj/effect/spawner/bundle/costume/prig
 	name = "prig costume spawner"
 	items = list(
-		/obj/item/clothing/accessory/waistcoat,
+		/obj/item/clothing/tie/waistcoat,
 		/obj/item/clothing/glasses/monocle,
 		/obj/effect/spawner/lootdrop/minor/bowler_or_that,
 		/obj/item/clothing/shoes/sneakers/black,
-		/obj/item/cane,
+		/obj/item/weapon/cane,
 		/obj/item/clothing/under/sl_suit,
 		/obj/item/clothing/mask/fakemoustache)
 
@@ -133,7 +133,7 @@
 /obj/effect/spawner/bundle/costume/holiday_priest
 	name = "holiday priest costume spawner"
 	items = list(
-		/obj/item/clothing/suit/chaplain/holidaypriest)
+		/obj/item/clothing/suit/holidaypriest)
 
 /obj/effect/spawner/bundle/costume/marisawizard
 	name = "marisa wizard costume spawner"
@@ -147,7 +147,7 @@
 	items = list(
 		/obj/item/clothing/under/sundress,
 		/obj/item/clothing/head/witchwig,
-		/obj/item/staff/broom)
+		/obj/item/weapon/staff/broom)
 
 /obj/effect/spawner/bundle/costume/wizard
 	name = "wizard costume spawner"
@@ -155,7 +155,7 @@
 		/obj/item/clothing/shoes/sandal,
 		/obj/item/clothing/suit/wizrobe/fake,
 		/obj/item/clothing/head/wizard/fake,
-		/obj/item/staff)
+		/obj/item/weapon/staff)
 
 /obj/effect/spawner/bundle/costume/sexyclown
 	name = "sexy clown costume spawner"

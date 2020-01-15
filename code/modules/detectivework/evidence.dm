@@ -1,6 +1,6 @@
 //CONTAINS: Evidence bags
 
-/obj/item/evidencebag
+/obj/item/weapon/evidencebag
 	name = "evidence bag"
 	desc = "An empty evidence bag."
 	icon = 'icons/obj/storage.dmi'
@@ -8,29 +8,22 @@
 	item_state = ""
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/evidencebag/afterattack(obj/item/I, mob/user,proximity)
-	. = ..()
+/obj/item/weapon/evidencebag/afterattack(obj/item/I, mob/user,proximity)
 	if(!proximity || loc == I)
 		return
 	evidencebagEquip(I, user)
 
-/obj/item/evidencebag/attackby(obj/item/I, mob/user, params)
+/obj/item/weapon/evidencebag/attackby(obj/item/I, mob/user, params)
 	if(evidencebagEquip(I, user))
-		return TRUE
+		return 1
 
-/obj/item/evidencebag/handle_atom_del(atom/A)
-	cut_overlays()
-	w_class = initial(w_class)
-	icon_state = initial(icon_state)
-	desc = initial(desc)
-
-/obj/item/evidencebag/proc/evidencebagEquip(obj/item/I, mob/user)
-	if(!istype(I) || I.anchored == TRUE)
+/obj/item/weapon/evidencebag/proc/evidencebagEquip(obj/item/I, mob/user)
+	if(!istype(I) || I.anchored == 1)
 		return
 
-	if(istype(I, /obj/item/evidencebag))
+	if(istype(I, /obj/item/weapon/evidencebag))
 		to_chat(user, "<span class='notice'>You find putting an evidence bag in another evidence bag to be slightly absurd.</span>")
-		return TRUE //now this is podracing
+		return 1 //now this is podracing
 
 	if(I.w_class > WEIGHT_CLASS_NORMAL)
 		to_chat(user, "<span class='notice'>[I] won't fit in [src].</span>")
@@ -41,9 +34,12 @@
 		return
 
 	if(!isturf(I.loc)) //If it isn't on the floor. Do some checks to see if it's in our hands or a box. Otherwise give up.
-		if(SEND_SIGNAL(I.loc, COMSIG_CONTAINS_STORAGE))	//in a container.
-			SEND_SIGNAL(I.loc, COMSIG_TRY_STORAGE_TAKE, I, src)
-		if(!user.dropItemToGround(I))
+		if(istype(I.loc,/obj/item/weapon/storage))	//in a container.
+			var/obj/item/weapon/storage/U = I.loc
+			U.remove_from_storage(I, src)
+		if(user.is_holding(I))
+			user.dropItemToGround(I)
+		else
 			return
 
 	user.visible_message("[user] puts [I] into [src].", "<span class='notice'>You put [I] inside [src].</span>",\
@@ -60,11 +56,11 @@
 	add_overlay("evidence")	//should look nicer for transparent stuff. not really that important, but hey.
 
 	desc = "An evidence bag containing [I]. [I.desc]"
-	I.forceMove(src)
+	I.loc = src
 	w_class = I.w_class
-	return TRUE
+	return 1
 
-/obj/item/evidencebag/attack_self(mob/user)
+/obj/item/weapon/evidencebag/attack_self(mob/user)
 	if(contents.len)
 		var/obj/item/I = contents[1]
 		user.visible_message("[user] takes [I] out of [src].", "<span class='notice'>You take [I] out of [src].</span>",\
@@ -80,16 +76,16 @@
 		icon_state = "evidenceobj"
 	return
 
-/obj/item/storage/box/evidence
+/obj/item/weapon/storage/box/evidence
 	name = "evidence bag box"
 	desc = "A box claiming to contain evidence bags."
 
-/obj/item/storage/box/evidence/New()
-	new /obj/item/evidencebag(src)
-	new /obj/item/evidencebag(src)
-	new /obj/item/evidencebag(src)
-	new /obj/item/evidencebag(src)
-	new /obj/item/evidencebag(src)
-	new /obj/item/evidencebag(src)
+/obj/item/weapon/storage/box/evidence/New()
+	new /obj/item/weapon/evidencebag(src)
+	new /obj/item/weapon/evidencebag(src)
+	new /obj/item/weapon/evidencebag(src)
+	new /obj/item/weapon/evidencebag(src)
+	new /obj/item/weapon/evidencebag(src)
+	new /obj/item/weapon/evidencebag(src)
 	..()
 	return

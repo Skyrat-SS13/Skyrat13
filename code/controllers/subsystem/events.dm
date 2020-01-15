@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(events)
 	name = "Events"
 	init_order = INIT_ORDER_EVENTS
-	runlevels = RUNLEVEL_GAME
 
 	var/list/control = list()	//list of all datum/round_event_control. Used for selecting events based on weight and occurrences.
 	var/list/running = list()	//list of all existing /datum/round_event
@@ -22,7 +21,7 @@ SUBSYSTEM_DEF(events)
 		control += E				//add it to the list of all events (controls)
 	reschedule()
 	getHoliday()
-	return ..()
+	..()
 
 
 /datum/controller/subsystem/events/fire(resumed = 0)
@@ -56,7 +55,9 @@ SUBSYSTEM_DEF(events)
 //selects a random event based on whether it can occur and it's 'weight'(probability)
 /datum/controller/subsystem/events/proc/spawnEvent()
 	set waitfor = FALSE	//for the admin prompt
-	if(!CONFIG_GET(flag/allow_random_events))
+	if(!config.allow_random_events)
+//		var/datum/round_event_control/E = locate(/datum/round_event_control/dust) in control
+//		if(E)	E.runEvent()
 		return
 
 	var/gamemode = SSticker.mode.config_tag
@@ -68,10 +69,7 @@ SUBSYSTEM_DEF(events)
 		if(!E.canSpawnEvent(players_amt, gamemode))
 			continue
 		if(E.weight < 0)						//for round-start events etc.
-			var/res = TriggerEvent(E)
-			if(res == EVENT_INTERRUPTED)
-				continue	//like it never happened
-			if(res == EVENT_CANT_RUN)
+			if(TriggerEvent(E))
 				return
 		sum_of_weights += E.weight
 
@@ -90,13 +88,30 @@ SUBSYSTEM_DEF(events)
 	. = E.preRunEvent()
 	if(. == EVENT_CANT_RUN)//we couldn't run this event for some reason, set its max_occurrences to 0
 		E.max_occurrences = 0
-	else if(. == EVENT_READY)
+	else if(. != EVENT_CANCELLED)
 		E.runEvent(TRUE)
+
+/datum/round_event/proc/findEventArea() //Here's a nice proc to use to find an area for your event to land in!
+	var/list/safe_areas = list(
+	/area/ai_monitored/turret_protected/ai,
+	/area/ai_monitored/turret_protected/ai_upload,
+	/area/engine,
+	/area/solar,
+	/area/holodeck,
+	/area/shuttle
+	)
+
+	//These are needed because /area/engine has to be removed from the list, but we still want these areas to get fucked up.
+	var/list/danger_areas = list(
+	/area/engine/break_room,
+	/area/engine/chiefs_office)
+
+	//Need to locate() as it's just a list of paths.
+	return locate(pick((GLOB.the_station_areas - safe_areas) + danger_areas))
+
 
 //allows a client to trigger an event
 //aka Badmin Central
-// > Not in modules/admin
-// REEEEEEEEE
 /client/proc/forceEvent()
 	set name = "Trigger Event"
 	set category = "Fun"
@@ -112,7 +127,7 @@ SUBSYSTEM_DEF(events)
 	var/magic 	= ""
 	var/holiday = ""
 	for(var/datum/round_event_control/E in SSevents.control)
-		dat = "<BR><A href='?src=[REF(src)];[HrefToken()];forceevent=[REF(E)]'>[E]</A>"
+		dat = "<BR><A href='?src=\ref[src];forceevent=\ref[E]'>[E]</A>"
 		if(E.holidayID)
 			holiday	+= dat
 		else if(E.wizardevent)
@@ -150,18 +165,16 @@ SUBSYSTEM_DEF(events)
 
 //sets up the holidays and holidays list
 /datum/controller/subsystem/events/proc/getHoliday()
-	if(!CONFIG_GET(flag/allow_holidays))
+	if(!config.allow_holidays)
 		return		// Holiday stuff was not enabled in the config!
 
 	var/YY = text2num(time2text(world.timeofday, "YY")) 	// get the current year
 	var/MM = text2num(time2text(world.timeofday, "MM")) 	// get the current month
 	var/DD = text2num(time2text(world.timeofday, "DD")) 	// get the current day
-	var/DDD = time2text(world.timeofday, "DDD")	// get the current weekday
-	var/W = weekdayofthemonth()	// is this the first monday? second? etc.
 
 	for(var/H in subtypesof(/datum/holiday))
 		var/datum/holiday/holiday = new H()
-		if(holiday.shouldCelebrate(DD, MM, YY, W, DDD))
+		if(holiday.shouldCelebrate(DD, MM, YY))
 			holiday.celebrate()
 			if(!holidays)
 				holidays = list()

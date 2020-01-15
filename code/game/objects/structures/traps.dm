@@ -1,9 +1,9 @@
 /obj/structure/trap
 	name = "IT'S A TRAP"
-	desc = "Stepping on me is a guaranteed bad day."
+	desc = "stepping on me is a guaranteed bad day"
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "trap"
-	density = FALSE
+	density = 0
 	anchored = TRUE
 	alpha = 30 //initially quite hidden when not "recharging"
 	var/last_trigger = 0
@@ -16,7 +16,7 @@
 	var/datum/effect_system/spark_spread/spark_system
 
 /obj/structure/trap/Initialize(mapload)
-	. = ..()
+	..()
 	spark_system = new
 	spark_system.set_up(4,1,src)
 	spark_system.attach(src)
@@ -38,7 +38,7 @@
 	if(user.mind && user.mind in immune_minds)
 		return
 	if(get_dist(user, src) <= 1)
-		. += "<span class='notice'>You reveal [src]!</span>"
+		to_chat(user, "<span class='notice'>You reveal [src]!</span>")
 		flare()
 
 /obj/structure/trap/proc/flare()
@@ -65,8 +65,6 @@
 		var/mob/M = AM
 		if(M.mind in immune_minds)
 			return
-		if(M.anti_magic_check())
-			flare()
 	if(charges <= 0)
 		return
 	flare()
@@ -83,7 +81,7 @@
 
 /obj/structure/trap/stun/trap_effect(mob/living/L)
 	L.electrocute_act(30, src, safety=1) // electrocute act does a message.
-	L.Knockdown(100)
+	L.Weaken(5)
 
 /obj/structure/trap/fire
 	name = "flame trap"
@@ -92,7 +90,7 @@
 
 /obj/structure/trap/fire/trap_effect(mob/living/L)
 	to_chat(L, "<span class='danger'><B>Spontaneous combustion!</B></span>")
-	L.Knockdown(20)
+	L.Weaken(1)
 
 /obj/structure/trap/fire/flare()
 	..()
@@ -106,8 +104,8 @@
 
 /obj/structure/trap/chill/trap_effect(mob/living/L)
 	to_chat(L, "<span class='danger'><B>You're frozen solid!</B></span>")
-	L.Knockdown(20)
-	L.adjust_bodytemperature(-300)
+	L.Weaken(1)
+	L.bodytemperature -= 300
 	L.apply_status_effect(/datum/status_effect/freon)
 
 
@@ -119,7 +117,7 @@
 
 /obj/structure/trap/damage/trap_effect(mob/living/L)
 	to_chat(L, "<span class='danger'><B>The ground quakes beneath your feet!</B></span>")
-	L.Knockdown(100)
+	L.Weaken(5)
 	L.adjustBruteLoss(35)
 
 /obj/structure/trap/damage/flare()
@@ -132,7 +130,7 @@
 	name = "divine ward"
 	desc = "A divine barrier, It looks like you could destroy it with enough effort, or wait for it to dissipate..."
 	icon_state = "ward"
-	density = TRUE
+	density = 1
 	time_between_triggers = 1200 //Exists for 2 minutes
 
 

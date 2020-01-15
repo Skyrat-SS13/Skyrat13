@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(machines)
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	fire()
-	return ..()
+	..()
 
 /datum/controller/subsystem/machines/proc/makepowernets()
 	for(var/datum/powernet/PN in powernets)
@@ -37,15 +37,15 @@ SUBSYSTEM_DEF(machines)
 
 	var/seconds = wait * 0.1
 	while(currentrun.len)
-		var/obj/machinery/thing = currentrun[currentrun.len]
+		var/datum/thing = currentrun[currentrun.len]
 		currentrun.len--
-		if(!QDELETED(thing) && thing.process(seconds) != PROCESS_KILL)
-			if(thing.use_power)
-				thing.auto_use_power() //add back the power state
+		if(thing && thing.process(seconds) != PROCESS_KILL)
+			if(thing:use_power)
+				thing:auto_use_power() //add back the power state
 		else
 			processing -= thing
-			if (!QDELETED(thing))
-				thing.datum_flags &= ~DF_ISPROCESSING
+			if (thing)
+				thing.isprocessing = 0
 		if (MC_TICK_CHECK)
 			return
 

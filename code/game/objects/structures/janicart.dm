@@ -3,23 +3,25 @@
 	desc = "This is the alpha and omega of sanitation."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
-	anchored = FALSE
-	density = TRUE
+	anchored = 0
+	density = 1
+	container_type = OPENCONTAINER
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/storage/bag/trash/mybag	= null
-	var/obj/item/mop/mymop = null
-	var/obj/item/reagent_containers/spray/cleaner/myspray = null
-	var/obj/item/lightreplacer/myreplacer = null
+	var/obj/item/weapon/storage/bag/trash/mybag	= null
+	var/obj/item/weapon/mop/mymop = null
+	var/obj/item/weapon/reagent_containers/spray/cleaner/myspray = null
+	var/obj/item/device/lightreplacer/myreplacer = null
 	var/signs = 0
 	var/const/max_signs = 4
 
 
-/obj/structure/janitorialcart/Initialize()
-	. = ..()
-	create_reagents(100, OPENCONTAINER)
+/obj/structure/janitorialcart/New()
+	create_reagents(100)
+	..()
 
-/obj/structure/janitorialcart/proc/wet_mop(obj/item/mop, mob/user)
+
+/obj/structure/janitorialcart/proc/wet_mop(obj/item/weapon/mop, mob/user)
 	if(reagents.total_volume < 1)
 		to_chat(user, "<span class='warning'>[src] is out of water!</span>")
 		return 0
@@ -30,8 +32,9 @@
 		return 1
 
 /obj/structure/janitorialcart/proc/put_in_cart(obj/item/I, mob/user)
-	if(!user.transferItemToLoc(I, src))
+	if(!user.drop_item())
 		return
+	I.loc = src
 	updateUsrDialog()
 	to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
 	return
@@ -40,8 +43,8 @@
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user, params)
 	var/fail_msg = "<span class='warning'>There is already one of those in [src]!</span>"
 
-	if(istype(I, /obj/item/mop))
-		var/obj/item/mop/m=I
+	if(istype(I, /obj/item/weapon/mop))
+		var/obj/item/weapon/mop/m=I
 		if(m.reagents.total_volume < m.reagents.maximum_volume)
 			if (wet_mop(m, user))
 				return
@@ -50,26 +53,26 @@
 		else
 			to_chat(user, fail_msg)
 
-	else if(istype(I, /obj/item/storage/bag/trash))
+	else if(istype(I, /obj/item/weapon/storage/bag/trash))
 		if(!mybag)
-			var/obj/item/storage/bag/trash/t=I
+			var/obj/item/weapon/storage/bag/trash/t=I
 			t.janicart_insert(user, src)
 		else
 			to_chat(user,  fail_msg)
-	else if(istype(I, /obj/item/reagent_containers/spray/cleaner))
+	else if(istype(I, /obj/item/weapon/reagent_containers/spray/cleaner))
 		if(!myspray)
 			put_in_cart(I, user)
 			myspray=I
 			update_icon()
 		else
 			to_chat(user, fail_msg)
-	else if(istype(I, /obj/item/lightreplacer))
+	else if(istype(I, /obj/item/device/lightreplacer))
 		if(!myreplacer)
-			var/obj/item/lightreplacer/l=I
+			var/obj/item/device/lightreplacer/l=I
 			l.janicart_insert(user,src)
 		else
 			to_chat(user, fail_msg)
-	else if(istype(I, /obj/item/caution))
+	else if(istype(I, /obj/item/weapon/caution))
 		if(signs < max_signs)
 			put_in_cart(I, user)
 			signs++
@@ -78,9 +81,9 @@
 			to_chat(user, "<span class='warning'>[src] can't hold any more signs!</span>")
 	else if(mybag)
 		mybag.attackby(I, user)
-	else if(istype(I, /obj/item/crowbar))
+	else if(istype(I, /obj/item/weapon/crowbar))
 		user.visible_message("[user] begins to empty the contents of [src].", "<span class='notice'>You begin to empty the contents of [src]...</span>")
-		if(I.use_tool(src, user, 30))
+		if(do_after(user, 30*I.toolspeed, target = src))
 			to_chat(usr, "<span class='notice'>You empty the contents of [src]'s bucket onto the floor.</span>")
 			reagents.reaction(src.loc)
 			src.reagents.clear_reagents()
@@ -88,21 +91,18 @@
 		return ..()
 
 /obj/structure/janitorialcart/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
 	user.set_machine(src)
 	var/dat
 	if(mybag)
-		dat += "<a href='?src=[REF(src)];garbage=1'>[mybag.name]</a><br>"
+		dat += "<a href='?src=\ref[src];garbage=1'>[mybag.name]</a><br>"
 	if(mymop)
-		dat += "<a href='?src=[REF(src)];mop=1'>[mymop.name]</a><br>"
+		dat += "<a href='?src=\ref[src];mop=1'>[mymop.name]</a><br>"
 	if(myspray)
-		dat += "<a href='?src=[REF(src)];spray=1'>[myspray.name]</a><br>"
+		dat += "<a href='?src=\ref[src];spray=1'>[myspray.name]</a><br>"
 	if(myreplacer)
-		dat += "<a href='?src=[REF(src)];replacer=1'>[myreplacer.name]</a><br>"
+		dat += "<a href='?src=\ref[src];replacer=1'>[myreplacer.name]</a><br>"
 	if(signs)
-		dat += "<a href='?src=[REF(src)];sign=1'>[signs] sign\s</a><br>"
+		dat += "<a href='?src=\ref[src];sign=1'>[signs] sign\s</a><br>"
 	var/datum/browser/popup = new(user, "janicart", name, 240, 160)
 	popup.set_content(dat)
 	popup.open()
@@ -136,7 +136,7 @@
 			myreplacer = null
 	if(href_list["sign"])
 		if(signs)
-			var/obj/item/caution/Sign = locate() in src
+			var/obj/item/weapon/caution/Sign = locate() in src
 			if(Sign)
 				user.put_in_hands(Sign)
 				to_chat(user, "<span class='notice'>You take \a [Sign] from [src].</span>")
@@ -161,6 +161,4 @@
 		add_overlay("cart_replacer")
 	if(signs)
 		add_overlay("cart_sign[signs]")
-	if(reagents.total_volume > 0)
-		add_overlay("cart_water")
 

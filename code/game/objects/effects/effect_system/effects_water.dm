@@ -4,11 +4,11 @@
 	name = "water"
 	icon_state = "extinguish"
 	var/life = 15
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	mouse_opacity = 0
 
 
-/obj/effect/particle_effect/water/Initialize()
-	. = ..()
+/obj/effect/particle_effect/water/New()
+	..()
 	QDEL_IN(src, 70)
 
 /obj/effect/particle_effect/water/Move(turf/newloc)
@@ -43,10 +43,10 @@ steam.start() -- spawns the effect
 /obj/effect/particle_effect/steam
 	name = "steam"
 	icon_state = "extinguish"
-	density = FALSE
+	density = 0
 
-/obj/effect/particle_effect/steam/Initialize()
-	. = ..()
+/obj/effect/particle_effect/steam/New()
+	..()
 	QDEL_IN(src, 20)
 
 /datum/effect_system/steam_spread

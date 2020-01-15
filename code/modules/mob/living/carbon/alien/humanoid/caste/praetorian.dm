@@ -5,11 +5,15 @@
 	health = 250
 	icon_state = "alienp"
 
+
+
 /mob/living/carbon/alien/humanoid/royal/praetorian/Initialize()
+
 	real_name = name
+
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno(src))
 	AddAbility(new /obj/effect/proc_holder/alien/royal/praetorian/evolve())
-	. = ..()
+	..()
 
 /mob/living/carbon/alien/humanoid/royal/praetorian/create_internal_organs()
 	internal_organs += new /obj/item/organ/alien/plasmavessel/large
@@ -18,9 +22,14 @@
 	internal_organs += new /obj/item/organ/alien/neurotoxin
 	..()
 
+
+/mob/living/carbon/alien/humanoid/royal/praetorian/movement_delay()
+	. = ..()
+	. += 1
+
 /obj/effect/proc_holder/alien/royal/praetorian/evolve
 	name = "Evolve"
-	desc = "Produce an internal egg sac capable of spawning children. Only one queen can exist at a time."
+	desc = "Produce an interal egg sac capable of spawning children. Only one queen can exist at a time."
 	plasma_cost = 500
 
 	action_icon_state = "alien_evolve_praetorian"
@@ -36,6 +45,9 @@
 	if(!get_alien_type(/mob/living/carbon/alien/humanoid/royal/queen))
 		var/mob/living/carbon/alien/humanoid/royal/queen/new_xeno = new (user.loc)
 		user.alien_evolve(new_xeno)
+		if(new_xeno.client.prefs.unlock_content)
+			var/datum/action/innate/maid/M = new()
+			M.Grant(new_xeno)
 		return 1
 	else
 		to_chat(user, "<span class='notice'>We already have an alive queen.</span>")

@@ -4,18 +4,17 @@
 /obj/structure/holosign
 	name = "holo sign"
 	icon = 'icons/effects/effects.dmi'
-	anchored = TRUE
+	anchored = 1
+	obj_integrity = 1
 	max_integrity = 1
-	armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
-	var/obj/item/holosign_creator/projector
+	armor = list(melee = 0, bullet = 50, laser = 50, energy = 50, bomb = 0, bio = 0, rad = 0, fire = 20, acid = 20)
+	var/obj/item/weapon/holosign_creator/projector
 
-/obj/structure/holosign/Initialize(mapload, source_projector)
-	. = ..()
+/obj/structure/holosign/New(loc, source_projector)
 	if(source_projector)
 		projector = source_projector
 		projector.signs += src
-	SSvis_overlays.add_vis_overlay(src, icon, icon_state, ABOVE_MOB_LAYER, plane, dir, alpha, RESET_ALPHA) //you see mobs under it, but you hit them like they are above it
-	alpha = 0
+	..()
 
 /obj/structure/holosign/Destroy()
 	if(projector)
@@ -24,9 +23,6 @@
 	return ..()
 
 /obj/structure/holosign/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	user.changeNext_move(CLICK_CD_MELEE)
 	take_damage(5 , BRUTE, "melee", 1)
@@ -34,9 +30,9 @@
 /obj/structure/holosign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
 		if(BRUTE)
-			playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
+			playsound(loc, 'sound/weapons/Egloves.ogg', 80, 1)
 		if(BURN)
-			playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
+			playsound(loc, 'sound/weapons/Egloves.ogg', 80, 1)
 
 /obj/structure/holosign/wetsign
 	name = "wet floor sign"
@@ -49,12 +45,15 @@
 	desc = "A short holographic barrier which can only be passed by walking."
 	icon_state = "holosign_sec"
 	pass_flags = LETPASSTHROW
-	density = TRUE
+	density = 1
+	obj_integrity = 20
 	max_integrity = 20
 	var/allow_walk = 1 //can we pass through it on walk intent
 
-/obj/structure/holosign/barrier/CanPass(atom/movable/mover, turf/target)
+/obj/structure/holosign/barrier/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(!density)
+		return 1
+	if(air_group || (height==0))
 		return 1
 	if(mover.pass_flags & (PASSGLASS|PASSTABLE|PASSGRILLE))
 		return 1
@@ -65,38 +64,12 @@
 
 /obj/structure/holosign/barrier/engineering
 	icon_state = "holosign_engi"
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
-	rad_insulation = RAD_LIGHT_INSULATION
-
-/obj/structure/holosign/barrier/atmos
-	name = "holo fan"
-	desc = "A holographic barrier resembling a tiny fan. Though it does not prevent solid objects from passing through, gas is kept out. Somehow."
-	icon_state = "holo_fan"
-	density = FALSE
-	anchored = TRUE
-	CanAtmosPass = ATMOS_PASS_NO
-	alpha = 150
-
-/obj/structure/holosign/barrier/atmos/Initialize()
-	. = ..()
-	air_update_turf(TRUE)
-
-/obj/structure/holosign/barrier/firelock
-	name = "holo firelock"
-	desc = "A holographic barrier resembling a firelock. Though it does not prevent solid objects or gas from passing through, temperature changes are kept out."
-	icon_state = "holo_firelock"
-	density = FALSE
-	anchored = TRUE
-	alpha = 150
-	resistance_flags = FIRE_PROOF
-
-/obj/structure/holosign/barrier/firelock/blocksTemperature()
-	return TRUE
 
 /obj/structure/holosign/barrier/cyborg
 	name = "Energy Field"
 	desc = "A fragile energy field that blocks movement. Excels at blocking lethal projectiles."
-	density = TRUE
+	density = 1
+	obj_integrity = 10
 	max_integrity = 10
 	allow_walk = 0
 
@@ -107,46 +80,10 @@
 	if(istype(P, /obj/item/projectile/beam/disabler))
 		take_damage(5, BRUTE, "melee", 1)	//Disablers aren't harmful.
 
-/obj/structure/holosign/barrier/medical
-	name = "\improper PENLITE holobarrier"
-	desc = "A holobarrier that uses biometrics to detect human viruses. Denies passing to personnel with easily-detected, malicious viruses. Good for quarantines."
-	icon_state = "holo_medical"
-	alpha = 125 //lazy :)
-	var/force_allaccess = FALSE
-	var/buzzcd = 0
-
-/obj/structure/holosign/barrier/medical/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>The biometric scanners are <b>[force_allaccess ? "off" : "on"]</b>.</span>"
-
-/obj/structure/holosign/barrier/medical/CanPass(atom/movable/mover, turf/target)
-	icon_state = "holo_medical"
-	if(force_allaccess)
-		return TRUE
-	if(ishuman(mover))
-		var/mob/living/carbon/human/sickboi = mover
-		var/threat = sickboi.check_virus()
-		switch(threat)
-			if(DISEASE_SEVERITY_MINOR, DISEASE_SEVERITY_MEDIUM, DISEASE_SEVERITY_HARMFUL, DISEASE_SEVERITY_DANGEROUS, DISEASE_SEVERITY_BIOHAZARD)
-				if(buzzcd < world.time)
-					playsound(get_turf(src),'sound/machines/buzz-sigh.ogg',65,1,4)
-					buzzcd = (world.time + 60)
-				icon_state = "holo_medical-deny"
-				return FALSE
-			else
-				return TRUE //nice or benign diseases!
-	return TRUE
-
-/obj/structure/holosign/barrier/medical/attack_hand(mob/living/user)
-	if(CanPass(user) && user.a_intent == INTENT_HELP)
-		force_allaccess = !force_allaccess
-		to_chat(user, "<span class='warning'>You [force_allaccess ? "deactivate" : "activate"] the biometric scanners.</span>") //warning spans because you can make the station sick!
-	else
-		return ..()
-
 /obj/structure/holosign/barrier/cyborg/hacked
 	name = "Charged Energy Field"
-	desc = "A powerful energy field that blocks movement. Energy arcs off it."
+	desc = "A powerful energy field that blocks movement. Energy arcs off it"
+	obj_integrity = 20
 	max_integrity = 20
 	var/shockcd = 0
 
@@ -157,9 +94,6 @@
 	shockcd = FALSE
 
 /obj/structure/holosign/barrier/cyborg/hacked/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
 	if(!shockcd)
 		if(ismob(user))
 			var/mob/living/M = user
@@ -167,14 +101,10 @@
 			shockcd = TRUE
 			addtimer(CALLBACK(src, .proc/cooldown), 5)
 
-/obj/structure/holosign/barrier/cyborg/hacked/Bumped(atom/movable/AM)
-	if(shockcd)
-		return
-
-	if(!ismob(AM))
-		return
-
-	var/mob/living/M = AM
-	M.electrocute_act(15,"Energy Barrier", safety=1)
-	shockcd = TRUE
-	addtimer(CALLBACK(src, .proc/cooldown), 5)
+/obj/structure/holosign/barrier/cyborg/hacked/Bumped(atom/user)
+	if(!shockcd)
+		if(ismob(user))
+			var/mob/living/M = user
+			M.electrocute_act(15,"Energy Barrier", safety=1)
+			shockcd = TRUE
+			addtimer(CALLBACK(src, .proc/cooldown), 5)

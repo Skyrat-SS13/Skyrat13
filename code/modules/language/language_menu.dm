@@ -8,7 +8,7 @@
 	language_holder = null
 	. = ..()
 
-/datum/language_menu/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.language_menu_state)
+/datum/language_menu/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.language_menu_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "language_menu", "Language Menu", 700, 800, master_ui, state)
@@ -76,7 +76,7 @@
 
 	switch(action)
 		if("select_default")
-			if(language_datum && AM.can_speak_in_language(language_datum))
+			if(language_datum)
 				language_holder.selected_default_language = language_datum
 				. = TRUE
 		if("grant_language")

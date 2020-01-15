@@ -3,15 +3,13 @@
 	max_stages = 4
 	spread_text = "Airborne"
 	cure_text = "Iron"
-	cures = list(/datum/reagent/iron)
+	cures = list("iron")
 	agent = "Fukkos Miracos"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	disease_flags = CAN_CARRY|CAN_RESIST|CURABLE
 	permeability_mod = 0.75
 	desc = "This disease disrupts the magnetic field of your body, making it act as if a powerful magnet. Injections of iron help stabilize the field."
-	severity = DISEASE_SEVERITY_MEDIUM
-	infectable_biotypes = list(MOB_ORGANIC, MOB_ROBOTIC)
-	process_dead = TRUE
+	severity = MEDIUM
 
 /datum/disease/magnitis/stage_act()
 	..()
@@ -21,7 +19,7 @@
 				to_chat(affected_mob, "<span class='danger'>You feel a slight shock course through your body.</span>")
 			if(prob(2))
 				for(var/obj/M in orange(2,affected_mob))
-					if(!M.anchored && (M.flags_1 & CONDUCT_1))
+					if(!M.anchored && (M.flags & CONDUCT))
 						step_towards(M,affected_mob)
 				for(var/mob/living/silicon/S in orange(2,affected_mob))
 					if(isAI(S))
@@ -34,7 +32,7 @@
 				to_chat(affected_mob, "<span class='danger'>You feel like clowning around.</span>")
 			if(prob(4))
 				for(var/obj/M in orange(4,affected_mob))
-					if(!M.anchored && (M.flags_1 & CONDUCT_1))
+					if(!M.anchored && (M.flags & CONDUCT))
 						var/i
 						var/iter = rand(1,2)
 						for(i=0,i<iter,i++)
@@ -53,7 +51,7 @@
 				to_chat(affected_mob, "<span class='danger'>You query upon the nature of miracles.</span>")
 			if(prob(8))
 				for(var/obj/M in orange(6,affected_mob))
-					if(!M.anchored && (M.flags_1 & CONDUCT_1))
+					if(!M.anchored && (M.flags & CONDUCT))
 						var/i
 						var/iter = rand(1,3)
 						for(i=0,i<iter,i++)

@@ -29,6 +29,7 @@
 	bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
 
 /datum/progressbar/proc/update(progress)
+	//to_chat(world, "Update [progress] - [goal] - [(progress / goal)] - [((progress / goal) * 100)] - [round(((progress / goal) * 100), 5)]")
 	if (!user || !user.client)
 		shown = 0
 		return
@@ -38,7 +39,7 @@
 		if (user.client)
 			user.client.images += bar
 
-	progress = CLAMP(progress, 0, goal)
+	progress = Clamp(progress, 0, goal)
 	bar.icon_state = "prog_bar_[round(((progress / goal) * 100), 5)]"
 	if (!shown)
 		user.client.images += bar

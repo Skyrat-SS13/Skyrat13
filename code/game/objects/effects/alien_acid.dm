@@ -1,23 +1,32 @@
+/* Alien shit!
+ * Contains:
+ *		effect/acid
+ */
+
+
+/*
+ * Acid
+ */
 /obj/effect/acid
 	gender = PLURAL
 	name = "acid"
-	desc = "Burbling corrosive stuff."
+	desc = "Burbling corrossive stuff."
 	icon_state = "acid"
-	density = FALSE
+	density = 0
 	opacity = 0
-	anchored = TRUE
+	anchored = 1
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = ABOVE_NORMAL_TURF_LAYER
 	var/turf/target
 
 
-/obj/effect/acid/Initialize(mapload, acid_pwr, acid_amt)
-	. = ..()
+/obj/effect/acid/New(loc, acid_pwr, acid_amt)
+	..(loc)
 
 	target = get_turf(src)
 
 	if(acid_amt)
-		acid_level = min( (CLAMP(round(acid_amt, 1), 0, INFINITY)) *acid_pwr, 12000) //capped so the acid effect doesn't last a half hour on the floor.
+		acid_level = min(acid_amt*acid_pwr, 12000) //capped so the acid effect doesn't last a half hour on the floor.
 
 	//handle APCs and newscasters and stuff nicely
 	pixel_x = target.pixel_x + rand(-4,4)
@@ -38,7 +47,7 @@
 		return 0
 
 	if(prob(5))
-		playsound(loc, 'sound/items/welder.ogg', 100, 1)
+		playsound(loc, 'sound/items/Welder.ogg', 100, 1)
 
 	for(var/obj/O in target)
 		if(prob(20) && !(resistance_flags & UNACIDABLE))
@@ -73,7 +82,7 @@
 	. = ..()
 	if(.)
 		if(prob(45))
-			playsound(loc, 'sound/items/welder.ogg', 100, 1)
+			playsound(loc, 'sound/items/Welder.ogg', 100, 1)
 		target_strength--
 		if(target_strength <= 0)
 			target.visible_message("<span class='warning'>[target] collapses under its own weight into a puddle of goop and undigested debris!</span>")

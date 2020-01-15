@@ -4,7 +4,6 @@
 	icon_state = "frog"
 	icon_living = "frog"
 	icon_dead = "frog_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	speak = list("ribbit","croak")
 	emote_see = list("hops in a circle.", "shakes.")
 	speak_chance = 1
@@ -17,15 +16,14 @@
 	response_help  = "pets"
 	response_disarm = "pokes"
 	response_harm   = "splats"
-	density = FALSE
+	density = 0
 	ventcrawler = VENTCRAWLER_ALWAYS
 	faction = list("hostile")
-	attack_sound = 'sound/effects/reee.ogg'
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/nugget = 1)
+	attack_sound = 'sound/effects/Reee.ogg'
+	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/nugget = 1)
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	gold_core_spawnable = HOSTILE_SPAWN
-	var/stepped_sound = 'sound/effects/huuu.ogg'
+	gold_core_spawnable = 1
 
 /mob/living/simple_animal/hostile/retaliate/frog/Initialize()
 	. = ..()
@@ -35,10 +33,10 @@
 		icon_state = "rare_frog"
 		icon_living = "rare_frog"
 		icon_dead = "rare_frog_dead"
-		butcher_results = list(/obj/item/reagent_containers/food/snacks/nugget = 5)
+		butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/nugget = 5)
 
 /mob/living/simple_animal/hostile/retaliate/frog/Crossed(AM as mob|obj)
 	if(!stat && isliving(AM))
 		var/mob/living/L = AM
 		if(L.mob_size > MOB_SIZE_TINY)
-			playsound(src, stepped_sound, 50, 1)
+			playsound(src, 'sound/effects/Huuu.ogg', 50, 1)

@@ -1,3 +1,5 @@
+#define ION_FILE "ion_laws.json"
+
 /proc/lizard_name(gender)
 	if(gender == MALE)
 		return "[pick(GLOB.lizard_names_male)]-[pick(GLOB.lizard_names_male)]"
@@ -6,9 +8,6 @@
 
 /proc/plasmaman_name()
 	return "[pick(GLOB.plasmaman_names)] \Roman[rand(1,99)]"
-
-/proc/moth_name()
-	return "[pick(GLOB.moth_first)] [pick(GLOB.moth_last)]"
 
 /proc/church_name()
 	var/static/church_name
@@ -58,9 +57,8 @@ GLOBAL_VAR(command_name)
 /proc/station_name()
 	if(!GLOB.station_name)
 		var/newname
-		var/config_station_name = CONFIG_GET(string/stationname)
-		if(config_station_name)
-			newname = config_station_name
+		if(config && config.station_name)
+			newname = config.station_name
 		else
 			newname = new_station_name()
 
@@ -71,9 +69,8 @@ GLOBAL_VAR(command_name)
 /proc/set_station_name(newname)
 	GLOB.station_name = newname
 
-	var/config_server_name = CONFIG_GET(string/servername)
-	if(config_server_name)
-		world.name = "[config_server_name][config_server_name == GLOB.station_name ? "" : ": [GLOB.station_name]"]"
+	if(config && config.server_name)
+		world.name = "[config.server_name][config.server_name==GLOB.station_name ? "" : ": [GLOB.station_name]"]"
 	else
 		world.name = GLOB.station_name
 
@@ -122,6 +119,10 @@ GLOBAL_VAR(command_name)
 	return new_station_name
 
 /proc/syndicate_name()
+	var/static/syndicate_name
+	if (syndicate_name)
+		return syndicate_name
+
 	var/name = ""
 
 	// Prefix
@@ -144,16 +145,13 @@ GLOBAL_VAR(command_name)
 		name += pick("-", "*", "")
 		name += pick("Tech", "Sun", "Co", "Tek", "X", "Inc", "Gen", "Star", "Dyne", "Code", "Hive")
 
+	syndicate_name = name
 	return name
 
 
 //Traitors and traitor silicons will get these. Revs will not.
 GLOBAL_VAR(syndicate_code_phrase) //Code phrase for traitors.
 GLOBAL_VAR(syndicate_code_response) //Code response for traitors.
-
-//Cached regex search - for checking if codewords are used.
-GLOBAL_DATUM(syndicate_code_phrase_regex, /regex)
-GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 
 	/*
 	Should be expanded.
@@ -169,13 +167,9 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 	/N
 	*/
 
-/proc/generate_code_phrase(return_list=FALSE)//Proc is used for phrase and response in master_controller.dm
+/proc/generate_code_phrase()//Proc is used for phrase and response in master_controller.dm
 
-	if(!return_list)
-		. = ""
-	else
-		. = list()
-
+	var/code_phrase = ""//What is returned when the proc finishes.
 	var/words = pick(//How many words there will be. Minimum of two. 2, 4 and 5 have a lesser chance of being selected. 3 is the most likely.
 		50; 2,
 		200; 3,
@@ -210,39 +204,39 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 				switch(rand(1,2))//Mainly to add more options later.
 					if(1)
 						if(names.len&&prob(70))
-							. += pick(names)
+							code_phrase += pick(names)
 						else
 							if(prob(10))
-								. += pick(lizard_name(MALE),lizard_name(FEMALE))
+								code_phrase += pick(lizard_name(MALE),lizard_name(FEMALE))
 							else
-								var/new_name = pick(pick(GLOB.first_names_male,GLOB.first_names_female))
-								new_name += " "
-								new_name += pick(GLOB.last_names)
-								. += new_name
+								code_phrase += pick(pick(GLOB.first_names_male,GLOB.first_names_female))
+								code_phrase += " "
+								code_phrase += pick(GLOB.last_names)
 					if(2)
-						. += pick(get_all_jobs())//Returns a job.
+						code_phrase += pick(get_all_jobs())//Returns a job.
 				safety -= 1
 			if(2)
 				switch(rand(1,3))//Food, drinks, or things. Only selectable once.
 					if(1)
-						. += lowertext(pick(drinks))
+						code_phrase += lowertext(pick(drinks))
 					if(2)
-						. += lowertext(pick(foods))
+						code_phrase += lowertext(pick(foods))
 					if(3)
-						. += lowertext(pick(locations))
+						code_phrase += lowertext(pick(locations))
 				safety -= 2
 			if(3)
 				switch(rand(1,4))//Abstract nouns, objects, adjectives, threats. Can be selected more than once.
 					if(1)
-						. += lowertext(pick(nouns))
+						code_phrase += lowertext(pick(nouns))
 					if(2)
-						. += lowertext(pick(objects))
+						code_phrase += lowertext(pick(objects))
 					if(3)
-						. += lowertext(pick(adjectives))
+						code_phrase += lowertext(pick(adjectives))
 					if(4)
-						. += lowertext(pick(threats))
-		if(!return_list)
-			if(words==1)
-				. += "."
-			else
-				. += ", "
+						code_phrase += lowertext(pick(threats))
+		if(words==1)
+			code_phrase += "."
+		else
+			code_phrase += ", "
+
+	return code_phrase

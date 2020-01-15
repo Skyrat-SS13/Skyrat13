@@ -12,8 +12,8 @@
 	var/growth_time = 1200
 
 
-/obj/structure/alien/resin/flower_bud_enemy/Initialize()
-	. = ..()
+/obj/structure/alien/resin/flower_bud_enemy/New()
+	..()
 	var/list/anchors = list()
 	anchors += locate(x-2,y+2,z)
 	anchors += locate(x+2,y+2,z)
@@ -33,7 +33,7 @@
 
 /obj/effect/ebeam/vine
 	name = "thick vine"
-	mouse_opacity = MOUSE_OPACITY_ICON
+	mouse_opacity = 1
 	desc = "A thick vine, painful to the touch."
 
 
@@ -94,7 +94,7 @@
 				if(prob(grasp_pull_chance))
 					setDir(get_dir(src,L) )//staaaare
 					step(L,get_dir(L,src)) //reel them in
-					L.Knockdown(60) //you can't get away now~
+					L.Weaken(3) //you can't get away now~
 
 		if(grasping.len < max_grasps)
 			grasping:

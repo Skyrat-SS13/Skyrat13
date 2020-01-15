@@ -1,15 +1,10 @@
-//retvals for attempt_wires_interaction
-#define WIRE_INTERACTION_FAIL 0
-#define WIRE_INTERACTION_SUCCESSFUL 1
-#define WIRE_INTERACTION_BLOCK 2			//don't do anything else rather than open wires and whatever else.
-
 #define WIRE_DUD_PREFIX "__dud"
 #define WIRE_ACTIVATE "Activate"
 #define WIRE_AI "AI Connection"
 #define WIRE_ALARM "Alarm"
 #define WIRE_AVOIDANCE "Avoidance"
-#define WIRE_BACKUP1 "Auxiliary Power 1"
-#define WIRE_BACKUP2 "Auxiliary Power 2"
+#define WIRE_BACKUP1 "Auxillary Power 1"
+#define WIRE_BACKUP2 "Auxillary Power 2"
 #define WIRE_BEACON "Beacon"
 #define WIRE_BOLTS "Bolts"
 #define WIRE_BOOM "Boom"
@@ -34,7 +29,7 @@
 #define WIRE_POWER1 "Main Power 1"
 #define WIRE_POWER2 "Main Power 2"
 #define WIRE_PROCEED "Proceed"
-#define WIRE_RX "Receive"
+#define WIRE_RX "Recieve"
 #define WIRE_RESET_MODULE "Reset Module"
 #define WIRE_SAFETY "Safety"
 #define WIRE_SHOCK "High Voltage Ground"

@@ -4,157 +4,183 @@
 /area/template_noop)
 "ab" = (
 /turf/closed/wall,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "ac" = (
 /obj/machinery/door/poddoor{
 	id = "bigderelictshipdock"
 	},
 /turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "ad" = (
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered/no_grav)
 "ae" = (
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "af" = (
-/obj/structure/sign/warning/vacuum{
+/obj/structure/sign/vacuum{
 	pixel_y = 32
 	},
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "ag" = (
 /obj/machinery/door/poddoor{
 	id = "bigderelictshipdock"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "ah" = (
-/obj/structure/sign/warning/vacuum{
+/obj/structure/sign/vacuum{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "ai" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "aj" = (
 /obj/machinery/button/door{
 	name = "tradepost entry doors";
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "ak" = (
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "al" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "am" = (
 /turf/open/floor/engine,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "an" = (
 /obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "ao" = (
 /obj/machinery/power/apc{
-	start_charge = 0;
+	cell_type = 0;
 	dir = 4;
 	name = "Cargo Bay APC";
-	pixel_x = 24
+	pixel_x = 24;
+	pixel_y = 0
 	},
 /obj/structure/cable{
+	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "ap" = (
 /obj/structure/table,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/reagent_containers/glass/bucket,
+/obj/item/weapon/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "aq" = (
+/turf/open/floor/engine,
 /turf/closed/wall/mineral/titanium/interior,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "ar" = (
 /obj/structure/shuttle/engine/propulsion/burst/right{
-	dir = 1
+	dir = 1;
+	icon_state = "burst_r";
+	name = "shuttle engine";
+	tag = "icon-burst_r (NORTH)"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "as" = (
 /obj/structure/shuttle/engine/propulsion/burst/left{
-	dir = 1
+	dir = 1;
+	icon_state = "burst_l";
+	name = "shuttle engine";
+	tag = "icon-burst_l (NORTH)"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "at" = (
 /turf/closed/wall/mineral/titanium,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "au" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "av" = (
 /obj/structure/table,
 /obj/machinery/light{
+	icon_state = "tube1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "aw" = (
 /obj/structure/table,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "ax" = (
 /obj/structure/window/reinforced{
+	tag = "icon-rwindow (NORTH)";
+	icon_state = "rwindow";
 	dir = 1
 	},
 /obj/structure/window/reinforced{
+	tag = "icon-rwindow (WEST)";
+	icon_state = "rwindow";
 	dir = 8
 	},
 /obj/structure/shuttle/engine/heater{
+	tag = "icon-heater (NORTH)";
+	icon_state = "heater";
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "ay" = (
 /obj/structure/window/reinforced{
+	tag = "icon-rwindow (NORTH)";
+	icon_state = "rwindow";
 	dir = 1
 	},
 /obj/structure/window/reinforced{
+	tag = "icon-rwindow (EAST)";
+	icon_state = "rwindow";
 	dir = 4
 	},
 /obj/structure/shuttle/engine/heater{
+	tag = "icon-heater (NORTH)";
+	icon_state = "heater";
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "az" = (
 /obj/structure/table,
 /obj/item/clothing/head/soft,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "aA" = (
 /turf/closed/wall,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "aB" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "aC" = (
 /turf/closed/mineral,
 /area/ruin/unpowered/no_grav)
@@ -163,161 +189,170 @@
 	id = "bigderelictship"
 	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aE" = (
 /obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/o2,
+/obj/item/weapon/storage/firstaid/o2,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aF" = (
 /obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/regular,
+/obj/item/weapon/storage/firstaid/regular,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aG" = (
 /obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/brute,
+/obj/item/weapon/storage/firstaid/brute,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aH" = (
 /obj/structure/closet/crate/engineering,
-/obj/item/storage/toolbox/mechanical,
+/obj/item/weapon/storage/toolbox/mechanical,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aI" = (
 /obj/structure/closet/crate/engineering/electrical,
-/obj/item/storage/toolbox/electrical,
-/obj/item/stock_parts/cell/hyper,
-/obj/item/stock_parts/cell/high,
+/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/weapon/stock_parts/cell/hyper,
+/obj/item/weapon/stock_parts/cell/high,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aJ" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/fingerless,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "aK" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "aL" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "aM" = (
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "aN" = (
 /obj/structure/closet/crate{
-	icon_state = "crateopen"
+	icon_state = "crateopen";
+	opened = 1
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "aO" = (
 /obj/structure/closet/crate/secure/loot,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aP" = (
 /obj/structure/closet/crate/internals,
-/obj/item/storage/toolbox/emergency,
+/obj/item/weapon/storage/toolbox/emergency,
 /obj/item/clothing/mask/breath,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/weapon/tank/internals/emergency_oxygen/engi,
+/obj/item/weapon/tank/internals/emergency_oxygen/engi,
 /obj/item/clothing/mask/breath,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aQ" = (
 /obj/structure/closet/crate/radiation,
 /obj/item/clothing/head/radiation,
 /obj/item/clothing/suit/radiation,
-/obj/item/geiger_counter,
+/obj/item/device/geiger_counter,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aR" = (
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "aS" = (
 /turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "aT" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -24
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "aU" = (
 /obj/structure/closet/crate/critter{
 	name = "critter crate - mr.tiggles";
 	opened = 1
 	},
-/obj/item/paper/crumpled/ruins/bigderelict1/manifest,
+/obj/item/weapon/paper/crumpled/snowdin{
+	info = "<i>A crumpled piece of manifest paper, out of the barely legible pen writing,  you can see something about a warning involving whatever was originally in the crate.</i>"
+	},
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aV" = (
 /obj/structure/closet/crate/engineering,
-/obj/item/storage/toolbox/mechanical,
+/obj/item/weapon/storage/toolbox/mechanical,
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aW" = (
 /obj/structure/closet/crate/engineering/electrical,
-/obj/item/storage/toolbox/electrical,
-/obj/item/stock_parts/cell/hyper,
+/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/weapon/stock_parts/cell/hyper,
 /turf/open/floor/mineral/titanium/yellow,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "aX" = (
 /obj/structure/closet/crate,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "aY" = (
 /obj/structure/lattice,
 /turf/template_noop,
-/area/space/nearstation)
+/area/template_noop)
 "aZ" = (
 /turf/closed/wall,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "ba" = (
 /obj/item/clothing/head/helmet,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "bb" = (
 /obj/machinery/power/smes,
 /obj/structure/cable{
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "bc" = (
 /obj/structure/table,
-/obj/item/stock_parts/cell/hyper,
+/obj/item/weapon/stock_parts/cell/hyper,
 /obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "bd" = (
 /obj/machinery/power/smes,
 /obj/structure/cable{
+	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "be" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -325,11 +360,11 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bf" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bg" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -338,7 +373,7 @@
 	},
 /obj/structure/glowshroom/single,
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bh" = (
 /obj/machinery/button/door{
 	id = "bigderelictship";
@@ -351,7 +386,7 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bi" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/alien/weeds{
@@ -360,16 +395,16 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bj" = (
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bk" = (
-/obj/structure/sign/warning/vacuum{
+/obj/structure/sign/vacuum{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bl" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -377,7 +412,7 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bm" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -385,12 +420,13 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTHWEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 9
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bn" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -398,12 +434,13 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bo" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -411,16 +448,17 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/glowshroom/single,
-/obj/structure/sign/warning/vacuum{
+/obj/structure/sign/vacuum{
 	pixel_y = 32
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bp" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -428,45 +466,53 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 5
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bq" = (
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier{
-	head = null;
+	helmet = null;
 	id_job = "Tradepost Officer";
 	name = "Tradeport Officer";
 	random = 1
 	},
-/obj/item/paper/crumpled/ruins/bigderelict1/coward,
+/obj/item/weapon/paper/crumpled/snowdin{
+	icon_state = "scrap_bloodied";
+	info = "If anyone finds this, please, don't let my kids know I died a coward.."
+	},
 /obj/effect/decal/cleanable/blood/old{
 	name = "dried blood splatter";
 	pixel_x = -29
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "br" = (
 /obj/machinery/power/terminal{
+	icon_state = "term";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "bs" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "bt" = (
 /obj/machinery/door/airlock/titanium,
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bu" = (
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bv" = (
 /obj/item/chair,
 /obj/effect/decal/cleanable/blood/old,
@@ -476,9 +522,10 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bw" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 5
@@ -489,7 +536,7 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bx" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -497,90 +544,50 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "by" = (
-/obj/machinery/door/airlock/security/glass{
+/obj/machinery/door/airlock/glass_security{
 	id_tag = "innerbrig";
 	name = "Security Checkpoint";
 	req_access_txt = "63"
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/derelictoutpost)
+/turf/open/floor/plasteel/darkred,
+/area/ruin/derelictoutpost)
 "bz" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/derelictoutpost)
+/turf/open/floor/plasteel/darkred,
+/area/ruin/derelictoutpost)
 "bA" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/derelictoutpost)
+/turf/open/floor/plasteel/darkred,
+/area/ruin/derelictoutpost)
 "bB" = (
 /obj/effect/decal/cleanable/cobweb{
 	icon_state = "cobweb2"
 	},
 /obj/structure/table,
 /obj/machinery/recharger,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/derelictoutpost)
+/turf/open/floor/plasteel/darkred,
+/area/ruin/derelictoutpost)
 "bC" = (
 /turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bD" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bE" = (
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "trails_1";
 	name = "dried blood trail"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bF" = (
 /obj/structure/alien/resin/wall{
 	color = "#8EC127";
@@ -589,7 +596,7 @@
 	name = "gelatinous wall"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bG" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -598,12 +605,13 @@
 	},
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTH)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bH" = (
 /obj/item/ammo_casing/c45{
 	caliber = null;
@@ -615,33 +623,31 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "bI" = (
-/obj/item/gun/ballistic/automatic/pistol/m1911{
+/obj/item/weapon/gun/ballistic/automatic/pistol/m1911{
 	spawnwithmagazine = 0
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "bJ" = (
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "bK" = (
 /obj/structure/table,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "bL" = (
 /obj/structure/table,
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bM" = (
-/obj/machinery/computer{
-	dir = 1
-	},
+/obj/machinery/computer,
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bN" = (
 /obj/structure/table_frame,
 /obj/item/stack/sheet/metal,
@@ -655,16 +661,16 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bO" = (
-/obj/item/shard,
+/obj/item/weapon/shard,
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "bP" = (
 /obj/effect/gibspawner/human,
 /obj/structure/alien/weeds{
@@ -673,43 +679,23 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "bQ" = (
 /obj/structure/filingcabinet,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/derelictoutpost)
+/turf/open/floor/plasteel/darkred,
+/area/ruin/derelictoutpost)
 "bR" = (
-/obj/item/shard,
+/obj/item/weapon/shard,
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/derelictoutpost)
+/turf/open/floor/plasteel/darkred,
+/area/ruin/derelictoutpost)
 "bS" = (
 /obj/item/chair,
 /obj/structure/alien/weeds{
@@ -717,18 +703,8 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/derelictoutpost)
+/turf/open/floor/plasteel/darkred,
+/area/ruin/derelictoutpost)
 "bT" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/machinery/button/door{
@@ -741,45 +717,39 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/derelictoutpost)
+/turf/open/floor/plasteel/darkred,
+/area/ruin/derelictoutpost)
 "bU" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
 	},
 /turf/open/floor/plating{
+	icon_plating = "wall_thermite";
 	icon_state = "wall_thermite";
 	name = "melted wall"
 	},
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bV" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bW" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (SOUTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bX" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -787,54 +757,64 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTH)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 1
 	},
 /obj/machinery/light{
+	icon_state = "tube1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "bY" = (
-/obj/item/gps{
+/obj/item/device/gps{
 	gpstag = "Distress Signal"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "bZ" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /obj/structure/cable{
-	icon_state = "1-4"
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4";
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "ca" = (
 /obj/machinery/power/apc{
-	start_charge = 0;
+	cell_type = 0;
 	dir = 4;
 	name = "Power Storage APC";
 	pixel_x = 23;
 	pixel_y = 2
 	},
 /obj/structure/cable{
+	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "cb" = (
 /obj/structure/closet/wardrobe/cargotech,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cc" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "cd" = (
 /obj/structure/grille/broken,
-/obj/item/shard,
+/obj/item/weapon/shard,
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "trails_1";
 	name = "dried blood trail"
@@ -845,7 +825,7 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/dockedship)
+/area/ruin/derelictoutpost/dockedship)
 "ce" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -853,29 +833,24 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cf" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
+	tag = "icon-rwindow (NORTH)";
+	icon_state = "rwindow";
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/derelictoutpost)
+/turf/open/floor/plasteel/darkred,
+/area/ruin/derelictoutpost)
 "cg" = (
-/obj/item/shard,
+/obj/item/weapon/shard,
 /obj/item/stack/cable_coil{
 	amount = 2;
 	icon_state = "coil_red2";
@@ -889,24 +864,14 @@
 /obj/structure/table_frame,
 /obj/item/stack/sheet/metal,
 /obj/item/stack/sheet/plasteel,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/derelictoutpost)
+/turf/open/floor/plasteel/darkred,
+/area/ruin/derelictoutpost)
 "ch" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -24
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "ci" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -915,25 +880,29 @@
 	},
 /obj/structure/glowshroom/single,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cj" = (
 /obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "ck" = (
 /obj/machinery/power/apc{
-	start_charge = 0;
+	cell_type = 0;
 	dir = 2;
 	name = "Tradepost APC";
+	pixel_x = 0;
 	pixel_y = -24
 	},
 /obj/structure/cable{
+	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cl" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -942,12 +911,13 @@
 	},
 /obj/structure/glowshroom/single,
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTH)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cm" = (
 /obj/structure/alien/resin/wall{
 	color = "#8EC127";
@@ -956,31 +926,38 @@
 	name = "gelatinous wall"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cn" = (
 /obj/structure/table,
-/obj/item/storage/toolbox/electrical,
+/obj/item/weapon/storage/toolbox/electrical,
 /obj/item/stack/cable_coil,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "co" = (
 /obj/structure/table,
-/obj/item/storage/toolbox/mechanical,
+/obj/item/weapon/storage/toolbox/mechanical,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "cp" = (
 /obj/structure/cable{
-	icon_state = "1-4"
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4";
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "cq" = (
 /obj/structure/barricade/wooden,
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "cr" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Power Storage";
@@ -988,22 +965,32 @@
 	},
 /obj/structure/barricade/wooden,
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+/area/ruin/derelictoutpost/powerstorage)
 "cs" = (
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "ct" = (
 /obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cu" = (
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "trails_1";
@@ -1015,7 +1002,7 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cv" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1023,7 +1010,7 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cw" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1031,13 +1018,18 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cx" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1045,28 +1037,40 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cy" = (
-/obj/machinery/door/airlock/public/glass,
+/obj/machinery/door/airlock/glass,
 /obj/machinery/door/poddoor{
 	id = "bigderelictcheckpoint";
 	name = "checkpoint security doors"
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cz" = (
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cA" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1074,23 +1078,29 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cB" = (
 /obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cC" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
-/mob/living/simple_animal/hostile/netherworld{
+/mob/living/simple_animal/hostile/creature{
 	desc = "Awh its so sm-OH GOD WHAT THE FUCK.";
 	health = 25;
 	maxHealth = 25;
@@ -1098,7 +1108,7 @@
 	resize = 0.85
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cD" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1106,11 +1116,12 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (SOUTHWEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 10
 	},
-/mob/living/simple_animal/hostile/netherworld{
+/mob/living/simple_animal/hostile/creature{
 	desc = "Awh its so sm-OH GOD WHAT THE FUCK.";
 	health = 25;
 	maxHealth = 25;
@@ -1118,7 +1129,7 @@
 	resize = 0.85
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cE" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1126,12 +1137,13 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cF" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1139,35 +1151,44 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 5
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cG" = (
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cH" = (
 /obj/structure/closet/crate{
-	icon_state = "crateopen"
+	icon_state = "crateopen";
+	opened = 1
 	},
 /obj/structure/cable{
-	icon_state = "1-4"
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4";
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cI" = (
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /obj/structure/janitorialcart,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cJ" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1175,13 +1196,18 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
-/obj/item/mop,
+/obj/item/weapon/mop,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cK" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (SOUTHWEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 10
@@ -1192,12 +1218,17 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cL" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 5
@@ -1208,10 +1239,14 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cM" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1220,10 +1255,14 @@
 	},
 /obj/structure/glowshroom/single,
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cN" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1231,28 +1270,33 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cO" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cP" = (
-/obj/item/shard,
+/obj/item/weapon/shard,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cQ" = (
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cR" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1260,7 +1304,7 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cS" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1268,12 +1312,13 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTH)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 1
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cT" = (
 /obj/item/ammo_casing/c45{
 	caliber = null;
@@ -1282,21 +1327,22 @@
 	name = "spent bullet casing"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cU" = (
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cV" = (
-/obj/effect/decal/cleanable/blood/splatter/xeno,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cW" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cX" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTH)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 1
@@ -1307,7 +1353,7 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "cY" = (
 /obj/structure/grille/broken,
 /obj/structure/alien/weeds{
@@ -1316,7 +1362,7 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "cZ" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1325,12 +1371,13 @@
 	},
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTH)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 1
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "da" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1340,7 +1387,7 @@
 /obj/structure/glowshroom/single,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "db" = (
 /obj/item/ammo_casing/c45{
 	caliber = null;
@@ -1354,7 +1401,7 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "dc" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1363,25 +1410,28 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "dd" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (SOUTHWEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "de" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "df" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
@@ -1393,12 +1443,16 @@
 	},
 /obj/machinery/light,
 /obj/structure/cable{
-	icon_state = "1-4"
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4";
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "dg" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
@@ -1409,12 +1463,17 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "dh" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
@@ -1430,12 +1489,17 @@
 	name = "pried-open airlock"
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "di" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 5
@@ -1449,19 +1513,21 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dj" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
-/obj/item/shard,
+/obj/item/weapon/shard,
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dk" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1470,18 +1536,18 @@
 	},
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dl" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
-/mob/living/simple_animal/hostile/netherworld{
+/mob/living/simple_animal/hostile/creature{
 	name = "Miss Tiggles"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dm" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1491,7 +1557,7 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/structure/alien/gelpod,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dn" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1499,12 +1565,13 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (WEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "do" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1512,27 +1579,28 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (SOUTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 6
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dp" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "dq" = (
-/obj/effect/decal/cleanable/blood/splatter/xeno,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "dr" = (
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "trails_1";
@@ -1544,13 +1612,16 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "ds" = (
 /turf/closed/mineral,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dt" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1559,21 +1630,22 @@
 	},
 /obj/structure/glowshroom/single,
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "du" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
-/obj/item/gun/ballistic/automatic/pistol/m1911{
+/obj/item/weapon/gun/ballistic/automatic/pistol/m1911{
 	spawnwithmagazine = 0
 	},
 /obj/item/ammo_box/magazine/m45,
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dv" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTHWEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 9
@@ -1584,9 +1656,10 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dw" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
@@ -1602,9 +1675,10 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dx" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
@@ -1615,9 +1689,10 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dy" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
@@ -1629,9 +1704,10 @@
 	},
 /obj/structure/glowshroom/single,
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dz" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 5
@@ -1645,17 +1721,19 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dA" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dB" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (SOUTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 6
@@ -1666,10 +1744,13 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dC" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1681,7 +1762,7 @@
 	name = "dried blood trail"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dD" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1690,7 +1771,7 @@
 	},
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dE" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1703,9 +1784,10 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dF" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (SOUTHWEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 10
@@ -1716,9 +1798,10 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dG" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (WEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 8
@@ -1729,9 +1812,10 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dH" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (SOUTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 6
@@ -1742,7 +1826,7 @@
 	name = "gelatinous floor"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dI" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1750,12 +1834,15 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dJ" = (
-/obj/item/gun/ballistic/automatic/pistol/m1911{
+/obj/item/weapon/gun/ballistic/automatic/pistol/m1911{
 	spawnwithmagazine = 0
 	},
 /obj/structure/alien/weeds{
@@ -1765,7 +1852,7 @@
 	},
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "dK" = (
 /obj/item/ammo_casing/c45{
 	caliber = null;
@@ -1779,15 +1866,16 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 5
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "dL" = (
 /turf/closed/wall,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "dM" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1795,26 +1883,32 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTHWEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 9
 	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dN" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (WEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 8
 	},
 /turf/open/floor/plating{
+	icon_plating = "wall_thermite";
 	icon_state = "wall_thermite";
 	name = "melted wall"
 	},
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dO" = (
 /obj/structure/alien/resin/membrane{
 	color = "#4BAE56";
@@ -1823,15 +1917,17 @@
 	name = "gelatinous membrane"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (WEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 8
 	},
 /turf/open/floor/plating{
+	icon_plating = "wall_thermite";
 	icon_state = "wall_thermite";
 	name = "melted wall"
 	},
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dP" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1840,12 +1936,13 @@
 	},
 /obj/structure/glowshroom/single,
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (WEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dQ" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1853,12 +1950,13 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (SOUTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dR" = (
 /obj/structure/alien/resin/membrane{
 	color = "#4BAE56";
@@ -1867,7 +1965,7 @@
 	name = "gelatinous membrane"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "dS" = (
 /obj/item/ammo_box/magazine/m45,
 /obj/structure/alien/weeds{
@@ -1880,53 +1978,54 @@
 	name = "dried blood trail"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "dT" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "dU" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "dV" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "dW" = (
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "dX" = (
 /obj/structure/closet/crate/secure/loot,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "dY" = (
 /obj/structure/closet/crate{
-	icon_state = "crateopen"
+	icon_state = "crateopen";
+	opened = 1
 	},
 /obj/item/stack/sheet/plasteel/twenty,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "dZ" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "ea" = (
 /obj/structure/closet/crate,
-/obj/item/storage/pill_bottle/stimulant,
+/obj/item/weapon/storage/pill_bottle/stimulant,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eb" = (
 /obj/structure/closet/crate,
 /obj/item/target/syndicate,
@@ -1939,36 +2038,39 @@
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "ec" = (
 /obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/regular{
+/obj/item/weapon/storage/firstaid/regular{
 	empty = 1;
 	name = "First-Aid (empty)"
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "ed" = (
 /obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/regular{
+/obj/item/weapon/storage/firstaid/regular{
 	empty = 1;
 	name = "First-Aid (empty)"
 	},
-/obj/item/storage/firstaid/o2,
+/obj/item/weapon/storage/firstaid/o2,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "ee" = (
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "trails_1";
 	name = "dried blood trail"
 	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "ef" = (
 /obj/structure/alien/resin/membrane{
 	color = "#4BAE56";
@@ -1977,14 +2079,14 @@
 	name = "gelatinous membrane"
 	},
 /turf/open/floor/plating/asteroid/airless,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "eg" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
-/mob/living/simple_animal/hostile/netherworld{
+/mob/living/simple_animal/hostile/creature{
 	desc = "Awh its so sm-OH GOD WHAT THE FUCK.";
 	health = 25;
 	maxHealth = 25;
@@ -1992,45 +2094,49 @@
 	resize = 0.85
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "eh" = (
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "trails_1";
 	name = "dried blood trail"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
+/area/ruin/derelictoutpost/cargobay)
 "ei" = (
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "ej" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/cloth/ten,
 /obj/item/stack/sheet/cloth/ten,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "ek" = (
 /obj/structure/closet/crate{
-	icon_state = "crateopen"
+	icon_state = "crateopen";
+	opened = 1
 	},
 /obj/item/stack/sheet/cardboard/fifty,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "el" = (
 /obj/machinery/power/apc{
-	start_charge = 0;
+	cell_type = 0;
 	dir = 4;
 	name = "Cargo Storage APC";
-	pixel_x = 24
+	pixel_x = 24;
+	pixel_y = 0
 	},
 /obj/structure/cable{
-	icon_state = "0-2"
+	icon_state = "0-2";
+	pixel_y = 1;
+	d2 = 2
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "em" = (
 /turf/closed/wall,
 /area/ruin/unpowered/no_grav)
@@ -2045,49 +2151,53 @@
 /area/ruin/unpowered/no_grav)
 "eo" = (
 /obj/structure/closet/crate/internals,
-/obj/item/storage/toolbox/emergency,
+/obj/item/weapon/storage/toolbox/emergency,
 /obj/item/clothing/mask/breath,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "ep" = (
 /obj/structure/closet/crate/engineering/electrical,
-/obj/item/storage/toolbox/electrical,
+/obj/item/weapon/storage/toolbox/electrical,
 /obj/item/stack/cable_coil,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eq" = (
 /obj/structure/closet/crate{
-	icon_state = "crateopen"
+	icon_state = "crateopen";
+	opened = 1
 	},
-/obj/item/crowbar,
+/obj/item/weapon/crowbar,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "er" = (
 /obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/regular,
+/obj/item/weapon/storage/firstaid/regular,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "es" = (
 /obj/structure/closet/crate/engineering,
-/obj/item/storage/toolbox/mechanical,
+/obj/item/weapon/storage/toolbox/mechanical,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "et" = (
 /obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/brute,
-/obj/item/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/brute,
+/obj/item/weapon/storage/firstaid/fire,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eu" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "ev" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -2096,107 +2206,119 @@
 	},
 /obj/structure/alien/gelpod,
 /turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "ew" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (WEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "ex" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (WEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "ey" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (WEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 8
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "ez" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (NORTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 5
 	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eA" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/metal/fifty,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eB" = (
 /obj/structure/closet/crate{
-	icon_state = "crateopen"
+	icon_state = "crateopen";
+	opened = 1
 	},
-/obj/item/paicard,
+/obj/item/device/paicard,
 /obj/machinery/light,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eC" = (
 /obj/structure/closet/crate,
-/obj/item/pda/clear,
+/obj/item/device/pda/clear,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eD" = (
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eE" = (
 /obj/structure/closet/crate/internals,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/storage/firstaid/toxin,
+/obj/item/weapon/tank/internals/emergency_oxygen/engi,
+/obj/item/weapon/tank/internals/emergency_oxygen/engi,
+/obj/item/weapon/storage/firstaid/toxin,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eF" = (
 /obj/structure/closet/crate,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eG" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eH" = (
 /obj/structure/closet/crate/engineering,
-/obj/item/multitool,
+/obj/item/device/multitool,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eI" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (SOUTHWEST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 10
 	},
 /obj/structure/cable{
-	icon_state = "1-4"
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4";
+	tag = ""
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eJ" = (
 /obj/structure/door_assembly/door_assembly_mai{
 	density = 0;
@@ -2204,44 +2326,38 @@
 	name = "pried-open airlock"
 	},
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (EAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0;
+	tag = ""
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+/area/ruin/derelictoutpost/cargostorage)
 "eK" = (
 /obj/effect/decal/cleanable/blood/old{
+	tag = "icon-trails_1 (SOUTHEAST)";
 	name = "dried blood trail";
 	icon_state = "trails_1";
 	dir = 6
 	},
 /obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost)
 "eL" = (
 /obj/machinery/door/airlock/maintenance,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/cargobay)
-"uV" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost/powerstorage)
-"LB" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/derelictoutpost)
+/area/ruin/derelictoutpost/cargobay)
 
 (1,1,1) = {"
 aa
@@ -2261,10 +2377,16 @@ aa
 aa
 aa
 aa
+aa
+aa
 ad
 ad
 ad
 ad
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -2287,6 +2409,8 @@ aa
 aa
 aa
 aa
+aa
+aa
 aA
 aA
 aA
@@ -2311,6 +2435,10 @@ ad
 ad
 aa
 ad
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -2323,9 +2451,11 @@ aa
 aa
 aa
 aa
+aa
+aa
 aB
 aM
-uV
+aB
 ba
 bq
 bH
@@ -2350,8 +2480,14 @@ ad
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (4,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -2386,8 +2522,14 @@ ad
 ad
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (5,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -2422,8 +2564,14 @@ ad
 ad
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (6,1,1) = {"
+aa
+aa
 aa
 ad
 ad
@@ -2458,8 +2606,14 @@ ad
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (7,1,1) = {"
+aa
+aa
 aa
 ab
 ab
@@ -2494,8 +2648,14 @@ ad
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (8,1,1) = {"
+aa
+aa
 aa
 ab
 af
@@ -2530,8 +2690,14 @@ ad
 ad
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (9,1,1) = {"
+aa
+aa
 ab
 ab
 ab
@@ -2566,8 +2732,14 @@ ad
 ad
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (10,1,1) = {"
+aa
+aa
 ac
 ae
 ag
@@ -2602,8 +2774,14 @@ aC
 ad
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (11,1,1) = {"
+aa
+aa
 ac
 ae
 ag
@@ -2638,8 +2816,14 @@ aC
 ad
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (12,1,1) = {"
+aa
+aa
 ac
 ae
 ag
@@ -2674,8 +2858,14 @@ aC
 ad
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (13,1,1) = {"
+aa
+aa
 ac
 ae
 ag
@@ -2710,8 +2900,14 @@ aC
 aC
 ad
 aa
+aa
+aa
+aa
+aa
 "}
 (14,1,1) = {"
+aa
+aa
 ac
 ae
 ag
@@ -2746,8 +2942,14 @@ aC
 aC
 ad
 aa
+aa
+aa
+aa
+aa
 "}
 (15,1,1) = {"
+aa
+aa
 ac
 ae
 ag
@@ -2782,8 +2984,14 @@ aC
 aC
 ad
 aa
+aa
+aa
+aa
+aa
 "}
 (16,1,1) = {"
+aa
+aa
 ac
 ae
 ag
@@ -2818,8 +3026,14 @@ aC
 aC
 ad
 aa
+aa
+aa
+aa
+aa
 "}
 (17,1,1) = {"
+aa
+aa
 ac
 ae
 ag
@@ -2854,8 +3068,14 @@ aC
 aC
 ad
 ad
+aa
+aa
+aa
+aa
 "}
 (18,1,1) = {"
+aa
+aa
 ac
 ae
 ag
@@ -2890,8 +3110,14 @@ aC
 aC
 ad
 ad
+aa
+aa
+aa
+aa
 "}
 (19,1,1) = {"
+aa
+aa
 ab
 ab
 ab
@@ -2926,8 +3152,14 @@ aC
 aC
 ad
 ad
+aa
+aa
+aa
+aa
 "}
 (20,1,1) = {"
+aa
+aa
 aa
 ab
 ah
@@ -2962,8 +3194,14 @@ aC
 ad
 ad
 ad
+aa
+aa
+aa
+aa
 "}
 (21,1,1) = {"
+aa
+aa
 aa
 ab
 ab
@@ -2998,8 +3236,14 @@ aC
 ad
 ad
 ad
+aa
+aa
+aa
+aa
 "}
 (22,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3034,8 +3278,14 @@ ad
 ad
 ad
 ad
+aa
+aa
+aa
+aa
 "}
 (23,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3070,8 +3320,14 @@ ad
 ad
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (24,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3106,8 +3362,14 @@ ad
 ad
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (25,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3142,8 +3404,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (26,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3178,8 +3446,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (27,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3214,8 +3488,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (28,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3250,8 +3530,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (29,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3286,6 +3572,10 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (30,1,1) = {"
 aa
@@ -3295,9 +3585,11 @@ aa
 aa
 aa
 aa
+aa
+aa
 aL
 aR
-LB
+aL
 bj
 bl
 bn
@@ -3322,8 +3614,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (31,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3358,8 +3656,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (32,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3394,8 +3698,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (33,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3430,8 +3740,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (34,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3466,8 +3782,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (35,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3502,6 +3824,10 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (36,1,1) = {"
 aa
@@ -3511,9 +3837,11 @@ aa
 aa
 aa
 aa
+aa
+aa
 aL
 aR
-LB
+aL
 bn
 bF
 bl
@@ -3538,8 +3866,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (37,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3574,8 +3908,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (38,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3610,8 +3950,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (39,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3646,8 +3992,14 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
 "}
 (40,1,1) = {"
+aa
+aa
 aa
 aa
 aa
@@ -3671,6 +4023,10 @@ cm
 aa
 ad
 ad
+aa
+aa
+aa
+aa
 aa
 aa
 aa

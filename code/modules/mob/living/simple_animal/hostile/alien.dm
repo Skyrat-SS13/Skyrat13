@@ -11,7 +11,7 @@
 	response_disarm = "shoves"
 	response_harm = "hits"
 	speed = 0
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/xeno = 4,
+	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab/xeno = 4,
 							/obj/item/stack/sheet/animalhide/xeno = 1)
 	maxHealth = 125
 	health = 125
@@ -26,17 +26,15 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 15
-	faction = list(ROLE_ALIEN)
+	faction = list("alien")
 	status_flags = CANPUSH
 	minbodytemp = 0
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	unique_name = 1
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = 0
 	death_sound = 'sound/voice/hiss6.ogg'
 	deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw..."
-
-	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/alien/drone
 	name = "alien drone"
@@ -86,7 +84,7 @@
 	retreat_distance = 5
 	minimum_distance = 5
 	move_to_delay = 4
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/xeno = 4,
+	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab/xeno = 4,
 							/obj/item/stack/sheet/animalhide/xeno = 1)
 	projectiletype = /obj/item/projectile/neurotox
 	projectilesound = 'sound/weapons/pierce.ogg'
@@ -136,10 +134,10 @@
 	move_to_delay = 4
 	maxHealth = 400
 	health = 400
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/xeno = 10,
+	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab/xeno = 10,
 							/obj/item/stack/sheet/animalhide/xeno = 2)
 	mob_size = MOB_SIZE_LARGE
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = 0
 
 /obj/item/projectile/neurotox
 	name = "neurotoxin"
@@ -160,24 +158,19 @@
 	a_intent = INTENT_HELP
 	friendly = "caresses"
 	obj_damage = 0
-	environment_smash = ENVIRONMENT_SMASH_NONE
-	gold_core_spawnable = HOSTILE_SPAWN
+	environment_smash = 0
+	gold_core_spawnable = 1
 	icon_state = "maid"
 	icon_living = "maid"
 	icon_dead = "maid_dead"
 
-/mob/living/simple_animal/hostile/alien/maid/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/cleaning)
-
 /mob/living/simple_animal/hostile/alien/maid/AttackingTarget()
-	if(ismovableatom(target))
+	if(istype(target, /atom/movable))
 		if(istype(target, /obj/effect/decal/cleanable))
 			visible_message("[src] cleans up \the [target].")
 			qdel(target)
 			return TRUE
 		var/atom/movable/M = target
-		SEND_SIGNAL(M, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 		M.clean_blood()
 		visible_message("[src] polishes \the [target].")
 		return TRUE

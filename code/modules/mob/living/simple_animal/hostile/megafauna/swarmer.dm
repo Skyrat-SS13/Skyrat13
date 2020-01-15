@@ -1,3 +1,5 @@
+#define MEDAL_PREFIX "Swarmer Beacon"
+
 /*
 
 Swarmer Beacon
@@ -47,8 +49,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	icon_state = "swarmer_console"
 	health = 750
 	maxHealth = 750 //""""low-ish"""" HP because it's a passive boss, and the swarm itself is the real foe
-	mob_biotypes = list(MOB_ROBOTIC)
-	medal_type = BOSS_MEDAL_SWARMERS
+	medal_type = MEDAL_PREFIX
 	score_type = SWARMER_BEACON_SCORE
 	faction = list("mining", "boss", "swarmer")
 	weather_immunities = list("lava","ash")
@@ -67,8 +68,8 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/Initialize()
 	. = ..()
 	swarmer_caps = GLOB.AISwarmerCapsByType //for admin-edits
-	internal = new/obj/item/gps/internal/swarmer_beacon(src)
-	for(var/ddir in GLOB.cardinals)
+	internal = new/obj/item/device/gps/internal/swarmer_beacon(src)
+	for(var/ddir in GLOB.cardinal)
 		new /obj/structure/swarmer/blockade (get_step(src, ddir))
 		var/mob/living/simple_animal/hostile/swarmer/ai/resource/R = new(loc)
 		step(R, ddir) //Step the swarmers, instead of spawning them there, incase the turf is solid
@@ -90,11 +91,12 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 		summon_backup(25) //long range, only called max once per 15 seconds, so it's not deathlag
 
 
-/obj/item/gps/internal/swarmer_beacon
+/obj/item/device/gps/internal/swarmer_beacon
 	icon_state = null
 	gpstag = "Hungry Signal"
-	desc = "Transmitted over the signal is a strange message repeated in every language you know of, and some you don't too..." //the message is "nom nom nom"
+	desc = "Transmited over the signal is a strange message repeated in every language you know of, and some you don't too..." //the message is "nom nom nom"
 	invisibility = 100
+
 
 //SWARMER AI
 //AI versions of the swarmer mini-antag
@@ -104,6 +106,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	faction = list("swarmer", "mining")
 	weather_immunities = list("ash") //wouldn't be fun otherwise
 	AIStatus = AI_ON
+
 
 /mob/living/simple_animal/hostile/swarmer/ai/Initialize()
 	. = ..()
@@ -136,15 +139,15 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /mob/living/simple_animal/hostile/swarmer/ai/Move(atom/newloc)
 	if(newloc)
 		if(newloc.z == z) //so these actions are Z-specific
-			if(islava(newloc))
-				var/turf/open/lava/L = newloc
+			if(istype(newloc, /turf/open/floor/plating/lava))
+				var/turf/open/floor/plating/lava/L = newloc
 				if(!L.is_safe())
 					StartAction(20)
 					new /obj/structure/lattice/catwalk/swarmer_catwalk(newloc)
 					return FALSE
 
-			if(ischasm(newloc) && !throwing)
-				throw_at(get_edge_target_turf(src, get_dir(src, newloc)), 7 , 3, src, FALSE) //my planet needs me
+			if(istype(newloc, /turf/open/chasm) && !throwing)
+				throw_at(get_edge_target_turf(src, get_dir(src, newloc)), 7 , 3, spin = FALSE) //my planet needs me
 				return FALSE
 
 		return ..()
@@ -171,8 +174,15 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	search_objects = 1
 	attack_all_objects = TRUE //attempt to nibble everything
 	lose_patience_timeout = 150
-	var/static/list/sharedWanted = typecacheof(list(/turf/closed/mineral, /turf/closed/wall)) //eat rocks and walls
+	var/static/list/sharedWanted = list(/turf/closed/mineral, /turf/closed/wall) //eat rocks and walls
 	var/static/list/sharedIgnore = list()
+
+
+/mob/living/simple_animal/hostile/swarmer/ai/resource/Initialize()
+	. = ..()
+	sharedWanted = typecacheof(sharedWanted)
+	sharedIgnore = typecacheof(sharedIgnore)
+
 
 //This handles viable things to eat/attack
 //Place specific cases of AI derpiness here
@@ -231,13 +241,16 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 
 //So swarmers can learn what is and isn't food
 /mob/living/simple_animal/hostile/swarmer/ai/resource/proc/add_type_to_wanted(typepath)
+	LAZYINITLIST(sharedWanted)
 	if(!sharedWanted[typepath])// this and += is faster than |=
 		sharedWanted += typecacheof(typepath)
 
 
 /mob/living/simple_animal/hostile/swarmer/ai/resource/proc/add_type_to_ignore(typepath)
+	LAZYINITLIST(sharedIgnore)
 	if(!sharedIgnore[typepath])
 		sharedIgnore += typecacheof(typepath)
+
 
 
 //RANGED SWARMER
@@ -245,10 +258,20 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	icon_state = "swarmer_ranged"
 	icon_living = "swarmer_ranged"
 	projectiletype = /obj/item/projectile/beam/laser
-	projectilesound = 'sound/weapons/laser.ogg'
+	projectilesound = 'sound/weapons/Laser.ogg'
 	check_friendly_fire = TRUE //you're supposed to protect the resource swarmers, you poop
 	retreat_distance = 3
 	minimum_distance = 3
+	login_text_dump = {"
+	<b>You are a swarmer, a weapon of a long dead civilization. Until further orders from your original masters are received, you must continue to consume and replicate.</b>
+	<b>Clicking on any object will try to consume it, either deconstructing it into its components, destroying it, or integrating any materials it has into you if successful.</b>
+	<b>Ctrl-Clicking on a mob will attempt to remove it from the area and place it in a safe environment for storage.</b>
+	<b>Objectives:</b>
+	1. Defend Resource Swarmers while they consume resources and replicate until there are no more resources left.
+	2. Ensure that this location is fit for invasion at a later date; do not perform actions that would render it dangerous or inhospitable.
+	3. Biological resources should not be harmed if possible, violent force can be applied should they fail to keep away.
+	"}
+
 
 /mob/living/simple_animal/hostile/swarmer/ai/ranged_combat/Aggro()
 	..()
@@ -262,6 +285,16 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	health = 60
 	maxHealth = 60
 	ranged = FALSE
+	login_text_dump = {"
+	<b>You are a swarmer, a weapon of a long dead civilization. Until further orders from your original masters are received, you must continue to consume and replicate.</b>
+	<b>Clicking on any object will try to consume it, either deconstructing it into its components, destroying it, or integrating any materials it has into you if successful.</b>
+	<b>Ctrl-Clicking on a mob will attempt to remove it from the area and place it in a safe environment for storage.</b>
+	<b>Objectives:</b>
+	1. Defend Resource Swarmers while they consume resources and replicate until there are no more resources left.
+	2. Ensure that this location is fit for invasion at a later date; do not perform actions that would render it dangerous or inhospitable.
+	3. Biological resources should not be harmed if possible, violent force can be applied should they fail to keep away.
+	"}
+
 
 /mob/living/simple_animal/hostile/swarmer/ai/melee_combat/Aggro()
 	..()
@@ -288,6 +321,10 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 //Used so they can survive lavaland better
 /obj/structure/lattice/catwalk/swarmer_catwalk
 	name = "swarmer catwalk"
-	desc = "A catwalk-like mesh, produced by swarmers to allow them to navigate hostile terrain."
+	desc = "a catwalk-like mesh, produced by swarmers to allow them to navigate hostile terrain."
 	icon = 'icons/obj/smooth_structures/swarmer_catwalk.dmi'
 	icon_state = "swarmer_catwalk"
+
+
+
+#undef MEDAL_PREFIX

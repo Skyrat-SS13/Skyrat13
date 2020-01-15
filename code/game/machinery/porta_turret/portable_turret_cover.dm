@@ -7,8 +7,10 @@
 	name = "turret"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turretCover"
+	anchored = 1
 	layer = HIGH_OBJ_LAYER
-	density = FALSE
+	density = 0
+	obj_integrity = 80
 	max_integrity = 80
 	var/obj/machinery/porta_turret/parent_turret = null
 
@@ -40,17 +42,17 @@
 
 
 /obj/machinery/porta_turret_cover/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/wrench) && !parent_turret.on)
+	if(istype(I, /obj/item/weapon/wrench) && !parent_turret.on)
 		if(parent_turret.raised)
 			return
 
 		if(!parent_turret.anchored)
-			parent_turret.setAnchored(TRUE)
+			parent_turret.anchored = 1
 			to_chat(user, "<span class='notice'>You secure the exterior bolts on the turret.</span>")
 			parent_turret.invisibility = 0
 			parent_turret.update_icon()
 		else
-			parent_turret.setAnchored(FALSE)
+			parent_turret.anchored = 0
 			to_chat(user, "<span class='notice'>You unsecure the exterior bolts on the turret.</span>")
 			parent_turret.invisibility = INVISIBILITY_MAXIMUM
 			parent_turret.update_icon()
@@ -63,8 +65,8 @@
 			updateUsrDialog()
 		else
 			to_chat(user, "<span class='notice'>Access denied.</span>")
-	else if(istype(I, /obj/item/multitool) && !parent_turret.locked)
-		var/obj/item/multitool/M = I
+	else if(istype(I,/obj/item/device/multitool) && !parent_turret.locked)
+		var/obj/item/device/multitool/M = I
 		M.buffer = parent_turret
 		to_chat(user, "<span class='notice'>You add [parent_turret] to multitool buffer.</span>")
 	else
@@ -86,13 +88,10 @@
 	. = 0
 
 /obj/machinery/porta_turret_cover/emag_act(mob/user)
-	. = ..()
-	if(parent_turret.obj_flags & EMAGGED)
-		return
-	to_chat(user, "<span class='notice'>You short out [parent_turret]'s threat assessment circuits.</span>")
-	visible_message("[parent_turret] hums oddly...")
-	parent_turret.obj_flags |= EMAGGED
-	parent_turret.on = 0
-	spawn(40)
-		parent_turret.on = 1
-	return TRUE
+	if(!parent_turret.emagged)
+		to_chat(user, "<span class='notice'>You short out [parent_turret]'s threat assessment circuits.</span>")
+		visible_message("[parent_turret] hums oddly...")
+		parent_turret.emagged = 1
+		parent_turret.on = 0
+		spawn(40)
+			parent_turret.on = 1
