@@ -5,10 +5,10 @@
 #define MAX_TIMER 9000
 
 #define PRESET_SHORT 1200
-#define PRESET_MEDIUM 1800
-#define PRESET_LONG 3000
+#define PRESET_MEDIUM 3000
+#define PRESET_LONG 6000
 
-
+//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Brig Door control displays.
@@ -23,8 +23,9 @@
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
 	desc = "A remote control for a door."
-	req_access = list(ACCESS_SECURITY)
-	density = FALSE
+	req_access = list(access_security)
+	anchored = 1
+	density = 0
 	var/id = null // id of linked machinery/lockers
 
 	var/activation_time = 0
@@ -32,31 +33,29 @@
 
 	var/timing = FALSE		// boolean, true/1 timer is on, false/0 means it's not timing
 	var/list/obj/machinery/targets = list()
-	var/obj/item/radio/Radio //needed to send messages to sec radio
+	var/obj/item/device/radio/Radio //needed to send messages to sec radio
 
 	maptext_height = 26
 	maptext_width = 32
 
-/obj/machinery/door_timer/Initialize()
-	. = ..()
+/obj/machinery/door_timer/New()
+	..()
 
-	Radio = new/obj/item/radio(src)
+	Radio = new/obj/item/device/radio(src)
 	Radio.listening = 0
 
-/obj/machinery/door_timer/Initialize()
-	. = ..()
-	if(id != null)
-		for(var/obj/machinery/door/window/brigdoor/M in urange(20, src))
-			if (M.id == id)
-				targets += M
+/obj/machinery/door_timer/initialize()
+	for(var/obj/machinery/door/window/brigdoor/M in urange(20, src))
+		if (M.id == id)
+			targets += M
 
-		for(var/obj/machinery/flasher/F in urange(20, src))
-			if(F.id == id)
-				targets += F
+	for(var/obj/machinery/flasher/F in urange(20, src))
+		if(F.id == id)
+			targets += F
 
-		for(var/obj/structure/closet/secure_closet/brig/C in urange(20, src))
-			if(C.id == id)
-				targets += C
+	for(var/obj/structure/closet/secure_closet/brig/C in urange(20, src))
+		if(C.id == id)
+			targets += C
 
 	if(!targets.len)
 		stat |= BROKEN
@@ -71,7 +70,7 @@
 		return
 
 	if(timing)
-		if(world.realtime - activation_time >= timer_duration)
+		if(world.time - activation_time >= timer_duration)
 			timer_end() // open doors, reset timer, clear status screen
 		update_icon()
 
@@ -87,20 +86,20 @@
 	if(stat & (NOPOWER|BROKEN))
 		return 0
 
-	activation_time = world.realtime
+	activation_time = world.time
 	timing = TRUE
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
 		if(door.density)
 			continue
-		INVOKE_ASYNC(door, /obj/machinery/door/window/brigdoor.proc/close)
+		addtimer(door, "close", 0)
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
 		if(C.broken)
 			continue
 		if(C.opened && !C.close())
 			continue
-		C.locked = TRUE
+		C.locked = 1
 		C.update_icon()
 	return 1
 
@@ -111,8 +110,8 @@
 		return 0
 
 	if(!forced)
-		Radio.set_frequency(FREQ_SECURITY)
-		Radio.talk_into(src, "Timer has expired. Releasing prisoner.", FREQ_SECURITY)
+		Radio.set_frequency(SEC_FREQ)
+		Radio.talk_into(src, "Timer has expired. Releasing prisoner.", SEC_FREQ)
 
 	timing = FALSE
 	activation_time = null
@@ -122,31 +121,31 @@
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
 		if(!door.density)
 			continue
-		INVOKE_ASYNC(door, /obj/machinery/door/window/brigdoor.proc/open)
+		addtimer(door, "open", 0)
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
 		if(C.broken)
 			continue
 		if(C.opened)
 			continue
-		C.locked = FALSE
+		C.locked = 0
 		C.update_icon()
 
 	return 1
 
 
 /obj/machinery/door_timer/proc/time_left(seconds = FALSE)
-	. = max(0,timer_duration - (activation_time ? world.realtime - activation_time : 0))
+	. = max(0,timer_duration - (activation_time ? world.time - activation_time : 0))
 	if(seconds)
 		. /= 10
 
 /obj/machinery/door_timer/proc/set_timer(value)
-	var/new_time = CLAMP(value,0,MAX_TIMER)
+	var/new_time = Clamp(value,0,MAX_TIMER)
 	. = new_time == timer_duration //return 1 on no change
 	timer_duration = new_time
 
-/obj/machinery/door_timer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+/obj/machinery/door_timer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
+										datum/tgui/master_ui = null, datum/ui_state/state = default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "brig_timer", name, 300, 200, master_ui, state)
@@ -183,7 +182,7 @@
 	if(maptext)
 		maptext = ""
 	cut_overlays()
-	add_overlay(mutable_appearance('icons/obj/status_display.dmi', state))
+	add_overlay(image('icons/obj/status_display.dmi', icon_state=state))
 
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
@@ -211,11 +210,6 @@
 	if(..())
 		return
 	. = TRUE
-
-	if(!allowed(usr))
-		to_chat(usr, "<span class='warning'>Access denied.</span>")
-		return FALSE
-
 	switch(action)
 		if("time")
 			var/value = text2num(params["adjust"])
@@ -240,7 +234,7 @@
 					preset_time = PRESET_LONG
 			. = set_timer(preset_time)
 			if(timing)
-				activation_time = world.realtime
+				activation_time = world.time
 		else
 			. = FALSE
 

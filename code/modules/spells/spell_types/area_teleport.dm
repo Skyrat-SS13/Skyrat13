@@ -5,8 +5,8 @@
 
 	var/randomise_selection = 0 //if it lets the usr choose the teleport loc or picks it from the list
 	var/invocation_area = 1 //if the invocation appends the selected area
-	var/sound1 = 'sound/weapons/zapbang.ogg'
-	var/sound2 = 'sound/weapons/zapbang.ogg'
+	var/sound1 = "sound/weapons/ZapBang.ogg"
+	var/sound2 = "sound/weapons/ZapBang.ogg"
 
 /obj/effect/proc_holder/spell/targeted/area_teleport/perform(list/targets, recharge = 1,mob/living/user = usr)
 	var/thearea = before_cast(targets)
@@ -14,24 +14,22 @@
 		revert_cast()
 		return
 	invocation(thearea,user)
-	if(charge_type == "recharge" && recharge)
-		INVOKE_ASYNC(src, .proc/start_recharge)
+	spawn(0)
+		if(charge_type == "recharge" && recharge)
+			start_recharge()
 	cast(targets,thearea,user)
 	after_cast(targets)
 
 /obj/effect/proc_holder/spell/targeted/area_teleport/before_cast(list/targets)
-	var/area/U = get_area(usr)
-	if(U.noteleport && !istype(U, /area/wizard_station)) // Wizard den special check for those complaining about being unable to tele on station.
-		to_chat(usr, "<span class='warning'>Unseen forces prevent you from casting this spell in this area</span>")
-		return
-	var/A
+	var/A = null
+
 	if(!randomise_selection)
-		A = input("Area to teleport to", "Teleport", A) as null|anything in GLOB.teleportlocs
+		A = input("Area to teleport to", "Teleport", A) as null|anything in teleportlocs
 	else
-		A = pick(GLOB.teleportlocs)
+		A = pick(teleportlocs)
 	if(!A)
 		return
-	var/area/thearea = GLOB.teleportlocs[A]
+	var/area/thearea = teleportlocs[A]
 
 	return thearea
 
@@ -50,19 +48,18 @@
 					L+=T
 
 		if(!L.len)
-			to_chat(usr, "The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry.")
+			usr <<"The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry."
 			return
 
 		if(target && target.buckled)
 			target.buckled.unbuckle_mob(target, force=1)
 
-		var/forcecheck = istype(get_area(target), /area/wizard_station)
 		var/list/tempL = L
 		var/attempt = null
 		var/success = 0
 		while(tempL.len)
 			attempt = pick(tempL)
-			do_teleport(target, attempt, channel = TELEPORT_CHANNEL_MAGIC, forced = forcecheck)
+			target.Move(attempt)
 			if(get_turf(target) == attempt)
 				success = 1
 				break
@@ -70,7 +67,7 @@
 				tempL.Remove(attempt)
 
 		if(!success)
-			do_teleport(target, L, forceMove = TRUE, channel = TELEPORT_CHANNEL_MAGIC, forced = forcecheck)
+			target.loc = pick(L)
 			playsound(get_turf(user), sound2, 50,1)
 
 	return
@@ -81,7 +78,7 @@
 	else
 		switch(invocation_type)
 			if("shout")
-				user.say("[invocation] [uppertext(chosenarea.name)]", forced = "spell")
+				user.say("[invocation] [uppertext(chosenarea.name)]")
 				if(user.gender==MALE)
 					playsound(user.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
 				else

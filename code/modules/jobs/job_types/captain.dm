@@ -1,65 +1,110 @@
+/*
+Captain
+*/
 /datum/job/captain
 	title = "Captain"
 	flag = CAPTAIN
-//	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY //:eyes:
-	department_head = list("CentCom")
+	department_head = list("Centcom")
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "Nanotrasen officials and Space law"
-	selection_color = "#aac1ee"
+	selection_color = "#ccccff"
 	req_admin_notify = 1
-	minimal_player_age = 20
-	exp_requirements = 180
-	exp_type = EXP_TYPE_COMMAND
-	exp_type_department = EXP_TYPE_COMMAND
+	minimal_player_age = 14
 
 	outfit = /datum/outfit/job/captain
 
 	access = list() 			//See get_access()
 	minimal_access = list() 	//See get_access()
 
-	mind_traits = list(TRAIT_CAPTAIN_METABOLISM, TRAIT_DISK_VERIFIER)
-
-	display_order = JOB_DISPLAY_ORDER_CAPTAIN
-
-	blacklisted_quirks = list(/datum/quirk/mute, /datum/quirk/brainproblems, /datum/quirk/insanity)
-
 /datum/job/captain/get_access()
 	return get_all_accesses()
 
-/datum/job/captain/announce(mob/living/carbon/human/H)
-	..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Captain [H.nameless ? "" : "[H.real_name] "]on deck!"))
 
 /datum/outfit/job/captain
 	name = "Captain"
-	jobtype = /datum/job/captain
 
-	id = /obj/item/card/id/gold
-	belt = /obj/item/pda/captain
+	id = /obj/item/weapon/card/id/gold
+	belt = /obj/item/device/pda/captain
 	glasses = /obj/item/clothing/glasses/sunglasses
-	ears = /obj/item/radio/headset/heads/captain/alt
+	ears = /obj/item/device/radio/headset/heads/captain/alt
 	gloves = /obj/item/clothing/gloves/color/captain
 	uniform =  /obj/item/clothing/under/rank/captain
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	head = /obj/item/clothing/head/caphat
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/station_charter=1)
+	backpack_contents = list(/obj/item/weapon/melee/classic_baton/telescopic=1, /obj/item/station_charter=1)
 
-	backpack = /obj/item/storage/backpack/captain
-	satchel = /obj/item/storage/backpack/satchel/cap
-	duffelbag = /obj/item/storage/backpack/duffelbag/captain
+	backpack = /obj/item/weapon/storage/backpack/captain
+	satchel = /obj/item/weapon/storage/backpack/satchel_cap
+	dufflebag = /obj/item/weapon/storage/backpack/dufflebag/captain
 
-	implants = list(/obj/item/implant/mindshield)
-	accessory = /obj/item/clothing/accessory/medal/gold/captain
+/datum/outfit/job/captain/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
 
-	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/captain)
+	var/obj/item/clothing/under/U = H.w_uniform
+	U.attachTie(new /obj/item/clothing/tie/medal/gold/captain())
 
-/datum/outfit/job/captain/hardsuit
-	name = "Captain (Hardsuit)"
+	if(visualsOnly)
+		return
 
-	mask = /obj/item/clothing/mask/gas/sechailer
-	suit = /obj/item/clothing/suit/space/hardsuit/captain
-	suit_store = /obj/item/tank/internals/oxygen
+	var/obj/item/weapon/implant/mindshield/L = new/obj/item/weapon/implant/mindshield(H)
+	L.imp_in = H
+	L.implanted = 1
+	H.sec_hud_set_implants()
+
+	minor_announce("Captain [H.real_name] on deck!")
+
+/*
+Head of Personnel
+*/
+/datum/job/hop
+	title = "Head of Personnel"
+	flag = HOP
+	department_head = list("Captain")
+	department_flag = CIVILIAN
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the captain"
+	selection_color = "#ddddff"
+	req_admin_notify = 1
+	minimal_player_age = 10
+
+	outfit = /datum/outfit/job/hop
+
+	access = list(access_security, access_sec_doors, access_court, access_weapons,
+			            access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
+			            access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
+			            access_crematorium, access_kitchen, access_cargo, access_cargo_bot, access_mailsorting, access_qm, access_hydroponics, access_lawyer,
+			            access_theatre, access_chapel_office, access_library, access_research, access_mining, access_heads_vault, access_mining_station,
+			            access_hop, access_RC_announce, access_keycard_auth, access_gateway, access_mineral_storeroom)
+	minimal_access = list(access_security, access_sec_doors, access_court, access_weapons,
+			            access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
+			            access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
+			            access_crematorium, access_kitchen, access_cargo, access_cargo_bot, access_mailsorting, access_qm, access_hydroponics, access_lawyer,
+			            access_theatre, access_chapel_office, access_library, access_research, access_mining, access_heads_vault, access_mining_station,
+			            access_hop, access_RC_announce, access_keycard_auth, access_gateway, access_mineral_storeroom)
+
+
+/datum/outfit/job/hop
+	name = "Head of Personnel"
+
+	id = /obj/item/weapon/card/id/silver
+	belt = /obj/item/device/pda/heads/hop
+	ears = /obj/item/device/radio/headset/heads/hop
+	uniform = /obj/item/clothing/under/rank/head_of_personnel
+	shoes = /obj/item/clothing/shoes/sneakers/brown
+	head = /obj/item/clothing/head/hopcap
+	backpack_contents = list(/obj/item/weapon/storage/box/ids=1,\
+		/obj/item/weapon/melee/classic_baton/telescopic=1)
+
+/datum/outfit/job/hop/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+
+	if(visualsOnly)
+		return
+
+	announce_head(H, list("Supply", "Service"))

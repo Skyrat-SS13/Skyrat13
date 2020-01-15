@@ -6,13 +6,10 @@
 	var/buckle_requires_restraints = 0 //require people to be handcuffed before being able to buckle. eg: pipes
 	var/list/mob/living/buckled_mobs = null //list()
 	var/max_buckled_mobs = 1
-	var/buckle_prevents_pull = FALSE
 
 //Interaction
 /atom/movable/attack_hand(mob/living/user)
 	. = ..()
-	if(.)
-		return
 	if(can_buckle && has_buckled_mobs())
 		if(buckled_mobs.len > 1)
 			var/unbuckled = input(user, "Who do you wish to unbuckle?","Unbuckle Who?") as null|mob in buckled_mobs
@@ -24,9 +21,14 @@
 
 /atom/movable/MouseDrop_T(mob/living/M, mob/living/user)
 	. = ..()
-	if(can_buckle && istype(M) && istype(user))
+	if(can_buckle && istype(M))
 		if(user_buckle_mob(M, user))
 			return 1
+
+//Cleanup
+/atom/movable/Destroy()
+	. = ..()
+	unbuckle_all_mobs(force=1)
 
 /atom/movable/proc/has_buckled_mobs()
 	if(!buckled_mobs)
@@ -35,52 +37,35 @@
 		return TRUE
 
 //procs that handle the actual buckling and unbuckling
-/atom/movable/proc/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
+/atom/movable/proc/buckle_mob(mob/living/M, force = 0)
 	if(!buckled_mobs)
 		buckled_mobs = list()
-
-	if(!istype(M))
-		return FALSE
-
-	if(check_loc && M.loc != loc)
-		return FALSE
-
-	if((!can_buckle && !force) || M.buckled || (buckled_mobs.len >= max_buckled_mobs) || (buckle_requires_restraints && !M.restrained()) || M == src)
-		return FALSE
-	M.buckling = src
+	if((!can_buckle && !force) || !istype(M) || (M.loc != loc) || M.buckled || (buckled_mobs.len >= max_buckled_mobs) || (buckle_requires_restraints && !M.restrained()) || M == src)
+		return 0
 	if(!M.can_buckle() && !force)
 		if(M == usr)
-			to_chat(M, "<span class='warning'>You are unable to buckle yourself to [src]!</span>")
+			M << "<span class='warning'>You are unable to buckle yourself to the [src]!</span>"
 		else
-			to_chat(usr, "<span class='warning'>You are unable to buckle [M] to [src]!</span>")
-		M.buckling = null
-		return FALSE
+			usr << "<span class='warning'>You are unable to buckle [M] to the [src]!</span>"
+		return 0
 
-	if(M.pulledby && buckle_prevents_pull)
-		M.pulledby.stop_pulling()
-
-	if(!check_loc && M.loc != loc)
-		M.forceMove(loc)
-
-	M.buckling = null
 	M.buckled = src
 	M.setDir(dir)
 	buckled_mobs |= M
 	M.update_canmove()
-	M.throw_alert("buckled", /obj/screen/alert/restrained/buckled)
 	post_buckle_mob(M)
+	M.throw_alert("buckled", /obj/screen/alert/restrained/buckled, new_master = src)
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, M, force)
-	return TRUE
+	return 1
 
-/obj/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
+/obj/buckle_mob(mob/living/M, force = 0)
 	. = ..()
 	if(.)
-		if(resistance_flags & ON_FIRE) //Sets the mob on fire if you buckle them to a burning atom/movableect
+		if(burn_state == ON_FIRE) //Sets the mob on fire if you buckle them to a burning atom/movableect
 			M.adjust_fire_stacks(1)
 			M.IgniteMob()
 
-/atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force=FALSE)
+/atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force=0)
 	if(istype(buckled_mob) && buckled_mob.buckled == src && (buckled_mob.can_unbuckle() || force))
 		. = buckled_mob
 		buckled_mob.buckled = null
@@ -88,34 +73,32 @@
 		buckled_mob.update_canmove()
 		buckled_mob.clear_alert("buckled")
 		buckled_mobs -= buckled_mob
-		SEND_SIGNAL(src, COMSIG_MOVABLE_UNBUCKLE, buckled_mob, force)
 
-		post_unbuckle_mob(.)
+		post_buckle_mob(.)
 
-/atom/movable/proc/unbuckle_all_mobs(force=FALSE)
+/atom/movable/proc/unbuckle_all_mobs(force=0)
 	if(!has_buckled_mobs())
 		return
 	for(var/m in buckled_mobs)
 		unbuckle_mob(m, force)
 
-//Handle any extras after buckling
-//Called on buckle_mob()
+//Handle any extras after buckling/unbuckling
+//Called on buckle_mob() and unbuckle_mob()
 /atom/movable/proc/post_buckle_mob(mob/living/M)
+	return
 
-//same but for unbuckle
-/atom/movable/proc/post_unbuckle_mob(mob/living/M)
 
 //Wrapper procs that handle sanity and user feedback
-/atom/movable/proc/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
-	if(!in_range(user, src) || !isturf(user.loc) || user.incapacitated() || M.anchored || !user.can_buckle_others(M, src))
-		return FALSE
+/atom/movable/proc/user_buckle_mob(mob/living/M, mob/user)
+	if(!in_range(user, src) || user.stat || user.restrained())
+		return 0
 
 	add_fingerprint(user)
-	. = buckle_mob(M, check_loc = check_loc)
-	if(.)
+
+	if(buckle_mob(M))
 		if(M == user)
 			M.visible_message(\
-				"<span class='notice'>[M] buckles [M.p_them()]self to [src].</span>",\
+				"<span class='notice'>[M] buckles themself to [src].</span>",\
 				"<span class='notice'>You buckle yourself to [src].</span>",\
 				"<span class='italics'>You hear metal clanking.</span>")
 		else
@@ -123,6 +106,8 @@
 				"<span class='warning'>[user] buckles [M] to [src]!</span>",\
 				"<span class='warning'>[user] buckles you to [src]!</span>",\
 				"<span class='italics'>You hear metal clanking.</span>")
+		return 1
+
 
 /atom/movable/proc/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	var/mob/living/M = unbuckle_mob(buckled_mob)
@@ -134,8 +119,10 @@
 				"<span class='italics'>You hear metal clanking.</span>")
 		else
 			M.visible_message(\
-				"<span class='notice'>[M] unbuckles [M.p_them()]self from [src].</span>",\
+				"<span class='notice'>[M] unbuckles themselves from [src].</span>",\
 				"<span class='notice'>You unbuckle yourself from [src].</span>",\
 				"<span class='italics'>You hear metal clanking.</span>")
 		add_fingerprint(user)
 	return M
+
+

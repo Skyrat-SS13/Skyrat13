@@ -1,26 +1,25 @@
 /obj/machinery/computer/atmos_alert
 	name = "atmospheric alert console"
 	desc = "Used to monitor the station's air alarms."
-	circuit = /obj/item/circuitboard/computer/atmos_alert
+	circuit = /obj/item/weapon/circuitboard/computer/atmos_alert
 	icon_screen = "alert:0"
 	icon_keyboard = "atmos_key"
 	var/list/priority_alarms = list()
 	var/list/minor_alarms = list()
-	var/receive_frequency = FREQ_ATMOS_ALARMS
+	var/receive_frequency = 1437
 	var/datum/radio_frequency/radio_connection
 
-	light_color = LIGHT_COLOR_CYAN
-
-/obj/machinery/computer/atmos_alert/Initialize()
-	. = ..()
+/obj/machinery/computer/atmos_alert/initialize()
+	..()
 	set_frequency(receive_frequency)
 
 /obj/machinery/computer/atmos_alert/Destroy()
-	SSradio.remove_object(src, receive_frequency)
+	if(SSradio)
+		SSradio.remove_object(src, receive_frequency)
 	return ..()
 
-/obj/machinery/computer/atmos_alert/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+/obj/machinery/computer/atmos_alert/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
+									datum/tgui/master_ui = null, datum/ui_state/state = default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "atmos_alert", name, 350, 300, master_ui, state)
@@ -45,11 +44,11 @@
 		if("clear")
 			var/zone = params["zone"]
 			if(zone in priority_alarms)
-				to_chat(usr, "Priority alarm for [zone] cleared.")
+				usr << "Priority alarm for [zone] cleared."
 				priority_alarms -= zone
 				. = TRUE
 			if(zone in minor_alarms)
-				to_chat(usr, "Minor alarm for [zone] cleared.")
+				usr << "Minor alarm for [zone] cleared."
 				minor_alarms -= zone
 				. = TRUE
 	update_icon()
@@ -60,14 +59,12 @@
 	radio_connection = SSradio.add_object(src, receive_frequency, RADIO_ATMOSIA)
 
 /obj/machinery/computer/atmos_alert/receive_signal(datum/signal/signal)
-	if(!signal)
-		return
+	if(!signal || signal.encryption) return
 
 	var/zone = signal.data["zone"]
 	var/severity = signal.data["alert"]
 
-	if(!zone || !severity)
-		return
+	if(!zone || !severity) return
 
 	minor_alarms -= zone
 	priority_alarms -= zone
@@ -80,21 +77,9 @@
 
 /obj/machinery/computer/atmos_alert/update_icon()
 	..()
-	cut_overlays()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-	var/overlay_state = icon_screen
 	if(stat & (NOPOWER|BROKEN))
-		add_overlay("[icon_keyboard]_off")
 		return
-	add_overlay(icon_keyboard)
 	if(priority_alarms.len)
-		overlay_state = "alert:2"
 		add_overlay("alert:2")
 	else if(minor_alarms.len)
-		overlay_state = "alert:1"
 		add_overlay("alert:1")
-	else
-		overlay_state = "alert:0"
-		add_overlay("alert:0")
-	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, plane, dir)
-	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir, alpha=128)

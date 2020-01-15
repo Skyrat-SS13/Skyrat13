@@ -1,13 +1,13 @@
 #define PUMP_OUT "out"
 #define PUMP_IN "in"
-#define PUMP_MAX_PRESSURE (ONE_ATMOSPHERE * 25)
+#define PUMP_MAX_PRESSURE (ONE_ATMOSPHERE * 30)
 #define PUMP_MIN_PRESSURE (ONE_ATMOSPHERE / 10)
 #define PUMP_DEFAULT_PRESSURE (ONE_ATMOSPHERE)
 
 /obj/machinery/portable_atmospherics/pump
 	name = "portable air pump"
 	icon_state = "psiphon:0"
-	density = TRUE
+	density = 1
 
 	var/on = FALSE
 	var/direction = PUMP_OUT
@@ -15,8 +15,8 @@
 
 	volume = 1000
 
-/obj/machinery/portable_atmospherics/pump/Initialize()
-	. = ..()
+/obj/machinery/portable_atmospherics/pump/New()
+	..()
 	pump = new(src, FALSE)
 	pump.on = TRUE
 	pump.stat = 0
@@ -26,7 +26,8 @@
 	var/turf/T = get_turf(src)
 	T.assume_air(air_contents)
 	air_update_turf()
-	QDEL_NULL(pump)
+	qdel(pump)
+	pump = null
 	return ..()
 
 /obj/machinery/portable_atmospherics/pump/update_icon()
@@ -41,26 +42,23 @@
 /obj/machinery/portable_atmospherics/pump/process_atmos()
 	..()
 	if(!on)
-		pump.airs[1] = null
-		pump.airs[2] = null
+		pump.AIR1 = null
+		pump.AIR2 = null
 		return
 
 	var/turf/T = get_turf(src)
 	if(direction == PUMP_OUT) // Hook up the internal pump.
-		pump.airs[1] = holding ? holding.air_contents : air_contents
-		pump.airs[2] = holding ? air_contents : T.return_air()
+		pump.AIR1 = holding ? holding.air_contents : air_contents
+		pump.AIR2 = holding ? air_contents : T.return_air()
 	else
-		pump.airs[1] = holding ? air_contents : T.return_air()
-		pump.airs[2] = holding ? holding.air_contents : air_contents
+		pump.AIR1 = holding ? air_contents : T.return_air()
+		pump.AIR2 = holding ? holding.air_contents : air_contents
 
 	pump.process_atmos() // Pump gas.
 	if(!holding)
 		air_update_turf() // Update the environment if needed.
 
 /obj/machinery/portable_atmospherics/pump/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
 	if(is_operational())
 		if(prob(50 / severity))
 			on = !on
@@ -68,20 +66,11 @@
 			direction = PUMP_OUT
 		pump.target_pressure = rand(0, 100 * ONE_ATMOSPHERE)
 		update_icon()
-
-/obj/machinery/portable_atmospherics/pump/replace_tank(mob/living/user, close_valve)
-	. = ..()
-	if(.)
-		if(close_valve)
-			if(on)
-				on = FALSE
-				update_icon()
-		else if(on && holding && direction == PUMP_OUT)
-			investigate_log("[key_name(user)] started a transfer into [holding].<br>", INVESTIGATE_ATMOS)
+	..()
 
 
-/obj/machinery/portable_atmospherics/pump/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-														datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
+/obj/machinery/portable_atmospherics/pump/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
+														datum/tgui/master_ui = null, datum/ui_state/state = physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "portable_pump", name, 420, 415, master_ui, state)
@@ -111,20 +100,16 @@
 		if("power")
 			on = !on
 			if(on && !holding)
-				var/plasma = air_contents.gases[/datum/gas/plasma]
-				var/n2o = air_contents.gases[/datum/gas/nitrous_oxide]
+				var/plasma = air_contents.gases["plasma"]
+				var/n2o = air_contents.gases["n2o"]
 				if(n2o || plasma)
-					message_admins("[ADMIN_LOOKUPFLW(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [ADMIN_VERBOSEJMP(src)]")
-					log_admin("[key_name(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [AREACOORD(src)]")
-			else if(on && direction == PUMP_OUT)
-				investigate_log("[key_name(usr)] started a transfer into [holding].<br>", INVESTIGATE_ATMOS)
+					message_admins("[key_name_admin(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservefollow=\ref[usr]'>FLW</A>) turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""]! (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+					log_admin("[key_name(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [x], [y], [z]")
 			. = TRUE
 		if("direction")
 			if(direction == PUMP_OUT)
 				direction = PUMP_IN
 			else
-				if(on && holding)
-					investigate_log("[key_name(usr)] started a transfer into [holding].<br>", INVESTIGATE_ATMOS)
 				direction = PUMP_OUT
 			. = TRUE
 		if("pressure")
@@ -146,11 +131,11 @@
 				pressure = text2num(pressure)
 				. = TRUE
 			if(.)
-				pump.target_pressure = CLAMP(round(pressure), PUMP_MIN_PRESSURE, PUMP_MAX_PRESSURE)
-				investigate_log("was set to [pump.target_pressure] kPa by [key_name(usr)].", INVESTIGATE_ATMOS)
+				pump.target_pressure = Clamp(round(pressure), PUMP_MIN_PRESSURE, PUMP_MAX_PRESSURE)
+				investigate_log("was set to [pump.target_pressure] kPa by [key_name(usr)].", "atmos")
 		if("eject")
 			if(holding)
-				holding.forceMove(drop_location())
+				holding.loc = get_turf(src)
 				holding = null
 				. = TRUE
 	update_icon()

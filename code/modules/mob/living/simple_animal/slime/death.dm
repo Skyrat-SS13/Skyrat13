@@ -19,18 +19,25 @@
 			return
 
 	if(buckled)
-		Feedstop(silent = TRUE) //releases ourselves from the mob we fed on.
+		Feedstop(silent = 1) //releases ourselves from the mob we fed on.
 
 	stat = DEAD
-	cut_overlays()
+	overlays.len = 0
 
 	update_canmove()
 
-	if(SSticker.mode)
-		SSticker.mode.check_win()
+	if(ticker && ticker.mode)
+		ticker.mode.check_win()
 
 	return ..(gibbed)
 
 /mob/living/simple_animal/slime/gib()
-	death(TRUE)
+	death(1)
 	qdel(src)
+
+
+/mob/living/simple_animal/slime/Destroy()
+	for(var/obj/machinery/computer/camera_advanced/xenobio/X in machines)
+		if(src in X.stored_slimes)
+			X.stored_slimes -= src
+	return ..()

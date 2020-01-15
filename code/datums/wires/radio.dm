@@ -1,6 +1,5 @@
 /datum/wires/radio
-	holder_type = /obj/item/radio
-	proper_name = "Radio"
+	holder_type = /obj/item/device/radio
 
 /datum/wires/radio/New(atom/holder)
 	wires = list(
@@ -10,11 +9,12 @@
 	..()
 
 /datum/wires/radio/interactable(mob/user)
-	var/obj/item/radio/R = holder
-	return R.unscrewed
+	var/obj/item/device/radio/R = holder
+	if(R.b_stat)
+		return TRUE
 
 /datum/wires/radio/on_pulse(index)
-	var/obj/item/radio/R = holder
+	var/obj/item/device/radio/R = holder
 	switch(index)
 		if(WIRE_SIGNAL)
 			R.listening = !R.listening

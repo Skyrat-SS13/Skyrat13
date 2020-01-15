@@ -26,7 +26,7 @@
 /obj/screen/swarmer/Replicate
 	icon_state = "ui_replicate"
 	name = "Replicate (Costs 50 Resources)"
-	desc = "Creates another of our kind."
+	desc = "Creates a another of our kind."
 
 /obj/screen/swarmer/Replicate/Click()
 	if(isswarmer(usr))
@@ -68,31 +68,30 @@
 	var/obj/screen/using
 
 	using = new /obj/screen/swarmer/FabricateTrap()
-	using.screen_loc = ui_hand_position(2)
-	using.hud = src
+	using.screen_loc = ui_rhand
 	static_inventory += using
 
 	using = new /obj/screen/swarmer/Barricade()
-	using.screen_loc = ui_hand_position(1)
-	using.hud = src
+	using.screen_loc = ui_lhand
 	static_inventory += using
 
 	using = new /obj/screen/swarmer/Replicate()
 	using.screen_loc = ui_zonesel
-	using.hud = src
 	static_inventory += using
 
 	using = new /obj/screen/swarmer/RepairSelf()
 	using.screen_loc = ui_storage1
-	using.hud = src
 	static_inventory += using
 
 	using = new /obj/screen/swarmer/ToggleLight()
 	using.screen_loc = ui_back
-	using.hud = src
 	static_inventory += using
 
 	using = new /obj/screen/swarmer/ContactSwarmers()
 	using.screen_loc = ui_inventory
-	using.hud = src
 	static_inventory += using
+
+
+/mob/living/simple_animal/hostile/swarmer/create_mob_hud()
+	if(client && !hud_used)
+		hud_used = new /datum/hud/swarmer(src)

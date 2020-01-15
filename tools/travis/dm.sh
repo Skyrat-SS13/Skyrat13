@@ -38,6 +38,12 @@ do
 		sed -i '1s/^/#define '$arg'\n/' $dmepath.mdme
 		continue
 	fi
+	if [[ $var == -M* ]]
+	then
+		sed -i '1s/^/#define MAP_OVERRIDE\n/' $dmepath.mdme
+		sed -i 's!// BEGIN_INCLUDE!// BEGIN_INCLUDE\n#include "_maps\\'$arg'.dm"!' $dmepath.mdme
+		continue
+	fi
 done
 
 #windows
@@ -71,7 +77,7 @@ then
 else
 	if hash DreamMaker 2>/dev/null
 	then
-		DreamMaker -max_errors 0 $dmepath.mdme 2>&1 | tee result.log
+		DreamMaker $dmepath.mdme 2>&1 | tee result.log
 		retval=$?
 		if ! grep '\- 0 errors, 0 warnings' result.log
 		then

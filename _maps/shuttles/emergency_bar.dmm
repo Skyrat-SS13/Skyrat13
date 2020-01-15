@@ -1,24 +1,27 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
 "aa" = (
-/turf/template_noop,
-/area/template_noop)
+/turf/open/space,
+/area/space)
 "ab" = (
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/shuttle/smooth/overspace,
 /area/shuttle/escape)
 "ac" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ad" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/space/basic,
+/turf/closed/wall/shuttle{
+	icon_state = "swall_s10";
+	dir = 2
+	},
 /area/shuttle/escape)
 "ae" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
+/turf/closed/wall/shuttle/smooth/nodiagonal,
 /area/shuttle/escape)
 "af" = (
 /obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
+/obj/item/device/flashlight/lamp/green,
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "ag" = (
@@ -33,28 +36,28 @@
 /area/shuttle/escape)
 "ai" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes/cigars/havana,
-/obj/item/lighter{
+/obj/item/weapon/storage/fancy/cigarettes/cigars/havana,
+/obj/item/weapon/lighter{
 	pixel_x = -4;
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/storage/box/drinkingglasses,
 /turf/open/floor/carpet,
+/area/shuttle/escape)
+"aj" = (
+/turf/closed/wall/shuttle{
+	tag = "icon-swallc3";
+	icon_state = "swallc3";
+	dir = 2
+	},
 /area/shuttle/escape)
 "ak" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
-/obj/machinery/light/small{
-	dir = 1
-	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "al" = (
-/obj/machinery/computer/atmos_alert{
-	dir = 4
-	},
+/obj/machinery/computer/atmos_alert,
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "am" = (
@@ -72,14 +75,17 @@
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)
+"ap" = (
+/obj/machinery/computer/security,
+/turf/open/floor/carpet,
+/area/shuttle/escape)
 "aq" = (
-/obj/machinery/computer/crew{
-	dir = 4
-	},
+/obj/machinery/computer/crew,
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "ar" = (
 /obj/structure/extinguisher_cabinet{
+	pixel_x = 0;
 	pixel_y = -30
 	},
 /obj/structure/chair/comfy/brown{
@@ -88,8 +94,9 @@
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "as" = (
-/obj/item/radio/intercom{
+/obj/item/device/radio/intercom{
 	name = "Station Intercom (General)";
+	pixel_x = 0;
 	pixel_y = -29
 	},
 /turf/open/floor/carpet,
@@ -100,74 +107,60 @@
 	pixel_x = 6;
 	pixel_y = -24
 	},
-/obj/machinery/light,
+/obj/structure/table/wood/poker,
+/obj/item/weapon/storage/box/drinkingglasses,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "au" = (
-/obj/structure/table,
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/turf/open/floor/mineral/titanium,
+/obj/machinery/computer/communications,
+/turf/open/floor/carpet,
 /area/shuttle/escape)
 "av" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock";
-	req_access_txt = "2"
+/turf/closed/wall/shuttle{
+	tag = "icon-swall13";
+	icon_state = "swall13";
+	dir = 2
 	},
-/obj/structure/fans/tiny,
-/turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "aw" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
+/turf/closed/wall/shuttle{
+	icon_state = "swall12";
+	dir = 2
 	},
-/obj/docking_port/mobile/emergency{
-	name = "The Emergency Escape Bar"
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "ax" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
+/turf/closed/wall/shuttle{
+	icon_state = "swall14";
+	dir = 2
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "ay" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
+/turf/closed/wall/shuttle{
+	icon_state = "swall8";
+	dir = 2
 	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "az" = (
-/obj/machinery/door/airlock/public/glass{
+/obj/machinery/door/airlock/glass{
 	name = "Emergency Shuttle Cockpit";
 	req_access_txt = "19"
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "aA" = (
-/obj/machinery/status_display/evac,
-/turf/closed/wall/mineral/titanium,
+/obj/machinery/status_display,
+/turf/closed/wall/shuttle/smooth,
 /area/shuttle/escape)
 "aB" = (
-/obj/machinery/computer/security{
-	dir = 8
+/turf/closed/wall/shuttle{
+	icon_state = "swall4";
+	dir = 2
 	},
-/turf/open/floor/carpet,
 /area/shuttle/escape)
 "aC" = (
-/obj/structure/chair/comfy/shuttle,
-/turf/open/floor/mineral/plastitanium/red/brig,
+/obj/structure/chair,
+/turf/open/floor/plasteel/shuttle/red,
 /area/shuttle/escape)
 "aD" = (
 /obj/machinery/flasher{
@@ -175,38 +168,30 @@
 	pixel_x = 6;
 	pixel_y = 24
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/weapon/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
+	layer = 4.1;
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aE" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aF" = (
 /obj/structure/piano{
-	icon_state = "piano"
+	icon_state = "piano";
+	name = "space piano";
+	tag = "icon-piano"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/shuttle/escape)
 "aG" = (
-/obj/machinery/computer/communications{
-	dir = 8
+/obj/structure/chair/stool{
+	can_buckle = 1
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/plasteel/grimy,
 /area/shuttle/escape)
 "aH" = (
 /obj/machinery/flasher{
@@ -219,148 +204,107 @@
 	pixel_x = -24;
 	pixel_y = -6
 	},
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
+/turf/open/floor/plasteel/shuttle/red,
 /area/shuttle/escape)
 "aI" = (
-/turf/open/floor/mineral/plastitanium/red/brig,
+/turf/open/floor/plasteel/shuttle/red,
 /area/shuttle/escape)
 "aJ" = (
-/obj/machinery/door/airlock/public/glass{
+/obj/machinery/door/airlock/glass{
 	name = "Emergency Shuttle Brig";
 	req_access_txt = "2"
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aK" = (
-/obj/structure/chair/stool{
-	can_buckle = 1
+/obj/machinery/door/airlock/shuttle{
+	name = "Emergency Shuttle Airlock";
+	req_access_txt = "2"
 	},
-/turf/open/floor/plasteel/grimy,
+/turf/open/floor/plasteel/shuttle/red,
 /area/shuttle/escape)
 "aL" = (
 /obj/structure/extinguisher_cabinet{
+	pixel_x = 0;
 	pixel_y = -30
 	},
-/turf/open/floor/mineral/plastitanium/red/brig,
+/turf/open/floor/plasteel/shuttle/red,
 /area/shuttle/escape)
 "aM" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/chair{
 	dir = 1
 	},
-/turf/open/floor/mineral/plastitanium/red/brig,
+/turf/open/floor/plasteel/shuttle/red,
 /area/shuttle/escape)
 "aN" = (
 /obj/structure/chair/stool/bar{
 	can_buckle = 1;
-	name = "buckleable bar stool"
+	name = "buckable bar stool"
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aO" = (
 /obj/structure/table/wood/bar{
 	boot_dir = 9
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aP" = (
 /obj/structure/table/wood/bar,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aQ" = (
-/obj/machinery/light/small{
-	dir = 4
+/turf/closed/wall/shuttle{
+	icon_state = "swall7";
+	dir = 2
 	},
-/turf/open/floor/plasteel/grimy,
 /area/shuttle/escape)
 "aR" = (
 /obj/structure/table/wood/bar{
 	boot_dir = 8
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aS" = (
-/obj/structure/table/wood/bar,
-/obj/item/instrument/guitar,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"aT" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 27
+	pixel_x = 27;
+	pixel_y = 0
 	},
 /obj/structure/table,
-/obj/item/storage/box/drinkingglasses,
-/obj/item/reagent_containers/food/drinks/bottle/lizardwine,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
+/obj/item/weapon/storage/box/drinkingglasses,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/lizardwine,
+/turf/open/floor/plasteel/bar,
+/area/shuttle/escape)
+"aT" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "Emergency Shuttle Airlock"
 	},
-/turf/open/floor/plasteel,
+/obj/docking_port/mobile/emergency{
+	name = "The Emergency Escape Bar";
+	timid = 1
+	},
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aU" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
 /mob/living/simple_animal/hostile/alien/maid/barmaid,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aV" = (
 /obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/obj/machinery/chem_dispenser/drinks/beer,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aW" = (
 /obj/structure/chair/wood/normal,
 /turf/open/floor/plasteel/grimy,
 /area/shuttle/escape)
 "aX" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
 /mob/living/simple_animal/drone/snowflake/bardrone,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aY" = (
 /obj/machinery/vending/boozeomat,
-/turf/closed/wall/mineral/titanium,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aZ" = (
 /obj/structure/chair/wood/normal{
@@ -375,18 +319,13 @@
 /area/shuttle/escape)
 "bb" = (
 /obj/structure/table,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/obj/machinery/chem_dispenser/drinks,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "bc" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/weapon/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
+	layer = 4.1;
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -396,111 +335,96 @@
 /obj/structure/table/wood/bar{
 	boot_dir = 10
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "be" = (
 /obj/structure/table/wood/bar{
 	boot_dir = 2
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "bf" = (
-/obj/structure/table,
-/obj/item/storage/box/drinkingglasses,
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/storage/fancy/cigarettes/cigars/havana,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
+/turf/closed/wall/shuttle{
+	icon_state = "swall1";
+	dir = 2
 	},
-/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bg" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-10"
+/obj/machinery/door/airlock/shuttle{
+	name = "Emergency Shuttle Airlock"
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "bh" = (
-/obj/machinery/vending/cigarette,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"bi" = (
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"bj" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plasteel/freezer,
-/area/shuttle/escape)
-"bk" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"bl" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/obj/machinery/light/small{
+/obj/machinery/shower{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/plasteel/shuttle/white,
+/area/shuttle/escape)
+"bi" = (
+/turf/open/floor/plasteel/shuttle/white,
+/area/shuttle/escape)
+"bj" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/firstaid/regular,
+/obj/item/weapon/storage/firstaid/toxin{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/shuttle/white,
+/area/shuttle/escape)
+"bk" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/plasteel/bar,
+/area/shuttle/escape)
+"bl" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swallc2";
+	dir = 2
+	},
 /area/shuttle/escape)
 "bm" = (
 /obj/machinery/door/airlock{
-	name = "Unisex Restrooms"
+	name = "Unisex Restrooms";
+	req_access_txt = "0"
 	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "bn" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/structure/sign/departments/medbay/alt,
-/turf/closed/wall/mineral/titanium,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/obj/structure/sign/bluecross_2,
+/turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "bo" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid/brute{
-	pixel_x = 4;
-	pixel_y = 4
+/obj/machinery/door/airlock/shuttle{
+	name = "Emergency Shuttle Airlock"
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "bp" = (
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "bq" = (
-/obj/machinery/door/airlock/medical/glass{
+/obj/machinery/door/airlock/glass_medical{
 	name = "Medbay"
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/plasteel/shuttle/white,
 /area/shuttle/escape)
 "br" = (
-/obj/machinery/computer/card,
-/turf/open/floor/carpet,
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/open/floor/plasteel/shuttle/white,
 /area/shuttle/escape)
 "bs" = (
 /obj/machinery/door/airlock{
 	name = "Unit 1"
 	},
 /turf/open/floor/plasteel/freezer,
+/area/shuttle/escape)
+"bt" = (
+/turf/closed/wall/shuttle/smooth,
 /area/shuttle/escape)
 "bu" = (
 /obj/machinery/door/airlock{
@@ -516,34 +440,42 @@
 /area/shuttle/escape)
 "bw" = (
 /obj/structure/table/optable,
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium,
+/obj/item/weapon/surgical_drapes,
+/turf/open/floor/plasteel/shuttle/white,
 /area/shuttle/escape)
 "bx" = (
 /obj/structure/toilet{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 4
+	dir = 4;
+	icon_state = "toilet00";
+	tag = "icon-toilet00 (NORTH)"
 	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "by" = (
 /obj/machinery/recharge_station,
-/obj/machinery/light/small{
-	dir = 4
-	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
+"bz" = (
+/obj/structure/table,
+/obj/item/weapon/circular_saw,
+/obj/item/weapon/hemostat,
+/obj/item/weapon/retractor,
+/obj/item/weapon/scalpel,
+/turf/open/floor/plasteel/shuttle/white,
+/area/shuttle/escape)
 "bA" = (
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
+/turf/closed/wall/shuttle{
+	tag = "icon-gwall_space";
+	icon_state = "gwall_space";
+	dir = 2
 	},
-/obj/effect/turf_decal/tile/bar,
-/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"bB" = (
+/turf/closed/wall/shuttle{
+	tag = "icon-wall3";
+	icon_state = "wall3";
+	dir = 2
+	},
 /area/shuttle/escape)
 "bC" = (
 /obj/structure/window/reinforced{
@@ -552,28 +484,42 @@
 /obj/structure/shuttle/engine/heater,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
+"bD" = (
+/turf/closed/wall/shuttle{
+	tag = "icon-gwall_space (EAST)";
+	icon_state = "gwall_space";
+	dir = 4
+	},
+/area/shuttle/escape)
 "bE" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
+"bF" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plasteel/freezer,
+/area/shuttle/escape)
 "bG" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/weapon/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
+	layer = 4.1;
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "bH" = (
 /turf/open/floor/plasteel/grimy,
 /area/shuttle/escape)
+"bI" = (
+/obj/structure/table/wood/bar,
+/obj/item/device/instrument/guitar,
+/turf/open/floor/plasteel/bar,
+/area/shuttle/escape)
 "bJ" = (
 /obj/structure/table/wood/bar,
-/obj/item/storage/fancy/donut_box,
+/obj/item/weapon/storage/fancy/donut_box,
 /turf/open/floor/plasteel/grimy,
 /area/shuttle/escape)
 "bK" = (
@@ -592,9 +538,16 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/shuttle/escape)
+"bN" = (
+/obj/structure/table,
+/obj/item/weapon/storage/box/drinkingglasses,
+/obj/item/weapon/reagent_containers/food/drinks/shaker,
+/obj/item/weapon/storage/fancy/cigarettes/cigars/havana,
+/turf/open/floor/plasteel/bar,
+/area/shuttle/escape)
 "bO" = (
 /obj/structure/table/wood/bar,
-/obj/item/folder/red,
+/obj/item/weapon/folder/red,
 /turf/open/floor/plasteel/grimy,
 /area/shuttle/escape)
 "bP" = (
@@ -613,22 +566,35 @@
 /area/shuttle/escape)
 "bR" = (
 /obj/structure/extinguisher_cabinet{
+	pixel_x = 0;
 	pixel_y = -30
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "bS" = (
 /obj/structure/table,
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/firstaid/toxin{
+/obj/item/weapon/storage/firstaid/regular,
+/obj/item/weapon/storage/firstaid/toxin{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/plasteel/shuttle/white,
+/area/shuttle/escape)
+"bT" = (
+/obj/item/weapon/twohanded/required/kirbyplants{
+	tag = "icon-plant-10";
+	icon_state = "plant-10"
+	},
+/turf/open/floor/plasteel/bar,
+/area/shuttle/escape)
+"bU" = (
+/obj/structure/table,
+/obj/item/weapon/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/brute{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/shuttle/white,
 /area/shuttle/escape)
 "bV" = (
 /obj/structure/table/wood/bar{
@@ -637,47 +603,7 @@
 /obj/effect/fun_balloon/sentience/emergency_shuttle{
 	group_name = "bar staff on the Emergency Escape Bar"
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"bX" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"bY" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"bZ" = (
-/obj/machinery/light/small,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"ca" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -686,69 +612,69 @@ aa
 aa
 aa
 ab
-ab
-ab
-av
-ab
-aw
-ab
+bt
+bt
+aK
+bt
+aT
+bt
 ac
 ac
 ac
-ab
-ax
-ab
-ay
-ab
-ab
-ab
+bt
+bg
+bt
+bo
+bt
+bt
+bA
 aa
 "}
 (2,1,1) = {"
 aa
 ab
-ab
-ab
-ab
+bt
+bt
+bt
 aC
 aH
 aL
-ab
-bY
-bA
-bA
-bA
-bA
-bA
-bZ
-ab
-bp
-bs
-bx
-ab
-ab
-"}
-(3,1,1) = {"
-ab
-ae
-al
-aq
-ab
-aC
-aI
-aM
-ab
+bt
 aE
 bH
 aZ
 bc
 aZ
 bH
-bR
-ab
+aE
+bt
 bp
+bs
+bx
+bB
+bB
+"}
+(3,1,1) = {"
 ab
-ab
+ae
+al
+aq
+bt
+aC
+aI
+aM
+bt
+aE
+aW
+ba
+bL
+bO
+bQ
+bR
+bt
+bp
+bt
+bt
 bC
 bE
 "}
@@ -757,19 +683,19 @@ ac
 af
 am
 ar
-ab
+bt
 aC
 aI
 aM
-ab
+bt
 aE
 aW
-ba
-bL
-bO
+bJ
+bM
+bP
 bQ
 aE
-ab
+bt
 ak
 bu
 bx
@@ -781,22 +707,22 @@ ac
 ag
 an
 as
-ab
+bt
 ac
 aJ
 ac
 ae
 aE
-aW
-bJ
-bM
-bP
-bQ
+bH
+bK
+bH
+bK
+bH
 aE
 aA
 bp
-ab
-ab
+bt
+bt
 bC
 bE
 "}
@@ -805,17 +731,17 @@ ac
 ah
 an
 at
-ab
+bt
 aD
 aE
 aE
-bX
 aE
-bH
-bK
-bH
-bK
-bH
+aE
+aE
+aE
+aE
+aE
+aE
 aE
 bm
 bp
@@ -826,53 +752,29 @@ bE
 "}
 (7,1,1) = {"
 ac
-br
+ag
 an
 an
 az
-bA
-bA
-bA
-bA
-bA
-bA
-bA
-bA
-bA
-bA
-bA
-ae
-ae
-ab
-ab
+aE
+aE
+aN
+aN
+aN
+aN
+aN
+aN
+aN
+aE
+aE
+bt
+bt
+bt
+bt
 bC
 bE
 "}
 (8,1,1) = {"
-ad
-ag
-an
-an
-ab
-aE
-aE
-aN
-aN
-aN
-aN
-aN
-aN
-aN
-aE
-ca
-ae
-bw
-bi
-au
-bC
-bE
-"}
-(9,1,1) = {"
 ac
 ai
 ao
@@ -891,17 +793,17 @@ aN
 aE
 bn
 bi
-bi
-bi
+bw
+bz
 bC
 bE
 "}
-(10,1,1) = {"
+(9,1,1) = {"
 ab
 ae
-aB
-aG
-ab
+ap
+au
+bt
 aF
 bH
 aP
@@ -920,51 +822,51 @@ bS
 bC
 bE
 "}
-(11,1,1) = {"
+(10,1,1) = {"
 aa
 ab
-ab
-ab
-ab
-aK
-aQ
+bt
+bt
+bt
+aG
+bH
+bI
 aS
-aT
 aV
 aY
 bb
-bf
+bN
 be
-bg
-bh
-bj
+bT
 bk
-bl
-bo
-ab
-ab
+bF
+br
+br
+bU
+bB
+bB
 "}
-(12,1,1) = {"
+(11,1,1) = {"
 aa
 aa
 aa
 aa
 ab
 ac
-ab
+bt
 ac
-ab
-ab
-ab
+bt
+bt
+bt
 ac
 ac
 ac
-ab
-ab
-ab
+bt
+bt
+bt
 ac
-ab
+bt
 ac
-ab
+bD
 aa
 "}

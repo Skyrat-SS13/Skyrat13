@@ -33,9 +33,6 @@
 	var/datum/ui_state/state = null // Topic state used to determine status/interactability.
 	var/datum/tgui/master_ui // The parent UI.
 	var/list/datum/tgui/children = list() // Children of this UI.
-	var/titlebar = TRUE
-	var/custom_browser_id = FALSE
-	var/ui_screen = "home"
 
  /**
   * public
@@ -54,12 +51,11 @@
   *
   * return datum/tgui The requested UI.
  **/
-/datum/tgui/New(mob/user, datum/src_object, ui_key, interface, title, width = 0, height = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state, browser_id = null)
+/datum/tgui/New(mob/user, datum/src_object, ui_key, interface, title, width = 0, height = 0, datum/tgui/master_ui = null, datum/ui_state/state = default_state)
 	src.user = user
 	src.src_object = src_object
 	src.ui_key = ui_key
-	src.window_id = browser_id ? browser_id : "[REF(src_object)]-[ui_key]"
-	src.custom_browser_id = browser_id ? TRUE : FALSE
+	src.window_id = "\ref[src_object]-[ui_key]"
 
 	set_interface(interface)
 
@@ -100,8 +96,7 @@
 
 	var/debugable = check_rights_for(user.client, R_DEBUG)
 	user << browse(get_html(debugable), "window=[window_id];[window_size][list2params(window_options)]") // Open the window.
-	if (!custom_browser_id)
-		winset(user, window_id, "on-close=\"uiclose [REF(src)]\"") // Instruct the client to signal UI when the window is closed.
+	winset(user, window_id, "on-close=\"uiclose \ref[src]\"") // Instruct the client to signal UI when the window is closed.
 	SStgui.on_open(src)
 
  /**
@@ -127,7 +122,6 @@
  **/
 /datum/tgui/proc/close()
 	user << browse(null, "window=[window_id]") // Close the window.
-	src_object.ui_close()
 	SStgui.on_close(src)
 	for(var/datum/tgui/child in children) // Loop through and close all children.
 		child.close()
@@ -198,20 +192,12 @@
  **/
 /datum/tgui/proc/get_html(var/inline)
 	var/html
-	html = SStgui.basehtml
-
-	//Allow the src object to override the html if needed
-	html = src_object.ui_base_html(html)
-	//Strip out any remaining custom tags that are used in ui_base_html
-	html = replacetext(html, "<!--customheadhtml-->", "")
-
 	// Poplate HTML with JSON if we're supposed to inline.
 	if(inline)
-		html = replacetextEx(html, "{}", get_json(initial_data))
-
-
-	//Setup for tgui stuff, including styles
-	html = replacetextEx(html, "\[ref]", "[REF(src)]")
+		html = replacetextEx(SStgui.basehtml, "{}", get_json(initial_data))
+	else
+		html = SStgui.basehtml
+	html = replacetextEx(html, "\[ref]", "\ref[src]")
 	html = replacetextEx(html, "\[style]", style)
 	return html
 
@@ -226,22 +212,21 @@
 	var/list/config_data = list(
 			"title"     = title,
 			"status"    = status,
-			"screen"	= ui_screen,
+			"screen"	= src_object.ui_screen,
 			"style"     = style,
 			"interface" = interface,
 			"fancy"     = user.client.prefs.tgui_fancy,
-			"locked"    = user.client.prefs.tgui_lock && !custom_browser_id,
+			"locked"    = user.client.prefs.tgui_lock,
 			"window"    = window_id,
-			"ref"       = "[REF(src)]",
+			"ref"       = "\ref[src]",
 			"user"      = list(
 				"name"  = user.name,
-				"ref"   = "[REF(user)]"
+				"ref"   = "\ref[user]"
 			),
 			"srcObject" = list(
 				"name" = "[src_object]",
-				"ref"  = "[REF(src_object)]"
-			),
-			"titlebar" = titlebar
+				"ref"  = "\ref[src_object]"
+			)
 		)
 	return config_data
 
@@ -283,11 +268,11 @@
 
 	switch(action)
 		if("tgui:initialize")
-			user << output(url_encode(get_json(initial_data)), "[custom_browser_id ? window_id : "[window_id].browser"]:initialize")
+			user << output(url_encode(get_json(initial_data)), "[window_id].browser:initialize")
 			initialized = TRUE
 		if("tgui:view")
 			if(params["screen"])
-				ui_screen = params["screen"]
+				src_object.ui_screen = params["screen"]
 			SStgui.update_uis(src_object)
 		if("tgui:link")
 			user << link(params["url"])
@@ -309,7 +294,7 @@
   * optional force bool If the UI should be forced to update.
  **/
 /datum/tgui/process(force = 0)
-	var/datum/host = src_object.ui_host(user)
+	var/datum/host = src_object.ui_host()
 	if(!src_object || !host || !user) // If the object or user died (or something else), abort.
 		close()
 		return
@@ -335,7 +320,7 @@
 		return // Cannot update UI, we have no visibility.
 
 	// Send the new JSON to the update() Javascript function.
-	user << output(url_encode(get_json(data)), "[custom_browser_id ? window_id : "[window_id].browser"]:update")
+	user << output(url_encode(get_json(data)), "[window_id].browser:update")
 
  /**
   * private
@@ -345,7 +330,7 @@
   *
   * optional force_open bool If force_open should be passed to ui_interact.
  **/
-/datum/tgui/proc/update(force_open = FALSE)
+/datum/tgui/proc/update(force_open = 0)
 	src_object.ui_interact(user, ui_key, src, force_open, master_ui, state)
 
  /**
@@ -382,6 +367,3 @@
 			src.status = status
 			if(status == UI_DISABLED || push) // Update if the UI just because disabled, or a push is requested.
 				push_data(null, force = 1)
-
-/datum/tgui/proc/set_titlebar(value)
-	titlebar = value

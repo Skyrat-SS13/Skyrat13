@@ -3,12 +3,12 @@
 	typepath = /datum/round_event/portal_storm/syndicate_shocktroop
 	weight = 2
 	min_players = 15
-	earliest_start = 30 MINUTES
+	earliest_start = 18000
 
 /datum/round_event/portal_storm/syndicate_shocktroop
 	boss_types = list(/mob/living/simple_animal/hostile/syndicate/melee/space/stormtrooper = 2)
-	hostile_types = list(/mob/living/simple_animal/hostile/syndicate/melee/space = 8,\
-						/mob/living/simple_animal/hostile/syndicate/ranged/space = 2)
+	hostile_types = list(/mob/living/simple_animal/hostile/syndicate/melee/space/noloot = 8,\
+						/mob/living/simple_animal/hostile/syndicate/ranged/space/noloot = 2)
 
 /datum/round_event_control/portal_storm_narsie
 	name = "Portal Storm: Constructs"
@@ -33,11 +33,14 @@
 	var/list/hostiles_spawn = list()
 	var/list/hostile_types = list()
 	var/number_of_hostiles
-	var/mutable_appearance/storm
+	var/list/station_areas = list()
+	var/image/storm
 
 /datum/round_event/portal_storm/setup()
-	storm = mutable_appearance('icons/obj/tesla_engine/energy_ball.dmi', "energy_ball_fast", FLY_LAYER)
+	storm = image('icons/obj/tesla_engine/energy_ball.dmi', "energy_ball_fast", layer=FLY_LAYER)
 	storm.color = "#00FF00"
+
+	station_areas = get_areas_in_z(ZLEVEL_STATION)
 
 	number_of_bosses = 0
 	for(var/boss in boss_types)
@@ -47,24 +50,32 @@
 	for(var/hostile in hostile_types)
 		number_of_hostiles += hostile_types[hostile]
 
+	var/list/b_spawns = generic_event_spawns.Copy()
 	while(number_of_bosses > boss_spawn.len)
-		boss_spawn += get_random_station_turf()
+		var/turf/F = get_turf(pick_n_take(b_spawns))
+		if(!F)
+			F = safepick(get_area_turfs(pick(station_areas)))
+		boss_spawn += F
 
+	var/list/h_spawns = generic_event_spawns.Copy()
 	while(number_of_hostiles > hostiles_spawn.len)
-		hostiles_spawn += get_random_station_turf()
+		var/turf/T = get_turf(pick_n_take(h_spawns))
+		if(!T)
+			T = safepick(get_area_turfs(pick(station_areas)))
+		hostiles_spawn += T
 
-	next_boss_spawn = startWhen + CEILING(2 * number_of_hostiles / number_of_bosses, 1)
+	next_boss_spawn = startWhen + Ceiling(2 * number_of_hostiles / number_of_bosses)
 
-/datum/round_event/portal_storm/announce(fake)
+/datum/round_event/portal_storm/announce()
 	set waitfor = 0
-	sound_to_playing_players('sound/magic/lightning_chargeup.ogg')
+	playsound_global('sound/magic/lightning_chargeup.ogg', repeat=0, channel=1, volume=100)
 	sleep(80)
 	priority_announce("Massive bluespace anomaly detected en route to [station_name()]. Brace for impact.")
 	sleep(20)
-	sound_to_playing_players('sound/magic/lightningbolt.ogg')
+	playsound_global('sound/magic/lightningbolt.ogg', repeat=0, channel=1, volume=100)
 
 /datum/round_event/portal_storm/tick()
-	spawn_effects(get_random_station_turf())
+	spawn_effects()
 
 	if(spawn_hostile())
 		var/type = safepick(hostile_types)
@@ -92,24 +103,28 @@
 	spawn_effects(T)
 
 /datum/round_event/portal_storm/proc/spawn_effects(turf/T)
-	if(!T)
-		log_game("Portal Storm failed to spawn effect due to an invalid location.")
-		return
-	T = get_step(T, SOUTHWEST) //align center of image with turf
-	flick_overlay_static(storm, T, 15)
-	playsound(T, 'sound/magic/lightningbolt.ogg', rand(80, 100), 1)
+	if(T)
+		T = get_step(T, SOUTHWEST) //align center of image with turf
+		flick_overlay_static(storm, T, 15)
+		playsound(T, 'sound/magic/lightningbolt.ogg', 100, 1)
+	else
+		for(var/V in station_areas)
+			var/area/A = V
+			var/turf/F = get_turf(pick(A.contents))
+			flick_overlay_static(storm, F, 15)
+			playsound(F, 'sound/magic/lightningbolt.ogg', 80, 1)
 
 /datum/round_event/portal_storm/proc/spawn_hostile()
 	if(!hostile_types || !hostile_types.len)
 		return 0
-	return ISMULTIPLE(activeFor, 2)
+	return IsMultiple(activeFor, 2)
 
 /datum/round_event/portal_storm/proc/spawn_boss()
 	if(!boss_types || !boss_types.len)
 		return 0
 
 	if(activeFor == next_boss_spawn)
-		next_boss_spawn += CEILING(number_of_hostiles / number_of_bosses, 1)
+		next_boss_spawn += Ceiling(number_of_hostiles / number_of_bosses)
 		return 1
 
 /datum/round_event/portal_storm/proc/time_to_end()

@@ -3,384 +3,463 @@
 	icon = 'icons/obj/surgery.dmi'
 	var/mob/living/carbon/owner = null
 	var/status = ORGAN_ORGANIC
-	w_class = WEIGHT_CLASS_SMALL
+	origin_tech = "biotech=3"
+	force = 1
+	w_class = 2
 	throwforce = 0
-	var/zone = BODY_ZONE_CHEST
+	var/zone = "chest"
 	var/slot
 	// DO NOT add slots with matching names to different zones - it will break internal_organs_slot list!
-	var/organ_flags = 0
-	var/maxHealth = STANDARD_ORGAN_THRESHOLD
-	var/damage = 0		//total damage this organ has sustained
-	///Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick
-	var/healing_factor 	= 0										//fraction of maxhealth healed per on_life(), set to 0 for generic organs
-	var/decay_factor 	= 0										//same as above but when without a living owner, set to 0 for generic organs
-	var/high_threshold	= STANDARD_ORGAN_THRESHOLD * 0.45		//when severe organ damage occurs
-	var/low_threshold	= STANDARD_ORGAN_THRESHOLD * 0.1		//when minor organ damage occurs
+	var/vital = 0
 
-	///Organ variables for determining what we alert the owner with when they pass/clear the damage thresholds
-	var/prev_damage = 0
-	var/low_threshold_passed
-	var/high_threshold_passed
-	var/now_failing
-	var/now_fixed
-	var/high_threshold_cleared
-	var/low_threshold_cleared
-	rad_flags = RAD_NO_CONTAMINATE
 
-/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0)
 	if(!iscarbon(M) || owner == M)
-		return FALSE
+		return
 
 	var/obj/item/organ/replaced = M.getorganslot(slot)
 	if(replaced)
 		replaced.Remove(M, special = 1)
-		if(drop_if_replaced)
-			replaced.forceMove(get_turf(M))
-		else
-			qdel(replaced)
-
-	//Hopefully this doesn't cause problems
-	organ_flags &= ~ORGAN_FROZEN
 
 	owner = M
 	M.internal_organs |= src
 	M.internal_organs_slot[slot] = src
-	moveToNullspace()
+	loc = null
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.Grant(M)
-	STOP_PROCESSING(SSobj, src)
 
-	return TRUE
 
-//Special is for instant replacement like autosurgeons
-/obj/item/organ/proc/Remove(mob/living/carbon/M, special = FALSE)
+/obj/item/organ/proc/Remove(mob/living/carbon/M, special = 0)
 	owner = null
 	if(M)
 		M.internal_organs -= src
 		if(M.internal_organs_slot[slot] == src)
 			M.internal_organs_slot.Remove(slot)
-		if((organ_flags & ORGAN_VITAL) && !special && !(M.status_flags & GODMODE))
+		if(vital && !special)
 			M.death()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.Remove(M)
-	START_PROCESSING(SSobj, src)
 
-	return TRUE
 
 /obj/item/organ/proc/on_find(mob/living/finder)
 	return
 
-/obj/item/organ/process()	//runs decay when outside of a person AND ONLY WHEN OUTSIDE (i.e. long obj).
-	on_death() //Kinda hate doing it like this, but I really don't want to call process directly.
-
-//Sources; life.dm process_organs
-/obj/item/organ/proc/on_death() //Runs when outside AND inside.
-	decay()
-
-//Applys the slow damage over time decay
-/obj/item/organ/proc/decay()
-	if(!can_decay())
-		STOP_PROCESSING(SSobj, src)
-		return
-	is_cold()
-	if(organ_flags & ORGAN_FROZEN)
-		return
-	applyOrganDamage(maxHealth * decay_factor)
-
-/obj/item/organ/proc/can_decay()
-	if(CHECK_BITFIELD(organ_flags, ORGAN_NO_SPOIL | ORGAN_SYNTHETIC | ORGAN_FAILING))
-		return FALSE
-	return TRUE
-
-//Checks to see if the organ is frozen from temperature
-/obj/item/organ/proc/is_cold()
-	if(istype(loc, /obj/))//Freezer of some kind, I hope.
-		if(is_type_in_typecache(loc, GLOB.freezing_objects))
-			if(!(organ_flags & ORGAN_FROZEN))//Incase someone puts them in when cold, but they warm up inside of the thing. (i.e. they have the flag, the thing turns it off, this rights it.)
-				organ_flags |= ORGAN_FROZEN
-			return TRUE
-		return (organ_flags & ORGAN_FROZEN) //Incase something else toggles it
-
-	var/local_temp
-	if(istype(loc, /turf/))//Only concern is adding an organ to a freezer when the area around it is cold.
-		var/turf/T = loc
-		var/datum/gas_mixture/enviro = T.return_air()
-		local_temp = enviro.temperature
-
-	else if(istype(loc, /mob/) && !owner)
-		var/mob/M = loc
-		if(is_type_in_typecache(M.loc, GLOB.freezing_objects))
-			if(!(organ_flags & ORGAN_FROZEN))
-				organ_flags |= ORGAN_FROZEN
-			return TRUE
-		var/turf/T = M.loc
-		var/datum/gas_mixture/enviro = T.return_air()
-		local_temp = enviro.temperature
-
-	if(owner)
-		//Don't interfere with bodies frozen by structures.
-		if(is_type_in_typecache(owner.loc, GLOB.freezing_objects))
-			if(!(organ_flags & ORGAN_FROZEN))
-				organ_flags |= ORGAN_FROZEN
-			return TRUE
-		local_temp = owner.bodytemperature
-
-	if(!local_temp)//Shouldn't happen but in case
-		return
-	if(local_temp < 154)//I have a pretty shaky citation that states -120 allows indefinite cyrostorage
-		organ_flags |= ORGAN_FROZEN
-		return TRUE
-	organ_flags &= ~ORGAN_FROZEN
-	return FALSE
-
-/obj/item/organ/proc/on_life()	//repair organ damage if the organ is not failing
-	if(organ_flags & ORGAN_FAILING)
-		return
-	if(is_cold())
-		return
-	///Damage decrements by a percent of its maxhealth
-	var/healing_amount = -(maxHealth * healing_factor)
-	///Damage decrements again by a percent of its maxhealth, up to a total of 4 extra times depending on the owner's health
-	healing_amount -= owner.satiety > 0 ? 4 * healing_factor * owner.satiety / MAX_SATIETY : 0
-	applyOrganDamage(healing_amount) //to FERMI_TWEAK
-	//Make it so each threshold is stuck.
+/obj/item/organ/proc/on_life()
+	return
 
 /obj/item/organ/examine(mob/user)
-	. = ..()
-	if(organ_flags & ORGAN_FAILING)
-		if(status == ORGAN_ROBOTIC)
-			. += "<span class='warning'>[src] seems to be broken!</span>"
-			return
-		. += "<span class='warning'>[src] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!</span>"
-		return
-	if(damage > high_threshold)
-		. += "<span class='warning'>[src] is starting to look discolored.</span>"
+	..()
+	if(status == ORGAN_ROBOTIC && crit_fail)
+		user << "<span class='warning'>[src] seems to be broken!</span>"
 
 
 /obj/item/organ/proc/prepare_eat()
-	var/obj/item/reagent_containers/food/snacks/organ/S = new
+	var/obj/item/weapon/reagent_containers/food/snacks/organ/S = new
 	S.name = name
 	S.desc = desc
 	S.icon = icon
 	S.icon_state = icon_state
+	S.origin_tech = origin_tech
 	S.w_class = w_class
 
 	return S
 
-/obj/item/reagent_containers/food/snacks/organ
+/obj/item/weapon/reagent_containers/food/snacks/organ
 	name = "appendix"
 	icon_state = "appendix"
 	icon = 'icons/obj/surgery.dmi'
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	foodtype = RAW | MEAT | GROSS
+	list_reagents = list("nutriment" = 5)
 
-
-/obj/item/organ/Initialize()
-	. = ..()
-	START_PROCESSING(SSobj, src)
 
 /obj/item/organ/Destroy()
 	if(owner)
-		// The special flag is important, because otherwise mobs can die
-		// while undergoing transformation into different mobs.
-		Remove(owner, TRUE)
+		Remove(owner, 1)
 	return ..()
 
 /obj/item/organ/attack(mob/living/carbon/M, mob/user)
 	if(M == user && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(status == ORGAN_ORGANIC)
-			var/obj/item/reagent_containers/food/snacks/S = prepare_eat()
+			var/obj/item/weapon/reagent_containers/food/snacks/S = prepare_eat()
 			if(S)
+				H.drop_item()
+				H.put_in_active_hand(S)
+				S.attack(H, H)
 				qdel(src)
-				if(H.put_in_active_hand(S))
-					S.attack(H, H)
 	else
 		..()
 
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.
 
-///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage
-/obj/item/organ/proc/applyOrganDamage(var/d, var/maximum = maxHealth)	//use for damaging effects
-	if(!d) //Micro-optimization.
-		return
-	if(maximum < damage)
-		return
-	damage = CLAMP(damage + d, 0, maximum)
-	var/mess = check_damage_thresholds(owner)
-	prev_damage = damage
-	if(mess && owner)
-		to_chat(owner, mess)
-
-///SETS an organ's damage to the amount "d", and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken
-/obj/item/organ/proc/setOrganDamage(var/d)	//use mostly for admin heals
-	applyOrganDamage(d - damage)
-
-/** check_damage_thresholds
-  * input: M (a mob, the owner of the organ we call the proc on)
-  * output: returns a message should get displayed.
-  * description: By checking our current damage against our previous damage, we can decide whether we've passed an organ threshold.
-  *				 If we have, send the corresponding threshold message to the owner, if such a message exists.
-  */
-/obj/item/organ/proc/check_damage_thresholds(var/M)
-	if(damage == prev_damage)
-		return
-	var/delta = damage - prev_damage
-	if(delta > 0)
-		if(damage >= maxHealth)
-			organ_flags |= ORGAN_FAILING
-			if(owner)
-				owner.med_hud_set_status()
-			return now_failing
-		if(damage > high_threshold && prev_damage <= high_threshold)
-			return high_threshold_passed
-		if(damage > low_threshold && prev_damage <= low_threshold)
-			return low_threshold_passed
-	else
-		organ_flags &= ~ORGAN_FAILING
-		if(owner)
-			owner.med_hud_set_status()
-		if(!owner)//Processing is stopped when the organ is dead and outside of someone. This hopefully should restart it if a removed organ is repaired outside of a body.
-			START_PROCESSING(SSobj, src)
-		if(prev_damage > low_threshold && damage <= low_threshold)
-			return low_threshold_cleared
-		if(prev_damage > high_threshold && damage <= high_threshold)
-			return high_threshold_cleared
-		if(prev_damage == maxHealth)
-			return now_fixed
-
-//Runs some code on the organ when damage is taken/healed
-/obj/item/organ/proc/onDamage(var/d, var/maximum = maxHealth)
-	return
-
-//Runs some code on the organ when damage is taken/healed
-/obj/item/organ/proc/onSetDamage(var/d, var/maximum = maxHealth)
-	return
-
 //Looking for brains?
 //Try code/modules/mob/living/carbon/brain/brain_item.dm
 
-/mob/living/proc/regenerate_organs()
-	return 0
-
-/mob/living/carbon/regenerate_organs(only_one = FALSE)
-	var/breathes = TRUE
-	var/blooded = TRUE
-	if(dna && dna.species)
-		if(HAS_TRAIT_FROM(src, TRAIT_NOBREATH, SPECIES_TRAIT))
-			breathes = FALSE
-		if(NOBLOOD in dna.species.species_traits)
-			blooded = FALSE
-		var/has_liver = (!(NOLIVER in dna.species.species_traits))
-		var/has_stomach = (!(NOSTOMACH in dna.species.species_traits))
-
-		for(var/obj/item/organ/O in internal_organs)
-			if(O.organ_flags & ORGAN_FAILING)
-				O.setOrganDamage(0)
-				if(only_one)
-					return TRUE
-
-		if(has_liver && !getorganslot(ORGAN_SLOT_LIVER))
-			var/obj/item/organ/liver/LI
-
-			if(dna.species.mutantliver)
-				LI = new dna.species.mutantliver()
-			else
-				LI = new()
-			LI.Insert(src)
-			if(only_one)
-				return TRUE
-
-		if(has_stomach && !getorganslot(ORGAN_SLOT_STOMACH))
-			var/obj/item/organ/stomach/S
-
-			if(dna.species.mutantstomach)
-				S = new dna.species.mutantstomach()
-			else
-				S = new()
-			S.Insert(src)
-			if(only_one)
-				return TRUE
-
-	if(breathes && !getorganslot(ORGAN_SLOT_LUNGS))
-		var/obj/item/organ/lungs/L = new()
-		L.Insert(src)
-		if(only_one)
-			return TRUE
-
-	if(blooded && !getorganslot(ORGAN_SLOT_HEART))
-		var/obj/item/organ/heart/H = new()
-		H.Insert(src)
-		if(only_one)
-			return TRUE
-
-	if(!getorganslot(ORGAN_SLOT_TONGUE))
-		var/obj/item/organ/tongue/T
-
-		if(dna && dna.species && dna.species.mutanttongue)
-			T = new dna.species.mutanttongue()
-		else
-			T = new()
-
-		// if they have no mutant tongues, give them a regular one
-		T.Insert(src)
-		if(only_one)
-			return TRUE
-
-	else if (!only_one)
-		var/obj/item/organ/tongue/oT = getorganslot(ORGAN_SLOT_TONGUE)
-		if(oT.name == "fluffy tongue")
-			var/obj/item/organ/tongue/T
-			if(dna && dna.species && dna.species.mutanttongue)
-				T = new dna.species.mutanttongue()
-			else
-				T = new()
-			oT.Remove(src)
-			qdel(oT)
-			T.Insert(src)
-
-	if(!getorganslot(ORGAN_SLOT_EYES))
-		var/obj/item/organ/eyes/E
-
-		if(dna && dna.species && dna.species.mutanteyes)
-			E = new dna.species.mutanteyes()
-
-		else
-			E = new()
-		E.Insert(src)
-		if(only_one)
-			return TRUE
-
-	if(!getorganslot(ORGAN_SLOT_EARS))
-		var/obj/item/organ/ears/ears
-		if(dna && dna.species && dna.species.mutantears)
-			ears = new dna.species.mutantears
-		else
-			ears = new
-
-		ears.Insert(src)
-		if(only_one)
-			return TRUE
-
-	if(!getorganslot(ORGAN_SLOT_TAIL))
-		var/obj/item/organ/tail/tail
-		if(dna && dna.species && dna.species.mutanttail)
-			tail = new dna.species.mutanttail
-			tail.Insert(src)
-			if(only_one)
-				return TRUE
 
 
-/obj/item/organ/random
-	name = "Illegal organ"
-	desc = "Something hecked up"
+/obj/item/organ/heart
+	name = "heart"
+	icon_state = "heart-on"
+	zone = "chest"
+	slot = "heart"
+	origin_tech = "biotech=5"
+	var/beating = 1
+	var/icon_base = "heart"
+	attack_verb = list("beat", "thumped")
 
-/obj/item/organ/random/Initialize()
+/obj/item/organ/heart/update_icon()
+	if(beating)
+		icon_state = "[icon_base]-on"
+	else
+		icon_state = "[icon_base]-off"
+
+/obj/item/organ/heart/Remove(mob/living/carbon/M, special = 0)
 	..()
-	var/list = list(/obj/item/organ/tongue, /obj/item/organ/brain, /obj/item/organ/heart, /obj/item/organ/liver, /obj/item/organ/ears, /obj/item/organ/eyes, /obj/item/organ/tail, /obj/item/organ/stomach)
-	var/newtype = pick(list)
-	new newtype(loc)
-	return INITIALIZE_HINT_QDEL
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.stat == DEAD || H.heart_attack)
+			Stop()
+			return
+		if(!special)
+			H.heart_attack = 1
+
+	addtimer(src, "stop_if_unowned", 120)
+
+/obj/item/organ/heart/proc/stop_if_unowned()
+	if(!owner)
+		Stop()
+
+/obj/item/organ/heart/attack_self(mob/user)
+	..()
+	if(!beating)
+		visible_message("<span class='notice'>[user] squeezes [src] to \
+			make it beat again!</span>")
+		Restart()
+		addtimer(src, "stop_if_unowned", 80)
+
+/obj/item/organ/heart/Insert(mob/living/carbon/M, special = 0)
+	..()
+	if(ishuman(M) && beating)
+		var/mob/living/carbon/human/H = M
+		if(H.heart_attack)
+			H.heart_attack = 0
+			return
+
+/obj/item/organ/heart/proc/Stop()
+	beating = 0
+	update_icon()
+	return 1
+
+/obj/item/organ/heart/proc/Restart()
+	beating = 1
+	update_icon()
+	return 1
+
+/obj/item/organ/heart/prepare_eat()
+	var/obj/S = ..()
+	S.icon_state = "heart-off"
+	return S
+
+
+/obj/item/organ/heart/cursed
+	name = "cursed heart"
+	desc = "it needs to be pumped..."
+	icon_state = "cursedheart-off"
+	icon_base = "cursedheart"
+	origin_tech = "biotech=6"
+	actions_types = list(/datum/action/item_action/organ_action/cursed_heart)
+	var/last_pump = 0
+	var/add_colour = TRUE //So we're not constantly recreating colour datums
+	var/pump_delay = 30 //you can pump 1 second early, for lag, but no more (otherwise you could spam heal)
+	var/blood_loss = 100 //600 blood is human default, so 5 failures (below 122 blood is where humans die because reasons?)
+
+	//How much to heal per pump, negative numbers would HURT the player
+	var/heal_brute = 0
+	var/heal_burn = 0
+	var/heal_oxy = 0
+
+
+/obj/item/organ/heart/cursed/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
+	if(H == user && istype(H))
+		playsound(user,'sound/effects/singlebeat.ogg',40,1)
+		user.drop_item()
+		Insert(user)
+	else
+		return ..()
+
+/obj/item/organ/heart/cursed/on_life()
+	if(world.time > (last_pump + pump_delay))
+		if(ishuman(owner) && owner.client) //While this entire item exists to make people suffer, they can't control disconnects.
+			var/mob/living/carbon/human/H = owner
+			if(H.dna && !(NOBLOOD in H.dna.species.specflags))
+				H.blood_volume = max(H.blood_volume - blood_loss, 0)
+				H << "<span class = 'userdanger'>You have to keep pumping your blood!</span>"
+				if(add_colour)
+					H.add_client_colour(/datum/client_colour/cursed_heart_blood) //bloody screen so real
+					add_colour = FALSE
+		else
+			last_pump = world.time //lets be extra fair *sigh*
+
+/obj/item/organ/heart/cursed/Insert(mob/living/carbon/M, special = 0)
+	..()
+	if(owner)
+		owner << "<span class ='userdanger'>Your heart has been replaced with a cursed one, you have to pump this one manually otherwise you'll die!</span>"
+
+/datum/action/item_action/organ_action/cursed_heart
+	name = "pump your blood"
+
+//You are now brea- pumping blood manually
+/datum/action/item_action/organ_action/cursed_heart/Trigger()
+	. = ..()
+	if(. && istype(target,/obj/item/organ/heart/cursed))
+		var/obj/item/organ/heart/cursed/cursed_heart = target
+
+		if(world.time < (cursed_heart.last_pump + (cursed_heart.pump_delay-10))) //no spam
+			owner << "<span class='userdanger'>Too soon!</span>"
+			return
+
+		cursed_heart.last_pump = world.time
+		playsound(owner,'sound/effects/singlebeat.ogg',40,1)
+		owner << "<span class = 'notice'>Your heart beats.</span>"
+
+		var/mob/living/carbon/human/H = owner
+		if(istype(H))
+			if(H.dna && !(NOBLOOD in H.dna.species.specflags))
+				H.blood_volume = min(H.blood_volume + cursed_heart.blood_loss*0.5, BLOOD_VOLUME_MAXIMUM)
+				H.remove_client_colour(/datum/client_colour/cursed_heart_blood)
+				cursed_heart.add_colour = TRUE
+				H.adjustBruteLoss(-cursed_heart.heal_brute)
+				H.adjustFireLoss(-cursed_heart.heal_burn)
+				H.adjustOxyLoss(-cursed_heart.heal_oxy)
+
+
+/datum/client_colour/cursed_heart_blood
+	priority = 100 //it's an indicator you're dieing, so it's very high priority
+	colour = "red"
+
+
+
+/obj/item/organ/lungs
+	name = "lungs"
+	icon_state = "lungs"
+	zone = "chest"
+	slot = "lungs"
+	gender = PLURAL
+	w_class = 3
+
+/obj/item/organ/lungs/prepare_eat()
+	var/obj/S = ..()
+	S.reagents.add_reagent("salbutamol", 5)
+	return S
+
+/obj/item/organ/tongue
+	name = "tongue"
+	desc = "A fleshy muscle mostly used for lying."
+	icon_state = "tonguenormal"
+	zone = "mouth"
+	slot = "tongue"
+	var/say_mod = null
+	attack_verb = list("licked", "slobbered", "slapped", "frenched", "tongued")
+
+/obj/item/organ/tongue/get_spans()
+	return list()
+
+/obj/item/organ/tongue/proc/TongueSpeech(var/message)
+	return message
+
+/obj/item/organ/tongue/Insert(mob/living/carbon/M, special = 0)
+	..()
+	if(say_mod && M.dna && M.dna.species)
+		M.dna.species.say_mod = say_mod
+
+/obj/item/organ/tongue/Remove(mob/living/carbon/M, special = 0)
+	..()
+	if(say_mod && M.dna && M.dna.species)
+		M.dna.species.say_mod = initial(M.dna.species.say_mod)
+
+/obj/item/organ/tongue/lizard
+	name = "forked tongue"
+	desc = "A thin and long muscle typically found in reptilian races, apparently moonlights as a nose."
+	icon_state = "tonguelizard"
+	say_mod = "hisses"
+
+/obj/item/organ/tongue/lizard/TongueSpeech(var/message)
+	var/regex/lizard_hiss = new("s+", "g")
+	var/regex/lizard_hiSS = new("S+", "g")
+	if(copytext(message, 1, 2) != "*")
+		message = lizard_hiss.Replace(message, "sss")
+		message = lizard_hiSS.Replace(message, "SSS")
+	return message
+
+/obj/item/organ/tongue/fly
+	name = "proboscis"
+	desc = "A freakish looking meat tube that apparently can take in liquids."
+	icon_state = "tonguefly"
+	say_mod = "buzzes"
+
+/obj/item/organ/tongue/fly/TongueSpeech(var/message)
+	var/regex/fly_buzz = new("z+", "g")
+	var/regex/fly_buZZ = new("Z+", "g")
+	if(copytext(message, 1, 2) != "*")
+		message = fly_buzz.Replace(message, "zzz")
+		message = fly_buZZ.Replace(message, "ZZZ")
+	return message
+
+/obj/item/organ/tongue/abductor
+	name = "superlingual matrix"
+	desc = "A mysterious structure that allows for instant communication between users. Pretty impressive until you need to eat something."
+	icon_state = "tongueayylmao"
+	say_mod = "gibbers"
+
+/obj/item/organ/tongue/abductor/TongueSpeech(var/message)
+	//Hacks
+	var/mob/living/carbon/human/user = usr
+	var/rendered = "<span class='abductor'><b>[user.name]:</b> [message]</span>"
+	for(var/mob/living/carbon/human/H in living_mob_list)
+		var/obj/item/organ/tongue/T = H.getorganslot("tongue")
+		if(!T || T.type != type)
+			continue
+		else if(H.dna && H.dna.species.id == "abductor" && user.dna && user.dna.species.id == "abductor")
+			var/datum/species/abductor/Ayy = user.dna.species
+			var/datum/species/abductor/Byy = H.dna.species
+			if(Ayy.team != Byy.team)
+				continue
+		H << rendered
+	for(var/mob/M in dead_mob_list)
+		var/link = FOLLOW_LINK(M, user)
+		M << "[link] [rendered]"
+	return ""
+
+/obj/item/organ/tongue/zombie
+	name = "rotting tongue"
+	desc = "Between the decay and the fact that it's just lying there you doubt a tongue has ever seemed less sexy."
+	icon_state = "tonguezombie"
+	say_mod = "moans"
+
+/obj/item/organ/tongue/zombie/TongueSpeech(var/message)
+	var/list/message_list = splittext(message, " ")
+	var/maxchanges = max(round(message_list.len / 1.5), 2)
+
+	for(var/i = rand(maxchanges / 2, maxchanges), i > 0, i--)
+		var/insertpos = rand(1, message_list.len - 1)
+		var/inserttext = message_list[insertpos]
+
+		if(!(copytext(inserttext, length(inserttext) - 2) == "..."))
+			message_list[insertpos] = inserttext + "..."
+
+		if(prob(20) && message_list.len > 3)
+			message_list.Insert(insertpos, "[pick("BRAINS", "Brains", "Braaaiinnnsss", "BRAAAIIINNSSS")]...")
+
+	return jointext(message_list, " ")
+
+/obj/item/organ/tongue/alien
+	name = "alien tongue"
+	desc = "According to leading xenobiologists the evolutionary benefit of having a second mouth in your mouth is \"that it looks badass\"."
+	icon_state = "tonguexeno"
+	say_mod = "hiss"
+
+/obj/item/organ/tongue/alien/TongueSpeech(var/message)
+	playsound(owner, "hiss", 25, 1, 1)
+	return message
+
+/obj/item/organ/tongue/bone
+	name = "bone \"tongue\""
+	desc = "Apparently skeletons alter the sounds they produce \
+		through oscillation of their teeth, hence their characteristic \
+		rattling."
+	icon_state = "tonguebone"
+	say_mod = "rattles"
+	attack_verb = list("bitten", "chattered", "chomped", "enamelled", "boned")
+
+	var/chattering = FALSE
+	var/phomeme_type = "sans"
+	var/list/phomeme_types = list("sans", "papyrus")
+
+/obj/item/organ/tongue/bone/New()
+	. = ..()
+	phomeme_type = pick(phomeme_types)
+
+/obj/item/organ/tongue/bone/TongueSpeech(var/message)
+	. = message
+
+	if(chattering)
+		//Annoy everyone nearby with your chattering.
+		chatter(message, phomeme_type, usr)
+
+/obj/item/organ/tongue/bone/get_spans()
+	. = ..()
+	// Feature, if the tongue talks directly, it will speak with its span
+	switch(phomeme_type)
+		if("sans")
+			. |= SPAN_SANS
+		if("papyrus")
+			. |= SPAN_PAPYRUS
+
+/obj/item/organ/tongue/bone/chatter
+	name = "chattering bone \"tongue\""
+	chattering = TRUE
+
+/obj/item/organ/appendix
+	name = "appendix"
+	icon_state = "appendix"
+	zone = "groin"
+	slot = "appendix"
+	var/inflamed = 0
+
+/obj/item/organ/appendix/update_icon()
+	if(inflamed)
+		icon_state = "appendixinflamed"
+		name = "inflamed appendix"
+	else
+		icon_state = "appendix"
+		name = "appendix"
+
+/obj/item/organ/appendix/Remove(mob/living/carbon/M, special = 0)
+	for(var/datum/disease/appendicitis/A in M.viruses)
+		A.cure()
+		inflamed = 1
+	update_icon()
+	..()
+
+/obj/item/organ/appendix/Insert(mob/living/carbon/M, special = 0)
+	..()
+	if(inflamed)
+		M.AddDisease(new /datum/disease/appendicitis)
+
+/obj/item/organ/appendix/prepare_eat()
+	var/obj/S = ..()
+	if(inflamed)
+		S.reagents.add_reagent("????", 5)
+	return S
+
+/obj/item/organ/shadowtumor
+	name = "black tumor"
+	desc = "A tiny black mass with red tendrils trailing from it. It seems to shrivel in the light."
+	icon_state = "blacktumor"
+	origin_tech = "biotech=5"
+	w_class = 1
+	zone = "head"
+	slot = "brain_tumor"
+	var/health = 3
+
+/obj/item/organ/shadowtumor/New()
+	..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/organ/shadowtumor/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	..()
+
+/obj/item/organ/shadowtumor/process()
+	if(isturf(loc))
+		var/turf/T = loc
+		var/light_count = T.get_lumcount()
+		if(light_count > LIGHT_DAM_THRESHOLD && health > 0) //Die in the light
+			health--
+		else if(light_count < LIGHT_HEAL_THRESHOLD && health < 3) //Heal in the dark
+			health++
+		if(health <= 0)
+			visible_message("<span class='warning'>[src] collapses in on itself!</span>")
+			qdel(src)

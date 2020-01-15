@@ -9,14 +9,14 @@
 	var/allowAtomsOnSpace = FALSE
 
 
-//Syncs the module up with its mother
+//Syncs the module up with it's mother
 /datum/mapGeneratorModule/proc/sync(datum/mapGenerator/mum)
 	mother = null
 	if(mum)
 		mother = mum
 
 
-//Generates its spawnable atoms and turfs
+//Generates it's spawnable atoms and turfs
 /datum/mapGeneratorModule/proc/generate()
 	if(!mother)
 		return
@@ -114,7 +114,7 @@
 		if(A.density)
 			. = 0
 			break
-	if(!allowAtomsOnSpace && (isspaceturf(T)))
+	if(!allowAtomsOnSpace && (istype(T,/turf/open/space)))
 		. = 0
 
 

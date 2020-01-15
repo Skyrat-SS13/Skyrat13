@@ -1,6 +1,5 @@
 /datum/wires/suit_storage_unit
 	holder_type = /obj/machinery/suit_storage_unit
-	proper_name = "Suit Storage Unit"
 
 /datum/wires/suit_storage_unit/New(atom/holder)
 	wires = list(
@@ -30,8 +29,7 @@
 		if(WIRE_SAFETY)
 			SSU.safeties = !SSU.safeties
 		if(WIRE_ZAP)
-			if(usr)
-				SSU.shock(usr)
+			SSU.shock(usr)
 
 /datum/wires/suit_storage_unit/on_cut(wire, mend)
 	var/obj/machinery/suit_storage_unit/SSU = holder
@@ -41,5 +39,4 @@
 		if(WIRE_SAFETY)
 			SSU.safeties = mend
 		if(WIRE_ZAP)
-			if(usr)
-				SSU.shock(usr)
+			SSU.shock(usr)

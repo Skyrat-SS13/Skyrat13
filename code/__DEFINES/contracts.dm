@@ -3,7 +3,6 @@
 #define CONTRACT_PRESTIGE "prestige"
 #define CONTRACT_MAGIC "magic"
 #define CONTRACT_REVIVE "revive"
-#define CONTRACT_FRIEND "friend"
 #define CONTRACT_KNOWLEDGE "knowledge"
 #define CONTRACT_UNWILLING "unwilling"
 
@@ -16,8 +15,7 @@
 #define BANE_TOOLBOX "toolbox"
 
 #define OBLIGATION_FOOD "food"
-#define OBLIGATION_FIDDLE "fiddle"
-#define OBLIGATION_DANCEOFF "danceoff"
+#define OBLIGATION_DRINK "drink"
 #define OBLIGATION_GREET "greet"
 #define OBLIGATION_PRESENCEKNOWN "presenceknown"
 #define OBLIGATION_SAYNAME "sayname"
@@ -28,7 +26,7 @@
 #define BAN_CHAPEL "chapel"
 #define BAN_HURTPRIEST "hurtpriest"
 #define BAN_AVOIDWATER "avoidwater"
-#define BAN_STRIKEUNCONSCIOUS "strikeunconscious"
+#define BAN_STRIKEUNCONCIOUS "strikeunconcious"
 #define BAN_HURTLIZARD "hurtlizard"
 #define BAN_HURTANIMAL "hurtanimal"
 

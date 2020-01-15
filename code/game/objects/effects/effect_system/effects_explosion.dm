@@ -2,10 +2,10 @@
 	name = "fire"
 	icon_state = "explosion_particle"
 	opacity = 1
-	anchored = TRUE
+	anchored = 1
 
-/obj/effect/particle_effect/expl_particles/Initialize()
-	. = ..()
+/obj/effect/particle_effect/expl_particles/New()
+	..()
 	QDEL_IN(src, 15)
 
 /datum/effect_system/expl_particles
@@ -13,24 +13,26 @@
 
 /datum/effect_system/expl_particles/start()
 	for(var/i in 1 to number)
-		var/obj/effect/particle_effect/expl_particles/expl = new /obj/effect/particle_effect/expl_particles(location)
-		var/direct = pick(GLOB.alldirs)
-		var/steps_amt = pick(1;25,2;50,3,4;200)
-		for(var/j in 1 to steps_amt)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/_step, expl, direct), j)
+		spawn(0)
+			var/obj/effect/particle_effect/expl_particles/expl = new /obj/effect/particle_effect/expl_particles(location)
+			var/direct = pick(alldirs)
+			var/steps_amt = pick(1;25,2;50,3,4;200)
+			for(var/j in 1 to steps_amt)
+				sleep(1)
+				step(expl,direct)
 
 /obj/effect/explosion
 	name = "fire"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "explosion"
 	opacity = 1
-	anchored = TRUE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	anchored = 1
+	mouse_opacity = 0
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/explosion/Initialize()
-	. = ..()
+/obj/effect/explosion/New()
+	..()
 	QDEL_IN(src, 10)
 
 /datum/effect_system/explosion
@@ -46,13 +48,7 @@
 	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
 	P.set_up(10, 0, location)
 	P.start()
-
-/datum/effect_system/explosion/smoke
-
-/datum/effect_system/explosion/smoke/proc/create_smoke()
-	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(2, location)
-	S.start()
-/datum/effect_system/explosion/smoke/start()
-	..()
-	addtimer(CALLBACK(src, .proc/create_smoke), 5)
+	spawn(5)
+		var/datum/effect_system/smoke_spread/S = new
+		S.set_up(2, location)
+		S.start()

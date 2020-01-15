@@ -6,8 +6,44 @@
 //Drone hands
 
 
-/mob/living/simple_animal/drone/doUnEquip(obj/item/I, force)
-	if(..())
+
+
+/mob/living/simple_animal/drone/activate_hand(selhand)
+
+	if(istext(selhand))
+		selhand = lowertext(selhand)
+
+		if(selhand == "right" || selhand == "r")
+			selhand = 0
+		if(selhand == "left" || selhand == "l")
+			selhand = 1
+
+	if(selhand != src.hand)
+		swap_hand()
+	else
+		mode()
+
+
+/mob/living/simple_animal/drone/swap_hand()
+	var/obj/item/held_item = get_active_hand()
+	if(held_item)
+		if(istype(held_item, /obj/item/weapon/twohanded))
+			var/obj/item/weapon/twohanded/T = held_item
+			if(T.wielded == 1)
+				usr << "<span class='warning'>Your other hand is too busy holding the [T.name].</span>"
+				return
+
+	hand = !hand
+	if(hud_used && hud_used.inv_slots[slot_l_hand] && hud_used.inv_slots[slot_r_hand])
+		var/obj/screen/inventory/hand/H
+		H = hud_used.inv_slots[slot_l_hand]
+		H.update_icon()
+		H = hud_used.inv_slots[slot_r_hand]
+		H.update_icon()
+
+
+/mob/living/simple_animal/drone/unEquip(obj/item/I, force)
+	if(..(I,force))
 		update_inv_hands()
 		if(I == head)
 			head = null
@@ -19,15 +55,15 @@
 	return 0
 
 
-/mob/living/simple_animal/drone/can_equip(obj/item/I, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
+/mob/living/simple_animal/drone/can_equip(obj/item/I, slot)
 	switch(slot)
-		if(SLOT_HEAD)
+		if(slot_head)
 			if(head)
 				return 0
-			if(!((I.slot_flags & ITEM_SLOT_HEAD) || (I.slot_flags & ITEM_SLOT_MASK)))
+			if(!((I.slot_flags & SLOT_HEAD) || (I.slot_flags & SLOT_MASK)))
 				return 0
 			return 1
-		if(SLOT_GENERC_DEXTROUS_STORAGE)
+		if(slot_drone_storage)
 			if(internal_storage)
 				return 0
 			return 1
@@ -36,11 +72,11 @@
 
 /mob/living/simple_animal/drone/get_item_by_slot(slot_id)
 	switch(slot_id)
-		if(SLOT_HEAD)
+		if(slot_head)
 			return head
-		if(SLOT_GENERC_DEXTROUS_STORAGE)
+		if(slot_drone_storage)
 			return internal_storage
-	return ..()
+	..()
 
 
 /mob/living/simple_animal/drone/equip_to_slot(obj/item/I, slot)
@@ -49,35 +85,41 @@
 	if(!istype(I))
 		return
 
-	var/index = get_held_index_of_item(I)
-	if(index)
-		held_items[index] = null
+	if(I == l_hand)
+		l_hand = null
+	else if(I == r_hand)
+		r_hand = null
 	update_inv_hands()
 
 	if(I.pulledby)
 		I.pulledby.stop_pulling()
 
 	I.screen_loc = null // will get moved if inventory is visible
-	I.forceMove(src)
+	I.loc = src
+	I.equipped(src, slot)
 	I.layer = ABOVE_HUD_LAYER
-	I.plane = ABOVE_HUD_PLANE
 
 	switch(slot)
-		if(SLOT_HEAD)
+		if(slot_head)
 			head = I
 			update_inv_head()
-		if(SLOT_GENERC_DEXTROUS_STORAGE)
+		if(slot_drone_storage)
 			internal_storage = I
 			update_inv_internal_storage()
 		else
-			to_chat(src, "<span class='danger'>You are trying to equip this item to an unsupported inventory slot. Report this to a coder!</span>")
+			src << "<span class='danger'>You are trying to equip this item to an unsupported inventory slot. Report this to a coder!</span>"
 			return
 
-	//Call back for item being equipped to drone
-	I.equipped(src, slot)
+
+/mob/living/simple_animal/drone/stripPanelUnequip(obj/item/what, mob/who, where)
+	..(what, who, where, 1)
+
+
+/mob/living/simple_animal/drone/stripPanelEquip(obj/item/what, mob/who, where)
+	..(what, who, where, 1)
 
 /mob/living/simple_animal/drone/getBackSlot()
-	return SLOT_GENERC_DEXTROUS_STORAGE
+	return slot_drone_storage
 
 /mob/living/simple_animal/drone/getBeltSlot()
-	return SLOT_GENERC_DEXTROUS_STORAGE
+	return slot_drone_storage

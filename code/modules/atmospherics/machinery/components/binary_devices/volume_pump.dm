@@ -17,62 +17,25 @@ Thus, the two variables affect pump operation are set in New():
 	name = "volumetric gas pump"
 	desc = "A pump that moves gas by volume."
 
-	can_unwrench = TRUE
+	can_unwrench = 1
 
+	var/on = 0
 	var/transfer_rate = MAX_TRANSFER_RATE
 
 	var/frequency = 0
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-	construction_type = /obj/item/pipe/directional
-	pipe_state = "volumepump"
-
-/obj/machinery/atmospherics/components/binary/volume_pump/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>You can hold <b>Ctrl</b> and click on it to toggle it on and off.</span>"
-	. += "<span class='notice'>You can hold <b>Alt</b> and click on it to maximize its pressure.</span>"
-
-/obj/machinery/atmospherics/components/binary/volume_pump/CtrlClick(mob/user)
-	var/area/A = get_area(src)
-	var/turf/T = get_turf(src)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE,))
-		on = !on
-		update_icon()
-		investigate_log("Volume Pump, [src.name], turned on by [key_name(usr)] at [x], [y], [z], [A]", INVESTIGATE_ATMOS)
-		message_admins("Volume Pump, [src.name], turned [on ? "on" : "off"] by [ADMIN_LOOKUPFLW(usr)] at [ADMIN_COORDJMP(T)], [A]")
-		return ..()
-
-/obj/machinery/atmospherics/components/binary/volume_pump/layer1
-	piping_layer = PIPING_LAYER_MIN
-	pixel_x = -PIPING_LAYER_P_X
-	pixel_y = -PIPING_LAYER_P_Y
-
-/obj/machinery/atmospherics/components/binary/volume_pump/layer3
-	piping_layer = PIPING_LAYER_MAX
-	pixel_x = PIPING_LAYER_P_X
-	pixel_y = PIPING_LAYER_P_Y
-
 /obj/machinery/atmospherics/components/binary/volume_pump/Destroy()
-	SSradio.remove_object(src,frequency)
+	if(SSradio)
+		SSradio.remove_object(src,frequency)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/on
-	on = TRUE
-	icon_state = "volpump_on_map"
-
-/obj/machinery/atmospherics/components/binary/volume_pump/on/layer1
-	piping_layer = PIPING_LAYER_MIN
-	pixel_x = -PIPING_LAYER_P_X
-	pixel_y = -PIPING_LAYER_P_Y
-
-/obj/machinery/atmospherics/components/binary/volume_pump/on/layer3
-	piping_layer = PIPING_LAYER_MAX
-	pixel_x = PIPING_LAYER_P_X
-	pixel_y = PIPING_LAYER_P_Y
+	on = 1
 
 /obj/machinery/atmospherics/components/binary/volume_pump/update_icon_nopipes()
-	if(!is_operational())
+	if(stat & NOPOWER)
 		icon_state = "volpump_off"
 		return
 
@@ -80,11 +43,13 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/components/binary/volume_pump/process_atmos()
 //	..()
-	if(!on || !is_operational())
+	if(stat & (NOPOWER|BROKEN))
 		return
+	if(!on)
+		return 0
 
-	var/datum/gas_mixture/air1 = airs[1]
-	var/datum/gas_mixture/air2 = airs[2]
+	var/datum/gas_mixture/air1 = AIR1
+	var/datum/gas_mixture/air2 = AIR2
 
 // Pump mechanism just won't do anything if the pressure is too high/too low
 
@@ -92,15 +57,17 @@ Thus, the two variables affect pump operation are set in New():
 	var/output_starting_pressure = air2.return_pressure()
 
 	if((input_starting_pressure < 0.01) || (output_starting_pressure > 9000))
-		return
+		return 1
 
-	var/transfer_ratio = transfer_rate/air1.volume
+	var/transfer_ratio = min(1, transfer_rate/air1.volume)
 
 	var/datum/gas_mixture/removed = air1.remove_ratio(transfer_ratio)
 
 	air2.merge(removed)
 
 	update_parents()
+
+	return 1
 
 /obj/machinery/atmospherics/components/binary/volume_pump/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
@@ -110,19 +77,25 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/components/binary/volume_pump/proc/broadcast_status()
 	if(!radio_connection)
-		return
+		return 0
 
-	var/datum/signal/signal = new(list(
+	var/datum/signal/signal = new
+	signal.transmission_method = 1 //radio signal
+	signal.source = src
+
+	signal.data = list(
 		"tag" = id,
 		"device" = "APV",
 		"power" = on,
 		"transfer_rate" = transfer_rate,
 		"sigtype" = "status"
-	))
+	)
 	radio_connection.post_signal(src, signal)
 
-/obj/machinery/atmospherics/components/binary/volume_pump/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-																		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	return 1
+
+/obj/machinery/atmospherics/components/binary/volume_pump/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
+																		datum/tgui/master_ui = null, datum/ui_state/state = default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "atmos_pump", name, 310, 115, master_ui, state)
@@ -143,13 +116,10 @@ Thus, the two variables affect pump operation are set in New():
 /obj/machinery/atmospherics/components/binary/volume_pump/ui_act(action, params)
 	if(..())
 		return
-	var/turf/T = get_turf(src)
-	var/area/A = get_area(src)
 	switch(action)
 		if("power")
 			on = !on
-			message_admins("Pump, [src.name], turned [on ? "on" : "off"] by [ADMIN_LOOKUPFLW(usr)] at [ADMIN_COORDJMP(T)], [A]")
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", "atmos")
 			. = TRUE
 		if("rate")
 			var/rate = params["rate"]
@@ -164,13 +134,13 @@ Thus, the two variables affect pump operation are set in New():
 				rate = text2num(rate)
 				. = TRUE
 			if(.)
-				transfer_rate = CLAMP(rate, 0, MAX_TRANSFER_RATE)
-				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
+				transfer_rate = Clamp(rate, 0, MAX_TRANSFER_RATE)
+				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", "atmos")
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
-		return
+		return 0
 
 	var/old_on = on //for logging
 
@@ -181,11 +151,11 @@ Thus, the two variables affect pump operation are set in New():
 		on = !on
 
 	if("set_transfer_rate" in signal.data)
-		var/datum/gas_mixture/air1 = airs[1]
-		transfer_rate = CLAMP(text2num(signal.data["set_transfer_rate"]),0,air1.volume)
+		var/datum/gas_mixture/air1 = AIR1
+		transfer_rate = Clamp(text2num(signal.data["set_transfer_rate"]),0,air1.volume)
 
 	if(on != old_on)
-		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_ATMOS)
+		investigate_log("was turned [on ? "on" : "off"] by a remote signal", "atmos")
 
 	if("status" in signal.data)
 		broadcast_status()
@@ -193,18 +163,16 @@ Thus, the two variables affect pump operation are set in New():
 
 	broadcast_status()
 	update_icon()
+	return
 
 /obj/machinery/atmospherics/components/binary/volume_pump/power_change()
 	..()
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/can_unwrench(mob/user)
-	. = ..()
-	var/area/A = get_area(src)
-	if(. && on && is_operational())
-		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
-		return FALSE
-	else
-		investigate_log("Pump, [src.name], was unwrenched by [key_name(usr)] at [x], [y], [z], [A]", INVESTIGATE_ATMOS)
-		message_admins("Pump, [src.name], was unwrenched by [ADMIN_LOOKUPFLW(user)] at [A]")
-		return TRUE
+	if(..())
+		if(!(stat & NOPOWER) && on)
+			user << "<span class='warning'>You cannot unwrench this [src], turn it off first!</span>"
+		else
+			return 1
+

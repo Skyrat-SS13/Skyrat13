@@ -5,9 +5,8 @@
 	item_state = "balaclava"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	visor_flags_inv = HIDEFACE|HIDEFACIALHAIR
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = 2
 	actions_types = list(/datum/action/item_action/adjust)
-	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/mask/balaclava/attack_self(mob/user)
 	adjustmask(user)
@@ -18,16 +17,13 @@
 	icon_state = "luchag"
 	item_state = "luchag"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
-	w_class = WEIGHT_CLASS_SMALL
-	mutantrace_variation = STYLE_MUZZLE
-	modifies_speech = TRUE
+	w_class = 2
 
-/obj/item/clothing/mask/luchador/handle_speech(datum/source, list/speech_args)
-	var/message = speech_args[SPEECH_MESSAGE]
-	if(message[1] != "*")
-		message = replacetext(message, "captain", "CAPIT√ÅN")
-		message = replacetext(message, "station", "ESTACI√ìN")
-		message = replacetext(message, "sir", "SE√ëOR")
+/obj/item/clothing/mask/luchador/speechModification(message)
+	if(copytext(message, 1, 2) != "*")
+		message = replacetext(message, "captain", "CAPIT¡N")
+		message = replacetext(message, "station", "ESTACI”N")
+		message = replacetext(message, "sir", "SE—OR")
 		message = replacetext(message, "the ", "el ")
 		message = replacetext(message, "my ", "mi ")
 		message = replacetext(message, "is ", "es ")
@@ -44,7 +40,7 @@
 		message = uppertext(message)	//Things end up looking better this way (no mixed cases), and it fits the macho wrestler image.
 		if(prob(25))
 			message += " OLE!"
-	speech_args[SPEECH_MESSAGE] = message
+	return message
 
 /obj/item/clothing/mask/luchador/tecnicos
 	name = "Tecnicos Mask"
@@ -57,12 +53,3 @@
 	desc = "Worn by robust fighters who are willing to do anything to win."
 	icon_state = "luchar"
 	item_state = "luchar"
-
-/obj/item/clothing/mask/russian_balaclava
-	name = "russian balaclava"
-	desc = "Protects your face from snow."
-	icon_state = "rus_balaclava"
-	item_state = "rus_balaclava"
-	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
-	visor_flags_inv = HIDEFACE|HIDEFACIALHAIR
-	w_class = WEIGHT_CLASS_SMALL
