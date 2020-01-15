@@ -4,13 +4,14 @@
 	layer = LYING_MOB_LAYER
 
 /mob/living/simple_animal/hostile/guardian/beam
-	melee_damage_lower = 10
-	melee_damage_upper = 10
+	melee_damage_lower = 7
+	melee_damage_upper = 7
 	attacktext = "shocks"
 	melee_damage_type = BURN
 	attack_sound = 'sound/machines/defib_zap.ogg'
 	damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, CLONE = 0.7, STAMINA = 0, OXY = 0.7)
-	playstyle_string = "<span class='holoparasite'>As a <b>lightning</b> type, you have 30% damage reduction, apply lightning chains to targets on attack and have a lightning chain to your summoner. Lightning chains will shock anyone near them.</span>"
+	range = 7
+	playstyle_string = "<span class='holoparasite'>As a <b>lightning</b> type, you will apply lightning chains to targets on attack and have a lightning chain to your summoner. Lightning chains will shock anyone near them.</span>"
 	magic_fluff_string = "<span class='holoparasite'>..And draw the Tesla, a shocking, lethal source of power.</span>"
 	tech_fluff_string = "<span class='holoparasite'>Boot sequence complete. Lightning modules active. Holoparasite swarm online.</span>"
 	carp_fluff_string = "<span class='holoparasite'>CARP CARP CARP! Caught one! It's a lightning carp! Everyone else goes zap zap.</span>"
@@ -19,28 +20,26 @@
 	var/successfulshocks = 0
 
 /mob/living/simple_animal/hostile/guardian/beam/AttackingTarget()
-	. = ..()
-	if(. && isliving(target) && target != src && target != summoner)
-		cleardeletedchains()
-		for(var/chain in enemychains)
-			var/datum/beam/B = chain
-			if(B.target == target)
-				return //oh this guy already HAS a chain, let's not chain again
-		if(enemychains.len > 2)
-			var/datum/beam/C = pick(enemychains)
-			qdel(C)
-			enemychains -= C
-		enemychains += Beam(target, "lightning[rand(1,12)]", time=70, maxdistance=13, beam_type=/obj/effect/ebeam/chain)
+	if(..())
+		if(isliving(target) && target != src && target != summoner)
+			for(var/chain in enemychains)
+				var/datum/beam/B = chain
+				if(B.target == target)
+					return //oh this guy already HAS a chain, let's not chain again
+			if(enemychains.len > 2)
+				var/datum/beam/C = pick(enemychains)
+				qdel(C)
+				enemychains -= C
+			enemychains += Beam(target,"lightning[rand(1,12)]",'icons/effects/effects.dmi',70, 7,/obj/effect/ebeam/chain)
 
 /mob/living/simple_animal/hostile/guardian/beam/Destroy()
 	removechains()
 	return ..()
 
 /mob/living/simple_animal/hostile/guardian/beam/Manifest()
-	. = ..()
-	if(.)
+	if(..())
 		if(summoner)
-			summonerchain = Beam(summoner, "lightning[rand(1,12)]", time=INFINITY, maxdistance=INFINITY, beam_type=/obj/effect/ebeam/chain)
+			summonerchain = Beam(summoner,"lightning[rand(1,12)]",'icons/effects/effects.dmi',INFINITY, INFINITY,/obj/effect/ebeam/chain)
 		while(loc != summoner)
 			if(successfulshocks > 5)
 				successfulshocks = 0
@@ -49,29 +48,22 @@
 			sleep(3)
 
 /mob/living/simple_animal/hostile/guardian/beam/Recall()
-	. = ..()
-	if(.)
+	if(..())
 		removechains()
-
-/mob/living/simple_animal/hostile/guardian/beam/proc/cleardeletedchains()
-	if(summonerchain && QDELETED(summonerchain))
-		summonerchain = null
-	if(enemychains.len)
-		for(var/chain in enemychains)
-			var/datum/cd = chain
-			if(!chain || QDELETED(cd))
-				enemychains -= chain
 
 /mob/living/simple_animal/hostile/guardian/beam/proc/shockallchains()
 	. = 0
-	cleardeletedchains()
 	if(summoner)
-		if(!summonerchain)
-			summonerchain = Beam(summoner, "lightning[rand(1,12)]", time=INFINITY, maxdistance=INFINITY, beam_type=/obj/effect/ebeam/chain)
-		. += chainshock(summonerchain)
+		if(summonerchain && !qdeleted(summonerchain))
+			. += chainshock(summonerchain)
+		else
+			summonerchain = Beam(summoner,"lightning[rand(1,12)]",'icons/effects/effects.dmi',INFINITY, INFINITY,/obj/effect/ebeam/chain)
 	if(enemychains.len)
 		for(var/chain in enemychains)
-			. += chainshock(chain)
+			if(!qdeleted(chain))
+				. += chainshock(chain)
+			else
+				enemychains -= chain
 
 /mob/living/simple_animal/hostile/guardian/beam/proc/removechains()
 	if(summonerchain)

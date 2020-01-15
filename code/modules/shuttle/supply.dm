@@ -1,98 +1,69 @@
-GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
-		/mob/living,
-		/obj/structure/blob,
-		/obj/effect/rune,
-		/obj/structure/spider/spiderling,
-		/obj/item/disk/nuclear,
-		/obj/machinery/nuclearbomb,
-		/obj/item/beacon,
-		/obj/singularity/narsie,
-		/obj/singularity/wizard,
-		/obj/machinery/teleport/station,
-		/obj/machinery/teleport/hub,
-		/obj/machinery/quantumpad,
-		/obj/machinery/clonepod,
-		/obj/effect/mob_spawn,
-		/obj/effect/hierophant,
-		/obj/structure/receiving_pad,
-		/obj/effect/clockwork/spatial_gateway,
-		/obj/structure/destructible/clockwork/powered/clockwork_obelisk,
-		/obj/item/warp_cube,
-		/obj/machinery/rnd/production/protolathe, //print tracking beacons, send shuttle
-		/obj/machinery/autolathe, //same
-		/obj/item/projectile/beam/wormhole,
-		/obj/effect/portal,
-		/obj/item/shared_storage,
-		/obj/structure/extraction_point,
-		/obj/machinery/syndicatebomb,
-		/obj/item/hilbertshotel
-	)))
-
-GLOBAL_LIST_INIT(cargo_shuttle_leave_behind_typecache, typecacheof(list(
-	/mob/living/simple_animal/revenant,
-	/mob/living/simple_animal/slaughter
-	)))
-
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = "supply"
 	callTime = 600
 
 	dir = WEST
-	port_direction = EAST
+	travelDir = 90
 	width = 12
 	dwidth = 5
 	height = 7
-	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
+	roundstart_move = "supply_away"
 
+	var/list/blacklist = list(
+		/mob/living,
+		/obj/effect/blob,
+		/obj/effect/rune,
+		/obj/effect/spider/spiderling,
+		/obj/item/weapon/disk/nuclear,
+		/obj/machinery/nuclearbomb,
+		/obj/item/device/radio/beacon,
+		/obj/singularity,
+		/obj/machinery/teleport/station,
+		/obj/machinery/teleport/hub,
+		/obj/machinery/telepad,
+		/obj/machinery/clonepod
+	)
+	var/list/storage_objects = list(
+		/obj/structure/closet,
+		/obj/item/weapon/storage,
+		/obj/item/weapon/storage/bag/money,
+		/obj/item/weapon/folder, // Selling a folder of stamped manifests? Sure, why not!
+		/obj/structure/filingcabinet,
+		/obj/structure/ore_box,
+	)
+	var/list/exports = list()
+	var/list/exports_floor = list()
 
-	//Export categories for this run, this is set by console sending the shuttle.
-	var/export_categories = EXPORT_CARGO
+	// When TRUE, these vars allow exporting emagged/contraband items, and add some special interactions to existing exports.
+	var/contraband = FALSE
+	var/emagged = FALSE
 
 /obj/docking_port/mobile/supply/register()
 	. = ..()
 	SSshuttle.supply = src
 
 /obj/docking_port/mobile/supply/canMove()
-	if(is_station_level(z))
-		return check_blacklist(shuttle_areas, GLOB.blacklisted_cargo_types - GLOB.cargo_shuttle_leave_behind_typecache)
+	if(z == ZLEVEL_STATION)
+		return check_blacklist(areaInstance)
 	return ..()
 
-/obj/docking_port/mobile/supply/enterTransit()
-	var/list/leave_behind = list()
-	for(var/i in check_blacklist(shuttle_areas, GLOB.cargo_shuttle_leave_behind_typecache))
-		var/atom/movable/AM = i
-		leave_behind[AM] = AM.loc
-	. = ..()
-	for(var/kicked in leave_behind)
-		var/atom/movable/victim = kicked
-		var/atom/oldloc = leave_behind[victim]
-		victim.forceMove(oldloc)
+/obj/docking_port/mobile/supply/proc/check_blacklist(atom/A)
+	if(is_type_in_list(A, blacklist))
+		return 1
+	for(var/thing in A)
+		if(.(thing))
+			return 1
 
-/obj/docking_port/mobile/supply/proc/check_blacklist(areaInstances, list/typecache)
-	for(var/place in areaInstances)
-		var/area/shuttle/shuttle_area = place
-		for(var/trf in shuttle_area)
-			var/turf/T = trf
-			for(var/a in T.GetAllContents())
-				if(is_type_in_typecache(a, typecache))
-					return FALSE
-				if(istype(a, /obj/structure/closet))//Prevents eigenlockers from ending up at CC
-					var/obj/structure/closet/c = a
-					if(c.eigen_teleport == TRUE)
-						return FALSE
-	return TRUE
-
-/obj/docking_port/mobile/supply/request(obj/docking_port/stationary/S)
+/obj/docking_port/mobile/supply/request()
 	if(mode != SHUTTLE_IDLE)
 		return 2
 	return ..()
 
-/obj/docking_port/mobile/supply/initiate_docking()
+/obj/docking_port/mobile/supply/dock()
 	if(getDockedId() == "supply_away") // Buy when we leave home.
 		buy()
-	. = ..() // Fly/enter transit.
-	if(. != DOCKING_SUCCESS)
+	if(..()) // Fly/enter transit.
 		return
 	if(getDockedId() == "supply_away") // Sell when we get home
 		sell()
@@ -102,12 +73,10 @@ GLOBAL_LIST_INIT(cargo_shuttle_leave_behind_typecache, typecacheof(list(
 		return
 
 	var/list/empty_turfs = list()
-	for(var/place in shuttle_areas)
-		var/area/shuttle/shuttle_area = place
-		for(var/turf/open/floor/T in shuttle_area)
-			if(is_blocked_turf(T))
-				continue
-			empty_turfs += T
+	for(var/turf/open/floor/T in areaInstance)
+		if(T.density || T.contents.len)
+			continue
+		empty_turfs += T
 
 	var/value = 0
 	var/purchases = 0
@@ -123,56 +92,67 @@ GLOBAL_LIST_INIT(cargo_shuttle_leave_behind_typecache, typecacheof(list(
 		SSshuttle.orderhistory += SO
 
 		SO.generate(pick_n_take(empty_turfs))
-		SSblackbox.record_feedback("nested tally", "cargo_imports", 1, list("[SO.pack.cost]", "[SO.pack.name]"))
-		investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]) has shipped.", INVESTIGATE_CARGO)
+		feedback_add_details("cargo_imports",
+			"[SO.pack.type]|[SO.pack.name]|[SO.pack.cost]")
+		investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]) has shipped.", "cargo")
 		if(SO.pack.dangerous)
-			message_admins("\A [SO.pack.name] ordered by [ADMIN_LOOKUPFLW(SO.orderer_ckey)] has shipped.")
+			message_admins("\A [SO.pack.name] ordered by [key_name_admin(SO.orderer_ckey)] has shipped.")
 		purchases++
 
-	investigate_log("[purchases] orders in this shipment, worth [value] credits. [SSshuttle.points] credits left.", INVESTIGATE_CARGO)
+	investigate_log("[purchases] orders in this shipment, worth [value] credits. [SSshuttle.points] credits left.", "cargo")
 
 /obj/docking_port/mobile/supply/proc/sell()
 	var/presale_points = SSshuttle.points
 
-	if(!GLOB.exports_list.len) // No exports list? Generate it!
-		setupExports()
+	if(!exports.len) // No exports list? Generate it!
+		exports_floor.Cut()
+		var/datum/export/E
+		for(var/subtype in subtypesof(/datum/export))
+			E = new subtype
+			if(E.export_types && E.export_types.len) // Exports without a type are invalid/base types
+				exports += E
+				if(E.shuttle_floor)
+					exports_floor += E
 
 	var/msg = ""
-	var/matched_bounty = FALSE
+	var/sold_atoms = ""
 
-	var/datum/export_report/ex = new
+	for(var/atom/movable/AM in areaInstance)
+		if(AM.anchored)
+			continue
+		sold_atoms += recursive_sell(AM)
 
-	for(var/place in shuttle_areas)
-		var/area/shuttle/shuttle_area = place
-		for(var/atom/movable/AM in shuttle_area)
-			if(iscameramob(AM))
-				continue
-			if(bounty_ship_item_and_contents(AM, dry_run = FALSE))
-				matched_bounty = TRUE
-			if(!AM.anchored || istype(AM, /obj/mecha))
-				export_item_and_contents(AM, export_categories , dry_run = FALSE, external_report = ex)
+	if(sold_atoms)
+		sold_atoms += "."
 
-	if(ex.exported_atoms)
-		ex.exported_atoms += "." //ugh
-
-	if(matched_bounty)
-		msg += "Bounty items received. An update has been sent to all bounty consoles. "
-
-	for(var/datum/export/E in ex.total_amount)
-		var/export_text = E.total_printout(ex)
+	for(var/a in exports)
+		var/datum/export/E = a
+		var/export_text = E.total_printout()
 		if(!export_text)
 			continue
 
 		msg += export_text + "\n"
-		SSshuttle.points += ex.total_value[E]
-
-	for(var/datum/reagent/R in ex.total_reagents)
-		var/amount = ex.total_reagents[R]
-		var/value = amount*R.value
-		if(!value)
-			continue
-		msg += "[value] credits: received [amount]u of [R.name].\n"
-		SSshuttle.points += value
+		SSshuttle.points += E.total_cost
+		E.export_end()
 
 	SSshuttle.centcom_message = msg
-	investigate_log("Shuttle contents sold for [SSshuttle.points - presale_points] credits. Contents: [ex.exported_atoms || "none."] Message: [SSshuttle.centcom_message || "none."]", INVESTIGATE_CARGO)
+	investigate_log("Shuttle contents sold for [SSshuttle.points - presale_points] credits. Contents: [sold_atoms || "none."] Message: [SSshuttle.centcom_message || "none."]", "cargo")
+
+/obj/docking_port/mobile/supply/proc/recursive_sell(var/obj/O, var/level=0)
+	var/sold_atoms = " [O.name]"
+	var/list/xports = exports
+	if(level == 0)
+		xports = exports_floor // If on the floor level, sell floor exports only
+	level++
+
+	for(var/a in xports)
+		var/datum/export/E = a
+		if(E.applies_to(O, contraband, emagged))
+			E.sell_object(O, contraband, emagged)
+			break
+
+	if(level < 10 && is_type_in_list(O, storage_objects))
+		for(var/obj/thing in O)
+			sold_atoms += recursive_sell(thing, level)
+	qdel(O)
+	return sold_atoms

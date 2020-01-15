@@ -1,170 +1,247 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+/turf/open/space,
+/area/space)
 "b" = (
 /obj/structure/shuttle/engine/propulsion{
+	tag = "icon-propulsion (NORTH)";
+	icon_state = "propulsion";
 	dir = 1
 	},
 /turf/open/space,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "c" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/ruin/powered/shuttle/medium_3)
+/turf/closed/indestructible/opshuttle,
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "d" = (
 /obj/structure/shuttle/engine/heater{
+	tag = "icon-heater (NORTH)";
+	icon_state = "heater";
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
+"e" = (
+/turf/open/space,
+/turf/closed/indestructible/opshuttle{
+	tag = "icon-wall3 (NORTHWEST)";
+	icon_state = "wall3";
+	dir = 9
+	},
+/area/ruin/powered{
+	name = "Shuttle"
+	})
+"f" = (
+/turf/open/space,
+/turf/closed/indestructible/opshuttle{
+	tag = "icon-wall3 (NORTHEAST)";
+	icon_state = "wall3";
+	dir = 5
+	},
+/area/ruin/powered{
+	name = "Shuttle"
+	})
+"g" = (
+/turf/closed/wall/shuttle/smooth,
+/turf/closed/indestructible/opshuttle{
+	tag = "icon-wall3 (SOUTHEAST)";
+	icon_state = "wall3";
+	dir = 6
+	},
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "h" = (
-/turf/closed/wall/mineral/titanium,
-/area/ruin/powered/shuttle/medium_3)
+/turf/closed/wall/shuttle/smooth,
+/area/ruin/powered{
+	name = "Shuttle"
+	})
+"i" = (
+/turf/closed/wall/shuttle/smooth,
+/turf/closed/indestructible/opshuttle{
+	tag = "icon-wall3 (SOUTHWEST)";
+	icon_state = "wall3";
+	dir = 10
+	},
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "j" = (
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external,
 /turf/open/floor/plating,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "k" = (
 /obj/machinery/power/smes/magical,
 /turf/open/floor/plasteel,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "l" = (
 /turf/open/floor/plasteel,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "m" = (
 /turf/open/floor/plating,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "n" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	tag = "icon-propulsion (EAST)";
+	icon_state = "propulsion";
+	dir = 4
 	},
 /turf/open/space,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "o" = (
 /obj/structure/shuttle/engine/heater{
+	tag = "icon-heater (WEST)";
+	icon_state = "heater";
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "p" = (
-/obj/machinery/door/airlock/public/glass,
+/obj/machinery/door/airlock/glass,
 /turf/open/floor/plasteel,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "q" = (
 /obj/structure/shuttle/engine/heater{
+	tag = "icon-heater (EAST)";
+	icon_state = "heater";
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "r" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 4
+	tag = "icon-propulsion (WEST)";
+	icon_state = "propulsion";
+	dir = 8
 	},
 /turf/open/space,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
+"s" = (
+/turf/closed/wall/shuttle/smooth,
+/turf/closed/indestructible/opshuttle{
+	tag = "icon-wall3 (NORTHEAST)";
+	icon_state = "wall3";
+	dir = 5
+	},
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "t" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
+"u" = (
+/turf/closed/wall/shuttle/smooth,
+/turf/closed/indestructible/opshuttle{
+	tag = "icon-wall3 (NORTHWEST)";
+	icon_state = "wall3";
+	dir = 9
+	},
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "v" = (
 /obj/structure/table,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_3)
+/turf/open/floor/plasteel/darkyellow,
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "w" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_3)
+/turf/open/floor/plasteel/darkyellow,
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "x" = (
 /obj/structure/chair/comfy{
+	tag = "icon-comfychair (WEST)";
+	icon_state = "comfychair";
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/turf/open/floor/plasteel/darkyellow,
+/area/ruin/powered{
+	name = "Shuttle"
+	})
+"y" = (
+/turf/open/space,
+/turf/closed/indestructible/opshuttle{
+	tag = "icon-wall3 (SOUTHWEST)";
+	icon_state = "wall3";
+	dir = 10
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "z" = (
 /obj/machinery/sleeper,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_3)
+/turf/open/floor/plasteel/darkblue,
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "A" = (
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_3)
+/turf/open/floor/plasteel/black,
+/area/ruin/powered{
+	name = "Shuttle"
+	})
+"B" = (
+/turf/open/space,
+/turf/closed/indestructible/opshuttle{
+	tag = "icon-wall3 (SOUTHEAST)";
+	icon_state = "wall3";
+	dir = 6
+	},
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "C" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_3)
+/turf/open/floor/plasteel/darkblue,
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "D" = (
 /obj/structure/table,
-/obj/item/storage/firstaid,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_3)
+/obj/item/weapon/storage/firstaid,
+/turf/open/floor/plasteel/darkblue,
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "E" = (
 /obj/structure/shuttle/engine/heater,
 /turf/open/floor/plating/airless,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 "F" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/space,
-/area/ruin/powered/shuttle/medium_3)
-"G" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/ruin/powered/shuttle/medium_3)
+/area/ruin/powered{
+	name = "Shuttle"
+	})
 
 (1,1,1) = {"
 a
@@ -220,18 +297,18 @@ a
 a
 a
 a
-c
+e
 o
 c
 c
-c
+y
 a
 a
-c
+e
 c
 c
 o
-c
+y
 a
 a
 a
@@ -243,7 +320,7 @@ a
 a
 a
 a
-c
+e
 c
 c
 c
@@ -256,7 +333,7 @@ c
 c
 c
 c
-c
+y
 a
 a
 a
@@ -266,22 +343,22 @@ a
 a
 a
 a
+e
+g
+h
+h
+s
 c
-h
-h
-h
-h
-c
-h
+g
 j
 j
-h
+s
 c
+g
 h
 h
-h
-h
-c
+s
+y
 a
 a
 a
@@ -289,24 +366,24 @@ a
 (6,1,1) = {"
 a
 a
-c
+e
 c
 h
 k
 l
-G
 h
-G
+h
+h
 m
 m
-G
 h
-G
+h
+h
 l
 k
 h
 c
-c
+y
 a
 a
 "}
@@ -339,20 +416,20 @@ a
 c
 c
 c
+i
 h
-G
 l
 l
 l
-G
+h
 t
 t
-G
-l
-l
-l
-G
 h
+l
+l
+l
+h
+u
 c
 c
 c
@@ -367,12 +444,12 @@ c
 h
 l
 l
-G
+h
 z
 C
 C
 D
-G
+h
 l
 l
 h
@@ -385,24 +462,24 @@ F
 (10,1,1) = {"
 a
 a
+f
 c
-c
+g
 h
-G
 p
-G
+h
 v
-G
-C
-C
-G
-A
-G
-p
-G
 h
+C
+C
+h
+A
+h
+p
+h
+s
 c
-c
+B
 a
 a
 "}
@@ -457,24 +534,24 @@ a
 (13,1,1) = {"
 a
 a
+e
 c
-c
+i
 h
-G
 p
-G
+h
 w
-G
-A
-A
-G
-A
-G
-p
-G
 h
+A
+A
+h
+A
+h
+p
+h
+u
 c
-c
+y
 a
 a
 "}
@@ -487,12 +564,12 @@ c
 h
 l
 l
-G
+h
 A
 A
 A
 A
-G
+h
 l
 l
 h
@@ -507,20 +584,20 @@ a
 c
 c
 c
+g
 h
-G
 l
 l
 l
-G
+h
 t
 t
-G
-l
-l
-l
-G
 h
+l
+l
+l
+h
+s
 c
 c
 c
@@ -553,24 +630,24 @@ a
 (17,1,1) = {"
 a
 a
-c
+f
 c
 h
 k
 l
-G
 h
-G
+h
+h
 m
 m
-G
 h
-G
+h
+h
 l
 k
 h
 c
-c
+B
 a
 a
 "}
@@ -578,22 +655,22 @@ a
 a
 a
 a
+f
+i
+h
+h
+u
 c
-h
-h
-h
-h
-c
-h
+i
 j
 j
-h
+u
 c
+i
 h
 h
-h
-h
-c
+u
+B
 a
 a
 a
@@ -603,7 +680,7 @@ a
 a
 a
 a
-c
+f
 c
 c
 c
@@ -616,7 +693,7 @@ c
 c
 c
 c
-c
+B
 a
 a
 a
@@ -628,18 +705,18 @@ a
 a
 a
 a
-c
+f
 q
 c
 c
-c
+B
 a
 a
-c
+f
 c
 c
 q
-c
+B
 a
 a
 a

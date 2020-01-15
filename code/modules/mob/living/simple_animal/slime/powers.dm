@@ -7,7 +7,6 @@
 
 /datum/action/innate/slime
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
 	var/needs_growth = NO_GROWTH_NEEDED
 
@@ -48,87 +47,63 @@
 	var/mob/living/simple_animal/slime/S = owner
 	S.Feed()
 
-/mob/living/simple_animal/slime/proc/CanFeedon(mob/living/M, silent = FALSE)
+/mob/living/simple_animal/slime/proc/CanFeedon(mob/living/M)
 	if(!Adjacent(M))
-		return FALSE
+		return 0
 
 	if(buckled)
 		Feedstop()
-		return FALSE
-
-	if(issilicon(M))
-		return FALSE
-
-	if(isanimal(M))
-		var/mob/living/simple_animal/S = M
-		if(S.damage_coeff[TOX] <= 0 && S.damage_coeff[CLONE] <= 0) //The creature wouldn't take any damage, it must be too weird even for us.
-			if(silent)
-				return FALSE
-			to_chat(src, "<span class='warning'>[pick("This subject is incompatible", \
-			"This subject does not have life energy", "This subject is empty", \
-			"I am not satisified", "I can not feed from this subject", \
-			"I do not feel nourished", "This subject is not food")]!</span>")
-			return FALSE
+		return 0
 
 	if(isslime(M))
-		if(silent)
-			return FALSE
-		to_chat(src, "<span class='warning'><i>I can't latch onto another slime...</i></span>")
-		return FALSE
+		src << "<span class='warning'><i>I can't latch onto another slime...</i></span>"
+		return 0
 
 	if(docile)
-		if(silent)
-			return FALSE
-		to_chat(src, "<span class='notice'><i>I'm not hungry anymore...</i></span>")
-		return FALSE
+		src << "<span class='notice'><i>I'm not hungry anymore...</i></span>"
+		return 0
 
 	if(stat)
-		if(silent)
-			return FALSE
-		to_chat(src, "<span class='warning'><i>I must be conscious to do this...</i></span>")
-		return FALSE
+		src << "<span class='warning'><i>I must be conscious to do this...</i></span>"
+		return 0
 
 	if(M.stat == DEAD)
-		if(silent)
-			return FALSE
-		to_chat(src, "<span class='warning'><i>This subject does not have a strong enough life energy...</i></span>")
-		return FALSE
+		src << "<span class='warning'><i>This subject does not have a strong enough life energy...</i></span>"
+		return 0
 
 	if(locate(/mob/living/simple_animal/slime) in M.buckled_mobs)
-		if(silent)
-			return FALSE
-		to_chat(src, "<span class='warning'><i>Another slime is already feeding on this subject...</i></span>")
-		return FALSE
-	return TRUE
+		src << "<span class='warning'><i>Another slime is already feeding on this subject...</i></span>"
+		return 0
+	return 1
 
 /mob/living/simple_animal/slime/proc/Feedon(mob/living/M)
 	M.unbuckle_all_mobs(force=1) //Slimes rip other mobs (eg: shoulder parrots) off (Slimes Vs Slimes is already handled in CanFeedon())
-	if(M.buckle_mob(src, force=TRUE))
+	if(M.buckle_mob(src, force=1))
 		layer = M.layer+0.01 //appear above the target mob
 		M.visible_message("<span class='danger'>[name] has latched onto [M]!</span>", \
 						"<span class='userdanger'>[name] has latched onto [M]!</span>")
 	else
-		to_chat(src, "<span class='warning'><i>I have failed to latch onto the subject!</i></span>")
+		src << "<span class='warning'><i>I have failed to latch onto the subject</i></span>"
 
-/mob/living/simple_animal/slime/proc/Feedstop(silent = FALSE, living=1)
+/mob/living/simple_animal/slime/proc/Feedstop(silent=0, living=1)
 	if(buckled)
 		if(!living)
-			to_chat(src, "<span class='warning'>[pick("This subject is incompatible", \
+			src << "<span class='warning'>[pick("This subject is incompatible", \
 			"This subject does not have life energy", "This subject is empty", \
 			"I am not satisified", "I can not feed from this subject", \
-			"I do not feel nourished", "This subject is not food")]!</span>")
+			"I do not feel nourished", "This subject is not food")]!</span>"
 		if(!silent)
 			visible_message("<span class='warning'>[src] has let go of [buckled]!</span>", \
 							"<span class='notice'><i>I stopped feeding.</i></span>")
 		layer = initial(layer)
-		buckled.unbuckle_mob(src,force=TRUE)
+		buckled.unbuckle_mob(src,force=1)
 
 /mob/living/simple_animal/slime/verb/Evolve()
 	set category = "Slime"
 	set desc = "This will let you evolve from baby to adult slime."
 
 	if(stat)
-		to_chat(src, "<i>I must be conscious to do this...</i>")
+		src << "<i>I must be conscious to do this...</i>"
 		return
 	if(!is_adult)
 		if(amount_grown >= SLIME_EVOLUTION_THRESHOLD)
@@ -140,9 +115,9 @@
 			regenerate_icons()
 			update_name()
 		else
-			to_chat(src, "<i>I am not ready to evolve yet...</i>")
+			src << "<i>I am not ready to evolve yet...</i>"
 	else
-		to_chat(src, "<i>I have already evolved...</i>")
+		src << "<i>I have already evolved...</i>"
 
 /datum/action/innate/slime/evolve
 	name = "Evolve"
@@ -161,13 +136,13 @@
 	set desc = "This will make you split into four Slimes."
 
 	if(stat)
-		to_chat(src, "<i>I must be conscious to do this...</i>")
+		src << "<i>I must be conscious to do this...</i>"
 		return
 
 	if(is_adult)
 		if(amount_grown >= SLIME_EVOLUTION_THRESHOLD)
 			if(stat)
-				to_chat(src, "<i>I must be conscious to do this...</i>")
+				src << "<i>I must be conscious to do this...</i>"
 				return
 
 			var/list/babies = list()
@@ -190,20 +165,22 @@
 					step_away(M,src)
 				M.Friends = Friends.Copy()
 				babies += M
-				M.mutation_chance = CLAMP(mutation_chance+(rand(5,-5)),0,100)
-				SSblackbox.record_feedback("tally", "slime_babies_born", 1, M.colour)
+				M.mutation_chance = Clamp(mutation_chance+(rand(5,-5)),0,100)
+				feedback_add_details("slime_babies_born","slimebirth_[replacetext(M.colour," ","_")]")
 
 			var/mob/living/simple_animal/slime/new_slime = pick(babies)
-			new_slime.a_intent = INTENT_HARM
+			new_slime.a_intent = "harm"
+			new_slime.languages_spoken = languages_spoken
+			new_slime.languages_understood = languages_understood
 			if(src.mind)
 				src.mind.transfer_to(new_slime)
 			else
-				transfer_ckey(new_slime)
+				new_slime.key = src.key
 			qdel(src)
 		else
-			to_chat(src, "<i>I am not ready to reproduce yet...</i>")
+			src << "<i>I am not ready to reproduce yet...</i>"
 	else
-		to_chat(src, "<i>I am not old enough to reproduce yet...</i>")
+		src << "<i>I am not old enough to reproduce yet...</i>"
 
 /datum/action/innate/slime/reproduce
 	name = "Reproduce"

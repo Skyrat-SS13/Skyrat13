@@ -1,33 +1,25 @@
-#define MAX_SPAWN_ATTEMPT 3
-
-
 /datum/round_event/ghost_role
 	// We expect 0 or more /clients (or things with .key) in this list
 	var/list/priority_candidates = list()
 	var/minimum_required = 1
 	var/role_name = "debug rat with cancer" // Q U A L I T Y  M E M E S
 	var/list/spawned_mobs = list()
-	fakeable = FALSE
 
 /datum/round_event/ghost_role/start()
 	try_spawning()
 
-/datum/round_event/ghost_role/proc/try_spawning(sanity = 0, retry = 0)
+/datum/round_event/ghost_role/proc/try_spawning(sanity = 0)
 	// The event does not run until the spawning has been attempted
 	// to prevent us from getting gc'd halfway through
 	processing = FALSE
 
 	var/status = spawn_role()
-	if((status == WAITING_FOR_SOMETHING))
-		if(retry >= MAX_SPAWN_ATTEMPT)
-			message_admins("[role_name] event has exceeded maximum spawn attempts. Aborting and refunding.")
-			if(control && control.occurrences > 0)	//Don't refund if it hasn't
-				control.occurrences--
-			return
-		var/waittime = 300 * (2^retry)
+	if(status == WAITING_FOR_SOMETHING)
 		message_admins("The event will not spawn a [role_name] until certain \
-			conditions are met. Waiting [waittime/10]s and then retrying.")
-		addtimer(CALLBACK(src, .proc/try_spawning, 0, ++retry), waittime)
+			conditions are met. Waiting 30s and then retrying.")
+		spawn(300)
+			// I hope this doesn't end up running out of stack space
+			try_spawning()
 		return
 
 	if(status == MAP_ERROR)
@@ -58,14 +50,13 @@
 	var/list/mob/dead/observer/regular_candidates
 	// don't get their hopes up
 	if(priority_candidates.len < minimum_required)
-		regular_candidates = pollGhostCandidates("Do you wish to be considered for the special role of '[role_name]'?", jobban, gametypecheck, be_special)
+		regular_candidates = pollCandidates("Do you wish to be considered for the special role of '[role_name]'?", jobban, gametypecheck, be_special)
 	else
 		regular_candidates = list()
 
-	shuffle_inplace(regular_candidates)
+	shuffle(regular_candidates)
 
 	var/list/candidates = priority_candidates + regular_candidates
 
 	return candidates
 
-#undef MAX_SPAWN_ATTEMPT

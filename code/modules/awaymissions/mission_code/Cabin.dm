@@ -1,80 +1,82 @@
-
 /*Cabin areas*/
 /area/awaymission/snowforest
 	name = "Snow Forest"
 	icon_state = "away"
-	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	requires_power = 0
+	luminosity = 1
+	lighting_use_dynamic = DYNAMIC_LIGHTING_ENABLED
 
 /area/awaymission/cabin
 	name = "Cabin"
 	icon_state = "away2"
-	requires_power = TRUE
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	requires_power = 1
+	luminosity = 0
+	lighting_use_dynamic = DYNAMIC_LIGHTING_ENABLED
 
 /area/awaymission/snowforest/lumbermill
 	name = "Lumbermill"
 	icon_state = "away3"
 
-/obj/structure/firepit
-	name = "firepit"
-	desc = "Warm and toasty."
-	icon = 'icons/obj/fireplace.dmi'
-	icon_state = "firepit-active"
-	density = FALSE
+
+
+
+
+/*Cabin code*/
+/obj/structure/fireplace
+	name = "fireplace"
+	desc = "warm and toasty"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "fireplace-active"
+	density = 0
 	var/active = 1
 
-/obj/structure/firepit/Initialize()
+/obj/structure/fireplace/initialize()
 	..()
-	toggleFirepit()
+	toggleFireplace()
 
-/obj/structure/firepit/interact(mob/living/user)
+/obj/structure/fireplace/attack_hand(mob/living/user)
 	if(active)
-		active = FALSE
-		toggleFirepit()
+		active = 0
+		toggleFireplace()
+	else
+		..()
 
-/obj/structure/firepit/attackby(obj/item/W,mob/living/user,params)
+
+/obj/structure/fireplace/attackby(obj/item/W,mob/living/user,params)
 	if(!active)
-		var/msg = W.ignition_effect(src, user)
-		if(msg)
-			active = TRUE
-			visible_message(msg)
-			toggleFirepit()
+		if(W.is_hot())
+			active = 1
+			toggleFireplace()
 		else
 			return ..()
 	else
 		W.fire_act()
 
-/obj/structure/firepit/proc/toggleFirepit()
-	active = !active
+/obj/structure/fireplace/proc/toggleFireplace()
 	if(active)
-		set_light(8)
-		icon_state = "firepit-active"
+		SetLuminosity(8)
+		icon_state = "fireplace-active"
 	else
-		set_light(0)
-		icon_state = "firepit"
+		SetLuminosity(0)
+		icon_state = "fireplace"
 
-/obj/structure/firepit/extinguish()
+/obj/structure/fireplace/extinguish()
 	if(active)
-		active = FALSE
-		toggleFirepit()
+		active = 0
+		toggleFireplace()
 
-/obj/structure/firepit/fire_act(exposed_temperature, exposed_volume)
+/obj/structure/fireplace/fire_act()
 	if(!active)
-		active = TRUE
-		toggleFirepit()
-
-
-
-//other Cabin Stuff//
+		active = 1
+		toggleFireplace()
 
 /obj/machinery/recycler/lumbermill
 	name = "lumbermill saw"
 	desc = "Faster then the cartoons!"
-	obj_flags = CAN_BE_HIT | EMAGGED
+	emagged = 2 //Always gibs people
 	item_recycle_sound = 'sound/weapons/chainsawhit.ogg'
 
-/obj/machinery/recycler/lumbermill/recycle_item(obj/item/grown/log/L)
+/obj/machinery/recycler/lumbermill/recycle_item(obj/item/weapon/grown/log/L)
 	if(!istype(L))
 		return
 	else
@@ -94,20 +96,16 @@
 
 /*Cabin's forest*/
 /datum/mapGenerator/snowy
-	modules = list(/datum/mapGeneratorModule/bottomlayer/snow, \
-	/datum/mapGeneratorModule/snow/pineTrees, \
+	modules = list(/datum/mapGeneratorModule/snow/pineTrees, \
 	/datum/mapGeneratorModule/snow/deadTrees, \
 	/datum/mapGeneratorModule/snow/randBushes, \
 	/datum/mapGeneratorModule/snow/randIceRocks, \
 	/datum/mapGeneratorModule/snow/bunnies)
 
 /datum/mapGeneratorModule/snow/checkPlaceAtom(turf/T)
-	if(istype(T, /turf/open/floor/plating/asteroid/snow))
+	if(istype(T,/turf/open/floor/plating/asteroid/snow))
 		return ..(T)
 	return 0
-
-/datum/mapGeneratorModule/bottomlayer/snow
-	spawnableTurfs = list(/turf/open/floor/plating/asteroid/snow/atmosphere = 100)
 
 /datum/mapGeneratorModule/snow/pineTrees
 	spawnableAtoms = list(/obj/structure/flora/tree/pine = 30)
@@ -133,7 +131,3 @@
 
 /obj/effect/landmark/mapGenerator/snowy
 	mapGeneratorType = /datum/mapGenerator/snowy
-	endTurfX = 159
-	endTurfY = 157
-	startTurfX = 37
-	startTurfY = 35

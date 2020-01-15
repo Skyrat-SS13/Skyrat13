@@ -1,181 +1,273 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
 "aa" = (
 /turf/closed/mineral/random,
-/area/space/nearstation)
+/area/space)
 "ab" = (
 /turf/open/space,
 /area/space)
 "ac" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/syndicate/melee/sword,
-/turf/open/floor/plasteel,
-/area/awaymission/spacebattle/cruiser)
+/area/awaymission/spacebattle/syndicate2)
 "ad" = (
-/obj/structure/shuttle/engine/propulsion/right{
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_r";
 	dir = 1
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate2)
 "ae" = (
 /obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion";
 	dir = 1
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate2)
 "af" = (
-/obj/structure/shuttle/engine/propulsion/left{
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l";
 	dir = 1
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate2)
+"ag" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate2)
 "ah" = (
-/turf/closed/wall/mineral/plastitanium,
+/turf/closed/wall/shuttle{
+	icon_state = "wall3"
+	},
 /area/awaymission/spacebattle/syndicate2)
 "ai" = (
 /obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
 	dir = 1
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/syndicate2)
 "aj" = (
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "ak" = (
 /obj/machinery/door/airlock/external,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/shuttle{
+	icon_state = "floor4"
+	},
 /area/awaymission/spacebattle/syndicate2)
 "al" = (
 /mob/living/simple_animal/hostile/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "am" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/suit/space/hardsuit/syndi,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "an" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "ao" = (
 /obj/machinery/sleeper,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "ap" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/spacebattle,
-/turf/open/floor/mineral/plastitanium/red,
+/mob/living/simple_animal/hostile/syndicate/ranged{
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier,/obj/item/weapon/gun/projectile/automatic/c20r,/obj/item/weapon/shield/energy)
+	},
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "aq" = (
 /obj/machinery/door/unpowered/shuttle,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "ar" = (
 /obj/structure/table/reinforced,
-/obj/item/grenade/empgrenade,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/item/weapon/grenade/empgrenade,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "as" = (
 /obj/structure/table/reinforced,
 /obj/item/ammo_casing/c10mm,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "at" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/ballistic/automatic/c20r,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/item/weapon/gun/projectile/automatic/c20r,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
+"au" = (
+/obj/machinery/door/unpowered/shuttle,
+/turf/open/floor/plasteel/shuttle{
+	icon_state = "floor4"
+	},
+/area/awaymission/spacebattle/syndicate2)
+"av" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate3)
 "aw" = (
-/obj/structure/shuttle/engine/propulsion/right{
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_r";
 	dir = 1
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate3)
 "ax" = (
 /obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion";
 	dir = 1
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate3)
 "ay" = (
-/obj/structure/shuttle/engine/propulsion/left{
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l";
 	dir = 1
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate3)
+"az" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate3)
 "aA" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/ballistic/automatic/pistol,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/item/weapon/gun/projectile/automatic/pistol,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "aB" = (
-/turf/closed/wall/mineral/plastitanium,
+/turf/closed/wall/shuttle{
+	icon_state = "wall3"
+	},
 /area/awaymission/spacebattle/syndicate3)
 "aC" = (
 /obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
 	dir = 1
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/syndicate3)
 "aD" = (
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate3)
 "aE" = (
 /obj/machinery/door/airlock/external,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate3)
+"aF" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate2)
 "aG" = (
-/mob/living/simple_animal/hostile/syndicate/melee/spacebattle,
-/turf/open/floor/mineral/plastitanium/red,
+/mob/living/simple_animal/hostile/syndicate/melee{
+	deathmessage = "\[src] falls limp as they release their grip from the energy weapons, activating their self-destruct function!";
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier)
+	},
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/area/awaymission/spacebattle/syndicate2)
+"aH" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/syndicate2)
 "aI" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/suit/space/hardsuit/syndi,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate3)
 "aJ" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate3)
 "aK" = (
-/obj/machinery/computer/shuttle{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium/red,
+/obj/machinery/computer/shuttle,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
+"aL" = (
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/turf/closed/wall/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate2)
+"aM" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/area/awaymission/spacebattle/syndicate2)
+"aN" = (
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/turf/closed/wall/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate2)
+"aO" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate1)
 "aP" = (
-/obj/structure/shuttle/engine/propulsion/right{
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_r";
 	dir = 1
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate1)
 "aQ" = (
 /obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion";
 	dir = 1
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate1)
 "aR" = (
-/obj/structure/shuttle/engine/propulsion/left{
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l";
 	dir = 1
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate1)
+"aS" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate1)
 "aT" = (
 /obj/machinery/sleeper,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate3)
 "aU" = (
-/turf/closed/wall/mineral/plastitanium,
+/turf/closed/wall/shuttle{
+	icon_state = "wall3"
+	},
 /area/awaymission/spacebattle/syndicate1)
 "aV" = (
 /obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
 	dir = 1
 	},
 /obj/structure/window/reinforced,
@@ -184,6 +276,7 @@
 "aW" = (
 /obj/structure/window/reinforced,
 /obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -194,6 +287,7 @@
 "aX" = (
 /obj/structure/window/reinforced,
 /obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -202,66 +296,67 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/syndicate2)
 "aY" = (
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "aZ" = (
 /obj/structure/chair{
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "ba" = (
 /obj/structure/chair{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "bb" = (
 /obj/machinery/door/airlock/external,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/shuttle{
+	icon_state = "floor4"
+	},
 /area/awaymission/spacebattle/syndicate1)
 "bc" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	emagged = 1;
+	installation = /obj/item/weapon/gun/energy/lasercannon
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/syndicate2)
 "bd" = (
 /obj/machinery/door/unpowered/shuttle,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate3)
 "be" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/suit/space/hardsuit/syndi,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "bf" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "bg" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/gloves/combat,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "bh" = (
 /obj/machinery/sleeper,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "bi" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/helmet/swat,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate3)
 "bj" = (
 /obj/machinery/computer/pod{
-	dir = 1;
 	id = "spacebattlepod3";
 	name = "Hull Door Control"
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
 "bk" = (
 /obj/machinery/door/poddoor{
@@ -274,82 +369,138 @@
 /area/awaymission/spacebattle/syndicate2)
 "bl" = (
 /obj/structure/table/reinforced,
-/obj/item/grenade/plastic/c4,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/item/weapon/c4,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate3)
 "bm" = (
 /obj/machinery/door/unpowered/shuttle,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "bn" = (
 /obj/structure/table/reinforced,
-/obj/item/grenade/plastic/c4,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/item/weapon/c4,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "bo" = (
 /obj/structure/table/reinforced,
-/obj/item/grenade/spawnergrenade/manhacks,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/item/weapon/grenade/spawnergrenade/manhacks,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "bp" = (
 /obj/structure/table/reinforced,
-/obj/item/restraints/handcuffs,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/item/weapon/restraints/handcuffs,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
+"bq" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate3)
 "br" = (
 /mob/living/simple_animal/hostile/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/area/awaymission/spacebattle/syndicate3)
+"bs" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/syndicate3)
 "bt" = (
 /obj/structure/table/reinforced,
-/obj/item/melee/transforming/energy/sword/saber/red,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/item/weapon/melee/energy/sword/saber/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "bu" = (
-/obj/machinery/computer/shuttle{
-	dir = 1
+/obj/machinery/computer/shuttle,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/area/awaymission/spacebattle/syndicate3)
+"bv" = (
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/turf/closed/wall/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/area/awaymission/spacebattle/syndicate3)
+"bw" = (
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/turf/closed/wall/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/syndicate3)
 "bx" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/helmet/swat,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "by" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	emagged = 1;
+	installation = /obj/item/weapon/gun/energy/lasercannon
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/syndicate3)
+"bz" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate1)
 "bA" = (
 /obj/structure/chair,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate2)
-"bC" = (
-/obj/machinery/computer/shuttle{
-	dir = 1
+"bB" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/area/awaymission/spacebattle/syndicate1)
+"bC" = (
+/obj/machinery/computer/shuttle,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/area/awaymission/spacebattle/syndicate1)
+"bD" = (
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/turf/closed/wall/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate1)
+"bE" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/area/awaymission/spacebattle/syndicate1)
+"bF" = (
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/turf/closed/wall/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/syndicate1)
 "bG" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	emagged = 1;
+	installation = /obj/item/weapon/gun/energy/lasercannon
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/syndicate1)
 "bH" = (
-/turf/closed/wall/mineral/plastitanium{
+/turf/open/space,
+/turf/closed/wall/shuttle{
 	dir = 8;
 	icon_state = "diagonalWall3"
 	},
 /area/awaymission/spacebattle/cruiser)
 "bI" = (
-/obj/structure/shuttle/engine/propulsion/right{
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_r";
 	dir = 1
 	},
 /turf/open/space,
@@ -359,23 +510,28 @@
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "bK" = (
-/obj/structure/shuttle/engine/propulsion/left{
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l";
 	dir = 1
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/cruiser)
 "bL" = (
-/turf/closed/wall/mineral/plastitanium{
+/turf/open/space,
+/turf/closed/wall/shuttle{
 	dir = 1;
 	icon_state = "diagonalWall3"
 	},
 /area/awaymission/spacebattle/cruiser)
 "bM" = (
-/turf/closed/wall/mineral/plastitanium,
+/turf/closed/wall/shuttle{
+	icon_state = "wall3"
+	},
 /area/awaymission/spacebattle/cruiser)
 "bN" = (
 /obj/structure/window/reinforced,
 /obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -384,11 +540,12 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
 "bO" = (
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/cruiser)
 "bP" = (
 /obj/structure/window/reinforced,
 /obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -400,28 +557,52 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/cruiser)
 "bR" = (
 /obj/structure/chair{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/cruiser)
 "bS" = (
-/turf/closed/wall/mineral/titanium/overspace,
+/turf/closed/wall/shuttle{
+	icon_state = "swall_s6";
+	dir = 2
+	},
 /area/awaymission/spacebattle/cruiser)
 "bT" = (
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/shuttle{
+	icon_state = "swall12";
+	dir = 2
+	},
+/area/awaymission/spacebattle/cruiser)
+"bU" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall14"
+	},
+/area/awaymission/spacebattle/cruiser)
+"bV" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall12"
+	},
+/area/awaymission/spacebattle/cruiser)
+"bW" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall_s10";
+	dir = 2
+	},
 /area/awaymission/spacebattle/cruiser)
 "bX" = (
-/obj/structure/shuttle/engine/propulsion/burst/left{
-	dir = 8
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_l";
+	dir = 4
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/cruiser)
 "bY" = (
 /obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
 	dir = 8
 	},
 /obj/structure/window/reinforced{
@@ -430,9 +611,7 @@
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "bZ" = (
-/obj/machinery/computer/telecomms/monitor{
-	dir = 4
-	},
+/obj/machinery/computer/telecomms/monitor,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "ca" = (
@@ -442,11 +621,10 @@
 /area/awaymission/spacebattle/cruiser)
 "cb" = (
 /obj/machinery/computer/pod{
-	dir = 1;
 	id = "spacebattlepod";
 	name = "Hull Door Control"
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/cruiser)
 "cc" = (
 /turf/open/floor/plasteel,
@@ -455,15 +633,29 @@
 /obj/machinery/door/unpowered/shuttle,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
+"ce" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall3"
+	},
+/area/awaymission/spacebattle/cruiser)
 "cf" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	icon_state = "propulsion";
+	dir = 4
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/cruiser)
 "cg" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
+/area/awaymission/spacebattle/cruiser)
+"ch" = (
+/turf/open/floor/plasteel{
+	icon_state = "damaged5"
+	},
+/turf/closed/wall/shuttle{
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/cruiser)
 "ci" = (
 /obj/machinery/door/poddoor/preopen{
@@ -472,10 +664,27 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
+"cj" = (
+/turf/open/floor/plasteel{
+	icon_state = "damaged4"
+	},
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/cruiser)
 "ck" = (
 /mob/living/simple_animal/hostile/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
+"cl" = (
+/turf/open/floor/plasteel{
+	icon_state = "damaged2"
+	},
+/turf/closed/wall/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/cruiser)
 "cm" = (
 /turf/open/floor/plasteel{
 	icon_state = "damaged4"
@@ -484,6 +693,15 @@
 "cn" = (
 /turf/open/floor/plasteel{
 	icon_state = "damaged3"
+	},
+/area/awaymission/spacebattle/cruiser)
+"co" = (
+/turf/open/floor/plasteel{
+	icon_state = "damaged5"
+	},
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
 	},
 /area/awaymission/spacebattle/cruiser)
 "cp" = (
@@ -503,8 +721,20 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
+"cs" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall7"
+	},
+/area/awaymission/spacebattle/cruiser)
 "ct" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
+/turf/closed/wall/shuttle{
+	icon_state = "swallc1"
+	},
+/area/awaymission/spacebattle/cruiser)
+"cu" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swallc2"
+	},
 /area/awaymission/spacebattle/cruiser)
 "cv" = (
 /obj/machinery/power/smes/magical{
@@ -538,7 +768,7 @@
 /area/awaymission/spacebattle/cruiser)
 "cA" = (
 /obj/structure/bed,
-/obj/item/bedsheet,
+/obj/item/weapon/bedsheet,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "cB" = (
@@ -547,28 +777,28 @@
 /area/awaymission/spacebattle/cruiser)
 "cC" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/weapon/reagent_containers/food/snacks/sausage,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 2
 	},
 /area/awaymission/spacebattle/cruiser)
 "cD" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/weapon/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 2
 	},
 /area/awaymission/spacebattle/cruiser)
 "cE" = (
 /obj/structure/table/reinforced,
-/obj/item/kitchen/knife,
+/obj/item/weapon/kitchen/knife,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 2
 	},
 /area/awaymission/spacebattle/cruiser)
 "cF" = (
 /obj/structure/table/reinforced,
-/obj/item/kitchen/rollingpin,
+/obj/item/weapon/kitchen/rollingpin,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 2
 	},
@@ -614,7 +844,9 @@
 	},
 /area/awaymission/spacebattle/cruiser)
 "cO" = (
-/obj/effect/landmark/awaystart,
+/obj/effect/landmark{
+	name = "awaystart"
+	},
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "cP" = (
@@ -625,6 +857,11 @@
 "cQ" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel,
+/area/awaymission/spacebattle/cruiser)
+"cR" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swallc3"
+	},
 /area/awaymission/spacebattle/cruiser)
 "cS" = (
 /obj/effect/mob_spawn/human/engineer{
@@ -642,14 +879,14 @@
 /area/awaymission/spacebattle/cruiser)
 "cU" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/fries,
+/obj/item/weapon/reagent_containers/food/snacks/fries,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 2
 	},
 /area/awaymission/spacebattle/cruiser)
 "cV" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/soup/stew,
+/obj/item/weapon/reagent_containers/food/snacks/soup/stew,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 2
 	},
@@ -660,8 +897,19 @@
 	dir = 2
 	},
 /area/awaymission/spacebattle/cruiser)
+"cX" = (
+/mob/living/simple_animal/hostile/syndicate/melee,
+/turf/open/floor/plasteel,
+/area/awaymission/spacebattle/cruiser)
 "cY" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end{
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -670,27 +918,28 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
 "da" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/awaymission/spacebattle/cruiser)
 "db" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/spacebattle,
-/turf/open/floor/mineral/plastitanium/red,
+/mob/living/simple_animal/hostile/syndicate/ranged{
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier,/obj/item/weapon/gun/projectile/automatic/c20r,/obj/item/weapon/shield/energy)
+	},
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate3)
 "dc" = (
 /obj/machinery/computer/pod{
-	dir = 1;
 	id = "spacebattlepod2";
 	name = "Hull Door Control"
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/cruiser)
 "dd" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle{
+/obj/structure/grille,
+/obj/structure/window/reinforced{
 	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -702,8 +951,9 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
 "df" = (
-/obj/structure/shuttle/engine/propulsion/right{
-	dir = 8
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_r";
+	dir = 4
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/cruiser)
@@ -745,11 +995,27 @@
 /area/awaymission/spacebattle/cruiser)
 "dn" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
+/turf/open/floor/plasteel/bar,
+/area/awaymission/spacebattle/cruiser)
+"do" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall7";
+	dir = 2
 	},
-/turf/open/floor/plasteel,
+/area/awaymission/spacebattle/cruiser)
+"dp" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall11";
+	dir = 2
+	},
+/area/awaymission/spacebattle/cruiser)
+"dq" = (
+/turf/open/floor/plasteel{
+	icon_state = "damaged4"
+	},
+/turf/closed/wall/shuttle{
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/cruiser)
 "dr" = (
 /obj/machinery/door/poddoor/preopen{
@@ -758,92 +1024,118 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
+"ds" = (
+/turf/open/floor/plasteel{
+	icon_state = "damaged1"
+	},
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/cruiser)
+"dt" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall_s5";
+	dir = 2
+	},
+/area/awaymission/spacebattle/cruiser)
 "du" = (
 /obj/effect/decal/cleanable/blood,
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/shuttle{
+	icon_state = "swall12"
+	},
+/area/awaymission/spacebattle/cruiser)
+"dv" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall15"
+	},
+/area/awaymission/spacebattle/cruiser)
+"dw" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall11"
+	},
 /area/awaymission/spacebattle/cruiser)
 "dx" = (
 /obj/structure/chair,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/awaymission/spacebattle/cruiser)
 "dy" = (
 /obj/structure/rack,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
+/turf/open/floor/plasteel/red/side{
+	dir = 9
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "dz" = (
-/obj/effect/turf_decal/tile/red{
+/turf/open/floor/plasteel/red/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "dA" = (
-/obj/effect/landmark/awaystart,
-/obj/effect/turf_decal/tile/red{
+/obj/effect/landmark{
+	name = "awaystart"
+	},
+/turf/open/floor/plasteel/red/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "dB" = (
 /obj/structure/closet/secure_closet/security,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/spacebattle/cruiser)
-"dC" = (
-/obj/effect/turf_decal/stripes/line{
+/turf/open/floor/plasteel/red/side{
 	dir = 5
 	},
-/turf/open/floor/plasteel,
+/area/awaymission/spacebattle/cruiser)
+"dC" = (
+/turf/open/floor/plasteel/warning{
+	dir = 5
+	},
 /area/awaymission/spacebattle/cruiser)
 "dD" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
 "dE" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/directional{
-	dir = 9
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "dF" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "dG" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/directional{
+/obj/structure/grille,
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "dH" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/directional{
-	dir = 5
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/open/floor/engine,
+/area/awaymission/spacebattle/cruiser)
+"dI" = (
+/turf/open/floor/plasteel{
+	icon_state = "damaged3"
+	},
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/cruiser)
 "dJ" = (
 /obj/item/stack/rods,
@@ -866,10 +1158,11 @@
 /area/awaymission/spacebattle/cruiser)
 "dN" = (
 /obj/machinery/mech_bay_recharge_port{
+	tag = "icon-recharge_port";
 	icon_state = "recharge_port";
 	dir = 2
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/cruiser)
 "dO" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -883,62 +1176,39 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/awaymission/spacebattle/cruiser)
 "dR" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/peppermill,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/obj/item/weapon/reagent_containers/food/condiment/peppermill,
+/turf/open/floor/plasteel/bar,
 /area/awaymission/spacebattle/cruiser)
 "dS" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/awaymission/spacebattle/cruiser)
 "dT" = (
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/awaymission/spacebattle/cruiser)
 "dU" = (
 /obj/structure/rack,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
+/turf/open/floor/plasteel/red/side{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "dV" = (
 /obj/structure/closet/secure_closet/security,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
+/turf/open/floor/plasteel/red/side{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "dW" = (
-/obj/effect/turf_decal/stripes/line{
+/turf/open/floor/plasteel/warning{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "dX" = (
 /obj/effect/mob_spawn/human/engineer/rig{
@@ -950,16 +1220,20 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
 "dY" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle{
+/obj/structure/grille,
+/obj/structure/window/reinforced{
 	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "dZ" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	emagged = 1;
+	installation = /obj/item/weapon/gun/energy/lasercannon
 	},
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
@@ -973,8 +1247,12 @@
 	},
 /area/awaymission/spacebattle/cruiser)
 "eb" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle{
+/obj/structure/grille,
+/obj/structure/window/reinforced{
 	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
@@ -997,8 +1275,11 @@
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "ef" = (
-/mob/living/simple_animal/hostile/syndicate/melee/spacebattle,
-/turf/open/floor/mineral/plastitanium/red,
+/mob/living/simple_animal/hostile/syndicate/melee{
+	deathmessage = "\[src] falls limp as they release their grip from the energy weapons, activating their self-destruct function!";
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier)
+	},
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate3)
 "eg" = (
 /obj/structure/closet/crate{
@@ -1008,26 +1289,33 @@
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "eh" = (
-/mob/living/simple_animal/hostile/syndicate/melee/spacebattle,
-/turf/open/floor/mineral/plastitanium/red,
+/mob/living/simple_animal/hostile/syndicate/melee{
+	deathmessage = "\[src] falls limp as they release their grip from the energy weapons, activating their self-destruct function!";
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier)
+	},
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "ei" = (
 /obj/structure/closet/l3closet/security,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
+/turf/open/floor/plasteel/red/side{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "ej" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/turf_decal/stripes/line{
+/turf/open/floor/plasteel/warning{
 	dir = 6
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "ek" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end,
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "el" = (
@@ -1055,14 +1343,26 @@
 /obj/structure/chair{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/awaymission/spacebattle/cruiser)
+"eq" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate4)
 "er" = (
-/turf/closed/wall/mineral/plastitanium,
+/turf/closed/wall/shuttle{
+	icon_state = "wall3"
+	},
+/area/awaymission/spacebattle/syndicate4)
+"es" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/syndicate4)
 "et" = (
 /obj/machinery/gateway{
@@ -1082,23 +1382,19 @@
 /area/awaymission/spacebattle/cruiser)
 "ew" = (
 /obj/structure/chair,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate3)
 "ex" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
+/turf/open/floor/plasteel/red/side{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "ey" = (
 /obj/effect/mob_spawn/human/bridgeofficer{
 	mob_name = "Davis Hume";
 	name = "Davis Hume"
 	},
-/obj/item/gun/ballistic/shotgun/automatic/combat,
+/obj/item/weapon/gun/projectile/shotgun/automatic/combat,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "ez" = (
@@ -1106,49 +1402,49 @@
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "eA" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/spacebattle,
-/turf/open/floor/mineral/plastitanium/red,
+/mob/living/simple_animal/hostile/syndicate/ranged{
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier,/obj/item/weapon/gun/projectile/automatic/c20r,/obj/item/weapon/shield/energy)
+	},
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
+"eB" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall3";
+	dir = 2
+	},
+/area/awaymission/spacebattle/cruiser)
 "eC" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
+/turf/open/floor/plasteel/blue/side{
+	dir = 9
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "eD" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "eE" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue,
+/area/awaymission/spacebattle/cruiser)
+"eF" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "eG" = (
 /obj/structure/chair,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate1)
 "eH" = (
 /obj/effect/mob_spawn/human/engineer/rig{
@@ -1159,24 +1455,31 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
+"eI" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall13";
+	dir = 2
+	},
+/area/awaymission/spacebattle/cruiser)
+"eJ" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swallc4"
+	},
+/area/awaymission/spacebattle/cruiser)
 "eK" = (
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate4)
 "eL" = (
 /obj/machinery/computer/shuttle,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate4)
 "eM" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/side{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "eN" = (
-/obj/item/shield/energy,
+/obj/item/weapon/shield/energy,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "eO" = (
@@ -1186,31 +1489,29 @@
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "eP" = (
-/obj/machinery/computer/med_data{
+/obj/machinery/computer/med_data,
+/turf/open/floor/plasteel/blue,
+/area/awaymission/spacebattle/cruiser)
+"eQ" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "eR" = (
 /obj/machinery/sleeper,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate4)
 "eS" = (
 /obj/structure/chair{
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate4)
 "eT" = (
 /obj/structure/closet/crate,
@@ -1218,25 +1519,17 @@
 /area/awaymission/spacebattle/cruiser)
 "eU" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/saltshaker,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/obj/item/weapon/reagent_containers/food/condiment/saltshaker,
+/turf/open/floor/plasteel/bar,
 /area/awaymission/spacebattle/cruiser)
 "eV" = (
 /obj/structure/table/reinforced,
-/obj/item/kitchen/fork,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/obj/item/weapon/kitchen/fork,
+/turf/open/floor/plasteel/bar,
 /area/awaymission/spacebattle/cruiser)
 "eW" = (
 /obj/effect/mob_spawn/human/syndicatesoldier,
-/obj/item/melee/transforming/energy/sword/saber/red,
+/obj/item/weapon/melee/energy/sword/saber/red,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
@@ -1245,7 +1538,7 @@
 	mob_name = "Kurt Kliest";
 	name = "Kurt Kliest"
 	},
-/obj/item/gun/ballistic/shotgun/automatic/combat,
+/obj/item/weapon/gun/projectile/shotgun/automatic/combat,
 /obj/item/ammo_casing/shotgun,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
@@ -1255,20 +1548,8 @@
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "eZ" = (
-/obj/machinery/computer/crew{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/obj/machinery/computer/crew,
+/turf/open/floor/plasteel/blue,
 /area/awaymission/spacebattle/cruiser)
 "fa" = (
 /obj/effect/mob_spawn/human/engineer/rig{
@@ -1285,40 +1566,32 @@
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "fc" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
+/turf/open/floor/plasteel/red/side{
+	dir = 10
 	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fd" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/red/side,
 /area/awaymission/spacebattle/cruiser)
 "fe" = (
 /obj/structure/chair{
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/cruiser)
 "ff" = (
 /obj/machinery/button/door{
 	dir = 2;
 	id = "spacebattlestorage";
 	name = "Secure Storage";
-	pixel_x = 32
+	pixel_x = 32;
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fg" = (
-/obj/item/hand_labeler,
+/obj/item/weapon/hand_labeler,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "fh" = (
@@ -1333,77 +1606,73 @@
 	dir = 8
 	},
 /mob/living/simple_animal/hostile/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/cruiser)
 "fj" = (
 /obj/machinery/computer/security/telescreen,
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/shuttle,
+/area/awaymission/spacebattle/cruiser)
+"fk" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall_s9";
+	dir = 2
+	},
 /area/awaymission/spacebattle/cruiser)
 "fl" = (
 /obj/machinery/door/airlock/external,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate4)
 "fm" = (
-/mob/living/simple_animal/hostile/syndicate/melee/sword,
+/mob/living/simple_animal/hostile/syndicate/melee{
+	deathmessage = "\[src] falls limp as they release their grip from the energy weapons, activating their self-destruct function!";
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier)
+	},
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fn" = (
 /obj/structure/closet/crate,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/obj/item/light/tube,
+/obj/item/weapon/light/tube,
+/obj/item/weapon/light/tube,
+/obj/item/weapon/light/tube,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "fo" = (
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fp" = (
 /obj/effect/mob_spawn/human/syndicatesoldier,
-/obj/item/gun/ballistic/automatic/c20r,
+/obj/item/weapon/gun/projectile/automatic/c20r,
 /obj/item/ammo_casing/c10mm,
 /obj/item/ammo_casing/c10mm,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fq" = (
 /obj/item/ammo_casing/c10mm,
 /obj/item/ammo_casing/c10mm,
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fr" = (
 /obj/effect/mob_spawn/human/nanotrasensoldier,
-/obj/item/gun/ballistic/automatic/wt550,
+/obj/item/weapon/gun/projectile/automatic/wt550,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fs" = (
 /obj/item/ammo_casing/shotgun,
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/corner{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "ft" = (
 /obj/item/ammo_casing/a357,
 /obj/item/ammo_casing/a357,
-/obj/item/gun/ballistic/revolver/mateba,
+/obj/item/weapon/gun/projectile/revolver/mateba,
 /obj/effect/mob_spawn/human/commander{
 	mob_name = "Aaron Bowden";
 	name = "Aaron Bowden"
@@ -1419,20 +1688,8 @@
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fv" = (
-/obj/machinery/computer/shuttle{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/obj/machinery/computer/shuttle,
+/turf/open/floor/plasteel/blue,
 /area/awaymission/spacebattle/cruiser)
 "fw" = (
 /obj/structure/artilleryplaceholder{
@@ -1507,26 +1764,24 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
 "fI" = (
-/obj/effect/landmark/awaystart,
+/obj/effect/landmark{
+	name = "awaystart"
+	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 2
 	},
 /area/awaymission/spacebattle/cruiser)
 "fJ" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/turf/open/floor/plasteel/blue/side{
+	dir = 0
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fK" = (
 /obj/item/ammo_casing/c10mm,
 /obj/item/ammo_casing/c10mm,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/turf/open/floor/plasteel/blue/side{
+	dir = 0
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fL" = (
 /obj/item/stack/sheet/metal,
@@ -1536,46 +1791,29 @@
 /area/awaymission/spacebattle/cruiser)
 "fM" = (
 /obj/item/ammo_casing/shotgun,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/turf/open/floor/plasteel/blue/side{
+	dir = 0
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fN" = (
 /obj/effect/mob_spawn/human/syndicatesoldier,
-/obj/item/gun/ballistic/automatic/c20r,
+/obj/item/weapon/gun/projectile/automatic/c20r,
 /obj/item/ammo_casing/c10mm,
 /obj/item/ammo_casing/c10mm,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/turf/open/floor/plasteel/blue/side{
+	dir = 0
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fO" = (
 /obj/item/ammo_casing/c10mm,
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/corner{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "fP" = (
-/obj/machinery/computer/communications{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/obj/machinery/computer/communications,
+/turf/open/floor/plasteel/blue,
 /area/awaymission/spacebattle/cruiser)
 "fQ" = (
 /obj/structure/artilleryplaceholder{
@@ -1651,7 +1889,7 @@
 /area/awaymission/spacebattle/cruiser)
 "gc" = (
 /obj/structure/closet/crate,
-/obj/item/poster/random_contraband,
+/obj/item/weapon/poster/contraband,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "gd" = (
@@ -1737,8 +1975,8 @@
 /area/awaymission/spacebattle/cruiser)
 "gq" = (
 /obj/structure/closet/crate,
-/obj/item/lipstick/black,
-/obj/item/lipstick/jade,
+/obj/item/weapon/lipstick/black,
+/obj/item/weapon/lipstick/jade,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "gr" = (
@@ -1746,7 +1984,8 @@
 	dir = 2;
 	id = "spacebattlestorage";
 	name = "Secure Storage";
-	pixel_x = 24
+	pixel_x = 24;
+	pixel_y = 0
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
@@ -1758,29 +1997,29 @@
 /area/awaymission/spacebattle/cruiser)
 "gt" = (
 /obj/structure/table/reinforced,
-/obj/item/scalpel,
-/obj/item/circular_saw,
+/obj/item/weapon/scalpel,
+/obj/item/weapon/circular_saw,
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
 /area/awaymission/spacebattle/cruiser)
 "gu" = (
 /obj/structure/table/reinforced,
-/obj/item/retractor,
+/obj/item/weapon/retractor,
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
 /area/awaymission/spacebattle/cruiser)
 "gv" = (
 /obj/structure/table/reinforced,
-/obj/item/hemostat,
+/obj/item/weapon/hemostat,
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
 /area/awaymission/spacebattle/cruiser)
 "gw" = (
 /obj/structure/table/reinforced,
-/obj/item/scalpel,
+/obj/item/weapon/scalpel,
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
@@ -1793,12 +2032,25 @@
 /turf/open/floor/wood,
 /area/awaymission/spacebattle/cruiser)
 "gz" = (
-/obj/item/gun/ballistic/shotgun/automatic/combat,
+/obj/item/weapon/gun/projectile/shotgun/automatic/combat,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
+"gA" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate4)
+"gB" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate4)
 "gC" = (
 /obj/structure/closet/crate/secure/weapon,
-/obj/item/gun/energy/laser,
+/obj/item/weapon/gun/energy/laser,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "gD" = (
@@ -1806,6 +2058,12 @@
 /obj/item/stack/spacecash/c10,
 /obj/item/stack/spacecash/c10,
 /turf/open/floor/plating,
+/area/awaymission/spacebattle/cruiser)
+"gE" = (
+/obj/effect/decal/cleanable/blood,
+/turf/closed/wall/shuttle{
+	icon_state = "swall3"
+	},
 /area/awaymission/spacebattle/cruiser)
 "gF" = (
 /obj/effect/mob_spawn/human/doctor{
@@ -1828,27 +2086,15 @@
 /area/awaymission/spacebattle/cruiser)
 "gJ" = (
 /mob/living/simple_animal/hostile/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/cruiser)
 "gK" = (
-/obj/machinery/computer/security{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/obj/machinery/computer/security,
+/turf/open/floor/plasteel/blue,
 /area/awaymission/spacebattle/cruiser)
 "gL" = (
 /obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
+/obj/item/device/flashlight/lamp/green,
 /turf/open/floor/wood,
 /area/awaymission/spacebattle/cruiser)
 "gM" = (
@@ -1856,20 +2102,8 @@
 /turf/open/floor/wood,
 /area/awaymission/spacebattle/cruiser)
 "gN" = (
-/obj/machinery/computer/secure_data{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/obj/machinery/computer/secure_data,
+/turf/open/floor/plasteel/blue,
 /area/awaymission/spacebattle/cruiser)
 "gO" = (
 /obj/effect/mob_spawn/human/engineer/rig{
@@ -1882,10 +2116,17 @@
 "gP" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	emagged = 1;
+	installation = /obj/item/weapon/gun/energy/lasercannon
 	},
 /turf/open/floor/plating/airless,
+/area/awaymission/spacebattle/syndicate7)
+"gQ" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/syndicate7)
 "gR" = (
 /obj/structure/shuttle/engine/heater,
@@ -1899,11 +2140,11 @@
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "gT" = (
-/obj/item/stack/ore/bananium,
-/obj/item/stack/ore/bananium,
-/obj/item/stack/ore/bananium,
-/obj/item/stack/ore/bananium,
-/obj/item/stack/ore/bananium,
+/obj/item/weapon/ore/bananium,
+/obj/item/weapon/ore/bananium,
+/obj/item/weapon/ore/bananium,
+/obj/item/weapon/ore/bananium,
+/obj/item/weapon/ore/bananium,
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
@@ -1931,47 +2172,56 @@
 /area/awaymission/spacebattle/cruiser)
 "gY" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
+/turf/open/floor/plasteel/blue/side{
+	dir = 10
 	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "gZ" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/turf/open/floor/plasteel/blue/side{
+	dir = 0
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "ha" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
+"hb" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate7)
 "hc" = (
-/turf/closed/wall/mineral/plastitanium,
+/turf/closed/wall/shuttle{
+	icon_state = "wall3"
+	},
 /area/awaymission/spacebattle/syndicate7)
 "hd" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate4)
 "he" = (
-/obj/item/pickaxe,
-/obj/item/gun/energy/plasmacutter,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/gun/energy/plasmacutter,
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "hf" = (
-/obj/item/circular_saw,
+/obj/item/weapon/circular_saw,
 /turf/open/floor/plasteel/white,
 /area/awaymission/spacebattle/cruiser)
 "hg" = (
 /obj/structure/table/wood,
-/obj/item/paper_bin,
+/obj/item/weapon/paper_bin,
 /turf/open/floor/wood,
 /area/awaymission/spacebattle/cruiser)
 "hh" = (
@@ -1985,20 +2235,28 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
 "hi" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end{
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/syndicate7)
 "hj" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate7)
 "hk" = (
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate7)
 "hl" = (
 /obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
 	dir = 4
 	},
 /obj/structure/window/reinforced{
@@ -2007,8 +2265,9 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/syndicate7)
 "hm" = (
-/obj/structure/shuttle/engine/propulsion/right{
-	dir = 4
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_r";
+	dir = 8
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate7)
@@ -2022,7 +2281,7 @@
 /area/awaymission/spacebattle/cruiser)
 "hp" = (
 /obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/fire,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "hq" = (
@@ -2033,10 +2292,9 @@
 /area/awaymission/spacebattle/cruiser)
 "hr" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/turf_decal/stripes/line{
+/turf/open/floor/plasteel/warning{
 	dir = 5
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "hs" = (
 /obj/structure/girder,
@@ -2046,14 +2304,19 @@
 /turf/closed/wall/r_wall,
 /area/awaymission/spacebattle/cruiser)
 "hu" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle{
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/syndicate7)
 "hv" = (
-/obj/structure/shuttle/engine/propulsion/left{
-	dir = 4
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l";
+	dir = 8
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate7)
@@ -2064,16 +2327,16 @@
 /area/awaymission/spacebattle/cruiser)
 "hx" = (
 /obj/structure/closet/crate,
-/obj/item/paint/anycolor,
+/obj/item/weapon/paint/anycolor,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "hy" = (
 /obj/machinery/computer/mech_bay_power_console,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/cruiser)
 "hz" = (
 /obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/regular,
+/obj/item/weapon/storage/firstaid/regular,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "hA" = (
@@ -2086,21 +2349,19 @@
 /area/awaymission/spacebattle/cruiser)
 "hC" = (
 /obj/structure/chair,
-/obj/effect/landmark/awaystart,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
+/obj/effect/landmark{
+	name = "awaystart"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/awaymission/spacebattle/cruiser)
 "hD" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/firstaid/regular,
+/obj/item/weapon/storage/firstaid/regular,
 /turf/open/floor/plasteel/white,
 /area/awaymission/spacebattle/cruiser)
 "hE" = (
 /obj/structure/table/wood,
-/obj/item/instrument/violin,
+/obj/item/device/instrument/violin,
 /turf/open/floor/wood,
 /area/awaymission/spacebattle/cruiser)
 "hF" = (
@@ -2109,13 +2370,26 @@
 	icon_state = "damaged3"
 	},
 /area/awaymission/spacebattle/cruiser)
+"hG" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate7)
+"hH" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall14";
+	dir = 2
+	},
+/area/awaymission/spacebattle/cruiser)
 "hI" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/awaymission/spacebattle/cruiser)
 "hJ" = (
 /obj/structure/bed,
-/obj/item/bedsheet/captain,
+/obj/item/weapon/bedsheet/captain,
 /turf/open/floor/wood,
 /area/awaymission/spacebattle/cruiser)
 "hK" = (
@@ -2131,10 +2405,9 @@
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "hM" = (
-/obj/effect/turf_decal/stripes/line{
+/turf/open/floor/plasteel/warning{
 	dir = 6
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "hN" = (
 /obj/structure/rack,
@@ -2160,29 +2433,33 @@
 	icon_state = "damaged4"
 	},
 /area/awaymission/spacebattle/cruiser)
-"hS" = (
-/obj/machinery/computer/shuttle{
-	dir = 4
+"hR" = (
+/mob/living/simple_animal/hostile/syndicate/ranged{
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier,/obj/item/weapon/gun/projectile/automatic/c20r,/obj/item/weapon/shield/energy)
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel,
+/area/awaymission/spacebattle/cruiser)
+"hS" = (
+/obj/machinery/computer/shuttle,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate7)
 "hT" = (
 /obj/structure/chair{
 	dir = 8
 	},
 /mob/living/simple_animal/hostile/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate7)
 "hU" = (
 /obj/machinery/door/airlock/external,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate7)
 "hV" = (
 /obj/machinery/shower{
 	icon_state = "shower";
 	dir = 4
 	},
-/obj/item/bikehorn/rubberducky,
+/obj/item/weapon/bikehorn/rubberducky,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/spacebattle/cruiser)
 "hW" = (
@@ -2201,20 +2478,30 @@
 /area/awaymission/spacebattle/cruiser)
 "hZ" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/fire,
 /turf/open/floor/plasteel/white,
+/area/awaymission/spacebattle/cruiser)
+"ia" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall_s9"
+	},
 /area/awaymission/spacebattle/cruiser)
 "ib" = (
 /obj/machinery/door/unpowered/shuttle,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/spacebattle/cruiser)
+"ic" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall1"
+	},
+/area/awaymission/spacebattle/cruiser)
 "id" = (
-/obj/item/storage/firstaid/regular,
+/obj/item/weapon/storage/firstaid/regular,
 /turf/open/floor/plasteel/white,
 /area/awaymission/spacebattle/cruiser)
 "ie" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/firstaid/o2,
+/obj/item/weapon/storage/firstaid/o2,
 /turf/open/floor/plasteel/white,
 /area/awaymission/spacebattle/cruiser)
 "if" = (
@@ -2229,7 +2516,7 @@
 	icon_state = "shower";
 	dir = 8
 	},
-/obj/item/soap,
+/obj/item/weapon/soap,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/spacebattle/cruiser)
 "ih" = (
@@ -2237,8 +2524,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/gun/energy/laser,
-/obj/item/gun/energy/laser,
+/obj/item/weapon/gun/energy/laser,
+/obj/item/weapon/gun/energy/laser,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "ii" = (
@@ -2272,10 +2559,18 @@
 /obj/machinery/sleep_console,
 /turf/open/floor/plasteel/white,
 /area/awaymission/spacebattle/cruiser)
+"in" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate7)
 "io" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/spacebattle/cruiser)
@@ -2301,24 +2596,25 @@
 	mob_name = "Cyrion";
 	name = "Cyrion"
 	},
-/obj/item/flamethrower/full,
+/obj/item/weapon/flamethrower/full,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "it" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/smg,
+/mob/living/simple_animal/hostile/syndicate/ranged,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "iu" = (
 /obj/effect/mob_spawn/human/syndicatesoldier,
-/obj/item/gun/ballistic/automatic/c20r,
+/obj/item/weapon/gun/projectile/automatic/c20r,
 /turf/open/floor/plasteel{
 	icon_state = "damaged2"
 	},
 /area/awaymission/spacebattle/cruiser)
 "iv" = (
-/obj/structure/shuttle/engine/propulsion/burst/right{
-	dir = 8
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_r";
+	dir = 4
 	},
 /turf/open/space,
 /area/awaymission/spacebattle/cruiser)
@@ -2333,56 +2629,109 @@
 "ix" = (
 /obj/structure/lattice,
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "iy" = (
 /obj/effect/mob_spawn/human/syndicatesoldier,
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "iz" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/space/nearstation)
+/turf/closed/wall/shuttle{
+	icon_state = "wall3"
+	},
+/area/space)
+"iA" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
 "iB" = (
 /obj/machinery/sleeper,
-/turf/open/floor/mineral/plastitanium/red/airless,
-/area/space/nearstation)
+/turf/open/floor/plasteel/airless/shuttle/red{
+	dir = 10
+	},
+/area/space)
 "iC" = (
-/turf/open/floor/mineral/plastitanium/red/airless,
-/area/space/nearstation)
+/turf/open/floor/plasteel/airless/shuttle/red{
+	dir = 10
+	},
+/area/space)
 "iD" = (
 /obj/effect/mob_spawn/human/syndicatesoldier,
-/turf/open/floor/mineral/plastitanium/red/airless,
-/area/space/nearstation)
+/turf/open/floor/plasteel/airless/shuttle/red{
+	dir = 10
+	},
+/area/space)
 "iE" = (
-/turf/closed/mineral/bananium,
-/area/space/nearstation)
+/turf/closed/mineral/clown,
+/area/space)
 "iF" = (
 /obj/machinery/door/airlock/external,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
+/turf/open/floor/plasteel/airless{
+	icon_state = "floor4";
+	dir = 10
+	},
+/area/space)
 "iG" = (
 /obj/item/stack/rods,
-/turf/open/floor/mineral/plastitanium/red/airless,
-/area/space/nearstation)
-"iI" = (
-/turf/closed/wall/mineral/plastitanium,
+/turf/open/floor/plasteel/airless/shuttle/red{
+	dir = 10
+	},
+/area/space)
+"iH" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/syndicate5)
+"iI" = (
+/turf/closed/wall/shuttle{
+	icon_state = "wall3"
+	},
+/area/awaymission/spacebattle/syndicate5)
+"iJ" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate5)
+"iK" = (
+/obj/machinery/sleeper,
+/turf/open/floor/plasteel/airless,
+/area/space)
 "iL" = (
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate5)
 "iM" = (
 /obj/machinery/computer/shuttle,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate5)
+"iN" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/space)
+"iO" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
 "iP" = (
 /obj/machinery/sleeper,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate5)
 "iQ" = (
 /obj/structure/chair{
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate5)
 "iR" = (
 /obj/structure/shuttle/engine/heater,
@@ -2390,14 +2739,27 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/space)
 "iS" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "iT" = (
 /obj/machinery/door/airlock/external,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/area/awaymission/spacebattle/syndicate5)
+"iU" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate5)
+"iV" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/syndicate5)
 "iW" = (
 /obj/structure/shuttle/engine/heater,
@@ -2410,30 +2772,59 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/space,
 /area/awaymission/spacebattle/syndicate5)
+"iY" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate6)
 "iZ" = (
-/turf/closed/wall/mineral/plastitanium,
+/turf/closed/wall/shuttle{
+	icon_state = "wall3"
+	},
+/area/awaymission/spacebattle/syndicate6)
+"ja" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/syndicate6)
 "jb" = (
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate6)
 "jc" = (
 /obj/machinery/computer/shuttle,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate6)
 "jd" = (
 /obj/machinery/sleeper,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate6)
 "je" = (
 /obj/structure/chair{
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/syndicate,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
 /area/awaymission/spacebattle/syndicate6)
 "jf" = (
 /obj/machinery/door/airlock/external,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/shuttle/red/syndicate,
+/area/awaymission/spacebattle/syndicate6)
+"jg" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/awaymission/spacebattle/syndicate6)
+"jh" = (
+/turf/open/space,
+/turf/closed/wall/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
 /area/awaymission/spacebattle/syndicate6)
 "ji" = (
 /obj/structure/shuttle/engine/heater,
@@ -2448,7 +2839,7 @@
 /area/awaymission/spacebattle/syndicate6)
 "jk" = (
 /turf/open/floor/plating/asteroid/airless,
-/area/space/nearstation)
+/area/space)
 "jl" = (
 /turf/closed/wall/mineral/plasma,
 /area/awaymission/spacebattle/secret)
@@ -2471,27 +2862,30 @@
 /obj/structure/closet/crate{
 	name = "Gold Crate"
 	},
-/obj/item/gun/medbeam/mech,
+/obj/item/weapon/gun/medbeam/mech,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "jr" = (
-/mob/living/simple_animal/hostile/syndicate/melee/sword/space,
+/mob/living/simple_animal/hostile/syndicate/melee/space{
+	deathmessage = "\[src] falls limp as they release their grip from the energy weapons, activating their self-destruct function!";
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatecommando)
+	},
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
 "js" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/automatic/laser,
+/obj/item/weapon/gun/projectile/automatic/laser,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "jt" = (
 /obj/structure/rack,
-/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/weapon/gun/energy/gun/advtaser,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "ju" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced,
-/obj/item/gun/energy/laser,
+/obj/item/weapon/gun/energy/laser,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "jv" = (
@@ -2503,45 +2897,39 @@
 /obj/machinery/button/door{
 	dir = 2;
 	id = "spacebattlearmory";
-	name = "Weapon Cache"
+	name = "Weapon Cache";
+	pixel_x = 0;
+	pixel_y = 0
 	},
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "jx" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
 	dir = 2;
 	id = "spacebattlearmory2";
-	name = "Weapon Cache"
+	name = "Weapon Cache";
+	pixel_x = 0;
+	pixel_y = 0
 	},
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "jy" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
 	dir = 2;
 	id = "spacebattlearmory1";
-	name = "Weapon Cache"
+	name = "Weapon Cache";
+	pixel_x = 0;
+	pixel_y = 0
 	},
-/obj/effect/turf_decal/tile/blue{
+/turf/open/floor/plasteel/blue/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "jz" = (
 /mob/living/simple_animal/hostile/syndicate/mecha_pilot{
@@ -2556,19 +2944,17 @@
 "jB" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced,
-/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/weapon/gun/energy/gun/advtaser,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "jC" = (
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/effect/landmark/awaystart,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
+/obj/effect/landmark{
+	name = "awaystart"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/bar,
 /area/awaymission/spacebattle/cruiser)
 "jD" = (
 /obj/structure/barricade/security,
@@ -2607,6 +2993,15 @@
 /obj/effect/spawner/lootdrop/armory_contraband,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
+"jK" = (
+/mob/living/simple_animal/hostile/syndicate/melee{
+	deathmessage = "\[src] falls limp as they release their grip from the energy weapons, activating their self-destruct function!";
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier)
+	},
+/turf/open/floor/plasteel/blue/side{
+	dir = 8
+	},
+/area/awaymission/spacebattle/cruiser)
 "jL" = (
 /obj/machinery/door/poddoor{
 	id = "spacebattlearmory";
@@ -2619,7 +3014,7 @@
 	mob_name = "Walter Strider";
 	name = "Walter Strider"
 	},
-/obj/item/gun/ballistic/shotgun/automatic/combat,
+/obj/item/weapon/gun/projectile/shotgun/automatic/combat,
 /obj/item/ammo_casing/c10mm,
 /obj/item/ammo_casing/c10mm,
 /obj/effect/decal/cleanable/blood,
@@ -2637,15 +3032,13 @@
 /obj/item/ammo_casing/c10mm,
 /obj/item/ammo_casing/c10mm,
 /obj/item/stack/sheet/metal,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/turf/open/floor/plasteel/blue/side{
+	dir = 0
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "jP" = (
 /obj/structure/closet/crate/internals,
-/obj/item/storage/firstaid/o2,
+/obj/item/weapon/storage/firstaid/o2,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "jQ" = (
@@ -2667,7 +3060,9 @@
 /turf/open/floor/plasteel/airless,
 /area/awaymission/spacebattle/cruiser)
 "jU" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/space,
+/mob/living/simple_animal/hostile/syndicate/ranged/space{
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatecommando,/obj/item/weapon/gun/projectile/automatic/c20r)
+	},
 /turf/open/floor/plasteel/airless,
 /area/awaymission/spacebattle/cruiser)
 "jV" = (
@@ -2687,18 +3082,20 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/gun/energy/pulse/pistol/loyalpin,
-/obj/item/gun/energy/pulse/pistol/loyalpin,
+/obj/item/weapon/gun/energy/pulse/pistol/loyalpin,
+/obj/item/weapon/gun/energy/pulse/pistol/loyalpin,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "jY" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/space,
+/mob/living/simple_animal/hostile/syndicate/ranged/space{
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatecommando,/obj/item/weapon/gun/projectile/automatic/c20r)
+	},
 /turf/open/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
 "jZ" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/automatic/laser,
-/obj/item/gun/ballistic/automatic/laser,
+/obj/item/weapon/gun/projectile/automatic/laser,
+/obj/item/weapon/gun/projectile/automatic/laser,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "ka" = (
@@ -2711,7 +3108,7 @@
 /area/awaymission/spacebattle/cruiser)
 "kc" = (
 /obj/structure/rack,
-/obj/item/gun/energy/laser/scatter,
+/obj/item/weapon/gun/energy/laser/scatter,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "kd" = (
@@ -2724,7 +3121,7 @@
 "kf" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced,
-/obj/item/gun/energy/laser/scatter,
+/obj/item/weapon/gun/energy/laser/scatter,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "kg" = (
@@ -2737,8 +3134,15 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/spacebattle/cruiser)
 "ki" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end{
+/obj/structure/grille,
+/obj/structure/window/reinforced{
 	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
 /area/awaymission/spacebattle/cruiser)
@@ -2746,12 +3150,12 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/awaymission/spacebattle/cruiser)
 "kk" = (
-/obj/item/shard,
+/obj/item/weapon/shard,
 /turf/open/floor/engine/vacuum,
 /area/awaymission/spacebattle/cruiser)
 "kl" = (
 /obj/effect/mob_spawn/human/nanotrasensoldier,
-/obj/item/gun/ballistic/automatic/wt550,
+/obj/item/weapon/gun/projectile/automatic/wt550,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
@@ -2764,32 +3168,48 @@
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "kn" = (
-/obj/machinery/computer/mech_bay_power_console{
+/obj/machinery/computer/mech_bay_power_console,
+/turf/open/floor/plating,
+/area/awaymission/spacebattle/cruiser)
+"ko" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/engine/vacuum,
 /area/awaymission/spacebattle/cruiser)
 "kp" = (
 /obj/structure/rack,
-/obj/item/gun/energy/xray,
+/obj/item/weapon/gun/energy/xray,
 /turf/open/floor/engine,
 /area/awaymission/spacebattle/cruiser)
 "kq" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	emagged = 1;
+	installation = /obj/item/weapon/gun/energy/lasercannon
 	},
 /turf/open/floor/engine/vacuum,
 /area/awaymission/spacebattle/cruiser)
 "kr" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle{
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
 /area/awaymission/spacebattle/cruiser)
 "ks" = (
 /obj/machinery/mech_bay_recharge_port{
+	tag = "icon-recharge_port";
 	icon_state = "recharge_port";
 	dir = 2
 	},
@@ -2800,21 +3220,30 @@
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "ku" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/smg,
+/mob/living/simple_animal/hostile/syndicate/ranged{
+	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier,/obj/item/weapon/gun/projectile/automatic/c20r,/obj/item/weapon/shield/energy)
+	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/spacebattle/cruiser)
 "kv" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle,
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/engine/vacuum,
 /area/awaymission/spacebattle/cruiser)
 "kw" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/directional{
-	dir = 10
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/engine/vacuum,
 /area/awaymission/spacebattle/cruiser)
 "kx" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/directional,
+/obj/structure/grille,
+/obj/structure/window/reinforced,
 /turf/open/floor/engine/vacuum,
 /area/awaymission/spacebattle/cruiser)
 "ky" = (
@@ -2822,8 +3251,10 @@
 /turf/open/floor/engine/vacuum,
 /area/awaymission/spacebattle/cruiser)
 "kz" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/directional{
-	dir = 6
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
 /area/awaymission/spacebattle/cruiser)
@@ -2836,38 +3267,39 @@
 /area/awaymission/spacebattle/cruiser)
 "kB" = (
 /obj/structure/rack,
-/obj/item/storage/toolbox/electrical,
+/obj/item/weapon/storage/toolbox/electrical,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "kC" = (
 /obj/structure/rack,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/storage/toolbox/electrical,
+/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/weapon/storage/toolbox/electrical,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "kD" = (
 /obj/structure/rack,
-/obj/item/storage/toolbox/mechanical,
+/obj/item/weapon/storage/toolbox/mechanical,
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "kE" = (
-/obj/item/shard,
+/obj/item/weapon/shard,
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "kF" = (
 /obj/item/stack/rods,
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "kG" = (
 /obj/item/ammo_casing/c10mm,
 /obj/item/ammo_casing/c10mm,
 /obj/item/ammo_casing/c10mm,
 /obj/item/ammo_casing/c10mm,
-/mob/living/simple_animal/hostile/syndicate/ranged/smg,
+/mob/living/simple_animal/hostile/syndicate/ranged,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/spacebattle/cruiser)
 "kH" = (
 /obj/machinery/mech_bay_recharge_port{
+	tag = "icon-recharge_port (NORTH)";
 	icon_state = "recharge_port";
 	dir = 1
 	},
@@ -2876,45 +3308,24 @@
 "kI" = (
 /obj/item/stack/sheet/metal,
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "kJ" = (
-/obj/item/shard,
+/obj/item/weapon/shard,
 /obj/structure/lattice,
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "kK" = (
 /obj/structure/lattice,
 /obj/item/stack/rods,
 /turf/open/space,
-/area/space/nearstation)
+/area/space)
 "kL" = (
 /obj/structure/closet/crate,
-/obj/item/stock_parts/cell/high,
-/obj/item/stock_parts/cell/high,
+/obj/item/weapon/stock_parts/cell/high,
+/obj/item/weapon/stock_parts/cell/high,
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion,
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
-"vw" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/awaymission/spacebattle/syndicate5)
-"zS" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/awaymission/spacebattle/syndicate6)
-"BO" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/awaymission/spacebattle/syndicate2)
-"Dv" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/awaymission/spacebattle/syndicate3)
-"UZ" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/awaymission/spacebattle/syndicate1)
-"Wv" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/awaymission/spacebattle/cruiser)
-"Yq" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/awaymission/spacebattle/syndicate4)
 
 (1,1,1) = {"
 aa
@@ -15634,14 +16045,14 @@ ab
 ab
 ab
 ab
-er
+eq
 er
 er
 fl
 fl
 er
 er
-er
+gA
 ab
 ab
 ab
@@ -15890,16 +16301,16 @@ ab
 ab
 ab
 ab
+eq
 er
-Yq
 eK
 eK
 eK
 eK
 eK
 eR
-Yq
 er
+gA
 ab
 ab
 ab
@@ -16146,8 +16557,8 @@ ab
 ab
 ab
 ab
+eq
 er
-Yq
 eR
 eK
 eK
@@ -16156,8 +16567,8 @@ eK
 eK
 eK
 eR
-Yq
 er
+gA
 ab
 ab
 ab
@@ -16415,7 +16826,7 @@ eK
 eK
 eR
 er
-er
+gA
 ab
 ab
 ab
@@ -17700,7 +18111,7 @@ eK
 eK
 eR
 er
-er
+gB
 ab
 ab
 ab
@@ -17945,8 +18356,8 @@ ab
 ab
 ab
 ab
+es
 er
-Yq
 eR
 eK
 eK
@@ -17955,8 +18366,8 @@ eK
 eK
 eK
 eR
-Yq
 er
+gB
 ab
 ab
 ab
@@ -18203,16 +18614,16 @@ ab
 ab
 ab
 ab
+es
 er
-Yq
 eK
 eK
 eK
 eK
 eK
 eR
-Yq
 er
+gB
 ab
 ab
 ab
@@ -18461,14 +18872,14 @@ ab
 ab
 ab
 ab
-er
+es
 er
 er
 fl
 fl
 er
 er
-er
+gB
 ab
 ab
 ab
@@ -21208,7 +21619,7 @@ ab
 ab
 ab
 ab
-aU
+aO
 aU
 aU
 bb
@@ -21231,8 +21642,7 @@ aU
 aU
 aU
 aU
-aU
-aU
+bz
 ab
 ab
 ab
@@ -21327,14 +21737,15 @@ ab
 ab
 ab
 ab
-iI
+ab
+iH
 iI
 iI
 iT
 iT
 iI
 iI
-iI
+iU
 ab
 ab
 ab
@@ -21488,9 +21899,9 @@ bx
 aU
 bh
 bh
-UZ
 aU
 aU
+bz
 ab
 ab
 ab
@@ -21539,7 +21950,7 @@ cf
 cf
 cf
 df
-bS
+dt
 ab
 ab
 ab
@@ -21568,7 +21979,7 @@ cf
 cf
 cf
 iv
-bS
+dt
 ab
 ab
 ab
@@ -21583,16 +21994,16 @@ ab
 ab
 ab
 ab
+iH
 iI
-vw
 iL
 iL
 iL
 iL
 iL
 iP
-vw
 iI
+iU
 ab
 ab
 ab
@@ -21751,7 +22162,7 @@ aU
 aU
 aU
 aU
-aU
+bz
 ab
 ab
 ab
@@ -21796,7 +22207,7 @@ bY
 bY
 bY
 bY
-bT
+bV
 ab
 ab
 ab
@@ -21815,7 +22226,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 bY
 bY
 bY
@@ -21839,8 +22250,8 @@ ab
 ab
 ab
 ab
+iH
 iI
-vw
 iP
 iL
 iL
@@ -21849,8 +22260,8 @@ iL
 iL
 iL
 iP
-vw
 iI
+iU
 ab
 ab
 ab
@@ -22053,7 +22464,7 @@ cv
 cg
 cg
 cg
-bT
+bV
 ab
 ab
 ab
@@ -22072,7 +22483,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cg
 cg
 cg
@@ -22108,7 +22519,7 @@ iL
 iL
 iP
 iI
-iI
+iU
 ab
 ab
 ab
@@ -22260,13 +22671,13 @@ aU
 aY
 aY
 aY
-UZ
+bD
 aU
 aU
 aU
 aU
 aU
-aU
+bz
 ab
 ab
 ab
@@ -22310,7 +22721,7 @@ cc
 cc
 cQ
 cc
-bT
+bV
 ab
 ab
 ab
@@ -22329,7 +22740,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 cc
@@ -22559,7 +22970,7 @@ bM
 bM
 bM
 bM
-bM
+ch
 cc
 cp
 cc
@@ -22586,7 +22997,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 cc
@@ -22816,15 +23227,15 @@ bQ
 bO
 bO
 cb
-Wv
 bM
+cl
 cc
 cL
 cc
 cr
 cr
 cr
-bT
+bV
 ab
 ab
 ab
@@ -22843,7 +23254,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 cc
@@ -23031,7 +23442,7 @@ aY
 aY
 aY
 aY
-bb
+bE
 ab
 ab
 ab
@@ -23081,7 +23492,7 @@ cc
 cQ
 cc
 dh
-bT
+bV
 ab
 ab
 ab
@@ -23100,7 +23511,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 kB
 cc
 cc
@@ -23288,7 +23699,7 @@ aY
 aY
 aY
 aY
-bb
+bE
 ab
 ab
 ab
@@ -23338,7 +23749,7 @@ cc
 cc
 cc
 dh
-bT
+bV
 ab
 ab
 ab
@@ -23357,7 +23768,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 kD
 cc
 cc
@@ -23393,7 +23804,7 @@ iL
 iL
 iP
 iI
-iI
+iV
 ab
 ab
 ab
@@ -23585,17 +23996,17 @@ fi
 bR
 bR
 dN
+kj
 bO
-bO
-Wv
 bM
+co
 cx
 cN
 cM
 cc
 cc
 dh
-bT
+bV
 ab
 ab
 ab
@@ -23614,7 +24025,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 kC
 cc
 cc
@@ -23638,8 +24049,8 @@ ab
 ab
 ab
 ab
+iJ
 iI
-vw
 iP
 iL
 iL
@@ -23648,8 +24059,8 @@ iL
 iL
 iL
 iP
-vw
 iI
+iV
 ab
 ab
 ab
@@ -23844,7 +24255,7 @@ bM
 bM
 bM
 bM
-bM
+cj
 cp
 cc
 cN
@@ -23852,7 +24263,7 @@ cc
 cc
 cr
 di
-bT
+bV
 ab
 ab
 ab
@@ -23871,7 +24282,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 di
 cc
 cc
@@ -23896,16 +24307,16 @@ ab
 ab
 ab
 ab
+iJ
 iI
-vw
 iL
 iL
 iL
 iL
 iL
 iP
-vw
 iI
+iV
 ab
 ab
 ab
@@ -24059,13 +24470,13 @@ aU
 aY
 aY
 aY
-UZ
+bF
 aU
 aU
 aU
 aU
 aU
-aU
+bB
 ab
 ab
 ab
@@ -24109,7 +24520,7 @@ cc
 cS
 cc
 di
-bT
+bV
 ab
 ab
 ab
@@ -24128,7 +24539,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 di
 cc
 cc
@@ -24154,14 +24565,14 @@ ab
 ab
 ab
 ab
-iI
+iJ
 iI
 iI
 iT
 iT
 iI
 iI
-iI
+iV
 ab
 ab
 ab
@@ -24578,7 +24989,7 @@ aU
 aU
 aU
 aU
-aU
+bB
 ab
 ab
 ab
@@ -24829,9 +25240,9 @@ bf
 aU
 bh
 bh
-UZ
 aU
 aU
+bB
 ab
 ab
 ab
@@ -25063,7 +25474,7 @@ ab
 ab
 ab
 ab
-aU
+aS
 aU
 aU
 bb
@@ -25086,8 +25497,8 @@ aU
 aU
 aU
 aU
-aU
-aU
+bB
+ab
 ab
 ab
 ab
@@ -25676,7 +26087,7 @@ cc
 cc
 cc
 cc
-fm
+cX
 cM
 cN
 cN
@@ -26412,16 +26823,16 @@ ab
 ab
 ab
 ab
-bT
+bU
 cd
 cd
-bT
-bT
-bT
-bT
-bT
-bT
-bT
+cs
+ce
+ce
+ce
+ce
+ce
+ce
 ht
 ht
 ht
@@ -26442,16 +26853,16 @@ ht
 ht
 ht
 ht
-bT
-bT
-bT
-bT
-bT
-bT
-bT
+ce
+ce
+ce
+ce
+ce
+ce
+cs
 cd
 cd
-bT
+eI
 ab
 ab
 ab
@@ -27469,12 +27880,12 @@ ka
 ka
 hn
 hn
-bT
-bT
-bT
-bT
-du
-bT
+hH
+ce
+ce
+ce
+gE
+ic
 ib
 bT
 cc
@@ -27520,14 +27931,14 @@ ab
 ab
 ab
 ab
-iZ
+iY
 iZ
 iZ
 jf
 jf
 iZ
 iZ
-iZ
+jg
 ab
 ab
 ab
@@ -27776,16 +28187,16 @@ ab
 ab
 ab
 ab
+iY
 iZ
-zS
 jb
 jb
 jb
 jb
 jb
 jd
-zS
 iZ
+jg
 ab
 ab
 ab
@@ -27983,9 +28394,9 @@ cK
 cK
 ho
 ho
-bT
-bT
-bT
+hH
+ce
+ic
 hW
 hW
 hW
@@ -28032,8 +28443,8 @@ ab
 ab
 ab
 ab
+iY
 iZ
-zS
 jd
 jb
 jb
@@ -28042,8 +28453,8 @@ jb
 jb
 jb
 jd
-zS
 iZ
+jg
 ab
 ab
 ab
@@ -28301,7 +28712,7 @@ jb
 jb
 jd
 iZ
-iZ
+jg
 ab
 ab
 ab
@@ -28497,9 +28908,9 @@ cK
 cK
 eT
 hx
-bT
-bT
-bT
+hH
+ce
+ic
 hW
 hW
 hW
@@ -29011,9 +29422,9 @@ cK
 cK
 jJ
 eT
-bT
-bT
-bT
+hH
+ce
+ic
 hW
 hW
 hW
@@ -29525,9 +29936,9 @@ cK
 cK
 hp
 hz
-bT
-bT
-bT
+hH
+ce
+ic
 hW
 hW
 hW
@@ -29586,7 +29997,7 @@ jb
 jb
 jd
 iZ
-iZ
+jh
 ab
 ab
 ab
@@ -29831,8 +30242,8 @@ ab
 ab
 ab
 ab
+ja
 iZ
-zS
 jd
 jb
 jb
@@ -29841,8 +30252,8 @@ jb
 jb
 jb
 jd
-zS
 iZ
+jh
 ab
 ab
 ab
@@ -30010,43 +30421,43 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 ct
-bT
-bT
+ce
+ce
 cd
 cd
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
+ce
+ce
+dw
+ce
+ce
+ce
+ce
+ce
+ce
+ce
 fh
 fh
 fh
 fh
-bT
-du
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
+ce
+gE
+ce
+ce
+ce
+ce
+ce
+dw
+ce
+ce
 cd
 cd
-bT
-bT
-ct
+ce
+ce
+eJ
 cc
 cc
 bT
@@ -30089,16 +30500,16 @@ ab
 ab
 ab
 ab
+ja
 iZ
-zS
 jb
 jb
 jb
 jb
 jb
 jd
-zS
 iZ
+jh
 ab
 ab
 ab
@@ -30347,14 +30758,14 @@ ab
 ab
 ab
 ab
-iZ
+ja
 iZ
 iZ
 jf
 jf
 iZ
 iZ
-iZ
+jh
 ab
 ab
 ab
@@ -30781,43 +31192,43 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-ct
-bT
-bT
-bT
-bT
-bT
-bT
+cu
+ce
+ce
+ce
+cs
+ce
+ce
 cd
 cd
-bT
-bT
-bT
-bT
-bT
-bT
-ct
+ce
+ce
+ce
+ce
+ce
+ce
+cR
 cc
 cc
-ct
-bT
-bT
-bT
-bT
-bT
-bT
+cu
+ce
+ce
+ce
+ce
+ce
+ce
 hB
 hB
-bT
-bT
-bT
-bT
-bT
-bT
-ct
+ce
+ce
+ce
+ce
+ce
+ce
+cR
 cc
 cc
 bT
@@ -31038,10 +31449,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cC
 cP
 cP
@@ -31056,10 +31467,10 @@ da
 dQ
 dQ
 da
-bT
+bV
 cc
 cc
-bT
+bV
 gs
 gG
 gH
@@ -31074,10 +31485,10 @@ gH
 il
 gH
 ip
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -31295,10 +31706,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cD
 cP
 cP
@@ -31313,10 +31724,10 @@ dx
 dS
 eU
 ep
-bT
+bV
 cc
 cc
-bT
+bV
 gt
 gH
 gH
@@ -31331,10 +31742,10 @@ gH
 im
 gH
 iq
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -31552,10 +31963,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cE
 cP
 fI
@@ -31570,10 +31981,10 @@ dx
 dS
 dS
 ep
-bT
+bV
 cc
 cc
-bT
+bV
 gt
 gH
 gH
@@ -31588,10 +31999,10 @@ gH
 gH
 gH
 ir
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -31809,10 +32220,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cF
 cP
 cP
@@ -31827,10 +32238,10 @@ da
 jC
 jC
 da
-bT
+bV
 cc
 cc
-bT
+bV
 gu
 gH
 gH
@@ -31845,10 +32256,10 @@ gH
 il
 gH
 ip
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -32066,10 +32477,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cG
 cP
 cP
@@ -32084,10 +32495,10 @@ da
 dQ
 dQ
 da
-bT
+bV
 cc
 cc
-bT
+bV
 gv
 gH
 gH
@@ -32102,10 +32513,10 @@ gH
 im
 gH
 iq
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -32323,10 +32734,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cH
 cP
 cP
@@ -32341,10 +32752,10 @@ dx
 dR
 dS
 ep
-bT
+bV
 cc
 cc
-bT
+bV
 gw
 gH
 gH
@@ -32359,10 +32770,10 @@ ii
 gH
 gH
 ir
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -32580,10 +32991,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cI
 cP
 cP
@@ -32598,10 +33009,10 @@ dx
 dS
 eV
 ep
-bT
+bV
 cc
 cc
-bT
+bV
 gt
 gH
 gH
@@ -32616,10 +33027,10 @@ gW
 il
 gH
 ip
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -32837,10 +33248,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cI
 cP
 cP
@@ -32855,10 +33266,10 @@ da
 dT
 dT
 da
-bT
+bV
 cc
 cc
-bT
+bV
 gs
 gG
 gH
@@ -32873,10 +33284,10 @@ gH
 im
 gH
 iq
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -33094,46 +33505,46 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 ct
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-ct
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+eJ
 cc
 cc
 ct
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-ct
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+eJ
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -33351,7 +33762,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 cc
@@ -33390,7 +33801,7 @@ cc
 cc
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -33608,7 +34019,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 cc
@@ -33620,7 +34031,7 @@ cc
 cc
 cc
 cc
-it
+hR
 cc
 fL
 cn
@@ -33647,7 +34058,7 @@ cc
 cc
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -33865,46 +34276,46 @@ ab
 ab
 ab
 ab
-bS
-bT
-bT
-bT
+bW
+ce
+ce
+cs
 cJ
 cJ
-ct
+cR
 cc
 cc
-ct
-bT
-bT
-bT
-bT
-bT
+cu
+ce
+ce
+ce
+ce
+ce
 cK
 hs
-bT
-bT
+ce
+do
 cd
 cd
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-ct
+do
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+cR
 cc
 cc
-ct
+cu
 cJ
 cJ
-bT
-bT
-bT
-bS
+cs
+ce
+ce
+fk
 ab
 ab
 ab
@@ -34128,10 +34539,10 @@ ab
 bT
 cK
 cK
-bT
+bV
 cc
 cc
-bT
+bV
 dy
 dU
 dU
@@ -34140,10 +34551,10 @@ ex
 cp
 fL
 fc
-bT
+bV
 fo
 fJ
-bT
+bV
 gx
 gI
 gy
@@ -34152,10 +34563,10 @@ gy
 gy
 hE
 hJ
-bT
+bV
 cc
 cc
-bT
+bV
 cK
 cK
 bT
@@ -34385,10 +34796,10 @@ ab
 bT
 cK
 cK
-bT
+bV
 cc
 cc
-bT
+bV
 dz
 cc
 cc
@@ -34397,10 +34808,10 @@ ey
 cQ
 cc
 fd
-bT
+bV
 fp
 fK
-bT
+bV
 gy
 gy
 gy
@@ -34409,10 +34820,10 @@ gy
 gy
 gy
 gy
-bT
+bV
 cp
 cc
-bT
+bV
 cK
 cK
 bT
@@ -34642,10 +35053,10 @@ ab
 bT
 cK
 cK
-bT
+bV
 cc
 cc
-bT
+bV
 dz
 cc
 cc
@@ -34669,7 +35080,7 @@ gy
 cK
 cp
 cp
-bT
+bV
 cK
 cK
 bT
@@ -34899,10 +35310,10 @@ ab
 bT
 cK
 cK
-bT
+bV
 cc
 cc
-bT
+bV
 dA
 cc
 cc
@@ -34926,7 +35337,7 @@ gy
 hs
 cQ
 cc
-bT
+bV
 cK
 cK
 bT
@@ -35156,10 +35567,10 @@ ab
 bT
 cK
 cK
-bT
+bV
 cc
 cc
-bT
+bV
 dB
 dV
 ei
@@ -35171,7 +35582,7 @@ cn
 cK
 hF
 fM
-bT
+bV
 gy
 gy
 gM
@@ -35180,10 +35591,10 @@ gy
 gy
 gy
 hK
-bT
+bV
 cc
 cQ
-bT
+bV
 cK
 cK
 bT
@@ -35413,34 +35824,34 @@ ab
 bT
 cK
 cK
-bT
+bV
 cc
 cc
-bT
-bT
-bT
-bT
-bT
-bT
+bU
+ce
+ce
+ce
+do
+eB
 hs
 cK
-bT
-ct
+eB
+eJ
 fo
 fN
 ct
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
+eB
+eB
+eB
+eB
+do
+eB
+eB
+eB
+eI
 cc
 cc
-bT
+bV
 cK
 cK
 bT
@@ -35667,40 +36078,40 @@ ab
 ab
 ab
 ab
-bS
+bW
 cJ
 cJ
-bT
+bV
 cc
 cc
-bT
+bV
 dh
 dh
 dh
-bT
+bV
 eC
 cn
 fL
 cp
-ac
+jK
 fs
 fO
-ac
+jK
 eM
 eM
 eM
 gY
-bT
+bV
 hq
 dh
 dh
-bT
+bV
 cp
 cc
-bT
+bV
 cJ
 cJ
-bS
+fk
 ab
 ab
 ab
@@ -35927,14 +36338,14 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cm
 cK
 cm
 cc
 cc
-bT
+bV
 jw
 eN
 eW
@@ -35947,14 +36358,14 @@ cc
 cr
 cc
 gZ
-bT
+bV
 cc
 cQ
 cn
 hs
 cn
 cc
-bT
+bV
 ab
 ab
 ab
@@ -36184,14 +36595,14 @@ ab
 ab
 ab
 ab
-bT
+bV
 fL
 cp
 hs
 cm
 hQ
 cc
-bT
+bV
 jy
 cc
 cc
@@ -36204,14 +36615,14 @@ cc
 cc
 cc
 gZ
-bT
+bV
 cc
 cc
 cp
-bT
+bV
 cn
 cc
-bT
+bV
 ab
 ab
 ab
@@ -36441,14 +36852,14 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cp
 hs
 hF
 cc
 cc
-bT
+bV
 jx
 cc
 cc
@@ -36459,16 +36870,16 @@ cc
 gd
 gz
 cc
-it
+hR
 gZ
-bT
+bV
 cc
 cc
 hL
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -36603,7 +37014,7 @@ ab
 ab
 ab
 ab
-ah
+ac
 ah
 ah
 ak
@@ -36626,8 +37037,8 @@ ah
 ah
 ah
 ah
-ah
-ah
+aF
+ab
 ab
 ab
 ab
@@ -36698,14 +37109,14 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 cd
 cc
 cc
 cc
-bT
+bV
 eD
 cc
 cc
@@ -36718,14 +37129,14 @@ cc
 cc
 cc
 gZ
-bT
+bV
 cc
 cc
 cc
 cd
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -36883,9 +37294,9 @@ an
 ah
 ao
 ao
-BO
 ah
 ah
+aF
 ab
 ab
 ab
@@ -36955,14 +37366,14 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 eD
 cr
 eX
@@ -36975,14 +37386,14 @@ cc
 cc
 cc
 gZ
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -37146,7 +37557,7 @@ ah
 ah
 ah
 ah
-ah
+aF
 ab
 ab
 ab
@@ -37212,19 +37623,19 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 eD
 cc
 eY
 cc
-it
+hR
 ft
 cc
 cc
@@ -37232,14 +37643,14 @@ cc
 cc
 cc
 gZ
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -37469,14 +37880,14 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 eD
 eO
 eO
@@ -37489,14 +37900,14 @@ cc
 eO
 eO
 gZ
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -37655,13 +38066,13 @@ ah
 aG
 aj
 aj
-BO
+aL
 ah
 ah
 ah
 ah
 ah
-ah
+aF
 ab
 ab
 ab
@@ -37726,14 +38137,14 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 dC
 dW
 ej
-bT
+bV
 eE
 eP
 eZ
@@ -37746,14 +38157,14 @@ eE
 gK
 gN
 eE
-bT
+bV
 hr
 dW
 hM
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -37913,6 +38324,7 @@ aj
 aj
 aj
 ah
+ac
 ah
 ah
 ah
@@ -37921,8 +38333,7 @@ ah
 ah
 ah
 ah
-ah
-ah
+aF
 ab
 ab
 ab
@@ -37983,34 +38394,34 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
-bT
+bU
+ce
 cd
-bT
-bT
-cY
-eb
-eb
-eb
-eb
-eb
-eb
-eb
-eb
-eb
-eb
+ce
+dw
+eF
+eQ
+eQ
+eQ
+eQ
+eQ
+eQ
+eQ
+eQ
+eQ
+eQ
 ha
-bT
-bT
+dw
+ce
 cd
-bT
-bT
+ce
+eI
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -38179,8 +38590,8 @@ aZ
 aZ
 aj
 bj
-BO
 ah
+aF
 ab
 ab
 ab
@@ -38240,10 +38651,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -38264,10 +38675,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -38426,8 +38837,8 @@ aj
 aj
 aj
 aj
-ak
-ak
+aM
+aM
 aj
 aj
 aj
@@ -38497,10 +38908,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -38521,10 +38932,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -38683,8 +39094,8 @@ aj
 aj
 aj
 aj
-ak
-ak
+aM
+aM
 aj
 aj
 aj
@@ -38754,10 +39165,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -38778,10 +39189,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -38934,7 +39345,7 @@ ah
 ah
 ah
 ah
-aq
+au
 aq
 ah
 aj
@@ -38950,8 +39361,8 @@ ba
 ba
 aj
 aj
-BO
 ah
+aH
 ab
 ab
 ab
@@ -39011,10 +39422,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -39035,10 +39446,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -39198,6 +39609,7 @@ aj
 aj
 aj
 ah
+ag
 ah
 ah
 ah
@@ -39206,8 +39618,7 @@ ah
 ah
 ah
 ah
-ah
-ah
+aH
 ab
 ab
 ab
@@ -39268,10 +39679,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 dD
 dX
 cZ
@@ -39292,10 +39703,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -39454,13 +39865,13 @@ ah
 aj
 aj
 aj
-BO
+aN
 ah
 ah
 ah
 ah
 ah
-ah
+aH
 ab
 ab
 ab
@@ -39525,10 +39936,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -39549,10 +39960,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -39782,10 +40193,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -39806,10 +40217,10 @@ cZ
 cZ
 jr
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -39973,7 +40384,7 @@ ah
 ah
 ah
 ah
-ah
+aH
 ab
 ab
 ab
@@ -40039,10 +40450,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 it
-bT
+bV
 cZ
 cZ
 jr
@@ -40063,10 +40474,10 @@ hh
 dD
 cZ
 cZ
-bT
+bV
 it
 cc
-bT
+bV
 ab
 ab
 ab
@@ -40224,9 +40635,9 @@ aA
 ah
 ao
 ao
-BO
 ah
 ah
+aH
 ab
 ab
 ab
@@ -40296,10 +40707,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -40320,10 +40731,10 @@ cZ
 dD
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -40458,7 +40869,7 @@ ab
 ab
 ab
 ab
-ah
+ag
 ah
 ah
 ak
@@ -40481,8 +40892,7 @@ ah
 ah
 ah
 ah
-ah
-ah
+aH
 ab
 ab
 ab
@@ -40553,10 +40963,11 @@ ab
 ab
 ab
 ab
-bT
+ab
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -40577,10 +40988,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -40810,10 +41221,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -40834,10 +41245,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -41067,10 +41478,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -41091,10 +41502,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -41324,10 +41735,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -41348,10 +41759,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -41581,10 +41992,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -41605,10 +42016,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -41838,10 +42249,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -41862,10 +42273,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -42095,10 +42506,10 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
-bT
+bV
 cZ
 cZ
 cZ
@@ -42119,10 +42530,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -42352,34 +42763,34 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 ct
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-ct
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+cR
 ab
 ab
-ct
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-ct
+cu
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+eJ
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -42609,7 +43020,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 cd
@@ -42621,10 +43032,10 @@ cc
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -42636,7 +43047,7 @@ jS
 cd
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -42866,7 +43277,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 cd
@@ -42878,10 +43289,10 @@ cc
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -42893,7 +43304,7 @@ jS
 cd
 cc
 cc
-bT
+bV
 ab
 ab
 ab
@@ -43123,34 +43534,34 @@ ab
 ab
 ab
 ab
-bS
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-ct
+bW
+ce
+ce
+do
+do
+do
+do
+do
+cR
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-ct
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bS
+cu
+cs
+cs
+cs
+cs
+cs
+ce
+ce
+ia
 ab
 ab
 ab
@@ -43383,28 +43794,28 @@ ab
 ab
 ab
 ab
-bS
-bT
-bT
-bT
-bT
-bT
+bW
+dv
+dv
+dv
+dv
+eI
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
-bT
-bT
-bT
-bT
-bS
+bU
+dv
+dv
+dv
+dv
+ia
 ab
 ab
 ab
@@ -43642,25 +44053,25 @@ ab
 ab
 ab
 ct
-bT
-bT
-bT
-bT
+dp
+dp
+dp
+eI
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
-bT
-bT
-bT
-ct
+bU
+dw
+dw
+dw
+eJ
 ab
 ab
 ab
@@ -43902,18 +44313,18 @@ dE
 dY
 ek
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
 ki
 kr
@@ -44159,18 +44570,18 @@ dF
 dZ
 el
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
 kd
 kq
@@ -44416,18 +44827,18 @@ dG
 dY
 ek
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
 ki
 kr
@@ -44673,18 +45084,18 @@ dF
 dZ
 el
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jU
 jS
-bT
+bV
 kd
 kd
 kq
@@ -44930,18 +45341,18 @@ dG
 dY
 ek
 el
-bT
+bV
 cc
 cr
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jT
 jS
 jS
-bT
+bV
 kd
 ki
 kd
@@ -45187,18 +45598,18 @@ dF
 dZ
 el
 el
-bT
+bV
 cc
 kl
 cr
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
 kd
 ix
@@ -45444,14 +45855,14 @@ dG
 dY
 ek
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jT
 jS
@@ -45701,14 +46112,14 @@ dF
 dZ
 el
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -45741,7 +46152,7 @@ iF
 iF
 iz
 iz
-iz
+iN
 ab
 ab
 ab
@@ -45958,14 +46369,14 @@ dG
 dY
 ek
 el
-bT
+bV
 cc
 it
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jW
 jS
@@ -45997,9 +46408,9 @@ iC
 iC
 iC
 iC
-iB
+iK
 iz
-iz
+iN
 ab
 ab
 ab
@@ -46215,14 +46626,14 @@ dF
 dZ
 el
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -46257,7 +46668,7 @@ iC
 iC
 iB
 iz
-iz
+iN
 ab
 ab
 ab
@@ -46472,14 +46883,14 @@ dG
 dY
 ek
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jT
 jS
@@ -46515,7 +46926,7 @@ iC
 iC
 iB
 iz
-iz
+iN
 ab
 ab
 ab
@@ -46733,10 +47144,10 @@ cd
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -46986,18 +47397,18 @@ dG
 dY
 ek
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jU
 jS
 jS
-bT
+bV
 kd
 ix
 ab
@@ -47243,18 +47654,18 @@ dF
 dZ
 el
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jT
 jS
-bT
+bV
 kd
 kK
 ab
@@ -47500,18 +47911,18 @@ dG
 dY
 ek
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
 kd
 ab
@@ -47757,18 +48168,18 @@ dF
 dZ
 el
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
 kk
 ab
@@ -47800,7 +48211,7 @@ iC
 iC
 iB
 iz
-iz
+iO
 ab
 ab
 ab
@@ -48014,20 +48425,20 @@ dG
 dY
 ek
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
-ki
+ko
 ix
 ab
 ab
@@ -48056,7 +48467,7 @@ iC
 iC
 iB
 iz
-iz
+iO
 ab
 ab
 ab
@@ -48271,18 +48682,18 @@ dF
 dZ
 el
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
 kd
 kd
@@ -48303,7 +48714,7 @@ ab
 ab
 ab
 ab
-iz
+iA
 iz
 iC
 iC
@@ -48312,7 +48723,7 @@ iC
 iC
 iB
 iz
-iz
+iO
 ab
 ab
 ab
@@ -48528,20 +48939,20 @@ dG
 dY
 ek
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
-ki
+ko
 kr
 kx
 ab
@@ -48561,14 +48972,14 @@ ab
 ab
 ab
 ab
-iz
+iA
 iz
 iz
 iF
 iF
 iz
 iz
-iz
+iO
 ab
 ab
 ab
@@ -48785,18 +49196,18 @@ dF
 dZ
 el
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
 kd
 kq
@@ -49042,20 +49453,20 @@ dG
 dY
 ek
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
-ki
+ko
 kr
 kx
 ab
@@ -49299,18 +49710,18 @@ dF
 dZ
 el
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
 kd
 kq
@@ -49556,20 +49967,20 @@ dH
 dY
 ek
 el
-bT
+bV
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
+bV
 kd
-ki
+ko
 kr
 kz
 ab
@@ -49809,26 +50220,26 @@ ab
 ab
 ab
 ab
-ct
-bT
-bT
-bT
-bT
+cu
+do
+do
+do
+eI
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
-bT
-bT
-bT
-ct
+bU
+cs
+cs
+cs
+cR
 ab
 ab
 ab
@@ -49985,7 +50396,7 @@ ab
 ab
 ab
 ab
-aB
+av
 aB
 aB
 aE
@@ -50008,8 +50419,8 @@ aB
 aB
 aB
 aB
-aB
-aB
+bq
+ab
 ab
 ab
 ab
@@ -50066,27 +50477,27 @@ ab
 ab
 ab
 bS
-bT
-bT
-bT
-bT
-bT
+dv
+dv
+dv
+dv
+eI
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
-bT
-bT
-bT
-bT
-bT
-bS
+bU
+dv
+dv
+dv
+dv
+dt
 ab
 ab
 ab
@@ -50265,9 +50676,9 @@ aJ
 aB
 aT
 aT
-Dv
 aB
 aB
+bq
 ab
 ab
 ab
@@ -50320,33 +50731,33 @@ ab
 ab
 ab
 bS
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-ct
+ce
+ce
+dp
+dp
+dp
+dp
+dp
+eJ
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
 ct
-bT
-bT
-bT
-bT
-bT
-bT
-bT
-bS
+dw
+dw
+dw
+dw
+dw
+ce
+ce
+dt
 ab
 ab
 ab
@@ -50528,7 +50939,7 @@ aB
 aB
 aB
 aB
-aB
+bq
 ab
 ab
 ab
@@ -50576,7 +50987,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 cc
@@ -50588,10 +50999,10 @@ cc
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -50603,7 +51014,7 @@ jS
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -50833,7 +51244,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cm
 cc
@@ -50845,10 +51256,10 @@ cc
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -50860,7 +51271,7 @@ jS
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -51037,13 +51448,13 @@ aB
 aD
 aD
 aD
-Dv
+bv
 aB
 aB
 aB
 aB
 aB
-aB
+bq
 ab
 ab
 ab
@@ -51090,7 +51501,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cm
 cn
 cp
@@ -51102,10 +51513,10 @@ cc
 cc
 fr
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -51117,7 +51528,7 @@ jS
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -51350,19 +51761,19 @@ bM
 bM
 bM
 bM
-bM
+dq
 cm
-it
+hR
 cc
 cc
 cc
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -51374,7 +51785,7 @@ jS
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -51607,8 +52018,8 @@ bQ
 bO
 bO
 dc
-Wv
 bM
+ch
 cp
 cc
 cc
@@ -51616,10 +52027,10 @@ cQ
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -51631,7 +52042,7 @@ jS
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -51873,10 +52284,10 @@ jz
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -51888,7 +52299,7 @@ kA
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -52130,10 +52541,10 @@ cc
 cc
 cc
 cQ
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -52145,7 +52556,7 @@ jS
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -52376,10 +52787,10 @@ bR
 bR
 bR
 dN
+kj
 bO
-bO
-Wv
 bM
+dI
 cc
 ca
 cc
@@ -52387,10 +52798,10 @@ cc
 dJ
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -52402,7 +52813,7 @@ jS
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -52635,7 +53046,7 @@ bM
 bM
 bM
 bM
-bM
+ds
 cc
 cn
 cp
@@ -52644,10 +53055,10 @@ cc
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -52659,7 +53070,7 @@ jS
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -52836,13 +53247,13 @@ aB
 aD
 db
 aD
-Dv
+bw
 aB
 aB
 aB
 aB
 aB
-aB
+bs
 ab
 ab
 ab
@@ -52889,7 +53300,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cN
 cc
@@ -52897,14 +53308,14 @@ cc
 cc
 cc
 cc
-it
+hR
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jU
 jS
@@ -52916,7 +53327,7 @@ jS
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -53146,7 +53557,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cp
 cc
 cc
@@ -53158,10 +53569,10 @@ cc
 cc
 cc
 fr
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -53173,7 +53584,7 @@ jS
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -53355,7 +53766,7 @@ aB
 aB
 aB
 aB
-aB
+bs
 ab
 ab
 ab
@@ -53403,7 +53814,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cc
 cc
 cc
@@ -53415,10 +53826,10 @@ cc
 cc
 cc
 cc
-bT
+bV
 ab
 ab
-bT
+bV
 jS
 jS
 jS
@@ -53430,7 +53841,7 @@ jS
 jS
 jS
 jS
-bT
+bV
 ab
 ab
 ab
@@ -53606,9 +54017,9 @@ aJ
 aB
 aT
 aT
-Dv
 aB
 aB
+bs
 ab
 ab
 ab
@@ -53660,7 +54071,7 @@ ab
 ab
 ab
 ab
-bT
+bV
 cY
 dd
 cJ
@@ -53672,10 +54083,10 @@ dd
 cJ
 cY
 dd
-bT
+bV
 ab
 ab
-bT
+bV
 cY
 dd
 cJ
@@ -53687,7 +54098,7 @@ dd
 cJ
 cY
 dd
-bT
+bV
 ab
 ab
 ab
@@ -53840,7 +54251,7 @@ ab
 ab
 ab
 ab
-aB
+az
 aB
 aB
 aE
@@ -53863,8 +54274,7 @@ aB
 aB
 aB
 aB
-aB
-aB
+bs
 ab
 ab
 ab
@@ -53917,7 +54327,8 @@ ab
 ab
 ab
 ab
-bT
+ab
+bV
 cZ
 cZ
 cZ
@@ -53929,10 +54340,10 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 ab
 ab
-bT
+bV
 cZ
 cZ
 cZ
@@ -53944,7 +54355,7 @@ cZ
 cZ
 cZ
 cZ
-bT
+bV
 ab
 ab
 ab
@@ -54174,7 +54585,7 @@ ab
 ab
 ab
 ab
-bS
+bW
 cZ
 de
 cZ
@@ -54186,10 +54597,10 @@ de
 cZ
 de
 cZ
-bS
+fk
 ab
 ab
-bS
+bW
 cZ
 de
 cZ
@@ -54201,7 +54612,7 @@ de
 cZ
 de
 cZ
-bS
+fk
 ab
 ab
 ab
@@ -61646,7 +62057,7 @@ ab
 ab
 ab
 ab
-hc
+hb
 hi
 hu
 hu
@@ -61654,7 +62065,7 @@ hu
 hu
 hu
 hu
-hc
+in
 ab
 ab
 ab
@@ -62416,8 +62827,8 @@ ab
 ab
 ab
 ab
+gQ
 hc
-hc
 hk
 hk
 hk
@@ -62426,7 +62837,7 @@ hk
 hk
 hk
 hc
-hc
+hG
 ab
 ab
 ab
@@ -64216,15 +64627,15 @@ ab
 ab
 ab
 ab
-hc
+gQ
 hm
 hv
-hc
+hG
 ab
-hc
+gQ
 hm
 hv
-hc
+hG
 ab
 ab
 ab

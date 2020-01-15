@@ -1,42 +1,32 @@
-SUBSYSTEM_DEF(icon_smooth)
+var/datum/subsystem/icon_smooth/SSicon_smooth
+
+/datum/subsystem/icon_smooth
 	name = "Icon Smoothing"
-	init_order = INIT_ORDER_ICON_SMOOTHING
+	init_order = -5
 	wait = 1
-	priority = FIRE_PRIOTITY_SMOOTHING
+	priority = 35
 	flags = SS_TICKER
 
 	var/list/smooth_queue = list()
-	var/list/deferred = list()
 
-/datum/controller/subsystem/icon_smooth/fire()
-	var/list/cached = smooth_queue
-	while(cached.len)
-		var/atom/A = cached[cached.len]
-		cached.len--
-		if (A.flags_1 & INITIALIZED_1)
-			smooth_icon(A)
-		else
-			deferred += A
+/datum/subsystem/icon_smooth/New()
+	NEW_SS_GLOBAL(SSicon_smooth)
+
+/datum/subsystem/icon_smooth/fire()
+	while(smooth_queue.len)
+		var/atom/A = smooth_queue[smooth_queue.len]
+		smooth_queue.len--
+		ss_smooth_icon(A)
 		if (MC_TICK_CHECK)
 			return
+	if (!smooth_queue.len)
+		can_fire = 0
 
-	if (!cached.len)
-		if (deferred.len)
-			smooth_queue = deferred
-			deferred = cached
-		else
-			can_fire = 0
-
-/datum/controller/subsystem/icon_smooth/Initialize()
+/datum/subsystem/icon_smooth/Initialize()
 	smooth_zlevel(1,TRUE)
 	smooth_zlevel(2,TRUE)
-	var/queue = smooth_queue
-	smooth_queue = list()
-	for(var/V in queue)
+	for(var/V in smooth_queue)
 		var/atom/A = V
-		if(!A || A.z <= 2)
-			continue
-		smooth_icon(A)
-		CHECK_TICK
-
-	return ..()
+		if(A.z == 1 || A.z == 2)
+			smooth_queue -= A
+	..()

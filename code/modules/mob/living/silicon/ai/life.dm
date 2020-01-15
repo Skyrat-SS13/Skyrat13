@@ -4,23 +4,18 @@
 #define POWER_RESTORATION_APC_FOUND 3
 
 /mob/living/silicon/ai/Life()
-	if (stat == DEAD)
+	if (src.stat == DEAD)
 		return
 	else //I'm not removing that shitton of tabs, unneeded as they are. -- Urist
 		//Being dead doesn't mean your temperature never changes
 
 		update_gravity(mob_has_gravity())
 
-		handle_status_effects()
-
-		if(malfhack && malfhack.aidisabled)
-			deltimer(malfhacking)
-			// This proc handles cleanup of screen notifications and
-			// messenging the client
-			malfhacked(malfhack)
-
-		if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
-			view_core()
+		if(malfhack)
+			if(malfhack.aidisabled)
+				src << "<span class='danger'>ERROR: APC access disabled, hack attempt canceled.</span>"
+				malfhacking = 0
+				malfhack = null
 
 		if(machine)
 			machine.check_eye(src)
@@ -49,29 +44,22 @@
 /mob/living/silicon/ai/proc/lacks_power()
 	var/turf/T = get_turf(src)
 	var/area/A = get_area(src)
-	switch(requires_power)
-		if(NONE)
-			return FALSE
-		if(POWER_REQ_ALL)
-			return !T || !A || ((!A.power_equip || isspaceturf(T)) && !is_type_in_list(loc, list(/obj/item, /obj/mecha)))
-		if(POWER_REQ_CLOCKCULT)
-			for(var/obj/effect/clockwork/sigil/transmission/ST in range(src, SIGIL_ACCESS_RANGE))
-				return FALSE
-			return !T || !A || (!istype(T, /turf/open/floor/clockwork) && (!A.power_equip || isspaceturf(T)) && !is_type_in_list(loc, list(/obj/item, /obj/mecha)))
+	return !T || !A || ((!A.master.power_equip || istype(T, /turf/open/space)) && !is_type_in_list(src.loc, list(/obj/item, /obj/mecha)))
 
 /mob/living/silicon/ai/updatehealth()
 	if(status_flags & GODMODE)
 		return
-	health = maxHealth - getOxyLoss() - getToxLoss() - getBruteLoss() - getFireLoss()
+	health = maxHealth - getOxyLoss() - getToxLoss() - getBruteLoss()
+	if(!fire_res_on_core)
+		health -= getFireLoss()
 	update_stat()
 	diag_hud_set_health()
-	disconnect_shell()
 
 /mob/living/silicon/ai/update_stat()
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		if(health <= HEALTH_THRESHOLD_DEAD)
+		if(health <= config.health_threshold_dead)
 			death()
 			return
 		else if(stat == UNCONSCIOUS)
@@ -91,29 +79,27 @@
 
 	if(see_override)
 		see_invisible = see_override
-	sync_lighting_plane_alpha()
 
 
 /mob/living/silicon/ai/proc/start_RestorePowerRoutine()
-	to_chat(src, "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection.")
-	end_multicam()
+	src << "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection."
 	sleep(50)
 	var/turf/T = get_turf(src)
 	var/area/AIarea = get_area(src)
-	if(AIarea && AIarea.power_equip)
-		if(!isspaceturf(T))
+	if(AIarea && AIarea.master.power_equip)
+		if(!istype(T, /turf/open/space))
 			ai_restore_power()
 			return
-	to_chat(src, "Fault confirmed: missing external power. Shutting down main control system to save power.")
+	src << "Fault confirmed: missing external power. Shutting down main control system to save power."
 	sleep(20)
-	to_chat(src, "Emergency control system online. Verifying connection to power network.")
+	src << "Emergency control system online. Verifying connection to power network."
 	sleep(50)
 	T = get_turf(src)
-	if(isspaceturf(T))
-		to_chat(src, "Unable to verify! No power connection detected!")
+	if (istype(T, /turf/open/space))
+		src << "Unable to verify! No power connection detected!"
 		aiRestorePowerRoutine = POWER_RESTORATION_SEARCH_APC
 		return
-	to_chat(src, "Connection verified. Searching for APC in power network.")
+	src << "Connection verified. Searching for APC in power network."
 	sleep(50)
 	var/obj/machinery/power/apc/theAPC = null
 
@@ -122,58 +108,58 @@
 		T = get_turf(src)
 		AIarea = get_area(src)
 		if(AIarea)
-			for (var/obj/machinery/power/apc/APC in AIarea)
-				if (!(APC.stat & BROKEN))
-					theAPC = APC
-					break
+			for(var/area/A in AIarea.master.related)
+				for (var/obj/machinery/power/apc/APC in A)
+					if (!(APC.stat & BROKEN))
+						theAPC = APC
+						break
 		if (!theAPC)
 			switch(PRP)
 				if(1)
-					to_chat(src, "Unable to locate APC!")
+					src << "Unable to locate APC!"
 				else
-					to_chat(src, "Lost connection with the APC!")
+					src << "Lost connection with the APC!"
 			aiRestorePowerRoutine = POWER_RESTORATION_SEARCH_APC
 			return
-		if(AIarea.power_equip)
-			if(!isspaceturf(T))
+		if(AIarea.master.power_equip)
+			if (!istype(T, /turf/open/space))
 				ai_restore_power()
 				return
 		switch(PRP)
-			if (1)
-				to_chat(src, "APC located. Optimizing route to APC to avoid needless power waste.")
-			if (2)
-				to_chat(src, "Best route identified. Hacking offline APC power port.")
-			if (3)
-				to_chat(src, "Power port upload access confirmed. Loading control program into APC power port software.")
+			if (1) src << "APC located. Optimizing route to APC to avoid needless power waste."
+			if (2) src << "Best route identified. Hacking offline APC power port."
+			if (3) src << "Power port upload access confirmed. Loading control program into APC power port software."
 			if (4)
-				to_chat(src, "Transfer complete. Forcing APC to execute program.")
+				src << "Transfer complete. Forcing APC to execute program."
 				sleep(50)
-				to_chat(src, "Receiving control information from APC.")
+				src << "Receiving control information from APC."
 				sleep(2)
 				apc_override = 1
-				theAPC.ui_interact(src, state = GLOB.conscious_state)
+				theAPC.ui_interact(src, state = conscious_state)
 				apc_override = 0
 				aiRestorePowerRoutine = POWER_RESTORATION_APC_FOUND
+				src << "Here are your current laws:"
+				show_laws()
 		sleep(50)
 		theAPC = null
 
 /mob/living/silicon/ai/proc/ai_restore_power()
 	if(aiRestorePowerRoutine)
 		if(aiRestorePowerRoutine == POWER_RESTORATION_APC_FOUND)
-			to_chat(src, "Alert cancelled. Power has been restored.")
+			src << "Alert cancelled. Power has been restored."
 		else
-			to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
+			src << "Alert cancelled. Power has been restored without our assistance."
 		aiRestorePowerRoutine = POWER_RESTORATION_OFF
 		set_blindness(0)
 		update_sight()
 
 /mob/living/silicon/ai/proc/ai_lose_power()
-	disconnect_shell()
 	aiRestorePowerRoutine = POWER_RESTORATION_START
 	blind_eyes(1)
 	update_sight()
-	to_chat(src, "You've lost power!")
-	addtimer(CALLBACK(src, .proc/start_RestorePowerRoutine), 20)
+	src << "You've lost power!"
+	spawn(20)
+		start_RestorePowerRoutine()
 
 #undef POWER_RESTORATION_OFF
 #undef POWER_RESTORATION_START

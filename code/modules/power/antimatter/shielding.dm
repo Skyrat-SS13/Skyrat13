@@ -1,10 +1,9 @@
 //like orange but only checks north/south/east/west for one step
 /proc/cardinalrange(var/center)
 	var/list/things = list()
-	for(var/direction in GLOB.cardinals)
+	for(var/direction in cardinal)
 		var/turf/T = get_step(center, direction)
-		if(!T)
-			continue
+		if(!T) continue
 		things += T.contents
 	return things
 
@@ -14,42 +13,35 @@
 
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "shield"
-	density = TRUE
+	anchored = 1
+	density = 1
 	dir = NORTH
-	use_power = NO_POWER_USE//Living things generally dont use power
+	use_power = 0//Living things generally dont use power
 	idle_power_usage = 0
 	active_power_usage = 0
 
 	var/obj/machinery/power/am_control_unit/control_unit = null
-	var/processing = FALSE//To track if we are in the update list or not, we need to be when we are damaged and if we ever
+	var/processing = 0//To track if we are in the update list or not, we need to be when we are damaged and if we ever
 	var/stability = 100//If this gets low bad things tend to happen
 	var/efficiency = 1//How many cores this core counts for when doing power processing, plasma in the air and stability could affect this
-	var/coredirs = 0
-	var/dirs = 0
 
 
-/obj/machinery/am_shielding/Initialize()
-	. = ..()
-	addtimer(CALLBACK(src, .proc/controllerscan), 10)
+/obj/machinery/am_shielding/New(loc)
+	..(loc)
+	spawn(10)
+		controllerscan()
+	return
 
-/obj/machinery/am_shielding/proc/overheat()
-	visible_message("<span class='danger'>[src] melts!</span>")
-	new /obj/effect/hotspot(loc)
-	qdel(src)
-
-/obj/machinery/am_shielding/proc/collapse()
-	visible_message("<span class='notice'>[src] collapses back into a container!</span>")
-	new /obj/item/am_shielding_container(drop_location())
-	qdel(src)
 
 /obj/machinery/am_shielding/proc/controllerscan(priorscan = 0)
 	//Make sure we are the only one here
-	if(!isturf(loc))
-		collapse()
+	if(!istype(src.loc, /turf))
+		qdel(src)
+		return
 	for(var/obj/machinery/am_shielding/AMS in loc.contents)
 		if(AMS == src)
 			continue
-		collapse()
+		qdel(src)
 		return
 
 	//Search for shielding first
@@ -58,16 +50,18 @@
 			break
 
 	if(!control_unit)//No other guys nearby look for a control unit
-		for(var/direction in GLOB.cardinals)
+		for(var/direction in cardinal)
 		for(var/obj/machinery/power/am_control_unit/AMC in cardinalrange(src))
 			if(AMC.add_shielding(src))
 				break
 
 	if(!control_unit)
 		if(!priorscan)
-			addtimer(CALLBACK(src, .proc/controllerscan, 1), 20)
+			spawn(20)
+				controllerscan(1)//Last chance
 			return
-		collapse()
+		qdel(src)
+	return
 
 
 /obj/machinery/am_shielding/Destroy()
@@ -75,11 +69,14 @@
 		control_unit.remove_shielding(src)
 	if(processing)
 		shutdown_core()
+	visible_message("<span class='danger'>The [src.name] melts!</span>")
 	//Might want to have it leave a mess on the floor but no sprites for now
 	return ..()
 
 
-/obj/machinery/am_shielding/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/am_shielding/CanPass(atom/movable/mover, turf/target, height=0)
+	if(height==0)
+		return 1
 	return 0
 
 
@@ -92,7 +89,21 @@
 
 
 /obj/machinery/am_shielding/emp_act()//Immune due to not really much in the way of electronics.
+	return 0
+
+
+/obj/machinery/am_shielding/blob_act()
+	stability -= 20
+	if(prob(100-stability))
+		if(prob(10))//Might create a node
+			new /obj/effect/blob/node(src.loc,150)
+		else
+			new /obj/effect/blob(src.loc,60)
+		qdel(src)
+		return
+	check_stability()
 	return
+
 
 /obj/machinery/am_shielding/ex_act(severity, target)
 	stability -= (80 - (severity * 20))
@@ -108,58 +119,35 @@
 
 
 /obj/machinery/am_shielding/update_icon()
-	dirs = 0
-	coredirs = 0
 	cut_overlays()
-	for(var/direction in GLOB.alldirs)
-		var/turf/T = get_step(loc, direction)
-		for(var/obj/machinery/machine in T)
-			if(istype(machine, /obj/machinery/am_shielding))
-				var/obj/machinery/am_shielding/shield = machine
-				if(shield.control_unit == control_unit)
-					if(shield.processing)
-						coredirs |= direction
-					if(direction in GLOB.cardinals)
-						dirs |= direction
-
-			else
-				if(istype(machine, /obj/machinery/power/am_control_unit) && (direction in GLOB.cardinals))
-					var/obj/machinery/power/am_control_unit/control = machine
-					if(control == control_unit)
-						dirs |= direction
-
-
-	var/prefix = ""
-	var/icondirs=dirs
-
-	if(coredirs)
-		prefix="core"
-
-	icon_state = "[prefix]shield_[icondirs]"
+	for(var/direction in alldirs)
+		var/machine = locate(/obj/machinery, get_step(loc, direction))
+		if((istype(machine, /obj/machinery/am_shielding) && machine:control_unit == control_unit)||(istype(machine, /obj/machinery/power/am_control_unit) && machine == control_unit))
+			add_overlay("shield_[direction]")
 
 	if(core_check())
-		add_overlay("core[control_unit && control_unit.active]")
+		add_overlay("core")
 		if(!processing)
 			setup_core()
 	else if(processing)
 		shutdown_core()
 
 
-/obj/machinery/am_shielding/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
+/obj/machinery/am_shielding/take_damage(damage, damage_type = BRUTE, sound_effect = 1)
 	switch(damage_type)
 		if(BRUTE)
 			if(sound_effect)
-				if(damage_amount)
+				if(damage)
 					playsound(loc, 'sound/weapons/smash.ogg', 50, 1)
 				else
 					playsound(loc, 'sound/weapons/tap.ogg', 50, 1)
 		if(BURN)
 			if(sound_effect)
-				playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
+				playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
 		else
 			return
-	if(damage_amount >= 10)
-		stability -= damage_amount/2
+	if(damage >= 10)
+		stability -= damage/2
 		check_stability()
 
 
@@ -176,23 +164,19 @@
 
 //Scans cards for shields or the control unit and if all there it
 /obj/machinery/am_shielding/proc/core_check()
-	for(var/direction in GLOB.alldirs)
-		var/found_am_device=0
-		for(var/obj/machinery/machine in get_step(loc, direction))
-			if(!machine)
-				continue//Need all for a core
-			if(istype(machine, /obj/machinery/am_shielding) || istype(machine, /obj/machinery/power/am_control_unit))
-				found_am_device = 1
-				break
-		if(!found_am_device)
+	for(var/direction in alldirs)
+		var/machine = locate(/obj/machinery, get_step(loc, direction))
+		if(!machine)
+			return 0//Need all for a core
+		if(!istype(machine, /obj/machinery/am_shielding) && !istype(machine, /obj/machinery/power/am_control_unit))
 			return 0
 	return 1
 
 
 /obj/machinery/am_shielding/proc/setup_core()
-	processing = TRUE
-	GLOB.machines |= src
-	START_PROCESSING(SSmachines, src)
+	processing = 1
+	machines |= src
+	START_PROCESSING(SSmachine, src)
 	if(!control_unit)
 		return
 	control_unit.linked_cores.Add(src)
@@ -201,7 +185,7 @@
 
 
 /obj/machinery/am_shielding/proc/shutdown_core()
-	processing = FALSE
+	processing = 0
 	if(!control_unit)
 		return
 	control_unit.linked_cores.Remove(src)
@@ -215,7 +199,7 @@
 	if(injecting_fuel && control_unit)
 		control_unit.exploding = 1
 	if(src)
-		overheat()
+		qdel(src)
 	return
 
 
@@ -230,23 +214,21 @@
 
 
 
-/obj/item/am_shielding_container
+/obj/item/device/am_shielding_container
 	name = "packaged antimatter reactor section"
 	desc = "A small storage unit containing an antimatter reactor section.  To use place near an antimatter control unit or deployed antimatter reactor section and use a multitool to activate this package."
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "box"
 	item_state = "electronic"
-	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	w_class = WEIGHT_CLASS_BULKY
-	flags_1 = CONDUCT_1
+	w_class = 4
+	flags = CONDUCT
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 2
 	materials = list(MAT_METAL=100)
 
-/obj/item/am_shielding_container/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/multitool) && istype(src.loc, /turf))
+/obj/item/device/am_shielding_container/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/device/multitool) && istype(src.loc,/turf))
 		new/obj/machinery/am_shielding(src.loc)
 		qdel(src)
 	else

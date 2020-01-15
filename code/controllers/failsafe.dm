@@ -4,7 +4,7 @@
   * Pretty much pokes the MC to make sure it's still alive.
  **/
 
-GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
+var/datum/controller/failsafe/Failsafe
 
 /datum/controller/failsafe // This thing pretty much just keeps poking the master controller
 	name = "Failsafe"
@@ -20,7 +20,6 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 
 	// Track the MC iteration to make sure its still on track.
 	var/master_iteration = 0
-	var/running = TRUE
 
 /datum/controller/failsafe/New()
 	// Highlander-style: there can only be one! Kill off the old and replace it with the new.
@@ -28,21 +27,16 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 		if(istype(Failsafe))
 			qdel(Failsafe)
 	Failsafe = src
-	Initialize()
-
-/datum/controller/failsafe/Initialize()
-	set waitfor = 0
-	Failsafe.Loop()
-	if(!QDELETED(src))
-		qdel(src) //when Loop() returns, we delete ourselves and let the mc recreate us
+	spawn()
+		Failsafe.Loop()
+		qdel(Failsafe) //when Loop() returns, we delete ourselves and let the mc recreate us
 
 /datum/controller/failsafe/Destroy()
-	running = FALSE
 	..()
 	return QDEL_HINT_HARDDEL_NOW
 
 /datum/controller/failsafe/proc/Loop()
-	while(running)
+	while(1)
 		lasttick = world.time
 		if(!Master)
 			// Replace the missing Master! This should never, ever happen.
@@ -56,23 +50,23 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 						if(4,5)
 							--defcon
 						if(3)
-							message_admins("<span class='adminnotice'>Notice: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks.</span>")
+							admins << "<span class='adminnotice'>Notice: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks."
 							--defcon
 						if(2)
-							to_chat(GLOB.admins, "<span class='boldannounce'>Warning: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks.</span>")
+							admins << "<span class='boldannounce'>Warning: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks.</span>"
 							--defcon
 						if(1)
 
-							to_chat(GLOB.admins, "<span class='boldannounce'>Warning: DEFCON [defcon_pretty()]. The Master Controller has still not fired within the last [(5-defcon) * processing_interval] ticks. Killing and restarting...</span>")
+							admins << "<span class='boldannounce'>Warning: DEFCON [defcon_pretty()]. The Master Controller has still not fired within the last [(5-defcon) * processing_interval] ticks. Killing and restarting...</span>"
 							--defcon
 							var/rtn = Recreate_MC()
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								to_chat(GLOB.admins, "<span class='adminnotice'>MC restarted successfully</span>")
+								admins << "<span class='adminnotice'>MC restarted successfully</span>"
 							else if(rtn < 0)
 								log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
-								to_chat(GLOB.admins, "<span class='boldannounce'>ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying.</span>")
+								admins << "<span class='boldannounce'>ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying.</span>"
 							//if the return number was 0, it just means the mc was restarted too recently, and it just needs some time before we try again
 							//no need to handle that specially when defcon 0 can handle it
 						if(0) //DEFCON 0! (mc failed to restart)
@@ -80,7 +74,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								to_chat(GLOB.admins, "<span class='adminnotice'>MC restarted successfully</span>")
+								admins << "<span class='adminnotice'>MC restarted successfully</span>"
 				else
 					defcon = min(defcon + 1,5)
 					master_iteration = Master.iteration
@@ -95,8 +89,8 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 /datum/controller/failsafe/proc/defcon_pretty()
 	return defcon
 
-/datum/controller/failsafe/stat_entry()
+/datum/controller/failsafe/proc/stat_entry()
 	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
+		statclick = new/obj/effect/statclick/debug("Initializing...", src)
 
 	stat("Failsafe Controller:", statclick.update("Defcon: [defcon_pretty()] (Interval: [Failsafe.processing_interval] | Iteration: [Failsafe.master_iteration])"))

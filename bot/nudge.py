@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from config import *
 import sys
 import pickle
 import socket

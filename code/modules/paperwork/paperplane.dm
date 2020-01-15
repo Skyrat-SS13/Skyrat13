@@ -1,142 +1,113 @@
-
-/obj/item/paperplane
+/obj/item/weapon/paperplane
 	name = "paper plane"
-	desc = "Paper, folded in the shape of a plane."
+	desc = "Paper, folded in the shape of a plane"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paperplane"
 	throw_range = 7
 	throw_speed = 1
 	throwforce = 0
-	w_class = WEIGHT_CLASS_TINY
-	resistance_flags = FLAMMABLE
-	max_integrity = 50
+	w_class = 1
+	burn_state = FLAMMABLE
+	burntime = 4
 
-	var/hit_probability = 2//%
-	var/obj/item/paper/internalPaper
+	var/obj/item/weapon/paper/internalPaper
+	var/list/stamped = list()
 
-/obj/item/paperplane/origami
-	desc = "Paper, masterfully folded in the shape of a plane."
-	throwforce = 20 //same as throwing stars, but no chance of embedding.
-	hit_probability = 100 //guaranteed to cause eye damage when it hits a mob.
-
-/obj/item/paperplane/Initialize(mapload, obj/item/paper/newPaper)
-	. = ..()
+/obj/item/weapon/paperplane/New(loc, obj/item/weapon/paper/newPaper)
+	..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
 	if(newPaper)
 		internalPaper = newPaper
-		flags_1 = newPaper.flags_1
-		color = newPaper.color
+		src.flags = newPaper.flags
+		stamped = internalPaper.stamped
 		newPaper.forceMove(src)
 	else
-		internalPaper = new(src)
+		internalPaper = new /obj/item/weapon/paper(src)
 	update_icon()
 
-/obj/item/paperplane/handle_atom_del(atom/A)
-	if(A == internalPaper)
-		internalPaper = null
-		if(!QDELETED(src))
-			qdel(src)
-	return ..()
-
-/obj/item/paperplane/Destroy()
-	QDEL_NULL(internalPaper)
-	return ..()
-
-/obj/item/paperplane/suicide_act(mob/living/user)
-	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
-	user.Stun(200)
-	user.visible_message("<span class='suicide'>[user] jams [src] in [user.p_their()] nose. It looks like [user.p_theyre()] trying to commit suicide!</span>")
+/obj/item/weapon/paperplane/suicide_act(mob/user)
+	user.Stun(10)
+	user.visible_message("<span class='suicide'>[user] jams the [src] in their brains. It looks like \he's trying to commit suicide.</span>")
 	user.adjust_blurriness(6)
-	if(eyes)
-		eyes.applyOrganDamage(rand(6,8))
+	user.adjust_eye_damage(rand(6,8))
 	sleep(10)
 	return (BRUTELOSS)
 
-/obj/item/paperplane/update_icon()
+/obj/item/weapon/paperplane/update_icon()
 	cut_overlays()
-	var/list/stamped = internalPaper.stamped
-	if(stamped)
+	if(!stamped)
+		stamped = new
+	else if(stamped)
 		for(var/S in stamped)
-			add_overlay("paperplane_[S]")
+			var/obj/item/weapon/stamp/stamp = S
+			var/image/stampoverlay = image('icons/obj/bureaucracy.dmi', "paperplane_[initial(stamp.icon_state)]")
+			add_overlay(stampoverlay)
 
-/obj/item/paperplane/attack_self(mob/user)
-	to_chat(user, "<span class='notice'>You unfold [src].</span>")
-	var/obj/item/paper/internal_paper_tmp = internalPaper
-	internal_paper_tmp.forceMove(loc)
-	internalPaper = null
+/obj/item/weapon/paperplane/attack_self(mob/user)
+	user << "<span class='notice'>You unfold [src].</span>"
+	user.unEquip(src)
+	user.put_in_hands(internalPaper)
 	qdel(src)
-	user.put_in_hands(internal_paper_tmp)
 
-/obj/item/paperplane/attackby(obj/item/P, mob/living/carbon/human/user, params)
+/obj/item/weapon/paperplane/attackby(obj/item/weapon/P, mob/living/carbon/human/user, params)
 	..()
-	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
-		to_chat(user, "<span class='notice'>You should unfold [src] before changing it.</span>")
+	if(istype(P, /obj/item/weapon/pen) || istype(P, /obj/item/toy/crayon))
+		user << "<span class='notice'>You should unfold [src] before changing it.</span>"
 		return
 
-	else if(istype(P, /obj/item/stamp)) 	//we don't randomize stamps on a paperplane
-		internalPaper.attackby(P, user) //spoofed attack to update internal paper.
+	else if(istype(P, /obj/item/weapon/stamp)) 	//we don't randomize stamps on a paperplane
+
+		if (!stamped)
+			stamped = new
+
+		stamped += P.type
+		internalPaper.stamps += "<img src=large_[P.icon_state].png>" //stamps the paper inside!
+		internalPaper.stamped = stamped
+		internalPaper.attackby(P) //spoofed attack to update internal paper.
+		user << "<span class='notice'>You stamp [src] with your rubber stamp.</span>"
 		update_icon()
 
-	else if(P.get_temperature())
-		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
-			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", \
-				"<span class='userdanger'>You miss [src] and accidentally light yourself on fire!</span>")
-			user.dropItemToGround(P)
+	else if(P.is_hot())
+		if(user.disabilities & CLUMSY && prob(10))
+			user.visible_message("<span class='warning'>[user] accidentally ignites themselves!</span>", \
+				"<span class='userdanger'>You miss the [src] and accidentally light yourself on fire!</span>")
+			user.unEquip(P)
 			user.adjust_fire_stacks(1)
 			user.IgniteMob()
 			return
 
 		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper
 			return
-		user.dropItemToGround(src)
+		internalPaper.burntime = 1 //its already pretty burnt out
+		user.unEquip(src)
 		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
 		fire_act()
 
 	add_fingerprint(user)
 
 
-/obj/item/paperplane/throw_at(atom/target, range, speed, mob/thrower, spin=FALSE, diagonals_first = FALSE, datum/callback/callback)
-	. = ..(target, range, speed, thrower, FALSE, diagonals_first, callback)
+/obj/item/weapon/paperplane/throw_at(atom/target, range, speed, mob/thrower, spin=0) //prevent the paper plane from spinning
+	if(!..())
+		return
 
-/obj/item/paperplane/throw_impact(atom/hit_atom)
-	if(iscarbon(hit_atom))
-		var/mob/living/carbon/C = hit_atom
-		if(!C.get_active_held_item() && !C.restrained())
-			var/datum/action/innate/origami/origami_action = locate() in C.actions
-			if(origami_action?.active) //if they're a master of origami and have the ability turned on, force throwmode on so they'll automatically catch the plane.
-				C.throw_mode_on()
-
+/obj/item/weapon/paperplane/throw_impact(atom/hit_atom)
 	if(..() || !ishuman(hit_atom))//if the plane is caught or it hits a nonhuman
 		return
 	var/mob/living/carbon/human/H = hit_atom
-	if(prob(hit_probability))
-		if(H.is_eyes_covered())
+	if(prob(2))
+		if((H.head && H.head.flags_cover & HEADCOVERSEYES) || (H.wear_mask && H.wear_mask.flags_cover & MASKCOVERSEYES) || (H.glasses && H.glasses.flags_cover & GLASSESCOVERSEYES))
 			return
-		var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
 		visible_message("<span class='danger'>\The [src] hits [H] in the eye!</span>")
 		H.adjust_blurriness(6)
-		if(eyes)
-			eyes.applyOrganDamage(rand(6,8))
-		H.Knockdown(40)
+		H.adjust_eye_damage(rand(6,8))
+		H.Weaken(2)
 		H.emote("scream")
 
-/obj/item/paper/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>Alt-click [src] to fold it into a paper plane.</span>"
-
-/obj/item/paper/AltClick(mob/living/carbon/user, obj/item/I)
-	. = ..()
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user), NO_TK))
+/obj/item/weapon/paper/AltClick(mob/living/carbon/user, obj/item/I,)
+	if((!in_range(src, user)) || usr.stat || usr.restrained())
 		return
-	to_chat(user, "<span class='notice'>You fold [src] into the shape of a plane!</span>")
-	user.temporarilyRemoveItemFromInventory(src)
-	var/obj/item/paperplane/plane_type = /obj/item/paperplane
-	//Origami Master
-	var/datum/action/innate/origami/origami_action = locate() in user.actions
-	if(origami_action?.active)
-		plane_type = /obj/item/paperplane/origami
-
-	I = new plane_type(user, src)
+	user << "<span class='notice'>You fold [src] into the shape of a plane!</span>"
+	user.unEquip(src)
+	I = new /obj/item/weapon/paperplane(loc, src)
 	user.put_in_hands(I)
-	return TRUE

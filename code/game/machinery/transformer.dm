@@ -6,7 +6,8 @@
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "separator-AO1"
 	layer = ABOVE_ALL_MOB_LAYER // Overhead
-	density = FALSE
+	anchored = 1
+	density = 0
 	var/transform_dead = 0
 	var/transform_standing = 0
 	var/cooldown_duration = 600 // 1 minute
@@ -14,24 +15,24 @@
 	var/cooldown_timer
 	var/robot_cell_charge = 5000
 	var/obj/effect/countdown/transformer/countdown
-	var/mob/living/silicon/ai/masterAI
 
-/obj/machinery/transformer/Initialize()
+/obj/machinery/transformer/New()
 	// On us
-	. = ..()
-	new /obj/machinery/conveyor/auto(locate(x - 1, y, z), WEST)
+	..()
 	new /obj/machinery/conveyor/auto(loc, WEST)
-	new /obj/machinery/conveyor/auto(locate(x + 1, y, z), WEST)
 	countdown = new(src)
 	countdown.start()
 
 /obj/machinery/transformer/examine(mob/user)
 	. = ..()
 	if(cooldown && (issilicon(user) || isobserver(user)))
-		. += "It will be ready in [DisplayTimeText(cooldown_timer - world.time)]."
+		var/seconds_remaining = (cooldown_timer - world.time) / 10
+		user << "It will be ready in [max(0, seconds_remaining)] seconds."
 
 /obj/machinery/transformer/Destroy()
-	QDEL_NULL(countdown)
+	if(countdown)
+		qdel(countdown)
+	countdown = null
 	. = ..()
 
 /obj/machinery/transformer/power_change()
@@ -55,10 +56,10 @@
 		var/move_dir = get_dir(loc, AM.loc)
 		var/mob/living/carbon/human/H = AM
 		if((transform_standing || H.lying) && move_dir == EAST)// || move_dir == WEST)
-			AM.forceMove(drop_location())
+			AM.loc = src.loc
 			do_transform(AM)
 
-/obj/machinery/transformer/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/transformer/CanPass(atom/movable/mover, turf/target, height=0)
 	// Allows items to go through,
 	// to stop them from blocking the conveyor belt.
 	if(!ishuman(mover))
@@ -87,7 +88,7 @@
 	cooldown_timer = world.time + cooldown_duration
 	update_icon()
 
-	playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
+	playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 	H.emote("scream") // It is painful
 	H.adjustBruteLoss(max(0, 80 - H.getBruteLoss())) // Hurt the human, don't try to kill them though.
 
@@ -95,20 +96,34 @@
 	sleep(5)
 
 	use_power(5000) // Use a lot of power.
-	var/mob/living/silicon/robot/R = H.Robotize()
-	R.cell = new /obj/item/stock_parts/cell/upgraded/plus(R, robot_cell_charge)
+	var/mob/living/silicon/robot/R = H.Robotize(1) // Delete the items or they'll all pile up in a single tile and lag
+
+	R.cell.maxcharge = robot_cell_charge
+	R.cell.charge = robot_cell_charge
 
  	// So he can't jump out the gate right away.
 	R.SetLockdown()
-	if(masterAI)
-		R.connected_ai = masterAI
-		R.lawsync()
-		R.lawupdate = 1
-	addtimer(CALLBACK(src, .proc/unlock_new_robot, R), 50)
+	addtimer(src, "unlock_new_robot", 50, FALSE, R)
 
 /obj/machinery/transformer/proc/unlock_new_robot(mob/living/silicon/robot/R)
 	playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
 	sleep(30)
 	if(R)
 		R.SetLockdown(0)
-		R.notify_ai(NEW_BORG)
+		R.notify_ai(1)
+
+/obj/machinery/transformer/conveyor/New()
+	..()
+	var/turf/T = loc
+	if(T)
+		// Spawn Conveyor Belts
+
+		//East
+		var/turf/east = locate(T.x + 1, T.y, T.z)
+		if(istype(east, /turf/open/floor))
+			new /obj/machinery/conveyor/auto(east, WEST)
+
+		// West
+		var/turf/west = locate(T.x - 1, T.y, T.z)
+		if(istype(west, /turf/open/floor))
+			new /obj/machinery/conveyor/auto(west, WEST)

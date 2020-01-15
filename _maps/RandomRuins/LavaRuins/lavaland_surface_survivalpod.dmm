@@ -1,4 +1,4 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
 "a" = (
 /turf/template_noop,
 /area/template_noop)
@@ -12,32 +12,44 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "d" = (
-/turf/closed/wall/mineral/titanium/survival/pod,
+/turf/closed/wall/shuttle/survival/pod{
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
+	},
 /area/ruin/powered)
 "e" = (
 /obj/structure/sign/mining/survival{
 	dir = 4;
-	pixel_x = 32
+	icon_state = "survival";
+	pixel_x = 32;
+	tag = "icon-survival (EAST)"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "f" = (
 /obj/structure/fans,
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod/dark{
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
+	},
 /area/ruin/powered)
 "g" = (
 /obj/machinery/smartfridge/survival_pod/empty,
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod/dark{
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
+	},
 /area/ruin/powered)
 "h" = (
-/obj/item/gps/computer,
+/obj/item/device/gps/computer,
 /obj/structure/tubes,
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod/dark{
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
+	},
 /area/ruin/powered)
 "i" = (
 /obj/structure/sign/mining/survival{
 	dir = 8;
-	pixel_x = -32
+	icon_state = "survival";
+	pixel_x = -32;
+	tag = "icon-survival (WEST)"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -47,21 +59,27 @@
 /area/lavaland/surface/outdoors)
 "k" = (
 /obj/machinery/sleeper/survival_pod,
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod/dark{
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
+	},
 /area/ruin/powered)
 "l" = (
-/obj/item/pickaxe,
+/obj/item/weapon/pickaxe,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod/dark{
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
+	},
 /area/ruin/powered)
 "m" = (
 /obj/structure/bed/pod,
-/obj/item/bedsheet/black,
+/obj/item/weapon/bedsheet/black,
 /obj/structure/tubes,
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod/dark{
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
+	},
 /area/ruin/powered)
 "n" = (
 /obj/effect/decal/cleanable/blood,
@@ -76,8 +94,10 @@
 /area/lavaland/surface/outdoors)
 "p" = (
 /obj/structure/table/survival_pod,
-/obj/item/kitchen/knife/combat/survival,
-/turf/open/floor/pod/dark,
+/obj/item/weapon/kitchen/knife/combat/survival,
+/turf/open/floor/pod/dark{
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
+	},
 /area/ruin/powered)
 "q" = (
 /obj/effect/mob_spawn/human/miner/explorer{
@@ -87,16 +107,21 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/footprints{
+	tag = "icon-blood1 (NORTH)";
 	icon_state = "blood1";
 	dir = 1
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod/dark{
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
+	},
 /area/ruin/powered)
 "r" = (
 /obj/structure/tubes,
-/obj/item/crowbar,
+/obj/item/weapon/crowbar,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod/dark{
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
+	},
 /area/ruin/powered)
 "s" = (
 /obj/effect/decal/cleanable/blood/footprints{
@@ -106,14 +131,18 @@
 /area/lavaland/surface/outdoors)
 "t" = (
 /obj/effect/decal/cleanable/blood/footprints{
+	tag = "icon-blood1 (NORTH)";
 	icon_state = "blood1";
 	dir = 1
 	},
-/obj/machinery/door/airlock/survival_pod/glass,
-/turf/open/floor/pod/dark,
+/obj/machinery/door/airlock/survival_pod,
+/turf/open/floor/pod/dark{
+	baseturf = /turf/open/floor/plating/lava/smooth/lava_land_surface
+	},
 /area/ruin/powered)
 "u" = (
 /obj/effect/decal/cleanable/blood/footprints{
+	tag = "icon-blood1 (WEST)";
 	icon_state = "blood1";
 	dir = 8
 	},
@@ -122,6 +151,7 @@
 /area/lavaland/surface/outdoors)
 "v" = (
 /obj/effect/decal/cleanable/blood/footprints{
+	tag = "icon-blood1 (WEST)";
 	icon_state = "blood1";
 	dir = 8
 	},
@@ -139,6 +169,7 @@
 "x" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/footprints{
+	tag = "icon-blood1 (NORTH)";
 	icon_state = "blood1";
 	dir = 1
 	},
@@ -149,6 +180,7 @@
 	pixel_y = 32
 	},
 /obj/effect/decal/cleanable/blood/footprints{
+	tag = "icon-blood1 (WEST)";
 	icon_state = "blood1";
 	dir = 8
 	},
@@ -156,6 +188,7 @@
 /area/lavaland/surface/outdoors)
 "z" = (
 /obj/effect/decal/cleanable/blood/footprints{
+	tag = "icon-blood1 (WEST)";
 	icon_state = "blood1";
 	dir = 8
 	},
@@ -173,11 +206,12 @@
 a
 a
 a
-b
-b
-b
-b
-b
+a
+a
+a
+a
+a
+a
 a
 a
 a
@@ -185,19 +219,35 @@ a
 (2,1,1) = {"
 a
 a
+a
+a
 b
 b
-e
-b
-e
 b
 b
+b
+a
 a
 a
 "}
 (3,1,1) = {"
 a
 a
+a
+b
+b
+e
+b
+e
+b
+b
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+a
 b
 d
 d
@@ -208,7 +258,8 @@ b
 a
 a
 "}
-(4,1,1) = {"
+(5,1,1) = {"
+a
 a
 b
 c
@@ -221,7 +272,8 @@ w
 b
 b
 "}
-(5,1,1) = {"
+(6,1,1) = {"
+a
 a
 b
 b
@@ -234,7 +286,8 @@ x
 b
 b
 "}
-(6,1,1) = {"
+(7,1,1) = {"
+a
 b
 b
 c
@@ -247,7 +300,8 @@ y
 b
 b
 "}
-(7,1,1) = {"
+(8,1,1) = {"
+a
 a
 b
 b
@@ -260,7 +314,8 @@ z
 j
 j
 "}
-(8,1,1) = {"
+(9,1,1) = {"
+a
 a
 a
 b
@@ -273,7 +328,8 @@ A
 b
 b
 "}
-(9,1,1) = {"
+(10,1,1) = {"
+a
 a
 a
 b
@@ -286,7 +342,8 @@ a
 a
 a
 "}
-(10,1,1) = {"
+(11,1,1) = {"
+a
 a
 a
 a
@@ -295,6 +352,20 @@ a
 o
 j
 b
+a
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
 a
 a
 a

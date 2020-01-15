@@ -2,60 +2,41 @@
 	name = "supply console"
 	desc = "Used to order supplies, approve requests, and control the shuttle."
 	icon_screen = "supply"
-	circuit = /obj/item/circuitboard/computer/cargo
-	req_access = list(ACCESS_CARGO)
+	circuit = /obj/item/weapon/circuitboard/computer/cargo
 	var/requestonly = FALSE
 	var/contraband = FALSE
-	var/safety_warning = "For safety reasons, the automated supply shuttle \
-		cannot transport live organisms, human remains, classified nuclear weaponry \
-		or homing beacons."
-	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
-
-	light_color = "#E2853D"//orange
+	var/safety_warning = "For safety reasons the automated supply shuttle \
+		cannot transport live organisms, classified nuclear weaponry or \
+		homing beacons."
 
 /obj/machinery/computer/cargo/request
 	name = "supply request console"
 	desc = "Used to request supplies from cargo."
 	icon_screen = "request"
-	circuit = /obj/item/circuitboard/computer/cargo/request
-	req_access = list()
+	circuit = /obj/item/weapon/circuitboard/computer/cargo/request
 	requestonly = TRUE
 
-/obj/machinery/computer/cargo/Initialize()
-	. = ..()
-	var/obj/item/circuitboard/computer/cargo/board = circuit
+/obj/machinery/computer/cargo/New()
+	..()
+	var/obj/item/weapon/circuitboard/computer/cargo/board = circuit
 	contraband = board.contraband
-	if (board.obj_flags & EMAGGED)
-		obj_flags |= EMAGGED
-	else
-		obj_flags &= ~EMAGGED
+	emagged = board.emagged
 
-/obj/machinery/computer/cargo/proc/get_export_categories()
-	. = EXPORT_CARGO
-	if(contraband)
-		. |= EXPORT_CONTRABAND
-	if(obj_flags & EMAGGED)
-		. |= EXPORT_EMAG
+/obj/machinery/computer/cargo/emag_act(mob/living/user)
+	if(!emagged)
+		user.visible_message("<span class='warning'>[user] swipes a suspicious card through [src]!",
+		"<span class='notice'>You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband.</span>")
 
-/obj/machinery/computer/cargo/emag_act(mob/user)
-	. = ..()
-	if(obj_flags & EMAGGED)
-		return
-	user.visible_message("<span class='warning'>[user] swipes a suspicious card through [src]!</span>",
-	"<span class='notice'>You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband.</span>")
+		emagged = TRUE
+		contraband = TRUE
 
-	obj_flags |= EMAGGED
-	contraband = TRUE
+		// This also permamently sets this on the circuit board
+		var/obj/item/weapon/circuitboard/computer/cargo/board = circuit
+		board.contraband = TRUE
+		board.emagged = TRUE
 
-	// This also permamently sets this on the circuit board
-	var/obj/item/circuitboard/computer/cargo/board = circuit
-	board.contraband = TRUE
-	board.obj_flags |= EMAGGED
-	req_access = list()
-	return TRUE
-
-/obj/machinery/computer/cargo/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+/obj/machinery/computer/cargo/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
+											datum/tgui/master_ui = null, datum/ui_state/state = default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "cargo", name, 1000, 800, master_ui, state)
@@ -70,12 +51,8 @@
 	data["docked"] = SSshuttle.supply.mode == SHUTTLE_IDLE
 	data["loan"] = !!SSshuttle.shuttle_loan
 	data["loan_dispatched"] = SSshuttle.shuttle_loan && SSshuttle.shuttle_loan.dispatched
-	var/message = "Remember to stamp and send back the supply manifests."
-	if(SSshuttle.centcom_message)
-		message = SSshuttle.centcom_message
-	if(SSshuttle.supplyBlocked)
-		message = blockade_warning
-	data["message"] = message
+	data["message"] = SSshuttle.centcom_message || "Remember to stamp and send back the supply manifests."
+
 	data["supplies"] = list()
 	for(var/pack in SSshuttle.supply_packs)
 		var/datum/supply_pack/P = SSshuttle.supply_packs[pack]
@@ -84,13 +61,12 @@
 				"name" = P.group,
 				"packs" = list()
 			)
-		if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly)
+		if((P.hidden && !emagged) || (P.contraband && !contraband))
 			continue
 		data["supplies"][P.group]["packs"] += list(list(
 			"name" = P.name,
 			"cost" = P.cost,
-			"id" = pack,
-			"desc" = P.desc || P.name // If there is a description, use it. Otherwise use the pack's name.
+			"id" = pack
 		))
 
 	data["cart"] = list()
@@ -116,49 +92,40 @@
 /obj/machinery/computer/cargo/ui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
-	if(!allowed(usr))
-		to_chat(usr, "<span class='notice'>Access denied.</span>")
-		return
 	if(action != "add" && requestonly)
 		return
 	switch(action)
 		if("send")
-			if(!SSshuttle.supply.canMove())
+			if(SSshuttle.supply.canMove())
 				say(safety_warning)
 				return
-			if(SSshuttle.supplyBlocked)
-				say(blockade_warning)
-				return
 			if(SSshuttle.supply.getDockedId() == "supply_home")
-				SSshuttle.supply.export_categories = get_export_categories()
+				SSshuttle.supply.emagged = emagged
+				SSshuttle.supply.contraband = contraband
 				SSshuttle.moveShuttle("supply", "supply_away", TRUE)
-				say("The supply shuttle is departing.")
-				investigate_log("[key_name(usr)] sent the supply shuttle away.", INVESTIGATE_CARGO)
+				say("The supply shuttle has departed.")
+				investigate_log("[key_name(usr)] sent the supply shuttle away.", "cargo")
 			else
-				investigate_log("[key_name(usr)] called the supply shuttle.", INVESTIGATE_CARGO)
+				investigate_log("[key_name(usr)] called the supply shuttle.", "cargo")
 				say("The supply shuttle has been called and will arrive in [SSshuttle.supply.timeLeft(600)] minutes.")
 				SSshuttle.moveShuttle("supply", "supply_home", TRUE)
 			. = TRUE
 		if("loan")
 			if(!SSshuttle.shuttle_loan)
 				return
-			if(SSshuttle.supplyBlocked)
-				say(blockade_warning)
+			if(SSshuttle.supply.canMove())
+				say(safety_warning)
 				return
-			else if(SSshuttle.supply.mode != SHUTTLE_IDLE)
-				return
-			else if(SSshuttle.supply.getDockedId() != "supply_away")
-				return
-			else
+			else if(SSshuttle.supply.mode == SHUTTLE_IDLE)
 				SSshuttle.shuttle_loan.loan_shuttle()
-				say("The supply shuttle has been loaned to CentCom.")
+				say("The supply shuttle has been loaned to Centcom.")
 				. = TRUE
 		if("add")
 			var/id = text2path(params["id"])
 			var/datum/supply_pack/pack = SSshuttle.supply_packs[id]
 			if(!istype(pack))
 				return
-			if((pack.hidden && !(obj_flags & EMAGGED)) || (pack.contraband && !contraband) || pack.DropPodOnly)
+			if((pack.hidden && !emagged) || (pack.contraband && !contraband))
 				return
 
 			var/name = "*None Provided*"
@@ -167,14 +134,14 @@
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				name = H.get_authentification_name()
-				rank = H.get_assignment(hand_first = TRUE)
+				rank = H.get_assignment()
 			else if(issilicon(usr))
 				name = usr.real_name
 				rank = "Silicon"
 
 			var/reason = ""
 			if(requestonly)
-				reason = stripped_input("Reason:", name, "")
+				reason = input("Reason:", name, "") as text|null
 				if(isnull(reason) || ..())
 					return
 
@@ -219,10 +186,15 @@
 
 /obj/machinery/computer/cargo/proc/post_signal(command)
 
-	var/datum/radio_frequency/frequency = SSradio.return_frequency(FREQ_STATUS_DISPLAYS)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 
 	if(!frequency)
 		return
 
-	var/datum/signal/status_signal = new(list("command" = command))
+	var/datum/signal/status_signal = new
+	status_signal.source = src
+	status_signal.transmission_method = 1
+	status_signal.data["command"] = command
+
 	frequency.post_signal(src, status_signal)
+

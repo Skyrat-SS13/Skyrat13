@@ -1,25 +1,28 @@
 /obj/machinery/computer/aifixer
 	name = "\improper AI system integrity restorer"
-	desc = "Used with intelliCards containing nonfunctional AIs to restore them to working order."
-	req_access = list(ACCESS_CAPTAIN, ACCESS_ROBOTICS, ACCESS_HEADS)
+	desc = "Used with intelliCards containing nonfunctioning AIs to restore them to working order."
+	req_access = list(access_captain, access_robotics, access_heads)
 	var/mob/living/silicon/ai/occupier = null
 	var/active = 0
-	circuit = /obj/item/circuitboard/computer/aifixer
+	circuit = /obj/item/weapon/circuitboard/computer/aifixer
 	icon_keyboard = "tech_key"
 	icon_screen = "ai-fixer"
-	light_color = LIGHT_COLOR_PINK
 
 /obj/machinery/computer/aifixer/attackby(obj/I, mob/user, params)
-	if(occupier && istype(I, /obj/item/screwdriver))
+	if(occupier && istype(I, /obj/item/weapon/screwdriver))
 		if(stat & (NOPOWER|BROKEN))
-			to_chat(user, "<span class='warning'>The screws on [name]'s screen won't budge.</span>")
+			user << "<span class='warning'>The screws on [name]'s screen won't budge.</span>"
 		else
-			to_chat(user, "<span class='warning'>The screws on [name]'s screen won't budge and it emits a warning beep.</span>")
+			user << "<span class='warning'>The screws on [name]'s screen won't budge and it emits a warning beep.</span>"
 	else
 		return ..()
 
-/obj/machinery/computer/aifixer/ui_interact(mob/user)
-	. = ..()
+/obj/machinery/computer/aifixer/attack_hand(mob/user)
+	if(..())
+		return
+	interact(user)
+
+/obj/machinery/computer/aifixer/interact(mob/user)
 
 	var/dat = ""
 
@@ -30,12 +33,6 @@
 
 		if (src.occupier.laws.zeroth)
 			laws += "<b>0:</b> [src.occupier.laws.zeroth]<BR>"
-
-		for (var/index = 1, index <= src.occupier.laws.hacked.len, index++)
-			var/law = src.occupier.laws.hacked[index]
-			if (length(law) > 0)
-				var/num = ionnum()
-				laws += "<b>[num]:</b> [law]<BR>"
 
 		for (var/index = 1, index <= src.occupier.laws.ion.len, index++)
 			var/law = src.occupier.laws.ion[index]
@@ -58,50 +55,50 @@
 
 		dat += "<b>Laws:</b><br>[laws]<br>"
 
-		if (src.occupier.stat == DEAD)
+		if (src.occupier.stat == 2)
 			dat += "<span class='bad'>AI non-functional</span>"
 		else
 			dat += "<span class='good'>AI functional</span>"
 		if (!src.active)
-			dat += {"<br><br><A href='byond://?src=[REF(src)];fix=1'>Begin Reconstruction</A>"}
+			dat += {"<br><br><A href='byond://?src=\ref[src];fix=1'>Begin Reconstruction</A>"}
 		else
 			dat += "<br><br>Reconstruction in process, please wait.<br>"
-	dat += {"<br><A href='?src=[REF(user)];mach_close=computer'>Close</A>"}
+	dat += {"<br><A href='?src=\ref[user];mach_close=computer'>Close</A>"}
+
+	//user << browse(dat, "window=computer;size=400x500")
+	//onclose(user, "computer")
 	var/datum/browser/popup = new(user, "computer", "AI System Integrity Restorer", 400, 500)
 	popup.set_content(dat)
 	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 	return
 
-/obj/machinery/computer/aifixer/proc/Fix()
-	use_power(1000)
-	occupier.adjustOxyLoss(-1, 0)
-	occupier.adjustFireLoss(-1, 0)
-	occupier.adjustToxLoss(-1, 0)
-	occupier.adjustBruteLoss(-1, 0)
-	occupier.updatehealth()
-	if(occupier.health >= 0 && occupier.stat == DEAD)
-		occupier.revive()
-	return occupier.health < 100
-
 /obj/machinery/computer/aifixer/process()
 	if(..())
-		if(active)
-			var/oldstat = occupier.stat
-			active = Fix()
-			if(oldstat != occupier.stat)
-				update_icon()
-		updateDialog()
+		src.updateDialog()
+		return
 
 /obj/machinery/computer/aifixer/Topic(href, href_list)
 	if(..())
 		return
 	if(href_list["fix"])
-		to_chat(usr, "<span class='notice'>Reconstruction in progress. This will take several minutes.</span>")
-		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 25, 0)
-		active = TRUE
+		active = 1
+		while (occupier.health < 100)
+			occupier.adjustOxyLoss(-1, 0)
+			occupier.adjustFireLoss(-1, 0)
+			occupier.adjustToxLoss(-1, 0)
+			occupier.adjustBruteLoss(-1, 0)
+			occupier.updatehealth()
+			if(occupier.health >= 0 && occupier.stat == DEAD)
+				occupier.revive()
+			updateUsrDialog()
+			update_icon()
+			sleep(10)
+		active = 0
 		add_fingerprint(usr)
 	updateUsrDialog()
+	update_icon()
+
 
 /obj/machinery/computer/aifixer/update_icon()
 	..()
@@ -119,32 +116,32 @@
 		else
 			add_overlay("ai-fixer-empty")
 
-/obj/machinery/computer/aifixer/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
+/obj/machinery/computer/aifixer/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/device/aicard/card)
 	if(!..())
 		return
 	//Downloading AI from card to terminal.
 	if(interaction == AI_TRANS_FROM_CARD)
 		if(stat & (NOPOWER|BROKEN))
-			to_chat(user, "[src] is offline and cannot take an AI at this time!")
+			user << "[src] is offline and cannot take an AI at this time!"
 			return
 		AI.forceMove(src)
 		occupier = AI
 		AI.control_disabled = 1
 		AI.radio_enabled = 0
-		to_chat(AI, "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here.")
-		to_chat(user, "<span class='boldnotice'>Transfer successful</span>: [AI.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
+		AI << "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here."
+		user << "<span class='boldnotice'>Transfer successful</span>: [AI.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed."
 		card.AI = null
 		update_icon()
 
 	else //Uploading AI from terminal to card
 		if(occupier && !active)
-			to_chat(occupier, "You have been downloaded to a mobile storage device. Still no remote access.")
-			to_chat(user, "<span class='boldnotice'>Transfer successful</span>: [occupier.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.")
-			occupier.forceMove(card)
+			occupier << "You have been downloaded to a mobile storage device. Still no remote access."
+			user << "<span class='boldnotice'>Transfer successful</span>: [occupier.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory."
+			occupier.loc = card
 			card.AI = occupier
 			occupier = null
 			update_icon()
 		else if (active)
-			to_chat(user, "<span class='boldannounce'>ERROR</span>: Reconstruction in progress.")
+			user << "<span class='boldannounce'>ERROR</span>: Reconstruction in progress."
 		else if (!occupier)
-			to_chat(user, "<span class='boldannounce'>ERROR</span>: Unable to locate artificial intelligence.")
+			user << "<span class='boldannounce'>ERROR</span>: Unable to locate artificial intelligence."

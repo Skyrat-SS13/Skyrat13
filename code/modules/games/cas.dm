@@ -3,11 +3,8 @@
 // which is licensed under CC BY-NC-SA 2.0, the full text of which can be found at the following URL:
 // https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode
 // Original code by Zuhayr, Polaris Station, ported with modifications
-/datum/playingcard
-	var/name = "playing card"
-	var/card_icon = "card_back"
-	var/suit
-	var/number
+
+var/global/list/cards_against_space
 
 /obj/item/toy/cards/deck/cas
 	name = "\improper CAS deck (white)"
@@ -31,17 +28,18 @@
 	decksize = 50
 	card_text_file = "strings/cas_black.txt"
 
-/obj/item/toy/cards/deck/cas/populate_deck()
-	var/static/list/cards_against_space = list("cas_white" = world.file2list("strings/cas_white.txt"),"cas_black" = world.file2list("strings/cas_black.txt"))
+/obj/item/toy/cards/deck/cas/New()
+	if(!cards_against_space)  //saves loading from the files every single time a new deck is created, but still lets each deck have a random assortment, it's purely an optimisation
+		cards_against_space = list("cas_white" = file2list("strings/cas_white.txt"),"cas_black" = file2list("strings/cas_black.txt"))
 	allcards = cards_against_space[card_face]
 	var/list/possiblecards = allcards.Copy()
 	if(possiblecards.len < decksize) // sanity check
 		decksize = (possiblecards.len - 1)
 	var/list/randomcards = list()
-	for(var/x in 1 to decksize)
+	while (randomcards.len < decksize)
 		randomcards += pick_n_take(possiblecards)
-	for(var/x in 1 to randomcards.len)
-		var/cardtext = randomcards[x]
+	for(var/i=1 to randomcards.len)
+		var/cardtext = randomcards[i]
 		var/datum/playingcard/P
 		P = new()
 		P.name = "[cardtext]"
@@ -49,19 +47,19 @@
 		cards += P
 	if(!blanks)
 		return
-	for(var/x in 1 to blanks)
+	for(var/x=1 to blanks)
 		var/datum/playingcard/P
 		P = new()
 		P.name = "Blank Card"
 		P.card_icon = "cas_white"
 		cards += P
-	shuffle_inplace(cards) // distribute blank cards throughout deck
+	shuffle(cards) // distribute blank cards throughout deck
 
-/obj/item/toy/cards/deck/cas/draw_card(mob/user)
+/obj/item/toy/cards/deck/cas/attack_hand(mob/user)
 	if(user.lying)
 		return
 	if(cards.len == 0)
-		to_chat(user, "<span class='warning'>There are no more cards to draw!</span>")
+		user << "<span class='warning'>There are no more cards to draw!</span>"
 		return
 	var/obj/item/toy/cards/singlecard/cas/H = new/obj/item/toy/cards/singlecard/cas(user.loc)
 	var/datum/playingcard/choice = cards[1]
@@ -81,8 +79,8 @@
 /obj/item/toy/cards/deck/cas/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/toy/cards/singlecard/cas))
 		var/obj/item/toy/cards/singlecard/cas/SC = I
-		if(!user.temporarilyRemoveItemFromInventory(SC))
-			to_chat(user, "<span class='warning'>The card is stuck to your hand, you can't add it to the deck!</span>")
+		if(!user.unEquip(SC))
+			user << "<span class='warning'>The card is stuck to your hand, you can't add it to the deck!</span>"
 			return
 		var/datum/playingcard/RC // replace null datum for the re-added card
 		RC = new()
@@ -107,20 +105,18 @@
 	var/buffertext = "A funny bit of text."
 
 /obj/item/toy/cards/singlecard/cas/examine(mob/user)
-	. = ..()
 	if (flipped)
-		. += "<span class='notice'>The card is face down.</span>"
+		user << "<span class='notice'>The card is face down.</span>"
 	else if (blank)
-		. += "<span class='notice'>The card is blank. Write on it with a pen.</span>"
+		user << "<span class='notice'>The card is blank. Write on it with a pen.</span>"
 	else
-		. += "<span class='notice'>The card reads: [name]</span>"
-	. += "<span class='notice'>Alt-click to flip it.</span>"
+		user << "<span class='notice'>The card reads: [name]</span>"
 
 /obj/item/toy/cards/singlecard/cas/Flip()
 	set name = "Flip Card"
 	set category = "Object"
 	set src in range(1)
-	if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
+	if(!usr.canUseTopic(src,1))
 		return
 	if(!flipped)
 		name = "CAS card"
@@ -129,12 +125,10 @@
 	flipped = !flipped
 	update_icon()
 
-/obj/item/toy/cards/singlecard/cas/AltClick(mob/living/user)
-	. = ..()
-	if(!ishuman(user) || !user.canUseTopic(src, BE_CLOSE))
+obj/item/toy/cards/singlecard/cas/AltClick(mob/living/user)
+	if(!user.canUseTopic(src,1))
 		return
 	Flip()
-	return TRUE
 
 /obj/item/toy/cards/singlecard/cas/update_icon()
 	if(flipped)
@@ -143,15 +137,12 @@
 		icon_state = "[card_face]"
 
 /obj/item/toy/cards/singlecard/cas/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/pen))
-		if(!user.is_literate())
-			to_chat(user, "<span class='notice'>You scribble illegibly on [src]!</span>")
-			return
+	if(istype(I, /obj/item/weapon/pen))
 		if(!blank)
-			to_chat(user, "You cannot write on that card.")
+			user << "You cannot write on that card."
 			return
 		var/cardtext = stripped_input(user, "What do you wish to write on the card?", "Card Writing", "", 50)
-		if(!cardtext || !user.canUseTopic(src, BE_CLOSE))
+		if(!cardtext)
 			return
 		name = cardtext
 		buffertext = cardtext

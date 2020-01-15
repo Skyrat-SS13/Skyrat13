@@ -1,40 +1,34 @@
-/mob/dead/observer/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/dead/observer/say(message)
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+
 	if (!message)
 		return
 
-	var/message_mode = get_message_mode(message)
-	if(client && (message_mode == MODE_ADMIN || message_mode == MODE_DEADMIN))
-		message = copytext(message, 3)
-		if(findtext(message, " ", 1, 2))
-			message = copytext(message, 2)
+	log_say("Ghost/[src.key] : [message]")
 
-		if(message_mode == MODE_ADMIN)
-			client.cmd_admin_say(message)
-		else if(message_mode == MODE_DEADMIN)
-			client.dsay(message)
+	if(jobban_isbanned(src, "OOC"))
+		src << "<span class='danger'>You have been banned from deadchat.</span>"
 		return
 
-	src.log_talk(message, LOG_SAY, tag="ghost")
+	if (src.client)
+		if(src.client.prefs.muted & MUTE_DEADCHAT)
+			src << "<span class='danger'>You cannot talk in deadchat (muted).</span>"
+			return
 
-	if(check_emote(message))
-		return
+		if (src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
+			return
 
-	. = say_dead(message)
+	. = src.say_dead(message)
 
-/mob/dead/observer/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, atom/movable/source)
-	. = ..()
-	var/atom/movable/to_follow = speaker
+/mob/dead/observer/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans)
 	if(radio_freq)
 		var/atom/movable/virtualspeaker/V = speaker
 
-		if(isAI(V.source))
+		if(istype(V.source, /mob/living/silicon/ai))
 			var/mob/living/silicon/ai/S = V.source
-			to_follow = S.eyeobj
+			speaker = S.eyeobj
 		else
-			to_follow = V.source
-	var/link = FOLLOW_LINK(src, to_follow)
-	// Recompose the message, because it's scrambled by default
-	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode, FALSE, source)
-	to_chat(src, "[link] [message]")
+			speaker = V.source
+	var/link = FOLLOW_LINK(src, speaker)
+	src << "[link] [message]"
 

@@ -21,251 +21,94 @@
 			return "000"
 
 /proc/random_underwear(gender)
-	if(!GLOB.underwear_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/underwear/bottom, GLOB.underwear_list, GLOB.underwear_m, GLOB.underwear_f)
+	if(!underwear_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/underwear, underwear_list, underwear_m, underwear_f)
 	switch(gender)
 		if(MALE)
-			return pick(GLOB.underwear_m)
+			return pick(underwear_m)
 		if(FEMALE)
-			return pick(GLOB.underwear_f)
+			return pick(underwear_f)
 		else
-			return pick(GLOB.underwear_list)
+			return pick(underwear_list)
 
 /proc/random_undershirt(gender)
-	if(!GLOB.undershirt_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/underwear/top, GLOB.undershirt_list, GLOB.undershirt_m, GLOB.undershirt_f)
+	if(!undershirt_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/undershirt, undershirt_list, undershirt_m, undershirt_f)
 	switch(gender)
 		if(MALE)
-			return pick(GLOB.undershirt_m)
+			return pick(undershirt_m)
 		if(FEMALE)
-			return pick(GLOB.undershirt_f)
+			return pick(undershirt_f)
 		else
-			return pick(GLOB.undershirt_list)
+			return pick(undershirt_list)
 
 /proc/random_socks()
-	if(!GLOB.socks_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/underwear/socks, GLOB.socks_list)
-	return pick(GLOB.socks_list)
+	if(!socks_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/socks, socks_list)
+	return pick(socks_list)
 
 /proc/random_features()
-	if(!GLOB.tails_list_human.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/human, GLOB.tails_list_human)
-	if(!GLOB.tails_list_lizard.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/lizard, GLOB.tails_list_lizard)
-	if(!GLOB.snouts_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts, GLOB.snouts_list)
-	if(!GLOB.horns_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/horns, GLOB.horns_list)
-	if(!GLOB.ears_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/ears, GLOB.ears_list)
-	if(!GLOB.frills_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/frills, GLOB.frills_list)
-	if(!GLOB.spines_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/spines, GLOB.spines_list)
-	if(!GLOB.legs_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/legs, GLOB.legs_list)
-	if(!GLOB.body_markings_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings, GLOB.body_markings_list)
-	if(!GLOB.wings_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, GLOB.wings_list)
-	if(!GLOB.deco_wings_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/deco_wings, GLOB.deco_wings_list)
-	if(!GLOB.insect_wings_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/insect_wings, GLOB.insect_wings_list)
-	if(!GLOB.insect_fluffs_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/insect_fluff, GLOB.insect_fluffs_list)
-	if(!GLOB.insect_markings_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/insect_markings, GLOB.insect_markings_list)
+	if(!tails_list_human.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/human, tails_list_human)
+	if(!tails_list_lizard.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/lizard, tails_list_lizard)
+	if(!snouts_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts, snouts_list)
+	if(!horns_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/horns, horns_list)
+	if(!ears_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ears, horns_list)
+	if(!frills_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/frills, frills_list)
+	if(!spines_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/spines, spines_list)
+	if(!body_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings, body_markings_list)
+	if(!wings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, wings_list)
 
-	//CIT CHANGES - genitals and such
-	if(!GLOB.cock_shapes_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/penis, GLOB.cock_shapes_list)
-	if(!GLOB.balls_shapes_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/testicles, GLOB.balls_shapes_list)
-	if(!GLOB.vagina_shapes_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/vagina, GLOB.vagina_shapes_list)
-	if(!GLOB.breasts_shapes_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/breasts, GLOB.breasts_shapes_list)
-	if(!GLOB.ipc_screens_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/screen, GLOB.ipc_screens_list)
-	if(!GLOB.ipc_antennas_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/antenna, GLOB.ipc_antennas_list)
-	if(!GLOB.mam_body_markings_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/mam_body_markings, GLOB.mam_body_markings_list)
-	if(!GLOB.mam_tails_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/mam_tails, GLOB.mam_tails_list)
-	if(!GLOB.mam_ears_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/mam_ears, GLOB.mam_ears_list)
-	if(!GLOB.mam_snouts_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/mam_snouts, GLOB.mam_snouts_list)
-
-	//snowflake check so people's ckey features don't get randomly put on unmonkeys/spawns
-	var/list/snowflake_mam_tails_list = list()
-	for(var/mtpath in GLOB.mam_tails_list)
-		var/datum/sprite_accessory/mam_tails/instance = GLOB.mam_tails_list[mtpath]
-		if(istype(instance, /datum/sprite_accessory))
-			var/datum/sprite_accessory/S = instance
-			if(!S.ckeys_allowed)
-				snowflake_mam_tails_list[S.name] = mtpath
-	var/list/snowflake_markings_list = list()
-	for(var/mmpath in GLOB.mam_body_markings_list)
-		var/datum/sprite_accessory/mam_body_markings/instance = GLOB.mam_body_markings_list[mmpath]
-		if(istype(instance, /datum/sprite_accessory))
-			var/datum/sprite_accessory/S = instance
-			if(!S.ckeys_allowed)
-				snowflake_markings_list[S.name] = mmpath
-	var/list/snowflake_ears_list = list()
-	for(var/mepath in GLOB.mam_ears_list)
-		var/datum/sprite_accessory/mam_ears/instance = GLOB.mam_ears_list[mepath]
-		if(istype(instance, /datum/sprite_accessory))
-			var/datum/sprite_accessory/S = instance
-			if(!S.ckeys_allowed)
-				snowflake_ears_list[S.name] = mepath
-	var/list/snowflake_mam_snouts_list = list()
-	for(var/mspath in GLOB.mam_snouts_list)
-		var/datum/sprite_accessory/mam_snouts/instance = GLOB.mam_snouts_list[mspath]
-		if(istype(instance, /datum/sprite_accessory))
-			var/datum/sprite_accessory/S = instance
-			if(!S.ckeys_allowed)
-				snowflake_mam_snouts_list[S.name] = mspath
-	var/color1 = random_short_color()
-	var/color2 = random_short_color()
-	var/color3 = random_short_color()
-
-	//CIT CHANGE - changes this entire return to support cit's snowflake parts
-	return(list(
-		"mcolor"			= color1,
-		"mcolor2"			= color2,
-		"mcolor3"			= color3,
-		"tail_lizard"		= pick(GLOB.tails_list_lizard),
-		"tail_human"		= "None",
-		"wings"				= "None",
-		"deco_wings"		= "None",
-		"snout"				= pick(GLOB.snouts_list),
-		"horns"				= pick(GLOB.horns_list),
-		"ears"				= "None",
-		"frills"			= pick(GLOB.frills_list),
-		"spines"			= pick(GLOB.spines_list),
-		"body_markings"		= pick(GLOB.body_markings_list),
-		"legs"				= pick("Plantigrade","Digitigrade"),
-		"caps"				= pick(GLOB.caps_list),
-		"insect_wings"		= pick(GLOB.insect_wings_list),
-		"insect_fluff"		= "None",
-		"insect_markings"     = pick(GLOB.insect_markings_list),
-		"taur"				= "None",
-		"mam_body_markings" = pick(snowflake_markings_list),
-		"mam_ears" 			= pick(snowflake_ears_list),
-		"mam_snouts"		= pick(snowflake_mam_snouts_list),
-		"mam_tail"			= pick(snowflake_mam_tails_list),
-		"mam_tail_animated" = "None",
-		"xenodorsal" 		= "Standard",
-		"xenohead" 			= "Standard",
-		"xenotail" 			= "Xenomorph Tail",
-		"genitals_use_skintone"	= FALSE,
-		"has_cock"			= FALSE,
-		"cock_shape"		= pick(GLOB.cock_shapes_list),
-		"cock_length"		= 6,
-		"cock_girth_ratio"	= COCK_GIRTH_RATIO_DEF,
-		"cock_color"		= pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
-		"has_sheath"		= FALSE,
-		"sheath_color"		= pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
-		"has_balls" 		= FALSE,
-		"balls_internal" 	= FALSE,
-		"balls_color" 		= pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
-		"balls_amount"		= 2,
-		"balls_sack_size"	= BALLS_SACK_SIZE_DEF,
-		"balls_size"		= BALLS_SIZE_DEF,
-		"balls_shape"		= "Single",
-		"balls_cum_rate"	= CUM_RATE,
-		"balls_cum_mult"	= CUM_RATE_MULT,
-		"balls_efficiency"	= CUM_EFFICIENCY,
-		"balls_fluid" 		= "semen",
-		"has_ovi"			= FALSE,
-		"ovi_shape"			= "knotted",
-		"ovi_length"		= 6,
-		"ovi_color"			= pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
-		"has_eggsack" 		= FALSE,
-		"eggsack_internal" 	= TRUE,
-		"eggsack_color" 	= pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
-		"eggsack_size" 		= BALLS_SACK_SIZE_DEF,
-		"eggsack_egg_color" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
-		"eggsack_egg_size" 	= EGG_GIRTH_DEF,
-		"has_breasts" 		= FALSE,
-		"breasts_color" 	= pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
-		"breasts_size" 		= pick(GLOB.breasts_size_list),
-		"breasts_shape"		= "Pair",
-		"breasts_fluid" 	= "milk",
-		"breasts_producing" = FALSE,
-		"has_vag"			= FALSE,
-		"vag_shape"			= pick(GLOB.vagina_shapes_list),
-		"vag_color"			= pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
-		"vag_clits"			= 1,
-		"vag_clit_diam"		= 0.25,
-		"vag_clit_len"		= 0.25,
-		"has_womb"			= FALSE,
-		"womb_cum_rate"		= CUM_RATE,
-		"womb_cum_mult"		= CUM_RATE_MULT,
-		"womb_efficiency"	= CUM_EFFICIENCY,
-		"womb_fluid" 		= "femcum",
-		"ipc_screen"		= "Sunburst",
-		"ipc_antenna"		= "None",
-		"flavor_text"		= "",
-		"meat_type"			= "Mammalian"
-		))
+	//For now we will always return none for tail_human and ears.
+	return(list("mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"), "tail_lizard" = pick(tails_list_lizard), "tail_human" = "None", "wings" = "None", "snout" = pick(snouts_list), "horns" = pick(horns_list), "ears" = "None", "frills" = pick(frills_list), "spines" = pick(spines_list), "body_markings" = pick(body_markings_list)))
 
 /proc/random_hair_style(gender)
 	switch(gender)
 		if(MALE)
-			return pick(GLOB.hair_styles_male_list)
+			return pick(hair_styles_male_list)
 		if(FEMALE)
-			return pick(GLOB.hair_styles_female_list)
+			return pick(hair_styles_female_list)
 		else
-			return pick(GLOB.hair_styles_list)
+			return pick(hair_styles_list)
 
 /proc/random_facial_hair_style(gender)
 	switch(gender)
 		if(MALE)
-			return pick(GLOB.facial_hair_styles_male_list)
+			return pick(facial_hair_styles_male_list)
 		if(FEMALE)
-			return pick(GLOB.facial_hair_styles_female_list)
+			return pick(facial_hair_styles_female_list)
 		else
-			return pick(GLOB.facial_hair_styles_list)
+			return pick(facial_hair_styles_list)
 
 /proc/random_unique_name(gender, attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
+	for(var/i=1, i<=attempts_to_find_unique_name, i++)
 		if(gender==FEMALE)
-			. = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+			. = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 		else
-			. = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+			. = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
-		if(!findname(.))
+		if(i != attempts_to_find_unique_name && !findname(.))
 			break
 
 /proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
+	for(var/i=1, i<=attempts_to_find_unique_name, i++)
 		. = capitalize(lizard_name(gender))
 
-		if(!findname(.))
-			break
-
-/proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(plasmaman_name())
-
-		if(!findname(.))
-			break
-
-/proc/random_unique_moth_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(pick(GLOB.moth_first)) + " " + capitalize(pick(GLOB.moth_last))
-
-		if(!findname(.))
+		if(i != attempts_to_find_unique_name && !findname(.))
 			break
 
 /proc/random_skin_tone()
-	return pick(GLOB.skin_tones)
+	return pick(skin_tones)
 
-GLOBAL_LIST_INIT(skin_tones, list(
+var/list/skin_tones = list(
 	"albino",
 	"caucasian1",
 	"caucasian2",
@@ -278,9 +121,10 @@ GLOBAL_LIST_INIT(skin_tones, list(
 	"indian",
 	"african1",
 	"african2"
-	))
+	)
 
-GLOBAL_LIST_EMPTY(species_list)
+var/global/list/species_list[0]
+var/global/list/roundstart_species[0]
 
 /proc/age2agedescription(age)
 	switch(age)
@@ -305,7 +149,38 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null, ignorehelditem = 0)
+/*
+Proc for attack log creation, because really why not
+1 argument is the actor
+2 argument is the target of action
+3 is the description of action(like punched, throwed, or any other verb)
+4 should it make adminlog note or not
+5 is the tool with which the action was made(usually item)					5 and 6 are very similar(5 have "by " before it, that it) and are separated just to keep things in a bit more in order
+6 is additional information, anything that needs to be added
+*/
+
+/proc/add_logs(mob/user, mob/target, what_done, object=null, addition=null)
+	var/newhealthtxt = ""
+	var/coordinates = ""
+	var/turf/attack_location = get_turf(target)
+	if(attack_location)
+		coordinates = "([attack_location.x],[attack_location.y],[attack_location.z])"
+	if(target && isliving(target))
+		var/mob/living/L = target
+		newhealthtxt = " (NEWHP: [L.health])"
+	if(user && ismob(user))
+		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has [what_done] [target ? "[target.name][(ismob(target) && target.ckey) ? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition][newhealthtxt][coordinates]</font>")
+		if(user.mind)
+			user.mind.attack_log += text("\[[time_stamp()]\] <font color='red'>[user ? "[user.name][(ismob(user) && user.ckey) ? "([user.ckey])" : ""]" : "NON-EXISTANT SUBJECT"] has [what_done] [target ? "[target.name][(ismob(target) && target.ckey) ? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition][newhealthtxt][coordinates]</font>")
+	if(target && ismob(target))
+		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [what_done] by [user ? "[user.name][(ismob(user) && user.ckey) ? "([user.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition][newhealthtxt][coordinates]</font>")
+		if(target.mind)
+			target.mind.attack_log += text("\[[time_stamp()]\] <font color='orange'>[target ? "[target.name][(ismob(target) && target.ckey) ? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"] has been [what_done] by [user ? "[user.name][(ismob(user) && user.ckey) ? "([user.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition][newhealthtxt][coordinates]</font>")
+	log_attack("[user ? "[user.name][(ismob(user) && user.ckey) ? "([user.ckey])" : ""]" : "NON-EXISTANT SUBJECT"] [what_done] [target ? "[target.name][(ismob(target) && target.ckey)? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition][newhealthtxt][coordinates]")
+
+
+
+/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1)
 	if(!user || !target)
 		return 0
 	var/user_loc = user.loc
@@ -316,7 +191,7 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/target_loc = target.loc
 
-	var/holding = user.get_active_held_item()
+	var/holding = user.get_active_hand()
 	var/datum/progressbar/progbar
 	if (progress)
 		progbar = new(user, time, target)
@@ -325,10 +200,10 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/starttime = world.time
 	. = 1
 	while (world.time < endtime)
-		stoplag(1)
+		stoplag()
 		if (progress)
 			progbar.update(world.time - starttime)
-		if(QDELETED(user) || QDELETED(target))
+		if(!user || !target)
 			. = 0
 			break
 		if(uninterruptible)
@@ -338,32 +213,18 @@ GLOBAL_LIST_EMPTY(species_list)
 			drifting = 0
 			user_loc = user.loc
 
-		if((!drifting && user.loc != user_loc) || target.loc != target_loc || (!ignorehelditem && user.get_active_held_item() != holding) || user.incapacitated() || user.lying || (extra_checks && !extra_checks.Invoke()))
+		if((!drifting && user.loc != user_loc) || target.loc != target_loc || user.get_active_hand() != holding || user.incapacitated() || user.lying )
 			. = 0
 			break
 	if (progress)
 		qdel(progbar)
 
 
-//some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
-/mob/proc/break_do_after_checks(list/checked_health, check_clicks)
-	if(check_clicks && next_move > world.time)
-		return FALSE
-	return TRUE
-
-//pass a list in the format list("health" = mob's health var) to check health during this
-/mob/living/break_do_after_checks(list/checked_health, check_clicks)
-	if(islist(checked_health))
-		if(health < checked_health["health"])
-			return FALSE
-		checked_health["health"] = health
-	return ..()
-
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null)
+/proc/do_after(mob/user, delay, needhand = 1, atom/target = null, progress = 1)
 	if(!user)
 		return 0
 	var/atom/Tloc = null
-	if(target && !isturf(target))
+	if(target)
 		Tloc = target.loc
 
 	var/atom/Uloc = user.loc
@@ -372,13 +233,11 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
 		drifting = 1
 
-	var/holding = user.get_active_held_item()
+	var/holding = user.get_active_hand()
 
 	var/holdingnull = 1 //User's hand started out empty, check for an empty hand
 	if(holding)
 		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
-
-	delay *= user.do_after_coefficent()
 
 	var/datum/progressbar/progbar
 	if (progress)
@@ -388,7 +247,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/starttime = world.time
 	. = 1
 	while (world.time < endtime)
-		stoplag(1)
+		stoplag()
 		if (progress)
 			progbar.update(world.time - starttime)
 
@@ -396,20 +255,13 @@ GLOBAL_LIST_EMPTY(species_list)
 			drifting = 0
 			Uloc = user.loc
 
-		if(QDELETED(user) || user.stat || user.IsKnockdown() || user.IsStun() || (!drifting && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
+		if(!user || user.stat || user.weakened || user.stunned  || (!drifting && user.loc != Uloc))
 			. = 0
 			break
 
-		if(isliving(user))
-			var/mob/living/L = user
-			if(L.recoveringstam)
-				. = 0
-				break
-
-		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			if((Uloc != Tloc || Tloc != user) && !drifting)
-				. = 0
-				break
+		if(Tloc && (!target || Tloc != target.loc))
+			. = 0
+			break
 
 		if(needhand)
 			//This might seem like an odd check, but you can still need a hand even when it's empty
@@ -418,17 +270,13 @@ GLOBAL_LIST_EMPTY(species_list)
 				if(!holding)
 					. = 0
 					break
-			if(user.get_active_held_item() != holding)
+			if(user.get_active_hand() != holding)
 				. = 0
 				break
 	if (progress)
 		qdel(progbar)
 
-/mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
-	. = 1
-	return
-
-/proc/do_after_mob(mob/user, var/list/targets, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks)
+/proc/do_after_mob(mob/user, var/list/targets, time = 30, uninterruptible = 0, progress = 1)
 	if(!user || !targets)
 		return 0
 	if(!islist(targets))
@@ -443,7 +291,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	for(var/atom/target in targets)
 		originalloc[target] = target.loc
 
-	var/holding = user.get_active_held_item()
+	var/holding = user.get_active_hand()
 	var/datum/progressbar/progbar
 	if(progress)
 		progbar = new(user, time, targets[1])
@@ -453,10 +301,10 @@ GLOBAL_LIST_EMPTY(species_list)
 	. = 1
 	mainloop:
 		while(world.time < endtime)
-			stoplag(1)
+			sleep(1)
 			if(progress)
 				progbar.update(world.time - starttime)
-			if(QDELETED(user) || !targets)
+			if(!user || !targets)
 				. = 0
 				break
 			if(uninterruptible)
@@ -467,7 +315,7 @@ GLOBAL_LIST_EMPTY(species_list)
 				user_loc = user.loc
 
 			for(var/atom/target in targets)
-				if((!drifting && user_loc != user.loc) || QDELETED(target) || originalloc[target] != target.loc || user.get_active_held_item() != holding || user.incapacitated() || user.lying || (extra_checks && !extra_checks.Invoke()))
+				if((!drifting && user_loc != user.loc) || originalloc[target] != target.loc || user.get_active_hand() != holding || user.incapacitated() || user.lying )
 					. = 0
 					break mainloop
 	if(progbar)
@@ -480,57 +328,21 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(H.dna && istype(H.dna.species, species_datum))
 			. = TRUE
 
-/proc/spawn_atom_to_turf(spawn_type, target, amount, admin_spawn=FALSE, list/extra_args)
-	var/turf/T = get_turf(target)
-	if(!T)
-		CRASH("attempt to spawn atom type: [spawn_type] in nullspace")
 
-	var/list/new_args = list(T)
-	if(extra_args)
-		new_args += extra_args
-
-	for(var/j in 1 to amount)
-		var/atom/X = new spawn_type(arglist(new_args))
-		if (admin_spawn)
-			X.flags_1 |= ADMIN_SPAWNED_1
-
-/proc/spawn_and_random_walk(spawn_type, target, amount, walk_chance=100, max_walk=3, always_max_walk=FALSE, admin_spawn=FALSE)
-	var/turf/T = get_turf(target)
-	var/step_count = 0
-	if(!T)
-		CRASH("attempt to spawn atom type: [spawn_type] in nullspace")
-
-	for(var/j in 1 to amount)
-		var/atom/movable/X = new spawn_type(T)
-		if (admin_spawn)
-			X.flags_1 |= ADMIN_SPAWNED_1
-
-		if(always_max_walk || prob(walk_chance))
-			if(always_max_walk)
-				step_count = max_walk
-			else
-				step_count = rand(1, max_walk)
-
-			for(var/i in 1 to step_count)
-				step(X, pick(NORTH, SOUTH, EAST, WEST))
-
-/proc/deadchat_broadcast(message, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR)
-	message = "<span class='linkify'>[message]</span>"
-	for(var/mob/M in GLOB.player_list)
+/proc/deadchat_broadcast(message, mob/follow_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR)
+	for(var/mob/M in player_list)
 		var/datum/preferences/prefs
 		if(M.client && M.client.prefs)
 			prefs = M.client.prefs
 		else
 			prefs = new
 
-		var/override = FALSE
+		var/adminoverride = 0
 		if(M.client && M.client.holder && (prefs.chat_toggles & CHAT_DEAD))
-			override = TRUE
-		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE))
-			override = TRUE
-		if(isnewplayer(M) && !override)
+			adminoverride = 1
+		if(istype(M, /mob/new_player) && !adminoverride)
 			continue
-		if(M.stat != DEAD && !override)
+		if(M.stat != DEAD && !adminoverride)
 			continue
 		if(speaker_key && speaker_key in prefs.ignoring)
 			continue
@@ -543,42 +355,8 @@ GLOBAL_LIST_EMPTY(species_list)
 				if(prefs.toggles & DISABLE_ARRIVALRATTLE)
 					continue
 
-		if(isobserver(M))
-			var/rendered_message = message
-
-			if(follow_target)
-				var/F
-				if(turf_target)
-					F = FOLLOW_OR_TURF_LINK(M, follow_target, turf_target)
-				else
-					F = FOLLOW_LINK(M, follow_target)
-				rendered_message = "[F] [message]"
-			else if(turf_target)
-				var/turf_link = TURF_LINK(M, turf_target)
-				rendered_message = "[turf_link] [message]"
-
-			to_chat(M, rendered_message)
+		if(istype(M, /mob/dead/observer) && follow_target)
+			var/link = FOLLOW_LINK(M, follow_target)
+			M << "[link] [message]"
 		else
-			to_chat(M, message)
-
-//Used in chemical_mob_spawn. Generates a random mob based on a given gold_core_spawnable value.
-/proc/create_random_mob(spawn_location, mob_class = HOSTILE_SPAWN)
-	var/static/list/mob_spawn_meancritters = list() // list of possible hostile mobs
-	var/static/list/mob_spawn_nicecritters = list() // and possible friendly mobs
-
-	if(mob_spawn_meancritters.len <= 0 || mob_spawn_nicecritters.len <= 0)
-		for(var/T in typesof(/mob/living/simple_animal))
-			var/mob/living/simple_animal/SA = T
-			switch(initial(SA.gold_core_spawnable))
-				if(HOSTILE_SPAWN)
-					mob_spawn_meancritters += T
-				if(FRIENDLY_SPAWN)
-					mob_spawn_nicecritters += T
-
-	var/chosen
-	if(mob_class == FRIENDLY_SPAWN)
-		chosen = pick(mob_spawn_nicecritters)
-	else
-		chosen = pick(mob_spawn_meancritters)
-	var/mob/living/simple_animal/C = new chosen(spawn_location)
-	return C
+			M << "[message]"
