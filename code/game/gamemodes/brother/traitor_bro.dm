@@ -46,7 +46,13 @@
 			bro.restricted_roles = restricted_jobs
 			log_game("[key_name(bro)] has been selected as a Brother")
 		pre_brother_teams += team
-	return ..()
+
+	var/enough_tators = !traitors_required || pre_brother_teams.len > 0
+	if(!enough_tators)
+		setup_error = "Not enough traitor candidates"
+		return FALSE
+	else
+		return TRUE
 
 /datum/game_mode/traitor/bros/post_setup()
 	for(var/datum/team/brother_team/team in pre_brother_teams)
