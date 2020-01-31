@@ -33,9 +33,9 @@ SUBSYSTEM_DEF(input)
 			"Tab" = "\".winset \\\"input.focus=true?map.focus=true input.background-color=[COLOR_INPUT_DISABLED]:input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
 			"O" = "ooc",
 			"Ctrl+O" = "looc",
-			"T" = "say",
+			"T" = "say_special", //skyrat-edit
 			"Ctrl+T" = "whisper",
-			"M" = "me",
+			"M" = "me_special", //skyrat-edit
 			"Ctrl+M" = "subtle",
 			"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"", // This makes it so backspace can remove default inputs
 			"Any" = "\"KeyDown \[\[*\]\]\"",
@@ -43,15 +43,15 @@ SUBSYSTEM_DEF(input)
 			),
 		"old_default" = list(
 			"Tab" = "\".winset \\\"mainwindow.macro=old_hotkeys map.focus=true input.background-color=[COLOR_INPUT_DISABLED]\\\"\"",
-			"Ctrl+T" = "say",
+			"Ctrl+T" = "say_special", //skyrat-edit
 			"Ctrl+O" = "ooc",
 			),
 		"old_hotkeys" = list(
 			"Tab" = "\".winset \\\"mainwindow.macro=old_default input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
 			"O" = "ooc",
 			"L" = "looc",
-			"T" = "say",
-			"M" = "me",
+			"T" = "say_special", //skyrat-edit
+			"M" = "me_special", //skyrat-edit
 			"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"", // This makes it so backspace can remove default inputs
 			"Any" = "\"KeyDown \[\[*\]\]\"",
 			"Any+UP" = "\"KeyUp \[\[*\]\]\"",

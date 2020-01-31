@@ -273,7 +273,7 @@
 		ready = PLAYER_NOT_READY
 		return FALSE
 
-	var/this_is_like_playing_right = alert(src,"Are you sure you wish to observe? You will not be able to play this round!","Player Setup","Yes","No")
+	var/this_is_like_playing_right = alert(src,"Are you sure you wish to observe? You are allowed to respawn as a new character! Do not play the same character, unless they are alive and have been successfully cryo'd. You are also not allowed to meta-game!","Player Setup","Yes","No") //skyrat-edit
 
 	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
 		ready = PLAYER_NOT_READY
