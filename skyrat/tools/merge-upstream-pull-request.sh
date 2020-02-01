@@ -12,7 +12,7 @@ set -f # disable pathname expansion
 set -C # noclobber
 
 readonly BASE_BRANCH_NAME="upstream-merge-"
-readonly BASE_PULL_URL="https://api.github.com/Citadel-Station-13/Citadel-Station-13/pulls"
+readonly BASE_PULL_URL="https://api.github.com/repos/Citadel-Station-13/Citadel-Station-13/pulls"
 
 # Ensure the current directory is a git directory
 if [ ! -d .git ]; then
@@ -40,8 +40,8 @@ containsElement () {
 }
 
 # Make sure we have our upstream remote
-if ! git remote | grep tgstation > /dev/null; then
-   git remote add tgstation https://github.com/tgstation/tgstation.git
+if ! git remote | grep Citadel-Station-13 > /dev/null; then
+   git remote add Citadel-Station-13 https://github.com/Citadel-Station-13/Citadel-Station-13.git
 fi
 
 #curl -v \
