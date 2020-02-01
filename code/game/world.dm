@@ -253,7 +253,7 @@ GLOBAL_LIST(topic_status_cache)
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..()
 
-/world/proc/update_status()
+/*/world/proc/update_status() //moved to skyrat_modular
 
 	var/list/features = list()
 
@@ -306,7 +306,7 @@ GLOBAL_LIST(topic_status_cache)
 	if (features)
 		s += "\[[jointext(features, ", ")]" //CIT CHANGE - replaces the colon here with a left bracket
 
-	status = s
+	status = s*/
 
 /world/proc/update_hub_visibility(new_visibility)
 	if(new_visibility == GLOB.hub_visibility)

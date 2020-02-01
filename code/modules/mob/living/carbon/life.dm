@@ -588,8 +588,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		handle_hallucinations()
 
 	if(drunkenness)
-		drunkenness = max(drunkenness - (drunkenness * 0.04), 0)
-		if(drunkenness >= 6)
+		drunkenness = max(drunkenness - (drunkenness * 0.01), 0) //skyrat-edit
+		if(drunkenness >= 40) //skyrat-edit
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "drunk", /datum/mood_event/drunk)
 			jitteriness = max(jitteriness - 3, 0)
 			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING))
@@ -598,22 +598,22 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 		if(mind && (mind.assigned_role == "Scientist" || mind.assigned_role == "Research Director"))
 			if(SSresearch.science_tech)
-				if(drunkenness >= 12.9 && drunkenness <= 13.8)
+				if(drunkenness >= 40 && drunkenness <= 60) //skyrat-edit
 					drunkenness = round(drunkenness, 0.01)
 					var/ballmer_percent = 0
-					if(drunkenness == 13.35) // why run math if I dont have to
+					if(drunkenness == 50) // why run math if I dont have to //skyrat-edit
 						ballmer_percent = 1
 					else
 						ballmer_percent = (-abs(drunkenness - 13.35) / 0.9) + 1
 					if(prob(5))
 						say(pick(GLOB.ballmer_good_msg), forced = "ballmer")
 					SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = BALLMER_POINTS * ballmer_percent))
-				if(drunkenness > 26) // by this point you're into windows ME territory
+				if(drunkenness > 70) // by this point you're into windows ME territory //skyrat-edit
 					if(prob(5))
 						SSresearch.science_tech.remove_point_list(list(TECHWEB_POINT_TYPE_GENERIC = BALLMER_POINTS))
 						say(pick(GLOB.ballmer_windows_me_msg), forced = "ballmer")
 
-		if(drunkenness >= 41)
+		if(drunkenness >= 81) //skyrat-edit
 			if(prob(25))
 				confused += 2
 			Dizzy(10)
@@ -621,28 +621,28 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 				adjustBruteLoss(-0.3, FALSE)
 				adjustFireLoss(-0.15, FALSE)
 
-		if(drunkenness >= 51)
+		if(drunkenness >= 121) //skyrat-edit
 			if(prob(5))
 				confused += 10
 				vomit()
 			Dizzy(25)
 
-		if(drunkenness >= 61)
+		if(drunkenness >= 161) //skyrat-edit
 			if(prob(50))
 				blur_eyes(5)
 			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING))
 				adjustBruteLoss(-0.4, FALSE)
 				adjustFireLoss(-0.2, FALSE)
 
-		if(drunkenness >= 71)
+		if(drunkenness >= 201) //skyrat-edit
 			blur_eyes(5)
 
-		if(drunkenness >= 81)
+		if(drunkenness >= 251) //skyrat-edit
 			adjustToxLoss(0.2)
 			if(prob(5) && !stat)
 				to_chat(src, "<span class='warning'>Maybe you should lie down for a bit...</span>")
 
-		if(drunkenness >= 91)
+		if(drunkenness >= 301) //skyrat-edit
 			adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4, 60)
 			if(prob(20) && !stat)
 				if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
@@ -651,7 +651,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					to_chat(src, "<span class='warning'>Just a quick nap...</span>")
 					Sleeping(900)
 
-		if(drunkenness >= 101)
+		if(drunkenness >= 401) //skyrat-edit
 			adjustToxLoss(4) //Let's be honest you shouldn't be alive by now
 		else
 			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "drunk")
