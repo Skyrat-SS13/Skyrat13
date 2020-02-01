@@ -40,8 +40,8 @@ containsElement () {
 }
 
 # Make sure we have our upstream remote
-if ! git remote | grep upstream > /dev/null; then
-   git remote add upstream https://github.com/Citadel-Station-13/Citadel-Station-13.git
+if ! git remote | grep tgstation > /dev/null; then
+   git remote add tgstation https://github.com/Citadel-Station-13/Citadel-Station-13.git
 fi
 
 #curl -v \
