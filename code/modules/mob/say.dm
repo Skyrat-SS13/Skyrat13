@@ -36,13 +36,9 @@
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 
-<<<<<<< HEAD
-	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
-	set_typing_indicator(FALSE)
-=======
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+	set_typing_indicator(FALSE)
 
->>>>>>> 33577e0d82... Merge pull request #10813 from Ghommie/Ghommie-cit540
 	usr.emote("me",1,message,TRUE)
 
 /mob/proc/say_dead(var/message)
