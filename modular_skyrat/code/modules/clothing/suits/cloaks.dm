@@ -17,7 +17,6 @@
 /obj/item/clothing/neck/cloak/medinstructor
 	name = "medical instructor's cloak"
 	desc = "This is an instructor cloak for the medical department , they must be ready to teach!"
-	icon_state = "cmocloak"
 	icon = 'modular_skyrat/icons/obj/clothing/neck.dmi'
 	alternate_worn_icon = 'modular_skyrat/icons/mob/neck.dmi'
 	icon_state = "medi"
@@ -26,7 +25,6 @@
 /obj/item/clothing/neck/cloak/engiinstructor
 	name = "chief engineer's cloak"
 	desc = "This is an instructor cloak for the engineering department , they must be ready to teach!"
-	icon_state = "cecloak"
 	icon = 'modular_skyrat/icons/obj/clothing/neck.dmi'
 	alternate_worn_icon = 'modular_skyrat/icons/mob/neck.dmi'
 	icon_state = "engi"
@@ -35,7 +33,6 @@
 /obj/item/clothing/neck/cloak/sciinstructor
 	name = "research instructor's cloak"
 	desc = "This is an instructor cloak for the science department , they must be ready to teach!"
-	icon_state = "rdcloak"
 	icon = 'modular_skyrat/icons/obj/clothing/neck.dmi'
 	alternate_worn_icon = 'modular_skyrat/icons/mob/neck.dmi'
 	icon_state = "scii"
