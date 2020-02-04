@@ -3196,7 +3196,6 @@
 #include "modular_citadel\code\modules\reagents\objects\items.dm"
 #include "modular_citadel\code\modules\reagents\reagents\cit_reagents.dm"
 #include "modular_citadel\interface\skin.dmf"
-#include "modular_skyrat\head.dm"
 #include "modular_skyrat\code\datums\ai_laws.dm"
 #include "modular_skyrat\code\game\world.dm"
 #include "modular_skyrat\code\game\gamemodes\objective.dm"
