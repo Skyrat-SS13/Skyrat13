@@ -3201,6 +3201,7 @@
 #include "modular_skyrat\code\datums\ai_laws.dm"
 #include "modular_skyrat\code\game\world.dm"
 #include "modular_skyrat\code\game\gamemodes\objective.dm"
+#include "modular_skyrat\code\modules\clothing\suits\cloaks.dm"
 #include "modular_skyrat\code\modules\events\alien_infestation.dm"
 #include "modular_skyrat\code\modules\events\anomaly_flux.dm"
 #include "modular_skyrat\code\modules\events\anomaly_grav.dm"
