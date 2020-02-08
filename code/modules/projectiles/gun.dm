@@ -227,6 +227,7 @@
 /obj/item/gun/proc/recharge_newshot()
 	return
 
+<<<<<<< HEAD
 /obj/item/gun/proc/process_burst(mob/living/user, atom/target, message = TRUE, params=null, zone_override = "", sprd = 0, randomized_gun_spread = 0, randomized_bonus_spread = 0, rand_spr = 0, iteration = 0)
 	if(!user || !firing_burst)
 		firing_burst = FALSE
@@ -263,6 +264,10 @@
 	process_chamber()
 	update_icon()
 	return TRUE
+=======
+/obj/item/gun/proc/on_cooldown()
+	return busy_action || firing || ((last_fire + fire_delay) > world.time)
+>>>>>>> 0bbf1efa67... Merge pull request #10762 from kevinz000/one_last_taser_attempt
 
 /obj/item/gun/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	add_fingerprint(user)
