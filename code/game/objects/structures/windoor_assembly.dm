@@ -81,7 +81,7 @@
 	else
 		return 1
 
-
+/* moved to modular_skyrat
 /obj/structure/windoor_assembly/attackby(obj/item/W, mob/user, params)
 	//I really should have spread this out across more states but thin little windoors are hard to sprite.
 	add_fingerprint(user)
@@ -312,7 +312,7 @@
 	update_icon()
 
 
-
+*/
 /obj/structure/windoor_assembly/ComponentInitialize()
 	. = ..()
 	AddComponent(
