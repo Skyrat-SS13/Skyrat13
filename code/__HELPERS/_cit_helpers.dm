@@ -142,7 +142,7 @@ GLOBAL_VAR_INIT(miscreants_allowed, FALSE)
 	src << "You will [(prefs.chat_toggles & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel."
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/mob/living/carbon/proc/has_penis()
+/mob/living/carbon/has_penis()
 	var/obj/item/organ/genital/G = getorganslot(ORGAN_SLOT_PENIS)
 	if(G && istype(G, /obj/item/organ/genital/penis))
 		return TRUE
@@ -154,12 +154,12 @@ GLOBAL_VAR_INIT(miscreants_allowed, FALSE)
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/proc/has_vagina()
+/mob/living/carbon/has_vagina()
 	if(getorganslot(ORGAN_SLOT_VAGINA))
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/proc/has_breasts()
+/mob/living/carbon/has_breasts()
 	if(getorganslot(ORGAN_SLOT_BREASTS))
 		return TRUE
 	return FALSE
