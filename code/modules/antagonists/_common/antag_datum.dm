@@ -117,6 +117,21 @@ GLOBAL_LIST_EMPTY(antagonists)
 		return
 	SEND_SIGNAL(owner.current, COMSIG_CLEAR_MOOD_EVENT, "antag_moodlet")
 
+<<<<<<< HEAD
+=======
+/datum/antagonist/proc/remove_blacklisted_quirks()
+	var/mob/living/L = owner.current
+	if(istype(L))
+		var/list/my_quirks = L.client?.prefs.all_quirks.Copy()
+		SSquirks.filter_quirks(my_quirks,blacklisted_quirks)
+		for(var/q in L.roundstart_quirks)
+			var/datum/quirk/Q = q
+			if(!(SSquirks.quirk_name_by_path(Q.type) in my_quirks))
+				if(initial(Q.antag_removal_text))
+					to_chat(L, "<span class='boldannounce'>[initial(Q.antag_removal_text)]</span>")
+				L.remove_quirk(Q.type)
+
+>>>>>>> 682637ee67... Merge pull request #10974 from Putnam3145/antag-why-the-hell
 //Returns the team antagonist belongs to if any.
 /datum/antagonist/proc/get_team()
 	return
