@@ -214,8 +214,9 @@
 							windoor.req_one_access = electronics.accesses
 						else
 							windoor.req_access = electronics.accesses
-						windoor.electronics = electronics
-						electronics.loc = windoor
+						if(iscarbon(user))
+							windoor.electronics = electronics
+							electronics.loc = windoor
 						if(created_name)
 							windoor.name = created_name
 						qdel(src)
