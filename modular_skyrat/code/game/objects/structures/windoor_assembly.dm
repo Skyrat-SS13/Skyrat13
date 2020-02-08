@@ -221,7 +221,6 @@
 							windoor.name = created_name
 						qdel(src)
 
-
 			else
 				return ..()
 
