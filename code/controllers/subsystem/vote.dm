@@ -194,6 +194,7 @@ SUBSYSTEM_DEF(vote)
 		scores_by_choice["[choice]"] = list()
 	for(var/ckey in voted)
 		var/list/this_vote = voted[ckey]
+<<<<<<< HEAD
 		for(var/choice in choices)
 			if("[choice]" in this_vote && "[choice]" in scores_by_choice)
 				sorted_insert(scores_by_choice["[choice]"],this_vote["[choice]"],/proc/cmp_numeric_asc)
@@ -202,6 +203,20 @@ SUBSYSTEM_DEF(vote)
 		var/list/score = scores_by_choice[score_name]
 		for(var/S in score)
 			scores[score_name] += S-middle_score
+=======
+		for(var/choice in this_vote)
+			scores["[choice]"] += this_vote["[choice]"]
+	var/min_score = 100
+	var/max_score = -100
+	for(var/score_name in scores) // normalize the scores from 0-1
+		max_score=max(max_score,scores[score_name])
+		min_score=min(min_score,scores[score_name])
+	for(var/score_name in scores)
+		if(max_score == min_score)
+			scores[score_name] = 1
+		else
+			scores[score_name] = (scores[score_name]-min_score)/(max_score-min_score)
+>>>>>>> f27ce86769... Merge pull request #10942 from Putnam3145/map-vote-options
 		SSblackbox.record_feedback("nested tally","voting",scores[score_name],list(blackbox_text,"Total scores",score_name))
 
 
@@ -224,6 +239,7 @@ SUBSYSTEM_DEF(vote)
 	if(winners.len > 0)
 		if(was_roundtype_vote)
 			stored_gamemode_votes = list()
+<<<<<<< HEAD
 		if(!obfuscated && vote_system == RANKED_CHOICE_VOTING)
 			text += "\nIt should be noted that this is not a raw tally of votes (impossible in ranked choice) but the score determined by the schulze method of voting, so the numbers will look weird!"
 		if(mode == "mode tiers")
@@ -240,6 +256,20 @@ SUBSYSTEM_DEF(vote)
 				if(was_roundtype_vote)
 					stored_gamemode_votes[choices[i]] = votes
 				text += "\n<b>[choices[i]]:</b> [obfuscated ? "???" : votes]" //CIT CHANGE - adds obfuscated votes
+=======
+		if(!obfuscated)
+			if(vote_system == SCHULZE_VOTING)
+				text += "\nIt should be noted that this is not a raw tally of votes (impossible in ranked choice) but the score determined by the schulze method of voting, so the numbers will look weird!"
+			if(vote_system == MAJORITY_JUDGEMENT_VOTING)
+				text += "\nIt should be noted that this is not a raw tally of votes but the number of runoffs done by majority judgement!"
+		for(var/i=1,i<=choices.len,i++)
+			var/votes = choices[choices[i]]
+			if(!votes)
+				votes = 0
+			if(was_roundtype_vote)
+				stored_gamemode_votes[choices[i]] = votes
+			text += "\n<b>[choices[i]]:</b> [obfuscated ? "???" : votes]" //CIT CHANGE - adds obfuscated votes
+>>>>>>> f27ce86769... Merge pull request #10942 from Putnam3145/map-vote-options
 		if(mode != "custom")
 			if(winners.len > 1 && !obfuscated) //CIT CHANGE - adds obfuscated votes
 				text = "\n<b>Vote Tied Between:</b>"
@@ -457,6 +487,8 @@ SUBSYSTEM_DEF(vote)
 				question = stripped_input(usr,"What is the vote for?")
 				if(!question)
 					return 0
+				var/system_string = input(usr,"Which voting type?",GLOB.vote_type_names[1]) in GLOB.vote_type_names
+				vote_system = GLOB.vote_type_names[system_string]
 				for(var/i=1,i<=10,i++)
 					var/option = capitalize(stripped_input(usr,"Please enter an option or hit cancel to finish"))
 					if(!option || mode || !usr.client)
