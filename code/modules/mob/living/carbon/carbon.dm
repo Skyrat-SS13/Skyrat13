@@ -533,7 +533,7 @@
 			break //Guess we're out of organs!
 		var/obj/item/organ/guts = pick(internal_organs)
 		var/turf/T = get_turf(src)
-		guts.Remove(src)
+		guts.Remove()
 		guts.forceMove(T)
 		var/atom/throw_target = get_edge_target_turf(guts, dir)
 		guts.throw_at(throw_target, power, 4, src)
@@ -559,7 +559,7 @@
 	health = round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute, DAMAGE_PRECISION)
 	staminaloss = round(total_stamina, DAMAGE_PRECISION)
 	update_stat()
-	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD) && stat == DEAD )
+	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD*2) && stat == DEAD )
 		become_husk("burn")
 	med_hud_set_health()
 	if(stat == SOFT_CRIT)
@@ -872,7 +872,7 @@
 		var/obj/item/organ/O = X
 		if(prob(50))
 			organs_amt++
-			O.Remove(src)
+			O.Remove()
 			O.forceMove(drop_location())
 	if(organs_amt)
 		to_chat(user, "<span class='notice'>You retrieve some of [src]\'s internal organs!</span>")
