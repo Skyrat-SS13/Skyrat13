@@ -133,6 +133,7 @@
 		if(100 to 200)
 			. += "<span class='warning'>[t_He] [t_is] twitching ever so slightly.</span>"
 
+
 	var/appears_dead = 0
 	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
 		appears_dead = 1
@@ -151,6 +152,12 @@
 	var/temp = getBruteLoss() //no need to calculate each of these twice
 
 	var/list/msg = list()
+
+	if(client && client.prefs)
+		if(client.prefs.toggles & VERB_CONSENT)
+			. += "[t_His] player has allowed lewd verbs.\n"
+		else
+			. += "[t_His] player has not allowed lewd verbs.\n"
 
 	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	var/list/disabled = list()
@@ -410,3 +417,4 @@
 			dat += "[new_text]\n" //dat.Join("\n") doesn't work here, for some reason
 	if(dat.len)
 		return dat.Join()
+
