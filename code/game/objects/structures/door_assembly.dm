@@ -48,7 +48,7 @@
 		. += "<span class='notice'>There is a small <i>paper</i> placard on the assembly[doorname]. There are <i>empty</i> slots for glass windows.</span>"
 	else
 		. += "<span class='notice'>There is a small <i>paper</i> placard on the assembly[doorname].</span>"
-
+/* moved to modular_skyrat
 /obj/structure/door_assembly/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pen))
 		var/t = stripped_input(user, "Enter the name for the door.", name, created_name,MAX_NAME_LEN)
@@ -259,7 +259,7 @@
 		return ..()
 	update_name()
 	update_icon()
-
+*/
 /obj/structure/door_assembly/update_icon()
 	cut_overlays()
 	if(!glass)
@@ -279,7 +279,7 @@
 		if(AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER)
 			name = "near finished "
 	name += "[heat_proof_finished ? "heat-proofed " : ""][glass ? "window " : ""][base_name] assembly"
-
+/* moved to modular_skyrat
 /obj/structure/door_assembly/proc/transfer_assembly_vars(obj/structure/door_assembly/source, obj/structure/door_assembly/target, previous = FALSE)
 	target.glass = source.glass
 	target.heat_proof_finished = source.heat_proof_finished
@@ -294,7 +294,7 @@
 	target.update_icon()
 	target.update_name()
 	qdel(source)
-
+*/
 /obj/structure/door_assembly/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		var/turf/T = get_turf(src)
