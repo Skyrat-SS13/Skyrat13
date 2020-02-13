@@ -259,7 +259,7 @@
 		return
 
 	//start scanning for genitals
-  
+
 	var/list/gen_index[GENITAL_LAYER_INDEX_LENGTH]
 	var/list/genitals_to_add
 	var/list/fully_exposed
