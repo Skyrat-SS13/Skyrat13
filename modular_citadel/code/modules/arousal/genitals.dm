@@ -262,6 +262,7 @@
 	update_genitals()
 
 /mob/living/carbon/human/proc/update_genitals()
+<<<<<<< HEAD
 	if(!QDELETED(src))
 		dna.species.handle_genitals(src)
 
@@ -297,6 +298,19 @@
 	if(!H)//no args
 		CRASH("H = null")
 	if(!LAZYLEN(H.internal_organs) || ((NOGENITALS in species_traits) && !H.genital_override) || HAS_TRAIT(H, TRAIT_HUSK))
+=======
+	if(QDELETED(src))
+		return
+	var/static/list/relevant_layers = list("[GENITALS_BEHIND_LAYER]" = "BEHIND", "[GENITALS_FRONT_LAYER]" = "FRONT")
+	var/static/list/layers_num
+	if(!layers_num)
+		for(var/L in relevant_layers)
+			LAZYSET(layers_num, L, text2num(L))
+	for(var/L in relevant_layers) //Less hardcode
+		remove_overlay(layers_num[L])
+	remove_overlay(GENITALS_EXPOSED_LAYER)
+	if(!LAZYLEN(internal_organs) || ((NOGENITALS in dna.species.species_traits) && !genital_override) || HAS_TRAIT(src, TRAIT_HUSK))
+>>>>>>> ac387e0655... Merge pull request #11059 from Citadel-Station-13/Ghommie-patch-1
 		return
 	var/list/relevant_layers = list(GENITALS_BEHIND_LAYER, GENITALS_FRONT_LAYER)
 
@@ -367,11 +381,48 @@
 				standing += genital_overlay
 
 		if(LAZYLEN(standing))
+<<<<<<< HEAD
 			H.overlays_standing[layer] = standing
+=======
+			overlays_standing[layers_num[layer]] = standing
+>>>>>>> ac387e0655... Merge pull request #11059 from Citadel-Station-13/Ghommie-patch-1
 
 	if(LAZYLEN(fully_exposed))
 		H.overlays_standing[GENITALS_EXPOSED_LAYER] = fully_exposed
 		H.apply_overlay(GENITALS_EXPOSED_LAYER)
 
 	for(var/L in relevant_layers)
+<<<<<<< HEAD
 		H.apply_overlay(L)
+=======
+		apply_overlay(layers_num[L])
+
+
+//Checks to see if organs are new on the mob, and changes their colours so that they don't get crazy colours.
+/mob/living/carbon/human/proc/emergent_genital_call()
+	if(!client.prefs.arousable)
+		return FALSE
+
+	var/organCheck = locate(/obj/item/organ/genital) in internal_organs
+	var/breastCheck = getorganslot(ORGAN_SLOT_BREASTS)
+	var/willyCheck = getorganslot(ORGAN_SLOT_PENIS)
+
+	if(organCheck == FALSE)
+		if(ishuman(src) && dna.species.id == "human")
+			dna.features["genitals_use_skintone"] = TRUE
+			dna.species.use_skintones = TRUE
+		if(MUTCOLORS)
+			if(src.dna.species.fixed_mut_color)
+				dna.features["cock_color"] = "[dna.species.fixed_mut_color]"
+				dna.features["breasts_color"] = "[dna.species.fixed_mut_color]"
+				return
+		//So people who haven't set stuff up don't get rainbow surprises.
+		dna.features["cock_color"] = "[dna.features["mcolor"]]"
+		dna.features["breasts_color"] = "[dna.features["mcolor"]]"
+	else //If there's a new organ, make it the same colour.
+		if(breastCheck == FALSE)
+			dna.features["breasts_color"] = dna.features["cock_color"]
+		else if (willyCheck == FALSE)
+			dna.features["cock_color"] = dna.features["breasts_color"]
+	return TRUE
+>>>>>>> ac387e0655... Merge pull request #11059 from Citadel-Station-13/Ghommie-patch-1
