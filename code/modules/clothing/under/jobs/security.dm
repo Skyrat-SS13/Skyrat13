@@ -198,3 +198,20 @@
 	item_state = "spacepol"
 	item_color = "spacepol"
 	can_adjust = FALSE
+
+/*
+ *Civil Protection
+ */
+/obj/item/clothing/under/rank/security/civilprotection
+	name = "Civil Protection uniform"
+	desc = "Pick up that can."
+	icon_state = "cpuniform"
+	item_state = "cpuniform"
+	item_color = null
+	can_adjust = FALSE
+
+/obj/item/clothing/under/rank/security/civilprotection/fake
+	name = "Civil Protection replica uniform"
+	desc = "No inner armoring, but full of combine style."
+	item_state = "cpcasual"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)

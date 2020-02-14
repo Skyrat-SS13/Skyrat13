@@ -21,6 +21,10 @@
 					/obj/item/clothing/under/pants/khaki = 5)
 	premium = list(/obj/item/clothing/under/rank/security/navyblue = 5,
 					/obj/item/clothing/head/beret/sec/navyofficer = 5)
+	contraband = list(/obj/item/clothing/under/rank/security/civilprotection = 2,
+					/obj/item/clothing/suit/armor/vest/cparmor = 2,
+					/obj/item/clothing/mask/gas/sechailer/cpmask = 2,
+					/obj/item/clothing/head/helmet/cphood = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/sec_wardrobe
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
@@ -409,7 +413,7 @@
 	req_access = list(ACCESS_CAPTAIN)
 	vend_reply = "A wonderful day to you, great leader."
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/captain = 1,
-					/obj/item/storage/backpack/captain = 1, 
+					/obj/item/storage/backpack/captain = 1,
 					/obj/item/storage/backpack/satchel/cap = 1,
 					/obj/item/storage/backpack/duffelbag/captain = 1,
 					/obj/item/clothing/neck/cloak/cap = 1,
@@ -430,4 +434,3 @@
 /obj/item/vending_refill/wardrobe/cap_wardrobe
 	machine_name = "Captain's Wardrobe"
 	icon_state = "refill_caps"
-	

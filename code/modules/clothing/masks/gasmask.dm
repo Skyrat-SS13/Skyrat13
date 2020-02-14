@@ -18,7 +18,6 @@
 	icon_state = "gas_clear"
 	flags_inv = HIDEEYES
 
-
 // **** Welding gas mask ****
 
 /obj/item/clothing/mask/gas/welding
