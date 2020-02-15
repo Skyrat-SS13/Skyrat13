@@ -21,10 +21,6 @@
 					/obj/item/clothing/under/pants/khaki = 5)
 	premium = list(/obj/item/clothing/under/rank/security/navyblue = 5,
 					/obj/item/clothing/head/beret/sec/navyofficer = 5)
-	contraband = list(/obj/item/clothing/under/rank/security/civilprotection = 2,
-					/obj/item/clothing/suit/armor/vest/cparmor = 2,
-					/obj/item/clothing/mask/gas/sechailer/cpmask = 2,
-					/obj/item/clothing/head/helmet/cphood = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/sec_wardrobe
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe

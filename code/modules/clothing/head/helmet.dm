@@ -16,12 +16,6 @@
 
 	dog_fashion = /datum/dog_fashion/head/helmet
 
-/obj/item/clothing/head/helmet/cphood
-	name = "Civil Protection hood"
-	desc = "Fits perfectly with a CP gas mask."
-	icon_state = "cphood"
-	item_state = "cphood"
-
 /obj/item/clothing/head/helmet/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_HEAD))

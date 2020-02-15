@@ -1,11 +1,4 @@
 /obj/machinery/vending/autodrobe
-	name = "\improper AutoDrobe"
-	desc = "A vending machine for costumes."
-	icon_state = "theater"
-	icon_deny = "theater-deny"
-	req_access = list(ACCESS_THEATRE)
-	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
-	vend_reply = "Thank you for using AutoDrobe!"
 	products = list(/obj/item/clothing/suit/chickensuit = 1,
 						/obj/item/clothing/head/chicken = 1,
 						/obj/item/clothing/under/gladiator = 1,
@@ -109,41 +102,5 @@
 						/obj/item/clothing/ears/headphones = 2,
 						/obj/item/clothing/head/wig/random = 3,
 						/obj/item/clothing/suit/ran = 2,
-						/obj/item/clothing/head/ran = 2)
-	contraband = list(/obj/item/clothing/suit/judgerobe = 1,
-						/obj/item/clothing/head/powdered_wig = 1,
-						/obj/item/gun/magic/wand = 2,
-						/obj/item/clothing/glasses/sunglasses/garb = 2,
-						/obj/item/clothing/glasses/sunglasses/blindfold = 1,
-						/obj/item/clothing/mask/muzzle = 2)
-	premium = list(/obj/item/clothing/suit/pirate/captain = 2,
-					/obj/item/clothing/head/pirate/captain = 2,
-					/obj/item/clothing/head/helmet/roman/fake = 1,
-					/obj/item/clothing/head/helmet/roman/legionnaire/fake = 1,
-					/obj/item/clothing/under/roman = 1,
-					/obj/item/clothing/shoes/roman = 1,
-					/obj/item/shield/riot/roman/fake = 1,
-					/obj/item/skub = 1,
-					/obj/item/clothing/under/lobster = 1,	 // CIT CHANGES
-					/obj/item/clothing/head/lobsterhat = 1,
-					/obj/item/clothing/head/drfreezehat = 1,
-					/obj/item/clothing/suit/dracula = 1,
-					/obj/item/clothing/suit/drfreeze_coat = 1,
-					/obj/item/clothing/suit/gothcoat = 2,
-					/obj/item/clothing/under/draculass = 1,
-					/obj/item/clothing/under/christmas/christmasmaler = 3,
-					/obj/item/clothing/under/christmas/christmasmaleg = 3,
-					/obj/item/clothing/under/christmas/christmasfemaler = 3,
-					/obj/item/clothing/under/christmas/christmasfemaleg = 3,
-					/obj/item/clothing/head/christmashat = 3,
-					/obj/item/clothing/head/christmashatg = 3,
-					/obj/item/clothing/under/drfreeze = 1)    //End of Cit Changes
-	refill_canister = /obj/item/vending_refill/autodrobe
-
-/obj/machinery/vending/autodrobe/all_access
-	desc = "A vending machine for costumes. This model appears to have no access restrictions."
-	req_access = null
-
-/obj/item/vending_refill/autodrobe
-	machine_name = "AutoDrobe"
-	icon_state = "refill_costume"
+						/obj/item/clothing/head/ran = 2,
+						/obj/item/clothing/under/rank/security/civilprotection/fake = 2)

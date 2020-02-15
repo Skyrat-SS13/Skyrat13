@@ -30,13 +30,6 @@
 	blood_overlay_type = "armor"
 	dog_fashion = /datum/dog_fashion/back
 
-/obj/item/clothing/suit/armor/vest/cparmor
-	name = "Civil Protection armor"
-	desc = "It barely covers your chest, but does a decent job at protecting you from crowbars."
-	icon_state = "cparmor"
-	item_state = "cparmor"
-	blood_overlay_type = "armor"
-
 /obj/item/clothing/suit/armor/vest/alt
 	desc = "A Type I armored vest that provides decent protection against most types of damage."
 	icon_state = "armor"
