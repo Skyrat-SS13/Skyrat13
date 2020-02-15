@@ -6,6 +6,7 @@
 	item_state = "cpmask"
 	actions_types = list(/datum/action/item_action/halt)
 	aggressiveness = 3
+	desc = "A standard issue metropolice gas mask. Now you too can make random citizens pick up that can."
 
 /obj/item/clothing/mask/gas/sechailer/cpmask/halt()
 	set category = "Object"
@@ -62,6 +63,12 @@
 			if(6)
 				phrase_text = "11-99! Officer needs assistance!"
 				phrase_sound = "officerneedsassistance"
+			if(7)
+				phrase_text = "Move it."
+				phrase_sound = "moveit"
+			if(8)
+				phrase_text = "Move along."
+				phrase_sound = "movealong"
 		usr.audible_message("[usr]'s Compli-o-Nator: <font color='red' size='4'><b>[phrase_text]</b></font>")
 		playsound(src.loc, "sound/voice/complionator/[phrase_sound].ogg", 100, 0, 4)
 		playsound(src.loc, "sound/voice/complionator/off2.ogg", 100, 0, 4)
@@ -108,7 +115,16 @@
 
 /obj/item/implant/sad_trombone/trigger(emote, mob/source)
 	if(emote == "deathgasp")
-		playsound(source.loc, 'sound/voice/complionator/die1.ogg', 50, 0)
+		switch(rand(1,4))
+			if(1)
+				playsound(source.loc, "sound/voice/complionator/die1.ogg", 100, 0, 4)
+			if(2)
+				playsound(source.loc, "sound/voice/complionator/die2.ogg", 100, 0, 4)
+			if(3)
+				playsound(source.loc, "sound/voice/complionator/die3.ogg", 100, 0, 4)
+			if(4)
+				playsound(source.loc, "sound/voice/complionator/die4.ogg", 100, 0, 4)
+
 
 /obj/item/implanter/flatline
 	name = "implanter (flatline)"
