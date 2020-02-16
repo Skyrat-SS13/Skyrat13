@@ -631,6 +631,90 @@
 			if("No")
 				return
 
+	else if(href_list["collarban"])
+		var/mob/M = locate(href_list["collarban"])
+		if(!ismob(M))
+			to_chat(usr, "This can only be used on instances of type /mob")
+			return
+		if(!M.ckey)	//sanity
+			to_chat(usr, "This mob has no ckey")
+			return
+		if(jobban_isbanned(M, COLLARBAN) && ishuman(M))
+			var/mob/living/carbon/human/C = M
+			if(!istype(C.wear_neck, COLLARITEM))
+				C.update_admin_collar()
+				return
+		if(!check_rights(R_BAN))
+			return
+		if(jobban_isbanned(M, COLLARBAN))
+			switch(alert("Remove Collar ban?","Please Confirm","Yes","Temporarily", "No"))
+				if("Yes")
+					ban_unban_log_save("[key_name(usr)] removed [key_name(M)]'s collar ban.")
+					log_admin_private("[key_name(usr)] removed [key_name(M)]'s collar ban.")
+					DB_ban_unban(M.ckey, BANTYPE_ANY_JOB, COLLARBAN)
+					if(M.client)
+						jobban_buildcache(M.client)
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] removed [key_name_admin(M)]'s collar ban.</span>")
+					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has removed your collar ban.</BIG></span>")
+					if(ishuman(M))
+						var/mob/living/carbon/human/C = M
+						C.update_admin_collar()
+				if("Temporarily")
+					if(!ishuman(M))
+						return
+					var/mob/living/carbon/human/C = M
+					C.update_admin_collar()
+					log_admin_private("[key_name(usr)] temporarily removed [key_name(M)]'s collar ban.")
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] temporarily removed [key_name_admin(M)]'s collar ban.</span>")
+					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has temporarily removed your collar ban.</BIG></span>")
+				if("No")
+					return
+		
+		else switch(alert("Temporary Collar ban?",,"Yes","No"))
+			if("Yes")
+				if(!ishuman(M))
+					return
+				var/reason
+				var/severity
+				if(alert("Do you want to note them?",,"Yes","No") == "Yes")
+					reason = input(usr,"Please State Reason.","Reason") as message|null
+					if(!reason)
+						return
+					severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
+					if(!severity)
+						return
+
+				log_admin_private("[key_name(usr)] temporarily collar banned [key_name(M)].")
+				message_admins("<span class='adminnotice'>[key_name_admin(usr)] temporarily collar banned [key_name_admin(M)].</span>")
+				to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has temporarily collar banned you.</BIG></span>")
+				var/mob/living/carbon/human/C = M
+				C.update_admin_collar()
+				if(reason)
+					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+					create_message("note", M.key, null, "Temporarily Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
+
+			if("No")
+				var/reason = input(usr,"Please State Reason.","Reason") as message|null
+				if(!reason)
+					return
+				var/severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
+				if(!severity)
+					return
+				if(!DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, COLLARBAN))
+					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
+					return
+				if(M.client)
+					jobban_buildcache(M.client)
+				if(ishuman(M))
+					var/mob/living/carbon/human/C = M
+					C.update_admin_collar()
+				ban_unban_log_save("[key_name(usr)] collar banned [key_name(M)]. reason: [reason]")
+				log_admin_private("[key_name(usr)] collar banned [key_name(M)]. \nReason: [reason]")
+				create_message("note", M.key, null, "Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
+				message_admins("<span class='adminnotice'>[key_name_admin(usr)] collar banned [key_name_admin(M)].</span>")
+				to_chat(M, "<span class='boldannounce'><BIG>You have been collar banned by [usr.client.key].</BIG></span>")
+				to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+
 	else if(href_list["jobban2"])
 		if(!check_rights(R_BAN))
 			return
