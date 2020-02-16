@@ -7,7 +7,7 @@
 	mag_type = /obj/item/ammo_box/magazine/m10mm/makeshift
 	can_suppress = FALSE
 	burst_size = 1
-	fire_delay = 1
+	fire_delay = 3
 	actions_types = list()
 
 /obj/item/gun/ballistic/automatic/pistol/makeshift/update_icon()

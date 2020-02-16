@@ -18,9 +18,12 @@
 ///AMMO CRAFTING//
 //////////////////
 
-/datum/crafting_recipe/pipepistol
+/datum/crafting_recipe/makeshiftmagazine
 	name = "makeshift pistol magazine (10mm)"
 	result = /obj/item/ammo_box/magazine/m10mm/makeshift
 	reqs = list(/obj/item/pipe = 1,
 				/obj/item/stack/sheet/mineral/wood = 2,
 				/obj/item/stack/packageWrap = 1)
+	time = 50
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
