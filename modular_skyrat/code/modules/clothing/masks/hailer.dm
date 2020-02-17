@@ -39,13 +39,13 @@
 				broken_hailer = 1
 				to_chat(usr, "<span class='userdanger'>\The [src]'s power modulator overloads and breaks.</span>")
 				return
-		switch(aggressiveness)		// checks if the user has unlocked the restricted phrases
+		switch(aggressiveness)
 			if(3)
-				phrase = rand(1,6)	// user has broke the restrictor, it will now only play shitcurity phrases
+				phrase = rand(1,6)
 			else
 				to_chat(usr, "<span class='userdanger'>\The [src] is broken.</span>")
 		switch(phrase)	//sets the properties of the chosen phrase
-			if(1)				// good cop
+			if(1)
 				phrase_text = "Watch it."
 				phrase_sound = "watchit"
 			if(2)
@@ -70,8 +70,11 @@
 				phrase_text = "Move along."
 				phrase_sound = "movealong"
 		usr.audible_message("[usr]'s Compli-o-Nator: <font color='red' size='4'><b>[phrase_text]</b></font>")
-		playsound(src.loc, "sound/voice/complionator/[phrase_sound].ogg", 100, 0, 4)
-		playsound(src.loc, "sound/voice/complionator/off2.ogg", 100, 0, 4)
+		var/OFF = rand(1,4)
+		var/ON = rand(1,2)
+		playsound(src.loc, "modular_skyrat/sound/voice/complionator/on[ON].ogg", 100, 0, 4)
+		playsound(src.loc, "modular_skyrat/sound/voice/complionator/[phrase_sound].ogg", 100, 0, 4)
+		playsound(src.loc, "modular_skyrat/sound/voice/complionator/off[OFF].ogg", 100, 0, 4)
 		cooldown = world.time
 		cooldown_special = world.time
 
@@ -102,6 +105,8 @@
 		for(var/obj/item/implant/flatline/F in H.implants)
 			F.removed(H)
 
+//Flatline implant
+
 /obj/item/implant/flatline
 	name = "flatline implant"
 	activated = 0
@@ -117,13 +122,13 @@
 	if(emote == "deathgasp")
 		switch(rand(1,4))
 			if(1)
-				playsound(source.loc, "sound/voice/complionator/die1.ogg", 100, 0, 4)
+				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die1.ogg", 100, 0, 4)
 			if(2)
-				playsound(source.loc, "sound/voice/complionator/die2.ogg", 100, 0, 4)
+				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die2.ogg", 100, 0, 4)
 			if(3)
-				playsound(source.loc, "sound/voice/complionator/die3.ogg", 100, 0, 4)
+				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die3.ogg", 100, 0, 4)
 			if(4)
-				playsound(source.loc, "sound/voice/complionator/die4.ogg", 100, 0, 4)
+				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die4.ogg", 100, 0, 4)
 
 
 /obj/item/implanter/flatline
