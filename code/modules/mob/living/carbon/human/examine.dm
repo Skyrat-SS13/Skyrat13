@@ -401,6 +401,9 @@
 		if(temp_flavor)
 			. += temp_flavor
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+	if(!invisible_man)
+		if(client && client.prefs.ooc_notes)
+			. += "OOC Notes: <a href='?src=[REF(src)];ooc_notes=1'>\[View\]</a>"
 	. += "*---------*</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!

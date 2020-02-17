@@ -3239,6 +3239,7 @@
 #include "modular_skyrat\code\modules\mob\say.dm"
 #include "modular_skyrat\code\modules\mob\typing_indicator.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\snouts.dm"
+#include "modular_skyrat\code\modules\mob\living\carbon\human\human.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot_modules.dm"
 #include "modular_skyrat\code\modules\reagents\reagent_containers\bottle.dm"
 #include "modular_skyrat\code\modules\research\designs\biogenerator_designs.dm"
