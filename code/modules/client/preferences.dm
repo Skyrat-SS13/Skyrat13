@@ -77,6 +77,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/be_random_body = 0				//whether we'll have a random body every round
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
+	var/ooc_notes
+	var/erppref = "Ask"
+	var/nonconpref = "Ask"
+	var/vorepref = "Ask"
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
 	var/undershirt = "Nude"				//undershirt type
@@ -338,7 +342,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>Flavor Text</h2>"
-			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a><br>"
+			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a>"
+			dat += 	"<a href='?_src_=prefs;preference=ooc_notes;task=input'>Set OOC Notes</a><br>"
+			dat += 	"ERP : <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
+			dat += 	"Non-Con : <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
+			dat += 	"Vore : <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
 			if(length(features["flavor_text"]) <= 40)
 				if(!length(features["flavor_text"]))
 					dat += "\[...\]"
@@ -1474,9 +1482,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("flavor_text")
-					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", features["flavor_text"], MAX_FAVOR_LEN, TRUE)
+					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb.", "Flavor Text", features["flavor_text"], MAX_FAVOR_LEN, TRUE)
 					if(msg)
 						features["flavor_text"] = msg
+
+				if("ooc_notes")
+					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", ooc_notes, MAX_FAVOR_LEN, TRUE)
+					if(msg)
+						ooc_notes = msg
 
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
@@ -2110,6 +2123,31 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							damagescreenshake = 1
 				if("nameless")
 					nameless = !nameless
+         
+				if("erp_pref")
+					switch(erppref)
+						if("Yes")
+							erppref = "Ask"
+						if("Ask")
+							erppref = "No"
+						if("No")
+							erppref = "Yes"
+				if("noncon_pref")
+					switch(nonconpref)
+						if("Yes")
+							nonconpref = "Ask"
+						if("Ask")
+							nonconpref = "No"
+						if("No")
+							nonconpref = "Yes"
+				if("vore_pref")
+					switch(vorepref)
+						if("Yes")
+							vorepref = "Ask"
+						if("Ask")
+							vorepref = "No"
+						if("No")
+							vorepref = "Yes"
 				if("auto_hiss")
 					auto_hiss = !auto_hiss
 				//END CITADEL EDIT
