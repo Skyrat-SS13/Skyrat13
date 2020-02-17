@@ -72,6 +72,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//character preferences
 	var/real_name						//our character's name
 	var/nameless = FALSE				//whether or not our character is nameless
+	var/auto_hiss = FALSE				//if our character hisses SKYRAT CHANGE
 	var/be_random_name = 0				//whether we'll have a random name every round
 	var/be_random_body = 0				//whether we'll have a random body every round
 	var/gender = MALE					//gender of character (well duh)
@@ -293,10 +294,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<b>[nameless ? "Default designation" : "Name"]:</b>"
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
-			//dat += "<a href='?_src_=prefs;preference=nameless'>Be nameless: [nameless ? "Yes" : "No"]</a><BR>"
 
 			dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
-			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
+			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a>"
+			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a><BR>"
 
 			dat += "<b>Special Names:</b><BR>"
 			var/old_group
@@ -2109,6 +2110,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							damagescreenshake = 1
 				if("nameless")
 					nameless = !nameless
+				if("auto_hiss")
+					auto_hiss = !auto_hiss
 				//END CITADEL EDIT
 				if("publicity")
 					if(unlock_content)
@@ -2331,6 +2334,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.gender = gender
 	character.age = age
 
+	character.auto_hiss = auto_hiss
+
 	character.eye_color = eye_color
 	var/obj/item/organ/eyes/organ_eyes = character.getorgan(/obj/item/organ/eyes)
 	if(organ_eyes)
@@ -2394,6 +2399,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(icon_updates)
 		character.update_body()
 		character.update_hair()
+	if(auto_hiss)
+		character.toggle_hiss()
+
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)
