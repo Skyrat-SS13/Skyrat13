@@ -14,9 +14,9 @@
 	features["mcolor2"]	= sanitize_hexcolor(features["mcolor2"], 3, 0)
 	features["mcolor3"]	= sanitize_hexcolor(features["mcolor3"], 3, 0)
 	ooc_notes = sanitize_text(S["ooc_notes"])
-	erppref = sanitize_text(S["erp_pref"])
-	nonconpref = sanitize_text(S["noncon_pref"])
-	vorepref = sanitize_text(S["vore_pref"])
+	erppref = sanitize_text(S["erp_pref"], "Ask")
+	nonconpref = sanitize_text(S["noncon_pref"], "Ask")
+	vorepref = sanitize_text(S["vore_pref"], "Ask")
 	//gear loadout
 	var/text_to_load
 	S["loadout"] >> text_to_load
