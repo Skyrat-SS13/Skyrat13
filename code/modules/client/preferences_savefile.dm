@@ -341,6 +341,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Character
 	S["real_name"]				>> real_name
 	//S["nameless"]				>> nameless
+	S["auto_hiss"]				>> auto_hiss
 	S["custom_species"]			>> custom_species
 	S["name_is_always_random"]	>> be_random_name
 	S["body_is_always_random"]	>> be_random_body
@@ -474,6 +475,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		features["wing_color"] = "FFFFFF"
 
 	//nameless		= sanitize_integer(nameless, 0, 1, initial(nameless))
+	auto_hiss		= sanitize_integer(auto_hiss, 0, 1, initial(auto_hiss))
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
 	be_random_body	= sanitize_integer(be_random_body, 0, 1, initial(be_random_body))
 
@@ -557,6 +559,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Character
 	WRITE_FILE(S["real_name"]				, real_name)
 	//WRITE_FILE(S["nameless"]				, nameless)
+	WRITE_FILE(S["auto_hiss"]				, auto_hiss)
 	WRITE_FILE(S["custom_species"]			, custom_species)
 	WRITE_FILE(S["name_is_always_random"]	, be_random_name)
 	WRITE_FILE(S["body_is_always_random"]	, be_random_body)

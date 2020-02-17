@@ -13,7 +13,10 @@
 		features["mcolor3"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
 	features["mcolor2"]	= sanitize_hexcolor(features["mcolor2"], 3, 0)
 	features["mcolor3"]	= sanitize_hexcolor(features["mcolor3"], 3, 0)
-
+	ooc_notes = sanitize_text(S["ooc_notes"])
+	erppref = sanitize_text(S["erp_pref"], "Ask")
+	nonconpref = sanitize_text(S["noncon_pref"], "Ask")
+	vorepref = sanitize_text(S["vore_pref"], "Ask")
 	//gear loadout
 	var/text_to_load
 	S["loadout"] >> text_to_load
@@ -71,7 +74,10 @@
 	WRITE_FILE(S["feature_has_womb"], features["has_womb"])
 	//flavor text
 	WRITE_FILE(S["feature_flavor_text"], features["flavor_text"])
-
+	WRITE_FILE(S["ooc_notes"], ooc_notes)
+	WRITE_FILE(S["erp_pref"], erppref)
+	WRITE_FILE(S["noncon_pref"], nonconpref)
+	WRITE_FILE(S["vore_pref"], vorepref)
 	//gear loadout
 	if(islist(chosen_gear))
 		if(chosen_gear.len)
