@@ -95,6 +95,7 @@
 		var/mob/living/carbon/human/H = user
 		var/obj/item/implant/flatline/F = new
 		F.implant(H, H)
+		H.alternate_screams = list('modular_skyrat/sound/voice/complionator/pain1.ogg','modular_skyrat/sound/voice/complionator/pain2.ogg','modular_skyrat/sound/voice/complionator/pain3.ogg','modular_skyrat/sound/voice/complionator/pain1.ogg',)
 
 /obj/item/clothing/mask/gas/sechailer/cpmask/dropped(mob/user)
 	. = ..()
@@ -104,6 +105,7 @@
 		var/mob/living/carbon/human/H = user
 		for(var/obj/item/implant/flatline/F in H.implants)
 			F.removed(H)
+		H.alternate_screams = initial(alternate_screams)
 
 //Flatline implant
 
@@ -118,17 +120,17 @@
 				"}
 	return dat
 
-/obj/item/implant/sad_trombone/trigger(emote, mob/source)
+/obj/item/implant/flatline/trigger(emote, mob/source)
 	if(emote == "deathgasp")
 		switch(rand(1,4))
 			if(1)
-				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die1.ogg", 100, 0, 4)
+				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die1.ogg", 50, 0)
 			if(2)
-				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die2.ogg", 100, 0, 4)
+				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die2.ogg", 50, 0)
 			if(3)
-				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die3.ogg", 100, 0, 4)
+				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die3.ogg", 50, 0)
 			if(4)
-				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die4.ogg", 100, 0, 4)
+				playsound(source.loc, "modular_skyrat/sound/voice/complionator/die4.ogg", 50, 0)
 
 
 /obj/item/implanter/flatline
