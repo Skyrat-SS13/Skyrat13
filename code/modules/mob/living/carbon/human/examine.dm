@@ -402,7 +402,7 @@
 			. += temp_flavor
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 	if(!invisible_man)
-		if(client && client.prefs.ooc_notes)
+		if(client)
 			. += "OOC Notes: <a href='?src=[REF(src)];ooc_notes=1'>\[View\]</a>"
 	. += "*---------*</span>"
 
