@@ -11,7 +11,8 @@
 
 /obj/item/projectile/kinetic/premium/bdminer
 	name = "bloody kinetic force"
-	icon_state = null
+	icon_state = "ka_tracer"
+	color = "#FF0000"
 	damage = 50
 	damage_type = BRUTE
 	flag = "bomb"
