@@ -220,13 +220,18 @@ There are several things that need to be remembered:
 		inv.update_icon()
 
 	if(glasses)
+		//SKYRAT CHANGE- vox stuff
+		var/alt_icon = 'icons/mob/eyes.dmi'
+		if(dna.species.id == "vox")
+			alt_icon = 'modular_skyrat/icons/mob/eyes_vox.dmi'
 		glasses.screen_loc = ui_glasses		//...draw the item in the inventory screen
 		if(client && hud_used && hud_used.hud_shown)
 			if(hud_used.inventory_shown)			//if the inventory is open ...
 				client.screen += glasses				//Either way, add the item to the HUD
 		update_observer_view(glasses,1)
+		//SKYRAT CHANGE- vox stuff
 		if(!(head && (head.flags_inv & HIDEEYES)) && !(wear_mask && (wear_mask.flags_inv & HIDEEYES)))
-			overlays_standing[GLASSES_LAYER] = glasses.build_worn_icon(state = glasses.icon_state, default_layer = GLASSES_LAYER, default_icon_file = 'icons/mob/eyes.dmi')
+			overlays_standing[GLASSES_LAYER] = glasses.build_worn_icon(state = glasses.icon_state, default_layer = GLASSES_LAYER, default_icon_file = alt_icon)
 		var/mutable_appearance/glasses_overlay = overlays_standing[GLASSES_LAYER]
 		if(glasses_overlay)
 			if(OFFSET_GLASSES in dna.species.offset_features)
@@ -337,6 +342,9 @@ There are several things that need to be remembered:
 		if(muzzled && H.mutantrace_variation & STYLE_MUZZLE)
 			alt_icon = 'icons/mob/head_muzzled.dmi'
 			variation_flag |= STYLE_MUZZLE
+		//SKYRAT CHANGE - vox custom sprites
+		if(dna.species.id == "vox")
+			alt_icon = 'modular_skyrat/icons/mob/head_vox.dmi'
 
 		overlays_standing[HEAD_LAYER] = H.build_worn_icon(H.icon_state, HEAD_LAYER, alt_icon, FALSE, NO_FEMALE_UNIFORM, variation_flag, FALSE)
 		var/mutable_appearance/head_overlay = overlays_standing[HEAD_LAYER]
@@ -470,6 +478,9 @@ There are several things that need to be remembered:
 		if(muzzled && M.mutantrace_variation & STYLE_MUZZLE)
 			alt_icon = 'icons/mob/mask_muzzled.dmi'
 			variation_flag |= STYLE_MUZZLE
+		//SKYRAT CHANGE - vox custom sprites
+		if(dna.species.id == "vox")
+			alt_icon = 'modular_skyrat/icons/mob/mask_vox.dmi'
 
 		overlays_standing[FACEMASK_LAYER] = M.build_worn_icon(wear_mask.icon_state, FACEMASK_LAYER, alt_icon, FALSE, NO_FEMALE_UNIFORM, variation_flag, FALSE)
 		var/mutable_appearance/mask_overlay = overlays_standing[FACEMASK_LAYER]
@@ -737,10 +748,11 @@ generate/load female uniform sprites matching all previously decided variables
 		if(!(NOEYES in dna.species.species_traits))
 			var/has_eyes = getorganslot(ORGAN_SLOT_EYES)
 			var/mutable_appearance/eye_overlay
+			//Skyrat changes down there - changes the hardcoded path to the icon_eyes variable
 			if(!has_eyes)
-				eye_overlay = mutable_appearance('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER)
+				eye_overlay = mutable_appearance(dna.species.icon_eyes, "eyes_missing", -BODY_LAYER)
 			else
-				eye_overlay = mutable_appearance('icons/mob/human_face.dmi', "eyes", -BODY_LAYER)
+				eye_overlay = mutable_appearance(dna.species.icon_eyes, "eyes", -BODY_LAYER)
 			if((EYECOLOR in dna.species.species_traits) && has_eyes)
 				eye_overlay.color = "#" + eye_color
 			if(OFFSET_EYES in dna.species.offset_features)

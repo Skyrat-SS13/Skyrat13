@@ -106,6 +106,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/whitelist = list() 		//List the ckeys that can use this species, if it's whitelisted.: list("John Doe", "poopface666", "SeeALiggerPullTheTrigger") Spaces & capitalization can be included or ignored entirely for each key as it checks for both.
 	var/should_draw_citadel = FALSE
 
+	//Skyrat changes
+	var/icon_eyes = 'icons/mob/human_face.dmi'
+
 ///////////
 // PROCS //
 ///////////
@@ -289,7 +292,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		C.hud_used.update_locked_slots()
 
 	// this needs to be FIRST because qdel calls update_body which checks if we have DIGITIGRADE legs or not and if not then removes DIGITIGRADE from species_traits
-	if(("legs" in C.dna.species.mutant_bodyparts) && (C.dna.features["legs"] == "Digitigrade" || C.dna.features["legs"] == "Avian"))
+	if(("legs" in C.dna.species.mutant_bodyparts) && (C.dna.features["legs"] == "Digitigrade" || C.dna.features["legs"] == "Avian" || C.dna.features["legs"] == "Vox")) //SKYRATS change vox legs
 		species_traits |= DIGITIGRADE
 	if(DIGITIGRADE in species_traits)
 		C.Digitigrade_Leg_Swap(FALSE)
@@ -524,10 +527,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(!(NOEYES in species_traits))
 			var/has_eyes = H.getorganslot(ORGAN_SLOT_EYES)
 			var/mutable_appearance/eye_overlay
+			//Skyrat changes custom eye path
 			if(!has_eyes)
-				eye_overlay = mutable_appearance('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER)
+				eye_overlay = mutable_appearance(icon_eyes, "eyes_missing", -BODY_LAYER)
 			else
-				eye_overlay = mutable_appearance('icons/mob/human_face.dmi', "eyes", -BODY_LAYER)
+				eye_overlay = mutable_appearance(icon_eyes, "eyes", -BODY_LAYER)
 			if((EYECOLOR in species_traits) && has_eyes)
 				eye_overlay.color = "#" + H.eye_color
 
