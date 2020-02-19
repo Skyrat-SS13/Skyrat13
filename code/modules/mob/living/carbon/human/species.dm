@@ -106,8 +106,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/whitelist = list() 		//List the ckeys that can use this species, if it's whitelisted.: list("John Doe", "poopface666", "SeeALiggerPullTheTrigger") Spaces & capitalization can be included or ignored entirely for each key as it checks for both.
 	var/should_draw_citadel = FALSE
 
-	//Skyrat changes
-	var/icon_eyes = 'icons/mob/human_face.dmi'
+	var/icon_eyes = 'icons/mob/human_face.dmi'//Skyrat change
 
 ///////////
 // PROCS //
@@ -527,11 +526,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(!(NOEYES in species_traits))
 			var/has_eyes = H.getorganslot(ORGAN_SLOT_EYES)
 			var/mutable_appearance/eye_overlay
-			//Skyrat changes custom eye path
 			if(!has_eyes)
-				eye_overlay = mutable_appearance(icon_eyes, "eyes_missing", -BODY_LAYER)
+				eye_overlay = mutable_appearance(icon_eyes, "eyes_missing", -BODY_LAYER) //SKYRAT change accounts for different sprites
 			else
-				eye_overlay = mutable_appearance(icon_eyes, "eyes", -BODY_LAYER)
+				eye_overlay = mutable_appearance(icon_eyes, "eyes", -BODY_LAYER) //SKYRAT change accounts for different sprites
 			if((EYECOLOR in species_traits) && has_eyes)
 				eye_overlay.color = "#" + H.eye_color
 
