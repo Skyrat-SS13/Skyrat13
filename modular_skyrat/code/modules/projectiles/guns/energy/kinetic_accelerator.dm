@@ -79,6 +79,9 @@
 	for(var/i in 1 to K.range)
 		new /obj/effect/temp_visual/hierophant/squares(T)
 		T = get_step(T, dir_to_target)
+		if(T == target.loc)
+			new /obj/effect/temp_visual/hierophant/squares(T)
+			return
 	if(istype(target, /mob/living))
 		new /obj/effect/temp_visual/hierophant/telegraph/teleport(target.loc)
 	if(istype(target, /mob/living/simple_animal))
