@@ -79,13 +79,11 @@
 	for(var/i in 1 to K.range)
 		new /obj/effect/temp_visual/hierophant/squares(T)
 		T = get_step(T, dir_to_target)
-	for(var/turf/T in getline(KA.loc, target.loc))
-		new /obj/effect/temp_visual/hierophant/squares(T)
 	if(istype(target, /mob/living))
 		new /obj/effect/temp_visual/hierophant/telegraph/teleport(target.loc)
 	if(istype(target, /mob/living/simple_animal))
 		var/mob/living/F = K.firer
-		var/turf/T = get_turf(F)
+		T = get_turf(F)
 		new /obj/effect/temp_visual/hierophant/wall/crusher(T, F) //a wall only you can pass!
 		var/turf/otherT = get_step(T, turn(F.dir, 90))
 		if(otherT)
