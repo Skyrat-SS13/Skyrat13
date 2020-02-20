@@ -74,6 +74,11 @@
 
 /obj/item/borg/upgrade/modkit/wall/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()
+	var/turf/T = get_turf(K.firer)
+	var/dir_to_target = get_dir(T, target.loc)
+	for(var/i in 1 to K.range)
+		new /obj/effect/temp_visual/hierophant/squares(T)
+		T = get_step(T, dir_to_target)
 	for(var/turf/T in getline(KA.loc, target.loc))
 		new /obj/effect/temp_visual/hierophant/squares(T)
 	if(istype(target, /mob/living))
