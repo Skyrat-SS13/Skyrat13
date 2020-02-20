@@ -74,19 +74,13 @@
 
 /obj/item/borg/upgrade/modkit/wall/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()
-	var/turf/T = get_turf(K.firer)
-	var/dir_to_target = get_dir(T, target.loc)
-	for(var/i in 1 to K.range)
+	for(var/turf/T in getline(KA.loc, target.loc))
 		new /obj/effect/temp_visual/hierophant/squares(T)
-		T = get_step(T, dir_to_target)
-		if(T == target.loc)
-			new /obj/effect/temp_visual/hierophant/squares(T)
-			return
 	if(istype(target, /mob/living))
 		new /obj/effect/temp_visual/hierophant/telegraph/teleport(target.loc)
 	if(istype(target, /mob/living/simple_animal))
 		var/mob/living/F = K.firer
-		T = get_turf(F)
+		var/turf/T = get_turf(F)
 		new /obj/effect/temp_visual/hierophant/wall/crusher(T, F) //a wall only you can pass!
 		var/turf/otherT = get_step(T, turn(F.dir, 90))
 		if(otherT)
