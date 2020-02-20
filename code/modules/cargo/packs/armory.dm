@@ -271,3 +271,11 @@
 					/obj/item/ammo_box/magazine/wt550m9/wtic,
 					/obj/item/ammo_box/magazine/wt550m9/wtic)
 	crate_name = "auto rifle ammo crate"
+
+/datum/supply_pack/security/armory/hevsuit
+	name = "Security HEV Suit Crate"
+	desc = "Contains 2 HEV suits perfect for operating down on lavaland."
+	cost = 5000
+	contains = list(/obj/item/clothing/suit/space/hardsuit/security/metrocop
+					/obj/item/clothing/suit/space/hardsuit/security/metrocop)
+	crate_name = "HEV suit crate"
