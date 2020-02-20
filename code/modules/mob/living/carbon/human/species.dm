@@ -107,6 +107,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/should_draw_citadel = FALSE
 
 	var/icon_eyes = 'icons/mob/human_face.dmi'//Skyrat change
+	var/icon_limbs = 'icons/mob/human_parts_greyscale.dmi'//Skyrat change
 
 ///////////
 // PROCS //

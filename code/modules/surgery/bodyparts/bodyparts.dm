@@ -282,7 +282,12 @@
 
 	if(change_icon_to_default)
 		if(status == BODYPART_ORGANIC)
-			icon = DEFAULT_BODYPART_ICON_ORGANIC
+			//SKYRAT CHANGES - limb paths for species
+			if(owner?.dna?.species)
+				icon = owner.dna.species.icon_limbs
+			else
+				icon = DEFAULT_BODYPART_ICON_ORGANIC
+			//END OF SKYRAT CHANGES
 		else if(status == BODYPART_ROBOTIC)
 			icon = DEFAULT_BODYPART_ICON_ROBOTIC
 
@@ -462,7 +467,12 @@
 
 	if(is_organic_limb())
 		if(should_draw_greyscale)
-			limb.icon = 'icons/mob/human_parts_greyscale.dmi'
+			//SKYRAT CHANGES - limb paths for species
+			if(owner?.dna?.species)
+				limb.icon = owner.dna.species.icon_limbs
+			else
+				limb.icon = 'icons/mob/human_parts_greyscale.dmi'
+			//END OF SKYRAT CHANGES
 			if(should_draw_gender)
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else if(use_digitigrade)

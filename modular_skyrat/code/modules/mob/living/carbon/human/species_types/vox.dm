@@ -3,6 +3,7 @@
 	name = "Vox"
 	id = "vox"
 	icon_eyes = 'modular_skyrat/icons/mob/vox_eyes.dmi'
+	icon_limbs = 'modular_skyrat/icons/mob/vox_parts_greyscale.dmi'
 	say_mod = "shrieks"
 	default_color = "00FF00"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,LIPS,EYECOLOR)
