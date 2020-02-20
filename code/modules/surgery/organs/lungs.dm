@@ -143,10 +143,14 @@
 
 	//Too much oxygen! //Yes, some species may not like it.
 	if(safe_oxygen_max)
-		if((O2_pp > safe_oxygen_max) && safe_oxygen_max == 0) //I guess plasma men technically need to have a check.
+		if((O2_pp > safe_oxygen_max) && !(oxy_damage_type == OXY)) //SKYRAT CHANGE - basically fixes this 'if' cause it'd never be true
 			var/ratio = (breath_gases[/datum/gas/oxygen]/safe_oxygen_max) * 10
 			H.apply_damage_type(CLAMP(ratio, oxy_breath_dam_min, oxy_breath_dam_max), oxy_damage_type)
 			H.throw_alert("too_much_oxy", /obj/screen/alert/too_much_oxy)
+			//SKYRAT CHANGES - visual cue to choking this way
+			if(prob(30))
+				H.emote("cough")
+			//END OF SKYRAT CHANGES
 
 		else if((O2_pp > safe_oxygen_max) && !(safe_oxygen_max == 0)) //Why yes, this is like too much CO2 and spahget. Dirty lizards.
 			if(!H.o2overloadtime)

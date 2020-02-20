@@ -2423,7 +2423,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if("meat_type" in pref_species.default_features)
 		character.type_of_meat = GLOB.meat_types[features["meat_type"]]
 
-	if(("legs" in character.dna.species.mutant_bodyparts) && (character.dna.features["legs"] == "Digitigrade" || character.dna.features["legs"] == "Avian"))
+	if(("legs" in character.dna.species.mutant_bodyparts) && (character.dna.features["legs"] == "Digitigrade" || character.dna.features["legs"] == "Avian" || character.dna.features["legs"] == "Vox")) //SKYRATS CHANGE vox legs
 		pref_species.species_traits |= DIGITIGRADE
 	else
 		pref_species.species_traits -= DIGITIGRADE
