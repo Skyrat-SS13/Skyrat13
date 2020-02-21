@@ -3277,6 +3277,7 @@
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\blood_drunk_miner.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\legion.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\mining_mobs\elites\drakeling.dm"
+#include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\mining_mobs\elites\elite.dm"
 #include "modular_skyrat\code\modules\projectiles\gun.dm"
 #include "modular_skyrat\code\modules\projectiles\boxes_magazines\external\pistol.dm"
 #include "modular_skyrat\code\modules\projectiles\guns\ballistic\pistol.dm"
