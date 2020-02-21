@@ -169,3 +169,24 @@
 	desc = "Causes kinetic accelerator shots to heal the firer on striking a living target."
 	modifier = 5
 	cost = 25
+
+//drakeling
+/obj/item/borg/upgrade/modkit/fire
+	name = "flamethrower modification kit"
+	desc = "Makes your kinetic shots deal a mild amount of burn damage."
+	cost = 20
+
+/obj/item/borg/upgrade/modkit/fire/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
+	..()
+	playsound(T, 'sound/magic/fireball.ogg', 20, 1)
+	var/list/hitlist = list()
+	for(var/turf/T in getline(KA.loc, target.loc))
+		new /obj/effect/hotspot(T)
+		T.hotspot_expose(700,50,1)
+		for(var/mob/living/L in T.contents)
+			if(L in hitlist || (L == src))
+				break
+			else
+				hitlist += L
+				L.adjustFireLoss(20)
+				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire breath!</span>")
