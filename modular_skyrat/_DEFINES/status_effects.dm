@@ -1,0 +1,1 @@
+#define STATUS_EFFECT_CRUSHERMARK_HARM /datum/status_effect/crusher_mark/harm //if struck with a proto-kinetic crusher, takes a ton of damage
