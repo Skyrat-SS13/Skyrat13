@@ -174,11 +174,12 @@
 /obj/item/borg/upgrade/modkit/fire
 	name = "flamethrower modification kit"
 	desc = "Makes your kinetic shots deal a mild amount of burn damage."
+	modifier = 10
 	cost = 20
 
 /obj/item/borg/upgrade/modkit/fire/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()
-	playsound(T, 'sound/magic/fireball.ogg', 20, 1)
+	playsound(K.firer, 'sound/magic/fireball.ogg', 20, 1)
 	var/list/hitlist = list()
 	for(var/turf/T in getline(KA.loc, target.loc))
 		new /obj/effect/hotspot(T)
@@ -188,5 +189,5 @@
 				break
 			else
 				hitlist += L
-				L.adjustFireLoss(20)
+				L.adjustFireLoss(src.modifier)
 				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire breath!</span>")

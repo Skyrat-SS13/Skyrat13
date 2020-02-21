@@ -90,41 +90,27 @@
 //Drakeling actions
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/lava_moat()
 	ranged_cooldown = world.time + 50
-	visible_message("<span class='boldwarning'>[src] spews lava around him! Get back!</span>")
-	sleep(10)
+	visible_message("<span class='boldwarning'>[src] spews lava around themselves! Get back!</span>")
 	for(var/turf/T in oview(1, src))
-		if(!istype(T, /turf/closed) && !istype(T, /turf/open/lava))
-			var/lava_turf = /turf/open/lava/smooth
-			var/reset_turf = T.type
-			T.ChangeTurf(lava_turf, flags = CHANGETURF_INHERIT_AIR)
-			addtimer(CALLBACK(T, /turf.proc/ChangeTurf, reset_turf, null, CHANGETURF_INHERIT_AIR), 50, TIMER_OVERRIDE|TIMER_UNIQUE)
+		new /obj/effect/temp_visual/lava_warning(T)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/lava_around()
 	ranged_cooldown = world.time + 100
 	for(var/d in GLOB.cardinals)
 		INVOKE_ASYNC(src, .proc/lava_wall, d, 5)
 
-/mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/fire_spew(target)
+/mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/fire_spew()
 	ranged_cooldown = world.time + 50
+	visible_message("<span class='boldwarning'>[src] spews fire!</span>")
 	playsound(src,'sound/magic/Fireball.ogg', 200, 1)
+	sleep(5)
 	fire_wall(src.dir, 7)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/fire_moat()
 	ranged_cooldown = world.time + 100
 	playsound(src,'sound/magic/Fireball.ogg', 200, 1)
-	visible_message("<span class='boldwarning'>[src] violently huffs smoke!He's going to make a fire moat!</span>")
-	sleep(5)
-	var/list/hitlist = list(src)
-	for(var/turf/T in oview(1))
-		new /obj/effect/hotspot(T)
-		T.hotspot_expose(700,50,1)
-		for(var/mob/living/L in T.contents)
-			if(L in hitlist || (L == src))
-				break
-			else
-				hitlist += L
-				L.adjustFireLoss(20)
-				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire breath!</span>")
+	visible_message("<span class='boldwarning'>[src] violently puffs smoke!They're going to make a fire moat!</span>")
+	sleep(15)
 	for(var/d in GLOB.alldirs)
 		INVOKE_ASYNC(src, .proc/fire_wall, d, 5)
 
@@ -150,7 +136,6 @@
 	var/turf/T = get_turf(src)
 	for(var/i in 1 to range)
 		new /obj/effect/temp_visual/lava_warning(T)
-		T.hotspot_expose(700,50,1)
 		T = get_step(T, dir)
 		sleep(2)
 
