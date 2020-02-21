@@ -181,7 +181,7 @@
 	..()
 	playsound(K.firer, 'sound/magic/fireball.ogg', 20, 1)
 	var/list/hitlist = list()
-	for(var/turf/T in getline(KA.loc, target.loc))
+	for(var/turf/T in getline(KA.loc, target.loc) - get_turf(K.firer))
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)
 		for(var/mob/living/L in T.contents)
