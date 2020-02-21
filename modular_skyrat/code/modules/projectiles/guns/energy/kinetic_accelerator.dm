@@ -97,7 +97,7 @@
 	name = "death bolt modification kit"
 	desc = "Makes your shots reload faster if you hit a mob or mineral."
 	cost = 20
-	modifier = 0.25
+	modifier = 0.4
 
 /obj/item/borg/upgrade/modkit/bolter/modify_projectile(obj/item/projectile/kinetic/K)
 	..()
