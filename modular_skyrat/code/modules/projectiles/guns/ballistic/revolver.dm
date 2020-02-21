@@ -17,7 +17,7 @@
 	return
 
 /obj/item/gun/ballistic/revolver/doublebarrel/doublesawn/proc/shoot_live_shot(mob/living/user as mob|obj, pointblank = 0, mob/pbtarget = null, message = 1)
-	if(prob(20)
+	if(prob(20))
 		blowup(user)
 	else
 		..()
