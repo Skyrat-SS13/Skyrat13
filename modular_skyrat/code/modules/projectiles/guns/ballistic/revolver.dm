@@ -16,16 +16,16 @@
 	to_chat(user, "<span class='notice'>Shortening this thing even a single milimeter more would be beyond impossible.</span>")
 	return
 
-/obj/item/gun/ballistic/revolver/doublebarrel/doublesawn/proc/shoot_live_shot(mob/living/user as mob|obj, pointblank = 0, mob/pbtarget = null, message = 1)
+/obj/item/gun/ballistic/revolver/doublebarrel/doublesawn/shoot_live_shot(mob/living/user as mob|obj, pointblank = 0, mob/pbtarget = null, message = 1)
 	if(prob(20))
-		blowup(user)
+		src.blow_up(user)
 	else
 		..()
 
 /obj/item/gun/ballistic/revolver/doublebarrel
 	var/timessawn = 0
 
-/obj/item/gun/ballistic/revolver/doublebarrel/sawoff(user)
+/obj/item/gun/ballistic/revolver/doublebarrel/sawoff(mob/user)
 	if(!src.timessawn)
 		..()
 		src.timessawn += 1
