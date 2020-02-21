@@ -97,7 +97,7 @@
 	name = "death bolt modification kit"
 	desc = "Makes your shots reload faster if you hit a mob or mineral."
 	cost = 20
-	modifier = 0.25
+	modifier = 0.4
 
 /obj/item/borg/upgrade/modkit/bolter/modify_projectile(obj/item/projectile/kinetic/K)
 	..()
@@ -167,7 +167,7 @@
 /obj/item/borg/upgrade/modkit/lifesteal/miner
 	name = "resonant lifesteal crystal"
 	desc = "Causes kinetic accelerator shots to heal the firer on striking a living target."
-	modifier = 5
+	modifier = 3
 	cost = 25
 
 //drakeling
@@ -181,13 +181,13 @@
 	..()
 	playsound(K.firer, 'sound/magic/fireball.ogg', 20, 1)
 	var/list/hitlist = list()
-	for(var/turf/T in getline(KA.loc, target.loc))
+	for(var/turf/T in getline(KA.loc, target.loc) - get_turf(K.firer))
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)
 		for(var/mob/living/L in T.contents)
-			if(L in hitlist || (L == src))
+			if(L in hitlist || (L == K.firer))
 				break
 			else
 				hitlist += L
 				L.adjustFireLoss(src.modifier)
-				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire breath!</span>")
+				to_chat(L, "<span class='userdanger'>You're hit by [KA]'s fire breath!</span>")
