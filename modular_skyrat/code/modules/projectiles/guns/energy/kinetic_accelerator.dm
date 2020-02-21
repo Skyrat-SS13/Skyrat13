@@ -185,9 +185,9 @@
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)
 		for(var/mob/living/L in T.contents)
-			if(L in hitlist || (L == src))
+			if(L in hitlist || (L == K.firer))
 				break
 			else
 				hitlist += L
 				L.adjustFireLoss(src.modifier)
-				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire breath!</span>")
+				to_chat(L, "<span class='userdanger'>You're hit by [KA]'s fire breath!</span>")
