@@ -5,7 +5,7 @@
 		return
 	set_typing_indicator(TRUE)
 	hud_typing = TRUE
-	var/message = input("", "say (text)") as text
+	var/message = input("", "say (text)") as null|text
 	hud_typing = FALSE
 	set_typing_indicator(FALSE)
 	if(message)
@@ -21,7 +21,7 @@
 
 	set_typing_indicator(TRUE)
 	hud_typing = TRUE
-	var/message = input("", "emote (text)") as message
+	var/message = input("", "emote (text)") as null|message
 	trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 	usr.emote("me",1,message,TRUE)
 	hud_typing = FALSE
