@@ -7,4 +7,4 @@
 								/mob/living/simple_animal/hostile/asteroid/elite/candy)
 
 /mob/living/simple_animal/hostile/asteroid/elite
-	cantalk = TRUE
+	can_talk = TRUE
