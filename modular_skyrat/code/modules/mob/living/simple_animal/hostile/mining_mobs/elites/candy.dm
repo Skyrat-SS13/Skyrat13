@@ -27,7 +27,7 @@
 	health = 800
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	attacktext = "bites"
+	attacktext = "punches"
 	attack_sound = 'sound/magic/demon_consume.ogg'
 	speed = 2
 	move_to_delay = 3
@@ -119,7 +119,6 @@
 		new /obj/effect/temp_visual/bloodwall(J, src)
 	sleep(5)
 	src.bloodcharge(target)
-	sleep(3)
 	var/list/bloodwalls = list()
 	for(var/d in GLOB.cardinals)
 		var/turf/N = get_step(target, d)
@@ -174,8 +173,9 @@
 				L.safe_throw_at(throwtarget, 10, 1, src)
 				L.Stun(20)
 				L.adjustBruteLoss(50)
+	var/source_turf = src.loc
 	sleep(5)
-	for(var/turf/T in view(2, src) - view(1, src))
+	for(var/turf/T in view(2, source_turf) - view(1, source_turf))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		for(var/mob/living/L in T.contents)
 			if(L != src && !(L in hit_things))
@@ -263,3 +263,4 @@
 	var/obj/effect/proc_holder/spell/bloodcrawl/S = new /obj/effect/proc_holder/spell/bloodcrawl/
 	user.mind.AddSpell(S)
 	user.log_message("learned the spell bloodcrawl ([S])", LOG_ATTACK, color="orange")
+	qdel(src)
