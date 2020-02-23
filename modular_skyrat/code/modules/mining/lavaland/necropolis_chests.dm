@@ -80,4 +80,4 @@
 		new loot(src)
 
 /obj/item/katana/necropolis
-	force = 26 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
+	force = 30 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
