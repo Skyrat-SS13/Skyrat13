@@ -113,7 +113,7 @@
 	var/list/bline = getline(T, target.loc)
 	if(bline.len > 6)
 		return FALSE
-	ranged_cooldown = world.time + 75
+	ranged_cooldown = world.time + 100
 	visible_message("<span class='boldwarning'>[src] traps [target]!</span>")
 	for(var/turf/J in view(1, target) - get_turf(target))
 		new /obj/effect/temp_visual/bloodwall(J, src)
