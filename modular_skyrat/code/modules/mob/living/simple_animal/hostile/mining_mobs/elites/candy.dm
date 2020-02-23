@@ -122,8 +122,11 @@
 	var/list/bloodwalls = list()
 	for(var/d in GLOB.cardinals)
 		var/turf/N = get_step(target, d)
-		for(var/obj/effect/temp_visual/bloodwall/B in N.contents)
-			bloodwalls += B
+		if(N == get_step(src, src.dir))
+			continue
+		else
+			for(var/obj/effect/temp_visual/bloodwall/B in N.contents)
+				bloodwalls += B
 	var/obj/effect/temp_visual/bloodwall/chosen = pick(bloodwalls)
 	qdel(chosen)
 
