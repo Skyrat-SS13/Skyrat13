@@ -3251,6 +3251,7 @@
 #include "modular_skyrat\code\datums\status_effects\debuffs.dm"
 #include "modular_skyrat\code\game\world.dm"
 #include "modular_skyrat\code\game\gamemodes\objective.dm"
+#include "modular_skyrat\code\game\machinery\slotmachine.dm"
 #include "modular_skyrat\code\game\objects\items.dm"
 #include "modular_skyrat\code\game\objects\items\robot\robot_upgrades.dm"
 #include "modular_skyrat\code\game\objects\items\tanks\n2_tanks.dm"
