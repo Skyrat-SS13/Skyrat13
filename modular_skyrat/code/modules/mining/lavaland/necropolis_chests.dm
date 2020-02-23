@@ -110,7 +110,3 @@
 
 /obj/item/katana/necropolis
 	force = 30 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
-
-/obj/structure/closet/crate/necropolis/tendril/debug
-	loot_pool = list(list(/obj/item/borg/upgrade/modkit/lifesteal, /obj/item/bedsheet/cult),
-					list(/obj/item/reagent_containers/food/drinks/bottle/holywater/hell, /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor))
