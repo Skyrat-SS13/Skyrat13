@@ -128,6 +128,7 @@
 			for(var/obj/effect/temp_visual/bloodwall/B in N.contents)
 				bloodwalls += B
 	var/obj/effect/temp_visual/bloodwall/chosen = pick(bloodwalls)
+	visible_message("<span class='boldwarning'>One of the blood walls disappear!</span>")
 	qdel(chosen)
 
 /mob/living/simple_animal/hostile/asteroid/elite/candy/proc/meatshield()
