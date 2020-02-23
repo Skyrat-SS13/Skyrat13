@@ -2,7 +2,7 @@
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
-	new /obj/item/borg/upgrade/modkit/shotgun
+	new /obj/item/borg/upgrade/modkit/shotgun(src)
 	var/loot = rand(1,3)
 	switch(loot)
 		if(1)
@@ -13,7 +13,7 @@
 			new /obj/item/gun/magic/staff/spellblade(src)
 
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
-	new /obj/item/borg/upgrade/modkit/knockback
+	new /obj/item/borg/upgrade/modkit/knockback(src)
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
@@ -31,7 +31,7 @@
 	var/random_crystal = pick(choices)
 	new random_crystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
-	new /obj/item/borg/upgrade/modkit/bolter
+	new /obj/item/borg/upgrade/modkit/bolter(src)
 
 //normal chests
 //who the fuck coded the original? using a switch for this is cringe bro
