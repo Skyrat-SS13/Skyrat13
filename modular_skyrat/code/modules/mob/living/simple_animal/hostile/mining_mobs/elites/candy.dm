@@ -122,7 +122,7 @@
 	var/list/bloodwalls = list()
 	for(var/d in GLOB.cardinals)
 		var/turf/N = get_step(target, d)
-		if(N == get_step(src, src.dir))
+		if(N == get_step(src, src.dir) || N == get_turf(src))
 			continue
 		else
 			for(var/obj/effect/temp_visual/bloodwall/B in N.contents)
