@@ -25,8 +25,8 @@
 	attacktext = "smashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	throw_message = "barely affects the"
-	vision_range = 2
-	aggro_vision_range = 5
+	vision_range = 4
+	aggro_vision_range = 7
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_VERY_STRONG
 	pull_force = MOVE_FORCE_VERY_STRONG
