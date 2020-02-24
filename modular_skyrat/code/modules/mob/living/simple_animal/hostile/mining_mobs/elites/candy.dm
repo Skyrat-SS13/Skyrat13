@@ -27,7 +27,7 @@
 	health = 800
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	attacktext = "bites"
+	attacktext = "punches"
 	attack_sound = 'sound/magic/demon_consume.ogg'
 	speed = 2
 	move_to_delay = 3
@@ -113,19 +113,22 @@
 	var/list/bline = getline(T, target.loc)
 	if(bline.len > 6)
 		return FALSE
-	ranged_cooldown = world.time + 75
+	ranged_cooldown = world.time + 100
 	visible_message("<span class='boldwarning'>[src] traps [target]!</span>")
 	for(var/turf/J in view(1, target) - get_turf(target))
 		new /obj/effect/temp_visual/bloodwall(J, src)
 	sleep(5)
 	src.bloodcharge(target)
-	sleep(3)
 	var/list/bloodwalls = list()
 	for(var/d in GLOB.cardinals)
 		var/turf/N = get_step(target, d)
-		for(var/obj/effect/temp_visual/bloodwall/B in N.contents)
-			bloodwalls += B
+		if(N == get_step(src, src.dir) || N == get_turf(src))
+			continue
+		else
+			for(var/obj/effect/temp_visual/bloodwall/B in N.contents)
+				bloodwalls += B
 	var/obj/effect/temp_visual/bloodwall/chosen = pick(bloodwalls)
+	visible_message("<span class='boldwarning'>One of the blood walls disappear!</span>")
 	qdel(chosen)
 
 /mob/living/simple_animal/hostile/asteroid/elite/candy/proc/meatshield()
@@ -174,8 +177,9 @@
 				L.safe_throw_at(throwtarget, 10, 1, src)
 				L.Stun(20)
 				L.adjustBruteLoss(50)
+	var/source_turf = src.loc
 	sleep(5)
-	for(var/turf/T in view(2, src) - view(1, src))
+	for(var/turf/T in view(2, source_turf) - view(1, source_turf))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		for(var/mob/living/L in T.contents)
 			if(L != src && !(L in hit_things))
@@ -255,6 +259,7 @@
 
 /obj/item/bloodcrawlbottle
 	name = "bloodlust in a bottle"
+	desc = "Drinking this will give you unimaginable powers... and mildly disgust you because of it's metallic taste."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "vial"
 
@@ -263,3 +268,4 @@
 	var/obj/effect/proc_holder/spell/bloodcrawl/S = new /obj/effect/proc_holder/spell/bloodcrawl/
 	user.mind.AddSpell(S)
 	user.log_message("learned the spell bloodcrawl ([S])", LOG_ATTACK, color="orange")
+	qdel(src)
