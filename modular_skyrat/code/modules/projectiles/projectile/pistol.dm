@@ -4,4 +4,4 @@
 	name = "9mm rubber bullet"
 	desc = "Vacate, citizen."
 	damage = 0
-	stamina = 35
+	stamina = 25
