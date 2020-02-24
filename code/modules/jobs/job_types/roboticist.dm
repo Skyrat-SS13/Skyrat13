@@ -8,7 +8,7 @@
 	spawn_positions = 2
 	supervisors = "the research director"
 	selection_color = "#9574cd"
-	exp_requirements = 60
+	exp_requirements = 120 //SKYRAT CHANGE - upping the exp time on jobs
 	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/roboticist
