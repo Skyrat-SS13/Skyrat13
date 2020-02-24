@@ -11,7 +11,7 @@
 	maxHealth = 500
 	layer = BELOW_MOB_LAYER
 	var/obj/item/instrument/piano_synth/internal_instrument
-	silicon_privileges = PRIVILEDGES_PAI
+	//silicon_privileges = PRIVILEDGES_PAI
 	var/datum/element/mob_holder/current_mob_holder //because only a few of their chassis can be actually held.
 
 	var/network = "ss13"
