@@ -40,6 +40,29 @@
 		else
 			(to_chat(user, "<span class='notice'>You cancel turning [target] into a legion.</span>"))
 
+//shambling miner
+/obj/item/crusher_trophy/blaster_tubes/eye
+	name = "eye of a shambling miner"
+	desc = "It's as blind as it could be. Suitable as a crusher trophy."
+	icon_state = "hunter_eye"
+	bonus_value = 5
+	denied_type = /obj/item/crusher_trophy/blaster_tubes/eye
+
+/obj/item/crusher_trophy/blaster_tubes/eye/effect_desc()
+	return "mark detonation to make the next destabilizer shot deal <b>[bonus_value]</b> damage"
+
+/obj/item/crusher_trophy/blaster_tubes/eye/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+	if(deadly_shot)
+		marker.name = "kinetic [marker.name]"
+		marker.icon_state = "ka_tracer"
+		marker.damage = bonus_value
+		marker.nodamage = FALSE
+		deadly_shot = FALSE
+
+/obj/item/crusher_trophy/blaster_tubes/eye/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
+	new /obj/effect/temp_visual/kinetic_blast(target)
+	playsound(target.loc, 'sound/weapons/kenetic_accel.ogg', 60, 0)
+
 //traitor crusher
 
 /obj/item/projectile/destabilizer/harm
