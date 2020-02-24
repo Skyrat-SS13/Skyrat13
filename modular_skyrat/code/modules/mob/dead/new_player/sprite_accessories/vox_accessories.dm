@@ -80,11 +80,6 @@
 	name = "Vox Mohawk"
 	icon_state = "hair_vox_mohawk"
 
-/datum/sprite_accessory/hair/vox_afro
-	icon = 'modular_skyrat/icons/mob/hair_vox.dmi'
-	name = "Vox Afro"
-	icon_state = "hair_vox_afro"
-
 /datum/sprite_accessory/hair/vox_nights
 	icon = 'modular_skyrat/icons/mob/hair_vox.dmi'
 	name = "Vox Nights"
