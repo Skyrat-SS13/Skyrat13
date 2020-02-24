@@ -33,7 +33,9 @@
 			H.adjustOxyLoss(-25, 0)
 			H.adjustToxLoss(-25, 0)
 			H.adjustCloneLoss(-25, 0)
-			H.log_message("[H] used [src] to heal themselves on-station!", LOG_ATTACK, color="green")
+			for(var/obj/item/organ/O in H.internal_organs)
+				O.damage = 0
+			H.log_message("[H] used [src] to heal [H] on-station!", LOG_ATTACK, color="green")
 			qdel(src)
 		else
 			to_chat(user, "<span class='notice'>[src] has decayed and can no longer be used to heal.</span>")
@@ -52,6 +54,8 @@
 				H.adjustOxyLoss(-25, 0)
 				H.adjustToxLoss(-25, 0)
 				H.adjustCloneLoss(-25, 0)
+				for(var/obj/item/organ/O in H.internal_organs)
+					O.damage = 0
 				H.log_message("[H] used [src] to heal themselves on-station!", LOG_ATTACK, color="green")
 				qdel(src)
 			else
