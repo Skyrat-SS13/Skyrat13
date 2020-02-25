@@ -36,6 +36,7 @@
 	deathmessage = "realizes what they've been doing all this time, and return to their true self."
 	loot_drop = /obj/item/melee/diamondaxe
 	del_on_death = TRUE
+	projectiletype = /obj/item/projectile/kinetic/axe
 	attack_action_types = list(/datum/action/innate/elite_attack/axe_slam,
 								/datum/action/innate/elite_attack/summon_shambler,
 								/datum/action/innate/elite_attack/dash,
@@ -170,9 +171,9 @@
 	ranged_cooldown = world.time + 50
 	visible_message("<span class='boldwarning'>[src] prepares to throw his axe!</span>")
 	var/turf/targetturf = get_turf(target)
-	sleep(5)
-	var/obj/item/melee/diamondaxe/priest/A = new /obj/item/melee/diamondaxe/priest(get_step(src, src.dir))
-	A.throw_at(targetturf, 4, 3)
+	sleep(3)
+	shoot(targetturf)
+	new /obj/item/melee/diamondaxe/priest(targetturf)
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/drop_loot()
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src.loc)
@@ -207,6 +208,15 @@
 	. = ..()
 	transform *= 0.33
 
+/obj/item/projectile/kinetic/axe
+	name = "kinetic axe"
+	damage = 20
+	damage_type = BRUTE
+	color = "#00FFFF"
+
+/obj/item/projectile/kinetic/axe/prehit(atom/target)
+	return
+
 //loot
 
 /obj/item/melee/diamondaxe
@@ -233,7 +243,7 @@
 
 /obj/item/melee/diamondaxe/priest
 
-/obj/item/melee/diamondaxe/priest/Initialize() //VERY hacky solution, i know
+/obj/item/melee/diamondaxe/priest/Initialize()
 	..()
 	sleep(30)
 	qdel(src)
