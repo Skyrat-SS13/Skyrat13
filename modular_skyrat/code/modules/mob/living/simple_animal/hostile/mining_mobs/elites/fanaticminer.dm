@@ -30,7 +30,7 @@
 	deathsound = 'sound/voice/human/manlaugh1.ogg'
 	deathmessage = "realizes what they've been doing all this time, and return to their true self."
 	loot_drop = /obj/item/melee/diamondaxe
-	del_on_death
+	del_on_death = TRUE
 	attack_action_types = list(/datum/action/innate/elite_attack/axe_slam)
 
 /datum/action/innate/elite_attack/axe_slam
