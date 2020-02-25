@@ -103,6 +103,7 @@
 		T = get_step(T, dir_to_target)
 	visible_message("<span class='boldwarning'>[src] prepares to slam his axe!</span>")
 	sleep(5)
+	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	T = get_step(get_turf(src), dir_to_target)
 	var/list/hit_things = list()
 	visible_message("<span class='boldwarning'>[src] slams his axe!</span>")
@@ -120,6 +121,7 @@
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/summon_shambler(target)
 	ranged_cooldown = world.time + 150
 	visible_message("<span class='boldwarning'>[src] summons a minion!</span>")
+	playsound(src,'sound/magic/CastSummon.ogg', 200, 1)
 	var/list/turfs = list()
 	for(var/turf/T in oview(2, src))
 		turfs += T
@@ -131,6 +133,7 @@
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/dash(atom/dash_target)
 	ranged_cooldown = world.time + 20
 	visible_message("<span class='boldwarning'>[src] dashes into the air!</span>")
+	playsound(src,'sound/magic/blink.ogg', 200, 1)
 	var/list/accessable_turfs = list()
 	var/self_dist_to_target = 0
 	var/turf/own_turf = get_turf(src)
@@ -172,6 +175,7 @@
 	visible_message("<span class='boldwarning'>[src] prepares to throw his axe!</span>")
 	var/turf/targetturf = get_turf(target)
 	sleep(3)
+	playsound(src,'sound/weapons/fwoosh.ogg', 200, 1)
 	Shoot(targetturf)
 	new /obj/item/melee/diamondaxe/priest(targetturf)
 
