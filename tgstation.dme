@@ -3295,6 +3295,7 @@
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\vox.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot_modules.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\blood_drunk_miner.dm"
+#include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\bubblegum.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\hierophant.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\legion.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\mining_mobs\elites\candy.dm"
