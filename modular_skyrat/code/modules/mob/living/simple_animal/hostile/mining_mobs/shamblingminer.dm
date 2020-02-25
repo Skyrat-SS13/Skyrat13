@@ -33,7 +33,6 @@
 	loot = /obj/item/twohanded/kinetic_crusher
 	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/eye
 	do_footstep = TRUE
-	anchored = TRUE
 	minimum_distance = 0
 	var/obj/item/twohanded/kinetic_crusher/minercrusher
 
