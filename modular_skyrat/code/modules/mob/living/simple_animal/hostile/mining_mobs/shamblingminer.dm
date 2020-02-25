@@ -10,13 +10,13 @@
 	icon_gib = "syndicate_gib"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
-	move_to_delay = 3
+	move_to_delay = 5
 	ranged = 1
 	ranged_cooldown_time = 60
 	friendly = "hugs"
 	speak_emote = list("moans")
 	speed = 1
-	move_to_delay = 1
+	move_to_delay = 5
 	maxHealth = 200
 	health = 200
 	obj_damage = 100

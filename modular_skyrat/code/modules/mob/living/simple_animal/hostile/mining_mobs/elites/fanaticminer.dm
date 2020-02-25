@@ -25,7 +25,7 @@
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/slash.ogg'
 	speed = 1
-	move_to_delay = 2
+	move_to_delay = 3
 	mouse_opacity = MOUSE_OPACITY_ICON
 	deathsound = 'sound/voice/human/manlaugh1.ogg'
 	deathmessage = "realizes what they've been doing all this time, and return to their true self."
@@ -167,7 +167,29 @@
 	A.throw_at(targetturf, 4, 4)
 	addtimer(CALLBACK(A, /obj/item/melee/diamondaxe/Destroy), 20)
 
+/mob/living/simple_animal/hostile/asteroid/elite/minerpriest/death()
+	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
+	if(client)
+		H.client = src.client
+	else
+		H.adjustBruteLoss(200)
+	H.equipOutfit(/datum/outfit/job/miner/equipped/priest)
+	qdel(src)
+
 // priest helpers
+/datum/outfit/job/miner/equipped/priest
+	name = "Shaft Miner (necropolis priest)"
+	shoes = /obj/item/clothing/shoes/bronze
+	backpack_contents = list(
+		/obj/item/flashlight/seclite=1,\
+		/obj/item/kitchen/knife/combat/survival=1,
+		/obj/item/mining_voucher=1,
+		/obj/item/t_scanner/adv_mining_scanner/lesser=1,
+		/obj/item/gun/energy/kinetic_accelerator=1,\
+		/obj/item/stack/marker_beacon/ten=1,
+		/obj/item/melee/diamondaxe = 1,
+		/obj/item/clothing/head/bronze = 1,
+		/obj/item/clothing/suit/bronze = 1)
 
 /obj/effect/temp_visual/dragon_swoop/priest
 	duration = 5

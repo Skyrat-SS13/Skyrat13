@@ -30,7 +30,7 @@
 	attacktext = "punches"
 	attack_sound = 'sound/magic/demon_consume.ogg'
 	speed = 1
-	move_to_delay = 3
+	move_to_delay = 5
 	mouse_opacity = MOUSE_OPACITY_ICON
 	deathsound = 'modular_skyrat/sound/misc/gorenest.ogg'
 	deathmessage = " screams in agony, before falling headfirst onto the floor."
