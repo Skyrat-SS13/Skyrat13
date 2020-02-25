@@ -200,6 +200,8 @@
 	duration = 5
 	color = rgb(255,0,0)
 
+/obj/effect/temp_visual/dragon_swoop/priest/Initialize()
+	transform *= 0.33
 //loot
 
 /obj/item/melee/diamondaxe
