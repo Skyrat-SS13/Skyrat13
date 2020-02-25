@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/megafauna/rogueprocess
-	name = "rogue process"
+	name = "Rogue Process"
 	desc = "Once an experimental ripley carrying an advanced mining AI, now it's out for blood."
 	health = 2500
 	maxHealth = 2500
@@ -18,12 +18,11 @@
 	move_to_delay = 18
 	ranged_cooldown_time = 75
 	ranged = 1
-	gender = MALE
 	del_on_death = 0
 	crusher_loot = list()
 	loot = list()
 	deathmessage = "sparkles and emits corrupted screams in agony, falling defeated on the ground."
-	death_sound = 'sound/magic/enter_blood.ogg'
+	death_sound = 'sound/mecha/critdestr.ogg'
 	anger_modifier = 0
 	do_footstep = TRUE
 	mob_biotypes = list(MOB_ROBOTIC)
@@ -35,7 +34,7 @@
 	invisibility = 100
 
 /obj/item/projectile/plasma/rogue
-	speed = 0.5
+	speed = 3
 	range = 7
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/Initialize()
@@ -44,12 +43,20 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/Life()
 	. = ..()
-	src.calculate_rage()
-	move_to_delay = CLAMP(round((src.health/src.maxHealth) * 10), 3, 15)
+	anger_modifier = round(CLAMP(((maxHealth - health) / 42),0,60))
+	move_to_delay = CLAMP(round((src.health/src.maxHealth) * 10), 3, 18)
+
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/AttackingTarget()
+	if(target && isliving(target))
+		var/mob/living/L = target
+		if(L.stat != DEAD)
+			if(L.stat == CONSCIOUS && L.health > 0)
+				OpenFire()
+		else
+			devour(L)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
-	src.calculate_rage()
-	ranged_cooldown = world.time + (ranged_cooldown - anger_modifier)
+	ranged_cooldown = world.time + (ranged_cooldown - anger_modifier) //Ranged cooldown will always be at least 15
 	if(anger_modifier < 30)
 		if(prob(50))
 			src.plasmashot(target)
@@ -80,10 +87,6 @@
 		A.ex_act(EXPLODE_HEAVY)
 		DestroySurroundings()
 
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/calculate_rage()
-	src.anger_modifier = CLAMP(((maxHealth - health) / 42),0,60)
-	return anger_modifier
-
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmashot(atom/target)
 	visible_message("<span class='boldwarning'>[src] raises it's plasma cutter!</span>")
 	sleep(5)
@@ -102,11 +105,12 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaburst(atom/target)
 	visible_message("<span class='boldwarning'>[src] raises it's tri-shot plasma cutter!</span>")
+	var/ogdir = src.dir
 	sleep(15)
-	var/turf/T = get_turf(target)
 	var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
-	var/turf/otherT = line_target(40, P.range, target)
-	var/turf/otherT2 = line_target(-40, P.range, target)
+	var/turf/T = get_turf(target)
+	var/turf/otherT = get_step(T, ogdir + 90)
+	var/turf/otherT2 = get_step(T, ogdir - 90)
 	var/turf/startloc = T
 	playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
 	P.starting = startloc
@@ -190,15 +194,3 @@
 		otherT = get_step(otherT, ogdir)
 		otherT2 = get_step(otherT2, ogdir)
 		sleep(5)
-
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/line_target(offset, range, atom/at = target) //code stolen from new drake code at tg. no idea how it works tbh. yes i'm dumb.
-	if(!at)
-		return
-	var/angle = ATAN2(at.x - src.x, at.y - src.y) + offset
-	var/turf/T = get_turf(src)
-	for(var/i in 1 to range)
-		var/turf/check = locate(src.x + cos(angle) * i, src.y + sin(angle) * i, src.z)
-		if(!check)
-			break
-		T = check
-	return (T)
