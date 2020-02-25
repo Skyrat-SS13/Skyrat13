@@ -4,7 +4,8 @@
 								/mob/living/simple_animal/hostile/asteroid/elite/legionnaire,
 								/mob/living/simple_animal/hostile/asteroid/elite/herald,
 								/mob/living/simple_animal/hostile/asteroid/elite/drakeling,
-								/mob/living/simple_animal/hostile/asteroid/elite/candy)
+								/mob/living/simple_animal/hostile/asteroid/elite/candy,
+								/mob/living/simple_animal/hostile/asteroid/elite/minerpriest)
 
 /mob/living/simple_animal/hostile/asteroid/elite
 	can_talk = TRUE
