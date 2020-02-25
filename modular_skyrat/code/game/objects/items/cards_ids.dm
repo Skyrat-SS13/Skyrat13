@@ -12,6 +12,6 @@
 		C.emag_act(user)
 		uses = 0
 		to_chat(user, "<span class='notice'>This supply console is now fully unlocked! It will trade with the Cargo Union and the syndicate alike.</span>")
-		priority_announce("CentComm has received a memo from the Cargo Union that the supply department of this station is now independent. Security forces are ordered to quell the revolt.", title = "Cargo has declared independence", sound = 'sound/machines/alarm.ogg')
+		priority_announce("CentComm has received a memo from the Cargo Union that the supply department of this station is now independent.", title = "Cargo has declared independence", sound = 'sound/machines/alarm.ogg')
 	else
 		..()
