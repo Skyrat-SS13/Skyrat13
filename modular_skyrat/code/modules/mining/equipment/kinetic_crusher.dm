@@ -39,6 +39,31 @@
 			playsound(src,'sound/effects/supermatter.ogg',50,1)
 		else
 			(to_chat(user, "<span class='notice'>You cancel turning [target] into a legion.</span>"))
+//rogue process
+/obj/item/crusher_trophy/brokentech
+	name = "broken AI"
+	desc = "It used to control a mecha, now it's just trash. Suitable as a trohpy for a kinetic crusher."
+	denied_type = /obj/item/crusher_trophy/brokentech
+	icon = 'icons/obj/aicards.dmi'
+	icon_state = "pai"
+	var/range = 4
+
+/obj/item/crusher_trophy/brokentech/effect_desc()
+	return "a kinetic crusher to create shockwaves when fired."
+
+/obj/item/crusher_trophy/brokentech/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+	var/list/hit_things = list()
+	var/turf/T = get_turf(get_step(user, user.dir))
+
+	var/ogdir = user.dir
+	for(var/i = 0, i<src.range, i++)
+		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+		for(var/mob/living/L in T.contents)
+			if(L != src && !(L in hit_things) && !ishuman(L))
+				L.Stun(10)
+				L.adjustBruteLoss(10)
+		T = get_step(T, ogdir)
+		sleep(2)
 
 //traitor crusher
 
