@@ -172,7 +172,7 @@
 	visible_message("<span class='boldwarning'>[src] prepares to throw his axe!</span>")
 	var/turf/targetturf = get_turf(target)
 	sleep(3)
-	shoot(targetturf)
+	Shoot(targetturf)
 	new /obj/item/melee/diamondaxe/priest(targetturf)
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/drop_loot()
