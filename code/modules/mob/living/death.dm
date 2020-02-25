@@ -25,7 +25,7 @@
 
 /mob/living/proc/spawn_gibs(with_bodyparts, atom/loc_override)
 	var/location = loc_override ? loc_override.drop_location() : drop_location()
-	if(MOB_ROBOTIC in mob_biotypes)
+	if(mob_biotypes & MOB_ROBOTIC)
 		new /obj/effect/gibspawner/robot(location, src, get_static_viruses())
 	else
 		new /obj/effect/gibspawner/generic(location, src, get_static_viruses())
@@ -103,5 +103,7 @@
 	for(var/s in sharedSoullinks)
 		var/datum/soullink/S = s
 		S.sharerDies(gibbed)
+
+	set_ssd_indicator(FALSE) //SKYRAT CHANGE - ssd indicator
 
 	return TRUE

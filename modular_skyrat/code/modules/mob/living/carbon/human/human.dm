@@ -1,0 +1,5 @@
+/mob/living/carbon/human/Topic(href, href_list)
+	. = ..()
+	if(href_list["ooc_notes"])
+		if(client)
+			to_chat(usr, "[src]'s OOC Notes : <br> <b>ERP :</b> [client.prefs.erppref] <b>| Non-Con :</b> [client.prefs.nonconpref] <b>| Vore :</b> [client.prefs.nonconpref]<br>[client.prefs.ooc_notes]")

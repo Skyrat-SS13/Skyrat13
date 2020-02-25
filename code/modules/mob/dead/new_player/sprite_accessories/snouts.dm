@@ -150,7 +150,7 @@
 
 /datum/sprite_accessory/mam_snouts
 	color_src = MATRIXED
-	icon = 'modular_citadel/icons/mob/mam_snouts.dmi'
+	icon = 'modular_skyrat/icons/mob/mam_snouts.dmi'
 
 /datum/sprite_accessory/mam_snouts/none
 	name = "None"
