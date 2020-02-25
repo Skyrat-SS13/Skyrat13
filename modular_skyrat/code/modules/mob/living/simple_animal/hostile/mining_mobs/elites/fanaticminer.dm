@@ -30,7 +30,7 @@
 	deathsound = 'sound/voice/human/manlaugh1.ogg'
 	deathmessage = "realizes what they've been doing all this time, and return to their true self."
 	loot_drop = /obj/item/melee/diamondaxe
-
+	del_on_death
 	attack_action_types = list(/datum/action/innate/elite_attack/axe_slam)
 
 /datum/action/innate/elite_attack/axe_slam
@@ -163,18 +163,16 @@
 	visible_message("<span class='boldwarning'>[src] prepares to throw his axe!</span>")
 	var/turf/targetturf = get_turf(target)
 	sleep(5)
-	var/obj/item/melee/diamondaxe/A = new /obj/item/melee/diamondaxe(get_step(src, src.dir))
-	A.throw_at(targetturf, 4, 4)
-	addtimer(CALLBACK(A, /obj/item/melee/diamondaxe/Destroy), 20)
+	var/obj/item/melee/diamondaxe/priest/A = new /obj/item/melee/diamondaxe/priest(get_step(src, src.dir))
+	A.throw_at(targetturf, 10, 10)
 
-/mob/living/simple_animal/hostile/asteroid/elite/minerpriest/death()
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
-	if(client)
+/mob/living/simple_animal/hostile/asteroid/elite/minerpriest/drop_loot()
+	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src.loc)
+	if(src.client)
 		H.client = src.client
 	else
 		H.adjustBruteLoss(200)
 	H.equipOutfit(/datum/outfit/job/miner/equipped/priest)
-	qdel(src)
 
 // priest helpers
 /datum/outfit/job/miner/equipped/priest
@@ -219,5 +217,9 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 50, 100, null, null, TRUE)
 
-/obj/item/melee/diamondaxe/Destroy()
+/obj/item/melee/diamondaxe/priest
+
+/obj/item/melee/diamondaxe/priest/Initialize() //VERY hacky solution, i know
+	..()
+	sleep(30)
 	qdel(src)
