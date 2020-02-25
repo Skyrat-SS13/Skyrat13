@@ -6,13 +6,18 @@
 /**
   * # Drakeling
   *
-  * A small drake/dragon..
+  * A small drake/dragon.
+  * Has four attacks.
+  * - Lava moat - Creates a moat of lava around themselves.
+  * - Lava rivers - Creates lava rivers in all cardinal directions.
+  * - Firespew - Spews fire in the direction they're facing.
+  * - Fire moat - Spews fire in all directions.
   */
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling
-	name = "drakeling"
+	name = "Drakeling"
 	desc = "A small but still fearsome dragon."
-	icon = 'modular_skyrat/icons/mob/lavaland/lavaland_monsters.dmi'
+	icon = 'modular_skyrat/icons/mob/lavaland/lavaland_elites.dmi'
 	icon_state = "ash_whelp"
 	icon_living = "ash_whelp"
 	icon_aggro = "ash_whelp"
@@ -28,7 +33,7 @@
 	move_to_delay = 3
 	mouse_opacity = MOUSE_OPACITY_ICON
 	deathsound = 'sound/magic/WandODeath.ogg'
-	deathmessage = "'s arms reach out before it falls apart onto the floor, lifeless."
+	deathmessage = "'s wings flail weakly until he settles down, dead"
 	loot_drop = /obj/item/borg/upgrade/modkit/fire
 
 	attack_action_types = list(/datum/action/innate/elite_attack/lavamoat,
@@ -114,7 +119,7 @@
 	for(var/d in GLOB.alldirs)
 		INVOKE_ASYNC(src, .proc/fire_wall, d, 5)
 
-// Drakeling procs
+// Drakeling helpers
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/fire_wall(dir, range)
 	var/list/hitlist = list(src)

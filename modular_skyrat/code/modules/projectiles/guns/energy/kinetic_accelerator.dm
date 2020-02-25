@@ -191,3 +191,57 @@
 				hitlist += L
 				L.adjustFireLoss(src.modifier)
 				to_chat(L, "<span class='userdanger'>You're hit by [KA]'s fire breath!</span>")
+
+//10mm modkit (currently broken, only the 10mm pka works)
+/obj/item/gun/energy/kinetic_accelerator/tenmm
+	desc = "A self recharging, ranged mining tool that does increased damage in low pressure. This one feels a bit heavier than usual."
+	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/etenmm)
+
+/obj/item/borg/upgrade/modkit/tenmm
+	name = "10mm modification kit"
+	desc = "Makes your accelerator shoot 10mm bullets instead of kinetic shots."
+	cost = 35
+
+/obj/item/borg/upgrade/modkit/tenmm/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
+	..()
+	KA.ammo_type[1] = /obj/item/ammo_casing/energy/kinetic/etenmm
+	var/obj/item/ammo_casing/energy/kinetic/etenmm/C = KA.ammo_type[1]
+	KA.chambered = C
+
+/obj/item/borg/upgrade/modkit/tenmm/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
+	..()
+	KA.ammo_type[1] = initial(KA.ammo_type[1])
+	var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
+	KA.chambered = C
+
+/obj/item/ammo_casing/energy/kinetic/etenmm
+	projectile_type = /obj/item/projectile/kinetic/etenmm
+	select_name = "kinetic 10mm"
+	fire_sound = 'sound/weapons/gunshot.ogg'
+
+/obj/item/projectile/kinetic/etenmm
+	name = "kinetic 10mm"
+	damage = 30
+	damage_type = BRUTE
+	range = 50
+	color = "#FFFFFF"
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "bullet"
+
+/obj/item/projectile/kinetic/etenmm/prehit(atom/target)
+	if(kinetic_gun)
+		var/list/mods = kinetic_gun.get_modkits()
+		for(var/obj/item/borg/upgrade/modkit/M in mods)
+			M.projectile_prehit(src, target, kinetic_gun)
+	return TRUE
+
+/obj/item/projectile/kinetic/etenmm/strike_thing(atom/target)
+	var/turf/target_turf = get_turf(target)
+	if(!target_turf)
+		target_turf = get_turf(src)
+	if(kinetic_gun) //hopefully whoever shot this was not very, very unfortunate.
+		var/list/mods = kinetic_gun.get_modkits()
+		for(var/obj/item/borg/upgrade/modkit/M in mods)
+			M.projectile_strike_predamage(src, target_turf, target, kinetic_gun)
+		for(var/obj/item/borg/upgrade/modkit/M in mods)
+			M.projectile_strike(src, target_turf, target, kinetic_gun)
