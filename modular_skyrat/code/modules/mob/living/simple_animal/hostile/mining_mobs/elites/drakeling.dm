@@ -142,17 +142,18 @@
 	for(var/i in 1 to range)
 		new /obj/effect/temp_visual/lava_warning(T)
 		T = get_step(T, dir)
+		sleep(2)
 
 /obj/effect/temp_visual/lava_warning
 	icon_state = "lavastaff_warn"
 	layer = BELOW_MOB_LAYER
 	light_range = 2
-	duration = 13
+	duration = 7
 
 /obj/effect/temp_visual/lava_warning/ex_act()
 	return
 
-/obj/effect/temp_visual/lava_warning/Initialize(mapload, reset_time = 10)
+/obj/effect/temp_visual/lava_warning/Initialize(mapload, reset_time = 40)
 	. = ..()
 	INVOKE_ASYNC(src, .proc/fall, reset_time)
 	src.alpha = 63.75
@@ -163,7 +164,6 @@
 	playsound(T,'sound/magic/fleshtostone.ogg', 80, TRUE)
 	sleep(duration)
 	playsound(T,'sound/magic/fireball.ogg', 200, TRUE)
-
 	for(var/mob/living/L in T.contents)
 		if(istype(L, /mob/living/simple_animal/hostile/asteroid/elite/drakeling))
 			continue
