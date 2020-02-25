@@ -94,30 +94,30 @@
 
 //Drakeling actions
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/lava_moat()
-	ranged_cooldown = world.time + 50
+	ranged_cooldown = world.time + 25
 	visible_message("<span class='boldwarning'>[src] spews lava around themselves! Get back!</span>")
 	for(var/turf/T in oview(1, src))
 		new /obj/effect/temp_visual/lava_warning(T)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/lava_around()
-	ranged_cooldown = world.time + 100
+	ranged_cooldown = world.time + 50
 	for(var/d in GLOB.cardinals)
 		INVOKE_ASYNC(src, .proc/lava_wall, d, 5)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/fire_spew()
-	ranged_cooldown = world.time + 50
+	ranged_cooldown = world.time + 25
 	visible_message("<span class='boldwarning'>[src] spews fire!</span>")
 	playsound(src,'sound/magic/Fireball.ogg', 200, 1)
 	sleep(5)
-	fire_wall(src.dir, 7)
+	fire_wall(src.dir, 10)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/fire_moat()
 	ranged_cooldown = world.time + 100
 	playsound(src,'sound/magic/Fireball.ogg', 200, 1)
 	visible_message("<span class='boldwarning'>[src] violently puffs smoke!They're going to make a fire moat!</span>")
-	sleep(15)
+	sleep(5)
 	for(var/d in GLOB.alldirs)
-		INVOKE_ASYNC(src, .proc/fire_wall, d, 5)
+		INVOKE_ASYNC(src, .proc/fire_wall, d, 10)
 
 // Drakeling helpers
 
@@ -135,14 +135,13 @@
 				L.adjustFireLoss(20)
 				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire breath!</span>")
 		T = get_step(T, dir)
-		sleep(1.5)
+		sleep(1)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/lava_wall(dir, range)
 	var/turf/T = get_turf(src)
 	for(var/i in 1 to range)
 		new /obj/effect/temp_visual/lava_warning(T)
 		T = get_step(T, dir)
-		sleep(2)
 
 /obj/effect/temp_visual/lava_warning
 	icon_state = "lavastaff_warn"
