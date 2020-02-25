@@ -24,8 +24,9 @@
 	loot = list()
 	deathmessage = "sparkles and emits corrupted screams in agony, falling defeated on the ground."
 	death_sound = 'sound/magic/enter_blood.ogg'
-	anger_modifier = 60
+	anger_modifier = 0
 	do_footstep = TRUE
+	mob_biotypes = list(MOB_ROBOTIC)
 
 /obj/item/gps/internal/rogueprocess
 	icon_state = null
@@ -48,11 +49,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
 	src.calculate_rage()
-	ranged_cooldown = world.time + (ranged_cooldown - anger_modifier)
-	if(target in oview(1, src))
-		src.knockdown()
-		return
-	if(anger_modifier >= 50 )
+	ranged_cooldown = world.time + (ranged_cooldown - (initial(anger_modifier) - anger_modifier))
+	if(anger_modifier < 30)
 		if(prob(50))
 			src.plasmashot(target)
 		else
@@ -62,7 +60,7 @@
 			src.plasmaburst(target)
 		else
 			src.shockwave(src.dir)
-	if(anger_modifier < 30)
+	if(anger_modifier >= 50)
 		if(prob(50))
 			src.plasmaburst(target)
 			src.shockwave(src.dir)
