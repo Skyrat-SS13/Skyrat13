@@ -7,10 +7,11 @@
 
 /obj/item/card/emag/independence/afterattack(atom/target, mob/user, proximity)
 	if(proximity)
-		if(istype(target, /obj/machinery/computer/cargo))
+		if(istype(target, /obj/machinery/computer/cargo) && uses > 0)
 			var/obj/machinery/computer/cargo/C = target
 			C.independent = TRUE
 			C.emag_act(user)
+			uses = 0
 			priority_announce("The Cargo Union has declared the supply department independent of NT! All trades will now be done with them!", title = "Declaration of Independence", sound = "intercept", "Priority" , "Cargo Union")
 		else
 			..()
