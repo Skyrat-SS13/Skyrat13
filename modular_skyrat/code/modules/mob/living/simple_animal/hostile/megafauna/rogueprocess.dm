@@ -16,7 +16,7 @@
 	melee_damage_upper = 30
 	speed = 1
 	move_to_delay = 18
-	ranged_cooldown_time = 100
+	ranged_cooldown_time = 75
 	ranged = 1
 	gender = MALE
 	del_on_death = 0
@@ -49,7 +49,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
 	src.calculate_rage()
-	ranged_cooldown = world.time + (ranged_cooldown - (initial(anger_modifier) - anger_modifier))
+	ranged_cooldown = world.time + (ranged_cooldown - anger_modifier)
 	if(anger_modifier < 30)
 		if(prob(50))
 			src.plasmashot(target)
