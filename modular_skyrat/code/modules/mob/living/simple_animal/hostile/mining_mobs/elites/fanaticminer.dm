@@ -7,6 +7,11 @@
   * # Necropolis priest
   *
   * Kind of like BD miner's son trying to impress their dad.
+  * Has four attacks.
+  * - Axe Slam - Slams his axe on the ground, hurting everyone is his direction in a 3 tile radius
+  * - Summon Shambler - Summons a shambling miner that focuses on the target.
+  * - Dash - Dashes in the target's general direction
+  * - Axe Throw - Throws an axe at the target
   */
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest
@@ -170,6 +175,8 @@
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src.loc)
 	if(src.client)
 		H.client = src.client
+		to_chat(H, "<span class='userdanger'>You have been finally enlightened.  Serving the necropolis is not your duty anymore, thanks to whoever defeated you. You owe them a great debt.</span")
+		to_chat(H, "<span class='big bold'>Note that you now share the loyalties of the one who defeated you.  You are expected not to intentionally sabotage their faction unless commanded to!</span>")
 	else
 		H.adjustBruteLoss(200)
 	H.equipOutfit(/datum/outfit/job/miner/equipped/priest)
