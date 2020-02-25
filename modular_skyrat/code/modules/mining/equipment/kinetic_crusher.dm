@@ -52,16 +52,21 @@
 	return "a kinetic crusher to create shockwaves when fired."
 
 /obj/item/crusher_trophy/brokentech/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+	INVOKE_ASYNC(src, .proc/invokesmoke, user)
+
+/obj/item/crusher_trophy/brokentech/proc/invokesmoke(mob/living/user)
 	var/list/hit_things = list()
 	var/turf/T = get_turf(get_step(user, user.dir))
-
 	var/ogdir = user.dir
-	for(var/i = 0, i<src.range, i++)
+	for(var/i = 0, i < src.range, i++)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		for(var/mob/living/L in T.contents)
 			if(L != src && !(L in hit_things) && !ishuman(L))
 				L.Stun(10)
 				L.adjustBruteLoss(10)
+		if(ismineralturf(T))
+			var/turf/closed/mineral/M = T
+			M.gets_drilled(user)
 		T = get_step(T, ogdir)
 		sleep(2)
 

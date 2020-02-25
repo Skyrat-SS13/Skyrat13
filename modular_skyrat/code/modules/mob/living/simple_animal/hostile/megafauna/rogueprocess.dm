@@ -254,6 +254,15 @@
 					if(L != src && !(L in hit_things))
 						L.Stun(20)
 						L.adjustBruteLoss(50)
+				if(ismineralturf(T))
+					var/turf/closed/mineral/M = T
+					M.gets_drilled(user)
+				if(ismineralturf(otherT))
+					var/turf/closed/mineral/M = otherT
+					M.gets_drilled(user)
+				if(ismineralturf(otherT2))
+					var/turf/closed/mineral/M = otherT2
+					M.gets_drilled(user)
 				T = get_step(T, ogdir)
 				otherT = get_step(otherT, ogdir)
 				otherT2 = get_step(otherT2, ogdir)
