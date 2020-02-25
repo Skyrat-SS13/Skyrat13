@@ -19,7 +19,7 @@
 	icon_state = "welding"
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	item_state = "welding"
-	custom_materials = list(/datum/material/iron=1750, /datum/material/glass=400)
+	materials = list(MAT_METAL=1750, MAT_GLASS=400)
 	flash_protect = 2
 	tint = 2
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 60)
@@ -223,6 +223,23 @@
 	hair_style = pick(GLOB.hair_styles_list - "Bald") //Don't want invisible wig
 	hair_color = "#[random_short_color()]"
 	. = ..()
+
+/obj/item/clothing/head/wig/natural
+	name = "natural wig"
+	desc = "A bunch of hair without a head attached. This one changes color to match the hair of the wearer. Nothing natural about that."
+	color = "#FFF"
+	adjustablecolor = FALSE
+
+/obj/item/clothing/head/wig/natural/Initialize(mapload)
+	hairstyle = pick(GLOB.hairstyles_list - "Bald")
+	. = ..()
+
+/obj/item/clothing/head/wig/natural/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
+		color = "#[user.hair_color]"
+		update_icon()
+		user.update_inv_head()
 
 /obj/item/clothing/head/bronze
 	name = "bronze hat"
