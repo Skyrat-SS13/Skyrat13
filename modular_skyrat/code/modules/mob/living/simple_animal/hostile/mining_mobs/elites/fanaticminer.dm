@@ -172,7 +172,7 @@
 	var/turf/targetturf = get_turf(target)
 	sleep(5)
 	var/obj/item/melee/diamondaxe/priest/A = new /obj/item/melee/diamondaxe/priest(get_step(src, src.dir))
-	A.throw_at(targetturf, 10, 10)
+	A.throw_at(targetturf, 4, 3)
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/drop_loot()
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src.loc)
@@ -204,7 +204,9 @@
 	color = rgb(255,0,0)
 
 /obj/effect/temp_visual/dragon_swoop/priest/Initialize()
+	. = ..()
 	transform *= 0.33
+
 //loot
 
 /obj/item/melee/diamondaxe
