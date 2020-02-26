@@ -10,8 +10,13 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum
 	death_sound = 'modular_skyrat/sound/misc/gorenest.ogg' //fuck it
-
+	var/movesound = 'sound/effects/meteorimpact.ogg'
 	do_footstep = TRUE
+
+/mob/living/simple_animal/hostile/megafauna/bubblegum/Move()
+	. = ..()
+	bloodsmacks()
+	playsound(src, movesound, 200, TRUE, 2, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/OpenFire()
 	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
@@ -33,8 +38,9 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 	for(var/obj/effect/decal/cleanable/blood/B in view(7, src))
 		var/turf/T = get_turf(B)
 		for(var/mob/living/L in T.contents)
-			var/hand = rand(0,1)
-			INVOKE_ASYNC(src, .proc/bloodsmack, T, hand)
+			if(L != src)
+				var/hand = rand(0,1)
+				INVOKE_ASYNC(src, .proc/bloodsmack, T, hand)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/bloodsmack(turf/T, handedness)
 	if(handedness)
