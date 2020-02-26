@@ -16,7 +16,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite/candy
 	name = "Candy"
-	desc = "In what passes as a hierarchy for slaughter demons, this one is princess."
+	desc = "In what passes as a hierarchy for slaughter demons, this one is prince."
 	icon = 'modular_skyrat/icons/mob/lavaland/lavaland_elites.dmi'
 	icon_state = "candy"
 	icon_living = "candy"
@@ -35,6 +35,7 @@
 	deathsound = 'modular_skyrat/sound/misc/gorenest.ogg'
 	deathmessage = " screams in agony, before falling headfirst onto the floor."
 	loot_drop = /obj/item/bloodcrawlbottle
+	speak_emote = list("gurgle")
 
 	attack_action_types = list(/datum/action/innate/elite_attack/bloodcharge,
 								/datum/action/innate/elite_attack/bloody_trap,

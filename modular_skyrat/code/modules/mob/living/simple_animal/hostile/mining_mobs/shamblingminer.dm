@@ -10,13 +10,11 @@
 	icon_gib = "syndicate_gib"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
-	move_to_delay = 5
-	ranged = 1
-	ranged_cooldown_time = 60
+	ranged = 0
 	friendly = "hugs"
 	speak_emote = list("moans")
 	speed = 1
-	move_to_delay = 5
+	move_to_delay = 3
 	maxHealth = 200
 	health = 200
 	obj_damage = 100
@@ -35,10 +33,6 @@
 	do_footstep = TRUE
 	minimum_distance = 0
 	var/obj/item/twohanded/kinetic_crusher/minercrusher
-
-/mob/living/simple_animal/hostile/asteroid/miner/OpenFire()
-	if(get_dist(src, target) <= 1)
-		AttackingTarget(target)
 
 /mob/living/simple_animal/hostile/asteroid/miner/AttackingTarget(target)
 	do_attack_animation(target)

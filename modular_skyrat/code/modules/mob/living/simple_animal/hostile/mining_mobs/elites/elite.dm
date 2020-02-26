@@ -12,6 +12,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite
 	can_talk = TRUE
+	speak_emote = list("growls")
 
 obj/item/tumor_shard/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()

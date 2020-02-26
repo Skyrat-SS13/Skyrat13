@@ -35,6 +35,7 @@
 	deathsound = 'sound/voice/human/manlaugh1.ogg'
 	deathmessage = "realizes what they've been doing all this time, and return to their true self."
 	loot_drop = /obj/item/melee/diamondaxe
+	speak_emote = list("yells")
 	del_on_death = TRUE
 	projectiletype = /obj/item/projectile/kinetic/axe
 	attack_action_types = list(/datum/action/innate/elite_attack/axe_slam,
