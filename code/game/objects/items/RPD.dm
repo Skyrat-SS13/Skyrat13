@@ -2,7 +2,7 @@
 CONTAINS:
 RPD
 */
-
+/* moved to modular_skyrat
 #define ATMOS_CATEGORY 0
 #define DISPOSALS_CATEGORY 1
 #define TRANSIT_CATEGORY 2
@@ -484,3 +484,4 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 #undef DESTROY_MODE
 #undef PAINT_MODE
 #undef WRENCH_MODE
+*/
