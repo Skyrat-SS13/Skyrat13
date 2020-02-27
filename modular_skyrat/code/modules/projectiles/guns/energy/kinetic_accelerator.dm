@@ -197,7 +197,7 @@
 	name = "plasma modification kit"
 	desc = "Makes your accelerator also shoot a burst of plasma."
 	modifier = 10
-	cost = 20
+	cost = 35
 
 /obj/item/borg/upgrade/modkit/plasma/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	playsound(KA, 'sound/weapons/laser.ogg', 100, TRUE)

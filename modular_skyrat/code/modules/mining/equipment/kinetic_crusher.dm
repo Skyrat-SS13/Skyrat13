@@ -42,19 +42,23 @@
 //rogue process
 /obj/item/crusher_trophy/brokentech
 	name = "broken AI"
-	desc = "It used to control a mecha, now it's just trash. Suitable as a trohpy for a kinetic crusher."
+	desc = "It used to control a mecha, now it's just trash. Suitable as a trophy for a kinetic crusher."
 	denied_type = /obj/item/crusher_trophy/brokentech
 	icon = 'icons/obj/aicards.dmi'
 	icon_state = "pai"
 	var/range = 4
+	var/cooldowntime
 
 /obj/item/crusher_trophy/brokentech/effect_desc()
 	return "a kinetic crusher to create shockwaves when fired."
 
 /obj/item/crusher_trophy/brokentech/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
-	INVOKE_ASYNC(src, .proc/invokesmoke, user)
+	. = ..()
+	if(cooldowntime < world.time)
+		INVOKE_ASYNC(src, .proc/invokesmoke, user)
 
 /obj/item/crusher_trophy/brokentech/proc/invokesmoke(mob/living/user)
+	cooldowntime = world.time + 50
 	var/list/hit_things = list()
 	var/turf/T = get_turf(get_step(user, user.dir))
 	var/ogdir = user.dir

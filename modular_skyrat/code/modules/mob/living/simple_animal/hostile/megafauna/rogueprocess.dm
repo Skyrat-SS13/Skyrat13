@@ -25,7 +25,7 @@
 	death_sound = 'sound/mecha/critdestr.ogg'
 	anger_modifier = 0
 	do_footstep = TRUE
-	mob_biotypes = list(MOB_ROBOTIC)
+	mob_biotypes = MOB_ROBOTIC
 
 /obj/item/gps/internal/rogueprocess
 	icon_state = null
@@ -34,8 +34,9 @@
 	invisibility = 100
 
 /obj/item/projectile/plasma/rogue
-	speed = 5
-	range = 7
+	speed = 2
+	range = 21
+	color = "#FF0000"
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/Initialize()
 	. = ..()
@@ -47,26 +48,35 @@
 	move_to_delay = CLAMP(round((src.health/src.maxHealth) * 10), 3, 18)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
-	ranged_cooldown = world.time + (ranged_cooldown - anger_modifier) //Ranged cooldown will always be at least 15
+	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier) //Ranged cooldown will always be at least 15
 	if(anger_modifier < 30)
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/plasmashot, target)
 		else
-			INVOKE_ASYNC(src, .proc/shockwave, src.dir)
+			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 7)
 	if(anger_modifier >= 30 && anger_modifier < 50)
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/plasmaburst, target)
 		else
-			INVOKE_ASYNC(src, .proc/shockwave, src.dir)
+			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 10)
 	if(anger_modifier >= 50)
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/plasmaburst, target)
-			INVOKE_ASYNC(src, .proc/shockwave, src.dir)
+			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 15)
 		else
-			INVOKE_ASYNC(src, .proc/shockwave, NORTH)
-			INVOKE_ASYNC(src, .proc/shockwave, SOUTH)
-			INVOKE_ASYNC(src, .proc/shockwave, WEST)
-			INVOKE_ASYNC(src, .proc/shockwave, EAST)
+			INVOKE_ASYNC(src, .proc/shockwave, NORTH, 15)
+			INVOKE_ASYNC(src, .proc/shockwave, SOUTH, 15)
+			INVOKE_ASYNC(src, .proc/shockwave, WEST, 15)
+			INVOKE_ASYNC(src, .proc/shockwave, EAST, 15)
+
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/AttackingTarget(target)
+	if(prob(25))
+		if(prob(50))
+			knockdown()
+		else
+			shockwave(src.dir)
+	else
+		..()
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/Move()
 	. = ..()
@@ -131,7 +141,7 @@
 		X.yo = target.y - startloc.y
 		X.xo = target.x - startloc.x
 		X.original = target
-		X.preparePixelProjectile(target, src)
+		X.preparePixelProjectile(otherT, src)
 		X.fire()
 		var/obj/item/projectile/Y = new /obj/item/projectile/plasma/rogue(otherT2)
 		startloc = otherT2
@@ -142,7 +152,7 @@
 		Y.yo = target.y - startloc.y
 		Y.xo = target.x - startloc.x
 		Y.original = target
-		Y.preparePixelProjectile(target, src)
+		Y.preparePixelProjectile(otherT2, src)
 		Y.fire()
 		return P
 	else
@@ -166,16 +176,16 @@
 				L.Stun(20)
 				L.adjustBruteLoss(50)
 
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/shockwave(direction)
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/shockwave(direction, range)
 	playsound(src,'sound/misc/crunch.ogg', 200, 1)
-	visible_message("<span class='boldwarning'>[src] smashes the ground in front of them!</span>")
+	visible_message("<span class='boldwarning'>[src] smashes the ground in a general direction!!</span>")
 	sleep(10)
 	var/list/hit_things = list()
 	var/turf/T = get_turf(get_step(src, src.dir))
 	var/ogdir = direction
 	var/turf/otherT = get_step(T, turn(ogdir, 90))
 	var/turf/otherT2 = get_step(T, turn(ogdir, -90))
-	for(var/i = 0, i<5, i++)
+	for(var/i = 0, i<range, i++)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
@@ -183,20 +193,20 @@
 			if(L != src && !(L in hit_things))
 				var/throwtarget = get_edge_target_turf(T, get_dir(T, L))
 				L.safe_throw_at(throwtarget, 5, 1, src)
-				L.Stun(20)
-				L.adjustBruteLoss(50)
+				L.Stun(10)
+				L.adjustBruteLoss(25)
 		for(var/mob/living/L in otherT.contents)
 			if(L != src && !(L in hit_things))
 				var/throwtarget = get_edge_target_turf(otherT, get_dir(otherT, L))
 				L.safe_throw_at(throwtarget, 5, 1, src)
-				L.Stun(20)
-				L.adjustBruteLoss(50)
+				L.Stun(10)
+				L.adjustBruteLoss(25)
 		for(var/mob/living/L in otherT2.contents)
 			if(L != src && !(L in hit_things))
 				var/throwtarget = get_edge_target_turf(otherT2, get_dir(otherT2, L))
 				L.safe_throw_at(throwtarget, 5, 1, src)
-				L.Stun(20)
-				L.adjustBruteLoss(50)
+				L.Stun(10)
+				L.adjustBruteLoss(25)
 		T = get_step(T, ogdir)
 		otherT = get_step(otherT, ogdir)
 		otherT2 = get_step(otherT2, ogdir)
@@ -209,8 +219,11 @@
 	force = 0
 	force_wielded = 25
 	force_unwielded = 0
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "diamonddrill"
+	icon = 'modular_skyrat/icons/obj/mining.dmi'
+	icon_state = "roguedrill"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/mining_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/mining_righthand.dmi'
+	item_state = "roguedrill"
 	w_class = WEIGHT_CLASS_BULKY
 	tool_behaviour = TOOL_MINING
 	toolspeed = 0.1
@@ -219,6 +232,7 @@
 	usesound = 'sound/weapons/drill.ogg'
 	hitsound = 'sound/weapons/drill.ogg'
 	attack_verb = list("drilled")
+	var/cooldowntime
 
 /obj/item/twohanded/rogue/attack(atom/A, mob/living/carbon/human/user)
 	. = ..()
@@ -233,37 +247,39 @@
 	. = ..()
 	if(wielded)
 		if(!proximity_flag)
-			var/list/hit_things = list()
-			var/turf/T = get_turf(get_step(user, user.dir))
-			var/ogdir = user.dir
-			var/turf/otherT = get_step(T, turn(ogdir, 90))
-			var/turf/otherT2 = get_step(T, turn(ogdir, -90))
-			for(var/i = 0, i<4, i++)
-				new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-				new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
-				new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
-				for(var/mob/living/L in T.contents)
-					if(L != src && !(L in hit_things))
-						L.Stun(20)
-						L.adjustBruteLoss(10)
-				for(var/mob/living/L in otherT.contents)
-					if(L != src && !(L in hit_things))
-						L.Stun(20)
-						L.adjustBruteLoss(10)
-				for(var/mob/living/L in otherT2.contents)
-					if(L != src && !(L in hit_things))
-						L.Stun(20)
-						L.adjustBruteLoss(50)
-				if(ismineralturf(T))
-					var/turf/closed/mineral/M = T
-					M.gets_drilled(user)
-				if(ismineralturf(otherT))
-					var/turf/closed/mineral/M = otherT
-					M.gets_drilled(user)
-				if(ismineralturf(otherT2))
-					var/turf/closed/mineral/M = otherT2
-					M.gets_drilled(user)
-				T = get_step(T, ogdir)
-				otherT = get_step(otherT, ogdir)
-				otherT2 = get_step(otherT2, ogdir)
-				sleep(2)
+			if(cooldowntime < world.time)
+				cooldowntime = world.time + 50
+				var/list/hit_things = list()
+				var/turf/T = get_turf(get_step(user, user.dir))
+				var/ogdir = user.dir
+				var/turf/otherT = get_step(T, turn(ogdir, 90))
+				var/turf/otherT2 = get_step(T, turn(ogdir, -90))
+				for(var/i = 0, i<7, i++)
+					new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+					new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
+					new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
+					for(var/mob/living/L in T.contents)
+						if(L != src && !(L in hit_things))
+							L.Stun(20)
+							L.adjustBruteLoss(10)
+					for(var/mob/living/L in otherT.contents)
+						if(L != src && !(L in hit_things))
+							L.Stun(20)
+							L.adjustBruteLoss(10)
+					for(var/mob/living/L in otherT2.contents)
+						if(L != src && !(L in hit_things))
+							L.Stun(20)
+							L.adjustBruteLoss(10)
+					if(ismineralturf(T))
+						var/turf/closed/mineral/M = T
+						M.gets_drilled(user)
+					if(ismineralturf(otherT))
+						var/turf/closed/mineral/M = otherT
+						M.gets_drilled(user)
+					if(ismineralturf(otherT2))
+						var/turf/closed/mineral/M = otherT2
+						M.gets_drilled(user)
+					T = get_step(T, ogdir)
+					otherT = get_step(otherT, ogdir)
+					otherT2 = get_step(otherT2, ogdir)
+					sleep(2)
