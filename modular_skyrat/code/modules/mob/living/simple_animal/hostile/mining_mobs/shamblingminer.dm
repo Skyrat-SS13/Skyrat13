@@ -28,7 +28,7 @@
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_VERY_STRONG
 	pull_force = MOVE_FORCE_VERY_STRONG
-	loot = /obj/item/twohanded/kinetic_crusher
-	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/eye
+	loot = list(/obj/item/twohanded/kinetic_crusher)
+	crusher_loot = list(/obj/item/crusher_trophy/blaster_tubes/eye)
 	do_footstep = TRUE
 	minimum_distance = 1
