@@ -28355,6 +28355,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/machinery/vending/wardrobe/cap_wardrobe,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain/private)
 "bdL" = (
@@ -52210,6 +52211,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/effect/landmark/start/paramedic,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "bZZ" = (
@@ -54650,6 +54652,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/start/paramedic,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "cez" = (

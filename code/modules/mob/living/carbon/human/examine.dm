@@ -328,7 +328,7 @@
 			if(!key)
 				msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
 			else if(!client)
-				msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n"
+				msg += "[t_He] [t_has] a blank, absent-minded stare and [t_has] been completely unresponsive to anything for [round(((world.time - lastclienttime) / (1 MINUTES)),1)] minutes. [t_He] may snap out of it soon.\n" //SKYRAT CHANGE - ssd indicator
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
@@ -394,13 +394,16 @@
 	if(invisible_man)
 		. += "...?"
 	else
-		var/flavor = print_flavor_text()
+		var/flavor = print_flavor_text(flavor_text)
 		if(flavor)
 			. += flavor
-		var/temp_flavor = print_flavor_text_2()
+		var/temp_flavor = print_flavor_text(flavor_text_2,TRUE)
 		if(temp_flavor)
 			. += temp_flavor
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+	if(!invisible_man)
+		if(client)
+			. += "OOC Notes: <a href='?src=[REF(src)];ooc_notes=1'>\[View\]</a>"
 	. += "*---------*</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
