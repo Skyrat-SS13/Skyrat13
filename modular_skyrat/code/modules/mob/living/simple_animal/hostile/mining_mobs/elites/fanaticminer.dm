@@ -30,7 +30,7 @@
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/slash.ogg'
 	speed = 1
-	move_to_delay = 3
+	move_to_delay = 2
 	mouse_opacity = MOUSE_OPACITY_ICON
 	deathsound = 'sound/voice/human/manlaugh1.ogg'
 	deathmessage = "realizes what they've been doing all this time, and return to their true self."
@@ -175,7 +175,6 @@
 	ranged_cooldown = world.time + 50
 	visible_message("<span class='boldwarning'>[src] prepares to throw his axe!</span>")
 	var/turf/targetturf = get_turf(target)
-	sleep(3)
 	playsound(src,'sound/weapons/fwoosh.wav', 200, 1)
 	Shoot(targetturf)
 	new /obj/item/melee/diamondaxe/priest(targetturf)
@@ -233,11 +232,11 @@
 	righthand_file = 'modular_skyrat/icons/mob/inhands/axes_righthand.dmi'
 	item_state = "diamondaxe"
 	attack_verb = list("slashed", "sliced", "torn", "ripped", "diced", "cut")
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	force = 20
-	throwforce = 20
+	throwforce = 18
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 90, "embedded_fall_chance" = 50)
-	armour_penetration = 100
+	armour_penetration = 50
 	block_chance = 25
 	sharpness = IS_SHARP
 	hitsound = 'sound/weapons/slash.ogg'

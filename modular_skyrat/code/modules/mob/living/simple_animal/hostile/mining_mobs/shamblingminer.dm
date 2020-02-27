@@ -18,8 +18,8 @@
 	maxHealth = 200
 	health = 200
 	obj_damage = 100
-	melee_damage_lower = 25
-	melee_damage_upper = 25
+	melee_damage_lower = 20
+	melee_damage_upper = 20
 	attacktext = "smashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	throw_message = "barely affects the"
