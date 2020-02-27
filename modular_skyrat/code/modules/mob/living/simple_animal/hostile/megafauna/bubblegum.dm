@@ -56,6 +56,29 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 			L.apply_damage(35, BRUTE, limb_to_hit, L.run_armor_check(limb_to_hit, "melee", null, null, 100)) // You really, really, really better not stand in blood!
 	sleep(3)
 
+/mob/living/simple_animal/hostile/megafauna/bubblegum/blood_warp()
+	var/obj/effect/decal/cleanable/blood/found_bloodpool
+	var/list/pools = list()
+	var/can_jaunt = FALSE
+	for(var/obj/effect/decal/cleanable/blood/nearby in view(src,2))
+		if(nearby.bloodiness >= 20)
+			can_jaunt = TRUE
+		break
+	if(!can_jaunt)
+		return
+	for(var/obj/effect/decal/cleanable/blood/nearby in view(get_turf(target),2))
+		if(nearby.bloodiness >= 20)
+			pools += nearby
+	if(pools.len)
+		shuffle_inplace(pools)
+		found_bloodpool = pick(pools)
+	if(found_bloodpool)
+		visible_message("<span class='danger'>[src] sinks into the blood...</span>")
+		playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 100, 1, -1)
+		forceMove(get_turf(found_bloodpool))
+		playsound(get_turf(src), 'sound/magic/exit_blood.ogg', 100, 1, -1)
+		visible_message("<span class='danger'>And springs back out!</span>")
+
 
 /obj/effect/temp_visual/bubblegum_hands
 	icon = 'icons/effects/bubblegum.dmi'
