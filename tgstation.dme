@@ -3273,6 +3273,7 @@
 #include "modular_skyrat\code\interactions\lewd\objects.dm"
 #include "modular_skyrat\code\modules\cargo\expressconsole.dm"
 #include "modular_skyrat\code\modules\client\loadout\head.dm"
+#include "modular_skyrat\code\modules\client\loadout\neck.dm"
 #include "modular_skyrat\code\modules\client\loadout\uniform.dm"
 #include "modular_skyrat\code\modules\client\preferences_toggles.dm"
 #include "modular_skyrat\code\modules\clothing\head\helmet.dm"
