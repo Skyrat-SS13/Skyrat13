@@ -31,15 +31,4 @@
 	loot = /obj/item/twohanded/kinetic_crusher
 	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/eye
 	do_footstep = TRUE
-	minimum_distance = 0
-	var/obj/item/twohanded/kinetic_crusher/minercrusher
-
-/mob/living/simple_animal/hostile/asteroid/miner/AttackingTarget(target)
-	do_attack_animation(target)
-	..()
-
-mob/living/simple_animal/hostile/asteroid/miner/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
-	if(!used_item && !isturf(A))
-		used_item = minercrusher
-		new /obj/effect/temp_visual/kinetic_blast(A)
-	..()
+	minimum_distance = 1
