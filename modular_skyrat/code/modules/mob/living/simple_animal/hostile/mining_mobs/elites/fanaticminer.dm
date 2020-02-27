@@ -193,6 +193,7 @@
 /datum/outfit/job/miner/equipped/priest
 	name = "Shaft Miner (necropolis priest)"
 	shoes = /obj/item/clothing/shoes/bronze
+	mask = /obj/item/clothing/mask/gas
 	backpack_contents = list(
 		/obj/item/flashlight/seclite=1,\
 		/obj/item/kitchen/knife/combat/survival=1,
