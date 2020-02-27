@@ -3265,6 +3265,7 @@
 #include "modular_skyrat\code\modules\client\loadout\uniform.dm"
 #include "modular_skyrat\code\modules\clothing\head\helmet.dm"
 #include "modular_skyrat\code\modules\clothing\head\jobs.dm"
+#include "modular_skyrat\code\modules\clothing\head\misc_special.dm"
 #include "modular_skyrat\code\modules\clothing\masks\breath.dm"
 #include "modular_skyrat\code\modules\clothing\masks\hailer.dm"
 #include "modular_skyrat\code\modules\clothing\outfits\vox.dm"
@@ -3314,6 +3315,7 @@
 #include "modular_skyrat\code\modules\surgery\organs\vox_lungs.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_roles.dm"
 #include "modular_skyrat\code\modules\vending\autodrobe.dm"
+#include "modular_skyrat\code\modules\vending\clothesmate.dm"
 #include "modular_skyrat\code\modules\vending\security.dm"
 #include "modular_skyrat\code\modules\vending\wardrobes.dm"
 // END_INCLUDE
