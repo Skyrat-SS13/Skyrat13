@@ -90,6 +90,7 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), /area/lavaland/surface/outdoors/unexplored, lava_ruins_templates)
 		for (var/lava_z in lava_ruins)
 			spawn_rivers(lava_z)
+	// Generate dungeon ruins
 	var/list/dungeon_ruins = levels_by_trait(ZTRAIT_DUNGEON_RUINS)
 	if (dungeon_ruins.len)
 		seedRuins(dungeon_ruins, CONFIG_GET(number/dungeon_budget), /area/lavaland/surface/outdoors/unexplored/dungeon, dungeon_ruins_templates)

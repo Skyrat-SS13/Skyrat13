@@ -1,13 +1,3 @@
-
-/datum/mapGeneratorModule/bottomLayer/dungeon_default
-	spawnableTurfs = list(/turf/open/floor/plating/asteroid/basalt/lava_land_surface = 100)
-
-/datum/mapGeneratorModule/bottomLayer/dungeon_mineral
-	spawnableTurfs = list(/turf/closed/mineral/random/volcanic = 100)
-
-/datum/mapGeneratorModule/bottomLayer/dungeon_mineral/dense
-	spawnableTurfs = list(/turf/closed/mineral/random/high_chance/volcanic = 100)
-
 /datum/mapGeneratorModule/splatterLayer/dungeonMonsters
 	spawnableTurfs = list()
 	spawnableAtoms = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient = 10,
