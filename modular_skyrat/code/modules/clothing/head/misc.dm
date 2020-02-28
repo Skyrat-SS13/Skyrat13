@@ -30,7 +30,7 @@
 /obj/item/clothing/head/goatpope
 	name = "goat pope hat"
 	desc = "And on the seventh day King Goat said there will be cabbage!"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/large-worn-icons/64x64/head.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "goatpope"
 	item_state = "goatpope"
 	worn_x_dimension = 64

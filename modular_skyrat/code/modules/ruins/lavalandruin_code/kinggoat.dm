@@ -12,7 +12,7 @@
 	tiled_dirt = FALSE
 	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason..."
 
-/obj/projectile/goat
+/obj/item/projectile/goat
 	name = "goat"
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "goat"
@@ -20,15 +20,15 @@
 	damage_type = BRUTE
 	flag = "bullet"
 
-/obj/projectile/goat/on_hit(atom/target)
+/obj/item/projectile/goat/on_hit(atom/target)
 	knockdown = 20
 	var/turf/location = get_turf(target)
 	new/mob/living/simple_animal/hostile/retaliate/goat(location)
-	playsound(location, 'sound/items/goatsound.ogg', 40, TRUE)
+	playsound(location, 'modular_skyrat/sound/items/goatsound.ogg', 40, TRUE)
 	qdel(src)
 
 /obj/item/ammo_casing/energy/goat
-	projectile_type = /obj/projectile/goat
+	projectile_type = /obj/item/projectile/goat
 	select_name = "goat"
 
 /obj/item/gun/energy/goatgun

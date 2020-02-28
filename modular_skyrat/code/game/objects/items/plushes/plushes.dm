@@ -49,7 +49,7 @@
 	return ..()
 
 /obj/item/toy/plush/goatplushie
-	squeak_override = list('sound/items/goatsound.ogg'=1)
+	squeak_override = list('modular_skyrat/sound/items/goatsound.ogg'=1)
 
 /obj/item/toy/plush/goatplushie/angry/realgoat
 	name = "goat plushie"
@@ -59,7 +59,7 @@
 	name = "goat plushie"
 	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same... or at least it would if it wasn't a normal plushie."
 	icon_state = "realgoat"
-	squeak_override = list('sound/items/goatsound.ogg'=1)
+	squeak_override = list('modular_skyrat/sound/items/goatsound.ogg'=1)
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat
 	name = "King Goat Plushie"
@@ -76,7 +76,7 @@
 	icon_state = "ascendedkinggoat"
 	throwforce = 30
 	force = 30
-	divine = TRUE
+	var/divine = TRUE
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat/ascendedkinggoat/attackby(obj/item/I,mob/living/user,params)
 	if(I.get_sharpness())
