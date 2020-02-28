@@ -1017,8 +1017,6 @@
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
 
-<<<<<<< HEAD
-=======
 /obj/item/twohanded/electrostaff
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "electrostaff_3"
@@ -1272,7 +1270,6 @@
 		if(!iscyborg(loc))
 			deductcharge(1000 / severity, TRUE, FALSE)
 
->>>>>>> 7eac87d2e0... Merge pull request #11252 from Citadel-Station-13/kevinz000-patch-12
 /obj/item/twohanded/broom
 	name = "broom"
 	desc = "This is my BROOMSTICK! It can be used manually or braced with two hands to sweep items as you move. It has a telescopic handle for compact storage." //LIES
