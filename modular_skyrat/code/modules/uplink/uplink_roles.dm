@@ -16,7 +16,7 @@ datum/uplink_item/role_restricted/crusher
 
 /datum/uplink_item/role_restricted/independence
 	name = "Declaration of independence"
-	desc = "Free cargo from NT's grasp! Declares the independence of cargo and makes the Syndicate your new supplier for cargo."
+	desc = "Free cargo from NT's grasp! Declares the independence of cargo and make the Syndicate your new supplier for cargo."
 	item = /obj/item/card/emag/independence
 	cost = 20
 	limited_stock = 1
