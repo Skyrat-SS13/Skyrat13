@@ -49,7 +49,7 @@
 	strip_delay = 130
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	icon_state = "praetor"
-	alternate_worn_icon = 'modular_skyrat/icon/mob/suit.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/suit.dmi'
 	item_state = "praetor"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 
@@ -60,5 +60,5 @@
 	strip_delay = 130
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "praetor"
-	alternate_worn_icon = 'modular_skyrat/icon/mob/head.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
 	item_state = "praetor"
