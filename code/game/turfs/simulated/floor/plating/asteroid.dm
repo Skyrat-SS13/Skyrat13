@@ -168,6 +168,7 @@
 		/mob/living/simple_animal/hostile/asteroid/miner = 30, /obj/structure/spawner/lavaland/shamblingminer = 5, \
 		/obj/structure/spawner/lavaland/alltypes = 5, \
 		SPAWN_MEGAFAUNA = 10, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
+	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface/dungeon
 
 /turf/open/floor/plating/asteroid/airless/cave/volcanic/has_data //subtype for producing a tunnel with given data
 	has_data = TRUE
