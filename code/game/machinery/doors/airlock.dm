@@ -151,7 +151,7 @@
 				welded = TRUE
 			if(24 to 30)
 				panel_open = TRUE
-	update_icon()
+	update_icon_state()
 
 /obj/machinery/door/airlock/ComponentInitialize()
 	. = ..()
@@ -239,7 +239,7 @@
 				return
 
 			emergency = !emergency
-			update_icon()
+			update_icon_state()
 
 /obj/machinery/door/airlock/lock()
 	bolt()
@@ -250,7 +250,7 @@
 	locked = TRUE
 	playsound(src,boltDown,30,0,3)
 	audible_message("<span class='italics'>You hear a click from the bottom of the door.</span>", null,  1)
-	update_icon()
+	update_icon_state()
 
 /obj/machinery/door/airlock/unlock()
 	unbolt()
@@ -261,7 +261,7 @@
 	locked = FALSE
 	playsound(src,boltUp,30,0,3)
 	audible_message("<span class='italics'>You hear a click from the bottom of the door.</span>", null,  1)
-	update_icon()
+	update_icon_state()
 
 /obj/machinery/door/airlock/narsie_act()
 	var/turf/T = get_turf(src)
@@ -313,7 +313,7 @@
 /obj/machinery/door/airlock/handle_atom_del(atom/A)
 	if(A == note)
 		note = null
-		update_icon()
+		update_icon_state()
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(!issilicon(usr))
@@ -364,7 +364,7 @@
 /obj/machinery/door/airlock/proc/regainMainPower()
 	if(src.secondsMainPowerLost > 0)
 		src.secondsMainPowerLost = 0
-	update_icon()
+	update_icon_state()
 
 /obj/machinery/door/airlock/proc/handlePowerRestore()
 	var/cont = TRUE
@@ -385,7 +385,7 @@
 			cont = TRUE
 	spawnPowerRestoreRunning = FALSE
 	updateDialog()
-	update_icon()
+	update_icon_state()
 
 /obj/machinery/door/airlock/proc/loseMainPower()
 	if(secondsMainPowerLost <= 0)
@@ -395,7 +395,7 @@
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
 	INVOKE_ASYNC(src, .proc/handlePowerRestore)
-	update_icon()
+	update_icon_state()
 
 /obj/machinery/door/airlock/proc/loseBackupPower()
 	if(src.secondsBackupPowerLost < 60)
@@ -403,12 +403,12 @@
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
 	INVOKE_ASYNC(src, .proc/handlePowerRestore)
-	update_icon()
+	update_icon_state()
 
 /obj/machinery/door/airlock/proc/regainBackupPower()
 	if(src.secondsBackupPowerLost > 0)
 		src.secondsBackupPowerLost = 0
-	update_icon()
+	update_icon_state()
 
 // shock user with probability prb (if all connections & power are working)
 // returns TRUE if shocked, FALSE otherwise
@@ -629,15 +629,15 @@
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
 		if("opening")
-			update_icon(AIRLOCK_OPENING)
+			update_icon_state(AIRLOCK_OPENING)
 		if("closing")
-			update_icon(AIRLOCK_CLOSING)
+			update_icon_state(AIRLOCK_CLOSING)
 		if("deny")
 			if(!stat)
-				update_icon(AIRLOCK_DENY)
+				update_icon_state(AIRLOCK_DENY)
 				playsound(src,doorDeni,50,0,3)
 				sleep(6)
-				update_icon(AIRLOCK_CLOSED)
+				update_icon_state(AIRLOCK_CLOSED)
 
 /obj/machinery/door/airlock/examine(mob/user)
 	. = ..()
@@ -836,7 +836,7 @@
 						user.visible_message("<span class='notice'>[user] reinforces \the [src] with metal.</span>",
 											"<span class='notice'>You reinforce \the [src] with metal.</span>")
 						security_level = AIRLOCK_SECURITY_METAL
-						update_icon()
+						update_icon_state()
 					return
 				else if(istype(C, /obj/item/stack/sheet/plasteel))
 					var/obj/item/stack/sheet/plasteel/S = C
@@ -852,7 +852,7 @@
 						security_level = AIRLOCK_SECURITY_PLASTEEL
 						modify_max_integrity(normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER)
 						damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_R
-						update_icon()
+						update_icon_state()
 					return
 			if(AIRLOCK_SECURITY_METAL)
 				if(istype(C, /obj/item/weldingtool))
@@ -867,7 +867,7 @@
 										"<span class='italics'>You hear welding.</span>")
 						security_level = AIRLOCK_SECURITY_NONE
 						spawn_atom_to_turf(/obj/item/stack/sheet/metal, user.loc, 2)
-						update_icon()
+						update_icon_state()
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_I_S)
 				if(istype(C, /obj/item/crowbar))
@@ -884,7 +884,7 @@
 						modify_max_integrity(normal_integrity)
 						damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_N
 						spawn_atom_to_turf(/obj/item/stack/sheet/plasteel, user.loc, 1)
-						update_icon()
+						update_icon_state()
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_I)
 				if(istype(C, /obj/item/weldingtool))
@@ -944,13 +944,13 @@
 		panel_open = !panel_open
 		to_chat(user, "<span class='notice'>You [panel_open ? "open":"close"] the maintenance panel of the airlock.</span>")
 		C.play_tool_sound(src)
-		src.update_icon()
+		src.update_icon_state()
 	else if(istype(C, /obj/item/wirecutters) && note)
 		user.visible_message("<span class='notice'>[user] cuts down [note] from [src].</span>", "<span class='notice'>You remove [note] from [src].</span>")
 		C.play_tool_sound(src)
 		note.forceMove(get_turf(user))
 		note = null
-		update_icon()
+		update_icon_state()
 	else if(is_wire_tool(C) && panel_open)
 		attempt_wire_interaction(user)
 		return
@@ -973,7 +973,7 @@
 			return
 		to_chat(user, "<span class='warning'>You apply [C]. Next time someone opens the door, it will explode.</span>")
 		panel_open = FALSE
-		update_icon()
+		update_icon_state()
 		user.transferItemToLoc(C, src, TRUE)
 		charge = C
 	else if(istype(C, /obj/item/paper) || istype(C, /obj/item/photo))
@@ -985,7 +985,7 @@
 			return
 		user.visible_message("<span class='notice'>[user] pins [C] to [src].</span>", "<span class='notice'>You pin [C] to [src].</span>")
 		note = C
-		update_icon()
+		update_icon_state()
 	else
 		return ..()
 
@@ -1002,7 +1002,7 @@
 				welded = !welded
 				user.visible_message("[user.name] has [welded? "welded shut":"unwelded"] [src].", \
 									"<span class='notice'>You [welded ? "weld the airlock shut":"unweld the airlock"].</span>")
-				update_icon()
+				update_icon_state()
 		else
 			if(obj_integrity < max_integrity)
 				if(!W.tool_start_check(user, amount=0))
@@ -1015,7 +1015,7 @@
 					stat &= ~BROKEN
 					user.visible_message("[user.name] has repaired [src].", \
 										"<span class='notice'>You finish repairing the airlock.</span>")
-					update_icon()
+					update_icon_state()
 			else
 				to_chat(user, "<span class='notice'>The airlock doesn't need repairing.</span>")
 
@@ -1096,7 +1096,7 @@
 			return FALSE
 	if(charge && !detonated)
 		panel_open = TRUE
-		update_icon(AIRLOCK_OPENING)
+		update_icon_state(AIRLOCK_OPENING)
 		visible_message("<span class='warning'>[src]'s panel is blown off in a spray of deadly shrapnel!</span>")
 		charge.forceMove(drop_location())
 		charge.ex_act(EXPLODE_DEVASTATE)
@@ -1124,7 +1124,7 @@
 	if(!density)
 		return TRUE
 	operating = TRUE
-	update_icon(AIRLOCK_OPENING, 1)
+	update_icon_state(AIRLOCK_OPENING, 1)
 	sleep(1)
 	set_opacity(0)
 	update_freelook_sight()
@@ -1133,7 +1133,7 @@
 	air_update_turf(1)
 	sleep(1)
 	layer = OPEN_DOOR_LAYER
-	update_icon(AIRLOCK_OPEN, 1)
+	update_icon_state(AIRLOCK_OPEN, 1)
 	operating = FALSE
 	if(delayed_close_requested)
 		delayed_close_requested = FALSE
@@ -1168,7 +1168,7 @@
 		killthis.ex_act(EXPLODE_HEAVY)//Smashin windows
 
 	operating = TRUE
-	update_icon(AIRLOCK_CLOSING, 1)
+	update_icon_state(AIRLOCK_CLOSING, 1)
 	layer = CLOSED_DOOR_LAYER
 	if(air_tight)
 		density = TRUE
@@ -1184,7 +1184,7 @@
 		set_opacity(1)
 	update_freelook_sight()
 	sleep(1)
-	update_icon(AIRLOCK_CLOSED, 1)
+	update_icon_state(AIRLOCK_CLOSED, 1)
 	operating = FALSE
 	delayed_close_requested = FALSE
 	if(safe)
@@ -1274,7 +1274,7 @@
 			icon = 'icons/obj/doors/airlocks/station/maintenanceexternal.dmi'
 			overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 			assemblytype = /obj/structure/door_assembly/door_assembly_extmai
-	update_icon()
+	update_icon_state()
 
 /obj/machinery/door/airlock/CanAStarPass(obj/item/card/id/ID)
 //Airlock is passable if it is open (!density), bot has access, and is not bolted shut or powered off)
@@ -1285,14 +1285,14 @@
 	if(operating || !density || !hasPower() || obj_flags & EMAGGED)
 		return
 	operating = TRUE
-	update_icon(AIRLOCK_EMAG, 1)
+	update_icon_state(AIRLOCK_EMAG, 1)
 	addtimer(CALLBACK(src, .proc/open_sesame), 6)
 	return TRUE
 
 /obj/machinery/door/airlock/proc/open_sesame()
 	operating = FALSE
 	if(!open())
-		update_icon(AIRLOCK_CLOSED, 1)
+		update_icon_state(AIRLOCK_CLOSED, 1)
 	obj_flags |= EMAGGED
 	lights = FALSE
 	locked = TRUE
@@ -1349,7 +1349,7 @@
 		if(!panel_open)
 			panel_open = TRUE
 		wires.cut_all()
-		update_icon()
+		update_icon_state()
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds)
 	secondsElectrified = seconds
@@ -1360,7 +1360,7 @@
 /obj/machinery/door/airlock/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(obj_integrity < (0.75 * max_integrity))
-		update_icon()
+		update_icon_state()
 
 
 /obj/machinery/door/airlock/deconstruct(disassembled = TRUE, mob/user)
@@ -1378,7 +1378,7 @@
 		A.created_name = name
 		A.previous_assembly = previous_airlock
 		A.update_name()
-		A.update_icon()
+		A.update_icon_state()
 
 		if(!disassembled)
 			if(A)
@@ -1483,14 +1483,14 @@
 		if("disrupt-main")
 			if(!secondsMainPowerLost)
 				loseMainPower()
-				update_icon()
+				update_icon_state()
 			else
 				to_chat(usr, "Main power is already offline.")
 			. = TRUE
 		if("disrupt-backup")
 			if(!secondsBackupPowerLost)
 				loseBackupPower()
-				update_icon()
+				update_icon_state()
 			else
 				to_chat(usr, "Backup power is already offline.")
 			. = TRUE
@@ -1514,7 +1514,7 @@
 			. = TRUE
 		if("light-toggle")
 			lights = !lights
-			update_icon()
+			update_icon_state()
 			. = TRUE
 		if("safe-toggle")
 			safe = !safe
@@ -1576,7 +1576,7 @@
 	if(!user_allowed(user))
 		return
 	emergency = !emergency
-	update_icon()
+	update_icon_state()
 
 /obj/machinery/door/airlock/proc/user_toggle_open(mob/user)
 	if(!user_allowed(user))
