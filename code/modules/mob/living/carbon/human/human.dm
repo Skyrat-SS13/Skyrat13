@@ -803,7 +803,7 @@
 		hud_used.staminas?.update_icon_state()
 		hud_used.staminabuffer?.update_icon_state()
 
-/mob/living/carbon/human/fully_heal(admin_revive = 0)
+/mob/living/carbon/human/fully_heal(admin_revive = FALSE)
 	if(admin_revive)
 		regenerate_limbs()
 		regenerate_organs()
@@ -831,7 +831,7 @@
 	..()
 
 /mob/living/carbon/human/vomit(lost_nutrition = 10, blood = 0, stun = 1, distance = 0, message = 1, toxic = 0)
-	if(blood && (NOBLOOD in dna.species.species_traits))
+	if(blood && dna?.species && (NOBLOOD in dna.species.species_traits))
 		if(message)
 			visible_message("<span class='warning'>[src] dry heaves!</span>", \
 							"<span class='userdanger'>You try to throw up, but there's nothing in your stomach!</span>")

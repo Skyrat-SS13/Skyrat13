@@ -70,7 +70,7 @@
 		handle_traits() // eye, ear, brain damages
 	if(stat != DEAD)
 		handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
-		handle_typing_indicator() //skyrat-edit
+		//handle_typing_indicator() //skyrat-edit
 	if(stat != DEAD)
 		return 1
 
