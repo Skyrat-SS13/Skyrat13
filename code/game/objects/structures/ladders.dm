@@ -181,6 +181,17 @@
 				break  // break if both our connections are filled
 
 	update_icon()
+//Dungeon ladder
+/obj/structure/ladder/unbreakable/dungeon
+	name = "Dungeon Ladder"
+	desc = "Gives you access to the dungeon."
+	id = "dungeon"
+	height = 1
+
+/obj/structure/ladder/unbreakable/dungeon/dungeon2
+	name = "Lavaland Ladder"
+	desc = "Returns you to normal lavaland."
+	height = 0
 
 /obj/structure/ladder/unbreakable/binary
 	name = "mysterious ladder"

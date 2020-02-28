@@ -14,7 +14,7 @@
 "an" = (/turf/closed/mineral/random/labormineral/volcanic,/area/lavaland/surface/outdoors)
 "ao" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,/obj/effect/turf_decal/tile/red{dir = 1},/obj/structure/cable{icon_state = "1-2"},/mob/living/simple_animal/bot/secbot/beepsky{desc = "Powered by the tears and sweat of laborers."; name = "Prison Ofitser"},/turf/open/floor/plasteel,/area/mine/laborcamp/security)
 "ap" = (/turf/open/floor/plating,/area/lavaland/surface/outdoors)
-"aq" = (/obj/structure/ladder,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
+"aq" = (/obj/structure/ladder/unbreakable/dungeon,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
 "aA" = (/obj/effect/spawner/structure/window/reinforced,/obj/structure/cable{icon_state = "0-2"},/obj/structure/cable{icon_state = "0-4"},/turf/open/floor/plating,/area/mine/laborcamp)
 "aD" = (/obj/structure/chair/comfy/brown{dir = 8},/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 8},/obj/structure/cable{icon_state = "1-8"},/turf/open/floor/plasteel,/area/mine/laborcamp/security)
 "aQ" = (/obj/structure/stone_tile/surrounding_tile{dir = 1},/turf/closed/indestructible/riveted/boss,/area/lavaland/surface/outdoors)

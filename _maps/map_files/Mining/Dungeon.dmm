@@ -286,7 +286,7 @@
 "fz" = (/obj/machinery/computer/prisoner,/obj/effect/turf_decal/tile/red{dir = 1},/obj/effect/turf_decal/tile/red,/turf/closed/mineral/random/volcanic,/area/lavaland/surface/outdoors/unexplored/dungeon/danger)
 "fA" = (/obj/effect/spawner/structure/window/reinforced,/obj/structure/cable{icon_state = "0-2"},/obj/structure/cable,/turf/closed/mineral/random/volcanic,/area/lavaland/surface/outdoors/unexplored/dungeon/danger)
 "fB" = (/obj/structure/ore_box,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors/unexplored/dungeon)
-"fC" = (/obj/structure/ladder,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors/unexplored/dungeon)
+"fC" = (/obj/structure/ladder/unbreakable/dungeon/dungeon2,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors/unexplored/dungeon)
 "fD" = (/obj/docking_port/stationary{area_type = /area/lavaland/surface/outdoors; dir = 2; dwidth = 11; height = 22; id = "whiteship_lavaland"; name = "lavaland wastes"; width = 35},/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors/unexplored/dungeon)
 "fE" = (/obj/structure/table,/obj/effect/turf_decal/tile/red,/obj/item/paper_bin,/obj/item/pen,/turf/closed/mineral/random/volcanic,/area/lavaland/surface/outdoors/unexplored/dungeon/danger)
 "fF" = (/obj/structure/table,/obj/effect/turf_decal/tile/red,/obj/machinery/recharger,/obj/structure/cable{icon_state = "4-8"},/turf/closed/mineral/random/volcanic,/area/lavaland/surface/outdoors/unexplored/dungeon/danger)
