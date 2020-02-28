@@ -47,7 +47,7 @@
 	desc = "And those that tasted the bite of his sword named him... The Doom Slayer."
 	armor = list("melee" = 75, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	strip_delay = 130
-	icon = 'modular_skyrat/icon/obj/clothing/suits.dmi'
+	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	icon_state = "praetor"
 	alternate_worn_icon = 'modular_skyrat/icon/mob/suit.dmi'
 	item_state = "praetor"
@@ -58,7 +58,7 @@
 	desc = "That's one doomed space marine."
 	armor = list("melee" = 75, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	strip_delay = 130
-	icon = 'modular_skyrat/icon/obj/clothing/hats.dmi'
+	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "praetor"
 	alternate_worn_icon = 'modular_skyrat/icon/mob/head.dmi'
 	item_state = "praetor"
