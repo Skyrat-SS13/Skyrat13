@@ -88,6 +88,11 @@
 	light_power = 0.65 //less bright, too
 	light_color = LIGHT_COLOR_LAVA //let's just say you're falling into lava, that makes sense right
 
+/turf/open/chasm/lavaland/Initialize()
+	. = ..()
+	var/turf/T = locate(src.x, src.y, src.z + 1)
+	if(T)
+		set_target(T)
 
 // Chasms for the jungle, with planetary atmos and a different icon
 /turf/open/chasm/jungle

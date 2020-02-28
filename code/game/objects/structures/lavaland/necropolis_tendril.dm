@@ -37,7 +37,8 @@ GLOBAL_LIST_INIT(tendrils, list())
 	GLOB.tendrils += src
 
 /obj/structure/spawner/lavaland/deconstruct(disassembled)
-	new /obj/effect/collapse(loc)
+	if(!is_dungeon_level(z))
+		new /obj/effect/collapse(loc)
 	new /obj/structure/closet/crate/necropolis/tendril(loc)
 	return ..()
 

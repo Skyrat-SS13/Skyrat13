@@ -7,6 +7,8 @@
 
 #define is_mining_level(z) SSmapping.level_trait(z, ZTRAIT_MINING)
 
+#define is_dungeon_level(z) SSmapping.level_trait(z, ZTRAIT_DUNGEON)
+
 #define is_reebe(z) SSmapping.level_trait(z, ZTRAIT_REEBE)
 
 #define is_reserved_level(z) SSmapping.level_trait(z, ZTRAIT_RESERVED)
