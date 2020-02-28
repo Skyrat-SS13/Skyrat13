@@ -83,4 +83,4 @@
 
 /datum/robot_energy_storage/plasma
 	name = "Plasma Buffer Container"
-	recharge_rate = 10
+	recharge_rate = 0
