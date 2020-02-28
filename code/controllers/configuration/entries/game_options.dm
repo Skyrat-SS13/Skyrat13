@@ -331,6 +331,10 @@
 	config_entry_value = 60
 	min_val = 0
 
+/datum/config_entry/number/dungeon_budget
+	config_entry_value = 90
+	min_val = 0
+
 /datum/config_entry/number/space_budget
 	config_entry_value = 16
 	min_val = 0

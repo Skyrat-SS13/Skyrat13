@@ -32,11 +32,13 @@ require only minor tweaks.
 #define ZTRAIT_CENTCOM "CentCom"
 #define ZTRAIT_STATION "Station"
 #define ZTRAIT_MINING "Mining"
+#define ZTRAIT_DUNGEON "Dungeon"
 #define ZTRAIT_REEBE "Reebe"
 #define ZTRAIT_RESERVED "Transit/Reserved"
 #define ZTRAIT_AWAY "Away Mission"
 #define ZTRAIT_SPACE_RUINS "Space Ruins"
 #define ZTRAIT_LAVA_RUINS "Lava Ruins"
+#define ZTRAIT_DUNGEON_RUINS "Dungeon Ruins"
 #define ZTRAIT_ISOLATED_RUINS "Isolated Ruins" //Placing ruins on z levels with this trait will use turf reservation instead of usual placement.
 
 // number - bombcap is multiplied by this before being applied to bombs
@@ -67,7 +69,15 @@ require only minor tweaks.
 #define ZTRAITS_SPACE list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_SPACE_RUINS = TRUE)
 #define ZTRAITS_LAVALAND list(\
     ZTRAIT_MINING = TRUE, \
+    ZTRAIT_ASHSTORM = TRUE, \
     ZTRAIT_LAVA_RUINS = TRUE, \
+    ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
+    ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
+#define ZTRAITS_DUNGEON list(\
+    ZTRAIT_MINING = TRUE, \
+    ZTRAIT_ASHSTORM = FALSE, \
+    ZTRAIT_DUNGEON = TRUE, \
+    ZTRAIT_DUNGEON_RUINS = TRUE, \
     ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
     ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
@@ -75,6 +85,9 @@ require only minor tweaks.
 #define DL_NAME "name"
 #define DL_TRAITS "traits"
 #define DECLARE_LEVEL(NAME, TRAITS) list(DL_NAME = NAME, DL_TRAITS = TRAITS)
+
+// boolean - weather types that occur on the level
+#define ZTRAIT_ASHSTORM "Weather_Ashstorm"
 
 // must correspond to _basemap.dm for things to work correctly
 #define DEFAULT_MAP_TRAITS list(\
@@ -98,6 +111,7 @@ require only minor tweaks.
 #define PLACE_SAME_Z "same" //On same z level as original ruin
 #define PLACE_SPACE_RUIN "space" //On space ruin z level(s)
 #define PLACE_LAVA_RUIN "lavaland" //On lavaland ruin z levels(s)
+#define PLACE_DUNGEON_RUIN "dungeon" //On dungeon ruin z levels
 #define PLACE_BELOW "below" //On z levl below - centered on same tile
 #define PLACE_ISOLATED "isolated" //On isolated ruin z level
 //Map type stuff.

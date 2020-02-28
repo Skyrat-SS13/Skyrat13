@@ -260,7 +260,7 @@
 			return
 		var/randumb = pickweight(mob_spawn_list)
 		while(randumb == SPAWN_MEGAFAUNA)
-			if(istype(loc, /area/lavaland/surface/outdoors/unexplored/danger)) //this is danger. it's boss time.
+			if(istype(loc, /area/lavaland/surface/outdoors/unexplored/danger) || istype(loc, /area/lavaland/surface/outdoors/unexplored/dungeon/danger)) //this is danger. it's boss time.
 				var/maybe_boss = pickweight(megafauna_spawn_list)
 				if(megafauna_spawn_list[maybe_boss])
 					randumb = maybe_boss

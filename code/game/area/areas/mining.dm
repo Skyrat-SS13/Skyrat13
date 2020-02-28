@@ -120,3 +120,11 @@
 
 /area/lavaland/surface/outdoors/explored
 	name = "Lavaland Labor Camp"
+
+//Dungeon Areas
+
+/area/lavaland/surface/outdoors/unexplored/dungeon
+	name = "Lavaland Dungeon"
+
+/area/lavaland/surface/outdoors/unexplored/dungeon/danger
+	icon_state = "danger"

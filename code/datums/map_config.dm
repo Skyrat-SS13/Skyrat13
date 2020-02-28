@@ -24,6 +24,7 @@
 	var/space_empty_levels = 1
 
 	var/minetype = "lavaland"
+	var/dungeontype = "chasm"
 
 	var/maptype = MAP_TYPE_STATION //This should be used to adjust ingame behavior depending on the specific type of map being played. For instance, if an overmap were added, it'd be appropriate for it to only generate with a MAP_TYPE_SHIP
 
@@ -139,7 +140,7 @@
 
 	if ("minetype" in json)
 		minetype = json["minetype"]
-	
+
 	if ("maptype" in json)
 		maptype = json["maptype"]
 
