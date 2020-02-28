@@ -1,4 +1,5 @@
 /datum/map_template/ruin/lavaland/king_goat_boss
+	prefix = "modular_skyrat/_maps/RandomRuins/LavaRuins/"
 	name = "King Goat Boss Ruin"
 	id = "kinggoatboss"
 	description = "Abandon All Hope Ye Who Enter Here."
