@@ -199,7 +199,7 @@
 	cost = 25
 
 /obj/item/borg/upgrade/modkit/cooldown/cooler/modify_projectile(obj/item/projectile/kinetic/K)
-	K.damge -= (modifier *2)
+	K.damage -= (modifier *2)
 
 //10mm modkit (currently broken, only the 10mm pka works)
 /obj/item/gun/energy/kinetic_accelerator/tenmm
