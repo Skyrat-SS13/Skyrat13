@@ -163,8 +163,8 @@
 		target.attack_animal(src)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/knockdown()
-	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	visible_message("<span class='boldwarning'>[src] smashes into the ground!</span>")
+	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	var/list/hit_things = list()
 	sleep(10)
 	for(var/turf/T in oview(1, src))
@@ -177,8 +177,8 @@
 				L.adjustBruteLoss(50)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/shockwave(direction, range)
-	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	visible_message("<span class='boldwarning'>[src] smashes the ground in a general direction!!</span>")
+	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	sleep(10)
 	var/list/hit_things = list()
 	var/turf/T = get_turf(get_step(src, src.dir))
@@ -237,7 +237,8 @@
 /obj/item/twohanded/rogue/attack(atom/A, mob/living/carbon/human/user)
 	. = ..()
 	if(isliving(A))
-		var/mob/living/M
+		playsound(src,'sound/misc/crunch.ogg', 200, 1)
+		var/mob/living/M = A
 		if(ishuman(M))
 			M.Knockdown(50, override_stamdmg = 0)
 		M.adjustStaminaLoss(20)
@@ -249,6 +250,7 @@
 		if(!proximity_flag)
 			if(cooldowntime < world.time)
 				cooldowntime = world.time + 50
+				playsound(src,'sound/misc/crunch.ogg', 200, 1)
 				var/list/hit_things = list()
 				var/turf/T = get_turf(get_step(user, user.dir))
 				var/ogdir = user.dir
