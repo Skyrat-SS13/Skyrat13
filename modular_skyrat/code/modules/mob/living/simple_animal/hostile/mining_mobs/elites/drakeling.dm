@@ -29,12 +29,13 @@
 	melee_damage_upper = 30
 	attacktext = "bites"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
-	speed = 3
+	speed = 1
 	move_to_delay = 3
 	mouse_opacity = MOUSE_OPACITY_ICON
 	deathsound = 'sound/magic/WandODeath.ogg'
 	deathmessage = "'s wings flail weakly until he settles down, dead"
 	loot_drop = /obj/item/borg/upgrade/modkit/fire
+	speak_emote = list("huffs")
 
 	attack_action_types = list(/datum/action/innate/elite_attack/lavamoat,
 								/datum/action/innate/elite_attack/lavaaround,
