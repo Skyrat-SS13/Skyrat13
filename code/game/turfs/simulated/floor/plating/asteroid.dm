@@ -122,7 +122,7 @@
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
 
-
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface/dungeon
 
 
 /turf/open/floor/plating/asteroid/airless
@@ -159,6 +159,15 @@
 	data_having_type = /turf/open/floor/plating/asteroid/airless/cave/volcanic/has_data
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+
+/turf/open/floor/plating/asteroid/airless/cave/volcanic/dungeon
+	mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient = 50, /obj/structure/spawner/lavaland/ancientgoliath = 3, \
+		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing = 40, /obj/structure/spawner/lavaland/icewing = 2, \
+		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing = 40, /obj/structure/spawner/lavaland/magmawing = 2, \
+		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/advanced = 30, /obj/structure/spawner/lavaland/advancedlegion = 3, \
+		/mob/living/simple_animal/hostile/asteroid/miner = 30, /obj/structure/spawner/lavaland/shamblingminer = 5, \
+		/obj/structure/spawner/lavaland/alltypes = 5, \
+		SPAWN_MEGAFAUNA = 10, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
 
 /turf/open/floor/plating/asteroid/airless/cave/volcanic/has_data //subtype for producing a tunnel with given data
 	has_data = TRUE

@@ -190,6 +190,10 @@
 		/turf/closed/mineral/uranium/volcanic = 35, /turf/closed/mineral/diamond/volcanic = 30, /turf/closed/mineral/gold/volcanic = 45, /turf/closed/mineral/titanium/volcanic = 45,
 		/turf/closed/mineral/silver/volcanic = 50, /turf/closed/mineral/plasma/volcanic = 50, /turf/closed/mineral/bscrystal/volcanic = 20)
 
+/turf/closed/mineral/random/high_chance/volcanic/dungeon
+	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface/dungeon
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface/dungeon
+
 /turf/closed/mineral/random/high_chance/earth_like
 	icon_state = "rock_highchance_oxy"
 	turf_type = /turf/open/floor/plating/asteroid
