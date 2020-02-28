@@ -24,7 +24,7 @@
  * Twohanded
  */
 /obj/item/twohanded
-	var/wielded = 0
+	var/wielded = FALSE
 	var/force_unwielded // default to null, the number force will be set to on unwield()
 	var/force_wielded // same as above but for wield()
 	var/wieldsound = null
