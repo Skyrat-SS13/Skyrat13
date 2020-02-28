@@ -24,7 +24,7 @@
  * Twohanded
  */
 /obj/item/twohanded
-	var/wielded = 0
+	var/wielded = FALSE
 	var/force_unwielded // default to null, the number force will be set to on unwield()
 	var/force_wielded // same as above but for wield()
 	var/wieldsound = null
@@ -1015,8 +1015,6 @@
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
 
-<<<<<<< HEAD
-=======
 /obj/item/twohanded/electrostaff
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "electrostaff_3"
@@ -1270,7 +1268,6 @@
 		if(!iscyborg(loc))
 			deductcharge(1000 / severity, TRUE, FALSE)
 
->>>>>>> e39d7fa49d... Merge pull request #11259 from Ghommie/Ghommie-cit590
 /obj/item/twohanded/broom
 	name = "broom"
 	desc = "This is my BROOMSTICK! It can be used manually or braced with two hands to sweep items as you move. It has a telescopic handle for compact storage." //LIES
