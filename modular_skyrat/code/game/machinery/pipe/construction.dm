@@ -2,6 +2,7 @@
 	pipe_type = /obj/machinery/atmospherics/pipe/bluespace
 	var/bluespace_network_name = "default"
 	icon_state = "bluespace"
+	desc = "Transmits gas across large distances of space. Developed using bluespace technology. Use a multitool on it to set its network."
 
 /obj/item/pipe/bluespace/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/multitool))
