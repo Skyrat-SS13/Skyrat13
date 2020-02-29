@@ -11,6 +11,7 @@
 		#include "map_files\OmegaStation\OmegaStation.dmm"
 		#include "map_files\PubbyStation\PubbyStation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
+		#include "modular_skyrat\_map\map_files\BoxStationSnow\BoxStationSnow.dmm"
 
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
