@@ -25,3 +25,7 @@
     ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
     ZTRAIT_UP = 1, \
     ZTRAIT_BASETURF = /turf/open/lava/plasma/ice_moon)
+#define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, \
+							 ZTRAIT_STATION = TRUE, \
+							 ZTRAIT_SNOWSTORM = TRUE, \
+							 ZTRAIT_ICE_RUINS = TRUE)

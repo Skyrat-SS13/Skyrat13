@@ -1,3 +1,4 @@
+/*
 /datum/map_template/ruin/try_to_place(z,allowed_areas,turf/forced_turf)
 	var/sanity = forced_turf ? 1 : PLACEMENT_TRIES
 	if(SSmapping.level_trait(z,ZTRAIT_ISOLATED_RUINS))
@@ -165,3 +166,4 @@ seedRuins(list/z_levels = null, budget = 0, whitelist = list(/area/space), list/
 				ruins_availible -= R
 
 	log_world("Ruin loader finished with [budget] left to spend.")
+*/
