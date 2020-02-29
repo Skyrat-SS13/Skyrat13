@@ -3329,7 +3329,6 @@
 #include "modular_skyrat\code\modules\food_and_drinks\food\snacks\meat.dm"
 #include "modular_skyrat\code\modules\hydroponics\plant_genes.dm"
 #include "modular_skyrat\code\modules\language\vox.dm"
-#include "modular_skyrat\code\modules\mapping\ruins.dm"
 #include "modular_skyrat\code\modules\mining\equipment\kinetic_crusher.dm"
 #include "modular_skyrat\code\modules\mining\lavaland\necropolis_chests.dm"
 #include "modular_skyrat\code\modules\mob\say.dm"
