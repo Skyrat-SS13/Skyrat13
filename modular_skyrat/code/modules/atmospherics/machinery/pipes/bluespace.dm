@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 /obj/machinery/atmospherics/pipe/bluespace
 	name = "bluespace pipe"
-	desc = "Transmits gas across large distances of space. Developed using bluespace technology."
+	desc = "Transmits gas across large distances of space. Developed using bluespace technology. Use a multitool on it to set its network."
 	icon = 'modular_skyrat/icons/obj/atmospherics/pipes/bluespace.dmi'
 	icon_state = "blue_map-2"
 	pipe_state = "bluespace"
