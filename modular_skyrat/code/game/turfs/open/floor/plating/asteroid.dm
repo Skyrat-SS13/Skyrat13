@@ -1,19 +1,6 @@
 #define SPAWN_MEGAFAUNA "bluh bluh huge boss"
 #define SPAWN_BUBBLEGUM 6
 
-/turf/open/floor/plating/asteroid
-	var/list/terrain_spawn_list
-
-/turf/open/floor/plating/asteroid/airless/cave/proc/SpawnTerrain(turf/T)
-	if(prob(1))
-		if(istype(loc, /area/mine/explored) || istype(loc, /area/lavaland/surface/outdoors/explored))
-			return
-		var/randumb = pickweight(terrain_spawn_list)
-		for(var/obj/structure/geyser/F in range(7, T))
-			if(istype(F, randumb))
-				return
-		new randumb(T)
-
 /turf/open/floor/plating/asteroid/snow/atmosphere
 	initial_gas_mix = FROZEN_ATMOS
 	planetary_atmos = FALSE
@@ -55,7 +42,6 @@
 
 	megafauna_spawn_list = list()
 	flora_spawn_list = list(/obj/structure/flora/tree/pine = 2, /obj/structure/flora/rock/icy = 2, /obj/structure/flora/rock/pile/icy = 2, /obj/structure/flora/grass/both = 12)
-	terrain_spawn_list = list()
 	data_having_type = /turf/open/floor/plating/asteroid/airless/cave/snow/has_data
 	turf_type = /turf/open/floor/plating/asteroid/snow/icemoon
 
@@ -144,7 +130,6 @@
 				return
 	if(is_mining_level(z))
 		SpawnFlora(T)	//No space mushrooms, cacti.
-	SpawnTerrain(T)
 	SpawnMonster(T)		//Checks for danger area.
 	T.ChangeTurf(turf_type, null, CHANGETURF_IGNORE_AIR)
 
@@ -194,16 +179,3 @@
 			if(!istype(F, randumb))
 				return
 		new randumb(T)
-
-/turf/open/floor/plating/asteroid/airless/cave/SpawnTerrain(turf/T)
-	if(prob(1))
-		if(isarea(loc))
-			var/area/A = loc
-			if(!A.flora_allowed)
-				return
-		var/randumb = pickweight(terrain_spawn_list)
-		for(var/obj/structure/geyser/F in range(7, T))
-			if(istype(F, randumb))
-				return
-		if(randumb)
-			new randumb(T)
