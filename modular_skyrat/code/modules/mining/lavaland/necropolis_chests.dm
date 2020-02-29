@@ -12,6 +12,24 @@
 		if(3)
 			new /obj/item/gun/magic/staff/spellblade(src)
 
+/mob/living/simple_animal/hostile/megafauna/bubblegum/hard
+	name = "enraged bubblegum chest"
+
+/obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
+	new /obj/item/clothing/suit/space/hostile_environment(src)
+	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
+	new /obj/item/borg/upgrade/modkit/shotgun(src)
+	new /obj/item/mayhem(src)
+	new /obj/item/blood_contract(src)
+	new /obj/item/gun/magic/staff/spellblade(src)
+
+/obj/structure/closet/crate/necropolis/bubblegum/hard/crusher
+	name = "enraged bloody bubblegum chest"
+
+/obj/structure/closet/crate/necropolis/bubblegum/hard/crusher/PopulateContents()
+	..()
+	new /obj/item/crusher_trophy/demon_claws(src)
+
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
 	new /obj/item/borg/upgrade/modkit/knockback(src)
 	var/loot = rand(1,4)
@@ -25,6 +43,24 @@
 			new /obj/item/gun/magic/wand/fireball(src)
 		if(4)
 			new /obj/item/dragons_blood(src)
+
+/obj/structure/closet/crate/necropolis/dragon/hard
+	name = "enraged dragon chest"
+
+/obj/structure/closet/crate/necropolis/dragon/hard/PopulateContents()
+	new /obj/item/borg/upgrade/modkit/knockback(src)
+	new /obj/item/melee/ghost_sword(src)
+	new /obj/item/lava_staff(src)
+	new /obj/item/book/granter/spell/sacredflame(src)
+	new /obj/item/gun/magic/wand/fireball(src)
+	new /obj/item/dragons_blood(src)
+
+/obj/structure/closet/crate/necropolis/dragon/hard/crusher
+	name = "enraged fiery dragon chest"
+
+/obj/structure/closet/crate/necropolis/dragon/hard/crusher/PopulateContents()
+	..()
+	new /obj/item/crusher_trophy/tail_spike(src)
 
 /obj/structure/closet/crate/necropolis/colossus/PopulateContents()
 	var/list/choices = subtypesof(/obj/machinery/anomalous_crystal)
