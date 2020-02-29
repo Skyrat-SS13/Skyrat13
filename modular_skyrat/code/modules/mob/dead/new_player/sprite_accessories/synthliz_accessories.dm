@@ -5,6 +5,12 @@
 	name = "Synthetic Lizard Snout"
 	icon_state = "synthliz_basic"
 
+/datum/sprite_accessory/mam_snouts/synthliz/synthliz_under
+	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_snouts.dmi'
+	color_src = MATRIXED
+	name = "Synthetic Lizard Snout Under"
+	icon_state = "synthliz_under"
+
 //Body markings
 /datum/sprite_accessory/mam_body_markings/synthliz/synthliz_scutes
 	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_body_markings.dmi'
@@ -46,3 +52,33 @@
 	color_src = MUTCOLORS
 	name = "Synthetic Lizard Curled"
 	icon_state = "synth_curled"
+
+/datum/sprite_accessory/antenna/synthliz/synthliz_thick
+	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_antennas.dmi'
+	color_src = MUTCOLORS
+	name = "Synthetic Lizard Thick"
+	icon_state = "synth_thick"
+
+/datum/sprite_accessory/antenna/synthliz/synth_thicklight
+	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_antennas.dmi'
+	color_src = MATRIXED
+	name = "Synthetic Lizard Thick Light"
+	icon_state = "synth_thicklight"
+
+/datum/sprite_accessory/antenna/synthliz/synth_short
+	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_antennas.dmi'
+	color_src = MUTCOLORS
+	name = "Synthetic Lizard Short"
+	icon_state = "synth_short"
+
+/datum/sprite_accessory/antenna/synthliz/synth_sharp
+	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_antennas.dmi'
+	color_src = MUTCOLORS
+	name = "Synthetic Lizard Sharp"
+	icon_state = "synth_sharp"
+
+/datum/sprite_accessory/antenna/synthliz/synth_sharplight
+	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_antennas.dmi'
+	color_src = MATRIXED
+	name = "Synthetic Lizard Sharp Light"
+	icon_state = "synth_sharplight"
