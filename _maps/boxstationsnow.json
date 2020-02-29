@@ -1,6 +1,6 @@
 {
     "map_name": "Snow Box Station",
-    "map_path": "modular_skyrat/_maps/map_files/BoxStationSnow",
+    "map_path": "_maps/map_files/BoxStationSnow",
     "map_file": "BoxStationSnow.dmm",
     "shuttles": {
 	    "cargo": "cargo_box",
