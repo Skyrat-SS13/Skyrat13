@@ -3249,7 +3249,6 @@
 #include "modular_citadel\code\modules\reagents\objects\items.dm"
 #include "modular_citadel\code\modules\reagents\reagents\cit_reagents.dm"
 #include "modular_citadel\interface\skin.dmf"
-#include "modular_skyrat\_DEFINES\achievements.dm"
 #include "modular_skyrat\_DEFINES\atmospherics.dm"
 #include "modular_skyrat\_DEFINES\maps.dm"
 #include "modular_skyrat\_DEFINES\obj_flags.dm"
