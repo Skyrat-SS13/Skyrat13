@@ -399,28 +399,28 @@ Difficulty: Hard
 /obj/effect/temp_visual/dragon_swoop/bubblegum
 	duration = 10
 
-/obj/effect/temp_visual/bubblegum_hands
+/obj/effect/temp_visual/bubblegum_handshard
 	icon = 'icons/effects/bubblegum.dmi'
 	duration = 9
 
-/obj/effect/temp_visual/bubblegum_hands/rightthumb
+/obj/effect/temp_visual/bubblegum_handshard/rightthumb
 	icon_state = "rightthumbgrab"
 
-/obj/effect/temp_visual/bubblegum_hands/leftthumb
+/obj/effect/temp_visual/bubblegum_handshard/leftthumb
 	icon_state = "leftthumbgrab"
 
-/obj/effect/temp_visual/bubblegum_hands/rightpaw
+/obj/effect/temp_visual/bubblegum_handshard/rightpaw
 	icon_state = "rightpawgrab"
 	layer = BELOW_MOB_LAYER
 
-/obj/effect/temp_visual/bubblegum_hands/leftpaw
+/obj/effect/temp_visual/bubblegum_handshard/leftpaw
 	icon_state = "leftpawgrab"
 	layer = BELOW_MOB_LAYER
 
-/obj/effect/temp_visual/bubblegum_hands/rightsmack
+/obj/effect/temp_visual/bubblegum_handshard/rightsmack
 	icon_state = "rightsmack"
 
-/obj/effect/temp_visual/bubblegum_hands/leftsmack
+/obj/effect/temp_visual/bubblegum_handshard/leftsmack
 	icon_state = "leftsmack"
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/hallucination
