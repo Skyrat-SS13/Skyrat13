@@ -1,8 +1,3 @@
-#define ARCADE_WEIGHT_TRICK 4
-#define ARCADE_WEIGHT_USELESS 2
-#define ARCADE_WEIGHT_RARE 1
-#define ARCADE_RATIO_PLUSH 0.20 // average 1 out of 6 wins is a plush.
-
 /obj/machinery/computer/arcade
 	list/prizes = list(
 		/obj/item/toy/balloon = ARCADE_WEIGHT_USELESS,
