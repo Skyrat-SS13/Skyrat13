@@ -144,19 +144,6 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, clickparams)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, clickparams)
 
-//vortex talisman "nerf" for the king goat
-/obj/item/crusher_trophy/vortex_talisman/on_mark_detonation(mob/living/target, mob/living/user)
-	var/turf/current_location = get_turf(user)
-	var/area/current_area = current_location.loc
-	if(current_area.noteleport)
-		to_chat(user, "[src] fizzles uselessly.")
-		return
-	var/turf/T = get_turf(user)
-	new /obj/effect/temp_visual/hierophant/wall/crusher(T, user) //a wall only you can pass!
-	var/turf/otherT = get_step(T, turn(user.dir, 90))
-	if(otherT)
-		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
-
 //king goat
 /obj/item/crusher_trophy/king_goat
 	name = "king goat hoof"

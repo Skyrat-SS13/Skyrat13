@@ -110,38 +110,3 @@
 
 /obj/item/katana/necropolis
 	force = 30 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
-
-/obj/item/warp_cube/attack_self(mob/user)//"nerf" for king goat
-	var/turf/current_location = get_turf(user)
-	var/area/current_area = current_location.loc
-	if(!linked || current_area.noteleport)
-		to_chat(user, "<span class='warning'>[src] fizzles uselessly.</span>")
-		return
-	if(teleporting)
-		return
-	teleporting = TRUE
-	linked.teleporting = TRUE
-	var/turf/T = get_turf(src)
-	new /obj/effect/temp_visual/warp_cube(T, user, teleport_color, TRUE)
-	SSblackbox.record_feedback("tally", "warp_cube", 1, type)
-	new /obj/effect/temp_visual/warp_cube(get_turf(linked), user, linked.teleport_color, FALSE)
-	var/obj/effect/warp_cube/link_holder = new /obj/effect/warp_cube(T)
-	user.forceMove(link_holder) //mess around with loc so the user can't wander around
-	sleep(2.5)
-	if(QDELETED(user))
-		qdel(link_holder)
-		return
-	if(QDELETED(linked))
-		user.forceMove(get_turf(link_holder))
-		qdel(link_holder)
-		return
-	link_holder.forceMove(get_turf(linked))
-	sleep(2.5)
-	if(QDELETED(user))
-		qdel(link_holder)
-		return
-	teleporting = FALSE
-	if(!QDELETED(linked))
-		linked.teleporting = FALSE
-	user.forceMove(get_turf(link_holder))
-	qdel(link_holder)
