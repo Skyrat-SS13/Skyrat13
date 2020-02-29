@@ -1483,9 +1483,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("flavor_text")
+<<<<<<< HEAD
 					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb.", "Flavor Text", features["flavor_text"], MAX_FAVOR_LEN, TRUE)
 					if(msg)
 						features["flavor_text"] = msg
+=======
+					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", features["flavor_text"], MAX_FAVOR_LEN, TRUE)
+					if(!isnull(msg))
+						features["flavor_text"] = html_decode(msg)
+>>>>>>> 5ba6320f5e... Merge pull request #11261 from Ghommie/Ghommie-cit591
 
 				if("ooc_notes")
 					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", ooc_notes, MAX_FAVOR_LEN, TRUE)
