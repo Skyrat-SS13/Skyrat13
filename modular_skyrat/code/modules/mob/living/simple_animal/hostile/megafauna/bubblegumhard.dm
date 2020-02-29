@@ -165,9 +165,9 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/proc/bloodsmack(turf/T, handedness)
 	if(handedness)
-		new /obj/effect/temp_visual/bubblegum_hands/rightsmack(T)
+		new /obj/effect/temp_visual/bubblegum_handshard/rightsmack(T)
 	else
-		new /obj/effect/temp_visual/bubblegum_hands/leftsmack(T)
+		new /obj/effect/temp_visual/bubblegum_handshard/leftsmack(T)
 	sleep(4)
 	for(var/mob/living/L in T)
 		if(!faction_check_mob(L))
@@ -179,11 +179,11 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/proc/bloodgrab(turf/T, handedness)
 	if(handedness)
-		new /obj/effect/temp_visual/bubblegum_hands/rightpaw(T)
-		new /obj/effect/temp_visual/bubblegum_hands/rightthumb(T)
+		new /obj/effect/temp_visual/bubblegum_handshard/rightpaw(T)
+		new /obj/effect/temp_visual/bubblegum_handshard/rightthumb(T)
 	else
-		new /obj/effect/temp_visual/bubblegum_hands/leftpaw(T)
-		new /obj/effect/temp_visual/bubblegum_hands/leftthumb(T)
+		new /obj/effect/temp_visual/bubblegum_handshard/leftpaw(T)
+		new /obj/effect/temp_visual/bubblegum_handshard/leftthumb(T)
 	sleep(6)
 	for(var/mob/living/L in T)
 		if(!faction_check_mob(L))
@@ -399,28 +399,28 @@ Difficulty: Hard
 /obj/effect/temp_visual/dragon_swoop/bubblegum
 	duration = 10
 
-/obj/effect/temp_visual/bubblegum_handshard
+/obj/effect/temp_visual/bubblegum_handshardhard
 	icon = 'icons/effects/bubblegum.dmi'
 	duration = 9
 
-/obj/effect/temp_visual/bubblegum_handshard/rightthumb
+/obj/effect/temp_visual/bubblegum_handshardhard/rightthumb
 	icon_state = "rightthumbgrab"
 
-/obj/effect/temp_visual/bubblegum_handshard/leftthumb
+/obj/effect/temp_visual/bubblegum_handshardhard/leftthumb
 	icon_state = "leftthumbgrab"
 
-/obj/effect/temp_visual/bubblegum_handshard/rightpaw
+/obj/effect/temp_visual/bubblegum_handshardhard/rightpaw
 	icon_state = "rightpawgrab"
 	layer = BELOW_MOB_LAYER
 
-/obj/effect/temp_visual/bubblegum_handshard/leftpaw
+/obj/effect/temp_visual/bubblegum_handshardhard/leftpaw
 	icon_state = "leftpawgrab"
 	layer = BELOW_MOB_LAYER
 
-/obj/effect/temp_visual/bubblegum_handshard/rightsmack
+/obj/effect/temp_visual/bubblegum_handshardhard/rightsmack
 	icon_state = "rightsmack"
 
-/obj/effect/temp_visual/bubblegum_handshard/leftsmack
+/obj/effect/temp_visual/bubblegum_handshardhard/leftsmack
 	icon_state = "leftsmack"
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/hallucination
