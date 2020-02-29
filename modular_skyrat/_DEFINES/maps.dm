@@ -6,12 +6,6 @@
 #define ZTRAIT_ASHSTORM "Weather_Ashstorm"
 #define ZTRAIT_ACIDRAIN "Weather_Acidrain"
 
-#define ZTRAITS_LAVALAND list(\
-	ZTRAIT_MINING = TRUE, \
-	ZTRAIT_ASHSTORM = TRUE, \
-	ZTRAIT_LAVA_RUINS = TRUE, \
-	ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
-	ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
 #define ZTRAITS_ICEMOON list(\
     ZTRAIT_MINING = TRUE, \
     ZTRAIT_SNOWSTORM = TRUE, \
