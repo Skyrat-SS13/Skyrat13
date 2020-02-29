@@ -158,7 +158,7 @@
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
 	else if (config.minetype == "icemoon")
 		LoadGroup(FailedZs, "Ice moon Underground", "map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
-		LoadGroup(FailedZs, "Ice moon", "map_files/Mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
+		LoadGroup(FailedZs, "Ice moon", "modular_skyrat/_map/map_files/Mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
 	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 	// reset the mining map to random so if an admin sets the mining map it isn't stuck to that forever
