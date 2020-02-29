@@ -3283,7 +3283,6 @@
 #include "modular_skyrat\code\game\objects\structures\flora.dm"
 #include "modular_skyrat\code\game\objects\structures\windoor_assembly.dm"
 #include "modular_skyrat\code\game\objects\structures\icemoon\cave_entrance.dm"
-#include "modular_skyrat\code\game\objects\structures\lavaland\geyser.dm"
 #include "modular_skyrat\code\game\objects\structures\lavaland\necropolis_tendril.dm"
 #include "modular_skyrat\code\game\turfs\closed\minerals.dm"
 #include "modular_skyrat\code\game\turfs\open\chasm.dm"
