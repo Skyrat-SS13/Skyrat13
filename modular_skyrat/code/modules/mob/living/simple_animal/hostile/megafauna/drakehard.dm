@@ -82,9 +82,9 @@ Difficulty: Medium
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/lava_swoop(amount = 30)
 	if(health < maxHealth * 0.5)
-		return swoop_attack(lava_arena = TRUE, swoop_cooldown = 60)
+		return swooop_attack(lava_arena = TRUE, swoop_cooldown = 60)
 	INVOKE_ASYNC(src, .proc/lava_pools, amount)
-	swoop_attack(FALSE, target, 1000) // longer cooldown until it gets reset below
+	swooop_attack(FALSE, target, 1000) // longer cooldown until it gets reset below
 	sleep(0)
 	fire_cone()
 	if(health < maxHealth*0.5)
@@ -218,7 +218,7 @@ Difficulty: Medium
 			M.take_damage(45, BRUTE, "melee", 1)
 		sleep(1.5)
 
-/mob/living/simple_animal/hostile/megafauna/dragon/hard/swoop_attack(lava_arena = FALSE, atom/movable/manual_target, swoop_cooldown = 30)
+/mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/swooop_attack(lava_arena = FALSE, atom/movable/manual_target, swoop_cooldown = 30)
 	if(stat || swooping)
 		return
 	if(manual_target)
