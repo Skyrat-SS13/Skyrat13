@@ -18,7 +18,7 @@
   */
 /mob/living/simple_animal/hostile/megafauna/legion/hard
 	name = "Enraged Legion"
-	desc = "THE one in the many.."
+	desc = "THE one in the many."
 	armour_penetration = 50
 	melee_damage_lower = 25
 	melee_damage_upper = 25
@@ -36,8 +36,9 @@
 	elimination = TRUE
 	appearance_flags = 0
 	mouse_opacity = MOUSE_OPACITY_ICON
-	var/size = 3
-	var/charging = FALSE
+	size = 3
+	charging = FALSE
+	var/true_spawn = TRUE
 
 /obj/item/gps/internal/legion/hard
 	icon_state = null
@@ -135,7 +136,7 @@
 			A.infest(L)
 
 ///Resets the charge buffs.
-/mob/living/simple_animal/hostile/megafauna/legion/hard/proc/reset_charge()
+/mob/living/simple_animal/hostile/megafauna/legion/hard/reset_charge()
 	ranged = TRUE
 	retreat_distance = 5
 	minimum_distance = 5
@@ -151,14 +152,14 @@
 		return
 	//We check what loot we should drop.
 	var/last_legion = TRUE
-	for(var/mob/living/simple_animal/hostile/megafauna/legion/other in GLOB.mob_living_list)
+	for(var/mob/living/simple_animal/hostile/megafauna/legion/hard/other in GLOB.mob_living_list)
 		if(other != src)
 			last_legion = FALSE
 			break
 	if(last_legion)
 		loot = list(/obj/item/staff/storm, /obj/item/staff/storm, /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor, /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor)
 		elimination = FALSE
-	else if(prob(20)) //20% chance for sick lootz.
+	else if(prob(100)) //100% chance for sick loots!
 		loot = list(/obj/structure/closet/crate/necropolis/tendril)
 		if(!true_spawn)
 			loot = null
@@ -188,7 +189,7 @@
 			maxHealth = 200
 	visible_message("<span class='boldannounce'>This is getting out of hands. Now there are three of them!</span>")
 	for(var/i in 1 to 2) //Create three skulls in total
-		var/mob/living/simple_animal/hostile/megafauna/legion/L = new(loc)
+		var/mob/living/simple_animal/hostile/megafauna/legion/hard/L = new(loc)
 		L.setVarsAfterSplit(src)
 	return TRUE
 
@@ -218,7 +219,7 @@
 	layer = ABOVE_OBJ_LAYER
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 100,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	///What kind of projectile the actual damaging part should be.
-	var/projectile_type = /obj/projectile/beam/legion
+	var/projectile_type = /obj/item/projectile/beam/legion
 	///Time until the tracer gets shot
 	var/initial_firing_time = 18
 	///How long it takes between shooting the tracer and the projectile.
@@ -256,7 +257,7 @@
 
 ///Called shot_delay after the turret shot the tracer. Shoots a projectile into the same direction.
 /obj/structure/legionturret/proc/fire_beam(angle)
-	var/obj/projectile/ouchie = new projectile_type(loc)
+	var/obj/item/projectile/ouchie = new projectile_type(loc)
 	ouchie.firer = src
 	ouchie.fire(angle)
 	playsound(src, 'sound/effects/bin_close.ogg', 100, TRUE)
