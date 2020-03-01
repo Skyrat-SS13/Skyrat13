@@ -1,34 +1,24 @@
-/datum/snowy_level/proc/set_linkage(new_linkage)
-	linkage = new_linkage
-	if(linkage == SELFLOOPING)
-		neigbours = list(TEXT_NORTH,TEXT_SOUTH,TEXT_EAST,TEXT_WEST)
-		for(var/A in neigbours)
-			neigbours[A] = src
-
-/datum/snowy_level/proc/set_neigbours(list/L)
-	for(var/datum/snowy_transition_point/P in L)
+/datum/space_level/snowy_level/set_neigbours(list/L)
+	for(var/datum/space_transition_point/snowy_transition_point/P in L)
 		if(P.x == xi)
 			if(P.y == yi+1)
-				neigbours[TEXT_NORTH] = P.spl
+				neigbours[TEXT_NORTH] = P.sspl
 				P.spl.neigbours[TEXT_SOUTH] = src
 			else if(P.y == yi-1)
-				neigbours[TEXT_SOUTH] = P.spl
+				neigbours[TEXT_SOUTH] = P.sspl
 				P.spl.neigbours[TEXT_NORTH] = src
 		else if(P.y == yi)
 			if(P.x == xi+1)
-				neigbours[TEXT_EAST] = P.spl
+				neigbours[TEXT_EAST] = P.sspl
 				P.spl.neigbours[TEXT_WEST] = src
 			else if(P.x == xi-1)
-				neigbours[TEXT_WEST] = P.spl
+				neigbours[TEXT_WEST] = P.sspl
 				P.spl.neigbours[TEXT_EAST] = src
 
-/datum/snowy_transition_point          //this is explicitly utilitarian datum type made specially for the space map generation and are absolutely unusable for anything else
-	var/list/neigbours = list()
-	var/x
-	var/y
-	var/datum/snowy_level/spl
+/datum/space_transition_point/snowy_transition_point          //this is explicitly utilitarian datum type made specially for the space map generation and are absolutely unusable for anything else
+	var/datum/space_level/snowy_level/sspl
 
-/datum/snowy_transition_point/New(nx, ny, list/point_grid)
+/datum/space_transition_point/snowy_transition_point/New(nx, ny, list/point_grid)
 	if(!point_grid)
 		qdel(src)
 		return
@@ -42,7 +32,7 @@
 		return
 	point_grid[x][y] = src
 
-/datum/snowy_transition_point/proc/set_neigbours(list/grid)
+/datum/space_transition_point/snowy_transition_point/set_neigbours(list/grid)
 	var/max_X = grid.len
 	var/list/max_Y = grid[1]
 	max_Y = max_Y.len

@@ -6,7 +6,7 @@
 	#ifdef ALL_MAPS
 		#include "map_files\Mining\Lavaland.dmm"
 		#include "map_files\debug\runtimestation.dmm"
-		#include "map_files\BoxStation\BoxStationSnow.dmm" //Will be changed once we get more snow station maps.
+		#include "map_files\BoxStation\BoxStationSnow.dmm" //Will add more once we get more snow station maps.
 
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"

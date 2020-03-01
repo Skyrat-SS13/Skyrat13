@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(mapping)
 	var/snowy_underground_levels_so_far = 0
 	var/list/z_list
 	var/datum/space_level/transit
-	var/datum/snowy_level/snowdin
+	var/datum/space_level/snowy_level/snowdin
 	var/datum/space_level/empty_space
 	var/num_of_res_levels = 1
 
@@ -119,7 +119,7 @@ SUBSYSTEM_DEF(mapping)
 	loading_ruins = FALSE
 #endif
 	//Add snowdin because why not?
-	snowdin = add_new_zlevel ("Snowdin", ZTRAITS_SNOWY, z_type = /datum/snowy_level)
+	snowdin = add_new_zlevel ("Snowdin", ZTRAITS_SNOWY, z_type = /datum/space_level/snowy_level)
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()

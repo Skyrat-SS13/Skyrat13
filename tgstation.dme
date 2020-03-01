@@ -2055,6 +2055,8 @@
 #include "code\modules\mapping\mapping_helpers\network_builder\atmos_pipe.dm"
 #include "code\modules\mapping\mapping_helpers\network_builder\power_cables.dm"
 #include "code\modules\mapping\space_management\multiz_helpers.dm"
+#include "code\modules\mapping\space_management\snowy_level.dm"
+#include "code\modules\mapping\space_management\snowy_transition.dm"
 #include "code\modules\mapping\space_management\space_level.dm"
 #include "code\modules\mapping\space_management\space_reservation.dm"
 #include "code\modules\mapping\space_management\space_transition.dm"
