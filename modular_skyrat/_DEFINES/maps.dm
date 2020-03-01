@@ -19,7 +19,7 @@
     ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
     ZTRAIT_UP = 1, \
     ZTRAIT_BASETURF = /turf/open/lava/plasma/ice_moon)
-#undef ZTRAITS_LAVALAND
+#undef ZTRAITS_LAVALAND list(\
 #define ZTRAITS_LAVALAND list(\
 	ZTRAIT_MINING = TRUE, \
 	ZTRAIT_ASHSTORM = TRUE, \
