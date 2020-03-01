@@ -8,6 +8,10 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
+	//SKYRAT CHANGES - adds job exp to mime
+	exp_requirements = 120
+	exp_type = EXP_TYPE_CREW
+	//END OF SKYRAT CHANGES
 
 	outfit = /datum/outfit/job/mime
 
@@ -17,6 +21,7 @@
 	display_order = JOB_DISPLAY_ORDER_MIME
 
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
 	H.apply_pref_name("mime", M.client)
 
 /datum/outfit/job/mime

@@ -19,6 +19,7 @@ Borg Hypospray
 	amount_per_transfer_from_this = 5
 	volume = 30
 	possible_transfer_amounts = list()
+	reagent_value = NO_REAGENTS_VALUE
 	var/mode = 1
 	var/charge_cost = 50
 	var/charge_tick = 0
@@ -170,6 +171,7 @@ Borg Hypospray
 /*
 Borg Shaker
 */
+/* moved to modular_skyrat
 /obj/item/reagent_containers/borghypo/borgshaker
 	name = "cyborg shaker"
 	desc = "An advanced drink synthesizer and mixer."
@@ -187,7 +189,7 @@ Borg Shaker
 						/datum/reagent/consumable/ethanol/vermouth, /datum/reagent/consumable/ethanol/wine, /datum/reagent/consumable/ethanol/kahlua,
 						/datum/reagent/consumable/ethanol/cognac, /datum/reagent/consumable/ethanol/ale, /datum/reagent/consumable/milk,
 						/datum/reagent/consumable/coffee, /datum/reagent/consumable/banana, /datum/reagent/consumable/lemonjuice)
-
+*/
 /obj/item/reagent_containers/borghypo/borgshaker/attack(mob/M, mob/user)
 	return //Can't inject stuff with a shaker, can we? //not with that attitude
 
@@ -231,7 +233,7 @@ Borg Shaker
 
 	if(empty)
 		to_chat(usr, "<span class='warning'>It is currently empty! Please allow some time for the synthesizer to produce more.</span>")
-
+/* moved to modular_skyrat
 /obj/item/reagent_containers/borghypo/borgshaker/hacked
 	name = "cyborg shaker"
 	desc = "Will mix drinks that knock them dead."
@@ -242,7 +244,7 @@ Borg Shaker
 	recharge_time = 3
 	accepts_reagent_upgrades = FALSE
 	reagent_ids = list(/datum/reagent/toxin/fakebeer, /datum/reagent/consumable/ethanol/fernet)
-
+*/
 /obj/item/reagent_containers/borghypo/peace
 	name = "Peace Hypospray"
 

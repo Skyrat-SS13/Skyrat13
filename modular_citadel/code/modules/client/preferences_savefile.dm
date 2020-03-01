@@ -13,7 +13,13 @@
 		features["mcolor3"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
 	features["mcolor2"]	= sanitize_hexcolor(features["mcolor2"], 3, 0)
 	features["mcolor3"]	= sanitize_hexcolor(features["mcolor3"], 3, 0)
-
+	ooc_notes = sanitize_text(S["ooc_notes"])
+	erppref = sanitize_text(S["erp_pref"], "Ask")
+	if(!length(erppref)) erppref = "Ask"
+	nonconpref = sanitize_text(S["noncon_pref"], "Ask")
+	if(!length(nonconpref)) nonconpref = "Ask"
+	vorepref = sanitize_text(S["vore_pref"], "Ask")
+	if(!length(vorepref)) vorepref = "Ask"
 	//gear loadout
 	var/text_to_load
 	S["loadout"] >> text_to_load
@@ -57,13 +63,11 @@
 	WRITE_FILE(S["feature_balls_size"], features["balls_size"])
 	WRITE_FILE(S["feature_balls_shape"], features["balls_shape"])
 	WRITE_FILE(S["feature_balls_sack_size"], features["balls_sack_size"])
-	WRITE_FILE(S["feature_balls_fluid"], features["balls_fluid"])
 	//breasts features
 	WRITE_FILE(S["feature_has_breasts"], features["has_breasts"])
 	WRITE_FILE(S["feature_breasts_size"], features["breasts_size"])
 	WRITE_FILE(S["feature_breasts_shape"], features["breasts_shape"])
 	WRITE_FILE(S["feature_breasts_color"], features["breasts_color"])
-	WRITE_FILE(S["feature_breasts_fluid"], features["breasts_fluid"])
 	WRITE_FILE(S["feature_breasts_producing"], features["breasts_producing"])
 	//vagina features
 	WRITE_FILE(S["feature_has_vag"], features["has_vag"])
@@ -73,7 +77,10 @@
 	WRITE_FILE(S["feature_has_womb"], features["has_womb"])
 	//flavor text
 	WRITE_FILE(S["feature_flavor_text"], features["flavor_text"])
-
+	WRITE_FILE(S["ooc_notes"], ooc_notes)
+	WRITE_FILE(S["erp_pref"], erppref)
+	WRITE_FILE(S["noncon_pref"], nonconpref)
+	WRITE_FILE(S["vore_pref"], vorepref)
 	//gear loadout
 	if(islist(chosen_gear))
 		if(chosen_gear.len)

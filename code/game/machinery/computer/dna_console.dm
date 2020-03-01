@@ -64,7 +64,7 @@
 	if(!user)
 		return
 	var/datum/browser/popup = new(user, "scannernew", "DNA Modifier Console", 800, 630) // Set up the popup browser window
-	if(!(in_range(src, user) || issilicon(user)))
+	if(!(in_range(src, user) || hasSiliconAccessInArea(user)))
 		popup.close()
 		return
 	popup.add_stylesheet("scannernew", 'html/browser/scannernew.css')
@@ -294,10 +294,12 @@
 			if(viable_occupant)
 				temp_html += "<div class='dnaBlockNumber'>1</div>"
 				var/char = ""
-				var/ui_text = viable_occupant.dna.uni_identity
-				var/len_byte = length(ui_text)
+				var/se_text = viable_occupant.dna.struc_enzymes
+				var/len_byte = length(se_text)
 				var/char_it = 0
 				for(var/byte_it = 1, byte_it <= len_byte, byte_it += length(char))
+					char_it++
+					char = se_text[byte_it]
 					temp_html += "<a class='dnaBlock' href='?src=[REF(src)];task=pulsese;num=[char_it];'>[char]</a>"
 					if((char_it % max_line_len) == 0)
 						temp_html += "</div><div class='clearBoth'>"
@@ -316,7 +318,7 @@
 		return
 	if(!isturf(usr.loc))
 		return
-	if(!((isturf(loc) && in_range(src, usr)) || issilicon(usr)))
+	if(!((isturf(loc) && in_range(src, usr)) || hasSiliconAccessInArea(usr)))
 		return
 	if(current_screen == "working")
 		return
