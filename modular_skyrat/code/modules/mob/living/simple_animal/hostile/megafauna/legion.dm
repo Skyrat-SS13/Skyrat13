@@ -52,6 +52,7 @@
 	alternate_worn_icon = 'modular_skyrat/icons/mob/suit.dmi'
 	item_state = "praetor"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
+	slowdown = 0
 
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit helmet"
