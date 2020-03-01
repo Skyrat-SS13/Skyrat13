@@ -23,7 +23,11 @@
 		world.incrementMaxZ()
 		CHECK_TICK
 	// TODO: sleep here if the Z level needs to be cleared
-	var/datum/space_level/S = new z_type(new_z, name, traits)
+	var/datum/S
+	if(istype(z_type, /datum/space_level))
+		S = new z_type(new_z, name, traits)
+	else if(istype(z_type, /datum/snowy_level))
+		S = new z_type(new_z, name, traits)
 	z_list += S
 	return S
 

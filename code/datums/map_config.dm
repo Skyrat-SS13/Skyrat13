@@ -5,7 +5,7 @@
 
 /datum/map_config
 	// Metadata
-	var/config_filename = "_maps/boxstation.json"
+	var/config_filename = "_maps/boxstationsnow.json"
 	var/defaulted = TRUE  // set to FALSE by LoadConfig() succeeding
 	// Config from maps.txt
 	var/config_max_users = 0
@@ -20,12 +20,14 @@
 	var/map_file = "BoxStation.dmm"
 
 	var/traits = null
-	var/space_ruin_levels = 2
+	var/snowy_ruin_levels = 3
+	var/snowy_underground_ruin_levels = 3
+	var/space_ruin_levels = 1
 	var/space_empty_levels = 1
 
 	var/minetype = "lavaland"
 
-	var/maptype = MAP_TYPE_STATION //This should be used to adjust ingame behavior depending on the specific type of map being played. For instance, if an overmap were added, it'd be appropriate for it to only generate with a MAP_TYPE_SHIP
+	var/maptype = MAP_TYPE_COLONY //This should be used to adjust ingame behavior depending on the specific type of map being played. For instance, if an overmap were added, it'd be appropriate for it to only generate with a MAP_TYPE_SHIP
 
 	var/announcertype = "standard" //Determines the announcer the map uses. standard uses the default announcer, classic, but has a random chance to use other similarly-themed announcers, like medibot
 
@@ -139,7 +141,7 @@
 
 	if ("minetype" in json)
 		minetype = json["minetype"]
-	
+
 	if ("maptype" in json)
 		maptype = json["maptype"]
 
