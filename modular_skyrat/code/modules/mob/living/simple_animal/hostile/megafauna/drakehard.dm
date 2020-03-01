@@ -37,6 +37,16 @@ Difficulty: Medium
 	deathmessage = "collapses into a pile of bones, its flesh sloughing away."
 	deathsound = 'sound/magic/demon_dies.ogg'
 
+/obj/item/gps/internal/dragon/hard
+	icon_state = null
+	gpstag = "Enraged Fiery Signal"
+	desc = "Here there be 'bad' dragons."
+	invisibility = 100
+
+/mob/living/simple_animal/hostile/megafauna/dragon/hard/Initialize()
+	..()
+	internal = new/obj/item/gps/internal/dragon/hard(src)
+
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/OpenFire()
 	if(swooping)
 		return
