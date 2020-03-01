@@ -191,13 +191,6 @@
 	if (. && VM.map_name != config.map_name)
 		to_chat(world, "<span class='boldannounce'>Map rotation has chosen [VM.map_name] for next round!</span>")
 
-/datum/controller/subsystem/mapping/proc/mapvote()
-	if(map_voted || SSmapping.next_map_config) //If voted or set by other means.
-		return
-	if(SSvote.mode) //Theres already a vote running, default to rotation.
-		maprotate()
-	SSvote.initiate_vote("map", "automatic map rotation")
-
 /datum/controller/subsystem/mapping/changemap(var/datum/map_config/VM)
 	if(!VM.MakeNextMap())
 		next_map_config = load_map_config(default_to_box = TRUE)
