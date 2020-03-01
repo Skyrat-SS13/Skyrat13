@@ -3250,6 +3250,7 @@
 #include "modular_citadel\code\modules\reagents\reagents\cit_reagents.dm"
 #include "modular_citadel\interface\skin.dmf"
 #include "modular_skyrat\_DEFINES\atmospherics.dm"
+#include "modular_skyrat\_DEFINES\maps.dm"
 #include "modular_skyrat\_DEFINES\obj_flags.dm"
 #include "modular_skyrat\_DEFINES\status_effects.dm"
 #include "modular_skyrat\code\_DEFINES\maps.dm"
