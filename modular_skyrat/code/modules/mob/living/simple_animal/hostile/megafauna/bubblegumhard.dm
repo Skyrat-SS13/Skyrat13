@@ -74,19 +74,19 @@ obj/item/gps/internal/bubblegum/hard
 			surround_with_hallucinations()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/triple_charge()
+	charge(delay = 8)
 	charge(delay = 6)
 	charge(delay = 4)
-	charge(delay = 2)
 	SetRecoveryTime(15)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/proc/hallucination_charge()
 	if(!BUBBLEGUM_SMASH || prob(33))
-		hallucination_charge_around(times = 6, delay = 8)
+		hallucination_charge_around(times = 6, delay = 12)
 		SetRecoveryTime(10)
 	else
-		hallucination_charge_around(times = 4, delay = 9)
-		hallucination_charge_around(times = 4, delay = 8)
-		hallucination_charge_around(times = 4, delay = 7)
+		hallucination_charge_around(times = 4, delay = 14)
+		hallucination_charge_around(times = 4, delay = 10)
+		hallucination_charge_around(times = 4, delay = 10)
 		triple_charge()
 		SetRecoveryTime(20)
 
@@ -94,12 +94,12 @@ obj/item/gps/internal/bubblegum/hard
 	for(var/i = 1 to 5)
 		INVOKE_ASYNC(src, .proc/hallucination_charge_around, 2, 8, 2, 0, 4)
 		if(ismob(target))
-			charge(delay = 6)
+			charge(delay = 8)
 		else
-			sleep(6)
+			sleep(10)
 	SetRecoveryTime(20)
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/charge(atom/chargeat = target, delay = 3, chargepast = 2)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/charge(atom/chargeat = target, delay = 8, chargepast = 2)
 	if(!chargeat)
 		return
 	var/chargeturf = get_turf(chargeat)
@@ -295,7 +295,7 @@ obj/item/gps/internal/bubblegum/hard
 /obj/effect/decal/cleanable/blood/bubblegumhard/can_bloodcrawl_in()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/proc/hallucination_charge_around(times = 4, delay = 6, chargepast = 0, useoriginal = 1, radius)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/proc/hallucination_charge_around(times = 4, delay = 10, chargepast = 0, useoriginal = 1, radius)
 	var/startingangle = rand(1, 360)
 	if(!target)
 		return
@@ -347,7 +347,7 @@ obj/item/gps/internal/bubblegum/hard
 	if(!charging)
 		. = ..()
 		if(.)
-			recovery_time = world.time + 20 // can only attack melee once every 2 seconds but rapid_melee gives higher priority
+			recovery_time = world.time + 30 //can only attack melee once every 3 seconds but rapid_melee gives higher priority
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/bullet_act(obj/item/projectile/P)
 	if(BUBBLEGUM_IS_ENRAGED)
