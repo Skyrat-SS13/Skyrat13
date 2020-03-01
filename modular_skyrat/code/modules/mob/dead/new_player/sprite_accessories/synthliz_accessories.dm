@@ -110,5 +110,5 @@
 /datum/sprite_accessory/antenna/synthliz/synth_hornslight
 	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_antennas.dmi'
 	color_src = MATRIXED
-	name = "Synthetic Lizard Sharp Horns Light"
+	name = "Synthetic Lizard Horns Light"
 	icon_state = "synth_hornslight"
