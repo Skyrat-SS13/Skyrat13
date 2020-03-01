@@ -137,60 +137,6 @@
 		// And as the file is now removed set the next map to default.
 		next_map_config = load_map_config(default_to_box = TRUE)
 
-/datum/controller/subsystem/mapping/maprotate()
-	if(map_voted || SSmapping.next_map_config) //If voted or set by other means.
-		return
-
-	var/players = GLOB.clients.len
-	var/list/mapvotes = list()
-	//count votes
-	var/pmv = CONFIG_GET(flag/preference_map_voting)
-	if(pmv)
-		for (var/client/c in GLOB.clients)
-			var/vote = c.prefs.preferred_map
-			if (!vote)
-				if (global.config.defaultmap)
-					mapvotes[global.config.defaultmap.map_name] += 1
-				continue
-			mapvotes[vote] += 1
-	else
-		for(var/M in global.config.maplist)
-			mapvotes[M] = 1
-
-	//filter votes
-	for (var/map in mapvotes)
-		if (!map)
-			mapvotes.Remove(map)
-			continue
-		if (!(map in global.config.maplist))
-			mapvotes.Remove(map)
-			continue
-		var/datum/map_config/VM = global.config.maplist[map]
-		if (!VM)
-			mapvotes.Remove(map)
-			continue
-		if (VM.voteweight <= 0)
-			mapvotes.Remove(map)
-			continue
-		if (VM.config_min_users > 0 && players < VM.config_min_users)
-			mapvotes.Remove(map)
-			continue
-		if (VM.config_max_users > 0 && players > VM.config_max_users)
-			mapvotes.Remove(map)
-			continue
-
-		if(pmv)
-			mapvotes[map] = mapvotes[map]*VM.voteweight
-
-	var/pickedmap = pickweight(mapvotes)
-	if (!pickedmap)
-		return
-	var/datum/map_config/VM = global.config.maplist[pickedmap]
-	message_admins("Randomly rotating map to [VM.map_name]")
-	. = changemap(VM)
-	if (. && VM.map_name != config.map_name)
-		to_chat(world, "<span class='boldannounce'>Map rotation has chosen [VM.map_name] for next round!</span>")
-
 /datum/controller/subsystem/mapping/changemap(var/datum/map_config/VM)
 	if(!VM.MakeNextMap())
 		next_map_config = load_map_config(default_to_box = TRUE)
