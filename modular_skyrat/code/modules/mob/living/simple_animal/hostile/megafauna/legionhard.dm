@@ -19,6 +19,9 @@
 /mob/living/simple_animal/hostile/megafauna/legion/hard
 	name = "Enraged Legion"
 	desc = "THE one in the many."
+	icon = 'modular_skyrat/icons/mob/lavaland/96x96megafauna.dmi'
+	icon_state = "mega_legion"
+	icon_living = "mega_legion"
 	armour_penetration = 50
 	melee_damage_lower = 25
 	melee_damage_upper = 25
@@ -30,6 +33,7 @@
 	ranged_cooldown_time = 20
 	pixel_y = -16
 	pixel_x = -32
+
 	loot = list(/obj/item/stack/sheet/bone = 3, /obj/item/crusher_trophy/legion_shard, /obj/item/borg/upgrade/modkit/skull)
 	vision_range = 13
 	wander = FALSE
@@ -178,12 +182,12 @@
 			pixel_y = initial(pixel_y)
 			maxHealth = initial(maxHealth)
 		if(2)
-			icon = 'icons/mob/lavaland/64x64megafauna.dmi'
+			icon = 'modular_skyrat/icons/mob/lavaland/64x64megafauna.dmi'
 			pixel_x = -16
 			pixel_y = -8
 			maxHealth = 350
 		if(1)
-			icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+			icon = 'modular_skyrat/icons/mob/lavaland/lavaland_monsters.dmi'
 			pixel_x = 0
 			pixel_y = 0
 			maxHealth = 200
