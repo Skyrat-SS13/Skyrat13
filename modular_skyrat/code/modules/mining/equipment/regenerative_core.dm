@@ -41,11 +41,11 @@
 			to_chat(user, "<span class='notice'>[src] has decayed and can no longer be used to heal.</span>")
 	if(istype(target, /mob/living/simple_animal/hostile/megafauna/bubblegum))
 		new /mob/living/simple_animal/hostile/megafauna/bubblegum/hard(target.loc)
-		visible_message("[user] turned [targe] into an enraged [target]!")
+		visible_message("[user] turned [target] into an enraged [target]!")
 		qdel(target)
 	if(istype(target, /mob/living/simple_animal/hostile/megafauna/dragon))
 		new /mob/living/simple_animal/hostile/megafauna/dragon/hard(target.loc)
-		visible_message("[user] turned [targe] into an enraged [target]!")
+		visible_message("[user] turned [target] into an enraged [target]!")
 		qdel(target)
 
 /obj/item/organ/regenerative_core/attack_self(mob/user)
