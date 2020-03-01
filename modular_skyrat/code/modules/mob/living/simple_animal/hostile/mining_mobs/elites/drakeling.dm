@@ -95,30 +95,30 @@
 
 //Drakeling actions
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/lava_moat()
-	ranged_cooldown = world.time + 50
+	ranged_cooldown = world.time + 25
 	visible_message("<span class='boldwarning'>[src] spews lava around themselves! Get back!</span>")
 	for(var/turf/T in oview(1, src))
 		new /obj/effect/temp_visual/lava_warning(T)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/lava_around()
-	ranged_cooldown = world.time + 100
+	ranged_cooldown = world.time + 50
 	for(var/d in GLOB.cardinals)
 		INVOKE_ASYNC(src, .proc/lava_wall, d, 5)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/fire_spew()
-	ranged_cooldown = world.time + 50
+	ranged_cooldown = world.time + 25
 	visible_message("<span class='boldwarning'>[src] spews fire!</span>")
 	playsound(src,'sound/magic/Fireball.ogg', 200, 1)
 	sleep(5)
-	fire_wall(src.dir, 7)
+	fire_wall(src.dir, 10)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/fire_moat()
 	ranged_cooldown = world.time + 100
 	playsound(src,'sound/magic/Fireball.ogg', 200, 1)
 	visible_message("<span class='boldwarning'>[src] violently puffs smoke!They're going to make a fire moat!</span>")
-	sleep(15)
+	sleep(5)
 	for(var/d in GLOB.alldirs)
-		INVOKE_ASYNC(src, .proc/fire_wall, d, 5)
+		INVOKE_ASYNC(src, .proc/fire_wall, d, 10)
 
 // Drakeling helpers
 
@@ -136,7 +136,7 @@
 				L.adjustFireLoss(20)
 				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire breath!</span>")
 		T = get_step(T, dir)
-		sleep(1.5)
+		sleep(1)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/lava_wall(dir, range)
 	var/turf/T = get_turf(src)
@@ -149,12 +149,12 @@
 	icon_state = "lavastaff_warn"
 	layer = BELOW_MOB_LAYER
 	light_range = 2
-	duration = 13
+	duration = 7
 
 /obj/effect/temp_visual/lava_warning/ex_act()
 	return
 
-/obj/effect/temp_visual/lava_warning/Initialize(mapload, reset_time = 10)
+/obj/effect/temp_visual/lava_warning/Initialize(mapload, reset_time = 40)
 	. = ..()
 	INVOKE_ASYNC(src, .proc/fall, reset_time)
 	src.alpha = 63.75
@@ -165,7 +165,6 @@
 	playsound(T,'sound/magic/fleshtostone.ogg', 80, TRUE)
 	sleep(duration)
 	playsound(T,'sound/magic/fireball.ogg', 200, TRUE)
-
 	for(var/mob/living/L in T.contents)
 		if(istype(L, /mob/living/simple_animal/hostile/asteroid/elite/drakeling))
 			continue
