@@ -34,7 +34,7 @@
 	pixel_y = -16
 	pixel_x = -32
 
-	loot = list(/obj/structure/closet/crate/necropolis/legion/hard)
+	loot = list(/obj/item/stack/sheet/bone = 3)
 	vision_range = 13
 	wander = FALSE
 	elimination = TRUE
@@ -161,7 +161,7 @@
 			last_legion = FALSE
 			break
 	if(last_legion)
-		loot = list(/obj/item/staff/storm, /obj/item/staff/storm, /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor, /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor)
+		loot = list(/obj/structure/closet/crate/necropolis/legion/hard)
 		elimination = FALSE
 	else if(prob(100)) //100% chance for sick loots!
 		loot = list(/obj/structure/closet/crate/necropolis/tendril)

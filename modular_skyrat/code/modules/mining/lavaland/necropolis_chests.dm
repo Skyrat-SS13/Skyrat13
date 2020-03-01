@@ -181,18 +181,24 @@
 
 //legion
 /obj/structure/closet/crate/necropolis/legion
-	name = "echoing crate"
+	name = "echoing legion crate"
 
 /obj/structure/closet/crate/necropolis/legion/PopulateContents()
 	new /obj/item/staff/storm(src)
+	new /obj/item/crusher_trophy/legion_shard(src)
+	new /obj/item/borg/upgrade/modkit/skull(src)
 
 /obj/structure/closet/crate/necropolis/legion/hard
-	name = "enraged echoing crate"
+	name = "enraged echoing legion crate"
 
 /obj/structure/closet/crate/necropolis/legion/hard/PopulateContents()
 	new /obj/item/staff/storm(src)
 	new /obj/item/staff/storm(src)
 	new /obj/item/staff/storm(src)
+	new /obj/item/borg/upgrade/modkit/skull(src)
+	new /obj/item/borg/upgrade/modkit/skull(src)
+	new /obj/item/crusher_trophy/legion_shard(src)
+	new /obj/item/crusher_trophy/legion_shard(src)
 	var/obj/structure/closet/crate/necropolis/tendril/T = new /obj/structure/closet/crate/necropolis/tendril //Yup, i know, VERY spaghetti code.
 	var/obj/item/L
 	for(var/i = 0, i < 5, i++)
