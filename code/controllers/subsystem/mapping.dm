@@ -9,11 +9,15 @@ SUBSYSTEM_DEF(mapping)
 	var/datum/map_config/config
 	var/datum/map_config/next_map_config
 
+	var/map_voted = FALSE
+
 	var/list/map_templates = list()
 
 	var/list/ruins_templates = list()
 	var/list/space_ruins_templates = list()
 	var/list/lava_ruins_templates = list()
+	var/list/ice_ruins_templates = list()
+	var/list/ice_ruins_underground_templates = list()
 	var/datum/space_level/isolated_ruins_z //Created on demand during ruin loading.
 
 	var/list/shuttle_templates = list()
@@ -74,13 +78,10 @@ SUBSYSTEM_DEF(mapping)
 	for (var/i in 1 to config.space_empty_levels)
 		++space_levels_so_far
 		empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAIT_LINKAGE = CROSSLINKED))
-	// and the transit level
-	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
 		createRandomZlevel()
-
 
 	// Generate mining ruins
 	loading_ruins = TRUE
@@ -89,6 +90,15 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), /area/lavaland/surface/outdoors/unexplored, lava_ruins_templates)
 		for (var/lava_z in lava_ruins)
 			spawn_rivers(lava_z)
+	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
+	if (ice_ruins.len) // needs to be whitelisted for underground too so place_below ruins work
+		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/surface/outdoors/unexplored, ice_ruins_templates)
+		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/underground/unexplored, ice_ruins_templates)
+		for (var/ice_z in ice_ruins)
+			spawn_rivers(ice_z, 4, /turf/open/openspace/icemoon, /area/icemoon/surface/outdoors/unexplored)
+	var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
+	if (ice_ruins_underground.len)
+		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), /area/icemoon/underground/unexplored, ice_ruins_underground_templates)
 
 	// Generate deep space ruins
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
@@ -97,16 +107,14 @@ SUBSYSTEM_DEF(mapping)
 	SSmapping.seedStation()
 	loading_ruins = FALSE
 #endif
+	// Add the transit level
+	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()
 	// Set up Z-level transitions.
 	setup_map_transitions()
 	generate_station_area_list()
 	initialize_reserved_level(transit.z_value)
 	return ..()
-
-/* Nuke threats, for making the blue tiles on the station go RED
-   Used by the AI doomsday and the self destruct nuke.
-*/
 
 /datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
 	if(clearing_reserved_turfs || !initialized)			//in either case this is just not needed.
@@ -136,6 +144,10 @@ SUBSYSTEM_DEF(mapping)
 	if(!error)
 		returning += M
 		qdel(T, TRUE)
+
+/* Nuke threats, for making the blue tiles on the station go RED
+   Used by the AI doomsday and the self destruct nuke.
+*/
 
 /datum/controller/subsystem/mapping/proc/add_nuke_threat(datum/nuke)
 	nuke_threats[nuke] = TRUE
@@ -247,6 +259,9 @@ SUBSYSTEM_DEF(mapping)
 	// load mining
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
+	else if (config.minetype == "icemoon")
+		LoadGroup(FailedZs, "Ice moon Underground", "modular_skyrat/_maps/map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
+		LoadGroup(FailedZs, "Ice moon", "modular_skyrat/_maps/map_files/Mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
 	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif
@@ -259,6 +274,12 @@ SUBSYSTEM_DEF(mapping)
 		msg += ". Yell at your server host!"
 		INIT_ANNOUNCE(msg)
 #undef INIT_ANNOUNCE
+
+	// Custom maps are removed after station loading so the map files does not persist for no reason.
+	if(config.map_path == "custom")
+		fdel("_maps/custom/[config.map_file]")
+		// And as the file is now removed set the next map to default.
+		next_map_config = load_map_config(default_to_box = TRUE)
 
 GLOBAL_LIST_EMPTY(the_station_areas)
 
@@ -277,11 +298,14 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		log_world("ERROR: Station areas list failed to generate!")
 
 /datum/controller/subsystem/mapping/proc/maprotate()
+	if(map_voted || SSmapping.next_map_config) //If voted or set by other means.
+		return
+
 	var/players = GLOB.clients.len
 	var/list/mapvotes = list()
 	//count votes
-	var/amv = CONFIG_GET(flag/allow_map_voting)
-	if(amv)
+	var/pmv = CONFIG_GET(flag/preference_map_voting)
+	if(pmv)
 		for (var/client/c in GLOB.clients)
 			var/vote = c.prefs.preferred_map
 			if (!vote)
@@ -297,6 +321,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	for (var/map in mapvotes)
 		if (!map)
 			mapvotes.Remove(map)
+			continue
 		if (!(map in global.config.maplist))
 			mapvotes.Remove(map)
 			continue
@@ -314,7 +339,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			mapvotes.Remove(map)
 			continue
 
-		if(amv)
+		if(pmv)
 			mapvotes[map] = mapvotes[map]*VM.voteweight
 
 	var/pickedmap = pickweight(mapvotes)
@@ -326,6 +351,13 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if (. && VM.map_name != config.map_name)
 		to_chat(world, "<span class='boldannounce'>Map rotation has chosen [VM.map_name] for next round!</span>")
 
+/datum/controller/subsystem/mapping/proc/mapvote()
+	if(map_voted || SSmapping.next_map_config) //If voted or set by other means.
+		return
+	if(SSvote.mode) //Theres already a vote running, default to rotation.
+		maprotate()
+	SSvote.initiate_vote("map", "automatic map rotation")
+
 /datum/controller/subsystem/mapping/proc/changemap(var/datum/map_config/VM)
 	if(!VM.MakeNextMap())
 		next_map_config = load_map_config(default_to_box = TRUE)
@@ -333,10 +365,8 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		return
 
 	next_map_config = VM
-
-	. = TRUE
-
 	stat_map_name = "[config.map_name] (Next: [next_map_config.map_name])"
+	return TRUE
 
 /datum/controller/subsystem/mapping/proc/preloadTemplates(path = "_maps/templates/") //see master controller setup
 	var/list/filelist = flist(path)
@@ -452,13 +482,11 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		GLOB.the_gateway.awaygate = new_gate
 		GLOB.the_gateway.wait = world.time
 
-/datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override, border_type_override)
+/datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override)
 	UNTIL((!z || reservation_ready["[z]"]) && !clearing_reserved_turfs)
 	var/datum/turf_reservation/reserve = new type
 	if(turf_type_override)
 		reserve.turf_type = turf_type_override
-	if(border_type_override)
-		reserve.borderturf = border_type_override
 	if(!z)
 		for(var/i in levels_by_trait(ZTRAIT_RESERVED))
 			if(reserve.Reserve(width, height, i))
@@ -524,6 +552,8 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	used_turfs.Cut()
 	reserve_turfs(clearing)
 
+
+
 /datum/controller/subsystem/mapping/proc/reg_in_areas_in_z(list/areas)
 	for(var/B in areas)
 		var/area/A = B
@@ -535,7 +565,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		initialize_reserved_level(isolated_ruins_z.z_value)
 	return isolated_ruins_z.z_value
 
-	// Station Ruins
+// Station Ruins
 /datum/controller/subsystem/mapping
 	var/list/station_room_templates = list()
 
@@ -544,4 +574,4 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		var/obj/effect/landmark/stationroom/LM = V
 		LM.load()
 	if(GLOB.stationroom_landmarks.len)
-		seedStation() //I'm sure we can trust everyone not to insert a 1x1 rooms which loads a landmark which loads a landmark which loads a la...
+		seedStation()
