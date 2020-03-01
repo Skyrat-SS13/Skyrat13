@@ -191,6 +191,15 @@
 				hitlist += L
 				L.adjustFireLoss(src.modifier)
 				to_chat(L, "<span class='userdanger'>You're hit by [KA]'s fire breath!</span>")
+//king goat
+/obj/item/borg/upgrade/modkit/cooldown/cooler
+	name = "cooler modification kit"
+	desc = "Makes your kinetic accelerator shoot much faster, at the cost of 10 damage."
+	modifier = 5
+	cost = 25
+
+/obj/item/borg/upgrade/modkit/cooldown/cooler/modify_projectile(obj/item/projectile/kinetic/K)
+	K.damage -= (modifier *2)
 
 //10mm modkit (currently broken, only the 10mm pka works)
 /obj/item/gun/energy/kinetic_accelerator/tenmm
