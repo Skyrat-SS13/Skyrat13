@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/New(client/C)
 	parent = C
-
+	clientfps = world.fps*2 // Skyrat-edit
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		custom_names[custom_name_id] = get_default_name(custom_name_id)
 
@@ -1483,9 +1483,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("flavor_text")
-					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb.", "Flavor Text", features["flavor_text"], MAX_FAVOR_LEN, TRUE)
-					if(msg)
-						features["flavor_text"] = msg
+					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", features["flavor_text"], MAX_FAVOR_LEN, TRUE)
+					if(!isnull(msg))
+						features["flavor_text"] = html_decode(msg)
 
 				if("ooc_notes")
 					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", ooc_notes, MAX_FAVOR_LEN, TRUE)

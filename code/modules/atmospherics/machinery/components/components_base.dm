@@ -144,7 +144,7 @@
 	for(var/i in 1 to device_type)
 		var/datum/pipeline/parent = parents[i]
 		if(!parent)
-			throw EXCEPTION("Component is missing a pipenet! Rebuilding...")
+			throw EXCEPTION("Component [src] at ([loc.x],[loc.y],[loc.z]) is missing a pipenet! Rebuilding...") // Skyrat-edit
 			build_network()
 		parent.update = 1
 
