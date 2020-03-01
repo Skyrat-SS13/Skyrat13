@@ -185,7 +185,6 @@
 
 /obj/structure/closet/crate/necropolis/legion/PopulateContents()
 	new /obj/item/staff/storm(src)
-	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 
 /obj/structure/closet/crate/necropolis/legion/hard
 	name = "enraged echoing crate"
