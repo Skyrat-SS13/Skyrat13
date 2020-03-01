@@ -11,21 +11,33 @@
 	name = "Synthetic Lizard Snout Under"
 	icon_state = "synthliz_under"
 
+/datum/sprite_accessory/mam_snouts/synthliz/synthliz_tert
+	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_snouts.dmi'
+	color_src = MATRIXED
+	name = "Synthetic Lizard Snout Tertiary"
+	icon_state = "synthliz_tert"
+
+/datum/sprite_accessory/mam_snouts/synthliz/synthliz_tertunder
+	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_snouts.dmi'
+	color_src = MATRIXED
+	name = "Synthetic Lizard Snout Tertiary Under"
+	icon_state = "synthliz_tertunder"
+
 //Body markings
 /datum/sprite_accessory/mam_body_markings/synthliz/synthliz_scutes
 	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_body_markings.dmi'
 	name = "Synthlizscutes"
 	icon_state = "synthlizscutes"
 
-/datum/sprite_accessory/mam_body_markings/synthliz/synthliz_plates
+/datum/sprite_accessory/mam_body_markings/synthliz/synthliz_pecs
 	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_body_markings.dmi'
-	name = "Synthlizsplates"
-	icon_state = "synthlizsplates"
+	name = "Synthlizpecs"
+	icon_state = "synthlizpecs"
 
-/datum/sprite_accessory/mam_body_markings/synthliz/synthliz_lights
+/datum/sprite_accessory/mam_body_markings/synthliz/synthliz_pecslight
 	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_body_markings.dmi'
-	name = "Synthlizlights"
-	icon_state = "synthlizlights"
+	name = "Synthlizpecslight"
+	icon_state = "synthlizpecslight"
 
 //Tail
 /datum/sprite_accessory/mam_tails/synthliz/synthliz_tail
@@ -82,3 +94,15 @@
 	color_src = MATRIXED
 	name = "Synthetic Lizard Sharp Light"
 	icon_state = "synth_sharplight"
+
+/datum/sprite_accessory/antenna/synthliz/synth_horns
+	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_antennas.dmi'
+	color_src = MUTCOLORS
+	name = "Synthetic Lizard Horns"
+	icon_state = "synth_horns"
+
+/datum/sprite_accessory/antenna/synthliz/synth_hornslight
+	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_antennas.dmi'
+	color_src = MATRIXED
+	name = "Synthetic Lizard Sharp Horns Light"
+	icon_state = "synth_hornslight"
