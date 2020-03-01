@@ -16,8 +16,7 @@
 	name = "enraged bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
-	new /obj/item/clothing/suit/space/hostile_environment(src)
-	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
+	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 	new /obj/item/borg/upgrade/modkit/shotgun(src)
 	new /obj/item/mayhem(src)
 	new /obj/item/blood_contract(src)
@@ -179,6 +178,7 @@
 
 /obj/item/katana/necropolis
 	force = 30 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
+
 //legion
 /obj/structure/closet/crate/necropolis/legion
 	name = "echoing crate"
@@ -192,12 +192,9 @@
 
 /obj/structure/closet/crate/necropolis/legion/hard/PopulateContents()
 	new /obj/item/staff/storm(src)
-	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 	new /obj/item/staff/storm(src)
-	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 	new /obj/item/staff/storm(src)
-	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
-	var/obj/structure/closet/crate/necropolis/tendril/T = new /obj/structure/closet/crate/necropolis/tendril
+	var/obj/structure/closet/crate/necropolis/tendril/T = new /obj/structure/closet/crate/necropolis/tendril //Yup, i know, VERY spaghetti code.
 	var/obj/item/L
 	for(var/i = 0, i < 5, i++)
 		L = T.PopulateContents()
