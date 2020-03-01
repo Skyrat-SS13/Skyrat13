@@ -41,15 +41,11 @@
 /datum/species/synthliz/start_wagging_tail(mob/living/carbon/human/H)
 	if("mam_tail" in mutant_bodyparts)
 		mutant_bodyparts -= "mam_tail"
-		//mutant_bodyparts -= "spines"
 		mutant_bodyparts |= "mam_waggingtail"
-		//mutant_bodyparts |= "waggingspines"
 	H.update_body()
 
 /datum/species/synthliz/stop_wagging_tail(mob/living/carbon/human/H)
 	if("mam_waggingtail" in mutant_bodyparts)
 		mutant_bodyparts -= "mam_waggingtail"
-		//mutant_bodyparts -= "waggingspines"
 		mutant_bodyparts |= "mam_tail"
-		//mutant_bodyparts |= "spines"
 	H.update_body()

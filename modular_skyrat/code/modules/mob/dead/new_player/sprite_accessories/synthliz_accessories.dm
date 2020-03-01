@@ -46,6 +46,12 @@
 	name = "Synthetic Lizard"
 	icon_state = "synthliz"
 
+/datum/sprite_accessory/mam_tails_animated/synthliz/synthliz_tail
+	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_tails.dmi'
+	color_src = MUTCOLORS
+	name = "Synthetic Lizard"
+	icon_state = "synthliz"
+
 //Antennas
 /datum/sprite_accessory/antenna/synthliz/synthliz_none
 	icon = 'modular_skyrat/icons/mob/synthliz/synthliz_antennas.dmi'
