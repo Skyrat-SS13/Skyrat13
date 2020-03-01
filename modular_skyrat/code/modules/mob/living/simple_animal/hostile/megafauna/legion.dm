@@ -36,7 +36,7 @@
 				last_legion = FALSE
 				break
 		if(last_legion)
-			loot = list(/obj/item/staff/storm, /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor)
+			loot = list(/obj/structure/closet/crate/necropolis/legion)
 			elimination = 0
 		else if(prob(20))
 			loot = list(/obj/structure/closet/crate/necropolis/tendril)

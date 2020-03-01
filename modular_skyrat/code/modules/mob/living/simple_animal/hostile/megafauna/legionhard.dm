@@ -34,7 +34,7 @@
 	pixel_y = -16
 	pixel_x = -32
 
-	loot = list(/obj/item/stack/sheet/bone = 3, /obj/item/crusher_trophy/legion_shard, /obj/item/borg/upgrade/modkit/skull)
+	loot = list(/obj/structure/closet/crate/necropolis/legion/hard)
 	vision_range = 13
 	wander = FALSE
 	elimination = TRUE
