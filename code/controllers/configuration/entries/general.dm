@@ -347,12 +347,6 @@
 /datum/config_entry/flag/announce_admin_login
 
 /datum/config_entry/flag/allow_map_voting
-	deprecated_by = /datum/config_entry/flag/preference_map_voting
-
-/datum/config_entry/flag/allow_map_voting/DeprecationUpdate(value)
-	return value
-
-/datum/config_entry/flag/preference_map_voting
 
 /datum/config_entry/number/client_warn_version
 	config_entry_value = null

@@ -5,7 +5,6 @@ See map_config.dm for how a particular station's traits may be chosen.
 The list DEFAULT_MAP_TRAITS at the bottom of this file should correspond to
 the maps that are hardcoded, as set in _maps/_basemap.dm. SSmapping is
 responsible for loading every non-hardcoded z-level.
-
 As of 2018-02-04, the typical z-levels for a single-level station are:
 1: CentCom
 2: Station
@@ -15,7 +14,6 @@ As of 2018-02-04, the typical z-levels for a single-level station are:
 7-11: Randomized space
 12: Empty space
 13: Transit space
-
 Multi-Z stations are supported and multi-Z mining and away missions would
 require only minor tweaks.
 */
@@ -37,8 +35,6 @@ require only minor tweaks.
 #define ZTRAIT_AWAY "Away Mission"
 #define ZTRAIT_SPACE_RUINS "Space Ruins"
 #define ZTRAIT_LAVA_RUINS "Lava Ruins"
-#define ZTRAIT_ICE_RUINS "Ice Ruins"
-#define ZTRAIT_ICE_RUINS_UNDERGROUND "Ice Ruins Underground"
 #define ZTRAIT_ISOLATED_RUINS "Isolated Ruins" //Placing ruins on z levels with this trait will use turf reservation instead of usual placement.
 
 // number - bombcap is multiplied by this before being applied to bombs
@@ -60,11 +56,6 @@ require only minor tweaks.
 	// CROSSLINKED - mixed in with the cross-linked space pool
 	#define CROSSLINKED "Cross"
 
-//booleans for weather
-#define ZTRAIT_SNOWSTORM "Weather_Snowstorm"
-#define ZTRAIT_ASHSTORM "Weather_Ashstorm"
-#define ZTRAIT_ACIDRAIN "Weather_Acidrain"
-
 // string - type path of the z-level's baseturf (defaults to space)
 #define ZTRAIT_BASETURF "Baseturf"
 
@@ -73,24 +64,10 @@ require only minor tweaks.
 #define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_STATION = TRUE)
 #define ZTRAITS_SPACE list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_SPACE_RUINS = TRUE)
 #define ZTRAITS_LAVALAND list(\
-	ZTRAIT_MINING = TRUE, \
-	ZTRAIT_ASHSTORM = TRUE, \
-	ZTRAIT_LAVA_RUINS = TRUE, \
-	ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
-	ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface) //You see Ivan, defines can't be modularized.
-#define ZTRAITS_ICEMOON list(\
     ZTRAIT_MINING = TRUE, \
-    ZTRAIT_SNOWSTORM = TRUE, \
-    ZTRAIT_ICE_RUINS = TRUE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
-    ZTRAIT_DOWN = -1, \
-    ZTRAIT_BASETURF = /turf/open/floor/plating/asteroid/snow/ice)
-#define ZTRAITS_ICEMOON_UNDERGROUND list(\
-    ZTRAIT_MINING = TRUE, \
-    ZTRAIT_ICE_RUINS_UNDERGROUND = TRUE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
-    ZTRAIT_UP = 1, \
-    ZTRAIT_BASETURF = /turf/open/lava/plasma/ice_moon)
+    ZTRAIT_LAVA_RUINS = TRUE, \
+    ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
+    ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
 #define DL_NAME "name"
