@@ -91,7 +91,7 @@
 			return S
 
 	return new storage_type(src)
-
+/* moved to modular_skyrat
 /obj/item/robot_module/proc/add_module(obj/item/I, nonstandard, requires_rebuild)
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I
@@ -140,7 +140,7 @@
 	if(requires_rebuild)
 		rebuild_modules()
 	return I
-
+*/
 //Adds flavoursome dogborg items to dogborg variants without mechanical benefits
 /obj/item/robot_module/proc/dogborg_equip()
 	has_snowflake_deadsprite = TRUE
