@@ -116,9 +116,6 @@ SUBSYSTEM_DEF(mapping)
 	SSmapping.seedStation()
 	loading_ruins = FALSE
 #endif
-	//Add snowdin because why not?
-	var/datum/map_template/template = new(snowdin, "Snowdin")
-	snowdin = template.load_new_z()
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()
