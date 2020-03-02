@@ -32,6 +32,7 @@
 	flags_1 = NONE
 	flora_allowed = TRUE
 	blob_allowed = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/icemoon/surface
 	name = "Icemoon"
