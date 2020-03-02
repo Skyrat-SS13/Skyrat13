@@ -21,7 +21,7 @@
 
 	var/traits = null
 	var/snowy_ruin_levels = 3
-	var/snowy_underground_ruin_levels = 3
+	var/snowy_underground_ruin_levels = 1
 	var/space_ruin_levels = 1
 	var/space_empty_levels = 1
 

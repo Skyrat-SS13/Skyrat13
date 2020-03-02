@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(mapping)
 	var/datum/space_level/transit
 	var/datum/space_level/snowdin
 	var/datum/space_level/empty_space
-	var/datum/space_level/ruins
+	var/datum/space_level/spaceruins
 	var/num_of_res_levels = 1
 
 	var/stat_map_name = "Loading..."
@@ -109,7 +109,8 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), /area/icemoon/underground/unexplored, ice_ruins_underground_templates)
 
 	// Generate deep space ruins
-	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
+	spaceruins = add_new_zlevel ("Empty Area", ZTRAITS_SPACE, z_type = /datum/space_level)
+	var/list/space_ruins = (levels_by_trait(ZTRAIT_SPACE_RUINS) - empty_space)
 	if (space_ruins.len)
 		seedRuins(space_ruins, CONFIG_GET(number/space_budget), /area/space, space_ruins_templates)
 	SSmapping.seedStation()
@@ -265,7 +266,6 @@ SUBSYSTEM_DEF(mapping)
 	while (world.maxz < (5 - 1) && space_levels_so_far < config.space_ruin_levels)
 		++space_levels_so_far
 		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
-
 	// load mining
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
