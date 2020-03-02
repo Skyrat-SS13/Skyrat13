@@ -1,3 +1,8 @@
+/turf
+	var/destination_z
+	var/destination_x
+	var/destination_y
+
 /turf/open/space
 	icon = 'icons/turf/space.dmi'
 	icon_state = "0"
@@ -7,10 +12,6 @@
 	temperature = TCMB
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 700000
-
-	var/destination_z
-	var/destination_x
-	var/destination_y
 
 	var/static/datum/gas_mixture/immutable/space/space_gas = new
 	plane = PLANE_SPACE
@@ -52,7 +53,7 @@
 	return INITIALIZE_HINT_NORMAL
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
-/turf/open/space/attack_ghost(mob/dead/observer/user)
+/turf/attack_ghost(mob/dead/observer/user)
 	if(destination_z)
 		var/turf/T = locate(destination_x, destination_y, destination_z)
 		user.forceMove(T)
@@ -132,7 +133,7 @@
 		else
 			to_chat(user, "<span class='warning'>The plating is going to need some support! Place metal rods first.</span>")
 
-/turf/open/space/Entered(atom/movable/A)
+/turf/Entered(atom/movable/A)
 	..()
 	if ((!(A) || src != A.loc))
 		return
@@ -181,7 +182,7 @@
 		return 1
 	return 0
 
-/turf/open/space/is_transition_turf()
+/turf/is_transition_turf()
 	if(destination_x || destination_y || destination_z)
 		return 1
 
@@ -217,7 +218,7 @@
 			return TRUE
 	return FALSE
 
-/turf/open/space/ReplaceWithLattice()
+/turf/ReplaceWithLattice()
 	var/dest_x = destination_x
 	var/dest_y = destination_y
 	var/dest_z = destination_z
