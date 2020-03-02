@@ -81,6 +81,13 @@ SUBSYSTEM_DEF(mapping)
 	for (var/i in 1 to config.space_empty_levels)
 		++space_levels_so_far
 		empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAITS_SPACE))
+	// Create snowy levels
+	while (snowy_levels_so_far < config.snowy_ruin_levels)
+		++snowy_levels_so_far
+		add_new_zlevel("Snow Planet [snowy_levels_so_far]", ZTRAITS_SNOWY)
+	while (snowy_underground_levels_so_far < config.snowy_underground_ruin_levels)
+		++snowy_underground_levels_so_far
+		add_new_zlevel("Snow Planet Underground [snowy_levels_so_far]", ZTRAITS_SNOWY)
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
 		createRandomZlevel()
@@ -95,6 +102,7 @@ SUBSYSTEM_DEF(mapping)
 	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 	if (ice_ruins.len) // needs to be whitelisted for underground too so place_below ruins work
 		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/surface/outdoors/unexplored, ice_ruins_templates)
+		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/underground/unexplored, ice_ruins_templates)
 		for (var/ice_z in ice_ruins)
 			spawn_rivers(ice_z, 4, /turf/open/openspace/icemoon, /area/icemoon/surface/outdoors/unexplored)
 	var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
@@ -257,10 +265,7 @@ SUBSYSTEM_DEF(mapping)
 	while (world.maxz < (5 - 1) && space_levels_so_far < config.space_ruin_levels)
 		++space_levels_so_far
 		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
-	// load snowy bullshit here or whatever
-	for(var/i = 1, i < config.space_ruin_levels, i++)
-		LoadGroup(FailedZs, "Snow Planet Underground [i]", "map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
-		LoadGroup(FailedZs, "Snow Planet Wastes [i]", "map_files/Mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
+
 	// load mining
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
