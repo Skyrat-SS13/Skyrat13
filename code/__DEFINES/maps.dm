@@ -92,8 +92,6 @@ require only minor tweaks.
     ZTRAIT_MINING = TRUE, \
     ZTRAIT_SNOWSTORM = TRUE, \
     ZTRAIT_ICE_RUINS = TRUE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
-    ZTRAIT_DOWN = 0, \
     ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
     ZTRAIT_DOWN = -1, \
     ZTRAIT_BASETURF = /turf/open/floor/plating/asteroid/snow/ice)
@@ -122,7 +120,6 @@ require only minor tweaks.
 	ZTRAIT_UP = 0, \
 	ZTRAIT_BASETURF = /turf/closed/mineral/random/snow/underground)
 //
-
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
 #define DL_NAME "name"
