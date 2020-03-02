@@ -113,7 +113,6 @@ require only minor tweaks.
 	ZTRAIT_BASETURF = /turf/closed/mineral/random/snow)
 #define ZTRAITS_SNOWY_UNDERGROUND list(\
 	ZTRAIT_GRAVITY = TRUE, \
-	ZTRAIT_LINKAGE = CROSSLINKED, \
 	ZTRAIT_ICE_RUINS_UNDERGROUND = TRUE, \
 	ZTRAIT_SNOWSTORM = FALSE, \
 	ZTRAIT_UP = -1, \

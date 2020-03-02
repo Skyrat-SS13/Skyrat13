@@ -20,7 +20,6 @@
 	id = "miningsite"
 	description = "Ruins of a site where people once mined with primitive tools for ore."
 	suffix = "icemoon_surface_mining_site.dmm"
-	always_spawn_with = list(/datum/map_template/ruin/icemoon/underground/mining_site_below = PLACE_BELOW)
 	cost = 10
 
 /datum/map_template/ruin/icemoon/underground/mining_site_below
@@ -28,7 +27,7 @@
 	id = "miningsite-underground"
 	description = "Who knew ladders could be so useful?"
 	suffix = "icemoon_underground_mining_site.dmm"
-	unpickable = TRUE
+	cost = 10
 
 // below ground only
 

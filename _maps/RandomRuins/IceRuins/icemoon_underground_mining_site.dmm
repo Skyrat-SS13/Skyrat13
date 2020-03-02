@@ -6,10 +6,6 @@
 /obj/structure/flora/rock/icy,
 /turf/open/floor/plating/ice/icemoon,
 /area/icemoon/underground/explored)
-"c" = (
-/obj/structure/ladder,
-/turf/open/floor/plating/ice/icemoon,
-/area/icemoon/underground/explored)
 "d" = (
 /turf/template_noop,
 /area/template_noop)
@@ -511,7 +507,7 @@ a
 a
 a
 a
-c
+a
 a
 a
 a
