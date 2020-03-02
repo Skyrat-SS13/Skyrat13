@@ -3349,6 +3349,7 @@
 #include "modular_skyrat\code\modules\mob\living\ssd_indicator.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\auto_hiss.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human.dm"
+#include "modular_skyrat\code\modules\mob\living\carbon\human\human_movement.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\vox.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot_modules.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\friendly\farm_animals.dm"
