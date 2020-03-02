@@ -173,7 +173,7 @@ obj/item/gps/internal/bubblegum/hard
 				else
 					bloodsmack(target_one_turf, handedness)
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/proc/bloodsmack(turf/T, handedness)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/bloodsmack(turf/T, handedness)
 	if(handedness)
 		new /obj/effect/temp_visual/bubblegum_handshard/rightsmack(T)
 	else
