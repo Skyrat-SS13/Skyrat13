@@ -27,7 +27,7 @@
 
 /turf/open/space/Initialize()
 	if(is_snowy_level(z))
-		var/turf/T = new /turf/closed/mineral/random/snow(src.loc)
+		var/turf/T = new /turf/closed/mineral/random/snow(src)
 		T.Initialize()
 		return
 	icon_state = SPACE_ICON_STATE
