@@ -116,5 +116,65 @@
 			next_angle = -next_angle
 			setDir(angle2dir(dir2angle(dir) )+ next_angle)
 
+/turf/open/floor/plating/asteroid/airless/cave/SpawnFloor(turf/T)
+	for(var/S in RANGE_TURFS(1, src))
+		var/turf/NT = S
+		if(!NT)
+			sanity = 0
+			return
+		if(isarea(NT.loc))
+			var/area/A = NT.loc
+			if(!A.tunnel_allowed)
+				sanity = 0
+				return
+	if(is_mining_level(z))
+		SpawnFlora(T)	//No space mushrooms, cacti.
+	SpawnMonster(T)		//Checks for danger area.
+	T.ChangeTurf(turf_type, null, CHANGETURF_IGNORE_AIR)
+
+/turf/open/floor/plating/asteroid/airless/cave/SpawnMonster(turf/T)
+	if(!isarea(loc))
+		return
+	var/area/A = loc
+	if(prob(30))
+		if(!A.mob_spawn_allowed)
+			return
+		var/randumb = pickweight(mob_spawn_list)
+		while(randumb == SPAWN_MEGAFAUNA)
+			if(A.megafauna_spawn_allowed) //this is danger. it's boss time.
+				var/maybe_boss = pickweight(megafauna_spawn_list)
+				if(megafauna_spawn_list[maybe_boss])
+					randumb = maybe_boss
+			else //this is not danger, don't spawn a boss, spawn something else
+				randumb = pickweight(mob_spawn_list)
+
+		for(var/thing in urange(12, T)) //prevents mob clumps
+			if(!ishostile(thing) && !istype(thing, /obj/structure/spawner))
+				continue
+			if((ispath(randumb, /mob/living/simple_animal/hostile/megafauna) || ismegafauna(thing)) && get_dist(src, thing) <= 7)
+				return //if there's a megafauna within standard view don't spawn anything at all
+			if(ispath(randumb, /mob/living/simple_animal/hostile/asteroid) || istype(thing, /mob/living/simple_animal/hostile/asteroid))
+				return //if the random is a standard mob, avoid spawning if there's another one within 12 tiles
+			if((ispath(randumb, /obj/structure/spawner/lavaland) || istype(thing, /obj/structure/spawner/lavaland)) && get_dist(src, thing) <= 2)
+				return //prevents tendrils spawning in each other's collapse range
+
+		if(ispath(randumb, /mob/living/simple_animal/hostile/megafauna/bubblegum)) //there can be only one bubblegum, so don't waste spawns on it
+			megafauna_spawn_list.Remove(randumb)
+
+		if(randumb)
+			new randumb(T)
+
+/turf/open/floor/plating/asteroid/airless/cave/SpawnFlora(turf/T)
+	if(prob(12))
+		if(isarea(loc))
+			var/area/A = loc
+			if(!A.flora_allowed)
+				return
+		var/randumb = pickweight(flora_spawn_list)
+		for(var/obj/structure/flora/F in range(4, T)) //Allows for growing patches, but not ridiculous stacks of flora
+			if(!istype(F, randumb))
+				return
+		new randumb(T)
+
 #undef SPAWN_MEGAFAUNA
 #undef SPAWN_BUBBLEGUM

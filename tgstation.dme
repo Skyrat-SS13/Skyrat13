@@ -3325,6 +3325,7 @@
 #include "modular_skyrat\code\modules\clothing\spacesuits\hardsuit.dm"
 #include "modular_skyrat\code\modules\clothing\suits\armor.dm"
 #include "modular_skyrat\code\modules\clothing\suits\cloaks.dm"
+#include "modular_skyrat\code\modules\clothing\under\miscellaneous.dm"
 #include "modular_skyrat\code\modules\clothing\under\jobs\security.dm"
 #include "modular_skyrat\code\modules\events\alien_infestation.dm"
 #include "modular_skyrat\code\modules\events\anomaly_flux.dm"
