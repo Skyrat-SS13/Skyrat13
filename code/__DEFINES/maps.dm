@@ -74,6 +74,7 @@ require only minor tweaks.
 #define ZTRAITS_STATION list( \
 	ZTRAIT_LINKAGE = CROSSLINKED, \
 	ZTRAIT_STATION = TRUE, \
+	ZTRAIT_DOWN = -1, \
 	ZTRAIT_GRAVITY = TRUE)
 #define ZTRAITS_SPACE list(ZTRAIT_SPACE_RUINS = TRUE)
 #define ZTRAITS_LAVALAND list(\
@@ -102,6 +103,7 @@ require only minor tweaks.
 	ZTRAIT_ICE_RUINS = TRUE, \
 	ZTRAIT_SNOWSTORM = TRUE, \
 	ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
+	ZTRAIT_DOWN = -1, \
 	ZTRAIT_BASETURF = /turf/closed/mineral/random/snow)
 #define ZTRAITS_SNOWY_UNDERGROUND list(\
 	ZTRAIT_GRAVITY = TRUE, \
@@ -110,6 +112,7 @@ require only minor tweaks.
 	ZTRAIT_SNOWSTORM = FALSE, \
 	ZTRAIT_SNOW = TRUE,\
 	ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
+	ZTRAIT_UP = 1, \
 	ZTRAIT_BASETURF = /turf/closed/mineral/random/snow/underground)
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
