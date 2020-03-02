@@ -22,8 +22,8 @@
 	var/traits = null
 	var/space_ruin_levels = 2
 	var/space_empty_levels = 1
-	var/snowy_ruin_levels = 2
-	var/snowy_underground_ruin_levels = 2
+	var/snowy_ruin_levels = 3
+	var/snowy_underground_ruin_levels = 3
 
 	var/minetype = "lavaland"
 
