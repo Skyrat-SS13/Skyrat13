@@ -30,6 +30,6 @@
 	description = "Who knows what lies within?"
 	suffix = "icemoon_underground_abandoned_village.dmm"
 	cost = 5
+*/
 
 /datum/map_template/ruin/icemoon/underground
-*/
