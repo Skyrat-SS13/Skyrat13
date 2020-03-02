@@ -17,7 +17,6 @@
 	id = "miningsite"
 	description = "Ruins of a site where people once mined with primitive tools for ore."
 	suffix = "icemoon_surface_mining_site.dmm"
-	always_place = TRUE
 
 /datum/map_template/ruin/icemoon/mining_site_below
 	name = "Mining Site Underground"
@@ -31,6 +30,5 @@
 	description = "Who knows what lies within?"
 	suffix = "icemoon_underground_abandoned_village.dmm"
 	cost = 5
-	always_place = TRUE
 
 /datum/map_template/ruin/icemoon/underground
