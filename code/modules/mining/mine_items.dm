@@ -65,6 +65,9 @@
 	new /obj/item/survivalcapsule(src)
 	new /obj/item/assault_pod/mining(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/miner(src) //because you know you want it
+	new /obj/item/clothing/shoes/winterboots/ice_boots
+	new /obj/item/clothing/shoes/winterboots/ice_boots
+	new /obj/item/clothing/shoes/winterboots/ice_boots
 
 
 /**********************Shuttle Computer**************************/
