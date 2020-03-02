@@ -3275,15 +3275,12 @@
 #include "modular_skyrat\code\game\area\areas\mining.dm"
 #include "modular_skyrat\code\game\area\areas\ruins\lavaland.dm"
 #include "modular_skyrat\code\game\gamemodes\objective.dm"
-<<<<<<< HEAD
 #include "modular_skyrat\code\game\machinery\computer\arcade.dm"
 #include "modular_skyrat\code\game\machinery\pipe\construction.dm"
 #include "modular_skyrat\code\game\objects\items.dm"
 #include "modular_skyrat\code\game\objects\items\BSRPD.dm"
-=======
 #include "modular_skyrat\code\game\objects\items.dm"
 #include "modular_skyrat\code\game\objects\items\kitchen.dm"
->>>>>>> d9e479e326be1a7c06eaa86743a9df6747ad8921
 #include "modular_skyrat\code\game\objects\items\plushes\plushes.dm"
 #include "modular_skyrat\code\game\objects\items\robot\robot_upgrades.dm"
 #include "modular_skyrat\code\game\objects\items\stacks\sheets\glass.dm"
