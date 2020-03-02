@@ -68,7 +68,7 @@
 	var/turf/closed/mineral/tunnel = src
 	var/next_angle = pick(45, -45)
 
-	var/tunnel_width = 2
+	var/tunnel_width = 1
 	if(pick_tunnel_width)
 		tunnel_width = text2num(pickweight(pick_tunnel_width))
 
