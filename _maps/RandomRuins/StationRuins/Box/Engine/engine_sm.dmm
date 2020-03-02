@@ -72,8 +72,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
 	},
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "aY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/stripes/line{
@@ -112,8 +112,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "bT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -201,13 +201,13 @@
 /area/engine/engineering)
 "dw" = (
 /obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "dD" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "ej" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -337,8 +337,8 @@
 	dir = 5
 	},
 /obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "ii" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -472,8 +472,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
 	},
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "mi" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
@@ -661,8 +661,8 @@
 	dir = 6
 	},
 /obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "pP" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -783,8 +783,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
 	},
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "sn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/line{
@@ -848,8 +848,8 @@
 /area/engine/supermatter)
 "tw" = (
 /obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "tE" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -867,8 +867,8 @@
 	dir = 4
 	},
 /obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "uR" = (
 /obj/machinery/power/supermatter_crystal/engine,
 /turf/open/floor/engine,
@@ -937,8 +937,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "xo" = (
 /obj/structure/reflector/box/anchored{
 	dir = 1
@@ -962,13 +962,13 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "yf" = (
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "yA" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "yD" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -1014,8 +1014,8 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "zS" = (
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "Ab" = (
 /obj/item/crowbar/large,
 /obj/structure/rack,
@@ -1449,15 +1449,15 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
 	},
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "Le" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
 	},
 /obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "Lg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -1620,7 +1620,7 @@
 /area/engine/engineering)
 "Oj" = (
 /turf/closed/wall/r_wall,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored/)
 "Ok" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -1706,8 +1706,8 @@
 /area/engine/engineering)
 "Rh" = (
 /obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "RA" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
@@ -1737,8 +1737,8 @@
 "Sn" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "SL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1888,8 +1888,8 @@
 "WB" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "WI" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -1925,8 +1925,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "XK" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/radio/headset/headset_eng,
@@ -1980,8 +1980,8 @@
 "YZ" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored/)
 "Zn" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32

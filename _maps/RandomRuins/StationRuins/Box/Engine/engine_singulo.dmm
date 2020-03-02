@@ -27,8 +27,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "dz" = (
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "dN" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -77,7 +77,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "fh" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -113,25 +113,25 @@
 	dir = 5
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "hR" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "ic" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "jx" = (
 /obj/structure/reflector/single/anchored{
 	dir = 9
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "jH" = (
 /obj/structure/sign/warning/radiation/rad_area,
 /turf/closed/wall/r_wall,
@@ -230,7 +230,7 @@
 /area/engine/engineering)
 "rm" = (
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "rM" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -238,7 +238,7 @@
 /obj/structure/cable/yellow,
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "sr" = (
 /obj/machinery/light,
 /obj/machinery/camera/emp_proof{
@@ -253,7 +253,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "to" = (
 /obj/structure/sign/warning/radiation/rad_area,
 /obj/structure/cable{
@@ -346,7 +346,7 @@
 	},
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "yo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/closet/radiation,
@@ -361,7 +361,7 @@
 	},
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "yU" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -433,7 +433,7 @@
 	},
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "BG" = (
 /obj/structure/closet/emcloset/anchored,
 /obj/machinery/light/small{
@@ -446,7 +446,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "Ch" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
@@ -515,8 +515,8 @@
 /area/engine/engineering)
 "FP" = (
 /obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "FY" = (
 /obj/structure/table,
 /obj/item/book/manual/wiki/engineering_singulo_tesla,
@@ -600,7 +600,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "Lr" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
@@ -667,8 +667,8 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "MJ" = (
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "Nm" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
@@ -773,7 +773,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "Wf" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -807,7 +807,7 @@
 "Xk" = (
 /obj/machinery/field/generator,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "Yd" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/yellow{
@@ -817,8 +817,8 @@
 /area/engine/engineering)
 "Yl" = (
 /obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "Yn" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
