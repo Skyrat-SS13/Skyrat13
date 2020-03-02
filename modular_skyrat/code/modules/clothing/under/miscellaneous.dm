@@ -1,5 +1,5 @@
 /obj/item/clothing/under/colonistjumpsuit
-	name = "red pj's"
+	name = "Old Colonist Jumpsuit"
 	desc = "An old, worn down jumpsuit commonly worn by colonists in the far frontiers of space."
 	icon = 'modular_skyrat/icons/obj/clothing/uniforms.dmi'
 	icon_state = "coljumpsuit"
@@ -14,5 +14,5 @@
 	icon_state = "seccoljumpsuit"
 	alternate_worn_icon = 'modular_skyrat/icons/mob/uniform.dmi'
 	item_state = "seccoljumpsuit"
-	can_adjust = TRUE
+	can_adjust = FALSE
 	armor = list("melee" = 15, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
