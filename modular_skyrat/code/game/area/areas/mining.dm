@@ -27,7 +27,7 @@
 /**********************Ice Moon Areas**************************/
 
 /area/icemoon
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	icon_state = "mining"
 	has_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
