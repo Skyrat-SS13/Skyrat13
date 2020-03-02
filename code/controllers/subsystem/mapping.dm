@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(mapping)
 		add_new_zlevel("Snow Planet [snowy_levels_so_far]", ZTRAITS_SNOWY)
 	while (snowy_underground_levels_so_far < config.snowy_underground_ruin_levels)
 		++snowy_underground_levels_so_far
-		add_new_zlevel("Snow Planet [snowy_levels_so_far]", ZTRAITS_SNOWY)
+		add_new_zlevel("Snow Planet Underground [snowy_levels_so_far]", ZTRAITS_SNOWY)
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
 		createRandomZlevel()
@@ -181,6 +181,8 @@ SUBSYSTEM_DEF(mapping)
 	ruins_templates = SSmapping.ruins_templates
 	space_ruins_templates = SSmapping.space_ruins_templates
 	lava_ruins_templates = SSmapping.lava_ruins_templates
+	ice_ruins_templates = SSmapping.ice_ruins_templates
+	ice_ruins_underground_templates = SSmapping.ice_ruins_underground_templates
 	shuttle_templates = SSmapping.shuttle_templates
 	shelter_templates = SSmapping.shelter_templates
 	unused_turfs = SSmapping.unused_turfs
@@ -399,6 +401,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			space_ruins_templates[R.name] = R
 		else if(istype(R, /datum/map_template/ruin/station))
 			station_room_templates[R.name] = R
+		else if(istype(R, /datum/map_template/ruin/icemoon/underground))
+			ice_ruins_underground_templates[R.name] = R
+		else if(istype(R, /datum/map_template/ruin/icemoon))
+			ice_ruins_templates[R.name] = R
 
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
 	var/list/unbuyable = generateMapList("[global.config.directory]/unbuyableshuttles.txt")
