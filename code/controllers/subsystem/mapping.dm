@@ -253,14 +253,13 @@ SUBSYSTEM_DEF(mapping)
 		qdel(query_round_map_name)
 
 #ifndef LOWMEMORYMODE
-	// TODO: remove this when the DB is prepared for the z-levels getting reordered
-	while (world.maxz < (5 - 1) && space_levels_so_far < config.space_ruin_levels)
-		++space_levels_so_far
-		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
-	// load snowy bullshit here or whatever
-	for(var/i = 1, i < config.space_ruin_levels, i++)
-		LoadGroup(FailedZs, "Snow Planet Underground [i]", "map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
-		LoadGroup(FailedZs, "Snow Planet Wastes [i]", "map_files/Mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
+	// Create snowy levels
+	while (snowy_levels_so_far < config.snowy_ruin_levels)
+		++snowy_levels_so_far
+		add_new_zlevel("Snow Planet [snowy_levels_so_far]", ZTRAITS_SNOWY)
+	while (snowy_underground_levels_so_far < config.snowy_underground_ruin_levels)
+		++snowy_underground_levels_so_far
+		add_new_zlevel("Snow Planet Underground [snowy_levels_so_far]", ZTRAITS_SNOWY)
 	// load mining
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
