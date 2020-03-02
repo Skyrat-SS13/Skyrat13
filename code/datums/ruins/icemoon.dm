@@ -11,25 +11,32 @@
 	suffix = "icemoon_surface_puzzle.dmm"
 	cost = 5
 
-/* it's fucked bro
+/*
 /datum/map_template/ruin/icemoon/mining_site
 	name = "Mining Site"
 	id = "miningsite"
 	description = "Ruins of a site where people once mined with primitive tools for ore."
 	suffix = "icemoon_surface_mining_site.dmm"
+	always_place = TRUE
+	always_spawn_with = list(/datum/map_template/ruin/icemoon/underground/mining_site_below = PLACE_BELOW)
 
-/datum/map_template/ruin/icemoon/mining_site_below
+/datum/map_template/ruin/icemoon/underground/mining_site_below
 	name = "Mining Site Underground"
 	id = "miningsite-underground"
 	description = "Who knew ladders could be so useful?"
 	suffix = "icemoon_underground_mining_site.dmm"
+	unpickable = TRUE
+*/ //Kinda fucky, will have to be removed for the moment
+// below ground only
 
-/datum/map_template/ruin/icemoon/abandonedvillage
+/datum/map_template/ruin/icemoon/underground
+	name = "underground ruin"
+
+/*
+/datum/map_template/ruin/icemoon/underground/abandonedvillage
 	name = "Abandoned Village"
 	id = "abandonedvillage"
 	description = "Who knows what lies within?"
 	suffix = "icemoon_underground_abandoned_village.dmm"
 	cost = 5
-*/
-
-/datum/map_template/ruin/icemoon/underground
+*/ //Kinda fucky, will have to be removed for the moment

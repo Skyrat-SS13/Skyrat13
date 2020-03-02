@@ -1,8 +1,9 @@
+// SKYRAT CHANGES - Now all turfs can be transitions.
 /turf
 	var/destination_z
 	var/destination_x
 	var/destination_y
-
+//
 /turf/open/space
 	icon = 'icons/turf/space.dmi'
 	icon_state = "0"
@@ -52,11 +53,13 @@
 
 	return INITIALIZE_HINT_NORMAL
 
+//SKYRAT CHANGES
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /turf/attack_ghost(mob/dead/observer/user)
 	if(destination_z)
 		var/turf/T = locate(destination_x, destination_y, destination_z)
 		user.forceMove(T)
+//
 
 /turf/open/space/Initalize_Atmos(times_fired)
 	return
@@ -132,7 +135,7 @@
 				to_chat(user, "<span class='warning'>You need one floor tile to build a floor!</span>")
 		else
 			to_chat(user, "<span class='warning'>The plating is going to need some support! Place metal rods first.</span>")
-
+//SKYRAT CHANGES
 /turf/Entered(atom/movable/A)
 	..()
 	if ((!(A) || src != A.loc))
@@ -169,7 +172,7 @@
 		//now we're on the new z_level, proceed the space drifting
 		stoplag()//Let a diagonal move finish, if necessary
 		A.newtonian_move(A.inertia_dir)
-
+//
 
 /turf/open/space/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
 	return
@@ -218,6 +221,7 @@
 			return TRUE
 	return FALSE
 
+//SKYRAT CHANGES
 /turf/ReplaceWithLattice()
 	var/dest_x = destination_x
 	var/dest_y = destination_y
@@ -226,3 +230,4 @@
 	destination_x = dest_x
 	destination_y = dest_y
 	destination_z = dest_z
+//

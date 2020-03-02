@@ -87,9 +87,9 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define MANIFEST_ERROR_NAME			1
 #define MANIFEST_ERROR_CONTENTS		2
 #define MANIFEST_ERROR_ITEM			4
-
-#define TRANSITIONEDGE			2 //Distance from edge to move to another z-level
-
+//SKYRAT CHANGES
+#define TRANSITIONEDGE			1 //Distance from edge to move to another z-level
+//
 #define BE_CLOSE TRUE		//in the case of a silicon, to select if they need to be next to the atom
 #define NO_DEXTERY TRUE	//if other mobs (monkeys, aliens, etc) can use this
 #define NO_TK TRUE

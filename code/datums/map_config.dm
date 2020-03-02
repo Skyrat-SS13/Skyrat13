@@ -22,12 +22,14 @@
 	var/traits = null
 	var/space_ruin_levels = 2
 	var/space_empty_levels = 1
+	//SKYRAT CHANGES
 	var/snowy_ruin_levels = 3
 	var/snowy_underground_ruin_levels = 3
 
 	var/minetype = "lavaland"
 
 	var/maptype = MAP_TYPE_COLONY //This should be used to adjust ingame behavior depending on the specific type of map being played. For instance, if an overmap were added, it'd be appropriate for it to only generate with a MAP_TYPE_SHIP
+	//
 
 	var/announcertype = "standard" //Determines the announcer the map uses. standard uses the default announcer, classic, but has a random chance to use other similarly-themed announcers, like medibot
 

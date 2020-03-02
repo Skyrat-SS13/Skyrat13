@@ -119,6 +119,11 @@
 	if(.)
 		return
 	user.Move_Pulled(src)
+	/* //SKYRAT CHANGES
+	if(destination_x && destination_y && destination_z)
+		user.forceMove(locate(destination_x, destination_y, destination_z))
+	//
+	*/
 
 /turf/proc/multiz_turf_del(turf/T, dir)
 

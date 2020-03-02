@@ -81,6 +81,11 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/old_affecting_lights = affecting_lights
 	var/old_lighting_object = lighting_object
 	var/old_corners = corners
+	//SKYRAT CHANGES - So cave turfs can be properly transitioned
+	var/old_destination_x = destination_x
+	var/old_destination_y = destination_y
+	var/old_destination_z = destination_z
+	//
 
 	var/old_exl = explosion_level
 	var/old_exi = explosion_id
@@ -109,6 +114,11 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 	W.explosion_id = old_exi
 	W.explosion_level = old_exl
+	//SKYRAT CHANGES - reasons described above
+	W.destination_x = old_destination_x
+	W.destination_y = old_destination_y
+	W.destination_z = old_destination_z
+	//
 
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)

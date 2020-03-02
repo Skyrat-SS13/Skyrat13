@@ -151,9 +151,13 @@ require only minor tweaks.
 #define PLACE_SAME_Z "same" //On same z level as original ruin
 #define PLACE_SPACE_RUIN "space" //On space ruin z level(s)
 #define PLACE_LAVA_RUIN "lavaland" //On lavaland ruin z levels(s)
+//SKYRAT CHANGES
 #define PLACE_SNOWY_RUIN "snowy" //On snowy ruin z levels(s)
+//
 #define PLACE_BELOW "below" //On z levl below - centered on same tile
 #define PLACE_ISOLATED "isolated" //On isolated ruin z level
 //Map type stuff.
 #define MAP_TYPE_STATION "station"
+//SKYRAT CHANGES
 #define MAP_TYPE_COLONY "colony"
+//
