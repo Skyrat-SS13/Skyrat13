@@ -20,7 +20,7 @@
 	speed = 20
 	move_to_delay = 20
 	ranged = TRUE
-	crusher_loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer, /obj/item/kitchen/knife/bloodletter, /obj/item/crusher_trophy/miner_eye)
+	crusher_loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer, /obj/item/kitchen/knife/bloodletter, /obj/item/crusher_trophy/miner_eye/irradiated)
 	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer, /obj/item/kitchen/knife/bloodletter)
 	wander = FALSE
 	del_on_death = TRUE

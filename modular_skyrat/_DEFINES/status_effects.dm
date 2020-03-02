@@ -1,1 +1,2 @@
 #define STATUS_EFFECT_CRUSHERMARK_HARM /datum/status_effect/crusher_mark/harm
+#define STATUS_EFFECT_BLOODDRUNKRADIOACTIVE /datum/status_effect/blooddrunk/radioactive

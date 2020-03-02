@@ -169,3 +169,14 @@
 	if(.)
 		H.charge_time = 15
 		H.force_wielded = 20
+
+//irradiated miner
+
+/obj/item/crusher_trophy/miner_eye/irradiated
+	name = "eye of an irradiated miner"
+
+/obj/item/crusher_trophy/miner_eye/irradiated/effect_desc()
+	return "mark detonation to grant stun immunity and <b>95%</b> damage reduction for <b>2</b> seconds, as well as radiation resistance!"
+
+/obj/item/crusher_trophy/miner_eye/irradiated/on_mark_detonation(mob/living/target, mob/living/user)
+	user.apply_status_effect(STATUS_EFFECT_BLOODDRUNKRADIOACTIVE)
