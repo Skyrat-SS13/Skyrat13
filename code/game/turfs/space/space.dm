@@ -26,6 +26,9 @@
 	return
 
 /turf/open/space/Initialize()
+	if(is_snowy_level(z))
+		ChangeTurf(/turf/closed/mineral/random/snow, /turf/closed/mineral/random/snow)
+		return
 	icon_state = SPACE_ICON_STATE
 	air = space_gas
 	vis_contents.Cut() //removes inherited overlays
