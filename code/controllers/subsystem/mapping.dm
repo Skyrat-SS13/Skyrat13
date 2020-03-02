@@ -255,7 +255,6 @@ SUBSYSTEM_DEF(mapping)
 #ifndef LOWMEMORYMODE
 	// Create snowy levels
 	LoadGroup(FailedZs, "Snow Planet Wastes", "map_files/Mining", "Icemoon.dmm", default_traits = ZTRAITS_SNOWY)
-	LoadGroup(FailedZs, "Snow Planet Underground", "map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_SNOWY_UNDERGROUND)
 	// load mining
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
