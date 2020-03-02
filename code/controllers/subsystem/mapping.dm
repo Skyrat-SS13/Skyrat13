@@ -361,9 +361,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")
 		return
 
-	. = TRUE
-
 	next_map_config = VM
+
+	. = TRUE
+	
 	stat_map_name = "[config.map_name] (Next: [next_map_config.map_name])"
 
 /datum/controller/subsystem/mapping/proc/preloadTemplates(path = "_maps/templates/") //see master controller setup
@@ -552,8 +553,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	used_turfs.Cut()
 	reserve_turfs(clearing)
 
-
-
 /datum/controller/subsystem/mapping/proc/reg_in_areas_in_z(list/areas)
 	for(var/B in areas)
 		var/area/A = B
@@ -565,7 +564,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		initialize_reserved_level(isolated_ruins_z.z_value)
 	return isolated_ruins_z.z_value
 
-// Station Ruins
+	// Station Ruins
 /datum/controller/subsystem/mapping
 	var/list/station_room_templates = list()
 
@@ -575,3 +574,4 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		LM.load()
 	if(GLOB.stationroom_landmarks.len)
 		seedStation() //I'm sure we can trust everyone not to insert a 1x1 rooms which loads a landmark which loads a landmark which loads a la...
+		
