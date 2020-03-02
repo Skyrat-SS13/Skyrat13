@@ -38,8 +38,10 @@ require only minor tweaks.
 #define ZTRAIT_AWAY "Away Mission"
 #define ZTRAIT_SPACE_RUINS "Space Ruins"
 #define ZTRAIT_LAVA_RUINS "Lava Ruins"
+//SKYRAT CHANGES
 #define ZTRAIT_ICE_RUINS "Ice Ruins"
 #define ZTRAIT_ICE_RUINS_UNDERGROUND "Ice Ruins Underground"
+//
 #define ZTRAIT_ISOLATED_RUINS "Isolated Ruins" //Placing ruins on z levels with this trait will use turf reservation instead of usual placement.
 
 // number - bombcap is multiplied by this before being applied to bombs
@@ -61,14 +63,17 @@ require only minor tweaks.
 	// CROSSLINKED - mixed in with the cross-linked space pool
 	#define CROSSLINKED "Cross"
 
+//SKYRAT CHANGES
 //booleans for weather
 #define ZTRAIT_SNOWSTORM "Weather_Snowstorm"
 #define ZTRAIT_ASHSTORM "Weather_Ashstorm"
 #define ZTRAIT_ACIDRAIN "Weather_Acidrain"
+//
 
 // string - type path of the z-level's baseturf (defaults to space)
 #define ZTRAIT_BASETURF "Baseturf"
 
+//SKYRAT CHANGES
 // default trait definitions, used by SSmapping
 #define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE, ZTRAIT_SNOW = TRUE)
 #define ZTRAITS_STATION list( \
@@ -89,6 +94,8 @@ require only minor tweaks.
     ZTRAIT_ICE_RUINS = TRUE, \
     ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
     ZTRAIT_DOWN = 0, \
+    ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
+    ZTRAIT_DOWN = -1, \
     ZTRAIT_BASETURF = /turf/open/floor/plating/asteroid/snow/ice)
 #define ZTRAITS_ICEMOON_UNDERGROUND list(\
     ZTRAIT_MINING = TRUE, \
@@ -114,6 +121,8 @@ require only minor tweaks.
 	ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
 	ZTRAIT_UP = 0, \
 	ZTRAIT_BASETURF = /turf/closed/mineral/random/snow/underground)
+//
+
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
 #define DL_NAME "name"
