@@ -1,7 +1,7 @@
 // Hey! Listen! Update \config\iceruinblacklist.txt with your new ruins!
 
 /datum/map_template/ruin/icemoon
-	prefix = "modular_skyrat/_maps/RandomRuins/IceRuins/"
+	prefix = "_maps/RandomRuins/IceRuins/"
 	allow_duplicates = FALSE
 
 // above ground only

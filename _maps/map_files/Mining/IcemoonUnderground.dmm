@@ -5,8 +5,8 @@
 "b" = (
 /turf/closed/mineral/random/high_chance/snow,
 /area/icemoon/underground/unexplored)
-"d" = (
-/obj/structure/ladder,
+"c" = (
+/obj/structure/ladder/unbreakable/underground/ug2,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
 "e" = (
@@ -16957,7 +16957,7 @@ a
 a
 O
 O
-d
+c
 O
 O
 a

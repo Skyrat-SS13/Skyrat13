@@ -7956,6 +7956,10 @@
 "arf" = (
 /turf/closed/wall,
 /area/crew_quarters/dorms)
+"arg" = (
+/obj/structure/ladder/unbreakable/underground,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "arh" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Dormitories Maintenance";
@@ -35659,13 +35663,6 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
-"bHz" = (
-/obj/item/stack/ore/iron,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
@@ -80349,7 +80346,7 @@ bxx
 aaf
 aaf
 bGi
-bHz
+arg
 byE
 bKk
 bGi
