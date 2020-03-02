@@ -10,8 +10,8 @@
 	description = "Mystery to be solved."
 	suffix = "icemoon_surface_puzzle.dmm"
 	cost = 5
-	always_place = TRUE
 
+/* it's fucked bro
 /datum/map_template/ruin/icemoon/mining_site
 	name = "Mining Site"
 	id = "miningsite"
@@ -32,3 +32,4 @@
 	cost = 5
 
 /datum/map_template/ruin/icemoon/underground
+*/
