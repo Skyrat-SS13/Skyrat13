@@ -60,5 +60,61 @@
 /turf/open/floor/plating/asteroid/airless/cave/snow/underground/has_data //subtype for producing a tunnel with given data
 	has_data = TRUE
 
+/turf/open/floor/plating/asteroid/airless/cave/snow/make_tunnel(dir, pick_tunnel_width)
+	pick_tunnel_width = list("1" = 6, "2" = 1) // tunnel with 6/7 chance to be 1 tile wide and 1/7 chance to be 2 tiles wide
+	..()
+
+/turf/open/floor/plating/asteroid/airless/cave/make_tunnel(dir, pick_tunnel_width)
+	var/turf/closed/mineral/tunnel = src
+	var/next_angle = pick(45, -45)
+
+	var/tunnel_width = 1
+	if(pick_tunnel_width)
+		tunnel_width = text2num(pickweight(pick_tunnel_width))
+
+	for(var/i = 0; i < length; i++)
+		if(!sanity)
+			break
+
+		var/list/L = list(45)
+		if(ISODD(dir2angle(dir))) // We're going at an angle and we want thick angled tunnels.
+			L += -45
+
+		// Expand the edges of our tunnel
+		for(var/edge_angle in L)
+			var/turf/closed/mineral/edge = tunnel
+			for(var/current_tunnel_width = 1 to tunnel_width)
+				edge = get_step(edge, angle2dir(dir2angle(dir) + edge_angle))
+				if(istype(edge))
+					SpawnFloor(edge)
+
+		if(!sanity)
+			break
+
+		// Move our tunnel forward
+		tunnel = get_step(tunnel, dir)
+
+		if(istype(tunnel))
+			// Small chance to have forks in our tunnel; otherwise dig our tunnel.
+			if(i > 3 && prob(20))
+				if(isarea(tunnel.loc))
+					var/area/A = tunnel.loc
+					if(!A.tunnel_allowed)
+						sanity = 0
+						break
+				var/turf/open/floor/plating/asteroid/airless/cave/C = tunnel.ChangeTurf(data_having_type, null, CHANGETURF_IGNORE_AIR)
+				C.going_backwards = FALSE
+				C.produce_tunnel_from_data(rand(10, 15), dir)
+			else
+				SpawnFloor(tunnel)
+		else //if(!istype(tunnel, parent)) // We hit space/normal/wall, stop our tunnel.
+			break
+
+		// Chance to change our direction left or right.
+		if(i > 2 && prob(33))
+			// We can't go a full loop though
+			next_angle = -next_angle
+			setDir(angle2dir(dir2angle(dir) )+ next_angle)
+
 #undef SPAWN_MEGAFAUNA
 #undef SPAWN_BUBBLEGUM
