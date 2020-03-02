@@ -27,7 +27,8 @@
 
 /turf/open/space/Initialize()
 	if(is_snowy_level(z))
-		ChangeTurf(/turf/closed/mineral/random/snow, /turf/closed/mineral/random/snow)
+		var/turf/T = new /turf/closed/mineral/random/snow(src.loc)
+		T.Initialize()
 		return
 	icon_state = SPACE_ICON_STATE
 	air = space_gas
