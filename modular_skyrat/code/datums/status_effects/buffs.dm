@@ -1,9 +1,11 @@
 /datum/status_effect/blooddrunk/radioactive
 	id = "radioactive"
-	name = "Radioactive"
 	duration = 20
+	alert_type = /obj/screen/alert/status_effect/blooddrunk/radioactive
+
+/obj/screen/alert/status_effect/blooddrunk/radioactive
+	name = "Radioactive"
 	desc = "You radiate energy! Your pulse thunders in your ears! Nothing can harm you!" //not true, and the item description mentions its actual effect
-	alert_type = /obj/screen/alert/status_effect/blooddrunk
 
 /datum/status_effect/blooddrunk/radioactive/on_apply()
 	. = ..()
