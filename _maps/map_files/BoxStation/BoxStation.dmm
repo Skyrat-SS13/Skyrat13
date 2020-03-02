@@ -2,7 +2,7 @@
 "aaa" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/space)
+/area/icemoon/surface/outdoors/explored)
 "aab" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -176,7 +176,7 @@
 /area/security/prison)
 "aaz" = (
 /obj/structure/lattice/catwalk,
-/turf/open/space/basic,
+/turf/open/space,
 /area/icemoon/surface/outdoors/explored)
 "aaA" = (
 /obj/machinery/seed_extractor,
@@ -244,7 +244,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/icemoon/surface/outdoors/explored)
 "aaL" = (
 /obj/structure/lattice/catwalk,
 /obj/item/stack/marker_beacon{
@@ -256,19 +256,19 @@
 	name = "Docking Beacon";
 	picked_color = "Burgundy"
 	},
-/turf/open/space/basic,
+/turf/open/space,
 /area/icemoon/surface/outdoors/explored)
 "aaM" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
-/area/space)
+/area/icemoon/surface/outdoors/explored)
 "aaN" = (
 /obj/structure/chair/sofa/right,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaO" = (
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/space)
+/area/icemoon/surface/outdoors/explored)
 "aaP" = (
 /obj/machinery/computer/cryopod{
 	dir = 8;
@@ -281,7 +281,7 @@
 /area/security/prison)
 "aaQ" = (
 /obj/structure/lattice,
-/turf/open/space/basic,
+/turf/open/space,
 /area/icemoon/surface/outdoors/unexplored/danger)
 "aaR" = (
 /obj/structure/lattice,
@@ -310,7 +310,7 @@
 	roundstart_template = /datum/map_template/shuttle/mining_common/meta;
 	width = 7
 	},
-/turf/open/space/basic,
+/turf/open/space,
 /area/icemoon/surface/outdoors/unexplored/danger)
 "aaV" = (
 /obj/structure/table/wood,
@@ -336,7 +336,7 @@
 /obj/structure/lattice,
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/space)
+/area/icemoon/surface/outdoors/explored)
 "aaZ" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/security/armory)
@@ -561,7 +561,7 @@
 /obj/structure/shuttle/engine/propulsion{
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/space,
 /area/icemoon/surface/outdoors/explored)
 "abH" = (
 /obj/structure/table,
@@ -1625,7 +1625,7 @@
 /area/crew_quarters/heads/hos)
 "adO" = (
 /turf/closed/wall/mineral/titanium,
-/area/space)
+/area/icemoon/surface/outdoors/explored)
 "adP" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -2043,16 +2043,16 @@
 "aeD" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating/airless,
-/area/space)
+/area/icemoon/surface/outdoors/explored)
 "aeE" = (
 /obj/structure/grille,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/space)
+/area/icemoon/surface/outdoors/explored)
 "aeF" = (
 /obj/structure/lattice,
 /obj/structure/grille,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/space)
+/area/icemoon/surface/outdoors/explored)
 "aeG" = (
 /obj/structure/cable,
 /obj/machinery/power/solar{
@@ -2435,7 +2435,7 @@
 /obj/structure/lattice,
 /obj/structure/grille/broken,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/space)
+/area/icemoon/surface/outdoors/explored)
 "afo" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Three"
