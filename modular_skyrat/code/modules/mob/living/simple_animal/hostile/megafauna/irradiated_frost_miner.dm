@@ -1,6 +1,6 @@
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner
-	name = "demonic-frost miner"
-	desc = "An extremely geared miner, driven crazy or possessed by the demonic forces here, either way a terrifying enemy."
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner
+	name = "irradiated frost miner"
+	desc = "An extremely geared miner, driven crazy by radiation poisoning and a psychotic mind."
 	health = 1250
 	maxHealth = 1250
 	icon_state = "demonic_miner"
@@ -20,8 +20,8 @@
 	speed = 20
 	move_to_delay = 20
 	ranged = TRUE
-	crusher_loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer, /obj/item/crusher_trophy/miner_eye)
-	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer)
+	crusher_loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer, /obj/item/kitchen/knife/bloodletter, /obj/item/crusher_trophy/miner_eye)
+	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer, /obj/item/kitchen/knife/bloodletter)
 	wander = FALSE
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_NORMAL
@@ -31,19 +31,19 @@
 	deathmessage = "falls to the ground, decaying into plasma particles."
 	deathsound = "bodyfall"
 
-/obj/item/gps/internal/demonicminer
+/obj/item/gps/internal/irradiatedminer
 	icon_state = null
-	gpstag = "Demonic Signal"
-	desc = "Blood for the blood god!"
+	gpstag = "Irradiated Signal"
+	desc = "For atom!"
 	invisibility = 100
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/Initialize()
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/Initialize()
 	. = ..()
 	AddComponent(/datum/component/knockback, 7, FALSE)
 	AddComponent(/datum/component/lifesteal, 50)
 	internal = new/obj/item/gps/internal/demonicminer(src)
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/OpenFire()
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/OpenFire()
 	check_enraged()
 	projectile_speed_multiplier = 1 + enraged // ranges from normal to 2x speed
 	SetRecoveryTime(80, 80)
@@ -108,24 +108,24 @@
 	if(isturf(target) || isobj(target))
 		target.ex_act(EXPLODE_HEAVY)
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/ex_act(severity, target)
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/ex_act(severity, target)
 	adjustBruteLoss(30 * severity - 120)
 	visible_message("<span class='danger'>[src] absorbs the explosion!</span>", "<span class='userdanger'>You absorb the explosion!</span>")
 	return
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/Goto(target, delay, minimum_distance)
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/Goto(target, delay, minimum_distance)
 	if(!enraging)
 		. = ..()
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/MoveToTarget(list/possible_targets)
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/MoveToTarget(list/possible_targets)
 	if(!enraging)
 		. = ..()
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/Move()
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/Move()
 	if(!enraging)
 		. = ..()
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/frost_orbs(added_delay = 6, list/shoot_dirs = pick(GLOB.cardinals, GLOB.diagonals))
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/proc/frost_orbs(added_delay = 6, list/shoot_dirs = pick(GLOB.cardinals, GLOB.diagonals))
 	for(var/dir in shoot_dirs)
 		var/turf/startloc = get_turf(src)
 		var/turf/endloc = get_turf(target)
@@ -142,7 +142,7 @@
 		sleep(added_delay)
 	SetRecoveryTime(20, 40)
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/orb_explosion(obj/item/projectile/orb)
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/proc/orb_explosion(obj/item/projectile/orb)
 	var/spread = 5
 	for(var/i in 1 to 6)
 		var/turf/startloc = get_turf(orb)
@@ -158,7 +158,7 @@
 		P.fire()
 	qdel(orb)
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/snowball_machine_gun(shots = 30, spread = 10)
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/proc/snowball_machine_gun(shots = 30, spread = 10)
 	for(var/i in 1 to shots)
 		var/turf/startloc = get_turf(src)
 		var/turf/endloc = get_turf(target)
@@ -174,7 +174,7 @@
 		sleep(1)
 	SetRecoveryTime(15, 15)
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/ice_shotgun(shots = 5, list/patterns = list(list(-40, -20, 0, 20, 40), list(-30, -10, 10, 30)))
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/proc/ice_shotgun(shots = 5, list/patterns = list(list(-40, -20, 0, 20, 40), list(-30, -10, 10, 30)))
 	for(var/i in 1 to shots)
 		var/list/pattern = patterns[i % length(patterns) + 1] // alternating patterns
 		for(var/spread in pattern)
@@ -192,7 +192,7 @@
 		sleep(8)
 	SetRecoveryTime(15, 20)
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/aoe_stomp()
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/proc/aoe_stomp()
 	var/max_dist = 1
 	for(var/turf/T in RANGE_TURFS(5, src))
 		var/dist = get_dist(src, T)
@@ -208,7 +208,7 @@
 		var/y_diff = T.y - src.y
 		animate(T, pixel_x = x_diff * 1/8, pixel_y = y_diff * 1/8, time = 1, loop = 4, easing = ELASTIC_EASING)
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/check_enraged()
+/mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/proc/check_enraged()
 	if(health <= maxHealth*0.25 && !enraged)
 		SetRecoveryTime(80, 80)
 		adjustHealth(-maxHealth)

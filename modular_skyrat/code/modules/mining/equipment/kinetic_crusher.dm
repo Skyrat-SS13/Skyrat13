@@ -149,7 +149,7 @@
 	name = "king goat hoof"
 	desc = "A hoof from the king of all goats, it still glows with a fraction of its original power... Suitable as a trophy for a kinetic crusher."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
-	icon_state = "goat_hoof" //needs a better sprite but I cant sprite .
+	icon_state = "goathoof" //needs a better sprite but I cant sprite .
 	denied_type = /obj/item/crusher_trophy/king_goat
 
 /obj/item/crusher_trophy/king_goat/effect_desc()
