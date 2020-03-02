@@ -56,18 +56,18 @@
 	ambientsounds = MINING
 
 /area/icemoon/underground/unexplored // mobs and megafauna and ruins spawn here
-	name = "Icemoon Caves"
+	name = "Snow Planet Caves"
 	icon_state = "unexplored"
 	tunnel_allowed = TRUE
 	mob_spawn_allowed = TRUE
 	megafauna_spawn_allowed = TRUE
 
 /area/icemoon/underground/explored
-	name = "Icemoon Underground"
+	name = "Snow Planet Underground"
 	flora_allowed = FALSE
 
 /area/icemoon/surface/outdoors
-	name = "Icemoon Wastes"
+	name = "Snow Planet Wastes"
 	outdoors = TRUE
 
 /area/icemoon/surface/outdoors/unexplored //monsters and ruins spawn here
@@ -79,5 +79,5 @@
 	icon_state = "danger"
 
 /area/icemoon/surface/outdoors/explored
-	name = "Icemoon Labor Camp"
+	name = "Snow Planet Explored"
 	flora_allowed = FALSE
