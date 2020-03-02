@@ -1,7 +1,7 @@
 {
-    "map_name": "Snow Box Station",
-    "map_path": "_maps/map_files/BoxStationSnow",
-    "map_file": "BoxStationSnow.dmm",
+    "map_name": "Snowy Box Station",
+    "map_path": "_maps/map_files/BoxSnow",
+    "map_file": "boxsnow.dmm",
     "shuttles": {
 	    "cargo": "cargo_box",
 	    "ferry": "ferry_fancy",
