@@ -80,45 +80,7 @@
 	basic_modules += /obj/item/stack/sheet/plasteel/cyborg
 	basic_modules += /obj/item/stack/sheet/mineral/plasma/cyborg
 	. = ..()
-/* testing
-/obj/item/robot_module/butler
-	name = "Service"
-	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
-		/obj/item/extinguisher/mini,
-		/obj/item/crowbar/cyborg,
-		/obj/item/reagent_containers/food/drinks/drinkingglass,
-		/obj/item/reagent_containers/food/condiment/enzyme,
-		/obj/item/pen,
-		/obj/item/toy/crayon/spraycan/borg,
-		/obj/item/hand_labeler/borg,
-		/obj/item/razor,
-		/obj/item/instrument/violin,
-		/obj/item/instrument/guitar,
-		/obj/item/rsf/cyborg,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/lighter,
-		/obj/item/storage/bag/tray,
-		/obj/item/reagent_containers/borghypo/beershaker,
-		/obj/item/reagent_containers/borghypo/juiceshaker,
-		/obj/item/reagent_containers/borghypo/sodashaker,
-		/obj/item/reagent_containers/borghypo/miscshaker,
-		/obj/item/borg/lollipop,
-		/obj/item/screwdriver/cyborg,
-		/obj/item/stack/tile/plasteel/cyborg,
-		/obj/item/soap/nanotrasen,
-		/obj/item/storage/bag/trash/cyborg,
-		/obj/item/mop/cyborg,
-		/obj/item/lightreplacer/cyborg,
-		/obj/item/holosign_creator,
-		/obj/item/reagent_containers/spray/cyborg_drying)
-	emag_modules = list(/obj/item/reagent_containers/borghypo/borgshaker/hacked)
-	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/service,
-		/obj/item/borg/sight/xray/truesight_lens)
-	moduleselect_icon = "service"
-	hat_offset = 0
-	clean_on_move = TRUE
-*/
+
 obj/item/robot_module/butler/Initialize()
 	basic_modules -= /obj/item/reagent_containers/borghypo/borgshaker
 	basic_modules += /obj/item/reagent_containers/borghypo/beershaker
