@@ -254,12 +254,10 @@ SUBSYSTEM_DEF(mapping)
 
 #ifndef LOWMEMORYMODE
 	// Create snowy levels
-	while (snowy_levels_so_far < config.snowy_ruin_levels)
-		++snowy_levels_so_far
-		add_new_zlevel("Snow Planet [snowy_levels_so_far]", ZTRAITS_SNOWY)
-	while (snowy_underground_levels_so_far < config.snowy_underground_ruin_levels)
-		++snowy_underground_levels_so_far
-		add_new_zlevel("Snow Planet Underground [snowy_levels_so_far]", ZTRAITS_SNOWY)
+	LoadGroup(FailedZs, "Snow Planet Wastes 1", "map_files/Mining", "Icemoon.dmm", default_traits = ZTRAITS_SNOWY)
+	LoadGroup(FailedZs, "Snow Planet Wastes 2", "map_files/Mining", "Icemoon.dmm", default_traits = ZTRAITS_SNOWY)
+	LoadGroup(FailedZs, "Snow Planet Underground 1", "map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_SNOWY_UNDERGROUND)
+	LoadGroup(FailedZs, "Snow Planet Underground 2", "map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_SNOWY_UNDERGROUND)
 	// load mining
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
