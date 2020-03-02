@@ -258,10 +258,10 @@ SUBSYSTEM_DEF(mapping)
 		++space_levels_so_far
 		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
 	// load snowy bullshit here or whatever
-	for(var/i = 0, i < config.snowy_underground_ruin_levels, i++)
-		LoadGroup(FailedZs, "Snow Planet Underground [i + 1]", "map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
+	for(var/i = , i < config.snowy_underground_ruin_levels, i++)
+		LoadGroup(FailedZs, "Snow Planet Underground [i]", "map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
 	for(var/i = 0, i < config.snowy_ruin_levels, i++)
-		LoadGroup(FailedZs, "Snow Planet Wastes [i + 1]", "map_files/Mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
+		LoadGroup(FailedZs, "Snow Planet Wastes [i]", "map_files/Mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
 	// load mining
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
