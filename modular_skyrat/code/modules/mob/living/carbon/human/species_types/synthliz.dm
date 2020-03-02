@@ -4,7 +4,7 @@
 	icon_limbs = 'modular_skyrat/icons/mob/synthliz/synthliz_parts_greyscale.dmi'
 	say_mod = "beeps"
 	default_color = "00FF00"
-	species_traits = list(MUTCOLORS,NOTRANSSTING,EYECOLOR,LIPS)
+	species_traits = list(MUTCOLORS,NOTRANSSTING,EYECOLOR,LIPS,HAIR)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	mutant_bodyparts = list("ipc_antenna","mam_tail", "mam_snouts","legs", "mam_body_markings")
 	default_features = list("ipc_antenna" = "None","mam_tail" = "Synthetic Lizard", "mam_snouts" = "Synthetic Lizard Snout", "legs" = "Digitigrade", "mam_body_markings" = "Synthetic Lizard Plates")
