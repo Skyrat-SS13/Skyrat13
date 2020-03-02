@@ -249,11 +249,11 @@
 			break
 	if(!sanity)
 		return
-	SpawnFlora(T)
-
+//SKYRAT CHANGE - Monsters are prioritized over flora
 	SpawnMonster(T)
+	SpawnFlora(T)
 	T.ChangeTurf(turf_type, null, CHANGETURF_IGNORE_AIR)
-
+//
 /turf/open/floor/plating/asteroid/airless/cave/proc/SpawnMonster(turf/T)
 	if(prob(30))
 		if(istype(loc, /area/mine/explored) || !istype(loc, /area/lavaland/surface/outdoors/unexplored))
