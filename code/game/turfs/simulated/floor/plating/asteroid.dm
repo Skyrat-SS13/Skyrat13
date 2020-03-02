@@ -260,7 +260,7 @@
 			return
 		var/randumb = pickweight(mob_spawn_list)
 		while(randumb == SPAWN_MEGAFAUNA)
-			if(istype(loc, /area/lavaland/surface/outdoors/unexplored/danger)) //this is danger. it's boss time.
+			if(istype(loc, /area/lavaland/surface/outdoors/unexplored/danger || /area/icemoon/surface/outdoors/unexplored/danger || /area/icemoon/surface/outdoors/unexplored || /area/icemoon/underground/unexplored)) //this is danger. it's boss time.
 				var/maybe_boss = pickweight(megafauna_spawn_list)
 				if(megafauna_spawn_list[maybe_boss])
 					randumb = maybe_boss
@@ -274,7 +274,7 @@
 				return //if there's a megafauna within standard view don't spawn anything at all
 			if(ispath(randumb, /mob/living/simple_animal/hostile/asteroid) || istype(H, /mob/living/simple_animal/hostile/asteroid))
 				return //if the random is a standard mob, avoid spawning if there's another one within 12 tiles
-			if((ispath(randumb, /obj/structure/spawner/lavaland) || istype(H, /obj/structure/spawner/lavaland)) && get_dist(src, H) <= 2)
+			if(ispath(randumb, /obj/structure/spawner) || istype(H, /obj/structure/spawner) && get_dist(src, H) <= 2)
 				return //prevents tendrils spawning in each other's collapse range
 
 		new randumb(T)

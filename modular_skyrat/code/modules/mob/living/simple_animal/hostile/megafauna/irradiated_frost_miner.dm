@@ -41,7 +41,7 @@
 	. = ..()
 	AddComponent(/datum/component/knockback, 7, FALSE)
 	AddComponent(/datum/component/lifesteal, 50)
-	internal = new/obj/item/gps/internal/demonicminer(src)
+	internal = new/obj/item/gps/internal/irradiatedminer(src)
 
 /mob/living/simple_animal/hostile/megafauna/irradiated_frost_miner/OpenFire()
 	check_enraged()
