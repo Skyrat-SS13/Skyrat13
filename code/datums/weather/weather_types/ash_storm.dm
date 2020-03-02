@@ -16,8 +16,8 @@
 	end_duration = 300
 	end_overlay = "light_ash"
 
-	area_type = /area/lavaland/surface/outdoors
-	target_trait = ZTRAIT_MINING
+	area_type = /area
+	target_trait = ZTRAIT_ASHSTORM
 
 	immunity_type = "ash"
 
