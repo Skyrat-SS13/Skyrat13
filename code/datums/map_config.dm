@@ -15,9 +15,9 @@
 	var/max_rounds_played = 0
 
 	// Config actually from the JSON - should default to Box
-	var/map_name = "Snow Box Station"
-	var/map_path = "map_files/BoxSnow"
-	var/map_file = "boxsnow.dmm"
+	var/map_name = "Box Station"
+	var/map_path = "map_files/BoxStation"
+	var/map_file = "BoxStation.dmm"
 
 	var/traits = null
 	var/snowy_ruin_levels = 3
