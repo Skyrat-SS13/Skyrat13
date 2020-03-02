@@ -276,8 +276,8 @@
 				return //if the random is a standard mob, avoid spawning if there's another one within 12 tiles
 			if(ispath(randumb, /obj/structure/spawner) || istype(H, /obj/structure/spawner) && get_dist(src, H) <= 2)
 				return //prevents tendrils spawning in each other's collapse range
-
-		new randumb(T)
+		if(randumb) //prevents "null" from being spawned
+			new randumb(T)
 	return
 
 #undef SPAWN_MEGAFAUNA
