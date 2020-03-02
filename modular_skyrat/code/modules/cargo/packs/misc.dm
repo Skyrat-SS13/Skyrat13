@@ -1,0 +1,3 @@
+/datum/supply_pack/misc/paper_work
+	desc = "The Syndicate have stolen our station's unfinished paperwork and are holding it hostage at a price of credits. In order to gain further funding, your station is required to fill out (20) ten of these forms or no additional capital will be disbursed. We have sent you ten copies of the following form and we expect every one to be up to Nanotrasen Standards."
+	hidden = TRUE
