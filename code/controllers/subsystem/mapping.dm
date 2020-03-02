@@ -364,7 +364,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	next_map_config = VM
 
 	. = TRUE
-	
+
 	stat_map_name = "[config.map_name] (Next: [next_map_config.map_name])"
 
 /datum/controller/subsystem/mapping/proc/preloadTemplates(path = "_maps/templates/") //see master controller setup
@@ -574,4 +574,3 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		LM.load()
 	if(GLOB.stationroom_landmarks.len)
 		seedStation() //I'm sure we can trust everyone not to insert a 1x1 rooms which loads a landmark which loads a landmark which loads a la...
-		
