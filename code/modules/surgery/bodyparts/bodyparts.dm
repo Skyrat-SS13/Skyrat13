@@ -290,7 +290,12 @@
 				icon = DEFAULT_BODYPART_ICON_ORGANIC
 			//END OF SKYRAT CHANGES
 		else if(status == BODYPART_ROBOTIC)
-			icon = DEFAULT_BODYPART_ICON_ROBOTIC
+			//SKYRAT CHANGES - accounts for robotic crewmembers with custom limbs
+			if(owner?.dna?.species)
+				icon = owner.dna.species.icon_limbs
+			else
+				icon = DEFAULT_BODYPART_ICON_ROBOTIC
+			//END OF SKYRAT CHANGES
 
 	if(owner)
 		owner.updatehealth()
