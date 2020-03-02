@@ -36,6 +36,9 @@ SUBSYSTEM_DEF(mapping)
 	// Z-manager stuff
 	var/station_start  // should only be used for maploading-related tasks
 	var/space_levels_so_far = 0
+	var/snowy_levels_so_far = 0
+	var/snowy_underground_levels_so_far = 0
+	var/datum/space_level/snowdin
 	var/list/z_list
 	var/datum/space_level/transit
 	var/datum/space_level/empty_space
@@ -70,19 +73,24 @@ SUBSYSTEM_DEF(mapping)
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
 #ifndef LOWMEMORYMODE
-	// Create space ruin levels
+	// Create space ruin levels (They will still be utilize for some special events like King Goat!)
 	while (space_levels_so_far < config.space_ruin_levels)
 		++space_levels_so_far
 		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
 	// and one level with no ruins
 	for (var/i in 1 to config.space_empty_levels)
 		++space_levels_so_far
-		empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAIT_LINKAGE = CROSSLINKED))
-
+		empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAITS_SPACE))
+	// Create snowy levels
+	while (snowy_levels_so_far < config.snowy_ruin_levels)
+		++snowy_levels_so_far
+		add_new_zlevel("Snow Planet [snowy_levels_so_far]", ZTRAITS_SNOWY)
+	while (snowy_underground_levels_so_far < config.snowy_underground_ruin_levels)
+		++snowy_underground_levels_so_far
+		add_new_zlevel("Snow Planet [snowy_levels_so_far]", ZTRAITS_SNOWY)
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
 		createRandomZlevel()
-
 	// Generate mining ruins
 	loading_ruins = TRUE
 	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
@@ -90,6 +98,7 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), /area/lavaland/surface/outdoors/unexplored, lava_ruins_templates)
 		for (var/lava_z in lava_ruins)
 			spawn_rivers(lava_z)
+	//Generate snowy ruins
 	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 	if (ice_ruins.len) // needs to be whitelisted for underground too so place_below ruins work
 		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/surface/outdoors/unexplored, ice_ruins_templates)
@@ -107,6 +116,9 @@ SUBSYSTEM_DEF(mapping)
 	SSmapping.seedStation()
 	loading_ruins = FALSE
 #endif
+	//Add snowdin because why not?
+	var/datum/map_template/template = new(snowdin, "Snowdin")
+	snowdin = template.load_new_z()
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()

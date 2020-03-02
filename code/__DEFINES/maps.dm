@@ -32,6 +32,7 @@ require only minor tweaks.
 #define ZTRAIT_CENTCOM "CentCom"
 #define ZTRAIT_STATION "Station"
 #define ZTRAIT_MINING "Mining"
+#define ZTRAIT_SNOW "Snow"
 #define ZTRAIT_REEBE "Reebe"
 #define ZTRAIT_RESERVED "Transit/Reserved"
 #define ZTRAIT_AWAY "Away Mission"
@@ -69,9 +70,13 @@ require only minor tweaks.
 #define ZTRAIT_BASETURF "Baseturf"
 
 // default trait definitions, used by SSmapping
-#define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE)
-#define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_STATION = TRUE)
-#define ZTRAITS_SPACE list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_SPACE_RUINS = TRUE)
+#define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE, ZTRAIT_SNOW = TRUE)
+#define ZTRAITS_STATION list( \
+	ZTRAIT_LINKAGE = CROSSLINKED, \
+	ZTRAIT_STATION = TRUE, \
+	ZTRAIT_GRAVITY = TRUE, \
+	ZTRAIT_UP = 1)
+#define ZTRAITS_SPACE list(ZTRAIT_SPACE_RUINS = TRUE)
 #define ZTRAITS_LAVALAND list(\
 	ZTRAIT_MINING = TRUE, \
 	ZTRAIT_ASHSTORM = TRUE, \
@@ -91,6 +96,24 @@ require only minor tweaks.
     ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
     ZTRAIT_UP = 1, \
     ZTRAIT_BASETURF = /turf/open/lava/plasma/ice_moon)
+#define ZTRAITS_SNOWY list(\
+	ZTRAIT_GRAVITY = TRUE,\
+	ZTRAIT_SNOW = TRUE,\
+	ZTRAIT_LINKAGE = CROSSLINKED,\
+	ZTRAIT_ICE_RUINS = TRUE, \
+	ZTRAIT_SNOWSTORM = TRUE, \
+	ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
+	ZTRAIT_BASETURF = /turf/closed/mineral/random/snow, \
+	ZTRAIT_DOWN = -1)
+#define ZTRAITS_SNOWY_UNDERGROUND list(\
+	ZTRAIT_GRAVITY = TRUE, \
+	ZTRAIT_LINKAGE = CROSSLINKED, \
+	ZTRAIT_ICE_RUINS_UNDERGROUND = TRUE, \
+	ZTRAIT_SNOWSTORM = FALSE, \
+	ZTRAIT_SNOW = TRUE,\
+	ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
+	ZTRAIT_BASETURF = /turf/closed/mineral/random/snow/underground, \
+	ZTRAIT_UP = 1)
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
 #define DL_NAME "name"
@@ -119,7 +142,9 @@ require only minor tweaks.
 #define PLACE_SAME_Z "same" //On same z level as original ruin
 #define PLACE_SPACE_RUIN "space" //On space ruin z level(s)
 #define PLACE_LAVA_RUIN "lavaland" //On lavaland ruin z levels(s)
+#define PLACE_SNOWY_RUIN "snowy" //On snowy ruin z levels(s)
 #define PLACE_BELOW "below" //On z levl below - centered on same tile
 #define PLACE_ISOLATED "isolated" //On isolated ruin z level
 //Map type stuff.
 #define MAP_TYPE_STATION "station"
+#define MAP_TYPE_COLONY "colony"
