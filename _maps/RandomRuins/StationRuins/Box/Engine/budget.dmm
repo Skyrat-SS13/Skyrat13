@@ -10,8 +10,8 @@
 "aW" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "cP" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
@@ -316,8 +316,8 @@
 /area/engine/engineering)
 "tw" = (
 /obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "wt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/closet/radiation,
@@ -334,8 +334,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "yf" = (
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "zw" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/plasma{
@@ -347,8 +347,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "zS" = (
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "AC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -557,8 +557,8 @@
 /area/engine/engineering)
 "Le" = (
 /obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "LS" = (
 /obj/machinery/power/smes{
 	capacity = 9e+006;
@@ -610,7 +610,7 @@
 /area/engine/engineering)
 "Oj" = (
 /turf/closed/wall/r_wall,
-/area/space/nearstation)
+/area/icemoon/surface/outdoors/explored)
 "Ok" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -658,8 +658,8 @@
 /area/engine/engineering)
 "Rh" = (
 /obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "Rs" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -728,8 +728,8 @@
 "YZ" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/asteroid/snow,
+/area/icemoon/surface/outdoors/explored)
 "Zn" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32

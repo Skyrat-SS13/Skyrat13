@@ -40,8 +40,9 @@ SUBSYSTEM_DEF(mapping)
 	var/snowy_underground_levels_so_far = 0
 	var/list/z_list
 	var/datum/space_level/transit
-	var/datum/space_level/snowy_level/snowdin
+	var/datum/space_level/snowdin
 	var/datum/space_level/empty_space
+	var/datum/space_level/ruins
 	var/num_of_res_levels = 1
 
 	var/stat_map_name = "Loading..."
@@ -73,10 +74,6 @@ SUBSYSTEM_DEF(mapping)
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
 #ifndef LOWMEMORYMODE
-	// Create space ruin levels (They will still be utilize for some special events like King Goat!)
-	while (space_levels_so_far < config.space_ruin_levels)
-		++space_levels_so_far
-		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
 	// Create snowy ruin levels
 	while (snowy_levels_so_far < config.snowy_ruin_levels)
 		++snowy_levels_so_far
@@ -119,7 +116,7 @@ SUBSYSTEM_DEF(mapping)
 	loading_ruins = FALSE
 #endif
 	//Add snowdin because why not?
-	snowdin = add_new_zlevel ("Snowdin", ZTRAITS_SNOWY, z_type = /datum/space_level/snowy_level)
+	snowdin = add_new_zlevel ("Snowdin", ZTRAITS_SNOWY, z_type = /datum/space_level)
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()

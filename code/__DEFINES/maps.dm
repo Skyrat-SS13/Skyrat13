@@ -26,8 +26,8 @@ require only minor tweaks.
 #define MAP_REMOVE_JOB(jobpath) /datum/job/##jobpath/map_check() { return (SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) && ..() }
 
 #define SPACERUIN_MAP_EDGE_PAD 15
-#define SNOWY_MAP_EDGE_PAD 10
-#define SNOWY_UNDERGROUND_MAP_EDGE_PAD 10
+#define SNOWY_MAP_EDGE_PAD 15
+#define SNOWY_UNDERGROUND_MAP_EDGE_PAD 15
 
 // traits
 // boolean - marks a level as having that property if present
@@ -72,13 +72,13 @@ require only minor tweaks.
 #define ZTRAIT_BASETURF "Baseturf"
 
 // default trait definitions, used by SSmapping
-#define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE, ZTRAIT_SNOW = TRUE)
+#define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE, ZTRAIT_SNOW = TRUE, ZTRAIT_GRAVITY = TRUE)
 #define ZTRAITS_STATION list( \
 	ZTRAIT_LINKAGE = CROSSLINKED, \
 	ZTRAIT_STATION = TRUE, \
 	ZTRAIT_GRAVITY = TRUE, \
 	ZTRAIT_SNOWSTORM = TRUE)
-#define ZTRAITS_SPACE list(ZTRAIT_SPACE_RUINS = TRUE)
+#define ZTRAITS_SPACE list(ZTRAIT_SPACE_RUINS = TRUE, ZTRAIT_RESERVED = TRUE)
 #define ZTRAITS_LAVALAND list(\
 	ZTRAIT_MINING = TRUE, \
 	ZTRAIT_ASHSTORM = TRUE, \
