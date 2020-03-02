@@ -20,7 +20,7 @@ datum/uplink_item/role_restricted/crusher
 	item = /obj/item/card/emag/independence
 	cost = 20
 	limited_stock = 1
-	restricted_roles = list("Shaft Miner", "Cargo Technician", "Quartermaster"))
+	restricted_roles = list("Shaft Miner", "Cargo Technician", "Quartermaster")
 
 /datum/uplink_item/role_restricted/pka_nopenalty
 	name = "On-station Proto-Kinetic Accelerator"
