@@ -58,8 +58,8 @@ obj/item/gps/internal/bubblegum/hard
 	if(charging)
 		return
 
-	anger_modifier = clamp(((maxHealth - health)/60),0,20)
-	enrage_time = initial(enrage_time) * clamp(anger_modifier / 20, 0.5, 1)
+	anger_modifier = CLAMP(((maxHealth - health)/60),0,20)
+	enrage_time = initial(enrage_time) * CLAMP(anger_modifier / 20, 0.5, 1)
 	ranged_cooldown = world.time + 50
 
 	if(!try_bloodattack() || prob(25 + anger_modifier))
