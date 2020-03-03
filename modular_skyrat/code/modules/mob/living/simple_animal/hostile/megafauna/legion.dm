@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/megafauna/legion
 	loot = list(/obj/item/stack/sheet/bone = 3)
-	song = sound('modular_skyrat/sound/ambience/megalovania.ogg', 100) //Undertale songs are under CC. Thanks Toby Fox!
-	songlength = 1560
+	song = sound('modular_skyrat/sound/ambience/mastermind.ogg', 100) //Threading on some lines here.
+	songlength = 3550
 
 /mob/living/simple_animal/hostile/megafauna/legion/death()
 	if(health > 0)
