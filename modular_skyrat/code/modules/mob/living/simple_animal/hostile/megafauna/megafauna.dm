@@ -35,7 +35,7 @@
 			var/mob/living/M = A
 			if(faction_check_mob(M) && attack_same || !faction_check_mob(M))
 				enemies |= M
-				if(song)
+				if(song && !songend)
 					M.stop_sound_channel(CHANNEL_JUKEBOX)
 					songend = songlength + world.time
 					M.playsound_local(null, null, 30, channel = CHANNEL_JUKEBOX, S = song)
