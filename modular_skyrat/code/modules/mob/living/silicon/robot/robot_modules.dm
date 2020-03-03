@@ -81,6 +81,14 @@
 	basic_modules += /obj/item/stack/sheet/mineral/plasma/cyborg
 	. = ..()
 
+obj/item/robot_module/butler/Initialize()
+	basic_modules -= /obj/item/reagent_containers/borghypo/borgshaker
+	basic_modules += /obj/item/reagent_containers/borghypo/beershaker
+	basic_modules += /obj/item/reagent_containers/borghypo/juiceshaker
+	basic_modules += /obj/item/reagent_containers/borghypo/sodashaker
+	basic_modules += /obj/item/reagent_containers/borghypo/miscshaker
+	. = ..()
+
 /datum/robot_energy_storage/plasma
 	name = "Plasma Buffer Container"
 	recharge_rate = 0
