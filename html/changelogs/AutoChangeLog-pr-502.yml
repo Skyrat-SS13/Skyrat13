@@ -1,0 +1,5 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - rscadd: "hair for synthlizards"
+  - bugfix: "fixes synth sprites"
