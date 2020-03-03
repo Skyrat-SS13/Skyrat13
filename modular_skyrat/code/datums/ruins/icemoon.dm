@@ -37,6 +37,12 @@
 	description = "Once a somewhat thriving colony, now ruined and inhabited only by a goliath."
 	suffix = "icemoon_surface_colony.dmm"
 
+/datum/map_template/ruin/icemoon/miningoutpost
+	name = "Abandoned Mining Outpost"
+	id = "colony"
+	description = "An abandoned outpost once used by miners to shelter them from snowstorms."
+	suffix = "icemoon_surface_miningoutpost.dmm"
+
 // above and below ground together
 
 /datum/map_template/ruin/icemoon/mining_site
