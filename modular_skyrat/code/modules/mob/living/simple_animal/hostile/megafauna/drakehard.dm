@@ -15,6 +15,9 @@ When an ash drake dies, it leaves behind a chest that can contain four things:
 When butchered, they leave behind diamonds, sinew, bone, and ash drake hide. Ash drake hide can be used to create a hooded cloak that protects its wearer from ash storms.
 Difficulty: Medium
 */
+/mob/living/simple_animal/hostile/megafauna/dragon
+	song = sound('modular_skyrat/sound/ambience/keepersofthegate.ogg', 100) // Andrew is a nice guy, he'll let it slide. Taken from the DUSK OST.
+	songlength = 2930
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard
 	name = "enraged ash drake"

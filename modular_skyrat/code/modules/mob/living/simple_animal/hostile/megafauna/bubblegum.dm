@@ -12,6 +12,8 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 	death_sound = 'modular_skyrat/sound/misc/gorenest.ogg' //fuck it
 	var/movesound = 'sound/effects/meteorimpact.ogg'
 	do_footstep = TRUE
+	song = sound('modular_skyrat/sound/ambience/duskcreations.ogg', 100) //I'm sure Andrew, the creator of the game and New Blood won't care.
+	songlength = 1860
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Move()
 	. = ..()

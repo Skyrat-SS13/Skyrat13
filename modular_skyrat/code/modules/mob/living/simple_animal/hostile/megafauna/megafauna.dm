@@ -28,7 +28,6 @@
 
 /mob/living/simple_animal/hostile/megafauna/proc/Retaliate()
 	var/list/around = view(src, vision_range)
-
 	for(var/atom/movable/A in around)
 		if(A == src)
 			continue
@@ -36,6 +35,10 @@
 			var/mob/living/M = A
 			if(faction_check_mob(M) && attack_same || !faction_check_mob(M))
 				enemies |= M
+				if(song)
+					M.stop_sound_channel(CHANNEL_JUKEBOX)
+					songend = songlength + world.time
+					M.playsound_local(null, null, 30, channel = CHANNEL_JUKEBOX, S = song)
 		else if(ismecha(A))
 			var/obj/mecha/M = A
 			if(M.occupant)
@@ -51,3 +54,22 @@
 	. = ..()
 	if(. > 0 && stat == CONSCIOUS)
 		Retaliate()
+
+/mob/living/simple_animal/hostile/megafauna
+	var/sound/song
+	var/songlength
+	var/songend
+
+/mob/living/simple_animal/hostile/megafauna/Life()
+	..()
+	if(songend)
+		if(world.time >= songend)
+			for(var/mob/living/M in view(src, vision_range))
+				M.stop_sound_channel(CHANNEL_JUKEBOX)
+				songend = songlength + world.time
+				M.playsound_local(null, null, 30, channel = CHANNEL_JUKEBOX, S = song)
+
+/mob/living/simple_animal/hostile/megafauna/death()
+	..()
+	for(var/mob/living/M in view(src, vision_range))
+		M.stop_sound_channel(CHANNEL_JUKEBOX)

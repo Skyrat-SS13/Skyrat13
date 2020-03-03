@@ -28,6 +28,8 @@
 	var/projectile_speed_multiplier = 1
 	var/enraged = FALSE
 	var/enraging = FALSE
+	song = sound('modular_skyrat/sound/ambience/mus_x_undyne.ogg', 100) // Thanks again, Toby.
+	songlength = 1530
 	deathmessage = "falls to the ground, decaying into plasma particles."
 	deathsound = "bodyfall"
 
