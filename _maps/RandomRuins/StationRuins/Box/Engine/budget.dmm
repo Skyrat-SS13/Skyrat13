@@ -336,19 +336,6 @@
 "yf" = (
 /turf/open/floor/plating/asteroid/snow,
 /area/icemoon/surface/outdoors/explored)
-"zw" = (
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/mineral/plasma{
-	amount = 50
-	},
-/obj/item/stack/sheet/mineral/plasma{
-	amount = 10
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"zS" = (
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
 "AC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -656,10 +643,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Rh" = (
-/obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
 "Rs" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -715,21 +698,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"WB" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "Ys" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"YZ" = (
-/obj/structure/lattice,
-/obj/structure/grille,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
 "Zn" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32
@@ -749,19 +721,19 @@ ZT
 ZT
 ZT
 yf
-Rh
+tw
 yf
 yf
-Rh
+tw
 yf
 yf
-Rh
+tw
 yf
 yf
 yf
-YZ
-YZ
-YZ
+aW
+aW
+aW
 ZT
 ZT
 ZT
@@ -787,9 +759,9 @@ tw
 yf
 yf
 yf
-YZ
+aW
 Oj
-YZ
+aW
 ZT
 ZT
 ZT
@@ -813,11 +785,11 @@ tw
 tw
 tw
 tw
-Rh
-Rh
-YZ
+tw
+tw
+aW
 Oj
-YZ
+aW
 ZT
 ZT
 ZT
@@ -843,9 +815,9 @@ tw
 Le
 Le
 Le
-YZ
+aW
 Oj
-YZ
+aW
 ZT
 ZT
 ZT
@@ -869,11 +841,11 @@ tw
 tw
 tw
 tw
-Rh
-Rh
-YZ
+tw
+tw
+aW
 Oj
-YZ
+aW
 ZT
 ZT
 ZT
@@ -899,9 +871,9 @@ tw
 Le
 Le
 Le
-YZ
+aW
 Oj
-YZ
+aW
 ZT
 ZT
 ZT
@@ -925,16 +897,16 @@ tw
 tw
 tw
 tw
-Rh
-Rh
-YZ
+tw
+tw
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (8,1,1) = {"
 ZT
@@ -955,14 +927,14 @@ tw
 Le
 Le
 Le
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (9,1,1) = {"
 ZT
@@ -981,16 +953,16 @@ tw
 tw
 tw
 tw
-Rh
-Rh
-YZ
-YZ
-YZ
 tw
-zS
-zS
-zS
-zS
+tw
+aW
+aW
+aW
+tw
+yf
+yf
+yf
+yf
 "}
 (10,1,1) = {"
 ZT
@@ -1012,13 +984,13 @@ yf
 tw
 yf
 yf
-Rh
+tw
 yf
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (11,1,1) = {"
 oC
@@ -1040,13 +1012,13 @@ tw
 tw
 tw
 aW
-YZ
+aW
 aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (12,1,1) = {"
 cS
@@ -1067,14 +1039,14 @@ tw
 yf
 tw
 yf
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (13,1,1) = {"
 ME
@@ -1095,14 +1067,14 @@ tw
 yf
 tw
 yf
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (14,1,1) = {"
 Ne
@@ -1123,14 +1095,14 @@ tw
 tw
 tw
 tw
-YZ
+aW
 Oj
-YZ
-Rh
-zS
-zS
-zS
-zS
+aW
+tw
+yf
+yf
+yf
+yf
 "}
 (15,1,1) = {"
 MP
@@ -1151,42 +1123,42 @@ tw
 yf
 tw
 yf
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (16,1,1) = {"
 MP
 dw
 lG
-WB
+eP
 Jq
-WB
+eP
 UD
 Cx
 UD
-WB
+eP
 Jq
-WB
+eP
 UD
 MP
 tw
 tw
 tw
 tw
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (17,1,1) = {"
 oS
@@ -1207,14 +1179,14 @@ tw
 yf
 tw
 yf
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (18,1,1) = {"
 iD
@@ -1235,14 +1207,14 @@ tw
 yf
 tw
 yf
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (19,1,1) = {"
 oS
@@ -1263,42 +1235,42 @@ tw
 tw
 tw
 tw
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (20,1,1) = {"
 MP
 Cb
 AC
-WB
+eP
 mW
-WB
+eP
 Kl
 Cx
 Kl
-WB
+eP
 mW
-WB
+eP
 Kl
 MP
 tw
 tw
 tw
 tw
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (21,1,1) = {"
 MP
@@ -1319,14 +1291,14 @@ tw
 yf
 tw
 yf
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (22,1,1) = {"
 iD
@@ -1347,14 +1319,14 @@ tw
 tw
 tw
 tw
-YZ
+aW
 Oj
-YZ
-Rh
-zS
-zS
-zS
-zS
+aW
+tw
+yf
+yf
+yf
+yf
 "}
 (23,1,1) = {"
 iD
@@ -1375,14 +1347,14 @@ tw
 tw
 tw
 tw
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (24,1,1) = {"
 mH
@@ -1403,14 +1375,14 @@ tw
 tw
 tw
 tw
-YZ
+aW
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (25,1,1) = {"
 iD
@@ -1431,14 +1403,14 @@ tw
 yf
 tw
 yf
-YZ
-YZ
-YZ
+aW
+aW
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (26,1,1) = {"
 wt
@@ -1460,13 +1432,13 @@ yf
 tw
 yf
 yf
-Rh
+tw
 yf
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (27,1,1) = {"
 ZT
@@ -1487,14 +1459,14 @@ tw
 yf
 tw
 tw
-Rh
-Rh
-Rh
-Rh
-zS
-zS
-zS
-zS
+tw
+tw
+tw
+tw
+yf
+yf
+yf
+yf
 "}
 (28,1,1) = {"
 ZT
@@ -1505,24 +1477,24 @@ Ok
 CH
 GI
 Ok
-zw
-zw
-zw
-zw
-zw
+gF
+gF
+gF
+gF
+gF
 MP
 tw
 yf
-Rh
+tw
 yf
-Rh
+tw
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}
 (29,1,1) = {"
 ZT
@@ -1539,16 +1511,16 @@ iD
 iD
 iD
 MP
-Rh
-Rh
-Rh
-Rh
-Rh
+tw
+tw
+tw
+tw
+tw
 Oj
-YZ
+aW
 yf
-zS
-zS
-zS
-zS
+yf
+yf
+yf
+yf
 "}

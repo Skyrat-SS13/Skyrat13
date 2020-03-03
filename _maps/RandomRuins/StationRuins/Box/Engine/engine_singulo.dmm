@@ -666,9 +666,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"MJ" = (
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
 "Nm" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
@@ -893,19 +890,19 @@ Um
 Um
 Um
 dz
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
 Um
 Um
 Um
@@ -921,19 +918,19 @@ Um
 Um
 Um
 dz
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
 Um
 Um
 Um
@@ -949,19 +946,19 @@ Um
 Um
 Um
 dz
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
 Um
 Um
 Um
@@ -978,18 +975,18 @@ Um
 Um
 dz
 dz
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
 Um
 Um
 Um
@@ -1007,17 +1004,17 @@ Um
 Yl
 dz
 dz
-MJ
-MJ
 dz
 dz
 dz
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
 Um
 Um
 Um
@@ -1075,10 +1072,10 @@ lJ
 Ch
 Nm
 dz
-MJ
-MJ
-MJ
-MJ
+dz
+dz
+dz
+dz
 "}
 (8,1,1) = {"
 Um
@@ -1104,9 +1101,9 @@ tC
 Ch
 dz
 dz
-MJ
-MJ
-MJ
+dz
+dz
+dz
 "}
 (9,1,1) = {"
 Um
@@ -1133,8 +1130,8 @@ Ls
 Pt
 dz
 dz
-MJ
-MJ
+dz
+dz
 "}
 (10,1,1) = {"
 Um
@@ -1161,8 +1158,8 @@ Ch
 Ch
 tC
 dz
-MJ
-MJ
+dz
+dz
 "}
 (11,1,1) = {"
 xJ
@@ -1189,8 +1186,8 @@ fr
 Ch
 tC
 dz
-MJ
-MJ
+dz
+dz
 "}
 (12,1,1) = {"
 LO
@@ -1218,7 +1215,7 @@ Ch
 tC
 dz
 dz
-MJ
+dz
 "}
 (13,1,1) = {"
 NS
@@ -1246,7 +1243,7 @@ Ch
 tC
 Yl
 dz
-MJ
+dz
 "}
 (14,1,1) = {"
 yo
@@ -1274,7 +1271,7 @@ Ch
 jH
 Yl
 dz
-MJ
+dz
 "}
 (15,1,1) = {"
 jH
@@ -1302,7 +1299,7 @@ Ch
 tC
 Yl
 dz
-MJ
+dz
 "}
 (16,1,1) = {"
 Ch
@@ -1330,7 +1327,7 @@ Ch
 tC
 dz
 dz
-MJ
+dz
 "}
 (17,1,1) = {"
 wt
@@ -1357,8 +1354,8 @@ Pt
 Ch
 tC
 dz
-MJ
-MJ
+dz
+dz
 "}
 (18,1,1) = {"
 cB
@@ -1385,8 +1382,8 @@ sr
 Ch
 tC
 dz
-MJ
-MJ
+dz
+dz
 "}
 (19,1,1) = {"
 wt
@@ -1413,8 +1410,8 @@ Pt
 Ch
 tC
 dz
-MJ
-MJ
+dz
+dz
 "}
 (20,1,1) = {"
 Ch
@@ -1442,7 +1439,7 @@ Ch
 tC
 dz
 dz
-MJ
+dz
 "}
 (21,1,1) = {"
 jH
@@ -1470,7 +1467,7 @@ Ch
 tC
 Yl
 dz
-MJ
+dz
 "}
 (22,1,1) = {"
 AF
@@ -1498,7 +1495,7 @@ Ch
 jH
 Yl
 dz
-MJ
+dz
 "}
 (23,1,1) = {"
 fh
@@ -1526,7 +1523,7 @@ Ch
 tC
 Yl
 dz
-MJ
+dz
 "}
 (24,1,1) = {"
 fh
@@ -1554,7 +1551,7 @@ Ch
 tC
 dz
 dz
-MJ
+dz
 "}
 (25,1,1) = {"
 eA
@@ -1581,8 +1578,8 @@ LJ
 Ch
 tC
 dz
-MJ
-MJ
+dz
+dz
 "}
 (26,1,1) = {"
 fh
@@ -1609,8 +1606,8 @@ Ch
 Ch
 tC
 dz
-MJ
-MJ
+dz
+dz
 "}
 (27,1,1) = {"
 Um
@@ -1637,8 +1634,8 @@ Ls
 Pt
 dz
 dz
-MJ
-MJ
+dz
+dz
 "}
 (28,1,1) = {"
 Um
@@ -1666,7 +1663,7 @@ Yl
 dz
 dz
 dz
-MJ
+dz
 "}
 (29,1,1) = {"
 Um
@@ -1694,5 +1691,5 @@ Yl
 Yl
 Yl
 dz
-MJ
+dz
 "}

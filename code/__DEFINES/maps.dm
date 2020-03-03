@@ -77,10 +77,14 @@ require only minor tweaks.
 // default trait definitions, used by SSmapping
 #define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE, ZTRAIT_SNOW = TRUE)
 #define ZTRAITS_STATION list( \
-	ZTRAIT_LINKAGE = CROSSLINKED, \
 	ZTRAIT_STATION = TRUE, \
-	ZTRAIT_GRAVITY = TRUE)
-#define ZTRAITS_SPACE list(ZTRAIT_SPACE_RUINS = TRUE)
+    ZTRAIT_MINING = TRUE, \
+    ZTRAIT_SNOWSTORM = TRUE, \
+    ZTRAIT_ICE_RUINS = TRUE, \
+    ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
+    ZTRAIT_DOWN = 1, \
+    ZTRAIT_BASETURF = /turf/open/floor/plating/asteroid/snow)
+#define ZTRAITS_SPACE list(ZTRAIT_SPACE_RUINS = TRUE, ZTRAIT_LINKAGE = CROSSLINKED)
 #define ZTRAITS_LAVALAND list(\
 	ZTRAIT_MINING = TRUE, \
 	ZTRAIT_ASHSTORM = TRUE, \
@@ -92,7 +96,6 @@ require only minor tweaks.
     ZTRAIT_SNOWSTORM = TRUE, \
     ZTRAIT_ICE_RUINS = TRUE, \
     ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
     ZTRAIT_DOWN = -1, \
     ZTRAIT_BASETURF = /turf/open/floor/plating/asteroid/snow/ice)
 #define ZTRAITS_ICEMOON_UNDERGROUND list(\
@@ -103,7 +106,6 @@ require only minor tweaks.
 #define ZTRAITS_SNOWY list(\
 	ZTRAIT_GRAVITY = TRUE,\
 	ZTRAIT_SNOW = TRUE,\
-	ZTRAIT_LINKAGE = CROSSLINKED,\
 	ZTRAIT_ICE_RUINS = TRUE, \
 	ZTRAIT_SNOWSTORM = TRUE, \
 	ZTRAIT_BOMBCAP_MULTIPLIER = 5, \

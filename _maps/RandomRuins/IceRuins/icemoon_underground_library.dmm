@@ -1,0 +1,757 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/documents/syndicate/mining,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
+"ac" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered)
+"ad" = (
+/turf/closed/mineral/random/snow/no_caves,
+/area/icemoon/underground/explored)
+"ah" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"ai" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/paper/crumpled,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
+"aj" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"al" = (
+/turf/closed/wall/mineral/iron,
+/area/ruin/unpowered)
+"am" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/book_of_babel,
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
+"ap" = (
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"as" = (
+/obj/item/paper/fluff/ruins/oldstation/protosing,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"au" = (
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"av" = (
+/obj/structure/bookcase/random,
+/turf/closed/mineral/random/snow/no_caves,
+/area/ruin/unpowered)
+"az" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"aA" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered)
+"aB" = (
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"aC" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"aD" = (
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered)
+"aE" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/book/manual/random,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"aG" = (
+/obj/structure/table/bronze,
+/obj/item/stack/ore/slag,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered)
+"aH" = (
+/obj/structure/table/bronze,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered)
+"aI" = (
+/obj/effect/mob_spawn/human/skeleton,
+/obj/item/clothing/head/rice_hat,
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
+"aK" = (
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
+"aM" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/book/manual/random,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"aN" = (
+/obj/structure/statue/sandstone/venus,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered)
+"aP" = (
+/turf/closed/mineral/random/snow/no_caves,
+/area/ruin/unpowered)
+"aQ" = (
+/obj/item/paper/fluff/awaymissions/moonoutpost19/research/larva_autopsy,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"aR" = (
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"aS" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/paper/secretrecipe,
+/obj/item/flashlight/lantern{
+	on = 1
+	},
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
+"aT" = (
+/obj/structure/fluff/paper,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"aU" = (
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"aV" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"aW" = (
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
+"aX" = (
+/obj/structure/table/bronze,
+/obj/item/statuebust,
+/turf/open/floor/plating,
+/area/ruin/unpowered)
+"aY" = (
+/obj/structure/table_frame/wood,
+/turf/open/floor/plating,
+/area/ruin/unpowered)
+"aZ" = (
+/obj/structure/fluff/paper/stack,
+/obj/structure/fluff/paper,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"ba" = (
+/obj/structure/barricade/wooden/snowed,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"bb" = (
+/obj/item/book/manual/random,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"bc" = (
+/obj/structure/fluff/paper,
+/obj/structure/fluff/paper{
+	icon_state = "paper";
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"bd" = (
+/obj/structure/fluff/paper{
+	icon_state = "paper";
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"be" = (
+/obj/structure/fluff/paper{
+	icon_state = "paper";
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"bf" = (
+/obj/structure/fluff/paper{
+	icon_state = "paper";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"bg" = (
+/obj/item/paper/fluff/ruins/oldstation/protogun,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"bh" = (
+/mob/living/simple_animal/pet/fox,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"bj" = (
+/obj/item/book/manual/random,
+/turf/closed/mineral/random/snow/no_caves,
+/area/ruin/unpowered)
+"bk" = (
+/obj/structure/fluff/paper{
+	icon_state = "paper";
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"bl" = (
+/obj/item/storage/box/fountainpens,
+/turf/closed/mineral/random/snow/no_caves,
+/area/ruin/unpowered)
+"bm" = (
+/obj/structure/fluff/paper/stack,
+/turf/closed/mineral/random/snow/no_caves,
+/area/ruin/unpowered)
+"bn" = (
+/obj/item/book/manual/random,
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"bo" = (
+/obj/item/stack/sheet/mineral/wood,
+/turf/closed/mineral/random/snow/no_caves,
+/area/ruin/unpowered)
+"bp" = (
+/obj/structure/fluff/paper,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"bq" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/barricade/wooden/crude/snow,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"br" = (
+/obj/structure/girder,
+/turf/closed/mineral/random/snow/no_caves,
+/area/ruin/unpowered)
+"bs" = (
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"bt" = (
+/turf/template_noop,
+/area/template_noop)
+"bu" = (
+/obj/item/stack/sheet/mineral/wood,
+/turf/closed/mineral/random/snow/no_caves,
+/area/icemoon/underground/explored)
+"bv" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
+"bw" = (
+/turf/open/floor/wood,
+/area/icemoon/underground/explored)
+"bx" = (
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
+"by" = (
+/obj/item/wrench/bronze,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered)
+"bz" = (
+/obj/item/flashlight/lantern{
+	on = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered)
+"bA" = (
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/plating,
+/area/ruin/unpowered)
+"bB" = (
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/carpet/black,
+/area/ruin/unpowered)
+"bC" = (
+/obj/structure/fluff/paper{
+	icon_state = "paper";
+	dir = 1
+	},
+/mob/living/simple_animal/pet/fox,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+
+(1,1,1) = {"
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+bt
+bt
+"}
+(2,1,1) = {"
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+aP
+aP
+aP
+aP
+aP
+ac
+ba
+ac
+ac
+ac
+ad
+ad
+bt
+"}
+(3,1,1) = {"
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+aP
+aP
+aP
+aP
+aU
+aP
+aP
+aC
+au
+az
+ap
+bk
+ac
+ad
+ad
+bt
+"}
+(4,1,1) = {"
+bt
+bt
+bt
+bt
+bt
+bt
+aP
+aP
+aR
+aC
+aC
+az
+bb
+av
+aP
+ah
+aR
+ah
+aT
+ac
+ad
+bt
+bt
+"}
+(5,1,1) = {"
+bt
+bt
+bt
+bt
+bt
+aP
+aP
+aC
+aC
+az
+aQ
+ah
+aP
+av
+bg
+ah
+aT
+ah
+aP
+ac
+ad
+ad
+bt
+"}
+(6,1,1) = {"
+bt
+bt
+bt
+bt
+ad
+ac
+aC
+az
+aC
+aM
+bh
+ah
+au
+ah
+aA
+ah
+az
+ah
+bd
+ac
+ad
+ad
+ad
+"}
+(7,1,1) = {"
+bt
+bt
+bt
+bt
+ad
+ac
+aP
+au
+aP
+az
+aR
+az
+aA
+az
+az
+ah
+aZ
+ah
+bC
+ac
+ad
+ad
+ad
+"}
+(8,1,1) = {"
+bt
+bt
+bt
+bt
+ad
+aP
+aP
+av
+aA
+aC
+aG
+aD
+aX
+aC
+az
+az
+az
+ah
+az
+ac
+bs
+bv
+ad
+"}
+(9,1,1) = {"
+bt
+bt
+bt
+bt
+ad
+ac
+as
+av
+bb
+aD
+aD
+bz
+aD
+bB
+aP
+az
+az
+az
+az
+ac
+aC
+bw
+bv
+"}
+(10,1,1) = {"
+bt
+bt
+bt
+ad
+ad
+ac
+ap
+aC
+aP
+aD
+aD
+aN
+aC
+aA
+aP
+az
+ap
+aR
+az
+bq
+az
+bx
+ad
+"}
+(11,1,1) = {"
+bt
+al
+al
+al
+al
+al
+az
+ah
+aR
+aD
+aC
+aD
+aD
+by
+az
+aA
+az
+az
+bm
+ac
+az
+bv
+ad
+"}
+(12,1,1) = {"
+ad
+al
+ab
+aI
+aK
+al
+aR
+aE
+ap
+aD
+aH
+bA
+aY
+aD
+aP
+az
+au
+ah
+az
+br
+ac
+ad
+ad
+"}
+(13,1,1) = {"
+ad
+al
+am
+aK
+aW
+aK
+az
+ah
+az
+az
+az
+az
+ap
+aC
+bp
+ah
+aP
+ah
+bp
+ac
+ad
+ad
+ad
+"}
+(14,1,1) = {"
+ad
+al
+aS
+aW
+aK
+al
+aT
+ah
+aC
+ah
+bh
+aj
+az
+ah
+aP
+ah
+aP
+bn
+aT
+ac
+ad
+bt
+bt
+"}
+(15,1,1) = {"
+ad
+al
+al
+ai
+aK
+al
+bc
+aj
+aR
+ah
+aA
+ah
+az
+ah
+aP
+aP
+bl
+aP
+aP
+aP
+ad
+bt
+bt
+"}
+(16,1,1) = {"
+ad
+ad
+al
+al
+al
+al
+bd
+ah
+az
+ah
+az
+aV
+aP
+ah
+aC
+aP
+bm
+bo
+aP
+br
+bu
+bt
+bt
+"}
+(17,1,1) = {"
+bt
+ad
+ad
+ad
+ad
+ac
+be
+bf
+az
+aP
+az
+aR
+az
+aC
+aP
+bj
+aP
+ad
+ad
+ad
+bt
+bt
+bt
+"}
+(18,1,1) = {"
+bt
+bt
+bt
+bt
+ad
+ac
+ac
+ac
+ac
+ac
+ac
+ba
+ac
+ac
+aB
+ad
+bt
+ad
+bt
+bt
+bt
+bt
+bt
+"}
+(19,1,1) = {"
+bt
+bt
+bt
+bt
+bt
+ad
+ad
+ad
+ad
+ad
+ad
+bt
+ad
+ad
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+bt
+"}
