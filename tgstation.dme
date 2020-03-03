@@ -3275,6 +3275,7 @@
 #include "modular_skyrat\code\game\area\areas\mining.dm"
 #include "modular_skyrat\code\game\area\areas\ruins\lavaland.dm"
 #include "modular_skyrat\code\game\gamemodes\objective.dm"
+#include "modular_skyrat\code\game\machinery\computer\arcade\minesweeper.dm"
 #include "modular_skyrat\code\game\objects\items.dm"
 #include "modular_skyrat\code\game\objects\items\kitchen.dm"
 #include "modular_skyrat\code\game\objects\items\plushes\plushes.dm"
