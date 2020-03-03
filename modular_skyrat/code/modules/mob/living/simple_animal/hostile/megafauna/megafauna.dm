@@ -65,7 +65,7 @@
 	if(songend)
 		if(world.time >= songend)
 			for(var/mob/living/M in view(src, vision_range))
-				M.stop_sound_channel(CHANNEL_JUKEBOX)
+				M.stop_sound_channel(CHANNEL_AMBIENCE)
 				songend = songlength + world.time
 				M.playsound_local(null, null, 30, channel = CHANNEL_JUKEBOX, S = song)
 
