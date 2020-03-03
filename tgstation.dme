@@ -3352,6 +3352,7 @@
 #include "modular_skyrat\code\modules\mob\living\carbon\human\auto_hiss.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\ipc.dm"
+#include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\shadowpeople.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\synthliz.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\vox.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot_modules.dm"
