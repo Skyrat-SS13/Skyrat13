@@ -16,7 +16,7 @@ When butchered, they leave behind diamonds, sinew, bone, and ash drake hide. Ash
 Difficulty: Medium
 */
 /mob/living/simple_animal/hostile/megafauna/dragon
-	song = song = sound('modular_skyrat/sound/ambience/duskcreations.ogg', 100) // Andrew is a nice guy, he'll let it slide. Taken from the DUSK OST.
+	song = sound('modular_skyrat/sound/ambience/duskcreations.ogg', 100) // Andrew is a nice guy, he'll let it slide. Taken from the DUSK OST.
 	songlength = 1860
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard
