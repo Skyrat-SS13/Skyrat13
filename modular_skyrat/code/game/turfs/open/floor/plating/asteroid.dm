@@ -46,12 +46,6 @@
 
 /turf/open/floor/plating/asteroid/airless/cave/snow/underground
 	flora_spawn_list = list(/obj/structure/flora/rock/icy = 6, /obj/structure/flora/rock/pile/icy = 6)
-	mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50, /obj/structure/spawner/lavaland/goliath = 3, \
-		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 10, /obj/structure/spawner/lavaland/icewatcher = 2, \
-		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing = 30, \
-		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random = 30, /obj/structure/spawner/lavaland/legion = 3, \
-		SPAWN_MEGAFAUNA = 4, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
-
 	data_having_type = /turf/open/floor/plating/asteroid/airless/cave/snow/underground/has_data
 
 /turf/open/floor/plating/asteroid/airless/cave/snow/has_data //subtype for producing a tunnel with given data
@@ -140,6 +134,10 @@
 		if(!A.mob_spawn_allowed)
 			return
 		var/randumb = pickweight(mob_spawn_list)
+		if(!mob_spawn_list)
+			return
+		if(!randumb)
+			return
 		while(randumb == SPAWN_MEGAFAUNA)
 			if(A.megafauna_spawn_allowed) //this is danger. it's boss time.
 				var/maybe_boss = pickweight(megafauna_spawn_list)
