@@ -46,3 +46,4 @@ map kilostation
 endmap
 
 map boxstationsnow
+endmap
