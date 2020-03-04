@@ -79,7 +79,7 @@ require only minor tweaks.
 #define ZTRAITS_STATION list( \
 	ZTRAIT_STATION = TRUE, \
     ZTRAIT_MINING = TRUE, \
-    ZTRAIT_SNOWSTORM = TRUE, \
+    ZTRAIT_SNOWSTORM = FALSE, \
     ZTRAIT_ICE_RUINS = TRUE, \
     ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
     ZTRAIT_DOWN = 1, \
