@@ -32,8 +32,16 @@
 				"name" = P.group,
 				"packs" = list()
 			)
-		if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly || (P.ultracontraband && !ultracontraband))
-			continue
+		var/obj/item/card/id/id_card = user.get_idcard(hand_first = FALSE)
+		var/list/useraccess = id_card.access
+		var/crateaccess = P.access
+		if(!(obj_flags & EMAGGED))
+			if(!crateaccess)
+				if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly || (P.ultracontraband && !ultracontraband))
+					continue
+			else
+				if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly || (P.ultracontraband && !ultracontraband) || !(P.access in useraccess))
+					continue
 		data["supplies"][P.group]["packs"] += list(list(
 			"name" = P.name,
 			"cost" = P.cost,
