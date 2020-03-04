@@ -35,7 +35,7 @@
 			var/mob/living/M = A
 			if(faction_check_mob(M) && attack_same || !faction_check_mob(M))
 				enemies |= M
-				if(song && !songend)
+				if(song && (!songend || world.time > songend))
 					M.stop_sound_channel(CHANNEL_AMBIENCE)
 					songend = songlength + world.time
 					M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = song) // so silence ambience will mute moosic for people who don't want that
@@ -44,6 +44,10 @@
 			if(M.occupant)
 				enemies |= M
 				enemies |= M.occupant
+				var/mob/living/O = M.occupant
+				O.stop_sound_channel(CHANNEL_AMBIENCE)
+				songend = songlength + world.time
+				O.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = song)
 
 	for(var/mob/living/simple_animal/hostile/megafauna/H in around)
 		if(faction_check_mob(H) && !attack_same && !H.attack_same)
@@ -73,3 +77,7 @@
 	..()
 	for(var/mob/living/M in view(src, vision_range))
 		M.stop_sound_channel(CHANNEL_AMBIENCE)
+
+/mob/living/simple_animal/hostile/megafauna/devour(mob/living/L)
+	L.stop_sound_channel(CHANNEL_AMBIENCE)
+	..()
