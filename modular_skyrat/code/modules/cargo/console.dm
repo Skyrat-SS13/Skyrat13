@@ -10,7 +10,9 @@
 				"packs" = list()
 			)
 		var/obj/item/card/id/id_card = user.get_idcard(hand_first = FALSE)
-		var/list/useraccess = id_card.access
+		var/list/useraccess
+		if(id_card)
+			useraccess = id_card.access
 		var/crateaccess = P.access
 		if(!(obj_flags & EMAGGED))
 			if(!crateaccess)
