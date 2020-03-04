@@ -58,6 +58,7 @@
 /obj/item/toy/plush/realgoat
 	name = "goat plushie"
 	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same... or at least it would if it wasn't a normal plushie."
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "realgoat"
 	squeak_override = list('modular_skyrat/sound/items/goatsound.ogg'=1)
 
