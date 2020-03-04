@@ -37,10 +37,10 @@
 		var/crateaccess = P.access
 		if(!(obj_flags & EMAGGED))
 			if(!crateaccess)
-				if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly || (P.ultracontraband && !ultracontraband))
+				if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly)
 					continue
 			else
-				if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly || (P.ultracontraband && !ultracontraband) || !(P.access in useraccess))
+				if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly || !(P.access in useraccess))
 					continue
 		data["supplies"][P.group]["packs"] += list(list(
 			"name" = P.name,
