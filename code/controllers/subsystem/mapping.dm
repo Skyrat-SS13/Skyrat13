@@ -118,6 +118,7 @@ SUBSYSTEM_DEF(mapping)
 	// Set up Z-level transitions.
 	setup_map_transitions()
 	generate_station_area_list()
+	seedStation()
 	initialize_reserved_level(transit.z_value)
 	return ..()
 
