@@ -39,7 +39,7 @@
 
 /datum/map_template/ruin/icemoon/miningoutpost
 	name = "Abandoned Mining Outpost"
-	id = "colony"
+	id = "mineoutpost"
 	description = "An abandoned outpost once used by miners to shelter them from snowstorms."
 	suffix = "icemoon_surface_miningoutpost.dmm"
 

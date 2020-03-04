@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/open/floor/plating/asteroid/snow/atmosphere,
-/area/ruin/unpowered)
+/area/icemoon/surface/outdoors/explored)
 "b" = (
 /turf/closed/indestructible/wood,
 /area/ruin/unpowered)
@@ -118,7 +118,7 @@
 "A" = (
 /obj/machinery/grill,
 /turf/open/floor/plating/asteroid/snow/atmosphere,
-/area/ruin/unpowered)
+/area/icemoon/surface/outdoors/explored)
 
 (1,1,1) = {"
 a
