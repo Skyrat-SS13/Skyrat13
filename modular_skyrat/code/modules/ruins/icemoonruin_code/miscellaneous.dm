@@ -4,8 +4,31 @@
 
 /turf/open/floor/plating/ice/icemoon/slippery/Initialize()
 	. = ..()
-	AddComponent(datum/component/slippery, 120, SLIDE | GALOSHES_DONT_HELP | SLIP_WHEN_CRAWLING)
+	AddComponent(/datum/component/slippery, 120, SLIDE | GALOSHES_DONT_HELP | SLIP_WHEN_CRAWLING)
 
+/turf/open/floor/plating/ice/icemoon/breaky
+	name = "weak ice"
+	desc = "Doesn't look too safe to step on..."
+	var/breaking = 0
+
+/turf/open/floor/plating/ice/icemoon/breaky/process()
+	..()
+	for(var/mob/living/L in src.contents)
+		if(L in src.contents && !breaking)
+			var/obj/item/storage/backpack/B = L.get_item_by_slot(SLOT_BACK)
+			if(B)
+				var/datum/component/storage/S = B.GetComponent(/datum/component/storage)
+				if(S)
+					var/sumweight
+					for(var/obj/item/I in S)
+						sumweight += I.w_class
+					if(sumweight >= 14)
+						breaking = 1
+						audible_message("<span class='warning'>The [src] cracks! Stand back!</span>")
+						playsound(loc,'sound/effects/Glassbr1.ogg', 100, 0, 50, 1, 1)
+						addtimer(CALLBACK(src, TerraformTurf(/turf/open/chasm/icemoon, /turf/open/chasm/icemoon)), 50)
+
+/turf/open/chasm/icemoon
 /obj/structure/spawner/syndicate/cryosleep
 	name = "warp beacon"
 	icon = 'icons/obj/machines/sleeper.dmi'
@@ -21,10 +44,12 @@
 	for(var/datum/component/spawner/S in src)
 		qdel(S)
 
-/obj/structure/spawner/syndicate/cryosleep/Process()
+/obj/structure/spawner/syndicate/cryosleep/process()
 	..()
-	if(var/mob/living/L in view(src, 2) && !activated)
-		audible_message("<span class='warning'>The [src] emits a hissing sound.</span>")
-		addtimer(CALLBACK(src, /datum/proc/AddComponent, /datum/component/spawner, mob_types, 0, faction, spawn_text, max_mobs), 5)
-		sleep(65)
-		max_mobs = 0
+	if(/mob/living in view(src, 2) && !activated)
+		activated = 1
+		for(var/mob/living/L in view(src, 2))
+			audible_message("<span class='warning'>The [src] emits a hissing sound.</span>")
+			addtimer(CALLBACK(src, /datum/proc/AddComponent, /datum/component/spawner, mob_types, 0, faction, spawn_text, max_mobs), 5)
+			sleep(65)
+			max_mobs = 0
