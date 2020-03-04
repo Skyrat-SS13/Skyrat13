@@ -8,5 +8,5 @@
 	    "whiteship": "whiteship_box",
 	    "emergency": "emergency_box"
 	},
-	"traits": [{"Linkage": "Self", "Ice Ruins": true, "Down": 1, "Gravity": true, "Snow Storm": true, "Snow": true, "Base Turf":"/turf/open/floor/plating/asteroid/snow", "Station": true}, {"Linkage": "Self", "Ice Ruins Underground":  true, "Up": -1, "Gravity": true, "Snow Storm": false, "Snow": true, "Base Turf":"/turf/open/floor/plating/asteroid/snow", "Mining":true}]
+	"traits": [{"Ice Ruins": true, "Down": 1, "Gravity": true, "Snow Storm": true, "Snow": true, "Base Turf":"/turf/open/floor/plating/asteroid/snow", "Station": true}, {"Ice Ruins Underground":  true, "Up": -1, "Gravity": true, "Snow Storm": false, "Snow": true, "Base Turf":"/turf/open/floor/plating/asteroid/snow", "Mining":true}]
 }
