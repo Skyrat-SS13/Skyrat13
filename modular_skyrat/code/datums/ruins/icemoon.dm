@@ -13,12 +13,6 @@
 	description = "Not exactly what you expected."
 	suffix = "icemoon_surface_lust.dmm"
 
-/datum/map_template/ruin/icemoon/asteroid
-	name = "Asteroid Site"
-	id = "asteroidsite"
-	description = "Surprised to see us here?"
-	suffix = "icemoon_surface_asteroid.dmm"
-
 /datum/map_template/ruin/icemoon/hotsprings
 	name = "Hot Springs"
 	id = "hotsprings"
@@ -82,12 +76,6 @@
 	id = "wrath"
 	description = "You'll fight and fight and just keep fighting."
 	suffix = "icemoon_underground_wrath.dmm"
-
-/datum/map_template/ruin/icemoon/underground/lavaland
-	name = "Lavaland Site"
-	id = "lavalandsite"
-	description = "I guess we never really left you huh?"
-	suffix = "icemoon_underground_lavaland.dmm"
 
 /datum/map_template/ruin/icemoon/underground/puzzle
 	name = "Ancient Puzzle"
