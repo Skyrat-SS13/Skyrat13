@@ -259,16 +259,16 @@ SUBSYSTEM_DEF(mapping)
 
 #ifndef LOWMEMORYMODE
 	//SKYRAT CHANGES
-	// Create snowy levels
-	LoadGroup(FailedZs, "Snow Planet Underground", "map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_SNOWY_UNDERGROUND)
-	//
 	// load mining
 	if(config.minetype == "lavaland")
-		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
-	//SKYRAT CHANGES
+		if(ZTRAITS_SNOWY in config.traits)
+			LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland2.dmm", default_traits = ZTRAITS_LAVALAND)
+		else
+			LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
 	else if (config.minetype == "icemoon")
 		LoadGroup(FailedZs, "Ice moon Underground", "modular_skyrat/_maps/map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
 		LoadGroup(FailedZs, "Ice moon", "modular_skyrat/_maps/map_files/Mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
+	//
 	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif

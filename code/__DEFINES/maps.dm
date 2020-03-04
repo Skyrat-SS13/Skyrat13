@@ -75,15 +75,8 @@ require only minor tweaks.
 
 //SKYRAT CHANGES
 // default trait definitions, used by SSmapping
-#define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE, ZTRAIT_SNOW = TRUE)
-#define ZTRAITS_STATION list( \
-	ZTRAIT_STATION = TRUE, \
-    ZTRAIT_MINING = TRUE, \
-    ZTRAIT_SNOWSTORM = FALSE, \
-    ZTRAIT_ICE_RUINS = TRUE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
-    ZTRAIT_DOWN = 1, \
-    ZTRAIT_BASETURF = /turf/open/floor/plating/asteroid/snow)
+#define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE)
+#define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_STATION = TRUE)
 #define ZTRAITS_SPACE list(ZTRAIT_SPACE_RUINS = TRUE, ZTRAIT_LINKAGE = CROSSLINKED)
 #define ZTRAITS_LAVALAND list(\
 	ZTRAIT_MINING = TRUE, \
@@ -150,7 +143,7 @@ require only minor tweaks.
 //SKYRAT CHANGES
 #define PLACE_SNOWY_RUIN "snowy" //On snowy ruin z levels(s)
 //
-#define PLACE_BELOW "below" //On z levl below - centered on same tile
+#define PLACE_BELOW "below" //On z level below - centered on same tile
 #define PLACE_ISOLATED "isolated" //On isolated ruin z level
 //Map type stuff.
 #define MAP_TYPE_STATION "station"
