@@ -262,7 +262,7 @@ SUBSYSTEM_DEF(mapping)
 	//SKYRAT CHANGES
 	// load mining
 	if(config.minetype == "lavaland")
-		if(ZTRAITS_SNOW in config.traits)
+		if(ZTRAIT_SNOW in config.traits)
 			LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland2.dmm", default_traits = ZTRAITS_LAVALAND)
 		else
 			LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
