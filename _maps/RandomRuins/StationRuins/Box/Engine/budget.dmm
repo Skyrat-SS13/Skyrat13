@@ -10,8 +10,8 @@
 "aW" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space/basic,
+/area/space/nearstation)
 "cP" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
@@ -316,8 +316,8 @@
 /area/engine/engineering)
 "tw" = (
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space/basic,
+/area/space/nearstation)
 "wt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/closet/radiation,
@@ -334,8 +334,21 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "yf" = (
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space/basic,
+/area/space/nearstation)
+"zw" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 50
+	},
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 10
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"zS" = (
+/turf/open/space/basic,
+/area/space)
 "AC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -544,8 +557,8 @@
 /area/engine/engineering)
 "Le" = (
 /obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space/basic,
+/area/space/nearstation)
 "LS" = (
 /obj/machinery/power/smes{
 	capacity = 9e+006;
@@ -597,7 +610,7 @@
 /area/engine/engineering)
 "Oj" = (
 /turf/closed/wall/r_wall,
-/area/icemoon/surface/outdoors/explored)
+/area/space/nearstation)
 "Ok" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -643,6 +656,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Rh" = (
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
 "Rs" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -698,10 +715,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"WB" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "Ys" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"YZ" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/open/space,
+/area/space/nearstation)
 "Zn" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32
@@ -721,19 +749,19 @@ ZT
 ZT
 ZT
 yf
-tw
+Rh
 yf
 yf
-tw
+Rh
 yf
 yf
-tw
+Rh
 yf
 yf
 yf
-aW
-aW
-aW
+YZ
+YZ
+YZ
 ZT
 ZT
 ZT
@@ -759,9 +787,9 @@ tw
 yf
 yf
 yf
-aW
+YZ
 Oj
-aW
+YZ
 ZT
 ZT
 ZT
@@ -785,11 +813,11 @@ tw
 tw
 tw
 tw
-tw
-tw
-aW
+Rh
+Rh
+YZ
 Oj
-aW
+YZ
 ZT
 ZT
 ZT
@@ -815,9 +843,9 @@ tw
 Le
 Le
 Le
-aW
+YZ
 Oj
-aW
+YZ
 ZT
 ZT
 ZT
@@ -841,11 +869,11 @@ tw
 tw
 tw
 tw
-tw
-tw
-aW
+Rh
+Rh
+YZ
 Oj
-aW
+YZ
 ZT
 ZT
 ZT
@@ -871,9 +899,9 @@ tw
 Le
 Le
 Le
-aW
+YZ
 Oj
-aW
+YZ
 ZT
 ZT
 ZT
@@ -897,16 +925,16 @@ tw
 tw
 tw
 tw
-tw
-tw
-aW
+Rh
+Rh
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (8,1,1) = {"
 ZT
@@ -927,14 +955,14 @@ tw
 Le
 Le
 Le
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (9,1,1) = {"
 ZT
@@ -953,16 +981,16 @@ tw
 tw
 tw
 tw
+Rh
+Rh
+YZ
+YZ
+YZ
 tw
-tw
-aW
-aW
-aW
-tw
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (10,1,1) = {"
 ZT
@@ -984,13 +1012,13 @@ yf
 tw
 yf
 yf
-tw
+Rh
 yf
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (11,1,1) = {"
 oC
@@ -1012,13 +1040,13 @@ tw
 tw
 tw
 aW
+YZ
 aW
-aW
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (12,1,1) = {"
 cS
@@ -1039,14 +1067,14 @@ tw
 yf
 tw
 yf
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (13,1,1) = {"
 ME
@@ -1067,14 +1095,14 @@ tw
 yf
 tw
 yf
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (14,1,1) = {"
 Ne
@@ -1095,14 +1123,14 @@ tw
 tw
 tw
 tw
-aW
+YZ
 Oj
-aW
-tw
-yf
-yf
-yf
-yf
+YZ
+Rh
+zS
+zS
+zS
+zS
 "}
 (15,1,1) = {"
 MP
@@ -1123,42 +1151,42 @@ tw
 yf
 tw
 yf
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (16,1,1) = {"
 MP
 dw
 lG
-eP
+WB
 Jq
-eP
+WB
 UD
 Cx
 UD
-eP
+WB
 Jq
-eP
+WB
 UD
 MP
 tw
 tw
 tw
 tw
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (17,1,1) = {"
 oS
@@ -1179,14 +1207,14 @@ tw
 yf
 tw
 yf
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (18,1,1) = {"
 iD
@@ -1207,14 +1235,14 @@ tw
 yf
 tw
 yf
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (19,1,1) = {"
 oS
@@ -1235,42 +1263,42 @@ tw
 tw
 tw
 tw
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (20,1,1) = {"
 MP
 Cb
 AC
-eP
+WB
 mW
-eP
+WB
 Kl
 Cx
 Kl
-eP
+WB
 mW
-eP
+WB
 Kl
 MP
 tw
 tw
 tw
 tw
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (21,1,1) = {"
 MP
@@ -1291,14 +1319,14 @@ tw
 yf
 tw
 yf
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (22,1,1) = {"
 iD
@@ -1319,14 +1347,14 @@ tw
 tw
 tw
 tw
-aW
+YZ
 Oj
-aW
-tw
-yf
-yf
-yf
-yf
+YZ
+Rh
+zS
+zS
+zS
+zS
 "}
 (23,1,1) = {"
 iD
@@ -1347,14 +1375,14 @@ tw
 tw
 tw
 tw
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (24,1,1) = {"
 mH
@@ -1375,14 +1403,14 @@ tw
 tw
 tw
 tw
-aW
+YZ
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (25,1,1) = {"
 iD
@@ -1403,14 +1431,14 @@ tw
 yf
 tw
 yf
-aW
-aW
-aW
+YZ
+YZ
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (26,1,1) = {"
 wt
@@ -1432,13 +1460,13 @@ yf
 tw
 yf
 yf
-tw
+Rh
 yf
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (27,1,1) = {"
 ZT
@@ -1459,14 +1487,14 @@ tw
 yf
 tw
 tw
-tw
-tw
-tw
-tw
-yf
-yf
-yf
-yf
+Rh
+Rh
+Rh
+Rh
+zS
+zS
+zS
+zS
 "}
 (28,1,1) = {"
 ZT
@@ -1477,24 +1505,24 @@ Ok
 CH
 GI
 Ok
-gF
-gF
-gF
-gF
-gF
+zw
+zw
+zw
+zw
+zw
 MP
 tw
 yf
-tw
+Rh
 yf
-tw
+Rh
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}
 (29,1,1) = {"
 ZT
@@ -1511,16 +1539,16 @@ iD
 iD
 iD
 MP
-tw
-tw
-tw
-tw
-tw
+Rh
+Rh
+Rh
+Rh
+Rh
 Oj
-aW
+YZ
 yf
-yf
-yf
-yf
-yf
+zS
+zS
+zS
+zS
 "}

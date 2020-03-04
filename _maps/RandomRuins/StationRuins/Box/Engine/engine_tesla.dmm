@@ -28,8 +28,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "dz" = (
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "dN" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -56,8 +56,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "ea" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -66,8 +66,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "eA" = (
 /obj/structure/table,
 /obj/item/clothing/suit/radiation,
@@ -102,8 +102,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "fh" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -139,13 +139,13 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "hR" = (
 /obj/machinery/power/tesla_coil,
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "ic" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -154,8 +154,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "js" = (
 /obj/machinery/camera/emp_proof{
 	c_tag = "Tesla Engine East";
@@ -169,8 +169,8 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "jH" = (
 /obj/structure/sign/warning/radiation/rad_area,
 /turf/closed/wall/r_wall,
@@ -192,8 +192,8 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "kK" = (
 /turf/closed/wall,
 /area/engine/engineering)
@@ -278,11 +278,11 @@
 /area/engine/engineering)
 "rm" = (
 /turf/open/floor/plating/airless,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "rM" = (
 /obj/machinery/field/generator,
 /turf/open/floor/plating/airless,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "rT" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall,
@@ -301,8 +301,8 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "to" = (
 /obj/structure/sign/warning/radiation/rad_area,
 /obj/structure/cable{
@@ -393,7 +393,7 @@
 	pixel_y = 1
 	},
 /turf/open/floor/plating/airless,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "yj" = (
 /obj/machinery/camera/emp_proof{
 	c_tag = "Tesla Engine West";
@@ -413,8 +413,8 @@
 	icon_state = "4-8"
 	},
 /obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "yU" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -499,8 +499,8 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "BG" = (
 /obj/structure/closet/emcloset/anchored,
 /obj/machinery/light/small{
@@ -513,8 +513,8 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "Ch" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
@@ -526,8 +526,8 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "Eu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -577,8 +577,8 @@
 /area/engine/engineering)
 "FP" = (
 /obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "FY" = (
 /obj/structure/table,
 /obj/item/book/manual/wiki/engineering_singulo_tesla,
@@ -666,7 +666,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/airless,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "Lr" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
@@ -733,8 +733,8 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "MJ" = (
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space/basic,
+/area/space)
 "Nm" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
@@ -762,7 +762,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/airless,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "Og" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -789,15 +789,15 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "Pk" = (
 /obj/machinery/power/tesla_coil,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating/airless,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "Pt" = (
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
@@ -828,8 +828,8 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "RL" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -838,8 +838,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "Si" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -871,14 +871,14 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating/airless,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "TN" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "Um" = (
 /turf/template_noop,
 /area/template_noop)
@@ -894,7 +894,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/airless,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "Vf" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -903,8 +903,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "Wf" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -937,8 +937,8 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "WQ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -956,7 +956,7 @@
 "Xk" = (
 /obj/machinery/power/grounding_rod,
 /turf/open/floor/plating/airless,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "Yd" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/yellow{
@@ -966,8 +966,8 @@
 /area/engine/engineering)
 "Yl" = (
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "YY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1025,8 +1025,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "ZY" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light,

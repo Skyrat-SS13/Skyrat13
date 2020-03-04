@@ -11,8 +11,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "aR" = (
 /obj/machinery/atmospherics/pipe/simple/dark/visible{
 	dir = 4
@@ -105,8 +105,8 @@
 /area/engine/engineering)
 "dw" = (
 /obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "dZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -122,7 +122,7 @@
 /obj/machinery/door/poddoor{
 	id = "TEG_Vent"
 	},
-/turf/open/floor/plating/asteroid/snow,
+/turf/open/space,
 /area/engine/engineering)
 "en" = (
 /obj/machinery/button/ignition/incinerator{
@@ -255,15 +255,15 @@
 	dir = 5
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "jm" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "jN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -321,8 +321,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "kK" = (
 /obj/machinery/vending/cola/random,
 /obj/structure/extinguisher_cabinet{
@@ -435,8 +435,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "ou" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -540,8 +540,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "qJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -596,8 +596,8 @@
 	dir = 6
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "sD" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 1
@@ -641,8 +641,8 @@
 /area/engine/engineering)
 "tw" = (
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "tM" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1
@@ -719,8 +719,8 @@
 "uM" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "vf" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/effect/turf_decal/tile/yellow{
@@ -756,8 +756,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "wk" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /obj/effect/turf_decal/delivery,
@@ -810,8 +810,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "yf" = (
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "yn" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
@@ -846,8 +846,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "zS" = (
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space/basic,
+/area/space)
 "Am" = (
 /obj/machinery/igniter{
 	id = "TEG_igniter"
@@ -1065,8 +1065,8 @@
 	dir = 10
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "Fi" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -1302,14 +1302,14 @@
 /area/engine/engineering)
 "Le" = (
 /obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "Lq" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "Lw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -1381,8 +1381,8 @@
 	dir = 4
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "ND" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -1406,7 +1406,7 @@
 /area/engine/engineering)
 "Oj" = (
 /turf/closed/wall/r_wall,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "Ok" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -1482,8 +1482,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "Qy" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -1521,8 +1521,8 @@
 /area/engine/engineering)
 "Rh" = (
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "Rl" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1
@@ -1705,8 +1705,8 @@
 "Vi" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "Vs" = (
 /obj/machinery/atmospherics/components/binary/valve/digital/on{
 	dir = 4;
@@ -1748,8 +1748,8 @@
 "WB" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/floor/plating/asteroid/snow/,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "Xe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
@@ -1757,8 +1757,8 @@
 "Xg" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "Xs" = (
 /obj/structure/table/wood,
 /obj/item/book/manual/wiki/engineering_construction{
@@ -1873,8 +1873,8 @@
 "YZ" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "Zm" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 1
@@ -1915,7 +1915,7 @@
 /area/engine/engineering)
 "ZC" = (
 /obj/machinery/atmospherics/pipe/simple/dark/visible,
-/turf/open/floor/plating/asteroid/snow/,
+/turf/open/space/basic,
 /area/engine/engineering)
 "ZT" = (
 /turf/template_noop,

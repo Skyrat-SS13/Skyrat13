@@ -26,8 +26,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "dz" = (
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "dN" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -414,8 +414,8 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "MJ" = (
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space/basic,
+/area/space)
 "No" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4

@@ -30,13 +30,17 @@
 /area/engine/engineering)
 "dw" = (
 /obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space,
+/area/space/nearstation)
 "fq" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"hK" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "iD" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
@@ -105,16 +109,31 @@
 /area/engine/engineering)
 "tw" = (
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space/basic,
+/area/space/nearstation)
+"uC" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "wt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"wS" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "yf" = (
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space/basic,
+/area/space/nearstation)
+"yA" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
+"zS" = (
+/turf/open/space/basic,
+/area/space)
 "AH" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -205,6 +224,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Le" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "LS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plating/airless,
@@ -240,7 +263,7 @@
 /area/engine/engineering)
 "Oj" = (
 /turf/closed/wall/r_wall,
-/area/icemoon/surface/outdoors/explored)
+/area/space/nearstation)
 "Ok" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -251,6 +274,10 @@
 /obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Rh" = (
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
 "Tk" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -261,8 +288,13 @@
 "WB" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space/basic,
+/area/space/nearstation)
+"YZ" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/open/space,
+/area/space/nearstation)
 "Zn" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32
@@ -282,19 +314,19 @@ ZT
 ZT
 ZT
 yf
-tw
+Rh
 yf
 yf
-tw
+Rh
 yf
 yf
-tw
+Rh
 yf
 yf
 yf
-WB
-WB
-WB
+YZ
+YZ
+YZ
 ZT
 ZT
 ZT
@@ -320,9 +352,9 @@ tw
 yf
 yf
 yf
-WB
+YZ
 Oj
-WB
+YZ
 ZT
 ZT
 ZT
@@ -346,11 +378,11 @@ tw
 tw
 tw
 tw
-tw
-tw
-WB
+Rh
+Rh
+YZ
 Oj
-WB
+YZ
 ZT
 ZT
 ZT
@@ -365,20 +397,20 @@ ZT
 ZT
 ZT
 ZT
-dw
+Le
 tw
-dw
-dw
+Le
+Le
 tw
-dw
-dw
+Le
+Le
 tw
-dw
-dw
-dw
-WB
+Le
+Le
+Le
+YZ
 Oj
-WB
+YZ
 ZT
 ZT
 ZT
@@ -402,11 +434,11 @@ tw
 tw
 tw
 tw
-tw
-tw
-WB
+Rh
+Rh
+YZ
 Oj
-WB
+YZ
 ZT
 ZT
 ZT
@@ -421,20 +453,20 @@ ZT
 ZT
 ZT
 ZT
-dw
+Le
 tw
-dw
-dw
+Le
+Le
 tw
-dw
-dw
+Le
+Le
 tw
-dw
-dw
-dw
-WB
+Le
+Le
+Le
+YZ
 Oj
-WB
+YZ
 ZT
 ZT
 ZT
@@ -458,16 +490,16 @@ tw
 tw
 tw
 tw
-tw
-tw
-WB
+Rh
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 yf
 yf
 yf
-yf
+zS
 "}
 (8,1,1) = {"
 ZT
@@ -477,23 +509,23 @@ Ke
 EL
 Tk
 MP
-dw
+Le
 tw
-dw
-dw
+Le
+Le
 tw
-dw
-dw
+Le
+Le
 tw
-dw
-dw
-dw
-WB
+Le
+Le
+Le
+YZ
 Oj
-WB
+YZ
 yf
 yf
-tw
+Rh
 yf
 yf
 "}
@@ -514,15 +546,15 @@ tw
 tw
 tw
 tw
+Rh
+Rh
+YZ
+YZ
+YZ
 tw
-tw
-WB
-WB
-WB
-tw
-tw
-tw
-tw
+Rh
+Rh
+Rh
 yf
 "}
 (10,1,1) = {"
@@ -544,12 +576,12 @@ tw
 yf
 yf
 yf
-tw
+Rh
 yf
 yf
 yf
 yf
-tw
+Rh
 yf
 yf
 "}
@@ -577,7 +609,7 @@ MP
 MP
 yf
 WB
-WB
+YZ
 WB
 yf
 "}
@@ -604,9 +636,9 @@ Ok
 Ok
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (13,1,1) = {"
@@ -632,9 +664,9 @@ Ok
 Ok
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (14,1,1) = {"
@@ -659,11 +691,11 @@ Ok
 Ok
 Ok
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
-tw
+YZ
+Rh
 "}
 (15,1,1) = {"
 MP
@@ -688,9 +720,9 @@ Ok
 Ok
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (16,1,1) = {"
@@ -715,10 +747,10 @@ Ok
 Ok
 Ok
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (17,1,1) = {"
@@ -744,9 +776,9 @@ Ok
 Ok
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (18,1,1) = {"
@@ -772,9 +804,9 @@ Ok
 Ok
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (19,1,1) = {"
@@ -799,10 +831,10 @@ Ok
 Ok
 Ok
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (20,1,1) = {"
@@ -827,10 +859,10 @@ Ok
 Ok
 Ok
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (21,1,1) = {"
@@ -856,9 +888,9 @@ Ok
 Ok
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (22,1,1) = {"
@@ -883,11 +915,11 @@ Ok
 Ok
 Ok
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
-tw
+YZ
+Rh
 "}
 (23,1,1) = {"
 iD
@@ -911,10 +943,10 @@ Ok
 Ok
 Ok
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (24,1,1) = {"
@@ -939,10 +971,10 @@ Ok
 Ok
 Ok
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (25,1,1) = {"
@@ -968,9 +1000,9 @@ MP
 MP
 MP
 yf
-WB
-WB
-WB
+YZ
+YZ
+YZ
 yf
 "}
 (26,1,1) = {"
@@ -992,12 +1024,12 @@ LS
 Hn
 dw
 yf
-tw
+Rh
 yf
 yf
 yf
 yf
-tw
+Rh
 yf
 yf
 "}
@@ -1019,15 +1051,15 @@ MP
 dw
 dw
 dw
+Rh
+Rh
+Rh
+Rh
 tw
-tw
-tw
-tw
-tw
-tw
-tw
-tw
-tw
+Rh
+Rh
+Rh
+Rh
 "}
 (28,1,1) = {"
 ZT
@@ -1046,14 +1078,14 @@ Ok
 MP
 yf
 yf
-tw
+Rh
 yf
-tw
+Rh
 Oj
-WB
+YZ
 yf
 yf
-tw
+Rh
 yf
 yf
 "}
@@ -1072,16 +1104,16 @@ iD
 iD
 iD
 MP
-tw
-tw
-tw
-tw
-tw
+Rh
+Rh
+Rh
+Rh
+Rh
 Oj
-WB
+YZ
 yf
 yf
-tw
+Rh
 yf
-yf
+zS
 "}

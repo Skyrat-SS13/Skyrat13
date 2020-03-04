@@ -72,8 +72,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "aY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/stripes/line{
@@ -112,8 +112,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "bT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -201,13 +201,13 @@
 /area/engine/engineering)
 "dw" = (
 /obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "dD" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "ej" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -337,8 +337,8 @@
 	dir = 5
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "ii" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -472,8 +472,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "mi" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
@@ -661,8 +661,8 @@
 	dir = 6
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "pP" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -783,8 +783,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "sn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/line{
@@ -848,8 +848,8 @@
 /area/engine/supermatter)
 "tw" = (
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "tE" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -867,8 +867,8 @@
 	dir = 4
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "uR" = (
 /obj/machinery/power/supermatter_crystal/engine,
 /turf/open/floor/engine,
@@ -937,8 +937,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "xo" = (
 /obj/structure/reflector/box/anchored{
 	dir = 1
@@ -962,13 +962,13 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "yf" = (
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "yA" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "yD" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -1014,8 +1014,8 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "zS" = (
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored)
+/turf/open/space/basic,
+/area/space)
 "Ab" = (
 /obj/item/crowbar/large,
 /obj/structure/rack,
@@ -1449,15 +1449,15 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "Le" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "Lg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -1620,7 +1620,7 @@
 /area/engine/engineering)
 "Oj" = (
 /turf/closed/wall/r_wall,
-/area/icemoon/surface/outdoors/explored/)
+/area/space/nearstation)
 "Ok" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -1704,6 +1704,10 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"Rh" = (
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
 "RA" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
@@ -1733,8 +1737,8 @@
 "Sn" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "SL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1884,8 +1888,8 @@
 "WB" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space/basic,
+/area/space/nearstation)
 "WI" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -1921,8 +1925,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow,
-/area/icemoon/surface/outdoors/explored/)
+/turf/open/space,
+/area/space/nearstation)
 "XK" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/radio/headset/headset_eng,
@@ -1973,6 +1977,11 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"YZ" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/open/space,
+/area/space/nearstation)
 "Zn" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32
@@ -2013,19 +2022,19 @@ ZT
 ZT
 ZT
 yf
-tw
+Rh
 yf
 yf
-tw
+Rh
 yf
 yf
-tw
+Rh
 yf
 yf
 yf
-WB
-WB
-WB
+YZ
+YZ
+YZ
 ZT
 ZT
 ZT
@@ -2051,9 +2060,9 @@ Sn
 hK
 yf
 yf
-WB
+YZ
 Oj
-WB
+YZ
 ZT
 ZT
 ZT
@@ -2077,11 +2086,11 @@ Sn
 Sn
 dD
 lG
-tw
-tw
-WB
+Rh
+Rh
+YZ
 Oj
-WB
+YZ
 ZT
 ZT
 ZT
@@ -2107,9 +2116,9 @@ dD
 hK
 yf
 yf
-WB
+YZ
 Oj
-WB
+YZ
 ZT
 ZT
 ZT
@@ -2133,11 +2142,11 @@ Sn
 Sn
 dD
 lG
-tw
-tw
-WB
+Rh
+Rh
+YZ
 Oj
-WB
+YZ
 ZT
 ZT
 ZT
@@ -2163,9 +2172,9 @@ dD
 hK
 yf
 yf
-WB
+YZ
 Oj
-WB
+YZ
 ZT
 ZT
 ZT
@@ -2189,11 +2198,11 @@ Sn
 Sn
 dD
 lG
-tw
-tw
-WB
+Rh
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 yf
 yf
@@ -2219,12 +2228,12 @@ dD
 hK
 yf
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 yf
-tw
+Rh
 yf
 yf
 "}
@@ -2245,15 +2254,15 @@ Sn
 Sn
 dD
 lG
+Rh
+Rh
+YZ
+YZ
+YZ
 tw
-tw
-WB
-WB
-WB
-tw
-tw
-tw
-tw
+Rh
+Rh
+Rh
 yf
 "}
 (10,1,1) = {"
@@ -2275,12 +2284,12 @@ yf
 yf
 yf
 yf
-tw
+Rh
 yf
 yf
 yf
 yf
-tw
+Rh
 yf
 yf
 "}
@@ -2308,7 +2317,7 @@ MP
 MP
 yf
 WB
-WB
+YZ
 WB
 yf
 "}
@@ -2335,9 +2344,9 @@ Uu
 EM
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (13,1,1) = {"
@@ -2363,9 +2372,9 @@ Uu
 Uu
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (14,1,1) = {"
@@ -2390,11 +2399,11 @@ Lv
 XY
 LJ
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
-tw
+YZ
+Rh
 "}
 (15,1,1) = {"
 MP
@@ -2419,9 +2428,9 @@ pP
 MJ
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (16,1,1) = {"
@@ -2446,10 +2455,10 @@ Uu
 Uu
 Uu
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (17,1,1) = {"
@@ -2475,9 +2484,9 @@ ey
 Uu
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (18,1,1) = {"
@@ -2503,9 +2512,9 @@ vD
 Uu
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (19,1,1) = {"
@@ -2530,10 +2539,10 @@ Uu
 un
 Uu
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (20,1,1) = {"
@@ -2558,10 +2567,10 @@ Uu
 Uu
 Uu
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (21,1,1) = {"
@@ -2587,9 +2596,9 @@ Dj
 MJ
 MP
 yf
-WB
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (22,1,1) = {"
@@ -2614,11 +2623,11 @@ Ph
 nH
 LJ
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
-tw
+YZ
+Rh
 "}
 (23,1,1) = {"
 iD
@@ -2642,10 +2651,10 @@ MI
 Uu
 Uu
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (24,1,1) = {"
@@ -2670,10 +2679,10 @@ GI
 Uu
 Ab
 MP
-tw
-WB
+Rh
+YZ
 Oj
-WB
+YZ
 yf
 "}
 (25,1,1) = {"
@@ -2699,9 +2708,9 @@ MP
 MP
 MP
 yf
-WB
-WB
-WB
+YZ
+YZ
+YZ
 yf
 "}
 (26,1,1) = {"
@@ -2723,12 +2732,12 @@ LS
 Hn
 dw
 yf
-tw
+Rh
 yf
 yf
 yf
 yf
-tw
+Rh
 yf
 yf
 "}
@@ -2750,15 +2759,15 @@ MP
 dw
 dw
 dw
+Rh
+Rh
+Rh
+Rh
 tw
-tw
-tw
-tw
-tw
-tw
-tw
-tw
-tw
+Rh
+Rh
+Rh
+Rh
 "}
 (28,1,1) = {"
 ZT
@@ -2777,14 +2786,14 @@ XK
 MP
 yf
 yf
-tw
+Rh
 yf
-tw
+Rh
 Oj
-WB
+YZ
 yf
 yf
-tw
+Rh
 yf
 yf
 "}
@@ -2803,16 +2812,16 @@ iD
 iD
 iD
 MP
-tw
-tw
-tw
-tw
-tw
+Rh
+Rh
+Rh
+Rh
+Rh
 Oj
-WB
+YZ
 yf
 yf
-tw
+Rh
 yf
 zS
 "}
