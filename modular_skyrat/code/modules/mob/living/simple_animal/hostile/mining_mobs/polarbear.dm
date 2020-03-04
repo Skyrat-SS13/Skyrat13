@@ -9,11 +9,11 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	speak_emote = list("growls")
 	speed = 3
-	maxHealth = 300
-	health = 300
+	maxHealth = 200
+	health = 200
 	obj_damage = 40
-	melee_damage_lower = 25
-	melee_damage_upper = 25
+	melee_damage_lower = 15
+	melee_damage_upper = 15
 	attacktext= "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	vision_range = 7

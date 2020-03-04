@@ -10,11 +10,11 @@
 	friendly = "howls at"
 	speak_emote = list("howls")
 	speed = -1
-	maxHealth = 130
-	health = 130
+	maxHealth = 120
+	health = 120
 	obj_damage = 15
-	melee_damage_lower = 7.5
-	melee_damage_upper = 7.5
+	melee_damage_lower = 5
+	melee_damage_upper = 5
 	rapid_melee = 2 // every second attack
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
