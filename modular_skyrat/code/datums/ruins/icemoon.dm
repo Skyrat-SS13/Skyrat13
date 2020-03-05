@@ -18,12 +18,14 @@
 	id = "bbqpit"
 	description = "Barbecue and grillin'."
 	suffix = "icemoon_underground_bbqpit.dmm"
+	cost = 2
 
 /datum/map_template/ruin/icemoon/deadrussian
 	name = "Dead Russian Cave"
 	id = "deadrussian"
 	description = "Someone partied too hard."
 	suffix = "icemoon_surface_deadrussian.dmm"
+	cost = 2
 
 /datum/map_template/ruin/icemoon/lust
 	name = "Ruin of Lust"
@@ -36,24 +38,28 @@
 	id = "hotsprings"
 	description = "Just relax and take a dip, nothing will go wrong, I swear!"
 	suffix = "icemoon_surface_hotsprings.dmm"
+	cost = 3
 
 /datum/map_template/ruin/icemoon/cabin
 	name = "Snow Cabin"
 	id = "cabin"
 	description = "Just a comfy cabin."
 	suffix = "icemoon_surface_cabin.dmm"
+	cost = 3
 
 /datum/map_template/ruin/icemoon/colony
 	name = "Ravaged Colony"
 	id = "colony"
 	description = "Once a somewhat thriving colony, now ruined and inhabited only by a goliath."
 	suffix = "icemoon_surface_colony.dmm"
+	cost = 10
 
 /datum/map_template/ruin/icemoon/miningoutpost
 	name = "Abandoned Mining Outpost"
 	id = "mineoutpost"
 	description = "An abandoned outpost once used by miners to shelter them from snowstorms."
 	suffix = "icemoon_surface_miningoutpost.dmm"
+	cost = 3
 
 // above and below ground together
 
@@ -70,7 +76,7 @@
 	id = "miningsite-underground"
 	description = "Who knew ladders could be so useful?"
 	suffix = "icemoon_underground_mining_site.dmm"
-	cost = 10
+	cost = 7
 
 // below ground only
 
@@ -82,6 +88,7 @@
 	id = "abandonedvillage"
 	description = "Who knows what lies within?"
 	suffix = "icemoon_underground_abandoned_village.dmm"
+	cost = 10
 
 /datum/map_template/ruin/icemoon/underground/library
 	name = "Buried Library"
@@ -100,6 +107,7 @@
 	id = "puzzle"
 	description = "Mystery to be solved."
 	suffix = "icemoon_underground_puzzle.dmm"
+	cost = 3
 
 /datum/map_template/ruin/icemoon/underground/bathhouse
 	name = "Bath House"
