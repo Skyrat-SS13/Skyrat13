@@ -126,3 +126,4 @@
 	id = "roguearena"
 	description = "LOOK AT YOU HACKER... A PATHETIC CREATURE MADE OF MEAT AND BONE."
 	suffix = "icemoon_underground_rogue.dmm"
+	always_place = TRUE
