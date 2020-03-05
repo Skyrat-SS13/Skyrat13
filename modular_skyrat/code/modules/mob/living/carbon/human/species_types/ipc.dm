@@ -9,6 +9,8 @@
 	toxmod = 0
 	clonemod = 0
 	siemens_coeff = 1.2
+	revivesbyhealreq = 50
+	reagent_flags = PROCESS_SYNTHETIC
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 	mutant_brain = /obj/item/organ/brain/ipc_positron
 	mutantstomach = /obj/item/organ/stomach/cell
@@ -30,6 +32,7 @@
 	QDEL_NULL(appendix)
 	for(var/obj/item/bodypart/O in C.bodyparts)
 		O.render_like_organic = TRUE
+		O.synthetic = TRUE
 
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H)
 	H.dna.features["ipc_screen"] = "BSOD"

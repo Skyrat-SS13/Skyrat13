@@ -1,5 +1,6 @@
 /obj/item/bodypart
 	var/render_like_organic = FALSE // TRUE is for when you want a BODYPART_ROBOTIC to pretend to be a BODYPART_ORGANIC.
+	var/synthetic = FALSE //Synthetic bodyparts can have patches applied but are harder to repair by conventional means
 
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
@@ -18,7 +19,7 @@
 	if(owner && updating_health)
 		owner.updatehealth()
 	if(owner.dna && owner.dna.species && (REVIVESBYHEALING in owner.dna.species.species_traits))
-		if(owner.health > 0 && !owner.hellbound)
+		if(owner.health > owner.dna.species.revivesbyhealreq && !owner.hellbound)
 			owner.revive(0)
 			owner.cure_husk(0) // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
 	consider_processing()
