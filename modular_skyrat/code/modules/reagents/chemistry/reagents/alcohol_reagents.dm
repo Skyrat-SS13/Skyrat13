@@ -11,34 +11,35 @@
 	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 	boozepwr = 50
 	quality = DRINK_NICE
-	drink_icon = "synthanolglass"
-	drink_name = "Glass of Synthanol"
-	drink_desc = "The equivalent of alcohol for synthetic crewmembers. They'd find it awful if they had tastebuds too."
+	glass_icon_state = "synthanolglass"
+	glass_name = "Glass of Synthanol"
+	glass_desc = "The equivalent of alcohol for synthetic crewmembers. They'd find it awful if they had tastebuds too."
 	taste_description = "motor oil"
 	value = 1
 
 /datum/reagent/consumable/ethanol/synthanol/on_mob_life(mob/living/M)
-	if(!M.isRobotic()
+	if(!M.isRobotic())
 		holder.remove_reagent(type, 3.6) //gets removed from organics very fast
 		if(prob(25))
+			var/mob/living/carbon/U = M
 			holder.remove_reagent(type, 15)
-			M.fakevomit()
+			U.vomit(5, FALSE, FALSE)
 	return ..()
 
 /datum/reagent/consumable/ethanol/synthanol/reaction_mob(mob/living/M, method=TOUCH, volume)
-	if(M.isSynthetic())
+	if(M.isRobotic())
 		return
 	if(method == INGEST)
-		to_chat(M, pick("<span class = 'danger'>That was awful!</span>", "<span class = 'danger'>Yuck!</span>"))
+		to_chat(M, pick("<span class = 'danger'>That was awful!</span>", "<span class = 'danger'>That was disgusting!</span>"))
 
 /datum/reagent/consumable/ethanol/synthanol/robottears
 	name = "Robot Tears"
 	description = "An oily substance that an IPC could technically consider a 'drink'."
 	color = "#363636"
 	boozepwr = 25
-	drink_icon = "robottearsglass"
-	drink_name = "Glass of Robot Tears"
-	drink_desc = "No robots were hurt in the making of this drink."
+	glass_icon_state = "robottearsglass"
+	glass_name = "Glass of Robot Tears"
+	glass_desc = "No robots were hurt in the making of this drink."
 	taste_description = "existential angst"
 
 /datum/reagent/consumable/ethanol/synthanol/trinary
@@ -46,9 +47,9 @@
 	description = "A fruit drink meant only for synthetics, however that works."
 	color = "#ADB21f"
 	boozepwr = 20
-	drink_icon = "trinaryglass"
-	drink_name = "Glass of Trinary"
-	drink_desc = "Colorful drink made for synthetic crewmembers. It doesn't seem like it would taste well."
+	glass_icon_state = "trinaryglass"
+	glass_name = "Glass of Trinary"
+	glass_desc = "Colorful drink made for synthetic crewmembers. It doesn't seem like it would taste well."
 	taste_description = "modem static"
 
 /datum/reagent/consumable/ethanol/synthanol/servo
@@ -56,9 +57,9 @@
 	description = "A drink containing some organic ingredients, but meant only for synthetics."
 	color = "#5B3210"
 	boozepwr = 25
-	drink_icon = "servoglass"
-	drink_name = "Glass of Servo"
-	drink_desc = "Chocolate - based drink made for IPCs. Not sure if anyone's actually tried out the recipe."
+	glass_icon_state = "servoglass"
+	glass_name = "Glass of Servo"
+	glass_desc = "Chocolate - based drink made for IPCs. Not sure if anyone's actually tried out the recipe."
 	taste_description = "motor oil and cocoa"
 
 /datum/reagent/consumable/ethanol/synthanol/uplink
@@ -66,9 +67,9 @@
 	description = "A potent mix of alcohol and synthanol. Will only work on synthetics."
 	color = "#E7AE04"
 	boozepwr = 15
-	drink_icon = "uplinkglass"
-	drink_name = "Glass of Uplink"
-	drink_desc = "An exquisite mix of the finest liquoirs and synthanol. Meant only for synthetics."
+	glass_icon_state = "uplinkglass"
+	glass_name = "Glass of Uplink"
+	glass_desc = "An exquisite mix of the finest liquoirs and synthanol. Meant only for synthetics."
 	taste_description = "a GUI in visual basic"
 
 /datum/reagent/consumable/ethanol/synthanol/synthncoke
@@ -76,9 +77,9 @@
 	description = "The classic drink adjusted for a robot's tastes."
 	color = "#7204E7"
 	boozepwr = 25
-	drink_icon = "synthncokeglass"
-	drink_name = "Glass of Synth 'n Coke"
-	drink_desc = "Classic drink altered to fit the tastes of a robot, contains de-rustifying properties. Bad idea to drink if you're made of carbon."
+	glass_icon_state = "synthncokeglass"
+	glass_name = "Glass of Synth 'n Coke"
+	glass_desc = "Classic drink altered to fit the tastes of a robot, contains de-rustifying properties. Bad idea to drink if you're made of carbon."
 	taste_description = "fizzy motor oil"
 
 /datum/reagent/consumable/ethanol/synthanol/synthignon
@@ -86,7 +87,7 @@
 	description = "Someone mixed wine and alcohol for robots. Hope you're proud of yourself."
 	color = "#D004E7"
 	boozepwr = 25
-	drink_icon = "synthignonglass"
-	drink_name = "Glass of Synthignon"
-	drink_desc = "Someone mixed good wine and robot booze. Romantic, but atrocious."
+	glass_icon_state = "synthignonglass"
+	glass_name = "Glass of Synthignon"
+	glass_desc = "Someone mixed good wine and robot booze. Romantic, but atrocious."
 	taste_description = "fancy motor oil"
