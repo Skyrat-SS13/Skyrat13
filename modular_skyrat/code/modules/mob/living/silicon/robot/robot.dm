@@ -1,2 +1,2 @@
 /mob/living/silicon/robot
-	speed = 1
+	speed = 0.2
