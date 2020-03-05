@@ -1,0 +1,51 @@
+"a" = (/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
+"b" = (/turf/closed/wall/mineral/silver,/area/ruin/powered)
+"c" = (/obj/structure/table,/obj/machinery/dish_drive,/obj/machinery/light{dir = 1; light_color = "#cee5d2"},/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"d" = (/obj/machinery/grill,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"e" = (/obj/structure/table,/obj/machinery/reagentgrinder,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"f" = (/obj/structure/table,/obj/item/flashlight/lamp/bananalamp,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"g" = (/obj/structure/table,/obj/structure/showcase/machinery/microwave,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"h" = (/obj/structure/sink/kitchen{step_y = 23},/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"i" = (/obj/structure/table,/obj/item/reagent_containers/food/snacks/burger/roburgerbig,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"j" = (/obj/structure/table,/obj/item/reagent_containers/food/snacks/burger/xeno,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"k" = (/obj/structure/closet/secure_closet/freezer/meat/open,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"l" = (/obj/structure/closet/secure_closet/freezer/gulag_fridge,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"m" = (/obj/structure/closet/secure_closet/freezer/cream_pie,/obj/machinery/light{dir = 1; light_color = "#cee5d2"},/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"n" = (/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"o" = (/mob/living/simple_animal/hostile/bear/Hudson{faction = list("neutral"); name = "Guy Fieri"},/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"p" = (/obj/structure/table/reinforced,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"q" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/food/snacks/burger/rib,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"r" = (/obj/machinery/gibber,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"s" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/food/snacks/cakebatter{step_y = 0},/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"t" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/food/snacks/cakebatter,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"u" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/food/snacks/carpmeat,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"v" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/food/snacks/carrotfries{step_x = -3; step_y = 9},/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"w" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/food/snacks/carneburrito{step_x = 0; step_y = 5},/obj/item/reagent_containers/food/snacks/carneburrito{step_x = 0; step_y = 5},/obj/item/reagent_containers/food/snacks/carneburrito{step_x = -7; step_y = 0},/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"x" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/food/snacks/butterdog,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"y" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/food/snacks/candy_corn,/obj/item/reagent_containers/food/snacks/candy_corn,/obj/item/reagent_containers/food/snacks/candy_corn,/obj/item/reagent_containers/food/snacks/candy_corn,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"z" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/food/snacks/candiedapple,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"A" = (/obj/structure/table/reinforced,/obj/item/ammo_box/magazine/m45/kitchengun,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"B" = (/obj/machinery/door/airlock/freezer,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
+"C" = (/obj/structure/table/reinforced,/obj/item/kitchen/knife/butcher,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"D" = (/obj/structure/table/reinforced,/obj/item/kitchen/rollingpin,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"E" = (/obj/structure/table/reinforced,/obj/item/kitchen/fork,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"F" = (/obj/structure/table/reinforced,/obj/item/kitchen/knife/carrotshiv,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"G" = (/obj/machinery/icecream_vat,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"H" = (/obj/structure/table/reinforced,/obj/item/kitchen/knife/scimitar,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"I" = (/obj/machinery/processor,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"J" = (/obj/machinery/processor/slime,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"K" = (/obj/machinery/light,/turf/open/floor/plasteel/cafeteria,/area/ruin/powered)
+"L" = (/obj/machinery/light_switch{step_x = 7; step_y = 7},/turf/closed/wall/mineral/silver,/area/ruin/powered)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaa
+abbbbbbbbbbbbba
+abcdefghijklmba
+abnnnnonnnnnnba
+abnnCDCEFqpnrba
+abGnHstpppunIba
+abnnvtwxyzAnJba
+abKnnnnKnnnnKba
+abbbbbbbbbLBbba
+aaaaaaaaaaaaaaa
+"}

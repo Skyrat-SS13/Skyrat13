@@ -7,7 +7,13 @@
 
 // above ground only
 
-/datum/map_template/ruin/icemoon/lust
+/datum/map_template/ruin/icemoon/kitchen
+	name = "Guy Fieri's Kitchen"
+	id = "kitchen"
+	description = "Welcome to flavor town!"
+	suffix = "icemoon_surface_kitchen.dmm"
+
+/datum/map_template/ruin/icemoon/deadrussian
 	name = "Dead Russian Cave"
 	id = "deadrussian"
 	description = "Someone partied too hard."
@@ -94,3 +100,9 @@
 	id = "bathhouse"
 	description = "A taste of paradise, locked in the hell of the snowy wastes."
 	suffix = "icemoon_underground_bathhouse.dmm"
+
+/datum/map_template/ruin/icemoon/underground/icemoon_underground_pool
+	name = "Small Pool"
+	id = "pool"
+	description = "It's just a pool to heat you up in the snowy underground... or maybe even more."
+	suffix = "icemoon_underground_pool.dmm"
