@@ -1,5 +1,6 @@
 /obj/item/organ/regenerative_core/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
+
 	if(proximity_flag && ishuman(target) && !is_station_level(target.z))
 		var/mob/living/carbon/human/H = target
 		if(inert)
