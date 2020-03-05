@@ -69,12 +69,12 @@
 	hackProof = TRUE
 	abandoned = FALSE
 
-/obj/machinery/door/airlock/abandoned/rogue/Process()
+/obj/machinery/door/airlock/abandoned/rogue/process()
 	..()
 	integrity = 10000
 	if(/mob/living/carbon in get_step(src, NORTH))
 		close()
 		bolt()
-		for(/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(20, src))
+		for(var/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(20, src))
 			R.say("FILTHY ORGANIC!")
 

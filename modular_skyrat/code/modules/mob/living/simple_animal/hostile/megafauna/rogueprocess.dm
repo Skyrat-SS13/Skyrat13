@@ -54,11 +54,11 @@
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
 	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier) //Ranged cooldown will always be at least 15
 	if(anger_modifier < 20)
-		INVOKE_ASYNC(src, .proc/spawnminions, target)
+		INVOKE_ASYNC(src, .proc/spawnminion)
 	if(anger_modifier < 30 && anger_modifier >= 20)
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/plasmashot, target)
-			INVOKE_ASYNC(src, .proc/spawnminions, target)
+			INVOKE_ASYNC(src, .proc/spawnminion)
 		else
 			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 7)
 	if(anger_modifier >= 30 && anger_modifier <40)
@@ -139,6 +139,7 @@
 	if(theline.len > 2)
 		visible_message("<span class='boldwarning'>[src] raises it's tri-shot plasma cutter!</span>")
 		say("MY AIM IS PRECISE AND MY WILL IS PLASTEEL.")
+		var/turf/T = get_turf(src)
 		sleep(15)
 		for(var/i = 0, i < 2, i++)
 			var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
@@ -153,9 +154,9 @@
 			P.preparePixelProjectile(target.loc, src)
 			switch(i)
 				if(1)
-					P.angle += 30
+					P.Angle += 30
 				if(2)
-					P.angle -= 30
+					P.Angle -= 30
 			P.fire()
 	else
 		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
@@ -174,6 +175,7 @@
 		say("WEAK!!! STUPID!!! ORGANIC!!!")
 		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 		var/ogangle = dir2angle(dir_to_target)
+		var/turf/T = get_turf(src)
 		for(var/angle = 0, angle < initial(angle) + 360, angle += 30)
 			sleep(5)
 			var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
@@ -186,8 +188,8 @@
 			P.xo = target.x - startloc.x
 			P.original = target
 			P.preparePixelProjectile(target.loc, src)
-			P.angle = ogangle
-			P.angle += angle
+			P.Angle = ogangle
+			P.Angle += angle
 			P.fire()
 	else
 		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
