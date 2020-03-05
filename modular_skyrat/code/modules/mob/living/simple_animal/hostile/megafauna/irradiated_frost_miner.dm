@@ -28,6 +28,8 @@
 	var/projectile_speed_multiplier = 1
 	var/enraged = FALSE
 	var/enraging = FALSE
+	song = sound('modular_skyrat/sound/ambience/lisapebbleman.ogg', 100) // Doubt the creator would care lol
+	songlength = 1530
 	deathmessage = "falls to the ground, decaying into plasma particles."
 	deathsound = "bodyfall"
 
