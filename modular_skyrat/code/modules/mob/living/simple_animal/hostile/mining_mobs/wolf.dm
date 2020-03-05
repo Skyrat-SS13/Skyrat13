@@ -28,6 +28,7 @@
 	stat_attack = UNCONSCIOUS
 	robust_searching = TRUE
 	var/retreat_message_said = FALSE
+	weather_immunities = list("snow")
 
 /mob/living/simple_animal/hostile/asteroid/wolf/Move(atom/newloc)
 	if(newloc && newloc.z == z && (islava(newloc) || ischasm(newloc)))

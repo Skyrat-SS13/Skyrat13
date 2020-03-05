@@ -53,3 +53,28 @@
 			addtimer(CALLBACK(src, /datum/proc/AddComponent, /datum/component/spawner, mob_types, 0, faction, spawn_text, max_mobs), 5)
 			sleep(65)
 			max_mobs = 0
+
+/turf/closed/indestructible/syndicate
+	name = "plastitanium wall"
+	desc = "Looks sturdier than normal."
+	icon = 'icons/turf/walls/plastitanium_wall.dmi'
+	icon_state = "map-shuttle"
+
+/obj/machinery/door/airlock/abandoned/rogue
+	name = "Door to Rogue Process' Arena"
+	desc = "LOOK AT YOU HACKER. A PATHETIC CREATURE OF MEAT AND BONE."
+	icon = 'icons/obj/doors/airlocks/station/uranium.dmi'
+	normal_integrity = 10000
+	security_level = 6
+	hackProof = TRUE
+	abandoned = FALSE
+
+/obj/machinery/door/airlock/abandoned/rogue/Process()
+	..()
+	integrity = 10000
+	if(/mob/living/carbon in get_step(src, NORTH))
+		close()
+		bolt()
+		for(/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(20, src))
+			R.say("FILTHY ORGANIC!")
+

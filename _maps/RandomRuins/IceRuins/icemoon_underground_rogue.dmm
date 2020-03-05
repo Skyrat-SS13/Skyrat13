@@ -1,0 +1,28 @@
+"a" = (/turf/closed/indestructible/syndicate,/area/space)
+"b" = (/turf/open/floor/circuit/red/anim,/area/space)
+"c" = (/turf/open/floor/circuit/green/anim,/area/space)
+"d" = (/turf/open/floor/circuit,/area/space)
+"f" = (/mob/living/simple_animal/hostile/megafauna/rogueprocess,/turf/open/floor/circuit,/area/space)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaa
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbcccccbbbbbbba
+abbbbbbcdddcbbbbbbba
+abbbbbbcdfdcbbbbbbba
+abbbbbbcdddcbbbbbbba
+abbbbbbcccccbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+aaaaaaaaabaaaaaaaaaa
+"}

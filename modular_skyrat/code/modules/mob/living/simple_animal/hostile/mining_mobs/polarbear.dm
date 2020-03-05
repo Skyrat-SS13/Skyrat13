@@ -26,6 +26,7 @@
 	stat_attack = UNCONSCIOUS
 	robust_searching = TRUE
 	var/aggressive_message_said = FALSE
+	weather_immunities = list("snow")
 
 /mob/living/simple_animal/hostile/asteroid/polarbear/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
