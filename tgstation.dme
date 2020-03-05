@@ -8,6 +8,10 @@
 // END_PREFERENCES
 // BEGIN_INCLUDE
 #include "_maps\_basemap.dm"
+#include "_maps\RandomRuins\IceRuins\icemoon_underground_bbqpit.dmm"
+#include "_maps\RandomRuins\IceRuins\test.dmm"
+#include "_maps\RandomRuins\IceRuins\test2.dmm"
+#include "_maps\RandomRuins\IceRuins\test3.dmm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\__513_compatibility.dm"

@@ -13,6 +13,12 @@
 	description = "Welcome to flavor town!"
 	suffix = "icemoon_surface_kitchen.dmm"
 
+/datum/map_template/ruin/icemoon/bbqpit
+	name = "BBQ Pit"
+	id = "bbqpit"
+	description = "Barbecue and grillin'."
+	suffix = "icemoon_underground_bbqpit.dmm"
+
 /datum/map_template/ruin/icemoon/deadrussian
 	name = "Dead Russian Cave"
 	id = "deadrussian"
