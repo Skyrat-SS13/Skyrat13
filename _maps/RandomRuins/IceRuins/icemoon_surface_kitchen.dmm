@@ -34,9 +34,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
 "h" = (
-/obj/structure/sink/kitchen{
-	step_y = 23
-	},
+/obj/structure/sink/kitchen,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
 "i" = (
@@ -70,6 +68,7 @@
 /area/ruin/powered)
 "o" = (
 /mob/living/simple_animal/hostile/bear/Hudson{
+	desc = "Welcome to flavortown!";
 	faction = list("neutral");
 	name = "Guy Fieri"
 	},
@@ -88,13 +87,6 @@
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
-"s" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/cakebatter{
-	step_y = 0
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered)
 "t" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/snacks/cakebatter,
@@ -107,26 +99,14 @@
 /area/ruin/powered)
 "v" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/carrotfries{
-	step_x = -3;
-	step_y = 9
-	},
+/obj/item/reagent_containers/food/snacks/carrotfries,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
 "w" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/carneburrito{
-	step_x = 0;
-	step_y = 5
-	},
-/obj/item/reagent_containers/food/snacks/carneburrito{
-	step_x = 0;
-	step_y = 5
-	},
-/obj/item/reagent_containers/food/snacks/carneburrito{
-	step_x = -7;
-	step_y = 0
-	},
+/obj/item/reagent_containers/food/snacks/carneburrito,
+/obj/item/reagent_containers/food/snacks/carneburrito,
+/obj/item/reagent_containers/food/snacks/carneburrito,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
 "x" = (
@@ -198,10 +178,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
 "L" = (
-/obj/machinery/light_switch{
-	step_x = 7;
-	step_y = 7
-	},
+/obj/machinery/light_switch,
 /turf/closed/wall/mineral/silver,
 /area/ruin/powered)
 
@@ -271,7 +248,7 @@ b
 f
 n
 D
-s
+t
 t
 n
 b
