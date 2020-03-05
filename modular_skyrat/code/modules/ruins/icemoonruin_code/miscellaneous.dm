@@ -65,16 +65,23 @@
 	desc = "LOOK AT YOU HACKER. A PATHETIC CREATURE OF MEAT AND BONE."
 	icon = 'icons/obj/doors/airlocks/station/uranium.dmi'
 	normal_integrity = 10000
+	max_integrity = 10000
 	security_level = 6
 	hackProof = TRUE
 	abandoned = FALSE
+	var/fighting = 0
 
 /obj/machinery/door/airlock/abandoned/rogue/process()
 	..()
-	integrity = 10000
-	if(/mob/living/carbon in get_step(src, NORTH))
+	obj_integrity = 10000
+	if(/mob/living/carbon in get_step(src, NORTH) && !fighting)
+		fighting = 1
 		close()
 		bolt()
 		for(var/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(20, src))
 			R.say("FILTHY ORGANIC!")
-
+	for(var/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(20, src))
+		if(R.stat != CONSCIOUS)
+			unbolt()
+			open()
+			bolt()
