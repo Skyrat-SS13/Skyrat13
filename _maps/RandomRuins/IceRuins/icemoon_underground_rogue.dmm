@@ -1,24 +1,24 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/closed/indestructible/syndicate,
-/area/space)
+/area/ruin/powered)
 "b" = (
 /turf/open/floor/circuit/red/anim,
-/area/space)
+/area/ruin/powered)
 "c" = (
 /turf/open/floor/circuit/green/anim,
-/area/space)
+/area/ruin/powered)
 "d" = (
 /turf/open/floor/circuit,
-/area/space)
+/area/ruin/powered)
 "e" = (
-/obj/machinery/door/airlock/abandoned/rogue,
-/turf/open/floor/circuit/red/anim,
-/area/space)
-"f" = (
 /mob/living/simple_animal/hostile/megafauna/rogueprocess,
 /turf/open/floor/circuit,
-/area/space)
+/area/ruin/powered)
+"f" = (
+/obj/machinery/door/airlock/abandoned/rogue,
+/turf/open/floor/circuit/red/anim,
+/area/ruin/powered)
 
 (1,1,1) = {"
 a
@@ -229,7 +229,7 @@ b
 b
 c
 d
-f
+e
 d
 c
 b
@@ -238,7 +238,7 @@ b
 b
 b
 b
-e
+f
 "}
 (11,1,1) = {"
 a
