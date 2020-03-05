@@ -120,3 +120,9 @@
 	id = "pool"
 	description = "It's just a pool to heat you up in the snowy underground... or maybe even more."
 	suffix = "icemoon_underground_pool.dmm"
+
+/datum/map_template/ruin/icemoon/underground/rogue
+	name = "Rogue Process Arena"
+	id = "roguearena"
+	description = "LOOK AT YOU HACKER... A PATHETIC CREATURE MADE OF MEAT AND BONE."
+	suffix = "icemoon_underground_rogue.dmm"
