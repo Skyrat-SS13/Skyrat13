@@ -1,8 +1,3 @@
-/mob/living/simple_animal/hostile/megafauna
-	weather_immunities = list("lava","ash", "snow")
-
-
-
 /mob/living/simple_animal/hostile/megafauna/rogueprocess
 	name = "Rogue Process"
 	desc = "Once an experimental ripley carrying an advanced mining AI, now it's out for blood."
@@ -33,6 +28,8 @@
 	mob_biotypes = MOB_ROBOTIC
 	wander = FALSE
 	movement_type = GROUND
+	song = sound('modular_skyrat/sound/ambience/systemshockremixmbr.ogg', 100) //System shock is abandonware right?
+	songlength = 2940
 
 /obj/item/gps/internal/rogueprocess
 	icon_state = null
@@ -56,7 +53,9 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
 	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier) //Ranged cooldown will always be at least 15
-	if(anger_modifier < 30)
+	if(anger_modifier < 20)
+		INVOKE_ASYNC(src, .proc/spawnminions, target)
+	if(anger_modifier < 30 && anger_modifier >= 20)
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/plasmashot, target)
 			INVOKE_ASYNC(src, .proc/spawnminions, target)
@@ -114,7 +113,7 @@
 	if(theline.len > 2)
 		visible_message("<span class='boldwarning'>[src] raises it's plasma cutter!</span>")
 		sleep(5)
-		say("I CLEANSE THE WORLD WITH MY CUTTER.")
+		say("I CLEANSE THE WORLD WITH MY CUTTERS.")
 		var/turf/T = get_turf(src)
 		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
 		var/turf/startloc = T
@@ -173,7 +172,9 @@
 		say("I AM UNBREAKABLE.")
 		sleep(15)
 		say("WEAK!!! STUPID!!! ORGANIC!!!")
-		for(var/angle = 0, i < 360, i += 30)
+		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+		var/ogangle = dir2angle(dir_to_target)
+		for(var/angle = 0, angle < initial(angle) + 360, angle += 30)
 			sleep(5)
 			var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
 			var/turf/startloc = get_turf(src)
@@ -185,10 +186,12 @@
 			P.xo = target.x - startloc.x
 			P.original = target
 			P.preparePixelProjectile(target.loc, src)
-			P.angle += i
+			P.angle = ogangle
+			P.angle += angle
 			P.fire()
 	else
 		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
+		say("I AM IMMORTAL!")
 		sleep(5)
 		SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
 		in_melee = TRUE
@@ -210,6 +213,12 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/spawnminion()
 	visible_message("<span class='boldwarning'>[src] opens his back and a swarmer comes out of it!</span>")
+	var/chosen = pick(/mob/living/simple_animal/hostile/swarmer/ai/ranged_combat/rogue, /mob/living/simple_animal/hostile/swarmer/ai/melee_combat/rogue)
+	var/mob/living/simple_animal/hostile/swarmer/ai/minion = new chosen(src.loc)
+	var/turf/T = get_step(src, -dir)
+	sleep(5)
+	say("YOU'RE SO WEAK EVEN MY CHILDREN CAN KILL YOU.")
+	minion.forceMove(T)
 
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/shockwave(direction, range)
@@ -328,7 +337,7 @@
 /mob/living/simple_animal/hostile/swarmer/ai/ranged_combat/rogue
 	name = "Rogue's Elite Guard"
 	desc = "A loyal spawn of their robotic master."
-	health = 150
+	health = 200
 
 /mob/living/simple_animal/hostile/swarmer/ai/melee_combat/rogue
 	name = "Rogue's Guard"

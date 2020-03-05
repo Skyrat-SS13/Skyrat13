@@ -63,6 +63,7 @@
 	var/sound/song
 	var/songlength
 	var/songend
+	weather_immunities = list("lava","ash", "snow")
 
 /mob/living/simple_animal/hostile/megafauna/Life()
 	..()
