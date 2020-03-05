@@ -1,0 +1,160 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"b" = (
+/turf/closed/wall/mineral/snow,
+/area/ruin/unpowered)
+"c" = (
+/obj/structure/bed/dogbed,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"d" = (
+/obj/effect/mob_spawn/human/corpse/russian,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"e" = (
+/obj/item/clothing/suit/armor/vest/russian,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"f" = (
+/obj/item/kitchen/knife/combat/survival,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"g" = (
+/obj/structure/bonfire,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"h" = (
+/mob/living/simple_animal/hostile/bear/russian,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"i" = (
+/obj/item/clothing/suit/armor/navyblue/russian,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+"j" = (
+/mob/living/simple_animal/hostile/russian,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+b
+b
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+b
+b
+b
+b
+b
+a
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+a
+a
+"}
+(4,1,1) = {"
+b
+b
+b
+e
+i
+a
+j
+a
+a
+a
+"}
+(5,1,1) = {"
+b
+b
+c
+d
+f
+a
+a
+a
+a
+a
+"}
+(6,1,1) = {"
+b
+b
+a
+h
+a
+g
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+b
+b
+b
+a
+a
+a
+a
+b
+a
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+b
+a
+b
+b
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+b
+b
+b
+b
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

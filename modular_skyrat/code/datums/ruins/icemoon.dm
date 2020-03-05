@@ -8,6 +8,12 @@
 // above ground only
 
 /datum/map_template/ruin/icemoon/lust
+	name = "Dead Russian Cave"
+	id = "deadrussian"
+	description = "Someone partied too hard."
+	suffix = "icemoon_surface_deadrussian.dmm"
+
+/datum/map_template/ruin/icemoon/lust
 	name = "Ruin of Lust"
 	id = "lust"
 	description = "Not exactly what you expected."
