@@ -33,10 +33,10 @@
 		var/key = C.key
 		if(C.holder && C.holder.fakekey)
 			key = C.holder.fakekey
-		var/fontcolor = "#FFFFFF"
+		var/keyprint = "[key]"
 		if(admin_mode && (!C.prefs.exp || text2num(C.prefs.exp[EXP_TYPE_LIVING]) < 300))
-			fontcolor = "#82B0FA"
-		assembled += "\t <font color='[fontcolor]'>[key]</font>[admin_mode? "[show_admin_info(C)]":""] ([round(C.avgping, 1)]ms)"
+			keyprint = "<font color='#538EED'>[key]</font>"
+		assembled += "\t [keyprint][admin_mode? "[show_admin_info(C)]":""] ([round(C.avgping, 1)]ms)"
 	Lines += sortList(assembled)
 	
 	for(var/line in Lines)
