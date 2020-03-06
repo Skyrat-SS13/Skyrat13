@@ -139,7 +139,7 @@
 		say("MY AIM IS PRECISE AND MY WILL IS PLASTEEL.")
 		var/turf/T = get_turf(src)
 		sleep(15)
-		for(var/i = 0, i < 2, i++)
+		for(var/i = 0, i < 3, i++)
 			var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
 			var/turf/startloc = get_turf(src)
 			playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
@@ -155,6 +155,8 @@
 					P.Angle += 30
 				if(2)
 					P.Angle -= 30
+				if(3)
+					P.Angle += 0
 			P.fire()
 	else
 		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
@@ -198,8 +200,6 @@
 	if(theline.len > 2)
 		visible_message("<span class='boldwarning'>[src] raises FOUR tri-shot plasma cutters! What the heck?!</span>")
 		say("I AM UNBREAKABLE.")
-		sleep(15)
-		say("WEAK!!! STUPID!!! ORGANIC!!!")
 		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 		var/ogangle = dir2angle(dir_to_target)
 		var/turf/T = get_turf(src)
