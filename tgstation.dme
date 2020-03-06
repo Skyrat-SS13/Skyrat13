@@ -3255,6 +3255,7 @@
 #include "modular_skyrat\_DEFINES\atmospherics.dm"
 #include "modular_skyrat\_DEFINES\obj_flags.dm"
 #include "modular_skyrat\_DEFINES\status_effects.dm"
+#include "modular_skyrat\code\_DEFINES\preferences.dm"
 #include "modular_skyrat\code\_globalvars\lists\names.dm"
 #include "modular_skyrat\code\_HELPERS\mobs.dm"
 #include "modular_skyrat\code\_HELPERS\names.dm"
