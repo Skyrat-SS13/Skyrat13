@@ -338,4 +338,5 @@
 /mob/living/simple_animal/hostile/swarmer/ai/ranged_combat/rogue
 	name = "Rogue's Guard"
 	desc = "A loyal spawn of their robotic master."
-	health = 30
+	health = 100
+	mob_size = MOB_SIZE_LARGE

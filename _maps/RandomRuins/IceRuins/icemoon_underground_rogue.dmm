@@ -3,17 +3,17 @@
 /turf/closed/indestructible/syndicate,
 /area/ruin/powered)
 "b" = (
-/turf/open/floor/circuit/red/anim,
+/turf/open/floor/circuit/red/anim/rogue,
 /area/ruin/powered)
 "c" = (
-/turf/open/floor/circuit/green/anim,
+/turf/open/floor/circuit/green/anim/rogue,
 /area/ruin/powered)
 "d" = (
-/turf/open/floor/circuit,
+/turf/open/floor/circuit/rogue,
 /area/ruin/powered)
 "e" = (
 /mob/living/simple_animal/hostile/megafauna/rogueprocess,
-/turf/open/floor/circuit,
+/turf/open/floor/circuit/rogue,
 /area/ruin/powered)
 "f" = (
 /obj/machinery/door/airlock/rogue,

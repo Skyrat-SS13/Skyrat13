@@ -87,3 +87,12 @@
 			unbolt()
 			open()
 			bolt()
+
+/turf/open/floor/circuit/rogue
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/floor/circuit/green/anim/rogue
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/floor/circuit/red/anim/rogue
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
