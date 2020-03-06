@@ -1,13 +1,21 @@
-/datum/status_effect/blooddrunk/radioactive
+/datum/status_effect/radioactive
 	id = "radioactive"
 	duration = 20
 	alert_type = /obj/screen/alert/status_effect/blooddrunk/radioactive
+	var/last_health = 0
+	var/last_bruteloss = 0
+	var/last_fireloss = 0
+	var/last_toxloss = 0
+	var/last_oxyloss = 0
+	var/last_cloneloss = 0
+	var/last_staminaloss = 0
+	tick_interval = 0
 
 /obj/screen/alert/status_effect/blooddrunk/radioactive
 	name = "Radioactive"
 	desc = "You radiate energy! Your pulse thunders in your ears! Nothing can harm you!" //not true, and the item description mentions its actual effect
 
-/datum/status_effect/blooddrunk/radioactive/on_apply()
+/datum/status_effect/radioactive/on_apply()
 	. = ..()
 	if(.)
 		owner.maxHealth *= 20
@@ -37,7 +45,7 @@
 		ADD_TRAIT(owner, TRAIT_RADIMMUNE, "radioactive")
 		owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, 1)
 
-/datum/status_effect/blooddrunk/radioactive/tick() //multiply the effect of healing by 20
+/datum/status_effect/radioactive/tick() //multiply the effect of healing by 20
 	if(owner.health > last_health)
 		var/needs_health_update = FALSE
 		var/new_bruteloss = owner.getBruteLoss()
@@ -93,7 +101,7 @@
 			owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, 1)
 	last_health = owner.health
 
-/datum/status_effect/blooddrunk/radioactive/on_remove()
+/datum/status_effect/radioactive/on_remove()
 	tick()
 	owner.maxHealth *= 0.05
 	owner.bruteloss *= 0.05

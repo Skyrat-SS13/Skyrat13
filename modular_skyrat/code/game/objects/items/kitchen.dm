@@ -3,17 +3,8 @@
 	desc = "An occult looking dagger that is cold to the touch. Somehow, the flawless orb on the pommel is made entirely of liquid blood."
 	icon = 'modular_skyrat/icons/obj/ice_moon/artifacts.dmi'
 	icon_state = "bloodletter"
-	w_class = WEIGHT_CLASS_NORMAL
-	force = 15
-
-/obj/item/kitchen/knife/bloodletter/attack(mob/living/M, mob/living/carbon/user)
-	. =..()
-	if(istype(M) && (M.mob_biotypes & MOB_ORGANIC))
-		var/datum/status_effect/saw_bleed/bloodletting/B = M.has_status_effect(/datum/status_effect/saw_bleed/bloodletting)
-		if(!B)
-			M.apply_status_effect(/datum/status_effect/saw_bleed/bloodletting)
-		else
-			B.add_bleed(B.bleed_buildup)
+	w_class = WEIGHT_CLASS_SMALL
+	force = 10
 
 /obj/item/kitchen/knife/bloodletter/attack(mob/living/target, mob/living/carbon/human/user)
 	var/turf/user_turf = get_turf(user)
@@ -27,4 +18,12 @@
 
 /obj/item/kitchen/knife/bloodletter/melee_attack_chain(mob/user, atom/target, params)
 	..()
-	user.changeNext_move(CLICK_CD_MELEE * 0.25) //It attacks FAST.
+	user.changeNext_move(CLICK_CD_MELEE * 0.1) //It attacks FAST.
+	var/mob/living/L = target
+	if(L)
+		if(L.mob_biotypes & MOB_ORGANIC)
+			var/datum/status_effect/saw_bleed/bloodletting/B = L.has_status_effect(/datum/status_effect/saw_bleed/bloodletting)
+			if(!B)
+				L.apply_status_effect(/datum/status_effect/saw_bleed/bloodletting)
+			else
+				B.add_bleed(B.bleed_buildup)

@@ -12,5 +12,5 @@
 /datum/status_effect/saw_bleed/bloodletting
 	id = "bloodletting"
 	bleed_buildup = 5
-	bleed_damage = 125
+	bleed_damage = 50
 	delay_before_decay = 20
