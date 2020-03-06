@@ -68,7 +68,8 @@
 			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 10)
 	if(anger_modifier >= 30 && anger_modifier <40)
 		if(prob(50))
-			INVOKE_ASYNC(src, .proc/plasmaforall, target)
+			INVOKE_ASYNC(src, .proc/plasmaburst, target)
+			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 7)
 		else
 			INVOKE_ASYNC(src, .proc/shockwave, NORTH, 15)
 			INVOKE_ASYNC(src, .proc/shockwave, SOUTH, 15)
@@ -195,18 +196,6 @@
 		say("I AM IMMORTAL!")
 		sleep(5)
 		AttackingTarget(target)
-
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaforall()
-	visible_message("<span class='boldwarning'>[src] raises FOUR tri-shot plasma cutters! What the heck?!</span>")
-	say("I AM UNBREAKABLE.")
-	sleep(5)
-	var/list/targets = list()
-	targets[1] = locate(x + 4, y, z)
-	targets[2] = locate(x - 4, y, z)
-	targets[3] = locate(x, y + 4, z)
-	targets[4] = locate(x, y - 4, z)
-	for(var/i = 1, i < 5, i++)
-		INVOKE_ASYNC(src, .proc/plasmaburst, targets[i])
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/knockdown()
 	visible_message("<span class='boldwarning'>[src] smashes into the ground!</span>")
