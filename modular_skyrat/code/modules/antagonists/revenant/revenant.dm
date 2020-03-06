@@ -279,5 +279,6 @@
 
 			if (acted)
 				last_revenant_action = world.time
-	else
-		. = ..()
+				return
+	
+	. = ..()
