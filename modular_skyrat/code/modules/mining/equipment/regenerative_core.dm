@@ -59,7 +59,15 @@
 /obj/item/organ/regenerative_core/attack_self(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(is_station_level(H.z))
+		if(!is_station_level(H.z))
+			if(!inert)
+			if(!inert)
+				H.revive(full_heal = 1)
+				qdel(src)
+				user.log_message("[user] used [src] to heal [H]! Wake the fuck up, Samurai!", LOG_ATTACK, color="green")
+			else
+				to_chat(user, "<span class='notice'>[src] has decayed and can no longer be used to heal.</span>")
+		else
 			if(!inert)
 				H.AdjustStun(-20, 0)
 				H.AdjustKnockdown(-20, 0)
@@ -76,8 +84,3 @@
 				qdel(src)
 			else
 				to_chat(user, "<span class='notice'>[src] has decayed and can no longer be used to heal.</span>")
-		else
-			if(!inert)
-				H.revive(full_heal = 1)
-				qdel(src)
-				user.log_message("[user] used [src] to heal [H]! Wake the fuck up, Samurai!", LOG_ATTACK, color="green")

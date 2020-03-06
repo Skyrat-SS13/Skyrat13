@@ -21,7 +21,7 @@
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_VERY_STRONG
 	pull_force = MOVE_FORCE_VERY_STRONG
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/bear = 5, /obj/item/clothing/head/bearpelt = 1)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/bear = 5, /obj/item/stack/sheet/animalhide/goliath_hide/bearpelt = 1)
 	loot = list()
 	stat_attack = UNCONSCIOUS
 	robust_searching = TRUE
@@ -49,3 +49,10 @@
 	move_resist = MOVE_RESIST_DEFAULT
 	pull_force = PULL_FORCE_DEFAULT
 	..(gibbed)
+
+/obj/item/stack/sheet/animalhide/goliath_hide/bearpelt
+	name = "bear pelt"
+	desc = "Looks comfy. Can be used to improve a suit."
+	icon = 'icons/obj/clothing/hats.dmi'
+	icon_state = "bearpelt"
+	item_state = "bearpelt"

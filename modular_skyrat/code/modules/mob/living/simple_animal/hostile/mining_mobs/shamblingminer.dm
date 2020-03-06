@@ -32,3 +32,11 @@
 	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/mask
 	do_footstep = TRUE
 	minimum_distance = 1
+
+/mob/living/simple_animal/hostile/asteroid/miner/frozen
+	name = "bloody frozen miner"
+	desc = "Despite the fact he's almost completely frozen, he moves rather fast."
+	icon_state = "frozenminer"
+	icon_living = "frozenminer"
+	icon_aggro = "frozenminer"
+	icon_dead = "frozenminer_dead"
