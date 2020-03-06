@@ -20,8 +20,8 @@
 	speed = 20
 	move_to_delay = 20
 	ranged = TRUE
-	crusher_loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer, /obj/item/kitchen/knife/bloodletter, /obj/item/crusher_trophy/miner_eye/irradiated)
-	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer, /obj/item/kitchen/knife/bloodletter)
+	crusher_loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer, /obj/item/kitchen/knife/bloodletter, /obj/item/crusher_trophy/miner_eye/irradiated, /obj/item/borg/upgrade/modkit/irradiated)
+	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer, /obj/item/kitchen/knife/bloodletter, /obj/item/borg/upgrade/modkit/irradiated)
 	wander = FALSE
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_NORMAL
@@ -222,7 +222,9 @@
 		spin(100, 10)
 		sleep(80)
 		playsound(src, 'sound/effects/explosion3.ogg', 100, TRUE)
-		overlays += mutable_appearance('icons/effects/effects.dmi', "curse")
+		var/mutable_appearance/uranium = mutable_appearance('icons/effects/effects.dmi', "curse")
+		uranium.color = "#00FF00"
+		overlays += uranium
 		animate(src, pixel_y = pixel_y - 96, time = 8, flags = ANIMATION_END_NOW)
 		spin(8, 2)
 		sleep(8)

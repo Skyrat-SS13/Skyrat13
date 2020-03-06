@@ -194,6 +194,17 @@
 	modifier = 4
 	cost = 25
 
+//irradiated miner
+
+/obj/item/borg/upgrade/modkit/irradiated
+	name = "radioactive toughness modkit"
+	desc = "Causes kinetic accelerator shots to make the target 95% resistant to all damages for 2 seconds."
+	cost = 50
+
+/obj/item/borg/upgrade/modkit/irradiated/projectile_strike(obj/item/projectile/kinetic/K, turf/target_turf, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
+	..()
+	user.apply_status_effect(STATUS_EFFECT_BLOODDRUNKRADIOACTIVE)
+
 //drakeling
 /obj/item/borg/upgrade/modkit/fire
 	name = "flamethrower modification kit"
