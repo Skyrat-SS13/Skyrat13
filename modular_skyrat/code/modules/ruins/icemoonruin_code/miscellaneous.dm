@@ -78,7 +78,7 @@
 		if(!fighting)
 			fighting = 1
 			close()
-			sleep(10)
+			sleep(1)
 			bolt()
 			for(var/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(20, src))
 				R.say("FILTHY ORGANIC!")
