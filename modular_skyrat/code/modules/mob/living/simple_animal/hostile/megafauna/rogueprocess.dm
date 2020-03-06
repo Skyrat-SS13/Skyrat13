@@ -19,7 +19,7 @@
 	ranged_cooldown_time = 75
 	ranged = 1
 	del_on_death = 0
-	crusher_loot = list(/obj/item/borg/upgrade/modkit/plasma, /obj/item/crusher_trophy/brokentech, /obj/item/twohanded/rogue)
+	crusher_loot = list(/obj/item/crusher_trophy/brokentech)
 	loot = list(/obj/item/borg/upgrade/modkit/plasma, /obj/item/twohanded/rogue)
 	deathmessage = "sparkles and emits corrupted screams in agony, falling defeated on the ground."
 	death_sound = 'sound/mecha/critdestr.ogg'
@@ -70,7 +70,7 @@
 		else
 			INVOKE_ASYNC(src, .proc/shockwave2, src.dir, 10)
 	if(anger_modifier >= 30 && anger_modifier <40)
-		if(prob(66))
+		if(prob(50))
 			INVOKE_ASYNC(src, .proc/threeplasmaburst, target)
 		else
 			if(prob(50))
@@ -90,7 +90,7 @@
 			INVOKE_ASYNC(src, .proc/shockwave, SOUTH, 15)
 			INVOKE_ASYNC(src, .proc/shockwave, WEST, 15)
 			INVOKE_ASYNC(src, .proc/shockwave, EAST, 15)
-			sleep(15)
+			sleep(30)
 			INVOKE_ASYNC(src, .proc/shockwave2, NORTHEAST, 15)
 			INVOKE_ASYNC(src, .proc/shockwave2, NORTHWEST, 15)
 			INVOKE_ASYNC(src, .proc/shockwave2, SOUTHWEST, 15)
@@ -117,36 +117,52 @@
 		DestroySurroundings()
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmashot(atom/target)
-	var/list/theline = getline(src, target)
-	if(theline.len > 2)
-		visible_message("<span class='boldwarning'>[src] raises it's plasma cutter!</span>")
-		sleep(5)
-		say("I CLEANSE THE WORLD WITH MY CUTTERS.")
-		var/turf/T = get_turf(src)
+	visible_message("<span class='boldwarning'>[src] raises it's plasma cutter!</span>")
+	sleep(5)
+	say("I CLEANSE THE WORLD WITH MY CUTTERS.")
+	var/turf/T = get_turf(src)
+	var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
+	var/turf/startloc = T
+	playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
+	P.preparePixelProjectile(target.loc, src.loc)
+	P.starting = startloc
+	P.firer = src
+	P.fired_from = src
+	if(target)
+		P.original = target
+	P.fire()
+
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaburst(atom/target)
+	visible_message("<span class='boldwarning'>[src] raises it's tri-shot plasma cutter!</span>")
+	say("MY AIM IS PRECISE AND MY WILL IS PLASTEEL.")
+	var/turf/T = get_turf(src)
+	sleep(15)
+	for(var/i = 0, i < 3, i++)
 		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
-		var/turf/startloc = T
+		var/turf/startloc = get_turf(src)
 		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
+		P.preparePixelProjectile(target.loc, src.loc)
 		P.starting = startloc
 		P.firer = src
 		P.fired_from = src
 		if(target)
 			P.original = target
-		P.preparePixelProjectile(target, src)
+		switch(i)
+			if(1)
+				P.Angle += 30
+			if(2)
+				P.Angle -= 30
+			if(3)
+				P.Angle += 0
 		P.fire()
-	else
-		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
-		say("YOUR WEAK MELEES WON'T DENT ME.")
-		sleep(5)
-		AttackingTarget(target)
 
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaburst(atom/target)
-	var/list/theline = getline(src, target)
-	if(theline.len > 2)
-		visible_message("<span class='boldwarning'>[src] raises it's tri-shot plasma cutter!</span>")
-		say("MY AIM IS PRECISE AND MY WILL IS PLASTEEL.")
-		var/turf/T = get_turf(src)
-		sleep(15)
-		for(var/i = 0, i < 3, i++)
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/threeplasmaburst(atom/target)
+	visible_message("<span class='boldwarning'>[src] raises it's charged tri-shot plasma cutter!</span>")
+	say("FLESH IS WEAK.")
+	var/turf/T = get_turf(src)
+	for(var/i = 0, i < 3, i++)
+		sleep(40)
+		for(var/i2 = 0, i2 < 3, i2++)
 			var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
 			var/turf/startloc = get_turf(src)
 			playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
@@ -156,7 +172,7 @@
 			if(target)
 				P.original = target
 			P.preparePixelProjectile(target.loc, src)
-			switch(i)
+			switch(i2)
 				if(1)
 					P.Angle += 30
 				if(2)
@@ -164,43 +180,6 @@
 				if(3)
 					P.Angle += 0
 			P.fire()
-	else
-		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
-		say("YOUR ATTACKS BARELY AFFECT ME.")
-		sleep(5)
-		AttackingTarget(target)
-
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/threeplasmaburst(atom/target)
-	var/list/theline = getline(src, target)
-	if(theline.len > 2)
-		visible_message("<span class='boldwarning'>[src] raises it's charged tri-shot plasma cutter!</span>")
-		say("FLESH IS WEAK.")
-		var/turf/T = get_turf(src)
-		for(var/i = 0, i < 3, i++)
-			sleep(20)
-			for(var/i2 = 0, i2 < 3, i2++)
-				var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
-				var/turf/startloc = get_turf(src)
-				playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
-				P.starting = startloc
-				P.firer = src
-				P.fired_from = src
-				if(target)
-					P.original = target
-				P.preparePixelProjectile(target.loc, src)
-				switch(i2)
-					if(1)
-						P.Angle += 30
-					if(2)
-						P.Angle -= 30
-					if(3)
-						P.Angle += 0
-				P.fire()
-	else
-		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
-		say("YOUR ATTACKS BARELY AFFECT ME.")
-		sleep(5)
-		AttackingTarget(target)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaforall()
 	playsound(src,'sound/weapons/pulse.ogg', 200, 1)
@@ -212,12 +191,12 @@
 		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
 		var/turf/startloc = get_turf(src)
 		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
+		P.preparePixelProjectile(target.loc, T)
 		P.starting = startloc
 		P.firer = src
 		P.fired_from = src
 		if(target)
 			P.original = target
-		P.preparePixelProjectile(target.loc, src)
 		P.fire()
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmacrazy(atom/target)
@@ -232,12 +211,12 @@
 		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
 		var/turf/startloc = get_turf(src)
 		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
+		P.preparePixelProjectile(target.loc, T)
 		P.starting = startloc
 		P.firer = src
 		P.fired_from = src
 		if(target)
 			P.original = target
-		P.preparePixelProjectile(target.loc, src)
 		P.Angle = ogangle
 		P.Angle += angle
 		P.fire()
@@ -332,12 +311,21 @@
 		otherT2 = get_step(otherT2, ogdir)
 		sleep(1)
 
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/death()
+	. = ..()
+	if(prob(70))
+		loot = list(/obj/item/borg/upgrade/modkit/plasma)
+		crusher_loot = list(/obj/item/borg/upgrade/modkit/plasma, /obj/item/crusher_trophy/brokentech)
+	else
+		loot = list(/obj/item/twohanded/rogue)
+		crusher_loot = list(/obj/item/twohanded/rogue, /obj/item/crusher_trophy/brokentech)
+
 //loot
 /obj/item/twohanded/rogue
 	name = "Rogue's Drill"
 	desc = "A drill coupled with an internal mechanism that produces shockwaves on demand. Serves as a very robust melee."
 	force = 0
-	force_wielded = 25
+	force_wielded = 20
 	force_unwielded = 0
 	icon = 'modular_skyrat/icons/obj/mining.dmi'
 	icon_state = "roguedrill"
@@ -362,9 +350,8 @@
 		playsound(src,'sound/misc/crunch.ogg', 200, 1)
 		var/mob/living/M = A
 		if(ishuman(M))
-			M.Knockdown(25, override_stamdmg = 0)
+			M.Stun(5)
 		M.adjustStaminaLoss(25)
-		M.drop_all_held_items()
 
 /obj/item/twohanded/rogue/afterattack(atom/target, mob/living/user, proximity_flag)
 	. = ..()
@@ -384,16 +371,16 @@
 					new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
 					for(var/mob/living/L in T.contents)
 						if(L != src && !(L in hit_things))
-							L.Stun(20)
-							L.adjustBruteLoss(10)
+							L.Stun(5)
+							L.adjustBruteLoss(5)
 					for(var/mob/living/L in otherT.contents)
 						if(L != src && !(L in hit_things))
-							L.Stun(20)
-							L.adjustBruteLoss(10)
+							L.Stun(5)
+							L.adjustBruteLoss(5)
 					for(var/mob/living/L in otherT2.contents)
 						if(L != src && !(L in hit_things))
-							L.Stun(20)
-							L.adjustBruteLoss(10)
+							L.Stun(5)
+							L.adjustBruteLoss(5)
 					if(ismineralturf(T))
 						var/turf/closed/mineral/M = T
 						M.gets_drilled(user)
@@ -406,7 +393,7 @@
 					T = get_step(T, ogdir)
 					otherT = get_step(otherT, ogdir)
 					otherT2 = get_step(otherT2, ogdir)
-					sleep(2)
+					sleep(5)
 
 //helpers
 /mob/living/simple_animal/hostile/swarmer/ai/ranged_combat/rogue
