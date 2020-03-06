@@ -83,10 +83,10 @@
 
 obj/item/robot_module/butler/Initialize()
 	basic_modules -= /obj/item/reagent_containers/borghypo/borgshaker
-	basic_modules += /obj/item/reagent_containers/borghypo/beershaker
-	basic_modules += /obj/item/reagent_containers/borghypo/juiceshaker
-	basic_modules += /obj/item/reagent_containers/borghypo/sodashaker
-	basic_modules += /obj/item/reagent_containers/borghypo/miscshaker
+	basic_modules += /obj/item/reagent_containers/borghypo/borgshaker/beershaker
+	basic_modules += /obj/item/reagent_containers/borghypo/borgshaker/juiceshaker
+	basic_modules += /obj/item/reagent_containers/borghypo/borgshaker/sodashaker
+	basic_modules += /obj/item/reagent_containers/borghypo/borgshaker/miscshaker
 	. = ..()
 
 /datum/robot_energy_storage/plasma

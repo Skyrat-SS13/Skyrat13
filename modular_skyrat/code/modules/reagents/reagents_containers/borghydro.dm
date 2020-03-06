@@ -1,7 +1,7 @@
 /*
 Borg Shaker
 */
-/obj/item/reagent_containers/borghypo/beershaker
+/obj/item/reagent_containers/borghypo/borgshaker/beershaker
 	name = "cyborg shaker"
 	desc = "An advanced drink synthesizer and mixer."
 	icon = 'modular_skyrat/icons/obj/drinks.dmi'
@@ -32,7 +32,7 @@ Borg Shaker
 						/datum/reagent/consumable/ethanol/moonshine)
 
 
-/obj/item/reagent_containers/borghypo/juiceshaker
+/obj/item/reagent_containers/borghypo/borgshaker/juiceshaker
 	name = "cyborg shaker"
 	desc = "An advanced drink synthesizer and mixer."
 	icon = 'modular_skyrat/icons/obj/drinks.dmi'
@@ -52,7 +52,7 @@ Borg Shaker
 						/datum/reagent/consumable/grapejuice,
 						/datum/reagent/consumable/lemonjuice)
 
-/obj/item/reagent_containers/borghypo/sodashaker
+/obj/item/reagent_containers/borghypo/borgshaker/sodashaker
 	name = "cyborg shaker"
 	desc = "An advanced drink synthesizer and mixer."
 	icon = 'modular_skyrat/icons/obj/drinks.dmi'
@@ -75,7 +75,7 @@ Borg Shaker
 						/datum/reagent/consumable/tonic,
 						/datum/reagent/consumable/sodawater)
 
-/obj/item/reagent_containers/borghypo/miscshaker
+/obj/item/reagent_containers/borghypo/borgshaker/miscshaker
 	name = "cyborg shaker"
 	desc = "An advanced drink synthesizer and mixer."
 	icon = 'modular_skyrat/icons/obj/drinks.dmi'
