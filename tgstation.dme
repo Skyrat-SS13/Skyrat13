@@ -3361,6 +3361,7 @@
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\shadowpeople.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\synthliz.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\vox.dm"
+#include "modular_skyrat\code\modules\mob\living\silicon\robot\robot.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot_modules.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\friendly\farm_animals.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\blood_drunk_miner.dm"
