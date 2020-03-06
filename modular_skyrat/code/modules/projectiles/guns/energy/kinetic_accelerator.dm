@@ -203,7 +203,8 @@
 
 /obj/item/borg/upgrade/modkit/irradiated/projectile_strike(obj/item/projectile/kinetic/K, turf/target_turf, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()
-	K.firer.apply_status_effect(STATUS_EFFECT_BLOODDRUNKRADIOACTIVE)
+	var/mob/living/M = K.firer
+	M.apply_status_effect(STATUS_EFFECT_BLOODDRUNKRADIOACTIVE)
 
 //drakeling
 /obj/item/borg/upgrade/modkit/fire
