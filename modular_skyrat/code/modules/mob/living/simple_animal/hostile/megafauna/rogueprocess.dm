@@ -52,8 +52,10 @@
 	move_to_delay = CLAMP(round((src.health/src.maxHealth) * 10), 3, 18)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
-	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier) //Ranged cooldown will always be at least
-	if(anger_modifier < 30)
+	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier) //Ranged cooldown will always be at least 15
+	if(anger_modifier < 20)
+		INVOKE_ASYNC(src, .proc/spawnminion)
+	if(anger_modifier < 30 && anger_modifier >= 20)
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/plasmashot, target)
 		else
@@ -127,7 +129,9 @@
 		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
 		say("YOUR WEAK MELEES WON'T DENT ME.")
 		sleep(5)
-		AttackingTarget(target)
+		SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
+		in_melee = TRUE
+		target.attack_animal(src)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaburst(atom/target)
 	var/list/theline = getline(src, target)
@@ -190,7 +194,9 @@
 		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
 		say("I AM IMMORTAL!")
 		sleep(5)
-		AttackingTarget(target)
+		SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
+		in_melee = TRUE
+		target.attack_animal(src)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/knockdown()
 	visible_message("<span class='boldwarning'>[src] smashes into the ground!</span>")
@@ -205,6 +211,15 @@
 				L.safe_throw_at(throwtarget, 10, 1, src)
 				L.Stun(20)
 				L.adjustBruteLoss(50)
+
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/spawnminion()
+	visible_message("<span class='boldwarning'>[src] opens his back and a swarmer comes out of it!</span>")
+	var/chosen = /mob/living/simple_animal/hostile/swarmer/ai/ranged_combat/rogue
+	var/mob/living/simple_animal/hostile/swarmer/ai/minion = new chosen(src.loc)
+	var/turf/T = get_step(src, -dir)
+	sleep(5)
+	say("YOU'RE SO WEAK EVEN MY CHILDREN CAN KILL YOU.")
+	minion.forceMove(T)
 
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/shockwave(direction, range)
@@ -318,3 +333,9 @@
 					otherT = get_step(otherT, ogdir)
 					otherT2 = get_step(otherT2, ogdir)
 					sleep(2)
+
+//helpers
+/mob/living/simple_animal/hostile/swarmer/ai/ranged_combat/rogue
+	name = "Rogue's Guard"
+	desc = "A loyal spawn of their robotic master."
+	health = 30
