@@ -69,24 +69,6 @@
 	security_level = 6
 	hackProof = TRUE
 	abandoned = FALSE
-	var/fighting = 0
-
-/obj/machinery/door/airlock/rogue/process()
-	..()
-	obj_integrity = 10000
-	for(var/mob/living/carbon/C in get_step(src, NORTH))
-		if(!fighting)
-			fighting = 1
-			close()
-			sleep(10)
-			bolt()
-			for(var/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(20, src))
-				R.say("FILTHY ORGANIC!")
-	for(var/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(40, src))
-		if(R.stat != CONSCIOUS)
-			unbolt()
-			open()
-			bolt()
 
 /turf/open/floor/circuit/rogue
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
