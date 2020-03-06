@@ -55,6 +55,7 @@
 	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier) //Ranged cooldown will always be at least 15
 	if(anger_modifier < 20)
 		INVOKE_ASYNC(src, .proc/spawnminion)
+		ranged_cooldown += 50
 	if(anger_modifier < 30 && anger_modifier >= 20)
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/plasmashot, target)
