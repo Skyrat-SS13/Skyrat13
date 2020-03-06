@@ -14,14 +14,11 @@ SUBSYSTEM_DEF(mapping)
 	var/list/ruins_templates = list()
 	var/list/space_ruins_templates = list()
 	var/list/lava_ruins_templates = list()
-<<<<<<< HEAD
 // SKYRAT CHANGES
 	var/list/ice_ruins_templates = list()
 	var/list/ice_ruins_underground_templates = list()
 //
-=======
 	var/list/station_ruins_templates = list()
->>>>>>> d78cdb9b37... Merge pull request #11130 from BlackMajor/SpaceRuins
 	var/datum/space_level/isolated_ruins_z //Created on demand during ruin loading.
 
 	var/list/shuttle_templates = list()
