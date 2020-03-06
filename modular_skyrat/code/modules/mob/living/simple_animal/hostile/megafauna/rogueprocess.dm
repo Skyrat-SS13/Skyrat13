@@ -195,33 +195,17 @@
 		sleep(5)
 		AttackingTarget(target)
 
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaforall(atom/target)
-	var/list/theline = getline(src, target)
-	if(theline.len > 2)
-		visible_message("<span class='boldwarning'>[src] raises FOUR tri-shot plasma cutters! What the heck?!</span>")
-		say("I AM UNBREAKABLE.")
-		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
-		var/ogangle = dir2angle(dir_to_target)
-		var/turf/T = get_turf(src)
-		for(var/angle = 0, angle < initial(angle) + 360, angle += 30)
-			var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
-			var/turf/startloc = get_turf(src)
-			playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
-			P.starting = startloc
-			P.firer = src
-			P.fired_from = src
-			P.yo = target.y - startloc.y
-			P.xo = target.x - startloc.x
-			P.original = target
-			P.preparePixelProjectile(target.loc, src)
-			P.Angle = ogangle
-			P.Angle += angle
-			P.fire()
-	else
-		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
-		say("I AM IMMORTAL!")
-		sleep(5)
-		AttackingTarget(target)
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaforall()
+	visible_message("<span class='boldwarning'>[src] raises FOUR tri-shot plasma cutters! What the heck?!</span>")
+	say("I AM UNBREAKABLE.")
+	sleep(5)
+	var/list/targets = list()
+	targets[1] = get_step(src, NORTH)
+	targets[2] = get_step(src, SOUTH)
+	targets[3] = get_step(src, EAST)
+	targets[4] = get_step(src, WEST)
+	for(var/i = 1, i < 5, i++)
+		INVOKE_ASYNC(src, .proc/plasmaburst, targets[i])
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/knockdown()
 	visible_message("<span class='boldwarning'>[src] smashes into the ground!</span>")
