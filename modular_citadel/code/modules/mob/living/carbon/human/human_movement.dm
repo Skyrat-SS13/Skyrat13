@@ -11,7 +11,7 @@
 			DefaultCombatKnockdown(80)
 
 /mob/living/carbon/human/movement_delay()
-	. = 0.3
+	. = 0
 	if((mobility_flags & MOBILITY_STAND) && m_intent == MOVE_INTENT_RUN && sprinting)
 		var/static/datum/config_entry/number/movedelay/sprint_speed_increase/SSI
 		if(!SSI)
