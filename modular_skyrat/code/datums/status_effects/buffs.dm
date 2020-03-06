@@ -93,7 +93,7 @@
 			owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, 1)
 	last_health = owner.health
 
-/datum/status_effect/blooddrunk/on_remove()
+/datum/status_effect/blooddrunk/radioactive/on_remove()
 	tick()
 	owner.maxHealth *= 0.05
 	owner.bruteloss *= 0.05
