@@ -471,7 +471,7 @@
 	if((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST))
 		should_draw_gender = FALSE
 
-	if(is_organic_limb() || (status == BODYPART_ROBOTIC && render_like_organic == TRUE)) //Skyrat change - robo limbs that render like normal ones
+	if(is_organic_limb() || (render_like_organic)) //Skyrat change - robo limbs that render like normal ones
 		if(should_draw_greyscale)
 			//SKYRAT CHANGES - limb paths for species
 			if(owner?.dna?.species)
