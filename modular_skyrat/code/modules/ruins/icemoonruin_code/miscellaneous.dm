@@ -60,7 +60,7 @@
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	icon_state = "map-shuttle"
 
-/obj/machinery/door/airlock/abandoned/rogue
+/obj/machinery/door/airlock/rogue
 	name = "Door to Rogue Process' Arena"
 	desc = "LOOK AT YOU HACKER. A PATHETIC CREATURE OF MEAT AND BONE."
 	icon = 'icons/obj/doors/airlocks/station/uranium.dmi'
@@ -71,16 +71,18 @@
 	abandoned = FALSE
 	var/fighting = 0
 
-/obj/machinery/door/airlock/abandoned/rogue/process()
+/obj/machinery/door/airlock/rogue/process()
 	..()
 	obj_integrity = 10000
-	if(/mob/living/carbon in get_step(src, NORTH) && !fighting)
-		fighting = 1
-		close()
-		bolt()
-		for(var/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(20, src))
-			R.say("FILTHY ORGANIC!")
-	for(var/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(20, src))
+	for(var/mob/living/carbon/C in get_step(src, NORTH))
+		if(!fighting)
+			fighting = 1
+			close()
+			sleep(10)
+			bolt()
+			for(var/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(20, src))
+				R.say("FILTHY ORGANIC!")
+	for(var/mob/living/simple_animal/hostile/megafauna/rogueprocess/R in view(40, src))
 		if(R.stat != CONSCIOUS)
 			unbolt()
 			open()

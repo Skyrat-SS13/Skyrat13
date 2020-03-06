@@ -58,7 +58,6 @@
 	if(anger_modifier < 30 && anger_modifier >= 20)
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/plasmashot, target)
-			INVOKE_ASYNC(src, .proc/spawnminion)
 		else
 			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 7)
 	if(anger_modifier >= 30 && anger_modifier <40)
@@ -204,7 +203,7 @@
 	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	var/list/hit_things = list()
 	sleep(10)
-	for(var/turf/T in oview(2, src))
+	for(var/turf/T in oview(1, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		for(var/mob/living/L in T.contents)
 			if(L != src && !(L in hit_things))
@@ -215,7 +214,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/spawnminion()
 	visible_message("<span class='boldwarning'>[src] opens his back and a swarmer comes out of it!</span>")
-	var/chosen = pick(/mob/living/simple_animal/hostile/swarmer/ai/ranged_combat/rogue, /mob/living/simple_animal/hostile/swarmer/ai/melee_combat/rogue)
+	var/chosen = /mob/living/simple_animal/hostile/swarmer/ai/ranged_combat/rogue
 	var/mob/living/simple_animal/hostile/swarmer/ai/minion = new chosen(src.loc)
 	var/turf/T = get_step(src, -dir)
 	sleep(5)
@@ -337,11 +336,6 @@
 
 //helpers
 /mob/living/simple_animal/hostile/swarmer/ai/ranged_combat/rogue
-	name = "Rogue's Elite Guard"
-	desc = "A loyal spawn of their robotic master."
-	health = 200
-
-/mob/living/simple_animal/hostile/swarmer/ai/melee_combat/rogue
 	name = "Rogue's Guard"
 	desc = "A loyal spawn of their robotic master."
-	health = 100
+	health = 30

@@ -16,7 +16,7 @@
 /turf/open/floor/circuit,
 /area/ruin/powered)
 "f" = (
-/obj/machinery/door/airlock/abandoned/rogue,
+/obj/machinery/door/airlock/rogue,
 /turf/open/floor/circuit/red/anim,
 /area/ruin/powered)
 
