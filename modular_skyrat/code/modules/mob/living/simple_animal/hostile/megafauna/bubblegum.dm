@@ -12,14 +12,16 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 	death_sound = 'modular_skyrat/sound/misc/gorenest.ogg' //fuck it
 	var/movesound = 'sound/effects/meteorimpact.ogg'
 	do_footstep = TRUE
+	song = sound('modular_skyrat/sound/ambience/bfgdivision.ogg', 100) //Thanks Mr. Infringio!
+	songlength = 1860
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Move()
 	. = ..()
-	bloodsmacks()
 	playsound(src, movesound, 200, TRUE, 2, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/OpenFire()
 	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
+	bloodsmacks()
 	if(charging)
 		return
 	ranged_cooldown = world.time + ranged_cooldown_time
@@ -33,6 +35,24 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 			INVOKE_ASYNC(src, .proc/charge)
 		else
 			INVOKE_ASYNC(src, .proc/triple_charge)
+
+/mob/living/simple_animal/hostile/megafauna/bubblegum/charge()
+	bloodsmacks()
+	var/turf/T = get_turf(target)
+	if(!T || T == loc)
+		return
+	new /obj/effect/temp_visual/dragon_swoop(T)
+	charging = 1
+	DestroySurroundings()
+	walk(src, 0)
+	setDir(get_dir(src, T))
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(loc,src)
+	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 5)
+	sleep(5)
+	throw_at(T, get_dist(src, T), 1, src, 0)
+	charging = 0
+	Goto(target, move_to_delay, minimum_distance)
+	bloodsmacks()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/bloodsmacks()
 	for(var/obj/effect/decal/cleanable/blood/B in view(7, src))
