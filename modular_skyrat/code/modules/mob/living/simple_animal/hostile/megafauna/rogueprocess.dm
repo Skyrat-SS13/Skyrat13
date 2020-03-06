@@ -75,10 +75,11 @@
 			INVOKE_ASYNC(src, .proc/shockwave, WEST, 15)
 			INVOKE_ASYNC(src, .proc/shockwave, EAST, 15)
 	if(anger_modifier >= 50)
-		if(prob(50))
+		if(prob(75))
 			INVOKE_ASYNC(src, .proc/plasmacrazy, target)
 			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 15)
 		else
+			say("YYEEEEEEEEEEEEARHHGH!")
 			INVOKE_ASYNC(src, .proc/shockwave, NORTH, 15)
 			INVOKE_ASYNC(src, .proc/shockwave, SOUTH, 15)
 			INVOKE_ASYNC(src, .proc/shockwave, WEST, 15)
