@@ -61,7 +61,6 @@
 		var/mob/living/carbon/human/H = user
 		if(!is_station_level(H.z))
 			if(!inert)
-			if(!inert)
 				H.revive(full_heal = 1)
 				qdel(src)
 				user.log_message("[user] used [src] to heal [H]! Wake the fuck up, Samurai!", LOG_ATTACK, color="green")
