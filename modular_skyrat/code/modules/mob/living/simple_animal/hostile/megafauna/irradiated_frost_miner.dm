@@ -30,8 +30,10 @@
 	var/enraging = FALSE
 	song = sound('modular_skyrat/sound/ambience/lisapebbleman.ogg', 100) // Doubt the creator would care lol
 	songlength = 1530
-	deathmessage = "falls to the ground, decaying into plasma particles."
+	deathmessage = "falls to the ground, decaying into plasma and uranium particles."
 	deathsound = "bodyfall"
+	medal_type = BOSS_MEDAL_IRRADIATED
+	score_type = IRRADIATED_SCORE
 
 /obj/item/gps/internal/irradiatedminer
 	icon_state = null

@@ -129,6 +129,7 @@ Difficulty: Insanely Hard
 	armour_penetration = 10
 	melee_damage_lower = 10
 	melee_damage_upper = 15
+	mob_size = MOB_SIZE_LARGE
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/master
 	name = "master of the guard"
@@ -142,6 +143,7 @@ Difficulty: Insanely Hard
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	move_to_delay = 3
+	mob_size = MOB_SIZE_LARGE
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/pope
 	name = "Goat Pope"
@@ -156,6 +158,7 @@ Difficulty: Insanely Hard
 	melee_damage_upper = 30
 	move_to_delay = 3
 	loot = list(/obj/item/clothing/head/goatpope)
+	mob_size = MOB_SIZE_LARGE
 
 /mob/living/simple_animal/hostile/megafauna/king/Retaliate()
 	..()

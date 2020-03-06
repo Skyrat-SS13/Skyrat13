@@ -30,6 +30,8 @@
 	movement_type = GROUND
 	song = sound('modular_skyrat/sound/ambience/systemshockremixmbr.ogg', 100) //System shock is abandonware right?
 	songlength = 2940
+	medal_type = BOSS_MEDAL_ROGUE
+	score_type = ROGUE_SCORE
 
 /obj/item/gps/internal/rogueprocess
 	icon_state = null
@@ -38,9 +40,10 @@
 	invisibility = 100
 
 /obj/item/projectile/plasma/rogue
-	speed = 2
+	speed = 4
 	range = 21
 	color = "#FF0000"
+	damage_type = BURN
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/Initialize()
 	. = ..()
@@ -65,16 +68,18 @@
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/plasmaburst, target)
 		else
-			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 10)
+			INVOKE_ASYNC(src, .proc/shockwave2, src.dir, 10)
 	if(anger_modifier >= 30 && anger_modifier <40)
-		if(prob(50))
-			INVOKE_ASYNC(src, .proc/plasmaburst, target)
-			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 7)
+		if(prob(66))
+			INVOKE_ASYNC(src, .proc/threeplasmaburst, target)
 		else
-			INVOKE_ASYNC(src, .proc/shockwave, NORTH, 15)
-			INVOKE_ASYNC(src, .proc/shockwave, SOUTH, 15)
-			INVOKE_ASYNC(src, .proc/shockwave, WEST, 15)
-			INVOKE_ASYNC(src, .proc/shockwave, EAST, 15)
+			if(prob(50))
+				INVOKE_ASYNC(src, .proc/shockwave, NORTH, 15)
+				INVOKE_ASYNC(src, .proc/shockwave, SOUTH, 15)
+				INVOKE_ASYNC(src, .proc/shockwave, WEST, 15)
+				INVOKE_ASYNC(src, .proc/shockwave, EAST, 15)
+			else
+				INVOKE_ASYNC(src, .proc/plasmaforall)
 	if(anger_modifier >= 50)
 		if(prob(75))
 			INVOKE_ASYNC(src, .proc/plasmacrazy, target)
@@ -124,9 +129,8 @@
 		P.starting = startloc
 		P.firer = src
 		P.fired_from = src
-		P.yo = target.y - startloc.y
-		P.xo = target.x - startloc.x
-		P.original = target
+		if(target)
+			P.original = target
 		P.preparePixelProjectile(target, src)
 		P.fire()
 	else
@@ -149,9 +153,8 @@
 			P.starting = startloc
 			P.firer = src
 			P.fired_from = src
-			P.yo = target.y - startloc.y
-			P.xo = target.x - startloc.x
-			P.original = target
+			if(target)
+				P.original = target
 			P.preparePixelProjectile(target.loc, src)
 			switch(i)
 				if(1)
@@ -167,35 +170,78 @@
 		sleep(5)
 		AttackingTarget(target)
 
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmacrazy(atom/target)
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/threeplasmaburst(atom/target)
 	var/list/theline = getline(src, target)
 	if(theline.len > 2)
-		visible_message("<span class='boldwarning'>[src] releases a burst of energy!</span>")
-		sleep(15)
-		say("WEAK!!! STUPID!!! ORGANIC!!!")
-		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
-		var/ogangle = dir2angle(dir_to_target)
+		visible_message("<span class='boldwarning'>[src] raises it's charged tri-shot plasma cutter!</span>")
+		say("FLESH IS WEAK.")
 		var/turf/T = get_turf(src)
-		for(var/angle = 0, angle < initial(angle) + 360, angle += 30)
-			sleep(5)
-			var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
-			var/turf/startloc = get_turf(src)
-			playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
-			P.starting = startloc
-			P.firer = src
-			P.fired_from = src
-			P.yo = target.y - startloc.y
-			P.xo = target.x - startloc.x
-			P.original = target
-			P.preparePixelProjectile(target.loc, src)
-			P.Angle = ogangle
-			P.Angle += angle
-			P.fire()
+		for(var/i = 0, i < 3, i++)
+			sleep(20)
+			for(var/i2 = 0, i2 < 3, i2++)
+				var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
+				var/turf/startloc = get_turf(src)
+				playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
+				P.starting = startloc
+				P.firer = src
+				P.fired_from = src
+				if(target)
+					P.original = target
+				P.preparePixelProjectile(target.loc, src)
+				switch(i2)
+					if(1)
+						P.Angle += 30
+					if(2)
+						P.Angle -= 30
+					if(3)
+						P.Angle += 0
+				P.fire()
 	else
 		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
-		say("I AM IMMORTAL!")
+		say("YOUR ATTACKS BARELY AFFECT ME.")
 		sleep(5)
 		AttackingTarget(target)
+
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaforall()
+	playsound(src,'sound/weapons/pulse.ogg', 200, 1)
+	say("NO ORGANIC CAN DEFEAT ME.")
+	sleep(10)
+	visible_message("<span class='boldwarning'>[src] releases an energy burst!</span>")
+	var/turf/T = get_turf(src)
+	for(var/angle = 0, angle < 390, angle += 30)
+		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
+		var/turf/startloc = get_turf(src)
+		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
+		P.starting = startloc
+		P.firer = src
+		P.fired_from = src
+		if(target)
+			P.original = target
+		P.preparePixelProjectile(target.loc, src)
+		P.fire()
+
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmacrazy(atom/target)
+	visible_message("<span class='boldwarning'>[src] shoots in all directions!</span>")
+	playsound(src,'sound/weapons/ParticleBlaster.ogg', 200, 1)
+	sleep(15)
+	say("WEAK!!! STUPID!!! ORGANIC!!!")
+	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+	var/ogangle = dir2angle(dir_to_target)
+	var/turf/T = get_turf(src)
+	for(var/angle = 0, angle < initial(angle) + 360, angle += 20)
+		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
+		var/turf/startloc = get_turf(src)
+		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
+		P.starting = startloc
+		P.firer = src
+		P.fired_from = src
+		if(target)
+			P.original = target
+		P.preparePixelProjectile(target.loc, src)
+		P.Angle = ogangle
+		P.Angle += angle
+		P.fire()
+		sleep(5)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/knockdown()
 	visible_message("<span class='boldwarning'>[src] smashes into the ground!</span>")
@@ -212,13 +258,12 @@
 				L.adjustBruteLoss(25)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/spawnminion()
+	playsound(src,'sound/items/deconstruct.ogg', 200, 1)
 	visible_message("<span class='boldwarning'>[src] opens his back and a swarmer comes out of it!</span>")
 	var/chosen = /mob/living/simple_animal/hostile/swarmer/ai/ranged_combat/rogue
-	var/mob/living/simple_animal/hostile/swarmer/ai/minion = new chosen(src.loc)
-	var/turf/T = get_step(src, -dir)
+	new chosen(src.loc)
 	sleep(5)
 	say("YOU'RE SO WEAK EVEN MY CHILDREN CAN KILL YOU.")
-	minion.forceMove(T)
 
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/shockwave(direction, range)
@@ -306,7 +351,7 @@
 	custom_materials = list(/datum/material/diamond=2000)
 	usesound = 'sound/weapons/drill.ogg'
 	hitsound = 'sound/weapons/drill.ogg'
-	attack_verb = list("drilled")
+	attack_verb = list("drilled", "pierced")
 	var/cooldowntime
 	var/range = 7
 	var/cooldown = 50
