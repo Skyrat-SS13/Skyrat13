@@ -118,7 +118,7 @@
 
 			//Adding airlock electronics for access. Step 6 complete.
 			else if(istype(W, /obj/item/electronics/airlock))
-				if(iscarbon(user))
+				if(!issilicon(user))
 					if(!user.transferItemToLoc(W, src))
 						return
 				W.play_tool_sound(src, 100)
@@ -126,14 +126,14 @@
 					"<span class='notice'>You start to install electronics into the airlock assembly...</span>")
 
 				if(do_after(user, 40, target = src))
-					if(iscarbon(user))
+					if(!issilicon(user))
 						if(!src || electronics)
 							W.forceMove(drop_location())
 					to_chat(user, "<span class='notice'>You install the airlock electronics.</span>")
 					name = "near finished windoor assembly"
 					electronics = W
 				else
-					if(iscarbon(user))
+					if(!issilicon(user))
 						W.forceMove(drop_location())
 
 			//Screwdriver to remove airlock electronics. Step 6 undone.
@@ -149,7 +149,7 @@
 					name = "wired windoor assembly"
 					var/obj/item/electronics/airlock/ae
 					ae = electronics
-					if(iscarbon(user))
+					if(!issilicon(user))
 						electronics = null
 						ae.forceMove(drop_location())
 
@@ -193,7 +193,7 @@
 							windoor.req_one_access = electronics.accesses
 						else
 							windoor.req_access = electronics.accesses
-						if(iscarbon(user))
+						if(!issilicon(user))
 							windoor.electronics = electronics
 							electronics.forceMove(windoor)
 						if(created_name)
@@ -214,7 +214,7 @@
 							windoor.req_one_access = electronics.accesses
 						else
 							windoor.req_access = electronics.accesses
-						if(iscarbon(user))
+						if(!issilicon(user))
 							windoor.electronics = electronics
 							electronics.loc = windoor
 						if(created_name)

@@ -2,4 +2,4 @@
 	. = ..()
 	if(href_list["ooc_notes"])
 		if(client)
-			to_chat(usr, "[src]'s OOC Notes : <br> <b>ERP :</b> [client.prefs.erppref] <b>| Non-Con :</b> [client.prefs.nonconpref] <b>| Vore :</b> [client.prefs.nonconpref]<br>[client.prefs.ooc_notes]")
+			to_chat(usr, "[src]'s OOC Notes : <br> <b>ERP :</b> [client.prefs.erppref] <b>| Non-Con :</b> [client.prefs.nonconpref] <b>| Vore :</b> [client.prefs.vorepref]<br>[client.prefs.ooc_notes]")
