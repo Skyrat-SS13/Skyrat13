@@ -12,7 +12,6 @@
 
 	move_resist = INFINITY
 	anchored = TRUE
-	resistance_flags = INDESTRUCTIBLE // no you can't destroy a hole unfortunately
 
 /obj/structure/spawner/ice_moon/Initialize()
 	. = ..()
