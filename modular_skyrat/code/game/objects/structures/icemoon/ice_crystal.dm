@@ -8,6 +8,7 @@
 	faction = list("mining")
 	max_mobs = 3
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/wolf)
+	max_integrity = 250
 
 	move_resist = INFINITY
 	anchored = TRUE
