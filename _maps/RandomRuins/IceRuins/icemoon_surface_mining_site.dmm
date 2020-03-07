@@ -4,7 +4,7 @@
 /area/icemoon/surface/outdoors)
 "b" = (
 /turf/closed/wall/mineral/wood/nonmetal,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "c" = (
 /obj/structure/closet/toolcloset,
 /obj/item/wrench,
@@ -14,7 +14,7 @@
 /obj/item/wirecutters,
 /obj/item/radio/off,
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "d" = (
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
@@ -28,14 +28,14 @@
 /obj/structure/closet,
 /obj/item/clothing/shoes/winterboots/ice_boots,
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "f" = (
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "g" = (
 /obj/structure/fireplace,
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "h" = (
 /obj/structure/flora/rock/icy,
 /turf/closed/mineral/random/snow/no_caves,
@@ -46,33 +46,33 @@
 "j" = (
 /obj/structure/sink/kitchen,
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "k" = (
 /obj/structure/closet/crate/freezer,
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "l" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "m" = (
 /obj/structure/barricade/wooden/crude/snow,
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "n" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "o" = (
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "p" = (
 /obj/machinery/light/broken{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "q" = (
 /obj/structure/table/wood,
 /obj/item/pen,
@@ -84,18 +84,18 @@
 	text = ""
 	},
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "r" = (
 /obj/item/chair/wood,
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/mob_spawn/human/miner/explorer,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 "s" = (
 /obj/effect/decal/cleanable/trail_holder,
 /turf/open/floor/wood,
-/area/ruin/unpowered)
+/area/ruin/powered/icemoon)
 
 (1,1,1) = {"
 i

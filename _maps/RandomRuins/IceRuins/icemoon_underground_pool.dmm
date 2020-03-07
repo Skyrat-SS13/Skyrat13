@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/closed/mineral/random/high_chance/snow,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "b" = (
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 8
@@ -14,14 +14,14 @@
 	dir = 1
 	},
 /turf/open/pool,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "c" = (
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 1
 	},
 /obj/machinery/pool/drain,
 /turf/open/pool,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "d" = (
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 4
@@ -34,22 +34,22 @@
 	dir = 1
 	},
 /turf/open/pool,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "e" = (
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 8
 	},
 /turf/open/pool,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "f" = (
 /turf/open/pool,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "g" = (
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 4
 	},
 /turf/open/pool,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "h" = (
 /obj/machinery/pool/filter,
 /obj/structure/window/reinforced/tinted/frosted,
@@ -57,7 +57,7 @@
 	dir = 8
 	},
 /turf/open/pool,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "i" = (
 /obj/machinery/pool/filter,
 /obj/structure/window/reinforced/tinted/frosted,
@@ -65,31 +65,31 @@
 	dir = 4
 	},
 /turf/open/pool,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "j" = (
 /obj/item/toy/poolnoodle,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "k" = (
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "l" = (
 /obj/machinery/pool/controller,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "m" = (
 /obj/item/reagent_containers/glass/bottle/cryoxadone,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "n" = (
 /obj/item/reagent_containers/glass/beaker/synthflesh,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "o" = (
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
 /obj/item/reagent_containers/pill/penis_enlargement,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 
 (1,1,1) = {"
 a

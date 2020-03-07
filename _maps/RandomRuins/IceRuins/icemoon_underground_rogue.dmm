@@ -1,24 +1,24 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/closed/indestructible/syndicate,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "b" = (
 /turf/open/floor/circuit/red/anim/rogue,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "c" = (
 /turf/open/floor/circuit/green/anim/rogue,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "d" = (
 /turf/open/floor/circuit/rogue,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "e" = (
 /mob/living/simple_animal/hostile/megafauna/rogueprocess,
 /turf/open/floor/circuit/rogue,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 "f" = (
 /obj/machinery/door/airlock/rogue,
 /turf/open/floor/circuit/red/anim,
-/area/ruin/powered)
+/area/ruin/powered/icemoon/underground)
 
 (1,1,1) = {"
 a

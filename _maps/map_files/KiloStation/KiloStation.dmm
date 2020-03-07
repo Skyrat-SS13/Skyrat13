@@ -87384,10 +87384,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
-"dQe" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/asteroid/airless,
-/area/space/nearstation)
 "dYu" = (
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /obj/effect/decal/cleanable/dirt,
@@ -122856,7 +122852,7 @@ axa
 jPE
 aeu
 aeU
-dQe
+dww
 aeU
 aeU
 aeU
@@ -123110,7 +123106,7 @@ ckH
 cmA
 czf
 axW
-dQe
+dww
 aeU
 aeU
 aeU
@@ -123626,7 +123622,7 @@ iBL
 axa
 aeu
 aeU
-dQe
+dww
 aeU
 aeU
 aeu

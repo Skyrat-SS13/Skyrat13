@@ -7,18 +7,15 @@
 	icon = 'icons/turf/shuttleold.dmi';
 	icon_state = "block"
 	},
-/area/ruin/powered)
+/area/ruin/powered/icemoon)
 "c" = (
 /obj/machinery/shower{
 	pixel_y = 16
 	},
 /obj/structure/curtain,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered)
+/area/ruin/powered/icemoon)
 "d" = (
-/turf/closed/mineral/random/snow/no_caves,
-/area/icemoon/underground/explored)
-"e" = (
 /obj/structure/mirror{
 	pixel_y = 28
 	},
@@ -26,31 +23,34 @@
 	pixel_y = 20
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered)
-"f" = (
+/area/ruin/powered/icemoon)
+"e" = (
 /obj/structure/table/greyscale,
 /obj/item/bikehorn/rubberducky,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered)
-"g" = (
+/area/ruin/powered/icemoon)
+"f" = (
 /turf/open/floor/plasteel/white,
-/area/ruin/powered)
-"h" = (
+/area/ruin/powered/icemoon)
+"g" = (
 /obj/item/soap,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered)
-"i" = (
+/area/ruin/powered/icemoon)
+"h" = (
 /obj/machinery/door/airlock/freezer{
 	name = "bath house airlock"
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered)
+/area/ruin/powered/icemoon)
+"i" = (
+/turf/closed/mineral/random/snow/no_caves,
+/area/ruin/powered/icemoon)
 "j" = (
 /turf/closed/wall/mineral/wood,
-/area/ruin/powered)
+/area/ruin/powered/icemoon)
 "k" = (
 /turf/open/floor/wood,
-/area/ruin/powered)
+/area/ruin/powered/icemoon)
 "l" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/spaghetti{
@@ -59,19 +59,19 @@
 	tastes = list("nostalgia" = 1)
 	},
 /turf/open/floor/wood,
-/area/ruin/powered)
+/area/ruin/powered/icemoon)
 "m" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/wood,
-/area/ruin/powered)
+/area/ruin/powered/icemoon)
 "n" = (
 /turf/open/floor/plating/asteroid/snow/ice/icemoon,
-/area/icemoon/underground/explored)
+/area/ruin/powered/icemoon)
 "o" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
 /turf/open/floor/wood,
-/area/ruin/powered)
+/area/ruin/powered/icemoon)
 
 (1,1,1) = {"
 b
@@ -79,15 +79,15 @@ b
 b
 b
 b
-d
+i
 a
 a
 "}
 (2,1,1) = {"
 b
 c
-g
-g
+f
+f
 b
 j
 j
@@ -96,9 +96,9 @@ j
 (3,1,1) = {"
 b
 b
-g
-g
-i
+f
+f
+h
 k
 k
 j
@@ -106,8 +106,8 @@ j
 (4,1,1) = {"
 b
 c
-g
-g
+f
+f
 b
 l
 k
@@ -116,8 +116,8 @@ j
 (5,1,1) = {"
 b
 b
-g
-g
+f
+f
 b
 m
 o
@@ -126,8 +126,8 @@ j
 (6,1,1) = {"
 b
 c
-g
-g
+f
+f
 b
 j
 j
@@ -136,41 +136,41 @@ j
 (7,1,1) = {"
 b
 b
+f
 g
-h
 b
 n
 n
-d
+i
 "}
 (8,1,1) = {"
 b
-e
-g
-g
+d
+f
+f
 b
 n
 n
-d
+i
 "}
 (9,1,1) = {"
 b
-e
-g
-g
-i
-n
-n
 d
+f
+f
+h
+n
+n
+i
 "}
 (10,1,1) = {"
 b
+e
 f
-g
-g
+f
 b
 n
-d
+i
 a
 "}
 (11,1,1) = {"
@@ -179,7 +179,7 @@ b
 b
 b
 b
-d
+i
 a
 a
 "}
