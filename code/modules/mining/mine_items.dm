@@ -40,6 +40,9 @@
 	new /obj/item/clothing/suit/hooded/wintercoat/miner(src) //yes, even both mining locker types
 	new /obj/item/clothing/suit/hooded/wintercoat/miner(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/miner(src)
+	new /obj/item/clothing/shoes/winterboots/ice_boots(src)
+	new /obj/item/clothing/shoes/winterboots/ice_boots(src)
+	new /obj/item/clothing/shoes/winterboots/ice_boots(src)
 
 /obj/structure/closet/secure_closet/miner
 	name = "miner's equipment"
@@ -65,9 +68,9 @@
 	new /obj/item/survivalcapsule(src)
 	new /obj/item/assault_pod/mining(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/miner(src) //because you know you want it
-	new /obj/item/clothing/shoes/winterboots/ice_boots
-	new /obj/item/clothing/shoes/winterboots/ice_boots
-	new /obj/item/clothing/shoes/winterboots/ice_boots
+	new /obj/item/clothing/shoes/winterboots/ice_boots(src)
+	new /obj/item/clothing/shoes/winterboots/ice_boots(src)
+	new /obj/item/clothing/shoes/winterboots/ice_boots(src)
 
 
 /**********************Shuttle Computer**************************/
