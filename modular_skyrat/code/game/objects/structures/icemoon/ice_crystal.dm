@@ -1,9 +1,9 @@
 /obj/structure/spawner/ice_moon
-	name = "cave entrance"
-	desc = "A hole in the ground, filled with monsters ready to defend it."
+	name = "ice crystal"
+	desc = "A magic crystal that somehow spawns various creatures from it."
 
-	icon = 'icons/mob/nest.dmi'
-	icon_state = "hole"
+	icon = 'modular_skyrat/icons/mob/icecrystal.dmi'
+	icon_state = "ice_crystal"
 
 	faction = list("mining")
 	max_mobs = 3
