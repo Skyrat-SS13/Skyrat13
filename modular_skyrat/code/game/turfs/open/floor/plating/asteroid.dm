@@ -38,6 +38,7 @@
 	digResult = /obj/item/stack/sheet/mineral/snow
 	mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/wolf = 50, /obj/structure/spawner/ice_moon = 3, \
 						  /mob/living/simple_animal/hostile/asteroid/polarbear = 30, /obj/structure/spawner/ice_moon/polarbear = 3, \
+						  /mob/living/simple_animal/hostile/asteroid/basilisk/wisp = 10, /obj/structure/spawner/ice_moon/wisp = 3, \
 						  /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
 
 	megafauna_spawn_list = list()

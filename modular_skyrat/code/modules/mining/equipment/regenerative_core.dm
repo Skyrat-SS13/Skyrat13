@@ -83,3 +83,41 @@
 				qdel(src)
 			else
 				to_chat(user, "<span class='notice'>[src] has decayed and can no longer be used to heal.</span>")
+
+//wisp core
+/obj/item/organ/regenerative_core/wisp
+	name = "frozen jelly"
+	desc = "The remains of a wisp. Will rapidly decay."
+	icon = 'modular_skyrat/icons/obj/ice_moon/wispcore.dmi'
+	icon_state = "wisp_core"
+	item_flags = NOBLUDGEON
+	slot = "hivecore"
+
+/obj/item/organ/regenerative_core/inert_check()
+	if(!preserved)
+		go_inert()
+
+/obj/item/organ/regenerative_core/preserved(implanted = 0)
+	inert = FALSE
+	preserved = TRUE
+	update_icon()
+	desc = "The remains of a wisp. It is preserved, allowing you to use it to heal completely without danger of decay."
+	if(implanted)
+		SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "implanted"))
+	else
+		SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "stabilizer"))
+
+/obj/item/organ/regenerative_core/go_inert()
+	inert = TRUE
+	name = "decayed frozen jelly"
+	desc = "The remains of a wisp. It's useless now."
+	SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "inert"))
+	update_icon()
+
+
+/obj/item/organ/regenerative_core/wisp/update_icon()
+	icon_state = inert ? "wisp_core_inert" : "wisp_core"
+	cut_overlays()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.UpdateButtonIcon()
