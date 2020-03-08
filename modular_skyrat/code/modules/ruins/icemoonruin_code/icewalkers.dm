@@ -193,8 +193,8 @@
 	H.grant_language(/datum/language/fish)
 
 /obj/item/organ/lungs/icewalker
-	name = "ash lungs"
-	desc = "almost frozen, these lungs are capable of resisting low pressures and temperatures."
+	name = "icey lungs"
+	desc = "Almost frozen, these lungs are capable of resisting low pressures and temperatures."
 	safe_oxygen_min = 3
 	safe_oxygen_max = 18
 	safe_nitro_max = 15
