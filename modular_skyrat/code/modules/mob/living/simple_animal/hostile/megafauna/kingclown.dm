@@ -97,7 +97,7 @@
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/bluespaceteleport)
 		var/list/clownview = list()
-		for(var/mob/living/simple_animal/hostile/retaliate/clown/C in view(21, src)
+		for(var/mob/living/simple_animal/hostile/retaliate/clown/C in view(21, src))
 			clownview += C
 		if(clownview.len <= 2)
 			INVOKE_ASYNC(src, .proc/summonclownguard, target)
