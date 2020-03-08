@@ -147,7 +147,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/kingclown/proc/bananapeels()
 	playsound(src, 'sound/magic/blind.ogg', 100, TRUE, 2, TRUE)
-	for(var/turf/T in view(5, T))
+	for(var/turf/T in view(5, target))
 		if(prob(20))
 			var/obj/item/grown/bananapeel/king/thepeel = new /obj/item/grown/bananapeel/king(T.loc)
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, thepeel), 150)
