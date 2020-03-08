@@ -105,7 +105,7 @@
 	uniform = /obj/item/clothing/under/color/random
 	r_pocket = /obj/item/storage/bag/ore
 	suit = /obj/item/clothing/suit/hooded/wintercoat/narsie/icewalker
-	backpack = /obj/item/storage/backpack/cultpack
+	back = /obj/item/storage/backpack/cultpack
 	backpack_contents = list(
 		/obj/item/flashlight/seclite=1,\
 		/obj/item/kitchen/knife/combat/bone=1, \
