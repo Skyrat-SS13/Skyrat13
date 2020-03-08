@@ -72,12 +72,6 @@
 	assignedrole = "Ice Walker"
 
 /obj/effect/mob_spawn/human/ice_walker/special(mob/living/new_spawn)
-	new_spawn.real_name = random_unique_lizard_name(gender)
-	if(is_mining_level(z))
-		to_chat(new_spawn, "<b>Drag ore to your crystal to create more of your people. Thank the deep ones!</b>")
-	else
-		to_chat(new_spawn, "<span class='userdanger'>You have been born outside of your natural home! Whether you decide to return home, or make due with your new home is your own decision.</span>")
-
 	new_spawn.grant_language(/datum/language/fish)
 	var/datum/language_holder/holder = new_spawn.get_language_holder()
 	holder.selected_default_language = /datum/language/fish
