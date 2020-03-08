@@ -90,3 +90,21 @@
 
 /area/ruin/powered/icemoon/underground
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+
+/turf/open/floor/mineral/bananium/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/floor/mineral/diamond/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/floor/noslip/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/floor/mineral/silver/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/floor/mineral/gold/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/floor/mineral/titanium/yellow/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS

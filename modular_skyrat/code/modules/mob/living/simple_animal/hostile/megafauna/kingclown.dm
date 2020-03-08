@@ -19,7 +19,7 @@
 	melee_damage_upper = 20
 	rapid_melee = 1
 	speed = 1
-	move_to_delay = 8
+	move_to_delay = 3
 	ranged = TRUE
 	crusher_loot = list(/obj/item/borg/upgrade/modkit/trombone, /obj/item/crusher_trophy/bikehorn, /obj/item/laughterbottle)
 	loot = list(/obj/item/borg/upgrade/modkit/trombone, /obj/item/laughterbottle)
@@ -33,6 +33,8 @@
 	medal_type = BOSS_MEDAL_CLOWN
 	score_type = CLOWN_SCORE
 	pass_flags = PASSTABLE
+	faction = list("clown")
+	mob_size = MOB_SIZE_LARGE
 
 /obj/item/gps/internal/clown
 	icon_state = null
@@ -64,37 +66,31 @@
 	if(anger_modifier >= 20 && anger_modifier < 30)
 		INVOKE_ASYNC(src, .proc/shootbanana, target)
 		ranged_cooldown = world.time + 50
-		if(prob(50))
+		if(prob(75))
 			INVOKE_ASYNC(src, .proc/bananapeels)
 	if(anger_modifier >= 30 && anger_modifier < 40)
-		if(prob(25))
-			INVOKE_ASYNC(src, .proc/summonclownhallucination, target)
-		if(prob(50))
-			INVOKE_ASYNC(src, .proc/bananapeels)
+		ranged_cooldown = world.time + 150
+		INVOKE_ASYNC(src, .proc/summonclownhallucination, target)
+		INVOKE_ASYNC(src, .proc/bananapeels)
 		INVOKE_ASYNC(src, .proc/shootbanana, target)
 	if(anger_modifier >= 40 && anger_modifier < 50)
+		ranged_cooldown = world.time + 150
 		retreat_distance = 0
-		if(prob(20))
-			INVOKE_ASYNC(src, .proc/honkdown)
-		if(prob(25))
-			INVOKE_ASYNC(src, .proc/summonclownguard, target)
-			retreat_distance = 30
-			if(prob(25))
-				INVOKE_ASYNC(src, .proc/bluespaceteleport)
-		if(prob(50))
-			INVOKE_ASYNC(src, .proc/bananapeels)
+		INVOKE_ASYNC(src, .proc/honkdown)
+		INVOKE_ASYNC(src, .proc/summonclownguard, target)
+		retreat_distance = 30
+		INVOKE_ASYNC(src, .proc/bluespaceteleport)
+		INVOKE_ASYNC(src, .proc/surroundpeels, target)
 		INVOKE_ASYNC(src, .proc/bluespaceteleporter)
 	if(anger_modifier >= 50)
+		ranged_cooldown = world.time + 100
 		retreat_distance = 30
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/bluespaceteleport)
-		if(prob(25))
-			INVOKE_ASYNC(src, .proc/summonclownguard, target)
-			INVOKE_ASYNC(src, .proc/bluespaceteleport)
+		INVOKE_ASYNC(src, .proc/summonclownguard, target)
+		INVOKE_ASYNC(src, .proc/bananapeels)
 		if(prob(50))
-			INVOKE_ASYNC(src, .proc/bananapeels)
-		if(prob(50))
-			INVOKE_ASYNC(src, .proc/surroundpeels)
+			INVOKE_ASYNC(src, .proc/surroundpeels, target)
 		INVOKE_ASYNC(src, .proc/bluespaceteleporter)
 
 
@@ -118,7 +114,7 @@
 	var/list/probableturfs = view(target, 5)
 	for(var/turf/T in probableturfs)
 		var/chosen = pick(subtypesof(/mob/living/simple_animal/hostile/retaliate/clown))
-		if(prob(10))
+		if(prob(30))
 			var/mob/living/simple_animal/hostile/retaliate/clown/clownguard = new chosen(T)
 			clownguard.name = "Clownllucination"
 			clownguard.desc = "For honkmother!"
@@ -132,16 +128,16 @@
 	var/list/probableturfs = view(target, 5)
 	for(var/turf/T in probableturfs)
 		var/chosen = pick(subtypesof(/mob/living/simple_animal/hostile/retaliate/clown))
-		if(prob(10))
+		if(prob(20))
 			var/mob/living/simple_animal/hostile/retaliate/clown/clownguard = new chosen(T)
-			clownguard.name = "Clownllucination"
+			clownguard.name = "Clown Guard"
 			clownguard.desc = "For honkmother!"
 			clownguard.Retaliate()
 
 /mob/living/simple_animal/hostile/megafauna/kingclown/proc/bananapeels()
 	playsound(src, 'sound/magic/blind.ogg', 100, TRUE, 2, TRUE)
 	for(var/turf/T in view(5, T))
-		if(prob(20))
+		if(prob(35))
 			var/obj/item/grown/bananapeel/king/thepeel = new /obj/item/grown/bananapeel/king(T.loc)
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, thepeel), 150)
 
@@ -151,7 +147,7 @@
 		var/mob/living/L = target
 		L.Stun(10)
 	for(var/turf/J in view(2, target) - view(1, target))
-		new /obj/item/grown/bananapeel/king(J, src)
+		new /obj/item/grown/bananapeel/king(J)
 	sleep(5)
 	var/list/bananawalls = list()
 	for(var/obj/item/grown/bananapeel/king/B in view(2, target) - view(1, target))
@@ -179,7 +175,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/kingclown/proc/bluespaceteleport()
 	var/list/clownfires = list()
-	for(var/obj/structure/bonfire/clownfire/C in view(10, src))
+	for(var/obj/structure/bonfire/clownfire/C in view(21, src))
 		clownfires += C
 	if(clownfires.len)
 		new /obj/effect/temp_visual/small_smoke/halfsecond/clown(src.loc)

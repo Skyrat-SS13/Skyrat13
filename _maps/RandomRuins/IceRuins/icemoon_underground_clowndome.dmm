@@ -2,7 +2,7 @@
 "a" = (
 /obj/structure/chair/brass,
 /mob/living/simple_animal/hostile/megafauna/kingclown,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/mineral/bananium/icemoon,
 /area/ruin/powered/icemoon/underground)
 "b" = (
 /obj/structure/chair/brass,
@@ -10,31 +10,31 @@
 	name = "Queen Clown";
 	wander = 0
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/mineral/bananium/icemoon,
 /area/ruin/powered/icemoon/underground)
 "c" = (
-/turf/open/floor/mineral/titanium/yellow,
+/turf/open/floor/mineral/titanium/yellow/icemoon,
 /area/ruin/powered/icemoon/underground)
 "d" = (
 /mob/living/simple_animal/hostile/retaliate/clown,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/mineral/bananium/icemoon,
 /area/ruin/powered/icemoon/underground)
 "e" = (
 /mob/living/simple_animal/hostile/retaliate/clown/longface,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/mineral/bananium/icemoon,
 /area/ruin/powered/icemoon/underground)
 "i" = (
-/turf/open/floor/noslip,
+/turf/open/floor/noslip/icemoon,
 /area/ruin/powered/icemoon/underground)
 "j" = (
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/mineral/bananium/icemoon,
 /area/ruin/powered/icemoon/underground)
 "k" = (
 /turf/template_noop,
 /area/template_noop)
 "l" = (
 /mob/living/simple_animal/hostile/retaliate/clown/honkling,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/mineral/bananium/icemoon,
 /area/ruin/powered/icemoon/underground)
 "n" = (
 /obj/structure/barricade/wooden/crude/snow,
@@ -45,83 +45,87 @@
 /turf/closed/indestructible/riveted/uranium,
 /area/ruin/powered/icemoon/underground)
 "t" = (
-/turf/open/floor/mineral/gold,
+/turf/open/floor/mineral/gold/icemoon,
 /area/ruin/powered/icemoon/underground)
 "w" = (
 /obj/structure/table/bronze,
-/turf/open/floor/grass/fairy/purple,
+/turf/open/floor/mineral/diamond/icemoon,
 /area/ruin/powered/icemoon/underground)
 "x" = (
 /obj/structure/chair,
-/turf/open/floor/grass/fairy/yellow,
+/turf/open/floor/mineral/silver/icemoon,
 /area/ruin/powered/icemoon/underground)
 "y" = (
 /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/mineral/bananium/icemoon,
 /area/ruin/powered/icemoon/underground)
 "z" = (
 /obj/structure/statue/bananium/clown,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/mineral/bananium/icemoon,
 /area/ruin/powered/icemoon/underground)
 "A" = (
 /mob/living/simple_animal/hostile/retaliate/clown,
-/turf/open/floor/mineral/titanium/yellow,
+/turf/open/floor/mineral/titanium/yellow/icemoon,
 /area/ruin/powered/icemoon/underground)
 "C" = (
 /obj/structure/chair,
 /mob/living/simple_animal/hostile/retaliate/clown,
-/turf/open/floor/grass/fairy/yellow,
+/turf/open/floor/mineral/silver/icemoon,
 /area/ruin/powered/icemoon/underground)
 "D" = (
 /mob/living/simple_animal/hostile/retaliate/clown/fleshclown,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/mineral/bananium/icemoon,
 /area/ruin/powered/icemoon/underground)
 "F" = (
-/turf/open/floor/grass/fairy/purple,
+/turf/open/floor/mineral/diamond/icemoon,
 /area/ruin/powered/icemoon/underground)
 "G" = (
 /obj/structure/statue/bananium/clown,
-/turf/open/floor/mineral/diamond,
+/turf/open/floor/mineral/diamond/icemoon,
 /area/ruin/powered/icemoon/underground)
 "I" = (
 /mob/living/simple_animal/hostile/retaliate/clown/mutant,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/mineral/bananium/icemoon,
+/area/ruin/powered/icemoon/underground)
+"L" = (
+/obj/structure/statue/bananium/clown,
+/turf/open/floor/mineral/titanium/yellow/icemoon,
 /area/ruin/powered/icemoon/underground)
 "M" = (
 /obj/structure/chair,
 /mob/living/simple_animal/hostile/retaliate/clown/mutant/blob,
-/turf/open/floor/grass/fairy/yellow,
+/turf/open/floor/mineral/silver/icemoon,
 /area/ruin/powered/icemoon/underground)
 "N" = (
 /mob/living/simple_animal/hostile/retaliate/clown/mutant/blob,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/mineral/bananium/icemoon,
 /area/ruin/powered/icemoon/underground)
 "O" = (
-/turf/open/floor/mineral/silver,
+/turf/open/floor/mineral/silver/icemoon,
 /area/ruin/powered/icemoon/underground)
 "P" = (
 /mob/living/simple_animal/hostile/retaliate/clown,
-/turf/open/floor/mineral/silver,
+/turf/open/floor/mineral/silver/icemoon,
 /area/ruin/powered/icemoon/underground)
 "Q" = (
 /obj/machinery/door/airlock/glass_large,
-/turf/open/floor/mineral/titanium/yellow,
+/turf/open/floor/noslip/icemoon,
 /area/ruin/powered/icemoon/underground)
 "R" = (
 /mob/living/simple_animal/hostile/retaliate/clown/fleshclown,
-/turf/open/floor/mineral/silver,
+/turf/open/floor/mineral/silver/icemoon,
 /area/ruin/powered/icemoon/underground)
 "S" = (
 /mob/living/simple_animal/hostile/retaliate/clown,
-/turf/open/floor/noslip,
+/turf/open/floor/noslip/icemoon,
 /area/ruin/powered/icemoon/underground)
 "U" = (
 /mob/living/simple_animal/banana_spider,
-/turf/open/floor/noslip,
+/turf/open/floor/noslip/icemoon,
 /area/ruin/powered/icemoon/underground)
 "V" = (
 /obj/structure/table/bronze,
-/turf/open/floor/noslip,
+/turf/open/floor/noslip/icemoon,
 /area/ruin/powered/icemoon/underground)
 
 (1,1,1) = {"
@@ -497,7 +501,7 @@ c
 c
 c
 c
-G
+L
 c
 c
 c
@@ -630,7 +634,7 @@ i
 i
 i
 i
-c
+i
 i
 i
 q
@@ -928,7 +932,7 @@ k
 k
 k
 q
-q
+j
 j
 j
 j
