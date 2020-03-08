@@ -51,7 +51,7 @@
 	new /obj/effect/landmark/ruin(center, src)
 	return center
 
-/proc/seedRuins(list/z_levels = null, budget = 0, whitelist = /area/space, list/potentialRuins)
+/proc/seedRuins(list/z_levels = null, budget = 0, whitelist = /area/space, list/potentialRuins, type = "Ruin Type")
 	if(!z_levels || !z_levels.len)
 		WARNING("No Z levels provided - Not generating ruins")
 		return
@@ -169,5 +169,6 @@
 		for(var/datum/map_template/ruin/R in ruins_availible)
 			if(R.cost > budget)
 				ruins_availible -= R
-
-	log_world("Ruin loader finished with [budget] left to spend.")
+	//SKYRAT CHANGE - now ruin loader specify their type once done
+	log_world("Ruin loader ([type]) finished with [budget] left to spend.")
+	//

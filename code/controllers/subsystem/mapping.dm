@@ -90,32 +90,32 @@ SUBSYSTEM_DEF(mapping)
 	loading_ruins = TRUE
 	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
 	if (lava_ruins.len)
-		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), /area/lavaland/surface/outdoors/unexplored, lava_ruins_templates)
+		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), /area/lavaland/surface/outdoors/unexplored, lava_ruins_templates, "Lavaland Ruins")
 		for (var/lava_z in lava_ruins)
 			spawn_rivers(lava_z)
 	//SKYRAT CHANGES
 	//Generate snowy ruins
 	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 	if (ice_ruins.len) // needs to be whitelisted for underground too so place_below ruins work
-		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/surface/outdoors/unexplored, ice_ruins_templates)
+		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/surface/outdoors/unexplored, ice_ruins_templates, "Snow Ruins")
 		for (var/ice_z in ice_ruins)
 			spawn_rivers(ice_z, 4, /turf/open/lava/plasma/ice_moon, /area/icemoon/surface/outdoors/unexplored) //no more buggy open spaces jesus
 	var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
 	if (ice_ruins_underground.len)
-		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), /area/icemoon/underground/unexplored, ice_ruins_underground_templates)
+		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), /area/icemoon/underground/unexplored, ice_ruins_underground_templates, "Snow Underground Ruins")
 	//
 
 	// Generate deep space ruins
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
 	if (space_ruins.len)
-		seedRuins(space_ruins, CONFIG_GET(number/space_budget), /area/space, space_ruins_templates)
+		seedRuins(space_ruins, CONFIG_GET(number/space_budget), /area/space, space_ruins_templates, "Space Ruins")
 
 	// Generate station space ruins
 	var/list/station_ruins = levels_by_trait(ZTRAIT_STATION)
 	//SKYRAT CHANGES - station ruins would bork with snowbox
 	if(config.map_name != "Snow Box Station")
 		if(station_ruins.len)
-			seedRuins(station_ruins, CONFIG_GET(number/station_space_budget), /area/space/station_ruins, station_ruins_templates)
+			seedRuins(station_ruins, CONFIG_GET(number/station_space_budget), /area/space/station_ruins, station_ruins_templates, "Near-station Ruins")
 	//
 	SSmapping.seedStation()
 	loading_ruins = FALSE
