@@ -43,9 +43,15 @@
 	invisibility = 100
 
 /obj/item/projectile/bullet/honker/king
+	name = "king's nannering"
 	damage = 25
 	knockdown = 10
 	speed = 4
+	movement_type = FLYING
+
+/obj/item/projectile/bullet/honker/king
+	. = ..()
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 80)
 
 /mob/living/simple_animal/hostile/megafauna/kingclown/Initialize()
 	. = ..()
