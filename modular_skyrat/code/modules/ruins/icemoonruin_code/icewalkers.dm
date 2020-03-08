@@ -75,6 +75,7 @@
 	assignedrole = "Ice Walker"
 
 /obj/effect/mob_spawn/human/ice_walker/special(mob/living/new_spawn)
+	new_spawn.real_name = random_unique_name(new_spawn.gender)
 	new_spawn.grant_language(/datum/language/fish)
 	var/datum/language_holder/holder = new_spawn.get_language_holder()
 	holder.selected_default_language = /datum/language/fish
@@ -101,10 +102,30 @@
 /datum/outfit/icewalker
 	name ="Icewalker"
 	shoes = /obj/item/clothing/shoes/winterboots/ice_boots
-	gloves = /obj/item/clothing/gloves/color/black
+	gloves = obj/item/clothing/gloves/botanic_leather/icewalker
 	uniform = /obj/item/clothing/under/color/random
 	r_pocket = /obj/item/storage/bag/ore
-	suit = /obj/item/clothing/suit/hooded/wintercoat/miner
+	suit = /obj/item/clothing/suit/hooded/wintercoat/narsie/icewalker
+	backpack = /obj/item/storage/backpack/cultpack
+	backpack_contents = list(
+		/obj/item/flashlight/seclite=1,\
+		/obj/item/kitchen/knife/combat/bone=1)
+
+/obj/item/clothing/suit/hooded/wintercoat/narsie/icewalker
+	name = "coat of the deep ones"
+	desc = "A somber button-up in tones of grey entropy and a wicked crimson zipper. Granted to icewalkers by the deep ones."
+	hoodtype = /obj/item/clothing/head/hooded/winterhood/narsie/icewalker
+	real = FALSE
+	armor = list("melee" = 60, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 50, "rad" = 50, "fire" = 25, "acid" = 100)
+
+/obj/item/clothing/head/hooded/winterhood/narsie/icewalker
+	name = "hood of the deep ones"
+	desc = "A black winter hood full of whispering secrets that only the deep ones know."
+	armor = list("melee" = 60, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 50, "rad" = 50, "fire" = 25, "acid" = 100)
+
+obj/item/clothing/gloves/botanic_leather/icewalker
+	name = "leather gloves"
+	desc = "Warm, leathery gloves to protect from the freezing temperatures of the snowy underground."
 
 /datum/language/fish
 	name = "Neo-fishen"
@@ -176,11 +197,12 @@
 	say_mod = "gorgles"
 	default_color = "#00BFFF"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,LIPS,HORNCOLOR,WINGCOLOR)
-	mutant_bodyparts = list("mam_tail", "mam_ears", "mam_body_markings", "mam_snouts", "deco_wings", "taur", "horns", "legs")
+	mutant_bodyparts = list("mam_tail", "mam_ears", "mam_body_markings", "mam_snouts", "horns", "legs")
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
+	inherent_traits = list(TRAIT_RESISTCOLD)
 	coldmod = 0.4
 	heatmod = 1.5
-	burnmod = 0.9
+	burnmod = 1.1
 	brutemod = 0.9
 	default_features = list("mcolor" = "#00BFFF", "mcolor2" = "#00BFFF", "mcolor3" = "#00BFFF", "mam_tail" = "Shark", "snout" = "Shark",
 							 "horns" = "None", "frills" = "Aquatic", "spines" = "None", "body_markings" = "None",
@@ -190,14 +212,14 @@
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/carpmeat
 	exotic_bloodtype = "L"
-	liked_food = GROSS | MEAT
+	liked_food = GROSS | MEAT | DAIRY
 	mutantlungs = /obj/item/organ/lungs/icewalker
 
 /datum/species/aquatic/icewalker/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/fish)
 
 /obj/item/organ/lungs/icewalker
-	name = "icey lungs"
+	name = "icy lungs"
 	desc = "Almost frozen, these lungs are capable of resisting low pressures and temperatures."
 	safe_oxygen_min = 3
 	safe_oxygen_max = 18
@@ -207,6 +229,6 @@
 	cold_level_2_threshold = 150
 	cold_level_3_threshold = 100 //COLD ASS BOYS
 
-	heat_level_1_threshold = 240
-	heat_level_2_threshold = 340
+	heat_level_1_threshold = 300
+	heat_level_2_threshold = 400
 	heat_level_3_threshold = 500
