@@ -49,13 +49,13 @@
 	speed = 4
 	movement_type = FLYING
 
-/obj/item/projectile/bullet/honker/king
+/obj/item/projectile/bullet/honker/king/Initialize()
 	. = ..()
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 80)
 
 /mob/living/simple_animal/hostile/megafauna/kingclown/Initialize()
 	. = ..()
-	internal = new /obj/item/gps/internal/clown(src)
+	internal = new/obj/item/gps/internal/clown(src)
 
 /mob/living/simple_animal/hostile/megafauna/kingclown/Life()
 	. = ..()
