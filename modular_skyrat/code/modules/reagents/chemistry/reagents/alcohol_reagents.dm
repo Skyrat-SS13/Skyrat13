@@ -11,6 +11,7 @@
 	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 	boozepwr = 50
 	quality = DRINK_NICE
+	glass_icon = 'modular_skyrat/icons/obj/drinks.dmi'
 	glass_icon_state = "synthanolglass"
 	glass_name = "Glass of Synthanol"
 	glass_desc = "The equivalent of alcohol for synthetic crewmembers. They'd find it awful if they had tastebuds too."

@@ -5,8 +5,8 @@
 		return ..()
 
 	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
-	if(affecting && affecting.status == BODYPART_ROBOTIC && user.a_intent != INTENT_HARM && affecting.synthetic && affecting.burn_dam > 20)
-		to_chat(user, "<span class='warning'>[H]'s [affecting.name] is too charred!</span>")
+	if(affecting && affecting.status == BODYPART_ROBOTIC && user.a_intent != INTENT_HARM && affecting.synthetic && affecting.burn_dam > 40)
+		to_chat(user, "<span class='warning'>[H]'s [affecting.name] is too charred, it requires surgical precision to be fixed!</span>")
 		return
 	else
 		return ..()

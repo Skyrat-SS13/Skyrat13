@@ -15,3 +15,35 @@
 
 /datum/reagent/medicine/leporazine
 	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
+
+//REAGENTS FOR SYNTHS
+/datum/reagent/medicine/system_cleaner
+	name = "System Cleaner"
+	description = "Neutralizes harmful chemical compounds inside synthetic systems."
+	reagent_state = LIQUID
+	color = "#F1C40F"
+	taste_description = "ethanol"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	process_flags = REAGENT_SYNTHETIC
+
+/datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(-2*REM, 0)
+	. = 1
+	for(var/A in M.reagents.reagent_list)
+		var/datum/reagent/R = A
+		if(R != src)
+			M.reagents.remove_reagent(R.type,1)
+	..()
+
+/datum/reagent/medicine/liquid_solder
+	name = "Liquid Solder"
+	description = "Repairs brain damage in synthetics."
+	color = "#727272"
+	taste_description = "metal"
+	process_flags = REAGENT_SYNTHETIC
+
+/datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/carbon/C)
+	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3*REM)
+	if(prob(10))
+		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
+	..()

@@ -14,6 +14,8 @@
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 	mutant_brain = /obj/item/organ/brain/ipc_positron
 	mutantstomach = /obj/item/organ/stomach/cell
+	exotic_blood = /datum/reagent/oil
+	exotic_bloodtype = ""
 	var/saved_screen
 
 /datum/species/ipc/spec_death(gibbed, mob/living/carbon/C)
