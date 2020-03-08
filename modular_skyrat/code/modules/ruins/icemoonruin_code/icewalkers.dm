@@ -30,10 +30,13 @@
 /obj/structure/ice_walkers/Initialize()
 	.=..()
 	START_PROCESSING(SSprocessing, src)
+	new /obj/effect/mob_spawn/human/ice_walker(get_step(loc, pick(GLOB.alldirs)))
+	new /obj/effect/mob_spawn/human/ice_walker(get_step(loc, pick(GLOB.alldirs)))
+	new /obj/effect/mob_spawn/human/ice_walker(get_step(loc, pick(GLOB.alldirs)))
 
 /obj/structure/ice_walkers/deconstruct(disassembled)
 	. = ..()
-	new /obj/item/assembly/signaler/anomaly (get_step(loc, pick(GLOB.alldirs)))
+	new /obj/item/assembly/signaler/anomaly(get_step(loc, pick(GLOB.alldirs)))
 
 /obj/structure/ice_walkers/process()
 	consume()
@@ -43,7 +46,8 @@
 	for(var/obj/item/stack/ore/O in view(src, 1))
 		if(O in subtypesof(/obj/item/stack/ore))
 			consumedore += orevalue[O]
-	playsound(get_turf(src),'sound/effects/curse1.ogg', 100, 1)
+			qdel(O)
+			playsound(get_turf(src),'sound/effects/curse1.ogg', 100, 1)
 
 
 /obj/structure/ice_walkers/proc/spawn_mob()
@@ -198,9 +202,11 @@
 	safe_oxygen_min = 3
 	safe_oxygen_max = 18
 	safe_nitro_max = 15
-	cold_level_1_threshold = 600
-	cold_level_2_threshold = 500
-	cold_level_3_threshold = 400
-	heat_level_1_threshold = 280
-	heat_level_2_threshold = 240
-	heat_level_3_threshold = 200
+	safe_co2_max = 30 // they can take a lot of it
+	cold_level_1_threshold = 200
+	cold_level_2_threshold = 150
+	cold_level_3_threshold = 100 //COLD ASS BOYS
+
+	heat_level_1_threshold = 240
+	heat_level_2_threshold = 340
+	heat_level_3_threshold = 500
