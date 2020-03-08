@@ -86,7 +86,7 @@
 		ranged_cooldown = world.time + 150
 		retreat_distance = 0
 		INVOKE_ASYNC(src, .proc/honkdown)
-		INVOKE_ASYNC(src, .proc/summonclownguard, target)
+		INVOKE_ASYNC(src, .proc/summonclownhallucination, target)
 		retreat_distance = 30
 		INVOKE_ASYNC(src, .proc/bluespaceteleport)
 		INVOKE_ASYNC(src, .proc/surroundpeels, target)
@@ -96,7 +96,11 @@
 		retreat_distance = 30
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/bluespaceteleport)
-		INVOKE_ASYNC(src, .proc/summonclownguard, target)
+		var/list/clownview = list()
+		for(var/mob/living/simple_animal/hostile/retaliate/clown/C in view(21, src)
+			clownview += C
+		if(clownview.len <= 2)
+			INVOKE_ASYNC(src, .proc/summonclownguard, target)
 		INVOKE_ASYNC(src, .proc/bananapeels)
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/surroundpeels, target)
@@ -135,18 +139,20 @@
 	if(!target)
 		return
 	var/list/probableturfs = view(target, 5)
+	var/count
 	for(var/turf/T in probableturfs)
-		var/chosen = pick(subtypesof(/mob/living/simple_animal/hostile/retaliate/clown))
-		if(prob(10))
+		if(count < 5)
+			var/chosen = pick(subtypesof(/mob/living/simple_animal/hostile/retaliate/clown))
 			var/mob/living/simple_animal/hostile/retaliate/clown/clownguard = new chosen(T)
 			clownguard.name = "Clown Guard"
 			clownguard.desc = "For honkmother!"
 			clownguard.Retaliate()
+			count++
 
 /mob/living/simple_animal/hostile/megafauna/kingclown/proc/bananapeels()
 	playsound(src, 'sound/magic/blind.ogg', 100, TRUE, 2, TRUE)
 	for(var/turf/T in view(5, T))
-		if(prob(35))
+		if(prob(20))
 			var/obj/item/grown/bananapeel/king/thepeel = new /obj/item/grown/bananapeel/king(T.loc)
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, thepeel), 150)
 
