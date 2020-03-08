@@ -14,6 +14,7 @@
 #define BOSS_MEDAL_SWARMERS   "Swarmer Beacon"
 #define BOSS_MEDAL_ROGUE   "Rogue Process"
 #define BOSS_MEDAL_IRRADIATED   "Irradiated Miner"
+#define BOSS_MEDAL_CLOWN "King Clown"
 
 // Score names
 #define HIEROPHANT_SCORE 	 "Hierophants Killed"
@@ -26,6 +27,7 @@
 #define TENDRIL_CLEAR_SCORE	 "Tendrils Killed"
 #define ROGUE_SCORE   "Rogue Process Killed"
 #define IRRADIATED_SCORE   "Irradiated Miner Killed"
+#define CLOWN_SCORE "King Clowns Killed"
 
 //Misc medals
 #define MEDAL_METEOR 	"Your Life Before Your Eyes"

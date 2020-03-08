@@ -256,6 +256,28 @@
 	P.original = target
 	P.fire()
 
+//king clown
+/obj/item/borg/upgrade/modkit/trombone
+	name = "sad trombone modification kit"
+	desc = "Makes every kill create a sad trombone sound, and every shot a honk. Also makes your bolts look like bananas."
+	modifier = 100
+	cost = 0
+
+/obj/item/borg/upgrade/modkit/bolter/modify_projectile(obj/item/projectile/kinetic/K)
+	..()
+	K.name = "kinetic banana"
+	K.icon = 'icons/obj/hydroponics/harvest.dmi'
+	K.icon_state = "banana"
+	K.color = "#FFFF00"
+	K.SpinAnimation()
+
+/obj/item/borg/upgrade/modkit/trombone/projectile_strike(obj/item/projectile/kinetic/K, turf/target_turf, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
+	playsound(KA, 'sound/items/bikehorn.ogg', 50, TRUE, 2, TRUE)
+	if(isliving(target))
+		var/mob/living/M = target
+		if(M.health <= 0)
+			playsound(M, 'sound/misc/sadtrombone.ogg', 200, TRUE, 2, TRUE)
+
 //10mm modkit (currently broken, only the 10mm pka works)
 /obj/item/gun/energy/kinetic_accelerator/tenmm
 	desc = "A self recharging, ranged mining tool that does increased damage in low pressure. This one feels a bit heavier than usual."

@@ -134,3 +134,10 @@
 	description = "Praise the deep ones!"
 	suffix = "icemoon_underground_fishegloo.dmm"
 	always_place = TRUE
+
+/datum/map_template/ruin/icemoon/underground/clowndome
+	name = "Clowndome"
+	id = "clowndome"
+	description = "Honkmother be praised!"
+	suffix = "icemoon_underground_clowndome.dmm"
+	always_place = TRUE

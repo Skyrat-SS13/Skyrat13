@@ -214,3 +214,37 @@
 
 /obj/item/crusher_trophy/miner_eye/irradiated/on_mark_detonation(mob/living/target, mob/living/user)
 	user.apply_status_effect(STATUS_EFFECT_BLOODDRUNKRADIOACTIVE)
+
+//king clown
+
+/obj/item/crusher_trophy/bikehorn
+	name = "exclusive bike horn"
+	desc = "It honks loud and proud. Fit for a crusher trophy."
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "gold_horn"
+
+/obj/item/crusher_trophy/bikehorn/Initialize()
+	..()
+	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg' = 1), 50)
+
+/obj/item/crusher_trophy/bikehorn/effect_desc()
+	return "mark detonation to honk and shoot bananas. That is literally it."
+
+/obj/item/crusher_trophy/bikehorn/on_melee_hit(mob/living/target, mob/living/user)
+	..()
+	playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE, 2, TRUE)
+
+/obj/item/crusher_trophy/bikehorn/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+	..()
+	marker.color = "#FFFF00"
+	marker.icon = 'icons/obj/hydroponics/harvest.dmi'
+	marker.icon_state = "banana"
+	marker.SpinAnimation()
+
+/obj/item/crusher_trophy/bikehorn/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
+	mark.marked_underlay.color = "#FFFF00"
+
+/obj/item/crusher_trophy/bikehorn/on_mark_detonation(mob/living/target, mob/living/user)
+	..()
+	if(target.health <= 0)
+		playsound(target, 'sound/misc/sadtrombone.ogg', 200, TRUE, 2, TRUE)
