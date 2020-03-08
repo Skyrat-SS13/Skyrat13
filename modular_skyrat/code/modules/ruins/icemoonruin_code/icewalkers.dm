@@ -46,7 +46,7 @@
 	playsound(get_turf(src),'sound/effects/curse1.ogg', 100, 1)
 
 
-/obj/structure/ice_walker/proc/spawn_mob()
+/obj/structure/ice_walkers/proc/spawn_mob()
 	if(consumedore >= ICE_WALKER_SPAWN_THRESHOLD)
 		new /obj/effect/mob_spawn/human/ice_walker(get_step(loc, pick(GLOB.alldirs)))
 		visible_message("<span class='danger'>One of the eggs swells to an unnatural size and tumbles free. It's ready to hatch!</span>")
