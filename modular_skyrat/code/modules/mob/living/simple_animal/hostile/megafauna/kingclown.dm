@@ -21,14 +21,14 @@
 	speed = 1
 	move_to_delay = 3
 	ranged = TRUE
-	crusher_loot = list(/obj/item/borg/upgrade/modkit/trombone, /obj/item/crusher_trophy/bikehorn, /obj/item/laughterbottle)
-	loot = list(/obj/item/borg/upgrade/modkit/trombone, /obj/item/laughterbottle)
+	crusher_loot = list(/obj/item/borg/upgrade/modkit/trombone, /obj/item/crusher_trophy/bikehorn, /obj/item/laughterbottle, /obj/effect/mob_spawn/human/clown/corpse)
+	loot = list(/obj/item/borg/upgrade/modkit/trombone, /obj/item/laughterbottle, /obj/effect/mob_spawn/human/clown/corpse)
 	wander = FALSE
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_MAXIMUM
 	song = sound('modular_skyrat/sound/ambience/dandyboy.ogg', 100) // yes more lisa
 	songlength = 870
-	deathmessage = "falls to the ground, turning into... a banana."
+	deathmessage = "falls to the ground, defeated."
 	deathsound = 'sound/misc/sadtrombone.ogg'
 	medal_type = BOSS_MEDAL_CLOWN
 	score_type = CLOWN_SCORE
@@ -72,10 +72,8 @@
 	if(anger_modifier >= 20 && anger_modifier < 30)
 		INVOKE_ASYNC(src, .proc/shootbanana, target)
 		ranged_cooldown = world.time + 50
-		if(prob(75))
-			INVOKE_ASYNC(src, .proc/bananapeels)
-		if(prob(60))
-			INVOKE_ASYNC(src, .proc/honkdown)
+		INVOKE_ASYNC(src, .proc/bananapeels)
+		INVOKE_ASYNC(src, .proc/honkdown)
 	if(anger_modifier >= 30 && anger_modifier < 40)
 		ranged_cooldown = world.time + 150
 		INVOKE_ASYNC(src, .proc/summonclownhallucination, target)
@@ -84,16 +82,14 @@
 		INVOKE_ASYNC(src, .proc/shootbanana, target)
 	if(anger_modifier >= 40 && anger_modifier < 50)
 		ranged_cooldown = world.time + 150
-		retreat_distance = 0
+		retreat_distance = 21
 		INVOKE_ASYNC(src, .proc/honkdown)
 		INVOKE_ASYNC(src, .proc/summonclownhallucination, target)
-		retreat_distance = 30
 		INVOKE_ASYNC(src, .proc/bluespaceteleport)
-		INVOKE_ASYNC(src, .proc/surroundpeels, target)
 		INVOKE_ASYNC(src, .proc/bluespaceteleporter)
 	if(anger_modifier >= 50)
 		ranged_cooldown = world.time + 100
-		retreat_distance = 30
+		retreat_distance = 21
 		if(prob(50))
 			INVOKE_ASYNC(src, .proc/bluespaceteleport)
 		var/list/clownview = list()
@@ -102,8 +98,6 @@
 		if(clownview.len <= 2)
 			INVOKE_ASYNC(src, .proc/summonclownguard, target)
 		INVOKE_ASYNC(src, .proc/bananapeels)
-		if(prob(50))
-			INVOKE_ASYNC(src, .proc/surroundpeels, target)
 		INVOKE_ASYNC(src, .proc/bluespaceteleporter)
 
 
@@ -125,14 +119,16 @@
 	if(!target)
 		return
 	var/list/probableturfs = view(target, 5)
+	var/count
 	for(var/turf/T in probableturfs)
-		var/chosen = pick(subtypesof(/mob/living/simple_animal/hostile/retaliate/clown))
-		if(prob(20))
+		if(count < 5)
+			var/chosen = pick(subtypesof(/mob/living/simple_animal/hostile/retaliate/clown))
 			var/mob/living/simple_animal/hostile/retaliate/clown/clownguard = new chosen(T)
 			clownguard.name = "Clownllucination"
 			clownguard.desc = "For honkmother!"
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, clownguard), 150)
 			clownguard.Retaliate()
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, clownguard), 100)
+			count++
 
 /mob/living/simple_animal/hostile/megafauna/kingclown/proc/summonclownguard(atom/target)
 	playsound(src, 'sound/items/bikehorn.ogg', 200, TRUE, 2, TRUE)
@@ -196,11 +192,6 @@
 		var/obj/structure/bonfire/clownfire/chosen = pick(clownfires)
 		forceMove(chosen)
 		new /obj/effect/temp_visual/small_smoke/halfsecond/clown(src.loc)
-
-/mob/living/simple_animal/hostile/megafauna/kingclown/death()
-	. = ..()
-	new /obj/item/reagent_containers/food/snacks/grown/banana(src.loc)
-
 
 //helpers
 /obj/structure/bonfire/clownfire
