@@ -95,12 +95,13 @@
 
 /obj/effect/mob_spawn/human/ice_walker/Initialize(mapload)
 	. = ..()
+	var/area/A = get_area(loc)
 	notify_ghosts("An ice walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER, ignore_dnr_observers = TRUE)
 
 /datum/outfit/icewalker
 	name ="Icewalker"
 	shoes = /obj/item/clothing/shoes/winterboots/ice_boots
-	gloves = obj/item/clothing/gloves/botanic_leather/icewalker
+	gloves = /obj/item/clothing/gloves/botanic_leather/icewalker
 	uniform = /obj/item/clothing/under/color/random
 	r_pocket = /obj/item/storage/bag/ore
 	suit = /obj/item/clothing/suit/hooded/wintercoat/narsie/icewalker
