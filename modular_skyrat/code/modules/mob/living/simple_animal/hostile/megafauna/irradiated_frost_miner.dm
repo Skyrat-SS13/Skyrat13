@@ -9,7 +9,7 @@
 	attacktext = "pummels"
 	attack_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	light_color = "#E4C7C5"
+	light_color = "#00FF00"
 	movement_type = GROUND
 	weather_immunities = list("snow")
 	speak_emote = list("roars")
