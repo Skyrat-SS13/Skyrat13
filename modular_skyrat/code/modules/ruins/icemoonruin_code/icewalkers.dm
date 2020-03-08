@@ -14,9 +14,8 @@
 	max_integrity = 250
 	var/faction = list("icewalker")
 	light_color = LIGHT_COLOR_RED
-	light_intensity = 2
 	light_range = 2
-	var/consumedore
+	var/consumedore = 0
 	var/list/orevalue = list(/obj/item/stack/ore/uranium = 30, \
 	 /obj/item/stack/ore/iron = 1, \
 	 /obj/item/stack/ore/glass = 1, \
@@ -42,12 +41,12 @@
 
 /obj/structure/ice_walkers/proc/consume()
 	for(var/obj/item/stack/ore/O in view(src, 1))
-		if(O in subtypesof(/obj/item/stack/ore)
+		if(O in subtypesof(/obj/item/stack/ore))
 			consumedore += orevalue[O]
 	playsound(get_turf(src),'sound/effects/curse1.ogg', 100, 1)
 
 
-/obj/structure/lavaland/ash_walker/proc/spawn_mob()
+/obj/structure/ice_walker/proc/spawn_mob()
 	if(consumedore >= ICE_WALKER_SPAWN_THRESHOLD)
 		new /obj/effect/mob_spawn/human/ice_walker(get_step(loc, pick(GLOB.alldirs)))
 		visible_message("<span class='danger'>One of the eggs swells to an unnatural size and tumbles free. It's ready to hatch!</span>")
@@ -163,7 +162,7 @@
 "ve", "wa", "all", "and", "are", "but", "ent", "era", "ere", "eve", "for", "had", "hat", "hen", "her", "hin",
 "his", "ing", "ion", "ith", "not", "ome", "oul", "our", "sho", "ted", "ter", "tha", "the", "thi") // copied of common because am lazy
 	icon_state = "dopefish"
-	icon = 'modularskyrat/icons/misc/language.dmi'
+	icon = 'modular_skyrat/icons/misc/language.dmi'
 	default_priority = 91
 
 
@@ -188,6 +187,20 @@
 	meat = /obj/item/reagent_containers/food/snacks/carpmeat
 	exotic_bloodtype = "L"
 	liked_food = GROSS | MEAT
+	mutantlungs = /obj/item/organ/lungs/icewalker
 
 /datum/species/aquatic/icewalker/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/fish)
+
+/obj/item/organ/lungs/icewalker
+	name = "ash lungs"
+	desc = "almost frozen, these lungs are capable of resisting low pressures and temperatures."
+	safe_oxygen_min = 3
+	safe_oxygen_max = 18
+	safe_nitro_max = 15
+	cold_level_1_threshold = 600
+	cold_level_2_threshold = 500
+	cold_level_3_threshold = 400
+	heat_level_1_threshold = 280
+	heat_level_2_threshold = 240
+	heat_level_3_threshold = 200
