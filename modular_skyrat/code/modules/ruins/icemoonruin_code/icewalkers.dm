@@ -95,9 +95,7 @@
 
 /obj/effect/mob_spawn/human/ice_walker/Initialize(mapload)
 	. = ..()
-	var/area/A = get_area(src)
-	if(A)
-		notify_ghosts("An ice walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER, ignore_dnr_observers = TRUE)
+	notify_ghosts("An ice walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER, ignore_dnr_observers = TRUE)
 
 /datum/outfit/icewalker
 	name ="Icewalker"
@@ -109,7 +107,9 @@
 	backpack = /obj/item/storage/backpack/cultpack
 	backpack_contents = list(
 		/obj/item/flashlight/seclite=1,\
-		/obj/item/kitchen/knife/combat/bone=1)
+		/obj/item/kitchen/knife/combat/bone=1, \
+		/obj/item/pickaxe/diamond=1, \
+		/obj/item/shovel/spade=1)
 
 /obj/item/clothing/suit/hooded/wintercoat/narsie/icewalker
 	name = "coat of the deep ones"
@@ -193,10 +193,10 @@ obj/item/clothing/gloves/botanic_leather/icewalker
 
 /datum/species/aquatic/icewalker
 	name = "Icewalker"
-	id = "iceaquatic"
+	id = "mammal"
 	say_mod = "gorgles"
 	default_color = "#00BFFF"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,LIPS,HORNCOLOR,WINGCOLOR)
+	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,LIPS,DIGITIGRADE)
 	mutant_bodyparts = list("mam_tail", "mam_ears", "mam_body_markings", "mam_snouts", "horns", "legs")
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	inherent_traits = list(TRAIT_RESISTCOLD)
@@ -210,7 +210,7 @@ obj/item/clothing/gloves/botanic_leather/icewalker
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	meat = /obj/item/reagent_containers/food/snacks/carpmeat
+	meat = /obj/item/reagent_containers/food/snacks/carpmeat/aquatic
 	exotic_bloodtype = "L"
 	liked_food = GROSS | MEAT | DAIRY
 	mutantlungs = /obj/item/organ/lungs/icewalker
