@@ -99,7 +99,7 @@
 	name ="Icewalker"
 	shoes = /obj/item/clothing/shoes/winterboots/ice_boots
 	gloves = /obj/item/clothing/gloves/color/black
-	uniform = /obj/item/clothing/under/color
+	uniform = /obj/item/clothing/under/color/random
 	r_pocket = /obj/item/storage/bag/ore
 	suit = /obj/item/clothing/suit/hooded/wintercoat/miner
 
