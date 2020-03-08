@@ -55,7 +55,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/kingclown/Initialize()
 	. = ..()
-	internal = new/obj/item/gps/internal/clown(src)
+	internal = new /obj/item/gps/internal/clown(src)
 
 /mob/living/simple_animal/hostile/megafauna/kingclown/Life()
 	. = ..()
