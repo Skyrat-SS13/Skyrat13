@@ -68,10 +68,13 @@
 		ranged_cooldown = world.time + 50
 		if(prob(75))
 			INVOKE_ASYNC(src, .proc/bananapeels)
+		if(prob(60))
+			INVOKE_ASYNC(src, .proc/honkdown)
 	if(anger_modifier >= 30 && anger_modifier < 40)
 		ranged_cooldown = world.time + 150
 		INVOKE_ASYNC(src, .proc/summonclownhallucination, target)
 		INVOKE_ASYNC(src, .proc/bananapeels)
+		INVOKE_ASYNC(src, .proc/honkdown)
 		INVOKE_ASYNC(src, .proc/shootbanana, target)
 	if(anger_modifier >= 40 && anger_modifier < 50)
 		ranged_cooldown = world.time + 150
@@ -114,7 +117,7 @@
 	var/list/probableturfs = view(target, 5)
 	for(var/turf/T in probableturfs)
 		var/chosen = pick(subtypesof(/mob/living/simple_animal/hostile/retaliate/clown))
-		if(prob(30))
+		if(prob(20))
 			var/mob/living/simple_animal/hostile/retaliate/clown/clownguard = new chosen(T)
 			clownguard.name = "Clownllucination"
 			clownguard.desc = "For honkmother!"
@@ -128,7 +131,7 @@
 	var/list/probableturfs = view(target, 5)
 	for(var/turf/T in probableturfs)
 		var/chosen = pick(subtypesof(/mob/living/simple_animal/hostile/retaliate/clown))
-		if(prob(20))
+		if(prob(10))
 			var/mob/living/simple_animal/hostile/retaliate/clown/clownguard = new chosen(T)
 			clownguard.name = "Clown Guard"
 			clownguard.desc = "For honkmother!"
@@ -146,12 +149,11 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		L.Stun(10)
-	for(var/turf/J in view(2, target) - view(1, target))
-		new /obj/item/grown/bananapeel/king(J)
-	sleep(5)
 	var/list/bananawalls = list()
-	for(var/obj/item/grown/bananapeel/king/B in view(2, target) - view(1, target))
+	for(var/turf/J in view(2, target) - view(1, target))
+		var/obj/item/grown/bananapeel/king/B = new /obj/item/grown/bananapeel/king(J)
 		bananawalls += B
+	sleep(5)
 	var/obj/item/grown/bananapeel/king/chosen = pick(bananawalls)
 	qdel(chosen)
 	for(var/obj/item/grown/bananapeel/king/B in bananawalls)
@@ -180,7 +182,7 @@
 	if(clownfires.len)
 		new /obj/effect/temp_visual/small_smoke/halfsecond/clown(src.loc)
 		var/obj/structure/bonfire/clownfire/chosen = pick(clownfires)
-		src.loc = chosen.loc
+		forceMove(chosen)
 		new /obj/effect/temp_visual/small_smoke/halfsecond/clown(src.loc)
 
 /mob/living/simple_animal/hostile/megafauna/kingclown/death()

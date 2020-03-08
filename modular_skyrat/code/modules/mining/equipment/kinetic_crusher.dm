@@ -222,6 +222,7 @@
 	desc = "It honks loud and proud. Fit for a crusher trophy."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "gold_horn"
+	denied_type = /obj/item/crusher_trophy/bikehorn
 
 /obj/item/crusher_trophy/bikehorn/Initialize()
 	..()
