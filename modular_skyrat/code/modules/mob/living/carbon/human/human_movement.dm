@@ -1,4 +1,4 @@
-/mob/living/carbon/human/slip(knockdown_amount, obj/O, lube, paralyze, forcedrop)
+/mob/living/carbon/human/slip(knockdown_amount, obj/O, lube)
 	if(HAS_TRAIT(src, TRAIT_NOSLIPALL))
 		return 0
 	if (!(lube & GALOSHES_DONT_HELP))
