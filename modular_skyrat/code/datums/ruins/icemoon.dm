@@ -76,7 +76,7 @@
 	id = "miningsite-underground"
 	description = "Who knew ladders could be so useful?"
 	suffix = "icemoon_underground_mining_site.dmm"
-	cost = 7
+	always_place = TRUE
 
 // below ground only
 
@@ -126,4 +126,11 @@
 	id = "roguearena"
 	description = "LOOK AT YOU HACKER... A PATHETIC CREATURE MADE OF MEAT AND BONE."
 	suffix = "icemoon_underground_rogue.dmm"
+	always_place = TRUE
+
+/datum/map_template/ruin/icemoon/underground/icewalker
+	name = "Ice Walker Den"
+	id = "icewalker"
+	description = "Praise the deep ones!"
+	suffix = "icemoon_underground_fishegloo.dmm"
 	always_place = TRUE
