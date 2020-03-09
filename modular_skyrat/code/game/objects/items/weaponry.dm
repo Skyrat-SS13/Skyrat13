@@ -32,7 +32,7 @@
 	S.duration = 10
 	animate(S, transform = matrix(45, MATRIX_ROTATE), time = 1)
 	animate(S, pixel_y += 5, time = 0)
-	animate(S, pixel_y -= 5, time = 3)
+	animate(S, pixel_y -= 5, time = 5)
 
 
 /obj/item/claymore/roblox/afterattack(atom/target, mob/living/user)
