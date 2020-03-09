@@ -33,7 +33,8 @@
 
 /obj/item/claymore/roblox/afterattack(atom/target, mob/living/user)
 	if(cooldowntime < world.time)
-		playsound(src, 'modular_skyrat/sound/roblox/lunge.wav', 200)
+		if(!target || !istype(target, /mob))
+			playsound(src, 'modular_skyrat/sound/roblox/lunge.wav', 200)
 		cooldowntime = world.time + cooldown
 		var/dirtotarget = get_dir(user, target)
 		var/turf/T = get_step(user, dirtotarget)
