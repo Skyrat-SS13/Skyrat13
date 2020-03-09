@@ -1,14 +1,14 @@
 /datum/species/ipc
 	icon_limbs = DEFAULT_BODYPART_ICON_ROBOTIC
-	species_traits = list(MUTCOLORS,NOBLOOD,NOEYES,NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY)
+	species_traits = list(MUTCOLORS,NOEYES,NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY)
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT)
 	coldmod = 0.5
-	burnmod = 1.3
+	burnmod = 1.1
 	heatmod = 1.5
-	brutemod = 1.3
+	brutemod = 1.1
 	toxmod = 0
 	clonemod = 0
-	siemens_coeff = 1.2
+	siemens_coeff = 1.2 //Not more because some shocks will outright crit you, which is very unfun
 	revivesbyhealreq = 50
 	reagent_flags = PROCESS_SYNTHETIC
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
