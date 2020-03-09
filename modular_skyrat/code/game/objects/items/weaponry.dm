@@ -16,12 +16,9 @@
 
 /obj/item/claymore/roblox/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
 	if(!isnormalattack)
-		no_effect = 1
-		hitsound = null
+		return
 	else if(isnormalattack)
-		no_effect = 0
-		hitsound = initial(hitsound)
-	..()
+		..()
 
 /obj/item/claymore/roblox/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is falling on [src]! It looks like they lost all their Robux!</span>")
@@ -39,13 +36,13 @@
 
 /obj/item/claymore/roblox/afterattack(atom/target, mob/living/user)
 	isnormalattack = 0
-	playsound(src, 'modular_skyrat/sound/roblox/lunge.wav', 200)
 	if(cooldowntime < world.time)
+		playsound(src, 'modular_skyrat/sound/roblox/lunge.wav', 200)
 		cooldowntime = world.time + cooldown
 		var/dirtotarget = get_dir(user, target)
 		var/turf/T = get_step(user, dirtotarget)
 		var/obj/effect/temp_visual/robloxsword/S = new /obj/effect/temp_visual/robloxsword(T)
-		animate(S, transform = matrix(dir2angle(dirtotarget) + 45, MATRIX_ROTATE), time = 3)
+		animate(S, transform = matrix(dir2angle(dirtotarget) + 135, MATRIX_ROTATE), time = 3)
 		for(var/mob/living/M in T.contents)
 			attack(M, user)
 			if(M.health <= 0)
@@ -58,3 +55,4 @@
 	icon = 'modular_skyrat/icons/obj/items/roblox.dmi'
 	icon_state = "sword"
 	duration = 4
+	layer = ABOVE_MOB_LAYER
