@@ -3366,7 +3366,6 @@
 #include "modular_skyrat\code\modules\mob\say.dm"
 #include "modular_skyrat\code\modules\mob\typing_indicator.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\snouts.dm"
-#include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\synthliz_accessories.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\vox_accessories.dm"
 #include "modular_skyrat\code\modules\mob\living\ssd_indicator.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\auto_hiss.dm"

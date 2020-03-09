@@ -461,7 +461,6 @@ ROUNDSTART_RACES ipc
 
 ## SKYRATS Races
 ROUNDSTART_RACES vox
-ROUNDSTART_RACES synthliz
 
 ##-------------------------------------------------------------------------------------------
 

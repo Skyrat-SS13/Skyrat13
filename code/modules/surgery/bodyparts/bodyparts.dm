@@ -283,25 +283,9 @@
 
 	if(change_icon_to_default)
 		if(status == BODYPART_ORGANIC)
-<<<<<<< HEAD
-			//SKYRAT CHANGES - limb paths for species
-			if(owner?.dna?.species)
-				icon = owner.dna.species.icon_limbs
-			else
-				icon = DEFAULT_BODYPART_ICON_ORGANIC
-			//END OF SKYRAT CHANGES
-		else if(status == BODYPART_ROBOTIC)
-			//SKYRAT CHANGES - accounts for robotic crewmembers with custom limbs
-			if(owner?.dna?.species)
-				icon = owner.dna.species.icon_limbs
-			else
-				icon = DEFAULT_BODYPART_ICON_ROBOTIC
-			//END OF SKYRAT CHANGES
-=======
 			icon = base_bp_icon || DEFAULT_BODYPART_ICON_ORGANIC
 		else if(status == BODYPART_ROBOTIC)
 			icon = base_bp_icon || DEFAULT_BODYPART_ICON_ROBOTIC
->>>>>>> 8878733fc1c... Merge pull request #11317 from deathride58/WEPORTINSYNTHSBOI
 
 	if(owner)
 		owner.updatehealth()
@@ -482,24 +466,11 @@
 		should_draw_gender = FALSE
 
 	if(is_organic_limb())
-<<<<<<< HEAD
-		if(should_draw_greyscale)
-			//SKYRAT CHANGES - limb paths for species
-			if(owner?.dna?.species)
-				limb.icon = owner.dna.species.icon_limbs
-			else
-				limb.icon = 'icons/mob/human_parts_greyscale.dmi'
-			//END OF SKYRAT CHANGES
-			if(should_draw_gender)
-				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
-			else if(use_digitigrade)
-=======
 		limb.icon = base_bp_icon || 'icons/mob/human_parts.dmi'
 		if(should_draw_gender)
 			limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 		else if (use_digitigrade)
 			if(base_bp_icon == DEFAULT_BODYPART_ICON_ORGANIC) //Compatibility hack for the current iconset.
->>>>>>> 8878733fc1c... Merge pull request #11317 from deathride58/WEPORTINSYNTHSBOI
 				limb.icon_state = "[digitigrade_type]_[use_digitigrade]_[body_zone]"
 			else
 				limb.icon_state = "[species_id]_[digitigrade_type]_[use_digitigrade]_[body_zone]"

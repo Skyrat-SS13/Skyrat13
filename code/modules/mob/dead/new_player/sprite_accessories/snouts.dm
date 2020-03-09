@@ -150,12 +150,8 @@
 
 /datum/sprite_accessory/mam_snouts
 	color_src = MATRIXED
-<<<<<<< HEAD
-	icon = 'modular_skyrat/icons/mob/mam_snouts.dmi'
-=======
 	icon = 'modular_citadel/icons/mob/mam_snouts.dmi'
 	recommended_species = list("mammal", "slimeperson", "insect", "podweak")
->>>>>>> 8878733fc1c... Merge pull request #11317 from deathride58/WEPORTINSYNTHSBOI
 
 /datum/sprite_accessory/mam_snouts/none
 	name = "None"
