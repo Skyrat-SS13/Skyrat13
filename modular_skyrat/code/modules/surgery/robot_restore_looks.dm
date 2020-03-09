@@ -28,6 +28,8 @@
 /datum/surgery_step/restore_paintjob/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/toy/crayon/spraycan/sc = tool
 	sc.use_charges(user, 10, FALSE)
+	sc.audible_message("<span class='notice'>You hear spraying.</span>")
+	playsound(target.loc, 'sound/effects/spray.ogg', 5, 1, 5)
 	if(target.dna.species)
 		for(var/obj/item/bodypart/O in target.bodyparts)
 			if(O.status == BODYPART_ROBOTIC)
