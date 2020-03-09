@@ -13,7 +13,13 @@
 	reagent_flags = PROCESS_SYNTHETIC
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 	mutant_brain = /obj/item/organ/brain/ipc_positron
-	mutantstomach = /obj/item/organ/stomach/cell
+	mutantstomach = /obj/item/organ/stomach/robot_ipc
+	mutantears = /obj/item/organ/ears/robot_ipc
+	mutanttongue = /obj/item/organ/tongue/robot_ipc
+	mutanteyes = /obj/item/organ/eyes/robot_ipc
+	mutantliver = /obj/item/organ/liver/robot_ipc //except robotic chests don't have livers or hearts, probably something to look into later
+	mutant_heart = /obj/item/organ/heart/robot_ipc
+	mutantlungs = /obj/item/organ/lungs/robot_ipc
 	exotic_blood = /datum/reagent/oil
 	exotic_bloodtype = ""
 	var/saved_screen
