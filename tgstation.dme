@@ -3412,6 +3412,7 @@
 #include "modular_skyrat\code\modules\surgery\surgery_step.dm"
 #include "modular_skyrat\code\modules\surgery\organs\tongue.dm"
 #include "modular_skyrat\code\modules\surgery\organs\vox_lungs.dm"
+#include "modular_skyrat\code\modules\uplink\uplink_dangerous.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_roles.dm"
 #include "modular_skyrat\code\modules\vending\autodrobe.dm"
 #include "modular_skyrat\code\modules\vending\clothesmate.dm"
