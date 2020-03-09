@@ -105,10 +105,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/fixed_mut_color3 = ""
 	var/whitelisted = 0 		//Is this species restricted to certain players?
 	var/whitelist = list() 		//List the ckeys that can use this species, if it's whitelisted.: list("John Doe", "poopface666", "SeeALiggerPullTheTrigger") Spaces & capitalization can be included or ignored entirely for each key as it checks for both.
-	var/should_draw_citadel = FALSE
+	var/icon_limbs //Overrides the icon used for the limbs of this species. Mainly for downstream, and also because hardcoded icons disgust me. Implemented and maintained as a favor in return for a downstream's implementation of synths.
 
 	var/icon_eyes = 'icons/mob/human_face.dmi'//Skyrat change
-	var/icon_limbs = 'icons/mob/human_parts_greyscale.dmi'//Skyrat change
 
 ///////////
 // PROCS //
@@ -293,7 +292,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		C.hud_used.update_locked_slots()
 
 	// this needs to be FIRST because qdel calls update_body which checks if we have DIGITIGRADE legs or not and if not then removes DIGITIGRADE from species_traits
-	if(("legs" in C.dna.species.mutant_bodyparts) && (C.dna.features["legs"] == "Digitigrade" || C.dna.features["legs"] == "Avian" || C.dna.features["legs"] == "Vox")) //SKYRATS change vox legs
+	if(("legs" in C.dna.species.mutant_bodyparts) && (C.dna.features["legs"] == "Digitigrade" || C.dna.features["legs"] == "Avian"))
 		species_traits |= DIGITIGRADE
 	if(DIGITIGRADE in species_traits)
 		C.Digitigrade_Leg_Swap(FALSE)
