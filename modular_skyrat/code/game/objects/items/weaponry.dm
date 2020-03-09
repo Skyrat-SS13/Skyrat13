@@ -38,7 +38,7 @@
 		var/dirtotarget = get_dir(user, target)
 		var/turf/T = get_step(user, dirtotarget)
 		var/obj/effect/temp_visual/robloxsword/S = new /obj/effect/temp_visual/robloxsword(T)
-		animate(S, transform = matrix(-(dir2angle(dirtotarget) + 135), MATRIX_ROTATE), time = 3)
+		animate(S, transform = matrix(dir2angle(dirtotarget), MATRIX_ROTATE), time = 3)
 		for(var/mob/living/M in T.contents)
 			attack(M, user)
 			if(M.health <= 0)
@@ -48,6 +48,6 @@
 	name = "sword"
 	desc = "oof"
 	icon = 'modular_skyrat/icons/obj/items/roblox.dmi'
-	icon_state = "sword"
+	icon_state = "sword2"
 	duration = 4
 	layer = ABOVE_MOB_LAYER
