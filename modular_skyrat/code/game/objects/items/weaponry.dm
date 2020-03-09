@@ -18,7 +18,7 @@
 	if(!isnormalattack)
 		no_effect = 1
 		hitsound = null
-	if(isnormalattack)
+	else if(isnormalattack)
 		no_effect = 0
 		hitsound = initial(hitsound)
 	..()
@@ -33,6 +33,8 @@
 	playsound(M, 'modular_skyrat/sound/roblox/equip.wav', 200)
 	var/obj/effect/temp_visual/robloxsword/S = new /obj/effect/temp_visual/robloxsword(user)
 	animate(S, transform = matrix(45, MATRIX_ROTATE), time = 0)
+	animate(S, pixel_y += 5, time = 0)
+	animate(S, pixel_y -= 5, time = 3)
 
 
 /obj/item/claymore/roblox/afterattack(atom/target, mob/living/user)
