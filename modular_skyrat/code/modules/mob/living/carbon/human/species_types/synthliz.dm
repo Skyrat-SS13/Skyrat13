@@ -1,7 +1,6 @@
 /datum/species/synthliz
 	name = "Synthetic Lizardperson"
 	id = "synthliz"
-	icon_limbs = 'modular_skyrat/icons/mob/synthliz/synthliz_parts_greyscale.dmi'
 	say_mod = "beeps"
 	default_color = "00FF00"
 	species_traits = list(MUTCOLORS,NOTRANSSTING,EYECOLOR,LIPS,HAIR,NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY)
