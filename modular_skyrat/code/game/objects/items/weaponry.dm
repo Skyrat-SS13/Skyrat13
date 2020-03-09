@@ -1,7 +1,7 @@
 /obj/item/claymore/roblox
 	name = "Fencing Sword"
 	desc = "It seems otherworldly."
-	icon = 'modular_skyrat/icons/obj/item/roblox.dmi'
+	icon = 'modular_skyrat/icons/obj/items/roblox.dmi'
 	icon_state = "sword"
 	hitsound = 'modular_skyrat/sound/roblox/lunge.ogg'
 	force = 20
@@ -17,14 +17,22 @@
 
 /obj/item/claymore/roblox/pickup(mob/living/user)
 	..()
+	var/mob/living/M = user
 	playsound(M, 'modular_skyrat/sound/roblox/equip.ogg', 100)
 
 /obj/item/claymore/roblox/afterattack(atom/target, mob/living/user)
 	var/turf/T = get_step(src, src.dir)
 	var/dirtotarget = get_dir(target, user)
 	var/obj/effect/temp_visual/robloxsword/S = new /obj/effect/temp_visual/robloxsword(T)
-	animate(M, transform = matrix(dir2angle(dirtotarget), MATRIX_ROTATE), time = 3)
+	animate(S, transform = matrix(dir2angle(dirtotarget), MATRIX_ROTATE), time = 3)
 	for(var/mob/M in T.contents)
 		attack(M, user)
 		if(M.health <= 0)
 			playsound(M, 'modular_skyrat/sound/roblox/OOF.ogg', 100)
+
+/obj/effect/temp_visual/robloxsword
+	name = "sword"
+	desc = "oof"
+	icon = 'modular_skyrat/icons/obj/item/roblox.dmi'
+	icon_state = "sword"
+	duration = 3
