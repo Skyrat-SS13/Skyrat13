@@ -25,7 +25,7 @@
 /obj/item/claymore/roblox/afterattack(atom/target, mob/living/user)
 	if(cooldowntime < world.time)
 		cooldowntime = world.time + cooldown
-		var/dirtotarget = get_dir(target, user)
+		var/dirtotarget = get_dir(user, target)
 		var/turf/T = get_step(user, dirtotarget)
 		var/obj/effect/temp_visual/robloxsword/S = new /obj/effect/temp_visual/robloxsword(T)
 		animate(S, transform = matrix(dir2angle(dirtotarget) - 135, MATRIX_ROTATE), time = 3)
