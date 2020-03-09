@@ -10,12 +10,8 @@
 	health = 500
 	maxHealth = 500
 	layer = BELOW_MOB_LAYER
-	silicon_privileges = PRIVILEDGES_PAI
-<<<<<<< HEAD
 	var/obj/item/instrument/piano_synth/internal_instrument
-	var/datum/element/mob_holder/current_mob_holder //because only a few of their chassis can be actually held.
-=======
->>>>>>> b2235e03a7f... Merge pull request #11372 from Ghommie/Ghommie-cit610
+	silicon_privileges = PRIVILEDGES_PAI
 
 	var/network = "ss13"
 	var/obj/machinery/camera/current = null
