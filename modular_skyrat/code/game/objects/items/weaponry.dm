@@ -25,7 +25,7 @@
 	var/dirtotarget = get_dir(target, user)
 	var/obj/effect/temp_visual/robloxsword/S = new /obj/effect/temp_visual/robloxsword(T)
 	animate(S, transform = matrix(dir2angle(dirtotarget), MATRIX_ROTATE), time = 3)
-	for(var/mob/M in T.contents)
+	for(var/mob/living/M in T.contents)
 		attack(M, user)
 		if(M.health <= 0)
 			playsound(M, 'modular_skyrat/sound/roblox/OOF.ogg', 100)
@@ -33,6 +33,6 @@
 /obj/effect/temp_visual/robloxsword
 	name = "sword"
 	desc = "oof"
-	icon = 'modular_skyrat/icons/obj/item/roblox.dmi'
+	icon = 'modular_skyrat/icons/obj/items/roblox.dmi'
 	icon_state = "sword"
 	duration = 3
