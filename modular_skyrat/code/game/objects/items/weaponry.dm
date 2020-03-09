@@ -3,7 +3,7 @@
 	desc = "It seems otherworldly."
 	icon = 'modular_skyrat/icons/obj/items/roblox.dmi'
 	icon_state = "sword"
-	hitsound = 'modular_skyrat/sound/roblox/lunge.wave'
+	hitsound = 'modular_skyrat/sound/roblox/lunge.wav'
 	force = 20
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
