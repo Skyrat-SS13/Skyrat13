@@ -6,6 +6,7 @@
 	desc = "Pick up that can."
 	icon = 'modular_skyrat/icons/obj/clothing/uniforms.dmi'
 	alternate_worn_icon = 'modular_skyrat/icons/mob/uniform.dmi'
+	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/uniform_digi.dmi'
 	icon_state = "cpuniform"
 	item_state = "cpuniform"
 	item_color = null
