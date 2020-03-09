@@ -27,13 +27,13 @@
 	..()
 	var/mob/living/M = user
 	playsound(M, 'modular_skyrat/sound/roblox/equip.wav', 200)
-	var/obj/effect/temp_visual/robloxsword/s = new /obj/effect/temp_visual/robloxsword(user)
+	var/obj/effect/temp_visual/robloxsword/S = new /obj/effect/temp_visual/robloxsword(user)
 	animate(S, transform = matrix(45, MATRIX_ROTATE), time = 0)
 
 
 /obj/item/claymore/roblox/afterattack(atom/target, mob/living/user)
 	isnormalattack = 0
-	playsound(M, 'modular_skyrat/sound/roblox/lunge.wav', 200)
+	playsound(src, 'modular_skyrat/sound/roblox/lunge.wav', 200)
 	if(cooldowntime < world.time)
 		cooldowntime = world.time + cooldown
 		var/dirtotarget = get_dir(user, target)
