@@ -56,7 +56,7 @@
 /obj/item/clothing/glasses/hud/health/prescription
 	name = "prescription health scanner HUD"
 	desc = "A heads-up display, made with a prescription lens, that scans the humans in view and provides accurate data about their health status."
-	icon_state = "glasses_healthhud"
+	icon_state = "healthhud"
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	vision_correction = 1
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
@@ -105,7 +105,7 @@
 /obj/item/clothing/glasses/hud/diagnostic/prescription
 	name = "prescription diagnostic HUD"
 	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits. This one has a prescription lens."
-	icon_state = "glasses_diagnostichud"
+	icon_state = "diagnostichud"
 	hud_type = DATA_HUD_DIAGNOSTIC_BASIC
 	vision_correction = 1
 	glass_colour_type = /datum/client_colour/glass_colour/lightorange
@@ -137,7 +137,7 @@
 /obj/item/clothing/glasses/hud/security/prescription
 	name = "prescription security HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records. This one has a prescription lens so you can see the banana peal that slipped you."
-	icon_state = "glasses_securityhud"
+	icon_state = "securityhud"
 	hud_type = DATA_HUD_SECURITY_ADVANCED
 	vision_correction = 1
 	glass_colour_type = /datum/client_colour/glass_colour/red
