@@ -259,15 +259,9 @@
 		return ..()
 	update_name()
 	update_icon()
-<<<<<<< HEAD
 */
-/obj/structure/door_assembly/update_icon()
-	cut_overlays()
-=======
-
 /obj/structure/door_assembly/update_overlays()
 	. = ..()
->>>>>>> e210f7d5352... Merge pull request #11391 from Ghommie/Ghommie-cit612
 	if(!glass)
 		. += get_airlock_overlay("fill_construction", icon)
 	else if(glass)
