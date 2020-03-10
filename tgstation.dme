@@ -3331,6 +3331,7 @@
 #include "modular_skyrat\code\modules\client\loadout\neck.dm"
 #include "modular_skyrat\code\modules\client\loadout\uniform.dm"
 #include "modular_skyrat\code\modules\client\verbs\who.dm"
+#include "modular_skyrat\code\modules\clothing\glasses\hud.dm"
 #include "modular_skyrat\code\modules\clothing\head\helmet.dm"
 #include "modular_skyrat\code\modules\clothing\head\jobs.dm"
 #include "modular_skyrat\code\modules\clothing\head\misc.dm"
