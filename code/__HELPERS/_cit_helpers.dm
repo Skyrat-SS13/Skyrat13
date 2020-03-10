@@ -115,7 +115,7 @@ GLOBAL_VAR_INIT(miscreants_allowed, FALSE)
 
 	var/new_flavor = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", flavor_text, MAX_FAVOR_LEN, TRUE)
 	if(!isnull(new_flavor))
-		flavor_text = new_flavor
+		flavor_text = html_decode(new_flavor)
 		to_chat(src, "Your flavor text has been updated.")
 
 //Flavor Text
@@ -126,10 +126,10 @@ GLOBAL_VAR_INIT(miscreants_allowed, FALSE)
 
 	var/new_flavor = stripped_multiline_input(usr, "Set the temporary flavor text in your 'examine' verb. This should be used only for things pertaining to the current round!", "Short-Term Flavor Text", flavor_text_2, MAX_FAVOR_LEN, TRUE)
 	if(!isnull(new_flavor))
-		flavor_text_2 = new_flavor
+		flavor_text_2 = html_decode(new_flavor)
 		to_chat(src, "Your temporary flavor text has been updated.")
 
-/mob/proc/print_flavor_text(flavor)
+/mob/proc/print_flavor_text(flavor,temp = FALSE)
 	if(!flavor)
 		return
 	// We are decoding and then encoding to not only get correct amount of characters, but also to prevent partial escaping characters being shown.
@@ -137,7 +137,7 @@ GLOBAL_VAR_INIT(miscreants_allowed, FALSE)
 	if(length_char(msg) <= 40)
 		return "<span class='notice'>[html_encode(msg)]</span>"
 	else
-		return "<span class='notice'>[html_encode(copytext_char(msg, 1, 37))]... <a href='?src=[REF(src)];flavor_more=1'>More...</span></a>"
+		return "<span class='notice'>[html_encode(copytext_char(msg, 1, 37))]... <a href='?src=[REF(src)];flavor[temp ? "2" : ""]_more=1'>More...</span></a>"
 
 //LOOC toggles
 /client/verb/listen_looc()
@@ -149,24 +149,24 @@ GLOBAL_VAR_INIT(miscreants_allowed, FALSE)
 	src << "You will [(prefs.chat_toggles & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel."
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/mob/living/carbon/proc/has_penis()
+/mob/living/carbon/has_penis() // Skyrat Change
 	var/obj/item/organ/genital/G = getorganslot(ORGAN_SLOT_PENIS)
 	if(G && istype(G, /obj/item/organ/genital/penis))
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/proc/has_balls()
+/mob/living/carbon/proc/has_balls() // Skyrat Change
 	var/obj/item/organ/genital/G = getorganslot(ORGAN_SLOT_TESTICLES)
 	if(G && istype(G, /obj/item/organ/genital/testicles))
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/proc/has_vagina()
+/mob/living/carbon/has_vagina() // Skyrat Change
 	if(getorganslot(ORGAN_SLOT_VAGINA))
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/proc/has_breasts()
+/mob/living/carbon/has_breasts() // Skyrat Change
 	if(getorganslot(ORGAN_SLOT_BREASTS))
 		return TRUE
 	return FALSE

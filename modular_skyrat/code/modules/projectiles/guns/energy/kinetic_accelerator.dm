@@ -7,6 +7,30 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/bdminer)
 	max_mod_capacity = 125
 
+/obj/item/gun/energy/kinetic_accelerator/nopenalty
+	desc = "A self recharging, ranged mining tool that does increased damage in low pressure. This one feels a bit heavier than usual."
+	ammo_type = list(/obj/item/projectile/kinetic/nopenalty)
+
+/obj/item/projectile/kinetic/nopenalty
+
+/obj/item/projectile/kinetic/nopenalty/prehit(atom/target)
+	if(kinetic_gun)
+		var/list/mods = kinetic_gun.get_modkits()
+		for(var/obj/item/borg/upgrade/modkit/M in mods)
+			M.projectile_prehit(src, target, kinetic_gun)
+	return TRUE
+
+/obj/item/projectile/kinetic/nopenalty/strike_thing(atom/target)
+	var/turf/target_turf = get_turf(target)
+	if(!target_turf)
+		target_turf = get_turf(src)
+	if(kinetic_gun) //hopefully whoever shot this was not very, very unfortunate.
+		var/list/mods = kinetic_gun.get_modkits()
+		for(var/obj/item/borg/upgrade/modkit/M in mods)
+			M.projectile_strike_predamage(src, target_turf, target, kinetic_gun)
+		for(var/obj/item/borg/upgrade/modkit/M in mods)
+			M.projectile_strike(src, target_turf, target, kinetic_gun)
+
 /obj/item/ammo_casing/energy/kinetic/premium/bdminer
 	projectile_type = /obj/item/projectile/kinetic/premium/bdminer
 
@@ -167,7 +191,7 @@
 /obj/item/borg/upgrade/modkit/lifesteal/miner
 	name = "resonant lifesteal crystal"
 	desc = "Causes kinetic accelerator shots to heal the firer on striking a living target."
-	modifier = 3
+	modifier = 4
 	cost = 25
 
 //drakeling
@@ -191,6 +215,15 @@
 				hitlist += L
 				L.adjustFireLoss(src.modifier)
 				to_chat(L, "<span class='userdanger'>You're hit by [KA]'s fire breath!</span>")
+//king goat
+/obj/item/borg/upgrade/modkit/cooldown/cooler
+	name = "cooler modification kit"
+	desc = "Makes your kinetic accelerator shoot much faster, at the cost of 10 damage."
+	modifier = 5
+	cost = 25
+
+/obj/item/borg/upgrade/modkit/cooldown/cooler/modify_projectile(obj/item/projectile/kinetic/K)
+	K.damage -= (modifier *2)
 
 //10mm modkit (currently broken, only the 10mm pka works)
 /obj/item/gun/energy/kinetic_accelerator/tenmm
