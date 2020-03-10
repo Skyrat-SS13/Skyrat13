@@ -1,36 +1,8 @@
-<script>
-  component.exports = {
-    data: {
-      upperCaseWrapper(lowercased) {
-        return lowercased.toUpperCase();
-      }
-    }
-  }
-</script>
-
 <ui-display title='Status'>
   <ui-section label='Energy'>
     <ui-bar min='0' max='{{data.maxEnergy}}' value='{{data.energy}}'>{{Math.fixed(adata.energy)}} Units</ui-bar>
   </ui-section>
 </ui-display>
-
-{{#if data.recordingRecipe && true}}
-  <ui-notice>
-    <span class='fa fa-circle'></span> <span>Recording</span>
-  </ui-notice>
-  <ui-display>
-    <ui-subdisplay>
-    {{#each data.recordingRecipe: chemical}}
-      <ui-section label='{{chemical.replace(/\b\w/, upperCaseWrapper)}}'><span>{{adata.recordingRecipe[chemical]}}</span></ui-section>
-    {{/each}}
-    </ui-subdisplay>
-    <ui-section>
-      <ui-button icon='floppy-o' action='save_recording'>Save</ui-button>
-      <ui-button icon='ban' action='cancel_recording'>Cancel</ui-button>
-    </ui-section>
-  </ui-display>
-{{/if}}
-
 <ui-display title='Saved Recipes' button>
   <ui-section>
     <ui-button icon='plus' action='record_recipe' state='{{data.recordingRecipe ? "disabled" : null}}'>Record Recipe</ui-button>
