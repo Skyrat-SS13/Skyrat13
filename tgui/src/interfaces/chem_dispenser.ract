@@ -5,10 +5,10 @@
 </ui-display>
 <ui-display title='Saved Recipes' button>
   <ui-section>
-    <ui-button icon='plus' action='record_recipe' state='{{data.recordingRecipe ? "disabled" : null}}'>Record Recipe</ui-button>
-    <ui-button icon='minus' action='clear_recipes' state='{{data.recordingRecipe ? "disabled" : null}}'>Clear Recipes</ui-button>
-    {{#each data.recipes: recipe_name}}
-      <ui-button grid icon='tint' action='dispense_recipe' params='{"recipe": "{{recipe_name}}"}'>{{recipe_name}}</ui-button>
+    <ui-button icon='plus' action='add_recipe'>Add Recipe</ui-button>
+	<ui-button icon='minus' action='clear_recipes'>Clear Recipes</ui-button>
+    {{#each data.recipes}}
+      <ui-button grid icon='tint' action='dispense_recipe' params='{"recipe": "{{contents}}"}'>{{recipe_name}}</ui-button>
     {{/each}}
   </ui-section>
 </ui-display>
@@ -27,7 +27,7 @@
 <ui-display title='Beaker' button>
   {{#partial button}}
     {{#each data.beakerTransferAmounts}}
-      <ui-button icon='minus' action='remove' params='{"amount": {{.}}}' state='{{data.recordingRecipe ? "disabled" : null}}'>{{.}}</ui-button>
+      <ui-button icon='minus' action='remove' params='{"amount": {{.}}}'>{{.}}</ui-button>
     {{/each}}
     <ui-button icon='eject' state='{{data.isBeakerLoaded ? null : "disabled"}}' action='eject'>Eject</ui-button>
   {{/partial}}
