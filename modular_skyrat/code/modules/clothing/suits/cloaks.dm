@@ -23,7 +23,7 @@
 	item_state = "medi"
 
 /obj/item/clothing/neck/cloak/engiinstructor
-	name = "chief engineer's cloak"
+	name = "engineering instructor's cloak"
 	desc = "This is an instructor cloak for the engineering department , they must be ready to teach!"
 	icon = 'modular_skyrat/icons/obj/clothing/neck.dmi'
 	alternate_worn_icon = 'modular_skyrat/icons/mob/neck.dmi'

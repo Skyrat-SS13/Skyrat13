@@ -82,7 +82,7 @@
 		var/mob/living/carbon/tempcarb = user
 		if(!tempcarb.combatmode)
 			totitemdamage *= 0.5
-	if(user.resting)
+	if(!CHECK_MOBILITY(user, MOBILITY_STAND))
 		totitemdamage *= 0.5
 	if(!combatmode)
 		totitemdamage *= 1.5
@@ -193,7 +193,7 @@
 
 			do_sparks(5, TRUE, src)
 			var/power = M.powerlevel + rand(0,3)
-			Knockdown(power*20)
+			DefaultCombatKnockdown(power*20)
 			if(stuttering < power)
 				stuttering = power
 			if (prob(stunprob) && M.powerlevel >= 8)
@@ -238,19 +238,19 @@
 		var/obj/item/organ/O = X
 		O.emp_act(severity)
 
-/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
-	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
+/mob/living/carbon/electrocute_act(shock_damage, source, siemens_coeff = 1, flags = NONE)
+	if((flags & SHOCK_TESLA) && (flags_1 & TESLA_IGNORE_1))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
 		return FALSE
 	shock_damage *= siemens_coeff
 	if(dna && dna.species)
 		shock_damage *= dna.species.siemens_coeff
-	if(shock_damage<1 && !override)
+	if(shock_damage < 1)
 		return 0
 	if(reagents.has_reagent(/datum/reagent/teslium))
 		shock_damage *= 1.5 //If the mob has teslium in their body, shocks are 50% more damaging!
-	if(illusion)
+	if((flags & SHOCK_ILLUSION))
 		adjustStaminaLoss(shock_damage)
 	else
 		take_overall_damage(0,shock_damage)
@@ -262,16 +262,13 @@
 	jitteriness += 1000 //High numbers for violent convulsions
 	do_jitter_animation(jitteriness)
 	stuttering += 2
-	if((!tesla_shock || (tesla_shock && siemens_coeff > 0.5)) && stun)
+	if((!(flags & SHOCK_TESLA) || siemens_coeff > 0.5) && (flags & SHOCK_NOSTUN))
 		Stun(40)
 	spawn(20)
 		jitteriness = max(jitteriness - 990, 10) //Still jittery, but vastly less
-		if((!tesla_shock || (tesla_shock && siemens_coeff > 0.5)) && stun)
-			Knockdown(60)
-	if(override)
-		return override
-	else
-		return shock_damage
+		if((!(flags & SHOCK_TESLA) || siemens_coeff > 0.5) && (flags & SHOCK_NOSTUN))
+			DefaultCombatKnockdown(60)
+	return shock_damage
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(on_fire)
@@ -346,16 +343,14 @@
 				else if (mood.sanity >= SANITY_DISTURBED)
 					SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/betterhug, M)
 
-		AdjustStun(-60)
-		AdjustKnockdown(-60)
-		AdjustUnconscious(-60)
-		AdjustSleeping(-100)
+		AdjustAllImmobility(-60, FALSE)
+		AdjustUnconscious(-60, FALSE)
+		AdjustSleeping(-100, FALSE)
 		if(recoveringstam)
 			adjustStaminaLoss(-15)
-		else if(resting)
-			resting = 0
-			update_canmove()
-
+		else
+			set_resting(FALSE, FALSE)
+		update_mobility()
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 
@@ -419,7 +414,7 @@
 	var/effect_amount = intensity - ear_safety
 	if(effect_amount > 0)
 		if(stun_pwr)
-			Knockdown(stun_pwr*effect_amount)
+			DefaultCombatKnockdown(stun_pwr*effect_amount)
 
 		if(istype(ears) && (deafen_pwr || damage_pwr))
 			var/ear_damage = damage_pwr * effect_amount
