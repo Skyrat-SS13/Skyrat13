@@ -390,26 +390,11 @@
 	else if(isobserver(user) && traitstring)
 		. += "<span class='info'><b>Traits:</b> [traitstring]</span>"
 
-<<<<<<< HEAD
-	//No flavor text unless the face can be seen. Prevents certain metagaming with impersonation.
-	var/invisible_man = skipface || get_visible_name() == "Unknown"
-	if(invisible_man)
-		. += "...?"
-	else
-		var/flavor = print_flavor_text(flavor_text)
-		if(flavor)
-			. += flavor
-		var/temp_flavor = print_flavor_text(flavor_text_2,TRUE)
-		if(temp_flavor)
-			. += temp_flavor
-	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .) //This also handles flavor texts now
 	if(!invisible_man)
 		if(client)
 			. += "OOC Notes: <a href='?src=[REF(src)];ooc_notes=1'>\[View\]</a>"
-=======
-	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .) //This also handles flavor texts now
 
->>>>>>> 46823a127bc... Merge pull request #11335 from Ghommie/Ghommie-cit604
 	. += "*---------*</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
