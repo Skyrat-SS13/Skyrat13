@@ -83,9 +83,15 @@
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	pass_flags = PASSTABLE
 	del_on_death = 1
+	var/swarming = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/Initialize()
 	. = ..()
+<<<<<<< HEAD
+=======
+	if(swarming)
+		AddComponent(/datum/component/swarming) //oh god not the bees
+>>>>>>> 3b102c4ef72... Merge pull request #11432 from Citadel-Station-13/kevinz000-patch-2
 	addtimer(CALLBACK(src, .proc/death), 100)
 
 //Legion
@@ -178,6 +184,7 @@
 	del_on_death = TRUE
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
+	swarming = TRUE
 	var/can_infest_dead = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life()
