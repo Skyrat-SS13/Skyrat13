@@ -41,3 +41,7 @@
 	..()
 	if (slot == ITEM_SLOT_HEAD)
 		user.faction |= "goat"
+
+/obj/item/clothing/head/assu_helmet
+	name = "EAU helmet"
+	desc = "A cheap replica of old riot helmet without visor. It has \"E.A.U.\" written on the front. Doesn't help against stun batons to the head."
