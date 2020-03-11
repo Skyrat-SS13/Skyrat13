@@ -191,7 +191,7 @@
 /obj/item/borg/upgrade/modkit/lifesteal/miner
 	name = "resonant lifesteal crystal"
 	desc = "Causes kinetic accelerator shots to heal the firer on striking a living target."
-	modifier = 3
+	modifier = 4
 	cost = 25
 
 //drakeling

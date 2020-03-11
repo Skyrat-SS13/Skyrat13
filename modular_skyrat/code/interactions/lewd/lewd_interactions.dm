@@ -4,7 +4,7 @@
 	description = "Slap their ass."
 	simple_message = "USER slaps TARGET right on the ass!"
 	simple_style = "danger"
-	interaction_sound = 'modular_skyrat/sound/interactions/slap.ogg'
+	interaction_sound = 'sound/weapons/slap.ogg'
 	needs_physical_contact = TRUE
 	require_ooc_consent = TRUE
 	max_distance = 1

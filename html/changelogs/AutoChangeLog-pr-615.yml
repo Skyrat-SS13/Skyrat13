@@ -1,0 +1,4 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - tweak: "tweaked the ssd and typing indicators"

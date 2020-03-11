@@ -110,7 +110,7 @@
 		user.visible_message("<span class='notice'>[user] pulls [src] out from under [poordude].</span>", "<span class='notice'>You pull [src] out from under [poordude].</span>")
 		var/C = new item_chair(loc)
 		user.put_in_hands(C)
-		poordude.Knockdown(20)//rip in peace
+		poordude.DefaultCombatKnockdown(20)//rip in peace
 		user.adjustStaminaLoss(5)
 		unbuckle_all_mobs(TRUE)
 		qdel(src)
@@ -153,7 +153,7 @@
 ///Material chair
 /obj/structure/chair/greyscale
 	icon_state = "chair_greyscale"
-	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR
+	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	item_chair = /obj/item/chair/greyscale
 	buildstacktype = null //Custom mats handle this
 
@@ -377,13 +377,13 @@
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
 			if(C.health < C.maxHealth*0.5)
-				C.Knockdown(20)
+				C.DefaultCombatKnockdown(20)
 		smash(user)
 
 /obj/item/chair/greyscale
 	icon_state = "chair_greyscale_toppled"
 	item_state = "chair_greyscale"
-	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR
+	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	origin_type = /obj/structure/chair/greyscale
 
 /obj/item/chair/stool

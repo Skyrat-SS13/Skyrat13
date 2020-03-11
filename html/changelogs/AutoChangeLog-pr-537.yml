@@ -1,0 +1,5 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - rscadd: "Shows newbies on admin who"
+  - rscadd: "Adds loudAsay verb"
