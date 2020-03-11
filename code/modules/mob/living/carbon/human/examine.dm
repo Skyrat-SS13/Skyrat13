@@ -391,9 +391,6 @@
 		. += "<span class='info'><b>Traits:</b> [traitstring]</span>"
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .) //This also handles flavor texts now
-	if(!invisible_man)
-		if(client)
-			. += "OOC Notes: <a href='?src=[REF(src)];ooc_notes=1'>\[View\]</a>"
 
 	. += "*---------*</span>"
 
