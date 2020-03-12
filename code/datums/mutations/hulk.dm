@@ -5,7 +5,10 @@
 	get_chance = 15
 	lowest_value = 256 * 12
 	text_gain_indication = "<span class='notice'>Your muscles hurt!</span>"
+<<<<<<< HEAD
 	species_allowed = list("fly") //no skeleton/lizard hulk
+=======
+>>>>>>> db188f86817... Merge pull request #11307 from kappa-sama/patch-17
 	health_req = 25
 
 /datum/mutation/human/hulk/on_acquiring(mob/living/carbon/human/owner)
