@@ -1,0 +1,35 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"c" = (/obj/structure/flora/rock/icy,/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
+"d" = (/obj/item/flashlight/lantern{on = 1},/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
+"e" = (/obj/item/kitchen/knife/combat/survival,/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
+"f" = (/obj/item/clothing/suit/hooded/explorer,/obj/effect/decal/cleanable/blood/gibs/up,/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
+"g" = (/obj/item/clothing/shoes/winterboots/ice_boots,/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
+"h" = (/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaahhhhhhhhhhhhhhhhaaaaaa
+aaaaahhhhhhhhhhhhchhhhhhaaaaa
+aaaahhhchhhhhhhhhhhhhhhhhaaaa
+aaahhhhhhhhhchhhhhhhhhchhhaaa
+aahhhhhhhhhhhhhhhhhhhhhhhhhaa
+aahhhhhhhhhhhhhhhhhhhhhdhhhaa
+ahhhhhhhhhhhhhhhhchhhhhefghha
+ahhhchhhchhhhhhhhhhhhhhhhhhha
+ahhhhhhhhhhhhhhhhhhhhhhhhchha
+ahhhhhhhhhhchhhchhhhhchhhhhha
+ahhhhhhhhhhhhhhhhhhhhhhhhhhha
+ahchhhhhhhhhhhhhhhhhhhhhhhhha
+ahhhhhchhhhhhhhhhhhhhhhhhhhha
+ahhhhhhhhhhhhhhhhhhchhhhhchha
+ahhhhhhhhhhhhhchhhhhhhhhhhhha
+ahhhchhhhhhhhhhhhhhhhhhhhhhha
+ahhhhhhhchhhhhhhhhhhhhhhhhhha
+aahhhhhhhhhhhhhhhhhhhhchhhhaa
+aaahhhchhhhhhhhhhhhhhhhhhhaaa
+aaaahhhhhhhhchhhhchhhhhhhaaaa
+aaaaahhhhhhhhhhhhhhhhhhhaaaaa
+aaaaaahhchhhhhhhhhhhhhhaaaaaa
+aaaaaaaahhhhhhhhhhhhhhaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

@@ -1,0 +1,377 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/asteroid/snow/atmosphere,
+/area/ruin/unpowered/icemoon)
+"b" = (
+/turf/closed/indestructible/wood,
+/area/ruin/unpowered/icemoon)
+"c" = (
+/obj/structure/window/spawner,
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/icemoon)
+"d" = (
+/obj/structure/fluff/snowlegion,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/unpowered/icemoon)
+"e" = (
+/obj/structure/bookcase/random/fiction,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"f" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"g" = (
+/obj/structure/bookcase/random/reference,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"h" = (
+/obj/structure/bookcase/random/religion,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"i" = (
+/obj/structure/bookcase/random/adult,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"j" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"k" = (
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"l" = (
+/obj/structure/bed,
+/obj/item/bedsheet/cosmos,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"m" = (
+/obj/effect/spawner/structure/window/ice,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"n" = (
+/obj/structure/curtain,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"o" = (
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/icemoon)
+"p" = (
+/obj/structure/chair/wood,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/icemoon)
+"q" = (
+/obj/structure/statue/snow/snowman,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/icemoon)
+"r" = (
+/obj/structure/table/wood/fancy/blackred,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/icemoon)
+"s" = (
+/obj/structure/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/icemoon)
+"t" = (
+/obj/structure/statue/snow/snowman,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"u" = (
+/obj/structure/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/icemoon)
+"v" = (
+/obj/structure/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ruin/unpowered/icemoon)
+"w" = (
+/obj/structure/fermenting_barrel,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"x" = (
+/obj/machinery/jukebox,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"y" = (
+/obj/structure/sign/warning,
+/turf/closed/indestructible/wood,
+/area/ruin/unpowered/icemoon)
+"z" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/barricade/wooden/snowed,
+/turf/open/floor/wood/cold,
+/area/ruin/unpowered/icemoon)
+"A" = (
+/obj/machinery/grill,
+/turf/open/floor/plating/asteroid/snow/atmosphere,
+/area/ruin/unpowered/icemoon)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+b
+m
+b
+b
+b
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+b
+c
+j
+b
+k
+k
+k
+k
+w
+b
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+b
+d
+k
+n
+k
+k
+k
+k
+k
+m
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+b
+b
+b
+b
+k
+k
+t
+k
+k
+m
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+b
+e
+k
+k
+o
+o
+u
+o
+k
+b
+A
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+b
+f
+k
+k
+p
+r
+r
+o
+k
+y
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+b
+g
+k
+k
+o
+r
+r
+v
+k
+z
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+b
+h
+k
+k
+q
+s
+o
+o
+k
+y
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+b
+i
+l
+k
+k
+k
+k
+k
+x
+b
+a
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+b
+b
+m
+b
+b
+b
+m
+b
+b
+b
+a
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

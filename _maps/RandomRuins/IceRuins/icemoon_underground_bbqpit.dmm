@@ -1,0 +1,56 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/random/high_chance/snow,
+/area/ruin/powered/icemoon)
+"b" = (
+/obj/machinery/grill{
+	name = "BBQ Pit Boys Special Edition Grill"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/powered/icemoon)
+"c" = (
+/mob/living/simple_animal/hostile/netherworld/blankbody{
+	desc = "OH JESUS HHMMH";
+	name = "BBQ pit boy"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/powered/icemoon)
+"d" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/powered/icemoon)
+
+(1,1,1) = {"
+a
+a
+a
+a
+d
+"}
+(2,1,1) = {"
+a
+a
+c
+d
+d
+"}
+(3,1,1) = {"
+a
+b
+d
+d
+d
+"}
+(4,1,1) = {"
+a
+a
+c
+d
+d
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+d
+"}

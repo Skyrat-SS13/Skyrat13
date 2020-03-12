@@ -1,0 +1,168 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+"b" = (
+/turf/closed/wall/mineral/snow,
+/area/ruin/unpowered/icemoon)
+"c" = (
+/obj/structure/bed/dogbed,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+"d" = (
+/obj/item/clothing/suit/armor/vest/russian,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+"e" = (
+/obj/effect/mob_spawn/human/corpse/russian,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+"f" = (
+/mob/living/simple_animal/hostile/bear/russian,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+"g" = (
+/obj/item/clothing/suit/armor/navyblue/russian,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+"h" = (
+/obj/item/kitchen/knife/combat/survival,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+"i" = (
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+"j" = (
+/obj/structure/bonfire,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+"k" = (
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+"l" = (
+/mob/living/simple_animal/hostile/russian,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+b
+b
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+b
+b
+b
+b
+b
+a
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+a
+a
+"}
+(4,1,1) = {"
+b
+b
+b
+d
+g
+a
+l
+a
+a
+a
+"}
+(5,1,1) = {"
+b
+b
+c
+e
+h
+a
+a
+a
+a
+a
+"}
+(6,1,1) = {"
+b
+b
+a
+f
+i
+j
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+b
+b
+b
+a
+a
+k
+a
+b
+a
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+b
+a
+b
+b
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+b
+b
+b
+b
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

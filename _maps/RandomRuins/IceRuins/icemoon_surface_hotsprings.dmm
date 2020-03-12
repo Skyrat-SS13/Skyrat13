@@ -1,0 +1,160 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/random/snow/no_caves,
+/area/ruin/unpowered/icemoon)
+"b" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+"c" = (
+/turf/open/water,
+/area/ruin/unpowered/icemoon)
+"d" = (
+/obj/item/paper/crumpled{
+	info = "When one falls into this hot spring, they shall forever be turned into..."
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/unpowered/icemoon)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+b
+b
+b
+b
+b
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+b
+b
+a
+a
+"}
+(4,1,1) = {"
+a
+b
+b
+b
+c
+c
+c
+b
+b
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+b
+c
+c
+c
+c
+c
+b
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+b
+c
+c
+c
+c
+c
+b
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+b
+c
+c
+c
+c
+c
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+c
+c
+c
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+a
+b
+b
+b
+d
+b
+b
+b
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+b
+b
+b
+b
+b
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
