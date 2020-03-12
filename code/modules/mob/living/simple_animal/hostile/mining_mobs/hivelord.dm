@@ -81,17 +81,15 @@
 	throw_message = "falls right through the strange body of the"
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	pass_flags = PASSTABLE
+	pass_flags = PASSTABLE | PASSMOB //they shouldn't get stuck behind hivelords.
+	density = FALSE
 	del_on_death = 1
 	var/swarming = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/Initialize()
 	. = ..()
-<<<<<<< HEAD
-=======
 	if(swarming)
 		AddComponent(/datum/component/swarming) //oh god not the bees
->>>>>>> 3b102c4ef72... Merge pull request #11432 from Citadel-Station-13/kevinz000-patch-2
 	addtimer(CALLBACK(src, .proc/death), 100)
 
 //Legion
@@ -141,6 +139,11 @@
 	crusher_drop_mod = 20
 	dwarf_mob = TRUE
 
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/beegion
+	name = "beegion"
+	desc = "You can still see what was once a human under the shifting mass of - oh my God, those are bees."
+	brood_type = /mob/living/simple_animal/hostile/poison/bees/toxin
+
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/death(gibbed)
 	visible_message("<span class='warning'>The skulls on [src] wail in anger as they flee from their dying host!</span>")
 	var/turf/T = get_turf(src)
@@ -180,7 +183,6 @@
 	speak_emote = list("echoes")
 	attack_sound = 'sound/weapons/pierce.ogg'
 	throw_message = "is shrugged off by"
-	pass_flags = PASSTABLE
 	del_on_death = TRUE
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
