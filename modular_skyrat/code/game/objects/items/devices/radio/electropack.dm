@@ -53,7 +53,7 @@
 
 /mob/living/carbon/human/proc/update_admin_collar()
 	if(client)
-		if(jobban_isbanned(src, COLLARBAN)
+		if(jobban_isbanned(src, COLLARBAN))
 			if(wear_neck && istype(wear_neck, COLLARITEM))
 				qdel(wear_neck) //i dont get the logic of this but ok
 				return
@@ -61,7 +61,7 @@
 				qdel(wear_neck)
 			var/obj/item/electropack/shockcollar/pacify/admin/collar = new()
 			equip_to_slot(collar, SLOT_NECK)
-		if(jobban_isbanned(src, LESSERCOLLARBAN)
+		if(jobban_isbanned(src, LESSERCOLLARBAN))
 			if(wear_neck && istype(wear_neck, LESSERCOLLARITEM))
 				qdel(wear_neck)
 				return

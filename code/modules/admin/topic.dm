@@ -689,7 +689,7 @@
 					severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
 					if(!severity)
 						return
-				if(type = COLLARBAN)
+				if(type == COLLARBAN)
 					log_admin_private("[key_name(usr)] temporarily collar banned [key_name(M)].")
 					message_admins("<span class='adminnotice'>[key_name_admin(usr)] temporarily collar banned [key_name_admin(M)].</span>")
 					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has temporarily collar banned you.</BIG></span>")
@@ -728,7 +728,7 @@
 				if(ishuman(M))
 					var/mob/living/carbon/human/C = M
 					C.update_admin_collar()
-				if(type = COLLARBAN)
+				if(type == COLLARBAN)
 					ban_unban_log_save("[key_name(usr)] collar banned [key_name(M)]. reason: [reason]")
 					log_admin_private("[key_name(usr)] collar banned [key_name(M)]. \nReason: [reason]")
 					create_message("note", M.key, null, "Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
