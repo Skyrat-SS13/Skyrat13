@@ -88,12 +88,6 @@
 		if(!istype(C.wear_neck, COLLARITEM) && jobban_isbanned(M, COLLARBAN))
 			collarline = "FIX COLLAR"
 	body += "<A href='?_src_=holder;[HrefToken()];collarban=[REF(M)]'>[collarline]</A> | "
-	var/lessercollarline = "[jobban_isbanned(M, LESSERCOLLARBAN)?"Remove Lesser Collar Ban":"Lesser Collar Ban"]"
-	if(ishuman(M))
-		var/mob/living/carbon/human/C = M
-		if(!istype(C.wear_neck, COLLARITEM) && jobban_isbanned(M, COLLARBAN))
-			collarline = "FIX LESSER COLLAR"
-	body += "<A href='?_src_=holder;[HrefToken()];lessercollarban=[REF(M)]'>[lessercollarline]</A> | "
 	// SKYRAT ADDITION -- END
 	var/rm = REF(M)
 	if(jobban_isbanned(M, "OOC"))
