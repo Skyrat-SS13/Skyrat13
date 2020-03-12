@@ -80,16 +80,16 @@
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
 /area/ruin/unpowered/icemoon
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	//dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/ruin/powered/icemoon
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	//dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/ruin/unpowered/icemoon/underground
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	//dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/ruin/powered/icemoon/underground
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	//dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /turf/open/floor/mineral/bananium/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS

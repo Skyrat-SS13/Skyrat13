@@ -63,6 +63,7 @@
 
 // above and below ground together
 
+/*
 /datum/map_template/ruin/icemoon/mining_site
 	name = "Mining Site"
 	id = "miningsite"
@@ -70,6 +71,7 @@
 	suffix = "icemoon_surface_mining_site.dmm"
 	always_place = TRUE
 	cost = 5
+*/
 
 /datum/map_template/ruin/icemoon/underground/mining_site_below
 	name = "Mining Site Underground"

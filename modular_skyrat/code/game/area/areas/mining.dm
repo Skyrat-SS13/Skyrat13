@@ -32,7 +32,7 @@
 	flags_1 = NONE
 	flora_allowed = TRUE
 	blob_allowed = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	//dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/icemoon/surface
 	name = "Icemoon"
@@ -55,7 +55,7 @@
 	power_equip = FALSE
 	power_light = FALSE
 	ambientsounds = MINING
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	//dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/icemoon/underground/unexplored // mobs and megafauna and ruins spawn here
 	name = "Snow Planet Caves"
