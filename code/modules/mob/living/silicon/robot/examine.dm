@@ -43,7 +43,7 @@
 			if(shell)
 				. += "It appears to be an [deployed ? "active" : "empty"] AI shell."
 			else if(!client)
-				. += "It appears to be in stand-by mode." //afk
+				. += "<span class='warning'>It appears to be in stand-by mode and has been completely unresponsive to anything for [round(((world.time - lastclienttime) / (1 MINUTES)),1)] minutes. It may boot up soon.</span>" //SKYRAT CHANGE - ssd indicator
 		if(UNCONSCIOUS)
 			. += "<span class='warning'>It doesn't seem to be responding.</span>"
 		if(DEAD)

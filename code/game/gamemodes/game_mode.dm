@@ -86,7 +86,7 @@
 		report = !CONFIG_GET(flag/no_intercept_report)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
 
-	if(prob(20)) //CIT CHANGE - adds a 20% chance for the security level to be the opposite of what it normally is
+	if(prob(35)) //SKYRAT CHANGE - 35% instead of 20% for the alert to be wrong
 		flipseclevel = TRUE
 	if(SSdbcore.Connect())
 		var/sql

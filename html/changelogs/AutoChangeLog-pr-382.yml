@@ -1,0 +1,5 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - rscadd: "Adds  job exp requirements for mime and clown"
+  - tweak: "Tweaked the already existing job exp requirements"
