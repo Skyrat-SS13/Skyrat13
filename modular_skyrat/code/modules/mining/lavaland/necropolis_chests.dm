@@ -50,6 +50,7 @@
 	. = ..()
 	if(!alternate_magazine)
 		alternate_magazine = new /obj/item/ammo_box/magazine/internal/shot/dual/heck/hook(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/item/gun/ballistic/revolver/doublebarrel/super/attack_self(mob/living/user)
 	if(toggled)
@@ -111,7 +112,7 @@
 
 /obj/item/gun/ballistic/revolver/doublebarrel/super/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/toggle_hook))
-		toggle_hook()
+		toggle_hook(user)
 	else
 		..()
 
