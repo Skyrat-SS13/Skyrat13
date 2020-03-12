@@ -32,6 +32,7 @@
 	flags_1 = NONE
 	flora_allowed = TRUE
 	blob_allowed = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/icemoon/surface
 	name = "Icemoon"
@@ -54,30 +55,31 @@
 	power_equip = FALSE
 	power_light = FALSE
 	ambientsounds = MINING
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/icemoon/underground/unexplored // mobs and megafauna and ruins spawn here
-	name = "Icemoon Caves"
+	name = "Snow Planet Caves"
 	icon_state = "unexplored"
 	tunnel_allowed = TRUE
-	mob_spawn_allowed = TRUE
-	megafauna_spawn_allowed = TRUE
+	mob_spawn_allowed = FALSE
+	megafauna_spawn_allowed = FALSE
 
 /area/icemoon/underground/explored
-	name = "Icemoon Underground"
+	name = "Snow Planet Underground"
 	flora_allowed = FALSE
 
 /area/icemoon/surface/outdoors
-	name = "Icemoon Wastes"
+	name = "Snow Planet Wastes"
 	outdoors = TRUE
 
 /area/icemoon/surface/outdoors/unexplored //monsters and ruins spawn here
 	icon_state = "unexplored"
-	tunnel_allowed = TRUE
-	mob_spawn_allowed = TRUE
+	tunnel_allowed = FALSE
+	mob_spawn_allowed = FALSE
 
 /area/icemoon/surface/outdoors/unexplored/danger
 	icon_state = "danger"
 
 /area/icemoon/surface/outdoors/explored
-	name = "Icemoon Labor Camp"
+	name = "Snow Planet Explored"
 	flora_allowed = FALSE

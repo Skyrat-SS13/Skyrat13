@@ -1,0 +1,12 @@
+{
+    "map_name": "Snow Box Station",
+    "map_path": "map_files/SnowBoxStation",
+    "map_file": "SnowBoxStation.dmm",
+    "shuttles": {
+	    "cargo": "cargo_box",
+	    "ferry": "ferry_fancy",
+	    "whiteship": "whiteship_box",
+	    "emergency": "emergency_box"
+    },
+    "traits": [{"Linkage": null ,"Ice Ruins": true, "Down": 1, "Gravity": true, "Snow": true, "Base Turf":"/turf/open/floor/plating/asteroid/snow", "Station": true}, {"Ice Ruins Underground":  true, "Up": -1, "Gravity": true, "Snow Storm": false, "Snow": true, "Base Turf":"/turf/open/floor/plating/asteroid/snow", "Mining":false, "Linkage": null}]
+}

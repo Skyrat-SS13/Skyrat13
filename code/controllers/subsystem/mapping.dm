@@ -72,13 +72,14 @@ SUBSYSTEM_DEF(mapping)
 	preloadTemplates()
 #ifndef LOWMEMORYMODE
 	// Create space ruin levels
-	while (space_levels_so_far < config.space_ruin_levels)
-		++space_levels_so_far
-		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
+	if(config.map_name != "Snow Box Station")
+		while (space_levels_so_far < config.space_ruin_levels)
+			++space_levels_so_far
+			add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
 	// and one level with no ruins
 	for (var/i in 1 to config.space_empty_levels)
 		++space_levels_so_far
-		empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAIT_LINKAGE = CROSSLINKED))
+		empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAIT_LINKAGE = SELFLOOPING))
 
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
@@ -91,17 +92,16 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), /area/lavaland/surface/outdoors/unexplored, lava_ruins_templates)
 		for (var/lava_z in lava_ruins)
 			spawn_rivers(lava_z)
-	// SKYRAT CHANGES
-	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
-	if (ice_ruins.len) // needs to be whitelisted for underground too so place_below ruins work
-		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/surface/outdoors/unexplored, ice_ruins_templates)
-		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/underground/unexplored, ice_ruins_templates)
-		for (var/ice_z in ice_ruins)
-			spawn_rivers(ice_z, 4, /turf/open/openspace/icemoon, /area/icemoon/surface/outdoors/unexplored)
-	var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
-	if (ice_ruins_underground.len)
-		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), /area/icemoon/underground/unexplored, ice_ruins_underground_templates)
-	//
+
+	if(config.map_name == "Snow Box Station")
+		var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
+		if (ice_ruins.len) // needs to be whitelisted for underground too so place_below ruins work
+			seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/surface/outdoors/unexplored, ice_ruins_templates, "Snow Ruins")
+			for (var/ice_z in ice_ruins)
+				spawn_rivers(ice_z, 4, /turf/open/lava/plasma/ice_moon, /area/icemoon/surface/outdoors/unexplored) //no more buggy open spaces jesus
+		var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
+		if (ice_ruins_underground.len)
+			seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), /area/icemoon/underground/unexplored, ice_ruins_underground_templates, "Snow Underground Ruins")
 
 	// Generate deep space ruins
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
@@ -109,9 +109,11 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(space_ruins, CONFIG_GET(number/space_budget), /area/space, space_ruins_templates)
 
 	// Generate station space ruins
-	var/list/station_ruins = levels_by_trait(ZTRAIT_STATION)
-	if (station_ruins.len)
-		seedRuins(station_ruins, CONFIG_GET(number/station_space_budget), /area/space/station_ruins, station_ruins_templates)
+	if(config.map_name != "Snow Box Station")
+		var/list/station_ruins = levels_by_trait(ZTRAIT_STATION)
+		if (station_ruins.len)
+			seedRuins(station_ruins, CONFIG_GET(number/station_space_budget), /area/space/station_ruins, station_ruins_templates)
+
 	SSmapping.seedStation()
 	loading_ruins = FALSE
 #endif
@@ -183,6 +185,8 @@ SUBSYSTEM_DEF(mapping)
 	ruins_templates = SSmapping.ruins_templates
 	space_ruins_templates = SSmapping.space_ruins_templates
 	lava_ruins_templates = SSmapping.lava_ruins_templates
+	ice_ruins_templates = SSmapping.ice_ruins_templates
+	ice_ruins_underground_templates = SSmapping.ice_ruins_underground_templates
 	station_ruins_templates = SSmapping.station_ruins_templates
 	shuttle_templates = SSmapping.shuttle_templates
 	shelter_templates = SSmapping.shelter_templates
@@ -411,6 +415,12 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			station_room_templates[R.name] = R
 		else if(istype(R, /datum/map_template/ruin/spacenearstation))
 			station_ruins_templates[R.name] = R
+		//SKYRAT CHANGES
+		else if(istype(R, /datum/map_template/ruin/icemoon/underground))
+			ice_ruins_underground_templates[R.name] = R
+		else if(istype(R, /datum/map_template/ruin/icemoon))
+			ice_ruins_templates[R.name] = R
+		//END
 
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
 	var/list/unbuyable = generateMapList("[global.config.directory]/unbuyableshuttles.txt")

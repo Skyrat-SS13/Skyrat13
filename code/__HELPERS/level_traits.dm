@@ -7,6 +7,10 @@
 
 #define is_mining_level(z) SSmapping.level_trait(z, ZTRAIT_MINING)
 
+//SKYRAT CHANGES
+#define is_snowy_level(z) SSmapping.level_trait(z, ZTRAIT_SNOW)
+//
+
 #define is_reebe(z) SSmapping.level_trait(z, ZTRAIT_REEBE)
 
 #define is_reserved_level(z) SSmapping.level_trait(z, ZTRAIT_RESERVED)

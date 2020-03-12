@@ -32,6 +32,7 @@ require only minor tweaks.
 #define ZTRAIT_CENTCOM "CentCom"
 #define ZTRAIT_STATION "Station"
 #define ZTRAIT_MINING "Mining"
+#define ZTRAIT_SNOW "Snow"
 #define ZTRAIT_REEBE "Reebe"
 #define ZTRAIT_RESERVED "Transit/Reserved"
 #define ZTRAIT_AWAY "Away Mission"
@@ -96,6 +97,19 @@ require only minor tweaks.
     ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
     ZTRAIT_UP = 1, \
     ZTRAIT_BASETURF = /turf/open/lava/plasma/ice_moon)
+#define ZTRAITS_SNOWY list(\
+	ZTRAIT_GRAVITY = TRUE,\
+	ZTRAIT_SNOW = TRUE,\
+	ZTRAIT_ICE_RUINS = TRUE, \
+	ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
+	ZTRAIT_BASETURF = /turf/closed/mineral/random/snow)
+#define ZTRAITS_SNOWY_UNDERGROUND list(\
+	ZTRAIT_GRAVITY = TRUE, \
+	ZTRAIT_ICE_RUINS_UNDERGROUND = TRUE, \
+	ZTRAIT_UP = -1, \
+	ZTRAIT_SNOW = TRUE,\
+	ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
+	ZTRAIT_BASETURF = /turf/closed/mineral/random/snow/underground)	
 //
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
@@ -127,5 +141,7 @@ require only minor tweaks.
 #define PLACE_LAVA_RUIN "lavaland" //On lavaland ruin z levels(s)
 #define PLACE_BELOW "below" //On z levl below - centered on same tile
 #define PLACE_ISOLATED "isolated" //On isolated ruin z level
+#define PLACE_SNOWY_RUIN "snowy" //On snowy ruin z levels(s)
 //Map type stuff.
 #define MAP_TYPE_STATION "station"
+#define MAP_TYPE_COLONY "colony"
