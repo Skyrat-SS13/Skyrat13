@@ -631,7 +631,8 @@
 			if("No")
 				return
 
-	else if(href_list["collarban"])
+	// SKYRAT ADDITION -- BEGIN
+	else if(href_list["collarban"]) 
 		var/mob/M = locate(href_list["collarban"])
 		if(!ismob(M))
 			to_chat(usr, "This can only be used on instances of type /mob")
@@ -714,7 +715,8 @@
 				message_admins("<span class='adminnotice'>[key_name_admin(usr)] collar banned [key_name_admin(M)].</span>")
 				to_chat(M, "<span class='boldannounce'><BIG>You have been collar banned by [usr.client.key].</BIG></span>")
 				to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
-
+	// SKYRAT ADDITION -- END
+	
 	else if(href_list["jobban2"])
 		if(!check_rights(R_BAN))
 			return
