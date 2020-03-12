@@ -3378,7 +3378,6 @@
 #include "modular_skyrat\code\modules\clothing\spacesuits\hardsuit.dm"
 #include "modular_skyrat\code\modules\clothing\suits\armor.dm"
 #include "modular_skyrat\code\modules\clothing\suits\cloaks.dm"
-#include "modular_skyrat\code\modules\clothing\suits\labcoat.dm"
 #include "modular_skyrat\code\modules\clothing\suits\miscellaneous.dm"
 #include "modular_skyrat\code\modules\clothing\under\jobs\security.dm"
 #include "modular_skyrat\code\modules\events\alien_infestation.dm"
