@@ -1,8 +1,20 @@
+/obj/item/electropack/shockcollar
+	var/random = TRUE
+	var/freq_in_name = TRUE
+
+/obj/item/electropack/shockcollar/Initialize()
+	if (random)
+		code = rand(1,100)
+		frequency = rand(MIN_FREE_FREQ, MAX_FREE_FREQ)
+		if(ISMULTIPLE(frequency, 2))//signaller frequencies are always uneven!
+			frequency++
+	if (freq_in_name)
+		name = initial(name) + " - freq: [frequency/10] code: [code]"
+	. = ..()
+
 /obj/item/electropack/shockcollar/pacify/
 	name = "pacifying collar"
 	desc = "A reinforced metal collar that latches onto the wearer and halts any harmful thoughts."
-	frequency = 1337
-	code = 30
 
 /obj/item/electropack/shockcollar/pacify/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -16,6 +28,8 @@
 /obj/item/electropack/shockcollar/pacify/admin/
 	name = "cent-comm pacifying collar"
 	desc = "A Central Command branded shock collar that cannot be taken off by most means."
+	random = TRUE
+	freq_in_name = TRUE
 
 /obj/item/electropack/shockcollar/pacify/admin/dropped(mob/living/carbon/human/user)
 	. = ..()
