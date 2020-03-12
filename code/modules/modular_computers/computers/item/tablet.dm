@@ -24,7 +24,11 @@
 /obj/item/modular_computer/tablet/syndicate_contract_uplink
 	name = "contractor tablet"
 	icon = 'icons/obj/contractor_tablet.dmi'
+<<<<<<< HEAD
 	icon_state = "tablet" // Skyrat edit -- icon state "tablet-red" doesn't exist in icons/obj/contractor_tablet.dmi
+=======
+	icon_state = "tablet"
+>>>>>>> bbd69c407c6... Merge pull request #11431 from Citadel-Station-13/Ghommie-patch-1
 	icon_state_unpowered = "tablet"
 	icon_state_powered = "tablet"
 	icon_state_menu = "assign"
