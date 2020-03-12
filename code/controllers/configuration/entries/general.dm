@@ -82,6 +82,18 @@
 	config_entry_value = 600
 	min_val = 0
 
+/datum/config_entry/number/vote_autotransfer_initial //length of time before the first autotransfer vote is called (deciseconds, default 2 hours)
+	config_entry_value = 72000
+	min_val = 0
+
+/datum/config_entry/number/vote_autotransfer_interval //length of time to wait before subsequent autotransfer votes (deciseconds, default 30 minutes)
+	config_entry_value = 18000
+	min_val = 0
+
+/datum/config_entry/number/vote_autotransfer_maximum // maximum extensions until the round autoends
+	config_entry_value = 4
+	min_val = 0
+
 /datum/config_entry/flag/default_no_vote	// vote does not default to nochange/norestart
 
 /datum/config_entry/flag/no_dead_vote	// dead people can't vote
@@ -447,3 +459,6 @@
 /datum/config_entry/number/max_bunker_days
 	config_entry_value = 7
 	min_val = 1
+
+/datum/config_entry/flag/minimaps_enabled
+	config_entry_value = TRUE

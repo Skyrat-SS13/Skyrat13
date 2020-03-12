@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "syndicate elite hardsuit helmet doesnt hide masks anymore"

@@ -14,7 +14,7 @@
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_propability_multiplier()
 
-		if(istype(target, /mob/living/carbon/human) && target.stat != DEAD && target.mob_biotypes & MOB_ORGANIC && !target.IsUnconscious() && !target.InCritical())
+		if(ishuman(target) && target.stat == CONSCIOUS && target.mob_biotypes & MOB_ORGANIC && !target.IsUnconscious() && !target.InCritical() && !target.IsSleeping() && !target.reagents.has_reagent(/datum/reagent/medicine/morphine, 1) && !target.reagents.has_reagent(/datum/reagent/medicine/mine_salve, 1))
 			prob_chance *= 0.4
 			to_chat(user, "<span class='notice'>You feel like anesthetics could make this much easier.</span>")
 			target.visible_message("<span class='warning'>[target] [pick("writhes in pain", "squirms and kicks in agony", "cries in pain as [target.p_their()] body violently jerks")], impeding the surgery!</span>", \

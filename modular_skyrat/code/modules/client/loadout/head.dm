@@ -22,3 +22,6 @@
 	name = "Natural Wig"
 	category = SLOT_HEAD
 	path = /obj/item/clothing/head/wig/natural
+
+/datum/gear/neethelm
+	name = "E.A.U. helmet"
