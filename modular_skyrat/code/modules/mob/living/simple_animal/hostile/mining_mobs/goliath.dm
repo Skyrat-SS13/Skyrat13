@@ -1,5 +1,6 @@
 /mob/living/simple_animal/hostile/asteroid/goliath/zombie
 	name = "zombie"
+	gender = MALE
 	desc = "Why is he so blocky?"
 	icon = 'modular_skyrat/icons/mob/minecraft/minecraft.dmi'
 	icon_state = "zombie"
