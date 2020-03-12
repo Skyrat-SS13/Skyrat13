@@ -10,10 +10,11 @@
 /obj/item/claymore/minecraft
 	name = "Diamond Sword"
 	desc = "It's good at taking revenge."
-	force = 20
+	force = 18
 	icon = 'modular_skyrat/icons/obj/minecraft_items.dmi'
 	icon_state = "sword"
 	w_class = WEIGHT_CLASS_NORMAL
+	block_chance = 35 //better than a chaplain claymore, can block boolet and fit on a backpack.
 
 /obj/item/claymore/minecraft/attack(mob/M, mob/living/carbon/human/user)
 	..()
@@ -167,8 +168,8 @@
 	icon = 'modular_skyrat/icons/turf/minecraft.dmi'
 	icon_state = "stone"
 	smooth_icon = null
-	mineralSpawnChanceList = list(/turf/closed/mineral/diamond/minecraft = 40, /turf/closed/mineral/gold/minecraft = 25, /turf/closed/mineral/iron/minecraft = 25,
-		/turf/closed/mineral/gibtonite/minecraft = 5, /turf/open/floor/plating/asteroid/airless/cave/minecraft = 5)
+	mineralSpawnChanceList = list(/turf/closed/mineral/diamond/minecraft = 35, /turf/closed/mineral/gold/minecraft = 25, /turf/closed/mineral/iron/minecraft = 25, \
+		/turf/closed/mineral/gibtonite/minecraft = 5, /turf/open/floor/plating/asteroid/airless/cave/minecraft = 5, /turf/closed/mineral/minecraft = 5)
 	baseturfs = /turf/open/floor/plating/asteroid/airless/cave/minecraft
 
 /turf/closed/mineral/minecraft
@@ -182,7 +183,7 @@
 	icon = initial(icon)
 
 /turf/closed/mineral/diamond/minecraft
-	scan_state = "rock_Diamond_minecraf"
+	scan_state = "rock_Diamond_minecraft"
 	icon = 'modular_skyrat/icons/turf/minecraft.dmi'
 	icon_state = "stone"
 
@@ -229,6 +230,16 @@
 	mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/zombie = 50, /obj/structure/spawner/lavaland/minecraft/zombie = 3, \
 		/mob/living/simple_animal/hostile/asteroid/basilisk/ghast = 40, /obj/structure/spawner/lavaland/minecraft/ghast = 2, \
 		/mob/living/simple_animal/hostile/asteroid/hivelord/creeper = 10, /obj/structure/spawner/lavaland/minecraft/creeper = 3)
+	turf_type = /turf/open/floor/plating/asteroid/airless/minecraft
 
 /turf/open/floor/plating/asteroid/airless/cave/minecraft/getDug()
+	src.TerraformTurf(/turf/open/lava, /turf/open/lava, flags = CHANGETURF_INHERIT_AIR)
+
+/turf/open/floor/plating/asteroid/airless/minecraft
+	name = "cobblestone floor"
+	desc = "Don't dig down."
+	icon = 'modular_skyrat/icons/turf/minecraft.dmi'
+	icon_state = "cobblestone"
+
+/turf/open/floor/plating/asteroid/airless/minecraft/getDug()
 	src.TerraformTurf(/turf/open/lava, /turf/open/lava, flags = CHANGETURF_INHERIT_AIR)
