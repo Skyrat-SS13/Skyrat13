@@ -60,7 +60,7 @@
 /obj/item/gun/ballistic/revolver/doublebarrel/super/process()
 	if(toggled)
 		charge_tick++
-		if(charge_tick < recharge_rate))
+		if(charge_tick < recharge_rate)
 			return 0
 		charge_tick = 0
 		chambered.newshot()
