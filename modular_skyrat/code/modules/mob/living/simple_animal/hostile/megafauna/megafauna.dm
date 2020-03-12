@@ -35,7 +35,7 @@
 			var/mob/living/M = A
 			if(faction_check_mob(M) && attack_same || !faction_check_mob(M))
 				enemies |= M
-				if(song && (!songend || world.time > songend))
+				if(song && !songend)
 					M.stop_sound_channel(CHANNEL_AMBIENCE)
 					songend = songlength + world.time
 					M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = song) // so silence ambience will mute moosic for people who don't want that
@@ -71,7 +71,7 @@
 			for(var/mob/living/M in view(src, vision_range))
 				M.stop_sound_channel(CHANNEL_AMBIENCE)
 				songend = songlength + world.time
-				M.playsound_local(null, null, 30, channel = CHANNEL_JUKEBOX, S = song)
+				M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = song)
 
 /mob/living/simple_animal/hostile/megafauna/death()
 	..()

@@ -42,7 +42,7 @@
 
 //shambling miner
 /obj/item/crusher_trophy/blaster_tubes/mask
-	name = "eye of a shambling miner"
+	name = "mask of a shambling miner"
 	desc = "It really doesn't seem like it could be worn. Suitable as a crusher trophy."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "miner_mask"
@@ -60,7 +60,7 @@
 		marker.nodamage = FALSE
 		deadly_shot = FALSE
 
-/obj/item/crusher_trophy/blaster_tubes/eye/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
+/obj/item/crusher_trophy/blaster_tubes/mask/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
 	new /obj/effect/temp_visual/kinetic_blast(target)
 	playsound(target.loc, 'sound/weapons/kenetic_accel.ogg', 60, 0)
 
