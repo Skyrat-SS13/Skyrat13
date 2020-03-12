@@ -3,9 +3,36 @@
 	desc = "A modded premium kinetic accelerator with an increased mod capacity as well as lesser cooldown."
 	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
 	icon_state = "bdpka"
+	item_state = "kineticgun"
 	overheat_time = 13
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/bdminer)
 	max_mod_capacity = 125
+	var/list/denied_types = list(/obj/item/borg/upgrade/modkit/chassis_mod, /obj/item/borg/upgrade/modkit/tracer)
+
+/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/borg/upgrade/modkit))
+		var/obj/item/borg/upgrade/modkit/MK = I
+		for(var/obj/item/borg/upgrade/modkit/M in src.denied_types)
+			if(istype(MK, M))
+				to_chat(user, "<span class='notice'>The modkit you're trying to install is not rated for this kind of PKA.</span>")
+				return FALSE
+			MK.install(src, user)
+	else
+		..()
+
+/obj/item/borg/upgrade/modkit/attackby(obj/item/A, mob/user)
+	if(istype(A, /obj/item/gun/energy/kinetic_accelerator))
+		if(istype(A, /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer))
+			var/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer/K = A
+			for(var/obj/item/borg/upgrade/modkit/M in K.denied_types)
+				if(istype(A, M))
+					to_chat(user, "<span class='notice'>The modkit you're trying to install is not rated for this kind of PKA.</span>")
+					return FALSE
+			install(A, user)
+		else
+			install(A, user)
+	else
+		..()
 
 /obj/item/gun/energy/kinetic_accelerator/nopenalty
 	desc = "A self recharging, ranged mining tool that does increased damage in low pressure. This one feels a bit heavier than usual."

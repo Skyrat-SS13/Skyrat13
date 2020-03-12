@@ -1,4 +1,5 @@
 //boss chests
+//bubblegum
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
@@ -21,6 +22,7 @@
 	new /obj/item/mayhem(src)
 	new /obj/item/blood_contract(src)
 	new /obj/item/gun/magic/staff/spellblade(src)
+	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher
 	name = "enraged bloody bubblegum chest"
@@ -29,6 +31,102 @@
 	..()
 	new /obj/item/crusher_trophy/demon_claws(src)
 
+//super shotty changes (meat hook instead of bursto)
+
+/obj/item/gun/ballistic/revolver/doublebarrel/super
+	burst_size = 1
+	actions_types = list(/datum/action/item_action/toggle_hook)
+	icon = 'modular_skyrat/icons/obj/guns/projectile.dmi'
+	icon_state = "heckgun"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
+	item_state = "heckgun"
+	var/recharge_rate = 4
+	var/charge_tick = 0
+	var/toggled = FALSE
+	var/obj/item/ammo_box/magazine/internal/shot/alternate_magazine
+
+/obj/item/gun/ballistic/revolver/doublebarrel/super/Initialize()
+	. = ..()
+	if(!alternate_magazine)
+		alternate_magazine = new /obj/item/ammo_box/magazine/internal/shot/dual/heck/hook(src)
+
+/obj/item/gun/ballistic/revolver/doublebarrel/super/attack_self(mob/living/user)
+	if(toggled)
+		return 0
+	else
+		..()
+
+/obj/item/gun/ballistic/revolver/doublebarrel/super/process()
+	if(toggled)
+		charge_tick++
+		if(charge_tick < recharge_rate))
+			return 0
+		charge_tick = 0
+		chambered.newshot()
+		return 1
+	else
+		..()
+
+/obj/item/ammo_box/magazine/internal/shot/dual/heck/hook
+	name = "hookshot internal magazine"
+	max_ammo = 1
+	ammo_type = /obj/item/ammo_casing/magic/hook/heck
+
+/obj/item/ammo_casing/magic/hook/heck
+	projectile_type = /obj/item/projectile/heckhook
+
+/obj/item/projectile/heckhook //had to create a separate, non-child projectile because otherwise there would be conflicts when calling parent procs.
+	name = "hook"
+	icon_state = "hook"
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	pass_flags = PASSTABLE
+	damage = 10
+	armour_penetration = 100
+	damage_type = BRUTE
+	hitsound = 'sound/effects/splat.ogg'
+	knockdown = 0
+	var/chain
+
+/obj/item/projectile/heckhook/fire(setAngle)
+	if(firer)
+		chain = firer.Beam(src, icon_state = "chain", time = INFINITY, maxdistance = INFINITY)
+	..()
+
+/obj/item/projectile/heckhook/on_hit(atom/target)
+	. = ..()
+	if(ismovableatom(target))
+		var/atom/movable/A = target
+		if(A.anchored)
+			return
+		A.visible_message("<span class='danger'>[A] is snagged by [firer]'s hook!</span>")
+		new /datum/forced_movement(firer, get_turf(A), 5, TRUE)
+
+/obj/item/projectile/heckhook/Destroy()
+	qdel(chain)
+	return ..()
+
+/datum/action/item_action/toggle_hook
+	name = "Toggle Hook"
+
+/obj/item/gun/ballistic/revolver/doublebarrel/super/ui_action_click(mob/user, action)
+	if(istype(action, /datum/action/item_action/toggle_hook))
+		toggle_hook()
+	else
+		..()
+
+/obj/item/gun/ballistic/revolver/doublebarrel/super/proc/toggle_hook(mob/living/user)
+	var/current_mag = magazine
+	var/alt_mag = alternate_magazine
+	magazine = alt_mag
+	alternate_magazine = current_mag
+	toggled = !toggled
+	if(toggled)
+		to_chat(user, "You will now fire a hookshot.")
+	else
+		to_chat(user, "You will now fire normal shotgun rounds.")
+
+//drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
 	new /obj/item/borg/upgrade/modkit/knockback(src)
 	var/loot = rand(1,4)
@@ -61,6 +159,7 @@
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
 
+//colossus
 /obj/structure/closet/crate/necropolis/colossus/PopulateContents()
 	var/list/choices = subtypesof(/obj/machinery/anomalous_crystal)
 	var/random_crystal = pick(choices)
