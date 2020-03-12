@@ -41,6 +41,8 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_state = "heckgun"
+	sharpness = IS_SHARP
+	force = 15
 	var/recharge_rate = 4
 	var/charge_tick = 0
 	var/toggled = FALSE
