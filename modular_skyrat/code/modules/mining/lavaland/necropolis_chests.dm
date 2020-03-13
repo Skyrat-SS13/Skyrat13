@@ -211,13 +211,13 @@
 				bodyp.dismember()
 			else
 				..()
-		if(user.zone_selected == BODY_ZONE_CHEST && H.health <= 0)
+		else if(user.zone_selected == BODY_ZONE_CHEST && H.health <= 0)
 			..()
 			H.spill_organs()
-		if(user.zone_selected == BODY_ZONE_HEAD && H.health <= 0)
+		else if(user.zone_selected == BODY_ZONE_HEAD && H.health <= 0)
 			..()
 			var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
-			bodyp.dismember()
+			bodyp.drop_limb()
 		else
 			..()
 	else
