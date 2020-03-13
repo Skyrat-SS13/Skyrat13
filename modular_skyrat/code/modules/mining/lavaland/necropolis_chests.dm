@@ -21,7 +21,7 @@
 	new /obj/item/borg/upgrade/modkit/shotgun(src)
 	new /obj/item/mayhem(src)
 	new /obj/item/blood_contract(src)
-	new /obj/item/gun/magic/staff/spellblade(src)
+	new /obj/item/twohanded/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher
@@ -129,6 +129,150 @@
 	else
 		to_chat(user, "You will now fire normal shotgun rounds.")
 
+//crucible
+/obj/item/twohanded/crucible
+	name = "Crucible Sword"
+	desc = "Made from pure argent energy, this sword can cut through flesh like butter."
+	icon = 'modular_skyrat/icons/obj/1x2.dmi'
+	icon_state = "crucible0"
+	var/icon_state_on = "crucible1"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi' //READ BELOW RETARD
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	item_state = null
+	var/item_state_on = "spellblade" //PLACEHOLDER BECAUSE HONESTLY I JUST CANT BE FUCKING BOTHERED NOW I HATE SPRITING I AM CODEMAN NOT SPROOTMAN JUST FUCK GNBSFJSNSNJHSJN FUCK YOU
+	force = 3
+	throwforce = 5
+	throw_speed = 3
+	throw_range = 5
+	w_class = WEIGHT_CLASS_NORMAL
+	var/w_class_on = WEIGHT_CLASS_HUGE
+	force_unwielded = 5
+	force_wielded = 25
+	wieldsound = 'sound/weapons/saberon.ogg'
+	unwieldsound = 'sound/weapons/saberoff.ogg'
+	hitsound = "swing_hit"
+	var/hitsound_on = 'sound/weapons/bladeslice.ogg'
+	armour_penetration = 50
+	light_color = "#ff0000"//BLOOD RED
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	block_chance = 0
+	var/block_chance_on = 50
+	max_integrity = 400
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	resistance_flags = FIRE_PROOF
+	var/brightness_on = 6
+	total_mass = 1
+	var/total_mass_on = TOTAL_MASS_MEDIEVAL_WEAPON
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+
+/obj/item/twohanded/crucible/suicide_act(mob/living/carbon/user)
+	if(wielded)
+		user.visible_message("<span class='suicide'>[user] DOOMs themselves with the [src]!</span>")
+
+		var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)//stole from chainsaw code
+		var/obj/item/organ/brain/B = user.getorganslot(ORGAN_SLOT_BRAIN)
+		B.organ_flags &= ~ORGAN_VITAL	//this cant possibly be a good idea
+		var/randdir
+		for(var/i in 1 to 24)//like a headless chicken!
+			if(user.is_holding(src))
+				randdir = pick(GLOB.alldirs)
+				user.Move(get_step(user, randdir),randdir)
+				user.emote("spin")
+				if (i == 3 && myhead)
+					myhead.drop_limb()
+				sleep(3)
+			else
+				user.visible_message("<span class='suicide'>[user] panics and starts choking to death!</span>")
+				return OXYLOSS
+
+
+	else
+		user.visible_message("<span class='suicide'>[user] begins beating [user.p_them()]self to death with \the [src]'s handle! It probably would've been cooler if [user.p_they()] turned it on first!</span>")
+	return BRUTELOSS
+
+/obj/item/twohanded/crucible/update_icon_state()
+	if(wielded)
+		icon_state = "crucible[wielded]"
+	else
+		icon_state = "crucible0"
+	clean_blood()
+
+/obj/item/twohanded/crucible/attack(mob/target, mob/living/carbon/human/user)
+	var/def_zone = user.zone_selected
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.getarmor(def_zone, BRUTE) < 35)
+			if((user.zone_selected != BODY_ZONE_CHEST) && (user.zone_selected != BODY_ZONE_HEAD))
+				..()
+				var/obj/item/bodypart/bodyp= H.getbodypart(def_zone)
+				bodyp.dismember
+			else
+				..()
+		if(user.zone_selected == BODY_ZONE_CHEST && H.health <= 0)
+			..()
+			H.spillorgans
+		if(user.zone_selected == BODY_ZONE_HEAD && H.health <= 0)
+			..()
+			var/obj/item/bodypart/bodyp= H.getbodypart(def_zone)
+			bodyp.dismember
+		else
+			..()
+	else
+		..()
+
+/obj/item/twohanded/crucible/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(wielded)
+		return ..()
+	return 0
+
+/obj/item/twohanded/crucible/wield(mob/living/carbon/M)
+	..()
+	if(wielded)
+		sharpness = IS_SHARP
+		w_class = w_class_on
+		total_mass = total_mass_on
+		hitsound = hitsound_on
+		item_state = item_state_on
+		block_chance = block_chance_on
+		START_PROCESSING(SSobj, src)
+		set_light(brightness_on)
+		AddElement(/datum/element/sword_point)
+
+/obj/item/twohanded/crucible/unwield()
+	sharpness = initial(sharpness)
+	w_class = initial(w_class)
+	total_mass = initial(total_mass)
+	..()
+	hitsound = "swing_hit"
+	block_chance = initial(blockchance)
+	item_state = initial(item_state)
+	STOP_PROCESSING(SSobj, src)
+	set_light(0)
+	RemoveElement(/datum/element/sword_point)
+
+/obj/item/twohanded/crucible/process()
+	if(wielded)
+		open_flame()
+	else
+		STOP_PROCESSING(SSobj, src)
+
+/obj/item/twohanded/crucible/IsReflect()
+	if(wielded)
+		return 1
+
+/obj/item/twohanded/crucible/ignition_effect(atom/A, mob/user)
+	if(!wielded)
+		return ""
+	var/in_mouth = ""
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		if(C.wear_mask)
+			in_mouth = ", barely missing [user.p_their()] nose"
+	. = "<span class='warning'>[user] swings [user.p_their()] [name][in_mouth]. [user.p_they(TRUE)] light[user.p_s()] [user.p_their()] [A.name] in the process.</span>"
+	playsound(loc, hitsound, get_clamped_volume(), 1, -1)
+	add_fingerprint(user)
+
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
 	new /obj/item/borg/upgrade/modkit/knockback(src)
@@ -172,7 +316,7 @@
 
 //normal chests
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,28)
+	var/loot = rand(1,31)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
