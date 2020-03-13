@@ -8,10 +8,17 @@
 /obj/item/borg/upgrade/xwelding/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		for(var/obj/item/weldingtool/largetank/cyborg/WT in R.module)
-			R.module.remove_module(WT, TRUE)
-
-		var/obj/item/weldingtool/experimental/XW = new /obj/item/weldingtool/experimental(R.module)
+		var/obj/item/weldingtool/largetank/cyborg/WT = locate() in R
+		var/obj/item/weldingtool/experimental/XW = locate() in R
+		if(!WT)
+			WT = locate() in R.module
+		if(!XW)
+			XW = locate() in R.module
+		if(XW)
+			to_chat(user, "<span class='warning'>This unit is already equipped with an experimental welding tool module.</span>")
+			return FALSE
+		XW = new(R.module)
+		qdel(WT)
 		R.module.basic_modules += XW
 		R.module.add_module(XW, FALSE, TRUE)
 
@@ -66,10 +73,18 @@
 /obj/item/borg/upgrade/bsrpd/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		for(var/obj/item/pipe_dispenser/PD in R.module)
-			R.module.remove_module(PD, TRUE)
+		var/obj/item/pipe_dispenser/PD = locate() in R
+		var/obj/item/bspipe_dispenser/BD = locate() in R
+		if(!PD)
+			PD = locate() in R.module
+		if(!BD)
+			BD = locate() in R.module //There's gotta be a smarter way to do this.
+		if(BD)
+			to_chat(user, "<span class='warning'>This unit is already equipped with a BSRPD module.</span>")
+			return FALSE
 
-		var/obj/item/bspipe_dispenser/BD = new /obj/item/bspipe_dispenser(R.module)
+		BD = new(R.module)
+		qdel(PD)
 		R.module.basic_modules += BD
 		R.module.add_module(BD, FALSE, TRUE)
 
