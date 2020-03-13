@@ -163,8 +163,10 @@
 	var/brightness_on = 6
 	total_mass = 1
 	var/total_mass_on = TOTAL_MASS_MEDIEVAL_WEAPON
+	/*
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
+	*/
 
 /obj/item/twohanded/crucible/suicide_act(mob/living/carbon/user)
 	if(wielded)
