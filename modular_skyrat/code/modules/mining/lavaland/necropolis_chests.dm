@@ -204,7 +204,7 @@
 	var/def_zone = user.zone_selected
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(H.getarmor(def_zone, BRUTE) < 35)
+		if(H.getarmor(def_zone, "melee") < 35)
 			if((user.zone_selected != BODY_ZONE_CHEST) && (user.zone_selected != BODY_ZONE_HEAD))
 				..()
 				var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
