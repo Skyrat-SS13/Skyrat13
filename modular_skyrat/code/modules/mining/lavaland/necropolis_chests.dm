@@ -211,7 +211,7 @@
 				..()
 		if(user.zone_selected == BODY_ZONE_CHEST && H.health <= 0)
 			..()
-			H.spillorgans()
+			H.spill_organs()
 		if(user.zone_selected == BODY_ZONE_HEAD && H.health <= 0)
 			..()
 			var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
