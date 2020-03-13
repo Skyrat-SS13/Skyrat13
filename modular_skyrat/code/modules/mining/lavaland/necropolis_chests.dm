@@ -205,17 +205,17 @@
 		if(H.getarmor(def_zone, BRUTE) < 35)
 			if((user.zone_selected != BODY_ZONE_CHEST) && (user.zone_selected != BODY_ZONE_HEAD))
 				..()
-				var/obj/item/bodypart/bodyp= H.getbodypart(def_zone)
-				bodyp.dismember
+				var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
+				bodyp.dismember()
 			else
 				..()
 		if(user.zone_selected == BODY_ZONE_CHEST && H.health <= 0)
 			..()
-			H.spillorgans
+			H.spillorgans()
 		if(user.zone_selected == BODY_ZONE_HEAD && H.health <= 0)
 			..()
-			var/obj/item/bodypart/bodyp= H.getbodypart(def_zone)
-			bodyp.dismember
+			var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
+			bodyp.dismember()
 		else
 			..()
 	else
@@ -245,7 +245,7 @@
 	total_mass = initial(total_mass)
 	..()
 	hitsound = "swing_hit"
-	block_chance = initial(blockchance)
+	block_chance = initial(block_chance)
 	item_state = initial(item_state)
 	STOP_PROCESSING(SSobj, src)
 	set_light(0)
