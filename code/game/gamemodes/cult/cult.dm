@@ -156,10 +156,8 @@
 
 
 /datum/game_mode/cult/generate_report()
-	return "Some stations in your sector have reported evidence of blood sacrifice and strange magic. Ties to the Wizards' Federation have been proven not to exist, and many employees \
-			have disappeared; even Central Command employees light-years away have felt strange presences and at times hysterical compulsions. Interrogations point towards this being the work of \
-			the cult of Nar'Sie. If evidence of this cult is discovered aboard your station, extreme caution and extreme vigilance must be taken going forward, and all resources should be \
-			devoted to stopping this cult. Note that holy water seems to weaken and eventually return the minds of cultists that ingest it, and mindshield implants will prevent conversion \
-			altogether."
+	return "Other sectors are reporting stories of crew going mad and spilling blood in the name of some sort of dark god. While these are merely rumors, it should be noted that the likelihood of crew \
+	beginning worship of some pagan blood god is not out of the realm of possibility. However, what is most concerning is the fact that some of these stories indicate the worshippers posses powerful \
+	magic abilities. Should these rumors turn out to be true, you may wish to consult the local chaplain or curator to confirm the reports and figure out a solution."
 
 #undef CULT_SCALING_COEFFICIENT

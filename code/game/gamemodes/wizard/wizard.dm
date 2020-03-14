@@ -38,9 +38,9 @@
 	return ..()
 
 /datum/game_mode/wizard/generate_report()
-	return "A dangerous Wizards' Federation individual by the name of [pick(GLOB.wizard_first)] [pick(GLOB.wizard_second)] has recently escaped confinement from an unlisted prison facility. This \
-		man is a dangerous mutant with the ability to alter himself and the world around him by what he and his leaders believe to be magic. If this man attempts an attack on your station, \
-		his execution is highly encouraged, as is the preservation of his body for later study."
+	return "Reports of strange bluespace fluctuations are becoming common in your sector. It may be the work of a powerful magic-user. While it may sound silly, Central would like to remind \
+	employees of the fact that people harnessing bluespace to perform 'magic' are in fact likely to be true, and to be wary of those who may come to your station with the intention of \
+	causing chaos.."
 
 
 /datum/game_mode/wizard/are_special_antags_dead()

@@ -79,6 +79,5 @@
 	..()
 
 /datum/game_mode/traitor/changeling/generate_report()
-	return "The Syndicate has started some experimental research regarding humanoid shapeshifting.  There are rumors that this technology will be field tested on a Nanotrasen station \
-			for infiltration purposes.  Be advised that support personel may also be deployed to defend these shapeshifters. Trust nobody - suspect everybody. Do not announce this to the crew, \
-			as paranoia may spread and inhibit workplace efficiency."
+	return "Recent reports of strange aliens have surfaced on other sectors. While they are rumors, it is important to excersize caution. Be on the lookout for employees behaving \
+	strangely, as the rumors indicate shape-shifting abilities and strange behaviors. On top of this, there are reports that some employees in your sector have gone rogue. Be wary."

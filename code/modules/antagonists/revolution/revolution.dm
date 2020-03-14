@@ -42,7 +42,7 @@
 	. = ..()
 
 /datum/antagonist/rev/greet()
-	to_chat(owner, "<span class='userdanger'>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!</span>")
+	to_chat(owner, "<span class='userdanger'>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them overthrow the heads to win the revolution!</span>")
 	owner.announce_objectives()
 
 /datum/antagonist/rev/create_team(datum/team/revolution/new_team)
@@ -81,7 +81,7 @@
 	new_revhead.silent = TRUE
 	old_owner.add_antag_datum(new_revhead,old_team)
 	new_revhead.silent = FALSE
-	to_chat(old_owner, "<span class='userdanger'>You have proved your devotion to revolution! You are a head revolutionary now!</span>")
+	to_chat(old_owner, "<span class='userdanger'>You have proven your devotion to revolution! You are a head revolutionary now!</span>")
 
 /datum/antagonist/rev/get_admin_commands()
 	. = ..()

@@ -34,7 +34,9 @@
 	<span class='notice'>Crew</span>: Put an end to the undead infestation before the station is overcome!"
 
 /datum/game_mode/bloodsucker/generate_report()
-	return "Reports indicate that some of your crew may have toppled statues in the past week, angering the gods and becoming cursed with undeath and a desire for blood. Watch out for crewmembers that seem to shun the light or are found pale and delirious."
+	return "Strange energy readings have indicated potential paranormal events have caused some members of your crew to have been afflicted with strange new habits. Be on the lookout for \
+	crew members who try to stay away from the light and seem to exhibit unusual behaviors or thirsts. If possible, attempt rehabilitation, as the afflicted crew could be \
+	valuable for research, and to save on hiring costs."
 
 // Seems to be run by game ONCE, and finds all potential players to be antag.
 /datum/game_mode/bloodsucker/pre_setup()

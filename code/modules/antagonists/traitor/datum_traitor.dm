@@ -8,7 +8,7 @@
 	job_rank = ROLE_TRAITOR
 	antag_moodlet = /datum/mood_event/focused
 	var/special_role = ROLE_TRAITOR
-	var/employer = "The Syndicate"
+	var/employer = "You have motives outside the interests of Nanotrasen. Your goals are influenced by whatever this motive is, regardless of who put you up to it. Be it the Syndicate, criminal leaders, blackmailers, or even yourself,"
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE
 	var/should_equip = TRUE
@@ -305,7 +305,7 @@
 	var/phrases = jointext(GLOB.syndicate_code_phrase, ", ")
 	var/responses = jointext(GLOB.syndicate_code_response, ", ")
 
-	var/dat = "<U><B>The Syndicate have provided you with the following codewords to identify fellow agents:</B></U>\n"
+	var/dat = "<U><B>Your time within the criminal underworld has provided you with the following codewords to identify others within the circles:</B></U>\n"
 	dat += "<B>Code Phrase</B>: <span class='blue'>[phrases]</span>\n"
 	dat += "<B>Code Response</B>: <span class='red'>[responses]</span>"
 	to_chat(traitor_mob, dat)
@@ -321,7 +321,7 @@
 	var/law_borg = "Accomplish your AI's objectives at all costs."
 	killer.set_zeroth_law(law, law_borg)
 	killer.set_syndie_radio()
-	to_chat(killer, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
+	to_chat(killer, "Your radio has been upgraded! Use :t to speak on an encrypted channel with agents and rogue employees!")
 	killer.add_malf_picker()
 
 /datum/antagonist/traitor/proc/equip(var/silent = FALSE)

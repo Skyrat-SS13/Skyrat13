@@ -77,10 +77,9 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 						changelings += character.mind
 
 /datum/game_mode/changeling/generate_report()
-	return "The Gorlex Marauders have announced the successful raid and destruction of Central Command containment ship #S-[rand(1111, 9999)]. This ship housed only a single prisoner - \
-			codenamed \"Thing\", and it was highly adaptive and extremely dangerous. We have reason to believe that the Thing has allied with the Syndicate, and you should note that likelihood \
-			of the Thing being sent to a station in this sector is highly likely. It may be in the guise of any crew member. Trust nobody - suspect everybody. Do not announce this to the crew, \
-			as paranoia may spread and inhibit workplace efficiency."
+	return "Rumors have surfaced from nearby sectors of strange, dangerous creatures with the ability to shapeshift. While they are only rumors, there are enough consistent stories \
+	and reports to raise concern. Be on the lookout for erratic behavior among your crew, and try to keep them unaware of the potential of shape-shifting aliens on board, \
+	as paranoia from reporting it could hamper productivity and cause panic."
 
 /proc/changeling_transform(mob/living/carbon/human/user, datum/changelingprofile/chosen_prof)
 	var/datum/dna/chosen_dna = chosen_prof.dna

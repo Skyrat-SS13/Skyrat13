@@ -256,7 +256,7 @@
 	remove_rev()
 	SSticker.mode.update_cult_icons_removed(src)
 
-/datum/mind/proc/equip_traitor(employer = "The Syndicate", silent = FALSE, datum/antagonist/uplink_owner)
+/datum/mind/proc/equip_traitor(employer = "You, criminal elements, rival factions, or", silent = FALSE, datum/antagonist/uplink_owner)
 	if(!current)
 		return
 	var/mob/living/carbon/human/traitor_mob = current
@@ -306,7 +306,7 @@
 
 	if (!uplink_loc)
 		if(!silent)
-			to_chat(traitor_mob, "Unfortunately, [employer] wasn't able to get you an Uplink.")
+			to_chat(traitor_mob, "Unfortunately, you weren't able to get you an Uplink.")
 		. = 0
 	else
 		. = uplink_loc
@@ -316,11 +316,11 @@
 		U.setup_unlock_code()
 		if(!silent)
 			if(uplink_loc == R)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [R.name]. Simply dial the frequency [format_frequency(U.unlock_code)] to unlock its hidden features.")
+				to_chat(traitor_mob, "[employer] has cunningly disguised a black market uplink as your [R.name]. Simply dial the frequency [format_frequency(U.unlock_code)] to unlock its hidden features.")
 			else if(uplink_loc == PDA)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [PDA.name]. Simply enter the code \"[U.unlock_code]\" into the ringtone select to unlock its hidden features.")
+				to_chat(traitor_mob, "[employer] has cunningly disguised a black market uplink as your [PDA.name]. Simply enter the code \"[U.unlock_code]\" into the ringtone select to unlock its hidden features.")
 			else if(uplink_loc == P)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [P.name]. Simply twist the top of the pen [U.unlock_code] from its starting position to unlock its hidden features.")
+				to_chat(traitor_mob, "[employer] has cunningly disguised a black market uplink as your [P.name]. Simply twist the top of the pen [U.unlock_code] from its starting position to unlock its hidden features.")
 
 		if(uplink_owner)
 			uplink_owner.antag_memory += U.unlock_note + "<br>"
