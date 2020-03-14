@@ -37,7 +37,7 @@
 	hitsound_on = 'sound/weapons/bladeslice.ogg'
 	armour_penetration = 0
 	var/armour_penetration_on = 25
-	icon = 'modular_skyrat/icons/obj/items_and_weapons'
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "armblade0"
 	icon_state_on = "armblade1"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -46,20 +46,24 @@
 	var/item_state_on = "energy_katana"
 	attack_verb_off = list("bopped")
 	total_mass_on = 0.6
-	var/obj/item/clothing/suit/space/hardsuit/master = null
+	var/obj/item/clothing/suit/space/hardsuit/mastersuit = null
 	actions_types = list(/datum/action/item_action/extendoblade)
 	var/extendo = 0
+
+/datum/action/item_action/extendoblade
+	name = "Extend Blade"
+	desc = "Extend the hardsuit's blade."
 
 /obj/item/melee/transforming/armblade/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/extendoblade) && master && !extendo)
 		var/mob/living/carbon/human/H = user
 		if(H)
-			put_in_hand(src, H.hand_index, TRUE)
-			ADD_TRAIT(src, TRAIT_NODROP, GLUED_ITEM_TRAIT)
-			extendo = !extendo
+			if(H.put_in_hand(src))
+				ADD_TRAIT(src, TRAIT_NODROP, GLUED_ITEM_TRAIT)
+				extendo = !extendo
 	else if (istype(action, /datum/action/item_action/extendoblade) && master && extendo)
 		REMOVE_TRAIT(src, TRAIT_NODROP, GLUED_ITEM_TRAIT)
-		transferItemToLoc(src, master)
+		user.transferItemToLoc(src, master)
 		extendo = !extendo
 /obj/item/melee/transforming/armblade/Initialize()
 	..()
@@ -77,7 +81,7 @@
 		item_state = initial(item_state)
 
 /obj/item/melee/transforming/armblade/transform_messages(mob/living/user, supress_message_text)
-	playsound(user, active ? 'sound/weapons/batonextend.ogg' : 'sound/item/sheath.ogg', 50, 1)
+	playsound(user, active ? 'sound/weapons/batonextend.ogg' : 'sound/items/sheath.ogg', 50, 1)
 	if(!supress_message_text)
 		to_chat(user, "<span class='notice'>[src] [active ? "has been extended":"has been concealed"].</span>")
 
