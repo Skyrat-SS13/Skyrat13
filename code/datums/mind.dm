@@ -318,7 +318,7 @@
 			if(uplink_loc == R)
 				to_chat(traitor_mob, "[employer] You've acquired a black market uplink cunningly disguised as your [R.name]. Simply dial the frequency [format_frequency(U.unlock_code)] to unlock its hidden features.")
 			else if(uplink_loc == PDA)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a black market uplink as your [PDA.name]. Simply enter the code \"[U.unlock_code]\" into the ringtone select to unlock its hidden features.")
+				to_chat(traitor_mob, "[employer] You've acquired a black market uplink cunningly disguised as your [PDA.name]. Simply enter the code \"[U.unlock_code]\" into the ringtone select to unlock its hidden features.")
 			else if(uplink_loc == P)
 				to_chat(traitor_mob, "[employer] has cunningly disguised a black market uplink as your [P.name]. Simply twist the top of the pen [U.unlock_code] from its starting position to unlock its hidden features.")
 
