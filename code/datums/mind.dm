@@ -320,7 +320,7 @@
 			else if(uplink_loc == PDA)
 				to_chat(traitor_mob, "[employer] You've acquired a black market uplink cunningly disguised as your [PDA.name]. Simply enter the code \"[U.unlock_code]\" into the ringtone select to unlock its hidden features.")
 			else if(uplink_loc == P)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a black market uplink as your [P.name]. Simply twist the top of the pen [U.unlock_code] from its starting position to unlock its hidden features.")
+				to_chat(traitor_mob, "[employer] You've acquired a black market uplink cunningly disguised as your [P.name]. Simply twist the top of the pen [U.unlock_code] from its starting position to unlock its hidden features.")
 
 		if(uplink_owner)
 			uplink_owner.antag_memory += U.unlock_note + "<br>"
