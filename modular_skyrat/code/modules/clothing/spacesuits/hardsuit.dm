@@ -172,6 +172,7 @@
 		if(user.transferItemToLoc(I, src))
 			var/obj/item/melee/transforming/armblade/M = I
 			M.mastersuit = src
+			src.armblade = M
 			to_chat(user, "<span class='notice'>You successfully install the armblade into [src].</span>")
 			return
 	return ..()
