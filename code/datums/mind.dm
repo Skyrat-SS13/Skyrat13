@@ -306,7 +306,7 @@
 
 	if (!uplink_loc)
 		if(!silent)
-			to_chat(traitor_mob, "Unfortunately, you weren't able to get you an Uplink.")
+			to_chat(traitor_mob, "[employer] Unfortunately, you weren't able to secure an Uplink.")
 		. = 0
 	else
 		. = uplink_loc
