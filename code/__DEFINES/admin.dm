@@ -92,4 +92,6 @@
 #define MAX_HELD_KEYS 15
 //SKYRAT COLLAR BAN
 #define COLLARBAN		"Collar ban"
-#define COLLARITEM		/obj/item/electropack/shockcollar/pacify/admin		
+#define COLLARITEM		/obj/item/electropack/shockcollar/pacify/admin
+#define LESSERCOLLARBAN		"Lesser Collar ban"
+#define LESSERCOLLARITEM		/obj/item/electropack/shockcollar/pacify/admin/lesser

@@ -632,7 +632,7 @@
 				return
 
 	// SKYRAT ADDITION -- BEGIN
-	else if(href_list["collarban"]) 
+	else if(href_list["collarban"])
 		var/mob/M = locate(href_list["collarban"])
 		if(!ismob(M))
 			to_chat(usr, "This can only be used on instances of type /mob")
@@ -670,13 +670,18 @@
 					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has temporarily removed your collar ban.</BIG></span>")
 				if("No")
 					return
-		
+
 		else switch(alert("Temporary Collar ban?",,"Yes","No"))
 			if("Yes")
 				if(!ishuman(M))
 					return
 				var/reason
 				var/severity
+				var/type
+				if(alert("What type of collar ban?",,"Lesser","Normal") == "Lesser")
+					type = LESSERCOLLARBAN
+				else
+					type = COLLARBAN
 				if(alert("Do you want to note them?",,"Yes","No") == "Yes")
 					reason = input(usr,"Please State Reason.","Reason") as message|null
 					if(!reason)
@@ -684,24 +689,38 @@
 					severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
 					if(!severity)
 						return
-
-				log_admin_private("[key_name(usr)] temporarily collar banned [key_name(M)].")
-				message_admins("<span class='adminnotice'>[key_name_admin(usr)] temporarily collar banned [key_name_admin(M)].</span>")
-				to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has temporarily collar banned you.</BIG></span>")
-				var/mob/living/carbon/human/C = M
-				C.update_admin_collar()
-				if(reason)
-					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
-					create_message("note", M.key, null, "Temporarily Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
+				if(type == COLLARBAN)
+					log_admin_private("[key_name(usr)] temporarily collar banned [key_name(M)].")
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] temporarily collar banned [key_name_admin(M)].</span>")
+					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has temporarily collar banned you.</BIG></span>")
+					var/mob/living/carbon/human/C = M
+					C.update_admin_collar()
+					if(reason)
+						to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+						create_message("note", M.key, null, "Temporarily Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
+				else
+					log_admin_private("[key_name(usr)] temporarily lesser-collar banned [key_name(M)].")
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] temporarily lesser-collar banned [key_name_admin(M)].</span>")
+					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has temporarily lesser-collar banned you.</BIG></span>")
+					var/mob/living/carbon/human/C = M
+					C.update_admin_collar()
+					if(reason)
+						to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+						create_message("note", M.key, null, "Temporarily Lesser-Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
 
 			if("No")
+				var/type
+				if(alert("What type of collar ban?",,"Lesser","Normal") == "Lesser")
+					type = LESSERCOLLARBAN
+				else
+					type = COLLARBAN
 				var/reason = input(usr,"Please State Reason.","Reason") as message|null
 				if(!reason)
 					return
 				var/severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
 				if(!severity)
 					return
-				if(!DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, COLLARBAN))
+				if(!DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, type))
 					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
 					return
 				if(M.client)
@@ -709,14 +728,22 @@
 				if(ishuman(M))
 					var/mob/living/carbon/human/C = M
 					C.update_admin_collar()
-				ban_unban_log_save("[key_name(usr)] collar banned [key_name(M)]. reason: [reason]")
-				log_admin_private("[key_name(usr)] collar banned [key_name(M)]. \nReason: [reason]")
-				create_message("note", M.key, null, "Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
-				message_admins("<span class='adminnotice'>[key_name_admin(usr)] collar banned [key_name_admin(M)].</span>")
-				to_chat(M, "<span class='boldannounce'><BIG>You have been collar banned by [usr.client.key].</BIG></span>")
-				to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+				if(type == COLLARBAN)
+					ban_unban_log_save("[key_name(usr)] collar banned [key_name(M)]. reason: [reason]")
+					log_admin_private("[key_name(usr)] collar banned [key_name(M)]. \nReason: [reason]")
+					create_message("note", M.key, null, "Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] collar banned [key_name_admin(M)].</span>")
+					to_chat(M, "<span class='boldannounce'><BIG>You have been collar banned by [usr.client.key].</BIG></span>")
+					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+				else
+					ban_unban_log_save("[key_name(usr)] lesser-collar banned [key_name(M)]. reason: [reason]")
+					log_admin_private("[key_name(usr)] lesser-collar banned [key_name(M)]. \nReason: [reason]")
+					create_message("note", M.key, null, "Lesser-collar banned - [reason]", null, null, 0, 0, null, 0, severity)
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] lesser-collar banned [key_name_admin(M)].</span>")
+					to_chat(M, "<span class='boldannounce'><BIG>You have been lesser-collar banned by [usr.client.key].</BIG></span>")
+					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
 	// SKYRAT ADDITION -- END
-	
+
 	else if(href_list["jobban2"])
 		if(!check_rights(R_BAN))
 			return

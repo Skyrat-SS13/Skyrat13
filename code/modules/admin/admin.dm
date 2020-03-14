@@ -82,7 +82,7 @@
 	body += "<A href='?_src_=holder;[HrefToken()];jobban2=[REF(M)]'>Jobban</A> | "
 	body += "<A href='?_src_=holder;[HrefToken()];appearanceban=[REF(M)]'>Identity Ban</A> | "
 	// SKYRAT ADDITION -- BEGIN
-	var/collarline = "[jobban_isbanned(M, COLLARBAN)?"Remove Collar Ban":"Collar Ban"]" 
+	var/collarline = "[jobban_isbanned(M, COLLARBAN)?"Remove Collar Ban":"Collar Ban"]"
 	if(ishuman(M))
 		var/mob/living/carbon/human/C = M
 		if(!istype(C.wear_neck, COLLARITEM) && jobban_isbanned(M, COLLARBAN))

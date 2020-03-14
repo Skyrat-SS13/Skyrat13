@@ -31,6 +31,9 @@
 	random = TRUE
 	freq_in_name = TRUE
 
+/obj/item/electropack/shockcollar/pacify/admin/attackby(obj/item/W, mob/living/user, params) //Prevents some cheeky ways of removing it.
+	return FALSE
+
 /obj/item/electropack/shockcollar/pacify/admin/dropped(mob/living/carbon/human/user)
 	. = ..()
 	qdel(src)
@@ -39,17 +42,41 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "admin-collar")
 
+/obj/item/electropack/shockcollar/pacify/admin/lesser
+	desc = "A Central Command branded shock collar that cannot be taken off by most means. This one has it's shocking properties removed."
+	random = FALSE
+	freq_in_name = FALSE
+	frequency = null
+
+/obj/item/electropack/shockcollar/pacify/admin/lesser/set_frequency(new_frequency)
+	return FALSE
+
 /mob/living/carbon/human/proc/update_admin_collar()
-	if(wear_neck && istype(wear_neck, COLLARITEM))
-		qdel(wear_neck)
-		return
-	if(wear_neck && !istype(wear_neck, COLLARITEM))
-		qdel(wear_neck)
-	var/obj/item/electropack/shockcollar/pacify/admin/collar = new()
-	equip_to_slot(collar, SLOT_NECK)
-	
+	if(client)
+		if(jobban_isbanned(src, COLLARBAN))
+			if(wear_neck && istype(wear_neck, COLLARITEM))
+				qdel(wear_neck) //i dont get the logic of this but ok
+				return
+			if(wear_neck && !istype(wear_neck, COLLARITEM))
+				qdel(wear_neck)
+			var/obj/item/electropack/shockcollar/pacify/admin/collar = new()
+			equip_to_slot(collar, SLOT_NECK)
+		if(jobban_isbanned(src, LESSERCOLLARBAN))
+			if(wear_neck && istype(wear_neck, LESSERCOLLARITEM))
+				qdel(wear_neck)
+				return
+			if(wear_neck && !istype(wear_neck, LESSERCOLLARITEM))
+				qdel(wear_neck)
+			var/obj/item/electropack/shockcollar/pacify/admin/lesser/collar = new()
+			equip_to_slot(collar, SLOT_NECK)
+	else
+		return FALSE
+
 /datum/job/after_spawn(mob/living/H, mob/M)
 	. = ..()
 	if(jobban_isbanned(M, COLLARBAN) && ishuman(H))
+		var/mob/living/carbon/human/E = H
+		E.update_admin_collar()
+	if(jobban_isbanned(M, LESSERCOLLARBAN) && ishuman(H))
 		var/mob/living/carbon/human/E = H
 		E.update_admin_collar()
