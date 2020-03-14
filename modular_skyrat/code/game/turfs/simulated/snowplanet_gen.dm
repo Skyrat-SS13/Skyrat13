@@ -1,0 +1,189 @@
+#define RANDOM_UPPER_X 220
+#define RANDOM_UPPER_Y 470
+
+#define RANDOM_LOWER_X 30
+#define RANDOM_LOWER_Y 200
+
+/proc/spawn_frozen_rivers(target_z, nodes = 4, turf_type = /turf/open/floor/plating/ice/smooth, whitelist_area = /area/snowplanet/surface/outdoors/danger, min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y, new_baseturfs)
+	var/list/river_nodes = list()
+	var/num_spawned = 0
+	var/list/possible_locs = block(locate(min_x, min_y, target_z), locate(max_x, max_y, target_z))
+	var/safety = 0
+	while(num_spawned < nodes && possible_locs.len && (safety++ < RIVERGEN_SAFETY_LOCK))
+		var/turf/T = pick(possible_locs)
+		var/area/A = get_area(T)
+		if(!istype(A, whitelist_area) || (T.flags_1 & NO_LAVA_GEN_1))
+			possible_locs -= T
+		else
+			river_nodes += new /obj/effect/landmark/river_waypoint(T)
+			num_spawned++
+	
+	safety = 0
+	//make some randomly pathing rivers
+	for(var/A in river_nodes)
+		var/obj/effect/landmark/river_waypoint/W = A
+		if (W.z != target_z || W.connected)
+			continue
+		W.connected = 1
+		var/turf/cur_turf = get_turf(W)
+		cur_turf.ChangeTurf(turf_type, new_baseturfs, CHANGETURF_IGNORE_AIR)
+		var/turf/target_turf = get_turf(pick(river_nodes - W))
+		if(!target_turf)
+			break
+		var/detouring = 0
+		var/cur_dir = get_dir(cur_turf, target_turf)
+		while(cur_turf != target_turf && (safety++ < RIVERGEN_SAFETY_LOCK))
+
+			if(detouring) //randomly snake around a bit
+				if(prob(20))
+					detouring = 0
+					cur_dir = get_dir(cur_turf, target_turf)
+			else if(prob(20))
+				detouring = 1
+				if(prob(50))
+					cur_dir = turn(cur_dir, 45)
+				else
+					cur_dir = turn(cur_dir, -45)
+			else
+				cur_dir = get_dir(cur_turf, target_turf)
+
+			cur_turf = get_step(cur_turf, cur_dir)
+			var/area/new_area = get_area(cur_turf)
+			if(!istype(new_area, whitelist_area) || (cur_turf.flags_1 & NO_LAVA_GEN_1)) //Rivers will skip ruins
+				detouring = 0
+				cur_dir = get_dir(cur_turf, target_turf)
+				cur_turf = get_step(cur_turf, cur_dir)
+				continue
+			else
+				var/turf/river_turf = cur_turf.ChangeTurf(turf_type, new_baseturfs, CHANGETURF_IGNORE_AIR)
+				river_turf.Spread(30, 11, whitelist_area)
+
+	for(var/WP in river_nodes)
+		qdel(WP)
+
+#undef RANDOM_UPPER_X
+#undef RANDOM_UPPER_Y
+
+#undef RANDOM_LOWER_X
+#undef RANDOM_LOWER_Y
+
+#define RANDOM_UPPER_X 220
+#define RANDOM_UPPER_Y 470
+
+#define RANDOM_LOWER_X 30
+#define RANDOM_LOWER_Y 220
+
+
+/proc/spawn_frozen_empty_patch(target_z, turf_type = /turf/open/floor/plating/asteroid/snow/icemoon, whitelist_area = /area/snowplanet/surface/outdoors/danger, min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y, new_baseturfs, required_distance = 0.5, power = 53, power_loss = 11)
+	var/turf/cur_turf
+	var/turf/target_turf
+	var/passed = FALSE
+	var/safety = 0
+	var/x_len = (max_x - min_x)
+	var/y_len = (max_y - min_y)
+	var/reqdist = sqrt((x_len*x_len)+(y_len*y_len)) * required_distance
+	while(passed == FALSE && (safety++ < RIVERGEN_SAFETY_LOCK))
+		var/turf/T1 = locate(rand(min_x,max_x), rand(min_y,max_y), target_z)
+		var/turf/T2 = locate(rand(min_x,max_x), rand(min_y,max_y), target_z)
+		x_len = abs(abs(T1.x) - abs(T2.x))
+		y_len = abs(abs(T1.y) - abs(T2.y))
+		var/gotdist = sqrt((x_len*x_len)+(y_len*y_len))
+		if (gotdist>reqdist)
+			cur_turf = T1
+			target_turf = T2
+			passed = TRUE
+
+	if(passed)
+		var/detouring = 0
+		var/cur_dir = get_dir(cur_turf, target_turf)
+		while(cur_turf != target_turf && (safety++ < RIVERGEN_SAFETY_LOCK))
+			if(detouring) //randomly snake around a bit
+				if(prob(20))
+					detouring = 0
+			else if(prob(20))
+				detouring = 1
+				if(prob(50))
+					cur_dir = turn(cur_dir, 45)
+				else
+					cur_dir = turn(cur_dir, -45)
+
+			for(var/i in 1 to 4)
+				if(!detouring)
+					cur_dir = get_dir(cur_turf, target_turf)
+				cur_turf = get_step(cur_turf, cur_dir)
+			var/area/new_area = get_area(cur_turf)
+			if(istype(new_area, whitelist_area))
+				var/turf/river_turf = cur_turf.ChangeTurf(turf_type, new_baseturfs, CHANGETURF_IGNORE_AIR)
+				river_turf.Spread(power, power_loss, whitelist_area)
+			else
+				detouring = 0
+				cur_dir = get_dir(cur_turf, target_turf)
+				cur_turf = get_step(cur_turf, cur_dir)
+
+/proc/spawn_frozen_empty_patch_radius(target_z, turf_type = /turf/open/floor/plating/asteroid/snow/icemoon, whitelist_area = /area/snowplanet/surface/outdoors/danger, min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y, new_baseturfs, required_distance = 0.5, radius_min = 4, radius_max = 6)
+	var/turf/cur_turf
+	var/turf/target_turf
+	var/passed = FALSE
+	var/safety = 0
+	var/x_len = (max_x - min_x)
+	var/y_len = (max_y - min_y)
+	var/reqdist = sqrt((x_len*x_len)+(y_len*y_len)) * required_distance
+	while(passed == FALSE && (safety++ < RIVERGEN_SAFETY_LOCK))
+		var/turf/T1 = locate(rand(min_x,max_x), rand(min_y,max_y), target_z)
+		var/turf/T2 = locate(rand(min_x,max_x), rand(min_y,max_y), target_z)
+		x_len = abs(abs(T1.x) - abs(T2.x))
+		y_len = abs(abs(T1.y) - abs(T2.y))
+		var/gotdist = sqrt((x_len*x_len)+(y_len*y_len))
+		if (gotdist>reqdist)
+			cur_turf = T1
+			target_turf = T2
+			passed = TRUE
+
+	if(passed)
+		var/detouring = 0
+		var/cur_dir = get_dir(cur_turf, target_turf)
+		while(cur_turf != target_turf && (safety++ < RIVERGEN_SAFETY_LOCK))
+			if(detouring) //randomly snake around a bit
+				if(prob(20))
+					detouring = 0
+			else if(prob(20))
+				detouring = 1
+				if(prob(50))
+					cur_dir = turn(cur_dir, 45)
+				else
+					cur_dir = turn(cur_dir, -45)
+
+			if(!detouring)
+				cur_dir = get_dir(cur_turf, target_turf)
+			cur_turf = get_step(cur_turf, cur_dir)
+
+			var/area/new_area = get_area(cur_turf)
+			//NEW
+			var/list/directions
+			var/radius = rand(radius_min,radius_max)
+			directions += turn(cur_dir, 90)
+			directions += turn(cur_dir, -90)
+
+			/*
+			//OLD
+			if(istype(new_area, whitelist_area))
+				var/turf/river_turf = cur_turf.ChangeTurf(turf_type, new_baseturfs, CHANGETURF_IGNORE_AIR)
+				river_turf.Spread(35, 11, whitelist_area)
+			else
+				detouring = 0
+				cur_dir = get_dir(cur_turf, target_turf)
+				cur_turf = get_step(cur_turf, cur_dir)*/
+
+
+#undef RANDOM_UPPER_X
+#undef RANDOM_UPPER_Y
+
+#undef RANDOM_LOWER_X
+#undef RANDOM_LOWER_Y
+
+/proc/generate_snowstation_environment_surface(target_z)
+	//One big patch centered around the middle x-wise
+	spawn_frozen_empty_patch(target_z, min_x = 100, max_x = 150, required_distance = 0.6, power = 65)
+	for(var/i in 1 to 5) //5 random, smaller patches
+		spawn_frozen_empty_patch(target_z)
+	spawn_frozen_rivers(target_z, 5)

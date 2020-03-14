@@ -96,12 +96,13 @@ SUBSYSTEM_DEF(mapping)
 	if(config.map_name == "Snow Box Station")
 		var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 		if (ice_ruins.len) // needs to be whitelisted for underground too so place_below ruins work
-			seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/surface/outdoors/unexplored, ice_ruins_templates, "Snow Ruins")
+			seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/snowplanet/surface/outdoors/danger, ice_ruins_templates, "Snow Ruins")
 			for (var/ice_z in ice_ruins)
-				spawn_rivers(ice_z, 4, /turf/open/lava/plasma/ice_moon, /area/icemoon/surface/outdoors/unexplored) //no more buggy open spaces jesus
+				generate_snowstation_environment_surface(ice_z)
+				
 		var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
 		if (ice_ruins_underground.len)
-			seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), /area/icemoon/underground/unexplored, ice_ruins_underground_templates, "Snow Underground Ruins")
+			seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), /area/snowplanet/underground/outdoors/danger, ice_ruins_underground_templates, "Snow Underground Ruins")
 
 	// Generate deep space ruins
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)

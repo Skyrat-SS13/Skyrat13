@@ -1,35 +1,35 @@
 "a" = (/turf/template_noop,/area/template_noop)
-"c" = (/obj/structure/flora/rock/icy,/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
-"d" = (/obj/item/flashlight/lantern{on = 1},/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
-"e" = (/obj/item/kitchen/knife/combat/survival,/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
-"f" = (/obj/item/clothing/suit/hooded/explorer,/obj/effect/decal/cleanable/blood/gibs/up,/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
-"g" = (/obj/item/clothing/shoes/winterboots/ice_boots,/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
-"h" = (/turf/open/floor/plating/ice/icemoon,/area/ruin/unpowered/icemoon/underground)
+"b" = (/turf/open/floor/plating/ice/icemoon,/area/snowplanet/underground/outdoors/ruin)
+"c" = (/obj/structure/flora/rock/icy,/turf/open/floor/plating/ice/icemoon,/area/snowplanet/underground/outdoors/ruin)
+"d" = (/obj/item/flashlight/lantern{on = 1},/turf/open/floor/plating/ice/icemoon,/area/snowplanet/underground/outdoors/ruin)
+"e" = (/obj/item/kitchen/knife/combat/survival,/turf/open/floor/plating/ice/icemoon,/area/snowplanet/underground/outdoors/ruin)
+"f" = (/obj/item/clothing/suit/hooded/explorer,/obj/effect/decal/cleanable/blood/gibs/up,/turf/open/floor/plating/ice/icemoon,/area/snowplanet/underground/outdoors/ruin)
+"g" = (/obj/item/clothing/shoes/winterboots/ice_boots,/turf/open/floor/plating/ice/icemoon,/area/snowplanet/underground/outdoors/ruin)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaahhhhhhhhhhhhhhhhaaaaaa
-aaaaahhhhhhhhhhhhchhhhhhaaaaa
-aaaahhhchhhhhhhhhhhhhhhhhaaaa
-aaahhhhhhhhhchhhhhhhhhchhhaaa
-aahhhhhhhhhhhhhhhhhhhhhhhhhaa
-aahhhhhhhhhhhhhhhhhhhhhdhhhaa
-ahhhhhhhhhhhhhhhhchhhhhefghha
-ahhhchhhchhhhhhhhhhhhhhhhhhha
-ahhhhhhhhhhhhhhhhhhhhhhhhchha
-ahhhhhhhhhhchhhchhhhhchhhhhha
-ahhhhhhhhhhhhhhhhhhhhhhhhhhha
-ahchhhhhhhhhhhhhhhhhhhhhhhhha
-ahhhhhchhhhhhhhhhhhhhhhhhhhha
-ahhhhhhhhhhhhhhhhhhchhhhhchha
-ahhhhhhhhhhhhhchhhhhhhhhhhhha
-ahhhchhhhhhhhhhhhhhhhhhhhhhha
-ahhhhhhhchhhhhhhhhhhhhhhhhhha
-aahhhhhhhhhhhhhhhhhhhhchhhhaa
-aaahhhchhhhhhhhhhhhhhhhhhhaaa
-aaaahhhhhhhhchhhhchhhhhhhaaaa
-aaaaahhhhhhhhhhhhhhhhhhhaaaaa
-aaaaaahhchhhhhhhhhhhhhhaaaaaa
-aaaaaaaahhhhhhhhhhhhhhaaaaaaa
+aaaaaaabbbbbbbbbbbbbbbbaaaaaa
+aaaaabbbbbbbbbbbbcbbbbbbaaaaa
+aaaabbbcbbbbbbbbbbbbbbbbbaaaa
+aaabbbbbbbbbcbbbbbbbbbcbbbaaa
+aabbbbbbbbbbbbbbbbbbbbbbbbbaa
+aabbbbbbbbbbbbbbbbbbbbbdbbbaa
+abbbbbbbbbbbbbbbbcbbbbbefgbba
+abbbcbbbcbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbcbba
+abbbbbbbbbbcbbbcbbbbbcbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbba
+abcbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbcbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbcbbbbbcbba
+abbbbbbbbbbbbbcbbbbbbbbbbbbba
+abbbcbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbcbbbbbbbbbbbbbbbbbbba
+aabbbbbbbbbbbbbbbbbbbbcbbbbaa
+aaabbbcbbbbbbbbbbbbbbbbbbbaaa
+aaaabbbbbbbbcbbbbcbbbbbbbaaaa
+aaaaabbbbbbbbbbbbbbbbbbbaaaaa
+aaaaaabbcbbbbbbbbbbbbbbaaaaaa
+aaaaaaaabbbbbbbbbbbbbbaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}

@@ -60,7 +60,8 @@
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/datum/admins/proc/open_borgopanel,
-	/client/proc/cmd_loud_admin_say
+	/client/proc/cmd_loud_admin_say,
+	/client/proc/cmd_set_planet_light
 	)
 
 /client/proc/cmd_loud_admin_say(msg as text)
@@ -86,3 +87,19 @@
 		window_flash(X, ignorepref = TRUE)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "loudAsay") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/cmd_set_planet_light(msg as text)
+	set category = "Special Verbs"
+	set name = "SetPlanetLight"
+	set hidden = 1
+	if(!check_rights(0))
+		return
+
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	if(!msg)
+		return
+	
+	SSplanet_light.overriden = TRUE
+	SSplanet_light.set_planet_light(msg)
+
+	
