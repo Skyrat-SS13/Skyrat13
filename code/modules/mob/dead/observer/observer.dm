@@ -289,16 +289,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/roundstart_quit_limit = CONFIG_GET(number/roundstart_suicide_time_limit) MINUTES
 	if(world.time < roundstart_quit_limit)
 		penalty += roundstart_quit_limit - world.time
-<<<<<<< HEAD
-	var/maximumRoundEnd = SSautotransfer.starttime + SSautotransfer.voteinterval * SSautotransfer.maxvotes	
-	if(penalty - SSshuttle.realtimeofstart > maximumRoundEnd + SSshuttle.emergencyCallTime + SSshuttle.emergencyDockTime + SSshuttle.emergencyEscapeTime)
-		penalty = CANT_REENTER_ROUND
-=======
 	if(SSautotransfer.can_fire && SSautotransfer.maxvotes)
 		var/maximumRoundEnd = SSautotransfer.starttime + SSautotransfer.voteinterval * SSautotransfer.maxvotes
 		if(penalty - SSshuttle.realtimeofstart > maximumRoundEnd + SSshuttle.emergencyCallTime + SSshuttle.emergencyDockTime + SSshuttle.emergencyEscapeTime)
 			penalty = CANT_REENTER_ROUND
->>>>>>> a35049fc947... Merge pull request #11448 from Ghommie/Ghommie-cit619
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_GHOSTIZE, (stat == DEAD) ? TRUE : FALSE, FALSE, (stat == DEAD)? penalty : 0, (stat == DEAD)? TRUE : FALSE) & COMPONENT_BLOCK_GHOSTING)
 		return
