@@ -183,3 +183,22 @@
 		for(var/X in armblade.actions)
 			var/datum/action/A = X
 			A.Remove(user)
+
+/datum/techweb_node/syndicate_basic
+	id = "syndicate_basic"
+	display_name = "Illegal Technology"
+	description = "Dangerous research used to create dangerous objects."
+	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
+	design_ids = list("decloner", "borg_syndicate_module", "suppressor", "largecrossbow", "donksofttoyvendor", "donksoft_refill", "syndiesleeper", "armblade")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	hidden = TRUE
+
+/datum/design/armblade
+	name = "Hardsuit Extendable Blade"
+	desc = "An armblade attachment for hardsuits."
+	id = "armblade"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/silver = 5000, /datum/material/diamond = 500, /datum/material/gold = 1500, /datum/material/titanium = 5000)
+	build_path = /obj/item/melee/transforming/armblade
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
