@@ -58,9 +58,9 @@
 	if(istype(action, /datum/action/item_action/extendoblade) && master && !extendo)
 		var/mob/living/carbon/human/H = user
 		if(H)
-			if(H.put_in_hand(src))
-				ADD_TRAIT(src, TRAIT_NODROP, GLUED_ITEM_TRAIT)
-				extendo = !extendo
+			H.put_in_hand(src)
+			ADD_TRAIT(src, TRAIT_NODROP, GLUED_ITEM_TRAIT)
+			extendo = !extendo
 	else if (istype(action, /datum/action/item_action/extendoblade) && master && extendo)
 		REMOVE_TRAIT(src, TRAIT_NODROP, GLUED_ITEM_TRAIT)
 		user.transferItemToLoc(src, master)
