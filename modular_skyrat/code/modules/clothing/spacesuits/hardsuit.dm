@@ -48,23 +48,37 @@
 	total_mass_on = 0.6
 	var/obj/item/clothing/suit/space/hardsuit/mastersuit = null
 	actions_types = list(/datum/action/item_action/extendoblade)
-	var/extendo = 0
+	var/extendo = FALSE
 
 /datum/action/item_action/extendoblade
 	name = "Extend Blade"
 	desc = "Extend the hardsuit's blade."
 
 /obj/item/melee/transforming/armblade/ui_action_click(mob/user, action)
-	if(istype(action, /datum/action/item_action/extendoblade) && master && !extendo)
+	if(istype(action, /datum/action/item_action/extendoblade) && mastersuit && !extendo)
 		var/mob/living/carbon/human/H = user
 		if(H)
-			H.put_in_hand(src)
-			ADD_TRAIT(src, TRAIT_NODROP, GLUED_ITEM_TRAIT)
+			var/obj/item/arm_item = user.get_active_held_item()
+			if(arm_item)
+				if(!user.dropItemToGround(arm_item))
+					to_chat(user, "<span class='warning'>Your [arm_item] interferes with [src]!</span>")
+					return
+				else
+					to_chat(user, "<span class='notice'>You drop [arm_item] to activate [src]!</span>")
+			user.put_in_r_hand(src)
+			ADD_TRAIT(src, TRAIT_NODROP, "hardsuit")
+			playsound(get_turf(user), 'sound/mecha/mechmove03.ogg', 50, 1)
 			extendo = !extendo
-	else if (istype(action, /datum/action/item_action/extendoblade) && master && extendo)
-		REMOVE_TRAIT(src, TRAIT_NODROP, GLUED_ITEM_TRAIT)
-		user.transferItemToLoc(src, master)
+
+	else if (istype(action, /datum/action/item_action/extendoblade) && mastersuit && extendo)
+		REMOVE_TRAIT(src, TRAIT_NODROP, "hardsuit")
+		user.transferItemToLoc(src, mastersuit, TRUE)
+		playsound(get_turf(user), 'sound/mecha/mechmove03.ogg', 50, 1)
 		extendo = !extendo
+		for(var/X in src.actions)
+			var/datum/action/A = X
+			A.Grant(user)
+
 /obj/item/melee/transforming/armblade/Initialize()
 	..()
 	AddComponent(/datum/component/butchering, 50, 100, 0, hitsound_on)
@@ -86,14 +100,14 @@
 		to_chat(user, "<span class='notice'>[src] [active ? "has been extended":"has been concealed"].</span>")
 
 /obj/item/melee/transforming/armblade/attack(mob/living/target, mob/living/carbon/human/user)
-	if(!master)
+	if(!mastersuit)
 		to_chat(user, "<span class='notice'>[src] can only be used while attached to a hardsuit.</span>")
 		return
 	else
 		..()
 
 /obj/item/melee/transforming/armblade/attack_self(mob/living/carbon/user)
-	if(!master)
+	if(!mastersuit)
 		to_chat(user, "<span class='notice'>[src] can only be used while attached to a hardsuit.</span>")
 		return
 	else
@@ -141,7 +155,9 @@
 			to_chat(user, "<span class='warning'>You cannot remove the armblade from [src] while wearing it.</span>")
 			return
 		armblade.forceMove(drop_location())
-		armblade.master = null
+		var/obj/item/melee/transforming/armblade/M = armblade
+		if(M)
+			M.mastersuit = null
 		armblade = null
 		to_chat(user, "<span class='notice'>You successfully remove the armblade from [src].</span>")
 		return
@@ -154,8 +170,8 @@
 			return
 
 		if(user.transferItemToLoc(I, src))
-			armblade = I
-			armblade.master = src
+			var/obj/item/melee/transforming/armblade/M = I
+			M.mastersuit = src
 			to_chat(user, "<span class='notice'>You successfully install the armblade into [src].</span>")
 			return
 	return ..()
