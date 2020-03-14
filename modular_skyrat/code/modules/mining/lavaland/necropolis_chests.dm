@@ -136,11 +136,11 @@
 	icon = 'modular_skyrat/icons/obj/1x2.dmi'
 	icon_state = "crucible0"
 	var/icon_state_on = "crucible1"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi' //READ BELOW RETARD
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	item_state = null
-	var/item_state_on = "spellblade" //PLACEHOLDER BECAUSE HONESTLY I JUST CANT BE FUCKING BOTHERED NOW I HATE SPRITING I AM CODEMAN NOT SPROOTMAN JUST FUCK GNBSFJSNSNJHSJN FUCK YOU
-	force = 3
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/64x64_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/64x64_righthand.dmi'
+	item_state = "crucible0"
+	var/item_state_on = "crucible1"
+	force = 5
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
@@ -163,10 +163,8 @@
 	var/brightness_on = 6
 	total_mass = 1
 	var/total_mass_on = TOTAL_MASS_MEDIEVAL_WEAPON
-	/*
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	*/
 
 /obj/item/twohanded/crucible/suicide_act(mob/living/carbon/user)
 	if(wielded)
