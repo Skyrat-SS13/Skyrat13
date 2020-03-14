@@ -136,10 +136,10 @@
 	icon = 'modular_skyrat/icons/obj/1x2.dmi'
 	icon_state = "crucible0"
 	var/icon_state_on = "crucible1"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi' //READ BELOW RETARD
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	item_state = null
-	var/item_state_on = "spellblade" //PLACEHOLDER BECAUSE HONESTLY I JUST CANT BE FUCKING BOTHERED NOW I HATE SPRITING I AM CODEMAN NOT SPROOTMAN JUST FUCK GNBSFJSNSNJHSJN FUCK YOU
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/swords_righthand.dmi'
+	item_state = "crucible0"
+	var/item_state_on = "crucible1"
 	force = 3
 	throwforce = 5
 	throw_speed = 3
