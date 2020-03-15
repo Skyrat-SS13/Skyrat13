@@ -13,7 +13,7 @@
 	if(istype(I, /obj/item/borg/upgrade/modkit))
 		var/obj/item/borg/upgrade/modkit/MK = I
 		for(var/obj/item/borg/upgrade/modkit/M in src.denied_types)
-			if(istype(MK, M))
+			if(ispath(M, MK.type))
 				to_chat(user, "<span class='notice'>The modkit you're trying to install is not rated for the [src].</span>")
 				return FALSE
 		MK.install(src, user)
@@ -24,8 +24,9 @@
 	if(istype(A, /obj/item/gun/energy/kinetic_accelerator))
 		if(istype(A, /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer))
 			var/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer/K = A
+			var/obj/item/borg/upgrade/modkit/MK = src
 			for(var/obj/item/borg/upgrade/modkit/M in K.denied_types)
-				if(istype(A, M))
+				if(ispath(M, MK.type))
 					to_chat(user, "<span class='notice'>The modkit you're trying to install is not rated for the [K].</span>")
 					return FALSE
 			install(A, user)
