@@ -168,7 +168,7 @@
 #define ORGAN_SLOT_RIBCAGE "ribcage"
 #define ORGAN_SLOT_RHUMERUS "rhumerus"
 #define ORGAN_SLOT_LHUMERUS "lhumerus"
-#define ORGAN_SLOT_RFEMUR"rfemur"
+#define ORGAN_SLOT_RFEMUR "rfemur"
 #define ORGAN_SLOT_LFEMUR "lfemur"
 
 ////organ defines
