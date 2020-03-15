@@ -429,6 +429,8 @@
 	name = "Argent Energy Cell"
 	desc = "Harvested from the necropolis, this autocharging energy cell can be crushed to provide a temporary 90% damage reduction bonus. Also useful for research."
 	self_recharge = 1
+	maxcharge = 1500 //only barely better than a normal power cell now
+	chargerate = 700 //good recharge time doe
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "argentcell"
 	ratingdesc = FALSE
