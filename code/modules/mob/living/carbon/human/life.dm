@@ -354,16 +354,41 @@
 	adjustBruteLoss(2)
 
 /mob/living/carbon/human/proc/handle_bones()
-	var/obj/item/organ/skull/ourskull = getorganslot(ORGAN_SLOT_SKULL)
-	if(!ourskull)
-		src.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1,4)) // bro your head is literally caving in it has no fucking SKULL
-		src.adjustOrganLoss(ORGAN_SLOT_EYES, rand(1,4))
-		src.adjustOrganLoss(ORGAN_SLOT_EARS, rand(1,4))
-		src.adjustOrganLoss(ORGAN_SLOT_TONGUE, rand(1,4))
-		src.adjustOrganLoss(ORGAN_SLOT_VOICE, rand(1,4))
-		src.adjustOrganLoss(ORGAN_SLOT_BREATHING_TUBE, rand(1,4))
-
-
+	var/obj/item/organ/skull/skull = getorganslot(ORGAN_SLOT_SKULL)
+	var/skullzone = skull.zone
+	if(!skull)
+		for(var/obj/item/organ/ourorgan in src.internal_organs)
+			if(ourorgan.zone = skullzone)
+				src.adjustOrganLoss(ourorgan, rand(1,5))
+		src.apply_damage(0.5, BRUTE, skullzone, FALSE, TRUE)
+	else
+		switch(skull.damage)
+			if(0 to (BONE_DAM_THRESHOLD_LOW - 1))
+				break
+			if(BONE_DAM_THRESHOLD_LOW to (BONE_DAM_THRESHOLD_MEDIUM - 1))
+				if(prob(25))
+					for(var/obj/item/organ/ourorgan in src.internal_organs)
+						if(ourorgan.zone = skullzone && ourorgan != skull)
+							src.adjustOrganLoss(ourorgan, 2)
+			if(BONE_DAM_THRESHOLD_MEDIUM to (BONE_DAM_THRESHOLD_HIGH - 1))
+				if(prob(50))
+					for(var/obj/item/organ/ourorgan in src.internal_organs)
+						if(ourorgan.zone = skullzone && ourorgan != skull)
+							src.adjustOrganLoss(ourorgan, 2)
+			if(BONE_DAM_THRESHOLD_HIGH to (BONE_DAM_THRESHOLD_HIGHEST - 1))
+				for(var/obj/item/organ/ourorgan in src.internal_organs)
+					if(ourorgan.zone = skullzone && ourorgan != skull)
+						src.adjustOrganLoss(ourorgan, 2)
+			if(BONE_DAM_THRESHOLD_HIGHEST)
+				for(var/obj/item/organ/ourorgan in src.internal_organs)
+					if(ourorgan.zone = skullzone && ourorgan != skull)
+						src.adjustOrganLoss(ourorgan, rand(2,4)
+				src.apply_damage(0.5, BRUTE, skullzone, FALSE, TRUE)
+			else
+				for(var/obj/item/organ/ourorgan in src.internal_organs)
+					if(ourorgan.zone = skullzone && ourorgan != skull)
+						src.adjustOrganLoss(ourorgan, rand(2,4)
+				src.apply_damage(0.5, BRUTE, skullzone, FALSE, TRUE)
 
 #undef THERMAL_PROTECTION_HEAD
 #undef THERMAL_PROTECTION_CHEST
