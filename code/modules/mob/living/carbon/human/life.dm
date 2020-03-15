@@ -38,6 +38,9 @@
 	if(stat != DEAD)
 		//Stuff jammed in your limbs hurts
 		handle_embedded_objects()
+		//SKYRAT CHANGE - Boneworks!
+		handle_bones()
+		//
 	//SKYRAT CHANGE - Cucks collarbanned people hard. Even if you remove the collar, it'll grow back like a raging cancer.
 	if(jobban_isbanned(src, COLLARBAN))
 		if(wear_neck && !istype(wear_neck, COLLARITEM) || !wear_neck)
@@ -350,6 +353,15 @@
 	// Tissues die without blood circulation
 	adjustBruteLoss(2)
 
+/mob/living/carbon/human/proc/handle_bones()
+	var/obj/item/organ/skull/ourskull = getorganslot(ORGAN_SLOT_SKULL)
+	if(!ourskull)
+		src.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1,4)) // bro your head is literally caving in it has no fucking SKULL
+		src.adjustOrganLoss(ORGAN_SLOT_EYES, rand(1,4))
+		src.adjustOrganLoss(ORGAN_SLOT_EARS, rand(1,4))
+		src.adjustOrganLoss(ORGAN_SLOT_TONGUE, rand(1,4))
+		src.adjustOrganLoss(ORGAN_SLOT_VOICE, rand(1,4))
+		src.adjustOrganLoss(ORGAN_SLOT_BREATHING_TUBE, rand(1,4))
 
 
 
