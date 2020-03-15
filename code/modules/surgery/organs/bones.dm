@@ -1,3 +1,8 @@
+#DEFINE BONE_DAM_THRESHOLD_LOW 25
+#DEFINE BONE_DAM_THRESHOLD_MEDIUM 50
+#DEFINE BONE_DAM_THRESHOLD_HIGH 75
+#DEFINE BONE_DAM_THRESHOLD_BROKEN 100
+
 /obj/item/organ/skull
 	name = "Skull"
 	desc = "Serves as gothic decoration. Or, you know, protection for your brain."
