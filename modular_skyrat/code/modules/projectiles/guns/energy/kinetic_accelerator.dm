@@ -7,31 +7,36 @@
 	overheat_time = 13
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/bdminer)
 	max_mod_capacity = 125
-	var/list/denied_types = list(/obj/item/borg/upgrade/modkit/chassis_mod, /obj/item/borg/upgrade/modkit/tracer)
 
 /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/borg/upgrade/modkit))
 		var/obj/item/borg/upgrade/modkit/MK = I
-		for(var/obj/item/borg/upgrade/modkit/M in src.denied_types)
-			if(ispath(M, MK.type))
-				to_chat(user, "<span class='notice'>The modkit you're trying to install is not rated for the [src].</span>")
+		switch(MK.type)
+			if(/obj/item/borg/upgrade/modkit/chassis_mod)
 				return FALSE
-		MK.install(src, user)
+			if(/obj/item/borg/upgrade/modkit/chassis_mod/orange)
+				return FALSE
+			if(/obj/item/borg/upgrade/modkit/tracer)
+				return FALSE
+			if(/obj/item/borg/upgrade/modkit/tracer/adjustable)
+				return FALSE
 	else
 		..()
 
 /obj/item/borg/upgrade/modkit/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/gun/energy/kinetic_accelerator))
 		if(istype(A, /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer))
-			var/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer/K = A
 			var/obj/item/borg/upgrade/modkit/MK = src
-			for(var/obj/item/borg/upgrade/modkit/M in K.denied_types)
-				if(ispath(M, MK.type))
-					to_chat(user, "<span class='notice'>The modkit you're trying to install is not rated for the [K].</span>")
+			switch(MK.type)
+				if(/obj/item/borg/upgrade/modkit/chassis_mod)
 					return FALSE
-			install(A, user)
-		else
-			install(A, user)
+				if(/obj/item/borg/upgrade/modkit/chassis_mod/orange)
+					return FALSE
+				if(/obj/item/borg/upgrade/modkit/tracer)
+					return FALSE
+				if(/obj/item/borg/upgrade/modkit/tracer/adjustable)
+					return FALSE
+		install(A, user)
 	else
 		..()
 
