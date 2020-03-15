@@ -3,6 +3,7 @@
 	has_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
 	blob_allowed = FALSE
+	ambientsounds = SPACE
 
 /area/snowplanet/surface
 	name = "Iceland Tundra"
@@ -14,7 +15,6 @@
 	power_equip = FALSE
 	power_light = FALSE
 	requires_power = TRUE
-	ambientsounds = MINING
 
 /area/snowplanet/surface/outdoors/explored //No ruin spawns
 	icon_state = "awaycontent2"
@@ -38,7 +38,6 @@
 	power_environ = FALSE
 	power_equip = FALSE
 	power_light = FALSE
-	ambientsounds = MINING
 
 /area/snowplanet/underground/outdoors/explored
 	icon_state = "awaycontent6"
@@ -51,3 +50,19 @@
 
 /area/snowplanet/underground/outdoors/ruin //Outdoor areas within ruins
 	icon_state = "awaycontent11"
+
+/*********************RUINS*****************/
+
+/area/ruin/snowplanet/
+	ambientsounds = SPACE
+	has_gravity = STANDARD_GRAVITY
+
+/area/ruin/snowplanet/surface
+
+/area/ruin/snowplanet/surface/powered
+	requires_power = FALSE
+
+/area/ruin/snowplanet/underground
+
+/area/ruin/snowplanet/underground/powered
+	requires_power = FALSE

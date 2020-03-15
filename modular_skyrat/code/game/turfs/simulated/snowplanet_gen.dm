@@ -71,7 +71,7 @@
 #define RANDOM_UPPER_Y 470
 
 #define RANDOM_LOWER_X 30
-#define RANDOM_LOWER_Y 220
+#define RANDOM_LOWER_Y 150
 
 
 /proc/spawn_frozen_empty_patch(target_z, turf_type = /turf/open/floor/plating/asteroid/snow/icemoon, whitelist_area = /area/snowplanet/surface/outdoors/danger, min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y, new_baseturfs, required_distance = 0.5, power = 53, power_loss = 11)
@@ -120,7 +120,7 @@
 				cur_dir = get_dir(cur_turf, target_turf)
 				cur_turf = get_step(cur_turf, cur_dir)
 
-/proc/spawn_frozen_empty_patch_radius(target_z, turf_type = /turf/open/floor/plating/asteroid/snow/icemoon, whitelist_area = /area/snowplanet/surface/outdoors/danger, min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y, new_baseturfs, required_distance = 0.5, radius_min = 4, radius_max = 6)
+/proc/spawn_frozen_empty_patch_radius(target_z, turf_type = /turf/open/floor/plating/asteroid/snow/icemoon, whitelist_area = /area/snowplanet/surface/outdoors/danger, min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y, new_baseturfs, required_distance = 0.5, min_radius = 4, max_radius = 6)
 	var/turf/cur_turf
 	var/turf/target_turf
 	var/passed = FALSE
@@ -157,22 +157,48 @@
 				cur_dir = get_dir(cur_turf, target_turf)
 			cur_turf = get_step(cur_turf, cur_dir)
 
-			var/area/new_area = get_area(cur_turf)
-			//NEW
-			var/list/directions
-			var/radius = rand(radius_min,radius_max)
-			directions += turn(cur_dir, 90)
-			directions += turn(cur_dir, -90)
+			var/radius = rand(min_radius,max_radius)
 
-			/*
-			//OLD
+			if(prob(20)) //20% for an accurate circular sweep
+				for(var/turf/T in range(radius, cur_turf))
+					var/dx = T.x - cur_turf.x
+					var/dy = T.y - cur_turf.y
+					var/Trange = sqrt((dx*dx)+(dy*dy))
+					if(Trange <= radius + 0.5)
+						var/circ_area = get_area(T)
+						if(istype(circ_area, whitelist_area))
+							T.ChangeTurf(turf_type, new_baseturfs, CHANGETURF_IGNORE_AIR)
+							if(Trange > radius - 1)
+								T.Spread(21, 11, whitelist_area)
+			else
+				var/list/directions = list()
+				directions += turn(cur_dir, 90)
+				directions += turn(cur_dir, -90)
+				for(var/dir in directions)
+					var/turf/dir_turf = cur_turf
+
+					for(var/i in 1 to radius)
+						dir_turf = get_step(dir_turf, dir)
+						var/dir_area = get_area(dir_turf)
+						if(istype(dir_area, whitelist_area))
+							dir_turf = dir_turf.ChangeTurf(turf_type, new_baseturfs, CHANGETURF_IGNORE_AIR)
+							if(i == radius)
+								dir_turf.Spread(32, 11, whitelist_area)
+						//Fixes to diagional checker board
+						if(dir in GLOB.diagonals)
+							var/turf/diag_turf = locate(dir_turf.x,(dir_turf.y-1),target_z)
+							var/diag_area = get_area(diag_turf)
+							if(istype(diag_area, whitelist_area))
+								diag_turf.ChangeTurf(turf_type, new_baseturfs, CHANGETURF_IGNORE_AIR)
+
+			var/area/new_area = get_area(cur_turf)
 			if(istype(new_area, whitelist_area))
-				var/turf/river_turf = cur_turf.ChangeTurf(turf_type, new_baseturfs, CHANGETURF_IGNORE_AIR)
-				river_turf.Spread(35, 11, whitelist_area)
+				cur_turf.ChangeTurf(turf_type, new_baseturfs, CHANGETURF_IGNORE_AIR)
 			else
 				detouring = 0
 				cur_dir = get_dir(cur_turf, target_turf)
-				cur_turf = get_step(cur_turf, cur_dir)*/
+				cur_turf = get_step(cur_turf, cur_dir)
+
 
 
 #undef RANDOM_UPPER_X
@@ -182,8 +208,9 @@
 #undef RANDOM_LOWER_Y
 
 /proc/generate_snowstation_environment_surface(target_z)
-	//One big patch centered around the middle x-wise
-	spawn_frozen_empty_patch(target_z, min_x = 100, max_x = 150, required_distance = 0.6, power = 65)
+	//Two big patch centered around the middle x-wise
+	for(var/i in 1 to 2)
+		spawn_frozen_empty_patch_radius(target_z, min_x = 100, max_x = 150, required_distance = 0.6, min_radius = 8, max_radius = 10)
 	for(var/i in 1 to 5) //5 random, smaller patches
-		spawn_frozen_empty_patch(target_z)
+		spawn_frozen_empty_patch_radius(target_z)
 	spawn_frozen_rivers(target_z, 5)
