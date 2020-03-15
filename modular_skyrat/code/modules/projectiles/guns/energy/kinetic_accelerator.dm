@@ -20,6 +20,8 @@
 				return FALSE
 			if(/obj/item/borg/upgrade/modkit/tracer/adjustable)
 				return FALSE
+			else
+				MK.install(src, user)
 	else
 		..()
 
