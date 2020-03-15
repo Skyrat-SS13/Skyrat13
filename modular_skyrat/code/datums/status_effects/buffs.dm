@@ -1,6 +1,6 @@
 /datum/status_effect/blooddrunk/argent
 	id = "argent"
-	duration = 300
+	duration = 150
 	tick_interval = 0
 	alert_type = /obj/screen/alert/status_effect/argent
 
