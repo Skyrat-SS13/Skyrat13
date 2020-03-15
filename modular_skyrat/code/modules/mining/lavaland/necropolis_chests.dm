@@ -450,25 +450,6 @@
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
 
-/datum/controller/subsystem/research/Initialize()
-	point_types = TECHWEB_POINT_TYPE_LIST_ASSOCIATIVE_NAMES
-	initialize_all_techweb_designs()
-	initialize_all_techweb_nodes()
-	science_tech = new /datum/techweb/science
-	admin_tech = new /datum/techweb/admin
-	autosort_categories()
-	error_design = new
-	error_node = new
-
-	for(var/A in subtypesof(/obj/item/seeds))
-		var/obj/item/seeds/S = A
-		var/list/L = list()
-		L[TECHWEB_POINT_TYPE_GENERIC] = 50 + initial(S.rarity) * 2
-		techweb_point_items[S] = L
-	techweb_point_items.Add(/obj/item/stock_parts/cell/high/plus/argent = list(TECHWEB_POINT_TYPE_GENERIC = 10000))
-
-	return ..()
-
 /obj/item/katana/necropolis
 	force = 30 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
 
