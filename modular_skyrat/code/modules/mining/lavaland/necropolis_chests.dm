@@ -440,7 +440,8 @@
 	..()
 	user.visible_message("<span class='danger'>[user] crushes the [src] in his hands, absorbing it's energy!</span>")
 	playsound(user.loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, TRUE)
-	user.apply_status_effect(onuse)
+	var/mob/living/M = user
+	M.apply_status_effect(onuse)
 	qdel(src)
 
 /obj/item/stock_parts/cell/high/plus/argent/ComponentInitialize()
