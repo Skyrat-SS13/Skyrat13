@@ -1499,8 +1499,6 @@
 #include "code\modules\antagonists\swarmer\swarmer_event.dm"
 #include "code\modules\antagonists\traitor\datum_traitor.dm"
 #include "code\modules\antagonists\traitor\syndicate_contract.dm"
-<<<<<<< HEAD
-=======
 #include "code\modules\antagonists\traitor\classes\ai.dm"
 #include "code\modules\antagonists\traitor\classes\assassin.dm"
 #include "code\modules\antagonists\traitor\classes\freeform.dm"
@@ -1509,7 +1507,6 @@
 #include "code\modules\antagonists\traitor\classes\martyr.dm"
 #include "code\modules\antagonists\traitor\classes\subterfuge.dm"
 #include "code\modules\antagonists\traitor\classes\traitor_class.dm"
->>>>>>> 28a8f204ed7... Merge pull request #11479 from Ghommie/Ghommie-cit622
 #include "code\modules\antagonists\traitor\equipment\contractor.dm"
 #include "code\modules\antagonists\traitor\equipment\Malf_Modules.dm"
 #include "code\modules\antagonists\traitor\IAA\internal_affairs.dm"
