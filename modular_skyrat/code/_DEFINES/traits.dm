@@ -1,0 +1,1 @@
+#define TRAIT_GIGANTISM			"gigantism"		// large boy
