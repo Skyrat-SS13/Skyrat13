@@ -13,15 +13,18 @@
 		var/obj/item/borg/upgrade/modkit/MK = I
 		switch(MK.type)
 			if(/obj/item/borg/upgrade/modkit/chassis_mod)
+				to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [src]!</span>")
 				return FALSE
 			if(/obj/item/borg/upgrade/modkit/chassis_mod/orange)
+				to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [src]!</span>")
 				return FALSE
 			if(/obj/item/borg/upgrade/modkit/tracer)
+				to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [src]!</span>")
 				return FALSE
 			if(/obj/item/borg/upgrade/modkit/tracer/adjustable)
+				to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [src]!</span>")
 				return FALSE
-			else
-				MK.install(src, user)
+		MK.install(src, user)
 	else
 		..()
 
@@ -31,12 +34,16 @@
 			var/obj/item/borg/upgrade/modkit/MK = src
 			switch(MK.type)
 				if(/obj/item/borg/upgrade/modkit/chassis_mod)
+					to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [A]!</span>")
 					return FALSE
 				if(/obj/item/borg/upgrade/modkit/chassis_mod/orange)
+					to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [A]!</span>")
 					return FALSE
 				if(/obj/item/borg/upgrade/modkit/tracer)
+					to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [A]!</span>")
 					return FALSE
 				if(/obj/item/borg/upgrade/modkit/tracer/adjustable)
+					to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [A]!</span>")
 					return FALSE
 		install(A, user)
 	else
