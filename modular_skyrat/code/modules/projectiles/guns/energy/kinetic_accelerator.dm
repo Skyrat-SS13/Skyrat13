@@ -7,30 +7,45 @@
 	overheat_time = 13
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/bdminer)
 	max_mod_capacity = 125
-	var/list/denied_types = list(/obj/item/borg/upgrade/modkit/chassis_mod, /obj/item/borg/upgrade/modkit/tracer)
 
-/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer/attackby(obj/item/I, mob/user)
+/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer/attackby(obj/item/I, mob/user) //Intelligent solutions didn't work, i had to shitcode.
 	if(istype(I, /obj/item/borg/upgrade/modkit))
 		var/obj/item/borg/upgrade/modkit/MK = I
-		for(var/obj/item/borg/upgrade/modkit/M in src.denied_types)
-			if(istype(MK, M))
-				to_chat(user, "<span class='notice'>The modkit you're trying to install is not rated for this kind of PKA.</span>")
+		switch(MK.type)
+			if(/obj/item/borg/upgrade/modkit/chassis_mod)
+				to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [src]!</span>")
 				return FALSE
-			MK.install(src, user)
+			if(/obj/item/borg/upgrade/modkit/chassis_mod/orange)
+				to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [src]!</span>")
+				return FALSE
+			if(/obj/item/borg/upgrade/modkit/tracer)
+				to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [src]!</span>")
+				return FALSE
+			if(/obj/item/borg/upgrade/modkit/tracer/adjustable)
+				to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [src]!</span>")
+				return FALSE
+		MK.install(src, user)
 	else
 		..()
 
 /obj/item/borg/upgrade/modkit/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/gun/energy/kinetic_accelerator))
-		if(istype(A, /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer))
-			var/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer/K = A
-			for(var/obj/item/borg/upgrade/modkit/M in K.denied_types)
-				if(istype(A, M))
-					to_chat(user, "<span class='notice'>The modkit you're trying to install is not rated for this kind of PKA.</span>")
+		if(istype(A, /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer)) //Read above.
+			var/obj/item/borg/upgrade/modkit/MK = src
+			switch(MK.type)
+				if(/obj/item/borg/upgrade/modkit/chassis_mod)
+					to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [A]!</span>")
 					return FALSE
-			install(A, user)
-		else
-			install(A, user)
+				if(/obj/item/borg/upgrade/modkit/chassis_mod/orange)
+					to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [A]!</span>")
+					return FALSE
+				if(/obj/item/borg/upgrade/modkit/tracer)
+					to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [A]!</span>")
+					return FALSE
+				if(/obj/item/borg/upgrade/modkit/tracer/adjustable)
+					to_chat(user, "<span class='userdanger'>This modkit is unsuitable for [A]!</span>")
+					return FALSE
+		install(A, user)
 	else
 		..()
 
