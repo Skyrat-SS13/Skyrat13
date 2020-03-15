@@ -134,6 +134,7 @@
 #define SKINTONE		23	//uses skin tones
 #define HORNCOLOR		24
 #define WINGCOLOR		25
+#define NOBONES		    26
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
@@ -165,10 +166,10 @@
 #define ORGAN_SLOT_BREASTS "breasts"
 #define ORGAN_SLOT_SKULL "skull"
 #define ORGAN_SLOT_RIBCAGE "ribcage"
-#define ORGAN_SLOT_HUMERUS_R "humerus_r"
-#define ORGAN_SLOT_HUMERUS_L "humerus_l"
-#define ORGAN_SLOT_FEMUR_R "femur_r"
-#define ORGAN_SLOT_FEMUR_L "femur_l"
+#define ORGAN_SLOT_RHUMERUS "rhumerus"
+#define ORGAN_SLOT_LHUMERUS "lhumerus"
+#define ORGAN_SLOT_RFEMUR"rfemur"
+#define ORGAN_SLOT_LFEMUR "lfemur"
 
 ////organ defines
 #define STANDARD_ORGAN_THRESHOLD 	100

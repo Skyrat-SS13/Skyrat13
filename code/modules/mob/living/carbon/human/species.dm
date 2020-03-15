@@ -96,6 +96,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/obj/item/mutanthands
 	var/obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue
 	var/obj/item/organ/tail/mutanttail = null
+	var/obj/item/organ/skull/mutant_skull = /obj/item/organ/skull
+	var/obj/item/organ/ribcage/mutant_ribcage = /obj/item/organ/ribcage
+	var/obj/item/organ/rhumerus/mutant_rhumerus = /obj/item/organ/rhumerus
+	var/obj/item/organ/lhumerus/mutant_lhumerus = /obj/item/organ/lhumerus
+	var/obj/item/organ/rfemur/mutant_rfemur = /obj/item/organ/rfemur
+	var/obj/item/organ/lfemur/mutant_lfemur = /obj/item/organ/lfemur
+
 
 	var/obj/item/organ/liver/mutantliver
 	var/obj/item/organ/stomach/mutantstomach
@@ -179,6 +186,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/obj/item/organ/liver/liver = C.getorganslot(ORGAN_SLOT_LIVER)
 	var/obj/item/organ/stomach/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 	var/obj/item/organ/tail/tail = C.getorganslot(ORGAN_SLOT_TAIL)
+	var/obj/item/organ/skull/skull = C.getorganslot(ORGAN_SLOT_SKULL)
+	var/obj/item/organ/ribcage/ribcage = C.getorganslot(ORGAN_SLOT_RIBCAGE)
+	var/obj/item/organ/rhumerus/rhumerus = C.getorganslot(ORGAN_SLOT_RHUMERUS)
+	var/obj/item/organ/lhumerus/lhumerus = C.getorganslot(ORGAN_SLOT_LHUMERUS)
+	var/obj/item/organ/rfemur/rfemur = C.getorganslot(ORGAN_SLOT_RFEMUR)
+	var/obj/item/organ/lfemur/lfemur = C.getorganslot(ORGAN_SLOT_LFEMUR)
 
 	var/should_have_brain = TRUE
 	var/should_have_heart = !(NOBLOOD in species_traits)
@@ -190,6 +203,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/should_have_liver = !(NOLIVER in species_traits)
 	var/should_have_stomach = !(NOSTOMACH in species_traits)
 	var/should_have_tail = mutanttail
+	var/should_have_bones = !(NOBONES in species_traits)
 
 	if(brain && (replace_current || !should_have_brain))
 		if(!brain.decoy_override)//Just keep it if it's fake
@@ -249,6 +263,28 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	if(should_have_tail && !tail)
 		tail = new mutanttail()
 		tail.Insert(C)
+
+	if(should_have_bones)
+		if(!skull)
+			if(C.get_bodypart(BODY_ZONE_HEAD))
+				skull = new mutant_skull()
+				skull.Insert(C)
+		if(!ribcage)
+			ribcage = new mutant_ribcage()
+			ribcage.Insert(C)
+		if(!rhumerus)
+			rhumerus = new mutant_rhumerus()
+			rhumerus.Insert(C)
+		if(!lhumerus)
+			lhumerus = new mutant_lhumerus()
+			lhumerus.Insert(C)
+		if(!rfemur)
+			rfemur = new mutant_rfemur()
+			rfemur.Insert(C)
+		if(!lfemur)
+			lfemur = new mutant_lfemur()
+			lfemur.Insert(C)
+
 
 	if(C.get_bodypart(BODY_ZONE_HEAD))
 		if(eyes && (replace_current || !should_have_eyes))
