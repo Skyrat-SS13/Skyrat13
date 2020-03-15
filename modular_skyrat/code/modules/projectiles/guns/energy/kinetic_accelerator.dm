@@ -8,7 +8,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/bdminer)
 	max_mod_capacity = 125
 
-/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer/attackby(obj/item/I, mob/user)
+/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer/attackby(obj/item/I, mob/user) //Intelligent solutions didn't work, i had to shitcode.
 	if(istype(I, /obj/item/borg/upgrade/modkit))
 		var/obj/item/borg/upgrade/modkit/MK = I
 		switch(MK.type)
@@ -25,7 +25,7 @@
 
 /obj/item/borg/upgrade/modkit/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/gun/energy/kinetic_accelerator))
-		if(istype(A, /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer))
+		if(istype(A, /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer)) //Read above.
 			var/obj/item/borg/upgrade/modkit/MK = src
 			switch(MK.type)
 				if(/obj/item/borg/upgrade/modkit/chassis_mod)
