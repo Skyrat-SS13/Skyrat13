@@ -59,6 +59,9 @@
 
 /area/ruin/snowplanet/surface
 
+/area/ruin/snowplanet/surface/unpowered
+	always_unpowered = FALSE
+
 /area/ruin/snowplanet/surface/powered
 	requires_power = FALSE
 
@@ -66,3 +69,6 @@
 
 /area/ruin/snowplanet/underground/powered
 	requires_power = FALSE
+
+/area/ruin/snowplanet/underground/unpowered
+	always_unpowered = FALSE
