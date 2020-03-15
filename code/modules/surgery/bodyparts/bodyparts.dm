@@ -358,7 +358,7 @@
 			base_bp_icon = (base_bp_icon == DEFAULT_BODYPART_ICON) ? DEFAULT_BODYPART_ICON_ORGANIC : base_bp_icon
 		else
 			species_color = ""
-		
+
 		if(base_bp_icon != DEFAULT_BODYPART_ICON)
 			color_src = MUTCOLORS //TODO - Add color matrix support to base limbs
 

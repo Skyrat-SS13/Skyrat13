@@ -163,6 +163,12 @@
 #define ORGAN_SLOT_VAGINA "vagina"
 #define ORGAN_SLOT_TESTICLES "testicles"
 #define ORGAN_SLOT_BREASTS "breasts"
+#define ORGAN_SLOT_SKULL "skull"
+#define ORGAN_SLOT_RIBCAGE "ribcage"
+#define ORGAN_SLOT_HUMERUS_R "humerus_r"
+#define ORGAN_SLOT_HUMERUS_L "humerus_l"
+#define ORGAN_SLOT_FEMUR_R "femur_r"
+#define ORGAN_SLOT_FEMUR_L "femur_l"
 
 ////organ defines
 #define STANDARD_ORGAN_THRESHOLD 	100
