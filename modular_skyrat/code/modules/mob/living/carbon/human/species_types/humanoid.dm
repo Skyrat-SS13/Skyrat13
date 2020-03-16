@@ -2,6 +2,8 @@
 /datum/species/human/humanoid
 	name = "Humanoid"
 	id = "humanoid"
+	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
+	limbs_id = "human"
 	use_skintones = 0
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAIR,FACEHAIR,HORNCOLOR,WINGCOLOR)
 	mutant_bodyparts = list("mam_tail", "mam_ears", "mam_body_markings", "mam_snouts", "deco_wings", "taur", "horns", "legs")
@@ -10,6 +12,7 @@
 /datum/species/human/humanoid/dunmer
 	name = "Dunmer"
 	id = "dunmer"
+	limbs_id = "human"
 	default_color = "#888888"
 	fixed_mut_color = "#888888"
 	hair_color = "#202020"
