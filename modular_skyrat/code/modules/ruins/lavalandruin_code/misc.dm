@@ -79,3 +79,6 @@
 		else
 			to_chat(H, "<span class='warning'>Just touching the door burns your hand... You're not ready.</span>")
 			H.apply_damage(damage = 5,damagetype = BURN, def_zone = H.get_bodypart(BODY_ZONE_R_ARM), blocked = FALSE, forced = FALSE)
+
+/area/ruin/powered/wrath
+	icon_state = "dk_yellow"
