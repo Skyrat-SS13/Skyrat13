@@ -27,6 +27,8 @@
 	var/static/list/misc = list("stand_clear_white","caution_white","loadingarea_white","bot_white","delivery_white","box_white","box_left_white","box_right_white","box_corners_white","arrows_white")
 
 	var/static/list/all_tdecal = warningline + trimline + trimlinefill + tile + misc
+	
+	var/static/list/directions = list(NORTH,SOUTH,EAST,WEST)
 
 /obj/item/rdd/proc/isValidSurface(surface)
 	return istype(surface, /turf/open/floor)
@@ -84,6 +86,8 @@
 	.["drawables"] = rdd_drawables
 	.["selected_stencil"] = drawtype
 	.["current_colour"] = paint_color
+	.["directions"] = directions
+	.["selected_dir"] = graf_dir
 
 /obj/item/rdd/ui_act(action, list/params)
 	if(..())
@@ -97,14 +101,8 @@
 			else
 				return
 			graf_dir = NORTH
-		if("dir_n")
-			graf_dir = NORTH
-		if("dir_s")
-			graf_dir = SOUTH
-		if("dir_e")
-			graf_dir = EAST
-		if("dir_w")
-			graf_dir = WEST
+		if("setdir")
+			graf_dir = text2dir(params["dir"])
 		if("select_colour")
 			var/chosen_colour = input(usr,"","Choose Color",paint_color) as color|null
 
