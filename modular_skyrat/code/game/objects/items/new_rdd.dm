@@ -141,7 +141,8 @@
 	var/list/turf/affected_turfs = list()
 
 
-	var/obj/effect/decal/cleanable/crayon/C = new(target, paint_color, drawing, temp, graf_dir)
+	var/obj/effect/decal/crayon/C = new(target, paint_color, drawing, temp, graf_dir)
 	C.add_hiddenprint(user)
-	C.loc = target.loc
+	C.x = target.x
+	C.y = target.y
 	affected_turfs += target

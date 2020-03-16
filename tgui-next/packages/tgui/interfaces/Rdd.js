@@ -30,28 +30,28 @@ export const Rdd = props => {
           })}
         </LabeledList>
       </Section>
-	  <Section title="Direction">
-		<LabaledList>
-		  {directions.map(direction => {
-			const items = direction.items || [];
-			return (
-			  <LabeledList.Item
-				key={direction}
-				label={irection.name}>
-				{items.map(item => (
-				  <Button
-					key={item.item}
-					content={item.item}
-					selected={item.item === data.selected_dir}
-					onClick={() => act('setdir', {
-					  dir: direction,
-					})} />
-				))}
-			  </LabaledList.Item>
-			);
-		  })}
-		</LabaledList>
-	  </Section>
+      <Section title="Direction">
+        <LabeledList>
+          {directions.map(direction => {
+            const items = direction.items || [];
+            return (
+              <LabeledList.Item
+                key={direction}
+                label={direction.name}>
+                {items.map(item => (
+                  <Button
+                    key={item.item}
+                    content={item.item}
+                    selected={item.item === data.selected_dir}
+                    onClick={() => act('setdir', {
+                      dir: direction,
+                    })} />
+                ))}
+              </LabeledList.Item>
+            );
+          })}
+        </LabeledList>
+      </Section>
     </Fragment>
   );
 };
