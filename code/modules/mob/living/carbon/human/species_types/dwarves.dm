@@ -182,7 +182,7 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 		switch(stored_alcohol)
 			if(0 to 24)
 				to_chat(owner, "<span class='userdanger'>DAMNATION INCARNATE, WHY AM I CURSED WITH THIS DRY-SPELL? I MUST DRINK.</span>")
-				owner.adjustToxLoss(35)
+				owner.adjustToxLoss(min(35,max(0,85 - owner.getToxLoss()))) //SKYRAT CHANGE - Dwarves get only up to 85 toxin
 			if(25 to 50)
 				to_chat(owner, "<span class='danger'>Oh DAMN, I need some brew!</span>")
 			if(51 to 75)
