@@ -25,6 +25,7 @@
 	coldmod = 2
 	heatmod = 0.5
 	species_traits = list(LIPS,HAIR,FACEHAIR)
+	mutant_bodyparts = list() //no mutant bodypart for you dummy
 	default_features = list("mcolor" = "A0A0A0", "ears" = "Elf, Grey")
 	mutantlungs = /obj/item/organ/lungs/dunmer //they breath both on lavaland and on-station. Will this be powergamed? Not really, man - brutemod makes mining not very good.
 	mutanteyes = /obj/item/organ/eyes/dunmer
