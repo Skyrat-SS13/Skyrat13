@@ -48,9 +48,9 @@ var/list/interactions
 	var/needs_physical_contact
 
 /datum/interaction/proc/evaluate_user(mob/living/carbon/human/user, silent = TRUE)
-	if(user.refractory_period)
+	if(user.get_refraction_dif())
 		if(!silent) //bye spam
-			to_chat(user, "<span class='warning'>You're still exhausted from the last time. You need to wait [DisplayTimeText(user.refractory_period * 10, TRUE)] until you can do that!</span>")
+			to_chat(user, "<span class='warning'>You're still exhausted from the last time. You need to wait [DisplayTimeText(user.get_refraction_dif(), TRUE)] until you can do that!</span>")
 		return FALSE
 
 	if(require_user_mouth)
