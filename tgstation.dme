@@ -3379,6 +3379,7 @@
 #include "modular_skyrat\code\modules\client\loadout\uniform.dm"
 #include "modular_skyrat\code\modules\client\verbs\who.dm"
 #include "modular_skyrat\code\modules\clothing\glasses\hud.dm"
+#include "modular_skyrat\code\modules\clothing\gloves\ring.dm"
 #include "modular_skyrat\code\modules\clothing\head\helmet.dm"
 #include "modular_skyrat\code\modules\clothing\head\jobs.dm"
 #include "modular_skyrat\code\modules\clothing\head\misc.dm"
