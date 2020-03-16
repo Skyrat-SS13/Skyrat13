@@ -38,18 +38,6 @@
 	if(stat != DEAD)
 		//Stuff jammed in your limbs hurts
 		handle_embedded_objects()
-	//SKYRAT CHANGE - Cucks collarbanned people hard. Even if you remove the collar, it'll grow back like a raging cancer.
-	if(jobban_isbanned(src, COLLARBAN))
-		if(wear_neck && !istype(wear_neck, COLLARITEM) || !wear_neck)
-			qdel(wear_neck)
-			var/obj/item/electropack/shockcollar/pacify/admin/collar = new()
-			equip_to_slot(collar, SLOT_NECK)
-	else if(jobban_isbanned(src, LESSERCOLLARBAN))
-		if(wear_neck && !istype(wear_neck, LESSERCOLLARITEM) || !wear_neck)
-			qdel(wear_neck)
-			var/obj/item/electropack/shockcollar/pacify/admin/lesser/collar = new()
-			equip_to_slot(collar, SLOT_NECK)
-	//
 
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
