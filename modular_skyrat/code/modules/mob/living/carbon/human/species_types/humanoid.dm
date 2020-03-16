@@ -17,14 +17,14 @@
 	icon_limbs = 'modular_skyrat/icons/mob/dunmer_parts.dmi'
 	limbs_id = "dunmer"
 	hair_color = "mutcolor"
-	fixed_mut_color = "#202020"
+	fixed_mut_color = rgb(32,32,32)
 	disliked_food = null
 	liked_food = GROSS | RAW
 	brutemod = 1.2
 	burnmod = 0.8
 	coldmod = 2
 	heatmod = 0.5
-	species_traits = list(LIPS,HAIR,FACEHAIR)
+	species_traits = list(LIPS,HAIR,FACEHAIR,MUTCOLORS_PARTSONLY)
 	mutant_bodyparts = list("ears")
 	default_features = list("mcolor" = "FFF", "mcolor2" = "FFF","mcolor3" = "FFF", "ears" = "Elf")
 	mutantlungs = /obj/item/organ/lungs/dunmer //they breath both on lavaland and on-station. Will this be powergamed? Not really, man - brutemod makes mining not very good.
