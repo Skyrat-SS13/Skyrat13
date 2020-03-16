@@ -95,6 +95,7 @@ import { Uplink } from './interfaces/Uplink';
 import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
 import { AtmosRelief } from './interfaces/AtmosRelief';
+import { Rdd } from './interfaces/Rdd';
 
 const ROUTES = {
   achievements: {
@@ -513,6 +514,10 @@ const ROUTES = {
   wires: {
     component: () => Wires,
     scrollable: false,
+  },
+  rdd: {
+    component: () => Rdd,
+    scrollable: true,
   },
 };
 

@@ -1,10 +1,10 @@
 /obj/item/rdd
 	name = "Rapid Decal Device (RDD)"
 	desc = "A device used to rapidly decal tiles."
-	icon = 'icons/obj/tools.dmi'
+	icon = 'modular_skyrat/icons/obj/tools.dmi'
 	icon_state = "rdd"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/tools_righthand.dmi'
 
 	flags_1 = CONDUCT_1
 	force = 10
@@ -27,30 +27,6 @@
 	var/static/list/misc = list("stand_clear_white","caution_white","loadingarea_white","bot_white","delivery_white","box_white","box_left_white","box_right_white","box_corners_white","arrows_white")
 
 	var/static/list/all_tdecal = warningline + trimline + trimlinefill + tile + misc
-
-/datum/decal_info
-	var/name
-	var/icon_state
-	var/id = -1
-	var/dirtype = PIPE_TRINARY
-
-/datum/decal_info/proc/Params()
-	return ""
-
-/datum/decal_info/proc/get_preview(selected_dir)
-	var/list/dirs
-	var/list/rows = list()
-	var/list/row = list("previews" = list())
-	var/i = 0
-	for(var/dir in dirs)
-		var/numdir = text2num(dir)
-		row["previews"] += list(list("selected" = (numdir == selected_dir), "dir" = dir2text(numdir), "dir_name" = dirs[dir], "icon_state" = icon_state))
-		if(i++)
-			rows += list(row)
-			row = list("previews" = list())
-			i = 0
-
-	return rows
 
 /obj/item/rdd/proc/isValidSurface(surface)
 	return istype(surface, /turf/open/floor)
@@ -107,7 +83,6 @@
 	. = list()
 	.["drawables"] = rdd_drawables
 	.["selected_stencil"] = drawtype
-	.["preview_rows"] = recipe.get_preview(graf_dir)
 	.["current_colour"] = paint_color
 
 /obj/item/rdd/ui_act(action, list/params)
@@ -122,8 +97,14 @@
 			else
 				return
 			graf_dir = NORTH
-		if("set_dir")
-			graf_dir = text2dir(params["dir"])
+		if("dir_n")
+			graf_dir = NORTH
+		if("dir_s")
+			graf_dir = SOUTH
+		if("dir_e")
+			graf_dir = EAST
+		if("dir_w")
+			graf_dir = WEST
 		if("select_colour")
 			var/chosen_colour = input(usr,"","Choose Color",paint_color) as color|null
 
