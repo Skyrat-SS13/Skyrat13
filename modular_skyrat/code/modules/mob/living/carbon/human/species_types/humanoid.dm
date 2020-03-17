@@ -52,7 +52,7 @@
 /obj/item/organ/ears/dunmer
 	name = "dunmer ears"
 	desc = "Have you heard of the dark elves?"
-	icon = "modular_citadel/icons/mob/mam_ears.dmi"
+	icon = 'modular_citadel/icons/mob/mam_ears.dmi'
 	icon_state = "m_ears_elf_ADJ"
 
 /obj/item/organ/ears/dunmer/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
