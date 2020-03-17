@@ -25,10 +25,11 @@
 	coldmod = 2
 	heatmod = 0.5
 	species_traits = list(LIPS,HAIR,FACEHAIR)
-	mutant_bodyparts = list() //no mutant bodypart for you dummy
-	default_features = list("mcolor" = "A0A0A0", "ears" = "Elf, Grey")
+	mutant_bodyparts = list() //bodypart bad, this is pure dunmer
+	default_features = list("mcolor" = "A0A0A0")
 	mutantlungs = /obj/item/organ/lungs/dunmer //they breath both on lavaland and on-station. Will this be powergamed? Not really, man - brutemod makes mining not very good.
 	mutanteyes = /obj/item/organ/eyes/dunmer
+	mutantears = /obj/item/organ/ears/dunmer
 	icon_eyes = 'modular_skyrat/icons/mob/dunmer_face.dmi'
 
 /obj/item/organ/lungs/dunmer
@@ -47,3 +48,17 @@
 	desc = "Eyes of a cursed race."
 	icon_state = "burning_eyes"
 	eye_color = "#ff0000"
+
+/obj/item/organ/ears/dunmer
+	name = "dunmer ears"
+	desc = "Have you heard of the dark elves?"
+	icon = "modular_citadel/icons/mob/mam_ears.dmi"
+	icon_state = "m_ears_elf_ADJ"
+
+/obj/item/organ/ears/dunmer/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
+	..()
+	if(istype(H))
+		color = "A0A0A0"
+		H.dna.species.mutant_bodyparts |= "ears"
+		H.dna.features["ears"] = "Elf, Grey"
+		H.update_body()
