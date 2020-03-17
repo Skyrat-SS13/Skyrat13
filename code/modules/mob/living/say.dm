@@ -87,7 +87,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/talk_key = get_key(message)
 
 	var/static/list/one_character_prefix = list(MODE_HEADSET = TRUE, MODE_ROBOT = TRUE, MODE_WHISPER = TRUE)
-	set_typing_indicator(FALSE) //skyrat-edit
 	if(sanitize)
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message || message == "")
@@ -208,6 +207,10 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		spans |= SPAN_ITALICS
 
 	send_speech(message, message_range, src, bubble_type, spans, language, message_mode)
+	//SKYRAT EDIT
+	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
+		set_typing_indicator(FALSE)
+	//END OF SKYRAT EDIT
 
 	if(succumbed)
 		succumb()
