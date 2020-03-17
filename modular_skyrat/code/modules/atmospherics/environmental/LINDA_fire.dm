@@ -11,15 +11,15 @@
 	if(active_hotspot)
 		if(soh)
 			if(tox > 0.5 || trit > 0.5)
-				if(active_hotspot.temperature < exposed_temperature*15)
-					active_hotspot.temperature = exposed_temperature*15
+				if(active_hotspot.temperature < exposed_temperature*35)
+					active_hotspot.temperature = exposed_temperature*35
 				if(active_hotspot.volume < exposed_volume)
 					active_hotspot.volume = exposed_volume
 		return 1
 
 	if((exposed_temperature > PLASMA_MINIMUM_BURN_TEMPERATURE) && (tox > 0.5 || trit > 0.5))
 		active_hotspot = new /obj/effect/hotspot(src)
-		active_hotspot.temperature = exposed_temperature*15
+		active_hotspot.temperature = exposed_temperature*35
 		active_hotspot.volume = exposed_volume*25
 
 		active_hotspot.just_spawned = (current_cycle < SSair.times_fired)
