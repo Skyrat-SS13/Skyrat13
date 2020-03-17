@@ -7,3 +7,7 @@
 	design_ids += "bsrpd"
 	design_ids += "borg_upgrade_bsrpd"
 	. = ..()
+
+/datum/techweb_node/adv_robotics/New()
+	design_ids += "borg_upgrade_premiumka"
+	. = ..()
