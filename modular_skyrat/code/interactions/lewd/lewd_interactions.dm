@@ -35,9 +35,9 @@
 
 /datum/interaction/lewd/evaluate_user(mob/living/carbon/human/user, silent = TRUE)
 	if(..(user, silent))
-		if(user_not_tired && user.refractory_period)
+		if(user_not_tired && user.get_refraction_dif())
 			if(!silent) //bye spam
-				to_chat(user, "<span class='warning'>You're still exhausted from the last time. You need to wait [DisplayTimeText(user.refractory_period * 10, TRUE)] until you can do that!</span>")
+				to_chat(user, "<span class='warning'>You're still exhausted from the last time. You need to wait [DisplayTimeText(user.get_refraction_dif(), TRUE)] until you can do that!</span>")
 			return FALSE
 
 		if(require_user_bottomless && !user.is_bottomless())
@@ -81,9 +81,9 @@
 
 /datum/interaction/lewd/evaluate_target(mob/living/carbon/human/user, mob/living/carbon/human/target, silent = TRUE)
 	if(..(user, target, silent))
-		if(target_not_tired && target.refractory_period)
+		if(target_not_tired && target.get_refraction_dif())
 			if(!silent) //same with this
-				to_chat(user, "<span class='warning'>They're still exhausted from the last time. They need to wait [DisplayTimeText(target.refractory_period * 10, TRUE)] until you can do that!</span>")
+				to_chat(user, "<span class='warning'>They're still exhausted from the last time. They need to wait [DisplayTimeText(target.get_refraction_dif(), TRUE)] until you can do that!</span>")
 			return FALSE
 
 		if(require_target_bottomless && !target.is_bottomless())
@@ -126,9 +126,9 @@
 
 /datum/interaction/lewd/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user_refractory_cost)
-		user.refractory_period += user_refractory_cost
+		user.refractory_period = world.time + user_refractory_cost*10
 	if(target_refractory_cost)
-		target.refractory_period += target_refractory_cost
+		target.refractory_period = world.time + target_refractory_cost*10
 	return ..()
 
 /datum/interaction/lewd/get_action_link_for(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -139,7 +139,7 @@
 
 /mob/living/carbon/human/list_interaction_attributes()
 	var/dat = ..()
-	if(refractory_period)
+	if(get_refraction_dif())
 		dat += "<br>...are sexually exhausted for the time being."
 	if(a_intent == INTENT_HELP)
 		dat += "<br>...are acting gentle."

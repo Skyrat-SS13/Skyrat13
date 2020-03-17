@@ -451,7 +451,9 @@
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/katana/necropolis
-	force = 30 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
+	force = 25 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
+	armour_penetration = 25
+	block_chance = 0 //blocky bad
 
 //legion
 /obj/structure/closet/crate/necropolis/legion
