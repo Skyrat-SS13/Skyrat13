@@ -3,7 +3,7 @@
 #define BUBBLEGUM_IS_ENRAGED (enrage_till > world.time)
 
 /*
-BUBBLEGUM
+BUBBLEGUM (HARD)
 Bubblegum spawns randomly wherever a lavaland creature is able to spawn. It is the most powerful slaughter demon in existence.
 Bubblegum's footsteps are heralded by shaking booms, proving its tremendous size.
 It acts as a melee creature, chasing down and attacking its target while also using different attacks to augment its power
@@ -41,7 +41,7 @@ Difficulty: Hard
 	var/nest_range = 10
 	var/true_spawn = TRUE
 
-	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now... "
+	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now, slayer... "
 	deathsound = 'sound/magic/enter_blood.ogg'
 
 obj/item/gps/internal/bubblegum/hard

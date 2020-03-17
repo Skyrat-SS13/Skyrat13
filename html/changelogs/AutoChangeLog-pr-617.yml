@@ -1,0 +1,6 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Roblox sword"
+  - rscadd: "Roblox sword uplink datum"
+  - imageadd: "Roblox sword icon"

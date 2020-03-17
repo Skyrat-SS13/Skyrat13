@@ -356,7 +356,7 @@ SUBSYSTEM_DEF(vote)
 				var/list/runnable_storytellers = config.get_runnable_storytellers()
 				for(var/T in runnable_storytellers)
 					var/datum/dynamic_storyteller/S = T
-					runnable_storytellers[S] *= scores[initial(S.name)]
+					runnable_storytellers[S] *= round(stored_gamemode_votes[initial(S.name)]*100000,1)
 				var/datum/dynamic_storyteller/S = pickweightAllowZero(runnable_storytellers)
 				GLOB.dynamic_storyteller_type = S
 			if("map")
@@ -365,6 +365,12 @@ SUBSYSTEM_DEF(vote)
 				log_admin("The map has been voted for and will change to: [VM.map_name]")
 				if(SSmapping.changemap(config.maplist[.]))
 					to_chat(world, "<span class='boldannounce'>The map vote has chosen [VM.map_name] for next round!</span>")
+			if("transfer") // austation begin -- Crew autotransfer vote
+				if(. == "Initiate Crew Transfer")
+					SSshuttle.autoEnd()
+					var/obj/machinery/computer/communications/C = locate() in GLOB.machines
+					if(C)
+						C.post_status("shuttle") // austation end
 	if(restart)
 		var/active_admins = 0
 		for(var/client/C in GLOB.admins)
@@ -437,13 +443,14 @@ SUBSYSTEM_DEF(vote)
 
 			var/admin = FALSE
 			var/ckey = ckey(initiator_key)
-			if(GLOB.admin_datums[ckey])
+			if(GLOB.admin_datums[ckey] || initiator_key == "server")
 				admin = TRUE
 
 			if(next_allowed_time > world.time && !admin)
 				to_chat(usr, "<span class='warning'>A vote was initiated recently, you must wait [DisplayTimeText(next_allowed_time-world.time)] before a new vote can be started!</span>")
 				return 0
 
+		SEND_SOUND(world, sound('sound/misc/notice2.ogg'))
 		reset()
 		obfuscated = hideresults //CIT CHANGE - adds obfuscated votes
 		switch(vote_type)
@@ -465,6 +472,8 @@ SUBSYSTEM_DEF(vote)
 					if(targetmap.max_round_search_span && count_occurences_of_value(lastmaps, M, targetmap.max_round_search_span) >= targetmap.max_rounds_played)
 						continue
 					choices |= M
+			if("transfer") // austation begin -- Crew autotranfer vote
+				choices.Add("Initiate Crew Transfer","Continue Playing") // austation end
 			if("roundtype") //CIT CHANGE - adds the roundstart secret/extended vote
 				choices.Add("secret", "extended")
 			if("mode tiers")
@@ -476,10 +485,11 @@ SUBSYSTEM_DEF(vote)
 				modes_to_add -= "traitor" // makes it so that traitor is always available
 				choices.Add(modes_to_add)
 			if("dynamic")
+				var/list/probabilities = CONFIG_GET(keyed_list/storyteller_weight)
 				for(var/T in config.storyteller_cache)
 					var/datum/dynamic_storyteller/S = T
-					var/list/probabilities = CONFIG_GET(keyed_list/storyteller_weight)
-					if(probabilities[initial(S.config_tag)] > 0)
+					var/probability = ((initial(S.config_tag) in probabilities) ? probabilities[initial(S.config_tag)] : initial(S.weight))
+					if(probability > 0)
 						choices.Add(initial(S.name))
 						choice_descs.Add(initial(S.desc))
 			if("custom")
@@ -496,7 +506,7 @@ SUBSYSTEM_DEF(vote)
 			else
 				return 0
 		mode = vote_type
-		initiator = initiator_key
+		initiator = initiator_key ? initiator_key : "the Server" // austation -- Crew autotransfer vote
 		started_time = world.time
 		var/text = "[capitalize(mode)] vote started by [initiator]."
 		if(mode == "custom")
