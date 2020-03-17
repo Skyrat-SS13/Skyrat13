@@ -1,7 +1,7 @@
-/obj/effect/decal/tiledecal
+/obj/effect/decal/tiledecal/rdd
 	name = "Warning Line"
 	desc = "Graffiti. Damn kids."
-	icon = 'modular_skyrat/icons/effects/crayondecals'
+	icon = 'modular_skyrat/icons/effects/crayondecals.dmi'
 	icon_state = "warningline_white"
 	plane = GAME_PLANE //makes the graffiti visible over a wall.
 	gender = NEUTER
