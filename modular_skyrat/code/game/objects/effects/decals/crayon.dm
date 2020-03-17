@@ -5,8 +5,6 @@
 	icon_state = "warningline_white"
 	plane = GAME_PLANE //makes the graffiti visible over a wall.
 	gender = NEUTER
-	var/do_icon_rotate = TRUE
-	var/dir = NORTH
 	var/paint_colour = "#FFFFFF"
 
 /obj/effect/decal/tiledecal/rdd/Initialize(mapload, main, type, e_name, graf_dir, alt_icon = null)
