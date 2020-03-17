@@ -8,6 +8,11 @@ export const Rdd = props => {
   const directions = data.directions || [];
   return (
     <Fragment>
+      <Section title="Basic">
+        <Button
+          content="Select New Color"
+          onClick={() => act('select_colour')} />
+      </Section>
       <Section title="Stencil">
         <LabeledList>
           {drawables.map(drawable => {

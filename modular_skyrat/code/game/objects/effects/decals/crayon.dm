@@ -3,7 +3,7 @@
 	desc = "Graffiti. Damn kids."
 	icon = 'modular_skyrat/icons/effects/crayondecals.dmi'
 	icon_state = "warningline_white"
-	plane = GAME_PLANE //makes the graffiti visible over a wall.
+	layer = TURF_PLATING_DECAL_LAYER //makes the graffiti visible over a wall.
 	gender = NEUTER
 	var/paint_colour = "#FFFFFF"
 
