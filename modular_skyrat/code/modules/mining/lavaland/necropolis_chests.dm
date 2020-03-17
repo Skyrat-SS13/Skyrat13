@@ -441,6 +441,7 @@
 
 /obj/structure/closet/crate/necropolis/legion/hard/PopulateContents()
 	new /obj/item/staff/storm(src)
+	new /obj/item/staff/storm(src)
 	new /obj/item/clothing/mask/gas/dagoth(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
@@ -453,6 +454,7 @@
 		new L(src)
 	qdel(T)
 
+//dagoth ur mask
 /obj/item/clothing/mask/gas/dagoth
 	name = "Golden Mask"
 	desc = "Such a grand and intoxicating innocence."
