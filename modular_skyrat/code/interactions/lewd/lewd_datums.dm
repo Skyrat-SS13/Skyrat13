@@ -10,13 +10,13 @@
 
 /datum/interaction/lewd/kiss/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
-	if(user.lust < 5)
-		user.lust = 5
-	if(target.lust < 5)
-		target.lust = 5
+	if(user.get_lust() < 5)
+		user.set_lust(5)
+	if(target.get_lust() < 5)
+		target.set_lust(5)
 
 /datum/interaction/lewd/kiss/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if(user.lust >= 3)
+	if(user.get_lust() >= 3)
 		user.visible_message("<span class='warning'>\The [user] gives an intense, lingering kiss to \the [target].</span>")
 	else
 		user.visible_message("<span class='warning'>\The [user] kisses \the [target] deeply.</span>")
@@ -49,7 +49,7 @@
 					 "<span class='warning'>\The [user] tightly squeezes \the [target]'s breasts.</span>",
 					 "<span class='warning'>\The [user] slaps at \the [target]'s breasts.</span>",
 					 "<span class='warning'>\The [user] gropes \the [target]'s breasts roughly.</span>"))
-	if(prob(5 + target.lust))
+	if(prob(5 + target.get_lust()))
 		if(target.a_intent == INTENT_HELP)
 			user.visible_message(
 				pick("<span class='warning'>\The [target] shivers in arousal.</span>",
@@ -58,8 +58,8 @@
 					 "<span class='warning'>\The [target] gasps.</span>",
 					 "<span class='warning'>\The [target] shudders softly.</span>",
 					 "<span class='warning'>\The [target] trembles as hands run across bare skin.</span>"))
-			if(target.lust < 5)
-				target.lust = 5
+			if(target.get_lust() < 5)
+				target.set_lust(5)
 		if(target.a_intent == INTENT_DISARM)
 			if (target.restrained())
 				user.visible_message(
@@ -73,8 +73,8 @@
 						 "<span class='warning'>\The [target] squirms away from [user]'s hand.</span>",
 						 "<span class='warning'>\The [target] guides [user]'s hand across bare breasts.</span>",
 						 "<span class='warning'>\The [target] teasingly laces a few fingers over [user]'s knuckles.</span>"))
-			if(target.lust < 10)
-				target.lust += 1
+			if(target.get_lust() < 10)
+				target.add_lust(1)
 	if(target.a_intent == INTENT_GRAB)
 		user.visible_message(
 				pick("<span class='warning'>\The [target] grips [user]'s wrist tight.</span>",

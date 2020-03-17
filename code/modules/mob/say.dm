@@ -5,7 +5,6 @@
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
-	set_typing_indicator(FALSE) //skyrat-edit
 	if(message)
 		say(message)
 
@@ -37,7 +36,6 @@
 		return
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
-	set_typing_indicator(FALSE)
 
 	usr.emote("me",1,message,TRUE)
 

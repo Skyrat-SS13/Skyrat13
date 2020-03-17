@@ -7,3 +7,9 @@
 	always_place = TRUE
 	allow_duplicates = FALSE
 	always_spawn_with = list(/datum/map_template/ruin/space/kinggoatarena = PLACE_ISOLATED)
+
+/datum/map_template/ruin/lavaland/sin/wrath
+	name = "Ruin of Wrath"
+	id = "wrathruin"
+	description = "RIP AND TEAR, UNTIL IT IS DONE."
+	suffix = "lavaland_surface_wrath.dmm"

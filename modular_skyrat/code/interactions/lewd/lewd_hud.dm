@@ -13,7 +13,7 @@
 	if(M.client.prefs.toggles & VERB_CONSENT)
 		if(!M.Adjacent(M.last_partner) || !M.Adjacent(M.last_partner))
 			return
-		if(M.lust >= M.lust_tolerance)
+		if(M.get_lust() >= M.lust_tolerance)
 			M.cum(M.last_partner, M.last_orifice)
 		return TRUE
 
@@ -22,10 +22,12 @@
 		return FALSE
 	var/mob/living/carbon/human/M = hud?.mymob
 	var/value = FLOOR(M.getPercentAroused(), 10)
-	if(M.refractory_period)
-		var/refract = FLOOR((100/M.refract_total)*M.refractory_period, 10)
+	/*
+	if(M.get_refraction_dif())
+		var/refract = FLOOR((100/M.refract_total)*M.get_refraction_dif(), 10)
 		M.hud_used.arousal.icon_state = "arousal[refract]"
 		return
+	*/
 	switch(M.client.prefs.toggles & VERB_CONSENT)
 		if(FALSE)
 			M.hud_used.arousal.icon_state = "arousalx[value]"
@@ -35,5 +37,5 @@
 	return TRUE
 
 /mob/living/proc/getPercentAroused()
-	var/percentage = ((100 / lust_tolerance) * lust)
+	var/percentage = ((100 / lust_tolerance) * get_lust())
 	return percentage
