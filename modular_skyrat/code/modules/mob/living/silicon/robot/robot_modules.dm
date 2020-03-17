@@ -89,6 +89,11 @@ obj/item/robot_module/butler/Initialize()
 	basic_modules += /obj/item/reagent_containers/borghypo/borgshaker/miscshaker
 	. = ..()
 
+/obj/item/robot_module/miner/Initialize()
+	basic_modules += /obj/item/card/id/miningborg
+	. = ..()
+
 /datum/robot_energy_storage/plasma
 	name = "Plasma Buffer Container"
 	recharge_rate = 0
+
