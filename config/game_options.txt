@@ -461,6 +461,8 @@ ROUNDSTART_RACES ipc
 
 ## SKYRATS Races
 ROUNDSTART_RACES vox
+ROUNDSTART_RACES dunmer
+ROUNDSTART_RACES humanoid
 
 ##-------------------------------------------------------------------------------------------
 

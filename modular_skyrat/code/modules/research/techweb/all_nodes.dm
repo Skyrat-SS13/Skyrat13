@@ -8,6 +8,10 @@
 	design_ids += "borg_upgrade_bsrpd"
 	. = ..()
 
+/datum/techweb_node/adv_robotics/New()
+	design_ids += "borg_upgrade_premiumka"
+	. = ..()
+
 /datum/techweb_node/bs_mining
 	id = "bluespace_mining"
 	display_name = "Bluespace Mining Technology"
