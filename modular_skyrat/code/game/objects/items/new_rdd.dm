@@ -27,7 +27,7 @@
 	var/static/list/misc = list("stand_clear_white","caution_white","loadingarea_white","bot_white","delivery_white","box_white","box_left_white","box_right_white","box_corners_white","arrows_white")
 
 	var/static/list/all_tdecal = warningline + trimline + trimlinefill + tile + misc
-	
+
 	var/static/list/directions = list(NORTH,SOUTH,EAST,WEST)
 
 /obj/item/rdd/proc/isValidSurface(surface)
@@ -141,7 +141,7 @@
 	var/list/turf/affected_turfs = list()
 
 
-	var/obj/effect/decal/crayon/C = new(target, paint_color, drawing, temp, graf_dir)
+	var/obj/effect/decal/rdd/C = new(target, paint_color, drawing, temp, graf_dir)
 	C.add_hiddenprint(user)
 	C.x = target.x
 	C.y = target.y

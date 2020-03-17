@@ -3333,6 +3333,7 @@
 #include "modular_skyrat\code\game\machinery\computer\arcade\minesweeper.dm"
 #include "modular_skyrat\code\game\machinery\pipe\construction.dm"
 #include "modular_skyrat\code\game\objects\items.dm"
+#include "modular_skyrat\code\game\objects\effects\decals\crayon.dm"
 #include "modular_skyrat\code\game\objects\effects\decals\crayondecals.dm"
 #include "modular_skyrat\code\game\objects\items\BSRPD.dm"
 #include "modular_skyrat\code\game\objects\items\kitchen.dm"
