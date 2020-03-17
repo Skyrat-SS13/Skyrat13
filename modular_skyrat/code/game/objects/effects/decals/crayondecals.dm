@@ -1,92 +1,92 @@
-obj/effects/normaldecals/warningline
+obj/effects/decal/warningline
 	icon_state = "warningline_white"
 
-obj/effects/normaldecals/warninglinecorner
+obj/effects/decal/warninglinecorner
 	icon_state = "warninglinecorner_white"
 
-obj/effects/normaldecals/warningend
+obj/effects/decal/warningend
 	icon_state = "warn_end_white"
 
-obj/effects/normaldecals/warningbox
+obj/effects/decal/warningbox
 	icon_state = "warn_box_white"
 
-obj/effects/normaldecals/warningfull
+obj/effects/decal/warningfull
 	icon_state = "warn_full_white"
 
-obj/effects/normaldecals/standclear
+obj/effects/decal/standclear
 	icon_state = "stand_clear_white"
 
-obj/effects/normaldecals/caution
+obj/effects/decal/caution
 	icon_state = "caution_white"
 
-obj/effects/normaldecals/loadingarea
+obj/effects/decal/loadingarea
 	icon_state = "loadingarea_white"
 
-obj/effects/normaldecals/bot
+obj/effects/decal/bot
 	icon_state = "bot_white"
 
-obj/effects/normaldecals/delivery
+obj/effects/decal/delivery
 	icon_state = "delivery_white"
 
-obj/effects/normaldecals/box
+obj/effects/decal/box
 	icon_state = "box_white"
 
-obj/effects/normaldecals/botleft
+obj/effects/decal/botleft
 	icon_state = "box_left_white"
 
-obj/effects/normaldecals/botright
+obj/effects/decal/botright
 	icon_state = "box_right_white"
 
-obj/effects/normaldecals/boxcorner
+obj/effects/decal/boxcorner
 	icon_state = "box_corners_white"
 
-obj/effects/normaldecals/arrows
+obj/effects/decal/arrows
 	icon_state = "arrows_white"
 
-obj/effects/normaldecals/trimline
+obj/effects/decal/trimline
 	icon_state = "trimline"
 
-obj/effects/normaldecals/trimlinecorner
+obj/effects/decal/trimlinecorner
 	icon_state = "trimline_corner"
 
-obj/effects/normaldecals/trimlineend
+obj/effects/decal/trimlineend
 	icon_state = "trimline_end"
 
-obj/effects/normaldecals/trimlinebox
+obj/effects/decal/trimlinebox
 	icon_state = "trimline_box"
 
-obj/effects/normaldecals/trimlinefill
+obj/effects/decal/trimlinefill
 	icon_state = "trimline_fill"
 
-obj/effects/normaldecals/trimlinefillcorner
+obj/effects/decal/trimlinefillcorner
 	icon_state = "trimline_corner_fill"
 
-obj/effects/normaldecals/trimlinefillend
+obj/effects/decal/trimlinefillend
 	icon_state = "trimline_end_fill"
 
-obj/effects/normaldecals/trimlinefillbox
+obj/effects/decal/trimlinefillbox
 	icon_state = "trimline_box_fill"
 
-obj/effects/normaldecals/trimlinel
+obj/effects/decal/trimlinel
 	icon_state = "trimlinel"
 
-obj/effects/normaldecals/warninglinel
+obj/effects/decal/warninglinel
 	icon_state = "warninglinel_white"
 
-obj/effects/normaldecals/trimlinefilll
+obj/effects/decal/trimlinefilll
 	icon_state = "trimelinel_fill"
 
-obj/effects/tiledecals/singletile
+obj/effects/tile100s/singletile
 	icon_state = "singletile"
 
-obj/effects/tiledecals/doubletile
+obj/effects/tile100s/doubletile
 	icon_state = "doubletile"
 
-obj/effects/tiledecals/tripletile
+obj/effects/tile100s/tripletile
 	icon_state = "tripletile"
 
-obj/effects/tiledecals/fulltile
+obj/effects/tile100s/fulltile
 	icon_state = "fulltile"
 
-obj/effects/tiledecals/checkertile
+obj/effects/tile100s/checkertile
 	icon_state = "checkertile"
