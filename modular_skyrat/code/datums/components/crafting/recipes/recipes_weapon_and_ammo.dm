@@ -1,6 +1,15 @@
 ///////////////////////
 ///WHATEVER CRAFTING///
 ///////////////////////
+/datum/crafting_recipe/glasshatchet
+	name = "Makeshift glass hatchet"
+	result = /obj/item/hatchet/improvised
+	reqs = list(/obj/item/stack/wrapping_paper = 4,
+				/obj/item/shard = 1,
+				/obj/item/wrench = 1)
+	time = 40
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/switchblade_ms
 	name = "Switchblade"
@@ -11,6 +20,52 @@
 				/obj/item/stack/cable_coil = 2)
 	tools = list(TOOL_WELDER)
 	time = 45
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/switchblade_deluxe
+	name = "Deluxe Switchblade"
+	result = /obj/item/switchblade/deluxe
+	reqs = list(/obj/item/switchblade = 1,
+				/obj/item/stack/cable_coil = 5,
+				/obj/item/stack/sheet/mineral/diamond = 2,
+				/obj/item/stack/sheet/mineral/plasma = 5,
+				/obj/item/stack/sheet/mineral/titanium = 5
+				/obj/item/stack/sheet/mineral/plastitanium = 1,
+				/obj/item/stack/sheet/mineral/gold = 5,
+				/obj/item/stock_parts/cell = 1,
+				/obj/machinery/igniter = 1)
+	tools = list(TOOL_WELDER)
+	time = 45
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/hazardarmor
+	name = "hazard vest armor"
+	result =  /obj/item/clothing/suit/armor/hazard
+	reqs = list(/obj/item/stack/sheet/metal = 1,
+				/obj/item/clothing/suit/hazardvest = 1,
+				/obj/item/stack/wrapping_paper = 5)
+	time = 100
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/trayshield
+	name = "tray shield"
+	result =  /obj/item/shield/trayshield
+	reqs = list(/obj/item/stack/sheet/metal = 1,
+				/obj/item/storage/bag/tray = 1,
+				/obj/item/stack/cable_coil = 5)
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/shank
+	name = "shank"
+	result =  /obj/item/shard/shank
+	reqs = list(/obj/item/shard = 1,
+				/obj/item/stack/cable_coil = 1,
+				/obj/item/stack/wrapping_paper = 1)
+	time = 5
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -64,6 +119,19 @@
 				/obj/item/stack/sheet/sinew = 2)
 	time = 150
 	category = CAT_PRIMAL
+
+/datum/crafting_recipe/makeshiftlasrifle
+	name = "makeshift laser rifle"
+	result = /obj/item/gun/energy/laser/makeshiftlasrifle
+	reqs = list(/obj/item/stack/cable_coil = 20,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/pipe = 1,
+				/obj/item/stack/sheet/mineral/diamond = 3,
+				/obj/item/stock_parts/cell = 1)
+	tools = list(/obj/item/screwdriver)
+	time = 250
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
 
 //////////////////
 ///AMMO CRAFTING//

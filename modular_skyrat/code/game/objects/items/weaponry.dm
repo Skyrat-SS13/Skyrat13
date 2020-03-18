@@ -20,6 +20,62 @@
 		icon_state = "switchblade_msf"
 		to_chat(user, "<span class='notice'>You use part of the silver to improve your Switchblade. Stylish!</span>")
 
+/obj/item/switchblade/deluxe
+	icon = 'modular_skyrat/icons/obj/deluxeblade.dmi'
+	icon_state = "switchblade_deluxe"
+	desc = "A powered switchblade that also burns on impact."
+	force = 2
+	throwforce = 3
+	extended_force = 15
+	extended_throwforce = 20
+	extended_icon_state = "switchblade_deluxe_ext"
+	retracted_icon_state = "switchblade_deluxe"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
+	item_state = null
+	var/firestacking = 5
+	var/burn_force = 3
+
+/obj/item/switchblade/deluxe/afterattack(target, user)
+	..()
+	if(iscarbon(target) && extended)
+		var/mob/living/carbon/L = target
+		var/mob/living/carbon/ourman = user
+		L.apply_damage(damage = burn_force,damagetype = BURN, def_zone = L.get_bodypart(check_zone(ourman.zone_selected)), blocked = FALSE, forced = FALSE)
+		L.fire_stacks + firestacking
+		L.IgniteMob()
+	else if(isliving(target) && extended)
+		var/mob/living/thetarget = target
+		thetarget.adjustBruteLoss(burn_force)
+
+/obj/item/switchblade/deluxe/attack_self(mob/user)
+	extended = !extended
+	playsound(user, extended ? 'sound/weapons/saberon.ogg' : 'sound/weapons/saberoff.ogg', 15, 1)
+	if(extended)
+		force = extended_force
+		w_class = WEIGHT_CLASS_NORMAL
+		throwforce = extended_throwforce
+		icon_state = extended_icon_state
+		attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		hitsound = 'sound/weapons/bladeslice.ogg'
+		sharpness = IS_SHARP_ACCURATE
+		light_color = "#cc00ff"
+		light_range = 1
+		light_power = 1
+		item_state = "switchblade_deluxe_ext"
+	else
+		force = initial(force)
+		w_class = WEIGHT_CLASS_SMALL
+		throwforce = initial(throwforce)
+		icon_state = retracted_icon_state
+		attack_verb = list("stubbed", "poked")
+		hitsound = 'sound/weapons/genhit.ogg'
+		sharpness = IS_BLUNT
+		light_color = null
+		light_range = 0
+		light_power = 0
+		item_state = null
+
 /obj/item/claymore/roblox
 	name = "Fencing Sword"
 	desc = "It seems otherworldly."
@@ -202,7 +258,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/contender/box_gun
-	recoil = 1
+	recoil = 3
 	var/explodioprob = 33
 
 /obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun/afterattack(atom/target, mob/living/user, flag, params)
@@ -285,3 +341,80 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		L.adjust_bodytemperature(((100-blocked)/100)*(temperature - L.bodytemperature)) // the new body temperature is adjusted by 100-blocked % of the delta between body temperature and the bullet's effect temperature
+
+//surplus rifle changes, because its fucking actual garbage, a fucking PIPE PISTOL is better.
+/obj/item/gun/ballistic/automatic/surplus
+	fire_delay = 10
+	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/ammo_box/magazine/m10mm/rifle
+	max_ammo = 7
+
+//improvised laser rifle
+/obj/item/gun/energy/laser/makeshiftlasrifle
+	name = "makeshift laser rifle"
+	desc = "A makeshift rifle that shoots lasers. Lacks factory precision."
+	icon_state = "lasrifle"
+	item_state = "makeshiftlas"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/makeshiftlasrifle, /obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak, /obj/item/ammo_casing/energy/laser/makeshiftlasrifle/medium)
+	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	can_charge = TRUE
+	charge_sections = 1
+	ammo_x_offset = 2
+	shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle
+	e_cost = 1000 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle
+	select_name = "strong"
+	variance = 2
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle
+	damage = 25
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak
+	e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle/weak
+	select_name = "weak"
+	fire_sound = 'sound/weapons/laser2.ogg'
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle/weak
+	name = "weak laser"
+	damage = 5
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle/medium
+	e_cost = 300
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle/medium
+	select_name = "medium"
+	fire_sound = 'sound/weapons/laser2.ogg'
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle/medium
+	name = "medium laser"
+	damage = 12.5
+
+//shitty hatchet
+/obj/item/hatchet/improvised
+	name = "glass hatchet"
+	desc = "A makeshift hand axe with a crude blade of broken glass."
+	icon = 'modular_skyrat/icons/obj/weapons.dmi'
+	icon_state = "glasshatchet"
+	item_state = "glasshatchet"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/righthand.dmi'
+
+//a fucking shank
+/obj/item/shard/shank
+	name = "shank"
+	desc = "A nasty looking shard of glass. There's paper wrapping over one of the ends."
+	icon = 'modular_skyrat/icons/obj/weapons.dmi'
+	icon_state = "shank"
+	force = 10 //Average force
+	throwforce = 10
+	item_state = "shard-glass"
+	attack_verb = list("stabbed", "shanked", "sliced", "cut")
+	siemens_coefficient = 0 //Means it's insulated
+	embed_chance = 35
+	sharpness = IS_SHARP
