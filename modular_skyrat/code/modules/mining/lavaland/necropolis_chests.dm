@@ -431,7 +431,7 @@
 	self_recharge = 1
 	maxcharge = 1500 //only barely better than a normal power cell now
 	chargerate = 700 //good recharge time doe
-	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon = 'modular_skyrat/icons/obj/argentcell.dmi'
 	icon_state = "argentcell"
 	ratingdesc = FALSE
 	rating = 6
