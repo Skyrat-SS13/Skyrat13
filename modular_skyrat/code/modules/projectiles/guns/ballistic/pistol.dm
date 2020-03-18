@@ -1,3 +1,4 @@
+//Pipe pistol
 /obj/item/gun/ballistic/automatic/pistol/makeshift
 	name = "pipe pistol"
 	desc = "A somewhat bulky aberration of pipes and wood, in the form of a pistol. It probably should get the job done, still."
@@ -14,12 +15,12 @@
 	..()
 	icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"
 
-//USP Match
+//U.S.P pistol - Universal Self Protection pistol
 
 /obj/item/gun/ballistic/automatic/pistol/uspm
-	name = "USP Match"
-	desc = "A standard-issued security handgun, chambered in 9mm, refitted to be only capable of firing non-lethal rounds."
-	icon = 'modular_skyrat/icons/obj/guns/projectile.dmi'
+	name = "U.S.P pistol"
+	desc = "U.S.P - Universal Self Protection. A standard-issued security handgun, chambered in 9mm, refitted to be only capable of firing non-lethal rounds."
+	icon = 'modular_skyrat/icons/obj/guns/usp.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_state = "usp-m"
@@ -27,3 +28,16 @@
 	fire_sound = 'modular_skyrat/sound/weapons/uspshot.ogg'
 	mag_type = /obj/item/ammo_box/magazine/usp
 	can_suppress = FALSE
+	unique_reskin = list("Default" = "usp-m",
+						"Stealth" = "stealth",
+						"Glock" = "glock",
+						"Beretta" = "beretta",
+						"M1911" = "1911",
+						)
+
+/obj/item/gun/ballistic/automatic/pistol/uspm/update_icon()
+	..()
+	if(current_skin)
+		icon_state = "[unique_reskin[current_skin]][chambered ? "" : "-e"]"
+	else
+		icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"
