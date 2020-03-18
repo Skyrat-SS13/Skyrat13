@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(supply_positions, list(
 	"Quartermaster",
 	"Cargo Technician",
 	"Shaft Miner"))
-
+/* moved to modular_skyrat
 GLOBAL_LIST_INIT(civilian_positions, list(
 	"Head of Personnel",
 	"Bartender",
@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(civilian_positions, list(
 	"Clown",
 	"Mime",
 	"Assistant"))
-
+*/
 GLOBAL_LIST_INIT(security_positions, list(
 	"Head of Security",
 	"Warden",
