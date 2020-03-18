@@ -47,7 +47,7 @@
 		var/mob/living/carbon/L = target
 		var/mob/living/carbon/ourman = user
 		L.apply_damage(damage = burn_force,damagetype = BURN, def_zone = L.get_bodypart(check_zone(ourman.zone_selected)), blocked = FALSE, forced = FALSE)
-		L.fire_stacks + firestacking
+		L.fire_stacks += firestacking
 		L.IgniteMob()
 	else if(isliving(target))
 		var/mob/living/thetarget = target

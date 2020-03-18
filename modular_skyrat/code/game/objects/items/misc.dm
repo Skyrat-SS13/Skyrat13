@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/armor/hazard
 	name = "armored hazard vest"
 	desc = "A hazard vest with metal plate taped on it. It offers minor protection against kinetic damage."
-	icon = 'modular_skyrat/icons/obj/armor.dmi'
+	icon = 'modular_skyrat/icons/obj/clothing/armor.dmi'
 	alternate_worn_icon = 'modular_skyrat/icons/mob/suit.dmi'
 	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/suit_digi.dmi'
 	icon_state = "makeshiftarmor"
