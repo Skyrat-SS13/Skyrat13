@@ -8,7 +8,7 @@
 	job_rank = ROLE_TRAITOR
 	antag_moodlet = /datum/mood_event/focused
 	var/special_role = ROLE_TRAITOR
-	var/employer = "You have motives outside the interests of Nanotrasen. Your goals are influenced by whatever this motive is, regardless of who put you up to it. Be it the Syndicate, criminal leaders, blackmailers, or even yourself,"
+	var/employer = "You have motives outside the interests of Nanotrasen. Your goals are influenced by whatever this motive is, regardless of who put you up to it. Be it the Syndicate, criminal leaders, blackmailers, or even yourself."
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE
 	var/should_equip = TRUE
