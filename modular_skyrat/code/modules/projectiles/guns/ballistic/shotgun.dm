@@ -17,8 +17,7 @@
 	name = "pimp stick"
 	desc = "A gold-rimmed cane, with a gleaming diamond set at the top. Great for bashing in kneecaps."
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/canegun
-	fire_sound_volume = 80
-	icon = 'modular_skyrat/icons/obj/item_and_weapons.dmi'
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "pimpstick"
 	item_state = "pimpstick"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/lefthand.dmi'
@@ -28,8 +27,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("pimped", "smacked", "disciplined", "busted", "capped", "decked")
 	resistance_flags = FIRE_PROOF
-	rack_sound_volume = 0
-	semi_auto = TRUE
 	var/mob/current_owner
 
 /obj/item/gun/ballistic/shotgun/canegun/equipped(mob/user, slot)
