@@ -157,7 +157,7 @@
 	job_description = "Off-station Syndicate Comms Agent"
 	short_desc = "You are a syndicate comms agent, employed in a top secret research facility developing biological weapons."
 	flavour_text = "You and your colleagues have been here a long time, and today starts another quote-unquote shift aboard the base. Unfortunately, mining operations backed by Nanotrasen are underway in the general region. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!" //Skyrat edit
-	important_info = ", and do not attack the station unprovoked. Contact your superiors before you even THINK of making a move on the station that would be aggressive!" //Skyrat edit
+	important_info = "Do not attack the station unprovoked. Contact your superiors before you even THINK of making a move on the station that would be aggressive!" //Skyrat edit
 	outfit = /datum/outfit/lavaland_syndicate/comms
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms/space/Initialize()
