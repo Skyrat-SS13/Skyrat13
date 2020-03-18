@@ -1,15 +1,4 @@
 //i dont know what classifies a cargo thing as special.
-/datum/supply_pack/security/armory/doublebarrels
-	name = "Double-Barreled Shotgun Crate"
-	desc = "For when the bartender spaces his one. Or, when you have a tight budget."
-	cost = 3500
-	contains = list(/obj/item/gun/ballistic/revolver/doublebarrel,
-					/obj/item/gun/ballistic/revolver/doublebarrel,
-					/obj/item/gun/ballistic/revolver/doublebarrel,
-					/obj/item/storage/box/rubbershot,
-					/obj/item/storage/box/beanbag)
-	crate_name = "double barrel shotgun crate"
-
 /datum/supply_pack/security/armory/revolver
 	name = ".38 Revolver Crate"
 	desc = "Sometimes, the mysterious stranger doesn't come. Then you do it yourself."
