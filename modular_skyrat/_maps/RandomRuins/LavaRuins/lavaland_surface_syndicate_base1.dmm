@@ -273,7 +273,7 @@
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "aH" = (
 /obj/machinery/door/firedoor,
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "aI" = (
 /obj/structure/grille,
@@ -286,8 +286,13 @@
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "aK" = (
-/obj/machinery/door/airlock,
-/turf/open/floor/engine,
+/obj/machinery/door/window/northleft{
+	req_access_txt = "150"
+	},
+/obj/machinery/door/window/southright{
+	req_access_txt = "150"
+	},
+/turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "aL" = (
 /turf/closed/wall/mineral/plastitanium/explosive,
@@ -6633,6 +6638,15 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
+"qW" = (
+/obj/structure/disposaloutlet{
+	dir = null
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/syndicate_lava_base/testlab)
 "sa" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -6665,10 +6679,9 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "uN" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/engine,
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "vs" = (
 /obj/machinery/vending/hydronutrients,
@@ -6685,12 +6698,6 @@
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "wo" = (
-/obj/machinery/button/door{
-	id = "lavalandsyndi_arrivals";
-	name = "Arrivals Blast Door Control";
-	pixel_y = -26;
-	req_access_txt = "150"
-	},
 /obj/machinery/hydroponics/constructable,
 /obj/machinery/light{
 	dir = 4
@@ -6732,6 +6739,12 @@
 	dir = 4;
 	name = "euthanization chamber freezer"
 	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "Ay" = (
@@ -6760,6 +6773,16 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/arrivals)
+"Fr" = (
+/obj/structure/window/plasma/reinforced/spawner/west,
+/obj/structure/disposaloutlet{
+	dir = null
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/unpowered/syndicate_lava_base/testlab)
 "He" = (
 /obj/machinery/vending/hydroseeds,
 /turf/open/floor/grass,
@@ -6894,6 +6917,12 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/circuits)
+"Rz" = (
+/obj/structure/window/plastitanium,
+/obj/structure/grille,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/engine,
+/area/ruin/unpowered/syndicate_lava_base/testlab)
 "RE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -6943,6 +6972,12 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
+"UO" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/syndicate_lava_base/circuits)
 "UZ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
@@ -6959,6 +6994,12 @@
 /obj/structure/closet/l3closet,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
+"Vv" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/syndicate_lava_base/circuits)
 "VU" = (
 /obj/machinery/smartfridge/extract,
 /turf/open/floor/plasteel/dark,
@@ -7382,10 +7423,10 @@ aa
 ab
 ab
 ap
+wz
 uN
-aZ
-aJ
-aZ
+Rz
+qW
 aZ
 bi
 ae
@@ -7438,8 +7479,8 @@ aa
 ab
 ab
 ap
-aZ
-aZ
+aF
+aF
 aK
 aZ
 aZ
@@ -7494,8 +7535,8 @@ aa
 ab
 ab
 ap
-ay
-aZ
+aF
+aF
 aJ
 aZ
 aZ
@@ -7550,10 +7591,10 @@ aa
 ab
 ab
 ap
-aZ
-aZ
-aJ
-aN
+aF
+uN
+Rz
+Fr
 aN
 aN
 ae
@@ -7606,8 +7647,8 @@ aa
 ab
 ab
 ap
-uN
-aZ
+wz
+aF
 aK
 aZ
 aZ
@@ -7662,8 +7703,8 @@ ab
 ab
 ab
 ap
-aZ
-aZ
+aF
+aF
 aJ
 aZ
 aZ
@@ -7718,10 +7759,10 @@ ab
 ab
 ab
 ap
-ay
-aZ
-aJ
-aN
+aF
+uN
+Rz
+Fr
 aN
 aN
 ae
@@ -7774,8 +7815,8 @@ ab
 ab
 ab
 ap
-aZ
-aZ
+aF
+aF
 aK
 aZ
 aZ
@@ -7830,8 +7871,8 @@ ab
 ab
 ab
 ap
-uN
-aZ
+wz
+aF
 aJ
 aZ
 aZ
@@ -7886,10 +7927,10 @@ ab
 ab
 ab
 ap
-aZ
-aZ
-aJ
-aN
+aF
+uN
+Rz
+Fr
 aN
 aN
 ae
@@ -7942,8 +7983,8 @@ ab
 ab
 ab
 ap
-ay
-aZ
+aF
+aF
 aK
 aZ
 aZ
@@ -7998,8 +8039,8 @@ ab
 ab
 ab
 ap
-aZ
-aZ
+aF
+aF
 aJ
 aZ
 aZ
@@ -8054,10 +8095,10 @@ ab
 ab
 ab
 ap
+wz
 uN
-aZ
-aJ
-aN
+Rz
+Fr
 aN
 aN
 ae
@@ -8110,8 +8151,8 @@ ab
 ab
 ab
 ap
-ay
-aZ
+aF
+aF
 aK
 aZ
 aZ
@@ -8166,8 +8207,8 @@ ab
 ab
 ab
 ap
-aZ
-aZ
+aF
+aF
 aJ
 aZ
 aZ
@@ -8765,7 +8806,7 @@ Pa
 aT
 ba
 bd
-aS
+UO
 aS
 Pa
 ab
@@ -9045,7 +9086,7 @@ Pa
 bd
 La
 aD
-aS
+Vv
 aS
 Pa
 ab
