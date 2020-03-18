@@ -170,6 +170,29 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/supershotgunupgrade
+	name = "Upgraded Super Shotgun"
+	result = /obj/item/gun/ballistic/revolver/doublebarrel/super/upgraded
+	reqs = list(/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/gun/ballistic/revolver/doublebarrel/super = 1,
+				/obj/item/stack/cable_coil = 30,
+				/obj/item/stack/sheet/mineral/uranium = 10)
+	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	time = 150
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/dbupgrade
+	name = "Upgraded Double Barrel Shotgun"
+	result = /obj/item/gun/ballistic/revolver/doublebarrel/upgraded
+	reqs = list(/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/gun/ballistic/revolver/doublebarrel = 1,
+				/obj/item/stack/cable_coil = 30)
+	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	time = 150
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 //////////////////
 ///AMMO CRAFTING//
 //////////////////

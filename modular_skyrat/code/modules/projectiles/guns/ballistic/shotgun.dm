@@ -59,3 +59,12 @@
 /obj/item/ammo_box/magazine/internal/shot/canegun
 	name = "cane-gun internal magazine"
 	max_ammo = 3
+
+/obj/item/gun/ballistic/revolver/doublebarrel/upgraded
+	name = "upgraded double barreled shotgun"
+	desc = "Two times the fun, at once."
+	burst_size = 2
+
+/obj/item/gun/ballistic/revolver/doublebarrel/upgraded/sawoff(mob/user)
+	to_chat(user, "<span class='warning'>Considering the modifications, sawing it off probably would break it entirely.</span>")
+	return
