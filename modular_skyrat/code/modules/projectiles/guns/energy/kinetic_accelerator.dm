@@ -43,7 +43,7 @@
 			skill_modifier = H.mind.get_skill_speed_modifier(/datum/skill/mining)
 
 	recharge_timerid = addtimer(CALLBACK(src, .proc/reload), recharge_time * carried * skill_modifier, TIMER_STOPPABLE)
-´
+
 /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer
 	name = "bloody accelerator"
 	desc = "A modded premium kinetic accelerator with an increased mod capacity as well as lesser cooldown."
