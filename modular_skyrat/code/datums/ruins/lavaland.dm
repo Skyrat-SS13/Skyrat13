@@ -13,3 +13,11 @@
 	id = "wrathruin"
 	description = "RIP AND TEAR, UNTIL IT IS DONE."
 	suffix = "lavaland_surface_wrath.dmm"
+
+/datum/map_template/ruin/lavaland/strong_stone
+	name = "Strong Stone"
+	id = "strong_stone"
+	description = "A stone that seems particularly powerful."
+	suffix = "lavaland_strong_rock.dmm"
+	allow_duplicates = FALSE
+	cost = 2

@@ -1,0 +1,1 @@
+#define ui_skill_menu "EAST-4:22,SOUTH:5"

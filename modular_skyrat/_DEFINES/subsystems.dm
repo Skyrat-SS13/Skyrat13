@@ -1,0 +1,1 @@
+#define INIT_ORDER_SKILLS			15

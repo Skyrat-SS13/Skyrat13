@@ -1,3 +1,49 @@
+/obj/item/gun/energy/kinetic_accelerator
+	var/mob/holder
+
+/obj/item/gun/energy/kinetic_accelerator/equipped(mob/user)
+	. = ..()
+	holder = user
+	if(!can_shoot())
+		attempt_reload()
+
+/obj/item/gun/energy/kinetic_accelerator/dropped()
+	. = ..()
+	holder = null
+	if(!QDELING(src) && !holds_charge)
+		// Put it on a delay because moving item from slot to hand
+		// calls dropped().
+		addtimer(CALLBACK(src, .proc/empty_if_not_held), 2)
+
+/obj/item/gun/energy/kinetic_accelerator/proc/attempt_reload(recharge_time)
+	if(!cell)
+		return
+	if(overheat)
+		return
+	if(!recharge_time)
+		recharge_time = overheat_time
+	overheat = TRUE
+
+	var/carried = 0
+	if(!unique_frequency)
+		for(var/obj/item/gun/energy/kinetic_accelerator/K in loc.GetAllContents())
+			if(!K.unique_frequency)
+				carried++
+
+		carried = max(carried, 1)
+	else
+		carried = 1
+
+	deltimer(recharge_timerid)
+
+	var/skill_modifier
+	if(ishuman(holder))
+		var/mob/living/carbon/human/H = holder
+		if(H.mind)
+			skill_modifier = H.mind.get_skill_speed_modifier(/datum/skill/mining)
+
+	recharge_timerid = addtimer(CALLBACK(src, .proc/reload), recharge_time * carried * skill_modifier, TIMER_STOPPABLE)
+´
 /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer
 	name = "bloody accelerator"
 	desc = "A modded premium kinetic accelerator with an increased mod capacity as well as lesser cooldown."
