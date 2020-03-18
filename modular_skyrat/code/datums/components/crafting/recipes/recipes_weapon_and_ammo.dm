@@ -30,7 +30,7 @@
 				/obj/item/stack/cable_coil = 5,
 				/obj/item/stack/sheet/mineral/diamond = 2,
 				/obj/item/stack/sheet/mineral/plasma = 5,
-				/obj/item/stack/sheet/mineral/titanium = 5
+				/obj/item/stack/sheet/mineral/titanium = 5,
 				/obj/item/stack/sheet/mineral/plastitanium = 1,
 				/obj/item/stack/sheet/mineral/gold = 5,
 				/obj/item/stock_parts/cell = 1,
