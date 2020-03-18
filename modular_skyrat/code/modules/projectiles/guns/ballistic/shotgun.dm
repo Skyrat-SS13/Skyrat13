@@ -1,4 +1,4 @@
-// Holorifle: energy pump action shotgun, but kinda shit.
+// Holorifle: energy pump action shotgun, but kinda shit. Original /tg/ PR made by necromanceranne.
 /obj/item/gun/ballistic/shotgun/holorifle
 	name = "holorifle"
 	desc = "A shotgun-like weapon crafted to utilize holographic projectors like a laser firing lens. Its power expenditure requires dedicated microfusion cells to fire in place of standard ammunition."
