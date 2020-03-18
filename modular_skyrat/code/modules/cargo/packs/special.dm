@@ -13,7 +13,7 @@
 /datum/supply_pack/security/armory/revolver
 	name = ".38 Revolver Crate"
 	desc = "Sometimes, the mysterious stranger doesn't come. Then you do it yourself."
-	cost = 4500
+	cost = 12000
 	contains = list(/obj/item/gun/ballistic/revolver/detective,
 					/obj/item/gun/ballistic/revolver/detective,
 					/obj/item/gun/ballistic/revolver/detective,
@@ -25,7 +25,7 @@
 /datum/supply_pack/security/armory/usp
 	name = "USP pistol Crate"
 	desc = "Why are 9mm guns still a thing? Well, you can still get them anyways."
-	cost = 6000
+	cost = 4500
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/uspm,
 					/obj/item/gun/ballistic/automatic/pistol/uspm,
 					/obj/item/gun/ballistic/automatic/pistol/uspm,
@@ -37,7 +37,7 @@
 /datum/supply_pack/security/armory/combine
 	name = "Civil Protection Crate"
 	desc = "With this crate, you'll never deadline on the frontlines. Contains full Civil Protection clothing (including hardsuit), a stun baton and an USP pistol with spare magazines."
-	cost = 7000
+	cost = 8000
 	contains = list(/obj/item/clothing/under/rank/security/civilprotection,
 					/obj/item/clothing/head/helmet/cphood,
 					/obj/item/gun/ballistic/automatic/pistol/uspm,
