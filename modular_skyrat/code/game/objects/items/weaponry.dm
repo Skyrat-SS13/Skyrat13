@@ -201,7 +201,7 @@
 	item_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/box_gun
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/contender/box_gun
 	recoil = 1
 	var/explodioprob = 33
 
