@@ -59729,6 +59729,11 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"tfO" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
+/obj/machinery/plate_press,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "tfP" = (
 /obj/item/beacon,
 /turf/open/floor/engine,
@@ -82569,7 +82574,7 @@ aeV
 afq
 afF
 agb
-agb
+tfO
 agA
 agA
 agA

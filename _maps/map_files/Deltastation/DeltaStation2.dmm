@@ -127508,7 +127508,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/misc_lab)
 "wIf" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/plate_press,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "xaf" = (

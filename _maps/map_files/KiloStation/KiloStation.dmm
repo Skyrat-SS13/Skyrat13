@@ -85227,15 +85227,13 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
-	},
 /obj/structure/sign/warning/electricshock{
 	pixel_y = -32
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/plate_press,
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "cIS" = (

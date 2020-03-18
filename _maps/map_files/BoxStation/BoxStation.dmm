@@ -59767,6 +59767,7 @@
 /obj/structure/sign/warning/electricshock{
 	pixel_y = 32
 	},
+/obj/machinery/plate_press,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "wvX" = (
