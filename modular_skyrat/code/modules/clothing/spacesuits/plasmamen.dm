@@ -2,5 +2,6 @@
 	name = "prisoner's plasma envirosuit helmet"
 	desc = "A plasmaman containment helmet for prisoners."
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	icon_state = "prisoner_envirohelm"
-	item_state = "prisoner_enviro"
+	item_state = "prisoner_envirohelm"
