@@ -9,5 +9,12 @@
 	name = "Ebony Blade"
 	desc = "An artifact that fits the literal description of a traitor, as it gets more powerful the more you kill your own."
 	item = /obj/item/twohanded/ebonyblade
+	cost = 14
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/dangerous/contender
+	name = "Contender Kit"
+	desc = "A kit containing a Contender, a double barreled rifle that accepts any kind of ammunition, a swat helmet, a combat knife, and four .50  bullets to help you."
+	item = /obj/item/storage/box/syndie/contender
 	cost = 18
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)

@@ -153,3 +153,135 @@
 					src.block_chance_wielded += blockadd_anydeceit
 					if(src.block_chance_wielded > 90)
 						src.block_chance_wielded = 90
+
+//Contender, made by ArcLumin. Ported from hippie.
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/contender
+	desc = "The Contender G13, a favorite amongst space hunters. An easily modified bluespace barrel and break action loading means it can use any ammo available.\
+	The side has an engraving which reads 'Made by ArcWorks'."
+	name = "Contender"
+	icon = 'modular_skyrat/icons/obj/guns/projectile.dmi'
+	icon_state = "contender-s"
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/contender
+	w_class = WEIGHT_CLASS_NORMAL
+	obj_flags = UNIQUE_RENAME
+	unique_reskin = 0
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/contender/sawoff(mob/user)
+	to_chat(user, "<span class='warning'>Why would you mutilate this work of art?</span>")
+	return
+
+/obj/item/ammo_box/magazine/internal/shot/contender
+	name = "contender internal magazine"
+	caliber = "all"
+	ammo_type = /obj/item/ammo_casing
+	start_empty = TRUE
+	max_ammo = 2
+	multiload = 0 // thou must load every shot individually
+
+/obj/item/storage/box/syndie/contender
+	name = "Contender Starter Kit"
+	desc = "Contains a contender and some extra supplies for your oncoming rampage."
+
+/obj/item/storage/box/syndie/contender/PopulateContents()
+	new /obj/item/clothing/head/helmet/swat(src)
+	new /obj/item/gun/ballistic/shotgun/doublebarrel/contender(src)
+	new /obj/item/ammo_casing/p50(src)
+	new /obj/item/ammo_casing/p50(src)
+	new /obj/item/ammo_casing/p50/soporific(src)
+	new /obj/item/ammo_casing/p50/penetrator(src)
+	new /obj/item/kitchen/knife/combat(src)
+
+//Box gun - the shitty contender. Adapted from a rejected hippie pr.
+/obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun
+	name = "box gun"
+	desc = "Assistant's favourite. The huge space inside the box means it can use any ammo available. Doesn't look very safe."
+	icon = 'modular_skyrat/icons/obj/guns/projectile.dmi'
+	icon_state = "box_gun"
+	item_state = "syringe_kit"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/box_gun
+	recoil = 1
+	var/explodioprob = 33
+
+/obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun/afterattack(atom/target, mob/living/user, flag, params)
+	if(istype(user) && prob(explodioprob))
+		var/obj/item/bodypart/l_arm = user.get_bodypart(BODY_ZONE_L_ARM)
+		var/obj/item/bodypart/r_arm = user.get_bodypart(BODY_ZONE_R_ARM)
+		user.visible_message("<span class='warning'>\The [src] explodes in [user]'s hand!</span>", "<span class='warning'>\The [src] explodes in your hand!</span>")
+		explosion(user, 0, 0, 0, 1)
+		if(prob(50) && (l_arm != null ))
+			l_arm.dismember()
+		else
+			r_arm.dismember()
+		qdel(src)
+	. = ..()
+
+/obj/item/ammo_box/magazine/internal/shot/contender/box_gun
+	name = "box gun internal magazine"
+	caliber = "all"
+	ammo_type = /obj/item/ammo_casing
+	max_ammo = 1
+
+//watcher projector. also stolen from hippie.
+/obj/item/gun/energy/watcherprojector
+	name = "watcher projector"
+	desc = "A spiny, gruesome tool which reproduces the icy beam of a watcher, shattering rock and freezing individuals."
+	icon_state = "watcherprojector"
+	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	item_state = "watcherprojector"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/righthand.dmi'
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/watcher)
+	attack_verb = list("bashed", "stared down", "whacked", "smashed")
+	force = 10
+	can_charge = 0
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
+
+/obj/item/gun/energy/watcherprojector/examine(mob/user)
+	. = ..()
+	if(cell)
+		. +="<span class='notice'>[src]'s diamond core is [round(cell.percent())]% energized.</span>"
+
+/obj/item/gun/energy/watcherprojector/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/sheet/mineral/plasma))
+		I.use(1)
+		cell.give(1000)
+		to_chat(user, "<span class='notice'>You feed [I] to [src], recharging it.</span>")
+	else if(istype(I, /obj/item/stack/ore/plasma))
+		I.use(1)
+		cell.give(500)
+		to_chat(user, "<span class='notice'>You feed [I] to [src], recharging it.</span>")
+	else
+		..()
+
+/obj/item/gun/energy/watcherprojector/use(amount)
+	return cell.use(amount * 100)
+
+/obj/item/gun/energy/watcherprojector/update_icon()
+	return
+
+/obj/item/ammo_casing/energy/plasma/watcher
+	projectile_type = /obj/item/projectile/plasma/watcher
+	select_name = "freezing blast shot"
+	fire_sound = 'sound/weapons/pierce.ogg'
+	delay = 15
+	e_cost = 100
+
+/obj/item/projectile/plasma/watcher
+	name = "freezing blast"
+	icon_state = "ice_2"
+	damage = 10
+	flag = "energy"
+	damage_type = BURN
+	range = 4
+	mine_range = 0
+	var/temperature = -100
+	dismemberment = FALSE
+
+/obj/item/projectile/plasma/watcher/on_hit(atom/target, blocked = 0)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		L.adjust_bodytemperature(((100-blocked)/100)*(temperature - L.bodytemperature)) // the new body temperature is adjusted by 100-blocked % of the delta between body temperature and the bullet's effect temperature

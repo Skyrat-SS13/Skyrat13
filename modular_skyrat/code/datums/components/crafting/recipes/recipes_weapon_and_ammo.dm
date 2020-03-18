@@ -1,3 +1,7 @@
+///////////////////////
+///WHATEVER CRAFTING///
+///////////////////////
+
 /datum/crafting_recipe/switchblade_ms
 	name = "Switchblade"
 	result = /obj/item/switchblade/crafted
@@ -22,7 +26,7 @@
 				/obj/item/stack/sheet/mineral/wood = 7,
 				/obj/item/stack/packageWrap = 5)
 	tools = list(TOOL_WELDER)
-	time = 100
+	time = 150
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -39,6 +43,27 @@
 	time = 300
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/box_gun
+	name = "Box gun"
+	result = /obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun
+	reqs = list(/obj/item/stack/rods = 2,
+				/obj/item/stack/cable_coil = 5,
+				/obj/item/storage/box = 1,
+				/obj/item/weaponcrafting/receiver = 1)
+	tools = list(/obj/item/screwdriver)
+	time = 150
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/watcherproj
+	name = "Watcher Projector"
+	result = /obj/item/gun/energy/watcherprojector
+	reqs = list(/obj/item/stack/sheet/bone = 3,
+				/obj/item/stack/ore/diamond = 2,
+				/obj/item/stack/sheet/sinew = 2)
+	time = 150
+	category = CAT_PRIMAL
 
 //////////////////
 ///AMMO CRAFTING//
