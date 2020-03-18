@@ -135,6 +135,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
@@ -148,6 +149,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aas" = (
@@ -179,6 +181,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaE" = (

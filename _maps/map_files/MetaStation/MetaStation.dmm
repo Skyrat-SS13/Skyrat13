@@ -21,6 +21,7 @@
 	c_tag = "Prison Cell 3";
 	network = list("ss13","prison")
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aae" = (
@@ -29,6 +30,7 @@
 	c_tag = "Prison Cell 2";
 	network = list("ss13","prison")
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaf" = (
@@ -277,6 +279,7 @@
 	c_tag = "Prison Cell 1";
 	network = list("ss13","prison")
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaN" = (

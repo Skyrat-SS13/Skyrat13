@@ -79,6 +79,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
 "aah" = (
@@ -208,6 +209,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
 "aau" = (
@@ -2466,6 +2468,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
 "aeh" = (
@@ -84341,6 +84344,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/grass,
 /area/security/prison)
 "cGL" = (

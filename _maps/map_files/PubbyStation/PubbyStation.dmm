@@ -13,8 +13,8 @@
 /area/security/prison)
 "aac" = (
 /obj/machinery/holopad,
-/mob/living/simple_animal/bot/secbot/pingsky,
 /obj/effect/landmark/start/cyborg,
+/mob/living/simple_animal/bot/secbot/pingsky,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "aad" = (
@@ -39,6 +39,7 @@
 	dir = 1
 	},
 /obj/item/toy/plush/slimeplushie,
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaf" = (
@@ -57,12 +58,14 @@
 	dir = 1
 	},
 /obj/item/toy/plush/lizardplushie,
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aag" = (
 /obj/structure/toilet{
 	dir = 8
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
 "abf" = (
@@ -1257,6 +1260,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aeX" = (
