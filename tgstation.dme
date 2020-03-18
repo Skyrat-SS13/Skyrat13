@@ -3350,6 +3350,7 @@
 #include "modular_skyrat\code\game\objects\structures\crates_lockers\closets\bluespace_locker.dm"
 #include "modular_skyrat\code\game\objects\structures\icemoon\cave_entrance.dm"
 #include "modular_skyrat\code\game\objects\structures\lavaland\necropolis_tendril.dm"
+#include "modular_skyrat\code\game\turfs\snowplanet_turfs.dm"
 #include "modular_skyrat\code\game\turfs\closed\minerals.dm"
 #include "modular_skyrat\code\game\turfs\open\chasm.dm"
 #include "modular_skyrat\code\game\turfs\open\openspace.dm"
