@@ -1,0 +1,24 @@
+"a" = (/turf/closed/wall,/area/ruin/snowplanet/surface)
+"b" = (/turf/open/floor/plating,/area/ruin/snowplanet/surface)
+"c" = (/obj/machinery/door/airlock,/turf/open/floor/plating,/area/ruin/snowplanet/surface)
+"d" = (/obj/structure/ladder/unbreakable/underground,/turf/open/floor/plating,/area/ruin/snowplanet/surface)
+"e" = (/turf/closed/wall,/area/ruin/snowplanet/underground)
+"f" = (/turf/open/floor/plating,/area/ruin/snowplanet/underground)
+"g" = (/obj/machinery/door/airlock,/turf/open/floor/plating,/area/ruin/snowplanet/underground)
+"h" = (/obj/structure/ladder/unbreakable/underground/ug2,/turf/open/floor/plating,/area/ruin/snowplanet/underground)
+
+(1,1,1) = {"
+aaaaa
+abbba
+cbdba
+abbba
+aaaaa
+"}
+
+(1,1,2) = {"
+eeeee
+efffe
+gfhfe
+efffe
+eeeee
+"}

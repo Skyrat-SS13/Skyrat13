@@ -1,64 +1,64 @@
-"aa" = (/turf/closed/mineral/random/snow/no_caves,/area/ruin/powered)
-"ab" = (/turf/closed/wall/mineral/iron,/area/ruin/powered)
+"aa" = (/turf/closed/wall/mineral/iron,/area/ruin/snowplanet/underground)
+"ab" = (/obj/structure/table/wood/fancy/black,/obj/item/documents/syndicate/mining,/obj/effect/decal/cleanable/cobweb,/turf/open/floor/plasteel/cult,/area/ruin/snowplanet/underground)
 "ac" = (/turf/closed/wall/mineral/wood,/area/ruin/unpowered)
-"ad" = (/obj/structure/table/wood/fancy/black,/obj/item/documents/syndicate/mining,/obj/effect/decal/cleanable/cobweb,/turf/open/floor/plasteel/cult,/area/ruin/powered)
-"ae" = (/obj/structure/table/wood/fancy/black,/obj/item/book_of_babel,/turf/open/floor/plasteel/cult,/area/ruin/powered)
-"af" = (/obj/structure/table/wood/fancy/black,/obj/item/paper/secretrecipe,/obj/item/flashlight/lantern{on = 1},/turf/open/floor/plasteel/cult,/area/ruin/powered)
-"ag" = (/obj/effect/mob_spawn/human/skeleton,/obj/item/clothing/head/rice_hat,/turf/open/floor/plasteel/cult,/area/ruin/powered)
-"ah" = (/turf/open/floor/plasteel/cult,/area/ruin/powered)
-"ai" = (/obj/structure/fluff/paper/stack,/turf/open/floor/plasteel/cult,/area/ruin/powered)
-"aj" = (/obj/structure/table/wood/fancy/black,/obj/item/paper/crumpled,/obj/effect/decal/cleanable/cobweb/cobweb2,/turf/open/floor/plasteel/cult,/area/ruin/powered)
-"ak" = (/turf/closed/wall/mineral/wood,/area/ruin/powered)
+"ad" = (/obj/structure/table/wood/fancy/black,/obj/item/book_of_babel,/turf/open/floor/plasteel/cult,/area/ruin/snowplanet/underground)
+"ae" = (/obj/structure/table/wood/fancy/black,/obj/item/paper/secretrecipe,/obj/item/flashlight/lantern{on = 1},/turf/open/floor/plasteel/cult,/area/ruin/snowplanet/underground)
+"af" = (/obj/effect/mob_spawn/human/skeleton,/obj/item/clothing/head/rice_hat,/turf/open/floor/plasteel/cult,/area/ruin/snowplanet/underground)
+"ag" = (/turf/open/floor/plasteel/cult,/area/ruin/snowplanet/underground)
+"ah" = (/obj/structure/fluff/paper/stack,/turf/open/floor/plasteel/cult,/area/ruin/snowplanet/underground)
+"ai" = (/obj/structure/table/wood/fancy/black,/obj/item/paper/crumpled,/obj/effect/decal/cleanable/cobweb/cobweb2,/turf/open/floor/plasteel/cult,/area/ruin/snowplanet/underground)
+"aj" = (/turf/closed/mineral/random/snow/no_caves,/area/ruin/snowplanet/underground)
+"ak" = (/turf/closed/wall/mineral/wood,/area/ruin/snowplanet/underground)
 "al" = (/turf/closed/mineral/random/snow/no_caves,/area/snowplanet/underground/outdoors/ruin)
-"am" = (/obj/item/stack/sheet/mineral/wood,/turf/open/floor/wood,/area/ruin/powered)
-"an" = (/turf/open/floor/wood,/area/ruin/powered)
-"ao" = (/obj/structure/fluff/paper/stack,/turf/open/floor/wood,/area/ruin/powered)
-"ap" = (/obj/structure/fluff/paper,/turf/open/floor/wood,/area/ruin/powered)
-"aq" = (/obj/structure/fluff/paper,/obj/structure/fluff/paper{icon_state = "paper"; dir = 1},/turf/open/floor/wood,/area/ruin/powered)
-"ar" = (/obj/structure/fluff/paper{icon_state = "paper"; dir = 1},/turf/open/floor/wood,/area/ruin/powered)
-"as" = (/obj/structure/fluff/paper{icon_state = "paper"; dir = 5},/turf/open/floor/wood,/area/ruin/powered)
-"at" = (/obj/structure/bookcase/random,/turf/closed/mineral/random/snow/no_caves,/area/ruin/powered)
+"am" = (/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground)
+"an" = (/obj/item/paper/fluff/ruins/oldstation/protosing,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground)
+"ao" = (/obj/item/stack/sheet/mineral/wood,/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"ap" = (/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"aq" = (/obj/structure/fluff/paper/stack,/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"ar" = (/obj/structure/fluff/paper,/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"as" = (/obj/structure/fluff/paper,/obj/structure/fluff/paper{icon_state = "paper"; dir = 1},/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"at" = (/obj/structure/fluff/paper{icon_state = "paper"; dir = 1},/turf/open/floor/wood,/area/ruin/snowplanet/underground)
 "au" = (/turf/closed/wall/mineral/wood,/area/snowplanet/underground/outdoors/ruin)
 "av" = (/turf/open/floor/plating/asteroid/snow/icemoon,/area/snowplanet/underground/outdoors/ruin)
-"aw" = (/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
-"ax" = (/obj/structure/bookcase/random,/turf/open/floor/wood,/area/ruin/powered)
-"ay" = (/obj/item/stack/sheet/mineral/wood,/obj/item/book/manual/random,/turf/open/floor/wood,/area/ruin/powered)
-"az" = (/obj/item/paper/fluff/ruins/oldstation/protosing,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
-"aA" = (/obj/structure/bookcase/random,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/powered)
-"aB" = (/obj/item/book/manual/random,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
+"aw" = (/obj/structure/fluff/paper{icon_state = "paper"; dir = 5},/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"ax" = (/obj/structure/fluff/paper/stack,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground)
+"ay" = (/obj/structure/bookcase/random,/turf/closed/mineral/random/snow/no_caves,/area/ruin/snowplanet/underground)
+"az" = (/obj/structure/bookcase/random,/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"aA" = (/obj/item/stack/sheet/mineral/wood,/obj/item/book/manual/random,/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"aB" = (/obj/structure/bookcase/random,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/snowplanet/underground)
 "aC" = (/turf/open/floor/wood,/area/snowplanet/underground/outdoors/ruin)
-"aD" = (/obj/structure/fluff/paper{icon_state = "paper"; dir = 4},/turf/open/floor/wood,/area/ruin/powered)
-"aE" = (/turf/open/floor/plating,/area/ruin/powered)
-"aF" = (/obj/structure/girder,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/powered)
-"aG" = (/obj/item/stack/sheet/mineral/wood,/obj/item/book/manual/random,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
-"aH" = (/turf/open/floor/carpet/black,/area/ruin/powered)
-"aI" = (/obj/item/paper/fluff/awaymissions/moonoutpost19/research/larva_autopsy,/turf/open/floor/wood,/area/ruin/powered)
-"aJ" = (/mob/living/simple_animal/pet/fox,/turf/open/floor/wood,/area/ruin/powered)
-"aK" = (/obj/structure/table/bronze,/obj/item/stack/ore/slag,/turf/open/floor/carpet/black,/area/ruin/powered)
-"aL" = (/obj/structure/table/bronze,/turf/open/floor/carpet/black,/area/ruin/powered)
-"aM" = (/obj/item/flashlight/lantern{on = 1},/turf/open/floor/plating,/area/ruin/powered)
-"aN" = (/obj/structure/statue/sandstone/venus,/turf/open/floor/carpet/black,/area/ruin/powered)
-"aO" = (/obj/structure/fluff/paper/stack,/turf/open/floor/plating,/area/ruin/powered)
+"aD" = (/obj/structure/fluff/paper{icon_state = "paper"; dir = 4},/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"aE" = (/turf/open/floor/plating,/area/ruin/snowplanet/underground)
+"aF" = (/obj/item/book/manual/random,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground)
+"aG" = (/obj/item/stack/sheet/mineral/wood,/obj/item/book/manual/random,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground)
+"aH" = (/turf/open/floor/carpet/black,/area/ruin/snowplanet/underground)
+"aI" = (/obj/item/paper/fluff/awaymissions/moonoutpost19/research/larva_autopsy,/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"aJ" = (/mob/living/simple_animal/pet/fox,/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"aK" = (/obj/structure/table/bronze,/obj/item/stack/ore/slag,/turf/open/floor/carpet/black,/area/ruin/snowplanet/underground)
+"aL" = (/obj/structure/table/bronze,/turf/open/floor/carpet/black,/area/ruin/snowplanet/underground)
+"aM" = (/obj/item/flashlight/lantern{on = 1},/turf/open/floor/plating,/area/ruin/snowplanet/underground)
+"aN" = (/obj/structure/statue/sandstone/venus,/turf/open/floor/carpet/black,/area/ruin/snowplanet/underground)
+"aO" = (/obj/structure/fluff/paper/stack,/turf/open/floor/plating,/area/ruin/snowplanet/underground)
 "aP" = (/obj/structure/bookcase/random,/turf/closed/mineral/random/snow/no_caves,/area/snowplanet/underground/outdoors/ruin)
-"aQ" = (/obj/item/stack/sheet/mineral/wood,/obj/structure/fluff/paper/stack,/turf/open/floor/wood,/area/ruin/powered)
+"aQ" = (/obj/item/stack/sheet/mineral/wood,/obj/structure/fluff/paper/stack,/turf/open/floor/wood,/area/ruin/snowplanet/underground)
 "aR" = (/obj/structure/fluff/paper/stack,/turf/open/floor/wood,/area/snowplanet/underground/outdoors/ruin)
-"aS" = (/obj/structure/barricade/wooden/snowed,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
-"aT" = (/obj/structure/fluff/paper/stack,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
-"aV" = (/obj/structure/table/bronze,/obj/item/statuebust,/turf/open/floor/plating,/area/ruin/powered)
-"aW" = (/obj/structure/table_frame/wood,/turf/open/floor/plating,/area/ruin/powered)
-"aX" = (/obj/structure/fluff/paper/stack,/turf/open/floor/carpet/black,/area/ruin/powered)
-"aY" = (/obj/item/wrench/bronze,/turf/open/floor/carpet/black,/area/ruin/powered)
-"aZ" = (/obj/item/paper/fluff/ruins/oldstation/protogun,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
-"ba" = (/obj/structure/fluff/paper,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
+"aS" = (/obj/structure/barricade/wooden/snowed,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground)
+"aT" = (/obj/structure/table/bronze,/obj/item/statuebust,/turf/open/floor/plating,/area/ruin/snowplanet/underground)
+"aU" = (/obj/structure/table_frame/wood,/turf/open/floor/plating,/area/ruin/snowplanet/underground)
+"aV" = (/obj/structure/fluff/paper/stack,/turf/open/floor/carpet/black,/area/ruin/snowplanet/underground)
+"aW" = (/obj/item/wrench/bronze,/turf/open/floor/carpet/black,/area/ruin/snowplanet/underground)
+"aX" = (/obj/item/paper/fluff/ruins/oldstation/protogun,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground)
+"aY" = (/obj/structure/fluff/paper,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground)
+"aZ" = (/obj/structure/girder,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/snowplanet/underground)
+"ba" = (/obj/structure/fluff/paper/stack,/obj/structure/fluff/paper,/turf/open/floor/wood,/area/ruin/snowplanet/underground)
 "bb" = (/obj/item/book/manual/random,/turf/open/floor/plating/asteroid/snow/icemoon,/area/snowplanet/underground/outdoors/ruin)
-"bc" = (/obj/structure/fluff/paper/stack,/obj/structure/fluff/paper,/turf/open/floor/wood,/area/ruin/powered)
+"bc" = (/obj/item/book/manual/random,/obj/item/stack/sheet/mineral/wood,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground)
 "bd" = (/obj/item/stack/sheet/mineral/wood,/turf/open/floor/plating/asteroid/snow/icemoon,/area/snowplanet/underground/outdoors/ruin)
-"be" = (/obj/structure/fluff/paper/stack,/turf/closed/mineral/random/snow/no_caves,/area/ruin/powered)
-"bf" = (/obj/item/book/manual/random,/obj/item/stack/sheet/mineral/wood,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
-"bh" = (/obj/structure/fluff/paper{icon_state = "paper"; dir = 10},/turf/open/floor/wood,/area/ruin/powered)
-"bi" = (/obj/structure/fluff/paper{icon_state = "paper"; dir = 1},/mob/living/simple_animal/pet/fox,/turf/open/floor/wood,/area/ruin/powered)
-"bj" = (/obj/structure/mineral_door/wood,/obj/structure/barricade/wooden/crude/snow,/turf/open/floor/wood,/area/ruin/powered)
-"bk" = (/obj/structure/girder,/turf/closed/mineral/random/snow/no_caves,/area/ruin/powered)
+"be" = (/obj/structure/fluff/paper{icon_state = "paper"; dir = 10},/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"bf" = (/obj/structure/fluff/paper{icon_state = "paper"; dir = 1},/mob/living/simple_animal/pet/fox,/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"bg" = (/obj/structure/fluff/paper/stack,/turf/closed/mineral/random/snow/no_caves,/area/ruin/snowplanet/underground)
+"bh" = (/obj/structure/mineral_door/wood,/obj/structure/barricade/wooden/crude/snow,/turf/open/floor/wood,/area/ruin/snowplanet/underground)
+"bi" = (/obj/structure/girder,/turf/closed/mineral/random/snow/no_caves,/area/ruin/snowplanet/underground)
 "bl" = (/obj/item/book/manual/random,/turf/closed/mineral/random/snow/no_caves,/area/snowplanet/underground/outdoors/ruin)
 "bm" = (/obj/item/storage/box/fountainpens,/turf/closed/mineral/random/snow/no_caves,/area/snowplanet/underground/outdoors/ruin)
 "bn" = (/obj/structure/fluff/paper/stack,/turf/closed/mineral/random/snow/no_caves,/area/snowplanet/underground/outdoors/ruin)
@@ -69,26 +69,26 @@
 
 (1,1,1) = {"
 btbtbtbtbtbtbtbtbtbtbtalalalalalbtbtbt
-btbtbtbtbtbtbtbtbtbtabababababalalbtbt
-btbtbtbtbtbtbtbtbtbtabadaeafababalbtbt
-btbtbtbtbtbtbtbtbtalabagahaiajabalbtbt
-btbtbtbtbtalalalalalabahaiahahabalalbt
-btbtbtbtaaakakaaakakababahabababakakal
-btbtbtalaaawaaaaazamanaoanapaqarasakal
-btbtalalawanaTatatawaxayaxaxaAaxaDakal
-btbtalaRawawaaaEaBaaaoamanawaoananakal
-btbtalavanaGanawaHaHaHaHanaxaxaxaaakal
-btalalavaIaJaoaKaHaHawaLanaJaEananakal
-btalbdaCaxaxanaHaMaNaHaOanaAaxaQaoaSbt
-btalalbbaaaTaEaVaHawaHaWamananaaanakal
-btalalaPataxanawaXaEaYaHawaxaxaxawacal
-alaaawaaaZaEananaaaaanaabaaaaaawaaaFbt
-alakaTaxaxaxaxanananaEanaxaxalalblalbt
-alaSanaoapanbcananamanaTaaaabmbnalbtbt
-alakamaxaxaxaxaxanaoanaxaxbfalboalalbt
-alakbhapaaarbianananbeanbaapalalalbtbt
-alakakakakakakakakbjakbkakakalbpalbtbt
+btbtbtbtbtbtbtbtbtbtaaaaaaaaaaalalbtbt
+btbtbtbtbtbtbtbtbtbtaaabadaeaaaaalbtbt
+btbtbtbtbtbtbtbtbtalaaafagahaiaaalbtbt
+btbtbtbtbtalalalalalaaagahagagaaalalbt
+btbtbtbtajakakajakakaaaaagaaaaaaakakal
+btbtbtalajamajajanaoapaqaparasatawakal
+btbtalalamapaxayayamazaAazazaBazaDakal
+btbtalaRamamajaEaFajaqaoapamaqapapakal
+btbtalavapaGapamaHaHaHaHapazazazajakal
+btalalavaIaJaqaKaHaHamaLapaJaEapapakal
+btalbdaCazazapaHaMaNaHaOapaBazaQaqaSbt
+btalalbbajaxaEaTaHamaHaUaoapapajapakal
+btalalaPayazapamaVaEaWaHamazazazamacal
+alajamajaXaEapapajajapajaYajajamajaZbt
+alakaxazazazazapapapaEapazazalalblalbt
+alaSapaqarapbaapapaoapaxajajbmbnalbtbt
+alakaoazazazazazapaqapazazbcalboalalbt
+alakbearajatbfapapapbgapaYaralalalbtbt
+alakakakakakakakakbhakbiakakalbpalbtbt
 alalalalalalalbqavaCaCaualalalbobtbtbt
-btalalbtaaalalavaCbdavalalbtbtbtbtbtbt
-btbtbtbtbtaaalalavalalalalbtbtbtbtbtbt
+btalalbtajalalavaCbdavalalbtbtbtbtbtbt
+btbtbtbtbtajalalavalalalalbtbtbtbtbtbt
 "}

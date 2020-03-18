@@ -1,6 +1,6 @@
-"a" = (/turf/template_noop,/area/ruin/unpowered)
-"b" = (/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/unpowered)
-"c" = (/obj/effect/sliding_puzzle/lavaland,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/unpowered)
+"a" = (/turf/template_noop,/area/ruin/snowplanet/underground/powered)
+"b" = (/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground/powered)
+"c" = (/obj/effect/sliding_puzzle/lavaland,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground/powered)
 
 (1,1,1) = {"
 aaaaa

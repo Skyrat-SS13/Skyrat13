@@ -1,5 +1,5 @@
 "a" = (/turf/closed/mineral/random/high_chance/snow,/area/snowplanet/underground/outdoors/ruin)
-"b" = (/obj/machinery/grill{name = "BBQ Pit Boys Special Edition Grill"},/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/powered)
+"b" = (/obj/machinery/grill{name = "BBQ Pit Boys Special Edition Grill"},/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground/powered)
 "c" = (/mob/living/simple_animal/hostile/netherworld/blankbody{desc = "OH JESUS HHMMH"; name = "BBQ pit boy"},/turf/open/floor/plating/asteroid/snow/icemoon,/area/snowplanet/underground/outdoors/ruin)
 "d" = (/turf/open/floor/plating/asteroid/snow/icemoon,/area/snowplanet/underground/outdoors/ruin)
 

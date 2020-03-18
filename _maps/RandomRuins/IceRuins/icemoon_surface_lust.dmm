@@ -1,9 +1,9 @@
 "a" = (/turf/closed/mineral/random/snow/no_caves,/area/snowplanet/surface/outdoors/danger)
-"b" = (/obj/structure/sign/poster/contraband/lusty_xenomorph,/turf/closed/wall/mineral/plastitanium,/area/ruin/unpowered)
-"c" = (/turf/open/floor/mineral/diamond,/area/ruin/unpowered)
-"d" = (/obj/item/reagent_containers/food/drinks/trophy/gold_cup,/turf/open/floor/mineral/diamond,/area/ruin/unpowered)
-"e" = (/obj/item/card/id/gold{name = "captain's spare id card"},/turf/open/floor/mineral/diamond,/area/ruin/unpowered)
-"f" = (/obj/structure/falsewall/plastitanium,/obj/structure/sign/poster/contraband/lusty_xenomorph,/turf/open/floor/mineral/diamond,/area/ruin/unpowered)
+"b" = (/obj/structure/sign/poster/contraband/lusty_xenomorph,/turf/closed/wall/mineral/plastitanium,/area/ruin/snowplanet/surface)
+"c" = (/turf/open/floor/mineral/diamond,/area/ruin/snowplanet/surface)
+"d" = (/obj/item/reagent_containers/food/drinks/trophy/gold_cup,/turf/open/floor/mineral/diamond,/area/ruin/snowplanet/surface)
+"e" = (/obj/item/card/id/gold{name = "captain's spare id card"},/turf/open/floor/mineral/diamond,/area/ruin/snowplanet/surface)
+"f" = (/obj/structure/falsewall/plastitanium,/obj/structure/sign/poster/contraband/lusty_xenomorph,/turf/open/floor/mineral/diamond,/area/ruin/snowplanet/surface)
 "g" = (/turf/closed/mineral/random/snow/no_caves,/area/snowplanet/surface/outdoors/ruin)
 
 (1,1,1) = {"

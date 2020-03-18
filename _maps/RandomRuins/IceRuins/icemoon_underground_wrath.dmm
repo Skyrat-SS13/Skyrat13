@@ -1,6 +1,6 @@
 "a" = (/turf/closed/mineral/random/snow/no_caves,/area/snowplanet/underground/outdoors/danger)
-"b" = (/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/unpowered)
-"c" = (/obj/structure/spawner/nether,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/unpowered)
+"b" = (/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground)
+"c" = (/obj/structure/spawner/nether,/turf/open/floor/plating/asteroid/snow/icemoon,/area/ruin/snowplanet/underground)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaa
