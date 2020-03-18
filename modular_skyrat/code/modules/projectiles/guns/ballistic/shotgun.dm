@@ -11,4 +11,3 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/holorifle
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	cartridge_wording = "cell"
