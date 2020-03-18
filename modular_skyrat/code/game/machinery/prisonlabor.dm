@@ -3,6 +3,7 @@
 	desc = "You know, we're making a lot of license plates for a station with literaly no cars in it."
 	icon = 'modular_skyrat/icons/obj/machines/prison.dmi'
 	icon_state = "offline"
+	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 50
@@ -32,10 +33,14 @@
 		to_chat(user, "<span class='warning'>[src] already has a plate in it!</span>")
 		return FALSE
 	if(istype(I, /obj/item/stack/license_plates/empty))
-		var/obj/item/stack/license_plates/empty/plate = I
-		plate.use(1)
-		current_plate = new plate.type(src, 1) //Spawn a new single sheet in the machine
-		update_icon()
+		if(!current_plate)
+			var/obj/item/stack/license_plates/empty/plate = I
+			plate.use(1)
+			current_plate = new plate.type(src, 1) //Spawn a new single sheet in the machine
+			update_icon()
+		else if(current_plate)
+			to_chat(user, "<span class='warning'>[src] already has a plate in it!</span>")
+			return
 	else
 		return ..()
 
