@@ -23,9 +23,9 @@
 		user.faction |= "goat"
 
 /obj/item/clothing/head/goatpelt/king/dropped(mob/living/carbon/human/user)
-	..()
 	if (user.head == src)
 		user.faction -= "goat"
+	..()
 
 /obj/item/clothing/head/goatpope
 	name = "goat pope hat"
@@ -41,6 +41,11 @@
 	..()
 	if (slot == ITEM_SLOT_HEAD)
 		user.faction |= "goat"
+
+/obj/item/clothing/head/goatpope/dropped(mob/living/carbon/human/user, slot)
+	if (user.head == src)
+		user.faction -= "goat"
+	..()
 
 /obj/item/clothing/head/assu_helmet
 	name = "EAU helmet"
