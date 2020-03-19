@@ -26,4 +26,4 @@
 	if(vore_init && !vorepref_init) //Vore's been initialized, voreprefs haven't. If this triggers then that means that voreprefs failed to load due to the client being missing.
 		copy_from_prefs_vr()
 
-	set_ssd_indicator(FALSE) //SKYRAT CHANGE - ssd indicator	
+	set_ssd_indicator(FALSE) //SKYRAT CHANGE - ssd indicator
