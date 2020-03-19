@@ -409,8 +409,8 @@
 	if(istype(I, /obj/item/stock_parts/cell) && !cell)
 		var/obj/item/stock_parts/cell/C = I
 		playsound(user, 'sound/items/Screwdriver.ogg', 35)
-		I.forceMove(src)
-		cell = I
+		C.forceMove(src)
+		cell = C
 	if(istype(I, /obj/item/stack/sheet/plasteel) && !upgraded)
 		var/obj/item/stack/sheet/plasteel/oursteel = I
 		if(oursteel.use(1))
