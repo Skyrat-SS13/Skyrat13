@@ -366,6 +366,8 @@
 	ammo_x_offset = 2
 	shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
 	var/upgraded = 0
+	fire_delay = 40
+	spread = 20
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle
 	e_cost = 1000 //The amount of energy a cell needs to expend to create this shot.
@@ -419,13 +421,15 @@
 
 /obj/item/gun/energy/laser/makeshiftlasrifle/adv
 	name = "plasteel makeshift laser rifle"
-	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but can rapidly alternate power cells. This one has been visually upgraded."
+	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but can rapidly alternate power cells. This one has been upgraded."
 	icon_state = "adv_lasermakeshift"
 	upgraded = 1
 	shaded_charge = 1
 	charge_sections = 4
 	automatic_charge_overlays = TRUE
 	ammo_x_offset = 2
+	fire_delay = 30
+	spread = 15
 
 //shitty hatchet
 /obj/item/hatchet/improvised

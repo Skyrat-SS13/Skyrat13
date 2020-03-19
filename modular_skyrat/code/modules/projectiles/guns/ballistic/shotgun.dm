@@ -64,6 +64,7 @@
 	name = "upgraded double barreled shotgun"
 	desc = "Two times the fun, at once."
 	burst_size = 2
+	burst_shot_delay = 4
 
 /obj/item/gun/ballistic/revolver/doublebarrel/upgraded/sawoff(mob/user)
 	to_chat(user, "<span class='warning'>Considering the modifications, sawing it off probably would break it entirely.</span>")

@@ -136,6 +136,7 @@
 /obj/item/gun/ballistic/revolver/doublebarrel/super/upgraded
 	desc = "It was fearsome before, now it's even worse with an internal system that makes it fire both barrels at once."
 	burst_size = 2
+	burst_shot_delay = 1
 
 //crucible
 /obj/item/twohanded/crucible
