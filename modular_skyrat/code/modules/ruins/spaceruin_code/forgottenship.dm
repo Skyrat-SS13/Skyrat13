@@ -52,12 +52,11 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 /obj/item/clothing/head/helmet/space/hardsuit/cybersun
 	name = "Cybersun hardsuit helmet"
 	desc = "Prototype hardsuit helmet with experimental armor plates, protecting from laser-based weapons very well, while giving limited protection against anything else."
-	icon = 'modular_skyrat/obj/clothing/hats.dmi'
-	alternate_worn_icon = 'modular_skyrat/mob/head.dmi'
-	alternate_worn_icon_muzzled = 'modular_skyrat/mob/head_muzzled.dmi'
+	icon = 'modular_skyrat/icon/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'modular_skyrat/icon/mob/head.dmi'
+	alternate_worn_icon_muzzled = 'modular_skyrat/icon/mob/head_muzzled.dmi'
 	icon_state = "cybersun"
 	item_state = "cybersun"
-	hardsuit_type = "cybersun"
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 70, "energy" = 50, "bomb" = 15, "bio" = 100, "rad" = 50, "fire" = 60, "acid" = 60)
 	strip_delay = 600
 	actions_types = list()
@@ -70,8 +69,8 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 	name = "Cybersun hardsuit"
 	desc = "Prototype hardsuit with experimental armor plates, protecting from laser-based weapons very well, while giving limited protection against anything else. Requires the user to activate the inner mechanism in order to unequip it, making it really difficult to take it off from somebody else."
 	icon = 'modular_skyrat/obj/clothing/suits.dmi'
-	alternate_worn_icon = 'modular_skyrat/mob/suit.dmi'
-	alternate_worn_icon_digi = 'modular_skyrat/mob/suit_digi.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/suit.dmi'
+	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/suit_digi.dmi'
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 70, "energy" = 50, "bomb" = 15, "bio" = 100, "rad" = 50, "fire" = 60, "acid" = 60)
 	strip_delay = 600
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/cybersun
@@ -94,7 +93,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 	retreat_distance = 2
 	minimum_distance = 4
 	casingtype = /obj/item/ammo_casing/c46x30mm
-	projectilesound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
+	projectilesound = 'sound/weapons/gun/general/Gunshot4.ogg'
 	loot = list(/obj/effect/mob_spawn/human/corpse/nanotrasenassaultsoldier)
 
 /mob/living/simple_animal/hostile/nanotrasen/elite

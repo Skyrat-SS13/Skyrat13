@@ -15,7 +15,7 @@
 	H.faction |= ROLE_SYNDICATE
 
 /obj/effect/mob_spawn/human/syndicatespace/special(mob/living/new_spawn)
-	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
+	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE)
 
 /obj/effect/mob_spawn/human/syndicatespace/Destroy()
 	new/obj/structure/fluff/empty_sleeper/syndicate(get_turf(src))
