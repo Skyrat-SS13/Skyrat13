@@ -1,0 +1,14 @@
+{
+    "map_name": "SnowMetaStation",
+    "map_path": "map_files/SnowMetaStation",
+    "map_file": "SnowMetaStation.dmm",
+    "shuttles": {
+	    "cargo": "cargo_box",
+	    "ferry": "ferry_fancy",
+	    "whiteship": "whiteship_meta",
+	    "emergency": "emergency_meta"
+    },
+    "traits": [
+    	{"Linkage": null , "Down": 1, "Gravity": true,"Planet": true, "Snowplanet Ruins": true, "Base Turf":"/turf/open/floor/plating/asteroid/snow/snowplanet", "Station": true},
+    	{"Planet Underground": true, "Snowplanet Ruins Underground": true, "Up": -1, "Gravity": true, "Base Turf":"/turf/open/floor/plating/asteroid/snow/ice/snowplanet", "Linkage": null}]
+}

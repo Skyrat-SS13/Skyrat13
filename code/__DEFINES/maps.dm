@@ -38,8 +38,10 @@ require only minor tweaks.
 #define ZTRAIT_SPACE_RUINS "Space Ruins"
 #define ZTRAIT_LAVA_RUINS "Lava Ruins"
 //SKYRAT CHANGES
-#define ZTRAIT_ICE_RUINS "Ice Ruins"
-#define ZTRAIT_ICE_RUINS_UNDERGROUND "Ice Ruins Underground"
+#define ZTRAIT_SNOWPLANET_RUINS "Snowplanet Ruins"
+#define ZTRAIT_SNOWPLANET_RUINS_UNDERGROUND "Snowplanet Ruins Underground"
+#define ZTRAIT_PLANET_SURFACE "Planet"
+#define ZTRAIT_PLANET_UNDERGROUND "Planet Underground"
 //
 #define ZTRAIT_ISOLATED_RUINS "Isolated Ruins" //Placing ruins on z levels with this trait will use turf reservation instead of usual placement.
 
