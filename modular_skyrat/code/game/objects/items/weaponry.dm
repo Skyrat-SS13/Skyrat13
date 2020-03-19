@@ -353,7 +353,7 @@
 //improvised laser rifle
 /obj/item/gun/energy/laser/makeshiftlasrifle
 	name = "makeshift laser rifle"
-	desc = "A makeshift rifle that shoots lasers. Lacks factory precision."
+	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but can rapidly alternate power cells."
 	icon_state = "lasrifle"
 	item_state = "makeshiftlas"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -365,6 +365,7 @@
 	charge_sections = 1
 	ammo_x_offset = 2
 	shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
+	var/upgraded = 0
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle
 	e_cost = 1000 //The amount of energy a cell needs to expend to create this shot.
@@ -394,6 +395,37 @@
 /obj/item/projectile/beam/laser/makeshiftlasrifle/medium
 	name = "medium laser"
 	damage = 12.5
+
+/obj/item/gun/energy/laser/makeshiftlasrifle/AltClick(mob/living/carbon/user)
+	..()
+	playsound(user, 'sound/items/Screwdriver.ogg', 35)
+	var/obj/item/stock_parts/cell/thecell = cell
+	cell = null
+	thecell.forceMove(user.loc)
+	user.put_in_l_hand(thecell)
+
+/obj/item/gun/energy/laser/makeshiftlasrifle/attackby(obj/item/I, mob/user, params)
+	..()
+	if(istype(I, /obj/item/stock_parts/cell) && !cell)
+		var/obj/item/stock_parts/cell/C = I
+		playsound(user, 'sound/items/Screwdriver.ogg', 35)
+		I.forceMove(src)
+		cell = I
+	if(istype(I, /obj/item/stack/sheet/plasteel) && !upgraded)
+		var/obj/item/stack/sheet/plasteel/oursteel = I
+		if(I.use(1))
+			new /obj/item/gun/energy/laser/makeshiftlasrifle/adv(user.loc)
+			qdel(src)
+
+/obj/item/gun/energy/laser/makeshiftlasrifle/adv
+	name = "plasteel makeshift laser rifle"
+	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but can rapidly alternate power cells. This one has been visually upgraded."
+	icon_state = "adv_lasermakeshift"
+	upgraded = 1
+	shaded_charge = 1
+	charge_sections = 4
+	automatic_charge_overlays = TRUE
+	ammo_x_offset = 2
 
 //shitty hatchet
 /obj/item/hatchet/improvised
