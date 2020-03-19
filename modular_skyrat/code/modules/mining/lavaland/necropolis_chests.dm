@@ -423,6 +423,32 @@
 		if(31)
 			new /obj/item/katana/necropolis(src)
 			return /obj/item/katana/necropolis
+	new /obj/item/stock_parts/cell/high/plus/argent(src)
+
+/obj/item/stock_parts/cell/high/plus/argent
+	name = "Argent Energy Cell"
+	desc = "Harvested from the necropolis, this autocharging energy cell can be crushed to provide a temporary 90% damage reduction bonus. Also useful for research."
+	self_recharge = 1
+	maxcharge = 1500 //only barely better than a normal power cell now
+	chargerate = 700 //good recharge time doe
+	icon = 'modular_skyrat/icons/obj/argentcell.dmi'
+	icon_state = "argentcell"
+	ratingdesc = FALSE
+	rating = 6
+	custom_materials = list(/datum/material/glass=500, /datum/material/uranium=250, /datum/material/plasma=1000, /datum/material/diamond=500)
+	var/datum/status_effect/onuse = /datum/status_effect/blooddrunk/argent
+
+/obj/item/stock_parts/cell/high/plus/argent/attack_self(mob/user)
+	..()
+	user.visible_message("<span class='danger'>[user] crushes the [src] in his hands, absorbing it's energy!</span>")
+	playsound(user.loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, TRUE)
+	var/mob/living/M = user
+	M.apply_status_effect(onuse)
+	qdel(src)
+
+/obj/item/stock_parts/cell/high/plus/argent/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/katana/necropolis
 	force = 25 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
