@@ -1,3 +1,4 @@
+//CP helmet very nice
 /obj/item/clothing/head/helmet/cphood
 	name = "Civil Protection hood"
 	desc = "Fits perfectly with a CP gas mask."
