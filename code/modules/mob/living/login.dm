@@ -24,10 +24,6 @@
 	if(ranged_ability)
 		ranged_ability.add_ranged_ability(src, "<span class='notice'>You currently have <b>[ranged_ability]</b> active!</span>")
 	if(vore_init && !vorepref_init) //Vore's been initialized, voreprefs haven't. If this triggers then that means that voreprefs failed to load due to the client being missing.
-<<<<<<< HEAD
-		apply_vore_prefs()
-
-	set_ssd_indicator(FALSE) //SKYRAT CHANGE - ssd indicator
-=======
 		copy_from_prefs_vr()
->>>>>>> 7d46ed2bec3... Merge pull request #11282 from Ghommie/Ghommie-cit595
+
+	set_ssd_indicator(FALSE) //SKYRAT CHANGE - ssd indicator	
