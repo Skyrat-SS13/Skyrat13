@@ -1,3 +1,4 @@
+//Pipe pistol
 /obj/item/ammo_box/magazine/m10mm/makeshift
 	name = "makeshift pistol magazine (10mm)"
 	desc = "If this thing doesn't blow up when firing, it's a miracle."
@@ -15,7 +16,7 @@
 //USP-Match
 
 /obj/item/ammo_box/magazine/usp
-	name = "USP Match magazine (9mm rubber)"
+	name = "U.S.P magazine (9mm rubber)"
 	desc = "A magazine for the security USP Match, refitted to only be loadable with non-lethal rounds."
 	icon = 'modular_skyrat/icons/obj/ammo.dmi'
 	icon_state = "uspm"
@@ -26,3 +27,8 @@
 /obj/item/ammo_box/magazine/usp/update_icon()
 	..()
 	icon_state = icon_state = "uspm-[ammo_count() ? "15" : "0"]"
+
+/obj/item/ammo_box/magazine/usp/emag_act(mob/user)
+	..()
+	to_chat(user, "<span class='notice'>The [src] can now accept all types of 9mm rounds.</span>")
+	ammo_type = /obj/item/ammo_casing/c9mm
