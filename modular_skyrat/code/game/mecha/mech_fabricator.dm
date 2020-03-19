@@ -8,6 +8,11 @@
 	RefreshParts() //Recalculating local material sizes if the fab isn't linked
 	return ..()
 
+/obj/machinery/mecha_part_fabricator/examine(mob/user)
+	. = ..()
+	if(in_range(user, src) || isobserver(user))
+		. += "<span class='notice'>The status display reads: Storing up to <b>[rmat.local_size]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.</span>"
+
 /obj/machinery/mecha_part_fabricator/RefreshParts()
 	var/T = 0
 
@@ -90,6 +95,86 @@
 
 	updateUsrDialog()
 	return TRUE
+
+/obj/machinery/mecha_part_fabricator/Topic(href, href_list)  // Skyrat edit -- BEGIN -- Moved to modular_skyrat/code/game/mecha/mech_fabricator.dm
+	if(..())
+		return
+	if(href_list["part_set"])
+		var/tpart_set = href_list["part_set"]
+		if(tpart_set)
+			if(tpart_set=="clear")
+				part_set = null
+			else
+				part_set = tpart_set
+				screen = "parts"
+	if(href_list["part"])
+		var/T = href_list["part"]
+		for(var/v in stored_research.researched_designs)
+			var/datum/design/D = SSresearch.techweb_design_by_id(v)
+			if(D.build_type & MECHFAB)
+				if(D.id == T)
+					if(!processing_queue)
+						build_part(D)
+					else
+						add_to_queue(D)
+					break
+	if(href_list["add_to_queue"])
+		var/T = href_list["add_to_queue"]
+		for(var/v in stored_research.researched_designs)
+			var/datum/design/D = SSresearch.techweb_design_by_id(v)
+			if(D.build_type & MECHFAB)
+				if(D.id == T)
+					add_to_queue(D)
+					break
+		return update_queue_on_page()
+	if(href_list["remove_from_queue"])
+		remove_from_queue(text2num(href_list["remove_from_queue"]))
+		return update_queue_on_page()
+	if(href_list["partset_to_queue"])
+		add_part_set_to_queue(href_list["partset_to_queue"])
+		return update_queue_on_page()
+	if(href_list["process_queue"])
+		spawn(0)
+			if(processing_queue || being_built)
+				return FALSE
+			processing_queue = 1
+			process_queue()
+			processing_queue = 0
+	if(href_list["clear_temp"])
+		temp = null
+	if(href_list["screen"])
+		screen = href_list["screen"]
+	if(href_list["queue_move"] && href_list["index"])
+		var/index = text2num(href_list["index"])
+		var/new_index = index + text2num(href_list["queue_move"])
+		if(isnum(index) && isnum(new_index) && ISINTEGER(index) && ISINTEGER(new_index))
+			if(ISINRANGE(new_index,1,queue.len))
+				queue.Swap(index,new_index)
+		return update_queue_on_page()
+	if(href_list["clear_queue"])
+		queue = list()
+		return update_queue_on_page()
+	if(href_list["sync"])
+		sync()
+	if(href_list["part_desc"])
+		var/T = href_list["part_desc"]
+		for(var/v in stored_research.researched_designs)
+			var/datum/design/D = SSresearch.techweb_design_by_id(v)
+			if(D.build_type & MECHFAB)
+				if(D.id == T)
+					var/obj/part = D.build_path
+					temp = {"<h1>[initial(part.name)] description:</h1>
+								[initial(part.desc)]<br>
+								<a href='?src=[REF(src)];clear_temp=1'>Return</a>
+								"}
+					break
+
+	if(href_list["remove_mat"] && href_list["material"])
+		var/datum/material/Mat = locate(href_list["material"])
+		eject_sheets(Mat, text2num(href_list["remove_mat"]))
+
+	updateUsrDialog()
+	return
 
 /obj/machinery/mecha_part_fabricator/proc/process_queue()
 	var/datum/design/D = queue[1]

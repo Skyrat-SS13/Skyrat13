@@ -71,14 +71,14 @@
 	T = -1
 	for(var/obj/item/stock_parts/manipulator/Ml in component_parts)
 		T += Ml.rating
-	time_coeff = round(initial(time_coeff) - (initial(time_coeff)*(T))/5,0.01)*/ // Skyrat edit -- BEGIN -- Moved to modular
+	time_coeff = round(initial(time_coeff) - (initial(time_coeff)*(T))/5,0.01)
 
 /obj/machinery/mecha_part_fabricator/examine(mob/user)
 	. = ..()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.</span>"
-
+*/ // Skyrat edit -- END -- Moved to modular
 /obj/machinery/mecha_part_fabricator/emag_act()
 	. = ..()
 	if(obj_flags & EMAGGED)
@@ -329,7 +329,7 @@
 	onclose(user, "mecha_fabricator")
 	return
 
-/obj/machinery/mecha_part_fabricator/Topic(href, href_list)
+/*/obj/machinery/mecha_part_fabricator/Topic(href, href_list)  // Skyrat edit -- BEGIN -- Moved to modular_skyrat/code/game/mecha/mech_fabricator.dm
 	if(..())
 		return
 	if(href_list["part_set"])
@@ -410,7 +410,7 @@
 	updateUsrDialog()
 	return
 
-/*/obj/machinery/mecha_part_fabricator/on_deconstruction() // Skyrat edit -- BEGIN -- Moved to modular_skyrat/code/game/mecha/mech_fabricator.dm
+/obj/machinery/mecha_part_fabricator/on_deconstruction()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.retrieve_all()
 	..()*/ // Skyrat edit -- END -- Moved to modular
