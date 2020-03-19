@@ -1508,7 +1508,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						features["flavor_text"] = html_decode(msg)
 
 				if("ooc_notes")
-					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", ooc_notes, MAX_FAVOR_LEN, TRUE)
+					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", ooc_notes, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
 						ooc_notes = msg
 
