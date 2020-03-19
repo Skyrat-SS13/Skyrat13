@@ -1,16 +1,4 @@
 //i dont know what classifies a cargo thing as special.
-/datum/supply_pack/security/armory/revolver
-	name = ".38 Revolver Crate"
-	desc = "Sometimes, the mysterious stranger doesn't come. Then you do it yourself."
-	cost = 12000
-	contains = list(/obj/item/gun/ballistic/revolver/detective,
-					/obj/item/gun/ballistic/revolver/detective,
-					/obj/item/gun/ballistic/revolver/detective,
-					/obj/item/ammo_box/c38,
-					/obj/item/ammo_box/c38,
-					/obj/item/ammo_box/c38)
-	crate_name = "mars special crate"
-
 /datum/supply_pack/security/armory/usp
 	name = "USP pistol Crate"
 	desc = "Why are 9mm guns still a thing? Well, you can still get them anyways."
