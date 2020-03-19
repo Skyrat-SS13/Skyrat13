@@ -31,8 +31,7 @@
 						"Stealth" = "stealth",
 						"Glock" = "glock",
 						"Beretta" = "beretta",
-						"M1911" = "1911",
-						)
+						"M1911" = "1911")
 	obj_flags = UNIQUE_RENAME
 
 /obj/item/gun/ballistic/automatic/pistol/uspm/update_icon()
