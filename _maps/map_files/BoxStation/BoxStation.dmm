@@ -456,6 +456,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/machinery/camera{
+	c_tag = "Pool West";
+	dir = 4
+	},
 /turf/open/floor/plasteel/checker,
 /area/security/prison)
 "abg" = (
@@ -1243,16 +1247,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
-"acT" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/area/ai_monitored/security/armory)
 "acU" = (
 /obj/machinery/door/airlock/external{
 	name = "Security External Airlock";
@@ -1646,6 +1640,7 @@
 /area/security/prison)
 "adJ" = (
 /obj/structure/filingcabinet,
+/obj/machinery/camera,
 /turf/open/floor/wood,
 /area/security/prison)
 "adK" = (
@@ -1907,18 +1902,30 @@
 "aej" = (
 /obj/structure/rack,
 /obj/item/flashlight,
+/obj/item/storage/bag/trash,
 /turf/open/floor/plating,
 /area/security/prison)
 "aek" = (
 /obj/structure/rack,
-/obj/item/storage/bag/trash,
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/item/tank/internals/nitrogen/belt,
+/obj/item/tank/internals/nitrogen/belt,
+/obj/item/tank/internals/plasmaman/belt,
+/obj/item/tank/internals/plasmaman/belt,
 /turf/open/floor/plating,
 /area/security/prison)
 "ael" = (
 /obj/structure/rack,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
 /turf/open/floor/plating,
 /area/security/prison)
 "aem" = (
@@ -2057,13 +2064,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"aex" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/ai_monitored/security/armory)
 "aey" = (
 /obj/machinery/keycard_auth{
 	pixel_x = 24;
@@ -2638,13 +2638,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"afq" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/area/security/brig)
 "afr" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3171,14 +3164,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
-"agt" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ai_monitored/security/armory)
 "agu" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3794,27 +3779,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"ahv" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/area/security/brig)
-"ahw" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/security/brig)
 "ahx" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -4064,6 +4028,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/camera,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ahP" = (
@@ -4360,16 +4325,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"aij" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/area/security/brig)
 "aik" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4397,13 +4352,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/range)
-"aim" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/security/brig)
 "ain" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/bulletproof{
@@ -4791,13 +4739,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall/r_wall,
 /area/security/main)
-"aiQ" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/security/brig)
 "aiR" = (
 /obj/structure/closet/l3closet/security,
 /obj/effect/turf_decal/bot,
@@ -7592,10 +7533,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"apb" = (
-/obj/structure/closet/crate/internals,
-/turf/open/floor/plating,
-/area/security/prison)
 "apc" = (
 /obj/structure/chair/office/dark,
 /turf/open/floor/plasteel/showroomfloor,
@@ -10981,17 +10918,15 @@
 /area/maintenance/starboard/fore)
 "awN" = (
 /obj/structure/table,
-/obj/machinery/smartfridge/disks,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/item/storage/box/disks_plantgene,
-/obj/item/storage/box/disks_plantgene,
-/obj/item/storage/box/disks_plantgene,
-/obj/item/storage/box/disks_plantgene,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "awO" = (
@@ -11078,8 +11013,6 @@
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "awX" = (
-/obj/structure/table,
-/obj/machinery/plantgenes,
 /obj/machinery/light{
 	dir = 1;
 	light_color = "#cee5d2"
@@ -11091,6 +11024,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
+/obj/machinery/vending/hydronutrients,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "awY" = (
@@ -11509,6 +11443,10 @@
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Pool West";
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -12292,12 +12230,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/item/cultivator,
-/obj/item/hatchet,
-/obj/item/plant_analyzer,
-/obj/item/shovel/spade,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/storage/bag/plants,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "azW" = (
@@ -12353,15 +12285,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"aAf" = (
-/obj/item/cultivator,
-/obj/item/hatchet,
-/obj/item/plant_analyzer,
-/obj/item/shovel/spade,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/storage/bag/plants,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aAg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -13420,6 +13343,12 @@
 /obj/item/clothing/shoes/sneakers/orange,
 /obj/item/clothing/shoes/sneakers/orange,
 /obj/item/clothing/shoes/sneakers/orange,
+/obj/machinery/camera{
+	c_tag = "MiniSat Service Bay";
+	dir = 8;
+	network = list("minisat");
+	start_active = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aCy" = (
@@ -55479,6 +55408,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/range)
+"dEr" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/camera{
+	c_tag = "Pool West";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "dFX" = (
 /turf/closed/wall,
 /area/crew_quarters/fitness/pool)
@@ -55780,6 +55717,20 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"eFm" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/camera{
+	c_tag = "Pool West";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "eFW" = (
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating/airless,
@@ -55985,6 +55936,10 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
+"fru" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/plasteel/cafeteria,
+/area/security/prison)
 "fsj" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/sunglasses{
@@ -56095,6 +56050,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"fFn" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/camera{
+	c_tag = "MiniSat Service Bay";
+	dir = 8;
+	network = list("minisat");
+	start_active = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "fFA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -56683,6 +56651,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"hyY" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/structure/table/reinforced,
+/obj/machinery/camera{
+	c_tag = "MiniSat Service Bay";
+	dir = 8;
+	network = list("minisat");
+	start_active = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "hzK" = (
 /turf/open/floor/plasteel/yellowsiding/corner{
 	dir = 1
@@ -57121,6 +57103,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/crew_quarters/abandoned_gambling_den)
+"jbb" = (
+/obj/machinery/camera{
+	c_tag = "MiniSat Service Bay";
+	dir = 8;
+	network = list("minisat");
+	start_active = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "jbf" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -57346,6 +57337,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
+"jGp" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Pool West";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "jGW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -57884,6 +57888,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
+"len" = (
+/obj/machinery/camera{
+	c_tag = "Pool West";
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/prison)
 "lhh" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -58865,6 +58876,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"ozy" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/camera{
+	c_tag = "MiniSat Service Bay";
+	dir = 8;
+	network = list("minisat");
+	start_active = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "oAb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -60063,6 +60088,14 @@
 	icon_state = "wood-broken6"
 	},
 /area/maintenance/bar)
+"sDk" = (
+/obj/structure/closet/secure_closet/freezer/fridge/open,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/camera,
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "sEi" = (
 /obj/machinery/vr_sleeper{
 	dir = 4
@@ -60708,10 +60741,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"utx" = (
-/obj/machinery/vending/hydronutrients,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "uua" = (
 /obj/machinery/atmospherics/components/binary/valve,
 /turf/open/floor/plating,
@@ -61282,6 +61311,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"vKO" = (
+/obj/machinery/camera{
+	c_tag = "Pool West";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "vLf" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
@@ -61372,6 +61408,22 @@
 /obj/structure/girder,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"weQ" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Pool West";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "weW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
@@ -61508,6 +61560,10 @@
 	},
 /turf/open/floor/plating,
 /area/security/main)
+"wDW" = (
+/obj/machinery/newscaster,
+/turf/closed/wall,
+/area/security/prison)
 "wGf" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -62024,6 +62080,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"xVU" = (
+/obj/structure/chair/stool,
+/obj/machinery/camera,
+/turf/open/floor/plasteel/cafeteria,
+/area/security/prison)
 "xXi" = (
 /obj/machinery/vending/clothing,
 /turf/open/floor/plasteel,
@@ -84514,7 +84575,7 @@ aai
 aws
 aat
 axY
-aAf
+aat
 aDO
 aai
 gXs
@@ -84760,12 +84821,12 @@ acf
 aai
 aeo
 aeo
-akP
+len
 aeo
 apw
 acd
 atl
-atX
+jGp
 auW
 acd
 aww
@@ -85027,7 +85088,7 @@ ave
 acd
 awN
 aei
-utx
+aat
 aIi
 aDS
 aai
@@ -85789,13 +85850,13 @@ adf
 afo
 akW
 amo
-aop
+weQ
 asr
 amo
 afo
 amo
 aop
-amo
+eFm
 amo
 axM
 amo
@@ -86550,7 +86611,7 @@ gXs
 gXs
 aar
 aas
-aat
+vKO
 aap
 aTA
 aem
@@ -87336,7 +87397,7 @@ aHX
 aQt
 ajs
 aHX
-aQt
+dEr
 ajs
 aHX
 aLJ
@@ -87354,7 +87415,7 @@ aTq
 agN
 aeO
 ado
-afq
+agj
 afH
 agY
 ahS
@@ -87844,7 +87905,7 @@ ada
 aLS
 aep
 aIA
-aQQ
+fFn
 aep
 aIA
 asG
@@ -87868,7 +87929,7 @@ aTx
 aCV
 aDu
 adp
-ahv
+agj
 afK
 aht
 aid
@@ -88125,7 +88186,7 @@ acd
 aem
 fLS
 afG
-aim
+agj
 afL
 ahu
 aie
@@ -88372,7 +88433,7 @@ asU
 aat
 acd
 pmQ
-aAM
+hyY
 aAM
 acd
 aCq
@@ -88384,8 +88445,8 @@ aeO
 afF
 agj
 agj
-afn
-afn
+agj
+agj
 agj
 agj
 agM
@@ -88639,7 +88700,7 @@ acd
 ahO
 aeO
 ahE
-afq
+agj
 aii
 afM
 aig
@@ -88896,7 +88957,7 @@ acd
 ahP
 aev
 aeS
-ahw
+agj
 ajg
 afM
 akU
@@ -89122,7 +89183,7 @@ gXs
 gXs
 aar
 aaG
-aat
+jbb
 aaW
 abM
 ade
@@ -89153,7 +89214,7 @@ aVG
 aep
 aeT
 ahE
-aim
+agj
 ajL
 akj
 afM
@@ -89387,13 +89448,13 @@ adG
 aJd
 aMv
 aMW
-aMv
+ozy
 asC
 aJd
 aMW
 auy
 adG
-aMv
+ozy
 aJd
 aMv
 aMW
@@ -89914,11 +89975,11 @@ azj
 aCf
 aai
 aDW
-aat
+jbb
 aat
 aCm
 aaJ
-aat
+jbb
 auu
 acd
 aer
@@ -90185,7 +90246,7 @@ aiX
 afS
 ahx
 aiX
-aiQ
+aiX
 eCQ
 akx
 ybm
@@ -90436,12 +90497,12 @@ aaZ
 aeF
 ack
 agJ
-acT
+aaZ
 adK
 aew
 afT
 ahy
-aij
+aiX
 aiR
 ajc
 akz
@@ -90678,7 +90739,7 @@ asX
 atz
 auS
 acd
-avx
+xVU
 axd
 awd
 azj
@@ -90693,12 +90754,12 @@ aaZ
 aeW
 acl
 agJ
-adg
+aaZ
 adL
 adL
 ago
 ahz
-aim
+aiX
 aiW
 ajc
 akz
@@ -90931,7 +90992,7 @@ alV
 amT
 aaC
 acd
-asX
+sDk
 atQ
 atR
 avm
@@ -90952,8 +91013,8 @@ acm
 agK
 aaZ
 aaZ
-aex
-agt
+aaZ
+aaZ
 aaZ
 aaZ
 aaZ
@@ -91183,7 +91244,7 @@ iDo
 gXs
 aai
 acd
-acd
+wDW
 acd
 acd
 aos
@@ -91957,14 +92018,14 @@ ael
 akK
 amh
 anp
-apb
+aay
 acd
 atk
 atV
 auU
 acd
 awe
-awd
+fru
 axU
 fkG
 fkG
