@@ -413,7 +413,7 @@
 		cell = I
 	if(istype(I, /obj/item/stack/sheet/plasteel) && !upgraded)
 		var/obj/item/stack/sheet/plasteel/oursteel = I
-		if(I.use(1))
+		if(oursteel.use(1))
 			new /obj/item/gun/energy/laser/makeshiftlasrifle/adv(user.loc)
 			qdel(src)
 
