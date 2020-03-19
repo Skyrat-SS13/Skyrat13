@@ -3376,6 +3376,7 @@
 #include "modular_skyrat\code\modules\atmospherics\environmental\LINDA_fire.dm"
 #include "modular_skyrat\code\modules\atmospherics\machinery\pipes\bluespace.dm"
 #include "modular_skyrat\code\modules\cargo\expressconsole.dm"
+#include "modular_skyrat\code\modules\cargo\packs\special.dm"
 #include "modular_skyrat\code\modules\client\preferences_toggles.dm"
 #include "modular_skyrat\code\modules\client\loadout\head.dm"
 #include "modular_skyrat\code\modules\client\loadout\neck.dm"
