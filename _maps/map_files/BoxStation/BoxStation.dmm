@@ -1168,7 +1168,6 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "acK" = (
-/obj/shapeshift_holder,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1288,7 +1287,6 @@
 /turf/open/floor/plating,
 /area/security/execution/transfer)
 "acY" = (
-/obj/shapeshift_holder,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -1304,7 +1302,6 @@
 /turf/open/floor/plating,
 /area/security/execution/transfer)
 "ada" = (
-/obj/shapeshift_holder,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
