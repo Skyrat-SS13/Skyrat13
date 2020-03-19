@@ -379,6 +379,9 @@
 		mob_occupant.grab_ghost()
 		to_chat(occupant, "<span class='notice'><b>There is a bright flash!</b><br><i>You feel like a new being.</i></span>")
 		mob_occupant.flash_act()
+		if(jobban_isbanned(mob_occupant) && ishuman(mob_occupant))	// SKYRAT ADDITION -- BEGIN
+			var/mob/living/carbon/human/C = mob_occupant
+			C.update_admin_collar()	// SKYRAT ADDITION -- END
 
 	occupant.forceMove(T)
 	update_icon()
