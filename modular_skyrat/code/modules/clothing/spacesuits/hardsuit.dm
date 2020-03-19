@@ -40,8 +40,8 @@
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "armblade0"
 	icon_state_on = "armblade1"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/armblade_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/armblade_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/armblade_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/armblade_righthand.dmi'
 	item_state = "armblade0"
 	var/item_state_on = "armblade1"
 	attack_verb_off = list("bopped")
