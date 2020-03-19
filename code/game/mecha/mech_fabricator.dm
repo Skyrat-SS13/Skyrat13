@@ -205,7 +205,7 @@
 	return TRUE
 
 /*/obj/machinery/mecha_part_fabricator/proc/process_queue() // Skyrat edit -- BEGIN -- Moved to modular_skyrat/code/game/mecha/mech_fabricator.dm
-	var/datum/design/D = queue[1] 
+	var/datum/design/D = queue[1]
 	if(!D)
 		remove_from_queue(1)
 		if(queue.len)
