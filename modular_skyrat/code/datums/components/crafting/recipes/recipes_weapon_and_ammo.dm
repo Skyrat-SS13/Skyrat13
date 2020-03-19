@@ -36,6 +36,8 @@
 				/obj/item/stock_parts/cell = 1,
 				/obj/machinery/igniter = 1)
 	tools = list(TOOL_WELDER)
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/ablativecoat
 	name = "Ablative Trenchcoat"
