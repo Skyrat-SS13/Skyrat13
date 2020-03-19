@@ -5,8 +5,8 @@
 	icon_state = "offline"
 	density = TRUE
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 2
-	active_power_usage = 50
+	idle_power_usage = 1
+	active_power_usage = 5
 	var/obj/item/stack/license_plates/empty/current_plate
 	var/pressing = FALSE
 
