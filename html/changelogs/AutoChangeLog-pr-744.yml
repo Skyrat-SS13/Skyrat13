@@ -1,0 +1,6 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Added unique hard legion loot, the Golden Mask."
+  - balance: "Nerfs explorer gas masks."
+  - imageadd: "Icons for the golden mask. (Somewhat ugly, if you want something good do it yourself, i did my best okay?)"
