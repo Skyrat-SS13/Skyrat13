@@ -1,4 +1,9 @@
 // This code handles different species in the game.
+#define BONE_DAM_THRESHOLD_LOW 25
+#define BONE_DAM_THRESHOLD_MEDIUM 50
+#define BONE_DAM_THRESHOLD_HIGH 75
+#define BONE_DAM_THRESHOLD_BROKEN 100
+#define BONE_DAM_PROB 10
 
 GLOBAL_LIST_EMPTY(roundstart_races)
 GLOBAL_LIST_EMPTY(roundstart_race_names)
@@ -1971,7 +1976,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 					if(HAS_TRAIT(H, TRAIT_MASO) && prob(damage_amount))
 						H.mob_climax(forced_climax=TRUE)
 					if(damage_amount >= 5 && prob(BONE_DAM_PROB) || damage_amount >= 20)
-						for(var/obj/item/organ/bone/B in getorganszone(BP.body_zone))
+						for(var/obj/item/organ/bone/B in H.getorganszone(BP.body_zone))
 							var/olddamage = B.damage
 							B.damage += (damage_amount * (damage_amount * 0.1))/2
 							if(!(olddamage >= BONE_DAM_THRESHOLD_LOW))
