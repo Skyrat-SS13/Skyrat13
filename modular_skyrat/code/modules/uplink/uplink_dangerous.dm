@@ -19,7 +19,7 @@
 			However, due to the size of the blade and obvious nature of the sheath, the weapon stands out as being obviously nefarious."
 	item = /obj/item/storage/belt/sabre/rapier
 	cost = 10
-  exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/molagmace
 	name = "Mace of Molag Bal"
