@@ -1,5 +1,0 @@
-author: "Useroth"
-delete-after: True
-changes: 
-  - rscadd: "Added options for muzzled, digi and taur alternative icons."
-  - tweak: "If no specific icons are given for muzzled, digi and taur alternate_worn_icon, it now defaults to the regular alternate_worn_icon, instead of looking for the sprites in the non-modular icon files with no way to override it."

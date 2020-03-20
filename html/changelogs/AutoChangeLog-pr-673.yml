@@ -1,5 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Lesser collar bans"
-  - tweak: "Collarbanned players will always get a new collar on them if it is somehow removed (shouldn't happen) with each life() call. There is no escape."
