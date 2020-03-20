@@ -208,4 +208,3 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 #extra map stuff
 /_maps/**/backup/
 /_maps/templates.dm
-modular_skyrat/_maps/RandomRuins/SpaceRuins/spacehermit.dmm
