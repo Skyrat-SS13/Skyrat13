@@ -1,5 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - rscadd: "Adds the sound toggle to Content Preferences"
-  - code_imp: "Removed the Life() proc, replaced it by some calls that calculate the desired value off of world time"

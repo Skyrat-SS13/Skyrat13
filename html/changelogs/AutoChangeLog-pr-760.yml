@@ -1,6 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - tweak: "USP magazines can now be emagged"
-  - tweak: "USP can now be reskinned"
-  - imageadd: "Unique USP sprites"

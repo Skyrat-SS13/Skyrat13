@@ -1,5 +1,0 @@
-author: "CameronWoof"
-delete-after: True
-changes: 
-  - rscadd: "Diethylamine and saltpetre is now available for crafting in the biogenerator."
-  - tweak: "Diethylamine will increase the yield of a plant at 30 units, down from 50."

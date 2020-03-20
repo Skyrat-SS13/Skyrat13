@@ -1,6 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Added a base humanoid race"
-  - rscadd: "Added dunmer race"
-  - rscadd: "Fargoth's ring"
