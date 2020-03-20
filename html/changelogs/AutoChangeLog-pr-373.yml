@@ -1,7 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Added candy, the new elite mob for lavaland."
-  - tweak: "Tweaked a bit of the drake's code to be better and more personal to it."
-  - soundadd: "gore nest sound effect (doom 2016)"
-  - imageadd: "icons for candy"

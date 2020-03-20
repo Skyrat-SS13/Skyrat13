@@ -1,6 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "added a praetor suit"
-  - imageadd: "added icons for the praetor suit"
-  - tweak: "legion now drops the praetor suit"

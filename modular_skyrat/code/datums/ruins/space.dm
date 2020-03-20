@@ -1,3 +1,6 @@
+/datum/map_template/ruin/space/listeningstation
+	prefix = "modular_skyrat/_maps/RandomRuins/SpaceRuins/"
+
 /datum/map_template/ruin/space/kinggoatarena
 	prefix = "modular_skyrat/_maps/RandomRuins/SpaceRuins/"
 	id = "kinggoatarena"

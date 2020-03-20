@@ -1,5 +1,0 @@
-author: "ShadeAware"
-delete-after: True
-changes: 
-  - rscadd: "Unique Prescription HUD Sprites.
-edit: Prescription HUDS now use their own distinct sprites."
