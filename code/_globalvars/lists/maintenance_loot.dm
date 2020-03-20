@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/reagent_containers/food/snacks/cannedpeaches/maint = 2,
 	/obj/item/storage/daki = 3, //VERY IMPORTANT CIT CHANGE - adds bodypillows to maint
 	//VERY IMPORTANT SKYRAT CHANGE, FARGOTH'S RING
-	/obj/item/clothing/gloves/ring/silver/fargoth = 3,
+	/obj/item/clothing/gloves/ring/silver/fargoth = 1,
 	//
 	/obj/item/storage/pill_bottle/penis_enlargement = 2,
 	/obj/item/storage/pill_bottle/breast_enlargement = 2,
