@@ -1,5 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Blood Drunk PKA now accepts modkits proper."
-  - tweak: "Blood Drunk PKA cannot accept tracer and chassis modkits."

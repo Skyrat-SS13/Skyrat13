@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Stopped role restricted uplink items from being discounted despite not being purchasable most times."

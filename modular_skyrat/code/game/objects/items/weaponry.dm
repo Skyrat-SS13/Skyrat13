@@ -453,3 +453,43 @@
 	attack_verb = list("stabbed", "shanked", "sliced", "cut")
 	siemens_coefficient = 0 //Means it's insulated
 	sharpness = IS_SHARP
+
+//mace of molag bal
+/obj/item/melee/cleric_mace/molagbal
+	name = "Mace of Molag Bal"
+	desc = "Make the weak and frail bend to you."
+	icon = 'modular_skyrat/icons/obj/molagmace.dmi'
+	icon_state = "mace_greyscale"
+	item_state = "mace_greyscale"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/mace_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/mace_righthand.dmi'
+	material_flags = null
+	custom_materials = list(/datum/material/iron = 12000)
+	slot_flags = ITEM_SLOT_BELT
+	force = 15
+	w_class = WEIGHT_CLASS_NORMAL
+	throwforce = 8
+	block_chance = 30
+	armour_penetration = 200
+	var/stamdamage = 30
+	var/confusion = 8
+	var/organdamage = 7
+	overlay_state = null
+	overlay = null
+	attack_verb = list("disciplined", "struck", "dominated", "consumed", "beaten", "enslaved")
+
+/obj/item/melee/cleric_mace/molagbal/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/H = target
+		var/loss = H.getStaminaLoss()
+		H.confused += confusion
+		H.adjust_blurriness(confusion)
+		if(prob(15) && user.zone_selected == BODY_ZONE_HEAD)
+			H.gain_trauma(/datum/brain_trauma/mild/concussion)
+		if(prob(25))
+			for(var/obj/item/organ/O in H.getorganszone(user.zone_selected))
+				O.damage += organdamage
+		H.adjustStaminaLoss(stamdamage)
+		if(loss > 100)
+			H.Sleeping(60)

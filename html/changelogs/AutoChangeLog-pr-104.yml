@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - admin: "Panic bunker is now round-to-round persistent"

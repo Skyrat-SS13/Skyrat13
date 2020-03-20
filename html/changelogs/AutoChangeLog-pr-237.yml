@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscdel: "Bullets causing bleed rates equal to unmitigated damage through all forms of defense."
