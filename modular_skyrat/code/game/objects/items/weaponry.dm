@@ -160,8 +160,8 @@
 	icon = 'modular_skyrat/icons/obj/molagmace.dmi'
 	icon_state = "mace_greyscale"
 	item_state = "mace_greyscale"
-	lefthand_file = 'icons/mob/inhands/mace_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/mace_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/mace_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/mace_righthand.dmi'
 	material_flags = null
 	custom_materials = list(/datum/material/iron = 12000)
 	slot_flags = ITEM_SLOT_BELT
