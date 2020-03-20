@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added Plasma buffer resource to engie cyborgs"
-  - rscadd: "Added plasma, plasglass, plasrglass, and plasteel to engieborgs"

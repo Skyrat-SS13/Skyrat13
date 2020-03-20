@@ -22,7 +22,7 @@
 /proc/playlewdinteractionsound(turf/turf_source, soundin, vol as num, vary, extrarange as num ,frequency, falloff, channel = 0, pressure_affected = TRUE, sound/S, envwet = -10000, envdry = 0, manual_x, manual_y)
 	var/list/hearing_mobs
 	for(var/mob/H in get_hearers_in_view(4, turf_source))
-		if(!H.client || !(H.client.prefs.toggles & LEWD_VERB_SOUNDS))
+		if(!H.client || (H.client.prefs.toggles & LEWD_VERB_SOUNDS))
 			continue
 		LAZYADD(hearing_mobs, H)
 	for(var/mob/H in hearing_mobs)
@@ -37,25 +37,46 @@
 	var/lastmoan
 	var/sexual_potency =  15
 	var/lust_tolerance = 100
+	var/lastlusttime = 0
 	var/lust = 0
 	var/multiorgasms = 1
 	var/refractory_period = 0
-	var/refract_total
-	var/loselust = FALSE
 
 mob/living/Initialize()
 	. = ..()
 	sexual_potency =  rand(10,25)
 	lust_tolerance = rand(75,200)
 
-/mob/living/Life(seconds, times_fired)
-	if(refractory_period)
-		refractory_period--
-	if(loselust && lust)
-		lust--
-	if(client)
-		hud_used.arousal?.update_icon_state()
-	. = ..()
+/mob/living/proc/get_refraction_dif()
+	var/dif = (refractory_period - world.time)
+	if(dif < 0)
+		return 0
+	else
+		return dif
+
+
+/mob/living/proc/add_lust(add)
+	var/cur = src.get_lust() //GetLust handles per-time lust loss
+	if((cur + add) < 0) //in case we retract lust
+		lust = 0
+	else
+		lust = cur + add
+
+
+/mob/living/proc/get_lust()
+	var/curtime = world.time
+	var/dif = (curtime - lastlusttime)/10 //how much lust would we lose over time
+	if((lust - dif) < 0)
+		lust = 0
+	else
+		lust = lust - dif
+
+	lastlusttime = world.time
+	return lust
+
+/mob/living/proc/set_lust(num)
+	lust = num
+	lastlusttime = world.time
 
 /mob/living/proc/has_penis()
 	return has_penis
@@ -96,7 +117,7 @@ mob/living/Initialize()
 	//C.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
 
 /mob/living/proc/moan()
-	if(!(prob(lust / lust_tolerance * 65)))
+	if(!(prob(get_lust() / lust_tolerance * 65)))
 		return
 	var/moan = rand(1, 7)
 	if(moan == lastmoan)
@@ -119,25 +140,25 @@ mob/living/Initialize()
 			if(CUM_TARGET_MOUTH)
 				if(partner.has_mouth() && partner.mouth_is_free())
 					message = "cums right in \the [partner]'s mouth."
-					partner.reagents.add_reagent("semen", rand(8,13))
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,13))
 				else
 					message = "cums on \the [partner]'s face."
 			if(CUM_TARGET_THROAT)
 				if(partner.has_mouth() && partner.mouth_is_free())
 					message = "shoves deep into \the [partner]'s throat and cums."
-					partner.reagents.add_reagent("semen", rand(9,15))
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(9,15))
 				else
 					message = "cums on \the [partner]'s face."
 			if(CUM_TARGET_VAGINA)
 				if(partner.is_bottomless() && partner.has_vagina())
 					message = "cums in \the [partner]'s pussy."
-					partner.reagents.add_reagent("semen", rand(8,12))
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
 				else
 					message = "cums on \the [partner]'s belly."
 			if(CUM_TARGET_ANUS)
 				if(partner.is_bottomless() && partner.has_anus())
 					message = "cums in \the [partner]'s asshole."
-					partner.reagents.add_reagent("semen", rand(8,12))
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
 				else
 					message = "cums on \the [partner]'s backside."
 			if(CUM_TARGET_HAND)
@@ -189,14 +210,12 @@ mob/living/Initialize()
 		add_logs(partner, src, "came on")*/
 
 	if(multiorgasms > (sexual_potency * 0.34)) //AAAAA, WE DONT WANT NEGATIVES HERE, RE
-		refractory_period = rand(30, 90) - sexual_potency//sex cooldown
-		refract_total = refractory_period
+		refractory_period = world.time + rand(300, 900) - sexual_potency//sex cooldown
 		src.set_drugginess(rand(20, 30))
 	else
-		refractory_period = rand(30, 90) - sexual_potency
-		refract_total = refractory_period
+		refractory_period = world.time + rand(300, 900) - sexual_potency
 		src.set_drugginess(rand(5, 10))
-	lust = 0
+	set_lust(0)
 	hud_used.arousal?.update_icon_state()
 
 /mob/living/cum(mob/living/partner, target_orifice)
@@ -839,8 +858,8 @@ mob/living/Initialize()
 		return
 
 	if(amount)
-		lust += amount
-	if(lust >= lust_tolerance)
+		add_lust(amount)
+	if(get_lust() >= lust_tolerance)
 		if(prob(10))
 			to_chat(src, "<b>You struggle to not orgasm!</b>")
 			return

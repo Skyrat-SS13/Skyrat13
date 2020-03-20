@@ -1,6 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Added alternative screams for those wearing the cp mask"
-  - bugfix: "fixed the implant bug"
-  - soundadd: "Added pain sound effects for screams"

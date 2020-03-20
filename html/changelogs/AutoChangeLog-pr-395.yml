@@ -1,4 +1,0 @@
-author: "PersianXerxes"
-delete-after: True
-changes: 
-  - code_imp: "Temporarily prevents the typing indicator from appearing when using 'say' or 'me' in the command bar."

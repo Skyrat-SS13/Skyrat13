@@ -75,3 +75,120 @@
 	icon_state = "sword2"
 	duration = 4
 	layer = ABOVE_MOB_LAYER
+
+/obj/item/twohanded/ebonyblade
+	name = "Ebony Blade"
+	desc = "Forged in deceit, this weapon gets more powerful with the blood of those that are alligned with you."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "ebonyblade"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/ebonyblade_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/ebonyblade_righthand.dmi'
+	item_state = "ebonyblade"
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "destroyed", "ripped", "devastated", "shredded")
+	sharpness = IS_SHARP_ACCURATE
+	block_chance = 0
+	var/block_chance_wielded = 20
+	force = 5
+	force_unwielded = 5
+	force_wielded = 13
+	var/current_lifesteal = 2.5
+	var/lifesteal = 2.5
+	var/forceadd_samerole = 5
+	var/forceadd_sameantagonist = 10
+	var/blockadd_anydeceit = 10
+	var/datum/status_effect/tracker = /datum/status_effect/ebony_damage
+
+/obj/item/twohanded/ebonyblade/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 100, 110)
+
+/obj/item/twohanded/ebonyblade/unwield(mob/living/carbon/user, show_message = TRUE)
+	..()
+	block_chance = initial(block_chance)
+	lifesteal = initial(current_lifesteal)
+
+/obj/item/twohanded/ebonyblade/wield(mob/living/carbon/user, show_message = TRUE)
+	..()
+	block_chance = block_chance_wielded
+	current_lifesteal = lifesteal
+
+/obj/item/twohanded/ebonyblade/attack(mob/living/target, mob/living/carbon/user)
+	if(target.stat == DEAD)
+		..()
+		return
+	if(!target.has_status_effect(tracker))
+		target.apply_status_effect(tracker, "ebony blade")
+	var/datum/status_effect/ebony_damage/C = target.has_status_effect(tracker)
+	var/target_health = target.health
+	..()
+	user.adjustBruteLoss(-current_lifesteal)
+	user.adjustFireLoss(-current_lifesteal)
+	user.adjustOxyLoss(-current_lifesteal)
+	user.adjustToxLoss(-current_lifesteal)
+	user.adjustCloneLoss(-current_lifesteal)
+	if(!QDELETED(C) && !QDELETED(target))
+		C.total_damage += target_health - target.health
+		if(C.total_damage > (target.maxHealth * 0.33)) //At least a third of the damage must be done by the blade for the kill to count.
+			if(target.stat == DEAD && user.mind && target.mind)
+				var/obj/item/card/id/userid = user.get_item_by_slot(SLOT_WEAR_ID)
+				var/list/useraccess = userid.GetAccess()
+				var/obj/item/card/id/targetid = target.get_item_by_slot(SLOT_WEAR_ID)
+				var/list/targetaccess = targetid.GetAccess()
+				var/combinedaccess = useraccess | targetaccess
+				if((user.mind.assigned_role == target.mind.assigned_role) || (targetaccess == combinedaccess))
+					src.force_wielded += forceadd_samerole
+					src.lifesteal += forceadd_samerole/2
+					src.block_chance_wielded += blockadd_anydeceit
+					if(src.block_chance_wielded > 90)
+						src.block_chance_wielded = 90
+				if(user.mind.special_role == target.mind.special_role)
+					src.force_wielded += forceadd_sameantagonist
+					src.lifesteal += forceadd_sameantagonist/2
+					src.block_chance_wielded += blockadd_anydeceit
+					if(src.block_chance_wielded > 90)
+						src.block_chance_wielded = 90
+				if(user.mind.isholy == target.mind.isholy)
+					src.force_wielded += forceadd_samerole
+					src.lifesteal += forceadd_samerole/2
+					src.block_chance_wielded += blockadd_anydeceit
+					if(src.block_chance_wielded > 90)
+						src.block_chance_wielded = 90
+
+/obj/item/melee/cleric_mace/molagbal
+	name = "Mace of Molag Bal"
+	desc = "Make the weak and frail bend to you."
+	icon = 'modular_skyrat/icons/obj/molagmace.dmi'
+	icon_state = "mace_greyscale"
+	item_state = "mace_greyscale"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/mace_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/mace_righthand.dmi'
+	material_flags = null
+	custom_materials = list(/datum/material/iron = 12000)
+	slot_flags = ITEM_SLOT_BELT
+	force = 15
+	w_class = WEIGHT_CLASS_NORMAL
+	throwforce = 8
+	block_chance = 30
+	armour_penetration = 200
+	var/stamdamage = 30
+	var/confusion = 8
+	var/organdamage = 7
+	overlay_state = null
+	overlay = null
+	attack_verb = list("disciplined", "struck", "dominated", "consumed", "beaten", "enslaved")
+
+/obj/item/melee/cleric_mace/molagbal/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/H = target
+		var/loss = H.getStaminaLoss()
+		H.confused += confusion
+		H.adjust_blurriness(confusion)
+		if(prob(15) && user.zone_selected == BODY_ZONE_HEAD)
+			H.gain_trauma(/datum/brain_trauma/mild/concussion)
+		if(prob(25))
+			for(var/obj/item/organ/O in H.getorganszone(user.zone_selected))
+				O.damage += organdamage
+		H.adjustStaminaLoss(stamdamage)
+		if(loss > 100)
+			H.Sleeping(60)

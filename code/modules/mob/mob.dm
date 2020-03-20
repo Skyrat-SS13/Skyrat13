@@ -571,6 +571,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 		L += "Round ID: [GLOB.round_id || "NULL"]"
 		L += SStime_track.stat_time_text
 		L += SSshuttle.emergency_shuttle_stat_text
+		L += "Connected players: [GLOB.clients.len]" // Skyrat-edit -- hope it won't shit on the performance or anything
 		stat(null, "[L.Join("\n\n")]")
 
 	if(client.holder)

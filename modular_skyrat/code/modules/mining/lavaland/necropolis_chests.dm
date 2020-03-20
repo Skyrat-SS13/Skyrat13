@@ -423,9 +423,37 @@
 		if(31)
 			new /obj/item/katana/necropolis(src)
 			return /obj/item/katana/necropolis
+	new /obj/item/stock_parts/cell/high/plus/argent(src)
+
+/obj/item/stock_parts/cell/high/plus/argent
+	name = "Argent Energy Cell"
+	desc = "Harvested from the necropolis, this autocharging energy cell can be crushed to provide a temporary 90% damage reduction bonus. Also useful for research."
+	self_recharge = 1
+	maxcharge = 1500 //only barely better than a normal power cell now
+	chargerate = 700 //good recharge time doe
+	icon = 'modular_skyrat/icons/obj/argentcell.dmi'
+	icon_state = "argentcell"
+	ratingdesc = FALSE
+	rating = 6
+	custom_materials = list(/datum/material/glass=500, /datum/material/uranium=250, /datum/material/plasma=1000, /datum/material/diamond=500)
+	var/datum/status_effect/onuse = /datum/status_effect/blooddrunk/argent
+
+/obj/item/stock_parts/cell/high/plus/argent/attack_self(mob/user)
+	..()
+	user.visible_message("<span class='danger'>[user] crushes the [src] in his hands, absorbing it's energy!</span>")
+	playsound(user.loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, TRUE)
+	var/mob/living/M = user
+	M.apply_status_effect(onuse)
+	qdel(src)
+
+/obj/item/stock_parts/cell/high/plus/argent/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/katana/necropolis
-	force = 30 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
+	force = 25 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
+	armour_penetration = 25
+	block_chance = 0 //blocky bad
 
 //legion
 /obj/structure/closet/crate/necropolis/legion
@@ -442,7 +470,7 @@
 /obj/structure/closet/crate/necropolis/legion/hard/PopulateContents()
 	new /obj/item/staff/storm(src)
 	new /obj/item/staff/storm(src)
-	new /obj/item/staff/storm(src)
+	new /obj/item/clothing/mask/gas/dagoth(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
 	new /obj/item/crusher_trophy/legion_shard(src)
@@ -453,3 +481,80 @@
 		L = T.PopulateContents()
 		new L(src)
 	qdel(T)
+
+//dagoth ur mask
+/obj/item/clothing/mask/gas/dagoth
+	name = "Golden Mask"
+	desc = "Such a grand and intoxicating innocence."
+	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/mask.dmi'
+	icon_state = "dagoth"
+	item_state = "dagoth"
+	actions_types = list(/datum/action/item_action/ashstorm)
+	flash_protect = 2
+	armor = list("melee" = 15, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)//HOW CAN YOU KILL A GOD?
+	var/static/list/excluded_areas = list(/area/reebe/city_of_cogs)
+	var/storm_type = /datum/weather/ash_storm
+	var/storm_cooldown = 0
+	w_class = WEIGHT_CLASS_BULKY //its a fucking full metal mask man
+
+/obj/item/clothing/mask/gas/dagoth/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if (slot == ITEM_SLOT_MASK)
+		user.faction |= "mining"
+
+/obj/item/clothing/mask/gas/dagoth/dropped(mob/living/carbon/human/user)
+	if (user.wear_mask == src)
+		user.faction -= "mining"
+	..()
+
+/datum/action/item_action/ashstorm
+	name = "Summon Ash Storm"
+	desc = "Bring the wrath of the sixth house upon the area where you stand."
+
+/obj/item/clothing/mask/gas/dagoth/ui_action_click(mob/user, action)
+	if(istype(action, /datum/action/item_action/ashstorm))
+		if(storm_cooldown > world.time)
+			to_chat(user, "<span class='warning'>The [src] is still recharging!</span>")
+			return
+
+		var/area/user_area = get_base_area(user)
+		var/turf/user_turf = get_turf(user)
+		if(!user_area || !user_turf || (user_area.type in excluded_areas))
+			to_chat(user, "<span class='warning'>Something is preventing you from using the [src] here.</span>")
+			return
+		var/datum/weather/A
+		for(var/V in SSweather.processing)
+			var/datum/weather/W = V
+			if((user_turf.z in W.impacted_z_levels) && W.area_type == user_area.type)
+				A = W
+				break
+
+		if(A)
+			if(A.stage != END_STAGE)
+				if(A.stage == WIND_DOWN_STAGE)
+					to_chat(user, "<span class='warning'>The storm is already ending! It would be a waste to use the [src] now.</span>")
+					return
+				user.visible_message("<span class='warning'>[user] gazes into the sky with [src], seemingly repelling the current storm!</span>", \
+				"<span class='notice'>You gaze intently skyward, dispelling the storm!</span>")
+				playsound(user, 'sound/magic/staff_change.ogg', 200, 0)
+				A.wind_down()
+				log_game("[user] ([key_name(user)]) has dispelled a storm at [AREACOORD(user_turf)]")
+				return
+		else
+			A = new storm_type(list(user_turf.z))
+			A.name = "staff storm"
+			log_game("[user] ([key_name(user)]) has summoned [A] at [AREACOORD(user_turf)]")
+			if (is_special_character(user))
+				message_admins("[A] has been summoned in [ADMIN_VERBOSEJMP(user_turf)] by [user] ([key_name_admin(user)], a non-antagonist")
+			A.area_type = user_area.type
+			A.telegraph_duration = 100
+			A.end_duration = 100
+
+		user.visible_message("<span class='warning'>[user] gazes skyward with his [src], terrible red lightning strikes seem to accompany them!</span>", \
+		"<span class='notice'>You gaze skyward with [src], calling down a terrible storm!</span>")
+		playsound(user, 'sound/magic/staff_change.ogg', 200, 0)
+		A.telegraph()
+		storm_cooldown = world.time + 200
+	else
+		..()

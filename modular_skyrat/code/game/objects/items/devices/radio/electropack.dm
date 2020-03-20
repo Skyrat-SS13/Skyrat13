@@ -12,7 +12,7 @@
 		name = initial(name) + " - freq: [frequency/10] code: [code]"
 	. = ..()
 
-/obj/item/electropack/shockcollar/pacify/
+/obj/item/electropack/shockcollar/pacify
 	name = "pacifying collar"
 	desc = "A reinforced metal collar that latches onto the wearer and halts any harmful thoughts."
 
