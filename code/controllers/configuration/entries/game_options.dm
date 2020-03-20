@@ -335,6 +335,10 @@
 	config_entry_value = 16
 	min_val = 0
 
+/datum/config_entry/number/station_space_budget
+	config_entry_value = 10
+	min_val = 0
+
 /datum/config_entry/flag/allow_random_events	// Enables random events mid-round when set
 
 /datum/config_entry/number/events_min_time_mul	// Multipliers for random events minimal starting time and minimal players amounts
@@ -403,10 +407,6 @@
 	value_mode = VALUE_MODE_NUM
 	lowercase = FALSE
 	splitter = ","
-
-/datum/config_entry/number/auto_transfer_delay
-	config_entry_value = 72000
-	min_val = 0
 
 /datum/config_entry/flag/pai_custom_holoforms
 

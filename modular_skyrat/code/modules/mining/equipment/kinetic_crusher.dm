@@ -40,6 +40,30 @@
 		else
 			(to_chat(user, "<span class='notice'>You cancel turning [target] into a legion.</span>"))
 
+//shambling miner
+/obj/item/crusher_trophy/blaster_tubes/mask
+	name = "mask of a shambling miner"
+	desc = "It really doesn't seem like it could be worn. Suitable as a crusher trophy."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "miner_mask"
+	bonus_value = 5
+	denied_type = /obj/item/crusher_trophy/blaster_tubes/mask
+
+/obj/item/crusher_trophy/blaster_tubes/mask/effect_desc()
+	return "mark detonation to make the next destabilizer shot deal <b>[bonus_value]</b> damage"
+
+/obj/item/crusher_trophy/blaster_tubes/mask/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+	if(deadly_shot)
+		marker.name = "kinetic [marker.name]"
+		marker.icon_state = "ka_tracer"
+		marker.damage = bonus_value
+		marker.nodamage = FALSE
+		deadly_shot = FALSE
+
+/obj/item/crusher_trophy/blaster_tubes/mask/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
+	new /obj/effect/temp_visual/kinetic_blast(target)
+	playsound(target.loc, 'sound/weapons/kenetic_accel.ogg', 60, 0)
+
 //traitor crusher
 
 /obj/item/projectile/destabilizer/harm
@@ -119,3 +143,29 @@
 				user.adjustStaminaLoss(-30)//CIT CHANGE - makes crushers heal stamina
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, clickparams)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, clickparams)
+
+//king goat
+/obj/item/crusher_trophy/king_goat
+	name = "king goat hoof"
+	desc = "A hoof from the king of all goats, it still glows with a fraction of its original power... Suitable as a trophy for a kinetic crusher."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "goat_hoof" //needs a better sprite but I cant sprite .
+	denied_type = /obj/item/crusher_trophy/king_goat
+
+/obj/item/crusher_trophy/king_goat/effect_desc()
+	return "you to passivily recharge markers 5x as fast while equipped and do a decent amount of damage at the cost of dulling the blade"
+
+/obj/item/crusher_trophy/king_goat/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+	marker.damage = 10 //in my testing only does damage to simple mobs so should be fine to have it high
+
+/obj/item/crusher_trophy/king_goat/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	if(.)
+		H.charge_time = 3
+		H.force_wielded = 5
+
+/obj/item/crusher_trophy/king_goat/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	if(.)
+		H.charge_time = 15
+		H.force_wielded = 20

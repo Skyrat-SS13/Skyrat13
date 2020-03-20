@@ -9,7 +9,7 @@
 	supervisors = "the chief medical officer and research director"
 	selection_color = "#74b5e0"
 	exp_type = EXP_TYPE_CREW
-	exp_requirements = 60
+	exp_requirements = 120 //SKYRAT CHANGE - upping the exp time on jobs
 
 	outfit = /datum/outfit/job/geneticist
 
@@ -32,4 +32,5 @@
 	backpack = /obj/item/storage/backpack/genetics
 	satchel = /obj/item/storage/backpack/satchel/gen
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	l_pocket = /obj/item/sequence_scanner
 

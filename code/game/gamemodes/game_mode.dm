@@ -86,7 +86,7 @@
 		report = !CONFIG_GET(flag/no_intercept_report)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
 
-	if(prob(20)) //CIT CHANGE - adds a 20% chance for the security level to be the opposite of what it normally is
+	if(prob(35)) //SKYRAT CHANGE - 35% instead of 20% for the alert to be wrong
 		flipseclevel = TRUE
 	if(SSdbcore.Connect())
 		var/sql
@@ -421,7 +421,7 @@
 		for(var/mob/dead/new_player/player in players)
 			if(player.client && player.ready == PLAYER_READY_TO_PLAY)
 				if(!(role in player.client.prefs.be_special)) // We don't have enough people who want to be antagonist, make a separate list of people who don't want to be one
-					if(!jobban_isbanned(player, ROLE_SYNDICATE) && !QDELETED(player)  && !jobban_isbanned(player, role) && !QDELETED(player) ) //Nodrak/Carn: Antag Job-bans
+					if(!jobban_isbanned(player, ROLE_SYNDICATE) && !QDELETED(player)  && !jobban_isbanned(player, role) && !QDELETED(player)) //Nodrak/Carn: Antag Job-bans
 						drafted += player.mind
 
 	if(restricted_jobs)

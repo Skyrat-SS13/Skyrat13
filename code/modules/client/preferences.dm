@@ -128,7 +128,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		"has_cock" = FALSE,
 		"cock_shape" = "Human",
 		"cock_length" = 6,
-		"cock_girth_ratio" = COCK_GIRTH_RATIO_DEF,
+		"cock_diameter_ratio" = COCK_DIAMETER_RATIO_DEF,
 		"cock_color" = "fff",
 		"has_sheath" = FALSE,
 		"sheath_color" = "fff",
@@ -210,14 +210,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/action_buttons_screen_locs = list()
 
+	//bad stuff
+	var/digestable = FALSE
+	var/devourable = FALSE
+	var/feeding = FALSE
+	var/lickable = FALSE
+	var/list/belly_prefs = list()
+	var/vore_taste = "nothing in particular"
+
 	//backgrounds
 	var/mutable_appearance/character_background
 	var/icon/bgstate = "steel"
 	var/list/bgstate_options = list("000", "midgrey", "FFF", "white", "steel", "techmaint", "dark", "plating", "reinforced")
 
+	var/show_mismatched_markings = FALSE //determines whether or not the markings lists should show markings that don't match the currently selected species. Intentionally left unsaved.
+
 /datum/preferences/New(client/C)
 	parent = C
-
+	clientfps = world.fps*2 // Skyrat-edit
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		custom_names[custom_name_id] = get_default_name(custom_name_id)
 
@@ -419,6 +429,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "</td>"
 			//Mutant stuff
 			var/mutant_category = 0
+
+			dat += APPEARANCE_CATEGORY_COLUMN
+			dat += "<h3>Show mismatched markings</h3>"
+			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=mismatched_markings;task=input'>[show_mismatched_markings ? "Yes" : "No"]</a>"
+			mutant_category++
+			if(mutant_category >= MAX_MUTANT_ROWS) //just in case someone sets the max rows to 1 or something dumb like that
+				dat += "</td>"
+				mutant_category = 0
 
 			if("tail_lizard" in pref_species.default_features)
 				if(!mutant_category)
@@ -813,6 +831,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
+			dat += "<b>Asynchronous(no-delay) Say:</b> <a href='?_src_=prefs;preference=toggle_asynch_say'>[(toggles & ASYNCHRONOUS_SAY) ? "Enabled":"Disabled"]</a><br>" //SKYRAT CHANGE
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
@@ -1006,6 +1025,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(4) // Content preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>Fetish content prefs</h2>"
+			dat += "<b>Allow Lewd Verbs:</b> <a href='?_src_=prefs;preference=verb_consent'>[(toggles & VERB_CONSENT) ? "Yes":"No"]</a><br>" // Skyrat - ERP Mechanic Addition
+			dat += "<b>Mute Lewd Verb Sounds:</b> <a href='?_src_=prefs;preference=mute_lewd_verb_sounds'>[(toggles & LEWD_VERB_SOUNDS) ? "Yes":"No"]</a><br>" // Skyrat - ERP Mechanic Addition
 			dat += "<b>Arousal:</b><a href='?_src_=prefs;preference=arousable'>[arousable == TRUE ? "Enabled" : "Disabled"]</a><BR>"
 			dat += "<b>Voracious MediHound sleepers:</b> <a href='?_src_=prefs;preference=hound_sleeper'>[(cit_toggles & MEDIHOUND_SLEEPER) ? "Yes" : "No"]</a><br>"
 			dat += "<b>Hear Vore Sounds:</b> <a href='?_src_=prefs;preference=toggleeatingnoise'>[(cit_toggles & EATING_NOISES) ? "Yes" : "No"]</a><br>"
@@ -1482,12 +1503,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("flavor_text")
-					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb.", "Flavor Text", features["flavor_text"], MAX_FAVOR_LEN, TRUE)
-					if(msg)
-						features["flavor_text"] = msg
+					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", features["flavor_text"], MAX_FLAVOR_LEN, TRUE)
+					if(!isnull(msg))
+						features["flavor_text"] = html_decode(msg)
 
 				if("ooc_notes")
-					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", ooc_notes, MAX_FAVOR_LEN, TRUE)
+					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", ooc_notes, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
 						ooc_notes = msg
 
@@ -1632,6 +1653,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						else
 							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
 
+				if("mismatched_markings")
+					show_mismatched_markings = !show_mismatched_markings
+
 				if("ipc_screen")
 					var/new_ipc_screen
 					new_ipc_screen = input(user, "Choose your character's screen:", "Character Preference") as null|anything in GLOB.ipc_screens_list
@@ -1639,8 +1663,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						features["ipc_screen"] = new_ipc_screen
 
 				if("ipc_antenna")
+					var/list/snowflake_antenna_list = list()
+					//Potential todo: turn all of THIS into a define to reduce copypasta.
+					for(var/path in GLOB.ipc_antennas_list)
+						var/datum/sprite_accessory/antenna/instance = GLOB.ipc_antennas_list[path]
+						if(istype(instance, /datum/sprite_accessory))
+							var/datum/sprite_accessory/S = instance
+							if(!show_mismatched_markings && S.recommended_species && !S.recommended_species.Find(pref_species.id))
+								continue
+							if((!S.ckeys_allowed) || (S.ckeys_allowed.Find(user.client.ckey)))
+								snowflake_antenna_list[S.name] = path
 					var/new_ipc_antenna
-					new_ipc_antenna = input(user, "Choose your character's antenna:", "Character Preference") as null|anything in GLOB.ipc_antennas_list
+					new_ipc_antenna = input(user, "Choose your character's antenna:", "Character Preference") as null|anything in snowflake_antenna_list
 					if(new_ipc_antenna)
 						features["ipc_antenna"] = new_ipc_antenna
 
@@ -1660,6 +1694,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/datum/sprite_accessory/tails/human/instance = GLOB.tails_list_human[path]
 						if(istype(instance, /datum/sprite_accessory))
 							var/datum/sprite_accessory/S = instance
+							if(!show_mismatched_markings && S.recommended_species && !S.recommended_species.Find(pref_species.id))
+								continue
 							if((!S.ckeys_allowed) || (S.ckeys_allowed.Find(user.client.ckey)))
 								snowflake_tails_list[S.name] = path
 					var/new_tail
@@ -1677,6 +1713,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/datum/sprite_accessory/mam_tails/instance = GLOB.mam_tails_list[path]
 						if(istype(instance, /datum/sprite_accessory))
 							var/datum/sprite_accessory/S = instance
+							if(!show_mismatched_markings && S.recommended_species && !S.recommended_species.Find(pref_species.id))
+								continue
 							if((!S.ckeys_allowed) || (S.ckeys_allowed.Find(user.client.ckey)))
 								snowflake_tails_list[S.name] = path
 					var/new_tail
@@ -1700,6 +1738,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/datum/sprite_accessory/mam_snouts/instance = GLOB.snouts_list[path]
 						if(istype(instance, /datum/sprite_accessory))
 							var/datum/sprite_accessory/S = instance
+							if(!show_mismatched_markings && S.recommended_species && !S.recommended_species.Find(pref_species.id))
+								continue
 							if((!S.ckeys_allowed) || (S.ckeys_allowed.Find(user.client.ckey)))
 								snowflake_snouts_list[S.name] = path
 					var/new_snout
@@ -1715,6 +1755,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/datum/sprite_accessory/mam_snouts/instance = GLOB.mam_snouts_list[path]
 						if(istype(instance, /datum/sprite_accessory))
 							var/datum/sprite_accessory/S = instance
+							if(!show_mismatched_markings && S.recommended_species && !S.recommended_species.Find(pref_species.id))
+								continue
 							if((!S.ckeys_allowed) || (S.ckeys_allowed.Find(user.client.ckey)))
 								snowflake_mam_snouts_list[S.name] = path
 					var/new_mam_snouts
@@ -1812,6 +1854,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/datum/sprite_accessory/taur/instance = GLOB.taur_list[path]
 						if(istype(instance, /datum/sprite_accessory))
 							var/datum/sprite_accessory/S = instance
+							if(!show_mismatched_markings && S.recommended_species && !S.recommended_species.Find(pref_species.id))
+								continue
 							if((!S.ckeys_allowed) || (S.ckeys_allowed.Find(user.client.ckey)))
 								snowflake_taur_list[S.name] = path
 					var/new_taur
@@ -1830,6 +1874,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/datum/sprite_accessory/ears/instance = GLOB.ears_list[path]
 						if(istype(instance, /datum/sprite_accessory))
 							var/datum/sprite_accessory/S = instance
+							if(!show_mismatched_markings && S.recommended_species && !S.recommended_species.Find(pref_species.id))
+								continue
 							if((!S.ckeys_allowed) || (S.ckeys_allowed.Find(user.client.ckey)))
 								snowflake_ears_list[S.name] = path
 					var/new_ears
@@ -1843,6 +1889,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/datum/sprite_accessory/mam_ears/instance = GLOB.mam_ears_list[path]
 						if(istype(instance, /datum/sprite_accessory))
 							var/datum/sprite_accessory/S = instance
+							if(!show_mismatched_markings && S.recommended_species && !S.recommended_species.Find(pref_species.id))
+								continue
 							if((!S.ckeys_allowed) || (S.ckeys_allowed.Find(user.client.ckey)))
 								snowflake_ears_list[S.name] = path
 					var/new_ears
@@ -1856,6 +1904,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/datum/sprite_accessory/mam_body_markings/instance = GLOB.mam_body_markings_list[path]
 						if(istype(instance, /datum/sprite_accessory))
 							var/datum/sprite_accessory/S = instance
+							if(!show_mismatched_markings && S.recommended_species && !S.recommended_species.Find(pref_species.id))
+								continue
 							if((!S.ckeys_allowed) || (S.ckeys_allowed.Find(user.client.ckey)))
 								snowflake_markings_list[S.name] = path
 					var/new_mam_body_markings
@@ -2202,6 +2252,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("hear_midis")
 					toggles ^= SOUND_MIDI
 
+				if("verb_consent") // Skyrat - ERP Mechanic Addition
+					toggles ^= VERB_CONSENT // Skyrat - ERP Mechanic Addition
+
+				if("mute_lewd_verb_sounds") // Skyrat - ERP Mechanic Addition
+					toggles ^= LEWD_VERB_SOUNDS // Skyrat - ERP Mechanic Addition
+
+				// SKYRAT CHANGES - Asynchronous say for typing indicator
+				if("toggle_asynch_say")
+					toggles ^= ASYNCHRONOUS_SAY
+					if(user.client)
+						user.client.set_macros()
+				// END OF SKYRAT CHANGES
+
 				if("lobby_music")
 					toggles ^= SOUND_LOBBY
 					if((toggles & SOUND_LOBBY) && user.client && isnewplayer(user))
@@ -2303,16 +2366,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("load")
 					load_preferences()
 					load_character()
-					if(parent && parent.prefs_vr)
-						attempt_vr(parent.prefs_vr,"load_vore","")
 
 				if("changeslot")
 					if(!load_character(text2num(href_list["num"])))
 						random_character()
 						real_name = random_unique_name(gender)
 						save_character()
-					if(parent && parent.prefs_vr)
-						attempt_vr(parent.prefs_vr,"load_vore","")
 
 				if("tab")
 					if (href_list["tab"])
@@ -2423,7 +2482,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if("meat_type" in pref_species.default_features)
 		character.type_of_meat = GLOB.meat_types[features["meat_type"]]
 
-	if(("legs" in character.dna.species.mutant_bodyparts) && (character.dna.features["legs"] == "Digitigrade" || character.dna.features["legs"] == "Avian" || character.dna.features["legs"] == "Vox")) //SKYRATS CHANGE vox legs
+	if(("legs" in character.dna.species.mutant_bodyparts) && (character.dna.features["legs"] == "Digitigrade" || character.dna.features["legs"] == "Avian"))
 		pref_species.species_traits |= DIGITIGRADE
 	else
 		pref_species.species_traits -= DIGITIGRADE
@@ -2432,6 +2491,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		character.Digitigrade_Leg_Swap(FALSE)
 	else
 		character.Digitigrade_Leg_Swap(TRUE)
+
+	SEND_SIGNAL(character, COMSIG_HUMAN_PREFS_COPIED_TO, src, icon_updates, roundstart_checks)
 
 	//let's be sure the character updates
 	if(icon_updates)

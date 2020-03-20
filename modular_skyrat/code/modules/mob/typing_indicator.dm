@@ -9,9 +9,9 @@
 /mob/proc/set_typing_indicator(var/state)
 	if(!typing_indicator)
 		typing_indicator = new
-		typing_indicator.icon = 'icons/mob/talk.dmi'
+		typing_indicator.icon = 'modular_skyrat/icons/mob/typing_indicator.dmi'
 		typing_indicator.icon_state = "default0"
-		typing_indicator.layer = ABOVE_MOB_LAYER
+		typing_indicator.layer = FLY_LAYER 
 	if(client && !stat)
 		typing_indicator.invisibility = invisibility
 		if(state)
