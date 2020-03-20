@@ -96,12 +96,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/obj/item/mutanthands
 	var/obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue
 	var/obj/item/organ/tail/mutanttail = null
-	var/obj/item/organ/skull/mutant_skull = /obj/item/organ/skull
-	var/obj/item/organ/ribcage/mutant_ribcage = /obj/item/organ/ribcage
-	var/obj/item/organ/rhumerus/mutant_rhumerus = /obj/item/organ/rhumerus
-	var/obj/item/organ/lhumerus/mutant_lhumerus = /obj/item/organ/lhumerus
-	var/obj/item/organ/rfemur/mutant_rfemur = /obj/item/organ/rfemur
-	var/obj/item/organ/lfemur/mutant_lfemur = /obj/item/organ/lfemur
+	var/obj/item/organ/skull/mutant_skull = /obj/item/organ/bone/skull
+	var/obj/item/organ/ribcage/mutant_ribcage = /obj/item/organ/bone/ribcage
+	var/obj/item/organ/rhumerus/mutant_rhumerus = /obj/item/organ/bone/rhumerus
+	var/obj/item/organ/lhumerus/mutant_lhumerus = /obj/item/organ/bone/lhumerus
+	var/obj/item/organ/rfemur/mutant_rfemur = /obj/item/organ/bone/rfemur
+	var/obj/item/organ/lfemur/mutant_lfemur = /obj/item/organ/bone/lfemur
 
 
 	var/obj/item/organ/liver/mutantliver
@@ -1970,6 +1970,22 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 					H.update_damage_overlays()
 					if(HAS_TRAIT(H, TRAIT_MASO) && prob(damage_amount))
 						H.mob_climax(forced_climax=TRUE)
+					if(damage_amount >= 5 && prob(BONE_DAM_PROB) || damage_amount >= 20)
+						for(var/obj/item/organ/bone/B in getorganszone(BP.body_zone))
+							var/olddamage = B.damage
+							B.damage += (damage_amount * (damage_amount * 0.1))/2
+							if(!(olddamage >= BONE_DAM_THRESHOLD_LOW))
+								switch(B.damage)
+									if(0 to BONE_DAM_THRESHOLD_LOW - 1)
+										break
+									if(BONE_DAM_THRESHOLD_LOW to BONE_DAM_THRESHOLD_MEDIUM - 1)
+										to_chat(H, "<span class='big bold'>You feel the bones insides of your [B.zone] cracking slightly!</span>")
+									if(BONE_DAM_THRESHOLD_MEDIUM to BONE_DAM_THRESHOLD_HIGH - 1)
+										to_chat(H, "<span class='big bold'>You can feel the bones insides of your [B.zone] cracking and shifting! It fucking hurts!</span>")
+									if(BONE_DAM_THRESHOLD_HIGH to BONE_DAM_THRESHOLD_HIGHEST - 1)
+										to_chat(H, "<span class='big bold'>You can feel your [B] breaking apart!</span>")
+									else
+										to_chat(H, "<span class='big bold'>You can feel your [B] breaking apart!</span>")
 
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
