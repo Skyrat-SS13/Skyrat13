@@ -3468,6 +3468,7 @@
 #include "modular_skyrat\code\modules\projectiles\boxes_magazines\external\pistol.dm"
 #include "modular_skyrat\code\modules\projectiles\guns\ballistic\pistol.dm"
 #include "modular_skyrat\code\modules\projectiles\guns\energy\kinetic_accelerator.dm"
+#include "modular_skyrat\code\modules\projectiles\guns\energy\laser.dm"
 #include "modular_skyrat\code\modules\projectiles\projectile\pistol.dm"
 #include "modular_skyrat\code\modules\reagents\reagents_containers\borghydro.dm"
 #include "modular_skyrat\code\modules\research\designs\machine_designs.dm"
