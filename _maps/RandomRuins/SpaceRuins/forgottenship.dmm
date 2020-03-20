@@ -104,7 +104,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "au" = (
-/obj/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/window/plastitanium,
 /obj/machinery/door/poddoor{
 	id = "fslockdown";
 	name = "Ship blast door";
@@ -321,7 +321,7 @@
 /turf/open/space/basic,
 /area/ruin/unpowered/no_grav)
 "aZ" = (
-/turf/closed/indestructible/syndicate,
+/turf/closed/indestructible/opshuttle,
 /area/ruin/space/has_grav/powered/syndicate_forgotten_vault)
 "ba" = (
 /turf/closed/mineral/random,
@@ -828,7 +828,8 @@
 	req_one_access_txt = "150"
 	},
 /obj/item/toy/sword,
-/obj/item/toy/balloon/syndicate,
+/obj/item/toy/syndicateballoon,
+/obj/machinery/suit_storage_unit/syndicate,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "ct" = (
