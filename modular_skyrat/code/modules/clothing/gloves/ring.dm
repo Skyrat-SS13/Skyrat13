@@ -16,6 +16,6 @@
 			playsound(user, 'sound/magic/Staff_Healing.ogg', 25)
 			H.visible_message("[user] heals himself with [src]!", "<span class='notice'>You heal yourself with the [src].</span>")
 			H.adjustBruteLoss(-5)
-			cooldowntime = world.time + cooldown
+			cooldowntime = world.time + ringcooldown
 		else
 			to_chat(user, "<span class='notice'>The [src] just fizzles uselessly.</span>")
