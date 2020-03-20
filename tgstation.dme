@@ -3339,6 +3339,7 @@
 #include "modular_skyrat\code\game\objects\items\kitchen.dm"
 #include "modular_skyrat\code\game\objects\items\weaponry.dm"
 #include "modular_skyrat\code\game\objects\items\devices\radio\electropack.dm"
+#include "modular_skyrat\code\game\objects\items\melee\misc.dm"
 #include "modular_skyrat\code\game\objects\items\plushes\plushes.dm"
 #include "modular_skyrat\code\game\objects\items\robot\robot_upgrades.dm"
 #include "modular_skyrat\code\game\objects\items\stacks\sheets\glass.dm"
