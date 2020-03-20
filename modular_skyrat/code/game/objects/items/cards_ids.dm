@@ -1,3 +1,4 @@
+//syndicate stuff whatever
 /obj/item/card/id/syndicate_command/crew_id
 	name = "syndicate ID card"
 	desc = "An ID straight from the Syndicate."
@@ -44,7 +45,7 @@
 	if(istype(A, /obj/structure/safe))
 		var/obj/structure/safe/S = A
 		S.open = TRUE
-		visible_message("<i><b>The [S] opens magically!!</b></i>"
+		visible_message("<i><b>The [S] opens magically!!</b></i>")
 		return
 	if(!A.emag_act(user))
 		return
