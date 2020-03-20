@@ -1,5 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - rscadd: "Added a visual SSD indicator"
-  - rscadd: "Added the time someone has been SSD to their examine"

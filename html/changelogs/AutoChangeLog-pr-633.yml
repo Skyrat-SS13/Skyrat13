@@ -1,5 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - rscadd: "Morphine and Miners Salve work as surgery anesthetics"
-  - bugfix: "Fixed Surgery sleep cheks"
