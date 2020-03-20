@@ -101,12 +101,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/obj/item/mutanthands
 	var/obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue
 	var/obj/item/organ/tail/mutanttail = null
-	var/obj/item/organ/skull/mutant_skull = /obj/item/organ/bone/skull
-	var/obj/item/organ/ribcage/mutant_ribcage = /obj/item/organ/bone/ribcage
-	var/obj/item/organ/rhumerus/mutant_rhumerus = /obj/item/organ/bone/rhumerus
-	var/obj/item/organ/lhumerus/mutant_lhumerus = /obj/item/organ/bone/lhumerus
-	var/obj/item/organ/rfemur/mutant_rfemur = /obj/item/organ/bone/rfemur
-	var/obj/item/organ/lfemur/mutant_lfemur = /obj/item/organ/bone/lfemur
+	var/obj/item/organ/bone/skull/mutant_skull = /obj/item/organ/bone/skull
+	var/obj/item/organ/bone/ribcage/mutant_ribcage = /obj/item/organ/bone/ribcage
+	var/obj/item/organ/bone/rhumerus/mutant_rhumerus = /obj/item/organ/bone/rhumerus
+	var/obj/item/organ/bone/lhumerus/mutant_lhumerus = /obj/item/organ/bone/lhumerus
+	var/obj/item/organ/bone/rfemur/mutant_rfemur = /obj/item/organ/bone/rfemur
+	var/obj/item/organ/bone/lfemur/mutant_lfemur = /obj/item/organ/bone/lfemur
 
 
 	var/obj/item/organ/liver/mutantliver
@@ -191,12 +191,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/obj/item/organ/liver/liver = C.getorganslot(ORGAN_SLOT_LIVER)
 	var/obj/item/organ/stomach/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 	var/obj/item/organ/tail/tail = C.getorganslot(ORGAN_SLOT_TAIL)
-	var/obj/item/organ/skull/skull = C.getorganslot(ORGAN_SLOT_SKULL)
-	var/obj/item/organ/ribcage/ribcage = C.getorganslot(ORGAN_SLOT_RIBCAGE)
-	var/obj/item/organ/rhumerus/rhumerus = C.getorganslot(ORGAN_SLOT_RHUMERUS)
-	var/obj/item/organ/lhumerus/lhumerus = C.getorganslot(ORGAN_SLOT_LHUMERUS)
-	var/obj/item/organ/rfemur/rfemur = C.getorganslot(ORGAN_SLOT_RFEMUR)
-	var/obj/item/organ/lfemur/lfemur = C.getorganslot(ORGAN_SLOT_LFEMUR)
+	var/obj/item/organ/bone/skull/skull = C.getorganslot(ORGAN_SLOT_SKULL)
+	var/obj/item/organ/bone/ribcage/ribcage = C.getorganslot(ORGAN_SLOT_RIBCAGE)
+	var/obj/item/organ/bone/rhumerus/rhumerus = C.getorganslot(ORGAN_SLOT_RHUMERUS)
+	var/obj/item/organ/bone/lhumerus/lhumerus = C.getorganslot(ORGAN_SLOT_LHUMERUS)
+	var/obj/item/organ/bone/rfemur/rfemur = C.getorganslot(ORGAN_SLOT_RFEMUR)
+	var/obj/item/organ/bone/lfemur/lfemur = C.getorganslot(ORGAN_SLOT_LFEMUR)
 
 	var/should_have_brain = TRUE
 	var/should_have_heart = !(NOBLOOD in species_traits)
