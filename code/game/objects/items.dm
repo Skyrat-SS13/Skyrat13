@@ -397,14 +397,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return usr.client.Click(src, src_location, src_control, params)
 	var/list/directaccess = usr.DirectAccess()	//This, specifically, is what requires the copypaste. If this were after the adjacency check, then it'd be impossible to use items in your inventory, among other things.
 												//If this were before the above checks, then trying to click on items would act a little funky and signal overrides wouldn't work.
-<<<<<<< HEAD
-	if((usr.CanReach(src) || (src in directaccess)) && (usr.CanReach(over) || (over in directaccess)))
-		if(!usr.get_active_held_item())
-			usr.UnarmedAttack(src, TRUE)
-			if(usr.get_active_held_item() == src)
-				melee_attack_chain(usr, over)
-			return TRUE //returning TRUE as a "is this overridden?" flag
-=======
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if((C.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE) && ((C.CanReach(src) || (src in directaccess)) && (C.CanReach(over) || (over in directaccess))))
@@ -413,7 +405,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				if(C.get_active_held_item() == src)
 					melee_attack_chain(C, over)
 				return TRUE //returning TRUE as a "is this overridden?" flag
->>>>>>> 0e3193e9297... relatively small 71 file 700 lines changed refactor/rework to combat mode/sprint and some miscellaneous things that totally aren't important (#11376)
 	if(!Adjacent(usr) || !over.Adjacent(usr))
 		return // should stop you from dragging through windows
 
