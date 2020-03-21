@@ -239,12 +239,12 @@
 /datum/symptom/heal/dna/Heal(mob/living/carbon/M, datum/disease/advance/A)
 	var/amt_healed = 2
 	if(healing_brain)
-		M.adjustBrainLoss(-amt_healed)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -amt_healed)
 		var/mob/living/carbon/C = M
 		if(prob(40))
 			C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
 	//Non-power mutations, excluding race, so the virus does not force monkey -> human transformations.
-	var/list/unclean_mutations = (GLOB.not_good_mutations|GLOB.bad_mutations) - GLOB.mutations_list[RACEMUT]
+	var/list/unclean_mutations = (GLOB.not_good_mutations|GLOB.bad_mutations) - GLOB.all_mutations[RACEMUT]
 	M.dna.remove_mutation_group(unclean_mutations)
 	M.radiation = max(M.radiation - (2 * amt_healed), 0)
 	return TRUE
