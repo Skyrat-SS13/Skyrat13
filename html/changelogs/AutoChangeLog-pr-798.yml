@@ -1,0 +1,4 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - bugfix: "Fixes to lewd verbs, interactions, async say and overlays"
