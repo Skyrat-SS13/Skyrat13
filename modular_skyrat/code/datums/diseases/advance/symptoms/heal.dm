@@ -4,16 +4,16 @@
 	transmittable = -2
 
 /datum/symptom/heal/starlight
-	level = 0
+	level = 6
 
 /datum/symptom/heal/chem
-	level = 0
+	level = 6
 
 /datum/symptom/heal/metabolism
-	level = 0
+	level = 6
 
 /datum/symptom/heal/darkness
-	level = 0
+	level = 6
 
 /datum/symptom/heal/coma
 	stealth = 0
@@ -23,10 +23,10 @@
 	level = 8
 
 /datum/symptom/heal/water
-	level = 0
+	level = 6
 
 /datum/symptom/heal/radiation
-	level = 0
+	level = 6
 
 /datum/symptom/heal/plasma
 	stealth = 0
