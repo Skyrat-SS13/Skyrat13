@@ -54,3 +54,8 @@
 		s += "\[[jointext(features, ", ")]" //CIT CHANGE - replaces the colon here with a left bracket
 
 	status = s
+
+/world/New()
+	. = ..()
+	if(CONFIG_GET(flag/age_lock))
+		load_age_whitelist()

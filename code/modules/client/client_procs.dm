@@ -274,6 +274,17 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 	. = ..()	//calls mob.Login()
 
+	//SKYRAT CHANGE - account age lock, don't confuse with player age, admins and special whitelisted people are exempt
+	if(!connecting_admin && CONFIG_GET(flag/age_lock) && account_age < CONFIG_GET(number/age_lock_days) && !check_age_whitelist(ckey))
+		to_chat(src, "<span class='userdanger'>Your connection has been closed due to your account being only [account_age]'s days old.</span>")
+		to_chat(src, "<span class='danger'>This is a protective measure to stop griefers from connecting to the server. If you're here to play for real visit our discord and apply for a whitelist.</span>")
+		message_admins("<span class='adminnotice'>[key_name(src)] logged in with their account being [account_age]'s days old. Connection rejected.</span>")
+		qdel(src)
+		return
+	//END OF SKYRAT CHANGE
+	message_admins("<span class='adminnotice'>[key_name(src)] logged in with their account being [account_age]'s days old.</span>")
+	//DEBUG
+
 	if (byond_version >= 512)
 		if (!byond_build || byond_build < 1386)
 			message_admins("<span class='adminnotice'>[key_name(src)] has been detected as spoofing their byond version. Connection rejected.</span>")

@@ -1,0 +1,9 @@
+###############################################################################################
+# A list of ckeys who bypass the account age restriction                                      #
+# Case is not important for ckey.                                                             #
+###############################################################################################
+#Optimumtact
+#kevinz000
+#Iamgoofball
+#Rshoe95
+#That one penguin who became an admin
