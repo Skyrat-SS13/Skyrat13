@@ -64,6 +64,25 @@
 	new /obj/effect/temp_visual/kinetic_blast(target)
 	playsound(target.loc, 'sound/weapons/kenetic_accel.ogg', 60, 0)
 
+//lava imp
+/obj/item/crusher_trophy/blaster_tubes/impskull
+	name = "imp skull"
+	desc = "Somebody got glory killed. Suitable as a trophy."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "impskull"
+	bonus_value = 5
+	denied_type = /obj/item/crusher_trophy/blaster_tubes/impskull
+
+/obj/item/crusher_trophy/blaster_tubes/impskull/effect_desc()
+	return "causes every marker to deal <b>[bonus_value]</b> damage."
+
+/obj/item/crusher_trophy/blaster_tubes/impskull/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+	marker.name = "fiery [marker.name]"
+	marker.icon_state = "fireball"
+	marker.damage = bonus_value
+	marker.nodamage = FALSE
+	playsound(user.loc, 'modular_skyrat/sound/misc/imp.wav', 50, 0)
+
 //traitor crusher
 
 /obj/item/projectile/destabilizer/harm
