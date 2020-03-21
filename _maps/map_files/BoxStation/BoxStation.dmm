@@ -602,12 +602,7 @@
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "abx" = (
-/obj/machinery/camera/motion{
-	c_tag = "Armory External Motion Sensor";
-	dir = 4
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/vaporwave,
 /area/ai_monitored/security/armory)
 "aby" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -1948,6 +1943,7 @@
 /obj/structure/rack,
 /obj/item/flashlight,
 /obj/item/storage/bag/trash,
+/obj/item/radio/off,
 /turf/open/floor/plating,
 /area/security/prison)
 "aek" = (
@@ -13446,6 +13442,7 @@
 	name = "prisoner headset";
 	prison_radio = 1
 	},
+/obj/item/radio/off,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aCy" = (
@@ -55275,6 +55272,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge/meeting_room)
+"cUY" = (
+/obj/structure/lattice,
+/obj/machinery/camera,
+/turf/open/space,
+/area/space/nearstation)
 "cVb" = (
 /turf/closed/wall,
 /area/hallway/secondary/service)
@@ -57447,6 +57449,22 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"jzB" = (
+/obj/machinery/camera{
+	c_tag = "MiniSat Service Bay";
+	dir = 8;
+	network = list("minisat");
+	start_active = 1
+	},
+/obj/machinery/button/door{
+	id = "sexroom";
+	name = "Conjugal Visits";
+	pixel_x = 27;
+	pixel_y = 1;
+	req_access_txt = "3"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "jAD" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -58512,6 +58530,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"mCV" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "Chief Medical Office";
+	dir = 8;
+	network = list("ss13","medbay");
+	pixel_y = -22
+	},
+/turf/open/space/basic,
+/area/ai_monitored/security/armory)
 "mGw" = (
 /obj/machinery/door/airlock/security{
 	name = "Labor Shuttle";
@@ -58759,6 +58787,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"nkZ" = (
+/turf/open/floor/plasteel/vaporwave,
+/area/space/nearstation)
 "noy" = (
 /obj/structure/sign/poster/contraband/smoke{
 	desc = "This poster reminds us all that the Detective is a parasite. Year after year, they must get replacement lungs because of their addiction. ";
@@ -61290,6 +61321,12 @@
 	},
 /turf/open/floor/plating,
 /area/space/nearstation)
+"vaP" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "sexroom"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "vbi" = (
 /obj/structure/table,
 /obj/item/instrument/guitar{
@@ -61306,6 +61343,11 @@
 /obj/item/instrument/accordion,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"vbj" = (
+/obj/item/bedsheet/rd/royal_cape,
+/obj/structure/bed/pod,
+/turf/open/floor/plasteel/vaporwave,
+/area/space/nearstation)
 "vbD" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
@@ -90408,7 +90450,7 @@ jbb
 aat
 aCm
 aaJ
-jbb
+jzB
 lNz
 acd
 aer
@@ -90662,9 +90704,9 @@ xks
 aai
 aai
 aai
+vaP
 aai
-aai
-aai
+vaP
 aai
 aai
 aai
@@ -90918,9 +90960,9 @@ azl
 avB
 aai
 ktS
-ktS
-aaT
-aaf
+ctv
+nkZ
+nkZ
 abx
 aaZ
 aeF
@@ -91175,10 +91217,10 @@ azj
 avx
 aai
 ktS
-ktS
-aaT
-gXs
-abG
+ctv
+nkZ
+vbj
+abx
 aaZ
 aeW
 acl
@@ -91432,10 +91474,10 @@ azn
 gGJ
 aai
 aaf
-aaf
-abY
-gXs
-abG
+ctv
+nkZ
+nkZ
+abx
 aaZ
 aeX
 acm
@@ -91688,11 +91730,11 @@ awd
 azP
 awd
 aai
-aaf
-aaf
 aaT
-gXs
-abG
+ctv
+ctv
+ctv
+aaZ
 aaZ
 aeY
 acn
@@ -91945,7 +91987,7 @@ awd
 awd
 awd
 aai
-aaf
+cUY
 aaf
 aaT
 gXs
@@ -92206,7 +92248,7 @@ aaf
 aaf
 abY
 gXs
-abG
+mCV
 aaZ
 afc
 aco
@@ -92716,8 +92758,8 @@ aai
 aai
 aai
 aai
-aaf
-aaf
+aaT
+aaT
 adR
 aaY
 abJ
