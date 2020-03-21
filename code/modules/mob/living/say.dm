@@ -207,10 +207,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		spans |= SPAN_ITALICS
 
 	send_speech(message, message_range, src, bubble_type, spans, language, message_mode)
-	//SKYRAT EDIT
-	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
-		set_typing_indicator(FALSE)
-	//END OF SKYRAT EDIT
 
 	if(succumbed)
 		succumb()
