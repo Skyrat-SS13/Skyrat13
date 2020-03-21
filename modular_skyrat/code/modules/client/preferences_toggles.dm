@@ -17,7 +17,7 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, verb_consent)()
 TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, lewd_verb_sound_consent)()
 	set name = "Toggle Lewd Verb Sounds"
 	set category = "Preferences"
-	set desc = "Allow Lewd Verb Sounds"
+	set desc = "Mute Lewd Verb Sounds"
 
 	usr.client.prefs.toggles ^= LEWD_VERB_SOUNDS
 	usr.client.prefs.save_preferences()
