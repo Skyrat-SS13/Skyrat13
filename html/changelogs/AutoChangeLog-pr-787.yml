@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Syndicate members specialized in the art of thievery have managed to ~~steal~~ find yet another unique artifact, the skeleton key. It's now available in the uplink."
+  - imageadd: "Skeleton key icon"

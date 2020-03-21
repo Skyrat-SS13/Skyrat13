@@ -71,12 +71,9 @@
 			return FALSE
 
 		if(require_ooc_consent)
-			if(user.client && user.client.prefs)
-				if(user.client.prefs.toggles & VERB_CONSENT)
-					return TRUE
-				else
-					return FALSE
-		return TRUE
+			if(user.client && user.client.prefs.toggles & VERB_CONSENT)
+				return TRUE
+		return FALSE
 	return FALSE
 
 /datum/interaction/lewd/evaluate_target(mob/living/carbon/human/user, mob/living/carbon/human/target, silent = TRUE)
@@ -121,7 +118,10 @@
 				to_chat(user, "<span class = 'warning'>They don't have breasts.</span>")
 			return FALSE
 
-		return TRUE
+		if(require_ooc_consent)
+			if(target.client && target.client.prefs.toggles & VERB_CONSENT)
+				return TRUE
+		return FALSE
 	return FALSE
 
 /datum/interaction/lewd/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
