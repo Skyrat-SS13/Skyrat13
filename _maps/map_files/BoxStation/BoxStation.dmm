@@ -58789,7 +58789,7 @@
 /area/maintenance/port/aft)
 "nkZ" = (
 /turf/open/floor/plasteel/vaporwave,
-/area/space/nearstation)
+/area/security/prison)
 "noy" = (
 /obj/structure/sign/poster/contraband/smoke{
 	desc = "This poster reminds us all that the Detective is a parasite. Year after year, they must get replacement lungs because of their addiction. ";
@@ -61347,7 +61347,7 @@
 /obj/item/bedsheet/rd/royal_cape,
 /obj/structure/bed/pod,
 /turf/open/floor/plasteel/vaporwave,
-/area/space/nearstation)
+/area/security/prison)
 "vbD" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
@@ -90960,7 +90960,7 @@ azl
 avB
 aai
 ktS
-ctv
+aai
 nkZ
 nkZ
 abx
@@ -91217,7 +91217,7 @@ azj
 avx
 aai
 ktS
-ctv
+aai
 nkZ
 vbj
 abx
@@ -91474,7 +91474,7 @@ azn
 gGJ
 aai
 aaf
-ctv
+aai
 nkZ
 nkZ
 abx
@@ -91731,9 +91731,9 @@ azP
 awd
 aai
 aaT
-ctv
-ctv
-ctv
+aai
+aai
+aai
 aaZ
 aaZ
 aeY
