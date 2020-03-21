@@ -36,26 +36,35 @@
 #define CAN_CLIMAX_WITH			(1<<7)
 #define GENITAL_CAN_AROUSE		(1<<8)
 
+
+#define DEF_VAGINA_SHAPE	"Human"
+
 #define COCK_SIZE_MIN		1
+#define COCK_SIZE_DEF		6
 #define COCK_SIZE_MAX		20
 
 #define COCK_DIAMETER_RATIO_MAX		0.42
 #define COCK_DIAMETER_RATIO_DEF		0.25
 #define COCK_DIAMETER_RATIO_MIN		0.15
 
+#define DEF_COCK_SHAPE		"Human"
 #define BALLS_VOLUME_BASE	25
 #define BALLS_VOLUME_MULT	1
+
+#define DEF_BALLS_SHAPE		"Single"
 
 #define BALLS_SIZE_MIN		1
 #define BALLS_SIZE_DEF		2
 #define BALLS_SIZE_MAX		3
-
 #define CUM_RATE			2 // holy shit what a really shitty define name - relates to units per arbitrary measure of time?
 #define CUM_RATE_MULT		1
 #define CUM_EFFICIENCY		1 //amount of nutrition required per life()
-
 #define BREASTS_VOLUME_BASE	50	//base volume for the reagents in the breasts, multiplied by the size then multiplier. 50u for A cups, 850u for HH cups.
 #define BREASTS_VOLUME_MULT	1	//global multiplier for breast volume.
+
+#define BREASTS_SIZE_DEF	"c" //lowercase cause those sprite accessory don't use uppercased letters.
+
+#define DEF_BREASTS_SHAPE	"Pair"
 
 #define MILK_RATE			5
 #define MILK_RATE_MULT		1
