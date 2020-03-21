@@ -75,8 +75,6 @@
 	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	illegal_tech = FALSE
-<<<<<<< HEAD
-=======
 
 /datum/uplink_item/badass/tactical_naptime
 	name = "Sleepy Time Pajama Bundle"
@@ -94,4 +92,3 @@
 	cost = 1
 	surplus = 5
 	illegal_tech = FALSE
->>>>>>> ac4ebfa2b4e... Merge pull request #11540 from zeroisthebiggay/uplinkclothinggetssuckies
