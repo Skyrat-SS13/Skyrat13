@@ -34825,6 +34825,8 @@
 	name = "Robotics Operating Table"
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/medical,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "bde" = (

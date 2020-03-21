@@ -1591,8 +1591,8 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "afP" = (
 /obj/machinery/holopad,
-/mob/living/simple_animal/bot/secbot/pingsky,
 /obj/effect/landmark/start/cyborg,
+/mob/living/simple_animal/bot/secbot/pingsky,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "afQ" = (
@@ -30111,6 +30111,8 @@
 	dir = 1;
 	network = list("ss13","rd")
 	},
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/medical,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "btc" = (
