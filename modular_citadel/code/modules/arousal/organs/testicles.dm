@@ -11,8 +11,12 @@
 	linked_organ_slot = ORGAN_SLOT_PENIS
 	genital_flags = CAN_MASTURBATE_WITH|MASTURBATE_LINKED_ORGAN|GENITAL_FUID_PRODUCTION
 	var/size_name = "average"
+<<<<<<< HEAD
 	shape = "Single"
 	var/sack_size = BALLS_SACK_SIZE_DEF
+=======
+	shape = DEF_BALLS_SHAPE
+>>>>>>> 87314b5d4dc... Merge pull request #11530 from Ghommie/Ghommie-cit629
 	fluid_id = /datum/reagent/consumable/semen
 	masturbation_verb = "massage"
 	layer_index = TESTICLES_LAYER_INDEX
