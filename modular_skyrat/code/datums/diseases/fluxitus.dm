@@ -39,7 +39,7 @@
 			if(prob(3))
 				affected_mob.Jitter(30)
 				to_chat(affected_mob, "<span class='danger'>You feel wobbly.</span>")
-			if(prob(3) && affected_mob.getOrganLoss(ORGAN_SLOT_BRAIN)()<=98)
+			if(prob(3) && affected_mob.getOrganLoss(ORGAN_SLOT_BRAIN)<=98)
 				adjustOrganLoss(ORGAN_SLOT_BRAIN, 3)
 				affected_mob.updatehealth()
 				to_chat(affected_mob, "<span class='danger'>Your head hurts.</span>")
