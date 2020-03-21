@@ -81803,6 +81803,7 @@
 	light_color = "#d8b1b1"
 	},
 /obj/structure/chair/stool,
+/obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "gQG" = (
