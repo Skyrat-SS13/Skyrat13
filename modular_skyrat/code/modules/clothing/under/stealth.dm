@@ -25,12 +25,16 @@
 		if(activated)
 			M.apply_status_effect(effectapplied)
 			M.alpha -= 75
+		for(var/datum/action/item_action/A in src)
+			A.Grant(user, src)
 
 /obj/item/clothing/under/syndicate/stealthsuit/dropped(mob/living/M, slot)
 	. = ..()
 	M.remove_status_effect(effectapplied)
 	M.alpha = 255
 	activated = 0
+	for(var/datum/action/item_action/A in src)
+		A.Remove(user, src)
 
 /obj/item/clothing/under/syndicate/stealthsuit/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/activatestealth))
