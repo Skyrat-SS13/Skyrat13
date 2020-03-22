@@ -95,6 +95,7 @@
 					if(user.a_intent != INTENT_HARM)
 						L.visible_message("<span class='danger'>[user] is trying to inject [L]!</span>", \
 												"<span class='userdanger'>[user] is trying to inject [L]!</span>")
+						busy = TRUE
 						if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject,user,1)))
 							return
 						if(!reagents.total_volume)
@@ -108,6 +109,7 @@
 							var/mob/living/carbon/C = target
 							C.visible_message("<span class='danger'>[user] stabs [L] with \the [src]!</span>", \
 													"<span class='userdanger'>[user] stabs [L] with the [src]!</span>")
+							busy = TRUE
 							C.apply_damage(damage = 5,damagetype = BRUTE, def_zone = C.get_bodypart(check_zone(user.zone_selected)), blocked = FALSE, forced = FALSE)
 							if(!reagents.total_volume)
 								return
