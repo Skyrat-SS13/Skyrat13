@@ -40,25 +40,11 @@
 	var/sink_found = FALSE
 	var/count = 0
 
-/datum/sabotage_objective/processing/power_sink/check_condition_processing()
-<<<<<<< HEAD
-	count += 1
-	if(count==10 || sink_found) // doesn't need to fire that often unless a sink exists
-		var/sink_found_this_time = FALSE
-		for(var/datum/powernet/PN in GLOB.powernets)
-			for(var/obj/item/powersink/sink in PN.nodes)
-				sink_found_this_time = TRUE
-				won = max(won,sink.power_drained/1e8)
-		sink_found = sink_found_this_time
-		count = 0
-	return FALSE
-/*
-=======
+/*/datum/sabotage_objective/processing/power_sink/check_condition_processing()
 	for(var/s in GLOB.power_sinks)
 		var/obj/item/powersink/sink = s
 		won = max(won,sink.power_drained/1e8)
 
->>>>>>> ab1274c8329... Massive optimization for sink objective. (#11563)
 /obj/item/paper/guides/antag/supermatter_sabotage
 	info = "Ways to sabotage a supermatter:<br>\
 	<ul>\
