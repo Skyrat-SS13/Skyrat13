@@ -127339,6 +127339,10 @@
 "tCh" = (
 /turf/closed/wall,
 /area/science/misc_lab)
+"tEq" = (
+/obj/effect/landmark/start/prisoner/prilate,
+/turf/open/floor/plating,
+/area/security/prison)
 "tMk" = (
 /turf/open/floor/plasteel/white/side{
 	dir = 10
@@ -179184,7 +179188,7 @@ aaa
 rqh
 aFm
 kqa
-bbt
+tEq
 aFm
 aMc
 aaq

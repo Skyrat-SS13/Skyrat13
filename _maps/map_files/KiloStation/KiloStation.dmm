@@ -712,6 +712,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/effect/landmark/start/prisoner/prilate,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
 "abi" = (

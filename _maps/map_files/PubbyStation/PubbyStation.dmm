@@ -1979,6 +1979,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/effect/landmark/start/prisoner/prilate,
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
 "agP" = (

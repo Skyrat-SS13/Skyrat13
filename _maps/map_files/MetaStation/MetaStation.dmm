@@ -197,6 +197,7 @@
 	name = "old sink";
 	pixel_y = 28
 	},
+/obj/effect/landmark/start/prisoner/prilate,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
