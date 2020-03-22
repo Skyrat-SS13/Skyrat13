@@ -278,6 +278,9 @@
 	parts += medal_report()
 	//Station Goals
 	parts += goal_report()
+	//SKYRAT EDIT - n word counter
+	parts += nword_report()
+	//
 
 	listclearnulls(parts)
 
@@ -446,6 +449,11 @@
 			parts += com
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	return ""
+
+/datum/controller/subsystem/ticker/proc/nword_report()
+	for(var/datum/controller/subsystem/ncounter/N in subtypesof(/datum/controller/subsystem))
+		var/list/messages = N.nwordmessages
+		return "<span class='header'>Total N word count: [N.ntimessaid]</span><br><span class='header'>N word messages said:</span><br><div class='panel stationborder'>[messages.Join("<br>")]</div>"
 
 /datum/controller/subsystem/ticker/proc/antag_report()
 	var/list/result = list()

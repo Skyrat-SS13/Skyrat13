@@ -8,6 +8,15 @@
 	//SKYRAT EDIT
 	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
 		set_typing_indicator(FALSE)
+	if(findtext("nigger" || "nigga" || "n'wah" || "nations", message)) //N WORD COUNTER!
+		log_admin("[src] (Key: [src.key]) has said the n-word!")
+		for(var/datum/controller/subsystem/ncounter/N in subtypesof(/datum/controller/subsystem))
+			N.nwordmessages += message
+			var/list/nlist = dd_text2list(message," ")
+			var/list/gamerwords = list("nigger", "nigga", "n'wah", "nations")
+			for(var/i = 1, i == gamerwords.len, i++)
+				for(gamerwords[i] in nlist)
+					N.ntimessaid++
 	//END OF SKYRAT EDIT
 	if(message)
 		say(message)
