@@ -126364,6 +126364,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"jwo" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/mob/living/simple_animal/pet/bumbles,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "jBE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -160706,7 +160720,7 @@ bjt
 bli
 bnk
 boB
-bnj
+jwo
 bnj
 bnh
 bvB

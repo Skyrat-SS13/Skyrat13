@@ -1,0 +1,4 @@
+author: "Useroth"
+delete-after: True
+changes: 
+  - bugfix: "changelogs now should display _properly_"
