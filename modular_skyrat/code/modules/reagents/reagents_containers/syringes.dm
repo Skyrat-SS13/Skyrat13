@@ -49,7 +49,7 @@
 						C.apply_damage(damage = 5,damagetype = BRUTE, def_zone = C.get_bodypart(check_zone(user.zone_selected)), blocked = FALSE, forced = FALSE)
 						if(reagents.total_volume >= reagents.maximum_volume)
 							return
-						if(!CALLBACK(L, /mob/living/proc/can_inject,user,1))
+						if(!C.can_inject(user,1))
 							return
 						if(C.transfer_blood_to(src, drawn_amount))
 							user.visible_message("[user] forcefully takes a blood sample from [L].")
@@ -110,7 +110,7 @@
 							C.visible_message("<span class='danger'>[user] stabs [L] with \the [src]!</span>", \
 													"<span class='userdanger'>[user] stabs [L] with the [src]!</span>")
 							C.apply_damage(damage = 5,damagetype = BRUTE, def_zone = C.get_bodypart(check_zone(user.zone_selected)), blocked = FALSE, forced = FALSE)
-							if(!CALLBACK(L, /mob/living/proc/can_inject,user,1))
+							if(!C.can_inject(user,1))
 								return
 							if(!reagents.total_volume)
 								return
