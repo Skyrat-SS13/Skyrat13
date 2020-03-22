@@ -34,7 +34,7 @@
 	. = ..()
 	currentloc = owner.loc
 	if(owner.alpha > 10 && currentloc == oldloc) //ALMOST completely invisible
-		owner.alpha -= 15
+		owner.alpha -= 45
 	oldloc = currentloc
 
 /datum/status_effect/stealthsuit/process()
@@ -43,8 +43,9 @@
 	inhandl = owner.get_inactive_held_item()
 	health = owner.health
 	if((inhand != inhandold) || (inhandl != inhandlold) || (health != healthold))
+		if(owner.alpha <= 35) //making it announce everytime you pick something up is annoying bro
+			to_chat(owner, "<span class='warning'>Something interferes with your suit's stealth system!</span>")
 		owner.alpha = 255
-		to_chat(owner, "<span class='warning'>Something interferes with your suit's stealth system!</span>")
 	inhandold = inhand
 	inhandlold = inhandl
 	healthold = health
