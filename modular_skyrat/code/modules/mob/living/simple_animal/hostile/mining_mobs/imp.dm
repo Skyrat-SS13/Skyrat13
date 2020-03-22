@@ -9,15 +9,15 @@
 	icon_dead = "imp_dead"
 	icon_gib = "syndicate_gib"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	move_to_delay = 3
-	projectiletype = /obj/item/projectile/magic/aoe/impfireball
+	move_to_delay = 4
+	projectiletype = /obj/item/projectile/magic/impfireball
 	projectilesound = 'modular_skyrat/sound/misc/imp.wav'
 	ranged = 1
 	ranged_message = "shoots a fireball"
-	ranged_cooldown_time = 35
+	ranged_cooldown_time = 70
 	throw_message = "does nothing against the hardened skin of"
 	vision_range = 5
-	speed = 0
+	speed = 1
 	maxHealth = 150
 	health = 150
 	harm_intent_damage = 15
@@ -37,20 +37,18 @@
 	robust_searching = FALSE
 	death_sound = 'modular_skyrat/sound/misc/impdies.wav'
 
-/obj/item/projectile/magic/aoe/impfireball //bobyot y u no use child of fireball
-	name = "demonic fireball" //because if i do, the on_hit proc will call the parent and fuck shit up ok
+/obj/item/projectile/magic/impfireball //bobyot y u no use child of fireball
+	name = "demonic fireball" //because it fucking explodes and deals brute damage even when values are set to -1
 	icon_state = "fireball"
 	damage = 10
 	damage_type = BURN
 	nodamage = 0
+	armour_penetration = 20
+	var/firestacks = 5
 
-	//explosion values
-	var/exp_heavy = -1
-	var/exp_light = -1
-	var/exp_flash = -1
-	var/exp_fire = 2
-
-/obj/item/projectile/magic/aoe/impfireball/on_hit(target)
+/obj/item/projectile/magic/impfireball/on_hit(target)
 	. = ..()
-	var/turf/T = get_turf(target)
-	explosion(T, -1, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire) //so demonic there is no anti-magic blocking it
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		C.adjust_fire_stacks(firestacks)
+		C.IgniteMob()
