@@ -37,17 +37,17 @@
 		A.Remove(user, src)
 
 /obj/item/clothing/under/syndicate/stealthsuit/ui_action_click(mob/user, action)
-	if(isliving(user)
-		var/mob/living/user
+	if(isliving(user))
+		var/mob/living/M = user
 		if(istype(action, /datum/action/item_action/activatestealth))
 			if(!activated)
 				to_chat(user, "<span class='warning'>Stealth module activated.</span>")
 				activated = !activated
-				user.apply_status_effect(effectapplied)
-				user.alpha -= 75
+				M.apply_status_effect(effectapplied)
+				M.alpha -= 75
 			if(activated)
 				to_chat(user, "<span class='warning'>Stealth module deactivated.</span>")
 				activated = !activated
-				user.remove_status_effect(effectapplied)
-				user.alpha = 255
+				M.remove_status_effect(effectapplied)
+				M.alpha = 255
 			return TRUE
