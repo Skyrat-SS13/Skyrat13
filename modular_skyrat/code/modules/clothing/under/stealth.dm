@@ -11,12 +11,12 @@
 	can_adjust = FALSE
 	var/effectapplied = /datum/status_effect/stealthsuit
 
-/obj/item/clothing/under/syndicate/stealthsuit/equipped(mob/M, slot)
+/obj/item/clothing/under/syndicate/stealthsuit/equipped(mob/living/M, slot)
 	. = ..()
 	M.apply_status_effect(effectapplied)
 	M.alpha -= 100
 
-/obj/item/clothing/under/syndicate/stealthsuit/dropped(mob/M, slot)
+/obj/item/clothing/under/syndicate/stealthsuit/dropped(mob/living/M, slot)
 	. = ..()
 	M.remove_status_effect(effectapplied)
 	M.alpha = 255
