@@ -274,16 +274,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 	. = ..()	//calls mob.Login()
 
-	//SKYRAT CHANGE - account age lock, don't confuse with player age, admins and special whitelisted people are exempt
-	if(!connecting_admin && CONFIG_GET(flag/age_lock) && account_age < CONFIG_GET(number/age_lock_days) && !check_age_whitelist(ckey))
-		to_chat(src, "<span class='userdanger'>Your connection has been closed due to your account being only [account_age]'s days old.</span>")
-		to_chat(src, "<span class='danger'>This is a protective measure to stop griefers from connecting to the server. If you're here to play for real visit our discord and apply for a whitelist.</span>")
-		message_admins("<span class='adminnotice'>[key_name(src)] logged in with their account being [account_age]'s days old. Connection rejected.</span>")
-		qdel(src)
-		return
-	//END OF SKYRAT CHANGE
-	message_admins("<span class='adminnotice'>[key_name(src)] logged in with their account being [account_age]'s days old.</span>")
-	//DEBUG
 
 	if (byond_version >= 512)
 		if (!byond_build || byond_build < 1386)
@@ -377,6 +367,16 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		message_admins("New user: [key_name_admin(src)] just connected with an age of [cached_player_age] day[(player_age==1?"":"s")]")
 	if(CONFIG_GET(flag/use_account_age_for_jobs) && account_age >= 0)
 		player_age = account_age
+
+	//SKYRAT CHANGE - account age lock, don't confuse with player age, admins and special whitelisted people are exempt
+	if(!connecting_admin && CONFIG_GET(flag/age_lock) && account_age >= 0 && account_age < CONFIG_GET(number/age_lock_days) && !check_age_whitelist(ckey))
+		to_chat(src, "<span class='userdanger'>Your connection has been closed due to your account being [account_age]'s days old.</span>")
+		to_chat(src, "<span class='userdanger'>This is a protective measure to stop griefers from connecting to the server. If you're here to play for real - visit our discord and apply for a whitelist.</span>")
+		message_admins("<span class='adminnotice'>[key_name(src)] logged in with their account being [account_age]'s days old. Connection rejected.</span>")
+		qdel(src)
+		return
+	//END OF SKYRAT CHANGE
+	
 	if(account_age >= 0 && account_age < nnpa)
 		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
 		if (CONFIG_GET(flag/irc_first_connection_alert))
