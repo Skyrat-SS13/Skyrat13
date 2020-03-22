@@ -450,10 +450,12 @@
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	return ""
 
+//SKYRAT EDIT - n word counter
 /datum/controller/subsystem/ticker/proc/nword_report()
 	for(var/datum/controller/subsystem/ncounter/N in subtypesof(/datum/controller/subsystem))
 		var/list/messages = N.nwordmessages
 		return "<span class='header'>Total N word count: [N.ntimessaid]</span><br><span class='header'>N word messages said:</span><br><div class='panel stationborder'>[messages.Join("<br>")]</div>"
+//
 
 /datum/controller/subsystem/ticker/proc/antag_report()
 	var/list/result = list()
