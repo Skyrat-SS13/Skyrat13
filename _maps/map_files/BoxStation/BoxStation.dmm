@@ -20187,6 +20187,9 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aTr" = (
@@ -20239,6 +20242,9 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aTy" = (
@@ -57233,7 +57239,9 @@
 "iqp" = (
 /obj/machinery/camera,
 /obj/structure/bed,
-/turf/open/floor/mineral/titanium/white,
+/turf/open/floor/mineral/titanium/white{
+	name = "secure isolation floor"
+	},
 /area/security/prison)
 "iqU" = (
 /obj/machinery/door/airlock/external{
@@ -57848,7 +57856,9 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/pool)
 "jNo" = (
-/turf/open/floor/mineral/titanium/white,
+/turf/open/floor/mineral/titanium/white{
+	name = "secure isolation floor"
+	},
 /area/security/prison)
 "jOY" = (
 /obj/effect/turf_decal/tile/red{
@@ -58702,6 +58712,7 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "locklock"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "mps" = (
@@ -62317,6 +62328,7 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "locklock"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "woR" = (
@@ -93949,8 +93961,8 @@ cNd
 cNd
 cNd
 cNd
-uxJ
-gXs
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -94206,8 +94218,8 @@ cNd
 cNd
 cNd
 cNd
-uxJ
-gXs
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -94463,8 +94475,8 @@ cNd
 cNd
 cNd
 cNd
-uxJ
-gXs
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -94720,8 +94732,8 @@ cNd
 cNd
 cNd
 cNd
-uxJ
-gXs
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -94977,8 +94989,8 @@ cNd
 cNd
 cNd
 cNd
-uxJ
-gXs
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -95234,8 +95246,8 @@ cNd
 cNd
 cNd
 cNd
-uxJ
-gXs
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -95491,11 +95503,11 @@ cNd
 cNd
 cNd
 cNd
-uxJ
-gXs
-gXs
-gXs
-hwz
+aaa
+aaa
+aaa
+aaa
+aaa
 gXs
 gXs
 gXs
@@ -95748,11 +95760,11 @@ cNd
 cNd
 cNd
 cNd
-uxJ
-uxJ
-uxJ
-uxJ
-uxJ
+aaa
+aaa
+aaa
+aaa
+aaa
 uxJ
 uxJ
 uxJ
