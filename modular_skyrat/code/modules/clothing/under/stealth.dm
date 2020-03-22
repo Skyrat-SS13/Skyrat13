@@ -37,11 +37,11 @@
 		if(!activated)
 			to_chat(user, "<span class='warning'>Stealth module activated.</span>")
 			activated = !activated
-			M.apply_status_effect(effectapplied)
-			M.alpha -= 75
+			user.apply_status_effect(effectapplied)
+			user.alpha -= 75
 		if(activated)
 			to_chat(user, "<span class='warning'>Stealth module deactivated.</span>")
 			activated = !activated
-			M.remove_status_effect(effectapplied)
-			M.alpha = 255
+			user.remove_status_effect(effectapplied)
+			user.alpha = 255
 		return TRUE
