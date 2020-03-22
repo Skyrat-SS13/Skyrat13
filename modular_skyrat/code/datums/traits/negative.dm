@@ -20,6 +20,8 @@
 			heirloom_type = /obj/item/extinguisher/mini/family
 		if("Lawyer")
 			heirloom_type = /obj/item/storage/briefcase/lawyer/family
+		if("Brig Physician")
+			heirloom_type = pick(/obj/item/clothing/neck/stethoscope, /obj/item/roller, /obj/item/book/manual/wiki/security_space_law)
 		if("Prisoner")
 			heirloom_type = /obj/item/pen/blue
 		if("Janitor")
