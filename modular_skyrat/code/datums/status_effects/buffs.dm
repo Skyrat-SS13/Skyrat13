@@ -42,7 +42,7 @@
 	inhand = owner.get_active_held_item()
 	inhandl = owner.get_inactive_held_item()
 	health = owner.health
-	if((inhand != inhandold) || (inhandl != inhandold) || (health != healthold))
+	if((inhand != inhandold) || (inhandl != inhandlold) || (health != healthold))
 		owner.alpha = 255
 		to_chat(owner, "<span class='warning'>Something interferes with your suit's stealth system!</span>")
 	inhandold = inhand
