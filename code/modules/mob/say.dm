@@ -13,10 +13,18 @@
 		for(var/datum/controller/subsystem/ncounter/N in subtypesof(/datum/controller/subsystem))
 			N.nwordmessages += message
 			var/list/nlist = dd_text2list(message," ")
-			var/list/gamerwords = list("nigger", "nigga", "n'wah", "nations")
-			for(var/i = 1, i == gamerwords.len, i++)
-				for(gamerwords[i] in nlist)
+			var/nword1 = "nigger"
+			var/nword2 = "nigga"
+			var/nword3 = "n'wah"
+			var/nword4 = "nations"
+			for(nword1 in nlist)
 					N.ntimessaid++
+			for(nword2 in nlist)
+					N.ntimessaid++
+			for(nword3 in nlist)
+					N.ntimessaid += 2
+			for(nword4 in nlist)
+					N.ntimessaid += 10
 	//END OF SKYRAT EDIT
 	if(message)
 		say(message)
