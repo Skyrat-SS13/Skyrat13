@@ -39,13 +39,15 @@
 						return
 				busy = FALSE
 				else
-					target.visible_message("<span class='danger'>[user] stabbed [target] with \the [src]!</span>", \
-									"<span class='userdanger'>[user] has stabbed [target] with \the [src]!</span>")
-					target.apply_damage(damage = 5,damagetype = BRUTE, def_zone = target.get_bodypart(check_zone(user.zone_selected)), blocked = FALSE, forced = FALSE)
-					if(reagents.total_volume >= reagents.maximum_volume)
-						return
-					if(!CALLBACK(L, /mob/living/proc/can_inject,user,1))
-						return
+					if(iscarbon(target))
+						var/mob/living/carbon/C = target
+						C.visible_message("<span class='danger'>[user] stabbed [C] with \the [src]!</span>", \
+										"<span class='userdanger'>[user] has stabbed [C] with \the [src]!</span>")
+						C.apply_damage(damage = 5,damagetype = BRUTE, def_zone = C.get_bodypart(check_zone(user.zone_selected)), blocked = FALSE, forced = FALSE)
+						if(reagents.total_volume >= reagents.maximum_volume)
+							return
+						if(!CALLBACK(L, /mob/living/proc/can_inject,user,1))
+							return
 				if(L.transfer_blood_to(src, drawn_amount))
 					user.visible_message("[user] forcefully takes a blood sample from [L].")
 				else
@@ -88,7 +90,7 @@
 				if(!L.can_inject(user, TRUE))
 					return
 				if(L != user)
-					if(user.a_intent != HARM_INTENT)
+					if(user.a_intent != INTENT_HARM)
 						L.visible_message("<span class='danger'>[user] is trying to inject [L]!</span>", \
 												"<span class='userdanger'>[user] is trying to inject [L]!</span>")
 						if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject,user,1)))
@@ -100,17 +102,19 @@
 						L.visible_message("<span class='danger'>[user] injects [L] with the syringe!", \
 										"<span class='userdanger'>[user] injects [L] with the syringe!</span>")
 					else
-						L.visible_message("<span class='danger'>[user] stabs [L] with \the [src]!</span>", \
-												"<span class='userdanger'>[user] stabs [L] with the [src]!</span>")
-						target.apply_damage(damage = 5,damagetype = BRUTE, def_zone = target.get_bodypart(check_zone(user.zone_selected)), blocked = FALSE, forced = FALSE)
-						if(!CALLBACK(L, /mob/living/proc/can_inject,user,1))
-							return
-						if(!reagents.total_volume)
-							return
-						if(L.reagents.total_volume >= L.reagents.maximum_volume)
-							return
-						L.visible_message("<span class='danger'>[user] forcefully injects [L] with the syringe!", \
-										"<span class='userdanger'>[user] injects [L] forcefully with the syringe!</span>")
+						if(iscarbon(target))
+							var/mob/living/carbon/C = target
+								C.visible_message("<span class='danger'>[user] stabs [L] with \the [src]!</span>", \
+														"<span class='userdanger'>[user] stabs [L] with the [src]!</span>")
+								C.apply_damage(damage = 5,damagetype = BRUTE, def_zone = C.get_bodypart(check_zone(user.zone_selected)), blocked = FALSE, forced = FALSE)
+								if(!CALLBACK(L, /mob/living/proc/can_inject,user,1))
+									return
+								if(!reagents.total_volume)
+									return
+								if(C.reagents.total_volume >= L.reagents.maximum_volume)
+									return
+								C.visible_message("<span class='danger'>[user] forcefully injects [L] with the syringe!", \
+												"<span class='userdanger'>[user] injects [L] forcefully with the syringe!</span>")
 
 				if(L != user)
 					log_combat(user, L, "injected", src, addition="which had [contained]")
