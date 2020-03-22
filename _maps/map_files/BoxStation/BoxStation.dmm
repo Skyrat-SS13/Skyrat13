@@ -55728,6 +55728,15 @@
 /obj/item/assembly/signaler,
 /turf/open/floor/plating,
 /area/security/prison)
+"esd" = (
+/obj/machinery/button/door{
+	id = "soli2";
+	name = "Solitary Cell 2";
+	pixel_y = 26;
+	req_access_txt = "3"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/prison)
 "esZ" = (
 /obj/machinery/door/airlock{
 	desc = "Private study room where nerds are probably playing Dungeons and Dragons 13e, or a place for blood cult rituals.";
@@ -55927,6 +55936,12 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
+"eSC" = (
+/obj/machinery/door/poddoor{
+	id = "soli2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/prison)
 "eVC" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/firedoor,
@@ -56900,6 +56915,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
+"hKd" = (
+/obj/machinery/button/door{
+	id = "soli3";
+	name = "Solitary Cell 3";
+	pixel_y = 26;
+	req_access_txt = "3"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/prison)
 "hMo" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -56981,6 +57005,15 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plating,
 /area/crew_quarters/abandoned_gambling_den)
+"hSs" = (
+/obj/machinery/button/door{
+	id = "soli4";
+	name = "Solitary Cell 4";
+	pixel_y = 26;
+	req_access_txt = "3"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/prison)
 "hSZ" = (
 /obj/structure/chair/comfy/brown{
 	dir = 1
@@ -57197,6 +57230,9 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"iDZ" = (
+/turf/open/floor/plasteel/grimy,
+/area/security/prison)
 "iEJ" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod One"
@@ -57227,6 +57263,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/pool)
+"iMC" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "iNn" = (
 /obj/machinery/camera{
 	c_tag = "Kitchen Cold Room"
@@ -57353,6 +57395,13 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"jkd" = (
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "jkx" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/machinery/computer/slot_machine,
@@ -58003,6 +58052,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"kLQ" = (
+/obj/machinery/door/poddoor{
+	id = "soli1"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/prison)
 "kMt" = (
 /obj/machinery/computer/prisoner/gulag_teleporter_computer,
 /turf/open/floor/plasteel,
@@ -58253,6 +58308,12 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/abandoned_gambling_den)
+"lJl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/prison)
 "lKL" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
@@ -58378,6 +58439,12 @@
 /obj/structure/bed,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/pool)
+"mfv" = (
+/obj/machinery/door/poddoor{
+	id = "soli3"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/prison)
 "mgF" = (
 /obj/structure/bed,
 /turf/open/floor/plasteel,
@@ -58416,6 +58483,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/toilet)
+"mlc" = (
+/obj/effect/landmark/start/prisoner/prilate,
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "mnC" = (
 /obj/structure/target_stake,
 /obj/item/target/syndicate,
@@ -58466,6 +58540,9 @@
 	icon_state = "wood-broken5"
 	},
 /area/maintenance/bar)
+"mqh" = (
+/turf/open/floor/plasteel,
+/area/space)
 "mqZ" = (
 /obj/structure/reagent_dispensers/keg/aphro/strong,
 /obj/item/reagent_containers/glass/beaker,
@@ -58760,6 +58837,13 @@
 /obj/machinery/vending/autodrobe,
 /turf/open/floor/wood,
 /area/maintenance/bar)
+"ngj" = (
+/obj/effect/landmark/start/prisoner/prilate,
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "ngs" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -58779,6 +58863,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"njj" = (
+/obj/machinery/button/door{
+	id = "soli1";
+	name = "Solitary Cell 1";
+	pixel_y = 26;
+	req_access_txt = "3"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/prison)
 "nkP" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -58847,6 +58940,12 @@
 "nyu" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
+/area/security/prison)
+"nzu" = (
+/obj/machinery/door/poddoor{
+	id = "soli4"
+	},
+/turf/open/floor/plasteel/grimy,
 /area/security/prison)
 "nBM" = (
 /obj/docking_port/stationary/random{
@@ -60797,6 +60896,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"tCp" = (
+/turf/open/floor/plasteel/elevatorshaft,
+/area/security/prison)
 "tJi" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -89899,7 +90001,7 @@ cNd
 cNd
 cNd
 cNd
-cNd
+aaa
 cNd
 cNd
 cNd
@@ -90157,7 +90259,7 @@ cNd
 cNd
 cNd
 cNd
-cNd
+aaa
 cNd
 cNd
 cNd
@@ -90170,7 +90272,7 @@ gXs
 gXs
 aai
 aai
-aam
+mqh
 aai
 acd
 aJN
@@ -90419,15 +90521,15 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-uxJ
-uxJ
 uxJ
 gXs
-gXs
-gXs
-gXs
+aai
+aai
+aai
+aai
+aai
+aai
+aat
 aai
 adH
 ajD
@@ -90676,15 +90778,15 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-uxJ
-uxJ
-uxJ
 uxJ
 gXs
+aai
+mlc
+aat
+jkd
+mlc
+aat
+aat
 aai
 adI
 ajG
@@ -90930,18 +91032,18 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-cNd
 aaa
-aaa
+cNd
+cNd
 uxJ
 gXs
+aai
+aat
+tCp
+tCp
+aat
+aat
+aat
 aai
 adH
 adH
@@ -91187,18 +91289,18 @@ cNd
 cNd
 cNd
 aaj
-cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-cNd
 aaa
-aaa
+cNd
+cNd
 uxJ
 gXs
+aai
+aat
+tCp
+tCp
+aat
+aat
+aat
 aai
 adJ
 aaC
@@ -91445,17 +91547,17 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-cNd
 aaa
-aaa
+cNd
 uxJ
 gXs
+aai
+ngj
+aat
+iMC
+ngj
+aat
+aat
 aai
 aeh
 akt
@@ -91704,15 +91806,15 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
 uxJ
 gXs
+aai
+aai
+aai
+aai
+aai
+aai
+aat
 aai
 acd
 wDW
@@ -91961,15 +92063,15 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
 uxJ
 gXs
+aai
+iDZ
+iDZ
+kLQ
+iDZ
+iDZ
+iDZ
 aai
 aej
 akH
@@ -92218,15 +92320,15 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
 uxJ
 gXs
+aai
+iDZ
+iDZ
+aai
+njj
+iDZ
+iDZ
 aai
 aek
 aay
@@ -92475,15 +92577,15 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
 uxJ
 gXs
+aai
+aai
+aai
+aai
+lJl
+iDZ
+iDZ
 aai
 ael
 akK
@@ -92732,15 +92834,15 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
 uxJ
 gXs
+aai
+iDZ
+iDZ
+eSC
+iDZ
+iDZ
+iDZ
 aai
 aai
 aai
@@ -92989,16 +93091,16 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
 uxJ
 gXs
-gXs
+aai
+iDZ
+iDZ
+aai
+esd
+iDZ
+iDZ
+aai
 gXs
 gXs
 gXs
@@ -93246,16 +93348,16 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
 uxJ
-uxJ
-uxJ
+gXs
+aai
+aai
+aai
+aai
+iDZ
+iDZ
+iDZ
+aai
 uxJ
 uxJ
 uxJ
@@ -93503,16 +93605,16 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
-aaa
-aaa
-aaa
+uxJ
+gXs
+aai
+iDZ
+iDZ
+mfv
+iDZ
+iDZ
+iDZ
+aai
 aaa
 aaa
 aaa
@@ -93760,18 +93862,18 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+uxJ
+gXs
+aai
+iDZ
+iDZ
+aai
+hKd
+iDZ
+iDZ
+aai
+gXs
+uxJ
 aaa
 aaa
 aaa
@@ -94017,18 +94119,18 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+uxJ
+gXs
+aai
+aai
+aai
+aai
+lJl
+iDZ
+iDZ
+aai
+gXs
+uxJ
 aaa
 aaa
 aaa
@@ -94274,18 +94376,18 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+uxJ
+gXs
+aai
+iDZ
+iDZ
+nzu
+iDZ
+iDZ
+iDZ
+aai
+gXs
+uxJ
 aaa
 aaa
 aaa
@@ -94531,18 +94633,18 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+uxJ
+gXs
+aai
+iDZ
+iDZ
+aai
+hSs
+iDZ
+iDZ
+aai
+gXs
+uxJ
 aaa
 aaa
 aaa
@@ -94788,18 +94890,18 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+uxJ
+gXs
+aai
+aai
+aai
+aai
+aai
+aai
+aai
+aai
+gXs
+uxJ
 aaa
 aaa
 aaa
@@ -95045,18 +95147,18 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+uxJ
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+uxJ
 aaa
 aaa
 aaa
@@ -95302,18 +95404,18 @@ cNd
 cNd
 cNd
 cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-cNd
-aaa
-aaa
-aaa
-aaa
+uxJ
+uxJ
+uxJ
+uxJ
+uxJ
+uxJ
+uxJ
+uxJ
+uxJ
+uxJ
+uxJ
+uxJ
 aaa
 aaa
 aaa

@@ -4,13 +4,16 @@
 	department_head = list("The Security Team")
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 0
+	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the security team"
 
 	outfit = /datum/outfit/job/prisoner
 
 	display_order = JOB_DISPLAY_ORDER_PRISONER
+
+/datum/job/ai/override_latejoin_spawn()
+	return TRUE
 
 /datum/outfit/job/prisoner
 	name = "Prisoner"
