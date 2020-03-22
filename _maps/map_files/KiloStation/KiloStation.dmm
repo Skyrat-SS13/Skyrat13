@@ -87990,6 +87990,11 @@
 "pQf" = (
 /turf/closed/wall/r_wall/rust,
 /area/science/xenobiology)
+"qai" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/landmark/start/brig_physician,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "qfZ" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -107512,7 +107517,7 @@ bXp
 bNa
 aCv
 bRw
-cnB
+qai
 cnB
 bVS
 aFu

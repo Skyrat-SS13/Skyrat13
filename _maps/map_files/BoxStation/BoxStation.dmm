@@ -2909,6 +2909,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
+/obj/machinery/vending/wallmed{
+	pixel_y = 30
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "afL" = (
@@ -3814,6 +3817,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/effect/landmark/start/brig_physician,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/brig)
 "ahu" = (
@@ -4240,28 +4244,6 @@
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
-"ahY" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/bot,
-/mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
-	health = 45;
-	icon_state = "secbot1";
-	idcheck = 1;
-	name = "Sergeant-at-Armsky";
-	weaponscheck = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -6376,6 +6358,9 @@
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -56004,7 +55989,7 @@
 	id = "soli2"
 	},
 /obj/machinery/door/firedoor,
-/turf/open/floor/plasteel/grimy,
+/turf/open/floor/mineral/titanium/white,
 /area/security/prison)
 "eVC" = (
 /obj/effect/spawner/structure/window,
@@ -57032,15 +57017,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
-"hKd" = (
-/obj/machinery/button/door{
-	id = "soli3";
-	name = "Solitary Cell 3";
-	pixel_y = 26;
-	req_access_txt = "3"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/security/prison)
 "hMo" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57123,12 +57099,6 @@
 /turf/open/floor/plating,
 /area/crew_quarters/abandoned_gambling_den)
 "hSs" = (
-/obj/machinery/button/door{
-	id = "soli4";
-	name = "Solitary Cell 4";
-	pixel_y = 26;
-	req_access_txt = "3"
-	},
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = 28;
@@ -57263,7 +57233,7 @@
 "iqp" = (
 /obj/machinery/camera,
 /obj/structure/bed,
-/turf/open/floor/plasteel/grimy,
+/turf/open/floor/mineral/titanium/white,
 /area/security/prison)
 "iqU" = (
 /obj/machinery/door/airlock/external{
@@ -57877,6 +57847,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/pool)
+"jNo" = (
+/turf/open/floor/mineral/titanium/white,
+/area/security/prison)
 "jOY" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -58242,7 +58215,7 @@
 	id = "soli1"
 	},
 /obj/machinery/door/firedoor,
-/turf/open/floor/plasteel/grimy,
+/turf/open/floor/mineral/titanium/white,
 /area/security/prison)
 "kMt" = (
 /obj/machinery/computer/prisoner/gulag_teleporter_computer,
@@ -58657,13 +58630,6 @@
 /obj/structure/bed,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/pool)
-"mfv" = (
-/obj/machinery/door/poddoor{
-	id = "soli3"
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plasteel/grimy,
-/area/security/prison)
 "mgF" = (
 /obj/structure/bed,
 /turf/open/floor/plasteel,
@@ -59167,13 +59133,6 @@
 "nyu" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
-/area/security/prison)
-"nzu" = (
-/obj/machinery/door/poddoor{
-	id = "soli4"
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plasteel/grimy,
 /area/security/prison)
 "nBM" = (
 /obj/docking_port/stationary/random{
@@ -92451,8 +92410,8 @@ cNd
 uxJ
 kiJ
 aai
-iDZ
-iDZ
+jNo
+jNo
 kLQ
 iDZ
 dDm
@@ -92709,7 +92668,7 @@ uxJ
 gXs
 aai
 iqp
-iDZ
+jNo
 aai
 njj
 obH
@@ -92741,7 +92700,7 @@ afc
 aco
 agU
 ahp
-ahY
+afd
 afd
 afd
 ahB
@@ -93222,8 +93181,8 @@ cNd
 uxJ
 gXs
 aai
-iDZ
-iDZ
+jNo
+jNo
 eSC
 iDZ
 iHO
@@ -93480,7 +93439,7 @@ uxJ
 gXs
 aai
 iqp
-iDZ
+jNo
 aai
 esd
 dDm
@@ -93992,10 +93951,10 @@ cNd
 cNd
 uxJ
 gXs
+aaa
+aaa
+aaa
 aai
-iDZ
-iDZ
-mfv
 iDZ
 iHO
 pjI
@@ -94249,11 +94208,11 @@ cNd
 cNd
 uxJ
 gXs
+aaa
+aaa
+aaa
 aai
-iqp
 iDZ
-aai
-hKd
 iHO
 roJ
 aai
@@ -94506,9 +94465,9 @@ cNd
 cNd
 uxJ
 gXs
-aai
-aai
-aai
+aaa
+aaa
+aaa
 aai
 lJl
 iHO
@@ -94763,10 +94722,10 @@ cNd
 cNd
 uxJ
 gXs
+aaa
+aaa
+aaa
 aai
-iDZ
-iDZ
-nzu
 iDZ
 iHO
 flp
@@ -95020,9 +94979,9 @@ cNd
 cNd
 uxJ
 gXs
-aai
-iqp
-iDZ
+aaa
+aaa
+aaa
 aai
 hSs
 dlP
@@ -95277,9 +95236,9 @@ cNd
 cNd
 uxJ
 gXs
-aai
-aai
-aai
+aaa
+aaa
+aaa
 aai
 aai
 aai
