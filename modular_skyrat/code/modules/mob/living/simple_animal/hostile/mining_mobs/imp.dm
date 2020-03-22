@@ -34,7 +34,7 @@
 	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/impskull
 	loot = list()
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2)
-	robust_searching = TRUE
+	robust_searching = FALSE
 	death_sound = 'modular_skyrat/sound/misc/impdies.wav'
 
 /obj/item/projectile/magic/aoe/impfireball //bobyot y u no use child of fireball
