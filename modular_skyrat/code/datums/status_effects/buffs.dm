@@ -17,10 +17,12 @@
 	duration = -1
 	tick_interval = 30
 	alert_type = /obj/screen/alert/status_effect/stealthsuit
-	var/list/inhands
+	var/obj/item/inhand
+	var/obj/item/inhandl
 	var/health
 	var/healthold
-	var/list/inhandsold
+	var/obj/item/inhandold
+	var/obj/item/inhandlold
 	var/oldloc
 	var/currentloc
 
@@ -37,12 +39,14 @@
 
 /datum/status_effect/stealthsuit/process()
 	..()
-	inhands = owner.held_items
+	inhand = owner.get_active_held_item()
+	inhandl = owner.get_inactive_held_item()
 	health = owner.health
-	if(((inhands | inhandsold) != inhandsold) || (health != healthold))
+	if((inhand != inhandold) || (inhandl != inhandlold) || (health != healthold))
 		owner.alpha = 255
 		to_chat(owner, "<span class='warning'>Something interferes with your suit's stealth system!</span>")
-	inhandsold = inhands
+	inhandold = inhand
+	inhandlold = inhandl
 	healthold = health
 
 /obj/screen/alert/status_effect/stealthsuit
