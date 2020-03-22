@@ -3347,6 +3347,7 @@
 #include "modular_skyrat\code\game\objects\items\cards_ids.dm"
 #include "modular_skyrat\code\game\objects\items\kitchen.dm"
 #include "modular_skyrat\code\game\objects\items\weaponry.dm"
+#include "modular_skyrat\code\game\objects\items\circuitboards\computer_circuitboards.dm"
 #include "modular_skyrat\code\game\objects\items\circuitboards\machine_circuitboards.dm"
 #include "modular_skyrat\code\game\objects\items\devices\radio\electropack.dm"
 #include "modular_skyrat\code\game\objects\items\melee\misc.dm"
@@ -3499,6 +3500,9 @@
 #include "modular_skyrat\code\modules\surgery\surgery_step.dm"
 #include "modular_skyrat\code\modules\surgery\organs\tongue.dm"
 #include "modular_skyrat\code\modules\surgery\organs\vox_lungs.dm"
+#include "modular_skyrat\code\modules\telescience\telepad.dm"
+#include "modular_skyrat\code\modules\telescience\telesci.dm"
+#include "modular_skyrat\code\modules\telescience\telesci_computer.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_dangerous.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_devices.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_roles.dm"
@@ -3506,4 +3510,5 @@
 #include "modular_skyrat\code\modules\vending\clothesmate.dm"
 #include "modular_skyrat\code\modules\vending\security.dm"
 #include "modular_skyrat\code\modules\vending\wardrobes.dm"
+#include "modular_skyrat\tools\Redirector\textprocs.dm"
 // END_INCLUDE
