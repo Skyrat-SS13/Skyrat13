@@ -274,7 +274,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 	. = ..()	//calls mob.Login()
 
-
 	if (byond_version >= 512)
 		if (!byond_build || byond_build < 1386)
 			message_admins("<span class='adminnotice'>[key_name(src)] has been detected as spoofing their byond version. Connection rejected.</span>")
@@ -376,7 +375,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		qdel(src)
 		return
 	//END OF SKYRAT CHANGE
-	
+
 	if(account_age >= 0 && account_age < nnpa)
 		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
 		if (CONFIG_GET(flag/irc_first_connection_alert))
