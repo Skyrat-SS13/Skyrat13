@@ -1,8 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Bubblegum has seemingly increased his power over lavaland, and seems to be summoning a new kind of minion... the lava imp."
-  - rscadd: "These imps seem to have magical capabilities even when their head is detached. These \"trophies\" can be attached to a crusher."
-  - soundadd: "Imp sounds... and for some reason a cyberdemon rocket sound. More infringio!"
-  - imageadd: "Imp icons"
-  - imageadd: "Imp trophy icon"
