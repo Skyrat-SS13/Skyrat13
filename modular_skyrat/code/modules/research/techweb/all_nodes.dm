@@ -27,4 +27,3 @@
 	prereq_ids = list("micro_bluespace", "bluespace_travel")
 	design_ids = list("telepad", "telesci_console")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
-	export_price = 10000
