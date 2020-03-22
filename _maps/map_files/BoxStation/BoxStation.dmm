@@ -718,8 +718,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
@@ -1167,8 +1166,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
@@ -4094,8 +4092,7 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/camera{
 	c_tag = "Brig Infirmary";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -4667,8 +4664,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Brig Central";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -4692,8 +4688,7 @@
 /area/security/brig)
 "aiK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -5096,8 +5091,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6522,8 +6516,7 @@
 /area/security/brig)
 "amU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -6679,7 +6672,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
 	name = "Evidence Storage";
-	req_access = null;
 	req_access_txt = "3"
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -6749,8 +6741,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -6836,8 +6827,7 @@
 	pixel_y = -36
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -7558,7 +7548,6 @@
 	normaldoorcontrol = 1;
 	pixel_x = -24;
 	pixel_y = -40;
-	req_access = null;
 	req_access_txt = "2"
 	},
 /obj/machinery/button/door{
@@ -7567,7 +7556,6 @@
 	normaldoorcontrol = 1;
 	pixel_x = -24;
 	pixel_y = -24;
-	req_access = null;
 	req_access_txt = "2"
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -8330,9 +8318,7 @@
 "ary" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/warden";
-	dir = 2;
 	name = "Brig Control APC";
-	pixel_x = 0;
 	pixel_y = -24
 	},
 /obj/machinery/button/door{
@@ -8340,7 +8326,6 @@
 	name = "Cell Shutters";
 	pixel_x = 6;
 	pixel_y = -40;
-	req_access = null;
 	req_access_txt = "2"
 	},
 /obj/machinery/button/door{
@@ -8398,8 +8383,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -8518,8 +8502,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -8586,8 +8569,7 @@
 /area/hallway/primary/fore)
 "asb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/machinery/camera{
 	c_tag = "Brig Evidence Storage";
@@ -8741,8 +8723,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -8760,7 +8741,6 @@
 	name = "Brig Control Shutters";
 	pixel_x = 6;
 	pixel_y = -40;
-	req_access = null;
 	req_access_txt = "2"
 	},
 /obj/machinery/button/door{
@@ -8811,8 +8791,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -33794,9 +33773,9 @@
 "bCG" = (
 /obj/structure/table,
 /obj/item/folder/white,
-/obj/item/gun/syringe,
 /obj/item/reagent_containers/dropper,
 /obj/item/soap/nanotrasen,
+/obj/item/gun/syringe/dart,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bCH" = (
@@ -35598,6 +35577,7 @@
 	pixel_y = 2
 	},
 /obj/item/clothing/neck/stethoscope,
+/obj/item/gun/syringe/dart,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bGT" = (
@@ -54452,6 +54432,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+<<<<<<< HEAD
+=======
+"eWL" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/preopen{
+	id = "Prison Gate";
+	name = "prison blast door"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/security/prison)
+"eXz" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/processing)
+>>>>>>> 043de9dcd2e... Removes the roundstart syringe guns on each map, replacing them with medidart guns. (#11560)
 "fcn" = (
 /obj/structure/lattice,
 /turf/closed/wall/r_wall,
@@ -54998,6 +54997,22 @@
 /obj/effect/landmark/carpspawn,
 /turf/open/space/basic,
 /area/space)
+<<<<<<< HEAD
+=======
+"gDP" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 28
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/obj/item/radio/intercom{
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel,
+/area/security/processing)
+>>>>>>> 043de9dcd2e... Removes the roundstart syringe guns on each map, replacing them with medidart guns. (#11560)
 "gIU" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -56649,6 +56664,28 @@
 /obj/item/coin/gold,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+<<<<<<< HEAD
+=======
+"lZn" = (
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "innerbrig";
+	name = "Brig Infirmary";
+	req_access_txt = "2"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/security/brig)
+"lZs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/fore)
+>>>>>>> 043de9dcd2e... Removes the roundstart syringe guns on each map, replacing them with medidart guns. (#11560)
 "lZK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -56736,8 +56773,7 @@
 /area/security/range)
 "mnQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -57114,11 +57150,26 @@
 	},
 /turf/open/floor/plating,
 /area/construction)
+<<<<<<< HEAD
 "nBM" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
 	id = "pod_lavaland3";
 	name = "lavaland"
+=======
+"nBI" = (
+/obj/item/cigbutt/cigarbutt,
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"nEj" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = 32
+>>>>>>> 043de9dcd2e... Removes the roundstart syringe guns on each map, replacing them with medidart guns. (#11560)
 	},
 /turf/open/space,
 /area/space)
@@ -57349,8 +57400,13 @@
 	name = "Firing Range";
 	req_access_txt = "2"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
+=======
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+>>>>>>> 043de9dcd2e... Removes the roundstart syringe guns on each map, replacing them with medidart guns. (#11560)
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
@@ -58166,6 +58222,34 @@
 	},
 /turf/closed/wall/r_wall,
 /area/science/circuit)
+<<<<<<< HEAD
+=======
+"rcI" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 1";
+	name = "Cell 1 Locker"
+	},
+/obj/item/radio/headset{
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys. It looks like it has been modified to not broadcast.";
+	name = "prisoner headset";
+	prison_radio = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+>>>>>>> 043de9dcd2e... Removes the roundstart syringe guns on each map, replacing them with medidart guns. (#11560)
 "rdG" = (
 /obj/machinery/hydroponics/constructable,
 /obj/item/radio/intercom{
@@ -60636,6 +60720,37 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+<<<<<<< HEAD
+=======
+"xUX" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/rack,
+/obj/item/storage/box/zipties{
+	pixel_x = -1;
+	pixel_y = 1
+	},
+/obj/item/storage/box/zipties{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"xWq" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = -32
+	},
+/turf/open/floor/plating,
+/area/security/processing)
+>>>>>>> 043de9dcd2e... Removes the roundstart syringe guns on each map, replacing them with medidart guns. (#11560)
 "xXi" = (
 /obj/machinery/vending/clothing,
 /turf/open/floor/plasteel,
