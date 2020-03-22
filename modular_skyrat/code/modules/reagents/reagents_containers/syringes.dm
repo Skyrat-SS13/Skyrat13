@@ -41,7 +41,7 @@
 						user.visible_message("[user] takes a blood sample from [L].")
 					else
 						to_chat(user, "<span class='warning'>You are unable to draw any blood from [L]!</span>")
-				else
+				else if(target != user && user.a_intent != INTENT_HARM)
 					if(iscarbon(target))
 						var/mob/living/carbon/C = target
 						C.visible_message("<span class='danger'>[user] stabbed [C] with \the [src]!</span>", \
@@ -104,14 +104,12 @@
 							return
 						L.visible_message("<span class='danger'>[user] injects [L] with the syringe!", \
 										"<span class='userdanger'>[user] injects [L] with the syringe!</span>")
-					else
+					else if(user.a_intent == INTENT_HARM)
 						if(iscarbon(target))
 							var/mob/living/carbon/C = target
 							C.visible_message("<span class='danger'>[user] stabs [L] with \the [src]!</span>", \
 													"<span class='userdanger'>[user] stabs [L] with the [src]!</span>")
 							C.apply_damage(damage = 5,damagetype = BRUTE, def_zone = C.get_bodypart(check_zone(user.zone_selected)), blocked = FALSE, forced = FALSE)
-							if(!C.can_inject(user,1))
-								return
 							if(!reagents.total_volume)
 								return
 							if(C.reagents.total_volume >= L.reagents.maximum_volume)
