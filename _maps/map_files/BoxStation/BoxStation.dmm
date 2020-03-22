@@ -12478,10 +12478,10 @@
 /obj/structure/sign/poster/official/random{
 	pixel_x = -32
 	},
-/obj/machinery/conveyor/inverted{
-	dir = 8
-	},
 /obj/structure/plasticflaps,
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aAv" = (
@@ -13015,10 +13015,12 @@
 /obj/effect/turf_decal/loading_area{
 	dir = 1
 	},
-/obj/machinery/conveyor/inverted,
 /obj/structure/window/reinforced{
 	dir = 4;
 	layer = 2.9
+	},
+/obj/machinery/conveyor/auto{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -55522,10 +55524,10 @@
 /turf/closed/wall,
 /area/science/circuit)
 "dxq" = (
-/obj/machinery/conveyor/inverted{
-	dir = 8
-	},
 /obj/structure/window/reinforced,
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "dys" = (
@@ -56463,8 +56465,10 @@
 /obj/structure/sign/poster/official/random{
 	pixel_x = -32
 	},
-/obj/machinery/conveyor/inverted,
 /obj/structure/plasticflaps,
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ghq" = (
@@ -56724,6 +56728,15 @@
 /obj/structure/table_frame/wood,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"gRr" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "gRZ" = (
 /obj/structure/bookcase{
 	name = "Forbidden Knowledge"
@@ -59104,6 +59117,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard/fore)
+"npc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "nqz" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -59640,12 +59659,12 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "oOS" = (
-/obj/machinery/conveyor/inverted{
-	dir = 4
-	},
 /obj/structure/window/reinforced{
 	dir = 1;
 	layer = 2.9
+	},
+/obj/machinery/conveyor/auto{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -60012,6 +60031,13 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/gravity_generator)
+"pQn" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "pQp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/spawner/structure/window/reinforced,
@@ -60045,6 +60071,11 @@
 	},
 /turf/open/space,
 /area/solar/starboard/aft)
+"pUl" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "pWM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -61722,8 +61753,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "uZq" = (
-/obj/machinery/door/airlock/public,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "vae" = (
@@ -62997,6 +63028,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"xVA" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "xVU" = (
 /obj/structure/chair/stool,
 /obj/machinery/camera,
@@ -88065,11 +88106,11 @@ asT
 aqG
 qed
 dxq
-aat
-aat
+gRr
+npc
 acd
-aat
-aUf
+npc
+xVA
 oOS
 acd
 wxI
@@ -88321,13 +88362,13 @@ aLJ
 aMH
 aQt
 gmK
-aQt
+pUl
 aQt
 aQt
 moJ
 aQt
 aUq
-aQt
+pQn
 aTq
 agN
 aeO
