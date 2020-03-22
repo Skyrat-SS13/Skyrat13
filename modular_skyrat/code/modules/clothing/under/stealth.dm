@@ -34,7 +34,7 @@
 	M.alpha = 255
 	activated = 0
 	for(var/datum/action/item_action/A in src)
-		A.Remove(user, src)
+		A.Remove(M, src)
 
 /obj/item/clothing/under/syndicate/stealthsuit/ui_action_click(mob/user, action)
 	if(isliving(user))
@@ -50,4 +50,3 @@
 				activated = !activated
 				M.remove_status_effect(effectapplied)
 				M.alpha = 255
-			return TRUE
