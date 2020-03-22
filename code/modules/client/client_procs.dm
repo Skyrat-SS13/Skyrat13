@@ -367,10 +367,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(CONFIG_GET(flag/use_account_age_for_jobs) && account_age >= 0)
 		player_age = account_age
 
-	//SKYRAT CHANGE - account age lock, don't confuse with player age, admins and special whitelisted people are exempt
-	if(!connecting_admin && CONFIG_GET(flag/age_lock) && account_age >= 0 && account_age < CONFIG_GET(number/age_lock_days) && !check_age_whitelist(ckey))
-		to_chat(src, "<span class='userdanger'>Your connection has been closed due to your account being [account_age]'s days old.</span>")
-		to_chat(src, "<span class='userdanger'>This is a protective measure to stop griefers from connecting to the server. If you're here to play for real - visit our discord and apply for a whitelist.</span>")
+	//SKYRAT CHANGE - account age lock, don't confuse with player age, admins and bunker passthrough allowed
+	if(!connecting_admin && CONFIG_GET(flag/age_lock) && account_age >= 0 && account_age < CONFIG_GET(number/age_lock_days) && !(ckey in GLOB.bunker_passthrough))
+		to_chat(src, "<span class='userdanger'>Hey! We have currently enabled safety measures and your connection has been dropped due to your accoutn being [account_age]'s days old.</span>")
+		to_chat(src, "<span class='userdanger'>Contact staff on our discord server if you wish to play.</span>")
 		message_admins("<span class='adminnotice'>[key_name(src)] logged in with their account being [account_age]'s days old. Connection rejected.</span>")
 		qdel(src)
 		return

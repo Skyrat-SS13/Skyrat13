@@ -1,4 +1,4 @@
-## Uncomment to prevent young accounts from connecting unless they're admins/whitelisted in age_lock_whitelist
+## Uncomment to prevent young accounts from connecting unless they're admins or allowed through bunker
 AGE_LOCK
 
 ## Required age in days if you enabled above
