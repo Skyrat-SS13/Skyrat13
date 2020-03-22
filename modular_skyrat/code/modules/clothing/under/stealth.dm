@@ -14,7 +14,9 @@
 /obj/item/clothing/under/syndicate/stealthsuit/equipped(mob/M, slot)
 	. = ..()
 	M.apply_status_effect(effectapplied)
+	M.alpha -= 100
 
 /obj/item/clothing/under/syndicate/stealthsuit/dropped(mob/M, slot)
 	. = ..()
 	M.remove_status_effect(effectapplied)
+	M.alpha = 255
