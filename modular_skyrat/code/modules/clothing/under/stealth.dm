@@ -12,14 +12,36 @@
 	alt_covers_chest = TRUE
 	can_adjust = FALSE
 	var/effectapplied = /datum/status_effect/stealthsuit
+	var/activated = FALSE
+	actions_types = list(/datum/action/item_action/activatestealth)
+
+/datum/action/item_action/activatestealth
+	name = "Activate"
+	desc = "Activate/deactivate your suit's stealth mode."
 
 /obj/item/clothing/under/syndicate/stealthsuit/equipped(mob/living/M, slot)
 	. = ..()
 	if(slot == SLOT_W_UNIFORM)
-		M.apply_status_effect(effectapplied)
-		M.alpha -= 100
+		if(activated)
+			M.apply_status_effect(effectapplied)
+			M.alpha -= 75
 
 /obj/item/clothing/under/syndicate/stealthsuit/dropped(mob/living/M, slot)
 	. = ..()
 	M.remove_status_effect(effectapplied)
 	M.alpha = 255
+	activated = 0
+
+/obj/item/clothing/under/syndicate/stealthsuit/ui_action_click(mob/user, action)
+	if(istype(action, /datum/action/item_action/activatestealth))
+		if(!activated)
+			to_chat(user, "<span class='warning'>Stealth module activated.</span>")
+			activated = !activated
+			M.apply_status_effect(effectapplied)
+			M.alpha -= 75
+		if(activated)
+			to_chat(user, "<span class='warning'>Stealth module deactivated.</span>")
+			activated = !activated
+			M.remove_status_effect(effectapplied)
+			M.alpha = 255
+		return TRUE
