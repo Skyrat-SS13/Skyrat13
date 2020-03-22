@@ -24,6 +24,6 @@
 	id = "advanced_bluetravel"
 	display_name = "Advanced Bluespace Travel"
 	description = "Using superior knowledge of bluespace, you can develop more finely-controlled teleportation equipment."
-	prereq_ids = list("bluespace_travel")
+	prereq_ids = list("bluespace_warping")
 	design_ids = list("telepad", "telesci_console")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
