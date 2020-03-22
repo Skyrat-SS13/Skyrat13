@@ -26,7 +26,7 @@
 			M.apply_status_effect(effectapplied)
 			M.alpha -= 75
 		for(var/datum/action/item_action/A in src)
-			A.Grant(user, src)
+			A.Grant(M, src)
 
 /obj/item/clothing/under/syndicate/stealthsuit/dropped(mob/living/M, slot)
 	. = ..()
@@ -34,9 +34,9 @@
 	M.alpha = 255
 	activated = 0
 	for(var/datum/action/item_action/A in src)
-		A.Remove(user, src)
+		A.Remove(M, src)
 
-/obj/item/clothing/under/syndicate/stealthsuit/ui_action_click(mob/user, action)
+/obj/item/clothing/under/syndicate/stealthsuit/ui_action_click(mob/living/user, action)
 	if(istype(action, /datum/action/item_action/activatestealth))
 		if(!activated)
 			to_chat(user, "<span class='warning'>Stealth module activated.</span>")
