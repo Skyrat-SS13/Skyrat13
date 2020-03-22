@@ -14,3 +14,8 @@
 	name = "Tacticool Skirtleneck"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/syndicate/tacticool/skirt
+
+/datum/gear/uniform/skirt/job/blueshield
+	display_name = "skirt, blueshield"
+	path = /obj/item/clothing/under/rank/blueshield/skirt
+	allowed_roles = list("Blueshield")
