@@ -18,13 +18,13 @@
 			var/nword3 = "n'wah"
 			var/nword4 = "nations"
 			for(nword1 in nlist)
-					N.ntimessaid++
+				N.ntimessaid++
 			for(nword2 in nlist)
-					N.ntimessaid++
+				N.ntimessaid++
 			for(nword3 in nlist)
-					N.ntimessaid += 2
+				N.ntimessaid += 2
 			for(nword4 in nlist)
-					N.ntimessaid += 10
+				N.ntimessaid += 10
 	//END OF SKYRAT EDIT
 	if(message)
 		say(message)
