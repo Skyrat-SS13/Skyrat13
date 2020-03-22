@@ -46,6 +46,7 @@
 						var/mob/living/carbon/C = target
 						C.visible_message("<span class='danger'>[user] stabbed [C] with \the [src]!</span>", \
 										"<span class='userdanger'>[user] has stabbed [C] with \the [src]!</span>")
+						busy = TRUE
 						C.apply_damage(damage = 5,damagetype = BRUTE, def_zone = C.get_bodypart(check_zone(user.zone_selected)), blocked = FALSE, forced = FALSE)
 						if(reagents.total_volume >= reagents.maximum_volume)
 							return
@@ -126,3 +127,4 @@
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()
+			busy = FALSE
