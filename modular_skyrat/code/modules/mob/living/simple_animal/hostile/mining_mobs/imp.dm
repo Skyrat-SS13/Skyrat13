@@ -9,7 +9,7 @@
 	icon_dead = "imp_dead"
 	icon_gib = "syndicate_gib"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	move_to_delay = 2
+	move_to_delay = 3
 	projectiletype = /obj/item/projectile/magic/aoe/impfireball
 	projectilesound = 'modular_skyrat/sound/misc/imp.wav'
 	ranged = 1
@@ -17,7 +17,7 @@
 	ranged_cooldown_time = 35
 	throw_message = "does nothing against the hardened skin of"
 	vision_range = 5
-	speed = -1
+	speed = 0
 	maxHealth = 150
 	health = 150
 	harm_intent_damage = 15
