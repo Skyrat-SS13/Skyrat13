@@ -15,8 +15,9 @@
 
 /obj/item/clothing/under/syndicate/stealthsuit/equipped(mob/living/M, slot)
 	. = ..()
-	M.apply_status_effect(effectapplied)
-	M.alpha -= 100
+	if(slot == SLOT_W_UNIFORM)
+		M.apply_status_effect(effectapplied)
+		M.alpha -= 100
 
 /obj/item/clothing/under/syndicate/stealthsuit/dropped(mob/living/M, slot)
 	. = ..()
