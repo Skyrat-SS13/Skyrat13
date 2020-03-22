@@ -37,7 +37,10 @@
 						return
 					if(reagents.total_volume >= reagents.maximum_volume)
 						return
-				busy = FALSE
+					if(L.transfer_blood_to(src, drawn_amount))
+						user.visible_message("[user] takes a blood sample from [L].")
+					else
+						to_chat(user, "<span class='warning'>You are unable to draw any blood from [L]!</span>")
 				else
 					if(iscarbon(target))
 						var/mob/living/carbon/C = target
@@ -48,10 +51,10 @@
 							return
 						if(!CALLBACK(L, /mob/living/proc/can_inject,user,1))
 							return
-				if(L.transfer_blood_to(src, drawn_amount))
-					user.visible_message("[user] forcefully takes a blood sample from [L].")
-				else
-					to_chat(user, "<span class='warning'>You are unable to draw any blood from [L]!</span>")
+						if(C.transfer_blood_to(src, drawn_amount))
+							user.visible_message("[user] forcefully takes a blood sample from [L].")
+						else
+							to_chat(user, "<span class='warning'>You are unable to draw any blood from [L]!</span>")
 
 			else //if not mob
 				if(!target.reagents.total_volume)
