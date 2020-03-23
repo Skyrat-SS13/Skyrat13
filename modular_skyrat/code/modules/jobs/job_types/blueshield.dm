@@ -1,5 +1,5 @@
 /datum/job/blueshield
-	title = "Brig Physician"
+	title = "Blueshield"
 	flag = OFFICER
 	department_head = list("Captain")
 	department_flag = ENGSEC
