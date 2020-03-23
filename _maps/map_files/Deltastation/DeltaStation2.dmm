@@ -112811,6 +112811,8 @@
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/item/clothing/mask/breath/medical,
+/obj/item/tank/internals/anesthetic,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "dIS" = (
