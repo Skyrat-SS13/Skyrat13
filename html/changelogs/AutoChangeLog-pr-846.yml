@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Fixed PANDEMIC ntos crashing with certain disease symptoms"
