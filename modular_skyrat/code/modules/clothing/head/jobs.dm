@@ -17,7 +17,7 @@
 /obj/item/clothing/head/beret/blueshield/navy
 	name = "navy blueshield's beret"
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	alternate_worn_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
+	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/head_muzzled.dmi'
 	icon_state = "blueshield_navy"
-	item_state = "bluesheild_navy"
+	item_state = "blueshield_navy"
