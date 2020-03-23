@@ -9,7 +9,7 @@
 	supervisors = "the Captain"
 	selection_color = "#ddddff"
 	minimal_player_age = 7
-	exp_requirements = 200 //SKYRAT CHANGE - can't have inexperience players defending a head.
+	exp_requirements = 2160 /// You literally gotta play security for a total of 1.5 days in hours
 	exp_type = EXP_TYPE_SECURITY
 
 	outfit = /datum/outfit/job/blueshield
