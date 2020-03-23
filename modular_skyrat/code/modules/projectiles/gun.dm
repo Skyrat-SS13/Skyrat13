@@ -1,15 +1,15 @@
 /obj/item/gun
-	grabtext = "user grabs \the [src]!"
+	grabtext = "user grabs the src!"
 
 /obj/item/gun/getinaccuracy(mob/living/user)
 	if(!iscarbon(user))
 		return FALSE
 	else
 		var/mob/living/carbon/holdingdude = user
-		if(HAS_TRAIT(holdingdude, TRAIT_VATS)) // better than the texas ranger
+		if(istype(holdingdude) && HAS_TRAIT(holdingdude, TRAIT_VATS)) // better than the texas ranger
 			return 0
-		if(istype(holdingdude) && holdingdude.combatmode)
-			return (max((holdingdude.lastdirchange + weapon_weight * 25) - world.time,0) * inaccuracy_modifier)
+		else if(istype(holdingdude) && (holdingdude.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE))
+			return 0
 		else
 			return ((weapon_weight * 25) * inaccuracy_modifier)
 
