@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - code_imp: "Power sink objective processing now makes sense."
