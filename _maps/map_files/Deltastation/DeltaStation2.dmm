@@ -184,10 +184,116 @@
 /obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aaw" = (
+/turf/closed/wall,
+/area/blueshield)
+"aax" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/detectives_office";
+	dir = 4;
+	name = "Detective's Office APC";
+	pixel_x = 24
+	},
+/turf/closed/wall,
+/area/blueshield)
+"aay" = (
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaz" = (
+/obj/structure/closet/secure_closet/blueshield,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaA" = (
+/obj/machinery/computer/med_data,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaB" = (
+/obj/machinery/computer/secure_data,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaC" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/evidence,
+/obj/item/hand_labeler{
+	pixel_x = 5
+	},
+/obj/item/taperecorder,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaD" = (
+/obj/machinery/button/door{
+	id = "kanyewest";
+	name = "Privacy Shutters";
+	pixel_y = 24
+	},
+/obj/structure/rack,
+/obj/item/storage/briefcase,
+/obj/item/gun/energy/gun/blueshield/pdw9,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "aaE" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/starboard/fore)
+"aaF" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaG" = (
+/turf/open/floor/carpet,
+/area/blueshield)
+"aaH" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 2
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaI" = (
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/obj/machinery/camera{
+	c_tag = "Detective's Office"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaJ" = (
+/obj/machinery/light_switch{
+	pixel_x = 27
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaK" = (
+/obj/item/storage/secure/safe{
+	pixel_x = -23
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaL" = (
+/obj/structure/chair/comfy/brown,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/landmark/start/blueshield,
+/turf/open/floor/carpet,
+/area/blueshield)
+"aaM" = (
+/obj/structure/table/wood,
+/obj/item/camera/detective,
+/turf/open/floor/carpet,
+/area/blueshield)
+"aaN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "aaO" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -195,9 +301,104 @@
 "aaP" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/hallway/secondary/entry)
+"aaQ" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 3
+	},
+/obj/item/lighter,
+/obj/item/restraints/handcuffs,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/item/storage/firstaid/tactical/blueshield,
+/turf/open/floor/carpet,
+/area/blueshield)
+"aaR" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/security/wooden_tv,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/blueshield)
 "aaS" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/construction/mining/aux_base)
+"aaT" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/cigarettes,
+/obj/item/clothing/glasses/sunglasses,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/carpet,
+/area/blueshield)
+"aaU" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/carpet,
+/area/blueshield)
+"aaV" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/turf/closed/wall,
+/area/blueshield)
+"aaW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaX" = (
+/obj/structure/sign/poster/official/cohiba_robusto_ad{
+	pixel_y = -32
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaZ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/have_a_puff{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aba" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"abb" = (
+/obj/structure/sign/poster/contraband/smoke{
+	desc = "This poster reminds us all that the Detective is a parasite. Year after year, they must get replacement lungs because of their addiction. ";
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"abc" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"abd" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall,
+/area/blueshield)
 "abe" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/stripes/end{
@@ -208,6 +409,14 @@
 "abf" = (
 /turf/closed/wall,
 /area/hallway/secondary/entry)
+"abg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/closed/wall,
+/area/blueshield)
+"abh" = (
+/obj/machinery/door/airlock/command,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "abi" = (
 /turf/closed/wall,
 /area/construction/mining/aux_base)
@@ -215,6 +424,16 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/space/nearstation)
+"abk" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Gear Room";
+	req_access_txt = "63"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"abl" = (
+/turf/open/floor/plasteel,
+/area/security/brig)
 "abp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -56815,13 +57034,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"bTl" = (
-/obj/machinery/camera/motion{
-	c_tag = "Armoury - Exterior";
-	dir = 4
-	},
-/turf/open/space,
-/area/space/nearstation)
 "bTm" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -182074,7 +182286,7 @@ bLs
 bLs
 bLs
 bgZ
-bZN
+abk
 bgZ
 bgZ
 aaa
@@ -182324,15 +182536,15 @@ aad
 aad
 aad
 aad
-bTl
-aad
-aaa
-aaa
-aad
-aaa
-aaa
-aad
-aaa
+aaw
+aaw
+aaw
+aaw
+aaw
+aaV
+abd
+abl
+bgZ
 aaa
 aaa
 aad
@@ -182581,15 +182793,15 @@ aad
 ajr
 ajr
 ajr
-ajr
-aad
-ajr
-ajr
-ajr
-ajr
-ajr
-aad
-ajr
+aax
+aay
+aaF
+aaK
+aaN
+aaW
+abg
+abl
+bgZ
 ajr
 aad
 aad
@@ -182838,15 +183050,15 @@ aad
 aad
 aaa
 aad
-aad
-aaa
-aad
-aaa
-aad
-aaa
-aaa
-aad
-aaa
+aaw
+aaz
+aaG
+aaG
+aaQ
+aaX
+aaw
+abl
+bgZ
 aaa
 aaa
 aad
@@ -183095,15 +183307,15 @@ aad
 aad
 aad
 ajr
-ajr
-ajr
-ajr
-aad
-aad
-aad
-ajr
-ajr
-ajr
+aaw
+aaA
+aaG
+aaG
+aaR
+aaY
+abh
+abl
+bgZ
 ajr
 aad
 ajr
@@ -183352,15 +183564,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aaw
+aaB
+aaH
+aaL
+aaT
+aaZ
+aaw
+bgZ
+bgZ
 aaa
 aaa
 aaa
@@ -183609,13 +183821,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aaw
+aaw
+aaI
+aaM
+aaU
+aba
+aaw
 aaa
 aaa
 aaa
@@ -183866,13 +184078,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aaw
+aaC
+aay
+aaG
+aaG
+abb
+aaw
 aaa
 aaa
 aaa
@@ -184123,13 +184335,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aaw
+aaD
+aaJ
+aay
+aay
+abc
+aaw
 aaa
 aaa
 aaa
@@ -184380,13 +184592,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aaw
+aaw
+aaw
+aaw
+aaw
+aaw
+aaw
 aaa
 aaa
 aaa

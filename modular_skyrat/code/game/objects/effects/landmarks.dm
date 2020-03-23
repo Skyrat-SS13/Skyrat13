@@ -13,3 +13,7 @@
 /obj/effect/landmark/start/brig_physician
 	name = "Brig Physician"
 	icon_state = "Medical Doctor"
+
+/obj/effect/landmark/start/blueshield
+	name = "Blueshield"
+	icon_state = "Security Officer"

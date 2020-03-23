@@ -220,6 +220,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aaF" = (
+/turf/closed/wall,
+/area/blueshield)
 "aaG" = (
 /obj/machinery/hydroponics/constructable,
 /obj/item/seeds/ambrosia,
@@ -318,6 +321,35 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aaU" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/detectives_office";
+	dir = 4;
+	name = "Detective's Office APC";
+	pixel_x = 24
+	},
+/turf/closed/wall,
+/area/blueshield)
+"aaV" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaW" = (
+/obj/structure/closet/secure_closet/blueshield,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaX" = (
+/obj/machinery/computer/med_data,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "aaY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -352,6 +384,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/security/prison)
+"abd" = (
+/obj/machinery/computer/secure_data,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "abe" = (
 /turf/closed/wall,
 /area/security/prison)
@@ -406,6 +442,15 @@
 /obj/item/canvas/twentythreeXtwentythree,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"abk" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/evidence,
+/obj/item/hand_labeler{
+	pixel_x = 5
+	},
+/obj/item/taperecorder,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "abl" = (
 /obj/structure/table,
 /obj/machinery/computer/libraryconsole/bookmanagement,
@@ -475,6 +520,17 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
+"abt" = (
+/obj/machinery/button/door{
+	id = "kanyewest";
+	name = "Privacy Shutters";
+	pixel_y = 24
+	},
+/obj/structure/rack,
+/obj/item/storage/briefcase,
+/obj/item/gun/energy/gun/blueshield/pdw9,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "abu" = (
 /obj/docking_port/stationary{
 	dwidth = 1;
@@ -551,6 +607,15 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"abE" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "abF" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -572,6 +637,9 @@
 /obj/item/toy/cards/deck,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"abH" = (
+/turf/open/floor/carpet,
+/area/blueshield)
 "abI" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -753,6 +821,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"acd" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 2
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "ace" = (
 /obj/machinery/vending/sustenance{
 	desc = "A vending machine normally reserved for work camps.";
@@ -837,6 +911,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
+"acp" = (
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/obj/machinery/camera{
+	c_tag = "Detective's Office"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "acq" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
@@ -1403,12 +1486,23 @@
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "adj" = (
-/obj/structure/closet/emcloset,
-/obj/machinery/light/small{
-	dir = 8
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"adk" = (
+/obj/machinery/light_switch{
+	pixel_x = 27
 	},
-/turf/open/floor/plating,
-/area/crew_quarters/fitness/recreation)
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"adl" = (
+/obj/item/storage/secure/safe{
+	pixel_x = -23
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "adm" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
@@ -1455,6 +1549,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall/r_wall,
 /area/security/execution/education)
+"ads" = (
+/obj/structure/chair/comfy/brown,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/landmark/start/blueshield,
+/turf/open/floor/carpet,
+/area/blueshield)
 "adt" = (
 /obj/structure/chair/stool,
 /obj/machinery/light/small{
@@ -1469,6 +1569,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"adu" = (
+/obj/structure/table/wood,
+/obj/item/camera/detective,
+/turf/open/floor/carpet,
+/area/blueshield)
 "adv" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1492,6 +1597,15 @@
 	icon_state = "platingdmg2"
 	},
 /area/security/prison)
+"adx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "ady" = (
 /obj/structure/chair/stool,
 /obj/machinery/light/small{
@@ -1565,6 +1679,27 @@
 	},
 /turf/open/space,
 /area/space/nearstation)
+"adH" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 3
+	},
+/obj/item/lighter,
+/obj/item/restraints/handcuffs,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/item/storage/firstaid/tactical/blueshield,
+/turf/open/floor/carpet,
+/area/blueshield)
+"adI" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/security/wooden_tv,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/blueshield)
 "adJ" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -1774,9 +1909,14 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "aed" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/crew_quarters/fitness/recreation)
+/obj/structure/table/wood,
+/obj/item/storage/fancy/cigarettes,
+/obj/item/clothing/glasses/sunglasses,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/carpet,
+/area/blueshield)
 "aee" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -2008,11 +2148,10 @@
 /turf/open/floor/plating,
 /area/security/range)
 "aeA" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Three"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/fitness/recreation)
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/carpet,
+/area/blueshield)
 "aeB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -2026,6 +2165,12 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
+"aeD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/turf/closed/wall,
+/area/blueshield)
 "aeE" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -2847,6 +2992,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"afQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "afR" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
@@ -4050,6 +4205,15 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/fore)
+"ahT" = (
+/obj/structure/sign/poster/official/cohiba_robusto_ad{
+	pixel_y = -32
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "ahU" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/table,
@@ -4566,6 +4730,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
+"aiT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "aiU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/turf_decal/tile/neutral{
@@ -4586,6 +4756,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
+"aiW" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/have_a_puff{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "aiX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
@@ -4687,6 +4866,10 @@
 /obj/item/restraints/handcuffs/cable/pink,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"ajk" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "ajl" = (
 /obj/item/soap/deluxe,
 /obj/item/storage/secure/safe{
@@ -4815,6 +4998,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
+"aju" = (
+/obj/structure/sign/poster/contraband/smoke{
+	desc = "This poster reminds us all that the Detective is a parasite. Year after year, they must get replacement lungs because of their addiction. ";
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "ajv" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -6676,6 +6866,14 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"amv" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "amw" = (
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/eastright{
@@ -6712,6 +6910,10 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
+"amB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall,
+/area/blueshield)
 "amC" = (
 /obj/structure/chair{
 	dir = 4
@@ -6729,6 +6931,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall,
 /area/crew_quarters/fitness/recreation)
+"amF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/closed/wall,
+/area/blueshield)
 "amG" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -6882,6 +7091,10 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/port)
+"amV" = (
+/obj/machinery/door/airlock/command,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "amW" = (
 /obj/structure/table/reinforced,
 /obj/item/folder,
@@ -30707,14 +30920,6 @@
 "bif" = (
 /turf/open/floor/plating,
 /area/engine/break_room)
-"bii" = (
-/obj/docking_port/stationary/random{
-	dir = 4;
-	id = "pod_lavaland3";
-	name = "lavaland"
-	},
-/turf/open/space,
-/area/space/nearstation)
 "bik" = (
 /obj/machinery/light/small,
 /obj/machinery/camera{
@@ -81931,9 +82136,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"jwW" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/crew_quarters/fitness/recreation)
 "jyv" = (
 /obj/structure/table/reinforced,
 /obj/item/stock_parts/cell/high,
@@ -82728,9 +82930,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/circuit)
-"sdw" = (
-/turf/open/space/basic,
-/area/space/nearstation)
 "siF" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -119838,13 +120037,13 @@ oRp
 oRp
 oRp
 oRp
-aaa
-aaf
-aai
-fpY
-fpY
-fpY
-fpY
+aaF
+aaF
+aaF
+aaF
+aaF
+aeD
+amB
 fpY
 afy
 agx
@@ -120095,13 +120294,13 @@ oRp
 oRp
 oRp
 oRp
-aaa
-aaf
-aaa
-aaa
-aaa
-sdw
-aaa
+aaU
+aaV
+abE
+adl
+adx
+afQ
+amF
 acP
 acP
 agy
@@ -120352,13 +120551,13 @@ oRp
 oRp
 oRp
 oRp
-aaa
-aaf
-aaa
-acP
-acP
-acQ
-acP
+aaF
+aaW
+abH
+abH
+adH
+ahT
+aaF
 acP
 afz
 agz
@@ -120609,14 +120808,14 @@ oRp
 oRp
 oRp
 oRp
-aaa
-aaf
-aaf
-acQ
-adj
+aaF
+aaX
+abH
+abH
+adI
+aiT
+amV
 adE
-aed
-aeA
 afA
 agz
 ahm
@@ -120866,13 +121065,13 @@ oRp
 oRp
 oRp
 oRp
-aaa
-aaf
-aaa
-acP
-wOY
-adF
-wOY
+aaF
+abd
+acd
+ads
+aed
+aiW
+aaF
 acP
 afB
 agz
@@ -121123,13 +121322,13 @@ oRp
 oRp
 oRp
 oRp
-aaa
-aaf
-aaa
-acP
-aaa
-aaa
-aaa
+aaF
+aaF
+acp
+adu
+aeA
+ajk
+aaF
 aeB
 afC
 afC
@@ -121380,13 +121579,13 @@ oRp
 oRp
 oRp
 oRp
-aaa
-aaf
-aaa
-jwW
-aaa
-aaa
-aaa
+aaF
+abk
+adj
+abH
+abH
+aju
+aaF
 aeC
 afD
 afD
@@ -121637,13 +121836,13 @@ oRp
 oRp
 oRp
 oRp
-aaa
-aai
-aaa
-aaa
-aaa
-aaa
-aaa
+aaF
+abt
+adk
+adj
+adj
+amv
+aaF
 aeC
 afD
 afD
@@ -121894,13 +122093,13 @@ oRp
 oRp
 oRp
 oRp
-aaa
-aag
-aaa
-aaa
-aaa
-bii
-aaa
+aaF
+aaF
+aaF
+aaF
+aaF
+aaF
+aaF
 aeC
 afD
 afD

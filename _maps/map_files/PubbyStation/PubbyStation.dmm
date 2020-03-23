@@ -68,6 +68,244 @@
 /obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
+"aah" = (
+/turf/closed/wall,
+/area/blueshield)
+"aai" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/detectives_office";
+	dir = 4;
+	name = "Detective's Office APC";
+	pixel_x = 24
+	},
+/turf/closed/wall,
+/area/blueshield)
+"aaj" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aak" = (
+/obj/structure/closet/secure_closet/blueshield,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aal" = (
+/obj/machinery/computer/med_data,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aam" = (
+/obj/machinery/computer/secure_data,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aan" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/evidence,
+/obj/item/hand_labeler{
+	pixel_x = 5
+	},
+/obj/item/taperecorder,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aao" = (
+/obj/machinery/button/door{
+	id = "kanyewest";
+	name = "Privacy Shutters";
+	pixel_y = 24
+	},
+/obj/structure/rack,
+/obj/item/storage/briefcase,
+/obj/item/gun/energy/gun/blueshield/pdw9,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aap" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaq" = (
+/turf/open/floor/carpet,
+/area/blueshield)
+"aar" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 2
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aas" = (
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/obj/machinery/camera{
+	c_tag = "Detective's Office"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aat" = (
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aau" = (
+/obj/machinery/light_switch{
+	pixel_x = 27
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aav" = (
+/obj/item/storage/secure/safe{
+	pixel_x = -23
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaw" = (
+/obj/structure/chair/comfy/brown,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/landmark/start/blueshield,
+/turf/open/floor/carpet,
+/area/blueshield)
+"aax" = (
+/obj/structure/table/wood,
+/obj/item/camera/detective,
+/turf/open/floor/carpet,
+/area/blueshield)
+"aay" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaz" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 3
+	},
+/obj/item/lighter,
+/obj/item/restraints/handcuffs,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/item/storage/firstaid/tactical/blueshield,
+/turf/open/floor/carpet,
+/area/blueshield)
+"aaA" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/security/wooden_tv,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/blueshield)
+"aaB" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/cigarettes,
+/obj/item/clothing/glasses/sunglasses,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/carpet,
+/area/blueshield)
+"aaC" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/carpet,
+/area/blueshield)
+"aaD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/turf/closed/wall,
+/area/blueshield)
+"aaE" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaF" = (
+/obj/structure/sign/poster/official/cohiba_robusto_ad{
+	pixel_y = -32
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaG" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaH" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/have_a_puff{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaI" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaJ" = (
+/obj/structure/sign/poster/contraband/smoke{
+	desc = "This poster reminds us all that the Detective is a parasite. Year after year, they must get replacement lungs because of their addiction. ";
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaK" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaL" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall,
+/area/blueshield)
+"aaM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/closed/wall,
+/area/blueshield)
+"aaN" = (
+/obj/machinery/door/airlock/command,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"aaO" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
+"aaP" = (
+/obj/machinery/vending/wardrobe/sec_wardrobe,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "abf" = (
 /obj/structure/bed,
 /turf/open/floor/plating,
@@ -49027,11 +49265,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/space/basic,
 /area/ai_monitored/turret_protected/AIsatextAS)
-"cnJ" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/vending/wardrobe/sec_wardrobe,
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/main)
 "cnN" = (
 /obj/structure/closet/secure_closet/security/sec,
 /obj/machinery/camera{
@@ -85141,13 +85374,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aah
+aah
+aah
+aah
+aah
+aaD
+aaL
 aaa
 aby
 abI
@@ -85398,13 +85631,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aai
+aaj
+aap
+aav
+aay
+aaE
+aaM
 aaa
 aby
 abI
@@ -85655,13 +85888,13 @@ rmC
 rmC
 rmC
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aby
-abI
+aah
+aak
+aaq
+aaq
+aaz
+aaF
+aah
 agP
 agQ
 agQ
@@ -85912,15 +86145,15 @@ rmC
 rmC
 rmC
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aby
-aaa
-agP
-cnJ
+aah
+aal
+aaq
+aaq
+aaA
+aaG
+aaN
+ahq
+aaO
 ahq
 ahq
 ahM
@@ -86169,13 +86402,13 @@ rmC
 rmC
 rmC
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aby
-aaa
+aah
+aam
+aar
+aaw
+aaB
+aaH
+aah
 agQ
 ahd
 ahq
@@ -86426,13 +86659,13 @@ rmC
 rmC
 rmC
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aby
-aaa
+aah
+aah
+aas
+aax
+aaC
+aaI
+aah
 agQ
 ahd
 ahq
@@ -86683,17 +86916,17 @@ rmC
 rmC
 rmC
 aaa
-aaa
-aaa
-aaa
-aaa
-afJ
-aby
-aaa
+aah
+aan
+aat
+aaq
+aaq
+aaJ
+aah
 agQ
 ahd
 ahq
-ahq
+aaP
 ahq
 ahd
 agP
@@ -86940,13 +87173,13 @@ rmC
 rmC
 rmC
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aby
-abI
+aah
+aao
+aau
+aat
+aat
+aaK
+aah
 agP
 cnN
 ahq
@@ -87197,13 +87430,13 @@ rmC
 rmC
 rmC
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aby
-aaa
+aah
+aah
+aah
+aah
+aah
+aah
+aah
 agQ
 ahd
 ahq

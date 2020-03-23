@@ -972,12 +972,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "acw" = (
-/obj/structure/sign/warning/securearea{
-	pixel_y = -32
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors/explored)
+/turf/closed/wall,
+/area/blueshield)
 "acx" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2456,6 +2452,22 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors/unexplored/danger)
+"afq" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/detectives_office";
+	dir = 4;
+	name = "Detective's Office APC";
+	pixel_x = 24
+	},
+/turf/closed/wall,
+/area/blueshield)
+"afr" = (
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"afs" = (
+/obj/structure/closet/secure_closet/blueshield,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "aft" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
@@ -2766,6 +2778,16 @@
 /obj/machinery/atmospherics/pipe/manifold4w/general/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"age" = (
+/obj/machinery/computer/med_data,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "agf" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal,
@@ -2915,6 +2937,10 @@
 /obj/machinery/suit_storage_unit/security,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
+"agv" = (
+/obj/machinery/computer/secure_data,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "agw" = (
 /obj/structure/table,
 /obj/machinery/syndicatebomb/training,
@@ -3044,6 +3070,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"agH" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/evidence,
+/obj/item/hand_labeler{
+	pixel_x = 5
+	},
+/obj/item/taperecorder,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "agI" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
@@ -3173,6 +3208,17 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/warden)
+"agX" = (
+/obj/machinery/button/door{
+	id = "kanyewest";
+	name = "Privacy Shutters";
+	pixel_y = 24
+	},
+/obj/structure/rack,
+/obj/item/storage/briefcase,
+/obj/item/gun/energy/gun/blueshield/pdw9,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "agY" = (
 /obj/structure/table,
 /obj/item/storage/fancy/donut_box,
@@ -3413,6 +3459,12 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
+"ahw" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "ahx" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4558,6 +4610,9 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"ajC" = (
+/turf/open/floor/carpet,
+/area/blueshield)
 "ajD" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4766,6 +4821,21 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
+"ajX" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 2
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"ajY" = (
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/obj/machinery/camera{
+	c_tag = "Detective's Office"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "ajZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
@@ -5049,6 +5119,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/courtroom)
+"akz" = (
+/obj/machinery/light_switch{
+	pixel_x = 27
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "akA" = (
 /obj/structure/chair{
 	dir = 8;
@@ -5069,6 +5145,29 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
+"akC" = (
+/obj/item/storage/secure/safe{
+	pixel_x = -23
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"akD" = (
+/obj/structure/chair/comfy/brown,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/landmark/start/blueshield,
+/turf/open/floor/carpet,
+/area/blueshield)
+"akE" = (
+/obj/structure/table/wood,
+/obj/item/camera/detective,
+/turf/open/floor/carpet,
+/area/blueshield)
+"akF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "akG" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -5300,6 +5399,19 @@
 	},
 /turf/open/floor/plating,
 /area/security/brig)
+"akZ" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = 3
+	},
+/obj/item/lighter,
+/obj/item/restraints/handcuffs,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/item/storage/firstaid/tactical/blueshield,
+/turf/open/floor/carpet,
+/area/blueshield)
 "ala" = (
 /obj/machinery/door/window/brigdoor/security/cell{
 	desc = "A rare fourth cell, known for faulty wiring...";
@@ -5365,6 +5477,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/courtroom)
+"alf" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/security/wooden_tv,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/blueshield)
+"alg" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/cigarettes,
+/obj/item/clothing/glasses/sunglasses,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/carpet,
+/area/blueshield)
 "alh" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -5382,12 +5511,30 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"alj" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/carpet,
+/area/blueshield)
 "alk" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"all" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/turf/closed/wall,
+/area/blueshield)
+"alm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "aln" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -5399,6 +5546,15 @@
 	},
 /turf/open/floor/plating,
 /area/security/processing)
+"alo" = (
+/obj/structure/sign/poster/official/cohiba_robusto_ad{
+	pixel_y = -32
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "alp" = (
 /turf/open/floor/plating,
 /area/security/processing)
@@ -5466,6 +5622,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"alx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "aly" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -5529,6 +5691,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/security/courtroom)
+"alE" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/have_a_puff{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "alF" = (
 /obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/plating,
@@ -5601,6 +5772,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"alM" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"alN" = (
+/obj/structure/sign/poster/contraband/smoke{
+	desc = "This poster reminds us all that the Detective is a parasite. Year after year, they must get replacement lungs because of their addiction. ";
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "alO" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -5655,6 +5837,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"alY" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
+"alZ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall,
+/area/blueshield)
 "ama" = (
 /mob/living/simple_animal/sloth/paperwork,
 /turf/open/floor/plasteel,
@@ -5746,6 +5940,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"amm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/closed/wall,
+/area/blueshield)
 "amn" = (
 /obj/structure/chair/office/dark,
 /obj/structure/cable{
@@ -5767,6 +5965,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"amq" = (
+/obj/machinery/door/airlock/command,
+/turf/open/floor/plasteel/grimy,
+/area/blueshield)
 "amr" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -92612,13 +92814,13 @@ qMO
 qMO
 qMO
 aoV
-aoV
-aoV
-aoV
-aoV
-aoV
-aoV
-aaf
+acw
+acw
+acw
+acw
+acw
+all
+alZ
 aoV
 aaf
 abo
@@ -92869,13 +93071,13 @@ qMO
 qMO
 qMO
 aaf
-aaf
-aag
-aag
-aag
-aag
-aaf
-aaf
+afq
+afr
+ahw
+akC
+akF
+alm
+amm
 aaf
 aaf
 abo
@@ -93126,12 +93328,12 @@ qMO
 qMO
 qMO
 aoV
-aoV
-aoV
-aoV
-aoV
-aoV
-aoV
+acw
+afs
+ajC
+ajC
+akZ
+alo
 acw
 abp
 abp
@@ -93383,13 +93585,13 @@ qMO
 qMO
 qMO
 aoV
-aoV
-aoV
-aoV
-aoV
-aoV
-aaf
-aag
+acw
+age
+ajC
+ajC
+alf
+alx
+amq
 acU
 adr
 sXy
@@ -93640,13 +93842,13 @@ qMO
 qMO
 qMO
 aoV
-aoV
-aoV
-aoV
-aoV
-aoV
-aoV
-aag
+acw
+agv
+ajX
+akD
+alg
+alE
+acw
 abp
 abp
 abp
@@ -93897,13 +94099,13 @@ qMO
 qMO
 qMO
 aaf
-aaf
-aag
-aag
-aag
-aag
-aaf
-aaf
+acw
+acw
+ajY
+akE
+alj
+alM
+acw
 aaf
 aaf
 abp
@@ -94154,13 +94356,13 @@ qMO
 qMO
 qMO
 aoV
-aoV
-aoV
-aoV
-aoV
-aoV
-aoV
-aaf
+acw
+agH
+afr
+ajC
+ajC
+alN
+acw
 aoV
 aoV
 adR
@@ -94411,13 +94613,13 @@ qMO
 qMO
 qMO
 qMO
-qMO
-qMO
-qMO
-qMO
-qMO
-aoV
-aoV
+acw
+agX
+akz
+afr
+afr
+alY
+acw
 aoV
 aoV
 aaa
@@ -94668,13 +94870,13 @@ qMO
 qMO
 qMO
 qMO
-qMO
-qMO
-qMO
-qMO
-qMO
-qMO
-qMO
+acw
+acw
+acw
+acw
+acw
+acw
+acw
 aoV
 aoV
 aaa

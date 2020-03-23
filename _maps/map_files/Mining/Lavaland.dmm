@@ -737,20 +737,16 @@
 /obj/item/stack/sheet/mineral/wood,
 /obj/item/stack/sheet/mineral/wood,
 /obj/item/seeds/ambrosia/deus{
-	yield = 5
-	potency = 50
+	yield = 5potency = 50
 	},
 /obj/item/seeds/ambrosia/deus{
-	yield = 5
-	potency = 50
+	yield = 5potency = 50
 	},
 /obj/item/seeds/tower{
-	yield = 5
-	potency = 50
+	yield = 5potency = 50
 	},
 /obj/item/seeds/tower{
-	yield = 5
-	potency = 50
+	yield = 5potency = 50
 	},
 /mob/living/simple_animal/hostile/asteroid/gutlunch/guthen,
 /turf/open/indestructible/boss,
@@ -2157,12 +2153,10 @@
 /area/lavaland/surface/outdoors)
 "wm" = (
 /obj/item/seeds/glowshroom{
-	yield = 5
-	potency = 50
+	yield = 5potency = 50
 	},
 /obj/item/seeds/glowshroom{
-	yield = 5
-	potency = 50
+	yield = 5potency = 50
 	},
 /mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck,
 /obj/structure/stone_tile/block{
@@ -3228,12 +3222,10 @@
 /obj/item/storage/bag/plants/portaseeder,
 /obj/item/storage/bag/plants,
 /obj/item/seeds/cotton{
-	yield = 5
-	potency = 50
+	yield = 5potency = 50
 	},
 /obj/item/seeds/cotton{
-	yield = 5
-	potency = 50
+	yield = 5potency = 50
 	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
