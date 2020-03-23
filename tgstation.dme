@@ -3322,6 +3322,7 @@
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\heal.dm"
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\sensory.dm"
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\viral.dm"
+#include "modular_skyrat\code\datums\mutations\body.dm"
 #include "modular_skyrat\code\datums\ruins\icemoon.dm"
 #include "modular_skyrat\code\datums\ruins\lavaland.dm"
 #include "modular_skyrat\code\datums\ruins\space.dm"
