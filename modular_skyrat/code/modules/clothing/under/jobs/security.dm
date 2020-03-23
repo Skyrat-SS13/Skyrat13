@@ -29,3 +29,4 @@
 	item_state = "blueshield"
 	item_color = "blueshield"
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" =10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	can_adjust = FALSE
