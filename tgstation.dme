@@ -3345,6 +3345,7 @@
 #include "modular_skyrat\code\datums\weather\weather_types\ash_storm.dm"
 #include "modular_skyrat\code\datums\weather\weather_types\radiation_storm.dm"
 #include "modular_skyrat\code\datums\weather\weather_types\snow_storm.dm"
+#include "modular_skyrat\code\game\data_huds.dm"
 #include "modular_skyrat\code\game\world.dm"
 #include "modular_skyrat\code\game\area\areas.dm"
 #include "modular_skyrat\code\game\area\Space_Station_13_areas.dm"
