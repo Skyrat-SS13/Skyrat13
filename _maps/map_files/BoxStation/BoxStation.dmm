@@ -56752,7 +56752,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-<<<<<<< HEAD
 "eAb" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -56763,13 +56762,6 @@
 /obj/machinery/computer/card,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
-=======
-"eAG" = (
-/obj/item/clothing/under/misc/pj/blue,
-/obj/item/clothing/shoes/sneakers/white,
-/turf/open/floor/plating,
-/area/maintenance/fore)
->>>>>>> ea7c1058b55... Merge pull request #11524 from Ghommie/Ghommie-cit627
 "eAJ" = (
 /obj/structure/chair{
 	dir = 4
@@ -56796,8 +56788,8 @@
 /obj/item/clothing/under/suit/burgundy,
 /obj/item/clothing/under/suit/black,
 /obj/item/clothing/under/rank/civilian/lawyer/black,
-/obj/item/clothing/under/suit/black,
-/obj/item/clothing/under/rank/civilian/lawyer/blue,
+/obj/item/clothing/under/rank/civilian/lawyer/black,
+/obj/item/clothing/under/rank/civilian/lawyer/bluesuit,
 /obj/item/clothing/under/rank/civilian/lawyer/bluesuit,
 /obj/item/clothing/under/rank/civilian/lawyer/female,
 /obj/item/clothing/under/rank/civilian/lawyer/purpsuit,
@@ -58560,7 +58552,7 @@
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
 "jKC" = (
-/obj/item/clothing/under/pj/blue,
+/obj/item/clothing/under/misc/pj/blue,
 /obj/item/clothing/shoes/sneakers/white,
 /turf/open/floor/plating,
 /area/maintenance/fore)
@@ -59084,8 +59076,8 @@
 /obj/item/clothing/under/suit/burgundy,
 /obj/item/clothing/under/suit/black,
 /obj/item/clothing/under/rank/civilian/lawyer/black,
-/obj/item/clothing/under/suit/black,
-/obj/item/clothing/under/rank/civilian/lawyer/blue,
+/obj/item/clothing/under/rank/civilian/lawyer/black,
+/obj/item/clothing/under/rank/civilian/lawyer/bluesuit,
 /obj/item/clothing/under/rank/civilian/lawyer/bluesuit,
 /obj/item/clothing/under/rank/civilian/lawyer/female,
 /obj/item/clothing/under/rank/civilian/lawyer/purpsuit,
@@ -61221,7 +61213,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
-<<<<<<< HEAD
 "soA" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
@@ -61247,14 +61238,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-=======
-"sqg" = (
-/obj/structure/table/wood,
-/obj/item/clothing/under/misc/pj/red,
-/obj/item/clothing/shoes/sneakers/white,
-/turf/open/floor/plating,
-/area/maintenance/fore)
->>>>>>> ea7c1058b55... Merge pull request #11524 from Ghommie/Ghommie-cit627
 "sqp" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -62017,7 +62000,7 @@
 /area/security/brig)
 "usK" = (
 /obj/structure/table/wood,
-/obj/item/clothing/under/pj/red,
+/obj/item/clothing/under/misc/pj/red,
 /obj/item/clothing/shoes/sneakers/white,
 /turf/open/floor/plating,
 /area/maintenance/fore)
