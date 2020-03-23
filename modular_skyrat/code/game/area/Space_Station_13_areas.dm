@@ -7,3 +7,7 @@
 /area/security/prison/toilet
 	name = "Prison Toilet"
 	icon_state = "sec_prison"
+
+/area/blueshield
+	name = "\improper Blueshield's Office"
+	icon_state = "blue"
