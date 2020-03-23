@@ -32,6 +32,7 @@
 	var/icon/burn
 
 /datum/status_effect/holoburn/on_apply()
+	. = ..()
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
 		burn = icon('modular_skyrat/icons/mob/onfire.dmi', "holoburn")
@@ -41,7 +42,9 @@
 		owner.add_overlay(burn)
 
 /datum/status_effect/holoburn/tick()
+	. = ..()
 	owner.adjustCloneLoss(1)
 
 /datum/status_effect/holoburn/on_remove()
+	. = ..()
 	owner.cut_overlay(burn)
