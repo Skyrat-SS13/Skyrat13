@@ -1,0 +1,6 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Tactical stealth suit traitor item."
+  - imageadd: "~~Placeholder~~ Actual icons for the stealth suit.
+removal: Removed herobrine."
