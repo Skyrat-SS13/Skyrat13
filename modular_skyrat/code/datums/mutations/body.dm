@@ -31,6 +31,8 @@
 	instability = 25 // the purging is quite powerful
 
 /datum/mutation/human/stimmed/on_life()
-	owner.reagents.remove_all_type(/datum/reagent/toxin, STIMMED_PURGE_AMOUNT, FALSE, TRUE)
+	if(owner.reagents)
+		for(var/datum/reagent/toxin/T in M.reagents.reagent_list)
+			owner.reagents.remove_all_type(T, STIMMED_PURGE_AMOUNT, FALSE, TRUE)
 	if(prob(2)) //about once every 5 seconds?
 		owner.adjustToxLoss(-2.5)

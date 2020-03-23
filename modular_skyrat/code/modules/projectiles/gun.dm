@@ -77,7 +77,7 @@
 
 /obj/item/gun/equipped(mob/living/user, slot)
 	. = ..()
-	if(HAS_TRAIT(user, TRAIT_VATS) && slot == SLOT_HANDS)
+	if(HAS_TRAIT(user, TRAIT_VATS) && slot == ITEM_SLOT_HANDS)
 		playsound(user.loc, 'modular_skyrat/sound/fallput/vats1.ogg', 50)
 	if(zoomed && user.get_active_held_item() != src)
 		zoom(user, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
