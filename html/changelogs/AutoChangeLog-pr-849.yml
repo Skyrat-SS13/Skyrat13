@@ -1,0 +1,4 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - tweak: "optimizes get_hearers_in_view"

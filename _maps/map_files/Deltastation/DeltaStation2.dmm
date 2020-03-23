@@ -124,6 +124,34 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/abandoned_gambling_den)
+"aaq" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/security/prison)
+"aar" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aas" = (
 /obj/docking_port/stationary/random{
 	id = "pod_lavaland1";
@@ -143,6 +171,19 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/space,
 /area/solar/starboard/fore)
+"aav" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aaE" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space,
@@ -19458,21 +19499,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"aNx" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
-	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/security/prison)
 "aNy" = (
 /obj/machinery/door/airlock{
 	name = "Bathroom"
@@ -24078,17 +24104,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/prison)
-"aUv" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aUw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -24119,18 +24134,6 @@
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
-/area/security/prison)
-"aUy" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/security/prison)
 "aUz" = (
 /obj/structure/cable/white{
@@ -34036,6 +34039,7 @@
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
+/obj/effect/landmark/start/brig_physician,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "bkm" = (
@@ -126360,6 +126364,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"jwo" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/mob/living/simple_animal/pet/bumbles,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "jBE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -127336,6 +127354,10 @@
 "tCh" = (
 /turf/closed/wall,
 /area/science/misc_lab)
+"tEq" = (
+/obj/effect/landmark/start/prisoner/prilate,
+/turf/open/floor/plating,
+/area/security/prison)
 "tMk" = (
 /turf/open/floor/plasteel/white/side{
 	dir = 10
@@ -127505,7 +127527,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/misc_lab)
 "wIf" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/plate_press,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "xaf" = (
@@ -160698,7 +160720,7 @@ bjt
 bli
 bnk
 boB
-bnj
+jwo
 bnj
 bnh
 bvB
@@ -179181,10 +179203,10 @@ aaa
 rqh
 aFm
 kqa
-bbt
+tEq
 aFm
 aMc
-aNx
+aaq
 aFm
 aQY
 aSE
@@ -179702,7 +179724,7 @@ aNz
 aPh
 aQZ
 aKV
-aUv
+aar
 aWd
 aXM
 aZr
@@ -180730,7 +180752,7 @@ aND
 aPl
 aRd
 aKV
-aUy
+aav
 aWg
 aXM
 aZu
@@ -181758,7 +181780,7 @@ aNB
 aPp
 aRg
 aKV
-aUv
+aar
 aWi
 aXM
 aZy

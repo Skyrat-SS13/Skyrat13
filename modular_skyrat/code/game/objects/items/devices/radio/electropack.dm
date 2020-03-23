@@ -28,6 +28,7 @@
 /obj/item/electropack/shockcollar/pacify/admin/
 	name = "cent-comm pacifying collar"
 	desc = "A Central Command branded shock collar that cannot be taken off by most means."
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	random = TRUE
 	freq_in_name = TRUE
 

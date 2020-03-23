@@ -4,23 +4,19 @@
 	var/last_typed
 	var/last_typed_time
 
-	var/obj/effect/decal/typing_indicator
+	var/static/mutable_appearance/typing_indicator
 
 /mob/proc/set_typing_indicator(var/state)
 	if(!typing_indicator)
-		typing_indicator = new
-		typing_indicator.icon = 'modular_skyrat/icons/mob/typing_indicator.dmi'
-		typing_indicator.icon_state = "default0"
-		typing_indicator.layer = FLY_LAYER 
+		typing_indicator = mutable_appearance('modular_skyrat/icons/mob/typing_indicator.dmi', "default0", FLY_LAYER)
 	if(client && !stat)
-		typing_indicator.invisibility = invisibility
 		if(state)
 			if(!typing)
-				overlays += typing_indicator
+				add_overlay(typing_indicator)
 				typing = TRUE
 		else
 			if(typing)
-				overlays -= typing_indicator
+				cut_overlay(typing_indicator)
 				typing = FALSE
 		return state
 
