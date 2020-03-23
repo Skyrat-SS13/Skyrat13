@@ -70,24 +70,24 @@
 
 /obj/item/banner/proc/special_inspiration(mob/living/carbon/human/H) //Any banner-specific inspiration effects go here
 	return
-
+/* modular_skyrat
 /obj/item/banner/security
 	name = "securistan banner"
 	desc = "The banner of Securistan, ruling the station with an iron fist."
 	icon_state = "banner_security"
 	job_loyalties = list("Security Officer", "Warden", "Detective", "Head of Security")
 	warcry = "EVERYONE DOWN ON THE GROUND!!"
-
+*/
 /obj/item/banner/security/mundane
 	inspiration_available = FALSE
-
+/* modular_skyrat
 /obj/item/banner/medical
 	name = "meditopia banner"
 	desc = "The banner of Meditopia, generous benefactors that cure wounds and shelter the weak."
 	icon_state = "banner_medical"
 	job_loyalties = list("Medical Doctor", "Chemist", "Geneticist", "Virologist", "Chief Medical Officer")
 	warcry = "No wounds cannot be healed!"
-
+*/
 /obj/item/banner/medical/mundane
 	inspiration_available = FALSE
 

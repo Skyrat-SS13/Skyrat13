@@ -1,0 +1,6 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - rscadd: "Added Printing License Press"
+  - rscadd: "Added Prisoner Role"
+  - tweak: "Changed Permabrig 'a little'"
