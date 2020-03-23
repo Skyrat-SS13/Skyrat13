@@ -75,7 +75,9 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 4
-	threshold_desc = "<b>Stage Speed 6:</b> Doubles healing speed."
+	threshold_desc = list(
+		"Stage Speed 6" = "Doubles healing speed.",
+	)
 
 /datum/symptom/heal/toxin/Start(datum/disease/advance/A)
 	if(A.properties["stage_rate"] >= 6) //stronger healing
@@ -110,7 +112,9 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 4
-	threshold_desc = "<b>Stage Speed 6:</b> Doubles healing speed."
+	threshold_desc = list(
+	"Stage Speed 6" = "Doubles healing speed.",
+	)
 
 /datum/symptom/heal/brute/Start(datum/disease/advance/A)
 	if(A.properties["stage_rate"] >= 6) //stronger healing
@@ -137,7 +141,9 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 6
-	threshold_desc = "<b>Stage Speed 6:</b> Doubles healing speed."
+	threshold_desc = list(
+	"Stage Speed 6" = "Doubles healing speed.",
+	)
 
 /datum/symptom/heal/superbrute/Start(datum/disease/advance/A)
 	if(A.properties["stage_rate"] >= 6) //stronger healing
@@ -169,7 +175,9 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 6
-	threshold_desc = "<b>Stage Speed 6:</b> Doubles healing speed."
+	threshold_desc = list(
+	"Stage Speed 6" = "Doubles healing speed.",
+	)
 
 /datum/symptom/heal/burn/Start(datum/disease/advance/A)
 	if(A.properties["stage_rate"] >= 6) //stronger healing
@@ -228,7 +236,9 @@
 	stage_speed = 0
 	transmittable = -1
 	level = 5
-	threshold_desc = "<b>Resistance 6:</b> Additionally heals brain damage."
+	threshold_desc = list(
+	"Resistance 6" = "Additionally heals brain damage.",
+	)
 	var/healing_brain = FALSE
 
 /datum/symptom/heal/dna/Start(datum/disease/advance/A)
@@ -261,7 +271,7 @@
 	passive_message = "<span class='notice'>You really want a drink...</span>"
 	var/absorption_coeff = 1.5
 	threshold_desc = list(
-		"Resistance 5" = "Alcohol is consumed at a much slower rate.",
+		"Stealth 2" = "Alcohol is absorbed at a much slower rate.",
 		"Stage Speed 7" = "Increases healing speed.",
 	)
 
