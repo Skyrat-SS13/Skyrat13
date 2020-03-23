@@ -36,3 +36,5 @@
 			owner.reagents.remove_all_type(T, STIMMED_PURGE_AMOUNT, FALSE, TRUE)
 	if(prob(2)) //about once every 5 seconds?
 		owner.adjustToxLoss(-2.5)
+
+//TRAVIS WAKE THE FUCK UP
