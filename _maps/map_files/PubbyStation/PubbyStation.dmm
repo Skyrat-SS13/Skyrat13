@@ -30118,6 +30118,8 @@
 	dir = 1;
 	network = list("ss13","rd")
 	},
+/obj/item/clothing/mask/breath/medical,
+/obj/item/tank/internals/anesthetic,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "btc" = (
