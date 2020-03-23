@@ -24,7 +24,7 @@
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/grenade/flashbang(src)
-	new /obj/item/flash(src)
+	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/restraints/handcuffs(src)
 	new /obj/item/melee/baton/loaded(src)
 	new /obj/item/clothing/glasses/sunglasses(src)

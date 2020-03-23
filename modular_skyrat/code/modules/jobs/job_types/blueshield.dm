@@ -14,7 +14,7 @@
 
 	outfit = /datum/outfit/job/blueshield
 
-	list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_FORENSICS_LOCKERS,
+	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_FORENSICS_LOCKERS,
 			            ACCESS_MEDICAL, ACCESS_ENGINE, ACCESS_EVA, ACCESS_HEADS,
 			            ACCESS_MAINT_TUNNELS, ACCESS_BAR, ACCESS_JANITOR, ACCESS_CONSTRUCTION, ACCESS_MORGUE,
 			            ACCESS_CREMATORIUM, ACCESS_KITCHEN, ACCESS_HYDROPONICS, ACCESS_LAWYER,
@@ -37,16 +37,15 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset/heads/blueshield/alt
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
-	belt = /obj/item/pda/security
-	backpack_contents = list(
-		/obj/item/storage/box/deathimp = 1,
-		/obj/item/gun/energy/gun/blueshield = 1
-	)
+	belt = /obj/item/storage/belt/security/full
+	backpack_contents = list(/obj/item/gun/energy/gun/blueshield = 1)
 	implants = list(/obj/item/implant/mindshield)
 	backpack = /obj/item/storage/backpack/blueshield
 	satchel = /obj/item/storage/backpack/satchel/blueshield
-	dufflebag = /obj/item/storage/backpack/duffel/blueshield
+	duffelbag = /obj/item/storage/backpack/duffel/blueshield
 	head = /obj/item/clothing/head/beret/blueshield
+	box = /obj/item/storage/box/security
+	r_pocket = /obj/item/pda/security
 
 /datum/outfit/plasmaman/blueshield
 	name = "Blueshield Plasmaman"

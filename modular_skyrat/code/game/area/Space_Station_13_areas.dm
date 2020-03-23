@@ -9,5 +9,5 @@
 	icon_state = "sec_prison"
 
 /area/blueshield
-	name = "\improper Blueshield's Office"
-	icon_state = "blue"
+	name = "Blueshield's Office"
+	icon_state = "bluenew"
