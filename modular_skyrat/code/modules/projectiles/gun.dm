@@ -75,12 +75,9 @@
 
 	process_fire(target, user, TRUE, params, null, bonus_spread)
 
-/obj/item/gun/can_trigger_gun(mob/living/user)
+/obj/item/gun/equipped(mob/living/user, slot)
 	. = ..()
-	if(!.)
-		return
-	if(!handle_pins(user))
-		return FALSE
-	if(HAS_TRAIT(user, TRAIT_PACIFISM) && chambered?.harmful) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
-		to_chat(user, "<span class='notice'> [src] is lethally chambered! You don't want to risk harming anyone...</span>")
-		return FALSE
+	if(HAS_TRAIT(user, TRAIT_VATS) && slot == SLOT_HANDS)
+		playsound(user.loc, 'modular_skyrat/sound/fallput/vats1.ogg', 50)
+	if(zoomed && user.get_active_held_item() != src)
+		zoom(user, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
