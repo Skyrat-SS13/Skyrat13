@@ -353,7 +353,7 @@
 	updateDialog()
 
 /obj/machinery/computer/telescience/proc/recalibrate()
-	teles_left = rand(5, 20) //MASSIVELY nerfed how much you can use this thing before needing to calculate all over again.
+	teles_left = rand(5, 15) //MASSIVELY nerfed how much you can use this thing before needing to calculate all over again.
 	angle_off = rand(-15, 15)
 	power_off = rand(-4, 0)
 	rotation_off = rand(-10, 10)
