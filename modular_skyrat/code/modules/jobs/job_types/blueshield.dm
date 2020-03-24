@@ -26,6 +26,7 @@
 	outfit = /datum/outfit/job/blueshield
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 	blacklisted_quirks = list(/datum/quirk/mute, /datum/quirk/nonviolent, /datum/quirk/paraplegic)
+	custom_spawn_text = "Remember, you are NOT security. Your only duty is to protect heads. Do not go around arresting criminals or doing justice, the only security matters in which you may be involved are those related to the heads you protect."
 
 /datum/outfit/job/blueshield
 	name = "Blueshield"
