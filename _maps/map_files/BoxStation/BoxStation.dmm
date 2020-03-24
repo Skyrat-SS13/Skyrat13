@@ -59596,6 +59596,17 @@
 /obj/machinery/vending/autodrobe,
 /turf/open/floor/wood,
 /area/maintenance/bar)
+"nfp" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 11;
+	height = 18;
+	id = "emergency_home";
+	name = "BoxStation emergency evac bay";
+	width = 30
+	},
+/turf/open/space/basic,
+/area/space)
 "nfZ" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "applebush"
@@ -115760,7 +115771,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+nfp
 aaa
 aaa
 aaa
