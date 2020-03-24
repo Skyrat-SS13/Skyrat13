@@ -31,7 +31,6 @@
 /obj/item/clothing/under/syndicate/stealthsuit/dropped(mob/living/M, slot)
 	. = ..()
 	M.remove_status_effect(effectapplied)
-	M.alpha = 255
 	activated = 0
 	for(var/datum/action/item_action/A in src.action_types)
 		A.Remove(M, src)
@@ -39,12 +38,11 @@
 /obj/item/clothing/under/syndicate/stealthsuit/ui_action_click(mob/living/user, action)
 	if(istype(action, /datum/action/item_action/activatestealth))
 		if(!activated)
-			to_chat(user, "<span class='warning'>Stealth module activated.</span>")
+			to_chat(user, "<span class='warning'><b>[src]:</b> Stealth module activated. Stand still to achieve maximum camouflage.</span>")
 			activated = !activated
 			user.apply_status_effect(effectapplied)
 			animate(user, , alpha -= 75, time = 3)
 		else if(activated)
-			to_chat(user, "<span class='warning'>Stealth module deactivated.</span>")
+			to_chat(user, "<span class='warning'><b>[src]:</b> Stealth module deactivated. You are now visible to your surroundings.</span>")
 			activated = !activated
 			user.remove_status_effect(effectapplied)
-			animate(user, , alpha = 255, time = 6)
