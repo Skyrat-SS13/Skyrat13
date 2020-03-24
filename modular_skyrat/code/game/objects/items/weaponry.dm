@@ -366,8 +366,9 @@
 	ammo_x_offset = 2
 	shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
 	var/upgraded = 0
+	var/maxcellcharge = 2500 //jesus that's still a lot of shots.
 	fire_delay = 40
-	spread = 20
+	spread = 30
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle
 	e_cost = 1000 //The amount of energy a cell needs to expend to create this shot.
@@ -410,14 +411,21 @@
 	..()
 	if(istype(I, /obj/item/stock_parts/cell) && !cell)
 		var/obj/item/stock_parts/cell/C = I
-		playsound(user, 'sound/items/Screwdriver.ogg', 35)
-		C.forceMove(src)
-		cell = C
+		if(C.maxcharge <= maxcellcharge)
+			playsound(user, 'sound/items/Screwdriver.ogg', 35)
+			C.forceMove(src)
+			cell = C
+		else
+			to_chat(user, "<span class='warning'>Using a cell with this much power on this pile of crap would break it!</span>")
 	if(istype(I, /obj/item/stack/sheet/plasteel) && !upgraded)
 		var/obj/item/stack/sheet/plasteel/oursteel = I
-		if(oursteel.use(1))
+		if(oursteel.use(3))
 			new /obj/item/gun/energy/laser/makeshiftlasrifle/adv(user.loc)
 			qdel(src)
+		else
+			to_chat(user, "<span class='notice'>There's not enough plasteel to upgrade the [src]!</span>")
+	else if(istype(I, /obj/item/stack/sheet/plasteel) && upgraded)
+		to_chat(user, "<span class='notice'>\the [src] is already upgraded!</span>")
 
 /obj/item/gun/energy/laser/makeshiftlasrifle/adv
 	name = "plasteel makeshift laser rifle"
@@ -427,9 +435,28 @@
 	shaded_charge = 1
 	charge_sections = 4
 	automatic_charge_overlays = TRUE
+	maxcellcharge = 5000
 	ammo_x_offset = 2
-	fire_delay = 30
+	fire_delay = 15
 	spread = 15
+
+//laser musket
+/obj/item/gun/energy/pumpaction/musket
+	name = "laser musket"
+	desc = "Another settlment needs your help."
+	icon = 'modular_skyrat/icons/obj/guns/lasermusket.dmi'
+	icon_state = "musket"
+	item_state = "musket"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/musket_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/musket_righthand.dmi'
+	shaded_charge = FALSE
+	w_class = WEIGHT_CLASS_BULKY
+	cell_type = /obj/item/stock_parts/cell/pumpaction/musket
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/lasergun, /obj/item/ammo_casing/energy/disabler)
+
+/obj/item/stock_parts/cell/pumpaction/musket
+	name = "laser musket internal cell"
+	maxcharge = 1250 //better than the warden's shotgun cell lmao
 
 //shitty hatchet
 /obj/item/hatchet/improvised

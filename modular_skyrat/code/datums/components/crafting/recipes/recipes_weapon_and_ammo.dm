@@ -130,7 +130,7 @@
 				/obj/item/stack/sheet/mineral/wood = 7,
 				/obj/item/stack/packageWrap = 5)
 	tools = list(TOOL_WELDER)
-	time = 150
+	time = 400
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -155,8 +155,8 @@
 				/obj/item/stack/cable_coil = 5,
 				/obj/item/storage/box = 1,
 				/obj/item/weaponcrafting/receiver = 1)
-	tools = list(/obj/item/screwdriver)
-	time = 150
+	tools = list(TOOL_SCREWDRIVER)
+	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -166,7 +166,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 3,
 				/obj/item/stack/ore/diamond = 2,
 				/obj/item/stack/sheet/sinew = 2)
-	time = 150
+	time = 125
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/makeshiftlasrifle
@@ -177,8 +177,21 @@
 				/obj/item/pipe = 1,
 				/obj/item/stack/sheet/mineral/diamond = 3,
 				/obj/item/stock_parts/cell = 1)
-	tools = list(/obj/item/screwdriver)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH)
 	time = 250
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/lasermusket
+	name = "laser musket"
+	result = /obj/item/gun/energy/pumpaction/musket
+	reqs = list(/obj/item/stack/cable_coil = 20,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/pipe = 2,
+				/obj/item/stack/sheet/mineral/uranium = 2,
+				/obj/item/stock_parts/cell = 1)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
+	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -190,7 +203,7 @@
 				/obj/item/stack/cable_coil = 30,
 				/obj/item/stack/sheet/mineral/uranium = 10)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	time = 150
+	time = 300
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -213,20 +226,19 @@
 	name = "makeshift pistol magazine (10mm)"
 	result = /obj/item/ammo_box/magazine/m10mm/makeshift
 	reqs = list(/obj/item/pipe = 1,
-				/obj/item/stack/sheet/mineral/wood = 2,
+				/obj/item/stack/sheet/metal = 2,
 				/obj/item/stack/packageWrap = 1)
-	time = 50
+	time = 75
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
 /datum/crafting_recipe/microfusion
 	name = "Microfusion Cell"
 	result = /obj/item/ammo_casing/microfusion
-	reqs = list(/obj/item/stack/sheet/metal = 2,
-				/obj/item/stock_parts/cell/super = 1,
-				/obj/item/stock_parts/capacitor/super = 2,
-				/obj/item/stock_parts/micro_laser/ultra = 1)
-	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL)
-	time = 10
+	reqs = list(/obj/item/stack/sheet/metal = 1,
+				/obj/item/stock_parts/cell = 1,
+				/obj/item/stock_parts/capacitor = 2)
+	tools = list(TOOL_WELDER, TOOL_WRENCH)
+	time = 30
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
