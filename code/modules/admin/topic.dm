@@ -646,7 +646,7 @@
 			switch(alert("Remove Collar ban?","Please Confirm","Yes","Temporarily", "No"))
 				var/typeofcollar
 				var/collarban
-				if(jobban_isbanned(M, COLLARBAN)
+				if(jobban_isbanned(M, COLLARBAN))
 					typeofcollar = "collar"
 					collarban = COLLARBAN
 				else
