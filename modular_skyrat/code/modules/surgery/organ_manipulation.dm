@@ -143,7 +143,7 @@
 	else if(current_type == "heal")
 		var/list/organshealed = list()
 		for(var/obj/item/organ/O in target.getorganszone(target_zone))
-			if(O.damage >= (O.maxHealth - O.maxHealth/10))
+			if(O.damage > (O.maxHealth - O.maxHealth/10))
 				to_chat(user, "<span class='warning'>Sadly, the [target]'s [O] was too damaged to be healed.</span>")
 			else
 				O.damage = 0
