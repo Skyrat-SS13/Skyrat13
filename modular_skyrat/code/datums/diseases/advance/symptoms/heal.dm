@@ -57,7 +57,7 @@
 
 	M.adjustToxLoss(-heal_amt)
 
-	var/list/parts = M.get_damaged_bodyparts(1,1)
+	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 	if(!parts.len)
 		return
 	if(prob(5))
@@ -122,7 +122,7 @@
 
 /datum/symptom/heal/brute/Heal(mob/living/carbon/M, datum/disease/advance/A)
 	var/heal_amt = 1 * power
-	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
+	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
 	if(!parts.len)
 		return
@@ -186,7 +186,7 @@
 /datum/symptom/heal/burn/Heal(mob/living/carbon/M, datum/disease/advance/A)
 	var/heal_amt = 1 * power
 
-	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
+	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
 	if(!parts.len)
 		return
@@ -199,31 +199,32 @@
 
 /datum/symptom/heal/heatresistance
 	name = "Heat Resistance"
-	desc = "The virus quickly balances body heat, while also replacing tissues damaged by external sources."
+	desc = "The virus quickly balances body heat, while also replacing tissues damaged by external sources, making the infected almost immune to burning."
 	stealth = 0
 	resistance = 0
 	stage_speed = -2
 	transmittable = -2
-	level = 4
-	threshold_desc = ""
+	level = 6
+	threshold_desc = list(
+	"Resistance 4" = "Doubles healing power.",
+	)
 	var/temp_rate = 4
+	power = 1
 
 /datum/symptom/heal/heatresistance/Heal(mob/living/carbon/M, datum/disease/advance/A)
-	var/heal_amt = 0 //set the heal amount to 0. We declared the variable so that we can reference later.
+	if(A.properties["resistance"] >= 4) //stronger healing
+		power = 2
+	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
-	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
-
-	if(M.fire_stacks > 0)
-		heal_amt = 1.5 * (power + (M.fire_stacks*0.75)) //Now we give the var heal_amt an actual value.
+	if(M.on_fire && M.fire_stacks > 0)
+		heal_amt = 1.5 * (M.fire_stacks*0.75) * power
 	else
-		power = initial(power)//if the mob is not on fire, heal amt stays at 0.
-
+		heal_amt = 0
 	if(M.bodytemperature > BODYTEMP_NORMAL)	//Shamelessly stolen from plasma fixation, whew lad
 		M.adjust_bodytemperature(-20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
-	else if(M.bodytemperature < (BODYTEMP_NORMAL + 1))
-		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,0,BODYTEMP_NORMAL)
-	for(var/obj/item/bodypart/L in parts)
-	if(prob(5))
+	else if(M.bodytemperature < (BODYTEMP_NORMAL))
+		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
+	if(prob(10) && heal_amt && (getBruteLoss()  || getFireLoss()))
 		to_chat(M, "<span class='notice'>The pain from your wounds fades rapidly.</span>") //this is where healing takes place
 	for(var/obj/item/bodypart/L in parts)
 		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len, null, BODYPART_ORGANIC))
@@ -274,13 +275,13 @@
 	var/absorption_coeff = 1.5
 	threshold_desc = list(
 		"Stealth 2" = "Alcohol is absorbed at a much slower rate.",
-		"Stage Speed 7" = "Increases healing speed.",
+		"Stage Speed 6" = "Increases healing speed.",
 	)
 
 /datum/symptom/heal/alcohol/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["stage_rate"] >= 7)
+	if(A.properties["stage_rate"] >= 6)
 		power = 2
 	if(A.properties["stealth"] >= 2)
 		absorption_coeff = initial(absorption_coeff)/2
