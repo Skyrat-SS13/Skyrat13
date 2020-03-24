@@ -225,7 +225,7 @@
 		M.adjust_bodytemperature(-20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
 	else if(M.bodytemperature < (BODYTEMP_NORMAL))
 		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
-	if(prob(10) && heal_amt && (getBruteLoss()  || getFireLoss()))
+	if(prob(10) && heal_amt && (M.getBruteLoss()  || M.getFireLoss()))
 		to_chat(M, "<span class='notice'>The pain from your wounds fades rapidly.</span>") //this is where healing takes place
 	for(var/obj/item/bodypart/L in parts)
 		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len, null, BODYPART_ORGANIC))
