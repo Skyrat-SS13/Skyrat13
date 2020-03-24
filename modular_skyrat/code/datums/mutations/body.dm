@@ -37,4 +37,6 @@
 	if(prob(2)) //about once every 5 seconds?
 		owner.adjustToxLoss(-2.5)
 
-//TRAVIS WAKE THE FUCK UP
+/datum/mutation/human/glow/anti
+	glow = -5
+	locked = FALSE //this is actually useful for shadowpeople, let em have it
