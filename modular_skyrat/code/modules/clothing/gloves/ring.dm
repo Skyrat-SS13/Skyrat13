@@ -1,8 +1,8 @@
 /obj/item/clothing/gloves/ring/silver/fargoth
-	name = "ring of fargoth"
+	name = "Fargoth's Engraved Ring of Healing"
 	desc = "A tiny enchanted silver ring, from an annoying little elf."
 	actions_types = list(/datum/action/item_action/fargoth)
-	var/ringcooldown = 1200
+	var/ringcooldown = 600
 	var/cooldowntime = 0
 
 /datum/action/item_action/fargoth
