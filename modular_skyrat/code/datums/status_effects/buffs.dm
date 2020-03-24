@@ -15,7 +15,7 @@
 /datum/status_effect/stealthsuit
 	id = "stealthsuit"
 	duration = -1
-	tick_interval = 30
+	tick_interval = 20
 	alert_type = /obj/screen/alert/status_effect/stealthsuit
 	var/obj/item/inhand
 	var/obj/item/inhandl
@@ -28,13 +28,15 @@
 
 /datum/status_effect/stealthsuit/on_remove()
 	. = ..()
-	owner.alpha = 255
+	animate(user, , alpha = 255, time = 10)
 
 /datum/status_effect/stealthsuit/tick()
 	. = ..()
 	currentloc = owner.loc
-	if(owner.alpha > 10 && currentloc == oldloc) //ALMOST completely invisible
-		owner.alpha -= 45
+	if(owner.alpha >= 10 && currentloc == oldloc) //ALMOST completely invisible
+		animate(owner, , owner.alpha -= 45, time = 3)
+	else if(owner.alpha > 10 && owner.alpha <=30 && currentloc == oldloc)
+		animate(owner, , owner.alpha = 10, time = 3)
 	oldloc = currentloc
 
 /datum/status_effect/stealthsuit/process()
@@ -43,9 +45,10 @@
 	inhandl = owner.get_inactive_held_item()
 	health = owner.health
 	if((inhand != inhandold) || (inhandl != inhandlold) || (health != healthold))
-		if(owner.alpha <= 35) //making it announce everytime you pick something up is annoying bro
-			to_chat(owner, "<span class='warning'>Something interferes with your suit's stealth system!</span>")
-		owner.alpha = 255
+		if(owner.alpha <= 75) //making it announce everytime you pick something up is annoying bro
+			to_chat(owner, "<span class='warning'>Something interferes with your suit's stealth system, revealing you!</span>")
+		playsound(owner.loc, "sparks", 100, 1)
+		animate(owner, , alpha = 255, time = 2)
 	inhandold = inhand
 	inhandlold = inhandl
 	healthold = health
