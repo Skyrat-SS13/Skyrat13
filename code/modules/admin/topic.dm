@@ -643,15 +643,15 @@
 		if(!check_rights(R_BAN))
 			return
 		if(jobban_isbanned(M, COLLARBAN || LESSERCOLLARBAN))
+			var/typeofcollar = null
+			var/collarban = null
+			if(jobban_isbanned(M, COLLARBAN))
+				typeofcollar = "collar"
+				collarban = COLLARBAN
+			else
+				typeofcollar = "lesser collar"
+				collarban = LESSERCOLLARBAN
 			switch(alert("Remove Collar ban?","Please Confirm","Yes","Temporarily", "No"))
-				var/typeofcollar
-				var/collarban
-				if(jobban_isbanned(M, COLLARBAN))
-					typeofcollar = "collar"
-					collarban = COLLARBAN
-				else
-					typeofcollar = "lesser collar"
-					collarban = LESSERCOLLARBAN
 				if("Yes")
 					ban_unban_log_save("[key_name(usr)] removed [key_name(M)]'s collar ban.")
 					log_admin_private("[key_name(usr)] removed [key_name(M)]'s collar ban.")
@@ -662,12 +662,12 @@
 					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has removed your [typeofcollar] ban.</BIG></span>")
 					if(ishuman(M))
 						var/mob/living/carbon/human/C = M
-						addtimer(CALLBACK(C, .proc/update_admin_collar), 20)
+						addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
 				if("Temporarily")
 					if(!ishuman(M))
 						return
 					var/mob/living/carbon/human/C = M
-					addtimer(CALLBACK(C, .proc/update_admin_collar), 20)
+					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
 					log_admin_private("[key_name(usr)] temporarily removed [key_name(M)]'s collar ban.")
 					message_admins("<span class='adminnotice'>[key_name_admin(usr)] temporarily removed [key_name_admin(M)]'s [typeofcollar] ban.</span>")
 					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has temporarily removed your [typeofcollar] ban.</BIG></span>")
@@ -706,7 +706,7 @@
 					ban_unban_log_save("[key_name(usr)] temp-collarbanned [key_name(M)][mins] minutes. Reason: [reason]")
 					log_admin_private("[key_name(usr)] temp-collarbanned [key_name(M)] for [mins] minutes. Reason: [reason]")
 					var/mob/living/carbon/human/C = M
-					addtimer(CALLBACK(C, .proc/update_admin_collar), 20)
+					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
 					to_chat(M, "<span class='boldannounce'><BIG>You have been temporarily collar-banned by [usr.client.key].</BIG></span>")
 					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
 				else
@@ -719,7 +719,7 @@
 					ban_unban_log_save("[key_name(usr)] temp-lesser-collarbanned [key_name(M)] for [mins] minutes. Reason: [reason]")
 					log_admin_private("[key_name(usr)] temp-lesser-collarbanned [key_name(M)] for [mins] minutes. Reason: [reason]")
 					var/mob/living/carbon/human/C = M
-					addtimer(CALLBACK(C, .proc/update_admin_collar), 20)
+					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
 					to_chat(M, "<span class='boldannounce'><BIG>You have been temporarily lessercollar-banned by [usr.client.key].</BIG></span>")
 					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
 			if("No")
@@ -741,7 +741,7 @@
 					jobban_buildcache(M.client)
 				if(ishuman(M))
 					var/mob/living/carbon/human/C = M
-					addtimer(CALLBACK(C, .proc/update_admin_collar), 20)
+					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
 				if(type == COLLARBAN)
 					if(M.client)
 						jobban_buildcache(M.client)
