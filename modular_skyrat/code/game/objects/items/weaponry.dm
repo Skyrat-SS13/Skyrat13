@@ -452,7 +452,7 @@
 	shaded_charge = FALSE
 	w_class = WEIGHT_CLASS_BULKY
 	cell_type = /obj/item/stock_parts/cell/pumpaction/musket
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/lasergun, /obj/item/ammo_casing/energy/disabler)
+	ammo_type = list(/obj/item/ammo_casing/energy/lasergun, /obj/item/ammo_casing/energy/disabler)
 
 /obj/item/stock_parts/cell/pumpaction/musket
 	name = "laser musket internal cell"
