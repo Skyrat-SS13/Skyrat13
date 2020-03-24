@@ -447,8 +447,8 @@
 	icon = 'modular_skyrat/icons/obj/guns/lasermusket.dmi'
 	icon_state = "musket"
 	item_state = "musket"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/musket_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/musket_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
 	shaded_charge = FALSE
 	w_class = WEIGHT_CLASS_BULKY
 	cell_type = /obj/item/stock_parts/cell/pumpaction/musket
