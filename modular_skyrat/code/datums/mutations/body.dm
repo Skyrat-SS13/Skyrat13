@@ -1,3 +1,26 @@
+/datum/mutation/human/thickskin
+	name = "Thick skin"
+	desc = "The user's skin acquires a leathery texture, and is more resilient to harm."
+	quality = POSITIVE
+	text_gain_indication = "<span class='notice'>Your skin feels dry and heavy.</span>"
+	text_lose_indication = "<span class='notice'>Your skin feels soft again...</span>"
+	difficulty = 18
+	instability = 25
+
+/datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	if(owner.dna.species)
+		owner.dna.species.brutemod *= 0.75
+		owner.dna.species.burnmod *= 0.9
+
+/datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	if(owner.dna.species)
+		owner.dna.species.brutemod = initial(owner.dna.species.brutemod)
+		owner.dna.species.burnmod = initial(owner.dna.species.burnmod)
+
 //Makes strong actually useful. Somewhat.
 /datum/mutation/human/strong
 	name = "Strength"
@@ -5,7 +28,7 @@
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>You feel strong!</span>"
 	text_lose_indication = "<span class='notice'>You feel fairly weak.</span>"
-	difficulty = 16
+	difficulty = 12
 	instability = 10
 
 /datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
