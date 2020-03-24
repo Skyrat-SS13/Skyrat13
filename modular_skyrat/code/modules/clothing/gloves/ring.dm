@@ -1,8 +1,8 @@
 /obj/item/clothing/gloves/ring/silver/fargoth
-	name = "ring of fargoth"
+	name = "Fargoth's Engraved Ring of Healing"
 	desc = "A tiny enchanted silver ring, from an annoying little elf."
 	actions_types = list(/datum/action/item_action/fargoth)
-	var/ringcooldown = 1200
+	var/ringcooldown = 600
 	var/cooldowntime = 0
 
 /datum/action/item_action/fargoth
@@ -16,6 +16,6 @@
 			playsound(user, 'sound/magic/Staff_Healing.ogg', 25)
 			H.visible_message("[user] heals himself with [src]!", "<span class='notice'>You heal yourself with the [src].</span>")
 			H.adjustBruteLoss(-5)
-			cooldowntime = world.time + cooldown
+			cooldowntime = world.time + ringcooldown
 		else
 			to_chat(user, "<span class='notice'>The [src] just fizzles uselessly.</span>")

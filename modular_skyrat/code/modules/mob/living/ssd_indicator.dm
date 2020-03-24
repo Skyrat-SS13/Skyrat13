@@ -1,18 +1,14 @@
 /mob/living/var/lastclienttime = 0
-/mob/living/var/obj/effect/decal/ssd_indicator
+var/static/mutable_appearance/ssd_indicator
 
 /mob/living/proc/set_ssd_indicator(var/state)
 	if(!ssd_indicator)
-		ssd_indicator = new
-		ssd_indicator.icon = 'modular_skyrat/icons/mob/ssd_indicator.dmi'
-		ssd_indicator.icon_state = "default0"
-		ssd_indicator.layer = FLY_LAYER
+		ssd_indicator = mutable_appearance('modular_skyrat/icons/mob/ssd_indicator.dmi', "default0", FLY_LAYER)
 
-	ssd_indicator.invisibility = invisibility
 	if(state && stat != DEAD)
-		overlays += ssd_indicator
+		add_overlay(ssd_indicator)
 	else
-		overlays -= ssd_indicator
+		cut_overlay(ssd_indicator)
 	return state
 
 //This proc should stop mobs from having the overlay when someone keeps jumping control of mobs, unfortunately it causes Aghosts to have their character without the SSD overlay, I wasn't able to find a better proc unfortunately
