@@ -1,3 +1,4 @@
+//switchblades
 /obj/item/switchblade/crafted
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "switchblade_ms"
@@ -76,6 +77,7 @@
 		light_power = 0
 		item_state = null
 
+//dumb roblox sword
 /obj/item/claymore/roblox
 	name = "Fencing Sword"
 	desc = "It seems otherworldly."
@@ -132,6 +134,7 @@
 	duration = 4
 	layer = ABOVE_MOB_LAYER
 
+//ebony blade
 /obj/item/twohanded/ebonyblade
 	name = "Ebony Blade"
 	desc = "Forged in deceit, this weapon gets more powerful with the blood of those that are alligned with you."
@@ -200,7 +203,7 @@
 				if(user.mind.special_role == target.mind.special_role)
 					src.force_wielded += forceadd_sameantagonist
 					src.lifesteal += forceadd_sameantagonist/2
-					src.block_chance_wielded += blockadd_anydeceit
+					src.block_chance_wielded += (blockadd_anydeceit * 2)
 					if(src.block_chance_wielded > 90)
 						src.block_chance_wielded = 90
 				if(user.mind.isholy == target.mind.isholy)
@@ -211,7 +214,6 @@
 						src.block_chance_wielded = 90
 
 //Contender, made by ArcLumin. Ported from hippie.
-
 /obj/item/gun/ballistic/shotgun/doublebarrel/contender
 	desc = "The Contender G13, a favorite amongst space hunters. An easily modified bluespace barrel and break action loading means it can use any ammo available.\
 	The side has an engraving which reads 'Made by ArcWorks'."
