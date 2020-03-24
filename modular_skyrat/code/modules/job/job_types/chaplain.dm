@@ -1,4 +1,4 @@
-/datum/job/chaplain
+/datum/outfit/job/chaplain
 	implants = list(/obj/item/implant/sad_trombone/mortis)
 
 /obj/item/implant/sad_trombone/mortis
