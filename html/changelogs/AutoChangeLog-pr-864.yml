@@ -1,0 +1,7 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - tweak: "Organ manipulation healing can now be done with any reagent container filled with healing chemicals."
+  - tweak: "Organ manipulation healing can only be successful on organs which damage equals or is below 90% of the organ's maxhealth. No reviving necrotic organs!"
+  - tweak: "Fargoth's ring has been renamed to fit lore (Engraved Ring of Healing)"
+  - balance: "Lowered the cooldown of Fargoth's ring to 60 seconds."
