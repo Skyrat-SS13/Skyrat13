@@ -212,6 +212,7 @@
 	power = 1
 
 /datum/symptom/heal/heatresistance/Heal(mob/living/carbon/M, datum/disease/advance/A)
+	var/heal_amt = 0
 	if(A.properties["resistance"] >= 4) //stronger healing
 		power = 2
 	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
