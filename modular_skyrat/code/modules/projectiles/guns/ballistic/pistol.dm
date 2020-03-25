@@ -43,4 +43,5 @@
 
 /obj/item/gun/ballistic/automatic/pistol/uspm/emag_act(mob/user)
 	if(magazine)
-		magazine.emag_act(user)
+		var/obj/item/ammo_box/magazine/M = magazine
+		M.emag_act(user)
