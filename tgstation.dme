@@ -3455,6 +3455,8 @@
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot_modules.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\corpse.dm"
+#include "modular_skyrat\code\modules\mob\living\simple_animal\bot\bot.dm"
+#include "modular_skyrat\code\modules\mob\living\simple_animal\bot\cleanbot.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\friendly\farm_animals.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\nanotrasen.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\blood_drunk_miner.dm"
