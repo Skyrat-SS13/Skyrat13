@@ -479,15 +479,15 @@ SUBSYSTEM_DEF(ticker)
 		var/vote_type = CONFIG_GET(string/map_vote_type)
 		switch(vote_type)
 			if("PLURALITY")
-				SSvote.initiate_vote("map","server",hideresults=TRUE)
+				SSvote.initiate_vote("map","server", display = SHOW_RESULTS)
 			if("APPROVAL")
-				SSvote.initiate_vote("map","server",hideresults=TRUE,votesystem = APPROVAL_VOTING)
+				SSvote.initiate_vote("map","server", display = SHOW_RESULTS, votesystem = APPROVAL_VOTING)
 			if("IRV")
-				SSvote.initiate_vote("map","server",hideresults=TRUE,votesystem = INSTANT_RUNOFF_VOTING)
+				SSvote.initiate_vote("map","server", display = SHOW_RESULTS, votesystem = INSTANT_RUNOFF_VOTING)
 			if("SCORE")
-				SSvote.initiate_vote("map","server",hideresults=TRUE,votesystem = MAJORITY_JUDGEMENT_VOTING)
+				SSvote.initiate_vote("map","server", display = SHOW_RESULTS, votesystem = MAJORITY_JUDGEMENT_VOTING)
 			else
-				SSvote.initiate_vote("map","server",hideresults=TRUE)
+				SSvote.initiate_vote("map","server", display = SHOW_RESULTS)
 		// fallback
 
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
@@ -503,10 +503,17 @@ SUBSYSTEM_DEF(ticker)
 		SSticker.modevoted = TRUE
 		var/dynamic = CONFIG_GET(flag/dynamic_voting)
 		if(dynamic)
+<<<<<<< HEAD
 			SSvote.initiate_vote("dynamic","server",hideresults=TRUE,votesystem=SCORE_VOTING,forced=TRUE,vote_time = 2 MINUTES) // Skyrat change 20 minutes to 2 minutes
 		else
 			SSvote.initiate_vote("roundtype","server",hideresults=TRUE,votesystem=PLURALITY_VOTING,forced=TRUE, \
 			vote_time = (CONFIG_GET(flag/modetier_voting) ? 1 MINUTES : 2 MINUTES)) // Skyrat change 20 minutes to 2 minutes
+=======
+			SSvote.initiate_vote("dynamic", "server", display = NONE, votesystem = SCORE_VOTING, forced = TRUE,vote_time = 20 MINUTES)
+		else
+			SSvote.initiate_vote("roundtype", "server", display = NONE, votesystem = PLURALITY_VOTING, forced=TRUE, \
+			vote_time = (CONFIG_GET(flag/modetier_voting) ? 1 MINUTES : 20 MINUTES))
+>>>>>>> 8d87ed7b641... Merge pull request #11589 from Ghommie/Ghommie-cit638
 
 /datum/controller/subsystem/ticker/Recover()
 	current_state = SSticker.current_state
