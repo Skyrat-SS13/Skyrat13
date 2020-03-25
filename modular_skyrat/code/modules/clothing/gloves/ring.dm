@@ -22,7 +22,7 @@
 
 /obj/item/clothing/gloves/thief/khajiiti
 	name = "gold ring"
-	desc = "From a distance, this seems like a normal golden ring. Upon further inspection, you can see it's actually inscribed with... cats?"
+	desc = "From a distance, this seems like a normal golden ring. Upon further inspection, you can see it's actually inscribed with... cats? You can also see the name \"Rajhin\" inscribed on it."
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	strip_delay = 80
