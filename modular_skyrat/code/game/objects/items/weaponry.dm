@@ -192,3 +192,22 @@
 		H.adjustStaminaLoss(stamdamage)
 		if(loss > 100)
 			H.Sleeping(60)
+
+//stun baton staff
+/obj/item/melee/baton/staff
+	name = "batonstaff"
+	desc = "This... is two batons welded together?"
+	icon = 'modular_skyrat/icons/obj/staff.dmi'
+	icon_state = "batonstaff_nocell"
+	item_state = "staff"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/staff_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/staff_righthand.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/backstaff.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	force = 12
+	block_chance = 20
+	throwforce = 7
+	stunforce = 160
+	hitcost = 1200
+	throw_hit_chance = 20
+	slot_flags = ITEM_SLOT_BACK
