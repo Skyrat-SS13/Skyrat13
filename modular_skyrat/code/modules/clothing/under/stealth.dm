@@ -37,7 +37,8 @@
 		A.Remove(M, src)
 
 /obj/item/clothing/under/syndicate/stealthsuit/emp_act(severity)
-	M.alpha = 255
+	for(var/mob/living/carbon/C in src.loc)
+		C.alpha = 255
 	visible_message("<span class='warning'>\the [src] malfunctions, revealing it's wearer!</span>", "<span class='warning'>\the [src] malfunctions, revealing it's wearer!</span>")
 	var/datum/effect_system/spark_spread/S = new /datum/effect_system/spark_spread()
 	S.set_up(5, 0, src)

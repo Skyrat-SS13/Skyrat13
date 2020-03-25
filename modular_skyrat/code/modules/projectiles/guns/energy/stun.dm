@@ -2,12 +2,12 @@
 /obj/item/gun/energy/e_gun/advtaser/chameleon
 	name = "Chameleon Taser"
 	desc = "An advanced hybrid taser that can mimmick the appearance of other guns."
-	action_types = list(/datum/action/item_action/chameleon/taser)
+	actions_types = list(/datum/action/item_action/chameleon/taser)
 	w_class = WEIGHT_CLASS_TINY
 	cell_type = /obj/item/stock_parts/cell/chameleongun
 	var/list/gun_options = list()
 
-/datum/action/item_action/chameleon_taser
+/datum/action/item_action/chameleon/taser
 	name = "Chameleon change"
 	desc = "Change your taser's appearance."
 
