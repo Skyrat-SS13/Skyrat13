@@ -141,7 +141,7 @@
 	result = /obj/item/gun/ballistic/shotgun/holorifle
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 15,
-				/obj/item/gun/ballistic/shotgun/riot = 1,
+				/obj/item/gun/ballistic/shotgun = 1,
 				/obj/item/stack/packageWrap = 5,
 				/obj/item/stock_parts/capacitor/super = 1,
 				/obj/item/circuitboard/machine/holopad = 1)
@@ -158,7 +158,7 @@
 				/obj/item/storage/box = 1,
 				/obj/item/weaponcrafting/receiver = 1)
 	tools = list(TOOL_SCREWDRIVER)
-	time = 100
+	time = 150
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
