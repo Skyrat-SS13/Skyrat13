@@ -14,3 +14,19 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	if(H)
 		H.transform = H.transform.Scale(0.8, 0.8)
+
+/datum/quirk/manletism
+	name = "Manlet"
+	desc = "You are a bit... small. With none of the benefits."
+	value = 0
+	mob_trait = TRAIT_MANLET
+
+/datum/quirk/manletism/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.transform = H.transform.Scale(0.9, 0.9)
+
+/datum/quirk/manletism/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.transform = H.transform.Scale(1.1, 1.1)
