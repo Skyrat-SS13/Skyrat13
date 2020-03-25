@@ -5,6 +5,8 @@
 	R.desc = desc + "On closer inspection, this one has no safety mechanisms."
 	R.icon = icon
 	R.icon_state = icon_state
-	for(var/i in 1 to R.magazine.stored_ammo.len)
-		qdel(R.magazine.stored_ammo[i])
+	if(R.magazine)
+		var/obj/item/ammo_box/magazine/M = R.magazine
+		for(var/i in 1 to M.magazine.stored_ammo.len)
+			qdel(R.magazine.stored_ammo[i])
 	qdel(src)
