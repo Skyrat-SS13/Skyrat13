@@ -35,7 +35,7 @@
 			L.setDir(2)
 			buckle_mob(L, force=1)
 			L.pixel_y = 26
-			L.overlays += image('icons/obj/cross.dmi', "lashing")
+			L.overlays += image('modular_skyrat/icons/obj/cross.dmi', "lashing")
 		to_chat(user, "<span class='danger'>You can't use that on the cross!</span>")
 	else if (has_buckled_mobs())
 		for(var/mob/living/L in buckled_mobs)
@@ -78,7 +78,7 @@
 	src.visible_message(text("<span class='danger'>[M] falls free of [src]!</span>"))
 	unbuckle_mob(M,force=1)
 	M.emote("collapse")
-	M.overlays -= image('icons/obj/cross.dmi', "lashing")
+	M.overlays -= image('modular_skyrat/icons/obj/cross.dmi', "lashing")
 
 /obj/structure/kitchenspike/cross/Destroy()
 	if(has_buckled_mobs())
