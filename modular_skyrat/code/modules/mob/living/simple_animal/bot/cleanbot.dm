@@ -15,6 +15,7 @@
 
 	var/list/prefixes
 	var/list/suffixes
+	var/chosen_name
 
 /mob/living/simple_animal/bot/cleanbot/proc/deputize(obj/item/W, mob/user)
 	if(in_range(src, user))
