@@ -167,8 +167,13 @@
 	result = /obj/item/gun/energy/watcherprojector
 	reqs = list(/obj/item/stack/sheet/bone = 3,
 				/obj/item/stack/ore/diamond = 2,
-				/obj/item/stack/sheet/sinew = 2)
-	time = 125
+				/obj/item/stack/sheet/sinew = 2,
+				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/assembly/igniter = 1,
+				/obj/item/stock_parts/cell/high/plus/argent = 1,
+				/obj/item/stock_parts/capacitor = 4,
+				/obj/item/stock_parts/micro_laser = 1)
+	time = 200
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/makeshiftlasrifle
@@ -178,7 +183,11 @@
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/pipe = 1,
 				/obj/item/stack/sheet/mineral/diamond = 3,
-				/obj/item/stock_parts/cell = 1)
+				/obj/item/stock_parts/cell = 1,
+				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/stock_parts/micro_laser = 1,
+				/obj/item/stock_parts/capacitor = 4,
+				/obj/item/assembly/igniter = 1)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH)
 	time = 250
 	category = CAT_WEAPONRY
@@ -191,7 +200,10 @@
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/pipe = 2,
 				/obj/item/stack/sheet/mineral/uranium = 2,
-				/obj/item/stock_parts/cell = 1)
+				/obj/item/stock_parts/cell = 1,
+				/obj/item/assembly/igniter = 1,
+				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/stock_parts/capacitor = 3)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
 	time = 100
 	category = CAT_WEAPONRY

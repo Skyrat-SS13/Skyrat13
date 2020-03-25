@@ -35,7 +35,7 @@
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	item_state = null
 	var/firestacking = 5
-	var/burn_force = 3
+	var/burn_force = 0
 
 /obj/item/switchblade/deluxe/afterattack(target, user)
 	..()
@@ -330,10 +330,10 @@
 /obj/item/projectile/plasma/watcher
 	name = "freezing blast"
 	icon_state = "ice_2"
-	damage = 10
+	damage = 2.5
 	flag = "energy"
 	damage_type = BURN
-	range = 4
+	range = 4 //terrible range
 	mine_range = 0
 	var/temperature = -100
 	dismemberment = FALSE
