@@ -11,4 +11,4 @@
 
 //infiltrator suit buff
 /obj/item/clothing/suit/armor/vest/infiltrator
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 35, "bomb" = 70, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 30, "energy" = 40, "bomb" = 70, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
