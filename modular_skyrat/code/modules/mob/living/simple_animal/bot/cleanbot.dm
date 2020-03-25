@@ -22,7 +22,10 @@
 		user.transferItemToLoc(W, src)
 		weapon = W
 		weapon_orig_force = weapon.force
-		weapon.force = weapon.force / 2
+		if(!emagged)
+			weapon.force = weapon.force / 2
+		else
+			weapon.force = weapon.force + 3 //cleanbots are expert knife wielders
 		icon_state = "cleanbot[on]"
 		add_overlay(image(icon=weapon.lefthand_file,icon_state=weapon.item_state))
 
@@ -37,7 +40,7 @@
 					commissioned = TRUE
 				break
 
-	working_title += initial(name)
+	working_title += chosen_name
 
 	for(var/suf in suffixes)
 		for(var/title in suf)
@@ -54,6 +57,7 @@
 
 /mob/living/simple_animal/bot/cleanbot/Initialize()
 	. = ..()
+	chosen_name = name
 	get_targets()
 	icon_state = "cleanbot[on]"
 
@@ -80,7 +84,14 @@
 		var/mob/living/carbon/C = AM
 		if(!istype(C))
 			return
-		if(C.stat != UNCONSCIOUS && C.stat != DEAD && !C.lying) //no stabbing people to death
+		if(C.stat != UNCONSCIOUS && C.stat != DEAD && !C.lying && !emagged) //no stabbing people to death
+			weapon.attack(C, src)
+			C.Knockdown(20)
+
+			if(!(C.job in stolen_valor))
+				stolen_valor += C.job
+			update_titles()
+		else if(emagged)
 			weapon.attack(C, src)
 			C.Knockdown(20)
 
@@ -103,7 +114,15 @@
 				to_chat(user, "<span class='notice'>\The [src] doesn't seem to respect your authority.</span>")
 	else if(istype(W, /obj/item/kitchen/knife) && user.a_intent != INTENT_HARM)
 		to_chat(user, "<span class='notice'>You start attaching the [W] to \the [src]...</span>")
-		if(do_after(user, 40, target = src))
+		if(do_after(user, 25, target = src))
 			deputize(W, user)
 	else
 		return ..()
+
+/mob/living/simple_animal/bot/cleanbot/emag_act(mob/user)
+	..()
+	if(emagged)
+		if(weapon)
+			weapon.force = weapon_orig_force + 3
+		if(user)
+			to_chat(user, "<span class='danger'>[src] buzzes and beeps.</span>")
