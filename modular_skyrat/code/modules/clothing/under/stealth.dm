@@ -36,6 +36,14 @@
 	for(var/datum/action/item_action/A in src)
 		A.Remove(M, src)
 
+/obj/item/clothing/under/syndicate/stealthsuit/emp_act(severity)
+	M.alpha = 255
+	visible_message("<span class='warning'>\the [src] malfunctions, revealing it's wearer!</span>", "<span class='warning'>\the [src] malfunctions, revealing it's wearer!</span>")
+	var/datum/effect_system/spark_spread/S = new /datum/effect_system/spark_spread()
+	S.set_up(5, 0, src)
+	S.attach(src)
+	S.start()
+
 /obj/item/clothing/under/syndicate/stealthsuit/ui_action_click(mob/living/user, action)
 	if(istype(action, /datum/action/item_action/activatestealth))
 		if(!activated)
