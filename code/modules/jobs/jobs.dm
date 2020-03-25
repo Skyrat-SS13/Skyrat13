@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(supply_positions, list(
 	"Quartermaster",
 	"Cargo Technician",
 	"Shaft Miner"))
-
+// Added Prisoner SKYRAT EDIT
 GLOBAL_LIST_INIT(civilian_positions, list(
 	"Head of Personnel",
 	"Bartender",
@@ -43,14 +43,15 @@ GLOBAL_LIST_INIT(civilian_positions, list(
 	"Chaplain",
 	"Clown",
 	"Mime",
+	"Prisoner",
 	"Assistant"))
-
+// Added Brig Physician SKYRAT EDIT
 GLOBAL_LIST_INIT(security_positions, list(
 	"Head of Security",
 	"Warden",
 	"Detective",
-	"Security Officer"))
-
+	"Security Officer",
+	"Brig Physician"))
 
 GLOBAL_LIST_INIT(nonhuman_positions, list(
 	"AI",

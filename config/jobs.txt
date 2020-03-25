@@ -10,6 +10,7 @@ Research Director=1,1
 Chief Medical Officer=1,1
 
 Assistant=-1,-1
+Prisoner=4,4
 
 Quartermaster=1,1
 Cargo Technician=3,2
@@ -42,6 +43,7 @@ Roboticist=2,2
 Warden=1,1
 Detective=1,1
 Security Officer=5,5
+Brig Physician=1,1
 
 AI=0,1
 Cyborg=0,1

@@ -587,7 +587,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				if(T)
 					var/state = "[T.icon_state][((DIGITIGRADE in species_traits) && T.has_digitigrade) ? "_d" : ""]"
 					var/mutable_appearance/MA
-					if(H.dna.species.sexes && H.gender == FEMALE)
+					if(H.dna.species.sexes && H.dna.features["body_model"] == FEMALE)
 						MA = wear_female_version(state, T.icon, BODY_LAYER)
 					else
 						MA = mutable_appearance(T.icon, state, -BODY_LAYER)
@@ -748,7 +748,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	if(!bodyparts_to_add)
 		return
 
-	var/g = (H.gender == FEMALE) ? "f" : "m"
+	var/g = (H.dna.features["body_model"] == FEMALE) ? "f" : "m"
 
 	for(var/layer in relevent_layers)
 		var/layertext = mutant_bodyparts_layertext(layer)
@@ -1558,7 +1558,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if (!HAS_TRAIT(target, TRAIT_PERMABONER))
 			stop_wagging_tail(target)
 		return FALSE
-	else if(!(user.client?.prefs.cit_toggles & NO_ASS_SLAP) && aim_for_groin && (target == user || target.lying || same_dir) && (target_on_help || target_restrained || target_aiming_for_groin))
+	else if(aim_for_groin && (target == user || target.lying || same_dir) && (target_on_help || target_restrained || target_aiming_for_groin))
 		if(target.client?.prefs.cit_toggles & NO_ASS_SLAP)
 			to_chat(user,"A force stays your hand, preventing you from slapping \the [target]'s ass!")
 			return FALSE
