@@ -175,7 +175,7 @@
 	if(!isnull(stagger_force))
 		return stagger_force
 	/// totally not an untested, arbitrary equation.
-	return clamp((1.5 + (w_class/7.5)) * (force / 2), 0, 10 SECONDS)
+	return CLAMP((1.5 + (w_class/7.5)) * (force / 2), 0, 10 SECONDS) //Skyrat change - clamp->CLAMP
 
 /obj/item/proc/do_stagger_action(mob/living/target, mob/living/user)
 	if(!CHECK_BITFIELD(target.status_flags, CANSTAGGER))
