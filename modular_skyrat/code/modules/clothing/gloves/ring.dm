@@ -19,3 +19,20 @@
 			cooldowntime = world.time + ringcooldown
 		else
 			to_chat(user, "<span class='notice'>The [src] just fizzles uselessly.</span>")
+
+/obj/item/clothing/gloves/thief/khajiiti
+	name = "gold ring"
+	desc = "From a distance, this seems like a normal golden ring. Upon further inspection, you can see it's actually inscribed with... cats?"
+	siemens_coefficient = 0
+	permeability_coefficient = 0.05
+	strip_delay = 80
+	transfer_prints = FALSE
+	strip_mod = 7.5
+	strip_silence = TRUE
+	attack_verb = list("proposed")
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	resistance_flags = NONE
+	siemens_coefficient = 0
