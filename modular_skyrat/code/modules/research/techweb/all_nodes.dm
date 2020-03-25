@@ -19,3 +19,9 @@
 	prereq_ids = list("practical_bluespace", "adv_mining")
 	design_ids = list("bluespace_miner")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+
+/datum/techweb_node/radioactive_weapons/New()
+	design_ids += "holorifle"
+	design_ids += "microfusion_cell"
+	design_ids += "microfusion_cell_box"
+	. = ..()

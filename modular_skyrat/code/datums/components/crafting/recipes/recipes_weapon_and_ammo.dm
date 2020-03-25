@@ -136,20 +136,6 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/holorifle //gonna need to work for this
-	name = "Holorifle"
-	result = /obj/item/gun/ballistic/shotgun/holorifle
-	reqs = list(/obj/item/stack/sheet/metal = 5,
-				/obj/item/stack/cable_coil = 15,
-				/obj/item/gun/ballistic/shotgun = 1,
-				/obj/item/stack/packageWrap = 5,
-				/obj/item/stock_parts/capacitor/super = 1,
-				/obj/item/circuitboard/machine/holopad = 1)
-	tools = list(TOOL_WELDER, TOOL_WRENCH, TOOL_WIRECUTTER, TOOL_MULTITOOL)
-	time = 300
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
 /datum/crafting_recipe/box_gun
 	name = "Box gun"
 	result = /obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun

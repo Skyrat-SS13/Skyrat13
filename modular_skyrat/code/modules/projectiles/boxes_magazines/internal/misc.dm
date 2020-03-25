@@ -2,4 +2,4 @@
 	name = "holorifle internal tube"
 	ammo_type = /obj/item/ammo_casing/microfusion
 	caliber = "microfusion"
-	max_ammo = 4
+	max_ammo = 5 //5 + 1 shots
