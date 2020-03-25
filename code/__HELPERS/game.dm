@@ -224,6 +224,7 @@
 
 	return found_mobs
 
+/* moved to modular_skyrat
 /proc/get_hearers_in_view(R, atom/source)
 	var/turf/T = get_turf(source)
 	. = list()
@@ -248,6 +249,7 @@
 			. += A
 			SEND_SIGNAL(A, COMSIG_ATOM_HEARER_IN_VIEW, processing, .)
 		processing += A.contents
+*/
 
 /proc/get_mobs_in_radio_ranges(list/obj/item/radio/radios)
 	. = list()

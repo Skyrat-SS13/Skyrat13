@@ -40,7 +40,7 @@
 	var/where
 
 GLOBAL_LIST_EMPTY(family_heirlooms)
-
+/* moved to modular_skyrat
 /datum/quirk/family_heirloom/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/heirloom_type
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(family_heirlooms)
 		"in your backpack" = SLOT_IN_BACKPACK
 	)
 	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
-
+*/
 /datum/quirk/family_heirloom/post_add()
 	if(where == "in your backpack")
 		var/mob/living/carbon/human/H = quirk_holder
