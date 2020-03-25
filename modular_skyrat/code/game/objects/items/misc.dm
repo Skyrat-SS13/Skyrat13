@@ -9,7 +9,7 @@
 	item_state = "makeshiftarmor"
 	w_class = 3
 	blood_overlay_type = "armor"
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 25, "fire" = 0, "acid" = 25)
+	armor = list("melee" = 20, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 10, "rad" = 35, "fire" = 10, "acid" = 25)
 	slowdown = 0.35 //not completely insignificant but will not help you either
 
 //trayshield
@@ -64,16 +64,16 @@
 
 //durathread buff
 /obj/item/clothing/head/beanie/durathread
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 25, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
 
 /obj/item/clothing/head/helmet/durathread
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 25, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
 
 /obj/item/clothing/suit/armor/vest/durathread
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 25, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
 
 /obj/item/clothing/suit/hooded/wintercoat/durathread
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 25, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
 
 /obj/item/clothing/head/hooded/winterhood/durathread
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 25, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
