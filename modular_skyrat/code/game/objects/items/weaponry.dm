@@ -207,7 +207,7 @@
 	force = 12
 	block_chance = 20
 	throwforce = 7
-	stunforce = 160
+	stamforce = 40
 	hitcost = 1200
 	throw_hit_chance = 20
 	slot_flags = ITEM_SLOT_BACK
