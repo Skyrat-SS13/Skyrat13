@@ -1,6 +1,7 @@
+//hazard vest armor
 /obj/item/clothing/suit/armor/hazard
 	name = "armored hazard vest"
-	desc = "A hazard vest with metal plate taped on it. It offers minor protection against kinetic damage."
+	desc = "A hazard vest with plasteel and metal plates taped on it. It offers minor protection against kinetic damage, but slows you down a significant bit."
 	icon = 'modular_skyrat/icons/obj/clothing/armor.dmi'
 	alternate_worn_icon = 'modular_skyrat/icons/mob/suit.dmi'
 	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/suit_digi.dmi'
@@ -8,8 +9,10 @@
 	item_state = "makeshiftarmor"
 	w_class = 3
 	blood_overlay_type = "armor"
-	armor = list(melee = 25, bullet = 10, laser = 0, energy = 0, bomb = 5, bio = 0, rad = 0)
+	armor = list("melee" = 20, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 25, "fire" = 0, "acid" = 25)
+	slowdown = 0.35 //not completely insignificant but will not help you either
 
+//trayshield
 /obj/item/shield/trayshield
 	name = "tray shield"
 	desc = "A makeshift shield that won't last for long."
@@ -21,7 +24,7 @@
 	throwforce = 5
 	throw_speed = 2
 	throw_range = 3
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("shoved", "bashed")
 	block_chance = 40
 	var/damage_received = 0 //Amount of damage the shield has received
@@ -58,3 +61,19 @@
 			playsound(loc, pick(hitsound), 50, 1)
 		return TRUE
 	return FALSE
+
+//durathread buff
+/obj/item/clothing/head/beanie/durathread
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 25, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/head/helmet/durathread
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 25, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/suit/armor/vest/durathread
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 25, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/suit/hooded/wintercoat/durathread
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 25, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/head/hooded/winterhood/durathread
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 25, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
