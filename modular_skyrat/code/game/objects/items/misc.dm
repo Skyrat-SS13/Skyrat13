@@ -26,7 +26,7 @@
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("shoved", "bashed")
-	block_chance = 40
+	block_chance = 30 //same as a buckler, but this shit will break lol
 	var/damage_received = 0 //Amount of damage the shield has received
 	var/max_damage = 100 //Amount of max damage the trayshield can withstand
 
