@@ -28,7 +28,7 @@
 
 /datum/status_effect/stealthsuit/on_remove()
 	. = ..()
-	animate(user, , alpha = 255, time = 10)
+	animate(owner, , alpha = 255, time = 10)
 
 /datum/status_effect/stealthsuit/tick()
 	. = ..()

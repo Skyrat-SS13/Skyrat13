@@ -49,15 +49,18 @@
 
 /obj/item/clothing/under/syndicate/stealthsuit/proc/get_wearer()
 	for(var/mob/living/carbon/C in loc)
-		if(C.wear_suit == src)
-			var/mob/living/carbon/ourguy = C
-	return ourguy
+		if(C.w_uniform)
+			var/obj/item/clothing/under/U = w_uniform
+			if(U == src)
+				var/mob/living/carbon/ourguy = C
+				return ourguy
+	return FALSE
 
 /obj/item/clothing/under/syndicate/stealthsuit/dropped(mob/living/M, slot)
 	. = ..()
 	M.remove_status_effect(effectapplied)
 	activated = 0
-	for(var/datum/action/item_action/A in action_types)
+	for(var/datum/action/item_action/A in actions_types)
 		A.Remove(M, src)
 
 /obj/item/clothing/under/syndicate/stealthsuit/ui_action_click(mob/living/user, action)
