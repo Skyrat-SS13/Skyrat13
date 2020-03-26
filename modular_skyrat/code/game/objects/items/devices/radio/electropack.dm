@@ -28,6 +28,7 @@
 /obj/item/electropack/shockcollar/pacify/admin/
 	name = "cent-comm pacifying collar"
 	desc = "A Central Command branded shock collar that cannot be taken off by most means."
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	random = TRUE
 	freq_in_name = TRUE
 
@@ -54,21 +55,24 @@
 /mob/living/carbon/human/proc/update_admin_collar()
 	if(client)
 		if(jobban_isbanned(src, COLLARBAN))
-			if(wear_neck && istype(wear_neck, COLLARITEM))
-				qdel(wear_neck) //i dont get the logic of this but ok
-				return
 			if(wear_neck && !istype(wear_neck, COLLARITEM))
 				qdel(wear_neck)
-			var/obj/item/electropack/shockcollar/pacify/admin/collar = new()
-			equip_to_slot(collar, SLOT_NECK)
-		if(jobban_isbanned(src, LESSERCOLLARBAN))
-			if(wear_neck && istype(wear_neck, LESSERCOLLARITEM))
-				qdel(wear_neck)
-				return
+				var/obj/item/electropack/shockcollar/pacify/admin/collar = new()
+				equip_to_slot(collar, SLOT_NECK)
+			else if(!wear_neck)
+				var/obj/item/electropack/shockcollar/pacify/admin/collar = new()
+				equip_to_slot(collar, SLOT_NECK)
+		else if(jobban_isbanned(src, LESSERCOLLARBAN))
 			if(wear_neck && !istype(wear_neck, LESSERCOLLARITEM))
 				qdel(wear_neck)
-			var/obj/item/electropack/shockcollar/pacify/admin/lesser/collar = new()
-			equip_to_slot(collar, SLOT_NECK)
+				var/obj/item/electropack/shockcollar/pacify/admin/lesser/collar = new()
+				equip_to_slot(collar, SLOT_NECK)
+			else if(!wear_neck)
+				var/obj/item/electropack/shockcollar/pacify/admin/lesser/collar = new()
+				equip_to_slot(collar, SLOT_NECK)
+		else
+			if(wear_neck && istype(wear_neck, LESSERCOLLARITEM || COLLARITEM))
+				qdel(wear_neck)
 	else
 		return FALSE
 
