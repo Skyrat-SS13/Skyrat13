@@ -1,10 +1,4 @@
-/obj/item/stack/cable_coil/building_checks(datum/stack_recipe/R, multiplier)
-	if(R.title == "noose")
-		if(!(locate(/obj/structure/chair) in usr.loc) && !(locate(/obj/structure/bed) in usr.loc) && !(locate(/obj/structure/table) in usr.loc) && !(locate(/obj/structure/toilet) in usr.loc))
-			to_chat(usr, "<span class='warning'>You have to be standing on top of a chair/table/toilet to make a noose!</span>")
-			return FALSE
-	return ..()
-
+//fucking noose
 /obj/structure/chair/noose //It's a "chair".
 	name = "noose"
 	desc = "Well this just got a whole lot more morbid."
