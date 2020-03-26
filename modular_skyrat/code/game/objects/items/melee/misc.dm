@@ -29,7 +29,7 @@
 	. = ..()]
 
 //blueshield's baton
-/obj/item/melee/baton/stunprod
+/obj/item/melee/baton/electricprod
 	name = "blueshield electric prod"
 	desc = "A non-lethal takedown is always the most silent way to eliminate resistance."
 	icon = 'modular_skyrat/icons/obj/stunprod.dmi'
