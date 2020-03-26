@@ -17,9 +17,17 @@
 				processing += O
 		T.luminosity = lum
 	var/i = 0
+	var/list/sightedturfs = list()
 	var/list/contentlist = list()
 	for(var/atom/A in processing)
-		if(isInSight(A,T))
+		var/passed = FALSE
+		var/turf/AT = get_turf(A)
+		if(AT in sightedturfs)
+			passed = TRUE
+		else if(isInSight(A,T))
+			sightedturfs += AT
+			passed = TRUE
+		if(passed)
 			if(A.flags_1 & HEAR_1)
 				. += A
 				SEND_SIGNAL(A, COMSIG_ATOM_HEARER_IN_VIEW, processing, .)
