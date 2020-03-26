@@ -240,11 +240,11 @@ GLOBAL_LIST_EMPTY(objectives)
 	return target
 
 /datum/objective/maroon/check_completion()
-	return !target || !considered_alive(target) || (!target.current.onCentCom() && !target.current.onSyndieBase())
+	return considered_alive(target) && (!target.current.onCentCom() && !target.current.onSyndieBase()) //Skyrat edit - maroon target has to be alive
 
 /datum/objective/maroon/update_explanation_text()
 	if(target && target.current)
-		explanation_text = "Prevent [target.name], the [!target_role_type ? target.assigned_role : target.special_role], from escaping alive."
+		explanation_text = "Ensure that [target.name], the [!target_role_type ? target.assigned_role : target.special_role] stays marooned on the station." //Skyrat edit - less ambigious
 	else
 		explanation_text = "Free Objective"
 
