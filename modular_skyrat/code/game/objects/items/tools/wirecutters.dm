@@ -4,6 +4,7 @@
 	random_color = FALSE
 	force = 0
 	var/list/canremove = list(/obj/item/electropack/shockcollar, /obj/item/electropack/shockcollar/security, /obj/item/electropack/shockcollar/pacify/security/shock)
+	var/list/cantremove = list(/obj/item/electropack/shockcollar/pacify/admin, /obj/item/electropack/shockcollar/pacify/admin/lesser)
 
 /obj/item/wirecutters/collarremover/Initialize()
 	. = ..()
@@ -15,7 +16,7 @@
 /obj/item/wirecutters/collarremover/attack(mob/living/carbon/C, mob/user)
 	if(istype(C))
 		if(C.wear_neck)
-			if(canremove.Find(C.wear_neck))
+			if(canremove.Find(C.wear_neck) && !cantremove.Find(C.wear_neck))
 				user.visible_message("<span class='notice'>[user] cuts [C]'s [C.wear_neck]!</span>")
 				qdel(C.wear_neck)
 				return
