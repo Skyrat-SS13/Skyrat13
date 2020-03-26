@@ -26,4 +26,26 @@
 	return ..()
 
 /obj/item/melee/rapier/attack(mob/living/target, mob/living/user)
-	. = ..()
+	. = ..()]
+
+//blueshield's baton
+/obj/item/melee/baton/stunprod
+	name = "blueshield electric prod"
+	desc = "A non-lethal takedown is always the most silent way to eliminate resistance."
+	icon = 'modular_skyrat/icons/obj/stunprod.dmi'
+	icon_state = "electricprod"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi' //pissholder
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi' //placeholder fuck
+	item_state = "telebaton_1" //placeholder fuck piss
+	stamforce = 35 //considerably better than a normal baton
+	hitcost = 500 //less energy cost per hit
+	throw_hit_chance = 10 //don't throw that shit it won't work bro
+	slot_flags = null //you'll have to put it on a belt or whatever
+	force = 15 //robust harmbatoning
+	attack_verb = list("prodded", "struck", "\"non-lethalled\"", "silent takedowned") //le deus ex
+	w_class = WEIGHT_CLASS_SMALL //small but packs a PUNCH.
+	preload_cell_type = /obj/item/stock_parts/cell/high/plus/blueshield
+
+/obj/item/stock_parts/cell/high/plus/blueshield
+	name = "centcomm exclusive power cell"
+	self_recharge = 1
