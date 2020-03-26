@@ -132,7 +132,7 @@ There are several things that need to be remembered:
 		var/mutable_appearance/uniform_overlay
 
 		if(dna && dna.species.sexes)
-			var/G = (gender == FEMALE) ? "f" : "m"
+			var/G = (dna.features["body_model"] == FEMALE) ? "f" : "m"
 			if(G == "f" && U.fitted != NO_FEMALE_UNIFORM)
 				uniform_overlay = U.build_worn_icon(t_color, UNIFORM_LAYER, alt_worn, FALSE, U.fitted, variant_flag, FALSE)
 
@@ -335,9 +335,9 @@ There are several things that need to be remembered:
 		var/alt_icon = H.alternate_worn_icon || 'icons/mob/head.dmi'
 		var/muzzled = FALSE
 		var/variation_flag = NONE
-		if(("mam_snouts" in dna.species.default_features) && dna.features["mam_snouts"] != "None")
+		if(dna.species.mutant_bodyparts["mam_snouts"] && dna.features["mam_snouts"] != "None")
 			muzzled = TRUE
-		if(!muzzled && ("snout" in dna.species.default_features) && dna.features["snout"] != "None")
+		else if(dna.species.mutant_bodyparts["snout"] && dna.features["snout"] != "None")
 			muzzled = TRUE
 		if(muzzled && H.mutantrace_variation & STYLE_MUZZLE)
 			alt_icon = H.alternate_worn_icon_muzzled || H.alternate_worn_icon || 'icons/mob/head_muzzled.dmi' // SKYRAT CHANGE
@@ -403,7 +403,7 @@ There are several things that need to be remembered:
 		var/dimension_y = 32
 		var/variation_flag = NONE
 		var/datum/sprite_accessory/taur/T
-		if("taur" in dna.species.mutant_bodyparts)
+		if(dna.species.mutant_bodyparts["taur"])
 			T = GLOB.taur_list[dna.features["taur"]]
 
 		if(S.mutantrace_variation)
@@ -472,9 +472,9 @@ There are several things that need to be remembered:
 		var/variation_flag = NONE
 		if(head && (head.flags_inv & HIDEMASK))
 			return
-		if(("mam_snouts" in dna.species.default_features) && dna.features["mam_snouts"] != "None")
+		if(dna.species.mutant_bodyparts["mam_snouts"] && dna.features["mam_snouts"] != "None")
 			muzzled = TRUE
-		if(!muzzled && ("snout" in dna.species.default_features) && dna.features["snout"] != "None")
+		else if(dna.species.mutant_bodyparts["snout"] && dna.features["snout"] != "None")
 			muzzled = TRUE
 		if(muzzled && M.mutantrace_variation & STYLE_MUZZLE)
 			alt_icon = M.alternate_worn_icon_muzzled || M.alternate_worn_icon || 'icons/mob/mask_muzzled.dmi' // SKYRAT CHANGE
@@ -661,12 +661,11 @@ generate/load female uniform sprites matching all previously decided variables
 	else
 		. += "-not_coloured"
 
-	. += "-[gender]"
+	. += "-[dna.features["body_model"]]"
 
 
 	var/is_taur = FALSE
-	var/mob/living/carbon/human/H = src
-	if(("taur" in H.dna.species.mutant_bodyparts) && (H.dna.features["taur"] != "None"))
+	if(dna.species.mutant_bodyparts["taur"] && dna.features["taur"] != "None")
 		is_taur = TRUE
 
 
