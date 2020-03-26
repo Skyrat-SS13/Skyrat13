@@ -33,9 +33,9 @@
 /datum/status_effect/stealthsuit/tick()
 	. = ..()
 	currentloc = owner.loc
-	if(owner.alpha >= 10 && currentloc == oldloc) //ALMOST completely invisible
+	if(owner.alpha >= 10 && currentloc == oldloc && (owner.alpha - 45 > 10)) //ALMOST completely invisible
 		animate(owner, , owner.alpha -= 45, time = 3)
-	else if(owner.alpha > 10 && owner.alpha <=30 && currentloc == oldloc)
+	else if(owner.alpha > 10 && (owner.alpha - 45 < 10) && currentloc == oldloc)
 		animate(owner, , owner.alpha = 10, time = 3)
 	oldloc = currentloc
 
