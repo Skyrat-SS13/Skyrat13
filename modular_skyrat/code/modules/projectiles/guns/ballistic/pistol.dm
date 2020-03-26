@@ -40,3 +40,8 @@
 		icon_state = "[unique_reskin[current_skin]][chambered ? "" : "-e"]"
 	else
 		icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"
+
+/obj/item/gun/ballistic/automatic/pistol/uspm/emag_act(mob/user)
+	if(magazine)
+		var/obj/item/ammo_box/magazine/M = magazine
+		M.emag_act(user)

@@ -1,31 +1,46 @@
-/proc/get_hearers_in_view(R, atom/source, need_client = TRUE, mobs = TRUE, objects = FALSE)
+/proc/get_hearers_in_view(R, atom/source)
 	var/turf/T = get_turf(source)
 	. = list()
 	if(!T)
 		return
 	var/list/processing = list()
+	var/list/sightedturfs = list()
+	var/lum = T.luminosity
+	T.luminosity = 6
 	if(R == 0)
+		T.luminosity = lum
+		sightedturfs += T
 		processing += T.contents
 	else
-		var/lum = T.luminosity
-		T.luminosity = 6
-		var/list/cached_view
-		if(objects)
-			cached_view = view(R, T)
-		else
-			cached_view = viewers(R, T)
-		if(mobs)
-			for(var/mob/M in cached_view)
-				if(M.client || !need_client)
-					processing += M
-		if(objects)
-			for(var/obj/O in cached_view)
+		var/list/cached_turfs = RANGE_TURFS(R, T)
+		for(var/turf/Tur in cached_turfs)
+			for(var/mob/M in Tur)
+				processing += M
+			for(var/obj/O in Tur)
 				processing += O
-		T.luminosity = lum
 	var/i = 0
-	while(i < length(processing))
-		var/atom/A = processing[++i]
+	var/list/contentlist = list()
+
+	for(var/atom/A in processing)
+		var/passed = FALSE
+		var/turf/AT = get_turf(A)
+		if(AT in sightedturfs)
+			passed = TRUE
+		else if(isInSight(A,T))
+			sightedturfs += AT
+			passed = TRUE
+		if(passed)
+			if(A.flags_1 & HEAR_1)
+				. += A
+				SEND_SIGNAL(A, COMSIG_ATOM_HEARER_IN_VIEW, processing, .)
+			contentlist += A.contents
+
+	//Another loop because we dont need to check sight for the contents of sighted things
+	i = 0
+	while(i < length(contentlist))
+		var/atom/A = contentlist[++i]
 		if(A.flags_1 & HEAR_1)
 			. += A
 			SEND_SIGNAL(A, COMSIG_ATOM_HEARER_IN_VIEW, processing, .)
-		processing += A.contents
+		contentlist += A.contents
+	T.luminosity = lum

@@ -24,3 +24,7 @@
 	id = /obj/item/card/id/prisoner
 	ears = null
 	belt = null
+
+/datum/job/prisoner/radio_help_message(mob/M)
+	to_chat(M, "<span class='userdanger'>As a prisoner, you are not an antagonist. You are to roleplay and add to the story. You must ahelp and receive permission from staff BEFORE you wish to riot and attempt to escape.</span>")
+	to_chat(M, "<span class='userdanger'>Even if you are allowed to riot or escape, this is not a pass to ruin other crew members days. Failing to follow this may result in punishments.</span>")
