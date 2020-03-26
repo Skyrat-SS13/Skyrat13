@@ -73,4 +73,4 @@
 		else if(C.stat == DEAD)
 			playsound(C, 'modular_skyrat/sound/misc/doomdies.wav', 100, 1)
 		else
-			playsound(C, 'modular_skyrat/sound/misc/doomscream.wav', 100, 1)
+			playsound(C, pick('modular_skyrat/sound/misc/doomscream.wav', 'modular_skyrat/sound/misc/doomscream2.wav'), 100, 1)
