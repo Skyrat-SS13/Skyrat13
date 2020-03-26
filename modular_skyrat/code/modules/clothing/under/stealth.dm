@@ -41,17 +41,18 @@
 	if(!activated)
 		return
 	else
-		src.visible_message("<span class='warning'>[src] malfunctions and reveals it's owner!</span>", "<span class='warning'>[src] malfunctions and reveals it's owner!</span>")
-		var/mob/living/carbon/human/C = get_wearer()
-		if(C)
-			C.alpha = 255
-			to_chat(C, "<span class='warning'><b>[src]:</b> Stealth module malfunction!%#&%%#&@ERROR$%!@&$&#</span>")
-			to_chat(C, "<span class='warning'><b>[src]:</b> Resetting suit...</span>")
-			src.ui_action_click(C, /datum/action/item_action/activatestealth)
-			var/datum/effect_system/spark_spread/S = new /datum/effect_system/spark_spread()
-			S.set_up(5, 0, src)
-			S.attach(src)
-			S.start()
+		if(istype(AM, /mob/living))
+			src.visible_message("<span class='warning'>[src] malfunctions and reveals it's owner!</span>", "<span class='warning'>[src] malfunctions and reveals it's owner!</span>")
+			var/mob/living/carbon/human/C = get_wearer()
+			if(C)
+				C.alpha = 255
+				to_chat(C, "<span class='warning'><b>[src]:</b> Stealth module malfunction!%#&%%#&@ERROR$%!@&$&#</span>")
+				to_chat(C, "<span class='warning'><b>[src]:</b> Resetting suit...</span>")
+				src.ui_action_click(C, /datum/action/item_action/activatestealth)
+				var/datum/effect_system/spark_spread/S = new /datum/effect_system/spark_spread()
+				S.set_up(5, 0, src)
+				S.attach(src)
+				S.start()
 
 /obj/item/clothing/under/syndicate/stealthsuit/proc/get_wearer()
 	for(var/mob/living/carbon/human/C in loc)
