@@ -36,6 +36,7 @@
 	item_state = null
 	var/firestacking = 5
 	var/burn_force = 0
+	obj_flags = UNIQUE_RENAME
 
 /obj/item/switchblade/deluxe/afterattack(target, user)
 	..()
@@ -441,6 +442,7 @@
 	ammo_x_offset = 2
 	fire_delay = 15
 	spread = 15
+	obj_flags = UNIQUE_RENAME
 
 //laser musket
 /obj/item/gun/energy/pumpaction/musket
@@ -455,6 +457,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	cell_type = /obj/item/stock_parts/cell/pumpaction/musket
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun, /obj/item/ammo_casing/energy/disabler)
+	obj_flags = UNIQUE_RENAME
 
 /obj/item/stock_parts/cell/pumpaction/musket
 	name = "laser musket internal cell"
