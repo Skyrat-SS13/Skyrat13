@@ -45,6 +45,7 @@
 	attack_verb = list("prodded", "struck", "\"non-lethalled\"", "silent takedowned") //le deus ex
 	w_class = WEIGHT_CLASS_SMALL //small but packs a PUNCH.
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus/blueshield
+	obj_flags = UNIQUE_RENAME
 
 /obj/item/stock_parts/cell/high/plus/blueshield
 	name = "centcomm exclusive power cell"

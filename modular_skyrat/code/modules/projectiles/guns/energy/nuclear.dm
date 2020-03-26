@@ -10,6 +10,7 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/blueshieldgun_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/blueshieldgun_righthand.dmi'
 	item_state = "minidisable"
+	obj_flags = UNIQUE_RENAME
 
 /obj/item/gun/energy/gun/blueshield/pdw9
 	name = "PDW-9 taser pistol"
