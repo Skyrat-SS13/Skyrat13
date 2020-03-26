@@ -8,4 +8,4 @@
 	name = "Chameleon Advanced Taser"
 	desc = "An advanced taser that can mimmick the appearance of any gun you want. Goes great with a chameleon kit."
 	item = /obj/item/gun/energy/e_gun/advtaser/chameleon
-	cost = 4
+	cost = 6
