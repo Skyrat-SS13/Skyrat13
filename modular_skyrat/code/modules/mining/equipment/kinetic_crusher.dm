@@ -81,7 +81,7 @@
 	marker.icon_state = "fireball"
 	marker.damage = bonus_value
 	marker.nodamage = FALSE
-	playsound(user.loc, 'modular_skyrat/sound/misc/imp.wav', 50, 0)
+	playsound(user.loc, 'modular_skyrat/sound/misc/impranged.wav', 50, 0)
 
 //traitor crusher
 

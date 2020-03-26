@@ -91,6 +91,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	job_rank = ROLE_DEVIL
 	//Don't delete upon mind destruction, otherwise soul re-selling will break.
 	delete_on_mind_deletion = FALSE
+	threat = 5
 	var/obligation
 	var/ban
 	var/bane
@@ -112,6 +113,9 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		/obj/effect/proc_holder/spell/targeted/summon_dancefloor))
 	var/ascendable = FALSE
 
+/datum/antagonist/devil/threat()
+	return threat + form * 10
+
 /datum/antagonist/devil/can_be_owned(datum/mind/new_owner)
 	. = ..()
 	return . && (ishuman(new_owner.current) || iscyborg(new_owner.current))
@@ -119,7 +123,6 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 /datum/antagonist/devil/get_admin_commands()
 	. = ..()
 	.["Toggle ascendable"] = CALLBACK(src,.proc/admin_toggle_ascendable)
-
 
 /datum/antagonist/devil/proc/admin_toggle_ascendable(mob/admin)
 	ascendable = !ascendable
@@ -414,11 +417,11 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		if(BANISH_FUNERAL_GARB)
 			if(ishuman(body))
 				var/mob/living/carbon/human/H = body
-				if(H.w_uniform && istype(H.w_uniform, /obj/item/clothing/under/burial))
+				if(H.w_uniform && istype(H.w_uniform, /obj/item/clothing/under/misc/burial))
 					return 1
 				return 0
 			else
-				for(var/obj/item/clothing/under/burial/B in range(0,body))
+				for(var/obj/item/clothing/under/misc/burial/B in range(0,body))
 					if(B.loc == get_turf(B)) //Make sure it's not in someone's inventory or something.
 						return 1
 				return 0
@@ -456,7 +459,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 			return -1
 		currentMob.change_mob_type( /mob/living/carbon/human, targetturf, null, 1)
 		var/mob/living/carbon/human/H = owner.current
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/lawyer/black(H), SLOT_W_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/civilian/lawyer/black(H), SLOT_W_UNIFORM)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), SLOT_SHOES)
 		H.equip_to_slot_or_del(new /obj/item/storage/briefcase(H), SLOT_HANDS)
 		H.equip_to_slot_or_del(new /obj/item/pen(H), SLOT_L_STORE)

@@ -9,15 +9,15 @@
 	icon_dead = "imp_dead"
 	icon_gib = "syndicate_gib"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	move_to_delay = 2
-	projectiletype = /obj/item/projectile/magic/aoe/impfireball
-	projectilesound = 'modular_skyrat/sound/misc/imp.wav'
+	move_to_delay = 4
+	projectiletype = /obj/item/projectile/magic/impfireball
+	projectilesound = 'modular_skyrat/sound/misc/impranged.wav'
 	ranged = 1
 	ranged_message = "shoots a fireball"
-	ranged_cooldown_time = 35
+	ranged_cooldown_time = 70
 	throw_message = "does nothing against the hardened skin of"
 	vision_range = 5
-	speed = -1
+	speed = 1
 	maxHealth = 150
 	health = 150
 	harm_intent_damage = 15
@@ -27,30 +27,50 @@
 	attacktext = "claws"
 	a_intent = INTENT_HARM
 	speak_emote = list("groans")
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'modular_skyrat/sound/misc/impattacks.wav'
 	aggro_vision_range = 15
 	retreat_distance = 5
 	gold_core_spawnable = HOSTILE_SPAWN
 	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/impskull
 	loot = list()
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2)
-	robust_searching = TRUE
+	robust_searching = FALSE
 	death_sound = 'modular_skyrat/sound/misc/impdies.wav'
 
-/obj/item/projectile/magic/aoe/impfireball //bobyot y u no use child of fireball
-	name = "demonic fireball" //because if i do, the on_hit proc will call the parent and fuck shit up ok
+/mob/living/simple_animal/hostile/asteroid/imp/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	playsound(src, 'modular_skyrat/sound/misc/impinjured.wav', rand(25,100), 1) //HURT ME PLENTY
+
+/mob/living/simple_animal/hostile/asteroid/imp/bullet_act(obj/item/projectile/P)
+	. = ..()
+	playsound(src, 'modular_skyrat/sound/misc/impinjured.wav', rand(25,100), 1)
+
+/mob/living/simple_animal/hostile/asteroid/imp/Aggro()
+	. = ..()
+	playsound(src, pick('modular_skyrat/sound/misc/impsight.wav', 'modular_skyrat/sound/misc/impsight2.wav'), rand(50,75), 1)
+
+/mob/living/simple_animal/hostile/asteroid/imp/LoseAggro()
+	. = ..()
+	playsound(src, pick('modular_skyrat/sound/misc/impnearby.wav', 'modular_skyrat/sound/misc/impnearby.wav'), rand(25, 60), 1)
+
+/obj/item/projectile/magic/impfireball //bobyot y u no use child of fireball
+	name = "demonic fireball" //because it fucking explodes and deals brute damage even when values are set to -1
 	icon_state = "fireball"
 	damage = 10
 	damage_type = BURN
 	nodamage = 0
+	armour_penetration = 20
+	var/firestacks = 5
 
-	//explosion values
-	var/exp_heavy = -1
-	var/exp_light = -1
-	var/exp_flash = -1
-	var/exp_fire = 2
-
-/obj/item/projectile/magic/aoe/impfireball/on_hit(target)
+/obj/item/projectile/magic/impfireball/on_hit(target)
 	. = ..()
-	var/turf/T = get_turf(target)
-	explosion(T, -1, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire) //so demonic there is no anti-magic blocking it
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		C.adjust_fire_stacks(firestacks)
+		C.IgniteMob()
+		if(C.stat != DEAD && C.stat != UNCONSCIOUS)
+			playsound(C, 'modular_skyrat/sound/misc/doominjured.wav', 100, 1)
+		else if(C.stat == DEAD)
+			playsound(C, 'modular_skyrat/sound/misc/doomdies.wav', 100, 1)
+		else
+			playsound(C, pick('modular_skyrat/sound/misc/doomscream.wav', 'modular_skyrat/sound/misc/doomscream2.wav'), 100, 1)

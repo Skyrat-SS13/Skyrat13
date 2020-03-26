@@ -9,11 +9,10 @@
 	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,LIPS,EYECOLOR)
 	inherent_traits = list(TRAIT_RESISTCOLD)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
-	mutant_bodyparts = list("legs", "mam_body_markings", "mam_tail", "mam_snouts", "spines")
 	mutantlungs = /obj/item/organ/lungs/vox
 	dangerous_existence = 1
 	breathid = "n2"
-	default_features = list("mcolor" = "0F0", "mcolor2" = "0F0", "mcolor3" = "0F0", "legs" = "Vox", "mam_body_markings" = "Vox", "mam_tail" = "Vox", "mam_snouts" = "Vox", "spines" = "Vox Bands")
+	mutant_bodyparts = list("mcolor" = "0F0", "mcolor2" = "0F0", "mcolor3" = "0F0", "legs" = "Vox", "mam_body_markings" = "Vox", "mam_tail" = "Vox", "mam_snouts" = "Vox", "spines" = "Vox Bands")
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'

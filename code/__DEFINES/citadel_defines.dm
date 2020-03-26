@@ -2,18 +2,6 @@
 //Be sure to update the min/max of these if you do change them.
 //Measurements are in imperial units. Inches, feet, yards, miles. Tsp, tbsp, cups, quarts, gallons, etc
 
-//HUD stuff
-#define  ui_arousal "EAST-1:28,CENTER-4:8"//Below the health doll
-#define ui_stamina "EAST-1:28,CENTER:17" // replacing internals button
-#define ui_overridden_resist "EAST-3:24,SOUTH+1:7"
-#define ui_combat_toggle "EAST-4:22,SOUTH:5"
-
-//1:1 HUD layout stuff
-#define ui_boxcraft "EAST-4:22,SOUTH+1:6"
-#define ui_boxarea "EAST-4:6,SOUTH+1:6"
-#define ui_boxlang "EAST-5:22,SOUTH+1:6"
-#define ui_boxvore	"EAST-5:22,SOUTH+1:6"
-
 //Filters
 #define CIT_FILTER_STAMINACRIT filter(type="drop_shadow", x=0, y=0, size=-3, color="#04080F")
 
@@ -39,15 +27,14 @@
 
 #define DEF_VAGINA_SHAPE	"Human"
 
-#define COCK_SIZE_MIN		1
 #define COCK_SIZE_DEF		6
-#define COCK_SIZE_MAX		20
 
 #define COCK_DIAMETER_RATIO_MAX		0.42
 #define COCK_DIAMETER_RATIO_DEF		0.25
 #define COCK_DIAMETER_RATIO_MIN		0.15
 
 #define DEF_COCK_SHAPE		"Human"
+
 #define BALLS_VOLUME_BASE	25
 #define BALLS_VOLUME_MULT	1
 
@@ -87,14 +74,6 @@
 #define XENOBIO_UPGRADE_SLIMEBASIC			2
 #define XENOBIO_UPGRADE_SLIMEADV			4
 
-//stamina stuff
-#define STAMINA_SOFTCRIT					100 //softcrit for stamina damage. prevents standing up, prevents performing actions that cost stamina, etc, but doesn't force a rest or stop movement
-#define STAMINA_CRIT						140 //crit for stamina damage. forces a rest, and stops movement until stamina goes back to stamina softcrit
-#define STAMINA_SOFTCRIT_TRADITIONAL		0	//same as STAMINA_SOFTCRIT except for the more traditional health calculations
-#define STAMINA_CRIT_TRADITIONAL			-40 //ditto, but for STAMINA_CRIT
-
-#define CRAWLUNDER_DELAY							30 //Delay for crawling under a standing mob
-
 //Citadel toggles because bitflag memes
 #define MEDIHOUND_SLEEPER	(1<<0)
 #define EATING_NOISES		(1<<1)
@@ -112,8 +91,6 @@
 #define TOGGLES_CITADEL (EATING_NOISES|DIGESTION_NOISES|BREAST_ENLARGEMENT|PENIS_ENLARGEMENT)
 
 //component stuff
-#define COMSIG_COMBAT_TOGGLED "combatmode_toggled" //called by combat mode toggle on all equipped items. args: (mob/user, combatmode)
-
 #define COMSIG_VORE_TOGGLED "voremode_toggled" // totally not copypasta
 
 //belly sound pref things
