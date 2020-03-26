@@ -204,10 +204,16 @@
 	righthand_file = 'modular_skyrat/icons/mob/inhands/staff_righthand.dmi'
 	alternate_worn_icon = 'modular_skyrat/icons/mob/backstaff.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	force = 12
-	block_chance = 20
-	throwforce = 7
-	stamforce = 40
-	hitcost = 1200
-	throw_hit_chance = 20
+	force = 15 //same damage as a survival knife, not really good
+	block_chance = 25 //terrible when compared to an actual electrostaff, can't block bullets
+	throwforce = 6
+	stamforce = 35 //not too much of an improvement, normal baton is 25
+	hitcost = 1250 //terrible, same cell as a normal baton
+	throw_hit_chance = 20 //awful
 	slot_flags = ITEM_SLOT_BACK
+	preload_cell_type = /obj/item/stock_parts/cell/high/plus
+
+/obj/item/melee/baton/staff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(attack_type == PROJECTILE_ATTACK)
+		return FALSE
+	return ..()
