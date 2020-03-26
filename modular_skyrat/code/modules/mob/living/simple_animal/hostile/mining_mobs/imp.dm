@@ -52,3 +52,9 @@
 		var/mob/living/carbon/C = target
 		C.adjust_fire_stacks(firestacks)
 		C.IgniteMob()
+		if(C.stat != DEAD && C.stat != UNCONSCIOUS)
+			playsound(C, 'modular_skyrat/sound/misc/doominjured.wav', 100, 1)
+		else if(C.stat == DEAD)
+			playsound(C, 'modular_skyrat/sound/misc/doomdies.wav', 100, 1)
+		else
+			playsound(C, 'modular_skyrat/sound/misc/doomscream.wav', 100, 1)
