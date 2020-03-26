@@ -52,7 +52,7 @@
 /obj/item/clothing/under/syndicate/stealthsuit/proc/get_wearer()
 	for(var/mob/living/carbon/human/C in loc)
 		if(C.w_uniform)
-			var/obj/item/clothing/under/U = w_uniform
+			var/obj/item/clothing/under/U = C.w_uniform
 			if(U == src)
 				var/mob/living/carbon/ourguy = C
 				return ourguy
