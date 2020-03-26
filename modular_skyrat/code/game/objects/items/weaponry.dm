@@ -196,9 +196,9 @@
 //stun baton staff
 /obj/item/melee/baton/staff
 	name = "batonstaff"
-	desc = "This... is two batons welded together?"
+	desc = "This... is two batons welded together? Oh god this is awful."
 	icon = 'modular_skyrat/icons/obj/staff.dmi'
-	icon_state = "batonstaff_nocell"
+	icon_state = "batonstaff"
 	item_state = "staff"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/staff_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/staff_righthand.dmi'
