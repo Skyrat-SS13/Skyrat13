@@ -14,10 +14,9 @@
 	update_icon()
 
 /obj/item/wirecutters/collarremover/attack(mob/living/carbon/C, mob/user)
-	if(istype(C))
-		if(C.wear_neck)
-			if(canremove.Find(C.wear_neck) && !cantremove.Find(C.wear_neck))
-				user.visible_message("<span class='notice'>[user] cuts [C]'s [C.wear_neck]!</span>")
-				qdel(C.wear_neck)
-				return
-	return
+	if(istype(C) && C.wear_neck && canremove.Find(C.wear_neck) && !cantremove.Find(C.wear_neck))
+		user.visible_message("<span class='notice'>[user] cuts [C]'s [C.wear_neck]!</span>")
+		qdel(C.wear_neck)
+		return TRUE
+	else
+		return ..()
