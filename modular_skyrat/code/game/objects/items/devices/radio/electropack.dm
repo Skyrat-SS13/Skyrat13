@@ -12,6 +12,18 @@
 		name = initial(name) + " - freq: [frequency/10] code: [code]"
 	. = ..()
 
+/obj/item/electropack/shockcollar/security
+	name = "security-issue shock collar"
+
+/obj/item/electropack/shockcollar/security/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_NECK)
+		ADD_TRAIT(src, TRAIT_NODROP, "sec-collar")
+
+/obj/item/electropack/shockcollar/security/dropped(mob/living/carbon/human/user)
+	. = ..()
+	REMOVE_TRAIT(src, TRAIT_NODROP, "sec-collar")
+
 /obj/item/electropack/shockcollar/pacify
 	name = "pacifying collar"
 	desc = "A reinforced metal collar that latches onto the wearer and halts any harmful thoughts."

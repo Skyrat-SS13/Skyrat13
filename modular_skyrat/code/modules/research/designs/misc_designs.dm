@@ -5,7 +5,7 @@
 	id = "shock_collar"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
-	build_path = /obj/item/electropack/shockcollar
+	build_path = /obj/item/electropack/shockcollar/security
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
