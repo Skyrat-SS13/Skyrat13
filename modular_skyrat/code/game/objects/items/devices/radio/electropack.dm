@@ -25,7 +25,86 @@
 	. = ..()
 	REMOVE_TRAIT(user, TRAIT_PACIFISM, "pacifying-collar")
 
-/obj/item/electropack/shockcollar/pacify/admin/
+/obj/item/electropack/shockcollar/pacify/security
+	name = "security-issued pacifying collar"
+	random = FALSE
+	freq_in_name = FALSE
+	code = null
+
+/obj/item/electropack/shockcollar/pacify/security/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_NECK)
+		ADD_TRAIT(src, TRAIT_NODROP, "sec-collar")
+
+/obj/item/electropack/shockcollar/pacify/security/dropped(mob/living/carbon/human/user)
+	. = ..()
+	REMOVE_TRAIT(src, TRAIT_NODROP, "sec-collar")
+
+/obj/item/electropack/shockcollar/pacify/security/Topic(href, href_list) //cant change it to do the shocky
+	return FALSE
+
+/obj/item/electropack/shockcollar/pacify/security/ui_interact(mob/user)
+	return FALSE
+
+/obj/item/electropack/shockcollar/pacify/security/shock
+	name = "security-issued pacifying shock collar"
+	random = TRUE
+	freq_in_name = TRUE
+
+/obj/item/electropack/shockcollar/pacify/security/shock/ui_interact(mob/user)
+	var/dat = {"
+<TT>
+<B>Frequency/Code</B> for shock collar:<BR>
+Frequency:
+[format_frequency(src.frequency)]
+<A href='byond://?src=[REF(src)];set=freq'>Set</A><BR>
+Code:
+[src.code]
+<A href='byond://?src=[REF(src)];set=code'>Set</A><BR>
+</TT>"}
+	user << browse(dat, "window=radio")
+	onclose(user, "radio")
+	return
+
+/obj/item/electropack/shockcollar/pacify/security/shock/Topic(href, href_list)
+	var/mob/living/carbon/C = usr
+	if(usr.stat || usr.restrained() || C.back == src)
+		return
+
+	if(!usr.canUseTopic(src, BE_CLOSE))
+		usr << browse(null, "window=radio")
+		onclose(usr, "radio")
+		return
+
+	if(href_list["set"])
+		if(href_list["set"] == "freq")
+			var/new_freq = input(usr, "Input a new receiving frequency", "Electropack Frequency", format_frequency(frequency)) as num|null
+			if(!usr.canUseTopic(src, BE_CLOSE))
+				return
+			new_freq = unformat_frequency(new_freq)
+			new_freq = sanitize_frequency(new_freq, TRUE)
+			set_frequency(new_freq)
+
+		if(href_list["set"] == "code")
+			var/new_code = input(usr, "Input a new receiving code", "Electropack Code", code) as num|null
+			if(!usr.canUseTopic(src, BE_CLOSE))
+				return
+			new_code = round(new_code)
+			new_code = CLAMP(new_code, 1, 100)
+			code = new_code
+
+		if(href_list["set"] == "power")
+			if(!usr.canUseTopic(src, BE_CLOSE))
+				return
+			on = !(on)
+			icon_state = "electropack[on]"
+
+	if(usr)
+		attack_self(usr)
+
+	return
+
+/obj/item/electropack/shockcollar/pacify/admin
 	name = "cent-comm pacifying collar"
 	desc = "A Central Command branded shock collar that cannot be taken off by most means."
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
