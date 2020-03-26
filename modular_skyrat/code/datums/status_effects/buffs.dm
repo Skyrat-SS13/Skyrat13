@@ -25,6 +25,8 @@
 	var/obj/item/inhandlold
 	var/oldloc
 	var/currentloc
+	var/stam
+	var/stamold
 
 /datum/status_effect/stealthsuit/on_remove()
 	. = ..()
@@ -44,7 +46,8 @@
 	inhand = owner.get_active_held_item()
 	inhandl = owner.get_inactive_held_item()
 	health = owner.health
-	if((inhand != inhandold) || (inhandl != inhandlold) || (health != healthold))
+	stam = owner.getStaminaLoss()
+	if((inhand != inhandold) || (inhandl != inhandlold) || (health != healthold) || (stam > stamold))
 		if(owner.alpha <= 113) //making it announce everytime you pick something up is annoying bro
 			to_chat(owner, "<span class='warning'>Something interferes with your suit's stealth system, revealing you!</span>")
 		playsound(owner.loc, "sparks", 100, 1)
@@ -52,6 +55,7 @@
 	inhandold = inhand
 	inhandlold = inhandl
 	healthold = health
+	stamold = stam
 
 /obj/screen/alert/status_effect/stealthsuit
 	name = "Stealth Suit"
