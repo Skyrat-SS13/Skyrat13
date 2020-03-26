@@ -1,4 +1,4 @@
-/datum/crafting_recipe/cross
+w/datum/crafting_recipe/cross
 	name = "cross (structure)"
 	result = /obj/structure/kitchenspike/cross
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 6,
@@ -12,3 +12,4 @@
 	reqs = list(/obj/item/stack/cable_coil = 20)
 	time = 65
 	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
