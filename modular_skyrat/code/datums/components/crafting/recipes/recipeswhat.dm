@@ -1,5 +1,5 @@
 /datum/crafting_recipe/cross
-	name = "cross (structure)"
+	name = "Cross (structure)"
 	result = /obj/structure/kitchenspike/cross
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 6,
 				/obj/item/stack/packageWrap = 4)
@@ -7,7 +7,7 @@
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/noose
-	name = "noose"
+	name = "Noose"
 	result = /obj/structure/chair/noose
 	reqs = list(/obj/item/stack/cable_coil = 20)
 	time = 65
