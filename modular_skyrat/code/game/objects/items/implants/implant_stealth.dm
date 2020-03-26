@@ -4,7 +4,7 @@
 /obj/structure/closet/cardboard/agent/reveal()
 	alpha = 255
 	addtimer(CALLBACK(src, .proc/go_invisible), 10, TIMER_OVERRIDE|TIMER_UNIQUE)
-	for(mob/living/carbon/human/H in src.loc)
+	for(var/mob/living/carbon/human/H in src.loc)
 		if(H.w_uniform)
 			var/obj/item/clothing/under/U = H.w_uniform
 			if(U == /obj/item/clothing/under/syndicate/stealthsuit)
