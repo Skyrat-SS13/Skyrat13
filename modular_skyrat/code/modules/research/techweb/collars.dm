@@ -4,5 +4,5 @@
 	display_name = "Collar Development Technology"
 	description = "New ways for security to control their prisoners."
 	prereq_ids = list("high_efficiency", "emp_adv")
-	design_ids = list("shock_collar", "pacify_collar", "pacify_collar_shock", "shock_collar_glue")
+	design_ids = list("shock_collar", "pacify_collar", "pacify_collar_shock", "shock_collar_glue", "collar_remover")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)

@@ -38,3 +38,13 @@
 	build_path = /obj/item/electropack/shockcollar/pacify/security/shock
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/collarremover
+	name = "Collar Remover"
+	desc = "A device to remove collars without harming it's user."
+	id = "collar_remover"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500, /datum/material/silver = 1000, /datum/material/uranium = 500)
+	build_path = /obj/item/wirecutters/collarremover
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
