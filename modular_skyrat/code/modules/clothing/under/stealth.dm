@@ -34,7 +34,7 @@
 		if(activated)
 			M.apply_status_effect(effectapplied)
 			animate(M, , alpha -= 75, time = 3)
-		for(var/datum/action/item_action/A in action_types)
+		for(var/datum/action/item_action/A in actions_types)
 			A.Grant(M, src)
 /obj/item/clothing/under/syndicate/stealthsuit/Bumped(atom/movable/AM)
 	if(!activated)
@@ -48,7 +48,7 @@
 		src.ui_action_click(C, /datum/action/item_action/activatestealth)
 
 /obj/item/clothing/under/syndicate/stealthsuit/proc/get_wearer()
-	for(var/mob/living/carbon/C in loc)
+	for(var/mob/living/carbon/human/C in loc)
 		if(C.w_uniform)
 			var/obj/item/clothing/under/U = w_uniform
 			if(U == src)
