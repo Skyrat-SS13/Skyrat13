@@ -6,8 +6,7 @@
 	limbs_id = "human"
 	use_skintones = 0
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAIR,HORNCOLOR,WINGCOLOR)
-	mutant_bodyparts = list("mam_tail", "mam_ears", "mam_body_markings", "mam_snouts", "deco_wings", "taur", "horns", "legs")
-	default_features = list("mcolor" = "FFF","mcolor2" = "FFF","mcolor3" = "FFF", "mam_snouts" = "Husky", "mam_tail" = "Husky", "mam_ears" = "Husky", "deco_wings" = "None",
+	mutant_bodyparts = list("mcolor" = "FFF","mcolor2" = "FFF","mcolor3" = "FFF", "mam_snouts" = "Husky", "mam_tail" = "Husky", "mam_ears" = "Husky", "deco_wings" = "None",
 						 "mam_body_markings" = "Husky", "taur" = "None", "horns" = "None", "legs" = "Plantigrade", "meat_type" = "Mammalian")
 
 //Dunmer (Yeah, those guys that call you fetcher).
@@ -25,8 +24,7 @@
 	coldmod = 2
 	heatmod = 0.5
 	species_traits = list(LIPS,HAIR,FACEHAIR)
-	mutant_bodyparts = list() //bodypart bad, this is pure dunmer
-	default_features = list("mcolor" = "A0A0A0")
+	mutant_bodyparts = list("mcolor" = "A0A0A0") //bodypart bad, this is pure dunmer
 	mutantlungs = /obj/item/organ/lungs/dunmer //they breath both on lavaland and on-station. Will this be powergamed? Not really, man - brutemod makes mining not very good.
 	mutanteyes = /obj/item/organ/eyes/dunmer
 	mutantears = /obj/item/organ/ears/dunmer
