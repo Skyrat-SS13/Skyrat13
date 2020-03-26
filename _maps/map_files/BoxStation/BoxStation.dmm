@@ -54,9 +54,21 @@
 /turf/open/space,
 /area/space/nearstation)
 "aah" = (
+<<<<<<< HEAD
 /obj/effect/landmark/carpspawn,
 /turf/open/space/basic,
 /area/space/station_ruins)
+=======
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/security/main)
+>>>>>>> 41997925769... Boxstation secmos is no longer connected to the scrubber loop (#11630)
 "aai" = (
 /turf/closed/wall/r_wall,
 /area/security/prison)
@@ -1528,6 +1540,7 @@
 /turf/open/space,
 /area/solar/port/fore)
 "adB" = (
+<<<<<<< HEAD
 /obj/machinery/camera{
 	c_tag = "Aft Hallway Tech Storage";
 	dir = 8;
@@ -1539,6 +1552,19 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel,
 /area/security/prison)
+=======
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
+>>>>>>> 41997925769... Boxstation secmos is no longer connected to the scrubber loop (#11630)
 "adC" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -2587,9 +2613,25 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "afo" = (
+<<<<<<< HEAD
 /obj/item/toy/beach_ball/holoball,
 /turf/open/floor/wood,
 /area/security/prison)
+=======
+/obj/structure/noticeboard{
+	dir = 1;
+	pixel_y = -27
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
+>>>>>>> 41997925769... Boxstation secmos is no longer connected to the scrubber loop (#11630)
 "afp" = (
 /obj/docking_port/stationary{
 	dir = 4;
@@ -3078,6 +3120,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "agl" = (
+<<<<<<< HEAD
 /obj/structure/table,
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3087,6 +3130,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+=======
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/security/main)
+>>>>>>> 41997925769... Boxstation secmos is no longer connected to the scrubber loop (#11630)
 "agm" = (
 /obj/machinery/light{
 	dir = 8
@@ -3267,6 +3325,7 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "agD" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -3276,6 +3335,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+=======
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+>>>>>>> 41997925769... Boxstation secmos is no longer connected to the scrubber loop (#11630)
 "agE" = (
 /obj/structure/table,
 /obj/item/storage/fancy/donut_box{
@@ -3288,6 +3357,7 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "agF" = (
+<<<<<<< HEAD
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
@@ -3300,6 +3370,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+=======
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+>>>>>>> 41997925769... Boxstation secmos is no longer connected to the scrubber loop (#11630)
 "agG" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -3405,6 +3483,7 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "agN" = (
+<<<<<<< HEAD
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -3412,6 +3491,11 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/security/prison)
+=======
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/security/courtroom)
+>>>>>>> 41997925769... Boxstation secmos is no longer connected to the scrubber loop (#11630)
 "agO" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Brig Infirmary";
@@ -3444,6 +3528,7 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "agQ" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -3453,6 +3538,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+=======
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/obj/structure/closet/secure_closet/courtroom,
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/sign/warning/securearea{
+	pixel_x = -32
+	},
+/obj/item/gavelhammer,
+/obj/machinery/atmospherics/pipe/simple/scrubbers,
+/turf/open/floor/plasteel,
+/area/security/courtroom)
+>>>>>>> 41997925769... Boxstation secmos is no longer connected to the scrubber loop (#11630)
 "agR" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 4;
@@ -3889,16 +3988,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"ahC" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
-/turf/open/floor/plasteel,
-/area/security/main)
 "ahD" = (
 /obj/structure/chair,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -4199,21 +4288,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/brig)
-"aia" = (
-/obj/structure/noticeboard{
-	dir = 1;
-	pixel_y = -27
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "aib" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -4557,19 +4631,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
-"aiB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/structure/chair/sofa/right{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "aiC" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -4738,10 +4799,6 @@
 /obj/effect/turf_decal/box,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"aiP" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall/r_wall,
-/area/security/main)
 "aiQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -4858,18 +4915,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"ajh" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/obj/structure/closet/secure_closet/courtroom,
-/obj/effect/decal/cleanable/cobweb,
-/obj/structure/sign/warning/securearea{
-	pixel_x = -32
-	},
-/obj/item/gavelhammer,
-/turf/open/floor/plasteel,
-/area/security/courtroom)
 "aji" = (
 /obj/structure/chair{
 	name = "Judge"
@@ -5183,12 +5228,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"ajM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/courtroom)
 "ajN" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5343,16 +5382,6 @@
 	},
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
-"aka" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "akb" = (
 /obj/machinery/light{
 	dir = 8
@@ -5675,11 +5704,6 @@
 	pixel_y = -22
 	},
 /obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel,
-/area/security/brig)
-"akE" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "akF" = (
@@ -94659,12 +94683,21 @@ adl
 aet
 agy
 aha
+<<<<<<< HEAD
 ahC
 aia
 aiP
 aka
 akE
 sAr
+=======
+aah
+afo
+adR
+agD
+agF
+gyr
+>>>>>>> 41997925769... Boxstation secmos is no longer connected to the scrubber loop (#11630)
 alq
 amd
 anu
@@ -95430,11 +95463,11 @@ aff
 aeU
 ajA
 akd
-ahF
-aiB
-abp
-ajh
-ajM
+adB
+agl
+uHp
+agQ
+agN
 akw
 alb
 alG
