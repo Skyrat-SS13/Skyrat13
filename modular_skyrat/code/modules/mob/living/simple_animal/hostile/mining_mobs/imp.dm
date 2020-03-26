@@ -11,7 +11,7 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	move_to_delay = 4
 	projectiletype = /obj/item/projectile/magic/impfireball
-	projectilesound = 'modular_skyrat/sound/misc/imp.wav'
+	projectilesound = 'modular_skyrat/sound/misc/impranged.wav'
 	ranged = 1
 	ranged_message = "shoots a fireball"
 	ranged_cooldown_time = 70
@@ -27,7 +27,7 @@
 	attacktext = "claws"
 	a_intent = INTENT_HARM
 	speak_emote = list("groans")
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'modular_skyrat/sound/misc/impattacks.wav'
 	aggro_vision_range = 15
 	retreat_distance = 5
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -36,6 +36,22 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2)
 	robust_searching = FALSE
 	death_sound = 'modular_skyrat/sound/misc/impdies.wav'
+
+/mob/living/simple_animal/hostile/asteroid/imp/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	playsound(src, 'modular_skyrat/sound/misc/impinjured.wav', rand(25,100), 1) //HURT ME PLENTY
+
+/mob/living/simple_animal/hostile/asteroid/imp/bullet_act(obj/item/projectile/P)
+	. = ..()
+	playsound(src, 'modular_skyrat/sound/misc/impinjured.wav', rand(25,100), 1)
+
+/mob/living/simple_animal/hostile/asteroid/imp/Aggro()
+	. = ..()
+	playsound(src, pick('modular_skyrat/sound/misc/impsight.wav', 'modular_skyrat/sound/misc/impsight2.wav'), rand(50,75), 1)
+
+/mob/living/simple_animal/hostile/asteroid/imp/LoseAggro()
+	. = ..()
+	playsound(src, pick('modular_skyrat/sound/misc/impnearby.wav', 'modular_skyrat/sound/misc/impnearby.wav'), rand(25, 60), 1)
 
 /obj/item/projectile/magic/impfireball //bobyot y u no use child of fireball
 	name = "demonic fireball" //because it fucking explodes and deals brute damage even when values are set to -1
