@@ -1,6 +1,6 @@
 /obj/item/clothing/under/syndicate/stealthsuit
 	name = "MK.III Tactical Stealth Suit"
-	desc = "A suspicious looking, tight-fitting suit that can make you invisible under the right conditions. Has a MI13 insignia blazoned upon it's back."
+	desc = "A suspicious looking, tight-fitting suit that can make you invisible under the right conditions. Has a MI13 insignia blazoned upon it's forearm."
 	icon = 'modular_skyrat/icons/obj/clothing/stealthsuit.dmi'
 	alternate_worn_icon = 'modular_skyrat/icons/mob/stealth.dmi'
 	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/stealth_digi.dmi'
