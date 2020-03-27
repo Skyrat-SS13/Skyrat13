@@ -218,7 +218,6 @@
 	Incompetent inspectors believe this."
 
 /datum/map_template/ruin/space/oldteleporter
-	prefix = "modular_skyrat/_maps/RandomRuins/SpaceRuins/"
 	id = "oldteleporter"
 	suffix = "oldteleporter.dmm"
 	name = "Detached Teleporter"
