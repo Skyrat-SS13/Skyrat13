@@ -581,5 +581,8 @@ obj/effect/temp_visual/fireball/hard
 	maxHealth = 500
 	health = 500
 	color = "#FFFF00"
+	light_range = 3
+	light_color = "#FFFF00"
+	light_power = 2
 	faction = list("mining", "neutral")
 	smallsprite = new/datum/action/small_sprite/drake/akatosh()
