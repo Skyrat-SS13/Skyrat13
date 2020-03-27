@@ -489,15 +489,14 @@
 	if(slot == ITEM_SLOT_NECK)
 		for(var/datum/action/A in actions_types)
 			A.Grant(user)
-		var/obj/effect/proc_holder/spell/S = new spell2grant
-		user.mind.AddSpell(S)
+		user.mind.AddSpell(new spell2grant(null))
 
 /obj/item/clothing/neck/king/dropped(mob/living/carbon/human/user)
 	for(var/datum/action/A in actions_types)
 		A.Remove(user)
 	user.mind.RemoveSpell(spell2grant)
 	if(active_owner)
-		active_owner.dust(TRUE, TRUE)
+		active_owner.dust()
 	. = ..()
 
 /obj/item/clothing/neck/king/ui_action_click(mob/user, action)
