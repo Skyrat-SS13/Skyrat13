@@ -321,13 +321,13 @@
 	name = "bottle of distilled dragon's blood"
 	desc = "You ARE going to drink this. Once."
 	var/uses = 3 //the intent is for it to be shared with other miners.
-	var/mob/living/users = list() //list of people who already drank it. Take your choice, you're not gonna be both lava and stormproof.
+	var/list/users = list() //list of people who already drank it. Take your choice, you're not gonna be both lava and stormproof.
 	var/communist = TRUE //can you drink it more than once?
 	var/list/choices = list("Lizard", "Skeleton", "Shapeshift", "Lava", "Storm", "Organs", "Nothing")
 
 /obj/item/dragons_blood/distilled/selfish
 	uses = 2
-	communist = false
+	communist = FALSE
 	name = "bottle of distilled selfish dragon's blood"
 	desc = "Come on, drink all of it. Spare none to your friends, you prick."
 
@@ -421,7 +421,7 @@
 			to_chat(user, "<span class='danger'>Your lungs and heart feel... way more robust. Wait, what is that on the ground?</span>")
 			var/obj/item/organ/lungs/super/newlungs = new /obj/item/organ/lungs/super(src.loc)
 			newlungs.Insert(H)
-			var/obj/item/organ/heart/freedom/lesser/newheart = new /obj/item/organ/heart/freedom/lesser(src.loc)
+			var/obj/item/organ/heart/undying/newheart = new /obj/item/organ/heart/undying(src.loc)
 			newheart.Insert(H)
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
@@ -501,7 +501,7 @@
 	. = ..()
 
 /obj/item/clothing/neck/king/ui_action_click(mob/user, action)
-	if(istype(/datum/action/item_action/hands_free/memento_mori/king))
+	if(istype(action, /datum/action/item_action/hands_free/memento_mori/king))
 		var/datum/action/item_action/hands_free/memento_mori/king/K = action
 		K.Trigger()
 
