@@ -10,7 +10,7 @@
 	supervisors = "the head of security, and the head of your assigned department (if applicable)"
 	selection_color = "#c02f2f"
 	minimal_player_age = 7
-	exp_requirements = 300
+	exp_requirements = 120 //SKYRAT CHANGE - lowers security exp requirement
 	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/security
@@ -22,6 +22,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 	blacklisted_quirks = list(/datum/quirk/mute, /datum/quirk/nonviolent, /datum/quirk/paraplegic)
+	threat = 2
 
 /datum/job/officer/get_access()
 	var/list/L = list()
@@ -115,7 +116,7 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_sec/alt
-	uniform = /obj/item/clothing/under/rank/security
+	uniform = /obj/item/clothing/under/rank/security/officer
 	gloves = /obj/item/clothing/gloves/color/black
 	head = /obj/item/clothing/head/helmet/sec
 	suit = /obj/item/clothing/suit/armor/vest/alt

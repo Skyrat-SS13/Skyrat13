@@ -78,7 +78,7 @@
 	update_action_buttons_icon()
 	update_damage_hud()
 	update_health_hud()
-	update_canmove()
+	update_mobility()
 	med_hud_set_health()
 	med_hud_set_status()
 	if(!gibbed && !QDELETED(src))
@@ -103,5 +103,8 @@
 	for(var/s in sharedSoullinks)
 		var/datum/soullink/S = s
 		S.sharerDies(gibbed)
+
+	set_ssd_indicator(FALSE) //SKYRAT CHANGE - ssd indicator
+	set_typing_indicator(FALSE) //SKYRAT CHANGE
 
 	return TRUE

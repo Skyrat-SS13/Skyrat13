@@ -8,6 +8,10 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
+	//SKYRAT CHANGES - adds job exp to mime
+	exp_requirements = 120
+	exp_type = EXP_TYPE_CREW
+	//END OF SKYRAT CHANGES
 
 	outfit = /datum/outfit/job/mime
 
@@ -15,6 +19,8 @@
 	minimal_access = list(ACCESS_THEATRE)
 
 	display_order = JOB_DISPLAY_ORDER_MIME
+
+	threat = 0
 
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
@@ -26,7 +32,7 @@
 
 	belt = /obj/item/pda/mime
 	ears = /obj/item/radio/headset/headset_srv
-	uniform = /obj/item/clothing/under/rank/mime
+	uniform = /obj/item/clothing/under/rank/civilian/mime
 	mask = /obj/item/clothing/mask/gas/mime
 	gloves = /obj/item/clothing/gloves/color/white
 	head = /obj/item/clothing/head/frenchberet

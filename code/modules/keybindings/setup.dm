@@ -47,6 +47,23 @@
 		for(var/k in 1 to macro_set.len)
 			var/key = macro_set[k]
 			var/command = macro_set[key]
+			//SKYRAT CHANGES - asynch keybind option
+			if(prefs.toggles & ASYNCHRONOUS_SAY)
+				switch(macro_sets[i])
+					if("default")
+						if(key == "T")
+							command = "say"
+						else if(key == "M")
+							command = "me"
+					if("old_default")
+						if(key == "Ctrl+T")
+							command = "say"
+					if("old_hotkeys")
+						if(key == "T")
+							command = "say"
+						else if(key == "M")
+							command = "me"
+			//END OF SKYRAT
 			winset(src, "[setname]-[REF(key)]", "parent=[setname];name=[key];command=[command]")
 
 	if(prefs.hotkeys)

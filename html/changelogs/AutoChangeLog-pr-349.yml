@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "cmo now gets advanced surgery drapes that techweb-sync for advanced surgeries without an operating console."
