@@ -1,3 +1,4 @@
+//child p- civil protection armor
 /obj/item/clothing/suit/armor/vest/cparmor
 	name = "Civil Protection armor"
 	desc = "It barely covers your chest, but does a decent job at protecting you from crowbars."
@@ -8,6 +9,7 @@
 	item_state = "cparmor"
 	blood_overlay_type = "armor"
 
+//blueshield armor
 /obj/item/clothing/suit/armor/vest/blueshield
 	name = "blueshield security armor"
 	desc = "An armored vest with the badge of a Blueshield Lieutenant."
@@ -17,3 +19,7 @@
 	icon_state = "blueshield"
 	item_state = "blueshield"
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+
+//infiltrator suit buff
+/obj/item/clothing/suit/armor/vest/infiltrator
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 30, "energy" = 40, "bomb" = 70, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
