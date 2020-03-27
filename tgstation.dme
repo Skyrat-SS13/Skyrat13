@@ -3457,6 +3457,7 @@
 #include "modular_skyrat\code\modules\clothing\under\jobs\medsci.dm"
 #include "modular_skyrat\code\modules\clothing\under\jobs\security.dm"
 #include "modular_skyrat\code\modules\clothing\under\jobs\Plasmaman\civilian_service.dm"
+#include "modular_skyrat\code\modules\clothing\under\jobs\Plasmaman\medsci.dm"
 #include "modular_skyrat\code\modules\events\alien_infestation.dm"
 #include "modular_skyrat\code\modules\events\anomaly_flux.dm"
 #include "modular_skyrat\code\modules\events\anomaly_grav.dm"
