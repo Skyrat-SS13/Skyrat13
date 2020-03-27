@@ -486,7 +486,7 @@
 
 /obj/item/clothing/neck/king/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_NECK)
+	if(slot == SLOT_NECK)
 		for(var/datum/action/A in actions_types)
 			A.Grant(user)
 		user.mind.AddSpell(new spell2grant(null))
