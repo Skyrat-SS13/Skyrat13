@@ -3546,6 +3546,7 @@
 #include "modular_skyrat\code\modules\ruins\lavalandruin_code\kinggoat.dm"
 #include "modular_skyrat\code\modules\ruins\lavalandruin_code\misc.dm"
 #include "modular_skyrat\code\modules\ruins\spaceruin_code\forgottenship.dm"
+#include "modular_skyrat\code\modules\spells\spell_types\shapeshift.dm"
 #include "modular_skyrat\code\modules\surgery\organ_manipulation.dm"
 #include "modular_skyrat\code\modules\surgery\surgery_step.dm"
 #include "modular_skyrat\code\modules\surgery\organs\tongue.dm"
