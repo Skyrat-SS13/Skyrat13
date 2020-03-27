@@ -26,7 +26,7 @@
 	return ..()
 
 /obj/item/melee/rapier/attack(mob/living/target, mob/living/user)
-	. = ..()]
+	. = ..()
 
 //blueshield's baton
 /obj/item/melee/baton/electricprod
