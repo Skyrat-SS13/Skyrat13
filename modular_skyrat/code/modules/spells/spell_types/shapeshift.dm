@@ -2,5 +2,5 @@
 	name = "Akatosh Form"
 	desc = "Take on the shape of the avatar of akatosh."
 	invocation = "The Dragon waits!"
-	sound = 'modular_skyrat/sounds/ambience/oblivion.ogg'
+	sound = 'modular_skyrat/sound/ambience/oblivion.ogg'
 	shapeshift_type = /mob/living/simple_animal/hostile/megafauna/dragon/lesser/akatosh

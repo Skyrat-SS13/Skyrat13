@@ -335,7 +335,7 @@
 	if(!istype(user))
 		return
 	var/mob/living/carbon/human/H = user
-	var/choice = input(H,"What blessing will you receive?","Choose your blessing") as text in choices
+	var/choice = input(H,"What blessing will you receive?","Choose your blessing") as null|anything in choices
 	if(uses)
 		if(communist)
 			if(users.Find(H))
