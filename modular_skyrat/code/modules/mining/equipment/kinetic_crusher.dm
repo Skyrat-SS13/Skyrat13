@@ -195,4 +195,4 @@
 
 //watcher wing slight buff
 /obj/item/crusher_trophy/watcher_wing
-	bonus_value = 15 // 1 second isn't enough for much, this should be better
+	bonus_value = 20 // 1 second isn't enough for much, this should be better
