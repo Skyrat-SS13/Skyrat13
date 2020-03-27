@@ -1,5 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Noose no longer makes the server commit suicide"
-  - tweak: "Nooses now have to be constructed on the crafting menu"
