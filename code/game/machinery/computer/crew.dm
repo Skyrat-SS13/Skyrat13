@@ -25,7 +25,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/list/jobs
 	var/list/data_by_z = list()
 	var/list/last_update = list()
-
+/* moved to modular_skyrat
 /datum/crewmonitor/New()
 	. = ..()
 
@@ -40,6 +40,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	jobs["Geneticist"] = 22
 	jobs["Virologist"] = 23
 	jobs["Medical Doctor"] = 24
+	jobs["Paramedic"] = 25
 	jobs["Research Director"] = 30
 	jobs["Scientist"] = 31
 	jobs["Roboticist"] = 32
@@ -71,7 +72,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	jobs["Assistant"] = 999 //Unknowns/custom jobs should appear after civilians, and before assistants
 
 	src.jobs = jobs
-
+*/
 /datum/crewmonitor/Destroy()
 	return ..()
 

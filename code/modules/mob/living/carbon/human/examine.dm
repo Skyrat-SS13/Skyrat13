@@ -25,15 +25,10 @@
 	var/list/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
-	if(ishuman(src)) //user just returned, y'know, the user's own species. dumb.
-		var/mob/living/carbon/human/H = src
-		var/datum/species/pref_species = H.dna.species
-		if(get_visible_name() == "Unknown") // same as flavor text, but hey it works.
-			. += "You can't make out what species they are."
-		else if(skipface)
-			. += "You can't make out what species they are."
-		else
-			. += "[t_He] [t_is] a [H.dna.custom_species ? H.dna.custom_species : pref_species.name]!"
+	if(skipface || get_visible_name() == "Unknown")
+		. += "You can't make out what species they are."
+	else
+		. += "[t_He] [t_is] a [dna.custom_species ? dna.custom_species : dna.species.name]!"
 
 	//uniform
 	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
@@ -155,6 +150,12 @@
 	var/temp = getBruteLoss() //no need to calculate each of these twice
 
 	var/list/msg = list()
+
+	if(client && client.prefs) // Skyrat Change
+		if(client.prefs.toggles & VERB_CONSENT) // Skyrat Change
+			. += "[t_His] player has allowed lewd verbs.\n" // Skyrat Change
+		else // Skyrat Change
+			. += "[t_His] player has not allowed lewd verbs.\n" // Skyrat Change
 
 	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	var/list/disabled = list()
@@ -328,7 +329,7 @@
 			if(!key)
 				msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
 			else if(!client)
-				msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n"
+				msg += "[t_He] [t_has] a blank, absent-minded stare and [t_has] been completely unresponsive to anything for [round(((world.time - lastclienttime) / (1 MINUTES)),1)] minutes. [t_He] may snap out of it soon.\n" //SKYRAT CHANGE - ssd indicator
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
@@ -389,21 +390,12 @@
 	else if(isobserver(user) && traitstring)
 		. += "<span class='info'><b>Traits:</b> [traitstring]</span>"
 
-	//No flavor text unless the face can be seen. Prevents certain metagaming with impersonation.
-	var/invisible_man = skipface || get_visible_name() == "Unknown"
-	if(invisible_man)
-		. += "...?"
-	else
-		var/flavor = print_flavor_text(flavor_text)
-		if(flavor)
-			. += flavor
-		var/temp_flavor = print_flavor_text(flavor_text_2)
-		if(temp_flavor)
-			. += temp_flavor
-	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .) //This also handles flavor texts now
+	var/invisible_man = skipface || get_visible_name() == "Unknown" // SKYRAT EDIT -- BEGIN
 	if(!invisible_man)
 		if(client)
-			. += "OOC Notes: <a href='?src=[REF(src)];ooc_notes=1'>\[View\]</a>"
+			. += "OOC Notes: <a href='?src=[REF(src)];ooc_notes=1'>\[View\]</a>" // SKYRAT EDIT -- END
+
 	. += "*---------*</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!

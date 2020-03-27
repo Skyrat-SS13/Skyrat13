@@ -64,31 +64,30 @@
 /obj/item/banner/proc/inspiration(mob/living/carbon/human/H)
 	H.adjustBruteLoss(-15)
 	H.adjustFireLoss(-15)
-	H.AdjustStun(-40)
-	H.AdjustKnockdown(-40)
+	H.AdjustAllImmobility(-40)
 	H.AdjustUnconscious(-40)
 	playsound(H, 'sound/magic/staff_healing.ogg', 25, FALSE)
 
 /obj/item/banner/proc/special_inspiration(mob/living/carbon/human/H) //Any banner-specific inspiration effects go here
 	return
-
+/* modular_skyrat
 /obj/item/banner/security
 	name = "securistan banner"
 	desc = "The banner of Securistan, ruling the station with an iron fist."
 	icon_state = "banner_security"
 	job_loyalties = list("Security Officer", "Warden", "Detective", "Head of Security")
 	warcry = "EVERYONE DOWN ON THE GROUND!!"
-
+*/
 /obj/item/banner/security/mundane
 	inspiration_available = FALSE
-
+/* modular_skyrat
 /obj/item/banner/medical
 	name = "meditopia banner"
 	desc = "The banner of Meditopia, generous benefactors that cure wounds and shelter the weak."
 	icon_state = "banner_medical"
 	job_loyalties = list("Medical Doctor", "Chemist", "Geneticist", "Virologist", "Chief Medical Officer")
 	warcry = "No wounds cannot be healed!"
-
+*/
 /obj/item/banner/medical/mundane
 	inspiration_available = FALSE
 
@@ -315,3 +314,9 @@
 	desc = "This one is rusted."
 	force = 30
 	armour_penetration = 15
+
+/obj/item/claymore/weak/ceremonial
+	desc = "A rusted claymore, once at the heart of a powerful scottish clan struck down and oppressed by tyrants, it has been passed down the ages as a symbol of defiance."
+	force = 15
+	block_chance = 30
+	armour_penetration = 5

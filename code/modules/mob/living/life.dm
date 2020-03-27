@@ -1,4 +1,5 @@
-/mob/living/Life(seconds, times_fired)
+/mob/living/proc/Life(seconds, times_fired)
+	set waitfor = FALSE
 	set invisibility = 0
 
 	if(digitalinvis)
@@ -70,7 +71,7 @@
 		handle_traits() // eye, ear, brain damages
 	if(stat != DEAD)
 		handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
-		handle_typing_indicator() //skyrat-edit
+		//handle_typing_indicator() //skyrat-edit
 	if(stat != DEAD)
 		return 1
 

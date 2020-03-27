@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Experimental Welding Tool to Research nodes, Mechfabricator designs"
-  - rscadd: "Add airlock circuit for building windoors and airlocks"
