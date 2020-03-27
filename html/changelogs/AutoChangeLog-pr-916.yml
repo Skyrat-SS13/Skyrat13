@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - tweak: "Changed the name and description of jumpboots to match what they actually do, as well as warn players that they cannot in fact jump over gaps or lava."
