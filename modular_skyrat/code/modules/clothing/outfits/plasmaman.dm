@@ -8,4 +8,4 @@
 	name = "Brig Physician Plasmaman"
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/brigphys
-	uniform = /obj/item/clothing/under/plasmaman/brigphys
+	uniform = /obj/item/clothing/under/rank/brig_phys
