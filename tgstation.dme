@@ -3368,6 +3368,7 @@
 #include "modular_skyrat\code\game\machinery\computer\card.dm"
 #include "modular_skyrat\code\game\machinery\computer\crew.dm"
 #include "modular_skyrat\code\game\machinery\computer\arcade\minesweeper.dm"
+#include "modular_skyrat\code\game\machinery\doors\brigdoors.dm"
 #include "modular_skyrat\code\game\machinery\pipe\construction.dm"
 #include "modular_skyrat\code\game\mecha\mecha_construction_paths.dm"
 #include "modular_skyrat\code\game\mecha\mecha_wreckage.dm"
