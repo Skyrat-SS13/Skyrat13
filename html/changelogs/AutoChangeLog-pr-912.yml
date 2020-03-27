@@ -1,7 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Imps now have a lot more sound effects which play depending on the situation"
-  - rscadd: "Being hurt by imps will now play doomguy sounds depending on your status"
-  - soundadd: "More imp and doomguy sounds
-gibbed: Cyberdemon"

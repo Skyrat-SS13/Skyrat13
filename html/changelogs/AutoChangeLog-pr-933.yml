@@ -1,4 +1,4 @@
 author: "jjpark-kb"
 delete-after: True
 changes: 
-  - rscadd: "Added prisoner starting text."
+  - tweak: "tweaked brig physician clothing."
