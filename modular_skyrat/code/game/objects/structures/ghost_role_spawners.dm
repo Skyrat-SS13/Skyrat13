@@ -230,6 +230,7 @@
 		M.mind.isholy = TRUE
 		new /obj/item/nullrod(M.loc)
 		new /obj/item/storage/book/bible/booze(M.loc)
+		new /obj/item/choice_beacon/holy(M.loc)
 	if(uses > 0)
 		uses--
 	if(!permanent && !uses)
