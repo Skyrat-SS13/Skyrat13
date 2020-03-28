@@ -3676,12 +3676,12 @@
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "agd" = (
-/obj/structure/bodycontainer/morgue,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
 /obj/effect/turf_decal/delivery,
+/obj/structure/closet/secure_closet/brig_phys,
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "age" = (
