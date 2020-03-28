@@ -47,11 +47,11 @@
 	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/suits.dmi',
+	"Default" = 'icons/mob/suit.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = 'icons/mob/suits_digi.dmi',
+	"Default" = 'icons/mob/suit_digi.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
