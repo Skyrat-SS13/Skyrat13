@@ -13,7 +13,7 @@
 	obj_flags = UNIQUE_RENAME
 	cell_type = /obj/item/stock_parts/cell/blueshield
 	pin = /obj/item/firing_pin/implant/mindshield
-	unique_reskins = list("Revolver" = "bsgun", "Militia PDW" = "pdw9pistol")
+	unique_reskin = list("Revolver" = "bsgun", "Militia PDW" = "pdw9pistol")
 
 /obj/item/gun/energy/gun/blueshield/pdw9
 	name = "PDW-9 taser pistol"
