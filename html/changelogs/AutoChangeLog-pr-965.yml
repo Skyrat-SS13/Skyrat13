@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "HoS suit and hats can be reskinned now. Same for warden suits and hats."
+  - bugfix: "Reskin bugs have been fixed, children of armor wont be affected by reskinning"
