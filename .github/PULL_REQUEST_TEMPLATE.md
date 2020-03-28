@@ -9,6 +9,12 @@
 
 <!-- Please add a short description of why you think these changes would benefit the game. If you can't justify it in words, it might not be worth adding. -->
 
+## Obligatory Checklist
+- [ ] I compiled my code locally.
+- [ ] I tested the general functionality locally.
+- [ ] I thoroughly reviewed my code before opening the PR.
+- [ ] I tested all the edge cases I could think of.
+
 ## Changelog
 :cl:
 add: Added new things
