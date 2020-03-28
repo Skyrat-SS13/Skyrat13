@@ -15,6 +15,13 @@
 - [ ] I tested the general functionality locally.
 - [ ] I thoroughly tested and reviewed my code.
 
+## Modularization
+- [x] My code is not modular.
+- [ ] My code is not modular, but the changes are minor and non-invasive.
+- [ ] My code is partially modular.
+- [ ] My code is fully modular.
+
+
 ## Changelog
 :cl:
 add: Added new things
