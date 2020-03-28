@@ -36,6 +36,6 @@
 	if(LAZYLEN(unique_reskin_worn_muzzled))
 		var/obj/item/I = src
 		if(I)
-			I.alternate_worn_icon_muzzled = unique_reskin_worn_digi[choice]
+			I.alternate_worn_icon_muzzled = unique_reskin_worn_muzzled[choice]
 	icon_state = unique_reskin[choice]
 	to_chat(M, "[src] is now skinned as '[choice]'.")

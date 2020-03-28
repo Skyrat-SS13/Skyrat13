@@ -14,7 +14,7 @@
 	unique_reskin_worn_muzzled = list(
 	"Default" = 'icons/mob/head_muzzled.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
-	"Press" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	"Press" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "helmet",
