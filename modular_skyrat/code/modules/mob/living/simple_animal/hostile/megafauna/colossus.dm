@@ -2,7 +2,7 @@
 	song = sound('modular_skyrat/sound/ambience/theopenedway.ogg', 100) //Shadow of the colossus OST
 	songlength = 1170
 
-/mob/living/simple_animal/hostile/megafauna/colossus/proc/enrage(mob/living/L)
+/mob/living/simple_animal/hostile/megafauna/colossus/enrage(mob/living/L)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.mind)
