@@ -1,6 +1,6 @@
 /mob/living/silicon
 	gender = NEUTER
-	has_unlimited_silicon_privilege = 1
+	silicon_privileges = PRIVILEDGES_SILICON
 	verb_say = "states"
 	verb_ask = "queries"
 	verb_exclaim = "declares"
@@ -15,6 +15,8 @@
 	speech_span = SPAN_ROBOT
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1
 	no_vore = TRUE
+	/// Enable sprint system but not stamina
+	combat_flags = COMBAT_FLAGS_STAMEXEMPT_YESSPRINT
 
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	var/last_lawchange_announce = 0

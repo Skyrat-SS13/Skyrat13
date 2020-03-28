@@ -102,7 +102,7 @@
 		if(do_after(user, 40, target = src))
 			if( state != AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS )
 				return
-			if(iscarbon(user))
+			if(!issilicon(user))
 				if(!user.transferItemToLoc(W, src))
 					return
 
@@ -131,7 +131,7 @@
 				ae = new/obj/item/electronics/airlock( loc )
 			else
 				ae = electronics
-				if(iscarbon(user))
+				if(!issilicon(user))
 					electronics = null
 					ae.forceMove(src.loc)
 
@@ -207,7 +207,7 @@
 				else
 					door.name = base_name
 				door.previous_airlock = previous_assembly
-				if(iscarbon(user))
+				if(!issilicon(user))
 					electronics.forceMove(door)
 				door.update_icon()
 				qdel(src)

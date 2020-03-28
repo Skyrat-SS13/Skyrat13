@@ -8,7 +8,7 @@
 	spawn_positions = 5
 	supervisors = "the chief engineer"
 	selection_color = "#ff9b3d"
-	exp_requirements = 60
+	exp_requirements = 120 //SKYRAT CHANGE - upping the exp time on jobs
 	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/engineer
@@ -20,6 +20,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
 
+	threat = 1
+
 /datum/outfit/job/engineer
 	name = "Station Engineer"
 	jobtype = /datum/job/engineer
@@ -27,7 +29,7 @@
 	belt = /obj/item/storage/belt/utility/full/engi
 	l_pocket = /obj/item/pda/engineering
 	ears = /obj/item/radio/headset/headset_eng
-	uniform = /obj/item/clothing/under/rank/engineer
+	uniform = /obj/item/clothing/under/rank/engineering/engineer
 	shoes = /obj/item/clothing/shoes/workboots
 	head = /obj/item/clothing/head/hardhat
 	r_pocket = /obj/item/t_scanner
