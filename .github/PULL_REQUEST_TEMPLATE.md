@@ -21,7 +21,6 @@
 - [ ] My code is partially modular.
 - [ ] My code is fully modular.
 
-
 ## Changelog
 :cl:
 add: Added new things
