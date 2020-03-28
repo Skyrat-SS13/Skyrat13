@@ -4,12 +4,12 @@
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
-	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi'
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/head.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
-	"Press" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	"Press" = 'modular_skyrat/icons/mob/epicclothing.dmi'
 	)
 	unique_reskin_worn_muzzled = list(
 	"Default" = 'icons/mob/head_muzzled.dmi',
