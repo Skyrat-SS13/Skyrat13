@@ -37,7 +37,7 @@
 	gloves = /obj/item/clothing/gloves/combat
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset/heads/blueshield/alt
-	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	belt = /obj/item/storage/belt/security/full
 	backpack_contents = list(/obj/item/gun/energy/gun/blueshield = 1, /obj/item/melee/baton/electricprod = 1)
 	implants = list(/obj/item/implant/mindshield)

@@ -8,10 +8,9 @@
 	if(empty)
 		return
 	new /obj/item/stack/medical/gauze(src)
-	new /obj/item/defibrillator/compact/combat/loaded(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/ointment(src)
 	new /obj/item/reagent_containers/hypospray/combat/omnizine(src)
-	new /obj/item/reagent_containers/medspray/styptic(src)
-	new /obj/item/reagent_containers/medspray/silver_sulf(src)
-	new /obj/item/reagent_containers/medspray/synthflesh(src)
 	new /obj/item/reagent_containers/medspray/synthflesh(src)
 	new /obj/item/healthanalyzer/advanced(src)
+	new /obj/item/pinpointer/crew(src)

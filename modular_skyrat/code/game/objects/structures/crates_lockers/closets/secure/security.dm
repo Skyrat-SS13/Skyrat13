@@ -29,7 +29,6 @@
 	new /obj/item/melee/baton/loaded(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
-	new /obj/item/clothing/glasses/hud/health/sunglasses(src)
 	new /obj/item/clothing/head/beret/blueshield(src)
 	new /obj/item/clothing/head/beret/blueshield/navy(src)
 	new /obj/item/clothing/suit/armor/vest/blueshield(src)
