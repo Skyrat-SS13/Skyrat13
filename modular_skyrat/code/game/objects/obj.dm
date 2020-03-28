@@ -12,9 +12,10 @@
 	for(var/V in unique_reskin)
 		if(unique_reskin_icons[V]) //hacky solution but i don't want to break all the code man
 			var/output = icon2html(unique_reskin_icons[V], M, unique_reskin[V])
+			dat += "[V]: <span class='reallybig'>[output]</span>\n"
 		else
 			var/output = icon2html(src, M, unique_reskin[V])
-		dat += "[V]: <span class='reallybig'>[output]</span>\n"
+			dat += "[V]: <span class='reallybig'>[output]</span>\n"
 	to_chat(M, dat)
 
 	var/choice = input(M, always_reskinnable ? "Choose the a reskin for [src]" : "Warning, you can only reskin [src] once!","Reskin Object") as null|anything in unique_reskin
@@ -24,8 +25,12 @@
 	if(LAZYLEN(unique_reskin_icons))
 		icon = unique_reskin_icons[choice]
 	if(LAZYLEN(unique_reskin_worn))
-		alternate_worn_icon = unique_reskin_worn[choice]
+		var/obj/item/I = src
+		if(I)
+			I.alternate_worn_icon = unique_reskin_worn[choice]
 	if(LAZYLEN(unique_reskin_worn_digi))
-		alternate_worn_icon_digi = unique_reskin_worn_digi[choice]
+		var/obj/item/I = src
+		if(I)
+			I.alternate_worn_icon_digi = unique_reskin_worn_digi[choice]
 	icon_state = unique_reskin[choice]
 	to_chat(M, "[src] is now skinned as '[choice]'.")
