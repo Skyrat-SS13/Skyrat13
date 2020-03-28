@@ -1,10 +1,117 @@
-//port tg's armor energy resists
+//port tg's armor energy resists, adds reskins to various armors
 /obj/item/clothing/head/helmet
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	unique_reskin_icons = list(
+	"Default" = initial(icon),
+	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = initial(alternate_worn_icon),
+	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	"Press" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	)
+	unique_reskin_worn_digi = list(
+	"Default" = initial(alternate_worn_icon_digi),
+	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	"Press" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = initial(icon_state),
+	"Tactical" = "epic_helmet",
+	"Press" = "press_helmet"
+	)
 
 /obj/item/clothing/head/helmet/alt
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	unique_reskin_icons = list(
+	"Default" = initial(icon),
+	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = initial(alternate_worn_icon),
+	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	)
+	unique_reskin_worn_digi = list(
+	"Default" = initial(alternate_worn_icon_digi),
+	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = initial(icon_state),
+	"Tactical" = "epic_bp_helmet"
+	)
 
+/obj/item/clothing/suit/radiation
+	unique_reskin_icons = list(
+	"Default" = initial(icon),
+	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = initial(alternate_worn_icon),
+	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	)
+	unique_reskin_worn_digi = list(
+	"Default" = initial(alternate_worn_icon_digi),
+	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = initial(icon_state),
+	"Hazmat" = "hazmat_suit",
+	)
+
+/obj/item/clothing/head/radiation
+	unique_reskin_icons = list(
+	"Default" = initial(icon),
+	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = initial(alternate_worn_icon),
+	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	)
+	unique_reskin_worn_digi = list(
+	"Default" = initial(alternate_worn_icon_digi),
+	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = initial(icon_state),
+	"Hazmat" = "hazmat_hood",
+	)
+
+/obj/item/clothing/suit/bio_suit
+	unique_reskin_icons = list(
+	"Default" = initial(icon),
+	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = initial(alternate_worn_icon),
+	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	)
+	unique_reskin_worn_digi = list(
+	"Default" = initial(alternate_worn_icon_digi),
+	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = initial(icon_state),
+	"Hazmat" = "hazmat_suit",
+	)
+
+/obj/item/clothing/head/bio_hood
+	unique_reskin_icons = list(
+	"Default" = initial(icon),
+	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = initial(alternate_worn_icon),
+	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	)
+	unique_reskin_worn_digi = list(
+	"Default" = initial(alternate_worn_icon_digi),
+	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = initial(icon_state),
+	"Hazmat" = "hazmat_hood",
+	)
 /obj/item/clothing/head/helmet/riot
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
 
@@ -178,6 +285,30 @@
 
 /obj/item/clothing/suit/armor
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	unique_reskin_icons = list(
+	"Default" = initial(icon),
+	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	"Tactical Classic" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = initial(alternate_worn_icon),
+	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	"Tactical Classic" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	"Press" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	)
+	unique_reskin_worn_digi = list(
+	"Default" = initial(alternate_worn_icon_digi),
+	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	"Tactical Classic" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	"Press" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = initial(icon_state),
+	"Tactical" = "epic_armor",
+	"Tactical Classic" = "epic_armor_classic",
+	"Press" = "press_armor",
+	)
 
 /obj/item/clothing/suit/armor/hos
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 90)
@@ -194,6 +325,22 @@
 
 /obj/item/clothing/suit/armor/bulletproof
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	unique_reskin_icons = list(
+	"Default" = initial(icon),
+	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	)
+	unique_reskin_worn = list(
+	"Default" = initial(alternate_worn_icon),
+	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	)
+	unique_reskin_worn_digi = list(
+	"Default" = initial(alternate_worn_icon_digi),
+	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	)
+	unique_reskin = list(
+	"Default" = initial(icon_state),
+	"Tactical" = "epic_bp_armor",
+	)
 
 /obj/item/clothing/suit/armor/laserproof
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 60, "energy" = 60, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
