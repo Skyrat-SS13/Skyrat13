@@ -50,6 +50,10 @@
 		switch_personalities()
 	QDEL_NULL(stranger_backseat)
 	QDEL_NULL(owner_backseat)
+<<<<<<< HEAD
+=======
+	UnregisterSignal(owner, COMSIG_MOB_DEATH)
+>>>>>>> ee28bbf4eee... Merge pull request #11657 from Citadel-Station-13/Ghommie-patch-4
 	..()
 
 /datum/brain_trauma/severe/split_personality/proc/switch_personalities()
