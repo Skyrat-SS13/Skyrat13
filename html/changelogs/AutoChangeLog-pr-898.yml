@@ -1,6 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Monkey soup"
-  - rscadd: "Monkey soup recipe"
-  - imageadd: "Monkey soup icon"
