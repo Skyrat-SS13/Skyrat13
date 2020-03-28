@@ -9,11 +9,11 @@
 
 <!-- Please add a short description of why you think these changes would benefit the game. If you can't justify it in words, it might not be worth adding. -->
 
-## Obligatory Checklist
+## Checklist
+- [x] I'm pretty sure this will work.
 - [ ] I compiled my code locally.
 - [ ] I tested the general functionality locally.
-- [ ] I thoroughly reviewed my code before opening the PR.
-- [ ] I tested all the edge cases I could think of.
+- [ ] I thoroughly tested and reviewed my code.
 
 ## Changelog
 :cl:
