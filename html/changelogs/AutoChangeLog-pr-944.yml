@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Virology TGUI doesn't crash when inspecting symptoms anymore (for real)"
