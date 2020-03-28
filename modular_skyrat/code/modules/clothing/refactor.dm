@@ -2,22 +2,22 @@
 /obj/item/clothing/head/helmet
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	unique_reskin_icons = list(
-	"Default" = icon,
+	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = alternate_worn_icon,
+	"Default" = 'icons/mob/head.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	"Press" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = alternate_worn_icon_muzzled,
+	"Default" = 'icons/mob/head_muzzled.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	"Press" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
-	"Default" = icon_state,
+	"Default" = "helmet",
 	"Tactical" = "epic_helmet",
 	"Press" = "press_helmet"
 	)
@@ -25,91 +25,91 @@
 /obj/item/clothing/head/helmet/alt
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	unique_reskin_icons = list(
-	"Default" = icon,
+	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = alternate_worn_icon,
+	"Default" = 'icons/mob/head.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = alternate_worn_icon_muzzled,
+	"Default" = 'icons/mob/head_muzzled.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
-	"Default" = icon_state,
+	"Default" = "helmetalt",
 	"Tactical" = "epic_bp_helmet"
 	)
 
 /obj/item/clothing/suit/radiation
 	unique_reskin_icons = list(
-	"Default" = icon,
+	"Default" = 'icons/obj/clothing/suits.dmi',
 	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = alternate_worn_icon,
+	"Default" = 'icons/mob/suits.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = alternate_worn_icon_digi,
+	"Default" = 'icons/mob/suits_digi.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
-	"Default" = icon_state,
+	"Default" = "rad",
 	"Hazmat" = "hazmat_suit",
 	)
 
 /obj/item/clothing/head/radiation
 	unique_reskin_icons = list(
-	"Default" = icon,
+	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = alternate_worn_icon,
+	"Default" = 'icons/mob/head.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = alternate_worn_icon_muzzled,
+	"Default" = 'icons/mob/head_muzzled.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
-	"Default" = icon_state,
+	"Default" = "rad",
 	"Hazmat" = "hazmat_hood",
 	)
 
 /obj/item/clothing/suit/bio_suit
 	unique_reskin_icons = list(
-	"Default" = icon,
+	"Default" = 'icons/obj/clothing/suits.dmi',
 	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = alternate_worn_icon,
+	"Default" = 'icons/mob/suit.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = alternate_worn_icon_digi,
+	"Default" = 'icons/mob/suit_digi.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
-	"Default" = icon_state,
+	"Default" = "bio",
 	"Hazmat" = "hazmat_suit",
 	)
 
 /obj/item/clothing/head/bio_hood
 	unique_reskin_icons = list(
-	"Default" = icon,
+	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = alternate_worn_icon,
+	"Default" = 'icons/mob/head.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = alternate_worn_icon_muzzled,
+	"Default" = 'icons/mob/head_muzzled.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
-	"Default" = icon_state,
+	"Default" = "bio",
 	"Hazmat" = "hazmat_hood",
 	)
 /obj/item/clothing/head/helmet/riot
@@ -286,25 +286,25 @@
 /obj/item/clothing/suit/armor
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	unique_reskin_icons = list(
-	"Default" = icon,
+	"Default" = 'icons/obj/clothing/suits.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	"Tactical Classic" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = alternate_worn_icon,
+	"Default" = 'icons/mob/suit.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	"Tactical Classic" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	"Press" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = alternate_worn_icon_digi,
+	"Default" = 'icons/mob/suit_digi.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	"Tactical Classic" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	"Press" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
-	"Default" = icon_state,
+	"Default" = "armor",
 	"Tactical" = "epic_armor",
 	"Tactical Classic" = "epic_armor_classic",
 	"Press" = "press_armor",
@@ -326,19 +326,19 @@
 /obj/item/clothing/suit/armor/bulletproof
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	unique_reskin_icons = list(
-	"Default" = icon,
+	"Default" = 'icons/obj/clothing/suits.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = alternate_worn_icon,
+	"Default" = 'icons/mob/suit.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = alternate_worn_icon_digi,
+	"Default" = 'icons/mob/suit_digi.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
-	"Default" = icon_state,
+	"Default" = "bulletproof",
 	"Tactical" = "epic_bp_armor",
 	)
 
