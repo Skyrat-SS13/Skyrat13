@@ -138,7 +138,7 @@
 /obj/effect/mob_spawn/human/oldass
 	name = "old cryogenics pod"
 	desc = "A humming cryo pod. You can barely recognise an assistant uniform underneath the built up ice. The machine is attempting to wake up its occupant."
-	mob_name = "an engineer"
+	mob_name = "an assistant"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	job_description = "Oldstation Crew"
