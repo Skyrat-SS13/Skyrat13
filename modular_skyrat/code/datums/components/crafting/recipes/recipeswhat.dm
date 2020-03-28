@@ -1,3 +1,4 @@
+//real weird shit goes here
 /datum/crafting_recipe/cross
 	name = "cross (structure)"
 	result = /obj/structure/kitchenspike/cross
