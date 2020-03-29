@@ -3496,6 +3496,7 @@
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\snouts.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\vox_accessories.dm"
 #include "modular_skyrat\code\modules\mob\living\ssd_indicator.dm"
+#include "modular_skyrat\code\modules\mob\living\carbon\give.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\auto_hiss.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\humanoid.dm"
