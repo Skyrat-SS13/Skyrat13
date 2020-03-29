@@ -474,7 +474,7 @@
 
 /obj/item/clothing/neck/king
 	name = "amulet of kings"
-	desc = "An artifact of mystic value, it gives the user the ability to turn themselves into a dragon and almost fully protects them from death."
+	desc = "An amulet that shows everyone who the true emperor is."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "amulet_of_kings"
 	item_state = "amulet_of_kings"
@@ -531,7 +531,7 @@
 
 /datum/action/item_action/hands_free/memento_mori/king
 	check_flags = NONE
-	name = "King's Binding"
+	name = "Dragon Binding"
 	desc = "Bind your life to the amulet."
 
 /datum/action/item_action/hands_free/memento_mori/king/Trigger()

@@ -574,8 +574,8 @@ obj/effect/temp_visual/fireball/hard
 	return
 
 /mob/living/simple_animal/hostile/megafauna/dragon/lesser/akatosh
-	name = "Avatar of Akatosh"
-	desc = "The Oblivion Crisis is over."
+	name = "Holy Dragon"
+	desc = "Destroyer of the gates."
 	icon = 'modular_skyrat/icons/mob/lavaland/drake_greyscale.dmi'
 	icon_state = "dragon"
 	maxHealth = 500
