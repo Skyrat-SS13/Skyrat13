@@ -20,7 +20,7 @@
 	if(glorykill)
 		if(do_after(slayer, 3, src))
 			var/message
-			if(!get_active_held_item())
+			if(!get_active_held_item() || (!istype(get_active_held_item(), /obj/item/twohanded/kinetic_crusher) && !istype(get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator)))
 				message = pick(glorymessageshand)
 			else if(istype(get_active_held_item(), /obj/item/twohanded/kinetic_crusher))
 				message = pick(glorymessagescrusher)
