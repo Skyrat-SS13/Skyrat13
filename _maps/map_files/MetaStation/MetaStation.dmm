@@ -31690,6 +31690,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/photocopier,
 /turf/open/floor/plasteel/white/corner,
 /area/quartermaster/sorting)
 "bkk" = (
@@ -31785,7 +31786,6 @@
 /turf/open/floor/plasteel/white/corner,
 /area/quartermaster/sorting)
 "bkn" = (
-/obj/structure/table,
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -26
@@ -31797,14 +31797,10 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
-"bko" = (
-/obj/machinery/photocopier,
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
+/obj/machinery/plate_chute/outputchute{
+	pixel_y = -25
 	},
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bkp" = (
@@ -81806,7 +81802,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "gQG" = (
-/obj/structure/table,
+/obj/machinery/plate_chute/inputchute{
+	pixel_y = 25
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "gRS" = (
@@ -102668,7 +102666,7 @@ bdm
 beZ
 bgP
 biL
-bko
+bkp
 bbN
 bnV
 dCN
@@ -105181,7 +105179,7 @@ aaa
 aaf
 aaa
 aax
-gQG
+ujT
 aaR
 aaR
 aax

@@ -22209,6 +22209,13 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/machinery/plate_chute/outputchute{
+	pixel_y = -25
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "baz" = (
@@ -60751,6 +60758,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/hallway/secondary/entry)
+"vyf" = (
+/obj/machinery/plate_chute/inputchute{
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "vzz" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
@@ -82323,7 +82336,7 @@ aeU
 afp
 afE
 aeU
-aeU
+vyf
 agy
 agK
 agY

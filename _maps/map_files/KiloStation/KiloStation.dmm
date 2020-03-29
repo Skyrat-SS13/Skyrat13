@@ -40513,7 +40513,6 @@
 /area/library)
 "bly" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/wardrobe/cargo_wardrobe,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -40522,6 +40521,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
+/obj/machinery/plate_chute/outputchute{
+	pixel_x = -25
+	},
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
 "blz" = (
@@ -45554,9 +45557,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-05"
-	},
+/obj/machinery/vending/wardrobe/cargo_wardrobe,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bsX" = (
@@ -62501,10 +62502,6 @@
 /turf/closed/wall,
 /area/hallway/secondary/exit/departure_lounge)
 "bSR" = (
-/obj/machinery/shower{
-	dir = 8;
-	name = "emergency shower"
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -62518,6 +62515,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/machinery/plate_chute/inputchute{
+	pixel_x = 25
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -126520,7 +126520,7 @@ bpx
 mPm
 blg
 bBo
-blg
+blf
 blf
 bjX
 bJV
