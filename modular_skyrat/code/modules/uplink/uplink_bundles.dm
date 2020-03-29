@@ -1,6 +1,6 @@
 //joker bundle, also i'm gonna do all items here because i'm lazy
 /datum/uplink_item/bundles_TC/joker
-	name = "Society Crate"
+	name = "Society Box"
 	desc = "A crate with a .38 revolver with ammo, special knife and special clothing to enact revenge on society as a whole."
 	item = /obj/item/storage/box/hug/angryclown
 	cost = 20
