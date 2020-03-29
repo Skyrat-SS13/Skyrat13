@@ -27,7 +27,7 @@
 	"Tactical" = "epic_helmet",
 	"Press" = "press_helmet",
 	"HECU" = "hecu_helmet",
-	"HECU Green" "hecu_helmet_green"
+	"HECU Green" = "hecu_helmet_green"
 	)
 
 /obj/item/clothing/head/helmet/alt
