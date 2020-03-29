@@ -1,4 +1,4 @@
-// forgottenship ruin
+/* // forgottenship ruin
 GLOBAL_VAR_INIT(fscpassword, generate_password())
 
 /proc/generate_password()
