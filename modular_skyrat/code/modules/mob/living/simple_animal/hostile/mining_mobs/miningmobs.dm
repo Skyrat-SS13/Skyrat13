@@ -27,7 +27,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/AltClick(mob/living/carbon/slayer)
 	if(glorykill && stat != DEAD)
-		if(do_after(slayer, 10, src))
+		if(do_after(slayer, 10, needhand = TRUE, target = src, progress = FALSE))
 			var/message
 			if(!slayer.get_active_held_item() || (!istype(slayer.get_active_held_item(), /obj/item/twohanded/kinetic_crusher) && !istype(slayer.get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator)))
 				message = pick(glorymessageshand)
