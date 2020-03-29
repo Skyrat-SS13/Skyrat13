@@ -141,3 +141,15 @@
 	name = "implant case - 'Flatline'"
 	desc = "A glass case containing a flatline implant."
 	imp_type = /obj/item/implant/flatline
+
+//HECU mask
+/obj/item/clothing/mask/gas/sechailer/hecu
+	name = "HECU mask"
+	desc = "MY. ASS. IS. HEAVY."
+	icon = 'modular_skyrat/icons/obj/clothing/securityuniforms.dmi'
+	icon_state = "hecu_mask"
+	alternate_worn_icon = 'modular_skyrat/icons/mob/securityuniforms.dmi'
+	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/securityuniforms_digi.dmi'
+	actions_types = list(/datum/action/item_action/halt)
+	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES
+	aggressiveness = 3

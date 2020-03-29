@@ -4,22 +4,30 @@
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
-	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi'
+	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	"HECU" = 'modular_skyrat/icons/obj/clothing/securityuniforms_digi.dmi',
+	"HECU Green" = 'modular_skyrat/icons/obj/clothing/securityuniforms_digi.dmi'
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/head.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
-	"Press" = 'modular_skyrat/icons/mob/epicclothing.dmi'
+	"Press" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	"HECU" = 'modular_skyrat/icons/mob/securityuniforms.dmi',
+	"HECU Green" = 'modular_skyrat/icons/mob/securityuniforms.dmi'
 	)
 	unique_reskin_worn_muzzled = list(
 	"Default" = 'icons/mob/head_muzzled.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
-	"Press" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi'
+	"Press" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	"HECU" = 'modular_skyrat/icons/mob/securityuniforms_digi.dmi',
+	"HECU Green" = 'modular_skyrat/icons/mob/securityuniforms_digi.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "helmet",
 	"Tactical" = "epic_helmet",
-	"Press" = "press_helmet"
+	"Press" = "press_helmet",
+	"HECU" = "hecu_helmet",
+	"HECU Green" "hecu_helmet_green"
 	)
 
 /obj/item/clothing/head/helmet/alt
@@ -474,24 +482,28 @@
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	"Tactical Classic" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
+	"HECU" = 'modular_skyrat/icons/obj/clothing/securityuniforms.dmi'
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/suit.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	"Tactical Classic" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	"Press" = 'modular_skyrat/icons/mob/epicclothing.dmi',
+	"HECU" = 'modular_skyrat/icons/mob/securityuniforms.dmi'
 	)
 	unique_reskin_worn_digi = list(
 	"Default" = 'icons/mob/suit_digi.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	"Tactical Classic" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	"Press" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
+	"HECU" = 'modular_skyrat/icons/mob/securityuniforms_digi.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "armor",
 	"Tactical" = "epic_armor",
 	"Tactical Classic" = "epic_armor_classic",
 	"Press" = "press_armor",
+	"HECU" = "hecu_armor"
 	)
 
 /obj/item/clothing/suit/armor/hos
@@ -607,3 +619,38 @@
 
 /obj/item/clothing/suit/security/hos
 	armor = list("melee" = 45, "bullet" = 35, "laser" = 35, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 90)
+
+/obj/item/clothing/under/rank/security/officer
+	can_adjust = FALSE //sorry but adjusting it with reskins would FUCK everything, sacrifice for the greater good
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/uniforms.dmi',
+	"Tactical" = 'modular_skyrat/icons/obj/clothing/securityuniforms.dmi',
+	"Sol Federation" = 'modular_skyrat/icons/obj/clothing/securityuniforms.dmi',
+	"HECU" = 'modular_skyrat/icons/obj/clothing/securityuniforms.dmi',
+	"Firestarter" = 'modular_skyrat/icons/obj/clothing/securityuniforms.dmi',
+	"Gorka" = 'modular_skyrat/icons/obj/clothing/securityuniforms.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/uniform.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/securityuniforms.dmi',
+	"Sol Federation" = 'modular_skyrat/icons/mob/securityuniforms.dmi',
+	"HECU" = 'modular_skyrat/icons/mob/securityuniforms.dmi',
+	"Firestarter" = 'modular_skyrat/icons/mob/securityuniforms.dmi',
+	"Gorka" = 'modular_skyrat/icons/mob/securityuniforms.dmi'
+	)
+	unique_reskin_worn_digi = list(
+	"Default" = 'icons/mob/uniform_digi.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/securityuniforms_digi.dmi',
+	"Sol Federation" = 'modular_skyrat/icons/mob/securityuniforms_digi.dmi',
+	"HECU" = 'modular_skyrat/icons/mob/securityuniforms_digi.dmi',
+	"Firestarter" = 'modular_skyrat/icons/mob/securityuniforms_digi.dmi',
+	"Gorka" = 'modular_skyrat/icons/mob/securityuniforms_digi.dmi'
+	)
+	unique_reskin = list(
+	"Default" = "rsecurity",
+	"Tactical" = "tactical_suit",
+	"Sol Federation" = "solfed_suit",
+	"HECU" = "hecu_suit",
+	"Firestarter" = "firestarter_suit",
+	"Gorka" = "gorka_suit"
+	)
