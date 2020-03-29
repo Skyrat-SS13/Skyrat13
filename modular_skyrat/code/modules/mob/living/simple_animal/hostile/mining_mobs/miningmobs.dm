@@ -8,7 +8,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/Life()
 	..()
-	if(health < Maxhealth/10 && !glorykill)
+	if(health < maxHealth/10 && !glorykill)
 		glorykill = TRUE
 		glory()
 
