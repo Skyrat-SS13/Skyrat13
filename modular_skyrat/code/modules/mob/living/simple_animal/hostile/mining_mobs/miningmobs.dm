@@ -4,11 +4,11 @@
 	var/glorymessagescrusher = list() //SAME AS ABOVE BUT CRUSHER
 	var/glorymessagespka = list() //SAME AS ABOVE THE ABOVE BUT PKA
 	var/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING
-	var/gloryhealth = 10
+	var/gloryhealth = 5
 
 /mob/living/simple_animal/hostile/asteroid/Life()
 	..()
-	if(health <= maxHealth/5 && !glorykill && stat != DEAD)
+	if(health <= maxHealth/10 && !glorykill && stat != DEAD)
 		glorykill = TRUE
 		glory()
 
