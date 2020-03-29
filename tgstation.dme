@@ -3479,6 +3479,7 @@
 #include "modular_skyrat\code\modules\job\job_types\chaplain.dm"
 #include "modular_skyrat\code\modules\jobs\access.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\brig_physician.dm"
+#include "modular_skyrat\code\modules\jobs\job_types\clown.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\prisoner.dm"
 #include "modular_skyrat\code\modules\keybindings\bindings_mob.dm"
 #include "modular_skyrat\code\modules\language\vox.dm"

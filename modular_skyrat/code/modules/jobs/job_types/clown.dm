@@ -46,7 +46,7 @@
 		H.fully_replace_character_name(H.real_name, "The Joker")
 	H.dna.add_mutation(SMILE)
 	var/datum/antagonist/traitor/A = New()
-	A.add_objective(datum/objective/joker)
+	A.add_objective(/datum/objective/joker)
 	A.admin_add(H.mind)
 
 /datum/objective/joker
