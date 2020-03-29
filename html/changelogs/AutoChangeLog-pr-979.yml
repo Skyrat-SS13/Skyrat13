@@ -1,0 +1,7 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Fixed SEVA suit & EXO suit buggy fucking icons."
+  - bugfix: "Objects other than clothing can be reskinned again."
+  - bugfix: "Screams now appear in the chat again."
+  - rscdel: "Goodbye, dunmer and shadowpeople screams."
