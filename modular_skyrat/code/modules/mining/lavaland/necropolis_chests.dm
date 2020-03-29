@@ -19,8 +19,8 @@
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
 	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
+/*	new /obj/item/borg/upgrade/modkit/shotgun(src)
+	new /obj/item/borg/upgrade/modkit/shotgun(src)*/
 	new /obj/item/mayhem(src)
 	new /obj/item/blood_contract(src)
 	new /obj/item/twohanded/crucible(src)
@@ -32,8 +32,8 @@
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/demon_claws(src)
-	new /obj/item/crusher_trophy/demon_claws(src)
-	new /obj/item/crusher_trophy/demon_claws(src)
+/*	new /obj/item/crusher_trophy/demon_claws(src)
+	new /obj/item/crusher_trophy/demon_claws(src)*/
 
 //super shotty changes (meat hook instead of bursto)
 
@@ -314,15 +314,15 @@
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
-	new /obj/item/crusher_trophy/tail_spike(src)
-	new /obj/item/crusher_trophy/tail_spike(src)
+/*	new /obj/item/crusher_trophy/tail_spike(src)
+	new /obj/item/crusher_trophy/tail_spike(src)*/
 
 /obj/item/dragons_blood/distilled
 	name = "bottle of distilled dragon's blood"
 	desc = "You ARE going to drink this. Once."
-	var/uses = 3 //the intent is for it to be shared with other miners.
+	var/uses = 1 //originally the intent was for it to be shared with other miners but apparently improvedname likes when miners powergame and keep shit for themselves so there you go
 	var/list/users = list() //list of people who already drank it. Take your choice, you're not gonna be both lava and stormproof.
-	var/communist = TRUE //can you drink it more than once?
+	var/communist = TRUE //can you drink it more than once? true if no
 	var/list/choices = list("Lizard", "Skeleton", "Shapeshift", "Lava", "Storm", "Organs", "Nothing")
 
 /obj/item/dragons_blood/distilled/selfish
@@ -709,11 +709,11 @@
 	new /obj/item/staff/storm(src)
 	new /obj/item/clothing/mask/gas/dagoth(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
-	new /obj/item/borg/upgrade/modkit/skull(src)
-	new /obj/item/borg/upgrade/modkit/skull(src)
+/*	new /obj/item/borg/upgrade/modkit/skull(src)
+	new /obj/item/borg/upgrade/modkit/skull(src) */
 	new /obj/item/crusher_trophy/legion_shard(src)
-	new /obj/item/crusher_trophy/legion_shard(src)
-	new /obj/item/crusher_trophy/legion_shard(src)
+/*	new /obj/item/crusher_trophy/legion_shard(src)
+	new /obj/item/crusher_trophy/legion_shard(src) */
 	var/obj/structure/closet/crate/necropolis/tendril/T = new /obj/structure/closet/crate/necropolis/tendril //Yup, i know, VERY spaghetti code.
 	var/obj/item/L
 	for(var/i = 0, i < 5, i++)
