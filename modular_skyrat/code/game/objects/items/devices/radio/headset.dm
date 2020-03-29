@@ -4,3 +4,9 @@
 	icon = 'modular_skyrat/icons/obj/radio.dmi'
 	icon_state = "medsec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_medsec
+
+/obj/item/radio/headset/headset_drifter
+	name = "drifter radio headset"
+	desc = "This is used by the drifters.\nTo access the drifter channel, use :z."
+	icon_state = "headset"
+	keyslot = new /obj/item/encryptionkey/headset_drifter
