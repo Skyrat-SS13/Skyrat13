@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/ring/silver/fargoth
-	name = "Fargoth's Engraved Ring of Healing"
-	desc = "A tiny enchanted silver ring, from an annoying little elf."
+	name = "engraved silver ring"
+	desc = "This ring seems to be engraved with a name... but you can't read it."
 	actions_types = list(/datum/action/item_action/fargoth)
 	var/ringcooldown = 600
 	var/cooldowntime = 0
