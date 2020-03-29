@@ -15,8 +15,4 @@
 
 /datum/element/sword_point/proc/point(datum/source, atom/target, mob/user, proximity_flag, params)
 	if(!proximity_flag && ismob(target))
-<<<<<<< HEAD
-		user.visible_message("<span class='notice'>[user] points the tip of [src] at [target].</span>", "<span class='notice'>You point the tip of [src] at [target].</span>")
-=======
 		user.visible_message("<span class='notice'>[user] points the tip of [source] at [target].</span>", "<span class='notice'>You point the tip of [source] at [target].</span>")
->>>>>>> 4eb2fb531a7... Update sword_point.dm (#11678)
