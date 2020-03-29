@@ -11,10 +11,10 @@
 		return
 	var/dat = "<b>Reskin options for [name]:</b>\n"
 	for(var/V in unique_reskin)
-		if(unique_reskin_icons[V]) //hacky solution but i don't want to break all the code man
+		if(LAZYLEN(unique_reskin_icons)) //hacky solution but i don't want to break all the code man
 			var/output = icon2html(unique_reskin_icons[V], M, unique_reskin[V])
 			dat += "[V]: <span class='reallybig'>[output]</span>\n"
-		else
+		if(!LAZYLEN(unique_reskin_icons))
 			var/output = icon2html(src, M, unique_reskin[V])
 			dat += "[V]: <span class='reallybig'>[output]</span>\n"
 	to_chat(M, dat)
