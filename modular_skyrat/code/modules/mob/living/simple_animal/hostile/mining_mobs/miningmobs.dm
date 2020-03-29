@@ -12,13 +12,17 @@
 		glorykill = TRUE
 		glory()
 
-/mob/living/simple_animal/hostile/asteroid/death(gibbed)
-	..()
-	animate(src, color = initial(color), time = 3)
-
 /mob/living/simple_animal/hostile/asteroid/proc/glory()
 	desc += "<br><b>[src] is staggered and can be glory killed!</b>"
 	animate(src, color = "#00FFFF", time = 5)
+
+/mob/living/simple_animal/hostile/asteroid/death(gibbed)
+	animate(src, color = initial(color), time = 3)
+	SSblackbox.record_feedback("tally", "mobs_killed_mining", 1, type)
+	var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+	if(C && crusher_loot && prob((C.total_damage/maxHealth) * crusher_drop_mod)) //on average, you'll need to kill 4 creatures before getting the item
+		spawn_crusher_loot()
+	..(gibbed)
 
 /mob/living/simple_animal/hostile/asteroid/AltClick(mob/living/carbon/slayer)
 	if(glorykill && stat != DEAD)
