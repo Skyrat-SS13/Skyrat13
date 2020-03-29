@@ -54,7 +54,6 @@
 		/obj/item/card/emagfake	= ARCADE_WEIGHT_TRICK,
 		/obj/item/clothing/shoes/wheelys = ARCADE_WEIGHT_RARE,
 		/obj/item/clothing/shoes/kindleKicks = ARCADE_WEIGHT_RARE,
-		/obj/item/toy/plush/goatplushie/angry/realgoat = ARCADE_WEIGHT_RARE,
 		/obj/item/storage/belt/military/snack = ARCADE_WEIGHT_RARE,
 
 		/obj/item/clothing/mask/fakemoustache/italian = ARCADE_WEIGHT_RARE,
