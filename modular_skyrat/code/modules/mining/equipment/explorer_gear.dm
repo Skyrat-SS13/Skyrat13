@@ -6,6 +6,8 @@
 /obj/item/clothing/suit/hooded/explorer/seva
 	icon = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
 	icon_state = "seva_suit"
+	alternate_worn_icon = 'modular_skyrat/icons/mob/epic_mining.dmi'
+	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/epic_mining_digi.dmi'
 	unique_reskin_icons = list(
 	"Old" = 'icons/obj/clothing/suits.dmi',
 	"Improved" = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
@@ -26,6 +28,8 @@
 /obj/item/clothing/head/hooded/explorer/seva
 	icon = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
 	icon_state = "seva_helmet"
+	alternate_worn_icon = 'modular_skyrat/icons/mob/epic_mining.dmi'
+	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/epic_mining_digi.dmi'
 	unique_reskin_icons = list(
 	"Old" = 'icons/obj/clothing/hats.dmi',
 	"Improved" = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
@@ -54,6 +58,8 @@
 /obj/item/clothing/mask/gas/seva
 	icon = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
 	icon_state = "seva_mask"
+	alternate_worn_icon = 'modular_skyrat/icons/mob/epic_mining.dmi'
+	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/epic_mining_digi.dmi'
 	unique_reskin_icons = list(
 	"Old" = 'icons/obj/clothing/hats.dmi',
 	"Improved" = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
@@ -74,7 +80,9 @@
 //exosuit shit
 /obj/item/clothing/suit/hooded/explorer/exo
 	icon = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
-	icon_state = "seva_suit"
+	icon_state = "exo_suit"
+	alternate_worn_icon = 'modular_skyrat/icons/mob/epic_mining.dmi'
+	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/epic_mining_digi.dmi'
 	unique_reskin_icons = list(
 	"Old" = 'icons/obj/clothing/suits.dmi',
 	"Improved" = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
@@ -94,7 +102,9 @@
 
 /obj/item/clothing/head/hooded/explorer/exo
 	icon = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
-	icon_state = "seva_helmet"
+	icon_state = "exo_helmet"
+	alternate_worn_icon = 'modular_skyrat/icons/mob/epic_mining.dmi'
+	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/epic_mining_digi.dmi'
 	unique_reskin_icons = list(
 	"Old" = 'icons/obj/clothing/hats.dmi',
 	"Improved" = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
@@ -114,7 +124,9 @@
 
 /obj/item/clothing/mask/gas/exo
 	icon = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
-	icon_state = "seva_mask"
+	icon_state = "exo_mask"
+	alternate_worn_icon = 'modular_skyrat/icons/mob/epic_mining.dmi'
+	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/epic_mining_digi.dmi'
 	unique_reskin_icons = list(
 	"Old" = 'icons/obj/clothing/hats.dmi',
 	"Improved" = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'

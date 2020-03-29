@@ -1,9 +1,41 @@
 //EAU (DAB sounded better fuck you)
+// Oh okay BobJoga. I'll switch name back to DAB, just 4u -Nopeman
 /obj/item/clothing/suit/assu_suit
-	name = "EAU suit"
-	desc = "A cheap replica of old SWAT armor. On its back, it is written: \"<i>Emergency Assistance Unit</i>\". Cool-ish, but not protective."
+	desc = "A cheap replica of old SWAT armor. On its back, it is written: \"<i>Desperate Assistance Battleforce</i>\". Tacticool-ish, but not protective."
 	armor = list("melee" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 1, "bio" = 1, "rad" = 1, "fire" = 1, "acid" = 1)
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy)
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/suits.dmi',
+	"Bluetide" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
+	"Medical Assistant" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
+	"Engineering Assistant" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
+	"Service Assistant" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
+	"Science Assistant" = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/suit.dmi',
+	"Bluetide" = 'modular_skyrat/icons/mob/suit.dmi',
+	"Medical Assistant" = 'modular_skyrat/icons/mob/suit.dmi',
+	"Engineering Assistant" = 'modular_skyrat/icons/mob/suit.dmi',
+	"Service Assistant" = 'modular_skyrat/icons/mob/suit.dmi',
+	"Science Assistant" = 'modular_skyrat/icons/mob/suit.dmi'
+	)
+	unique_reskin_worn_digi = list(
+	"Default" = 'icons/mob/suit_digi.dmi',
+	"Bluetide" = 'modular_skyrat/icons/mob/suit_digi.dmi',
+	"Medical Assistant" = 'modular_skyrat/icons/mob/suit_digi.dmi',
+	"Engineering Assistant" = 'modular_skyrat/icons/mob/suit_digi.dmi',
+	"Service Assistant" = 'modular_skyrat/icons/mob/suit_digi.dmi',
+	"Science Assistant" = 'modular_skyrat/icons/mob/suit_digi.dmi'
+	)
+	unique_reskin = list(
+	"Default" = "assu_suit",
+	"Bluetide" = "assu_suit_blue",
+	"Medical Assistant" = "assu_suit_med",
+	"Engineering Assistant" = "assu_suit_eng",
+	"Service Assistant" = "assu_suit_srv",
+	"Science Assistant" = "assu_suit_sci",
+	)
 
 //ablative coat from tg
 /obj/item/clothing/head/hooded/ablative
