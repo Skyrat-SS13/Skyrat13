@@ -8,17 +8,21 @@
 
 /mob/living/simple_animal/hostile/asteroid/Life()
 	..()
-	if(health <= maxHealth/10 && !glorykill)
+	if(health <= maxHealth/5 && !glorykill && stat != DEAD)
 		glorykill = TRUE
 		glory()
+
+/mob/living/simple_animal/hostile/asteroid/death(gibbed)
+	..()
+	animate(src, color = initial(color), time = 3)
 
 /mob/living/simple_animal/hostile/asteroid/proc/glory()
 	desc += "<br><b>[src] is staggered and can be glory killed!</b>"
 	animate(src, color = "#00FFFF", time = 5)
 
 /mob/living/simple_animal/hostile/asteroid/AltClick(mob/living/carbon/slayer)
-	if(glorykill)
-		if(do_after(slayer, 3, src))
+	if(glorykill && stat != DEAD)
+		if(do_after(slayer, 10, src))
 			var/message
 			if(!get_active_held_item() || (!istype(get_active_held_item(), /obj/item/twohanded/kinetic_crusher) && !istype(get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator)))
 				message = pick(glorymessageshand)
@@ -30,7 +34,7 @@
 				if(KA && KA.bayonet)
 					message = pick(glorymessagespka | glorymessagespkabayonet)
 			if(message)
-				visible_message("<span class='danger'>[slayer] [message]</span>")
+				visible_message("<span class='danger'><b>[slayer] [message]</b></span>")
 			slayer.heal_overall_damage(gloryhealth,gloryhealth)
 			playsound(src.loc, death_sound, 150, TRUE, -1)
 			crusher_drop_mod *= 2
