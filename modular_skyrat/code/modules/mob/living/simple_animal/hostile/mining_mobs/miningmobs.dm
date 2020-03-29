@@ -29,17 +29,19 @@
 	if(glorykill && stat != DEAD)
 		if(do_after(slayer, 10, src))
 			var/message
-			if(!get_active_held_item() || (!istype(get_active_held_item(), /obj/item/twohanded/kinetic_crusher) && !istype(get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator)))
+			if(!slayer.get_active_held_item() || (!istype(slayer.get_active_held_item(), /obj/item/twohanded/kinetic_crusher) && !istype(slayer.get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator)))
 				message = pick(glorymessageshand)
-			else if(istype(get_active_held_item(), /obj/item/twohanded/kinetic_crusher))
+			else if(istype(slayer.get_active_held_item(), /obj/item/twohanded/kinetic_crusher))
 				message = pick(glorymessagescrusher)
-			else if(istype(get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator))
+			else if(istype(slayer.get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator))
 				message = pick(glorymessagespka)
 				var/obj/item/gun/energy/kinetic_accelerator/KA = get_active_held_item()
 				if(KA && KA.bayonet)
 					message = pick(glorymessagespka | glorymessagespkabayonet)
 			if(message)
 				visible_message("<span class='danger'><b>[slayer] [message]</b></span>")
+			else
+				visible_message("<span class='danger'><b>[slayer] does something generally considered brutal to [src]... Whatever that may be!</b></span>")
 			slayer.heal_overall_damage(gloryhealth,gloryhealth)
 			playsound(src.loc, death_sound, 150, TRUE, -1)
 			crusher_drop_mod *= 2
