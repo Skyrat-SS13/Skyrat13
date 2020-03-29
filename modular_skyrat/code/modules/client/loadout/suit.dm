@@ -1,3 +1,3 @@
 
 /datum/gear/neetsuit
-	name = "Desprate Assistance Battleforce suit"
+	name = "Desperate Assistance Battleforce suit"

@@ -24,4 +24,4 @@
 	path = /obj/item/clothing/head/wig/natural
 
 /datum/gear/neethelm
-	name = "Desprate Assistance Battleforce helmet"
+	name = "Desperate Assistance Battleforce helmet"
