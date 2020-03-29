@@ -103,7 +103,7 @@
 	path = /obj/item/clothing/head/beanie/green
 
 /datum/gear/beanie/darkblue
-	name = "Dark Blue Beanie
+	name = "Dark Blue Beanie"
 	path = /obj/item/clothing/head/beanie/darkblue
 
 /datum/gear/beanie/purple
