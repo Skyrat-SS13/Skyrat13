@@ -62,7 +62,3 @@
 		H.fully_replace_character_name(H.real_name, pick(GLOB.clown_names))
 	H.dna.add_mutation(CLOWNMUT)
 	H.dna.add_mutation(SMILE)
-// Skyrat EDIT
-/datum/job/clown/radio_help_message(mob/M)
-	to_chat(M, "<span class='notice'>They are considered normal crew. Their job is to be the butt of the jokes, be the punching bag, and do occasional pranks.</span>")
-	to_chat(M, "<span class='notice'>They are there for the station's entertainment, not the player's.</span>")
