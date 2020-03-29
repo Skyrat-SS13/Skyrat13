@@ -5,8 +5,8 @@
 	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
-	"HECU" = 'modular_skyrat/icons/obj/clothing/securityuniforms_digi.dmi',
-	"HECU Green" = 'modular_skyrat/icons/obj/clothing/securityuniforms_digi.dmi'
+	"HECU" = 'modular_skyrat/icons/obj/clothing/securityuniforms.dmi',
+	"HECU Green" = 'modular_skyrat/icons/obj/clothing/securityuniforms.dmi'
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/head.dmi',
