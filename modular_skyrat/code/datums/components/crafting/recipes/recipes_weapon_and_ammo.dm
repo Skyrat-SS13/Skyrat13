@@ -1,4 +1,4 @@
-/datum/crafting_recipe/switchblade_ms
+/*/datum/crafting_recipe/switchblade_ms
 	name = "Switchblade"
 	result = /obj/item/switchblade/crafted
 	reqs = list(/obj/item/weaponcrafting/stock = 1,
@@ -39,3 +39,4 @@
 	time = 50
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
+*/

@@ -10,7 +10,7 @@
 	result = /obj/structure/curtain
 	category = CAT_MISC
 
-/datum/crafting_recipe/guillotine
+/*/datum/crafting_recipe/guillotine
 	name = "Guillotine"
 	result = /obj/structure/guillotine
 	time = 150 // Building a functioning guillotine takes time
@@ -28,12 +28,13 @@
 		        /obj/item/stack/cable_coil = 30)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
 	category = CAT_MISC
+*/
 
 ///////////////////
 //Tools & Storage//
 ///////////////////
 
-/datum/crafting_recipe/ghettojetpack
+/*/datum/crafting_recipe/ghettojetpack
 	name = "Improvised Jetpack"
 	result = /obj/item/tank/jetpack/improvised
 	time = 30
@@ -54,7 +55,7 @@
 				/datum/reagent/water  = 15)
 	time = 40
 	category = CAT_MISC
-
+*/
 /datum/crafting_recipe/bronze_driver
 	name = "Bronze Plated Screwdriver"
 	tools = list(/obj/item/stock_parts/cell/upgraded/plus)
@@ -156,12 +157,12 @@
 	result = /obj/item/toy/sword
 	category = CAT_MISC
 
-/datum/crafting_recipe/extendohand
+/*/datum/crafting_recipe/extendohand
 	name = "Extendo-Hand"
 	reqs = list(/obj/item/bodypart/r_arm/robot = 1, /obj/item/clothing/gloves/boxing = 1)
 	result = /obj/item/extendohand
 	category = CAT_MISC
-
+*/
 /datum/crafting_recipe/toyneb
 	name = "Non-Euplastic Blade"
 	reqs = list(/obj/item/light/tube = 1, /obj/item/stack/cable_coil = 1, /obj/item/stack/sheet/plastic = 4)
@@ -244,14 +245,14 @@
 				  /obj/item/assembly/igniter = 1)
 	category = CAT_MISC
 
-/datum/crafting_recipe/gold_horn
+/*/datum/crafting_recipe/gold_horn
 	name = "Golden Bike Horn"
 	result = /obj/item/bikehorn/golden
 	time = 20
 	reqs = list(/obj/item/stack/sheet/mineral/bananium = 5,
 				/obj/item/bikehorn = 1)
 	category = CAT_MISC
-
+*/
 /datum/crafting_recipe/spooky_camera
 	name = "Camera Obscura"
 	result = /obj/item/camera/spooky

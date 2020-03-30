@@ -37,7 +37,7 @@
 //Huds//
 ////////
 
-/datum/crafting_recipe/hudsunsec
+/*/datum/crafting_recipe/hudsunsec
 	name = "Security HUDsunglasses"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses
 	time = 20
@@ -204,6 +204,7 @@
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/meson/eyepatch = 1)
 	category = CAT_CLOTHING
+*/
 
 /datum/crafting_recipe/ghostsheet
 	name = "Ghost Sheet"
@@ -232,7 +233,7 @@
 	time = 30
 	category = CAT_CLOTHING
 
-/datum/crafting_recipe/durathread_duffelbag
+/*/datum/crafting_recipe/durathread_duffelbag
 	name = "Durathread Dufflebag"
 	result = /obj/item/storage/backpack/duffelbag/durathread
 	reqs = list(/obj/item/stack/sheet/durathread = 7,
@@ -279,6 +280,7 @@
 				/obj/item/stack/sheet/leather = 10)
 	time = 70
 	category = CAT_CLOTHING
+*/
 
 /datum/crafting_recipe/wintercoat_cosmic
 	name = "Cosmic Winter Coat"

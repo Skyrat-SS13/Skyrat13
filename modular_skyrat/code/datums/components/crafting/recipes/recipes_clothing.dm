@@ -1,4 +1,4 @@
-/datum/crafting_recipe/ablativecoat
+/*/datum/crafting_recipe/ablativecoat
 	name = "Ablative Trenchcoat"
 	result = /obj/item/clothing/suit/hooded/ablative
 	reqs = list(/obj/item/clothing/suit/armor/laserproof = 1,
@@ -10,3 +10,4 @@
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 90
 	category = CAT_CLOTHING
+*/

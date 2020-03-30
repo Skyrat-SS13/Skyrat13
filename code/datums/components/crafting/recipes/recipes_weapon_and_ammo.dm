@@ -1,4 +1,4 @@
-/datum/crafting_recipe/pin_removal
+/*/datum/crafting_recipe/pin_removal
 	name = "Pin Removal"
 	result = /obj/item/gun
 	reqs = list(/obj/item/gun = 1)
@@ -271,7 +271,7 @@
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
+*/
 //////////////////
 ///AMMO CRAFTING//
 //////////////////
@@ -317,7 +317,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/meteorslug
+/*/datum/crafting_recipe/meteorslug
 	name = "Meteorslug Shell"
 	result = /obj/item/ammo_casing/shotgun/meteorslug
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
@@ -394,3 +394,4 @@
 	time = 5
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
+*/
