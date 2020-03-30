@@ -470,7 +470,7 @@
 /obj/item/book/granter/crafting_recipe/threads //Durathread crafting book
 	name = "Credible Threads"
 	desc = "A simple book about sewing and usefull clothing crafting with cloth and durathreads."
-	crafting_recipe_types = list(/datum/crafting_recipe/durathread_duffelbag, /datum/crafting_recipe/durathread_toolbelt, /datum/crafting_recipe/durathread_bandolier, /datum/crafting_recipe/durathread_helmet, /datum/crafting_recipe/durathread_vest)
+	/*crafting_recipe_types = list(/datum/crafting_recipe/durathread_duffelbag, /datum/crafting_recipe/durathread_toolbelt, /datum/crafting_recipe/durathread_bandolier, /datum/crafting_recipe/durathread_helmet, /datum/crafting_recipe/durathread_vest)*/
 	icon_state = "tailers_art1"
 	oneuse = FALSE
 	remarks = list("Durathread is cloth thats also fire-resistant?", "Strong threads that can be used with leather for some light weight storage!", "The cloth can withstand a beating it said but not that much...")
