@@ -1,7 +1,7 @@
 //i dont know what classifies a cargo thing as special.
 /datum/supply_pack/security/armory/usp
 	name = "USP pistol Crate"
-	desc = "Why are 9mm guns still a thing? Well, you can still get them anyways."
+	desc = "Contains 3 loaded pistols and 3 magazines."
 	cost = 4500
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/uspm,
 					/obj/item/gun/ballistic/automatic/pistol/uspm,
@@ -13,8 +13,8 @@
 
 /datum/supply_pack/security/armory/combine
 	name = "Civil Protection Crate"
-	desc = "With this crate, you'll never deadline on the frontlines. Contains full Civil Protection clothing (including hardsuit), a stun baton and an USP pistol with spare magazines."
-	cost = 8000
+	desc = "With this crate, you'll be able to hunt down the freeman."
+	cost = 5500 //one single guy complained about the price, doomp eet
 	contains = list(/obj/item/clothing/under/rank/security/civilprotection,
 					/obj/item/clothing/head/helmet/cphood,
 					/obj/item/gun/ballistic/automatic/pistol/uspm,
