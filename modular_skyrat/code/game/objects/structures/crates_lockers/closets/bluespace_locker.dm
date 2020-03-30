@@ -121,7 +121,7 @@
 			for(var/atom/movable/M in A)
 				M.onTransitZ(old_z,new_z)
 	return ..()
-
+/* Removing the Mirage
 /obj/structure/closet/bluespace/internal/proc/update_mirage()
 	var/area/A = get_area(src)
 	for(var/atom/movable/M in A)
@@ -141,7 +141,7 @@
 		T.external_origin = external_origin
 		T.turf_whitelist = mirage_whitelist
 		T.update_mirage()
-
+*/
 /obj/structure/closet/bluespace/external/Initialize()
 	if(SSbluespace_locker.external_locker && SSbluespace_locker.external_locker != src)
 		qdel(src)
@@ -163,8 +163,7 @@
 	if(welded || locked)
 		return FALSE
 	return TRUE
-
-
+/*
 /obj/structure/closet/bluespace/external/Moved()
 	var/obj/structure/closet/bluespace/internal/C = get_other_locker()
 	if(C)
@@ -176,10 +175,10 @@
 	if(C)
 		C.update_mirage()
 	return ..()
-
+*/
 /obj/effect/landmark/bluespace_locker_origin
 	name = "bluespace locker origin"
-
+/* removing mirages
 /turf/open/space/bluespace_locker_mirage
 	density = 1
 	icon_state = "black"
@@ -281,3 +280,4 @@
 /turf/open/space/bluespace_locker_mirage/proc/reset_to_self()
 	reset_timer_id = null
 	update_mirage()
+*/

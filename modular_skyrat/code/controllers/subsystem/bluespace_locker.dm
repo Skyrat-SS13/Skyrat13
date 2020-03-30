@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(bluespace_locker)
 		return
 	//var/area/A = get_area(internal_locker)
 	//A.global_turf_object = external_locker
-	internal_locker.update_mirage()
+	//internal_locker.update_mirage()
 	if(!external_locker)
 		return
 	if(external_locker.opened)
