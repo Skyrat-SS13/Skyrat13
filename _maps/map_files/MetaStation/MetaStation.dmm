@@ -4353,10 +4353,6 @@
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "ajs" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "armory";
-	name = "armory shutters"
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -4366,6 +4362,10 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/window{
+	id = "armory";
+	name = "Armoury Shutters"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
