@@ -2329,9 +2329,6 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/machinery/airalarm{
-	pixel_y = 23
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "afa" = (
@@ -3025,11 +3022,10 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "agq" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "armory1";
-	name = "Armoury Shutter"
-	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "armory1"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "agr" = (
@@ -3389,14 +3385,14 @@
 	pixel_y = -26;
 	req_access_txt = "3"
 	},
-/obj/machinery/door/poddoor/shutters{
-	id = "armory1";
-	name = "Armoury Shutter"
-	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "armory1"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "agW" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -3411,14 +3407,53 @@
 /obj/machinery/door/poddoor/shutters{
 	id = "armory2";
 	name = "Armoury Shutter"
+=======
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 	},
-/obj/machinery/button/door{
-	id = "armory2";
-	name = "Armory Shutters";
-	pixel_y = -26;
-	req_access_txt = "3"
+/obj/item/storage/box/handcuffs{
+	pixel_x = -1;
+	pixel_y = 1
 	},
+/obj/item/storage/box/handcuffs{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/camera/motion{
+	c_tag = "Armory Motion Sensor";
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
+"agX" = (
 /obj/effect/turf_decal/delivery,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "armory2"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "agY" = (
@@ -3571,42 +3606,11 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "ahm" = (
-/obj/structure/rack,
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
-/obj/item/storage/box/handcuffs{
-	pixel_x = -1;
-	pixel_y = 1
-	},
-/obj/item/storage/box/handcuffs{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/camera/motion{
-	c_tag = "Armory Motion Sensor";
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
 "ahn" = (
 /turf/closed/wall,
 /area/maintenance/fore/secondary)
@@ -3639,6 +3643,7 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ahs" = (
+<<<<<<< HEAD
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -3649,6 +3654,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+=======
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/obj/effect/landmark/start/assistant,
+/obj/structure/chair/sofa/right,
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "aht" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -3792,6 +3809,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "ahC" = (
+<<<<<<< HEAD
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -3801,6 +3819,18 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/security/main)
+=======
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 8
+	},
+/obj/structure/closet/wardrobe/white,
+/obj/item/clothing/under/suit/waiter,
+/obj/item/clothing/under/suit/waiter,
+/obj/item/clothing/under/suit/waiter,
+/obj/item/clothing/suit/straight_jacket,
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "ahD" = (
 /obj/structure/chair,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -3931,6 +3961,7 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "ahO" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -3940,6 +3971,31 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
+=======
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4;
+	pixel_y = 5
+	},
+/obj/structure/chair/sofa/left{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
+"ahP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/closet/wardrobe/mixed,
+/obj/item/clothing/under/costume/kilt,
+/obj/item/clothing/under/costume/kilt,
+/obj/item/clothing/under/dress/skirt/purple,
+/obj/item/clothing/head/beret,
+/obj/item/clothing/head/beret,
+/obj/item/clothing/head/beret,
+/obj/structure/sign/poster/official/fashion{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "ahQ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -4095,6 +4151,7 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/brig)
 "aia" = (
+<<<<<<< HEAD
 /obj/structure/noticeboard{
 	dir = 1;
 	pixel_y = -27
@@ -4109,6 +4166,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+=======
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/closet/secure_closet/hydroponics,
+/obj/structure/sign/poster/official/hydro_ad{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "aib" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -4187,11 +4253,16 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "aih" = (
-/obj/machinery/door/poddoor/shutters{
+/obj/machinery/button/door{
 	id = "armory2";
-	name = "Armoury Shutter"
+	name = "Armory Shutters";
+	pixel_y = -26;
+	req_access_txt = "3"
 	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "armory2"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aii" = (
@@ -4455,6 +4526,7 @@
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "aiB" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -4467,6 +4539,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+=======
+/obj/machinery/vending/kink,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/fashion{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/locker)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "aiC" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -4576,6 +4659,13 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"aiJ" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/structure/sign/poster/official/hydro_ad{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "aiK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1;
@@ -4630,11 +4720,21 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "aiP" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
 /turf/closed/wall/r_wall,
 /area/security/main)
+=======
+/obj/structure/table,
+/obj/item/storage/firstaid/regular,
+/obj/structure/sign/poster/official/medical_green_cross{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "aiQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -4658,11 +4758,20 @@
 /turf/open/floor/plating,
 /area/security/processing)
 "aiV" = (
+<<<<<<< HEAD
 /obj/machinery/plate_chute/inputchute{
 	pixel_y = -25
 	},
 /turf/open/floor/plasteel/checker,
 /area/security/prison)
+=======
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "aiW" = (
 /obj/structure/closet/bombcloset/security,
 /obj/effect/turf_decal/bot,
@@ -4683,25 +4792,23 @@
 /turf/open/floor/plating,
 /area/ai_monitored/security/armory)
 "aja" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "armory3";
-	name = "Armoury Shutter"
-	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "armory3"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "ajb" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "armory3";
-	name = "Armoury Shutter"
-	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/shutters/window{
+	id = "armory3"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -4755,6 +4862,7 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "ajh" = (
+<<<<<<< HEAD
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
@@ -4766,6 +4874,17 @@
 /obj/item/gavelhammer,
 /turf/open/floor/plasteel,
 /area/security/courtroom)
+=======
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/sign/poster/official/pda_ad800{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "aji" = (
 /obj/structure/chair{
 	name = "Judge"
@@ -4853,6 +4972,7 @@
 /turf/open/floor/plating,
 /area/security/vacantoffice/b)
 "ajs" = (
+<<<<<<< HEAD
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -4864,6 +4984,18 @@
 	},
 /turf/open/floor/plasteel/checker,
 /area/security/prison)
+=======
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/sign/poster/official/pda_ad600{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "ajt" = (
 /obj/machinery/camera{
 	c_tag = "Vacant Office B";
@@ -4892,11 +5024,22 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "ajv" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /turf/open/floor/plasteel/checker,
 /area/security/prison)
+=======
+/obj/machinery/computer/med_data{
+	dir = 3
+	},
+/obj/structure/sign/poster/official/medical_green_cross{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "ajw" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -4953,6 +5096,7 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "ajB" = (
+<<<<<<< HEAD
 /obj/machinery/door/airlock/public/glass{
 	name = "Pressing Room"
 	},
@@ -4962,6 +5106,13 @@
 	},
 /turf/open/floor/plasteel/checker,
 /area/security/prison)
+=======
+/obj/structure/sign/poster/official/medical_green_cross{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "ajC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4976,6 +5127,7 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ajD" = (
+<<<<<<< HEAD
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
@@ -4987,6 +5139,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+=======
+/obj/effect/spawner/lootdrop/keg,
+/obj/structure/sign/poster/contraband/scum{
+	pixel_x = -32
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "ajE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -5012,6 +5172,7 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ajG" = (
+<<<<<<< HEAD
 /obj/machinery/holopad,
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -5020,6 +5181,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+=======
+/obj/structure/table,
+/obj/item/kitchen/rollingpin,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/structure/sign/poster/contraband/scum{
+	pixel_x = -32
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "ajH" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
@@ -5084,11 +5256,27 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "ajM" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/courtroom)
+=======
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/obj/structure/sign/poster/contraband/scum{
+	pixel_y = 32
+	},
+/obj/structure/sign/poster/contraband/scum{
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "ajN" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5244,6 +5432,7 @@
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
 "aka" = (
+<<<<<<< HEAD
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
@@ -5252,6 +5441,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+=======
+/obj/structure/closet/secure_closet/bar{
+	req_access_txt = "25"
+	},
+/obj/item/clothing/under/suit/waiter,
+/obj/item/clothing/under/suit/waiter,
+/obj/item/clothing/under/suit/waiter,
+/obj/item/gun/ballistic/revolver/doublebarrel,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "akb" = (
 /obj/machinery/light{
 	dir = 8
@@ -5445,6 +5647,7 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "akt" = (
+<<<<<<< HEAD
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -5455,6 +5658,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+=======
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "aku" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -9226,6 +9436,7 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+<<<<<<< HEAD
 "asX" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -9263,6 +9474,8 @@
 /obj/item/clothing/suit/straight_jacket,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+=======
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "ata" = (
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -9607,17 +9820,6 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
-"aua" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/closet/wardrobe/mixed,
-/obj/item/clothing/under/costume/kilt,
-/obj/item/clothing/under/costume/kilt,
-/obj/item/clothing/under/dress/skirt/purple,
-/obj/item/clothing/head/beret,
-/obj/item/clothing/head/beret,
-/obj/item/clothing/head/beret,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
 "aub" = (
@@ -16604,16 +16806,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"aJE" = (
-/obj/structure/closet/secure_closet/bar{
-	req_access_txt = "25"
-	},
-/obj/item/clothing/under/suit/waiter,
-/obj/item/clothing/under/suit/waiter,
-/obj/item/clothing/under/suit/waiter,
-/obj/item/gun/ballistic/revolver/doublebarrel,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "aJF" = (
 /obj/machinery/newscaster{
 	pixel_x = 30
@@ -17065,11 +17257,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"aKK" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/closet/secure_closet/hydroponics,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "aKL" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -18129,15 +18316,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"aND" = (
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/cable_coil,
-/obj/item/flashlight/lamp,
-/obj/item/flashlight/lamp/green,
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "aNE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -19334,13 +19512,6 @@
 "aQT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/locker)
-"aQU" = (
-/obj/machinery/vending/kink,
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
@@ -22935,19 +23106,6 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"aYP" = (
-/obj/structure/reagent_dispensers/watertank/high,
-/obj/structure/sign/poster/contraband/lizard{
-	pixel_x = -32
-	},
-/obj/structure/sign/poster/contraband/lizard{
-	pixel_x = -32
-	},
-/obj/structure/sign/poster/contraband/lizard{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "aYQ" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/tile/green{
@@ -26213,11 +26371,6 @@
 /area/medical/chemistry)
 "bhe" = (
 /obj/structure/chair,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
-"bhf" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bhg" = (
@@ -29878,6 +30031,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
 "boX" = (
 /obj/machinery/holopad,
 /obj/structure/disposalpipe/segment{
@@ -29889,6 +30043,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+=======
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "boY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -29929,13 +30085,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
-"bpa" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "bpb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -29967,6 +30116,7 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
+<<<<<<< HEAD
 "bpf" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -29986,6 +30136,8 @@
 /obj/effect/landmark/start/brig_physician,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/brig)
+=======
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "bph" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -33198,12 +33350,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
-"bwC" = (
-/obj/machinery/computer/med_data{
-	dir = 3
-	},
-/turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bwD" = (
 /obj/machinery/sleeper{
@@ -47201,13 +47347,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/port/aft)
-"ccY" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/item/reagent_containers/food/condiment/sugar,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "ccZ" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plating,
@@ -58502,6 +58641,7 @@
 	},
 /turf/open/space,
 /area/solar/starboard/fore)
+<<<<<<< HEAD
 "jIz" = (
 /obj/machinery/light{
 	dir = 1;
@@ -58509,6 +58649,8 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
+=======
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "jJF" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable{
@@ -59201,12 +59343,15 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
+<<<<<<< HEAD
 "lXX" = (
 /obj/effect/decal/cleanable/vomit,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "lZl" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -60501,7 +60646,11 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
+<<<<<<< HEAD
 /area/maintenance/fore)
+=======
+/area/security/range)
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "pHl" = (
 /obj/structure/table,
 /obj/item/storage/box/beakers{
@@ -63404,6 +63553,7 @@
 /obj/effect/turf_decal/trimline/white/corner{
 	dir = 8
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "xva" = (
@@ -63420,6 +63570,16 @@
 	dir = 8;
 	pixel_x = 28;
 	pixel_y = 0
+=======
+/turf/open/floor/plating,
+/area/maintenance/fore)
+"xxp" = (
+/turf/open/floor/plating,
+/area/security/range)
+"xzv" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -82821,7 +82981,7 @@ aLH
 aLE
 aOl
 aPA
-aQU
+aiB
 aQN
 nLw
 sLa
@@ -82860,7 +83020,7 @@ aaa
 aaa
 aaa
 bCq
-bJP
+ajD
 bCq
 bSn
 bCq
@@ -82873,7 +83033,7 @@ aaf
 bCq
 cAy
 cAB
-ccY
+ajG
 cAD
 cAH
 cfw
@@ -89007,7 +89167,7 @@ bjz
 bkT
 bjz
 bjz
-boX
+aiV
 bqv
 bqv
 bqv
@@ -89264,7 +89424,7 @@ bjB
 bkW
 bmp
 bjz
-bpa
+ajh
 bqy
 cBr
 bqy
@@ -90806,7 +90966,7 @@ bcd
 bcd
 bms
 bnS
-bpf
+ajs
 bqC
 brZ
 btE
@@ -92803,7 +92963,7 @@ aaZ
 aeY
 acn
 agR
-ahm
+agW
 ahA
 aeE
 agz
@@ -94090,8 +94250,8 @@ agq
 agV
 aaZ
 aaZ
-aih
 agX
+aih
 aaZ
 aaZ
 aaZ
@@ -99024,7 +99184,7 @@ aYV
 aYV
 bet
 bfH
-bhf
+aiP
 wbE
 bhh
 wbE
@@ -99035,7 +99195,7 @@ bqP
 bsy
 bEe
 bvh
-bwC
+ajv
 bxN
 bze
 bAp
@@ -99507,8 +99667,8 @@ wig
 str
 rrM
 clO
-asZ
-aua
+ahC
+ahP
 oZl
 awB
 att
@@ -100276,7 +100436,11 @@ con
 eVJ
 dqb
 qeA
+<<<<<<< HEAD
 aeR
+=======
+ahm
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 fHG
 fHG
 fHG
@@ -100291,7 +100455,7 @@ sEi
 alP
 aGJ
 aIe
-aJE
+aka
 aLU
 aKQ
 aNu
@@ -100533,9 +100697,15 @@ fyS
 eVJ
 dqb
 veS
+<<<<<<< HEAD
 afa
 sJI
 afE
+=======
+ahs
+sJI
+ahO
+>>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 fHG
 eAJ
 rvr
@@ -100808,7 +100978,7 @@ aHM
 aJm
 aKz
 mjr
-aND
+akt
 aJC
 aab
 aRg
@@ -102120,7 +102290,7 @@ bsx
 bst
 bfJ
 bhh
-bhh
+ajB
 bwK
 bhh
 bhh
@@ -103643,7 +103813,7 @@ aSR
 aUi
 aVJ
 aOX
-aYP
+aiJ
 bal
 bam
 aYV
@@ -104147,7 +104317,7 @@ wBd
 aGC
 aIl
 aIq
-aKK
+aia
 aMy
 aIp
 nGf
@@ -111924,7 +112094,7 @@ aaa
 cNW
 clt
 cQw
-bNB
+ajM
 cOe
 cOe
 cNW
