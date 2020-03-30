@@ -3397,7 +3397,7 @@
 #include "modular_skyrat\code\game\objects\items\stacks\sheets\mineral.dm"
 #include "modular_skyrat\code\game\objects\items\stacks\sheets\sheet_types.dm"
 #include "modular_skyrat\code\game\objects\items\storage\medkit.dm"
-#include "modular_skyrat\code\game\objects\items\storage\backpacks\blueshield.dm .dm"
+#include "modular_skyrat\code\game\objects\items\storage\backpacks\blueshield.dm"
 #include "modular_skyrat\code\game\objects\items\tanks\n2_tanks.dm"
 #include "modular_skyrat\code\game\objects\structures\door_assembly.dm"
 #include "modular_skyrat\code\game\objects\structures\flora.dm"
