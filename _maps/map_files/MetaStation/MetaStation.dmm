@@ -6927,6 +6927,7 @@
 	dir = 8
 	},
 /obj/machinery/power/apc{
+	area = "/area/blueshield";
 	name = "Blueshield's Office APC";
 	pixel_x = 26
 	},

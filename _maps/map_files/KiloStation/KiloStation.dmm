@@ -9100,10 +9100,6 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/toilet/restrooms)
 "aoH" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -33
-	},
 /obj/structure/closet/secure_closet/blueshield,
 /turf/open/floor/wood,
 /area/blueshield)
@@ -9535,7 +9531,7 @@
 /area/maintenance/solars/port/fore)
 "apt" = (
 /obj/machinery/power/apc{
-	areastring = "/area/security/detectives_office";
+	areastring = "/area/blueshield";
 	dir = 4;
 	name = "Detective's Office APC";
 	pixel_x = 24
@@ -88098,6 +88094,16 @@
 "tYn" = (
 /turf/closed/wall/rust,
 /area/janitor)
+"uaq" = (
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "applebush"
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/wood,
+/area/blueshield)
 "uda" = (
 /turf/closed/wall/rust,
 /area/security/warden)
@@ -115178,7 +115184,7 @@ atn
 aup
 aBY
 awL
-axS
+uaq
 amX
 aBG
 bEA

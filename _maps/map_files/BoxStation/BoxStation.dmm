@@ -7875,6 +7875,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "apX" = (
@@ -10040,22 +10043,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/dorms)
-"avh" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/power/apc{
-	areastring = "/area/security/vacantoffice/b";
-	dir = 8;
-	name = "Law Office APC";
-	pixel_x = -24
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "avi" = (
 /obj/machinery/power/apc{
-	areastring = "/area/lawoffice";
+	areastring = "/area/blueshield";
 	dir = 1;
 	name = "Blueshield's Office APC";
 	pixel_y = 24
@@ -56850,6 +56840,13 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"ffa" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "fgG" = (
 /obj/structure/table/wood,
 /obj/machinery/requests_console{
@@ -61947,6 +61944,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"tPJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/power/apc{
+	areastring = "/area/lawoffice";
+	dir = 8;
+	name = "Law Office APC";
+	pixel_x = -24
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "tPT" = (
 /obj/machinery/chem_dispenser/drinks/beer,
 /obj/structure/table/wood,
@@ -90547,10 +90557,10 @@ aow
 apg
 aqZ
 aqZ
-aqZ
+tPJ
 apW
-aqZ
-avh
+ffa
+ffa
 awh
 axz
 ayO
