@@ -268,6 +268,30 @@
 
 /obj/item/clothing/head/beret/sec
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 50)
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/hats.dmi',
+	"Solfed Contractor" = 'modular_skyrat/icons/obj/clothing/fuckingberets.dmi',
+	"Tactical" = 'modular_skyrat/icons/obj/clothing/fuckingberets.dmi',
+	"Green" = 'modular_skyrat/icons/obj/clothing/fuckingberets.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/head.dmi',
+	"Solfed Contractor" = 'modular_skyrat/icons/mob/fuckingberets.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/fuckingberets.dmi',
+	"Green" = 'modular_skyrat/icons/mob/fuckingberets.dmi'
+	)
+	unique_reskin_worn_muzzled = list(
+	"Default" = 'icons/mob/head_muzzled.dmi',
+	"Solfed Contractor" = 'modular_skyrat/icons/mob/fuckingberets_muzzled.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/fuckingberets_muzzled.dmi',
+	"Green" = 'modular_skyrat/icons/mob/fuckingberets_muzzled.dmi'
+	)
+	unique_reskin = list(
+	"Default" = "beret_badge",
+	"Solfed Contractor" = "contractor_beret",
+	"Tactical" = "tactical_beret",
+	"Green" = "green_beret"
+	)
 
 /obj/item/clothing/head/beret/sec/navywarden
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50)
@@ -302,9 +326,41 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/mining
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 75)
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/hats.dmi',
+	"Explorer" = 'modular_skyrat/icons/obj/clothing/explorersuit.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/head.dmi',
+	"Explorer" = 'modular_skyrat/icons/mob/explorersuit.dmi'
+	)
+	unique_reskin_worn_muzzled = list(
+	"Default" = 'icons/mob/head_muzzled.dmi',
+	"Explorer" = 'modular_skyrat/icons/mob/explorersuit_digi.dmi'
+	)
+	unique_reskin = list(
+	"Default" = "hardsuit0-mining",
+	"Explorer" = "explorer_helmet"
+	)
 
 /obj/item/clothing/suit/space/hardsuit/mining
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 75)
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/suits.dmi',
+	"Explorer" = 'modular_skyrat/icons/obj/clothing/explorersuit.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/head.dmi',
+	"Explorer" = 'modular_skyrat/icons/mob/explorersuit.dmi'
+	)
+	unique_reskin_worn_digi = list(
+	"Default" = 'icons/mob/head_muzzled.dmi',
+	"Explorer" = 'modular_skyrat/icons/mob/explorersuit_digi.dmi'
+	)
+	unique_reskin = list(
+	"Default" = "hardsuit-mining",
+	"Explorer" = "explorer_suit"
+	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)
