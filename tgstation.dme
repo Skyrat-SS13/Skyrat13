@@ -3574,6 +3574,7 @@
 #include "modular_skyrat\code\modules\uplink\uplink_bundles.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_dangerous.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_devices.dm"
+#include "modular_skyrat\code\modules\uplink\uplink_items.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_roles.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_stealth.dm"
 #include "modular_skyrat\code\modules\vending\autodrobe.dm"
