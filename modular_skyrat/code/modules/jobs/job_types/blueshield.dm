@@ -9,7 +9,7 @@
 	supervisors = "the Captain"
 	selection_color = "#ddddff"
 	minimal_player_age = 7
-	exp_requirements = 6000 /// You literally gotta play security for a total of 4.1 days in hours wtf Reece
+	exp_requirements = 3900 /// 65 hours of Sec Playtime :reece:
 	exp_type = EXP_TYPE_SECURITY
 
 	outfit = /datum/outfit/job/blueshield
