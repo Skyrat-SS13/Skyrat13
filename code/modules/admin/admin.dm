@@ -25,7 +25,7 @@
 		to_chat(usr, "You seem to be selecting a mob that doesn't exist anymore.")
 		return
 
-	var/body = "<html><head><title>Options for [M.key]</title></head>"
+	var/body = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Options for [M.key]</title></head>"
 	body += "<body>Options panel for <b>[M]</b>"
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
@@ -81,6 +81,14 @@
 	body += "<A href='?_src_=holder;[HrefToken()];newban=[REF(M)]'>Ban</A> | "
 	body += "<A href='?_src_=holder;[HrefToken()];jobban2=[REF(M)]'>Jobban</A> | "
 	body += "<A href='?_src_=holder;[HrefToken()];appearanceban=[REF(M)]'>Identity Ban</A> | "
+	// SKYRAT ADDITION -- BEGIN
+	var/collarline = "[jobban_isbanned(M, COLLARBAN)?"Remove Collar Ban":"Collar Ban"]"
+	if(ishuman(M))
+		var/mob/living/carbon/human/C = M
+		if(!istype(C.wear_neck, COLLARITEM) && jobban_isbanned(M, COLLARBAN))
+			collarline = "FIX COLLAR"
+	body += "<A href='?_src_=holder;[HrefToken()];collarban=[REF(M)]'>[collarline]</A> | "
+	// SKYRAT ADDITION -- END
 	var/rm = REF(M)
 	if(jobban_isbanned(M, "OOC"))
 		body+= "<A href='?_src_=holder;[HrefToken()];jobban3=OOC;jobban4=[rm]'><font color=red>OOCBan</font></A> | "
@@ -194,7 +202,7 @@
 		body += "<A href='?_src_=holder;[HrefToken()];tdomeadmin=[REF(M)]'>Thunderdome Admin</A> | "
 		body += "<A href='?_src_=holder;[HrefToken()];tdomeobserve=[REF(M)]'>Thunderdome Observer</A> | "
 		body += "<A href='?_src_=holder;[HrefToken()];makementor=[M.ckey]'>Make mentor</A> | "
-		body += "<A href='?_src_=holder;[HrefToken()];removementor=[M.ckey]'>Remove mentor</A>"
+		body += "<A href='?_src_=holder;[HrefToken()];removementor=[M.ckey]'>Remove mentor</A> | "
 		body += "<A href='?_src_=holder;[HrefToken()];makeeligible=[REF(M)]'>Allow reentering round</A>"
 	body += "<br>"
 	body += "</body></html>"
@@ -639,15 +647,13 @@
 	var/almcam = CONFIG_GET(flag/allow_ai_multicam)
 	CONFIG_SET(flag/allow_ai_multicam, !almcam)
 	if (almcam)
-		to_chat(world, "<B>The AI no longer has multicam.</B>")
 		for(var/i in GLOB.ai_list)
 			var/mob/living/silicon/ai/aiPlayer = i
 			if(aiPlayer.multicam_on)
 				aiPlayer.end_multicam()
-	else
-		to_chat(world, "<B>The AI now has multicam.</B>")
 	log_admin("[key_name(usr)] toggled AI multicam.")
 	world.update_status()
+	to_chat(GLOB.ai_list | GLOB.admins, "<B>The AI [almcam ? "no longer" : "now"] has multicam.</B>")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Multicam", "[!almcam ? "Disabled" : "Enabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleaban()

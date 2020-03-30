@@ -40,7 +40,7 @@
 	var/where
 
 GLOBAL_LIST_EMPTY(family_heirlooms)
-
+/* moved to modular_skyrat
 /datum/quirk/family_heirloom/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/heirloom_type
@@ -55,6 +55,8 @@ GLOBAL_LIST_EMPTY(family_heirlooms)
 			heirloom_type = pick(/obj/item/cultivator, /obj/item/reagent_containers/glass/bucket, /obj/item/storage/bag/plants, /obj/item/toy/plush/beeplushie)
 		if("Medical Doctor")
 			heirloom_type = /obj/item/healthanalyzer/advanced
+		if("Paramedic")
+			heirloom_type = pick(/obj/item/clothing/neck/stethoscope, /obj/item/bodybag)
 		if("Station Engineer")
 			heirloom_type = /obj/item/wirecutters/brass
 		if("Atmospheric Technician")
@@ -86,7 +88,7 @@ GLOBAL_LIST_EMPTY(family_heirlooms)
 		"in your backpack" = SLOT_IN_BACKPACK
 	)
 	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
-
+*/
 /datum/quirk/family_heirloom/post_add()
 	if(where == "in your backpack")
 		var/mob/living/carbon/human/H = quirk_holder
