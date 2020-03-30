@@ -54,7 +54,6 @@
 /turf/closed/wall/r_wall,
 /area/security/brig)
 "aag" = (
-<<<<<<< HEAD
 /obj/structure/bed,
 /obj/item/bedsheet/black,
 /obj/machinery/flasher{
@@ -83,18 +82,6 @@
 /obj/effect/landmark/start/prisoner,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
-=======
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/obj/machinery/door/poddoor/shutters/radiation/preopen{
-	id = "engsm";
-	name = "Radiation Chamber Shutters"
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/supermatter)
->>>>>>> 8847fd42101... Merge pull request #11631 from KathrinBailey/Kat'sBoxRework
 "aah" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -72359,6 +72346,17 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ai_monitored/security/armory)
+"cin" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/door/poddoor/shutters/radiation/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/supermatter)
 "cio" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -122965,9 +122963,9 @@ coc
 azE
 brn
 aLF
-aag
-aag
-aag
+cin
+cin
+cin
 aLF
 cut
 cuO
@@ -125021,9 +125019,9 @@ cos
 aAd
 bFh
 aLF
-aag
-aag
-aag
+cin
+cin
+cin
 aLF
 cuA
 cuW
