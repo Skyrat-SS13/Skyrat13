@@ -13106,7 +13106,7 @@
 	},
 /obj/machinery/door/airlock/security{
 	name = "Prison Wing";
-	req_access_txt = "2"
+	req_access_txt = "63"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -29846,7 +29846,7 @@
 	},
 /obj/machinery/door/airlock/security{
 	name = "Prison Wing";
-	req_access_txt = "2"
+	req_access_txt = "63"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
@@ -36536,7 +36536,7 @@
 	},
 /obj/machinery/door/airlock/security{
 	name = "Prison Wing";
-	req_access_txt = "2"
+	req_access_txt = "63"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -57862,14 +57862,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "bLM" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/structure/disposaloutlet{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
+/turf/closed/mineral/random/labormineral,
+/area/security/prison)
 "bLN" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -66653,7 +66647,7 @@
 	},
 /obj/machinery/door/airlock/security{
 	name = "Prison Wing";
-	req_access_txt = "2"
+	req_access_txt = "63"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -75886,8 +75880,11 @@
 /area/maintenance/port/aft)
 "cov" = (
 /obj/structure/lattice,
-/obj/structure/disposalpipe/segment{
-	dir = 6
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/disposaloutlet{
+	dir = 8
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -76505,11 +76502,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
-"cpx" = (
-/obj/structure/lattice,
-/obj/structure/disposalpipe/segment,
-/turf/open/space/basic,
-/area/space/nearstation)
 "cpy" = (
 /obj/machinery/atmospherics/components/unary/tank/toxins{
 	dir = 4
@@ -87293,6 +87285,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"fuV" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/prison)
 "fyr" = (
 /obj/machinery/light{
 	dir = 4
@@ -87386,6 +87383,9 @@
 "gMU" = (
 /turf/closed/wall/r_wall/rust,
 /area/ai_monitored/turret_protected/ai_upload)
+"hgj" = (
+/turf/open/space/basic,
+/area/space/station_ruins)
 "hgW" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/chair/stool,
@@ -87925,6 +87925,14 @@
 "pQf" = (
 /turf/closed/wall/r_wall/rust,
 /area/science/xenobiology)
+"pUj" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "qai" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/landmark/start/brig_physician,
@@ -87942,6 +87950,14 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/showroomfloor,
+/area/security/prison)
+"qkP" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
 /area/security/prison)
 "qtv" = (
 /turf/closed/wall/r_wall/rust,
@@ -88164,6 +88180,9 @@
 /obj/effect/decal/cleanable/ash,
 /turf/closed/mineral/random/labormineral,
 /area/space/nearstation)
+"uyC" = (
+/turf/closed/wall/r_wall/rust,
+/area/maintenance/port/aft)
 "uzR" = (
 /turf/closed/wall/rust,
 /area/storage/primary)
@@ -88201,6 +88220,11 @@
 "wvq" = (
 /turf/closed/wall/rust,
 /area/security/courtroom)
+"wzY" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "wCy" = (
 /turf/closed/wall/rust,
 /area/hallway/primary/port)
@@ -98473,13 +98497,13 @@ aaa
 aaa
 aaa
 bUG
-bhA
-bhA
-acm
-acm
-aeo
-aeo
-alm
+acK
+bmU
+ruL
+ruL
+ruL
+hNk
+aeu
 aeu
 aeu
 aeu
@@ -98730,11 +98754,11 @@ bpm
 aaa
 aaa
 acm
-acK
-bmU
-ruL
-ruL
-ruL
+cko
+hNk
+mmZ
+abh
+qfZ
 hNk
 aeu
 aeu
@@ -98986,12 +99010,12 @@ cqG
 cqN
 cqG
 cov
-cpx
+cqt
 bLM
 hNk
-mmZ
-abh
-qfZ
+xse
+nXu
+qPY
 hNk
 aeu
 aeu
@@ -99243,14 +99267,14 @@ cqH
 bGR
 cIA
 coD
-cqt
-aeu
+uyC
 hNk
-xse
-nXu
-qPY
 hNk
-aeu
+cxV
+ydo
+eBN
+tgw
+hNk
 aeu
 aUz
 aeu
@@ -99501,14 +99525,14 @@ cqP
 afm
 bVx
 hNk
+awn
+bTz
+czR
+cFN
+cIm
+cJC
+aav
 hNk
-hNk
-cxV
-ydo
-eBN
-tgw
-hNk
-aeu
 aeu
 aeu
 aeu
@@ -99758,13 +99782,13 @@ bGV
 bIi
 cpv
 hNk
-awn
-bTz
-czR
-cFN
-cIm
-cJC
-aav
+fuV
+pUj
+wzY
+qkP
+wzY
+wzY
+hNk
 hNk
 aeu
 aeu
@@ -141422,23 +141446,23 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -141679,18 +141703,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -141936,18 +141960,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -142193,18 +142217,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -142450,16 +142474,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -142707,16 +142731,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -142964,10 +142988,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -143221,10 +143245,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -143478,10 +143502,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -143735,10 +143759,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -143992,10 +144016,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -144249,10 +144273,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -144506,10 +144530,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -144763,10 +144787,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -145020,10 +145044,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -145277,10 +145301,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -145534,8 +145558,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -145791,8 +145815,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -146048,8 +146072,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -146305,8 +146329,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -146562,8 +146586,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -146819,8 +146843,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -147076,8 +147100,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -147333,8 +147357,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -147590,8 +147614,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -147847,8 +147871,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -148104,8 +148128,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -148361,8 +148385,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -148618,8 +148642,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -148876,7 +148900,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+hgj
 aaa
 aaa
 aaa
@@ -149132,8 +149156,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -149389,8 +149413,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -149646,8 +149670,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -149903,8 +149927,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -150160,9 +150184,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -150417,9 +150441,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -150674,9 +150698,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -150931,9 +150955,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -151188,9 +151212,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -151445,10 +151469,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -151702,10 +151726,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -151959,10 +151983,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -152216,10 +152240,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -152473,10 +152497,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -152730,10 +152754,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -152987,10 +153011,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -153244,10 +153268,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -153501,10 +153525,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
@@ -153758,11 +153782,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+hgj
+hgj
+hgj
+hgj
+hgj
 aaa
 aaa
 aaa
