@@ -77,10 +77,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/be_random_body = 0				//whether we'll have a random body every round
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
+	//SKYRAT CHANGES
 	var/ooc_notes
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
 	var/vorepref = "Ask"
+	var/general_records = ""
+	var/security_records = ""
+	var/medical_records = ""
+	var/flavor_background = ""
+	var/character_skills = ""
+	var/exploitable_info = ""
+	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
 	var/undershirt = "Nude"				//undershirt type
@@ -340,18 +348,30 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>Flavor Text</h2>"
-			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a>"
+			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a>" //skyrat - <br> moved one line down
+			//SKYRAT EDIT
 			dat += 	"<a href='?_src_=prefs;preference=ooc_notes;task=input'>Set OOC Notes</a><br>"
 			dat += 	"ERP : <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
 			dat += 	"Non-Con : <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
 			dat += 	"Vore : <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
+			//END OF SKYRAT EDIT
 			if(length(features["flavor_text"]) <= 40)
 				if(!length(features["flavor_text"]))
-					dat += "\[...\]"
+					dat += "\[...\]<BR>" //skyrat - adds <br>
 				else
-					dat += "[features["flavor_text"]]"
+					dat += "[features["flavor_text"]]<BR>" //skyrat - adds <br>
 			else
 				dat += "[TextPreview(features["flavor_text"])]...<BR>"
+			//SKYRAT EDIT
+			dat += 	"Records :"
+			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a>"
+			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'>Security</a>"
+			dat += 	"<a href='?_src_=prefs;preference=medical_records;task=input'>Medical</a><br>"
+			dat += 	"Character :"
+			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a>"
+			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
+			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
+			//END OF SKYRAT EDIT
 			dat += "<h2>Body</h2>"
 			dat += "<b>Gender:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=gender'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
 			if(gender != NEUTER && pref_species.sexes)
@@ -1502,10 +1522,42 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(!isnull(msg))
 						features["flavor_text"] = html_decode(msg)
 
+				//SKYRAT CHANGES
 				if("ooc_notes")
 					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", ooc_notes, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
-						ooc_notes = msg
+						ooc_notes = html_decode(msg)
+
+				if("general_records")
+					var/msg = stripped_multiline_input(usr, "Set your general records", "General Records", general_records, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						general_records = html_decode(msg)
+
+				if("security_records")
+					var/msg = stripped_multiline_input(usr, "Set your security records", "Security Records", security_records, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						security_records = html_decode(msg)
+
+				if("medical_records")
+					var/msg = stripped_multiline_input(usr, "Set your medical records", "Medical Records", medical_records, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						medical_records = html_decode(msg)
+
+				if("flavor_background")
+					var/msg = stripped_multiline_input(usr, "Set your background", "Character Background", flavor_background, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						flavor_background = html_decode(msg)
+
+				if("character_skills")
+					var/msg = stripped_multiline_input(usr, "Set your skills or hobbies", "Character Skills", character_skills, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						character_skills = html_decode(msg)
+
+				if("exploitable_info")
+					var/msg = stripped_multiline_input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						exploitable_info = html_decode(msg)
+				//END OF SKYRAT CHANGES
 
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
