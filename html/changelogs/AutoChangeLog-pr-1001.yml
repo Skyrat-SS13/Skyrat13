@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Adds back all the cool crates upstream removed for no good reason, in a modular way."
