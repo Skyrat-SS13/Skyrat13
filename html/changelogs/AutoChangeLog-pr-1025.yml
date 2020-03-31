@@ -1,0 +1,5 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - tweak: "From 4 slots to 8 slots on almost all maps for Prisoner role."
+  - balance: "Prisoners now need 50 hours before being played."
