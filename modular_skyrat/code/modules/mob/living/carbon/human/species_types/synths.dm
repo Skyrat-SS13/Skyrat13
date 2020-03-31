@@ -4,7 +4,7 @@
 	say_mod = "beep boops" //inherited from a user's real species
 	sexes = 1 //read below, degenerate
 	species_traits = list(NOTRANSSTING) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
-	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_NOBREATH) //Now limbs can be disabled and dismembered. Why the fuck would they not? IT'S A FUCKING ROBOT NOT LIKE A FUCKING GOLEM
+	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER) //Now limbs can be disabled and dismembered, and they breathe for balance reasons. Why the fuck would they not? IT'S A FUCKING ROBOT NOT LIKE A FUCKING GOLEM
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	dangerous_existence = 0 //not dangerous anymore i guess
 	blacklisted = 0 //not blacklisted anymore
