@@ -113,7 +113,7 @@
 	item = /obj/item/pizzabox/bomb
 	cost = 6
 	surplus = 8
-/*
+
 /datum/uplink_item/explosives/syndicate_bomb
 	name = "Syndicate Bomb"
 	desc = "The Syndicate bomb is a fearsome device capable of massive destruction. It has an adjustable timer, \
@@ -122,13 +122,8 @@
 			transported to you that will teleport the actual bomb to it upon activation. Note that this bomb can \
 			be defused, and some crew may attempt to do so."
 	item = /obj/item/sbeacondrop/bomb
-<<<<<<< Updated upstream
-	cost = 11
-*//
-=======
 	cost = 16
 
->>>>>>> Stashed changes
 /datum/uplink_item/explosives/syndicate_detonator
 	name = "Syndicate Detonator"
 	desc = "The Syndicate detonator is a companion device to the Syndicate bomb. Simply press the included button \
