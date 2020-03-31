@@ -6798,6 +6798,12 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
+"pF" = (
+/obj/machinery/vr_sleeper/hugbox{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "pH" = (
 /obj/structure/table/wood,
 /obj/machinery/recharger,
@@ -9048,6 +9054,9 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/evac)
+"uI" = (
+/turf/closed/indestructible/wood,
+/area/centcom/holding)
 "uJ" = (
 /obj/effect/baseturf_helper/asteroid/snow,
 /turf/closed/indestructible/riveted,
@@ -11640,6 +11649,12 @@
 /obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/plating,
 /area/syndicate_mothership)
+"Bp" = (
+/obj/structure/bed,
+/obj/item/bedsheet/syndie,
+/obj/effect/landmark/holding_facility,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "Bq" = (
 /obj/machinery/sleeper{
 	dir = 8
@@ -16846,6 +16861,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
+"Nn" = (
+/obj/effect/landmark/holding_facility,
+/mob/living/simple_animal/bot/medbot{
+	name = "Syndicate Hospitality Drone"
+	},
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "Nt" = (
 /obj/structure/bedsheetbin/color,
 /turf/open/indestructible/hotelwood,
@@ -17509,6 +17531,11 @@
 	},
 /turf/open/floor/plating,
 /area/syndicate_mothership)
+"Rd" = (
+/obj/machinery/light,
+/obj/effect/landmark/holding_facility,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "Re" = (
 /obj/structure/mineral_door/paperframe,
 /turf/open/floor/wood,
@@ -17601,6 +17628,10 @@
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plating,
 /area/syndicate_mothership)
+"RC" = (
+/obj/machinery/vending/sustenance,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "RD" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -17623,6 +17654,13 @@
 /area/centcom/holding)
 "RL" = (
 /obj/machinery/vending/cola,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
+"RM" = (
+/obj/structure/table/wood/fancy,
+/obj/item/candle/infinite/hugbox{
+	pixel_y = 6
+	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "RN" = (
@@ -43996,11 +44034,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+uI
+uI
+uI
+uI
+uI
 aa
 aa
 aa
@@ -44253,11 +44291,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+uI
+RC
+Ud
+Ud
+uI
 aa
 aa
 aa
@@ -44510,11 +44548,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+uI
+Ud
+Nn
+Rd
+uI
 aa
 aa
 aa
@@ -44767,11 +44805,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+uI
+Bp
+Ud
+pF
+uI
 aa
 aa
 aa
@@ -45024,11 +45062,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+uI
+uI
+uI
+uI
+uI
 aa
 aa
 aa
@@ -46341,8 +46379,8 @@ Sd
 HH
 Nd
 WM
-Ud
-Ud
+Sd
+Sd
 NT
 Nj
 Po
@@ -46598,8 +46636,8 @@ Sd
 XM
 NT
 Sd
-Ud
-Ud
+Sd
+Sd
 NT
 YU
 zT
@@ -46852,11 +46890,11 @@ Tn
 Xd
 Sd
 Sd
-Tn
+RM
 NT
 Sd
-Ud
-Ud
+Sd
+Sd
 NT
 YU
 zT
@@ -47112,8 +47150,8 @@ Sd
 GY
 NT
 Sd
-Ud
-Ud
+Sd
+Sd
 NT
 YU
 zT
@@ -47369,8 +47407,8 @@ Qk
 Vu
 Nd
 Gs
-Ud
-Ud
+Sd
+Sd
 NT
 Mt
 PA
@@ -47880,7 +47918,7 @@ Sd
 Tu
 Sd
 Sd
-Tn
+RM
 NT
 Sd
 Sd
