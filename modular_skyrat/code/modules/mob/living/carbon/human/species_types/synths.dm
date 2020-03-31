@@ -12,7 +12,7 @@
 	gib_types = /obj/effect/gibspawner/robot
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	var/list/initial_species_traits = list(NOTRANSSTING) //for getting these values back for assume_disguise()
-	var/list/initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_NOBREATH) //blah blah i explained above piss
-	var/disguise_fail_health = 75 //When their health gets to this level their synthflesh partially falls off
-	var/datum/species/fake_species = null //a species to do most of our work for us, unless we're damaged
+	initial_species_traits = list(NOTRANSSTING) //for getting these values back for assume_disguise()
+	initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_NOBREATH) //blah blah i explained above piss
+	disguise_fail_health = 75 //When their health gets to this level their synthflesh partially falls off
+	fake_species = null //a species to do most of our work for us, unless we're damaged
