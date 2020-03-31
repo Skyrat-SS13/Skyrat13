@@ -6,6 +6,9 @@
 	w_class = WEIGHT_CLASS_TINY
 	cell_type = /obj/item/stock_parts/cell/chameleongun
 	var/list/gun_options = list()
+	modifystate = FALSE
+	item_state = null
+	shaded_charge = FALSE
 
 /datum/action/item_action/chameleon/taser
 	name = "Chameleon change"
@@ -68,3 +71,6 @@
 	S.attach(src)
 	S.start()
 	playsound(src, "sparks", 100, 1)
+
+/obj/item/gun/energy/e_gun/advtaser/update_icon()
+	return
