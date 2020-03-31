@@ -7,6 +7,9 @@
 	var/list/unique_inhand_icon_left
 	var/list/unique_inhand_icon_right
 	var/list/unique_item_state
+	var/list/unique_name
+	var/list/unique_desc
+//SO MANY FUCKING VARS FUCK
 
 //altered the proc for reskins that require other icon files (and for alternate skins for clothing to be a thing) nd also item states haha
 /obj/reskin_obj(mob/M)
@@ -52,5 +55,13 @@
 		var/obj/item/I = src
 		if(I)
 			I.item_state =  unique_item_state[choice]
+	if(LAZYLEN(unique_name))
+		var/obj/item/I = src
+		if(I)
+			I.name =  unique_name[choice]
+	if(LAZYLEN(unique_desc))
+		var/obj/item/I = src
+		if(I)
+			I.desc =  unique_desc[choice]
 	icon_state = unique_reskin[choice]
 	to_chat(M, "[src] is now skinned as '[choice]'.")
