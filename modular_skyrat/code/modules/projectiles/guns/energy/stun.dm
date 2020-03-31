@@ -72,5 +72,5 @@
 	S.start()
 	playsound(src, "sparks", 100, 1)
 
-/obj/item/gun/energy/e_gun/advtaser/update_icon()
+/obj/item/gun/energy/e_gun/advtaser/chameleon/update_icon()
 	return
