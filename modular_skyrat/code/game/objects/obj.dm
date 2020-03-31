@@ -40,11 +40,11 @@
 		var/obj/item/I = src
 		if(I)
 			I.alternate_worn_icon_muzzled = unique_reskin_worn_muzzled[choice]
-	if(LAZYLEN(unique_inhand_left))
+	if(LAZYLEN(unique_inhand_icon_left))
 		var/obj/item/I = src
 		if(I)
 			I.lefthand_file = unique_inhand_icon_left[choice]
-	if(LAZYLEN(unique_inhand_right))
+	if(LAZYLEN(unique_inhand_icon_right))
 		var/obj/item/I = src
 		if(I)
 			I.righthand_file = unique_inhand_icon_right[choice]
