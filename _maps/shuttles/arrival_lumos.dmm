@@ -1,0 +1,116 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/closed/wall/mineral/titanium/survival,
+/area/shuttle/arrival)
+"c" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle/survival_pod,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
+"d" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/effect/turf_decal/stripes/white/line,
+/turf/open/floor/pod/light,
+/area/shuttle/arrival)
+"e" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/survival_pod/glass,
+/turf/open/floor/pod/dark,
+/area/shuttle/arrival)
+"f" = (
+/obj/machinery/requests_console{
+	department = "Arrival shuttle";
+	name = "Arrivals Shuttle console";
+	pixel_y = 30
+	},
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -29
+	},
+/obj/effect/turf_decal/caution{
+	icon_state = "caution";
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/shuttle/arrival)
+"g" = (
+/turf/open/floor/pod/dark,
+/area/shuttle/arrival)
+"h" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/shuttle/arrival)
+"i" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
+"j" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/obj/docking_port/mobile/arrivals,
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
+"k" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	icon_state = "warningline_white";
+	dir = 1
+	},
+/turf/open/floor/pod/light,
+/area/shuttle/arrival)
+
+(1,1,1) = {"
+a
+b
+e
+b
+a
+"}
+(2,1,1) = {"
+b
+b
+f
+b
+b
+"}
+(3,1,1) = {"
+c
+d
+g
+k
+c
+"}
+(4,1,1) = {"
+c
+d
+h
+k
+c
+"}
+(5,1,1) = {"
+b
+b
+i
+b
+b
+"}
+(6,1,1) = {"
+a
+b
+j
+b
+a
+"}
