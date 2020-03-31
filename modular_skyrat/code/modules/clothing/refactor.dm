@@ -710,3 +710,39 @@
 	"Firestarter" = "firestarter_suit",
 	"Gorka" = "gorka_suit"
 	)
+
+/obj/item/clothing/head/helmet/roman
+	unique_reskin = list(
+	)
+
+/obj/item/clothing/head/helmet/gladiator
+	unique_reskin = list(
+	)
+
+/obj/item/clothing/head/helmet/skull
+	unique_reskin = list(
+	)
+
+/obj/item/clothing/head/helmet/knight
+	unique_reskin = list(
+	)
+
+/obj/item/clothing/head/helmet/infiltrator
+	unique_reskin = list(
+	)
+
+/obj/item/clothing/suit/armor/vest/old
+	unique_reskin = list(
+	)
+
+/obj/item/clothing/suit/armor/vest/blueshirt
+	unique_reskin = list(
+	)
+
+/obj/item/clothing/suit/armor/vest/infiltrator
+	unique_reskin = list(
+	)
+
+/obj/item/clothing/suit/armor/riot/knight
+	unique_reskin = list(
+	)
