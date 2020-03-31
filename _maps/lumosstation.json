@@ -1,0 +1,11 @@
+{
+    "map_name": "Lumos Station",
+    "map_path": "map_files/Lumos",
+    "map_file": "lumos.dmm",
+    "shuttles": {
+	    "cargo": "cargo_lumos",
+	    "ferry": "ferry_fancy",
+	    "whiteship": "whiteship_box",
+	    "emergency": "emergency_box"
+    }
+}

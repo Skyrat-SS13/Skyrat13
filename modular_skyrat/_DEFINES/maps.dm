@@ -96,11 +96,6 @@ require only minor tweaks.
     ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
     ZTRAIT_UP = 1, \
     ZTRAIT_BASETURF = /turf/open/lava/plasma/ice_moon)
-#define ZTRAITS_FORESTCOLONY list(\
-    ZTRAIT_MINING = FALSE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 3, \
-    ZTRAIT_DOWN = -1, \
-    ZTRAIT_BASETURF = /turf/open/floor/plating/floor/grass
 //
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
