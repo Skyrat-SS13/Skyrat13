@@ -77,7 +77,7 @@
 			detonate PDAs of crewmembers who have their message feature enabled. \
 			The concussive effect from the explosion will knock the recipient out for a short period, and deafen them for longer."
 	item = /obj/item/cartridge/virus/syndicate
-	cost = 5
+	cost = 8
 	restricted = TRUE
 
 /datum/uplink_item/explosives/emp
@@ -113,7 +113,7 @@
 	item = /obj/item/pizzabox/bomb
 	cost = 6
 	surplus = 8
-
+/*
 /datum/uplink_item/explosives/syndicate_bomb
 	name = "Syndicate Bomb"
 	desc = "The Syndicate bomb is a fearsome device capable of massive destruction. It has an adjustable timer, \
@@ -123,7 +123,7 @@
 			be defused, and some crew may attempt to do so."
 	item = /obj/item/sbeacondrop/bomb
 	cost = 11
-
+*//
 /datum/uplink_item/explosives/syndicate_detonator
 	name = "Syndicate Detonator"
 	desc = "The Syndicate detonator is a companion device to the Syndicate bomb. Simply press the included button \
