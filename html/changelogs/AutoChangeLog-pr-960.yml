@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "added brig physician locker"
-  - tweak: "tweaked brig physician access"
