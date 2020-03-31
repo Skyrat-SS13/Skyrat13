@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added perma delta, meta, pubby from box."
-  - bugfix: "fix the door perms on kilo for brig physician."
