@@ -4,8 +4,11 @@
 	var/list/unique_reskin_worn
 	var/list/unique_reskin_worn_digi
 	var/list/unique_reskin_worn_muzzled
+	var/list/unique_inhand_icon_left
+	var/list/unique_inhand_icon_right
+	var/list/unique_item_state
 
-//altered the proc for reskins that require other icon files (and for alternate skins for clothing to be a thing)
+//altered the proc for reskins that require other icon files (and for alternate skins for clothing to be a thing) nd also item states haha
 /obj/reskin_obj(mob/M)
 	if(!LAZYLEN(unique_reskin))
 		return
@@ -37,5 +40,17 @@
 		var/obj/item/I = src
 		if(I)
 			I.alternate_worn_icon_muzzled = unique_reskin_worn_muzzled[choice]
+	if(LAZYLEN(unique_inhand_left))
+		var/obj/item/I = src
+		if(I)
+			I.lefthand_file = unique_inhand_icon_left[choice]
+	if(LAZYLEN(unique_inhand_right))
+		var/obj/item/I = src
+		if(I)
+			I.righthand_file = unique_inhand_icon_right[choice]
+	if(LAZYLEN(unique_item_state))
+		var/obj/item/I = src
+		if(I)
+			I.item_state =  unique_item_state[choice]
 	icon_state = unique_reskin[choice]
 	to_chat(M, "[src] is now skinned as '[choice]'.")
