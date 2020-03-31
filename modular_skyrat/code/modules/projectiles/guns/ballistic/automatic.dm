@@ -29,3 +29,4 @@
 	"P90" = "p90",
 	"MP5" = "mp5"
 	)
+	obj_flags = UNIQUE_RENAME
