@@ -10026,6 +10026,12 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/syndicate_mothership)
+"wZ" = (
+/obj/structure/bed,
+/obj/item/bedsheet/syndie,
+/obj/effect/landmark/holding_facility,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "xa" = (
 /obj/machinery/door/window/northright{
 	dir = 4;
@@ -12503,6 +12509,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"CQ" = (
+/obj/effect/landmark/holding_facility,
+/mob/living/simple_animal/bot/medbot{
+	name = "Syndicate Hospitality Drone"
+	},
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "CR" = (
 /obj/machinery/computer/security{
 	dir = 8
@@ -17346,10 +17359,21 @@
 /obj/structure/window/reinforced/fulltile,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
+"Ql" = (
+/obj/machinery/light,
+/obj/effect/landmark/holding_facility,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "Qm" = (
 /obj/singularity/wizard/mapped,
 /turf/open/indestructible/binary,
 /area/fabric_of_reality)
+"Qn" = (
+/obj/machinery/vr_sleeper/hugbox{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "Qo" = (
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/evac)
@@ -17907,7 +17931,7 @@
 /area/bluespace_locker)
 "Tn" = (
 /obj/structure/table/wood/fancy,
-/obj/item/candle/infinite{
+/obj/item/candle/infinite/hugbox{
 	pixel_y = 6
 	},
 /turf/open/indestructible/hotelwood,
@@ -17933,7 +17957,6 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/tinted{
-	icon_state = "twindow";
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
@@ -18010,7 +18033,6 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/tinted{
-	icon_state = "twindow";
 	dir = 1
 	},
 /obj/machinery/washing_machine,
@@ -18058,9 +18080,12 @@
 /obj/vehicle/ridden/janicart,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
-"Ud" = (
-/obj/effect/landmark/holding_facility,
+"Uc" = (
+/obj/machinery/vending/sustenance,
 /turf/open/indestructible/hotelwood,
+/area/centcom/holding)
+"Ud" = (
+/turf/closed/indestructible/wood,
 /area/centcom/holding)
 "Ug" = (
 /obj/machinery/door/poddoor/shuttledock{
@@ -19002,9 +19027,15 @@
 /turf/open/floor/wood,
 /area/syndicate_mothership)
 "ZB" = (
+<<<<<<< HEAD
 /obj/effect/landmark/bluespace_locker_origin,
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
+=======
+/obj/effect/landmark/holding_facility,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
+>>>>>>> 658701bf373... Various ghost role QoL; moving holding facility; removing energy net (#11676)
 "ZE" = (
 /obj/structure/sink{
 	dir = 4;
@@ -43996,11 +44027,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Ud
+Ud
+Ud
+Ud
+Ud
 aa
 aa
 aa
@@ -44253,11 +44284,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Ud
+Uc
+ZB
+ZB
+Ud
 aa
 aa
 aa
@@ -44510,11 +44541,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Ud
+ZB
+CQ
+Ql
+Ud
 aa
 aa
 aa
@@ -44767,11 +44798,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Ud
+wZ
+ZB
+Qn
+Ud
 aa
 aa
 aa
@@ -45024,11 +45055,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Ud
+Ud
+Ud
+Ud
+Ud
 aa
 aa
 aa
@@ -46341,8 +46372,8 @@ Sd
 HH
 Nd
 WM
-Ud
-Ud
+Sd
+Sd
 NT
 Nj
 Po
@@ -46598,8 +46629,8 @@ Sd
 XM
 NT
 Sd
-Ud
-Ud
+Sd
+Sd
 NT
 YU
 zT
@@ -46855,8 +46886,8 @@ Sd
 Tn
 NT
 Sd
-Ud
-Ud
+Sd
+Sd
 NT
 YU
 zT
@@ -47112,8 +47143,8 @@ Sd
 GY
 NT
 Sd
-Ud
-Ud
+Sd
+Sd
 NT
 YU
 zT
@@ -47369,8 +47400,8 @@ Qk
 Vu
 Nd
 Gs
-Ud
-Ud
+Sd
+Sd
 NT
 Mt
 PA
