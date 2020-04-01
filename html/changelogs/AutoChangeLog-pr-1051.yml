@@ -1,0 +1,5 @@
+author: "harakoniwarhawk"
+delete-after: True
+changes: 
+  - rscadd: "Added a new module called shrink."
+  - tweak: "Adjusted cost of Expand module to be cheaper."
