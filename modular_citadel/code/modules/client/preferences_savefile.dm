@@ -13,6 +13,7 @@
 		features["mcolor3"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
 	features["mcolor2"]	= sanitize_hexcolor(features["mcolor2"], 3, 0)
 	features["mcolor3"]	= sanitize_hexcolor(features["mcolor3"], 3, 0)
+	//SKYRAT CHANGES
 	ooc_notes = sanitize_text(S["ooc_notes"])
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
@@ -20,6 +21,13 @@
 	if(!length(nonconpref)) nonconpref = "Ask"
 	vorepref = sanitize_text(S["vore_pref"], "Ask")
 	if(!length(vorepref)) vorepref = "Ask"
+	security_records = sanitize_text(S["security_records"])
+	medical_records = sanitize_text(S["medical_records"])
+	general_records = sanitize_text(S["general_records"])
+	flavor_background = sanitize_text(S["flavor_background"])
+	character_skills = sanitize_text(S["character_skills"])
+	exploitable_info = sanitize_text(S["exploitable_info"])
+	//END OF SKYRAT CHANGES
 	//gear loadout
 	var/text_to_load
 	S["loadout"] >> text_to_load
@@ -52,10 +60,18 @@
 	WRITE_FILE(S["feature_xeno_head"], features["xenohead"])
 	//flavor text
 	WRITE_FILE(S["feature_flavor_text"], features["flavor_text"])
+	//SKYRAT CHANGES
 	WRITE_FILE(S["ooc_notes"], ooc_notes)
 	WRITE_FILE(S["erp_pref"], erppref)
 	WRITE_FILE(S["noncon_pref"], nonconpref)
 	WRITE_FILE(S["vore_pref"], vorepref)
+	WRITE_FILE(S["security_records"], security_records)
+	WRITE_FILE(S["medical_records"], medical_records)
+	WRITE_FILE(S["general_records"], general_records)
+	WRITE_FILE(S["flavor_background"], flavor_background)
+	WRITE_FILE(S["character_skills"], character_skills)
+	WRITE_FILE(S["exploitable_info"], exploitable_info)
+	//END OF SKYRAT CHANGES
 	//gear loadout
 	if(islist(chosen_gear))
 		if(chosen_gear.len)
