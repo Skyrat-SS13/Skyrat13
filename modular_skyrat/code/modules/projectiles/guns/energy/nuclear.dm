@@ -2,7 +2,7 @@
 	name = "energy revolver"
 	desc = "An advanced energy revolver with the capacity to shoot both electrodes and lasers."
 	force = 7
-	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/laser)
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode/blueshield, /obj/item/ammo_casing/energy/laser)
 	ammo_x_offset = 1
 	shaded_charge = 1
 	icon = 'modular_skyrat/icons/obj/guns/blueshieldenergy.dmi'
