@@ -18119,11 +18119,6 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
-"Ui" = (
-/obj/structure/table,
-/obj/item/clothing/mask/luchador/tecnicos,
-/turf/open/floor/holofloor/wood,
-/area/holodeck/rec_center/wrestlingarena)
 "Uj" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Restroom";
@@ -18366,11 +18361,6 @@
 /obj/structure/window/reinforced/tinted,
 /turf/open/floor/plasteel/freezer,
 /area/syndicate_mothership)
-"Vk" = (
-/obj/structure/table,
-/obj/item/storage/belt/champion/wrestling/holodeck,
-/turf/open/floor/holofloor/wood,
-/area/holodeck/rec_center/wrestlingarena)
 "Vt" = (
 /obj/item/paper/fluff/stations/centcom/disk_memo,
 /obj/structure/noticeboard{
@@ -18548,11 +18538,6 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
-"Wx" = (
-/obj/structure/table,
-/obj/item/clothing/mask/luchador,
-/turf/open/floor/holofloor/wood,
-/area/holodeck/rec_center/wrestlingarena)
 "Wz" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/med/surgery,
@@ -18945,11 +18930,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"Yv" = (
-/obj/structure/table,
-/obj/item/clothing/mask/luchador/rudos,
-/turf/open/floor/holofloor/wood,
-/area/holodeck/rec_center/wrestlingarena)
 "Yw" = (
 /turf/closed/indestructible/fakedoor{
 	name = "External Access"
@@ -18959,18 +18939,12 @@
 /obj/machinery/door/airlock/titanium,
 /turf/open/floor/mineral/titanium,
 /area/centcom/evac)
-<<<<<<< HEAD
 "YH" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien13";
 	opacity = 0
 	},
 /area/bluespace_locker)
-=======
-"YC" = (
-/turf/open/floor/holofloor/wood,
-/area/holodeck/rec_center/wrestlingarena)
->>>>>>> b5f1cbd3d0f... Merge pull request #11683 from timothyteakettle/wrestling_holodeck
 "YJ" = (
 /obj/item/reagent_containers/food/condiment/enzyme,
 /obj/item/reagent_containers/food/drinks/shaker,
@@ -19043,14 +19017,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
-"Zl" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/boxing,
-/obj/item/clothing/gloves/boxing/blue,
-/obj/item/clothing/gloves/boxing/green,
-/obj/item/clothing/gloves/boxing/yellow,
-/turf/open/floor/holofloor/wood,
-/area/holodeck/rec_center/wrestlingarena)
 "Zr" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -72190,18 +72156,18 @@ aa
 aa
 aa
 aa
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -72447,18 +72413,18 @@ aa
 aa
 aa
 aa
-bj
-YC
-YC
-YC
-YC
-YC
-YC
-YC
-YC
-YC
-YC
-fx
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -72704,18 +72670,18 @@ aa
 aa
 aa
 aa
-bj
-Vk
-YC
-YC
-YC
-YC
-YC
-YC
-YC
-YC
-Vk
-fx
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -72961,18 +72927,18 @@ aa
 aa
 aa
 aa
-bj
-Vk
-YC
-YC
-YC
-YC
-YC
-YC
-YC
-YC
-Vk
-fx
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -73218,18 +73184,18 @@ aa
 aa
 aa
 aa
-bj
-Vk
-YC
-YC
-YC
-YC
-YC
-YC
-YC
-YC
-Vk
-fx
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -73475,18 +73441,18 @@ aa
 aa
 aa
 aa
-bj
-YC
-YC
-Wx
-YC
-Yv
-Ui
-YC
-Zl
-YC
-YC
-fx
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -73733,16 +73699,16 @@ ae
 ae
 ae
 ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
 ab
 aa
 aa
