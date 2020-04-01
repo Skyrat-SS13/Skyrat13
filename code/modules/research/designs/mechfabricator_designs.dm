@@ -722,16 +722,16 @@
 	materials = list(/datum/material/iron=10000, /datum/material/glass=200, /datum/material/titanium=1000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
-
+/* moved to modular_skyrat
 /datum/design/borg_upgrade_expand
 	name = "Cyborg Upgrade (Expand)"
 	id = "borg_upgrade_expand"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/expand
-	materials = list(/datum/material/iron=200000, /datum/material/titanium=5000)
+	materials = list(/datum/material/iron=20000, /datum/material/titanium=5000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
-
+*/
 /datum/design/boris_ai_controller
 	name = "B.O.R.I.S. AI-Cyborg Remote Control Module"
 	id = "borg_ai_control"
