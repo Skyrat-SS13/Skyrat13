@@ -95,11 +95,11 @@
 
 /mob/living/simple_animal/hostile/megafauna/AltClick(mob/living/carbon/slayer)
 	if(glorykill && stat != DEAD)
-		if(H.ranged)
-			if(H.ranged_cooldown >= world.time)
-				H.ranged_cooldown += 10
+		if(ranged)
+			if(ranged_cooldown >= world.time)
+				ranged_cooldown += 10
 			else
-				H.ranged_cooldown = 10 + world.time
+				ranged_cooldown = 10 + world.time
 		if(do_after(slayer, 10, needhand = TRUE, target = src, progress = FALSE))
 			var/message
 			if(!slayer.get_active_held_item() || (!istype(slayer.get_active_held_item(), /obj/item/twohanded/kinetic_crusher) && !istype(slayer.get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator)))
