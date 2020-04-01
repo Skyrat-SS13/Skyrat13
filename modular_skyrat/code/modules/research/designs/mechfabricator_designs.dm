@@ -33,3 +33,66 @@
 	materials = list(/datum/material/iron=8000, /datum/material/glass=4000, /datum/material/titanium=2000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
+
+/datum/design/powerarmor_skeleton
+	name = "Powerarmor Skeleton"
+	id = "powerarmor_skeleton"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/chassis/powerarmor
+	materials = list(/datum/material/iron=15000, /datum/material/plasma=5000)
+	construction_time = 500
+	category = list("Misc")
+
+/datum/design/powerarmor_torso
+	name = "Powerarmor Torso"
+	id = "powerarmor_torso"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/powerarmor_torso
+	materials = list(/datum/material/iron=40000, /datum/material/plasma=10000, /datum/material/titanium=5000)
+	construction_time = 500
+	category = list("Misc")
+
+/datum/design/powerarmor_helmet
+	name = "Powerarmor Helmet"
+	id = "powerarmor_helmet"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/powerarmor_helmet
+	materials = list(/datum/material/iron=20000, /datum/material/plasma=10000, /datum/material/titanium=5000, /datum/material/glass=5000)
+	construction_time = 500
+	category = list("Misc")
+
+/datum/design/powerarmor_armL
+	name = "Powerarmor Left Arm"
+	id = "powerarmor_armL"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/powerarmor_left_arm
+	materials = list(/datum/material/iron=20000, /datum/material/plasma=10000, /datum/material/titanium=5000,)
+	construction_time = 500
+	category = list("Misc")
+
+/datum/design/powerarmor_armR
+	name = "Powerarmor Right Arm"
+	id = "powerarmor_armR"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/powerarmor_right_arm
+	materials = list(/datum/material/iron=20000, /datum/material/plasma=10000, /datum/material/titanium=5000,)
+	construction_time = 500
+	category = list("Misc")
+
+/datum/design/powerarmor_legL
+	name = "Powerarmor Left Leg"
+	id = "powerarmor_legL"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/powerarmor_left_leg
+	materials = list(/datum/material/iron=20000, /datum/material/plasma=10000, /datum/material/titanium=5000,)
+	construction_time = 500
+	category = list("Misc")
+
+/datum/design/powerarmor_legR
+	name = "Powerarmor Right Leg"
+	id = "powerarmor_legR"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/powerarmor_right_leg
+	materials = list(/datum/material/iron=20000, /datum/material/plasma=10000, /datum/material/titanium=5000,)
+	construction_time = 500
+	category = list("Misc")
