@@ -229,7 +229,7 @@
 	item_state = "hardsuit0-powerarmor"
 	item_color = "powerarmor"
 	clothing_flags = THICKMATERIAL //Ouchie oofie my bones
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 25, "energy" = 15, "bomb" = 20, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 80)
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 20, "bomb" = 30, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 80)
 
 /obj/item/clothing/suit/space/hardsuit/security/powerarmor
 	name = "Powerarmor"
