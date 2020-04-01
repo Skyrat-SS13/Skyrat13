@@ -50,9 +50,10 @@
 		//5
 		list(
 			"key" = /obj/item/stock_parts/capacitor/quadratic,
-			"action" = ITEM_DELETE
+			"action" = ITEM_DELETE,
 			"desc" = "The wires have been secured."
 		),
+
 		//6
 		list(
 			"key" = TOOL_SCREWDRIVER,

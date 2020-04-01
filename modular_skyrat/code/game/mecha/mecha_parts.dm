@@ -9,7 +9,7 @@
 	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
 	icon_state = "pwrarmor_skeleton"
 	w_class = WEIGHT_CLASS_HUGE
-	construct_type = /datum/component/construction/unordered/mecha_chassis/powerarmor
+	construct_type = /datum/component/construction/unordered/mecha_chassis/skyrat/powerarmor
 
 /obj/item/mecha_parts/part/powerarmor_torso
 	name = "Powerarmor Torso"
