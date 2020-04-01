@@ -1,19 +1,25 @@
 /obj/recycling_nullspace
 
-//Disgustingly hacky system to remove the GC lag
+//Disgustingly hacky system to remove the GC lag, dumb games deserve dumb solutions
 SUBSYSTEM_DEF(recycling)
 	name = "Recycling"
 	wait = 1800 //fires once every three minutes.
 	var/list/recycled_monkeys = list()
+	var/list/recycled_movable_lighting_objects = list()
 	var/obj/recycling_nullspace/nullspace = new /obj/recycling_nullspace
 
 /datum/controller/subsystem/recycling/Initialize()
-	nullspace.forceMove(locate(1,1,1))
+	//nullspace.forceMove(locate(1,1,1))
 
 /datum/controller/subsystem/recycling/fire()
 	//Perhaps pre-initialize stuff here each every tick to get them ready for send off?
 
-/datum/controller/subsystem/recycling/proc/recycle_monkey(/mob/living/carbon/monkey/M)
+/datum/controller/subsystem/recycling/proc/recycle_monkey(mob)
+	var/mob/living/carbon/monkey/M = mob
+	if(!M || M in recycled_monkeys)
+		message_admins("Something went terribly wrong with monkey recycling")
+		return
+
 	//Monkey related stuff
 	SSmobs.cubemonkeys -= M
 
@@ -64,13 +70,13 @@ SUBSYSTEM_DEF(recycling)
 	M.forceMove(nullspace)
 
 /datum/controller/subsystem/recycling/proc/deploy_monkey(mapload, cubespawned=FALSE, mob/spawner)
-	/var/mob/living/carbon/monkey/M
+	var/mob/living/carbon/monkey/M
 	if(recycled_monkeys.len == 0)
 		M = new /mob/living/carbon/monkey(mapload, cubespawned, spawner)
 	else
 		M = recycled_monkeys[recycled_monkeys.len]
 		recycled_monkeys -= M
-		M.fully_heal(admin_revive = TRUE)
+		//M.fully_heal(admin_revive = TRUE)
 		//Init procs
 		//Mob
 		GLOB.mob_list += M
@@ -104,5 +110,62 @@ SUBSYSTEM_DEF(recycling)
 		M.create_dna(M)
 		M.dna.initialize_dna(random_blood_type())
 		
+		M.a_intent_change(INTENT_HELP)
+		M.enemies = list()
+		M.pickupTimer = 0
+		M.resisting = FALSE
+		M.aggressive = 0
+		M.frustration = 0
+		M.mode = MONKEY_IDLE
 		M.forceMove(mapload)
+		M.revive(full_heal = TRUE, admin_revive = TRUE)
+		M.set_resting(FALSE, TRUE)
 	return M
+
+/datum/controller/subsystem/recycling/proc/recycle_movable_lighting_object(light_obj, force = TRUE)
+	var/atom/movable/lighting_object/LO = light_obj
+	if(!LO || LO in recycled_movable_lighting_objects)
+		message_admins("Something went terribly wrong with light obj recycling")
+		return
+
+	GLOB.lighting_update_objects -= LO
+	if (LO.loc != LO.myturf)
+		var/turf/oldturf = get_turf(LO.myturf)
+		var/turf/newturf = get_turf(LO.loc)
+		stack_trace("A lighting object was recycled with a different loc then it is suppose to have ([COORD(oldturf)] -> [COORD(newturf)])")
+	if (isturf(LO.myturf))
+		LO.myturf.lighting_object = null
+		LO.myturf.luminosity = 1
+	LO.myturf = null
+
+	//I've peered over destroy() on atom and atom/movable but it seemed like nothing related was happening
+
+	recycled_movable_lighting_objects += LO
+	LO.forceMove(nullspace)
+
+/datum/controller/subsystem/recycling/proc/deploy_movable_lighting_object(mapload)
+	var/atom/movable/lighting_object/LO
+	if(recycled_movable_lighting_objects.len == 0)
+		LO = new /atom/movable/lighting_object(mapload)
+	else
+		LO = recycled_movable_lighting_objects[recycled_movable_lighting_objects.len]
+		LO.color = LIGHTING_BASE_MATRIX
+		LO.forceMove(get_turf(mapload))
+		LO.loc = get_turf(mapload)
+		LO.myturf = LO.loc
+		if(LO.myturf.lighting_object)
+			recycle_movable_lighting_object(LO.myturf.lighting_object) //hello darkness my old friend
+		LO.myturf.lighting_object = LO
+		LO.myturf.luminosity = 0
+		LO.needs_update = TRUE
+		GLOB.lighting_update_objects += LO
+
+
+		for(var/turf/open/space/S in RANGE_TURFS(1, LO)) //RANGE_TURFS is in code\__HELPERS\game.dm
+			S.update_starlight()
+
+		if (LO.light_power && LO.light_range)
+			LO.update_light()
+
+		recycled_movable_lighting_objects -= LO
+	return LO
