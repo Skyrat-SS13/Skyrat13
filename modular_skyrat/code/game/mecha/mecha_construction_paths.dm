@@ -1,12 +1,12 @@
-/datum/component/construction/unordered/mecha_chassis/spawn_result()
+/datum/component/construction/unordered/mecha_chassis/skyrat/spawn_result()
+	.=..()
 	var/atom/parent_atom = parent
 	parent_atom.icon = 'modular_skyrat/icons/mecha/mech_construction.dmi'
 	parent_atom.density = TRUE
 	parent_atom.cut_overlays()
-	..()
 
 
-/datum/component/construction/unordered/mecha_chassis/powerarmor
+/datum/component/construction/unordered/mecha_chassis/skyrat/powerarmor
 	result = /datum/component/construction/mecha/powerarmor
 	steps = list(
 		/obj/item/mecha_parts/part/powerarmor_torso,
@@ -50,6 +50,7 @@
 		//5
 		list(
 			"key" = /obj/item/stock_parts/capacitor/quadratic,
+			"action" = ITEM_DELETE
 			"desc" = "The wires have been secured."
 		),
 		//6

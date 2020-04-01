@@ -240,7 +240,7 @@
 	item_state = "hardsuit-powerarmor"
 	slowdown = -0.05
 	clothing_flags = THICKMATERIAL //Not spaceproof. No, it isn't Spaceproof in Rimworld either.
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 25, "energy" = 15, "bomb" = 20, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 80)
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 20, "bomb" = 30, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 80)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/powerarmor
 
 /obj/item/clothing/suit/space/hardsuit/security/powerarmor/emp_act()
