@@ -8376,6 +8376,11 @@
 /obj/item/soap/syndie,
 /turf/open/floor/plasteel/freezer,
 /area/syndicate_mothership)
+"tk" = (
+/obj/structure/table,
+/obj/item/clothing/mask/luchador/tecnicos,
+/turf/open/floor/holofloor/wood,
+/area/holodeck/rec_center/wrestlingarena)
 "tl" = (
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating,
@@ -10018,6 +10023,12 @@
 /obj/item/toy/cards/deck,
 /turf/open/floor/carpet,
 /area/wizard_station)
+"wT" = (
+/obj/structure/bed,
+/obj/item/bedsheet/syndie,
+/obj/effect/landmark/holding_facility,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "wX" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -10249,6 +10260,11 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
+"xE" = (
+/obj/structure/table,
+/obj/item/clothing/mask/luchador,
+/turf/open/floor/holofloor/wood,
+/area/holodeck/rec_center/wrestlingarena)
 "xF" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien19";
@@ -10431,6 +10447,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"ym" = (
+/obj/effect/landmark/holding_facility,
+/mob/living/simple_animal/bot/medbot{
+	name = "Syndicate Hospitality Drone"
+	},
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "yn" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum,
@@ -16794,6 +16817,10 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"MV" = (
+/obj/machinery/vending/sustenance,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "MZ" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien23";
@@ -16908,6 +16935,13 @@
 "NN" = (
 /obj/item/storage/box/bodybags,
 /obj/item/storage/box/bodybags,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
+"NP" = (
+/obj/structure/table/wood/fancy,
+/obj/item/candle/infinite/hugbox{
+	pixel_y = 6
+	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "NT" = (
@@ -17059,6 +17093,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership)
+"OC" = (
+/obj/machinery/vr_sleeper/hugbox{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "OE" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -17167,6 +17207,14 @@
 	},
 /turf/open/indestructible/boss/air,
 /area/centcom/holding)
+"Pm" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/boxing,
+/obj/item/clothing/gloves/boxing/blue,
+/obj/item/clothing/gloves/boxing/green,
+/obj/item/clothing/gloves/boxing/yellow,
+/turf/open/floor/holofloor/wood,
+/area/holodeck/rec_center/wrestlingarena)
 "Pn" = (
 /turf/closed/indestructible/fakedoor{
 	name = "Equipment Storage"
@@ -17448,6 +17496,11 @@
 /obj/structure/window/reinforced/fulltile,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
+"QM" = (
+/obj/machinery/light,
+/obj/effect/landmark/holding_facility,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "QN" = (
 /obj/machinery/light{
 	dir = 4
@@ -17589,6 +17642,11 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
+"Rs" = (
+/obj/structure/table,
+/obj/item/clothing/mask/luchador/rudos,
+/turf/open/floor/holofloor/wood,
+/area/holodeck/rec_center/wrestlingarena)
 "Ru" = (
 /obj/structure/fireplace,
 /turf/open/floor/carpet/red,
@@ -17704,6 +17762,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/syndicate_mothership)
+"Sc" = (
+/obj/structure/table,
+/obj/item/storage/belt/champion/wrestling/holodeck,
+/turf/open/floor/holofloor/wood,
+/area/holodeck/rec_center/wrestlingarena)
 "Sd" = (
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
@@ -18610,6 +18673,9 @@
 /obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria,
 /area/syndicate_mothership)
+"WX" = (
+/turf/open/floor/holofloor/wood,
+/area/holodeck/rec_center/wrestlingarena)
 "WY" = (
 /obj/machinery/vending/cigarette,
 /obj/machinery/light{
@@ -18979,6 +19045,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
+"Zl" = (
+/turf/closed/indestructible/wood,
+/area/centcom/holding)
 "Zr" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -43996,11 +44065,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Zl
+Zl
+Zl
+Zl
+Zl
 aa
 aa
 aa
@@ -44253,11 +44322,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Zl
+MV
+Ud
+Ud
+Zl
 aa
 aa
 aa
@@ -44510,11 +44579,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Zl
+Ud
+ym
+QM
+Zl
 aa
 aa
 aa
@@ -44767,11 +44836,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Zl
+wT
+Ud
+OC
+Zl
 aa
 aa
 aa
@@ -45024,11 +45093,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Zl
+Zl
+Zl
+Zl
+Zl
 aa
 aa
 aa
@@ -46341,8 +46410,8 @@ Sd
 HH
 Nd
 WM
-Ud
-Ud
+Sd
+Sd
 NT
 Nj
 Po
@@ -46598,8 +46667,8 @@ Sd
 XM
 NT
 Sd
-Ud
-Ud
+Sd
+Sd
 NT
 YU
 zT
@@ -46852,11 +46921,11 @@ Tn
 Xd
 Sd
 Sd
-Tn
+NP
 NT
 Sd
-Ud
-Ud
+Sd
+Sd
 NT
 YU
 zT
@@ -47112,8 +47181,8 @@ Sd
 GY
 NT
 Sd
-Ud
-Ud
+Sd
+Sd
 NT
 YU
 zT
@@ -47369,8 +47438,8 @@ Qk
 Vu
 Nd
 Gs
-Ud
-Ud
+Sd
+Sd
 NT
 Mt
 PA
@@ -47880,7 +47949,7 @@ Sd
 Tu
 Sd
 Sd
-Tn
+NP
 NT
 Sd
 Sd
@@ -72118,18 +72187,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ab
 aa
 aa
 aa
@@ -72375,18 +72444,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+bj
+WX
+WX
+WX
+WX
+WX
+WX
+WX
+WX
+WX
+WX
+fx
 aa
 aa
 aa
@@ -72632,18 +72701,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+bj
+Sc
+WX
+WX
+WX
+WX
+WX
+WX
+WX
+WX
+Sc
+fx
 aa
 aa
 aa
@@ -72889,18 +72958,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+bj
+Sc
+WX
+WX
+WX
+WX
+WX
+WX
+WX
+WX
+Sc
+fx
 aa
 aa
 aa
@@ -73146,18 +73215,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+bj
+Sc
+WX
+WX
+WX
+WX
+WX
+WX
+WX
+WX
+Sc
+fx
 aa
 aa
 aa
@@ -73403,18 +73472,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+bj
+WX
+WX
+xE
+WX
+Rs
+tk
+WX
+Pm
+WX
+WX
+fx
 aa
 aa
 aa
@@ -73661,16 +73730,16 @@ ae
 ae
 ae
 ab
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 ab
 aa
 aa

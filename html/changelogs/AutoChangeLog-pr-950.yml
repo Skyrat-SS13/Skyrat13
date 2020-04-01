@@ -1,0 +1,6 @@
+author: "ForrestWick"
+delete-after: True
+changes: 
+  - tweak: "replaced a few items, added in new ones, and added a scrubbers system to the station."
+  - code_imp: "Modified the code in a few files related to old station, adding in new roles for you to take on and giving the old station chaplain their own holy mind datums"
+  - balance: "completely changes up all of Charlie Station/Old Station, expands some of the areas in it and replaces the hivebots with xenomorphs"

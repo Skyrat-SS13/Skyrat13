@@ -1,0 +1,4 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - rscadd: "Added a prize limit to arcade machines."
