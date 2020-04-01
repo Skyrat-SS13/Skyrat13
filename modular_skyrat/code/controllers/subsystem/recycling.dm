@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(recycling)
 	wait = 1800 //fires once every three minutes.
 	var/list/recycled_monkeys = list()
 	var/list/recycled_movable_lighting_objects = list()
+	var/list/recycled_slimes = list()
 	var/obj/recycling_nullspace/nullspace = new /obj/recycling_nullspace
 
 /datum/controller/subsystem/recycling/Initialize()
@@ -71,6 +72,14 @@ SUBSYSTEM_DEF(recycling)
 
 /datum/controller/subsystem/recycling/proc/deploy_monkey(mapload, cubespawned=FALSE, mob/spawner)
 	var/mob/living/carbon/monkey/M
+	if (cubespawned)
+		var/cap = CONFIG_GET(number/monkeycap)
+		if (LAZYLEN(SSmobs.cubemonkeys) > cap)
+			if (spawner)
+				to_chat(spawner, "<span class='warning'>Bluespace harmonics prevent the spawning of more than [cap] monkeys on the station at one time!</span>")
+			return
+
+
 	if(recycled_monkeys.len == 0)
 		M = new /mob/living/carbon/monkey(mapload, cubespawned, spawner)
 	else
