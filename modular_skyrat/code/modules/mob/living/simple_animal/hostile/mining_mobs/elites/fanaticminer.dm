@@ -42,6 +42,10 @@
 								/datum/action/innate/elite_attack/summon_shambler,
 								/datum/action/innate/elite_attack/dash,
 								/datum/action/innate/elite_attack/axe_throw)
+	glorymessageshand = list("grabs the priest's arm and breaks it, exposing sharp bone which is promptly shoved inside their skull!", "punches into the priest's guts, ripping off their stomach and whatever else was inside!")
+	glorymessagescrusher = list("chops the priest's leg off with their crusher, then uses it to beat their skull open while they're downed!")
+	glorymessagespka = list("shoots at the priest's hand, exploding it and making them let go of their axe, which is promptly grabbed and slashes their neck open!", "kicks the priest on the ground, then shoots their guts and viscera off with a PKA blast to the chest!")
+	glorymessagespkabayonet = list("stabs through the priest's heart and pulls it out, letting them see one last beat before they die!")
 
 /datum/action/innate/elite_attack/axe_slam
 	name = "Axe Slam"

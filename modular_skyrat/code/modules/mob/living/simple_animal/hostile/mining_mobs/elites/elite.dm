@@ -13,6 +13,11 @@
 /mob/living/simple_animal/hostile/asteroid/elite
 	can_talk = TRUE
 	speak_emote = list("growls")
+	gloryhealth = 50
+
+/mob/living/simple_animal/hostile/asteroid/elite/death(gibbed)
+	gibbed = FALSE
+	..(gibbed)
 
 obj/item/tumor_shard/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()

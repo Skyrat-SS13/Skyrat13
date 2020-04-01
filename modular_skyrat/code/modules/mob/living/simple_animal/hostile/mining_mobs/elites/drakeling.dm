@@ -41,6 +41,10 @@
 								/datum/action/innate/elite_attack/lavaaround,
 								/datum/action/innate/elite_attack/firespew,
 								/datum/action/innate/elite_attack/firemoat)
+	glorymessageshand = list("rips off the little dragon's horns, then shoves them into their mouth!", "grabs the drakeling's head and rips it off violently from their neck with their bare hands!")
+	glorymessagescrusher = list("slashes the drakeling's head in half with their crusher, dividing it in two!")
+	glorymessagespka = list("hits the drakeling's maw repeatedly with the stock of their PKA until it breaks off, then shoots it in the head for good measure!", "grabs the drakeling's neck, and shoots it's head off with their PKA!")
+	glorymessagespkabayonet = list("kicks the drakeling onto the ground belly up, then slices their tummy open with the bayonet as it screams in agony!")
 
 /datum/action/innate/elite_attack/lavamoat
 	name = "Lava Moat"
