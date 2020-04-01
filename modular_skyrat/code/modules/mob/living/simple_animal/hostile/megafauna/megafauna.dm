@@ -94,7 +94,7 @@
 	desc = initial(desc)
 
 /mob/living/simple_animal/hostile/megafauna/AltClick(mob/living/carbon/slayer)
-	if(glorykill && stat != DEAD)]
+	if(glorykill && stat != DEAD)
 		if(H.ranged)
 			if(H.ranged_cooldown >= world.time)
 				H.ranged_cooldown += 10
