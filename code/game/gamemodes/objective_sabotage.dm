@@ -76,12 +76,8 @@
 	return FALSE
 
 /datum/sabotage_objective/processing/supermatter/can_run()
-	return (locate(/obj/machinery/power/supermatter_crystal) in GLOB.machines)
-<<<<<<< HEAD
-*/
-=======
+	return (locate(/obj/machinery/power/supermatter_crystal) in GLOB.machines) */
 /*
->>>>>>> 6bbc2c0db8d... Merge pull request #11682 from Putnam3145/fix-sabotage
 /datum/sabotage_objective/station_integrity
 	name = "Make sure the station is at less than 80% integrity by the end. Smash walls, windows etc. to reach this goal."
 	sabotage_type = "integrity"
