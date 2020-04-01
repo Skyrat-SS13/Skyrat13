@@ -48,7 +48,7 @@
 /obj/item/melee/baton/blueshieldprod/common_baton_melee(mob/M, mob/living/user, disarming = FALSE)
     if(iscyborg(M) || !isliving(M))        //can't baton cyborgs
         return FALSE
-	if(!HAS_TRAIT(user, TRAIT_MINDSHIELD))
+    if(!HAS_TRAIT(user, TRAIT_MINDSHIELD))
         clowning_around(user)
         return TRUE
     if(IS_STAMCRIT(user))            //CIT CHANGE - makes it impossible to baton in stamina softcrit
