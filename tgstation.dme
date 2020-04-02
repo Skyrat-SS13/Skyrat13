@@ -3522,6 +3522,7 @@
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\plasmamen.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\podpeople.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\shadowpeople.dm"
+#include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\skeletons.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\synthliz.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\vox.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot.dm"

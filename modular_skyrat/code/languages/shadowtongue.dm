@@ -16,6 +16,6 @@
     	"telshahr", "tifur", "enhi", "am", "bahr", "nei", "neibahri", "n'chow", "n'wah",
     	"s'wit", "b'vehk", "f'lah", "muth", "sera", "sedura", "bal", "dun"
 	)
-	icon = 'modular_skyrat//icons/language.dmi'
+	icon = 'modular_skyrat/icons/language.dmi'
 	icon_state = "shadow"
 	default_priority = 90
