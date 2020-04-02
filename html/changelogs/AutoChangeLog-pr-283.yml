@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - balance: "Public autolathes can no longer be hacked."
