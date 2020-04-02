@@ -17,7 +17,7 @@ SUBSYSTEM_DEF(recycling)
 
 /datum/controller/subsystem/recycling/proc/recycle_monkey(mob)
 	var/mob/living/carbon/monkey/M = mob
-	if(!M || M in recycled_monkeys)
+	if(!M || (M in recycled_monkeys))
 		message_admins("Something went terribly wrong with monkey recycling")
 		return
 
@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(recycling)
 
 /datum/controller/subsystem/recycling/proc/recycle_movable_lighting_object(light_obj, force = TRUE)
 	var/atom/movable/lighting_object/LO = light_obj
-	if(!LO || LO in recycled_movable_lighting_objects)
+	if(!LO || (LO in recycled_movable_lighting_objects))
 		message_admins("Something went terribly wrong with light obj recycling")
 		return
 
@@ -192,7 +192,7 @@ SUBSYSTEM_DEF(recycling)
 
 /datum/controller/subsystem/recycling/proc/recycle_slime(mob)
 	var/mob/living/simple_animal/slime/S = mob
-	if(!S || S in recycled_slimes)
+	if(!S || (S in recycled_slimes))
 		message_admins("Something went terribly wrong with slimes recycling")
 		return
 
