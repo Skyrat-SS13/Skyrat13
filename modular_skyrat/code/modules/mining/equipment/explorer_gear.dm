@@ -116,7 +116,7 @@
 	)
 	unique_reskin_worn_muzzled = list(
 	"Old" = 'icons/mob/head_muzzled.dmi',
-	"Improved" = 'modular_skyrat/icons/mob/head_muzzledi.dmi'
+	"Improved" = 'modular_skyrat/icons/mob/head_muzzled.dmi'
 	)
 	unique_reskin = list(
 	"Old" = "exo",
@@ -127,7 +127,7 @@
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
 	icon_state = "exo"
 	alternate_worn_icon = 'modular_skyrat/icons/mob/mask.dmi'
-	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/maask_muzzled.dmi'
+	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/mask_muzzled.dmi'
 	unique_reskin_icons = list(
 	"Old" = 'icons/obj/clothing/masks.dmi',
 	"Improved" = 'modular_skyrat/icons/obj/clothing/masks.dmi'
