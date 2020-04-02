@@ -43,6 +43,7 @@
 		return
 	cooldown_modifier = cooldown_modifier/2 * 0.75
 	throwforce = 12.5
+	force = 10
 	obj_flags |= EMAGGED
 	visible_message("<span class='danger'>[src] stares at [user] angrily before going docile.</span>")
 
