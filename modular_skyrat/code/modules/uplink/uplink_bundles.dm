@@ -59,15 +59,15 @@
 /datum/uplink_item/bundles_TC/punished
 	name = "Motherbase Shipment"
 	desc = "A kit containing the essentials for any 'big boss'. Contains a tactical turtleneck, thermal eyepatch, sneaking boots and a robotic CQC arm implanter."
-	item = /obj/item/storage/box/syndicate/snake
+	item = /obj/item/storage/box/syndie_kit/snake
 	cost = 20
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
-/obj/item/storage/box/syndicate/snake
+/obj/item/storage/box/syndie_kit/snake
 	name = "Motherbase Shipment"
 	desc = "Kept you waiting, huh?"
 
-/obj/item/storage/box/syndicate/snake/PopulateContents()
+/obj/item/storage/box/syndie_kit/snake/PopulateContents()
 	new /obj/item/clothing/glasses/thermal/eyepatch(src)
 	new /obj/item/clothing/under/syndicate(src)
 	new /obj/item/clothing/shoes/combat/sneakboots/snake(src) //HNNNG COLONEL, I'M TRYING TO SNEAK AROUND-
