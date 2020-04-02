@@ -1,3 +1,11 @@
+/datum/component/construction/unordered/mecha_chassis/skyrat/custom_action(obj/item/I, mob/living/user, typepath)
+	. = user.transferItemToLoc(I, parent)
+	if(.)
+		var/atom/parent_atom = parent
+		user.visible_message("[user] has connected [I] to [parent].", "<span class='notice'>You connect [I] to [parent].</span>")
+		parent_atom.add_overlay(I.icon_state+"+o")
+		qdel(I)
+
 /datum/component/construction/unordered/mecha_chassis/skyrat/spawn_result()
 	.=..()
 	var/atom/parent_atom = parent
@@ -26,14 +34,12 @@
 			"key" = /obj/item/stack/ore/bluespace_crystal,
 			"amount" = 1,
 			"desc" = "The modules are assembled."
-			"icon_state" = "powerarmor0" //Absolutely nothing I've tried has worked so fuck it. Im just going have to force the icon_states manually.
 		),
 
 		//2
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"desc" = "The bluespace power core is installed."
-			"icon_state" = "powerarmor1"
 		),
 
 		//3
@@ -41,14 +47,12 @@
 			"key" = /obj/item/stack/cable_coil,
 			"amount" = 5,
 			"desc" = "The bluespace power core is secured."
-			"icon_state" = "powerarmor2"
 		),
 
 		//4
 		list(
 			"key" = TOOL_WIRECUTTER,
 			"desc" = "Wires have been installed."
-			"icon_state" = "powerarmor3"
 		),
 
 		//5
@@ -56,14 +60,12 @@
 			"key" = /obj/item/stock_parts/capacitor/quadratic,
 			"action" = ITEM_DELETE,
 			"desc" = "The wires have been secured."
-			"icon_state" = "powerarmor4"
 		),
 
 		//6
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"desc" = "The capacitor has been installed."
-			"icon_state" = "powerarmor5"
 		),
 	)
 
