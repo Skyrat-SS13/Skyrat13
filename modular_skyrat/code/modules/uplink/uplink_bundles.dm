@@ -122,6 +122,7 @@
 
 /obj/item/bodypart/l_arm/robot/martial
 	var/datum/martial_art/ourmartial = /datum/martial_art/cqc
+	var/martialid = "bigboss"
 	name = "punished left arm"
 	desc = "Has no markings of any kind, because that would offer no tactical advantages. But it's distinctly a syndicate item, somehow."
 
@@ -130,15 +131,15 @@
 	if(owner && !is_disabled())
 		if(owner.mind)
 			var/datum/martial_art/default = owner.mind.default_martial_art
-			if(!owner.mind.martial_art || owner.mind.martial_art.type == default.type) //if we already have a martial art, let's not add another one so as not to cause conflicts
+			if(!owner.mind.martial_art || owner.mind.martial_art.id != martialid) //if we already have a martial art, let's not add another one so as not to cause conflicts
 				var/datum/martial_art/MA = new ourmartial
-				MA.id = "bigboss" //give it an id to keep track of it
+				MA.id = martialid //give it an id to keep track of it
 				MA.teach(source)
 	if(is_disabled() || dropping_limb && owner) //if the limb is dropped or is disabled, we remove the martial art. well that should be how it works.
 		if(owner.mind)
 			if(istype(owner.mind.martial_art, ourmartial)) //we don't want to remove a martial art that isn't actually caused by us, say the person has a krav maga glove on
 				var/datum/martial_art/lose = owner.mind.martial_art
-				if(lose.id == "bigboss") //again, let's not remove a martial art that isn't actually caused by us
+				if(lose.id == martialid) //again, let's not remove a martial art that isn't actually caused by us
 					lose.remove(owner)
 
 /obj/item/clothing/shoes/combat/sneakboots/snake
