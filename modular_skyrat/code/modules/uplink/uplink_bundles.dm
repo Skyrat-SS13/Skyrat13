@@ -99,8 +99,8 @@
 	if(!uses)
 		to_chat(user, "<span class='warning'>[src] has already been used. The tools are dull and won't reactivate.</span>")
 		return
-	else if(!storedorgan)
-		to_chat(user, "<span class='notice'>[src] currently has no implant stored.</span>")
+	else if(!storedbodypart)
+		to_chat(user, "<span class='notice'>[src] currently has no bodypart stored.</span>")
 		return
 	var/mob/living/carbon/C = user
 	if(C)
