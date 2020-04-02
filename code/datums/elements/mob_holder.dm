@@ -8,18 +8,18 @@
 	var/inv_slots
 	var/proctype //if present, will be invoked on headwear generation.
 
-/datum/element/mob_holder/Attach(datum/target, _worn_state, _alt_worn, _right_hand, _left_hand, _inv_slots = NONE, _proctype)
+/datum/element/mob_holder/Attach(datum/target, worn_state, alt_worn, right_hand, left_hand, inv_slots = NONE, proctype)
 	. = ..()
 
 	if(!isliving(target))
 		return ELEMENT_INCOMPATIBLE
 
-	worn_state = _worn_state
-	alt_worn = _alt_worn
-	right_hand = _right_hand
-	left_hand = _left_hand
-	inv_slots = _inv_slots
-	proctype = _proctype
+	src.worn_state = worn_state
+	src.alt_worn = alt_worn
+	src.right_hand = right_hand
+	src.left_hand = left_hand
+	src.inv_slots = inv_slots
+	src.proctype = proctype
 
 	RegisterSignal(target, COMSIG_CLICK_ALT, .proc/mob_try_pickup)
 	RegisterSignal(target, COMSIG_PARENT_EXAMINE, .proc/on_examine)
@@ -93,7 +93,7 @@
 		lefthand_file = left_hand
 	if(right_hand)
 		righthand_file = right_hand
-		slot_flags = slots
+	slot_flags = slots
 
 /obj/item/clothing/head/mob_holder/proc/assimilate(mob/living/target)
 	target.setDir(SOUTH)
@@ -114,16 +114,14 @@
 			w_class = WEIGHT_CLASS_NORMAL
 		if(MOB_SIZE_LARGE)
 			w_class = WEIGHT_CLASS_HUGE
-	RegisterSignal(src, COMSIG_CLICK_SHIFT, .proc/examine_held_mob)
 
 /obj/item/clothing/head/mob_holder/Destroy()
 	if(held_mob)
 		release()
 	return ..()
 
-/obj/item/clothing/head/mob_holder/proc/examine_held_mob(datum/source, mob/user)
-	held_mob.ShiftClick(user)
-	return COMPONENT_DENY_EXAMINATE
+/obj/item/clothing/head/mob_holder/examine(mob/user)
+	return held_mob?.examine(user) || ..()
 
 /obj/item/clothing/head/mob_holder/Exited(atom/movable/AM, atom/newloc)
 	. = ..()
@@ -140,7 +138,7 @@
 			destination = get_turf(loc)
 		AM.forceMove(destination)
 
-/obj/item/clothing/head/mob_holder/dropped()
+/obj/item/clothing/head/mob_holder/dropped(mob/user)
 	. = ..()
 	if(held_mob && isturf(loc))//don't release on soft-drops
 		release()
@@ -152,7 +150,8 @@
 		L.forceMove(get_turf(L))
 		L.reset_perspective()
 		L.setDir(SOUTH)
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /obj/item/clothing/head/mob_holder/relaymove(mob/user)
 	return

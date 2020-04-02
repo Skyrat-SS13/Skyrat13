@@ -1,8 +1,7 @@
 /datum/species/mush //mush mush codecuck
 	name = "Anthromorphic Mushroom"
 	id = "mush"
-	mutant_bodyparts = list("caps")
-	default_features = list("caps" = "Round")
+	mutant_bodyparts = list("caps" = "Round")
 
 	fixed_mut_color = "DBBF92"
 	hair_color = "FF4B19" //cap color, spot color uses eye color
@@ -57,6 +56,7 @@
 		H.adjustToxLoss(3)
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		return TRUE
+	return ..()
 
 /datum/species/mush/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
 	forced_colour = FALSE

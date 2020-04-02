@@ -61,7 +61,7 @@
 		if(!M.client || isnewplayer(M))
 			continue
 		var/T = get_turf(user)
-		if(M.stat == DEAD && M.client && (M.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(T, null)))
+		if(M.stat == DEAD && M.client && (M.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(T, null)) && (user.client)) //SKYRAT CHANGE - only user controlled mobs show their emotes to all-seeing ghosts, to reduce chat spam
 			M.show_message(msg)
 
 	if(emote_type == EMOTE_AUDIBLE)
@@ -118,7 +118,8 @@
 				if(DEAD)
 					to_chat(user, "<span class='notice'>You cannot [key] while dead.</span>")
 			return FALSE
-		if(restraint_check && (user.IsStun() || user.IsKnockdown()))
+		var/mob/living/L = user
+		if(restraint_check && (istype(L) && !CHECK_MOBILITY(L, MOBILITY_USE)))
 			if(!intentional)
 				return FALSE
 			to_chat(user, "<span class='notice'>You cannot [key] while stunned.</span>")

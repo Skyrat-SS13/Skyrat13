@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "BDM now uses a PKA rather then a normal KA"

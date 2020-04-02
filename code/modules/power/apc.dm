@@ -53,7 +53,7 @@
 	use_power = NO_POWER_USE
 	req_access = null
 	max_integrity = 300
-	integrity_failure = 50
+	integrity_failure = 0.17
 	var/damage_deflection = 10
 	resistance_flags = FIRE_PROOF
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 100, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
@@ -308,12 +308,17 @@
 	if(update & 2)
 		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 		if(!(stat & (BROKEN|MAINT)) && update_state & UPSTATE_ALLGOOD)
-			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-			SSvis_overlays.add_vis_overlay(src, icon, "apco3-[hijackerreturn ? "3" : charging]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", layer, plane, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", EMISSIVE_LAYER, EMISSIVE_PLANE, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apco3-[hijackerreturn ? "3" : charging]", layer, plane, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apco3-[hijackerreturn ? "3" : charging]", EMISSIVE_LAYER, EMISSIVE_PLANE, dir)
 			if(operating)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco0-[equipment]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco1-[lighting]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco2-[environ]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco0-[equipment]", layer, plane, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco0-[equipment]", EMISSIVE_LAYER, EMISSIVE_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco1-[lighting]", layer, plane, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco1-[lighting]", EMISSIVE_LAYER, EMISSIVE_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco2-[environ]", layer, plane, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco2-[environ]", EMISSIVE_LAYER, EMISSIVE_PLANE, dir)
 
 	// And now, separately for cleanness, the lighting changing
 	if(update_state & UPSTATE_ALLGOOD)
@@ -570,8 +575,7 @@
 	else if (istype(W, /obj/item/stack/cable_coil) && opened)
 		var/turf/host_turf = get_turf(src)
 		if(!host_turf)
-			throw EXCEPTION("attackby on APC when it's not on a turf")
-			return
+			CRASH("attackby on APC when it's not on a turf")
 		if (host_turf.intact)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first!</span>")
 			return
@@ -846,7 +850,7 @@
 		return
 
 /obj/machinery/power/apc/oui_canview(mob/user)
-	if(user.has_unlimited_silicon_privilege || area.hasSiliconAccessInArea(user))
+	if(area.hasSiliconAccessInArea(user)) //some APCs are mapped outside their assigned area, so this is required.
 		return TRUE
 	return ..()
 
@@ -864,7 +868,7 @@
 	if (H && !H.stealthmode && H.toggled)
 		abilitiesavail = TRUE
 	var/list/data = list(
-		"locked" = locked && !(integration_cog && is_servant_of_ratvar(user)) && !area.hasSiliconAccessInArea(user),
+		"locked" = locked && !(integration_cog && is_servant_of_ratvar(user)) && !area.hasSiliconAccessInArea(user, PRIVILEDGES_SILICON|PRIVILEDGES_DRONE),
 		"lock_nightshift" = nightshift_requires_auth,
 		"failTime" = failure_timer,
 		"isOperating" = operating,
@@ -874,7 +878,7 @@
 		"chargingStatus" = charging,
 		"totalLoad" = DisplayPower(lastused_total),
 		"coverLocked" = coverlocked,
-		"siliconUser" = user.has_unlimited_silicon_privilege || user.using_power_flow_console() || area.hasSiliconAccessInArea(user),
+		"siliconUser" = user.using_power_flow_console() || area.hasSiliconAccessInArea(user),
 		"malfStatus" = get_malf_status(user),
 		"emergencyLights" = !emergency_lights,
 		"nightshiftLights" = nightshift_lights,
@@ -951,7 +955,7 @@
 		return TRUE
 	if (user == hijacker || (area.hasSiliconAccessInArea(user) && !aidisabled))
 		return TRUE
-	if(user.has_unlimited_silicon_privilege)
+	if(user.silicon_privileges & PRIVILEDGES_SILICON)
 		var/mob/living/silicon/ai/AI = user
 		var/mob/living/silicon/robot/robot = user
 		if (src.aidisabled || malfhack && istype(malfai) && ((istype(AI) && (malfai!=AI && malfai != AI.parent)) || (istype(robot) && (robot in malfai.connected_robots))))
@@ -985,7 +989,7 @@
 	if (action == "hijack" && can_use(usr, 1)) //don't need auth for hijack button
 		hijack(usr)
 		return
-	var/authorized = (!locked || usr.has_unlimited_silicon_privilege || area.hasSiliconAccessInArea(usr) || (integration_cog && (is_servant_of_ratvar(usr))))
+	var/authorized = (!locked || area.hasSiliconAccessInArea(usr, PRIVILEDGES_SILICON|PRIVILEDGES_DRONE) || (integration_cog && (is_servant_of_ratvar(usr))))
 	if((action == "toggle_nightshift") && (!nightshift_requires_auth || authorized))
 		toggle_nightshift_lights()
 		return TRUE
@@ -993,7 +997,7 @@
 		return
 	switch(action)
 		if("lock")
-			if(usr.has_unlimited_silicon_privilege || area.hasSiliconAccessInArea(usr))
+			if(area.hasSiliconAccessInArea(usr))
 				if((obj_flags & EMAGGED) || (stat & (BROKEN|MAINT)))
 					to_chat(usr, "The APC does not respond to the command.")
 				else
@@ -1027,7 +1031,7 @@
 				update()
 			return TRUE
 		if("overload")
-			if(usr.has_unlimited_silicon_privilege || area.hasSiliconAccessInArea(usr))
+			if(area.hasSiliconAccessInArea(usr))
 				overload_lighting()
 			return TRUE
 		if("hack")

@@ -4,7 +4,7 @@
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
 	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_NOBREATH)
-	default_features = list("mcolor" = "FFF", "tail_human" = "None", "ears" = "None", "wings" = "None")
+	mutant_bodyparts = list("tail_human" = "None", "ears" = "None", "deco_wings" = "None")
 	use_skintones = TRUE
 	mutant_brain = /obj/item/organ/brain/dullahan
 	mutanteyes = /obj/item/organ/eyes/dullahan
@@ -135,7 +135,7 @@
 	RegisterSignal(owner, COMSIG_CLICK_SHIFT, .proc/examinate_check)
 	RegisterSignal(src, COMSIG_ATOM_HEARER_IN_VIEW, .proc/include_owner)
 	RegisterSignal(owner, COMSIG_LIVING_REGENERATE_LIMBS, .proc/unlist_head)
-	RegisterSignal(owner, COMSIG_LIVING_FULLY_HEAL, .proc/retrieve_head)
+	RegisterSignal(owner, COMSIG_LIVING_REVIVE, .proc/retrieve_head)
 
 /obj/item/dullahan_relay/proc/examinate_check(atom/source, mob/user)
 	if(user.client.eye == src)
@@ -148,8 +148,9 @@
 /obj/item/dullahan_relay/proc/unlist_head(datum/source, noheal = FALSE, list/excluded_limbs)
 	excluded_limbs |= BODY_ZONE_HEAD // So we don't gib when regenerating limbs.
 
-/obj/item/dullahan_relay/proc/retrieve_head(datum/source, admin_revive = FALSE)
-	if(admin_revive) //retrieving the owner's head for ahealing purposes.
+//Retrieving the owner's head for better ahealing.
+/obj/item/dullahan_relay/proc/retrieve_head(datum/source, full_heal, admin_revive)
+	if(admin_revive)
 		var/obj/item/bodypart/head/H = loc
 		var/turf/T = get_turf(owner)
 		if(H && istype(H) && T && !(H in owner.GetAllContents()))

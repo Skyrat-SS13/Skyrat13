@@ -19,7 +19,10 @@ import { CellularEmporium } from './interfaces/CellularEmporium';
 import { CentcomPodLauncher } from './interfaces/CentcomPodLauncher';
 import { ChemAcclimator } from './interfaces/ChemAcclimator';
 import { ChemDebugSynthesizer } from './interfaces/ChemDebugSynthesizer';
+import { ChemDispenser } from './interfaces/ChemDispenser';
 import { ChemFilter } from './interfaces/ChemFilter';
+import { ChemHeater } from './interfaces/ChemHeater';
+import { ChemMaster } from './interfaces/ChemMaster';
 import { ChemPress } from './interfaces/ChemPress';
 import { ChemReactionChamber } from './interfaces/ChemReactionChamber';
 import { ChemSplitter } from './interfaces/ChemSplitter';
@@ -48,6 +51,11 @@ import { LaborClaimConsole } from './interfaces/LaborClaimConsole';
 import { LanguageMenu } from './interfaces/LanguageMenu';
 import { LaunchpadConsole, LaunchpadRemote } from './interfaces/Launchpad';
 import { MechBayPowerConsole } from './interfaces/MechBayPowerConsole';
+import { NaniteChamberControl } from './interfaces/NaniteChamberControl';
+import { NaniteCloudControl } from './interfaces/NaniteCloudControl';
+import { NaniteProgramHub } from './interfaces/NaniteProgramHub';
+import { NaniteProgrammer } from './interfaces/NaniteProgrammer';
+import { NaniteRemote } from './interfaces/NaniteRemote';
 import { Mule } from './interfaces/Mule';
 import { NotificationPreferences } from './interfaces/NotificationPreferences';
 import { NtnetRelay } from './interfaces/NtnetRelay';
@@ -71,6 +79,7 @@ import { RapidPipeDispenser } from './interfaces/RapidPipeDispenser';
 import { SatelliteControl } from './interfaces/SatelliteControl';
 import { ScannerGate } from './interfaces/ScannerGate';
 import { ShuttleManipulator } from './interfaces/ShuttleManipulator';
+import { Sleeper } from './interfaces/Sleeper';
 import { SlimeBodySwapper } from './interfaces/SlimeBodySwapper';
 import { Signaler } from './interfaces/Signaler';
 import { SmartVend } from './interfaces/SmartVend';
@@ -180,8 +189,20 @@ const ROUTES = {
     component: () => ChemAcclimator,
     scrollable: false,
   },
+  chem_dispenser: {
+    component: () => ChemDispenser,
+    scrollable: true,
+  },
   chemical_filter: {
     component: () => ChemFilter,
+    scrollable: true,
+  },
+  chem_heater: {
+    component: () => ChemHeater,
+    scrollable: true,
+  },
+  chem_master: {
+    component: () => ChemMaster,
     scrollable: true,
   },
   chem_press: {
@@ -301,6 +322,26 @@ const ROUTES = {
     component: () => MechBayPowerConsole,
     scrollable: false,
   },
+  nanite_chamber_control: {
+    component: () => NaniteChamberControl,
+    scrollable: true,
+  },
+  nanite_cloud_control: {
+    component: () => NaniteCloudControl,
+    scrollable: true,
+  },
+  nanite_program_hub: {
+    component: () => NaniteProgramHub,
+    scrollable: true,
+  },
+  nanite_programmer: {
+    component: () => NaniteProgrammer,
+    scrollable: true,
+  },
+  nanite_remote: {
+    component: () => NaniteRemote,
+    scrollable: true,
+  },
   mulebot: {
     component: () => Mule,
     scrollable: false,
@@ -415,6 +456,10 @@ const ROUTES = {
   shuttle_manipulator: {
     component: () => ShuttleManipulator,
     scrollable: true,
+  },
+  sleeper: {
+    component: () => Sleeper,
+    scrollable: false,
   },
   slime_swap_body: {
     component: () => SlimeBodySwapper,

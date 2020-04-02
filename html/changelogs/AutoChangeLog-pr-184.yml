@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Fixed AI unanchoring not properly removing the no teleport trait. My bad."

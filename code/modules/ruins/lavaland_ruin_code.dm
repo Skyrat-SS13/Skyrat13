@@ -3,6 +3,17 @@
 /obj/structure/fans/tiny/invisible //For blocking air in ruin doorways
 	invisibility = INVISIBILITY_ABSTRACT
 
+///Wizard tower item
+/obj/item/disk/design_disk/adv/knight_gear
+	name = "Magic Disk of Smithing"
+
+/obj/item/disk/design_disk/adv/knight_gear/Initialize()
+	. = ..()
+	var/datum/design/knight_armour/A = new
+	var/datum/design/knight_helmet/H = new
+	blueprints[1] = A
+	blueprints[2] = H
+
 //lavaland_surface_seed_vault.dmm
 //Seed Vault
 
@@ -45,7 +56,7 @@
 	desc = "Allows for the construction of a Golem Shell."
 	id = "golem"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 40000)
+	materials = list(/datum/material/iron = 40000)
 	build_path = /obj/item/golem_shell
 	category = list("Imported")
 
@@ -116,8 +127,8 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	short_desc = "You are a syndicate science technician, employed in a top secret research facility developing biological weapons."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Continue your research as best you can, and try to keep a low profile."
-	important_info = "The base is rigged with explosives, DO NOT abandon it or let it fall into enemy hands!"
+	flavour_text = "You and your colleagues have been here a long time, and today starts another quote-unquote shift aboard the base. Unfortunately, mining operations backed by Nanotrasen are underway in the general region." //Skyrat edit
+	important_info = "The base is rigged with explosives, DO NOT abandon it or let it fall into enemy hands, and do not attack the station unprovoked. Contact your superiors before you even THINK of making a move on the station that would be aggressive.!" //Skyrat edit
 	outfit = /datum/outfit/lavaland_syndicate
 	assignedrole = "Lavaland Syndicate"
 
@@ -145,20 +156,17 @@
 	name = "Syndicate Comms Agent"
 	job_description = "Off-station Syndicate Comms Agent"
 	short_desc = "You are a syndicate comms agent, employed in a top secret research facility developing biological weapons."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!"
-	important_info = "DO NOT abandon the base."
+	flavour_text = "You and your colleagues have been here a long time, and today starts another quote-unquote shift aboard the base. Unfortunately, mining operations backed by Nanotrasen are underway in the general region. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!" //Skyrat edit
+	important_info = "Do not attack the station unprovoked. Contact your superiors before you even THINK of making a move on the station that would be aggressive!" //Skyrat edit
 	outfit = /datum/outfit/lavaland_syndicate/comms
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms/space/Initialize()
-	. = ..()
-	if(prob(90)) //only has a 10% chance of existing, otherwise it'll just be a NPC syndie.
-		new /mob/living/simple_animal/hostile/syndicate/ranged(get_turf(src))
-		return INITIALIZE_HINT_QDEL
+
 
 /datum/outfit/lavaland_syndicate/comms
 	name = "Lavaland Syndicate Comms Agent"
 	r_hand = /obj/item/melee/transforming/energy/sword/saber
-	mask = /obj/item/clothing/mask/chameleon/gps
+	mask = /obj/item/clothing/mask/chameleon //Removed the GPS component
 	suit = /obj/item/clothing/suit/armor/vest
 
 /obj/item/clothing/mask/chameleon/gps/Initialize()

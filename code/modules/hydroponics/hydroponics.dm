@@ -620,7 +620,7 @@
 		if(!(myseed.resistance_flags & FIRE_PROOF))
 			adjustHealth(-round(S.get_reagent_amount(/datum/reagent/napalm) * 6))
 			adjustToxic(round(S.get_reagent_amount(/datum/reagent/napalm) * 7))
-			adjustWeeds(-rand(5,9))
+		adjustWeeds(-rand(5,9))
 
 	//Weed Spray
 	if(S.has_reagent(/datum/reagent/toxin/plantbgone/weedkiller, 1))
@@ -664,7 +664,7 @@
 		adjustHealth(round(S.get_reagent_amount(/datum/reagent/diethylamine) * 1))
 		adjustNutri(round(S.get_reagent_amount(/datum/reagent/diethylamine) * 2))
 		if(myseed)
-			myseed.adjust_yield(round(S.get_reagent_amount(/datum/reagent/diethylamine) * 0.034)) // skyrat-edit
+			myseed.adjust_yield(round(S.get_reagent_amount(/datum/reagent/diethylamine) * 0.02))
 		adjustPests(-rand(1,2))
 
 	// Nutriment Compost, effectively

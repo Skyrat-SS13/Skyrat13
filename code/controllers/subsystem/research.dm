@@ -27,6 +27,9 @@ SUBSYSTEM_DEF(research)
 
 	var/list/techweb_point_items = list(		//path = list(point type = value)
 	/obj/item/assembly/signaler/anomaly            = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
+	//SKYRAT CHANGE
+	/obj/item/stock_parts/cell/high/plus/argent    = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
+	//
 	//   -   Slime Extracts!   - Basics
 	/obj/item/slime_extract/grey                   = list(TECHWEB_POINT_TYPE_GENERIC = 500),
 	/obj/item/slime_extract/metal                  = list(TECHWEB_POINT_TYPE_GENERIC = 750),
@@ -416,6 +419,7 @@ SUBSYSTEM_DEF(research)
 			stack_trace("WARNING: Design ID clash with ID [initial(DN.id)] detected! Path: [path]")
 			errored_datums[DN] = initial(DN.id)
 			continue
+		DN.InitializeMaterials() //Initialize the materials in the design
 		returned[initial(DN.id)] = DN
 	techweb_designs = returned
 	verify_techweb_designs()

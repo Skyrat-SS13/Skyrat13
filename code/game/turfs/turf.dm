@@ -47,6 +47,9 @@
 	// by default, vis_contents is inherited from the turf that was here before
 	vis_contents.Cut()
 
+	if(color)
+		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
+
 	assemble_baseturfs()
 
 	levelupdate()
@@ -552,6 +555,8 @@
 	//if the vomit combined, apply toxicity and reagents to the old vomit
 	if (QDELETED(V))
 		V = locate() in src
+	if(!V) //the decal was spawned on a wall or groundless turf and promptly qdeleted.
+		return
 	// Make toxins and blazaam vomit look different
 	if(toxvomit == VOMIT_PURPLE)
 		V.icon_state = "vomitpurp_[pick(1,4)]"
