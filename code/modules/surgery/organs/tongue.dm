@@ -24,6 +24,7 @@
 		/datum/language/slime,
 		/datum/language/vampiric,
 		/datum/language/dwarf,
+		/datum/language/solcommon, //Skyrat change - adds Sol Common for humans
 		/datum/language/vox //Skyrat change - adds vox language
 	))
 	healing_factor = STANDARD_ORGAN_HEALING*5 //Fast!!

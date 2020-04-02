@@ -6,8 +6,9 @@
 	exclaim_verb = "declares"
 	whisper_verb = "hushes"
 	key = "p"
-	flags = TONGUELESS_SPEECH
 	space_chance = 10
+	default_priority = 90
+	flags = TONGUELESS_SPEECH
 	syllables = list(
 		"sed", "ut", "unde", "omnis", "iste", "natus", "sit", "vol", "totam", "rem", "eaque", "ipsa", "quae", "ab", "illo",
 		"et", "quasi", "dicta", "sunt", "enim", "ipsam", "aut", "odit", "qui", "porro", "amet", "que",
@@ -15,4 +16,3 @@
 	)
 	icon = 'modular_skyrat/icons/language.dmi'
 	icon_state = "solcommon"
-	default_priority = 90
