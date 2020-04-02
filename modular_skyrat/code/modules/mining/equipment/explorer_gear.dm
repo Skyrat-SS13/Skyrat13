@@ -61,15 +61,15 @@
 	alternate_worn_icon = 'modular_skyrat/icons/mob/epic_mining.dmi'
 	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/epic_mining_digi.dmi'
 	unique_reskin_icons = list(
-	"Old" = 'icons/obj/clothing/hats.dmi',
+	"Old" = 'icons/obj/clothing/masks.dmi',
 	"Improved" = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
 	)
 	unique_reskin_worn = list(
-	"Old" = 'icons/mob/head.dmi',
+	"Old" = 'icons/mob/mask.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/epic_mining.dmi'
 	)
 	unique_reskin_worn_muzzled = list(
-	"Old" = 'icons/mob/head_muzzled.dmi',
+	"Old" = 'icons/mob/mask_muzzled.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/epic_mining_digi.dmi'
 	)
 	unique_reskin = list(
@@ -128,15 +128,15 @@
 	alternate_worn_icon = 'modular_skyrat/icons/mob/epic_mining.dmi'
 	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/epic_mining_digi.dmi'
 	unique_reskin_icons = list(
-	"Old" = 'icons/obj/clothing/hats.dmi',
+	"Old" = 'icons/obj/clothing/masks.dmi',
 	"Improved" = 'modular_skyrat/icons/obj/clothing/epic_mining.dmi'
 	)
 	unique_reskin_worn = list(
-	"Old" = 'icons/mob/head.dmi',
+	"Old" = 'icons/mob/mask.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/epic_mining.dmi'
 	)
 	unique_reskin_worn_muzzled = list(
-	"Old" = 'icons/mob/head_muzzled.dmi',
+	"Old" = 'icons/mob/mask_muzzled.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/epic_mining_digi.dmi'
 	)
 	unique_reskin = list(
