@@ -54,3 +54,46 @@
 	name = "armored clown suit"
 	desc = "<b>I'LL MAKE YOU HONK ALRIGHT.</b>"
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+
+//punished venom traitor bundle. yes i'll keep the theme of inconsistent file paths and shit because i'm too lazy to create new files and shit for everything here.
+/datum/uplink_item/bundles_TC/punished
+	name = "Motherbase Shipment"
+	desc = "A kit containing the essentials for any 'big boss'. Contains a tactical turtleneck, thermal eyepatch, sneaking boots and a robotic CQC arm implanter."
+	item = /obj/item/storage/box/syndicate/snake
+	cost = 20
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
+/obj/item/storage/box/syndicate/snake
+	name = "Motherbase Shipment"
+	desc = "Kept you waiting, huh?"
+
+/obj/item/storage/box/syndicate/snake/PopulateContents()
+	new /obj/item/clothing/glasses/thermal/eyepatch(src)
+	new /obj/item/clothing/under/syndicate(src)
+	new /obj/item/clothing/shoes/combat/sneakboots(src) //HNNNG COLONEL, I'M TRYING TO SNEAK AROUND-
+	new /obj/item/autosurgeon/martialarm(src)
+
+/obj/item/autosurgeon/martialarm
+	starting_organ = /obj/item/bodypart/l_arm/robot/martial
+	organ_type = /obj/item/bodypart
+	uses = 1
+
+/obj/item/bodypart/l_arm/robot/martial
+	var/datum/martial_art/ourmartial = /datum/martial_art/cqc
+	name = "punished left arm"
+	desc = "Has no markings of any kind, because that would offer no tactical advantages. But it's distinctly a syndicate item, somehow."
+
+/obj/item/bodypart/l_arm/robot/cqc/update_limb(dropping_limb, mob/living/carbon/source) //this is probably not the best way to do it, but i want to make sure that it always checks if the limb is viable. if not viable, owner loses the martial art.
+	..() ///we call the parent first to do all the necessary checks and what the fuck ever
+	if(owner && !is_disabled())
+		if(owner.mind)
+			if(!owner.mind.martial_art) //if we already have a martial art, let's not add another one so as not to cause conflicts
+				var/datum/martial_art/MA = new ourmartial
+				MA.id = "bigboss" //give it an id to keep track of it
+				MA.teach(source)
+	if(is_disabled() || dropping_limb && owner) //if the limb is dropped or is disabled, we remove the martial art. well that should be how it works.
+		if(owner.mind)
+			if(istype(owner.mind.martial_art, ourmartial)) //we don't want to remove a martial art that isn't actually caused by us, say the person has a krav maga glove on
+				var/datum/martial_art/lose = owner.mind.martial_art
+				if(lose.id == "bigboss") //again, let's not remove a martial art that isn't actually caused by us
+					lose.remove(owner)
