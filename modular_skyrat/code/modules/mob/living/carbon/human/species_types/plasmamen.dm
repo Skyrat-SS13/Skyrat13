@@ -93,3 +93,6 @@
 	H.internal = H.get_item_for_held_index(2)
 	H.update_internals_hud_icon(1)
 	return 0
+
+/datum/species/plasmaman/after_equip_job(datum/job/J, mob/living/carbon/human/H)
+	H.grant_language(/datum/modular_skyrat/language/calcic)
