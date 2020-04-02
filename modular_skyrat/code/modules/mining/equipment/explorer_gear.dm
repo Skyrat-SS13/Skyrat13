@@ -14,6 +14,7 @@
 	icon_state = "seva_helmet"
 	alternate_worn_icon = 'modular_skyrat/icons/mob/epic_mining.dmi'
 	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/epic_mining_digi.dmi'
+	flags_inv = HIDEHAIR
 
 /obj/item/clothing/suit/hooded/explorer/seva/Initialize()
 	. = ..()
