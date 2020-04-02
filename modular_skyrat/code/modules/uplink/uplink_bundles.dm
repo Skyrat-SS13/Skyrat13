@@ -129,7 +129,7 @@
 	..() ///we call the parent first to do all the necessary checks and what the fuck ever
 	if(owner && !is_disabled())
 		if(owner.mind)
-			if(!owner.mind.martial_art) //if we already have a martial art, let's not add another one so as not to cause conflicts
+			if(!owner.mind.martial_art || owner.mind.martial_art == var/datum/martial_art) //if we already have a martial art, let's not add another one so as not to cause conflicts
 				var/datum/martial_art/MA = new ourmartial
 				MA.id = "bigboss" //give it an id to keep track of it
 				MA.teach(source)
