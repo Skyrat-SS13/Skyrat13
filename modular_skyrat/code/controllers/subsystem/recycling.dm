@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(recycling)
 	var/list/recycled_monkeys = list()
 	var/list/recycled_movable_lighting_objects = list()
 	var/list/recycled_slimes = list()
-	var/obj/recycling_nullspace/nullspace = new /obj/recycling_nullspace
+	var/obj/recycling_nullspace/nullspace = new /obj/recycling_nullspace //Yeah I could just not but this way I know how the internals of the system look better
 
 /datum/controller/subsystem/recycling/Initialize()
 	//nullspace.forceMove(locate(1,1,1))
@@ -129,6 +129,7 @@ SUBSYSTEM_DEF(recycling)
 		M.forceMove(mapload)
 		M.revive(full_heal = TRUE, admin_revive = TRUE)
 		M.set_resting(FALSE, TRUE)
+		M.regenerate_icons()
 	return M
 
 /datum/controller/subsystem/recycling/proc/recycle_movable_lighting_object(light_obj, force = TRUE)
@@ -178,3 +179,158 @@ SUBSYSTEM_DEF(recycling)
 
 		recycled_movable_lighting_objects -= LO
 	return LO
+
+/datum/controller/subsystem/recycling/proc/recycle_slime(mob)
+	var/mob/living/simple_animal/slime/S = mob
+	if(!S || S in recycled_slimes)
+		message_admins("Something went terribly wrong with slimes recycling")
+		return
+
+	/*This is called on their death, I guess
+	if(S.buckled)
+		S.Feedstop(silent = TRUE) //releases ourselves from the mob we fed on.
+
+	S.stat = DEAD
+	S.cut_overlays()
+
+	S.update_canmove()
+	*/
+
+
+	GLOB.simple_animals[S.AIStatus] -= S
+	if (SSnpcpool.state == SS_PAUSED && LAZYLEN(SSnpcpool.currentrun))
+		SSnpcpool.currentrun -= S
+
+	if(S.nest)
+		S.nest.spawned_mobs -= S
+		S.nest = null
+
+	var/turf/T = get_turf(S)
+	if (T && S.AIStatus == AI_Z_OFF)
+		SSidlenpcpool.idle_mobs_by_zlevel[T.z] -= S
+	//Hey did you know the code above runs 2 times 4nr when a slime is deleted?
+
+	//Living related stuff
+	if(LAZYLEN(S.status_effects))
+		for(var/se in S.status_effects)
+			var/datum/status_effect/SE = se
+			if(SE.on_remove_on_mob_delete) //the status effect calls on_remove when its mob is deleted
+				qdel(S)
+			else
+				SE.be_replaced()
+	if(S.ranged_ability)
+		S.ranged_ability.remove_ranged_ability(S)
+	if(S.buckled)
+		S.buckled.unbuckle_mob(S,force=1)
+	GLOB.mob_living_list -= S
+	QDEL_LIST(S.diseases)
+
+	//Mob related stuff
+	GLOB.mob_list -= S
+	GLOB.dead_mob_list -= S
+	GLOB.alive_mob_list -= S
+	GLOB.all_clockwork_mobs -= S
+	GLOB.mob_directory -= S.tag
+	S.focus = null
+	S.LAssailant = null
+	S.movespeed_modification = null
+	for (var/alert in S.alerts)
+		S.clear_alert(alert, TRUE)
+	if(S.observers && S.observers.len)
+		for(var/G in S.observers)
+			var/mob/dead/observe = G
+			observe.reset_perspective(null)
+	qdel(S.hud_used)
+	for(var/cc in S.client_colours)
+		qdel(cc)
+	S.client_colours = null
+	S.ghostize()
+
+	S.forceMove(nullspace)
+	recycled_slimes += S
+
+
+
+/datum/controller/subsystem/recycling/proc/deploy_slime(mapload, new_colour="grey", new_is_adult=FALSE)
+	var/mob/living/simple_animal/slime/S 
+	if(recycled_slimes.len == 0)
+		S = new /mob/living/simple_animal/slime(mapload, new_colour, new_is_adult)
+	else
+		S = recycled_slimes[recycled_slimes.len]
+		//Slime stuff
+
+
+		S.is_adult = new_is_adult
+
+		for(var/datum/action/A in S.actions)
+			A.Remove(S)
+
+		var/datum/action/innate/slime/feed/F = new
+		F.Grant(S)
+
+		if(S.is_adult)
+			var/datum/action/innate/slime/reproduce/R = new
+			R.Grant(S)
+			S.health = 200
+			S.maxHealth = 200
+		else
+			var/datum/action/innate/slime/evolve/E = new
+			E.Grant(S)
+			S.health = 150
+			S.maxHealth = 150
+
+		S.set_colour(new_colour)
+		//Mob
+		GLOB.mob_list += S
+		GLOB.mob_directory[tag] = S
+		if(S.stat == DEAD)
+			GLOB.dead_mob_list += S
+		else
+			GLOB.alive_mob_list += S
+		S.set_focus(S)
+		S.prepare_huds()
+		for(var/v in GLOB.active_alternate_appearances)
+			if(!v)
+				continue
+			var/datum/atom_hud/alternate_appearance/AA = v
+			AA.onNewMob(S)
+		//S.nutrition = rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX)
+		S.update_config_movespeed()
+		S.update_movespeed(TRUE)
+		hook_vr("mob_new",list(S))
+
+		//Living
+		GLOB.mob_living_list += S
+
+		//simple animal
+		GLOB.simple_animals[S.AIStatus] += S
+		S.update_simplemob_varspeed()
+
+		//again, slime
+		S.nutrition = 700
+
+		S.mutation_chance = 30
+		S.cores = 1
+
+		S.powerlevel = 0
+		S.number = 0
+
+		S.Friends = list()
+		S.attacked = 0
+		S.rabid = 0
+		S.holding_still = 0
+		S.target_patience = 0
+
+		S.mood = ""
+		S.mutator_used = FALSE
+		S.force_stasis = FALSE
+
+		S.effectmod = null
+		S.applied = 0 
+
+		recycled_slimes -= S
+		S.forceMove(mapload)
+		S.revive(full_heal = TRUE, admin_revive = TRUE)
+		S.regenerate_icons()
+		S.update_name()
+	return S
