@@ -34045,7 +34045,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
-/obj/machinery/autolathe{
+/obj/machinery/autolathe/secure{
 	name = "public autolathe"
 	},
 /turf/open/floor/plasteel,
