@@ -1,4 +1,0 @@
-author: "Useroth"
-delete-after: True
-changes: 
-  - tweak: "Headsets now require MOBILITY_USE flag to operate."
