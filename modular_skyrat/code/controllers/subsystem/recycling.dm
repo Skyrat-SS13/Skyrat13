@@ -1,5 +1,3 @@
-/obj/recycling_nullspace
-
 //Disgustingly hacky system to remove the GC lag, dumb games deserve dumb solutions 
 SUBSYSTEM_DEF(recycling)
 	name = "Recycling"
@@ -8,9 +6,6 @@ SUBSYSTEM_DEF(recycling)
 	var/list/recycled_movable_lighting_objects = list()
 	var/list/recycled_slimes = list()
 	var/obj/recycling_nullspace/nullspace = new /obj/recycling_nullspace //Yeah I could just not but this way I know how the internals of the system look better
-
-/datum/controller/subsystem/recycling/Initialize()
-	//nullspace.forceMove(locate(1,1,1))
 
 /datum/controller/subsystem/recycling/fire()
 	//Perhaps pre-initialize stuff here each every tick to get them ready for send off?
@@ -344,3 +339,5 @@ SUBSYSTEM_DEF(recycling)
 		S.regenerate_icons()
 		S.update_name()
 	return S
+
+/obj/recycling_nullspace
