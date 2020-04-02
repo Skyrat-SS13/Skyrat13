@@ -1,2 +1,2 @@
-/datum/modular_skyrat/language_holder/synthetic
-	shadow_languages = list(/datum/modular_skyrat/language/calcic, /datum/modular_skyrat/language/moffic, /datum/modular_skyrat/language/shadowtongue, /datum/modular_skyrat/language/sylvan)
+/datum/language_holder/synthetic
+	shadow_languages = list(/datum/language/calcic, /datum/language/moffic, /datum/language/shadowtongue, /datum/language/sylvan)
