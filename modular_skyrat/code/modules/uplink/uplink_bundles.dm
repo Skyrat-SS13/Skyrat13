@@ -147,7 +147,7 @@
 	..()
 	var/datum/martial_art/MA = new ourmartial
 	MA.id = martialid //give it an id to keep track of it
-	MA.teach(source)
+	MA.teach(owner)
 
 /obj/item/bodypart/l_arm/robot/martial/drop_limb(special)
 	. = ..()
