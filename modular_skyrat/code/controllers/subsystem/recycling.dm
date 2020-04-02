@@ -1,6 +1,6 @@
 /obj/recycling_nullspace
 
-//Disgustingly hacky system to remove the GC lag, dumb games deserve dumb solutions
+//Disgustingly hacky system to remove the GC lag, dumb games deserve dumb solutions 
 SUBSYSTEM_DEF(recycling)
 	name = "Recycling"
 	wait = 1800 //fires once every three minutes.
