@@ -130,7 +130,6 @@
 	..() ///we call the parent first to do all the necessary checks and what the fuck ever
 	if(owner && !is_disabled())
 		if(owner.mind)
-			var/datum/martial_art/default = owner.mind.default_martial_art
 			if(!owner.mind.martial_art || owner.mind.martial_art.id != martialid) //if we already have a martial art, let's not add another one so as not to cause conflicts
 				var/datum/martial_art/MA = new ourmartial
 				MA.id = martialid //give it an id to keep track of it
