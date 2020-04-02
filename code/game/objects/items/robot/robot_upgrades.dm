@@ -536,13 +536,17 @@
 	name = "borg expander"
 	desc = "A cyborg resizer, it makes a cyborg huge."
 	icon_state = "cyborg_upgrade3"
-
+/* moved to modular_skyrat
 /obj/item/borg/upgrade/expand/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 
 		if(R.hasExpanded)
 			to_chat(usr, "<span class='notice'>This unit already has an expand module installed!</span>")
+			return FALSE
+
+		if(R.hasShrunk)
+			to_chat(usr, "<span class='notice'>This unit already has an shrink module installed!</span>")
 			return FALSE
 
 		R.notransform = TRUE
@@ -563,7 +567,7 @@
 		R.resize = 2
 		R.hasExpanded = TRUE
 		R.update_transform()
-
+*/
 /obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
