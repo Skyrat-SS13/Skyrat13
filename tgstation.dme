@@ -3427,6 +3427,7 @@
 #include "modular_skyrat\code\languages\calcic.dm"
 #include "modular_skyrat\code\languages\moffic.dm"
 #include "modular_skyrat\code\languages\shadowtongue.dm"
+#include "modular_skyrat\code\languages\solcommon.dm"
 #include "modular_skyrat\code\languages\sylvan.dm"
 #include "modular_skyrat\code\modules\admin\admin_verbs.dm"
 #include "modular_skyrat\code\modules\antagonists\revenant\revenant.dm"
