@@ -1,11 +1,11 @@
 /datum/language/solcommon
 	name = "Sol Common"
 	desc = "The old Earthen language of Latin, re-adopted into the modern day to offer more identity to Humanity."
-	speech_verb = "declare"
+	speech_verb = "proclaims"
 	ask_verb = "queries"
-	exclaim_verb = "proclaims"
+	exclaim_verb = "declares"
 	whisper_verb = "hushes"
-	key = ""
+	key = "p"
 	flags = TONGUELESS_SPEECH
 	space_chance = 10
 	syllables = list(
