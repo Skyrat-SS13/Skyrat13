@@ -299,7 +299,7 @@
 			if (idx && (idx % 2) == (message_mode == MODE_L_HAND))
 				return
 
-	talk_into(speaker, raw_message, , spans, language=message_language)
+	talk_into(speaker, raw_message, , spans, language=message_language, direct=FALSE) // Skyrat edit -- differentiate between things spoken into radios directly vs overheard by an intercom/station-bounced 
 
 // Checks if this radio can receive on the given frequency.
 /obj/item/radio/proc/can_receive(freq, level)
