@@ -21,7 +21,15 @@ SUBSYSTEM_DEF(recycling)
 		message_admins("Something went terribly wrong with monkey recycling")
 		return
 
+	if(M.mind) //Chances are mind monkeys are changeligns or admin memery so lets not fuck with them
+		qdel(M)
+		return
+	//Let's drop the references to it, so far I can think of slime friends
+	for(var/mob/living/simple_animal/slime/S in GLOB.mob_living_list)
+		S.Friends -= M
+
 	//Monkey related stuff
+
 	SSmobs.cubemonkeys -= M
 
 	//Carbon related stuff NOT SURE IF I AM TO REMOVE ORGANS/BODYPARTS/DNA HERE OR JUST DO SOME CHECKS ALONG THE WAY
@@ -87,6 +95,8 @@ SUBSYSTEM_DEF(recycling)
 		recycled_monkeys -= M
 		//M.fully_heal(admin_revive = TRUE)
 		//Init procs
+		for(var/datum/action/A in M.actions)
+			A.Remove(M)
 		//Mob
 		GLOB.mob_list += M
 		GLOB.mob_directory[tag] = M
