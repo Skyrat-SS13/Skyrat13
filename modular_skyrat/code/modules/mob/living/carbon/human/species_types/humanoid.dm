@@ -9,6 +9,10 @@
 	mutant_bodyparts = list("mcolor" = "FFF","mcolor2" = "FFF","mcolor3" = "FFF", "mam_snouts" = "Husky", "mam_tail" = "Husky", "mam_ears" = "Husky", "deco_wings" = "None",
 						 "mam_body_markings" = "Husky", "taur" = "None", "horns" = "None", "legs" = "Plantigrade", "meat_type" = "Mammalian")
 
+/datum/species/humanoid/after_equip_job(datum/job/J, mob/living/carbon/human/H)
+	H.grant_language(/datum/language/solcommon)
+	. = ..()
+
 //Dunmer (Yeah, those guys that call you fetcher).
 /datum/species/human/humanoid/dunmer
 	name = "Dunmer"
