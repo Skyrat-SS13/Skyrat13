@@ -7,7 +7,7 @@
 		qdel(I)
 
 /datum/component/construction/unordered/mecha_chassis/skyrat/spawn_result()
-	.=..()
+	. = ..()
 	var/atom/parent_atom = parent
 	parent_atom.icon = 'modular_skyrat/icons/mecha/mech_construction.dmi'
 	parent_atom.density = TRUE
