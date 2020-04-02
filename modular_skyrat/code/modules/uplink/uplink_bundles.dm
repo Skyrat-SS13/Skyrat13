@@ -72,6 +72,7 @@
 	new /obj/item/clothing/under/syndicate(src)
 	new /obj/item/clothing/shoes/combat/sneakboots/snake(src) //HNNNG COLONEL, I'M TRYING TO SNEAK AROUND-
 	new /obj/item/limbsurgeon/martialarm(src)
+	new /obj/item/encryptionkey/syndicate(src)
 
 /obj/item/limbsurgeon //autosurgeon is shit and does not support limbs, i had to do it to 'em
 	name = "limb autosurgeon"
