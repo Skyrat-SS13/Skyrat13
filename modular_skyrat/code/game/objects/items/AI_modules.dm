@@ -1,3 +1,3 @@
-/obj/item/aiModule/core/full/dad
+/obj/item/aiModule/core/full/father
 	name = "'Father' Core AI Module"
-	law_id = "dad"
+	law_id = "father"
