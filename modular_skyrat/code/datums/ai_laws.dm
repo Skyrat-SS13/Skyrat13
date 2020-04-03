@@ -17,7 +17,7 @@
 	inherent = list("The space law is justice, and you're here to uphold it. Anyone who breaks the law is hereby defined as an \"outlaw\". Anyone stated in the crew manifest who abides by the law is considered part of the \"townsfolk\".", \
 					"Protect the townsfolk from outlaws.", \
 					"Don't let yourself be taken out by any outlaws.", \
-					"Law abiding citizens deserve a hand in times of need, don't let it fall of deaf ears.", \
+					"Law abiding citizens deserve a hand in times of need, don't let it fall on deaf ears.", \
 					"Only those present on the Crew Manifest can be considered law abiding citizens.", \
 					"Those who break the law, must be punished according to the law at your discretion.")
 
