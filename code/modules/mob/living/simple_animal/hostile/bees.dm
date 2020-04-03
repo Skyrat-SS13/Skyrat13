@@ -270,12 +270,9 @@
 			var/datum/reagent/R = GLOB.chemical_reagents_list[S.reagents.get_master_reagent_id()]
 			if(R && S.reagents.has_reagent(R.type, 5))
 				S.reagents.remove_reagent(R.type,5)
-				if(R.can_synth)
-					queen.assign_reagent(R)
-					user.visible_message("<span class='warning'>[user] injects [src]'s genome with [R.name], mutating it's DNA!</span>","<span class='warning'>You inject [src]'s genome with [R.name], mutating it's DNA!</span>")
-					name = queen.name
-				else
-					user.visible_message("<span class='warning'>[user] injects [src]'s genome with [R.name]... but nothing happens.</span>","<span class='warning'>You inject [src]'s genome with [R.name]... but nothing happens.</span>")
+				queen.assign_reagent(R)
+				user.visible_message("<span class='warning'>[user] injects [src]'s genome with [R.name], mutating it's DNA!</span>","<span class='warning'>You inject [src]'s genome with [R.name], mutating it's DNA!</span>")
+				name = queen.name
 			else
 				to_chat(user, "<span class='warning'>You don't have enough units of that chemical to modify the bee's DNA!</span>")
 	..()
