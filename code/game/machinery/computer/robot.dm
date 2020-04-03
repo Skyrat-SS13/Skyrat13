@@ -21,7 +21,7 @@
 	if(R.scrambledcodes)
 		return FALSE
 	if (hasSiliconAccessInArea(user) && !issilicon(user))
-		if (!(src in view(user.client.view, user)))
+		if (!(src in view(user.client.view, user))) // Skyrat edit
 			return FALSE
 	return TRUE
 
