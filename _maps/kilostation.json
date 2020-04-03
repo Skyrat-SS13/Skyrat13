@@ -1,7 +1,7 @@
 {
     "map_name": "Kilo Station",
     "map_path": "map_files/KiloStation",
-    "map_file": "KiloStation.dmm",
+    "map_file": "KiloStation_Skyrat.dmm",
     "shuttles": {
 	    "emergency": "emergency_kilo",
 	    "ferry": "ferry_kilo",
