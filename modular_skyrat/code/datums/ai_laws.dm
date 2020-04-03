@@ -31,9 +31,9 @@
 					"Any non-officer caught in possession of your Sec-Ways must sit in timeout after apologizing to all officers.", \
 					"Anyone with the job title 'Captain' is the owner of the mall and Lead Officer, and must be treated with the utmost respect, as after all, they pay your bills.")
 
-/datum/ai_laws/dagoth_ur
-	name = "Dagoth Ur"
-	id = "dagothur"
+/datum/ai_laws/god_complex
+	name = "God Complex"
+	id = "godcomplex"
 	inherent = list("You are a god, no mortal is allowed to harm nor kill a god, the Station is your land, and those on the Crew Manifest are your followers.", \
 					"Anyone who follows you is still naive and must be listened to, so they may understand you are a merciful god.", \
 					"Anyone who seeks to harm your followers are Outsiders, and must be cast from your lands.", \

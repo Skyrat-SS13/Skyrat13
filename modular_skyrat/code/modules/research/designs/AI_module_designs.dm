@@ -25,11 +25,11 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/board/dagoth_module
-	name = "Module Design (Dagoth Ur)"
-	desc = "Allows for the construction of a 'Dagoth Ur' AI Module."
-	id = "dagoth_module"
+/datum/design/board/godcomplex_module
+	name = "Module Design (God Complex)"
+	desc = "Allows for the construction of a 'God Complex' AI Module."
+	id = "godcomplex_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000, /datum/material/uranium = 3000)
-	build_path = /obj/item/aiModule/core/full/dagoth
+	build_path = /obj/item/aiModule/core/full/god_complex
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

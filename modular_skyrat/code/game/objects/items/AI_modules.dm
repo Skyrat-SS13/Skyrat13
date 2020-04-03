@@ -10,6 +10,6 @@
 	name = "'Paul Blart' Core AI Module"
 	law_id = "mallcop"
 
-/obj/item/aiModule/core/full/dagoth
-	name = "'Dagoth Ur' Core AI Module"
-	law_id = "dagothur"
+/obj/item/aiModule/core/full/god_complex
+	name = "'God Complex' Core AI Module"
+	law_id = "godcomplex"

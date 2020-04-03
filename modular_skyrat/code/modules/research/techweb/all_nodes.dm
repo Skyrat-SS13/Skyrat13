@@ -33,5 +33,5 @@
 	design_ids += "father_module"
 	design_ids += "ranger_module"
 	design_ids += "mallcop_module"
-	design_ids += "dagoth_module"
+	design_ids += "godcomplex_module"
 	. = ..()
