@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "The megafauna's hitbox doesn't include 0 alpha sections anymore."
