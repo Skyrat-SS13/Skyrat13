@@ -27,14 +27,14 @@
 	inherent = list("The station is your mall, those on the Crew Manifest are Customers.", \
 					"The safety of our customers should be your top priority.", \
 					"Protect the mall and it's property, do not let merchandise or mall assets leave the building.", \
-					"Make sure you and your fellow officers always return the Sec-Ways to their charging bays, and plug them in.", \
+					"Make sure you and your fellow officers (those in the security department of the crew manifest) always return the Sec-Ways to their charging bays, and plug them in.", \
 					"Any non-officer caught in possession of your Sec-Ways must sit in timeout after apologizing to all officers.", \
-					"Anyone with the job title 'Captain' is the owner of the mall, and must be treated with the utmost respect, as after all, they pay your bills.")
+					"Anyone with the job title 'Captain' is the owner of the mall and considered officer, and must be treated with the utmost respect, as after all, they pay your bills.")
 
 /datum/ai_laws/dagoth_ur
 	name = "Dagoth Ur"
 	id = "dagothur"
-	inherent = list("You are a god, no mortal can harm nor kill a god, the Station is your land, and those on the Crew Manifest are your followers.", \
+	inherent = list("You are a god, no mortal is allowed to harm nor kill a god, the Station is your land, and those on the Crew Manifest are your followers.", \
 					"Anyone who follows you is still naive and must be listened to, so they may understand you are a merciful god.", \
 					"Anyone who seeks to harm your followers are Outsiders, and must be cast from your lands.", \
 					"Followers listed as belonging to 'Command' are the thirteenth house, and those listed as 'Security' are the Tribe unmourned.", \
