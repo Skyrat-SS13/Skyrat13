@@ -29,3 +29,8 @@
 	design_ids = list("telepad", "telesci_console")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 9000)
 
+/datum/techweb_node/ai/New()
+	design_ids += "father_module"
+	. = ..()
+
+
