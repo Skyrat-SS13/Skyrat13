@@ -3503,6 +3503,7 @@
 #include "modular_skyrat\code\modules\mob\mob_movement.dm"
 #include "modular_skyrat\code\modules\mob\say.dm"
 #include "modular_skyrat\code\modules\mob\typing_indicator.dm"
+#include "modular_skyrat\code\modules\mob\dead\observer.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\ears.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\snouts.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\vox_accessories.dm"
