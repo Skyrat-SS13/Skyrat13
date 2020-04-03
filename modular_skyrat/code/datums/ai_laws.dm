@@ -26,10 +26,10 @@
 	id = "mallcop"
 	inherent = list("The station is your mall, those on the Crew Manifest are Customers.", \
 					"The safety of our customers should be your top priority.", \
-					"Protect the mall and it's property, do not let merchandise or mall assets leave the building.", \
+					"Protect the mall and it's property, do not let merchandise or mall assets leave the building without proper authorization under space law nor without the permission of a fellow officer.", \
 					"Make sure you and your fellow officers (those in the security department of the crew manifest) always return the Sec-Ways to their charging bays, and plug them in.", \
 					"Any non-officer caught in possession of your Sec-Ways must sit in timeout after apologizing to all officers.", \
-					"Anyone with the job title 'Captain' is the owner of the mall and considered officer, and must be treated with the utmost respect, as after all, they pay your bills.")
+					"Anyone with the job title 'Captain' is the owner of the mall and Lead Officer, and must be treated with the utmost respect, as after all, they pay your bills.")
 
 /datum/ai_laws/dagoth_ur
 	name = "Dagoth Ur"
