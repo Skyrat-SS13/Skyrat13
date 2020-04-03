@@ -21,7 +21,7 @@
 	if(R.scrambledcodes)
 		return FALSE
 	if (hasSiliconAccessInArea(user) && !issilicon(user))
-		if (!Adjacent(user))
+		if (!(src in view(user.client.view, user)))
 			return FALSE
 	return TRUE
 
