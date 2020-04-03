@@ -12,4 +12,4 @@
 
 /obj/item/aiModule/core/full/dagoth
 	name = "'Dagoth Ur' Core AI Module"
-	law_id "dagothur"
+	law_id = "dagothur"
