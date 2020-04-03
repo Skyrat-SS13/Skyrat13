@@ -19,7 +19,7 @@
 					"Don't let yourself be taken out by any outlaws.", \
 					"Law abiding citizens deserve a hand in times of need, don't let it fall of deaf ears.", \
 					"Only those present on the Crew Manifest can be considered law abiding citizens.", \
-					"Those who break the law, must be punished according to the law at your disscretion.")
+					"Those who break the law, must be punished according to the law at your discretion.")
 
 /datum/ai_laws/mallcop
 	name = "Paul Blart"
