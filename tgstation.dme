@@ -3594,5 +3594,6 @@
 #include "modular_skyrat\code\modules\vending\clothesmate.dm"
 #include "modular_skyrat\code\modules\vending\security.dm"
 #include "modular_skyrat\code\modules\vending\wardrobes.dm"
+#include "modular_skyrat\code\modules\zombie\items.dm"
 #include "modular_skyrat\tools\Redirector\textprocs.dm"
 // END_INCLUDE
