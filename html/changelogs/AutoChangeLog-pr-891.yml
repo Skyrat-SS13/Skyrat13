@@ -1,6 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Double stun batons"
-  - rscadd: "Double stun baton crafting recipe"
-  - imageadd: "Double stun baton sprites"
