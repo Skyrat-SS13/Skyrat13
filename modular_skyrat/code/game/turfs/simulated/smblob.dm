@@ -1,5 +1,5 @@
 // QUALITY COPYPASTA
-/turf/unsimulated/wall/supermatter
+/turf/closed/wall/supermatter
 	name = "Supermatter Sea"
 	desc = "THE END IS right now actually."
 	icon='modular_skyrat/icons/turf/space.dmi'
@@ -17,17 +17,17 @@
 
 	dynamic_lighting = 0
 
-/turf/unsimulated/wall/supermatter/Initialize()
+/turf/closed/wall/supermatter/Initialize()
 	START_PROCESSING(SSobj,src)
 
-/turf/unsimulated/wall/supermatter/New()
+/turf/closed/wall/supermatter/New()
 	return ..()
 
-/turf/unsimulated/wall/supermatter/Destroy()
+/turf/closed/wall/supermatter/Destroy()
 	STOP_PROCESSING(SSobj,src)
 	return ..()
 
-/turf/unsimulated/wall/supermatter/process()
+/turf/closed/wall/supermatter/process()
 
 	// Only check infrequently.
 	if(next_check>world.time)
@@ -45,7 +45,7 @@
 	var/pdir = pick(avail_dirs)
 	avail_dirs -= pdir
 	var/turf/T=get_step(src,pdir)
-	if(istype(T, /turf/unsimulated/wall/supermatter/))
+	if(istype(T, /turf/closed/wall/supermatter/))
 		avail_dirs -= pdir
 		return
 
@@ -65,14 +65,14 @@
 					A = null
 				CHECK_TICK
 			T.ChangeTurf(type)
-			var/turf/unsimulated/wall/supermatter/SM = T
+			var/turf/closed/wall/supermatter/SM = T
 			if(SM.avail_dirs)
 				SM.avail_dirs -= get_dir(T, src)
 
-/turf/unsimulated/wall/supermatter/attack_paw(mob/user as mob)
+/turf/closed/wall/supermatter/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/turf/unsimulated/wall/supermatter/attack_robot(mob/user as mob)
+/turf/closed/wall/supermatter/attack_robot(mob/user as mob)
 	if(Adjacent(user))
 		return attack_hand(user)
 	else
@@ -81,10 +81,10 @@
 
 // /vg/: Don't let ghosts fuck with this.
 
-/turf/unsimulated/wall/supermatter/attack_ai(mob/user as mob)
+/turf/closed/wall/supermatter/attack_ai(mob/user as mob)
 	return
 
-/turf/unsimulated/wall/supermatter/attack_hand(mob/user as mob)
+/turf/closed/wall/supermatter/attack_hand(mob/user as mob)
 	user.visible_message("<span class=\"warning\">\The [user] reaches out and touches \the [src]... And then blinks out of existance.</span>",\
 		"<span class=\"danger\">You reach out and touch \the [src]. Everything immediately goes quiet. Your last thought is \"That was not a wise decision.\"</span>",\
 		"<span class=\"warning\">You hear an unearthly noise.</span>")
@@ -93,7 +93,7 @@
 
 	Consume(user)
 
-/turf/unsimulated/wall/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+/turf/closed/wall/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
 	user.visible_message("<span class=\"warning\">\The [user] touches \a [W] to \the [src] as a silence fills the room...</span>",\
 		"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>",\
 		"<span class=\"warning\">Everything suddenly goes silent.</span>")
@@ -103,7 +103,7 @@
 	Consume(W)
 
 
-/turf/unsimulated/wall/supermatter/Bumped(atom/AM)
+/turf/closed/wall/supermatter/Bumped(atom/AM)
 	if(istype(AM, /mob/living))
 		AM.visible_message("<span class=\"warning\">\The [AM] slams into \the [src] inducing a resonance... \his body starts to glow and catch flame before flashing into ash.</span>",\
 		"<span class=\"danger\">You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\"</span>",\
@@ -117,7 +117,7 @@
 	Consume(AM)
 
 
-/turf/unsimulated/wall/supermatter/proc/Consume(atom/AM)
+/turf/closed/wall/supermatter/proc/Consume(atom/AM)
 	if(isliving(AM))
 		var/mob/living/user = AM
 		if(user.status_flags & GODMODE)
@@ -147,8 +147,8 @@
 			L.show_message("<span class='italics'>You hear an unearthly ringing and notice your skin is covered in fresh radiation burns.</span>", MSG_AUDIBLE)
 
 
-/turf/unsimulated/wall/supermatter/singularity_act()
+/turf/closed/wall/supermatter/singularity_act()
 	return
 
-/turf/unsimulated/wall/supermatter/no_spread
+/turf/closed/wall/supermatter/no_spread
 	avail_dirs = list()
