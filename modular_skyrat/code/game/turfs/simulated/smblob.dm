@@ -58,6 +58,7 @@
 				if(A)
 					if(istype(A,/mob/living))
 						qdel(A)
+						qdel(A)
 						A = null
 					else if(istype(A,/mob)) // Observers, AI cameras.
 						continue
