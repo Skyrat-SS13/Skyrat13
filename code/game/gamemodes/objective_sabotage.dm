@@ -33,14 +33,14 @@
 /datum/sabotage_objective/processing/check_conditions()
 	return won
 
-/datum/sabotage_objective/processing/power_sink
+/*/datum/sabotage_objective/processing/power_sink
 	name = "Drain at least 100 megajoules of power using a power sink."
 	sabotage_type = "powersink"
 	special_equipment = list(/obj/item/sbeacondrop/powersink)
 	var/sink_found = FALSE
 	var/count = 0
 
-/*/datum/sabotage_objective/processing/power_sink/check_condition_processing()
+/datum/sabotage_objective/processing/power_sink/check_condition_processing()
 	for(var/s in GLOB.power_sinks)
 		var/obj/item/powersink/sink = s
 		won = max(won,sink.power_drained/1e8)
