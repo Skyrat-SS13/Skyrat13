@@ -15237,21 +15237,12 @@
 	},
 /turf/open/floor/plating,
 /area/construction/storage/wing)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "aEI" = (
 /obj/structure/sign/nanotrasen{
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-<<<<<<< HEAD
-=======
->>>>>>> skyrat/master
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "aEJ" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -15886,10 +15877,6 @@
 	},
 /turf/open/floor/plating,
 /area/construction/storage/wing)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "aFV" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -15944,11 +15931,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/blueshield)
-<<<<<<< HEAD
-=======
->>>>>>> skyrat/master
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "aFZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -16660,10 +16642,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/storage/wing)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "aHr" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -16723,11 +16701,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/blueshield)
-<<<<<<< HEAD
-=======
->>>>>>> skyrat/master
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "aHx" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/fore)
@@ -17277,10 +17250,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/storage/wing)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "aIB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17366,11 +17335,6 @@
 	},
 /turf/open/floor/plating,
 /area/blueshield)
-<<<<<<< HEAD
-=======
->>>>>>> skyrat/master
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "aIH" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -81790,29 +81754,8 @@
 /obj/item/storage/photo_album,
 /turf/open/floor/plasteel,
 /area/security/prison)
-<<<<<<< HEAD
-<<<<<<< HEAD
-"fLV" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-=======
-"fZb" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/construction/storage/wing)
 "fZr" = (
 /obj/structure/chair/stool,
->>>>>>> skyrat/master
-=======
-"fZr" = (
-/obj/structure/chair/stool,
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 /obj/machinery/camera{
 	c_tag = "Permabrig Cafeteria";
 	network = list("ss13","prison")
@@ -82111,11 +82054,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "hdy" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -82126,18 +82064,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-<<<<<<< HEAD
-"hee" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "CO2 to Pure"
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos)
->>>>>>> skyrat/master
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "heE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
@@ -83716,14 +83642,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-<<<<<<< HEAD
-<<<<<<< HEAD
-"nGR" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "sexroom"
-=======
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "nBf" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -83743,10 +83661,6 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 8
-<<<<<<< HEAD
->>>>>>> skyrat/master
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -84775,31 +84689,12 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/science/mixing)
-<<<<<<< HEAD
-<<<<<<< HEAD
-"rYn" = (
-/obj/machinery/door/poddoor{
-	id = "soli1"
-=======
-"rUg" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	name = "O2 to Pure"
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos)
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 "rUo" = (
 /obj/structure/lattice,
 /obj/machinery/camera{
 	c_tag = "Permabrig Space southwest";
 	dir = 8;
 	name = "aft camera"
-<<<<<<< HEAD
->>>>>>> skyrat/master
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -108416,18 +108311,8 @@ awW
 awW
 awW
 aaf
-<<<<<<< HEAD
-<<<<<<< HEAD
 aFN
 aHs
-=======
-fZb
-aaJ
->>>>>>> skyrat/master
-=======
-aFN
-aHs
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 aIA
 aJQ
 aLh
@@ -108684,21 +108569,9 @@ aaa
 aaa
 aaa
 aFN
-<<<<<<< HEAD
-<<<<<<< HEAD
-nQJ
-aIB
-aJN
-=======
-aab
-aaV
-aJO
->>>>>>> skyrat/master
-=======
 lPJ
 aIB
 aJN
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 aLi
 aMD
 aNV
@@ -108951,24 +108824,10 @@ aaa
 aaa
 aaa
 aaa
-<<<<<<< HEAD
-<<<<<<< HEAD
-nQJ
-nQJ
-hJc
-aIC
-=======
-aDu
-aDu
-aDu
-aaW
->>>>>>> skyrat/master
-=======
 lPJ
 lPJ
 wlx
 aIC
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 aJN
 aLj
 aME
@@ -109222,24 +109081,10 @@ aaa
 aaa
 aaa
 aaa
-<<<<<<< HEAD
-<<<<<<< HEAD
-wiI
-aFV
-aHu
-aID
-=======
-azC
-aaC
-aaM
-aaX
->>>>>>> skyrat/master
-=======
 fDa
 aFV
 aHu
 aID
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 aJN
 dhI
 aME
@@ -109493,24 +109338,10 @@ aaa
 aaa
 aaa
 aaa
-<<<<<<< HEAD
-<<<<<<< HEAD
-wiI
-aFW
-aHv
-aIE
-=======
-azC
-aaD
-aaQ
-aba
->>>>>>> skyrat/master
-=======
 fDa
 aFW
 aHv
 aIE
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 aJN
 aLl
 aME
@@ -109764,24 +109595,10 @@ aaa
 aaa
 aaa
 aaa
-<<<<<<< HEAD
-<<<<<<< HEAD
-wiI
-aFW
-aHw
-aIF
-=======
-azC
-aaD
-aaT
-abd
->>>>>>> skyrat/master
-=======
 fDa
 aFW
 aHw
 aIF
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 aJN
 aLm
 aMF
@@ -110035,24 +109852,10 @@ aaa
 aAV
 aaa
 aaa
-<<<<<<< HEAD
-<<<<<<< HEAD
-nQJ
-=======
 lPJ
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 aFX
 ikC
 aIG
-<<<<<<< HEAD
-=======
-aDu
-aaF
-aHx
-abh
->>>>>>> skyrat/master
-=======
->>>>>>> e2eef04fc9278ce08227b0ca818b89b901180390
 aJR
 aLn
 aJR
