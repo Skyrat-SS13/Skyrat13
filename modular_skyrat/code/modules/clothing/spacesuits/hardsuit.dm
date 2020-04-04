@@ -263,7 +263,7 @@
 	visible_message("<span class ='warning'>The core of the [src] sparks, beginning to visibly smoke and heat up! Get away from it, now!")
 	addtimer(CALLBACK(src, .proc/detonate),50)
 
-/obj/item/clothing/suit/space/hardsuit/security/powerarmor/proc./detonate()
+/obj/item/clothing/suit/space/hardsuit/security/powerarmor/proc/detonate()
 	visible_message("<span class ='warning'>The [src]'s power core overheats and unravels, causing the [src] to explode violently!'")
 	explosion(src.loc,1,2,3,flame_range = 3)
 	qdel(src)
