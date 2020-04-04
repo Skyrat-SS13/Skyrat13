@@ -22,5 +22,4 @@
 	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/suit_digi.dmi'
 	icon_state = "blueshield"
 	item_state = "blueshield"
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
-
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 75)

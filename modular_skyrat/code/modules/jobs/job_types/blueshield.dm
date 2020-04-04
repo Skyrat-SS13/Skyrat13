@@ -32,7 +32,7 @@
 	uniform = /obj/item/clothing/under/rank/security/blueshield
 	id = /obj/item/card/id/silver
 	suit = /obj/item/clothing/suit/armor/vest/blueshield
-	gloves = /obj/item/clothing/gloves/color/black
+	gloves = /obj/item/clothing/gloves/combat/blueshield
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset/heads/blueshield/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses

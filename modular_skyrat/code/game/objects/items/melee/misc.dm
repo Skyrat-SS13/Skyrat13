@@ -30,13 +30,14 @@
 
 //blueshield's baton
 /obj/item/melee/baton/blueshieldprod
-	name = "stunprod"
+	name = "\improper The electrifryer"
 	desc = "A non-lethal takedown is always the most silent way to eliminate resistance."
 	icon = 'modular_skyrat/icons/obj/stunprod.dmi'
-	icon_state = "stunprod"
+	icon_state = "bsprod"
+	item_state = "bsprod"
+	obj_flags = UNIQUE_RENAME
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_lefthand.dmi' //pissholder
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/melee_righthand.dmi' //placeholder fuck
-	item_state = "teleprod" //placeholder fuck piss
 	stamforce = 35 //considerably better than a normal baton
 	hitcost = 600 //less energy cost per hit
 	slot_flags = null //you'll have to put it on a belt or whatever
@@ -44,6 +45,14 @@
 	attack_verb = list("prodded", "struck", "\"non-lethalled\"", "silent takedowned") //le deus ex
 	w_class = WEIGHT_CLASS_SMALL //small but packs a PUNCH.
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus
+
+/obj/item/melee/baton/blueshieldprod/update_icon_state() // Thanks Trilby i nut -CinderWC
+    if(status)
+        icon_state = "bsprod_active"
+    else if(!cell)
+        icon_state = "bsprod_nocell"
+    else
+        icon_state = "bsprod"
 
 /obj/item/melee/baton/blueshieldprod/common_baton_melee(mob/M, mob/living/user, disarming = FALSE)
     if(iscyborg(M) || !isliving(M))        //can't baton cyborgs
@@ -66,4 +75,4 @@
         M.visible_message("<span class='warning'>[user] has prodded [M] with [src]. Luckily it was off.</span>", \
                         "<span class='warning'>[user] has prodded you with [src]. Luckily it was off</span>")
     return disarming || (user.a_intent != INTENT_HARM)
-	// **DOES NOT FUNCTION** obj_flags = UNIQUE_RENAMES
+    // This code makes it so that non-mindshielded users of the item will stun themselves. Thanks Jake and Useroth -CinderWC

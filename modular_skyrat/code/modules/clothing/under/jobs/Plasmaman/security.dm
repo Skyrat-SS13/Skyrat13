@@ -6,3 +6,4 @@
 	icon_state = "bs_envirosuit"
 	item_state = "bs_envirosuit"
 	item_color = "bs_envirosuit"
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 10,"energy" = 0, "bomb" = 5, "bio" = 100, "rad" = 0, "fire" = 95, "acid" = 95)

@@ -21,3 +21,5 @@
 	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
 	icon_state = "bs_envirohelm"
 	item_state = "bs_envirohelm"
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 20, "bomb" = 25, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 90)
+	resistance_flags = FIRE_PROOF
