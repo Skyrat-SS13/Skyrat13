@@ -1,51 +1,41 @@
-//#define BLUESPACELEAK_FLAT if you touch this I'll cut your fingers
-
 // QUALITY COPYPASTA
 /turf/unsimulated/wall/supermatter
 	name = "Supermatter Sea"
 	desc = "THE END IS right now actually."
-	icon='icons/turf/space.dmi'
-#ifdef BLUESPACELEAK_FLAT
-	icon_state = "bluespace"
-#else
+	icon='modular_skyrat/icons/turf/space.dmi'
 	icon_state = "bluespacecrystal1"
-#endif
 
 	light_range = 5
 	light_power = 2
 	light_color="#0066FF"
 	layer = CLOSED_TURF_LAYER
 	plane = LIGHTING_PLANE
+	explosion_block = INFINITY
 
 	var/next_check=0
 	var/list/avail_dirs = list(NORTH,SOUTH,EAST,WEST)
 
 	dynamic_lighting = 0
 
+/turf/unsimulated/wall/supermatter/Initialize()
+	START_PROCESSING(SSobj,src)
+
 /turf/unsimulated/wall/supermatter/New()
-	processing_objects |= src
-#ifndef BLUESPACELEAK_FLAT
-	icon_state = "bluespacecrystal[rand(1,3)]"
-	var/nturns=pick(0,3)
-	if(nturns)
-		var/matrix/M = matrix()
-		M.Turn(90*nturns)
-		transform = M
-#endif
 	return ..()
 
 /turf/unsimulated/wall/supermatter/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj,src)
 	return ..()
 
 /turf/unsimulated/wall/supermatter/process()
+
 	// Only check infrequently.
 	if(next_check>world.time)
 		return
 
 	// No more available directions? Shut down process().
 	if(avail_dirs.len==0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj,src)
 		return 1
 
 	// We're checking, reset the timer.
@@ -62,15 +52,10 @@
 	// EXPAND DONG
 	if(isturf(T))
 		// This is normally where a growth animation would occur
-#ifdef BLUESPACELEAK_FLAT
-		new /obj/effect/overlay/bluespacify(T)
-#endif
 		spawn(10)
 			// Nom.
 			for(var/atom/movable/A in T)
 				if(A)
-					if(istype(A, /obj/machinery/singularity))
-						continue
 					if(istype(A,/mob/living))
 						qdel(A)
 						A = null
@@ -95,11 +80,9 @@
 	return
 
 // /vg/: Don't let ghosts fuck with this.
-/turf/unsimulated/wall/supermatter/attack_ghost(mob/user as mob)
-	user.examination(src)
 
 /turf/unsimulated/wall/supermatter/attack_ai(mob/user as mob)
-	return user.examination(src)
+	return
 
 /turf/unsimulated/wall/supermatter/attack_hand(mob/user as mob)
 	user.visible_message("<span class=\"warning\">\The [user] reaches out and touches \the [src]... And then blinks out of existance.</span>",\
@@ -117,7 +100,6 @@
 
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 
-	user.drop_from_inventory(W)
 	Consume(W)
 
 
@@ -136,9 +118,34 @@
 
 
 /turf/unsimulated/wall/supermatter/proc/Consume(atom/AM)
-	if(istype(AM, /mob/dead/observer))
+	if(isliving(AM))
+		var/mob/living/user = AM
+		if(user.status_flags & GODMODE)
+			return
+		message_admins("[src] has consumed [key_name_admin(user)] [ADMIN_JMP(src)].")
+		investigate_log("has consumed [key_name(user)].", INVESTIGATE_SUPERMATTER)
+		user.dust(force = TRUE)
+	else if(istype(AM, /obj/singularity))
 		return
-	return AM.supermatter_act(src)
+	else if(isobj(AM))
+		if(!iseffect(AM))
+			var/suspicion = ""
+			if(AM.fingerprintslast)
+				suspicion = "last touched by [AM.fingerprintslast]"
+				message_admins("[src] has consumed [AM], [suspicion] [ADMIN_JMP(src)].")
+			investigate_log("has consumed [AM] - [suspicion].", INVESTIGATE_SUPERMATTER)
+		qdel(AM)
+
+	//Some poor sod got eaten, go ahead and irradiate people nearby.
+	radiation_pulse(src, 3000, 2, TRUE)
+	for(var/mob/living/L in range(10))
+		investigate_log("has irradiated [key_name(L)] after consuming [AM].", INVESTIGATE_SUPERMATTER)
+		if(L in view())
+			L.show_message("<span class='danger'>As \the [src] slowly stops resonating, you find your skin covered in new radiation burns.</span>", MSG_VISUAL,\
+				"<span class='danger'>The unearthly ringing subsides and you notice you have new radiation burns.</span>", MSG_AUDIBLE)
+		else
+			L.show_message("<span class='italics'>You hear an unearthly ringing and notice your skin is covered in fresh radiation burns.</span>", MSG_AUDIBLE)
+
 
 /turf/unsimulated/wall/supermatter/singularity_act()
 	return
