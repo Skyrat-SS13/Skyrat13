@@ -2,6 +2,17 @@
 "aaa" = (
 /turf/open/space/basic,
 /area/space)
+"aab" = (
+/obj/machinery/vending/cigarette,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/construction/storage/wing)
 "aac" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space,
@@ -175,6 +186,36 @@
 	name = "secure isolation floor"
 	},
 /area/security/prison)
+"aaB" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -22
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
+"aaC" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/camera{
+	c_tag = "Storage Wing - Security Access Door";
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
+"aaD" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
 "aaE" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -189,6 +230,41 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aaF" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
+"aaG" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/security{
+	name = "Security-Storage Backroom";
+	req_access_txt = "63"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
+"aaH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/construction/storage/wing)
 "aaI" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
@@ -205,6 +281,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aaJ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/construction/storage/wing)
 "aaL" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -212,6 +297,13 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"aaM" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
 "aaN" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -234,6 +326,10 @@
 	name = "secure isolation floor"
 	},
 /area/security/prison)
+"aaQ" = (
+/obj/structure/chair/office/dark,
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
 "aaR" = (
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -241,6 +337,46 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aaT" = (
+/obj/structure/table,
+/obj/machinery/recharger,
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
+"aaV" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/construction/storage/wing)
+"aaW" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/security{
+	name = "Security-Storage Backroom";
+	req_access_txt = "63"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
+"aaX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
 "aaY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -251,6 +387,18 @@
 "aaZ" = (
 /turf/closed/wall/r_wall,
 /area/security/execution/education)
+"aba" = (
+/obj/structure/table,
+/obj/item/folder/red,
+/obj/item/restraints/handcuffs,
+/obj/machinery/newscaster/security_unit{
+	pixel_y = -30
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
 "abb" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced,
@@ -267,6 +415,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"abd" = (
+/obj/machinery/light/small,
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
 "abe" = (
 /turf/closed/wall,
 /area/security/prison)
@@ -287,6 +451,13 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/education)
+"abh" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/hallway/primary/fore)
 "abi" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -15247,12 +15418,15 @@
 	},
 /turf/open/floor/plating,
 /area/construction/storage/wing)
+<<<<<<< HEAD
 "aEI" = (
 /obj/structure/sign/nanotrasen{
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+=======
+>>>>>>> skyrat/master
 "aEJ" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -15887,6 +16061,7 @@
 	},
 /turf/open/floor/plating,
 /area/construction/storage/wing)
+<<<<<<< HEAD
 "aFV" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -15941,6 +16116,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/blueshield)
+=======
+>>>>>>> skyrat/master
 "aFZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -16657,6 +16834,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/storage/wing)
+<<<<<<< HEAD
 "aHr" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -16716,6 +16894,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/blueshield)
+=======
+>>>>>>> skyrat/master
 "aHx" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/fore)
@@ -17265,6 +17445,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/storage/wing)
+<<<<<<< HEAD
 "aIB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17350,6 +17531,8 @@
 	},
 /turf/open/floor/plating,
 /area/blueshield)
+=======
+>>>>>>> skyrat/master
 "aIH" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -43592,20 +43775,20 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "N2O to Pure"
-	},
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/engine/atmos)
 "bIZ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 4
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8;
+	name = "N2O to Pure"
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
@@ -46756,10 +46939,6 @@
 /area/engine/atmos)
 "bPw" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "Plasma to Pure"
-	},
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -46776,6 +46955,9 @@
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -49222,10 +49404,6 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bUH" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "CO2 to Pure"
-	},
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -49243,6 +49421,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
@@ -52646,13 +52827,10 @@
 	name = "Inner Pipe Access";
 	req_access_txt = "24"
 	},
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	name = "O2 to Pure"
-	},
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "cbl" = (
@@ -81668,12 +81846,24 @@
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/plasteel,
 /area/security/prison)
+<<<<<<< HEAD
 "fLV" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+=======
+"fZb" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/construction/storage/wing)
+"fZr" = (
+/obj/structure/chair/stool,
+>>>>>>> skyrat/master
 /obj/machinery/camera{
 	c_tag = "Permabrig East";
 	dir = 8;
@@ -82027,6 +82217,27 @@
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+<<<<<<< HEAD
+=======
+"hdy" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"hee" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8;
+	name = "CO2 to Pure"
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos)
+>>>>>>> skyrat/master
 "heE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
@@ -83484,9 +83695,39 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+<<<<<<< HEAD
 "nGR" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "sexroom"
+=======
+"nBf" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"nCs" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8;
+	name = "Plasma to Pure"
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos)
+"nHL" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+>>>>>>> skyrat/master
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -84488,9 +84729,25 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/science/mixing)
+<<<<<<< HEAD
 "rYn" = (
 /obj/machinery/door/poddoor{
 	id = "soli1"
+=======
+"rUg" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "O2 to Pure"
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos)
+"rUo" = (
+/obj/structure/lattice,
+/obj/machinery/camera{
+	c_tag = "Permabrig Space southwest";
+	dir = 8;
+	name = "aft camera"
+>>>>>>> skyrat/master
 	},
 /turf/open/floor/mineral/titanium/white{
 	name = "secure isolation floor"
@@ -108037,7 +108294,7 @@ aCh
 awW
 aaa
 aFT
-aHr
+aaH
 aIz
 aJP
 aLg
@@ -108293,8 +108550,13 @@ awW
 awW
 awW
 aaf
+<<<<<<< HEAD
 aFN
 aHs
+=======
+fZb
+aaJ
+>>>>>>> skyrat/master
 aIA
 aJQ
 aLh
@@ -108551,9 +108813,15 @@ aaa
 aaa
 aaa
 aFN
+<<<<<<< HEAD
 nQJ
 aIB
 aJN
+=======
+aab
+aaV
+aJO
+>>>>>>> skyrat/master
 aLi
 aMD
 aNV
@@ -108806,10 +109074,17 @@ aaa
 aaa
 aaa
 aaa
+<<<<<<< HEAD
 nQJ
 nQJ
 hJc
 aIC
+=======
+aDu
+aDu
+aDu
+aaW
+>>>>>>> skyrat/master
 aJN
 aLj
 aME
@@ -109063,10 +109338,17 @@ aaa
 aaa
 aaa
 aaa
+<<<<<<< HEAD
 wiI
 aFV
 aHu
 aID
+=======
+azC
+aaC
+aaM
+aaX
+>>>>>>> skyrat/master
 aJN
 dhI
 aME
@@ -109320,10 +109602,17 @@ aaa
 aaa
 aaa
 aaa
+<<<<<<< HEAD
 wiI
 aFW
 aHv
 aIE
+=======
+azC
+aaD
+aaQ
+aba
+>>>>>>> skyrat/master
 aJN
 aLl
 aME
@@ -109577,10 +109866,17 @@ aaa
 aaa
 aaa
 aaa
+<<<<<<< HEAD
 wiI
 aFW
 aHw
 aIF
+=======
+azC
+aaD
+aaT
+abd
+>>>>>>> skyrat/master
 aJN
 aLm
 aMF
@@ -109834,10 +110130,17 @@ aaa
 aAV
 aaa
 aaa
+<<<<<<< HEAD
 nQJ
 aFX
 mYL
 aIG
+=======
+aDu
+aaF
+aHx
+abh
+>>>>>>> skyrat/master
 aJR
 aLn
 aJR
@@ -110092,7 +110395,7 @@ aAW
 azC
 aDu
 aDu
-aFY
+aaG
 aHx
 aaa
 aaa
@@ -110348,7 +110651,7 @@ aDu
 aAX
 aCj
 aDv
-aEI
+aaB
 aFZ
 aHy
 aaa
@@ -129158,7 +129461,7 @@ dDm
 bIS
 bZK
 cbk
-ccP
+rUg
 ceh
 cfx
 bAR
@@ -130433,11 +130736,11 @@ bIZ
 bKG
 bMl
 dhj
-bIZ
+nCs
 bKG
 bMl
 bKG
-bIZ
+hee
 bKG
 bMl
 bYB

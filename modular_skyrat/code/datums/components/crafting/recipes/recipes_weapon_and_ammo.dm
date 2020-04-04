@@ -39,3 +39,18 @@
 	time = 50
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
+
+//////////////////
+///DUMB CRAFTING//
+//////////////////
+
+/datum/crafting_recipe/batonstaff
+	name = "Stun Baton Staff"
+	result = /obj/item/melee/baton/staff
+	reqs = list(/obj/item/melee/baton = 2,
+				/obj/item/stack/sheet/metal = 2,
+				/obj/item/stack/cable_coil = 5)
+	tools = list(TOOL_WELDER)
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
