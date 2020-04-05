@@ -184,15 +184,10 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 		if(0 to 24)
 			if(last_alcohol_spam + 8 SECONDS < world.time)
 				to_chat(owner, "<span class='userdanger'>DAMNATION INCARNATE, WHY AM I CURSED WITH THIS DRY-SPELL? I MUST DRINK.</span>")
-<<<<<<< HEAD
-				owner.adjustToxLoss(min(35,max(0,85 - owner.getToxLoss()))) //SKYRAT CHANGE - Dwarves get only up to 85 toxin
-			if(25 to 50)
-=======
 				last_alcohol_spam = world.time
 			owner.adjustToxLoss(10)
 		if(25 to 50)
 			if(last_alcohol_spam + 20 SECONDS < world.time)
->>>>>>> 886f0d7500f... Merge pull request #11726 from Ghommie/Ghommie-cit665
 				to_chat(owner, "<span class='danger'>Oh DAMN, I need some brew!</span>")
 				last_alcohol_spam = world.time
 		if(51 to 75)
