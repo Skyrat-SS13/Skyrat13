@@ -2084,8 +2084,6 @@
 /obj/structure/rack,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/item/clothing/suit/straight_jacket,
-/obj/item/tank/internals/anesthetic,
-/obj/item/clothing/mask/breath/medical,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -2435,13 +2433,13 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "ahS" = (
-/obj/structure/table/optable,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "ahT" = (
@@ -2678,9 +2676,6 @@
 /area/maintenance/department/security/brig)
 "aiv" = (
 /obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/sec/surgery{
-	pixel_y = 5
-	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -3766,6 +3761,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/item/bedsheet/medical,
+/obj/structure/bed,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "akF" = (
@@ -58300,6 +58297,17 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/structure/table,
+/obj/item/seeds/ambrosia,
+/obj/item/seeds/ambrosia,
+/obj/item/seeds/pineapple,
+/obj/item/seeds/pineapple,
+/obj/item/seeds/wheat,
+/obj/item/seeds/wheat,
+/obj/item/seeds/whitebeet,
+/obj/item/seeds/whitebeet,
+/obj/item/seeds/watermelon,
+/obj/item/seeds/watermelon,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "mrq" = (
@@ -59962,6 +59970,8 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/shovel/spade,
+/obj/item/shovel/spade,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "peE" = (
@@ -61268,7 +61278,11 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/vending/hydroseeds,
+/obj/structure/table,
+/obj/item/storage/bag/plants,
+/obj/item/storage/bag/plants,
+/obj/item/plant_analyzer,
+/obj/item/plant_analyzer,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "rnr" = (
@@ -61412,7 +61426,11 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/vending/hydronutrients,
+/obj/structure/table,
+/obj/item/cultivator,
+/obj/item/hatchet,
+/obj/item/hatchet,
+/obj/item/cultivator,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "rzp" = (
