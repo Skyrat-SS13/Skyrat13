@@ -5,8 +5,6 @@
 	alternate_worn_icon = 'modular_skyrat/icons/mob/back.dmi'
 	icon_state = "blueshieldpack"
 	item_state = "blueshieldpack"
-	resistance_flags = FIRE_PROOF
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 
 /obj/item/storage/backpack/satchel/blueshield
 	name = "blueshield satchel"
@@ -15,8 +13,6 @@
 	alternate_worn_icon = 'modular_skyrat/icons/mob/back.dmi'
 	icon_state = "satchel-blueshield"
 	item_state = "satchel-blueshield"
-	resistance_flags = FIRE_PROOF
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 
 obj/item/storage/backpack/duffel/blueshield
 	name = "blueshield duffelbag"
@@ -25,5 +21,3 @@ obj/item/storage/backpack/duffel/blueshield
 	alternate_worn_icon = 'modular_skyrat/icons/mob/back.dmi'
 	icon_state = "duffel-blueshield"
 	item_state = "duffel-blueshield"
-	resistance_flags = FIRE_PROOF
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
