@@ -1663,6 +1663,19 @@
 /obj/item/stack/cable_coil,
 /turf/template_noop,
 /area/template_noop)
+"fY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/structure/alien/weeds,
+/obj/structure/mecha_wreckage/durand,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/ancientstation/rnd)
 "gd" = (
 /obj/machinery/door/airlock/command,
 /turf/open/floor/plasteel/dark,
@@ -2786,12 +2799,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
-"jg" = (
-/turf/closed/indestructible/riveted{
-	icon = 'icons/turf/walls/rusty_reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/ruin/space/has_grav/ancientstation/hivebot)
 "ji" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -2835,13 +2842,14 @@
 	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/modular_computer/tablet/preset/cheap,
-/obj/item/modular_computer/tablet/preset/cheap,
-/obj/item/modular_computer/tablet/preset/cheap,
-/obj/item/modular_computer/tablet/preset/cheap,
-/obj/item/modular_computer/tablet/preset/cheap,
-/obj/item/modular_computer/tablet/preset/cheap,
+/obj/item/modular_computer/tablet/preset/advanced,
+/obj/item/modular_computer/tablet/preset/advanced,
+/obj/item/modular_computer/tablet/preset/advanced,
+/obj/item/modular_computer/tablet/preset/advanced,
+/obj/item/modular_computer/tablet/preset/advanced,
+/obj/item/modular_computer/tablet/preset/advanced,
+/obj/item/modular_computer/tablet/preset/advanced,
+/obj/structure/closet/crate,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "jn" = (
@@ -4053,6 +4061,12 @@
 /obj/item/paper/fluff/ruins/oldstation/damagereport,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/comm)
+"qu" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/template_noop)
 "qv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -4923,6 +4937,7 @@
 /obj/item/reagent_containers/spray/weedspray,
 /obj/item/reagent_containers/spray/pestspray,
 /obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "zD" = (
@@ -4985,7 +5000,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/powered)
+/area/ruin/space/has_grav/ancientstation)
 "Ar" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -5523,6 +5538,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
 /obj/effect/decal/cleanable/blood/splatter/xeno,
+/mob/living/simple_animal/bot/mulebot,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "EO" = (
@@ -5540,6 +5556,12 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs/human/limb,
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/ancientstation)
+"Fg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/mecha_wreckage/ripley,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "Fj" = (
 /obj/machinery/door/firedoor/closed,
@@ -6723,11 +6745,10 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/rnd)
 "Ps" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/bot/medbot/derelict,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation)
+/obj/structure/alien/weeds,
+/obj/structure/mecha_wreckage/ripley,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered)
 "PA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
@@ -7232,6 +7253,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
+"Tm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/bot/medbot{
+	name = "old medibot"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation)
 "Tn" = (
 /obj/structure/particle_accelerator/power_box,
 /obj/effect/decal/cleanable/dirt,
@@ -7709,10 +7738,8 @@
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/ancientstation/hivebot)
 "Xp" = (
-/obj/machinery/power/port_gen/pacman/super{
-	name = "\improper emergency power generator"
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Xt" = (
@@ -7903,10 +7930,31 @@
 /area/ruin/space/has_grav/ancientstation/rnd)
 "YH" = (
 /obj/structure/closet/crate/radiation,
-/obj/item/stack/sheet/mineral/uranium{
-	amount = 10
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "YJ" = (
@@ -9582,7 +9630,7 @@ bM
 bM
 aa
 aa
-Zm
+qu
 dF
 aa
 aa
@@ -10335,7 +10383,7 @@ cA
 ey
 co
 ea
-eG
+Ps
 VX
 he
 ey
@@ -10597,7 +10645,7 @@ aG
 qV
 Aq
 Xf
-Aq
+bN
 bN
 aG
 aG
@@ -10925,7 +10973,7 @@ ct
 ct
 pv
 dv
-bN
+Tm
 VZ
 bN
 aG
@@ -10981,7 +11029,7 @@ XC
 gF
 pR
 dv
-Ps
+bN
 VZ
 bN
 aG
@@ -11149,7 +11197,7 @@ dv
 dv
 dv
 aG
-bN
+Fg
 VZ
 Lf
 aG
@@ -11848,11 +11896,11 @@ oo
 aa
 cA
 cA
-jg
-jg
-jg
-jg
-jg
+jb
+jb
+jb
+jb
+jb
 jF
 nk
 kM
@@ -11904,11 +11952,11 @@ aa
 aa
 ao
 cA
-jg
+jb
 CL
 hq
 IV
-jg
+jb
 ac
 ac
 ag
@@ -11960,11 +12008,11 @@ aa
 aa
 cA
 cA
-jg
+jb
 hr
 hq
 hq
-jg
+jb
 ah
 ac
 ac
@@ -12016,11 +12064,11 @@ aa
 cA
 cA
 ao
-jg
+jb
 hB
 hq
 hq
-jg
+jb
 ac
 ac
 ac
@@ -12072,11 +12120,11 @@ aa
 aa
 cA
 cA
-jg
+jb
 vD
 hq
 iw
-jg
+jb
 ac
 hM
 ah
@@ -12128,11 +12176,11 @@ aa
 aa
 aa
 cA
-jg
-jg
+jb
+jb
 KR
-jg
-jg
+jb
+jb
 jJ
 nk
 nk
@@ -12313,7 +12361,7 @@ bD
 bp
 RS
 dy
-Yv
+fY
 cI
 Yq
 bx
