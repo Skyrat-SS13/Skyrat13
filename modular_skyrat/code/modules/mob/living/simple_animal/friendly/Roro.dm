@@ -32,13 +32,9 @@
 	. = ..()
 	AddElement(/datum/element/wuv, "beeps happily!", EMOTE_AUDIBLE, /datum/mood_event/pet_animal, "buzzes!", EMOTE_AUDIBLE)
 
-/mob/living/simple_animal/pet/roro/proc/emp_act()
-	playsound(src.loc, 'modular_skyrat/sound/voice/roro_rogue.ogg', 60, 1, 10)
-
 /mob/living/simple_animal/pet/roro/roboticsroro
 	name = "Roomba"
 	desc = "Its Roomba! A lovable pet Rorobot from Robotics."
 	gender = FEMALE
 	icon_living = "roro-robotics"
-	icon_dead = "roro-dead"
 	gold_core_spawnable = NO_SPAWN
