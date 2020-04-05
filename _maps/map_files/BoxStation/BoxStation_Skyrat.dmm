@@ -2745,7 +2745,6 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "afL" = (
-/obj/machinery/computer/operating,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -2761,6 +2760,10 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/structure/table/glass,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/storage/box/bodybags,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "afM" = (
@@ -3421,7 +3424,6 @@
 "agY" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/bodybags,
-/obj/item/reagent_containers/blood,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/light{
 	dir = 8
@@ -3436,6 +3438,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral,
+/obj/item/reagent_containers/blood,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "agZ" = (
@@ -3657,8 +3660,6 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ahu" = (
-/obj/structure/table/optable,
-/obj/item/storage/backpack/duffelbag/sec/surgery,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -3670,8 +3671,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/bot,
-/obj/item/tank/internals/anesthetic,
-/obj/item/clothing/mask/breath/medical,
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/obj/machinery/iv_drip,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "ahv" = (
@@ -15449,7 +15451,11 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/vending/hydroseeds,
+/obj/structure/table,
+/obj/item/storage/bag/plants,
+/obj/item/storage/bag/plants,
+/obj/item/plant_analyzer,
+/obj/item/plant_analyzer,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aHd" = (
@@ -15555,6 +15561,8 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/shovel/spade,
+/obj/item/shovel/spade,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aHq" = (
@@ -15573,7 +15581,11 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/vending/hydronutrients,
+/obj/structure/table,
+/obj/item/cultivator,
+/obj/item/hatchet,
+/obj/item/hatchet,
+/obj/item/cultivator,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aHs" = (
@@ -16159,6 +16171,17 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/structure/table,
+/obj/item/seeds/ambrosia,
+/obj/item/seeds/ambrosia,
+/obj/item/seeds/pineapple,
+/obj/item/seeds/pineapple,
+/obj/item/seeds/wheat,
+/obj/item/seeds/wheat,
+/obj/item/seeds/whitebeet,
+/obj/item/seeds/whitebeet,
+/obj/item/seeds/watermelon,
+/obj/item/seeds/watermelon,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aIG" = (
