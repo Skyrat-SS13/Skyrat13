@@ -5,11 +5,9 @@
 	icon='modular_skyrat/icons/turf/space.dmi'
 	icon_state = "bluespacecrystal1"
 
-	light_range = 5
-	light_power = 2
+	light_range = 10
+	light_power = 5
 	light_color="#0066FF"
-	layer = CLOSED_TURF_LAYER
-	plane = LIGHTING_PLANE
 	explosion_block = INFINITY
 
 	var/next_check=0
@@ -58,10 +56,10 @@
 				if(A)
 					if(istype(A,/mob/living))
 						qdel(A)
-						qdel(A)
 						A = null
 					else if(istype(A,/mob)) // Observers, AI cameras.
 						continue
+					qdel(A)
 					qdel(A)
 					A = null
 				CHECK_TICK
