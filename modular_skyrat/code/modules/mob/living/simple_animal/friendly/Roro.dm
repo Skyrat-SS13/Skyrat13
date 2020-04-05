@@ -2,11 +2,12 @@
 	name = "Roro"
 	desc = "Its a Rorobot, strange meshes of biotechnology and robotics engineering."
 	icon = 'modular_skyrat/icons/mob/roro.dmi'
+	icon_state = "roro-living"
+	icon_living = "roro-living"
+	icon_dead = "roro-dead"
 	gender = PLURAL
 	mob_biotypes = MOB_ROBOTIC
 	blood_volume = 0
-	icon_living = "roro"
-	icon_dead = "roro-dead"
 	speak_emote = list("beeps")
 	emote_hear = list("beeps happily.","lets out a cute chime.","boops and bloops.")
 	emote_see = list("bops up and down.","looks around.","spins slowly.")
@@ -35,6 +36,7 @@
 /mob/living/simple_animal/pet/roro/roboticsroro
 	name = "Roomba"
 	desc = "Its Roomba! A lovable pet Rorobot from Robotics."
+	icon_state = "roro-robotics-living"
+	icon_living = "roro-robotics-living"
 	gender = FEMALE
-	icon_living = "roro-robotics"
 	gold_core_spawnable = NO_SPAWN

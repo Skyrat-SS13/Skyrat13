@@ -723,8 +723,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
@@ -1088,8 +1087,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
@@ -3347,8 +3345,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -3683,8 +3680,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -3992,8 +3988,7 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/camera{
 	c_tag = "Brig Infirmary";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /obj/structure/closet/secure_closet/brig_phys,
 /turf/open/floor/plasteel/dark,
@@ -4203,7 +4198,6 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Sleeper Hallway";
 	dir = 1;
-	name = "security camera";
 	network = list("ss13","prison")
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -4549,8 +4543,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Brig Central";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -4574,8 +4567,7 @@
 /area/security/brig)
 "aiK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -5032,8 +5024,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6638,8 +6629,7 @@
 /area/security/prison)
 "amU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -6810,7 +6800,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
 	name = "Evidence Storage";
-	req_access = null;
 	req_access_txt = "3"
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -6885,8 +6874,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -6972,8 +6960,7 @@
 	pixel_y = -36
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -7749,7 +7736,6 @@
 	normaldoorcontrol = 1;
 	pixel_x = -24;
 	pixel_y = -40;
-	req_access = null;
 	req_access_txt = "2"
 	},
 /obj/machinery/button/door{
@@ -7758,7 +7744,6 @@
 	normaldoorcontrol = 1;
 	pixel_x = -24;
 	pixel_y = -24;
-	req_access = null;
 	req_access_txt = "2"
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -8552,9 +8537,7 @@
 "ary" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/warden";
-	dir = 2;
 	name = "Brig Control APC";
-	pixel_x = 0;
 	pixel_y = -24
 	},
 /obj/machinery/button/door{
@@ -8562,7 +8545,6 @@
 	name = "Cell Shutters";
 	pixel_x = 6;
 	pixel_y = -40;
-	req_access = null;
 	req_access_txt = "2"
 	},
 /obj/machinery/button/door{
@@ -8620,8 +8602,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -8740,8 +8721,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -8808,8 +8788,7 @@
 /area/hallway/primary/fore)
 "asb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/machinery/camera{
 	c_tag = "Brig Evidence Storage";
@@ -8963,8 +8942,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -8982,7 +8960,6 @@
 	name = "Brig Control Shutters";
 	pixel_x = 6;
 	pixel_y = -40;
-	req_access = null;
 	req_access_txt = "2"
 	},
 /obj/machinery/button/door{
@@ -9046,8 +9023,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -19233,8 +19209,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
@@ -56469,7 +56444,6 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Sleepers";
 	dir = 1;
-	name = "security camera";
 	network = list("ss13","prison")
 	},
 /obj/machinery/light{
@@ -57337,8 +57311,7 @@
 	pixel_y = -36
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/bed,
 /obj/item/bedsheet/yellow,
@@ -57550,8 +57523,7 @@
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "innerbrig";
 	name = "Brig Infirmary";
-	req_access_txt = "2";
-	req_one_access_txt = "0"
+	req_access_txt = "2"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -57736,8 +57708,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -57776,6 +57747,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"hII" = (
+/mob/living/simple_animal/pet/roro/roboticsroro,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "hIL" = (
 /obj/structure/sign/poster/contraband/space_up{
 	pixel_x = -32;
@@ -59319,8 +59294,7 @@
 /area/security/range)
 "mnQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -59395,8 +59369,7 @@
 	pixel_y = -36
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/bed,
 /obj/item/bedsheet/green,
@@ -59835,7 +59808,6 @@
 "nQM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plating,
@@ -60320,7 +60292,6 @@
 /obj/machinery/camera{
 	c_tag = "Departures Lobby West";
 	dir = 4;
-	network = list("ss13");
 	pixel_y = 9
 	},
 /turf/open/floor/plasteel,
@@ -61682,8 +61653,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -62851,7 +62821,6 @@
 "weW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plating,
@@ -63016,8 +62985,7 @@
 "wGf" = (
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -108532,7 +108500,7 @@ biN
 biL
 bni
 blM
-bou
+hII
 cHX
 cIc
 biL
