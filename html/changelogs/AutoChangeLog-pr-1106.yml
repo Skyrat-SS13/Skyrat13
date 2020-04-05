@@ -1,5 +1,0 @@
-author: "CinderWC"
-delete-after: True
-changes: 
-  - rscadd: "cnrshells to shomtgun.dmi"
-  - bugfix: "Fixed all 3 warnings caused by modifying some code and icon names"
