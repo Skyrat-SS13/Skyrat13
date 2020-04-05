@@ -2,7 +2,7 @@
 	name = "Necrotizing Nanites"
 	desc = "A highly experimental biomechanical terror agent which creates dormant clusters attached to the grey matter of the brain. \
 			On death, these clusters activate, taking control of the body and causing limited revivification. \
-			Once revived, the puppet bodies of the agent will seek out new hosts for the particles to continue their programed cycle."
+			Once revived, the puppet bodies of the agent will seek out new hosts for the particles to continue their programmed cycle."
 
 /datum/uplink_item/stealthy_weapons/stealthsuit
 	name = "Tactical Stealth Suit"
