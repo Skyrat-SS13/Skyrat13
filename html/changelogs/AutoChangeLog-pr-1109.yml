@@ -1,0 +1,5 @@
+author: "ShadeAware"
+delete-after: True
+changes: 
+  - rscadd: "Zombie Claw inhand sprites; now called the Necrotic Claw."
+  - tweak: "Zombies, Romerol, and anything related to them have been rebranded to Nanite Horrors, corpses driven by rouge nanomachines which use them as vectors to spread and continue their programming cycle."
