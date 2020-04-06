@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "Adds CogStation to the map rotation."
+  - tweak: "Adds several new area designations to accommodate CogStation."
