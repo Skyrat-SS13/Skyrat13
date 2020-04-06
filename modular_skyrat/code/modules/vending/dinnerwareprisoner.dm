@@ -1,13 +1,14 @@
 /obj/machinery/vending/dinnerware/prisoner
 	name = "\improper Plasteel Chef's Prisoner Dinnerware Vendor"
-	desc = "A kitchen and restaurant equipment vendor."
+	desc = "A kitchen and restaurant equipment vendor that is safe."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
-	products = list(/obj/item/reagent_containers/glass/bowl = 30,
+	products = list(/obj/item/reagent_containers/glass/bowl = 32,
 					/obj/item/storage/bag/tray = 1,
-					/obj/item/kitchen/knife = 1,
+					/obj/item/kitchen/knife/combat/bone/plastic = 8,
+					/obj/item/kitchen/fork = 8,
 					/obj/item/kitchen/rollingpin = 1,
-					/obj/item/reagent_containers/food/drinks/drinkingglass = 8,
+					/obj/item/reagent_containers/food/drinks/drinkingglass = 16,
 					/obj/item/clothing/suit/apron/chef = 2,
 					/obj/item/storage/box/cups = 2,
 					/obj/item/reagent_containers/food/condiment/pack/ketchup = 5,
