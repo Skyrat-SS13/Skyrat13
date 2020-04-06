@@ -1,5 +1,5 @@
 /obj/machinery/vending/dinnerware/prisoner
-	name = "\improper Plasteel Chef's Dinnerware Vendor"
+	name = "\improper Plasteel Chef's Prisoner Dinnerware Vendor"
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
@@ -31,12 +31,3 @@
 
 /obj/item/vending_refill/dinnerware/prisoner
 	icon_state = "refill_cook"
-
-/datum/supply_pack/vending/dinner/prisoner
-	name = "Dinnerware Supply Crate"
-	desc = "Use a plate and have some utensils! Contains a dinnerware and sustenance vending machine refill."
-	cost = 2500
-	contains = list(/obj/item/vending_refill/sustenance,
-					/obj/item/vending_refill/dinnerware/prisoner)
-	crate_name = "prisoner dinnerware supply crate"
-	crate_type = /obj/structure/closet/crate

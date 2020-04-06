@@ -1,5 +1,5 @@
 /obj/machinery/vending/hydronutrients/prisoner
-	name = "\improper NutriMax"
+	name = "\improper Prisoner NutriMax"
 	desc = "A plant nutrients vendor."
 	product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
 	product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
@@ -20,12 +20,3 @@
 
 /obj/item/vending_refill/hydronutrients/prisoner
 	icon_state = "refill_hydro"
-
-/datum/supply_pack/vending/hydro/prisoner
-	name = "Prisoner Hydroponics Supply Crate"
-	desc = "Arnt you glad you dont have to do it the natural way? Contains a megaseed and nutrimax vending machine refill."
-	cost = 5000
-	contains = list(/obj/item/vending_refill/hydroseeds,
-					/obj/item/vending_refill/hydronutrients/prisoner)
-	crate_name = "prisoner hydroponics supply crate"
-	crate_type = /obj/structure/closet/crate
