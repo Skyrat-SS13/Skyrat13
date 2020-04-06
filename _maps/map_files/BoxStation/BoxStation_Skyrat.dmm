@@ -13169,14 +13169,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/table,
-/obj/item/storage/bag/tray,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife,
+/obj/machinery/vending/dinnerware/prisoner,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "aCp" = (
@@ -14662,21 +14655,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"aFC" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
-/obj/item/reagent_containers/food/condiment/saltshaker,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "aFD" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
-"aFE" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
-/obj/item/reagent_containers/food/condiment/peppermill,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "aFF" = (
@@ -15311,7 +15292,6 @@
 /turf/closed/wall,
 /area/chapel/office)
 "aGP" = (
-/obj/machinery/biogenerator,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
@@ -15321,6 +15301,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
+/obj/machinery/biogenerator/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aGQ" = (
@@ -15451,11 +15432,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/structure/table,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer,
+/obj/machinery/vending/hydronutrients/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aHd" = (
@@ -15560,9 +15537,7 @@
 	},
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/reagent_containers/glass/bucket,
+/obj/item/hatchet,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aHq" = (
@@ -15581,11 +15556,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/structure/table,
-/obj/item/cultivator,
-/obj/item/hatchet,
-/obj/item/hatchet,
-/obj/item/cultivator,
+/obj/machinery/vending/hydroseeds,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aHs" = (
@@ -16171,17 +16142,6 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/structure/table,
-/obj/item/seeds/ambrosia,
-/obj/item/seeds/ambrosia,
-/obj/item/seeds/pineapple,
-/obj/item/seeds/pineapple,
-/obj/item/seeds/wheat,
-/obj/item/seeds/wheat,
-/obj/item/seeds/whitebeet,
-/obj/item/seeds/whitebeet,
-/obj/item/seeds/watermelon,
-/obj/item/seeds/watermelon,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aIG" = (
@@ -92804,7 +92764,7 @@ acd
 nSN
 aDV
 aDV
-aFC
+aFD
 aGp
 aHW
 aGp
@@ -93318,7 +93278,7 @@ acd
 aCq
 aDV
 aDV
-aFE
+aFD
 aGp
 aGp
 aGp
