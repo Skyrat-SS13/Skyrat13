@@ -21,10 +21,12 @@
 		destroy_objective.find_target()
 		T.add_objective(destroy_objective)
 	else if(prob(30) || (is_dynamic && (mode.storyteller.flags & NO_ASSASSIN)))
-		var/datum/objective/maroon/maroon_objective = new
-		maroon_objective.owner = T.owner
-		maroon_objective.find_target()
-		T.add_objective(maroon_objective)
+		//Skyrat changes - changes maroon to flavor obj 
+		var/datum/objective/flavor/traitor/flavor_objective = new
+		flavor_objective.owner = T.owner
+		flavor_objective.forge_objective()
+		T.add_objective(flavor_objective)
+		//End of skyrat changes
 	else if(prob(permakill_prob))
 		var/datum/objective/assassinate/kill_objective = new
 		kill_objective.owner = T.owner

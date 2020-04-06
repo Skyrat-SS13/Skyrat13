@@ -471,6 +471,7 @@
 				/datum/objective/download,
 				/datum/objective/nuclear,
 				/datum/objective/absorb,
+				/datum/objective/blackmail_implant, //SKYRAT EDIT
 				/datum/objective/custom
 			)
 
