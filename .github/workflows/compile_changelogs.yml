@@ -33,4 +33,8 @@ jobs:
       - name: "Push"
         uses: ad-m/github-push-action@master
         with:
+<<<<<<< HEAD
           github_token: ${{ secrets.SKYRATBOT_TOKEN }}
+=======
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+>>>>>>> c633572344a... Create compile_changelogs.yml (#11767)
