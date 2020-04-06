@@ -1,7 +1,7 @@
 {
     "map_name": "CogStation",
     "map_path": "map_files/CogStation",
-    "map_file": "CogStation.dmm",
+    "map_file": "CogStation_Skyrat.dmm",
     "shuttles": {
 	    "cargo": "cargo_box",
 	    "ferry": "ferry_fancy",
