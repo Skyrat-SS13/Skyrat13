@@ -30515,6 +30515,7 @@
 /area/science/robotics/lab)
 "bcA" = (
 /obj/effect/turf_decal/stripes/line,
+/mob/living/simple_animal/pet/roro/roboticsroro,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "bcB" = (
@@ -36644,6 +36645,10 @@
 	dir = 1
 	},
 /area/engine/atmos)
+"chS" = (
+/mob/living/simple_animal/pet/roro,
+/turf/open/floor/plating/asteroid,
+/area/asteroid/nearstation)
 "cmp" = (
 /obj/machinery/door/airlock/external{
 	name = "External Docking Port"
@@ -73755,7 +73760,7 @@ aad
 abj
 abj
 abS
-abj
+chS
 abj
 acD
 pNE
@@ -74524,7 +74529,7 @@ aad
 aad
 aad
 abu
-abj
+chS
 aad
 aaV
 abu
