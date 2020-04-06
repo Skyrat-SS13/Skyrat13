@@ -1,5 +1,0 @@
-author: "Kevinz000"
-delete-after: True
-changes: 
-  - refactor: "View Variables has been refactored. It should now be easier to make VV dropdown options."
-  - rscadd: "Oh yeah also added a \"return value of proccall\" option for VV var editing."

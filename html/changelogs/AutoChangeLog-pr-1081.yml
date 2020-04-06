@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "Cable cuffs are now made directly by using cable coils in your hands, instead of having to open a menu for one button."
-  - code_imp: "Cables no longer change color on initialize, and use color instead of item_color for placed cable color"

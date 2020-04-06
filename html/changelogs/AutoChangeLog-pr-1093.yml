@@ -1,4 +1,0 @@
-author: "PKPenguin321"
-delete-after: True
-changes: 
-  - rscadd: "New system in genetics: Conflicting mutations. Some mutations will not allow others to activate. Example - If you have mutation A, and it conflicts with B, then B will never activate until you get rid of mutation A (and visa versa). The only mutations to currently use this are Dwarfism and Gigantism."
