@@ -124971,8 +124971,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -127922,8 +127921,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -128057,8 +128055,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)

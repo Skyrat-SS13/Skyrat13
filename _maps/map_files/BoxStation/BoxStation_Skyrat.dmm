@@ -723,8 +723,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
@@ -1088,8 +1087,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
@@ -3351,7 +3349,6 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1;
-	pixel_x = 0
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -3685,8 +3682,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -4576,8 +4572,7 @@
 /area/security/brig)
 "aiK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -5034,8 +5029,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6640,8 +6634,7 @@
 /area/security/prison)
 "amU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -6887,8 +6880,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -6974,8 +6966,7 @@
 	pixel_y = -36
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -8556,7 +8547,6 @@
 	areastring = "/area/security/warden";
 	dir = 2;
 	name = "Brig Control APC";
-	pixel_x = 0;
 	pixel_y = -24
 	},
 /obj/machinery/button/door{
@@ -8622,8 +8612,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -8742,8 +8731,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -8810,8 +8798,7 @@
 /area/hallway/primary/fore)
 "asb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/machinery/camera{
 	c_tag = "Brig Evidence Storage";
@@ -8965,8 +8952,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -9048,8 +9034,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -19256,8 +19241,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
@@ -57360,8 +57344,7 @@
 	pixel_y = -36
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/bed,
 /obj/item/bedsheet/yellow,
@@ -57759,8 +57742,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -59342,8 +59324,7 @@
 /area/security/range)
 "mnQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -59418,8 +59399,7 @@
 	pixel_y = -36
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /obj/structure/bed,
 /obj/item/bedsheet/green,
@@ -59858,7 +59838,6 @@
 "nQM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plating,
@@ -61705,8 +61684,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -62874,7 +62852,6 @@
 "weW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plating,
@@ -63039,8 +63016,7 @@
 "wGf" = (
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
