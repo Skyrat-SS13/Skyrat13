@@ -92,7 +92,7 @@
 		if(SLIME_ACTIVATE_MAJOR)
 			to_chat(user, "<span class='notice'>Your [name] starts pulsing...</span>")
 			if(do_after(user, 40, target = user))
-				var/mob/living/simple_animal/slime/S = new(get_turf(user), "grey")
+				var/mob/living/simple_animal/slime/S = SSrecycling.deploy_slime(get_turf(user), "grey") //Skyrat change
 				playsound(user, 'sound/effects/splat.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You spit out [S].</span>")
 				return 350
