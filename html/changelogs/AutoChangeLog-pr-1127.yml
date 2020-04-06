@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - code_imp: "Map wise all diry vars of \"pixel = 0\" have been removed."

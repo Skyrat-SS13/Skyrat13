@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "stops hijackers from being able to remotely blow up borgs -- skyrat edit: they still can, but they need to have the console in their line of sight"

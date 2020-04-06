@@ -1,0 +1,6 @@
+author: "CinderWC"
+delete-after: True
+changes: 
+  - rscadd: "Added a whole bunch of new lines that brain damaged people say"
+  - rscdel: "Deleted a bunch of ick ock lines brain damaged people say"
+  - tweak: "tweaked a few lines brain damaged people say"

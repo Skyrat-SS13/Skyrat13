@@ -1,0 +1,4 @@
+author: "oilysnake"
+delete-after: True
+changes: 
+  - rscdel: "the code that prevents you from deep frying monkeys"
