@@ -16517,7 +16517,6 @@
 /turf/open/floor/engine,
 /area/security/nuke_storage)
 "aAC" = (
-/mob/living/simple_animal/pet/roro/roboticsroro,
 /turf/open/floor/plasteel/showroomfloor,
 /area/science/robotics/lab)
 "aAD" = (
@@ -73072,7 +73071,6 @@
 /obj/structure/cable,
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/pet/roro,
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},

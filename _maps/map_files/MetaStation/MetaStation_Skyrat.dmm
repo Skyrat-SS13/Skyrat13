@@ -81386,11 +81386,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"epA" = (
-/obj/effect/turf_decal/stripes/line,
-/mob/living/simple_animal/pet/roro/roboticsroro,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "eqq" = (
 /obj/item/screwdriver,
 /obj/structure/table/reinforced,
@@ -81506,6 +81501,7 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Sleepers";
 	dir = 1;
+	name = "security camera";
 	network = list("ss13","prison")
 	},
 /obj/machinery/light{
@@ -82824,7 +82820,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
+	dir = 1;
+	pixel_x = 0
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -83444,7 +83441,8 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28
+	pixel_x = 28;
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -84221,6 +84219,7 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Sleeper Hallway";
 	dir = 1;
+	name = "security camera";
 	network = list("ss13","prison")
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -84304,7 +84303,6 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/mob/living/simple_animal/pet/roro,
 /turf/open/floor/plasteel/checker,
 /area/security/prison)
 "qvk" = (
@@ -85510,7 +85508,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
+	dir = 1;
+	pixel_x = 0
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -115012,7 +115011,7 @@ lOi
 cFf
 cFg
 cFf
-epA
+cHR
 cIL
 cJK
 cCq
