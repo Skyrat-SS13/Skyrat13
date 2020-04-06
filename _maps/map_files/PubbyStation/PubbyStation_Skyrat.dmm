@@ -55743,7 +55743,6 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Sleepers";
 	dir = 1;
-	name = "security camera";
 	network = list("ss13","prison")
 	},
 /obj/machinery/light{
@@ -57971,14 +57970,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/table,
-/obj/item/storage/bag/tray,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife,
+/obj/machinery/vending/dinnerware/prisoner,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "lTC" = (
@@ -58296,17 +58288,6 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/structure/table,
-/obj/item/seeds/ambrosia,
-/obj/item/seeds/ambrosia,
-/obj/item/seeds/pineapple,
-/obj/item/seeds/pineapple,
-/obj/item/seeds/wheat,
-/obj/item/seeds/wheat,
-/obj/item/seeds/whitebeet,
-/obj/item/seeds/whitebeet,
-/obj/item/seeds/watermelon,
-/obj/item/seeds/watermelon,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "mrq" = (
@@ -59967,9 +59948,7 @@
 	},
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/reagent_containers/glass/bucket,
+/obj/item/hatchet,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "peE" = (
@@ -60416,7 +60395,6 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Sleeper Hallway";
 	dir = 1;
-	name = "security camera";
 	network = list("ss13","prison")
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -60774,6 +60752,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/mob/living/simple_animal/pet/roro,
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "qyF" = (
@@ -61275,11 +61254,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/structure/table,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer,
+/obj/machinery/vending/hydronutrients/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "rnr" = (
@@ -61423,11 +61398,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/structure/table,
-/obj/item/cultivator,
-/obj/item/hatchet,
-/obj/item/hatchet,
-/obj/item/cultivator,
+/obj/machinery/vending/hydroseeds,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "rzp" = (
@@ -62263,7 +62234,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "tmA" = (
-/obj/machinery/biogenerator,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
@@ -62273,6 +62243,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
+/obj/machinery/biogenerator/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "tmE" = (
@@ -64966,6 +64937,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"xWC" = (
+/mob/living/simple_animal/pet/roro/roboticsroro,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "xWN" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/red,
@@ -102709,7 +102684,7 @@ biv
 bkt
 blK
 bmQ
-bmM
+xWC
 bmM
 bmM
 brB
