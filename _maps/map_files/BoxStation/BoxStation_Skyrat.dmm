@@ -60256,7 +60256,7 @@
 	name = "Privacy Shutters";
 	pixel_x = 25;
 	pixel_y = 8;
-	req_one_access_txt = "71"
+	req_one_access_txt = "38"
 	},
 /obj/item/paper_bin{
 	pixel_x = -3;
