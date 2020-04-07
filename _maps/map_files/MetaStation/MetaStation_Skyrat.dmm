@@ -75881,9 +75881,13 @@
 /turf/open/space,
 /area/engine/atmos)
 "cVC" = (
-/mob/living/simple_animal/sloth/citrus,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "cVD" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/effect/turf_decal/bot,
@@ -81387,10 +81391,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "epA" = (
-/obj/effect/turf_decal/stripes/line,
-/mob/living/simple_animal/pet/roro/roboticsroro,
+/mob/living/simple_animal/opossum,
 /turf/open/floor/plasteel,
-/area/science/robotics/lab)
+/area/quartermaster/storage)
 "eqq" = (
 /obj/item/screwdriver,
 /obj/structure/table/reinforced,
@@ -81528,9 +81531,6 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "eQf" = (
-/obj/machinery/computer/shuttle/mining/common{
-	dir = 1
-	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
@@ -82246,7 +82246,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/biogenerator/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ivu" = (
@@ -82719,7 +82718,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/vending/hydronutrients/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "kwI" = (
@@ -82832,7 +82830,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/dinnerware/prisoner,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "kKw" = (
@@ -84304,7 +84301,6 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/mob/living/simple_animal/pet/roro,
 /turf/open/floor/plasteel/checker,
 /area/security/prison)
 "qvk" = (
@@ -103639,7 +103635,7 @@ aMv
 aMv
 aKR
 aMv
-cVC
+aMv
 aXf
 aYM
 bao
@@ -103896,7 +103892,7 @@ aQj
 aMv
 aKS
 dCB
-aMv
+epA
 aMv
 aYM
 bap
@@ -115012,7 +115008,7 @@ lOi
 cFf
 cFg
 cFf
-epA
+cHR
 cIL
 cJK
 cCq
@@ -124454,7 +124450,7 @@ aCM
 aPT
 aRi
 aCM
-aCM
+cVC
 avF
 aWv
 aYn

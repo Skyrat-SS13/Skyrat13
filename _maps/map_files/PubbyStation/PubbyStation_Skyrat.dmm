@@ -20702,6 +20702,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
+/mob/living/simple_animal/opossum/poppy,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "aXw" = (
@@ -57970,7 +57971,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/dinnerware/prisoner,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "lTC" = (
@@ -60752,7 +60752,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/mob/living/simple_animal/pet/roro,
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "qyF" = (
@@ -61254,7 +61253,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/vending/hydronutrients/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "rnr" = (
@@ -62243,7 +62241,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/biogenerator/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "tmE" = (
@@ -64937,10 +64934,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"xWC" = (
-/mob/living/simple_animal/pet/roro/roboticsroro,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "xWN" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/red,
@@ -102684,7 +102677,7 @@ biv
 bkt
 blK
 bmQ
-xWC
+bmM
 bmM
 bmM
 brB

@@ -6255,7 +6255,10 @@
 /turf/closed/wall,
 /area/security/brig)
 "ama" = (
-/mob/living/simple_animal/sloth/paperwork,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/mob/living/simple_animal/opossum,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "amb" = (
@@ -13145,7 +13148,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/dinnerware/prisoner,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "aCp" = (
@@ -15277,7 +15279,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/biogenerator/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aGQ" = (
@@ -15408,7 +15409,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/vending/hydronutrients/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aHd" = (
@@ -47092,6 +47092,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
+/mob/living/simple_animal/opossum/poppy,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "ccO" = (
@@ -57730,10 +57731,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"hII" = (
-/mob/living/simple_animal/pet/roro/roboticsroro,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "hIL" = (
 /obj/structure/sign/poster/contraband/space_up{
 	pixel_x = -32;
@@ -63181,17 +63178,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
-"xfS" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/machinery/computer/shuttle/mining/common{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white/corner{
-	dir = 1
-	},
-/area/hallway/secondary/entry)
 "xgk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -73009,7 +72995,7 @@ aaa
 aaa
 aaa
 arB
-xfS
+awZ
 ayk
 awW
 aAD
@@ -84067,8 +84053,8 @@ dev
 aZE
 xBw
 bjr
+bjr
 ama
-bmh
 bjr
 bjr
 bjr
@@ -108483,7 +108469,7 @@ biN
 biL
 bni
 blM
-hII
+bou
 cHX
 cIc
 biL
