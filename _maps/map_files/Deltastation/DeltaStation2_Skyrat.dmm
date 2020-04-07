@@ -22232,9 +22232,6 @@
 /obj/item/reagent_containers/glass/bottle/facid{
 	pixel_x = 7
 	},
-/obj/item/storage/backpack/duffelbag/sec/surgery{
-	pixel_y = 5
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -34221,19 +34218,15 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "bme" = (
 /obj/machinery/light/small,
-/obj/machinery/holopad,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/item/storage/backpack/duffelbag/sec/surgery,
-/obj/structure/table/optable,
-/obj/item/clothing/mask/breath/medical,
-/obj/item/tank/internals/anesthetic,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "bmf" = (
@@ -34245,9 +34238,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/machinery/computer/operating{
-	dir = 1
-	},
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/obj/machinery/iv_drip,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "bmg" = (
@@ -110049,6 +110042,7 @@
 "dGa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line,
+/mob/living/simple_animal/pet/roro/roboticsroro,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "dGb" = (
@@ -124975,8 +124969,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -125134,7 +125127,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/vending/hydronutrients,
+/obj/machinery/vending/hydroseeds,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "fRr" = (
@@ -125725,7 +125718,6 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "iiy" = (
-/obj/machinery/biogenerator,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
@@ -125735,6 +125727,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
+/obj/machinery/biogenerator/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ijB" = (
@@ -126168,14 +126161,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/table,
-/obj/item/storage/bag/tray,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife,
+/obj/machinery/vending/dinnerware/prisoner,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "kiJ" = (
@@ -127907,7 +127893,6 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Sleeper Hallway";
 	dir = 1;
-	name = "security camera";
 	network = list("ss13","prison")
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -127922,8 +127907,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
@@ -128057,8 +128041,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -128296,7 +128279,6 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Sleepers";
 	dir = 1;
-	name = "security camera";
 	network = list("ss13","prison")
 	},
 /obj/machinery/light{
@@ -128527,7 +128509,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/vending/hydroseeds,
+/obj/machinery/vending/hydronutrients/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "tfH" = (
@@ -129204,7 +129186,7 @@
 	},
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
-/obj/item/shovel/spade,
+/obj/item/hatchet,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "wmt" = (
@@ -129333,14 +129315,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
-"wPg" = (
-/obj/machinery/computer/security/telescreen{
-	name = "Prisoner Telescreen";
-	network = list("prison");
-	pixel_y = 32
-	},
-/turf/open/space/basic,
-/area/space)
 "wSF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -188656,7 +188630,7 @@ aKV
 aaa
 aaa
 aaa
-wPg
+aaa
 aaa
 aaa
 aaa

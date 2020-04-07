@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "APCs now drain power directly before filling their cell, instead of doing this strange thing where it drains its cell then fills it back up every tick"
+  - balance: "APCs turn off lights before equipment, now"
