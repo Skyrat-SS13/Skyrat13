@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Oversight that had plasmamen in sec and the captain not come to work with max suits"
-  - code_imp: "Clears/corrects many suits to use its base type rather then restating the same thing over and over again"
