@@ -1,9 +1,0 @@
-author: "Ignari-Coldstorm"
-delete-after: True
-changes: 
-  - rscadd: "Adds a new aggressive species of space carp."
-  - rscadd: "Adds a new migration event and game panel option for it."
-  - tweak: "The values from a normal carp, as well as the speed and vision have been adjusted. This carp is stronger by a little in terms of damage, as well as health. Is able to detect players and become aggressive from a much longer distance than a regular carp."
-  - imageadd: "added new living icons, dead icons, and a gib icon for the carp."
-  - admin: "added the option \"Tiger Carp Frenzy\" to the event panel."
-  - server: "is possible to spawn during a dynamic round event."
