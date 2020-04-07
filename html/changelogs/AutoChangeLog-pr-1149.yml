@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "The contractor's extraction pods now give regenerative jelly rather than omnizine."
