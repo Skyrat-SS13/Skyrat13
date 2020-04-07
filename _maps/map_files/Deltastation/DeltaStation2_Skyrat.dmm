@@ -127915,7 +127915,7 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Visitations Visitor-side";
 	dir = 8;
-	network = list("s13","prison");
+	network = list("ss13","prison");
 	start_active = 1
 	},
 /obj/machinery/button/door{
