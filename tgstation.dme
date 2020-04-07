@@ -3525,6 +3525,7 @@
 #include "modular_skyrat\code\modules\mob\say.dm"
 #include "modular_skyrat\code\modules\mob\typing_indicator.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\ears.dm"
+#include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\horns.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\snouts.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\vox_accessories.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\wings.dm"
