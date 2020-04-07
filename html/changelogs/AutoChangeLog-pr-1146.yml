@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - balance: "Plastic knifes when thrown will now deal 1 damage rather then 15"
