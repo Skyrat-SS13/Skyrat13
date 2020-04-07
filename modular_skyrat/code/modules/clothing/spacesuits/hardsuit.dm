@@ -276,6 +276,6 @@
 
 /obj/item/clothing/suit/space/hardsuit/security/powerarmor/proc/detonate()
 	visible_message("<span class ='danger'>The power module of the [src] overheats, causing it to destabilize and explode!")
-	explosion(src.loc,0,1,3,flame_range = 3)
+	explosion(src.loc,0,0,3,flame_range = 3)
 	qdel(src)
 	return
