@@ -34,3 +34,7 @@
 /datum/sprite_accessory/horns/guilmon
 	name = "Guilmon"
 	icon_state = "guilmon"
+
+/datum/sprite_accessory/horns/big_horn
+	name = "Large Curled"
+	icon_state = "bighorn"
