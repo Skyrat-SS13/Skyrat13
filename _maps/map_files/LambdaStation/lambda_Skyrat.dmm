@@ -29705,7 +29705,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar/atrium)
 "bbF" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -61126,7 +61126,7 @@
 	},
 /area/maintenance/aft)
 "ciL" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -66855,12 +66855,6 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
-"cuL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/mob/living/simple_animal/pet/roro/roboticsroro,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "cuM" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior,
@@ -82105,6 +82099,12 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"mMv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/mob/living/simple_animal/pet/roro/roboticsroro,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 
 (1,1,1) = {"
 aaa
@@ -115074,7 +115074,7 @@ ain
 alV
 akD
 alS
-cuL
+mMv
 amM
 amM
 aqn

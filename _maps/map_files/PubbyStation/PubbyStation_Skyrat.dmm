@@ -42869,7 +42869,7 @@
 /area/maintenance/department/engine)
 "bUb" = (
 /obj/structure/grille/broken,
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bUc" = (
@@ -56681,6 +56681,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"jOh" = (
+/mob/living/simple_animal/pet/roro/roboticsroro,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "jOB" = (
 /turf/open/floor/plating,
 /area/storage/emergency/starboard)
@@ -60042,7 +60046,7 @@
 /turf/open/floor/plating,
 /area/chapel/office)
 "plA" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/crew_quarters/dorms)
 "pmB" = (
@@ -64937,10 +64941,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"xWC" = (
-/mob/living/simple_animal/pet/roro/roboticsroro,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "xWN" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/red,
@@ -102684,7 +102684,7 @@ biv
 bkt
 blK
 bmQ
-xWC
+jOh
 bmM
 bmM
 brB
