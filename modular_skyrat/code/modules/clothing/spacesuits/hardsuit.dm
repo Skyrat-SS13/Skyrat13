@@ -259,12 +259,23 @@
 
 /obj/item/clothing/suit/space/hardsuit/security/powerarmor/emp_act()
 	. = ..()
-	playsound(src.loc, 'sound/effects/fuse.ogg', 60, 1, 10)
-	visible_message("<span class ='warning'>The core of the [src] sparks, beginning to visibly smoke and heat up! Get away from it, now!")
-	addtimer(CALLBACK(src, .proc/detonate),50)
+	var/mob/living/carbon/human/user = src.loc
+	playsound(src.loc, 'modular_skyrat/sound/misc/suitmalf.ogg', 60, 1, 10)
+	if (ishuman(user) && (user.wear_suit == src))
+		to_chat(user, "<span class='danger'>The motors on your armor cease to function, causing the full weight of the suit to weigh on you all at once!</span>")
+		user.emote("scream")
+		user.take_overall_damage(stamina=250)
+		user.take_overall_damage(brute=20)
+	if(prob(1))
+		playsound(src.loc, 'sound/effects/fuse.ogg', 60, 1, 10)
+		visible_message("<span class ='warning'>The power module on the [src] begins to smoke, glowing with an alarming warmth! Get away from it, now!")
+		addtimer(CALLBACK(src, .proc/detonate),50)
+	else
+		visible_message("<span class ='warning'>The power module on the [src] briefly flickers, before humming to life once more.</span>")
+		return
 
 /obj/item/clothing/suit/space/hardsuit/security/powerarmor/proc/detonate()
-	visible_message("<span class ='warning'>The [src]'s power core overheats and unravels, causing the [src] to explode violently!'")
-	explosion(src.loc,1,2,3,flame_range = 3)
+	visible_message("<span class ='danger'>The power module of the [src] overheats, causing it to destabilize and explode!")
+	explosion(src.loc,0,1,3,flame_range = 3)
 	qdel(src)
 	return
