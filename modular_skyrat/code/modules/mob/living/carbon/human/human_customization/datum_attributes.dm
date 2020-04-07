@@ -9,6 +9,8 @@
 	var/desc = "Basic characteristic, you are not supposed to see this. Report to admins."
 	var/id = 0
 	var/base_value = 20
+	var/add_max = 20
+	var/subtract_max = 10
 
 /datum/attribute/strength
 	name = "Strength"

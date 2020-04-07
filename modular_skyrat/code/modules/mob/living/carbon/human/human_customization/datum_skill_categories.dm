@@ -1,6 +1,6 @@
 //Okay so this is dumb but hear me out, I want this system 100% super datum-fed
 #define SKILL_CAT_GENERAL 1
-#define SKILL_CAT_ORGANIZATION 2
+#define SKILL_CAT_ORGANIZATIONAL 2
 #define SKILL_CAT_ENGINEERING 3
 #define SKILL_CAT_MEDICAL 4
 #define SKILL_CAT_RESEARCH 5
@@ -15,9 +15,9 @@
 	name = "General"
 	id = SKILL_CAT_GENERAL
 
-/datum/skill_category/organization
-	name = "Organization"
-	id = SKILL_CAT_ORGANIZATION
+/datum/skill_category/organizational
+	name = "Organizational"
+	id = SKILL_CAT_ORGANIZATIONAL
 
 /datum/skill_category/engineering
 	name = "Engineering"
