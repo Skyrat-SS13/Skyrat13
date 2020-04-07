@@ -1,7 +1,7 @@
 /obj/item/gun/ballistic/charged
 	name = "charge weapon"
 	desc = "This isn't right at all..."
-	icon = 'modular_skyrat/icon/objguns/chargeweapons.dmi'
+	icon = 'modular_skyrat/icon/obj/guns/chargeweapons.dmi'
 	icon_state = "badstate"
 	item_state = "badstate"
 	mag_type = /obj/item/ammo_box/magazine/charged
@@ -93,9 +93,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/charged/chargerifle
-	burst_size = 3
-	burst_shot_delay = 3
-	fire_delay = 4
 
 /obj/item/gun/ballistic/charged/chargerifle/update_icon()
 	..()
@@ -107,6 +104,8 @@
 /obj/item/gun/ballistic/charged/chargepistol
 	name = "charge pistol"
 	desc = "An advanced sidearm energy pistol which charges projectiles with unstable energy as they leave the barrel, allowing for devastating damage."
+	icon_state = "charge_pistol"
+	item_state = "charge_pistol"
 	mag_type = /obj/item/ammo_box/magazine/charged/chargepistol
 
 /obj/item/gun/ballistic/charged/chargepistol/update_icon()
@@ -116,7 +115,62 @@
 		add_overlay("charge_pistol-magazine")
 	icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"
 
-/obj/item/gun/ballistic/charged ////TO DO////
+/obj/item/gun/ballistic/charged/chargesmg
+	name = "charge SMG"
+	desc = "An advanced automatic submachine gun which charges projectiles with unstable energy as they leave the barrel, allowing for devastating damage."
+	icon_state = "charge_smg"
+	item_state = "charge_smg"
+	mag_type = /obj/item/ammo_box/magazine/charged/chargesmg
+	burst_size = 3
+	burst_shot_delay = 2
+
+/obj/item/gun/ballistic/charged/chargesmg/update_icon()
+	..()
+	cut_overlays()
+	if(magazine)
+		add_overlay("charge_pistol-magazine")
+	icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"
+
+/obj/item/gun/ballistic/charged/toychargerifle
+	name = "toy charge rifle"
+	desc = "Now you too can be a sociopathic space cowboy! Leather hat not included. Ineffective against mechanical beings."
+	icon_state = "nerf_charge_rifle"
+	item_state = "nerf_charge_rifle"
+	mag_type = /obj/item/ammo_box/magazine/charged/toyrifle
+
+/obj/item/gun/ballistic/charged/toychargerifle/update_icon()
+	..()
+	cut_overlays()
+	if(magazine)
+		add_overlay("toy_charge_rifle-magazine")
+	icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"
+
+/obj/item/gun/ballistic/shotgun/chargedshotgun //Has to be a snowflake because it works differently compared to the other charge weapons, which work off a mixture of Magrifles/automatic weapons and procs.
+	name = "charge shotgun"
+	desc = "An advanced shotgun made in traditional style. Uses pulse technology to charge projectiles with unstable energy as they leave the barrel, allowing for devastating damage. "
+	icon = 'modular_skyrat/icon/obj/guns/chargeweapons.dmi'
+	icon_state = "charge_shotgun"
+	item_state = "charge_shotgun"
+	mag_type = /obj/item/ammo_box/magazine/internal/charged/chargeshotgun
+	fire_delay = 7
+
+///////// PINLESS CHARGE WEAPONS - THESE ARE THE ONES YOU PRINT!!! /////////
+
+/obj/item/gun/ballistic/charged/chargerifle/nopin
+	pin = null
+	spawnwithmagazine = FALSE
+
+/obj/item/gun/ballistic/charged/chargepistol/nopin
+	pin = null
+	spawnwithmagazine = FALSE
+
+/obj/item/gun/ballistic/charged/chargesmg
+	pin = null
+	spawnwithmagazine = FALSE
+
+/obj/item/gun/ballistic/shotgun/chargedshotgun
+	pin = null
+
 
 
 
