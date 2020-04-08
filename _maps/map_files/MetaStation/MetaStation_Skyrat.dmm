@@ -2,17 +2,6 @@
 "aaa" = (
 /turf/open/space/basic,
 /area/space)
-"aab" = (
-/obj/machinery/vending/cigarette,
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel,
-/area/construction/storage/wing)
 "aac" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space,
@@ -187,9 +176,8 @@
 	},
 /area/security/prison)
 "aaB" = (
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -22
+/obj/structure/sign/nanotrasen{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -197,25 +185,29 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
 /obj/machinery/camera{
-	c_tag = "Storage Wing - Security Access Door";
+	c_tag = "Blueshield's Office";
 	dir = 4
 	},
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
+/area/blueshield)
 "aaD" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
+/area/blueshield)
 "aaE" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -237,8 +229,12 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
+/area/blueshield)
 "aaG" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -247,21 +243,21 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/security{
-	name = "Security-Storage Backroom";
-	req_access_txt = "63"
+/obj/machinery/door/airlock/command{
+	name = "Blueshield's Office";
+	req_access_txt = "71"
 	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
+/area/blueshield)
 "aaH" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel,
 /area/construction/storage/wing)
@@ -282,11 +278,16 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaJ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
+	},
+/obj/machinery/power/apc{
+	area = "/area/blueshield";
+	name = "Blueshield's Office APC";
+	pixel_x = 26
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel,
 /area/construction/storage/wing)
@@ -302,8 +303,12 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
+/area/blueshield)
 "aaN" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -328,8 +333,13 @@
 /area/security/prison)
 "aaQ" = (
 /obj/structure/chair/office/dark,
+/obj/effect/landmark/start/blueshield,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
+/area/blueshield)
 "aaR" = (
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -340,8 +350,16 @@
 "aaT" = (
 /obj/structure/table,
 /obj/machinery/recharger,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 23
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
+/area/blueshield)
 "aaV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -349,22 +367,22 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel,
+/turf/closed/wall,
 /area/construction/storage/wing)
 "aaW" = (
-/obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/security{
-	name = "Security-Storage Backroom";
-	req_access_txt = "63"
+/obj/structure/closet/secure_closet/blueshield,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
+/area/blueshield)
 "aaX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -375,8 +393,17 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 29;
+	pixel_y = -26
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
+/area/blueshield)
 "aaY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -391,14 +418,15 @@
 /obj/structure/table,
 /obj/item/folder/red,
 /obj/item/restraints/handcuffs,
-/obj/machinery/newscaster/security_unit{
-	pixel_y = -30
-	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
+/area/blueshield)
 "abb" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced,
@@ -429,8 +457,13 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/item/pen,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
+/area/blueshield)
 "abe" = (
 /turf/closed/wall,
 /area/security/prison)
@@ -457,7 +490,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
-/area/hallway/primary/fore)
+/area/blueshield)
 "abi" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -81313,6 +81346,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"edJ" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/blueshield)
 "eik" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -81705,13 +81742,6 @@
 /obj/item/storage/photo_album,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"fZb" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/construction/storage/wing)
 "fZr" = (
 /obj/structure/chair/stool,
 /obj/machinery/camera{
@@ -82213,6 +82243,9 @@
 /obj/item/reagent_containers/glass/bowl,
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
+"ijx" = (
+/turf/closed/wall,
+/area/blueshield)
 "ijA" = (
 /obj/machinery/light{
 	dir = 1;
@@ -83075,6 +83108,19 @@
 /obj/docking_port/stationary/public_mining_dock,
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
+"lIr" = (
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/machinery/computer/secure_data{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/blueshield)
 "lKn" = (
 /obj/effect/landmark/start/prisoner/prilate,
 /turf/open/floor/circuit/green,
@@ -83217,6 +83263,11 @@
 	},
 /turf/open/floor/wood,
 /area/security/prison)
+"lYF" = (
+/obj/effect/turf_decal/stripes/line,
+/mob/living/simple_animal/pet/roro/roboticsroro,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "lZV" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -83796,11 +83847,6 @@
 	},
 /turf/open/floor/wood,
 /area/security/prison)
-"ozx" = (
-/obj/effect/turf_decal/stripes/line,
-/mob/living/simple_animal/pet/roro/roboticsroro,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "oCL" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -85615,6 +85661,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"wtu" = (
+/turf/closed/wall/r_wall,
+/area/blueshield)
 "wtv" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red,
@@ -108253,7 +108302,7 @@ awW
 awW
 awW
 aaf
-fZb
+aFN
 aaJ
 aIA
 aJQ
@@ -108511,9 +108560,9 @@ aaa
 aaa
 aaa
 aFN
-aab
+ijx
 aaV
-aJO
+aJN
 aLi
 aMD
 aNV
@@ -108766,9 +108815,9 @@ aaa
 aaa
 aaa
 aaa
-aDu
-aDu
-aDu
+ijx
+ijx
+lIr
 aaW
 aJN
 aLj
@@ -109023,7 +109072,7 @@ aaa
 aaa
 aaa
 aaa
-azC
+edJ
 aaC
 aaM
 aaX
@@ -109280,7 +109329,7 @@ aaa
 aaa
 aaa
 aaa
-azC
+edJ
 aaD
 aaQ
 aba
@@ -109537,7 +109586,7 @@ aaa
 aaa
 aaa
 aaa
-azC
+edJ
 aaD
 aaT
 abd
@@ -109794,9 +109843,9 @@ aaa
 aAV
 aaa
 aaa
-aDu
+ijx
 aaF
-aHx
+wtu
 abh
 aJR
 aLn
@@ -115012,7 +115061,7 @@ lOi
 cFf
 cFg
 cFf
-ozx
+lYF
 cIL
 cJK
 cCq
