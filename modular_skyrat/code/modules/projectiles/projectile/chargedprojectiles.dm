@@ -14,7 +14,7 @@
 /obj/item/projectile/charged/pistol
 	name = "charged pistol shot"
 	icon_state = "charged_projectile_small"
-	damage = 18
+	damage = 20
 
 /obj/item/projectile/charged/smg
 	name = "charged automatic shot"
