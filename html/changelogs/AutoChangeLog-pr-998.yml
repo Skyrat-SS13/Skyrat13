@@ -1,0 +1,9 @@
+author: "CinderWC"
+delete-after: True
+changes: 
+  - rscadd: "Added Blueshield Job"
+  - rscadd: "Added Blueshield Items"
+  - rscadd: "Added Blueshield Sprites"
+  - tweak: "changed access.dm to modular_skyrat"
+  - imageadd: "Added Blueshield Icons"
+  - code_imp: "Changed a good amount of code to accomodate this new job"
