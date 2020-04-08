@@ -223,10 +223,10 @@
 	else
 		..()
 
-/obj/item/twohanded/crucible/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(wielded)
-		return ..()
-	return 0
+/obj/item/twohanded/crucible/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(!wielded)
+		return BLOCK_NONE
+	return ..()
 
 /obj/item/twohanded/crucible/wield(mob/living/carbon/M)
 	..()
