@@ -25186,7 +25186,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/atrium)
 "aWX" = (
-/obj/structure/piano{
+/obj/structure/musician/piano{
 	icon_state = "piano"
 	},
 /obj/machinery/airalarm{
@@ -114442,7 +114442,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/crew_quarters/theatre/abandoned)
@@ -128220,7 +128220,7 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Visitations Visitor-side";
 	dir = 8;
-	network = list("s13","prison");
+	network = list("ss13","prison");
 	start_active = 1
 	},
 /obj/machinery/button/door{

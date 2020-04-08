@@ -613,7 +613,7 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Visitations Visitor-side";
 	dir = 8;
-	network = list("s13","prison");
+	network = list("ss13","prison");
 	start_active = 1
 	},
 /obj/machinery/button/door{
@@ -79054,7 +79054,7 @@
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "dhU" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -81346,6 +81346,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"edJ" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/blueshield)
 "eik" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -81568,9 +81572,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/primary/port)
-"eRa" = (
-/turf/closed/wall/r_wall,
-/area/blueshield)
 "eTs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -82242,6 +82243,9 @@
 /obj/item/reagent_containers/glass/bowl,
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
+"ijx" = (
+/turf/closed/wall,
+/area/blueshield)
 "ijA" = (
 /obj/machinery/light{
 	dir = 1;
@@ -82328,9 +82332,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"iIa" = (
-/turf/closed/wall,
-/area/blueshield)
 "iLj" = (
 /obj/structure/table,
 /turf/open/floor/plating,
@@ -82436,19 +82437,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"jfq" = (
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/obj/machinery/computer/secure_data{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/blueshield)
 "jfW" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -83120,6 +83108,19 @@
 /obj/docking_port/stationary/public_mining_dock,
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
+"lIr" = (
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/machinery/computer/secure_data{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/blueshield)
 "lKn" = (
 /obj/effect/landmark/start/prisoner/prilate,
 /turf/open/floor/circuit/green,
@@ -83262,6 +83263,11 @@
 	},
 /turf/open/floor/wood,
 /area/security/prison)
+"lYF" = (
+/obj/effect/turf_decal/stripes/line,
+/mob/living/simple_animal/pet/roro/roboticsroro,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "lZV" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -83276,11 +83282,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"maq" = (
-/obj/effect/turf_decal/stripes/line,
-/mob/living/simple_animal/pet/roro/roboticsroro,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "maM" = (
 /obj/machinery/cryopod,
 /obj/machinery/light{
@@ -85660,6 +85661,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"wtu" = (
+/turf/closed/wall/r_wall,
+/area/blueshield)
 "wtv" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red,
@@ -85735,10 +85739,6 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"wJZ" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/blueshield)
 "wKo" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/closed/wall,
@@ -108560,7 +108560,7 @@ aaa
 aaa
 aaa
 aFN
-iIa
+ijx
 aaV
 aJN
 aLi
@@ -108815,9 +108815,9 @@ aaa
 aaa
 aaa
 aaa
-iIa
-iIa
-jfq
+ijx
+ijx
+lIr
 aaW
 aJN
 aLj
@@ -109072,7 +109072,7 @@ aaa
 aaa
 aaa
 aaa
-wJZ
+edJ
 aaC
 aaM
 aaX
@@ -109329,7 +109329,7 @@ aaa
 aaa
 aaa
 aaa
-wJZ
+edJ
 aaD
 aaQ
 aba
@@ -109586,7 +109586,7 @@ aaa
 aaa
 aaa
 aaa
-wJZ
+edJ
 aaD
 aaT
 abd
@@ -109843,9 +109843,9 @@ aaa
 aAV
 aaa
 aaa
-iIa
+ijx
 aaF
-eRa
+wtu
 abh
 aJR
 aLn
@@ -115061,7 +115061,7 @@ lOi
 cFf
 cFg
 cFf
-maq
+lYF
 cIL
 cJK
 cCq

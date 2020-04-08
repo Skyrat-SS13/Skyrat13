@@ -42716,7 +42716,7 @@
 /area/maintenance/department/engine)
 "bUb" = (
 /obj/structure/grille/broken,
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bUc" = (
@@ -54701,20 +54701,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
-"gzu" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -29
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/blueshield)
 "gAi" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/red{
@@ -55437,6 +55423,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
+"hIp" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -29
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/blueshield)
 "hIZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -55537,6 +55537,18 @@
 	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
+"hQA" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	layer = 2.9
+	},
+/obj/item/pen,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/blueshield)
 "hQC" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
@@ -57458,18 +57470,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"ljH" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	layer = 2.9
-	},
-/obj/item/pen,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/blueshield)
 "lkz" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -59124,7 +59124,7 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Visitations Visitor-side";
 	dir = 8;
-	network = list("s13","prison");
+	network = list("ss13","prison");
 	start_active = 1
 	},
 /obj/machinery/button/door{
@@ -59915,7 +59915,7 @@
 /turf/open/floor/plating,
 /area/chapel/office)
 "plA" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/crew_quarters/dorms)
 "pmB" = (
@@ -59964,10 +59964,6 @@
 	heat_capacity = 1e+006
 	},
 /area/chapel/dock)
-"pqQ" = (
-/mob/living/simple_animal/pet/roro/roboticsroro,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "prQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -63114,6 +63110,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"vim" = (
+/mob/living/simple_animal/pet/roro/roboticsroro,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "vjd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -90451,8 +90451,8 @@ aHJ
 aIO
 aJI
 aKJ
-ljH
-gzu
+hQA
+hIp
 aKJ
 aKJ
 aQG
@@ -102557,7 +102557,7 @@ biv
 bkt
 blK
 bmQ
-pqQ
+vim
 bmM
 bmM
 brB
