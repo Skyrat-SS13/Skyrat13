@@ -8,7 +8,7 @@
 	charge_sections = 4
 	icon = 'modular_skyrat/icons/obj/guns/blueshieldenergy.dmi'
 	icon_state = "bsgun"
-	item_state = "bsgun"
+	item_state = "minidisable"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/blueshieldgun_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/blueshieldgun_righthand.dmi'
 	obj_flags = UNIQUE_RENAME
