@@ -50,6 +50,7 @@
 	strip_delay = 30
 	var/hit_reflect_chance = 50
 	var/hud_type = DATA_HUD_SECURITY_ADVANCED
+	var/list/protected_zones = list(BODY_ZONE_HEAD)
 
 /obj/item/clothing/head/hooded/ablative/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -64,11 +65,13 @@
 		H.remove_hud_from(user)
 	..()
 
-/obj/item/clothing/head/hooded/ablative/IsReflect(def_zone)
-	if(!(def_zone in BODY_ZONE_HEAD)) //If not shot where ablative is covering you, you don't get the reflection bonus!
-		return FALSE
-	if (prob(hit_reflect_chance))
-		return TRUE
+/obj/item/clothing/head/hooded/ablative/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(def_zone in protected_zones)
+		if(prob(hit_reflect_chance))
+			return BLOCK_SHOULD_REDIRECT | BLOCK_REDIRECTED | BLOCK_SUCCESS | BLOCK_PHYSICAL_INTERNAL
+	return ..()
+
+
 
 /obj/item/clothing/suit/hooded/ablative
 	name = "ablative trenchcoat"
@@ -86,13 +89,14 @@
 	strip_delay = 30
 	equip_delay_other = 40
 	var/hit_reflect_chance = 50
+	var/list/protected_zones = list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
 /obj/item/clothing/suit/hooded/ablative/Initialize()
 	. = ..()
 	allowed = GLOB.security_vest_allowed
 
-/obj/item/clothing/suit/hooded/ablative/IsReflect(def_zone)
-	if(!(def_zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))) //If not shot where ablative is covering you, you don't get the reflection bonus!
-		return FALSE
-	if (prob(hit_reflect_chance))
-		return TRUE
+/obj/item/clothing/suit/hooded/ablative/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(def_zone in protected_zones)
+		if(prob(hit_reflect_chance))
+			return BLOCK_SHOULD_REDIRECT | BLOCK_REDIRECTED | BLOCK_SUCCESS | BLOCK_PHYSICAL_INTERNAL
+	return ..()
