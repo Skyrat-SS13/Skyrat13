@@ -1,19 +1,37 @@
-#define ATTRIBUTE_STRENGTH 1
-#define ATTRIBUTE_DEXTERITY 2
-#define ATTRIBUTE_AGILITY 3
-#define ATTRIBUTE_CONSTITUTION 4
-#define ATTRIBUTE_INTELLIGENCE 5
-
 /datum/augmentation
 	var/name = "Augmentation."
 	var/desc = "Basic augmentation, you are not supposed to see this. Report to admins."
 	var/id = 0
+	var/cat_id = 0
 	var/cost = 0
-	var/affecting_zone = BODY_ZONE_R_ARM
+	var/affecting_zone = 0
+	var/restricted_species = list()
 
 /datum/augmentation/proc/get_cost()
 	return cost
 
 /datum/augmentation/proc/apply_to_mob(mob)
-	var/mob/living/carbon/human/H = mob
-	return TRUE
+	return
+
+/datum/augmentation/limb
+	var/obj/item/bodypart/limb_type
+
+/datum/augmentation/limb/apply_to_mob(mob)
+	if(limb_type)
+		var/mob/living/carbon/human/H = mob
+
+		var/obj/item/bodypart/old_part = H.get_bodypart(affecting_zone)
+		var/obj/item/bodypart/prosthetic = new limb_type
+
+		prosthetic.replace_limb(H)
+		qdel(old_part)
+		H.regenerate_icons()
+
+/datum/augmentation/implant
+	var/obj/item/organ/implant_type
+
+/datum/augmentation/implant/apply_to_mob(mob)
+	if(implant_type)
+		var/mob/living/carbon/human/H = mob
+		var/obj/item/organ/org = new implant_type
+		org.Insert(H)
