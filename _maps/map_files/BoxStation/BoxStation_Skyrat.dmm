@@ -12285,7 +12285,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aAs" = (
-/obj/structure/piano{
+/obj/structure/musician/piano{
 	icon_state = "piano"
 	},
 /turf/open/floor/plating,
@@ -57730,10 +57730,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"hII" = (
-/mob/living/simple_animal/pet/roro/roboticsroro,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "hIL" = (
 /obj/structure/sign/poster/contraband/space_up{
 	pixel_x = -32;
@@ -57877,6 +57873,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"ibw" = (
+/mob/living/simple_animal/pet/roro/roboticsroro,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "idK" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -58139,7 +58139,7 @@
 	},
 /area/crew_quarters/theatre)
 "iTU" = (
-/obj/structure/piano{
+/obj/structure/musician/piano{
 	icon_state = "piano"
 	},
 /turf/open/floor/wood,
@@ -59327,7 +59327,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "myh" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -108483,7 +108483,7 @@ biN
 biL
 bni
 blM
-hII
+ibw
 cHX
 cIc
 biL
