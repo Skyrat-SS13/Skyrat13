@@ -1,0 +1,4 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - bugfix: "fixed not seeing /me and other emotes in total darkness, despite having vision of the mob"
