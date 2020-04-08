@@ -44,7 +44,7 @@
 	caliber = "CH1212-S"
 	max_ammo = 20
 
-/obj/item/ammo_box/magazine/charged/chargepistol/update_icon()
+/obj/item/ammo_box/magazine/charged/chargesmg/update_icon()
 	if(ammo_count())
 		icon_state = "chargesmg_mag"
 	else
@@ -81,7 +81,7 @@
 	caliber = "foam_force" //Originally I had it be a custom reusable ammo that looked like a bootleg holographic version of the real projectile but I couldn't get it to work properly so I just said "fuck it" for right now. Might revive it later.
 	max_ammo = 10
 
-/obj/item/ammo_box/magazine/charged/chargerifle/update_icon()
+/obj/item/ammo_box/magazine/charged/toyrifle/update_icon()
 	if(ammo_count())
 		icon_state = "nerfchargerifle_mag"
 	else
