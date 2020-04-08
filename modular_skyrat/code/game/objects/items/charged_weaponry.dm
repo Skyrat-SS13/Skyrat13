@@ -151,7 +151,7 @@
 	icon = 'modular_skyrat/icons/obj/guns/chargeweapons.dmi'
 	icon_state = "charge_shotgun"
 	item_state = "charge_shotgun"
-	mag_type = /obj/item/ammo_box/magazine/internal/charged/chargeshotgun
+	mag_type = /obj/item/ammo_box/magazine/internal/charged/chargeshotgun/hybrid
 	fire_delay = 7
 	var/alarmed = 0
 	var/obj/item/stock_parts/cell/cell

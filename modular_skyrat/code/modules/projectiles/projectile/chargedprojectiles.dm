@@ -4,8 +4,8 @@
 	name = "charged shot"
 	icon = 'modular_skyrat/icons/obj/guns/chargeweapons.dmi'
 	icon_state = "charged_projectile"
-	hitsound = 'sounds/weapons/resonator_blast.ogg'
-	hitsound_wall = 'sounds/weapons/effects/searwall.ogg'
+	hitsound = 'sound/weapons/resonator_blast.ogg'
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 
 /obj/item/projectile/charged/rifle
 	name = "charged rifle shot"

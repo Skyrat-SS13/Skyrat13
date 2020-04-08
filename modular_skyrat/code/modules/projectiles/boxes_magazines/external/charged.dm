@@ -73,6 +73,9 @@
 /obj/item/ammo_box/magazine/internal/charged/chargeshotgun/nonlethal
 	ammo_type = /obj/item/ammo_casing/charged/shotguncasing/nonlethal
 
+/obj/item/ammo_box/magazine/internal/charged/chargeshotgun/hybrid
+	ammo_type = list(/obj/item/ammo_casing/charged/shotguncasing/nonlethal, /obj/item/ammo_casing/charged/shotguncasing)
+
 /obj/item/ammo_box/magazine/charged/toyrifle
 	name = "toy charge rifle magazine"
 	desc = "A cheap plastic magazine used in toy charge rifles. Cute, if ineffective."
