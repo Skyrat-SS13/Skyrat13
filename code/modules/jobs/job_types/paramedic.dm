@@ -28,6 +28,7 @@
 	uniform = /obj/item/clothing/under/rank/medical/paramedic
 	shoes = /obj/item/clothing/shoes/jackboots
 	head = /obj/item/clothing/head/soft/emt
+	mask = null //Skyrat Edit
 	suit =  /obj/item/clothing/suit/toggle/labcoat/paramedic
 	belt = /obj/item/storage/belt/medical
 	l_hand = /obj/item/storage/firstaid/regular
