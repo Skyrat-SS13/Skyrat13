@@ -560,27 +560,3 @@
 		storm_cooldown = world.time + 200
 	else
 		..()
-
-//glaurung (needs unique loot and crusher trophy)
-/obj/structure/closet/crate/necropolis/glaurung
-	name = "drake chest"
-
-/obj/structure/closet/crate/necropolis/glaurung/PopulateContents()
-	var/loot = rand(1,4)
-	switch(loot)
-		if(1)
-			new /obj/item/melee/ghost_sword(src)
-		if(2)
-			new /obj/item/lava_staff(src)
-		if(3)
-			new /obj/item/book/granter/spell/sacredflame(src)
-			new /obj/item/gun/magic/wand/fireball(src)
-		if(4)
-			new /obj/item/dragons_blood(src)
-
-/obj/structure/closet/crate/necropolis/glaurung/crusher
-	name = "wise drake chest"
-
-/obj/structure/closet/crate/necropolis/glaurung/crusher/PopulateContents()
-	..()
-	new /obj/item/crusher_trophy/tail_spike(src)
