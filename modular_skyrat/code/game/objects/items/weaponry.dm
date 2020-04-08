@@ -214,6 +214,6 @@
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus
 
 /obj/item/melee/baton/staff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK)
-		return FALSE
+	if(attack_type == ATTACK_TYPE_PROJECTILE)
+		final_block_chance = 0
 	return ..()
