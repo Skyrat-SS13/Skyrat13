@@ -9,7 +9,7 @@
 	supervisors = "the Captain"
 	selection_color = "#ddddff"
 	minimal_player_age = 7
-	exp_requirements = 3900
+	exp_requirements = 2400
 	exp_type = EXP_TYPE_SECURITY
 
 	outfit = /datum/outfit/job/blueshield
