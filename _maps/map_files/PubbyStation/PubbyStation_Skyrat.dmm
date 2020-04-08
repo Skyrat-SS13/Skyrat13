@@ -18791,7 +18791,6 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/mob/living/simple_animal/opossum/poppy,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aTl" = (
@@ -55272,11 +55271,12 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "hkI" = (
-/mob/living/simple_animal/opossum,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
 	},
-/area/maintenance/department/engine)
+/mob/living/simple_animal/friendly/possum/poppy,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "hkQ" = (
 /obj/machinery/light{
 	dir = 4
@@ -59479,6 +59479,14 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"ovg" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
+/mob/living/simple_animal/friendly/possum,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "ovM" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
@@ -88575,7 +88583,7 @@ bGN
 bGN
 bGN
 bGN
-bGN
+ovg
 bGN
 bGN
 bGN
@@ -88589,7 +88597,7 @@ oZW
 bDi
 bDi
 bSw
-hkI
+bSw
 bSw
 bva
 bOB
@@ -104988,7 +104996,7 @@ aUw
 aTm
 aTm
 aTm
-aYy
+hkI
 aZo
 baB
 bbH

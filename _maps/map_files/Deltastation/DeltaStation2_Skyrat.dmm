@@ -20162,7 +20162,6 @@
 "aPa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line,
-/mob/living/simple_animal/opossum/poppy,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aPb" = (
@@ -24544,13 +24543,10 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "aVT" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/mob/living/simple_animal/opossum,
-/turf/open/floor/plating,
-/area/maintenance/port)
+/obj/effect/turf_decal/stripes/line,
+/mob/living/simple_animal/friendly/possum/poppy,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aVU" = (
 /obj/machinery/holopad,
 /obj/structure/cable/white{
@@ -125107,6 +125103,17 @@
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+"fMD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/mob/living/simple_animal/friendly/possum,
+/turf/open/floor/plasteel,
+/area/maintenance/port/fore)
 "fOw" = (
 /obj/machinery/light{
 	dir = 1;
@@ -128854,6 +128861,19 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
+"uIP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/mob/living/simple_animal/friendly/possum,
+/turf/open/floor/plasteel,
+/area/maintenance/port/aft)
 "uJJ" = (
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall,
@@ -158592,7 +158612,7 @@ csd
 ctH
 cvg
 cnI
-aVT
+cxO
 caE
 cAY
 cCE
@@ -159575,7 +159595,7 @@ alg
 arB
 arB
 arB
-aug
+fMD
 aug
 avm
 alg
@@ -161979,7 +161999,7 @@ dJX
 drP
 dLX
 dNA
-dOn
+uIP
 dOn
 dPH
 dQA
@@ -173960,7 +173980,7 @@ aJv
 aKQ
 azC
 aAG
-aOW
+aVT
 axk
 aSq
 aUf

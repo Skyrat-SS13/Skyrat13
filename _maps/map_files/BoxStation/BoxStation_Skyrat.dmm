@@ -6255,7 +6255,7 @@
 /turf/closed/wall,
 /area/security/brig)
 "ama" = (
-/mob/living/simple_animal/opossum/poppy,
+/mob/living/simple_animal/friendly/possum/poppy,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "amb" = (
@@ -61810,10 +61810,10 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/mob/living/simple_animal/opossum,
+/mob/living/simple_animal/friendly/possum,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "tCa" = (
@@ -84080,11 +84080,11 @@ dev
 aZE
 xBw
 bjr
-ama
+bjr
 bmh
 bjr
 bjr
-bjr
+ama
 bjr
 bjr
 bvX
@@ -97719,7 +97719,7 @@ bCE
 bFv
 bFz
 bvd
-tBO
+bKH
 bLK
 bMU
 bOc
@@ -104418,7 +104418,7 @@ bNd
 bzs
 bzs
 bzs
-bMb
+tBO
 bFr
 ceK
 ceJ
