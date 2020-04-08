@@ -26,9 +26,9 @@
 	ears = /obj/item/radio/headset/headset_med
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	uniform = /obj/item/clothing/under/rank/medical/paramedic
+	//mask = /obj/item/clothing/mask/cigarette // Skyrat edit
 	shoes = /obj/item/clothing/shoes/jackboots
 	head = /obj/item/clothing/head/soft/emt
-	mask = null //Skyrat Edit
 	suit =  /obj/item/clothing/suit/toggle/labcoat/paramedic
 	belt = /obj/item/storage/belt/medical
 	l_hand = /obj/item/storage/firstaid/regular
