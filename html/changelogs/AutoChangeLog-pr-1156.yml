@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "reactive teleport armor doesn't magically delete projectiles, they keep flying after blocked since you dodged it"
+  - rscadd: "anything that said \"user deflects the attack\" in general now actually deflects bullets instead of deleting them."
