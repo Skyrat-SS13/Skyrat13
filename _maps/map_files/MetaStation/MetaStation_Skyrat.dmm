@@ -75881,7 +75881,7 @@
 /turf/open/space,
 /area/engine/atmos)
 "cVC" = (
-/mob/living/simple_animal/sloth/citrus,
+/mob/living/simple_animal/opossum/poppy,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "cVD" = (
@@ -82012,6 +82012,16 @@
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+"gYS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "hdy" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -103679,7 +103689,7 @@ dux
 cde
 dux
 dux
-cdc
+gYS
 dux
 dux
 dux

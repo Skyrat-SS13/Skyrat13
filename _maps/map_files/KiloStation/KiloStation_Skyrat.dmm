@@ -47964,7 +47964,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
-/mob/living/simple_animal/sloth/citrus,
+/mob/living/simple_animal/opossum/poppy,
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "bwT" = (
@@ -88105,6 +88105,14 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"ryx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb,
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/maintenance/fore)
 "rNm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/lattice/catwalk,
@@ -114174,7 +114182,7 @@ anb
 anU
 apG
 adQ
-aoc
+ryx
 atO
 awh
 btA

@@ -20162,6 +20162,7 @@
 "aPa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line,
+/mob/living/simple_animal/opossum/poppy,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aPb" = (
@@ -24543,22 +24544,13 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "aVT" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/mob/living/simple_animal/sloth/citrus,
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "aVU" = (
 /obj/machinery/holopad,
 /obj/structure/cable/white{
@@ -158600,7 +158592,7 @@ csd
 ctH
 cvg
 cnI
-cxO
+aVT
 caE
 cAY
 cCE
@@ -175257,7 +175249,7 @@ aPf
 aQP
 aSu
 aUk
-aVT
+aVS
 aXz
 aZd
 aQQ

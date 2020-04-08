@@ -18791,6 +18791,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+/mob/living/simple_animal/opossum/poppy,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aTl" = (
@@ -55270,6 +55271,12 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"hkI" = (
+/mob/living/simple_animal/opossum,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/maintenance/department/engine)
 "hkQ" = (
 /obj/machinery/light{
 	dir = 4
@@ -88582,7 +88589,7 @@ oZW
 bDi
 bDi
 bSw
-bSw
+hkI
 bSw
 bva
 bOB
