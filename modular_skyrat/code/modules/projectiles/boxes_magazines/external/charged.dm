@@ -2,7 +2,7 @@
 /obj/item/ammo_box/magazine/charged
 	name = "unbranded charged shot box"
 	desc = "This doesn't seem... quite right." //If you see this something went "uwu uh oh! Stinky winky! we made a fucky wucky! owowowowowowo"
-	icon = 'modular_skyrat/icon/obj/guns/chargeweapons.dmi'
+	icon = 'modular_skyrat/icons/obj/guns/chargeweapons.dmi'
 	icon_state = "mag_bugged"
 	ammo_type = /obj/item/ammo_casing/charged
 	caliber = "chargednull"
@@ -14,7 +14,7 @@
 	icon_state = "chargerifle_mag"
 	ammo_type = /obj/item/ammo_casing/charged/riflecasing
 	caliber = "CH1212-R"
-	max_ammo = 10
+	max_ammo = 20
 
 /obj/item/ammo_box/magazine/charged/chargerifle/update_icon() //This could have probably been shortended down to one overall proc for all of /magazine/charged/ but im too lazy to figure it out.
 	if(ammo_count())
@@ -55,7 +55,7 @@
 	desc = "You shouldn't be seeing this. What the fuck did you do?" //You also shouldn't see this.
 	icon = 'modular_skyrat/icons/obj/guns/chargeweapons.dmi'
 	icon_state = "mag_bugged"
-	ammo_type = /obj/item/ammo_casing/charged/shotgun
+	ammo_type = /obj/item/ammo_casing/charged/shotguncasing
 	caliber = "CH1212-H"
 	max_ammo = 6 //As good as a combat shotgun
 	multiload = 0
@@ -63,7 +63,7 @@
 /obj/item/ammo_box/magazine/internal/charged/chargeshotgun/ammo_count(countempties = 1) //copypasta'd from shotgun internal magazine code.
 	if (!countempties)
 		var/boolets = 0
-		for(var/obj/item/ammo_casing/bullet in stored_ammo)
+		for(var/obj/item/ammo_casing/charged/bullet in stored_ammo)
 			if(bullet.BB)
 				boolets++
 		return boolets
@@ -71,14 +71,14 @@
 		return ..()
 
 /obj/item/ammo_box/magazine/internal/charged/chargeshotgun/nonlethal
-	ammo_type = /obj/item/ammo_casing/charged/shotgun/nonlethal
+	ammo_type = /obj/item/ammo_casing/charged/shotguncasing/nonlethal
 
 /obj/item/ammo_box/magazine/charged/toyrifle
 	name = "toy charge rifle magazine"
 	desc = "A cheap plastic magazine used in toy charge rifles. Cute, if ineffective."
 	icon_state = "nerfchargerifle_mag" //Its nerf or nothing. Just like im probably going to have to NERF this or NOTHING is getting accepted, hahaaaaaaaa.
-	ammo_type = /obj/item/ammo_casing/charged/toy
-	caliber = "charged foam"
+	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
+	caliber = "foam_force" //Originally I had it be a custom reusable ammo that looked like a bootleg holographic version of the real projectile but I couldn't get it to work properly so I just said "fuck it" for right now. Might revive it later.
 	max_ammo = 10
 
 /obj/item/ammo_box/magazine/charged/chargerifle/update_icon()
