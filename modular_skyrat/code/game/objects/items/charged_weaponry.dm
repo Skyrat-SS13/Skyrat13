@@ -12,6 +12,8 @@
 	var/alarmed = 0
 	var/obj/item/stock_parts/cell/cell
 	var/cell_type = /obj/item/stock_parts/cell/magnetic
+	var/can_charge = 1
+	var/dead_cell = FALSE
 
 /obj/item/gun/ballistic/charged/Initialize()
 	. = ..()
@@ -19,16 +21,18 @@
 		cell = new cell_type(src)
 	else
 		cell = new(src)
+	if(!dead_cell)
+		cell.give(cell.maxcharge)
 
 /obj/item/gun/ballistic/charged/can_shoot()
 	if(QDELETED(cell))
-		return 0
+		return FALSE
 
 	var/obj/item/ammo_casing/charged/shot = chambered
 	if(!shot)
-		return 0
+		return FALSE
 	if(cell.charge < shot.energy_cost * burst_size)
-		return 0
+		return FALSE
 	. = ..()
 
 /obj/item/gun/ballistic/charged/shoot_live_shot()
@@ -50,15 +54,6 @@
 		. += "<span class='notice'>[src]'s cell is [round(cell.charge / cell.maxcharge, 0.1) * 100]% full.</span>"
 	else
 		. += "<span class='notice'>[src] doesn't seem to have a cell!</span>"
-
-/obj/item/gun/ballistic/charged/can_shoot()
-	return get_ammo()
-
-/obj/item/gun/ballistic/charged/proc/empty_alarm()
-	if(!chambered && !get_ammo() && !alarmed)
-		playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
-		alarmed = 1
-	return
 
 /obj/item/gun/ballistic/charged/attackby(obj/item/A, mob/user, params)
 	. = ..()
@@ -156,6 +151,7 @@
 	var/alarmed = 0
 	var/obj/item/stock_parts/cell/cell
 	var/cell_type = /obj/item/stock_parts/cell/magnetic
+	var/dead_cell = FALSE
 
 /obj/item/gun/ballistic/shotgun/chargedshotgun/Initialize()
 	. = ..()
@@ -209,17 +205,21 @@
 /obj/item/gun/ballistic/charged/chargerifle/nopin
 	pin = null
 	spawnwithmagazine = FALSE
+	dead_cell = TRUE
 
 /obj/item/gun/ballistic/charged/chargepistol/nopin
 	pin = null
 	spawnwithmagazine = FALSE
+	dead_cell = TRUE
 
 /obj/item/gun/ballistic/charged/chargesmg/nopin
 	pin = null
 	spawnwithmagazine = FALSE
+	dead_cell = TRUE
 
 /obj/item/gun/ballistic/shotgun/chargedshotgun/nopin
 	pin = null
+	dead_cell = TRUE
 
 
 

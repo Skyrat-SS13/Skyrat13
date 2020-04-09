@@ -1,5 +1,5 @@
 // Charged projectiles for charged weapons (Durr)
-//All of these were nerfed into the fucking dirt. Right now, most of these are = to standard ballistic weapons with the added power draw.
+//Right now, most of these are = to standard ballistic weapons with the added power draw.
 /obj/item/projectile/charged
 	name = "charged shot"
 	icon = 'modular_skyrat/icons/obj/guns/chargeweapons.dmi'
@@ -27,10 +27,12 @@
 
 /obj/item/projectile/charged/shotgun/nonlethal
 	name = "nonlethal charged shotgun pellet"
+	icon_state = "charged_projectile_nonlethal"
 	damage = 5
 	stamina = 25
 
 /obj/item/projectile/charged/super //Unused OP shot for like, varediting or some shit for right now.
 	name = "hypercharged shot"
+	icon_state = "hypercharged_projectile"
 	damage = 75
 	stamina = 25

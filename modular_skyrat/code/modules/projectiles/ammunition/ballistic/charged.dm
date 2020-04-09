@@ -31,7 +31,8 @@
 /obj/item/ammo_casing/charged/shotguncasing
 	name = "CH1212-H buckshot"
 	desc = "A charged multi-stored bullet casing designed for the power of a charged shotgun."
-	icon_state = "chshell-live"
+	icon = 'modular_skyrat/icons/obj/shomtgun.dmi'
+	icon_state = "chshell"
 	caliber = "CH1212-H"
 	projectile_type = /obj/item/projectile/charged/shotgun
 	pellets = 6
@@ -41,7 +42,7 @@
 /obj/item/ammo_casing/charged/shotguncasing/nonlethal
 	name = "CH1212-NH buckshot"
 	desc = "A charged multi-stored bullet casing designed ofr the power of a charged shotgun."
-	icon_state = "nchshell-live"
+	icon_state = "nchshell"
 	caliber = "CH1212-NH"
 	projectile_type = /obj/item/projectile/charged/shotgun/nonlethal
 	harmful = FALSE
