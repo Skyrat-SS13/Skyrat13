@@ -133,8 +133,12 @@
 	icon_state = "nerf_charge_rifle"
 	item_state = "nerf_charge_rifle"
 	fire_sound = 'modular_skyrat/sound/weapons/chargegun.ogg'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/chargeguns_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/chargeguns_righthand.dmi'
 	mag_type = /obj/item/ammo_box/magazine/charged/toyrifle
 	can_suppress = FALSE
+	burst_size = 1
+	fire_delay = 0
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/automatic/toy/toychargerifle/update_icon()
@@ -150,6 +154,8 @@
 	icon = 'modular_skyrat/icons/obj/guns/chargeweapons.dmi'
 	icon_state = "charge_shotgun"
 	item_state = "charge_shotgun"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/chargeguns_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/chargeguns_righthand.dmi'
 	fire_sound = 'sound/weapons/LaserSlugv3.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/charged/chargeshotgun/hybrid
 	fire_delay = 7

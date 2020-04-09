@@ -41,3 +41,4 @@
 	name = "charged foam dart"
 	icon = 'modular_skyrat/icons/obj/guns/chargeweapons.dmi'
 	icon_state = "charged_projectile_holographic"
+	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/charged

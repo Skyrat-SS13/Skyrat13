@@ -36,3 +36,10 @@
 /datum/techweb_node/botany/New()
 	design_ids += "prisonerbiogenerator"
 	. = ..()
+
+/datum/techweb_node/charge_weaponry
+	id = "charge_weaponry"
+	display_name = "Advanced Pulse-shot Weapons"
+	description = "Utilizing pulse-slung ballistic charge technology, we can produce advanced ballistic weaponry to suit our needs."
+	prereq_ids = list("weaponry", "adv_weaponry", "emp_adv", "electronic_weapons")
+	design_ids = list("chargepistolammo", "chargesmgammo", "chargerifleammo", "chargeshotammo", "chargeshotammo-nl", "chargepistol", "chargesmg", "chargerifle", "chargeshotgun")
