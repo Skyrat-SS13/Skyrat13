@@ -77,6 +77,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/be_random_body = 0				//whether we'll have a random body every round
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
+
 	//SKYRAT CHANGES
 	var/ooc_notes
 	var/erppref = "Ask"
@@ -88,7 +89,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/flavor_background = ""
 	var/character_skills = ""
 	var/exploitable_info = ""
+
+	//Advanced character customization
+	var/attribute_modifiers = list() //How much do we modify attributes by id to integer
+
+	var/augments_limbs = list() //List of each limb augment category, indexed by id of categories to id values of customization, 0 value is default
+	var/augments_implants = list()
+	var/augments_organs = list()
 	//END OF SKYRAT CHANGES
+
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
 	var/undershirt = "Nude"				//undershirt type

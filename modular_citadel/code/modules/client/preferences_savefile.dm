@@ -13,6 +13,7 @@
 		features["mcolor3"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
 	features["mcolor2"]	= sanitize_hexcolor(features["mcolor2"], 3, 0)
 	features["mcolor3"]	= sanitize_hexcolor(features["mcolor3"], 3, 0)
+
 	//SKYRAT CHANGES
 	ooc_notes = sanitize_text(S["ooc_notes"])
 	erppref = sanitize_text(S["erp_pref"], "Ask")
@@ -27,7 +28,28 @@
 	flavor_background = sanitize_text(S["flavor_background"])
 	character_skills = sanitize_text(S["character_skills"])
 	exploitable_info = sanitize_text(S["exploitable_info"])
+
+	//Advanced character customization
+	message_admins("moderately gay")
+	//if(GLOB.attribute_list.len == 0)
+	//	init_advanced_customization()
+	S["attribute_modifiers"]	>> attribute_modifiers
+	if(!attribute_modifiers)
+		attribute_modifiers = list()
+	message_admins("[length(GLOB.attribute_list)]")
+	message_admins("[GLOB.attribute_list.len]")
+	for(var/i in 1 to length(GLOB.attribute_list))
+		var/datum/attribute/AT = GLOB.attribute_list[i]
+		message_admins("slightly gay")
+		if(attribute_modifiers[AT.id] == null)
+			message_admins("gay")
+			attribute_modifiers[AT.id] = 0
+
+	S["augments_limbs"]	>> augments_limbs
+	S["augments_implants"]	>> augments_implants
+	S["augments_organs"]	>> augments_organs
 	//END OF SKYRAT CHANGES
+
 	//gear loadout
 	var/text_to_load
 	S["loadout"] >> text_to_load
@@ -60,6 +82,7 @@
 	WRITE_FILE(S["feature_xeno_head"], features["xenohead"])
 	//flavor text
 	WRITE_FILE(S["feature_flavor_text"], features["flavor_text"])
+
 	//SKYRAT CHANGES
 	WRITE_FILE(S["ooc_notes"], ooc_notes)
 	WRITE_FILE(S["erp_pref"], erppref)
@@ -71,7 +94,14 @@
 	WRITE_FILE(S["flavor_background"], flavor_background)
 	WRITE_FILE(S["character_skills"], character_skills)
 	WRITE_FILE(S["exploitable_info"], exploitable_info)
+	//Advanced character customization
+	WRITE_FILE(S["attribute_modifiers"] , attribute_modifiers)
+
+	WRITE_FILE(S["augments_limbs"] , augments_limbs)
+	WRITE_FILE(S["augments_implants"] , augments_implants)
+	WRITE_FILE(S["augments_organs"] , augments_organs)
 	//END OF SKYRAT CHANGES
+
 	//gear loadout
 	if(islist(chosen_gear))
 		if(chosen_gear.len)

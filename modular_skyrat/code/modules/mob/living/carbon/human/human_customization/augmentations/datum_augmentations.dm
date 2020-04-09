@@ -35,3 +35,12 @@
 		var/mob/living/carbon/human/H = mob
 		var/obj/item/organ/org = new implant_type
 		org.Insert(H)
+
+/datum/augmentation/organ
+	var/obj/item/organ/organ_type
+
+/datum/augmentation/organ/apply_to_mob(mob)
+	if(organ_type)
+		var/mob/living/carbon/human/H = mob
+		var/obj/item/organ/org = new organ_type
+		org.Insert(H)

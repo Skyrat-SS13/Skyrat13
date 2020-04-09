@@ -11,7 +11,7 @@
 	var/id = 0
 	var/base_value = 30
 	var/add_max = 20
-	var/subtract_max = 10
+	var/subtract_max = -10
 
 /datum/attribute/strength
 	name = "Strength"

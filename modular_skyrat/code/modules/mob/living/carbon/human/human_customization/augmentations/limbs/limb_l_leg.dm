@@ -1,5 +1,6 @@
 /datum/augmentation/limb/l_leg
 	affecting_zone = BODY_ZONE_L_LEG
+	cat_id = LIMB_AUG_L_LEG
 
 /datum/augmentation/limb/l_leg/default
 	name = "Default"
