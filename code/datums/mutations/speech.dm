@@ -108,7 +108,6 @@
 		message = replacetext(message," drink "," liquid ")
 		message = replacetext(message," feminist "," empowered woman ")
 		message = replacetext(message," i hate you "," you're a mean ")
-		message = replacetext(message," jew "," jewish ")
 		message = replacetext(message," shit "," shiz ")
 		message = replacetext(message," crap "," poo ")
 		message = replacetext(message," slut "," tease ")
@@ -263,7 +262,7 @@
 		message = replacetext(message," thank you "," thank you, thank you very much ")
 		message = replacetext(message," what are you "," whatcha ")
 		message = replacetext(message," yes ",pick(" sure", "yea "))
-		message = replacetext(message," faggot "," square ")
+		message = replacetext(message," meatball "," square ")
 		message = replacetext(message," muh valids "," getting my kicks ")
 		speech_args[SPEECH_MESSAGE] = trim(message)
 
