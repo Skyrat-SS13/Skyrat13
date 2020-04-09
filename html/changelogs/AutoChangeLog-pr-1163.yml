@@ -1,0 +1,4 @@
+author: "CinderWC"
+delete-after: True
+changes: 
+  - rscdel: "Deleted a line of code that made Paramedics spawn with a cigarette in their mouth"
