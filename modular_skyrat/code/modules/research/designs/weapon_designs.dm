@@ -50,7 +50,7 @@
 	desc = "A specialized charge-compatible riot buckshot shell designed for a charged shotgun."
 	id = "chargeshotammo-nl"
 	materials = list(/datum/material/iron = 3000, /datum/material/silver = 1500, /datum/material/uranium = 2000)
-
+	build_path = /obj/item/ammo_casing/charged/shotguncasing/nonlethal
 
 //////////////////////
 /// CHARGE WEAPONS ///
@@ -92,6 +92,6 @@
 	id = "chargeshotgun"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 10000, /datum/material/uranium = 6000, /datum/material/titanium = 11500, /datum/material/silver = 8000,)
-	build_path = /obj/item/gun/ballistic/charged/chargerifle/nopin
+	build_path = /obj/item/gun/ballistic/shotgun/chargedshotgun/nopin
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
