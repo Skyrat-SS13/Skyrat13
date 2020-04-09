@@ -41,9 +41,9 @@
 
 /obj/item/ammo_casing/charged/shotguncasing/nonlethal
 	name = "CH1212-NH buckshot"
-	desc = "A charged multi-stored bullet casing designed ofr the power of a charged shotgun."
+	desc = "A rubber charged multi-stored riot bullet casing designed for the power of a charged shotgun."
 	icon_state = "nchshell"
-	caliber = "CH1212-NH"
+	caliber = "CH1212-H"
 	projectile_type = /obj/item/projectile/charged/shotgun/nonlethal
 	harmful = FALSE
 	energy_cost = 200

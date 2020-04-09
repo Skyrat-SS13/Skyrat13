@@ -1,4 +1,4 @@
 /obj/machinery/recharger/New()
   . = ..()
-  allowed_devices += typecache(list(
+  allowed_devices += typecacheof(list(
 	  /obj/item/gun/ballistic/charged))
