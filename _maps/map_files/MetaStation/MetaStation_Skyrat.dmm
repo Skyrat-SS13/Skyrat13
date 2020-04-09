@@ -30699,10 +30699,10 @@
 	},
 /area/security/prison)
 "bgb" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 8
 	},
-/obj/machinery/meter,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "bgc" = (
@@ -59348,7 +59348,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "cik" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
 	},
 /turf/open/floor/plating,
@@ -106891,7 +106891,7 @@ aak
 aak
 atO
 atH
-atH
+abF
 dne
 dne
 dne
