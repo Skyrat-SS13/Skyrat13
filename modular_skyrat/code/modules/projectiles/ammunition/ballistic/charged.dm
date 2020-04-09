@@ -47,3 +47,11 @@
 	projectile_type = /obj/item/projectile/charged/shotgun/nonlethal
 	harmful = FALSE
 	energy_cost = 200
+
+/obj/item/ammo_casing/caseless/foam_dart/charged
+	name = "charged foam dart"
+	desc = "Its nerf or nothing! Comes with very tiny miniprojectors that give it a neat little visual effect."
+	icon = 'modular_skyrat/icons/obj/guns/chargeweapons.dmi'
+	icon_state = "foam_charge"
+	caliber = "foam_force"
+	projectile_type = /obj/item/projectile/bullet/reusable/foam_dart/charged

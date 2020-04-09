@@ -78,10 +78,10 @@
 
 /obj/item/ammo_box/magazine/charged/toyrifle
 	name = "toy charge rifle magazine"
-	desc = "A cheap plastic magazine used in toy charge rifles. Cute, if ineffective."
-	icon_state = "nerfchargerifle_mag" //Its nerf or nothing. Just like im probably going to have to NERF this or NOTHING is getting accepted, hahaaaaaaaa.
-	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
-	caliber = "foam_force" //Originally I had it be a custom reusable ammo that looked like a bootleg holographic version of the real projectile but I couldn't get it to work properly so I just said "fuck it" for right now. Might revive it later.
+	desc = "A cheap plastic magazine used in toy charge rifles."
+	icon_state = "nerfchargerifle_mag" //Its nerf or nothing. Just like im probably going to have to NERF this or NOTHING is getting accepted, hahaaaaaaaa.   LATER NOTE: I did indeed have to nerf the weapons.
+	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/charged
+	caliber = "foam_force"
 	max_ammo = 10
 
 /obj/item/ammo_box/magazine/charged/toyrifle/update_icon()

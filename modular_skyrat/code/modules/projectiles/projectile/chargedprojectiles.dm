@@ -36,3 +36,8 @@
 	icon_state = "hypercharged_projectile"
 	damage = 75
 	stamina = 25
+
+/obj/item/projectile/bullet/reusable/foam_dart/charged
+	name = "charged foam dart"
+	icon = 'modular_skyrat/icons/obj/guns/chargeweapons.dmi'
+	icon_state = "charged_projectile_holographic"

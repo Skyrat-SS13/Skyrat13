@@ -126,18 +126,22 @@
 		add_overlay("charge_smg-magazine")
 	icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"
 
-/obj/item/gun/ballistic/charged/toychargerifle
+/obj/item/gun/ballistic/automatic/toy/toychargerifle
 	name = "toy charge rifle"
 	desc = "Now you too can be a sociopathic space cowboy! Leather hat not included. Ineffective against mechanical beings."
+	icon = 'modular_skyrat/icons/obj/guns/chargeweapons.dmi'
 	icon_state = "nerf_charge_rifle"
 	item_state = "nerf_charge_rifle"
+	fire_sound = 'modular_skyrat/sound/weapons/chargegun.ogg'
 	mag_type = /obj/item/ammo_box/magazine/charged/toyrifle
+	can_suppress = FALSE
+	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/charged/toychargerifle/update_icon()
+/obj/item/gun/ballistic/automatic/toy/toychargerifle/update_icon()
 	..()
 	cut_overlays()
 	if(magazine)
-		add_overlay("toy_charge_rifle-magazine")
+		add_overlay("nerf_charge_rifle-magazine")
 	icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"
 
 /obj/item/gun/ballistic/shotgun/chargedshotgun //Has to be a snowflake because it works differently compared to the other charge weapons, which work off a mixture of Magrifles/automatic weapons and procs.
@@ -146,6 +150,7 @@
 	icon = 'modular_skyrat/icons/obj/guns/chargeweapons.dmi'
 	icon_state = "charge_shotgun"
 	item_state = "charge_shotgun"
+	fire_sound = 'sound/weapons/LaserSlugv3.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/charged/chargeshotgun/hybrid
 	fire_delay = 7
 	var/alarmed = 0
