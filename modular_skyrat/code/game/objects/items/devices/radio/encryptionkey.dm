@@ -15,3 +15,8 @@
 	icon = 'modular_skyrat/icons/obj/radio.dmi'
 	icon_state = "bshield_cypherkey"
 	channels = list(RADIO_CHANNEL_COMMAND = 1, RADIO_CHANNEL_SECURITY = 1)
+
+/obj/item/encryptionkey/heads/warden
+	name = "\proper the warden's encryption key"
+	icon_state = "wrdn_cypherkey"
+	channels = list(RADIO_CHANNEL_SECURITY = 1, RADIO_CHANNEL_COMMAND = 1)

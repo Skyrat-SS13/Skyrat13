@@ -58,3 +58,30 @@
 	new /obj/item/clothing/suit/armor/vest/blueshield(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/clothing/under/rank/security/blueshield(src)
+
+/obj/structure/closet/secure_closet/warden
+	name = "\proper warden's locker"
+	req_access = list(ACCESS_ARMORY)
+	icon_state = "warden"
+
+/obj/structure/closet/secure_closet/warden/PopulateContents()
+	..()
+	new /obj/item/radio/headset/warden(src)
+	new /obj/item/clothing/suit/armor/vest/warden(src)
+	new /obj/item/clothing/head/warden(src)
+	new /obj/item/clothing/head/warden/drill(src)
+	new /obj/item/clothing/head/beret/sec/navywarden(src)
+	new /obj/item/clothing/suit/armor/vest/warden/alt(src)
+	new /obj/item/clothing/under/rank/security/warden/formal(src)
+	new /obj/item/clothing/under/rank/security/warden/skirt(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
+	new /obj/item/holosign_creator/security(src)
+	new /obj/item/clothing/mask/gas/sechailer(src)
+	new /obj/item/storage/box/zipties(src)
+	new /obj/item/storage/box/flashbangs(src)
+	new /obj/item/storage/belt/security/full(src)
+	new /obj/item/flashlight/seclite(src)
+	new /obj/item/clothing/gloves/krav_maga/sec(src)
+	new /obj/item/door_remote/head_of_security(src)
+	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
+	new /obj/item/clothing/head/beret/sec/corporatewarden(src)

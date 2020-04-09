@@ -14,3 +14,16 @@
 /obj/item/radio/headset/heads/blueshield/alt
 	icon_state = "bshield_headset_alt"
 	bowman = TRUE
+
+/obj/item/radio/headset/warden
+	name = "\proper the warden's headset"
+	desc = "Headset of the one who keeps the armoury and the prisoners in check."
+	icon_state = "sec_headset"
+	keyslot = new /obj/item/encryptionkey/heads/warden
+
+/obj/item/radio/headset/warden/alt
+	name = "\proper the warden's bowman headset"
+	desc = "Headset of the one who keeps the armoury and the prisoners in check. Protects ears from flashbangs."
+	icon_state = "sec_headset_alt"
+	item_state = "sec_headset_alt"
+	bowman = TRUE

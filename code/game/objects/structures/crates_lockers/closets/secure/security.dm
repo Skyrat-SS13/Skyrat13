@@ -82,6 +82,7 @@
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
 	new /obj/item/storage/photo_album/HoS(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/hos(src)
+/* moved to modular_skyrat
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
 	req_access = list(ACCESS_ARMORY)
@@ -107,6 +108,7 @@
 	new /obj/item/door_remote/head_of_security(src)
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
 	new /obj/item/clothing/head/beret/sec/corporatewarden(src)
+*/
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
 	req_access = list(ACCESS_SECURITY)
