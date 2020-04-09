@@ -19145,12 +19145,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aPr" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 5
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -23543,6 +23539,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"aZm" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "aZn" = (
 /obj/structure/table/wood,
 /obj/item/folder/blue,
@@ -102142,7 +102147,7 @@ blp
 bmO
 bfK
 aOa
-bhh
+aPr
 bsx
 bst
 bfJ
@@ -102399,7 +102404,7 @@ aqX
 avh
 aDX
 aOb
-aPr
+aZm
 brh
 bua
 bua
