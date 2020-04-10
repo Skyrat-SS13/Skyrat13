@@ -37,7 +37,7 @@
 	OC = locate()
 
 /obj/machinery/plate_chute/inputchute/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I.type in export_types) && OC)
+	if(istype(I.type in delivery_types) && OC)
 		I.forceMove(OC.loc)
 		playsound(loc, 'sound/effects/bin_close.ogg', 15, 1, -3)
 		playsound(OC.loc, 'sound/effects/bin_open.ogg', 15, 1, -3)
