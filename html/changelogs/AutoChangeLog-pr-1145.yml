@@ -1,9 +1,0 @@
-author: "Kathrin Morrison"
-delete-after: True
-changes: 
-  - rscadd: "Craftable padded floor tiles, made with cloth."
-  - rscadd: "New gender/species sprites for restroom sign."
-  - rscadd: "New shower room sign with gender/species sprites."
-  - rscadd: "Ports VG turf_decals."
-  - rscadd: "Cell, room and dorm numbers as structures."
-  - rscadd: "Chapel floors."
