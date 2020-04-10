@@ -11,6 +11,7 @@
 	speak_emote = list("beeps")
 	emote_hear = list("beeps happily.","lets out a cute chime.","boops and bloops.")
 	emote_see = list("bops up and down.","looks around.","spins slowly.")
+	speak_chance = 1.5
 	turns_per_move = 10
 	response_help = "pets"
 	response_disarm = "moves aside"
