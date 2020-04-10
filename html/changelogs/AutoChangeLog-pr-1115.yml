@@ -1,7 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - rscadd: "Added 2 new traitor fluff objectives"
-  - rscadd: "Added a blackmail implant objective, not yet in the pool."
-  - rscdel: "Removed maroon objectives from rolling in favor for fluff objectives"
-  - tweak: "made \"kill once\" objective only target command jobs"

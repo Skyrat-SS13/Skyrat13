@@ -1,6 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added two new prisoner vendor variants."
-  - rscadd: "Added a biogenerator prisoner variant."
-  - tweak: "tweaked prisoner requirement from 50 to 20."
