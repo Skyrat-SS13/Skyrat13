@@ -1,6 +1,0 @@
-author: "CinderWC"
-delete-after: True
-changes: 
-  - rscadd: "Added Hoochmaster 2000 to Bar"
-  - rscdel: "Removed the Supply Closet that was where the Morgue was moved to"
-  - tweak: "Tweaked the Security and Morgue to be more eastward to make Space for the larger Reception"

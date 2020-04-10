@@ -1,4 +1,0 @@
-author: "CinderWC"
-delete-after: True
-changes: 
-  - bugfix: "Fixes Vent that causes 200+ runtimes"
