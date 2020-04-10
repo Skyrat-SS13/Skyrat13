@@ -41,6 +41,6 @@
 	id = "charge_weaponry"
 	display_name = "Advanced Pulse-shot Weapons"
 	description = "Utilizing pulse-slung ballistic charge technology, we can produce advanced ballistic weaponry to suit our needs."
-	prereq_ids = list("weaponry", "adv_weaponry", "emp_adv", "electronic_weapons")
+	prereq_ids = list("adv_weaponry", "emp_adv", "electronic_weapons")
 	design_ids = list("chargepistolammo", "chargesmgammo", "chargerifleammo", "chargeshotammo", "chargeshotammo-nl", "chargepistol", "chargesmg", "chargerifle", "chargeshotgun")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5500)
