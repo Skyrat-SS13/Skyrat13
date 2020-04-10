@@ -31,7 +31,7 @@
 /obj/item/ammo_casing/charged/shotguncasing
 	name = "CH1212-H buckshot"
 	desc = "A charged multi-stored bullet casing designed for the power of a charged shotgun."
-	icon = 'modular_skyrat/icons/obj/shomtgun.dmi'
+	icon = 'modular_skyrat/icons/obj/CHShotshells.dmi'
 	icon_state = "chshell"
 	caliber = "CH1212-H"
 	projectile_type = /obj/item/projectile/charged/shotgun
