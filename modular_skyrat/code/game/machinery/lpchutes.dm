@@ -17,10 +17,7 @@
 								/obj/item/stack/sheet/silk,
 								/obj/item/stack/sheet/durathread,
 								/obj/item/stack/sheet/cardboard,
-								/obj/item/glasswork/glass_base/lens,
-								/obj/item/laser_pointer/blue/handmade,
-								/obj/item/tea_plate,
-								/obj/item/tea_cup,
+								/obj/item/glasswork/lens,
 								/obj/item/reagent_containers/glass/beaker/glass_dish,
 								/obj/item/reagent_containers/glass/beaker/flask/spouty,
 								/obj/item/reagent_containers/glass/beaker/flask,
@@ -37,7 +34,7 @@
 	OC = locate()
 
 /obj/machinery/plate_chute/inputchute/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I.type in delivery_types) && OC)
+	if(istype(I in delivery_types) && OC)
 		I.forceMove(OC.loc)
 		playsound(loc, 'sound/effects/bin_close.ogg', 15, 1, -3)
 		playsound(OC.loc, 'sound/effects/bin_open.ogg', 15, 1, -3)
