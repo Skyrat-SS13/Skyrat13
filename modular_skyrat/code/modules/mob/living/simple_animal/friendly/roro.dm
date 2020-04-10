@@ -1,5 +1,5 @@
 /mob/living/simple_animal/pet/roro
-	name = "Roro"
+	name = "\improper roro"
 	desc = "Its a Rorobot, strange meshes of biotechnology and robotics engineering."
 	icon = 'modular_skyrat/icons/mob/roro.dmi'
 	icon_state = "roro-living"
