@@ -6,7 +6,7 @@
 
 /obj/machinery/plate_chute/inputchute
 	name = "export delivery input chute"
-	desc = "For your delivery needs. Just insert and watch as it goes! It reads you can place wood planks, pressed plates, cardboard, and fabrics."
+	desc = "For your license plate delivery needs. Just insert and watch as it goes!. A sign at the bottom reads: Now accepts other materials like cloth, silk, some glassware, etc."
 	icon_state = "inputchute"
 	var/obj/machinery/plate_chute/outputchute/OC
 	var/list/delivery = list(
