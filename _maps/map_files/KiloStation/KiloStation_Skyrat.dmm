@@ -59412,7 +59412,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mailroom";
-	req_access_txt = "50"
+	req_access_txt = "31;50"
 	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/sorting)
