@@ -79,27 +79,27 @@
 /******************ACTUAL SKILLS DOWN THERE*****************/
 /***********************************************************/
 //Defines for skill ID's
-#define SKILL_EVA 1
+#define SKILL_EVA "eva"
 
-#define SKILL_BUREAUCRACY 2
+#define SKILL_BUREAUCRACY "bureaucracy"
 
-#define SKILL_ATMOS 3
-#define SKILL_CONSTRUCTION 4
-#define SKILL_ELECTRICAL 5
+#define SKILL_ATMOS "atmos"
+#define SKILL_CONSTRUCTION "construction"
+#define SKILL_ELECTRICAL "electricial"
 
-#define SKILL_ANATOMY 6
-#define SKILL_MEDICINE 7
-#define SKILL_CHEMISTRY 8
+#define SKILL_ANATOMY "anatony"
+#define SKILL_MEDICINE "medicine"
+#define SKILL_CHEMISTRY "chemistry"
 
-#define SKILL_SCIENCE 9
-#define SKILL_COMPLEX_DEVICES 10
+#define SKILL_SCIENCE "science"
+#define SKILL_COMPLEX_DEVICES "complex devices"
 
-#define SKILL_CLOSE_COMBAT 11
-#define SKILL_WEAPONS_EXPERTISE 12
-#define SKILL_FORENSICS 13
+#define SKILL_CLOSE_COMBAT "close combat"
+#define SKILL_WEAPONS_EXPERTISE "weapons expertise"
+#define SKILL_FORENSICS "forensics"
 
-#define SKILL_BOTANY 14
-#define SKILL_COOKING 15
+#define SKILL_BOTANY "botany"
+#define SKILL_COOKING "cooking"
 
 /************GENERAL**************/
 

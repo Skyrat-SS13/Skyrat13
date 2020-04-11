@@ -1,22 +1,22 @@
-#define LIMB_AUG_HEAD 1
-#define LIMB_AUG_CHEST 2
-#define LIMB_AUG_R_ARM 3
-#define LIMB_AUG_L_ARM 4
-#define LIMB_AUG_R_LEG 5
-#define LIMB_AUG_L_LEG 6
+#define LIMB_AUG_HEAD "limb_head"
+#define LIMB_AUG_CHEST "limb_chest"
+#define LIMB_AUG_R_ARM "limb_r_arm"
+#define LIMB_AUG_L_ARM "limb_l_arm"
+#define LIMB_AUG_R_LEG "limb_r_leg"
+#define LIMB_AUG_L_LEG "limb_l_leg"
 
-#define IMPLANT_AUG_BRAIN 1
-#define IMPLANT_AUG_CHEST 2
-#define IMPLANT_AUG_R_ARM 3
-#define IMPLANT_AUG_L_ARM 4
-#define IMPLANT_AUG_EYES 5
-#define IMPLANT_AUG_MOUTH 6
+#define IMPLANT_AUG_BRAIN "implant_brain"
+#define IMPLANT_AUG_CHEST "implant_chest"
+#define IMPLANT_AUG_R_ARM "implant_r_arm"
+#define IMPLANT_AUG_L_ARM "implant_l_arm"
+#define IMPLANT_AUG_EYES "implant_eyes"
+#define IMPLANT_AUG_MOUTH "implant_mouth"
 
-#define ORGAN_AUG_HEART 1
-#define ORGAN_AUG_LUNGS 2
-#define ORGAN_AUG_LIVER 3
-#define ORGAN_AUG_STOMACH 4
-#define ORGAN_AUG_EYES 5
+#define ORGAN_AUG_HEART "organ_heart"
+#define ORGAN_AUG_LUNGS "organ_lungs"
+#define ORGAN_AUG_LIVER "organ_liver"
+#define ORGAN_AUG_STOMACH "organ_stomach"
+#define ORGAN_AUG_EYES "organ_eyes"
 
 /datum/aug_category
 	var/name = "Augmentation category"

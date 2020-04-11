@@ -2,9 +2,8 @@
 	//Attributes
 	for(var/path in subtypesof(/datum/attribute))
 		var/datum/attribute/AT = new path()
-		GLOB.attribute_list += AT
+		GLOB.attribute_list[AT.id] = AT
 
-	return
 	//Skill categories
 	for(var/path in subtypesof(/datum/skill_category))
 		var/datum/skill_category/SC = new path()

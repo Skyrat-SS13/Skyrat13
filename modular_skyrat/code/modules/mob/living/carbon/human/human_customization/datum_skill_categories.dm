@@ -1,11 +1,11 @@
 //Okay so this is dumb but hear me out, I want this system 100% super datum-fed
-#define SKILL_CAT_GENERAL 1
-#define SKILL_CAT_ORGANIZATIONAL 2
-#define SKILL_CAT_ENGINEERING 3
-#define SKILL_CAT_MEDICAL 4
-#define SKILL_CAT_RESEARCH 5
-#define SKILL_CAT_SECURITY 6
-#define SKILL_CAT_SERVICE 7
+#define SKILL_CAT_GENERAL "gen"
+#define SKILL_CAT_ORGANIZATIONAL "org"
+#define SKILL_CAT_ENGINEERING "eng"
+#define SKILL_CAT_MEDICAL "med"
+#define SKILL_CAT_RESEARCH "rnd"
+#define SKILL_CAT_SECURITY "sec"
+#define SKILL_CAT_SERVICE "serv"
 
 /datum/skill_category
 	var/name = "Skill category"

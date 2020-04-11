@@ -31,23 +31,19 @@
 
 	//Advanced character customization
 	message_admins("moderately gay")
-	//if(GLOB.attribute_list.len == 0)
-	//	init_advanced_customization()
-	S["attribute_modifiers"]	>> attribute_modifiers
-	if(!attribute_modifiers)
-		attribute_modifiers = list()
+	attribute_modifiers = SANITIZE_LIST(S["attribute_modifiers"])
+	augments_limbs = SANITIZE_LIST(S["augments_limbs"])
+	augments_implants = SANITIZE_LIST(S["augments_implants"])
+	augments_organs = SANITIZE_LIST(S["augments_organs"])
+
 	message_admins("[length(GLOB.attribute_list)]")
-	message_admins("[GLOB.attribute_list.len]")
-	for(var/i in 1 to length(GLOB.attribute_list))
+	for(var/i in GLOB.attribute_list)
 		var/datum/attribute/AT = GLOB.attribute_list[i]
-		message_admins("slightly gay")
+		message_admins("[AT.id]")
 		if(attribute_modifiers[AT.id] == null)
-			message_admins("gay")
+			message_admins("adding 0")
 			attribute_modifiers[AT.id] = 0
 
-	S["augments_limbs"]	>> augments_limbs
-	S["augments_implants"]	>> augments_implants
-	S["augments_organs"]	>> augments_organs
 	//END OF SKYRAT CHANGES
 
 	//gear loadout

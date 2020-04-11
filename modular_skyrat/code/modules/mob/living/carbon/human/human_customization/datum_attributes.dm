@@ -1,8 +1,8 @@
-#define ATTRIBUTE_STRENGTH 1
-#define ATTRIBUTE_DEXTERITY 2
-#define ATTRIBUTE_AGILITY 3
-#define ATTRIBUTE_CONSTITUTION 4
-#define ATTRIBUTE_INTELLIGENCE 5
+#define ATTRIBUTE_STRENGTH "str"
+#define ATTRIBUTE_DEXTERITY "dex"
+#define ATTRIBUTE_AGILITY "agi"
+#define ATTRIBUTE_CONSTITUTION "con"
+#define ATTRIBUTE_INTELLIGENCE "int"
 
 /datum/attribute
 	var/name = "Character stat"
