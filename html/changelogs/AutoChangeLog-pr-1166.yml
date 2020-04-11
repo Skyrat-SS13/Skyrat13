@@ -1,0 +1,16 @@
+author: "Kathrin Morrison / Floof Ball"
+delete-after: True
+changes: 
+  - rscadd: "New security and prison."
+  - rscadd: "Rebuilt courtroom."
+  - rscadd: "Code for random falsewall/walls, coins, soap, seeds etcetera."
+  - rscadd: "Posters around the map."
+  - rscadd: "Bathrooms to some dorms."
+  - rscadd: "Maint bar that can fit Xyverious in it."
+  - tweak: "Maints affected by security rebuild."
+  - tweak: "Shower room updated."
+  - tweak: "Engineering protolathe area expanded."
+  - tweak: "HoP has a photocopier."
+  - balance: "Prison is somewhat randomised."
+  - bugfix: "Engineers spawn staring into SM crystal."
+  - bugfix: "Player low-self esteem."
