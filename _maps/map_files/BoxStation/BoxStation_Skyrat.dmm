@@ -40861,7 +40861,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Office";
-	req_access_txt = "50"
+	req_access_txt = "31"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
