@@ -1790,7 +1790,6 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "adc" = (
-/obj/structure/filingcabinet/employment,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
@@ -1809,6 +1808,7 @@
 	pixel_x = 24;
 	req_access_txt = "38"
 	},
+/obj/structure/filingcabinet,
 /turf/open/floor/plasteel/dark,
 /area/lawoffice)
 "add" = (
@@ -16517,7 +16517,6 @@
 /turf/open/floor/engine,
 /area/security/nuke_storage)
 "aAC" = (
-/mob/living/simple_animal/pet/roro/roboticsroro,
 /turf/open/floor/plasteel/showroomfloor,
 /area/science/robotics/lab)
 "aAD" = (
@@ -73072,7 +73071,6 @@
 /obj/structure/cable,
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/pet/roro,
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
@@ -87774,7 +87772,6 @@
 	},
 /obj/item/reagent_containers/food/drinks/ale,
 /obj/structure/table/wood,
-/obj/item/instrument/eguitar,
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
@@ -88239,15 +88236,6 @@
 "uWo" = (
 /turf/closed/wall/rust,
 /area/security/checkpoint/medical)
-"vmu" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/item/instrument/guitar,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "whw" = (
 /turf/closed/wall/rust,
 /area/medical/surgery)
@@ -114448,7 +114436,7 @@ aOS
 cfa
 btE
 aXm
-vmu
+btX
 bva
 buj
 btX
