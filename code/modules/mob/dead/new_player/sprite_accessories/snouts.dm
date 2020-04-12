@@ -249,6 +249,10 @@
 	name = "hShark"
 	icon_state = "hshark"
 
+/datum/sprite_accessory/mam_snouts/shark
+	name = "Shark Light"
+	icon_state = "sharkblubber"
+
 /datum/sprite_accessory/mam_snouts/toucan
 	name = "Toucan"
 	icon_state = "toucan"
