@@ -5,4 +5,3 @@
 /datum/augmentation/implant/brain/none
 	name = "None"
 	desc = "Disable implants for brain."
-	id = 0

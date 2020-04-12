@@ -5,4 +5,3 @@
 /datum/augmentation/implant/eyes/none
 	name = "None"
 	desc = "Disable augmentations for head."
-	id = 0

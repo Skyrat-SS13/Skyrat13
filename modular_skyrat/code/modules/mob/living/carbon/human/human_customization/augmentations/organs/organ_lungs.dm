@@ -5,4 +5,3 @@
 /datum/augmentation/organ/lungs/default
 	name = "Default"
 	desc = "Default lungs."
-	id = 0

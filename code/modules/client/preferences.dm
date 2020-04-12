@@ -91,11 +91,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/exploitable_info = ""
 
 	//Advanced character customization
-	var/attribute_modifiers = list() //How much do we modify attributes by id to integer
+	var/max_attribute_points = 10 //How much attribute points we're getting to spend on them or augments
+	var/attribute_points = 10
+	var/skill_points = 14 //How many skill points we're getting? More important jobs give you extra points
+	var/list/attribute_modifiers = list() //How much do we modify attributes by id to integer
 
 	var/augments_limbs = list() //List of each limb augment category, indexed by id of categories to id values of customization, 0 value is default
-	var/augments_implants = list()
-	var/augments_organs = list()
+	var/list/augments_implants = list()
+	var/list/augments_organs = list()
 	//END OF SKYRAT CHANGES
 
 	var/underwear = "Nude"				//underwear type

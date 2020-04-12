@@ -5,4 +5,3 @@
 /datum/augmentation/limb/l_leg/default
 	name = "Default"
 	desc = "Disable augmentations for left leg."
-	id = 0

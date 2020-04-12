@@ -5,4 +5,3 @@
 /datum/augmentation/implant/r_arm/none
 	name = "None"
 	desc = "Disable implants for right arm."
-	id = 0

@@ -1,8 +1,8 @@
 /datum/augmentation
 	var/name = "Augmentation."
 	var/desc = "Basic augmentation, you are not supposed to see this. Report to admins."
-	var/id = 0
-	var/cat_id = 0
+	var/id = "default"
+	var/cat_id = "cat"
 	var/cost = 0
 	var/affecting_zone = 0
 	var/restricted_species = list()

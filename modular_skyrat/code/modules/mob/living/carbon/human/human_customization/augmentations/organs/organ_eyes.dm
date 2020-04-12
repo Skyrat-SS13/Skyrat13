@@ -4,4 +4,3 @@
 /datum/augmentation/organ/eyes/default
 	name = "Default"
 	desc = "Disable augmentations for eyes."
-	id = 0

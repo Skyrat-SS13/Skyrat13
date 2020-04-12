@@ -5,4 +5,3 @@
 /datum/augmentation/organ/stomach/default
 	name = "Default"
 	desc = "Default stomach."
-	id = 0

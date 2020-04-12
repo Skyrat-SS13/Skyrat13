@@ -5,4 +5,3 @@
 /datum/augmentation/implant/mouth/none
 	name = "None"
 	desc = "Disable augmentations for mouth."
-	id = 0

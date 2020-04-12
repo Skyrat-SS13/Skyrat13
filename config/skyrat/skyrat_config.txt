@@ -3,3 +3,6 @@ AGE_LOCK
 
 ## Required age in days if you enabled above
 AGE_LOCK_DAYS 30
+
+## Allow players to not be locked into base skillsets for their characters
+#DISABLE_SKILL_LOCK

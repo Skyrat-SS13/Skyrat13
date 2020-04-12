@@ -5,4 +5,3 @@
 /datum/augmentation/limb/chest/default
 	name = "Default"
 	desc = "Disable augmentations for chest."
-	id = 0
