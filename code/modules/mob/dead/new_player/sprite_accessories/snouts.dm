@@ -225,6 +225,10 @@
 	name = "Rodent"
 	icon_state = "rodent"
 
+/datum/sprite_accessory/mam_snouts/rat
+	name = "Rat"
+	icon_state = "rat"
+
 /datum/sprite_accessory/mam_snouts/husky
 	name = "Husky"
 	icon_state = "husky"

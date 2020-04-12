@@ -134,6 +134,11 @@
 	icon_state = "handsfeet"
 	icon = 'modular_citadel/icons/mob/markings_notmammals.dmi'
 
+/datum/sprite_accessory/mam_body_markings/handsfeet_rat
+	name = "Rat"
+	icon_state = "rat"
+	icon = 'modular_citadel/icons/mob/markings_notmammals.dmi'
+
 /datum/sprite_accessory/mam_body_markings/hawk
 	name = "Hawk"
 	icon_state = "hawk"
