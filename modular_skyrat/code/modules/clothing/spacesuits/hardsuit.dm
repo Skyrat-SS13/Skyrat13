@@ -220,7 +220,7 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/obj/item/clothing/head/helmet/space/hardsuit/security/powerarmor
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor
 	name = "Power Armor Helmet"
 	desc = "An advanced helmet attached to a powered exoskeleton suit. Protects well against most forms of harm, but struggles against exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
@@ -232,19 +232,19 @@
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100)
 	resistance_flags = ACID_PROOF
 
-/obj/item/clothing/head/helmet/space/hardsuit/security/powerarmor/equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if (slot == SLOT_HEAD)
 		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 		DHUD.add_hud_to(user)
 
-/obj/item/clothing/head/helmet/space/hardsuit/security/powerarmor/dropped(mob/living/carbon/human/user)
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor/dropped(mob/living/carbon/human/user)
 	..()
 	if (user.head == src)
 		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 		DHUD.remove_hud_from(user)
 
-/obj/item/clothing/suit/space/hardsuit/security/powerarmor
+/obj/item/clothing/suit/space/hardsuit/powerarmor
 	name = "Power Armor"
 	desc = "A self-powered exoskeleton suit comprised of flexible Plasteel sheets and advanced components, designed to offer excellent protection while still allowing mobility. Does not protect against Space, and struggles against more exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
@@ -255,9 +255,9 @@
 	clothing_flags = THICKMATERIAL //Not spaceproof. No, it isn't Spaceproof in Rimworld either.
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine. 
 	resistance_flags = ACID_PROOF
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/powerarmor
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
 
-/obj/item/clothing/suit/space/hardsuit/security/powerarmor/emp_act()
+/obj/item/clothing/suit/space/hardsuit/powerarmor/emp_act()
 	. = ..()
 	var/mob/living/carbon/human/user = src.loc
 	playsound(src.loc, 'modular_skyrat/sound/misc/suitmalf.ogg', 60, 1, 10)
@@ -274,7 +274,7 @@
 		visible_message("<span class ='warning'>The power module on the [src] briefly flickers, before humming to life once more.</span>")
 		return
 
-/obj/item/clothing/suit/space/hardsuit/security/powerarmor/proc/detonate()
+/obj/item/clothing/suit/space/hardsuit/powerarmor/proc/detonate()
 	visible_message("<span class ='danger'>The power module of the [src] overheats, causing it to destabilize and explode!")
 	explosion(src.loc,0,0,3,flame_range = 3)
 	qdel(src)

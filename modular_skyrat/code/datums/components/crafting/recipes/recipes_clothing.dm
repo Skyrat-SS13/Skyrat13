@@ -13,7 +13,7 @@
 
 /datum/crafting_recipe/powerarmor
 	name = "Self-Powered Exoskeleton Rig" //I tried to make it a mecha assembly but that went tits up at every turn so now you get this. Fuck modular, and fuck whoever made mech code.
-	result = /obj/item/clothing/suit/space/hardsuit/security/powerarmor
+	result = /obj/item/clothing/suit/space/hardsuit/powerarmor
 	reqs = list(/obj/item/mecha_parts/part/powerarmor_chassis = 1,
 				/obj/item/mecha_parts/part/powerarmor_torso = 1,
 				/obj/item/mecha_parts/part/powerarmor_helmet = 1,
