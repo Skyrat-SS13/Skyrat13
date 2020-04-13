@@ -74,16 +74,6 @@
 	icon_state = "bellyslim"
 	icon = 'modular_citadel/icons/mob/markings_notmammals.dmi'
 
-/datum/sprite_accessory/mam_body_markings/floof
-	name = "BellyFloof"
-	icon_state = "floof"
-	icon = 'modular_citadel/icons/mob/markings_notmammals.dmi'
-
-/datum/sprite_accessory/mam_body_markings/floofer
-	name = "BellyFloofTertiary"
-	icon_state = "floofer"
-	icon = 'modular_citadel/icons/mob/markings_notmammals.dmi'
-
 /datum/sprite_accessory/mam_body_markings/corgi
 	name = "Corgi"
 	icon_state = "corgi"
@@ -132,11 +122,6 @@
 /datum/sprite_accessory/mam_body_markings/handsfeet
 	name = "Handsfeet"
 	icon_state = "handsfeet"
-	icon = 'modular_citadel/icons/mob/markings_notmammals.dmi'
-
-/datum/sprite_accessory/mam_body_markings/handsfeet_rat
-	name = "Rat"
-	icon_state = "rat"
 	icon = 'modular_citadel/icons/mob/markings_notmammals.dmi'
 
 /datum/sprite_accessory/mam_body_markings/hawk

@@ -779,14 +779,6 @@ datum/sprite_accessory/mam_tails/insect
 	name = "Shark"
 	icon_state = "shark"
 
-/datum/sprite_accessory/mam_tails/sharknofin
-	name = "Shark no fin"
-	icon_state = "sharknofin"
-
-/datum/sprite_accessory/mam_tails_animated/sharknofin
-	name = "Shark no fin"
-	icon_state = "sharknofin"
-
 /datum/sprite_accessory/mam_tails/shepherd
 	name = "Shepherd"
 	icon_state = "shepherd"

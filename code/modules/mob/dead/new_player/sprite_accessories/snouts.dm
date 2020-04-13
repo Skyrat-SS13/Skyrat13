@@ -225,10 +225,6 @@
 	name = "Rodent"
 	icon_state = "rodent"
 
-/datum/sprite_accessory/mam_snouts/rat
-	name = "Rat"
-	icon_state = "rat"
-
 /datum/sprite_accessory/mam_snouts/husky
 	name = "Husky"
 	icon_state = "husky"
@@ -252,10 +248,6 @@
 /datum/sprite_accessory/mam_snouts/hshark
 	name = "hShark"
 	icon_state = "hshark"
-
-/datum/sprite_accessory/mam_snouts/shark
-	name = "Shark Light"
-	icon_state = "sharkblubber"
 
 /datum/sprite_accessory/mam_snouts/toucan
 	name = "Toucan"
