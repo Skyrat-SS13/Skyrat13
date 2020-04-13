@@ -12,3 +12,8 @@
 	name = "Rat"
 	icon_state = "rat"
 	icon = 'modular_skyrat/icons/mob/skyrat_markings.dmi'
+
+/datum/sprite_accessory/mam_body_markings/handsfeet_sloth
+	name = "sloth"
+	icon_state = "sloth"
+	icon = 'modular_skyrat/icons/mob/skyrat_markings.dmi'
