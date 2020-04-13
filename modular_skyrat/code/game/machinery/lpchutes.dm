@@ -17,11 +17,15 @@
 								/obj/item/stack/sheet/silk,
 								/obj/item/stack/sheet/durathread,
 								/obj/item/stack/sheet/cardboard,
-								/obj/item/lens,
+								/obj/item/glasswork/glass_base/lens,
 								/obj/item/reagent_containers/glass/beaker/glass_dish,
 								/obj/item/reagent_containers/glass/beaker/flask/spouty,
 								/obj/item/reagent_containers/glass/beaker/flask,
-								/obj/item/reagent_containers/glass/beaker/flask/large
+								/obj/item/reagent_containers/glass/beaker/flask/large,
+								/obj/item/laser_pointer/blue/handmade, //If they somehow make this let them send it.
+								/obj/item/glasswork/glasses, //This is admin only atm but just in case
+								/obj/item/tea_plate,
+								/obj/item/tea_cup
 								)	
 
 /obj/machinery/plate_chute/outputchute
