@@ -271,6 +271,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Character Appearance</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=5' [current_tab == 5 ? "class='linkOn'" : ""]>Skills & Attributes</a>" //Skyrat change
 	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Loadout</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>Content Preferences</a>"
@@ -1080,6 +1081,31 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Ass Slapping:</b> <a href='?_src_=prefs;preference=ass_slap'>[(cit_toggles & NO_ASS_SLAP) ? "Disallowed" : "Allowed"]</a><br>"
 			dat += "</tr></table>"
 			dat += "<br>"
+		//Skyrat changes - advanced character creation
+		if(5) // Skills & Attributes
+			dat += "<table align='center' width='100%'>"
+			dat += "<h2>Attributes:</h2>"
+			dat += "<b>Remaining attribute points: [attribute_points]</b>"
+
+			dat += "<tr style='vertical-align:top;'><td width=10%><b>Name</b></td>"
+			dat += "<td width=5%><font size=2><b>-</b></font></td>"
+			dat += "<td width=5%><font size=2><b>-</b></font></td>"
+			dat += "<td width=10%><font size=2><b>Amount</b></font></td>"
+			dat += "<td width=5%><font size=2><b>+</b></font></td>"
+			dat += "<td width=5%><font size=2><b>+</b></font></td>"
+			dat += "<td width=60%><font size=2><b>Description</b></font></td></tr>"
+			for(var/i in GLOB.attribute_list)
+				var/datum/attribute/AT = GLOB.attribute_list[i]
+				dat += "<tr style='vertical-align:top;'>"
+				dat += "<td width=10%><b>[AT.name]</b></td>"
+				dat += "<td width = 5%>-5</td>"
+				dat += "<td width = 5%>-1</td>"
+				dat += "<td width = 10%><b>[AT.base_value+attribute_modifiers[AT.id]]</b></td>"
+				dat += "<td>+1</td>"
+				dat += "<td>+5</td>"
+				dat += "<td>[AT.desc]</td></tr>"
+			dat += "</table>"
+		//End of skyrat changes
 
 
 	dat += "<hr><center>"

@@ -30,7 +30,6 @@
 	exploitable_info = sanitize_text(S["exploitable_info"])
 
 	//Advanced character customization
-	message_admins("moderately gay")
 	var/list/loaded_attribute_modifiers = SANITIZE_LIST(S["attribute_modifiers"])
 	var/list/loaded_augments_limbs = SANITIZE_LIST(S["augments_limbs"])
 	var/list/loaded_augments_implants = SANITIZE_LIST(S["augments_implants"])
@@ -55,40 +54,61 @@
 			attribute_modifiers[AT.id] = 0
 
 	for(var/i in loaded_augments_limbs) //i is the key, so it's the category id
-		var/loaded_id = loaded_augments_limbs[i]
-		var/list/loaded_cat = GLOB.aug_limb_cat_list[i]
-		if(loaded_cat && loaded_cat[loaded_id])
-			augments_limbs[loaded_cat] = loaded_id
+		if(GLOB.aug_limb_cat_list[i])
+			var/loaded_id = loaded_augments_limbs[i]
+			var/datum/augmentation/AT = GLOB.aug_limb_list[i][loaded_id]
+			if(AT)
+				augments_limbs[i] = loaded_id
 
 	for(var/i in GLOB.aug_limb_cat_list)
 		if(augments_limbs[i] == null)
 			augments_limbs[i] = "default"
 
 	for(var/i in loaded_augments_implants) //i is the key, so it's the category id
-		var/loaded_id = loaded_augments_implants[i]
-		var/list/loaded_cat = GLOB.aug_implant_cat_list[i]
-		if(loaded_cat && loaded_cat[loaded_id])
-			augments_implants[loaded_cat] = loaded_id
+		if(GLOB.aug_implant_cat_list[i])
+			var/loaded_id = loaded_augments_implants[i]
+			var/datum/augmentation/AT = GLOB.aug_implant_list[i][loaded_id]
+			if(AT)
+				augments_implants[i] = loaded_id
 
 	for(var/i in GLOB.aug_implant_cat_list)
 		if(augments_implants[i] == null)
 			augments_implants[i] = "default"
 
 	for(var/i in loaded_augments_organs) //i is the key, so it's the category id
-		var/loaded_id = loaded_augments_organs[i]
-		var/list/loaded_cat = GLOB.aug_organ_cat_list[i]
-		if(loaded_cat && loaded_cat[loaded_id])
-			augments_organs[loaded_cat] = loaded_id
+		if(GLOB.aug_organ_cat_list[i])
+			var/loaded_id = loaded_augments_organs[i]
+			var/datum/augmentation/AT = GLOB.aug_organ_list[i][loaded_id]
+			if(AT)
+				augments_organs[i] = loaded_id
 
 	for(var/i in GLOB.aug_organ_cat_list)
 		if(augments_organs[i] == null)
 			augments_organs[i] = "default"
 
+	//Count used attributes
+	var/used_att = 0
+	for(var/i in attribute_modifiers)
+		used_att = used_att + attribute_modifiers[i]
+		message_admins("[i]")
 
-	//attribute_modifiers = attribute_modifiers
-	//augments_limbs = augments_limbs
-	//augments_implants = augments_implants
-	//augments_organs = augments_organs
+	for(var/i in augments_limbs)
+		var/datum/augmentation/AUG =  GLOB.aug_limb_list[i][augments_limbs[i]]
+		used_att = used_att + AUG.cost
+		message_admins("[i]")
+
+	for(var/i in augments_implants)
+		var/datum/augmentation/AUG =  GLOB.aug_implant_list[i][augments_implants[i]]
+		used_att = used_att + AUG.cost
+		message_admins("[i]")
+
+	for(var/i in augments_organs)
+		var/datum/augmentation/AUG =  GLOB.aug_organ_list[i][augments_organs[i]]
+		used_att = used_att + AUG.cost
+		message_admins("[i]")
+
+	message_admins("[used_att]")
+	attribute_points -= used_att
 	//END OF SKYRAT CHANGES
 
 	//gear loadout
