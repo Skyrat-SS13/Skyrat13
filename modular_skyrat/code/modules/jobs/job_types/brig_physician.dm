@@ -9,7 +9,7 @@
 	supervisors = "the head of security and chief medical officer"
 	selection_color = "#c02f2f"
 	minimal_player_age = 7
-	exp_requirements = 120 //SKYRAT CHANGE - lowers security exp requirement
+	exp_requirements = 120 //SKYRAT CHANGE - lowers medical exp requirement
 	exp_type = EXP_TYPE_MEDICAL
 
 	outfit = /datum/outfit/job/brig_phys
