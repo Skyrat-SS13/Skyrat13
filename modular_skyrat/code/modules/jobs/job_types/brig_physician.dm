@@ -10,7 +10,7 @@
 	selection_color = "#c02f2f"
 	minimal_player_age = 7
 	exp_requirements = 120 //SKYRAT CHANGE - lowers security exp requirement
-	exp_type = EXP_TYPE_CREW
+	exp_type = EXP_TYPE_MEDICAL
 
 	outfit = /datum/outfit/job/brig_phys
 
