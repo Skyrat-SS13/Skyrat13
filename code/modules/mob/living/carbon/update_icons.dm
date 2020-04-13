@@ -94,9 +94,9 @@
 	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
 		return
 
-	if(client && hud_used && hud_used.inv_slots[SLOT_WEAR_MASK])
+	if(client && hud_used)
 		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_WEAR_MASK]
-		inv.update_icon()
+		inv?.update_icon()
 
 	if(wear_mask)
 		if(!(head && (head.flags_inv & HIDEMASK)))
@@ -114,7 +114,11 @@
 
 	if(wear_neck)
 		if(!(head && (head.flags_inv & HIDENECK)))
+<<<<<<< HEAD
 			overlays_standing[NECK_LAYER] = wear_neck.build_worn_icon(state = wear_neck.icon_state, default_layer = NECK_LAYER, default_icon_file = 'icons/mob/neck.dmi')
+=======
+			overlays_standing[NECK_LAYER] = wear_neck.build_worn_icon(default_layer = NECK_LAYER, default_icon_file = 'icons/mob/clothing/neck.dmi', override_state = wear_neck.icon_state)
+>>>>>>> 105d405d2d... Merge pull request #11837 from Ghommie/Ghommie-cit678
 		update_hud_neck(wear_neck)
 
 	apply_overlay(NECK_LAYER)
@@ -122,9 +126,9 @@
 /mob/living/carbon/update_inv_back()
 	remove_overlay(BACK_LAYER)
 
-	if(client && hud_used && hud_used.inv_slots[SLOT_BACK])
+	if(client && hud_used)
 		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_BACK]
-		inv.update_icon()
+		inv?.update_icon()
 
 	if(back)
 		overlays_standing[BACK_LAYER] = back.build_worn_icon(state = back.icon_state, default_layer = BACK_LAYER, default_icon_file = 'icons/mob/back.dmi')
@@ -138,9 +142,9 @@
 	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
 		return
 
-	if(client && hud_used && hud_used.inv_slots[SLOT_BACK])
+	if(client && hud_used)
 		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_HEAD]
-		inv.update_icon()
+		inv?.update_icon()
 
 	if(head)
 		overlays_standing[HEAD_LAYER] = head.build_worn_icon(state = head.icon_state, default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/head.dmi')
