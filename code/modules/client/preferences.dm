@@ -1096,14 +1096,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<td width=60%><font size=2><b>Description</b></font></td></tr>"
 			for(var/i in GLOB.attribute_list)
 				var/datum/attribute/AT = GLOB.attribute_list[i]
+				var/add_1_link = "class='linkOff'"
+				var/add_5_link = "class='linkOff'"
+				var/sub_1_link = "class='linkOff'"
+				var/sub_5_link = "class='linkOff'"
+				if(attribute_points > 0 && attribute_modifiers[AT.id] < AT.add_max)
+					add_1_link = "href='?_src_=prefs;attributes=modify;amount=1;att=[AT.id]'"
+					add_5_link = "href='?_src_=prefs;attributes=modify;amount=5;att=[AT.id]'"
+				if(attribute_modifiers[AT.id] > AT.subtract_max)
+					sub_1_link = "href='?_src_=prefs;attributes=modify;amount=-1;att=[AT.id]'"
+					sub_5_link = "href='?_src_=prefs;attributes=modify;amount=-5;att=[AT.id]'"
 				dat += "<tr style='vertical-align:top;'>"
-				dat += "<td width=10%><b>[AT.name]</b></td>"
-				dat += "<td width = 5%>-5</td>"
-				dat += "<td width = 5%>-1</td>"
-				dat += "<td width = 10%><b>[AT.base_value+attribute_modifiers[AT.id]]</b></td>"
-				dat += "<td>+1</td>"
-				dat += "<td>+5</td>"
-				dat += "<td>[AT.desc]</td></tr>"
+				dat += "<td><b>[AT.name]</b></td>"
+				dat += "<td><a [sub_5_link]>-5</a></td>"
+				dat += "<td><a [sub_1_link]>-1</a></td>"
+				dat += "<td><b>[AT.base_value+attribute_modifiers[AT.id]]</b></td>"
+				dat += "<td><a [add_1_link]>+1</a></td>"
+				dat += "<td><a [add_5_link]>+5</a></td>"
+				dat += "<td><i>[AT.desc]</i></td></tr>"
 			dat += "</table>"
 		//End of skyrat changes
 
@@ -2517,6 +2527,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(gear_points >= initial(G.cost))
 					LAZYADD(chosen_gear, G.type)
 					gear_points -= initial(G.cost)
+
+	//SKYRAT CHANGES - attributes
+	switch(href_list["attributes"])
+		if("modify")
+			var/amount = text2num(href_list["amount"])
+			var/datum/attribute/AT = GLOB.attribute_list[href_list["att"]]
+			message_admins("[amount]")
+			message_admins("[AT.id]")
+	//END OF SKYRAT CHANGES
 
 	ShowChoices(user)
 	return 1
