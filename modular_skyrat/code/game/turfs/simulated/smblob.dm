@@ -17,6 +17,7 @@
 
 /turf/closed/wall/supermatter/Initialize()
 	START_PROCESSING(SSobj,src)
+	update_light()
 
 /turf/closed/wall/supermatter/New()
 	return ..()
@@ -60,7 +61,6 @@
 					else if(istype(A,/mob)) // Observers, AI cameras.
 						continue
 					qdel(A)
-					qdel(A)
 					A = null
 				CHECK_TICK
 			T.ChangeTurf(type)
@@ -80,8 +80,11 @@
 
 // /vg/: Don't let ghosts fuck with this.
 
+/turf/closed/wall/supermatter/attack_ghost(mob/user as mob)
+	user.examinate(src)
+
 /turf/closed/wall/supermatter/attack_ai(mob/user as mob)
-	return
+	return user.examinate(src)
 
 /turf/closed/wall/supermatter/attack_hand(mob/user as mob)
 	user.visible_message("<span class=\"warning\">\The [user] reaches out and touches \the [src]... And then blinks out of existance.</span>",\
