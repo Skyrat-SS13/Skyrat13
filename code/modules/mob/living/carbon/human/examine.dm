@@ -414,7 +414,7 @@
 		if(client)
 			. += "OOC Notes: <a href='?src=[REF(src)];ooc_notes=1'>\[View\]</a>" // SKYRAT EDIT -- END
 	//SKYRAT EDIT - admin lookup on records/extra flavor
-	if(client && user.client.holder && isobserver(user))
+	if(client && user.client?.holder && isobserver(user))
 		var/line = ""
 		if(!(client.prefs.general_records == ""))
 			line += "<a href='?src=[REF(src)];general_records=1'>\[GEN\]</a>"
