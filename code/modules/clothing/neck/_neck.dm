@@ -6,8 +6,8 @@
 	strip_delay = 40
 	equip_delay_other = 40
 
-/obj/item/clothing/neck/worn_overlays(isinhands = FALSE, icon_flag, style_flags = NONE)
-	. = list()
+/obj/item/clothing/neck/worn_overlays(isinhands = FALSE, icon_file, used_state, style_flags = NONE)
+	. = ..()
 	if(!isinhands)
 		if(body_parts_covered & HEAD)
 			if(damaged_clothes)
@@ -181,17 +181,35 @@
 	name = "pet collar"
 	desc = "It's for pets. Though you probably could wear it yourself, you'd doubtless be the subject of ridicule. It seems to be made out of a polychromic material."
 	icon_state = "petcollar"
+<<<<<<< HEAD
 	item_color = "petcollar"
 	alternate_worn_icon = 'icons/mob/neck.dmi' //Because, as it appears, the item itself is normally not directly aware of its worn overlays, so this is about the easiest way, without adding a new var.
 	hasprimary = TRUE
 	primary_color = "#00BBBB"
+=======
+>>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/collar
+	var/poly_states = 1
+	var/poly_colors = list("#00BBBB")
 	var/tagname = null
+	var/treat_path = /obj/item/reagent_containers/food/snacks/cookie
+
+/obj/item/clothing/neck/petcollar/Initialize()
+	. = ..()
+	if(treat_path)
+		new treat_path(src)
+
+/obj/item/clothing/neck/petcollar/ComponentInitialize()
+	. = ..()
+	if(!poly_states)
+		return
+	AddElement(/datum/element/polychromic, poly_colors, poly_states)
 
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
 	tagname = stripped_input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot", MAX_NAME_LEN)
 	name = "[initial(name)] - [tagname]"
 
+<<<<<<< HEAD
 /obj/item/clothing/neck/petcollar/worn_overlays(isinhands, icon_file, style_flags = NONE)
 	. = ..()
 	if(hasprimary | hassecondary | hastertiary)
@@ -218,20 +236,32 @@
 	hassecondary = TRUE
 	primary_color = "#222222"
 	secondary_color = "#888888"
+=======
+/obj/item/clothing/neck/petcollar/leather
+	name = "leather pet collar"
+	icon_state = "leathercollar"
+	poly_states = 2
+	poly_colors = list("#222222", "#888888")
+>>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611
 
 /obj/item/clothing/neck/petcollar/choker
 	desc = "Quite fashionable... if you're somebody who's just read their first BDSM-themed erotica novel."
 	name = "choker"
 	icon_state = "choker"
+<<<<<<< HEAD
 	item_color = "choker"
 
 	hasprimary = TRUE
 	primary_color = "#222222"
+=======
+	poly_colors = list("#222222")
+>>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611
 
 /obj/item/clothing/neck/petcollar/locked
 	name = "locked collar"
 	desc = "A collar that has a small lock on it to keep it from being removed."
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/collar/locked
+	treat_path = /obj/item/key/collar
 	var/lock = FALSE
 
 /obj/item/clothing/neck/petcollar/locked/attackby(obj/item/K, mob/user, params)
@@ -253,33 +283,34 @@
 /obj/item/clothing/neck/petcollar/locked/leather
 	name = "leather pet collar"
 	icon_state = "leathercollar"
+<<<<<<< HEAD
 	item_color = "leathercollar"
 
 	hasprimary = TRUE
 	hassecondary = TRUE
 	primary_color = "#222222"
 	secondary_color = "#888888"
+=======
+	poly_states = 2
+	poly_colors = list("#222222", "#888888")
+>>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611
 
 /obj/item/clothing/neck/petcollar/locked/choker
 	name = "choker"
 	desc = "Quite fashionable... if you're somebody who's just read their first BDSM-themed erotica novel."
 	icon_state = "choker"
+<<<<<<< HEAD
 	item_color = "choker"
 
 	hasprimary = TRUE
 	primary_color = "#222222"
+=======
+	poly_colors = list("#222222")
+>>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611
 
 /obj/item/key/collar
 	name = "Collar Key"
 	desc = "A key for a tiny lock on a collar or bag."
-
-/obj/item/clothing/neck/petcollar/Initialize()
-	. = ..()
-	new /obj/item/reagent_containers/food/snacks/cookie(src)
-
-/obj/item/clothing/neck/petcollar/locked/Initialize()
-	. = ..()
-	new /obj/item/key/collar(src)
 
 //////////////
 //DOPE BLING//

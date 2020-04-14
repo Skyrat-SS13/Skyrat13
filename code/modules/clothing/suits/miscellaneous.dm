@@ -975,17 +975,16 @@
 	item_state = "coatpoly"
 	item_color = "coatpoly"
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/polychromic
-	hasprimary = TRUE
-	hassecondary = TRUE
-	hastertiary = TRUE
-	primary_color = "#6A6964"
-	secondary_color = "#C4B8A6"
-	tertiary_color = "#0000FF"
+
+/obj/item/clothing/suit/hooded/wintercoat/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/polychromic, list("#6A6964", "#C4B8A6", "#0000FF"), 3)
 
 /obj/item/clothing/head/hooded/winterhood/polychromic
 	icon_state = "winterhood_poly"
 	item_color = "winterhood_poly"
 	item_state = "winterhood_poly"
+<<<<<<< HEAD
 
 /obj/item/clothing/head/hooded/winterhood/polychromic/worn_overlays(isinhands, icon_file, style_flags = NONE)	//this is where the main magic happens.
 	. = ..()
@@ -1043,3 +1042,5 @@
 				update_icon()
 				user.regenerate_icons()
 	return TRUE
+=======
+>>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611

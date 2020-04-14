@@ -42,11 +42,12 @@
 	icon_state = "polyshortpants"
 	item_color = "polyshortpants"
 	item_state = "rainbow"
-	hasprimary = TRUE
-	hassecondary = TRUE
-	primary_color = "#FFFFFF"
-	secondary_color = "#F08080"
 	mutantrace_variation = NONE
+	var/list/poly_colors = list("#FFFFFF", "#F08080")
+
+/obj/item/clothing/under/shorts/polychromic/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/polychromic, poly_colors, 2)
 
 /obj/item/clothing/under/shorts/polychromic/pantsu
 	name = "polychromic panties"
@@ -54,8 +55,6 @@
 	icon_state = "polypantsu"
 	item_color = "polypantsu"
 	item_state = "rainbow"
-	hastertiary = FALSE
-	primary_color = "#FFFFFF"
-	secondary_color = "#8CC6FF"
 	body_parts_covered = GROIN
 	mutantrace_variation = NONE
+	poly_colors = list("#FFFFFF", "#8CC6FF")
