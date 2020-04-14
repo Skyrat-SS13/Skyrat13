@@ -1,5 +1,6 @@
 /datum/techweb_node/cyborg_upg_util/New()
 	design_ids += "borg_upgrade_xwelding"
+	design_ids += "borg_upgrade_shrink"
 	//design_ids += "borg_upgrade_plasma"
 	. = ..()
 
@@ -28,3 +29,10 @@
 	design_ids = list("telepad", "telesci_console")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 9000)
 
+/datum/techweb_node/ai/New()
+	design_ids += "father_module"
+	. = ..()
+
+/datum/techweb_node/botany/New()
+	design_ids += "prisonerbiogenerator"
+	. = ..()

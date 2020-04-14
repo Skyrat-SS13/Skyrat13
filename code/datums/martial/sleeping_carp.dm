@@ -63,11 +63,11 @@
 	playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
 	if((D.mobility_flags & MOBILITY_STAND))
 		D.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
-		D.DefaultCombatKnockdown(50)
+		D.DefaultCombatKnockdown(50, override_hardstun = 0.01, override_stamdmg = 0)
 		D.adjustStaminaLoss(40) //A cit specific change form the tg port to really punish anyone who tries to stand up
 		D.visible_message("<span class='warning'>[A] kicks [D] in the head, sending them face first into the floor!</span>", \
 					"<span class='userdanger'>You are kicked in the head by [A], sending you crashing to the floor!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
-	if(!(D.mobility_flags & MOBILITY_STAND))
+	else if(!(D.mobility_flags & MOBILITY_STAND))
 		D.apply_damage(5, BRUTE, BODY_ZONE_HEAD)
 		D.adjustStaminaLoss(40)
 		D.drop_all_held_items()
@@ -237,7 +237,7 @@
 	else
 		return ..()
 
-/obj/item/twohanded/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(wielded)
-		return ..()
-	return FALSE
+/obj/item/twohanded/bostaff/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(!wielded)
+		return BLOCK_NONE
+	return ..()

@@ -182,7 +182,7 @@
 				else
 					child_colour = colour
 				var/mob/living/simple_animal/slime/M
-				M = new(loc, child_colour)
+				M = SSrecycling.deploy_slime(loc, child_colour) //Skyrat change
 				if(ckey)
 					M.nutrition = new_nutrition //Player slimes are more robust at spliting. Once an oversight of poor copypasta, now a feature!
 				M.powerlevel = new_powerlevel
