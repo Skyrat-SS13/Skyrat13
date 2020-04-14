@@ -156,7 +156,7 @@ SUBSYSTEM_DEF(recycling)
 	//I've peered over destroy() on atom and atom/movable but it seemed like nothing related was happening
 
 	recycled_movable_lighting_objects += LO
-	LO.forceMove(nullspace)
+	LO.forceMove(nullspace, harderforce = TRUE)
 
 /datum/controller/subsystem/recycling/proc/deploy_movable_lighting_object(mapload)
 	var/atom/movable/lighting_object/LO
@@ -165,7 +165,7 @@ SUBSYSTEM_DEF(recycling)
 	else
 		LO = recycled_movable_lighting_objects[recycled_movable_lighting_objects.len]
 		LO.color = LIGHTING_BASE_MATRIX
-		LO.forceMove(get_turf(mapload))
+		LO.forceMove(get_turf(mapload),harderforce = TRUE)
 		LO.loc = get_turf(mapload)
 		LO.myturf = LO.loc
 		if(LO.myturf.lighting_object)
