@@ -1,8 +1,0 @@
-author: "KathrinBailey"
-delete-after: True
-changes: 
-  - rscadd: "Three new markings, BellyFloof, BellyFloofTertiary and Rat!"
-  - rscadd: "New snout, Shark Light."
-  - rscadd: "New tail, Shark no fin, guess the difference."
-  - rscadd: "New snout, Rat."
-  - rscdel: "Low-tier fashion."
