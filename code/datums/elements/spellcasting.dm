@@ -34,7 +34,11 @@
 			stacked_spellcasting_by_user -= target
 
 /datum/element/spellcasting/proc/on_equip(datum/source, mob/equipper, slot)
+<<<<<<< HEAD
 	if(!(slot in cast_slots))
+=======
+	if(!(cast_slots & slotdefine2slotbit(slot)))
+>>>>>>> d1bdcd3401... Merge pull request #11840 from Citadel-Station-13/Ghommie-patch-1
 		return
 	users_by_item[source] = equipper
 	if(!stacked_spellcasting_by_user[equipper])
