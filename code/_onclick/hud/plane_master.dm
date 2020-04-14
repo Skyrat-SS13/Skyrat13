@@ -69,8 +69,8 @@
 
 /obj/screen/plane_master/lighting/Initialize()
 	. = ..()
-	filters += filter(type="alpha", render_source=EMISSIVE_RENDER_TARGET, flags=MASK_INVERSE)
-	filters += filter(type="alpha", render_source=EMISSIVE_UNBLOCKABLE_RENDER_TARGET, flags=MASK_INVERSE)
+	//filters += filter(type="alpha", render_source=EMISSIVE_RENDER_TARGET, flags=MASK_INVERSE) //Skyrat change 512 compatible
+	//filters += filter(type="alpha", render_source=EMISSIVE_UNBLOCKABLE_RENDER_TARGET, flags=MASK_INVERSE) //Skyrat change 512 compatible
 
 /**
   * Things placed on this mask the lighting plane. Doesn't render directly.
@@ -82,11 +82,11 @@
 	name = "emissive plane master"
 	plane = EMISSIVE_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	render_target = EMISSIVE_RENDER_TARGET
+	//render_target = EMISSIVE_RENDER_TARGET //Skyrat change 512 compatible
 
 /obj/screen/plane_master/emissive/Initialize()
 	. = ..()
-	filters += filter(type="alpha", render_source=EMISSIVE_BLOCKER_RENDER_TARGET, flags=MASK_INVERSE)
+	//filters += filter(type="alpha", render_source=EMISSIVE_BLOCKER_RENDER_TARGET, flags=MASK_INVERSE) //Skyrat change 512 compatible
 
 /**
   * Things placed on this always mask the lighting plane. Doesn't render directly.
@@ -99,7 +99,7 @@
 	name = "unblockable emissive plane master"
 	plane = EMISSIVE_UNBLOCKABLE_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	render_target = EMISSIVE_UNBLOCKABLE_RENDER_TARGET
+	//render_target = EMISSIVE_UNBLOCKABLE_RENDER_TARGET //Skyrat change 512 compatible
 
 /**
   * Things placed on this layer mask the emissive layer. Doesn't render directly
@@ -110,7 +110,7 @@
 	name = "emissive mob plane master"
 	plane = EMISSIVE_BLOCKER_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	render_target = EMISSIVE_BLOCKER_RENDER_TARGET
+	//render_target = EMISSIVE_BLOCKER_RENDER_TARGET //Skyrat change 512 compatible
 
 ///Contains space parallax
 

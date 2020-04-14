@@ -21,7 +21,7 @@
 	. = ..()
 	verbs.Cut() //Cargo culting from lighting object, this maybe affects memory usage?
 
-	render_source = source
+	//render_source = source //Skyrat change 512 compatible
 
 /atom/movable/emissive_blocker/ex_act(severity)
 	return FALSE

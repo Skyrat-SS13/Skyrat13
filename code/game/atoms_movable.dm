@@ -51,8 +51,8 @@
 		if(EMISSIVE_BLOCK_GENERIC)
 			update_emissive_block()
 		if(EMISSIVE_BLOCK_UNIQUE)
-			render_target = ref(src)
-			em_block = new(src, render_target)
+			//render_target = REF(src) //Skyrat change 512 compatible
+			//em_block = new(src, render_target) //Skyrat change 512 compatible
 			vis_contents += em_block
 
 /atom/movable/Destroy()
