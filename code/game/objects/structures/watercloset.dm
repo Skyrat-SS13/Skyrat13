@@ -64,7 +64,7 @@
 			else
 				I.forceMove(drop_location())
 			to_chat(user, "<span class='notice'>You find [I] in the cistern.</span>")
-			w_items -= I.w_class
+			w_items = max(w_items - I.w_class, 0)
 	else
 		open = !open
 		update_icon()
@@ -116,8 +116,16 @@
 		w_items += secret.w_class
 		contents += secret
 
+<<<<<<< HEAD
 /obj/structure/toilet/secret/prison
 	secret_type = /obj/effect/spawner/lootdrop/prison_loot_toilet
+=======
+/obj/structure/toilet/secret/LateInitialize()
+	. = ..()
+	w_items = 0 //recalculate total weight thanks to the secret.
+	for(var/obj/item/I in contents)
+		w_items += I.w_class
+>>>>>>> 5baa5ebf55... Merge pull request #11828 from Citadel-Station-13/Ghommie-patch-2
 
 /obj/structure/toilet/secret/low_loot
 	secret_type = /obj/effect/spawner/lootdrop/low_loot_toilet
