@@ -6,7 +6,7 @@
 
 /datum/map_template/ruin/lavaland/syndicate_base
 	prefix = "modular_skyrat/_maps/RandomRuins/LavaRuins/"
-  
+
 /datum/map_template/ruin/lavaland/king_goat_boss
 	prefix = "modular_skyrat/_maps/RandomRuins/LavaRuins/"
 	name = "King Goat Boss Ruin"
@@ -22,3 +22,9 @@
 	id = "wrathruin"
 	description = "RIP AND TEAR, UNTIL IT IS DONE."
 	suffix = "lavaland_surface_wrath.dmm"
+
+/datum/map_template/ruin/lavaland/sin/e1m1
+	name = "E1M1"
+	id = "E1M1"
+	description = "IMPS? ZOMBIES? THINK YOU CAN GET ME?!"
+	suffix = "lavaland_surface_e1m1.dmm"
