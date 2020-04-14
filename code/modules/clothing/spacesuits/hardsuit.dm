@@ -30,9 +30,13 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/attack_self(mob/user)
 	on = !on
+<<<<<<< HEAD
 	icon_state = "[basestate][on]-[item_color]"
 	user.update_inv_head()	//so our mob-overlays update
 
+=======
+	update_icon() //the mob overlay update is already done by the update_icon_updates_onmob element.
+>>>>>>> 79f41bc654... Merge pull request #11841 from Citadel-Station-13/Ghommie-patch-4
 	if(on)
 		set_light(brightness_on)
 	else
