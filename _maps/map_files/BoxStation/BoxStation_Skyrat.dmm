@@ -24220,6 +24220,7 @@
 "baY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "baZ" = (
@@ -24373,6 +24374,8 @@
 "bbt" = (
 /obj/structure/closet/crate,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "bbu" = (
@@ -24558,6 +24561,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "bbT" = (
@@ -24859,6 +24863,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
+/obj/item/pizzabox,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "bcK" = (
@@ -25374,6 +25380,8 @@
 /area/maintenance/port)
 "bdS" = (
 /obj/structure/closet/crate/internals,
+/obj/item/tank/internals/oxygen,
+/obj/item/clothing/mask/breath,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "bdT" = (
@@ -25393,6 +25401,12 @@
 /area/maintenance/port)
 "bdU" = (
 /obj/structure/closet/crate/medical,
+/obj/item/storage/firstaid/regular{
+	empty = 1;
+	name = "First-Aid (empty)"
+	},
+/obj/item/reagent_containers/glass/bottle/vial,
+/obj/item/reagent_containers/glass/bottle/vial/small,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "bdV" = (
@@ -25671,6 +25685,7 @@
 	dir = 6
 	},
 /obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "bey" = (
@@ -25726,6 +25741,7 @@
 	dir = 9
 	},
 /obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "beE" = (
@@ -32641,20 +32657,18 @@
 /turf/open/floor/plasteel,
 /area/teleporter)
 "buX" = (
-/obj/machinery/shieldwallgen,
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/teleporter)
 "buY" = (
-/obj/machinery/shieldwallgen,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/teleporter)
 "buZ" = (
-/obj/structure/closet/crate,
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/teleporter)
 "bva" = (
@@ -55006,7 +55020,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/light/small{
+/obj/machinery/light/small/broken{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -58917,6 +58931,15 @@
 "ktS" = (
 /turf/open/space/basic,
 /area/space/nearstation)
+"kus" = (
+/obj/machinery/button/door{
+	id = "telecap";
+	name = "Teleporter Room Shutters";
+	pixel_x = 27;
+	req_access_txt = "17"
+	},
+/turf/open/floor/plasteel,
+/area/teleporter)
 "kvl" = (
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
@@ -60542,6 +60565,13 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/abandoned_gambling_den)
+"poO" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "telecap";
+	name = "Teleporter Room Shutters"
+	},
+/turf/open/floor/plasteel,
+/area/teleporter)
 "pqe" = (
 /obj/structure/chair/sofa,
 /obj/structure/window{
@@ -63757,6 +63787,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"xWs" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "xXi" = (
 /obj/machinery/vending/clothing,
 /turf/open/floor/plasteel,
@@ -95332,7 +95368,7 @@ btJ
 buV
 bws
 bqH
-aJq
+ftE
 aJq
 byW
 bCv
@@ -95588,8 +95624,8 @@ bsn
 btL
 buY
 buY
-bqH
-ftE
+poO
+xWs
 aJq
 aXf
 bCv
@@ -95845,8 +95881,8 @@ bsm
 btL
 buX
 buX
-bqH
-aJq
+poO
+xWs
 aJq
 bBy
 bzs
@@ -96101,7 +96137,7 @@ bqK
 bso
 btN
 buZ
-buZ
+kus
 bqH
 byN
 aJq
