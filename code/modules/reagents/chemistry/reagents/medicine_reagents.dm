@@ -423,7 +423,6 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 	color = "#FFEBEB"
 	pH = 11.5
 	metabolization_rate = 5 * REAGENTS_METABOLISM
-	overdose_threshold = 40
 	value = 6
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
@@ -441,19 +440,18 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 			var/mob/living/carbon/C = M
 			C.emote("cough")
 			C.vomit()
-			to_chat(C, "<span class='danger'>Your stomach starts to hurt!</span>")
+			if(show_message) to_chat(C, "<span class='danger'>Your stomach starts to hurt!</span>")
 		if(PATCH,TOUCH,VAPOR)
-			if(show_message) to_chat(M, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
-			M.adjustToxLoss( (M.adjustBruteLoss(-1.25 * reac_volume) + M.adjustFireLoss(-1.25 * reac_volume)) * -0.5 )
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+			var/amount_healed = -(M.adjustBruteLoss(-1.25 * reac_volume) + M.adjustFireLoss(-1.25 * reac_volume))
+			if(amount_healed && M.stat != DEAD)
+				M.adjustToxLoss( amount_healed * 0.25 )
+				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+				if(show_message) to_chat(M, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
 			var/vol = reac_volume + M.reagents.get_reagent_amount(/datum/reagent/medicine/synthflesh)
 			if(HAS_TRAIT_FROM(M, TRAIT_HUSK, "burn") && M.getFireLoss() < THRESHOLD_UNHUSK && (vol > overdose_threshold))
 				M.cure_husk("burn")
 				M.visible_message("<span class='nicegreen'>Most of [M]'s burnt off or charred flesh has been restored!")
 	..()
-
-/datum/reagent/medicine/synthflesh/overdose_start(mob/living/M)
-	metabolization_rate = 15 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/charcoal
 	name = "Charcoal"
