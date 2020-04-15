@@ -108,7 +108,7 @@
 		message_admins("[i]")
 
 	message_admins("[used_att]")
-	attribute_points -= used_att
+	attribute_points = max_attribute_points - used_att
 	//END OF SKYRAT CHANGES
 
 	//gear loadout
