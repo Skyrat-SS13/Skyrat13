@@ -171,7 +171,7 @@
 // TRANSITIONING MEDICINE
 
 /datum/reagent/medicine/tbasic
-	name = "TBasic"
+	name = "T-Basic"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
@@ -196,7 +196,7 @@
 	. = 1
 
 /datum/reagent/medicine/tbrute
-	name = "TBrute"
+	name = "T-Brute"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
@@ -213,7 +213,7 @@
 	..()
 
 /datum/reagent/medicine/tburn
-	name = "TBurn"
+	name = "T-Burn"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
@@ -230,7 +230,7 @@
 	..()
 
 /datum/reagent/medicine/ttoxic
-	name = "TToxic"
+	name = "T-Toxic"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
@@ -267,7 +267,7 @@
 	. = 1
 
 /datum/reagent/medicine/kelotaneplusplus
-	name = "Kelotane++
+	name = "Kelotane++"
 	description = "Restores fire damage. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#ffc400"
@@ -285,7 +285,7 @@
 	. = 1
 
 /datum/reagent/medicine/antitoxinplusplus
-	name = "Anti-Toxin++
+	name = "Anti-Toxin++"
 	description = "Heals toxin damage and removes toxins in the bloodstream. Overdose causes toxin damage."
 	reagent_state = LIQUID
 	color = "#6aff00"
@@ -306,7 +306,7 @@
 	. = 1
 
 /datum/reagent/medicine/tricordrazineplusplus
-	name = "Tricordrazine++
+	name = "Tricordrazine++"
 	description = "Has a high chance to heal all types of damage. Overdose instead causes it."
 	reagent_state = LIQUID
 	color = "#e650c0"
@@ -333,7 +333,7 @@
 // NULLIFYING MEDICINE
 
 /datum/reagent/medicine/brutex
-	name = "Brutex
+	name = "Brutex"
 	description = "Restores bruising. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#fc2626"
@@ -352,7 +352,7 @@
 	. = 1
 
 /datum/reagent/medicine/burnex
-	name = "Burnex
+	name = "Burnex"
 	description = "Restores fire damage. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#ffc400"
@@ -371,7 +371,7 @@
 	. = 1
 
 /datum/reagent/medicine/toxicex
-	name = "Toxicex
+	name = "Toxicex"
 	description = "Heals toxin damage and removes toxins in the bloodstream. Overdose causes toxin damage."
 	reagent_state = LIQUID
 	color = "#6aff00"
@@ -393,7 +393,7 @@
 	. = 1
 
 /datum/reagent/medicine/allex
-	name = "Allex
+	name = "Allex"
 	description = "Has a high chance to heal all types of damage. Overdose instead causes it."
 	reagent_state = LIQUID
 	color = "#e650c0"

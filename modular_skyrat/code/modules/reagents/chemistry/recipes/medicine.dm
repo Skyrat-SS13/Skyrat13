@@ -27,25 +27,25 @@
 // TRANSITIONING MEDICINE
 
 /datum/chemical_reaction/tbasic
-	name = "TBasic"
+	name = "T-Basic"
 	id = /datum/reagent/medicine/tbasic
 	results = list(/datum/reagent/medicine/tbasic = 3)
 	required_reagents = list(/datum/reagent/medicine/tbrute = 1, /datum/reagent/medicine/tburn = 1, /datum/reagent/medicine/ttoxic = 1)
 
 /datum/chemical_reaction/tbrute
-	name = "TBrute"
+	name = "T-Brute"
 	id = /datum/reagent/medicine/tbrute
 	results = list(/datum/reagent/medicine/tbrute = 2)
 	required_reagents = list(/datum/reagent/medicine/bicaridine = 1, /datum/reagent/medicine/bicaridineplus = 1)
 
 /datum/chemical_reaction/tburn
-	name = "TBurn"
+	name = "T-Burn"
 	id = /datum/reagent/medicine/tburn
 	results = list(/datum/reagent/medicine/tburn = 2)
 	required_reagents = list(/datum/reagent/medicine/kelotane = 1, /datum/reagent/medicine/kelotaneplus = 1)
 
 /datum/chemical_reaction/ttoxic
-	name = "TToxic"
+	name = "T-Toxic"
 	id = /datum/reagent/medicine/ttoxic
 	results = list(/datum/reagent/medicine/ttoxic = 2)
 	required_reagents = list(/datum/reagent/medicine/antitoxin = 1, /datum/reagent/medicine/antitoxinplus = 1)
