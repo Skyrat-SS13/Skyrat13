@@ -342,12 +342,12 @@
 	pH = 5
 
 /datum/reagent/medicine/brutex/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(-0.2*REM, FALSE)
+	M.adjustBruteLoss(-0.1*REM, FALSE)
 	..()
 	. = 1
 
 /datum/reagent/medicine/brutex/overdose_process(mob/living/M)
-	M.adjustBruteLoss(0.5*REM, FALSE)
+	M.adjustBruteLoss(0.2*REM, FALSE)
 	..()
 	. = 1
 
@@ -361,12 +361,12 @@
 	pH = 9
 
 /datum/reagent/medicine/burnex/on_mob_life(mob/living/carbon/M)
-	M.adjustFireLoss(-0.2*REM, FALSE)
+	M.adjustFireLoss(-0.1*REM, FALSE)
 	..()
 	. = 1
 
 /datum/reagent/medicine/burnex/overdose_process(mob/living/M)
-	M.adjustFireLoss(0.5*REM, FALSE)
+	M.adjustFireLoss(0.2*REM, FALSE)
 	..()
 	. = 1
 
@@ -381,14 +381,14 @@
 	pH = 10
 
 /datum/reagent/medicine/toxicex/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(-0.2*REM, FALSE)
+	M.adjustToxLoss(-0.1*REM, FALSE)
 	for(var/datum/reagent/toxin/R in M.reagents.reagent_list)
 		M.reagents.remove_reagent(R.type,0.5)
 	..()
 	. = 1
 
 /datum/reagent/medicine/toxicex/overdose_process(mob/living/M)
-	M.adjustToxLoss(0.5*REM, FALSE) // End result is 2 toxin loss taken, because it heals 2 and then removes 4.
+	M.adjustToxLoss(0.2*REM, FALSE) // End result is 2 toxin loss taken, because it heals 2 and then removes 4.
 	..()
 	. = 1
 
@@ -402,7 +402,7 @@
 	taste_description = "grossness"
 
 /datum/reagent/medicine/allex/on_mob_life(mob/living/carbon/M)
-	if(prob(90))
+	if(prob(50))
 		M.adjustBruteLoss(-0.1*REM, FALSE)
 		M.adjustFireLoss(-0.1*REM, FALSE)
 		M.adjustOxyLoss(-0.1*REM, FALSE)
@@ -411,9 +411,9 @@
 	..()
 
 /datum/reagent/medicine/allex/overdose_process(mob/living/M)
-	M.adjustToxLoss(0.5*REM, FALSE)
-	M.adjustOxyLoss(0.5*REM, FALSE)
-	M.adjustBruteLoss(0.5*REM, FALSE)
-	M.adjustFireLoss(0.5*REM, FALSE)
+	M.adjustToxLoss(0.2*REM, FALSE)
+	M.adjustOxyLoss(0.2*REM, FALSE)
+	M.adjustBruteLoss(0.2*REM, FALSE)
+	M.adjustFireLoss(0.2*REM, FALSE)
 	..()
 	. = 1

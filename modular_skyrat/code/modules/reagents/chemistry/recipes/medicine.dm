@@ -81,20 +81,20 @@
 /datum/chemical_reaction/brutex
 	name = "Brutex"
 	id = /datum/reagent/medicine/brutex
-	results = list(/datum/reagent/medicine/brutex = 3)
-	required_reagents = list(/datum/reagent/medicine/obligerine = 1, /datum/reagent/medicine/brutaline = 1, /datum/reagent/medicine/bicaridine = 1)
+	results = list(/datum/reagent/medicine/brutex = 2)
+	required_reagents = list(/datum/reagent/medicine/obligerine = 1, /datum/reagent/medicine/brutaline = 1)
 
 /datum/chemical_reaction/burnex
 	name = "Burnex"
 	id = /datum/reagent/medicine/burnex
-	results = list(/datum/reagent/medicine/burnex = 3)
-	required_reagents = list(/datum/reagent/medicine/croustillantane = 1, /datum/reagent/medicine/feuerane = 1, /datum/reagent/medicine/kelotane = 1)
+	results = list(/datum/reagent/medicine/burnex = 2)
+	required_reagents = list(/datum/reagent/medicine/croustillantane = 1, /datum/reagent/medicine/feuerane = 1)
 
 /datum/chemical_reaction/toxicex
 	name = "Toxicex"
 	id = /datum/reagent/medicine/toxicex
-	results = list(/datum/reagent/medicine/toxicex = 3)
-	required_reagents = list(/datum/reagent/medicine/nontoxique = 1, /datum/reagent/medicine/giftignicht = 1, /datum/reagent/medicine/antitoxin = 1)
+	results = list(/datum/reagent/medicine/toxicex = 2)
+	required_reagents = list(/datum/reagent/medicine/nontoxique = 1, /datum/reagent/medicine/giftignicht = 1)
 
 /datum/chemical_reaction/allex
 	name = "Allex"
