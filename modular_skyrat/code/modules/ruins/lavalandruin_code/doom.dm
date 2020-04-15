@@ -20,7 +20,7 @@
 	light_range = 3
 	light_color = "#0000FF"
 
-/obj/item/reagent_containers/glass/bottle/vial/large/synthflesh/healthvial
+/obj/item/reagent_containers/glass/beaker/synthflesh/healthvial
 	name = "health potion"
 	desc = "+1% health. Can be splashed to heal brute and burn damage."
 	color = "#0000FF"
