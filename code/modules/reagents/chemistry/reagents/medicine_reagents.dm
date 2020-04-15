@@ -861,7 +861,7 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 
 /datum/reagent/medicine/strange_reagent
 	name = "Strange Reagent"
-	description = "A miracle drug capable of bringing the dead back to life. Only functions when applied by patch or spray, if the target has less than 100 brute and burn damage (independent of one another) and hasn't been husked. Causes slight damage to the living."
+	description = "A miracle drug that can bring people back from the dead based on the dosage. For every 10 units of brute or burn damage, 1u of this reagent is required. Deals a small amount of damage on metabolism."
 	reagent_state = LIQUID
 	color = "#A0E85E"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -870,10 +870,14 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.stat == DEAD)
+		var/true_reaction_volume = reac_volume + M.reagents.get_reagent_amount(/datum/reagent/medicine/strange_reagent)
 		if(M.suiciding || M.hellbound) //they are never coming back
-			M.visible_message("<span class='warning'>[M]'s body does not react...</span>")
+			M.visible_message("<span class='warning'>[M]'s body does not react... it seems they are not meant for this world.</span>")
 			return
-		if(M.getBruteLoss() >= 100 || M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK)) //body is too damaged to be revived
+		if(M.getFireLoss() + M.getBruteLoss() >= true_reaction_volume*10) //body is too damaged to be revived
+			//10u is required to heal 100 total damage.
+			//20u is required to heal 200 total damage.
+			//40u is required to heal 400 total damage.
 			M.visible_message("<span class='warning'>[M]'s body convulses a bit, and then falls still once more.</span>")
 			M.do_jitter_animation(10)
 			return
@@ -883,7 +887,6 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 			M.do_jitter_animation(10)
 			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
 			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
-
 			spawn(100) //so the ghost has time to re-enter
 				if(iscarbon(M))
 					var/mob/living/carbon/C = M
@@ -902,7 +905,6 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 					M.emote("gasp")
 					log_combat(M, M, "revived", src)
 	..()
-
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)
 	M.adjustBruteLoss(0.5*REM, 0)
