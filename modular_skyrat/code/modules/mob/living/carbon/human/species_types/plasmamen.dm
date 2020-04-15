@@ -89,6 +89,9 @@
 		if("Clown")
 			O = new /datum/outfit/plasmaman/clown
 
+		if("Blueshield")
+			O = new /datum/outfit/plasmaman/blueshield
+
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)
 	H.update_internals_hud_icon(1)
