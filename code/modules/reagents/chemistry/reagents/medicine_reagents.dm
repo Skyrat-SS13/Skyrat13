@@ -874,10 +874,10 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 		if(M.suiciding || M.hellbound) //they are never coming back
 			M.visible_message("<span class='warning'>[M]'s body does not react... it seems they are not meant for this world.</span>")
 			return
-		if(M.getFireLoss() + M.getBruteLoss() >= true_reaction_volume*10) //body is too damaged to be revived
-			//10u is required to heal 100 total damage.
-			//20u is required to heal 200 total damage.
-			//40u is required to heal 400 total damage.
+		if(M.getFireLoss() + M.getBruteLoss() >= true_reaction_volume*20) //body is too damaged to be revived
+			//10u is required to heal 200 total damage.
+			//20u is required to heal 400 total damage.
+			//40u is required to heal 800 total damage.
 			M.visible_message("<span class='warning'>[M]'s body convulses a bit, and then falls still once more.</span>")
 			M.do_jitter_animation(10)
 			return
