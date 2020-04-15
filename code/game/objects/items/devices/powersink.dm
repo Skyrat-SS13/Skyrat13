@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(power_sinks)
 	custom_materials = list(/datum/material/iron=750)
 	var/drain_rate = 1600000	// amount of power to drain per tick
 	var/power_drained = 0 		// has drained this much power
-	var/max_power = 1e10		// maximum power that can be drained before exploding
+	var/max_power = 1e8		// maximum power that can be drained before exploding && SKYRATE CHANGE form 1e10
 	var/mode = 0		// 0 = off, 1=clamped (off), 2=operating
 	var/admins_warned = FALSE // stop spam, only warn the admins once that we are about to boom
 
