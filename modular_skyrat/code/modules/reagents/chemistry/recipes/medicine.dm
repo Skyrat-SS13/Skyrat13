@@ -1,80 +1,80 @@
 // TIER 2
 
-/datum/chemical_reaction/brutaline
-	name = "Brutaline"
-	id = /datum/reagent/medicine/brutaline
-	results = list(/datum/reagent/medicine/brutaline = 3)
-	required_reagents = list(/datum/reagent/medicine/bicaridine = 1, /datum/reagent/blood = 1, /datum/reagent/water = 1)
+/datum/chemical_reaction/bicaridineplus
+	name = "Bicaridine+"
+	id = /datum/reagent/medicine/bicaridineplus
+	results = list(/datum/reagent/medicine/bicaridineplus = 2)
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 1, /datum/reagent/toxin/plasma = 1)
 
-/datum/chemical_reaction/feuerane
-	name = "Feuerane"
-	id = /datum/reagent/medicine/feuerane
-	results = list(/datum/reagent/medicine/feuerane = 3)
-	required_reagents = list(/datum/reagent/medicine/kelotane = 1, /datum/reagent/blood = 1, /datum/reagent/water = 1)
+/datum/chemical_reaction/kelotaneplus
+	name = "Kelotane+"
+	id = /datum/reagent/medicine/kelotaneplus
+	results = list(/datum/reagent/medicine/kelotaneplus = 2)
+	required_reagents = list(/datum/reagent/medicine/kelotane = 1, /datum/reagent/toxin/plasma = 1)
 
-/datum/chemical_reaction/giftignicht
-	name = "Giftignicht"
-	id = /datum/reagent/medicine/giftignicht
-	results = list(/datum/reagent/medicine/giftignicht = 3)
-	required_reagents = list(/datum/reagent/medicine/antitoxin = 1, /datum/reagent/blood = 1, /datum/reagent/water = 1)
+/datum/chemical_reaction/antitoxinplus
+	name = "Anti-Toxin+"
+	id = /datum/reagent/medicine/antitoxinplus
+	results = list(/datum/reagent/medicine/antitoxinplus = 2)
+	required_reagents = list(/datum/reagent/medicine/antitoxin = 1, /datum/reagent/toxin/plasma = 1)
 
-/datum/chemical_reaction/wundermittelone
-	name = "Wundermittelone"
-	id = /datum/reagent/medicine/wundermittelone
-	results = list(/datum/reagent/medicine/wundermittelone = 3)
-	required_reagents = list(/datum/reagent/medicine/brutaline = 1, /datum/reagent/medicine/feuerane = 1, /datum/reagent/medicine/giftignicht = 1)
+/datum/chemical_reaction/tricordrazineplus
+	name = "Tricordrazine+"
+	id = /datum/reagent/medicine/tricordrazineplus
+	results = list(/datum/reagent/medicine/tricordrazineplus = 3)
+	required_reagents = list(/datum/reagent/medicine/bicaridineplus = 1, /datum/reagent/medicine/kelotaneplus = 1, /datum/reagent/medicine/antitoxinplus = 1)
 
 // TRANSITIONING MEDICINE
 
-/datum/chemical_reaction/linguaggiomedio
-	name = "Linguaggiomedio"
-	id = /datum/reagent/medicine/linguaggiomedio
-	results = list(/datum/reagent/medicine/linguaggiomedio = 3)
-	required_reagents = list(/datum/reagent/medicine/brutemedio = 1, /datum/reagent/medicine/burnmedio = 1, /datum/reagent/medicine/toxicmedio = 1)
+/datum/chemical_reaction/tbasic
+	name = "TBasic"
+	id = /datum/reagent/medicine/tbasic
+	results = list(/datum/reagent/medicine/tbasic = 3)
+	required_reagents = list(/datum/reagent/medicine/tbrute = 1, /datum/reagent/medicine/tburn = 1, /datum/reagent/medicine/ttoxic = 1)
 
-/datum/chemical_reaction/brutemedio
-	name = "Brutemedio"
-	id = /datum/reagent/medicine/brutemedio
-	results = list(/datum/reagent/medicine/brutemedio = 2)
-	required_reagents = list(/datum/reagent/medicine/bicaridine = 1, /datum/reagent/medicine/brutaline = 1)
+/datum/chemical_reaction/tbrute
+	name = "TBrute"
+	id = /datum/reagent/medicine/tbrute
+	results = list(/datum/reagent/medicine/tbrute = 2)
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 1, /datum/reagent/medicine/bicaridineplus = 1)
 
-/datum/chemical_reaction/burnmedio
-	name = "Burnmedio"
-	id = /datum/reagent/medicine/burnmedio
-	results = list(/datum/reagent/medicine/burnmedio = 2)
-	required_reagents = list(/datum/reagent/medicine/kelotane = 1, /datum/reagent/medicine/feuerane = 1)
+/datum/chemical_reaction/tburn
+	name = "TBurn"
+	id = /datum/reagent/medicine/tburn
+	results = list(/datum/reagent/medicine/tburn = 2)
+	required_reagents = list(/datum/reagent/medicine/kelotane = 1, /datum/reagent/medicine/kelotaneplus = 1)
 
-/datum/chemical_reaction/toxicmedio
-	name = "Toxicmedio"
-	id = /datum/reagent/medicine/toxicmedio
-	results = list(/datum/reagent/medicine/toxicmedio = 2)
-	required_reagents = list(/datum/reagent/medicine/antitoxin = 1, /datum/reagent/medicine/giftignicht = 1)
+/datum/chemical_reaction/ttoxic
+	name = "TToxic"
+	id = /datum/reagent/medicine/ttoxic
+	results = list(/datum/reagent/medicine/ttoxic = 2)
+	required_reagents = list(/datum/reagent/medicine/antitoxin = 1, /datum/reagent/medicine/antitoxinplus = 1)
 
 // TIER 3
 
-/datum/chemical_reaction/obligerine
-	name = "Obligerine"
-	id = /datum/reagent/medicine/obligerine
-	results = list(/datum/reagent/medicine/obligerine = 3)
-	required_reagents = list(/datum/reagent/medicine/linguaggiomedio = 1, /datum/reagent/medicine/brutemedio = 2)
+/datum/chemical_reaction/bicaridineplusplus
+	name = "Bicaridine++"
+	id = /datum/reagent/medicine/bicaridineplusplus
+	results = list(/datum/reagent/medicine/bicaridineplusplus = 2)
+	required_reagents = list(/datum/reagent/medicine/tbasic = 1, /datum/reagent/medicine/tbrute = 1)
 
-/datum/chemical_reaction/croustillantane
-	name = "Croustillantane"
-	id = /datum/reagent/medicine/croustillantane
-	results = list(/datum/reagent/medicine/croustillantane = 3)
-	required_reagents = list(/datum/reagent/medicine/linguaggiomedio = 1, /datum/reagent/medicine/burnmedio = 2)
+/datum/chemical_reaction/kelotaneplusplus
+	name = "Kelotane++"
+	id = /datum/reagent/medicine/kelotaneplusplus
+	results = list(/datum/reagent/medicine/kelotaneplusplus = 2)
+	required_reagents = list(/datum/reagent/medicine/tbasic = 1, /datum/reagent/medicine/tburn = 1)
 
-/datum/chemical_reaction/nontoxique
-	name = "Nontoxique"
-	id = /datum/reagent/medicine/nontoxique
-	results = list(/datum/reagent/medicine/nontoxique = 3)
-	required_reagents = list(/datum/reagent/medicine/linguaggiomedio = 1, /datum/reagent/medicine/toxicmedio = 2)
+/datum/chemical_reaction/antitoxinplusplus
+	name = "Anti-Toxin++"
+	id = /datum/reagent/medicine/antitoxinplusplus
+	results = list(/datum/reagent/medicine/antitoxinplusplus = 2)
+	required_reagents = list(/datum/reagent/medicine/tbasic = 1, /datum/reagent/medicine/ttoxic = 1)
 
-/datum/chemical_reaction/guerirone
-	name = "Guerirone"
-	id = /datum/reagent/medicine/guerirone
-	results = list(/datum/reagent/medicine/guerirone = 3)
-	required_reagents = list(/datum/reagent/medicine/obligerine = 1, /datum/reagent/medicine/croustillantane = 1, /datum/reagent/medicine/nontoxique = 1)
+/datum/chemical_reaction/tricordrazineplusplus
+	name = "Tricordrazine++"
+	id = /datum/reagent/medicine/tricordrazineplusplus
+	results = list(/datum/reagent/medicine/tricordrazineplusplus = 3)
+	required_reagents = list(/datum/reagent/medicine/bicaridineplusplus = 1, /datum/reagent/medicine/kelotaneplusplus = 1, /datum/reagent/medicine/antitoxinplusplus = 1)
 
 // NULLIFYING MEDICINE
 
@@ -82,22 +82,22 @@
 	name = "Brutex"
 	id = /datum/reagent/medicine/brutex
 	results = list(/datum/reagent/medicine/brutex = 2)
-	required_reagents = list(/datum/reagent/medicine/obligerine = 1, /datum/reagent/medicine/brutaline = 1)
+	required_reagents = list(/datum/reagent/medicine/bicaridineplusplus = 1, /datum/reagent/medicine/bicaridineplus = 1)
 
 /datum/chemical_reaction/burnex
 	name = "Burnex"
 	id = /datum/reagent/medicine/burnex
 	results = list(/datum/reagent/medicine/burnex = 2)
-	required_reagents = list(/datum/reagent/medicine/croustillantane = 1, /datum/reagent/medicine/feuerane = 1)
+	required_reagents = list(/datum/reagent/medicine/kelotaneplusplus = 1, /datum/reagent/medicine/kelotaneplus = 1)
 
 /datum/chemical_reaction/toxicex
 	name = "Toxicex"
 	id = /datum/reagent/medicine/toxicex
 	results = list(/datum/reagent/medicine/toxicex = 2)
-	required_reagents = list(/datum/reagent/medicine/nontoxique = 1, /datum/reagent/medicine/giftignicht = 1)
+	required_reagents = list(/datum/reagent/medicine/antitoxinplusplus = 1, /datum/reagent/medicine/antitoxinplus = 1)
 
 /datum/chemical_reaction/allex
 	name = "Allex"
 	id = /datum/reagent/medicine/allex
 	results = list(/datum/reagent/medicine/allex = 3)
-	required_reagents = list(/datum/reagent/medicine/guerirone = 1, /datum/reagent/medicine/wundermittelone = 1, /datum/reagent/medicine/tricordrazine = 1)
+	required_reagents = list(/datum/reagent/medicine/tricordrazineplusplus = 1, /datum/reagent/medicine/tricordrazineplus = 1, /datum/reagent/medicine/tricordrazine = 1)

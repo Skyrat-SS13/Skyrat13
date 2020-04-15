@@ -86,44 +86,44 @@
 // "Newer" Medicine
 // TIER 2
 
-/datum/reagent/medicine/brutaline
-	name = "Brutaline"
+/datum/reagent/medicine/bicaridineplus
+	name = "Bicaridine+"
 	description = "Restores bruising. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#fc2626"
 	overdose_threshold = 20
 	pH = 5
 
-/datum/reagent/medicine/brutaline/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/bicaridineplus/on_mob_life(mob/living/carbon/M)
 	M.adjustBruteLoss(-2*REM, FALSE)
 	..()
 	. = 1
 
-/datum/reagent/medicine/brutaline/overdose_process(mob/living/M)
+/datum/reagent/medicine/bicaridineplus/overdose_process(mob/living/M)
 	M.adjustBruteLoss(4*REM, FALSE)
 	..()
 	. = 1
 
-/datum/reagent/medicine/feuerane
-	name = "Feuerane"
+/datum/reagent/medicine/kelotaneplus
+	name = "Kelotane+"
 	description = "Restores fire damage. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#ffc400"
 	overdose_threshold = 20
 	pH = 9
 
-/datum/reagent/medicine/feuerane/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/kelotaneplus/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(-2*REM, FALSE)
 	..()
 	. = 1
 
-/datum/reagent/medicine/feuerane/overdose_process(mob/living/M)
+/datum/reagent/medicine/kelotaneplus/overdose_process(mob/living/M)
 	M.adjustFireLoss(4*REM, FALSE)
 	..()
 	. = 1
 
-/datum/reagent/medicine/giftignicht
-	name = "Giftignicht"
+/datum/reagent/medicine/antitoxinplus
+	name = "Anti-Toxin+"
 	description = "Heals toxin damage and removes toxins in the bloodstream. Overdose causes toxin damage."
 	reagent_state = LIQUID
 	color = "#6aff00"
@@ -131,27 +131,27 @@
 	taste_description = "a roll of gauze"
 	pH = 10
 
-/datum/reagent/medicine/giftignicht/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/antitoxinplus/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(-2*REM, FALSE)
 	for(var/datum/reagent/toxin/R in M.reagents.reagent_list)
 		M.reagents.remove_reagent(R.type,2)
 	..()
 	. = 1
 
-/datum/reagent/medicine/giftignicht/overdose_process(mob/living/M)
+/datum/reagent/medicine/antitoxinplus/overdose_process(mob/living/M)
 	M.adjustToxLoss(4*REM, FALSE) // End result is 2 toxin loss taken, because it heals 2 and then removes 4.
 	..()
 	. = 1
 
-/datum/reagent/medicine/wundermittelone
-	name = "Wundermittelone"
+/datum/reagent/medicine/tricordrazineplus
+	name = "Tricordrazine+"
 	description = "Has a high chance to heal all types of damage. Overdose instead causes it."
 	reagent_state = LIQUID
 	color = "#e650c0"
 	overdose_threshold = 20
 	taste_description = "grossness"
 
-/datum/reagent/medicine/wundermittelone/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/tricordrazineplus/on_mob_life(mob/living/carbon/M)
 	if(prob(80))
 		M.adjustBruteLoss(-1*REM, FALSE)
 		M.adjustFireLoss(-1*REM, FALSE)
@@ -160,7 +160,7 @@
 		. = 1
 	..()
 
-/datum/reagent/medicine/wundermittelone/overdose_process(mob/living/M)
+/datum/reagent/medicine/tricordrazineplus/overdose_process(mob/living/M)
 	M.adjustToxLoss(2*REM, FALSE)
 	M.adjustOxyLoss(2*REM, FALSE)
 	M.adjustBruteLoss(2*REM, FALSE)
@@ -170,15 +170,15 @@
 
 // TRANSITIONING MEDICINE
 
-/datum/reagent/medicine/linguaggiomedio
-	name = "Linguaggiomedio"
+/datum/reagent/medicine/tbasic
+	name = "TBasic"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
 	overdose_threshold = 10
 	taste_description = "poison"
 
-/datum/reagent/medicine/linguaggiomedio/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/tbasic/on_mob_life(mob/living/carbon/M)
 	if(prob(25))
 		M.adjustBruteLoss(2*REM, FALSE)
 		M.adjustFireLoss(2*REM, FALSE)
@@ -187,7 +187,7 @@
 		. = 1
 	..()
 
-/datum/reagent/medicine/linguaggiomedio/overdose_process(mob/living/M)
+/datum/reagent/medicine/tbasic/overdose_process(mob/living/M)
 	M.adjustToxLoss(2*REM, FALSE)
 	M.adjustOxyLoss(2*REM, FALSE)
 	M.adjustBruteLoss(2*REM, FALSE)
@@ -195,15 +195,15 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/brutemedio
-	name = "Brutemedio"
+/datum/reagent/medicine/tbrute
+	name = "TBrute"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	taste_description = "poison"
 
-/datum/reagent/medicine/brutemedio/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/tbrute/on_mob_life(mob/living/carbon/M)
 	M.adjustBruteLoss(0.5*REM, 0)
 	. = 1
 	for(var/A in M.reagents.reagent_list)
@@ -212,15 +212,15 @@
 			M.reagents.remove_reagent(R.type,2)
 	..()
 
-/datum/reagent/medicine/burnmedio
-	name = "Burnmedio"
+/datum/reagent/medicine/tburn
+	name = "TBurn"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	taste_description = "poison"
 
-/datum/reagent/medicine/burnmedio/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/tburn/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(0.5*REM, 0)
 	. = 1
 	for(var/A in M.reagents.reagent_list)
@@ -229,15 +229,15 @@
 			M.reagents.remove_reagent(R.type,2)
 	..()
 
-/datum/reagent/medicine/toxicmedio
-	name = "Toxicmedio"
+/datum/reagent/medicine/ttoxic
+	name = "TToxic"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	taste_description = "poison"
 
-/datum/reagent/medicine/toxicmedio/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/ttoxic/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(0.5*REM, 0)
 	. = 1
 	for(var/A in M.reagents.reagent_list)
@@ -248,44 +248,44 @@
 
 // TIER 3
 
-/datum/reagent/medicine/obligerine
-	name = "Obligerine"
+/datum/reagent/medicine/bicaridineplusplus
+	name = "Bicaridine++"
 	description = "Restores bruising. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#fc2626"
 	overdose_threshold = 10
 	pH = 5
 
-/datum/reagent/medicine/obligerine/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/bicaridineplusplus/on_mob_life(mob/living/carbon/M)
 	M.adjustBruteLoss(-5*REM, FALSE)
 	..()
 	. = 1
 
-/datum/reagent/medicine/obligerine/overdose_process(mob/living/M)
+/datum/reagent/medicine/bicaridineplusplus/overdose_process(mob/living/M)
 	M.adjustBruteLoss(10*REM, FALSE)
 	..()
 	. = 1
 
-/datum/reagent/medicine/croustillantane
-	name = "Croustillantane"
+/datum/reagent/medicine/kelotaneplusplus
+	name = "Kelotane++
 	description = "Restores fire damage. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#ffc400"
 	overdose_threshold = 10
 	pH = 9
 
-/datum/reagent/medicine/croustillantane/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/kelotaneplusplus/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(-5*REM, FALSE)
 	..()
 	. = 1
 
-/datum/reagent/medicine/croustillantane/overdose_process(mob/living/M)
+/datum/reagent/medicine/kelotaneplusplus/overdose_process(mob/living/M)
 	M.adjustFireLoss(10*REM, FALSE)
 	..()
 	. = 1
 
-/datum/reagent/medicine/nontoxique
-	name = "Nontoxique"
+/datum/reagent/medicine/antitoxinplusplus
+	name = "Anti-Toxin++
 	description = "Heals toxin damage and removes toxins in the bloodstream. Overdose causes toxin damage."
 	reagent_state = LIQUID
 	color = "#6aff00"
@@ -293,27 +293,27 @@
 	taste_description = "a roll of gauze"
 	pH = 10
 
-/datum/reagent/medicine/nontoxique/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/antitoxinplusplus/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(-5*REM, FALSE)
 	for(var/datum/reagent/toxin/R in M.reagents.reagent_list)
 		M.reagents.remove_reagent(R.type,4)
 	..()
 	. = 1
 
-/datum/reagent/medicine/nontoxique/overdose_process(mob/living/M)
+/datum/reagent/medicine/antitoxinplusplus/overdose_process(mob/living/M)
 	M.adjustToxLoss(10*REM, FALSE) // End result is 2 toxin loss taken, because it heals 2 and then removes 4.
 	..()
 	. = 1
 
-/datum/reagent/medicine/guerirone
-	name = "Guerirone"
+/datum/reagent/medicine/tricordrazineplusplus
+	name = "Tricordrazine++
 	description = "Has a high chance to heal all types of damage. Overdose instead causes it."
 	reagent_state = LIQUID
 	color = "#e650c0"
 	overdose_threshold = 10
 	taste_description = "grossness"
 
-/datum/reagent/medicine/guerirone/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/tricordrazineplusplus/on_mob_life(mob/living/carbon/M)
 	if(prob(90))
 		M.adjustBruteLoss(-2*REM, FALSE)
 		M.adjustFireLoss(-2*REM, FALSE)
@@ -322,7 +322,7 @@
 		. = 1
 	..()
 
-/datum/reagent/medicine/guerirone/overdose_process(mob/living/M)
+/datum/reagent/medicine/tricordrazineplusplus/overdose_process(mob/living/M)
 	M.adjustToxLoss(4*REM, FALSE)
 	M.adjustOxyLoss(4*REM, FALSE)
 	M.adjustBruteLoss(4*REM, FALSE)
@@ -333,7 +333,7 @@
 // NULLIFYING MEDICINE
 
 /datum/reagent/medicine/brutex
-	name = "Obligerine"
+	name = "Brutex
 	description = "Restores bruising. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#fc2626"
@@ -352,7 +352,7 @@
 	. = 1
 
 /datum/reagent/medicine/burnex
-	name = "Croustillantane"
+	name = "Burnex
 	description = "Restores fire damage. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#ffc400"
@@ -371,7 +371,7 @@
 	. = 1
 
 /datum/reagent/medicine/toxicex
-	name = "Nontoxique"
+	name = "Toxicex
 	description = "Heals toxin damage and removes toxins in the bloodstream. Overdose causes toxin damage."
 	reagent_state = LIQUID
 	color = "#6aff00"
@@ -393,7 +393,7 @@
 	. = 1
 
 /datum/reagent/medicine/allex
-	name = "Guerirone"
+	name = "Allex
 	description = "Has a high chance to heal all types of damage. Overdose instead causes it."
 	reagent_state = LIQUID
 	color = "#e650c0"
