@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/clothing/head/welding = 1,
 	/obj/item/clothing/mask/gas = 15,
 	/obj/item/clothing/suit/hazardvest = 1,
-	/obj/item/clothing/under/rank/vice = 1,
+	/obj/item/clothing/under/misc/vice_officer = 1,
 	/obj/item/clothing/suit/hooded/flashsuit = 2,
 	/obj/item/clothing/accessory/medal/greytide	=	1,
 	/obj/item/assembly/prox_sensor = 4,
@@ -109,6 +109,9 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/reagent_containers/pill/floorpill = 1,
 	/obj/item/reagent_containers/food/snacks/cannedpeaches/maint = 2,
 	/obj/item/storage/daki = 3, //VERY IMPORTANT CIT CHANGE - adds bodypillows to maint
+	//VERY IMPORTANT SKYRAT CHANGE, FARGOTH'S RING
+	/obj/item/clothing/gloves/ring/silver/fargoth = 1,
+	//
 	/obj/item/storage/pill_bottle/penis_enlargement = 2,
 	/obj/item/storage/pill_bottle/breast_enlargement = 2,
 	/obj/item/clothing/shoes/wheelys = 1,

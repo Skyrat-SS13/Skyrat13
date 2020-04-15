@@ -3,8 +3,8 @@
 		var/obj/item/stack/S = I
 
 		if(is_type_in_list(S, list(/obj/item/stack/sheet/metal, /obj/item/stack/rods, /obj/item/stack/tile/plasteel)))
-			if(S.custom_materials?.len && S.custom_materials[getmaterialref(/datum/material/iron)])
-				S.cost = S.custom_materials[getmaterialref(/datum/material/iron)] * 0.25
+			if(S.custom_materials?.len && S.custom_materials[SSmaterials.GetMaterialRef(/datum/material/iron)])
+				S.cost = S.custom_materials[SSmaterials.GetMaterialRef(/datum/material/iron)] * 0.25
 			S.source = get_or_create_estorage(/datum/robot_energy_storage/metal)
 
 		else if(istype(S, /obj/item/stack/sheet/glass))
@@ -81,6 +81,19 @@
 	basic_modules += /obj/item/stack/sheet/mineral/plasma/cyborg
 	. = ..()
 
+obj/item/robot_module/butler/Initialize()
+	basic_modules -= /obj/item/reagent_containers/borghypo/borgshaker
+	basic_modules += /obj/item/reagent_containers/borghypo/borgshaker/beershaker
+	basic_modules += /obj/item/reagent_containers/borghypo/borgshaker/juiceshaker
+	basic_modules += /obj/item/reagent_containers/borghypo/borgshaker/sodashaker
+	basic_modules += /obj/item/reagent_containers/borghypo/borgshaker/miscshaker
+	. = ..()
+
+/obj/item/robot_module/miner/Initialize()
+	basic_modules += /obj/item/card/id/miningborg
+	. = ..()
+
 /datum/robot_energy_storage/plasma
 	name = "Plasma Buffer Container"
 	recharge_rate = 0
+

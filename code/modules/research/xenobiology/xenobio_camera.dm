@@ -234,9 +234,9 @@
 
 	if(GLOB.cameranet.checkTurfVis(remote_eye.loc))
 		if(X.monkeys >= 1)
-			var/mob/living/carbon/monkey/food = new /mob/living/carbon/monkey(remote_eye.loc, TRUE, owner)
+			var/mob/living/carbon/monkey/food = SSrecycling.deploy_monkey(remote_eye.loc, TRUE, owner) //Skyrat change
 			if (!QDELETED(food))
-				food.LAssailant = C
+				food.LAssailant = WEAKREF(C)
 				X.monkeys --
 				to_chat(owner, "<span class='notice'>[X] now has [X.monkeys] monkey(s) left.</span>")
 		else
@@ -262,7 +262,7 @@
 			if(M.stat)
 				M.visible_message("[M] vanishes as [M.p_theyre()] reclaimed for recycling!")
 				X.monkeys = round(X.monkeys + 0.2,0.1)
-				qdel(M)
+				SSrecycling.recycle_monkey(M) //Skyrat change
 	else
 		to_chat(owner, "<span class='warning'>Target is not near a camera. Cannot proceed.</span>")
 
@@ -474,7 +474,7 @@
 		if(X.monkeys >= 1)
 			var/mob/living/carbon/monkey/food = new /mob/living/carbon/monkey(T, TRUE, C)
 			if (!QDELETED(food))
-				food.LAssailant = C
+				food.LAssailant = WEAKREF(C)
 				X.monkeys--
 				X.monkeys = round(X.monkeys, 0.1)		//Prevents rounding errors
 				to_chat(C, "<span class='notice'>[X] now has [X.monkeys] monkey(s) stored.</span>")

@@ -275,7 +275,7 @@
 	visor_flags_inv = HIDEMASK|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 	visor_flags = STOPSPRESSUREDAMAGE
 
-/obj/item/clothing/head/helmet/space/hardsuit/syndi/update_icon()
+/obj/item/clothing/head/helmet/space/hardsuit/syndi/update_icon_state()
 	icon_state = "hardsuit[on]-[item_color]"
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/Initialize()
@@ -336,7 +336,7 @@
 		linkedsuit.update_icon()
 		user.update_inv_wear_suit()
 		user.update_inv_w_uniform()
-
+		user.update_equipment_speed_mods()
 
 /obj/item/clothing/suit/space/hardsuit/syndi
 	name = "blood-red hardsuit"
@@ -362,9 +362,6 @@
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 55, "bio" = 100, "rad" = 70, "fire" = 100, "acid" = 100)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
-	visor_flags_inv = 0
-	visor_flags = 0
-	on = FALSE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/debug
@@ -425,6 +422,10 @@
 	heat_protection = HEAD												//Uncomment to enable firesuit protection
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
+/obj/item/clothing/head/helmet/space/hardsuit/wizard/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/spellcasting, SPELL_WIZARD_HAT, ITEM_SLOT_HEAD)
+
 /obj/item/clothing/suit/space/hardsuit/wizard
 	icon_state = "hardsuit-wiz"
 	name = "gem-encrusted hardsuit"
@@ -439,9 +440,10 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/wizard
 	mutantrace_variation = STYLE_DIGITIGRADE
 
-/obj/item/clothing/suit/space/hardsuit/wizard/Initialize()
+/obj/item/clothing/suit/space/hardsuit/wizard/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, FALSE, FALSE, ITEM_SLOT_OCLOTHING, INFINITY, FALSE)
+	AddElement(/datum/element/spellcasting, SPELL_WIZARD_ROBE, ITEM_SLOT_OCLOTHING)
 
 	//Medical hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/medical
@@ -454,6 +456,18 @@
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 10, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 75)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | ALLOWINTERNALS | SCAN_REAGENTS
+
+/obj/item/clothing/head/helmet/space/hardsuit/medical/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if (slot == SLOT_HEAD)
+		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+		DHUD.add_hud_to(user)
+
+/obj/item/clothing/head/helmet/space/hardsuit/medical/dropped(mob/living/carbon/human/user)
+	..()
+	if (user.head == src)
+		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+		DHUD.remove_hud_from(user)
 
 /obj/item/clothing/suit/space/hardsuit/medical
 	icon_state = "hardsuit-medical"
@@ -693,7 +707,7 @@
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/on_mob_move)
 	listeningTo = user
 
-/obj/item/clothing/suit/space/hardsuit/ancient/dropped()
+/obj/item/clothing/suit/space/hardsuit/ancient/dropped(mob/user)
 	. = ..()
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
@@ -748,7 +762,13 @@
 	if(!allowed)
 		allowed = GLOB.advanced_hardsuit_allowed
 
-/obj/item/clothing/suit/space/hardsuit/shielded/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/space/hardsuit/shielded/check_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(current_charges > 0)
+		block_return[BLOCK_RETURN_NORMAL_BLOCK_CHANCE] = 100
+		block_return[BLOCK_RETURN_BLOCK_CAPACITY] = (block_return[BLOCK_RETURN_BLOCK_CAPACITY] || 0) + current_charges
+	return ..()
+
+/obj/item/clothing/suit/space/hardsuit/shielded/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	recharge_cooldown = world.time + recharge_delay
 	if(current_charges > 0)
 		var/datum/effect_system/spark_spread/s = new
@@ -762,8 +782,8 @@
 			owner.visible_message("[owner]'s shield overloads!")
 			shield_state = "broken"
 			owner.update_inv_wear_suit()
-		return 1
-	return 0
+		return BLOCK_SUCCESS | BLOCK_PHYSICAL_EXTERNAL
+	return BLOCK_NONE
 
 /obj/item/clothing/suit/space/hardsuit/shielded/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -934,15 +954,9 @@
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
 
-/obj/item/clothing/head/helmet/space/hardsuit/lavaknight/update_icon()
-	var/mutable_appearance/helm_overlay = mutable_appearance(icon, "knight_cydonia_overlay")
-
-	if(energy_color)
-		helm_overlay.color = energy_color
-
-	cut_overlays()		//So that it doesn't keep stacking overlays non-stop on top of each other
-
-	add_overlay(helm_overlay)
+/obj/item/clothing/head/helmet/space/hardsuit/lavaknight/update_overlays()
+	. = ..()
+	. += mutable_appearance(icon, "knight_cydonia_overlay", color = energy_color)
 
 /obj/item/clothing/head/helmet/space/hardsuit/lavaknight/worn_overlays(isinhands = FALSE, icon_file, style_flags = NONE)
 	. = ..()
@@ -971,15 +985,9 @@
 	set_light(1)
 	update_icon()
 
-/obj/item/clothing/suit/space/hardsuit/lavaknight/update_icon()
-	var/mutable_appearance/suit_overlay = mutable_appearance(icon, "knight_cydonia_overlay")
-
-	if(energy_color)
-		suit_overlay.color = energy_color
-
-	cut_overlays()		//So that it doesn't keep stacking overlays non-stop on top of each other
-
-	add_overlay(suit_overlay)
+/obj/item/clothing/suit/space/hardsuit/lavaknight/update_overlays()
+	. = ..()
+	. += mutable_appearance(icon, "knight_cydonia_overlay", color = energy_color)
 
 /obj/item/clothing/suit/space/hardsuit/lavaknight/worn_overlays(isinhands = FALSE, icon_file, style_flags = NONE)
 	. = ..()

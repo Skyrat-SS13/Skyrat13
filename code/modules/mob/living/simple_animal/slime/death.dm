@@ -3,7 +3,7 @@
 		return
 	if(!gibbed)
 		if(is_adult)
-			var/mob/living/simple_animal/slime/M = new(loc, colour)
+			var/mob/living/simple_animal/slime/M = SSrecycling.deploy_slime(loc, colour) //Skyrat change
 			M.rabid = TRUE
 			M.regenerate_icons()
 
@@ -24,7 +24,7 @@
 	stat = DEAD
 	cut_overlays()
 
-	update_canmove()
+	update_mobility()
 
 	if(SSticker.mode)
 		SSticker.mode.check_win()
@@ -33,4 +33,4 @@
 
 /mob/living/simple_animal/slime/gib()
 	death(TRUE)
-	qdel(src)
+	SSrecycling.recycle_slime(src) //Skyrat change, this is called from the processor too

@@ -30,7 +30,7 @@
 	var/locked = FALSE
 	var/allow_switch_interact = TRUE
 
-	var/projectile_type = /obj/item/projectile/beam/emitter/hitscan
+	var/projectile_type = /obj/item/projectile/beam/emitter //Skyrat change, GC unfuck edition
 	var/projectile_sound = 'sound/weapons/emitter.ogg'
 	var/datum/effect_system/spark_spread/sparks
 
@@ -112,7 +112,7 @@
 	QDEL_NULL(sparks)
 	return ..()
 
-/obj/machinery/power/emitter/update_icon()
+/obj/machinery/power/emitter/update_icon_state()
 	if (active && powernet && avail(active_power_usage))
 		icon_state = icon_state_on
 	else

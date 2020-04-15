@@ -48,9 +48,9 @@ var/list/interactions
 	var/needs_physical_contact
 
 /datum/interaction/proc/evaluate_user(mob/living/carbon/human/user, silent = TRUE)
-	if(user.refractory_period)
+	if(user.get_refraction_dif())
 		if(!silent) //bye spam
-			to_chat(user, "<span class='warning'>You're still exhausted from the last time. You need to wait [DisplayTimeText(user.refractory_period * 10, TRUE)] until you can do that!</span>")
+			to_chat(user, "<span class='warning'>You're still exhausted from the last time. You need to wait [DisplayTimeText(user.get_refraction_dif(), TRUE)] until you can do that!</span>")
 		return FALSE
 
 	if(require_user_mouth)
@@ -69,7 +69,9 @@ var/list/interactions
 			to_chat(user, "<span class = 'warning'>You don't have hands.</span>")
 		return FALSE
 
-	return TRUE
+	if(user.last_interaction_time < world.time)
+		return TRUE
+	return FALSE
 
 /datum/interaction/proc/evaluate_target(mob/living/carbon/human/user, mob/living/carbon/human/target, silent = TRUE)
 	if(require_target_mouth)
@@ -140,6 +142,7 @@ var/list/interactions
 		user.visible_message("<span class='[simple_style]'>[capitalize(use_message)]</span>")
 
 /datum/interaction/proc/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.last_interaction_time = world.time + 6
 	if(interaction_sound)
 		playsound(get_turf(user), interaction_sound, 50, 1, -1)
 	return

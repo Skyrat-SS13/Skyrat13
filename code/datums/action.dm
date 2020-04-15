@@ -8,6 +8,7 @@
 	var/desc = null
 	var/obj/target = null
 	var/check_flags = 0
+	var/required_mobility_flags = MOBILITY_USE
 	var/processing = FALSE
 	var/obj/screen/movable/action_button/button = null
 	var/buttontooltipstyle = ""
@@ -96,20 +97,23 @@
 
 /datum/action/proc/IsAvailable()
 	if(!owner)
-		return 0
+		return FALSE
+	var/mob/living/L = owner
+	if(istype(L) && !CHECK_ALL_MOBILITY(L, required_mobility_flags))
+		return FALSE
 	if(check_flags & AB_CHECK_RESTRAINED)
 		if(owner.restrained())
-			return 0
+			return FALSE
 	if(check_flags & AB_CHECK_STUN)
-		if(owner.IsKnockdown() || owner.IsStun())
-			return 0
+		if(istype(L) && !CHECK_MOBILITY(L, MOBILITY_USE))
+			return FALSE
 	if(check_flags & AB_CHECK_LYING)
-		if(owner.lying)
-			return 0
+		if(istype(L) && !CHECK_MOBILITY(L, MOBILITY_STAND))
+			return FALSE
 	if(check_flags & AB_CHECK_CONSCIOUS)
 		if(owner.stat)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /datum/action/proc/UpdateButtonIcon(status_only = FALSE, force = FALSE)
 	if(button)
@@ -298,16 +302,6 @@
 			name = "Toggle Friendly Fire \[ON\]"
 	..()
 
-/datum/action/item_action/synthswitch
-	name = "Change Synthesizer Instrument"
-	desc = "Change the type of instrument your synthesizer is playing as."
-
-/datum/action/item_action/synthswitch/Trigger()
-	if(istype(target, /obj/item/instrument/piano_synth))
-		var/obj/item/instrument/piano_synth/synth = target
-		return synth.selectInstrument()
-	return ..()
-
 /datum/action/item_action/vortex_recall
 	name = "Vortex Recall"
 	desc = "Recall yourself, and anyone nearby, to an attuned hierophant beacon at any time.<br>If the beacon is still attached, will detach it."
@@ -422,6 +416,7 @@
 
 /datum/action/item_action/hands_free
 	check_flags = AB_CHECK_CONSCIOUS
+	required_mobility_flags = NONE
 
 /datum/action/item_action/hands_free/activate
 	name = "Activate"
@@ -430,7 +425,8 @@
 	name = "Shift Nerves"
 
 /datum/action/item_action/explosive_implant
-	check_flags = 0
+	check_flags = NONE
+	required_mobility_flags = NONE
 	name = "Activate Explosive Implant"
 
 /datum/action/item_action/toggle_research_scanner
@@ -653,7 +649,7 @@
 		return FALSE
 	var/obj/effect/proc_holder/spell/S = target
 	if(owner)
-		return S.can_cast(owner)
+		return S.can_cast(owner, FALSE, TRUE)
 	return FALSE
 
 /datum/action/spell_action/alien
@@ -670,7 +666,8 @@
 
 //Preset for general and toggled actions
 /datum/action/innate
-	check_flags = 0
+	check_flags = NONE
+	required_mobility_flags = NONE
 	var/active = 0
 
 /datum/action/innate/Trigger()

@@ -102,6 +102,7 @@
 	special_equipment += /obj/item/storage/box/syndie_kit/nuke
 	..()
 
+/***********Skyrat change - commented out the supermatter objective****
 /datum/objective_item/steal/supermatter
 	name = "a sliver of a supermatter crystal. Be sure to use the proper safety equipment when extracting the sliver!"
 	targetitem = /obj/item/nuke_core/supermatter_sliver
@@ -113,6 +114,7 @@
 
 /datum/objective_item/steal/supermatter/TargetExists()
 	return GLOB.main_supermatter_engine != null
+*/
 
 //Items with special checks!
 /datum/objective_item/steal/plasma
@@ -205,13 +207,18 @@
 	difficulty = 10
 
 /datum/objective_item/special/boh
-	name = "a bag of holding."
+	name = "a type of bag of holding."
 	targetitem = /obj/item/storage/backpack/holding
 	difficulty = 10
 
-/datum/objective_item/special/hypercell
-	name = "a hyper-capacity power cell."
-	targetitem = /obj/item/stock_parts/cell/hyper
+/datum/objective_item/special/adv_surgical_drapes
+	name = "a set of smart surgical drapes."
+	targetitem = /obj/item/surgical_drapes/advanced
+	difficulty = 10 //would be 15 but cmo rarely have it on themselfs and leave it in their lockers...
+
+/datum/objective_item/special/bluespace
+	name = "a bluespace power cell."
+	targetitem = /obj/item/stock_parts/cell/bluespace
 	difficulty = 5
 
 /datum/objective_item/special/laserpointer

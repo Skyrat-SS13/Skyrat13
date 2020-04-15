@@ -165,7 +165,7 @@ Difficulty: Insanely Hard
 /mob/living/simple_animal/hostile/megafauna/king/phase2/Retaliate()
 	set waitfor = FALSE
 	..()
-	if(spellscast < 10)
+	if(spellscast < 5)
 		if(prob(5) && move_to_delay >= 3) //speed buff
 			spellscast++
 			visible_message("<span class='cult'>\The [src] shimmers and seems to phase in and out of reality itself!</span>")
@@ -270,14 +270,14 @@ Difficulty: Insanely Hard
 			L.stop_sound_channel(CHANNEL_JUKEBOX)
 	if(move_to_delay < 3)
 		move_to_delay += 0.1
-	if((health <= 150 && !phase3 && spellscast == 10) || (stat == DEAD && !phase3)) //begin phase 3, reset spell limit and heal
+	if(!phase3 && ((health <= 150 && spellscast == 5) || stat == DEAD)) //begin phase 3, reset spell limit and heal
 		phase3_transition()
 	if(!.)
 		return FALSE
-	if(special_attacks >= 10 && melee_damage_type != BRUTE)
+	if(special_attacks >= 5 && melee_damage_type != BRUTE)
 		visible_message("<span class='cult'>The energy surrounding \the [src]'s horns dissipates.</span>")
 		melee_damage_type = BRUTE
-	if(special_attacks >= 10 && melee_damage_lower == 50)
+	if(special_attacks >= 5 && melee_damage_lower == 50)
 		visible_message("<span class='cult'>The [src]' horns shrink back down to normal size.</span>")
 		melee_damage_lower = 40
 

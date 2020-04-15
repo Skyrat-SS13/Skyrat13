@@ -7,7 +7,6 @@
 	var/brightness_on = 3
 	total_mass = 0.4 //Survival flashlights typically weigh around 5 ounces.
 
-
 /obj/item/melee/transforming/energy/Initialize()
 	. = ..()
 	total_mass_on = (total_mass_on ? total_mass_on : (w_class_on * 0.75))
@@ -107,13 +106,17 @@
 
 /obj/item/melee/transforming/energy/sword/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
-	if(. && active && item_color)
-		icon_state = "sword[item_color]"
-
-/obj/item/melee/transforming/energy/sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(active)
-		return ..()
-	return 0
+		if(. && item_color)
+			icon_state = "sword[item_color]"
+		AddElement(/datum/element/sword_point)
+	else
+		RemoveElement(/datum/element/sword_point)
+
+/obj/item/melee/transforming/energy/sword/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(!active)
+		return NONE
+	return ..()
 
 /obj/item/melee/transforming/energy/sword/cyborg
 	item_color = "red"
@@ -145,8 +148,8 @@
 	tool_behaviour = TOOL_SAW
 	toolspeed = 0.7
 
-/obj/item/melee/transforming/energy/sword/cyborg/saw/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	return 0
+/obj/item/melee/transforming/energy/sword/cyborg/saw/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	return NONE
 
 /obj/item/melee/transforming/energy/sword/saber
 	var/list/possible_colors = list("red" = LIGHT_COLOR_RED, "blue" = LIGHT_COLOR_LIGHT_CYAN, "green" = LIGHT_COLOR_GREEN, "purple" = LIGHT_COLOR_LAVENDER)
@@ -265,11 +268,6 @@
 
 /obj/item/melee/transforming/energy/sword/cx/alt_pre_attack(atom/A, mob/living/user, params)	//checks if it can do right click memes
 	altafterattack(A, user, TRUE, params)
-	return TRUE
-
-/obj/item/melee/transforming/energy/sword/cx/altafterattack(atom/target, mob/living/carbon/user, proximity_flag, click_parameters)	//does right click memes
-	if(istype(user))
-		user.visible_message("<span class='notice'>[user] points the tip of [src] at [target].</span>", "<span class='notice'>You point the tip of [src] at [target].</span>")
 	return TRUE
 
 /obj/item/melee/transforming/energy/sword/cx/transform_weapon(mob/living/user, supress_message_text)

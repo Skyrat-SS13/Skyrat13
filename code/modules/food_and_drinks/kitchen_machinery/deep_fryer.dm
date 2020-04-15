@@ -82,9 +82,9 @@ God bless America.
 		I.reagents.trans_to(src, I.reagents.total_volume)
 		qdel(I)
 		return
-	if(istype(I,/obj/item/clothing/head/mob_holder))
-		to_chat(user, "<span class='warning'>This does not fit in the fryer.</span>") // TODO: Deepfrying instakills mobs, spawns a whole deep-fried mob.
-		return
+//	if(istype(I,/obj/item/clothing/head/mob_holder)) // Skyrat edit - fried mobs
+//		to_chat(user, "<span class='warning'>This does not fit in the fryer.</span>") // TODO: Deepfrying instakills mobs, spawns a whole deep-fried mob.
+//		return
 	if(!reagents.has_reagent(/datum/reagent/consumable/cooking_oil))
 		to_chat(user, "<span class='warning'>[src] has no cooking oil to fry with!</span>")
 		return
@@ -152,6 +152,6 @@ God bless America.
 		reagents.reaction(C, TOUCH)
 		C.apply_damage(min(30, reagents.total_volume), BURN, BODY_ZONE_HEAD)
 		reagents.remove_any((reagents.total_volume/2))
-		C.Knockdown(60)
+		C.DefaultCombatKnockdown(60)
 		user.changeNext_move(CLICK_CD_MELEE)
 	return ..()

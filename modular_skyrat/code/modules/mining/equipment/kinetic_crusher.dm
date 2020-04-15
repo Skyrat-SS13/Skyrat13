@@ -42,7 +42,7 @@
 
 //shambling miner
 /obj/item/crusher_trophy/blaster_tubes/mask
-	name = "eye of a shambling miner"
+	name = "mask of a shambling miner"
 	desc = "It really doesn't seem like it could be worn. Suitable as a crusher trophy."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "miner_mask"
@@ -60,9 +60,28 @@
 		marker.nodamage = FALSE
 		deadly_shot = FALSE
 
-/obj/item/crusher_trophy/blaster_tubes/eye/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
+/obj/item/crusher_trophy/blaster_tubes/mask/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
 	new /obj/effect/temp_visual/kinetic_blast(target)
 	playsound(target.loc, 'sound/weapons/kenetic_accel.ogg', 60, 0)
+
+//lava imp
+/obj/item/crusher_trophy/blaster_tubes/impskull
+	name = "imp skull"
+	desc = "Somebody got glory killed. Suitable as a trophy."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "impskull"
+	bonus_value = 5
+	denied_type = /obj/item/crusher_trophy/blaster_tubes/impskull
+
+/obj/item/crusher_trophy/blaster_tubes/impskull/effect_desc()
+	return "causes every marker to deal <b>[bonus_value]</b> damage."
+
+/obj/item/crusher_trophy/blaster_tubes/impskull/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+	marker.name = "fiery [marker.name]"
+	marker.icon_state = "fireball"
+	marker.damage = bonus_value
+	marker.nodamage = FALSE
+	playsound(user.loc, 'modular_skyrat/sound/misc/impranged.wav', 50, 0)
 
 //traitor crusher
 
@@ -169,3 +188,11 @@
 	if(.)
 		H.charge_time = 15
 		H.force_wielded = 20
+
+//hierophant crusher nerf "but muh i deserve it after killing hierocunt" yes but its op fuck you you piece of shit
+/obj/effect/temp_visual/hierophant/wall/crusher
+	duration = 45 //this is more than enough time bro
+
+//watcher wing slight buff
+/obj/item/crusher_trophy/watcher_wing
+	bonus_value = 20 // 1 second isn't enough for much, this should be better

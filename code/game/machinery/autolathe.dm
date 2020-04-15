@@ -17,6 +17,7 @@
 	var/list/L = list()
 	var/list/LL = list()
 	var/hacked = FALSE
+	var/hackable = TRUE
 	var/disabled = 0
 	var/shocked = FALSE
 	var/hack_wire
@@ -46,8 +47,8 @@
 							)
 
 /obj/machinery/autolathe/Initialize()
-	AddComponent(/datum/component/material_container,
-	list(/datum/material/iron,
+	var/static/list/allowed_types = list(
+		/datum/material/iron,
 		/datum/material/glass,
 		/datum/material/gold,
 		/datum/material/silver,
@@ -61,10 +62,9 @@
 		/datum/material/plastic,
 		/datum/material/adamantine,
 		/datum/material/mythril
-	),
-	 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert))
+		)
+	AddComponent(/datum/component/material_container, allowed_types, _show_on_examine=TRUE, _after_insert=CALLBACK(src, .proc/AfterMaterialInsert))
 	. = ..()
-
 	wires = new /datum/wires/autolathe(src)
 	stored_research = new /datum/techweb/specialized/autounlocking/autolathe
 	matching_designs = list()
@@ -139,7 +139,7 @@
 /obj/machinery/autolathe/proc/AfterMaterialInsert(obj/item/item_inserted, id_inserted, amount_inserted)
 	if(istype(item_inserted, /obj/item/stack/ore/bluespace_crystal))
 		use_power(MINERAL_MATERIAL_AMOUNT / 10)
-	else if(item_inserted.custom_materials?.len && item_inserted.custom_materials[getmaterialref(/datum/material/glass)])
+	else if(item_inserted.custom_materials?.len && item_inserted.custom_materials[SSmaterials.GetMaterialRef(/datum/material/glass)])
 		flick("autolathe_r",src)//plays glass insertion animation by default otherwise
 	else
 		flick("autolathe_o",src)//plays metal insertion animation
@@ -420,6 +420,8 @@
 
 /obj/machinery/autolathe/proc/adjust_hacked(state)
 	hacked = state
+	if(!hackable && hacked)
+		return
 	for(var/id in SSresearch.techweb_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(id)
 		if((D.build_type & AUTOLATHE) && ("hacked" in D.category))
@@ -431,6 +433,12 @@
 /obj/machinery/autolathe/hacked/Initialize()
 	. = ..()
 	adjust_hacked(TRUE)
+
+/obj/machinery/autolathe/secure
+	name = "secured autolathe"
+	desc = "An autolathe reprogrammed with security protocols to prevent hacking."
+	hackable = FALSE
+	circuit = /obj/item/circuitboard/machine/autolathe/secure
 
 //Called when the object is constructed by an autolathe
 //Has a reference to the autolathe so you can do !!FUN!! things with hacked lathes

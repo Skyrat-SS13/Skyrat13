@@ -17,7 +17,16 @@
   -------------------MOB STUFF----------------------
   --------------------------------------------------
 */
-//I'm sorry, lewd should not have mob procs such as life() and such in it.
+//I'm sorry, lewd should not have mob procs such as life() and such in it. //NO SHIT IT SHOULDNT I REMOVED THEM
+
+/proc/playlewdinteractionsound(turf/turf_source, soundin, vol as num, vary, extrarange as num ,frequency, falloff, channel = 0, pressure_affected = TRUE, sound/S, envwet = -10000, envdry = 0, manual_x, manual_y)
+	var/list/hearing_mobs
+	for(var/mob/H in get_hearers_in_view(4, turf_source))
+		if(!H.client || (H.client.prefs.toggles & LEWD_VERB_SOUNDS))
+			continue
+		LAZYADD(hearing_mobs, H)
+	for(var/mob/H in hearing_mobs)
+		H.playsound_local(turf_source, soundin, vol, vary, frequency, falloff)
 
 /mob/living/
 	var/has_penis = FALSE
@@ -28,25 +37,47 @@
 	var/lastmoan
 	var/sexual_potency =  15
 	var/lust_tolerance = 100
+	var/lastlusttime = 0
 	var/lust = 0
 	var/multiorgasms = 1
 	var/refractory_period = 0
-	var/refract_total
-	var/loselust = FALSE
+	var/last_interaction_time = 0
 
 mob/living/Initialize()
 	. = ..()
 	sexual_potency =  rand(10,25)
 	lust_tolerance = rand(75,200)
 
-/mob/living/Life(seconds, times_fired)
-	if(refractory_period)
-		refractory_period--
-	if(loselust && lust)
-		lust--
-	if(client)
-		hud_used.arousal?.update_icon_state()
-	. = ..()
+/mob/living/proc/get_refraction_dif()
+	var/dif = (refractory_period - world.time)
+	if(dif < 0)
+		return 0
+	else
+		return dif
+
+
+/mob/living/proc/add_lust(add)
+	var/cur = src.get_lust() //GetLust handles per-time lust loss
+	if((cur + add) < 0) //in case we retract lust
+		lust = 0
+	else
+		lust = cur + add
+
+
+/mob/living/proc/get_lust()
+	var/curtime = world.time
+	var/dif = (curtime - lastlusttime)/10 //how much lust would we lose over time
+	if((lust - dif) < 0)
+		lust = 0
+	else
+		lust = lust - dif
+
+	lastlusttime = world.time
+	return lust
+
+/mob/living/proc/set_lust(num)
+	lust = num
+	lastlusttime = world.time
 
 /mob/living/proc/has_penis()
 	return has_penis
@@ -87,7 +118,7 @@ mob/living/Initialize()
 	//C.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
 
 /mob/living/proc/moan()
-	if(!(prob(lust / lust_tolerance * 65)))
+	if(!(prob(get_lust() / lust_tolerance * 65)))
 		return
 	var/moan = rand(1, 7)
 	if(moan == lastmoan)
@@ -110,25 +141,25 @@ mob/living/Initialize()
 			if(CUM_TARGET_MOUTH)
 				if(partner.has_mouth() && partner.mouth_is_free())
 					message = "cums right in \the [partner]'s mouth."
-					partner.reagents.add_reagent("semen", rand(8,13))
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,13))
 				else
 					message = "cums on \the [partner]'s face."
 			if(CUM_TARGET_THROAT)
 				if(partner.has_mouth() && partner.mouth_is_free())
 					message = "shoves deep into \the [partner]'s throat and cums."
-					partner.reagents.add_reagent("semen", rand(9,15))
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(9,15))
 				else
 					message = "cums on \the [partner]'s face."
 			if(CUM_TARGET_VAGINA)
 				if(partner.is_bottomless() && partner.has_vagina())
 					message = "cums in \the [partner]'s pussy."
-					partner.reagents.add_reagent("semen", rand(8,12))
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
 				else
 					message = "cums on \the [partner]'s belly."
 			if(CUM_TARGET_ANUS)
 				if(partner.is_bottomless() && partner.has_anus())
 					message = "cums in \the [partner]'s asshole."
-					partner.reagents.add_reagent("semen", rand(8,12))
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
 				else
 					message = "cums on \the [partner]'s backside."
 			if(CUM_TARGET_HAND)
@@ -163,13 +194,13 @@ mob/living/Initialize()
 		message = pick("cums violently!", "twists in orgasm.")
 
 	if(gender == MALE)
-		playsound(loc, pick('modular_skyrat/sound/interactions/final_m1.ogg',
+		playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/final_m1.ogg',
 							'modular_skyrat/sound/interactions/final_m2.ogg',
 							'modular_skyrat/sound/interactions/final_m3.ogg',
 							'modular_skyrat/sound/interactions/final_m4.ogg',
 							'modular_skyrat/sound/interactions/final_m5.ogg'), 90, 1, 0)//, pitch = get_age_pitch())
 	else if(gender == FEMALE)
-		playsound(loc, pick('modular_skyrat/sound/interactions/final_f1.ogg',
+		playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/final_f1.ogg',
 							'modular_skyrat/sound/interactions/final_f2.ogg',
 							'modular_skyrat/sound/interactions/final_f3.ogg'), 70, 1, 0)//, pitch = get_age_pitch())
 
@@ -180,15 +211,12 @@ mob/living/Initialize()
 		add_logs(partner, src, "came on")*/
 
 	if(multiorgasms > (sexual_potency * 0.34)) //AAAAA, WE DONT WANT NEGATIVES HERE, RE
-		refractory_period = rand(30, 90) - sexual_potency//sex cooldown
-		refract_total = refractory_period
+		refractory_period = world.time + rand(300, 900) - sexual_potency//sex cooldown
 		src.set_drugginess(rand(20, 30))
 	else
-		refractory_period = rand(30, 90) - sexual_potency
-		refract_total = refractory_period
+		refractory_period = world.time + rand(300, 900) - sexual_potency
 		src.set_drugginess(rand(5, 10))
-	lust = 0
-	hud_used.arousal?.update_icon_state()
+	set_lust(0)
 
 /mob/living/cum(mob/living/partner, target_orifice)
 	if(multiorgasms < sexual_potency)
@@ -309,7 +337,7 @@ mob/living/Initialize()
 			)
 		partner.set_is_fucking(src, CUM_TARGET_MOUTH)
 
-	playsound(get_turf(src), pick(	'modular_skyrat/sound/interactions/bj1.ogg',
+	playlewdinteractionsound(get_turf(src), pick(	'modular_skyrat/sound/interactions/bj1.ogg',
 									'modular_skyrat/sound/interactions/bj2.ogg',
 									'modular_skyrat/sound/interactions/bj3.ogg',
 									'modular_skyrat/sound/interactions/bj4.ogg',
@@ -388,7 +416,7 @@ mob/living/Initialize()
 			message = "shoves their crotch into \the [partner]'s face."
 		set_is_fucking(partner , CUM_TARGET_MOUTH)
 
-	playsound(loc, pick('modular_skyrat/sound/interactions/oral1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/oral1.ogg',
 						'modular_skyrat/sound/interactions/oral2.ogg'), 70, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
 	if(retaliation_message)
@@ -442,7 +470,7 @@ mob/living/Initialize()
 					'modular_skyrat/sound/interactions/foot_wet1.ogg',
 					'modular_skyrat/sound/interactions/foot_dry3.ogg')
 
-	playsound(loc, file, 70, 1, -1)
+	playlewdinteractionsound(loc, file, 70, 1, -1)
 
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
 
@@ -456,7 +484,7 @@ mob/living/Initialize()
 
 
 
-	playsound(loc, pick('modular_skyrat/sound/interactions/oral1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/oral1.ogg',
 						'modular_skyrat/sound/interactions/oral2.ogg'), 70, 1, -1)
 
 
@@ -494,7 +522,7 @@ mob/living/Initialize()
 		message = "forces their dick deep down \the [partner]'s throat"
 		set_is_fucking(partner , CUM_TARGET_THROAT)
 
-	playsound(loc, pick('modular_skyrat/sound/interactions/oral1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/oral1.ogg',
 						'modular_skyrat/sound/interactions/oral2.ogg'), 70, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
 	if(retaliation_message)
@@ -518,7 +546,7 @@ mob/living/Initialize()
 		message = pick(list("wedges a digit into the side of [partner]'s jaw and pries it open before using their other hand to shove their whole nutsack inside!", "stands with their groin inches away from [partner]'s face, then thrusting their hips forward and smothering [partner]'s whole face with their heavy ballsack."))
 		set_is_fucking(partner , NUTS_TO_FACE)
 
-	/*playsound(loc, pick('modular_skyrat/sound/interactions/nuts1.ogg',
+	/*playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/nuts1.ogg',
 						'modular_skyrat/sound/interactions/nuts2.ogg',
 						'modular_skyrat/sound/interactions/nuts3.ogg',
 						'modular_skyrat/sound/interactions/nuts4.ogg'), 70, 1, -1)*/ //These files don't even exist but nobody noticed because double-quotes were used instead of single.
@@ -543,7 +571,7 @@ mob/living/Initialize()
 			"shoves their dick deep inside of \the [partner]'s ass, making their rear jiggle.")]"
 		set_is_fucking(partner, CUM_TARGET_ANUS)
 
-	playsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
 						'modular_skyrat/sound/interactions/bang2.ogg',
 						'modular_skyrat/sound/interactions/bang3.ogg'), 70, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
@@ -565,7 +593,7 @@ mob/living/Initialize()
 		message = "slides their cock into \the [partner]'s pussy."
 		set_is_fucking(partner, CUM_TARGET_VAGINA)
 
-	playsound(loc, pick('modular_skyrat/sound/interactions/champ1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/champ1.ogg',
 						'modular_skyrat/sound/interactions/champ2.ogg'), 50, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
 	handle_post_sex(NORMAL_LUST, CUM_TARGET_VAGINA, partner)
@@ -582,7 +610,7 @@ mob/living/Initialize()
 	else
 		message = "slides their pussy onto \the [partner]'s cock."
 		partner.set_is_fucking(src, CUM_TARGET_VAGINA)
-	playsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
 						'modular_skyrat/sound/interactions/bang2.ogg',
 						'modular_skyrat/sound/interactions/bang3.ogg'), 70, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
@@ -600,7 +628,7 @@ mob/living/Initialize()
 	else
 		message = "lowers their ass onto \the [partner]'s cock."
 		partner.set_is_fucking(src, CUM_TARGET_ANUS)
-	playsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
 						'modular_skyrat/sound/interactions/bang2.ogg',
 						'modular_skyrat/sound/interactions/bang3.ogg'), 70, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
@@ -620,7 +648,7 @@ mob/living/Initialize()
 	else
 		message = "presses their pussy into \the [partner]'s own."
 		partner.set_is_fucking(src, CUM_TARGET_VAGINA)
-	playsound(loc, pick('modular_skyrat/sound/interactions/squelch1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/squelch1.ogg',
 						'modular_skyrat/sound/interactions/squelch2.ogg',
 						'modular_skyrat/sound/interactions/squelch3.ogg'), 70, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
@@ -633,7 +661,7 @@ mob/living/Initialize()
 	visible_message("<font color=purple><b>\The [src]</b> [pick("fingers \the [partner].",
 		"fingers \the [partner]'s pussy.",
 		"fingers \the [partner] hard.")]</font>")
-	playsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
+	playlewdinteractionsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
 	partner.handle_post_sex(NORMAL_LUST, null, src)
 	partner.dir = get_dir(partner, src)
 	do_fucking_animation(get_dir(src, partner))
@@ -642,14 +670,14 @@ mob/living/Initialize()
 	visible_message("<font color=purple><b>\The [src]</b> [pick("fingers \the [partner].",
 		"fingers \the [partner]'s asshole.",
 		"fingers \the [partner] hard.")]</font>")
-	playsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
+	playlewdinteractionsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
 	partner.handle_post_sex(NORMAL_LUST, null, src)
 	partner.dir = get_dir(partner, src)
 	do_fucking_animation(get_dir(src, partner))
 
 /mob/living/proc/do_rimjob(mob/living/partner)
 	visible_message("<font color=purple><b>\The [src]</b> licks \the [partner]'s asshole.</font>")
-	playsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
+	playlewdinteractionsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
 	partner.handle_post_sex(NORMAL_LUST, null, src)
 	partner.dir = get_dir(src, partner)
 	do_fucking_animation(get_dir(src, partner))
@@ -666,7 +694,7 @@ mob/living/Initialize()
 			"starts playing with \the [partner]'s cock")]"
 		partner.set_is_fucking(src, CUM_TARGET_HAND)
 
-	playsound(src, pick('modular_skyrat/sound/interactions/bang1.ogg',
+	playlewdinteractionsound(src, pick('modular_skyrat/sound/interactions/bang1.ogg',
 						'modular_skyrat/sound/interactions/bang2.ogg',
 						'modular_skyrat/sound/interactions/bang3.ogg'), 70, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
@@ -687,7 +715,7 @@ mob/living/Initialize()
 		set_is_fucking(partner , CUM_TARGET_BREASTS)
 
 
-	playsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
 						'modular_skyrat/sound/interactions/bang2.ogg',
 						'modular_skyrat/sound/interactions/bang3.ogg'), 70, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
@@ -707,7 +735,7 @@ mob/living/Initialize()
 			"squats down and plants their ass right on \the [partner]'s face")]"
 		set_is_fucking(partner , GRINDING_FACE_WITH_ANUS)
 
-	playsound(loc, pick('modular_skyrat/sound/interactions/squelch1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/squelch1.ogg',
 						'modular_skyrat/sound/interactions/squelch2.ogg',
 						'modular_skyrat/sound/interactions/squelch3.ogg'), 70, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
@@ -723,7 +751,7 @@ mob/living/Initialize()
 	else
 		message = "licks \the [partner]'s feet."
 
-	playsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
+	playlewdinteractionsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
 	handle_post_sex(LOW_LUST, null, src)
 	partner.dir = get_dir(src, partner)
@@ -765,7 +793,7 @@ mob/living/Initialize()
 
 		set_is_fucking(partner , GRINDING_FACE_WITH_FEET)
 
-	playsound(loc, pick('modular_skyrat/sound/interactions/foot_dry1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/foot_dry1.ogg',
 						'modular_skyrat/sound/interactions/foot_dry2.ogg',
 						'modular_skyrat/sound/interactions/foot_dry3.ogg',
 						'modular_skyrat/sound/interactions/foot_dry4.ogg'), 70, 1, -1)
@@ -808,7 +836,7 @@ mob/living/Initialize()
 				"covers [partner]'s mouth and nose with their foot until they gasp for breath, then shoves both feet inside before they can react."))]</span>"
 		set_is_fucking(partner , GRINDING_MOUTH_WITH_FEET)
 
-	playsound(loc, pick('modular_skyrat/sound/interactions/foot_wet1.ogg',
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/foot_wet1.ogg',
 						'modular_skyrat/sound/interactions/foot_wet2.ogg',
 						'modular_skyrat/sound/interactions/foot_wet3.ogg'), 70, 1, -1)
 	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
@@ -824,14 +852,12 @@ mob/living/Initialize()
 		return A.name
 
 /mob/living/proc/handle_post_sex(amount, orifice, mob/living/partner)
-	hud_used.arousal?.update_icon_state()
-
 	if(stat != CONSCIOUS)
 		return
 
 	if(amount)
-		lust += amount
-	if(lust >= lust_tolerance)
+		add_lust(amount)
+	if(get_lust() >= lust_tolerance)
 		if(prob(10))
 			to_chat(src, "<b>You struggle to not orgasm!</b>")
 			return

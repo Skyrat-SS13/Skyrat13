@@ -23,9 +23,9 @@
 		user.faction |= "goat"
 
 /obj/item/clothing/head/goatpelt/king/dropped(mob/living/carbon/human/user)
-	..()
 	if (user.head == src)
 		user.faction -= "goat"
+	..()
 
 /obj/item/clothing/head/goatpope
 	name = "goat pope hat"
@@ -41,3 +41,42 @@
 	..()
 	if (slot == ITEM_SLOT_HEAD)
 		user.faction |= "goat"
+
+/obj/item/clothing/head/goatpope/dropped(mob/living/carbon/human/user, slot)
+	if (user.head == src)
+		user.faction -= "goat"
+	..()
+
+/obj/item/clothing/head/assu_helmet
+	desc = "A cheap replica of a helmet. It has \"D.A.B.\" written on the front. Doesn't help against stun batons to the head."
+	armor = list("melee" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 1, "bio" = 1, "rad" = 1, "fire" = 1, "acid" = 1)
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/hats.dmi',
+	"Bluetide" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Alternative" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Alternative Bluetide" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Medical Assistant" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Engineering Assistant" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Service Assistant" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Science Assistant" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/head.dmi',
+	"Bluetide" = 'modular_skyrat/icons/mob/head.dmi',
+	"Alternative" = 'modular_skyrat/icons/mob/head.dmi',
+	"Alternative Bluetide" = 'modular_skyrat/icons/mob/head.dmi',
+	"Medical Assistant" = 'modular_skyrat/icons/mob/head.dmi',
+	"Engineering Assistant" = 'modular_skyrat/icons/mob/head.dmi',
+	"Service Assistant" = 'modular_skyrat/icons/mob/head.dmi',
+	"Science Assistant" = 'modular_skyrat/icons/mob/head.dmi'
+	)
+	unique_reskin = list(
+	"Default" = "assu_helmet",
+	"Bluetide" = "assu_helmet_blue",
+	"Alternative" = "assu_helmet_alt",
+	"Alternative Bluetide" = "assu_helmet_alt_blue",
+	"Medical Assistant" = "assu_helmet_med",
+	"Engineering Assistant" = "assu_helmet_eng",
+	"Service Assistant" = "assu_helmet_srv",
+	"Science Assistant" = "assu_helmet_sci"
+	)
