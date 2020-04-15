@@ -5,8 +5,10 @@
 	var/list/glorymessagespka = list() //SAME AS ABOVE THE ABOVE BUT PKA
 	var/list/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING
 	var/gloryhealth = 200
-	var/sound/song
-	var/songlength
+	var/list/songs = list()
+	var/sound/chosensong
+	var/chosenlength
+	var/chosenlengthstring
 	var/songend
 
 /mob/living/simple_animal/hostile/megafauna/SetRecoveryTime(buffer_time, ranged_buffer_time)
@@ -46,10 +48,13 @@
 			var/mob/living/M = A
 			if(faction_check_mob(M) && attack_same || !faction_check_mob(M))
 				enemies |= M
-				if(song && !songend)
+				chosenlengthstring = pick(songs)
+				chosenlength = text2num(chosenlengthstring)
+				chosensong = songs[chosenlengthstring]
+				if(chosensong && !songend)
 					M.stop_sound_channel(CHANNEL_AMBIENCE)
-					songend = songlength + world.time
-					M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = song) // so silence ambience will mute moosic for people who don't want that
+					songend = chosenlength + world.time
+					M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong) // so silence ambience will mute moosic for people who don't want that
 		else if(ismecha(A))
 			var/obj/mecha/M = A
 			if(M.occupant)
@@ -57,8 +62,8 @@
 				enemies |= M.occupant
 				var/mob/living/O = M.occupant
 				O.stop_sound_channel(CHANNEL_AMBIENCE)
-				songend = songlength + world.time
-				O.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = song)
+				songend = chosenlength + world.time
+				O.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong)
 
 	for(var/mob/living/simple_animal/hostile/megafauna/H in around)
 		if(faction_check_mob(H) && !attack_same && !H.attack_same)
@@ -76,8 +81,8 @@
 		if(world.time >= songend)
 			for(var/mob/living/M in view(src, vision_range))
 				M.stop_sound_channel(CHANNEL_AMBIENCE)
-				songend = songlength + world.time
-				M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = song)
+				songend = chosenlength + world.time
+				M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong)
 	if(health <= (maxHealth/25) && !glorykill && stat != DEAD)
 		glorykill = TRUE
 		glory()

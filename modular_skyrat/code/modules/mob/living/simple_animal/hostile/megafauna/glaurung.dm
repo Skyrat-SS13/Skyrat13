@@ -55,11 +55,10 @@ Difficulty: Medium
 	score_type = DRAKE_SCORE
 	deathmessage = "collapses into a pile of bones, its flesh sloughing away."
 	death_sound = 'sound/magic/demon_dies.ogg'
-	song = null
+	songs = null
 	move_force = MOVE_FORCE_NORMAL
 	move_resist = MOVE_FORCE_NORMAL
 	pull_force = MOVE_FORCE_NORMAL
-	songlength = 0
 	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/dragon/glaurung/Initialize()
