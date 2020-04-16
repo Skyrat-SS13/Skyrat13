@@ -13,20 +13,20 @@
 	"Science Assistant" = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/suit.dmi',
-	"Bluetide" = 'modular_skyrat/icons/mob/suit.dmi',
-	"Medical Assistant" = 'modular_skyrat/icons/mob/suit.dmi',
-	"Engineering Assistant" = 'modular_skyrat/icons/mob/suit.dmi',
-	"Service Assistant" = 'modular_skyrat/icons/mob/suit.dmi',
-	"Science Assistant" = 'modular_skyrat/icons/mob/suit.dmi'
+	"Default" = 'icons/mob/clothing/suit.dmi',
+	"Bluetide" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"Medical Assistant" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"Engineering Assistant" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"Service Assistant" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"Science Assistant" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = 'icons/mob/suit_digi.dmi',
-	"Bluetide" = 'modular_skyrat/icons/mob/suit_digi.dmi',
-	"Medical Assistant" = 'modular_skyrat/icons/mob/suit_digi.dmi',
-	"Engineering Assistant" = 'modular_skyrat/icons/mob/suit_digi.dmi',
-	"Service Assistant" = 'modular_skyrat/icons/mob/suit_digi.dmi',
-	"Science Assistant" = 'modular_skyrat/icons/mob/suit_digi.dmi'
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
+	"Bluetide" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
+	"Medical Assistant" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
+	"Engineering Assistant" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
+	"Service Assistant" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
+	"Science Assistant" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "assu_suit",
