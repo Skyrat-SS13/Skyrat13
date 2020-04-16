@@ -3,6 +3,7 @@
 	var/desc = "Basic augmentation, you are not supposed to see this. Report to admins."
 	var/id = "default"
 	var/cat_id = "cat"
+	var/type_id = "none"
 	var/cost = 0
 	var/affecting_zone = 0
 	var/restricted_species = list()
@@ -14,6 +15,7 @@
 	return
 
 /datum/augmentation/limb
+	type_id = "limb"
 	var/obj/item/bodypart/limb_type
 
 /datum/augmentation/limb/apply_to_mob(mob)
@@ -28,6 +30,7 @@
 		H.regenerate_icons()
 
 /datum/augmentation/implant
+	type_id = "implant"
 	var/obj/item/organ/implant_type
 
 /datum/augmentation/implant/apply_to_mob(mob)
@@ -37,6 +40,7 @@
 		org.Insert(H)
 
 /datum/augmentation/organ
+	type_id = "organ"
 	var/obj/item/organ/organ_type
 
 /datum/augmentation/organ/apply_to_mob(mob)

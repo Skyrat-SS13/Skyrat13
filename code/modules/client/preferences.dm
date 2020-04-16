@@ -92,6 +92,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//Advanced character customization
 	var/att_tab = 1
+	var/aug_cat = ""
+	var/aug_type = ""
 	var/max_attribute_points = 10 //How much attribute points we're getting to spend on them or augments
 	var/attribute_points = 10
 	var/skill_points = 14 //How many skill points we're getting? More important jobs give you extra points
@@ -1091,10 +1093,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</center>"
 			dat += "<tr><td colspan=4><hr></td></tr>"
 			switch(att_tab)
-				if(1)
+				if(1) //Attributes
 					dat += "<table align='center' width='100%'>"
-					dat += "<h2>Attributes:</h2>"
-					dat += "<b>Remaining attribute points: [attribute_points]</b>"
+					dat += "<center><h2>Attributes:</h2></center>"
+					dat += "<center><b>Remaining attribute points: [attribute_points]</b></center>"
 		
 					dat += "<tr style='vertical-align:top;'><td width=10%><b>Name</b></td>"
 					dat += "<td width=5%><font size=2><b>-</b></font></td>"
@@ -1124,6 +1126,85 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<td><a [add_5_link]>+5</a></td>"
 						dat += "<td><i>[AT.desc]</i></td></tr>"
 					dat += "</table>"
+				if(2) //Augmentations
+					dat += "<center><h2>Augmentations:</h2></center>"
+					dat += "<center><b>Remaining attribute points: [attribute_points]</b></center>"
+					dat += "<table><tr>"
+					dat += "<td valign='top' width='23%'>"
+					dat += "<h2>Limb Augmentations:</h2>"
+					for(var/i in GLOB.aug_limb_cat_list)
+						var/datum/aug_category/limb/CAT = GLOB.aug_limb_cat_list[i]
+						var/datum/augmentation/limb/AUG = GLOB.aug_limb_list[CAT.id][augments_limbs[i]]
+						var/link = "href='?_src_=prefs;switch_tab=aug_tab;aug_type=[AUG.type_id];aug_cat=[AUG.cat_id]'"
+						if(aug_cat == AUG.cat_id && aug_type == AUG.type_id)
+							link += "class='linkOn'"
+						dat += "<a [link]>[CAT.name]</a>: [AUG.name]<br>"
+						dat += "<i>[AUG.desc]</i><br>"
+						dat += "<br>"
+
+					dat += "</td>"
+					dat += "<td valign='top' width='23%'>"
+					dat += "<h2>Organ Replacements:</h2>"
+					for(var/i in GLOB.aug_organ_cat_list)
+						var/datum/aug_category/organ/CAT = GLOB.aug_organ_cat_list[i]
+						var/datum/augmentation/organ/AUG = GLOB.aug_organ_list[CAT.id][augments_organs[i]]
+						var/link = "href='?_src_=prefs;switch_tab=aug_tab;aug_type=[AUG.type_id];aug_cat=[AUG.cat_id]'"
+						if(aug_cat == AUG.cat_id && aug_type == AUG.type_id)
+							link += "class='linkOn'"
+						dat += "<a [link]>[CAT.name]</a>: [AUG.name]<br>"
+						dat += "<i>[AUG.desc]</i><br>"
+						dat += "<br>"
+
+					dat += "</td>"
+					dat += "<td valign='top' width='23%'>"
+					dat += "<h2>Implant Enhancements:</h2>"
+					for(var/i in GLOB.aug_implant_cat_list)
+						var/datum/aug_category/implant/CAT = GLOB.aug_implant_cat_list[i]
+						var/datum/augmentation/implant/AUG = GLOB.aug_implant_list[CAT.id][augments_implants[i]]
+						var/link = "href='?_src_=prefs;switch_tab=aug_tab;aug_type=[AUG.type_id];aug_cat=[AUG.cat_id]'"
+						if(aug_cat == AUG.cat_id && aug_type == AUG.type_id)
+							link += "class='linkOn'"
+						dat += "<a [link]>[CAT.name]</a>: [AUG.name]<br>"
+						dat += "<i>[AUG.desc]</i><br>"
+						dat += "<br>"
+
+					dat += "</td>"
+					dat += "<td valign='top' width='31%'>"
+					if(aug_type != "")
+						dat += "<table width=100%>"
+						dat += "<tr style='vertical-align:top;'>"
+						dat += "<td width=20%><b>Name</b></td>"
+						dat += "<td width=10%><b>Cost</b></td>"
+						dat += "<td width=70%><b>Description</b></td>"
+						dat += "</tr>"
+
+						var/list/li 
+						if(aug_type == "limb")
+							li = GLOB.aug_limb_list[aug_cat]
+						else if(aug_type == "implant")
+							li = GLOB.aug_implant_list[aug_cat]
+						else if(aug_type == "organ")
+							li = GLOB.aug_organ_list[aug_cat]
+						message_admins("[aug_cat]")
+						message_admins("[aug_type]")
+						message_admins("[li.len]")
+
+						if(li)
+							for(var/i in li)
+								var/datum/augmentation/Au = li[i]
+								message_admins("[Au.name]")
+								dat += "<tr>"
+								dat += "<td><b>[Au.name]</b></td>"
+								dat += "<td>[Au.cost]</td>"
+								dat += "<td><i>[Au.desc]</i></td>"
+								dat += "</tr>"
+						dat += "</table>"
+
+
+
+					dat += "</td>"
+					dat += "</tr></table>"
+
 		//End of skyrat changes
 
 
@@ -2561,6 +2642,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	switch(href_list["switch_tab"])
 		if("att_tab")
 			att_tab = text2num(href_list["tab"])
+		if("aug_tab")
+			aug_cat = href_list["aug_cat"]
+			aug_type = href_list["aug_type"]
 	//END OF SKYRAT CHANGES
 
 	ShowChoices(user)
