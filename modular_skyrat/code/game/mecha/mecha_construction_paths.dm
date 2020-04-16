@@ -5,16 +5,13 @@
 
 //Killdozer
 /datum/component/construction/unordered/mecha_chassis/killdozer
-	result = /datum/component/construction/mecha/firefighter
+	result = /datum/component/construction/mecha/killdozer
 	steps = list(
 		/obj/item/mecha_parts/part/ripley_torso,
 		/obj/item/mecha_parts/part/ripley_left_arm,
 		/obj/item/mecha_parts/part/ripley_right_arm,
 		/obj/item/mecha_parts/part/ripley_left_leg,
 		/obj/item/mecha_parts/part/ripley_right_leg,
-		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/killdozer,
-		/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/real/killdozer,
-		/obj/item/mecha_parts/mecha_equipment/drill/killdozer
 	)
 
 /datum/component/construction/mecha/killdozer
@@ -193,6 +190,19 @@
 			"back_key" = TOOL_WIRECUTTER,
 			"desc" = "Kill drill module is installed."
 		),
+		//25
+		list(
+			"key" = /obj/item/stack/sheet/mineral/titanium,
+			"amount" = 10,
+			"back_key" = TOOL_WRENCH,
+			"desc" = "Titanium armoring is applied."
+		),
+		//26
+		list(
+			"key" = TOOL_WELDER,
+			"back_key" = TOOL_WRENCH,
+			"desc" = "Titanium armoring is applied."
+		),
 	)
 
 /datum/component/construction/mecha/killdozer/custom_action(obj/item/I, mob/living/user, diff)
@@ -318,4 +328,14 @@
 				user.visible_message("[user] attaches the kill drill module to [parent].", "<span class='notice'>You attach the kill drill module to [parent].</span>")
 			else
 				user.visible_message("[user] snips off the kill clamp module.", "<span class='notice'>You snip off the kill clamp module.</span>")
+		if(26)
+			if(diff==FORWARD)
+				user.visible_message("[user] layers some titanium armor plates on [parent].", "<span class='notice'>You layer some titanium armor plates on [parent].</span>")
+			else
+				user.visible_message("[user] snips off the kill drill.", "<span class='notice'>You snip off the kill drill</span>")
+		if(27)
+			if(diff==FORWARD)
+				user.visible_message("[user] welds the titanium plates to [parent].", "<span class='notice'>You weld the titanium plates to [parent].</span>")
+			else
+				user.visible_message("[user] wrenches off the titanium armor plates on [parent].", "<span class='notice'>You wrench off the titanium armor plates on [parent]</span>")
 	return TRUE

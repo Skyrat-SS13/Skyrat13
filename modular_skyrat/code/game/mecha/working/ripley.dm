@@ -36,5 +36,6 @@
 	color = "#FF0000"
 
 /obj/item/mecha_parts/chassis/killdozer
-	name = "\improper Firefighter chassis"
+	name = "\improper Killdozer chassis"
+	desc = "Sometimes... reasonable men must do unreasonable things."
 	construct_type = /datum/component/construction/unordered/mecha_chassis/killdozer
