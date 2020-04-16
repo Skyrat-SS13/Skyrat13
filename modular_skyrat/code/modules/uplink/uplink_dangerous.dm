@@ -32,5 +32,5 @@
 	name = "Morph Cube"
 	desc = "Gives you the ability to shapeshift into the currrent scanned animal on the cube."
 	item = /obj/item/morphcube
-	cost = 15
+	cost = 18
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
