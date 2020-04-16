@@ -7,12 +7,12 @@
 	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/head.dmi',
+	"Default" = 'icons/mob/clothing/head.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	"Press" = 'modular_skyrat/icons/mob/epicclothing.dmi'
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = 'icons/mob/head_muzzled.dmi',
+	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	"Press" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi'
 	)
@@ -29,11 +29,11 @@
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/head.dmi',
+	"Default" = 'icons/mob/clothing/head.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = 'icons/mob/head_muzzled.dmi',
+	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
@@ -47,11 +47,11 @@
 	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/suit.dmi',
+	"Default" = 'icons/mob/clothing/suit.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = 'icons/mob/suit_digi.dmi',
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
@@ -65,11 +65,11 @@
 	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/head.dmi',
+	"Default" = 'icons/mob/clothing/head.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = 'icons/mob/head_muzzled.dmi',
+	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
@@ -83,11 +83,11 @@
 	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/suit.dmi',
+	"Default" = 'icons/mob/clothing/suit.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = 'icons/mob/suit_digi.dmi',
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
@@ -101,11 +101,11 @@
 	"Hazmat" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/head.dmi',
+	"Default" = 'icons/mob/clothing/head.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = 'icons/mob/head_muzzled.dmi',
+	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
 	"Hazmat" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
@@ -124,11 +124,11 @@
 	"Skulldozer" = 'modular_skyrat/icons/obj/clothing/chonker.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/head.dmi',
+	"Default" = 'icons/mob/clothing/head.dmi',
 	"Skulldozer" = 'modular_skyrat/icons/mob/chonker.dmi'
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = 'icons/mob/head_muzzled.dmi',
+	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
 	"Skulldozer" = 'modular_skyrat/icons/mob/chonker_digi.dmi'
 	)
 	unique_reskin = list(
@@ -205,16 +205,16 @@
 	"Centcom Beret" = 'icons/obj/clothing/hats.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/head.dmi',
-	"Helmet" = 'icons/mob/head.dmi',
-	"Beret" = 'icons/mob/head.dmi',
-	"Centcom Beret" = 'icons/mob/head.dmi'
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Helmet" = 'icons/mob/clothing/head.dmi',
+	"Beret" = 'icons/mob/clothing/head.dmi',
+	"Centcom Beret" = 'icons/mob/clothing/head.dmi'
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = 'icons/mob/head_muzzled.dmi',
-	"Helmet" = 'icons/mob/head_muzzled.dmi',
-	"Beret" = 'icons/mob/head_muzzled.dmi',
-	"Centcom Beret" = 'icons/mob/head_muzzled.dmi'
+	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
+	"Helmet" = 'icons/mob/clothing/head_muzzled.dmi',
+	"Beret" = 'icons/mob/clothing/head_muzzled.dmi',
+	"Centcom Beret" = 'icons/mob/clothing/head_muzzled.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "hoscap",
@@ -237,18 +237,18 @@
 	"Helmet" = 'icons/obj/clothing/hats.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/head.dmi',
-	"Navy Beret" = 'icons/mob/head.dmi',
-	"Corporate Beret" = 'icons/mob/head.dmi',
-	"Red Security Beret" = 'icons/mob/head.dmi',
-	"Helmet" = 'icons/mob/head.dmi'
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Navy Beret" = 'icons/mob/clothing/head.dmi',
+	"Corporate Beret" = 'icons/mob/clothing/head.dmi',
+	"Red Security Beret" = 'icons/mob/clothing/head.dmi',
+	"Helmet" = 'icons/mob/clothing/head.dmi'
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = 'icons/mob/head_muzzled.dmi',
-	"Navy Beret" = 'icons/mob/head_muzzled.dmi',
-	"Corporate Beret" = 'icons/mob/head_muzzled.dmi',
-	"Red Security Beret" = 'icons/mob/head_muzzled.dmi',
-	"Helmet" = 'icons/mob/head_muzzled.dmi'
+	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
+	"Navy Beret" = 'icons/mob/clothing/head_muzzled.dmi',
+	"Corporate Beret" = 'icons/mob/clothing/head_muzzled.dmi',
+	"Red Security Beret" = 'icons/mob/clothing/head_muzzled.dmi',
+	"Helmet" = 'icons/mob/clothing/head_muzzled.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "policehelm",
@@ -338,14 +338,14 @@
 	"ODST" = 'modular_skyrat/icons/obj/clothing/security_hardsuits.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/head.dmi',
+	"Default" = 'icons/mob/clothing/head.dmi',
 	"Riot" = 'modular_skyrat/icons/obj/clothing/security_hardsuits.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/security_hardsuits.dmi',
 	"Asset Protection" = 'modular_skyrat/icons/obj/clothing/security_hardsuits.dmi',
 	"ODST" = 'modular_skyrat/icons/obj/clothing/security_hardsuits.dmi'
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = 'icons/mob/head_muzzled.dmi',
+	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
 	"Riot" = 'modular_skyrat/icons/mob/security_hardsuits_digi.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/security_hardsuits_digi.dmi',
 	"Asset Protection" = 'modular_skyrat/icons/mob/security_hardsuits_digi.dmi',
@@ -369,14 +369,14 @@
 	"ODST" = 'modular_skyrat/icons/obj/clothing/security_hardsuits.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/suit.dmi',
+	"Default" = 'icons/mob/clothing/suit.dmi',
 	"Riot" = 'modular_skyrat/icons/mob/security_hardsuits.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/security_hardsuits.dmi',
 	"Asset Protection" = 'modular_skyrat/icons/mob/security_hardsuits.dmi',
 	"ODST" = 'modular_skyrat/icons/mob/security_hardsuits.dmi'
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = 'icons/mob/suit_digi.dmi',
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
 	"Riot" = 'modular_skyrat/icons/mob/security_hardsuits_digi.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/security_hardsuits_digi.dmi',
 	"Asset Protection" = 'modular_skyrat/icons/mob/security_hardsuits_digi.dmi',
@@ -403,11 +403,11 @@
 	"Skulldozer" = 'modular_skyrat/icons/obj/clothing/chonker.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/head.dmi',
+	"Default" = 'icons/mob/clothing/head.dmi',
 	"Skulldozer" = 'modular_skyrat/icons/mob/chonker.dmi'
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = 'icons/mob/head_muzzled.dmi',
+	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
 	"Skulldozer" = 'modular_skyrat/icons/mob/chonker_digi.dmi'
 	)
 	unique_reskin = list(
@@ -422,11 +422,11 @@
 	"Skulldozer" = 'modular_skyrat/icons/obj/clothing/chonker.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/suit.dmi',
+	"Default" = 'icons/mob/clothing/suit.dmi',
 	"Skulldozer" = 'modular_skyrat/icons/mob/chonker.dmi'
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = 'icons/mob/suit_digi.dmi',
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
 	"Skulldozer" = 'modular_skyrat/icons/mob/chonker_digi.dmi'
 	)
 	unique_reskin = list(
@@ -476,13 +476,13 @@
 	"Press" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/suit.dmi',
+	"Default" = 'icons/mob/clothing/suit.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	"Tactical Classic" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	"Press" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = 'icons/mob/suit_digi.dmi',
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	"Tactical Classic" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	"Press" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
@@ -503,16 +503,16 @@
 	"Navy Blue" = 'icons/obj/clothing/suits.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/suit.dmi',
-	"Trench" = 'icons/mob/suit.dmi',
+	"Default" = 'icons/mob/clothing/suit.dmi',
+	"Trench" = 'icons/mob/clothing/suit.dmi',
 	"Cloak" = 'modular_citadel/icons/mob/citadel/suit.dmi',
-	"Navy Blue" = 'icons/mob/suit.dmi'
+	"Navy Blue" = 'icons/mob/clothing/suit.dmi'
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = 'icons/mob/suit_digi.dmi',
-	"Trench" = 'icons/mob/suit_digi.dmi',
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
+	"Trench" = 'icons/mob/clothing/suit_digi.dmi',
 	"Cloak" = 'modular_citadel/icons/mob/citadel/suit.dmi',
-	"Navy blue" = 'icons/mob/suit_digi.dmi'
+	"Navy blue" = 'icons/mob/clothing/suit_digi.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "hos",
@@ -544,11 +544,11 @@
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/epicclothing.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/suit.dmi',
+	"Default" = 'icons/mob/clothing/suit.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing.dmi',
 	)
 	unique_reskin_worn_digi = list(
-	"Default" = 'icons/mob/suit_digi.dmi',
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/epicclothing_digi.dmi',
 	)
 	unique_reskin = list(
