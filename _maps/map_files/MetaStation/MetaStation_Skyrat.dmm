@@ -42716,7 +42716,7 @@
 	},
 /obj/effect/turf_decal/vg_decals/radiation,
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
-	id = engsm;
+	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
@@ -42920,7 +42920,7 @@
 /obj/item/crowbar,
 /obj/effect/turf_decal/vg_decals/radiation,
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
-	id = engsm;
+	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
@@ -82760,7 +82760,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
-	id = engsm;
+	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
@@ -84299,6 +84299,11 @@
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+"hdv" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/flasher/portable,
+/turf/open/floor/plasteel/dark,
+/area/security/main)
 "heE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
@@ -84363,11 +84368,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"iCo" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/flasher/portable,
-/turf/open/floor/plasteel/dark,
-/area/security/main)
 "iLj" = (
 /obj/structure/table,
 /turf/open/floor/plating,
@@ -84855,10 +84855,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/circuit)
-"obN" = (
-/obj/machinery/vending/dinnerware/prisoner,
-/turf/open/floor/plasteel/checker,
-/area/security/prison)
 "obX" = (
 /obj/docking_port/stationary{
 	area_type = /area/construction/mining/aux_base;
@@ -84985,23 +84981,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
-"psz" = (
-/obj/effect/turf_decal/box,
-/obj/effect/turf_decal/caution/stand_clear,
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/door/airlock/security/glass{
-	desc = "The red door means be scared that you're here. Unless you're the person in red.";
-	name = "Brig";
-	req_access_txt = "63"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "pvA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -85179,12 +85158,33 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/cryopod)
+"qZY" = (
+/obj/machinery/vending/dinnerware/prisoner,
+/turf/open/floor/plasteel/checker,
+/area/security/prison)
 "rbE" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
+"rnz" = (
+/obj/effect/turf_decal/box,
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/door/airlock/security/glass{
+	desc = "The red door means be scared that you're here. Unless you're the person in red.";
+	name = "Brig";
+	req_access_txt = "63"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "rzX" = (
 /obj/structure/chair/office/light{
 	dir = 1;
@@ -108962,7 +108962,7 @@ ajz
 ajz
 aak
 aak
-psz
+rnz
 anD
 axy
 aaq
@@ -113827,7 +113827,7 @@ ajC
 aaq
 adT
 aaT
-obN
+qZY
 adT
 adX
 aaq
@@ -114370,7 +114370,7 @@ aGw
 ajD
 bbE
 awc
-iCo
+hdv
 aCw
 ajD
 aLA
