@@ -28,6 +28,17 @@
 	light_range = 2
 	light_color = "#0000FF"
 
+/obj/item/book/granter/martial/berserk
+	name = "Strange Rune"
+	desc = "Tales tell that this rune may grant the user power beyond measure... for a limited time."
+	icon = 'modular_skyrat/icons/obj/items/berserk.dmi'
+	icon_state = "bruhrserk"
+	martial = /datum/martial_art/berserk
+	martialname = "berserk"
+	greet = "<span class='userdanger' style='color:rgb(0, 0, 0);'><b>DIG THE PROWESS. THE CAPACITY FOR VIOLENCE!</b></span>"
+	pages_to_mastery = 0
+	remarks = list("In the first age, in the first battle...", "Rip and tear...", "Huge guts...", "Big fucking gun...")
+
 /turf/open/floor/carpet/blue/doomed
 	name = "marine base carpet"
 	desc = "Carpet, so barefoot demons can have some comfort."

@@ -158,7 +158,7 @@
 	name = "Mace of Molag Bal"
 	desc = "Make the weak and frail bend to you."
 	icon = 'modular_skyrat/icons/obj/molagmace.dmi'
-	icon_state = "mace_greyscale"
+	icon_state = "molagmace"
 	item_state = "mace_greyscale"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/mace_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/mace_righthand.dmi'
@@ -168,7 +168,7 @@
 	force = 15
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 8
-	block_chance = 30
+	block_chance = 33
 	armour_penetration = 200
 	var/stamdamage = 30
 	var/confusion = 8
