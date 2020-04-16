@@ -202,8 +202,8 @@
 #define SELF_SPRAY 15
 #define SELF_INJECT 15
 
-#define DELUXE_WAIT_SPRAY 0
-#define DELUXE_WAIT_INJECT 5
+#define DELUXE_WAIT_SPRAY 0 // Skyrat change
+#define DELUXE_WAIT_INJECT 5 // Skyrat change
 #define DELUXE_SELF_SPRAY 10
 #define DELUXE_SELF_INJECT 10
 
