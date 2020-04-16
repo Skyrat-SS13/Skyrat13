@@ -37,6 +37,8 @@
 			if(istype(target, M))
 				to_chat(user, "<span class='danger'>The target is too complex to be scanned.</span>")
 				return FALSE
+		for(var/mob/living/delete in src)
+			qdel(delete)
 		targettype = target.type
 		to_chat(user, "<span class='danger'>[src] stores the form of the target.</span>")
 		ourspell.possible_shapes = list()
@@ -48,6 +50,8 @@
 			if(istype(target, M))
 				to_chat(user, "<span class='danger'>The target is too complex to be scanned.</span>")
 				return FALSE
+		for(var/mob/living/delete in src)
+			qdel(delete)
 		var/mob/living/targettype = target.type
 		to_chat(user, "<span class='notice'>[src] stores the form of the target.</span>")
 		ourmob = targettype
@@ -66,8 +70,8 @@
 			if(ourcube.ourspell == src)
 				..()
 				return TRUE
-			to_chat(user, "<span class='danger'>The cube is out of range, or has been entirely destroyed!</span>")
-			return FALSE
+		to_chat(user, "<span class='danger'>The cube is out of range, or has been entirely destroyed!</span>")
+		return FALSE
 	else
 		..()
 		return TRUE
