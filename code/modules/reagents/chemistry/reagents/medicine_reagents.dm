@@ -1209,7 +1209,7 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 	reagent_state = LIQUID
 	metabolization_rate = 1 * REAGENTS_METABOLISM
 	color = "#91D865"
-	overdose_threshold = 20  //SKYRAT CHANGE
+	overdose_threshold = 30
 	taste_description = "jelly"
 	pH = 11.8
 
