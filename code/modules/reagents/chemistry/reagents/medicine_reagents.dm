@@ -861,13 +861,15 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 
 /datum/reagent/medicine/strange_reagent
 	name = "Strange Reagent"
-	description = "A miracle drug capable of bringing the dead back to life. Only functions when applied by patch or spray, if the target has less than 100 brute and burn damage (independent of one another) and hasn't been husked. Causes slight damage to the living."
+	//SKYRAT EDIT: Outdated description.
+	//description = "A miracle drug capable of bringing the dead back to life. Only functions when applied by patch or spray, if the target has less than 100 brute and burn damage (independent of one another) and hasn't been husked. Causes slight damage to the living."
 	reagent_state = LIQUID
 	color = "#A0E85E"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "magnets"
 	pH = 0
 
+/* SKYRAT EDIT: op pls nerf, see modular file of medicine_reagents
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.stat == DEAD)
 		if(M.suiciding || M.hellbound) //they are never coming back
@@ -902,7 +904,7 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 					M.emote("gasp")
 					log_combat(M, M, "revived", src)
 	..()
-
+*/
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)
 	M.adjustBruteLoss(0.5*REM, 0)
