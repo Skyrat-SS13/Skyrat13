@@ -16,6 +16,8 @@
 		blacklistedmobs += NO
 	for(var/NO in typesof(/mob/living/carbon))
 		blacklistedmobs += NO
+	for(var/NO in typesof(/mob/living/simple_animal/hostile/asteroid/elite))
+		blacklistedmobs += NO
 
 /obj/item/morphcube/attack_self(mob/user)
 	if(uses > 0)
