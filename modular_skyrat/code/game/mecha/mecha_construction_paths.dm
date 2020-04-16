@@ -176,26 +176,26 @@
 		list(
 			"key" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/killdozer,
 			"back_key" = TOOL_WELDER,
-			"desc" = "Pistol module is installed."
+			"desc" = "External armor is welded."
 		),
 		//23
 		list(
 			"key" = /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/real/killdozer,
 			"back_key" = TOOL_WIRECUTTER,
-			"desc" = "Kill clamp module is installed."
+			"desc" = "Pistol module is installed."
 		),
 		//24
 		list(
 			"key" = /obj/item/mecha_parts/mecha_equipment/drill/killdozer,
 			"back_key" = TOOL_WIRECUTTER,
-			"desc" = "Kill drill module is installed."
+			"desc" = "Kill clamp module is installed."
 		),
 		//25
 		list(
 			"key" = /obj/item/stack/sheet/mineral/titanium,
 			"amount" = 10,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "Titanium armoring is applied."
+			"desc" = "Kill drill module is installed."
 		),
 		//26
 		list(
