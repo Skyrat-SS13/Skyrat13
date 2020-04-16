@@ -599,7 +599,9 @@
 	to_chat(loc, "<span class='userdanger'>Under ASIMOV/CREWSIMOV, you are an enforcer of the PEACE and preventer of HUMAN/CREW HARM. \
 	You are not a security module and you are expected to follow orders and prevent harm above all else. Space law means nothing to you.</span>")
 
-/obj/item/robot_module/peacekeeper/be_transformed_to(obj/item/robot_module/old_module)
+///// MOVED TO MODULAR_SKYRAT/CODE/MODULES/MOB/LIVING/SILICON/ROBOT/ROBOT_MODULES /////
+
+/* /obj/item/robot_module/peacekeeper/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
 	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Default", "Spider", "Borgi")
 	if(!borg_icon)
@@ -617,7 +619,7 @@
 			hat_offset = INFINITY
 			cyborg_icon_override = 'modular_citadel/icons/mob/robots.dmi'
 			has_snowflake_deadsprite = TRUE
-	return ..()
+	return ..() */
 
 //Janitor module combined with Service module
 /*
