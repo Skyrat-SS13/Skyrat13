@@ -1,0 +1,4 @@
+author: "CinderWC"
+delete-after: True
+changes: 
+  - rscdel: "Deletes BoxStationSnow.dmm from the repository"
