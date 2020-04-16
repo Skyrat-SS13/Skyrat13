@@ -112,20 +112,14 @@
 	. = ..()
 	if (secret_type)
 		secret = new secret_type(src)
-		secret.desc += " It's a secret!"
-		w_items += secret.w_class
+		secret.desc += "" //In case you want to add something to the item that spawns
 		contents += secret
 
-<<<<<<< HEAD
-/obj/structure/toilet/secret/prison
-	secret_type = /obj/effect/spawner/lootdrop/prison_loot_toilet
-=======
 /obj/structure/toilet/secret/LateInitialize()
 	. = ..()
 	w_items = 0 //recalculate total weight thanks to the secret.
 	for(var/obj/item/I in contents)
 		w_items += I.w_class
->>>>>>> 5baa5ebf55... Merge pull request #11828 from Citadel-Station-13/Ghommie-patch-2
 
 /obj/structure/toilet/secret/low_loot
 	secret_type = /obj/effect/spawner/lootdrop/low_loot_toilet
