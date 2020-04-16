@@ -1,0 +1,11 @@
+author: "CinderWC"
+delete-after: True
+changes: 
+  - rscadd: "Added Dinnerware to Perma Kitchen"
+  - rscadd: "Added Hybrid Tasers to Armory"
+  - rscadd: "Added Doors to Perma Lobby Hallway Thing"
+  - rscdel: "Removed a singular Baton from the armory"
+  - rscdel: "Removed Bathroom Spawns for Captain, HOS, Warden and Detective"
+  - tweak: "Replaced some of the Reinforced Walls around Perma with normal ones"
+  - bugfix: "https://github.com/Skyrat-SS13/Skyrat13/issues/1213"
+  - bugfix: "Fixed SM Shutters to actually be Radiation Shutters"
