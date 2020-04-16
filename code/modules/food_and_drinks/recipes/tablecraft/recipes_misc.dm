@@ -37,12 +37,8 @@
 	name = "Raw Khinkali"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/doughslice = 1,
-<<<<<<< HEAD
-		/obj/item/reagent_containers/food/snacks/faggot = 1
-=======
-		/obj/item/reagent_containers/food/snacks/meatball = 1,
+		/obj/item/reagent_containers/food/snacks/faggot = 1,
 		/obj/item/reagent_containers/food/snacks/grown/garlic = 1
->>>>>>> f828f4c4b7... Merge remote-tracking branch 'forrest/wewlad' into tos-compliance
 	)
 	result =  /obj/item/reagent_containers/food/snacks/rawkhinkali
 	subcategory = CAT_MISCFOOD
