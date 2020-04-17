@@ -486,11 +486,10 @@ obj/item/gps/internal/bubblegum/hard
 	icon_state = "praetor"
 	hardsuit_type = "praetor"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	mob_overlay_icon_digi = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	item_state = "praetor"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	slowdown = 0
-	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit helmet"
@@ -501,6 +500,5 @@ obj/item/gps/internal/bubblegum/hard
 	icon_state = "praetor"
 	hardsuit_type = "praetor"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	mob_overlay_icon_muzzled = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	item_state = "praetor"
-	mutantrace_variation = STYLE_MUZZLE

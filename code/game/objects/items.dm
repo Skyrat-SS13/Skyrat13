@@ -19,11 +19,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	///Icon file for mob worn overlays.
 	///no var for state because it should *always* be the same as icon_state
 	var/icon/mob_overlay_icon
-	//Forced mob worn layer instead of the standard preferred size.
+	//Forced mob worn layer instead of the standard preferred ssize.
 	var/alternate_worn_layer
-
-	var/icon/anthro_mob_worn_overlay //Version of the above dedicated to muzzles/digitigrade
-	var/icon/taur_mob_worn_overlay // Idem but for taurs. Currently only used by suits.
 
 	var/list/alternate_screams = list() //REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 

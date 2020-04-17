@@ -36,7 +36,6 @@
 	"Service Assistant" = "assu_suit_srv",
 	"Science Assistant" = "assu_suit_sci",
 	)
-	mutantrace_variation = STYLE_DIGITIGRADE
 
 //ablative coat from tg
 /obj/item/clothing/head/hooded/ablative
@@ -44,7 +43,7 @@
 	desc = "Hood hopefully belonging to an ablative trenchcoat. Includes a visor for cool-o-vision."
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	mob_overlay_icon_muzzled = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	icon_state = "ablativehood"
 	item_state = "ablativehood"
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 60, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
@@ -52,7 +51,6 @@
 	var/hit_reflect_chance = 50
 	var/hud_type = DATA_HUD_SECURITY_ADVANCED
 	var/list/protected_zones = list(BODY_ZONE_HEAD)
-	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/head/hooded/ablative/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -80,7 +78,7 @@
 	desc = "Experimental trenchcoat specially crafted to reflect and absorb laser and disabler shots. Don't expect it to do all that much against an ax or a shotgun, however."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	mob_overlay_icon_digi = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	icon_state = "ablativecoat"
 	item_state = "ablativecoat"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -92,7 +90,6 @@
 	equip_delay_other = 40
 	var/hit_reflect_chance = 50
 	var/list/protected_zones = list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/hooded/ablative/Initialize()
 	. = ..()
