@@ -1,6 +1,5 @@
 //BARREL DUNKING!
 /obj/structure/fermenting_barrel
-	var/mob/living/storedmob
 	var/maxstoredmobs = 3
 	var/storedmobs = 0
 	var/fractionofvolume = 0.1
@@ -9,11 +8,14 @@
 
 /obj/structure/fermenting_barrel/process()
 	. = ..()
-	for(var/mob/living/carbon/C in src)
+	for(var/mob/living/carbon/C in src.contents)
 		reagents.reaction(A = C, method = TOUCH, volume_modifier = reagents.maximum_volume * fractionofvolume)
 		reagents.trans_to(C, reagents.maximum_volume * fractionofvolume)
 
 /obj/structure/fermenting_barrel/attack_hand(mob/user)
+	if(src.contents.Find(user))
+		user_unbuckle_mob(user, user)
+		return
 	if(open && user.pulling && user.a_intent == "grab" && iscarbon(user.pulling))
 		if(storedmobs >= maxstoredmobs)
 			to_chat(user, "<span class='warning'>The barrel is already full!</span>")
@@ -30,20 +32,20 @@
 		storedmobs++
 		buckle_mob(C, force=1)
 		if(desc == initial(desc) && storedmobs > 0)
-			desc += "<b>Something lies inside the barrel...</b>"
+			desc += "<b> Something lies inside the barrel...</b>"
 		return
 	open = !open
-	if(open)
+	if(open && !src.contents.Find(user))
 		DISABLE_BITFIELD(reagents.reagents_holder_flags, DRAINABLE)
 		ENABLE_BITFIELD(reagents.reagents_holder_flags, REFILLABLE)
 		to_chat(user, "<span class='notice'>You open [src], letting you fill it.</span>")
-	else
+	else if(!open && !src.contents.Find(user))
 		DISABLE_BITFIELD(reagents.reagents_holder_flags, REFILLABLE)
 		ENABLE_BITFIELD(reagents.reagents_holder_flags, DRAINABLE)
 		to_chat(user, "<span class='notice'>You close [src], letting you draw from its tap.</span>")
 	update_icon()
 
-/obj/structure/fermenting_barrel/user_unbuckle_mob(mob/living/carbon/buckled_mob, mob/living/carbon/user)
+/obj/structure/fermenting_barrel/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)
 	if(buckled_mob == user)
 		if(open)
 			unbuckle_mob(buckled_mob,force=1)
@@ -65,10 +67,18 @@
 			buckled_mob.forceMove(src.loc)
 			if(storedmobs <= 0)
 				desc = initial(desc)
+	else
+		if(open)
+			src.visible_message(text("<span class='danger'>[user] pulls [buckled_mob] out of [src]!</span>"))
+			storedmobs--
+			unbuckle_mob(buckled_mob,force=1)
+			buckled_mob.forceMove(src.loc)
+			if(storedmobs <= 0)
+				desc = initial(desc)
 
 /obj/structure/fermenting_barrel/MouseDrop_T(mob/living/target, mob/living/user)
 	if(target == user && open)
-		if(iscarbon(user))
+		if(iscarbon(user) && storedmobs < maxstoredmobs)
 			var/mob/living/carbon/C = user
 			C.visible_message("<span class='notice'>[C] is trying to climb inside [src].</span>")
 			if(!do_after(C, 40, target = src))
@@ -81,3 +91,19 @@
 				desc += "<b>Something lies inside the barrel...</b>"
 	else if(target == user && !open)
 		to_chat(user, "<span class='notice'>You can't climb on [src], it is closed!</span>")
+
+/obj/structure/fermenting_barrel/AltClick(mob/living/user)
+	if(open)
+		if(storedmobs)
+			if(!do_after(user, 25, target = src))
+				to_chat(user, "<span class='notice'>You fail to pull out anyone from the [src].</span>")
+				return
+			for(var/mob/living/carbon/C in src)
+				storedmobs--
+				unbuckle_mob(C,force=1)
+				C.forceMove(src.loc)
+				if(storedmobs <= 0)
+					desc = initial(desc)
+			user.visible_message("<span class='notice'>[user] pulled out everyone that was in [src].</span>")
+	else
+		to_chat(user, "<span class='notice'>You can't climb pull people out of a closed barrel.</span>")
