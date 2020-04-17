@@ -21,35 +21,29 @@
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bluetie"
 	item_state = ""	//no inhands
-	item_color = "bluetie"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/clothing/neck/tie/blue
 	name = "blue tie"
 	icon_state = "bluetie"
-	item_color = "bluetie"
 
 /obj/item/clothing/neck/tie/red
 	name = "red tie"
 	icon_state = "redtie"
-	item_color = "redtie"
 
 /obj/item/clothing/neck/tie/black
 	name = "black tie"
 	icon_state = "blacktie"
-	item_color = "blacktie"
 
 /obj/item/clothing/neck/tie/horrible
 	name = "horrible tie"
 	desc = "A neosilk clip-on tie. This one is disgusting."
 	icon_state = "horribletie"
-	item_color = "horribletie"
 
 /obj/item/clothing/neck/stethoscope
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
 	icon_state = "stethoscope"
-	item_color = "stethoscope"
 
 /obj/item/clothing/neck/stethoscope/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] puts \the [src] to [user.p_their()] chest! It looks like [user.p_they()] wont hear much!</span>")
@@ -94,7 +88,6 @@
 	name = "white scarf"
 	icon_state = "scarf"
 	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
-	item_color = "scarf"
 	dog_fashion = /datum/dog_fashion/head
 
 /obj/item/clothing/neck/scarf/black
@@ -148,12 +141,10 @@
 /obj/item/clothing/neck/scarf/zebra
 	name = "zebra scarf"
 	icon_state = "zebrascarf"
-	item_color = "zebrascarf"
 
 /obj/item/clothing/neck/scarf/christmas
 	name = "christmas scarf"
 	icon_state = "christmasscarf"
-	item_color = "christmasscarf"
 
 //The three following scarves don't have the scarf subtype
 //This is because Ian can equip anything from that subtype
@@ -161,17 +152,14 @@
 /obj/item/clothing/neck/stripedredscarf
 	name = "striped red scarf"
 	icon_state = "stripedredscarf"
-	item_color = "stripedredscarf"
 
 /obj/item/clothing/neck/stripedgreenscarf
 	name = "striped green scarf"
 	icon_state = "stripedgreenscarf"
-	item_color = "stripedgreenscarf"
 
 /obj/item/clothing/neck/stripedbluescarf
 	name = "striped blue scarf"
 	icon_state = "stripedbluescarf"
-	item_color = "stripedbluescarf"
 
 ///////////
 //COLLARS//
@@ -181,13 +169,6 @@
 	name = "pet collar"
 	desc = "It's for pets. Though you probably could wear it yourself, you'd doubtless be the subject of ridicule. It seems to be made out of a polychromic material."
 	icon_state = "petcollar"
-<<<<<<< HEAD
-	item_color = "petcollar"
-	alternate_worn_icon = 'icons/mob/neck.dmi' //Because, as it appears, the item itself is normally not directly aware of its worn overlays, so this is about the easiest way, without adding a new var.
-	hasprimary = TRUE
-	primary_color = "#00BBBB"
-=======
->>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/collar
 	var/poly_states = 1
 	var/poly_colors = list("#00BBBB")
@@ -209,53 +190,17 @@
 	tagname = stripped_input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot", MAX_NAME_LEN)
 	name = "[initial(name)] - [tagname]"
 
-<<<<<<< HEAD
-/obj/item/clothing/neck/petcollar/worn_overlays(isinhands, icon_file, style_flags = NONE)
-	. = ..()
-	if(hasprimary | hassecondary | hastertiary)
-		if(!isinhands)	//prevents the worn sprites from showing up if you're just holding them
-			if(hasprimary)	//checks if overlays are enabled
-				var/mutable_appearance/primary_worn = mutable_appearance(alternate_worn_icon, "[item_color]-primary")	//automagical sprite selection
-				primary_worn.color = primary_color	//colors the overlay
-				. += primary_worn	//adds the overlay onto the buffer list to draw on the mob sprite
-			if(hassecondary)
-				var/mutable_appearance/secondary_worn = mutable_appearance(alternate_worn_icon, "[item_color]-secondary")
-				secondary_worn.color = secondary_color
-				. += secondary_worn
-			if(hastertiary)
-				var/mutable_appearance/tertiary_worn = mutable_appearance(alternate_worn_icon, "[item_color]-tertiary")
-				tertiary_worn.color = tertiary_color
-				. += tertiary_worn
-
-/obj/item/clothing/neck/petcollar/leather
-	name = "leather pet collar"
-	icon_state = "leathercollar"
-	item_color = "leathercollar"
-
-	hasprimary = TRUE
-	hassecondary = TRUE
-	primary_color = "#222222"
-	secondary_color = "#888888"
-=======
 /obj/item/clothing/neck/petcollar/leather
 	name = "leather pet collar"
 	icon_state = "leathercollar"
 	poly_states = 2
 	poly_colors = list("#222222", "#888888")
->>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611
 
 /obj/item/clothing/neck/petcollar/choker
 	desc = "Quite fashionable... if you're somebody who's just read their first BDSM-themed erotica novel."
 	name = "choker"
 	icon_state = "choker"
-<<<<<<< HEAD
-	item_color = "choker"
-
-	hasprimary = TRUE
-	primary_color = "#222222"
-=======
 	poly_colors = list("#222222")
->>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611
 
 /obj/item/clothing/neck/petcollar/locked
 	name = "locked collar"
@@ -283,30 +228,14 @@
 /obj/item/clothing/neck/petcollar/locked/leather
 	name = "leather pet collar"
 	icon_state = "leathercollar"
-<<<<<<< HEAD
-	item_color = "leathercollar"
-
-	hasprimary = TRUE
-	hassecondary = TRUE
-	primary_color = "#222222"
-	secondary_color = "#888888"
-=======
 	poly_states = 2
 	poly_colors = list("#222222", "#888888")
->>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611
 
 /obj/item/clothing/neck/petcollar/locked/choker
 	name = "choker"
 	desc = "Quite fashionable... if you're somebody who's just read their first BDSM-themed erotica novel."
 	icon_state = "choker"
-<<<<<<< HEAD
-	item_color = "choker"
-
-	hasprimary = TRUE
-	primary_color = "#222222"
-=======
 	poly_colors = list("#222222")
->>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611
 
 /obj/item/key/collar
 	name = "Collar Key"
@@ -321,7 +250,6 @@
 	desc = "Damn, it feels good to be a gangster."
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bling"
-	item_color = "bling"
 
 //////////////////////////////////
 //VERY SUPER BADASS NECKERCHIEFS//
@@ -335,7 +263,7 @@ obj/item/clothing/neck/neckerchief
 /obj/item/clothing/neck/neckerchief/worn_overlays(isinhands)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/realOverlay = mutable_appearance('icons/mob/mask.dmi', icon_state)
+		var/mutable_appearance/realOverlay = mutable_appearance('icons/mob/clothing/mask.dmi', icon_state)
 		realOverlay.pixel_y = -3
 		. += realOverlay
 
