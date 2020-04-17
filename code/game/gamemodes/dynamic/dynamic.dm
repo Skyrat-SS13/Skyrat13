@@ -658,11 +658,15 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 		pop_last_updated = world.time
 		update_playercounts()
 
+	/// Recalculate our threat
+	threat = 0
 	for (var/datum/dynamic_ruleset/rule in current_rules)
 		if(rule.rule_process() == RULESET_STOP_PROCESSING) // If rule_process() returns 1 (RULESET_STOP_PROCESSING), stop processing.
 			current_rules -= rule
 			SSblackbox.record_feedback("tally","dynamic",1,"Rulesets finished")
 			SSblackbox.record_feedback("associative","dynamic_rulesets_finished",1,rule.get_blackbox_info())
+		else
+			threat += rule.cost
 
 	storyteller.do_process()
 
@@ -790,6 +794,8 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 
 /// Decrease the threat level.
 /datum/game_mode/dynamic/proc/remove_threat(loss)
+	if (loss < 0)
+		loss *= -1
 	threat_level -= loss
 	SSblackbox.record_feedback("tally","dynamic_threat",loss,"Removed threat level")
 	log_threat("[loss] removed. Threat level is now [threat_level].", verbose = TRUE)
