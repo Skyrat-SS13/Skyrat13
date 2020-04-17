@@ -228,7 +228,7 @@
 	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
 	icon_state = "hardsuit0-powerarmor"
 	item_state = "hardsuit0-powerarmor"
-	item_color = "powerarmor"
+	hardsuit_type = "powerarmor"
 	clothing_flags = THICKMATERIAL //Ouchie oofie my bones
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100)
 	resistance_flags = ACID_PROOF
