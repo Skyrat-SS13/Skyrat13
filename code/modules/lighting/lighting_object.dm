@@ -23,7 +23,7 @@
 
 	myturf = loc
 	if (myturf.lighting_object)
-		SSrecycling.recycle_movable_lighting_object(myturf.lighting_object, force = TRUE) //skyrat change
+		qdel(myturf.lighting_object, force = TRUE)
 	myturf.lighting_object = src
 	myturf.luminosity = 0
 
@@ -57,7 +57,7 @@
 			var/turf/newturf = get_turf(loc)
 			warning("A lighting object realised it's loc had changed in update() ([myturf]\[[myturf ? myturf.type : "null"]]([COORD(oldturf)]) -> [loc]\[[ loc ? loc.type : "null"]]([COORD(newturf)]))!")
 
-		SSrecycling.recycle_movable_lighting_object(src, TRUE) //Skyrat change
+		qdel(src, TRUE)
 		return
 
 	// To the future coder who sees this and thinks
