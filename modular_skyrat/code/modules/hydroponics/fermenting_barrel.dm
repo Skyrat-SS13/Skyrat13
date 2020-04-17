@@ -11,7 +11,6 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/fermenting_barrel/process()
-	. = ..()
 	for(var/mob/living/carbon/C in src.contents)
 		src.reagents.trans_to(C, volumeperprocess)
 		src.reagents.reaction(C, TOUCH)
@@ -54,8 +53,14 @@
 /obj/structure/fermenting_barrel/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)
 	if(buckled_mob == user)
 		if(open)
+			buckled_mob.visible_message(\
+			"<span class='warning'>[buckled_mob] struggles to break free from [src]!</span>",\
+			"<span class='warning'>You struggle to break free from [src]! (Stay still for about 3 seconds.)</span>")
 			if(!do_after(buckled_mob, 25, target = src))
 				to_chat(buckled_mob, "<span class='warning'>You fail to free yourself!</span>")
+			buckled_mob.visible_message(\
+			"<span class='warning'>[buckled_mob] breaks free from [src]!</span>",\
+			"<span class='warning'>You break free from [src]!</span>")
 			unbuckle_mob(buckled_mob,force=1)
 			buckled_mob.forceMove(src.loc)
 			storedmobs--
@@ -64,7 +69,7 @@
 		else
 			buckled_mob.visible_message(\
 			"<span class='warning'>[buckled_mob] struggles to break free from [src]!</span>",\
-			"<span class='notice'>You struggle to break free from [src]! (Stay still for 30 seconds.)</span>",\
+			"<span class='warning'>You struggle to break free from [src]! (Stay still for 30 seconds.)</span>",\
 			"<span class='italics'>You hear something woody being punched...</span>")
 			if(!do_after(buckled_mob, 300, target = src))
 				if(buckled_mob && buckled_mob.buckled)
@@ -115,4 +120,4 @@
 					desc = initial(desc)
 			user.visible_message("<span class='notice'>[user] pulled out everyone that was in [src].</span>")
 	else
-		to_chat(user, "<span class='notice'>You can't climb pull people out of a closed barrel.</span>")
+		to_chat(user, "<span class='notice'>You can't pull people out of a closed barrel.</span>")
