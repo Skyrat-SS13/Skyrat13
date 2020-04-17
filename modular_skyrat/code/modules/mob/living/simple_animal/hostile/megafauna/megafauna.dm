@@ -52,18 +52,20 @@
 				chosenlength = text2num(chosenlengthstring)
 				chosensong = songs[chosenlengthstring]
 				if(chosensong && !songend)
-					M.stop_sound_channel(CHANNEL_AMBIENCE)
-					songend = chosenlength + world.time
-					M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong) // so silence ambience will mute moosic for people who don't want that
+					if(M.client.prefs.toggles & SOUND_AMBIENCE)
+						M.stop_sound_channel(CHANNEL_AMBIENCE)
+						songend = chosenlength + world.time
+						M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong) // so silence ambience will mute moosic for people who don't want that
 		else if(ismecha(A))
 			var/obj/mecha/M = A
 			if(M.occupant)
 				enemies |= M
 				enemies |= M.occupant
 				var/mob/living/O = M.occupant
-				O.stop_sound_channel(CHANNEL_AMBIENCE)
-				songend = chosenlength + world.time
-				O.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong)
+				if(M.client.prefs.toggles & SOUND_AMBIENCE)
+					O.stop_sound_channel(CHANNEL_AMBIENCE)
+					songend = chosenlength + world.time
+					O.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong)
 
 	for(var/mob/living/simple_animal/hostile/megafauna/H in around)
 		if(faction_check_mob(H) && !attack_same && !H.attack_same)
@@ -80,9 +82,10 @@
 	if(songend)
 		if(world.time >= songend)
 			for(var/mob/living/M in view(src, vision_range))
-				M.stop_sound_channel(CHANNEL_AMBIENCE)
-				songend = chosenlength + world.time
-				M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong)
+				if(M.client.prefs.toggles & SOUND_AMBIENCE)
+					M.stop_sound_channel(CHANNEL_AMBIENCE)
+					songend = chosenlength + world.time
+					M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong)
 	if(health <= (maxHealth/25) && !glorykill && stat != DEAD)
 		glorykill = TRUE
 		glory()
