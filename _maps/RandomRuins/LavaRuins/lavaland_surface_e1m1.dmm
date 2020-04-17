@@ -33,7 +33,7 @@
 /turf/open/floor/plating/asteroid,
 /area/ruin/powered/e1m1)
 "j" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermenting_barrel/doom,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/e1m1)
 "k" = (
@@ -84,7 +84,7 @@
 /turf/open/floor/carpet/blue/doomed,
 /area/ruin/powered/e1m1)
 "v" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermenting_barrel/doom,
 /turf/open/floor/carpet/blue/doomed,
 /area/ruin/powered/e1m1)
 "w" = (
@@ -736,14 +736,14 @@ a
 a
 b
 k
-g
+j
 n
 g
 g
 n
 g
 g
-g
+j
 k
 b
 a

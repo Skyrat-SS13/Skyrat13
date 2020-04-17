@@ -85,6 +85,20 @@
 	desc = "Shotguns can deliver a heavy punch at close range and a generous pelting from a distance. Not nearly as powerful as it's super variant."
 	w_class = WEIGHT_CLASS_NORMAL
 
+/obj/structure/fermenting_barrel/doom
+	name = "toxic waste barrel"
+	desc = "Filled with bad stuff. Probably explodes."
+	icon = 'modular_skyrat/icons/obj/doom.dmi'
+	icon_state = "barrel"
+
+/obj/structure/fermenting_barrel/doom/Initialize()
+	..()
+	src.reagents.add_reagent(pick(subtypesof(/datum/reagent/toxin)), 300)
+
+/obj/structure/fermenting_barrel/doom/Destroy()
+	. = ..()
+	explosion(src.loc, -1, -1, 1, -1, 0, 3)
+
 /area/ruin/powered/e1m1
 	name = "Hangar"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
