@@ -28,9 +28,9 @@
 	set category = "Berserk"
 
 	to_chat(usr, "<b><i>You retreat inward and recall the teachings of the berserker...</i></b>")
-	to_chat(usr, "<span class='notice'>Disarm</span>: Literally disarms the opponent. If unable to disarm, simply punches them hard and stuns them instead.")
+	to_chat(usr, "<span class='notice'>Disarm</span>: Literally disarms the opponent. If unable to disarm, simply punches them hard and stuns them instead. Aim at the arm for best results.")
 	to_chat(usr, "<span class='notice'>Harm</span>: Punch the opponent hard, dealing a lot of brute damage and also damaging organs. Gibs dead/critical opponents, healing you with the power of BLOOD.")
-	to_chat(usr, "<span class='notice'>Harm</span>: Punches the opponent at lightspeed, throwing them away from you.")
+	to_chat(usr, "<span class='notice'>Grab</span>: Punches the opponent at lightspeed, throwing them away from you.")
 
 /datum/martial_art/berserk/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	var/def_zone = A.zone_selected
@@ -40,12 +40,18 @@
 			bodyp.dismember()
 			A.visible_message("<span class='danger'>[A] literally disarms [D]!</span>")
 		else
-			A.visible_message("<span class='danger'>[A] tries to disarm [D], but they have no arms!</span>")
+			A.visible_message("<span class='danger'>[A] only gets enraged by the fact that he can't rip and tear the [D]'s [def_zone], and punches them hard!</span>")
+			playsound(A.loc, 'sound/misc/crunch.ogg', 100, TRUE)
+			playsound(A.loc, 'sound/misc/crack.ogg', 100, TRUE)
+			D.apply_damage(damage = 15,damagetype = BRUTE, def_zone = def_zone, blocked = FALSE, forced = FALSE)
+			D.DefaultCombatKnockdown(25, override_stamdmg = 0)
+			D.adjustStaminaLoss(15)
+			D.drop_all_held_items()
 	else
 		A.visible_message("<span class='danger'>[A] only gets enraged by the fact that he can't rip and tear the [D]'s [def_zone], and punches them hard!</span>")
 		playsound(A.loc, 'sound/misc/crunch.ogg', 100, TRUE)
 		playsound(A.loc, 'sound/misc/crack.ogg', 100, TRUE)
-		D.apply_damage(damage = 20,damagetype = BRUTE, def_zone = def_zone, blocked = FALSE, forced = FALSE)
+		D.apply_damage(damage = 15,damagetype = BRUTE, def_zone = def_zone, blocked = FALSE, forced = FALSE)
 		D.DefaultCombatKnockdown(25, override_stamdmg = 0)
 		D.adjustStaminaLoss(15)
 		D.drop_all_held_items()
@@ -61,7 +67,7 @@
 		A.visible_message("<span class='danger'>[A] punches [D] HARD!!</span>")
 		playsound(A.loc, 'sound/misc/crunch.ogg', 100, TRUE)
 		playsound(A.loc, 'sound/misc/crack.ogg', 100, TRUE)
-		D.apply_damage(damage = 22.5,damagetype = BRUTE, def_zone = def_zone, blocked = FALSE, forced = FALSE)
+		D.apply_damage(damage = 25,damagetype = BRUTE, def_zone = def_zone, blocked = FALSE, forced = FALSE)
 		if(D.health <= 0)
 			A.visible_message("<span class='danger'>[A] rips [D] apart!</span>")
 			D.gib()
