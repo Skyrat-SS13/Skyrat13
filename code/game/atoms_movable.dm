@@ -50,11 +50,12 @@
 	switch(blocks_emissive)
 		if(EMISSIVE_BLOCK_GENERIC)
 			update_emissive_block()
+#if DM_VERSION >= 513
 		if(EMISSIVE_BLOCK_UNIQUE)
 			render_target = ref(src)
 			em_block = new(src, render_target)
 			vis_contents += em_block
-
+#endif
 /atom/movable/Destroy()
 	QDEL_NULL(em_block)
 	return ..()

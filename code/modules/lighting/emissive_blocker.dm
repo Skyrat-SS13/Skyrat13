@@ -20,9 +20,9 @@
 /atom/movable/emissive_blocker/Initialize(mapload, source)
 	. = ..()
 	verbs.Cut() //Cargo culting from lighting object, this maybe affects memory usage?
-
+#if DM_VERSION >= 513
 	render_source = source
-
+#endif
 /atom/movable/emissive_blocker/ex_act(severity)
 	return FALSE
 
