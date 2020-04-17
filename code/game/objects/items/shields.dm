@@ -163,7 +163,10 @@
 	custom_materials = list(/datum/material/glass=7500, /datum/material/iron=1000)
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
+<<<<<<< HEAD
 	var/repair_material = /obj/item/stack/sheet/mineral/titanium
+=======
+>>>>>>> 7cc7d6884a... Merge pull request #11820 from kevinz000/shield_bashing
 	shield_flags = SHIELD_FLAGS_DEFAULT | SHIELD_TRANSPARENT
 	max_integrity = 75
 
@@ -246,7 +249,10 @@ obj/item/shield/riot/bullet_proof
 	item_state = "roman_shield"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+<<<<<<< HEAD
 	repair_material = /obj/item/stack/sheet/mineral/wood
+=======
+>>>>>>> 7cc7d6884a... Merge pull request #11820 from kevinz000/shield_bashing
 	shield_flags = SHIELD_FLAGS_DEFAULT
 	max_integrity = 65
 
@@ -348,12 +354,15 @@ obj/item/shield/riot/bullet_proof
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = SLOWS_WHILE_IN_HAND
 	shield_flags = SHIELD_FLAGS_DEFAULT
+<<<<<<< HEAD
 
 /obj/item/shield/riot/tower/swat
 	name = "swat shield"
 	desc = "A massive, heavy shield that can block a lot of attacks, can take a lot of abuse before breaking."
 	max_integrity = 175
 	block_chance = 50
+=======
+>>>>>>> 7cc7d6884a... Merge pull request #11820 from kevinz000/shield_bashing
 
 /obj/item/shield/riot/implant
 	name = "riot tower shield"
