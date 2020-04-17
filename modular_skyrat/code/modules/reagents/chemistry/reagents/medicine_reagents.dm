@@ -44,3 +44,34 @@
 	M.adjustFireLoss(0.5*REM, 0)
 	..()
 	. = 1
+
+/datum/reagent/medicine/synthflesh
+	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed."
+
+/datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+
+	if(!iscarbon(M))
+		return ..()
+
+	if(M.stat == DEAD)
+		show_message = 0
+
+	switch(method)
+		if(INJECT)
+			return
+		if(INGEST)
+			var/mob/living/carbon/C = M
+			C.emote("cough")
+			C.vomit()
+			if(show_message) to_chat(C, "<span class='danger'>Your stomach starts to hurt!</span>")
+		if(PATCH,TOUCH,VAPOR)
+			var/amount_healed = -(M.adjustBruteLoss(-1.25 * reac_volume) + M.adjustFireLoss(-1.25 * reac_volume))
+			if(amount_healed && M.stat != DEAD)
+				M.adjustToxLoss( amount_healed * 0.25 )
+				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+				if(show_message) to_chat(M, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
+			var/vol = reac_volume + M.reagents.get_reagent_amount(/datum/reagent/medicine/synthflesh)
+			if(HAS_TRAIT_FROM(M, TRAIT_HUSK, "burn") && M.getFireLoss() < THRESHOLD_UNHUSK && (vol > overdose_threshold))
+				M.cure_husk("burn")
+				M.visible_message("<span class='nicegreen'>Most of [M]'s burnt off or charred flesh has been restored!")
+	..()
