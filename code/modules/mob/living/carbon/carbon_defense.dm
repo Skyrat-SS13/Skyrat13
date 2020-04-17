@@ -275,6 +275,8 @@
 
 	if(health >= 0 && !(HAS_TRAIT(src, TRAIT_FAKEDEATH)))
 		var/friendly_check = FALSE
+		if(run_block(M, 0, M.name, ATTACK_TYPE_UNARMED))
+			return
 		if(lying)
 			if(buckled)
 				to_chat(M, "<span class='warning'>You need to unbuckle [src] first to do that!")
