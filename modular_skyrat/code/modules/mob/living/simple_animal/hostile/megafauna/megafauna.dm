@@ -56,7 +56,7 @@
 						M.stop_sound_channel(CHANNEL_AMBIENCE)
 						songend = chosenlength + world.time
 						M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong) // so silence ambience will mute moosic for people who don't want that
-				src.visible_message("<span class='userdanger'>[src] seems pretty pissed off!</span>")
+				src.visible_message("<span class='userdanger'>[src] seems pretty pissed off at [M]!</span>")
 		else if(ismecha(A))
 			var/obj/mecha/M = A
 			if(M.occupant)
@@ -67,7 +67,7 @@
 					O.stop_sound_channel(CHANNEL_AMBIENCE)
 					songend = chosenlength + world.time
 					O.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong)
-				src.visible_message("<span class='userdanger'>[src] seems pretty pissed off!</span>")
+				src.visible_message("<span class='userdanger'>[src] seems pretty pissed off at [M]!</span>")
 
 	for(var/mob/living/simple_animal/hostile/megafauna/H in around)
 		if(faction_check_mob(H) && !attack_same && !H.attack_same)
