@@ -2,9 +2,13 @@
 /obj/structure/fermenting_barrel
 	var/maxstoredmobs = 3
 	var/storedmobs = 0
-	var/volumeperprocess = 3
+	var/volumeperprocess = 6
 	can_buckle = TRUE
 	climb_time = 20
+
+/obj/structure/fermenting_barrel/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
 
 /obj/structure/fermenting_barrel/process()
 	. = ..()
