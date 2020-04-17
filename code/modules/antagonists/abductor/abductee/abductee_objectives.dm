@@ -1,3 +1,5 @@
+//Modular Skyrat. This entire file is shit so it's disabled in the .dme
+
 /datum/objective/abductee
 	completed = 1
 
