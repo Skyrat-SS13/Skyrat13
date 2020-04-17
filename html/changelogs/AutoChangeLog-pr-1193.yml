@@ -1,5 +1,0 @@
-author: "CoreFlare"
-delete-after: True
-changes: 
-  - tweak: "Brig Phys no longer counts towards security hours, it counts towards medical hours."
-  - tweak: "You need medical hours in order to unlock Brig Phys now."
