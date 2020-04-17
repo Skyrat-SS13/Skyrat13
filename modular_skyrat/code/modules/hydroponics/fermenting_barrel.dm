@@ -67,7 +67,7 @@
 				desc = initial(desc)
 
 /obj/structure/fermenting_barrel/MouseDrop_T(mob/living/target, mob/living/user)
-	if(target == user)
+	if(target == user && open)
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
 			C.visible_message("<span class='notice'>[C] is trying to climb inside [src].</span>")
@@ -79,3 +79,5 @@
 			buckle_mob(C, force=1)
 			if(desc == initial(desc) && storedmobs > 0)
 				desc += "<b>Something lies inside the barrel...</b>"
+	else if(target == user && !open)
+		to_chat(user, "<span class='notice'>You can't climb on [src], it is closed!</span>")
