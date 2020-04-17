@@ -5,11 +5,10 @@
 	name = "Civil Protection uniform"
 	desc = "Pick up that can."
 	icon = 'modular_skyrat/icons/obj/clothing/uniforms.dmi'
-	alternate_worn_icon = 'modular_skyrat/icons/mob/uniform.dmi'
-	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/uniform_digi.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	mob_overlay_icon_digi = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "cpuniform"
 	item_state = "cpuniform"
-	item_color = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/civilprotection/fake
@@ -23,11 +22,10 @@
 	desc = "Gold trim on space-black cloth, this uniform bears \"Blueshield\" on the left shoulder."
 	name = "Blueshield Uniform"
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
-	alternate_worn_icon = 'modular_skyrat/icons/mob/uniform.dmi'
-	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/uniform_digi.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	mob_overlay_icon_digi = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "blueshield"
 	item_state = "blueshield"
-	item_color = "blueshield"
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" =10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
@@ -37,11 +35,10 @@
 	name = "Blueshield's turtleneck"
 	desc = "A stylish alternative to the normal Blueshield's Uniform, complete with tactical pants."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
-	alternate_worn_icon = 'modular_skyrat/icons/mob/uniform.dmi'
-	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/uniform_digi.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	mob_overlay_icon_digi = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "bs_turtleneck"
 	item_state = "bs_turtleneck"
-	item_color = "bs_turtleneck"
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" =10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
