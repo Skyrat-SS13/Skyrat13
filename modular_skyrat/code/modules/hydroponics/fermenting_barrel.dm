@@ -2,15 +2,15 @@
 /obj/structure/fermenting_barrel
 	var/maxstoredmobs = 3
 	var/storedmobs = 0
-	var/fractionofvolume = 0.1
+	var/volumeperprocess = 3
 	can_buckle = TRUE
 	climb_time = 20
 
 /obj/structure/fermenting_barrel/process()
 	. = ..()
 	for(var/mob/living/carbon/C in src.contents)
-		reagents.trans_to(C, reagents.maximum_volume * fractionofvolume)
-		reagents.reaction(C, method = TOUCH)
+		src.reagents.trans_to(C, volumeperprocess)
+		src.reagents.reaction(C, TOUCH)
 
 /obj/structure/fermenting_barrel/attack_hand(mob/user)
 	if(src.contents.Find(user))
@@ -50,7 +50,7 @@
 /obj/structure/fermenting_barrel/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)
 	if(buckled_mob == user)
 		if(open)
-			if(!do_after(buckled_mob, 300, target = src))
+			if(!do_after(buckled_mob, 25, target = src))
 				to_chat(buckled_mob, "<span class='warning'>You fail to free yourself!</span>")
 			unbuckle_mob(buckled_mob,force=1)
 			buckled_mob.forceMove(src.loc)
