@@ -1,6 +1,6 @@
 //god making clothing reskinnable is a mess
 /obj
-	var/list/unique_reskin_stored
+	var/list/unique_reskin_stored //used for the reskinning kit!
 	var/list/unique_reskin_icons
 	var/list/unique_reskin_worn
 	var/list/unique_reskin_worn_digi
@@ -28,7 +28,7 @@
 
 	var/choice = input(M, always_reskinnable ? "Choose the a reskin for [src]" : "Warning, you can only reskin [src] once!","Reskin Object") as null|anything in unique_reskin
 	if(QDELETED(src) || !choice || (current_skin && !always_reskinnable) || M.incapacitated() || !in_range(M,src) || !unique_reskin[choice] || unique_reskin[choice] == current_skin)
-		return
+		return FALSE
 	current_skin = choice
 	if(LAZYLEN(unique_reskin_icons))
 		icon = unique_reskin_icons[choice]
@@ -66,3 +66,4 @@
 			I.desc =  unique_desc[choice]
 	icon_state = unique_reskin[choice]
 	to_chat(M, "[src] is now skinned as '[choice]'.")
+	return TRUE
