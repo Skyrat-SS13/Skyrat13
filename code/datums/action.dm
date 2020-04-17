@@ -138,13 +138,6 @@
 		if(!use_target_appearance)
 			ApplyIcon(button, force)
 
-<<<<<<< HEAD
-		if(!IsAvailable())
-			button.color = transparent_when_unavailable ? rgb(128,0,0,128) : rgb(128,0,0)
-		else
-			button.color = rgb(255,255,255,255)
-			return 1
-=======
 		else if(target && button.appearance_cache != target.appearance) //replace with /ref comparison if this is not valid.
 			var/mutable_appearance/M = new(target)
 			M.layer = FLOAT_LAYER
@@ -161,7 +154,6 @@
 	else
 		button.color = rgb(255,255,255,255)
 		return 1
->>>>>>> 6d7cc834f6... Merge pull request #11379 from Ghommie/Ghommie-cit611
 
 /datum/action/proc/ApplyIcon(obj/screen/movable/action_button/current_button, force = FALSE)
 	if(icon_icon && button_icon_state && ((current_button.button_icon_state != button_icon_state) || force))
