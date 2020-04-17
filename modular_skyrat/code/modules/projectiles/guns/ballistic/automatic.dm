@@ -9,7 +9,7 @@
 	"P90" = "arg",
 	"MP5" = "arg"
 	)
-	unique_reskin = list(
+	unique_reskin_stored = list(
 	"Default" = "wt550",
 	"AR46" = "ar46",
 	"P90" = "p90",
