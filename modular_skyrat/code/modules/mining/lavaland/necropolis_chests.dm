@@ -284,8 +284,8 @@
 	strip_delay = 130
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	icon_state = "praetor"
-	alternate_worn_icon = 'modular_skyrat/icons/mob/suit.dmi'
-	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/suit_digi.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/suit.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/suit_digi.dmi'
 	item_state = "praetor"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	slowdown = 0
@@ -297,9 +297,8 @@
 	strip_delay = 130
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "praetor"
-	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
-	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/head_muzzled.dmi'
-	item_state = "praetor"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/head.dmi'
+	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/head_muzzled.dmi'
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()

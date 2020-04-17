@@ -255,7 +255,7 @@
 	item_state = "hardsuit-powerarmor"
 	slowdown = -0.05
 	clothing_flags = THICKMATERIAL //Not spaceproof. No, it isn't Spaceproof in Rimworld either.
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine. 
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine.
 	resistance_flags = ACID_PROOF
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
 
