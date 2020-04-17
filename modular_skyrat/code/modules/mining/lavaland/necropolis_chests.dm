@@ -163,10 +163,6 @@
 	var/brightness_on = 6
 	total_mass = 1
 	var/total_mass_on = TOTAL_MASS_MEDIEVAL_WEAPON
-	/*
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-	*/
 
 /obj/item/twohanded/crucible/suicide_act(mob/living/carbon/user)
 	if(wielded)
@@ -274,6 +270,31 @@
 	. = "<span class='warning'>[user] swings [user.p_their()] [name][in_mouth]. [user.p_they(TRUE)] light[user.p_s()] [user.p_their()] [A.name] in the process.</span>"
 	playsound(loc, hitsound, get_clamped_volume(), 1, -1)
 	add_fingerprint(user)
+
+//praetor suit and helmet
+/obj/item/clothing/suit/space/hardsuit/deathsquad/praetor
+	name = "Praetor Suit"
+	desc = "And those that tasted the bite of his sword named him... The Doom Slayer."
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	strip_delay = 130
+	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	icon_state = "praetor"
+	alternate_worn_icon = 'modular_skyrat/icons/mob/suit.dmi'
+	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/suit_digi.dmi'
+	item_state = "praetor"
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
+	slowdown = 0
+
+/obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
+	name = "Praetor Suit helmet"
+	desc = "That's one doomed space marine."
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	strip_delay = 130
+	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	icon_state = "praetor"
+	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
+	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/head_muzzled.dmi'
+	item_state = "praetor"
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()

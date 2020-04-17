@@ -1,5 +1,6 @@
 //god making clothing reskinnable is a mess
 /obj
+	var/list/unique_reskin_stored
 	var/list/unique_reskin_icons
 	var/list/unique_reskin_worn
 	var/list/unique_reskin_worn_digi
