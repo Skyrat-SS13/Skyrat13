@@ -2,7 +2,7 @@
 /obj/structure/fermenting_barrel
 	var/maxstoredmobs = 3
 	var/storedmobs = 0
-	var/volumeperprocess = 6
+	var/volumeperprocess = 2.5
 	can_buckle = TRUE
 	climb_time = 20
 
