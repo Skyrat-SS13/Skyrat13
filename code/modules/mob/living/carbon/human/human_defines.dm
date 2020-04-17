@@ -10,6 +10,8 @@
 	combat_flags = COMBAT_FLAGS_DEFAULT
 	status_flags = CANSTUN|CANKNOCKDOWN|CANUNCONSCIOUS|CANPUSH|CANSTAGGER
 
+	//blocks_emissive = EMISSIVE_BLOCK_UNIQUE // Skyrat edit -- 512 compatibility
+	
 	//Hair colour and style
 	var/hair_color = "000"
 	var/hair_style = "Bald"

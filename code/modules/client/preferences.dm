@@ -77,10 +77,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/be_random_body = 0				//whether we'll have a random body every round
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
+	//SKYRAT CHANGES
 	var/ooc_notes
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
 	var/vorepref = "Ask"
+	var/general_records = ""
+	var/security_records = ""
+	var/medical_records = ""
+	var/flavor_background = ""
+	var/character_skills = ""
+	var/exploitable_info = ""
+	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
 	var/undershirt = "Nude"				//undershirt type
@@ -130,6 +138,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		"cock_length" = COCK_SIZE_DEF,
 		"cock_diameter_ratio" = COCK_DIAMETER_RATIO_DEF,
 		"cock_color" = "fff",
+		"cock_taur" = FALSE,
 		"has_balls" = FALSE,
 		"balls_color" = "fff",
 		"balls_shape" = DEF_BALLS_SHAPE,
@@ -154,7 +163,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		"ipc_antenna" = "None",
 		"flavor_text" = "",
 		"meat_type" = "Mammalian",
-		"body_model" = MALE
+		"body_model" = MALE,
+		"body_size" = RESIZE_DEFAULT_SIZE
 		)
 
 	var/list/custom_names = list()
@@ -297,8 +307,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>[nameless ? "Default designation" : "Name"]:</b>"
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
 
-			dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
-			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a>"
+			dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
+			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
 			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a><BR>"
 
 			dat += "<b>Special Names:</b><BR>"
@@ -340,20 +350,32 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>Flavor Text</h2>"
-			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a>"
+			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a>" //skyrat - <br> moved one line down
+			//SKYRAT EDIT
 			dat += 	"<a href='?_src_=prefs;preference=ooc_notes;task=input'>Set OOC Notes</a><br>"
 			dat += 	"ERP : <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
 			dat += 	"Non-Con : <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
 			dat += 	"Vore : <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
+			//END OF SKYRAT EDIT
 			if(length(features["flavor_text"]) <= 40)
 				if(!length(features["flavor_text"]))
-					dat += "\[...\]"
+					dat += "\[...\]<BR>" //skyrat - adds <br>
 				else
-					dat += "[features["flavor_text"]]"
+					dat += "[features["flavor_text"]]<BR>" //skyrat - adds <br>
 			else
 				dat += "[TextPreview(features["flavor_text"])]...<BR>"
+			//SKYRAT EDIT
+			dat += 	"Records :"
+			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a>"
+			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'>Security</a>"
+			dat += 	"<a href='?_src_=prefs;preference=medical_records;task=input'>Medical</a><br>"
+			dat += 	"Character :"
+			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a>"
+			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
+			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
+			//END OF SKYRAT EDIT
 			dat += "<h2>Body</h2>"
-			dat += "<b>Gender:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=gender'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
+			dat += "<b>Gender:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
 			if(gender != NEUTER && pref_species.sexes)
 				dat += "<b>Body Model:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=body_model'>[features["body_model"] == MALE ? "Masculine" : "Feminine"]</a><BR>"
 			dat += "<b>Species:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><BR>"
@@ -386,6 +408,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Tertiary Color:</b><BR>"
 				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor3"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color3;task=input'>Change</a><BR>"
 				mutant_colors = TRUE
+
+			if (CONFIG_GET(number/body_size_min) != CONFIG_GET(number/body_size_max))
+				dat += "<b>Sprite Size:</b> <a href='?_src_=prefs;preference=body_size;task=input'>[features["body_size"]]%</a><br>"
 
 			if((EYECOLOR in pref_species.species_traits) && !(NOEYES in pref_species.species_traits))
 
@@ -771,7 +796,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						dat += "<b>Penis Color:</b></a><BR>"
 						dat += "<span style='border: 1px solid #161616; background-color: #[features["cock_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=cock_color;task=input'>Change</a><br>"
-					dat += "<b>Penis Shape:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_shape;task=input'>[features["cock_shape"]]</a>"
+					var/tauric_shape = FALSE
+					if(features["cock_taur"])
+						var/datum/sprite_accessory/penis/P = GLOB.cock_shapes_list[features["cock_shape"]]
+						if(P.taur_icon && pref_species.mutant_bodyparts["taur"])
+							var/datum/sprite_accessory/taur/T = GLOB.taur_list[features["taur"]]
+							if(T.taur_mode & P.accepted_taurs)
+								tauric_shape = TRUE
+					dat += "<b>Penis Shape:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_shape;task=input'>[features["cock_shape"]][tauric_shape ? " (Taur)" : ""]</a>"
 					dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[features["cock_length"]] inch(es)</a>"
 					dat += "<b>Penis Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cock_visibility;task=input'>[features["cock_visibility"]]</a>"
 					dat += "<b>Has Testicles:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=has_balls'>[features["has_balls"] == TRUE ? "Yes" : "No"]</a>"
@@ -1502,10 +1534,42 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(!isnull(msg))
 						features["flavor_text"] = html_decode(msg)
 
+				//SKYRAT CHANGES
 				if("ooc_notes")
 					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", ooc_notes, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
-						ooc_notes = msg
+						ooc_notes = html_decode(msg)
+
+				if("general_records")
+					var/msg = stripped_multiline_input(usr, "Set your general records", "General Records", general_records, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						general_records = html_decode(msg)
+
+				if("security_records")
+					var/msg = stripped_multiline_input(usr, "Set your security records", "Security Records", security_records, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						security_records = html_decode(msg)
+
+				if("medical_records")
+					var/msg = stripped_multiline_input(usr, "Set your medical records", "Medical Records", medical_records, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						medical_records = html_decode(msg)
+
+				if("flavor_background")
+					var/msg = stripped_multiline_input(usr, "Set your background", "Character Background", flavor_background, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						flavor_background = html_decode(msg)
+
+				if("character_skills")
+					var/msg = stripped_multiline_input(usr, "Set your skills or hobbies", "Character Skills", character_skills, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						character_skills = html_decode(msg)
+
+				if("exploitable_info")
+					var/msg = stripped_multiline_input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info, MAX_FLAVOR_LEN, TRUE)
+					if(msg)
+						exploitable_info = html_decode(msg)
+				//END OF SKYRAT CHANGES
 
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
@@ -1627,7 +1691,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
 
 				if("mutant_color2")
-					var/new_mutantcolor = input(user, "Choose your character's secondary alien/mutant color:", "Character Preference") as color|null
+					var/new_mutantcolor = input(user, "Choose your character's secondary alien/mutant color:", "Character Preference","#"+features["mcolor2"]) as color|null
 					if(new_mutantcolor)
 						var/temp_hsv = RGBtoHSV(new_mutantcolor)
 						if(new_mutantcolor == "#000000")
@@ -1638,7 +1702,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
 
 				if("mutant_color3")
-					var/new_mutantcolor = input(user, "Choose your character's tertiary alien/mutant color:", "Character Preference") as color|null
+					var/new_mutantcolor = input(user, "Choose your character's tertiary alien/mutant color:", "Character Preference","#"+features["mcolor3"]) as color|null
 					if(new_mutantcolor)
 						var/temp_hsv = RGBtoHSV(new_mutantcolor)
 						if(new_mutantcolor == "#000000")
@@ -1939,7 +2003,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				//Genital code
 				if("cock_color")
-					var/new_cockcolor = input(user, "Penis color:", "Character Preference") as color|null
+					var/new_cockcolor = input(user, "Penis color:", "Character Preference","#"+features["cock_color"]) as color|null
 					if(new_cockcolor)
 						var/temp_hsv = RGBtoHSV(new_cockcolor)
 						if(new_cockcolor == "#000000")
@@ -1958,8 +2022,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("cock_shape")
 					var/new_shape
-					new_shape = input(user, "Penis shape:", "Character Preference") as null|anything in GLOB.cock_shapes_list
+					var/list/hockeys = list()
+					if(pref_species.mutant_bodyparts["taur"])
+						var/datum/sprite_accessory/taur/T = GLOB.taur_list[features["taur"]]
+						for(var/A in GLOB.cock_shapes_list)
+							var/datum/sprite_accessory/penis/P = GLOB.cock_shapes_list[A]
+							if(P.taur_icon && T.taur_mode & P.accepted_taurs)
+								LAZYSET(hockeys, "[A] (Taur)", A)
+					new_shape = input(user, "Penis shape:", "Character Preference") as null|anything in (GLOB.cock_shapes_list + hockeys)
 					if(new_shape)
+						features["cock_taur"] = FALSE
+						if(hockeys[new_shape])
+							new_shape = hockeys[new_shape]
+							features["cock_taur"] = TRUE
 						features["cock_shape"] = new_shape
 
 				if("cock_visibility")
@@ -1968,7 +2043,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						features["cock_visibility"] = n_vis
 
 				if("balls_color")
-					var/new_ballscolor = input(user, "Testicles Color:", "Character Preference") as color|null
+					var/new_ballscolor = input(user, "Testicles Color:", "Character Preference","#"+features["balls_color"]) as color|null
 					if(new_ballscolor)
 						var/temp_hsv = RGBtoHSV(new_ballscolor)
 						if(new_ballscolor == "#000000")
@@ -1995,7 +2070,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						features["breasts_shape"] = new_shape
 
 				if("breasts_color")
-					var/new_breasts_color = input(user, "Breast Color:", "Character Preference") as color|null
+					var/new_breasts_color = input(user, "Breast Color:", "Character Preference","#"+features["breasts_color"]) as color|null
 					if(new_breasts_color)
 						var/temp_hsv = RGBtoHSV(new_breasts_color)
 						if(new_breasts_color == "#000000")
@@ -2017,7 +2092,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						features["vag_shape"] = new_shape
 
 				if("vag_color")
-					var/new_vagcolor = input(user, "Vagina color:", "Character Preference") as color|null
+					var/new_vagcolor = input(user, "Vagina color:", "Character Preference","#"+features["vag_color"]) as color|null
 					if(new_vagcolor)
 						var/temp_hsv = RGBtoHSV(new_vagcolor)
 						if(new_vagcolor == "#000000")
@@ -2117,6 +2192,38 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_toggle_color)
 						hud_toggle_color = new_toggle_color
 
+				if("gender")
+					var/chosengender = input(user, "Select your character's gender.", "Gender Selection", gender) as null|anything in list(MALE,FEMALE,"nonbinary","object")
+					if(!chosengender)
+						return
+					switch(chosengender)
+						if("nonbinary")
+							chosengender = PLURAL
+							features["body_model"] = pick(MALE, FEMALE)
+						if("object")
+							chosengender = NEUTER
+							features["body_model"] = MALE
+						else
+							features["body_model"] = chosengender
+					gender = chosengender
+					facial_hair_style = random_facial_hair_style(gender)
+					hair_style = random_hair_style(gender)
+
+				if("body_size")
+					var/min = CONFIG_GET(number/body_size_min)
+					var/max = CONFIG_GET(number/body_size_max)
+					var/danger = CONFIG_GET(number/threshold_body_size_slowdown)
+					var/new_body_size = input(user, "Choose your desired sprite size:\n([min*100]%-[max*100]%), Warning: May make your character look distorted[danger > min ? ", and an exponential slowdown will occur for those smaller than [danger*100]%!" : "!"]", "Character Preference", features["body_size"]*100) as num|null
+					if (new_body_size)
+						new_body_size = CLAMP(new_body_size * 0.01, min, max)
+						var/dorfy
+						if(danger > new_body_size)
+							dorfy = alert(user, "The chosen size appears to be smaller than the threshold of [danger*100]%, which will lead to an added exponential slowdown. Are you sure about that?", "Dwarfism Alert", "Yes", "Move it to the threshold", "No")
+							if(!dorfy || dorfy == "Move it above the threshold")
+								new_body_size = danger
+						if(dorfy != "No")
+							features["body_size"] = new_body_size
+
 		else
 			switch(href_list["preference"])
 				//CITADEL PREFERENCES EDIT - I can't figure out how to modularize these, so they have to go here. :c -Pooj
@@ -2196,22 +2303,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("publicity")
 					if(unlock_content)
 						toggles ^= MEMBER_PUBLIC
-				if("gender")
-					var/chosengender = input(user, "Select your character's gender.", "Gender Selection", gender) as null|anything in list(MALE,FEMALE,"nonbinary","object")
-					if(!chosengender)
-						return
-					switch(chosengender)
-						if("nonbinary")
-							chosengender = PLURAL
-							features["body_model"] = pick(MALE, FEMALE)
-						if("object")
-							chosengender = NEUTER
-							features["body_model"] = MALE
-						else
-							features["body_model"] = chosengender
-					gender = chosengender
-					facial_hair_style = random_facial_hair_style(gender)
-					hair_style = random_hair_style(gender)
 
 				if("body_model")
 					features["body_model"] = features["body_model"] == MALE ? FEMALE : MALE
@@ -2471,6 +2562,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		pref_species = new /datum/species/human
 		save_character()
 
+	var/old_size = character.dna.features["body_size"]
+
 	character.dna.features = features.Copy()
 	character.set_species(chosen_species, icon_update = FALSE, pref_load = TRUE)
 	character.dna.real_name = character.real_name
@@ -2491,6 +2584,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		character.Digitigrade_Leg_Swap(TRUE)
 
 	character.give_genitals(TRUE) //character.update_genitals() is already called on genital.update_appearance()
+
+	character.dna.update_body_size(old_size)
 
 	SEND_SIGNAL(character, COMSIG_HUMAN_PREFS_COPIED_TO, src, icon_updates, roundstart_checks)
 

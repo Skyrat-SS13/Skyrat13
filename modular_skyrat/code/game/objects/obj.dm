@@ -35,35 +35,15 @@
 	if(LAZYLEN(unique_reskin_worn))
 		var/obj/item/I = src
 		if(I)
-			I.alternate_worn_icon = unique_reskin_worn[choice]
+			I.mob_overlay_icon = unique_reskin_worn[choice]
 	if(LAZYLEN(unique_reskin_worn_digi))
 		var/obj/item/I = src
 		if(I)
-			I.alternate_worn_icon_digi = unique_reskin_worn_digi[choice]
+			I.mob_overlay_icon_digi = unique_reskin_worn_digi[choice]
 	if(LAZYLEN(unique_reskin_worn_muzzled))
 		var/obj/item/I = src
 		if(I)
-			I.alternate_worn_icon_muzzled = unique_reskin_worn_muzzled[choice]
-	if(LAZYLEN(unique_inhand_icon_left))
-		var/obj/item/I = src
-		if(I)
-			I.lefthand_file = unique_inhand_icon_left[choice]
-	if(LAZYLEN(unique_inhand_icon_right))
-		var/obj/item/I = src
-		if(I)
-			I.righthand_file = unique_inhand_icon_right[choice]
-	if(LAZYLEN(unique_item_state))
-		var/obj/item/I = src
-		if(I)
-			I.item_state =  unique_item_state[choice]
-	if(LAZYLEN(unique_name))
-		var/obj/item/I = src
-		if(I)
-			I.name =  unique_name[choice]
-	if(LAZYLEN(unique_desc))
-		var/obj/item/I = src
-		if(I)
-			I.desc =  unique_desc[choice]
+			I.mob_overlay_icon_muzzled = unique_reskin_worn_muzzled[choice]
 	icon_state = unique_reskin[choice]
 	to_chat(M, "[src] is now skinned as '[choice]'.")
 	return TRUE

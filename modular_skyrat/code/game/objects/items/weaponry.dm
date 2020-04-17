@@ -192,3 +192,28 @@
 		H.adjustStaminaLoss(stamdamage)
 		if(loss > 100)
 			H.Sleeping(60)
+
+//stun baton staff
+/obj/item/melee/baton/staff
+	name = "batonstaff"
+	desc = "This... is two batons welded together? Oh god this is awful."
+	icon = 'modular_skyrat/icons/obj/staff.dmi'
+	icon_state = "batonstaff"
+	item_state = "staff"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/staff_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/staff_righthand.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/back.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	force = 15 //same damage as a survival knife, not really good
+	block_chance = 25 //terrible when compared to an actual electrostaff, can't block bullets
+	throwforce = 6
+	stamforce = 35 //not too much of an improvement, normal baton is 25
+	hitcost = 1250 //terrible, same cell as a normal baton
+	throw_hit_chance = 20 //awful
+	slot_flags = ITEM_SLOT_BACK
+	preload_cell_type = /obj/item/stock_parts/cell/high/plus
+
+/obj/item/melee/baton/staff/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(attack_type == ATTACK_TYPE_PROJECTILE)
+		final_block_chance = 0
+	return ..()

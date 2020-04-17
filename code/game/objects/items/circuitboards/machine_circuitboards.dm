@@ -35,6 +35,10 @@
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stack/sheet/glass = 1)
 
+/obj/item/circuitboard/machine/autolathe/secure
+	name = "Secure Autolathe (Machine Board)"
+	build_path = /obj/machinery/autolathe/secure
+
 /obj/item/circuitboard/machine/bloodbankgen
 	name = "Blood Bank Generator (Machine Board)"
 	build_path = /obj/machinery/bloodbankgen
@@ -240,7 +244,7 @@
 		/obj/machinery/vending/autodrobe = "AutoDrobe",
 		/obj/machinery/vending/assist = "\improper Vendomat",
 		/obj/machinery/vending/engivend = "\improper Engi-Vend",
-		/obj/machinery/vending/engivend = "\improper YouTool",
+		/obj/machinery/vending/tool = "\improper YouTool",
 		/obj/machinery/vending/sustenance = "\improper Sustenance Vendor",
 		/obj/machinery/vending/dinnerware = "\improper Plasteel Chef's Dinnerware Vendor",
 		/obj/machinery/vending/cart = "\improper PTech",

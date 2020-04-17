@@ -26,6 +26,14 @@
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
+/datum/design/board/autolathe_secure
+	name = "Machine Design (Secure Autolathe Board)"
+	desc = "The circuit board for an autolathe. This one is programmed to not allow hacking."
+	id = "autolathe_secure"
+	build_path = /obj/item/circuitboard/machine/autolathe/secure
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ALL
+
 /datum/design/board/recharger
 	name = "Machine Design (Weapon Recharger Board)"
 	desc = "The circuit board for a Weapon Recharger."
@@ -37,7 +45,7 @@
 
 /datum/design/board/vendor
 	name = "Machine Design (Vendor Board)"
-	desc = "The circuit board for a Vendor."
+	desc = "The circuit board for a Vendor. Use a screwdriver to turn the \"brand selection\" dial."
 	id = "vendor"
 	build_path = /obj/item/circuitboard/machine/vendor
 	category = list ("Misc. Machinery")

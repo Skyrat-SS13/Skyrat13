@@ -18,10 +18,12 @@
 			kill_objective.find_target()
 			T.add_objective(kill_objective)
 		else
-			var/datum/objective/maroon/maroon_objective = new
-			maroon_objective.owner = T.owner
-			maroon_objective.find_target()
-			T.add_objective(maroon_objective)
+			//Skyrat changes - changes maroon to flavor obj 
+			var/datum/objective/flavor/traitor/flavor_objective = new
+			flavor_objective.owner = T.owner
+			flavor_objective.forge_objective()
+			T.add_objective(flavor_objective)
+			//End of skyrat changes
 	else
 		if(prob(15) && !(locate(/datum/objective/download) in T.objectives) && !(T.owner.assigned_role in list("Research Director", "Scientist", "Roboticist")))
 			var/datum/objective/download/download_objective = new

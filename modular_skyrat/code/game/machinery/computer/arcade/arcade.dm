@@ -44,7 +44,7 @@
 		/obj/item/stack/tile/fakespace/loaded = ARCADE_WEIGHT_TRICK,
 		/obj/item/stack/tile/fakepit/loaded = ARCADE_WEIGHT_TRICK,
 		/obj/item/restraints/handcuffs/fake = ARCADE_WEIGHT_TRICK,
-		/obj/item/clothing/gloves/rapid/hug = ARCADE_WEIGHT_TRICK,
+		/obj/item/clothing/gloves/fingerless/pugilist/hug = ARCADE_WEIGHT_TRICK,
 
 		/obj/item/grenade/chem_grenade/glitter/pink = ARCADE_WEIGHT_TRICK,
 		/obj/item/grenade/chem_grenade/glitter/blue = ARCADE_WEIGHT_TRICK,
@@ -60,3 +60,12 @@
 		/obj/item/clothing/suit/hooded/wintercoat/ratvar/fake = ARCADE_WEIGHT_TRICK,
 		/obj/item/clothing/suit/hooded/wintercoat/narsie/fake = ARCADE_WEIGHT_TRICK
 	)
+	var/prizecharge = 5
+
+/obj/machinery/computer/arcade/prizevend(mob/user, list/rarity_classes)
+	if(prizecharge == 0)
+		to_chat(user, "<span class='notice'>Warning: Maximum amount of prizes have been vended!</span>")
+		return
+	prizecharge--
+	. = ..()
+
