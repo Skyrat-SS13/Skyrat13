@@ -20,6 +20,7 @@
 	"Old" = "seva",
 	"Improved" = "seva"
 	)
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/head/hooded/explorer/seva
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
@@ -38,6 +39,7 @@
 	"Old" = "seva",
 	"Improved" = "seva"
 	)
+	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/suit/hooded/explorer/seva/Initialize()
 	. = ..()
@@ -64,6 +66,7 @@
 	"Old" = "seva",
 	"Improved" = "seva"
 	)
+	mutantrace_variation = STYLE_MUZZLE
 
 //exosuit shit
 /obj/item/clothing/suit/hooded/explorer/exo
@@ -83,6 +86,7 @@
 	"Old" = "exo",
 	"Improved" = "exo"
 	)
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/head/hooded/explorer/exo
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
@@ -101,6 +105,7 @@
 	"Old" = "exo",
 	"Improved" = "exo"
 	)
+	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/mask/gas/exo
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
@@ -119,3 +124,4 @@
 	"Old" = "exo",
 	"Improved" = "exo_mask"
 	)
+	mutantrace_variation = STYLE_MUZZLE
