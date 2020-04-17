@@ -38,7 +38,7 @@
 	var/can_be_z_moved = TRUE
 
 	var/zfalling = FALSE
-
+#if DM_VERSION >= 513
 	/// Either FALSE, [EMISSIVE_BLOCK_GENERIC], or [EMISSIVE_BLOCK_UNIQUE]
 	var/blocks_emissive = FALSE
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
@@ -50,12 +50,11 @@
 	switch(blocks_emissive)
 		if(EMISSIVE_BLOCK_GENERIC)
 			update_emissive_block()
-#if DM_VERSION >= 513
 		if(EMISSIVE_BLOCK_UNIQUE)
 			render_target = ref(src)
 			em_block = new(src, render_target)
 			vis_contents += em_block
-#endif
+
 /atom/movable/Destroy()
 	QDEL_NULL(em_block)
 	return ..()
@@ -70,7 +69,7 @@
 				SSvis_overlays.remove_vis_overlay(src, list(vs))
 				break
 	SSvis_overlays.add_vis_overlay(src, icon, icon_state, EMISSIVE_BLOCKER_LAYER, EMISSIVE_BLOCKER_PLANE)
-
+#endif
 /atom/movable/proc/can_zFall(turf/source, levels = 1, turf/target, direction)
 	if(!direction)
 		direction = DOWN

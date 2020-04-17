@@ -9,9 +9,9 @@
 	designation = "Default" //used for displaying the prefix & getting the current module of cyborg
 	has_limbs = 1
 	hud_type = /datum/hud/robot
-
+#if DM_VERSION >= 513
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
-
+#endif
 	var/custom_name = ""
 	var/braintype = "Cyborg"
 	var/obj/item/robot_suit/robot_suit = null //Used for deconstruction to remember what the borg was constructed out of..

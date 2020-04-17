@@ -6,6 +6,7 @@
   * This should only be used internally. If you are directly creating more of these, you're
   * almost guaranteed to be doing something wrong.
   */
+#if DM_VERSION >= 513
 /atom/movable/emissive_blocker
 	name = ""
 	plane = EMISSIVE_BLOCKER_PLANE
@@ -20,9 +21,8 @@
 /atom/movable/emissive_blocker/Initialize(mapload, source)
 	. = ..()
 	verbs.Cut() //Cargo culting from lighting object, this maybe affects memory usage?
-#if DM_VERSION >= 513
 	render_source = source
-#endif
+
 /atom/movable/emissive_blocker/ex_act(severity)
 	return FALSE
 
@@ -42,3 +42,4 @@
 /atom/movable/emissive_blocker/forceMove(atom/destination, no_tp=FALSE, harderforce = FALSE)
 	if(harderforce)
 		return ..()
+#endif

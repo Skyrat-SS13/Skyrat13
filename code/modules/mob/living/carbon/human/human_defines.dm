@@ -9,9 +9,9 @@
 	/// Enable stamina combat
 	combat_flags = COMBAT_FLAGS_DEFAULT
 	status_flags = CANSTUN|CANKNOCKDOWN|CANUNCONSCIOUS|CANPUSH|CANSTAGGER
-
+#if DM_VERSION >= 513
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
-	
+#endif
 	//Hair colour and style
 	var/hair_color = "000"
 	var/hair_style = "Bald"

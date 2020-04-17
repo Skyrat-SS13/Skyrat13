@@ -7,8 +7,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items_and_weapons.dmi'
+#if DM_VERSION >= 513
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
-
+#endif
 	///icon state name for inhand overlays
 	var/item_state = null
 	///Icon file for left hand inhand overlays
