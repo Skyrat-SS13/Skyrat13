@@ -18,6 +18,8 @@
 	"Press" = 'modular_skyrat/icons/mob/head_muzzled.dmi',
 	"HECU" = 'modular_skyrat/icons/mob/head_muzzled.dmi',
 	"HECU Green" = 'modular_skyrat/icons/mob/head_muzzled.dmi'
+	)
+
 /obj/item/clothing/head/helmet/alt
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "helmetalt"
