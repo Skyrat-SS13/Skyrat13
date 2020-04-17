@@ -9,8 +9,8 @@
 /obj/structure/fermenting_barrel/process()
 	. = ..()
 	for(var/mob/living/carbon/C in src.contents)
-		reagents.reaction(A = C, method = TOUCH, volume_modifier = reagents.maximum_volume * fractionofvolume)
 		reagents.trans_to(C, reagents.maximum_volume * fractionofvolume)
+		reagents.reaction(C, method = TOUCH)
 
 /obj/structure/fermenting_barrel/attack_hand(mob/user)
 	if(src.contents.Find(user))
@@ -24,10 +24,12 @@
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 		var/mob/living/carbon/C = user.pulling
+		user.visible_message("<span class = 'danger'>[user] starts to shove [C] inside [src]!</span>")
+		if(!do_after(user, 30, target = src))
+			to_chat(user, "<span class='warning'>You fail to shove [C] into [src]!</span>")
 		user.visible_message("<span class = 'danger'>[user] shoves [C] inside [src]!</span>")
 		C.DefaultCombatKnockdown(60)
 		user.changeNext_move(CLICK_CD_MELEE)
-		sleep(5)
 		C.forceMove(src)
 		storedmobs++
 		buckle_mob(C, force=1)
@@ -48,7 +50,10 @@
 /obj/structure/fermenting_barrel/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)
 	if(buckled_mob == user)
 		if(open)
+			if(!do_after(buckled_mob, 300, target = src))
+				to_chat(buckled_mob, "<span class='warning'>You fail to free yourself!</span>")
 			unbuckle_mob(buckled_mob,force=1)
+			buckled_mob.forceMove(src.loc)
 			storedmobs--
 			if(storedmobs <= 0)
 				desc = initial(desc)
