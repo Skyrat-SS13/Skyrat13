@@ -225,7 +225,7 @@
 	name = "Power Armor Helmet"
 	desc = "An advanced helmet attached to a powered exoskeleton suit. Protects well against most forms of harm, but struggles against exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	icon_state = "hardsuit0-powerarmor"
 	item_state = "hardsuit0-powerarmor"
 	hardsuit_type = "powerarmor"
@@ -249,7 +249,7 @@
 	name = "Power Armor"
 	desc = "A self-powered exoskeleton suit comprised of flexible Plasteel sheets and advanced components, designed to offer excellent protection while still allowing mobility. Does not protect against Space, and struggles against more exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
-	alternate_worn_icon = 'modular_skyrat/icons/mob/suit.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	icon_state = "hardsuit-powerarmor"
 	item_state = "hardsuit-powerarmor"
 	slowdown = -0.05
