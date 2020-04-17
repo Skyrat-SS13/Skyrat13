@@ -1,4 +1,0 @@
-author: "Akrilla"
-delete-after: True
-changes: 
-  - bugfix: "Making cable restraints doesn't steal your cable on fail."
