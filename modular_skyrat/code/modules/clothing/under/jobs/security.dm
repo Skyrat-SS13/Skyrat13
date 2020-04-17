@@ -6,10 +6,11 @@
 	desc = "Pick up that can."
 	icon = 'modular_skyrat/icons/obj/clothing/uniforms.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	mob_overlay_icon_digi = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "cpuniform"
 	item_state = "cpuniform"
 	can_adjust = FALSE
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/under/rank/security/civilprotection/fake
 	name = "Civil Protection replica uniform"
@@ -23,23 +24,25 @@
 	name = "Blueshield Uniform"
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	mob_overlay_icon_digi = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "blueshield"
 	item_state = "blueshield"
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" =10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/under/rank/security/blueshieldturtleneck
 	name = "Blueshield's turtleneck"
 	desc = "A stylish alternative to the normal Blueshield's Uniform, complete with tactical pants."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	mob_overlay_icon_digi = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "bs_turtleneck"
 	item_state = "bs_turtleneck"
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 10, "bomb" =10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
+	mutantrace_variation = STYLE_DIGITIGRADE

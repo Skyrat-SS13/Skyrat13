@@ -151,9 +151,5 @@
 	item_state = "w_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
-<<<<<<< HEAD
-	fitted = FEMALE_UNIFORM_TOP
-=======
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
->>>>>>> 09f459a369... Merge pull request #11730 from Ghommie/Ghommie-cit667
