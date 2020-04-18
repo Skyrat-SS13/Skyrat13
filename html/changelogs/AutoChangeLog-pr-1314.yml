@@ -1,0 +1,5 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - bugfix: "Distro and Srubbers pipenet are no longer the same pipenet roundstart."
+  - rscdel: "Removes Darth Scrubbernet the Connected from the game."
