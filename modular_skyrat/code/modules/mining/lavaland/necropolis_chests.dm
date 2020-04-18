@@ -467,7 +467,7 @@
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "amulet_of_kings"
 	item_state = "amulet_of_kings"
-	alternate_worn_icon = 'modular_skyrat/icons/mob/neck.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/neck.dmi'
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/hands_free/memento_mori/king)
 	var/spell2grant = /obj/effect/proc_holder/spell/targeted/shapeshift/dragon/akatosh
