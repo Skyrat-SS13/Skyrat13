@@ -388,7 +388,7 @@
 			stank.gases[/datum/gas/miasma] = 0.45
 		if(T0C + 40 to T0C + 50)
 			stank.gases[/datum/gas/miasma] = 0.30
-		if(T0C + 60 to INFINITY)
+		if(T0C + 60 to TOC + 70)
 			stank.gases[/datum/gas/miasma] = 0.15
 		else
 			stank.gases[/datum/gas/miasma] = 0.1
