@@ -279,14 +279,14 @@
 		var/miasma_partialpressure = (breath_gases[/datum/gas/miasma]/breath.total_moles())*breath_pressure
 		if(miasma_partialpressure > MINIMUM_MOLES_DELTA_TO_MOVE)
 
-			if(prob(0.05 * miasma_partialpressure))
+			if(miasma_partialpressure >= 5 && prob(0.1 * miasma_partialpressure))
 				var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(TRUE, 2,3)
 				miasma_disease.name = "Unknown"
 				ForceContractDisease(miasma_disease, TRUE, TRUE)
 
 			//Miasma side effects
 			switch(miasma_partialpressure)
-				if(1 to 5)
+				if(0.5 to 5)
 					// At lower pp, give out a little warning
 					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "smell")
 					if(prob(5))
@@ -379,12 +379,22 @@
 
 	var/datum/gas_mixture/stank = new
 
-	stank.gases[/datum/gas/miasma] = 0.1
-
-	stank.temperature = BODYTEMP_NORMAL
+	switch(bodytemperature)
+		if(T0C + 4 to T0C + 10)
+			stank.gases[/datum/gas/miasma] = 0.15
+		if(T0C + 5 to T0C + 20)
+			stank.gases[/datum/gas/miasma] = 0.30
+		if(T0C + 20 to T0C + 40)
+			stank.gases[/datum/gas/miasma] = 0.45
+		if(T0C + 40 to T0C + 50)
+			stank.gases[/datum/gas/miasma] = 0.30
+		if(T0C + 60 to INFINITY)
+			stank.gases[/datum/gas/miasma] = 0.15
+		else
+			stank.gases[/datum/gas/miasma] = 0.1
+	stank.temperature = (bodytemperature + BODYTEMP_NORMAL) / 2
 
 	miasma_turf.assume_air(stank)
-
 	miasma_turf.air_update_turf()
 
 /mob/living/carbon/proc/handle_blood()
