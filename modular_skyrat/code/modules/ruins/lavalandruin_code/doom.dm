@@ -63,7 +63,7 @@
 	victim.client.color = pure_red
 	animate(victim.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
 	sleep(duration)
-	victim.client.color = initial(victim.client.color)
+	victim.client.color = old_color
 	to_chat(victim, "<span class='notice'>Your bloodlust seeps back into the bog of your subconscious and you regain self control.</span>")
 	victim.log_message("exited a blood frenzy", LOG_ATTACK)
 	qdel(src)
