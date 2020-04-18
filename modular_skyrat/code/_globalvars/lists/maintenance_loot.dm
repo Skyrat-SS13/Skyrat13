@@ -40,7 +40,6 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/effect/spawner/lootdrop/welder_tools = 50,
 
 	//Other here.
-	/obj/item/a_gift = 50,
 	/obj/item/aicard/aitater = 1,
 	/obj/item/airlock_painter = 100,
 	/obj/item/ammo_box/foambox/riot = 25,
@@ -144,7 +143,6 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/retractor = 25,
 	/obj/item/roller = 5,
 	/obj/item/scalpel = 25,
-	/obj/item/shard = 200,
 	/obj/item/shovel = 25,
 	/obj/item/skub = 25,
 	/obj/item/slime_scanner = 5,
@@ -186,7 +184,6 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/stock_parts/micro_laser = 50,
 	/obj/item/stock_parts/scanning_module = 50,
 	/obj/item/storage/belt/utility = 100,
-	/obj/item/storage/belt = 10,
 	/obj/item/storage/book/bible = 50,
 	/obj/item/storage/book/bible/booze = 10,
 	/obj/item/storage/box/actionfigure = 5,
