@@ -9,7 +9,13 @@ about: Create a report to help reproduce and fix the issue
 If you discovered this issue from playing tgstation hosted servers:
 [Round ID]: # (It can be found in the Status panel or retrieved from https://atlantaned.space/statbus/round.php ! The round id let's us look up valuable information and logs for the round the bug happened.)-->
 
-## Testmerges:
+## Date and Time of Issue:
+
+<!-- When did you encounter this issue for the first time -->
+
+## What Map did this Issue occur on:
+
+## Testmerges (If Applicable):
 
 <!-- If you're certain the issue is to be caused by a test merge [OOC tab -> Show Server Revision], report it in the pull request's comment section rather than on the tracker(If you're unsure you can refer to the issue number by prefixing said number with #. The issue number can be found beside the title after submitting it to the tracker).If no testmerges are active, feel free to remove this section. -->
 
