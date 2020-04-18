@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added new maint bar"
-  - rscdel: "Removed old maint bar"
