@@ -1,3 +1,9 @@
+//skyrat crusher changes (it SHOULD NOT slow you down what the hell)
+/obj/item/twohanded/kinetic_crusher
+	slowdown = 0
+	slowdown_wielded = 0
+	item_flags = null
+
 //legion (the big one!)
 /obj/item/crusher_trophy/legion_shard
 	name = "legion bone shard"
@@ -189,9 +195,25 @@
 		H.charge_time = 15
 		H.force_wielded = 20
 
-//hierophant crusher nerf "but muh i deserve it after killing hierocunt" yes but its op fuck you you piece of shit
+//hierophant crusher small buff compared to citadel
+/obj/item/crusher_trophy/vortex_talisman
+	var/cdduration = 40
+
+/obj/item/crusher_trophy/vortex_talisman/on_mark_detonation(mob/living/target, mob/living/user)
+	if(vortex_cd >= world.time)
+		return
+	var/turf/T = get_turf(user)
+	new /obj/effect/temp_visual/hierophant/wall/crusher(T, user) //a wall only you can pass!
+	var/turf/otherT = get_step(T, turn(user.dir, 90))
+	if(otherT)
+		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
+	otherT = get_step(T, turn(user.dir, -90))
+	if(otherT)
+		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
+	vortex_cd = world.time + cdduration
+
 /obj/effect/temp_visual/hierophant/wall/crusher
-	duration = 45 //this is more than enough time bro
+	duration = 40 //this is more than enough time bro
 
 //watcher wing fucking nerf
 /obj/item/crusher_trophy/watcher_wing
