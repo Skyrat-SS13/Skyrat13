@@ -24,7 +24,7 @@ Difficulty: Medium
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	speed = 5
-	move_to_delay = 2.5
+	move_to_delay = 3.3
 	ranged = TRUE
 	pixel_x = -16
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/dragon/hard/crusher)
@@ -68,8 +68,14 @@ Difficulty: Medium
 		if(prob(50))
 			fire_cone()
 		else
-			fire_rain()
-			fire_cone()
+			if(prob(50)
+				fire_rain()
+			else
+				if(prob(75)
+					fire_cone()
+				else
+					fire_cone
+					fire_rain
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/shoot_fire_attack()
 	if(health < maxHealth*0.5)
@@ -337,12 +343,12 @@ Difficulty: Medium
 	if(!lava_success)
 		arena_escape_enrage()
 
-/mob/living/simple_animal/hostile/megafauna/dragon/hard/triple_swooop(lava_arena = FALSE, atom/movable/manual_target, swoop_cooldown = 4)
-	swooop_attack(lava_arena, atom/movable/manual_target, swoop_cooldown)
-	sleep(4)
-	swooop_attack(lava_arena, atom/movable/manual_target, swoop_cooldown)
-	sleep(4)
-	swooop_attack(lava_arena, atom/movable/manual_target, swoop_cooldown)
+/mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/triple_swooop(lava_arena = FALSE, atom/movable/manual_target, swoop_cooldown = 4)
+	swooop_attack(lava_arena, manual_target, swoop_cooldown)
+	sleep(15)
+	swooop_attack(lava_arena, manual_target, swoop_cooldown)
+	sleep(15)
+	swooop_attack(lava_arena, manual_target, swoop_cooldown)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/ex_act(severity, target)
 	if(severity == EXPLODE_LIGHT)

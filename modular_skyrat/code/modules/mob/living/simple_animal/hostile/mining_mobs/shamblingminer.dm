@@ -41,7 +41,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/miner/death(gibbed)
 	. = ..()
-	if(prob(20) && !has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING))
+	if(prob(15))
 		loot = list(/obj/item/twohanded/kinetic_crusher)
 	else
 		loot = list()
