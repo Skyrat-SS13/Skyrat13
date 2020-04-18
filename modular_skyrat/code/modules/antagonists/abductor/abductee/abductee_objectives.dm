@@ -25,3 +25,12 @@
 		explanation_text = "You think you were kidnapped by aliens! Ensure that [target_real_name], the [target.assigned_role], is also experimented on by an Abductor so they believe you!"
 	else
 		explanation_text = pick(world.file2list("strings/abductee_objectives.txt"))
+
+
+/datum/objective/breakout/abductee/update_explanation_text()
+
+	. = ..()
+
+	if(!target || !target.current)
+		explanation_text = pick(world.file2list("strings/abductee_objectives.txt"))
+

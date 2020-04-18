@@ -8,7 +8,7 @@
 		H.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_LOBOTOMY)
 
 	if(prob(50))
-		var/datum/objective/breakout/B = new()
+		var/datum/objective/breakout/abductee/B = new()
 		B.find_target_by_role(prob(50) ? ROLE_ABDUCTOR : ROLE_ABDUCTEE)
 		B.update_explanation_text()
 		objectives += B
