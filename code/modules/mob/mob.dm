@@ -146,11 +146,7 @@
 		//CITADEL EDIT, required for vore code to remove (T != loc && T != src)) as a check
 		if(M.see_invisible<invisibility) //if src is invisible to us,
 			msg = blind_message
-<<<<<<< HEAD
-		else if(T.lighting_object && T.lighting_object.invisibility <= M.see_invisible && T.is_softly_lit() && !in_range(T,M)) //the light object is dark and not invisible to us //Skyrat edit: makes darkness not matter if you're 1 range close to the atom
-=======
 		else if(T.lighting_object && T.lighting_object.invisibility <= M.see_invisible && T.is_softly_lit() && !in_range(T,M)) //the light object is dark and not invisible to us, darkness does not matter if you're directly next to the target
->>>>>>> 50ee5b9de5... Merge pull request #11885 from kappa-sama/patch-21
 			msg = blind_message
 
 		if(!msg)
