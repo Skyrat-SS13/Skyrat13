@@ -1,9 +1,3 @@
-//skyrat crusher changes (it SHOULD NOT slow you down what the hell)
-/obj/item/twohanded/kinetic_crusher
-	slowdown = 0
-	slowdown_wielded = 0
-	item_flags = null
-
 //legion (the big one!)
 /obj/item/crusher_trophy/legion_shard
 	name = "legion bone shard"
@@ -52,11 +46,11 @@
 	desc = "It really doesn't seem like it could be worn. Suitable as a crusher trophy."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "miner_mask"
-	bonus_value = 5
+	bonus_value = 0
 	denied_type = /obj/item/crusher_trophy/blaster_tubes/mask
 
 /obj/item/crusher_trophy/blaster_tubes/mask/effect_desc()
-	return "mark detonation to make the next destabilizer shot deal <b>[bonus_value]</b> damage"
+	return "makes the crusher have no slowdown when wielded."
 
 /obj/item/crusher_trophy/blaster_tubes/mask/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
 	if(deadly_shot)
@@ -69,6 +63,16 @@
 /obj/item/crusher_trophy/blaster_tubes/mask/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
 	new /obj/effect/temp_visual/kinetic_blast(target)
 	playsound(target.loc, 'sound/weapons/kenetic_accel.ogg', 60, 0)
+
+/obj/item/crusher_trophy/blaster_tubes/mask/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	H.slowdown = 0
+	H.slowdown_wielded = 0
+
+/obj/item/crusher_trophy/blaster_tubes/mask/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	H.slowdown = initial(slowdown)
+	H.slowdown_wielded = initial(slowdown_wielded)
 
 //lava imp
 /obj/item/crusher_trophy/blaster_tubes/impskull
