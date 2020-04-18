@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/horn_color	//specific horn colors, because why not?
 	var/wing_color
 
-	var/use_skintones = 0	// does it use skintones or not? (spoiler alert this is only used by humans)
+	var/use_skintones = NO_SKINTONES	// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/exotic_blood = ""	// If your race wants to bleed something other than bog standard blood, change this to reagent id.
 	var/exotic_bloodtype = "" //If your race uses a non standard bloodtype (A+, O-, AB-, etc)
 	var/meat = /obj/item/reagent_containers/food/snacks/meat/slab/human //What the species drops on gibbing
@@ -855,7 +855,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				if(!forced_colour)
 					switch(S.color_src)
 						if(SKINTONE)
-							accessory_overlay.color = "#[skintone2hex(H.skin_tone)]"
+							accessory_overlay.color = SKINTONE2HEX(H.skin_tone)
 						if(MUTCOLORS)
 							if(fixed_mut_color)
 								accessory_overlay.color = "#[fixed_mut_color]"
@@ -1530,7 +1530,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 		if(user.limb_destroyer)
 			target.dismembering_strike(user, affecting.body_zone)
-		
+
 		if(atk_verb == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage + 0.5x stamina damage
 			target.apply_damage(damage*1.5, BRUTE, affecting, armor_block)
 			target.apply_damage(damage*0.5, STAMINA, affecting, armor_block)
