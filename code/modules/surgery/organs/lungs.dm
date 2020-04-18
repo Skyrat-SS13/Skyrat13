@@ -354,7 +354,7 @@
 
 				//Miasma sickness
 				//SKYRAT CHANGES, MODIFIES MIASMA BALANCE
-				if(miasma_partialpressure >= 5 && prob(0.05 * miasma_pp))
+				if(miasma_pp >= 5 && prob(0.05 * miasma_pp))
 				//END OF SKYRAT CHANGES, MODIFIES MIASMA BALANCE
 					var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(TRUE, 2,3)
 					miasma_disease.name = "Unknown"
