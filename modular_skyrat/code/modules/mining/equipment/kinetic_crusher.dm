@@ -50,7 +50,7 @@
 	denied_type = /obj/item/crusher_trophy/blaster_tubes/mask
 
 /obj/item/crusher_trophy/blaster_tubes/mask/effect_desc()
-	return "the crusher have no slowdown when wielded."
+	return "the crusher have no slowdown when wielded"
 
 /obj/item/crusher_trophy/blaster_tubes/mask/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
 	if(deadly_shot)
