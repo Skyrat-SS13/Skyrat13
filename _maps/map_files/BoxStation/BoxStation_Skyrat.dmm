@@ -5912,7 +5912,7 @@
 "alq" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Evidence Storage";
-	req_access_txt = "4"
+	req_access_txt = "4;3"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -58194,7 +58194,10 @@
 /area/maintenance/port)
 "iyz" = (
 /obj/structure/spider/stickyweb/genetic,
-/obj/machinery/jukebox/disco,
+/obj/machinery/jukebox/disco{
+	req_access = null;
+	req_one_access = null
+	},
 /turf/open/floor/light/colour_cycle,
 /area/maintenance/bar)
 "izv" = (
