@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/asteroid
 	var/glorykill = FALSE //CAN THIS MOTHERFUCKER BE SNAPPED IN HALF FOR HEALTH?
-	var/list/glorymessageshand = list() //WHAT THE FUCK ARE THE MESSAGES SAID BY THIS CUNT WHEN HE'S GLORY KILLED WITH AN EMPTY HAND?
+	var/list/glorymessageshand = list() //WHAT THE FUCK ARE THE MESSAGES SAID BY THIS FUCK WHEN HE'S GLORY KILLED WITH AN EMPTY HAND?
 	var/list/glorymessagescrusher = list() //SAME AS ABOVE BUT CRUSHER
 	var/list/glorymessagespka = list() //SAME AS ABOVE THE ABOVE BUT PKA
 	var/list/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING

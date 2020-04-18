@@ -1,3 +1,4 @@
+//DO NOT INCLUDE THIS FILE. IT CAUSES FUCKING ARRAY ERRORS FOR SOME IDIOTIC REASON.
 //Fully-equipped shaft miner outfit to make debugging less tedious for Bob Joga :)
 /datum/outfit/job/miner/equipped/fullyequipped
 	name = "Shaft Miner (Equpped+)"
