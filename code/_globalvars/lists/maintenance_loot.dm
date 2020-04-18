@@ -1,3 +1,4 @@
+//Entire file disabled in the dme to favor skyrat maint loot.
 //How to balance this table
 //-------------------------
 //The total added weight of all the entries should be (roughly) equal to the total number of lootdrops
