@@ -23,6 +23,7 @@ about: Create a report to help reproduce and fix the issue
 
 <!-- Explain your issue in detail, including the steps to reproduce it. Issues without proper reproduction steps or explanation are open to being ignored/closed by maintainers.-->
 
-<!-- **For Admins:** Oddities induced by var-edits and other admin tools are not necessarily bugs. Verify that your issues occur under regular circumstances before reporting them. -->
+<!-- **For Staff Members:** Oddities induced by var-edits and other admin tools are not necessarily bugs. Verify that your issues occur under regular circumstances before reporting them.
+Please also make sure to check the Debug Menu for any runtimes that may possibly be related to this issue and include them too-->
 
 ## Possible Screenshots of the Issue in question:
