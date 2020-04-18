@@ -547,6 +547,7 @@
 	show_in_roundend = FALSE //These are here for admin tracking purposes only
 	you_are_greet = FALSE
 
+/*Skyrat change - moved to modular
 /datum/antagonist/changeling/roundend_report()
 	var/list/parts = list()
 
@@ -582,6 +583,7 @@
 		parts += "<span class='redtext'>The changeling has failed.</span>"
 
 	return parts.Join("<br>")
+*/
 
 /datum/antagonist/changeling/antag_listing_name()
 	return ..() + "([changelingID])"
