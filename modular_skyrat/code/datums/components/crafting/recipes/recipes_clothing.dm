@@ -1,3 +1,4 @@
+//Ablative coat
 /datum/crafting_recipe/ablativecoat
 	name = "Ablative Trenchcoat"
 	result = /obj/item/clothing/suit/hooded/ablative
@@ -9,4 +10,13 @@
 				/obj/item/stock_parts/cell/high = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 90
+	category = CAT_CLOTHING
+
+//mining hud sunglasses
+/datum/crafting_recipe/minesunhud
+	name = "Ore Scanner Sunglasses"
+	result = /obj/item/clothing/glasses/hud/mining/sunglasses
+	reqs = list(/obj/item/clothing/glasses/hud/mining = 1,
+				/obj/item/clothing/glasses/sunglasses)
+	time = 20
 	category = CAT_CLOTHING

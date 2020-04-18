@@ -3,7 +3,6 @@
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
 	var/loot = rand(1,3)
 	switch(loot)
 		if(1)
@@ -18,9 +17,6 @@
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
 	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
-/*	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)*/
 	new /obj/item/mayhem(src)
 	new /obj/item/blood_contract(src)
 	new /obj/item/twohanded/crucible(src)
@@ -32,8 +28,6 @@
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/demon_claws(src)
-/*	new /obj/item/crusher_trophy/demon_claws(src)
-	new /obj/item/crusher_trophy/demon_claws(src)*/
 
 //super shotty changes (meat hook instead of bursto)
 
@@ -282,7 +276,6 @@
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
-	new /obj/item/borg/upgrade/modkit/knockback(src)
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
@@ -299,9 +292,6 @@
 	name = "enraged dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/hard/PopulateContents()
-	new /obj/item/borg/upgrade/modkit/knockback(src)
-	new /obj/item/borg/upgrade/modkit/knockback(src)
-	new /obj/item/borg/upgrade/modkit/knockback(src)
 	new /obj/item/melee/ghost_sword(src)
 	new /obj/item/lava_staff(src)
 	new /obj/item/book/granter/spell/sacredflame(src)
@@ -315,8 +305,6 @@
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
-/*	new /obj/item/crusher_trophy/tail_spike(src)
-	new /obj/item/crusher_trophy/tail_spike(src)*/
 
 /obj/item/dragons_blood/distilled
 	name = "bottle of distilled dragon's blood"
@@ -547,15 +535,52 @@
 
 //colossus
 /obj/structure/closet/crate/necropolis/colossus/PopulateContents()
-	var/list/choices = subtypesof(/obj/machinery/anomalous_crystal)
-	var/random_crystal = pick(choices)
-	new random_crystal(src)
+	new /obj/item/bluecrystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
-	new /obj/item/borg/upgrade/modkit/bolter(src)
+
+//crystal choosing thing from colosssus
+/obj/item/bluecrystal
+	name = "blue crystal"
+	desc = "It's very shiny... wonder what it does."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "bluecrystal"
+	w_class = WEIGHT_CLASS_SMALL
+	var/list/choices = list(
+	"Clown" = /obj/machinery/anomalous_crystal/honk,
+	"Theme Warp" = /obj/machinery/anomalous_crystal/theme_warp,
+	"Bolter" = /obj/machinery/anomalous_crystal/emitter,
+	"Dark Revival" = /obj/machinery/anomalous_crystal/dark_reprise,
+	"Lightgeist Healers" = /obj/machinery/anomalous_crystal/helpers,
+	"Refresher" = /obj/machinery/anomalous_crystal/refresher,
+	"Possessor" = /obj/machinery/anomalous_crystal/possessor
+	)
+	var/list/methods = list(
+	"touch",
+	"speech",
+	"heat",
+	"bullet",
+	"energy",
+	"bomb",
+	"bumping",
+	"weapon",
+	"magic"
+	)
+
+/obj/item/bluecrystal/attack_self(mob/user)
+	var/choice = input(user, "Choose your destiny", "Crystal") as null|anything in choices
+	var/method = input(user, "Choose your activation method", "Crystal") as null|anything in methods
+	if(!choice || !method)
+		return
+	playsound(user.loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, TRUE)
+	var/obj/machinery/anomalous_crystal/A = new choices[choice](user.loc)
+	A.activation_method = method
+	to_chat(user, "<span class='userdanger'>[A] appears under your feet as the [src] breaks apart!</span>")
+	qdel(src)
 
 //normal chests
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
 	var/loot = rand(1,31)
+	new /obj/item/stock_parts/cell/high/plus/argent(src)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -660,7 +685,6 @@
 		if(31)
 			new /obj/item/katana/necropolis(src)
 			return /obj/item/katana/necropolis
-	new /obj/item/stock_parts/cell/high/plus/argent(src)
 
 /obj/item/stock_parts/cell/high/plus/argent
 	name = "Argent Energy Cell"
@@ -668,7 +692,7 @@
 	self_recharge = 1
 	maxcharge = 1500 //only barely better than a normal power cell now
 	chargerate = 700 //good recharge time doe
-	icon = 'modular_skyrat/icons/obj/argentcell.dmi'
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "argentcell"
 	ratingdesc = FALSE
 	rating = 6
@@ -701,7 +725,6 @@
 /obj/structure/closet/crate/necropolis/legion/PopulateContents()
 	new /obj/item/staff/storm(src)
 	new /obj/item/crusher_trophy/legion_shard(src)
-	new /obj/item/borg/upgrade/modkit/skull(src)
 
 /obj/structure/closet/crate/necropolis/legion/hard
 	name = "enraged echoing legion crate"
@@ -709,12 +732,7 @@
 /obj/structure/closet/crate/necropolis/legion/hard/PopulateContents()
 	new /obj/item/staff/storm(src)
 	new /obj/item/clothing/mask/gas/dagoth(src)
-	new /obj/item/borg/upgrade/modkit/skull(src)
-/*	new /obj/item/borg/upgrade/modkit/skull(src)
-	new /obj/item/borg/upgrade/modkit/skull(src) */
 	new /obj/item/crusher_trophy/legion_shard(src)
-/*	new /obj/item/crusher_trophy/legion_shard(src)
-	new /obj/item/crusher_trophy/legion_shard(src) */
 	var/obj/structure/closet/crate/necropolis/tendril/T = new /obj/structure/closet/crate/necropolis/tendril //Yup, i know, VERY spaghetti code.
 	var/obj/item/L
 	for(var/i = 0, i < 5, i++)

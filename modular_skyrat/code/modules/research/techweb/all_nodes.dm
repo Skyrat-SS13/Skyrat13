@@ -36,3 +36,8 @@
 /datum/techweb_node/botany/New()
 	design_ids += "prisonerbiogenerator"
 	. = ..()
+
+/datum/techweb_node/integrated_HUDs/New()
+	design_ids += "mining_hud"
+	design_ids += "mining_hud_prescription"
+	. = ..()
