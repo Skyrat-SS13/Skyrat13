@@ -1,5 +1,13 @@
 /mob/living/silicon/robot/examine(mob/user)
-	. = list("<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>, a [src.module.name] unit!")
+	//Skyrat changes - fixes chameleon borgs examine
+	var/module_name
+	var/obj/item/borg_chameleon/BC = locate() in src
+	if(BC && BC.active)
+		module_name = "Engineering" //The borg is a saboteur disguised as another borg, always engi unit
+	else
+		module_name = src.module.name
+	. = list("<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>, [prefix_a_or_an(module_name)] [module_name] unit!")
+	//End of skyrat changes
 	if(desc)
 		. += "[desc]"
 
