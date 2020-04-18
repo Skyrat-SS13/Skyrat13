@@ -3546,6 +3546,7 @@
 #include "modular_skyrat\code\modules\jobs\job_types\head_of_security.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\prisoner.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\security_officer.dm"
+#include "modular_skyrat\code\modules\jobs\job_types\shaft_miner.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\warden.dm"
 #include "modular_skyrat\code\modules\keybindings\bindings_mob.dm"
 #include "modular_skyrat\code\modules\language\dragon.dm"
