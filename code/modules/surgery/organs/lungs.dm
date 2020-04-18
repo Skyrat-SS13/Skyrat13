@@ -353,14 +353,18 @@
 			if(miasma_pp > MINIMUM_MOLES_DELTA_TO_MOVE)
 
 				//Miasma sickness
+				//SKYRAT CHANGES, MODIFIES MIASMA BALANCE
 				if(miasma_partialpressure >= 5 && prob(0.05 * miasma_pp))
+				//END OF SKYRAT CHANGES, MODIFIES MIASMA BALANCE
 					var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(TRUE, 2,3)
 					miasma_disease.name = "Unknown"
 					miasma_disease.try_infect(owner)
 
 				// Miasma side effects
 				switch(miasma_pp)
+					//SKYRAT CHANGES, MODIFIES MIASMA BALANCE
 					if(0.5 to 5)
+					//END OF SKYRAT CHANGES, MODIFIES MIASMA BALANCE
 						// At lower pp, give out a little warning
 						SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "smell")
 						if(prob(5))
@@ -389,7 +393,7 @@
 				// Then again, this is a purely hypothetical scenario and hardly reachable
 				owner.adjust_disgust(0.1 * miasma_pp)
 
-				breath_gases[/datum/gas/miasma] -= gas_breathed
+				breath_gases[/datum/gas/miasma]-=gas_breathed
 
 		// Clear out moods when no miasma at all
 		else

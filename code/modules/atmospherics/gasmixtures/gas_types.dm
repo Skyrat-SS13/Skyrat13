@@ -177,6 +177,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	fusion_power = 10
 	rarity = 200
 
+/* SKYRAT CHANGE. SEE MODULAR FILE
 /datum/gas/miasma
 	id = "miasma"
 	specific_heat = 10
@@ -185,6 +186,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	gas_overlay = "miasma"
 	moles_visible = MOLES_GAS_VISIBLE * 30
 	rarity = 125
+*/
 
 /obj/effect/overlay/gas
 	icon = 'icons/effects/atmospherics.dmi'
