@@ -16,11 +16,11 @@
 	name = "enraged bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
-	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 	new /obj/item/mayhem(src)
 	new /obj/item/blood_contract(src)
 	new /obj/item/twohanded/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
+	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher
 	name = "enraged bloody bubblegum chest"
@@ -467,7 +467,7 @@
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "amulet_of_kings"
 	item_state = "amulet_of_kings"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/neck.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/neck.dmi'
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/hands_free/memento_mori/king)
 	var/spell2grant = /obj/effect/proc_holder/spell/targeted/shapeshift/dragon/akatosh
@@ -572,7 +572,7 @@
 	if(!choice || !method)
 		return
 	playsound(user.loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, TRUE)
-	var/obj/machinery/anomalous_crystal/A = new choices[choice](user.loc)
+	var/obj/machinery/anomalous_crystal/A = new choice(user.loc)
 	A.activation_method = method
 	to_chat(user, "<span class='userdanger'>[A] appears under your feet as the [src] breaks apart!</span>")
 	qdel(src)

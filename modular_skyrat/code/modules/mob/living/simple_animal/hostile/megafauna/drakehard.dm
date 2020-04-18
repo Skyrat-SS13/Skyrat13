@@ -53,13 +53,23 @@ Difficulty: Medium
 	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
-	if(prob(15 + anger_modifier))
+	if(prob(25 + anger_modifier))
 		lava_swoop()
-
+	else if(prob(15 + anger_modifier))
+		if(prob(75))
+			swooop_attack()
+		else
+			triple_swooop()
+	else if(prob(5 + anger_modifier))
+		triple_lava_swoop()
 	else if(prob(10+anger_modifier))
 		shoot_fire_attack()
 	else
-		fire_cone()
+		if(prob(50))
+			fire_cone()
+		else
+			fire_rain()
+			fire_cone()
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/shoot_fire_attack()
 	if(health < maxHealth*0.5)
@@ -96,12 +106,19 @@ Difficulty: Medium
 	swooop_attack(FALSE, target, 1000) // longer cooldown until it gets reset below
 	sleep(0)
 	fire_cone()
-	if(health < maxHealth*0.5)
+	if(health < maxHealth*0.66)
 		sleep(10)
 		fire_cone()
 		sleep(10)
 		fire_cone()
-	SetRecoveryTime(40)
+	SetRecoveryTime(20)
+
+/mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/triple_lava_swoop(amount = 45)
+	lava_swoop()
+	sleep(2)
+	lava_swoop()
+	sleep(2)
+	lava_swoop()
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/mass_fire(spiral_count = 12, range = 15, times = 3)
 	sleep(0)
@@ -319,6 +336,13 @@ Difficulty: Medium
 	SetRecoveryTime(swoop_cooldown)
 	if(!lava_success)
 		arena_escape_enrage()
+
+/mob/living/simple_animal/hostile/megafauna/dragon/hard/triple_swooop(lava_arena = FALSE, atom/movable/manual_target, swoop_cooldown = 4)
+	swooop_attack(lava_arena, atom/movable/manual_target, swoop_cooldown)
+	sleep(4)
+	swooop_attack(lava_arena, atom/movable/manual_target, swoop_cooldown)
+	sleep(4)
+	swooop_attack(lava_arena, atom/movable/manual_target, swoop_cooldown)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/ex_act(severity, target)
 	if(severity == EXPLODE_LIGHT)
