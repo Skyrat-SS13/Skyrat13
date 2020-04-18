@@ -11,9 +11,11 @@ If you discovered this issue from playing tgstation hosted servers:
 
 ## Date and Time of Issue:
 
-<!-- When did you encounter this issue for the first time -->
+<!-- When did you encounter this issue for the first time. Make sure to mention your timezone when listing the Date and Time -->
 
 ## What Map did this Issue occur on:
+
+<!-- This is especially important to fill out if your issue pertains to a specific map. -->
 
 ## Testmerges (If Applicable):
 
