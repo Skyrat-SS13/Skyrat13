@@ -1,3 +1,4 @@
+//Disabled here because of skyrat modular.
 /obj/machinery/vending/kink
 	name = "KinkMate"
 	desc = "A vending machine for all your unmentionable desires."
