@@ -10,7 +10,7 @@
 	has_limbs = 1
 	hud_type = /datum/hud/robot
 
-	//blocks_emissive = EMISSIVE_BLOCK_UNIQUE // Skyrat edit -- 512 compatibility
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	var/custom_name = ""
 	var/braintype = "Cyborg"

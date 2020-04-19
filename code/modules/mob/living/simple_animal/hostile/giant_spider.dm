@@ -400,9 +400,10 @@
 	action.button_icon_state = "wrap_[active]"
 	action.UpdateButtonIcon()
 
-/obj/effect/proc_holder/wrap/Trigger(mob/living/simple_animal/hostile/poison/giant_spider/nurse/user)
-	if(!istype(user))
+/obj/effect/proc_holder/wrap/Click()
+	if(!istype(usr, /mob/living/simple_animal/hostile/poison/giant_spider/nurse))
 		return TRUE
+	var/mob/living/simple_animal/hostile/poison/giant_spider/nurse/user = usr
 	activate(user)
 	return TRUE
 
@@ -443,7 +444,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "lay_eggs"
 
-/datum/action/innate/spider/lay_eggs/IsAvailable(silent = FALSE)
+/datum/action/innate/spider/lay_eggs/IsAvailable()
 	if(..())
 		if(!istype(owner, /mob/living/simple_animal/hostile/poison/giant_spider/nurse))
 			return 0
@@ -507,7 +508,7 @@
 	desc = "Send a command to all living spiders."
 	button_icon_state = "command"
 
-/datum/action/innate/spider/comm/IsAvailable(silent = FALSE)
+/datum/action/innate/spider/comm/IsAvailable()
 	if(!istype(owner, /mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife))
 		return FALSE
 	return TRUE

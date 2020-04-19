@@ -18,7 +18,7 @@
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 	unmodify()
 
-/datum/component/tactical/Destroy()
+/datum/component/fantasy/Destroy()
 	unmodify()
 	return ..()
 

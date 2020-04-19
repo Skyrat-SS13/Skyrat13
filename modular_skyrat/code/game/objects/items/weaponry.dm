@@ -202,7 +202,7 @@
 	item_state = "staff"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/staff_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/staff_righthand.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/back.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/backstaff.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15 //same damage as a survival knife, not really good
 	block_chance = 25 //terrible when compared to an actual electrostaff, can't block bullets

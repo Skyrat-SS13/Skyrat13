@@ -763,7 +763,7 @@ SUBSYSTEM_DEF(vote)
 		remove_from_client()
 		Remove(owner)
 
-/datum/action/vote/IsAvailable(silent = FALSE)
+/datum/action/vote/IsAvailable()
 	return 1
 
 /datum/action/vote/proc/remove_from_client()

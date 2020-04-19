@@ -51,7 +51,6 @@
 			gain skin as hard as steel and swat bullets from the air, but you also refuse to use dishonorable ranged weaponry."
 	item = /obj/item/book/granter/martial/carp
 	cost = 17
-//	player_minimum = 30 // Skyrat edit
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
@@ -61,7 +60,6 @@
 	and dodging all ranged weapon fire, but you will refuse to use dishonorable ranged weaponry."
 	item = /obj/item/book/granter/martial/bass
 	cost = 18
-//	player_minimum = 30 // Skyrat edit
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 

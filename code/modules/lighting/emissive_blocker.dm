@@ -5,7 +5,7 @@
   * This means that the atom in question will block any emissive sprites.
   * This should only be used internally. If you are directly creating more of these, you're
   * almost guaranteed to be doing something wrong.
-  */ /* // Skyrat edit -- 512 compatibility
+  */
 /atom/movable/emissive_blocker
 	name = ""
 	plane = EMISSIVE_BLOCKER_PLANE
@@ -42,4 +42,3 @@
 /atom/movable/emissive_blocker/forceMove(atom/destination, no_tp=FALSE, harderforce = FALSE)
 	if(harderforce)
 		return ..()
-*/ // Skyrat edit -- 512 compatibility

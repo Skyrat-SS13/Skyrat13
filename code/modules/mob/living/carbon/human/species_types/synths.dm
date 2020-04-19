@@ -80,7 +80,7 @@
 		fake_species = null
 		meat = initial(meat)
 		limbs_id = "synth"
-		use_skintones = FALSE
+		use_skintones = 0
 		sexes = 0
 		fixed_mut_color = ""
 		hair_color = ""

@@ -13,7 +13,8 @@
 	punchstunthreshold = 25
 	attack_verb = "smash"
 	attack_sound = 'sound/weapons/resonator_blast.ogg'
-	blacklisted = TRUE
+	blacklisted = 1
+	use_skintones = 0
 	species_traits = list(NOBLOOD,EYECOLOR,NOGENITALS)
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOHUNGER)
 	sexes = 0

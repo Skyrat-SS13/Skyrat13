@@ -2,7 +2,7 @@
 	name = "brig physician's vest"
 	desc = "A lightweight vest worn by the Brig Physician."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	icon_state = "brig_phys_vest"
 	item_state = "brig_phys_vest"//looks kinda similar, I guess
 	allowed = list(/obj/item/analyzer, /obj/item/stack/medical, /obj/item/dnainjector, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/hypospray, /obj/item/healthanalyzer, /obj/item/flashlight, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/pill, /obj/item/storage/pill_bottle, /obj/item/paper, /obj/item/melee/classic_baton/telescopic, /obj/item/soap, /obj/item/tank/internals/emergency_oxygen)

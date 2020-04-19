@@ -97,30 +97,3 @@ obj/item/robot_module/butler/Initialize()
 	name = "Plasma Buffer Container"
 	recharge_rate = 0
 
-/obj/item/robot_module/peacekeeper/be_transformed_to(obj/item/robot_module/old_module)
-	var/mob/living/silicon/robot/R = loc
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Default", "Sleek", "Spider", "Borgi", "Marina")
-	if(!borg_icon)
-		return FALSE
-	switch(borg_icon)
-		if("Default")
-			cyborg_base_icon = "peace"
-		if("Sleek")
-			cyborg_base_icon = "sleekpeace"
-			cyborg_icon_override = 'modular_skyrat/icons/mob/customrobot.dmi'
-			has_snowflake_deadsprite = TRUE
-		if("Spider")
-			cyborg_base_icon = "whitespider"
-			cyborg_icon_override = 'modular_citadel/icons/mob/robots.dmi'
-		if("Borgi")
-			cyborg_base_icon = "borgi"
-			moduleselect_icon = "borgi"
-			moduleselect_alternate_icon = 'modular_citadel/icons/ui/screen_cyborg.dmi'
-			hat_offset = INFINITY
-			cyborg_icon_override = 'modular_citadel/icons/mob/robots.dmi'
-			has_snowflake_deadsprite = TRUE
-		if("Marina")
-			cyborg_base_icon = "marinapeace"
-			cyborg_icon_override = 'modular_skyrat/icons/mob/customrobot.dmi'
-			has_snowflake_deadsprite = TRUE
-	return ..()

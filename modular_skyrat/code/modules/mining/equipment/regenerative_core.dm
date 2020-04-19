@@ -5,7 +5,7 @@
 		if(inert)
 			to_chat(user, "<span class='notice'>[src] has decayed and can no longer be used to heal.</span>")
 			return
-		if(AmBloodsucker(user))
+		if(isvamp(user))
 			to_chat(user, "<span class='notice'>[src] breaks down as it fails to heal your unholy self</span>")
 			return
 		else

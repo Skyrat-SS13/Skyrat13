@@ -132,10 +132,10 @@
 	return ..()
 
 /datum/interaction/lewd/get_action_link_for(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if(user.stat == DEAD)
-		to_chat(user, "<span class='warning'>You cannot ERP as ghost!</span>")
-		return
 	return "<font color='#FF0000'><b>LEWD:</b></font> [..()]"
+	if(user.stat == DEAD)
+		to_chat(user, "<span class='warning'>You cannot erp as ghost!</span>")
+		return
 
 /mob/living/carbon/human/list_interaction_attributes()
 	var/dat = ..()

@@ -19,7 +19,7 @@
 	dashing_item = dasher
 	holder = user
 
-/datum/action/innate/dash/IsAvailable(silent = FALSE)
+/datum/action/innate/dash/IsAvailable()
 	if(current_charges > 0)
 		return TRUE
 	else

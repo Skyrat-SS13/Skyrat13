@@ -28,7 +28,8 @@
 	action.Remove(user)
 	return
 
-/obj/effect/proc_holder/changeling/Trigger(mob/user)
+/obj/effect/proc_holder/changeling/Click()
+	var/mob/user = usr
 	if(!user || !user.mind || !user.mind.has_antag_datum(/datum/antagonist/changeling))
 		return
 	try_to_sting(user)

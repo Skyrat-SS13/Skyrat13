@@ -19,7 +19,7 @@
 
 /turf/proc/lighting_clear_overlay()
 	if (lighting_object)
-		qdel(lighting_object, TRUE)
+		SSrecycling.recycle_movable_lighting_object(lighting_object, TRUE) //Skyrat change
 
 	var/datum/lighting_corner/C
 	var/thing
@@ -32,7 +32,7 @@
 // Builds a lighting object for us, but only if our area is dynamic.
 /turf/proc/lighting_build_overlay()
 	if (lighting_object)
-		qdel(lighting_object,force=TRUE) //Shitty fix for lighting objects persisting after death
+		SSrecycling.recycle_movable_lighting_object(lighting_object,force=TRUE) //Shitty fix for lighting objects persisting after death //Skyrat fix
 
 	var/area/A = loc
 	if (!IS_DYNAMIC_LIGHTING(A) && !light_sources)
@@ -41,7 +41,7 @@
 	if (!lighting_corners_initialised)
 		generate_missing_corners()
 
-	new/atom/movable/lighting_object(src)
+	SSrecycling.deploy_movable_lighting_object(src) //Skyrat change
 
 	var/thing
 	var/datum/lighting_corner/C

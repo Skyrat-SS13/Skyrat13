@@ -38,7 +38,7 @@
 	var/can_be_z_moved = TRUE
 
 	var/zfalling = FALSE
-/* // Skyrat edit -- 512 compatibility
+
 	/// Either FALSE, [EMISSIVE_BLOCK_GENERIC], or [EMISSIVE_BLOCK_UNIQUE]
 	var/blocks_emissive = FALSE
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
@@ -69,7 +69,7 @@
 				SSvis_overlays.remove_vis_overlay(src, list(vs))
 				break
 	SSvis_overlays.add_vis_overlay(src, icon, icon_state, EMISSIVE_BLOCKER_LAYER, EMISSIVE_BLOCKER_PLANE)
-*/ // Skyrat edit -- 512 compatibility
+
 /atom/movable/proc/can_zFall(turf/source, levels = 1, turf/target, direction)
 	if(!direction)
 		direction = DOWN

@@ -3,28 +3,26 @@
 	name = "security HEV suit helmet"
 	desc = "This helmet seems like something out of this world... It has been designed by Nanotrasen for their security teams to be used during emergency operations in hazardous environments. This one provides more protection from the environment in exchange for the usual combat protection of a regular security suit."
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
+	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/head_muzzled.dmi'
 	icon_state = "hardsuit0-metrocop"
 	item_state = "hardsuit0-metrocop"
-	hardsuit_type = "metrocop"
+	item_color = "metrocop"
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 60, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF | GOLIATH_RESISTANCE
-	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/suit/space/hardsuit/security/metrocop
 	name = "security HEV suit"
 	desc = "This suit seems like something out of this world... It has been designed by Nanotrasen for their security teams to be used during emergency operations in hazardous environments. This one provides more protection from the environment in exchange for the usual combat protection of a regular security suit."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/suit.dmi'
+	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/suit_digi.dmi'
 	icon_state = "hardsuit-metrocop"
 	item_state = "hardsuit-metrocop"
-	hardsuit_type = "metrocop"
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 60, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/metrocop
 	resistance_flags = FIRE_PROOF | ACID_PROOF | GOLIATH_RESISTANCE
-	mutantrace_variation = STYLE_DIGITIGRADE
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC
 
 //Snowflake hardsuit modules
 /obj/item/melee/transforming/armblade
@@ -221,63 +219,3 @@
 	build_path = /obj/item/melee/transforming/armblade
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
-/obj/item/clothing/head/helmet/space/hardsuit/powerarmor
-	name = "Power Armor Helmet"
-	desc = "An advanced helmet attached to a powered exoskeleton suit. Protects well against most forms of harm, but struggles against exotic hazards."
-	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	icon_state = "hardsuit0-powerarmor"
-	item_state = "hardsuit0-powerarmor"
-	hardsuit_type = "powerarmor"
-	clothing_flags = THICKMATERIAL //Ouchie oofie my bones
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100)
-	resistance_flags = ACID_PROOF
-
-/obj/item/clothing/head/helmet/space/hardsuit/powerarmor/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if (slot == SLOT_HEAD)
-		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-		DHUD.add_hud_to(user)
-
-/obj/item/clothing/head/helmet/space/hardsuit/powerarmor/dropped(mob/living/carbon/human/user)
-	..()
-	if (user.head == src)
-		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-		DHUD.remove_hud_from(user)
-
-/obj/item/clothing/suit/space/hardsuit/powerarmor
-	name = "Power Armor"
-	desc = "A self-powered exoskeleton suit comprised of flexible Plasteel sheets and advanced components, designed to offer excellent protection while still allowing mobility. Does not protect against Space, and struggles against more exotic hazards."
-	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	icon_state = "hardsuit-powerarmor"
-	item_state = "hardsuit-powerarmor"
-	slowdown = -0.05
-	clothing_flags = THICKMATERIAL //Not spaceproof. No, it isn't Spaceproof in Rimworld either.
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine. 
-	resistance_flags = ACID_PROOF
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
-
-/obj/item/clothing/suit/space/hardsuit/powerarmor/emp_act()
-	. = ..()
-	var/mob/living/carbon/human/user = src.loc
-	playsound(src.loc, 'modular_skyrat/sound/misc/suitmalf.ogg', 60, 1, 10)
-	if (ishuman(user) && (user.wear_suit == src))
-		to_chat(user, "<span class='danger'>The motors on your armor cease to function, causing the full weight of the suit to weigh on you all at once!</span>")
-		user.emote("scream")
-		user.take_overall_damage(stamina=250)
-		user.take_overall_damage(brute=20)
-	if(prob(1))
-		playsound(src.loc, 'sound/effects/fuse.ogg', 60, 1, 10)
-		visible_message("<span class ='warning'>The power module on the [src] begins to smoke, glowing with an alarming warmth! Get away from it, now!")
-		addtimer(CALLBACK(src, .proc/detonate),50)
-	else
-		visible_message("<span class ='warning'>The power module on the [src] briefly flickers, before humming to life once more.</span>")
-		return
-
-/obj/item/clothing/suit/space/hardsuit/powerarmor/proc/detonate()
-	visible_message("<span class ='danger'>The power module of the [src] overheats, causing it to destabilize and explode!")
-	explosion(src.loc,0,0,3,flame_range = 3)
-	qdel(src)
-	return

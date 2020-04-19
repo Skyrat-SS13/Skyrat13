@@ -202,8 +202,8 @@
 #define SELF_SPRAY 15
 #define SELF_INJECT 15
 
-#define DELUXE_WAIT_SPRAY 0 // Skyrat change
-#define DELUXE_WAIT_INJECT 5 // Skyrat change
+#define DELUXE_WAIT_SPRAY 20
+#define DELUXE_WAIT_INJECT 20
 #define DELUXE_SELF_SPRAY 10
 #define DELUXE_SELF_INJECT 10
 
@@ -331,6 +331,7 @@
 	else
 		to_chat(user, "<span class='notice'>This doesn't fit in [src].</span>")
 		return FALSE
+	return FALSE
 
 /obj/item/hypospray/mkii/AltClick(mob/user)
 	. = ..()

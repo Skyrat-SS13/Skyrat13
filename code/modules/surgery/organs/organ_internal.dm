@@ -143,9 +143,8 @@
 	var/healing_amount = -(maxHealth * healing_factor)
 	///Damage decrements again by a percent of its maxhealth, up to a total of 4 extra times depending on the owner's health
 	healing_amount -= owner.satiety > 0 ? 4 * healing_factor * owner.satiety / MAX_SATIETY : 0
-	if(healing_amount)
-		applyOrganDamage(healing_amount) //to FERMI_TWEAK
-		//Make it so each threshold is stuck.
+	applyOrganDamage(healing_amount) //to FERMI_TWEAK
+	//Make it so each threshold is stuck.
 
 /obj/item/organ/examine(mob/user)
 	. = ..()
@@ -206,15 +205,14 @@
 ///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage
 /obj/item/organ/proc/applyOrganDamage(var/d, var/maximum = maxHealth)	//use for damaging effects
 	if(!d) //Micro-optimization.
-		return FALSE
+		return
 	if(maximum < damage)
-		return FALSE
+		return
 	damage = CLAMP(damage + d, 0, maximum)
-	var/mess = check_damage_thresholds()
+	var/mess = check_damage_thresholds(owner)
 	prev_damage = damage
 	if(mess && owner)
 		to_chat(owner, mess)
-	return TRUE
 
 ///SETS an organ's damage to the amount "d", and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken
 /obj/item/organ/proc/setOrganDamage(var/d)	//use mostly for admin heals
@@ -226,7 +224,7 @@
   * description: By checking our current damage against our previous damage, we can decide whether we've passed an organ threshold.
   *				 If we have, send the corresponding threshold message to the owner, if such a message exists.
   */
-/obj/item/organ/proc/check_damage_thresholds()
+/obj/item/organ/proc/check_damage_thresholds(var/M)
 	if(damage == prev_damage)
 		return
 	var/delta = damage - prev_damage

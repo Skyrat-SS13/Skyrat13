@@ -972,6 +972,7 @@
 	if(isnull(amount))
 		amount = 0
 		CRASH("null amount passed to reagent code")
+		return FALSE
 
 	if(!isnum(amount))
 		return FALSE

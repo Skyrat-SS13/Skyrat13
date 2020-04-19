@@ -7,7 +7,6 @@ GLOBAL_VAR_INIT(next_mining_map, "lavaland")
 
 /datum/map_config/MakeNextMap()
 	return config_filename == "data/next_map.json" || fcopy(config_filename, "data/next_map.json")
-	/*this code will never be reached.. why was this here?
 	var/success = config_filename == "data/next_map.json" || fcopy(config_filename, "data/next_map.json")
 	var/json = file("data/next_map.json")
 	json = file2text(json)
@@ -17,4 +16,3 @@ GLOBAL_VAR_INIT(next_mining_map, "lavaland")
 	fdel("data/next_map.json")
 	json = text2file(json, "data/next_map.json")
 	return success
-	*/

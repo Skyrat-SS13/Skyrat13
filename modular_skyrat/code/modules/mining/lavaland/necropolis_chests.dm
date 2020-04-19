@@ -490,7 +490,7 @@
 	name = "Golden Mask"
 	desc = "Such a grand and intoxicating innocence."
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/mask.dmi'
 	icon_state = "dagoth"
 	item_state = "dagoth"
 	actions_types = list(/datum/action/item_action/ashstorm)

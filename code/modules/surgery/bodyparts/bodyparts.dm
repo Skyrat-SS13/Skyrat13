@@ -350,8 +350,7 @@
 		body_gender = H.dna.features["body_model"]
 		should_draw_gender = S.sexes
 
-		var/mut_colors = (MUTCOLORS in S.species_traits)
-		if(mut_colors)
+		if(MUTCOLORS in S.species_traits)
 			if(S.fixed_mut_color)
 				species_color = S.fixed_mut_color
 			else
@@ -361,7 +360,7 @@
 			species_color = ""
 
 		if(base_bp_icon != DEFAULT_BODYPART_ICON)
-			color_src = mut_colors ? MUTCOLORS : ((H.dna.skin_tone_override && S.use_skintones == USE_SKINTONES_GRAYSCALE_CUSTOM) ? CUSTOM_SKINTONE : SKINTONE)
+			color_src = MUTCOLORS //TODO - Add color matrix support to base limbs
 
 		if(S.mutant_bodyparts["legs"])
 			if(body_zone == BODY_ZONE_L_LEG || body_zone == BODY_ZONE_R_LEG)
@@ -437,7 +436,7 @@
 
 		if(!isnull(body_markings) && status == BODYPART_ORGANIC)
 			if(!use_digitigrade)
-				if(body_zone == BODY_ZONE_CHEST)
+				if(BODY_ZONE_CHEST)
 					. += image(body_markings_icon, "[body_markings]_[body_zone]_[icon_gender]", -MARKING_LAYER, image_dir)
 				else
 					. += image(body_markings_icon, "[body_markings]_[body_zone]", -MARKING_LAYER, image_dir)
@@ -545,23 +544,13 @@
 		return
 
 	if(color_src) //TODO - add color matrix support for base species limbs
-		var/draw_color = mutation_color || species_color
-		var/grayscale = FALSE
-		if(!draw_color)
-			draw_color = SKINTONE2HEX(skin_tone)
-			grayscale = color_src == CUSTOM_SKINTONE //Cause human limbs have a very pale pink hue by def.
-		else
-			draw_color = "#[draw_color]"
+		var/draw_color = mutation_color || species_color || (skin_tone && skintone2hex(skin_tone))
 		if(draw_color)
-			if(grayscale)
-				limb.icon_state += "_g"
-			limb.color = draw_color
+			limb.color = "#[draw_color]"
 			if(aux_icons)
 				for(var/a in aux)
 					var/image/I = a
-					if(grayscale)
-						I.icon_state += "_g"
-					I.color = draw_color
+					I.color = "#[draw_color]"
 				if(!isnull(aux_marking))
 					for(var/a in auxmarking)
 						var/image/I = a

@@ -3,7 +3,7 @@
 	desc = "Fuzzy and Warm!"
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "goatpelt"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
 	item_state = "goatpelt"
 
 /obj/item/clothing/head/goatpelt/king
@@ -30,7 +30,7 @@
 /obj/item/clothing/head/goatpope
 	name = "goat pope hat"
 	desc = "And on the seventh day King Goat said there will be cabbage!"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/large-worn-icons/64x64/head.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "goatpope"
 	item_state = "goatpope"
 	worn_x_dimension = 64
@@ -61,14 +61,14 @@
 	"Science Assistant" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Bluetide" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Alternative" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Alternative Bluetide" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Medical Assistant" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Engineering Assistant" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Service Assistant" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Science Assistant" = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	"Default" = 'icons/mob/head.dmi',
+	"Bluetide" = 'modular_skyrat/icons/mob/head.dmi',
+	"Alternative" = 'modular_skyrat/icons/mob/head.dmi',
+	"Alternative Bluetide" = 'modular_skyrat/icons/mob/head.dmi',
+	"Medical Assistant" = 'modular_skyrat/icons/mob/head.dmi',
+	"Engineering Assistant" = 'modular_skyrat/icons/mob/head.dmi',
+	"Service Assistant" = 'modular_skyrat/icons/mob/head.dmi',
+	"Science Assistant" = 'modular_skyrat/icons/mob/head.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "assu_helmet",

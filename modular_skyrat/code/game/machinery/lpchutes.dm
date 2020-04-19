@@ -47,3 +47,4 @@
 		to_chat(user,"WARNING: UNKNOWN")
 		playsound(loc, 'sound/machines/buzz-two.ogg', 15, 1, -3)
 		return
+	. = ..()

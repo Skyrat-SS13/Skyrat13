@@ -71,11 +71,6 @@
 #define MUT_EXTRA 2
 #define MUT_OTHER 3
 
-//species use_skintones defines
-#define NO_SKINTONES 0
-#define USE_SKINTONES 1
-#define USE_SKINTONES_GRAYSCALE_CUSTOM 2 //adds a "_g" suffix to limb overlays icon states if the skin_tone is a custom one.
-
 //DNA - Because fuck you and your magic numbers being all over the codebase.
 #define DNA_BLOCK_SIZE				3
 
@@ -137,9 +132,8 @@
 #define NOGENITALS		21	//Cannot create, use, or otherwise have genitals
 #define MATRIXED		22	//if icon is color matrix'd
 #define SKINTONE		23	//uses skin tones
-#define CUSTOM_SKINTONE	24	//adds a "_g" suffix to bodypart overlays icon states if a custom skintone is used.
-#define HORNCOLOR		25
-#define WINGCOLOR		26
+#define HORNCOLOR		24
+#define WINGCOLOR		25
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

@@ -18,4 +18,3 @@
 #define DRINK_VERYGOOD	3
 #define DRINK_FANTASTIC	4
 #define FOOD_AMAZING 5
-#define RACE_DRINK 6

@@ -339,7 +339,7 @@ obj/item/gps/internal/bubblegum/hard
 /obj/effect/decal/cleanable/blood/gibs/bubblegumhard/can_bloodcrawl_in()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/do_attack_animation(atom/A, visual_effect_icon)
 	if(!charging)
 		..()
 
@@ -484,13 +484,11 @@ obj/item/gps/internal/bubblegum/hard
 	strip_delay = 130
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	icon_state = "praetor"
-	hardsuit_type = "praetor"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/suit.dmi'
+	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/suit_digi.dmi'
 	item_state = "praetor"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	slowdown = 0
-	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit helmet"
@@ -499,8 +497,6 @@ obj/item/gps/internal/bubblegum/hard
 	strip_delay = 130
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "praetor"
-	hardsuit_type = "praetor"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
+	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/head_muzzled.dmi'
 	item_state = "praetor"
-	mutantrace_variation = STYLE_MUZZLE

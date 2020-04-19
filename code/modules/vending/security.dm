@@ -5,14 +5,14 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access = list(ACCESS_SECURITY)
-	products = list(/obj/item/restraints/handcuffs = 8, //Edited by Skyrat
+	products = list(/obj/item/restraints/handcuffs = 8,
 					/obj/item/restraints/handcuffs/cable/zipties = 10,
 					/obj/item/grenade/flashbang = 4,
 					/obj/item/assembly/flash/handheld = 5,
-					/obj/item/flashlight/seclite = 4,
 					/obj/item/reagent_containers/food/snacks/donut = 12,
-					/obj/item/restraints/legcuffs/bola/energy = 7,
 					/obj/item/storage/box/evidence = 6,
+					/obj/item/flashlight/seclite = 4,
+					/obj/item/restraints/legcuffs/bola/energy = 7,
 					/obj/item/secbat = 5)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,
 					/obj/item/storage/fancy/donut_box = 2,

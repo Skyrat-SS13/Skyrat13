@@ -22,17 +22,9 @@
 					/obj/item/clothing/mask/gas/sechailer/cpmask,
 					/obj/item/ammo_box/magazine/usp,
 					/obj/item/ammo_box/magazine/usp,
-					/obj/item/melee/baton)
+					/obj/item/melee/baton,
+					/obj/item/clothing/suit/space/hardsuit/security/metrocop)
 	crate_name = "metrocop crate"
-
-/datum/supply_pack/security/armory/hev
-	name = "HEV Hardsuit Crate"
-	desc = "The HEV suit is a harder plated suit ment for on-world use as well as space use. Has fire-proofing and acid proof shields ment for lava land or other acid worlds. \
-	Also has a shock resistant springs making bombs less lethal to the user."
-	cost = 7500
-	contains = list(/obj/item/clothing/suit/space/hardsuit/security/metrocop)
-	crate_name = "HEV Hardsuit crate"
-
 
 //Fuck you citadel maintainers for merging the removal of null crates _|_ (this is a middle finger)
 /datum/supply_pack/emergency/syndicate

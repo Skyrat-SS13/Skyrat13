@@ -8,7 +8,7 @@
 	pressure_resistance = 8
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	throwforce = 10
-	//blocks_emissive = EMISSIVE_BLOCK_GENERIC // Skyrat edit -- 512 compatibility
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	var/datum/mind/mind

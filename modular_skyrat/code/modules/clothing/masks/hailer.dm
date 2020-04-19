@@ -1,7 +1,7 @@
 /obj/item/clothing/mask/gas/sechailer/cpmask
 	name = "Civil Protection gas mask"
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
+	alternate_worn_icon = 'modular_skyrat/icons/mob/mask.dmi'
 	icon_state = "cpmask"
 	item_state = "cpmask"
 	actions_types = list(/datum/action/item_action/halt)

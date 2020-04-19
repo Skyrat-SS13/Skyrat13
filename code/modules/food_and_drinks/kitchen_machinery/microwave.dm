@@ -287,7 +287,7 @@
 
 /obj/machinery/microwave/proc/loop(type, time, wait = max(12 - 2 * efficiency, 2)) // standard wait is 10
 	if(stat & (NOPOWER|BROKEN))
-		if(type == MICROWAVE_PRE)
+		if(MICROWAVE_PRE)
 			pre_fail()
 		return
 	if(!time)

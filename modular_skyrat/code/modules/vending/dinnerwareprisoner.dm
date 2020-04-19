@@ -5,9 +5,9 @@
 	icon_state = "dinnerware"
 	products = list(/obj/item/reagent_containers/glass/bowl = 32,
 					/obj/item/storage/bag/tray = 1,
-					/obj/item/kitchen/rollingpin = 1,
 					/obj/item/kitchen/knife/combat/bone/plastic = 8,
 					/obj/item/kitchen/fork = 8,
+					/obj/item/kitchen/rollingpin = 1,
 					/obj/item/reagent_containers/food/drinks/drinkingglass = 16,
 					/obj/item/clothing/suit/apron/chef = 2,
 					/obj/item/storage/box/cups = 2,
