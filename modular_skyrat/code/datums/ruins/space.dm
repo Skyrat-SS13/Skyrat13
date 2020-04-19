@@ -17,7 +17,8 @@
 	name = "King Goat Arena"
 	description = "Well wish you luck."
 	allow_duplicates = FALSE
-	unpickable = TRUE
+	always_place = TRUE
+	cost = 0
 
 /*
 /datum/map_template/ruin/space/forgottenship
