@@ -1,4 +1,0 @@
-author: "BurgerBB"
-delete-after: True
-changes: 
-  - balance: "Strange Reagent now works based on dosage. You need 1u of strange reagent for every 20 brute+burn damage to revive someone. Strange Reagent can now also revive husks."

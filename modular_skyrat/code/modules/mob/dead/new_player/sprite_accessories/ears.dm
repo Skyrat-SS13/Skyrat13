@@ -97,13 +97,13 @@
 	color_src = MATRIXED
 
 /datum/sprite_accessory/mam_ears/cobrahood
-	name = "Cobra hood (No ears)"
+	name = "Cobra Hood"
 	icon_state = "cobrahood"
 	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
 	color_src = MATRIXED
 
 /datum/sprite_accessory/mam_ears/cobrahoodears
-	name = "Cobra hood (Ears)"
+	name = "Cobra Hood (Ears)"
 	icon_state = "cobraears"
 	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
 	color_src = MATRIXED
