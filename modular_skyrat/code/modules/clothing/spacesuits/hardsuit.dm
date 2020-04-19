@@ -255,7 +255,7 @@
 	item_state = "hardsuit-powerarmor"
 	slowdown = -0.05
 	clothing_flags = THICKMATERIAL //Not spaceproof. No, it isn't Spaceproof in Rimworld either.
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine. 
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine.
 	resistance_flags = ACID_PROOF
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
 
@@ -281,3 +281,139 @@
 	explosion(src.loc,0,0,3,flame_range = 3)
 	qdel(src)
 	return
+
+//HEV Mark V (RD hardsuit)
+/obj/item/clothing/head/helmet/space/hardsuit/rd
+	name = "HEV Suit Mark IV helmet"
+	desc = "A Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers. The flashlight seems broken, fitting considering this was made before the start of the milennium."
+	icon_state = "hev"
+	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	resistance_flags = ACID_PROOF | FIRE_PROOF
+	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
+	armor = list("melee" = 30, "bullet" = 10, "laser" = 10, "energy" = 5, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
+	var/explosion_detection_dist = 21
+	var/scan_reagents = TRUE
+	actions_types = list(/datum/action/item_action/toggle_research_scanner)
+	mutantrace_variation = STYLE_MUZZLE
+
+/obj/item/clothing/head/helmet/space/hardsuit/rd/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(slot == ITEM_SLOT_HEAD)
+		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_DIAGNOSTIC_BASIC]
+		DHUD.add_hud_to(user)
+
+/obj/item/clothing/head/helmet/space/hardsuit/rd/dropped(mob/living/carbon/human/user)
+	if(user.head == src)
+		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_DIAGNOSTIC_BASIC]
+		DHUD.remove_hud_from(user)
+	..()
+
+/obj/item/clothing/suit/space/hardsuit/rd
+	name = "HEV Suit Mark IV"
+	desc = "A Hazardous Environment suit, often called the Hazard suit. It was designed to protect scientists from the blunt trauma, radiation, energy discharge that hazardous materials might produce or entail. Fits you like a glove. The automatic medical system seems to be functional."
+	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	icon_state = "hev"
+	item_state = "hev"
+	resistance_flags = ACID_PROOF | FIRE_PROOF
+	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT //Same as an emergency firesuit. Not ideal for extended exposure.
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/gun/energy/wormhole_projector,
+	/obj/item/hand_tele, /obj/item/aicard)
+	armor = list("melee" = 30, "bullet" = 10, "laser" = 20, "energy" = 30, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rd
+	var/heal_threshold = 5
+	var/injection_amount = 10
+	var/injection_cooldown_time = 1200 //2 minutes before injecting again
+	var/injection_cooldown
+	var/annoy_cooldown_time = 600
+	var/annoyed = FALSE
+	var/datum/reagent/startingreagent = /datum/reagent/medicine/ephedrine
+	var/obj/item/reagent_containers/container
+	var/beaker_type = /obj/item/reagent_containers/glass/beaker/large
+	var/mob/living/carbon/human/freeman
+	var/currentwearerhealth
+	var/oldwearerhealth
+	var/flatlined
+	mutantrace_variation = STYLE_DIGITIGRADE
+
+/obj/item/clothing/suit/space/hardsuit/rd/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj,src)
+	var/obj/item/reagent_containers/R = new beaker_type(src)
+	R.reagents.add_reagent(startingreagent, R.reagents.total_volume)
+	container = R
+
+/obj/item/clothing/suit/space/hardsuit/rd/process()
+	. = ..()
+	if(!freeman)
+		return
+	oldwearerhealth = currentwearerhealth
+	currentwearerhealth = freeman.health
+	if(freeman.stat == DEAD && !flatlined)
+		playsound(freeman, 'modular_skyrat/sound/halflife/flatline.wav', 50, -1)
+		flatlined = TRUE
+	if(!annoyed)
+		if(currentwearerhealth <= heal_threshold && !flatlined)
+			playsound(freeman, 'modular_skyrat/sound/halflife/health_critical.wav', 50, -1)
+			sleep(30)
+			annoyed = TRUE
+		if((oldwearerhealth > currentwearerhealth) && currentwearerhealth >= heal_threshold && !flatlined)
+			playsound(freeman, 'modular_skyrat/sound/halflife/health_dropping.wav', 50, -1)
+			sleep(30)
+			annoyed = TRUE
+		if(freeman.toxloss >= 12.5 && !flatlined)
+			playsound(freeman, 'modular_skyrat/sound/halflife/blood_toxins.wav', 50, -1)
+			sleep(30)
+			annoyed = TRUE
+		if(freeman.fireloss >= 35 && !flatlined)
+			playsound(freeman, 'modular_skyrat/sound/halflife/heat_damage.wav', 50, -1)
+			sleep(30)
+			annoyed = TRUE
+		if(freeman.blood_volume < (BLOOD_VOLUME_OKAY - 36) && !flatlined)
+			playsound(freeman, 'modular_skyrat/sound/halflife/blood_loss.wav', 50, -1)
+			sleep(20)
+			annoyed = TRUE
+		if(annoyed)
+			addtimer(CALLBACK(src, .proc/unannoy), annoy_cooldown_time)
+	if((currentwearerhealth <= heal_threshold) && (world.time > injection_cooldown || !injection_cooldown) && !flatlined)
+		if(container)
+			if(container.reagents.trans_to(freeman, injection_amount))
+				playsound(freeman, 'modular_skyrat/sound/halflife/medshot4.wav', 50, -1)
+				injection_cooldown = injection_cooldown_time + world.time
+			else
+				playsound(freeman, 'modular_skyrat/sound/halflife/innsuficient_medical.wav', 50, -1)
+				injection_cooldown = injection_cooldown_time + world.time
+
+/obj/item/clothing/suit/space/hardsuit/rd/proc/unannoy()
+	annoyed = FALSE
+
+/obj/item/clothing/suit/space/hardsuit/rd/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/screwdriver))
+		playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
+		container.forceMove(get_turf(user))
+		container = null
+		to_chat(user, "<span class='notice'>You remove [src]'s reagent container.</span>")
+	else if(istype(I, /obj/item/reagent_containers) && !container)
+		var/obj/item/reagent_containers/R = I
+		playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
+		R.forceMove(src)
+		to_chat(user, "<span class='notice'>You install [R] into [src].</span>")
+	else
+		..()
+
+/obj/item/clothing/suit/space/hardsuit/rd/equipped(mob/user, slot)
+	..()
+	if(ishuman(user) && slot == SLOT_WEAR_SUIT)
+		playsound(user, 'modular_skyrat/sound/halflife/hev_logon.ogg', 50, -1)
+		freeman = user
+		flatlined = FALSE
+
+/obj/item/clothing/suit/space/hardsuit/rd/dropped(mob/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == SLOT_WEAR_SUIT)
+		playsound(user, 'modular_skyrat/sound/halflife/deactivated.wav', 50, -1)
+		freeman = null
+		flatlined = FALSE
