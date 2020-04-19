@@ -84474,6 +84474,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"keX" = (
+/obj/effect/landmark/start/brig_physician,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "kfu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/white,
@@ -110266,7 +110270,7 @@ ajm
 azh
 ahx
 bcU
-aBp
+keX
 aBp
 aDF
 aEP
