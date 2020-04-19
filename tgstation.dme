@@ -3487,6 +3487,7 @@
 #include "modular_skyrat\code\modules\cargo\packs\special.dm"
 #include "modular_skyrat\code\modules\client\preferences_toggles.dm"
 #include "modular_skyrat\code\modules\client\loadout\_medical.dm"
+#include "modular_skyrat\code\modules\client\loadout\hands.dm"
 #include "modular_skyrat\code\modules\client\loadout\head.dm"
 #include "modular_skyrat\code\modules\client\loadout\mask.dm"
 #include "modular_skyrat\code\modules\client\loadout\neck.dm"
