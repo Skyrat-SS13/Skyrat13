@@ -3,10 +3,11 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
-	products = list(/obj/item/storage/bag/tray = 8,
-					/obj/item/kitchen/fork = 6,
-					/obj/item/kitchen/knife = 6,
+	products = list(/obj/item/reagent_containers/glass/bowl = 30, //Edited by Skyrat
+					/obj/item/storage/bag/tray = 8,
 					/obj/item/kitchen/rollingpin = 4,
+					/obj/item/kitchen/knife = 6,
+					/obj/item/kitchen/fork = 6,
 					/obj/item/reagent_containers/food/drinks/drinkingglass = 8,
 					/obj/item/clothing/suit/apron/chef = 2,
 					/obj/item/storage/box/cups = 2,
@@ -17,8 +18,7 @@
 					/obj/item/reagent_containers/food/condiment/pack/bbqsauce = 5,
 					/obj/item/reagent_containers/food/condiment/pack/soysauce = 5,
 					/obj/item/reagent_containers/food/condiment/saltshaker = 5,
-					/obj/item/reagent_containers/food/condiment/peppermill = 5,
-					/obj/item/reagent_containers/glass/bowl = 30)
+					/obj/item/reagent_containers/food/condiment/peppermill = 5)
 	contraband = list(
 					/obj/item/reagent_containers/food/snacks/monkeycube = 1,
 					/obj/item/kitchen/knife/butcher = 2,

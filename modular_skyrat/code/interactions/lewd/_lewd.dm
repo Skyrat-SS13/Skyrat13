@@ -217,7 +217,6 @@ mob/living/Initialize()
 		refractory_period = world.time + rand(300, 900) - sexual_potency
 		src.set_drugginess(rand(5, 10))
 	set_lust(0)
-	hud_used.arousal?.update_icon_state()
 
 /mob/living/cum(mob/living/partner, target_orifice)
 	if(multiorgasms < sexual_potency)
@@ -853,8 +852,6 @@ mob/living/Initialize()
 		return A.name
 
 /mob/living/proc/handle_post_sex(amount, orifice, mob/living/partner)
-	hud_used.arousal?.update_icon_state()
-
 	if(stat != CONSCIOUS)
 		return
 

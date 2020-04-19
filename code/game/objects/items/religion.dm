@@ -70,24 +70,24 @@
 
 /obj/item/banner/proc/special_inspiration(mob/living/carbon/human/H) //Any banner-specific inspiration effects go here
 	return
-
+/* modular_skyrat
 /obj/item/banner/security
 	name = "securistan banner"
 	desc = "The banner of Securistan, ruling the station with an iron fist."
 	icon_state = "banner_security"
 	job_loyalties = list("Security Officer", "Warden", "Detective", "Head of Security")
 	warcry = "EVERYONE DOWN ON THE GROUND!!"
-
+*/
 /obj/item/banner/security/mundane
 	inspiration_available = FALSE
-
+/* modular_skyrat
 /obj/item/banner/medical
 	name = "meditopia banner"
 	desc = "The banner of Meditopia, generous benefactors that cure wounds and shelter the weak."
 	icon_state = "banner_medical"
 	job_loyalties = list("Medical Doctor", "Chemist", "Geneticist", "Virologist", "Chief Medical Officer")
 	warcry = "No wounds cannot be healed!"
-
+*/
 /obj/item/banner/medical/mundane
 	inspiration_available = FALSE
 
@@ -189,6 +189,7 @@
 	slowdown = 2.0 //gotta pretend we're balanced.
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 40, "bomb" = 60, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 60)
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/suit/armor/plate/crusader/red
 	icon_state = "crusader-red"
@@ -214,7 +215,7 @@
 /obj/item/clothing/head/helmet/plate/crusader/prophet
 	name = "Prophet's Hat"
 	desc = "A religious-looking hat."
-	alternate_worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
+	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	flags_1 = 0
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 50, "bomb" = 70, "bio" = 50, "rad" = 50, "fire" = 60, "acid" = 60) //religion protects you from disease and radiation, honk.
 	worn_x_dimension = 64

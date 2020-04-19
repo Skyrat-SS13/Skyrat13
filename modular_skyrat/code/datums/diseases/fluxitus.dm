@@ -1,3 +1,4 @@
+//fucking hell travis
 /datum/disease/fluxitus
 	name = "Fluctuating Screaming Syndrome"
 	max_stages = 5

@@ -26,6 +26,7 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/bubblegum
 	name = "bubblegum"
 	desc = "In what passes for a hierarchy among slaughter demons, this one is king."
+	threat = 35
 	health = 2500
 	maxHealth = 2500
 	attacktext = "rends"
@@ -102,7 +103,7 @@ Difficulty: Hard
 	if(.)
 		SSshuttle.shuttle_purchase_requirements_met |= "bubblegum"
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/do_attack_animation(atom/A)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
 	if(charging)
 		return
 	..()

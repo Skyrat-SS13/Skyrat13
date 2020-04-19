@@ -7,7 +7,7 @@
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>You feel nervous.</span>"
 
-/datum/mutation/human/nervousness/on_life(mob/living/carbon/human/owner)
+/datum/mutation/human/nervousness/on_life()
 	if(prob(10))
 		owner.stuttering = max(10, owner.stuttering)
 
@@ -79,7 +79,7 @@
 		message = " [message] "
 		//Time for a friendly game of SS13
 		message = replacetext(message," stupid "," smart ")
-		message = replacetext(message," retard "," genius ")
+		message = replacetext(message," idiot "," genius ")
 		message = replacetext(message," unrobust "," robust ")
 		message = replacetext(message," dumb "," smart ")
 		message = replacetext(message," awful "," great ")
@@ -263,7 +263,7 @@
 		message = replacetext(message," thank you "," thank you, thank you very much ")
 		message = replacetext(message," what are you "," whatcha ")
 		message = replacetext(message," yes ",pick(" sure", "yea "))
-		message = replacetext(message," faggot "," square ")
+		message = replacetext(message," dumbass "," square ")
 		message = replacetext(message," muh valids "," getting my kicks ")
 		speech_args[SPEECH_MESSAGE] = trim(message)
 

@@ -7,13 +7,30 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	var/obscure_name
+	var/species_visible //Skyrat edit
+	var/species_name_string //Skyrat edit
 
 	if(isliving(user))
 		var/mob/living/L = user
 		if(HAS_TRAIT(L, TRAIT_PROSOPAGNOSIA))
 			obscure_name = TRUE
 
-	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
+	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE)) //skyrat - moved this higher
+	//Skyrat stuff
+	if(skipface || get_visible_name() == "Unknown")
+		species_visible = FALSE
+	else
+		species_visible = TRUE
+
+	if(!species_visible)
+		species_name_string = "!"
+	else if (dna.custom_species)
+		species_name_string = ", [prefix_a_or_an(dna.custom_species)] <EM>[dna.custom_species]</EM>!"
+	else
+		species_name_string = ", [prefix_a_or_an(dna.species.name)] <EM>[dna.species.name]</EM>!"
+	//End of skyrat stuff
+
+	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>[species_name_string]") //Skyrat edit
 
 	var/vampDesc = ReturnVampExamine(user) // Vamps recognize the names of other vamps.
 	var/vassDesc = ReturnVassalExamine(user) // Vassals recognize each other's marks.
@@ -23,12 +40,13 @@
 		. += vassDesc
 
 	var/list/obscured = check_obscured_slots()
-	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
+	//Skyrat changes - edited that to only show the extra species tidbit if it's unknown or he's got a custom species
 	if(skipface || get_visible_name() == "Unknown")
 		. += "You can't make out what species they are."
-	else
-		. += "[t_He] [t_is] a [dna.custom_species ? dna.custom_species : dna.species.name]!"
+	else if(dna.custom_species)
+		. += "[t_He] [t_is] [prefix_a_or_an(dna.species.name)] [dna.species.name]!"
+	//End of skyrat changes
 
 	//uniform
 	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
@@ -395,7 +413,25 @@
 	if(!invisible_man)
 		if(client)
 			. += "OOC Notes: <a href='?src=[REF(src)];ooc_notes=1'>\[View\]</a>" // SKYRAT EDIT -- END
+	//SKYRAT EDIT - admin lookup on records/extra flavor
+	if(client && user.client?.holder && isobserver(user))
+		var/line = ""
+		if(!(client.prefs.general_records == ""))
+			line += "<a href='?src=[REF(src)];general_records=1'>\[GEN\]</a>"
+		if(!(client.prefs.security_records == ""))
+			line += "<a href='?src=[REF(src)];security_records=1'>\[SEC\]</a>"
+		if(!(client.prefs.medical_records == ""))
+			line += "<a href='?src=[REF(src)];medical_records=1'>\[MED\]</a>"
+		if(!(client.prefs.flavor_background == ""))
+			line += "<a href='?src=[REF(src)];flavor_background=1'>\[BG\]</a>"
+		if(!(client.prefs.character_skills == ""))
+			line += "<a href='?src=[REF(src)];character_skills=1'>\[SKL\]</a>"
+		if(!(client.prefs.exploitable_info == ""))
+			line += "<a href='?src=[REF(src)];exploitable_info=1'>\[EXP\]</a>"
 
+		if(!(line == ""))
+			. += line
+	//END OF SKYRAT EDIT
 	. += "*---------*</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!

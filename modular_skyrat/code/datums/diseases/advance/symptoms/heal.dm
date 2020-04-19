@@ -57,7 +57,7 @@
 
 	M.adjustToxLoss(-heal_amt)
 
-	var/list/parts = M.get_damaged_bodyparts(1,1)
+	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 	if(!parts.len)
 		return
 	if(prob(5))
@@ -75,7 +75,9 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 4
-	threshold_desc = "<b>Stage Speed 6:</b> Doubles healing speed."
+	threshold_desc = list(
+		"Stage Speed 6" = "Doubles healing speed.",
+	)
 
 /datum/symptom/heal/toxin/Start(datum/disease/advance/A)
 	if(A.properties["stage_rate"] >= 6) //stronger healing
@@ -110,7 +112,9 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 4
-	threshold_desc = "<b>Stage Speed 6:</b> Doubles healing speed."
+	threshold_desc = list(
+	"Stage Speed 6" = "Doubles healing speed.",
+	)
 
 /datum/symptom/heal/brute/Start(datum/disease/advance/A)
 	if(A.properties["stage_rate"] >= 6) //stronger healing
@@ -118,7 +122,7 @@
 
 /datum/symptom/heal/brute/Heal(mob/living/carbon/M, datum/disease/advance/A)
 	var/heal_amt = 1 * power
-	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
+	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
 	if(!parts.len)
 		return
@@ -137,7 +141,9 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 6
-	threshold_desc = "<b>Stage Speed 6:</b> Doubles healing speed."
+	threshold_desc = list(
+	"Stage Speed 6" = "Doubles healing speed.",
+	)
 
 /datum/symptom/heal/superbrute/Start(datum/disease/advance/A)
 	if(A.properties["stage_rate"] >= 6) //stronger healing
@@ -169,7 +175,9 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 6
-	threshold_desc = "<b>Stage Speed 6:</b> Doubles healing speed."
+	threshold_desc = list(
+	"Stage Speed 6" = "Doubles healing speed.",
+	)
 
 /datum/symptom/heal/burn/Start(datum/disease/advance/A)
 	if(A.properties["stage_rate"] >= 6) //stronger healing
@@ -178,7 +186,7 @@
 /datum/symptom/heal/burn/Heal(mob/living/carbon/M, datum/disease/advance/A)
 	var/heal_amt = 1 * power
 
-	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
+	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
 	if(!parts.len)
 		return
@@ -191,34 +199,38 @@
 
 /datum/symptom/heal/heatresistance
 	name = "Heat Resistance"
-	desc = "The virus quickly balances body heat, while also replacing tissues damaged by external sources."
+	desc = "The virus quickly balances body heat, while also replacing tissues damaged by external sources, making the infected almost immune to burning."
 	stealth = 0
 	resistance = 0
 	stage_speed = -2
 	transmittable = -2
-	level = 4
-	threshold_desc = ""
+	level = 6
+	threshold_desc = list(
+	"Resistance 4" = "Doubles healing power.",
+	)
 	var/temp_rate = 4
+	power = 1
 
 /datum/symptom/heal/heatresistance/Heal(mob/living/carbon/M, datum/disease/advance/A)
-	var/heal_amt = 4 * power
+	var/heal_amt = 0
+	if(A.properties["resistance"] >= 4) //stronger healing
+		power = 2
+	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
-	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
-
-	if(M.fire_stacks > 0)
-		power = power + (M.fire_stacks*0.75)
+	if(M.on_fire && M.fire_stacks > 0)
+		heal_amt = 1.5 * (M.fire_stacks*0.75) * power
 	else
-		power = initial(power)
-
+		heal_amt = 0
 	if(M.bodytemperature > BODYTEMP_NORMAL)	//Shamelessly stolen from plasma fixation, whew lad
 		M.adjust_bodytemperature(-20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
-	else if(M.bodytemperature < (BODYTEMP_NORMAL + 1))
-		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,0,BODYTEMP_NORMAL)
+	else if(M.bodytemperature < (BODYTEMP_NORMAL))
+		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
+	if(prob(10) && heal_amt && (M.getBruteLoss()  || M.getFireLoss()))
+		to_chat(M, "<span class='notice'>The pain from your wounds fades rapidly.</span>") //this is where healing takes place
 	for(var/obj/item/bodypart/L in parts)
-		if(L.heal_damage(0, heal_amt/parts.len))
+		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len, null, BODYPART_ORGANIC))
 			M.update_damage_overlays()
-
-	return TRUE
+	return 1
 
 /datum/symptom/heal/dna
 	name = "Deoxyribonucleic Acid Restoration"
@@ -228,7 +240,9 @@
 	stage_speed = 0
 	transmittable = -1
 	level = 5
-	threshold_desc = "<b>Resistance 6:</b> Additionally heals brain damage."
+	threshold_desc = list(
+	"Resistance 6" = "Additionally heals brain damage.",
+	)
 	var/healing_brain = FALSE
 
 /datum/symptom/heal/dna/Start(datum/disease/advance/A)
@@ -261,14 +275,14 @@
 	passive_message = "<span class='notice'>You really want a drink...</span>"
 	var/absorption_coeff = 1.5
 	threshold_desc = list(
-		"Resistance 5" = "Alcohol is consumed at a much slower rate.",
-		"Stage Speed 7" = "Increases healing speed.",
+		"Stealth 2" = "Alcohol is absorbed at a much slower rate.",
+		"Stage Speed 6" = "Increases healing speed.",
 	)
 
 /datum/symptom/heal/alcohol/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["stage_rate"] >= 7)
+	if(A.properties["stage_rate"] >= 6)
 		power = 2
 	if(A.properties["stealth"] >= 2)
 		absorption_coeff = initial(absorption_coeff)/2

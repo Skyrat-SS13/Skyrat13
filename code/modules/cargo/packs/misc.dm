@@ -152,7 +152,7 @@
 					/obj/item/instrument/trombone,
 					/obj/item/instrument/recorder,
 					/obj/item/instrument/harmonica,
-					/obj/structure/piano/unanchored)
+					/obj/structure/musician/piano/unanchored)
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/casinocrate
@@ -274,7 +274,7 @@
 	name = "Funeral Supplies"
 	desc = "Mourn your dead properly buy sending them off with love filled notes, clean clothes, and a proper ceremony. Contains two candle packs, funeral garb, flowers, a paperbin , and crayons to help aid in religious rituals. Coffin included."
 	cost = 1200
-	contains = list(/obj/item/clothing/under/burial,
+	contains = list(/obj/item/clothing/under/misc/burial,
 					/obj/item/storage/fancy/candle_box,
 					/obj/item/storage/fancy/candle_box,
 					/obj/item/reagent_containers/food/snacks/grown/harebell,
@@ -419,8 +419,8 @@
 					/obj/item/dildo/custom,
 					/obj/item/vending_refill/kink,
 					/obj/item/vending_refill/kink,
-					/obj/item/clothing/under/maid,
-					/obj/item/clothing/under/maid,
+					/obj/item/clothing/under/costume/maid,
+					/obj/item/clothing/under/costume/maid,
 					/obj/item/electropack/shockcollar,
 					/obj/item/electropack/shockcollar,
 					/obj/item/restraints/handcuffs/fake/kinky,

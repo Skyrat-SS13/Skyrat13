@@ -5,6 +5,7 @@
 	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same. Goats never change."
 
 /obj/item/toy/plush/goatplushie/angry
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	var/mob/living/carbon/target
 	throwforce = 6
 	var/cooldown = 0
@@ -53,10 +54,12 @@
 
 /obj/item/toy/plush/goatplushie/angry/realgoat
 	name = "goat plushie"
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "realgoat"
 
 /obj/item/toy/plush/realgoat
 	name = "goat plushie"
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same... or at least it would if it wasn't a normal plushie."
 	icon_state = "realgoat"
 	squeak_override = list('modular_skyrat/sound/items/goatsound.ogg'=1)
@@ -64,6 +67,7 @@
 /obj/item/toy/plush/goatplushie/angry/kinggoat
 	name = "King Goat Plushie"
 	desc = "A plushie depicting the king of all goats."
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "kinggoat"
 	throwforce = 25
 	force = 25
@@ -73,6 +77,7 @@
 /obj/item/toy/plush/goatplushie/angry/kinggoat/ascendedkinggoat
 	name = "Ascended King Goat Plushie"
 	desc = "A plushie depicting the god of all goats."
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "ascendedkinggoat"
 	throwforce = 30
 	force = 30
@@ -115,11 +120,13 @@
 /obj/item/toy/plush/goatplushie/angry/guardgoat
 	name = "guard goat plushie"
 	desc = "A plushie depicting one of the King Goat's guards, tasked to protect the king at all costs."
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "guardgoat"
 	throwforce = 10
 
 /obj/item/toy/plush/goatplushie/angry/guardgoat/masterguardgoat
 	name = "royal guard goat plushie"
 	desc = "A plushie depicting one of the royal King Goat's guards, tasked to protecting the king at all costs and training new goat guards."
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "royalguardgoat"
 	throwforce = 15
