@@ -19,6 +19,31 @@
 	reqs = list(/obj/item/clothing/glasses/hud/mining = 1,
 				/obj/item/clothing/glasses/sunglasses)
 	time = 20
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/mineprescriptionsunhud
+	name = "Ore Scanner Prescription Sunglasses"
+	result = /obj/item/clothing/glasses/hud/mining/prescription/sunglasses
+	reqs = list(/obj/item/clothing/glasses/hud/mining/prescription = 1,
+				/obj/item/clothing/glasses/sunglasses)
+	time = 20
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/minemesonsunhud
+	name = "Ore Scanner Meson Sunglasses"
+	result = /obj/item/clothing/glasses/hud/mining/meson/sunglasses
+	reqs = list(/obj/item/clothing/glasses/hud/mining/meson = 1,
+				/obj/item/clothing/glasses/sunglasses)
+	time = 20
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/minefaunasunhud
+	name = "Ore Scanner Fauna Sunglasses"
+	result = /obj/item/clothing/glasses/hud/mining/fauna/sunglasses
+	reqs = list(/obj/item/clothing/glasses/hud/mining/fauna = 1,
+				/obj/item/clothing/glasses/sunglasses)
+	time = 20
+	category = CAT_CLOTHING
 
 //power armor
 /datum/crafting_recipe/powerarmor

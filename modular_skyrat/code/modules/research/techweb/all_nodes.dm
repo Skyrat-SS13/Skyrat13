@@ -48,4 +48,6 @@
 /datum/techweb_node/integrated_HUDs/New()
 	design_ids += "mining_hud"
 	design_ids += "mining_hud_prescription"
+	design_ids += "mining_hud_meson"
+	design_ids += "mining_hud_fauna"
 	. = ..()

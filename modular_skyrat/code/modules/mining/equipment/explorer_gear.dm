@@ -154,13 +154,10 @@
 //mining hud glasses
 /obj/item/clothing/glasses/hud/mining
 	name = "ore scanner HUD"
-	desc = "Essentially a worn version of the advanced mining scanner. Works as a meson too."
+	desc = "Essentially a worn version of the advanced mining scanner."
 	icon = 'modular_skyrat/icons/obj/clothing/glasses.dmi'
 	icon_state = "mininghud"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/eyes.dmi'
-	darkness_view = 2
-	vision_flags = SEE_TURFS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	var/mob/living/carbon/human/wearer
 	cooldown = 35
 	var/current_cooldown = 0
@@ -189,12 +186,58 @@
 
 /obj/item/clothing/glasses/hud/mining/prescription
 	name = "prescription ore scanner HUD"
-	desc = "Essentially a worn version of the advanced mining scanner. Works as a meson too. Helps the nearsighted."
+	desc = "Essentially a worn version of the advanced mining scanner. Helps the nearsighted."
 	vision_correction = 1
+
+/obj/item/clothing/glasses/hud/mining/meson
+	desc = "Essentially a worn version of the advanced mining scanner. Works as a meson too."
+	darkness_view = 2
+	vision_flags = SEE_TURFS
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 
 /obj/item/clothing/glasses/hud/mining/sunglasses
 	name = "sunglasses ore scanner HUD"
 	desc = "Mine with style!"
+	icon_state = "sunhudmine"
+	darkness_view = 1
+	flash_protect = 1
+	tint = 1
+	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
+
+/obj/item/clothing/glasses/hud/mining/prescription/sunglasses
+	name = "prescription sunglasses ore scanner HUD"
+	desc = "Mine with style! And without blurriness..."
+	icon_state = "sunhudmine"
+	darkness_view = 1
+	flash_protect = 1
+	tint = 1
+	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
+
+/obj/item/clothing/glasses/hud/mining/meson/sunglasses
+	name = "sunglasses ore scanner HUD"
+	desc = "Mine with style! And with mesons, because your vision is augmented."
+	icon_state = "sunhudmine"
+	darkness_view = 1
+	flash_protect = 1
+	tint = 1
+	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
+
+/obj/item/clothing/glasses/hud/mining/fauna
+	name = "ore and fauna scanner HUD"
+	desc = "Essentially a worn version of the advanced mining scanner, but also allows you to scan the health of fauna."
+	hud_type = DATA_HUD_MEDICAL_BASIC
+	storehud = TRUE
+
+/obj/item/clothing/glasses/hud/mining/fauna/process()
+	..()
+	if(ourhud && wearer)
+		for(var/mob/M in view(wearer, 15))
+			if(!(istype(M, /mob/living/simple_animal/hostile/megafauna) || istype(M, /mob/living/simple_animal/hostile/asteroid)))
+				ourhud.remove_from_single_hud(wearer, M) //very hacky solution so only fauna and megafauna health display
+
+/obj/item/clothing/glasses/hud/mining/fauna/sunglasses
+	name = "sunglasses ore and fauna scanner HUD"
+	desc = "Mine with style! And apply a beating to goliaths with precision."
 	icon_state = "sunhudmine"
 	darkness_view = 1
 	flash_protect = 1
