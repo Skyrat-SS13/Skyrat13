@@ -39,7 +39,7 @@
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	unique_reskin_stored_icons = list(
 	"Default" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
-	"Tactical" = "modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Tactical" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
 	)
 	unique_reskin_stored_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
@@ -127,7 +127,7 @@
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 50, "bio" = 90, "rad" = 20, "fire" = 50, "acid" = 50)
 	unique_reskin_stored_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
-	"Skulldozer" = "modular_skyrat/icons/obj/clothing/hats.dmi'
+	"Skulldozer" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	)
 	unique_reskin_stored_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
@@ -550,7 +550,7 @@
 	)
 
 /obj/item/clothing/suit/armor/bulletproof
-	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)]
+	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	unique_reskin_stored_icons = list(
 	"Default" = 'icons/obj/clothing/suits.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
