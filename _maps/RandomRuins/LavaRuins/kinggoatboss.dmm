@@ -1,0 +1,38 @@
+"a" = (/turf/closed/indestructible/riveted/uranium,/area/ruin/powered/kinggoat_arena)
+"b" = (/turf/open/indestructible/diamond,/area/ruin/powered/kinggoat_arena)
+"c" = (/obj/structure/chair/bronze,/mob/living/simple_animal/hostile/megafauna/king,/turf/open/indestructible/diamond,/area/ruin/powered/kinggoat_arena)
+"d" = (/mob/living/simple_animal/hostile/retaliate/goat/guard/pope,/turf/open/indestructible/diamond,/area/ruin/powered/kinggoat_arena)
+"e" = (/obj/structure/ladder/unbreakable/kinggoat/goat2,/turf/open/indestructible/diamond,/area/ruin/powered/kinggoat_arena)
+"f" = (/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors/explored)
+"g" = (/turf/closed/wall/mineral/silver,/area/ruin/powered)
+"h" = (/obj/effect/mob_spawn/human/miner{assignedrole = "null"; desc = "Seems this miner tried to cheese the arena using bluespace crystals. Did not turn out well"; mob_gender = "female"; mob_name = "Lyna Lavas"; name = "Lyna Lavas"},/obj/item/stack/ore/bluespace_crystal,/obj/effect/decal/cleanable/blood/old,/turf/open/floor/mineral/gold,/area/ruin/powered)
+"i" = (/obj/machinery/light{dir = 1},/turf/open/floor/mineral/gold,/area/ruin/powered)
+"j" = (/turf/open/floor/mineral/gold,/area/ruin/powered)
+"k" = (/turf/closed/wall/mineral/gold,/area/ruin/powered)
+"l" = (/obj/machinery/light{dir = 8},/turf/open/floor/mineral/gold,/area/ruin/powered)
+"m" = (/turf/open/floor/mineral/diamond,/area/ruin/powered)
+"n" = (/obj/machinery/light{dir = 4},/turf/open/floor/mineral/gold,/area/ruin/powered)
+"o" = (/obj/structure/mineral_door/transparent/diamond{sheetAmount = 1},/turf/open/floor/mineral/silver,/area/ruin/powered)
+"p" = (/obj/structure/ladder/unbreakable/kinggoat,/turf/open/indestructible/gold,/area/ruin/powered)
+"q" = (/obj/item/paper/crumpled{info = "Lest ye be prepared, abandon all hope ye who enter here."; name = "Wise Man's Warning."},/obj/effect/decal/remains/human,/turf/open/floor/mineral/diamond,/area/ruin/powered)
+"r" = (/obj/machinery/light,/turf/open/floor/mineral/gold,/area/ruin/powered)
+
+(1,1,1) = {"
+aaaaaaaaaaaaa
+abbbbbcdbbbba
+abbbbbbbbbbba
+abbbbbbbbbbba
+abbbbbbbbbbba
+abbbbbbbbbbba
+abbbbbbbbbbba
+abbbbbbbbbbba
+abbbbbbbbbbba
+abbbbbebbbbba
+aaaaaaaaaaaaa
+fffghijijgfff
+fffklmmmnkfff
+fffojmpmjofff
+fffklmqmnkfff
+fffgjrjrjgfff
+fffggkokggfff
+"}
