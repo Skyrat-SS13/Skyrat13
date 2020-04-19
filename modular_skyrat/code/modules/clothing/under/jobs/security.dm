@@ -4,7 +4,7 @@
 /obj/item/clothing/under/rank/security/civilprotection
 	name = "Civil Protection uniform"
 	desc = "Pick up that can."
-	icon = 'modular_skyrat/icons/obj/clothing/uniforms.dmi'
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "cpuniform"

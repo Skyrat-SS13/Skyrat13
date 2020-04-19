@@ -161,7 +161,7 @@
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "policehelm"
 	mob_overlay_icon = 'icons/mob/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'icons/mob/head.dmi'
+	anthro_mob_worn_overlay = 'icons/mob/clothing/head.dmi'
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 60)
 	unique_reskin_stored = list(
 	"Default" = "policehelm",
@@ -472,7 +472,7 @@
 	armor = list("melee" = 45, "bullet" = 35, "laser" = 35, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 90)
 
 /obj/item/clothing/under/rank/security/officer
-	icon = 'modular_skyrat/icons/obj/clothing/uniforms.dmi'
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	icon_state = "rsecurity"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'

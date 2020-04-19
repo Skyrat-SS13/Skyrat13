@@ -2,8 +2,8 @@
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "goldbrand"
 	item_state = "goldbrand"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/goldbrand_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/goldbrand_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "Goldbrand"
 	desc = "Granted only to those who prove themselves in battle, this sword cuts and burns flesh."
 	force = 18
