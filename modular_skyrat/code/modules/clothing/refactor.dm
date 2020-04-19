@@ -138,8 +138,6 @@
 	"Skulldozer" = "chonker_helmet"
 	)*/
 
-	)
-
 
 /obj/item/clothing/head/helmet/thunderdome
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
