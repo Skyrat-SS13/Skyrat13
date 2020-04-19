@@ -313,16 +313,16 @@
 /obj/item/clothing/head/helmet/space/hardsuit/mining
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "hardsuit0-mining"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/clothing/head_muzzled.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 75)
 	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/clothing/head.dmi',
-	"Explorer" = 'modular_skyrat/icons/mob/clothing/clothing/head.dmi'
+	"Default" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Explorer" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
 	unique_reskin_worn_muzzled = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/clothing/head_muzzled.dmi',
-	"Explorer" = 'modular_skyrat/icons/mob/clothing/clothing/head_muzzled.dmi'
+	"Default" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
+	"Explorer" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	)
 	unique_reskin_stored = list(
 	"Default" = "hardsuit0-mining",
