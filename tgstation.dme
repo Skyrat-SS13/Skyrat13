@@ -3475,6 +3475,7 @@
 #include "modular_skyrat\code\interactions\lewd\lewd_species.dm"
 #include "modular_skyrat\code\interactions\lewd\objects.dm"
 #include "modular_skyrat\code\modules\admin\admin_verbs.dm"
+#include "modular_skyrat\code\modules\admin\watchlist_track.dm"
 #include "modular_skyrat\code\modules\antagonists\revenant\revenant.dm"
 #include "modular_skyrat\code\modules\antagonists\revenant\revenant_abilities.dm"
 #include "modular_skyrat\code\modules\atmospherics\environmental\LINDA_fire.dm"
