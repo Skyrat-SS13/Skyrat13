@@ -19,7 +19,7 @@
 	if(!result)
 		return
 	new result(drop_location())
-	SSblackbox.record_feedback("tally", "mechas_created", 1, result.name)
+	SSblackbox.record_feedback("tally", "mechas_created", 1, "Power Armor")
 	QDEL_NULL(parent)
 
 /datum/component/construction/mecha/powerarmor
