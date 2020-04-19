@@ -1,7 +1,7 @@
 //fucking noose
 /obj/structure/chair/noose //It's a "chair".
 	name = "noose"
-	desc = "Well this just got a whole lot more morbid."
+	desc = "Hang in there."
 	icon_state = "noose"
 	icon = 'modular_skyrat/icons/obj/objects.dmi'
 	layer = FLY_LAYER
