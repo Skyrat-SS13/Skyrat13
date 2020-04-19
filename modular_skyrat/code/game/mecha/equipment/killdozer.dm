@@ -34,8 +34,8 @@
 	force = 35
 	toolspeed = 0.4
 
-/obj/item/mecha_ammo/10mm
-	name = "10mm ammo"
+/obj/item/mecha_ammo/stetchkin
+	name = "10mm exosuit ammo"
 	desc = "A box of linked ammunition, designed for the exosuit adapted Stetchkin."
 	icon_state = "lmg"
 	rounds = 50

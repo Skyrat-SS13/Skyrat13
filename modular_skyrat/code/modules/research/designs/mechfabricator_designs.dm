@@ -59,7 +59,7 @@
 	build_type = MECHFAB
 	build_path =/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/real/killdozer
 	materials = list(/datum/material/iron=25000, /datum/material/diamond=1000, /datum/material/uranium=2500)
-	construction_time = 120
+	construction_time = 80
 	category = list("Exosuit Equipment")
 
 /datum/design/killdozer_drill
@@ -68,7 +68,7 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/drill/killdozer
 	materials = list(/datum/material/iron=25000, /datum/material/diamond=1000, /datum/material/uranium=2500)
-	construction_time = 120
+	construction_time = 80
 	category = list("Exosuit Equipment")
 
 /datum/design/killdozer_pistol
@@ -77,16 +77,16 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/killdozer
 	materials = list(/datum/material/iron=30000, /datum/material/diamond=2500, /datum/material/uranium=3500)
-	construction_time = 120
+	construction_time = 100
 	category = list("Exosuit Equipment")
 
 /datum/design/killdozer_pistol
 	name = "Exosuit Stetchkin Ammo"
 	id = "killdozer_pistol_ammo"
 	build_type = MECHFAB
-	build_path = /obj/item/mecha_ammo/10mm
+	build_path = /obj/item/mecha_ammo/stetchkin
 	materials = list(/datum/material/iron=1000, /datum/material/diamond=100, /datum/material/uranium=500)
-	construction_time = 120
+	construction_time = 50
 	category = list("Exosuit Equipment")
 
 //Changes to ripley parts to accomodate the Killdozer
