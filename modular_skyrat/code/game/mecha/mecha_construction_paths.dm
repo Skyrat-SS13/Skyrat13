@@ -17,7 +17,7 @@
 	)
 
 /datum/component/construction/mecha/powerarmor
-	result = /obj/item/mecha_parts/chassis/powerarmor
+	result = /obj/item/clothing/suit/space/hardsuit/powerarmor
 	base_icon = "ripley"
 	steps = list(
 		//1
