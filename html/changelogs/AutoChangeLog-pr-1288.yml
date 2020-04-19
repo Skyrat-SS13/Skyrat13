@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Objectives now clean theirselves up instead of leaving null entries in lists everywhere."

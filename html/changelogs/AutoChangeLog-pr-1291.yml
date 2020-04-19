@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "aranesp heals 10 instead of 18 stamina per tick"

@@ -1,5 +1,0 @@
-author: "CinderWC"
-delete-after: True
-changes: 
-  - bugfix: "North Evidence Storage Door now has Detective AND Armory Access (As it didn't make sense for the Warden to only have access to it from one side"
-  - bugfix: "https://github.com/Skyrat-SS13/Skyrat13/issues/1294"
