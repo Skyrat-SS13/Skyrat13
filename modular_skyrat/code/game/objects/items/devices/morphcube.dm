@@ -89,7 +89,7 @@
 	var/mob/living/shape = new shapeshift_type(caster.loc)
 	if(shape.maxHealth > 300)
 		shape.maxHealth = 300
-	shape.factions = list()
+	shape.faction = list()
 	H = new(shape,src,caster)
 
 	clothes_req = NONE
