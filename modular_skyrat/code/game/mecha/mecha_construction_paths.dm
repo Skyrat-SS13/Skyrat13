@@ -1,8 +1,10 @@
 //changes to accomodate power armor
 /datum/component/construction/unordered/mecha_chassis/spawn_result()
-	. = ..()
 	var/atom/parent_atom = parent
 	parent_atom.icon = 'modular_skyrat/icons/mecha/mech_construction.dmi'
+	parent_atom.density = TRUE
+	parent_atom.cut_overlays()
+	..()
 
 //Power armor: now actually built!
 /datum/component/construction/unordered/mecha_chassis/powerarmor
