@@ -143,8 +143,8 @@
 /obj/item/clothing/head/HoS
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "hoscap"
-	mob_overlay_icon = 'icons/mob/head.dmi'
-	anthro_mob_worn_overlay = 'icons/mob/head.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/head.dmi'
+	anthro_mob_worn_overlay = 'icons/mob/clothing/head.dmi'
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 60)
 	unique_reskin_stored = list(
 	"Default" = "hoscap",
@@ -160,7 +160,7 @@
 /obj/item/clothing/head/warden
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "policehelm"
-	mob_overlay_icon = 'icons/mob/head.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'icons/mob/head.dmi'
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 60)
 	unique_reskin_stored = list(
