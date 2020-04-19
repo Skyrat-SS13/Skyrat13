@@ -138,7 +138,7 @@
 	desc = "Makes a wall on impact on a living being."
 	cost = 20
 	var/cooldown
-	var/cdduration = 60
+	var/cdduration = 50
 
 /obj/item/borg/upgrade/modkit/wall/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()
