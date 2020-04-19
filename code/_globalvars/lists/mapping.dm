@@ -50,8 +50,5 @@ GLOBAL_LIST_EMPTY_TYPED(areas_by_type, /area)
 GLOBAL_LIST_EMPTY(all_abstract_markers)
 
 GLOBAL_LIST_EMPTY(stationroom_landmarks) //List of all spawns for stationrooms
-<<<<<<< HEAD
 
 GLOBAL_LIST_EMPTY(holodeck_areas_prototypes) //List of holodeck area prototypes per holodeck computer type 
-=======
->>>>>>> ab01d91971... Merge pull request #11903 from Ghommie/Ghommie-cit687
