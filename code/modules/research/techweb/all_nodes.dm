@@ -534,7 +534,7 @@
 	display_name = "Combat Cybernetic Implants"
 	description = "Military grade combat implants to improve performance."
 	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech","high_efficiency")
-	design_ids = list("ci-xray", "ci-thermals", "ci-antidrop", "ci-antistun", "ci-thrusters")
+	design_ids = list("ci-xray", "ci-thermals", "ci-antidrop", "ci-antistun", "ci-thrusters", "ci-shield")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 ////////////////////////Tools////////////////////////
@@ -608,7 +608,7 @@
 	display_name = "Advanced Weapon Development Technology"
 	description = "Our weapons are breaking the rules of reality by now."
 	prereq_ids = list("adv_engi", "weaponry")
-	design_ids = list("pin_loyalty")
+	design_ids = list("pin_loyalty", "laser_shield", "bullet_shield")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 
 /datum/techweb_node/electric_weapons
