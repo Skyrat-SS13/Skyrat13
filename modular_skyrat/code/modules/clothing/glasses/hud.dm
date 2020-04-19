@@ -17,7 +17,7 @@
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.remove_hud_from(user)
 	if(storehud)
-		storedhud = null
+		ourhud = null
 
 //prescription huds
 /obj/item/clothing/glasses/hud/health/prescription
