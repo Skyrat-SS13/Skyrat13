@@ -4,7 +4,7 @@
 
 ///////// Power Armor (Not actually a mech but meh)
 
-/obj/item/mecha_parts/part/chassis/powerarmor
+/obj/item/mecha_parts/chassis/powerarmor
 	name = "\improper Power Armor Chassis"
 	desc = "A heavy steel frame, utilized in the construction of a suit of powered armor."
 	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
