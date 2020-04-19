@@ -6,7 +6,7 @@
 
 /datum/map_template/ruin/lavaland/syndicate_base
 	prefix = "modular_skyrat/_maps/RandomRuins/LavaRuins/"
-  
+
 /datum/map_template/ruin/lavaland/king_goat_boss
 	prefix = "modular_skyrat/_maps/RandomRuins/LavaRuins/"
 	name = "King Goat Boss Ruin"
@@ -15,7 +15,7 @@
 	suffix = "kinggoatboss.dmm"
 	always_place = TRUE
 	allow_duplicates = FALSE
-	always_spawn_with = list(/datum/map_template/ruin/space/kinggoatarena = PLACE_ISOLATED)
+	always_spawn_with = list(/datum/map_template/ruin/space/kinggoatarena = PLACE_SPACE_RUIN)
 
 /datum/map_template/ruin/lavaland/sin/wrath
 	name = "Ruin of Wrath"
