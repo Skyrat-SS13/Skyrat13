@@ -1098,7 +1098,6 @@
 	dir = 1;
 	pixel_y = 25
 	},
-/obj/effect/landmark/start/head_of_security,
 /obj/machinery/light/small,
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/heads/hos)
@@ -1209,7 +1208,6 @@
 /obj/structure/table,
 /obj/item/storage/bag/tray,
 /obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife,
 /obj/item/storage/box/cups{
 	pixel_x = -5
 	},
@@ -2071,7 +2069,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/obj/machinery/jukebox,
+/obj/machinery/jukebox{
+	req_one_access = null
+	},
 /turf/open/floor/plasteel/checker,
 /area/security/prison)
 "aep" = (
@@ -4539,6 +4539,10 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/grown/parsnip,
 /obj/item/reagent_containers/food/snacks/grown/chili,
+/obj/item/kitchen/knife/combat/bone/plastic{
+	pixel_x = -6;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aju" = (
@@ -6756,13 +6760,11 @@
 	},
 /area/security/prison)
 "anD" = (
-/obj/effect/turf_decal/box,
 /obj/effect/turf_decal/caution/stand_clear,
-/obj/machinery/door/firedoor,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/wall,
 /area/security/prison)
 "anE" = (
 /obj/machinery/power/apc{
@@ -7143,19 +7145,22 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/airlock/security/glass{
+	desc = "The red door means be scared that you're here. Unless you're the person in red.";
+	name = "Brig";
+	req_access_txt = "63"
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "aoz" = (
-/obj/effect/turf_decal/box,
-/obj/effect/turf_decal/caution/stand_clear,
-/obj/machinery/door/poddoor/preopen{
-	id = "Prison Gate";
-	name = "Security Blast Door"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel/dark,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
 /area/security/brig)
 "aoA" = (
 /obj/machinery/requests_console{
@@ -7171,6 +7176,11 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "Prison Gate";
 	name = "Security Blast Door"
+	},
+/obj/machinery/door/airlock/security/glass{
+	desc = "The red door means be scared that you're here. Unless you're the person in red.";
+	name = "Brig";
+	req_access_txt = "63"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -11175,7 +11185,6 @@
 	},
 /area/security/prison)
 "avZ" = (
-/obj/structure/rack,
 /obj/item/shield/riot{
 	pixel_x = -8;
 	pixel_y = 2
@@ -11187,10 +11196,10 @@
 	pixel_x = 8;
 	pixel_y = 2
 	},
+/obj/structure/rack,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "awa" = (
-/obj/structure/rack,
 /obj/item/clothing/suit/armor/riot{
 	pixel_x = -4;
 	pixel_y = -1
@@ -11216,17 +11225,17 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/rack,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "awb" = (
 /obj/structure/table/reinforced,
 /obj/item/melee/baton/loaded{
-	pixel_y = 10
+	pixel_y = -4
 	},
 /obj/item/melee/baton/loaded{
-	pixel_y = 5
+	pixel_y = 3
 	},
-/obj/item/melee/baton/loaded,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "awc" = (
@@ -11395,9 +11404,6 @@
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "awr" = (
@@ -11447,8 +11453,16 @@
 /turf/open/floor/plating,
 /area/ai_monitored/security/armory)
 "aww" = (
-/obj/vehicle/ridden/secway,
-/obj/item/key/security,
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/gun/energy/e_gun/advtaser{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/gun/energy/e_gun/advtaser{
+	pixel_x = 3;
+	pixel_y = -3
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "awx" = (
@@ -11709,7 +11723,6 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "axc" = (
-/obj/structure/rack,
 /obj/item/clothing/suit/armor/bulletproof{
 	pixel_x = -7;
 	pixel_y = -2
@@ -11735,6 +11748,7 @@
 	pixel_x = 8;
 	pixel_y = 7
 	},
+/obj/structure/rack,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "axd" = (
@@ -11765,7 +11779,6 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "axf" = (
-/obj/machinery/flasher/portable,
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/ai_monitored/security/armory";
 	name = "Armory APC";
@@ -11778,6 +11791,8 @@
 /obj/structure/sign/poster/official/nt_storm_officer{
 	pixel_x = -32
 	},
+/obj/vehicle/ridden/secway,
+/obj/item/key/security,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "axg" = (
@@ -11950,11 +11965,16 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "axy" = (
-/obj/effect/turf_decal/box,
 /obj/effect/turf_decal/caution/stand_clear,
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/effect/turf_decal/box,
+/obj/machinery/door/airlock/security/glass{
+	desc = "The red door means be scared that you're here. Unless you're the person in red.";
+	name = "Brig";
+	req_access_txt = "63"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -13111,7 +13131,6 @@
 	dir = 1;
 	pixel_y = 25
 	},
-/obj/effect/landmark/start/warden,
 /obj/structure/toilet{
 	dir = 4
 	},
@@ -13130,7 +13149,6 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/obj/effect/landmark/start/detective,
 /turf/open/floor/mineral/titanium/blue,
 /area/security/detectives_office)
 "azG" = (
@@ -13981,6 +13999,10 @@
 /obj/structure/sign/poster/official/twelve_gauge{
 	pixel_y = 32
 	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 10;
+	pixel_x = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "aBh" = (
@@ -14709,10 +14731,10 @@
 /area/security/warden)
 "aCw" = (
 /obj/effect/turf_decal/delivery,
-/obj/effect/landmark/secequipment,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4
 	},
+/obj/machinery/flasher/portable,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "aCx" = (
@@ -19159,7 +19181,6 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "aKM" = (
-/obj/structure/rack,
 /obj/item/clothing/suit/armor/vest{
 	pixel_x = -8;
 	pixel_y = -2
@@ -19192,6 +19213,7 @@
 /obj/machinery/light_switch{
 	pixel_y = -24
 	},
+/obj/structure/rack,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aKN" = (
@@ -33551,7 +33573,6 @@
 	pixel_y = 13
 	},
 /obj/machinery/light,
-/obj/effect/landmark/start/captain,
 /obj/machinery/light_switch{
 	pixel_y = -25
 	},
@@ -42693,11 +42714,11 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/poddoor/shutters/preopen{
+/obj/effect/turf_decal/vg_decals/radiation,
+/obj/machinery/door/poddoor/shutters/radiation/preopen{
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
-/obj/effect/turf_decal/vg_decals/radiation,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "bBX" = (
@@ -42897,11 +42918,11 @@
 	icon_state = "1-2"
 	},
 /obj/item/crowbar,
-/obj/machinery/door/poddoor/shutters/preopen{
+/obj/effect/turf_decal/vg_decals/radiation,
+/obj/machinery/door/poddoor/shutters/radiation/preopen{
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
-/obj/effect/turf_decal/vg_decals/radiation,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "bCt" = (
@@ -82738,7 +82759,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/poddoor/shutters/preopen{
+/obj/machinery/door/poddoor/shutters/radiation/preopen{
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
@@ -84278,6 +84299,11 @@
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+"hdv" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/flasher/portable,
+/turf/open/floor/plasteel/dark,
+/area/security/main)
 "heE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
@@ -84448,6 +84474,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"keX" = (
+/obj/effect/landmark/start/brig_physician,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "kfu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/white,
@@ -85132,12 +85162,33 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/cryopod)
+"qZY" = (
+/obj/machinery/vending/dinnerware/prisoner,
+/turf/open/floor/plasteel/checker,
+/area/security/prison)
 "rbE" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
+"rnz" = (
+/obj/effect/turf_decal/box,
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/door/airlock/security/glass{
+	desc = "The red door means be scared that you're here. Unless you're the person in red.";
+	name = "Brig";
+	req_access_txt = "63"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "rzX" = (
 /obj/structure/chair/office/light{
 	dir = 1;
@@ -108147,7 +108198,7 @@ amc
 amv
 anB
 avY
-aak
+aaq
 doA
 auX
 cps
@@ -108404,7 +108455,7 @@ amd
 amB
 atT
 axj
-aak
+aaq
 csa
 auZ
 avf
@@ -108661,11 +108712,11 @@ ame
 amF
 atU
 avY
-aak
+aaq
 ceM
 ava
-ajm
-ajm
+ahx
+ahx
 ajm
 aaa
 aaa
@@ -108915,10 +108966,10 @@ ajz
 ajz
 aak
 aak
-ait
+rnz
 anD
 axy
-aak
+aaq
 ayu
 ayF
 ard
@@ -109178,8 +109229,8 @@ ayd
 ahx
 axk
 apQ
-ajm
-ajm
+ahx
+ahx
 ajm
 aaa
 aaa
@@ -109692,8 +109743,8 @@ anr
 ahx
 aoJ
 apS
-ajm
-ajm
+ahx
+ahx
 ajm
 ajm
 awh
@@ -110219,7 +110270,7 @@ ajm
 azh
 ahx
 bcU
-aBp
+keX
 aBp
 aDF
 aEP
@@ -113780,7 +113831,7 @@ ajC
 aaq
 adT
 aaT
-adU
+qZY
 adT
 adX
 aaq
@@ -114323,7 +114374,7 @@ aGw
 ajD
 bbE
 awc
-awc
+hdv
 aCw
 ajD
 aLA

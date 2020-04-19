@@ -49,6 +49,7 @@
 	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
 	color_src = MATRIXED
 
+
 /datum/sprite_accessory/ears/human/antenna_fuzzball_v2
 	name = "Fuzzball antenna (coloring 3+1)"
 	icon_state = "antenna_fuzzballv2"
@@ -92,5 +93,17 @@
 /datum/sprite_accessory/mam_ears/antenna_fuzzball_v2
 	name = "Fuzzball antenna (coloring 3+1)"
 	icon_state = "antenna_fuzzballv2"
+	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
+	color_src = MATRIXED
+
+/datum/sprite_accessory/mam_ears/cobrahood
+	name = "Cobra Hood"
+	icon_state = "cobrahood"
+	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
+	color_src = MATRIXED
+
+/datum/sprite_accessory/mam_ears/cobrahoodears
+	name = "Cobra Hood (Ears)"
+	icon_state = "cobraears"
 	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
 	color_src = MATRIXED
