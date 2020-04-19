@@ -11,6 +11,8 @@
 	item_state = "cpuniform"
 	can_adjust = FALSE
 	mutantrace_variation = STYLE_DIGITIGRADE
+	unique_reskin_stored = list(
+	)
 
 /obj/item/clothing/under/rank/security/civilprotection/fake
 	name = "Civil Protection replica uniform"
