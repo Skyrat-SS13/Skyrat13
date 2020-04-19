@@ -9,7 +9,7 @@ about: Create a report to help reproduce and fix the issue
 
 ## Date and Time of Issue:
 
-<!-- When did you encounter this issue for the first time. Please make sure that the time listed is in UTC-5/EST -->>
+<!-- When did you encounter this issue for the first time. Please make sure that the time listed is in UTC-5/EST -->
 
 ## What Map did this Issue occur on:
 
