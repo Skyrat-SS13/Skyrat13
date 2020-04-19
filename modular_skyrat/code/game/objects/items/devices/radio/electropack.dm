@@ -7,3 +7,4 @@
 		frequency = rand(MIN_FREE_FREQ, MAX_FREE_FREQ)
 		if(ISMULTIPLE(frequency, 2))//signaller frequencies are always uneven!
 			frequency++
+	. = ..()
