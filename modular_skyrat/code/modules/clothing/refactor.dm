@@ -20,11 +20,11 @@
 	"HECU Green" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/hats.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/hats.dmi',
-	"Press" = 'modular_skyrat/icons/mob/clothing/hats.dmi',
-	"HECU" = 'modular_skyrat/icons/mob/clothing/hats.dmi',
-	"HECU Green" = 'modular_skyrat/icons/mob/clothing/hats.dmi'
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Press" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"HECU" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"HECU Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
 	unique_reskin_stored = list(
 	"Default" = "helmet",
@@ -43,7 +43,7 @@
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/head.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
 	)
 	unique_reskin_stored = list(
 	"Default" = "helmetalt",
@@ -52,12 +52,16 @@
 
 /obj/item/clothing/suit/radiation
 	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/suits',
-	"Hazmat" = 'modular_skyrat/icons/obj/clothing/suits',
+	"Default" = 'icons/obj/clothing/suits.dmi',
+	"Hazmat" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/suits',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/suits',
+	"Default" = 'icons/mob/clothing/suit.dmi',
+	"Hazmat" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
+	"Hazmat" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
 	)
 	unique_reskin_stored = list(
 	"Default" = "rad",
@@ -131,11 +135,11 @@
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
-	"Skulldozer" = 'modular_skyrat/mob/clothing/head.dmi'
+	"Skulldozer" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
 	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Skulldozer" = 'modular_skyrat/mob/clothing/head_muzzled.dmi'
+	"Skulldozer" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	)
 	unique_reskin_stored = list(
 	"Default" = "swat",
@@ -396,14 +400,14 @@
 	"Riot" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
 	"Asset Protection" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"ODST" = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	"ODST" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/suit_muzzled.dmi',
-	"Riot" = 'modular_skyrat/icons/mob/clothing/suit_muzzled.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit_muzzled.dmi',
-	"Asset Protection" = 'modular_skyrat/icons/mob/clothing/suit_muzzled.dmi',
-	"ODST" = 'modular_skyrat/icons/mob/clothing/suit_muzzled.dmi'
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
+	"Riot" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
+	"Asset Protection" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
+	"ODST" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	)
 	unique_reskin_stored = list(
 	"Default" = "hardsuit-sec",
@@ -485,18 +489,18 @@
 	"HECU" = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'icons/obj/clothing/suit.dmi',
-	"Tactical" = 'modular_skyrat/icons/obj/clothing/suit.dmi',
-	"Tactical Classic" = 'modular_skyrat/icons/obj/clothing/suit.dmi',
-	"Press" = 'modular_skyrat/icons/obj/clothing/suit.dmi',
-	"HECU" = 'modular_skyrat/icons/obj/clothing/suit.dmi'
+	"Default" = 'icons/mob/clothing/suit.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"Tactical Classic" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"Press" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"HECU" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/obj/clothing/suit_digi.dmi',
-	"Tactical" = 'modular_skyrat/icons/obj/clothing/suit_digi.dmi',
-	"Tactical Classic" = 'modular_skyrat/icons/obj/clothing/suit_digi.dmi',
-	"Press" = 'modular_skyrat/icons/obj/clothing/suit_digi.dmi',
-	"HECU" = 'modular_skyrat/icons/obj/clothing/suit_digi.dmi'
+	"Default" = 'icons/mob/clothing/suit_digi.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
+	"Tactical Classic" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
+	"Press" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
+	"HECU" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	)
 	unique_reskin_stored = list(
 	"Default" = "armor",
@@ -623,7 +627,7 @@
 /obj/item/clothing/under/rank/security/officer
 	can_adjust = FALSE //sorry but adjusting it with reskins would FUCK everything, sacrifice for the greater good
 	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/uniform.dmi',
+	"Default" = 'icons/obj/clothing/uniforms.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
 	"Sol Federation" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
 	"HECU" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
