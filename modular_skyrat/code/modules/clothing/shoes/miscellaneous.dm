@@ -4,6 +4,7 @@
 	icon_state = "iceboots"
 	item_state = "iceboots"
 	clothing_flags = NOSLIP_ICE
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/shoes/bhop
 	name = "dashing boots"

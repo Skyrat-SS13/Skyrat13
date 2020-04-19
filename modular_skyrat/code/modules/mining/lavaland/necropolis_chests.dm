@@ -285,6 +285,7 @@
 	item_state = "praetor"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	slowdown = 0
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit helmet"
@@ -295,6 +296,7 @@
 	icon_state = "praetor"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	mutantrace_variation = STYLE_MUZZLE
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
@@ -511,6 +513,7 @@
 	desc = "Such a grand and intoxicating innocence."
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
+	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	icon_state = "dagoth"
 	item_state = "dagoth"
 	actions_types = list(/datum/action/item_action/ashstorm)
@@ -520,6 +523,7 @@
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
 	w_class = WEIGHT_CLASS_BULKY //its a fucking full metal mask man
+	mutantrace_variation = STYLE_MUZZLED
 
 /obj/item/clothing/mask/gas/dagoth/equipped(mob/living/carbon/human/user, slot)
 	..()
