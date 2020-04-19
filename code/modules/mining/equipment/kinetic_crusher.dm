@@ -404,7 +404,7 @@
 	desc = "The blaster tubes from a colossus's arm. Suitable as a trophy for a kinetic crusher."
 	icon_state = "blaster_tubes"
 	gender = PLURAL
-	denied_type = null
+	denied_type = /obj/item/crusher_trophy/blaster_tubes
 	bonus_value = 15
 	var/deadly_shot = FALSE
 

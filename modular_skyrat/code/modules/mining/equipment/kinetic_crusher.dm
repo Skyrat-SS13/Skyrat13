@@ -222,3 +222,7 @@
 //watcher wing fucking nerf
 /obj/item/crusher_trophy/watcher_wing
 	bonus_value = 5 // 1 second was more than enough and let you off the hook too easy.
+
+//blaster tubes change so it don't conflict with subtypes
+/obj/item/crusher_trophy/blaster_tubes
+	denied_type = null
