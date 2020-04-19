@@ -652,11 +652,11 @@
 	)
 	unique_reskin_stored = list(
 	"Default" = "rsecurity",
-	"Tactical" = "tactical_suit",
-	"Sol Federation" = "solfed_suit",
-	"HECU" = "hecu_suit",
-	"Firestarter" = "firestarter_suit",
-	"Gorka" = "gorka_suit"
+	"Tactical" = "tactical_uniform",
+	"Sol Federation" = "solfed_uniform",
+	"HECU" = "hecu_uniform",
+	"Firestarter" = "firestarter_uniform",
+	"Gorka" = "gorka_uniform"
 	)
 
 /obj/item/clothing/head/helmet/roman
