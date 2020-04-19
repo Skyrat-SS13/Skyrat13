@@ -9,20 +9,19 @@
 	var/brutemodbefore
 	var/burnmodbefore
 
-/datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
-		return
-	if(owner.physiology)
-		brutemodbefore = owner.physiology.brutemod
-		burnmodbefore = owner.physiology.burnmod
-		owner.physiology.brutemod *= 0.75
-		owner.physiology.burnmod *= 0.9
-
-/datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
+/datum/mutation/human/thickskin/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
 	if(owner.physiology)
-		owner.physiology.brutemod = brutemodbefore
-		owner.physiology.burnmod = burnmodbefore
+		brutemodbefore = owner.physiology.brute_mod
+		burnmodbefore = owner.physiology.burn_mod
+		owner.physiology.brute_mod *= 0.75
+		owner.physiology.burn_mod *= 0.9
+
+/datum/mutation/human/thickskin/on_losing(mob/living/carbon/human/owner)
+	. = ..()
+	if(owner.physiology)
+		owner.physiology.brute_mod = brutemodbefore
+		owner.physiology.burn_mod = burnmodbefore
 
 //Makes strong actually useful. Somewhat.
 /datum/mutation/human/strong
@@ -35,13 +34,11 @@
 	instability = 10
 
 /datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
-		return
+	. = ..()
 	ADD_TRAIT(owner, TRAIT_NOT_SLOWEDBYDRAG, "genetics") // Don't get slowed by dragging lockers or mobs
 
 /datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
-	if(..())
-		return
+	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_NOT_SLOWEDBYDRAG, "genetics")
 
 //Stimmed make you do the toxing purge dance
@@ -57,6 +54,7 @@
 	instability = 25 // the purging is quite powerful
 
 /datum/mutation/human/stimmed/on_life()
+	. = ..()
 	if(owner.reagents)
 		if(!HAS_TRAIT(owner, TRAIT_TOXINLOVER))
 			for(var/datum/reagent/toxin/T in owner.reagents.reagent_list)
