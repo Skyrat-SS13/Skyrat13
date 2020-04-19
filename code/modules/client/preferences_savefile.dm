@@ -248,7 +248,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	buttons_locked	= sanitize_integer(buttons_locked, 0, 1, initial(buttons_locked))
 	windowflashing		= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
 	default_slot	= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
-	toggles			= sanitize_integer(toggles, 0, 65535, initial(toggles))
+	toggles			= sanitize_integer(toggles, 0, 16777215, initial(toggles)) // skyrat - its 24 bit ree
 	clientfps		= sanitize_integer(clientfps, 0, 1000, 0)
 	if (clientfps == 0) clientfps = world.fps*2 // Skyrat edit
 	parallax		= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
@@ -271,7 +271,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	damagescreenshake	= sanitize_integer(damagescreenshake, 0, 2, initial(damagescreenshake))
 	widescreenpref			= sanitize_integer(widescreenpref, 0, 1, initial(widescreenpref))
 	autostand			= sanitize_integer(autostand, 0, 1, initial(autostand))
-	cit_toggles			= sanitize_integer(cit_toggles, 0, 65535, initial(cit_toggles))
+	cit_toggles			= sanitize_integer(cit_toggles, 0, 16777215, initial(cit_toggles)) // skyrate - its 24 bit ree
 	auto_ooc			= sanitize_integer(auto_ooc, 0, 1, initial(auto_ooc))
 
 	return 1
@@ -397,10 +397,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["body_is_always_random"]	>> be_random_body
 	S["gender"]					>> gender
 	S["body_model"]				>> features["body_model"]
+	S["body_size"]				>> features["body_size"]
 	S["age"]					>> age
 	S["hair_color"]				>> hair_color
 	S["facial_hair_color"]		>> facial_hair_color
 	S["eye_color"]				>> eye_color
+	S["use_custom_skin_tone"]	>> use_custom_skin_tone
 	S["skin_tone"]				>> skin_tone
 	S["hair_style_name"]		>> hair_style
 	S["facial_style_name"]		>> facial_hair_style
@@ -551,7 +553,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	hair_color						= sanitize_hexcolor(hair_color, 3, 0)
 	facial_hair_color				= sanitize_hexcolor(facial_hair_color, 3, 0)
 	eye_color						= sanitize_hexcolor(eye_color, 3, 0)
-	skin_tone						= sanitize_inlist(skin_tone, GLOB.skin_tones)
+	use_custom_skin_tone			= sanitize_integer(use_custom_skin_tone, FALSE, TRUE, initial(use_custom_skin_tone))
+	if(use_custom_skin_tone && CONFIG_GET(number/allow_custom_skintones))
+		skin_tone					= sanitize_hexcolor(skin_tone, 6, TRUE, "#FFFFFF")
+	else
+		skin_tone					= sanitize_inlist(skin_tone, GLOB.skin_tones - GLOB.nonstandard_skin_tones, initial(skin_tone))
 	horn_color						= sanitize_hexcolor(horn_color, 3, FALSE)
 	wing_color						= sanitize_hexcolor(wing_color, 3, FALSE, "#FFFFFF")
 	backbag							= sanitize_inlist(backbag, GLOB.backbaglist, initial(backbag))
@@ -571,6 +577,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["insect_fluff"]		= sanitize_inlist(features["insect_fluff"], GLOB.insect_fluffs_list)
 	features["insect_markings"] 	= sanitize_inlist(features["insect_markings"], GLOB.insect_markings_list, "None")
 	features["insect_wings"] 		= sanitize_inlist(features["insect_wings"], GLOB.insect_wings_list)
+
+	var/static/size_min
+	if(!size_min)
+		size_min = CONFIG_GET(number/body_size_min)
+	var/static/size_max
+	if(!size_max)
+		size_max = CONFIG_GET(number/body_size_max)
+	features["body_size"]			= sanitize_integer(features["body_size"], size_min, size_max, RESIZE_DEFAULT_SIZE)
 
 	var/static/list/B_sizes
 	if(!B_sizes)
@@ -648,10 +662,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["body_is_always_random"]	, be_random_body)
 	WRITE_FILE(S["gender"]					, gender)
 	WRITE_FILE(S["body_model"]				, features["body_model"])
+	WRITE_FILE(S["body_size"]				, features["body_size"])
 	WRITE_FILE(S["age"]						, age)
 	WRITE_FILE(S["hair_color"]				, hair_color)
 	WRITE_FILE(S["facial_hair_color"]		, facial_hair_color)
 	WRITE_FILE(S["eye_color"]				, eye_color)
+	WRITE_FILE(S["use_custom_skin_tone"]	, use_custom_skin_tone)
 	WRITE_FILE(S["skin_tone"]				, skin_tone)
 	WRITE_FILE(S["hair_style_name"]			, hair_style)
 	WRITE_FILE(S["facial_style_name"]		, facial_hair_style)

@@ -1,7 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "Punching should now be considerably more consistent across species."
-  - balance: "Punching is cheaper on stamina use."
-  - balance: "Punching someone out of combat mode now multiplies the damage by x1.5, just like hitting them with a blunt object!"
-  - balance: "Stun punches are only possible if your target has suffered more than 50 stamina damage, with a higher probability at higher stamina damage."

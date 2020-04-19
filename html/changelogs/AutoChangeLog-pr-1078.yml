@@ -1,9 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "Random storyteller now has a random forced threat level, so it's not always instared"
-  - bugfix: "Starting roundstart rulesets now scale up with threat level, rather than (uninitialized) threat"
-  - balance: "A living phylactery now adds 25 threat"
-  - tweak: "Chaotic is no longer forced if it wins, and cannot roll at low pop"
-  - balance: "Story no longer spends 50% of its time more chaotic than normal"
-  - tweak: "Minor rulesets (only collectors for now) no longer change weight with threat level disparity"

@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Puts the pH and purity variables back in the Chem Dispenser and Chem Heater."

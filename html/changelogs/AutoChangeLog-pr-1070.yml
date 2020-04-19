@@ -1,4 +1,0 @@
-author: "Useroth"
-delete-after: True
-changes: 
-  - bugfix: "Non-mobs no longer have their mobility flags checked upon speaking into a radio. _Is your refrigerator running?_"
