@@ -80,6 +80,15 @@
 	construction_time = 120
 	category = list("Exosuit Equipment")
 
+/datum/design/killdozer_pistol
+	name = "Exosuit Stetchkin Ammo"
+	id = "killdozer_pistol_ammo"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_ammo/10mm
+	materials = list(/datum/material/iron=1000, /datum/material/diamond=100, /datum/material/uranium=500)
+	construction_time = 120
+	category = list("Exosuit Equipment")
+
 //Changes to ripley parts to accomodate the Killdozer
 /datum/design/ripley_torso
 	name = "Exosuit Torso (APLU \"Ripley\")"

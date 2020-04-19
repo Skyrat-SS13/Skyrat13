@@ -15,8 +15,8 @@
 	max_integrity = 275
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	lights_power = 7
-	armor = list("melee" = 50, "bullet" = 55, "laser" = 40, "energy" = 50, "bomb" = 80, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100)
-	max_equip = 6 //it's the ultimate ripley
+	armor = list("melee" = 40, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 65, "fire" = 100, "acid" = 100)
+	max_equip = 4
 	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter/killdozer
 	cargo_capacity = 20
 

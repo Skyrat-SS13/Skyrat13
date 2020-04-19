@@ -19,7 +19,7 @@
 	icon_state = "mecha_clamp"
 	equip_cooldown = 5
 	energy_drain = 5
-	dam_force = 25
+	dam_force = 22.5
 	harmful = TRUE
 	tool_behaviour = TOOL_RETRACTOR
 	toolspeed = 0.3
@@ -32,7 +32,14 @@
 	drill_delay = 2
 	drill_level = DRILL_HARDENED
 	force = 35
-	toolspeed = 0.3
+	toolspeed = 0.4
+
+/obj/item/mecha_ammo/10mm
+	name = "10mm ammo"
+	desc = "A box of linked ammunition, designed for the exosuit adapted Stetchkin."
+	icon_state = "lmg"
+	rounds = 50
+	ammo_type = "lmg"
 
 #undef DRILL_BASIC
 #undef DRILL_HARDENED
