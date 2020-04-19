@@ -3410,6 +3410,7 @@
 #include "modular_skyrat\code\game\gamemodes\traitor\traitor.dm"
 #include "modular_skyrat\code\game\machinery\lpchutes.dm"
 #include "modular_skyrat\code\game\machinery\prisonlabor.dm"
+#include "modular_skyrat\code\game\machinery\Sleeper.dm"
 #include "modular_skyrat\code\game\machinery\syndicatebeacon.dm"
 #include "modular_skyrat\code\game\machinery\syndicatebomb.dm"
 #include "modular_skyrat\code\game\machinery\computer\card.dm"
