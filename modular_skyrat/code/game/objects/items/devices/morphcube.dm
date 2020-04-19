@@ -18,6 +18,8 @@
 		blacklistedmobs += NO
 	for(var/NO in typesof(/mob/living/simple_animal/hostile/asteroid/elite))
 		blacklistedmobs += NO
+	for(var/NO in typesof(/mob/living/simple_animal/hostile/boss))
+		blacklistedmobs += NO
 
 /obj/item/morphcube/attack_self(mob/user)
 	if(uses > 0)
@@ -66,7 +68,7 @@
 	possible_shapes = list()
 	var/datum/mind/owner = null
 
-/obj/effect/proc_holder/spell/targeted/shapeshift/cast(list/targets, mob/user = usr)
+/obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/cast(list/targets, mob/user = usr)
 	if(istype(user, /mob/living/carbon))
 		for(var/obj/item/morphcube/ourcube in view(user, 7))
 			if(ourcube.ourspell == src)
@@ -77,3 +79,19 @@
 	else
 		..()
 		return TRUE
+
+/obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/Shapeshift(mob/living/caster)
+	var/obj/shapeshift_holder/H = locate() in caster
+	if(H)
+		to_chat(caster, "<span class='warning'>You're already shapeshifted!</span>")
+		return
+
+	var/mob/living/shape = new shapeshift_type(caster.loc)
+	if(shape.maxHealth > 300)
+		shape.maxHealth = 300
+	shape.factions = list()
+	H = new(shape,src,caster)
+
+	clothes_req = NONE
+	mobs_whitelist = null
+	mobs_blacklist = null
