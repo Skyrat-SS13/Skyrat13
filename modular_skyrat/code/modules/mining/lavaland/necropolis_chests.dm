@@ -3,6 +3,7 @@
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
+	new /obj/item/borg/upgrade/modkit/shotgun(src)
 	var/loot = rand(1,3)
 	switch(loot)
 		if(1)
@@ -16,6 +17,7 @@
 	name = "enraged bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
+	new /obj/item/borg/upgrade/modkit/shotgun(src)
 	new /obj/item/mayhem(src)
 	new /obj/item/blood_contract(src)
 	new /obj/item/twohanded/crucible(src)
@@ -276,6 +278,7 @@
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
+	new /obj/item/borg/upgrade/modkit/knockback(src)
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
@@ -296,6 +299,7 @@
 	new /obj/item/lava_staff(src)
 	new /obj/item/book/granter/spell/sacredflame(src)
 	new /obj/item/gun/magic/wand/fireball(src)
+	new /obj/item/borg/upgrade/modkit/knockback(src)
 	new /obj/item/dragons_blood/distilled(src)
 	new /obj/item/clothing/neck/king(src)
 
@@ -524,6 +528,7 @@
 /obj/structure/closet/crate/necropolis/colossus/PopulateContents()
 	new /obj/item/bluecrystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
+	new /obj/item/borg/upgrade/modkit/bolter(src)
 
 //crystal choosing thing from colosssus
 /obj/item/bluecrystal
@@ -712,6 +717,7 @@
 /obj/structure/closet/crate/necropolis/legion/PopulateContents()
 	new /obj/item/staff/storm(src)
 	new /obj/item/crusher_trophy/legion_shard(src)
+	new /obj/item/borg/upgrade/modkit/skull(src)
 
 /obj/structure/closet/crate/necropolis/legion/hard
 	name = "enraged echoing legion crate"
@@ -720,6 +726,7 @@
 	new /obj/item/staff/storm(src)
 	new /obj/item/clothing/mask/gas/dagoth(src)
 	new /obj/item/crusher_trophy/legion_shard(src)
+	new /obj/item/borg/upgrade/modkit/skull(src)
 	var/obj/structure/closet/crate/necropolis/tendril/T = new /obj/structure/closet/crate/necropolis/tendril //Yup, i know, VERY spaghetti code.
 	var/obj/item/L
 	for(var/i = 0, i < 5, i++)

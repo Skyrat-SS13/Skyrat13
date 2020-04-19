@@ -201,7 +201,7 @@
 
 //hierophant crusher small buff compared to citadel
 /obj/item/crusher_trophy/vortex_talisman
-	var/cdduration = 40
+	var/cdduration = 60
 
 /obj/item/crusher_trophy/vortex_talisman/on_mark_detonation(mob/living/target, mob/living/user)
 	if(vortex_cd >= world.time)
