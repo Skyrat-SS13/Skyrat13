@@ -17,8 +17,8 @@
 /obj/item/clothing/head/hooded/explorer/seva
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "seva_helmet"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/clothing/head_muzzled.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	unique_reskin_stored = list(
 	"Old" = "seva",
 	"Improved" = "seva"
@@ -59,8 +59,8 @@
 /obj/item/clothing/head/hooded/explorer/exo
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "exo_helmet"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/clothing/head_muzzled.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	unique_reskin_stored = list(
 	"Old" = "exo",
 	"Improved" = "exo"
