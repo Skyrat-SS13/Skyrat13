@@ -205,7 +205,7 @@
 
 //Power armor
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
-	name = "Power Armor Helmet"
+	name = "Power Armor Helmet MK. II"
 	desc = "An advanced helmet attached to a powered exoskeleton suit. Protects well against most forms of harm, but struggles against exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
@@ -247,7 +247,7 @@
 		DHUD.remove_hud_from(user)
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor
-	name = "Power Armor"
+	name = "Power Armor MK. II"
 	desc = "A self-powered exoskeleton suit comprised of flexible Plasteel sheets and advanced components, designed to offer excellent protection while still allowing mobility. Does not protect against Space, and struggles against more exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
