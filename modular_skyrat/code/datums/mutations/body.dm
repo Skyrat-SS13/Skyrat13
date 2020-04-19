@@ -65,7 +65,7 @@
 			if(prob(3))
 				owner.adjustToxLoss(2.5) //slimes get more healing to compensate the fact they don't purge harmful reagents
 	if(prob(2)) //about once every 5 seconds?
-		if(!HAS_TRAIT(owner, TRAIT_TOXINLOVER)
+		if(!HAS_TRAIT(owner, TRAIT_TOXINLOVER))
 			owner.adjustToxLoss(-2.5)
 		else
 			owner.adjustToxLoss(2.5)
