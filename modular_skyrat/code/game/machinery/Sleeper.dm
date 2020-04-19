@@ -24,7 +24,6 @@
 			/datum/reagent/medicine/spaceacillin
 		),
 		list( //T4
-			/datum/reagent/medicine/rezadone,
-			/datum/reagent/medicine/regen_jelly
+			/datum/reagent/medicine/rezadone
 		)
 	)
