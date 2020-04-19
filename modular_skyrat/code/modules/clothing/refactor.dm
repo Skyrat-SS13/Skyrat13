@@ -5,19 +5,12 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Press" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"HECU" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"HECU Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	)
-	unique_reskin_worn_muzzled = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Press" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"HECU" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"HECU Green" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	unique_reskin_stored = list(
+	"Default" = "helmet",
+	"Tactical" = "epic_helmet",
+	"Press" = "press_helmet",
+	"HECU" = "hecu_helmet",
+	"HECU Green" = "hecu_green_helmet"
 	)
 
 /obj/item/clothing/head/helmet/alt
@@ -26,14 +19,6 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	)
-	unique_reskin_worn_muzzled = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	)
 	unique_reskin_stored = list(
 	"Default" = "helmetalt",
 	"Tactical" = "epic_bp_helmet"
@@ -44,14 +29,6 @@
 	icon_state = "rad"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	)
-	unique_reskin_worn_digi = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	)
 	unique_reskin_stored = list(
 	"Default" = "rad",
 	"Hazmat" = "hazmat_suit",
@@ -62,14 +39,6 @@
 	icon_state = "helmet"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	)
-	unique_reskin_worn_muzzled = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	)
 	unique_reskin_stored = list(
 	"Default" = "rad",
 	"Hazmat" = "hazmat_hood",
@@ -80,14 +49,6 @@
 	icon_state = "bio"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	)
-	unique_reskin_worn_digi = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	)
 	unique_reskin_stored = list(
 	"Default" = "bio",
 	"Hazmat" = "hazmat_suit",
@@ -98,14 +59,6 @@
 	icon_state = "bio"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	)
-	unique_reskin_worn_muzzled = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	)
 	unique_reskin_stored = list(
 	"Default" = "bio",
 	"Hazmat" = "hazmat_hood",
@@ -122,14 +75,6 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 50, "bio" = 90, "rad" = 20, "fire" = 50, "acid" = 50)
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Skulldozer" = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	)
-	unique_reskin_worn_muzzled = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Skulldozer" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
-	)
 	unique_reskin_stored = list(
 	"Default" = "swat",
 	"Skulldozer" = "chonker_helmet"
@@ -201,18 +146,6 @@
 	mob_overlay_icon = 'icons/mob/head.dmi'
 	anthro_mob_worn_overlay = 'icons/mob/head.dmi'
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 60)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Helmet" = 'icons/mob/clothing/head.dmi',
-	"Beret" = 'icons/mob/clothing/head.dmi',
-	"Centcom Beret" = 'icons/mob/clothing/head.dmi'
-	)
-	unique_reskin_worn_muzzled = list(
-	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Helmet" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Beret" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Centcom Beret" = 'icons/mob/clothing/head_muzzled.dmi'
-	)
 	unique_reskin_stored = list(
 	"Default" = "hoscap",
 	"Helmet" = "helmet",
@@ -230,20 +163,6 @@
 	mob_overlay_icon = 'icons/mob/head.dmi'
 	anthro_mob_worn_overlay = 'icons/mob/head.dmi'
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 60)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Navy Beret" = 'icons/mob/clothing/head.dmi',
-	"Corporate Beret" = 'icons/mob/clothing/head.dmi',
-	"Red Security Beret" = 'icons/mob/clothing/head.dmi',
-	"Helmet" = 'icons/mob/clothing/head.dmi'
-	)
-	unique_reskin_worn_muzzled = list(
-	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Navy Beret" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Corporate Beret" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Red Security Beret" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Helmet" = 'icons/mob/clothing/head_muzzled.dmi'
-	)
 	unique_reskin_stored = list(
 	"Default" = "policehelm",
 	"Navy Beret" = "helmet",
@@ -258,18 +177,6 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 50)
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Solfed Contractor" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	)
-	unique_reskin_worn_muzzled = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Solfed Contractor" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Green" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	)
 	unique_reskin_stored = list(
 	"Default" = "beret_badge",
 	"Solfed Contractor" = "contractor_beret",
@@ -316,14 +223,6 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 75)
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Explorer" = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	)
-	unique_reskin_worn_muzzled = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Explorer" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
-	)
 	unique_reskin_stored = list(
 	"Default" = "hardsuit0-mining",
 	"Explorer" = "hardsuit0-explorer"
@@ -335,14 +234,6 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 75)
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"Explorer" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	)
-	unique_reskin_worn_digi = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Explorer" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	)
 	unique_reskin_stored = list(
 	"Default" = "hardsuit-mining",
 	"Explorer" = "hardsuit-explorer"
@@ -384,20 +275,6 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	armor = list("melee" = 35, "bullet" = 15, "laser" = 30,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75)
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Riot" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Asset Protection" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"ODST" = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	)
-	unique_reskin_worn_muzzled = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Riot" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Asset Protection" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"ODST" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
-	)
 	unique_reskin_stored = list(
 	"Default" = "hardsuit0-sec",
 	"Riot" = "hardsuit0-riot",
@@ -412,20 +289,6 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	armor = list("melee" = 35, "bullet" = 15, "laser" = 30,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75)
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"Riot" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"Asset Protection" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"ODST" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	)
-	unique_reskin_worn_digi = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Riot" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Asset Protection" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"ODST" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
-	)
 	unique_reskin_stored = list(
 	"Default" = "hardsuit-sec",
 	"Riot" = "riot_suit",
@@ -450,14 +313,6 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"Skulldozer" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	)
-	unique_reskin_worn_digi = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Skulldozer" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
-	)
 	unique_reskin_stored = list(
 	"Default" = "heavy",
 	"Skulldozer" = "chonker_suit"
@@ -502,20 +357,6 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"Tactical Classic" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"Press" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"HECU" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	)
-	unique_reskin_worn_digi = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Tactical Classic" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Press" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"HECU" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
-	)
 	unique_reskin_stored = list(
 	"Default" = "armor",
 	"Tactical" = "epic_armor",
@@ -573,14 +414,6 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	)
-	unique_reskin_worn_digi = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	)
 	unique_reskin_stored = list(
 	"Default" = "bulletproof",
 	"Tactical" = "epic_bp_armor",
@@ -644,22 +477,6 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	can_adjust = FALSE //sorry but adjusting it with reskins would FUCK everything, sacrifice for the greater good
-	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
-	"Sol Federation" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
-	"HECU" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
-	"Firestarter" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
-	"Gorka" = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	)
-	unique_reskin_worn_digi = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
-	"Sol Federation" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
-	"HECU" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
-	"Firestarter" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
-	"Gorka" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
-	)
 	unique_reskin_stored = list(
 	"Default" = "rsecurity",
 	"Tactical" = "tactical_suit",

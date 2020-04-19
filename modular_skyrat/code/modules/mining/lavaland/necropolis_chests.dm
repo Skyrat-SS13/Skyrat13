@@ -293,8 +293,8 @@
 	strip_delay = 130
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "praetor"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/head.dmi'
-	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/head_muzzled.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
