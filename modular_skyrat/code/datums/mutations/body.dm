@@ -6,20 +6,23 @@
 	text_lose_indication = "<span class='notice'>Your skin feels soft again...</span>"
 	difficulty = 18
 	instability = 25
+	var/brutemodbefore
+	var/burnmodbefore
 
 /datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	if(owner.dna.species)
-		owner.dna.species.brutemod *= 0.75
-		owner.dna.species.burnmod *= 0.9
+	if(owner.physiology)
+		brutemodbefore = owner.physiology.brutemod
+		burnmodbefore = owner.physiology.burnmod
+		owner.physiology.brutemod *= 0.75
+		owner.physiology.burnmod *= 0.9
 
 /datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
-	if(..())
-		return
-	if(owner.dna.species)
-		owner.dna.species.brutemod = initial(owner.dna.species.brutemod)
-		owner.dna.species.burnmod = initial(owner.dna.species.burnmod)
+	. = ..()
+	if(owner.physiology)
+		owner.physiology.brutemod = brutemodbefore
+		owner.physiology.burnmod = burnmodbefore
 
 //Makes strong actually useful. Somewhat.
 /datum/mutation/human/strong
@@ -55,11 +58,18 @@
 
 /datum/mutation/human/stimmed/on_life()
 	if(owner.reagents)
-		for(var/datum/reagent/toxin/T in owner.reagents.reagent_list)
-			owner.reagents.remove_all_type(T, STIMMED_PURGE_AMOUNT, FALSE, TRUE)
+		if(!HAS_TRAIT(owner, TRAIT_TOXINLOVER))
+			for(var/datum/reagent/toxin/T in owner.reagents.reagent_list)
+				owner.reagents.remove_all_type(T, STIMMED_PURGE_AMOUNT, FALSE, TRUE)
+		else
+			if(prob(3))
+				owner.adjustToxLoss(2.5) //slimes get more healing to compensate the fact they don't purge harmful reagents
 	if(prob(2)) //about once every 5 seconds?
-		owner.adjustToxLoss(-2.5)
+		if(!HAS_TRAIT(owner, TRAIT_TOXINLOVER)
+			owner.adjustToxLoss(-2.5)
+		else
+			owner.adjustToxLoss(2.5)
 
 /datum/mutation/human/glow/anti
-	glow = -5
+	glow = -3.5
 	locked = FALSE //this is actually useful for shadowpeople, let em have it
