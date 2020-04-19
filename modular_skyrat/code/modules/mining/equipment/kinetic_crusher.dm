@@ -193,6 +193,6 @@
 /obj/effect/temp_visual/hierophant/wall/crusher
 	duration = 45 //this is more than enough time bro
 
-//watcher wing fucking nerf
+//watcher wing slight buff
 /obj/item/crusher_trophy/watcher_wing
-	bonus_value = 5 // 1 second was more than enough and let you off the hook too easy.
+	bonus_value = 20 // 1 second isn't enough for much, this should be better

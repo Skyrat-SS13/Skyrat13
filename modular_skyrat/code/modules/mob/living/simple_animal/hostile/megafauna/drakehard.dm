@@ -572,17 +572,3 @@ obj/effect/temp_visual/fireball/hard
 
 /mob/living/simple_animal/hostile/megafauna/dragon/space_dragon/AltClickOn(atom/movable/A)
 	return
-
-/mob/living/simple_animal/hostile/megafauna/dragon/lesser/akatosh
-	name = "Holy Dragon"
-	desc = "Destroyer of the gates."
-	icon = 'modular_skyrat/icons/mob/lavaland/drake_greyscale.dmi'
-	icon_state = "dragon"
-	maxHealth = 500
-	health = 500
-	color = "#FFFF00"
-	light_range = 3
-	light_color = "#FFFF00"
-	light_power = 2
-	faction = list("mining", "neutral")
-	smallsprite = new/datum/action/small_sprite/drake/akatosh()
