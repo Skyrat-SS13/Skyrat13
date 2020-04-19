@@ -1,11 +1,3 @@
-//changes to accomodate power armor
-/datum/component/construction/unordered/mecha_chassis/spawn_result()
-	var/atom/parent_atom = parent
-	parent_atom.icon = 'modular_skyrat/icons/mecha/mech_construction.dmi'
-	parent_atom.density = TRUE
-	parent_atom.cut_overlays()
-	..()
-
 //Power armor: now actually built!
 /datum/component/construction/unordered/mecha_chassis/powerarmor
 	result = /datum/component/construction/mecha/powerarmor
@@ -17,6 +9,11 @@
 		/obj/item/mecha_parts/part/powerarmor_left_leg,
 		/obj/item/mecha_parts/part/powerarmor_right_leg
 	)
+
+/datum/component/construction/mecha/powerarmor/update_parent(step_index)
+	. = ..()
+	var/atom/parent_atom = parent
+	parent_atom.icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
 
 /datum/component/construction/mecha/powerarmor
 	result = /obj/item/clothing/suit/space/hardsuit/powerarmor
