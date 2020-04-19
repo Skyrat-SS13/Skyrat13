@@ -523,7 +523,7 @@
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
 	w_class = WEIGHT_CLASS_BULKY //its a fucking full metal mask man
-	mutantrace_variation = STYLE_MUZZLED
+	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/mask/gas/dagoth/equipped(mob/living/carbon/human/user, slot)
 	..()

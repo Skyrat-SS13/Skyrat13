@@ -4,7 +4,7 @@
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "goatpelt"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	mutantrace_variation = NO_ANTHRO_ICON
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	item_state = "goatpelt"
 
 /obj/item/clothing/head/goatpelt/king
