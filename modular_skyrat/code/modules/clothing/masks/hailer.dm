@@ -146,10 +146,10 @@
 /obj/item/clothing/mask/gas/sechailer/hecu
 	name = "HECU mask"
 	desc = "MY. ASS. IS. HEAVY."
-	icon = 'modular_skyrat/icons/obj/clothing/securityuniforms.dmi'
+	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
 	icon_state = "hecu_mask"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/securityuniforms.dmi'
-	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/securityuniforms_digi.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
+	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
 	actions_types = list(/datum/action/item_action/halt)
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES
 	aggressiveness = 3
