@@ -65,6 +65,7 @@
 	)
 
 /obj/item/clothing/head/helmet/riot
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
 	unique_reskin = list(
 	)
@@ -81,63 +82,77 @@
 	)
 
 /obj/item/clothing/head/helmet/thunderdome
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/roman
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 25, "bullet" = 0, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/roman/fake
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/head/helmet/redtaghelm
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 15, "bullet" = 10, "laser" = 20,"energy" = 10, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/bluetaghelm
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 15, "bullet" = 10, "laser" = 20,"energy" = 10, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/knight
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/skull
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/durathread
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 30, "energy" = 40, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/rus_helmet
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 25, "bullet" = 30, "laser" = 0, "energy" = 10, "bomb" = 10, "bio" = 0, "rad" = 20, "fire" = 20, "acid" = 50)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/rus_ushanka
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 30, "bomb" = 20, "bio" = 50, "rad" = 20, "fire" = -10, "acid" = 50)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/caphat
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 25, "bullet" = 15, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
 /obj/item/clothing/head/hopcap
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 25, "bullet" = 15, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
 /obj/item/clothing/head/fedora/det_hat
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 25, "bullet" = 5, "laser" = 25, "energy" = 35, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50)
 
 /obj/item/clothing/head/beret/durathread
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 15, "bullet" = 5, "laser" = 15, "energy" = 25, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 5)
 
 /obj/item/clothing/head/HoS
@@ -154,6 +169,7 @@
 	)
 
 /obj/item/clothing/head/HoS/beret/syndicate
+	icon = 'icons/obj/clothing/hats.dmi'
 	unique_reskin = list(
 	)
 
@@ -185,36 +201,45 @@
 	)
 
 /obj/item/clothing/head/beret/sec/navywarden
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/space/hardsuit
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 50, "acid" = 75)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/space/hardsuit
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 50, "acid" = 75)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/engine
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 75)
 
 /obj/item/clothing/suit/space/hardsuit/engine
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 75)
 
 /obj/item/clothing/head/helmet/space/hardsuit/engine/atmos
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 25, "fire" = 100, "acid" = 75)
 
 /obj/item/clothing/suit/space/hardsuit/engine/atmos
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 25, "fire" = 100, "acid" = 75)
 
 /obj/item/clothing/head/helmet/space/hardsuit/engine/elite
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 40, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90)
 
 /obj/item/clothing/suit/space/hardsuit/engine/elite
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 40, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90)
 
 /obj/item/clothing/head/helmet/space/hardsuit/mining
@@ -240,33 +265,43 @@
 	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)
 
 /obj/item/clothing/suit/space/hardsuit/syndi
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 50, "energy" = 60, "bomb" = 55, "bio" = 100, "rad" = 70, "fire" = 100, "acid" = 100)
 
 /obj/item/clothing/suit/space/hardsuit/syndi/elite
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 50, "energy" = 60, "bomb" = 55, "bio" = 100, "rad" = 70, "fire" = 100, "acid" = 100)
 
 /obj/item/clothing/head/helmet/space/hardsuit/wizard
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 50, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
 
 /obj/item/clothing/suit/space/hardsuit/wizard
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 50, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
 
 /obj/item/clothing/head/helmet/space/hardsuit/medical
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 75)
 
 /obj/item/clothing/suit/space/hardsuit/medical
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 75)
 
 /obj/item/clothing/head/helmet/space/hardsuit/rd
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
 
 /obj/item/clothing/suit/space/hardsuit/rd
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
 
 /obj/item/clothing/head/helmet/space/hardsuit/security
@@ -298,11 +333,13 @@
 	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/security/hos
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 45, "bullet" = 25, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 95, "acid" = 95)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/space/hardsuit/security/hos
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 45, "bullet" = 25, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 95, "acid" = 95)
 	unique_reskin = list(
 	)
@@ -319,36 +356,47 @@
 	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/clown
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 60, "acid" = 30)
 
 /obj/item/clothing/suit/space/hardsuit/clown
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 60, "acid" = 30)
 
 /obj/item/clothing/head/helmet/space/hardsuit/ancient
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 5, "energy" = 15, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 75)
 
 /obj/item/clothing/suit/space/hardsuit/ancient
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 5, "energy" = 15, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 75)
 
 /obj/item/clothing/suit/space/hardsuit/shielded
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 30, "bullet" = 15, "laser" = 30, "energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
 
 /obj/item/clothing/suit/space/hardsuit/shielded/ctf
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 0, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 95, "acid" = 95)
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 0, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 95, "acid" = 95)
 
 /obj/item/clothing/suit/space/hardsuit/shielded/syndi
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/syndi
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
 
 /obj/item/clothing/suit/space/hardsuit/shielded/swat
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat
+	icon = 'icons/obj/clothing/hats.dmi'
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 
 /obj/item/clothing/suit/armor
@@ -393,17 +441,20 @@
 	)
 
 /obj/item/clothing/suit/armor/vest/capcarapace
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 50, "bullet" = 40, "laser" = 50, "energy" = 50, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 90)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/riot
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 55, "bullet" = 20, "laser" = 15, "energy" = 25, "bomb" = 10, "bio" = 10, "rad" = 0, "fire" = 65, "acid" = 70)
 	slowdown = 0
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/bone
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	unique_reskin = list(
 	)
@@ -420,55 +471,67 @@
 	)
 
 /obj/item/clothing/suit/armor/laserproof
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 60, "energy" = 60, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/centcom
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/heavy
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/tdome
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/riot/knight/greyscale
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 35, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/vest/durathread
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 30, "energy" = 40, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/vest/russian
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 25, "bullet" = 30, "laser" = 0, "energy" = 10, "bomb" = 10, "bio" = 0, "rad" = 20, "fire" = 20, "acid" = 50)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/vest/russian_coat
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 30, "bomb" = 20, "bio" = 50, "rad" = 20, "fire" = -10, "acid" = 50)
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/det_suit
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 25, "energy" = 35, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 45)
 
 /obj/item/clothing/suit/security/officer
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 25, "energy" = 35, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 45)
 
 /obj/item/clothing/suit/security/warden
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 30, "energy" = 35, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 60)
 
 /obj/item/clothing/suit/security/hos
+	icon = 'icons/obj/clothing/suits.dmi'
 	armor = list("melee" = 45, "bullet" = 35, "laser" = 35, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 90)
 
 /obj/item/clothing/under/rank/security/officer
@@ -487,37 +550,46 @@
 	)
 
 /obj/item/clothing/head/helmet/roman
+	icon = 'icons/obj/clothing/hats.dmi'
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/gladiator
+	icon = 'icons/obj/clothing/hats.dmi'
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/skull
+	icon = 'icons/obj/clothing/hats.dmi'
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/knight
+	icon = 'icons/obj/clothing/hats.dmi'
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/head/helmet/infiltrator
+	icon = 'icons/obj/clothing/hats.dmi'
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/vest/old
+	icon = 'icons/obj/clothing/suits.dmi'
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/vest/blueshirt
+	icon = 'icons/obj/clothing/suits.dmi'
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/vest/infiltrator
+	icon = 'icons/obj/clothing/suits.dmi'
 	unique_reskin = list(
 	)
 
 /obj/item/clothing/suit/armor/riot/knight
+	icon = 'icons/obj/clothing/suits.dmi'
 	unique_reskin = list(
 	)
