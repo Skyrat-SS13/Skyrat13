@@ -1,0 +1,7 @@
+author: "Bob Joga and Muhreen (Investigator77)"
+delete-after: True
+changes: 
+  - rscadd: "Many armors and helmets are now reskinnable."
+  - tweak: "By default, exo-suits and seva-suits use the \"improved\" sprite by Muhreen."
+  - code_imp: "Refactors the reskin obj proc to make reskinnable clothing a thing."
+  - imageadd: "Many new \"epic\" icons."

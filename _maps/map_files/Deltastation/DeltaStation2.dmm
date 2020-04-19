@@ -35080,18 +35080,10 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "bmd" = (
-/obj/structure/table/glass,
-/obj/item/storage/firstaid/regular,
-/obj/item/reagent_containers/glass/bottle/epinephrine,
-/obj/item/reagent_containers/glass/bottle/charcoal,
-/obj/item/reagent_containers/syringe,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "bme" = (
@@ -127277,6 +127269,20 @@
 "saw" = (
 /turf/closed/wall,
 /area/science/circuit)
+"sbx" = (
+/obj/structure/table/glass,
+/obj/item/storage/firstaid/regular,
+/obj/item/reagent_containers/glass/bottle/epinephrine,
+/obj/item/reagent_containers/glass/bottle/charcoal,
+/obj/item/reagent_containers/syringe,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "sfo" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/engine/vacuum,
@@ -127465,6 +127471,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"uQd" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/brig_phys,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "uYS" = (
 /obj/machinery/door/airlock/atmos/glass/critical{
 	heat_proof = 1;
@@ -127509,6 +127526,12 @@
 /obj/effect/landmark/start/paramedic,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"vTJ" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "wei" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -177164,10 +177187,10 @@ aaa
 aaa
 aad
 aaa
-aaa
-aaa
-aaa
-aad
+bgZ
+biy
+bkj
+bmc
 bnF
 bpe
 brf
@@ -177422,9 +177445,9 @@ aaa
 aad
 aaa
 bgZ
-biy
-bkj
-bmc
+biz
+bkk
+uQd
 bnG
 bpf
 brg
@@ -177679,8 +177702,8 @@ aFm
 aFm
 aaa
 bgZ
-biz
-bkk
+sbx
+vTJ
 bmd
 bnG
 bpg

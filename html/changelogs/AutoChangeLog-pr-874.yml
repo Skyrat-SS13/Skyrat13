@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - code_imp: "Refactoring of collar ban code to make it more... good."

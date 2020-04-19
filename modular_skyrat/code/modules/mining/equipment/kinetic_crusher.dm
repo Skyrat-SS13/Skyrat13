@@ -188,3 +188,11 @@
 	if(.)
 		H.charge_time = 15
 		H.force_wielded = 20
+
+//hierophant crusher nerf "but muh i deserve it after killing hierocunt" yes but its op fuck you you piece of shit
+/obj/effect/temp_visual/hierophant/wall/crusher
+	duration = 45 //this is more than enough time bro
+
+//watcher wing slight buff
+/obj/item/crusher_trophy/watcher_wing
+	bonus_value = 20 // 1 second isn't enough for much, this should be better

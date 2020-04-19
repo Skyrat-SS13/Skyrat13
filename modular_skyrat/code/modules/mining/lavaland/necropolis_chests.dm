@@ -455,6 +455,8 @@
 	armour_penetration = 25
 	block_chance = 0 //blocky bad
 
+/obj/item/immortality_talisman
+	w_class = WEIGHT_CLASS_SMALL //why the fuck are they large anyways
 //legion
 /obj/structure/closet/crate/necropolis/legion
 	name = "echoing legion crate"
