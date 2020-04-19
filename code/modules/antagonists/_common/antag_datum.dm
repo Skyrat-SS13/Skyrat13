@@ -76,6 +76,11 @@ GLOBAL_LIST_EMPTY(antagonists)
 		remove_blacklisted_quirks()
 		if(is_banned(owner.current) && replace_banned)
 			replace_banned_player()
+		//Skyrat changes - warns the antag banned player if the role doesn't ghost him
+		else if (is_banned(owner.current))
+			to_chat(owner, "<span class='boldwarning'>You are currently banned from antagonist roles and it's likely you've been converted. Please stay at your best behaviour, remember our rules and guidelines.")
+			message_admins("([key_name_admin(owner.current)]), as an antag banned player became a [src.name].")
+		//Skyrat changes END
 		SEND_SIGNAL(owner.current, COMSIG_MOB_ANTAG_ON_GAIN, src)
 
 /datum/antagonist/proc/is_banned(mob/M)
