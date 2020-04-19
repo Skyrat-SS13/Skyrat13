@@ -1,7 +1,7 @@
 /obj/mecha/working/ripley/firefighter/killdozer
 	desc = "Autonomous Power Loader Unit. This model is refitted with additional thermal and kinetic protection. Capable of accepting illegal upgrades, as well as damaging government property."
 	name = "\improper APLU \"Killdozer\""
-	icon = 'modular_skyrat/icons/mecha/sometimesreasonablemenmustdounreasonablethings'
+	icon = 'modular_skyrat/icons/mecha/sometimesreasonablemenmustdounreasonablethings.dmi'
 	icon_state = "ripley"
 	opacity = 1
 	bumpsmash = 1
@@ -32,7 +32,7 @@
 /obj/structure/mecha_wreckage/ripley/firefighter/killdozer
 	name = "\improper killdozer wreckage"
 	desc = "Died doing what they loved."
-	icon = 'sometimesreasonablemenmustdounreasonablethings'
+	icon = 'modular_skyrat/icons/mecha/sometimesreasonablemenmustdounreasonablethings.dmi'
 	icon_state = "ripley-broken"
 
 /obj/item/mecha_parts/chassis/killdozer
