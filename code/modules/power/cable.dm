@@ -558,14 +558,24 @@ By design, d1 is the smallest direction and d2 is the highest
 		new_cable.update_icon()
 
 /obj/item/stack/cable_coil/attack_self(mob/user)
+<<<<<<< HEAD
 	if(amount < AMOUNT_CABLE_RESTRAINTS)
 		to_chat(user, "<span class='notice'>You don't have enough cable coil to make restraints out of them.</span>")
+=======
+	if(amount < 15)
+		to_chat(user, "<span class='notice'>You don't have enough cable coil to make restraints out of them</span>")
+>>>>>>> 6e62f7a2a3... Merge pull request #11878 from Arturlang/fixes_zipties_being_red
 		return
 
 	to_chat(user, "<span class='notice'>You start making some cable restraints.</span>")
+<<<<<<< HEAD
 
 	if(!do_after(user, 30, TRUE, user, TRUE))
 		to_chat(user, "<span class='notice'>You fail to make cable restraints, you need to stand still while doing so.</span>")
+=======
+	if(!do_after(user, 30, TRUE, user, TRUE) || !use(15))
+		to_chat(user, "<span class='notice'>You fail to make cable restraints, you need to be standing still to do it</span>")
+>>>>>>> 6e62f7a2a3... Merge pull request #11878 from Arturlang/fixes_zipties_being_red
 		return
 
 	if (use(AMOUNT_CABLE_RESTRAINTS))
