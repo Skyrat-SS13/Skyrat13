@@ -44,3 +44,7 @@
 /datum/techweb_node/botany/New()
 	design_ids += "prisonerbiogenerator"
 	. = ..()
+
+/datum/techweb_node/syndicate_basic/New()
+	design_ids += "armblade"
+	. = ..()

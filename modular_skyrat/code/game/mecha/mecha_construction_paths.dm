@@ -11,9 +11,16 @@
 	)
 
 /datum/component/construction/mecha/powerarmor/update_parent(step_index)
-	. = ..()
+	..()
 	var/atom/parent_atom = parent
-	parent_atom.icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	parent_atom.icon = 'modular_skyrat/icons/mecha/mech_construction.dmi'
+
+/datum/component/construction/mecha/powerarmor/spawn_result()
+	if(!result)
+		return
+	new result(drop_location())
+	SSblackbox.record_feedback("tally", "mechas_created", 1, M.name)
+	QDEL_NULL(parent)
 
 /datum/component/construction/mecha/powerarmor
 	result = /obj/item/clothing/suit/space/hardsuit/powerarmor
@@ -79,7 +86,7 @@
 
 		//9
 		list(
-			"key" = TOOL_WRENCH,
+			"key" = TOOL_WELDER,
 			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "The wiring is linked to the limbs."
 		),
@@ -127,4 +134,9 @@
 				user.visible_message("[user] links [parent]'s wires to the limbs.", "<span class='notice'>You link [parent]'s wires to the limbs.</span>")
 			else
 				user.visible_message("[user] snips off [parent]'s wires.", "<span class='notice'>You snip off [parent]'s wires.</span>")
+		if(9)
+			if(diff==FORWARD)
+				user.visible_message("[user] welds [parent]'s external armor layer.", "<span class='notice'>You weld [parent]'s external armor layer.</span>")
+			else
+				user.visible_message("[user] unlinks [parent]'s wires from the limbs.", "<span class='notice'>You unlink [parent]'s wires from the limbs.</span>")
 	return TRUE
