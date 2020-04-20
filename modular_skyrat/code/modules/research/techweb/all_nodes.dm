@@ -39,6 +39,9 @@
 
 /datum/techweb_node/ai/New()
 	design_ids += "father_module"
+	design_ids += "ranger_module"
+	design_ids += "mallcop_module"
+	design_ids += "godcomplex_module"
 	. = ..()
 
 /datum/techweb_node/botany/New()
@@ -50,4 +53,7 @@
 	design_ids += "mining_hud_prescription"
 	design_ids += "mining_hud_meson"
 	design_ids += "mining_hud_fauna"
+
+/datum/techweb_node/syndicate_basic/New()
+	design_ids += "armblade"
 	. = ..()

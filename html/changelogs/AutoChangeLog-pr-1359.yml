@@ -1,0 +1,7 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscdel: "Simplemob vore is gone."
+  - refactor: "A lot of vore vars are now part of a bitfield."
+  - refactor: "Bellies aren't generated for most mobs until they try to vore."
+  - tweak: "Genital enhancement and vore sounds are now opt-in"
