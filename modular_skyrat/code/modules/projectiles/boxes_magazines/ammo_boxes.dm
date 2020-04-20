@@ -16,7 +16,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun
 	multiload = 0
 	var/pixeloffsetx = 4
-	var/shell_overlay_list = list()
+	var/shell_overlay_list = list(null, null, null, null) //Runtime in ammo_boxes.dm,41: list index out of bounds
 
 /obj/item/ammo_box/shotgun/update_icon()
 	..()
