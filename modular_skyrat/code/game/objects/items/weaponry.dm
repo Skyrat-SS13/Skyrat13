@@ -22,7 +22,7 @@
 		to_chat(user, "<span class='notice'>You use part of the silver to improve your Switchblade. Stylish!</span>")
 
 /obj/item/switchblade/deluxe
-	icon = 'modular_skyrat/icons/obj/deluxeblade.dmi'
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "switchblade_deluxe"
 	desc = "A powered switchblade that also burns on impact."
 	force = 2
@@ -467,7 +467,7 @@
 /obj/item/hatchet/improvised
 	name = "glass hatchet"
 	desc = "A makeshift hand axe with a crude blade of broken glass."
-	icon = 'modular_skyrat/icons/obj/weapons.dmi'
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "glasshatchet"
 	item_state = "glasshatchet"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/lefthand.dmi'
@@ -477,7 +477,7 @@
 /obj/item/shard/shank
 	name = "shank"
 	desc = "A nasty looking shard of glass. There's paper wrapping over one of the ends."
-	icon = 'modular_skyrat/icons/obj/weapons.dmi'
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "shank"
 	force = 10 //Average force
 	throwforce = 10

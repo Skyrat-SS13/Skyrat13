@@ -6,7 +6,7 @@
 	icon_state = "holorifle"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/64x_guns_left.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/64x_guns_right.dmi'
-	alternate_worn_icon = 'modular_skyrat/icons/mob/back.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/back.dmi'
 	item_state = "holorifle"
 	fire_sound = 'sound/weapons/pulse.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/holorifle

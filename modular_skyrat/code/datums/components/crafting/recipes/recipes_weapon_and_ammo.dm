@@ -41,7 +41,7 @@
 
 /datum/crafting_recipe/trayshield
 	name = "tray shield"
-	result =  /obj/item/shield/trayshield
+	result =  /obj/item/shield/riot/trayshield
 	reqs = list(/obj/item/stack/sheet/metal = 1,
 				/obj/item/storage/bag/tray = 1,
 				/obj/item/stack/cable_coil = 5)
