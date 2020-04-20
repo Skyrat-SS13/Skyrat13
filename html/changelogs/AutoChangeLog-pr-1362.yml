@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "Adds secondary wire to sec and fixes atmos issues."
