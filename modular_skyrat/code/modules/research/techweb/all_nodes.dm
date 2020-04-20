@@ -39,6 +39,9 @@
 
 /datum/techweb_node/ai/New()
 	design_ids += "father_module"
+	design_ids += "ranger_module"
+	design_ids += "mallcop_module"
+	design_ids += "godcomplex_module"
 	. = ..()
 
 /datum/techweb_node/botany/New()
