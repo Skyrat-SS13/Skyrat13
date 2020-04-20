@@ -42,3 +42,15 @@
 	icon_state = "sbeak"
 	extra = TRUE
 	extra_color_src = MATRIXED
+
+/datum/sprite_accessory/mam_snouts/shark_light
+	name = "Shark Light"
+	icon = 'modular_skyrat/icons/mob/mam_snouts.dmi'
+	icon_state = "sharkblubber"
+	color_src = MATRIXED
+
+/datum/sprite_accessory/mam_snouts/rat
+	name = "Rat"
+	icon = 'modular_skyrat/icons/mob/mam_snouts.dmi'
+	icon_state = "rat"
+	color_src = MATRIXED

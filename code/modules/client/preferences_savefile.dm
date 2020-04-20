@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	28
+#define SAVEFILE_VERSION_MAX	29
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -120,10 +120,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(fexists(vr_path))
 			var/list/json_from_file = json_decode(file2text(vr_path))
 			if(json_from_file)
-				digestable = json_from_file["digestable"]
-				devourable = json_from_file["devourable"]
-				feeding = json_from_file["feeding"]
-				lickable = json_from_file["lickable"]
+				if(json_from_file["digestable"])
+					ENABLE_BITFIELD(vore_flags,DIGESTABLE)
+				if(json_from_file["devourable"])
+					ENABLE_BITFIELD(vore_flags,DEVOURABLE)
+				if(json_from_file["feeding"])
+					ENABLE_BITFIELD(vore_flags,FEEDING)
+				if(json_from_file["lickable"])
+					ENABLE_BITFIELD(vore_flags,LICKABLE)
 				belly_prefs = json_from_file["belly_prefs"]
 				vore_taste = json_from_file["vore_taste"]
 
@@ -158,6 +162,24 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(malformed_hockeys[hockey])
 			features["cock_shape"] = malformed_hockeys[hockey]
 			features["cock_taur"] = TRUE
+	
+	if(current_version < 29)
+		var/digestable
+		var/devourable
+		var/feeding
+		var/lickable
+		S["digestable"]						>> digestable
+		S["devourable"]						>> devourable
+		S["feeding"]						>> feeding
+		S["lickable"]						>> lickable
+		if(digestable)
+			ENABLE_BITFIELD(vore_flags,DIGESTABLE)
+		if(devourable)
+			ENABLE_BITFIELD(vore_flags,DEVOURABLE)
+		if(feeding)
+			ENABLE_BITFIELD(vore_flags,FEEDING)
+		if(lickable)
+			ENABLE_BITFIELD(vore_flags,LICKABLE)
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -248,7 +270,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	buttons_locked	= sanitize_integer(buttons_locked, 0, 1, initial(buttons_locked))
 	windowflashing		= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
 	default_slot	= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
-	toggles			= sanitize_integer(toggles, 0, 65535, initial(toggles))
+	toggles			= sanitize_integer(toggles, 0, 16777215, initial(toggles)) // skyrat - its 24 bit ree
 	clientfps		= sanitize_integer(clientfps, 0, 1000, 0)
 	if (clientfps == 0) clientfps = world.fps*2 // Skyrat edit
 	parallax		= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
@@ -271,7 +293,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	damagescreenshake	= sanitize_integer(damagescreenshake, 0, 2, initial(damagescreenshake))
 	widescreenpref			= sanitize_integer(widescreenpref, 0, 1, initial(widescreenpref))
 	autostand			= sanitize_integer(autostand, 0, 1, initial(autostand))
-	cit_toggles			= sanitize_integer(cit_toggles, 0, 65535, initial(cit_toggles))
+	cit_toggles			= sanitize_integer(cit_toggles, 0, 16777215, initial(cit_toggles)) // skyrate - its 24 bit ree
 	auto_ooc			= sanitize_integer(auto_ooc, 0, 1, initial(auto_ooc))
 
 	return 1
@@ -397,10 +419,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["body_is_always_random"]	>> be_random_body
 	S["gender"]					>> gender
 	S["body_model"]				>> features["body_model"]
+	S["body_size"]				>> features["body_size"]
 	S["age"]					>> age
 	S["hair_color"]				>> hair_color
 	S["facial_hair_color"]		>> facial_hair_color
 	S["eye_color"]				>> eye_color
+	S["use_custom_skin_tone"]	>> use_custom_skin_tone
 	S["skin_tone"]				>> skin_tone
 	S["hair_style_name"]		>> hair_style
 	S["facial_style_name"]		>> facial_hair_style
@@ -500,11 +524,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	else //We have no old flavortext, default to new
 		S["feature_flavor_text"]		>> features["flavor_text"]
 
-	S["digestable"]						>> digestable
-	S["devourable"]						>> devourable
-	S["feeding"]						>> feeding
+	S["vore_flags"]						>> vore_flags
 	S["vore_taste"]						>> vore_taste
-	S["lickable"]						>> lickable
 	S["belly_prefs"]					>> belly_prefs
 
 	//try to fix any outdated data if necessary
@@ -551,7 +572,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	hair_color						= sanitize_hexcolor(hair_color, 3, 0)
 	facial_hair_color				= sanitize_hexcolor(facial_hair_color, 3, 0)
 	eye_color						= sanitize_hexcolor(eye_color, 3, 0)
-	skin_tone						= sanitize_inlist(skin_tone, GLOB.skin_tones)
+	use_custom_skin_tone			= sanitize_integer(use_custom_skin_tone, FALSE, TRUE, initial(use_custom_skin_tone))
+	if(use_custom_skin_tone && CONFIG_GET(number/allow_custom_skintones))
+		skin_tone					= sanitize_hexcolor(skin_tone, 6, TRUE, "#FFFFFF")
+	else
+		skin_tone					= sanitize_inlist(skin_tone, GLOB.skin_tones - GLOB.nonstandard_skin_tones, initial(skin_tone))
 	horn_color						= sanitize_hexcolor(horn_color, 3, FALSE)
 	wing_color						= sanitize_hexcolor(wing_color, 3, FALSE, "#FFFFFF")
 	backbag							= sanitize_inlist(backbag, GLOB.backbaglist, initial(backbag))
@@ -571,6 +596,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["insect_fluff"]		= sanitize_inlist(features["insect_fluff"], GLOB.insect_fluffs_list)
 	features["insect_markings"] 	= sanitize_inlist(features["insect_markings"], GLOB.insect_markings_list, "None")
 	features["insect_wings"] 		= sanitize_inlist(features["insect_wings"], GLOB.insect_wings_list)
+
+	var/static/size_min
+	if(!size_min)
+		size_min = CONFIG_GET(number/body_size_min)
+	var/static/size_max
+	if(!size_max)
+		size_max = CONFIG_GET(number/body_size_max)
+	features["body_size"]			= sanitize_integer(features["body_size"], size_min, size_max, RESIZE_DEFAULT_SIZE)
 
 	var/static/list/B_sizes
 	if(!B_sizes)
@@ -613,10 +646,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	all_quirks = SANITIZE_LIST(all_quirks)
 
-	lickable						= sanitize_integer(lickable, FALSE, TRUE, initial(lickable))
-	devourable						= sanitize_integer(devourable, FALSE, TRUE, initial(devourable))
-	digestable						= sanitize_integer(digestable, FALSE, TRUE, initial(digestable))
-	feeding							= sanitize_integer(feeding, FALSE, TRUE, initial(feeding))
+	vore_flags						= sanitize_integer(vore_flags, 0, MAX_VORE_FLAG, 0)
 	vore_taste						= copytext(vore_taste, 1, MAX_TASTE_LEN)
 	belly_prefs 					= SANITIZE_LIST(belly_prefs)
 
@@ -648,10 +678,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["body_is_always_random"]	, be_random_body)
 	WRITE_FILE(S["gender"]					, gender)
 	WRITE_FILE(S["body_model"]				, features["body_model"])
+	WRITE_FILE(S["body_size"]				, features["body_size"])
 	WRITE_FILE(S["age"]						, age)
 	WRITE_FILE(S["hair_color"]				, hair_color)
 	WRITE_FILE(S["facial_hair_color"]		, facial_hair_color)
 	WRITE_FILE(S["eye_color"]				, eye_color)
+	WRITE_FILE(S["use_custom_skin_tone"]	, use_custom_skin_tone)
 	WRITE_FILE(S["skin_tone"]				, skin_tone)
 	WRITE_FILE(S["hair_style_name"]			, hair_style)
 	WRITE_FILE(S["facial_style_name"]		, facial_hair_style)
@@ -725,11 +757,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Quirks
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
 
-	WRITE_FILE(S["digestable"]			, digestable)
-	WRITE_FILE(S["devourable"]			, devourable)
-	WRITE_FILE(S["feeding"]				, feeding)
+	WRITE_FILE(S["vore_flags"]			, vore_flags)
 	WRITE_FILE(S["vore_taste"]			, vore_taste)
-	WRITE_FILE(S["lickable"]			, lickable)
 	WRITE_FILE(S["belly_prefs"]			, belly_prefs)
 
 	cit_character_pref_save(S)
