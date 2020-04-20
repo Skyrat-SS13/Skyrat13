@@ -18,6 +18,10 @@
 	var/pixeloffsetx = 4
 	var/shell_overlay_list = list()
 
+/obj/item/ammo_box/shotgun/update_icon()
+	..()
+	update_overlays()
+
 /obj/item/ammo_box/shotgun/update_overlays()
 	. = ..()
 	if(stored_ammo.len )
