@@ -1171,30 +1171,51 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					dat += "<td valign='top' width='31%'>"
 					if(aug_type != "")
-						dat += "<table width=100%>"
+						var/datum/aug_category/augc
+						var/list/li 
+						if(aug_type == "limb")
+							li = GLOB.aug_limb_list[aug_cat]
+							augc = GLOB.aug_limb_cat_list[aug_cat]
+						else if(aug_type == "implant")
+							li = GLOB.aug_implant_list[aug_cat]
+							augc = GLOB.aug_implant_cat_list[aug_cat]
+						else if(aug_type == "organ")
+							li = GLOB.aug_organ_list[aug_cat]
+							augc = GLOB.aug_organ_cat_list[aug_cat]
+
+						dat += "<table width=100%; style='background-color:#13171C'>"
+						dat += "<center><h2>[augc.name]</h2></center>"
 						dat += "<tr style='vertical-align:top;'>"
 						dat += "<td width=20%><b>Name</b></td>"
 						dat += "<td width=10%><b>Cost</b></td>"
 						dat += "<td width=70%><b>Description</b></td>"
 						dat += "</tr>"
 
-						var/list/li 
-						if(aug_type == "limb")
-							li = GLOB.aug_limb_list[aug_cat]
-						else if(aug_type == "implant")
-							li = GLOB.aug_implant_list[aug_cat]
-						else if(aug_type == "organ")
-							li = GLOB.aug_organ_list[aug_cat]
 						message_admins("[aug_cat]")
 						message_admins("[aug_type]")
 						message_admins("[li.len]")
 
 						if(li)
+							var/datum/augmentation/CurAu
+							if(aug_type == "limb")
+								CurAu = GLOB.aug_limb_list[aug_cat][augments_limbs[aug_cat]]
+							else if(aug_type == "implant")
+								CurAu = GLOB.aug_implant_list[aug_cat][augments_implants[aug_cat]]
+							else if(aug_type == "organ")
+								CurAu = GLOB.aug_organ_list[aug_cat][augments_organs[aug_cat]]
+
 							for(var/i in li)
 								var/datum/augmentation/Au = li[i]
 								message_admins("[Au.name]")
+
+								var/aug_link = "class='linkOff'"
+								if (CurAu == Au)
+									aug_link = "class='linkOn'"
+								else if(!(pref_species.id in Au.restricted_species) && !((Au.cost - CurAu.cost) > attribute_points))
+									aug_link = "href='?_src_=prefs;augments=set;aug_type=[aug_type];aug_cat=[aug_cat];aug_id=[Au.id]'"
+
 								dat += "<tr>"
-								dat += "<td><b>[Au.name]</b></td>"
+								dat += "<td><b><a [aug_link]>[Au.name]</a></b></td>"
 								dat += "<td>[Au.cost]</td>"
 								dat += "<td><i>[Au.desc]</i></td>"
 								dat += "</tr>"
@@ -2645,6 +2666,39 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("aug_tab")
 			aug_cat = href_list["aug_cat"]
 			aug_type = href_list["aug_type"]
+
+	switch(href_list["augments"])
+		if("set")
+			var/aug_type = href_list["aug_type"]
+			var/aug_cat = href_list["aug_cat"]
+			var/aug_id = href_list["aug_id"]
+			var/datum/augmentation/CurAu
+			var/datum/augmentation/TargetAu
+			if(aug_type == "limb")
+				CurAu = GLOB.aug_limb_list[aug_cat][augments_limbs[aug_cat]]
+				TargetAu = GLOB.aug_limb_list[aug_cat][aug_id]
+			else if(aug_type == "implant")
+				CurAu = GLOB.aug_implant_list[aug_cat][augments_implants[aug_cat]]
+				TargetAu = GLOB.aug_implant_list[aug_cat][aug_id]
+			else if(aug_type == "organ")
+				CurAu = GLOB.aug_organ_list[aug_cat][augments_organs[aug_cat]]
+				TargetAu = GLOB.aug_organ_list[aug_cat][aug_id]
+
+			if(CurAu == TargetAu)
+				return
+
+			if(pref_species.id in TargetAu.restricted_species)
+				return
+
+			var/costdiff = (TargetAu.cost - CurAu.cost)
+			if (!(costdiff > attribute_points))
+				attribute_points -= costdiff
+				if(aug_type == "limb")
+					augments_limbs[aug_cat] = aug_id
+				else if(aug_type == "implant")
+					augments_implants[aug_cat] = aug_id
+				else if(aug_type == "organ")
+					augments_organs[aug_cat] = aug_id
 	//END OF SKYRAT CHANGES
 
 	ShowChoices(user)

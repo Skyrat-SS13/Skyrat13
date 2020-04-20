@@ -5,3 +5,8 @@
 /datum/augmentation/limb/l_leg/default
 	name = "Default"
 	desc = "Disable augmentations for left leg."
+
+/datum/augmentation/limb/l_leg/prosthetic
+	name = "Prosthetic"
+	desc = "A fragile prosthetic replacement."
+	id = "pro"
