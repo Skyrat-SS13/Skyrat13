@@ -65,7 +65,7 @@
 /obj/effect/wrath/Initialize()
 	..()
 	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
-		megalist += M
+		megalist += M.name
 
 /obj/effect/wrath/CanPass(atom/movable/mover, turf/target)
 	cmegalist = list() //clears the list to not cause problems.
@@ -73,7 +73,7 @@
 		cmegalist += M
 	if(ishuman(mover))
 		var/mob/living/carbon/human/H = mover
-		if(cmegalist.len == megalist.len - 2)
+		if(cmegalist.len <= megalist.len - 2)
 			H.visible_message("<span class='warning'>[H] pushes through [src]!</span>", "<span class='notice'>You deserve your reward. Reap your hunt.</span>")
 			return TRUE
 		else
