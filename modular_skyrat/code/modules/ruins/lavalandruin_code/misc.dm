@@ -2,8 +2,8 @@
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "goldbrand"
 	item_state = "goldbrand"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/goldbrand_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/goldbrand_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "Goldbrand"
 	desc = "Granted only to those who prove themselves in battle, this sword cuts and burns flesh."
 	force = 18
@@ -47,7 +47,7 @@
 		var/mob/living/carbon/L = target
 		var/mob/living/carbon/ourman = user
 		L.apply_damage(damage = burn_force,damagetype = BURN, def_zone = L.get_bodypart(check_zone(ourman.zone_selected)), blocked = FALSE, forced = FALSE)
-		L.fire_stacks += firestacking
+		L.adjust_fire_stacks(firestacking)
 		L.IgniteMob()
 	else if(isliving(target))
 		var/mob/living/thetarget = target
@@ -66,8 +66,13 @@
 
 /obj/effect/wrath/Initialize()
 	..()
+	megalist = list("Cockblock", "Cockblock", "Cockblock") //cockblock just to be sure that no one goes through the wrath wall in the 10 minute grace period
+	addtimer(CALLBACK(src, .proc/updatemegalist), 6000) //10 minutes delay so that all megafauna can spawn and etc.
+
+/obj/effect/wrath/proc/updatemegalist()
+	megalist = list()
 	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
-		megalist += M
+		megalist += M.name
 
 /obj/effect/wrath/CanPass(atom/movable/mover, turf/target)
 	cmegalist = list() //clears the list to not cause problems.
@@ -75,7 +80,7 @@
 		cmegalist += M
 	if(ishuman(mover))
 		var/mob/living/carbon/human/H = mover
-		if(cmegalist.len == megalist.len - 2)
+		if(cmegalist.len <= megalist.len - 2)
 			H.visible_message("<span class='warning'>[H] pushes through [src]!</span>", "<span class='notice'>You deserve your reward. Reap your hunt.</span>")
 			return TRUE
 		else

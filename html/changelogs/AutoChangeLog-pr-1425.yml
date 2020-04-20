@@ -1,0 +1,11 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "food quality is now a property of all food, food gets a description for if it is high/low quality (above or below 70)"
+  - rscadd: "splashing 1u or more of secret sauce on food sets its quality to 100"
+  - tweak: "kitchen machines have larger effect on food quality as they are upgraded"
+  - tweak: "you only get a good moodlet for eating food that is not disliked and either 70+ quality, or liked by your species with 50+ quality, disgust reduction scales with quality"
+  - tweak: "condensed cooking oil only does a 5% vomit chance"
+  - tweak: "bad frying reagents are placed into the consumer when eating a fried inedible item instead of residing in the food"
+  - tweak: "butchered animals give meat of higher quality if butchered in the kitchen and/or are butchered by better tools (including the family knife)"
+  - rscdel: "secret sauce doesn't have a good food quality now, and instead of awarding moodlets like it used to, it just buffs food quality (which in turn makes food give moodlets)"

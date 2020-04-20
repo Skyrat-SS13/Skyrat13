@@ -141,8 +141,8 @@
 	desc = "Forged in deceit, this weapon gets more powerful with the blood of those that are alligned with you."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "ebonyblade"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/ebonyblade_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/ebonyblade_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	item_state = "ebonyblade"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "destroyed", "ripped", "devastated", "shredded")
 	sharpness = IS_SHARP_ACCURATE
@@ -258,11 +258,11 @@
 /obj/item/melee/cleric_mace/molagbal
 	name = "Mace of Molag Bal"
 	desc = "Make the weak and frail bend to you."
-	icon = 'modular_skyrat/icons/obj/molagmace.dmi'
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "molagmace"
 	item_state = "molagmace"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/mace_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/mace_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/mace_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/mace_righthand.dmi'
 	material_flags = null
 	custom_materials = list(/datum/material/iron = 12000)
 	slot_flags = ITEM_SLOT_BELT
@@ -301,8 +301,8 @@
 	icon = 'modular_skyrat/icons/obj/staff.dmi'
 	icon_state = "batonstaff"
 	item_state = "staff"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/staff_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/staff_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/staff_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/staff_righthand.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/back.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15 //same damage as a survival knife, not really good
