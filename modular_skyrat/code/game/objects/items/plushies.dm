@@ -3,15 +3,32 @@
 	icon_state = "lyssa"
 	item_state = "lyssa"
 
+/obj/item/toy/plush/lizardplushie/stalks
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "stalks"
+	item_state = "stalks"
+
 /obj/item/toy/plush/sergal/jermaine
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "jermaine"
 	item_state = "jermaine"
 
+/obj/item/toy/plush/sergal/ray
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "ray"
+	item_state = "ray"
+
 /obj/item/toy/plush/mammal/redtail
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "redtail"
 	item_state = "redtail"
+	squeak_override = list('sound/weapons/egloves.ogg' = 1)
+
+/obj/item/toy/plush/mammal/bobjoga
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "bobjoga"
+	item_state = "bobjoga"
+	squeak_override = list('sound/weapons/Kenetic_accel.ogg' = 1)
 
 /obj/item/toy/plush/mammal/odrew
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
