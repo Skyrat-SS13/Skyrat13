@@ -20,7 +20,7 @@
 
 /obj/item/ammo_box/shotgun/update_icon()
 	..()
-	update_overlays()
+	overlays = update_overlays()
 
 /obj/item/ammo_box/shotgun/update_overlays()
 	. = ..()
