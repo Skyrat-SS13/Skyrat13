@@ -26,7 +26,7 @@
 	if(!T)
 		return
 
-	var/scrubber_radius = 3
+	var/scrubber_radius = 4
 
 	var/datum/gas_mixture/int_air = vent.return_air()
 	if(!int_air)
@@ -35,6 +35,7 @@
 	var/pressure = int_air.return_pressure()
 	if(pressure)
 		scrubber_radius += (pressure/100)
+		scrubber_radius = min(scrubber_radius,32)
 
 	var/datum/reagents/R = new/datum/reagents(reagentsAmount)
 	R.my_atom = vent
