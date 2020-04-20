@@ -53,3 +53,7 @@
 	else if(istype(target, /obj/item/gun/ballistic/revolver/detective || /obj/item/gun/ballistic/revolver/russian) || istype(target, /obj/item/toy/gun) && !open)
 		to_chat(user, "<span class='notice'>You have to open the conversion kit first.</span>")
 		return FALSE
+
+//detective revomlver changes
+/obj/item/gun/ballistic/revolver/detective
+	desc = "Although far surpassed by newer firearms, this revolver is still quite effective and popular as a self defense weapon, and as an oldschool styled sidearm for military contractors. Chambering .357 in it however, is not recommended."

@@ -38,8 +38,8 @@
 			weights[C] = weight
 		var/choice = pickweightAllowZero(weights)
 		if(!choice)
-			choice = GLOB.traitor_classes[TRAITOR_HUMAN]
-		set_traitor_kind(pickweightAllowZero(weights))
+			choice = GLOB.traitor_classes[TRAITOR_HUMAN] // it's an "easter egg"
+		set_traitor_kind(choice)
 		traitor_kind.weight *= 0.8 // less likely this round
 	SSticker.mode.traitors += owner
 	owner.special_role = special_role
@@ -95,6 +95,13 @@
 		if(should_equip)
 			equip(silent)
 		owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
+
+/datum/antagonist/traitor/antag_panel_objectives()
+	. = ..()
+	if(contractor_hub?.assigned_targets && length(contractor_hub.assigned_targets))
+		. += "<i><b>Contract Targets</b></i>:<br>"
+		for(var/datum/mind/M in contractor_hub.assigned_targets)
+			. += "<b> - </b>[key_name(M, FALSE, TRUE)]<br>"
 
 /datum/antagonist/traitor/apply_innate_effects(mob/living/mob_override)
 	. = ..()

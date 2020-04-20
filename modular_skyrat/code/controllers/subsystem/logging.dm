@@ -38,9 +38,15 @@ SUBSYSTEM_DEF(logging)
 
 /datum/controller/subsystem/logging/proc/logging_href(string)
 	new_logs_href += "([time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]) HREF: [string]"
+	if(new_logs_href.len > 250)
+		update_href_logs()
 
 /datum/controller/subsystem/logging/proc/logging_say(string)
 	new_logs_say += "([time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]) SAY: [string]"
+	if(new_logs_say.len > 250)
+		update_say_logs()
 
 /datum/controller/subsystem/logging/proc/logging_attack(string)
 	new_logs_attack += "([time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]) ATTACK: [string]"
+	if(new_logs_attack.len > 250)
+		update_attack_logs()

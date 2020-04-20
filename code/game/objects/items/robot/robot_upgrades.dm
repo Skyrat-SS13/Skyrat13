@@ -536,13 +536,17 @@
 	name = "borg expander"
 	desc = "A cyborg resizer, it makes a cyborg huge."
 	icon_state = "cyborg_upgrade3"
-
+/* moved to modular_skyrat
 /obj/item/borg/upgrade/expand/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 
 		if(R.hasExpanded)
 			to_chat(usr, "<span class='notice'>This unit already has an expand module installed!</span>")
+			return FALSE
+
+		if(R.hasShrunk)
+			to_chat(usr, "<span class='notice'>This unit already has an shrink module installed!</span>")
 			return FALSE
 
 		R.notransform = TRUE
@@ -563,7 +567,7 @@
 		R.resize = 2
 		R.hasExpanded = TRUE
 		R.update_transform()
-
+*/
 /obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
@@ -663,21 +667,19 @@
 	var/maxReduction = 1
 
 
-/obj/effect/proc_holder/silicon/cyborg/vtecControl/Click(mob/living/silicon/robot/user)
-	var/mob/living/silicon/robot/self = usr
-
+/obj/effect/proc_holder/silicon/cyborg/vtecControl/Trigger(mob/living/silicon/robot/user)
 	currentState = (currentState + 1) % 3
 
-	if(istype(self))
+	if(istype(user))
 		switch(currentState)
 			if (0)
-				self.speed = initial(self.speed)
+				user.speed = initial(user.speed)
 			if (1)
-				self.speed = initial(self.speed) - maxReduction * 0.5
+				user.speed = initial(user.speed) - maxReduction * 0.5
 			if (2)
-				self.speed = initial(self.speed) - maxReduction * 1
+				user.speed = initial(user.speed) - maxReduction * 1
 
 	action.button_icon_state = "Chevron_State_[currentState]"
 	action.UpdateButtonIcon()
 
-	return
+	return TRUE
