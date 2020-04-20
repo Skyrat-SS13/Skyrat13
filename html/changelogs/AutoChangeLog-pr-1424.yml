@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Disembodied livers no longer try to slow down the bodies they're in."
