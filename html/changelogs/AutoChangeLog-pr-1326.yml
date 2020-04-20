@@ -1,0 +1,4 @@
+author: "BobJogaIsForkinBanned"
+delete-after: True
+changes: 
+  - rscadd: "Jukebox can search for specific songs now."
