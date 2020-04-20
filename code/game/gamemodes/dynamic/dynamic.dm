@@ -612,8 +612,7 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 					return FALSE
 
 	update_playercounts()
-	// Skyrat change
-	if ((forced || (new_rule.acceptable(current_players[CURRENT_LIVING_PLAYERS].len, threat_level - threat))))
+	if ((forced || (new_rule.acceptable(current_players[CURRENT_LIVING_PLAYERS].len, threat_level - threat)))) // Skyrat change
 		new_rule.trim_candidates()
 		if (new_rule.ready(forced))
 			log_threat("[new_rule.ruletype] - <b>[new_rule.name]</b> [new_rule.cost] threat", verbose = TRUE)
@@ -655,8 +654,7 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 	return FALSE
 
 /datum/game_mode/dynamic/process()
-	// Skyrat change
-	if (pop_last_updated < world.time - (60 SECONDS))
+	if (pop_last_updated < world.time - (60 SECONDS)) // Skyrat change
 		pop_last_updated = world.time
 		update_playercounts()
 
@@ -792,10 +790,8 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 
 /// Decrease the threat level.
 /datum/game_mode/dynamic/proc/remove_threat(loss)
-	// Skyrat change BEGIN
-	if (loss < 0)
-		loss *= -1
-	// Skyrat change END
+	if (loss < 0) // Skyrat change BEGIN
+		loss *= -1 // Skyrat change END
 	
 	threat_level -= loss
 	SSblackbox.record_feedback("tally","dynamic_threat",loss,"Removed threat level")
