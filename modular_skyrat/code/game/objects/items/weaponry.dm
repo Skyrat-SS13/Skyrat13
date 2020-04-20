@@ -242,8 +242,8 @@
 	name = "Mace of Molag Bal"
 	desc = "Make the weak and frail bend to you."
 	icon = 'modular_skyrat/icons/obj/molagmace.dmi'
-	icon_state = "mace_greyscale"
-	item_state = "mace_greyscale"
+	icon_state = "molagmace"
+	item_state = "molagmace"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/mace_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/mace_righthand.dmi'
 	material_flags = null
