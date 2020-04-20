@@ -64,7 +64,12 @@
 
 /obj/effect/wrath/Initialize()
 	..()
-	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
+	megalist = list("Cockblock", "Cockblock", "Cockblock") //cockblock just to be sure that no one goes through the wrath wall in the 10 minute grace period
+	addtimer(CALLBACK(src, .proc/updatemegalist), 6000) //10 minutes delay so that all megafauna can spawn and etc.
+
+/obj/effect/wrath/proc/updatemegalist()
+	megalist = list()
+	for(var/mob/living/megafauna/M in GLOB.mob_living_list)
 		megalist += M.name
 
 /obj/effect/wrath/CanPass(atom/movable/mover, turf/target)
