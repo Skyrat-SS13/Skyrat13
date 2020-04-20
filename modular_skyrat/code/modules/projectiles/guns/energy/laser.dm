@@ -82,11 +82,15 @@
 	can_charge = TRUE
 	charge_sections = 1
 	ammo_x_offset = 2
-	shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
-	var/upgraded = 0
-	var/maxcellcharge = 2500 //jesus that's still a lot of shots.
-	fire_delay = 7.5
-	spread = 30
+	shaded_charge = FALSE //Does this gun uses a stateful charge bar for more detail?
+	var/upgraded_cell = FALSE //Do we have a upgraded cell?
+	var/upgraded_firerate = FALSE //Do we have an upgraded trigger gard?
+	var/upgraded_rifleing = FALSE //Is are barrel much more refined?
+	var/upgradedenergycosts = FALSE //Does it have shots for a 1/3 of the normal cost?
+	var/maxcellcharge = 2500 //Holds a simular amouts of shots to a laser carbine.
+	recoil = 2
+	fire_delay = 30
+	spread = 15
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle
 	e_cost = 1000 //The amount of energy a cell needs to expend to create this shot.
@@ -121,13 +125,13 @@
 	..()
 	playsound(user, 'sound/items/Screwdriver.ogg', 35)
 	var/obj/item/stock_parts/cell/thecell = cell
-	cell = null
 	thecell.forceMove(user.loc)
 	user.put_in_l_hand(thecell)
+	cell = null
 
 /obj/item/gun/energy/laser/makeshiftlasrifle/attackby(obj/item/I, mob/user, params)
 	..()
-	if(istype(I, /obj/item/stock_parts/cell) && !cell)
+	if(istype(I, /obj/item/stock_parts/cell) && !cell && !istype(I, /obj/item/stock_parts/cell/computer)) //We don not want computer cells in are gun
 		var/obj/item/stock_parts/cell/C = I
 		if(C.maxcharge <= maxcellcharge)
 			playsound(user, 'sound/items/Screwdriver.ogg', 35)
@@ -135,29 +139,38 @@
 			cell = C
 		else
 			to_chat(user, "<span class='warning'>Using a cell with this much power on this pile of crap would break it!</span>")
-	if(istype(I, /obj/item/stack/sheet/plasteel) && !upgraded)
-		var/obj/item/stack/sheet/plasteel/oursteel = I
-		if(oursteel.use(3))
-			new /obj/item/gun/energy/laser/makeshiftlasrifle/adv(user.loc)
-			qdel(src)
-		else
-			to_chat(user, "<span class='notice'>There's not enough plasteel to upgrade the [src]!</span>")
-	else if(istype(I, /obj/item/stack/sheet/plasteel) && upgraded)
-		to_chat(user, "<span class='notice'>\the [src] is already upgraded!</span>")
-
-/obj/item/gun/energy/laser/makeshiftlasrifle/adv
-	name = "plasteel makeshift laser rifle"
-	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but can rapidly alternate power cells. This one has been upgraded."
-	icon_state = "adv_lasermakeshift"
-	upgraded = 1
-	shaded_charge = 1
-	charge_sections = 4
-	automatic_charge_overlays = TRUE
-	maxcellcharge = 5000
-	ammo_x_offset = 2
-	fire_delay = 3.5
-	spread = 15
-	obj_flags = UNIQUE_RENAME
+	else if(istype(I, /obj/item/stock_parts/cell/computer/super) && !upgraded_cell) //We want to upgrade are cell
+		var/obj/item/stock_parts/cell/computer/super/T = I
+		qdel(T)
+		upgraded_cell = TRUE
+		maxcellcharge *= 2
+	else if(istype(I, /obj/item/stock_parts/cell/computer/super) && upgraded_cell)
+		to_chat(user, "<span class='notice'>There's already a second cell installed in [src]!</span>")
+		return
+	else if(istype(I, /obj/item/assembly/timer) && !upgraded_firerate) //We want to upgrade are fire rate
+		var/obj/item/assembly/timer/T = I
+		qdel(T)
+		upgraded_firerate = TRUE
+		fire_delay /= 2
+		to_chat(user, "<span class='notice'>You upgrade the trigguer guard of [src].</span>")
+	else if(istype(I, /obj/item/assembly/timer) && upgraded_firerate)
+		to_chat(user, "<span class='notice'>There's already a second timer in [src]!</span>")
+	else if(istype(I,  /obj/item/pipe/bluespace) && !upgraded_rifleing) //We want to lower the spread
+		var/obj/item/pipe/bluespace/T = I
+		qdel(T)
+		upgraded_rifleing = TRUE
+		spread /= 2
+		to_chat(user, "<span class='notice'>You upgrade the rifling of [src].</span>")
+	else if(istype(I,  /obj/item/pipe/bluespace) && upgraded_rifleing)
+		to_chat(user, "<span class='notice'>There rifling on [src] already!</span>")
+	else if(istype(I, /obj/item/stock_parts/capacitor/quadratic) && !upgradedenergycosts)
+		to_chat(user, "<span class='notice'>You connect the [I] to [src].</span>")
+		for(var/obj/item/ammo_casing/energy/laser/L in ammo_type)
+			L.e_cost /= 3
+	else if(istype(I, /obj/item/stock_parts/capacitor/quadratic) && upgradedenergycosts)
+		to_chat(user, "<span class='notice'>[src] already has a capacitor!</span>")
+	else
+		..()
 
 //laser musket
 /obj/item/gun/energy/pumpaction/musket
