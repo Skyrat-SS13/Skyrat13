@@ -57,7 +57,7 @@
 	name = "Power Armor Skeleton"
 	id = "powerarmor_skeleton"
 	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/part/powerarmor_chassis
+	build_path = /obj/item/mecha_parts/chassis/powerarmor
 	materials = list(/datum/material/iron=15000, /datum/material/plasma=5000)
 	construction_time = 500
 	category = list("Misc")
