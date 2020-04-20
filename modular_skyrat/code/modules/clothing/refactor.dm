@@ -694,3 +694,15 @@
 /obj/item/clothing/suit/armor/riot/knight
 	unique_reskin_stored = list(
 	)
+
+/obj/item/clothing/suit/armor/vest/warden
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC
+	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'
+
+/obj/item/clothing/suit/hooded/techpriest
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC
+	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'
+
+/obj/item/clothing/suit/hooded/techpriest_t
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC
+	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'

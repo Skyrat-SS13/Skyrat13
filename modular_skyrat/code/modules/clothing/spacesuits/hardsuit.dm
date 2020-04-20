@@ -203,36 +203,36 @@
 			var/datum/action/A = X
 			A.Remove(user)
 
-/datum/techweb_node/syndicate_basic
-	id = "syndicate_basic"
-	display_name = "Illegal Technology"
-	description = "Dangerous research used to create dangerous objects."
-	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
-	design_ids = list("decloner", "borg_syndicate_module", "suppressor", "largecrossbow", "donksofttoyvendor", "donksoft_refill", "syndiesleeper", "armblade")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
-	hidden = TRUE
-
-/datum/design/armblade
-	name = "Hardsuit Extendable Blade"
-	desc = "An armblade attachment for hardsuits."
-	id = "armblade"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 5000, /datum/material/silver = 5000, /datum/material/diamond = 500, /datum/material/gold = 1500, /datum/material/titanium = 5000)
-	build_path = /obj/item/melee/transforming/armblade
-	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
+//Power armor
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
-	name = "Power Armor Helmet"
+	name = "Power Armor Helmet MK. II"
 	desc = "An advanced helmet attached to a powered exoskeleton suit. Protects well against most forms of harm, but struggles against exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	icon_state = "hardsuit0-powerarmor"
-	item_state = "hardsuit0-powerarmor"
+	icon_state = "hardsuit0-powerarmor-1"
+	item_state = "hardsuit0-powerarmor-1"
 	hardsuit_type = "powerarmor"
 	clothing_flags = THICKMATERIAL //Ouchie oofie my bones
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100)
 	resistance_flags = ACID_PROOF
+
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor/Initialize()
+	. = ..()
+	AddComponent(/datum/component/spraycan_paintable)
+	update_icon()
+
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor/update_overlays()
+	. = ..()
+	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hardsuit0-powerarmor-2")
+	glass_overlay.appearance_flags = RESET_COLOR
+	. += glass_overlay
+
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
+	. = ..()
+	if(!isinhands)
+		var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/head.dmi', "hardsuit0-powerarmor-2")
+		M.appearance_flags = RESET_COLOR
+		. += M
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -247,17 +247,35 @@
 		DHUD.remove_hud_from(user)
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor
-	name = "Power Armor"
+	name = "Power Armor MK. II"
 	desc = "A self-powered exoskeleton suit comprised of flexible Plasteel sheets and advanced components, designed to offer excellent protection while still allowing mobility. Does not protect against Space, and struggles against more exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	icon_state = "hardsuit-powerarmor"
-	item_state = "hardsuit-powerarmor"
+	icon_state = "hardsuit-powerarmor-1"
+	item_state = "hardsuit-powerarmor-1"
 	slowdown = -0.05
 	clothing_flags = THICKMATERIAL //Not spaceproof. No, it isn't Spaceproof in Rimworld either.
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine.
 	resistance_flags = ACID_PROOF
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
+
+/obj/item/clothing/suit/space/hardsuit/powerarmor/Initialize()
+	. = ..()
+	AddComponent(/datum/component/spraycan_paintable)
+	update_icon()
+
+/obj/item/clothing/suit/space/hardsuit/powerarmor/update_overlays()
+	. = ..()
+	var/mutable_appearance/black_overlay = mutable_appearance(icon, "hardsuit-powerarmor-2")
+	black_overlay.appearance_flags = RESET_COLOR
+	. += black_overlay
+
+/obj/item/clothing/suit/space/hardsuit/powerarmor/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
+	. = ..()
+	if(!isinhands)
+		var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/suit.dmi', "hardsuit-powerarmor-2")
+		M.appearance_flags = RESET_COLOR
+		. += M
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor/emp_act()
 	. = ..()
