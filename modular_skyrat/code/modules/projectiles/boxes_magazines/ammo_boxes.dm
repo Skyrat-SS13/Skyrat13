@@ -41,6 +41,7 @@
 				shell_overlay.appearance_flags = RESET_COLOR
 				shell_overlay_list += shell_overlay
 				C.current_overlay = shell_overlay
+				overlays += shell_overlay
 				. += shell_overlay
 	var/isgood = FALSE
 	for(var/mutable_appearance/shell in shell_overlay_list)
