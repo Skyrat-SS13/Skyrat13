@@ -74,7 +74,9 @@
 
 //misc
 /mob/living/carbon/human/dummy
-	vore_flags = NO_VORE
+	no_vore = TRUE
 
 /mob/living/carbon/human/vore
-	vore_flags = DEVOURABLE | DIGESTABLE | FEEDING
+	devourable = TRUE
+	digestable = TRUE
+	feeding = TRUE

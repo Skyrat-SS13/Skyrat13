@@ -158,8 +158,8 @@
 	name = "Mace of Molag Bal"
 	desc = "Make the weak and frail bend to you."
 	icon = 'modular_skyrat/icons/obj/molagmace.dmi'
-	icon_state = "molagmace"
-	item_state = "molagmace"
+	icon_state = "mace_greyscale"
+	item_state = "mace_greyscale"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/mace_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/mace_righthand.dmi'
 	material_flags = null
@@ -217,27 +217,3 @@
 	if(attack_type == ATTACK_TYPE_PROJECTILE)
 		final_block_chance = 0
 	return ..()
-
-
-//KINKY. Clone of the banhammer.
-/obj/item/bdsm_whip
-	name = "bdsm whip"
-	desc = "A less lethal version of the whip the librarian has. Still hurts, but just the way you like it."
-	icon_state = "whip"
-	item_state = "chain"
-	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	slot_flags = ITEM_SLOT_BELT
-	throwforce = 0
-	force = 1
-	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
-
-/obj/item/bdsm_whip/suicide_act(mob/user)
-		user.visible_message("<span class='suicide'>[user] is getting just a little too kinky!</span>")
-		return (OXYLOSS)
-
-/obj/item/bdsm_whip/attack(mob/M, mob/user)
-	playsound(loc, 'sound/weapons/whip.ogg', 30)
-	if(user.a_intent != INTENT_HELP)
-		return ..(M, user)

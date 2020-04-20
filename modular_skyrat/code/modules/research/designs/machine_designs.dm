@@ -1,4 +1,3 @@
-//BS miner
 /datum/design/board/bluespace_miner
 	name = "Machine Design (Bluespace Miner)"
 	desc = "The circuit board for a Bluespace Miner."

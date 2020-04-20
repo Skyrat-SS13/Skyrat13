@@ -1,9 +1,13 @@
 //CARBON MOBS
 /mob/living/carbon/alien
-	vore_flags = DEVOURABLE | DIGESTABLE | FEEDING
+	devourable = TRUE
+	digestable = TRUE
+	feeding = TRUE
 
 /mob/living/carbon/monkey
-	vore_flags = DEVOURABLE | DIGESTABLE | FEEDING
+	devourable = TRUE
+	digestable = TRUE
+	feeding = TRUE
 
 
 /*
@@ -13,68 +17,121 @@
 
 //NUETRAL MOBS
 /mob/living/simple_animal/crab
-	vore_flags = DEVOURABLE | DIGESTABLE | FEEDING
+	devourable = TRUE
+	digestable = TRUE
+	feeding = TRUE
 
 /mob/living/simple_animal/cow
-	vore_flags = DEVOURABLE | DIGESTABLE | FEEDING
+	devourable = TRUE
+	digestable = TRUE
+	feeding = TRUE
+	vore_active = TRUE
+	isPredator = TRUE
+	vore_default_mode = DM_HOLD
 
 /mob/living/simple_animal/chick
-	vore_flags = DEVOURABLE | DIGESTABLE
+	devourable = TRUE
+	digestable = TRUE
 
 /mob/living/simple_animal/chicken
-	vore_flags = DEVOURABLE | DIGESTABLE
+	devourable = TRUE
+	digestable = TRUE
 
 /mob/living/simple_animal/mouse
-	vore_flags = DEVOURABLE | DIGESTABLE
+	devourable = TRUE
+	digestable = TRUE
 
 /mob/living/simple_animal/kiwi
-	vore_flags = DEVOURABLE | DIGESTABLE
+	devourable = TRUE
+	digestable = TRUE
 
 //STATION PETS
 /mob/living/simple_animal/pet
-	vore_flags = DEVOURABLE | DIGESTABLE | FEEDING
+	devourable = TRUE
+	digestable = TRUE
+	feeding = TRUE
+
+/mob/living/simple_animal/pet/fox
+	vore_active = TRUE
+	isPredator = TRUE
+	vore_default_mode = DM_HOLD
+
+/mob/living/simple_animal/pet/cat
+	vore_active = TRUE
+	isPredator = TRUE
+	vore_default_mode = DM_HOLD
+
+/mob/living/simple_animal/pet/dog
+	vore_active = TRUE
+	isPredator = TRUE
 	vore_default_mode = DM_HOLD
 
 /mob/living/simple_animal/sloth
-	vore_flags = DEVOURABLE | DIGESTABLE
+	devourable = TRUE
+	digestable = TRUE
 
 /mob/living/simple_animal/parrot
-	vore_flags = DEVOURABLE | DIGESTABLE
+	devourable = TRUE
+	digestable = TRUE
 
 //HOSTILE MOBS
 /mob/living/simple_animal/hostile/retaliate/goat
-	vore_flags = DEVOURABLE | DIGESTABLE | FEEDING
+	devourable = TRUE
+	digestable = TRUE
+	feeding = TRUE
+	vore_active = TRUE
+	isPredator = TRUE
+	vore_stomach_flavor = "You find yourself squeezed into the hollow of the goat, the smell of oats and hay thick in the tight space, all of which grinds in on you. Harmless for now..."
 	vore_default_mode = DM_HOLD
 
-
 /mob/living/simple_animal/hostile/lizard
-	vore_flags = DEVOURABLE | DIGESTABLE | FEEDING
+	devourable = TRUE
+	digestable = TRUE
+	feeding = TRUE
+	vore_active = TRUE
+	isPredator = TRUE
 	vore_default_mode = DM_DIGEST
 
 /mob/living/simple_animal/hostile/alien
-	vore_flags = FEEDING
+	feeding = TRUE
+	vore_active = TRUE
+	isPredator = TRUE
 	vore_default_mode = DM_DIGEST
 
 /mob/living/simple_animal/hostile/bear
-	vore_flags = FEEDING
+	feeding = TRUE
+	vore_active = TRUE
+	isPredator = TRUE
 	vore_default_mode = DM_DIGEST
 
 /mob/living/simple_animal/hostile/poison/giant_spider
-	vore_flags = FEEDING
+	feeding = TRUE
+	vore_active = TRUE
+	isPredator = TRUE
 	vore_default_mode = DM_DIGEST
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake
-	vore_flags = FEEDING
+	feeding = TRUE
+	vore_active = TRUE
+	isPredator = TRUE
 	vore_default_mode = DM_DIGEST
 
 /mob/living/simple_animal/hostile/gorilla
-	vore_flags = FEEDING
+	feeding = TRUE
+	vore_active = TRUE
+	isPredator = TRUE
 	vore_default_mode = DM_DIGEST
 
 /mob/living/simple_animal/hostile/asteroid/goliath
-	vore_flags = FEEDING
+	feeding = TRUE //for pet Goliaths I guess or something.
+	vore_active = TRUE
+	isPredator = TRUE
 	vore_default_mode = DM_DIGEST
 
 /mob/living/simple_animal/hostile/carp
-	vore_flags = DEVOURABLE | DIGESTABLE | FEEDING
+	devourable = TRUE
+	digestable = TRUE
+	feeding = TRUE
+	vore_active = TRUE
+	isPredator = TRUE
 	vore_default_mode = DM_DIGEST

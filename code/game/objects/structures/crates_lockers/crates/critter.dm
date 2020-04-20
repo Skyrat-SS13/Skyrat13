@@ -22,9 +22,6 @@
 
 	return ..()
 
-/obj/structure/closet/crate/critter/update_icon_state()
-	return
-
 /obj/structure/closet/crate/critter/closet_update_overlays(list/new_overlays)
 	. = new_overlays
 	if(opened)

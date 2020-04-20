@@ -1,4 +1,3 @@
-//i hate these fucking goats but i can't murder them, for i know they will haunt me in my sleep if i do so. so i nerf them instead.
 /obj/item/toy/plush/goatplushie
 	name = "strange goat plushie"
 	icon = 'modular_skyrat/icons/obj/plushes.dmi'
@@ -8,7 +7,7 @@
 /obj/item/toy/plush/goatplushie/angry
 	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	var/mob/living/carbon/target
-	throwforce = 5
+	throwforce = 6
 	var/cooldown = 0
 	var/cooldown_modifier = 20
 
@@ -41,9 +40,8 @@
 	if (obj_flags&EMAGGED)
 		visible_message("<span class='notice'>[src] already looks angry enough, you shouldn't anger it more.</span>")
 		return
-	cooldown_modifier = cooldown_modifier/2 * 0.75
-	throwforce = 12.5
-	force = 10
+	cooldown_modifier = 5
+	throwforce = 20
 	obj_flags |= EMAGGED
 	visible_message("<span class='danger'>[src] stares at [user] angrily before going docile.</span>")
 
@@ -71,8 +69,8 @@
 	desc = "A plushie depicting the king of all goats."
 	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "kinggoat"
-	throwforce = 8
-	force = 8
+	throwforce = 25
+	force = 25
 	attack_verb = list("chomped")
 	gender = MALE
 
@@ -81,8 +79,8 @@
 	desc = "A plushie depicting the god of all goats."
 	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "ascendedkinggoat"
-	throwforce = 10
-	force = 10
+	throwforce = 30
+	force = 30
 	var/divine = TRUE
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat/ascendedkinggoat/attackby(obj/item/I,mob/living/user,params)
@@ -124,11 +122,11 @@
 	desc = "A plushie depicting one of the King Goat's guards, tasked to protect the king at all costs."
 	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "guardgoat"
-	throwforce = 6
+	throwforce = 10
 
 /obj/item/toy/plush/goatplushie/angry/guardgoat/masterguardgoat
 	name = "royal guard goat plushie"
 	desc = "A plushie depicting one of the royal King Goat's guards, tasked to protecting the king at all costs and training new goat guards."
 	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "royalguardgoat"
-	throwforce = 7
+	throwforce = 15

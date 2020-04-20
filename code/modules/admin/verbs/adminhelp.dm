@@ -94,7 +94,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	for(var/I in active_tickets)
 		var/datum/admin_help/AH = I
 		if(AH.initiator)
-			stat("[AH.handler]#[AH.id]. [AH.initiator_key_name]:", AH.statclick.update()) //SKYRAT EDIT
+			stat("#[AH.id]. [AH.initiator_key_name]:", AH.statclick.update())
 		else
 			++num_disconnected
 	if(num_disconnected)
@@ -154,8 +154,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/initiator_key_name
 	var/heard_by_no_admins = FALSE
 
-	var/handler = "" //SKYRAT EDIT - string of admin who takes care of the ticket to display at stat() 
-
 	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
 
 	var/obj/effect/statclick/ahelp/statclick
@@ -165,17 +163,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //call this on its own to create a ticket, don't manually assign current_ticket
 //msg is the title of the ticket: usually the ahelp text
 //is_bwoink is TRUE if this ticket was started by an admin PM
-/datum/admin_help/New(msg, client/C, is_bwoink, client/admin_C) //SKYRAT EDIT - new variable
+/datum/admin_help/New(msg, client/C, is_bwoink)
 	//clean the input msg
 	msg = sanitize(copytext_char(msg,1,MAX_MESSAGE_LEN))
 	if(!msg || !C || !C.mob)
 		qdel(src)
 		return
-
-	//SKYRAT CHANGE 
-	if(admin_C && is_bwoink)
-		handler = "H-[admin_C.ckey] "
-	//END OF SKYRAT CHANGES
 
 	id = ++ticket_counter
 	opened_at = world.time
@@ -405,8 +398,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	message_admins(msg)
 	log_admin_private(msg)
 	AddInteraction("Being handled by [key_name]")
-
-	handler = "H-[usr.ckey] " //SKYRAT EDIT
 
 //Show the ticket panel
 /datum/admin_help/proc/TicketPanel()

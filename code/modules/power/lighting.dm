@@ -313,7 +313,7 @@
 /obj/machinery/light/update_overlays()
 	. = ..()
 	if(on && status == LIGHT_OK)
-		var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE) //SKYRAT CHANGE reverts emissive
+		var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, EMISSIVE_LAYER, EMISSIVE_PLANE)
 		glowybit.alpha = CLAMP(light_power*250, 30, 200)
 		. += glowybit
 
