@@ -339,9 +339,6 @@
 				user.visible_message("[user] welds the titanium plates to [parent].", "<span class='notice'>You weld the titanium plates to [parent].</span>")
 			else
 				user.visible_message("[user] wrenches off the titanium armor plates on [parent].", "<span class='notice'>You wrench off the titanium armor plates on [parent]</span>")
-			"key" = TOOL_WELDER,
-			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "The wiring is linked to the limbs."
 		),
 	)
 
