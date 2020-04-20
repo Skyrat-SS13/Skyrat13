@@ -5,7 +5,7 @@
 
 /obj/item/storage/box/syndie/contender/PopulateContents()
 	new /obj/item/clothing/head/helmet/swat(src)
-	new /obj/item/gun/ballistic/shotgun/doublebarrel/contender(src)
+	new /obj/item/gun/ballistic/revolver/doublebarrel/contender(src)
 	new /obj/item/ammo_casing/a762(src)
 	new /obj/item/ammo_casing/a762(src)
 	new /obj/item/ammo_casing/a762(src)

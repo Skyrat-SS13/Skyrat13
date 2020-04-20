@@ -59,7 +59,7 @@
 	desc = "Although far surpassed by newer firearms, this revolver is still quite effective and popular as a self defense weapon, and as an oldschool styled sidearm for military contractors. Chambering .357 in it however, is not recommended."
 
 //Contender, made by ArcLumin. Ported from hippie.
-/obj/item/gun/ballistic/shotgun/doublebarrel/contender
+/obj/item/gun/ballistic/revolver/doublebarrel/contender
 	desc = "The Contender G13, a favorite amongst space hunters. An easily modified bluespace barrel and break action loading means it can use any ammo available.\
 	The side has an engraving which reads 'Made by ArcWorks'."
 	name = "Contender"
@@ -71,7 +71,7 @@
 	unique_reskin = 0
 	fire_delay = 2
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/contender/sawoff(mob/user)
+/obj/item/gun/ballistic/revolver/doublebarrel/contender/sawoff(mob/user)
 	to_chat(user, "<span class='warning'>Why would you mutilate this work of art?</span>")
 	return
 
@@ -96,10 +96,11 @@
 	recoil = 3
 	fire_delay = 5
 	var/explodioprob = 33
+	var/list/blacklist = list("40mm", ".50")
 
 /obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun/afterattack(atom/target, mob/living/user, flag, params)
 	. = ..()
-	if(istype(user) && prob(explodioprob))
+	if((istype(user) && prob(explodioprob)) || (blacklist.Find(chambered.caliber)))
 		var/obj/item/bodypart/l_arm = user.get_bodypart(BODY_ZONE_L_ARM)
 		var/obj/item/bodypart/r_arm = user.get_bodypart(BODY_ZONE_R_ARM)
 		user.visible_message("<span class='warning'>\The [src] explodes in [user]'s hand!</span>", "<span class='warning'>\The [src] explodes in your hand!</span>")
