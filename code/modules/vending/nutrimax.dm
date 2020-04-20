@@ -15,7 +15,8 @@
 					/obj/item/shovel/spade = 3,
 					/obj/item/plant_analyzer = 4)
 	contraband = list(/obj/item/reagent_containers/glass/bottle/ammonia = 10,
-					/obj/item/reagent_containers/glass/bottle/diethylamine = 5)
+					/obj/item/reagent_containers/glass/bottle/diethylamine = 5,
+					/obj/item/reagent_containers/glass/bottle/mutagen = 1) //skyrate change
 	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	refill_canister = /obj/item/vending_refill/hydronutrients
 	resistance_flags = FIRE_PROOF
