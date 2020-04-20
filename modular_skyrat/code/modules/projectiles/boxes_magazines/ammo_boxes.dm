@@ -26,26 +26,23 @@
 	. = ..()
 	if(stored_ammo.len )
 		var/shellindex = 0
-		var/offset = 0
+		var/offset = -4
 		for(var/obj/item/ammo_casing/shotgun/C in stored_ammo)
 			var/sanity = TRUE
 			shellindex++
-			if(shellindex > 1)
-				offset += pixeloffsetx
+			offset += pixeloffsetx
 			for(var/mutable_appearance/shell in shell_overlay_list)
-				if(C.current_overlay)
+				if(C.current_overlay == shell)
 					sanity = FALSE
 			if(sanity)
 				var/mutable_appearance/shell_overlay = mutable_appearance(icon, "[initial(C.icon_state)]-clip")
 				shell_overlay.pixel_x += offset
 				shell_overlay.appearance_flags = RESET_COLOR
-				shell_overlay_list += shell_overlay
+				shell_overlay_list[shellindex] = shell_overlay
 				C.current_overlay = shell_overlay
 				overlays += shell_overlay
-				. += shell_overlay
-	var/isgood = FALSE
 	for(var/mutable_appearance/shell in shell_overlay_list)
-		isgood = FALSE
+		var/isgood = FALSE
 		for(var/obj/item/ammo_casing/shotgun/C in stored_ammo)
 			if(C.current_overlay == shell)
 				isgood = TRUE
