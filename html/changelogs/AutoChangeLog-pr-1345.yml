@@ -1,0 +1,4 @@
+author: "BobJogaIsForkinBanned"
+delete-after: True
+changes: 
+  - bugfix: "Fixed VR sleepers by making king goat arena spawn on normal space ruin z levels"

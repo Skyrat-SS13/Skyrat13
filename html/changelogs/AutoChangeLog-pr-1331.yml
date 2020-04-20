@@ -1,0 +1,7 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "New shields have been added into the game Bullet Resistant and Laser Resistant shields."
+  - rscadd: "New implanted shield can be gotten as well! - Has many drawbacks but can save your life!"
+  - balance: "Wooden base shields now are fixed with wood rather then titanium"
+  - imageadd: "Moves all shields from items and weapons to a new file - shields"

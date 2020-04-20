@@ -87,7 +87,7 @@
 			if(!client && ranged && ranged_cooldown <= world.time)
 				OpenFire()
 			if(L.Adjacent(src) && (L.stat != CONSCIOUS))
-				if(vore_active && CHECK_BITFIELD(L.vore_flags,DEVOURABLE))
+				if(vore_active && L.devourable == TRUE)
 					vore_attack(src,L,src)
 					LoseTarget()
 		else
