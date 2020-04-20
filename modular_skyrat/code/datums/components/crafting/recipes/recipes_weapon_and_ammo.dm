@@ -4,8 +4,8 @@
 /datum/crafting_recipe/glasshatchet
 	name = "Makeshift glass hatchet"
 	result = /obj/item/hatchet/improvised
+	parts = list(/obj/item/shard = 1)
 	reqs = list(/obj/item/stack/wrapping_paper = 4,
-				/obj/item/shard = 1,
 				/obj/item/wrench = 1)
 	time = 40
 	category = CAT_WEAPONRY
@@ -52,8 +52,8 @@
 /datum/crafting_recipe/shank
 	name = "shank"
 	result =  /obj/item/shard/shank
-	reqs = list(/obj/item/shard = 1,
-				/obj/item/stack/cable_coil = 1,
+	parts = list(/obj/item/shard = 1)
+	reqs = list(/obj/item/stack/cable_coil = 1,
 				/obj/item/stack/wrapping_paper = 1)
 	time = 5
 	category = CAT_WEAPONRY
