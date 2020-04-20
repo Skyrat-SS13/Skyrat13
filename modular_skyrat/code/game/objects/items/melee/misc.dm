@@ -2,11 +2,11 @@
 /obj/item/melee/rapier
 	name = "plastitanium rapier"
 	desc = "A impossibly thin blade made of plastitanium with a tip coated in diamonds. It looks to be able to cut through any armor."
-	icon = 'modular_skyrat/icons/obj/rapier.dmi'
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "rapier"
 	item_state = "rapier"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/rapier_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/rapier_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	force = 21
 	throwforce = 20
 	block_chance = 50
