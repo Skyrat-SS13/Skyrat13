@@ -61,3 +61,6 @@
 
 /obj/item/ammo_box/shotgun/incendiary
 	ammo_type = /obj/item/ammo_casing/shotgun/incendiary
+
+/obj/item/ammo_box/shotgun/dart
+	ammo_type = /obj/item/ammo_casing/shotgun/dart
