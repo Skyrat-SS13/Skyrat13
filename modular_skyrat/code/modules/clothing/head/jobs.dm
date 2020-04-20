@@ -12,7 +12,7 @@
 	icon_state = "blueshield"
 	item_state = "bluesheild"
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 20,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 75)
-	mutantrace_variation = STYLE_NO_ANTHRO_ICON	
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/head/beret/blueshield/navy
 	name = "navy blueshield's beret"

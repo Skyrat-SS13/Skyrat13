@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - code_imp: "Makes 2 sub categories Tools and Furniture, both housing quite a few different crafting items, just to make the main misc tab less clustered."

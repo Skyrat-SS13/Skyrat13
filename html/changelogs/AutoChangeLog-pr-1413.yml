@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "Mop/Broom to Autolathe, Trashbag/Paint Remover to Service Protolathe"
