@@ -1,6 +1,7 @@
 ///////////////////////////////////
 ///////Biogenerator Designs ///////
 ///////////////////////////////////
+/* SEE MODULAR SKYRAT
 
 /datum/design/milk
 	name = "10u Milk"
@@ -210,3 +211,4 @@
 	materials = list(/datum/material/biomass = 300)
 	build_path = /obj/item/clothing/head/rice_hat
 	category = list("initial","Organic Materials")
+*/
