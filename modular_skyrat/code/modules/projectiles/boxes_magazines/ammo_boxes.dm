@@ -24,30 +24,19 @@
 
 /obj/item/ammo_box/shotgun/update_overlays()
 	. = ..()
-	if(stored_ammo.len )
+	for(var/mutable_appearance/M in shell_overlay_list)
+		remove_overlay(M)
+	if(stored_ammo.len)
 		var/shellindex = 0
 		var/offset = -4
 		for(var/obj/item/ammo_casing/shotgun/C in stored_ammo)
-			var/sanity = TRUE
 			shellindex++
 			offset += pixeloffsetx
-			for(var/mutable_appearance/shell in shell_overlay_list)
-				if(C.current_overlay == shell)
-					sanity = FALSE
-			if(sanity)
-				var/mutable_appearance/shell_overlay = mutable_appearance(icon, "[initial(C.icon_state)]-clip")
-				shell_overlay.pixel_x += offset
-				shell_overlay.appearance_flags = RESET_COLOR
-				shell_overlay_list[shellindex] = shell_overlay
-				C.current_overlay = shell_overlay
-				overlays += shell_overlay
-	for(var/mutable_appearance/shell in shell_overlay_list)
-		var/isgood = FALSE
-		for(var/obj/item/ammo_casing/shotgun/C in stored_ammo)
-			if(C.current_overlay == shell)
-				isgood = TRUE
-		if(!isgood)
-			qdel(shell)
+			var/mutable_appearance/shell_overlay = mutable_appearance(icon, "[initial(C.icon_state)]-clip")
+			shell_overlay.pixel_x += offset
+			shell_overlay.appearance_flags = RESET_COLOR
+			shell_overlay_list[shellindex] = shell_overlay
+			C.current_overlay = shell_overlay
 
 /obj/item/ammo_box/shotgun/rubbershot
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
