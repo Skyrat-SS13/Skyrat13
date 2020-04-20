@@ -1,4 +1,5 @@
 //fucking clothes
+//Ablative trenchcoat
 /datum/crafting_recipe/ablativecoat
 	name = "Ablative Trenchcoat"
 	result = /obj/item/clothing/suit/hooded/ablative
@@ -23,6 +24,8 @@
 	time = 60
 	category = CAT_CLOTHING
 
+//Power armor (no longer used, see mecha_construction_paths.dm)
+/*
 /datum/crafting_recipe/powerarmor
 	name = "Self-Powered Exoskeleton Rig" //I tried to make it a mecha assembly but that went tits up at every turn so now you get this. Fuck modular, and fuck whoever made mech code.
 	result = /obj/item/clothing/suit/space/hardsuit/powerarmor
@@ -39,3 +42,4 @@
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_WRENCH)
 	time = 1200
 	category = CAT_CLOTHING
+*/

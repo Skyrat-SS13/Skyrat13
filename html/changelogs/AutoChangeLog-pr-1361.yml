@@ -1,0 +1,6 @@
+author: "Anonymous"
+delete-after: True
+changes: 
+  - rscadd: "Federation utility uniforms - Enlisted, Trainee (for assistants, cargo techs and janitors), and Service (for civilian and service roles, aside from entertainers and lawyers)."
+  - spellcheck: "Fixes wrong restriction description of existing trek suits."
+  - tweak: "Some trek uniforms in-hand shall now show basic corresponding color."
