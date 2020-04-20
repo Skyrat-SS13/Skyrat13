@@ -34,16 +34,16 @@
 
 //durathread buff
 /obj/item/clothing/head/beanie/durathread
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
 
 /obj/item/clothing/head/helmet/durathread
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
 
 /obj/item/clothing/suit/armor/vest/durathread
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
 
 /obj/item/clothing/suit/hooded/wintercoat/durathread
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
 
 /obj/item/clothing/head/hooded/winterhood/durathread
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)

@@ -35,7 +35,7 @@
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	item_state = null
 	var/firestacking = 5
-	var/burn_force = 0
+	var/burn_force = 3
 	obj_flags = UNIQUE_RENAME
 
 /obj/item/switchblade/deluxe/afterattack(target, user)
@@ -60,7 +60,7 @@
 		icon_state = extended_icon_state
 		attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		hitsound = 'sound/weapons/bladeslice.ogg'
-		sharpness = IS_SHARP_ACCURATE
+		sharpness = IS_SHARP
 		light_color = "#cc00ff"
 		light_range = 1
 		light_power = 1
@@ -245,10 +245,10 @@
 /obj/item/storage/box/syndie/contender/PopulateContents()
 	new /obj/item/clothing/head/helmet/swat(src)
 	new /obj/item/gun/ballistic/shotgun/doublebarrel/contender(src)
-	new /obj/item/ammo_casing/p50(src)
-	new /obj/item/ammo_casing/p50(src)
-	new /obj/item/ammo_casing/p50/soporific(src)
-	new /obj/item/ammo_casing/p50/penetrator(src)
+	new /obj/item/ammo_casing/a762(src)
+	new /obj/item/ammo_casing/a762(src)
+	new /obj/item/ammo_casing/a762(src)
+	new /obj/item/ammo_casing/a762(src)
 	new /obj/item/kitchen/knife/combat(src)
 
 //Box gun - the shitty contender. Adapted from a rejected hippie pr.
@@ -262,9 +262,11 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/contender/box_gun
 	recoil = 3
+	fire_delay = 2
 	var/explodioprob = 33
 
 /obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun/afterattack(atom/target, mob/living/user, flag, params)
+	. = ..()
 	if(istype(user) && prob(explodioprob))
 		var/obj/item/bodypart/l_arm = user.get_bodypart(BODY_ZONE_L_ARM)
 		var/obj/item/bodypart/r_arm = user.get_bodypart(BODY_ZONE_R_ARM)
@@ -275,7 +277,6 @@
 		else
 			r_arm.dismember()
 		qdel(src)
-	. = ..()
 
 /obj/item/ammo_box/magazine/internal/shot/contender/box_gun
 	name = "box gun internal magazine"
@@ -380,7 +381,7 @@
 	variance = 2
 
 /obj/item/projectile/beam/laser/makeshiftlasrifle
-	damage = 25
+	damage = 20
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak
 	e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
@@ -440,7 +441,7 @@
 	automatic_charge_overlays = TRUE
 	maxcellcharge = 5000
 	ammo_x_offset = 2
-	fire_delay = 15
+	fire_delay = 10
 	spread = 15
 	obj_flags = UNIQUE_RENAME
 

@@ -7,10 +7,11 @@
 
 /datum/uplink_item/dangerous/contender
 	name = "Contender Kit"
-	desc = "A kit containing a Contender, a double barreled rifle that accepts any kind of ammunition, a swat helmet, a combat knife, and four .50  bullets to help you."
+	desc = "A kit containing a Contender, a double barreled rifle that accepts any kind of ammunition, a swat helmet, a combat knife, and four 7.62mm  bullets to help you."
 	item = /obj/item/storage/box/syndie/contender
-	cost = 17
+	cost = 20
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	cant_discount = TRUE
 
 /datum/uplink_item/dangerous/rapier
 	name = "Rapier"
