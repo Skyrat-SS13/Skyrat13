@@ -94,7 +94,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	for(var/I in active_tickets)
 		var/datum/admin_help/AH = I
 		if(AH.initiator)
-			stat("[AH.handler]#[AH.id]. [AH.initiator_key_name]:", AH.statclick.update())
+			stat("[AH.handler]#[AH.id]. [AH.initiator_key_name]:", AH.statclick.update()) //SKYRAT EDIT
 		else
 			++num_disconnected
 	if(num_disconnected)
