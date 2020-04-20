@@ -32,7 +32,7 @@
 				if(shell.pixel_x == offset)
 					sanity = FALSE
 			if(sanity)
-				var/mutable_appearance/shell_overlay = mutable_appearance(icon, "[initial(C.icon)]-clip")
+				var/mutable_appearance/shell_overlay = mutable_appearance(icon, "[initial(C.icon_state)]-clip")
 				shell_overlay.pixel_x += offset
 				shell_overlay.appearance_flags = RESET_COLOR
 				shell_overlay_list += shell_overlay
