@@ -86,11 +86,37 @@
 	var/upgraded_cell = FALSE //Do we have a upgraded cell?
 	var/upgraded_firerate = FALSE //Do we have an upgraded trigger gard?
 	var/upgraded_rifleing = FALSE //Is are barrel much more refined?
-	var/upgradedenergycosts = FALSE //Does it have shots for a 1/3 of the normal cost?
+	var/upgraded_energycosts = FALSE //Does it have shots for a 1/3 of the normal cost?
 	var/maxcellcharge = 2500 //Holds a simular amouts of shots to a laser carbine.
 	recoil = 2
 	fire_delay = 30
 	spread = 15
+
+/obj/item/gun/energy/laser/makeshiftlasrifle/update_icon()
+
+
+/obj/item/gun/energy/laser/makeshiftlasrifle/update_overlays()
+	. = ..()
+	if(upgraded_rifleing)
+		var/mutable_appearance/rifling_overlay = mutable_appearance(icon, "rifling_overlay")
+		rifling_overlay.appearance_flags = RESET_COLOR
+		rifling_overlay.layer = (FLOAT_LAYER-3)
+		. += rifling_overlay
+	if(upgraded_cell)
+		var/mutable_appearance/cell_overlay = mutable_appearance(icon, "cell_overlay")
+		cell_overlay.appearance_flags = RESET_COLOR
+		cell_overlay.layer = (FLOAT_LAYER-1)
+		. += cell_overlay
+	if(upgraded_firerate)
+		var/mutable_appearance/firerate_overlay = mutable_appearance(icon, "firerate_overlay")
+		firerate_overlay.appearance_flags = RESET_COLOR
+		firerate_overlay.layer = (FLOAT_LAYER-2)
+		. += firerate_overlay
+	if(upgraded_energycosts)
+		var/mutable_appearance/energy_overlay = mutable_appearance(icon, "energy_overlay")
+		energy_overlay.appearance_flags = RESET_COLOR
+		energy_overlay.layer = (FLOAT_LAYER-1)
+		. += energy_overlay
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle
 	e_cost = 1000 //The amount of energy a cell needs to expend to create this shot.
@@ -141,9 +167,11 @@
 			to_chat(user, "<span class='warning'>Using a cell with this much power on this pile of crap would break it!</span>")
 	else if(istype(I, /obj/item/stock_parts/cell/computer/super) && !upgraded_cell) //We want to upgrade are cell
 		var/obj/item/stock_parts/cell/computer/super/T = I
-		qdel(T)
 		upgraded_cell = TRUE
 		maxcellcharge *= 2
+		update_overlays()
+		to_chat(user, "<span class='notice'>You install the [T] on [src], doubling it's max charge.</span>")
+		qdel(T)
 	else if(istype(I, /obj/item/stock_parts/cell/computer/super) && upgraded_cell)
 		to_chat(user, "<span class='notice'>There's already a second cell installed in [src]!</span>")
 		return
@@ -152,25 +180,32 @@
 		qdel(T)
 		upgraded_firerate = TRUE
 		fire_delay /= 2
-		to_chat(user, "<span class='notice'>You upgrade the trigguer guard of [src].</span>")
+		update_overlays()
+		to_chat(user, "<span class='notice'>You upgrade the trigguer guard of [src], making it fire faster.</span>")
 	else if(istype(I, /obj/item/assembly/timer) && upgraded_firerate)
-		to_chat(user, "<span class='notice'>There's already a second timer in [src]!</span>")
+		to_chat(user, "<span class='notice'>There's already a timer in [src]!</span>")
 	else if(istype(I,  /obj/item/pipe/bluespace) && !upgraded_rifleing) //We want to lower the spread
 		var/obj/item/pipe/bluespace/T = I
 		qdel(T)
 		upgraded_rifleing = TRUE
 		spread /= 2
+		update_overlays()
 		to_chat(user, "<span class='notice'>You upgrade the rifling of [src].</span>")
 	else if(istype(I,  /obj/item/pipe/bluespace) && upgraded_rifleing)
 		to_chat(user, "<span class='notice'>There rifling on [src] already!</span>")
-	else if(istype(I, /obj/item/stock_parts/capacitor/quadratic) && !upgradedenergycosts)
-		to_chat(user, "<span class='notice'>You connect the [I] to [src].</span>")
+	else if(istype(I, /obj/item/stock_parts/capacitor/quadratic) && !upgraded_energycosts)
 		for(var/obj/item/ammo_casing/energy/laser/L in ammo_type)
 			L.e_cost /= 3
-	else if(istype(I, /obj/item/stock_parts/capacitor/quadratic) && upgradedenergycosts)
-		to_chat(user, "<span class='notice'>[src] already has a capacitor!</span>")
+		to_chat(user, "<span class='notice'>You connect the [I] to [src], making every shot less costly.</span>")
+		update_overlays()
+	else if(istype(I, /obj/item/stock_parts/capacitor/quadratic) && upgraded_energycosts)
+		to_chat(user, "<span class='notice'>[src] already has a [I]!</span>")
 	else
 		..()
+
+/obj/item/gun/energy/laser/makeshiftlasrifle/update_icon()
+	var/peepee = cell ? "1":"0"
+	icon_state = "[initial(icon_state)]-[peepee]"
 
 //laser musket
 /obj/item/gun/energy/pumpaction/musket
