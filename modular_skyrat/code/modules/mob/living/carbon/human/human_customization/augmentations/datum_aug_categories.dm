@@ -17,6 +17,7 @@
 #define ORGAN_AUG_LIVER "organ_liver"
 #define ORGAN_AUG_STOMACH "organ_stomach"
 #define ORGAN_AUG_EYES "organ_eyes"
+#define ORGAN_AUG_TONGUE "organ_tongue"
 
 /datum/aug_category
 	var/name = "Augmentation category"
@@ -122,3 +123,8 @@
 	name = "Eyes"
 	id = ORGAN_AUG_EYES
 	aug_type = /datum/augmentation/organ/eyes/
+
+/datum/aug_category/organ/tongue
+	name = "Eyes"
+	id = ORGAN_AUG_TONGUE
+	aug_type = /datum/augmentation/organ/tongue/
