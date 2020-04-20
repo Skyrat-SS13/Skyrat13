@@ -174,7 +174,7 @@
 		else
 			if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
 				if(!recipient.current_ticket)
-					new /datum/admin_help(msg, recipient, TRUE)
+					new /datum/admin_help(msg, recipient, TRUE, src) //SKYRAT EDIT - new variable
 
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 				to_chat(recipient, "<span class='danger'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span></span>")
