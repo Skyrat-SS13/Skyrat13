@@ -300,8 +300,8 @@
 	qdel(src)
 	return
 
-//HEV Mark V (RD hardsuit)
-/obj/item/clothing/head/helmet/space/hardsuit/rd
+//HEV Mark IV (RD hardsuit)
+/obj/item/clothing/head/helmet/space/hardsuit/rd/hev
 	name = "HEV Suit Mark IV helmet"
 	desc = "A Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers. The flashlight seems broken, fitting considering this was made before the start of the milennium."
 	icon_state = "hev"
@@ -316,19 +316,7 @@
 	actions_types = list(/datum/action/item_action/toggle_research_scanner)
 	mutantrace_variation = STYLE_MUZZLE
 
-/obj/item/clothing/head/helmet/space/hardsuit/rd/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if(slot == ITEM_SLOT_HEAD)
-		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_DIAGNOSTIC_BASIC]
-		DHUD.add_hud_to(user)
-
-/obj/item/clothing/head/helmet/space/hardsuit/rd/dropped(mob/living/carbon/human/user)
-	if(user.head == src)
-		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_DIAGNOSTIC_BASIC]
-		DHUD.remove_hud_from(user)
-	..()
-
-/obj/item/clothing/suit/space/hardsuit/rd
+/obj/item/clothing/suit/space/hardsuit/rd/hev
 	name = "HEV Suit Mark IV"
 	desc = "A Hazardous Environment suit, often called the Hazard suit. It was designed to protect scientists from the blunt trauma, radiation, energy discharge that hazardous materials might produce or entail. Fits you like a glove. The automatic medical system seems to be functional."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
@@ -357,14 +345,14 @@
 	var/flatlined
 	mutantrace_variation = STYLE_DIGITIGRADE
 
-/obj/item/clothing/suit/space/hardsuit/rd/Initialize()
+/obj/item/clothing/suit/space/hardsuit/rd/hev/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj,src)
 	var/obj/item/reagent_containers/R = new beaker_type(src)
 	R.reagents.add_reagent(startingreagent, R.reagents.total_volume)
 	container = R
 
-/obj/item/clothing/suit/space/hardsuit/rd/process()
+/obj/item/clothing/suit/space/hardsuit/rd/hev/process()
 	. = ..()
 	if(!freeman)
 		return
@@ -405,10 +393,10 @@
 				playsound(freeman, 'modular_skyrat/sound/halflife/innsuficient_medical.wav', 50, -1)
 				injection_cooldown = injection_cooldown_time + world.time
 
-/obj/item/clothing/suit/space/hardsuit/rd/proc/unannoy()
+/obj/item/clothing/suit/space/hardsuit/rd/hev/proc/unannoy()
 	annoyed = FALSE
 
-/obj/item/clothing/suit/space/hardsuit/rd/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/suit/space/hardsuit/rd/hev/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 		container.forceMove(get_turf(user))
@@ -422,14 +410,14 @@
 	else
 		..()
 
-/obj/item/clothing/suit/space/hardsuit/rd/equipped(mob/user, slot)
+/obj/item/clothing/suit/space/hardsuit/rd/hev/equipped(mob/user, slot)
 	..()
 	if(ishuman(user) && slot == SLOT_WEAR_SUIT)
 		playsound(user, 'modular_skyrat/sound/halflife/hev_logon.ogg', 50, -1)
 		freeman = user
 		flatlined = FALSE
 
-/obj/item/clothing/suit/space/hardsuit/rd/dropped(mob/user, slot)
+/obj/item/clothing/suit/space/hardsuit/rd/hev/dropped(mob/user, slot)
 	. = ..()
 	if(ishuman(user) && slot == SLOT_WEAR_SUIT)
 		playsound(user, 'modular_skyrat/sound/halflife/deactivated.wav', 50, -1)
