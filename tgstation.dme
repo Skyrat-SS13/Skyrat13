@@ -3439,6 +3439,7 @@
 #include "modular_skyrat\code\game\objects\items\devices\radio\electropack.dm"
 #include "modular_skyrat\code\game\objects\items\devices\radio\encryptionkey.dm"
 #include "modular_skyrat\code\game\objects\items\devices\radio\headset.dm"
+#include "modular_skyrat\code\game\objects\items\devices\radio\radio.dm"
 #include "modular_skyrat\code\game\objects\items\implants\implant_blackmail.dm"
 #include "modular_skyrat\code\game\objects\items\implants\implant_stealth.dm"
 #include "modular_skyrat\code\game\objects\items\melee\misc.dm"
