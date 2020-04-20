@@ -33,18 +33,22 @@
 			if(shellindex > 1)
 				offset += pixeloffsetx
 			for(var/mutable_appearance/shell in shell_overlay_list)
-				if(shell.pixel_x == offset)
+				if(shell.current_overlay)
 					sanity = FALSE
 			if(sanity)
 				var/mutable_appearance/shell_overlay = mutable_appearance(icon, "[initial(C.icon_state)]-clip")
 				shell_overlay.pixel_x += offset
 				shell_overlay.appearance_flags = RESET_COLOR
 				shell_overlay_list += shell_overlay
+				C.current_overlay = shell_overlay
 				. += shell_overlay
-	var/appearance_index = 0
+	var/isgood = FALSE
 	for(var/mutable_appearance/shell in shell_overlay_list)
-		appearance_index++
-		if(!stored_ammo[appearance_index])
+		isgood = FALSE
+		for(var/obj/item/ammo_casing/shotgun/C in stored_ammo)
+			if(C.current_overlay = shell)
+				isgood = TRUE
+		if(!isgood)
 			qdel(shell)
 
 /obj/item/ammo_box/shotgun/rubbershot
