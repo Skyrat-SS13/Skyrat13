@@ -3661,6 +3661,7 @@
 #include "modular_skyrat\code\modules\telescience\telesci.dm"
 #include "modular_skyrat\code\modules\telescience\telesci_computer.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_bundles.dm"
+#include "modular_skyrat\code\modules\uplink\uplink_clothing.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_dangerous.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_devices.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_explosives.dm"
