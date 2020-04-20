@@ -223,6 +223,16 @@
 	item_state = "glasshatchet"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/righthand.dmi'
+	force = 11
+	throwforce = 11
+
+/obj/item/hatchet/improvised/CheckParts(list/parts_list)
+	var/obj/item/shard/tip = locate() in parts_list
+	if (istype(tip, /obj/item/shard/plasma))
+		force = 12
+		throwforce = 12
+		custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	qdel(tip)
 
 //a fucking shank
 /obj/item/shard/shank
@@ -234,8 +244,15 @@
 	throwforce = 10
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "shanked", "sliced", "cut")
-	siemens_coefficient = 0 //Means it's insulated
-	sharpness = IS_SHARP
+	siemens_coefficient = 0 //We are insulated
+
+/obj/item/shard/shank/CheckParts(list/parts_list)
+	var/obj/item/shard/tip = locate() in parts_list
+	if (istype(tip, /obj/item/shard/plasma))
+		force = 11
+		throwforce = 11
+		custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	qdel(tip)
 
 //mace of molag bal
 /obj/item/melee/cleric_mace/molagbal
