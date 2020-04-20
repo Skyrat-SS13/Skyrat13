@@ -221,7 +221,7 @@
 	icon_state = "hheart"
 	item_state = "hheart"
 	flags_inv = HIDEFACE|HIDEFACIALHAIR
-
+/* Moved to modular_skyrat
 /obj/item/clothing/suit/trenchcoat/green
 	name = "Reece's Great Coat"
 	desc = "You would swear this was in your nightmares after eating too many veggies."
@@ -231,7 +231,7 @@
 	item_state = "hos-g"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	mutantrace_variation = NONE
-
+*/
 /obj/item/reagent_containers/food/drinks/flask/russian
 	name = "russian flask"
 	desc = "Every good russian spaceman knows it's a good idea to bring along a couple of pints of whiskey wherever they go."
