@@ -3409,6 +3409,7 @@
 #include "modular_skyrat\code\game\gamemodes\monkey\monkey.dm"
 #include "modular_skyrat\code\game\gamemodes\revolution\revolution.dm"
 #include "modular_skyrat\code\game\gamemodes\traitor\traitor.dm"
+#include "modular_skyrat\code\game\machinery\dance_machine.dm"
 #include "modular_skyrat\code\game\machinery\lpchutes.dm"
 #include "modular_skyrat\code\game\machinery\prisonlabor.dm"
 #include "modular_skyrat\code\game\machinery\syndicatebeacon.dm"
