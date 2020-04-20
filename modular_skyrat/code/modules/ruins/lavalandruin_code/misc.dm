@@ -69,7 +69,7 @@
 
 /obj/effect/wrath/proc/updatemegalist()
 	megalist = list()
-	for(var/mob/living/megafauna/M in GLOB.mob_living_list)
+	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
 		megalist += M.name
 
 /obj/effect/wrath/CanPass(atom/movable/mover, turf/target)
