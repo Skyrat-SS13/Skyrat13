@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - balance: "Deconverted gangsters now cannot rat out previous allies anymore."
