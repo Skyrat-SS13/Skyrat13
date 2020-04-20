@@ -346,6 +346,8 @@
 				set_picture("ai_urist")
 			if("Thinking")
 				set_picture("ai_thinking")
+			if("Discord")
+				set_picture("ai_discord")
 			if("Facepalm")
 				set_picture("ai_facepalm")
 			if("Friend Computer")

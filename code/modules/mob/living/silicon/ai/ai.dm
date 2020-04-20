@@ -601,7 +601,7 @@
 
 	if(incapacitated())
 		return
-	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Thinking", "Friend Computer", "Dorfy", "Blue Glow", "Red Glow")
+	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused","Discord", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Thinking", "Friend Computer", "Dorfy", "Blue Glow", "Red Glow")
 	var/n_emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 	if(!n_emote)
 		return
@@ -1016,7 +1016,7 @@
 		if("Yes.")
 			src.ghostize(FALSE, penalize = TRUE)
 			var/announce_rank = "Artificial Intelligence,"
-			if(GLOB.announcement_systems.len) 
+			if(GLOB.announcement_systems.len)
 				// Sends an announcement the AI has cryoed.
 				var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
 				announcer.announce("CRYOSTORAGE", src.real_name, announce_rank, list())
