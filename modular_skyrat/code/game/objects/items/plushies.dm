@@ -13,6 +13,11 @@
 	icon_state = "redtail"
 	item_state = "redtail"
 
+/obj/item/toy/plush/mammal/odrew
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "odrew"
+	item_state = "odrew"
+
 /obj/item/toy/plush/mammal/reece
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "reece"
