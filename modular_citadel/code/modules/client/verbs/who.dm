@@ -21,6 +21,7 @@
 		msg += "\t[C][suffix]\n"
 	to_chat(src, msg)
 
+/* Moved to modular_skyrat
 /client/verb/who()
 	set name = "Who"
 	set category = "OOC"
@@ -92,6 +93,7 @@
 			entry += " - <b><font color='red'>Antagonist</font></b>"
 	entry += " (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[C.mob]'>?</A>)"
 	return entry
+*/
 
 /client/verb/adminwho()
 	set category = "Admin"

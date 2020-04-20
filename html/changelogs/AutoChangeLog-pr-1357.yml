@@ -1,0 +1,6 @@
+author: "BobJogaIsForkinBanned"
+delete-after: True
+changes: 
+  - tweak: "Power armor is now spray paintable."
+  - tweak: "Power armor now has to be built from ground up with the chassis. The crafting recipe has been removed."
+  - tweak: "Power armor is now named \"Power Armor MK. II\" due to the changes mentioned above."
