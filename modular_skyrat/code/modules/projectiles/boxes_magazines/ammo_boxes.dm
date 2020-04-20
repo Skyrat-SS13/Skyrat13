@@ -24,8 +24,7 @@
 
 /obj/item/ammo_box/shotgun/update_overlays()
 	. = ..()
-	for(var/mutable_appearance/M in shell_overlay_list)
-		remove_overlay(M)
+	cut_overlay(shell_overlay_list, TRUE)
 	if(stored_ammo.len)
 		var/shellindex = 0
 		var/offset = -4
@@ -37,6 +36,7 @@
 			shell_overlay.appearance_flags = RESET_COLOR
 			shell_overlay_list[shellindex] = shell_overlay
 			C.current_overlay = shell_overlay
+			add_overlay(shell_overlay, TRUE)
 
 /obj/item/ammo_box/shotgun/rubbershot
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
