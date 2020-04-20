@@ -33,7 +33,7 @@
 			if(shellindex > 1)
 				offset += pixeloffsetx
 			for(var/mutable_appearance/shell in shell_overlay_list)
-				if(shell.current_overlay)
+				if(C.current_overlay)
 					sanity = FALSE
 			if(sanity)
 				var/mutable_appearance/shell_overlay = mutable_appearance(icon, "[initial(C.icon_state)]-clip")
