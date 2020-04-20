@@ -144,6 +144,8 @@
 			return FALSE
 		if(clonemind.current.suiciding) // Mind is associated with a body that is suiciding.
 			return FALSE
+		if(AmBloodsucker(clonemind.current)) //If the mind is a bloodsucker
+			return FALSE
 	if(clonemind.active)	//somebody is using that mind
 		if( ckey(clonemind.key)!=ckey )
 			return FALSE
@@ -158,8 +160,6 @@
 		INVOKE_ASYNC(src, .proc/horrifyingsound)
 		mess = TRUE
 		update_icon()
-		return FALSE
-	if(isvamp(clonemind)) //If the mind is a bloodsucker
 		return FALSE
 
 	attempting = TRUE //One at a time!!
@@ -379,6 +379,7 @@
 
 	if(grab_ghost_when == CLONER_MATURE_CLONE)
 		mob_occupant.grab_ghost()
+		to_chat(occupant, "<span class='warning'><b>You remember nothing after you've blacked out and you do not remember who or what events killed you, however, you can have faint recollection of what led up to it.</b>") //Skyrat change - reminds you about the blackout policy
 		to_chat(occupant, "<span class='notice'><b>There is a bright flash!</b><br><i>You feel like a new being.</i></span>")
 		mob_occupant.flash_act()
 		if(jobban_isbanned(mob_occupant) && ishuman(mob_occupant))	// SKYRAT ADDITION -- BEGIN

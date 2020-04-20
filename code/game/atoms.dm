@@ -397,13 +397,13 @@
 //returns the mob's dna info as a list, to be inserted in an object's blood_DNA list
 /mob/living/proc/get_blood_dna_list()
 	var/blood_id = get_blood_id()
-	if(!(blood_id =="blood" || blood_id == "jellyblood"))
+	if(!(blood_id in GLOB.blood_reagent_types))
 		return
 	return list("ANIMAL DNA" = "Y-")
 
 /mob/living/carbon/get_blood_dna_list()
 	var/blood_id = get_blood_id()
-	if(!(blood_id =="blood" || blood_id == "jellyblood"))
+	if(!(blood_id in GLOB.blood_reagent_types))
 		return
 	var/list/blood_dna = list()
 	if(dna)
@@ -584,11 +584,8 @@
 		stoplag(1)
 	qdel(progress)
 	to_chat(user, "<span class='notice'>You dump as much of [src_object.parent]'s contents into [STR.insert_preposition]to [src] as you can.</span>")
-	STR.orient2hud(user)
-	src_object.orient2hud(user)
 	if(user.active_storage) //refresh the HUD to show the transfered contents
-		user.active_storage.close(user)
-		user.active_storage.show_to(user)
+		user.active_storage.ui_show(user)
 	return TRUE
 
 /atom/proc/get_dumping_location(obj/item/storage/source,mob/user)
