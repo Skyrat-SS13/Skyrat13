@@ -349,6 +349,7 @@
 			if(!.)
 				return FALSE //to differentiate between no internals and active, but empty internals
 
+/* MODULAR SKYRAT
 // Make corpses rot, emitting miasma
 /mob/living/carbon/proc/rot()
 	// Properly stored corpses shouldn't create miasma
@@ -384,6 +385,7 @@
 	miasma_turf.assume_air(stank)
 
 	miasma_turf.air_update_turf()
+*/
 
 /mob/living/carbon/proc/handle_blood()
 	return

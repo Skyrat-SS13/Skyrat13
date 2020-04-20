@@ -608,3 +608,15 @@
 
 /obj/item/clothing/suit/security/hos
 	armor = list("melee" = 45, "bullet" = 35, "laser" = 35, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 90)
+
+/obj/item/clothing/suit/armor/vest/warden
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC
+	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'
+
+/obj/item/clothing/suit/hooded/techpriest
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC
+	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'
+
+/obj/item/clothing/suit/hooded/techpriest_t
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC
+	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'

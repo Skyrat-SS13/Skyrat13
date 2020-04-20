@@ -1,0 +1,4 @@
+author: "BurgerBB"
+delete-after: True
+changes: 
+  - balance: "Changed the scrubber base spread range from 16 to 4. Scrubber backpressure gains +1 range for every 100 kPA of pressure inside the pipes, up to 32. Scrubber backpressure can no longer occur on an individual scrubber if it is off."
