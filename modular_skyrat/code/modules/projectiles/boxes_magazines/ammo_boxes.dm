@@ -46,7 +46,7 @@
 	for(var/mutable_appearance/shell in shell_overlay_list)
 		isgood = FALSE
 		for(var/obj/item/ammo_casing/shotgun/C in stored_ammo)
-			if(C.current_overlay = shell)
+			if(C.current_overlay == shell)
 				isgood = TRUE
 		if(!isgood)
 			qdel(shell)
