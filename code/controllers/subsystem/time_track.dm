@@ -23,7 +23,11 @@ SUBSYSTEM_DEF(time_track)
 	var/time_dilation_text
 
 /datum/controller/subsystem/time_track/fire()
+<<<<<<< HEAD
 	stat_time_text = "Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]\n\nRound Time: [DisplayTimeText(world.time - SSticker.round_start_time)] \n\nStation Time: [STATION_TIME_TIMESTAMP("hh:mm:ss", world.time)]\n\n[time_dilation_text]" // Skyrat Change - Round Time
+=======
+	stat_time_text = "Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]\n\nRound Time: [DisplayTimeText(world.time - SSticker.round_start_time, 1)] \n\nStation Time: [STATION_TIME_TIMESTAMP("hh:mm:ss", world.time)]\n\n[time_dilation_text]"
+>>>>>>> 560cf8749b... Merge pull request #11943 from Citadel-Station-13/Ghommie-patch-2
 
 	if(++last_measurement == measurement_delay)
 		last_measurement = 0
