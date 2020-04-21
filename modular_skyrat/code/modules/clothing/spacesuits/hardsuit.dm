@@ -329,7 +329,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/gun/energy/wormhole_projector,
 	/obj/item/hand_tele, /obj/item/aicard)
 	armor = list("melee" = 30, "bullet" = 10, "laser" = 20, "energy" = 30, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rd
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rd/hev
 	var/heal_threshold = 5
 	var/injection_amount = 10
 	var/injection_cooldown_time = 1200 //2 minutes before injecting again
@@ -354,57 +354,56 @@
 
 /obj/item/clothing/suit/space/hardsuit/rd/hev/process()
 	. = ..()
-	if(!freeman)
-		return
-	oldwearerhealth = currentwearerhealth
-	currentwearerhealth = freeman.health
-	if(freeman.stat == DEAD && !flatlined)
-		playsound(freeman, 'modular_skyrat/sound/halflife/flatline.wav', 50, -1)
-		flatlined = TRUE
-	if(!annoyed)
-		if(currentwearerhealth <= heal_threshold && !flatlined)
-			playsound(freeman, 'modular_skyrat/sound/halflife/health_critical.wav', 50, -1)
-			sleep(30)
-			annoyed = TRUE
-		if((oldwearerhealth > currentwearerhealth) && currentwearerhealth >= heal_threshold && !flatlined)
-			playsound(freeman, 'modular_skyrat/sound/halflife/health_dropping.wav', 50, -1)
-			sleep(30)
-			annoyed = TRUE
-		if(freeman.toxloss >= 12.5 && !flatlined)
-			playsound(freeman, 'modular_skyrat/sound/halflife/blood_toxins.wav', 50, -1)
-			sleep(30)
-			annoyed = TRUE
-		if(freeman.fireloss >= 35 && !flatlined)
-			playsound(freeman, 'modular_skyrat/sound/halflife/heat_damage.wav', 50, -1)
-			sleep(30)
-			annoyed = TRUE
-		if(freeman.blood_volume < (BLOOD_VOLUME_OKAY - 36) && !flatlined)
-			playsound(freeman, 'modular_skyrat/sound/halflife/blood_loss.wav', 50, -1)
-			sleep(20)
-			annoyed = TRUE
-		if(annoyed)
-			addtimer(CALLBACK(src, .proc/unannoy), annoy_cooldown_time)
-	if((currentwearerhealth <= heal_threshold) && (world.time > injection_cooldown || !injection_cooldown) && !flatlined)
-		if(container)
-			if(container.reagents.trans_to(freeman, injection_amount))
-				playsound(freeman, 'modular_skyrat/sound/halflife/medshot4.wav', 50, -1)
-				injection_cooldown = injection_cooldown_time + world.time
-			else
-				playsound(freeman, 'modular_skyrat/sound/halflife/innsuficient_medical.wav', 50, -1)
-				injection_cooldown = injection_cooldown_time + world.time
+	if(freeman)
+		oldwearerhealth = currentwearerhealth
+		currentwearerhealth = freeman.health
+		if(freeman.stat == DEAD && !flatlined)
+			playsound(freeman, 'modular_skyrat/sound/halflife/flatline.wav', 50, 0)
+			flatlined = TRUE
+		if(!annoyed)
+			if((currentwearerhealth <= heal_threshold) && !flatlined)
+				playsound(freeman, 'modular_skyrat/sound/halflife/health_critical.wav', 50, 0)
+				sleep(30)
+				annoyed = TRUE
+			if((oldwearerhealth > currentwearerhealth) && (currentwearerhealth >= heal_threshold) && !flatlined)
+				playsound(freeman, 'modular_skyrat/sound/halflife/health_dropping.wav', 50, 0)
+				sleep(30)
+				annoyed = TRUE
+			if((freeman.toxloss >= 12.5) && !flatlined)
+				playsound(freeman, 'modular_skyrat/sound/halflife/blood_toxins.wav', 50, 0)
+				sleep(30)
+				annoyed = TRUE
+			if((freeman.fireloss >= 35) && !flatlined)
+				playsound(freeman, 'modular_skyrat/sound/halflife/heat_damage.wav', 50, 0)
+				sleep(30)
+				annoyed = TRUE
+			if((freeman.blood_volume < (BLOOD_VOLUME_OKAY - 36)) && !flatlined)
+				playsound(freeman, 'modular_skyrat/sound/halflife/blood_loss.wav', 50, 0)
+				sleep(20)
+				annoyed = TRUE
+			if(annoyed)
+				addtimer(CALLBACK(src, .proc/unannoy), annoy_cooldown_time)
+		if((currentwearerhealth <= heal_threshold) && (world.time > injection_cooldown || !injection_cooldown) && !flatlined)
+			if(container)
+				if(container.reagents.trans_to(freeman, injection_amount))
+					playsound(freeman, 'modular_skyrat/sound/halflife/medshot4.wav', 50, 0)
+					injection_cooldown = injection_cooldown_time + world.time
+				else
+					playsound(freeman, 'modular_skyrat/sound/halflife/innsuficient_medical.wav', 50, 0)
+					injection_cooldown = injection_cooldown_time + world.time
 
 /obj/item/clothing/suit/space/hardsuit/rd/hev/proc/unannoy()
 	annoyed = FALSE
 
 /obj/item/clothing/suit/space/hardsuit/rd/hev/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/screwdriver))
-		playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(src, 'sound/items/Screwdriver.ogg', 25, 0)
 		container.forceMove(get_turf(user))
 		container = null
 		to_chat(user, "<span class='notice'>You remove [src]'s reagent container.</span>")
 	else if(istype(I, /obj/item/reagent_containers) && !container)
 		var/obj/item/reagent_containers/R = I
-		playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(src, 'sound/items/Screwdriver.ogg', 25, 0)
 		R.forceMove(src)
 		to_chat(user, "<span class='notice'>You install [R] into [src].</span>")
 	else
@@ -413,13 +412,13 @@
 /obj/item/clothing/suit/space/hardsuit/rd/hev/equipped(mob/user, slot)
 	..()
 	if(ishuman(user) && slot == SLOT_WEAR_SUIT)
-		playsound(user, 'modular_skyrat/sound/halflife/hev_logon.ogg', 50, -1)
+		playsound(user, 'modular_skyrat/sound/halflife/hev_logon.ogg', 50, 0)
 		freeman = user
 		flatlined = FALSE
 
 /obj/item/clothing/suit/space/hardsuit/rd/hev/dropped(mob/user, slot)
 	. = ..()
-	if(ishuman(user) && slot == SLOT_WEAR_SUIT)
-		playsound(user, 'modular_skyrat/sound/halflife/deactivated.wav', 50, -1)
+	if(ishuman(user))
+		playsound(user, 'modular_skyrat/sound/halflife/deactivated.wav', 50, 0)
 		freeman = null
 		flatlined = FALSE
