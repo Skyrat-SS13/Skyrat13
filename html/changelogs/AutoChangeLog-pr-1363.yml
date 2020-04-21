@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "Added a traitor class reroll."
-  - admin: "Admins can now easily reassign traitor classes."

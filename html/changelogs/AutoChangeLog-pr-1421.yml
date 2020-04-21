@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "Embed resist is now higher up on the resist attempt chain."
