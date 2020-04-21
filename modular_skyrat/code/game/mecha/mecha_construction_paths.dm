@@ -189,6 +189,7 @@
 		//6
 		list(
 			"key" = /obj/item/circuitboard/mecha/clarke/main,
+			"action" = ITEM_DELETE,
 			"back_key" = TOOL_WIRECUTTER,
 			"desc" = "The wiring is adjusted."
 		),
@@ -201,6 +202,7 @@
 		//8
 		list(
 			"key" = /obj/item/circuitboard/mecha/clarke/peripherals,
+			"action" = ITEM_DELETE,
 			"back_key" = TOOL_WIRECUTTER,
 			"desc" = "The main board is secured."
 		),
@@ -253,7 +255,6 @@
 		list(
 			"key" = /obj/item/stack/sheet/plasteel,
 			"amount" = 5,
-			"action" = ITEM_DELETE,
 			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "The power cell is secured."
 		),
@@ -273,7 +274,6 @@
 		list(
 			"key" = /obj/item/stack/sheet/mineral/plastitanium,
 			"amount" = 15,
-			"action" = ITEM_DELETE,
 			"back_key" = TOOL_WELDER,
 			"desc" = "The inner armor layer is welded."
 		),
