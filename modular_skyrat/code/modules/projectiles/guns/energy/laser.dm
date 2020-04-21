@@ -123,9 +123,9 @@
 
 /obj/item/gun/energy/laser/makeshiftlasrifle/examine(mob/user)
 	. = ..()
-	if(upgradedrifleing)
+	if(upgraded_rifleing)
 		. += " The rifling on it has been upgraded.<br>"
-	if(upgradedcell)
+	if(upgraded_cell)
 		. += " It has an additional power cell.<br>"
 	if(upgraded_firerate)
 		. += " It has an updated trigger guard.<br>"
@@ -134,7 +134,7 @@
 	var/chargepercent
 	if(cell)
 		chargepercent = (cell.charge/cell.maxcharge * 100)
-	. += "[cell ? " The cell charge is at [chargepercent]%":" It has no main power cell.]"
+	. += "[cell ? " The cell charge is at [chargepercent]%":" It has no main power cell."]"
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle
 	e_cost = 750 //The amount of energy a cell needs to expend to create this shot.
