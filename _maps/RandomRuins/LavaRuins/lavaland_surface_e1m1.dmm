@@ -97,6 +97,7 @@
 /turf/open/floor/carpet/black,
 /area/ruin/powered/e1m1)
 "y" = (
+/obj/item/book/granter/martial/berserk,
 /turf/open/floor/carpet/black,
 /area/ruin/powered/e1m1)
 
