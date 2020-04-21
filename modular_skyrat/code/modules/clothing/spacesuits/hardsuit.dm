@@ -205,7 +205,7 @@
 
 //Power armor
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
-	name = "Power Armor Helmet MK. I
+	name = "Power Armor Helmet MK. I"
 	desc = "An advanced helmet attached to a powered exoskeleton suit. Protects well against most forms of harm, but struggles against exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
