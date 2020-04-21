@@ -89,11 +89,13 @@
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	desc = "An adorable stuffed toy resembling a dark-furred creature."
 	squeak_override = list('modular_citadel/sound/voice/weh.ogg' = 9, 'modular_citadel/sound/voice/merp.ogg' = 1)
+	attack_verb = list("booped", "patted", "hugged")
 	icon_state = "zador"
 	item_state = "zador"
 
 /obj/item/toy/plush/hodilov
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	desc = "An adorable stuffed toy resembling a sad, young janitor man."
+	attack_verb = list("soaped", "mopped", "scrubbed")
 	icon_state = "hodilov"
 	item_state = "hodilov"
