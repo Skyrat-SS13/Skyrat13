@@ -395,7 +395,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/HandleIssue(key_name = key_name_admin(usr))
 	if(state != AHELP_ACTIVE)
 		return
-	var/msg = "<span class ='adminhelp'>Your ticket is now being handled by an admin. Please wait while they type their response and/or gather relevant information.</span>" // Skyrat Change
+	var/msg = "<span class ='adminhelp'>Your ticket is now being handled by [usr?.client?.holder?.fakekey? usr.client.holder.fakekey : "an administrator"]!. Please wait while they type their response and/or gather relevant information.</span>" // Skyrat Change
 
 	if(initiator)
 		to_chat(initiator, msg)
