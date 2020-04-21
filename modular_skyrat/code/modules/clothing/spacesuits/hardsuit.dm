@@ -230,7 +230,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "hardsuit0-powerarmor-2")
+		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit0-powerarmor-2")
 		M.appearance_flags = RESET_COLOR
 		. += M
 
@@ -273,7 +273,7 @@
 /obj/item/clothing/suit/space/hardsuit/powerarmor/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/M = mutable_appearance(mob_overlay_icon, "hardsuit-powerarmor-2")
+		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit-powerarmor-2")
 		M.appearance_flags = RESET_COLOR
 		. += M
 
