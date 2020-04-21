@@ -1,0 +1,5 @@
+author: "CinderWC"
+delete-after: True
+changes: 
+  - rscadd: "Handle Ticket Verb now states WHO is handling the ticket"
+  - tweak: "Tweaks ahelp preset responses to be more friendly."
