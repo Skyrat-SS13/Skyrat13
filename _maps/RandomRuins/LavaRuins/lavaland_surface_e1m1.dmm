@@ -97,7 +97,8 @@
 /turf/open/floor/carpet/black,
 /area/ruin/powered/e1m1)
 "y" = (
-/obj/item/book/granter/martial/berserk,
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/old,
 /turf/open/floor/carpet/black,
 /area/ruin/powered/e1m1)
 
