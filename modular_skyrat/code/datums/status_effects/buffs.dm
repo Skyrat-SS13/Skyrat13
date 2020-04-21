@@ -51,7 +51,7 @@
 		if(owner.alpha <= 113) //making it announce everytime you pick something up is annoying bro
 			to_chat(owner, "<span class='warning'>Something interferes with your suit's stealth system, revealing you!</span>")
 		playsound(owner.loc, "sparks", 100, 1)
-		animate(owner, , alpha = 255, time = 2)
+		animate(owner, alpha = 255, time = 2)
 	inhandold = inhand
 	inhandlold = inhandl
 	healthold = health
