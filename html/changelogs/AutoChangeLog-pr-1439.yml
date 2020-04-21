@@ -1,0 +1,8 @@
+author: "Ryll-Ryll"
+delete-after: True
+changes: 
+  - code_imp: "Adds the lunge component
+add:Security vendors now have a premium item, the tackling gloves, which allow you to lunge at people, or walls, if you yknow, want to."
+  - code_imp: "Ports the squish element from TG
+add:All combat gloves have been replaced with guerrilla gloves, which allow tackling, but are otherwise the same functionally."
+  - balance: "Bloodsucker lunge now uses the tackling component"
