@@ -138,7 +138,7 @@
 	desc = "Makes a wall on impact on a living being."
 	cost = 20
 	var/cooldown
-	var/cdduration = 50
+	var/cdmultiplier = 1.1
 
 /obj/item/borg/upgrade/modkit/wall/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()
@@ -150,8 +150,8 @@
 		var/mob/living/F = K.firer
 		var/dir_to_target = get_dir(F, target)
 		var/turf/T = get_step(get_turf(F), dir_to_target)
-		new /obj/effect/temp_visual/hierophant/wall/crusher(T, F) //a wall only you can pass!
-		cooldown = world.time + cdduration
+		var/obj/effect/temp_visual/hierophant/wall/crusher/W = new /obj/effect/temp_visual/hierophant/wall/crusher(T, F) //a wall only you can pass!
+		cooldown = world.time + (W.duration * cdmultiplier)
 		var/turf/otherT = get_step(T, turn(F.dir, 90))
 		if(otherT)
 			new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, F)
