@@ -9,8 +9,8 @@
 	item_state = "makeshiftarmor"
 	w_class = 3
 	blood_overlay_type = "armor"
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 10, "rad" = 35, "fire" = 10, "acid" = 25)
-	slowdown = 0.4 //not completely terrible but will not help you either
+	armor = list("melee" = 20, "bullet" = 10, "laser" = 5, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 35, "fire" = 20, "acid" = 30)
+	slowdown = 0.5 //not completely terrible but will not help you either
 	mutantrace_variation = STYLE_DIGITIGRADE
 
 //trayshield
@@ -30,7 +30,7 @@
 	block_chance = 30 //same as a buckler, but this shit will break easily lol
 	shield_flags = null //no bashing with this piece o' shit
 	max_integrity = 30 //shit and weak
-	repair_material = /obj/item/storage/bag/tray
+	repair_material = /obj/item/stack/sheet/metal
 
 //durathread buff
 /obj/item/clothing/head/beanie/durathread

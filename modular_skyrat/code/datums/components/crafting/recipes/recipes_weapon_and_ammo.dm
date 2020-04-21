@@ -67,7 +67,7 @@
 				/obj/item/storage/toolbox = 2, // For feet
 				/obj/item/tank/internals/oxygen = 1, // For air
 				/obj/item/electronics/airlock = 1, //You are stealing the motors from airlocks
-				/obj/item/extinguisher = 1, //For bastard pnumatics
+				/obj/item/extinguisher = 1, //For bastard pneumatics
 				/obj/item/stack/wrapping_paper = 5, //to make it airtight
 				/obj/item/flashlight = 1, //For the mech light
 				/obj/item/stack/rods = 4, //to mount the equipment
@@ -128,8 +128,8 @@
 	name = "Watcher Projector"
 	result = /obj/item/gun/energy/watcherprojector
 	reqs = list(/obj/item/stack/sheet/bone = 3,
-				/obj/item/stack/ore/diamond = 2,
-				/obj/item/stack/sheet/sinew = 2,
+				/obj/item/stack/ore/diamond = 5,
+				/obj/item/stack/sheet/sinew = 3,
 				/obj/item/weaponcrafting/receiver = 1,
 				/obj/item/assembly/igniter = 1,
 				/obj/item/stock_parts/cell/high/plus/argent = 1,
@@ -141,15 +141,15 @@
 /datum/crafting_recipe/makeshiftlasrifle
 	name = "makeshift laser rifle"
 	result = /obj/item/gun/energy/laser/makeshiftlasrifle
-	reqs = list(/obj/item/stack/cable_coil = 20,
+	reqs = list(/obj/item/stack/cable_coil = 30,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/pipe = 1,
 				/obj/item/stack/sheet/mineral/diamond = 3,
-				/obj/item/stock_parts/cell = 1,
 				/obj/item/weaponcrafting/receiver = 1,
 				/obj/item/stock_parts/micro_laser = 1,
 				/obj/item/stock_parts/capacitor = 4,
 				/obj/item/assembly/igniter = 1)
+	parts = list(/obj/item/stock_parts/cell = 1)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH)
 	time = 250
 	category = CAT_WEAPONRY
@@ -158,39 +158,20 @@
 /datum/crafting_recipe/lasermusket
 	name = "laser musket"
 	result = /obj/item/gun/energy/pumpaction/musket
-	reqs = list(/obj/item/stack/cable_coil = 20,
+	reqs = list(/obj/item/stack/cable_coil = 30,
 				/obj/item/weaponcrafting/stock = 1,
-				/obj/item/pipe = 2,
-				/obj/item/stack/sheet/mineral/uranium = 2,
-				/obj/item/stock_parts/cell = 1,
-				/obj/item/assembly/igniter = 1,
-				/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/stock_parts/capacitor = 3)
+				/obj/item/pipe = 1,
+				/obj/item/pipe/bluespace = 1,
+				/obj/item/stack/sheet/mineral/uranium = 10,
+				/obj/item/stack/sheet/mineral/gold = 3,
+				/obj/item/stack/sheet/plasmaglass = 5,
+				/obj/item/stock_parts/cell/high = 2,
+				/obj/item/assembly/igniter = 3,
+				/obj/item/weaponcrafting/receiver = 2,
+				/obj/item/stock_parts/micro_laser/high = 4,
+				/obj/item/stock_parts/capacitor/adv = 2)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
-	time = 100
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/supershotgunupgrade
-	name = "Upgraded Super Shotgun"
-	result = /obj/item/gun/ballistic/revolver/doublebarrel/super/upgraded
-	reqs = list(/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/gun/ballistic/revolver/doublebarrel/super = 1,
-				/obj/item/stack/cable_coil = 30,
-				/obj/item/stack/sheet/mineral/uranium = 10)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	time = 300
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/dbupgrade
-	name = "Upgraded Double Barrel Shotgun"
-	result = /obj/item/gun/ballistic/revolver/doublebarrel/upgraded
-	reqs = list(/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/gun/ballistic/revolver/doublebarrel = 1,
-				/obj/item/stack/cable_coil = 30)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	time = 150
+	time = 125
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
