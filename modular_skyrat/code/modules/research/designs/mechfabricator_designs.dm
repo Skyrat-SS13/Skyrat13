@@ -161,3 +161,12 @@
 	materials = list(/datum/material/iron=15000)
 	construction_time = 150
 	category = list("Clarke")
+
+/datum/design/conveyor_belt_mechfab
+	name = "Conveyor Belt"
+	id = "conveyor_belt_mechfab"
+	build_type = MECHFAB
+	build_path = /obj/item/stack/conveyor
+	materials = list(/datum/material/iron=2000) //costs less than building one at the autolathe
+	construction_time = 30
+	category = list("Clarke")

@@ -57,4 +57,4 @@
 	display_name = "EXOSUIT: Clarke"
 	description = "Clarke is a fast, fire and lava proof, however not very tough, exo-suit."
 	prereq_ids = list("adv_mecha")
-	design_ids = list("clarke_chassis", "clarke_torso", "clarke_head", "clarke_left_arm", "clarke_right_arm", "clarke_main", "clarke_peri")
+	design_ids = list("clarke_chassis", "clarke_torso", "clarke_head", "clarke_left_arm", "clarke_right_arm", "clarke_main", "clarke_peri", "conveyor_belt_mechfab")
