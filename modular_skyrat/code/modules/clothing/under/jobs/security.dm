@@ -13,7 +13,7 @@
 	mutantrace_variation = STYLE_DIGITIGRADE
 	unique_reskin_stored = list(
 	)
-
+//Civil Protection
 /obj/item/clothing/under/rank/security/civilprotection/fake
 	name = "Civil Protection replica uniform"
 	desc = "No inner armoring, but full of combine style."
