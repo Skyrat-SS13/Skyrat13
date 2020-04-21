@@ -23,22 +23,6 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/switchblade_deluxe
-	name = "Deluxe Switchblade"
-	result = /obj/item/switchblade/deluxe
-	reqs = list(/obj/item/switchblade = 1,
-				/obj/item/stack/cable_coil = 5,
-				/obj/item/stack/sheet/mineral/diamond = 2,
-				/obj/item/stack/sheet/mineral/plasma = 5,
-				/obj/item/stack/sheet/mineral/titanium = 5,
-				/obj/item/stack/sheet/mineral/plastitanium = 1,
-				/obj/item/stack/sheet/mineral/gold = 5,
-				/obj/item/stock_parts/cell = 1,
-				/obj/machinery/igniter = 1)
-	tools = list(TOOL_WELDER)
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
 /datum/crafting_recipe/trayshield
 	name = "tray shield"
 	result =  /obj/item/shield/riot/trayshield
@@ -59,6 +43,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/*
 /datum/crafting_recipe/lockermech
 	name = "Locker Mech"
 	result = /obj/mecha/makeshift
@@ -95,6 +80,7 @@
 	tools = list(/obj/item/screwdriver)
 	time = 50
 	category = CAT_ROBOT
+*/
 
 //////////////////
 ///GUNS CRAFTING//
@@ -111,32 +97,6 @@
 	time = 400
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/box_gun
-	name = "Box gun"
-	result = /obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun
-	reqs = list(/obj/item/stack/rods = 2,
-				/obj/item/stack/cable_coil = 5,
-				/obj/item/storage/box = 1,
-				/obj/item/weaponcrafting/receiver = 1)
-	tools = list(TOOL_SCREWDRIVER)
-	time = 150
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/watcherproj
-	name = "Watcher Projector"
-	result = /obj/item/gun/energy/watcherprojector
-	reqs = list(/obj/item/stack/sheet/bone = 3,
-				/obj/item/stack/ore/diamond = 2,
-				/obj/item/stack/sheet/sinew = 2,
-				/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/assembly/igniter = 1,
-				/obj/item/stock_parts/cell/high/plus/argent = 1,
-				/obj/item/stock_parts/capacitor = 4,
-				/obj/item/stock_parts/micro_laser = 1)
-	time = 200
-	category = CAT_PRIMAL
 
 /datum/crafting_recipe/makeshiftlasrifle
 	name = "makeshift laser rifle"
@@ -168,29 +128,6 @@
 				/obj/item/stock_parts/capacitor = 3)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
 	time = 100
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/supershotgunupgrade
-	name = "Upgraded Super Shotgun"
-	result = /obj/item/gun/ballistic/revolver/doublebarrel/super/upgraded
-	reqs = list(/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/gun/ballistic/revolver/doublebarrel/super = 1,
-				/obj/item/stack/cable_coil = 30,
-				/obj/item/stack/sheet/mineral/uranium = 10)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	time = 300
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/dbupgrade
-	name = "Upgraded Double Barrel Shotgun"
-	result = /obj/item/gun/ballistic/revolver/doublebarrel/upgraded
-	reqs = list(/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/gun/ballistic/revolver/doublebarrel = 1,
-				/obj/item/stack/cable_coil = 30)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	time = 150
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
