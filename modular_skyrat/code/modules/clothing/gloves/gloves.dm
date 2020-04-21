@@ -95,7 +95,7 @@
 		return FALSE
 	else if(mode == "bolt")
 		if(isliving(A))
-			Bolt(origin = user, target = A, bolt_energy = lightning_energy, bounces = 5)
+			Bolt(origin = user, target = A, bolt_energy = lightning_energy, bounces = 5, usecharge = TRUE)
 			return TRUE
 		return FALSE
 	else
@@ -133,29 +133,28 @@
 	our_cell.use(stuncost)
 	return TRUE
 
-/obj/item/clothing/gloves/color/yellow/power/proc/Bolt(mob/origin = usr,mob/target = null, bolt_energy = 50,bounces = 5,mob/user = usr)
-	if(ourcell.charge >= boltcost)
-		playsound(get_turf(origin), 'sound/magic/lightningshock.ogg', 150, 1, -1)
-		origin.Beam(target,icon_state="lightning[rand(1,12)]",time=5, maxdistance = 7)
-		var/mob/living/current = target
-		if(bounces < 1)
-			current.electrocute_act(bolt_energy,"Lightning Bolt", flags = SHOCK_TESLA)
-			playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 150, 1, -1)
-			ourcell.use(boltcost)
-		else
-			current.electrocute_act(bolt_energy,"Lightning Bolt", flags = SHOCK_TESLA)
-			playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 150, 1, -1)
-			var/list/possible_targets = new
-			for(var/mob/living/M in view_or_range(7,target,"view"))
-				if(user == M || target == M && los_check(current,M)) // || origin == M ? Not sure double shockings is good or not
-					continue
-				possible_targets += M
-			if(!possible_targets.len)
-				return
-			var/mob/living/next = pick(possible_targets)
-			if(next)
-				Bolt(current,next,max((bolt_energy-5),5),bounces-1,user)
-			ourcell.use(boltcost)
+/obj/item/clothing/gloves/color/yellow/power/proc/Bolt(mob/origin = usr,mob/target = null, bolt_energy = 50,bounces = 5,mob/user = usr, usecharge = TRUE)
+	playsound(get_turf(origin), 'sound/magic/lightningshock.ogg', 150, 1, -1)
+	origin.Beam(target,icon_state="lightning[rand(1,12)]",time=5, maxdistance = 7)
+	var/mob/living/current = target
+	if(bounces < 1)
+		current.electrocute_act(bolt_energy,"Lightning Bolt", flags = SHOCK_TESLA)
+		playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 150, 1, -1)
+	else
+		current.electrocute_act(bolt_energy,"Lightning Bolt", flags = SHOCK_TESLA)
+		playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 150, 1, -1)
+		var/list/possible_targets = new
+		for(var/mob/living/M in view_or_range(7,target,"view"))
+			if(user == M || target == M && los_check(current,M)) // || origin == M ? Not sure double shockings is good or not
+				continue
+			possible_targets += M
+		if(!possible_targets.len)
+			return
+		var/mob/living/next = pick(possible_targets)
+		if(next)
+			Bolt(current,next,max((bolt_energy-5),5),bounces-1,user, usecharge = FALSE)
+	if(usecharge)
+		ourcell.use(boltcost)
 
 /obj/item/clothing/gloves/color/yellow/power/proc/los_check(atom/movable/user, mob/target)
 	var/turf/user_turf = user.loc
