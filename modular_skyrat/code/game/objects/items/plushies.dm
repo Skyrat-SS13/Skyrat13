@@ -79,9 +79,21 @@
 	item_state = "trilby"
 	attack_verb = list("PR'd", "coded", "remembered")
 
-/obj/item/toy/plush/mammal/dubious
+/obj/item/toy/plush/bird/dubious
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
-	name = "mammal plushie"
-	desc = "An adorable stuffed toy resembling some sort of crew member."
+	desc = "An adorable stuffed toy resembling a plague doctor."
 	icon_state = "dubious"
 	item_state = "dubious"
+
+/obj/item/toy/plush/zador
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	desc = "An adorable stuffed toy resembling a dark-furred creature."
+	squeak_override = list('modular_citadel/sound/voice/weh.ogg' = 9, 'modular_citadel/sound/voice/merp.ogg' = 1)
+	icon_state = "zador"
+	item_state = "zador"
+
+/obj/item/toy/plush/hodilov
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	desc = "An adorable stuffed toy resembling a sad, young janitor man."
+	icon_state = "hodilov"
+	item_state = "hodilov"
