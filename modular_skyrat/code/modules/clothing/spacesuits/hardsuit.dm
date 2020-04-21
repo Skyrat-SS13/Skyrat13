@@ -233,7 +233,7 @@
 	. = ..()
 	if(!isinhands)
 		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit0-powerarmor-2")
-		if(icon_state == "hardsuit1-powerarmor-1)
+		if(icon_state == "hardsuit1-powerarmor-1")
 			M = mutable_appearance(icon_file, "hardsuit1-powerarmor-2")
 		M.appearance_flags = RESET_COLOR
 		. += M
