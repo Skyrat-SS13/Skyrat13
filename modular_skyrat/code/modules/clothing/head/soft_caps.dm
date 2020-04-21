@@ -48,6 +48,7 @@
 	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	icon_state = "secmedsoft"
 	item_state = "secmedsoft"
+	soft_type = "secmed"
 	unique_reskin = list(
 	)
 	unique_reskin_stored = list(
