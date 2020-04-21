@@ -693,6 +693,8 @@
 /obj/structure/closet/crate/secure/gear{
 	req_access_txt = "150"
 	},
+/obj/item/clothing/gloves/combat,
+/obj/item/clothing/gloves/combat,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/storage/belt/military,
@@ -707,8 +709,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/storage/belt/military,
 /obj/item/storage/belt/military,
-/obj/item/clothing/gloves/tackler/combat/insulated,
-/obj/item/clothing/gloves/tackler/combat/insulated,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
 "dL" = (
@@ -4402,6 +4402,9 @@
 "kw" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/gloves/combat{
+	pixel_y = -6
+	},
 /obj/item/tank/internals/emergency_oxygen{
 	pixel_x = 4;
 	pixel_y = 4
@@ -4410,7 +4413,6 @@
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/obj/item/clothing/gloves/tackler/combat/insulated,
 /turf/open/floor/plasteel/white/side,
 /area/ruin/unpowered/syndicate_lava_base/main)
 "kx" = (
