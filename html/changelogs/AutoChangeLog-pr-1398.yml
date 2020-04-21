@@ -1,0 +1,13 @@
+author: "CinderWC"
+delete-after: True
+changes: 
+  - rscadd: "Added Botany Toaster to Ghost Cafe Botany"
+  - rscadd: "Added Vox breath masks and tanks to the Ghost Cafe"
+  - rscadd: "Added Nitrogen Tank to Ghost Cafe Maintenance Room for refilling"
+  - rscadd: "Added Anaesthetic Closet to Ghost Cafe surgery room"
+  - rscadd: "Added a new tiny room to the Ghost Cafe to serve as special room for vox and plasmamen"
+  - tweak: "Reworked Box Departures from the ground up"
+  - tweak: "Made the Chapel slightly bigger to accomodate the new Departures"
+  - bugfix: "Replaced nitrogen tanks in Box Permabrig with actually full Nitrogen Tanks"
+  - rscdel: "Deleted floor safe inside a table in the ghost Cafe"
+  - rscdel: "Removed pack of cherry bombs in Ghost Cafe"
