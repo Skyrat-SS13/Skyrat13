@@ -7,7 +7,7 @@
 	var/loot = rand(1,3)
 	switch(loot)
 		if(1)
-			new /obj/item/mayhem(src)
+			new /obj/item/book/granter/martial/berserk(src)
 		if(2)
 			new /obj/item/blood_contract(src)
 		if(3)
@@ -18,7 +18,7 @@
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
 	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	new /obj/item/mayhem(src)
+	new /obj/item/book/granter/martial/berserk(src)
 	new /obj/item/blood_contract(src)
 	new /obj/item/twohanded/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
@@ -297,6 +297,18 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	mutantrace_variation = STYLE_MUZZLE
+
+//berserk rune
+/obj/item/book/granter/martial/berserk
+	name = "Strange Rune"
+	desc = "Tales tell that this rune may grant the user power beyond measure... for a limited time."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefactsdmi'
+	icon_state = "berrserk"
+	martial = /datum/martial_art/berserk
+	martialname = "berserk"
+	greet = "<span class='userdanger' style='color:rgb(0, 0, 0);'><b>DIG THE PROWESS. THE CAPACITY FOR VIOLENCE!</b></span>"
+	pages_to_mastery = 0
+	remarks = list("In the first age, in the first battle...", "Rip and tear...", "Huge guts...", "Big fucking gun...")
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
