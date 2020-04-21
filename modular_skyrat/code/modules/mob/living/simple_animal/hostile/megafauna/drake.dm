@@ -17,4 +17,4 @@
 	light_color = "#FFFF00"
 	light_power = 2
 	faction = list("mining", "neutral")
-	smallsprite = new /datum/action/small_sprite/drake/akatosh()
+	smallsprite = /datum/action/small_sprite/drake/akatosh

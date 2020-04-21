@@ -207,14 +207,14 @@
 	if(vortex_cd >= world.time)
 		return
 	var/turf/T = get_turf(user)
-	new /obj/effect/temp_visual/hierophant/wall/crusher(T, user) //a wall only you can pass!
+	var/obj/effect/temp_visual/hierophant/wall/crusher/wall = new /obj/effect/temp_visual/hierophant/wall/crusher(T, user) //a wall only you can pass!
 	var/turf/otherT = get_step(T, turn(user.dir, 90))
 	if(otherT)
 		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
 	otherT = get_step(T, turn(user.dir, -90))
 	if(otherT)
 		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
-	vortex_cd = world.time + (T.duration * cdmultiplier)
+	vortex_cd = world.time + (wall.duration * cdmultiplier)
 
 /obj/effect/temp_visual/hierophant/wall/crusher
 	duration = 40 //this is more than enough time bro

@@ -3369,6 +3369,7 @@
 #include "modular_skyrat\code\controllers\subsystem\events.dm"
 #include "modular_skyrat\code\controllers\subsystem\logging.dm"
 #include "modular_skyrat\code\controllers\subsystem\recycling.dm"
+#include "modular_skyrat\code\datums\action.dm"
 #include "modular_skyrat\code\datums\ai_laws.dm"
 #include "modular_skyrat\code\datums\map_config.dm"
 #include "modular_skyrat\code\datums\components\crafting\recipes\recipes_clothing.dm"
