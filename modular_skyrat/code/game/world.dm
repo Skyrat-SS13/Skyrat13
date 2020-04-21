@@ -30,7 +30,6 @@
 	s += ")\]" //CIT CHANGE - encloses the server title in brackets to make the hub entry fancier
 	s += "<br>[CONFIG_GET(string/servertagline)]<br>" //CIT CHANGE - adds a tagline!
 
-
 	var/n = 0
 	for (var/mob/M in GLOB.player_list)
 		if (M.client)
