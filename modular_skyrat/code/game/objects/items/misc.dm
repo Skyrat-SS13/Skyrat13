@@ -1,16 +1,14 @@
 //hazard vest armor
-/obj/item/clothing/suit/armor/hazard
+/obj/item/clothing/suit/hazardvest/armor
 	name = "armored hazard vest"
-	desc = "A hazard vest with plasteel and metal plates taped on it. It offers minor protection against kinetic damage, but slows you down a significant bit."
+	desc = "A hazard vest with plasteel and metal plates taped on it. It offers minor protection against kinetic damage, well still being able to handle raditation."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	icon_state = "makeshiftarmor"
 	item_state = "makeshiftarmor"
-	w_class = 3
 	blood_overlay_type = "armor"
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 10, "rad" = 35, "fire" = 10, "acid" = 25)
-	slowdown = 0.4 //not completely terrible but will not help you either
+	armor = list("melee" = 15, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 10, "rad" = 50, "fire" = 10, "acid" = 25)
 	mutantrace_variation = STYLE_DIGITIGRADE
 
 //trayshield
@@ -27,23 +25,7 @@
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("shoved", "bashed")
-	block_chance = 30 //same as a buckler, but this shit will break easily lol
-	shield_flags = null //no bashing with this piece o' shit
-	max_integrity = 30 //shit and weak
-	repair_material = /obj/item/storage/bag/tray
-
-//durathread buff
-/obj/item/clothing/head/beanie/durathread
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
-
-/obj/item/clothing/head/helmet/durathread
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
-
-/obj/item/clothing/suit/armor/vest/durathread
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
-
-/obj/item/clothing/suit/hooded/wintercoat/durathread
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
-
-/obj/item/clothing/head/hooded/winterhood/durathread
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+	block_chance = 30 //same as a buckler, but this shit will break easily
+	shield_flags = null //no bashing with this
+	max_integrity = 35 //So we handle a shot or two
+	repair_material = /obj/item/stack/sheet/metal
