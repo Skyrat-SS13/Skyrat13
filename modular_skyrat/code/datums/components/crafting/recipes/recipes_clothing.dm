@@ -15,7 +15,7 @@
 
 /datum/crafting_recipe/hazardarmor
 	name = "hazard vest armor"
-	result =  /obj/item/clothing/suit/armor/hazard
+	result =  /obj/item/clothing/suit/hazardvest/armor
 	reqs = list(/obj/item/stack/sheet/metal = 2,
 				/obj/item/stack/cable_coil = 15,
 				/obj/item/stack/sheet/plasteel = 2,
