@@ -1,0 +1,4 @@
+author: "hugmeorelse"
+delete-after: True
+changes: 
+  - tweak: "Changed the round timer. This time it rounds decimals."
