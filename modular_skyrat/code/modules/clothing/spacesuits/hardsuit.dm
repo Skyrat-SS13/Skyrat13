@@ -330,14 +330,13 @@
 	/obj/item/hand_tele, /obj/item/aicard)
 	armor = list("melee" = 30, "bullet" = 10, "laser" = 20, "energy" = 30, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rd/hev
-	slowdown = 0
-	var/heal_threshold = 95
+	var/heal_threshold = 5
 	var/injection_amount = 10
 	var/injection_cooldown_time = 1200 //2 minutes before injecting again
 	var/injection_cooldown
 	var/annoy_cooldown_time = 600
 	var/annoyed = FALSE
-	var/datum/reagent/startingreagent = /datum/reagent/medicine/epinephrine
+	var/datum/reagent/startingreagent = /datum/reagent/medicine/ephedrine
 	var/obj/item/reagent_containers/container
 	var/beaker_type = /obj/item/reagent_containers/glass/beaker/large
 	var/mob/living/carbon/human/freeman
@@ -350,40 +349,41 @@
 	. = ..()
 	START_PROCESSING(SSobj,src)
 	var/obj/item/reagent_containers/R = new beaker_type(src)
-	R.reagents.add_reagent(startingreagent, R.reagents.maximum_volume)
+	R.reagents.add_reagent(startingreagent, R.reagents.total_volume)
 	container = R
 
 /obj/item/clothing/suit/space/hardsuit/rd/hev/process()
+	. = ..()
 	if(freeman)
 		oldwearerhealth = currentwearerhealth
-		currentwearerhealth = (100 - (freeman.getBruteLoss() + freeman.getFireLoss() + freeman.getOxyLoss() + freeman.getToxLoss() + freeman.getCloneLoss())) //found no sensible way to get the "real" user health
+		currentwearerhealth = freeman.health
 		if(freeman.stat == DEAD && !flatlined)
 			playsound(freeman, 'modular_skyrat/sound/halflife/flatline.wav', 50, 0)
 			flatlined = TRUE
 		if(!annoyed)
 			if((currentwearerhealth <= heal_threshold) && !flatlined)
 				playsound(freeman, 'modular_skyrat/sound/halflife/health_critical.wav', 50, 0)
-				sleep(40)
+				sleep(30)
 				annoyed = TRUE
 			if((oldwearerhealth > currentwearerhealth) && (currentwearerhealth >= heal_threshold) && !flatlined)
 				playsound(freeman, 'modular_skyrat/sound/halflife/health_dropping.wav', 50, 0)
-				sleep(40)
-				annoyed = TRUE
-			if((freeman.getToxLoss() >= 12.5) && !flatlined)
-				playsound(freeman, 'modular_skyrat/sound/halflife/blood_toxins.wav', 50, 0)
-				sleep(40)
-				annoyed = TRUE
-			if((freeman.getFireLoss() >= 35) && !flatlined)
-				playsound(freeman, 'modular_skyrat/sound/halflife/heat_damage.wav', 50, 0)
-				sleep(40)
-				annoyed = TRUE
-			if((freeman.blood_volume <= (BLOOD_VOLUME_OKAY - 36)) && !HAS_TRAIT(freeman, NOBLOOD) && !flatlined)
-				playsound(freeman, 'modular_skyrat/sound/halflife/blood_loss.wav', 50, 0)
 				sleep(30)
+				annoyed = TRUE
+			if((freeman.toxloss >= 12.5) && !flatlined)
+				playsound(freeman, 'modular_skyrat/sound/halflife/blood_toxins.wav', 50, 0)
+				sleep(30)
+				annoyed = TRUE
+			if((freeman.fireloss >= 35) && !flatlined)
+				playsound(freeman, 'modular_skyrat/sound/halflife/heat_damage.wav', 50, 0)
+				sleep(30)
+				annoyed = TRUE
+			if((freeman.blood_volume < (BLOOD_VOLUME_OKAY - 36)) && !flatlined)
+				playsound(freeman, 'modular_skyrat/sound/halflife/blood_loss.wav', 50, 0)
+				sleep(20)
 				annoyed = TRUE
 			if(annoyed)
 				addtimer(CALLBACK(src, .proc/unannoy), annoy_cooldown_time)
-		if((currentwearerhealth <= heal_threshold) && ((world.time > injection_cooldown) || !injection_cooldown) && !flatlined)
+		if((currentwearerhealth <= heal_threshold) && (world.time > injection_cooldown || !injection_cooldown) && !flatlined)
 			if(container)
 				if(container.reagents.trans_to(freeman, injection_amount))
 					playsound(freeman, 'modular_skyrat/sound/halflife/medshot4.wav', 50, 0)
