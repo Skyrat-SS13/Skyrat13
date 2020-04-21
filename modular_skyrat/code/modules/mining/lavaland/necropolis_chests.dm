@@ -302,7 +302,7 @@
 /obj/item/book/granter/martial/berserk
 	name = "Strange Rune"
 	desc = "Tales tell that this rune may grant the user power beyond measure... for a limited time."
-	icon = 'modular_skyrat/icons/obj/lavaland/artefactsdmi'
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "berrserk"
 	martial = /datum/martial_art/berserk
 	martialname = "berserk"
