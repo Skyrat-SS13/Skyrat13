@@ -28651,7 +28651,7 @@
 /area/security/checkpoint/medical)
 "bmX" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/closed/wall/r_wall,
+/turf/closed/wall,
 /area/medical/medbay/central)
 "bmY" = (
 /obj/machinery/door/airlock/medical{
@@ -28671,7 +28671,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/closed/wall/r_wall,
+/turf/closed/wall,
 /area/medical/medbay/central)
 "bna" = (
 /obj/structure/disposalpipe/segment,
@@ -31461,15 +31461,15 @@
 /area/science/research)
 "bti" = (
 /obj/machinery/vending/clothing,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
-	dir = 1
+	dir = 4
 	},
-/obj/structure/sign/poster/official/random{
-	pixel_y = 32
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -31997,11 +31997,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/blue{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue,
-/obj/structure/disposalpipe/segment{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -32085,6 +32085,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/medical/medbay/central)
 "buu" = (
@@ -32503,13 +32506,13 @@
 /obj/item/storage/box/bodybags,
 /obj/item/pen,
 /obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -32519,6 +32522,10 @@
 	},
 /obj/effect/landmark/start/geneticist,
 /obj/structure/chair,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bvp" = (
@@ -32526,17 +32533,20 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bvq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
@@ -32545,7 +32555,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/medical/medbay/central)
 "bvs" = (
 /obj/structure/disposalpipe/segment{
@@ -32583,7 +32593,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/medical/medbay/central)
 "bvw" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -32624,7 +32634,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/closed/wall/r_wall,
+/turf/closed/wall,
 /area/medical/medbay/central)
 "bvB" = (
 /obj/machinery/camera{
@@ -33103,15 +33113,15 @@
 	dir = 4;
 	pixel_x = -24
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -33711,10 +33721,11 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
 	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -34338,10 +34349,6 @@
 	dir = 1;
 	pixel_y = -22
 	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bzm" = (
@@ -34358,13 +34365,6 @@
 /area/medical/medbay/central)
 "bzn" = (
 /obj/machinery/clonepod,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bzo" = (
@@ -34372,17 +34372,15 @@
 	pixel_y = -28
 	},
 /obj/structure/dresser,
-/turf/open/floor/carpet,
-/area/medical/medbay/central)
-"bzp" = (
-/obj/structure/chair/sofa/right{
-	dir = 1
-	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/medical/medbay/central)
 "bzq" = (
-/obj/structure/chair/sofa/left{
-	dir = 1
+/obj/structure/curtain,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/carpet,
 /area/medical/medbay/central)
@@ -34391,12 +34389,8 @@
 	name = "Station Intercom (General)";
 	pixel_y = -29
 	},
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_x = 1;
-	pixel_y = 5
-	},
-/turf/open/floor/carpet,
+/obj/structure/dresser,
+/turf/open/floor/wood,
 /area/medical/medbay/central)
 "bzs" = (
 /turf/closed/wall,
@@ -42942,13 +42936,6 @@
 /area/security/checkpoint/engineering)
 "bTk" = (
 /obj/machinery/dna_scannernew,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
 /obj/machinery/light_switch{
 	pixel_y = -28
 	},
@@ -59359,6 +59346,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
+"jYL" = (
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/hor)
 "jZT" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -105663,7 +105653,7 @@ bof
 buq
 bvt
 bye
-bJE
+bof
 bBN
 bEi
 bEi
@@ -105920,7 +105910,7 @@ bua
 bun
 bvr
 bzo
-bJE
+bof
 aFa
 bCY
 bEh
@@ -106177,7 +106167,7 @@ btl
 but
 bvw
 bzq
-bJE
+bof
 bBP
 bCZ
 bEk
@@ -106433,8 +106423,8 @@ buf
 bof
 bur
 bvw
-bzp
-bJE
+bzq
+bof
 bBO
 bCY
 bEj
@@ -106691,7 +106681,7 @@ bof
 bvs
 bvv
 bzr
-bJE
+bof
 bBQ
 bDa
 bEl
@@ -106947,8 +106937,8 @@ btk
 bof
 bux
 bvy
-bJE
-bJE
+bof
+bof
 bBN
 bBN
 bBN
@@ -107197,14 +107187,14 @@ ipA
 gbT
 cTO
 bmZ
-bJE
-bJE
-bJE
-bJE
-bJE
+bof
+bof
+bof
+bof
+bof
 buG
 bvA
-bJE
+bof
 bAw
 bzg
 bLS
@@ -114140,13 +114130,13 @@ bpp
 bqe
 brr
 bsE
-bvK
-bvK
-bvK
-bvK
-bvK
-bvK
-bvK
+jYL
+jYL
+jYL
+jYL
+jYL
+jYL
+jYL
 bEy
 bFU
 bFT
