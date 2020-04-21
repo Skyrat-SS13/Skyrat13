@@ -168,7 +168,7 @@
 	force = 15
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 8
-	block_chance = 30
+	block_chance = 33
 	armour_penetration = 200
 	var/stamdamage = 30
 	var/confusion = 8
