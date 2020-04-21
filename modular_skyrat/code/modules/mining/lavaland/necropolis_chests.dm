@@ -555,8 +555,8 @@
 
 //crystal choosing thing from colosssus
 /obj/item/bluecrystal
-	name = "blue crystal"
-	desc = "It's very shiny... wonder what it does."
+	name = "\improper blue crystal"
+	desc = "It's very shiny... one may wonder what it does."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "bluecrystal"
 	w_class = WEIGHT_CLASS_SMALL
