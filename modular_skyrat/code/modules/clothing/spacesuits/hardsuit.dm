@@ -42,10 +42,10 @@
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "armblade0"
 	icon_state_on = "armblade1"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi' //PLACEHOLDER!!!!!
-	item_state = null
-	var/item_state_on = "energy_katana"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/armblade_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/armblade_righthand.dmi'
+	item_state = "armblade0"
+	var/item_state_on = "armblade1"
 	attack_verb_off = list("bopped")
 	total_mass_on = 0.6
 	var/obj/item/clothing/suit/space/hardsuit/mastersuit = null
