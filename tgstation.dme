@@ -3437,6 +3437,7 @@
 #include "modular_skyrat\code\game\objects\items\kits.dm"
 #include "modular_skyrat\code\game\objects\items\plushies.dm"
 #include "modular_skyrat\code\game\objects\items\religion.dm"
+#include "modular_skyrat\code\game\objects\items\toys.dm"
 #include "modular_skyrat\code\game\objects\items\weaponry.dm"
 #include "modular_skyrat\code\game\objects\items\circuitboards\computer_circuitboards.dm"
 #include "modular_skyrat\code\game\objects\items\circuitboards\machine_circuitboards.dm"
@@ -3695,6 +3696,5 @@
 #include "modular_skyrat\code\modules\vending\wardrobes.dm"
 #include "modular_skyrat\code\modules\zombie\items.dm"
 #include "modular_skyrat\code\modules\zombie\organs.dm"
-#include "modular_skyrat\game\objects\items\toys.dm"
 #include "modular_skyrat\tools\Redirector\textprocs.dm"
 // END_INCLUDE
