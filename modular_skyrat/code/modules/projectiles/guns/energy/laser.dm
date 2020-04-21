@@ -85,7 +85,7 @@
 	var/upgraded_rifleing = FALSE //Is the barrel much more refined?
 	var/upgraded_energycosts = FALSE //Does it have shots at a lesser cost?
 	var/maxcellcharge = 1500 //little worse than a laser carbine initially
-	recoil = 3
+	recoil = 1
 	fire_delay = 30
 	spread = 15
 
@@ -96,6 +96,7 @@
 		var/mutable_appearance/rifling_overlay = mutable_appearance(icon, "rifling_overlay")
 		rifling_overlay.appearance_flags = RESET_COLOR
 		rifling_overlay.layer = (FLOAT_LAYER-4)
+		add_overlay(rifling_overlay, TRUE)
 		. += rifling_overlay
 	if(upgraded_cell)
 		var/mutable_appearance/cell_overlay
@@ -119,6 +120,21 @@
 		energy_overlay.layer = (FLOAT_LAYER-1)
 		add_overlay(energy_overlay, TRUE)
 		. += energy_overlay
+
+/obj/item/gun/energy/laser/makeshiftlasrifle/examine(mob/user)
+	. = ..()
+	if(upgradedrifleing)
+		. += " The rifling on it has been upgraded.<br>"
+	if(upgradedcell)
+		. += " It has an additional power cell.<br>"
+	if(upgraded_firerate)
+		. += " It has an updated trigger guard.<br>"
+	if(upgraded_energycosts)
+		. += " It has a capacitor installed.<br>"
+	var/chargepercent
+	if(cell)
+		chargepercent = (cell.charge/cell.maxcharge * 100)
+	. += "[cell ? " The cell charge is at [chargepercent]%":" It has no main power cell.]"
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle
 	e_cost = 750 //The amount of energy a cell needs to expend to create this shot.
@@ -149,12 +165,13 @@
 	damage = 5
 
 /obj/item/gun/energy/laser/makeshiftlasrifle/AltClick(mob/living/carbon/user)
-	..()
+	. = ..()
 	playsound(user, 'sound/items/Screwdriver.ogg', 35)
 	var/obj/item/stock_parts/cell/thecell = cell
 	thecell.forceMove(user.loc)
 	user.put_in_l_hand(thecell)
 	cell = null
+	update_icon()
 
 /obj/item/gun/energy/laser/makeshiftlasrifle/attackby(obj/item/I, mob/user, params)
 	..()
@@ -164,6 +181,7 @@
 			playsound(user, 'sound/items/Screwdriver.ogg', 35)
 			C.forceMove(src)
 			cell = C
+			update_icon()
 		else
 			to_chat(user, "<span class='warning'>Using a cell with this much power on this pile of crap would break it!</span>")
 	else if(istype(I, /obj/item/stock_parts/cell/computer/super) && !upgraded_cell) //We want to upgrade are cell
@@ -240,6 +258,7 @@
 	obj_flags = UNIQUE_RENAME
 	fire_delay = 20
 	spread = 7.5
+	recoil = 1
 
 /obj/item/stock_parts/cell/pumpaction/musket
 	name = "laser musket internal cell"
