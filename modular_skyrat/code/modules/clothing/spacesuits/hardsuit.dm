@@ -386,6 +386,8 @@
 		if((currentwearerhealth <= heal_threshold) && ((world.time > injection_cooldown) || !injection_cooldown) && !flatlined)
 			if(container)
 				if(container.reagents.trans_to(freeman, injection_amount))
+					playsound(freeman, 'modular_skyrat/sound/halflife/administering_medical', 50, 0)
+					sleep(40)
 					playsound(freeman, 'modular_skyrat/sound/halflife/medshot4.wav', 50, 0)
 					injection_cooldown = injection_cooldown_time + world.time
 				else
