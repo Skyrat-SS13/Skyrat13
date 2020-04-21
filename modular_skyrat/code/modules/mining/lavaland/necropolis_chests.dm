@@ -136,8 +136,8 @@
 	icon = 'modular_skyrat/icons/obj/1x2.dmi'
 	icon_state = "crucible0"
 	var/icon_state_on = "crucible1"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/swords_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/swords_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	item_state = "crucible0"
 	var/item_state_on = "crucible1"
 	force = 3
@@ -163,10 +163,6 @@
 	var/brightness_on = 6
 	total_mass = 1
 	var/total_mass_on = TOTAL_MASS_MEDIEVAL_WEAPON
-	/*
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-	*/
 
 /obj/item/twohanded/crucible/suicide_act(mob/living/carbon/user)
 	if(wielded)
@@ -276,6 +272,32 @@
 	playsound(loc, hitsound, get_clamped_volume(), 1, -1)
 	add_fingerprint(user)
 
+//praetor suit and helmet
+/obj/item/clothing/suit/space/hardsuit/deathsquad/praetor
+	name = "Praetor Suit"
+	desc = "And those that tasted the bite of his sword named him... The Doom Slayer."
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	strip_delay = 130
+	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	icon_state = "praetor"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	item_state = "praetor"
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
+	slowdown = 0
+	mutantrace_variation = STYLE_DIGITIGRADE
+
+/obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
+	name = "Praetor Suit helmet"
+	desc = "That's one doomed space marine."
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	strip_delay = 130
+	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	icon_state = "praetor"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	mutantrace_variation = STYLE_MUZZLE
+
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
 	new /obj/item/borg/upgrade/modkit/knockback(src)
@@ -309,6 +331,7 @@
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
+
 
 /obj/item/dragons_blood/distilled
 	name = "bottle of distilled dragon's blood"
@@ -740,6 +763,7 @@
 	desc = "Such a grand and intoxicating innocence."
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
+	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	icon_state = "dagoth"
 	item_state = "dagoth"
 	actions_types = list(/datum/action/item_action/ashstorm)
@@ -749,20 +773,17 @@
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
 	w_class = WEIGHT_CLASS_BULKY //its a fucking full metal mask man
+	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/mask/gas/dagoth/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(slot == ITEM_SLOT_MASK)
-		for(var/datum/action/A in actions_types)
-			A.Grant(user)
+	..()
+	if (slot == ITEM_SLOT_MASK)
 		user.faction |= "mining"
 
 /obj/item/clothing/mask/gas/dagoth/dropped(mob/living/carbon/human/user)
-	if(user.wear_mask == src)
+	if (user.wear_mask == src)
 		user.faction -= "mining"
-		for(var/datum/action/A in actions_types)
-			A.Remove(user)
-	. = ..()
+	..()
 
 /datum/action/item_action/ashstorm
 	name = "Summon Ash Storm"

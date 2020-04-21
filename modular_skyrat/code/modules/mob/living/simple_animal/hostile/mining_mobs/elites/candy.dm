@@ -270,7 +270,7 @@
 
 /obj/item/bloodcrawlbottle/attack_self(mob/user)
 	to_chat(user, "<span class='notice'>You drink the bottle's contents.</span>")
-	var/obj/effect/proc_holder/spell/bloodcrawl/S = new /obj/effect/proc_holder/spell/bloodcrawl
+	var/obj/effect/proc_holder/spell/bloodcrawl/S = new /obj/effect/proc_holder/spell/bloodcrawl/
 	user.mind.AddSpell(S)
 	user.log_message("learned the spell bloodcrawl ([S])", LOG_ATTACK, color="orange")
 	qdel(src)

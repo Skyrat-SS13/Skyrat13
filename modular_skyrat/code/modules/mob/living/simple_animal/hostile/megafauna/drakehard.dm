@@ -533,17 +533,3 @@ obj/effect/temp_visual/fireball/hard
 			flame_hit[L] = TRUE
 		else
 			L.adjustFireLoss(10) //if we've already hit them, do way less damage
-
-/mob/living/simple_animal/hostile/megafauna/dragon/lesser/akatosh
-	name = "Holy Dragon"
-	desc = "Destroyer of the gates."
-	icon = 'modular_skyrat/icons/mob/lavaland/drake_greyscale.dmi'
-	icon_state = "dragon"
-	maxHealth = 350
-	health = 350
-	color = "#FFFF00"
-	light_range = 3
-	light_color = "#FFFF00"
-	light_power = 2
-	faction = list("mining", "neutral")
-	smallsprite = new /datum/action/small_sprite/drake/akatosh()

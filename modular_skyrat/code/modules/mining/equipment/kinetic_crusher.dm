@@ -201,7 +201,7 @@
 
 //hierophant crusher small buff compared to citadel
 /obj/item/crusher_trophy/vortex_talisman
-	var/cdduration = 50
+	var/cdmultiplier = 1.1
 
 /obj/item/crusher_trophy/vortex_talisman/on_mark_detonation(mob/living/target, mob/living/user)
 	if(vortex_cd >= world.time)
@@ -214,12 +214,12 @@
 	otherT = get_step(T, turn(user.dir, -90))
 	if(otherT)
 		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
-	vortex_cd = world.time + cdduration
+	vortex_cd = world.time + (T.duration * cdmultiplier)
 
 /obj/effect/temp_visual/hierophant/wall/crusher
 	duration = 40 //this is more than enough time bro
 
-//watcher wing fucking nerf
+//watcher wing slight buff
 /obj/item/crusher_trophy/watcher_wing
 	bonus_value = 5 // 1 second was more than enough and let you off the hook too easy.
 
