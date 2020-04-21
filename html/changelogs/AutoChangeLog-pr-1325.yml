@@ -1,7 +1,0 @@
-author: "BobJogaIsForkinBanned"
-delete-after: True
-changes: 
-  - balance: "Ebony blade cost lowered to 16tc."
-  - balance: "Skeleton key can no longer be discounted on uplink."
-  - balance: "Revolver conversion kit cost upped to 4tc, instead of 3."
-  - bugfix: "Mace of molag bal will now show it's sprites properly."
