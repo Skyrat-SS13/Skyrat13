@@ -224,7 +224,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor/update_overlays()
 	. = ..()
 	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hardsuit0-powerarmor-2")
-	if(icon_state == "hardsuit1-powerarmor-1)
+	if(icon_state == "hardsuit1-powerarmor-1")
 		glass_overlay = mutable_appearance(icon_file, "hardsuit1-powerarmor-2")
 	glass_overlay.appearance_flags = RESET_COLOR
 	. += glass_overlay
