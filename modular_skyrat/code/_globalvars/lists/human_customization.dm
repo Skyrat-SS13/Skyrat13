@@ -9,3 +9,5 @@ GLOBAL_LIST_EMPTY(aug_organ_cat_list)
 GLOBAL_LIST_EMPTY(aug_limb_list) 
 GLOBAL_LIST_EMPTY(aug_implant_list)
 GLOBAL_LIST_EMPTY(aug_organ_list)
+
+GLOBAL_LIST_EMPTY(aug_type_list)

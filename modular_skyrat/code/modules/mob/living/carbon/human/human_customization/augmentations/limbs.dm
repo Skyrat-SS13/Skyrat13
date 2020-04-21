@@ -8,6 +8,7 @@
 /datum/augmentation/limb/chest/default
 	name = "Default"
 	desc = "Disable augmentations for chest."
+	id = "default"
 
 /************HEAD*************/
 /********************************/
@@ -19,6 +20,7 @@
 /datum/augmentation/limb/head/default
 	name = "Default"
 	desc = "Disable augmentations for head."
+	id = "default"
 
 /************LEFT ARM*************/
 /********************************/
@@ -30,6 +32,7 @@
 /datum/augmentation/limb/l_arm/default
 	name = "Default"
 	desc = "Disable augmentations for left arm."
+	id = "default"
 
 /datum/augmentation/limb/l_arm/prosthetic
 	name = "Prosthetic"
@@ -46,6 +49,7 @@
 /datum/augmentation/limb/l_leg/default
 	name = "Default"
 	desc = "Disable augmentations for left leg."
+	id = "default"
 
 /datum/augmentation/limb/l_leg/prosthetic
 	name = "Prosthetic"
@@ -62,6 +66,7 @@
 /datum/augmentation/limb/r_arm/default
 	name = "Default"
 	desc = "Disable augmentations for right arm."
+	id = "default"
 
 /datum/augmentation/limb/r_arm/prosthetic
 	name = "Prosthetic"
@@ -78,6 +83,7 @@
 /datum/augmentation/limb/r_leg/default
 	name = "Default"
 	desc = "Disable augmentations for right leg."
+	id = "default"
 
 /datum/augmentation/limb/r_leg/prosthetic
 	name = "Prosthetic"

@@ -1,7 +1,7 @@
 /datum/augmentation
 	var/name = "Augmentation."
 	var/desc = "Basic augmentation, you are not supposed to see this. Report to admins."
-	var/id = "default"
+	var/id = 0
 	var/cat_id = "cat"
 	var/type_id = "none"
 	var/cost = 0
@@ -15,7 +15,7 @@
 	return
 
 /datum/augmentation/limb
-	type_id = "limb"
+	type_id = AUG_TYPE_LIMB
 	var/obj/item/bodypart/limb_type
 
 /datum/augmentation/limb/apply_to_mob(mob)
@@ -30,7 +30,7 @@
 		H.regenerate_icons()
 
 /datum/augmentation/implant
-	type_id = "implant"
+	type_id = AUG_TYPE_IMPLANT
 	var/obj/item/organ/implant_type
 
 /datum/augmentation/implant/apply_to_mob(mob)
@@ -40,7 +40,7 @@
 		org.Insert(H)
 
 /datum/augmentation/organ
-	type_id = "organ"
+	type_id = AUG_TYPE_ORGAN
 	var/obj/item/organ/organ_type
 
 /datum/augmentation/organ/apply_to_mob(mob)

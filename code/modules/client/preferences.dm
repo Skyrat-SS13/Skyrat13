@@ -2660,6 +2660,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			attribute_modifiers[att] += amount
 			attribute_points -= amount
 
+			/*for(var/i in GLOB.aug_type_list)
+				var/datum/aug_type/autype = GLOB.aug_type_list[i]
+				message_admins("[autype.name]")
+
+				for(var/b in autype.cat_list)
+					var/datum/aug_category/aucat = autype.cat_list[b]
+					message_admins("[aucat.name]")
+
+					for(var/c in aucat.aug_list)
+						message_admins("[c]")
+						var/datum/augmentation/auggg = aucat.aug_list[c]
+						message_admins("[auggg.name]")*/
+
 	switch(href_list["switch_tab"])
 		if("att_tab")
 			att_tab = text2num(href_list["tab"])

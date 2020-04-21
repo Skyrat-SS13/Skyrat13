@@ -3519,6 +3519,7 @@
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human_customization\datum_skill_categories.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human_customization\datum_skills.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human_customization\augmentations\datum_aug_categories.dm"
+#include "modular_skyrat\code\modules\mob\living\carbon\human\human_customization\augmentations\datum_aug_types.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human_customization\augmentations\datum_augmentations.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human_customization\augmentations\implants.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human_customization\augmentations\limbs.dm"

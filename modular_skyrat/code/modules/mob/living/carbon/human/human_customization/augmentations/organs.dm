@@ -8,6 +8,7 @@
 /datum/augmentation/organ/stomach/default
 	name = "Default"
 	desc = "Default stomach."
+	id = "default"
 
 /************LUNGS*************/
 /********************************/
@@ -19,6 +20,7 @@
 /datum/augmentation/organ/lungs/default
 	name = "Default"
 	desc = "Default lungs."
+	id = "default"
 
 /************EYES*************/
 /********************************/
@@ -30,6 +32,7 @@
 /datum/augmentation/organ/eyes/default
 	name = "Default"
 	desc = "Disable augmentations for eyes."
+	id = "default"
 
 /************HEART*************/
 /********************************/
@@ -41,6 +44,7 @@
 /datum/augmentation/organ/heart/default
 	name = "Default"
 	desc = "Default heart."
+	id = "default"
 
 /************LIVER*************/
 /********************************/
@@ -52,6 +56,7 @@
 /datum/augmentation/organ/liver/default
 	name = "Default"
 	desc = "Default liver."
+	id = "default"
 
 /************TONGUE*************/
 /********************************/
@@ -63,3 +68,14 @@
 /datum/augmentation/organ/tongue/default
 	name = "Default"
 	desc = "Default tongue."
+	id = "default"
+
+/datum/augmentation/organ/tongue/robo
+	name = "Positronic Voicebox"
+	desc = "Robotic device integrated with your vocal cords, will not help if you're mute."
+	id = "robo"
+
+/datum/augmentation/organ/tongue/forked
+	name = "Forked Tongue"
+	desc = "A forked tongue, alike to those of reptilians, will give you a hissing accent."
+	id = "forked"

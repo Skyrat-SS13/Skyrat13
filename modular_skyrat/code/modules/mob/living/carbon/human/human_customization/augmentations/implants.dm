@@ -8,6 +8,7 @@
 /datum/augmentation/implant/brain/none
 	name = "None"
 	desc = "Disable implants for brain."
+	id = "default"
 
 /************CHEST*************/
 /********************************/
@@ -19,6 +20,7 @@
 /datum/augmentation/implant/chest/none
 	name = "None"
 	desc = "Disable implants for chest."
+	id = "default"
 
 /************EYES*************/
 /********************************/
@@ -30,6 +32,7 @@
 /datum/augmentation/implant/eyes/none
 	name = "None"
 	desc = "Disable augmentations for head."
+	id = "default"
 
 /************LEFT ARM*************/
 /********************************/
@@ -41,6 +44,7 @@
 /datum/augmentation/implant/l_arm/none
 	name = "None"
 	desc = "Disable implants for left arm."
+	id = "default"
 
 /************MOUTH*************/
 /********************************/
@@ -52,6 +56,7 @@
 /datum/augmentation/implant/mouth/none
 	name = "None"
 	desc = "Disable augmentations for mouth."
+	id = "default"
 
 /************RIGHT ARM*************/
 /********************************/
@@ -63,3 +68,4 @@
 /datum/augmentation/implant/r_arm/none
 	name = "None"
 	desc = "Disable implants for right arm."
+	id = "default"
