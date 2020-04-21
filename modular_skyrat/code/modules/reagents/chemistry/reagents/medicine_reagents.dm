@@ -134,7 +134,7 @@
 // TIER 2
 
 /datum/reagent/medicine/bicaridineplus
-	name = "Bicaridine+"
+	name = "BicaridinePlus"
 	description = "Restores bruising. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#fc2626"
@@ -152,7 +152,7 @@
 	. = 1
 
 /datum/reagent/medicine/kelotaneplus
-	name = "Kelotane+"
+	name = "KelotanePlus"
 	description = "Restores fire damage. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#ffc400"
@@ -170,7 +170,7 @@
 	. = 1
 
 /datum/reagent/medicine/antitoxinplus
-	name = "Anti-Toxin+"
+	name = "Anti-ToxinPlus"
 	description = "Heals toxin damage and removes toxins in the bloodstream. Overdose causes toxin damage."
 	reagent_state = LIQUID
 	color = "#6aff00"
@@ -191,7 +191,7 @@
 	. = 1
 
 /datum/reagent/medicine/tricordrazineplus
-	name = "Tricordrazine+"
+	name = "TricordrazinePlus"
 	description = "Has a high chance to heal all types of damage. Overdose instead causes it."
 	reagent_state = LIQUID
 	color = "#e650c0"
@@ -218,7 +218,7 @@
 // TRANSITIONING MEDICINE
 
 /datum/reagent/medicine/tbasic
-	name = "T-Basic"
+	name = "TBasic"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
@@ -243,7 +243,7 @@
 	. = 1
 
 /datum/reagent/medicine/tbrute
-	name = "T-Brute"
+	name = "TBrute"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
@@ -260,7 +260,7 @@
 	..()
 
 /datum/reagent/medicine/tburn
-	name = "T-Burn"
+	name = "TBurn"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
@@ -277,7 +277,7 @@
 	..()
 
 /datum/reagent/medicine/ttoxic
-	name = "T-Toxic"
+	name = "TToxic"
 	description = "Medicine that is used to create higher forms of individual medicine. Do not consume."
 	reagent_state = LIQUID
 	color = "#808080"
@@ -296,7 +296,7 @@
 // TIER 3
 
 /datum/reagent/medicine/bicaridineplusplus
-	name = "Bicaridine++"
+	name = "BicaridinePlusPlus"
 	description = "Restores bruising. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#fc2626"
@@ -314,7 +314,7 @@
 	. = 1
 
 /datum/reagent/medicine/kelotaneplusplus
-	name = "Kelotane++"
+	name = "KelotanePlusPlus"
 	description = "Restores fire damage. Overdose causes it instead."
 	reagent_state = LIQUID
 	color = "#ffc400"
@@ -332,7 +332,7 @@
 	. = 1
 
 /datum/reagent/medicine/antitoxinplusplus
-	name = "Anti-Toxin++"
+	name = "Anti-ToxinPlusPlus"
 	description = "Heals toxin damage and removes toxins in the bloodstream. Overdose causes toxin damage."
 	reagent_state = LIQUID
 	color = "#6aff00"
@@ -353,7 +353,7 @@
 	. = 1
 
 /datum/reagent/medicine/tricordrazineplusplus
-	name = "Tricordrazine++"
+	name = "TricordrazinePlusPlus"
 	description = "Has a high chance to heal all types of damage. Overdose instead causes it."
 	reagent_state = LIQUID
 	color = "#e650c0"
