@@ -8,10 +8,20 @@
 	icon_state = "stalks"
 	item_state = "stalks"
 
-/obj/item/toy/plush/sergal/jermaine
+/obj/item/toy/plush/lizardplushie/xil
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
-	icon_state = "jermaine"
-	item_state = "jermaine"
+	icon_state = "xil"
+	item_state = "xil"
+
+/obj/item/toy/plush/lizardplushie/emily
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "emily"
+	item_state = "emily"
+
+/obj/item/toy/plush/sergal/jadek
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "jadek"
+	item_state = "jadek"
 
 /obj/item/toy/plush/sergal/ray
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
@@ -34,6 +44,16 @@
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "odrew"
 	item_state = "odrew"
+
+/obj/item/toy/plush/mammal/trace
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "trace"
+	item_state = "trace"
+
+/obj/item/toy/plush/mammal/monika
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "monika"
+	item_state = "monika"
 
 /obj/item/toy/plush/mammal/reece
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
