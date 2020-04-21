@@ -2,7 +2,8 @@
 	name = "Berserk"
 	id = MARTIALART_BERSERK
 	allow_temp_override = TRUE
-	var/duration = 600
+	var/duration = 1200
+
 /datum/martial_art/berserk/badmin
 	name = "Badmin Berserk"
 	duration = 288000 //literally eight fucking hours
