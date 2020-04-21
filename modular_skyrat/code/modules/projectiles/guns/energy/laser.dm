@@ -125,7 +125,7 @@
 	variance = 2
 
 /obj/item/projectile/beam/laser/makeshiftlasrifle
-	damage = 20
+	damage = 15
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak
 	e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
@@ -145,15 +145,17 @@
 
 /obj/item/projectile/beam/laser/makeshiftlasrifle/medium
 	name = "medium laser"
-	damage = 12.5
+	damage = 10
 
+/* No thank... You get 1 cell to place in make it count...
 /obj/item/gun/energy/laser/makeshiftlasrifle/AltClick(mob/living/carbon/user)
 	..()
 	playsound(user, 'sound/items/Screwdriver.ogg', 35)
 	var/obj/item/stock_parts/cell/thecell = cell
 	thecell.forceMove(user.loc)
 	user.put_in_l_hand(thecell)
-	cell = null
+	cell = null 
+*/
 
 /obj/item/gun/energy/laser/makeshiftlasrifle/attackby(obj/item/I, mob/user, params)
 	..()
