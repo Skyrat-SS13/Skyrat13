@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "null rod selection is a radial now, thanks to Arkatos over at TG"
