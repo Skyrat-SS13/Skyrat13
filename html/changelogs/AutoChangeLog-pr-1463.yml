@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Miner's salve patches on the mining vend."
+  - tweak: "Mining suits can now hold plasma cutters."
