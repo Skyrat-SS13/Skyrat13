@@ -259,7 +259,7 @@
 	item_state = "hardsuit-powerarmor-1"
 	slowdown = -0.05
 	clothing_flags = THICKMATERIAL //Not spaceproof. No, it isn't Spaceproof in Rimworld either.
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine.
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine. //I was asked to buff this again. Here, fine.
 	resistance_flags = ACID_PROOF
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
 
@@ -308,35 +308,39 @@
 /obj/item/clothing/head/helmet/space/hardsuit/rd/hev
 	name = "HEV Suit Mark IV helmet"
 	desc = "A Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers."
-	icon_state = "hardsuit0-hev1"
+	icon_state = "hardsuit0-hev2"
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
-	hardsuit_type = "hev1"
+	hardsuit_type = "hev2"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-	armor = list("melee" = 30, "bullet" = 15, "laser" = 20, "energy" = 30, "bomb" = 100, "bio" = 100, "rad" = 75, "fire" = 75, "acid" = 80)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 30, "energy" = 35, "bomb" = 25, "bio" = 100, "rad" = 70, "fire" = 70, "acid" = 75)
 	var/explosion_detection_dist = 21
 	var/scan_reagents = TRUE
 	var/currentcolor = "E37B3B"
 	actions_types = list(/datum/action/item_action/toggle_research_scanner)
 	mutantrace_variation = STYLE_MUZZLE
 
+/obj/item/clothing/head/helmet/space/hardsuit/rd/hev/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/clothing/head/helmet/space/hardsuit/rd/hev/update_overlays()
 	. = ..()
-	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hardsuit0-hev2")
-	if(icon_state == "hardsuit1-hev1")
-		glass_overlay = mutable_appearance(icon, "hardsuit1-hev2")
-	glass_overlay.appearance_flags = RESET_COLOR
-	glass_overlay.color = currentcolor
-	. += glass_overlay
+	var/mutable_appearance/theoverlay = mutable_appearance(icon, "hardsuit0-hev1")
+	if(icon_state == "hardsuit1-hev2")
+		theoverlay = mutable_appearance(icon, "hardsuit1-hev1")
+	theoverlay.appearance_flags = RESET_COLOR
+	theoverlay.color = currentcolor
+	. += theoverlay
 
 /obj/item/clothing/head/helmet/space/hardsuit/rd/hev/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit0-hev2")
-		if(icon_state == "hardsuit1-hev1")
-			M = mutable_appearance(icon_file, "hardsuit1-hev2")
+		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit0-hev1")
+		if(icon_state == "hardsuit1-hev2")
+			M = mutable_appearance(icon_file, "hardsuit1-hev1")
 		M.appearance_flags = RESET_COLOR
 		M.color = currentcolor
 		. += M
@@ -361,7 +365,7 @@
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT //Same as an emergency firesuit. Not ideal for extended exposure.
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/gun/energy/wormhole_projector,
 	/obj/item/hand_tele, /obj/item/aicard)
-	armor = list("melee" = 30, "bullet" = 15, "laser" = 20, "energy" = 30, "bomb" = 100, "bio" = 100, "rad" = 75, "fire" = 75, "acid" = 80)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 100, "rad" = 70, "fire" = 70, "acid" = 75)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rd/hev
 	slowdown = 0
 	var/currentcolor = "E37B3B"
