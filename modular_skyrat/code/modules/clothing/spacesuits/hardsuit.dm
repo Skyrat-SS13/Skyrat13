@@ -312,6 +312,7 @@
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	hardsuit_type = "hev1"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	armor = list("melee" = 30, "bullet" = 15, "laser" = 20, "energy" = 30, "bomb" = 100, "bio" = 100, "rad" = 75, "fire" = 75, "acid" = 80)
@@ -329,6 +330,7 @@
 	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hardsuit0-hev2")
 	if(icon_state == "hardsuit1-hev1")
 		glass_overlay = mutable_appearance(icon, "hardsuit1-hev2")
+	glass_overlay.appearance_flags = RESET_COLOR
 	glass_overlay.color = currentcolor
 	. += glass_overlay
 
@@ -338,6 +340,7 @@
 		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit0-hev2")
 		if(icon_state == "hardsuit1-hev1")
 			M = mutable_appearance(icon_file, "hardsuit1-hev2")
+		M.appearance_flags = RESET_COLOR
 		M.color = currentcolor
 		. += M
 
@@ -345,7 +348,7 @@
 	if(user.stat == CONSCIOUS)
 		var/newcolor = input(user, "Choose your suit color", "Suit Color", "[currentcolor]") as color|null
 		if(newcolor != null)
-			currentcolor = ("#" + newcolor)
+			currentcolor = newcolor
 			update_icon()
 		else
 			return
@@ -384,7 +387,7 @@
 	if(user.stat == CONSCIOUS)
 		var/newcolor = input(user, "Choose your suit color", "Suit Color", "[currentcolor]") as color|null
 		if(newcolor != null)
-			currentcolor = ("#" + newcolor)
+			currentcolor = newcolor
 			update_icon()
 		else
 			return
@@ -392,6 +395,7 @@
 /obj/item/clothing/suit/space/hardsuit/rd/hev/update_overlays()
 	. = ..()
 	var/mutable_appearance/color_overlay = mutable_appearance(icon, "hardsuit-hev2")
+	color_overlay.appearance_flags = RESET_COLOR
 	color_overlay.color = currentcolor
 	. += color_overlay
 
@@ -399,6 +403,7 @@
 	. = ..()
 	if(!isinhands)
 		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit-hev2")
+		M.appearance_flags = RESET_COLOR
 		M.color = currentcolor
 		. += M
 
@@ -477,7 +482,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/rd/hev/dropped(mob/user, slot)
 	. = ..()
-	if(ishuman(user))
+	if(ishuman(user) && slot != ITEM_SLOT_HANDS)
 		playsound(user, 'modular_skyrat/sound/halflife/deactivated.wav', 50, 0)
 		freeman = null
 		flatlined = FALSE
