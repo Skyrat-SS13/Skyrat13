@@ -249,7 +249,7 @@
 	//SKYRAT EDIT
 	var/turf/areaposition = get_area(src)
 	if(istype(areaposition, /area/maintenance))
-		message = Gibberish(message,100)
+		message = Gibberish(message,50)
 
 	// Determine the identity information which will be attached to the signal.
 	var/atom/movable/virtualspeaker/speaker = new(null, M, src)
