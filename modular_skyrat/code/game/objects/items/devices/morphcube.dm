@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 
 /obj/item/morphcube/attack_self(mob/user)
 	if(grants > 0)
-		uses--
+		grants--
 		var/obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/spell = new /obj/effect/proc_holder/spell/targeted/shapeshift/morphcube()
 		user.mind.AddSpell(spell)
 		spell.owner = user.mind
