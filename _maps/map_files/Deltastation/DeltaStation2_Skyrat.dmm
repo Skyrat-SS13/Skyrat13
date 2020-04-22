@@ -33807,19 +33807,11 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bll" = (
-/obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/door/window/eastleft{
-	dir = 8;
-	name = "Hydroponics Desk";
-	req_access_txt = "35"
-	},
-/obj/item/storage/bag/plants/portaseeder,
-/obj/machinery/door/window/eastright,
-/obj/effect/turf_decal/delivery,
+/obj/machinery/biogenerator,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "blm" = (
@@ -35716,17 +35708,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"boz" = (
-/obj/machinery/biogenerator,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/hydroponics)
-"boA" = (
-/obj/machinery/seed_extractor,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "boB" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
@@ -36998,14 +36979,10 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bqA" = (
-/obj/machinery/seed_extractor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bqB" = (
-/obj/machinery/biogenerator,
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bqC" = (
@@ -38212,6 +38189,8 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/biogenerator,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bsz" = (
@@ -40912,6 +40891,7 @@
 /obj/structure/sign/poster/official/ian{
 	pixel_y = -32
 	},
+/obj/item/storage/bag/plants/portaseeder,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bwR" = (
@@ -124926,6 +124906,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"epx" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/seed_extractor,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "eqc" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
@@ -162513,7 +162508,7 @@ bhB
 bjs
 blg
 bni
-boz
+bqA
 bqA
 bsy
 buk
@@ -162770,9 +162765,9 @@ bhC
 bjt
 blh
 bnj
-boA
 bqB
-bnj
+bqB
+epx
 bul
 bvB
 bwP
