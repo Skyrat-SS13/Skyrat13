@@ -1,5 +1,4 @@
 /obj/item/gun/energy/plasmacutter
-	charge_delay = 8
 	sharpness = IS_SHARP_ACCURATE //can't sharpen, just to be sure.
 	toolspeed = 0.75 //plasmacutters can be used as welders, and are 25% faster than standard welders
 
@@ -12,5 +11,4 @@
 	return FALSE
 
 /obj/item/gun/energy/plasmacutter/adv
-	charge_delay = 5
 	force = 14 //does not outclass survival knives
