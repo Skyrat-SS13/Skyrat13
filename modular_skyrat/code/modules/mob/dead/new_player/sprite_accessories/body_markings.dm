@@ -17,3 +17,9 @@
 	name = "Sloth"
 	icon_state = "sloth"
 	icon = 'modular_skyrat/icons/mob/skyrat_markings.dmi'
+
+/datum/sprite_accessory/body_markings/colorbelly
+	name = "Coloured Belly"
+	color_src = MATRIXED
+	icon_state = "colorbelly"
+	icon = 'modular_skyrat/icons/mob/skyrat_markings.dmi'

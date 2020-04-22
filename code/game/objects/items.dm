@@ -7,7 +7,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items_and_weapons.dmi'
-	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	//blocks_emissive = EMISSIVE_BLOCK_GENERIC // Skyrat edit -- 512 compatibility
 
 	///icon state name for inhand overlays
 	var/item_state = null
@@ -19,8 +19,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	///Icon file for mob worn overlays.
 	///no var for state because it should *always* be the same as icon_state
 	var/icon/mob_overlay_icon
-	//Forced mob worn layer instead of the standard preferred ssize.
+	//Forced mob worn layer instead of the standard preferred size.
 	var/alternate_worn_layer
+
+	var/icon/anthro_mob_worn_overlay //Version of the above dedicated to muzzles/digitigrade
+	var/icon/taur_mob_worn_overlay // Idem but for taurs. Currently only used by suits.
 
 	var/list/alternate_screams = list() //REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 

@@ -19,7 +19,7 @@
 /obj/item/gun/ballistic/automatic/pistol/uspm
 	name = "USP 9mm"
 	desc = "USP - Universal Self Protection. A standard-issued security handgun, chambered in 9mm, refitted to be only capable of firing non-lethal rounds."
-	icon = 'modular_skyrat/icons/obj/guns/usp.dmi'
+	icon = 'modular_skyrat/icons/obj/guns/projectile.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_state = "usp-m"

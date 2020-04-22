@@ -29,10 +29,25 @@
 	design_ids = list("telepad", "telesci_console")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 9000)
 
+/datum/techweb_node/powerarmor
+	id = "powerarmor"
+	display_name = "Full Body Exoskeleton"
+	description = "Utilizing fluctuations in bluespace crystals, we can draw small amounts of energy to create self-powered body enhancing suits."
+	prereq_ids = list("adv_biotech", "adv_bluespace", "adv_robotics")
+	design_ids = list("powerarmor_skeleton","powerarmor_torso","powerarmor_helmet","powerarmor_armR","powerarmor_armL","powerarmor_legR","powerarmor_legL")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+
 /datum/techweb_node/ai/New()
 	design_ids += "father_module"
+	design_ids += "ranger_module"
+	design_ids += "mallcop_module"
+	design_ids += "godcomplex_module"
 	. = ..()
 
 /datum/techweb_node/botany/New()
 	design_ids += "prisonerbiogenerator"
+	. = ..()
+
+/datum/techweb_node/syndicate_basic/New()
+	design_ids += "armblade"
 	. = ..()
