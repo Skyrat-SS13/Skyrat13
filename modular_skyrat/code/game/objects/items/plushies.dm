@@ -55,10 +55,16 @@
 	icon_state = "odrew"
 	item_state = "odrew"
 
-/obj/item/toy/plush/mammal/kato
+/obj/item/toy/plush/mammal/michael
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
-	icon_state = "kato"
-	item_state = "kato"
+	icon_state = "michael"
+	item_state = "michael"
+
+/obj/item/toy/plush/mammal/cinder
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "cinder"
+	item_state = "cinder"
+	attack_verb = list("PRed", "mapped", "gitbashed")
 
 /obj/item/toy/plush/mammal/taff
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
