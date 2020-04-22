@@ -8,20 +8,10 @@
 	icon_state = "stalks"
 	item_state = "stalks"
 
-/obj/item/toy/plush/lizardplushie/xil
+/obj/item/toy/plush/sergal/jermaine
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
-	icon_state = "xil"
-	item_state = "xil"
-
-/obj/item/toy/plush/lizardplushie/emily
-	icon = 'modular_skyrat/icons/obj/plushies.dmi'
-	icon_state = "emily"
-	item_state = "emily"
-
-/obj/item/toy/plush/sergal/jadek
-	icon = 'modular_skyrat/icons/obj/plushies.dmi'
-	icon_state = "jadek"
-	item_state = "jadek"
+	icon_state = "jermaine"
+	item_state = "jermaine"
 
 /obj/item/toy/plush/sergal/ray
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
@@ -44,24 +34,6 @@
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "odrew"
 	item_state = "odrew"
-
-/obj/item/toy/plush/mammal/odrew/gorelord
-	icon = 'modular_skyrat/icons/obj/plushies.dmi'
-	icon_state = "gorelord-drew"
-	item_state = "gorelord-drew"
-	desc = "An adorable stuffed toy resembling some sort of crew member that has been stained with blood."
-	attack_verb = list("Gored", "Stabbed", "Gutted")
-	squeak_override = list('sound/weapons/slashmiss.ogg' = 1)
-
-/obj/item/toy/plush/mammal/trace
-	icon = 'modular_skyrat/icons/obj/plushies.dmi'
-	icon_state = "trace"
-	item_state = "trace"
-
-/obj/item/toy/plush/mammal/monika
-	icon = 'modular_skyrat/icons/obj/plushies.dmi'
-	icon_state = "monika"
-	item_state = "monika"
 
 /obj/item/toy/plush/mammal/reece
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
