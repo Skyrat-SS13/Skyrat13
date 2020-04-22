@@ -1,4 +1,8 @@
-GLOB.blacklistedmorphcubemobs = typesof(/mob/living/simple_animal/hostile/boss) + typesof(/mob/living/carbon) + typesof(/mob/living/simple_animal/hostile/asteroid/elite) + typesof(/mob/living/simple_animal/hostile/boss) + typesof(/mob/living/silicon) + typesof(/mob/dead)
+GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
+										/mob/living/simple_animal/hostile/boss,\
+										/mob/living/carbon, /mob/living/simple_animal/hostile/asteroid/elite,\
+										/mob/living/simple_animal/hostile/boss, /mob/living/silicon,\
+										/mob/dead)))
 
 /obj/item/morphcube
 	name = "strange cube"
@@ -28,7 +32,7 @@ GLOB.blacklistedmorphcubemobs = typesof(/mob/living/simple_animal/hostile/boss) 
 /obj/item/morphcube/attack(mob/living/target, mob/living/carbon/human/user)
 	if(ourspell && user.mind == ourspell.owner)
 		for(var/M in GLOB.blacklistedmorphcubemobs)
-			if(istype(target, M))
+			if(target.type == M)
 				to_chat(user, "<span class='danger'>The target is too complex to be scanned.</span>")
 				return FALSE
 		for(var/mob/living/delete in src)
@@ -41,7 +45,7 @@ GLOB.blacklistedmorphcubemobs = typesof(/mob/living/simple_animal/hostile/boss) 
 		ourmob = targettype
 	else if(user.mind)
 		for(var/M in GLOB.blacklistedmorphcubemobs)
-			if(istype(target, M))
+			if(target.type == M))
 				to_chat(user, "<span class='danger'>The target is too complex to be scanned.</span>")
 				return FALSE
 		for(var/mob/living/delete in src)
