@@ -1,25 +1,15 @@
+GLOB.blacklistedmorphcubemobs = typesof(/mob/living/simple_animal/hostile/boss) + typesof(/mob/living/carbon) + typesof(/mob/living/simple_animal/hostile/asteroid/elite) + typesof(/mob/living/simple_animal/hostile/boss) + typesof(/mob/living/silicon) + typesof(/mob/dead)
+
 /obj/item/morphcube
 	name = "strange cube"
 	desc = "It has a small red button hidden on it."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain"
 	var/uses = 1
-	var/list/blacklistedmobs = list()
 	var/mob/living/ourmob = /mob/living/simple_animal/mouse
 	var/mob/living/targettype
 	var/obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/ourspell
 	var/list/cubelist = list()
-
-/obj/item/morphcube/Initialize()
-	. = ..()
-	for(var/NO in typesof(/mob/living/simple_animal/hostile/megafauna))
-		blacklistedmobs += NO
-	for(var/NO in typesof(/mob/living/carbon))
-		blacklistedmobs += NO
-	for(var/NO in typesof(/mob/living/simple_animal/hostile/asteroid/elite))
-		blacklistedmobs += NO
-	for(var/NO in typesof(/mob/living/simple_animal/hostile/boss))
-		blacklistedmobs += NO
 
 /obj/item/morphcube/attack_self(mob/user)
 	if(uses > 0)
@@ -37,7 +27,7 @@
 
 /obj/item/morphcube/attack(mob/living/target, mob/living/carbon/human/user)
 	if(ourspell && user.mind == ourspell.owner)
-		for(var/M in blacklistedmobs)
+		for(var/M in GLOB.blacklistedmorphcubemobs)
 			if(istype(target, M))
 				to_chat(user, "<span class='danger'>The target is too complex to be scanned.</span>")
 				return FALSE
@@ -50,7 +40,7 @@
 		ourspell.shapeshift_type = targettype
 		ourmob = targettype
 	else if(user.mind)
-		for(var/M in blacklistedmobs)
+		for(var/M in GLOB.blacklistedmorphcubemobs)
 			if(istype(target, M))
 				to_chat(user, "<span class='danger'>The target is too complex to be scanned.</span>")
 				return FALSE
