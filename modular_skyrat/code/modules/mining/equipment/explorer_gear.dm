@@ -43,7 +43,7 @@
 	"Old" = "seva",
 	"Improved" = "seva_mask"
 	)
-	flags_inv = NULL
+	flags_inv = 0
 	mutantrace_variation = STYLE_MUZZLE
 
 //exosuit shit
@@ -79,9 +79,12 @@
 	"Old" = "exo",
 	"Improved" = "exo_mask"
 	)
-	flags_inv = NULL
+	flags_inv = 0
 	mutantrace_variation = STYLE_MUZZLE
 
 //explorer suit etc etc
 /obj/item/clothing/head/hooded/explorer
 	flags_inv = HIDEEARS
+
+/obj/item/clothing/mask/gas/explorer
+	flags_inv = 0
