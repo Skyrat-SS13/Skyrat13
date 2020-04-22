@@ -239,9 +239,9 @@
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
-	"Solfed Contractor" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	"Green" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	"Solfed Contractor" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
 	unique_reskin_stored = list(
 	"Default" = "beret_badge",
