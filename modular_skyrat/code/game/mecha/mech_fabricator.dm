@@ -4,6 +4,7 @@
 					"Ripley",
 					"Firefighter",
 					"Clarke",
+					"Killdozer",
 					"Odysseus",
 					"Gygax",
 					"Durand",

@@ -1,3 +1,4 @@
+/* Entire file disabled to favor skyrat maint loot.
 //How to balance this table
 //-------------------------
 //The total added weight of all the entries should be (roughly) equal to the total number of lootdrops
@@ -121,3 +122,5 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/clothing/gloves/tackler/offbrand = 1,
 	"" = 3
 	))
+
+*/
