@@ -4,6 +4,7 @@
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "goatpelt"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	item_state = "goatpelt"
 
 /obj/item/clothing/head/goatpelt/king
@@ -31,6 +32,7 @@
 	name = "goat pope hat"
 	desc = "And on the seventh day King Goat said there will be cabbage!"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/large-worn-icons/64x64/head.dmi'
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	icon_state = "goatpope"
 	item_state = "goatpope"
 	worn_x_dimension = 64
@@ -50,6 +52,7 @@
 /obj/item/clothing/head/assu_helmet
 	desc = "A cheap replica of a helmet. It has \"D.A.B.\" written on the front. Doesn't help against stun batons to the head."
 	armor = list("melee" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 1, "bio" = 1, "rad" = 1, "fire" = 1, "acid" = 1)
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Bluetide" = 'modular_skyrat/icons/obj/clothing/hats.dmi',

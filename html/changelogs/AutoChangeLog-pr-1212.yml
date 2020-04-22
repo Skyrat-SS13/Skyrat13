@@ -1,0 +1,4 @@
+author: "Commandersand"
+delete-after: True
+changes: 
+  - balance: "powersinks need a lot less power to blow up now and drain 1MW  down from 1.6"

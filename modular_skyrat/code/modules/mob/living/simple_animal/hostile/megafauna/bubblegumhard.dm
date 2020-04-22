@@ -339,7 +339,7 @@ obj/item/gps/internal/bubblegum/hard
 /obj/effect/decal/cleanable/blood/gibs/bubblegumhard/can_bloodcrawl_in()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/do_attack_animation(atom/A, visual_effect_icon)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
 	if(!charging)
 		..()
 
@@ -475,30 +475,3 @@ obj/item/gps/internal/bubblegum/hard
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/hallucination/try_bloodattack()
 	return
-
-//special praetor drop
-/obj/item/clothing/suit/space/hardsuit/deathsquad/praetor
-	name = "Praetor Suit"
-	desc = "And those that tasted the bite of his sword named him... The Doom Slayer."
-	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
-	strip_delay = 130
-	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
-	icon_state = "praetor"
-	hardsuit_type = "praetor"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	mob_overlay_icon_digi = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
-	item_state = "praetor"
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
-	slowdown = 0
-
-/obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
-	name = "Praetor Suit helmet"
-	desc = "That's one doomed space marine."
-	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
-	strip_delay = 130
-	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	icon_state = "praetor"
-	hardsuit_type = "praetor"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	mob_overlay_icon_muzzled = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
-	item_state = "praetor"

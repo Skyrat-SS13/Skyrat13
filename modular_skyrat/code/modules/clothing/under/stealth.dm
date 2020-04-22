@@ -1,9 +1,9 @@
 /obj/item/clothing/under/syndicate/stealthsuit
 	name = "MK.III Tactical Stealth Suit"
 	desc = "A suspicious looking, tight-fitting suit that can make you invisible under the right conditions. Has a MI13 insignia blazoned upon it's forearm."
-	icon = 'modular_skyrat/icons/obj/clothing/stealthsuit.dmi'
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	mob_overlay_icon_digi = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "stealth"
 	item_state = "stealth"
 	has_sensor = NO_SENSORS
@@ -13,6 +13,7 @@
 	var/effectapplied = /datum/status_effect/stealthsuit
 	var/activated = FALSE
 	actions_types = list(/datum/action/item_action/activatestealth)
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /datum/action/item_action/activatestealth
 	name = "Activate"

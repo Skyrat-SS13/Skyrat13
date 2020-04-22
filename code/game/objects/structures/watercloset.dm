@@ -121,6 +121,9 @@
 	for(var/obj/item/I in contents)
 		w_items += I.w_class
 
+/obj/structure/toilet/secret/prison
+	secret_type = /obj/effect/spawner/lootdrop/prison_loot_toilet
+
 /obj/structure/toilet/secret/low_loot
 	secret_type = /obj/effect/spawner/lootdrop/low_loot_toilet
 

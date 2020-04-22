@@ -11,6 +11,7 @@
 		WAROPS_ALWAYS_ALLOWED: Can always do warops, regardless of threat level.
 		USE_PREF_WEIGHTS: Will use peoples' preferences to change the threat centre.
 		FORCE_IF_WON: If this mode won the vote, forces it
+		USE_PREV_ROUND_WEIGHTS: Changes its threat centre based on the average chaos of previous rounds. 
 	*/
 	var/flags = 0
 	var/dead_player_weight = 1 // How much dead players matter for threat calculation
@@ -92,6 +93,8 @@ Property weights are:
 							mean += 5
 			if(voters)
 				GLOB.dynamic_curve_centre += (mean/voters)
+		if(flags & USE_PREV_ROUND_WEIGHTS)
+			GLOB.dynamic_curve_centre += (50 - SSpersistence.average_dynamic_threat) / 10
 		GLOB.dynamic_forced_threat_level = forced_threat_level
 
 /datum/dynamic_storyteller/proc/get_midround_cooldown()
@@ -132,7 +135,7 @@ Property weights are:
 	var/list/drafted_rules = list()
 	for (var/datum/dynamic_ruleset/midround/rule in mode.midround_rules)
 		// if there are antags OR the rule is an antag rule, antag_acceptable will be true.
-		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level))
+		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level - mode.threat)) // Skyrat change
 			// Classic secret : only autotraitor/minor roles
 			if (GLOB.dynamic_classic_secret && !((rule.flags & TRAITOR_RULESET) || (rule.flags & MINOR_RULESET)))
 				continue
@@ -187,7 +190,7 @@ Property weights are:
 /datum/dynamic_storyteller/proc/event_draft()
 	var/list/drafted_rules = list()
 	for(var/datum/dynamic_ruleset/event/rule in mode.events)
-		if(rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level) && (mode.threat_level - mode.threat) >= rule.cost)
+		if(rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level - mode.threat)) // Skyrat change
 			if(rule.ready())
 				var/property_weight = 0
 				for(var/property in property_weights)
@@ -230,7 +233,7 @@ Property weights are:
 	curve_width = 1.5
 	weight = 2
 	min_players = 30
-	flags = WAROPS_ALWAYS_ALLOWED
+	flags = WAROPS_ALWAYS_ALLOWED | USE_PREV_ROUND_WEIGHTS
 	property_weights = list("valid" = 3, "trust" = 5)
 
 /datum/dynamic_storyteller/team/get_injection_chance(dry_run = FALSE)
@@ -268,9 +271,6 @@ Property weights are:
 /datum/dynamic_storyteller/random/get_injection_chance()
 	return 50 // i would do rand(0,100) but it's actually the same thing when you do the math
 
-/datum/dynamic_storyteller/random/calculate_threat()
-	return 0 // what IS threat
-
 /datum/dynamic_storyteller/random/roundstart_draft()
 	var/list/drafted_rules = list()
 	for (var/datum/dynamic_ruleset/roundstart/rule in mode.roundstart_rules)
@@ -284,7 +284,7 @@ Property weights are:
 /datum/dynamic_storyteller/random/midround_draft()
 	var/list/drafted_rules = list()
 	for (var/datum/dynamic_ruleset/midround/rule in mode.midround_rules)
-		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level))
+		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level - mode.threat)) // Skyrat change
 			// Classic secret : only autotraitor/minor roles
 			if (GLOB.dynamic_classic_secret && !((rule.flags & TRAITOR_RULESET) || (rule.flags & MINOR_RULESET)))
 				continue
@@ -296,7 +296,7 @@ Property weights are:
 /datum/dynamic_storyteller/random/latejoin_draft(mob/living/carbon/human/newPlayer)
 	var/list/drafted_rules = list()
 	for (var/datum/dynamic_ruleset/latejoin/rule in mode.latejoin_rules)
-		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level))
+		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level - mode.threat)) // Skyrat change
 			// Classic secret : only autotraitor/minor roles
 			if (GLOB.dynamic_classic_secret && !((rule.flags & TRAITOR_RULESET) || (rule.flags & MINOR_RULESET)))
 				continue
@@ -313,7 +313,7 @@ Property weights are:
 /datum/dynamic_storyteller/random/event_draft()
 	var/list/drafted_rules = list()
 	for(var/datum/dynamic_ruleset/event/rule in mode.events)
-		if(rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level))
+		if(rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level - mode.threat)) // Skyrat change
 			if(rule.ready())
 				drafted_rules[rule] = 1
 	return drafted_rules
@@ -324,6 +324,7 @@ Property weights are:
 	desc = "Antags with options for loadouts and gimmicks. Traitor, wizard, nukies. Has a buildup-climax-falling action threat curve."
 	weight = 2
 	curve_width = 2
+	flags = USE_PREV_ROUND_WEIGHTS
 	property_weights = list("story_potential" = 2)
 
 
@@ -336,7 +337,7 @@ Property weights are:
 	name = "Classic"
 	config_tag = "classic"
 	desc = "No special antagonist weights. Good variety, but not like random. Uses your chaos preference to weight."
-	flags = USE_PREF_WEIGHTS
+	flags = USE_PREF_WEIGHTS | USE_PREV_ROUND_WEIGHTS
 
 /datum/dynamic_storyteller/suspicion
 	name = "Intrigue"
@@ -345,6 +346,7 @@ Property weights are:
 	weight = 2
 	curve_width = 2
 	dead_player_weight = 2
+	flags = USE_PREV_ROUND_WEIGHTS
 	property_weights = list("trust" = -3)
 
 /datum/dynamic_storyteller/liteextended
