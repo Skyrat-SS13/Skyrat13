@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "nerfed upgraded microwaves' bonus reagents efficiency. This doesn't affect speed."
-  - bugfix: "fixed the logic that should have made higher tier microwaves less likely to be covered in muck from overuse and clown pranks."
