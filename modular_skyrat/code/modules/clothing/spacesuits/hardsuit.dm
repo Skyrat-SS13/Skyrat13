@@ -428,3 +428,7 @@
 		playsound(user, 'modular_skyrat/sound/halflife/deactivated.wav', 50, 0)
 		freeman = null
 		flatlined = FALSE
+
+//mineing suit for minecrafting
+/obj/item/clothing/head/helmet/space/hardsuit/mining
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/gun/energy/plasmacutter)
