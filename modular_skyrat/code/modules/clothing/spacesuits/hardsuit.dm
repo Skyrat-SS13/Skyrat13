@@ -322,9 +322,6 @@
 	actions_types = list(/datum/action/item_action/toggle_research_scanner)
 	mutantrace_variation = STYLE_MUZZLE
 
-/obj/item/clothing/head/helmet/space/hardsuit/rd/hev/Initialize()
-	update_icon()
-
 /obj/item/clothing/head/helmet/space/hardsuit/rd/hev/update_overlays()
 	. = ..()
 	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hardsuit0-hev2")
