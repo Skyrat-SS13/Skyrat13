@@ -308,7 +308,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/rd/hev
 	name = "HEV Suit Mark IV helmet"
 	desc = "A Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers. The flashlight seems broken, fitting considering this was made before the start of the milennium."
-	icon_state = "hev"
+	icon_state = "hardsuit0-hev1"
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
@@ -317,8 +317,38 @@
 	armor = list("melee" = 30, "bullet" = 15, "laser" = 20, "energy" = 30, "bomb" = 100, "bio" = 100, "rad" = 75, "fire" = 75, "acid" = 80)
 	var/explosion_detection_dist = 21
 	var/scan_reagents = TRUE
+	var/currentcolor = "E37B3B"
 	actions_types = list(/datum/action/item_action/toggle_research_scanner)
 	mutantrace_variation = STYLE_MUZZLE
+
+/obj/item/clothing/head/helmet/space/hardsuit/rd/hev/Initialize()
+	update_icon()
+
+/obj/item/clothing/head/helmet/space/hardsuit/rd/hev/update_overlays()
+	. = ..()
+	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hardsuit0-hev2")
+	if(icon_state == "hardsuit1-hev1")
+		glass_overlay = mutable_appearance(icon, "hardsuit1-hev2")
+	glass_overlay.color = currentcolor
+	. += glass_overlay
+
+/obj/item/clothing/head/helmet/space/hardsuit/rd/hev/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
+	. = ..()
+	if(!isinhands)
+		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit0-hev2")
+		if(icon_state == "hardsuit1-hev1")
+			M = mutable_appearance(icon_file, "hardsuit1-hev2")
+		M.color = currentcolor
+		. += M
+
+/obj/item/clothing/head/helmet/space/hardsuit/rd/hev/AltClick(mob/user)
+	if(user.stat == CONSCIOUS)
+		var/newcolor = input(user, "Choose your suit color", "Suit Color", "[currentcolor]") as color|null
+		if(newcolor != null)
+			currentcolor = ("#" + newcolor)
+			update_icon()
+		else
+			return
 
 /obj/item/clothing/suit/space/hardsuit/rd/hev
 	name = "HEV Suit Mark IV"
@@ -326,8 +356,7 @@
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
-	icon_state = "hev"
-	item_state = "hev"
+	icon_state = "hardsuit-hev1"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT //Same as an emergency firesuit. Not ideal for extended exposure.
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/gun/energy/wormhole_projector,
@@ -335,6 +364,7 @@
 	armor = list("melee" = 30, "bullet" = 15, "laser" = 20, "energy" = 30, "bomb" = 100, "bio" = 100, "rad" = 75, "fire" = 75, "acid" = 80)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rd/hev
 	slowdown = 0
+	var/currentcolor = "E37B3B"
 	var/heal_threshold = 5
 	var/injection_amount = 10
 	var/injection_cooldown_time = 1200 //2 minutes before injecting again
@@ -350,12 +380,35 @@
 	var/flatlined
 	mutantrace_variation = STYLE_DIGITIGRADE
 
+/obj/item/clothing/suit/space/hardsuit/rd/hev/AltClick(mob/user)
+	if(user.stat == CONSCIOUS)
+		var/newcolor = input(user, "Choose your suit color", "Suit Color", "[currentcolor]") as color|null
+		if(newcolor != null)
+			currentcolor = ("#" + newcolor)
+			update_icon()
+		else
+			return
+
+/obj/item/clothing/suit/space/hardsuit/rd/hev/update_overlays()
+	. = ..()
+	var/mutable_appearance/color_overlay = mutable_appearance(icon, "hardsuit-hev2")
+	color_overlay.color = currentcolor
+	. += color_overlay
+
+/obj/item/clothing/suit/space/hardsuit/rd/hev/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
+	. = ..()
+	if(!isinhands)
+		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit-hev2")
+		M.color = currentcolor
+		. += M
+
 /obj/item/clothing/suit/space/hardsuit/rd/hev/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj,src)
 	var/obj/item/reagent_containers/R = new beaker_type(src)
 	R.reagents.add_reagent(startingreagent, R.reagents.maximum_volume)
 	container = R
+	update_icon()
 
 /obj/item/clothing/suit/space/hardsuit/rd/hev/process()
 	if(freeman)
