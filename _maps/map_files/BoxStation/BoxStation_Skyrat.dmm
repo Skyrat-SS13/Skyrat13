@@ -17194,6 +17194,14 @@
 	pixel_x = 13;
 	pixel_y = 5
 	},
+/obj/item/book/manual/hydroponics_pod_people{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/paper/guides/jobs/hydroponics{
+	pixel_x = -5;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aLe" = (
@@ -20131,15 +20139,7 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aST" = (
-/obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people{
-	pixel_x = -4;
-	pixel_y = 5
-	},
-/obj/item/paper/guides/jobs/hydroponics{
-	pixel_x = -5;
-	pixel_y = 3
-	},
+/obj/machinery/chem_dispenser/upgradeablemutagen,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aSU" = (

@@ -46,6 +46,7 @@
 
 /datum/techweb_node/botany/New()
 	design_ids += "prisonerbiogenerator"
+	design_ids += "bot_chem_dis"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()

@@ -19399,6 +19399,10 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/obj/structure/table,
+/obj/machinery/plantgenes{
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aUW" = (
@@ -20810,12 +20814,9 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aXW" = (
-/obj/machinery/plantgenes{
-	pixel_y = 6
-	},
 /obj/structure/table,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/obj/machinery/smartfridge/disks{
+	pixel_y = 2
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -57034,10 +57035,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "kEW" = (
-/obj/machinery/smartfridge/disks{
-	pixel_y = 2
-	},
-/obj/structure/table,
+/obj/machinery/chem_dispenser/upgradeablemutagen,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "kFm" = (
@@ -91487,7 +91485,7 @@ aQJ
 aRL
 aSD
 aTT
-aXS
+aXW
 aRL
 aWR
 aXT
@@ -92261,7 +92259,7 @@ aTW
 aUW
 aRL
 kEW
-aXW
+aYO
 aXS
 aZX
 bbd

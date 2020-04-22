@@ -33812,6 +33812,11 @@
 	dir = 4
 	},
 /obj/machinery/biogenerator,
+/obj/machinery/door/window/eastleft{
+	dir = 8;
+	name = "Hydroponics Desk";
+	req_access_txt = "35"
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "blm" = (
@@ -38190,7 +38195,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/biogenerator,
+/obj/machinery/chem_dispenser/upgradeablemutagen,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bsz" = (
