@@ -418,14 +418,15 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 
 /datum/reagent/medicine/synthflesh
 	name = "Synthflesh"
-	description = "Has a 100% chance of healing large amounts of brute and burn damage very quickly. One unit of the chemical will heal one point of damage. Touch application only."
+	//description = "Has a 100% chance of healing large amounts of brute and burn damage very quickly. One unit of the chemical will heal one point of damage. Touch application only." Skyrat modular edit.
 	reagent_state = LIQUID
 	color = "#FFEBEB"
 	pH = 11.5
 	metabolization_rate = 5 * REAGENTS_METABOLISM
-	overdose_threshold = 40
+	//overdose_threshold = 40 Skyrat modular edit
 	value = 6
 
+/* SKYRAT MODULAR EDIT
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M))
 		if (M.stat == DEAD)
@@ -452,6 +453,7 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 
 /datum/reagent/medicine/synthflesh/overdose_start(mob/living/M)
 	metabolization_rate = 15 * REAGENTS_METABOLISM
+*/
 
 /datum/reagent/medicine/charcoal
 	name = "Charcoal"
