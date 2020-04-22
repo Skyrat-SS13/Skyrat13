@@ -1,0 +1,14 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - rscadd: "Changes layout of Xenobiology"
+  - rscadd: "Changes maintenance below Xenobiology"
+  - rscadd: "Adds a dorm room for Xenobiologists."
+  - rscadd: "Changes location of Experimentor Room."
+  - rscadd: "Changes location of Circuitry Room."
+  - rscadd: "Adds Nanites Room roundstart."
+  - rscadd: "Moves Heater/Cooler in Science to Toxins."
+  - rscadd: "Changes layout of Genetics, moved into Science."
+  - rscadd: "Adds an office in Medbay; Perhaps Psychologist/Psychiatrist..."
+  - rscadd: "Adds roundstart Drone Printer"
+  - rscadd: "Adds shutters to RD, CMO, and QM."
