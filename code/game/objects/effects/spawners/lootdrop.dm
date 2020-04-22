@@ -115,6 +115,8 @@
 /obj/effect/spawner/lootdrop/maintenance
 	name = "maintenance loot spawner"
 	// see code/_globalvars/lists/maintenance_loot.dm for loot table
+	lootcount = 5
+	fan_out_items = TRUE
 
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
 	loot = GLOB.maintenance_loot
@@ -611,13 +613,13 @@
 		/obj/item/clothing/mask/breath = 5,
 		/obj/item/clothing/mask/breath/medical = 1
 		)
- 
+
 /obj/effect/spawner/lootdrop/welder_tools/no_turf
 	spawn_on_turf = FALSE
 
 /obj/effect/spawner/lootdrop/low_tools/no_turf
 	spawn_on_turf = FALSE
- 
+
 /obj/effect/spawner/lootdrop/breathing_tanks/no_turf
 	spawn_on_turf = FALSE
 

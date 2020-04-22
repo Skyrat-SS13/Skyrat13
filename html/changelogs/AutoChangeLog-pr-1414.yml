@@ -1,0 +1,4 @@
+author: "Strazyplus"
+delete-after: True
+changes: 
+  - imageadd: "added more Ai status displays"
