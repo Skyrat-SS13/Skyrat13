@@ -369,7 +369,7 @@
 				playsound(freeman, 'modular_skyrat/sound/halflife/health_dropping.wav', 50, 0)
 				sleep(40)
 				annoyed = TRUE
-			if((freeman.getToxLoss() >= 12.5) && !flatlined)
+			if((freeman.getToxLoss() >= 15) && !flatlined)
 				playsound(freeman, 'modular_skyrat/sound/halflife/blood_toxins.wav', 50, 0)
 				sleep(40)
 				annoyed = TRUE
