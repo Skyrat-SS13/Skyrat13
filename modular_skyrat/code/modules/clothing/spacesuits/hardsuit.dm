@@ -228,7 +228,7 @@
 		glass_overlay = mutable_appearance(icon, "hardsuit1-powerarmor-2")
 		var/mutable_appearance/flight_overlay = mutable_appearance(icon, "hardsuit1-powerarmor-3")
 		flight_overlay.appearance_flags = RESET_COLOR
-		. += flight overlay
+		. += flight_overlay
 	glass_overlay.appearance_flags = RESET_COLOR
 	. += glass_overlay
 
