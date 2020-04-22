@@ -433,7 +433,7 @@
 		objectives += destroy_objective
 	else
 		if(prob(70))
-			var/datum/objective/assassinate/kill_objective = new
+			var/datum/objective/assassinate/once/kill_objective = new
 			kill_objective.owner = owner
 			if(team_mode) //No backstabbing while in a team
 				kill_objective.find_target_by_role(role = ROLE_CHANGELING, role_type = 1, invert = 1)
@@ -547,6 +547,7 @@
 	show_in_roundend = FALSE //These are here for admin tracking purposes only
 	you_are_greet = FALSE
 
+/*Skyrat change - moved to modular
 /datum/antagonist/changeling/roundend_report()
 	var/list/parts = list()
 
@@ -582,6 +583,7 @@
 		parts += "<span class='redtext'>The changeling has failed.</span>"
 
 	return parts.Join("<br>")
+*/
 
 /datum/antagonist/changeling/antag_listing_name()
 	return ..() + "([changelingID])"

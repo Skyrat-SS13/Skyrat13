@@ -2,7 +2,7 @@
 	name = "Ebony Blade"
 	desc = "An artifact that fits the literal description of a traitor, as it gets more powerful the more you kill your own."
 	item = /obj/item/twohanded/ebonyblade
-	cost = 18
+	cost = 16
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/rapier
@@ -19,4 +19,11 @@
 	desc = "A cursed artifact, capable of penetrating all armor and knocking down your targets senseless"
 	item = /obj/item/melee/cleric_mace/molagbal
 	cost = 12
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/dangerous/morphcube
+	name = "Morph Cube"
+	desc = "Gives you the ability to shapeshift into the currrent scanned animal on the cube."
+	item = /obj/item/morphcube
+	cost = 18
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)

@@ -1,0 +1,4 @@
+author: "BobJogaIsForkinBanned"
+delete-after: True
+changes: 
+  - rscadd: "18tc morph cube traitor item. See #1332"

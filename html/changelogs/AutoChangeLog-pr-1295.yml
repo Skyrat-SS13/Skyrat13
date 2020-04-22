@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "Resisting embedded objects is now less damaging/restrictive on its use."
