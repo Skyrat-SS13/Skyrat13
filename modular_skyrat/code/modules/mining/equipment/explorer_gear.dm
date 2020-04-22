@@ -43,6 +43,7 @@
 	"Old" = "seva",
 	"Improved" = "seva_mask"
 	)
+	flags_inv = NULL
 	mutantrace_variation = STYLE_MUZZLE
 
 //exosuit shit
@@ -78,6 +79,7 @@
 	"Old" = "exo",
 	"Improved" = "exo_mask"
 	)
+	flags_inv = NULL
 	mutantrace_variation = STYLE_MUZZLE
 
 //explorer suit etc etc
