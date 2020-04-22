@@ -22,6 +22,12 @@
 	desc = "Default lungs."
 	id = "default"
 
+/datum/augmentation/organ/lungs/cybernetic
+	name = "Cybernetic lungs"
+	desc = "A cybernetic version of the lungs, functioning almost exactly as the organic ones."
+	id = "cyber"
+	restricted_species = list("vox")
+
 /************EYES*************/
 /********************************/
 
@@ -33,6 +39,18 @@
 	name = "Default"
 	desc = "Disable augmentations for eyes."
 	id = "default"
+
+/datum/augmentation/organ/eyes/cybernetic
+	name = "Cybernetic eyes"
+	desc = "A cybernetic replacement to your first sense, "augmenting" your vision."
+	id = "cyber"
+	organ_type = /obj/item/organ/eyes/robotic
+
+/datum/augmentation/organ/eyes/high_luminosity
+	name = "High-luminosity eyes"
+	desc = "Special glowing eyes, capable of projecting a ray of colored light."
+	id = "high_lumi"
+	organ_type = /obj/item/organ/eyes/robotic/glow
 
 /************HEART*************/
 /********************************/
@@ -46,6 +64,12 @@
 	desc = "Default heart."
 	id = "default"
 
+/datum/augmentation/organ/heart/default
+	name = "Cybernetic heart"
+	desc = "An electronic device that serves like an organic heart, due to EMP's relying on it may prove to be dangerous."
+	id = "cyber"
+	organ_type = /obj/item/organ/heart/cybernetic
+
 /************LIVER*************/
 /********************************/
 
@@ -57,6 +81,12 @@
 	name = "Default"
 	desc = "Default liver."
 	id = "default"
+
+/datum/augmentation/organ/liver/cybernetic
+	name = "Cybernetic liver"
+	desc = "A device that mimicks the functions of an organic liver."
+	id = "cyber"
+	organ_type = /obj/item/organ/liver/cybernetic
 
 /************TONGUE*************/
 /********************************/
@@ -74,8 +104,10 @@
 	name = "Positronic Voicebox"
 	desc = "Robotic device integrated with your vocal cords, will not help if you're mute."
 	id = "robo"
+	organ_type = /obj/item/organ/tongue/robot/ipc
 
 /datum/augmentation/organ/tongue/forked
 	name = "Forked Tongue"
 	desc = "A forked tongue, alike to those of reptilians, will give you a hissing accent."
 	id = "forked"
+	organ_type = /obj/item/organ/tongue/lizard

@@ -99,9 +99,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/skill_points = 14 //How many skill points we're getting? More important jobs give you extra points
 	var/list/attribute_modifiers = list() //How much do we modify attributes by id to integer
 
-	var/augments_limbs = list() //List of each limb augment category, indexed by id of categories to id values of customization, 0 value is default
-	var/list/augments_implants = list()
-	var/list/augments_organs = list()
+	var/list/augments = list() //Hash table of augment types, which are hash tables of augment catogeries, which are hash tables of augment ID's
 	//END OF SKYRAT CHANGES
 
 	var/underwear = "Nude"				//underwear type
@@ -1130,58 +1128,35 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "<center><h2>Augmentations:</h2></center>"
 					dat += "<center><b>Remaining attribute points: [attribute_points]</b></center>"
 					dat += "<table><tr>"
-					dat += "<td valign='top' width='23%'>"
-					dat += "<h2>Limb Augmentations:</h2>"
-					for(var/i in GLOB.aug_limb_cat_list)
-						var/datum/aug_category/limb/CAT = GLOB.aug_limb_cat_list[i]
-						var/datum/augmentation/limb/AUG = GLOB.aug_limb_list[CAT.id][augments_limbs[i]]
-						var/link = "href='?_src_=prefs;switch_tab=aug_tab;aug_type=[AUG.type_id];aug_cat=[AUG.cat_id]'"
-						if(aug_cat == AUG.cat_id && aug_type == AUG.type_id)
-							link += "class='linkOn'"
-						dat += "<a [link]>[CAT.name]</a>: [AUG.name]<br>"
-						dat += "<i>[AUG.desc]</i><br>"
-						dat += "<br>"
+					for(var/type_id in GLOB.aug_type_list)
+						var/datum/aug_type/AUG_TYPE = GLOB.aug_type_list[type_id]
 
-					dat += "</td>"
-					dat += "<td valign='top' width='23%'>"
-					dat += "<h2>Organ Replacements:</h2>"
-					for(var/i in GLOB.aug_organ_cat_list)
-						var/datum/aug_category/organ/CAT = GLOB.aug_organ_cat_list[i]
-						var/datum/augmentation/organ/AUG = GLOB.aug_organ_list[CAT.id][augments_organs[i]]
-						var/link = "href='?_src_=prefs;switch_tab=aug_tab;aug_type=[AUG.type_id];aug_cat=[AUG.cat_id]'"
-						if(aug_cat == AUG.cat_id && aug_type == AUG.type_id)
-							link += "class='linkOn'"
-						dat += "<a [link]>[CAT.name]</a>: [AUG.name]<br>"
-						dat += "<i>[AUG.desc]</i><br>"
-						dat += "<br>"
+						dat += "<td valign='top' width='23%'>"
+						dat += "<h2>[AUG_TYPE.name]:</h2>"
 
-					dat += "</td>"
-					dat += "<td valign='top' width='23%'>"
-					dat += "<h2>Implant Enhancements:</h2>"
-					for(var/i in GLOB.aug_implant_cat_list)
-						var/datum/aug_category/implant/CAT = GLOB.aug_implant_cat_list[i]
-						var/datum/augmentation/implant/AUG = GLOB.aug_implant_list[CAT.id][augments_implants[i]]
-						var/link = "href='?_src_=prefs;switch_tab=aug_tab;aug_type=[AUG.type_id];aug_cat=[AUG.cat_id]'"
-						if(aug_cat == AUG.cat_id && aug_type == AUG.type_id)
-							link += "class='linkOn'"
-						dat += "<a [link]>[CAT.name]</a>: [AUG.name]<br>"
-						dat += "<i>[AUG.desc]</i><br>"
-						dat += "<br>"
+						for(var/cat_id in AUG_TYPE.cat_list)
+							var/datum/aug_category/AUG_CAT = AUG_TYPE.cat_list[cat_id]
+							var/datum/augmentation/AUG = GetAugment(type_id, cat_id, augments[type_id][cat_id])
+							var/link = "href='?_src_=prefs;switch_tab=aug_tab;aug_type=[AUG.type_id];aug_cat=[AUG.cat_id]'"
+							var/dis_name = AUG.name
+							var/dis_desc = AUG.desc
+							if(AUG.id == "default")
+								dis_name = "<font color=#454852>[dis_name]</font>"
+								dis_desc = "<font color=#454852>[dis_desc]</font>"
 
-					dat += "</td>"
+							if(aug_cat == AUG.cat_id && aug_type == AUG.type_id)
+								link += "class='linkOn'"
+							dat += "<a [link]>[AUG_CAT.name]</a>: [dis_name]<br>"
+							dat += "<i>[dis_desc]</i><br>"
+							dat += "<br>"
+
+						dat += "</td>"
+
 					dat += "<td valign='top' width='31%'>"
+
 					if(aug_type != "")
-						var/datum/aug_category/augc
-						var/list/li 
-						if(aug_type == "limb")
-							li = GLOB.aug_limb_list[aug_cat]
-							augc = GLOB.aug_limb_cat_list[aug_cat]
-						else if(aug_type == "implant")
-							li = GLOB.aug_implant_list[aug_cat]
-							augc = GLOB.aug_implant_cat_list[aug_cat]
-						else if(aug_type == "organ")
-							li = GLOB.aug_organ_list[aug_cat]
-							augc = GLOB.aug_organ_cat_list[aug_cat]
+						var/datum/aug_category/augc = GLOB.aug_type_list[aug_type].cat_list[aug_cat]
+						var/list/li = augc.aug_list
 
 						dat += "<table width=100%; style='background-color:#13171C'>"
 						dat += "<center><h2>[augc.name]</h2></center>"
@@ -1196,13 +1171,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						message_admins("[li.len]")
 
 						if(li)
-							var/datum/augmentation/CurAu
-							if(aug_type == "limb")
-								CurAu = GLOB.aug_limb_list[aug_cat][augments_limbs[aug_cat]]
-							else if(aug_type == "implant")
-								CurAu = GLOB.aug_implant_list[aug_cat][augments_implants[aug_cat]]
-							else if(aug_type == "organ")
-								CurAu = GLOB.aug_organ_list[aug_cat][augments_organs[aug_cat]]
+							var/datum/augmentation/CurAu = GetAugment(aug_type, aug_cat, augments[aug_type][aug_cat])
 
 							for(var/i in li)
 								var/datum/augmentation/Au = li[i]
@@ -2660,19 +2629,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			attribute_modifiers[att] += amount
 			attribute_points -= amount
 
-			/*for(var/i in GLOB.aug_type_list)
-				var/datum/aug_type/autype = GLOB.aug_type_list[i]
-				message_admins("[autype.name]")
-
-				for(var/b in autype.cat_list)
-					var/datum/aug_category/aucat = autype.cat_list[b]
-					message_admins("[aucat.name]")
-
-					for(var/c in aucat.aug_list)
-						message_admins("[c]")
-						var/datum/augmentation/auggg = aucat.aug_list[c]
-						message_admins("[auggg.name]")*/
-
 	switch(href_list["switch_tab"])
 		if("att_tab")
 			att_tab = text2num(href_list["tab"])
@@ -2685,17 +2641,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/aug_type = href_list["aug_type"]
 			var/aug_cat = href_list["aug_cat"]
 			var/aug_id = href_list["aug_id"]
-			var/datum/augmentation/CurAu
-			var/datum/augmentation/TargetAu
-			if(aug_type == "limb")
-				CurAu = GLOB.aug_limb_list[aug_cat][augments_limbs[aug_cat]]
-				TargetAu = GLOB.aug_limb_list[aug_cat][aug_id]
-			else if(aug_type == "implant")
-				CurAu = GLOB.aug_implant_list[aug_cat][augments_implants[aug_cat]]
-				TargetAu = GLOB.aug_implant_list[aug_cat][aug_id]
-			else if(aug_type == "organ")
-				CurAu = GLOB.aug_organ_list[aug_cat][augments_organs[aug_cat]]
-				TargetAu = GLOB.aug_organ_list[aug_cat][aug_id]
+			var/datum/augmentation/CurAu = GetAugment(aug_type, aug_cat, augments[aug_type][aug_cat])
+			var/datum/augmentation/TargetAu = GetAugment(aug_type, aug_cat, aug_id)
 
 			if(CurAu == TargetAu)
 				return
@@ -2706,12 +2653,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/costdiff = (TargetAu.cost - CurAu.cost)
 			if (!(costdiff > attribute_points))
 				attribute_points -= costdiff
-				if(aug_type == "limb")
-					augments_limbs[aug_cat] = aug_id
-				else if(aug_type == "implant")
-					augments_implants[aug_cat] = aug_id
-				else if(aug_type == "organ")
-					augments_organs[aug_cat] = aug_id
+				augments[aug_type][aug_cat] = aug_id
 	//END OF SKYRAT CHANGES
 
 	ShowChoices(user)

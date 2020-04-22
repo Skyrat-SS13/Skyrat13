@@ -3,11 +3,4 @@ GLOBAL_LIST_EMPTY(skill_list)
 GLOBAL_LIST_EMPTY(skill_cat_list)
 GLOBAL_LIST_EMPTY(skills_per_cat_list) //Helper list
 
-GLOBAL_LIST_EMPTY(aug_limb_cat_list) 
-GLOBAL_LIST_EMPTY(aug_implant_cat_list)
-GLOBAL_LIST_EMPTY(aug_organ_cat_list)
-GLOBAL_LIST_EMPTY(aug_limb_list) 
-GLOBAL_LIST_EMPTY(aug_implant_list)
-GLOBAL_LIST_EMPTY(aug_organ_list)
-
 GLOBAL_LIST_EMPTY(aug_type_list)

@@ -3317,6 +3317,7 @@
 #include "modular_skyrat\code\_globalvars\lists\human_customization.dm"
 #include "modular_skyrat\code\_globalvars\lists\names.dm"
 #include "modular_skyrat\code\_HELPERS\global_lists.dm"
+#include "modular_skyrat\code\_HELPERS\human_customisation.dm"
 #include "modular_skyrat\code\_HELPERS\mobs.dm"
 #include "modular_skyrat\code\_HELPERS\names.dm"
 #include "modular_skyrat\code\_HELPERS\text.dm"
