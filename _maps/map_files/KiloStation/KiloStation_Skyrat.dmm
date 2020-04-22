@@ -16517,6 +16517,7 @@
 /turf/open/floor/engine,
 /area/security/nuke_storage)
 "aAC" = (
+/mob/living/simple_animal/pet/roro/roboticsroro,
 /turf/open/floor/plasteel/showroomfloor,
 /area/science/robotics/lab)
 "aAD" = (
@@ -44206,7 +44207,7 @@
 /area/hallway/primary/starboard)
 "bqU" = (
 /obj/structure/table/wood,
-/obj/item/clothing/gloves/color/rainbow/clown,
+/obj/item/clothing/gloves/color/rainbow,
 /obj/item/storage/crayons,
 /obj/item/storage/crayons,
 /obj/item/bikehorn/rubberducky,
@@ -59411,7 +59412,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mailroom";
-	req_access_txt = "50"
+	req_access_txt = "31;50"
 	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/sorting)
@@ -73071,6 +73072,7 @@
 /obj/structure/cable,
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/pet/roro,
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
