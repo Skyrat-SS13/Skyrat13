@@ -331,7 +331,7 @@
 	armor = list("melee" = 30, "bullet" = 15, "laser" = 20, "energy" = 30, "bomb" = 100, "bio" = 100, "rad" = 75, "fire" = 75, "acid" = 80)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rd/hev
 	slowdown = 0
-	var/heal_threshold = 95
+	var/heal_threshold = 5
 	var/injection_amount = 10
 	var/injection_cooldown_time = 1200 //2 minutes before injecting again
 	var/injection_cooldown
