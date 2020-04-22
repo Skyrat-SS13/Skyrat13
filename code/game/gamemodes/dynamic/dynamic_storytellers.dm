@@ -135,7 +135,7 @@ Property weights are:
 	var/list/drafted_rules = list()
 	for (var/datum/dynamic_ruleset/midround/rule in mode.midround_rules)
 		// if there are antags OR the rule is an antag rule, antag_acceptable will be true.
-		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level))
+		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level - mode.threat)) // Skyrat change
 			// Classic secret : only autotraitor/minor roles
 			if (GLOB.dynamic_classic_secret && !((rule.flags & TRAITOR_RULESET) || (rule.flags & MINOR_RULESET)))
 				continue
@@ -190,7 +190,7 @@ Property weights are:
 /datum/dynamic_storyteller/proc/event_draft()
 	var/list/drafted_rules = list()
 	for(var/datum/dynamic_ruleset/event/rule in mode.events)
-		if(rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level) && (mode.threat_level - mode.threat) >= rule.cost)
+		if(rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level - mode.threat)) // Skyrat change
 			if(rule.ready())
 				var/property_weight = 0
 				for(var/property in property_weights)
@@ -284,7 +284,7 @@ Property weights are:
 /datum/dynamic_storyteller/random/midround_draft()
 	var/list/drafted_rules = list()
 	for (var/datum/dynamic_ruleset/midround/rule in mode.midround_rules)
-		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level))
+		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level - mode.threat)) // Skyrat change
 			// Classic secret : only autotraitor/minor roles
 			if (GLOB.dynamic_classic_secret && !((rule.flags & TRAITOR_RULESET) || (rule.flags & MINOR_RULESET)))
 				continue
@@ -296,7 +296,7 @@ Property weights are:
 /datum/dynamic_storyteller/random/latejoin_draft(mob/living/carbon/human/newPlayer)
 	var/list/drafted_rules = list()
 	for (var/datum/dynamic_ruleset/latejoin/rule in mode.latejoin_rules)
-		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level))
+		if (rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level - mode.threat)) // Skyrat change
 			// Classic secret : only autotraitor/minor roles
 			if (GLOB.dynamic_classic_secret && !((rule.flags & TRAITOR_RULESET) || (rule.flags & MINOR_RULESET)))
 				continue
@@ -313,7 +313,7 @@ Property weights are:
 /datum/dynamic_storyteller/random/event_draft()
 	var/list/drafted_rules = list()
 	for(var/datum/dynamic_ruleset/event/rule in mode.events)
-		if(rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level))
+		if(rule.acceptable(mode.current_players[CURRENT_LIVING_PLAYERS].len, mode.threat_level - mode.threat)) // Skyrat change
 			if(rule.ready())
 				drafted_rules[rule] = 1
 	return drafted_rules

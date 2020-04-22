@@ -1,9 +1,0 @@
-author: "BobJoga, Investigator77 and Junglerat"
-delete-after: True
-changes: 
-  - refactor: "Reskin proc is now accomodated to recent changes, and much better overall."
-  - refactor: "More consistency in icons and icon_states all around."
-  - rscadd: "New \"General Modification Kit\", which is required for most reskinning."
-  - imageadd: "Many, many, many new reskins."
-  - imageadd: "Spider clan members now resemble actual spiders."
-  - rscdel: "Removed herobrine."

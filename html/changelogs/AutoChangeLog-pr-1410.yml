@@ -1,6 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Sleeping Carp is now once again resistant to stamina damage! And also now tasers."
-  - bugfix: "Armwraps in the crafting menu now are capitalized."
-  - bugfix: "Only pugilists are pugilists, not literally every single carbon with a mind."

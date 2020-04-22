@@ -205,7 +205,7 @@
 
 //Power armor
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
-	name = "Power Armor Helmet MK. II"
+	name = "Power Armor Helmet MK. I"
 	desc = "An advanced helmet attached to a powered exoskeleton suit. Protects well against most forms of harm, but struggles against exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
@@ -224,13 +224,17 @@
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor/update_overlays()
 	. = ..()
 	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hardsuit0-powerarmor-2")
+	if(icon_state == "hardsuit1-powerarmor-1")
+		glass_overlay = mutable_appearance(icon, "hardsuit1-powerarmor-2")
 	glass_overlay.appearance_flags = RESET_COLOR
 	. += glass_overlay
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/head.dmi', "hardsuit0-powerarmor-2")
+		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit0-powerarmor-2")
+		if(icon_state == "hardsuit1-powerarmor-1")
+			M = mutable_appearance(icon_file, "hardsuit1-powerarmor-2")
 		M.appearance_flags = RESET_COLOR
 		. += M
 
@@ -247,7 +251,7 @@
 		DHUD.remove_hud_from(user)
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor
-	name = "Power Armor MK. II"
+	name = "Power Armor MK. I"
 	desc = "A self-powered exoskeleton suit comprised of flexible Plasteel sheets and advanced components, designed to offer excellent protection while still allowing mobility. Does not protect against Space, and struggles against more exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
@@ -273,7 +277,7 @@
 /obj/item/clothing/suit/space/hardsuit/powerarmor/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/suit.dmi', "hardsuit-powerarmor-2")
+		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit-powerarmor-2")
 		M.appearance_flags = RESET_COLOR
 		. += M
 
