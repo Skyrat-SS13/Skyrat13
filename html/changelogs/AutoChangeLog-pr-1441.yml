@@ -1,8 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "More functionality to toxins"
-  - rscadd: "Extra security measures"
-  - rscadd: "Xenobio shutters"
-  - balance: "Extra security measures"
-  - bugfix: "Assorted functionality fixes"
