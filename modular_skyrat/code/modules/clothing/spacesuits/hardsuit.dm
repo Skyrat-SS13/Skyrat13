@@ -307,7 +307,7 @@
 //HEV Mark IV (RD hardsuit)
 /obj/item/clothing/head/helmet/space/hardsuit/rd/hev
 	name = "HEV Suit Mark IV helmet"
-	desc = "A Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers. The flashlight seems broken, fitting considering this was made before the start of the milennium."
+	desc = "A Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers."
 	icon_state = "hardsuit0-hev1"
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
