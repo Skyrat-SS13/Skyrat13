@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 
 /obj/item/morphcube/attack(mob/living/target, mob/living/carbon/human/user)
 	if(ourspell && user.mind == ourspell.owner)
-		if(target.type in blacklistedmorphcubemobs)
+		if(target.type in GLOB.blacklistedmorphcubemobs)
 			to_chat(user, "<span class='danger'>The target is too complex to be scanned.</span>")
 			return FALSE
 		targettype = target.type
@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 		ourspell.shapeshift_type = targettype
 		ourmob = targettype
 	else if(user.mind)
-		if(target.type in blacklistedmorphcubemobs)
+		if(target.type in GLOB.blacklistedmorphcubemobs)
 			to_chat(user, "<span class='danger'>The target is too complex to be scanned.</span>")
 			return FALSE
 		var/mob/living/targettype = target.type
