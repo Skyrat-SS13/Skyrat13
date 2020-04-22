@@ -9,14 +9,14 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 	desc = "It has a small red button hidden on it."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain"
-	var/uses = 1
+	var/grants = 1
 	var/mob/living/ourmob = /mob/living/simple_animal/mouse
 	var/mob/living/targettype
 	var/obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/ourspell
 	var/list/cubelist = list()
 
 /obj/item/morphcube/attack_self(mob/user)
-	if(uses > 0)
+	if(grants > 0)
 		uses--
 		var/obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/spell = new /obj/effect/proc_holder/spell/targeted/shapeshift/morphcube()
 		user.mind.AddSpell(spell)
@@ -35,8 +35,6 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 			if(target.type == M)
 				to_chat(user, "<span class='danger'>The target is too complex to be scanned.</span>")
 				return FALSE
-		for(var/mob/living/delete in src)
-			qdel(delete)
 		targettype = target.type
 		to_chat(user, "<span class='danger'>[src] stores the form of the target.</span>")
 		ourspell.possible_shapes = list()
@@ -45,11 +43,9 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 		ourmob = targettype
 	else if(user.mind)
 		for(var/M in GLOB.blacklistedmorphcubemobs)
-			if(target.type == M))
+			if(target.type == M)
 				to_chat(user, "<span class='danger'>The target is too complex to be scanned.</span>")
 				return FALSE
-		for(var/mob/living/delete in src)
-			qdel(delete)
 		var/mob/living/targettype = target.type
 		to_chat(user, "<span class='notice'>[src] stores the form of the target.</span>")
 		ourmob = targettype
