@@ -270,6 +270,7 @@
 	var/explodioprobemp = 1
 	var/stamdamageemp = 200
 	var/brutedamageemp = 20
+	var/rebootdelay
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor/Initialize()
@@ -310,8 +311,12 @@
 		visible_message("<span class ='warning'>The power module on the [src] begins to smoke, glowing with an alarming warmth! Get away from it, now!")
 		addtimer(CALLBACK(src, .proc/detonate),50)
 	else
-		visible_message("<span class ='warning'>The power module on the [src] briefly flickers, before humming to life once more.</span>")
+		addtimer(CALLBACK(src, .proc/revivemessage), rebootdelay)
 		return
+
+/obj/item/clothing/suit/space/hardsuit/powerarmor/proc/revivemessage() //we use this proc to add a timer, so we can have it take a while to boot
+	visible_message("<span class ='warning'>The power module on the [src] briefly flickers, before humming to life once more.</span>") //without causing any problems
+	return //that sleep() would
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor/proc/detonate()
 	visible_message("<span class ='danger'>The power module of the [src] overheats, causing it to destabilize and explode!")
