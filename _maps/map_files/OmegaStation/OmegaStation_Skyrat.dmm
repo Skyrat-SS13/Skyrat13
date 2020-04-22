@@ -11768,7 +11768,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
 "atY" = (
-/obj/structure/piano{
+/obj/structure/musician/piano{
 	icon_state = "piano"
 	},
 /obj/machinery/light{
@@ -36645,10 +36645,6 @@
 	dir = 1
 	},
 /area/engine/atmos)
-"chS" = (
-/mob/living/simple_animal/pet/roro,
-/turf/open/floor/plating/asteroid,
-/area/asteroid/nearstation)
 "cmp" = (
 /obj/machinery/door/airlock/external{
 	name = "External Docking Port"
@@ -42605,6 +42601,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+"uCt" = (
+/mob/living/simple_animal/pet/roro,
+/turf/open/floor/plating/asteroid,
+/area/asteroid/nearstation)
 "uGq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/red{
@@ -73760,7 +73760,7 @@ aad
 abj
 abj
 abS
-chS
+uCt
 abj
 acD
 pNE
@@ -74529,7 +74529,7 @@ aad
 aad
 aad
 abu
-chS
+uCt
 aad
 aaV
 abu

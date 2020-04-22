@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "Miasma now has the same spec heat as oxygen"
-  - bugfix: "Miasma now uses proper gas merging to generate"

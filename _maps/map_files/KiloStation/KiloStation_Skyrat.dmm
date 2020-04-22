@@ -44207,7 +44207,7 @@
 /area/hallway/primary/starboard)
 "bqU" = (
 /obj/structure/table/wood,
-/obj/item/clothing/gloves/color/rainbow/clown,
+/obj/item/clothing/gloves/color/rainbow,
 /obj/item/storage/crayons,
 /obj/item/storage/crayons,
 /obj/item/bikehorn/rubberducky,
@@ -59412,7 +59412,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mailroom";
-	req_access_txt = "50"
+	req_access_txt = "31;50"
 	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/sorting)

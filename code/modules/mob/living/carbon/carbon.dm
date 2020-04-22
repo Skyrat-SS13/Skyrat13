@@ -98,6 +98,8 @@
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	var/hurt = TRUE
+	if(GetComponent(/datum/component/tackler))
+		return
 	if(throwingdatum?.thrower && iscyborg(throwingdatum.thrower))
 		var/mob/living/silicon/robot/R = throwingdatum.thrower
 		if(!R.emagged)
@@ -205,8 +207,6 @@
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
 		newtonian_move(get_dir(target, src))
 		thrown_thing.safe_throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, null, null, null, move_force, random_turn)
-
-
 
 /mob/living/carbon/restrained(ignore_grab)
 	. = (handcuffed || (!ignore_grab && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE))
@@ -430,7 +430,6 @@
 		else
 			dropItemToGround(I)
 			return
-		return TRUE
 
 /mob/living/carbon/get_standard_pixel_y_offset(lying = 0)
 	if(lying)
@@ -855,7 +854,7 @@
 /mob/living/carbon/proc/can_defib()
 	var/tlimit = DEFIB_TIME_LIMIT * 10
 	var/obj/item/organ/heart = getorgan(/obj/item/organ/heart)
-	if(suiciding || hellbound || HAS_TRAIT(src, TRAIT_HUSK))
+	if(suiciding || hellbound || HAS_TRAIT(src, TRAIT_HUSK) || AmBloodsucker(src))
 		return
 	if((world.time - timeofdeath) > tlimit)
 		return

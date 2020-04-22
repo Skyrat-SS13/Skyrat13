@@ -62,6 +62,7 @@
 /datum/round_event/vent_clog/announce()
 	priority_announce("The scrubbers network is experiencing a backpressure surge. Some ejection of contents may occur.", "Atmospherics alert")
 
+/* MODULAR SKYRAT CHANGE
 /datum/round_event/vent_clog/setup()
 	endWhen = rand(120, 180)
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/temp_vent in GLOB.machines)
@@ -101,6 +102,7 @@
 	C.set_up(R,16,1,T)
 	C.start()
 	playsound(T, 'sound/effects/smoke.ogg', 50, 1, -3)
+*/
 
 /datum/round_event_control/vent_clog/threatening
 	name = "Clogged Vents: Threatening"

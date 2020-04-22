@@ -52,7 +52,7 @@
 			if(HUD_LIST_LIST)
 				hud_list[hud] = list()
 			else
-				var/image/I = image('icons/mob/hud.dmi', src, "")
+				var/image/I = image('icons/mob/hud.dmi', src, "") && image('modular_skyrat/icons/mob/hud.dmi' , src, "")
 				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM
 				hud_list[hud] = I
 
@@ -146,7 +146,7 @@
 		//CITADEL EDIT, required for vore code to remove (T != loc && T != src)) as a check
 		if(M.see_invisible<invisibility) //if src is invisible to us,
 			msg = blind_message
-		else if(T.lighting_object && T.lighting_object.invisibility <= M.see_invisible && T.is_softly_lit()) //the light object is dark and not invisible to us
+		else if(T.lighting_object && T.lighting_object.invisibility <= M.see_invisible && T.is_softly_lit() && !in_range(T,M)) //the light object is dark and not invisible to us, darkness does not matter if you're directly next to the target
 			msg = blind_message
 
 		if(!msg)
