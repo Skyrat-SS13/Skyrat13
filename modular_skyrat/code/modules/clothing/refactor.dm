@@ -486,28 +486,24 @@
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
 	"Tactical Classic" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
 	"Press" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
-	"HECU" = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	"HECU" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
+	"Bloody" = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/suit.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
 	"Tactical Classic" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
 	"Press" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	"HECU" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/suit_digi.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Tactical Classic" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"Press" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	"HECU" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	"HECU" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"Bloody" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	)
 	unique_reskin_stored = list(
 	"Default" = "armor",
 	"Tactical" = "epic_armor",
 	"Tactical Classic" = "epic_armor_classic",
 	"Press" = "press_armor",
-	"HECU" = "hecu_armor"
+	"HECU" = "hecu_armor",
+	"Bloody" = "bloody_armor"
 	)
 
 /obj/item/clothing/suit/armor/hos
