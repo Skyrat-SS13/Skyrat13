@@ -26,6 +26,13 @@
 	"HECU" = 'modular_skyrat/icons/mob/clothing/head.dmi',
 	"HECU Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Press" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"HECU" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"HECU Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	)
 	unique_reskin_stored = list(
 	"Default" = "helmet",
 	"Tactical" = "epic_helmet",
@@ -42,6 +49,10 @@
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
 	)
 	unique_reskin_worn = list(
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	)
+	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
 	)
@@ -243,6 +254,12 @@
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
 	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Solfed Contractor" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	)
 	unique_reskin_stored = list(
 	"Default" = "beret_badge",
 	"Solfed Contractor" = "contractor_beret",
@@ -301,6 +318,7 @@
 	"Default" = "hardsuit0-mining",
 	"Explorer" = "hardsuit0-explorer",
 	)
+
 
 /obj/item/clothing/suit/space/hardsuit/mining
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 75)
@@ -411,10 +429,10 @@
 	)
 	unique_reskin_stored = list(
 	"Default" = "hardsuit-sec",
-	"Riot" = "riot_suit",
-	"Tactical" = "tactical_suit",
-	"Asset Protection" = "assprotection_suit",
-	"ODST" = "odst_suit"
+	"Riot" = "hardsuit-riot",
+	"Tactical" = "hardsuit-tactical",
+	"Asset Protection" = "hardsuit-assprotection",
+	"ODST" = "hardsuit-odst"
 	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/security/hos
@@ -497,6 +515,14 @@
 	"HECU" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
 	"Bloody" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/suit.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"Tactical Classic" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"Press" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"HECU" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
+	"Bloody" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
+	)
 	unique_reskin_stored = list(
 	"Default" = "armor",
 	"Tactical" = "epic_armor",
@@ -520,7 +546,7 @@
 	"Cloak" = 'modular_citadel/icons/mob/citadel/suit.dmi',
 	"Navy Blue" = 'icons/mob/clothing/suit.dmi'
 	)
-	unique_reskin_worn_digi = list(
+	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/suit_digi.dmi',
 	"Trench" = 'icons/mob/clothing/suit_digi.dmi',
 	"Cloak" = 'modular_citadel/icons/mob/citadel/suit.dmi',
@@ -559,7 +585,7 @@
 	"Default" = 'icons/mob/clothing/suit.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
 	)
-	unique_reskin_worn_digi = list(
+	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/suit_digi.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
 	)
@@ -638,7 +664,7 @@
 	"Firestarter" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
 	"Gorka" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
 	)
-	unique_reskin_worn_digi = list(
+	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
 	"Sol Federation" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
