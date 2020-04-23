@@ -308,11 +308,11 @@
 /obj/item/clothing/head/helmet/space/hardsuit/rd/hev
 	name = "Prototype HEV Suit Mark IV helmet"
 	desc = "A new design of the Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers."
-	icon_state = "hardsuit0-hev2"
+	icon_state = "hardsuit0-hev1"
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
-	hardsuit_type = "hev2"
+	hardsuit_type = "hev1"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 30, "energy" = 40, "bomb" = 33, "bio" = 100, "rad" = 70, "fire" = 70, "acid" = 75)
@@ -327,9 +327,9 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/rd/hev/update_overlays()
 	. = ..()
-	var/mutable_appearance/theoverlay = mutable_appearance(icon, "hardsuit0-hev1")
-	if(icon_state == "hardsuit1-hev2")
-		theoverlay = mutable_appearance(icon, "hardsuit1-hev1")
+	var/mutable_appearance/theoverlay = mutable_appearance(icon, "hardsuit0-hev2")
+	if(icon_state == "hardsuit1-hev1")
+		theoverlay = mutable_appearance(icon, "hardsuit1-hev2")
 	theoverlay.appearance_flags = RESET_COLOR
 	theoverlay.color = currentcolor
 	. += theoverlay
@@ -337,9 +337,9 @@
 /obj/item/clothing/head/helmet/space/hardsuit/rd/hev/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit0-hev1")
-		if(icon_state == "hardsuit1-hev2")
-			M = mutable_appearance(icon_file, "hardsuit1-hev1")
+		var/mutable_appearance/M = mutable_appearance(icon_file, "hardsuit0-hev2")
+		if(icon_state == "hardsuit1-hev1")
+			M = mutable_appearance(icon_file, "hardsuit1-hev2")
 		M.appearance_flags = RESET_COLOR
 		M.color = currentcolor
 		. += M
