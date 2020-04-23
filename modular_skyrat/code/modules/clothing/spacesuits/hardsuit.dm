@@ -420,27 +420,27 @@
 		oldwearerhealth = currentwearerhealth
 		currentwearerhealth = (100 - (freeman.getBruteLoss() + freeman.getFireLoss() + freeman.getOxyLoss() + freeman.getToxLoss() + freeman.getCloneLoss())) //found no sensible way to get the "real" user health
 		if(freeman.stat == DEAD && !flatlined)
-			playsound(freeman, 'modular_skyrat/sound/halflife/flatline.wav', 50, 0)
+			playsound(get_turf(freeman), 'modular_skyrat/sound/halflife/flatline.wav', 50, 0)
 			flatlined = TRUE
 		if(!annoyed)
 			if((currentwearerhealth <= heal_threshold) && !flatlined)
-				playsound(freeman, 'modular_skyrat/sound/halflife/health_critical.wav', 50, 0)
+				playsound(get_turf(freeman), 'modular_skyrat/sound/halflife/health_critical.wav', 50, 0)
 				sleep(40)
 				annoyed = TRUE
 			if((oldwearerhealth > currentwearerhealth) && (currentwearerhealth >= heal_threshold) && !flatlined)
-				playsound(freeman, 'modular_skyrat/sound/halflife/health_dropping.wav', 50, 0)
+				playsound(get_turf(freeman), 'modular_skyrat/sound/halflife/health_dropping.wav', 50, 0)
 				sleep(40)
 				annoyed = TRUE
 			if((freeman.getToxLoss() >= 15) && !flatlined)
-				playsound(freeman, 'modular_skyrat/sound/halflife/blood_toxins.wav', 50, 0)
+				playsound(get_turf(freeman), 'modular_skyrat/sound/halflife/blood_toxins.wav', 50, 0)
 				sleep(40)
 				annoyed = TRUE
 			if((freeman.getFireLoss() >= 35) && !flatlined)
-				playsound(freeman, 'modular_skyrat/sound/halflife/heat_damage.wav', 50, 0)
+				playsound(get_turf(freeman), 'modular_skyrat/sound/halflife/heat_damage.wav', 50, 0)
 				sleep(40)
 				annoyed = TRUE
 			if((freeman.blood_volume <= (BLOOD_VOLUME_OKAY - 36)) && !HAS_TRAIT(freeman, NOBLOOD) && !flatlined)
-				playsound(freeman, 'modular_skyrat/sound/halflife/blood_loss.wav', 50, 0)
+				playsound(get_turf(freeman), 'modular_skyrat/sound/halflife/blood_loss.wav', 50, 0)
 				sleep(30)
 				annoyed = TRUE
 			if(annoyed)
@@ -448,12 +448,12 @@
 		if((currentwearerhealth <= heal_threshold) && ((world.time > injection_cooldown) || !injection_cooldown) && !flatlined)
 			if(container)
 				if(container.reagents.trans_to(freeman, injection_amount))
-					playsound(freeman, 'modular_skyrat/sound/halflife/administering_medical.wav', 50, 0)
+					playsound(get_turf(freeman), 'modular_skyrat/sound/halflife/administering_medical.wav', 50, 0)
 					sleep(40)
-					playsound(freeman, 'modular_skyrat/sound/halflife/medshot4.wav', 50, 0)
+					playsound(get_turf(freeman), 'modular_skyrat/sound/halflife/medshot4.wav', 50, 0)
 					injection_cooldown = injection_cooldown_time + world.time
 				else
-					playsound(freeman, 'modular_skyrat/sound/halflife/innsuficient_medical.wav', 50, 0)
+					playsound(get_turf(freeman), 'modular_skyrat/sound/halflife/innsuficient_medical.wav', 50, 0)
 					injection_cooldown = injection_cooldown_time + world.time
 
 /obj/item/clothing/suit/space/hardsuit/rd/hev/proc/unannoy()
@@ -476,14 +476,14 @@
 /obj/item/clothing/suit/space/hardsuit/rd/hev/equipped(mob/user, slot)
 	..()
 	if(ishuman(user) && slot == SLOT_WEAR_SUIT)
-		playsound(user, 'modular_skyrat/sound/halflife/hev_logon.ogg', 50, 0)
+		playsound(get_turf(user), 'modular_skyrat/sound/halflife/hev_logon.ogg', 50, 0)
 		freeman = user
 		flatlined = FALSE
 
 /obj/item/clothing/suit/space/hardsuit/rd/hev/dropped(mob/user, slot)
-	. = ..()
-	if(ishuman(user) && slot != ITEM_SLOT_HANDS)
-		playsound(user, 'modular_skyrat/sound/halflife/deactivated.wav', 50, 0)
+	..()
+	if(ishuman(user) && !(user.get_active_held_item() == src))
+		playsound(get_turf(src), 'modular_skyrat/sound/halflife/deactivated.wav', 50, 0)
 		freeman = null
 		flatlined = FALSE
 
