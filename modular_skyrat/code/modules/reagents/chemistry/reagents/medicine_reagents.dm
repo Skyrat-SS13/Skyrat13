@@ -67,7 +67,10 @@
 		if(PATCH,TOUCH,VAPOR)
 			var/amount_healed = -(M.adjustBruteLoss(-1.25 * reac_volume) + M.adjustFireLoss(-1.25 * reac_volume))
 			if(amount_healed && M.stat != DEAD)
-				M.adjustToxLoss( amount_healed * 0.25 )
+				if(!(M.dna.species == /datum/species/synth))
+					M.adjustToxLoss(amount_healed * 0.25)
+				else
+					M.adjustToxLoss(-(amount_healed * 0.75)) //synths heal toxins with synthflesh
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 				if(show_message) to_chat(M, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
 			var/vol = reac_volume + M.reagents.get_reagent_amount(/datum/reagent/medicine/synthflesh)
