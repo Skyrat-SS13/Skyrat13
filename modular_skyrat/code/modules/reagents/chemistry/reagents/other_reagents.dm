@@ -22,9 +22,9 @@
 		L.apply_status_effect(STATUS_EFFECT_PACIFY, 10 * reac_volume)
 		return
 
-	if(method == INJECT && reac_volume >= 5)
+	if(method == INJECT && volume >= 5)
 		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
 
-	if(iscarbon(L) && prob(100 * (reac_volume/15)))
+	if(iscarbon(L) && prob(100 * (volume/15)))
 		var/mob/living/carbon/C = L
 		C.gain_trauma(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_LOBOTOMY)
