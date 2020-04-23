@@ -15,8 +15,11 @@
 	var/productivity = 0
 	var/max_items = 40
 	var/datum/techweb/stored_research
-	var/list/show_categories = list("Food", "Botany Chemicals", "Organic Materials")
-	var/list/timesFiveCategories = list("Food", "Botany Chemicals")
+	var/list/show_categories = list("Reagents","Food and Drinks", "Botany", "Clothing", "Materials") //Skyrat change.
+	var/list/timesFiveCategories = list("Food and Drinks", "Botany","Clothing") //Skyrat change.
+
+
+/obj/machinery/biogenerator/prisoner //Delete this when mapmerge is fixed
 
 /obj/machinery/biogenerator/Initialize()
 	. = ..()

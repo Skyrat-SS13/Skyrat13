@@ -1,4 +1,29 @@
 //Food and Drinks
+
+/datum/design/biomass
+	name = "Nutrient Paste (10u)"
+	id = "biomass_reagent"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 20)
+	make_reagents = list(/datum/reagent/consumable/biomass = 10)
+	category = list("initial","Reagents")
+
+/datum/design/milk
+	name = "Milk (10u)"
+	id = "milk_reagent"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 20)
+	make_reagents = list(/datum/reagent/consumable/milk = 10)
+	category = list("initial","Reagents")
+
+/datum/design/creamprisoner
+	name = "Cream (10u)"
+	id = "cream_reagent"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 40)
+	make_reagents = list(/datum/reagent/consumable/cream = 10)
+	category = list("initial","Reagents")
+
 /datum/design/milk_carton
 	name = "Milk Carton (50u)"
 	id = "milk_carton"
@@ -7,11 +32,19 @@
 	build_path = /obj/item/reagent_containers/food/condiment/milk
 	category = list("initial","Food and Drinks")
 
+/datum/design/soy_carton
+	name = "Soy Milk Carton (50u)"
+	id = "soy_carton"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 100)
+	build_path = /obj/item/reagent_containers/food/condiment/soymilk
+	category = list("initial","Food and Drinks")
+
 /datum/design/cream_carton
 	name = "Cream Carton (50u)"
 	id = "cream_carton"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 300)
+	materials = list(/datum/material/biomass = 200)
 	build_path = /obj/item/reagent_containers/food/drinks/bottle/cream
 	category = list("initial","Food and Drinks")
 
@@ -45,7 +78,7 @@
 	name = "Biomeat"
 	id = "smeat"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 175)
+	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/reagent_containers/food/snacks/meat/slab/bio
 	category = list("initial", "Food and Drinks")
 
@@ -56,14 +89,6 @@
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 30)
 	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/ez
-	category = list("initial","Botany")
-
-/datum/design/l4z_nut
-	name = "Left 4 Zed (30u)"
-	id = "l4z_nut"
-	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 40)
-	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/l4z
 	category = list("initial","Botany")
 
 /datum/design/diethylamine
