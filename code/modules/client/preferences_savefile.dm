@@ -217,6 +217,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["windowflash"]		>> windowflashing
 	S["be_special"] 		>> be_special
 
+	S["chat_on_map"]		>> chat_on_map //SKYRAT CHANGE
+
 
 	S["default_slot"]		>> default_slot
 	S["chat_toggles"]		>> chat_toggles
@@ -296,6 +298,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	cit_toggles			= sanitize_integer(cit_toggles, 0, 16777215, initial(cit_toggles)) // skyrate - its 24 bit ree
 	auto_ooc			= sanitize_integer(auto_ooc, 0, 1, initial(auto_ooc))
 
+	chat_on_map		= sanitize_integer(chat_on_map, 0, 1, initial(chat_on_map)) //SKYRAT CHANGE
+
 	return 1
 
 /datum/preferences/proc/save_preferences()
@@ -359,6 +363,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["cit_toggles"], cit_toggles)
 	WRITE_FILE(S["preferred_chaos"], preferred_chaos)
 	WRITE_FILE(S["auto_ooc"], auto_ooc)
+
+	WRITE_FILE(S["chat_on_map"], chat_on_map) // SKYRAT CHANGE
 
 	return 1
 

@@ -88,6 +88,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/flavor_background = ""
 	var/character_skills = ""
 	var/exploitable_info = ""
+	var/chat_on_map = TRUE
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
@@ -851,6 +852,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>UI Style:</b> <a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
 			dat += "<b>tgui Monitors:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary" : "All"]</a><br>"
 			dat += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
+			dat += "<b>Show Chat On Map:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>" //SKYRAT CHANGE
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
@@ -2327,6 +2329,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=default")
 					else
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+				//SKYRAT CHANGES
+				if("chat_on_map")
+					chat_on_map = !chat_on_map
+				//END OF SKYRAT CHANGES
 				if("action_buttons")
 					buttons_locked = !buttons_locked
 				if("tgui_fancy")

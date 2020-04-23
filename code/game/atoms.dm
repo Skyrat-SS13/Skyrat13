@@ -50,6 +50,13 @@
 	var/list/blood_DNA
 	var/list/suit_fibers
 
+	//SKYRAT CHANGES
+	/// Last name used to calculate a color for the chatmessage overlays
+	var/chat_color_name
+	/// Last color calculated for the the chatmesage overlays
+	var/chat_color
+	//END OF SKYRAT CHANGES
+
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
