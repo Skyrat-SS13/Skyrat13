@@ -17,6 +17,7 @@
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
+	var/obj/item/organ/tongue/faketongue //tongue we use when disguised to handle speech
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))
@@ -42,8 +43,12 @@
 		hair_color = S.hair_color
 		screamsounds = S.screamsounds
 		femalescreamsounds = S.femalescreamsounds
-		fake_species = new S.type
 		isdisguised = TRUE
+		if((S.mutanttongue && !faketongue) || (S.mutanttongue.type != faketongue.type))
+			if(faketongue)
+				qdel(faketongue)
+			faketongue = new S.mutanttongue.type()
+		fake_species = new S.type
 	else
 		name = initial(name)
 		say_mod = initial(say_mod)
@@ -58,6 +63,7 @@
 		qdel(fake_species)
 		fake_species = null
 		meat = initial(meat)
+		icon_limbs = initial(icon_limbs)
 		limbs_id = initial(limbs_id)
 		use_skintones = initial(use_skintones)
 		sexes = initial(sexes)
@@ -65,6 +71,8 @@
 		hair_color = ""
 		screamsounds = initial(screamsounds)
 		femalescreamsounds = initial(femalescreamsounds)
+		if(faketongue)
+			qdel(faketongue)
 		isdisguised = TRUE
 
 	for(var/X in H.bodyparts) //propagates the damage_overlay changes
@@ -91,14 +99,15 @@
 	return ..()
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
-	if (ishuman(source))
+	if(ishuman(source))
 		var/mob/living/carbon/human/L = source
 		if(fake_species && L.health >= disguise_fail_health)
-			if(fake_species.mutanttongue)
-				var/obj/item/organ/tongue/faketongue = new fake_species.mutanttongue() //use the tongue of the species we're disguised as
-				faketongue.handle_speech(source, speech_args) //if we're above the health threshold
-				qdel(faketongue)
-				return TRUE
+			if(faketongue)
+				faketongue.handle_speech(source, speech_args) //if we're above the health threshold, we use our fake tongue
+		else if(L.health < disguise_fail_health)
+			speech_args[SPEECH_SPANS] |= SPAN_ROBOT //otherwise, robospeak
+	else
+		return
 
 /datum/species/synth/proc/unassume_disguise(mob/living/carbon/human/H)
 	name = initial(name)
@@ -123,11 +132,31 @@
 	femalescreamsounds = initial(femalescreamsounds)
 	isdisguised = FALSE
 
-/datum/species/synth/spec_life(mob/living/carbon/human/H)
+/datum/species/synth/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE)
 	..()
 	if((H.health < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
 		isdisguised = !isdisguised
-	if((H.health >= disguise_fail_health) && !isdisguised)
+	else if((H.health >= disguise_fail_health) && !isdisguised)
 		assume_disguise(fake_species, H)
 		isdisguised = !isdisguised
+
+/datum/species/synth/handle_hair(mob/living/carbon/human/H, forced_colour)
+	if(fake_species && isdisguised)
+		fake_species.handle_hair(H, forced_colour)
+	else
+		return ..()
+
+
+/datum/species/synth/handle_body(mob/living/carbon/human/H)
+	if(fake_species && isdisguised)
+		fake_species.handle_body(H)
+	else
+		return ..()
+
+
+/datum/species/synth/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
+	if(fake_species && isdisguised)
+		fake_species.handle_body(H,forced_colour)
+	else
+		return ..()

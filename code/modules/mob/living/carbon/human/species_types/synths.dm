@@ -89,7 +89,7 @@
 		var/obj/item/bodypart/BP = X
 		BP.update_limb()
 	H.update_body_parts() //to update limb icon cache with the new damage overlays
-*/
+
 //Proc redirects:
 //Passing procs onto the fake_species, to ensure we look as much like them as possible
 
@@ -112,7 +112,7 @@
 		fake_species.handle_body(H,forced_colour)
 	else
 		return ..()
-/* moved to modular_skyrat
+
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if (isliving(source)) // yeah it's gonna be living but just to be clean
 		var/mob/living/L = source

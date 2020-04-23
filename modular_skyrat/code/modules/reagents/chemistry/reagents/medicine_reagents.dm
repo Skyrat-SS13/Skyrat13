@@ -46,7 +46,7 @@
 	. = 1
 
 /datum/reagent/medicine/synthflesh
-	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed."
+	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed. Heals toxin damage on synths instead of harming them."
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 
@@ -69,7 +69,7 @@
 			if(amount_healed && M.stat != DEAD)
 				var/mob/living/carbon/human/ourguy = M
 				if(ourguy)
-					if(!(ourguy.dna.species == /datum/species/synth))
+					if(ourguy.dna.species != /datum/species/synth)
 						ourguy.adjustToxLoss(amount_healed * 0.25)
 					else
 						ourguy.adjustToxLoss(-(amount_healed * 0.75)) //synths heal toxins with synthflesh
