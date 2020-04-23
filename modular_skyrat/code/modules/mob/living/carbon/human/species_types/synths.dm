@@ -93,13 +93,14 @@
 	UnregisterSignal(H, COMSIG_MOB_SAY)
 
 /datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.type == /datum/reagent/medicine/synthflesh && chem.volume < chem.overdose_treshold)
+	if(chem.type == /datum/reagent/medicine/synthflesh && chem.volume < chem.overdose_threshold)
 		chem.reaction_mob(H, TOUCH, 2 ,0) //heal a little
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		return TRUE
-	else if(chem.type == /datum/reagent/medicine/synthflesh && chem.volume >= chem.overdose_treshold)
-		if(overdosed == FALSE)
+	else if(chem.type == /datum/reagent/medicine/synthflesh && chem.volume >= chem.overdose_threshold)
+		if(chem.overdosed == FALSE)
 			chem.overdose_start(H)
+			chem.reaction_mob(H, TOUCH, 2 ,0)
 		else
 			chem.reaction_mob(H, TOUCH, 2 ,0)
 	return ..()
