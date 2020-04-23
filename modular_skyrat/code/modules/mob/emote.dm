@@ -24,20 +24,13 @@
 			sound = 'sound/creatures/gorilla.ogg'
 		if(ishuman(user))
 			user.adjustOxyLoss(5)
-			var/datum/species/userspecies = user.dna.species
+			var/mob/living/carbon/human/H = user
+			var/datum/species/userspecies = H.dna.species
 			if(userspecies.screamsounds)
 				sound = pick(userspecies.screamsounds)
-			if(user.gender == FEMALE)
+			if(H.gender == FEMALE)
 				if(userspecies.femalescreamsounds.len)
 					sound = pick(userspecies.femalescreamsounds)
-			if(is_species(user, /datum/species/android) || is_species(user, /datum/species/ipc))
-				sound = 'modular_citadel/sound/voice/scream_silicon.ogg'
-			if(is_species(user, /datum/species/lizard))
-				sound = 'modular_citadel/sound/voice/scream_lizard.ogg'
-			if(is_species(user, /datum/species/skeleton))
-				sound = 'modular_citadel/sound/voice/scream_skeleton.ogg'
-			if(is_species(user, /datum/species/fly) || is_species(user, /datum/species/insect))
-				sound = 'modular_citadel/sound/voice/scream_moth.ogg'
 		if(isalien(user))
 			sound = 'sound/voice/hiss6.ogg'
 		LAZYINITLIST(user.alternate_screams)
