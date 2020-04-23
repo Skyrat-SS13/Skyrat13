@@ -43,8 +43,8 @@
 		use_skintones = S.use_skintones
 		fixed_mut_color = S.fixed_mut_color
 		hair_color = S.hair_color
-		screamsounds = S.screamsounds
-		femalescreamsounds = S.femalescreamsounds
+		screamsounds = S.screamsounds.Copy()
+		femalescreamsounds = S.femalescreamsounds.Copy()
 		isdisguised = TRUE
 		if((S.mutanttongue && !faketongue) || !istype(faketongue, S.mutanttongue))
 			if(faketongue)

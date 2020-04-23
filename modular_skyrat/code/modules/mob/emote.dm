@@ -26,7 +26,7 @@
 			user.adjustOxyLoss(5)
 			var/mob/living/carbon/human/H = user
 			var/datum/species/userspecies = H.dna.species
-			if(userspecies.screamsounds)
+			if(userspecies.screamsounds.len)
 				sound = pick(userspecies.screamsounds)
 			if(H.gender == FEMALE)
 				if(userspecies.femalescreamsounds.len)

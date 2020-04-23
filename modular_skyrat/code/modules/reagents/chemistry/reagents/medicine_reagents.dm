@@ -46,7 +46,8 @@
 	. = 1
 
 /datum/reagent/medicine/synthflesh
-	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed. Heals toxin damage on synths instead of harming them."
+	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed. Heals toxin damage on synths instead of harming them, unless overdosed."
+	overdose_threshold = 50 //you have to be abusing synth species to reach this point man. still made it so that overdose only applies to synths though.
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 
@@ -72,13 +73,29 @@
 					if(ourguy.dna.species.type != /datum/species/synth)
 						ourguy.adjustToxLoss(amount_healed * 0.25)
 					else
-						ourguy.adjustToxLoss(-(amount_healed * 0.75)) //synths heal toxins with synthflesh
+						if(!overdosed)
+							ourguy.adjustToxLoss(-(amount_healed * 0.75)) //synths heal toxins with synthflesh
+						else
+							ourguy.adjustToxLoss(1)
 				else
 					M.adjustToxLoss(amount_healed * 0.25)
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 				if(show_message) to_chat(M, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
+			else if(!amount_healed && M.stat != DEAD) //synths can use it to heal toxins even without other injuries
+				var/mob/living/carbon/human/ourguy = M
+				if(ourguy)
+					if(ourguy.dna.species.type == /datum/species/synth)
+						ourguy.adjustToxLoss(-(reac_volume * 0.75))
 			var/vol = reac_volume + M.reagents.get_reagent_amount(/datum/reagent/medicine/synthflesh)
 			if(HAS_TRAIT_FROM(M, TRAIT_HUSK, "burn") && M.getFireLoss() < THRESHOLD_UNHUSK && (vol > overdose_threshold))
 				M.cure_husk("burn")
 				M.visible_message("<span class='nicegreen'>Most of [M]'s burnt off or charred flesh has been restored!")
 	..()
+
+/datum/reagent/medicine/synthflesh/overdose_start(mob/living/M)
+	var/mob/living/carbon/human/H = M
+	if(H)
+		if(H.dna.species.type == /datum/species/synth)
+			to_chat(H, "<span class='userdanger'>You feel like you took too much of [name]!</span>")
+			overdosed = 1
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/overdose, name)
