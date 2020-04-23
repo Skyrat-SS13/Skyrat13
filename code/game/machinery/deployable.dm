@@ -88,6 +88,7 @@
 	drop_amount = 1
 	max_integrity = 50
 	proj_pass_rate = 65
+	layer = CLOSED_DOOR_LAYER + 0.1
 
 /obj/structure/barricade/wooden/crude/snow
 	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."
