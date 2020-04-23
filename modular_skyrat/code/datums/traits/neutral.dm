@@ -49,6 +49,7 @@
 		else
 			to_chat(H, "<span class='danger'>Your species is blacklisted from being a synth. Your synth quirk will be removed and your species has not been changed.</span>")
 			QDEL_IN(src, 120)
+			return
 
 /datum/quirk/synthetic/remove()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -63,4 +64,4 @@
 				H.set_species(/datum/species/ipc) //we fall back on IPC if something stinky happens. Shouldn't happe but you know.
 				to_chat(H, "<span class='warning'>Uh oh, stinky! Something poopy happened to your fakespecies! You have been set to an IPC as a fallback.</span>") //shouldn't happen. if it does uh oh.
 		else
-			to_chat(H, "<span class='warning'>Uh oh, stinky! Something poopy happened to your synth species datum!</span>") //hopefully won't happen under normal circumstances. could happen if the quirk holder uses a blacklisted species.
+			to_chat(H, "<span class='warning'>The [H.dna.species.name] species is blacklisted from being a synth. You will stay with the normal, non-synth race. It could mean that i broke the code too.</span>")
