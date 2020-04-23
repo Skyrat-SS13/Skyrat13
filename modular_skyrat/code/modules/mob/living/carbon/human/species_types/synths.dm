@@ -49,7 +49,7 @@
 		if((S.mutanttongue && !faketongue) || (S.mutanttongue.type != faketongue.type))
 			if(faketongue)
 				qdel(faketongue)
-			faketongue = new S.mutanttongue()
+			faketongue = new S.mutanttongue
 		fake_species = new S.type
 	else
 		name = initial(name)
@@ -71,11 +71,8 @@
 		hair_color = ""
 		screamsounds = initial(screamsounds)
 		femalescreamsounds = initial(femalescreamsounds)
-		if(faketongue)
-			qdel(faketongue)
-		qdel(fake_species)
-		fake_species = null
-		isdisguised = TRUE
+		fake_species = new /datum/species/human
+		isdisguised = FALSE
 
 	for(var/X in H.bodyparts) //propagates the damage_overlay changes
 		var/obj/item/bodypart/BP = X
@@ -132,18 +129,16 @@
 	femalescreamsounds = initial(femalescreamsounds)
 	isdisguised = FALSE
 
-/datum/species/synth/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE)
+/datum/species/synth/spec_life(mob/living/carbon/human/H)
 	..()
 	actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
-		isdisguised = !isdisguised
 		handle_hair(H)
 		handle_body(H)
 		handle_mutant_bodyparts(H)
 	else if((actualhealth >= disguise_fail_health) && !isdisguised)
 		assume_disguise(fake_species, H)
-		isdisguised = !isdisguised
 		handle_hair(H)
 		handle_body(H)
 		handle_mutant_bodyparts(H)
@@ -153,7 +148,6 @@
 		fake_species.handle_hair(H, forced_colour)
 	else
 		return ..()
-
 
 /datum/species/synth/handle_body(mob/living/carbon/human/H)
 	if(fake_species && isdisguised)
