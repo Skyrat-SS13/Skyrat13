@@ -2046,14 +2046,14 @@
 
 /datum/reagent/tranquility
 	name = "Tranquility"
-	description = "A highly mutative liquid of unknown origin."
+	description = "An unknown liquid that soothes the soul."
 	color = "#9A6750" //RGB: 154, 103, 80
 	taste_description = "inner peace"
 	can_synth = FALSE
 
 /datum/reagent/tranquility/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
-		L.apply_status_effect(STATUS_EFFECT_PACIFY, 180)
+		L.apply_status_effect(STATUS_EFFECT_PACIFY, 180) // Skyrat change
 
 /datum/reagent/moonsugar
 	name = "Moonsugar"
