@@ -1235,7 +1235,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/poddoor/preopen{
-	id = secminingpod
+	id = "secminingpod"
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
@@ -1273,7 +1273,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/poddoor/preopen{
-	id = secminingpod
+	id = "secminingpod"
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
@@ -2381,7 +2381,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = secminingpod
+	id = "secminingpod"
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
@@ -3213,7 +3213,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/poddoor/preopen{
-	id = secminingpod
+	id = "secminingpod"
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
@@ -3533,7 +3533,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = secminingpod
+	id = "secminingpod"
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
@@ -3901,7 +3901,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = secminingpod
+	id = "secminingpod"
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
@@ -4049,7 +4049,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = secminingpod
+	id = "secminingpod"
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
