@@ -306,8 +306,8 @@
 
 //HEV Mark IV (RD hardsuit)
 /obj/item/clothing/head/helmet/space/hardsuit/rd/hev
-	name = "HEV Suit Mark IV helmet"
-	desc = "A Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers."
+	name = "Prototype HEV Suit Mark IV helmet"
+	desc = "A new design of the Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers."
 	icon_state = "hardsuit0-hev2"
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
@@ -355,8 +355,8 @@
 			return
 
 /obj/item/clothing/suit/space/hardsuit/rd/hev
-	name = "HEV Suit Mark IV"
-	desc = "A Hazardous Environment suit, often called the Hazard suit. It was designed to protect scientists from the blunt trauma, radiation, energy discharge that hazardous materials might produce or entail. Fits you like a glove. The automatic medical system seems to be functional."
+	name = "Prototype HEV Suit Mark IV"
+	desc = "A Hazardous Environment suit, often called the Hazard suit. It's a prototype, designed to protect scientists from the blunt trauma, radiation, energy discharge that hazardous materials might produce or entail. Has a medical system for emergencies."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
