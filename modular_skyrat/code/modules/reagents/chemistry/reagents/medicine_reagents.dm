@@ -75,17 +75,19 @@
 					else
 						if(!overdosed)
 							ourguy.adjustToxLoss(-(amount_healed * 0.75)) //synths heal toxins with synthflesh
+							ourguy.adjustCloneLoss(-(amount_healed * 1))
 						else
 							ourguy.adjustToxLoss(1)
 				else
 					M.adjustToxLoss(amount_healed * 0.25)
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 				if(show_message) to_chat(M, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
-			else if(!amount_healed && M.stat != DEAD) //synths can use it to heal toxins even without other injuries
+			else if(!amount_healed && M.stat != DEAD) //synths can use it to heal toxins and cloning damage even without other injuries
 				var/mob/living/carbon/human/ourguy = M
 				if(ourguy)
 					if(ourguy.dna.species.type == /datum/species/synth)
 						ourguy.adjustToxLoss(-(reac_volume * 0.75))
+						ourguy.adjustCloneLoss(-(reac_volume * 1))
 			var/vol = reac_volume + M.reagents.get_reagent_amount(/datum/reagent/medicine/synthflesh)
 			if(HAS_TRAIT_FROM(M, TRAIT_HUSK, "burn") && M.getFireLoss() < THRESHOLD_UNHUSK && (vol > overdose_threshold))
 				M.cure_husk("burn")

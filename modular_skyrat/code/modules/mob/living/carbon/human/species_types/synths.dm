@@ -82,14 +82,12 @@
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.grant_language(/datum/language/machine)
-	H.physiology.clone_mod = 0
 	assume_disguise(old_species, H)
 	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.remove_language(/datum/language/machine)
-	H.physiology.clone_mod = initial(H.physiology.clone_mod)
 	UnregisterSignal(H, COMSIG_MOB_SAY)
 
 /datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
