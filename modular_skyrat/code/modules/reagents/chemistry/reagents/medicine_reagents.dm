@@ -69,7 +69,7 @@
 			if(amount_healed && M.stat != DEAD)
 				var/mob/living/carbon/human/ourguy = M
 				if(ourguy)
-					if(ourguy.dna.species != /datum/species/synth)
+					if(ourguy.dna.species.type != /datum/species/synth)
 						ourguy.adjustToxLoss(amount_healed * 0.25)
 					else
 						ourguy.adjustToxLoss(-(amount_healed * 0.75)) //synths heal toxins with synthflesh
