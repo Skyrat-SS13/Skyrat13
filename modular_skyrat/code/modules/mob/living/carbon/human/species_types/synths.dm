@@ -47,7 +47,7 @@
 		if((S.mutanttongue && !faketongue) || (S.mutanttongue.type != faketongue.type))
 			if(faketongue)
 				qdel(faketongue)
-			faketongue = new S.mutanttongue.type()
+			faketongue = new S.mutanttongue()
 		fake_species = new S.type
 	else
 		name = initial(name)
