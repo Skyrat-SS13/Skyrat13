@@ -2053,7 +2053,7 @@
 
 /datum/reagent/tranquility/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
-		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
+		L.apply_status_effect(STATUS_EFFECT_PACIFY, 180)
 
 /datum/reagent/moonsugar
 	name = "Moonsugar"
