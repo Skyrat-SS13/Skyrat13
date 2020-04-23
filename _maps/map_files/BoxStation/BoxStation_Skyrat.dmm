@@ -13412,11 +13412,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aCW" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/effect/spawner/blocker,
 /turf/open/floor/plating,
-/area/maintenance/starboard/aft)
+/area/maintenance/port)
 "aCX" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plasteel,
@@ -13669,6 +13667,7 @@
 "aDz" = (
 /obj/structure/rack,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "aDA" = (
@@ -27081,10 +27080,9 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/central)
 "bjA" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
 	},
-/obj/effect/spawner/blocker,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "bjB" = (
@@ -28324,6 +28322,7 @@
 /area/crew_quarters/heads/hop)
 "bmp" = (
 /obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bmq" = (
@@ -36070,6 +36069,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
+"bDg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/blocker,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "bDh" = (
 /obj/structure/closet,
 /turf/open/floor/plating,
@@ -44978,9 +44984,7 @@
 	name = "Incinerator Access";
 	req_access_txt = "12"
 	},
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bYz" = (
@@ -46574,6 +46578,11 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/port/aft)
+"ccd" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "cce" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -51646,9 +51655,7 @@
 	id_tag = "barbath";
 	name = "Restroom"
 	},
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/maintenance/bar)
 "cqM" = (
@@ -54673,6 +54680,7 @@
 /area/construction)
 "cCe" = (
 /obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/construction)
 "cCf" = (
@@ -58293,9 +58301,7 @@
 	id_tag = "bardorm1";
 	name = "Room One"
 	},
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/maintenance/bar)
 "iqU" = (
@@ -58593,6 +58599,7 @@
 "iZs" = (
 /obj/structure/table,
 /obj/machinery/door/window,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "jaF" = (
@@ -59089,13 +59096,6 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
-"jRd" = (
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
-/obj/machinery/door/airlock,
-/turf/open/floor/plating,
-/area/maintenance/bar)
 "jSO" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -59783,9 +59783,7 @@
 /area/hydroponics)
 "lvU" = (
 /obj/machinery/door/airlock,
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "lwX" = (
@@ -60411,9 +60409,7 @@
 /area/hallway/secondary/exit)
 "nlJ" = (
 /obj/machinery/door/airlock,
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/maintenance/bar)
 "nlQ" = (
@@ -62789,14 +62785,12 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "sNl" = (
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/oil/streak,
 /obj/machinery/door/airlock,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/maintenance/bar)
 "sNK" = (
@@ -63499,9 +63493,7 @@
 	id_tag = "bardorm2";
 	name = "Room Two"
 	},
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/maintenance/bar)
 "uve" = (
@@ -81121,7 +81113,7 @@ aLF
 aLF
 aPz
 aQL
-aSg
+aCW
 aSg
 aSg
 aWl
@@ -85810,7 +85802,7 @@ bCq
 cyE
 dKP
 dKP
-jRd
+nlJ
 dKP
 dKP
 nXT
@@ -86302,7 +86294,7 @@ bCq
 bPW
 bCq
 bCq
-cOw
+bSp
 bCq
 bVF
 bWA
@@ -87092,7 +87084,7 @@ bLv
 aaa
 bLv
 bJf
-ceV
+ccd
 dKP
 jmp
 eDf
@@ -115858,17 +115850,17 @@ cNW
 cNW
 cNW
 cNW
-aCW
-cNW
-cNW
-cNW
-cNW
-cNW
-cNW
-cNW
-cNW
-cNW
 bjA
+cNW
+cNW
+cNW
+cNW
+cNW
+cNW
+cNW
+cNW
+cNW
+bDg
 cNW
 cNW
 cNW
