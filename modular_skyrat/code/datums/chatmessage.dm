@@ -46,7 +46,7 @@
 	INVOKE_ASYNC(src, .proc/generate_image, text, target, owner, extra_classes, lifespan)
 
 /datum/chatmessage/Destroy()
-	if (owned_by && owned_by.seen_messages)
+	if (owned_by)
 		if (owned_by.seen_messages)
 			LAZYREMOVEASSOC(owned_by.seen_messages, message_loc, src)
 		owned_by.images -= message

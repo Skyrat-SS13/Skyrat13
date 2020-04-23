@@ -238,12 +238,13 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	//SKYRAT CHANGES
 	// Create map text prior to modifying message for goonchat
-	var/atom/movable/unvirtual = speaker
-	if (istype(speaker, /atom/movable/virtualspeaker))
-		var/atom/movable/virtualspeaker/v = speaker
-		unvirtual = v.source
-	if(!radio_freq || unvirtual != src)
-		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
+	if (client?.prefs.chat_on_map && can_hear())
+		var/atom/movable/unvirtual = speaker
+		if (istype(speaker, /atom/movable/virtualspeaker))
+			var/atom/movable/virtualspeaker/v = speaker
+			unvirtual = v.source
+		if(!radio_freq || unvirtual != src)
+			create_chat_message(speaker, message_language, raw_message, spans, message_mode)
 	//END OF SKYRAT CHANGES
 
 	// Recompose message for AI hrefs, language incomprehension.

@@ -129,7 +129,8 @@ the new instance inside the host to be updated to the template's stats.
 	else
 		link = ""
 	// Create map text prior to modifying message for goonchat //SKYRAT CHANGE
-	create_chat_message(speaker, message_language, raw_message, spans, message_mode) //SKYRAT CHANGE
+	if (client?.prefs.chat_on_map) //SKYRAT CHANGE
+		create_chat_message(speaker, message_language, raw_message, spans, message_mode) //SKYRAT CHANGE
 	// Recompose the message, because it's scrambled by default
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode, FALSE, source)
 	to_chat(src, "[link] [message]")
