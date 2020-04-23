@@ -26,11 +26,12 @@
 			user.adjustOxyLoss(5)
 			var/mob/living/carbon/human/H = user
 			var/datum/species/userspecies = H.dna.species
-			if(userspecies.screamsounds.len)
-				sound = pick(userspecies.screamsounds)
-			if(H.gender == FEMALE)
-				if(userspecies.femalescreamsounds.len)
-					sound = pick(userspecies.femalescreamsounds)
+			if(H)
+				if(userspecies.screamsounds.len)
+					sound = pick(userspecies.screamsounds)
+				if(H.gender == FEMALE)
+					if(userspecies.femalescreamsounds.len)
+						sound = pick(userspecies.femalescreamsounds)
 		if(isalien(user))
 			sound = 'sound/voice/hiss6.ogg'
 		LAZYINITLIST(user.alternate_screams)

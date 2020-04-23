@@ -69,8 +69,8 @@
 		sexes = initial(sexes)
 		fixed_mut_color = ""
 		hair_color = ""
-		screamsounds = initial(screamsounds)
-		femalescreamsounds = initial(femalescreamsounds)
+		screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
+		femalescreamsounds = list()
 		fake_species = new /datum/species/human
 		isdisguised = FALSE
 
@@ -126,8 +126,8 @@
 	sexes = initial(sexes)
 	fixed_mut_color = ""
 	hair_color = ""
-	screamsounds = initial(screamsounds)
-	femalescreamsounds = initial(femalescreamsounds)
+	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
+	femalescreamsounds = list()
 	isdisguised = FALSE
 
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
