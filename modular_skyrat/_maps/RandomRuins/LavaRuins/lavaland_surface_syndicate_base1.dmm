@@ -6719,6 +6719,12 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
+"yL" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 10
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/lavaland/surface/outdoors)
 "ze" = (
 /obj/structure/table,
 /obj/item/disk/xenobio_console_upgrade/monkey,
@@ -6743,6 +6749,12 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/testlab)
+"Aq" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 10
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "Ay" = (
 /obj/machinery/porta_turret/syndicate{
@@ -6780,6 +6792,9 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
+"GW" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/lavaland/surface/outdoors)
 "He" = (
 /obj/machinery/vending/hydroseeds,
 /turf/open/floor/grass,
@@ -7363,14 +7378,14 @@ aa
 aa
 ab
 ab
+Aq
 ae
 ae
 ae
 ae
 ae
 ae
-ae
-ae
+Aq
 ab
 ab
 ab
@@ -7772,7 +7787,7 @@ aj
 eh
 eh
 eh
-eh
+aB
 ab
 ab
 ab
@@ -8313,7 +8328,7 @@ ab
 (24,1,1) = {"
 aa
 ab
-ae
+Aq
 ae
 ae
 wz
@@ -9041,7 +9056,7 @@ aa
 (37,1,1) = {"
 aa
 ab
-ae
+Aq
 ae
 ae
 ae
@@ -9512,7 +9527,7 @@ ha
 ha
 ha
 ha
-hW
+ha
 ju
 jJ
 kl
@@ -9565,11 +9580,11 @@ ho
 hD
 dy
 dy
-ac
-ab
-ab
-ab
-ac
+GW
+yL
+GW
+GW
+yL
 jK
 ju
 km
@@ -9619,7 +9634,7 @@ gf
 dy
 eF
 eF
-dy
+aA
 ab
 ab
 ab
