@@ -233,6 +233,10 @@
 	terminate_effects()
 	. = ..()
 
+/obj/item/organ/eyes/robotic/glow/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
+    RegisterSignal(M,COMSIG_LIVING_STATUS_UNCONSCIOUS,.proc/deactivate)
+    . = ..()
+
 /obj/item/organ/eyes/robotic/glow/proc/terminate_effects()
 	if(owner && active)
 		deactivate(TRUE)
