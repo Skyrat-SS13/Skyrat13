@@ -61214,9 +61214,7 @@
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
-/obj/item/reagent_containers/food/snacks/cheesynachos{
-	pixel_y = 5
-	},
+/obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "quT" = (
