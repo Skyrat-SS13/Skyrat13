@@ -1,13 +1,12 @@
 #define CHAT_MESSAGE_SPAWN_TIME		0.2 SECONDS
 #define CHAT_MESSAGE_LIFESPAN		5 SECONDS
-#define CHAT_MESSAGE_EOL_FADE		1 SECONDS
+#define CHAT_MESSAGE_EOL_FADE		0.7 SECONDS
+#define CHAT_MESSAGE_EXP_DECAY		0.7 // Messages decay at pow(factor, idx in stack)
+#define CHAT_MESSAGE_HEIGHT_DECAY	0.9 // Increase message decay based on the height of the message
+#define CHAT_MESSAGE_APPROX_LHEIGHT	11 // Approximate height in pixels of an 'average' line, used for height decay
 #define CHAT_MESSAGE_WIDTH			96 // pixels
 #define CHAT_MESSAGE_MAX_LENGTH		110 // characters
 #define WXH_TO_HEIGHT(x)			text2num(copytext((x), findtextEx((x), "x") + 1)) // thanks lummox
-
-/client
-	/// Messages currently seen by this client
-	var/list/seen_messages = list()
 
 /**
   * # Chat Message Overlay
@@ -21,6 +20,10 @@
 	var/atom/message_loc
 	/// The client who heard this message
 	var/client/owned_by
+	/// Contains the scheduled destruction time
+	var/scheduled_destruction
+	/// Contains the approximate amount of lines for height decay
+	var/approx_lines
 
 /**
   * Constructs a chat message overlay
@@ -40,7 +43,26 @@
 		stack_trace("/datum/chatmessage created with [isnull(owner) ? "null" : "invalid"] mob owner")
 		qdel(src)
 		return
+	INVOKE_ASYNC(src, .proc/generate_image, text, target, owner, extra_classes, lifespan)
 
+/datum/chatmessage/Destroy()
+	if (owned_by && owned_by.seen_messages)
+		if (owned_by.seen_messages)
+			LAZYREMOVEASSOC(owned_by.seen_messages, message_loc, src)
+		owned_by.images -= message
+	return ..()
+
+/**
+  * Generates a chat message image representation
+  *
+  * Arguments:
+  * * text - The text content of the overlay
+  * * target - The target atom to display the overlay at
+  * * owner - The mob that owns this overlay, only this mob will be able to view it
+  * * extra_classes - Extra classes to apply to the span that holds the text
+  * * lifespan - The lifespan of the message in deciseconds
+  */
+/datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan)
 	// Clip message
 	if (length_char(text) > CHAT_MESSAGE_MAX_LENGTH)
 		text = copytext_char(text, 1, CHAT_MESSAGE_MAX_LENGTH) + "..."
@@ -67,16 +89,27 @@
 	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
 	var/complete_text = "<span class='center maptext [extra_classes != null ? extra_classes.Join(" ") : ""]' style='color: [target.chat_color]'>[text]</span>"
 	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, CHAT_MESSAGE_WIDTH))
+	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
 
-	// Translate any existing messages upwards
+	// Translate any existing messages upwards, apply exponential decay factors to timers
 	message_loc = target
 	if (owned_by.seen_messages)
-		for(var/datum/chatmessage/m in owned_by.seen_messages[message_loc])
+		var/idx = 1
+		var/combined_height = approx_lines
+		for(var/msg in owned_by.seen_messages[message_loc])
+			var/datum/chatmessage/m = msg
 			animate(m.message, pixel_y = m.message.pixel_y + mheight, time = CHAT_MESSAGE_SPAWN_TIME)
+			combined_height += m.approx_lines
+			var/sched_remaining = m.scheduled_destruction - world.time
+			if (sched_remaining > CHAT_MESSAGE_SPAWN_TIME)
+				var/remaining_time = (sched_remaining) * (CHAT_MESSAGE_EXP_DECAY ** idx++) * (CHAT_MESSAGE_HEIGHT_DECAY ** combined_height)
+				m.scheduled_destruction = world.time + remaining_time
+				addtimer(CALLBACK(m, .proc/end_of_life), remaining_time, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 	// Build message image
-	message = image(loc = message_loc, layer = ABOVE_LIGHTING_LAYER)
-	message.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	message = image(loc = message_loc, layer = CHAT_LAYER)
+	message.plane = CHAT_LAYER
+	message.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | RESET_TRANSFORM
 	message.alpha = 0
 	message.pixel_y = owner.bound_height * 0.95
 	message.maptext_width = CHAT_MESSAGE_WIDTH
@@ -88,21 +121,17 @@
 	LAZYADDASSOC(owned_by.seen_messages, message_loc, src)
 	owned_by.images |= message
 	animate(message, alpha = 255, time = CHAT_MESSAGE_SPAWN_TIME)
-	addtimer(CALLBACK(src, .proc/end_of_life), lifespan - CHAT_MESSAGE_EOL_FADE)
-	QDEL_IN(src, lifespan)
 
-/datum/chatmessage/Destroy()
-	if (owned_by && owned_by.seen_messages)
-		if (owned_by.seen_messages)
-			LAZYREMOVEASSOC(owned_by.seen_messages, message_loc, src)
-		owned_by.images -= message
-	return ..()
+	// Prepare for destruction
+	scheduled_destruction = world.time + (lifespan - CHAT_MESSAGE_EOL_FADE)
+	addtimer(CALLBACK(src, .proc/end_of_life), lifespan - CHAT_MESSAGE_EOL_FADE, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /**
   * Applies final animations to overlay CHAT_MESSAGE_EOL_FADE deciseconds prior to message deletion
   */
-/datum/chatmessage/proc/end_of_life()
-	animate(message, alpha = 0, time = CHAT_MESSAGE_EOL_FADE)
+/datum/chatmessage/proc/end_of_life(fadetime = CHAT_MESSAGE_EOL_FADE)
+	animate(message, alpha = 0, time = fadetime, flags = ANIMATION_PARALLEL)
+	QDEL_IN(src, fadetime)
 
 /**
   * Creates a message overlay at a defined location for a given speaker
@@ -112,15 +141,17 @@
   * * message_language - The language that the message is said in
   * * raw_message - The text content of the message
   * * spans - Additional classes to be added to the message
+  * * message_mode - Bitflags relating to the mode of the message
   */
-/mob/proc/create_chat_message(atom/movable/speaker, datum/language/message_language, raw_message, list/spans)
-	if (!client || !client.prefs.chat_on_map)
+/mob/proc/create_chat_message(atom/movable/speaker, datum/language/message_language, raw_message, list/spans, message_mode)
+	if (!client?.prefs.chat_on_map)
 		return
 
 	if (istype(speaker, /atom/movable/virtualspeaker))
 		var/atom/movable/virtualspeaker/v = speaker
 		speaker = v.source
 		spans |= "virtual-speaker"
+
 	// Display visual above source
 	new /datum/chatmessage(lang_treat(speaker, message_language, raw_message, spans, null, TRUE), speaker, src, spans)
 

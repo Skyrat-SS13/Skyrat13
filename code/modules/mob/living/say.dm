@@ -236,8 +236,15 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		deaf_message = "<span class='notice'>You can't hear yourself!</span>"
 		deaf_type = 2 // Since you should be able to hear yourself without looking
 
-	// Create map text prior to modifying message for goonchat //Skyrat change
-	create_chat_message(speaker, message_language, raw_message, spans) //Skyrat change
+	//SKYRAT CHANGES
+	// Create map text prior to modifying message for goonchat
+	var/atom/movable/unvirtual = speaker
+	if (istype(speaker, /atom/movable/virtualspeaker))
+		var/atom/movable/virtualspeaker/v = speaker
+		unvirtual = v.source
+	if(!radio_freq || unvirtual != src)
+		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
+	//END OF SKYRAT CHANGES
 
 	// Recompose message for AI hrefs, language incomprehension.
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode, FALSE, source)
@@ -291,7 +298,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	//speech bubble
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)
-		if(M.client)
+		if(M.client && !M.client.prefs.chat_on_map) //Skyrat change
 			speech_bubble_recipients.Add(M.client)
 	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
