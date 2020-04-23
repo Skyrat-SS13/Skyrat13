@@ -315,7 +315,7 @@
 	hardsuit_type = "hev2"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 30, "energy" = 35, "bomb" = 25, "bio" = 100, "rad" = 70, "fire" = 70, "acid" = 75)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 30, "energy" = 40, "bomb" = 33, "bio" = 100, "rad" = 70, "fire" = 70, "acid" = 75)
 	var/explosion_detection_dist = 21
 	var/scan_reagents = TRUE
 	var/currentcolor = "E37B3B"
