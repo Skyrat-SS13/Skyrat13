@@ -135,10 +135,10 @@
 /datum/species/synth/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE)
 	..()
 	var/actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
-	if((H.actualhealth < disguise_fail_health) && isdisguised)
+	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
 		isdisguised = !isdisguised
-	else if((H.actualhealth >= disguise_fail_health) && !isdisguised)
+	else if((actualhealth >= disguise_fail_health) && !isdisguised)
 		assume_disguise(fake_species, H)
 		isdisguised = !isdisguised
 
