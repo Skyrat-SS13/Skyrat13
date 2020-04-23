@@ -1,11 +1,11 @@
 /datum/mutation/human/thickskin
 	name = "Thick skin"
-	desc = "The user's skin acquires a leathery texture, and is more resilient to harm."
+	desc = "The user's skin acquires a leathery texture, and becomes more resilient to harm."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Your skin feels dry and heavy.</span>"
 	text_lose_indication = "<span class='notice'>Your skin feels soft again...</span>"
 	difficulty = 18
-	instability = 25
+	instability = 30
 	var/brutemodbefore
 	var/burnmodbefore
 
@@ -14,7 +14,7 @@
 	if(owner.physiology)
 		brutemodbefore = owner.physiology.brute_mod
 		burnmodbefore = owner.physiology.burn_mod
-		owner.physiology.brute_mod *= 0.75
+		owner.physiology.brute_mod *= 0.8
 		owner.physiology.burn_mod *= 0.9
 
 /datum/mutation/human/thickskin/on_losing(mob/living/carbon/human/owner)
