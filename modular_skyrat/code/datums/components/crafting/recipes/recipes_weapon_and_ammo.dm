@@ -35,6 +35,7 @@
 				/obj/item/stack/sheet/mineral/gold = 5,
 				/obj/item/stock_parts/cell = 1,
 				/obj/machinery/igniter = 1)
+	time = 250
 	tools = list(TOOL_WELDER)
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -45,7 +46,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 1,
 				/obj/item/storage/bag/tray = 1,
 				/obj/item/stack/cable_coil = 5)
-	time = 100
+	time = 60
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -55,7 +56,7 @@
 	parts = list(/obj/item/shard = 1)
 	reqs = list(/obj/item/stack/cable_coil = 1,
 				/obj/item/stack/wrapping_paper = 1)
-	time = 5
+	time = 20
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -120,7 +121,7 @@
 				/obj/item/storage/box = 1,
 				/obj/item/weaponcrafting/receiver = 1)
 	tools = list(TOOL_SCREWDRIVER)
-	time = 150
+	time = 60
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -135,7 +136,7 @@
 				/obj/item/stock_parts/cell/high/plus/argent = 1,
 				/obj/item/stock_parts/capacitor = 4,
 				/obj/item/stock_parts/micro_laser = 1)
-	time = 200
+	time = 500
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/makeshiftlasrifle
@@ -171,7 +172,7 @@
 				/obj/item/stock_parts/micro_laser/high = 4,
 				/obj/item/stock_parts/capacitor/adv = 2)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
-	time = 125
+	time = 200
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -184,6 +185,7 @@
 	result = /obj/item/ammo_box/magazine/m10mm/makeshift
 	reqs = list(/obj/item/pipe = 1,
 				/obj/item/stack/sheet/metal = 2,
+				/obj/item/stack/sheet/mineral/wood = 1,
 				/obj/item/stack/packageWrap = 1)
 	time = 75
 	category = CAT_WEAPONRY
@@ -210,7 +212,8 @@
 	reqs = list(/obj/item/melee/baton = 2,
 				/obj/item/stack/sheet/metal = 2,
 				/obj/item/stack/cable_coil = 5)
+	parts = list(/obj/item/stock_parts/cell)
 	tools = list(TOOL_WELDER)
-	time = 100
+	time = 75
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
