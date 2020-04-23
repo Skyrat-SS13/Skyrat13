@@ -47,7 +47,7 @@
 
 /datum/reagent/medicine/synthflesh
 	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed. Heals toxin damage on synths instead of harming them, unless overdosed."
-	overdose_threshold = 25 //no synth species abusing
+	overdose_threshold = 20 //no synth species abusing
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 
