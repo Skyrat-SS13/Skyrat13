@@ -138,9 +138,15 @@
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
 		isdisguised = !isdisguised
+		handle_hair(mob/living/carbon/human/H)
+		handle_body(mob/living/carbon/human/H)
+		handle_mutant_bodyparts(mob/living/carbon/human/H)
 	else if((actualhealth >= disguise_fail_health) && !isdisguised)
 		assume_disguise(fake_species, H)
 		isdisguised = !isdisguised
+		handle_hair(mob/living/carbon/human/H)
+		handle_body(mob/living/carbon/human/H)
+		handle_mutant_bodyparts(mob/living/carbon/human/H)
 
 /datum/species/synth/handle_hair(mob/living/carbon/human/H, forced_colour)
 	if(fake_species && isdisguised)
