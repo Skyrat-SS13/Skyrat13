@@ -132,10 +132,10 @@
 	tastes = list("meat" = 1, "salmon" = 1)
 	foodtype = MEAT | ALCOHOL
 
-/obj/item/reagent_containers/food/snacks/faggot
-	name = "faggot"
-	desc = "A great meal all round. Not a cord of wood."
-	icon_state = "faggot"
+/obj/item/reagent_containers/food/snacks/meatball
+	name = "meatball"
+	desc = "MAMA MIA DAS A SPICY"
+	icon_state = "meatball"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#800000"
 	tastes = list("meat" = 1)
@@ -207,7 +207,7 @@
 	name = "raw khinkali"
 	desc = "One hundred khinkalis? Do I look like a pig?"
 	icon_state = "khinkali"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/garlic = 1)
 	cooked_type = /obj/item/reagent_containers/food/snacks/khinkali
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
 	foodtype = MEAT
@@ -216,7 +216,7 @@
 	name = "khinkali"
 	desc = "One hundred khinkalis? Do I look like a pig?"
 	icon_state = "khinkali"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/garlic = 1)
 	bitesize = 3
 	filling_color = "#F0F0F0"
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
@@ -244,7 +244,7 @@
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
 	var/mob/spammer = get_mob_by_key(fingerprintslast)
-	var/mob/living/carbon/monkey/bananas = new(drop_location(), TRUE, spammer)
+	var/mob/living/carbon/monkey/bananas = SSrecycling.deploy_monkey(drop_location(), TRUE, spammer) //skyrat change
 	if (!QDELETED(bananas))
 		visible_message("<span class='notice'>[src] expands!</span>")
 		bananas.log_message("Spawned via [src] at [AREACOORD(src)], Last attached mob: [key_name(spammer)].", LOG_ATTACK)

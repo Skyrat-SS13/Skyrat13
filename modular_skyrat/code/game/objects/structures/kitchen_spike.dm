@@ -5,7 +5,6 @@
 	icon_state = "cross"
 	desc = "Degenerates like you belong on one of these."
 	anchored = TRUE
-	bound_height = 64
 
 /obj/structure/kitchenspike/cross/crowbar_act(mob/living/user, obj/item/I)
 	if(has_buckled_mobs())

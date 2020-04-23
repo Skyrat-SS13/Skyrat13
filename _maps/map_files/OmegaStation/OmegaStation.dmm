@@ -11768,7 +11768,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
 "atY" = (
-/obj/structure/piano{
+/obj/structure/musician/piano{
 	icon_state = "piano"
 	},
 /obj/machinery/light{
@@ -27716,12 +27716,12 @@
 	pixel_y = 3
 	},
 /obj/item/storage/box/syringes,
-/obj/item/gun/syringe,
 /obj/item/reagent_containers/hypospray/CMO,
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
 /obj/item/clothing/neck/stethoscope,
 /obj/item/clothing/neck/stethoscope,
+/obj/item/gun/syringe/dart,
 /turf/open/floor/plasteel,
 /area/medical/medbay/zone3)
 "aXR" = (
