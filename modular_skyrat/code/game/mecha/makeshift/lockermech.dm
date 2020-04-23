@@ -5,7 +5,7 @@
 	icon_state = "lockermech"
 	max_integrity = 100 //its made of scraps
 	lights_power = 5
-	step_in = 3 //Slightly speedier than a ripley
+	step_in = 3 //Slightly speedier than a ripley... somehow?
 	armor = list(melee = 20, bullet = 10, laser = 10, energy = 0, bomb = 10, bio = 0, rad = 0, fire = 70, acid = 60) //Same armour as a locker
 	internal_damage_threshold = 30 //Its got shitty durability
 	max_equip = 2 //You only have two arms and the control system is shitty
@@ -72,3 +72,11 @@
 /obj/mecha/makeshift/Destroy()
 	new /obj/structure/closet(loc)
 	..()
+
+/obj/item/mecha_parts/chassis/makeshift
+	name = "\improper Makeshift chassis"
+	desc = "If this works at all, it's an impressive feat."
+	construct_type = /datum/component/construction/unordered/mecha_chassis/makeshift
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "lockermech_skeleton"
+	w_class = WEIGHT_CLASS_HUGE
