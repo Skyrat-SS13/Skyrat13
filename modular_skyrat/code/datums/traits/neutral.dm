@@ -55,7 +55,7 @@
 	if(H)
 		var/datum/species/thespecies = H.dna.species
 		if(thespecies.type == /datum/species/synth)
-			var/datum/species/synthspecies = thespecies
+			var/datum/species/synth/synthspecies = thespecies
 			var/datum/species/oldspecies = synthspecies.fake_species
 			if(oldspecies)
 				H.set_species(oldspecies)
