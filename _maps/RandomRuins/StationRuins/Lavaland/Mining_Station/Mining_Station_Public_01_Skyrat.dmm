@@ -418,7 +418,7 @@
 "gz" = (
 /obj/structure/chair/office,
 /obj/machinery/button/door{
-	id = secminingpod;
+	id = "secminingpod";
 	pixel_y = -32;
 	req_access_txt = "2"
 	},
@@ -3796,7 +3796,7 @@
 /obj/structure/fans/tiny,
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/window/preopen{
-	id = miningtradeshutter
+	id = "miningtradeshutter"
 	},
 /turf/open/floor/plating,
 /area/mine/eva)
@@ -3842,7 +3842,7 @@
 	dir = 4
 	},
 /obj/machinery/button/door{
-	id = miningtradeshutter;
+	id = "miningtradeshutter";
 	pixel_x = 32;
 	pixel_y = 32;
 	req_access_txt = "54"
