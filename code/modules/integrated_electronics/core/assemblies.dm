@@ -77,9 +77,6 @@
 	if((isobserver(user) && ckeys_allowed_to_scan[user.ckey]) || IsAdminGhost(user))
 		. += "You can <a href='?src=[REF(src)];ghostscan=1'>scan</a> this circuit."
 
-	for(var/I in assembly_components)
-		var/obj/item/integrated_circuit/IC = I
-		. += IC.external_examine(user)
 	if(opened)
 		interact(user)
 
