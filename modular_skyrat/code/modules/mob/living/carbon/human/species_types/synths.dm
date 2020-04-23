@@ -101,11 +101,10 @@
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
-		var/mob/living/carbon/human/L = source
-		if(fake_species && L.health >= disguise_fail_health)
+		if(fake_species && actualhealth >= disguise_fail_health)
 			if(faketongue)
 				faketongue.handle_speech(source, speech_args) //if we're above the health threshold, we use our fake tongue
-		else if(L.health < disguise_fail_health)
+		else
 			speech_args[SPEECH_SPANS] |= SPAN_ROBOT //otherwise, robospeak
 	else
 		return
