@@ -1,6 +1,6 @@
 /obj/item/shield
 	name = "shield"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/shields.dmi'
 	block_chance = 50
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
 	/// Shield flags
@@ -33,11 +33,11 @@
 	return TRUE
 
 /obj/item/shield/alt_pre_attack(atom/A, mob/living/user, params)
-	user_shieldbash(user, A, user.a_intent != INTENT_HARM)
+	user_shieldbash(user, A, user.a_intent == INTENT_HARM)
 	return TRUE
 
 /obj/item/shield/altafterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	user_shieldbash(user, target, user.a_intent != INTENT_HARM)
+	user_shieldbash(user, target, user.a_intent == INTENT_HARM)
 	return TRUE
 
 /obj/item/shield/proc/do_shieldbash_effect(mob/living/user, dir, harmful)
@@ -52,13 +52,13 @@
 			px = 12
 		if(WEST)
 			px = -12
-	var/oldpx = user.pixel_x
-	var/oldpy = user.pixel_y
-	animate(user, pixel_x = px, pixel_y = py, time = 3, easing = SINE_EASING | EASE_OUT, flags = ANIMATION_END_NOW)
-	animate(user, pixel_x = oldpx, pixel_y = oldpy, time = 3)
-	user.visible_message("<span class='warning'>[user] [harmful? "charges forwards with" : "sweeps"] [src]!</span>")
 	var/obj/effect/temp_visual/dir_setting/shield_bash/effect = new(user.loc, dir)
-	animate(effect, alpha = 0, pixel_x = px + 4, pixel_y = py + 4, time = 3)
+	effect.pixel_x = user.pixel_x - 32		//96x96 effect, -32.
+	effect.pixel_y = user.pixel_y - 32
+	user.visible_message("<span class='warning'>[user] [harmful? "charges forwards with" : "sweeps"] [src]!</span>")
+	animate(user, pixel_x = px, pixel_y = py, time = 3, easing = SINE_EASING | EASE_OUT, flags = ANIMATION_PARALLEL | ANIMATION_RELATIVE)
+	animate(user, pixel_x = -px, pixel_y = -py, time = 3, flags = ANIMATION_RELATIVE)
+	animate(effect, alpha = 0, pixel_x = px * 1.5, pixel_y = py * 1.5, time = 3, flags = ANIMATION_PARALLEL | ANIMATION_RELATIVE)
 
 /obj/item/shield/proc/bash_target(mob/living/user, mob/living/target, bashdir, harmful)
 	if(!(target.status_flags & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE))	// should probably add stun absorption check at some point I guess..
@@ -76,7 +76,7 @@
 		"<span class='warning'>[user] shoves you with [src]!</span>")
 	for(var/i in 1 to harmful? shieldbash_knockback : shieldbash_push_distance)
 		var/turf/new_turf = get_step(target, bashdir)
-		var/mob/living/carbon/human/H = locate() in new_turf
+		var/mob/living/carbon/human/H = locate() in (new_turf.contents - target)
 		if(H && harmful)
 			H.visible_message("<span class='warning'>[target] is sent crashing into [H]!</span>",
 			"<span class='userdanger'>[target] is sent crashing into you!</span>")
@@ -113,7 +113,8 @@
 	if(world.time < last_shieldbash + shieldbash_cooldown)
 		to_chat(user, "<span class='warning'>You can't bash with [src] again so soon!</span>")
 		return FALSE
-	if(isliving(target))		//GROUND SLAAAM
+	var/mob/living/livingtarget = target		//only access after an isliving check!
+	if(isliving(target) && !CHECK_MOBILITY(livingtarget, MOBILITY_STAND))		//GROUND SLAAAM
 		if(!(shield_flags & SHIELD_BASH_GROUND_SLAM))
 			to_chat(user, "<span class='warning'>You can't ground slam with [src]!</span>")
 			return FALSE
@@ -122,7 +123,7 @@
 		playsound(src, harmful? "swing_hit" : 'sound/weapons/thudswoosh.ogg', 75, 1)
 		last_shieldbash = world.time
 		user.adjustStaminaLossBuffered(shieldbash_stamcost)
-		return 1
+		return TRUE
 	// Directional sweep!
 	last_shieldbash = world.time
 	user.adjustStaminaLossBuffered(shieldbash_stamcost)
@@ -163,6 +164,7 @@
 	custom_materials = list(/datum/material/glass=7500, /datum/material/iron=1000)
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
+	var/repair_material = /obj/item/stack/sheet/mineral/titanium
 	shield_flags = SHIELD_FLAGS_DEFAULT | SHIELD_TRANSPARENT
 	max_integrity = 75
 
@@ -185,7 +187,7 @@
 			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
-	else if(istype(W, /obj/item/stack/sheet/mineral/titanium))
+	else if(istype(W, repair_material))
 		if(obj_integrity >= max_integrity)
 			to_chat(user, "<span class='warning'>[src] is already in perfect condition.</span>")
 		else
@@ -221,6 +223,23 @@
 	take_damage(damage)
 	return ..()
 
+/obj/item/shield/riot/laser_proof
+	name = "laser resistant shield"
+	desc = "A far more frail shield made of dark glass meant to block lasers but suffers from being being weak to ballistic projectiles."
+	armor = list("melee" = 30, "bullet" = -10, "laser" = 80, "energy" = 80, "bomb" = -40, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
+	icon_state = "riot_laser"
+	item_state = "riot_laser"
+	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	shield_flags = SHIELD_FLAGS_DEFAULT
+	max_integrity = 55 //Weak
+
+obj/item/shield/riot/bullet_proof
+	name = "bullet resistant shield"
+	desc = "A far more frail shield made of resistant plastics and kevlar meant to block ballistics."
+	armor = list("melee" = 30, "bullet" = 80, "laser" = 0, "energy" = 0, "bomb" = -40, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
+	max_integrity = 55 //Weaker
+
 /obj/item/shield/riot/roman
 	name = "\improper Roman shield"
 	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>."
@@ -228,6 +247,7 @@
 	item_state = "roman_shield"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	repair_material = /obj/item/stack/sheet/mineral/wood
 	shield_flags = SHIELD_FLAGS_DEFAULT
 	max_integrity = 65
 
@@ -250,6 +270,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	custom_materials = null
 	resistance_flags = FLAMMABLE
+	repair_material = /obj/item/stack/sheet/mineral/wood
 	block_chance = 30
 	shield_flags = SHIELD_FLAGS_DEFAULT
 	max_integrity = 55
@@ -257,58 +278,6 @@
 /obj/item/shield/riot/buckler/shatter(mob/living/carbon/human/owner)
 	playsound(owner, 'sound/effects/bang.ogg', 50)
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src))
-
-
-/obj/item/shield/energy
-	name = "energy combat shield"
-	desc = "A shield that reflects almost all energy projectiles, but is useless against physical attacks. It can be retracted, expanded, and stored anywhere."
-	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
-	w_class = WEIGHT_CLASS_TINY
-	attack_verb = list("shoved", "bashed")
-	throw_range = 5
-	force = 3
-	throwforce = 3
-	throw_speed = 3
-	var/base_icon_state = "eshield" // [base_icon_state]1 for expanded, [base_icon_state]0 for contracted
-	var/on_force = 10
-	var/on_throwforce = 8
-	var/on_throw_speed = 2
-	var/active = 0
-	var/clumsy_check = TRUE
-
-/obj/item/shield/energy/Initialize()
-	. = ..()
-	icon_state = "[base_icon_state]0"
-
-/obj/item/shield/energy/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
-	if((attack_type & ATTACK_TYPE_PROJECTILE) && is_energy_reflectable_projectile(object))
-		block_return[BLOCK_RETURN_REDIRECT_METHOD] = REDIRECT_METHOD_DEFLECT
-		return BLOCK_SUCCESS | BLOCK_REDIRECTED | BLOCK_SHOULD_REDIRECT
-	return ..()
-
-/obj/item/shield/energy/attack_self(mob/living/carbon/human/user)
-	if(clumsy_check && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
-		to_chat(user, "<span class='userdanger'>You beat yourself in the head with [src]!</span>")
-		user.take_bodypart_damage(5)
-	active = !active
-	icon_state = "[base_icon_state][active]"
-
-	if(active)
-		force = on_force
-		throwforce = on_throwforce
-		throw_speed = on_throw_speed
-		w_class = WEIGHT_CLASS_BULKY
-		playsound(user, 'sound/weapons/saberon.ogg', 35, TRUE)
-		to_chat(user, "<span class='notice'>[src] is now active.</span>")
-	else
-		force = initial(force)
-		throwforce = initial(throwforce)
-		throw_speed = initial(throw_speed)
-		w_class = WEIGHT_CLASS_TINY
-		playsound(user, 'sound/weapons/saberoff.ogg', 35, TRUE)
-		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
-	add_fingerprint(user)
 
 /obj/item/shield/riot/tele
 	name = "telescopic shield"
@@ -362,6 +331,7 @@
 	custom_materials = list(/datum/material/iron = 18000)
 	slot_flags = null
 	block_chance = 35
+	max_integrity = 100 //Made of metal welded together its strong but not unkillable
 	force = 10
 	throwforce = 7
 
@@ -380,12 +350,17 @@
 	item_flags = SLOWS_WHILE_IN_HAND
 	shield_flags = SHIELD_FLAGS_DEFAULT
 
+/obj/item/shield/riot/tower/swat
+	name = "swat shield"
+	desc = "A massive, heavy shield that can block a lot of attacks, can take a lot of abuse before breaking."
+	max_integrity = 175
+	block_chance = 50
+
 /obj/item/shield/riot/implant
 	name = "riot tower shield"
 	desc = "A massive shield that can block a lot of attacks and can take a lot of abuse before breaking." //It cant break unless it is removed from the implant
 	item_state = "metal"
 	icon_state = "metal"
-	icon = 'icons/obj/items_and_weapons.dmi'
 	block_chance = 30 //May be big but hard to move around to block.
 	slowdown = 1
 	shield_flags = SHIELD_FLAGS_DEFAULT
@@ -395,3 +370,55 @@
 	if(attack_type & ATTACK_TYPE_PROJECTILE)
 		final_block_chance = 60 //Massive shield
 	return ..()
+
+
+/obj/item/shield/energy
+	name = "energy combat shield"
+	desc = "A shield that reflects almost all energy projectiles, but is useless against physical attacks. It can be retracted, expanded, and stored anywhere."
+	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	attack_verb = list("shoved", "bashed")
+	throw_range = 5
+	force = 3
+	throwforce = 3
+	throw_speed = 3
+	var/base_icon_state = "eshield" // [base_icon_state]1 for expanded, [base_icon_state]0 for contracted
+	var/on_force = 10
+	var/on_throwforce = 8
+	var/on_throw_speed = 2
+	var/active = 0
+	var/clumsy_check = TRUE
+
+/obj/item/shield/energy/Initialize()
+	. = ..()
+	icon_state = "[base_icon_state]0"
+
+/obj/item/shield/energy/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if((attack_type & ATTACK_TYPE_PROJECTILE) && is_energy_reflectable_projectile(object))
+		block_return[BLOCK_RETURN_REDIRECT_METHOD] = REDIRECT_METHOD_DEFLECT
+		return BLOCK_SUCCESS | BLOCK_REDIRECTED | BLOCK_SHOULD_REDIRECT
+	return ..()
+
+/obj/item/shield/energy/attack_self(mob/living/carbon/human/user)
+	if(clumsy_check && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
+		to_chat(user, "<span class='userdanger'>You beat yourself in the head with [src]!</span>")
+		user.take_bodypart_damage(5)
+	active = !active
+	icon_state = "[base_icon_state][active]"
+
+	if(active)
+		force = on_force
+		throwforce = on_throwforce
+		throw_speed = on_throw_speed
+		w_class = WEIGHT_CLASS_BULKY
+		playsound(user, 'sound/weapons/saberon.ogg', 35, TRUE)
+		to_chat(user, "<span class='notice'>[src] is now active.</span>")
+	else
+		force = initial(force)
+		throwforce = initial(throwforce)
+		throw_speed = initial(throw_speed)
+		w_class = WEIGHT_CLASS_TINY
+		playsound(user, 'sound/weapons/saberoff.ogg', 35, TRUE)
+		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
+	add_fingerprint(user)
