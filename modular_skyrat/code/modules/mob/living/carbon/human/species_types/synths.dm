@@ -11,6 +11,7 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc //fuck it
 	gib_types = /obj/effect/gibspawner/robot
 	damage_overlay_type = "synth"
+	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
 	limbs_id = "synth"
 	initial_species_traits = list(NOTRANSSTING) //for getting these values back for assume_disguise()
 	initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER) //blah blah i explained above piss
@@ -18,6 +19,7 @@
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/obj/item/organ/tongue/faketongue //tongue we use when disguised to handle speech
+	var/actualhealth = 100
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))
@@ -60,8 +62,6 @@
 		mutant_bodyparts = list()
 		nojumpsuit = initial(nojumpsuit)
 		no_equip = list()
-		qdel(fake_species)
-		fake_species = null
 		meat = initial(meat)
 		icon_limbs = initial(icon_limbs)
 		limbs_id = initial(limbs_id)
@@ -73,6 +73,8 @@
 		femalescreamsounds = initial(femalescreamsounds)
 		if(faketongue)
 			qdel(faketongue)
+		qdel(fake_species)
+		fake_species = null
 		isdisguised = TRUE
 
 	for(var/X in H.bodyparts) //propagates the damage_overlay changes
@@ -120,8 +122,6 @@
 	mutant_bodyparts = list()
 	nojumpsuit = initial(nojumpsuit)
 	no_equip = list()
-	qdel(fake_species)
-	fake_species = null
 	meat = initial(meat)
 	limbs_id = initial(limbs_id)
 	use_skintones = initial(use_skintones)
@@ -134,7 +134,7 @@
 
 /datum/species/synth/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE)
 	..()
-	var/actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
+	actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
 		isdisguised = !isdisguised
