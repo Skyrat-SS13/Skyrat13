@@ -43,8 +43,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			booze_power *= 0.7
 		C.drunkenness = max((C.drunkenness + (sqrt(volume) * booze_power * ALCOHOL_RATE)), 0) //Volume, power, and server alcohol rate effect how quickly one gets drunk
 		var/obj/item/organ/liver/L = C.getorganslot(ORGAN_SLOT_LIVER)
-		if (istype(L))
-			C.applyLiverDamage((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * L.alcohol_tolerance, 0))/150)
+		if(L)
+			L.applyOrganDamage((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * L.alcohol_tolerance, 0))/150)
 	return ..()
 
 /datum/reagent/consumable/ethanol/reaction_obj(obj/O, reac_volume)
@@ -728,7 +728,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	var/real_dorf = isdwarf(M) //_species(H, /datum/species/dwarf)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.dna.check_mutation(DWARFISM) || HAS_TRAIT(H, TRAIT_ALCOHOL_TOLERANCE) || real_dorf)
+		if(HAS_TRAIT(H, TRAIT_DWARF) || HAS_TRAIT(H, TRAIT_ALCOHOL_TOLERANCE || real_dorf))
 			to_chat(H, "<span class='notice'>Now THAT is MANLY!</span>")
 			if(real_dorf)
 				boozepwr = 100 // Don't want dwarves to die because of a low booze power
@@ -1646,7 +1646,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "pina_colada"
 	glass_name = "Pina Colada"
 	glass_desc = "If you like pina coladas, and getting caught in the rain... well, you'll like this drink."
-	
+
 /datum/reagent/consumable/ethanol/grasshopper
 	name = "Grasshopper"
 	description = "A fresh and sweet dessert shooter. Difficult to look manly while drinking this."
@@ -2354,7 +2354,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/hotlime_miami/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(50)
 	M.adjustStaminaLoss(-2)
-	return ..() 
+	return ..()
 
 ////////////////////
 //Race-Base-Drinks//
