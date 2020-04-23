@@ -1,4 +1,0 @@
-author: "Anonymous"
-delete-after: True
-changes: 
-  - bugfix: "Fixes missing inventory/dropped icon of glass gasmask by providing a brand new one."
