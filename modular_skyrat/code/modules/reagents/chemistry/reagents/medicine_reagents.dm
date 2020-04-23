@@ -47,7 +47,7 @@
 
 /datum/reagent/medicine/synthflesh
 	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed. Heals toxin damage on synths instead of harming them, unless overdosed."
-	overdose_threshold = 50 //you have to be abusing synth species to reach this point man. still made it so that overdose only applies to synths though.
+	overdose_threshold = 25 //no synth species abusing
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 
@@ -98,4 +98,3 @@
 		if((H.dna.species.type == /datum/species/synth) && (H.stat != DEAD))
 			to_chat(H, "<span class='userdanger'>You feel like you took too much of [name]!</span>")
 			overdosed = 1
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/overdose, name)

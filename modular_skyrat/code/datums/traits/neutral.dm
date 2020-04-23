@@ -44,7 +44,7 @@
 /datum/quirk/synthetic/add()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(H)
-		if(!blacklistedspecies.Find(H.dna.species.type))
+		if(!(H.dna.species.type in blacklistedspecies))
 			H.set_species(/datum/species/synth) //the synth on_gain stuff handles everything, that's why i made this shit a quirk and not a roundstart race or whatever
 		else
 			to_chat(H, "<span class='danger'>Your species is blacklisted from being a synth. Your synth quirk has been removed and your species has not been changed.</span>")
@@ -53,8 +53,9 @@
 /datum/quirk/synthetic/remove()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(H)
-		var/datum/species/synth/synthspecies = H.dna.species
-		if(synthspecies)
+		var/datum/species/thespecies = H.dna.species
+		if(thespecies.type == /datum/species/synth)
+			var/datum/species/synthspecies = thespecies
 			var/datum/species/oldspecies = synthspecies.fake_species
 			if(oldspecies)
 				H.set_species(oldspecies)
