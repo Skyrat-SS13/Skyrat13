@@ -319,7 +319,6 @@
 	var/explosion_detection_dist = 21
 	var/scan_reagents = TRUE
 	var/currentcolor = "E37B3B"
-	actions_types = list(/datum/action/item_action/toggle_research_scanner)
 	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/head/helmet/space/hardsuit/rd/hev/Initialize()
