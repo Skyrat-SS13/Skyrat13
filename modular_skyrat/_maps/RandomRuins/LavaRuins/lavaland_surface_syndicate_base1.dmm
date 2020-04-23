@@ -269,7 +269,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/closed/indestructible/opshuttle,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "aH" = (
 /obj/machinery/door/firedoor,
@@ -6903,7 +6903,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/closed/indestructible/opshuttle,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "QZ" = (
 /obj/structure/grille,
@@ -7363,14 +7363,14 @@ aa
 aa
 ab
 ab
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
 ab
 ab
 ab
@@ -7419,7 +7419,7 @@ aa
 aa
 ab
 ab
-ap
+ae
 wz
 uN
 Rz
@@ -7475,7 +7475,7 @@ aa
 aa
 ab
 ab
-ap
+ae
 aF
 aF
 aK
@@ -7531,7 +7531,7 @@ aa
 aa
 ab
 ab
-ap
+ae
 aF
 aF
 aJ
@@ -7587,7 +7587,7 @@ aa
 aa
 ab
 ab
-ap
+ae
 aF
 uN
 Rz
@@ -7643,7 +7643,7 @@ aa
 aa
 ab
 ab
-ap
+ae
 wz
 aF
 aK
@@ -7699,7 +7699,7 @@ aa
 ab
 ab
 ab
-ap
+ae
 aF
 aF
 aJ
@@ -7755,7 +7755,7 @@ aa
 ab
 ab
 ab
-ap
+ae
 aF
 uN
 Rz
@@ -7811,7 +7811,7 @@ aa
 ab
 ab
 ab
-ap
+ae
 aF
 aF
 aK
@@ -7867,7 +7867,7 @@ aa
 ab
 ab
 ab
-ap
+ae
 wz
 aF
 aJ
@@ -7923,7 +7923,7 @@ aa
 ab
 ab
 ab
-ap
+ae
 aF
 uN
 Rz
@@ -7979,7 +7979,7 @@ aa
 ab
 ab
 ab
-ap
+ae
 aF
 aF
 aK
@@ -8035,7 +8035,7 @@ aa
 ab
 ab
 ab
-ap
+ae
 aF
 aF
 aJ
@@ -8091,7 +8091,7 @@ aa
 ab
 ab
 ab
-ap
+ae
 wz
 uN
 Rz
@@ -8147,7 +8147,7 @@ aa
 ab
 ab
 ab
-ap
+ae
 aF
 aF
 aK
@@ -8203,7 +8203,7 @@ aa
 ab
 ab
 ab
-ap
+ae
 aF
 aF
 aJ
@@ -8259,7 +8259,7 @@ aa
 ab
 ab
 ab
-ap
+ae
 aH
 aH
 ae
@@ -8313,9 +8313,9 @@ ab
 (24,1,1) = {"
 aa
 ab
-ap
-ap
-ap
+ae
+ae
+ae
 wz
 aF
 sy
@@ -8369,7 +8369,7 @@ ab
 (25,1,1) = {"
 aa
 ab
-ap
+ae
 an
 nB
 Ae
@@ -8425,7 +8425,7 @@ ab
 (26,1,1) = {"
 aa
 ab
-ap
+ae
 ar
 oq
 UZ
@@ -8481,7 +8481,7 @@ ab
 (27,1,1) = {"
 aa
 ab
-ap
+ae
 au
 nB
 Sj
@@ -8537,7 +8537,7 @@ aa
 (28,1,1) = {"
 aa
 ab
-ap
+ae
 aE
 nB
 sa
@@ -8593,12 +8593,12 @@ aa
 (29,1,1) = {"
 aa
 ab
-ap
+ae
 ap
 ap
 aG
 co
-ap
+ae
 VU
 Wl
 NY
@@ -8649,12 +8649,12 @@ ab
 (30,1,1) = {"
 aa
 ab
-ap
+ae
 HG
 aZ
 aG
 aZ
-ap
+ae
 ae
 ae
 ae
@@ -8705,12 +8705,12 @@ ab
 (31,1,1) = {"
 aa
 ab
-ap
+ae
 bb
 PA
 qe
 aZ
-ap
+ae
 Sd
 as
 do
@@ -8761,12 +8761,12 @@ ab
 (32,1,1) = {"
 aa
 ab
-ap
+ae
 aZ
 OP
 QT
-ap
-ap
+ae
+ae
 as
 as
 du
@@ -8817,7 +8817,7 @@ ab
 (33,1,1) = {"
 aa
 ab
-ap
+ae
 ay
 aZ
 yp
@@ -8873,7 +8873,7 @@ ab
 (34,1,1) = {"
 aa
 ab
-ap
+ae
 aZ
 aZ
 SO
@@ -8929,7 +8929,7 @@ aa
 (35,1,1) = {"
 aa
 ab
-ap
+ae
 aZ
 aZ
 aZ
@@ -8985,11 +8985,11 @@ ab
 (36,1,1) = {"
 aa
 ab
-ap
+ae
 aZ
 aZ
 OP
-ap
+ae
 aq
 az
 as
@@ -9041,11 +9041,11 @@ aa
 (37,1,1) = {"
 aa
 ab
-ap
-ap
-ap
-ap
-ap
+ae
+ae
+ae
+ae
+ae
 ab
 ab
 ac
