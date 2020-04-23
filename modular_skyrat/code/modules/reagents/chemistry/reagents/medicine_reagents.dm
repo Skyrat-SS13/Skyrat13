@@ -95,7 +95,7 @@
 /datum/reagent/medicine/synthflesh/overdose_start(mob/living/M)
 	var/mob/living/carbon/human/H = M
 	if(H)
-		if(H.dna.species.type == /datum/species/synth)
+		if((H.dna.species.type == /datum/species/synth) && (H.stat != DEAD))
 			to_chat(H, "<span class='userdanger'>You feel like you took too much of [name]!</span>")
 			overdosed = 1
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/overdose, name)
