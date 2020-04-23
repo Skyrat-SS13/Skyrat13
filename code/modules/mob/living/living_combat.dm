@@ -85,5 +85,5 @@
 					//SKYRAT CHANGES - no more friendly message when help intent
 					visible_message("<span class='boldwarning'>[src] [resting ? "tenses up" : (prob(95)? "drops into a combative stance" : (prob(95)? "poses aggressively" : "asserts dominance with their pose"))].</span>")
 					//END OF SKYRAT CHANGES
-					playsound(src, 'modular_skyrat/sound/effects/combat_indication.ogg', 30) //Skyrat change
+					playsound(src, 'sound/machines/chime.ogg', 30) //Skyrat change
 					flash_message_indicator("combat") //Skyrat change
