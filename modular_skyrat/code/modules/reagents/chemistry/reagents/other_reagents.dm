@@ -10,7 +10,7 @@
 
 
 /datum/reagent/tranquility
-	name = "Gondala Essence"
+	name = "Gondola Essence"
 	description = "A highly mutative liquid of unknown origin."
 	color = "#9A6750" //RGB: 154, 103, 80
 	taste_description = "inner peace"
