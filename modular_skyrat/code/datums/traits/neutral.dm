@@ -42,17 +42,19 @@
 
 /datum/quirk/synthetic/add()
 	var/mob/living/carbon/human/H = quirk_holder
-	H.set_species(/datum/species/synth) //the synth on_gain stuff handles everything, that's why i made this shit a quirk and not a roundstart race or whatever
+	if(H)
+		H.set_species(/datum/species/synth) //the synth on_gain stuff handles everything, that's why i made this shit a quirk and not a roundstart race or whatever
 
 /datum/quirk/synthetic/remove()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/datum/species/synth/synthspecies = H.dna.species
-	if(synthspecies)
-		var/datum/species/oldspecies = synthspecies.fake_species
-		if(oldspecies)
-			H.set_species(oldspecies)
+	if(H)
+		var/datum/species/synth/synthspecies = H.dna.species
+		if(synthspecies)
+			var/datum/species/oldspecies = synthspecies.fake_species
+			if(oldspecies)
+				H.set_species(oldspecies)
+			else
+				H.set_species(/datum/species/ipc) //we fall back on IPC if something stinky happens. Shouldn't happe but you know.
+				to_chat(H, "<span class='warning'>Uh oh, stinky! Something poopy happened to your fakespecies! You have been set to an IPC as a fallback.</span>") //shouldn't happen. if it does uh oh.
 		else
-			H.set_species(/datum/species/ipc) //we fall back on IPC if something stinky happens. Shouldn't happe but you know.
-			to_chat(H, "<span class='warning'>Uh oh, stinky! Something poopy happened to your fakespecies! You have been set to an IPC as a fallback.</span>") //shouldn't happen. if it does uh oh.
-	else
-		to_chat(H, "<span class='warning'>Uh oh, stinky! Something poopy happened to your synth species datum!</span>") //hopefully won't ever happen. otherwise, uh oh.
+			to_chat(H, "<span class='warning'>Uh oh, stinky! Something poopy happened to your synth species datum!</span>") //hopefully won't ever happen. otherwise, uh oh.

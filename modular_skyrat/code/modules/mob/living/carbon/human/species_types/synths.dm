@@ -46,7 +46,7 @@
 		screamsounds = S.screamsounds
 		femalescreamsounds = S.femalescreamsounds
 		isdisguised = TRUE
-		if((S.mutanttongue && !faketongue) || (S.mutanttongue.type != faketongue.type))
+		if((S.mutanttongue && !faketongue) || !istype(faketongue, S.mutanttongue))
 			if(faketongue)
 				qdel(faketongue)
 			faketongue = new S.mutanttongue
