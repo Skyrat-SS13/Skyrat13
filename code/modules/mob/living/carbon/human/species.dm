@@ -2033,17 +2033,18 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 							for(var/obj/item/organ/bone/B in H.getorganszone(BP.body_zone))
 								var/olddamage = B.damage
 								B.damage += (damage_amount * BONE_DAM_MODIFIER * rand(BONE_RAND_MODIFIER_1, BONE_RAND_MODIFIER_2))
-								if(B.damage >= olddamage)
+								var/obj/item/organ/currentbodypart = get_bodypart(def_zone)
+								if(B.damage >= olddamage && currentbodypart)
 									if(B.damage < B.dam_threshold_low)
 										break
 									else if((B.damage >= B.dam_threshold_low) && (B.dam_threshold_medium > B.damage))
-										to_chat(H, "<span class='danger'>You feel the bones insides of your [B.zone] cracking slightly!</span>")
+										to_chat(H, "<span class='danger'>You feel the bones insides of your [currentbodypart] cracking slightly!</span>")
 									else if((B.damage >= B.dam_threshold_medium) && (B.dam_threshold_high > B.damage))
-										to_chat(H, "<span class='userdanger'>You can feel the bones insides of your [B.zone] cracking and shifting! It fucking hurts!</span>")
+										to_chat(H, "<span class='danger'>You can feel the bones insides of your [currentbodypart] cracking and shifting! It hurts!</span>")
 									else if((B.damage >= B.dam_threshold_high) && (B.dam_threshold_highest > B.damage))
-										to_chat(H, "<span class='userdanger'>You can feel your [B] breaking apart!!! FUCK!!</span>")
+										to_chat(H, "<span class='userdanger'>You can feel your [B] breaking apart! It's agonizing!!!</span>")
 									else
-										to_chat(H, "<span class='big bold'>You can feel your [B] FUCKING DISINTEGRATING!!! FUCK!!</span>")
+										to_chat(H, "<span class='userdanger'>You can feel your [B] DISINTEGRATING!!! AAAAAAAGH!!!</span>")
 
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)

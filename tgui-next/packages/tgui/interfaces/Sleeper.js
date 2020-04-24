@@ -102,21 +102,23 @@ export const Sleeper = props => {
                 {data.blood_status}
               </LabeledList.Item>
               <Section title="Internal Organs">
-                {data.occupant.internal_organs.map(organ =>
-                  <LabeledList.Item label={{organ}}>
+                {data.occupant.internal_organs.map(organ => (
+                  <LabeledList.Item label={organ.name} key={organ.name}>
                     <ProgressBar
-                      value={{healthpercent}}
+                      value={organ.healthpercentage}
                       minValue={0}
                       maxValue={100}
                       ranges={{
                         good: [75, Infinity],
                         average: [50, 74],
                         bad: [-Infinity, 49],
-                      }} />
-                      <AnimatedNumber value={{healthpercent}}>
+                      }}>
+                      <AnimatedNumber value={organ.healthpercentage}>
+                        %
                       </AnimatedNumber>
                     </ProgressBar>
                   </LabeledList.Item>
+                ),
                 )}
               </Section>
             </LabeledList>

@@ -355,7 +355,7 @@
 					src.adjustOrganLoss(O, rand(3,10))
 				src.apply_damage(2, BRUTE, currentzone, FALSE, TRUE)
 				if(prob(25))
-					to_chat(src, "<span class='userdanger'>Your [get_bodypart(currentzone)] is squishy and hurts like fucking hell! What the fuck?!</span>")
+					to_chat(src, "<span class='userdanger'>Your [get_bodypart(currentzone) ? get_bodypart(currentzone) : "body"] is squishy and hurts like hell!</span>")
 		else
 			for(var/obj/item/organ/bone/B in currentbones)
 				if(B.damage < B.dam_threshold_low)
@@ -376,7 +376,7 @@
 								src.adjustOrganLoss(ourorgan, rand(1,7))
 						if(prob(80))
 							src.apply_damage(2, BRUTE, currentzone, FALSE, TRUE)
-						to_chat(src, "<span class='userdanger'>Your [get_bodypart(currentzone)] hurts like hell!</span>")
+						to_chat(src, "<span class='userdanger'>Your [get_bodypart(currentzone) ? get_bodypart(currentzone) : "body"] hurts like hell!</span>")
 				else
 					OB.set_disabled(TRUE)
 					if(prob(15))
@@ -385,7 +385,7 @@
 								src.adjustOrganLoss(ourorgan, rand(1,7))
 						if(prob(80))
 							src.apply_damage(2, BRUTE, currentzone, FALSE, TRUE)
-						to_chat(src, "<span class='userdanger'>Your [get_bodypart(currentzone)] hurts like hell!</span>")
+						to_chat(src, "<span class='userdanger'>Your [get_bodypart(currentzone) ? get_bodypart(currentzone) : "body"] hurts like hell!</span>")
 
 #undef THERMAL_PROTECTION_HEAD
 #undef THERMAL_PROTECTION_CHEST
