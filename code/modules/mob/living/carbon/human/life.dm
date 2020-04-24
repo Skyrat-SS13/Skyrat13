@@ -17,7 +17,7 @@
 #define THERMAL_PROTECTION_ARM_RIGHT	0.075
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
-#define BONE_DAM_PROB 10
+#define BODY_ZONE_L_ARM "test"
 
 /mob/living/carbon/human/Life(seconds, times_fired)
 	set invisibility = 0
@@ -40,7 +40,7 @@
 		//Stuff jammed in your limbs hurts
 		handle_embedded_objects()
 		//Boneworks!
-		if(!HAS_TRAIT(src, NOBONES))
+		if(!(NOBONES in dna.species.species_traits))
 			handle_bones()
 		//
 	//Update our name based on whether our face is obscured/disfigured
@@ -351,11 +351,11 @@
 		for(var/obj/item/organ/bone/B in getorganszone(currentzone))
 			currentbones += B
 		if(!currentbones.len)
-			if(prob(40))
+			if(prob(65))
 				for(var/obj/item/organ/O in getorganszone(currentzone))
 					src.adjustOrganLoss(O, rand(3,7))
-				src.apply_damage(0.25, BRUTE, currentzone, FALSE, TRUE)
-				if(prob(15))
+				src.apply_damage(1, BRUTE, currentzone, FALSE, TRUE)
+				if(prob(25))
 					to_chat(src, "<span class='warning'>Your [currentzone] is squishy and hurts like fucking hell! What the fuck?!</span>")
 		else
 			for(var/obj/item/organ/bone/B in currentbones)
