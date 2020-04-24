@@ -3667,6 +3667,8 @@
 #include "modular_skyrat\code\modules\reagents\chemistry\machinery\chem_dispenser.dm"
 #include "modular_skyrat\code\modules\reagents\chemistry\reagents\medicine_reagents.dm"
 #include "modular_skyrat\code\modules\reagents\chemistry\reagents\other_reagents.dm"
+#include "modular_skyrat\code\modules\reagents\chemistry\recipes\medicine.dm"
+#include "modular_skyrat\code\modules\reagents\reagent_containers\patch.dm"
 #include "modular_skyrat\code\modules\reagents\reagents_containers\borghydro.dm"
 #include "modular_skyrat\code\modules\reagents\reagents_containers\patch.dm"
 #include "modular_skyrat\code\modules\reagents\reagents_containers\pill.dm"
