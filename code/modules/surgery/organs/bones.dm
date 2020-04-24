@@ -1,5 +1,3 @@
-#define BONE_DAM_PROB 10
-
 /obj/item/organ/bone
 	name = "bone"
 	desc = "It's... a bone. An unidentifiable bone."

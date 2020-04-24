@@ -10,6 +10,30 @@
 	tool_behaviour = TOOL_RETRACTOR
 	toolspeed = 1
 
+/obj/item/bone_settler
+	name = "bone settler"
+	desc = "It's not a skeletonized villager, no."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "bone-settler"
+	custom_materials = list(/datum/material/iron=9000)
+	item_flags = SURGICAL_TOOL
+	flags_1 = CONDUCT_1
+	w_class = WEIGHT_CLASS_TINY
+	tool_behaviour = TOOL_SETTLER
+	toolspeed = 1
+
+/obj/item/bone_gel
+	name = "bone gel"
+	desc = "Rich in calcium."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "bone-gel"
+	custom_materials = list(/datum/material/iron=6000, /datum/material/glass=3000, /datum/material/silver = 1000)
+	item_flags = SURGICAL_TOOL
+	flags_1 = CONDUCT_1
+	w_class = WEIGHT_CLASS_TINY
+	tool_behaviour = TOOL_GEL
+	toolspeed = 1
+
 /obj/item/retractor/advanced
 	name = "mechanical pinches"
 	desc = "An agglomerate of rods and gears."
