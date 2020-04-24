@@ -34549,8 +34549,9 @@
 /area/medical/sleeper)
 "bzI" = (
 /obj/structure/disposalpipe/segment,
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/structure/table/reinforced,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bzJ" = (
@@ -34640,8 +34641,9 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "bzS" = (
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/structure/table/reinforced,
+/obj/machinery/computer/operating{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bzT" = (
@@ -35128,9 +35130,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/obj/machinery/computer/operating{
-	dir = 4
-	},
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -35163,9 +35164,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/computer/operating{
-	dir = 8
-	},
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},

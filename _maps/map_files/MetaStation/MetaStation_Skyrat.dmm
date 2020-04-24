@@ -61965,8 +61965,9 @@
 /turf/open/floor/plasteel/white/side,
 /area/medical/surgery)
 "cnq" = (
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/structure/table/reinforced,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/medical/surgery)
 "cnr" = (
@@ -62661,9 +62662,8 @@
 	},
 /area/maintenance/port/aft)
 "coy" = (
-/obj/machinery/computer/operating{
-	dir = 4
-	},
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -62690,9 +62690,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/computer/operating{
-	dir = 8
-	},
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
@@ -83289,6 +83288,12 @@
 "dzK" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/port/aft)
+"dzP" = (
+/obj/machinery/computer/operating{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/medical/surgery)
 "dzQ" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -105162,7 +105167,7 @@ cic
 cjA
 ckY
 cmk
-cnq
+dzP
 coC
 cpW
 crn

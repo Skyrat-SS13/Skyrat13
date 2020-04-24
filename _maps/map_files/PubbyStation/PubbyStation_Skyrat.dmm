@@ -38988,9 +38988,8 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/machinery/computer/operating{
-	dir = 4
-	},
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bLN" = (
@@ -39017,9 +39016,8 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/machinery/computer/operating{
-	dir = 8
-	},
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bLR" = (
@@ -39494,8 +39492,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/structure/table/reinforced,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bMS" = (
@@ -62391,6 +62390,22 @@
 	},
 /turf/open/floor/wood,
 /area/security/prison)
+"tYj" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/computer/operating{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "uaC" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -96110,7 +96125,7 @@ bIs
 bJy
 bKG
 bLQ
-bMR
+tYj
 bFU
 bCz
 bPE
