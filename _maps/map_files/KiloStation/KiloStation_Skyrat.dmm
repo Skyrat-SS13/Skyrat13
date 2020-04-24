@@ -50217,10 +50217,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue,
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
-	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/chem_dispenser/upgradeablemutagen,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bAv" = (

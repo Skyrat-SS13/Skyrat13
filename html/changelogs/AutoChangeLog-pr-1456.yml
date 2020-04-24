@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "shield bashing no longer allows you to ground-attack not-on-ground targets and the effect actually displays properly."

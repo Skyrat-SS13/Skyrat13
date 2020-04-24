@@ -104,9 +104,9 @@
 			t += "<span class='linkOff'>Eject GPS</span>"
 		t += "<div class='statusDisplay'>[temp_msg]</div><BR>"
 		t += "<A href='?src=\ref[src];setrotation=1'>Set Bearing</A>"
-		t += "<div class='statusDisplay'>[rotation]°</div>"
+		t += "<div class='statusDisplay'>[rotation]ï¿½</div>"
 		t += "<A href='?src=\ref[src];setangle=1'>Set Elevation</A>"
-		t += "<div class='statusDisplay'>[angle]°</div>"
+		t += "<div class='statusDisplay'>[angle]ï¿½</div>"
 		t += "<span class='linkOn'>Set Power</span>"
 		t += "<div class='statusDisplay'>"
 
@@ -161,17 +161,17 @@
 
 	if(telepad)
 
-		var/truePower = CLAMP(power + power_off, 1, 1000)
+		var/truePower = clamp(power + power_off, 1, 1000)
 		var/trueRotation = rotation + rotation_off
-		var/trueAngle = CLAMP(angle + angle_off, 1, 90)
+		var/trueAngle = clamp(angle + angle_off, 1, 90)
 		var/trueoffsetx = offsetx + rand(-1,1) // Where will you land?
 		var/trueoffsety = offsety + rand(-1,1) // You never TRULY know. There are 9 possibilities, IF you calculated the offsetx and offsety.
 
 		var/datum/projectile_data/proj_data = projectile_trajectory(telepad.x + trueoffsetx, telepad.y + trueoffsety, trueRotation, trueAngle, truePower)
 		last_tele_data = proj_data
 
-		var/trueX = CLAMP(round(proj_data.dest_x, 1), 1, world.maxx)
-		var/trueY = CLAMP(round(proj_data.dest_y, 1), 1, world.maxy)
+		var/trueX = clamp(round(proj_data.dest_x, 1), 1, world.maxx)
+		var/trueY = clamp(round(proj_data.dest_y, 1), 1, world.maxy)
 		var/spawn_time = round(proj_data.time) * 10
 
 		var/turf/target = locate(trueX, trueY, z_co)
@@ -306,14 +306,14 @@
 		var/new_rot = input("Please input desired bearing in degrees.", name, rotation) as num
 		if(..()) // Check after we input a value, as they could've moved after they entered something
 			return
-		rotation = CLAMP(new_rot, -900, 900)
+		rotation = clamp(new_rot, -900, 900)
 		rotation = round(rotation, 0.01)
 
 	if(href_list["setangle"])
 		var/new_angle = input("Please input desired elevation in degrees.", name, angle) as num
 		if(..())
 			return
-		angle = CLAMP(round(new_angle, 0.1), 1, 9999)
+		angle = clamp(round(new_angle, 0.1), 1, 9999)
 
 	if(href_list["setpower"])
 		var/index = href_list["setpower"]
@@ -326,7 +326,7 @@
 		var/new_z = input("Please input desired sector.", name, z_co) as num
 		if(..())
 			return
-		z_co = CLAMP(round(new_z), 1, 10)
+		z_co = clamp(round(new_z), 1, 10)
 
 	if(href_list["ejectGPS"])
 		if(inserted_gps)
