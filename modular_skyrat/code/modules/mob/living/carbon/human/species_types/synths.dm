@@ -19,7 +19,7 @@
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/obj/item/organ/tongue/faketongue //tongue we use when disguised to handle speech
-	var/actualhealth = 100
+	var/actualhealth = 100 //value we calculate to assume disguise and etc
 	//Same organs as an IPC basically, to share functionality.
 	mutanttongue = /obj/item/organ/tongue/robot/ipc
 	mutant_heart = /obj/item/organ/heart/ipc
@@ -27,6 +27,7 @@
 	mutantliver = /obj/item/organ/liver/ipc
 	mutantstomach = /obj/item/organ/stomach/ipc
 	mutanteyes = /obj/item/organ/eyes/ipc
+	exotic_bloodtype = "HF"
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))
@@ -87,10 +88,9 @@
 	handle_hair(H)
 	handle_body(H)
 	handle_mutant_bodyparts(H)
-	H.updatehealth()
-	H.update_body_parts()
-	H.update_damage_overlays()
-	H.load_limb_from_cache()
+	H.updateappearance(mutcolor_update=1)
+	H.update_body(TRUE)
+	H.regenerate_icons()
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -151,10 +151,9 @@
 	handle_hair(H)
 	handle_body(H)
 	handle_mutant_bodyparts(H)
-	H.updatehealth()
-	H.update_body_parts()
-	H.update_damage_overlays()
-	H.load_limb_from_cache()
+	H.updateappearance(mutcolor_update=1)
+	H.update_body(TRUE)
+	H.regenerate_icons()
 
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
 	..()
