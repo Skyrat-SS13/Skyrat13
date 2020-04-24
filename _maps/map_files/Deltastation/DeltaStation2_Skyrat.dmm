@@ -36480,26 +36480,18 @@
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "bpK" = (
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /obj/machinery/camera{
-	c_tag = "AI Satellite - Fore";
-	dir = 1;
+	c_tag = "AI Satellite - Fore Port";
+	dir = 8;
 	name = "ai camera";
 	network = list("minisat");
 	start_active = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/aisat)
+/turf/open/space,
+/area/space/nearstation)
 "bpL" = (
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -37848,6 +37840,13 @@
 /obj/structure/window/reinforced{
 	dir = 1;
 	layer = 2.9
+	},
+/obj/machinery/camera{
+	c_tag = "AI Satellite - Fore";
+	dir = 1;
+	name = "ai camera";
+	network = list("minisat");
+	start_active = 1
 	},
 /turf/open/space,
 /area/space/nearstation)
@@ -41209,28 +41208,15 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/machinery/camera{
-	c_tag = "AI Satellite - Fore Port";
-	dir = 8;
+	c_tag = "AI Satellite - Fore Starboard";
+	dir = 4;
 	name = "ai camera";
 	network = list("minisat");
 	start_active = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/aisat)
+/turf/open/space,
+/area/space/nearstation)
 "bxv" = (
 /obj/machinery/porta_turret/ai,
 /obj/effect/turf_decal/tile/neutral{
@@ -41323,30 +41309,17 @@
 /area/ai_monitored/turret_protected/ai)
 "bxB" = (
 /obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/machinery/camera{
-	c_tag = "AI Satellite - Fore Starboard";
-	dir = 4;
+	c_tag = "AI Satellite - Port";
+	dir = 8;
 	name = "ai camera";
 	network = list("minisat");
 	start_active = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/aisat)
+/turf/open/space,
+/area/space/nearstation)
 "bxC" = (
 /turf/closed/wall/r_wall,
 /area/engine/gravity_generator)
@@ -53823,29 +53796,15 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/camera{
-	c_tag = "AI Satellite - Port";
-	dir = 8;
+	c_tag = "AI Satellite - Starboard";
+	dir = 4;
 	name = "ai camera";
 	network = list("minisat");
 	start_active = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/aisat)
+/turf/open/space,
+/area/space/nearstation)
 "bPC" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -53905,31 +53864,17 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "bPJ" = (
 /obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/camera{
-	c_tag = "AI Satellite - Starboard";
-	dir = 4;
+	c_tag = "AI Satellite - Aft Port";
+	dir = 8;
 	name = "ai camera";
 	network = list("minisat");
 	start_active = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/aisat)
+/turf/open/space,
+/area/space/nearstation)
 "bPK" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/white{
@@ -69208,28 +69153,15 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/machinery/camera{
-	c_tag = "AI Satellite - Aft Port";
-	dir = 8;
+	c_tag = "AI Satellite - Aft Starboard";
+	dir = 4;
 	name = "ai camera";
 	network = list("minisat");
 	start_active = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/aisat)
+/turf/open/space,
+/area/space/nearstation)
 "cnu" = (
 /obj/structure/cable/white,
 /obj/item/twohanded/required/kirbyplants/random,
@@ -69326,32 +69258,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
-"cnz" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "AI Satellite - Aft Starboard";
-	dir = 4;
-	name = "ai camera";
-	network = list("minisat");
-	start_active = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/aisat)
 "cnA" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -135287,7 +135193,7 @@ aad
 bkE
 bLt
 bAw
-bPB
+bAw
 bAw
 bTm
 bVs
@@ -135544,7 +135450,7 @@ ajr
 bkF
 bLu
 bNu
-bmH
+bxB
 bRx
 bTn
 bVt
@@ -136048,7 +135954,7 @@ brK
 brK
 brK
 brK
-bxu
+brK
 byR
 bAw
 bAw
@@ -136305,7 +136211,7 @@ brL
 btF
 bmH
 bmH
-bmH
+bpK
 btF
 bmH
 bmH
@@ -136585,7 +136491,7 @@ bAw
 bAw
 ckm
 brK
-cnt
+brK
 brK
 brK
 crE
@@ -136841,7 +136747,7 @@ btF
 bmH
 bmH
 btF
-bmH
+bPJ
 bmH
 bpN
 cqj
@@ -138356,7 +138262,7 @@ aad
 bkE
 bmF
 boh
-bpK
+bpJ
 brQ
 btH
 btH
@@ -139925,7 +139831,7 @@ btJ
 bmD
 bmD
 btJ
-bmD
+cnt
 bmD
 bpF
 cqn
@@ -140183,7 +140089,7 @@ bAw
 bAw
 ckm
 brK
-cnz
+brK
 brK
 brK
 crH
@@ -140417,7 +140323,7 @@ brS
 btJ
 bmD
 bmD
-bmD
+bxu
 btJ
 bmD
 bmD
@@ -140674,7 +140580,7 @@ brK
 brK
 brK
 brK
-bxB
+brK
 byR
 bAw
 bAw
@@ -141198,7 +141104,7 @@ ajr
 bkF
 bLu
 bNB
-bmD
+bPB
 bRN
 bTF
 bVN
@@ -141455,7 +141361,7 @@ ajr
 bkE
 bLE
 bNC
-bPJ
+bAw
 bAw
 bTG
 bVO
