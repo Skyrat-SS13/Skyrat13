@@ -2028,7 +2028,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 					H.update_damage_overlays()
 					if(HAS_TRAIT(H, TRAIT_MASO) && prob(damage_amount))
 						H.mob_climax(forced_climax=TRUE)
-					if(!HAS_TRAIT(H, NOBONES)
+					if(!HAS_TRAIT(H, NOBONES))
 						if((damage_amount >= 5 && prob(BONE_DAM_PROB)) || (damage_amount >= 15))
 							for(var/obj/item/organ/bone/B in H.getorganszone(BP.body_zone))
 								var/olddamage = B.damage

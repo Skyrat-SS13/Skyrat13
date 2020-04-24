@@ -376,7 +376,7 @@
 						for(var/obj/item/organ/ourorgan in getorganszone(currentzone))
 							if(ourorgan != B)
 								src.adjustOrganLoss(ourorgan, rand(1,6))
-							if(prob(50)
+							if(prob(50))
 								src.apply_damage(1, BRUTE, currentzone, FALSE, TRUE)
 							to_chat(src, "<span class='userdanger'>Your [currentzone] hurts like hell!</span>")
 				else
@@ -386,7 +386,7 @@
 						for(var/obj/item/organ/ourorgan in getorganszone(currentzone))
 							if(ourorgan != B)
 								src.adjustOrganLoss(ourorgan, rand(1,6))
-							if(prob(75)
+							if(prob(75))
 								src.apply_damage(1, BRUTE, currentzone, FALSE, TRUE)
 							to_chat(src, "<span class='userdanger'>Your [currentzone] hurts like hell!</span>")
 
