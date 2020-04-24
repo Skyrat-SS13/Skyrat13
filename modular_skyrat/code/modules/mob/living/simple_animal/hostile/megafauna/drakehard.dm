@@ -68,7 +68,7 @@ Difficulty: Medium
 		if(prob(50))
 			fire_cone()
 		else
-			if(prob(50))
+			if(prob(75))
 				fire_rain()
 			else
 				fire_cone()
