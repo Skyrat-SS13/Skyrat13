@@ -2032,7 +2032,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 						if((damage_amount >= 5 && prob(BONE_DAM_PROB)) || (damage_amount >= 15))
 							for(var/obj/item/organ/bone/B in H.getorganszone(BP.body_zone))
 								var/olddamage = B.damage
-								B.damage += (damage_amount * BONE_DAM_MODIFIER * rand(BONE_RAND_MODIFIER_1, BONE_RAND_MODIFIER_2)
+								B.damage += (damage_amount * BONE_DAM_MODIFIER * rand(BONE_RAND_MODIFIER_1, BONE_RAND_MODIFIER_2))
 								if(B.damage >= olddamage)
 									if(B.damage < B.dam_threshold_low)
 										break
