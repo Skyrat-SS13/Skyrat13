@@ -19334,11 +19334,12 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aNA" = (
-/obj/machinery/button/door{
-	id = "permalock2";
-	name = "Perma Secure Airlock";
-	pixel_y = -26;
-	req_access_txt = "3"
+/obj/machinery/door/airlock/security/glass{
+	name = "Prison Wing";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "locklock"
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -21345,9 +21346,9 @@
 /turf/open/floor/plating,
 /area/quartermaster/qm)
 "aRa" = (
-/obj/machinery/flasher{
-	id = "permalock";
-	pixel_y = 25
+/obj/machinery/door/airlock/security/glass{
+	name = "Prison Wing";
+	req_access_txt = "2"
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -25804,12 +25805,6 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/obj/machinery/button/door{
-	id = "locklock";
-	name = "Perma Airlock Lockdown";
-	pixel_y = 26;
-	req_access_txt = "3"
-	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aXO" = (
@@ -26955,6 +26950,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aZD" = (
@@ -124747,6 +124745,19 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/maintenance/port/fore)
+"eRM" = (
+/obj/effect/turf_decal/tile/red,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "eSc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -125245,6 +125256,19 @@
 	},
 /turf/open/floor/wood,
 /area/security/prison)
+"gHR" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "gKo" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -125466,6 +125490,7 @@
 	dir = 1;
 	pixel_x = 1
 	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "huu" = (
@@ -125506,6 +125531,10 @@
 "hDf" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/machinery/flasher{
+	id = "permalock";
+	pixel_y = 25
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -125642,6 +125671,10 @@
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
+	},
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -127234,6 +127267,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ozi" = (
@@ -128272,6 +128308,12 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/button/door{
+	id = "locklock";
+	name = "Perma Airlock Lockdown";
+	pixel_y = 26;
+	req_access_txt = "3"
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "saw" = (
@@ -128609,6 +128651,16 @@
 	},
 /turf/open/floor/plasteel/checker,
 /area/security/prison)
+"tuk" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "twt" = (
 /obj/machinery/vr_sleeper,
 /obj/effect/turf_decal/tile/neutral{
@@ -128861,6 +128913,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/misc_lab)
+"upy" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "uqa" = (
 /turf/open/floor/circuit/green,
 /area/security/prison)
@@ -129238,6 +129298,7 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/hatchet,
+/obj/item/reagent_containers/food/snacks/grown/ambrosia/gaia,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "wmt" = (
@@ -129310,10 +129371,6 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "wBv" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -129663,6 +129720,12 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "permalock2";
+	name = "Perma Secure Airlock";
+	pixel_y = 26;
+	req_access_txt = "3"
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -181985,12 +182048,12 @@ gBd
 aJA
 gBd
 gBd
+gBd
 aNA
-aKV
-aRa
+gBd
 vqc
 gBd
-aKV
+aRa
 aXN
 hNi
 bbg
@@ -184563,7 +184626,7 @@ aFm
 aFm
 aFm
 aZA
-nOk
+tuk
 bLk
 bLk
 aFm
@@ -184820,7 +184883,7 @@ aFm
 aZv
 aZv
 aZC
-ozi
+upy
 bJw
 bNk
 aFm
@@ -185333,8 +185396,8 @@ aFm
 aFm
 aZv
 aZv
-aZA
-nOk
+eRM
+tuk
 aFm
 aFm
 aFm
@@ -185590,8 +185653,8 @@ aFm
 aFm
 aFm
 aFm
-aZA
-nOk
+eRM
+tuk
 bLk
 bLk
 aFm
@@ -185847,8 +185910,8 @@ rqh
 aFm
 aZv
 bJx
-aZA
-nOk
+eRM
+tuk
 bJw
 bNk
 aFm
@@ -186104,8 +186167,8 @@ rqh
 aFm
 bHA
 bJw
-aZA
-nOk
+eRM
+tuk
 bLk
 bLk
 aFm
@@ -186361,7 +186424,7 @@ rqh
 aFm
 aZv
 aZv
-aZq
+gHR
 bbl
 aFm
 aFm
