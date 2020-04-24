@@ -24,6 +24,8 @@
 	var/scheduled_destruction
 	/// Contains the approximate amount of lines for height decay
 	var/approx_lines
+	/// Dumb 512 workaround static list
+	var/static/list/symbol_to_pixel_lookup = list("i" = 2, "I" = 2, "l" = 2, "!" = 2, "j" = 2, "." = 2, "!" = 2, "," = 2, "|" = 2, ";" = 2, "f" = 3, "1" = 3, "*" = 3, "(" = 3, ")" = 2, "/" = 3, "\\" = 3, "-" = 3, "{" = 3, "}" = 3, "[" = 3, "]" = 3, "x" = 4, "b" = 4, "^" = 4, "+" = 4, ">" = 4, "Z" = 6, "<" = 4, "A" = 6, "#" = 6, "&" = 6, "G" = 7, "Q" = 7, "R" = 7, "O" = 7, "A" = 7, "H" = 7, "N" = 7, "%" = 7, "W" = 8, "m" = 8, "M" = 9, "@" = 9, "L" = 5, "J" = 5)
 
 /**
   * Constructs a chat message overlay
@@ -50,6 +52,9 @@
 		if (owned_by.seen_messages)
 			LAZYREMOVEASSOC(owned_by.seen_messages, message_loc, src)
 		owned_by.images -= message
+	owned_by = null
+	message_loc = null
+	message = null
 	return ..()
 
 /**
@@ -88,8 +93,33 @@
 	owned_by = owner.client
 	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
 	var/complete_text = "<span class='center maptext [extra_classes != null ? extra_classes.Join(" ") : ""]' style='color: [target.chat_color]'>[text]</span>"
-	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, CHAT_MESSAGE_WIDTH))
-	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
+	//Below you'll encounter A TERRIBLE WORKAROUND
+	var/pixels = 7 //It's better to have extra height than lose a line
+	var/cur_char
+	var/cur_lower
+	var/bold = FALSE
+	if(copytext_char(text, -2) == "!!")
+		bold = TRUE
+	for(var/i in 1 to length(text))
+		cur_char = text[i]
+		cur_lower = lowertext(cur_char)
+		if(bold)
+			pixels += 2
+		if (cur_char in symbol_to_pixel_lookup)
+			if(symbol_to_pixel_lookup[cur_char] == 2 && bold)
+				pixels += symbol_to_pixel_lookup[cur_char] - 1
+			else
+				pixels += symbol_to_pixel_lookup[cur_char]
+		else if (cur_char != cur_lower) //unfiltered uppercase take 6
+			pixels += 6
+		else //unfiltered lowercase take 5
+			pixels += 5
+
+	var/lines_est = max(1,(CEILING((pixels/CHAT_MESSAGE_WIDTH),1)))
+	var/mheight = 2 + (lines_est * 9)
+	//var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, CHAT_MESSAGE_WIDTH))
+	//approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
+	approx_lines = lines_est
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
 	message_loc = target
@@ -147,20 +177,25 @@
 	if (!client?.prefs.chat_on_map)
 		return
 
+	var/atom/movable/originalSpeaker = speaker
 	if (istype(speaker, /atom/movable/virtualspeaker))
 		var/atom/movable/virtualspeaker/v = speaker
 		speaker = v.source
 		spans |= "virtual-speaker"
+
+	// Ignore virtual speaker (most often radio messages) from ourself
+	if (originalSpeaker != src && speaker == src)
+		return
 
 	// Display visual above source
 	new /datum/chatmessage(lang_treat(speaker, message_language, raw_message, spans, null, TRUE), speaker, src, spans)
 
 
 // Tweak these defines to change the available color ranges
-#define CM_COLOR_SAT_MIN	0.33
-#define CM_COLOR_SAT_MAX	0.6
-#define CM_COLOR_LUM_MIN	0.6
-#define CM_COLOR_LUM_MAX	0.7
+#define CM_COLOR_SAT_MIN	0.6
+#define CM_COLOR_SAT_MAX	0.7
+#define CM_COLOR_LUM_MIN	0.65
+#define CM_COLOR_LUM_MAX	0.75
 
 /**
   * Gets a color for a name, will return the same color for a given string consistently within a round.atom
@@ -172,7 +207,11 @@
   */
 /datum/chatmessage/proc/colorize_string(name)
 	// get hsl using the first 6 characters of the md5 hash
-	var/hash = md5(name + GLOB.round_id)
+	// seed to help randomness
+	var/static/rseed = rand(1,26)
+
+	// get hsl using the selected 6 characters of the md5 hash
+	var/hash = copytext(md5(name + GLOB.round_id), rseed, rseed + 6)
 	var/h = hex2num(copytext(hash, 1, 3)) * (360 / 255)
 	var/s = (hex2num(copytext(hash, 3, 5)) >> 2) * ((CM_COLOR_SAT_MAX - CM_COLOR_SAT_MIN) / 63) + CM_COLOR_SAT_MIN
 	var/l = (hex2num(copytext(hash, 5, 7)) >> 2) * ((CM_COLOR_LUM_MAX - CM_COLOR_LUM_MIN) / 63) + CM_COLOR_LUM_MIN

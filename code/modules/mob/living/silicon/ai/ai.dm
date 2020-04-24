@@ -822,11 +822,11 @@
 	return get_dist(src, A) <= max(viewscale[1]*0.5,viewscale[2]*0.5)
 
 /mob/living/silicon/ai/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
-	raw_message = lang_treat(speaker, message_language, raw_message, spans, message_mode)
+	var/treated_message = lang_treat(speaker, message_language, raw_message, spans, message_mode) //Skyrat change
 	var/start = "Relayed Speech: "
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
 	var/hrefpart = "<a href='?src=[REF(src)];track=[html_encode(namepart)]'>"
-	var/jobpart
+	var/jobpart = "Unknown" //Skyrat change
 
 	if (iscarbon(speaker))
 		var/mob/living/carbon/S = speaker
@@ -835,7 +835,7 @@
 	else
 		jobpart = "Unknown"
 
-	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span><span class='message'>[raw_message]</span></span></i>"
+	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span><span class='message'>[treated_message]</span></span></i>" //Skyrat change
 
 	create_chat_message(speaker, message_language, raw_message, spans, message_mode) //Skyrat change
 	show_message(rendered, MSG_AUDIBLE)
