@@ -43,7 +43,7 @@
 			A.visible_message("<span class='danger'>[A] literally disarms [D]!</span>")
 			return
 	A.visible_message("<span class='danger'>[A] only gets enraged by the fact that he can't rip and tear the [D]'s arms, and punches them hard!</span>")
-	playsound(A.loc, 'sound/misc/crack.ogg', 100, TRUE)
+	playsound(get_turf(A), 'sound/misc/crack.ogg', 100, TRUE)
 	D.apply_damage(damage = 15,damagetype = BRUTE, def_zone = def_zone)
 	D.DefaultCombatKnockdown(25, override_stamdmg = 0)
 	D.adjustStaminaLoss(20)
@@ -58,8 +58,8 @@
 			else
 				continue
 		A.visible_message("<span class='danger'>[A] punches [D] HARD!!</span>")
-		playsound(A.loc, 'sound/misc/crunch.ogg', 100, TRUE)
-		playsound(A.loc, 'sound/misc/crack.ogg', 100, TRUE)
+		playsound(get_turf(A), 'sound/misc/crunch.ogg', 100, TRUE)
+		playsound(get_turf(A), 'sound/misc/crack.ogg', 100, TRUE)
 		D.apply_damage(damage = 33,damagetype = BRUTE, def_zone = def_zone)
 		if(D.health <= 0)
 			A.visible_message("<span class='danger'>[A] rips [D] apart!</span>")
@@ -69,8 +69,8 @@
 /datum/martial_art/berserk/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	var/def_zone = A.zone_selected
 	A.visible_message("<span class='danger'>[A] grabs [D] and throws them away!!</span>")
-	playsound(A.loc, 'sound/misc/crunch.ogg', 100, TRUE)
-	playsound(A.loc, 'sound/misc/crack.ogg', 100, TRUE)
+	playsound(get_turf(A), 'sound/misc/crunch.ogg', 100, TRUE)
+	playsound(get_turf(A), 'sound/misc/crack.ogg', 100, TRUE)
 	D.apply_damage(damage = 7.5,damagetype = BRUTE, def_zone = def_zone, blocked = FALSE, forced = FALSE)
 	var/throwtarget = get_edge_target_turf(A, get_dir(A, D))
 	D.safe_throw_at(throwtarget, 15, 5, A)
