@@ -6,11 +6,17 @@
 
 #define clamp(CLVALUE,CLMIN,CLMAX) ( max( (CLMIN), min((CLVALUE), (CLMAX)) ) )
 
-#define ATAN2(x, y) ( !(x) && !(y) ? 0 : (y) >= 0 ? arccos((x) / sqrt((x)*(x) + (y)*(y))) : -arccos((x) / sqrt((x)*(x) + (y)*(y))) )
-
 #define TAN(x) (sin(x) / cos(x))
 
+#define ATAN2(x, y) ( !(x) && !(y) ? 0 : (y) >= 0 ? arccos((x) / sqrt((x)*(x) + (y)*(y))) : -arccos((x) / sqrt((x)*(x) + (y)*(y))) )
+
 #define arctan(x) (arcsin(x/sqrt(1+x*x)))
+
+#else
+
+#define TAN(x) tan(x)
+
+#define ATAN2(x, y) arctan(x, y)
 
 #endif
 
