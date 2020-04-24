@@ -71,7 +71,7 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/dragon/glaurung/proc/line_target(offset, range, atom/at = target)
 	if(!at)
 		return
-	var/angle = ATAN2(at.x - src.x, at.y - src.y) + offset
+	var/angle = ATAN2(at.x - src.x, at.y - src.y) + offset  // Skyrat edit -- 512 compatibility
 	var/turf/T = get_turf(src)
 	for(var/i in 1 to range)
 		var/turf/check = locate(src.x + cos(angle) * i, src.y + sin(angle) * i, src.z)
