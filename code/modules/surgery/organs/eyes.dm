@@ -251,6 +251,10 @@
 	else
 		activate()
 
+/obj/item/organ/eyes/robotic/glow/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
+    RegisterSignal(M,COMSIG_LIVING_STATUS_UNCONSCIOUS,.proc/deactivate)
+    . = ..()
+
 /obj/item/organ/eyes/robotic/glow/proc/prompt_for_controls(mob/user)
 	var/C = input(owner, "Select Color", "Select color", "#ffffff") as color|null
 	if(!C || QDELETED(src) || QDELETED(user) || QDELETED(owner) || owner != user)
