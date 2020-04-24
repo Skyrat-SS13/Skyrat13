@@ -359,19 +359,17 @@
 					to_chat(src, "<span class='warning'>Your [currentzone] is squishy and hurts like fucking hell! What the fuck?!</span>")
 		else
 			for(var/obj/item/organ/bone/B in currentbones)
-				if(B.damage < BONE_DAM_THRESHOLD_LOW)
+				if(B.damage < B.dam_threshold_low
 					break
-				if((B.damage >= BONE_DAMTHRESHOLD_LOW) && (BONE_DAM_THRESHOLD_MEDIUM > B.damage))
+				if((B.damage >= B.dam_threshold_low) && (B.dam_threshold_medium > B.damage))
 					if(prob(1))
 						src.adjustOrganLoss(B, rand(0.5, 0.75))
 						to_chat(src, "<span class='danger'>Your [currentzone] hurts!</span>")
-				if((B.damage >= BONE_DAMTHRESHOLD_MEDIUM) && (BONE_DAM_THRESHOLD_HIGH > B.damage))
+				if((B.damage >= B.dam_threshold_medium) && (B.dam_threshold_high > B.damage))
 					if(prob(2))
 						src.adjustOrganLoss(B, rand(0.5, 1))
 						to_chat(src, "<span class='danger'>Your [currentzone] hurts a lot!</span>")
-				if((B.damage >= BONE_DAMTHRESHOLD_HIGH) && (BONE_DAM_THRESHOLD_HIGHEST > B.damage))
-					if(!currentzone.disabled)
-						currentzone.disabled = TRUE
+				if((B.damage >= B.dam_threshold_high) && (B.dam_threshold_highest > B.damage))
 					if(prob(5))
 						for(var/obj/item/organ/ourorgan in getorganszone(currentzone))
 							if(ourorgan != B)
@@ -380,8 +378,6 @@
 								src.apply_damage(1, BRUTE, currentzone, FALSE, TRUE)
 							to_chat(src, "<span class='userdanger'>Your [currentzone] hurts like hell!</span>")
 				else
-					if(!currentzone.disabled)
-						currentzone.disabled = TRUE
 					if(prob(7))
 						for(var/obj/item/organ/ourorgan in getorganszone(currentzone))
 							if(ourorgan != B)
