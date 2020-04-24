@@ -17,7 +17,6 @@
 #define THERMAL_PROTECTION_ARM_RIGHT	0.075
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
-#define BODY_ZONE_L_ARM "test"
 
 /mob/living/carbon/human/Life(seconds, times_fired)
 	set invisibility = 0
