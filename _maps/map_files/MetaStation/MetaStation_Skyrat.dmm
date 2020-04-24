@@ -54033,6 +54033,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
+/obj/item/clothing/suit/apron,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bYn" = (
@@ -54666,6 +54667,7 @@
 /obj/machinery/light_switch{
 	pixel_x = -26
 	},
+/obj/item/clothing/suit/apron,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bZx" = (
@@ -82412,6 +82414,7 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/cultivator,
 /obj/item/wirecutters,
+/obj/item/wrench,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "dix" = (
@@ -84486,11 +84489,8 @@
 /turf/closed/wall,
 /area/science/circuit)
 "kwI" = (
-/obj/item/wrench,
-/obj/item/clothing/suit/apron,
-/obj/item/clothing/accessory/armband/hydro,
-/obj/structure/table/glass,
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/chem_dispenser/upgradeablemutagen,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "kxk" = (

@@ -1,5 +1,0 @@
-author: "BobJogaIsForkinBanned"
-delete-after: True
-changes: 
-  - bugfix: "Power armor mob overlays now work proper. No more alien looking power armor."
-  - bugfix: "Security berets now reskin proper."

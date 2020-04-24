@@ -1,5 +1,0 @@
-author: "BobJogaIsForkinBanned"
-delete-after: True
-changes: 
-  - bugfix: "Soft caps can now be reskinned proper.
-fix:https://github.com/Skyrat-SS13/Skyrat13/issues/1419 Brig phys soft cap now updates it's icon proper."
