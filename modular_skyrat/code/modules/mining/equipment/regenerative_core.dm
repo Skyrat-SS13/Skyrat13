@@ -51,7 +51,7 @@
 			visible_message("[user] turned [M] into an enraged [M]!")
 			qdel(M)
 			qdel(src)
-		if(istype(M, /mob/living/simple_animal/hostile/megafauna/legion) && !istype(M, /mob/living/simple_animal/hostile/megafauna/legion) && (M.stat != DEAD))
+		if(istype(M, /mob/living/simple_animal/hostile/megafauna/legion) && !istype(M, /mob/living/simple_animal/hostile/megafauna/legion/hard) && (M.stat != DEAD))
 			new /mob/living/simple_animal/hostile/megafauna/legion/hard(M.loc)
 			visible_message("[user] turned [M] into an enraged [M]!")
 			qdel(M)
