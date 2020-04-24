@@ -4,7 +4,7 @@
 	say_mod = "beep boops" //inherited from a user's real species
 	sexes = 0
 	species_traits = list(NOTRANSSTING) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
-	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER) //Now limbs can be disabled and dismembered, and they breathe for balance reasons.
+	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_EASYLIMBDISABLE) //Now limbs can be disabled and dismembered, and they breathe for balance reasons.
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	dangerous_existence = 0 //not dangerous anymore i guess
 	blacklisted = 0 //not blacklisted anymore
@@ -14,7 +14,7 @@
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
 	limbs_id = "synth"
 	initial_species_traits = list(NOTRANSSTING) //for getting these values back for assume_disguise()
-	initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER) //blah blah i explained above piss
+	initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_EASYLIMBDISABLE) //blah blah i explained above piss
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
@@ -77,8 +77,13 @@
 	for(var/X in H.bodyparts)
 		var/obj/item/bodypart/BP = X
 		BP.update_limb()
+	handle_hair(H)
+	handle_body(H)
+	handle_mutant_bodyparts(H)
+	H.updatehealth()
 	H.update_body_parts()
 	H.update_damage_overlays()
+	H.load_limb_from_cache()
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -137,8 +142,13 @@
 	for(var/X in H.bodyparts)
 		var/obj/item/bodypart/BP = X
 		BP.update_limb()
+	handle_hair(H)
+	handle_body(H)
+	handle_mutant_bodyparts(H)
+	H.updatehealth()
 	H.update_body_parts()
 	H.update_damage_overlays()
+	H.load_limb_from_cache()
 
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
 	..()
@@ -146,17 +156,9 @@
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
 		H.visible_message("<span class='danger'>[H]'s disguise falls apart!</span>", "<span class='userdanger'>Your diguise falls apart!</span>")
-		handle_hair(H)
-		handle_body(H)
-		handle_mutant_bodyparts(H)
-		H.updatehealth()
 	else if((actualhealth >= disguise_fail_health) && !isdisguised)
 		assume_disguise(fake_species, H)
 		H.visible_message("<span class='warning'>[H] morphs their appearance to that of [fake_species.name].</span>", "<span class='notice'>You morph your appearance to that of [fake_species.name].</span>")
-		handle_hair(H)
-		handle_body(H)
-		handle_mutant_bodyparts(H)
-		H.updatehealth()
 
 /datum/species/synth/handle_hair(mob/living/carbon/human/H, forced_colour)
 	if(fake_species && isdisguised)
