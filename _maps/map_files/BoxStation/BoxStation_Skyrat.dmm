@@ -57553,6 +57553,10 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"gfm" = (
+/mob/living/simple_animal/slime,
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "gfr" = (
 /obj/structure/bed,
 /turf/open/floor/plating,
@@ -108164,7 +108168,7 @@ bRU
 lMg
 bDb
 bEm
-bEm
+gfm
 bXe
 cgi
 bEm
@@ -110731,7 +110735,7 @@ clq
 bPJ
 cAc
 bEm
-bEm
+gfm
 bXe
 cgi
 bEm
@@ -110740,7 +110744,7 @@ cgi
 bEm
 bXe
 cgi
-bEm
+gfm
 bXe
 cgi
 bEm
