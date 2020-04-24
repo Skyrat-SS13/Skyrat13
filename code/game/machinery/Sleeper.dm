@@ -259,11 +259,9 @@
 
 		data["occupant"]["internal_organs"] = list()
 		var/mob/living/carbon/C = mob_occupant
-		if(C)
+		if(istype(C))
 			for(var/obj/item/organ/Or in C.internal_organs)
-				data["occupant"]["internal_organs"] += list(list("name" = Or.name, "healthpercentage" = round((Or.maxHealth - Or.damage)/Or.maxHealth * 100))
-
-		if(istype(C)) //Non-carbons shouldn't be able to enter sleepers, but this is to prevent runtimes if something ever breaks
+				data["occupant"]["internal_organs"] += list(list("name" = Or.name, "healthpercentage" = round((Or.maxHealth - Or.damage)/Or.maxHealth * 100)))
 			if(mob_occupant.has_dna()) // Blood-stuff is mostly a copy-paste from the healthscanner.
 				blood_percent = round((C.blood_volume / BLOOD_VOLUME_NORMAL)*100)
 				var/blood_id = C.get_blood_id()
