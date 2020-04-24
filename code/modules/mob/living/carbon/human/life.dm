@@ -359,7 +359,7 @@
 					to_chat(src, "<span class='warning'>Your [currentzone] is squishy and hurts like fucking hell! What the fuck?!</span>")
 		else
 			for(var/obj/item/organ/bone/B in currentbones)
-				if(B.damage < B.dam_threshold_low
+				if(B.damage < B.dam_threshold_low)
 					break
 				if((B.damage >= B.dam_threshold_low) && (B.dam_threshold_medium > B.damage))
 					if(prob(1))
