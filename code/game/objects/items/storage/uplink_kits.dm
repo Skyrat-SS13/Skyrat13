@@ -500,9 +500,6 @@
 	new item1(src)	// Create three, non repeat items from the list.
 	new item2(src)
 	new item3(src)
-<<<<<<< HEAD
-	new /obj/item/paper/contractor_guide(src)	//Paper guide
-=======
 	new /obj/item/paper/contractor_guide(src)	//Paper guide
 
 /obj/item/storage/box/syndie_kit/northstar
@@ -513,5 +510,3 @@
 	new /obj/item/clothing/under/chameleon(src)
 	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
 	new /obj/item/lighter(src)
-	
->>>>>>> cf61795101... Merge pull request #11941 from kiwedespars/punch-bundle
