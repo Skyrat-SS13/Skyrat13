@@ -365,7 +365,7 @@
 					if(prob(1))
 						src.adjustOrganLoss(B, rand(0.5, 0.75))
 						to_chat(src, "<span class='danger'>Your [currentzone] hurts!</span>")
-				if((B.damage >= BONE_DAMTHRESHOLD_MEDIUM) && (BONE_DAM_THRESHOLD_HIGH > B.damage)))
+				if((B.damage >= BONE_DAMTHRESHOLD_MEDIUM) && (BONE_DAM_THRESHOLD_HIGH > B.damage))
 					if(prob(2))
 						src.adjustOrganLoss(B, rand(0.5, 1))
 						to_chat(src, "<span class='danger'>Your [currentzone] hurts a lot!</span>")
