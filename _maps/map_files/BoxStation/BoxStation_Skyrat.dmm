@@ -17203,7 +17203,14 @@
 	pixel_x = 13;
 	pixel_y = 5
 	},
-/obj/item/watertank,
+/obj/item/book/manual/hydroponics_pod_people{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/paper/guides/jobs/hydroponics{
+	pixel_x = -5;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aLe" = (
@@ -19645,6 +19652,10 @@
 /area/crew_quarters/kitchen)
 "aRH" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aRI" = (
@@ -20114,7 +20125,8 @@
 /area/crew_quarters/kitchen)
 "aSP" = (
 /obj/machinery/smartfridge,
-/turf/closed/wall,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
 "aSQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -20136,7 +20148,7 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aST" = (
-/obj/machinery/biogenerator,
+/obj/machinery/chem_dispenser/upgradeablemutagen,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aSU" = (
@@ -20485,7 +20497,7 @@
 /area/storage/tools)
 "aTM" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
+/obj/machinery/reagentgrinder,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aTN" = (
@@ -21341,12 +21353,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aVH" = (
-/obj/machinery/processor,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/cafeteria,
+/obj/machinery/biogenerator,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
 "aVI" = (
 /obj/effect/turf_decal/tile/green{
@@ -21358,10 +21367,16 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aVJ" = (
-/obj/machinery/light{
+/obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aVK" = (
@@ -22119,13 +22134,12 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aXn" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
 	pixel_x = 30
 	},
+/obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aXo" = (
@@ -22808,7 +22822,6 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aYP" = (
-/obj/structure/reagent_dispensers/watertank/high,
 /obj/structure/sign/poster/contraband/lizard{
 	pixel_x = -32
 	},
@@ -22818,7 +22831,8 @@
 /obj/structure/sign/poster/contraband/lizard{
 	pixel_x = -32
 	},
-/turf/open/floor/plasteel,
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aYQ" = (
 /obj/machinery/hydroponics/constructable,
@@ -23334,15 +23348,11 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "bal" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -24
 	},
+/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bam" = (
@@ -23752,7 +23762,6 @@
 "bbt" = (
 /obj/structure/closet/crate,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/spawner/lootdrop/maintenance,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
@@ -24853,6 +24862,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bem" = (
@@ -25244,7 +25254,6 @@
 /area/maintenance/port)
 "bfe" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
-/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bff" = (
@@ -25709,7 +25718,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bgt" = (
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bgu" = (
@@ -26384,12 +26393,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bhS" = (
-/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
-	},
-/obj/structure/window{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
@@ -51822,13 +51827,9 @@
 /turf/open/space,
 /area/solar/starboard/aft)
 "cqK" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
-	name = "2maintenance loot spawner"
-	},
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
-/area/maintenance/port/aft)
+/area/maintenance/port)
 "cqL" = (
 /obj/machinery/door/airlock{
 	id_tag = "barbath";
@@ -56708,10 +56709,9 @@
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "ejm" = (
-/obj/structure/bed,
-/obj/item/bedsheet/blue,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
-/area/maintenance/port/aft)
+/area/maintenance/port)
 "ejF" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/table,
@@ -57633,9 +57633,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "gnI" = (
-/obj/machinery/light/small{
-	dir = 4;
-	light_color = "#d8b1b1"
+/obj/machinery/door/airlock,
+/obj/structure/barricade/wooden{
+	name = "wooden barricade (CLOSED)"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -57974,14 +57974,10 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "gXE" = (
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 1
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/light/small,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "gYP" = (
 /obj/structure/chair/stool/bar,
 /obj/structure/spider/stickyweb/genetic,
@@ -58479,9 +58475,6 @@
 	pixel_y = 1
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/light/small{
-	dir = 1
-	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "imH" = (
@@ -59018,12 +59011,12 @@
 /turf/open/floor/plating,
 /area/maintenance/bar)
 "jxF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
+/obj/machinery/light/small{
+	dir = 4;
+	light_color = "#d8b1b1"
 	},
-/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
-/area/maintenance/port)
+/area/maintenance/port/aft)
 "jAg" = (
 /turf/open/floor/engine,
 /area/science/mixing)
@@ -60019,9 +60012,10 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "lvU" = (
-/obj/machinery/door/airlock,
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 3;
+	name = "3maintenance loot spawner"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -62095,9 +62089,7 @@
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
-/obj/item/reagent_containers/food/snacks/cheesynachos{
-	pixel_y = 5
-	},
+/obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "quT" = (
@@ -62957,14 +62949,7 @@
 /area/crew_quarters/dorms)
 "sHx" = (
 /obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people{
-	pixel_x = -4;
-	pixel_y = 5
-	},
-/obj/item/paper/guides/jobs/hydroponics{
-	pixel_x = -5;
-	pixel_y = 3
-	},
+/obj/item/watertank,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "sJk" = (
@@ -63993,8 +63978,8 @@
 "uZJ" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 3;
-	name = "3maintenance loot spawner"
+	lootcount = 2;
+	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -65256,6 +65241,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"xmk" = (
+/obj/machinery/hydroponics/constructable,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/hydroponics)
 "xmo" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -83725,7 +83717,7 @@ aQN
 cBh
 bdL
 aPA
-bgt
+cqK
 bhR
 bjk
 aZE
@@ -83982,7 +83974,7 @@ aQN
 vhb
 bbO
 aPA
-aSg
+ejm
 bhT
 bjk
 aZE
@@ -84312,15 +84304,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
 bCq
 bCq
 bLv
 bLv
 bLv
-aaa
+cNd
+cNd
+cNd
+cNd
 cNd
 cNd
 cNd
@@ -84564,12 +84556,9 @@ elb
 dKP
 bCq
 bCq
-bCq
 bLv
 bLv
 bLv
-bLv
-bCq
 bCq
 bCq
 bCq
@@ -84577,7 +84566,10 @@ ciT
 bJe
 bJe
 bLv
-aaa
+cNd
+cNd
+cNd
+cNd
 cNd
 cNd
 cNd
@@ -84820,21 +84812,21 @@ evR
 nXT
 nlJ
 bHE
-bHE
 ckv
 bHE
 bHE
 bHE
-bHE
 ckv
 bHE
-bHE
-lvU
+gnI
 bHE
 cAQ
-uZJ
+lvU
 bLv
-aaa
+cNd
+cNd
+cNd
+cNd
 cNd
 cNd
 cNd
@@ -85078,20 +85070,20 @@ rKI
 dKP
 bCq
 bCq
-bCq
-bLv
 bLv
 bLv
 bLv
 bCq
 bCq
 bCq
-bCq
-ejm
-gnI
-cqK
+gXE
+jxF
+uZJ
 bLv
-aaa
+cNd
+cNd
+cNd
+cNd
 cNd
 cNd
 cNd
@@ -85340,15 +85332,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
 bCq
 bCq
 bCq
 bCq
 bCq
-aaa
+cNd
+cNd
+cNd
+cNd
 cNd
 cNd
 cNd
@@ -85523,7 +85515,7 @@ aQW
 aQW
 xDM
 aPA
-jxF
+aWv
 aYb
 aZE
 bjp
@@ -102016,7 +102008,7 @@ cbH
 bOh
 aaf
 uUd
-gXE
+cyG
 rPH
 aaf
 aoV
@@ -105047,7 +105039,7 @@ aJI
 aRH
 aVz
 aVz
-aVH
+aVz
 aXn
 aYN
 aJI
@@ -105304,7 +105296,7 @@ aJI
 aJI
 aSP
 aUh
-aJI
+aVH
 aJI
 aJI
 aJI
@@ -105562,7 +105554,7 @@ aOX
 aSR
 aUi
 aVJ
-aOX
+xmk
 aYP
 bal
 bam

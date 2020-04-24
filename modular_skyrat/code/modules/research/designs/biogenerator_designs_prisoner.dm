@@ -72,7 +72,7 @@
 	id = "monkey_cubeprisoner"
 	build_type = PRISBIOGENERATOR
 	materials = list(/datum/material/biomass = 250)
-	build_path = /obj/item/reagent_containers/food/snacks/monkeycube
+	build_path = /obj/item/reagent_containers/food/snacks/cube/monkey
 	category = list("initial", "Food")
 
 /datum/design/smeatprisoner
