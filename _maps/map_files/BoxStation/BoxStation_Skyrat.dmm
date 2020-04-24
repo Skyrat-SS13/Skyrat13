@@ -34543,15 +34543,14 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bzH" = (
-/obj/structure/table,
-/obj/item/hemostat,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/table/optable,
 /turf/open/floor/plasteel/white/side,
 /area/medical/sleeper)
 "bzI" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/table,
-/obj/item/surgicaldrill,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bzJ" = (
@@ -34564,12 +34563,9 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "bzK" = (
-/obj/structure/table,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
-/obj/item/circular_saw,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/computer/med_data/laptop,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bzL" = (
@@ -34644,10 +34640,8 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "bzS" = (
-/obj/structure/table,
-/obj/item/cautery{
-	pixel_x = 4
-	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bzT" = (
@@ -35131,12 +35125,11 @@
 /area/medical/sleeper)
 "bAX" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/table,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/obj/item/clothing/suit/apron/surgical,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
+	},
+/obj/machinery/computer/operating{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 4
@@ -35167,11 +35160,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bBc" = (
-/obj/structure/table,
-/obj/item/surgical_drapes,
-/obj/item/razor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/machinery/computer/operating{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 8
@@ -35908,6 +35901,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bCC" = (
@@ -35917,11 +35913,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bCD" = (
-/obj/structure/table,
-/obj/item/retractor,
+/obj/structure/table/optable,
 /turf/open/floor/plasteel/white/side,
 /area/medical/sleeper)
 "bCE" = (
@@ -35936,6 +35934,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
@@ -36315,18 +36316,12 @@
 /area/hallway/secondary/exit)
 "bDA" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/power/apc{
-	areastring = "/area/medical/sleeper";
-	dir = 4;
-	name = "Treatment Center APC";
-	pixel_x = 26
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -36334,15 +36329,21 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/medical/sleeper";
+	dir = 8;
+	name = "Treatment Center APC";
+	pixel_x = -26
+	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
-/area/medical/sleeper)
-"bDC" = (
-/obj/machinery/computer/operating{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bDD" = (
 /obj/structure/bed,
@@ -51646,7 +51647,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "cpG" = (
-/obj/structure/table/optable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
@@ -54924,27 +54924,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "cCp" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood/AMinus,
-/obj/item/reagent_containers/blood/BMinus{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/blood/BPlus{
-	pixel_x = 1;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OPlus{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/APlus,
-/obj/item/reagent_containers/blood/random,
+/obj/structure/closet/crate/freezer/blood,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "cCq" = (
@@ -99943,7 +99923,7 @@ bzb
 bzK
 bBb
 cpG
-bDC
+bDR
 bId
 bvd
 bKH

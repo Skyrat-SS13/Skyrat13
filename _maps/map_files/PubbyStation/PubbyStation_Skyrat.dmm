@@ -37493,6 +37493,8 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/structure/closet/crate/freezer/surplus_limbs,
+/obj/item/reagent_containers/glass/beaker/synthflesh,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bIs" = (
@@ -37509,6 +37511,10 @@
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
@@ -38004,10 +38010,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
-"bJw" = (
-/obj/machinery/computer/operating,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bJx" = (
@@ -38517,7 +38519,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bKF" = (
-/obj/structure/table/optable,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bKG" = (
@@ -38981,19 +38982,14 @@
 /turf/open/floor/plasteel/freezer,
 /area/medical/surgery)
 "bLM" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/obj/item/clothing/suit/apron/surgical,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
+/obj/machinery/computer/operating{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
@@ -39004,10 +39000,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bLO" = (
-/obj/effect/landmark/start/medical_doctor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/start/medical_doctor,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bLP" = (
@@ -39017,11 +39013,12 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bLQ" = (
-/obj/structure/table,
-/obj/item/surgical_drapes,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
+	},
+/obj/machinery/computer/operating{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
@@ -39453,43 +39450,7 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"bMN" = (
-/obj/structure/table,
-/obj/item/hemostat,
-/obj/item/stack/medical/gauze,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
-"bMO" = (
-/obj/structure/table,
-/obj/item/surgicaldrill,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "bMP" = (
-/obj/structure/table,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
-/obj/item/circular_saw,
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -39501,16 +39462,14 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/computer/med_data/laptop{
+	dir = 1;
+	pixel_y = 4
+	},
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bMQ" = (
-/obj/structure/table,
-/obj/item/cautery{
-	pixel_x = 4
-	},
-/obj/item/razor{
-	pixel_y = 5
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -39521,11 +39480,10 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/table/optable,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bMR" = (
-/obj/structure/table,
-/obj/item/retractor,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -39536,6 +39494,8 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bMS" = (
@@ -95122,7 +95082,7 @@ bIo
 bJu
 bKE
 bLM
-bMN
+bMR
 bFU
 bCz
 bPE
@@ -95379,7 +95339,7 @@ bIp
 bJv
 bJx
 bLN
-bMO
+bMQ
 bFU
 bCz
 bPE
@@ -95633,7 +95593,7 @@ bEI
 bFV
 bFU
 bIq
-bJw
+bKF
 bKF
 bLO
 bMP

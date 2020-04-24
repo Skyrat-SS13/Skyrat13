@@ -61949,42 +61949,24 @@
 	},
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
-"cnm" = (
-/obj/structure/table,
-/obj/item/hemostat,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
-/turf/open/floor/plasteel,
-/area/medical/surgery)
 "cnn" = (
-/obj/structure/table,
-/obj/item/surgicaldrill,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/table/optable,
 /turf/open/floor/plasteel/white/side,
 /area/medical/surgery)
 "cno" = (
-/obj/structure/table,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
-/obj/item/circular_saw,
+/obj/machinery/computer/med_data/laptop,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white/side,
 /area/medical/surgery)
 "cnp" = (
-/obj/structure/table,
-/obj/item/cautery{
-	pixel_x = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/item/razor{
-	pixel_y = 5
-	},
+/obj/structure/table/optable,
 /turf/open/floor/plasteel/white/side,
 /area/medical/surgery)
 "cnq" = (
-/obj/structure/table,
-/obj/item/retractor,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/medical/surgery)
 "cnr" = (
@@ -62679,13 +62661,8 @@
 	},
 /area/maintenance/port/aft)
 "coy" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/obj/item/clothing/suit/apron/surgical,
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -22
+/obj/machinery/computer/operating{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 4
@@ -62713,8 +62690,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/structure/table,
-/obj/item/surgical_drapes,
+/obj/machinery/computer/operating{
+	dir = 8
+	},
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
@@ -64279,12 +64257,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
-"crl" = (
-/obj/machinery/computer/operating{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "crm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
@@ -64294,10 +64266,6 @@
 "crn" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 24
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 8
@@ -64794,6 +64762,8 @@
 	dir = 1;
 	pixel_y = -22
 	},
+/obj/structure/closet/crate/freezer/surplus_limbs,
+/obj/item/reagent_containers/glass/beaker/synthflesh,
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
@@ -64804,6 +64774,9 @@
 	c_tag = "Medbay Surgery";
 	dir = 1;
 	network = list("ss13","medbay")
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
@@ -79027,10 +79000,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
-"cUH" = (
-/obj/structure/table/optable,
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "cUL" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
@@ -104165,7 +104134,7 @@ cia
 cjw
 ckU
 cmk
-cnm
+cnq
 coy
 cpU
 crj
@@ -104681,8 +104650,8 @@ ckW
 cmk
 cno
 coA
-cUH
-crl
+cpU
+cpU
 csl
 cia
 ceu
