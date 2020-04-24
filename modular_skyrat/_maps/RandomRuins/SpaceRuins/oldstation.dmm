@@ -3659,13 +3659,13 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "lg" = (
-/obj/machinery/suit_storage_unit/radsuit,
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Charlie Station Xenobiology APC";
 	pixel_y = 24;
 	start_charge = 0
 	},
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "lh" = (
@@ -4605,7 +4605,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "ry" = (
-/obj/machinery/suit_storage_unit/radsuit,
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "rM" = (
