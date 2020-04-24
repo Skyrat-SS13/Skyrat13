@@ -369,8 +369,7 @@
 						src.adjustOrganLoss(B, rand(0.5, 1.5))
 						to_chat(src, "<span class='danger'>Your [get_bodypart(currentzone)] hurts a lot!</span>")
 				if((B.damage >= B.dam_threshold_high) && (B.dam_threshold_highest > B.damage))
-					var/obj/item/bodypart/BP = get_bodypart(currentzone)
-					OB.disabled = BODYPART_DISABLED
+					OB.set_disabled(TRUE)
 					if(prob(15))
 						for(var/obj/item/organ/ourorgan in getorganszone(currentzone))
 							if(ourorgan != B)
@@ -379,7 +378,7 @@
 							src.apply_damage(2, BRUTE, currentzone, FALSE, TRUE)
 						to_chat(src, "<span class='userdanger'>Your [get_bodypart(currentzone)] hurts like hell!</span>")
 				else
-					OB.disabled = BODYPART_DISABLED
+					OB.set_disabled(TRUE)
 					if(prob(15))
 						for(var/obj/item/organ/ourorgan in getorganszone(currentzone))
 							if(ourorgan != B)
