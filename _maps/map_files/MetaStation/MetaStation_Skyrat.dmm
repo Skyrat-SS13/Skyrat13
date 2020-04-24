@@ -23931,19 +23931,14 @@
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "aTS" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/lattice/catwalk,
 /obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Fore Port";
-	dir = 8;
+	c_tag = "MiniSat Exterior - Fore";
+	dir = 1;
 	network = list("minisat")
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/space,
 /area/aisat)
 "aTT" = (
 /obj/structure/window/reinforced{
@@ -23954,6 +23949,11 @@
 /area/aisat)
 "aTU" = (
 /obj/structure/lattice,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Fore Port";
+	dir = 8;
+	network = list("minisat")
+	},
 /turf/open/space,
 /area/aisat)
 "aTV" = (
@@ -23983,19 +23983,13 @@
 /turf/open/space,
 /area/aisat)
 "aTZ" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
+/obj/structure/lattice,
 /obj/machinery/camera{
 	c_tag = "MiniSat Exterior - Fore Starboard";
 	dir = 4;
 	network = list("minisat")
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/space,
 /area/aisat)
 "aUa" = (
 /obj/structure/window/reinforced{
@@ -30019,14 +30013,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Port Fore";
-	dir = 8;
-	network = list("minisat")
-	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "beu" = (
@@ -30062,19 +30048,13 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "bey" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
+/obj/structure/lattice,
 /obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Starboard Fore";
-	dir = 4;
+	c_tag = "MiniSat Exterior - Port Fore";
+	dir = 8;
 	network = list("minisat")
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/space,
 /area/aisat)
 "bez" = (
 /obj/structure/window/reinforced{
@@ -30899,6 +30879,10 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Space Access";
+	network = list("minisat")
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
@@ -32146,11 +32130,6 @@
 /area/security/detectives_office)
 "bik" = (
 /obj/machinery/light/small,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Space Access";
-	dir = 1;
-	network = list("minisat")
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -36059,12 +36038,6 @@
 /area/aisat)
 "bps" = (
 /obj/structure/window/reinforced,
-/obj/machinery/light/small,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Fore";
-	dir = 1;
-	network = list("minisat")
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
 /area/aisat)
@@ -39334,7 +39307,13 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/break_room)
 "bvt" = (
-/turf/closed/wall,
+/obj/structure/lattice,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Starboard Fore";
+	dir = 4;
+	network = list("minisat")
+	},
+/turf/open/space,
 /area/aisat)
 "bvu" = (
 /obj/structure/table/wood,
@@ -41353,14 +41332,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Port Aft";
-	dir = 8;
-	network = list("minisat")
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
@@ -41438,22 +41409,13 @@
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bzu" = (
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
+/obj/structure/lattice,
 /obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Starboard Aft";
-	dir = 4;
+	c_tag = "MiniSat Exterior - Port Aft";
+	dir = 8;
 	network = list("minisat")
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/space,
 /area/aisat)
 "bzv" = (
 /obj/structure/window/reinforced{
@@ -47144,18 +47106,10 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/light/small{
-	dir = 8
-	},
 /obj/machinery/door/window{
 	base_state = "right";
 	icon_state = "right";
 	name = "MiniSat Walkway Access"
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Aft Starboard";
-	dir = 4;
-	network = list("minisat")
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -48761,16 +48715,8 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "bNW" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
 /obj/machinery/door/window{
 	name = "MiniSat Walkway Access"
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Aft Port";
-	dir = 8;
-	network = list("minisat")
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -50240,8 +50186,13 @@
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
 "bRa" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/closed/wall,
+/obj/structure/lattice,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Starboard Aft";
+	dir = 4;
+	network = list("minisat")
+	},
+/turf/open/space,
 /area/aisat)
 "bRb" = (
 /obj/structure/closet/emcloset,
@@ -54033,6 +53984,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
+/obj/item/clothing/suit/apron,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bYn" = (
@@ -54666,6 +54618,7 @@
 /obj/machinery/light_switch{
 	pixel_x = -26
 	},
+/obj/item/clothing/suit/apron,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bZx" = (
@@ -59327,13 +59280,6 @@
 /obj/structure/window/reinforced{
 	dir = 1;
 	layer = 2.9
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Aft";
-	network = list("minisat")
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
@@ -82412,6 +82358,7 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/cultivator,
 /obj/item/wirecutters,
+/obj/item/wrench,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "dix" = (
@@ -84430,6 +84377,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"jIX" = (
+/obj/structure/lattice,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Aft Port";
+	dir = 8;
+	network = list("minisat")
+	},
+/turf/open/space,
+/area/aisat)
 "jKK" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "13"
@@ -84486,11 +84442,8 @@
 /turf/closed/wall,
 /area/science/circuit)
 "kwI" = (
-/obj/item/wrench,
-/obj/item/clothing/suit/apron,
-/obj/item/clothing/accessory/armband/hydro,
-/obj/structure/table/glass,
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/chem_dispenser/upgradeablemutagen,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "kxk" = (
@@ -85110,6 +85063,15 @@
 "qBq" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/hallway/secondary/entry)
+"qEW" = (
+/obj/structure/lattice,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Aft Starboard";
+	dir = 4;
+	network = list("minisat")
+	},
+/turf/open/space,
+/area/aisat)
 "qFL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -85486,6 +85448,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
+"uVQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Aft";
+	network = list("minisat")
+	},
+/turf/open/space,
+/area/aisat)
 "uYk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -138556,7 +138527,7 @@ aOT
 aOT
 aOT
 aOT
-aTS
+bUM
 aVk
 aOY
 aOY
@@ -138820,7 +138791,7 @@ aaa
 aaa
 aaa
 aaa
-aTU
+bey
 aaa
 aaa
 aRy
@@ -139086,16 +139057,16 @@ bnw
 bpJ
 brW
 aRy
-bvt
+aRy
 aaa
-aTU
-aaa
-aaa
+bzu
 aaa
 aaa
 aaa
 aaa
-aTU
+aaa
+aaa
+jIX
 aaa
 aaa
 aaa
@@ -139353,8 +139324,8 @@ aRy
 aRy
 aRy
 aRy
-bvt
-bvt
+aRy
+aRy
 aaa
 aaa
 aaa
@@ -140127,7 +140098,7 @@ bNY
 bGd
 ceC
 aRy
-bvt
+aRy
 aaa
 aMq
 chz
@@ -140384,7 +140355,7 @@ bGd
 bGd
 bUL
 aRy
-bvt
+aRy
 aaa
 aMq
 chz
@@ -140609,7 +140580,7 @@ aYd
 bfS
 bps
 aOW
-aOW
+aTS
 aRz
 aSE
 aTW
@@ -140641,8 +140612,8 @@ bKO
 bMp
 bNZ
 aRz
-bRa
-aOW
+aRz
+uVQ
 bTm
 chM
 ckT
@@ -140898,7 +140869,7 @@ bJk
 bMq
 cgy
 aRy
-bvt
+aRy
 aaa
 aMq
 chz
@@ -141155,7 +141126,7 @@ bOb
 bMr
 cho
 aRy
-bvt
+aRy
 aaa
 aMq
 chz
@@ -141923,8 +141894,8 @@ aRy
 aRy
 aRy
 aRy
-bvt
-bvt
+aRy
+aRy
 aaa
 aaa
 aaa
@@ -142154,7 +142125,7 @@ aOV
 aaa
 aaa
 aaa
-aTU
+aTZ
 aaa
 aRy
 aRy
@@ -142170,16 +142141,16 @@ bnH
 bpV
 bsh
 aRy
-bvt
+aRy
 aaa
-aTU
-aaa
-aaa
+bRa
 aaa
 aaa
 aaa
 aaa
-aTU
+aaa
+aaa
+qEW
 aaa
 aaa
 aaa
@@ -142418,7 +142389,7 @@ aaa
 aaa
 aaa
 aaa
-aTU
+bvt
 aaa
 aaa
 aRy
@@ -142668,7 +142639,7 @@ aOT
 aOT
 aOT
 aOT
-aTZ
+bUK
 aOX
 aNw
 aNw
@@ -142686,7 +142657,7 @@ aRy
 aRy
 aaa
 aMq
-bzu
+aNx
 aOT
 aOT
 aOT
@@ -142932,7 +142903,7 @@ aOT
 aOT
 aOT
 aOT
-bey
+bUK
 bgn
 aaa
 aaa

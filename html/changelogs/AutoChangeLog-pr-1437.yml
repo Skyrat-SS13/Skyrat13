@@ -1,5 +1,0 @@
-author: "Bob Joga, plus Paradise Station for sprites"
-delete-after: True
-changes: 
-  - rscadd: "New armor reskin, bloody armor."
-  - bugfix: "Blueshield vest and beret being invisible on inventory."

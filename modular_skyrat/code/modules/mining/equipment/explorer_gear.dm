@@ -85,7 +85,10 @@
 //dora the explorer suit
 /obj/item/clothing/suit/hooded/explorer
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/gun/energy/plasmacutter)
+
+/obj/item/clothing/head/hooded/explorer
 	flags_inv = HIDEEARS
 
 /obj/item/clothing/mask/gas/explorer
-	flags_inv = 0
+	flags_inv = HIDEEYES|HIDEFACE|HIDESNOUT
+	mutantrace_variation = STYLE_MUZZLE
