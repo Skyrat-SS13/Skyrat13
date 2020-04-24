@@ -58,7 +58,7 @@
 					if(M.client.prefs.toggles & SOUND_AMBIENCE)
 						M.stop_sound_channel(CHANNEL_AMBIENCE)
 						songend = chosenlength + world.time
-						M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong) // so silence ambience will mute moosic for people who don't want that
+						SEND_SOUND(M, chosensong) // so silence ambience will mute moosic for people who don't want that, or it just doesn't play at all if prefs disable it
 				if(!retaliated)
 					src.visible_message("<span class='userdanger'>[src] seems pretty pissed off at [M]!</span>")
 					retaliated = TRUE
@@ -72,7 +72,7 @@
 				if(O.client.prefs.toggles & SOUND_AMBIENCE)
 					O.stop_sound_channel(CHANNEL_AMBIENCE)
 					songend = chosenlength + world.time
-					O.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong)
+					SEND_SOUND(O, chosensong)
 				if(!retaliated)
 					src.visible_message("<span class='userdanger'>[src] seems pretty pissed off at [M]!</span>")
 					retaliated = TRUE
@@ -96,7 +96,7 @@
 				if(M.client.prefs.toggles & SOUND_AMBIENCE)
 					M.stop_sound_channel(CHANNEL_AMBIENCE)
 					songend = chosenlength + world.time
-					M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = chosensong)
+					SEND_SOUND(M, chosensong)
 	if(health <= (maxHealth/25) && !glorykill && stat != DEAD)
 		glorykill = TRUE
 		glory()

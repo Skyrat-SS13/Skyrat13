@@ -303,12 +303,17 @@
 	name = "Strange Rune"
 	desc = "Tales tell that this rune may grant the user power beyond measure... for a limited time."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
-	icon_state = "berrserk"
+	icon_state = "berserk"
 	martial = /datum/martial_art/berserk
 	martialname = "berserk"
 	greet = "<span class='userdanger' style='color:rgb(0, 0, 0);'><b>DIG THE PROWESS. THE CAPACITY FOR VIOLENCE!</b></span>"
 	pages_to_mastery = 0
-	remarks = list("In the first age, in the first battle...", "Rip and tear...", "Huge guts...", "Big fucking gun...")
+	remarks = list("In the first age, in the first battle...", "Rip and tear...", "Huge guts...", "Big Fucking gun...")
+
+/obj/item/book/granter/martial/berserk/on_learned(mob/user)
+	playsound(user, 'modular_skyrat/sound/ambience/e1m1riff.mid', 150, FALSE, pressure_affected = FALSE)
+	sleep(35) //i could use a timer but this works too whatever.
+	playsound_local(user, 'modular_skyrat/sound/ambience/e1m1.mid', 100, FALSE, pressure_affected = FALSE)
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()

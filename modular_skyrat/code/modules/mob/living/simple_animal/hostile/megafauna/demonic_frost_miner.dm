@@ -28,7 +28,7 @@
 	var/projectile_speed_multiplier = 1
 	var/enraged = FALSE
 	var/enraging = FALSE
-	songs = list("1530" = sound('modular_skyrat/sound/ambience/lisapebbleman.ogg', 100)) // Doubt the creator would care lol
+	songs = list("1530" = sound(file = 'modular_skyrat/sound/ambience/lisapebbleman.ogg', volume = 100, channel = CHANNEL_AMBIENCE)) // Doubt the creator would care lol
 	deathmessage = "falls to the ground, decaying into plasma particles."
 	deathsound = "bodyfall"
 
