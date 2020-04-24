@@ -1,0 +1,5 @@
+## Uncomment to prevent young accounts from connecting unless they're admins or allowed through bunker
+AGE_LOCK
+
+## Required age in days if you enabled above
+AGE_LOCK_DAYS 30

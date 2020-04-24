@@ -229,8 +229,8 @@
 	desc = "Used to be a diamond pickaxe, now there's no pick, just axe."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "diamondaxe"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/axes_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/axes_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/axes_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/axes_righthand.dmi'
 	item_state = "diamondaxe"
 	attack_verb = list("slashed", "sliced", "torn", "ripped", "diced", "cut")
 	w_class = WEIGHT_CLASS_BULKY

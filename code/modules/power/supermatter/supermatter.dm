@@ -339,7 +339,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	else
 		// Pass all the gas related code an empty gas container
 		removed = new()
-	damage = min(damage_archived + (DAMAGE_HARDCAP * explosion_point),damage)
 	damage_archived = damage
 	if(!removed || !removed.total_moles() || isspaceturf(T)) //we're in space or there is no gas to process
 		if(takes_damage)
@@ -453,7 +452,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if ((100-get_integrity()) < 75)
 		power = (power_calc * ((100 - (0.15*(100-get_integrity()) - 5)**2) / 100)) + power_calc*0.1
 	else
-		power = power_calc * (((100-get_integrity())^((3*(100-get_integrity()))/1000) + 2*(100-get_integrity()))/100) //new and improved, more linear
+		power = power_calc * (((100-get_integrity())**((3*(100-get_integrity()))/1000) + 2*(100-get_integrity()))/100) //new and improved, more linear
 		//power = power_calc * ((((100-get_integrity())**1.3)-(2*(100-get_integrity())))/100)
 	if(power > POWER_PENALTY_THRESHOLD || damage > damage_penalty_point)
 

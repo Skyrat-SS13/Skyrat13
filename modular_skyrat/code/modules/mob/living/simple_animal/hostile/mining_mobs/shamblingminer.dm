@@ -30,5 +30,11 @@
 	pull_force = MOVE_FORCE_VERY_STRONG
 	loot = list(/obj/item/twohanded/kinetic_crusher)
 	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/mask
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/human = 2, /obj/item/stack/sheet/animalhide/human = 1, /obj/item/stack/sheet/bone = 1)
+	robust_searching = FALSE
 	do_footstep = TRUE
 	minimum_distance = 1
+	glorymessageshand = list("grabs the miner's eyes and rips them out, shoving the bloody miner aside!", "grabs and crushes the miner's skull apart with their bare hands!", "rips the miner's head clean off with their bare hands!")
+	glorymessagespka = list("sticks their PKA into the miner's mouth and shoots it, showering everything in gore!", "bashes the miner's head into their chest with their PKA!", "shoots off both legs of the miner with their PKA!")
+	glorymessagespkabayonet = list("slices the imp's head off by the neck with the PKA's bayonet!", "repeatedly stabs the miner in their gut with the PKA's bayonet!")
+	glorymessagescrusher = list("chops the miner horizontally in half with their crusher in one swift move!", "chops off the miner's legs with their crusher and kicks their face hard, exploding it while they're in the air!", "slashes each of the miner's arms off by the shoulder with their crusher!")

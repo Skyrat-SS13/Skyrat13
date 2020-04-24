@@ -62,7 +62,7 @@
 	if(target.buckled || target.has_buckled_mobs())
 		to_chat(user, "<span class='warning'>The monkey is attached to something.</span>")
 		return
-	qdel(target)
+	SSrecycling.recycle_monkey(target)
 	to_chat(user, "<span class='notice'>You stuff the monkey into the machine.</span>")
 	playsound(src.loc, 'sound/machines/juicer.ogg', 50, 1)
 	var/offset = prob(50) ? -2 : 2

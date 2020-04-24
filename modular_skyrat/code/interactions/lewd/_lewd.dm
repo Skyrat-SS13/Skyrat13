@@ -17,7 +17,7 @@
   -------------------MOB STUFF----------------------
   --------------------------------------------------
 */
-//I'm sorry, lewd should not have mob procs such as life() and such in it.
+//I'm sorry, lewd should not have mob procs such as life() and such in it. //NO SHIT IT SHOULDNT I REMOVED THEM
 
 /proc/playlewdinteractionsound(turf/turf_source, soundin, vol as num, vary, extrarange as num ,frequency, falloff, channel = 0, pressure_affected = TRUE, sound/S, envwet = -10000, envdry = 0, manual_x, manual_y)
 	var/list/hearing_mobs
@@ -41,6 +41,7 @@
 	var/lust = 0
 	var/multiorgasms = 1
 	var/refractory_period = 0
+	var/last_interaction_time = 0
 
 mob/living/Initialize()
 	. = ..()
@@ -216,7 +217,6 @@ mob/living/Initialize()
 		refractory_period = world.time + rand(300, 900) - sexual_potency
 		src.set_drugginess(rand(5, 10))
 	set_lust(0)
-	hud_used.arousal?.update_icon_state()
 
 /mob/living/cum(mob/living/partner, target_orifice)
 	if(multiorgasms < sexual_potency)
@@ -852,8 +852,6 @@ mob/living/Initialize()
 		return A.name
 
 /mob/living/proc/handle_post_sex(amount, orifice, mob/living/partner)
-	hud_used.arousal?.update_icon_state()
-
 	if(stat != CONSCIOUS)
 		return
 

@@ -244,6 +244,12 @@
 			G.fields["gender"]  = "Other"
 		G.fields["photo_front"]	= photo_front
 		G.fields["photo_side"]	= photo_side
+		//Skyrat edit - rp records
+		if(C)
+			G.fields["past_records"] = C.prefs.general_records
+		else
+			G.fields["past_records"] = ""
+		//End of skyrat edit
 		general += G
 
 		//Medical Record
@@ -261,6 +267,12 @@
 		M.fields["cdi"]			= "None"
 		M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
 		M.fields["notes"]		= H.get_trait_string(medical)
+		//Skyrat edit - rp records
+		if(C)
+			M.fields["past_records"] = C.prefs.medical_records
+		else
+			M.fields["past_records"] = ""
+		//End of skyrat edit
 		medical += M
 
 		//Security Record
@@ -271,6 +283,12 @@
 		S.fields["mi_crim"]		= list()
 		S.fields["ma_crim"]		= list()
 		S.fields["notes"]		= "No notes."
+		//Skyrat edit - rp records
+		if(C)
+			S.fields["past_records"] = C.prefs.security_records
+		else
+			S.fields["past_records"] = ""
+		//End of skyrat edit
 		security += S
 
 		//Locked Record

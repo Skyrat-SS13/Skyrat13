@@ -71,12 +71,9 @@
 			return FALSE
 
 		if(require_ooc_consent)
-			if(user.client && user.client.prefs)
-				if(user.client.prefs.toggles & VERB_CONSENT)
-					return TRUE
-				else
-					return FALSE
-		return TRUE
+			if(user.client && user.client.prefs.toggles & VERB_CONSENT)
+				return TRUE
+		return FALSE
 	return FALSE
 
 /datum/interaction/lewd/evaluate_target(mob/living/carbon/human/user, mob/living/carbon/human/target, silent = TRUE)
@@ -121,7 +118,10 @@
 				to_chat(user, "<span class = 'warning'>They don't have breasts.</span>")
 			return FALSE
 
-		return TRUE
+		if(require_ooc_consent)
+			if(target.client && target.client.prefs.toggles & VERB_CONSENT)
+				return TRUE
+		return FALSE
 	return FALSE
 
 /datum/interaction/lewd/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -132,10 +132,10 @@
 	return ..()
 
 /datum/interaction/lewd/get_action_link_for(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	return "<font color='#FF0000'><b>LEWD:</b></font> [..()]"
 	if(user.stat == DEAD)
-		to_chat(user, "<span class='warning'>You cannot erp as ghost!</span>")
+		to_chat(user, "<span class='warning'>You cannot ERP as ghost!</span>")
 		return
+	return "<font color='#FF0000'><b>LEWD:</b></font> [..()]"
 
 /mob/living/carbon/human/list_interaction_attributes()
 	var/dat = ..()

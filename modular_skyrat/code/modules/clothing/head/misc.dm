@@ -3,7 +3,8 @@
 	desc = "Fuzzy and Warm!"
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "goatpelt"
-	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	item_state = "goatpelt"
 
 /obj/item/clothing/head/goatpelt/king
@@ -30,7 +31,8 @@
 /obj/item/clothing/head/goatpope
 	name = "goat pope hat"
 	desc = "And on the seventh day King Goat said there will be cabbage!"
-	alternate_worn_icon = 'modular_skyrat/icons/mob/large-worn-icons/64x64/head.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/large-worn-icons/64x64/head.dmi'
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 	icon_state = "goatpope"
 	item_state = "goatpope"
 	worn_x_dimension = 64
@@ -48,6 +50,36 @@
 	..()
 
 /obj/item/clothing/head/assu_helmet
-	name = "EAU helmet"
-	desc = "A cheap replica of old riot helmet without visor. It has \"E.A.U.\" written on the front. Doesn't help against stun batons to the head."
+	desc = "A cheap replica of a helmet. It has \"D.A.B.\" written on the front. Doesn't help against stun batons to the head."
 	armor = list("melee" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 1, "bio" = 1, "rad" = 1, "fire" = 1, "acid" = 1)
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
+	unique_reskin_icons = list(
+	"Default" = 'icons/obj/clothing/hats.dmi',
+	"Bluetide" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Alternative" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Alternative Bluetide" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Medical Assistant" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Engineering Assistant" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Service Assistant" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Science Assistant" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Bluetide" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Alternative" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Alternative Bluetide" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Medical Assistant" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Engineering Assistant" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Service Assistant" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Science Assistant" = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	)
+	unique_reskin = list(
+	"Default" = "assu_helmet",
+	"Bluetide" = "assu_helmet_blue",
+	"Alternative" = "assu_helmet_alt",
+	"Alternative Bluetide" = "assu_helmet_alt_blue",
+	"Medical Assistant" = "assu_helmet_med",
+	"Engineering Assistant" = "assu_helmet_eng",
+	"Service Assistant" = "assu_helmet_srv",
+	"Science Assistant" = "assu_helmet_sci"
+	)

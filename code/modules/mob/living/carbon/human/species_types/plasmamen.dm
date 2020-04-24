@@ -53,7 +53,7 @@
 	if(internal_fire)
 		no_protection = TRUE
 	..()
-
+/* moved to modular_skyrat
 /datum/species/plasmaman/before_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/current_job = J?.title
 	var/datum/outfit/plasmaman/O = new /datum/outfit/plasmaman
@@ -143,7 +143,7 @@
 	H.internal = H.get_item_for_held_index(2)
 	H.update_internals_hud_icon(1)
 	return 0
-
+*/
 /datum/species/plasmaman/random_name(gender,unique,lastname)
 	if(unique)
 		return random_unique_plasmaman_name()

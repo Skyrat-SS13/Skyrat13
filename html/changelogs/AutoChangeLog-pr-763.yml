@@ -1,6 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "CentCom has invented a new way of keeping their prisoners useful and in-check, even capable of assisting normal crew: Pacifying shock collars. They are almost impossible to remove, and if they are removed, by bluespace magic they'll be equipped back on the user, warning them that escaping fate is not possible. Removal of pacifying shock collars is also notified to CentCom officials."
-  - rscadd: "Simple collarban subsystem, checks for collarbanned players every minute and bullies them if they don't have their collar equipped (also notifies admins)."
-  - admin: "Collar bans"

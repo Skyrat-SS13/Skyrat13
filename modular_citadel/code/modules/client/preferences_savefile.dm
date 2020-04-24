@@ -13,6 +13,7 @@
 		features["mcolor3"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
 	features["mcolor2"]	= sanitize_hexcolor(features["mcolor2"], 3, 0)
 	features["mcolor3"]	= sanitize_hexcolor(features["mcolor3"], 3, 0)
+	//SKYRAT CHANGES
 	ooc_notes = sanitize_text(S["ooc_notes"])
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
@@ -20,6 +21,13 @@
 	if(!length(nonconpref)) nonconpref = "Ask"
 	vorepref = sanitize_text(S["vore_pref"], "Ask")
 	if(!length(vorepref)) vorepref = "Ask"
+	security_records = sanitize_text(S["security_records"])
+	medical_records = sanitize_text(S["medical_records"])
+	general_records = sanitize_text(S["general_records"])
+	flavor_background = sanitize_text(S["flavor_background"])
+	character_skills = sanitize_text(S["character_skills"])
+	exploitable_info = sanitize_text(S["exploitable_info"])
+	//END OF SKYRAT CHANGES
 	//gear loadout
 	var/text_to_load
 	S["loadout"] >> text_to_load
@@ -50,37 +58,20 @@
 	WRITE_FILE(S["feature_xeno_tail"], features["xenotail"])
 	WRITE_FILE(S["feature_xeno_dors"], features["xenodorsal"])
 	WRITE_FILE(S["feature_xeno_head"], features["xenohead"])
-	//cock features
-	WRITE_FILE(S["feature_has_cock"], features["has_cock"])
-	WRITE_FILE(S["feature_cock_shape"], features["cock_shape"])
-	WRITE_FILE(S["feature_cock_color"], features["cock_color"])
-	WRITE_FILE(S["feature_cock_length"], features["cock_length"])
-	WRITE_FILE(S["feature_cock_girth"], features["cock_girth"])
-	WRITE_FILE(S["feature_has_sheath"], features["sheath_color"])
-	//balls features
-	WRITE_FILE(S["feature_has_balls"], features["has_balls"])
-	WRITE_FILE(S["feature_balls_color"], features["balls_color"])
-	WRITE_FILE(S["feature_balls_size"], features["balls_size"])
-	WRITE_FILE(S["feature_balls_shape"], features["balls_shape"])
-	WRITE_FILE(S["feature_balls_sack_size"], features["balls_sack_size"])
-	//breasts features
-	WRITE_FILE(S["feature_has_breasts"], features["has_breasts"])
-	WRITE_FILE(S["feature_breasts_size"], features["breasts_size"])
-	WRITE_FILE(S["feature_breasts_shape"], features["breasts_shape"])
-	WRITE_FILE(S["feature_breasts_color"], features["breasts_color"])
-	WRITE_FILE(S["feature_breasts_producing"], features["breasts_producing"])
-	//vagina features
-	WRITE_FILE(S["feature_has_vag"], features["has_vag"])
-	WRITE_FILE(S["feature_vag_shape"], features["vag_shape"])
-	WRITE_FILE(S["feature_vag_color"], features["vag_color"])
-	//womb features
-	WRITE_FILE(S["feature_has_womb"], features["has_womb"])
 	//flavor text
 	WRITE_FILE(S["feature_flavor_text"], features["flavor_text"])
+	//SKYRAT CHANGES
 	WRITE_FILE(S["ooc_notes"], ooc_notes)
 	WRITE_FILE(S["erp_pref"], erppref)
 	WRITE_FILE(S["noncon_pref"], nonconpref)
 	WRITE_FILE(S["vore_pref"], vorepref)
+	WRITE_FILE(S["security_records"], security_records)
+	WRITE_FILE(S["medical_records"], medical_records)
+	WRITE_FILE(S["general_records"], general_records)
+	WRITE_FILE(S["flavor_background"], flavor_background)
+	WRITE_FILE(S["character_skills"], character_skills)
+	WRITE_FILE(S["exploitable_info"], exploitable_info)
+	//END OF SKYRAT CHANGES
 	//gear loadout
 	if(islist(chosen_gear))
 		if(chosen_gear.len)

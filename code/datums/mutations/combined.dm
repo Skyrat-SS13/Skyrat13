@@ -11,10 +11,6 @@
 		if(findtext(A, "[mutation1]") && findtext(A, "[mutation2]"))
 			return GLOB.mutation_recipes[A]
 
-/datum/generecipe/x_ray
-	required = "/datum/mutation/human/thermal; /datum/mutation/human/radioactive"
-	result = /datum/mutation/human/thermal/x_ray
-
 /datum/generecipe/shock
 	required = "/datum/mutation/human/insulated; /datum/mutation/human/radioactive"
 	result = SHOCKTOUCH
@@ -30,3 +26,7 @@
 /datum/generecipe/tonguechem
 	required = "/datum/mutation/human/tongue_spike; /datum/mutation/human/stimmed"
 	result = TONGUESPIKECHEM
+
+/****Skyrat edit - commented out hulk - /datum/generecipe/hulk
+	required = "/datum/mutation/human/strong; /datum/mutation/human/radioactive"
+	result = HULK*/

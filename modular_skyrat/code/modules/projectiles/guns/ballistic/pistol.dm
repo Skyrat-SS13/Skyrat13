@@ -19,7 +19,7 @@
 /obj/item/gun/ballistic/automatic/pistol/uspm
 	name = "USP 9mm"
 	desc = "USP - Universal Self Protection. A standard-issued security handgun, chambered in 9mm, refitted to be only capable of firing non-lethal rounds."
-	icon = 'modular_skyrat/icons/obj/guns/usp.dmi'
+	icon = 'modular_skyrat/icons/obj/guns/projectile.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_state = "usp-m"
@@ -40,3 +40,8 @@
 		icon_state = "[unique_reskin[current_skin]][chambered ? "" : "-e"]"
 	else
 		icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"
+
+/obj/item/gun/ballistic/automatic/pistol/uspm/emag_act(mob/user)
+	if(magazine)
+		var/obj/item/ammo_box/magazine/M = magazine
+		M.emag_act(user)

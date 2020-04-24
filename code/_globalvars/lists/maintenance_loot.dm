@@ -1,3 +1,4 @@
+/* Entire file disabled to favor skyrat maint loot.
 //How to balance this table
 //-------------------------
 //The total added weight of all the entries should be (roughly) equal to the total number of lootdrops
@@ -34,9 +35,9 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/clothing/head/that = 1,
 	/obj/item/clothing/head/ushanka = 1,
 	/obj/item/clothing/head/welding = 1,
-	/obj/item/clothing/mask/gas = 15,
+	/obj/effect/spawner/lootdrop/breathing_masks = 15,
 	/obj/item/clothing/suit/hazardvest = 1,
-	/obj/item/clothing/under/rank/vice = 1,
+	/obj/item/clothing/under/misc/vice_officer = 1,
 	/obj/item/clothing/suit/hooded/flashsuit = 2,
 	/obj/item/clothing/accessory/medal/greytide	=	1,
 	/obj/item/assembly/prox_sensor = 4,
@@ -86,9 +87,8 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/screwdriver = 3,
 	/obj/item/tank/internals/emergency_oxygen = 2,
 	/obj/item/vending_refill/cola = 1,
-	/obj/item/weldingtool = 3,
-	/obj/item/wirecutters = 1,
-	/obj/item/wrench = 4,
+	/obj/effect/spawner/lootdrop/welder_tools = 3,
+	/obj/effect/spawner/lootdrop/low_tools = 5,
 	/obj/item/relic = 3,
 	/obj/item/weaponcrafting/receiver = 2,
 	/obj/item/clothing/head/cone = 2,
@@ -119,5 +119,8 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/autosurgeon/penis = 1,
 	/obj/item/autosurgeon/testicles = 1,
 	/obj/item/storage/box/marshmallow = 2,
+	/obj/item/clothing/gloves/tackler/offbrand = 1,
 	"" = 3
 	))
+
+*/

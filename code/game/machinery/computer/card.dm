@@ -8,7 +8,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 #define JOB_COOLDOWN -2
 #define JOB_MAX_POSITIONS -1 // Trying to reduce the number of slots below that of current holders of that job, or trying to open more slots than allowed
 #define JOB_DENIED 0
-
+/* moved to modular_skyrat
 /obj/machinery/computer/card
 	name = "identification console"
 	desc = "You can use this to manage jobs and ID access."
@@ -49,7 +49,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	var/list/head_subordinates = null
 
 	light_color = LIGHT_COLOR_BLUE
-
+*/
 /obj/machinery/computer/card/proc/get_jobs()
 	return get_all_jobs()
 

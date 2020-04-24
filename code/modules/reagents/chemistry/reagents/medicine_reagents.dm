@@ -263,9 +263,9 @@
 /datum/reagent/medicine/silver_sulfadiazine/overdose_start(mob/living/M)
 	metabolization_rate = 15 * REAGENTS_METABOLISM
 	M.adjustBruteLoss(2*REM, 0)
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		C.applyLiverDamage(1)
+	var/obj/item/organ/liver/L = M.getorganslot(ORGAN_SLOT_LIVER)
+	if(L)
+		L.applyOrganDamage(1)
 	..()
 	. = 1
 
@@ -326,9 +326,9 @@
 datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 	metabolization_rate = 15 * REAGENTS_METABOLISM
 	M.adjustBruteLoss(2*REM, 0)
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		C.applyLiverDamage(1)
+	var/obj/item/organ/liver/L = M.getorganslot(ORGAN_SLOT_LIVER)
+	if(L)
+		L.applyOrganDamage(1)
 	..()
 	. = 1
 
@@ -418,14 +418,15 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 
 /datum/reagent/medicine/synthflesh
 	name = "Synthflesh"
-	description = "Has a 100% chance of healing large amounts of brute and burn damage very quickly. One unit of the chemical will heal one point of damage. Touch application only."
+	//description = "Has a 100% chance of healing large amounts of brute and burn damage very quickly. One unit of the chemical will heal one point of damage. Touch application only." Skyrat modular edit.
 	reagent_state = LIQUID
 	color = "#FFEBEB"
 	pH = 11.5
 	metabolization_rate = 5 * REAGENTS_METABOLISM
-	overdose_threshold = 40
+	//overdose_threshold = 40 Skyrat modular edit
 	value = 6
 
+/* SKYRAT MODULAR EDIT
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M))
 		if (M.stat == DEAD)
@@ -452,6 +453,7 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 
 /datum/reagent/medicine/synthflesh/overdose_start(mob/living/M)
 	metabolization_rate = 15 * REAGENTS_METABOLISM
+*/
 
 /datum/reagent/medicine/charcoal
 	name = "Charcoal"
@@ -861,13 +863,13 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 
 /datum/reagent/medicine/strange_reagent
 	name = "Strange Reagent"
-	description = "A miracle drug capable of bringing the dead back to life. Only functions when applied by patch or spray, if the target has less than 100 brute and burn damage (independent of one another) and hasn't been husked. Causes slight damage to the living."
+	//description = "A miracle drug capable of bringing the dead back to life. Only functions when applied by patch or spray, if the target has less than 100 brute and burn damage (independent of one another) and hasn't been husked. Causes slight damage to the living." SKYRAT EDIT: Outdated description.
 	reagent_state = LIQUID
 	color = "#A0E85E"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "magnets"
 	pH = 0
-
+/* SKYRAT EDIT: op pls nerf, see modular file of medicine_reagents
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.stat == DEAD)
 		if(M.suiciding || M.hellbound) //they are never coming back
@@ -902,7 +904,7 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 					M.emote("gasp")
 					log_combat(M, M, "revived", src)
 	..()
-
+*/
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)
 	M.adjustBruteLoss(0.5*REM, 0)
@@ -1209,7 +1211,7 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 	reagent_state = LIQUID
 	metabolization_rate = 1 * REAGENTS_METABOLISM
 	color = "#91D865"
-	overdose_threshold = 30
+	overdose_threshold = 20  //SKYRAT CHANGE
 	taste_description = "jelly"
 	pH = 11.8
 

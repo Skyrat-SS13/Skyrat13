@@ -1,7 +1,8 @@
 /obj/item/clothing/mask/gas/sechailer/cpmask
 	name = "Civil Protection gas mask"
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
-	alternate_worn_icon = 'modular_skyrat/icons/mob/mask.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
 	icon_state = "cpmask"
 	item_state = "cpmask"
 	actions_types = list(/datum/action/item_action/halt)
@@ -41,7 +42,7 @@
 				return
 		switch(aggressiveness)
 			if(3)
-				phrase = rand(1,6)
+				phrase = rand(1,8)
 			else
 				to_chat(usr, "<span class='userdanger'>\The [src] is broken.</span>")
 		switch(phrase)	//sets the properties of the chosen phrase
@@ -141,3 +142,87 @@
 	name = "implant case - 'Flatline'"
 	desc = "A glass case containing a flatline implant."
 	imp_type = /obj/item/implant/flatline
+
+//HECU mask
+/obj/item/clothing/mask/gas/sechailer/hecu
+	name = "HECU mask"
+	desc = "MY. ASS. IS. HEAVY."
+	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
+	icon_state = "hecu_mask"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
+	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
+	actions_types = list(/datum/action/item_action/halt)
+	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES
+	aggressiveness = 4
+
+/obj/item/clothing/mask/gas/sechailer/hecu/halt()
+	set category = "Object"
+	set name = "HALT"
+	set src in usr
+	if(!isliving(usr))
+		return
+	if(!can_use(usr))
+		return
+	if(broken_hailer)
+		to_chat(usr, "<span class='warning'>\The [src]'s hailing system is broken.</span>")
+		return
+
+	var/phrase = 0	//selects which phrase to use
+	var/phrase_text = null
+	var/phrase_sound = null
+
+
+	if(cooldown < world.time - 30) // A cooldown, to stop people being jerks
+		recent_uses++
+		if(cooldown_special < world.time - 180) //A better cooldown that burns jerks
+			recent_uses = initial(recent_uses)
+
+		switch(recent_uses)
+			if(3)
+				to_chat(usr, "<span class='warning'>\The [src] is starting to heat up.</span>")
+			if(4)
+				to_chat(usr, "<span class='userdanger'>\The [src] is heating up dangerously from overuse!</span>")
+			if(5) //overload
+				broken_hailer = 1
+				to_chat(usr, "<span class='userdanger'>\The [src]'s power modulator overloads and breaks.</span>")
+				return
+		switch(aggressiveness)
+			if(4)
+				phrase = rand(1,10)
+			else
+				to_chat(usr, "<span class='userdanger'>\The [src] is broken.</span>")
+		switch(phrase)	//sets the properties of the chosen phrase
+			if(1)
+				phrase_text = "GO, MOVE!"
+				phrase_sound = "gomove"
+			if(2)
+				phrase_text = "GO, RECON!"
+				phrase_sound = "gorecon"
+			if(3)
+				phrase_text = "I NEED BACKUP!"
+				phrase_sound = "ineedbackup"
+			if(4)
+				phrase_text = "MOVE, IN!"
+				phrase_sound = "movein"
+			if(5)
+				phrase_text = "MY. ASS. IS. HEAVY. <b>MY. ASS. IS. HEAVY!</b>"
+				phrase_sound = "myassisheavy"
+			if(6)
+				phrase_text = "I NEED SUPPRESSING FIRE!"
+				phrase_sound = "supressingfire"
+			if(7)
+				phrase_text = "SWEEP THIS AREA!"
+				phrase_sound = "sweepthisarea"
+			if(8)
+				phrase_text = "TAKE DOWN THAT TANGO!"
+				phrase_sound = "takedowntango"
+			if(9)
+				phrase_text = "TANGO!"
+				phrase_sound = "tango"
+			if(10)
+				phrase_text = "DAMN, WE HAVE HOSTILES!"
+				phrase_sound = "wehavehostiles"
+		usr.audible_message("[usr]'s Compli-o-Nator: <font color='red' size='4'><b>[phrase_text]</b></font>")
+		cooldown = world.time
+		cooldown_special = world.time
+		playsound(src.loc, "modular_skyrat/sound/voice/complionator/hecu/[phrase_sound].wav", 100, 0, 4)
