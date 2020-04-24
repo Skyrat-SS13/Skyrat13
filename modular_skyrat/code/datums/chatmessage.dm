@@ -77,9 +77,12 @@
 		target.chat_color = colorize_string(target.name)
 		target.chat_color_name = target.name
 
-	// Get rid of any URL schemes that might cause BYOND to automatically wrap something in an anchor tag
+	/*
+	// Get rid of any URL schemes that might cause BYOND to automatically wrap something in an anchor tag 
+	// Currently disabled as it doesn't work well on 512
 	var/static/regex/url_scheme = new(@"[A-Za-z][A-Za-z0-9+-\.]*:\/\/", "g")
 	text = replacetext(text, url_scheme, "")
+	*/
 
 	// Reject whitespace
 	var/static/regex/whitespace = new(@"^\s*$")
