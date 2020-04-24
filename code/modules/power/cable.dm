@@ -848,8 +848,3 @@ By design, d1 is the smallest direction and d2 is the highest
 	. = ..()
 	var/list/cable_colors = GLOB.cable_colors
 	color = pick(cable_colors)
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> 411622430f... Merge pull request #11985 from Ghommie/Ghommie-cit701

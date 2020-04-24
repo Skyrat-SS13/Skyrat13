@@ -54,7 +54,7 @@ Difficulty: Medium
 	if(swooping)
 		return
 
-	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
+	anger_modifier = clamp(((maxHealth - health)/50),0,20)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 	if(prob(15 + anger_modifier))
@@ -195,7 +195,7 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/line_target(offset, range, atom/at = target)
 	if(!at)
 		return
-	var/angle = ATAN2(at.x - src.x, at.y - src.y) + offset
+	var/angle = arctan2(at.x - src.x, at.y - src.y) + offset
 	var/turf/T = get_turf(src)
 	for(var/i in 1 to range)
 		var/turf/check = locate(src.x + cos(angle) * i, src.y + sin(angle) * i, src.z)

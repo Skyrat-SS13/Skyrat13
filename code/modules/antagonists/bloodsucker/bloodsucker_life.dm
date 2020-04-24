@@ -182,13 +182,8 @@
 	if(owner.current.blood_volume < BLOOD_VOLUME_BAD / 2)
 		owner.current.blur_eyes(8 - 8 * (owner.current.blood_volume / BLOOD_VOLUME_BAD))
 	// Nutrition
-<<<<<<< HEAD
-	owner.current.nutrition = CLAMP(owner.current.blood_volume, 545, 0) //The amount of blood is how full we are. // Skyrat edit -- 512 compatibility
-	//A bit higher regeneration based on blood volume 
-=======
 	owner.current.nutrition = clamp(owner.current.blood_volume, 545, 0) //The amount of blood is how full we are.
 	//A bit higher regeneration based on blood volume
->>>>>>> 411622430f... Merge pull request #11985 from Ghommie/Ghommie-cit701
 	if(owner.current.blood_volume < 700)
 		additional_regen = 0.4
 	else if(owner.current.blood_volume < BLOOD_VOLUME_NORMAL)

@@ -622,7 +622,7 @@
 
 		var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
 		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
-		angle = arctan(y - oy, x - ox)
+		angle = arctan2(y - oy, x - ox) // Skyrat edit -- 512 compatibility
 	return list(angle, p_x, p_y)
 
 /obj/item/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.

@@ -28,7 +28,7 @@
 /obj/machinery/power/solar/Initialize(mapload, obj/item/solar_assembly/S)
 	. = ..()
 	panel = new()
-	panel.vis_flags = VIS_INHERIT_ID|VIS_INHERIT_ICON|VIS_INHERIT_PLANE
+	//panel.vis_flags = VIS_INHERIT_ID|VIS_INHERIT_ICON|VIS_INHERIT_PLANE // Skyrat edit -- 512 compatibility -- pls don't break
 	vis_contents += panel
 	panel.icon = icon
 	panel.icon_state = "solar_panel"
