@@ -1,7 +1,7 @@
 /datum/species/synth
 	name = "Synthetic" //inherited from the real species, for health scanners and things
 	id = "synth"
-	say_mod = "beep boops" //inherited from a user's real species
+	say_mod = "states" //inherited from a user's real species
 	sexes = 0
 	species_traits = list(NOTRANSSTING) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
 	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_EASYLIMBDISABLE) //Now limbs can be disabled and dismembered, and they breathe for balance reasons.
