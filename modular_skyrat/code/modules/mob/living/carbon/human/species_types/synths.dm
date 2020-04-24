@@ -11,7 +11,6 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc //fuck it
 	gib_types = /obj/effect/gibspawner/robot
 	damage_overlay_type = "synth"
-	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
 	limbs_id = "synth"
 	initial_species_traits = list(NOTRANSSTING) //for getting these values back for assume_disguise()
 	initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_EASYLIMBDISABLE) //blah blah i explained above piss
@@ -90,6 +89,7 @@
 	handle_mutant_bodyparts(H)
 	H.updateappearance(mutcolor_update=1)
 	H.update_body(TRUE)
+	H.update_body_parts()
 	H.regenerate_icons()
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
@@ -153,6 +153,7 @@
 	handle_mutant_bodyparts(H)
 	H.updateappearance(mutcolor_update=1)
 	H.update_body(TRUE)
+	H.update_body_parts()
 	H.regenerate_icons()
 
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
