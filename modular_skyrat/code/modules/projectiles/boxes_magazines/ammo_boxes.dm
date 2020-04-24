@@ -15,28 +15,25 @@
 	max_ammo = 4
 	ammo_type = /obj/item/ammo_casing/shotgun
 	multiload = 1
+	w_class = WEIGHT_CLASS_SMALL
 	var/pixeloffsetx = 4
-	var/shell_overlay_list = list(null, null, null, null) //Runtime in ammo_boxes.dm,41: list index out of bounds
-
-/obj/item/ammo_box/shotgun/update_icon()
-	..()
-	update_overlays()
+	var/offset = -4
 
 /obj/item/ammo_box/shotgun/update_overlays()
 	. = ..()
-	cut_overlay(shell_overlay_list, TRUE)
 	if(stored_ammo.len)
-		var/shellindex = 0
-		var/offset = -4
-		for(var/obj/item/ammo_casing/shotgun/C in stored_ammo)
-			shellindex++
-			offset += pixeloffsetx
-			var/mutable_appearance/shell_overlay = mutable_appearance(icon, "[initial(C.icon_state)]-clip")
-			shell_overlay.pixel_x += offset
-			shell_overlay.appearance_flags = RESET_COLOR
-			shell_overlay_list[shellindex] = shell_overlay
-			C.current_overlay = shell_overlay
-			add_overlay(shell_overlay, TRUE)
+		var/shellindex = 1
+		for(var/X in stored_ammo)
+			var/obj/item/ammo_casing/shotgun/C = X
+			if(C)
+				var/mutable_appearance/shell_overlay = mutable_appearance(icon, "[initial(C.icon_state)]-clip")
+				shell_overlay.pixel_x = (offset + shellindex * pixeloffsetx)
+				shell_overlay.appearance_flags = RESET_COLOR
+				shellindex++
+				. += shell_overlay
+
+/obj/item/ammo_box/shotgun/unloaded
+	start_empty = TRUE
 
 /obj/item/ammo_box/shotgun/rubbershot
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
