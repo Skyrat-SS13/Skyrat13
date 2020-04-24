@@ -329,7 +329,7 @@
 /datum/supply_pack/organic/seeds
 	name = "Seeds Crate"
 	desc = "Big things have small beginnings. Contains fourteen different seeds."
-	cost = 1000
+	cost = 1000 //skyrate change
 	contains = list(/obj/item/seeds/chili,
 					/obj/item/seeds/berry,
 					/obj/item/seeds/corn,
@@ -350,7 +350,7 @@
 /datum/supply_pack/organic/exoticseeds
 	name = "Seeds Crate (Exotic)"
 	desc = "Any entrepreneuring botanist's dream. Contains twelve different seeds, including three replica-pod seeds and two mystery seeds!"
-	cost = 1200
+	cost = 1200 //skyrat change
 	contains = list(/obj/item/seeds/nettle,
 					/obj/item/seeds/replicapod,
 					/obj/item/seeds/replicapod,
@@ -360,14 +360,14 @@
 					/obj/item/seeds/amanita,
 					/obj/item/seeds/reishi,
 					/obj/item/seeds/banana,
-					/obj/item/seeds/eggplant/eggy)
+					/obj/item/seeds/eggplant/eggy) //skyrat change
 	crate_name = "exotic seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 	
 	/datum/supply_pack/organic/strangeseeds //skyrat addition
 	name = "Seeds Crate (Strange)"
 	desc = "A crate of strange seeds, contains 6 seeds found on alien planets"
-	cost = 1500
+	cost = 3500
 	contains = list(/obj/item/seeds/random,
 					/obj/item/seeds/random,
 					/obj/item/seeds/random,
