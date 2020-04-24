@@ -222,39 +222,6 @@
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
 	foodtype = MEAT
 
-<<<<<<< HEAD
-/obj/item/reagent_containers/food/snacks/monkeycube
-	name = "monkey cube"
-	desc = "Just add water!"
-	icon_state = "monkeycube"
-	bitesize = 12
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
-	filling_color = "#CD853F"
-	tastes = list("the jungle" = 1, "bananas" = 1)
-	foodtype = MEAT | SUGAR
-
-/obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/living/carbon/M)
-	if(iscarbon(M))
-		M.visible_message("[src] bursts out of [M]!</span>")
-		M.emote("scream")
-		M.DefaultCombatKnockdown(40)
-		M.adjustBruteLoss(60)
-		Expand()
-		return TRUE
-	return ..()
-
-/obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
-	var/mob/spammer = get_mob_by_key(fingerprintslast)
-	var/mob/living/carbon/monkey/bananas = SSrecycling.deploy_monkey(drop_location(), TRUE, spammer) //skyrat change
-	if (!QDELETED(bananas))
-		visible_message("<span class='notice'>[src] expands!</span>")
-		bananas.log_message("Spawned via [src] at [AREACOORD(src)], Last attached mob: [key_name(spammer)].", LOG_ATTACK)
-	else if (!spammer) // Visible message in case there are no fingerprints
-		visible_message("<span class='notice'>[src] fails to expand!</span>")
-	qdel(src)
-
-=======
->>>>>>> 6a5e286ed2... Merge pull request #11942 from Trilbyspaceclone/cube-world
 /obj/item/reagent_containers/food/snacks/enchiladas
 	name = "enchiladas"
 	desc = "Viva La Mexico!"
