@@ -17,10 +17,6 @@
 #define THERMAL_PROTECTION_ARM_RIGHT	0.075
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
-#define BONE_DAM_THRESHOLD_LOW 25
-#define BONE_DAM_THRESHOLD_MEDIUM 50
-#define BONE_DAM_THRESHOLD_HIGH 75
-#define BONE_DAM_THRESHOLD_HIGHEST 100
 #define BONE_DAM_PROB 10
 
 /mob/living/carbon/human/Life(seconds, times_fired)
@@ -363,22 +359,18 @@
 					to_chat(src, "<span class='warning'>Your [currentzone] is squishy and hurts like fucking hell! What the fuck?!</span>")
 		else
 			for(var/obj/item/organ/bone/B in currentbones)
-				if(B < BONE_DAM_THRESHOLD_LOW))
+				if(B.damage < BONE_DAM_THRESHOLD_LOW)
 					break
-				if(BONE_DAM_THRESHOLD_LOW to (BONE_DAM_THRESHOLD_MEDIUM - 1))
+				if((B.damage >= BONE_DAMTHRESHOLD_LOW) && (BONE_DAM_THRESHOLD_MEDIUM > B.damage))
 					if(prob(1))
-						src.adjustOrganLoss(B, 0.5)
-						to_chat(src, "<span class='danger'>Your [currentzone] feels sore.</span>")
-				if(BONE_DAM_THRESHOLD_MEDIUM to (BONE_DAM_THRESHOLD_HIGH - 1))
-					if(prob(2))
 						src.adjustOrganLoss(B, rand(0.5, 0.75))
 						to_chat(src, "<span class='danger'>Your [currentzone] hurts!</span>")
-				if(BONE_DAM_THRESHOLD_HIGH to (BONE_DAM_THRESHOLD_HIGHEST - 1))
-					if(prob(4))
+				if((B.damage >= BONE_DAMTHRESHOLD_MEDIUM) && (BONE_DAM_THRESHOLD_HIGH > B.damage)))
+					if(prob(2))
 						src.adjustOrganLoss(B, rand(0.5, 1))
 						to_chat(src, "<span class='danger'>Your [currentzone] hurts a lot!</span>")
-				if(BONE_DAM_THRESHOLD_HIGHEST)
-					if(prob(10))
+				if((B.damage >= BONE_DAMTHRESHOLD_HIGH) && (BONE_DAM_THRESHOLD_HIGHEST > B.damage))
+					if(prob(5))
 						for(var/obj/item/organ/ourorgan in getorganszone(currentzone))
 							if(ourorgan != B)
 								src.adjustOrganLoss(ourorgan, rand(1,6))

@@ -3,7 +3,11 @@
 #define BONE_DAM_THRESHOLD_MEDIUM 50
 #define BONE_DAM_THRESHOLD_HIGH 75
 #define BONE_DAM_THRESHOLD_HIGHEST 100
-#define BONE_DAM_PROB 10
+#define BONE_DAM_PROB 15
+#define BONE_DAM_MODIFIER 0.5
+#define BONE_RAND_MODIFIER_1 0.8
+#define BONE_RAND_MODIFIER_2 2
+#define BOOLET_EMBED_CHANCE 20
 
 GLOBAL_LIST_EMPTY(roundstart_races)
 GLOBAL_LIST_EMPTY(roundstart_race_names)
@@ -1658,7 +1662,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			"You hear a slap."
 		)
 		return FALSE
-		
+
 	else
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 
@@ -1666,10 +1670,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			user.adjustStaminaLossBuffered(1)
 		else
 			user.adjustStaminaLossBuffered(3)
-		
+
 		if(attacker_style && attacker_style.disarm_act(user,target))
 			return TRUE
-		
+
 		if(target.w_uniform)
 			target.w_uniform.add_fingerprint(user)
 		//var/randomized_zone = ran_zone(user.zone_selected) CIT CHANGE - comments out to prevent compiling errors
@@ -1702,7 +1706,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			randn -= 25 //if you are a pugilist, you're slapping that item from them pretty reliably
 		if(HAS_TRAIT(target, TRAIT_PUGILIST))
 			randn += 25 //meanwhile, pugilists are less likely to get disarmed
-		
+
 		if(randn <= 35)//CIT CHANGE - changes this back to a 35% chance to accomodate for the above being commented out in favor of right-click pushing
 			var/obj/item/I = null
 			if(target.pulling)
@@ -2024,22 +2028,22 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 					H.update_damage_overlays()
 					if(HAS_TRAIT(H, TRAIT_MASO) && prob(damage_amount))
 						H.mob_climax(forced_climax=TRUE)
-					if(damage_amount >= 5 && prob(BONE_DAM_PROB) || damage_amount >= 20)
-						for(var/obj/item/organ/bone/B in H.getorganszone(BP.body_zone))
-							var/olddamage = B.damage
-							B.damage += (damage_amount * (damage_amount * 0.1))/2
-							if(!(olddamage >= BONE_DAM_THRESHOLD_LOW))
-								switch(B.damage)
-									if(0 to BONE_DAM_THRESHOLD_LOW - 1)
+					if(!HAS_TRAIT(H, NOBONES)
+						if((damage_amount >= 5 && prob(BONE_DAM_PROB)) || (damage_amount >= 15))
+							for(var/obj/item/organ/bone/B in H.getorganszone(BP.body_zone))
+								var/olddamage = B.damage
+								B.damage += (damage_amount * BONE_DAM_MODIFIER * rand(BONE_RAND_MODIFIER_1, BONE_RAND_MODIFIER_2)
+								if(B.damage >= olddamage)
+									if(B.damage < B.dam_threshold_low)
 										break
-									if(BONE_DAM_THRESHOLD_LOW to BONE_DAM_THRESHOLD_MEDIUM - 1)
-										to_chat(H, "<span class='big bold'>You feel the bones insides of your [B.zone] cracking slightly!</span>")
-									if(BONE_DAM_THRESHOLD_MEDIUM to BONE_DAM_THRESHOLD_HIGH - 1)
-										to_chat(H, "<span class='big bold'>You can feel the bones insides of your [B.zone] cracking and shifting! It fucking hurts!</span>")
-									if(BONE_DAM_THRESHOLD_HIGH to BONE_DAM_THRESHOLD_HIGHEST - 1)
-										to_chat(H, "<span class='big bold'>You can feel your [B] breaking apart!</span>")
+									else if((B.damage >= B.dam_threshold_low) && (B.dam_threshold_medium > B.damage))
+										to_chat(H, "<span class='danger'>You feel the bones insides of your [B.zone] cracking slightly!</span>")
+									else if((B.damage >= B.dam_threshold_medium) && (B.dam_threshold_high > B.damage))
+										to_chat(H, "<span class='userdanger'>You can feel the bones insides of your [B.zone] cracking and shifting! It fucking hurts!</span>")
+									else if((B.damage >= B.dam_threshold_high) && (B.dam_threshold_highest > B.damage))
+										to_chat(H, "<span class='userdanger'>You can feel your [B] breaking apart!!! FUCK!!</span>")
 									else
-										to_chat(H, "<span class='big bold'>You can feel your [B] breaking apart!</span>")
+										to_chat(H, "<span class='big bold'>You can feel your [B] FUCKING DISINTEGRATING!!! FUCK!!</span>")
 
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
