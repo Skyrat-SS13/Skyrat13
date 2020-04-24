@@ -74,10 +74,11 @@
 		fake_species = new /datum/species/human
 		isdisguised = FALSE
 
-	for(var/X in H.bodyparts) //propagates the damage_overlay changes
+	for(var/X in H.bodyparts)
 		var/obj/item/bodypart/BP = X
 		BP.update_limb()
-	H.update_body_parts() //to update limb icon cache with the new damage overlays
+	H.update_body_parts()
+	H.update_damage_overlays()
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -133,6 +134,11 @@
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
 	femalescreamsounds = list()
 	isdisguised = FALSE
+	for(var/X in H.bodyparts)
+		var/obj/item/bodypart/BP = X
+		BP.update_limb()
+	H.update_body_parts()
+	H.update_damage_overlays()
 
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
 	..()
