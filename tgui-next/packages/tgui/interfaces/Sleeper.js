@@ -101,16 +101,24 @@ export const Sleeper = props => {
                 </ProgressBar>
                 {data.blood_status}
               </LabeledList.Item>
-              <LabeledList.Item
-                label="Cells"
-                color={occupant.cloneLoss ? 'bad' : 'good'}>
-                {occupant.cloneLoss ? 'Damaged' : 'Healthy'}
-              </LabeledList.Item>
-              <LabeledList.Item
-                label="Brain"
-                color={occupant.brainLoss ? 'bad' : 'good'}>
-                {occupant.brainLoss ? 'Abnormal' : 'Healthy'}
-              </LabeledList.Item>
+              <Section title="Internal Organs">
+                {data.occupant.internal_organs.map(organ =>
+                  <LabeledList.Item label={{organ}}>
+                    <ProgressBar
+                      value={{healthpercent}}
+                      minValue={0}
+                      maxValue={100}
+                      ranges={{
+                        good: [75, Infinity],
+                        average: [50, 74],
+                        bad: [-Infinity, 49],
+                      }} />
+                      <AnimatedNumber value={{healthpercent}}>
+                      </AnimatedNumber>
+                    </ProgressBar>
+                  </LabeledList.Item>
+                )}
+              </Section>
             </LabeledList>
           </Fragment>
         )}

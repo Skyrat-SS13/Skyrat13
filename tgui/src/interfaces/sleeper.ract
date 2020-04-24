@@ -10,7 +10,7 @@
       <ui-bar min='{{data.occupant.minHealth}}' max='{{data.occupant.maxHealth}}' value='{{data.occupant.health}}'
         state='{{data.occupant.health >= 0 ? "good" : "average"}}'>{{Math.round(adata.occupant.health)}}</ui-bar>
     </ui-section>
-    {{#each [{label: "Brute", type: "bruteLoss"}, {label: "Respiratory", type: "oxyLoss"}, {label: "Toxin", type: "toxLoss"}, {label: "Burn", type: "fireLoss"}, {label: "Cellular", type: "cloneLoss"}]}}
+    {{#each [{label: "Brute", type: "bruteLoss"}, {label: "Respiratory", type: "oxyLoss"}, {label: "Toxin", type: "toxLoss"}, {label: "Burn", type: "fireLoss"}]}}
       <ui-section label='{{label}}'>
         <ui-bar min='0' max='{{data.occupant.maxHealth}}' value='{{data.occupant[type]}}' state='bad'>{{Math.round(adata.occupant[type])}}</ui-bar>
       </ui-section>
@@ -25,13 +25,18 @@
         </ui-section>
       </ui-section>
     {{/if}}
-	<ui-section label='Internal Organs'>
-		{{#each data.occupant.internal_organs}}
-			<ui-section label='{{name}}'>
-				<ui-bar min='0' max='100' value='{{data.occupant.organ_stats.{{name}}}}' state='{{data.occupant.organ_stats.{{name}} < 80 ? "bad" : "good"}}'>{{data.occupant.organ_stats.{{name}}}}"% HEALTHY"</ui-bar>
-			</ui-section>
-		{{/each}}
-	</ui-section>
+    <ui-section label='Cells'>
+        <span class='{{data.occupant.cloneLoss ? "bad" : "good"}}'>{{data.occupant.cloneLoss ? "Damaged" : "Healthy"}}</span>
+    </ui-section>
+    <ui-section label='Brain'>
+        <span class='{{data.occupant.brainLoss ? "bad" : "good"}}'>{{data.occupant.brainLoss ? "Abnormal" : "Healthy"}}</span>
+    </ui-section>
+	{{#if data.occupant.failing_organs}}
+		<ui-section label='Failing Organs'>
+			{{#each data.occupant.failing_organs}}
+				<span class='bad'> {{name}} </span>
+			{{/each}}
+		</ui-section>
 	{{/if}}
     <ui-section label='Bloodstream'>
         {{#each adata.occupant.reagents}}
