@@ -107,7 +107,6 @@
 			chem.reaction_mob(H, TOUCH, 2 ,0)
 		else
 			chem.reaction_mob(H, TOUCH, 2 ,0)
-	return ..()
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
