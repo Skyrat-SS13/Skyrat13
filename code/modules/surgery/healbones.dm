@@ -34,7 +34,7 @@
 			"<span class='warning'>[user] screws up, causing sharp bone to puncture [H]'s organs!</span>")
 		H.bleed_rate += 5
 		for(var/obj/item/organ/O in H.getorganszone(target_zone))
-			H.adjustOrganLoss(O.slot, rand(1,15))
+			H.adjustOrganLoss(O.slot, rand(1,20))
 		H.adjustBruteLoss(rand(5, 20))
 
 //gel bones
@@ -44,9 +44,14 @@
 	time = 20
 
 /datum/surgery_step/gelbones/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You begin to pour gel over [target]'s [target_zone] bones...</span>",
-		"[user] begins to pour gel over [target]'s [target_zone] bones.",
-		"[user] begins to pour gel over [target]'s [target_zone] bones.")
+	if(tool.type != /obj/item/stack/wrapping_paper)
+		display_results(user, target, "<span class='notice'>You begin to pour gel over [target]'s [target_zone] bones...</span>",
+			"[user] begins to pour gel over [target]'s [target_zone] bones.",
+			"[user] begins to pour gel over [target]'s [target_zone] bones.")
+	else
+		display_results(user, target, "<span class='notice'>You begin to wrap [target]'s [target_zone] bones together...</span>",
+			"[user] begins to wrap [target]'s [target_zone] bones together.",
+			"[user] begins to wrap [target]'s [target_zone] bones together.")
 
 /datum/surgery_step/gelbones/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(ishuman(target))
@@ -54,6 +59,8 @@
 		if(H)
 			for(var/obj/item/organ/bone/B in H.getorganszone(target_zone))
 				B.damage -= B.maxHealth/2
+				var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
+				BP.disabled = BODYPART_NOT_DISABLED
 				display_results(user, H, "<span class='notice'>You pour gel over [H]'s [target_zone] bones.</span>",
 				"[user] pours gel over [H]'s [target_zone] bones.",
 				"")
@@ -66,5 +73,5 @@
 			"<span class='warning'>[user] screws up, causing the [tool] to fall on [H]'s [target_zone]!</span>",
 			"<span class='warning'>[user] screws up, causing the [tool] to fall on [H]'s [target_zone]!</span>")
 		for(var/obj/item/organ/O in H.getorganszone(target_zone))
-			H.adjustOrganLoss(O.slot, rand(1,5))
+			H.adjustOrganLoss(O.slot, rand(1,10))
 		H.adjustBruteLoss(rand(1, 7))
