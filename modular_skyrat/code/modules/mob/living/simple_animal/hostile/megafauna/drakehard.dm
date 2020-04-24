@@ -71,11 +71,8 @@ Difficulty: Medium
 			if(prob(50))
 				fire_rain()
 			else
-				if(prob(75))
-					fire_cone()
-				else
-					fire_cone()
-					fire_rain()
+				fire_cone()
+				fire_rain()
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/shoot_fire_attack()
 	if(health < maxHealth*0.5)
