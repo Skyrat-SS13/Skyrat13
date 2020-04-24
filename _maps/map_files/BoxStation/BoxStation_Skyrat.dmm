@@ -17203,7 +17203,14 @@
 	pixel_x = 13;
 	pixel_y = 5
 	},
-/obj/item/watertank,
+/obj/item/book/manual/hydroponics_pod_people{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/paper/guides/jobs/hydroponics{
+	pixel_x = -5;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aLe" = (
@@ -19645,6 +19652,10 @@
 /area/crew_quarters/kitchen)
 "aRH" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aRI" = (
@@ -20114,7 +20125,8 @@
 /area/crew_quarters/kitchen)
 "aSP" = (
 /obj/machinery/smartfridge,
-/turf/closed/wall,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
 "aSQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -20136,7 +20148,7 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aST" = (
-/obj/machinery/biogenerator,
+/obj/machinery/chem_dispenser/upgradeablemutagen,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aSU" = (
@@ -20485,7 +20497,7 @@
 /area/storage/tools)
 "aTM" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
+/obj/machinery/reagentgrinder,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aTN" = (
@@ -21341,12 +21353,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aVH" = (
-/obj/machinery/processor,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/cafeteria,
+/obj/machinery/biogenerator,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
 "aVI" = (
 /obj/effect/turf_decal/tile/green{
@@ -21358,10 +21367,16 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aVJ" = (
-/obj/machinery/light{
+/obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aVK" = (
@@ -22119,13 +22134,12 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aXn" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
 	pixel_x = 30
 	},
+/obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aXo" = (
@@ -22808,7 +22822,6 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aYP" = (
-/obj/structure/reagent_dispensers/watertank/high,
 /obj/structure/sign/poster/contraband/lizard{
 	pixel_x = -32
 	},
@@ -22818,7 +22831,8 @@
 /obj/structure/sign/poster/contraband/lizard{
 	pixel_x = -32
 	},
-/turf/open/floor/plasteel,
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aYQ" = (
 /obj/machinery/hydroponics/constructable,
@@ -23334,15 +23348,11 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "bal" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -24
 	},
+/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bam" = (
@@ -62095,9 +62105,7 @@
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
-/obj/item/reagent_containers/food/snacks/cheesynachos{
-	pixel_y = 5
-	},
+/obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "quT" = (
@@ -62957,14 +62965,7 @@
 /area/crew_quarters/dorms)
 "sHx" = (
 /obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people{
-	pixel_x = -4;
-	pixel_y = 5
-	},
-/obj/item/paper/guides/jobs/hydroponics{
-	pixel_x = -5;
-	pixel_y = 3
-	},
+/obj/item/watertank,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "sJk" = (
@@ -65256,6 +65257,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"xmk" = (
+/obj/machinery/hydroponics/constructable,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/hydroponics)
 "xmo" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -105047,7 +105055,7 @@ aJI
 aRH
 aVz
 aVz
-aVH
+aVz
 aXn
 aYN
 aJI
@@ -105304,7 +105312,7 @@ aJI
 aJI
 aSP
 aUh
-aJI
+aVH
 aJI
 aJI
 aJI
@@ -105562,7 +105570,7 @@ aOX
 aSR
 aUi
 aVJ
-aOX
+xmk
 aYP
 bal
 bam
