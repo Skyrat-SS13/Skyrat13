@@ -311,9 +311,9 @@
 	remarks = list("In the first age, in the first battle...", "Rip and tear...", "Huge guts...", "Big Fucking gun...")
 
 /obj/item/book/granter/martial/berserk/onlearned(mob/user)
-	playsound(source = get_turf(src), file = 'modular_skyrat/sound/ambience/e1m1riff.mid', vol = 150, vary = 0, pressure_affected = FALSE)
+	playsound(source = get_turf(src), soundin = 'modular_skyrat/sound/ambience/e1m1riff.mid', vol = 150, vary = 0, pressure_affected = FALSE)
 	sleep(35) //i could use a timer but this works too whatever.
-	playsound(source = get_turf(src), file = 'modular_skyrat/sound/ambience/e1m1.mid', vol = 100, vary = 0, pressure_affected = FALSE)
+	playsound(source = get_turf(src), soundin = 'modular_skyrat/sound/ambience/e1m1.mid', vol = 100, vary = 0, pressure_affected = FALSE)
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
