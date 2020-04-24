@@ -20,6 +20,13 @@
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/obj/item/organ/tongue/faketongue //tongue we use when disguised to handle speech
 	var/actualhealth = 100
+	//Same organs as an IPC basically, to share functionality.
+	mutanttongue = /obj/item/organ/tongue/robot/ipc
+	mutant_heart = /obj/item/organ/heart/ipc
+	mutantlungs = /obj/item/organ/lungs/ipc
+	mutantliver = /obj/item/organ/liver/ipc
+	mutantstomach = /obj/item/organ/stomach/ipc
+	mutanteyes = /obj/item/organ/eyes/ipc
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))
