@@ -17,7 +17,6 @@
 	exotic_bloodtype = "X*"
 	damage_overlay_type = "xeno"
 	liked_food = MEAT
-	screamsounds = list('sound/voice/hiss6.ogg')
 
 /datum/species/xeno/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/xenocommon)

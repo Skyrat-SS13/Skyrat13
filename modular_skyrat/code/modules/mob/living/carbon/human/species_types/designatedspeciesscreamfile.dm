@@ -58,3 +58,6 @@
 
 /datum/species/vampire
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
+
+/datum/species/xeno
+	screamsounds = list('sound/voice/hiss6.ogg')
