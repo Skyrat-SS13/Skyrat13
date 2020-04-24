@@ -38,7 +38,7 @@
 #define MODULUS(x, y) ( (x) - (y) * round((x) / (y)) )
 
 // Cotangent
-#define COT(x) (1 / tan(x))
+#define COT(x) (1 / TAN(x)) // Skyrat edit -- 512 compatibility
 
 // Secant
 #define SEC(x) (1 / cos(x))
@@ -197,7 +197,7 @@
 
 #define EXP_DISTRIBUTION(desired_mean) ( -(1/(1/desired_mean)) * log(rand(1, 1000) * 0.001) )
 
-#define LORENTZ_DISTRIBUTION(x, s) ( s*tan(TODEGREES(PI*(rand()-0.5))) + x )
+#define LORENTZ_DISTRIBUTION(x, s) ( s*TAN(TODEGREES(PI*(rand()-0.5))) + x ) // Skyrat edit -- 512 compatibility
 #define LORENTZ_CUMULATIVE_DISTRIBUTION(x, y, s) ( (1/PI)*TORADIANS(arctan((x-y)/s)) + 1/2 )
 
 #define RULE_OF_THREE(a, b, x) ((a*x)/b)
