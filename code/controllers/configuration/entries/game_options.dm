@@ -287,6 +287,7 @@
 /////////////////////////////////////////////////
 
 /datum/config_entry/number/projectile_speed_modifier
+	config_entry_value = 1
 
 /datum/config_entry/flag/roundstart_away	//Will random away mission be loaded.
 
