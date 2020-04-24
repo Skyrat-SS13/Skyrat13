@@ -54,8 +54,8 @@
 	var/list/req_access = list(ACCESS_ROBOTICS)
 
 	var/alarms = list("Motion"=list(), "Fire"=list(), "Atmosphere"=list(), "Power"=list(), "Camera"=list(), "Burglar"=list())
-
-	var/speed = 0 // VTEC speed boost.
+	// SKYRAT EDIT: From 0 to -0.75. Borgs are little too slow.
+	var/speed = -0.1 // VTEC speed boost.
 	var/magpulse = FALSE // Magboot-like effect.
 	var/ionpulse = FALSE // Jetpack-like effect.
 	var/ionpulse_on = FALSE // Jetpack-like effect.
@@ -1023,7 +1023,7 @@
 
 	upgrades.Cut()
 
-	speed = 0
+	speed = -0.1
 	ionpulse = FALSE
 	revert_shell()
 
@@ -1118,7 +1118,7 @@
 	desc = "Stop controlling your shell and resume normal core operations."
 	icon_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_core"
-	//required_mobility_flags = NONE // Skyrat edit -- I like this, personally. 
+	//required_mobility_flags = NONE // Skyrat edit -- I like this, personally.
 
 /datum/action/innate/undeployment/Trigger()
 	if(!..())
