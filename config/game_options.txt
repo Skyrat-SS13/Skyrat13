@@ -48,7 +48,7 @@ MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal 1
 
 ## PROJECTILES 
 
-## 1 is the default projectile speeds, so 1.5 would be 50% faster.
+## 1 is the default projectile speed, so 1.5 would be 50% faster.
 PROJECTILE_SPEED_MODIFIER 1
 
 ## NAMES ###
