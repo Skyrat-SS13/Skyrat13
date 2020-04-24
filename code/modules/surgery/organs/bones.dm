@@ -6,7 +6,7 @@
 
 /obj/item/organ/bone
 	name = "bone"
-	desc = "It's... a bone. Unidentifiable bone?"
+	desc = "It's... a bone. An unidentifiable bone."
 	zone = BODY_ZONE_CHEST
 	icon_state = "bone"
 
@@ -24,13 +24,13 @@
 
 /obj/item/organ/bone/rhumerus
 	name = "right humerus"
-	desc = "Whoever lost this, sure must have been in humerus situation."
+	desc = "Whoever lost this, sure must have been in an humerus situation."
 	zone = BODY_ZONE_R_ARM
 	icon_state = "rhumerus"
 
 /obj/item/organ/bone/lhumerus
 	name = "left humerus"
-	desc = "Whoever lost this, sure must have been in humerus situation."
+	desc = "Whoever lost this, sure must have been in an humerus situation."
 	zone = BODY_ZONE_L_ARM
 	icon_state = "lhumerus"
 
