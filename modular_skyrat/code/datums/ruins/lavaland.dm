@@ -22,7 +22,7 @@
 	description = "RIP AND TEAR, UNTIL IT IS DONE."
 	suffix = "lavaland_surface_wrath.dmm"
 
-/datum/map_template/ruin/lavaland/sin/e1m1
+/datum/map_template/ruin/lavaland/e1m1
 	name = "E1M1"
 	id = "E1M1"
 	description = "IMPS? ZOMBIES? THINK YOU CAN GET ME?!"
