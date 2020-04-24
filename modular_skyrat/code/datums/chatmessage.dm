@@ -51,7 +51,7 @@
 	if (owned_by)
 		if (owned_by.seen_messages)
 			LAZYREMOVEASSOC(owned_by.seen_messages, message_loc, src)
-		owned_by.images -= message
+		owned_by.images.Remove(message)
 	owned_by = null
 	message_loc = null
 	message = null
@@ -68,6 +68,8 @@
   * * lifespan - The lifespan of the message in deciseconds
   */
 /datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan)
+	var/pixels = 10 //It's better to have extra height than lose a line
+	var/bold = FALSE
 	// Clip message
 	if (length_char(text) > CHAT_MESSAGE_MAX_LENGTH)
 		text = copytext_char(text, 1, CHAT_MESSAGE_MAX_LENGTH) + "..."
@@ -75,6 +77,7 @@
 	// Calculate target color if not already present
 	if (!target.chat_color || target.chat_color_name != target.name)
 		target.chat_color = colorize_string(target.name)
+		target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
 		target.chat_color_name = target.name
 
 	/*
@@ -90,18 +93,14 @@
 		qdel(src)
 		return
 
-	// Approximate text height
-	// Note we have to replace HTML encoded metacharacters otherwise MeasureText will return a zero height
-	// BYOND Bug #2563917
-	owned_by = owner.client
-	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
-	var/complete_text = "<span class='center maptext [extra_classes != null ? extra_classes.Join(" ") : ""]' style='color: [target.chat_color]'>[text]</span>"
+	// Non mobs speakers can be small
+	if (!ismob(target))
+		extra_classes |= "small"
+
 	//Below you'll encounter A TERRIBLE WORKAROUND
-	var/pixels = 7 //It's better to have extra height than lose a line
 	var/cur_char
 	var/cur_lower
-	var/bold = FALSE
-	if(copytext_char(text, -2) == "!!")
+	if(copytext_char(text, -2) == "!!" || extra_classes.Find("bold"))
 		bold = TRUE
 	for(var/i in 1 to length(text))
 		cur_char = text[i]
@@ -117,6 +116,26 @@
 			pixels += 6
 		else //unfiltered lowercase take 5
 			pixels += 5
+
+	// Append radio icon if from a virtual speaker
+	if (extra_classes.Find("virtual-speaker"))
+		var/image/r_icon = image('modular_skyrat/icons/UI_Icons/chat/chat_icons.dmi', icon_state = "radio")
+		text =  "\icon[r_icon]&nbsp;" + text
+		pixels += 10
+
+	// We dim italicized text to make it more distinguishable from regular text
+	var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
+
+	// Register client who owns this message
+	owned_by = owner.client
+	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/qdel, src)
+
+	// Approximate text height
+	// Note we have to replace HTML encoded metacharacters otherwise MeasureText will return a zero height
+	// BYOND Bug #2563917
+	// Construct text
+	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
+	var/complete_text = "<span class='center maptext [extra_classes != null ? extra_classes.Join(" ") : ""]' style='color: [tgt_color]'>[text]</span>"
 
 	var/lines_est = max(1,(CEILING((pixels/CHAT_MESSAGE_WIDTH),1)))
 	var/mheight = 2 + (lines_est * 9)
@@ -175,11 +194,18 @@
   * * raw_message - The text content of the message
   * * spans - Additional classes to be added to the message
   * * message_mode - Bitflags relating to the mode of the message
+  * * sat_shift - A value between 0 and 1 that will be multiplied against the saturation
+  * * lum_shift - A value between 0 and 1 that will be multiplied against the luminescence
   */
 /mob/proc/create_chat_message(atom/movable/speaker, datum/language/message_language, raw_message, list/spans, message_mode)
 	if (!client?.prefs.chat_on_map)
 		return
 
+	// Copy spans list before we do anything to it
+	if (spans)
+		spans = spans.Copy()
+
+	// Check for virtual speakers (aka hearing a message through a radio)
 	var/atom/movable/originalSpeaker = speaker
 	if (istype(speaker, /atom/movable/virtualspeaker))
 		var/atom/movable/virtualspeaker/v = speaker
@@ -208,7 +234,7 @@
   * Arguments:
   * * name - The name to generate a color for
   */
-/datum/chatmessage/proc/colorize_string(name)
+/datum/chatmessage/proc/colorize_string(name, sat_shift = 1, lum_shift = 1)
 	// get hsl using the first 6 characters of the md5 hash
 	// seed to help randomness
 	var/static/rseed = rand(1,26)
@@ -218,6 +244,10 @@
 	var/h = hex2num(copytext(hash, 1, 3)) * (360 / 255)
 	var/s = (hex2num(copytext(hash, 3, 5)) >> 2) * ((CM_COLOR_SAT_MAX - CM_COLOR_SAT_MIN) / 63) + CM_COLOR_SAT_MIN
 	var/l = (hex2num(copytext(hash, 5, 7)) >> 2) * ((CM_COLOR_LUM_MAX - CM_COLOR_LUM_MIN) / 63) + CM_COLOR_LUM_MIN
+
+	// adjust for shifts
+	s *= clamp(sat_shift, 0, 1)
+	l *= clamp(lum_shift, 0, 1)
 
 	// convert to rgb
 	var/h_int = round(h/60) // mapping each section of H to 60 degree sections

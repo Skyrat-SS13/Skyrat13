@@ -653,6 +653,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /datum/hallucination/chat
 
+/* Moved to modular_skyrat
 /datum/hallucination/chat/New(mob/living/carbon/C, forced = TRUE, force_radio, specific_message)
 	set waitfor = FALSE
 	..()
@@ -714,6 +715,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		feedback_details += "Type: Radio, Source: [person.real_name], Message: [message]"
 		to_chat(target, message)
 	qdel(src)
+*/
 
 /datum/hallucination/message
 
