@@ -1,5 +1,5 @@
 /obj/machinery/wish_granter
-	var/sound/wishsound = sound(file = 'modular_skyrat/sound/ambience/wishgranter.ogg', volume = 100, channel = CHANNEL_AMBIENCE)
+	var/sound/wishsound = sound(file = 'modular_skyrat/sound/ambience/wishgranter.ogg', repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENCE)
 	var/soundlength = 800
 	var/soundend
 
