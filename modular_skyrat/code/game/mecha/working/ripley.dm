@@ -20,17 +20,8 @@
 	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter/killdozer
 	cargo_capacity = 20
 
-/obj/mecha/working/ripley/firefighter/killdozer/Initialize()
-	. = ..()
-	var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/killdozer/P = new
-	var/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/real/killdozer/C = new
-	var/obj/item/mecha_parts/mecha_equipment/drill/killdozer/D = new
-	P.attach(src)
-	C.attach(src)
-	D.attach(src)
-
 /obj/structure/mecha_wreckage/ripley/firefighter/killdozer
 	name = "\improper killdozer wreckage"
-	desc = "Died doing what they loved."
+	desc = "Died treading on those who treaded."
 	icon = 'modular_skyrat/icons/mecha/sometimesreasonablemenmustdounreasonablethings.dmi'
 	icon_state = "ripley-broken"

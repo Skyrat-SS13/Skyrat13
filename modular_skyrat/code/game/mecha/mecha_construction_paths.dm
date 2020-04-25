@@ -169,34 +169,29 @@
 		),
 		//22
 		list(
-			"key" = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/killdozer,
+			"key" = /obj/item/stack/sheet/mineral/titanium,
+			"amount" = 10,
 			"back_key" = TOOL_WELDER,
 			"desc" = "External armor is welded."
 		),
 		//23
 		list(
-			"key" = /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/real/killdozer,
-			"back_key" = TOOL_WIRECUTTER,
-			"desc" = "Pistol module is installed."
+			"key" = /obj/item/stack/sheet/mineral/plastitanium,
+			"amount" = 10,
+			"back_key" = TOOL_CROWBAR,
+			"desc" = "Additional titanium alloy armoring is being installed."
 		),
 		//24
 		list(
-			"key" = /obj/item/mecha_parts/mecha_equipment/drill/killdozer,
-			"back_key" = TOOL_WIRECUTTER,
-			"desc" = "Kill clamp module is installed."
+			"key" = TOOL_WRENCH,
+			"back_key" = TOOL_CROWBAR,
+			"desc" = "Additional titanium alloy armoring is installed."
 		),
 		//25
 		list(
-			"key" = /obj/item/stack/sheet/mineral/titanium,
-			"amount" = 10,
-			"back_key" = TOOL_WRENCH,
-			"desc" = "Kill drill module is installed."
-		),
-		//26
-		list(
 			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "Titanium armoring is applied."
+			"desc" = "Additional titanium alloy armoring is wrenched."
 		),
 	)
 
@@ -316,29 +311,24 @@
 				user.visible_message("[user] unfastens the external armor layer.", "<span class='notice'>You unfasten the external armor layer.</span>")
 		if(23)
 			if(diff==FORWARD)
-				user.visible_message("[user] attaches the pistol module to [parent].", "<span class='notice'>You attach the pistol module to [parent].</span>")
+				user.visible_message("[user] starts to install the additional titanium alloy armor layer on [parent].", "<span class='notice'>You start to install the additional titanium alloy armor layer on [parent].</span>")
 			else
 				user.visible_message("[user] welds off the external armor layer.", "<span class='notice'>You weld off the external armor layer.</span>")
 		if(24)
 			if(diff==FORWARD)
-				user.visible_message("[user] attaches the kill clamp module to [parent].", "<span class='notice'>You attach the kill clamp module to [parent].</span>")
+				user.visible_message("[user] installs the titanium alloy on [parent].", "<span class='notice'>You install the titanium alloy on [parent].</span>")
 			else
-				user.visible_message("[user] snips off the pistol module.", "<span class='notice'>You snip off the pistol module.</span>")
+				user.visible_message("[user] removes the additional titanium armor layer.", "<span class='notice'>You remove the additional titanium armor layer.</span>")
 		if(25)
 			if(diff==FORWARD)
-				user.visible_message("[user] attaches the kill drill module to [parent].", "<span class='notice'>You attach the kill drill module to [parent].</span>")
+				user.visible_message("[user] secures the titanium alloy layer on [parent].", "<span class='notice'>You secure the titanium alloy layer on [parent].</span>")
 			else
-				user.visible_message("[user] snips off the kill clamp module.", "<span class='notice'>You snip off the kill clamp module.</span>")
+				user.visible_message("[user] pries the additional titanium armor layer from [parent].", "<span class='notice'>You pry the additional titanium armor layer from [parent]</span>")
 		if(26)
 			if(diff==FORWARD)
-				user.visible_message("[user] layers some titanium armor plates on [parent].", "<span class='notice'>You layer some titanium armor plates on [parent].</span>")
+				user.visible_message("[user] welds the titanium alloy layer on [parent].", "<span class='notice'>You weld the titanium alloy layer on [parent].</span>")
 			else
-				user.visible_message("[user] snips off the kill drill.", "<span class='notice'>You snip off the kill drill</span>")
-		if(27)
-			if(diff==FORWARD)
-				user.visible_message("[user] welds the titanium plates to [parent].", "<span class='notice'>You weld the titanium plates to [parent].</span>")
-			else
-				user.visible_message("[user] wrenches off the titanium armor plates on [parent].", "<span class='notice'>You wrench off the titanium armor plates on [parent]</span>")
+				user.visible_message("[user] unfastens the additional titanium armor layer from [parent].", "<span class='notice'>You unfasten the additional titanium armor layer from [parent].</span>")
 	return TRUE
 
 //Power armor: now actually built!
