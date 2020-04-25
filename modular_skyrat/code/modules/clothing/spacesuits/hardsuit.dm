@@ -215,6 +215,7 @@
 	clothing_flags = THICKMATERIAL //Ouchie oofie my bones
 	armor = list("melee" = 40, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100)
 	resistance_flags = ACID_PROOF
+	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor/Initialize()
 	. = ..()
@@ -272,6 +273,7 @@
 	var/brutedamageemp = 20
 	var/rebootdelay
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor/Initialize()
 	. = ..()
@@ -323,7 +325,3 @@
 	explosion(src.loc,0,0,3,flame_range = 3)
 	qdel(src)
 	return
-
-//mineing suit for minecrafting
-/obj/item/clothing/head/helmet/space/hardsuit/mining
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/gun/energy/plasmacutter)
