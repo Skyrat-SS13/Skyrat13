@@ -13,7 +13,7 @@
 /datum/gear/blutigen_kimono
 	name = "Blutigen Kimono"
 	category = SLOT_WEAR_SUIT
-	path = /obj/item/clothing/suit/kimono
+	path = /obj/item/clothing/suit/blutigen_kimono
 	ckeywhitelist = list("random516")
 
 /datum/gear/blutigen_undergarment

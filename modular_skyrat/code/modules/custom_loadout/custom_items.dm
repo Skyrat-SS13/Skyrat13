@@ -47,4 +47,5 @@
 	icon_state = "blutigen_undergarment"
 	item_state = "blutigen_undergarment"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	mutantrace_variation = STYLE_NO_ANTHRO_ICON
+	mutantrace_variation = NONE
+	fitted = FEMALE_UNIFORM_TOP
