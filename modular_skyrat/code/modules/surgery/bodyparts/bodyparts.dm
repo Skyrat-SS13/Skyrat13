@@ -94,10 +94,10 @@
 		else
 			mutation_color = ""
 
-		if(S.type == /datum/species/synth)
+		if(istype(S, /datum/species/synth))
 			var/datum/species/synth/synthspecies = S
-			if(!synthspecies.isdisguised)
-				base_bp_icon = DEFAULT_BODYPART_ICON
+			if(synthspecies.isdisguised == FALSE)
+				base_bp_icon = initial(synthspecies.icon_limbs)
 
 		dmg_overlay_type = S.damage_overlay_type
 

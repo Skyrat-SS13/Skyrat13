@@ -12,6 +12,7 @@
 	gib_types = /obj/effect/gibspawner/robot
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
+	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
 	initial_species_traits = list(NOTRANSSTING) //for getting these values back for assume_disguise()
 	initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_EASYLIMBDISABLE) //blah blah i explained above piss
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
@@ -26,7 +27,8 @@
 	mutantliver = /obj/item/organ/liver/ipc
 	mutantstomach = /obj/item/organ/stomach/ipc
 	mutanteyes = /obj/item/organ/eyes/ipc
-	exotic_bloodtype = "HF"
+	exotic_blood = /datum/reagent/blood/synthetics
+	exotic_bloodtype = "SY"
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))
@@ -41,8 +43,6 @@
 		attack_sound = S.attack_sound
 		miss_sound = S.miss_sound
 		meat = S.meat
-		mutant_bodyparts = S.mutant_bodyparts.Copy()
-		mutant_organs = S.mutant_organs.Copy()
 		nojumpsuit = S.nojumpsuit
 		no_equip = S.no_equip.Copy()
 		icon_limbs = S.icon_limbs //there you go bubsy, now dunmer synths and shit wont be FUCKING INVISIBLE
@@ -66,7 +66,6 @@
 		attack_verb = initial(attack_verb)
 		attack_sound = initial(attack_sound)
 		miss_sound = initial(miss_sound)
-		mutant_bodyparts = list()
 		nojumpsuit = initial(nojumpsuit)
 		no_equip = list()
 		meat = initial(meat)
@@ -81,15 +80,7 @@
 		fake_species = new /datum/species/human
 		isdisguised = FALSE
 
-	for(var/X in H.bodyparts)
-		var/obj/item/bodypart/BP = X
-		BP.update_limb()
-	handle_hair(H)
-	handle_body(H)
 	handle_mutant_bodyparts(H)
-	H.updateappearance(mutcolor_update=1)
-	H.update_body(TRUE)
-	H.update_body_parts()
 	H.regenerate_icons()
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
@@ -117,9 +108,8 @@
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
-		if(fake_species && actualhealth >= disguise_fail_health)
-			if(faketongue)
-				faketongue.handle_speech(source, speech_args) //if we're above the health threshold, we use our fake tongue
+		if(faketongue && isdisguised)
+			faketongue.handle_speech(source, speech_args) //if we're above the health threshold, we use our fake tongue
 		else
 			speech_args[SPEECH_SPANS] |= SPAN_ROBOT //otherwise, robospeak
 	else
@@ -133,7 +123,6 @@
 	attack_verb = initial(attack_verb)
 	attack_sound = initial(attack_sound)
 	miss_sound = initial(miss_sound)
-	mutant_bodyparts = list()
 	nojumpsuit = initial(nojumpsuit)
 	no_equip = list()
 	meat = initial(meat)
@@ -145,15 +134,7 @@
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
 	femalescreamsounds = list()
 	isdisguised = FALSE
-	for(var/X in H.bodyparts)
-		var/obj/item/bodypart/BP = X
-		BP.update_limb()
-	handle_hair(H)
-	handle_body(H)
 	handle_mutant_bodyparts(H)
-	H.updateappearance(mutcolor_update=1)
-	H.update_body(TRUE)
-	H.update_body_parts()
 	H.regenerate_icons()
 
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
@@ -168,19 +149,19 @@
 
 /datum/species/synth/handle_hair(mob/living/carbon/human/H, forced_colour)
 	if(fake_species && isdisguised)
-		fake_species.handle_hair(H, forced_colour)
+		return fake_species.handle_hair(H, forced_colour)
 	else
 		return ..()
 
 /datum/species/synth/handle_body(mob/living/carbon/human/H)
 	if(fake_species && isdisguised)
-		fake_species.handle_body(H)
+		return fake_species.handle_body(H)
 	else
 		return ..()
 
 
 /datum/species/synth/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
 	if(fake_species && isdisguised)
-		fake_species.handle_mutant_bodyparts(H,forced_colour)
+		return fake_species.handle_mutant_bodyparts(H,forced_colour)
 	else
 		return ..()
