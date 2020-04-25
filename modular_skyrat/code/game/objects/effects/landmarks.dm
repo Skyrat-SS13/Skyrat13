@@ -17,3 +17,8 @@
 /obj/effect/landmark/start/blueshield
 	name = "Blueshield"
 	icon_state = "Security Officer"
+
+/obj/effect/landmark/start/BOofficer
+	name = "Bridge Officer"
+	icon = 'modular_skyrat/icons/mob/landmarks.dmi'
+	icon_state = "Bridge_Officer"
