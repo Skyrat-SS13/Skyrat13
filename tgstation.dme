@@ -3506,6 +3506,7 @@
 #include "modular_skyrat\code\modules\cargo\packs\bloat.dm"
 #include "modular_skyrat\code\modules\cargo\packs\special.dm"
 #include "modular_skyrat\code\modules\client\preferences_toggles.dm"
+#include "modular_skyrat\code\modules\client\loadout\__donator.dm"
 #include "modular_skyrat\code\modules\client\loadout\_medical.dm"
 #include "modular_skyrat\code\modules\client\loadout\backpack.dm"
 #include "modular_skyrat\code\modules\client\loadout\hands.dm"
