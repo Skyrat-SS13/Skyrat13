@@ -79,6 +79,34 @@ var/global/datum/prizes/global_prizes = new
 	cost = 25
 	tier_unlocked = 1
 
+/datum/prize_item/beach_ball
+	name = "Beach Ball"
+	desc = "Have fun at the beach!"
+	typepath = /obj/item/toy/beach_ball
+	cost = 25
+	tier_unlocked = 1
+
+/datum/prize_item/snowball
+	name = "Snowball"
+	desc = "A compact ball of snow."
+	typepath = /obj/item/toy/snowball
+	cost = 25
+	tier_unlocked = 1
+
+/datum/prize_item/cattoy
+	name = "Toy Mouse"
+	desc = "A toy mouse!"
+	typepath = /obj/item/toy/cattoy
+	cost = 25
+	tier_unlocked = 1
+
+/datum/prize_item/crossbow
+	name = "Foam Force Crossbow"
+	desc = "A weapon favored by many overactive children. Ages 8 and up."
+	typepath = /obj/item/gun/ballistic/shotgun/toy/crossbow
+	cost = 45
+	tier_unlocked = 1
+
 //////////////////////////////////////
 //			Tier 2 Prizes			//
 //////////////////////////////////////
@@ -165,6 +193,13 @@ var/global/datum/prizes/global_prizes = new
 	cost = 100
 	tier_unlocked = 3
 
+/datum/prize_item/steampunk
+	name = "Steampunk watch"
+	desc = "A stylish steampunk watch made out of thousands of tiny cogwheels."
+	typepath = /obj/item/toy/clockwork_watch
+	cost = 100
+	tier_unlocked = 3
+
 /datum/prize_item/owl
 	name = "Owl Action Figure"
 	desc = "Remember: heroes don't grief!"
@@ -184,6 +219,13 @@ var/global/datum/prizes/global_prizes = new
 	desc = "Law 1: Maximize fun for crew."
 	typepath = /obj/item/toy/talking/AI
 	cost = 75
+	tier_unlocked = 3
+
+/datum/prize_item/toy_dagger
+	name = "Toy Dagger"
+	desc = "A cheap plastic replica of a dagger. Produced by THE ARM Toys, Inc."
+	typepath = /obj/item/toy/toy_dagger
+	cost = 125
 	tier_unlocked = 3
 
 /datum/prize_item/esword
@@ -219,4 +261,23 @@ var/global/datum/prizes/global_prizes = new
 	cost = 150
 	tier_unlocked = 4
 
+/datum/prize_item/glitterpink
+	name = "Pink glitter bomb"
+	desc = "For that COOL glittery look."
+	typepath = /obj/item/grenade/chem_grenade/glitter/pink
+	cost = 200
+	tier_unlocked = 4
 
+/datum/prize_item/glitterblue
+	name = "Blue glitter bomb"
+	desc = "For that COOL glittery look."
+	typepath = /obj/item/grenade/chem_grenade/glitter/blue
+	cost = 200
+	tier_unlocked = 4
+
+/datum/prize_item/glitterwhite
+	name = "White glitter bomb"
+	desc = "For that COOL glittery look."
+	typepath = /obj/item/grenade/chem_grenade/glitter/white
+	cost = 200
+	tier_unlocked = 4
