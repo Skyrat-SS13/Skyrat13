@@ -91,6 +91,7 @@
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	icon_state = "cowboy_black"
+	item_state = "cowboy_black"
 
 
 /obj/item/clothing/head/cowboywide
@@ -99,17 +100,24 @@
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	icon_state = "cowboy_wide"
+	item_state = "cowboy_wide"
 
 //bo stuff
 /obj/item/clothing/head/bocap
 	name = "bridge officer cap"
 	desc = "For a person with no authority who takes themselves very VERY seriously."
+	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	icon_state = "bridgeofficerhard"
+	item_state = "bridgeofficerhard"
 
 /obj/item/clothing/head/bohat
 	name = "bridge officer hat"
 	desc = "For a person with no authority who takes themselves very seriously."
+	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	icon_state = "bridgeofficersoft"
+	item_state = "bridgeofficersoft"
 
 
 
