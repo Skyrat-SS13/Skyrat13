@@ -1,6 +1,6 @@
 /datum/job/bridgeofficer
 	title = "Bridge Officer"
-	flag = BOFFICER
+	flag = BRIDGE_OFFICER
 	department_head = list("Captain", "Head of Security", "Chief Medical Officer", "Head of Personnel", "Research Director", "Quartermaster", "Chief Engineer")
 	department_flag = CIVILIAN
 	faction = "Station"

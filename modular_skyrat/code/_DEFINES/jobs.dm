@@ -1,4 +1,4 @@
-#define BRIG_PHYSICIAN		(1<<14)
+#define BRIG_PHYSICIAN	(1<<14)
 #define BLUESHIELD		(1<<15)
 #define PRISONER		(1<<16)
 #define BRIDGE_OFFICER	(1<<17)
