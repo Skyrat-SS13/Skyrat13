@@ -1,6 +1,6 @@
 /datum/job/bridgeofficer
 	title = "Bridge Officer"
-	flag = OFFICER
+	flag = BOFFICER
 	department_head = list("Captain", "Head of Security", "Chief Medical Officer", "Head of Personnel", "Research Director", "Quartermaster", "Chief Engineer")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -27,6 +27,7 @@
 	suit = /obj/item/clothing/suit/storage/bridgeofficer
 	gloves = /obj/item/clothing/gloves/color/white
 	shoes = /obj/item/clothing/shoes/laceup
+	l_hand = /obj/item/storage/secure/briefcase
 	ears = /obj/item/radio/headset/heads/BO
 	glasses = /obj/item/clothing/glasses/sunglasses
 	backpack_contents = /obj/item/clipboard
