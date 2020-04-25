@@ -25,7 +25,7 @@
 	uniform = /obj/item/clothing/under/bridgeofficer
 	id = /obj/item/card/id/silver
 	suit = /obj/item/clothing/suit/storage/bridgeofficer
-	gloves = obj/item/clothing/gloves/color/white
+	gloves = /obj/item/clothing/gloves/color/white
 	shoes = /obj/item/clothing/shoes/laceup
 	ears = /obj/item/radio/headset/heads/BO
 	glasses = /obj/item/clothing/glasses/sunglasses
