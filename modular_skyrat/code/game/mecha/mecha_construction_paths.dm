@@ -383,7 +383,7 @@
 
 		//3
 		list(
-			"key" = /obj/item/stack/sheet/bluespace_crystal/refined,
+			"key" = /obj/item/stack/sheet/bluespace_crystal,
 			"amount" = 5,
 			"back_key" = TOOL_WELDER,
 			"desc" = "The parts are welded onto the chassis."
