@@ -1,5 +1,5 @@
 /obj/machinery/wish_granter
-	var/sound/wishsound = sound('modular_skyrat/sound/ambience/wishgranter.ogg', 100)
+	var/sound/wishsound = sound(file = 'modular_skyrat/sound/ambience/wishgranter.ogg', volume = 100, channel = CHANNEL_AMBIENCE)
 	var/soundlength = 800
 	var/soundend
 
@@ -10,7 +10,7 @@
 /obj/machinery/wish_granter/process()
 	..()
 	for(var/mob/living/M in view(12))
-		if((wishsound && soundlength && !soundend) || (wishsound && soundlength && world.time > soundend))
+		if((wishsound && soundlength && !soundend && (M.client.prefs.toggles & SOUND_AMBIENCE)) || (wishsound && soundlength && world.time > soundend && (M.client.prefs.toggles & SOUND_AMBIENCE)))
 			M.stop_sound_channel(CHANNEL_AMBIENCE)
 			soundend = soundlength + world.time
-			M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = wishsound) // so silence ambience will mute the weird russian chanting asmr for anyone who doesn't enjoy that
+			SEND_SOUND(M, wishsound) // so silence ambience will mute the weird russian chanting asmr for anyone who doesn't enjoy that
