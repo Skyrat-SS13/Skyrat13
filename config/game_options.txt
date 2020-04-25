@@ -564,6 +564,10 @@ MICE_ROUNDSTART 10
 ## This used to be named traits, hence the config name, but it handles quirks, not the other kind of trait!
 ROUNDSTART_TRAITS
 
+## Extra languages (non-species) amount.
+## Set to 0 for no additional languages in the character setup. Up to 3 extra languages.
+ADDITIONAL_LANGUAGES 1
+
 ## Uncomment to disable human moods.
 #DISABLE_HUMAN_MOOD
 

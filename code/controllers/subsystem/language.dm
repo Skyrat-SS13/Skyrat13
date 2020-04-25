@@ -2,6 +2,8 @@ SUBSYSTEM_DEF(language)
 	name = "Language"
 	init_order = INIT_ORDER_LANGUAGE
 	flags = SS_NO_FIRE
+	var/blacklistedlanguages = list(
+								)
 
 /datum/controller/subsystem/language/Initialize(timeofday)
 	for(var/L in subtypesof(/datum/language))

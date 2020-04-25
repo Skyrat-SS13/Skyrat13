@@ -42,7 +42,11 @@
 /datum/config_entry/number/damage_multiplier
 	config_entry_value = 1
 	integer = FALSE
-
+//SKYRAT EDIT - Extra languages
+/datum/config_entry/number/additional_languages
+	config_entry_value = 1
+	integer = FALSE
+//
 /datum/config_entry/number/minimal_access_threshold	//If the number of players is larger than this threshold, minimal access will be turned on.
 	min_val = 0
 

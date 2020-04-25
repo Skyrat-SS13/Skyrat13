@@ -306,7 +306,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<b>[nameless ? "Default designation" : "Name"]:</b>"
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
-
+			//SKYRAT EDIT - Language selection
+			var/language_selection = CONFIG_GET(number/additional_languages)
+			for(var/i = 0, i >= language_selection, i++)
+				dat += "<a href='?_src_=prefs;preference=language[i];task=input'>[language[i] ? language[i] : "Add Language"]</a><BR>"
+			//
 			dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
 			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
 			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a><BR>"
@@ -1571,6 +1575,27 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/msg = stripped_multiline_input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
 						exploitable_info = html_decode(msg)
+				if("language1")
+					if(SSlanguage && SSlanguage.accepted_languages_names)
+						var/clanguage = input(usr, "Choose your extra language", "Language [i]", null) as text in SSlanguage.accepted_languages_names
+						if(clanguage)
+							language1 = clanguage
+					else
+						to_chat(usr, "<span class='danger'>The language subsystem is still initializing! Try again in a moment.</span>")
+				if("language2")
+					if(SSlanguage && SSlanguage.accepted_languages_names)
+						var/clanguage = input(usr, "Choose your extra language", "Language [i]", null) as text in SSlanguage.accepted_languages_names
+						if(clanguage)
+							language2 = clanguage
+					else
+						to_chat(usr, "<span class='danger'>The language subsystem is still initializing! Try again in a moment.</span>")
+				if("language3")
+					if(SSlanguage && SSlanguage.accepted_languages_names)
+						var/clanguage = input(usr, "Choose your extra language", "Language [i]", null) as text in SSlanguage.accepted_languages_names
+						if(clanguage)
+							language3 = clanguage
+					else
+						to_chat(usr, "<span class='danger'>The language subsystem is still initializing! Try again in a moment.</span>")
 				//END OF SKYRAT CHANGES
 
 				if("hair")
@@ -2291,7 +2316,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							damagescreenshake = 1
 				if("nameless")
 					nameless = !nameless
-         
+
 				if("erp_pref")
 					switch(erppref)
 						if("Yes")
