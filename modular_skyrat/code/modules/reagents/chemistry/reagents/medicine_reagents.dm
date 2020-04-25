@@ -421,7 +421,6 @@
 
 /datum/reagent/medicine/rebreath/on_mob_life(mob/living/carbon/M)
 	M.losebreath = 0
-	M.nutrition -= 5
 	..()
 
 // --ORGANS
