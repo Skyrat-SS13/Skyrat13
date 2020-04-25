@@ -103,17 +103,17 @@
 		if(chem.overdosed == FALSE)
 			chem.overdose_start(H)
 			chem.reaction_mob(H, TOUCH, 2 ,0)
+			H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		else
 			chem.reaction_mob(H, TOUCH, 2 ,0)
+			H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
-		if(faketongue && isdisguised)
-			faketongue.handle_speech(source, speech_args) //if we're above the health threshold, we use our fake tongue
-		else
-			speech_args[SPEECH_SPANS] |= SPAN_ROBOT //otherwise, robospeak
-	else
-		return
+		if(faketongue)
+			if(isdisguised)
+				return faketongue.handle_speech(source, speech_args) //if we're disguised we use our fake tongue
+	return mutanttongue.handle_speech(source, speech_args)
 
 /datum/species/synth/proc/unassume_disguise(mob/living/carbon/human/H)
 	name = initial(name)
