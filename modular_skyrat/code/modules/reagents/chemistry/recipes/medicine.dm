@@ -94,19 +94,19 @@
 	name = "reLung"
 	id = /datum/reagent/medicine/relung
 	results = list(/datum/reagent/medicine/relung = 3)
-	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/carbon = 1, /datum/reagent/medicine/tbrute = 1)
+	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/carbon = 1, /datum/reagent/medicine/toxygen = 1)
 	required_temp = 900
 
 /datum/chemical_reaction/reheart
 	name = "reHeart"
 	id = /datum/reagent/medicine/reheart
 	results = list(/datum/reagent/medicine/reheart = 3)
-	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/oxygen = 1, /datum/reagent/medicine/tbrute = 1)
+	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/oxygen = 1, /datum/reagent/medicine/toxygen = 1)
 	required_temp = 900
 
 /datum/chemical_reaction/reliver
 	name = "reLiver"
 	id = /datum/reagent/medicine/reliver
 	results = list(/datum/reagent/medicine/reliver = 3)
-	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/silicon = 1, /datum/reagent/medicine/tbrute = 1)
+	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/silicon = 1, /datum/reagent/medicine/toxygen = 1)
 	required_temp = 900
