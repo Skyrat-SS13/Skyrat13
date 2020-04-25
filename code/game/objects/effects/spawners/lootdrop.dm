@@ -115,7 +115,7 @@
 /obj/effect/spawner/lootdrop/maintenance
 	name = "maintenance loot spawner"
 	// see code/_globalvars/lists/maintenance_loot.dm for loot table
-	lootcount = 5
+	lootcount = 2
 	fan_out_items = TRUE
 
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
