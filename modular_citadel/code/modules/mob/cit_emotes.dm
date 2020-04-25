@@ -66,7 +66,7 @@
 	else
 		message = "makes a very loud noise."
 	. = ..()
-
+*/
 /datum/emote/living/snap
 	key = "snap"
 	key_third_person = "snaps"
@@ -75,7 +75,7 @@
 	muzzle_ignore = TRUE
 	restraint_check = TRUE
 	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
-*/
+
 /datum/emote/living/snap/run_emote(mob/living/user, params)
 	if(!(. = ..()))
 		return
