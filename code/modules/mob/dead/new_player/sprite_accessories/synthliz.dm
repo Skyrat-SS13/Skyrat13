@@ -20,6 +20,13 @@
 	name = "Synthetic Lizard - Snout Long"
 	icon_state = "synthliz_long"
 
+/datum/sprite_accessory/mam_snouts/synthliz_thicklong
+	recommended_species = list("synthliz")
+	icon = 'modular_citadel/icons/mob/synthliz_snouts.dmi'
+	color_src = MUTCOLORS
+	name = "Synthetic Lizard - Snout Long & Thick"
+	icon_state = "synthliz_thicklong"
+
 /datum/sprite_accessory/mam_snouts/synthliz/synthliz_under
 	icon = 'modular_citadel/icons/mob/synthliz_snouts.dmi'
 	color_src = MATRIXED
