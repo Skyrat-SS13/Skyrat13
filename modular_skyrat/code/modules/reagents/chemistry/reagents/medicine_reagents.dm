@@ -421,7 +421,7 @@
 
 /datum/reagent/medicine/toxygen/on_mob_life(mob/living/carbon/M)
 	M.losebreath = 0
-	M.adjustOxyLoss(0.2*REM, FALSE)
+	M.adjustOxyLoss(-0.2*REM, FALSE)
 	..()
 	. = 1
 
