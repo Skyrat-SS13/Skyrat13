@@ -103,3 +103,34 @@
 		if(prob(hit_reflect_chance))
 			return BLOCK_SHOULD_REDIRECT | BLOCK_REDIRECTED | BLOCK_SUCCESS | BLOCK_PHYSICAL_INTERNAL
 	return ..()
+
+
+/obj/item/clothing/suit/storage/bridgeofficer
+	name = "bridge officer dress jacket"
+	desc = "A dress jacket for those ranked high enough to stand at the bridge, but not high enough to touch any buttons."
+	icon_state = "bridgeofficer_jacket"
+
+/obj/item/clothing/suit/storage/dutchcoat
+	name = "western coat"
+	desc = "When I'm gone, they'll just find another coat. They have to. Because they have to justify their wages."
+	icon_state = "DutchJacket"
+
+/obj/item/clothing/suit/storage/tailcoat
+	name = "tailcoat"
+	desc = "Even the clown wouldn't wear this, you can, if you really want to."
+	icon_state = "tailcoat"
+
+/obj/item/clothing/suit/storage/ladiesvictoriancoat
+	name = "ladies victorian coat"
+	desc = "I'm in no hurry, I've got all day. And I'm not going to kill you until you say..something...nice."
+	icon_state = "ladiesvictoriancoat"
+
+/obj/item/clothing/suit/storage/redladiesvictoriancoat
+	name = "ladies red victorian coat"
+	desc = "Give a good man firepower, and he'll never run out of people to kill."
+	icon_state = "ladiesredvictoriancoat"
+
+/obj/item/clothing/suit/storage/ecdress_ofcr
+	name = "bridge officer parade jacket"
+	desc = "For those times when you need to properly look like you aren't a glorified assistant."
+	icon_state = "ecdress_ofcr"
