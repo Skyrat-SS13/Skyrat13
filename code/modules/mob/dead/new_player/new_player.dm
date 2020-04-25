@@ -428,6 +428,8 @@
 
 	if(humanc && CONFIG_GET(flag/roundstart_traits))
 		SSquirks.AssignQuirks(humanc, humanc.client, TRUE, FALSE, job, FALSE)
+	if(humanc && CONFIG_GET(number/additional_languages))
+		SSlanguage.assignlanguages(humanc, humanc.client)
 
 	log_manifest(character.mind.key,character.mind,character,latejoin = TRUE)
 

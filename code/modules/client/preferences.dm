@@ -77,6 +77,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/be_random_body = 0				//whether we'll have a random body every round
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
+	var/language1 = null				//extra language no. 1
+	var/language2 = null				//extra language no. 2
+	var/language3 = null				//extra language no. 3
 	//SKYRAT CHANGES
 	var/ooc_notes
 	var/erppref = "Ask"
@@ -308,8 +311,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
 			//SKYRAT EDIT - Language selection
 			var/language_selection = CONFIG_GET(number/additional_languages)
-			for(var/i = 0, i >= language_selection, i++)
-				dat += "<a href='?_src_=prefs;preference=language[i];task=input'>[language[i] ? language[i] : "Add Language"]</a><BR>"
+			if(language_selection)
+				dat += "<b>Languages:</b><BR><a href='?_src_=prefs;preference=language1;task=input'>[language1 ? language1 : "Add Language"]</a><BR>"
+			if(language_selection >= 2)
+				dat += "<a href='?_src_=prefs;preference=language2;task=input'>[language2 ? language2 : "Add Language"]</a><BR>"
+			if(language_selection >= 3)
+				dat += "<a href='?_src_=prefs;preference=language3;task=input'>[language3 ? language3 : "Add Language"]</a><BR>"
 			//
 			dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
 			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
@@ -1577,23 +1584,29 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						exploitable_info = html_decode(msg)
 				if("language1")
 					if(SSlanguage && SSlanguage.accepted_languages_names)
-						var/clanguage = input(usr, "Choose your extra language", "Language [i]", null) as text in SSlanguage.accepted_languages_names
-						if(clanguage)
+						var/clanguage = input(usr, "Choose your extra language", "Language 1", null) as null|anything in (SSlanguage.accepted_languages_names + "None")
+						if(clanguage != "None")
 							language1 = clanguage
+						else
+							language1 = null
 					else
 						to_chat(usr, "<span class='danger'>The language subsystem is still initializing! Try again in a moment.</span>")
 				if("language2")
 					if(SSlanguage && SSlanguage.accepted_languages_names)
-						var/clanguage = input(usr, "Choose your extra language", "Language [i]", null) as text in SSlanguage.accepted_languages_names
-						if(clanguage)
+						var/clanguage = input(usr, "Choose your extra language", "Language 2", null) as null|anything in (SSlanguage.accepted_languages_names + "None")
+						if(clanguage != "None" && clanguage != null)
 							language2 = clanguage
+						else
+							language2 = null
 					else
 						to_chat(usr, "<span class='danger'>The language subsystem is still initializing! Try again in a moment.</span>")
 				if("language3")
 					if(SSlanguage && SSlanguage.accepted_languages_names)
-						var/clanguage = input(usr, "Choose your extra language", "Language [i]", null) as text in SSlanguage.accepted_languages_names
-						if(clanguage)
+						var/clanguage = input(usr, "Choose your extra language", "Language 3", null) as null|anything in (SSlanguage.accepted_languages_names + "None")
+						if(clanguage != "None" && clanguage != null)
 							language3 = clanguage
+						else
+							language3 = null
 					else
 						to_chat(usr, "<span class='danger'>The language subsystem is still initializing! Try again in a moment.</span>")
 				//END OF SKYRAT CHANGES
