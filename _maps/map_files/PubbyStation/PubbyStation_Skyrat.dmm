@@ -53785,6 +53785,13 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"eRG" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/landmark/start/BOofficer,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "eSB" = (
 /obj/structure/chair{
 	dir = 4
@@ -64640,6 +64647,11 @@
 /obj/machinery/processor,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
+"xEw" = (
+/obj/structure/chair/comfy/black,
+/obj/effect/landmark/start/BOofficer,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "xFl" = (
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/tcommsat/server";
@@ -95057,7 +95069,7 @@ asS
 atT
 auR
 avV
-axb
+eRG
 ayb
 azh
 aAB
@@ -95569,7 +95581,7 @@ aqI
 arM
 asR
 atU
-auR
+xEw
 avX
 axb
 ayb
@@ -96085,7 +96097,7 @@ asS
 atT
 auR
 avZ
-axb
+eRG
 ayb
 azh
 aAB

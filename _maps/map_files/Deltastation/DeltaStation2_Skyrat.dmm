@@ -45604,6 +45604,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bDK" = (
@@ -51658,6 +51659,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/carpet,
 /area/bridge/meeting_room/council)
 "bMt" = (
@@ -53144,6 +53146,7 @@
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/carpet,
 /area/bridge/meeting_room/council)
 "bOz" = (

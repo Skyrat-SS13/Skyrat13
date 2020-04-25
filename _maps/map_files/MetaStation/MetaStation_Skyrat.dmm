@@ -40734,6 +40734,7 @@
 /area/bridge)
 "byf" = (
 /obj/structure/chair/comfy/beige,
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/carpet,
 /area/bridge)
 "byg" = (
@@ -41695,6 +41696,7 @@
 /obj/structure/chair/comfy/black{
 	dir = 8
 	},
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/carpet,
 /area/bridge)
 "bzZ" = (
@@ -84703,6 +84705,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/cryopod)
+"mBO" = (
+/obj/structure/window/reinforced,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/landmark/start/BOofficer,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "mEe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -112582,7 +112596,7 @@ bfv
 bhk
 bjc
 dCK
-bmB
+mBO
 bou
 bqL
 bsV

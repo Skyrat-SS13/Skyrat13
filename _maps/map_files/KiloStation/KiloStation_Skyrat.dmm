@@ -13736,6 +13736,7 @@
 /area/maintenance/fore)
 "awg" = (
 /obj/structure/chair/office,
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "awh" = (
@@ -38326,6 +38327,7 @@
 /obj/structure/chair/office{
 	dir = 1
 	},
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bil" = (
@@ -38735,6 +38737,7 @@
 /obj/structure/chair/office{
 	dir = 8
 	},
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "biP" = (

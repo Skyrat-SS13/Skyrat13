@@ -21893,6 +21893,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/plasteel,
 /area/bridge)
 "aWU" = (
@@ -59799,6 +59800,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"kOj" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/obj/effect/landmark/start/BOofficer,
+/turf/open/floor/carpet,
+/area/bridge/meeting_room)
 "kOS" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel,
@@ -62312,6 +62320,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/carpet,
 /area/bridge/meeting_room)
 "roQ" = (
@@ -91682,7 +91691,7 @@ aYp
 aZM
 aZz
 baI
-bda
+kOj
 bda
 bca
 bgJ
