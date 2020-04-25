@@ -19,6 +19,7 @@
 	max_equip = 4
 	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter/killdozer
 	cargo_capacity = 20
+	schut = TRUE
 
 /obj/structure/mecha_wreckage/ripley/firefighter/killdozer
 	name = "\improper killdozer wreckage"
