@@ -160,11 +160,39 @@ var/global/datum/prizes/global_prizes = new
 	cost = 75
 	tier_unlocked = 2
 
+/datum/prize_item/justicar
+	name = "Justicar Gun"
+	desc = "An authentic cap-firing reproduction of a F3 Justicar big-bore revolver!"
+	typepath = /obj/item/toy/gun/justicar
+	cost = 75
+	tier_unlocked = 2
+
+/datum/prize_item/m41
+	name = "Toy M4A1"
+	desc = "A toy replica of the Corporate Mercenaries' standard issue rifle."
+	typepath = /obj/item/toy/gun/m41
+	cost = 75
+	tier_unlocked = 2
+
 /datum/prize_item/capgunammo
 	name = "Capgun Ammo"
 	desc = "Do you feel lucky... punk?"
 	typepath = /obj/item/toy/ammo/gun
 	cost = 50
+	tier_unlocked = 2
+
+/datum/prize_item/fakespace
+	name = "Fake Space Tiles"
+	desc = "Decieve your friends!"
+	typepath = /obj/item/stack/tile/fakespace/loaded
+	cost = 100
+	tier_unlocked = 2
+
+/datum/prize_item/fakepit
+	name = "Fake Pit Tiles"
+	desc = "Decieve your friends!"
+	typepath = /obj/item/stack/tile/fakepit/loaded
+	cost = 100
 	tier_unlocked = 2
 
 //////////////////////////////////////
@@ -176,6 +204,13 @@ var/global/datum/prizes/global_prizes = new
 	name = "Foam Armblade"
 	desc = "Perfect for reenacting space horror holo-vids."
 	typepath = /obj/item/toy/foamblade
+	cost = 100
+	tier_unlocked = 3
+
+/datum/prize_item/katana
+	name = "Toy Katana"
+	desc = "Woefully underpowered in D20."
+	typepath = /obj/item/toy/katana
 	cost = 100
 	tier_unlocked = 3
 
@@ -242,6 +277,27 @@ var/global/datum/prizes/global_prizes = new
 	cost = 100
 	tier_unlocked = 3
 
+/datum/prize_item/facehugger
+	name = "Facehugger"
+	desc = "A toy often used to play pranks on other miners by putting it in their beds."
+	typepath = /obj/item/clothing/mask/facehugger/toy
+	cost = 150
+	tier_unlocked = 3
+
+/datum/prize_item/ratvarsuit
+	name = "Ratvar Coat"
+	desc = "A comfy coat in an interesting style."
+	typepath = /obj/item/clothing/suit/hooded/wintercoat/ratvar/fake
+	cost = 150
+	tier_unlocked = 3
+
+/datum/prize_item/narsiesuit
+	name = "Narsie Coat"
+	desc = "A comfy coat in an interesting style."
+	typepath = /obj/item/clothing/suit/hooded/wintercoat/narsie/fake
+	cost = 150
+	tier_unlocked = 3
+
 //////////////////////////////////////
 //			Tier 4 Prizes			//
 //////////////////////////////////////
@@ -280,4 +336,18 @@ var/global/datum/prizes/global_prizes = new
 	desc = "For that COOL glittery look."
 	typepath = /obj/item/grenade/chem_grenade/glitter/white
 	cost = 200
+	tier_unlocked = 4
+
+/datum/prize_item/wheelys
+	name = "Wheely-Heels"
+	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either."
+	typepath = /obj/item/clothing/shoes/wheelys 
+	cost = 250
+	tier_unlocked = 4
+
+/datum/prize_item/kindleKicks
+	name = "Kindle Kicks"
+	desc = "They'll sure kindle something in you, and it's not childhood nostalgia..."
+	typepath = /obj/item/clothing/shoes/kindleKicks
+	cost = 250
 	tier_unlocked = 4
