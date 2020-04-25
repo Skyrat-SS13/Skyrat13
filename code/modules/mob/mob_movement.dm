@@ -257,6 +257,7 @@
 
 //bodypart selection - Cyberboss
 //8 toggles through head - eyes - mouth
+//4 and 6 toggle through arm-hand
 //4: r-arm 5: chest 6: l-arm
 //1: r-leg 2: groin 3: l-leg
 
@@ -286,11 +287,14 @@
 	set name = "body-r-arm"
 	set hidden = 1
 
-	if(!check_has_body_select())
-		return
+	var/next_in_line
+	if(mob.zone_selected == BODY_ZONE_R_ARM)
+		next_in_line = BODY_ZONE_PRECISE_R_HAND
+	else
+		next_in_line = BODY_ZONE_R_ARM
 
 	var/obj/screen/zone_sel/selector = mob.hud_used.zone_select
-	selector.set_selected_zone(BODY_ZONE_R_ARM, mob)
+	selector.set_selected_zone(next_in_line, mob)
 
 /client/verb/body_chest()
 	set name = "body-chest"
@@ -309,18 +313,27 @@
 	if(!check_has_body_select())
 		return
 
+	var/next_in_line
+	if(mob.zone_selected == BODY_ZONE_L_ARM)
+		next_in_line = BODY_ZONE_PRECISE_L_HAND
+	else
+		next_in_line = BODY_ZONE_L_ARM
+
 	var/obj/screen/zone_sel/selector = mob.hud_used.zone_select
-	selector.set_selected_zone(BODY_ZONE_L_ARM, mob)
+	selector.set_selected_zone(next_in_line, mob)
 
 /client/verb/body_r_leg()
 	set name = "body-r-leg"
 	set hidden = 1
 
-	if(!check_has_body_select())
-		return
+	var/next_in_line
+	if(mob.zone_selected == BODY_ZONE_R_LEG)
+		next_in_line = BODY_ZONE_PRECISE_R_FOOT
+	else
+		next_in_line = BODY_ZONE_R_LEG
 
 	var/obj/screen/zone_sel/selector = mob.hud_used.zone_select
-	selector.set_selected_zone(BODY_ZONE_R_LEG, mob)
+	selector.set_selected_zone(next_in_line, mob)
 
 /client/verb/body_groin()
 	set name = "body-groin"
@@ -339,8 +352,14 @@
 	if(!check_has_body_select())
 		return
 
+	var/next_in_line
+	if(mob.zone_selected == BODY_ZONE_L_LEG)
+		next_in_line = BODY_ZONE_PRECISE_L_FOOT
+	else
+		next_in_line = BODY_ZONE_L_LEG
+
 	var/obj/screen/zone_sel/selector = mob.hud_used.zone_select
-	selector.set_selected_zone(BODY_ZONE_L_LEG, mob)
+	selector.set_selected_zone(next_in_line, mob)
 
 /client/verb/toggle_walk_run()
 	set name = "toggle-walk-run"

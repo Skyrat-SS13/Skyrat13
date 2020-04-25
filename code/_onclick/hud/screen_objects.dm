@@ -462,7 +462,13 @@
 
 /obj/screen/zone_sel/proc/get_zone_at(icon_x, icon_y)
 	switch(icon_y)
-		if(1 to 9) //Legs
+		if(1 to 3) //Feet
+			switch(icon_x)
+				if(10 to 15)
+					return BODY_ZONE_PRECISE_R_FOOT
+				if(17 to 22)
+					return BODY_ZONE_PRECISE_L_FOOT
+		if(4 to 9) //Legs
 			switch(icon_x)
 				if(10 to 15)
 					return BODY_ZONE_R_LEG
@@ -471,11 +477,11 @@
 		if(10 to 13) //Hands and groin
 			switch(icon_x)
 				if(8 to 11)
-					return BODY_ZONE_R_ARM
+					return BODY_ZONE_PRECISE_R_HAND
 				if(12 to 20)
 					return BODY_ZONE_PRECISE_GROIN
 				if(21 to 24)
-					return BODY_ZONE_L_ARM
+					return BODY_ZONE_PRECISE_L_HAND
 		if(14 to 22) //Chest and arms to shoulders
 			switch(icon_x)
 				if(8 to 11)
