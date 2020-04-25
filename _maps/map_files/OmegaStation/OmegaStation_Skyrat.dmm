@@ -328,6 +328,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "aaE" = (
@@ -404,6 +405,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "aaI" = (
@@ -1955,6 +1957,7 @@
 	dir = 1;
 	name = "command camera"
 	},
+/obj/effect/landmark/start/BOofficer,
 /turf/open/floor/carpet,
 /area/bridge)
 "ada" = (
