@@ -1,9 +1,5 @@
 // This code handles different species in the game.
-#define BONE_DAM_THRESHOLD_LOW 25
-#define BONE_DAM_THRESHOLD_MEDIUM 50
-#define BONE_DAM_THRESHOLD_HIGH 75
-#define BONE_DAM_THRESHOLD_HIGHEST 100
-#define BONE_DAM_PROB 15
+#define BONE_DAM_PROB 20
 #define BONE_DAM_MODIFIER 0.5
 #define BONE_RAND_MODIFIER_1 0.8
 #define BONE_RAND_MODIFIER_2 2
