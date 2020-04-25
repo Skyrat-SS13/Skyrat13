@@ -1584,7 +1584,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						exploitable_info = html_decode(msg)
 				if("language1")
 					if(SSlanguage && SSlanguage.accepted_languages_names)
-						var/clanguage = input(usr, "Choose your extra language", "Language 1", null) as null|anything in (SSlanguage.accepted_languages_names + "None")
+						var/clanguage = input(usr, "Choose your extra language", "Language", null) as null|anything in (SSlanguage.accepted_languages_names + "None")
 						if(clanguage != "None")
 							language1 = clanguage
 						else
@@ -1593,7 +1593,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						to_chat(usr, "<span class='danger'>The language subsystem is still initializing! Try again in a moment.</span>")
 				if("language2")
 					if(SSlanguage && SSlanguage.accepted_languages_names)
-						var/clanguage = input(usr, "Choose your extra language", "Language 2", null) as null|anything in (SSlanguage.accepted_languages_names + "None")
+						var/clanguage = input(usr, "Choose your extra language", "Language", null) as null|anything in (SSlanguage.accepted_languages_names + "None")
 						if(clanguage != "None" && clanguage != null)
 							language2 = clanguage
 						else
@@ -1602,7 +1602,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						to_chat(usr, "<span class='danger'>The language subsystem is still initializing! Try again in a moment.</span>")
 				if("language3")
 					if(SSlanguage && SSlanguage.accepted_languages_names)
-						var/clanguage = input(usr, "Choose your extra language", "Language 3", null) as null|anything in (SSlanguage.accepted_languages_names + "None")
+						var/clanguage = input(usr, "Choose your extra language", "Language", null) as null|anything in (SSlanguage.accepted_languages_names + "None")
 						if(clanguage != "None" && clanguage != null)
 							language3 = clanguage
 						else
