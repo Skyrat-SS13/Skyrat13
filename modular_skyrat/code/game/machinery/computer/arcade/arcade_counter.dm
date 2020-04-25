@@ -3,7 +3,7 @@
 	name = "Prize Counter"
 	desc = "A machine which exchanges tickets for a variety of fabulous prizes!"
 	icon = 'modular_skyrat/icons/obj/arcade.dmi'
-	icon_state = "prize_counter-on"
+	icon_state = "prize"
 	density = 1
 	anchored = 1
 	use_power = 1
@@ -37,13 +37,13 @@
 
 /obj/machinery/prize_counter/update_icon()
 	if(stat & BROKEN)
-		icon_state = "prize_counter-broken"
+		icon_state = "prize-broken"
 	else if(panel_open)
-		icon_state = "prize_counter-open"
+		icon_state = "prize-open"
 	else if(stat & NOPOWER)
-		icon_state = "prize_counter-off"
+		icon_state = "prize-off"
 	else
-		icon_state = "prize_counter-on"
+		icon_state = "prize"
 	return
 
 /obj/machinery/prize_counter/attackby(var/obj/item/O as obj, var/mob/user as mob, params)
