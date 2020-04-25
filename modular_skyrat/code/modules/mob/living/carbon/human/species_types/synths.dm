@@ -19,6 +19,7 @@
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/actualhealth = 100 //value we calculate to assume disguise and etc
+	var/obj/item/organ/tongue/faketongue //tongue we use when disguised to handle speech
 	//Same organs as an IPC basically, to share functionality.
 	mutant_heart = /obj/item/organ/heart/ipc
 	mutantlungs = /obj/item/organ/lungs/ipc
@@ -51,6 +52,8 @@
 		screamsounds = S.screamsounds.Copy()
 		femalescreamsounds = S.femalescreamsounds.Copy()
 		isdisguised = TRUE
+		if(!faketongue)
+			faketongue = new S.mutanttongue
 		fake_species = new S.type
 	else
 		name = initial(name)
@@ -105,7 +108,8 @@
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
 		if(isdisguised)
-			return
+			if(faketongue)
+				return faketongue.handle_speech(source, speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 	return
 
