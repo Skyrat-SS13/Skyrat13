@@ -14,12 +14,3 @@
 /obj/item/radio/headset/heads/blueshield/alt
 	icon_state = "bshield_headset_alt"
 	bowman = TRUE
-
-/obj/item/radio/headset/heads/BO
-	name = "the bridge officer's headset"
-	icon_state = "com_headset"
-	keyslot = new /obj/item/encryptionkey/heads/BOfficer
-
-/obj/item/radio/headset/heads/BO/alt
-	icon_state = "com_headset"
-	bowman = TRUE

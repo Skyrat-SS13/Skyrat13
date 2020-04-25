@@ -25,7 +25,7 @@
 
 /datum/gear/neethelm
 	name = "Desperate Assistance Battleforce helmet"
-
+  
 /datum/gear/papersack
 	name = "Paper Sack"
 	category = SLOT_HEAD
@@ -121,12 +121,3 @@
 /datum/gear/beanie/cyan
 	name = "Cyan Beanie"
 	path = /obj/item/clothing/head/beanie/cyan
-
-/datum/gear/darkcowboy
-	name = "Dark Cowboy Hat"
-	path = /obj/item/clothing/head/cowboydark
-
-/datum/gear/widecowboy
-	name = "Wide Cowboy Hat"
-	path = /obj/item/clothing/head/cowboywide
-

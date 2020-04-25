@@ -80,33 +80,3 @@
 	"Service Assistant" = "assu_helmet_srv",
 	"Science Assistant" = "assu_helmet_sci"
 	)
-
-//yee haw
-/obj/item/clothing/head/cowboydark
-	name = "dark cowboy hat"
-	desc = "People with ropes around their necks don't always hang."
-	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	icon_state = "cowboy_black"
-
-
-/obj/item/clothing/head/cowboywide
-	name = "wide brimmed cowboy hat"
-	desc = "Aim for the heart Ramone."
-	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	icon_state = "cowboy_wide"
-
-//bo stuff
-/obj/item/clothing/head/bocap
-	name = "bridge officer cap"
-	desc = "For a person with no authority who takes themselves very VERY seriously."
-	icon_state = "bridgeofficerhard"
-
-/obj/item/clothing/head/bohat
-	name = "bridge officer hat"
-	desc = "For a person with no authority who takes themselves very seriously."
-	icon_state = "bridgeofficersoft"
-
-
-
