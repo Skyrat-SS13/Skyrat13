@@ -422,6 +422,7 @@
 /datum/reagent/medicine/rebreath/on_mob_life(mob/living/carbon/M)
 	M.losebreath = 0
 	..()
+	. = 1
 
 // --ORGANS
 /datum/reagent/medicine/relung
@@ -435,6 +436,7 @@
 /datum/reagent/medicine/mannitol/on_mob_life(mob/living/carbon/C)
 	C.adjustOrganLoss(ORGAN_SLOT_LUNGS, -2*REM)
 	..()
+	. = 1
 
 /datum/reagent/medicine/reheart
 	name = "reHeart"
@@ -447,6 +449,7 @@
 /datum/reagent/medicine/mannitol/on_mob_life(mob/living/carbon/C)
 	C.adjustOrganLoss(ORGAN_SLOT_HEART, -2*REM)
 	..()
+	. = 1
 
 /datum/reagent/medicine/reliver
 	name = "reLiver"
@@ -459,6 +462,7 @@
 /datum/reagent/medicine/mannitol/on_mob_life(mob/living/carbon/C)
 	C.adjustOrganLoss(ORGAN_SLOT_LIVER, -2*REM)
 	..()
+	. = 1
 
 // END OF KOBECHEMS
 
