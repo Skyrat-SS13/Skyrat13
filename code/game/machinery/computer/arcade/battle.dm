@@ -135,7 +135,8 @@
 				Reset()
 				obj_flags &= ~EMAGGED
 			else
-				prizevend(user)
+				var/score = player_hp + player_mp + 5
+				prizevend(user, score)
 			SSblackbox.record_feedback("nested tally", "arcade_results", 1, list("win", (obj_flags & EMAGGED ? "emagged":"normal")))
 
 
