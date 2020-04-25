@@ -419,8 +419,9 @@
 	overdose_threshold = 20
 	pH = 12
 
-/datum/reagent/medicine/rebreath/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/toxygen/on_mob_life(mob/living/carbon/M)
 	M.losebreath = 0
+	M.adjustOxyLoss(0.2*REM, FALSE)
 	..()
 	. = 1
 
@@ -433,7 +434,7 @@
 	overdose_threshold = 20
 	pH = 10.4
 
-/datum/reagent/medicine/mannitol/on_mob_life(mob/living/carbon/C)
+/datum/reagent/medicine/relung/on_mob_life(mob/living/carbon/C)
 	C.adjustOrganLoss(ORGAN_SLOT_LUNGS, -2*REM)
 	..()
 	. = 1
@@ -446,7 +447,7 @@
 	overdose_threshold = 20
 	pH = 10.4
 
-/datum/reagent/medicine/mannitol/on_mob_life(mob/living/carbon/C)
+/datum/reagent/medicine/reheart/on_mob_life(mob/living/carbon/C)
 	C.adjustOrganLoss(ORGAN_SLOT_HEART, -2*REM)
 	..()
 	. = 1
@@ -459,7 +460,7 @@
 	overdose_threshold = 20
 	pH = 10.4
 
-/datum/reagent/medicine/mannitol/on_mob_life(mob/living/carbon/C)
+/datum/reagent/medicine/reliver/on_mob_life(mob/living/carbon/C)
 	C.adjustOrganLoss(ORGAN_SLOT_LIVER, -2*REM)
 	..()
 	. = 1
