@@ -54,8 +54,8 @@
 	var/list/req_access = list(ACCESS_ROBOTICS)
 
 	var/alarms = list("Motion"=list(), "Fire"=list(), "Atmosphere"=list(), "Power"=list(), "Camera"=list(), "Burglar"=list())
-	// SKYRAT EDIT: From 0 to -0.1. Borgs are little too slow.
-	var/speed = -0.80 // VTEC speed boost.
+	// SKYRAT EDIT: From 0 to -0.8. Borgs are little too slow.
+	var/speed = -0.75 // VTEC speed boost.
 	var/magpulse = FALSE // Magboot-like effect.
 	var/ionpulse = FALSE // Jetpack-like effect.
 	var/ionpulse_on = FALSE // Jetpack-like effect.
@@ -1023,7 +1023,7 @@
 
 	upgrades.Cut()
 
-	speed = -0.80
+	speed = -0.75
 	ionpulse = FALSE
 	revert_shell()
 
