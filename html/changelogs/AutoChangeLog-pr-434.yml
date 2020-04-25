@@ -1,6 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added wigs"
-  - tweak: "Clothesmate now have wigs"
-  - tweak: "Loadout now have wigs"

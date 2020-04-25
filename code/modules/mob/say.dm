@@ -5,6 +5,10 @@
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
+	//SKYRAT EDIT
+	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
+		set_typing_indicator(FALSE)
+	//END OF SKYRAT EDIT
 	if(message)
 		say(message)
 
@@ -36,7 +40,10 @@
 		return
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
-
+	//SKYRAT EDIT
+	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
+		set_typing_indicator(FALSE)
+	//END OF SKYRAT EDIT
 	usr.emote("me",1,message,TRUE)
 
 /mob/proc/say_dead(var/message)

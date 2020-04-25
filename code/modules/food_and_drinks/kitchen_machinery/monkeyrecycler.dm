@@ -62,7 +62,7 @@
 	if(target.buckled || target.has_buckled_mobs())
 		to_chat(user, "<span class='warning'>The monkey is attached to something.</span>")
 		return
-	qdel(target)
+	SSrecycling.recycle_monkey(target)
 	to_chat(user, "<span class='notice'>You stuff the monkey into the machine.</span>")
 	playsound(src.loc, 'sound/machines/juicer.ogg', 50, 1)
 	var/offset = prob(50) ? -2 : 2
@@ -78,7 +78,7 @@
 		playsound(src.loc, 'sound/machines/hiss.ogg', 50, 1)
 		grinded -= required_grind
 		for(var/i = 0, i < cube_production, i++)
-			new /obj/item/reagent_containers/food/snacks/monkeycube(src.loc)
+			new /obj/item/reagent_containers/food/snacks/cube/monkey(src.loc)
 		to_chat(user, "<span class='notice'>The machine's display flashes that it has [grinded] monkeys worth of material left.</span>")
 	else
 		to_chat(user, "<span class='danger'>The machine needs at least [required_grind] monkey(s) worth of material to produce a monkey cube. It only has [grinded].</span>")

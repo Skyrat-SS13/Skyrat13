@@ -1,7 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Ice moon contents"
-  - imageadd: "Ice Moon icons"
-  - tweak: "Tweaks in the mapping subsystem preventing crashing and burning because of the ice moon stuff."
-  - rscadd: "Test snow colony map. Just modified boxstation, really."

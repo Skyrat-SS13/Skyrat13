@@ -12,13 +12,16 @@ GLOBAL_LIST_INIT(engineering_positions, list(
 	"Station Engineer",
 	"Atmospheric Technician"))
 
-
+// Added Brig Phys SKYRAT CHANGE
+// People were AFKing as Brig Phys in order to get blueshield
+// Well fuck you. It's in medical now.
 GLOBAL_LIST_INIT(medical_positions, list(
 	"Chief Medical Officer",
 	"Medical Doctor",
 	"Geneticist",
 	"Virologist",
 	"Paramedic",
+	"Brig Physician",
 	"Chemist"))
 
 
@@ -31,7 +34,7 @@ GLOBAL_LIST_INIT(supply_positions, list(
 	"Quartermaster",
 	"Cargo Technician",
 	"Shaft Miner"))
-
+// Added Prisoner SKYRAT EDIT
 GLOBAL_LIST_INIT(civilian_positions, list(
 	"Head of Personnel",
 	"Bartender",
@@ -43,14 +46,15 @@ GLOBAL_LIST_INIT(civilian_positions, list(
 	"Chaplain",
 	"Clown",
 	"Mime",
+	"Prisoner",
 	"Assistant"))
-
+// Added Blueshield SKYRAT EDIT
 GLOBAL_LIST_INIT(security_positions, list(
 	"Head of Security",
 	"Warden",
 	"Detective",
-	"Security Officer"))
-
+	"Security Officer",
+	"Blueshield"))
 
 GLOBAL_LIST_INIT(nonhuman_positions, list(
 	"AI",

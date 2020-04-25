@@ -1,8 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Drake and bubblegum can now be enraged"
-  - balance: "Praetor suit is now only a enraged bubblegum drop"
-  - tweak: "Legion now drops a crate instead of just the loot"
-  - tweak: "Legion modkits and trophies will only spawn after killing the last legion, in the crate."
-  - soundadd: "All megafauna now have music."

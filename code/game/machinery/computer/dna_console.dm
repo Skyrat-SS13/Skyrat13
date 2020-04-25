@@ -136,7 +136,7 @@
 	if(connected && connected.is_operational())
 		if(connected.occupant)	//set occupant_status message
 			viable_occupant = connected.occupant
-			if(viable_occupant.has_dna() && !HAS_TRAIT(viable_occupant, TRAIT_RADIMMUNE) && !HAS_TRAIT(viable_occupant, TRAIT_NOCLONE) || (connected.scan_level == 3)) //occupant is viable for dna modification
+			if(viable_occupant.has_dna() && !HAS_TRAIT_NOT_FROM(viable_occupant, TRAIT_RADIMMUNE,BLOODSUCKER_TRAIT) && !HAS_TRAIT(viable_occupant, TRAIT_NOCLONE) || (connected.scan_level == 3)) //occupant is viable for dna modification
 				occupant_status += "[viable_occupant.name] => "
 				switch(viable_occupant.stat)
 					if(CONSCIOUS)
@@ -604,13 +604,13 @@
 		if("setbufferlabel")
 			var/text = sanitize(input(usr, "Input a new label:", "Input a Text", null) as text|null)
 			if(num && text)
-				num = CLAMP(num, 1, NUMBER_OF_BUFFERS)
+				num = clamp(num, 1, NUMBER_OF_BUFFERS)
 				var/list/buffer_slot = buffer[num]
 				if(istype(buffer_slot))
 					buffer_slot["label"] = text
 		if("setbuffer")
 			if(num && viable_occupant)
-				num = CLAMP(num, 1, NUMBER_OF_BUFFERS)
+				num = clamp(num, 1, NUMBER_OF_BUFFERS)
 				buffer[num] = list(
 					"label"="Buffer[num]:[viable_occupant.real_name]",
 					"UI"=viable_occupant.dna.uni_identity,
@@ -620,7 +620,7 @@
 					)
 		if("clearbuffer")
 			if(num)
-				num = CLAMP(num, 1, NUMBER_OF_BUFFERS)
+				num = clamp(num, 1, NUMBER_OF_BUFFERS)
 				var/list/buffer_slot = buffer[num]
 				if(istype(buffer_slot))
 					buffer_slot.Cut()
@@ -635,7 +635,7 @@
 						apply_buffer(SCANNER_ACTION_MIXED,num)
 		if("injector")
 			if(num && injectorready < world.time)
-				num = CLAMP(num, 1, NUMBER_OF_BUFFERS)
+				num = clamp(num, 1, NUMBER_OF_BUFFERS)
 				var/list/buffer_slot = buffer[num]
 				if(istype(buffer_slot))
 					var/obj/item/dnainjector/timed/I
@@ -662,11 +662,11 @@
 						injectorready = world.time + INJECTOR_TIMEOUT
 		if("loaddisk")
 			if(num && diskette && diskette.fields)
-				num = CLAMP(num, 1, NUMBER_OF_BUFFERS)
+				num = clamp(num, 1, NUMBER_OF_BUFFERS)
 				buffer[num] = diskette.fields.Copy()
 		if("savedisk")
 			if(num && diskette && !diskette.read_only)
-				num = CLAMP(num, 1, NUMBER_OF_BUFFERS)
+				num = clamp(num, 1, NUMBER_OF_BUFFERS)
 				var/list/buffer_slot = buffer[num]
 				if(istype(buffer_slot))
 					diskette.name = "data disk \[[buffer_slot["label"]]\]"
@@ -948,12 +948,12 @@
 	var/mob/living/carbon/viable_occupant = null
 	if(connected)
 		viable_occupant = connected.occupant
-		if(!istype(viable_occupant) || !viable_occupant.dna || HAS_TRAIT(viable_occupant, TRAIT_RADIMMUNE) || HAS_TRAIT(viable_occupant, TRAIT_NOCLONE))
+		if(!istype(viable_occupant) || !viable_occupant.dna || HAS_TRAIT_NOT_FROM(viable_occupant, TRAIT_RADIMMUNE,BLOODSUCKER_TRAIT) || HAS_TRAIT(viable_occupant, TRAIT_NOCLONE))
 			viable_occupant = null
 	return viable_occupant
 
 /obj/machinery/computer/scan_consolenew/proc/apply_buffer(action,buffer_num)
-	buffer_num = CLAMP(buffer_num, 1, NUMBER_OF_BUFFERS)
+	buffer_num = clamp(buffer_num, 1, NUMBER_OF_BUFFERS)
 	var/list/buffer_slot = buffer[buffer_num]
 	var/mob/living/carbon/viable_occupant = get_viable_occupant()
 	if(istype(buffer_slot))

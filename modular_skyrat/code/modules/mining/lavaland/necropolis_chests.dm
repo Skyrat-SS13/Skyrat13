@@ -98,7 +98,7 @@
 
 /obj/item/projectile/heckhook/on_hit(atom/target)
 	. = ..()
-	if(ismovableatom(target))
+	if(ismovable(target))
 		var/atom/movable/A = target
 		if(A.anchored)
 			return
@@ -136,8 +136,8 @@
 	icon = 'modular_skyrat/icons/obj/1x2.dmi'
 	icon_state = "crucible0"
 	var/icon_state_on = "crucible1"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/swords_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/swords_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	item_state = "crucible0"
 	var/item_state_on = "crucible1"
 	force = 3
@@ -163,10 +163,6 @@
 	var/brightness_on = 6
 	total_mass = 1
 	var/total_mass_on = TOTAL_MASS_MEDIEVAL_WEAPON
-	/*
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-	*/
 
 /obj/item/twohanded/crucible/suicide_act(mob/living/carbon/user)
 	if(wielded)
@@ -223,10 +219,10 @@
 	else
 		..()
 
-/obj/item/twohanded/crucible/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(wielded)
-		return ..()
-	return 0
+/obj/item/twohanded/crucible/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(!wielded)
+		return BLOCK_NONE
+	return ..()
 
 /obj/item/twohanded/crucible/wield(mob/living/carbon/M)
 	..()
@@ -259,9 +255,10 @@
 	else
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/twohanded/crucible/IsReflect()
-	if(wielded)
-		return 1
+/obj/item/twohanded/crucible/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(!wielded)
+		return BLOCK_NONE
+	return ..()
 
 /obj/item/twohanded/crucible/ignition_effect(atom/A, mob/user)
 	if(!wielded)
@@ -274,6 +271,32 @@
 	. = "<span class='warning'>[user] swings [user.p_their()] [name][in_mouth]. [user.p_they(TRUE)] light[user.p_s()] [user.p_their()] [A.name] in the process.</span>"
 	playsound(loc, hitsound, get_clamped_volume(), 1, -1)
 	add_fingerprint(user)
+
+//praetor suit and helmet
+/obj/item/clothing/suit/space/hardsuit/deathsquad/praetor
+	name = "Praetor Suit"
+	desc = "And those that tasted the bite of his sword named him... The Doom Slayer."
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	strip_delay = 130
+	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	icon_state = "praetor"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	item_state = "praetor"
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
+	slowdown = 0
+	mutantrace_variation = STYLE_DIGITIGRADE
+
+/obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
+	name = "Praetor Suit helmet"
+	desc = "That's one doomed space marine."
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	strip_delay = 130
+	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	icon_state = "praetor"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	mutantrace_variation = STYLE_MUZZLE
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
@@ -431,7 +454,7 @@
 	self_recharge = 1
 	maxcharge = 1500 //only barely better than a normal power cell now
 	chargerate = 700 //good recharge time doe
-	icon = 'modular_skyrat/icons/obj/argentcell.dmi'
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "argentcell"
 	ratingdesc = FALSE
 	rating = 6
@@ -455,6 +478,8 @@
 	armour_penetration = 25
 	block_chance = 0 //blocky bad
 
+/obj/item/immortality_talisman
+	w_class = WEIGHT_CLASS_SMALL //why the fuck are they large anyways
 //legion
 /obj/structure/closet/crate/necropolis/legion
 	name = "echoing legion crate"
@@ -470,7 +495,7 @@
 /obj/structure/closet/crate/necropolis/legion/hard/PopulateContents()
 	new /obj/item/staff/storm(src)
 	new /obj/item/staff/storm(src)
-	new /obj/item/staff/storm(src)
+	new /obj/item/clothing/mask/gas/dagoth(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
 	new /obj/item/crusher_trophy/legion_shard(src)
@@ -481,3 +506,106 @@
 		L = T.PopulateContents()
 		new L(src)
 	qdel(T)
+
+//dagoth ur mask
+/obj/item/clothing/mask/gas/dagoth
+	name = "Golden Mask"
+	desc = "Such a grand and intoxicating innocence."
+	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
+	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	icon_state = "dagoth"
+	item_state = "dagoth"
+	actions_types = list(/datum/action/item_action/ashstorm)
+	flash_protect = 2
+	armor = list("melee" = 15, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)//HOW CAN YOU KILL A GOD?
+	var/static/list/excluded_areas = list(/area/reebe/city_of_cogs)
+	var/storm_type = /datum/weather/ash_storm
+	var/storm_cooldown = 0
+	w_class = WEIGHT_CLASS_BULKY //its a fucking full metal mask man
+	mutantrace_variation = STYLE_MUZZLE
+
+/obj/item/clothing/mask/gas/dagoth/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if (slot == ITEM_SLOT_MASK)
+		user.faction |= "mining"
+
+/obj/item/clothing/mask/gas/dagoth/dropped(mob/living/carbon/human/user)
+	if (user.wear_mask == src)
+		user.faction -= "mining"
+	..()
+
+/datum/action/item_action/ashstorm
+	name = "Summon Ash Storm"
+	desc = "Bring the wrath of the sixth house upon the area where you stand."
+
+/obj/item/clothing/mask/gas/dagoth/ui_action_click(mob/user, action)
+	if(istype(action, /datum/action/item_action/ashstorm))
+		if(storm_cooldown > world.time)
+			to_chat(user, "<span class='warning'>The [src] is still recharging!</span>")
+			return
+
+		var/area/user_area = get_base_area(user)
+		var/turf/user_turf = get_turf(user)
+		if(!user_area || !user_turf || (user_area.type in excluded_areas))
+			to_chat(user, "<span class='warning'>Something is preventing you from using the [src] here.</span>")
+			return
+		var/datum/weather/A
+		for(var/V in SSweather.processing)
+			var/datum/weather/W = V
+			if((user_turf.z in W.impacted_z_levels) && W.area_type == user_area.type)
+				A = W
+				break
+
+		if(A)
+			if(A.stage != END_STAGE)
+				if(A.stage == WIND_DOWN_STAGE)
+					to_chat(user, "<span class='warning'>The storm is already ending! It would be a waste to use the [src] now.</span>")
+					return
+				user.visible_message("<span class='warning'>[user] gazes into the sky with [src], seemingly repelling the current storm!</span>", \
+				"<span class='notice'>You gaze intently skyward, dispelling the storm!</span>")
+				playsound(user, 'sound/magic/staff_change.ogg', 200, 0)
+				A.wind_down()
+				log_game("[user] ([key_name(user)]) has dispelled a storm at [AREACOORD(user_turf)]")
+				return
+		else
+			A = new storm_type(list(user_turf.z))
+			A.name = "staff storm"
+			log_game("[user] ([key_name(user)]) has summoned [A] at [AREACOORD(user_turf)]")
+			if (is_special_character(user))
+				message_admins("[A] has been summoned in [ADMIN_VERBOSEJMP(user_turf)] by [user] ([key_name_admin(user)], a non-antagonist")
+			A.area_type = user_area.type
+			A.telegraph_duration = 100
+			A.end_duration = 100
+
+		user.visible_message("<span class='warning'>[user] gazes skyward with his [src], terrible red lightning strikes seem to accompany them!</span>", \
+		"<span class='notice'>You gaze skyward with [src], calling down a terrible storm!</span>")
+		playsound(user, 'sound/magic/staff_change.ogg', 200, 0)
+		A.telegraph()
+		storm_cooldown = world.time + 200
+	else
+		..()
+
+//glaurung (needs unique loot and crusher trophy)
+/obj/structure/closet/crate/necropolis/glaurung
+	name = "drake chest"
+
+/obj/structure/closet/crate/necropolis/glaurung/PopulateContents()
+	var/loot = rand(1,4)
+	switch(loot)
+		if(1)
+			new /obj/item/melee/ghost_sword(src)
+		if(2)
+			new /obj/item/lava_staff(src)
+		if(3)
+			new /obj/item/book/granter/spell/sacredflame(src)
+			new /obj/item/gun/magic/wand/fireball(src)
+		if(4)
+			new /obj/item/dragons_blood(src)
+
+/obj/structure/closet/crate/necropolis/glaurung/crusher
+	name = "wise drake chest"
+
+/obj/structure/closet/crate/necropolis/glaurung/crusher/PopulateContents()
+	..()
+	new /obj/item/crusher_trophy/tail_spike(src)

@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "The Lavaland's Herald speech sound should only play if they are actually speaking."

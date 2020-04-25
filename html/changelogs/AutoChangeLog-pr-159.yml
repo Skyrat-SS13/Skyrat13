@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Dynamic now defaults to \"classic\" storyteller instead of just failing if the vote didn't choose a storyteller."

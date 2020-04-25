@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - imageadd: "Snazzier sprites for paramedic gear."
-  - rscadd: "Unused paramedic gear added for future use."

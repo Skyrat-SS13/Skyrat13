@@ -1,4 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - tweak: "Ghosts no longer see non player controlled emotes from across the world"

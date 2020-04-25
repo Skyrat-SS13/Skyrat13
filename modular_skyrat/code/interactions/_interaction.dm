@@ -69,7 +69,9 @@ var/list/interactions
 			to_chat(user, "<span class = 'warning'>You don't have hands.</span>")
 		return FALSE
 
-	return TRUE
+	if(user.last_interaction_time < world.time)
+		return TRUE
+	return FALSE
 
 /datum/interaction/proc/evaluate_target(mob/living/carbon/human/user, mob/living/carbon/human/target, silent = TRUE)
 	if(require_target_mouth)
@@ -140,6 +142,7 @@ var/list/interactions
 		user.visible_message("<span class='[simple_style]'>[capitalize(use_message)]</span>")
 
 /datum/interaction/proc/post_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.last_interaction_time = world.time + 6
 	if(interaction_sound)
 		playsound(get_turf(user), interaction_sound, 50, 1, -1)
 	return

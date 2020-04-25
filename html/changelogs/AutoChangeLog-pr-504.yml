@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Four shakers instead of one for the Service borg"
-  - bugfix: "fixed the lemon juice on the shaker"

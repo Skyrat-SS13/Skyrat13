@@ -1,6 +1,7 @@
 /turf/open/indestructible/gold
 	name = "gold floor"
 	baseturfs = /turf/open/indestructible/gold
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	icon_state = "gold"
 	tiled_dirt = FALSE
 	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason..."
@@ -8,6 +9,7 @@
 /turf/open/indestructible/diamond
 	name = "diamond floor"
 	baseturfs = /turf/open/indestructible/diamond
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	icon_state = "diamond"
 	tiled_dirt = FALSE
 	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason..."

@@ -1,5 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - bugfix: "fixed a runtime from autohiss"
-  - code_imp: "added a speech modification system"

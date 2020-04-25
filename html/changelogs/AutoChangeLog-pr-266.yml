@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Fixed agent IDs not registering the inputted name. Thanks MrPerson."

@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Joining in as a positronic brain won't break the spawner menu anymore."

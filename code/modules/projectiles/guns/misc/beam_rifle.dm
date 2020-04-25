@@ -181,13 +181,6 @@
 	listeningTo = null
 	return ..()
 
-/obj/item/gun/energy/beam_rifle/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	chambered = null
-	recharge_newshot()
-
 /obj/item/gun/energy/beam_rifle/proc/aiming_beam(force_update = FALSE)
 	var/diff = abs(aiming_lastangle - lastangle)
 	if(!check_user())
@@ -302,7 +295,7 @@
 	if(istype(object, /obj/screen) && !istype(object, /obj/screen/click_catcher))
 		return
 	process_aim()
-	if(aiming_time_left <= aiming_time_fire_threshold && check_user() && ((lastfire + delay) <= world.time))
+	if(fire_check())
 		sync_ammo()
 		do_fire(M.client.mouseObject, M, FALSE, M.client.mouseParams, M.zone_selected)
 	stop_aiming()
@@ -310,17 +303,22 @@
 	return ..()
 
 /obj/item/gun/energy/beam_rifle/do_fire(atom/target, mob/living/user, message = TRUE, params, zone_override = "", bonus_spread = 0)
+	if(!fire_check())
+		return
 	. = ..()
 	if(.)
 		lastfire = world.time
 	stop_aiming()
+
+/obj/item/gun/energy/beam_rifle/proc/fire_check()
+	return (aiming_time_left <= aiming_time_fire_threshold) && check_user() && ((lastfire + delay) <= world.time)
 
 /obj/item/gun/energy/beam_rifle/proc/sync_ammo()
 	for(var/obj/item/ammo_casing/energy/beam_rifle/AC in contents)
 		AC.sync_stats()
 
 /obj/item/gun/energy/beam_rifle/proc/delay_penalty(amount)
-	aiming_time_left = CLAMP(aiming_time_left + amount, 0, aiming_time)
+	aiming_time_left = clamp(aiming_time_left + amount, 0, aiming_time)
 
 /obj/item/ammo_casing/energy/beam_rifle
 	name = "particle acceleration lens"
@@ -371,11 +369,11 @@
 	HS_BB.stun = projectile_stun
 	HS_BB.impact_structure_damage = impact_structure_damage
 	HS_BB.aoe_mob_damage = aoe_mob_damage
-	HS_BB.aoe_mob_range = CLAMP(aoe_mob_range, 0, 15)				//Badmin safety lock
+	HS_BB.aoe_mob_range = clamp(aoe_mob_range, 0, 15)				//Badmin safety lock
 	HS_BB.aoe_fire_chance = aoe_fire_chance
 	HS_BB.aoe_fire_range = aoe_fire_range
 	HS_BB.aoe_structure_damage = aoe_structure_damage
-	HS_BB.aoe_structure_range = CLAMP(aoe_structure_range, 0, 15)	//Badmin safety lock
+	HS_BB.aoe_structure_range = clamp(aoe_structure_range, 0, 15)	//Badmin safety lock
 	HS_BB.wall_devastate = wall_devastate
 	HS_BB.wall_pierce_amount = wall_pierce_amount
 	HS_BB.structure_pierce_amount = structure_piercing
@@ -467,7 +465,7 @@
 				else
 					target.ex_act(EXPLODE_HEAVY)
 			return TRUE
-	if(ismovableatom(target))
+	if(ismovable(target))
 		var/atom/movable/AM = target
 		if(AM.density && !AM.CanPass(src, get_turf(target)) && !ismob(AM))
 			if(structure_pierce < structure_pierce_amount)
@@ -531,21 +529,15 @@
 	tracer_type = /obj/effect/projectile/tracer/tracer/beam_rifle
 	var/constant_tracer = FALSE
 
-/obj/item/projectile/beam/beam_rifle/hitscan/generate_hitscan_tracers(cleanup = TRUE, duration = 5, impacting = TRUE, highlander)
-	set waitfor = FALSE
-	if(isnull(highlander))
-		highlander = constant_tracer
-	if(highlander && istype(gun))
-		QDEL_LIST(gun.current_tracers)
-		for(var/datum/point/p in beam_segments)
-			gun.current_tracers += generate_tracer_between_points(p, beam_segments[p], tracer_type, color, 0, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity)
+/obj/item/projectile/beam/beam_rifle/hitscan/generate_hitscan_tracers(cleanup = TRUE, duration = 5, impacting = TRUE, generation, highlander = constant_tracer)
+	if(!highlander)
+		return ..()
 	else
-		for(var/datum/point/p in beam_segments)
-			generate_tracer_between_points(p, beam_segments[p], tracer_type, color, duration, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity)
-	if(cleanup)
-		QDEL_LIST(beam_segments)
-		beam_segments = null
-		QDEL_NULL(beam_index)
+		duration = 0
+		. = ..()
+		if(!generation)			//first one
+			QDEL_LIST(gun.current_tracers)
+		gun.current_tracers += .
 
 /obj/item/projectile/beam/beam_rifle/hitscan/aiming_beam
 	tracer_type = /obj/effect/projectile/tracer/tracer/aiming
@@ -560,4 +552,5 @@
 	hitscan_light_color_override = "#99ff99"
 
 /obj/item/projectile/beam/beam_rifle/hitscan/aiming_beam/prehit(atom/target)
+	qdel(src)
 	return FALSE

@@ -1,6 +1,21 @@
 /obj/machinery/mecha_part_fabricator
 	var/link_on_init = TRUE
 	var/datum/component/remote_materials/rmat
+	part_sets = list(
+						"Cyborg",
+						"Ripley",
+						"Firefighter",
+						"Killdozer",
+						"Odysseus",
+						"Gygax",
+						"Durand",
+						"H.O.N.K",
+						"Phazon",
+						"Exosuit Equipment",
+						"Exosuit Ammunition",
+						"Cyborg Upgrade Modules",
+						"Misc"
+						)
 
 /obj/machinery/mecha_part_fabricator/Initialize(mapload)
 	stored_research = new
@@ -218,3 +233,4 @@
 
 /obj/machinery/mecha_part_fabricator/maint
 	link_on_init = FALSE
+

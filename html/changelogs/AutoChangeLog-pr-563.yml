@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "Power sink objective is 10x as easy to get"
-  - bugfix: "Processing objectives now properly stop once won"

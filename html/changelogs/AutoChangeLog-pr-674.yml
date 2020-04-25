@@ -1,4 +1,0 @@
-author: "Useroth"
-delete-after: True
-changes: 
-  - bugfix: "fixed youtube-dl for play internet sound on linux, in exchange breaking it on windows (I think)"

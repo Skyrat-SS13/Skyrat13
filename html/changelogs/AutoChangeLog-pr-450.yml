@@ -1,6 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - balance: "hotspot expose makes fires with much lower temperature than before"
-  - tweak: "hotspot expose no longer passively raises temperature"
-  - code_imp: "small optimisations to the hotspot expose proc"

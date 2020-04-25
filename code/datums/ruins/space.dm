@@ -18,7 +18,6 @@
 	name = "Asteroid 1"
 	description = "I-spy with my little eye, something beginning with R."
 
-
 /datum/map_template/ruin/space/asteroid2
 	id = "asteroid2"
 	suffix = "asteroid2.dmm"
@@ -187,6 +186,7 @@
 	name = "Abandoned Teleporter"
 	description = "In space construction the teleporter is often the first system brought online. \
 	This lonely half built teleporter is a sign of a proposed structure that for one reason or another just never got built."
+	always_place = TRUE
 
 /datum/map_template/ruin/space/crashedclownship
 	id = "crashedclownship"
@@ -218,6 +218,7 @@
 	Incompetent inspectors believe this."
 
 /datum/map_template/ruin/space/oldteleporter
+	prefix = "modular_skyrat/_maps/RandomRuins/SpaceRuins/"
 	id = "oldteleporter"
 	suffix = "oldteleporter.dmm"
 	name = "Detached Teleporter"
@@ -239,6 +240,7 @@
 
 /datum/map_template/ruin/space/oldstation
 	id = "oldstation"
+	prefix = "modular_skyrat/_maps/RandomRuins/SpaceRuins/" //Skyrat edit because this shit doesn't spawn unless the main file is edited
 	suffix = "oldstation.dmm"
 	name = "Ancient Space Station"
 	description = "The crew of a space station awaken one hundred years after a crisis. Awaking to a derelict space station on the verge of collapse, and a hostile force of invading \
@@ -268,6 +270,7 @@
 	suffix = "whiteshipdock.dmm"
 	name = "Whiteship Dock"
 	description = "An abandoned but functional vessel parked in deep space, ripe for the taking."
+	always_place = TRUE
 
 /datum/map_template/ruin/space/cat_experiments
 	id = "meow"
@@ -287,6 +290,7 @@
 	suffix = "hilbertshoteltestingsite.dmm"
 	name = "Hilbert Research Facility"
 	description = "A research facility of great bluespace discoveries. Long since abandoned, willingly or not..."
+
 /datum/map_template/ruin/space/augmentation
 	id = "augmentationfacility"
 	suffix = "augmentationfacility.dmm"
@@ -376,13 +380,13 @@
 	id = "roid8"
 	suffix = "roid8.dmm"
 	name = "Dead wizard Roid"
-	description = "Mineral asteroid. Ft. Dead wizard and toilet paradox bag."
+	description = "Mineral asteroid. Ft. Dead wizard and toilet wand."
 
 /datum/map_template/ruin/spacenearstation/roid9
 	id = "roid9"
 	suffix = "roid9.dmm"
 	name = "Monitoring Roid"
-	description = "Mineral asteroid. Ft. Station monitoring, syndie toolbox and erp."
+	description = "Mineral asteroid. Ft. Station monitoring, toolbox and erp."
 
 /datum/map_template/ruin/spacenearstation/roid10
 	id = "roid10"

@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "mentor de/rementor button"
-  - bugfix: "mentor !msg"

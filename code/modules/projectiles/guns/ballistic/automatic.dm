@@ -140,11 +140,11 @@
 /obj/item/gun/ballistic/automatic/wt550/disable_burst()
 	. = ..()
 	spread = 0
-
+/* moved to modular_skyrat
 /obj/item/gun/ballistic/automatic/wt550/update_icon()
 	..()
 	icon_state = "wt550[magazine ? "-[CEILING((	(get_ammo(FALSE) / magazine.max_ammo) * 20) /4, 1)*4]" : "-0"]"	//Sprites only support up to 20.
-
+*/
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
 	desc = "A lightweight, burst-fire submachine gun, for when you really want someone dead. Uses 9mm rounds."
@@ -365,6 +365,7 @@
 	can_unsuppress = TRUE
 	can_suppress = TRUE
 	w_class = WEIGHT_CLASS_NORMAL
+	inaccuracy_modifier = 0
 	zoomable = TRUE
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
 	zoom_out_amt = 13

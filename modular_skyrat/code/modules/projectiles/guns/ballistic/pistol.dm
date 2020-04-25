@@ -15,12 +15,11 @@
 	..()
 	icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"
 
-//U.S.P pistol - Universal Self Protection pistol
-
+//USP pistol - Universal Self Protection pistol
 /obj/item/gun/ballistic/automatic/pistol/uspm
-	name = "U.S.P pistol"
-	desc = "U.S.P - Universal Self Protection. A standard-issued security handgun, chambered in 9mm, refitted to be only capable of firing non-lethal rounds."
-	icon = 'modular_skyrat/icons/obj/guns/usp.dmi'
+	name = "USP 9mm"
+	desc = "USP - Universal Self Protection. A standard-issued security handgun, chambered in 9mm, refitted to be only capable of firing non-lethal rounds."
+	icon = 'modular_skyrat/icons/obj/guns/projectile.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_state = "usp-m"
@@ -32,8 +31,8 @@
 						"Stealth" = "stealth",
 						"Glock" = "glock",
 						"Beretta" = "beretta",
-						"M1911" = "1911",
-						)
+						"M1911" = "1911")
+	obj_flags = UNIQUE_RENAME
 
 /obj/item/gun/ballistic/automatic/pistol/uspm/update_icon()
 	..()
@@ -41,3 +40,8 @@
 		icon_state = "[unique_reskin[current_skin]][chambered ? "" : "-e"]"
 	else
 		icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"
+
+/obj/item/gun/ballistic/automatic/pistol/uspm/emag_act(mob/user)
+	if(magazine)
+		var/obj/item/ammo_box/magazine/M = magazine
+		M.emag_act(user)

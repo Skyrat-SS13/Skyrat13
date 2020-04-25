@@ -266,6 +266,7 @@
 	M.equipOutfit(ctf_gear)
 	M.dna.species.punchdamagehigh = 25
 	M.dna.species.punchdamagelow = 25
+	M.AddElement(/datum/element/ghost_role_eligibility)
 	spawned_mobs += M
 
 /obj/machinery/capture_the_flag/Topic(href, href_list)
@@ -486,8 +487,7 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/shielded/ctf
 	toggle_helmet = FALSE // see the whites of their eyes
 	shoes = /obj/item/clothing/shoes/combat
-	gloves = /obj/item/clothing/gloves/combat
-	id = /obj/item/card/id/syndicate
+	gloves = /obj/item/clothing/gloves/tackler/combat
 	belt = /obj/item/gun/ballistic/automatic/pistol/deagle/ctf
 	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf
 	r_pocket = /obj/item/ammo_box/magazine/recharge/ctf

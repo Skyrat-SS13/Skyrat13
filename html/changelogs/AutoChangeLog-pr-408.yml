@@ -1,7 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - balance: "SEVA suits now can be improved with goliath hide"
-  - balance: "10mm pka now costs 15tc"
-  - balance: "Very slight buffs to the drakeling"
-  - rscadd: "A PKA that works on station for traitors (not a mod), costs 15tc."

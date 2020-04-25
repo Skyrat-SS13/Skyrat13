@@ -1,5 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Added argent cells to lavaland"
-  - imageadd: "Added status effect icon for argent cell, argent cell icon itself"

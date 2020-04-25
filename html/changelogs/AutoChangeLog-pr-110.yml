@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "mechs no longer have admin logs flooding into IC control console log viewing"

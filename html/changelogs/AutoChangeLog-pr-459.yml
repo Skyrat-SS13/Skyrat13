@@ -1,4 +1,0 @@
-author: "Useroth"
-delete-after: True
-changes: 
-  - tweak: "Changed default client fps to world.fps*2"

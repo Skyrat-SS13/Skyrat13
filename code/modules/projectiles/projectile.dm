@@ -20,7 +20,7 @@
 	var/atom/movable/firer = null//Who shot it
 	var/atom/fired_from = null // the atom that the projectile was fired from (gun, turret)	var/suppressed = FALSE	//Attack message
 	var/suppressed = FALSE	//Attack message
-	var/candink = FALSE //Can this projectile play the dink sound when hitting the head?	var/yo = null
+	var/candink = FALSE //Can this projectile play the dink sound when hitting the head?
 	var/yo = null
 	var/xo = null
 	var/atom/original = null // the original target clicked
@@ -52,6 +52,8 @@
 	var/hitscan = FALSE		//Whether this is hitscan. If it is, speed is basically ignored.
 	var/list/beam_segments	//assoc list of datum/point or datum/point/vector, start = end. Used for hitscan effect generation.
 	var/datum/point/beam_index
+	/// Used in generate_hitscan_tracers to determine which "cycle" we're on.
+	var/hitscan_effect_generation = 0
 	var/tracer_type
 	var/muzzle_type
 	var/impact_type
@@ -89,10 +91,10 @@
 	var/decayedRange			//stores original range
 	var/reflect_range_decrease = 5			//amount of original range that falls off when reflecting, so it doesn't go forever
 	var/is_reflectable = FALSE // Can it be reflected or not?
-	
+
 	/// factor to multiply by for zone accuracy percent.
 	var/zone_accuracy_factor = 1
-	
+
 		//Effects
 	var/stun = 0
 	var/knockdown = 0
@@ -222,7 +224,7 @@
 
 /obj/item/projectile/proc/vol_by_damage()
 	if(src.damage)
-		return CLAMP((src.damage) * 0.67, 30, 100)// Multiply projectile damage by 0.67, then CLAMP the value between 30 and 100
+		return clamp((src.damage) * 0.67, 30, 100)// Multiply projectile damage by 0.67, then CLAMP the value between 30 and 100
 	else
 		return 50 //if the projectile doesn't do damage, play its hitsound at 50% volume
 
@@ -253,7 +255,7 @@
 		def_zone = ran_zone(def_zone, max(100-(7*distance), 5) * zone_accuracy_factor) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
 
 	if(isturf(A) && hitsound_wall)
-		var/volume = CLAMP(vol_by_damage() + 20, 0, 100)
+		var/volume = clamp(vol_by_damage() + 20, 0, 100)
 		if(suppressed)
 			volume = 5
 		playsound(loc, hitsound_wall, volume, 1, -1)
@@ -390,7 +392,7 @@
 			stack_trace("WARNING: Projectile [type] deleted due to being unable to resolve a target after angle was null!")
 			qdel(src)
 			return
-		var/turf/target = locate(CLAMP(starting + xo, 1, world.maxx), CLAMP(starting + yo, 1, world.maxy), starting.z)
+		var/turf/target = locate(clamp(starting + xo, 1, world.maxx), clamp(starting + yo, 1, world.maxy), starting.z)
 		setAngle(Get_Angle(src, target))
 	original_angle = Angle
 	if(!nondirectional_sprite)
@@ -523,10 +525,10 @@
 	if(!homing_target)
 		return FALSE
 	var/datum/point/PT = RETURN_PRECISE_POINT(homing_target)
-	PT.x += CLAMP(homing_offset_x, 1, world.maxx)
-	PT.y += CLAMP(homing_offset_y, 1, world.maxy)
+	PT.x += clamp(homing_offset_x, 1, world.maxx)
+	PT.y += clamp(homing_offset_y, 1, world.maxy)
 	var/angle = closer_angle_difference(Angle, angle_between_points(RETURN_PRECISE_POINT(src), PT))
-	setAngle(Angle + CLAMP(angle, -homing_turn_speed, homing_turn_speed))
+	setAngle(Angle + clamp(angle, -homing_turn_speed, homing_turn_speed))
 
 /obj/item/projectile/proc/set_homing_target(atom/A)
 	if(!A || (!isturf(A) && !isturf(A.loc)))
@@ -620,7 +622,7 @@
 
 		var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
 		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
-		angle = ATAN2(y - oy, x - ox)
+		angle = ATAN2(y - oy, x - ox) // Skyrat edit -- 512 compatibility
 	return list(angle, p_x, p_y)
 
 /obj/item/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
@@ -656,18 +658,20 @@
 	if(trajectory && beam_index)
 		var/datum/point/pcache = trajectory.copy_to()
 		beam_segments[beam_index] = pcache
-	generate_hitscan_tracers(null, null, impacting)
+	generate_hitscan_tracers(null, null, impacting, hitscan_effect_generation++)
 
-/obj/item/projectile/proc/generate_hitscan_tracers(cleanup = TRUE, duration = 3, impacting = TRUE)
+/obj/item/projectile/proc/generate_hitscan_tracers(cleanup = TRUE, duration = 3, impacting = TRUE, generation)
 	if(!length(beam_segments))
 		return
+	. = list()
 	if(tracer_type)
-		var/tempref = REF(src)
+		var/list/turfs = list()
 		for(var/datum/point/p in beam_segments)
-			generate_tracer_between_points(p, beam_segments[p], tracer_type, color, duration, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity, tempref)
+			. += generate_tracer_between_points(p, beam_segments[p], tracer_type, color, duration, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity, turfs)
 	if(muzzle_type && duration > 0)
 		var/datum/point/p = beam_segments[1]
 		var/atom/movable/thing = new muzzle_type
+		. += thing
 		p.move_atom_to_src(thing)
 		var/matrix/M = new
 		M.Turn(original_angle)
@@ -678,6 +682,7 @@
 	if(impacting && impact_type && duration > 0)
 		var/datum/point/p = beam_segments[beam_segments[beam_segments.len]]
 		var/atom/movable/thing = new impact_type
+		. += thing
 		p.move_atom_to_src(thing)
 		var/matrix/M = new
 		M.Turn(Angle)
@@ -690,3 +695,9 @@
 
 /obj/item/projectile/experience_pressure_difference()
 	return
+
+/////// MISC HELPERS ////////
+/// Is this atom reflectable with ""standardized"" reflection methods like you know eshields and deswords and similar
+/proc/is_energy_reflectable_projectile(atom/A)
+	var/obj/item/projectile/P = A
+	return istype(P) && P.is_reflectable

@@ -87,7 +87,7 @@
 	. = ..()
 	. += "<span class='notice'>Alt-click to change firing modes.</span>"
 
-/obj/item/gun/energy/pumpaction/worn_overlays(isinhands, icon_file, style_flags = NONE)	//ammo counter for inhands
+/obj/item/gun/energy/pumpaction/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)	//ammo counter for inhands
 	. = ..()
 	var/ratio = CEILING((cell.charge / cell.maxcharge) * charge_sections, 1)
 	var/obj/item/ammo_casing/energy/shot = ammo_type[current_firemode_index]
@@ -192,6 +192,8 @@
 	stamina = 18
 	stutter = 5
 	jitter = 20
+	strong_tase = FALSE
+	tase_duration = 0
 	hitsound = 'sound/weapons/taserhit.ogg'
 	range = 3
 	strong_tase = FALSE

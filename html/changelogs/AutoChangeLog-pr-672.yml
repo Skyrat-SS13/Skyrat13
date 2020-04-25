@@ -1,9 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Crucible sword as enraged bubblegum loot"
-  - imageadd: "New (good) icon and (somewhat good) inhand icons for the super shotgun you get from bubble boy. Icons for crucible (except inhands because i'm fucking tired, currently uses spellblade as a placeholder i just cant be bothered man)."
-  - balance: "Only enraged bubblegum will drop the super shotgun"
-  - balance: "Super shotgun now works like a normal double barrel, but with a hook firemode like in Doom Eternal. (It takes you to the target instead of taking the target to you, differently from the meat hook lavaland item)."
-  - bugfix: "A bit of fucking around with regen core code and megafauna to fix some bugs"
-  - bugfix: "Shambling miners and shambling miner tendrils now spawn in lavaland"

@@ -1,4 +1,0 @@
-author: "Anonymous"
-delete-after: True
-changes: 
-  - bugfix: "Fixes Vore pref on examine taking the value from Non-con pref instead of its own."

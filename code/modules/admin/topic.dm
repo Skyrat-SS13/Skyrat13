@@ -630,7 +630,138 @@
 					to_chat(M, "<span class='danger'>No ban appeals URL has been set.</span>")
 			if("No")
 				return
-	
+
+	// SKYRAT ADDITION -- BEGIN
+	else if(href_list["collarban"])
+		var/mob/M = locate(href_list["collarban"])
+		if(!ismob(M))
+			to_chat(usr, "This can only be used on instances of type /mob")
+			return
+		if(!M.ckey)	//sanity
+			to_chat(usr, "This mob has no ckey")
+			return
+		if(!check_rights(R_BAN))
+			return
+		if(jobban_isbanned(M, COLLARBAN || LESSERCOLLARBAN))
+			var/typeofcollar = null
+			var/collarban = null
+			if(jobban_isbanned(M, COLLARBAN))
+				typeofcollar = "collar"
+				collarban = COLLARBAN
+			else
+				typeofcollar = "lesser collar"
+				collarban = LESSERCOLLARBAN
+			switch(alert("Remove Collar ban?","Please Confirm","Yes","Temporarily", "No"))
+				if("Yes")
+					ban_unban_log_save("[key_name(usr)] removed [key_name(M)]'s collar ban.")
+					log_admin_private("[key_name(usr)] removed [key_name(M)]'s collar ban.")
+					DB_ban_unban(M.ckey, BANTYPE_ANY_JOB, collarban)
+					if(M.client)
+						jobban_buildcache(M.client)
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] removed [key_name_admin(M)]'s [typeofcollar] ban.</span>")
+					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has removed your [typeofcollar] ban.</BIG></span>")
+					if(ishuman(M))
+						var/mob/living/carbon/human/C = M
+						addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
+				if("Temporarily")
+					if(!ishuman(M))
+						return
+					var/mob/living/carbon/human/C = M
+					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
+					log_admin_private("[key_name(usr)] temporarily removed [key_name(M)]'s collar ban.")
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] temporarily removed [key_name_admin(M)]'s [typeofcollar] ban.</span>")
+					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has temporarily removed your [typeofcollar] ban.</BIG></span>")
+				if("No")
+					return
+
+		else switch(alert("Temporary Collar ban?",,"Yes","No"))
+			if("Yes")
+				var/mins = input(usr,"How long (in minutes)?","Collar Ban time",1440) as num|null
+				if(mins <= 0)
+					to_chat(usr, "<span class='danger'>[mins] is not a valid duration.</span>")
+					return
+				if(!ishuman(M))
+					return
+				var/reason = null
+				var/severity = null
+				var/type = null
+				if(alert("What type of collar ban?",,"Lesser","Normal") == "Lesser")
+					type = LESSERCOLLARBAN
+				else
+					type = COLLARBAN
+				if(alert("Do you want to note them?",,"Yes","No") == "Yes")
+					reason = input(usr,"Please State Reason.","Reason") as message|null
+					if(!reason)
+						return
+					severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
+					if(!severity)
+						return
+				if(type == COLLARBAN)
+					if(!DB_ban_record(BANTYPE_JOB_TEMP, M, mins, reason, COLLARBAN))
+						to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
+						return
+					if(M.client)
+						jobban_buildcache(M.client)
+					create_message("note", M.key, null, "Temporarily Collar banned for [mins]: [reason]", null, null, 0, 0, null, 0, severity)
+					ban_unban_log_save("[key_name(usr)] temp-collarbanned [key_name(M)][mins] minutes. Reason: [reason]")
+					log_admin_private("[key_name(usr)] temp-collarbanned [key_name(M)] for [mins] minutes. Reason: [reason]")
+					var/mob/living/carbon/human/C = M
+					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
+					to_chat(M, "<span class='boldannounce'><BIG>You have been temporarily collar-banned by [usr.client.key].</BIG></span>")
+					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+				else
+					if(!DB_ban_record(BANTYPE_JOB_TEMP, M, mins, reason, LESSERCOLLARBAN))
+						to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
+						return
+					if(M.client)
+						jobban_buildcache(M.client)
+					create_message("note", M.key, null, "Temporarily Lesser Collar banned for [mins]: [reason]", null, null, 0, 0, null, 0, severity)
+					ban_unban_log_save("[key_name(usr)] temp-lesser-collarbanned [key_name(M)] for [mins] minutes. Reason: [reason]")
+					log_admin_private("[key_name(usr)] temp-lesser-collarbanned [key_name(M)] for [mins] minutes. Reason: [reason]")
+					var/mob/living/carbon/human/C = M
+					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
+					to_chat(M, "<span class='boldannounce'><BIG>You have been temporarily lessercollar-banned by [usr.client.key].</BIG></span>")
+					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+			if("No")
+				var/type
+				if(alert("What type of collar ban?",,"Lesser","Normal") == "Lesser")
+					type = LESSERCOLLARBAN
+				else
+					type = COLLARBAN
+				var/reason = input(usr,"Please State Reason.","Reason") as message|null
+				if(!reason)
+					return
+				var/severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
+				if(!severity)
+					return
+				if(!DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, type))
+					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
+					return
+				if(M.client)
+					jobban_buildcache(M.client)
+				if(ishuman(M))
+					var/mob/living/carbon/human/C = M
+					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
+				if(type == COLLARBAN)
+					if(M.client)
+						jobban_buildcache(M.client)
+					create_message("note", M.key, null, "Permanently Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] permanently lesser-collarbanned [key_name_admin(M)].</span>")
+					ban_unban_log_save("[key_name(usr)] permanently collarbanned [key_name(M)]. Reason: [reason]")
+					log_admin_private("[key_name(usr)] permanently collarbanned [key_name(M)]. Reason: [reason]")
+					to_chat(M, "<span class='boldannounce'><BIG>You have been permanently collarbanned by [usr.client.key].</BIG></span>")
+					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+				else
+					if(M.client)
+						jobban_buildcache(M.client)
+					create_message("note", M.key, null, "Permanently Lesser Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] permanently lesser-collarbanned [key_name_admin(M)].</span>")
+					ban_unban_log_save("[key_name(usr)] permanently lesser-collarbanned [key_name(M)]. Reason: [reason]")
+					log_admin_private("[key_name(usr)] permanently lesser-collarbanned [key_name(M)]. Reason: [reason]")
+					to_chat(M, "<span class='boldannounce'><BIG>You have been permanently lesser-collarbanned by [usr.client.key].</BIG></span>")
+					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+	// SKYRAT ADDITION -- END
+
 	else if(href_list["jobban2"])
 		if(!check_rights(R_BAN))
 			return
@@ -1732,9 +1863,8 @@
 		var/mob/M = locate(href_list["makeeligible"])
 		if(!ismob(M))
 			to_chat(usr, "this can only be used on instances of type /mob.")
-		var/datum/element/ghost_role_eligibility/eli = SSdcs.GetElement(list(/datum/element/ghost_role_eligibility))
-		if(M.ckey in eli.timeouts)
-			eli.timeouts -= M.ckey
+		if(M.ckey in GLOB.client_ghost_timeouts)
+			GLOB.client_ghost_timeouts -= M.ckey
 
 	else if(href_list["sendtoprison"])
 		if(!check_rights(R_ADMIN))
@@ -1880,7 +2010,7 @@
 
 		if(ishuman(L))
 			var/mob/living/carbon/human/observer = L
-			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), SLOT_W_UNIFORM)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit/black(observer), SLOT_W_UNIFORM)
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/sneakers/black(observer), SLOT_SHOES)
 		L.Unconscious(100)
 		sleep(5)
@@ -2259,6 +2389,7 @@
 			to_chat(usr, "This can only be used on instances of type /mob.")
 			return
 
+		SSlogging.update_logs() //SKYRAT CHANGE
 		show_individual_logging_panel(M, href_list["log_src"], href_list["log_type"])
 	else if(href_list["languagemenu"])
 		if(!check_rights(R_ADMIN))
@@ -2364,7 +2495,7 @@
 			return
 
 		var/list/offset = splittext(href_list["offset"],",")
-		var/number = CLAMP(text2num(href_list["object_count"]), 1, 100)
+		var/number = clamp(text2num(href_list["object_count"]), 1, 100)
 		var/X = offset.len > 0 ? text2num(offset[1]) : 0
 		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
 		var/Z = offset.len > 2 ? text2num(offset[3]) : 0

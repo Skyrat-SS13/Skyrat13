@@ -205,7 +205,7 @@
 	desc = "Need some meat? With this do-it-yourself kit you'll be swimming in it! Contains a monkey cube, an IV drip, and some cryoxadone!"
 	cost = 2150
 	contraband = TRUE
-	contains = list(/obj/item/reagent_containers/food/snacks/monkeycube,
+	contains = list(/obj/item/reagent_containers/food/snacks/cube/monkey,
 					/obj/item/restraints/handcuffs/cable,
 					/obj/machinery/iv_drip,
 					/obj/item/reagent_containers/glass/beaker/cryoxadone,
@@ -380,7 +380,7 @@
 					/obj/item/reagent_containers/food/drinks/bottle/cognac,
 					/obj/item/storage/fancy/cigarettes/cigars/havana,
 					/obj/item/clothing/gloves/color/white,
-					/obj/item/clothing/under/rank/curator,
+					/obj/item/clothing/under/rank/civilian/curator,
 					/obj/item/gun/ballistic/shotgun/lethal)
 	access = ACCESS_ARMORY
 	crate_name = "sporting crate"
