@@ -318,14 +318,14 @@
 	pH = 5
 
 /datum/reagent/medicine/bicaridineplusplus/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(-4*REM, FALSE)
+	M.adjustBruteLoss(-5*REM, FALSE)
 	M.Dizzy(2)
 	M.Jitter(2)
 	..()
 	. = 1
 
 /datum/reagent/medicine/bicaridineplusplus/overdose_process(mob/living/M)
-	M.adjustBruteLoss(4*REM, FALSE)
+	M.adjustBruteLoss(5*REM, FALSE)
 	M.Dizzy(5)
 	M.Jitter(5)
 	..()
@@ -340,14 +340,14 @@
 	pH = 9
 
 /datum/reagent/medicine/kelotaneplusplus/on_mob_life(mob/living/carbon/M)
-	M.adjustFireLoss(-4*REM, FALSE)
+	M.adjustFireLoss(-5*REM, FALSE)
 	M.Dizzy(2)
 	M.Jitter(2)
 	..()
 	. = 1
 
 /datum/reagent/medicine/kelotaneplusplus/overdose_process(mob/living/M)
-	M.adjustFireLoss(4*REM, FALSE)
+	M.adjustFireLoss(5*REM, FALSE)
 	M.Dizzy(5)
 	M.Jitter(5)
 	..()
@@ -363,7 +363,7 @@
 	pH = 10
 
 /datum/reagent/medicine/antitoxinplusplus/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(-4*REM, FALSE)
+	M.adjustToxLoss(-5*REM, FALSE)
 	for(var/datum/reagent/toxin/R in M.reagents.reagent_list)
 		M.reagents.remove_reagent(R.type,4)
 	M.Dizzy(2)
@@ -372,7 +372,7 @@
 	. = 1
 
 /datum/reagent/medicine/antitoxinplusplus/overdose_process(mob/living/M)
-	M.adjustToxLoss(4*REM, FALSE)
+	M.adjustToxLoss(5*REM, FALSE)
 	M.Dizzy(5)
 	M.Jitter(5)
 	..()
@@ -388,20 +388,20 @@
 
 /datum/reagent/medicine/tricordrazineplusplus/on_mob_life(mob/living/carbon/M)
 	if(prob(90))
-		M.adjustBruteLoss(-4*REM, FALSE)
-		M.adjustFireLoss(-4*REM, FALSE)
-		M.adjustOxyLoss(-4*REM, FALSE)
-		M.adjustToxLoss(-4*REM, FALSE)
+		M.adjustBruteLoss(-3*REM, FALSE)
+		M.adjustFireLoss(-3*REM, FALSE)
+		M.adjustOxyLoss(-3*REM, FALSE)
+		M.adjustToxLoss(-3*REM, FALSE)
 		. = 1
 	M.Dizzy(2)
 	M.Jitter(2)
 	..()
 
 /datum/reagent/medicine/tricordrazineplusplus/overdose_process(mob/living/M)
-	M.adjustToxLoss(4*REM, FALSE)
-	M.adjustOxyLoss(4*REM, FALSE)
-	M.adjustBruteLoss(4*REM, FALSE)
-	M.adjustFireLoss(4*REM, FALSE)
+	M.adjustToxLoss(3*REM, FALSE)
+	M.adjustOxyLoss(3*REM, FALSE)
+	M.adjustBruteLoss(3*REM, FALSE)
+	M.adjustFireLoss(3*REM, FALSE)
 	M.Dizzy(5)
 	M.Jitter(5)
 	..()
