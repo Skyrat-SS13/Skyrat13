@@ -37,7 +37,7 @@
 					if (thisamount && thisamount <= toxTolerance)
 						C.reagents.remove_reagent(T.type, 1)
 					else
-						damage += (thisamount*toxLethality)
+						damage += (thisamount*toxLethality*T.toxpwr) //SKYRAT CHANGE - makes livers respect toxin power, as a lot of toxins should be harmless, and some extra deadly
 
 			//metabolize reagents
 			C.reagents.metabolize(C, can_overdose=TRUE)

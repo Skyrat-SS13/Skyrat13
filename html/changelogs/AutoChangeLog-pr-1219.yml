@@ -1,5 +1,0 @@
-author: "BurgerBB"
-delete-after: True
-changes: 
-  - rscadd: "Adds new spawners to maintenance that is meant to replace barricades."
-  - tweak: "Changed the double  girder/barricade to just simple door barricades."

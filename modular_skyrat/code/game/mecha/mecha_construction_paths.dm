@@ -339,6 +339,7 @@
 				user.visible_message("[user] welds the titanium plates to [parent].", "<span class='notice'>You weld the titanium plates to [parent].</span>")
 			else
 				user.visible_message("[user] wrenches off the titanium armor plates on [parent].", "<span class='notice'>You wrench off the titanium armor plates on [parent]</span>")
+	return TRUE
 
 //Power armor: now actually built!
 /datum/component/construction/unordered/mecha_chassis/powerarmor

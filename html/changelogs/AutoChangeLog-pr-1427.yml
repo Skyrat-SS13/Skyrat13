@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "conveyor switch is now weight_class_normal"
-  - tweak: "nsfw organs are now weight_class_small"

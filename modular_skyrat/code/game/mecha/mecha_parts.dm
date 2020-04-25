@@ -84,6 +84,12 @@
 	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
 	icon_state = "clarke_r_arm"
 
+//Killdozer
+/obj/item/mecha_parts/chassis/killdozer
+	name = "\improper Killdozer chassis"
+	desc = "Sometimes... reasonable men must do unreasonable things."
+	construct_type = /datum/component/construction/unordered/mecha_chassis/killdozer
+
 //Circuitboards
 /obj/item/circuitboard/mecha/clarke/peripherals
 	name = "Clarke Peripherals Control module (Exosuit Board)"
