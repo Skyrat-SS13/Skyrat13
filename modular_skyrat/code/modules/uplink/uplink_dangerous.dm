@@ -20,3 +20,21 @@
 	item = /obj/item/melee/cleric_mace/molagbal
 	cost = 12
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/dangerous/morphcube
+	name = "Morph Cube"
+	desc = "Gives you the ability to shapeshift into the currrent scanned animal on the cube."
+	item = /obj/item/morphcube
+	cost = 18
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/dangerous/cxneb
+	name = "Dragon's Tooth Non-Eutactic Blade"
+	desc = "An illegal modification of a weapon that is functionally identical to the energy sword, \
+			the Non-Eutactic Blade (NEB) forges a hardlight blade on-demand, \
+	 		generating an extremely sharp, unbreakable edge that is guaranteed to satisfy your every need. \
+	 		This particular model has a polychromic hardlight generator, allowing you to murder in style! \
+	 		The illegal modifications bring this weapon up to par with the classic energy sword, and also gives it the energy sword's distinctive sounds."
+	item = /obj/item/melee/transforming/energy/sword/cx/traitor
+	cost = 8
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)

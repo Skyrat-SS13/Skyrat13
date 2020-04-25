@@ -8,7 +8,7 @@
 	icon_state = "cparmor"
 	item_state = "cparmor"
 	blood_overlay_type = "armor"
-	mutantrace_variation = STYLE_DIGITIGRADE
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 
 //infiltrator suit buff
 /obj/item/clothing/suit/armor/vest/infiltrator

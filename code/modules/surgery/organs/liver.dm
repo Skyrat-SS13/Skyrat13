@@ -37,7 +37,7 @@
 					if (thisamount && thisamount <= toxTolerance)
 						C.reagents.remove_reagent(T.type, 1)
 					else
-						damage += (thisamount*toxLethality)
+						damage += (thisamount*toxLethality*T.toxpwr) //SKYRAT CHANGE - makes livers respect toxin power, as a lot of toxins should be harmless, and some extra deadly
 
 			//metabolize reagents
 			C.reagents.metabolize(C, can_overdose=TRUE)
@@ -52,7 +52,7 @@
 
 /obj/item/organ/liver/applyOrganDamage(d, maximum = maxHealth)
 	. = ..()
-	if(!.)
+	if(!. || QDELETED(owner))
 		return
 	if(damage >= high_threshold)
 		var/move_calc = 1+((round(damage) - high_threshold)/(high_threshold/3))
