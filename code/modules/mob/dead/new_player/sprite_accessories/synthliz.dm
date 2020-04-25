@@ -6,6 +6,20 @@
 	name = "Synthetic Lizard - Snout"
 	icon_state = "synthliz_basic"
 
+/datum/sprite_accessory/mam_snouts/synthliz_thick
+	recommended_species = list("synthliz")
+	icon = 'modular_citadel/icons/mob/synthliz_snouts.dmi'
+	color_src = MUTCOLORS
+	name = "Synthetic Lizard - Snout Thick"
+	icon_state = "synthliz_thick"
+
+/datum/sprite_accessory/mam_snouts/synthliz_long
+	recommended_species = list("synthliz")
+	icon = 'modular_citadel/icons/mob/synthliz_snouts.dmi'
+	color_src = MUTCOLORS
+	name = "Synthetic Lizard - Snout Long"
+	icon_state = "synthliz_long"
+
 /datum/sprite_accessory/mam_snouts/synthliz/synthliz_under
 	icon = 'modular_citadel/icons/mob/synthliz_snouts.dmi'
 	color_src = MATRIXED
@@ -148,3 +162,8 @@
 /datum/sprite_accessory/taur/synthliz/wolf/inv
 	name = "Virgo - Synthetic Wolf (Inverted)"
 	icon_state = "synthwolfinv"
+
+/datum/sprite_accessory/taur/synthliz/synthnaga
+	name = "Synth Naga "
+	icon_state = "synthnaga"
+	taur_mode = STYLE_SNEK_TAURIC
