@@ -1,8 +1,9 @@
 //Dunmer (Yeah, those guys that call you fetcher).
 /datum/species/human/dunmer
-	name = "Ashborn" //renamed them since Xyel asked me to
+	name = "Ashlander" //renamed them since Xyel asked me to
 	id = "dunmer"
 	icon_limbs = 'modular_skyrat/icons/mob/dunmer_parts.dmi'
+	use_skintones = 0
 	limbs_id = "dunmer"
 	hair_color = "202020"
 	fixed_mut_color = "A0A0A0"
