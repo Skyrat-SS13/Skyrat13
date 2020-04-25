@@ -18,10 +18,8 @@
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
-	var/obj/item/organ/tongue/faketongue //tongue we use when disguised to handle speech
 	var/actualhealth = 100 //value we calculate to assume disguise and etc
 	//Same organs as an IPC basically, to share functionality.
-	mutanttongue = /obj/item/organ/tongue/robot/ipc
 	mutant_heart = /obj/item/organ/heart/ipc
 	mutantlungs = /obj/item/organ/lungs/ipc
 	mutantliver = /obj/item/organ/liver/ipc
@@ -53,10 +51,6 @@
 		screamsounds = S.screamsounds.Copy()
 		femalescreamsounds = S.femalescreamsounds.Copy()
 		isdisguised = TRUE
-		if((S.mutanttongue && !faketongue) || !istype(faketongue, S.mutanttongue))
-			if(faketongue)
-				qdel(faketongue)
-			faketongue = new S.mutanttongue
 		fake_species = new S.type
 	else
 		name = initial(name)
@@ -110,10 +104,10 @@
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
-		if(faketongue)
-			if(isdisguised)
-				return faketongue.handle_speech(source, speech_args) //if we're disguised we use our fake tongue
-	return mutanttongue.handle_speech(source, speech_args)
+		if(isdisguised)
+			return
+	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
+	return
 
 /datum/species/synth/proc/unassume_disguise(mob/living/carbon/human/H)
 	name = initial(name)
