@@ -319,7 +319,6 @@
 	"Explorer" = "hardsuit0-explorer",
 	)
 
-
 /obj/item/clothing/suit/space/hardsuit/mining
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 75)
 	unique_reskin_icons = list(
@@ -338,6 +337,7 @@
 	"Default" = "hardsuit-mining",
 	"Explorer" = "hardsuit-explorer"
 	)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/gun/energy/plasmacutter)
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)
