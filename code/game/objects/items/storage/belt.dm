@@ -65,7 +65,7 @@
 		/obj/item/clothing/gloves,
 		/obj/item/holosign_creator,
 		/obj/item/forcefield_projector,
-		/obj/item/assembly/signaler
+		/obj/item/assembly/signaler,
 		/obj/item/clothing/head/welding
 		))
 	STR.can_hold = can_hold
