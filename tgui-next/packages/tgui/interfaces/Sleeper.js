@@ -116,7 +116,7 @@ export const Sleeper = props => {
                         good: [75, Infinity],
                         average: [50, 74],
                         bad: [-Infinity, 49],
-                      }},
+                      }}
                       width = "120px",
                       minHeight = "260px">
                       <AnimatedNumber value={organ.healthpercentage} />
