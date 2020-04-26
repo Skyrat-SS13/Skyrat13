@@ -3447,6 +3447,7 @@
 #include "modular_skyrat\code\game\objects\items.dm"
 #include "modular_skyrat\code\game\objects\obj.dm"
 #include "modular_skyrat\code\game\objects\effects\landmarks.dm"
+#include "modular_skyrat\code\game\objects\effects\decals\cleanable\misc.dm"
 #include "modular_skyrat\code\game\objects\effects\spawners\blocking_spawner.dm"
 #include "modular_skyrat\code\game\objects\items\AI_modules.dm"
 #include "modular_skyrat\code\game\objects\items\BSRPD.dm"
