@@ -57037,10 +57037,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"kEW" = (
-/obj/machinery/chem_dispenser/upgradeablemutagen,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "kFm" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -92255,7 +92251,7 @@ aSG
 aTW
 aUW
 aRL
-kEW
+aXS
 aYO
 aXS
 aZX

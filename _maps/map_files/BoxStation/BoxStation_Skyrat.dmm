@@ -17784,11 +17784,7 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "aMG" = (
-/obj/structure/closet/crate/hydroponics,
-/obj/item/shovel/spade,
-/obj/item/wrench,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/wirecutters,
+/obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aMH" = (
@@ -17800,7 +17796,6 @@
 /area/security/prison)
 "aMI" = (
 /obj/machinery/light/small,
-/obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aMJ" = (
@@ -20155,7 +20150,11 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aST" = (
-/obj/machinery/chem_dispenser/upgradeablemutagen,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/shovel/spade,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/wrench,
+/obj/item/wirecutters,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aSU" = (

@@ -84441,11 +84441,6 @@
 "krD" = (
 /turf/closed/wall,
 /area/science/circuit)
-"kwI" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/chem_dispenser/upgradeablemutagen,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "kxk" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
@@ -120826,7 +120821,7 @@ bOW
 bQH
 bRV
 bST
-kwI
+bUh
 bVx
 bWS
 bYi

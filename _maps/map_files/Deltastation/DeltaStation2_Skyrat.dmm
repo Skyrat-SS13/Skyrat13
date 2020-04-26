@@ -29892,12 +29892,8 @@
 /turf/open/floor/plasteel,
 /area/maintenance/port/fore)
 "beM" = (
-/obj/structure/closet/crate/hydroponics,
-/obj/item/cultivator,
-/obj/item/hatchet,
-/obj/item/wirecutters,
-/obj/item/shovel/spade,
 /obj/effect/turf_decal/bot,
+/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "beN" = (
@@ -38194,7 +38190,11 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/chem_dispenser/upgradeablemutagen,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/cultivator,
+/obj/item/hatchet,
+/obj/item/wirecutters,
+/obj/item/shovel/spade,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bsz" = (
