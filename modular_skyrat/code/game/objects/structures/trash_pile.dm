@@ -44,7 +44,7 @@
 		var/mob/living/carbon/human/H = user
 		H.visible_message("[user] searches through \the [src].","<span class='notice'>You search through \the [src].</span>")
 		//Do the searching
-		if(do_after(user,rand(4 SECONDS,6 SECONDS),src))
+		if(do_after(user,rand(4 SECONDS,6 SECONDS),target=src))
 			//You already searched this one bruh
 			if(user.ckey in searchedby)
 				to_chat(H,"<span class='warning'>There's nothing else for you in \the [src]!</span>")
