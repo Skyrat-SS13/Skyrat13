@@ -107,7 +107,9 @@
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
-		if(isdisguised)
+		var/mob/living/carbon/human/H = source
+		actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
+		if(isdisguised || (actualhealth >= 45))
 			if(faketongue)
 				return faketongue.handle_speech(source, speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
