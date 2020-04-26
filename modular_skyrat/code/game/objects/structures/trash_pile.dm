@@ -77,7 +77,7 @@
 	if(!path) //Tapped out, reallocate?
 		for(var/P in allocated_beta)
 			var/obj/item/I = allocated_beta[P]
-			if(QDELETED(I) || istype(I.loc,/obj/machinery/computer/cryopod))
+			if(QDELETED(I))
 				allocated_beta -= P
 				path = P
 				break
