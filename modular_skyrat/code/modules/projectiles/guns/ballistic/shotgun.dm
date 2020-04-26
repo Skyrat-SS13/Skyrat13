@@ -50,6 +50,7 @@
 	name = "cane-gun internal magazine"
 	max_ammo = 3
 
+//upgraded double barrel
 /obj/item/gun/ballistic/revolver/doublebarrel/upgraded
 	name = "upgraded double barreled shotgun"
 	desc = "Two times the fun, at once."
