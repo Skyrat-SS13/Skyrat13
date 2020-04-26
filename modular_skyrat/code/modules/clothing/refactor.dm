@@ -260,6 +260,8 @@
 	"Tactical" = "tactical_beret",
 	"Green" = "green_beret"
 	)
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
+
 
 /obj/item/clothing/head/beret/sec/navywarden
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50)
