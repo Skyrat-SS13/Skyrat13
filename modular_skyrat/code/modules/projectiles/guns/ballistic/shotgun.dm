@@ -33,7 +33,6 @@
 /obj/item/gun/ballistic/shotgun/canegun/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_HANDS)
-		var/mob/living/carbon/human/H = user
 		if(!current_owner && user)
 			current_owner = user
 		if(current_owner && current_owner != user)
