@@ -427,13 +427,8 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 	color = "#FFEBEB"
 	pH = 11.5
 	metabolization_rate = 5 * REAGENTS_METABOLISM
-<<<<<<< HEAD
 	//overdose_threshold = 40 Skyrat modular edit
-	value = 6
-=======
-	overdose_threshold = 40
 	value = REAGENT_VALUE_COMMON
->>>>>>> a533906f73... Merge pull request #11992 from Ghommie/Ghommie-cit703
 
 /* SKYRAT MODULAR EDIT
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
@@ -883,12 +878,9 @@ datum/reagent/medicine/styptic_powder/overdose_start(mob/living/M)
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "magnets"
 	pH = 0
-<<<<<<< HEAD
-/* SKYRAT EDIT: op pls nerf, see modular file of medicine_reagents
-=======
 	value = REAGENT_VALUE_RARE
-
->>>>>>> a533906f73... Merge pull request #11992 from Ghommie/Ghommie-cit703
+	
+/* SKYRAT EDIT: op pls nerf, see modular file of medicine_reagents
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.stat == DEAD)
 		if(M.suiciding || M.hellbound) //they are never coming back
