@@ -3472,6 +3472,7 @@
 #include "modular_skyrat\code\game\objects\structures\ghost_role_spawners.dm"
 #include "modular_skyrat\code\game\objects\structures\kitchen_spike.dm"
 #include "modular_skyrat\code\game\objects\structures\ladders.dm"
+#include "modular_skyrat\code\game\objects\structures\trash_pile.dm"
 #include "modular_skyrat\code\game\objects\structures\windoor_assembly.dm"
 #include "modular_skyrat\code\game\objects\structures\crates_lockers\closets\bluespace_locker.dm"
 #include "modular_skyrat\code\game\objects\structures\crates_lockers\closets\secure\security.dm"
