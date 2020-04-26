@@ -2,6 +2,12 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("table frame", /obj/structure/table_frame, 2, time = 10, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("scooter frame", /obj/item/scooter_frame, 10, time = 25, one_per_turf = 0), \
+	//SKYRAT EDIT: adds cages to rod recipes
+	new/datum/stack_recipe("cage", /obj/structure/cage, 5, time = 30, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("cage door", /obj/machinery/door/cage, 5, time = 30, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("cage key", /obj/item/cagekey, 1), \
+	new/datum/stack_recipe("hammer and hook", /obj/item/hammerhook, 1), \
+	new/datum/stack_recipe("nail file", /obj/item/nailfile, 1), \
 	))
 
 /obj/item/stack/rods
