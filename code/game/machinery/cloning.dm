@@ -69,7 +69,7 @@
 	for(var/obj/item/stock_parts/manipulator/P in component_parts)
 		speed_coeff += (P.rating / 2)
 	speed_coeff = max(1, speed_coeff)
-	heal_level = CLAMP((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
+	heal_level = clamp((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
 
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.
 //TO-DO: Make the genetics machine accept them.
@@ -379,6 +379,7 @@
 
 	if(grab_ghost_when == CLONER_MATURE_CLONE)
 		mob_occupant.grab_ghost()
+		to_chat(occupant, "<span class='warning'><b>You remember nothing after you've blacked out and you do not remember who or what events killed you, however, you can have faint recollection of what led up to it.</b>") //Skyrat change - reminds you about the blackout policy
 		to_chat(occupant, "<span class='notice'><b>There is a bright flash!</b><br><i>You feel like a new being.</i></span>")
 		mob_occupant.flash_act()
 		if(jobban_isbanned(mob_occupant) && ishuman(mob_occupant))	// SKYRAT ADDITION -- BEGIN
