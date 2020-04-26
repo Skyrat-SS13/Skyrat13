@@ -3424,6 +3424,7 @@
 #include "modular_skyrat\code\game\machinery\computer\arcade\arcade.dm"
 #include "modular_skyrat\code\game\machinery\computer\arcade\minesweeper.dm"
 #include "modular_skyrat\code\game\machinery\doors\brigdoors.dm"
+#include "modular_skyrat\code\game\machinery\doors\cage.dm"
 #include "modular_skyrat\code\game\machinery\pipe\construction.dm"
 #include "modular_skyrat\code\game\mecha\mech_fabricator.dm"
 #include "modular_skyrat\code\game\mecha\mecha_construction_paths.dm"
