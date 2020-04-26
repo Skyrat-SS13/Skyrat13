@@ -18,13 +18,20 @@
 
 /datum/reagent/tranquility/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 
-	if(method == VAPOR)
+	if(method == VAPOR || method == TOUCH)
 		L.apply_status_effect(STATUS_EFFECT_PACIFY, 10 * reac_volume)
 		return
-
-	if(method == INJECT && volume >= 5)
-		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
 
 	if(iscarbon(L) && prob(100 * (volume/15)))
 		var/mob/living/carbon/C = L
 		C.gain_trauma(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_LOBOTOMY)
+
+/datum/reagent/gondolatoxin
+	name = "Gondola Mutation Toxin"
+	description = "An advanced corruptive toxin produced by slimes, but modifed by Gondola juice."
+	color = "#9A6750" // rgb: 19, 188, 94
+	taste_description = "outer peace"
+
+/datum/reagent/gondolatoxin/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	if(method != TOUCH)
+		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
