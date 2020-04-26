@@ -130,10 +130,7 @@ require only minor tweaks.
 #define PLACE_ISOLATED "isolated" //On isolated ruin z level
 //Map type stuff.
 #define MAP_TYPE_STATION "station"
-<<<<<<< HEAD
-=======
 
 //Random z-levels name defines.
 #define AWAY_MISSION_NAME "Away Mission"
 #define VIRT_REALITY_NAME "Virtual Reality"
->>>>>>> 7d688126c8... Merge pull request #12008 from Ghommie/Ghommie-cit707
