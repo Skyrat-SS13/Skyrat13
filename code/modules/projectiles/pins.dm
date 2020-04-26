@@ -241,8 +241,6 @@
 		to_chat(user, "<span class='warning'>The pin beeps, refusing to fire.</span>")
 		return FALSE
 	return TRUE
-<<<<<<< HEAD
-=======
 
 /obj/item/firing_pin/security_level
 	name = "security level firing pin"
@@ -327,4 +325,3 @@
 
 /obj/item/firing_pin/security_level/pin_auth(mob/living/user)
 	return (only_lethals && !(gun.chambered?.harmful)) || ISINRANGE(GLOB.security_level, min_sec_level, max_sec_level)
->>>>>>> 3c52e321e2... Merge pull request #12027 from Citadel-Station-13/kevinz000-patch-4
