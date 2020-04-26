@@ -117,8 +117,8 @@ export const Sleeper = props => {
                         average: [50, 74],
                         bad: [-Infinity, 49],
                       }}
-                      width = "120px",
-                      minHeight = "260px">
+                      width="120px"
+                      minHeight="260px">
                       <AnimatedNumber value={organ.healthpercentage} />
                     </ProgressBar>
                   </LabeledList.Item>
