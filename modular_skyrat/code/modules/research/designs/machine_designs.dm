@@ -1,3 +1,4 @@
+//BS miner
 /datum/design/board/bluespace_miner
 	name = "Machine Design (Bluespace Miner)"
 	desc = "The circuit board for a Bluespace Miner."
@@ -22,3 +23,4 @@
 	build_path = /obj/item/circuitboard/computer/telesci_console
 	category = list("Teleportation Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+

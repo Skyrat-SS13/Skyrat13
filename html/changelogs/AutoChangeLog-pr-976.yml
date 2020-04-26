@@ -1,4 +1,0 @@
-author: "Improvedname"
-delete-after: True
-changes: 
-  - rscadd: "Adds a give command for players to pass items to another."

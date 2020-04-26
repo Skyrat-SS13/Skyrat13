@@ -23,8 +23,11 @@ Borg Shaker
 						/datum/reagent/consumable/ethanol/ale,
 						/datum/reagent/consumable/ethanol/fernet,
 						/datum/reagent/consumable/ethanol/triple_sec,
+						/datum/reagent/consumable/nothing,
+						/datum/reagent/consumable/laughter,
 						/datum/reagent/consumable/ethanol/creme_de_menthe,
 						/datum/reagent/consumable/ethanol/creme_de_cacao,
+						/datum/reagent/consumable/ethanol/creme_de_coconut,
 						/datum/reagent/consumable/ethanol/champagne,
 						/datum/reagent/consumable/ethanol/thirteenloko,
 						/datum/reagent/consumable/ethanol/absinthe,
@@ -48,8 +51,13 @@ Borg Shaker
 						/datum/reagent/consumable/berryjuice,
 						/datum/reagent/consumable/applejuice,
 						/datum/reagent/consumable/peachjuice,
+						/datum/reagent/consumable/strawberryjuice,
+						/datum/reagent/consumable/pineapplejuice,
 						/datum/reagent/consumable/watermelonjuice,
+						/datum/reagent/consumable/parsnipjuice,
 						/datum/reagent/consumable/grapejuice,
+						/datum/reagent/consumable/potato_juice,
+						/datum/reagent/consumable/pumpkinjuice,
 						/datum/reagent/consumable/lemonjuice)
 
 /obj/item/reagent_containers/borghypo/borgshaker/sodashaker
@@ -72,6 +80,7 @@ Borg Shaker
 						/datum/reagent/consumable/buzz_fuzz,
 						/datum/reagent/consumable/grey_bull,
 						/datum/reagent/consumable/cream_soda,
+						/datum/reagent/consumable/sol_dry,
 						/datum/reagent/consumable/tonic,
 						/datum/reagent/consumable/sodawater)
 
@@ -88,6 +97,8 @@ Borg Shaker
 						/datum/reagent/consumable/banana,
 						/datum/reagent/consumable/honey,
 						/datum/reagent/consumable/sugar,
+						/datum/reagent/consumable/vanilla,
+						/datum/reagent/blood/synthetics,
 						/datum/reagent/consumable/capsaicin,
 						/datum/reagent/consumable/coco,
 						/datum/reagent/consumable/menthol,
@@ -98,7 +109,8 @@ Borg Shaker
 						/datum/reagent/consumable/coconutmilk,
 						/datum/reagent/consumable/coffee,
 						/datum/reagent/consumable/tea,
-						/datum/reagent/consumable/lemonade)
+						/datum/reagent/consumable/lemonade,
+						/datum/reagent/water)
 
 /obj/item/reagent_containers/borghypo/borgshaker/hacked
 	name = "cyborg shaker"
@@ -111,6 +123,6 @@ Borg Shaker
 	accepts_reagent_upgrades = FALSE
 	reagent_ids = list(	/datum/reagent/toxin/fakebeer,
 						/datum/reagent/consumable/poisonberryjuice,
-						/datum/reagent/consumable/nothing,
-						/datum/reagent/consumable/laughter,
+						/datum/reagent/toxin/itching_powder,
+						/datum/reagent/toxin/bungotoxin,
 						/datum/reagent/consumable/superlaughter)

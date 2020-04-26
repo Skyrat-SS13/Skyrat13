@@ -65,7 +65,7 @@
 // overridden for special behaviour
 /obj/structure/disposalpipe/proc/transfer(obj/structure/disposalholder/H)
 	return transfer_to_dir(H, nextdir(H))
-
+/* moved to modular
 /obj/structure/disposalpipe/proc/transfer_to_dir(obj/structure/disposalholder/H, nextdir)
 	H.setDir(nextdir)
 	var/turf/T = H.nextloc()
@@ -84,7 +84,7 @@
 	else			// if wasn't a pipe, then they're now in our turf
 		H.forceMove(get_turf(src))
 		return null
-
+*/
 // update the icon_state to reflect hidden status
 /obj/structure/disposalpipe/proc/update()
 	var/turf/T = get_turf(src)

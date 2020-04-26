@@ -7,7 +7,7 @@
 	icon_living = "carp"
 	icon_dead = "carp_dead"
 	icon_gib = "carp_gib"
-	threat = 0.2
+	threat = 0.1
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_chance = 0
 	turns_per_move = 5
@@ -62,6 +62,24 @@
 	maxbodytemp = INFINITY
 	gold_core_spawnable = NO_SPAWN
 	del_on_death = 1
+
+/mob/living/simple_animal/hostile/carp/tigercarp
+	name = "tiger carp"
+	desc = "A rare patterned offshoot of the typical space carp. Reports of significant aggression."
+	icon_state = "tigercarp"
+	icon_living = "tigercarp"
+	icon_dead = "tigercarp_dead"
+	icon_gib = "tigercarp_gib"
+	maxHealth = 50
+	health = 50
+	turns_per_move = 6
+	vision_range = 13
+	aggro_vision_range = 11
+	move_to_delay = 2.8
+	obj_damage = 65
+	melee_damage_lower = 17
+	melee_damage_upper = 17
+	attacktext = "thrashes"
 
 /mob/living/simple_animal/hostile/carp/megacarp
 	icon = 'icons/mob/broadMobs.dmi'

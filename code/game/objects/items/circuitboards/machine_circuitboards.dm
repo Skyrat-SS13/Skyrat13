@@ -35,6 +35,10 @@
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stack/sheet/glass = 1)
 
+/obj/item/circuitboard/machine/autolathe/secure
+	name = "Secure Autolathe (Machine Board)"
+	build_path = /obj/machinery/autolathe/secure
+
 /obj/item/circuitboard/machine/bloodbankgen
 	name = "Blood Bank Generator (Machine Board)"
 	build_path = /obj/machinery/bloodbankgen
@@ -240,7 +244,7 @@
 		/obj/machinery/vending/autodrobe = "AutoDrobe",
 		/obj/machinery/vending/assist = "\improper Vendomat",
 		/obj/machinery/vending/engivend = "\improper Engi-Vend",
-		/obj/machinery/vending/engivend = "\improper YouTool",
+		/obj/machinery/vending/tool = "\improper YouTool",
 		/obj/machinery/vending/sustenance = "\improper Sustenance Vendor",
 		/obj/machinery/vending/dinnerware = "\improper Plasteel Chef's Dinnerware Vendor",
 		/obj/machinery/vending/cart = "\improper PTech",
@@ -304,6 +308,13 @@
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stack/sheet/glass = 1)
+	var/offstation_security_levels = TRUE
+
+/obj/item/circuitboard/machine/mechfab/offstation
+	offstation_security_levels = FALSE
+
+/obj/item/circuitboard/machine/mechfab/rnd_crafted(obj/machinery/rnd/production/P)
+	offstation_security_levels = P.offstation_security_levels
 
 /obj/item/circuitboard/machine/cryo_tube
 	name = "Cryotube (Machine Board)"
@@ -755,6 +766,13 @@
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/reagent_containers/glass/beaker = 2)
+	var/offstation_security_levels = TRUE
+
+/obj/item/circuitboard/machine/circuit_imprinter/offstation
+	offstation_security_levels = FALSE
+
+/obj/item/circuitboard/machine/mechfab/rnd_crafted(obj/machinery/rnd/production/P)
+	offstation_security_levels = P.offstation_security_levels
 
 /obj/item/circuitboard/machine/circuit_imprinter/department
 	name = "Departmental Circuit Imprinter (Machine Board)"
@@ -800,7 +818,7 @@
 	var/new_cloud = input("Set the public nanite chamber's Cloud ID (1-100).", "Cloud ID", cloud_id) as num|null
 	if(new_cloud == null)
 		return
-	cloud_id = CLAMP(round(new_cloud, 1), 1, 100)
+	cloud_id = clamp(round(new_cloud, 1), 1, 100)
 
 /obj/item/circuitboard/machine/public_nanite_chamber/examine(mob/user)
 	. = ..()
@@ -828,6 +846,13 @@
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/reagent_containers/glass/beaker = 2)
+	var/offstation_security_levels = TRUE
+
+/obj/item/circuitboard/machine/protolathe/offstation
+	offstation_security_levels = FALSE
+
+/obj/item/circuitboard/machine/protolathe/rnd_crafted(obj/machinery/rnd/production/P)
+	offstation_security_levels = P.offstation_security_levels
 
 /obj/item/circuitboard/machine/protolathe/department
 	name = "Departmental Protolathe (Machine Board)"

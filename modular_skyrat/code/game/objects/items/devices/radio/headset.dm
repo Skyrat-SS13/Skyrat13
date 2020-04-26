@@ -10,3 +10,13 @@
 	desc = "This is used by the drifters.\nTo access the drifter channel, use :z."
 	icon_state = "headset"
 	keyslot = new /obj/item/encryptionkey/headset_drifter
+
+/obj/item/radio/headset/heads/blueshield
+	name = "\proper the blueshield's headset"
+	icon = 'modular_skyrat/icons/obj/radio.dmi'
+	icon_state = "bshield_headset"
+	keyslot = new /obj/item/encryptionkey/heads/blueshield
+
+/obj/item/radio/headset/heads/blueshield/alt
+	icon_state = "bshield_headset_alt"
+	bowman = TRUE

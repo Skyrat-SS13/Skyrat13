@@ -361,7 +361,7 @@ SUBSYSTEM_DEF(vote)
 						picked = S
 					runnable_storytellers[S] *= round(stored_gamemode_votes[initial(S.name)]*100000,1)
 				if(!picked)
-					picked = pickweightAllowZero(runnable_storytellers)
+					picked = pickweight(runnable_storytellers, 0)
 				GLOB.dynamic_storyteller_type = picked
 			if("map")
 				var/datum/map_config/VM = config.maplist[.]
@@ -763,7 +763,7 @@ SUBSYSTEM_DEF(vote)
 		remove_from_client()
 		Remove(owner)
 
-/datum/action/vote/IsAvailable()
+/datum/action/vote/IsAvailable(silent = FALSE)
 	return 1
 
 /datum/action/vote/proc/remove_from_client()

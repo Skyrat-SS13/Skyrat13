@@ -69,7 +69,7 @@
 	for(var/obj/item/stock_parts/manipulator/P in component_parts)
 		speed_coeff += (P.rating / 2)
 	speed_coeff = max(1, speed_coeff)
-	heal_level = CLAMP((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
+	heal_level = clamp((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
 
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.
 //TO-DO: Make the genetics machine accept them.
@@ -144,6 +144,8 @@
 			return FALSE
 		if(clonemind.current.suiciding) // Mind is associated with a body that is suiciding.
 			return FALSE
+		if(AmBloodsucker(clonemind.current)) //If the mind is a bloodsucker
+			return FALSE
 	if(clonemind.active)	//somebody is using that mind
 		if( ckey(clonemind.key)!=ckey )
 			return FALSE
@@ -158,8 +160,6 @@
 		INVOKE_ASYNC(src, .proc/horrifyingsound)
 		mess = TRUE
 		update_icon()
-		return FALSE
-	if(isvamp(clonemind)) //If the mind is a bloodsucker
 		return FALSE
 
 	attempting = TRUE //One at a time!!
@@ -180,6 +180,7 @@
 
 	//Get the clone body ready
 	maim_clone(H)
+	ADD_TRAIT(H, TRAIT_MUTATION_STASIS, CLONING_POD_TRAIT)
 	ADD_TRAIT(H, TRAIT_STABLEHEART, CLONING_POD_TRAIT)
 	ADD_TRAIT(H, TRAIT_STABLELIVER, CLONING_POD_TRAIT)
 	ADD_TRAIT(H, TRAIT_EMOTEMUTE, CLONING_POD_TRAIT)
@@ -369,6 +370,7 @@
 		return
 
 	REMOVE_TRAIT(mob_occupant, TRAIT_STABLEHEART, CLONING_POD_TRAIT)
+	REMOVE_TRAIT(mob_occupant, TRAIT_MUTATION_STASIS, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_STABLELIVER, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_EMOTEMUTE, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_MUTE, CLONING_POD_TRAIT)
@@ -377,6 +379,7 @@
 
 	if(grab_ghost_when == CLONER_MATURE_CLONE)
 		mob_occupant.grab_ghost()
+		to_chat(occupant, "<span class='warning'><b>You remember nothing after you've blacked out and you do not remember who or what events killed you, however, you can have faint recollection of what led up to it.</b>") //Skyrat change - reminds you about the blackout policy
 		to_chat(occupant, "<span class='notice'><b>There is a bright flash!</b><br><i>You feel like a new being.</i></span>")
 		mob_occupant.flash_act()
 		if(jobban_isbanned(mob_occupant) && ishuman(mob_occupant))	// SKYRAT ADDITION -- BEGIN

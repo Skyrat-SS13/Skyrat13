@@ -8,8 +8,8 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	//SKYRAT CHANGES - adds job exp to clown
-	exp_requirements = 1200
+	//SKYRAT CHANGES - adds job exp to clown, requires 100 hours.
+	exp_requirements = 6000
 	exp_type = EXP_TYPE_CREW
 	//END OF SKYRAT CHANGES
 
