@@ -85,12 +85,10 @@ SUBSYSTEM_DEF(mapping)
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
 		createRandomZlevel()
-<<<<<<< HEAD
-=======
+
 	// Pick a random VR level.
 	if(CONFIG_GET(flag/roundstart_vr))
 		createRandomZlevel(VIRT_REALITY_NAME, list(ZTRAIT_AWAY = TRUE, ZTRAIT_VR = TRUE), GLOB.potential_vr_levels)
->>>>>>> 7d688126c8... Merge pull request #12008 from Ghommie/Ghommie-cit707
 
 	// Generate mining ruins
 	loading_ruins = TRUE
