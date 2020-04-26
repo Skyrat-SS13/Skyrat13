@@ -53076,6 +53076,9 @@
 	dir = 1;
 	pixel_y = -22
 	},
+/obj/structure/reflector/double/anchored{
+	dir = 9
+	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "dEU" = (
@@ -60089,9 +60092,6 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "pCo" = (
-/obj/structure/reflector/single/anchored{
-	dir = 6
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -62099,10 +62099,10 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "tlV" = (
-/obj/structure/reflector/double/anchored{
-	dir = 9
+/obj/structure/reflector/single/anchored{
+	dir = 6
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plating,
 /area/engine/engineering)
 "tmA" = (
 /obj/effect/turf_decal/tile/green{
@@ -63244,18 +63244,15 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "vsG" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+	dir = 4;
+	filter_type = "n2"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Research Lab Maintenance";
-	req_one_access_txt = "7;29"
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/engine)
+/turf/open/floor/engine,
+/area/engine/engineering)
 "vsJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -96912,7 +96909,7 @@ jZG
 bpY
 bpY
 bpY
-vsG
+bNZ
 bva
 bva
 bva
@@ -96944,7 +96941,7 @@ bXk
 pCo
 wcs
 wcs
-tlV
+wcs
 eyj
 qkM
 miw
@@ -97198,7 +97195,7 @@ bZA
 cam
 mgz
 jeJ
-cbX
+tlV
 wcs
 wcs
 dEy
@@ -97460,7 +97457,7 @@ oHa
 eWi
 cbX
 jeJ
-vlC
+vsG
 cgx
 qeY
 fyO
