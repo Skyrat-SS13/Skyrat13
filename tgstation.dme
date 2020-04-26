@@ -3439,6 +3439,7 @@
 #include "modular_skyrat\code\game\objects\effects\spawners\blocking_spawner.dm"
 #include "modular_skyrat\code\game\objects\items\AI_modules.dm"
 #include "modular_skyrat\code\game\objects\items\BSRPD.dm"
+#include "modular_skyrat\code\game\objects\items\cageitems.dm"
 #include "modular_skyrat\code\game\objects\items\cards_ids.dm"
 #include "modular_skyrat\code\game\objects\items\hhmirror.dm"
 #include "modular_skyrat\code\game\objects\items\kitchen.dm"
