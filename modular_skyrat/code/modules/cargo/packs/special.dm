@@ -12,10 +12,10 @@
 	crate_name = "USP pistols crate"
 
 /datum/supply_pack/security/armory/diplomacy
-	name = "Deagel pistol Crate"
-	desc = "Got to use bigger gun diplomacy on the graytide? Look no more we got you some really heavy guns. Contains 3 loaded deagles with 3 spare mags, just for you guys."
-	cost = 10000 //Half a null crate for basiclly 3 revolvers you can endless get via xenobio/hydro/mining
-	hidden = true
+	name = "Deagle Pistol Crate"
+	desc = "Need some heavy firepower to quell a rebellion? Then give them some red-hot freedom right to the dome."
+	cost = 10000 //Half a null crate for basiclly 3 revolvers you can endless get via xenobio-hydro-mining
+	hidden = TRUE
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/deagle,
 					/obj/item/gun/ballistic/automatic/pistol/deagle,
 					/obj/item/gun/ballistic/automatic/pistol/deagle,
