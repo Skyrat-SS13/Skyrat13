@@ -14,7 +14,7 @@
 /datum/supply_pack/security/armory/diplomacy
 	name = "Deagel pistol Crate"
 	desc = "Got to use bigger gun diplomacy on the graytide? Look no more we got you some really heavy guns. Contains 3 loaded deagles with 3 spare mags, just for you guys."
-	cost = 7500
+	cost = 10000 //Half a null crate for basiclly 3 revolvers you can endless get via xenobio/hydro/mining
 	hidden = true
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/deagle,
 					/obj/item/gun/ballistic/automatic/pistol/deagle,
