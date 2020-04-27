@@ -1,0 +1,5 @@
+author: "BurgerBB"
+delete-after: True
+changes: 
+  - balance: "Renamed Tranquility to Gondola Essence. It no longer transforms you into a Gondola. Touch and vapor applications cause temporary pacifism. Inject and ingest application causes lobotomy-strength pacifism."
+  - rscadd: "Added Gondola Mutation Toxin. Can be made by injecting Gondola Essence in a black slime core. It gives you the disease that transforms you into a Gondola."
