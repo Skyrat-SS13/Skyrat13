@@ -340,8 +340,9 @@
 			return BODYPART_DISABLED_DAMAGE
 		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)))
 			return BODYPART_NOT_DISABLED
-		if(parent.is_disabled())
-			return parent.is_disabled()
+		if(parent)
+			if(parent.is_disabled())
+				return parent.is_disabled()
 	else
 		return BODYPART_NOT_DISABLED
 

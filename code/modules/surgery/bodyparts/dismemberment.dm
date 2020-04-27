@@ -109,6 +109,7 @@
 		C.updatehealth()
 	if(parent)
 		parent.children -= src
+		parent = null
 
 	for(var/X in C.surgeries) //if we had an ongoing surgery on that limb, we stop it.
 		var/datum/surgery/S = X
