@@ -3700,6 +3700,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"jA" = (
+/obj/structure/fans/tiny/invisible,
+/turf/open/warzonetile,
+/area/centcom/evac)
 "jB" = (
 /obj/structure/noticeboard{
 	dir = 8;
@@ -6417,6 +6421,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
+"oV" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/centcom/evac)
 "oX" = (
 /obj/structure/bookcase/random,
 /obj/machinery/light{
@@ -8250,6 +8261,7 @@
 	name = "CentCom Security";
 	req_access_txt = "101"
 	},
+/obj/structure/fans/tiny/invisible,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "sM" = (
@@ -8462,6 +8474,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
+"tv" = (
+/obj/machinery/light,
+/turf/open/floor/carpet/royalblack,
+/area/centcom/evac)
 "tx" = (
 /obj/structure/table/wood,
 /obj/item/storage/pill_bottle/dice,
@@ -9361,6 +9377,10 @@
 	},
 /turf/open/floor/carpet,
 /area/wizard_station)
+"vp" = (
+/obj/machinery/light,
+/turf/open/floor/carpet/black,
+/area/centcom/evac)
 "vs" = (
 /obj/machinery/vending/hydronutrients,
 /obj/effect/turf_decal/tile/green{
@@ -10809,6 +10829,12 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/grass,
 /area/wizard_station)
+"yM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/evac)
 "yP" = (
 /obj/machinery/light{
 	dir = 4
@@ -15296,6 +15322,9 @@
 	dir = 1;
 	pixel_y = 25
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/centcom/evac)
 "IL" = (
@@ -15686,6 +15715,12 @@
 "JI" = (
 /turf/closed/indestructible/fakeglass,
 /area/tdome/tdomeadmin)
+"JJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/centcom/evac)
 "JK" = (
 /obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
@@ -16902,6 +16937,12 @@
 /obj/machinery/vending/cola/sodie,
 /turf/open/floor/plasteel,
 /area/syndicate_mothership)
+"NW" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/centcom/evac)
 "NX" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chem_dispenser/drinks/beer,
@@ -17791,6 +17832,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/centcom/evac)
 "RW" = (
@@ -17972,6 +18014,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"SK" = (
+/obj/machinery/sleeper,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/centcom/evac)
 "SN" = (
 /obj/structure/mopbucket,
 /obj/item/mop,
@@ -18074,6 +18129,11 @@
 "Td" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Te" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plating,
+/area/centcom/evac)
 "Tf" = (
 /obj/machinery/shower{
 	dir = 8
@@ -18562,6 +18622,10 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/evac)
+"Vr" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/centcom/evac)
 "Vt" = (
 /obj/item/paper/fluff/stations/centcom/disk_memo,
 /obj/structure/noticeboard{
@@ -18648,6 +18712,7 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "VO" = (
+/obj/structure/fans/tiny/invisible,
 /turf/open/pacifytile,
 /area/centcom/evac)
 "VP" = (
@@ -18973,6 +19038,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/structure/fans/tiny/invisible,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "Xl" = (
@@ -19356,6 +19422,12 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/centcom/evac)
+"Zt" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/centcom/evac)
 "Zv" = (
 /obj/machinery/dna_scannernew,
 /obj/effect/turf_decal/tile/blue{
@@ -19397,6 +19469,13 @@
 /obj/effect/landmark/bluespace_locker_origin,
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
+"ZD" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/centcom/evac)
 "ZE" = (
 /obj/structure/sink{
 	dir = 4;
@@ -68059,18 +68138,18 @@ Dc
 Cc
 qx
 ZP
-ZQ
+oV
 ZQ
 td
 ZP
 ZQ
 ZQ
 td
-WK
+Zt
 WK
 qx
 Rf
-Rf
+tv
 qx
 ET
 EU
@@ -68841,9 +68920,9 @@ WK
 WK
 qx
 Rf
-Rf
+tv
 qx
-Hl
+SK
 UX
 xD
 OP
@@ -69352,7 +69431,7 @@ Zj
 Zj
 ZQ
 ZV
-WK
+vp
 qx
 qx
 qx
@@ -69594,7 +69673,7 @@ zl
 uB
 At
 AW
-MP
+jA
 MP
 MP
 MP
@@ -69852,10 +69931,10 @@ uB
 At
 Ba
 qx
+yM
 MP
 MP
-MP
-MP
+Vr
 qx
 qx
 qx
@@ -70108,7 +70187,7 @@ yB
 uB
 At
 AW
-MP
+jA
 MP
 MP
 MP
@@ -70380,7 +70459,7 @@ Zj
 Zj
 ZQ
 ZV
-WK
+vp
 qx
 qx
 qx
@@ -70623,7 +70702,7 @@ uB
 At
 AY
 qx
-qV
+Te
 qx
 qx
 Xk
@@ -70640,7 +70719,7 @@ ZV
 WK
 ZS
 Rf
-Rf
+tv
 qx
 Hl
 UX
@@ -70899,7 +70978,7 @@ qx
 Rf
 Dw
 qx
-Hl
+SK
 UX
 Wd
 OP
@@ -71411,7 +71490,7 @@ WK
 WK
 Sy
 Rf
-Rf
+tv
 qx
 qx
 Pv
@@ -71657,14 +71736,14 @@ wV
 Bm
 qx
 UC
-ZQ
+ZD
 ZQ
 yc
 UC
 ZQ
 ZQ
 yc
-WK
+NW
 WK
 qx
 Rf
@@ -71928,7 +72007,7 @@ qx
 qx
 qx
 WU
-Sh
+JJ
 Zs
 Zs
 qx
