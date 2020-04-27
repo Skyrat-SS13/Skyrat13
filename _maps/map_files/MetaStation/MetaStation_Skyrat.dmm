@@ -6047,7 +6047,6 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/computer/card/minor/hos,
 /obj/machinery/button/door{
 	id = "hosprivacy";
 	name = "Privacy Shutters";
@@ -20912,6 +20911,13 @@
 /area/crew_quarters/heads/hos)
 "aOi" = (
 /obj/machinery/photocopier,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Head of Security's Desk";
+	departmentType = 5;
+	name = "Head of Security RC";
+	pixel_y = -30
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
 "aOj" = (
