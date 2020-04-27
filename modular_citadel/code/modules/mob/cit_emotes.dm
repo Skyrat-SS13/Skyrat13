@@ -21,7 +21,7 @@
 	else
 		message = "muffles something."
 	. = ..()
-
+/* moved to modular_skyrat
 /datum/emote/living/scream/run_emote(mob/living/user, params) //I can't not port this shit, come on.
 	if(user.nextsoundemote >= world.time || user.stat != CONSCIOUS)
 		return
@@ -66,7 +66,7 @@
 	else
 		message = "makes a very loud noise."
 	. = ..()
-
+*/
 /datum/emote/living/snap
 	key = "snap"
 	key_third_person = "snaps"
