@@ -291,6 +291,10 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aaK" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/fore/secondary)
 "aaL" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -317,6 +321,10 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
+"aaN" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "aaO" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -623,6 +631,10 @@
 	},
 /turf/open/floor/circuit/green,
 /area/security/prison)
+"abF" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "abG" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -658,6 +670,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"abK" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "abL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plasteel,
@@ -788,6 +804,25 @@
 "acd" = (
 /turf/closed/wall,
 /area/security/prison)
+"ace" = (
+/obj/structure/closet,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"acf" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"acg" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"ach" = (
+/obj/structure/table,
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "aci" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/structure/cable{
@@ -1011,6 +1046,11 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"acC" = (
+/obj/effect/decal/cleanable/oil,
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "acD" = (
 /obj/machinery/plate_press,
 /obj/item/stack/license_plates/empty/fifty,
@@ -1361,6 +1401,15 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+"ado" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"adp" = (
+/obj/structure/rack,
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "adq" = (
 /obj/machinery/computer/slot_machine{
 	balance = 15;
@@ -1784,6 +1833,11 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/closed/wall/r_wall,
 /area/security/execution/transfer)
+"aeh" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "aei" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -2681,6 +2735,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"afF" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "afG" = (
 /obj/structure/closet/secure_closet/brig,
 /obj/item/radio/headset{
@@ -4092,6 +4150,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"ahY" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "ahZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plasteel/showroomfloor,
@@ -9373,18 +9438,6 @@
 /obj/item/caution,
 /turf/open/floor/plating,
 /area/security/prison)
-"atv" = (
-/obj/structure/table,
-/obj/item/shard,
-/obj/item/shard{
-	icon_state = "medium"
-	},
-/obj/item/shard{
-	icon_state = "small"
-	},
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "atw" = (
 /obj/effect/spawner/blocker,
 /turf/open/floor/plating,
@@ -12254,11 +12307,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"aAr" = (
-/obj/structure/closet,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "aAs" = (
 /obj/structure/musician/piano{
 	icon_state = "piano"
@@ -36086,10 +36134,6 @@
 /obj/effect/spawner/blocker,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"bDh" = (
-/obj/structure/closet,
-/turf/open/floor/plating,
-/area/maintenance/starboard)
 "bDi" = (
 /obj/structure/sign/warning/docking{
 	pixel_y = 32
@@ -57314,10 +57358,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
-"grc" = (
-/obj/structure/rack,
-/turf/open/floor/plating,
-/area/maintenance/fore/secondary)
 "grA" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
@@ -63800,10 +63840,6 @@
 /obj/item/clothing/glasses/sunglasses/big,
 /turf/open/floor/plasteel/showroomfloor,
 /area/maintenance/bar)
-"vxh" = (
-/obj/structure/table,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "vxA" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Three"
@@ -82226,7 +82262,7 @@ alU
 amC
 arM
 alU
-avc
+aaN
 asO
 avV
 atO
@@ -82480,7 +82516,7 @@ anl
 amC
 alU
 alU
-amC
+atw
 alU
 alU
 atw
@@ -83001,7 +83037,7 @@ atL
 alU
 avX
 axf
-amC
+aaN
 atO
 aAY
 aBQ
@@ -83506,11 +83542,11 @@ alU
 amE
 ann
 amC
-amC
+aaN
 alU
 amC
 alU
-amC
+aaN
 atU
 alU
 atU
@@ -84855,7 +84891,7 @@ aaa
 bCq
 bHE
 bHE
-bHE
+ado
 bHE
 bCq
 bVy
@@ -85111,7 +85147,7 @@ aaa
 aaa
 bCq
 bHE
-bPW
+acC
 bHE
 bHE
 bCq
@@ -86079,7 +86115,7 @@ ali
 alU
 alU
 arP
-aqR
+abK
 tYH
 pEL
 lXX
@@ -86673,7 +86709,7 @@ bUs
 bLv
 aaa
 bCq
-ckv
+ahY
 bHE
 dKP
 wXo
@@ -86913,9 +86949,9 @@ bPX
 bLu
 bLu
 bCq
-bHE
+ado
 bVG
-tdj
+adp
 bHE
 mHj
 tPT
@@ -87363,7 +87399,7 @@ anO
 aaa
 aaa
 arP
-aqR
+abK
 aqR
 arP
 asQ
@@ -87938,7 +87974,7 @@ aaH
 aaH
 bCq
 bHE
-bHE
+ado
 bLu
 bCq
 bHE
@@ -99946,7 +99982,7 @@ uhm
 ahn
 aiA
 ahn
-grc
+aaK
 anE
 aod
 ahn
@@ -104402,7 +104438,7 @@ cdJ
 bzs
 cfm
 cgc
-bAw
+afF
 ciF
 cjw
 ckl
@@ -106126,7 +106162,7 @@ apA
 aof
 arq
 itK
-atv
+abF
 auD
 alP
 aoQ
@@ -106646,7 +106682,7 @@ alP
 awH
 auF
 alP
-aAr
+ace
 aBF
 alP
 aaa
@@ -106707,7 +106743,7 @@ bNc
 bNc
 bPw
 bNc
-bLS
+aeh
 caU
 cbQ
 cNY
@@ -106719,7 +106755,7 @@ cNY
 cNY
 chp
 bzs
-bAw
+afF
 bAw
 bAw
 bAw
@@ -106904,7 +106940,7 @@ aoP
 auF
 azr
 jez
-aoP
+abF
 alP
 alP
 aFo
@@ -109720,7 +109756,7 @@ aaf
 aaf
 aaa
 alO
-anf
+abF
 anf
 arw
 asA
@@ -109729,7 +109765,7 @@ anf
 alP
 awL
 anf
-anf
+abF
 apE
 aBF
 aCH
@@ -113662,7 +113698,7 @@ clt
 cQw
 cCt
 cOe
-cOe
+acg
 cNW
 aaa
 aaS
@@ -114920,7 +114956,7 @@ bKc
 cNW
 bMB
 bNA
-cOe
+acg
 bEC
 bUq
 flc
@@ -116224,7 +116260,7 @@ cOe
 clt
 cfv
 cBL
-cOe
+acg
 cNW
 aaf
 aaa
@@ -116453,7 +116489,7 @@ bvQ
 bxt
 cNT
 bCm
-bDh
+acf
 bEs
 ydD
 bHv
@@ -116463,7 +116499,7 @@ vHY
 bEs
 rmX
 xIa
-vxh
+ach
 cNW
 aaa
 aaa
