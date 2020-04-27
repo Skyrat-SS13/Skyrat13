@@ -133,6 +133,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	AddElement(/datum/element/ghost_role_eligibility)
 	grant_all_languages()
 
+	RegisterSignal(src, COMSIG_CLICK_CTRL_SHIFT, .proc/on_click_ctrl_shift)
+	RegisterSignal(src, COMSIG_CLICK_CTRL, .proc/on_click_ctrl)
+
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
 		return "You can also see a g-g-g-g-ghooooost!"
@@ -894,9 +897,63 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		to_chat(usr, "Can't become a pAI candidate while not dead!")
 
-/mob/dead/observer/CtrlShiftClick(mob/user)
+/mob/dead/observer/proc/on_click_ctrl_shift(mob/user)
 	if(isobserver(user) && check_rights(R_SPAWN))
 		change_mob_type( /mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
+
+/mob/dead/observer/proc/on_click_ctrl(mob/user)
+	quickicspawn(user)
+
+/mob/dead/observer/proc/quickicspawn(mob/user)
+	if(isobserver(user) && check_rights(R_SPAWN))
+		var/teleport_option = alert(src, "How would you like to be spawned in?","IC Quick Spawn","Bluespace","Droppod", "Cancel")
+		if (teleport_option == "Cancel")
+			return
+		var/dresscode = client.robust_dress_shop()
+		if (!dresscode)
+			return
+
+		var/turf/current_turf = get_turf(src)
+		var/mob/living/carbon/human/spawned_player = new(null)
+
+		if(mind && isliving(spawned_player))
+			mind.transfer_to(spawned_player, 1) // second argument to force key move to new mob
+		else
+			transfer_ckey(spawned_player)
+
+		spawned_player.mind.AddSpell(new /obj/effect/proc_holder/spell/self/return_back)
+		
+		if(dresscode != "Naked")
+			spawned_player.equipOutfit(dresscode)
+
+		switch(teleport_option)
+			if("Bluespace")
+				do_teleport(spawned_player, current_turf, 0, asoundin = 'sound/effects/phasein.ogg', asoundout = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_QUANTUM, effects_multiplier = 2)
+			if("Droppod")
+				var/pod_selection
+				var/list/pod_list = list("Cancel")
+				var/id = 1
+				for(var/list/pod in POD_STYLES)
+					if (pod[POD_NAME] == "")
+						pod_list += "Invisible"
+						continue
+					pod_list[pod[POD_NAME]] = id
+					id += 1
+
+				pod_selection = input("Select Pod", "Pod Selection") as null|anything in pod_list
+				if (!pod_selection)
+					return
+				
+				var/obj/structure/closet/supplypod/empty_pod = new()
+
+				empty_pod.style = pod_selection
+				empty_pod.bluespace = TRUE
+
+				spawned_player.forceMove(empty_pod)
+
+				new /obj/effect/abstract/DPtarget(current_turf, empty_pod)			
+
+
 
 /mob/dead/observer/examine(mob/user)
 	. = ..()

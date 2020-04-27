@@ -514,7 +514,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	mobs_whitelist = list(/mob/living/carbon/human)
 	clothes_req = NONE
 	charge_max = 100
-	cooldown_min = 50
+	cooldown_min = 1
 	invocation = "Victus sano!"
 	invocation_type = "whisper"
 	school = "restoration"
@@ -525,3 +525,28 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	user.visible_message("<span class='warning'>A wreath of gentle light passes over [user]!</span>", "<span class='notice'>You wreath yourself in healing light!</span>")
 	user.adjustBruteLoss(-10)
 	user.adjustFireLoss(-10)
+
+/obj/effect/proc_holder/spell/self/return_back // Admin only spell, teleports and deletes the body, ghosting the user. 
+	name = "Return"
+	desc = "Activates your return beacon."
+	mobs_whitelist = list(/mob/living/carbon/human)
+	clothes_req = NONE
+	charge_max = 1
+	cooldown_min = 1
+
+	invocation = "Return on!" // pls someone get reference <3
+	invocation_type = "whisper"
+	school = "evocation"
+	action_icon_state = "exitstate"
+
+/obj/effect/proc_holder/spell/self/return_back/cast(mob/living/carbon/human/user)
+	user.mind.RemoveSpell(src)
+	user.ghostize(1, voluntary = TRUE)
+
+	do_teleport(spawned_player, null, 0, asoundin = 'sound/effects/phasein.ogg', asoundout = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_QUANTUM, effects_multiplier = 2)
+	qdel(user)
+
+	// Get them back to their regular name.
+	client.set_ghost_appearance()
+	if(client && client.prefs)
+		deadchat_name = client.prefs.real_name
