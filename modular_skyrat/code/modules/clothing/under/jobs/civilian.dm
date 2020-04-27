@@ -1,4 +1,4 @@
-/obj/item/clothing/under/bridgeofficerskirt
+/obj/item/clothing/under/bridgeofficer/skirt
 	name = "bridge officer skirt"
 	desc = "A jumpskirt for those ranked high enough to stand at the bridge, but not high enough to touch any buttons."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
