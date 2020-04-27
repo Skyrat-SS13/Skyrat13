@@ -25,7 +25,7 @@
 	name = "warzone tile"
 	icon = 'modular_skyrat/icons/turf/floors/pacifytile.dmi'
 	icon_state = "killzone"
-	baseturfs = /turf/open/warzone
+	baseturfs = /turf/open/warzonetile
 	slowdown = -1
 
 /turf/open/warzonetile/Entered(atom/movable/AM)

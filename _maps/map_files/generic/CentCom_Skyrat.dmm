@@ -6422,11 +6422,9 @@
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
 "oV" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light{
+/turf/open/floor/plasteel/stairs{
 	dir = 8
 	},
-/turf/open/floor/wood,
 /area/centcom/evac)
 "oX" = (
 /obj/structure/bookcase/random,
@@ -10833,7 +10831,16 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/carpet/black,
+/area/centcom/evac)
+"yN" = (
+/obj/structure/flora/ausbushes/pointybush,
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/grass,
 /area/centcom/evac)
 "yP" = (
 /obj/machinery/light{
@@ -11844,6 +11851,9 @@
 /area/centcom/evac)
 "Bp" = (
 /obj/machinery/vending/boozeomat,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/centcom/evac)
 "Bq" = (
@@ -15322,9 +15332,6 @@
 	dir = 1;
 	pixel_y = 25
 	},
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/wood,
 /area/centcom/evac)
 "IL" = (
@@ -18623,8 +18630,9 @@
 /turf/open/floor/wood,
 /area/centcom/evac)
 "Vr" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
 /area/centcom/evac)
 "Vt" = (
 /obj/item/paper/fluff/stations/centcom/disk_memo,
@@ -19470,11 +19478,13 @@
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
 "ZD" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 4
+/obj/structure/flora/ausbushes/pointybush,
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/window/reinforced{
+	dir = 8
 	},
-/turf/open/floor/wood,
+/turf/open/floor/grass,
 /area/centcom/evac)
 "ZE" = (
 /obj/structure/sink{
@@ -68138,7 +68148,7 @@ Dc
 Cc
 qx
 ZP
-oV
+ZQ
 ZQ
 td
 ZP
@@ -68909,7 +68919,7 @@ Dc
 Cc
 qx
 WK
-WK
+NW
 WK
 WK
 ZV
@@ -69165,7 +69175,7 @@ qx
 qx
 sL
 qx
-WK
+oV
 qx
 qx
 IK
@@ -69674,10 +69684,10 @@ uB
 At
 AW
 jA
-MP
-MP
-MP
-MP
+WK
+WK
+WK
+WK
 VO
 WK
 qx
@@ -69932,9 +69942,9 @@ At
 Ba
 qx
 yM
-MP
-MP
-Vr
+WK
+WK
+vp
 qx
 qx
 qx
@@ -70188,10 +70198,10 @@ uB
 At
 AW
 jA
-MP
-MP
-MP
-MP
+WK
+WK
+WK
+WK
 VO
 WK
 qx
@@ -70707,7 +70717,7 @@ qx
 qx
 Xk
 qx
-WK
+Vr
 qx
 qx
 IK
@@ -70965,7 +70975,7 @@ Wr
 Cc
 qx
 WK
-WK
+Zt
 WK
 WK
 ZV
@@ -71736,7 +71746,7 @@ wV
 Bm
 qx
 UC
-ZD
+ZQ
 ZQ
 yc
 UC
@@ -71992,14 +72002,14 @@ xM
 WH
 QE
 qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
+ZD
+yN
+ZD
+yN
+ZD
+yN
+ZD
+yN
 qx
 qx
 qx
@@ -72249,15 +72259,15 @@ qx
 qx
 qx
 qx
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 aa
 aa
 aa
