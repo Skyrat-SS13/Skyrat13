@@ -514,7 +514,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	mobs_whitelist = list(/mob/living/carbon/human)
 	clothes_req = NONE
 	charge_max = 100
-	cooldown_min = 1
+	cooldown_min = 50
 	invocation = "Victus sano!"
 	invocation_type = "whisper"
 	school = "restoration"
