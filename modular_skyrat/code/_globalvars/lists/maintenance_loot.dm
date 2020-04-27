@@ -82,6 +82,17 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/cartridge/virus/mime = 1,
 	/obj/item/cautery = 5,
 	/obj/item/circular_saw = 5,
+	/obj/item/clothing/ears/earmuffs = 5,
+	/obj/item/clothing/glasses/meson = 25,
+	/obj/item/clothing/glasses/material = 10,
+
+
+
+	/obj/item/clothing/shoes/wheelys = 10,
+	/obj/item/clothing/shoes/clown_shoes = 5,
+	/obj/item/clothing/shoes/galoshes = 1,
+	/obj/item/clothing/shoes/jackboots = 1,
+	/obj/item/clothing/shoes/kindleKicks = 5,
 	/obj/item/coin/silver = 25,
 	/obj/item/crowbar/large = 1,
 	/obj/item/dice/d20 = 10,
