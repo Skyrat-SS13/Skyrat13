@@ -3492,6 +3492,7 @@
 #include "modular_skyrat\code\game\turfs\closed\minerals.dm"
 #include "modular_skyrat\code\game\turfs\open\chasm.dm"
 #include "modular_skyrat\code\game\turfs\open\openspace.dm"
+#include "modular_skyrat\code\game\turfs\open\pacifytile.dm"
 #include "modular_skyrat\code\game\turfs\open\floor\plating\asteroid.dm"
 #include "modular_skyrat\code\game\turfs\open\floor\plating\miscplating.dm"
 #include "modular_skyrat\code\game\turfs\simulated\floor\asteroid.dm"
