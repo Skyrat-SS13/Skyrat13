@@ -19,7 +19,7 @@
     icon_state = "raptor"
 
 /datum/sprite_accessory/taur/synthliz/synthnaga
-	name = "Synth Naga "
+	name = "Cybernetic Naga"
 	icon = 'modular_skyrat/icons/mob/mam_taur.dmi'
 	icon_state = "synthnaga"
 	taur_mode = STYLE_SNEK_TAURIC
