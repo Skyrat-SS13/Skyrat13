@@ -82,11 +82,11 @@
 	body += "<A href='?_src_=holder;[HrefToken()];jobban2=[REF(M)]'>Jobban</A> | "
 	body += "<A href='?_src_=holder;[HrefToken()];appearanceban=[REF(M)]'>Identity Ban</A> | "
 	// SKYRAT ADDITION -- BEGIN
-	var/collarline = "[jobban_isbanned(M, COLLARBAN)?"Remove Collar Ban":"Collar Ban"]"
+	var/collarline = "[jobban_isbanned(M, COLLARBAN)?"Remove Pacification Ban":"Pacification Ban"]"
 	if(ishuman(M))
 		var/mob/living/carbon/human/C = M
-		if(!istype(C.wear_neck, COLLARITEM) && jobban_isbanned(M, COLLARBAN))
-			collarline = "FIX COLLAR"
+		if(jobban_isbanned(M, COLLARBAN && !(C.has_trauma_type(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_ABSOLUTE))))
+			collarline = "FIX PACIFY"
 	body += "<A href='?_src_=holder;[HrefToken()];collarban=[REF(M)]'>[collarline]</A> | "
 	// SKYRAT ADDITION -- END
 	var/rm = REF(M)
