@@ -381,7 +381,7 @@
 
 /obj/item/organ/random/Initialize()
 	..()
-	var/list = list(/obj/item/organ/tongue, /obj/item/organ/brain, /obj/item/organ/heart, /obj/item/organ/liver, /obj/item/organ/ears, /obj/item/organ/eyes, /obj/item/organ/tail, /obj/item/organ/stomach)
+	var/list = list(/obj/item/organ/tongue, /obj/item/organ/brain, /obj/item/organ/heart, /obj/item/organ/liver, /obj/item/organ/ears, /obj/item/organ/eyes, /obj/item/organ/tail, /obj/item/organ/stomach, /obj/item/organ/bone/skull, /obj/item/organ/bone/ribcage, /obj/item/organ/bone/rhumerus, /obj/item/organ/bone/lhumerus, /obj/item/organ/bone/lfemur, /obj/item/organ/bone/rfemur)
 	var/newtype = pick(list)
 	new newtype(loc)
 	return INITIALIZE_HINT_QDEL

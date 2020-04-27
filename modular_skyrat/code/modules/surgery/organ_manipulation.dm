@@ -142,14 +142,17 @@
 				"[user] can't seem to extract anything from [target]'s [parse_zone(target_zone)]!")
 	else if(current_type == "heal")
 		var/list/organshealed = list()
-		for(var/obj/item/organ/O in target.getorganszone(target_zone))
+		var/list/organsminusbones = target.getorganszone(target_zone)
+		for(var/obj/item/organ/B in organsminusbones)
+			organsminusbones -= B
+		for(var/obj/item/organ/O in organsminusbones)
 			if(O.damage > (O.maxHealth - O.maxHealth/10))
 				to_chat(user, "<span class='warning'>Sadly, the [target]'s [O] was too damaged to be healed.</span>")
 			else
 				O.damage = 0
 				organshealed += O
 				to_chat(user, "<span class='warning'>You have successfully healed [target]'s [O].</span>")
-		if(organshealed.len)
+		if(organshealed.len == organsminusbones.len)
 			display_results(user, target, "<span class='notice'>You have succesfully healed [target]'s [parse_zone(target_zone)]'s organs.</span>",
 				"[user] has healed [target]'s [parse_zone(target_zone)]'s organs!",
 				"[user] has healed [target]'s [parse_zone(target_zone)]'s organs!")

@@ -6,7 +6,7 @@
 	blacklisted = 0
 	sexes = 0
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/skeleton
-	species_traits = list(NOBLOOD,NOGENITALS,NOAROUSAL)
+	species_traits = list(NOBLOOD,NOGENITALS,NOAROUSAL,NOBONES) //No bones? Ironic, i know, but it's because their bodyparts ARE the bones, and having a femur inside a femur would be, albeit hilarious, dumb.
 	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NOHUNGER,TRAIT_EASYDISMEMBER,TRAIT_LIMBATTACHMENT,TRAIT_FAKEDEATH, TRAIT_CALCIUM_HEALER)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutanttongue = /obj/item/organ/tongue/bone

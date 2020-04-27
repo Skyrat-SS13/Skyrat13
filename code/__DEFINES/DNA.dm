@@ -140,6 +140,7 @@
 #define CUSTOM_SKINTONE	24	//adds a "_g" suffix to bodypart overlays icon states if a custom skintone is used.
 #define HORNCOLOR		25
 #define WINGCOLOR		26
+#define NOBONES		    27
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
@@ -169,6 +170,12 @@
 #define ORGAN_SLOT_VAGINA "vagina"
 #define ORGAN_SLOT_TESTICLES "testicles"
 #define ORGAN_SLOT_BREASTS "breasts"
+#define ORGAN_SLOT_SKULL "skull"
+#define ORGAN_SLOT_RIBCAGE "ribcage"
+#define ORGAN_SLOT_RHUMERUS "rhumerus"
+#define ORGAN_SLOT_LHUMERUS "lhumerus"
+#define ORGAN_SLOT_RFEMUR "rfemur"
+#define ORGAN_SLOT_LFEMUR "lfemur"
 
 ////organ defines
 #define STANDARD_ORGAN_THRESHOLD 	100

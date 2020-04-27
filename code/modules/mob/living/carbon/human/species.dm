@@ -1,4 +1,9 @@
 // This code handles different species in the game.
+#define BONE_DAM_PROB 20
+#define BONE_DAM_MODIFIER 0.5
+#define BONE_RAND_MODIFIER_1 0.8
+#define BONE_RAND_MODIFIER_2 2
+#define BOOLET_EMBED_CHANCE 20
 
 GLOBAL_LIST_EMPTY(roundstart_races)
 GLOBAL_LIST_EMPTY(roundstart_race_names)
@@ -95,6 +100,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/obj/item/mutanthands
 	var/obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue
 	var/obj/item/organ/tail/mutanttail = null
+	var/obj/item/organ/bone/skull/mutant_skull = /obj/item/organ/bone/skull
+	var/obj/item/organ/bone/ribcage/mutant_ribcage = /obj/item/organ/bone/ribcage
+	var/obj/item/organ/bone/rhumerus/mutant_rhumerus = /obj/item/organ/bone/rhumerus
+	var/obj/item/organ/bone/lhumerus/mutant_lhumerus = /obj/item/organ/bone/lhumerus
+	var/obj/item/organ/bone/rfemur/mutant_rfemur = /obj/item/organ/bone/rfemur
+	var/obj/item/organ/bone/lfemur/mutant_lfemur = /obj/item/organ/bone/lfemur
+
 
 	var/obj/item/organ/liver/mutantliver
 	var/obj/item/organ/stomach/mutantstomach
@@ -178,6 +190,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/obj/item/organ/liver/liver = C.getorganslot(ORGAN_SLOT_LIVER)
 	var/obj/item/organ/stomach/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 	var/obj/item/organ/tail/tail = C.getorganslot(ORGAN_SLOT_TAIL)
+	var/obj/item/organ/bone/skull/skull = C.getorganslot(ORGAN_SLOT_SKULL)
+	var/obj/item/organ/bone/ribcage/ribcage = C.getorganslot(ORGAN_SLOT_RIBCAGE)
+	var/obj/item/organ/bone/rhumerus/rhumerus = C.getorganslot(ORGAN_SLOT_RHUMERUS)
+	var/obj/item/organ/bone/lhumerus/lhumerus = C.getorganslot(ORGAN_SLOT_LHUMERUS)
+	var/obj/item/organ/bone/rfemur/rfemur = C.getorganslot(ORGAN_SLOT_RFEMUR)
+	var/obj/item/organ/bone/lfemur/lfemur = C.getorganslot(ORGAN_SLOT_LFEMUR)
 
 	var/should_have_brain = TRUE
 	var/should_have_heart = !(NOBLOOD in species_traits)
@@ -189,6 +207,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/should_have_liver = !(NOLIVER in species_traits)
 	var/should_have_stomach = !(NOSTOMACH in species_traits)
 	var/should_have_tail = mutanttail
+	var/should_have_bones = !(NOBONES in species_traits)
 
 	if(brain && (replace_current || !should_have_brain))
 		if(!brain.decoy_override)//Just keep it if it's fake
@@ -248,6 +267,28 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	if(should_have_tail && !tail)
 		tail = new mutanttail()
 		tail.Insert(C)
+
+	if(should_have_bones)
+		if(!skull)
+			if(C.get_bodypart(BODY_ZONE_HEAD))
+				skull = new mutant_skull()
+				skull.Insert(C)
+		if(!ribcage)
+			ribcage = new mutant_ribcage()
+			ribcage.Insert(C)
+		if(!rhumerus)
+			rhumerus = new mutant_rhumerus()
+			rhumerus.Insert(C)
+		if(!lhumerus)
+			lhumerus = new mutant_lhumerus()
+			lhumerus.Insert(C)
+		if(!rfemur)
+			rfemur = new mutant_rfemur()
+			rfemur.Insert(C)
+		if(!lfemur)
+			lfemur = new mutant_lfemur()
+			lfemur.Insert(C)
+
 
 	if(C.get_bodypart(BODY_ZONE_HEAD))
 		if(eyes && (replace_current || !should_have_eyes))
@@ -1983,6 +2024,23 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 					H.update_damage_overlays()
 					if(HAS_TRAIT(H, TRAIT_MASO) && prob(damage_amount))
 						H.mob_climax(forced_climax=TRUE)
+					if(!HAS_TRAIT(H, NOBONES))
+						if((damage_amount >= 5 && prob(BONE_DAM_PROB)) || (damage_amount >= 15))
+							for(var/obj/item/organ/bone/B in H.getorganszone(BP.body_zone))
+								var/olddamage = B.damage
+								B.damage += (damage_amount * BONE_DAM_MODIFIER * rand(BONE_RAND_MODIFIER_1, BONE_RAND_MODIFIER_2))
+								var/obj/item/organ/currentbodypart = H.get_bodypart(def_zone)
+								if(B.damage >= olddamage && currentbodypart)
+									if(B.damage < B.dam_threshold_low)
+										break
+									else if((B.damage >= B.dam_threshold_low) && (B.dam_threshold_medium > B.damage))
+										to_chat(H, "<span class='danger'>You feel the bones insides of your [currentbodypart] cracking slightly!</span>")
+									else if((B.damage >= B.dam_threshold_medium) && (B.dam_threshold_high > B.damage))
+										to_chat(H, "<span class='danger'>You can feel the bones insides of your [currentbodypart] cracking and shifting! It hurts!</span>")
+									else if((B.damage >= B.dam_threshold_high) && (B.dam_threshold_highest > B.damage))
+										to_chat(H, "<span class='userdanger'>You can feel your [B] breaking apart! It's agonizing!!!</span>")
+									else
+										to_chat(H, "<span class='userdanger'>You can feel your [B] DISINTEGRATING!!! AAAAAAAGH!!!</span>")
 
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)

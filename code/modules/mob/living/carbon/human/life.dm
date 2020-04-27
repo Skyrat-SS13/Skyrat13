@@ -38,7 +38,10 @@
 	if(stat != DEAD)
 		//Stuff jammed in your limbs hurts
 		handle_embedded_objects()
-
+		//Boneworks!
+		if(!(NOBONES in dna.species.species_traits))
+			handle_bones()
+		//
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
@@ -340,8 +343,49 @@
 	// Tissues die without blood circulation
 	adjustBruteLoss(2)
 
-
-
+/mob/living/carbon/human/proc/handle_bones()
+	for(var/obj/item/bodypart/OB in bodyparts)
+		var/currentzone = OB.body_zone
+		var/list/currentbones = list()
+		for(var/obj/item/organ/bone/B in getorganszone(currentzone))
+			currentbones += B
+		if(!currentbones.len)
+			if(prob(66))
+				for(var/obj/item/organ/O in getorganszone(currentzone))
+					src.adjustOrganLoss(O, rand(3,10))
+				src.apply_damage(2, BRUTE, currentzone, FALSE, TRUE)
+				if(prob(25))
+					to_chat(src, "<span class='userdanger'>Your [get_bodypart(currentzone) ? get_bodypart(currentzone) : "body"] is squishy and hurts like hell!</span>")
+		else
+			for(var/obj/item/organ/bone/B in currentbones)
+				if(B.damage < B.dam_threshold_low)
+					break
+				if((B.damage >= B.dam_threshold_low) && (B.dam_threshold_medium > B.damage))
+					if(prob(4))
+						src.adjustOrganLoss(B, rand(0.25, 0.75))
+						to_chat(src, "<span class='danger'>Your [get_bodypart(currentzone)] hurts!</span>")
+				if((B.damage >= B.dam_threshold_medium) && (B.dam_threshold_high > B.damage))
+					if(prob(8))
+						src.adjustOrganLoss(B, rand(0.5, 1.5))
+						to_chat(src, "<span class='danger'>Your [get_bodypart(currentzone)] hurts a lot!</span>")
+				if((B.damage >= B.dam_threshold_high) && (B.dam_threshold_highest > B.damage))
+					OB.set_disabled(TRUE)
+					if(prob(15))
+						for(var/obj/item/organ/ourorgan in getorganszone(currentzone))
+							if(ourorgan != B)
+								src.adjustOrganLoss(ourorgan, rand(1,7))
+						if(prob(80))
+							src.apply_damage(2, BRUTE, currentzone, FALSE, TRUE)
+						to_chat(src, "<span class='userdanger'>Your [get_bodypart(currentzone) ? get_bodypart(currentzone) : "body"] hurts like hell!</span>")
+				else
+					OB.set_disabled(TRUE)
+					if(prob(15))
+						for(var/obj/item/organ/ourorgan in getorganszone(currentzone))
+							if(ourorgan != B)
+								src.adjustOrganLoss(ourorgan, rand(1,7))
+						if(prob(80))
+							src.apply_damage(2, BRUTE, currentzone, FALSE, TRUE)
+						to_chat(src, "<span class='userdanger'>Your [get_bodypart(currentzone) ? get_bodypart(currentzone) : "body"] hurts like hell!</span>")
 
 #undef THERMAL_PROTECTION_HEAD
 #undef THERMAL_PROTECTION_CHEST

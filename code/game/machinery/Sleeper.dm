@@ -257,15 +257,11 @@
 		else
 			chemical_list = "Patient has no reagents."
 
-		data["occupant"]["failing_organs"] = list()
+		data["occupant"]["internal_organs"] = list()
 		var/mob/living/carbon/C = mob_occupant
-		if(C)
-			for(var/obj/item/organ/Or in C.getFailingOrgans())
-				if(istype(Or, /obj/item/organ/brain))
-					continue
-				data["occupant"]["failing_organs"] += list(list("name" = Or.name))
-
-		if(istype(C)) //Non-carbons shouldn't be able to enter sleepers, but this is to prevent runtimes if something ever breaks
+		if(istype(C))
+			for(var/obj/item/organ/Or in C.internal_organs)
+				data["occupant"]["internal_organs"] += list(list("name" = Or.name, "healthpercentage" = round((Or.maxHealth - Or.damage)/Or.maxHealth * 100)))
 			if(mob_occupant.has_dna()) // Blood-stuff is mostly a copy-paste from the healthscanner.
 				blood_percent = round((C.blood_volume / BLOOD_VOLUME_NORMAL)*100)
 				var/blood_id = C.get_blood_id()

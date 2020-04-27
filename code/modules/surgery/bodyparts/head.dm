@@ -16,6 +16,7 @@
 
 	var/mob/living/brain/brainmob = null //The current occupant.
 	var/obj/item/organ/brain/brain = null //The brain organ
+	var/obj/item/organ/skull/skull = null //The skull... organ
 
 	//Limb appearance info:
 	var/real_name = "" //Replacement name
