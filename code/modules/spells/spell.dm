@@ -541,12 +541,13 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/self/return_back/cast(mob/living/carbon/human/user)
 	user.mind.RemoveSpell(src)
-	user.ghostize(1, voluntary = TRUE)
+	
+	var/mob/dead/observer/ghost = user.ghostize(1, voluntary = TRUE)
 
-	do_teleport(spawned_player, null, 0, asoundin = 'sound/effects/phasein.ogg', asoundout = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_QUANTUM, effects_multiplier = 2)
+	do_teleport(user, null, 0, asoundin = 'sound/effects/phasein.ogg', asoundout = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_QUANTUM, effects_multiplier = 2)
 	qdel(user)
 
 	// Get them back to their regular name.
-	client.set_ghost_appearance()
-	if(client && client.prefs)
-		deadchat_name = client.prefs.real_name
+	ghost.set_ghost_appearance()
+	if(ghost.client && ghost.client.prefs)
+		ghost.deadchat_name = ghost.client.prefs.real_name
