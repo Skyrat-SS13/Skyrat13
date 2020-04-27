@@ -6054,6 +6054,7 @@
 	pixel_y = 24;
 	req_access_txt = "63"
 	},
+/obj/machinery/computer/card/minor/hos,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
 "amm" = (
