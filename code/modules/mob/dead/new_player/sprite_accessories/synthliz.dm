@@ -8,21 +8,21 @@
 
 /datum/sprite_accessory/mam_snouts/synthliz_thick
 	recommended_species = list("synthliz")
-	icon = 'modular_citadel/icons/mob/synthliz_snouts.dmi'
+	icon = 'modular_skyrat/icons/mob/synthliz_snouts.dmi'
 	color_src = MUTCOLORS
 	name = "Synthetic Lizard - Snout Thick"
 	icon_state = "synthliz_thick"
 
 /datum/sprite_accessory/mam_snouts/synthliz_long
 	recommended_species = list("synthliz")
-	icon = 'modular_citadel/icons/mob/synthliz_snouts.dmi'
+	icon = 'modular_skyrat/icons/mob/synthliz_snouts.dmi'
 	color_src = MUTCOLORS
 	name = "Synthetic Lizard - Snout Long"
 	icon_state = "synthliz_long"
 
 /datum/sprite_accessory/mam_snouts/synthliz_thicklong
 	recommended_species = list("synthliz")
-	icon = 'modular_citadel/icons/mob/synthliz_snouts.dmi'
+	icon = 'modular_skyrat/icons/mob/synthliz_snouts.dmi'
 	color_src = MUTCOLORS
 	name = "Synthetic Lizard - Snout Long & Thick"
 	icon_state = "synthliz_thicklong"
@@ -172,5 +172,6 @@
 
 /datum/sprite_accessory/taur/synthliz/synthnaga
 	name = "Synth Naga "
+	icon = 'modular_skyrat/icons/mob/mam_taur.dmi'
 	icon_state = "synthnaga"
 	taur_mode = STYLE_SNEK_TAURIC
