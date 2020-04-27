@@ -1,0 +1,4 @@
+author: "Akrilla"
+delete-after: True
+changes: 
+  - admin: "Adds an IC-friendly spawn-in for admins. Ctrl+click your ghost to bring it up."

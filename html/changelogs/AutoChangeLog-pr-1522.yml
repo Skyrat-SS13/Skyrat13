@@ -1,0 +1,10 @@
+author: "Strazyplus"
+delete-after: True
+changes: 
+  - rscadd: "Added synth cyber tail"
+  - rscadd: "Added synth long snout"
+  - rscadd: "Added synth thicker snout (bigger screen)"
+  - soundadd: "added hiss emote"
+  - imageadd: "added synth cyber tail"
+  - imageadd: "added synth VORE cyber tail"
+  - code_imp: "added some code to add the new cosmetic options"
