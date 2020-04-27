@@ -11,6 +11,19 @@
 					/obj/item/ammo_box/magazine/usp)
 	crate_name = "USP pistols crate"
 
+/datum/supply_pack/security/armory/diplomacy
+	name = "Deagel pistol Crate"
+	desc = "Got to use bigger gun diplomacy on the graytide? Look no more we got you some really heavy guns. Contains 3 loaded deagles with 3 spare mags, just for you guys."
+	cost = 7500
+	hidden = true
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/deagle,
+					/obj/item/gun/ballistic/automatic/pistol/deagle,
+					/obj/item/gun/ballistic/automatic/pistol/deagle,
+					/obj/item/ammo_box/magazine/m50,
+					/obj/item/ammo_box/magazine/m50,
+					/obj/item/ammo_box/magazine/m50)
+	crate_name = "deagle pistols crate"
+
 /datum/supply_pack/security/armory/combine
 	name = "Civil Protection Crate"
 	desc = "With this crate, you'll be able to hunt down the freeman."
