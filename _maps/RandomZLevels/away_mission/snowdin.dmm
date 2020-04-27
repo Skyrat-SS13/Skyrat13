@@ -7155,9 +7155,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	icon_state = "redcorner"
-	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/secpost)
 "pn" = (
 /turf/open/floor/plating,
