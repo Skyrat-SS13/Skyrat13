@@ -414,6 +414,10 @@
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
+	else if(status_flags & BODYPART_BROKEN && local_damage >= (min_broken-damage * 0.75))
+		internal_bleeding = TRUE
+		if(owner)
+			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
 
 //Updates a bodypart's brute/burn states for use by update_damage_overlays()
 //Returns 1 if we need to update overlays. 0 otherwise.
