@@ -541,10 +541,16 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/self/return_back/cast(mob/living/carbon/human/user)
 	user.mind.RemoveSpell(src)
-	
+
+	playsound(get_turf(user.loc), 'sound/magic/Repulse.ogg', 100, 1)
+
 	var/mob/dead/observer/ghost = user.ghostize(1, voluntary = TRUE)
 
-	do_teleport(user, null, 0, asoundin = 'sound/effects/phasein.ogg', asoundout = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_QUANTUM, effects_multiplier = 2)
+	var/datum/effect_system/spark_spread/quantum/sparks = new
+	sparks.set_up(10, 1, user)
+	sparks.attach(user.loc)
+	sparks.start()
+
 	qdel(user)
 
 	// Get them back to their regular name.
