@@ -1149,3 +1149,9 @@
 			dna.features["body_model"] = MALE
 	if(update_icon)
 		update_body()
+
+/mob/living/carbon/proc/handle_splints() //proc that rebuilds the list of splints on this person, for ease of processing
+	splinted_limbs.Cut()
+	for(var/obj/item/bodypart/limb in bodyparts)
+		if(limb.status & BODYPART_SPLINTED)
+			splinted_limbs += limb

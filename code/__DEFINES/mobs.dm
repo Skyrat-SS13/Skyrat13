@@ -51,8 +51,20 @@
 #define ORGAN_ORGANIC   1
 #define ORGAN_ROBOTIC   2
 
+#define ORGAN_BROKEN     1
+#define ORGAN_ROBOT      2
+#define ORGAN_SPLINTED   4
+#define ORGAN_DEAD       8
+#define ORGAN_MUTATED    16
+
 #define BODYPART_ORGANIC   1
 #define BODYPART_ROBOTIC   2
+
+#define BODYPART_BROKEN    1
+#define BODYPART_ROBOT     2
+#define BODYPART_SPLINTED  4
+#define BODYPART_DEAD      8
+#define BODYPART_MUTATED   16
 
 #define BODYPART_NOT_DISABLED 0
 #define BODYPART_DISABLED_DAMAGE 1

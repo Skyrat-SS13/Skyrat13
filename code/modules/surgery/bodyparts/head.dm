@@ -1,9 +1,13 @@
 /obj/item/bodypart/head
 	name = BODY_ZONE_HEAD
+	limb_name = "head"
 	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
 	icon = 'icons/mob/human_parts.dmi'
 	icon_state = "default_human_head"
-	max_damage = 200
+	max_damage = 60
+	min_broken_damage = 25
+	encased = "skull"
+	amputation_point = "spine"
 	body_zone = BODY_ZONE_HEAD
 	body_part = HEAD
 	w_class = WEIGHT_CLASS_BULKY //Quite a hefty load

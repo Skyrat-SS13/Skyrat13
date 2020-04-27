@@ -79,7 +79,7 @@
 
 
 //limb removal. The "special" argument is used for swapping a limb with a new one without the effects of losing a limb kicking in.
-/obj/item/bodypart/proc/drop_limb(special)
+/obj/item/bodypart/proc/drop_limb(special, ignore_children = FALSE)
 	if(!owner)
 		return
 	var/atom/Tsec = owner.drop_location()
@@ -87,11 +87,28 @@
 	update_limb(1)
 	C.bodyparts -= src
 
+	if(status_flags & ORGAN_SPLINTED)
+		C.splinted_limbs -= src
+
+	. = ..()
+
 	if(held_index)
 		C.dropItemToGround(owner.get_item_for_held_index(held_index), 1)
 		C.hand_bodyparts[held_index] = null
 
 	owner = null
+
+	if(!ignore_children)
+		if(!ignore_children)
+			for(var/obj/item/bodypart/BP in children)
+				var/obj/item/bodypart/thing = C.get_bodypart(BP.body_zone)
+				if(thing)
+					thing.drop_limb(special, ignore_children)
+					thing.forceMove(src)
+					children |= thing //yes, we literally remove it from the children list only to readd later. i'm that inefficient.
+		C.updatehealth()
+	if(parent)
+		parent.children -= src
 
 	for(var/X in C.surgeries) //if we had an ongoing surgery on that limb, we stop it.
 		var/datum/surgery/S = X
@@ -267,6 +284,12 @@
 	attach_limb(C, special)
 
 /obj/item/bodypart/proc/attach_limb(mob/living/carbon/C, special)
+	if(parent_bodypart) //if it has a parent bodypart type, it needs that on the mob to be attached
+		if(C.bodyparts & parent_bodypart)
+			parent = locate(parent_bodypart) in (C.bodyparts - typesof(src.type))
+			parent.children |= src
+		else
+			return
 	moveToNullspace()
 	owner = C
 	C.bodyparts += src
@@ -291,6 +314,8 @@
 				qdel(S)
 				break
 
+	for(var/obj/item/bodypart/BP in contents) //stored limbs. in normal circumstances, this will be either nothing or just the children.
+		BP.attach_limb(C, special)
 	for(var/obj/item/organ/O in contents)
 		O.Insert(C)
 
@@ -365,4 +390,7 @@
 			L.burnstate = 0
 
 		L.attach_limb(src, 1)
+		if(L.convertable_children)
+			for(var/obj/item/bodypart/child in L.convertable_children)
+				regenerate_limb(child.body_zone, noheal)
 		return 1

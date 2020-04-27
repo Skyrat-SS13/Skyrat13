@@ -16,6 +16,7 @@
 #define TOOL_SAW			"saw"
 #define TOOL_SETTER			"setter"
 #define TOOL_GEL			"gel"
+#define TOOL_FIXOVEIN		"fixovein"
 //Glasswork Tools
 #define TOOL_BLOW			"blowing_rod"
 #define TOOL_GLASS_CUT		"glasskit"

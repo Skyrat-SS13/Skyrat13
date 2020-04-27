@@ -1,26 +1,60 @@
-
+// Threshold needed to have a chance of hurting internal bits with something sharp
+#define LIMB_SHARP_THRESH_INT_DMG 5
+// Threshold needed to have a chance of hurting internal bits
+#define LIMB_THRESH_INT_DMG 10
+// Probability of taking internal damage from sufficient force, while otherwise healthy
+#define LIMB_DMG_PROB 5
+// Probability of restraints falling off if the respective limb is fractured
+#define LIMB_FRACTURE_RESTRAINT_OFF 50
+// It's explained below
+#define INJURY_MODIFIER 0.1
+// Threshold in which the limb will break with certainty (max_damage * FRACTURE_CONSTANT)
+#define FRACTURE_CONSTANT 0.85
 /obj/item/bodypart
 	name = "limb"
 	desc = "Why is it detached..."
 	force = 3
 	throwforce = 3
 	icon = 'icons/mob/human_parts.dmi'
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_BULKY
 	icon_state = ""
 	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
 	var/mob/living/carbon/owner = null
 	var/mob/living/carbon/original_owner = null
 	var/status = BODYPART_ORGANIC
 	var/needs_processing = FALSE
-
 	var/body_zone //BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
-	var/list/aux_icons // associative list, currently used for hands
+	var/list/aux_icons // associative list, was used for hands but it should be (almost) useless now
 	var/body_part = null //bitflag used to check which clothes cover this bodypart
 	var/use_digitigrade = NOT_DIGITIGRADE //Used for alternate legs, useless elsewhere
 	var/list/embedded_objects = list()
 	var/held_index = 0 //are we a hand? if so, which one!
 	var/is_pseudopart = FALSE //For limbs that don't really exist, eg chainsaws
-
+	//Boneworks V2 variables, which may or may not be used.
+	var/limb_name
+	var/internal_bleeding = FALSE
+	var/status_flags = 0
+	var/max_damage = 0
+	var/min_broken_damage = STANDARD_ORGAN_THRESHOLD * 0.55		//standardminimum damage for the bone to break
+	var/can_grasp
+	var/can_stand
+	var/open = 0	//is this limb incised for surgery?
+	var/splinted_count = 0 //Time when this organ was last splinted
+	var/encased		//b o n e that encases the limb. used in surgery, but not actually used in "breaking" limbs.
+	var/perma_injury = 0 //If a limb is broken, it always applies (INJURY_MODIFIER * perma_injury) on receive_damage, regardless of the actual incoming damage
+	var/dismember_at_max_damage = FALSE
+	var/cannot_amputate
+	var/cannot_break
+	var/damage_msg = "<span class='warning'>You feel an intense pain</span>"
+	var/broken_description
+	var/obj/item/bodypart/parent
+	var/obj/item/bodypart/parent_bodypart
+	var/list/starting_children = list() //children that are already "inside" this limb on spawn
+	var/list/convertable_children = list()
+	var/list/obj/item/bodypart/children = list()
+	var/list/child_icons = list()
+	var/amputation_point // Descriptive string used in amputation.
+	//
 	var/disabled = BODYPART_NOT_DISABLED //If disabled, limb is as good as missing
 	var/body_damage_coeff = 1 //Multiplier of the limb's damage that gets applied to the mob
 	var/stam_damage_coeff = 0.75
@@ -31,7 +65,6 @@
 	var/stamina_dam = 0
 	var/max_stamina_damage = 0
 	var/incoming_stam_mult = 1 //Multiplier for incoming staminaloss, decreases when taking staminaloss when the limb is disabled, resets back to 1 when limb is no longer disabled.
-	var/max_damage = 0
 	var/stam_heal_tick = 0		//per Life(). Defaults to 0 due to citadel changes
 
 	var/brute_reduction = 0 //Subtracted to brute damage taken
@@ -82,6 +115,9 @@
 	take_damage(max_damage)
 
 /obj/item/bodypart/Destroy()
+	if(parent && parent.children)
+		parent.children -= src
+	parent = null
 	if(owner)
 		owner.bodyparts -= src
 		owner = null
@@ -149,15 +185,18 @@
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE)
+/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, sharp = FALSE, list/forbidden_limbs = list(), ignore_resists = FALSE, updating_health = TRUE)
 	if(owner && (owner.status_flags & GODMODE))
 		return FALSE	//godmode
 	var/dmg_mlt = CONFIG_GET(number/damage_multiplier)
 	brute = round(max(brute * dmg_mlt, 0),DAMAGE_PRECISION)
+	if(brute)
+		brute += round(max(perma_injury * INJURY_MODIFIER, 0),DAMAGE_PRECISION)
 	burn = round(max(burn * dmg_mlt, 0),DAMAGE_PRECISION)
 	stamina = round(max((stamina * dmg_mlt) * incoming_stam_mult, 0),DAMAGE_PRECISION)
-	brute = max(0, brute - brute_reduction)
-	burn = max(0, burn - burn_reduction)
+	if(!ignore_resists)
+		brute = max(0, brute - brute_reduction)
+		burn = max(0, burn - burn_reduction)
 	//No stamina scaling.. for now..
 
 	if(!brute && !burn && !stamina)
@@ -167,39 +206,99 @@
 		if(ALIEN_BODYPART,LARVA_BODYPART) //aliens take double burn //nothing can burn with so much snowflake code around
 			burn *= 2
 
+	//Internal organ damage
+	if(LAZYLEN(owner.getorganszone(body_zone))) //Runtime in bodyparts.dm,209: pick() from empty list
+		var/obj/item/organ/todamage = pick(owner.getorganszone(body_zone))
+		if(((brute_dam >= max_damage) || (sharp && brute >= LIMB_SHARP_THRESH_INT_DMG) || (brute >= LIMB_THRESH_INT_DMG)) && prob(LIMB_DMG_PROB))
+			todamage.applyOrganDamage(brute * 0.5) //Burn and stamina don't count toward organ damage.
+	if(status_flags & BODYPART_BROKEN && prob(40) && brute)
+		owner.emote("scream")	//getting hit on broken limb hurts
+	if(status_flags & BODYPART_SPLINTED && prob((brute + burn)*4)) //taking damage to splinted limbs removes the splints
+		status_flags &= ~BODYPART_SPLINTED
+		owner.visible_message("<span class='danger'>The splint on [owner]'s [name] unravels from [owner.p_their()] [name]!</span>","<span class='userdanger'>The splint on your [name] unravels!</span>")
+		owner.handle_splints()
+
 	var/can_inflict = max_damage - get_damage()
-	if(can_inflict <= 0)
-		return FALSE
 
 	var/total_damage = brute + burn
 
-	if(total_damage > can_inflict)
-		brute = round(brute * (max_damage / total_damage),DAMAGE_PRECISION)
-		burn = round(burn * (max_damage / total_damage),DAMAGE_PRECISION)
+	// Make sure we don't exceed the maximum damage a limb can take before dismembering
+	if(can_inflict)
+		if(total_damage <= can_inflict)
+			brute_dam += brute
+			burn_dam += burn
+			check_for_internal_bleeding(brute, sharp)
+		else
+			if(brute > 0)
+				//Inflict all brute damage we can
+				brute_dam = min(brute_dam + brute, brute_dam + can_inflict)
+				var/temp = can_inflict
+				//How much more damage can we inflict
+				can_inflict = max(0, can_inflict - brute)
+				//How much brute damage is left to inflict
+				brute = max(0, brute - temp)
+				check_for_internal_bleeding(brute, sharp)
+			if(burn > 0 && can_inflict)
+				//Inflict all burn damage we can
+				burn_dam = min(burn_dam + burn, burn_dam + can_inflict)
+				//How much burn damage is left to inflict
+				burn = max(0, burn - can_inflict)
+			if(burn || brute)
+				//List organs we can pass it to
+				var/list/obj/item/bodypart/possible_points = list()
+				if(parent)
+					possible_points += parent
+				if(children)
+					for(var/BP in children)
+						if(BP)
+							possible_points += BP
+				if(forbidden_limbs.len)
+					possible_points -= forbidden_limbs
+				if(possible_points.len)
+					//And pass the pain around
+					if(possible_points.len)
+						var/obj/item/bodypart/target = pick(possible_points)
+						if(target)
+							target.receive_damage(brute, burn, stamina = 0, sharp, forbidden_limbs + src, ignore_resists = TRUE, updating_health = TRUE) //If the damage was reduced before, don't reduce it again
 
-	brute_dam += brute
-	burn_dam += burn
+				if(dismember_at_max_damage && body_zone != BODY_ZONE_CHEST && body_zone != BODY_ZONE_PRECISE_GROIN && body_zone != BODY_ZONE_HEAD) // We've ensured all damage to the mob is retained, now let's drop it, if necessary.
+					src.dismember() //Gruesome!
 
-	//We've dealt the physical damages, if there's room lets apply the stamina damage.
-	var/current_damage = get_damage(TRUE)		//This time around, count stamina loss too.
-	var/available_damage = max_damage - current_damage
-	stamina_dam += round(clamp(stamina, 0, min(max_stamina_damage - stamina_dam, available_damage)), DAMAGE_PRECISION)
+	// See if bones need to break
+	check_fracture(brute)
+	var/mob/living/carbon/owner_old = owner //Need to update health, but need a reference in case the below check cuts off a limb.
+	//If limb took enough damage, try to cut or tear it off
+	if(owner && loc == owner)
+		if(can_dismember() && !HAS_TRAIT(owner, TRAIT_NODISMEMBER) && (brute_dam >= max_damage))
+			if(prob((brute / 2)) && sharp)
+				src.dismember()
+	if(owner_old)
+		owner_old.updatehealth()
 
-	if(disabled && stamina > 10)
-		incoming_stam_mult = max(0.01, incoming_stam_mult/(stamina*0.1))
+/obj/item/bodypart/proc/check_fracture(var/damage_inflicted)
+	if(prob(damage_inflicted) || damage >= (max_damage) * FRACTURE_CONSTANT)
+		fracture()
 
-	if(owner && updating_health)
+/obj/item/bodypart/proc/rejuvenate()
+	perma_injury = 0
+	brute_dam = 0
+	burn_dam = 0
+	open = 0 //Closing all wounds.
+	internal_bleeding = FALSE
+	// handle internal organs
+	for(var/obj/item/organ/O in owner.getorganszone(body_zone))
+		O.setOrganDamage(0)
+		O.organ_flags &= ~ORGAN_FAILING
+	if(owner)
 		owner.updatehealth()
-		if(stamina > DAMAGE_PRECISION)
-			owner.update_stamina()
-	consider_processing()
-	update_disabled()
-	return update_bodypart_damage_state()
+	if(!owner)
+		START_PROCESSING(SSobj, src)
+	update_bodypart_damage_state()
 
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
 //Cannot remove negative damage (i.e. apply damage)
-/obj/item/bodypart/proc/heal_damage(brute, burn, stamina, only_robotic = FALSE, only_organic = TRUE, updating_health = TRUE)
+/obj/item/bodypart/proc/heal_damage(brute, burn, stamina, only_robotic = FALSE, only_organic = TRUE, updating_health = TRUE, heal_internal_organs = FALSE)
 
 	if(only_robotic && status != BODYPART_ROBOTIC) //This makes organic limbs not heal when the proc is in Robotic mode.
 		return
@@ -210,6 +309,9 @@
 	brute_dam	= round(max(brute_dam - brute, 0), DAMAGE_PRECISION)
 	burn_dam	= round(max(burn_dam - burn, 0), DAMAGE_PRECISION)
 	stamina_dam = round(max(stamina_dam - stamina, 0), DAMAGE_PRECISION)
+	if(heal_internal_organs)
+		for(var/obj/item/organ/O in owner.getorganszone(body_zone))
+			O.applyOrganDamage(-brute)
 	if(owner && updating_health)
 		owner.updatehealth()
 	consider_processing()
@@ -238,6 +340,8 @@
 			return BODYPART_DISABLED_DAMAGE
 		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)))
 			return BODYPART_NOT_DISABLED
+		if(parent.is_disabled())
+			return parent.is_disabled()
 	else
 		return BODYPART_NOT_DISABLED
 
@@ -248,7 +352,6 @@
 		set_disabled(TRUE)
 	else if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)))
 		set_disabled(FALSE)
-
 
 /obj/item/bodypart/proc/set_disabled(new_disabled)
 	if(disabled == new_disabled)
@@ -261,7 +364,57 @@
 		incoming_stam_mult = 1
 	return TRUE
 
-//Updates an organ's brute/burn states for use by update_damage_overlays()
+/obj/item/bodypart/proc/fracture()
+	if((status & ORGAN_BROKEN) || cannot_break)
+		return
+	if(owner)
+		owner.visible_message(\
+			"<span class='warning'>You hear a loud cracking sound coming from \the [owner].</span>",\
+			"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
+			"You hear a sickening crack.")
+		playsound(owner, pick("sound/effects/bonebreak1.ogg", "sound/effects/bonebreak2.ogg", "sound/effects/bonebreak3.ogg",\
+								"sound/effects/bonebreak4.ogg", "sound/effects/bonebreak5.ogg", "sound/effects/bonebreak6.ogg"), 150, 1)
+		owner.emote("scream")
+
+	status_flags |= BODYPART_BROKEN
+	broken_description = pick("broken", "fracture", "hairline fracture")
+	perma_injury = brute_dam
+
+	// Fractures have a chance of getting you out of the respective restraints
+	if(prob(LIMB_FRACTURE_RESTRAINT_OFF) && ((name = BODY_ZONE_L_ARM) || (name = BODY_ZONE_R_ARM) || (name = BODY_ZONE_PRECISE_R_HAND) || (name = BODY_ZONE_PRECISE_L_HAND)))
+		if(owner.handcuffed)
+			owner.handcuffed.Destroy()
+	if(prob(LIMB_FRACTURE_RESTRAINT_OFF) && ((name = BODY_ZONE_L_LEG) || (name = BODY_ZONE_R_LEG) || (name = BODY_ZONE_PRECISE_R_FOOT) || (name = BODY_ZONE_PRECISE_L_FOOT)))
+		if(owner.legcuffed)
+			owner.legcuffed.Destroy()
+
+/obj/item/bodypart/proc/mend_fracture()
+	if(!(status_flags & BODYPART_BROKEN))
+		return FALSE
+
+	status_flags &= ~BODYPART_BROKEN
+	status_flags &= ~BODYPART_SPLINTED
+	perma_injury = 0
+	if(owner)
+		owner.handle_splints()
+	return TRUE
+
+/obj/item/bodypart/proc/is_usable()
+	return !(status_flags & (BODYPART_MUTATED|BODYPART_DEAD))
+
+/obj/item/bodypart/proc/is_malfunctioning()
+	return ((brute_dam + burn_dam) >= 10 && prob(brute_dam + burn_dam))
+
+/obj/item/bodypart/proc/check_for_internal_bleeding(damage)
+	if(owner && NOBLOOD in owner.dna.species.species_traits)
+		return
+	var/local_damage = brute_dam + damage
+	if((damage >= min_broken_damage/2 && local_damage >= min_broken_damage && prob(damage)) || (damage >= (min_broken_damage/2 * 0.8) && local_damage >= (min_broken_damage/2 * 0.8) && prob(damage * 1.25)))
+		internal_bleeding = TRUE
+		if(owner)
+			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
+
+//Updates a bodypart's brute/burn states for use by update_damage_overlays()
 //Returns 1 if we need to update overlays. 0 otherwise.
 /obj/item/bodypart/proc/update_bodypart_damage_state()
 	var/tbrute	= round( (brute_dam/max_damage)*3, 1 )
@@ -272,7 +425,7 @@
 		return TRUE
 	return FALSE
 
-//Change organ status
+//Change bodypart status
 /obj/item/bodypart/proc/change_bodypart_status(new_limb_status, heal_limb, change_icon_to_default)
 	status = new_limb_status
 	if(heal_limb)
@@ -463,7 +616,7 @@
 			limb.icon_state = "[animal_origin]_[body_zone]"
 		return
 
-	if((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST))
+	if((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST && body_zone != BODY_ZONE_PRECISE_GROIN))
 		should_draw_gender = FALSE
 
 	if(is_organic_limb())
@@ -583,9 +736,11 @@
 
 /obj/item/bodypart/chest
 	name = BODY_ZONE_CHEST
+	limb_name = "chest"
 	desc = "It's impolite to stare at a person's chest."
 	icon_state = "default_human_chest"
 	max_damage = 200
+	min_broken_damage = 35
 	body_zone = BODY_ZONE_CHEST
 	body_part = CHEST
 	px_x = 0
@@ -593,6 +748,27 @@
 	stam_damage_coeff = 1
 	max_stamina_damage = 200
 	var/obj/item/cavity_item
+	encased = "ribcage"
+	amputation_point = "spine"
+	convertable_children = list(/obj/item/bodypart/chest/groin)
+
+/obj/item/bodypart/chest/groin
+	name = BODY_ZONE_PRECISE_GROIN
+	limb_name = "groin"
+	desc = "Some say groin came from  Grynde, which is middle-ages speak for depression, makes sense for the situation."
+	icon_state = "default_human_groin"
+	max_damage = 75
+	min_broken_damage = 25
+	body_zone = BODY_ZONE_PRECISE_GROIN
+	body_part = GROIN
+	px_x = 0
+	px_y = 0
+	stam_damage_coeff = 1
+	max_stamina_damage = 75
+	encased = "pelvic bone"
+	amputation_point = "lumbar"
+	parent_bodypart = /obj/item/bodypart/chest
+	convertable_children = list()
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)
 	if(!((owner.stat == DEAD) || owner.InFullCritical()))
@@ -636,22 +812,44 @@
 
 /obj/item/bodypart/l_arm
 	name = "left arm"
+	limb_name = "left arm"
 	desc = "Did you know that the word 'sinister' stems originally from the \
 		Latin 'sinestra' (left hand), because the left hand was supposed to \
 		be possessed by the devil? This arm appears to be possessed by no \
 		one though."
 	icon_state = "default_human_l_arm"
-	attack_verb = list("slapped", "punched")
+	attack_verb = list("slapped")
 	max_damage = 50
 	max_stamina_damage = 50
+	min_broken_damage = 25
 	body_zone = BODY_ZONE_L_ARM
 	body_part = ARM_LEFT
-	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
 	body_damage_coeff = 0.75
-	held_index = 1
 	px_x = -6
 	px_y = 0
 	stam_heal_tick = 4
+	convertable_children = list(/obj/item/bodypart/l_arm/l_hand)
+	amputation_point = "left shoulder"
+
+/obj/item/bodypart/l_arm/l_hand
+	name = "left hand"
+	limb_name = "left hand"
+	desc = "In old english, left meant weak, guess they were onto something if you're finding this."
+	icon_state = "default_human_l_hand"
+	attack_verb = list("slapped", "punched")
+	max_damage = 30
+	max_stamina_damage = 30
+	min_broken_damage = 15
+	body_zone = BODY_ZONE_PRECISE_L_HAND
+	body_part = HAND_LEFT
+	body_damage_coeff = 0.8 //hands receive a biiit more damage than an arm
+	held_index = 1
+	px_x = -6
+	px_y = 0
+	stam_heal_tick = 3
+	convertable_children = list()
+	parent_bodypart = /obj/item/bodypart/l_arm //this just might cause some problems since it is itself the of type of the parent
+	amputation_point = "left arm"
 
 /obj/item/bodypart/l_arm/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
@@ -679,6 +877,8 @@
 /obj/item/bodypart/l_arm/monkey
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_l_arm"
+	held_index = 1
+	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
 	animal_origin = MONKEY_BODYPART
 	px_x = -5
 	px_y = -3
@@ -686,6 +886,8 @@
 /obj/item/bodypart/l_arm/alien
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "alien_l_arm"
+	held_index = 1
+	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
 	px_x = 0
 	px_y = 0
 	dismemberable = 0
@@ -693,26 +895,48 @@
 	animal_origin = ALIEN_BODYPART
 
 /obj/item/bodypart/l_arm/devil
+	held_index = 1
+	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
 
 /obj/item/bodypart/r_arm
 	name = "right arm"
+	limb_name = "right arm"
 	desc = "Over 87% of humans are right handed. That figure is much lower \
 		among humans missing their right arm."
 	icon_state = "default_human_r_arm"
-	attack_verb = list("slapped", "punched")
+	attack_verb = list("slapped")
 	max_damage = 50
 	body_zone = BODY_ZONE_R_ARM
 	body_part = ARM_RIGHT
-	aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER)
 	body_damage_coeff = 0.75
-	held_index = 2
 	px_x = 6
 	px_y = 0
 	stam_heal_tick = 4
 	max_stamina_damage = 50
+	convertable_children = list(/obj/item/bodypart/r_arm/r_hand)
+	amputation_point = "right shoulder"
+
+/obj/item/bodypart/r_arm/r_hand
+	name = "right hand"
+	limb_name = "right hand"
+	desc = "Allan, please add details."
+	icon_state = "default_human_r_hand"
+	attack_verb = list("slapped", "punched")
+	max_damage = 30
+	max_stamina_damage = 30
+	body_zone = BODY_ZONE_PRECISE_R_HAND
+	body_part = HAND_RIGHT
+	body_damage_coeff = 0.8
+	held_index = 2
+	px_x = 6
+	px_y = 0
+	stam_heal_tick = 3
+	convertable_children = list()
+	amputation_point = "right arm"
+	parent_bodypart = /obj/item/bodypart/r_arm
 
 /obj/item/bodypart/r_arm/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
@@ -741,6 +965,8 @@
 /obj/item/bodypart/r_arm/monkey
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_r_arm"
+	held_index = 2
+	aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER)
 	animal_origin = MONKEY_BODYPART
 	px_x = 5
 	px_y = -3
@@ -748,6 +974,8 @@
 /obj/item/bodypart/r_arm/alien
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "alien_r_arm"
+	held_index = 2
+	aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER)
 	px_x = 0
 	px_y = 0
 	dismemberable = 0
@@ -755,16 +983,19 @@
 	animal_origin = ALIEN_BODYPART
 
 /obj/item/bodypart/r_arm/devil
+	held_index = 2
+	aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER)
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
 
 /obj/item/bodypart/l_leg
 	name = "left leg"
+	limb_name = "left leg"
 	desc = "Some athletes prefer to tie their left shoelaces first for good \
 		luck. In this instance, it probably would not have helped."
 	icon_state = "default_human_l_leg"
-	attack_verb = list("kicked", "stomped")
+	attack_verb = list("slapped")
 	max_damage = 50
 	body_zone = BODY_ZONE_L_LEG
 	body_part = LEG_LEFT
@@ -773,6 +1004,27 @@
 	px_y = 12
 	stam_heal_tick = 4
 	max_stamina_damage = 50
+	can_stand = 1
+	convertable_children = list(/obj/item/bodypart/l_leg/l_foot)
+	amputation_point = "pelvis"
+
+/obj/item/bodypart/l_leg/l_foot
+	name = "left foot"
+	limb_name = "left foot"
+	desc = "The devils ha- oh, wait, this is a foot, huh."
+	icon_state = "default_human_l_foot"
+	attack_verb = list("kicked", "stomped")
+	max_damage = 30
+	body_zone = BODY_ZONE_PRECISE_L_FOOT
+	body_part = FOOT_LEFT
+	body_damage_coeff = 0.75
+	px_x = -2
+	px_y = 12
+	stam_heal_tick = 3
+	max_stamina_damage = 30
+	convertable_children = list()
+	amputation_point = "right leg"
+	parent_bodypart = /obj/item/bodypart/l_leg
 
 /obj/item/bodypart/l_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
@@ -817,12 +1069,13 @@
 
 /obj/item/bodypart/r_leg
 	name = "right leg"
+	limb_name = "right leg"
 	desc = "You put your right leg in, your right leg out. In, out, in, out, \
 		shake it all about. And apparently then it detaches.\n\
 		The hokey pokey has certainly changed a lot since space colonisation."
 	// alternative spellings of 'pokey' are availible
 	icon_state = "default_human_r_leg"
-	attack_verb = list("kicked", "stomped")
+	attack_verb = list("slapped")
 	max_damage = 50
 	body_zone = BODY_ZONE_R_LEG
 	body_part = LEG_RIGHT
@@ -831,6 +1084,27 @@
 	px_y = 12
 	max_stamina_damage = 50
 	stam_heal_tick = 4
+	can_stand = 1
+	convertable_children = list(/obj/item/bodypart/r_leg/r_foot)
+	amputation_point = "pelvis"
+
+/obj/item/bodypart/r_leg/r_foot
+	name = "right foot"
+	limb_name = "right foot"
+	desc = "You feel like someones gonna be needing a peg-leg."
+	icon_state = "default_human_r_foot"
+	attack_verb = list("kicked", "stomped")
+	max_damage = 30
+	body_zone = BODY_ZONE_PRECISE_R_FOOT
+	body_part = FOOT_RIGHT
+	body_damage_coeff = 0.75
+	px_x = -2
+	px_y = 12
+	stam_heal_tick = 3
+	max_stamina_damage = 30
+	convertable_children = list()
+	amputation_point = "right leg"
+	parent_bodypart = /obj/item/bodypart/r_leg
 
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
