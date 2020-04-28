@@ -50,6 +50,11 @@
 	item_state = "bobjoga"
 	squeak_override = list('sound/weapons/Kenetic_accel.ogg' = 1)
 
+/obj/item/toy/plush/mammal/odrew
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "odrew"
+	item_state = "odrew"
+
 /obj/item/toy/plush/mammal/michael
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "michael"
@@ -65,6 +70,13 @@
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "taff"
 	item_state = "taff"
+/obj/item/toy/plush/mammal/odrew/gorelord
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "gorelord-drew"
+	item_state = "gorelord-drew"
+	desc = "An adorable stuffed toy resembling some sort of crew member that has been stained with blood."
+	attack_verb = list("Gored", "Stabbed", "Gutted")
+	squeak_override = list('sound/weapons/slashmiss.ogg' = 1)
 
 /obj/item/toy/plush/mammal/trace
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
