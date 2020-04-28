@@ -881,6 +881,9 @@
 		var/datum/disease/D = thing
 		if(D.severity != DISEASE_SEVERITY_POSITIVE)
 			D.cure(FALSE)
+	for(var/obj/item/bodypart/BP in bodyparts)
+		BP.status_flags &= ~BODYPART_BROKEN
+		BP.internal_bleeding = FALSE
 	if(admin_revive)
 		regenerate_limbs(ignore_parent_restriction = TRUE)
 		regenerate_organs()
