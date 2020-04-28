@@ -1,6 +1,0 @@
-author: "CinderWC"
-delete-after: True
-changes: 
-  - tweak: "Moves spare delta bio-gene to puplic access"
-  - tweak: "Moves Box bio-gene to cook-wall for easy access"
-  - tweak: "Tweaked Botany and Kitchen on both Box and Delta to accomodate the Biogen changes"
