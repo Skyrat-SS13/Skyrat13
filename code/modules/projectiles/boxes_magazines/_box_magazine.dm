@@ -110,7 +110,7 @@
 		playsound(src, 'sound/weapons/bulletinsert.ogg', 60, 1)
 		to_chat(user, "<span class='notice'>You remove a round from \the [src]!</span>")
 		update_icon()
-
+/* moved to modular_skyrat
 /obj/item/ammo_box/update_icon()
 	. = ..()
 	desc = "[initial(desc)] There are [stored_ammo.len] shell\s left!"
@@ -119,6 +119,7 @@
 		material_amount = (material_amount*stored_ammo.len) + base_cost[material]
 		custom_materials[material] = material_amount
 	set_custom_materials(custom_materials)//make sure we setup the correct properties again
+*/
 
 /obj/item/ammo_box/update_icon_state()
 	switch(multiple_sprites)
