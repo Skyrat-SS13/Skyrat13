@@ -8,12 +8,16 @@
 #define LIMB_FRACTURE_RESTRAINT_OFF 50
 // It's explained below
 #define INJURY_MODIFIER 0.1
-// Threshold in which the limb will break with certainty (max_damage * FRACTURE_CONSTANT)
-#define FRACTURE_CONSTANT 0.85
-// Threshold in which internal bleeding has a very high chance to occur
-#define BLEEDING_CHANCEUP_CONSTANT 0.95
-// Chance in percent for a limb to internally bleed after the previous threshold
+// Threshold above which the limb will break with certainty (max_damage * FRACTURE_CONSTANT)
+// (Above 1 means it's pretty much guaranteed to not happen)
+#define FRACTURE_CONSTANT 2
+// Threshold above bleeding has a very high chance to occur
+// (Above 1 means it's pretty much guaranteed to not happen)
+#define BLEEDING_CHANCEUP_CONSTANT 2
+// Chance in percentage for a limb to internally bleed after the previous threshold
 #define BLEEDING_CHANCEUP_PROB 20
+// Do sharp weapons have a bigger chance to cause internal bledding?
+#define SHARPNESS_MAKES_A_DIFFERENCE FALSE
 /obj/item/bodypart
 	name = "limb"
 	desc = "Why is it detached..."
@@ -234,7 +238,7 @@
 			// See if we apply for internal bleeding
 			check_for_internal_bleeding(brute, sharp)
 			// See if bones need to break
-			check_fracture(brute)
+			check_fracture(brute_dam)
 		else
 			if(brute > 0)
 				//Inflict all brute damage we can
@@ -418,15 +422,15 @@
 	if(owner && (NOBLOOD in owner.dna.species.species_traits))
 		return
 	var/local_damage = brute_dam + damage
-	if((damage >= min_broken_damage/2 && local_damage >= min_broken_damage && prob(damage)) || (damage >= (min_broken_damage/2 * 0.8) && local_damage >= (min_broken_damage/2 * 0.8) && prob(damage * 1.25)))
+	if((damage >= min_broken_damage/2 && local_damage >= min_broken_damage && prob(damage)))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
-	else if(status_flags & BODYPART_BROKEN && (local_damage >= (min_broken_damage * 0.9)) && prob(30))
+	else if(status_flags & BODYPART_BROKEN && (local_damage >= max_damage) && prob(15))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
-	else if(sharp && local_damage >= (min_broken_damage * 0.75) && prob(BLEEDING_CHANCEUP_PROB))
+	else if(SHARPNESS_MAKES_A_DIFFERENCE && sharp && local_damage >= (min_broken_damage * 0.75) && prob(BLEEDING_CHANCEUP_PROB))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")

@@ -120,7 +120,7 @@ export const Sleeper = props => {
                       {funnylimb.broken
                         ? 'BROKEN, '
                         : 'NOT BROKEN, '}
-                      {funnylimb.broken
+                      {funnylimb.bleeding
                         ? 'INTERNAL BLEEDING'
                         : 'NO INTERNAL BLEEDING'}
                     </ProgressBar>

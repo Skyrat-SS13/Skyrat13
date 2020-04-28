@@ -94,7 +94,7 @@
 			var/brutedamage = BP.brute_dam
 			var/limbbleeding = BP.internal_bleeding
 
-			if(BP.status == BODYPART_ROBOTIC) //for the moment, synth limbs won't bleed, but soon, my pretty.
+			if(BP.status == BODYPART_ROBOTIC) //for the moment, synthetic limbs won't bleed, but soon, my pretty.
 				continue
 
 			//We want an accurate reading of .len
@@ -104,7 +104,7 @@
 			if(brutedamage >= 20)
 				temp_bleed += (brutedamage * 0.013)
 			if(limbbleeding)
-				temp_bleed += (brutedamage * 0.05) //internal bleeding is VERY bad.
+				temp_bleed += (brutedamage * 0.007) //internal bleeding is pretty bad, but shouldn't be (immediately) lethal.
 
 		bleed_rate = max(bleed_rate - 0.5, temp_bleed)//if no wounds, other bleed effects (heparin) naturally decreases
 

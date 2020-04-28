@@ -882,7 +882,7 @@
 		if(D.severity != DISEASE_SEVERITY_POSITIVE)
 			D.cure(FALSE)
 	if(admin_revive)
-		regenerate_limbs()
+		regenerate_limbs(ignore_parent_restriction = TRUE)
 		regenerate_organs()
 		handcuffed = initial(handcuffed)
 		for(var/obj/item/restraints/R in contents) //actually remove cuffs from inventory

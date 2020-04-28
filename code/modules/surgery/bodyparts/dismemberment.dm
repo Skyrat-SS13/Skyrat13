@@ -282,8 +282,8 @@
 			O.drop_limb(1)
 	attach_limb(C, special)
 
-/obj/item/bodypart/proc/attach_limb(mob/living/carbon/C, special)
-	if(parent_bodypart) //if it has a parent bodypart type, it needs that on the mob to be attached
+/obj/item/bodypart/proc/attach_limb(mob/living/carbon/C, special, ignore_parent_restriction = FALSE)
+	if(parent_bodypart && !ignore_parent_restriction) //if it has a parent bodypart type, it needs that on the mob to be attached
 		if(C.bodyparts)
 			var/canattach = FALSE
 			for(var/obj/item/bodypart/BP in C.bodyparts)
@@ -319,9 +319,12 @@
 				break
 
 	for(var/obj/item/bodypart/BP in contents) //stored limbs. in normal circumstances, this will be either nothing or just the children.
-		BP.attach_limb(C, special)
+		BP.attach_limb(C, special, ignore_parent_restriction)
 	for(var/obj/item/organ/O in contents)
 		O.Insert(C)
+	
+	if(!parent || ignore_parent_restriction)
+		try_parenting(C)
 
 	update_bodypart_damage_state()
 
@@ -330,6 +333,11 @@
 	C.update_hair()
 	C.update_damage_overlays()
 	C.update_mobility()
+
+/obj/item/bodypart/proc/try_parenting(mob/living/carbon/C)
+	for(var/obj/item/bodypart/BP in C.bodyparts)
+		if(istype(BP, parent_bodypart))
+			BP.children |= src
 
 //Legs and feet require a groin to be attached. On humans, at least, because i'm too fucking lazy to update all carbons.
 /obj/item/bodypart/r_leg/attach_limb(mob/living/carbon/C, special)
@@ -377,21 +385,23 @@
 	..()
 
 //Regenerates all limbs. Returns amount of limbs regenerated
-/mob/living/proc/regenerate_limbs(noheal = FALSE, list/excluded_limbs = list())
-	SEND_SIGNAL(src, COMSIG_LIVING_REGENERATE_LIMBS, noheal, excluded_limbs)
+/mob/living/proc/regenerate_limbs(noheal = FALSE, list/excluded_limbs = list(), ignore_parent_restriction = FALSE)
+	SEND_SIGNAL(src, COMSIG_LIVING_REGENERATE_LIMBS, noheal, excluded_limbs, ignore_parent_restriction)
 
-/mob/living/carbon/regenerate_limbs(noheal = FALSE, list/excluded_limbs = list())
+/mob/living/carbon/regenerate_limbs(noheal = FALSE, list/excluded_limbs = list(), ignore_parent_restriction = FALSE)
 	. = ..()
 	var/list/limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 	if(excluded_limbs.len)
 		limb_list -= excluded_limbs
+	if(ishuman(src))
+		limb_list |= list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
 	for(var/Z in limb_list)
-		. += regenerate_limb(Z, noheal)
+		. += regenerate_limb(Z, noheal, ignore_parent_restriction)
 
-/mob/living/proc/regenerate_limb(limb_zone, noheal)
+/mob/living/proc/regenerate_limb(limb_zone, noheal, ignore_parent_restriction)
 	return
 
-/mob/living/carbon/regenerate_limb(limb_zone, noheal)
+/mob/living/carbon/regenerate_limb(limb_zone, noheal, ignore_parent_restriction)
 	var/obj/item/bodypart/L
 	if(get_bodypart(limb_zone))
 		return 0
@@ -403,8 +413,8 @@
 			L.brutestate = 0
 			L.burnstate = 0
 
-		L.attach_limb(src, 1)
+		L.attach_limb(src, 1, ignore_parent_restriction)
 		if(L.convertable_children)
 			for(var/obj/item/bodypart/child in L.convertable_children)
-				regenerate_limb(child.body_zone, noheal)
+				regenerate_limb(child.body_zone, noheal, ignore_parent_restriction)
 		return 1
