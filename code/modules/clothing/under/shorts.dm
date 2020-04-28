@@ -4,6 +4,7 @@
 	gender = PLURAL
 	body_parts_covered = GROIN
 	fitted = NO_FEMALE_UNIFORM
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 	can_adjust = FALSE
 
 /obj/item/clothing/under/shorts/red
@@ -35,7 +36,6 @@
 	desc = "95% Polychrome, 5% Spandex!"
 	icon_state = "polyshortpants"
 	item_state = "rainbow"
-	mutantrace_variation = NONE
 	var/list/poly_colors = list("#FFFFFF", "#F08080")
 
 /obj/item/clothing/under/shorts/polychromic/ComponentInitialize()
@@ -47,7 +47,5 @@
 	desc = "Topless striped panties. Now with 120% more polychrome!"
 	icon_state = "polypantsu"
 	item_state = "rainbow"
-	body_parts_covered = GROIN
-	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 
 	poly_colors = list("#FFFFFF", "#8CC6FF")
