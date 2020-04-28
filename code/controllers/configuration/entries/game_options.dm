@@ -296,9 +296,10 @@
 /datum/config_entry/number/outdated_movedelay/animal_delay
 	movedelay_type = /mob/living/simple_animal
 /////////////////////////////////////////////////
-
+//Skyrat changes
 /datum/config_entry/number/projectile_speed_modifier
 	config_entry_value = 1
+//End of skyrat changes
 
 /datum/config_entry/flag/roundstart_away	//Will random away mission be loaded.
 
