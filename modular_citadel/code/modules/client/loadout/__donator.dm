@@ -102,6 +102,18 @@
 	path = /obj/item/clothing/neck/cloak/festive
 	ckeywhitelist = list("illotafv")
 
+/datum/gear/carrotplush
+	name = "Carrot plushie"
+	category = SLOT_IN_BACKPACK
+	path = /obj/item/toy/plush/carrot
+	ckeywhitelist = list("improvedname")
+
+/datum/gear/carrotcloak
+	name = "Carrot cloak"
+	category = SLOT_NECK
+	path = /obj/item/clothing/neck/cloak/carrot
+	ckeywhitelist = list("improvedname")
+
 /datum/gear/albortorosamask
 	name = "Alborto Rosa mask"
 	category = SLOT_WEAR_MASK
@@ -162,6 +174,12 @@
 	category = SLOT_IN_BACKPACK
 	path = /obj/item/gun/ballistic/automatic/AM4B
 	ckeywhitelist = list("zeronetalpha")
+
+/datum/gear/carrotsatchel
+	name = "Carrot Satchel"
+	category = SLOT_HANDS
+	path = /obj/item/storage/backpack/satchel/carrot
+	ckeywhitelist = list("improvedname", "tylerbowes", "akrilla")
 
 /datum/gear/naomisweater
 	name = "worn black sweater"
