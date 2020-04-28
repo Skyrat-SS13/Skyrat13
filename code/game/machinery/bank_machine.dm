@@ -25,7 +25,7 @@
 	if(istype(I, /obj/item/stack/spacecash))
 		var/obj/item/stack/spacecash/C = I
 		value = C.value * C.amount
-	else if(istype(I, /obj/item/coin))
+	else if(istype(I, /obj/item/coin)) //Skyrat changes - Adds coins to vault console
 		var/obj/item/coin/C = I
 		value = C.value
 	if(value)
