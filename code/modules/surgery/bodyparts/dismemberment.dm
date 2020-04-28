@@ -90,8 +90,6 @@
 	if(status_flags & ORGAN_SPLINTED)
 		C.splinted_limbs -= src
 
-	. = ..()
-
 	if(held_index)
 		C.dropItemToGround(owner.get_item_for_held_index(held_index), 1)
 		C.hand_bodyparts[held_index] = null
@@ -286,11 +284,16 @@
 
 /obj/item/bodypart/proc/attach_limb(mob/living/carbon/C, special)
 	if(parent_bodypart) //if it has a parent bodypart type, it needs that on the mob to be attached
-		if(C.bodyparts & parent_bodypart)
-			parent = locate(parent_bodypart) in (C.bodyparts - typesof(src.type))
-			parent.children |= src
-		else
-			return
+		if(C.bodyparts)
+			var/canattach = FALSE
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				if(istype(BP, parent_bodypart))
+					canattach = TRUE
+			if(canattach)
+				parent = locate(parent_bodypart) in (C.bodyparts - typesof(src.type)) //assuming nothing went terribly wrong, there shouldn't be two of the same type of parent
+				parent.children |= src
+			else
+				return FALSE
 	moveToNullspace()
 	owner = C
 	C.bodyparts += src

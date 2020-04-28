@@ -249,7 +249,6 @@
 		data["occupant"]["toxLoss"] = mob_occupant.getToxLoss()
 		data["occupant"]["fireLoss"] = mob_occupant.getFireLoss()
 		data["occupant"]["cloneLoss"] = mob_occupant.getCloneLoss()
-		data["occupant"]["brainLoss"] = mob_occupant.getOrganLoss(ORGAN_SLOT_BRAIN)
 
 		if(mob_occupant.reagents.reagent_list.len)
 			for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
@@ -257,15 +256,30 @@
 		else
 			chemical_list = "Patient has no reagents."
 
-		data["occupant"]["failing_organs"] = list()
+		data["occupant"]["organs"] = list()
+		data["occupant"]["missing_organs"] = list()
+		data["occupant"]["limbs"] = list()
+		data["occupant"]["missing_limbs"] = list()
 		var/mob/living/carbon/C = mob_occupant
-		if(C)
-			for(var/obj/item/organ/Or in C.getFailingOrgans())
-				if(istype(Or, /obj/item/organ/brain))
-					continue
-				data["occupant"]["failing_organs"] += list(list("name" = Or.name))
+		var/list/currentorgans = C.getCurrentOrgans()
+		var/list/missingorgans = C.getMissingOrgans()
+		var/list/currentlimbs = C.bodyparts
+		var/list/missinglimps = C.get_missing_limbs()
+		var/list/missinglimbs = list()
+		for(var/x in missinglimps) //trash spaghetti code here
+			for(var/obj/item/bodypart/BP in subtypesof(/obj/item/bodypart))
+				if(BP.body_zone == x)
+					missinglimbs += BP
 
 		if(istype(C)) //Non-carbons shouldn't be able to enter sleepers, but this is to prevent runtimes if something ever breaks
+			for(var/obj/item/organ/Or in currentorgans)
+				data["occupant"]["organs"] += list(list("name" = capitalize(Or.name), "damage" = Or.damage, "maxdamage" = Or.maxHealth, "failing" = (Or.organ_flags & ORGAN_FAILING)))
+			for(var/obj/item/organ/missing in missingorgans)
+				data["occupant"]["missing_organs"] += list(list("name" = capitalize(missing.name)))
+			for(var/obj/item/bodypart/BP in currentlimbs)
+				data["occupant"]["limbs"] += list(list("name" = capitalize(BP.name), "damage" = BP.get_damage(include_stamina = FALSE), "maxdamage" = BP.max_damage, "broken" = (BP.status_flags & BODYPART_BROKEN), "bleeding" = BP.internal_bleeding))
+			for(var/obj/item/bodypart/missing in missinglimbs)
+				data["occupant"]["missing_limbs"] += list(list("name" = capitalize(missing.name)))
 			if(mob_occupant.has_dna()) // Blood-stuff is mostly a copy-paste from the healthscanner.
 				blood_percent = round((C.blood_volume / BLOOD_VOLUME_NORMAL)*100)
 				var/blood_id = C.get_blood_id()

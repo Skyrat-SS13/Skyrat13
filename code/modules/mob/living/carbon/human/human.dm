@@ -1066,6 +1066,23 @@
 	. = ..()
 	. *= physiology.do_after_speed
 
+/mob/living/carbon/human/create_bodyparts()
+	var/l_arm_index_next = -1 //fuck it, just vars, not renaming this, just know that humans have fuckijg hands
+	var/r_arm_index_next = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/O = new X()
+		O.owner = src
+		bodyparts.Remove(X)
+		bodyparts.Add(O)
+		if(O.body_part == HAND_LEFT)
+			l_arm_index_next += 2
+			O.held_index = l_arm_index_next //1, 3, 5, 7...
+			hand_bodyparts += O
+		else if(O.body_part == HAND_RIGHT)
+			r_arm_index_next += 2
+			O.held_index = r_arm_index_next //2, 4, 6, 8...
+			hand_bodyparts += O
+
 /mob/living/carbon/human/species
 	var/race = null
 

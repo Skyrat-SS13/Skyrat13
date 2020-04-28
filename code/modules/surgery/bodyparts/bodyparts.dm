@@ -10,6 +10,10 @@
 #define INJURY_MODIFIER 0.1
 // Threshold in which the limb will break with certainty (max_damage * FRACTURE_CONSTANT)
 #define FRACTURE_CONSTANT 0.85
+// Threshold in which internal bleeding has a very high chance to occur
+#define BLEEDING_CHANCEUP_CONSTANT 0.95
+// Chance in percent for a limb to internally bleed after the previous threshold
+#define BLEEDING_CHANCEUP_PROB 20
 /obj/item/bodypart
 	name = "limb"
 	desc = "Why is it detached..."
@@ -30,7 +34,7 @@
 	var/list/embedded_objects = list()
 	var/held_index = 0 //are we a hand? if so, which one!
 	var/is_pseudopart = FALSE //For limbs that don't really exist, eg chainsaws
-	//Boneworks V2 variables, which may or may not be used.
+	//Skymed variables, which may or may not be used.
 	var/limb_name
 	var/internal_bleeding = FALSE
 	var/status_flags = 0
@@ -227,7 +231,10 @@
 		if(total_damage <= can_inflict)
 			brute_dam += brute
 			burn_dam += burn
+			// See if we apply for internal bleeding
 			check_for_internal_bleeding(brute, sharp)
+			// See if bones need to break
+			check_fracture(brute)
 		else
 			if(brute > 0)
 				//Inflict all brute damage we can
@@ -237,7 +244,10 @@
 				can_inflict = max(0, can_inflict - brute)
 				//How much brute damage is left to inflict
 				brute = max(0, brute - temp)
+				// See if we apply for internal bleeding
 				check_for_internal_bleeding(brute, sharp)
+				// See if bones need to break
+				check_fracture(brute)
 			if(burn > 0 && can_inflict)
 				//Inflict all burn damage we can
 				burn_dam = min(burn_dam + burn, burn_dam + can_inflict)
@@ -264,8 +274,6 @@
 				if(dismember_at_max_damage && body_zone != BODY_ZONE_CHEST && body_zone != BODY_ZONE_PRECISE_GROIN && body_zone != BODY_ZONE_HEAD) // We've ensured all damage to the mob is retained, now let's drop it, if necessary.
 					src.dismember() //Gruesome!
 
-	// See if bones need to break
-	check_fracture(brute)
 	var/mob/living/carbon/owner_old = owner //Need to update health, but need a reference in case the below check cuts off a limb.
 	//If limb took enough damage, try to cut or tear it off
 	if(owner && loc == owner)
@@ -276,7 +284,7 @@
 		owner_old.updatehealth()
 
 /obj/item/bodypart/proc/check_fracture(var/damage)
-	if(prob(damage) || damage >= (max_damage) * FRACTURE_CONSTANT)
+	if(prob(100 * (damage/max_damage)) || (damage >= (max_damage * FRACTURE_CONSTANT)))
 		fracture()
 
 /obj/item/bodypart/proc/rejuvenate()
@@ -366,7 +374,7 @@
 	return TRUE
 
 /obj/item/bodypart/proc/fracture()
-	if((status & ORGAN_BROKEN) || cannot_break)
+	if((status & BODYPART_BROKEN) || cannot_break)
 		return
 	if(owner)
 		owner.visible_message(\
@@ -377,9 +385,9 @@
 								"sound/effects/bonebreak4.ogg", "sound/effects/bonebreak5.ogg", "sound/effects/bonebreak6.ogg"), 150, 1)
 		owner.emote("scream")
 
-	status_flags |= BODYPART_BROKEN
+	status_flags &= BODYPART_BROKEN
 	broken_description = pick("broken", "fracture", "hairline fracture")
-	perma_injury = brute_dam
+	perma_injury = brute_dam/4
 
 	// Fractures have a chance of getting you out of the respective restraints
 	if(prob(LIMB_FRACTURE_RESTRAINT_OFF) && ((name = BODY_ZONE_L_ARM) || (name = BODY_ZONE_R_ARM) || (name = BODY_ZONE_PRECISE_R_HAND) || (name = BODY_ZONE_PRECISE_L_HAND)))
@@ -406,15 +414,23 @@
 /obj/item/bodypart/proc/is_malfunctioning()
 	return ((brute_dam + burn_dam) >= 10 && prob(brute_dam + burn_dam))
 
-/obj/item/bodypart/proc/check_for_internal_bleeding(damage)
-	if(owner && NOBLOOD in owner.dna.species.species_traits)
+/obj/item/bodypart/proc/check_for_internal_bleeding(damage, sharp)
+	if(owner && (NOBLOOD in owner.dna.species.species_traits))
 		return
 	var/local_damage = brute_dam + damage
 	if((damage >= min_broken_damage/2 && local_damage >= min_broken_damage && prob(damage)) || (damage >= (min_broken_damage/2 * 0.8) && local_damage >= (min_broken_damage/2 * 0.8) && prob(damage * 1.25)))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
-	else if(status_flags & BODYPART_BROKEN && local_damage >= (min_broken_damage * 0.9) && prob(50))
+	else if(status_flags & BODYPART_BROKEN && (local_damage >= (min_broken_damage * 0.9)) && prob(30))
+		internal_bleeding = TRUE
+		if(owner)
+			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
+	else if(sharp && local_damage >= (min_broken_damage * 0.75) && prob(BLEEDING_CHANCEUP_PROB))
+		internal_bleeding = TRUE
+		if(owner)
+			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
+	else if(local_damage >= BLEEDING_CHANCEUP_CONSTANT && prob(BLEEDING_CHANCEUP_PROB))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
@@ -841,6 +857,7 @@
 	limb_name = "left hand"
 	desc = "In old english, left meant weak, guess they were onto something if you're finding this."
 	icon_state = "default_human_l_hand"
+	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
 	attack_verb = list("slapped", "punched")
 	max_damage = 30
 	max_stamina_damage = 30
@@ -927,8 +944,9 @@
 /obj/item/bodypart/r_arm/r_hand
 	name = "right hand"
 	limb_name = "right hand"
-	desc = "Allan, please add details."
+	desc = "It probably wasn't the right hand."
 	icon_state = "default_human_r_hand"
+	aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER)
 	attack_verb = list("slapped", "punched")
 	max_damage = 30
 	max_stamina_damage = 30

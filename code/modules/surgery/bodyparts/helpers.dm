@@ -83,10 +83,10 @@
 	. = 0
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/affecting = X
-		if(affecting.body_part == BODY_ZONE_PRECISE_L_HAND)
+		if(affecting.body_part == HAND_RIGHT)
 			if(!check_disabled || !affecting.disabled)
 				.++
-		if(affecting.body_part == BODY_ZONE_PRECISE_R_HAND)
+		if(affecting.body_part == HAND_LEFT)
 			if(!check_disabled || !affecting.disabled)
 				.++
 
@@ -116,10 +116,10 @@
 	. = 0
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/affecting = X
-		if(affecting.body_part == BODY_ZONE_PRECISE_R_FOOT)
+		if(affecting.body_part == FOOT_RIGHT)
 			if(!check_disabled || !affecting.disabled)
 				.++
-		if(affecting.body_part == BODY_ZONE_PRECISE_L_FOOT)
+		if(affecting.body_part == FOOT_LEFT)
 			if(!check_disabled || !affecting.disabled)
 				.++
 
@@ -219,14 +219,22 @@
 	switch(zone)
 		if(BODY_ZONE_L_ARM)
 			L = new /obj/item/bodypart/l_arm()
+		if(BODY_ZONE_PRECISE_L_HAND)
+			L = new /obj/item/bodypart/l_arm/l_hand()
 		if(BODY_ZONE_R_ARM)
 			L = new /obj/item/bodypart/r_arm()
+		if(BODY_ZONE_PRECISE_R_HAND)
+			L = new /obj/item/bodypart/r_arm/r_hand()
 		if(BODY_ZONE_HEAD)
 			L = new /obj/item/bodypart/head()
 		if(BODY_ZONE_L_LEG)
 			L = new /obj/item/bodypart/l_leg()
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			L = new /obj/item/bodypart/l_leg/l_foot()
 		if(BODY_ZONE_R_LEG)
 			L = new /obj/item/bodypart/r_leg()
+		if(BODY_ZONE_PRECISE_R_FOOT)
+			L = new /obj/item/bodypart/r_leg/r_foot()
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest()
 	if(L)
@@ -314,8 +322,12 @@
 			if(CHEST)
 				. |= GROIN
 			if(LEG_LEFT)
-				. |= FOOT_LEFT
+				. |= LEG_LEFT
 			if(LEG_RIGHT)
+				. |= LEG_RIGHT
+			if(FOOT_LEFT)
+				. |= FOOT_LEFT
+			if(FOOT_RIGHT)
 				. |= FOOT_RIGHT
 			if(ARM_LEFT)
 				. |= ARM_LEFT

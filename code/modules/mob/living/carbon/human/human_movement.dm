@@ -15,19 +15,15 @@
 		var/static/datum/config_entry/number/movedelay/sprint_speed_increase/SSI
 		if(!SSI)
 			SSI = CONFIG_GET_ENTRY(number/movedelay/sprint_speed_increase)
-		if(!(/obj/item/bodypart/r_leg in src.bodyparts) || !(/obj/item/bodypart/l_leg in src.bodyparts) || \
-			!(/obj/item/bodypart/r_leg/r_foot in src.bodyparts) || !(/obj/item/bodypart/l_leg/l_foot in src.bodyparts)) //you can't sprint without fucken legs or feet (...as a human.)
-			. += SSI.config_entry_value
+		if(get_missing_limbs()) //you can't sprint without fucken legs or feet (...as a human.)
+			if(/obj/item/bodypart/r_leg || 	/obj/item/bodypart/l_leg in get_missing_limbs())
+				. += SSI.config_entry_value
 		else
-			//Really spaghetti code here, but the crust of it is:
-			//For each broken (and unsplinted) leg or sobtype of leg,
-			//a fourth of the "extra" speed gained by running
-			//is lost.
-			for(var/obj/item/bodypart/r_leg/right in src.bodyparts)
+			for(var/obj/item/bodypart/r_leg/right in bodyparts)
 				if(right.status_flags & BODYPART_BROKEN)
 					if(!(right.status_flags & BODYPART_SPLINTED))
 						. += SSI.config_entry_value/4
-			for(var/obj/item/bodypart/r_leg/left in src.bodyparts)
+			for(var/obj/item/bodypart/r_leg/left in bodyparts)
 				if(left.status_flags & BODYPART_BROKEN)
 					if(!(left.status_flags & BODYPART_SPLINTED))
 						. += SSI.config_entry_value/4

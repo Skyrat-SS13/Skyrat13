@@ -78,5 +78,4 @@
 					 /obj/item/bodypart/r_leg, /obj/item/bodypart/l_leg,\
 					 /obj/item/bodypart/r_arm/r_hand, /obj/item/bodypart/l_arm/l_hand,\
 					 /obj/item/bodypart/r_leg/r_foot, /obj/item/bodypart/l_leg/l_foot)
-	hand_bodyparts = list(/obj/item/bodypart/r_arm/r_hand, /obj/item/bodypart/l_arm/l_hand,\
-					 /obj/item/bodypart/r_leg/r_foot, /obj/item/bodypart/l_leg/l_foot)
+	hand_bodyparts = list()

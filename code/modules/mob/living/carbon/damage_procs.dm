@@ -165,6 +165,24 @@
 		if(O.organ_flags & ORGAN_FAILING)
 			.+=O
 
+/mob/living/carbon/proc/getCurrentOrgans()
+	. = list()
+	for(var/obj/item/organ/O in internal_organs)
+		. += O
+
+/mob/living/carbon/proc/getOrgans()
+	. = list()
+	for(var/obj/item/organ/O in initial(internal_organs))
+		. += O
+
+/mob/living/carbon/proc/getMissingOrgans()
+	var/list/fuck = getCurrentOrgans()
+	var/list/piss = getOrgans()
+	for(var/obj/item/organ/O in fuck)
+		if(O.type in piss)
+			piss -= O.type
+	. = piss
+
 ////////////////////////////////////////////
 
 //Returns a list of damaged bodyparts
