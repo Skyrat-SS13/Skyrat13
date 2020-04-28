@@ -1,0 +1,4 @@
+author: "IronEleven"
+delete-after: True
+changes: 
+  - bugfix: "Fixes Uranium and Plasma issues"
