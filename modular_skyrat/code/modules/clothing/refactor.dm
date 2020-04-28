@@ -366,10 +366,6 @@
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
 
 /obj/item/clothing/head/helmet/space/hardsuit/security
-	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	icon_state = "hardsuit0-sec"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	armor = list("melee" = 35, "bullet" = 15, "laser" = 30,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75)
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
