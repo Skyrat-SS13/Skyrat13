@@ -5,6 +5,7 @@
 		eavesdrop_range = EAVESDROP_EXTRA_RANGE
 	var/list/listening = get_hearers_in_view(message_range+eavesdrop_range, source)
 	var/list/the_dead = list()
+	var/list/dead_away = list()
 	var/list/yellareas	//CIT CHANGE - adds the ability for yelling to penetrate walls and echo throughout areas
 	if(!eavesdrop_range && say_test(message) == "2")	//CIT CHANGE - ditto
 		yellareas = get_areas_in_range(message_range*0.5, source)	//CIT CHANGE - ditto
@@ -23,6 +24,7 @@
 				continue
 			if(!(M.client.prefs.chat_toggles & CHAT_GHOSTEARS)) //they're talking normally and we have hearing at any range off
 				continue
+			dead_away[M] = TRUE
 		listening |= M
 		the_dead[M] = TRUE
 
@@ -40,8 +42,10 @@
 				AM.Hear(eavesrendered, src, message_language, eavesdropping, null, spans, message_mode, source)
 			else
 				AM.Hear(rendered, src, message_language, message, null, spans, message_mode, source)
-		else
+		else if (dead_away[AM])
 			AM.Hear(rendered, src, message_language, message, null, spans, message_mode, source, maptext_popup = FALSE)
+		else
+			AM.Hear(rendered, src, message_language, message, null, spans, message_mode, source)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
 	//speech bubble

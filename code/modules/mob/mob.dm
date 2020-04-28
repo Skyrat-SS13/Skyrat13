@@ -86,6 +86,7 @@
 
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
+
 	if(type)
 		if(type & MSG_VISUAL && eye_blind )//Vision related
 			if(!alt_msg)

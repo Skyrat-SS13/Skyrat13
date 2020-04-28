@@ -14,6 +14,9 @@
 	features["mcolor2"]	= sanitize_hexcolor(features["mcolor2"], 3, 0)
 	features["mcolor3"]	= sanitize_hexcolor(features["mcolor3"], 3, 0)
 	//SKYRAT CHANGES
+	S["enable_personal_chat_color"]			>> enable_personal_chat_color
+	S["personal_chat_color"]			>> personal_chat_color
+
 	ooc_notes = sanitize_text(S["ooc_notes"])
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
@@ -27,6 +30,8 @@
 	flavor_background = sanitize_text(S["flavor_background"])
 	character_skills = sanitize_text(S["character_skills"])
 	exploitable_info = sanitize_text(S["exploitable_info"])
+	enable_personal_chat_color	= sanitize_integer(enable_personal_chat_color, 0, 1, initial(enable_personal_chat_color))
+	personal_chat_color	= sanitize_hexcolor(personal_chat_color, 3, 0, "FFFFFF")
 	//END OF SKYRAT CHANGES
 	//gear loadout
 	var/text_to_load
@@ -71,6 +76,8 @@
 	WRITE_FILE(S["flavor_background"], flavor_background)
 	WRITE_FILE(S["character_skills"], character_skills)
 	WRITE_FILE(S["exploitable_info"], exploitable_info)
+	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
+	WRITE_FILE(S["personal_chat_color"], personal_chat_color)
 	//END OF SKYRAT CHANGES
 	//gear loadout
 	if(islist(chosen_gear))
