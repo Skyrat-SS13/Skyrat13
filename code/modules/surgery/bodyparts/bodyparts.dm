@@ -203,8 +203,8 @@
 		return FALSE
 
 	switch(animal_origin)
-		if(ALIEN_BODYPART,LARVA_BODYPART) //aliens take double burn //nothing can burn with so much snowflake code around
-			burn *= 2
+		if(ALIEN_BODYPART,LARVA_BODYPART) //aliens take some additional burn //nothing can burn with so much snowflake code around
+			burn *= 1.2
 
 	//Internal organ damage
 	if(LAZYLEN(owner.getorganszone(body_zone))) //Runtime in bodyparts.dm,209: pick() from empty list
