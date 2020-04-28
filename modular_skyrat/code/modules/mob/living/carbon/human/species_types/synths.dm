@@ -104,6 +104,9 @@
 		else
 			chem.reaction_mob(H, TOUCH, 2 ,0)
 			H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
+	else if(chem.type == /datum/reagent/blood/synthetics)
+			chem.reaction_mob(H, INJECT, 2 ,0)
+			H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
