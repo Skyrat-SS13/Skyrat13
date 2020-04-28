@@ -6421,11 +6421,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
-"oV" = (
-/turf/open/floor/plasteel/stairs{
-	dir = 8
-	},
-/area/centcom/evac)
 "oX" = (
 /obj/structure/bookcase/random,
 /obj/machinery/light{
@@ -18628,11 +18623,6 @@
 	name = "HoochMaster 2000"
 	},
 /turf/open/floor/wood,
-/area/centcom/evac)
-"Vr" = (
-/turf/open/floor/plasteel/stairs{
-	dir = 4
-	},
 /area/centcom/evac)
 "Vt" = (
 /obj/item/paper/fluff/stations/centcom/disk_memo,
@@ -69175,7 +69165,7 @@ qx
 qx
 sL
 qx
-oV
+WK
 qx
 qx
 IK
@@ -70717,7 +70707,7 @@ qx
 qx
 Xk
 qx
-Vr
+WK
 qx
 qx
 IK
