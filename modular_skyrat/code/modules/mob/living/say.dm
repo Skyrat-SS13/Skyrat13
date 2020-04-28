@@ -43,7 +43,8 @@
 			else
 				AM.Hear(rendered, src, message_language, message, null, spans, message_mode, source)
 		else if (dead_away[AM] && istype(AM, /mob/dead/observer))
-			AM.Hear(rendered, src, message_language, message, null, spans, message_mode, source, maptext_popup = FALSE)
+			var/mob/dead/observer/O = AM
+			O.HearNoPopup(rendered, src, message_language, message, null, spans, message_mode, source)
 		else
 			AM.Hear(rendered, src, message_language, message, null, spans, message_mode, source)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)

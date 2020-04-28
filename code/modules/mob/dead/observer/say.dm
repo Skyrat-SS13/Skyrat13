@@ -21,7 +21,7 @@
 
 	. = say_dead(message)
 
-/mob/dead/observer/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, atom/movable/source, maptext_popup = TRUE)
+/mob/dead/observer/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, atom/movable/source)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args) //parent calls can't overwrite the current proc args.
 	var/atom/movable/to_follow = speaker
 	if(radio_freq)
@@ -34,7 +34,7 @@
 			to_follow = V.source
 	var/link = FOLLOW_LINK(src, to_follow)
 	// Create map text prior to modifying message for goonchat //Skyrat change
-	if (maptext_popup && client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker))) //Skyrat change
+	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker))) //Skyrat change
 		create_chat_message(speaker, message_language, raw_message, spans, message_mode) //Skyrat change
 	// Recompose the message, because it's scrambled by default
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode, FALSE, source)

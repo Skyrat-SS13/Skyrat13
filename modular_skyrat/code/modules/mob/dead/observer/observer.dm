@@ -26,7 +26,7 @@
 			transfer_ckey(spawned_player)
 
 		spawned_player.mind.AddSpell(new /obj/effect/proc_holder/spell/self/return_back)
-		
+
 		if(dresscode != "Naked")
 			spawned_player.equipOutfit(dresscode)
 
@@ -48,4 +48,20 @@
 
 				spawned_player.forceMove(empty_pod)
 
-				new /obj/effect/abstract/DPtarget(current_turf, empty_pod)			
+				new /obj/effect/abstract/DPtarget(current_turf, empty_pod)
+
+/mob/dead/observer/proc/HearNoPopup(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, atom/movable/source)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args) //parent calls can't overwrite the current proc args.
+	var/atom/movable/to_follow = speaker
+	if(radio_freq)
+		var/atom/movable/virtualspeaker/V = speaker
+
+		if(isAI(V.source))
+			var/mob/living/silicon/ai/S = V.source
+			to_follow = S.eyeobj
+		else
+			to_follow = V.source
+	var/link = FOLLOW_LINK(src, to_follow)
+	// Recompose the message, because it's scrambled by default
+	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode, FALSE, source)
+	to_chat(src, "[link] [message]")
