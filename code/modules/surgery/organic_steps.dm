@@ -83,11 +83,12 @@
 	return TRUE
 /datum/surgery_step/close/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(locate(/datum/surgery_step/saw) in surgery.steps)
-		target.heal_bodypart_damage(45,0)
+		target.heal_bodypart_damage(23,0)
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.bleed_rate = max( (H.bleed_rate - 3), 0)
 	return ..()
+
 //saw bone
 /datum/surgery_step/saw
 	name = "saw bone"

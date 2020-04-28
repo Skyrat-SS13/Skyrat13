@@ -79,6 +79,16 @@
 			if(!check_disabled || !affecting.disabled)
 				.++
 
+/mob/living/carbon/proc/get_num_hands(check_disabled = TRUE)
+	. = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/affecting = X
+		if(affecting.body_part == BODY_ZONE_PRECISE_L_HAND)
+			if(!check_disabled || !affecting.disabled)
+				.++
+		if(affecting.body_part == BODY_ZONE_PRECISE_R_HAND)
+			if(!check_disabled || !affecting.disabled)
+				.++
 
 //sometimes we want to ignore that we don't have the required amount of arms.
 /mob/proc/get_arm_ignore()
@@ -99,6 +109,17 @@
 			if(!check_disabled || !affecting.disabled)
 				.++
 		if(affecting.body_part == LEG_LEFT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+
+/mob/living/carbon/proc/get_num_feet(check_disabled = TRUE)
+	. = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/affecting = X
+		if(affecting.body_part == BODY_ZONE_PRECISE_R_FOOT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+		if(affecting.body_part == BODY_ZONE_PRECISE_L_FOOT)
 			if(!check_disabled || !affecting.disabled)
 				.++
 
@@ -124,6 +145,14 @@
 			full -= zone
 	return full
 
+/mob/living/carbon/human/get_missing_limbs()
+	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_GROIN,\
+					BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND)
+	for(var/zone in full)
+		if(get_bodypart(zone))
+			full -= zone
+	return full
+
 /mob/living/carbon/alien/larva/get_missing_limbs()
 	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST)
 	for(var/zone in full)
@@ -136,6 +165,16 @@
 
 /mob/living/carbon/get_disabled_limbs()
 	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+	var/list/disabled = list()
+	for(var/zone in full)
+		var/obj/item/bodypart/affecting = get_bodypart(zone)
+		if(affecting && affecting.disabled)
+			disabled += zone
+	return disabled
+
+/mob/living/carbon/human/get_disabled_limbs()
+	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_GROIN,\
+					BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND)
 	var/list/disabled = list()
 	for(var/zone in full)
 		var/obj/item/bodypart/affecting = get_bodypart(zone)
@@ -279,7 +318,11 @@
 			if(LEG_RIGHT)
 				. |= FOOT_RIGHT
 			if(ARM_LEFT)
-				. |= HAND_LEFT
+				. |= ARM_LEFT
 			if(ARM_RIGHT)
+				. |= ARM_RIGHT
+			if(HAND_LEFT)
+				. |= HAND_LEFT
+			if(HAND_RIGHT)
 				. |= HAND_RIGHT
 		. |= L.body_part

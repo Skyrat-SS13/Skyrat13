@@ -1083,6 +1083,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 	var/num_arms = H.get_num_arms(FALSE)
 	var/num_legs = H.get_num_legs(FALSE)
+	var/num_hands = H.get_num_hands(FALSE)
+	var/num_feet = H.get_num_feet(FALSE)
 
 	switch(slot)
 		if(SLOT_HANDS)
@@ -1120,7 +1122,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_GLOVES) )
 				return FALSE
-			if(num_arms < 2)
+			if(num_hands < 2)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_SHOES)
@@ -1128,7 +1130,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_FEET) )
 				return FALSE
-			if(num_legs < 2)
+			if(num_feet < 2)
 				return FALSE
 			if(DIGITIGRADE in species_traits)
 				if(!is_species(H, /datum/species/lizard/ashwalker))
@@ -1617,7 +1619,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			"You hear a slap."
 		)
 		return FALSE
-		
+
 	else
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 
@@ -1625,10 +1627,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			user.adjustStaminaLossBuffered(1)
 		else
 			user.adjustStaminaLossBuffered(3)
-		
+
 		if(attacker_style && attacker_style.disarm_act(user,target))
 			return TRUE
-		
+
 		if(target.w_uniform)
 			target.w_uniform.add_fingerprint(user)
 		//var/randomized_zone = ran_zone(user.zone_selected) CIT CHANGE - comments out to prevent compiling errors
@@ -1661,7 +1663,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			randn -= 25 //if you are a pugilist, you're slapping that item from them pretty reliably
 		if(HAS_TRAIT(target, TRAIT_PUGILIST))
 			randn += 25 //meanwhile, pugilists are less likely to get disarmed
-		
+
 		if(randn <= 35)//CIT CHANGE - changes this back to a 35% chance to accomodate for the above being commented out in favor of right-click pushing
 			var/obj/item/I = null
 			if(target.pulling)

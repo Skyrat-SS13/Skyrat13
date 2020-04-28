@@ -328,9 +328,20 @@
 	C.update_damage_overlays()
 	C.update_mobility()
 
+//Legs and feet require a groin to be attached. On humans, at least, because i'm too fucking lazy to update all carbons.
+/obj/item/bodypart/r_leg/attach_limb(mob/living/carbon/C, special)
+	if(/obj/item/bodypart/chest/groin in C)
+		..()
 
+/obj/item/bodypart/l_leg/attach_limb(mob/living/carbon/C, special)
+	if(ishuman(C))
+		if(/obj/item/bodypart/chest/groin in C.bodyparts)
+			..()
+	else
+		..()
+
+//Transfer some head appearance vars over
 /obj/item/bodypart/head/attach_limb(mob/living/carbon/C, special)
-	//Transfer some head appearance vars over
 	if(brain)
 		if(brainmob)
 			brainmob.container = null //Reset brainmob head var.
@@ -361,7 +372,6 @@
 			break
 
 	..()
-
 
 //Regenerates all limbs. Returns amount of limbs regenerated
 /mob/living/proc/regenerate_limbs(noheal = FALSE, list/excluded_limbs = list())

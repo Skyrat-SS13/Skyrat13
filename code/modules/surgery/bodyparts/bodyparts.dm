@@ -275,8 +275,8 @@
 	if(owner_old)
 		owner_old.updatehealth()
 
-/obj/item/bodypart/proc/check_fracture(var/damage_inflicted)
-	if(prob(damage_inflicted) || damage >= (max_damage) * FRACTURE_CONSTANT)
+/obj/item/bodypart/proc/check_fracture(var/damage)
+	if(prob(damage) || damage >= (max_damage) * FRACTURE_CONSTANT)
 		fracture()
 
 /obj/item/bodypart/proc/rejuvenate()
@@ -324,8 +324,6 @@
 	if(include_stamina)
 		total = max(total, stamina_dam)
 	return total
-
-//Checks disabled status thresholds
 
 //Checks disabled status thresholds
 /obj/item/bodypart/proc/update_disabled()
@@ -416,7 +414,7 @@
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
-	else if(status_flags & BODYPART_BROKEN && local_damage >= (min_broken-damage * 0.75))
+	else if(status_flags & BODYPART_BROKEN && local_damage >= (min_broken_damage * 0.9) && prob(50))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
@@ -524,7 +522,7 @@
 			color_src = mut_colors ? MUTCOLORS : ((H.dna.skin_tone_override && S.use_skintones == USE_SKINTONES_GRAYSCALE_CUSTOM) ? CUSTOM_SKINTONE : SKINTONE)
 
 		if(S.mutant_bodyparts["legs"])
-			if(body_zone == BODY_ZONE_L_LEG || body_zone == BODY_ZONE_R_LEG)
+			if(body_zone == BODY_ZONE_L_LEG || body_zone == BODY_ZONE_R_LEG || BODY_ZONE_PRECISE_R_FOOT || BODY_ZONE_PRECISE_L_FOOT)
 				if(DIGITIGRADE in S.species_traits)
 					digitigrade_type = lowertext(H.dna.features["legs"])
 			else

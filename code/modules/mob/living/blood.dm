@@ -10,7 +10,11 @@
 		return
 	else
 		bleedsuppress = TRUE
-		addtimer(CALLBACK(src, .proc/resume_bleeding), amount)
+		for(var/obj/item/bodypart/BP in bodyparts)
+			if(BP.internal_bleeding)
+				bleedsuppress = FALSE //Internal bleeding can't be suppressed, period ;)
+		if(bleedsuppress)
+			addtimer(CALLBACK(src, .proc/resume_bleeding), amount)
 
 /mob/living/carbon/human/proc/resume_bleeding()
 	bleedsuppress = 0
@@ -88,6 +92,7 @@
 		for(var/X in bodyparts)
 			var/obj/item/bodypart/BP = X
 			var/brutedamage = BP.brute_dam
+			var/limbbleeding = BP.internal_bleeding
 
 			if(BP.status == BODYPART_ROBOTIC) //for the moment, synth limbs won't bleed, but soon, my pretty.
 				continue
@@ -98,6 +103,8 @@
 
 			if(brutedamage >= 20)
 				temp_bleed += (brutedamage * 0.013)
+			if(limbbleeding)
+				temp_bleed += (brutedamage * 0.05) //internal bleeding is VERY bad.
 
 		bleed_rate = max(bleed_rate - 0.5, temp_bleed)//if no wounds, other bleed effects (heparin) naturally decreases
 
