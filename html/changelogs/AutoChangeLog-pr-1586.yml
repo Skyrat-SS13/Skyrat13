@@ -1,0 +1,4 @@
+author: "Akrilla"
+delete-after: True
+changes: 
+  - tweak: "Dynamic protected role changes. Other jobs can become antags midround."
