@@ -42,7 +42,7 @@
 				AM.Hear(eavesrendered, src, message_language, eavesdropping, null, spans, message_mode, source)
 			else
 				AM.Hear(rendered, src, message_language, message, null, spans, message_mode, source)
-		else if (dead_away[AM])
+		else if (dead_away[AM] && istype(AM, /mob/dead/observer))
 			AM.Hear(rendered, src, message_language, message, null, spans, message_mode, source, maptext_popup = FALSE)
 		else
 			AM.Hear(rendered, src, message_language, message, null, spans, message_mode, source)
