@@ -118,7 +118,7 @@
 	. = ..()
 	permutated = list()
 	decayedRange = range
-	speed /= CONFIG_GET(number/projectile_speed_modifier)
+	speed /= CONFIG_GET(number/projectile_speed_modifier) //Skyrat changes
 
 /obj/item/projectile/proc/Range()
 	range--
