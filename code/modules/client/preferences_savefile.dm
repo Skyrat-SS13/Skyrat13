@@ -217,7 +217,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["windowflash"]		>> windowflashing
 	S["be_special"] 		>> be_special
 
-	S["chat_on_map"]		>> chat_on_map //SKYRAT CHANGE
+	//SKYRAT CHANGES BEGIN
+	S["chat_on_map"]		>> chat_on_map
+	S["max_chat_length"]	>> max_chat_length
+	S["see_chat_non_mob"] 	>> see_chat_non_mob
+	//SKYRAT CHANGES END
 
 
 	S["default_slot"]		>> default_slot
@@ -300,7 +304,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	auto_ooc			= sanitize_integer(auto_ooc, 0, 1, initial(auto_ooc))
 	no_tetris_storage		= sanitize_integer(no_tetris_storage, 0, 1, initial(no_tetris_storage))
 
-	chat_on_map		= sanitize_integer(chat_on_map, 0, 1, initial(chat_on_map)) //SKYRAT CHANGE
+	//SKYRAT CHANGES BEGIN
+	chat_on_map		= sanitize_integer(chat_on_map, 0, 1, initial(chat_on_map))
+	max_chat_length = sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))
+	see_chat_non_mob	= sanitize_integer(see_chat_non_mob, 0, 1, initial(see_chat_non_mob))
+	//SKYRAT CHANGES END
 
 	return 1
 
@@ -367,7 +375,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["auto_ooc"], auto_ooc)
 	WRITE_FILE(S["no_tetris_storage"], no_tetris_storage)
 
-	WRITE_FILE(S["chat_on_map"], chat_on_map) // SKYRAT CHANGE
+	//SKYRAT CHANGES BEGIN
+	WRITE_FILE(S["chat_on_map"], chat_on_map)
+	WRITE_FILE(S["max_chat_length"], max_chat_length)
+	WRITE_FILE(S["see_chat_non_mob"], see_chat_non_mob)
+	//SKYRAT CHANGES END
 
 	return 1
 

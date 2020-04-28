@@ -1,17 +1,8 @@
-#define CHAT_MESSAGE_SPAWN_TIME		0.2 SECONDS
-#define CHAT_MESSAGE_LIFESPAN		5 SECONDS
-#define CHAT_MESSAGE_EOL_FADE		0.7 SECONDS
-#define CHAT_MESSAGE_EXP_DECAY		0.7 // Messages decay at pow(factor, idx in stack)
-#define CHAT_MESSAGE_HEIGHT_DECAY	0.9 // Increase message decay based on the height of the message
-#define CHAT_MESSAGE_APPROX_LHEIGHT	11 // Approximate height in pixels of an 'average' line, used for height decay
-#define CHAT_MESSAGE_WIDTH			96 // pixels
-#define CHAT_MESSAGE_MAX_LENGTH		110 // characters
-#define WXH_TO_HEIGHT(x)			text2num(copytext((x), findtextEx((x), "x") + 1)) // thanks lummox
-
 /**
   * # Chat Message Overlay
   *
   * Datum for generating a message overlay on the map
+  * Defines for this found in code/_DEFINES/modular_skyrat/chatmessage_defines
   */
 /datum/chatmessage
 	/// The visual element of the chat messsage
@@ -68,11 +59,16 @@
   * * lifespan - The lifespan of the message in deciseconds
   */
 /datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan)
+	// Register client who owns this message
+	owned_by = owner.client
+	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/qdel, src)
+
 	var/pixels = 10 //It's better to have extra height than lose a line
 	var/bold = FALSE
 	// Clip message
-	if (length_char(text) > CHAT_MESSAGE_MAX_LENGTH)
-		text = copytext_char(text, 1, CHAT_MESSAGE_MAX_LENGTH) + "..."
+	var/maxlen = owned_by.prefs.max_chat_length
+	if (length_char(text) > maxlen)
+		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 
 	// Calculate target color if not already present
 	if (!target.chat_color || target.chat_color_name != target.name)
@@ -125,10 +121,6 @@
 
 	// We dim italicized text to make it more distinguishable from regular text
 	var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
-
-	// Register client who owns this message
-	owned_by = owner.client
-	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/qdel, src)
 
 	// Approximate text height
 	// Note we have to replace HTML encoded metacharacters otherwise MeasureText will return a zero height
@@ -198,12 +190,8 @@
   * * lum_shift - A value between 0 and 1 that will be multiplied against the luminescence
   */
 /mob/proc/create_chat_message(atom/movable/speaker, datum/language/message_language, raw_message, list/spans, message_mode)
-	if (!client?.prefs.chat_on_map)
-		return
-
-	// Copy spans list before we do anything to it
-	if (spans)
-		spans = spans.Copy()
+	// Ensure the list we are using, if present, is a copy so we don't modify the list provided to us
+	spans = spans?.Copy()
 
 	// Check for virtual speakers (aka hearing a message through a radio)
 	var/atom/movable/originalSpeaker = speaker

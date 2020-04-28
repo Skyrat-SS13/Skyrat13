@@ -837,7 +837,8 @@
 
 	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span><span class='message'>[treated_message]</span></span></i>" //Skyrat change
 
-	create_chat_message(speaker, message_language, raw_message, spans, message_mode) //Skyrat change
+	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker))) //Skyrat change
+		create_chat_message(speaker, message_language, raw_message, spans, message_mode) //Skyrat change
 	show_message(rendered, MSG_AUDIBLE)
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname,newname)
