@@ -118,6 +118,7 @@
 	. = ..()
 	permutated = list()
 	decayedRange = range
+	speed /= CONFIG_GET(number/projectile_speed_modifier)
 
 /obj/item/projectile/proc/Range()
 	range--

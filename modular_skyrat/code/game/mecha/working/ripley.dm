@@ -34,8 +34,3 @@
 	desc = "Died doing what they loved."
 	icon = 'modular_skyrat/icons/mecha/sometimesreasonablemenmustdounreasonablethings.dmi'
 	icon_state = "ripley-broken"
-
-/obj/item/mecha_parts/chassis/killdozer
-	name = "\improper Killdozer chassis"
-	desc = "Sometimes... reasonable men must do unreasonable things."
-	construct_type = /datum/component/construction/unordered/mecha_chassis/killdozer

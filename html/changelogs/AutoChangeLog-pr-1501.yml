@@ -1,5 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - tweak: "Lowered alcohol damage exponential multiplier"
-  - balance: "Made toxins respect the toxpwr"
