@@ -247,9 +247,11 @@
 			break
 
 	//SKYRAT EDIT
-	var/turf/areaposition = get_area(src)
+	var/areaposition = get_area(src)
 	if(istype(areaposition, /area/maintenance))
-		message = Gibberish(message,50)
+		var/distance = round(get_dist(locate(src),locate(/obj/machinery/telecomms/relay)))
+		var/muddledistance = clamp(distance/2,10,90)
+		message = Muddleler(message,muddledistance)
 
 	// Determine the identity information which will be attached to the signal.
 	var/atom/movable/virtualspeaker/speaker = new(null, M, src)
