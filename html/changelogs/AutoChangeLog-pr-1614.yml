@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - code_imp: "Fixed tackler gloves using spaces over tabs"
