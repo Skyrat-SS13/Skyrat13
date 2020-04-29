@@ -1159,3 +1159,4 @@
 	for(var/obj/item/bodypart/limb in bodyparts)
 		if(limb.status & BODYPART_SPLINTED)
 			splinted_limbs += limb
+			addtimer(CALLBACK(limb, /obj/item/bodypart/proc/unsplint), rand(9000, 18000))

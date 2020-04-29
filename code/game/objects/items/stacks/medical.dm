@@ -157,3 +157,46 @@
 /obj/item/stack/medical/ointment/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] is squeezing \the [src] into [user.p_their()] mouth! [user.p_do(TRUE)]n't [user.p_they()] know that stuff is toxic?</span>")
 	return TOXLOSS
+
+/obj/item/stack/medical/splint
+	name = "medical splints"
+	icon_state = "splint"
+	desc = "Oofie ouchie my bones."
+	self_delay = 100
+
+/obj/item/stack/medical/splint/heal(mob/living/M, mob/user)
+	if(ishuman(M))
+		return heal_carbon(M, user)
+
+/obj/item/stack/medical/splint/heal_carbon(mob/living/carbon/C, mob/user, brute, burn)
+	..()
+	if(ishuman(C))
+		var/mob/living/carbon/human/H = C
+		var/obj/item/bodypart/affecting = H.get_bodypart(user.zone_selected)
+
+		if(!(affecting in list(BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND,\
+										BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT)))
+			to_chat(user, "<span class='danger'>You can't apply a splint there!</span>")
+			return FALSE
+
+		if(affecting.status & BODYPART_SPLINTED)
+			to_chat(user, "<span class='danger'>[H]'s [affecting] is already splinted!</span>")
+			if(alert(user, "Would you like to remove the splint from [H]'s [affecting]?", "Splint removal.", "Yes", "No") == "Yes")
+				affecting.status &= ~BODYPART_SPLINTED
+				H.handle_splints()
+				to_chat(user, "<span class='notice'>You remove the splint from [H]'s [affecting].</span>")
+			return TRUE
+
+		user.visible_message("<span class='notice'>[user] applies [src] to [H]'s [affecting].</span>", \
+								"<span class='notice'>You apply [src] to [H]'s [affecting].</span>")
+
+		affecting.status_flags |= BODYPART_SPLINTED
+		affecting.splinted_count = world.time
+		H.handle_splints()
+		use(1)
+
+/obj/item/stack/medical/splint/tribal
+	name = "tribal splints"
+	icon_state = "tribal_splint"
+	desc = "Ooga booga rock crush bone."
+	self_delay = 200

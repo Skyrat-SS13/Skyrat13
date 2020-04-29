@@ -15,6 +15,8 @@
 		return FALSE
 	return TRUE
 /datum/surgery_step/incise/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	var/obj/item/bodypart/limb = target.get_bodypart(target_zone)
+	limb.open = TRUE
 	if ishuman(target)
 		var/mob/living/carbon/human/H = target
 		if (!(NOBLOOD in H.dna.species.species_traits))

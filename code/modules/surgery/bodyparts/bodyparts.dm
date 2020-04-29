@@ -44,8 +44,8 @@
 	var/min_broken_damage = STANDARD_ORGAN_THRESHOLD * 0.55		//standardminimum damage for the bone to break
 	var/can_grasp
 	var/can_stand
-	var/open = 0	//is this limb incised for surgery?
-	var/splinted_count = 0 //Time when this organ was last splinted
+	var/open = FALSE	//is this limb incised for surgery?
+	var/splinted_count = 0 //Time when this bodypart was last splinted
 	var/encased		//b o n e that encases the limb. used in surgery, but not actually used in "breaking" limbs.
 	var/dismember_at_max_damage = FALSE
 	var/cannot_amputate
@@ -181,6 +181,9 @@
 	if(stam_heal_tick && stamina_dam > DAMAGE_PRECISION)					//DO NOT update health here, it'll be done in the carbon's life.
 		if(heal_damage(brute = 0, burn = 0, stamina = (stam_heal_tick * (disabled ? 2 : 1)), only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
+
+/obj/item/bodypart/proc/unsplint()
+	status_flags &= ~BODYPART_SPLINTED
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
@@ -374,8 +377,9 @@
 				if(parent.is_disabled() == BODYPART_DISABLED_DAMAGE)
 					return	parent.is_disabled()
 		if(status_flags & BODYPART_BROKEN)
-			return BODYPART_DISABLED_DAMAGE
-		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.6)))) //Easy limb disable disables the limb at 40% health instead of 0%
+			if(!(status_flags & BODYPART_SPLINTED))
+				return BODYPART_DISABLED_DAMAGE
+		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.8)))) //Easy limb disable disables the limb at 20% health instead of 0%
 			return BODYPART_DISABLED_DAMAGE
 		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)) && status_flags & ~BODYPART_BROKEN)
 			return BODYPART_NOT_DISABLED
@@ -409,8 +413,8 @@
 			"<span class='warning'>You hear a loud cracking sound coming from \the [owner].</span>",\
 			"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
 			"You hear a sickening crack.")
-		playsound(owner, pick("sound/effects/bonebreak1.ogg", "sound/effects/bonebreak2.ogg", "sound/effects/bonebreak3.ogg",\
-								"sound/effects/bonebreak4.ogg", "sound/effects/bonebreak5.ogg", "sound/effects/bonebreak6.ogg"), 150, 1)
+		playsound(get_turf(owner), pick("sound/effects/bonebreak1.ogg", "sound/effects/bonebreak2.ogg", "sound/effects/bonebreak3.ogg",\
+								"sound/effects/bonebreak4.ogg", "sound/effects/bonebreak5.ogg", "sound/effects/bonebreak6.ogg"), 100, 0)
 		owner.emote("scream")
 
 	status_flags &= BODYPART_BROKEN
@@ -444,15 +448,11 @@
 	if(owner && (NOBLOOD in owner.dna.species.species_traits))
 		return
 	var/local_damage = brute_dam + damage
-	if((damage >= min_broken_damage/2 && local_damage >= min_broken_damage && prob(damage)))
+	if((damage >= min_broken_damage && local_damage >= min_broken_damage && prob(damage)))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
-	else if(status_flags & BODYPART_BROKEN && (local_damage >= max_damage) && prob(15))
-		internal_bleeding = TRUE
-		if(owner)
-			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
-	else if(local_damage >= BLEEDING_CHANCEUP_CONSTANT && prob(BLEEDING_CHANCEUP_PROB))
+	else if(status_flags & BODYPART_BROKEN && (local_damage >= max_damage) && prob(damage * 1.25))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
