@@ -3705,6 +3705,7 @@
 #include "modular_skyrat\code\modules\ruins\spaceruin_code\oldstation.dm"
 #include "modular_skyrat\code\modules\surgery\organ_manipulation.dm"
 #include "modular_skyrat\code\modules\surgery\surgery_step.dm"
+#include "modular_skyrat\code\modules\surgery\organs\eyes.dm"
 #include "modular_skyrat\code\modules\surgery\organs\tongue.dm"
 #include "modular_skyrat\code\modules\surgery\organs\vox_lungs.dm"
 #include "modular_skyrat\code\modules\telescience\telepad.dm"
