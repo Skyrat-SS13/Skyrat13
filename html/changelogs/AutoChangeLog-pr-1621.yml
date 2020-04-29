@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Fixing a peeve with layers for the human and cyborgs riding components."
