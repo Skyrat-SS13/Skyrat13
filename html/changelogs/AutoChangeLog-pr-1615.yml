@@ -1,0 +1,6 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - balance: "Multiphase lost its taser, it now is EMP proof and has an ion gun mode, go kill some silicons."
+  - balance: "Particle Defender has lost its taser, it now shoots a disabler shotgun and has much more overall improved offensive prowess, go and fuck up some traitors with your actually useful scattershot bolts."
+  - balance: "Security has less ranged knockdowns."
