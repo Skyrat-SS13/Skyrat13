@@ -34,7 +34,7 @@
 	var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
 	if(!affecting) //Missing limb?
 		to_chat(user, "<span class='warning'>[C] doesn't have \a [parse_zone(user.zone_selected)]!</span>")
-		return
+		return FALSE
 	if(affecting.status == BODYPART_ORGANIC) //Limb must be organic to be healed - RR
 		if(affecting.brute_dam && brute || affecting.burn_dam && burn)
 			user.visible_message("<span class='green'>[user] applies \the [src] on [C]'s [affecting.name].</span>", "<span class='green'>You apply \the [src] on [C]'s [affecting.name].</span>")
@@ -42,8 +42,9 @@
 				C.update_damage_overlays()
 			return TRUE
 		to_chat(user, "<span class='notice'>[C]'s [affecting.name] can not be healed with \the [src].</span>")
-		return
+		return FALSE
 	to_chat(user, "<span class='notice'>\The [src] won't work on a robotic limb!</span>")
+	return FALSE
 
 /obj/item/stack/medical/get_belt_overlay()
 	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "pouch")
@@ -160,17 +161,20 @@
 
 /obj/item/stack/medical/splint
 	name = "medical splints"
+	singular_name = "medical splint"
 	icon = 'modular_skyrat/icons/obj/medical.dmi'
 	icon_state = "splint"
 	desc = "Oofie ouchie my bones."
+	novariants = TRUE
 	self_delay = 100
+	amount = 5
+	max_amount = 5
 
 /obj/item/stack/medical/splint/heal(mob/living/M, mob/user)
 	if(ishuman(M))
 		return heal_carbon(M, user)
 
 /obj/item/stack/medical/splint/heal_carbon(mob/living/carbon/C, mob/user, brute, burn)
-	..()
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		var/obj/item/bodypart/affecting = H.get_bodypart(user.zone_selected)
@@ -179,6 +183,10 @@
 										BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT)))
 			to_chat(user, "<span class='danger'>You can't apply a splint there!</span>")
 			return FALSE
+		
+		if(affecting.status == BODYPART_ROBOTIC)
+			to_chat(user, "<span class='danger'>[H]'s [affecting] can't be broken, it's robotic!</span>")
+			return FALSE
 
 		if(affecting.status & BODYPART_SPLINTED)
 			to_chat(user, "<span class='danger'>[H]'s [affecting] is already splinted!</span>")
@@ -186,7 +194,7 @@
 				affecting.status &= ~BODYPART_SPLINTED
 				H.handle_splints()
 				to_chat(user, "<span class='notice'>You remove the splint from [H]'s [affecting].</span>")
-			return TRUE
+			return FALSE
 
 		user.visible_message("<span class='notice'>[user] applies [src] to [H]'s [affecting].</span>", \
 								"<span class='notice'>You apply [src] to [H]'s [affecting].</span>")
@@ -194,10 +202,46 @@
 		affecting.status_flags |= BODYPART_SPLINTED
 		affecting.splinted_count = world.time
 		H.handle_splints()
-		use(1)
+		return TRUE
+	return FALSE
 
 /obj/item/stack/medical/splint/tribal
 	name = "tribal splints"
+	singular_name = "tribal splint"
 	icon_state = "tribal_splint"
 	desc = "Ooga booga rock crush bone."
 	self_delay = 200
+
+/obj/item/stack/medical/nanopaste
+	name = "nanite paste"
+	singular_name = "nanite paste"
+	icon = 'modular_skyrat/icons/obj/medical.dmi'
+	icon_state = "nanopaste"
+	desc = "01110111 01100101 01100101 01100100 00100000 01100101 01100001 01110100 01100101 01110010."
+	novariants = TRUE
+	self_delay = 60
+	var/heal_brute = 20
+	var/heal_burn = 20
+
+/obj/item/stack/medical/nanopaste/heal(mob/living/M, mob/user)
+	if(ishuman(M))
+		return heal_carbon(M, user)
+
+/obj/item/stack/medical/nanopaste/heal_carbon(mob/living/carbon/C, mob/user, brute, burn)
+	if(iscarbon(C))
+		return FALSE
+	var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
+	if(!affecting) //Missing limb?
+		to_chat(user, "<span class='warning'>[C] doesn't have \a [parse_zone(user.zone_selected)]!</span>")
+		return FALSE
+
+	if(affecting.status == BODYPART_ROBOTIC) //It's fucking nanite paste. It can't heal organics.
+		if(affecting.brute_dam && brute || affecting.burn_dam && burn)
+			user.visible_message("<span class='green'>[user] applies \the [src] on [C]'s [affecting.name].</span>", "<span class='green'>You apply \the [src] on [C]'s [affecting.name].</span>")
+			if(affecting.heal_damage(heal_brute, heal_burn))
+				C.update_damage_overlays()
+			return TRUE
+		to_chat(user, "<span class='notice'>[C]'s [affecting.name] can not be healed with \the [src].</span>")
+		return FALSE
+	to_chat(user, "<span class='notice'>\The [src] won't work on a non-robotic limb!</span>")
+	return FALSE

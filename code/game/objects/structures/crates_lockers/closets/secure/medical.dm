@@ -22,8 +22,8 @@
 	new /obj/item/storage/box/rxglasses(src)
 
 /obj/structure/closet/secure_closet/medical2
-	name = "anesthetic closet"
-	desc = "Used to knock people out."
+	name = "surgical closet"
+	desc = "Now... let's go practice medicine."
 	req_access = list(ACCESS_SURGERY)
 
 /obj/structure/closet/secure_closet/medical2/PopulateContents()
@@ -32,6 +32,7 @@
 		new /obj/item/tank/internals/anesthetic(src)
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/mask/breath/medical(src)
+	new /obj/item/storage/backpack/duffelbag/med/surgery(src)
 
 /obj/structure/closet/secure_closet/medical3
 	name = "medical doctor's locker"

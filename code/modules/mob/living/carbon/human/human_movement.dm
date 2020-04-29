@@ -16,7 +16,7 @@
 		if(!SSI)
 			SSI = CONFIG_GET_ENTRY(number/movedelay/sprint_speed_increase)
 		if(get_missing_limbs()) //you can't sprint without fucken legs or feet (...as a human.)
-			if(/obj/item/bodypart/r_leg || 	/obj/item/bodypart/l_leg in get_missing_limbs())
+			if((/obj/item/bodypart/r_leg || 	/obj/item/bodypart/l_leg) in get_missing_limbs())
 				. += SSI.config_entry_value
 		else
 			for(var/obj/item/bodypart/r_leg/right in bodyparts)

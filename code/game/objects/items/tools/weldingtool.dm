@@ -107,14 +107,15 @@
 
 	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 
-	if(affecting && affecting.status == BODYPART_ROBOTIC && user.a_intent != INTENT_HARM)
+	if(affecting && affecting.status == BODYPART_ROBOTIC && user.a_intent != INTENT_HARM && isOn())
 		if(src.use_tool(H, user, 0, volume=50, amount=1))
 			if(user == H)
 				user.visible_message("<span class='notice'>[user] starts to fix some of the dents on [H]'s [affecting.name].</span>",
 					"<span class='notice'>You start fixing some of the dents on [H]'s [affecting.name].</span>")
-				if(!do_mob(user, H, 50))
+				if(!do_after(user, 50, target = H))
 					return
 			item_heal_robotic(H, user, 15, 0)
+			use(1)
 	else
 		return ..()
 
@@ -128,6 +129,11 @@
 		to_chat(user, "<span class='notice'>You empty [src]'s fuel tank into [O].</span>")
 		update_icon()
 	if(isOn())
+		if(ishuman(O) && user.a_intent != INTENT_HARM)
+			var/mob/living/carbon/human/H = O
+			var/obj/item/bodypart/weiner = H.get_bodypart(check_zone(user.zone_selected))
+			if(weiner.status == BODYPART_ROBOTIC)
+				return
 		use(1)
 		var/turf/location = get_turf(user)
 		location.hotspot_expose(550, 10, 1)

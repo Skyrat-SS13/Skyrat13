@@ -20,6 +20,7 @@
 	icon_state = "borg_l_arm"
 	status = BODYPART_ROBOTIC
 	starting_children = list(/obj/item/bodypart/l_arm/l_hand/robot)
+	roboticFunnyVariable = 0.8
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -41,6 +42,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_l_arm"
 	status = BODYPART_ROBOTIC
+	roboticFunnyVariable = 0.9
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -63,6 +65,7 @@
 	icon_state = "borg_r_arm"
 	status = BODYPART_ROBOTIC
 	starting_children = list(/obj/item/bodypart/r_arm/r_hand/robot)
+	roboticFunnyVariable = 0.8
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -84,6 +87,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_r_arm"
 	status = BODYPART_ROBOTIC
+	roboticFunnyVariable = 0.9
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -106,6 +110,7 @@
 	icon_state = "borg_l_leg"
 	status = BODYPART_ROBOTIC
 	starting_children = list(/obj/item/bodypart/l_leg/l_foot/robot)
+	roboticFunnyVariable = 0.8
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -128,6 +133,7 @@
 	icon_state = "borg_l_leg"
 	status = BODYPART_ROBOTIC
 	starting_children = list(/obj/item/bodypart/l_leg/l_foot/robot)
+	roboticFunnyVariable = 0.9
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -150,6 +156,7 @@
 	icon_state = "borg_r_leg"
 	status = BODYPART_ROBOTIC
 	starting_children = list(/obj/item/bodypart/r_leg/r_foot/robot)
+	roboticFunnyVariable = 0.8
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -171,6 +178,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_r_leg"
 	status = BODYPART_ROBOTIC
+	roboticFunnyVariable = 0.9
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -192,6 +200,7 @@
 	icon_state = "borg_chest"
 	status = BODYPART_ROBOTIC
 	starting_children = list(/obj/item/bodypart/chest/groin/robot)
+	roboticFunnyVariable = 0.85
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -215,6 +224,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_chest"
 	status = BODYPART_ROBOTIC
+	roboticFunnyVariable = 0.9
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -277,6 +287,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_head"
 	status = BODYPART_ROBOTIC
+	roboticFunnyVariable = 0.8
 
 	brute_reduction = 5
 	burn_reduction = 4
@@ -357,6 +368,7 @@
 	burn_reduction = 0
 	max_damage = 25
 	starting_children = list(/obj/item/bodypart/l_arm/l_hand/robot/surplus)
+	roboticFunnyVariable = 0.8
 
 /obj/item/bodypart/l_arm/l_hand/robot/surplus
 	name = "surplus prosthetic left hand"
@@ -365,6 +377,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 15
+	roboticFunnyVariable = 0.8
 
 /obj/item/bodypart/r_arm/robot/surplus
 	name = "surplus prosthetic right arm"
@@ -374,6 +387,7 @@
 	burn_reduction = 0
 	max_damage = 25
 	starting_children = list(/obj/item/bodypart/r_arm/r_hand/robot/surplus)
+	roboticFunnyVariable = 0.8
 
 /obj/item/bodypart/r_arm/r_hand/robot/surplus
 	name = "surplus prosthetic right hand"
@@ -382,6 +396,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 15
+	roboticFunnyVariable = 0.8
 
 /obj/item/bodypart/l_leg/robot/surplus
 	name = "surplus prosthetic left leg"
@@ -391,6 +406,7 @@
 	burn_reduction = 0
 	max_damage = 25
 	starting_children = list(/obj/item/bodypart/l_leg/l_foot/robot/surplus)
+	roboticFunnyVariable = 0.8
 
 /obj/item/bodypart/l_leg/l_foot/robot/surplus
 	name = "surplus prosthetic left foot"
@@ -399,6 +415,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 15
+	roboticFunnyVariable = 0.8
 
 /obj/item/bodypart/r_leg/robot/surplus
 	name = "surplus prosthetic right leg"
@@ -408,6 +425,7 @@
 	burn_reduction = 0
 	max_damage = 25
 	starting_children = list(/obj/item/bodypart/r_leg/r_foot/robot/surplus)
+	roboticFunnyVariable = 0.8
 
 /obj/item/bodypart/r_leg/r_foot/robot/surplus
 	name = "surplus prosthetic right foot"
@@ -416,6 +434,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 25
+	roboticFunnyVariable = 0.8
 
 // Upgraded Surplus limbs - Better then robotic limbs
 /obj/item/bodypart/l_arm/robot/surplus_upgraded
@@ -426,6 +445,7 @@
 	burn_reduction = 2
 	max_damage = 60
 	starting_children = list(/obj/item/bodypart/l_arm/l_hand/robot/surplus_upgraded)
+	roboticFunnyVariable = 0.9
 
 /obj/item/bodypart/l_arm/l_hand/robot/surplus_upgraded
 	name = "reinforced surplus prosthetic left hand"
@@ -434,6 +454,7 @@
 	brute_reduction = 3
 	burn_reduction = 2
 	max_damage = 35
+	roboticFunnyVariable = 0.9
 
 /obj/item/bodypart/r_arm/robot/surplus_upgraded
 	name = "reinforced surplus prosthetic right arm"
@@ -443,6 +464,7 @@
 	burn_reduction = 2
 	max_damage = 60
 	starting_children = list(/obj/item/bodypart/r_arm/r_hand/robot/surplus_upgraded)
+	roboticFunnyVariable = 0.9
 
 /obj/item/bodypart/r_arm/r_hand/robot/surplus_upgraded
 	name = "reinforced surplus prosthetic right hand"
@@ -451,6 +473,7 @@
 	brute_reduction = 3
 	burn_reduction = 2
 	max_damage = 35
+	roboticFunnyVariable = 0.9
 
 /obj/item/bodypart/l_leg/robot/surplus_upgraded
 	name = "reinforced surplus prosthetic left leg"
@@ -460,6 +483,7 @@
 	burn_reduction = 2
 	max_damage = 60
 	starting_children = list(/obj/item/bodypart/l_leg/l_foot/robot/surplus_upgraded)
+	roboticFunnyVariable = 0.9
 
 /obj/item/bodypart/l_leg/l_foot/robot/surplus_upgraded
 	name = "reinforced surplus prosthetic left foot"
@@ -468,6 +492,7 @@
 	brute_reduction = 3
 	burn_reduction = 2
 	max_damage = 35
+	roboticFunnyVariable = 0.9
 
 /obj/item/bodypart/r_leg/robot/surplus_upgraded
 	name = "reinforced surplus prosthetic right leg"
@@ -477,6 +502,7 @@
 	burn_reduction = 2
 	max_damage = 60
 	starting_children = list(/obj/item/bodypart/r_leg/r_foot/robot/surplus_upgraded)
+	roboticFunnyVariable = 0.9
 
 
 /obj/item/bodypart/r_leg/r_foot/robot/surplus_upgraded
@@ -486,6 +512,7 @@
 	brute_reduction = 3
 	burn_reduction = 2
 	max_damage = 35
+	roboticFunnyVariable = 0.9
 
 #undef ROBOTIC_LIGHT_BRUTE_MSG
 #undef ROBOTIC_MEDIUM_BRUTE_MSG

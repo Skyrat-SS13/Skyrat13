@@ -47,6 +47,8 @@
 	var/open = FALSE	//is this limb incised for surgery?
 	var/splinted_count = 0 //Time when this bodypart was last splinted
 	var/encased		//b o n e that encases the limb. used in surgery, but not actually used in "breaking" limbs.
+	var/roboticFunnyVariable //only used by robotic limbs (obviously). basically the threshold at which they get disabled, since they don't break or internally bleed.
+							 //also has capitalization because bobalob asked me to on discord.
 	var/dismember_at_max_damage = FALSE
 	var/cannot_amputate
 	var/cannot_break
@@ -385,7 +387,7 @@
 		if(status_flags & BODYPART_BROKEN)
 			if(!(status_flags & BODYPART_SPLINTED))
 				return BODYPART_DISABLED_DAMAGE
-		if((get_damage(TRUE) >= max_damage) || ((HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) || status == BODYPART_ROBOTIC) && (get_damage(TRUE) >= (max_damage * 0.8)))) //Easy limb disable or being robotic disables the limb at 20% health instead of 0%
+		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.8))) || (status == BODYPART_ROBOTIC && (get_damage(TRUE) >= (max_damage * roboticFunnyVariable)))) //Easy limb disable or being robotic disables the limb earlier
 			return BODYPART_DISABLED_DAMAGE
 		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)) && status_flags & ~BODYPART_BROKEN)
 			return BODYPART_NOT_DISABLED

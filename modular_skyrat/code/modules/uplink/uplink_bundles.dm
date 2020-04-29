@@ -128,9 +128,19 @@
 	name = "punished left arm"
 	icon = 'modular_skyrat/icons/mob/venomsnakearm.dmi'
 	base_bp_icon = 'modular_skyrat/icons/mob/venomsnakearm.dmi'
-	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER)
-	icon_state = "venom_l_arm"
+	icon_state = "l_arm"
 	desc = "Has no markings of any kind, because that would offer no tactical advantages. But it's distinctly a syndicate item, somehow."
+	starting_children = list(/obj/item/bodypart/l_arm/l_hand/robot/martial)
+	roboticFunnyVariable = 0.9
+
+/obj/item/bodypart/l_arm/l_hand/robot/martial
+	name = "punished left hand"
+	icon = 'modular_skyrat/icons/mob/venomsnakearm.dmi'
+	base_bp_icon = 'modular_skyrat/icons/mob/venomsnakearm.dmi'
+	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER)
+	icon_state = "l_hand"
+	desc = "Why are we still here? Just to suffer?"
+	roboticFunnyVariable = 0.9
 
 /* Though i wanted it to be "only works as long as the arm works", byond hates me and this proc failed me. Instead i'll have to do another approach.
 /obj/item/bodypart/l_arm/robot/martial/update_limb(dropping_limb, mob/living/carbon/source) //this is probably not the best way to do it, but i want to make sure that it always checks if the limb is viable. if not viable, owner loses the martial art.

@@ -84,6 +84,8 @@
 		return tool.get_temperature()
 	return TRUE
 /datum/surgery_step/close/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	var/obj/item/bodypart/limb = target.get_bodypart(target_zone)
+	limb.open = FALSE
 	if(locate(/datum/surgery_step/saw) in surgery.steps)
 		target.heal_bodypart_damage(23,0)
 	if (ishuman(target))

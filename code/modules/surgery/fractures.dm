@@ -1,9 +1,11 @@
 /datum/surgery/mend_fractures
-	name = "mend fractures"
+	name = "Fracture Repair"
 	target_mobtypes = list(/mob/living/carbon)
-	possible_locs = list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND,  BODY_ZONE_PRECISE_L_HAND,
+	possible_locs = list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM,\
+						BODY_ZONE_PRECISE_R_HAND,  BODY_ZONE_PRECISE_L_HAND,\
 						BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
 	requires_real_bodypart = 1
+	requires_bodypart_type = BODYPART_ORGANIC
 	steps = list(
 		/datum/surgery_step/incise,
 		/datum/surgery_step/retract_skin,

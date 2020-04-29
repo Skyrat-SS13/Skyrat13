@@ -2,7 +2,11 @@
 	name = "Prosthetic replacement"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/add_prosthetic)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_HEAD)
+	possible_locs = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN,\
+						BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND,\
+						BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND,\
+						BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT,\
+						BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT)
 	requires_bodypart = FALSE //need a missing limb
 	requires_bodypart_type = 0
 /datum/surgery/prosthetic_replacement/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
@@ -46,6 +50,10 @@
 			display_results(user, target, "<span class ='notice'>You begin to replace [target]'s [parse_zone(target_zone)] with [tool]...</span>",
 				"[user] begins to replace [target]'s [parse_zone(target_zone)] with [tool].",
 				"[user] begins to replace [target]'s [parse_zone(target_zone)].")
+		else if(target_zone in BP.children_zones)
+			display_results(user, target, "<span class ='notice'>You begin to replace [target]'s [parse_zone(target_zone)] with [tool]...</span>",
+				"[user] begins to replace [target]'s [parse_zone(target_zone)] with [tool].",
+				"[user] begins to replace [target]'s [parse_zone(target_zone)].")
 		else
 			to_chat(user, "<span class='warning'>[tool] isn't the right type for [parse_zone(target_zone)].</span>")
 			return -1
@@ -64,7 +72,16 @@
 		tool = tool.contents[1]
 	if(istype(tool, /obj/item/bodypart) && user.temporarilyRemoveItemFromInventory(tool))
 		var/obj/item/bodypart/L = tool
-		L.attach_limb(target)
+		if(target_zone != L.body_zone)
+			if(target_zone in L.children_zones)
+				var/bruh = FALSE
+				for(var/obj/item/bodypart/fosterchild in src)
+					if((fosterchild.body_zone in children_zones) && (target_zone == fosterchild.body_zone) && !bruh)
+						fosterchild.attach_limb(target)
+						L.forceMove(get_turf(target))
+						bruh = TRUE
+		else
+			L.attach_limb(target)
 		if(organ_rejection_dam)
 			target.adjustToxLoss(organ_rejection_dam)
 		display_results(user, target, "<span class='notice'>You succeed in replacing [target]'s [parse_zone(target_zone)].</span>",

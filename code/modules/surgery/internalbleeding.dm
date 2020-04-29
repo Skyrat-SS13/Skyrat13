@@ -1,9 +1,10 @@
-/datum/surgery/mend_fractures
-	name = "mend fractures"
+/datum/surgery/stop_bleeding
+	name = "Vascular Repair"
 	target_mobtypes = list(/mob/living/carbon)
 	possible_locs = list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND,  BODY_ZONE_PRECISE_L_HAND,
 						BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
 	requires_real_bodypart = 1
+	requires_bodypart_type = BODYPART_ORGANIC
 	steps = list(
 		/datum/surgery_step/incise,
 		/datum/surgery_step/retract_skin,
@@ -28,7 +29,7 @@
 	BP.internal_bleeding = TRUE
 	var/mob/living/carbon/human/H = target
 	if(istype(H))
-		H.bleed_rate += 2 //Meshuggah - Bleed
+		H.bleed_rate += 2.5 //Meshuggah - Bleed
 	display_results(user, target, "<span class='notice'>You screw up, tearing even more veins in [parse_zone(target_zone)]!</span>",
 		"[user] screws up, tearing even more veins in [parse_zone(target_zone)]!",
 		"[user] screws up, tearing even more veins in [parse_zone(target_zone)]!")
