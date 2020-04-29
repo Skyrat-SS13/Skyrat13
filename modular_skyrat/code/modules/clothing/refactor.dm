@@ -764,4 +764,3 @@
 	"Low Security" = "prisoner_lowsec_skirt",
 	"Protective Custody" = "prisoner_protcust_skirt"
 	)
-
