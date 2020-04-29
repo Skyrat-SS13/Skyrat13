@@ -28,7 +28,7 @@
 	mutanteyes = /obj/item/organ/eyes/ipc
 	exotic_blood = /datum/reagent/blood/synthetics
 	exotic_bloodtype = "SY"
-	//FUCKING STUPID PIECE OF SHIT STREET FUCKING CATS
+// cheeto
 	var/storedeardamage = 0
 	var/storedtaildamage = 0
 
@@ -54,9 +54,9 @@
 		hair_color = S.hair_color
 		screamsounds = S.screamsounds.Copy()
 		femalescreamsounds = S.femalescreamsounds.Copy()
-		if(istype(S, /datum/species/human/felinid)) //FUCK YOU, FUCKING CAT IDIOTS I FUCKING HATE  YOU I HOPE YOUR FUCKING
-			storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS) //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA TAIL GETS CUT OFF
-			mutantears = S.mutantears						//YOUR FUCKING EARS GET MUNCHED OFF BY A RABID DOG
+		if(istype(S, /datum/species/human/felinid)) //bad cat
+			storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS) // tail go bye
+			mutantears = S.mutantears						//ears go bye
 			qdel(H.getorganslot(ORGAN_SLOT_EARS))
 			var/obj/item/organ/ears = new mutantears
 			ears.Insert(H)
@@ -146,7 +146,7 @@
 	meat = initial(meat)
 	limbs_id = initial(limbs_id)
 	use_skintones = initial(use_skintones)
-	if(istype(fake_species, /datum/species/human/felinid)) //worthless fFUCKING DINGY CATS
+	if(istype(fake_species, /datum/species/human/felinid)) //worthless catte
 		storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
 		mutantears = initial(mutantears)
 		qdel(H.getorganslot(ORGAN_SLOT_EARS))
