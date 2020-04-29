@@ -17426,10 +17426,6 @@
 /obj/structure/window/reinforced/fulltile,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
-"Qm" = (
-/obj/singularity/wizard/mapped,
-/turf/open/indestructible/binary,
-/area/fabric_of_reality)
 "Qo" = (
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/evac)
@@ -31310,7 +31306,7 @@ To
 To
 To
 MB
-Qm
+MB
 MB
 To
 To
@@ -33366,7 +33362,7 @@ To
 To
 To
 To
-To
+AG
 MB
 To
 To
