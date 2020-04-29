@@ -727,7 +727,7 @@
 
 // Reskinnable Trek uniforms.
 /obj/item/clothing/under/trek/command
-	desc = "The uniform worn by command officers."
+	desc = "An uniform worn by command officers."
 	unique_reskin_icons = list(
 	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
@@ -742,12 +742,13 @@
 	"Deep Space Nine" = 'icons/mob/clothing/uniform.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
+// Note that ENT-era uses different path, because I dont want to touch upstream files to fix icon name.
 	unique_reskin_worn_anthro = list(
 	"Default - The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform_digi.dmi',
-	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
+	"Enterprise" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
 	"Default - The Original Series" = "trek_command",
@@ -758,7 +759,7 @@
 	)
 
 /obj/item/clothing/under/trek/engsec
-	desc = "The uniform worn by operations officers. You feel strangely vulnerable just seeing this..."
+	desc = "An uniform worn by operations officers. You feel strangely vulnerable just seeing this..."
 	unique_reskin_icons = list(
 	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
@@ -789,7 +790,7 @@
 	)
 
 /obj/item/clothing/under/trek/medsci
-	desc = "The uniform worn by medsci officers."
+	desc = "An uniform worn by medsci officers."
 	unique_reskin_icons = list(
 	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
@@ -818,15 +819,3 @@
 	"Deep Space Nine" = "trek_ds9_medsci",
 	"Enterprise" = "trek_ent_medsci"
 	)
-
-/obj/item/clothing/under/trek/fedutil
-	name = "enlist utility uniform"
-	desc = "The uniform worn by enlisted crew members."
-
-/obj/item/clothing/under/trek/fedutil/trainee
-	name = "trainee utility uniform"
-	desc = "The uniform worn by enlisted trainees."
-
-/obj/item/clothing/under/trek/fedutil/service
-	name = "service utility uniform"
-	desc = "The uniform worn by enlists for service work."
