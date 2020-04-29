@@ -885,7 +885,7 @@
 		BP.status_flags &= ~BODYPART_BROKEN
 		BP.internal_bleeding = FALSE
 	if(admin_revive)
-		regenerate_limbs(ignore_parent_restriction = TRUE)
+		regenerate_limbs()
 		regenerate_organs()
 		handcuffed = initial(handcuffed)
 		for(var/obj/item/restraints/R in contents) //actually remove cuffs from inventory

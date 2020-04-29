@@ -28,14 +28,13 @@
 	BP.internal_bleeding = TRUE
 	var/mob/living/carbon/human/H = target
 	if(istype(H))
-		H.bleed_rate += 8 //Meshuggah - Bleed
+		H.bleed_rate += 2 //Meshuggah - Bleed
 	display_results(user, target, "<span class='notice'>You screw up, tearing even more veins in [parse_zone(target_zone)]!</span>",
 		"[user] screws up, tearing even more veins in [parse_zone(target_zone)]!",
 		"[user] screws up, tearing even more veins in [parse_zone(target_zone)]!")
 
 /datum/surgery_step/fix_bleeding/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
-	BP.perma_injury = 0
 	BP.internal_bleeding = FALSE
 	display_results(user, target, "<span class='notice'>You fix [target]'s [parse_zone(target_zone)] torn veins.</span>",
 		"[user] fixes [target]'s [parse_zone(target_zone)] torn veins.",

@@ -28,10 +28,9 @@
 
 /datum/surgery_step/set_bone/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
-	BP.perma_injury = max(BP.max_damage, BP.perma_injury + 5)
 	BP.internal_bleeding = TRUE
 	for(var/obj/item/organ/O in target.getorganszone(target_zone))
-		target.adjustOrganLoss(O.slot, max(BP.perma_injury, 5))
+		target.adjustOrganLoss(O.slot, rand(1,5))
 	display_results(user, target, "<span class='notice'>You screw up, stabbing the organs in [parse_zone(target_zone)] with sharp bone!</span>",
 		"[user] screws up, stabbing the organs in [parse_zone(target_zone)] with sharp bone!",
 		"[user] screws up, stabbing the organs in [parse_zone(target_zone)] with sharp bone!")
@@ -39,7 +38,6 @@
 /datum/surgery_step/set_bone/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
 	var/isencased = BP.encased ? BP.encased : "bone"
-	BP.perma_injury = 0
 	BP.status_flags &= ~BODYPART_BROKEN
 	display_results(user, target, "<span class='notice'>You set [target]'s [isencased] in place.</span>",
 		"[user] sets [target]'s [isencased] in place.",
@@ -68,7 +66,6 @@
 /datum/surgery_step/mend_bone/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
 	var/isencased = BP.encased ? BP.encased : "bone"
-	BP.perma_injury = 0
 	display_results(user, target, "<span class='notice'>You mend the fractures in [target]'s [isencased].</span>",
 		"[user] mends the fractures in [target]'s [isencased].",
 		"[user] mends the fractures in [target]'s [isencased].")
