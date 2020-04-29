@@ -724,3 +724,44 @@
 /obj/item/clothing/suit/hooded/techpriest
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC|STYLE_NO_ANTHRO_ICON
 	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'
+
+// PrisArch-like color codes for prisoners. Uses _stored variation for Warden's control.
+/obj/item/clothing/under/rank/prisoner
+	unique_reskin_icons = list(
+	"Super Max" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"High Security" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Default - Medium Security" = 'icons/obj/clothing/uniforms.dmi',
+	"Low Security" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Protective Custody" = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
+	)
+	unique_reskin_worn = list(
+	"Super Max" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"High Security" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Default - Medium Security" = 'icons/mob/clothing/uniform.dmi',
+	"Low Security" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Protective Custody" = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Super Max" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"High Security" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Default - Medium Security" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Low Security" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Protective Custody" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	)
+	unique_reskin_stored = list(
+	"Super Max" = "prisoner_superwax",
+	"High Security" = "prisoner_highsec",
+	"Default - Medium Security" = "prisoner",
+	"Low Security" = "prisoner_lowsec",
+	"Protective Custody" = "prisoner_protcust"
+	)
+
+/obj/item/clothing/under/rank/prisoner/skirt
+	unique_reskin_stored = list(
+	"Super Max" = "prisoner_superwax_skirt",
+	"High Security" = "prisoner_highsec_skirt",
+	"Default - Medium Security" = "prisoner_skirt",
+	"Low Security" = "prisoner_lowsec_skirt",
+	"Protective Custody" = "prisoner_protcust_skirt"
+	)
+
