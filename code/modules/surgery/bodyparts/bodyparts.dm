@@ -53,9 +53,8 @@
 	var/damage_msg = "<span class='warning'>You feel an intense pain</span>"
 	var/broken_description
 	var/parent_bodyzone
-	var/list/starting_children = list() //children that are already "inside" this limb on spawn
+	var/list/starting_children = list() //children that are already "inside" this limb on spawn. could be organs or limbs.
 	var/list/children_zones = list()
-	var/list/child_icons = list()
 	var/amputation_point // Descriptive string used in amputation.
 	//
 	var/disabled = BODYPART_NOT_DISABLED //If disabled, limb is as good as missing
@@ -107,12 +106,18 @@
 	var/medium_burn_msg = "blistered"
 	var/heavy_burn_msg = "peeling away"
 
+/obj/item/bodypart/Initialize()
+	. = ..()
+	if(starting_children.len)
+		for(var/obj/item/I in starting_children)
+			new I(src)
+
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
 	if(brute_dam > DAMAGE_PRECISION)
-		. += "<span class='warning'>This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.</span>"
+		. += "<span class='warning'>This limb has [brute_dam > (min_broken_damage * 1.25) ? "severe" : "minor"] bruising.</span>"
 	if(burn_dam > DAMAGE_PRECISION)
-		. += "<span class='warning'>This limb has [burn_dam > 30 ? "severe" : "minor"] burns.</span>"
+		. += "<span class='warning'>This limb has [burn_dam > (min_broken_damage * 1.25) ? "severe" : "minor"] burns.</span>"
 
 /obj/item/bodypart/blob_act()
 	take_damage(max_damage)
@@ -314,7 +319,8 @@
 
 /obj/item/bodypart/proc/check_fracture(var/damage)
 	if(prob(100 * (damage/max_damage)) || (damage >= (max_damage * FRACTURE_CONSTANT)))
-		fracture()
+		if(status != BODYPART_ROBOTIC)
+			fracture()
 
 /obj/item/bodypart/proc/rejuvenate()
 	brute_dam = 0
@@ -379,7 +385,7 @@
 		if(status_flags & BODYPART_BROKEN)
 			if(!(status_flags & BODYPART_SPLINTED))
 				return BODYPART_DISABLED_DAMAGE
-		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.8)))) //Easy limb disable disables the limb at 20% health instead of 0%
+		if((get_damage(TRUE) >= max_damage) || ((HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) || status == BODYPART_ROBOTIC) && (get_damage(TRUE) >= (max_damage * 0.75)))) //Easy limb disable or being robotic disables the limb at 25% health instead of 0%
 			return BODYPART_DISABLED_DAMAGE
 		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)) && status_flags & ~BODYPART_BROKEN)
 			return BODYPART_NOT_DISABLED
@@ -447,8 +453,10 @@
 /obj/item/bodypart/proc/check_for_internal_bleeding(damage)
 	if(owner && (NOBLOOD in owner.dna.species.species_traits))
 		return
+	if(status == BODYPART_ROBOTIC)
+		return
 	var/local_damage = brute_dam + damage
-	if((damage >= min_broken_damage && local_damage >= min_broken_damage && prob(damage)))
+	if((damage >= (min_broken_damage * 0.70) && local_damage >= min_broken_damage && prob(damage)))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
