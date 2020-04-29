@@ -108,15 +108,21 @@ export const Sleeper = props => {
               <LabeledList.Item
                 label={'Limb Damage'}
                 key={'Limb Damage'}>
+                {'\n'}
                 {data.occupant.limbs.map(funnylimb => (
                   <LabeledList.Item
                     key={funnylimb.name}
                     label={funnylimb.name}>
                     <ProgressBar
-                      value={funnylimb.damage}
+                      value={funnylimb.maxdamage - funnylimb.damage}
                       minvalue={0}
                       maxValue={funnylimb.maxdamage}
-                      color="bad">
+                      ranges={{
+                        good: [(funnylimb.maxdamage/4)*3, Infinity],
+                        average: [(funnylimb.maxdamage/4)*2,
+                          (funnylimb.maxdamage/4)*3],
+                        bad: [-Infinity, (funnylimb.maxdamage/4)*2],
+                      }}>
                       {funnylimb.broken
                         ? 'BROKEN, '
                         : 'NOT BROKEN, '}
@@ -131,6 +137,7 @@ export const Sleeper = props => {
               <LabeledList.Item
                 label={'Missing Limbs'}
                 key={'Missing Limbs'}>
+                {'\n'}
                 {data.occupant.missing_limbs.map(lostlimb => (
                   <LabeledList.Item
                     key={lostlimb.name}
@@ -147,6 +154,7 @@ export const Sleeper = props => {
               <LabeledList.Item
                 label={'Organ Damage'}
                 key={'Organ Damage'}>
+                {'\n'}
                 {data.occupant.organs.map(funnyorgan => (
                   <LabeledList.Item
                     key={funnyorgan.name}
@@ -155,7 +163,12 @@ export const Sleeper = props => {
                       value={funnyorgan.damage}
                       minvalue={0}
                       maxValue={funnyorgan.maxdamage}
-                      color="bad">
+                      ranges={{
+                        good: [(funnyorgan.maxdamage/4)*3, Infinity],
+                        average: [(funnyorgan.maxdamage/4)*2,
+                          (funnyorgan.maxdamage/4)*3],
+                        bad: [-Infinity, (funnyorgan.maxdamage/4)*2],
+                      }}>
                       {funnyorgan.failing
                         ? 'ORGAN FAILURE'
                         : 'FUNCTIONAL'}
@@ -167,6 +180,7 @@ export const Sleeper = props => {
               <LabeledList.Item
                 label={'Missing Organs'}
                 key={'Missing Organs'}>
+                {'\n'}
                 {data.occupant.missing_organs.map(funnyorgan => (
                   <LabeledList.Item
                     key={funnyorgan.name}
