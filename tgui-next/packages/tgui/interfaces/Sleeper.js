@@ -160,7 +160,7 @@ export const Sleeper = props => {
                     key={funnyorgan.name}
                     label={funnyorgan.name}>
                     <ProgressBar
-                      value={funnyorgan.damage}
+                      value={funnyorgan.maxdamage - funnyorgan.damage}
                       minvalue={0}
                       maxValue={funnyorgan.maxdamage}
                       ranges={{
