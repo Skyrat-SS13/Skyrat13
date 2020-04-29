@@ -191,19 +191,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"dX" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/caution/stand_clear{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
 "dY" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 8
@@ -213,6 +200,19 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"el" = (
+/obj/docking_port/stationary{
+	area_type = /area/mining_level_access/upper;
+	dir = 4;
+	dwidth = 2;
+	height = 5;
+	id = "lavaland_mining_top";
+	name = "lavaland mining top";
+	roundstart_template = /datum/map_template/shuttle/lavaland/mining;
+	width = 5
+	},
+/turf/open/openspace,
+/area/mining_level_access/upper)
 "eK" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
@@ -232,6 +232,10 @@
 "eY" = (
 /turf/closed/indestructible/riveted/boss,
 /area/lavaland/surface/outdoors)
+"fa" = (
+/obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/mining_level_access)
 "fb" = (
 /obj/structure/stone_tile{
 	dir = 1
@@ -482,6 +486,15 @@
 /obj/structure/stone_tile,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"jn" = (
+/turf/open/floor/plating,
+/area/mining_level_access)
+"jv" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mining_level_access)
 "jJ" = (
 /obj/structure/necropolis_gate/locked,
 /obj/structure/stone_tile/slab,
@@ -739,21 +752,6 @@
 "ob" = (
 /turf/closed/wall/mineral/wood,
 /area/ruin/unpowered/ash_walkers)
-"oB" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
 "pg" = (
 /obj/structure/stone_tile/surrounding_tile,
 /obj/structure/stone_tile/surrounding_tile{
@@ -780,6 +778,12 @@
 /obj/item/twohanded/bonespear,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"pJ" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/mining_level_access)
 "pM" = (
 /obj/structure/stone_tile/surrounding_tile,
 /obj/structure/stone_tile/surrounding_tile{
@@ -1011,6 +1015,9 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"tB" = (
+/turf/open/openspace,
+/area/mining_level_access/upper)
 "tD" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 4
@@ -1403,19 +1410,6 @@
 	},
 /turf/closed/indestructible/riveted/boss,
 /area/lavaland/surface/outdoors)
-"yO" = (
-/obj/machinery/light/small,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
 "yV" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -1446,6 +1440,10 @@
 /obj/structure/stone_tile/center,
 /turf/open/indestructible/boss,
 /area/lavaland/surface/outdoors)
+"zn" = (
+/obj/machinery/computer/shuttle/elevator/mining,
+/turf/open/floor/plating,
+/area/mining_level_access)
 "zu" = (
 /obj/structure/stone_tile/cracked{
 	dir = 4
@@ -1540,19 +1538,6 @@
 /obj/structure/stone_tile/cracked,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"Be" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
 "Bg" = (
 /turf/closed/mineral/random/high_chance/volcanic,
 /area/lavaland/surface/outdoors/unexplored/danger)
@@ -1562,19 +1547,6 @@
 	},
 /turf/closed/indestructible/riveted/boss,
 /area/ruin/unpowered/ash_walkers)
-"Bq" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
 "Ca" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
@@ -1666,17 +1638,6 @@
 /obj/structure/stone_tile,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
-"DA" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
 "DB" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -2068,50 +2029,9 @@
 /obj/item/stack/marker_beacon/ten,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
-"KQ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/caution/stand_clear{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
-"La" = (
-/obj/structure/ladder,
-/turf/open/floor/plating/dirt/dark,
-/area/mining_level_access)
-"Ln" = (
+"Ls" = (
 /obj/machinery/light/small{
 	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
-"Lx" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
 	},
 /turf/open/floor/plating,
 /area/mining_level_access)
@@ -2209,19 +2129,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
-"NM" = (
-/obj/machinery/light/small,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
 "Oa" = (
 /obj/structure/stone_tile{
 	dir = 4
@@ -2316,20 +2223,17 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "PT" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
+/obj/docking_port/stationary{
+	area_type = /area/mining_level_access/lower;
+	dir = 4;
+	dwidth = 2;
+	height = 5;
+	id = "lavaland_mining_down";
+	name = "lavaland mining bottom";
+	width = 5
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/caution/stand_clear{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
+/turf/open/floor/plasteel/elevatorshaft,
+/area/mining_level_access/lower)
 "Qt" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
@@ -2746,26 +2650,9 @@
 /obj/structure/stone_tile/cracked,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"Zs" = (
-/obj/machinery/button{
-	id = "mininglevelshutter";
-	req_access_txt = "48"
-	},
-/turf/closed/wall,
-/area/mining_level_access)
 "ZC" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mininglevelshutter"
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
+/turf/open/floor/plasteel/elevatorshaft,
+/area/mining_level_access/lower)
 "ZE" = (
 /obj/structure/stone_tile/surrounding_tile/cracked,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -25620,12 +25507,12 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
+pw
+jv
+jn
+jn
+jn
+fa
 pw
 RT
 RT
@@ -25877,13 +25764,13 @@ tN
 tN
 tN
 tN
-tN
-Zs
-oB
+pJ
+ZC
+ZC
 PT
-NM
-Zs
-RT
+ZC
+ZC
+pJ
 RT
 QU
 QU
@@ -26134,14 +26021,14 @@ tN
 tN
 tN
 tN
-tN
+jn
 ZC
-QU
-QU
-QU
-Be
-QU
-QU
+ZC
+ZC
+ZC
+ZC
+jn
+jn
 QU
 QU
 QU
@@ -26391,14 +26278,14 @@ tN
 tN
 tN
 tN
-tN
-DA
-QU
-La
-QU
-dX
-QU
-QU
+jn
+ZC
+ZC
+ZC
+ZC
+ZC
+zn
+jn
 QU
 QU
 QU
@@ -26648,14 +26535,14 @@ tN
 tN
 tN
 tN
-tN
-Ln
-QU
-QU
-QU
-Bq
-QU
-QU
+jn
+ZC
+ZC
+ZC
+ZC
+ZC
+jn
+jn
 QU
 QU
 QU
@@ -26905,13 +26792,13 @@ tN
 tN
 tN
 tN
-tN
-Zs
-Lx
-KQ
-yO
-Zs
-RT
+Ls
+ZC
+ZC
+ZC
+ZC
+ZC
+Ls
 RT
 RT
 QU
@@ -27162,12 +27049,12 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
+pw
+jv
+jn
+jn
+jn
+fa
 pw
 RT
 RT
@@ -91156,13 +91043,13 @@ up
 tN
 tN
 Yp
-Yp
-Yp
-Yp
-Yp
-Yp
-Yp
-Yp
+pw
+jv
+jn
+jn
+jn
+fa
+pw
 Yp
 tN
 up
@@ -91413,13 +91300,13 @@ tN
 Yp
 Yp
 Yp
-Yp
-Zs
-oB
-PT
-NM
-Zs
-Yp
+pJ
+tB
+tB
+el
+tB
+tB
+pJ
 Yp
 Yp
 tN
@@ -91670,14 +91557,14 @@ up
 tN
 Yp
 Yp
-Yp
-ZC
-QU
-QU
-QU
-Be
-Yp
-Yp
+jn
+tB
+tB
+tB
+tB
+tB
+jn
+jn
 Yp
 tN
 up
@@ -91927,14 +91814,14 @@ up
 tN
 Yp
 Yp
-Yp
-DA
-QU
-La
-QU
-dX
-Yp
-Yp
+jn
+tB
+tB
+tB
+tB
+tB
+zn
+jn
 Yp
 Yp
 tN
@@ -92184,14 +92071,14 @@ up
 tN
 Yp
 Yp
-Yp
-Ln
-QU
-QU
-QU
-Bq
-Yp
-Yp
+jn
+tB
+tB
+tB
+tB
+tB
+jn
+jn
 Yp
 Yp
 Yp
@@ -92441,13 +92328,13 @@ up
 tN
 Yp
 Yp
-Yp
-Zs
-Lx
-KQ
-yO
-Zs
-Yp
+Ls
+tB
+tB
+tB
+tB
+tB
+Ls
 Yp
 Yp
 Yp
@@ -92698,13 +92585,13 @@ up
 tN
 Yp
 Yp
-Yp
-Yp
-Yp
-Yp
-Yp
-Yp
-Yp
+pw
+jv
+jn
+jn
+jn
+fa
+pw
 Yp
 Yp
 Yp

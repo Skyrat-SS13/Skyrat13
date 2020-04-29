@@ -18,3 +18,9 @@
   	icon_state = "milevel"
   	requires_power = FALSE
   	has_gravity = STANDARD_GRAVITY
+
+/area/mining_level_access/lower
+	name = "Lower Mining Level Access"
+
+/area/mining_level_access/upper
+	name = "Upper Mining Level Access"

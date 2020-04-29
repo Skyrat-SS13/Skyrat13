@@ -1,0 +1,11 @@
+"a" = (/turf/open/floor/engine,/area/shuttle/lavaland/elevator)
+"z" = (/obj/machinery/computer/shuttle/elevator/mining,/turf/open/floor/engine,/area/shuttle/lavaland/elevator)
+"B" = (/obj/docking_port/mobile/elevator{dir = 4; dwidth = 2; height = 5; id = "lavaland_mining"; name = "mining elevator"; width = 5},/turf/open/floor/engine,/area/shuttle/lavaland/elevator)
+
+(1,1,1) = {"
+aaaaa
+aaaaa
+Bazaa
+aaaaa
+aaaaa
+"}
