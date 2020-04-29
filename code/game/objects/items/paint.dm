@@ -43,7 +43,7 @@
 	name = "black paint"
 	paint_color = "333333"
 	icon_state = "paint_black"
-	desc = "DROP THE CURTAINS SOAKED IN SHADOW<br>\
+	desc = "DROP THE CURTAINS SOAKED IN SHADOW<br>\ //Skyrat change
 			MORE SHADE"
 
 /obj/item/paint/white
@@ -114,7 +114,7 @@
 	. = ..()
 	if(!proximity)
 		return
-	if(!(isturf(target) || isobj(target)))
+	if(!(isturf(target) || isobj(target))) //Skyrat change
 		return
 	if(target.color != initial(target.color))
 		target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
