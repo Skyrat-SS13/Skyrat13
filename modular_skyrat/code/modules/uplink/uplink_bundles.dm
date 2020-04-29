@@ -129,7 +129,7 @@
 	icon = 'modular_skyrat/icons/mob/venomsnakearm.dmi'
 	base_bp_icon = 'modular_skyrat/icons/mob/venomsnakearm.dmi'
 	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER)
-	icon_state = "venom_l_arm"
+	icon_state = "l_arm"
 	desc = "Has no markings of any kind, because that would offer no tactical advantages. But it's distinctly a syndicate item, somehow."
 
 /* Though i wanted it to be "only works as long as the arm works", byond hates me and this proc failed me. Instead i'll have to do another approach.
