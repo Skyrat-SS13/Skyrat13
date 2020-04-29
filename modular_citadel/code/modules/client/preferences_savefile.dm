@@ -31,7 +31,7 @@
 	character_skills = sanitize_text(S["character_skills"])
 	exploitable_info = sanitize_text(S["exploitable_info"])
 	enable_personal_chat_color	= sanitize_integer(enable_personal_chat_color, 0, 1, initial(enable_personal_chat_color))
-	personal_chat_color	= sanitize_hexcolor(personal_chat_color, 3, 0, "FFFFFF")
+	personal_chat_color	= sanitize_hexcolor(personal_chat_color, 6, 1, "#FFFFFF")
 	//END OF SKYRAT CHANGES
 	//gear loadout
 	var/text_to_load

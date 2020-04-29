@@ -55,7 +55,7 @@
 		return
 
 	user.log_message(msg, LOG_EMOTE)
-	msg = "<b>[user]</b> " + msg
+	//msg = "<b>[user]</b> " + msg //SKYRAT CHANGE
 
 	for(var/mob/M in GLOB.dead_mob_list)
 		if(!M.client || isnewplayer(M))
@@ -65,9 +65,9 @@
 			M.show_message(msg)
 
 	if(emote_type == EMOTE_AUDIBLE)
-		user.audible_message(msg)
+		user.audible_message(msg, user_msg = TRUE, runechat_popup = TRUE) //SKYRAT CHANGE
 	else
-		user.visible_message(msg)
+		user.visible_message(msg, user_msg = TRUE, runechat_popup = TRUE) //SKYRAT CHANGE
 
 /datum/emote/proc/replace_pronoun(mob/user, message)
 	if(findtext(message, "their"))

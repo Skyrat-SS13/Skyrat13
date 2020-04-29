@@ -380,7 +380,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
 
-			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: #[personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
+			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Change</a><BR>"
 			//<span style='border: 1px solid #161616; background-color: #[personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>
 			//END OF SKYRAT EDIT
@@ -1594,13 +1594,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
 
 				if("personal_chat_color")
-					var/new_chat_color = input(user, "Choose your character's runechat color:", "Character Preference","#"+personal_chat_color) as color|null
+					var/new_chat_color = input(user, "Choose your character's runechat color:", "Character Preference",personal_chat_color) as color|null
 					if(new_chat_color)
-						var/temp_hsv = RGBtoHSV(new_chat_color)
+						var/list/temp_hsl = rgb2hsl(ReadRGB(new_chat_color)[1],ReadRGB(new_chat_color)[2],ReadRGB(new_chat_color)[3])
 						if(new_chat_color == "#000000")
-							features["mcolor"] = "#FFFFFF"
-						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#CCCCCC")[3] && ReadHSV(temp_hsv)[2] >= ReadHSV("#555555")[2])
-							personal_chat_color = sanitize_hexcolor(new_chat_color)
+							personal_chat_color = "#FFFFFF"
+						else if(temp_hsl[3] >= 0.65 && temp_hsl[2] >= 0.15)
+							personal_chat_color = sanitize_hexcolor(new_chat_color, 6, 1)
 						else
 							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
 				//END OF SKYRAT CHANGES

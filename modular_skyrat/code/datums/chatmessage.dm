@@ -75,15 +75,14 @@
 		var/mob/M = target
 		if(GLOB.runechat_color_names[target.name])
 			target.chat_color = GLOB.runechat_color_names[target.name]
-			target.chat_color_darkened = color_shift(target.chat_color, 0.85, 0.85)
 		else if (ismob(target) && M.client?.prefs?.enable_personal_chat_color && M.name == M.real_name && M.name == M.client.prefs.real_name)
 			var/per_color = M.client.prefs.personal_chat_color
 			GLOB.runechat_color_names[target.name] = per_color
 			target.chat_color = per_color
-			target.chat_color_darkened = color_shift(target.chat_color, 0.85, 0.85)
 		else
 			target.chat_color = colorize_string(target.name)
-			target.chat_color_darkened = color_shift(target.chat_color, 0.85, 0.85)
+
+		target.chat_color_darkened = color_shift(target.chat_color, 0.85, 0.85)
 		target.chat_color_name = target.name
 
 	/*
@@ -123,8 +122,12 @@
 		else //unfiltered lowercase take 5
 			pixels += 5
 
-	// Append radio icon if from a virtual speaker
-	if (extra_classes.Find("virtual-speaker"))
+	// Append radio icon if from a virtual speaker, or emote icon
+	if (extra_classes.Find("emote"))
+		var/image/r_icon = image('modular_skyrat/icons/UI_Icons/chat/chat_icons.dmi', icon_state = "emote")
+		text =  "\icon[r_icon]&nbsp;" + text
+		pixels += 10
+	else if (extra_classes.Find("virtual-speaker"))
 		var/image/r_icon = image('modular_skyrat/icons/UI_Icons/chat/chat_icons.dmi', icon_state = "radio")
 		text =  "\icon[r_icon]&nbsp;" + text
 		pixels += 10
@@ -215,7 +218,10 @@
 		return
 
 	// Display visual above source
-	new /datum/chatmessage(lang_treat(speaker, message_language, raw_message, spans, null, TRUE), speaker, src, spans)
+	if(message_language)
+		new /datum/chatmessage(lang_treat(speaker, message_language, raw_message, spans, null, TRUE), speaker, src, spans)
+	else
+		new /datum/chatmessage(raw_message, speaker, src, spans)
 
 
 // Tweak these defines to change the available color ranges
@@ -275,7 +281,7 @@
 
 /datum/chatmessage/proc/color_shift(color, sat_shift = 1, lum_shift = 1)
 	var/list/HSL = rgb2hsl(hex2num(copytext(color, 2, 4)), hex2num(copytext(color, 4, 6)), hex2num(copytext(color, 6, 8)))
-	HSL[2] *= clamp(sat_shift, 0, 1)
-	HSL[3] *= clamp(lum_shift, 0, 1)
+	HSL[2] = HSL[2] * sat_shift
+	HSL[3] = HSL[3] * lum_shift
 	var/list/RGB = hsl2rgb(arglist(HSL))
 	return "#[num2hex(RGB[1],2)][num2hex(RGB[2],2)][num2hex(RGB[3],2)]"
