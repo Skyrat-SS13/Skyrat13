@@ -160,6 +160,7 @@
 
 /obj/item/stack/medical/splint
 	name = "medical splints"
+	icon = 'modular_skyrat/icons/obj/medical.dmi'
 	icon_state = "splint"
 	desc = "Oofie ouchie my bones."
 	self_delay = 100

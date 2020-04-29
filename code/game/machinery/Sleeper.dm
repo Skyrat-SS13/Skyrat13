@@ -262,24 +262,64 @@
 		data["occupant"]["missing_limbs"] = list()
 		var/mob/living/carbon/C = mob_occupant
 		var/list/currentorgans = C.getCurrentOrgans()
-		var/list/missingorgans = C.getMissingOrgans()
+		var/list/missingorgans = list()
 		var/list/currentlimbs = C.bodyparts
 		var/list/missinglimps = C.get_missing_limbs()
 		var/list/missinglimbs = list()
-		for(var/x in missinglimps) //trash spaghetti code here
-			for(var/obj/item/bodypart/BP in subtypesof(/obj/item/bodypart))
-				if(BP.body_zone == x)
-					missinglimbs += BP
+		for(var/x in missinglimps)
+			if(!(C.get_bodypart(x)))
+				switch(x)
+					if(BODY_ZONE_HEAD)
+						missinglimbs += "Head"
+					if(BODY_ZONE_CHEST)
+						missinglimbs += "Chest"
+					if(BODY_ZONE_PRECISE_GROIN)
+						missinglimbs += "Groin"
+					if(BODY_ZONE_R_ARM)
+						missinglimbs += "Right arm"
+					if(BODY_ZONE_L_ARM)
+						missinglimbs += "Left arm"
+					if(BODY_ZONE_PRECISE_R_HAND)
+						missinglimbs += "Right hand"
+					if(BODY_ZONE_PRECISE_L_HAND)
+						missinglimbs += "Left hand"
+					if(BODY_ZONE_R_LEG)
+						missinglimbs += "Right leg"
+					if(BODY_ZONE_L_LEG)
+						missinglimbs += "Left leg"
+					if(BODY_ZONE_PRECISE_R_FOOT)
+						missinglimbs += "Right foot"
+					if(BODY_ZONE_PRECISE_L_FOOT)
+						missinglimbs += "Left foot"
+			else 
+				continue
+		
+		var/has_liver = C.dna && !(NOLIVER in C.dna.species.species_traits)
+		var/has_stomach = C.dna && !(NOSTOMACH in C.dna.species.species_traits)
+		if(!M.getorganslot(ORGAN_SLOT_EYES))
+			missingorgans += "Eyes"
+		if(!M.getorganslot(ORGAN_SLOT_EARS))
+			missingorgans += "Ears"
+		if(!M.getorganslot(ORGAN_SLOT_BRAIN))
+			missingorgans += "Brain"
+		if(has_liver && !M.getorganslot(ORGAN_SLOT_LIVER))
+			missingorgans += "Liver"
+		if(blooded && !M.getorganslot(ORGAN_SLOT_HEART))
+			missingorgans += "Hear"
+		if(breathes && !M.getorganslot(ORGAN_SLOT_LUNGS))
+			missingorgans += "Lungs"
+		if(has_stomach && !M.getorganslot(ORGAN_SLOT_STOMACH))
+			missingorgans += "Stomach"
 
 		if(istype(C)) //Non-carbons shouldn't be able to enter sleepers, but this is to prevent runtimes if something ever breaks
 			for(var/obj/item/organ/Or in currentorgans)
 				data["occupant"]["organs"] += list(list("name" = capitalize(Or.name), "damage" = Or.damage, "maxdamage" = Or.maxHealth, "failing" = (Or.organ_flags & ORGAN_FAILING)))
 			for(var/obj/item/organ/missing in missingorgans)
-				data["occupant"]["missing_organs"] += list(list("name" = capitalize(missing.name)))
+				data["occupant"]["missing_organs"] += list(list("name" = capitalize(missing)))
 			for(var/obj/item/bodypart/BP in currentlimbs)
 				data["occupant"]["limbs"] += list(list("name" = capitalize(BP.name), "damage" = BP.get_damage(include_stamina = FALSE), "maxdamage" = BP.max_damage, "broken" = (BP.status_flags & BODYPART_BROKEN), "bleeding" = BP.internal_bleeding))
 			for(var/obj/item/bodypart/missing in missinglimbs)
-				data["occupant"]["missing_limbs"] += list(list("name" = capitalize(missing.name)))
+				data["occupant"]["missing_limbs"] += list(list("name" = capitalize(missing)))
 			if(mob_occupant.has_dna()) // Blood-stuff is mostly a copy-paste from the healthscanner.
 				blood_percent = round((C.blood_volume / BLOOD_VOLUME_NORMAL)*100)
 				var/blood_id = C.get_blood_id()

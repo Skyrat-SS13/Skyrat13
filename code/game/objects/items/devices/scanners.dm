@@ -183,13 +183,43 @@ SLIME SCANNER
 								<td><font color='orange'>[(org.burn_dam > 0) ? "[org.burn_dam]" : "0"]</font></td></tr>"
 			dmgreport += "</table><br>"
 		var/list/currentbodyparts = C.bodyparts
-		var/list/missingbodyparts = C.get_missing_limbs()
+		var/list/missingbodyfarts = C.get_missing_limbs()
+		var/list/missingbodyparts = list()
+		for(var/x in missingbodyfarts)
+			if(!(C.get_bodypart(x)))
+				switch(x)
+					if(BODY_ZONE_HEAD)
+						missinglimbs += "Head"
+					if(BODY_ZONE_CHEST)
+						missinglimbs += "Chest"
+					if(BODY_ZONE_PRECISE_GROIN)
+						missinglimbs += "Groin"
+					if(BODY_ZONE_R_ARM)
+						missinglimbs += "Right arm"
+					if(BODY_ZONE_L_ARM)
+						missinglimbs += "Left arm"
+					if(BODY_ZONE_PRECISE_R_HAND)
+						missinglimbs += "Right hand"
+					if(BODY_ZONE_PRECISE_L_HAND)
+						missinglimbs += "Left hand"
+					if(BODY_ZONE_R_LEG)
+						missinglimbs += "Right leg"
+					if(BODY_ZONE_L_LEG)
+						missinglimbs += "Left leg"
+					if(BODY_ZONE_PRECISE_R_FOOT)
+						missinglimbs += "Right foot"
+					if(BODY_ZONE_PRECISE_L_FOOT)
+						missinglimbs += "Left foot"
+			else 
+				continue
 		if(advanced)
 			for(var/obj/item/bodypart/BP in currentbodyparts)
-				dmgreport += "[capitalize(BP.name)] fractures: [BP.status_flags & BODYPART_BROKEN ? "<font color='red'><b>FRACTURES DETECTED</b></font><br>" : "<font color='green'>NO FRACTURES DETECTED</font><br>"]"
-				dmgreport += "[capitalize(BP.name)] bloodloss: [BP.internal_bleeding ? "<font color='red'><b>INTERNAL BLEEDING</b></font><br>" : "<font color='green'>NO MAJOR BLEEDING DETECTED</font><br>"]"
-			for(var/obj/item/bodypart/missing in missingbodyparts)
-				dmgreport += "[capitalize(missing.name)]: <font color='red'><b>MISSING</b></font><br>"
+				if(BP.status_flags & BODYPART_BROKEN)
+					dmgreport += "\n\t[capitalize(BP.name)] fractures: [BP.status_flags & BODYPART_BROKEN ? "<font color='red'><b>FRACTURES DETECTED</b></font><br>" : "<font color='green'>NO FRACTURES DETECTED</font><br>"]"
+				if(BP.internal_bleeding)
+					dmgreport += "\n\t[capitalize(BP.name)] bloodloss: [BP.internal_bleeding ? "<font color='red'><b>INTERNAL BLEEDING</b></font><br>" : "<font color='green'>NO MAJOR BLEEDING DETECTED</font><br>"]"
+			for(var/missing in missingbodyparts)
+				dmgreport += "\n\t[capitalize(missing)]: <font color='red'><b>MISSING</b></font><br>"
 		else
 			var/hasfractures
 			var/hasbleeding
@@ -200,11 +230,11 @@ SLIME SCANNER
 				if(BP.internal_bleeding)
 					hasbleeding = TRUE
 			if(hasfractures)
-				dmgreport += "<font color='red'><b>FRACTURES DETECTED IN SUBJECT</b></font><br>"
+				dmgreport += "\n\t<font color='red'><b>FRACTURES DETECTED IN SUBJECT</b></font><br>"
 			if(hasbleeding)
-				dmgreport += "<font color='red'><b>INTERNAL BLEEDING DETECTED IN SUBJECT</b></font><br>"
+				dmgreport += "\n\t<font color='red'><b>INTERNAL BLEEDING DETECTED IN SUBJECT</b></font><br>"
 			if(hasmissingbodyparts)
-				dmgreport += "<font color='red'><b>SUBJECT HAS MISSING LIMBS</b></font><br>"
+				dmgreport += "\n\t<font color='red'><b>SUBJECT HAS MISSING LIMBS</b></font><br>"
 		to_chat(user, dmgreport.Join())
 
 
