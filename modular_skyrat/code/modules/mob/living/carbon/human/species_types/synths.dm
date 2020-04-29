@@ -28,6 +28,9 @@
 	mutanteyes = /obj/item/organ/eyes/ipc
 	exotic_blood = /datum/reagent/blood/synthetics
 	exotic_bloodtype = "SY"
+	//FUCKING STUPID PIECE OF SHIT STREET FUCKING CATS
+	var/storedeardamage = 0
+	var/storedtaildamage = 0
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))
@@ -51,6 +54,18 @@
 		hair_color = S.hair_color
 		screamsounds = S.screamsounds.Copy()
 		femalescreamsounds = S.femalescreamsounds.Copy()
+		if(istype(S, /datum/species/human/felinid)) //FUCK YOU, FUCKING CAT IDIOTS I FUCKING HATE  YOU I HOPE YOUR FUCKING
+			storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS) //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA TAIL GETS CUT OFF
+			mutantears = S.mutantears						//YOUR FUCKING EARS GET MUNCHED OFF BY A RABID DOG
+			qdel(H.getorganslot(ORGAN_SLOT_EARS))
+			var/obj/item/organ/ears = new mutantears
+			ears.Insert(H)
+			H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
+			mutanttail = S.mutanttail
+			qdel(H.getorganslot(ORGAN_SLOT_TAIL))
+			var/obj/item/organ/tail = new mutanttail
+			tail.Insert(H)
+			H.setOrganLoss(ORGAN_SLOT_TAIL, storedtaildamage)
 		isdisguised = TRUE
 		if(!faketongue)
 			faketongue = new S.mutanttongue
@@ -131,6 +146,16 @@
 	meat = initial(meat)
 	limbs_id = initial(limbs_id)
 	use_skintones = initial(use_skintones)
+	if(istype(fake_species, /datum/species/human/felinid)) //worthless fFUCKING DINGY CATS
+		storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
+		mutantears = initial(mutantears)
+		qdel(H.getorganslot(ORGAN_SLOT_EARS))
+		var/obj/item/organ/ears = new mutantears
+		ears.Insert(H)
+		H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
+		storedtaildamage = H.getOrganLoss(ORGAN_SLOT_TAIL)
+		mutanttail = initial(mutanttail)
+		qdel(H.getorganslot(ORGAN_SLOT_TAIL))
 	sexes = initial(sexes)
 	fixed_mut_color = ""
 	hair_color = ""
