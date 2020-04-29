@@ -413,7 +413,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/dirt/dark,
 /area/mining_level_access)
 "hM" = (
 /obj/machinery/grill{
@@ -2085,7 +2085,7 @@
 /area/mining_level_access)
 "La" = (
 /obj/structure/ladder,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/dirt/dark,
 /area/mining_level_access)
 "Ln" = (
 /obj/machinery/light/small{
@@ -2355,7 +2355,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "QU" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/dirt/dark,
 /area/mining_level_access)
 "Ra" = (
 /obj/structure/stone_tile/surrounding_tile,
@@ -2748,7 +2748,8 @@
 /area/lavaland/surface/outdoors)
 "Zs" = (
 /obj/machinery/button{
-	id = "mininglevelshutter"
+	id = "mininglevelshutter";
+	req_access_txt = "48"
 	},
 /turf/closed/wall,
 /area/mining_level_access)
@@ -25883,9 +25884,9 @@ PT
 NM
 Zs
 RT
-QU
-QU
 RT
+QU
+QU
 uf
 Rd
 pU
@@ -26913,7 +26914,7 @@ Zs
 RT
 RT
 RT
-RT
+QU
 hE
 QU
 Qt
