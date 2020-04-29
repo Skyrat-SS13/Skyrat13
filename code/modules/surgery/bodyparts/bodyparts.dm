@@ -385,7 +385,7 @@
 		if(status_flags & BODYPART_BROKEN)
 			if(!(status_flags & BODYPART_SPLINTED))
 				return BODYPART_DISABLED_DAMAGE
-		if((get_damage(TRUE) >= max_damage) || ((HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) || status == BODYPART_ROBOTIC) && (get_damage(TRUE) >= (max_damage * 0.75)))) //Easy limb disable or being robotic disables the limb at 25% health instead of 0%
+		if((get_damage(TRUE) >= max_damage) || ((HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) || status == BODYPART_ROBOTIC) && (get_damage(TRUE) >= (max_damage * 0.8)))) //Easy limb disable or being robotic disables the limb at 20% health instead of 0%
 			return BODYPART_DISABLED_DAMAGE
 		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)) && status_flags & ~BODYPART_BROKEN)
 			return BODYPART_NOT_DISABLED
@@ -799,7 +799,7 @@
 	limb_name = "chest"
 	desc = "It's impolite to stare at a person's chest."
 	icon_state = "default_human_chest"
-	max_damage = 200
+	max_damage = 100
 	min_broken_damage = 35
 	body_zone = BODY_ZONE_CHEST
 	body_part = CHEST
@@ -815,10 +815,10 @@
 /obj/item/bodypart/chest/groin
 	name = BODY_ZONE_PRECISE_GROIN
 	limb_name = "groin"
-	desc = "Some say groin came from  Grynde, which is middle-ages speak for depression, makes sense for the situation."
+	desc = "Some say groin came from  Grynde, which is middle-ages speak for depression. Makes sense for the situation."
 	icon_state = "default_human_groin"
 	max_damage = 75
-	min_broken_damage = 25
+	min_broken_damage = 30
 	body_zone = BODY_ZONE_PRECISE_GROIN
 	body_part = GROIN
 	px_x = 0
