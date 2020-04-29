@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscdel: "Removed claymores, sunglasses, single strange seed, clumsy clown dna injectors and eutactic blades from the uplink"
-  - tweak: "halved the cost of the x10 strange seeds pack uplink item from 20 to 10 tcs."

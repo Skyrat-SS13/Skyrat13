@@ -272,7 +272,7 @@
 		reports += config.mode_reports[config_tag]
 		Count++
 	for(var/i in Count to rand(3,5)) //Between three and five wrong entries on the list.
-		var/false_report_type = pickweightAllowZero(report_weights)
+		var/false_report_type = pickweight(report_weights, 0)
 		report_weights[false_report_type] = 0 //Make it so the same false report won't be selected twice
 		reports += config.mode_reports[false_report_type]
 
@@ -407,7 +407,7 @@
 	for(var/mob/dead/new_player/player in players)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
 			if(role in player.client.prefs.be_special)
-				if(!jobban_isbanned(player, ROLE_SYNDICATE) && !QDELETED(player) && !jobban_isbanned(player, role) && !QDELETED(player) && !jobban_isbanned(player, COLLARBAN) && !jobban_isbanned(player, LESSERCOLLARBAN)) //Nodrak/Carn: Antag Job-bans //Skyrat edit - collarbans
+				if(!jobban_isbanned(player, ROLE_SYNDICATE) && !QDELETED(player) && !jobban_isbanned(player, role) && !QDELETED(player) && !jobban_isbanned(player, COLLARBAN)) //Nodrak/Carn: Antag Job-bans //Skyrat edit - pacifybans
 					if(age_check(player.client)) //Must be older than the minimum age
 						candidates += player.mind				// Get a list of all the people who want to be the antagonist for this round
 
