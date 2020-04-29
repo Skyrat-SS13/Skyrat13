@@ -371,7 +371,8 @@
 				return BODYPART_DISABLED_DAMAGE
 			else
 				var/obj/item/bodypart/parent = owner.get_bodypart(parent_bodyzone)
-				return	parent.is_disabled()
+				if(parent.is_disabled() == BODYPART_DISABLED_DAMAGE)
+					return	parent.is_disabled()
 		if(status_flags & BODYPART_BROKEN)
 			return BODYPART_DISABLED_DAMAGE
 		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.6)))) //Easy limb disable disables the limb at 40% health instead of 0%
