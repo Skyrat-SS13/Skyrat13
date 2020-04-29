@@ -43,8 +43,8 @@
 	name = "black paint"
 	paint_color = "333333"
 	icon_state = "paint_black"
-	desc = "DROP THE CURTAINS SOAKED IN SHADOW<br>\ //Skyrat change
-			MORE SHADE"
+	desc = "DROP THE CURTAINS SOAKED IN SHADOW<br>\
+			MORE SHADE" //Skyrat change
 
 /obj/item/paint/white
 	name = "white paint"
