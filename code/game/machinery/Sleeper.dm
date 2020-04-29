@@ -294,6 +294,13 @@
 			else
 				continue
 
+		var/breathes = TRUE
+		var/blooded = TRUE
+		if(C.dna && C.dna.species)
+			if(HAS_TRAIT_FROM(C, TRAIT_NOBREATH, SPECIES_TRAIT))
+				breathes = FALSE
+			if(NOBLOOD in C.dna.species.species_traits)
+				blooded = FALSE
 		var/has_liver = C.dna && !(NOLIVER in C.dna.species.species_traits)
 		var/has_stomach = C.dna && !(NOSTOMACH in C.dna.species.species_traits)
 		if(!C.getorganslot(ORGAN_SLOT_EYES))
@@ -305,7 +312,7 @@
 		if(has_liver && !C.getorganslot(ORGAN_SLOT_LIVER))
 			missingorgans += "Liver"
 		if(blooded && !C.getorganslot(ORGAN_SLOT_HEART))
-			missingorgans += "Hear"
+			missingorgans += "Heart"
 		if(breathes && !C.getorganslot(ORGAN_SLOT_LUNGS))
 			missingorgans += "Lungs"
 		if(has_stomach && !C.getorganslot(ORGAN_SLOT_STOMACH))
