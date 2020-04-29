@@ -1,0 +1,4 @@
+author: "Anonymous"
+delete-after: True
+changes: 
+  - bugfix: "Fixed missing digitigrade icon for ENT-Era trek command uniform."
