@@ -43,6 +43,8 @@
 	name = "black paint"
 	paint_color = "333333"
 	icon_state = "paint_black"
+	desc = "DROP THE CURTAINS SOAKED IN SHADOW<br>\
+			MORE SHADE"
 
 /obj/item/paint/white
 	name = "white paint"
@@ -112,7 +114,7 @@
 	. = ..()
 	if(!proximity)
 		return
-	if(!isturf(target) || !isobj(target))
+	if(!(isturf(target) || isobj(target)))
 		return
 	if(target.color != initial(target.color))
 		target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)

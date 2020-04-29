@@ -33,10 +33,14 @@
 	return TRUE
 
 /obj/item/shield/alt_pre_attack(atom/A, mob/living/user, params)
+	if(!(user.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE)) //Combat mode has to be enabled for shield bashing
+		return
 	user_shieldbash(user, A, user.a_intent == INTENT_HARM)
 	return TRUE
 
-/obj/item/shield/altafterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/shield/altafterattack(atom/target, mob/living/user, proximity_flag, click_parameters)
+	if(!(user.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE)) //Combat mode has to be enabled for shield bashing
+		return FALSE
 	user_shieldbash(user, target, user.a_intent == INTENT_HARM)
 	return TRUE
 
