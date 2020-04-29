@@ -291,24 +291,24 @@
 						missinglimbs += "Right foot"
 					if(BODY_ZONE_PRECISE_L_FOOT)
 						missinglimbs += "Left foot"
-			else 
+			else
 				continue
-		
+
 		var/has_liver = C.dna && !(NOLIVER in C.dna.species.species_traits)
 		var/has_stomach = C.dna && !(NOSTOMACH in C.dna.species.species_traits)
-		if(!M.getorganslot(ORGAN_SLOT_EYES))
+		if(!C.getorganslot(ORGAN_SLOT_EYES))
 			missingorgans += "Eyes"
-		if(!M.getorganslot(ORGAN_SLOT_EARS))
+		if(!C.getorganslot(ORGAN_SLOT_EARS))
 			missingorgans += "Ears"
-		if(!M.getorganslot(ORGAN_SLOT_BRAIN))
+		if(!C.getorganslot(ORGAN_SLOT_BRAIN))
 			missingorgans += "Brain"
-		if(has_liver && !M.getorganslot(ORGAN_SLOT_LIVER))
+		if(has_liver && !C.getorganslot(ORGAN_SLOT_LIVER))
 			missingorgans += "Liver"
-		if(blooded && !M.getorganslot(ORGAN_SLOT_HEART))
+		if(blooded && !C.getorganslot(ORGAN_SLOT_HEART))
 			missingorgans += "Hear"
-		if(breathes && !M.getorganslot(ORGAN_SLOT_LUNGS))
+		if(breathes && !C.getorganslot(ORGAN_SLOT_LUNGS))
 			missingorgans += "Lungs"
-		if(has_stomach && !M.getorganslot(ORGAN_SLOT_STOMACH))
+		if(has_stomach && !C.getorganslot(ORGAN_SLOT_STOMACH))
 			missingorgans += "Stomach"
 
 		if(istype(C)) //Non-carbons shouldn't be able to enter sleepers, but this is to prevent runtimes if something ever breaks

@@ -189,28 +189,28 @@ SLIME SCANNER
 			if(!(C.get_bodypart(x)))
 				switch(x)
 					if(BODY_ZONE_HEAD)
-						missinglimbs += "Head"
+						missingbodyparts += "Head"
 					if(BODY_ZONE_CHEST)
-						missinglimbs += "Chest"
+						missingbodyparts += "Chest"
 					if(BODY_ZONE_PRECISE_GROIN)
-						missinglimbs += "Groin"
+						missingbodyparts += "Groin"
 					if(BODY_ZONE_R_ARM)
-						missinglimbs += "Right arm"
+						missingbodyparts += "Right arm"
 					if(BODY_ZONE_L_ARM)
-						missinglimbs += "Left arm"
+						missingbodyparts += "Left arm"
 					if(BODY_ZONE_PRECISE_R_HAND)
-						missinglimbs += "Right hand"
+						missingbodyparts += "Right hand"
 					if(BODY_ZONE_PRECISE_L_HAND)
-						missinglimbs += "Left hand"
+						missingbodyparts += "Left hand"
 					if(BODY_ZONE_R_LEG)
-						missinglimbs += "Right leg"
+						missingbodyparts += "Right leg"
 					if(BODY_ZONE_L_LEG)
-						missinglimbs += "Left leg"
+						missingbodyparts += "Left leg"
 					if(BODY_ZONE_PRECISE_R_FOOT)
-						missinglimbs += "Right foot"
+						missingbodyparts += "Right foot"
 					if(BODY_ZONE_PRECISE_L_FOOT)
-						missinglimbs += "Left foot"
-			else 
+						missingbodyparts += "Left foot"
+			else
 				continue
 		if(advanced)
 			for(var/obj/item/bodypart/BP in currentbodyparts)
