@@ -1,0 +1,5 @@
+author: "Useroth"
+delete-after: True
+changes: 
+  - tweak: "trashpiles now can be climbed on and have items thrown over them"
+  - bugfix: "trashpiles now properly spawn all items from the loot table"
