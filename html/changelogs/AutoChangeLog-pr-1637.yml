@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "Skills have been added."
+  - rscadd: "Surgery is now faster if you are skilled. Doctors are a bit trained roundstart and train this faster, otherwise, just improve it by doing surgery steps."
