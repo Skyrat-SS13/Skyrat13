@@ -5,6 +5,10 @@
 	icon_state = "randompile"
 	density = TRUE
 	anchored = TRUE
+	layer = TABLE_LAYER
+	climbable = TRUE
+	obj_flags = CAN_BE_HIT
+	pass_flags = LETPASSTHROW
 
 	var/list/searchedby	= list()// Characters that have searched this trashpile, with values of searched time.
 
@@ -51,25 +55,19 @@
 			//You found an item!
 			else
 				var/luck = rand(1,100)
-				var/obj/item/I
 				if(luck <= chance_alpha)
-					I = produce_alpha_item()
+					produce_alpha_item()
 				else if(luck <= chance_alpha+chance_beta)
-					I = produce_beta_item()
-
-				//We either have an item to hand over or we don't, at this point!
-				if(I)
-					searchedby += user.ckey
-					I.forceMove(get_turf(src))
-					to_chat(H,"<span class='notice'>You found \a [I]!</span>")
-
+					produce_beta_item()
+				to_chat(H,"<span class='notice'>You found something!</span>")
+				searchedby += user.ckey
 	else
 		return ..()
 
 //Random lists
 /obj/structure/trash_pile/proc/produce_alpha_item()
 	var/path = pickweight(GLOB.maintenance_loot)
-	var/obj/item/I = new path
+	var/obj/item/I = new path(get_turf(src))
 	return I
 
 /obj/structure/trash_pile/proc/produce_beta_item()
@@ -82,7 +80,7 @@
 				path = P
 				break
 	if(path)
-		var/obj/item/I = new path()
+		var/obj/item/I = new path(get_turf(src))
 		allocated_beta[path] = I
 		return I
 	else

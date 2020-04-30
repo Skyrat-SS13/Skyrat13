@@ -1,15 +1,23 @@
+/obj/effect/proc_holder/spell
+	var/always_can_cast = FALSE
+	var/mob_spell = FALSE // If the spell is bound to the mob alone, and not the mind
+
 /obj/effect/proc_holder/spell/self/return_back // Admin only spell, teleports and deletes the body, ghosting the user. 
 	name = "Return"
 	desc = "Activates your return beacon."
-	mobs_whitelist = list(/mob/living/carbon/human)
 	clothes_req = NONE
 	charge_max = 1
 	cooldown_min = 1
+	always_can_cast = TRUE
+	mob_spell = TRUE
 
 	invocation = "Return on!" // pls someone get reference <3
 	invocation_type = "whisper"
 	school = "evocation"
 	action_icon_state = "exitstate"
+
+/obj/effect/proc_holder/spell/self/return_back/can_cast(mob/user = usr, skipcharge = FALSE, silent = FALSE)
+	return TRUE
 
 /obj/effect/proc_holder/spell/self/return_back/cast(mob/living/carbon/human/user)
 	user.mind.RemoveSpell(src)
