@@ -742,13 +742,12 @@
 	"Deep Space Nine" = 'icons/mob/clothing/uniform.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
-// Note that ENT-era uses different path, because I dont want to touch upstream files to fix icon name.
 	unique_reskin_worn_anthro = list(
 	"Default - The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform_digi.dmi',
-	"Enterprise" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
 	"Default - The Original Series" = "trek_command",
