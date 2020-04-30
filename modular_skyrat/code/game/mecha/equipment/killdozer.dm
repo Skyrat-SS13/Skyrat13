@@ -29,7 +29,7 @@
 	desc = "Equipment for engineering and combat exosuits. This is an upgraded version of the drill that'll pierce the government's heart!"
 	icon_state = "mecha_diamond_drill"
 	equip_cooldown = 5
-	drill_delay = 2
+	drill_delay = 4
 	drill_level = DRILL_HARDENED
 	force = 35
 	toolspeed = 0.4

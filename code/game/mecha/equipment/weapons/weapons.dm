@@ -9,13 +9,13 @@
 	var/projectile_delay = 0
 	var/firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect	//the visual effect appearing when the weapon is fired.
 	var/kickback = TRUE //Will using this weapon in no grav push mecha back.
-
-/obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/combat/M)
+//SKYRAT EDIT - killdozer compatibility
+/obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/M)
 	if(..())
-		if(istype(M))
+		if(istype(M) && M.schut)
 			return 1
 	return 0
-
+//
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/get_shot_amount()
 	return projectiles_per_shot
 

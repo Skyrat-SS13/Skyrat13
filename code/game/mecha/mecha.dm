@@ -52,6 +52,7 @@
 	var/completely_disabled = FALSE //stops the mech from doing anything
 	var/breach_time = 0
 	var/recharge_rate = 0
+	var/schut = FALSE //SKYRAT EDIT - Killdozer shenanigans
 
 	var/bumpsmash = 0 //Whether or not the mech destroys walls by running into it.
 	//inner atmos

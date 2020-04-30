@@ -54,8 +54,47 @@
 	icon_state = "pwrarmor_helmet"
 	w_class = WEIGHT_CLASS_HUGE
 
+//Clarke
+/obj/item/mecha_parts/chassis/clarke
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	name = "\improper Clarke chassis"
+	construct_type = /datum/component/construction/unordered/mecha_chassis/clarke
+
+/obj/item/mecha_parts/part/clarke_torso
+	name = "\improper Clarke torso"
+	desc = "A torso part of Clarke. Contains power unit, processing core and life support systems."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "clarke_harness"
+
+/obj/item/mecha_parts/part/clarke_head
+	name = "\improper Clarke head"
+	desc = "A Clarke head. Contains an integrated diagnostic HUD scanner."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "clarke_head"
+
+/obj/item/mecha_parts/part/clarke_left_arm
+	name = "\improper Clarke left arm"
+	desc = "A Clarke left arm. Data and power sockets are compatible with most exosuit tools."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "clarke_l_arm"
+
+/obj/item/mecha_parts/part/clarke_right_arm
+	name = "\improper Clarke right arm"
+	desc = "A Clarke right arm. Data and power sockets are compatible with most exosuit tools."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "clarke_r_arm"
+
 //Killdozer
 /obj/item/mecha_parts/chassis/killdozer
 	name = "\improper Killdozer chassis"
 	desc = "Sometimes... reasonable men must do unreasonable things."
 	construct_type = /datum/component/construction/unordered/mecha_chassis/killdozer
+
+//Circuitboards
+/obj/item/circuitboard/mecha/clarke/peripherals
+	name = "Clarke Peripherals Control module (Exosuit Board)"
+	icon_state = "mcontroller"
+
+/obj/item/circuitboard/mecha/clarke/main
+	name = "Clarke Central Control module (Exosuit Board)"
+	icon_state = "mainboard"
