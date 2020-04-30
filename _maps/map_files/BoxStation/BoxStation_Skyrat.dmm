@@ -17043,10 +17043,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/plantgenes{
-	pixel_y = 6
-	},
-/obj/structure/table,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aKM" = (
@@ -20144,11 +20140,13 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aSS" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
+	},
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aST" = (
-/obj/machinery/chem_dispenser/upgradeablemutagen,
+/obj/structure/table,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aSU" = (
@@ -20665,8 +20663,9 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aUk" = (
-/obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
+/obj/structure/table,
+/obj/machinery/smartfridge/disks{
+	pixel_y = 2
 	},
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
@@ -21379,9 +21378,6 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aVK" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
 /obj/effect/landmark/start/botanist,
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -51208,8 +51204,11 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "coI" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
+/obj/structure/table,
+/obj/machinery/plantgenes{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "coJ" = (
 /obj/machinery/door/firedoor,
@@ -56997,10 +56996,6 @@
 	},
 /turf/open/pool,
 /area/crew_quarters/fitness/pool)
-"fzd" = (
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "fzq" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/decal/cleanable/ash,
@@ -57055,20 +57050,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"fFA" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "fGf" = (
-/obj/machinery/smartfridge/disks{
-	pixel_y = 2
-	},
-/obj/structure/table,
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "fHG" = (
@@ -57197,12 +57183,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"gbd" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "gbh" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
@@ -59724,12 +59704,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"lva" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "lvU" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -60649,12 +60623,6 @@
 /obj/item/reagent_containers/food/condiment/sugar,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
-"nUV" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "nVk" = (
 /obj/machinery/door/window/brigdoor/security/cell{
 	id = "Cell 3";
@@ -62726,10 +62694,8 @@
 /turf/open/floor/plating,
 /area/science/xenobiology)
 "sJx" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/obj/machinery/seed_extractor,
+/turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "sJz" = (
 /obj/machinery/light{
@@ -105314,8 +105280,8 @@ aKH
 aMI
 aIp
 aOV
-aOX
-aOX
+aUk
+coI
 aSR
 aUi
 aVJ
@@ -105829,9 +105795,9 @@ aMy
 aIp
 nGf
 aQm
-fzd
-fFA
-fFA
+aRJ
+aRJ
+aRJ
 aVK
 aRJ
 aRJ
@@ -106086,7 +106052,7 @@ aMt
 aIp
 aOW
 aQm
-coI
+aRJ
 aSS
 aUj
 sJx
@@ -106343,10 +106309,10 @@ aMA
 aIp
 aOX
 aQm
-coI
+aRJ
 aST
-aUk
-sJx
+aOX
+aOX
 aRJ
 aYQ
 bam
@@ -106600,10 +106566,10 @@ aMz
 aNQ
 aOX
 aQm
-lva
-nUV
-nUV
-gbd
+aRJ
+aRJ
+aRJ
+aRJ
 aRJ
 aYR
 ban

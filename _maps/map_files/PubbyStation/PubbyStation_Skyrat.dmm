@@ -7753,7 +7753,6 @@
 	icon_state = "crateopen"
 	},
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/item/clothing/mask/balaclava,
@@ -16015,7 +16014,6 @@
 /obj/structure/grille/broken,
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/item/crowbar,
@@ -17090,7 +17088,6 @@
 "aPC" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/spawner/lootdrop/gloves,
@@ -19399,10 +19396,6 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/structure/table,
-/obj/machinery/plantgenes{
-	pixel_y = 6
-	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aUW" = (
@@ -20148,7 +20141,6 @@
 	icon_state = "crateopen"
 	},
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/bot,
@@ -20814,10 +20806,7 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aXW" = (
-/obj/structure/table,
-/obj/machinery/smartfridge/disks{
-	pixel_y = 2
-	},
+/obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aXX" = (
@@ -21301,13 +21290,17 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
+/obj/structure/table,
+/obj/machinery/plantgenes{
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aYP" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/green{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -23241,12 +23234,17 @@
 /turf/open/floor/plasteel,
 /area/janitor)
 "bdj" = (
-/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bdk" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 8
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -23254,7 +23252,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/green{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -32940,7 +32938,6 @@
 "bzC" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -56997,7 +56994,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "kEW" = (
-/obj/machinery/chem_dispenser/upgradeablemutagen,
+/obj/structure/table,
+/obj/machinery/smartfridge/disks{
+	pixel_y = 2
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "kFm" = (
@@ -59488,7 +59488,6 @@
 "oKa" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/structure/disposalpipe/segment,
@@ -60147,7 +60146,6 @@
 /area/security/prison)
 "pKd" = (
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/structure/closet/crate,
@@ -64503,6 +64501,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"xvT" = (
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "xwo" = (
 /obj/structure/lattice,
 /turf/closed/wall/r_wall,
@@ -64765,7 +64770,6 @@
 /area/security/prison)
 "xVt" = (
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/structure/rack,
@@ -91204,7 +91208,7 @@ aUU
 aRL
 aWQ
 aXS
-aYO
+aXW
 aZT
 aZT
 aZT
@@ -91457,11 +91461,11 @@ aQJ
 aRL
 aSD
 aTT
-aXW
+aXS
 aRL
 aWR
 aXT
-aYO
+xvT
 aZU
 bbb
 bbZ
