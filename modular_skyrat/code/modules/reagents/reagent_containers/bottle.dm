@@ -6,6 +6,6 @@
 
 /obj/item/reagent_containers/glass/bottle/saltpetre
 	name = "saltpetre bottle"
-	desc = "A small bottle of saltpetre,"
+	desc = "A small bottle of saltpetre, said to make plants grow larger and more potent."
 	icon = 'icons/obj/chemical.dmi'
 	list_reagents = list(/datum/reagent/saltpetre = 30)
