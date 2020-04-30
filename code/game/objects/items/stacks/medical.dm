@@ -37,7 +37,7 @@
 		to_chat(user, "<span class='warning'>[C] doesn't have \a [parse_zone(user.zone_selected)]!</span>")
 		return
 	if(affecting.status == BODYPART_ORGANIC) //Limb must be organic to be healed - RR
-		if(!istype(carbonspecies, /datum/species/synth && (affecting.brute_dam && brute || affecting.burn_dam && burn)) //Skyrat edit -- synths cant heal via normal means
+		if(!istype(carbonspecies, /datum/species/synth) && (affecting.brute_dam && brute || affecting.burn_dam && burn)) //Skyrat edit -- synths cant heal via normal means
 			user.visible_message("<span class='green'>[user] applies \the [src] on [C]'s [affecting.name].</span>", "<span class='green'>You apply \the [src] on [C]'s [affecting.name].</span>")
 			if(affecting.heal_damage(brute, burn))
 				C.update_damage_overlays()
