@@ -681,6 +681,15 @@
 	"Gorka" = "gorka_uniform"
 	)
 
+/obj/item/clothing/under/rank/security/officer/blueshirt
+	icon = 'icons/obj/clothing/uniforms.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/uniform.dmi'
+	anthro_mob_worn_overlay = 'icons/mob/clothing/uniform_digi.dmi'
+	icon_state = "blueshift"
+	item_state = "blueshift"
+	unique_reskin = list(
+	)
+
 /obj/item/clothing/head/helmet/roman
 	unique_reskin = list(
 	)
