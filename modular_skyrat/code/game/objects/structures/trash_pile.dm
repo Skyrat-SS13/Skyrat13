@@ -156,6 +156,7 @@
 						to_chat(user, "<span class='warning'>\The [I] is stuck to your hand, you cannot put it in the trash!</span>")
 		else
 			to_chat(user,"<span class='warning'>The [src] is way too full to fit [I].</span>")
+		return
 
 	. = ..()
 
