@@ -44,7 +44,7 @@
 			return TRUE
 		to_chat(user, "<span class='notice'>[C]'s [affecting.name] can not be healed with \the [src].</span>")
 		return
-	to_chat(user, "<span class='notice'>\The [src] won't work on a [carbonspecies == /datum/species/synth ? "synthetic" : "robotic"] limb!</span>")
+	to_chat(user, "<span class='notice'>\The [src] won't work on a [carbonspecies == /datum/species/synth ? "synthetic" : "robotic"] limb!</span>")  //Skyrat edit
 
 /obj/item/stack/medical/get_belt_overlay()
 	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "pouch")
