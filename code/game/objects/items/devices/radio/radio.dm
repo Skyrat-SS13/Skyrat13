@@ -250,7 +250,7 @@
 	var/areaposition = get_area(src)
 	if(istype(areaposition, /area/maintenance))
 		var/distance = round(get_dist(locate(src),locate(/obj/machinery/telecomms/relay)))
-		var/muddledistance = clamp(distance/2,10,90)
+		var/muddledistance = clamp(distance/2,5,50)
 		message = Muddleler(message,muddledistance)
 
 	// Determine the identity information which will be attached to the signal.
