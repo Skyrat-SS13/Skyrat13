@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Box Xenobiology now have scrubbers in the pens that lead to space"
-  - rscadd: "Box pool/bar now have holopads"

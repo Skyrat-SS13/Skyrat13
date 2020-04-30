@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Splashing gauze with 10 silver sulfadiazine will make a ointment pack, as well as splashing 10 of styptic powder to make a brute pack, and splashing gauze with sterilizine will upgrade it!"
-  - bugfix: "gauze will now heal as it was meant to."

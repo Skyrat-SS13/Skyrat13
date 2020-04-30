@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added missing pipes"
-  - rscdel: "Removed overlapping pipes, and bad pipes."

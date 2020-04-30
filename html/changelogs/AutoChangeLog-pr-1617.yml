@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - imageadd: "added new sprites for monkey energy and energy drink cans/trash"
-  - imagedel: "deleted some duplicate sprites"
