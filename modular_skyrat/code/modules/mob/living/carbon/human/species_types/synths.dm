@@ -54,7 +54,7 @@
 		hair_color = S.hair_color
 		screamsounds = S.screamsounds.Copy()
 		femalescreamsounds = S.femalescreamsounds.Copy()
-		if(istype(S, /datum/species/human/felinid)) //bad cat
+		if(istype(S, /datum/species/human/felinid)) //Felinid looses their tails and ears when harmed to much
 			storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS) // tail go bye
 			mutantears = S.mutantears						//ears go bye
 			qdel(H.getorganslot(ORGAN_SLOT_EARS))
@@ -146,7 +146,7 @@
 	meat = initial(meat)
 	limbs_id = initial(limbs_id)
 	use_skintones = initial(use_skintones)
-	if(istype(fake_species, /datum/species/human/felinid)) //worthless catte
+	if(istype(fake_species, /datum/species/human/felinid)) //Organs added by felinid race get added back on
 		storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
 		mutantears = initial(mutantears)
 		qdel(H.getorganslot(ORGAN_SLOT_EARS))

@@ -32,7 +32,7 @@
 
 /obj/item/stack/medical/proc/heal_carbon(mob/living/carbon/C, mob/user, brute, burn)
 	var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
-	var/datum/species/carbonspecies = C.dna.species
+	var/datum/species/carbonspecies = C.dna.species //Skyrat addtion
 	if(!affecting) //Missing limb?
 		to_chat(user, "<span class='warning'>[C] doesn't have \a [parse_zone(user.zone_selected)]!</span>")
 		return
