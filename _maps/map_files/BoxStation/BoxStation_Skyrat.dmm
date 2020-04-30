@@ -8438,14 +8438,6 @@
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"ard" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "blueshield_blast";
-	name = "privacy door"
-	},
-/turf/open/floor/plating,
-/area/blueshield)
 "are" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -54630,9 +54622,9 @@
 /area/construction)
 "cCi" = (
 /obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "lawyer_blast";
-	name = "privacy door"
+	name = "Lawyer's office privacy shutters"
 	},
 /turf/open/floor/plating,
 /area/lawoffice)
@@ -62516,11 +62508,11 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "ssP" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "blueshield_blast";
-	name = "privacy door"
-	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshield_blast";
+	name = "Blueshield office privacy shutters"
+	},
 /turf/open/floor/plating,
 /area/blueshield)
 "ssX" = (
@@ -93695,8 +93687,8 @@ anz
 aov
 jGc
 jGc
-ard
-ard
+ssP
+ssP
 ssP
 jGc
 jGc
