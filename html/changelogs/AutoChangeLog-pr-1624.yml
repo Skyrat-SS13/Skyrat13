@@ -1,0 +1,4 @@
+author: "Akrilla"
+delete-after: True
+changes: 
+  - admin: "Better admin tickets - minor QoL."
