@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "Clean bots can now be upgraded with adv mops and brooms"
