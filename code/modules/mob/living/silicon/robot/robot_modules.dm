@@ -364,7 +364,8 @@
 		"Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekmed"),
 		"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinamed"),
 		"Eyebot" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "eyebotmed"),
-		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymed")
+		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymed"),
+		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakemed")
 		)
 		var/list/L = list("Medihound" = "medihound", "Medihound Dark" = "medihounddark", "Vale" = "valemed")
 		for(var/a in L)
@@ -415,6 +416,13 @@
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			sleeper_overlay = "valemedsleeper"
 			moduleselect_icon = "medihound"
+			moduleselect_alternate_icon = 'modular_citadel/icons/ui/screen_cyborg.dmi'
+			dogborg = TRUE
+		if("Drake")
+			cyborg_base_icon = "drakemed"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
+			sleeper_overlay = "drakemedsleeper"
+			moduleselect_icon = "drakemech"
 			moduleselect_alternate_icon = 'modular_citadel/icons/ui/screen_cyborg.dmi'
 			dogborg = TRUE
 		if("Alina")
@@ -482,7 +490,8 @@
 		"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "caneng"),
 		"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinaeng"),
 		"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidereng"),
-		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyeng")
+		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyeng"),
+		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakeeng")
 		)
 		var/list/L = list("Pup Dozer" = "pupdozer", "Vale" = "valeeng")
 		for(var/a in L)
@@ -534,6 +543,11 @@
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			sleeper_overlay = "valeengsleeper"
 			dogborg = TRUE
+		if("Drake")
+			cyborg_base_icon = "drakeeng"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
+			sleeper_overlay = "drakeengsleeper"
+			dogborg = TRUE
 		if("Alina")
 			cyborg_base_icon = "alina-eng"
 			special_light_key = "alina"
@@ -579,7 +593,8 @@
 		"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "cansec"),
 		"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinasec"),
 		"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidersec"),
-		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavysec")
+		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavysec"),
+		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakesec")
 		)
 		var/list/L = list("K9" = "k9", "Vale" = "valesec", "K9 Dark" = "k9dark")
 		for(var/a in L)
@@ -634,6 +649,11 @@
 			cyborg_base_icon = "valesec"
 			sleeper_overlay = "valesecsleeper"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+			dogborg = TRUE
+		if("Drake")
+			cyborg_base_icon = "drakesec"
+			sleeper_overlay = "drakesecsleeper"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
 			dogborg = TRUE
 		else
 			return FALSE
@@ -956,6 +976,7 @@
 		"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinamin"),
 		"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canmin"),
 		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymin"),
+		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakemine")
 		)
 		var/list/L = list("Blade" = "blade", "Vale" = "valemine")
 		for(var/a in L)
@@ -998,6 +1019,11 @@
 			cyborg_base_icon = "valemine"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			sleeper_overlay = "valeminesleeper"
+			dogborg = TRUE
+		if("Drake")
+			cyborg_base_icon = "drakemine"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
+			sleeper_overlay = "drakeminesleeper"
 			dogborg = TRUE
 		else
 			return FALSE

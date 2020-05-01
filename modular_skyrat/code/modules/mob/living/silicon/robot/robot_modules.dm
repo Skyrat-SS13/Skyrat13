@@ -104,7 +104,8 @@ obj/item/robot_module/butler/Initialize()
 		"Borgi" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "borgi"),
 		"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "whitespider"),
 		"Sleek" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "sleekpeace"),
-		"Marina" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "marinapeace")
+		"Marina" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "marinapeace"),
+		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakepeace")
 		))
 	var/peace_borg_icon = show_radial_menu(R, R , peace_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 	switch(peace_borg_icon)
@@ -128,6 +129,11 @@ obj/item/robot_module/butler/Initialize()
 			cyborg_base_icon = "marinapeace"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/customrobot.dmi'
 			has_snowflake_deadsprite = TRUE
+		if("Drake")
+			cyborg_base_icon = "drakepeace"
+			sleeper_overlay = "drakepeacesleeper"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
+			dogborg = TRUE
 		else
 			return FALSE
 	return ..()
