@@ -45,9 +45,12 @@
 						<div id='commands'>
 						[src.get_commands()]
 						</div>
+						<div id='gps'>
+						[src.gps_meme()]
+						</div>
 						</body>
 						</html>
-					 "}
+					 "} //SKYRAT CHANGE - FUNNY MECH GPS
 
 
 
@@ -148,7 +151,21 @@
 		. += "<div id='[REF(MT)]'>[MT.get_equip_info()]</div>"
 	. += "</div>"
 
-
+//SKYRAT CHANGE - funny gps
+//terrible html formatting below, be warned.
+/obj/mecha/proc/gps_meme()
+	if(!(/obj/item/mecha_parts/mecha_equipment/gps in src))
+		return null
+	var/obj/item/mecha_parts/mecha_equipment/gps/funny = locate(/obj/item/mecha_parts/mecha_equipment/gps) in src
+	var/list/data = funny.ui_data()
+	. = "<div style=\"text-align: center\"><b>GPS Information:</b></div><div style=\"margin-left: 15px\"><div style=\"margin-left: 15px\"><br><hr>"
+	. += "<b><div style=\"text-align: center\">Our signal ([data["tag"]]):</div><hr></b><br>"
+	. += "<div style=\"margin-left: 30px\"><b>X, Y, Z coordinates:</b> [data["currentCoords"]]<br><b>Area:</b> [data["currentArea"]]</div><hr>"
+	. += "<b><div style=\"text-align: center\">Other signals:</div><hr></b><br>"
+	for(var/list/signal in data["signals"])
+		. += "<b><div style=\"margin-left: 30px\">[signal["entrytag"]]:</b> [signal["coords"]] ([signal["dist"]] tiles away, [signal["degrees"]] degrees)<br>"
+	. += "</div>"
+//
 
 /obj/mecha/proc/get_log_html()
 	. = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>[src.name] Log</title></head><body style='font: 13px 'Courier', monospace;'>"

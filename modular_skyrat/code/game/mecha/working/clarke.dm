@@ -1,6 +1,6 @@
 ///Lavaproof, fireproof, fast mech with low armor and higher energy consumption. Has an internal ore box.
 /obj/mecha/working/clarke
-	name = "\improper Clarke"
+	name = "\proper Clarke"
 	desc = "Combining man and machine for a better, stronger miner... Or engineer. Can even resist lava!"
 	icon = 'modular_skyrat/icons/mecha/mecha.dmi'
 	icon_state = "clarke"

@@ -263,3 +263,67 @@
 	materials = list(/datum/material/iron=2000) //costs less than building one at the autolathe
 	construction_time = 30
 	category = list("Clarke")
+
+//Buzz
+/datum/design/buzz_chassis
+	name = "Exosuit Chassis (\"Buzz\")"
+	id = "buzz_chassis"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/chassis/buzz
+	materials = list(/datum/material/iron=10000, /datum/material/titanium=3000)
+	construction_time = 200
+	category = list("Buzz")
+
+/datum/design/buzz_harness
+	name = "Exosuit Harness (\"Buzz\")"
+	id = "buzz_harness"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_harness
+	materials = list(/datum/material/iron=15000, /datum/material/titanium=2000)
+	construction_time = 165
+	category = list("Buzz")
+
+/datum/design/buzz_cockpit
+	name = "Exosuit Cockpit (\"Buzz\")"
+	id = "buzz_cockpit"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_cockpit
+	materials = list(/datum/material/iron=3000,/datum/material/glass = 15000)
+	construction_time = 150
+	category = list("Buzz")
+
+/datum/design/buzz_left_arm
+	name = "Exosuit Left Arm (\"Buzz\")"
+	id = "buzz_left_arm"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_left_arm
+	materials = list(/datum/material/iron=15000, /datum/material/titanium=2500)
+	construction_time = 100
+	category = list("Buzz")
+
+/datum/design/buzz_right_arm
+	name = "Exosuit Right Arm (\"Buzz\")"
+	id = "buzz_right_arm"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_right_arm
+	materials = list(/datum/material/iron=15000, /datum/material/titanium=2500)
+	construction_time = 100
+	category = list("Buzz")
+
+/datum/design/buzz_left_leg
+	name = "Exosuit Left Leg (\"Buzz\")"
+	id = "buzz_left_leg"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_left_leg
+	materials = list(/datum/material/iron=10000, /datum/material/titanium=2500)
+	construction_time = 75
+	category = list("Buzz")
+
+/datum/design/buzz_right_leg
+	name = "Exosuit Right Leg (\"Buzz\")"
+	id = "buzz_right_leg"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_right_leg
+	materials = list(/datum/material/iron=10000, /datum/material/titanium=2500)
+	construction_time = 75
+	category = list("Buzz")
