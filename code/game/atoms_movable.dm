@@ -68,13 +68,8 @@
 			if(vs.plane == EMISSIVE_BLOCKER_PLANE)
 				SSvis_overlays.remove_vis_overlay(src, list(vs))
 				break
-<<<<<<< HEAD
-	SSvis_overlays.add_vis_overlay(src, icon, icon_state, EMISSIVE_BLOCKER_LAYER, EMISSIVE_BLOCKER_PLANE)
-*/ // Skyrat edit -- 512 compatibility
-=======
 	SSvis_overlays.add_vis_overlay(src, icon, icon_state, EMISSIVE_BLOCKER_LAYER, EMISSIVE_BLOCKER_PLANE, dir)
-
->>>>>>> f99d904dc7... ports /tg/station vis_flags related fixes (#12064)
+*/ // Skyrat edit -- 512 compatibility
 /atom/movable/proc/can_zFall(turf/source, levels = 1, turf/target, direction)
 	if(!direction)
 		direction = DOWN
