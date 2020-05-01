@@ -1,6 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - rscadd: "Moved botany stuff around in some maps"
-  - rscadd: "Added box of botanical chems to each botany locker"
-  - rscdel: "Removed botanical chem dispensers from maps"

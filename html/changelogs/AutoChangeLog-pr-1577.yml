@@ -1,8 +1,0 @@
-author: "CinderWC"
-delete-after: True
-changes: 
-  - rscadd: "Added a synth neutral quirk... which turns you into a synth once you spawn. Upsides and downsides are detailed in the desc. Fallout jokes yada yada yeah. See PR #1342 ."
-  - balance: "Synths have been rebalanced for the synth quirk. Now they can be dismembered and their limbs can be disabled, and they breathe. They don't process chems or viruses, and synthflesh heals also heals toxin damage for them. Synths don't take clone damage."
-  - refactor: "Synth species datum and procs have been changed a bit so custom limb icons are taken into account and etc."
-  - refactor: "Scream emote now uses species vars and is generally more efficient."
-  - bugfix: "Fix for Radsuits not appearing"
