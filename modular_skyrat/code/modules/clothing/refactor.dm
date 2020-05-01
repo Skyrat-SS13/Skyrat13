@@ -182,6 +182,12 @@
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
 	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'icons/mob/clothing/head.dmi',
+	"Solfed Contractor" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	)
 	unique_reskin = list(
 	"Default" = "beret_badge",
 	"Solfed Contractor" = "contractor_beret",
