@@ -117,6 +117,11 @@
 /obj/structure/stone_tile/center,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"cN" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass,
+/area/lavaland/surface/outdoors)
 "cX" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 4
@@ -299,6 +304,14 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"fG" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/suit_storage_unit/mining,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
 "ga" = (
 /turf/closed/mineral/volcanic/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -376,6 +389,18 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"gN" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
 "gS" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 8
@@ -419,6 +444,9 @@
 	},
 /turf/open/floor/plating/dirt/dark,
 /area/mining_level_access)
+"hF" = (
+/turf/open/floor/plating/dirt/dark,
+/area/lavaland/surface/outdoors)
 "hM" = (
 /obj/machinery/grill{
 	name = "old rusty grill"
@@ -486,9 +514,22 @@
 /obj/structure/stone_tile,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"jd" = (
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
 "jn" = (
 /turf/open/floor/plating,
 /area/mining_level_access)
+"jo" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/machinery/suit_storage_unit/mining,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
 "jv" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -499,6 +540,12 @@
 /obj/structure/necropolis_gate/locked,
 /obj/structure/stone_tile/slab,
 /turf/open/indestructible/boss,
+/area/lavaland/surface/outdoors)
+"jR" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/dark,
 /area/lavaland/surface/outdoors)
 "jU" = (
 /obj/structure/stone_tile/block/cracked{
@@ -638,6 +685,10 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/ruin/unpowered/ash_walkers)
+"mW" = (
+/obj/machinery/telecomms/relay/preset/mining,
+/turf/open/floor/plating,
+/area/mining_level_access)
 "ne" = (
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -908,6 +959,10 @@
 /obj/item/surgical_drapes,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"rk" = (
+/obj/machinery/light/small,
+/turf/open/floor/plating/dirt/dark,
+/area/lavaland/surface/outdoors)
 "ro" = (
 /obj/structure/stone_tile,
 /obj/structure/stone_tile{
@@ -967,6 +1022,10 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"rX" = (
+/obj/structure/door_assembly/door_assembly_research,
+/turf/open/floor/plasteel,
 /area/lavaland/surface/outdoors)
 "sg" = (
 /obj/structure/stone_tile{
@@ -1057,6 +1116,18 @@
 /obj/structure/stone_tile/slab,
 /turf/closed/indestructible/riveted/boss,
 /area/lavaland/surface/outdoors)
+"tZ" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/tank/internals/oxygen,
+/obj/machinery/embedded_controller/radio/airlock_controller{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
 "ud" = (
 /obj/structure/stone_tile,
 /obj/structure/stone_tile/cracked{
@@ -1068,9 +1139,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/flora/grass/jungle,
-/obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/grass,
+/turf/open/floor/plating/dirt/dark,
 /area/mining_level_access)
 "ug" = (
 /obj/structure/stone_tile/block{
@@ -1135,6 +1204,10 @@
 "uN" = (
 /obj/structure/mineral_door/sandstone,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"vi" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass,
 /area/lavaland/surface/outdoors)
 "vj" = (
 /obj/structure/stone_tile,
@@ -1440,6 +1513,12 @@
 /obj/structure/stone_tile/center,
 /turf/open/indestructible/boss,
 /area/lavaland/surface/outdoors)
+"zh" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/mining_level_access)
 "zn" = (
 /obj/machinery/computer/shuttle/elevator/mining,
 /turf/open/floor/plating,
@@ -1538,6 +1617,10 @@
 /obj/structure/stone_tile/cracked,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"AU" = (
+/obj/structure/door_assembly/door_assembly_research,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
 "Bg" = (
 /turf/closed/mineral/random/high_chance/volcanic,
 /area/lavaland/surface/outdoors/unexplored/danger)
@@ -1547,6 +1630,15 @@
 	},
 /turf/closed/indestructible/riveted/boss,
 /area/ruin/unpowered/ash_walkers)
+"BS" = (
+/turf/closed/wall,
+/area/lavaland/surface/outdoors)
+"BT" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/lavaland/surface/outdoors)
 "Ca" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
@@ -1571,6 +1663,10 @@
 	dir = 4
 	},
 /turf/closed/mineral/volcanic/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Cq" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/grass,
 /area/lavaland/surface/outdoors)
 "Cs" = (
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -1673,6 +1769,10 @@
 	},
 /obj/structure/stone_tile/center/cracked,
 /turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Ea" = (
+/obj/machinery/light/small,
+/turf/open/floor/grass,
 /area/lavaland/surface/outdoors)
 "Eb" = (
 /obj/structure/stone_tile/block{
@@ -1790,6 +1890,17 @@
 /obj/item/book/granter/crafting_recipe/bone_bow,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
+"Gr" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/tank/internals/oxygen,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
 "GB" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 8
@@ -1848,6 +1959,12 @@
 "Hc" = (
 /obj/structure/stone_tile/block/cracked,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Ht" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/lavaland/surface/outdoors)
 "HI" = (
 /obj/structure/stone_tile/block/cracked,
@@ -1962,6 +2079,16 @@
 /obj/item/twohanded/bonespear,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
+"Jh" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
 "Jj" = (
 /obj/structure/stone_tile/block{
 	dir = 4
@@ -2222,6 +2349,11 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"PR" = (
+/obj/structure/grille/broken,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
 "PT" = (
 /obj/docking_port/stationary{
 	area_type = /area/mining_level_access/lower;
@@ -2382,6 +2514,9 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"SG" = (
+/turf/open/floor/grass,
+/area/lavaland/surface/outdoors)
 "SH" = (
 /obj/item/shovel,
 /obj/structure/stone_tile/cracked{
@@ -2421,6 +2556,10 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"Tg" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/lavaland/surface/outdoors)
 "Tk" = (
 /obj/structure/stone_tile/slab,
 /obj/structure/table/wood,
@@ -2557,6 +2696,10 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Xf" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/grass,
 /area/lavaland/surface/outdoors)
 "Xy" = (
 /obj/structure/stone_tile,
@@ -20116,10 +20259,10 @@ tN
 tN
 tN
 tN
+BS
+BS
 tN
-tN
-tN
-tN
+BS
 tN
 tN
 tN
@@ -20372,11 +20515,11 @@ tN
 tN
 tN
 tN
+BS
 tN
 tN
 tN
-tN
-tN
+BS
 tN
 tN
 tN
@@ -20629,11 +20772,11 @@ tN
 tN
 tN
 tN
+jd
 tN
 tN
 tN
-tN
-tN
+BS
 tN
 tN
 tN
@@ -20890,7 +21033,7 @@ tN
 tN
 tN
 tN
-tN
+BS
 tN
 tN
 tN
@@ -21143,11 +21286,11 @@ tN
 tN
 tN
 tN
+jd
 tN
 tN
 tN
-tN
-tN
+BS
 tN
 tN
 tN
@@ -21398,13 +21541,13 @@ tN
 tN
 tN
 tN
+Ht
 tN
 tN
 tN
 tN
 yE
-tN
-tN
+BS
 tN
 tN
 tN
@@ -21655,13 +21798,13 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+rX
+PR
+BS
+BS
+BS
+BS
+BS
 tN
 tN
 tN
@@ -21911,9 +22054,9 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
+jo
+gN
+Gr
 tN
 tN
 tN
@@ -22167,11 +22310,11 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
+BS
+fG
+Jh
+tZ
+BS
 tN
 tN
 tN
@@ -22423,13 +22566,13 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+BS
+BS
+PR
+AU
+PR
+BS
+BS
 tN
 tN
 tN
@@ -22680,16 +22823,16 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+SG
+SG
+SG
+jR
+Tg
+vi
+SG
+vi
+SG
+Tg
 tN
 tN
 tN
@@ -22936,19 +23079,19 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+SG
+SG
+Cq
+vi
+hF
+hF
+SG
+SG
+SG
+Cq
+SG
+vi
+SG
 tN
 tN
 tN
@@ -23193,19 +23336,19 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+Xf
+SG
+SG
+Tg
+hF
+hF
+SG
+SG
+SG
+Tg
+SG
+vi
+SG
 tN
 tN
 tN
@@ -23449,20 +23592,20 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+SG
+SG
+BS
+zh
+hF
+hF
+hF
+Ea
+BS
+Xf
+SG
+SG
+SG
+Cq
 tN
 tN
 tN
@@ -23706,20 +23849,20 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+SG
+jn
+jn
+jn
+hF
+hF
+hF
+hF
+hF
+hF
+Xf
+SG
+vi
+Tg
 tN
 tN
 tN
@@ -23963,21 +24106,21 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+Xf
+jn
+mW
+jn
+hF
+hF
+hF
+hF
+hF
+hF
+hF
+hF
+hF
+Xf
+SG
 tN
 tN
 tN
@@ -24220,21 +24363,21 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+Tg
+jn
+jn
+jn
+hF
+hF
+hF
+hF
+hF
+hF
+hF
+hF
+hF
+SG
+SG
 tN
 tN
 tN
@@ -24477,21 +24620,21 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+SG
+SG
+BS
+BT
+hF
+hF
+hF
+rk
+BS
+FU
+FU
+hF
+hF
+Xf
+cN
 tN
 tN
 tN
@@ -24734,21 +24877,21 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+SG
+Cq
+SG
+SG
+hF
+hF
+hF
+FU
+FU
+FU
+FU
+hF
+hF
+hF
+SG
 tN
 tN
 tN
@@ -24991,21 +25134,21 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+vi
+SG
+vi
+Xf
+hF
+hF
+hF
+FU
+FU
+FU
+FU
+FU
+hF
+hF
+SG
 tN
 tN
 tN
@@ -25249,20 +25392,20 @@ tN
 tN
 tN
 tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+Tg
+SG
+Tg
+hF
+hF
+hF
+FU
+FU
+FU
+FU
+FU
+hF
+hF
+Xf
 tN
 tN
 tN
@@ -25772,8 +25915,8 @@ ZC
 ZC
 pJ
 RT
-QU
-QU
+RT
+RT
 uf
 Rd
 pU
