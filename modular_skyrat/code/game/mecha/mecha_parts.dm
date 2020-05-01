@@ -54,7 +54,7 @@
 	icon_state = "pwrarmor_helmet"
 	w_class = WEIGHT_CLASS_HUGE
 
-//Clarke
+//Buzz
 /obj/item/mecha_parts/chassis/buzz
 	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
 	name = "\improper Buzz chassis"
@@ -96,7 +96,7 @@
 	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
 	icon_state = "buzz_r_leg"
 
-//Buzz
+//Clarke
 /obj/item/mecha_parts/chassis/clarke
 	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
 	name = "\improper Clarke chassis"
