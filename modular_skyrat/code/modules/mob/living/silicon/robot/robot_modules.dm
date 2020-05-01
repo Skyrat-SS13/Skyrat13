@@ -99,7 +99,7 @@ obj/item/robot_module/butler/Initialize()
 
 /obj/item/robot_module/peacekeeper/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Default", "Sleek", "Spider", "Borgi", "Marina")
+	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Default", "Sleek", "Spider", "Borgi", "Marina", "Drake")
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)
@@ -123,4 +123,9 @@ obj/item/robot_module/butler/Initialize()
 			cyborg_base_icon = "marinapeace"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/customrobot.dmi'
 			has_snowflake_deadsprite = TRUE
+		if("Drake")
+			cyborg_base_icon = "drakepeace"
+			sleeper_overlay = "drakepeacesleeper"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
+			dogborg = TRUE
 	return ..()

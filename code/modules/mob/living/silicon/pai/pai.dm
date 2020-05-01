@@ -355,6 +355,12 @@
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "valeeng-bellyup"), "bellyup")
 	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
 	.["Cyborg - Engineering (dog - valeeng)"] = curr
+	curr = icon('modular_skyrat/icons/mob/drakemech.dmi', "drakeeng")
+	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakeeng-rest"), "rest")
+	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakeeng-sit"), "sit")
+	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakeeng-bellyup"), "bellyup")
+	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
+	.["Cyborg - Engineering (dog - drakeeng)"] = curr
 	curr = icon('modular_citadel/icons/mob/widerobot.dmi', "pupdozer")
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "pupdozer-rest"), "rest")
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "pupdozer-sit"), "sit")
@@ -380,6 +386,12 @@
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "valemed-bellyup"), "bellyup")
 	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
 	.["Cyborg - Medical (dog - valemed)"] = curr
+	curr = icon('modular_skyrat/icons/mob/drakemech.dmi', "drakemed")
+	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakemed-rest"), "rest")
+	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakemed-sit"), "sit")
+	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakemed-bellyup"), "bellyup")
+	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
+	.["Cyborg - Medical (dog - drakemed)"] = curr
 	//Sec
 	curr = icon('modular_citadel/icons/mob/widerobot.dmi', "k9")
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "k9-rest"), "rest")
@@ -399,6 +411,12 @@
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "valesec-bellyup"), "bellyup")
 	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
 	.["Cyborg - Security (dog - valesec)"] = curr
+	curr = icon('modular_citadel/icons/mob/widerobot.dmi', "drakesec")
+	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "drakesec-rest"), "rest")
+	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "drakesec-sit"), "sit")
+	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "drakesec-bellyup"), "bellyup")
+	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
+	.["Cyborg - Security (dog - drakesec)"] = curr
 	//Service
 	curr = icon('modular_citadel/icons/mob/widerobot.dmi', "valeserv")
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "valeserv-rest"), "rest")
@@ -406,6 +424,12 @@
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "valeserv-bellyup"), "bellyup")
 	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
 	.["Cyborg - Service (dog - valeserv)"] = curr
+	curr = icon('modular_citadel/icons/mob/widerobot.dmi', "drakeserv")
+	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "drakeserv-rest"), "rest")
+	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "drakeserv-sit"), "sit")
+	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "drakeserv-bellyup"), "bellyup")
+	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
+	.["Cyborg - Service (dog - drakeserv)"] = curr
 	curr = icon('modular_citadel/icons/mob/widerobot.dmi', "valeservdark")
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "valeservdark-rest"), "rest")
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "valeservdark-sit"), "sit")
@@ -418,7 +442,14 @@
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "valesci-sit"), "sit")
 	curr.Insert(icon('modular_citadel/icons/mob/widerobot.dmi', "valesci-bellyup"), "bellyup")
 	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
+	//drakesci
 	.["Cyborg - Science (dog - valesci)"] = curr
+	curr = icon('modular_skyrat/icons/mob/drakemech.dmi', "drakesci")
+	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakesci-rest"), "rest")
+	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakesci-sit"), "sit")
+	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakesci-bellyup"), "bellyup")
+	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
+	.["Cyborg - Science (dog - drakesci)"] = curr
 	//Misc
 	.["Cyborg - Misc (dog - blade)"] = process_holoform_icon_filter(icon('modular_citadel/icons/mob/widerobot.dmi', "blade"), HOLOFORM_FILTER_PAI, FALSE)
 
@@ -426,19 +457,23 @@
 	. = list()
 	//Engi
 	.["Cyborg - Engineering (dog - valeeng)"] = -16
+	.["Cyborg - Engineering (dog - drakeeng)"] = -16
 	.["Cyborg - Engineering (dog - pupdozer)"] = -16
 	//Med
 	.["Cyborg - Medical (dog - medihound)"] = -16
 	.["Cyborg - Medical (dog - medihounddark)"] = -16
 	.["Cyborg - Medical (dog - valemed)"] = -16
+	.["Cyborg - Medical (dog - drakemed)"] = -16
 	//Sec
 	.["Cyborg - Security (dog - k9)"] = -16
 	.["Cyborg - Security (dog - valesec)"] = -16
+	.["Cyborg - Security (dog - drakesec)"] = -16
 	.["Cyborg - Security (dog - k9dark)"] = -16
 	//Service
 	.["Cyborg - Service (dog - valeserv)"] = -16
 	.["Cyborg - Service (dog - valeservdark)"] = -16
 	//Sci
 	.["Cyborg - Security (dog - valesci)"] = -16
+	.["Cyborg - Security (dog - drakesci)"] = -16
 	//Misc
 	.["Cyborg - Misc (dog - blade)"] = -16

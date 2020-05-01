@@ -29,7 +29,7 @@
 	var/mob/living/silicon/robot/user // needed for process()
 	var/animation_playing = FALSE
 
-	var/list/engymodels = list("Default", "Default - Treads", "Heavy", "Sleek", "Marina", "Can", "Spider", "Loader","Handy", "Pup Dozer", "Vale")
+	var/list/engymodels = list("Default", "Default - Treads", "Heavy", "Sleek", "Marina", "Can", "Spider", "Loader","Handy", "Pup Dozer", "Vale", "Drake")
 
 
 /obj/item/borg_chameleon/Initialize()
@@ -104,6 +104,10 @@
 			if("Vale")
 				disguise = "valeeng"
 				disguise_icon_override = 'modular_citadel/icons/mob/widerobot.dmi'
+				disguise_pixel_offset = -16
+			if("Drake")
+				disguise = "Drake"
+				disguise_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
 				disguise_pixel_offset = -16
 		animation_playing = TRUE
 		to_chat(user, "<span class='notice'>You activate \the [src].</span>")
