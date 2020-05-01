@@ -7,7 +7,11 @@
 	move_resist = INFINITY
 	obj_flags = 0
 
+<<<<<<< HEAD
 	//vis_flags = NONE // Skyrat edit -- 512 compatibility
+=======
+	vis_flags = VIS_INHERIT_PLANE
+>>>>>>> f99d904dc7... ports /tg/station vis_flags related fixes (#12064)
 
 /obj/effect/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	return
