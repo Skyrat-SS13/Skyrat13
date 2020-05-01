@@ -3711,6 +3711,7 @@
 #include "modular_skyrat\code\modules\research\designs\machine_desings\machine_designs_service.dm"
 #include "modular_skyrat\code\modules\research\techweb\_techweb.dm"
 #include "modular_skyrat\code\modules\research\techweb\all_nodes.dm"
+#include "modular_skyrat\code\modules\research\xenoarch\fossilwall.dm"
 #include "modular_skyrat\code\modules\ruins\lavalandruin_code\kinggoat.dm"
 #include "modular_skyrat\code\modules\ruins\lavalandruin_code\misc.dm"
 #include "modular_skyrat\code\modules\ruins\spaceruin_code\oldstation.dm"
