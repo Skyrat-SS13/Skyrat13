@@ -18,6 +18,7 @@
   	icon_state = "milevel"
   	requires_power = FALSE
   	has_gravity = STANDARD_GRAVITY
+  	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/mining_level_access/lower
 	name = "Lower Mining Level Access"
