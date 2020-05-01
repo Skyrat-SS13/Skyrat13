@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "Manual play internet sound added"
+  - tweak: "Movespeed config backend changed, now deeper paths will always override parent paths. If your config requires parent paths to override deeper paths you are doing it wrong anyways. You will have to manually override defaults, but this is probably the better of two poisons."
