@@ -618,12 +618,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 				to_chat(usr, "<span class='notice'>You take [R.name] out of the slot.</span>")
 			else
 				to_chat(usr, "<span class='warning'>[capitalize(R.name)] falls onto the floor!</span>")
-<<<<<<< HEAD
 			playsound(src, 'sound/machines/machine_vend.ogg', 50, 1) //SKYRAT CHANGE - vendor noise
-				
-=======
 			R.amount--
->>>>>>> 53395171e1... Fixes vendors some (#12056)
 			SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[R.product_path]"))
 			vend_ready = TRUE
 			return
