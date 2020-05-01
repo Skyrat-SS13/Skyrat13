@@ -689,6 +689,14 @@
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
 	mix_message = "The rice grains ferment into a clear, sweet-smelling liquid."
 
+/datum/chemical_reaction/ethanol
+	name = "ethanol"
+	id = /datum/reagent/consumable/ethanol
+	results = list(/datum/reagent/consumable/ethanol = 5)
+	required_reagents = list(/datum/reagent/consumable/nutriment = 10,/datum/reagent/water = 5)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+	mix_message = "The rice grains ferment into a clear, sweet-smelling liquid."
+
 /datum/chemical_reaction/peppermint_patty
 	name = "Peppermint Patty"
 	id = /datum/reagent/consumable/ethanol/peppermint_patty
