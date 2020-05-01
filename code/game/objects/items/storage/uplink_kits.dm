@@ -510,7 +510,4 @@
 	new /obj/item/clothing/under/chameleon(src)
 	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
 	new /obj/item/lighter(src)
-<<<<<<< HEAD
-=======
 
->>>>>>> 269db0c7d6... Identification components + chameleon clothing from uplink is now obfuscated (#12045)
