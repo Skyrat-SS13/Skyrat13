@@ -1,0 +1,4 @@
+author: "Bhijn"
+delete-after: True
+changes: 
+  - bugfix: "Ashwalkers no longer spawn without leg sprites"
