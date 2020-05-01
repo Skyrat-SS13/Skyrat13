@@ -5031,7 +5031,6 @@
 /obj/item/mop,
 /obj/item/bikehorn/rubberducky,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/item/grenade/empgrenade,
@@ -8893,7 +8892,6 @@
 /obj/structure/closet,
 /obj/item/storage/box/lights/mixed,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating{
@@ -10835,7 +10833,6 @@
 /obj/structure/closet,
 /obj/item/clothing/gloves/color/fyellow,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/item/caution,
@@ -14000,8 +13997,7 @@
 	pixel_y = 32
 	},
 /obj/item/storage/toolbox/mechanical{
-	pixel_y = 10;
-	pixel_x = 0
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
@@ -17664,7 +17660,6 @@
 /obj/structure/closet,
 /obj/item/storage/box/donkpockets,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -22006,7 +22001,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/bot,
@@ -47222,7 +47216,6 @@
 /obj/structure/closet,
 /obj/item/clothing/shoes/jackboots,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -52196,7 +52189,6 @@
 /obj/structure/closet,
 /obj/item/storage/box/donkpockets,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -65803,7 +65795,6 @@
 /obj/item/grenade/chem_grenade,
 /obj/item/flashlight,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -65814,7 +65805,6 @@
 /obj/item/reagent_containers/spray/weedspray,
 /obj/item/paper,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -73913,7 +73903,6 @@
 /obj/item/clothing/gloves/color/fyellow,
 /obj/item/wrench,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -74265,7 +74254,6 @@
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/costume,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/stripes/line,
@@ -81842,7 +81830,6 @@
 /obj/structure/closet/crate,
 /obj/item/poster/random_contraband,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -84415,11 +84402,6 @@
 "krD" = (
 /turf/closed/wall,
 /area/science/circuit)
-"kwI" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/chem_dispenser/upgradeablemutagen,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "kxk" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
@@ -120800,7 +120782,7 @@ bOW
 bQH
 bRV
 bST
-kwI
+bUh
 bVx
 bWS
 bYi
