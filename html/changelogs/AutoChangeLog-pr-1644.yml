@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "Vendors will certainly eat your coins on a string if both of your hands are full."
+  - bugfix: "Vendors coinage works properly now"
