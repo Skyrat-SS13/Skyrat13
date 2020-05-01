@@ -18,15 +18,6 @@
 
 #define ATAN2(x, y) arctan(x, y)
 
-//dirty hack to stop compile errors without having to comment too much stuff out
-#define VIS_INHERIT_ICON 1
-#define VIS_INHERIT_ICON_STATE 2
-#define VIS_INHERIT_DIR 4
-#define VIS_INHERIT_LAYER 8
-#define VIS_INHERIT_PLANE 16
-#define VIS_INHERIT_ID 32
-#define VIS_UNDERLAY 64
-#define VIS_HIDE 128
 #endif
 
 #if DM_BUILD < 1493
