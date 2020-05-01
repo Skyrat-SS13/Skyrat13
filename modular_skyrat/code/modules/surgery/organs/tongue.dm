@@ -28,6 +28,6 @@
 
 	speech_args[SPEECH_MESSAGE] = jointext(message_list, " ")
 
-/obj/item/organ/tongue/xenohybrid
+/obj/item/organ/tongue/alien/xenohybrid
 	name = "xenomorph hybrid tongue"
 	modifies_speech = FALSE
