@@ -639,6 +639,16 @@
 	results = list(/datum/reagent/oxygen = 10, /datum/reagent/hydrogen = 20)
 	required_reagents = list(/datum/reagent/consumable/liquidelectricity = 1, /datum/reagent/water = 5)
 
+//plasma stabilization
+/datum/chemical_reaction/stable_plasma
+	results = list(/datum/reagent/stable_plasma = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1, /datum/reagent/stabilizing_agent= 3)
+
+//sulfuric acid from sulfur
+/datum/chemical_reaction/sulphuric_acid
+	results = list(/datum/reagent/toxin/acid = 2)
+	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/oxygen = 4, /datum/reagent/hydrogen = 2)
+
 //butterflium
 /datum/chemical_reaction/butterflium
 	required_reagents = list(/datum/reagent/colorful_reagent = 1, /datum/reagent/medicine/omnizine = 1, /datum/reagent/medicine/strange_reagent = 1, /datum/reagent/consumable/nutriment = 1)
