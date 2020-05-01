@@ -22,7 +22,8 @@
 
 /obj/item/projectile/plasma/on_hit(atom/target)
 	. = ..()
-	if(ismineralturf(target))
+	//SKYRAT EDIT: Plasma Cutters cant cut Strangerocks.
+	if(ismineralturf(target) && !istype(target, /turf/closed/mineral/strange))
 		var/turf/closed/mineral/M = target
 		M.gets_drilled(firer)
 		if(mine_range)
