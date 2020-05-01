@@ -29,10 +29,20 @@
 	var/bitcoinmining = FALSE
 	rad_insulation = RAD_EXTREME_INSULATION
 
+	var/obj/item/radio/Radio // skyrat change
+
 /obj/machinery/power/rad_collector/anchored
 	anchored = TRUE
 
+// begin skyrat change
+/obj/machinery/power/rad_collector/Initialize()
+	. = ..()
+	Radio = new /obj/item/radio(src)
+	Radio.listening = 0
+	Radio.set_frequency(FREQ_ENGINEERING)
+
 /obj/machinery/power/rad_collector/Destroy()
+	QDEL_NULL(Radio) // end skyrat change
 	return ..()
 
 /obj/machinery/power/rad_collector/process()
@@ -42,6 +52,7 @@
 		if(!loaded_tank.air_contents.gases[/datum/gas/plasma])
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
+			Radio.talk_into(src, "Insufficient plasma in [get_area(src)] [src], ejecting \the [loaded_tank].", FREQ_ENGINEERING) // skyrat change
 			eject()
 		else
 			var/gasdrained = min(powerproduction_drain*drainratio,loaded_tank.air_contents.gases[/datum/gas/plasma])
@@ -55,6 +66,7 @@
 	else if(is_station_level(z) && SSresearch.science_tech)
 		if(!loaded_tank.air_contents.gases[/datum/gas/tritium] || !loaded_tank.air_contents.gases[/datum/gas/oxygen])
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
+			Radio.talk_into(src, "Insufficient oxygen and tritium in [get_area(src)] [src] to produce research points, ejecting \the [loaded_tank].", FREQ_ENGINEERING) // skyrat change
 			eject()
 		else
 			var/gasdrained = bitcoinproduction_drain*drainratio
