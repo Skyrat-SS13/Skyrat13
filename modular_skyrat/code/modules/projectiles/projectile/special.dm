@@ -25,7 +25,6 @@ obj/item/projectile/rod/proc/Impale(mob/living/carbon/human/H)
 		var/obj/item/stack/rods/R = new(H.loc, 1, FALSE) // Don't merge
 
 		if (istype(BP))
-			R.add_blood_DNA(H.return_blood_DNA())
 			R.forceMove(H)
 			BP.embedded_objects += R
 			H.update_damage_overlays()
@@ -33,9 +32,8 @@ obj/item/projectile/rod/proc/Impale(mob/living/carbon/human/H)
 							"<span class='userdanger'>You feel [R] lodge into your [BP]!</span>")
 			playsound(H, impale_sound, 50, 1)
 			H.emote("scream")
-			var/turf/T = get_step(H, dir)
 
-			log_combat(firer, H, "shot", src, addition="[H.pinned_to ? " PINNED" : ""]")
+			log_combat(firer, H, "shot", src)
 
 /obj/item/projectile/rod/on_hit(atom/target, blocked = FALSE)
 	..()
