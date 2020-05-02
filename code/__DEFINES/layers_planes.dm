@@ -108,6 +108,10 @@
 #define ABOVE_LIGHTING_PLANE 16
 #define ABOVE_LIGHTING_LAYER 16
 #define ABOVE_LIGHTING_RENDER_TARGET "ABOVE_LIGHTING_PLANE"
+// SKYRAT EDIT: 512 compatibility
+#define OPENSPACE_LAYER 17 //Openspace layer over all
+#define OPENSPACE_PLANE 17 //Openspace plane below all turfs
+#define OPENSPACE_BACKDROP_PLANE 17 //Black square just over openspace plane to guaranteed cover all in openspace turf
 
 #define BYOND_LIGHTING_PLANE 18
 #define BYOND_LIGHTING_LAYER 18
