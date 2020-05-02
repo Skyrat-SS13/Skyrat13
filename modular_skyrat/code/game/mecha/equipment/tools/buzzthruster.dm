@@ -9,7 +9,7 @@
 	harmful = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/buzzthrusters/buzz/can_attach(obj/mecha/M)
-	if(!istype(M, /obj/mecha/working/ripley/buzz)) //sorry, buzz only equipment sweatie
+	if(!istype(M, /obj/mecha/working/ripley/buzz)) //sorry, buzz only equipment sweatie (it serves no purpose in other mechs)
 		return FALSE
 	if(M.equipment.len<M.max_equip)
 		return TRUE

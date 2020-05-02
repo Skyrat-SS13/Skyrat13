@@ -73,5 +73,5 @@
 	display_name = "EXOSUIT: Buzz"
 	description = "Buzz is a titanium armored civillian exo-suit made for space travel and exploration."
 	prereq_ids = list("adv_mecha")
-	design_ids = list("buzz_chassis", "buzz_harness", "buzz_cockpit", "buzz_left_arm", "buzz_right_arm", "buzz_left_leg", "buzz_right_leg", "buzz_main", "buzz_peri", "exogps")
+	design_ids = list("buzz_chassis", "buzz_harness", "buzz_cockpit", "buzz_left_arm", "buzz_right_arm", "buzz_left_leg", "buzz_right_leg", "buzz_main", "buzz_peri", "exogps", "buzz_clamp", "buzz_lance", "buzz_thrusters")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
