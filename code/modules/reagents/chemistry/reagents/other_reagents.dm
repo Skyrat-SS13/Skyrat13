@@ -74,7 +74,7 @@
 		B.reagents.add_reagent(type, reac_volume)
 	B.update_icon()
 
-/datum/reagent/blood/on_new(list/data)
+//datum/reagent/blood/on_new(list/data) // Skyrat change moved to modular
 	if(istype(data))
 		SetViruses(src, data)
 		color = bloodtype_to_color(data["blood_type"])

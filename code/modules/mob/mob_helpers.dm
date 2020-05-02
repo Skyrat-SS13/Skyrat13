@@ -507,7 +507,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /mob/proc/can_hear()
 	. = TRUE
 
-/proc/bloodtype_to_color(var/type)
+///proc/bloodtype_to_color(var/type) // skyrat change moved to modular skyrat
 	. = BLOOD_COLOR_HUMAN
 	switch(type)
 		if("U")//Universal blood; a bit orange

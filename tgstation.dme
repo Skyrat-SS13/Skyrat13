@@ -3609,6 +3609,7 @@
 #include "modular_skyrat\code\modules\mining\equipment\regenerative_core.dm"
 #include "modular_skyrat\code\modules\mining\lavaland\necropolis_chests.dm"
 #include "modular_skyrat\code\modules\mob\emote.dm"
+#include "modular_skyrat\code\modules\mob\mob_helpers.dm"
 #include "modular_skyrat\code\modules\mob\mob_movement.dm"
 #include "modular_skyrat\code\modules\mob\say.dm"
 #include "modular_skyrat\code\modules\mob\typing_indicator.dm"

@@ -1,7 +1,7 @@
 /datum/species/synthliz
 	species_traits = list(MUTCOLORS,NOTRANSSTING,EYECOLOR,LIPS,HAIR)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
-	exotic_bloodtype = "SY"
+	exotic_bloodtype = "HF"
 
 /datum/species/synthliz/on_species_gain(mob/living/carbon/human/C)
 	..()

@@ -7,7 +7,34 @@
 	color = "#535452" // RGB (18, 53, 36) <--- Get a load of this guy.
 	taste_description = "copper"
 
+/datum/reagent/blood/on_new(list/data)
+	if(istype(data))
+		SetViruses(src, data)
+		color = bloodtype_to_color(data["blood_type"])
+		if(data["blood_type"] == "SY")
+			name = "Synthetic Blood"
+			taste_description = "oil"
 
+		if(data["blood_type"] == "X*")
+			name = "Xenomorph Blood"
+			taste_description = "acidic heresy"
+			shot_glass_icon_state = "shotglassgreen"
+			pH = 2.5
+
+		if(data["blood_type"] == "HF")
+			name = "Hydraulic Fluid"
+			taste_description = " oil"
+			pH = 9.75
+
+		if(data["blood_type"] == "BUG")
+			name = "Insect Blood"
+			taste_description = "grease"
+			pH = 7.25
+
+		if(data["blood_type"] == "L")
+			name = "Lizard Blood"
+			taste_description = "something spicy"
+			pH = 6.85
 
 /datum/reagent/tranquility
 	name = "Gondola Essence"
