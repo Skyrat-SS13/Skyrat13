@@ -121,7 +121,7 @@
 	vision_correction = 1
 
 /obj/item/clothing/glasses/hud/mining/meson
-	desc = "Essentially a worn version of the advanced mining scanner. Works as a meson too."
+	desc = "Essentially a worn version of the advanced mining scanner. Works as meson goggles too."
 	darkness_view = 2
 	vision_flags = SEE_TURFS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
@@ -163,8 +163,8 @@
 	..()
 	if(ourhud && wearer)
 		for(var/mob/M in view(wearer, 15))
-			if(!(istype(M, /mob/living/simple_animal/hostile/megafauna) || istype(M, /mob/living/simple_animal/hostile/asteroid)))
-				ourhud.remove_from_single_hud(wearer, M) //very hacky solution so only fauna and megafauna health display
+			if(!("mining" in M.faction))
+				ourhud.remove_from_single_hud(wearer, M) //very hacky solution so only mining mob healths display
 
 /obj/item/clothing/glasses/hud/mining/fauna/sunglasses
 	name = "sunglasses ore and fauna scanner HUD"
