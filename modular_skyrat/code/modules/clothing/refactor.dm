@@ -61,78 +61,6 @@
 	"Tactical" = "epic_bp_helmet"
 	)
 
-/obj/item/clothing/suit/radiation
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/suits.dmi',
-	"Hazmat" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/suit.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/suit_digi.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	)
-	unique_reskin = list(
-	"Default" = "rad",
-	"Hazmat" = "hazmat_suit",
-	)
-
-/obj/item/clothing/head/radiation
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/hats.dmi',
-	"Hazmat" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	)
-	unique_reskin = list(
-	"Default" = "rad",
-	"Hazmat" = "hazmat_hood",
-	)
-
-/obj/item/clothing/suit/bio_suit
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/suits.dmi',
-	"Hazmat" = 'modular_skyrat/icons/obj/clothing/suits.dmi',
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/suit.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/suit.dmi',
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/suit_digi.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi',
-	)
-	unique_reskin = list(
-	"Default" = "rad",
-	"Hazmat" = "hazmat_hood",
-	)
-
-/obj/item/clothing/head/bio_hood
-	unique_reskin_icons = list(
-	"Default" = 'icons/obj/clothing/hats.dmi',
-	"Hazmat" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
-	)
-	unique_reskin_worn = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
-	"Hazmat" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
-	)
-	unique_reskin = list(
-	"Default" = "bio",
-	"Hazmat" = "hazmat_hood",
-	)
-
 /obj/item/clothing/head/helmet/riot
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
 	unique_reskin = list(
@@ -254,18 +182,14 @@
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
 	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
-	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head.dmi',
-	"Solfed Contractor" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	)
 	unique_reskin = list(
 	"Default" = "beret_badge",
 	"Solfed Contractor" = "contractor_beret",
 	"Tactical" = "tactical_beret",
 	"Green" = "green_beret"
 	)
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON
+
 
 /obj/item/clothing/head/beret/sec/navywarden
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50)
@@ -370,10 +294,6 @@
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
 
 /obj/item/clothing/head/helmet/space/hardsuit/security
-	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	icon_state = "hardsuit0-sec"
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	armor = list("melee" = 35, "bullet" = 15, "laser" = 30,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75)
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
@@ -724,3 +644,97 @@
 /obj/item/clothing/suit/hooded/techpriest
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC|STYLE_NO_ANTHRO_ICON
 	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'
+
+// Reskinnable Trek uniforms.
+/obj/item/clothing/under/trek/command
+	desc = "An uniform worn by command officers."
+	unique_reskin_icons = list(
+	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
+	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
+	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
+	"Deep Space Nine" = 'icons/obj/clothing/uniforms.dmi',
+	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default - The Original Series" = 'icons/mob/clothing/uniform.dmi',
+	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
+	"Voyager" = 'icons/mob/clothing/uniform.dmi',
+	"Deep Space Nine" = 'icons/mob/clothing/uniform.dmi',
+	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Default - The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
+	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Deep Space Nine" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
+	)
+	unique_reskin = list(
+	"Default - The Original Series" = "trek_command",
+	"The New Generation" = "trek_next_command",
+	"Voyager" = "trek_voy_command",
+	"Deep Space Nine" = "trek_ds9_command",
+	"Enterprise" = "trek_ent_command"
+	)
+
+/obj/item/clothing/under/trek/engsec
+	desc = "An uniform worn by operations officers. You feel strangely vulnerable just seeing this..."
+	unique_reskin_icons = list(
+	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
+	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
+	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
+	"Deep Space Nine" = 'icons/obj/clothing/uniforms.dmi',
+	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default - The Original Series" = 'icons/mob/clothing/uniform.dmi',
+	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
+	"Voyager" = 'icons/mob/clothing/uniform.dmi',
+	"Deep Space Nine" = 'icons/mob/clothing/uniform.dmi',
+	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Default - The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
+	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Deep Space Nine" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
+	)
+	unique_reskin = list(
+	"Default - The Original Series" = "trek_engsec",
+	"The New Generation" = "trek_next_engsec",
+	"Voyager" = "trek_voy_engsec",
+	"Deep Space Nine" = "trek_ds9_engsec",
+	"Enterprise" = "trek_ent_engsec"
+	)
+
+/obj/item/clothing/under/trek/medsci
+	desc = "An uniform worn by medsci officers."
+	unique_reskin_icons = list(
+	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
+	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
+	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
+	"Deep Space Nine" = 'icons/obj/clothing/uniforms.dmi',
+	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default - The Original Series" = 'icons/mob/clothing/uniform.dmi',
+	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
+	"Voyager" = 'icons/mob/clothing/uniform.dmi',
+	"Deep Space Nine" = 'icons/mob/clothing/uniform.dmi',
+	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Default - The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
+	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Deep Space Nine" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
+	)
+	unique_reskin = list(
+	"Default - The Original Series" = "trek_medsci",
+	"The New Generation" = "trek_next_medsci",
+	"Voyager" = "trek_voy_medsci",
+	"Deep Space Nine" = "trek_ds9_medsci",
+	"Enterprise" = "trek_ent_medsci"
+	)
