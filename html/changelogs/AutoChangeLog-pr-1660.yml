@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - refactor: "the toylathe is now a subtype of autolathe and not gratuitous copypasta."
+  - rscadd: "the toylathe's designs are now compatible with the autolathe, and viceversa (but not autounlocked, use design disks)"

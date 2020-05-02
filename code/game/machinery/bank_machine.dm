@@ -25,6 +25,9 @@
 	if(istype(I, /obj/item/stack/spacecash))
 		var/obj/item/stack/spacecash/C = I
 		value = C.value * C.amount
+	else if(istype(I, /obj/item/coin)) //Skyrat changes - Adds coins to vault console
+		var/obj/item/coin/C = I
+		value = C.value
 	if(value)
 		SSshuttle.points += value
 		to_chat(user, "<span class='notice'>You deposit [I]. The station now has [SSshuttle.points] credits.</span>")

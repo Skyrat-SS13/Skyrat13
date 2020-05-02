@@ -22,8 +22,3 @@
 	. = ..()
 	vending_names_paths += list(/obj/machinery/vending/dinnerware/prisoner = "\improper Plasteel Chef's Prisoner Dinnerware Vendor",
 								/obj/machinery/vending/hydronutrients/prisoner = "\improper Prisoner NutriMax")
-
-/obj/item/circuitboard/machine/chem_dispenser/upgradeablemutagen
-	name = "botanical chemical dispenser"
-	desc = "Creates and dispenses chemicals useful for botany."
-	build_path = /obj/machinery/chem_dispenser/upgradeablemutagen
