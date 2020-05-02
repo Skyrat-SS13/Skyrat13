@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Fixing totally unskilled people being unable to improve their skills whatsoever."
