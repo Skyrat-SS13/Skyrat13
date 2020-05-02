@@ -134,7 +134,7 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 	/// Antags rolled by rules so far, to keep track of and discourage scaling past a certain ratio of crew/antags especially on lowpop.
 	var/antags_rolled = 0
 	// Arbitrary threat addition, for fudging purposes.
-	var/added_threat = 50
+	var/added_threat = 5
 
 /datum/game_mode/dynamic/New() // i have NO IDEA if this is the proper way to do this.
 	..()
