@@ -1,6 +1,0 @@
-author: "CinderWC"
-delete-after: True
-changes: 
-  - rscadd: "Added more turrets, especially at the bomb"
-  - rscadd: "Added an extra layer of wall outside the Bomb Room"
-  - bugfix: "https://github.com/Skyrat-SS13/Skyrat13/issues/1484"

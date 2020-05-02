@@ -642,41 +642,33 @@
 			return
 		if(!check_rights(R_BAN))
 			return
-		if(jobban_isbanned(M, COLLARBAN || LESSERCOLLARBAN))
-			var/typeofcollar = null
-			var/collarban = null
-			if(jobban_isbanned(M, COLLARBAN))
-				typeofcollar = "collar"
-				collarban = COLLARBAN
-			else
-				typeofcollar = "lesser collar"
-				collarban = LESSERCOLLARBAN
-			switch(alert("Remove Collar ban?","Please Confirm","Yes","Temporarily", "No"))
+		if(jobban_isbanned(M, COLLARBAN))
+			switch(alert("Remove Pacification Ban?","Please Confirm","Yes","Temporarily", "No"))
 				if("Yes")
-					ban_unban_log_save("[key_name(usr)] removed [key_name(M)]'s collar ban.")
-					log_admin_private("[key_name(usr)] removed [key_name(M)]'s collar ban.")
-					DB_ban_unban(M.ckey, BANTYPE_ANY_JOB, collarban)
+					ban_unban_log_save("[key_name(usr)] removed [key_name(M)]'s pacification ban.")
+					log_admin_private("[key_name(usr)] removed [key_name(M)]'s pacification ban.")
+					DB_ban_unban(M.ckey, BANTYPE_ANY_JOB, COLLARBAN)
 					if(M.client)
 						jobban_buildcache(M.client)
-					message_admins("<span class='adminnotice'>[key_name_admin(usr)] removed [key_name_admin(M)]'s [typeofcollar] ban.</span>")
-					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has removed your [typeofcollar] ban.</BIG></span>")
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] removed [key_name_admin(M)]'s pacification ban.</span>")
+					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has removed your pacification ban.</BIG></span>")
 					if(ishuman(M))
 						var/mob/living/carbon/human/C = M
-						addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
+						addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_pacification_ban), 20)
 				if("Temporarily")
 					if(!ishuman(M))
 						return
 					var/mob/living/carbon/human/C = M
-					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
-					log_admin_private("[key_name(usr)] temporarily removed [key_name(M)]'s collar ban.")
-					message_admins("<span class='adminnotice'>[key_name_admin(usr)] temporarily removed [key_name_admin(M)]'s [typeofcollar] ban.</span>")
-					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has temporarily removed your [typeofcollar] ban.</BIG></span>")
+					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_pacification_ban), 20)
+					log_admin_private("[key_name(usr)] temporarily removed [key_name(M)]'s pacification ban.")
+					message_admins("<span class='adminnotice'>[key_name_admin(usr)] temporarily removed [key_name_admin(M)]'s pacification ban.</span>")
+					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has temporarily removed your pacification ban.</BIG></span>")
 				if("No")
 					return
 
-		else switch(alert("Temporary Collar ban?",,"Yes","No"))
+		else switch(alert("Temporary Pacification ban?",,"Yes","No"))
 			if("Yes")
-				var/mins = input(usr,"How long (in minutes)?","Collar Ban time",1440) as num|null
+				var/mins = input(usr,"How long (in minutes)?","Pacification Ban time",1440) as num|null
 				if(mins <= 0)
 					to_chat(usr, "<span class='danger'>[mins] is not a valid duration.</span>")
 					return
@@ -684,11 +676,6 @@
 					return
 				var/reason = null
 				var/severity = null
-				var/type = null
-				if(alert("What type of collar ban?",,"Lesser","Normal") == "Lesser")
-					type = LESSERCOLLARBAN
-				else
-					type = COLLARBAN
 				if(alert("Do you want to note them?",,"Yes","No") == "Yes")
 					reason = input(usr,"Please State Reason.","Reason") as message|null
 					if(!reason)
@@ -696,70 +683,41 @@
 					severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
 					if(!severity)
 						return
-				if(type == COLLARBAN)
-					if(!DB_ban_record(BANTYPE_JOB_TEMP, M, mins, reason, COLLARBAN))
-						to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
-						return
-					if(M.client)
-						jobban_buildcache(M.client)
-					create_message("note", M.key, null, "Temporarily Collar banned for [mins]: [reason]", null, null, 0, 0, null, 0, severity)
-					ban_unban_log_save("[key_name(usr)] temp-collarbanned [key_name(M)][mins] minutes. Reason: [reason]")
-					log_admin_private("[key_name(usr)] temp-collarbanned [key_name(M)] for [mins] minutes. Reason: [reason]")
-					var/mob/living/carbon/human/C = M
-					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
-					to_chat(M, "<span class='boldannounce'><BIG>You have been temporarily collar-banned by [usr.client.key].</BIG></span>")
-					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
-				else
-					if(!DB_ban_record(BANTYPE_JOB_TEMP, M, mins, reason, LESSERCOLLARBAN))
-						to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
-						return
-					if(M.client)
-						jobban_buildcache(M.client)
-					create_message("note", M.key, null, "Temporarily Lesser Collar banned for [mins]: [reason]", null, null, 0, 0, null, 0, severity)
-					ban_unban_log_save("[key_name(usr)] temp-lesser-collarbanned [key_name(M)] for [mins] minutes. Reason: [reason]")
-					log_admin_private("[key_name(usr)] temp-lesser-collarbanned [key_name(M)] for [mins] minutes. Reason: [reason]")
-					var/mob/living/carbon/human/C = M
-					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
-					to_chat(M, "<span class='boldannounce'><BIG>You have been temporarily lessercollar-banned by [usr.client.key].</BIG></span>")
-					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+				if(!DB_ban_record(BANTYPE_JOB_TEMP, M, mins, reason, COLLARBAN))
+					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
+					return
+				if(M.client)
+					jobban_buildcache(M.client)
+				create_message("note", M.key, null, "Temporarily Pacification banned for [mins]: [reason]", null, null, 0, 0, null, 0, severity)
+				ban_unban_log_save("[key_name(usr)] temp-pacifybanned [key_name(M)][mins] minutes. Reason: [reason]")
+				log_admin_private("[key_name(usr)] temp-pacifybanned [key_name(M)] for [mins] minutes. Reason: [reason]")
+				var/mob/living/carbon/human/C = M
+				addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_pacification_ban), 20)
+				to_chat(M, "<span class='boldannounce'><BIG>You have been temporarily pacify-banned by [usr.client.key].</BIG></span>")
+				to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
 			if("No")
-				var/type
-				if(alert("What type of collar ban?",,"Lesser","Normal") == "Lesser")
-					type = LESSERCOLLARBAN
-				else
-					type = COLLARBAN
 				var/reason = input(usr,"Please State Reason.","Reason") as message|null
 				if(!reason)
 					return
 				var/severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
 				if(!severity)
 					return
-				if(!DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, type))
+				if(!DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, COLLARBAN))
 					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
 					return
 				if(M.client)
 					jobban_buildcache(M.client)
 				if(ishuman(M))
 					var/mob/living/carbon/human/C = M
-					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_admin_collar), 20)
-				if(type == COLLARBAN)
-					if(M.client)
-						jobban_buildcache(M.client)
-					create_message("note", M.key, null, "Permanently Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
-					message_admins("<span class='adminnotice'>[key_name_admin(usr)] permanently lesser-collarbanned [key_name_admin(M)].</span>")
-					ban_unban_log_save("[key_name(usr)] permanently collarbanned [key_name(M)]. Reason: [reason]")
-					log_admin_private("[key_name(usr)] permanently collarbanned [key_name(M)]. Reason: [reason]")
-					to_chat(M, "<span class='boldannounce'><BIG>You have been permanently collarbanned by [usr.client.key].</BIG></span>")
-					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
-				else
-					if(M.client)
-						jobban_buildcache(M.client)
-					create_message("note", M.key, null, "Permanently Lesser Collar banned - [reason]", null, null, 0, 0, null, 0, severity)
-					message_admins("<span class='adminnotice'>[key_name_admin(usr)] permanently lesser-collarbanned [key_name_admin(M)].</span>")
-					ban_unban_log_save("[key_name(usr)] permanently lesser-collarbanned [key_name(M)]. Reason: [reason]")
-					log_admin_private("[key_name(usr)] permanently lesser-collarbanned [key_name(M)]. Reason: [reason]")
-					to_chat(M, "<span class='boldannounce'><BIG>You have been permanently lesser-collarbanned by [usr.client.key].</BIG></span>")
-					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
+					addtimer(CALLBACK(C, /mob/living/carbon/human/proc/update_pacification_ban), 20)
+				if(M.client)
+					jobban_buildcache(M.client)
+				create_message("note", M.key, null, "Permanently Pacification banned - [reason]", null, null, 0, 0, null, 0, severity)
+				message_admins("<span class='adminnotice'>[key_name_admin(usr)] permanently pacification banned [key_name_admin(M)].</span>")
+				ban_unban_log_save("[key_name(usr)] permanently pacification banned [key_name(M)]. Reason: [reason]")
+				log_admin_private("[key_name(usr)] permanently pacification banned [key_name(M)]. Reason: [reason]")
+				to_chat(M, "<span class='boldannounce'><BIG>You have been permanently pacification banned by [usr.client.key].</BIG></span>")
+				to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
 	// SKYRAT ADDITION -- END
 
 	else if(href_list["jobban2"])
@@ -1524,6 +1482,32 @@
 		Game()
 		log_admin("[key_name(usr)] removed [rule] from the forced roundstart rulesets.")
 		message_admins("[key_name(usr)] removed [rule] from the forced roundstart rulesets.", 1)
+
+	else if(href_list["f_dynamic_storyteller"])
+		if(!check_rights(R_ADMIN))
+			return
+		if(SSticker && SSticker.mode)
+			return alert(usr, "The game has already started.", null, null, null, null)
+		if(GLOB.master_mode != "dynamic")
+			return alert(usr, "The game mode has to be dynamic mode.", null, null, null, null)
+		var/list/choices = list()
+		for(var/T in config.storyteller_cache)
+			var/datum/dynamic_storyteller/S = T
+			choices[initial(S.name)] = T
+		var/choice = choices[input("Select storyteller:", "Storyteller", "Classic") as null|anything in choices]
+		if(choice)
+			GLOB.dynamic_forced_storyteller = choice
+			log_admin("[key_name(usr)] forced the storyteller to [GLOB.dynamic_forced_storyteller].")
+			message_admins("[key_name(usr)] forced the storyteller to [GLOB.dynamic_forced_storyteller].")
+			Game()
+
+	else if(href_list["f_dynamic_storyteller_clear"])
+		if(!check_rights(R_ADMIN))
+			return
+		GLOB.dynamic_forced_storyteller = null
+		Game()
+		log_admin("[key_name(usr)] cleared the forced storyteller. The mode will pick one as normal.")
+		message_admins("[key_name(usr)] cleared the forced storyteller. The mode will pick one as normal.", 1)
 
 	else if(href_list["f_dynamic_latejoin"])
 		if(!check_rights(R_ADMIN))

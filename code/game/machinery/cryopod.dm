@@ -405,7 +405,7 @@
 
 	// Ghost and delete the mob.
 	if(!mob_occupant.get_ghost(1))
-		mob_occupant.ghostize(FALSE, penalize = TRUE)
+		mob_occupant.ghostize(FALSE, penalize = TRUE, voluntary = TRUE)
 
 	QDEL_NULL(occupant)
 	for(var/I in cryo_items) //only "CRYO_DESTROY_LATER" atoms are left)
@@ -420,7 +420,7 @@
 #undef CRYO_OBJECTIVE
 #undef CRYO_IGNORE
 #undef CRYO_DESTROY_LATER
-
+/* MOVED TO MODULAR_SKYRAT
 /obj/machinery/cryopod/MouseDrop_T(mob/living/target, mob/user)
 	if(!istype(target) || user.incapacitated() || !target.Adjacent(user) || !Adjacent(user) || !ismob(target) || (!ishuman(user) && !iscyborg(user)) || !istype(user.loc, /turf) || target.buckled)
 		return
@@ -486,7 +486,7 @@
 	log_admin("<span class='notice'>[key_name(target)] entered a stasis pod.</span>")
 	message_admins("[key_name_admin(target)] entered a stasis pod. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	add_fingerprint(target)
-
+*/
 //Attacks/effects.
 /obj/machinery/cryopod/blob_act()
 	return //Sorta gamey, but we don't really want these to be destroyed.

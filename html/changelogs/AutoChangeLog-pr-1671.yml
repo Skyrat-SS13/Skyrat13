@@ -1,0 +1,5 @@
+author: "CinderWC"
+delete-after: True
+changes: 
+  - bugfix: "Paint remover now removes paint."
+  - bugfix: "Shield bash now actually requires combat mode."

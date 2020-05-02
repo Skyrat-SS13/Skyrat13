@@ -407,7 +407,7 @@
 	for(var/mob/dead/new_player/player in players)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
 			if(role in player.client.prefs.be_special)
-				if(!jobban_isbanned(player, ROLE_SYNDICATE) && !QDELETED(player) && !jobban_isbanned(player, role) && !QDELETED(player) && !jobban_isbanned(player, COLLARBAN) && !jobban_isbanned(player, LESSERCOLLARBAN)) //Nodrak/Carn: Antag Job-bans //Skyrat edit - collarbans
+				if(!jobban_isbanned(player, ROLE_SYNDICATE) && !QDELETED(player) && !jobban_isbanned(player, role) && !QDELETED(player) && !jobban_isbanned(player, COLLARBAN)) //Nodrak/Carn: Antag Job-bans //Skyrat edit - pacifybans
 					if(age_check(player.client)) //Must be older than the minimum age
 						candidates += player.mind				// Get a list of all the people who want to be the antagonist for this round
 
@@ -603,4 +603,8 @@
 
 /// Mode specific admin panel.
 /datum/game_mode/proc/admin_panel()
+	return
+
+/// Mode specific info for ghost game_info
+/datum/game_mode/proc/ghost_info()
 	return
