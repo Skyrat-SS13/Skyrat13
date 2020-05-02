@@ -6,7 +6,7 @@
 	item_state = "kineticgun"
 	overheat_time = 13
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/bdminer)
-	max_mod_capacity = 125
+	max_mod_capacity = 100
 
 /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer/attackby(obj/item/I, mob/user) //Intelligent solutions didn't work, i had to shitcode.
 	if(istype(I, /obj/item/borg/upgrade/modkit))
@@ -93,7 +93,7 @@
 	name = "shotgun blast modification kit"
 	desc = "Makes you fire 3 kinetic shots instead of one."
 	denied_type = /obj/item/borg/upgrade/modkit/aoe
-	cost = 20
+	cost = 45
 	modifier = 3
 
 /obj/item/borg/upgrade/modkit/shotgun/modify_projectile(obj/item/projectile/kinetic/K)
@@ -133,6 +133,7 @@
 
 //warning: spaghetti (and copypasted) code ahead.
 
+/* Temporarily disabled to see miner performace without them
 /obj/item/borg/upgrade/modkit/wall
 	name = "wall modification kit"
 	desc = "Makes a wall on impact on a living being."
@@ -155,6 +156,8 @@
 		if(otherT)
 			new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, F)
 
+*/
+
 //colossus
 
 //essentially a penalty-less version of the rapid repeater
@@ -162,7 +165,7 @@
 /obj/item/borg/upgrade/modkit/bolter
 	name = "death bolt modification kit"
 	desc = "Makes your shots reload faster if you hit a mob or mineral."
-	cost = 20
+	cost = 45
 	modifier = 0.4
 
 /obj/item/borg/upgrade/modkit/bolter/modify_projectile(obj/item/projectile/kinetic/K)

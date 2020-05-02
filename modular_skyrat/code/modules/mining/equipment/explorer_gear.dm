@@ -19,14 +19,6 @@
 	"Improved" = "seva_hood"
 	)
 
-/obj/item/clothing/suit/hooded/explorer/seva/Initialize()
-	. = ..()
-	AddComponent(/datum/component/armor_plate)
-
-/obj/item/clothing/head/hooded/explorer/seva/Initialize()
-	. = ..()
-	AddComponent(/datum/component/armor_plate)
-
 /obj/item/clothing/mask/gas/seva
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
 	icon_state = "seva_mask"
