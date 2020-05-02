@@ -339,6 +339,30 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/railgun_assembly
+	name = "Rail gun assembly"
+	result = /obj/item/gun_assembly/railgun_assembly
+	reqs = list(/obj/item/metal_gun_stock = 1,\
+				/obj/item/rail_assembly = 1,\
+				/obj/item/wallframe/button = 1,\
+				/obj/item/gun_barrel = 1,\
+				/obj/item/stock_parts/capacitor = 4,\
+				/obj/item/assembly/igniter = 1)
+	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
+	time = 150
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/railgun
+	name = "Rail gun"
+	result = /obj/item/gun/ballistic/automatic/railgun
+	reqs = list(/obj/item/stock_parts/cell = 1,
+				/datum/crafting_recipe/railgun_assembly=1)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 50
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/blunderbuss
 	name = "Blunderbuss"
 	result = /obj/item/blunderbuss

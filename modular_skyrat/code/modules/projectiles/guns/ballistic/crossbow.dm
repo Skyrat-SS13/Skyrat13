@@ -10,7 +10,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	flags_1 = CONDUCT_1
-	slot_flags = ITEM_SLOT_BACK
 	fire_sound = "modular_skyrat/sound/weapons/rodgun_fire.ogg"
 	var/charge = 0
 	var/max_charge = 3
