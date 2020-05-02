@@ -3453,6 +3453,7 @@
 #include "modular_skyrat\code\game\mecha\equipment\tools\buzzclamp.dm"
 #include "modular_skyrat\code\game\mecha\equipment\tools\buzzthruster.dm"
 #include "modular_skyrat\code\game\mecha\equipment\tools\gps.dm"
+#include "modular_skyrat\code\game\mecha\equipment\weapons\buzzlance.dm"
 #include "modular_skyrat\code\game\mecha\equipment\weapons\killdozer.dm"
 #include "modular_skyrat\code\game\mecha\working\buzz.dm"
 #include "modular_skyrat\code\game\mecha\working\clarke.dm"
