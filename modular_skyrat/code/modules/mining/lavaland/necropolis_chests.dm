@@ -98,12 +98,9 @@
 
 /obj/item/projectile/heckhook/on_hit(atom/target)
 	. = ..()
-	if(ismovableatom(target))
-		var/atom/movable/A = target
-		if(A.anchored)
-			return
-		A.visible_message("<span class='danger'>[A] is snagged by [firer]'s hook!</span>")
-		new /datum/forced_movement(firer, get_turf(A), 5, TRUE)
+	var/atom/A = target
+	A.visible_message("<span class='danger'>[A] is snagged by [firer]'s hook!</span>")
+	new /datum/forced_movement(firer, get_turf(A), 1, TRUE)
 
 /obj/item/projectile/heckhook/Destroy()
 	qdel(chain)
@@ -496,8 +493,8 @@
 	name = "amulet of kings"
 	desc = "An amulet that shows everyone who the true emperor is."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
-	icon_state = "amulet_of_kings"
-	item_state = "amulet_of_kings"
+	icon_state = "dragon_amulet"
+	item_state = "dragon_amulet"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/neck.dmi'
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/hands_free/memento_mori/king)
