@@ -21,11 +21,11 @@
 
 /obj/item/clothing/suit/hooded/explorer/seva/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate)
+	AddComponent(/datum/component/armor_plate, 4, /obj/item/stack/sheet/animalhide/goliath_hide, list("melee" = 5))
 
 /obj/item/clothing/head/hooded/explorer/seva/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate)
+	AddComponent(/datum/component/armor_plate, 4, /obj/item/stack/sheet/animalhide/goliath_hide, list("melee" = 5))
 
 /obj/item/clothing/mask/gas/seva
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'

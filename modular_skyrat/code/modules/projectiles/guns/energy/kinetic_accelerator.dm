@@ -4,7 +4,7 @@
 	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
 	icon_state = "bdpka"
 	item_state = "kineticgun"
-	overheat_time = 13
+	overheat_time = 14.5
 	ammo_type = list(/obj/item/ammo_casing/energy/kinetic/premium/bdminer)
 	max_mod_capacity = 125
 
@@ -93,7 +93,7 @@
 	name = "shotgun blast modification kit"
 	desc = "Makes you fire 3 kinetic shots instead of one."
 	denied_type = /obj/item/borg/upgrade/modkit/aoe
-	cost = 20
+	cost = 40
 	modifier = 3
 
 /obj/item/borg/upgrade/modkit/shotgun/modify_projectile(obj/item/projectile/kinetic/K)
@@ -116,7 +116,7 @@
 /obj/item/borg/upgrade/modkit/knockback
 	name = "knockback modification kit"
 	desc = "Makes your shots deal knockback."
-	cost = 20
+	cost = 25
 	modifier = 1
 	var/burndam = 5
 
@@ -136,7 +136,7 @@
 /obj/item/borg/upgrade/modkit/wall
 	name = "wall modification kit"
 	desc = "Makes a wall on impact on a living being."
-	cost = 20
+	cost = 55
 	var/cooldown
 	var/cdmultiplier = 1.1
 
@@ -166,7 +166,7 @@
 /obj/item/borg/upgrade/modkit/bolter
 	name = "death bolt modification kit"
 	desc = "Makes your shots reload faster if you hit a mob or mineral."
-	cost = 20
+	cost = 40
 	modifier = 0.4
 
 /obj/item/borg/upgrade/modkit/bolter/modify_projectile(obj/item/projectile/kinetic/K)
@@ -223,7 +223,7 @@
 /obj/item/borg/upgrade/modkit/skull
 	name = "skull launcher modification kit"
 	desc = "Makes your shots create an explosive legion skull on impact. Can backfire."
-	cost = 20
+	cost = 40
 
 /obj/item/borg/upgrade/modkit/skull/projectile_strike(obj/item/projectile/kinetic/K, turf/target_turf, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()
@@ -238,7 +238,7 @@
 	name = "resonant lifesteal crystal"
 	desc = "Causes kinetic accelerator shots to heal the firer on striking a living target."
 	modifier = 4
-	cost = 25
+	cost = 30
 
 //drakeling
 /obj/item/borg/upgrade/modkit/fire
@@ -266,7 +266,7 @@
 	name = "cooler modification kit"
 	desc = "Makes your kinetic accelerator shoot much faster, at the cost of 10 damage."
 	modifier = 5
-	cost = 25
+	cost = 35
 
 /obj/item/borg/upgrade/modkit/cooldown/cooler/modify_projectile(obj/item/projectile/kinetic/K)
 	K.damage -= (modifier *2)
@@ -279,7 +279,7 @@
 /obj/item/borg/upgrade/modkit/tenmm
 	name = "10mm modification kit"
 	desc = "Makes your accelerator shoot 10mm bullets instead of kinetic shots."
-	cost = 35
+	cost = 50
 
 /obj/item/borg/upgrade/modkit/tenmm/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
 	..()

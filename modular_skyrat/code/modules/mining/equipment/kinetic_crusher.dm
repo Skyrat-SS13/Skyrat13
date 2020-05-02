@@ -29,6 +29,7 @@
 				L.attack_same = 0
 			L.loot = null
 			L.crusher_loot = null
+			L.faction = user.faction.Copy()
 			user.visible_message("<span class='notice'>[user] revives [target] with [src], as a friendly fauna</span>")
 			playsound(src,'sound/effects/supermatter.ogg',50,1)
 

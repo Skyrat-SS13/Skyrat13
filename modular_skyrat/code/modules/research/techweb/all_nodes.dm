@@ -48,6 +48,16 @@
 	design_ids += "prisonerbiogenerator"
 	. = ..()
 
+/datum/techweb_node/integrated_HUDs/New()
+	design_ids += "mining_hud"
+	design_ids += "mining_hud_prescription"
+	. = ..()
+
+/datum/techweb_node/NVGtech/New()
+	design_ids += "mining_hud_meson"
+	design_ids += "mining_hud_fauna"
+	. = ..()
+
 /datum/techweb_node/illegal_mechs
 	id = "illegal_mechs"
 	display_name = "Illegal Combat Mechs"
