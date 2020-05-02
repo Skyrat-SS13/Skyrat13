@@ -76,6 +76,20 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/crossbow
+	name = "Makeshift Crossbow"
+	result = /obj/item/gun/ballistic/crossbow
+	reqs = list(/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/pipe = 1,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/stack/packageWrap = 5,
+				/obj/item/stack/cable_coil = 15,
+				/obj/item/stack/rods = 5)
+	tools = list(TOOL_WELDER, TOOL_WRENCH)
+	time = 400
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/box_gun
 	name = "Box gun"
 	result = /obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun
