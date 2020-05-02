@@ -1,4 +1,0 @@
-author: "Dennok (/tg/ port)"
-delete-after: True
-changes: 
-  - bugfix: "things now properly render in openspace with the right planes, and openspace darkness now only applies to the things actually in it."

@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Stopped organs from turning against owners in cold environments and freezers."

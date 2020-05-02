@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Identification components added."
-  - balance: "Chameleon kits from uplinks now include insulated gloves. Included items are not usable by non-traitors until ran through a deconstructive analyzer on deep scan mode."
