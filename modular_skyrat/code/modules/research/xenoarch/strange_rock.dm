@@ -1,5 +1,7 @@
 /obj/item/strangerock
 	icon = 'modular_skyrat/code/modules/research/xenoarch/fossil_and_artifact.dmi'
+	name = "Strange Rock"
+	desc = "This is a strange rock, it appears to have a relic encased."
 	icon_state = "strange"
 	item_state = "strange"
 
@@ -30,7 +32,113 @@
 	..()
 
 /obj/item/strangerock/attackby(obj/item/W, mob/user, params)
-	if(istype(W,
+	if(istype(W,/obj/item/xenoarch/clean/hammer/cm1))
+		var/obj/item/xenoarch/clean/hammer/cm1/HM = W
+		if(!do_after(user,HM.cleandepth * 5,target = src))
+			to_chat(user,"You must stand still to clean.")
+			return
+		dugdepth += HM.cleandepth
+		if(dugdepth > itemactualdepth)
+			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
+			qdel(src)
+			return
+	if(istype(W,/obj/item/xenoarch/clean/hammer/cm2))
+		var/obj/item/xenoarch/clean/hammer/cm2/HM = W
+		if(!do_after(user,HM.cleandepth * 5,target = src))
+			to_chat(user,"You must stand still to clean.")
+			return
+		dugdepth += HM.cleandepth
+		if(dugdepth > itemactualdepth)
+			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
+			qdel(src)
+			return
+	if(istype(W,/obj/item/xenoarch/clean/hammer/cm3))
+		var/obj/item/xenoarch/clean/hammer/cm3/HM = W
+		if(!do_after(user,HM.cleandepth * 5,target = src))
+			to_chat(user,"You must stand still to clean.")
+			return
+		dugdepth += HM.cleandepth
+		if(dugdepth > itemactualdepth)
+			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
+			qdel(src)
+			return
+	if(istype(W,/obj/item/xenoarch/clean/hammer/cm4))
+		var/obj/item/xenoarch/clean/hammer/cm4/HM = W
+		if(!do_after(user,HM.cleandepth * 5,target = src))
+			to_chat(user,"You must stand still to clean.")
+			return
+		dugdepth += HM.cleandepth
+		if(dugdepth > itemactualdepth)
+			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
+			qdel(src)
+			return
+	if(istype(W,/obj/item/xenoarch/clean/hammer/cm5))
+		var/obj/item/xenoarch/clean/hammer/cm5/HM = W
+		if(!do_after(user,HM.cleandepth * 5,target = src))
+			to_chat(user,"You must stand still to clean.")
+			return
+		dugdepth += HM.cleandepth
+		if(dugdepth > itemactualdepth)
+			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
+			qdel(src)
+			return
+	if(istype(W,/obj/item/xenoarch/clean/hammer/cm6))
+		var/obj/item/xenoarch/clean/hammer/cm6/HM = W
+		if(!do_after(user,HM.cleandepth * 5,target = src))
+			to_chat(user,"You must stand still to clean.")
+			return
+		dugdepth += HM.cleandepth
+		if(dugdepth > itemactualdepth)
+			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
+			qdel(src)
+			return
+	if(istype(W,/obj/item/xenoarch/clean/hammer/cm15))
+		var/obj/item/xenoarch/clean/hammer/cm15/HM = W
+		if(!do_after(user,HM.cleandepth * 5,target = src))
+			to_chat(user,"You must stand still to clean.")
+			return
+		dugdepth += HM.cleandepth
+		if(dugdepth > itemactualdepth)
+			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
+			qdel(src)
+			return
+	if(istype(W,/obj/item/xenoarch/clean/brush))
+		if(!do_after(user,50,target = src))
+			to_chat(user,"You must stand still to clean.")
+			return
+		if(dugdepth < itemactualdepth)
+			dugdepth++
+			to_chat(user,"You brush away 1cm of debris.")
+			return
+		if(dugdepth > itemactualdepth)
+			to_chat(user,"You somehow managed to destroy a strange rock with a brush... good job?")
+		if(dugdepth == itemactualdepth)
+			new chosenitem(get_turf(src))
+			to_chat(user,"You uncover an artifact!")
+			qdel(src)
+			return
+	if(istype(W,/obj/item/xenoarch/help/scanner))
+		if(!do_after(user,50,target = src))
+			to_chat(user,"You must stand still to scan.")
+			return
+		to_chat(user,"Base Depth: [itembasedepth] centimeters.")
+		to_chat(user,"Safe Depth: [itemsafedepth] centimeters.")
+	if(istype(W,/obj/item/xenoarch/help/scanneradv))
+		if(!do_after(user,50,target = src))
+			to_chat(user,"You must stand still to scan.")
+			return
+		to_chat(user,"Base Depth: [itembasedepth] centimeters.")
+		to_chat(user,"Safe Depth: [itemsafedepth] centimeters.")
+		to_chat(user,"Item Depth: [itemactualdepth] centimeters.")
+		to_chat(user,"Item Scan: [chosenitem].")
+	if(istype(W,/obj/item/xenoarch/help/measuring))
+		if(!do_after(user,25,target = src))
+			to_chat(user,"You must stand still to measure.")
+			return
+		if(!dugdepth)
+			to_chat(user,"This rock has not been touched.")
+			return
+		to_chat(user,"Current depth dug: [dugdepth] centimeters.")
 //
 
 /turf/closed/mineral/strange
@@ -39,7 +147,7 @@
 	spread = 1
 	mineralAmt = 1
 	scan_state = "rock_Strange"
-/* this is for when we have multiz lavaland
+/* this is for when we have multiz lavaland. Replace the walls with these.
 /turf/closed/mineral/random/volcanic/strangerock
 	mineralSpawnChanceList = list(
 		/turf/closed/mineral/uranium/volcanic = 3, /turf/closed/mineral/diamond/volcanic = 1, /turf/closed/mineral/gold/volcanic = 8, /turf/closed/mineral/titanium/volcanic = 8,

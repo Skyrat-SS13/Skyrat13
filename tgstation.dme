@@ -3714,6 +3714,7 @@
 #include "modular_skyrat\code\modules\research\xenoarch\artifact.dm"
 #include "modular_skyrat\code\modules\research\xenoarch\artifact_list.dm"
 #include "modular_skyrat\code\modules\research\xenoarch\strange_rock.dm"
+#include "modular_skyrat\code\modules\research\xenoarch\tools.dm"
 #include "modular_skyrat\code\modules\ruins\lavalandruin_code\kinggoat.dm"
 #include "modular_skyrat\code\modules\ruins\lavalandruin_code\misc.dm"
 #include "modular_skyrat\code\modules\ruins\spaceruin_code\oldstation.dm"

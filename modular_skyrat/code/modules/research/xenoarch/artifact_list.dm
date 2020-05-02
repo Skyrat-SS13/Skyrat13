@@ -3,20 +3,34 @@ GLOBAL_LIST_INIT(bas_artifact,list(	/obj/item/kitchen/fork,
 									/obj/item/toy/gun,
 									/obj/item/toy/sword,
 									/obj/item/toy/cards/deck,
-									/obj/item/toy/figure/miner,
 									/obj/item/toy/seashell,
 									/obj/item/shield/riot/roman/fake,
 									/obj/item/trash/plate,
-									/obj/item/extendohand
+									/obj/item/extendohand,
+									/obj/item/tea_cup,
+									/obj/item/tea_plate
 									))
 
 GLOBAL_LIST_INIT(adv_artifact,list(	/obj/item/shield/riot/roman,
 									/obj/item/shield/riot/tower,
+									/obj/item/toy/figure/miner,
 									/obj/item/sharpener,
 									/obj/item/switchblade,
 									/obj/item/laser_pointer,
 									/obj/item/instrument/piano_synth,
-									/obj/item/megaphone
+									/obj/item/megaphone,
+									/obj/item/twohanded/bonespear,
+									/obj/item/storage/backpack/satchel/bone,
+									/obj/item/gun/ballistic/bow/ashen,
+									/obj/item/clothing/suit/hooded/cloak/drake,
+									/obj/item/clothing/accessory/talisman,
+									/obj/item/clothing/accessory/skullcodpiece,
+									/obj/item/clothing/gloves/bracer,
+									/obj/item/clothing/suit/hooded/cloak/goliath,
+									/obj/item/twohanded/fireaxe/boneaxe,
+									/obj/item/storage/belt/quiver,
+									/obj/item/ammo_casing/caseless/arrow/bone,
+									/obj/item/ammo_casing/caseless/arrow/ash
 									))
 
 GLOBAL_LIST_INIT(ult_artifact,list(	/obj/item/nuke_core/supermatter_sliver,

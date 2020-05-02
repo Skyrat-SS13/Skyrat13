@@ -180,7 +180,7 @@
 /obj/item/projectile/destabilizer/Destroy()
 	hammer_synced = null
 	return ..()
-
+// SKYRAT EDIT: KC cannot mine strange rocks.
 /obj/item/projectile/destabilizer/on_hit(atom/target, blocked = FALSE)
 	if(isliving(target))
 		var/mob/living/L = target
