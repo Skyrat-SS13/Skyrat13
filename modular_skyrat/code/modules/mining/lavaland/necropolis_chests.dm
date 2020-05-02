@@ -756,7 +756,7 @@
 
 /obj/structure/closet/crate/necropolis/legion/PopulateContents()
 	new /obj/item/staff/storm(src)
-	new /obj/item/crusher_trophy/legion_shard(src)
+	new /obj/item/crusher_trophy/golden_skull(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
 
 /obj/structure/closet/crate/necropolis/legion/hard

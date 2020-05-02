@@ -1,10 +1,21 @@
+//kinetic destroyer (premium crusher
+/obj/item/twohanded/kinetic_crusher/premiumcrusher
+	icon = 'modular_skyrat/icons/obj/mining.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/hammerspc_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/hammerspc_righthand.dmi'
+	name = "Kinetic Destroyer"
+	desc = "Revised and refined by veteran miners, this crusher design has been improved in nearly everyway. Featuring a lightweight composite body and a hardened plastitanium head, this weapon is exceptional at removing life from most things."
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	detonation_damage = 60
+	backstab_bonus = 40
+
 //legion (the big one!)
-/obj/item/crusher_trophy/legion_shard
-	name = "legion bone shard"
-	desc = "Part of a legion's cranium. Suitable as a trophy for a kinetic crusher."
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "bone"
-	denied_type = /obj/item/crusher_trophy/legion_shard
+/obj/item/crusher_trophy/golden_skull
+	name = "golden legion skull"
+	desc = "Nope, it's not the crystal one, but still valuable. Suitable as a trophy for a kinetic crusher."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "goldenskull"
+	denied_type = /obj/item/crusher_trophy/golden_skull
 
 /obj/item/crusher_trophy/legion_shard/effect_desc()
 	return "a kinetic crusher to make dead animals into friendly fauna, as well as turning corpses into legions"
@@ -29,7 +40,7 @@
 			var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion(H.loc)
 			L.stored_mob = H
 			H.forceMove(L)
-			L.faction = list("neutral")
+			L.faction = user.faction.Copy()
 			L.revive(full_heal = 1, admin_revive = 1)
 			if(ishostile(L))
 				L.attack_same = 0
