@@ -19,7 +19,7 @@
 ///Things rendered on "openspace"; holes in multi-z
 /obj/screen/plane_master/openspace
 	name = "open space plane master"
-	plane = FLOOR_OPENSPACE_PLANE
+	plane = OPENSPACE_BACKDROP_PLANE
 	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
@@ -66,7 +66,7 @@
 	plane = LIGHTING_PLANE
 	blend_mode = BLEND_MULTIPLY
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
+/* // Skyrat edit -- 512 compatibility
 /obj/screen/plane_master/lighting/Initialize()
 	. = ..()
 	filters += filter(type="alpha", render_source=EMISSIVE_RENDER_TARGET, flags=MASK_INVERSE)
@@ -106,12 +106,12 @@
   *
   * You really shouldn't be directly using this, use atom helpers instead
   */
-/obj/screen/plane_master/emissive_unblockable
-	name = "emissive mob plane master"
+/obj/screen/plane_master/emissive_blocker
+	name = "emissive blocker plane master"
 	plane = EMISSIVE_BLOCKER_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	render_target = EMISSIVE_BLOCKER_RENDER_TARGET
-
+*/ // Skyrat edit -- 512 compatibility
 ///Contains space parallax
 
 /obj/screen/plane_master/parallax

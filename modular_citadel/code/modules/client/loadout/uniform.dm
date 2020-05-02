@@ -292,9 +292,10 @@
 	name = "TOS uniform, ops/sec"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/engsec
-	restricted_desc = "Engineering and Security"
+	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 
+/* //handled by modular skyrat code as reskins
 //TNG
 /datum/gear/trekcmdtng
 	name = "TNG uniform, cmd"
@@ -314,7 +315,7 @@
 	name = "TNG uniform, ops/sec"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/engsec/next
-	restricted_desc = "Engineering and Security"
+	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 
 //VOY
@@ -336,7 +337,7 @@
 	name = "VOY uniform, ops/sec"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/engsec/voy
-	restricted_desc = "Engineering and Security"
+	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 
 //DS9
@@ -358,7 +359,7 @@
 	name = "DS9 uniform, ops/sec"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/engsec/ds9
-	restricted_desc = "Engineering and Security"
+	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 
 //ENT
@@ -380,8 +381,33 @@
 	name = "ENT uniform, ops/sec"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/engsec/ent
-	restricted_desc = "Engineering and Security"
+	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
+*/
+
+//TheMotionPicture
+/datum/gear/trekfedutil
+	name = "TMP uniform"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/fedutil
+	restricted_desc = "All, barring Service and Civilian"
+	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster",
+							"Medical Doctor","Chemist","Virologist","Geneticist","Scientist", "Roboticist",
+							"Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer",
+							"Cargo Technician", "Shaft Miner")
+
+/datum/gear/trekfedtrainee
+	name = "TMP uniform, trainee"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/fedutil/trainee
+	restricted_roles = list("Assistant", "Janitor", "Cargo Technician")
+
+/datum/gear/trekfedservice
+	name = "TMP uniform, service"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/fedutil/service
+	restricted_desc = "Service and Civilian, barring Clown, Mime and Lawyer"
+	restricted_roles = list("Assistant", "Bartender", "Botanist", "Cook", "Curator", "Janitor")
 
 //Memes
 /datum/gear/gear_harnesses
