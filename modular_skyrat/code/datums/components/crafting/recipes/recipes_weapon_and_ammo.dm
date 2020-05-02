@@ -75,7 +75,7 @@
 	time = 400
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
+/* not yet dummy
 /datum/crafting_recipe/box_gun
 	name = "Box gun"
 	result = /obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun
@@ -138,7 +138,7 @@
 	time = 200
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
+*/
 //////////////////
 ///AMMO CRAFTING//
 //////////////////
@@ -180,6 +180,7 @@
 	time = 75
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+/* mech is in the code but impossible to build
 /datum/crafting_recipe/lockermechdrill
 	name = "Makeshift exosuit drill"
 	result = /obj/item/mecha_parts/mecha_equipment/drill/makeshift
@@ -208,23 +209,4 @@
 	tools = list(TOOL_SCREWDRIVER)
 	time = 50
 	category = CAT_ROBOT
-
-/* it's now built like an actual mech. need to craft makeshift chassis though, which is here.
-/datum/crafting_recipe/lockermech
-	name = "Locker Mech"
-	result = /obj/mecha/makeshift
-	reqs = list(/obj/item/stack/cable_coil = 20,
-				/obj/item/stack/sheet/metal = 10,
-				/obj/item/storage/toolbox = 2, // For feet
-				/obj/item/tank/internals/oxygen = 1, // For air
-				/obj/item/electronics/airlock = 1, //You are stealing the motors from airlocks
-				/obj/item/extinguisher = 1, //For bastard pneumatics
-				/obj/item/stack/wrapping_paper = 5, //to make it airtight
-				/obj/item/flashlight = 1, //For the mech light
-				/obj/item/stack/rods = 4, //to mount the equipment
-				/obj/item/pipe = 2) //For legs
-	tools = list(/obj/item/weldingtool, /obj/item/screwdriver, /obj/item/wirecutters)
-	time = 200
-	category = CAT_ROBOT
 */
-
