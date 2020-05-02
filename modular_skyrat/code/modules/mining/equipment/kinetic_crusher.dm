@@ -46,11 +46,11 @@
 	desc = "It really doesn't seem like it could be worn. Suitable as a crusher trophy."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "miner_mask"
-	bonus_value = 5
+	bonus_value = 0
 	denied_type = /obj/item/crusher_trophy/blaster_tubes/mask
 
 /obj/item/crusher_trophy/blaster_tubes/mask/effect_desc()
-	return "mark detonation to make the next destabilizer shot deal <b>[bonus_value]</b> damage"
+	return "the crusher have no slowdown when wielded"
 
 /obj/item/crusher_trophy/blaster_tubes/mask/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
 	if(deadly_shot)
@@ -63,6 +63,16 @@
 /obj/item/crusher_trophy/blaster_tubes/mask/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
 	new /obj/effect/temp_visual/kinetic_blast(target)
 	playsound(target.loc, 'sound/weapons/kenetic_accel.ogg', 60, 0)
+
+/obj/item/crusher_trophy/blaster_tubes/mask/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	H.slowdown = 0
+	H.slowdown_wielded = 0
+
+/obj/item/crusher_trophy/blaster_tubes/mask/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	H.slowdown = initial(H.slowdown)
+	H.slowdown_wielded = initial(H.slowdown_wielded)
 
 //lava imp
 /obj/item/crusher_trophy/blaster_tubes/impskull
@@ -189,10 +199,30 @@
 		H.charge_time = 15
 		H.force_wielded = 20
 
-//hierophant crusher nerf "but muh i deserve it after killing hierocunt" yes but its op fuck you you piece of shit
+//hierophant crusher small buff compared to citadel
+/obj/item/crusher_trophy/vortex_talisman
+	var/cdmultiplier = 1.1
+
+/obj/item/crusher_trophy/vortex_talisman/on_mark_detonation(mob/living/target, mob/living/user)
+	if(vortex_cd >= world.time)
+		return
+	var/turf/T = get_turf(user)
+	var/obj/effect/temp_visual/hierophant/wall/crusher/wall = new /obj/effect/temp_visual/hierophant/wall/crusher(T, user) //a wall only you can pass!
+	var/turf/otherT = get_step(T, turn(user.dir, 90))
+	if(otherT)
+		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
+	otherT = get_step(T, turn(user.dir, -90))
+	if(otherT)
+		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
+	vortex_cd = world.time + (wall.duration * cdmultiplier)
+
 /obj/effect/temp_visual/hierophant/wall/crusher
-	duration = 45 //this is more than enough time bro
+	duration = 40 //this is more than enough time bro
 
 //watcher wing slight buff
 /obj/item/crusher_trophy/watcher_wing
-	bonus_value = 20 // 1 second isn't enough for much, this should be better
+	bonus_value = 5 // 1 second was more than enough and let you off the hook too easy.
+
+//blaster tubes change so it don't conflict with subtypes
+/obj/item/crusher_trophy/blaster_tubes
+	denied_type = null

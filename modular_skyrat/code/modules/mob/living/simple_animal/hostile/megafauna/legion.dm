@@ -1,7 +1,10 @@
 /mob/living/simple_animal/hostile/megafauna/legion
 	loot = list(/obj/item/stack/sheet/bone = 3)
-	song = sound('modular_skyrat/sound/ambience/mastermind.ogg', 100) //Threading on some lines here.
-	songlength = 3550
+	songs = list("3550" = sound(file = 'modular_skyrat/sound/ambience/mastermind.ogg', repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENCE), "1360" = sound(file = 'modular_skyrat/sound/ambience/terrariaboss1.ogg', repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENCE), "1560" = sound('modular_skyrat/sound/ambience/megalovania.ogg', repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENCE)) //Threading on some lines here with the DOOM 16 OST. But terraria should be fine, megalovania too.
+	glorymessageshand = list("punches into the Legion's maw and rips off a floating skull, which they then proceed to use to bash the Legion until it dies!", "punches through both of the Legion's eyeholes with both hands, ripping out a bunch of tiny skulls and killing it!")
+	glorymessagescrusher = list("slashes the Legion's maw, which falls on the ground as it dies!")
+	glorymessagespka = list("parries a floating legion skulls with a pka shoot, which goes flying violently into the Legion, bursting through them and killing them in the process!")
+	glorymessagespkabayonet = list("repeatedly stabs through the Legion's eyesocket, pulling out a bunch of dead skulls in the process and killing it!")
 
 /mob/living/simple_animal/hostile/megafauna/legion/death()
 	if(health > 0)

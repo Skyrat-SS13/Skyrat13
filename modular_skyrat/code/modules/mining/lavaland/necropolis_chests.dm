@@ -7,7 +7,7 @@
 	var/loot = rand(1,3)
 	switch(loot)
 		if(1)
-			new /obj/item/mayhem(src)
+			new /obj/item/book/granter/martial/berserk(src)
 		if(2)
 			new /obj/item/blood_contract(src)
 		if(3)
@@ -17,12 +17,12 @@
 	name = "enraged bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
-	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	new /obj/item/mayhem(src)
+	new /obj/item/book/granter/martial/berserk(src)
 	new /obj/item/blood_contract(src)
 	new /obj/item/twohanded/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
+	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher
 	name = "enraged bloody bubblegum chest"
@@ -298,6 +298,23 @@
 	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	mutantrace_variation = STYLE_MUZZLE
 
+//berserk rune
+/obj/item/book/granter/martial/berserk
+	name = "Strange Rune"
+	desc = "Tales tell that this rune may grant the user power beyond measure... for a limited time."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "berserk"
+	martial = /datum/martial_art/berserk
+	martialname = "berserk"
+	greet = "<span class='userdanger' style='color:rgb(0, 0, 0);'><b>DIG THE PROWESS. THE CAPACITY FOR VIOLENCE!</b></span>"
+	pages_to_mastery = 0
+	remarks = list("In the first age, in the first battle...", "Rip and tear...", "Huge guts...", "Big Fucking gun...")
+
+/obj/item/book/granter/martial/berserk/onlearned(mob/user)
+	playsound(source = get_turf(src), soundin = 'modular_skyrat/sound/ambience/e1m1riff.mid', vol = 150, vary = 0, pressure_affected = FALSE)
+	sleep(35) //i could use a timer but this works too whatever.
+	playsound(source = get_turf(src), soundin = 'modular_skyrat/sound/ambience/e1m1.mid', vol = 100, vary = 0, pressure_affected = FALSE)
+
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
 	new /obj/item/borg/upgrade/modkit/knockback(src)
@@ -317,12 +334,13 @@
 	name = "enraged dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/hard/PopulateContents()
-	new /obj/item/borg/upgrade/modkit/knockback(src)
 	new /obj/item/melee/ghost_sword(src)
 	new /obj/item/lava_staff(src)
 	new /obj/item/book/granter/spell/sacredflame(src)
 	new /obj/item/gun/magic/wand/fireball(src)
-	new /obj/item/dragons_blood(src)
+	new /obj/item/borg/upgrade/modkit/knockback(src)
+	new /obj/item/dragons_blood/distilled(src)
+	new /obj/item/clothing/neck/king(src)
 
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher
 	name = "enraged fiery dragon chest"
@@ -331,17 +349,270 @@
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
 
+
+/obj/item/dragons_blood/distilled
+	name = "bottle of distilled dragon's blood"
+	desc = "You ARE going to drink this. Once."
+	var/uses = 1 //originally the intent was for it to be shared with other miners but apparently improvedname likes when miners powergame and keep shit for themselves so there you go
+	var/list/users = list() //list of people who already drank it. Take your choice, you're not gonna be both lava and stormproof.
+	var/communist = TRUE //can you drink it more than once? true if no
+	var/list/choices = list("Lizard", "Skeleton", "Lava", "Storm", "Organs", "Nothing")
+
+/obj/item/dragons_blood/distilled/attack_self(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	var/mob/living/carbon/human/H = user
+	var/choice = input(H,"What blessing will you receive?","Choose your blessing") as null|anything in choices
+	if(uses)
+		if(communist)
+			if(users.Find(H))
+				to_chat(user, "<span class='danger'>You have already gotten your blessing, fool!</span>")
+				return
+		switch(choice)
+			if("Lizard")
+				to_chat(user, "<span class='danger'>Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a freak without the cool abilities.</span>")
+				H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade")
+				H.eye_color = "fee5a3"
+				H.set_species(/datum/species/lizard)
+				users |= H
+				uses--
+			if("Skeleton")
+				to_chat(user, "<span class='danger'>Your flesh begins to melt! Miraculously, you seem fine otherwise.</span>")
+				H.set_species(/datum/species/skeleton)
+				users |= H
+				uses--
+			if("Lava")
+				to_chat(user, "<span class='danger'>You feel like you could walk straight through lava now.</span>")
+				H.weather_immunities |= "lava"
+				users |= H
+				uses--
+			if("Storm")
+				to_chat(user, "<span class='danger'>You feel like no type of storm could burn you.</span>")
+				H.weather_immunities |= "ash"
+				H.weather_immunities |= "snow"
+				users |= H
+				uses--
+			if("Organs")
+				to_chat(user, "<span class='danger'>Your lungs and heart feel... way more robust. Wait, what is that on the ground?</span>")
+				var/obj/item/organ/lungs/super/newlungs = new /obj/item/organ/lungs/super(src.loc)
+				newlungs.Insert(H)
+				var/obj/item/organ/heart/undying/newheart = new /obj/item/organ/heart/undying(src.loc)
+				newheart.Insert(H)
+				users |= H
+				uses--
+			else
+				to_chat(user, "<span class='warning'>You think again and take a step back from drinking from the bottle.</span>")
+		if(choice && choice != "Nothing")
+			playsound(user.loc,'sound/items/drink.ogg', rand(25,50), 1)
+	else
+		to_chat(user, "<span class='warning'>You try drinking the bottle... but it's empty! And now it's just a normal vial!</span>")
+		new /obj/item/reagent_containers/glass/bottle/vial(user.loc)
+		qdel(src)
+
+/obj/item/dragons_blood/attack_self(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+	var/random = rand(1,6)
+
+	switch(random)
+		if(1)
+			to_chat(user, "<span class='danger'>Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a freak without the cool abilities.</span>")
+			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade")
+			H.eye_color = "fee5a3"
+			H.set_species(/datum/species/lizard)
+		if(2)
+			to_chat(user, "<span class='danger'>Your flesh begins to melt! Miraculously, you seem fine otherwise.</span>")
+			H.set_species(/datum/species/skeleton)
+		if(3)
+			to_chat(user, "<span class='danger'>Power courses through you! You can now shift your form at will.</span>")
+			if(user.mind)
+				var/obj/effect/proc_holder/spell/targeted/shapeshift/dragon/D = new
+				user.mind.AddSpell(D)
+		if(4)
+			to_chat(user, "<span class='danger'>You feel like you could walk straight through lava now.</span>")
+			H.weather_immunities |= "lava"
+		if(5)
+			to_chat(user, "<span class='danger'>You feel like no type of storm could burn you.</span>")
+			H.weather_immunities |= "ash"
+			H.weather_immunities |= "snow"
+		if(6)
+			to_chat(user, "<span class='danger'>Your lungs and heart feel... way more robust. Wait, what is that on the ground?</span>")
+			var/obj/item/organ/lungs/super/newlungs = new /obj/item/organ/lungs/super(src.loc)
+			newlungs.Insert(H)
+			var/obj/item/organ/heart/undying/newheart = new /obj/item/organ/heart/undying(src.loc)
+			newheart.Insert(H)
+	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
+	qdel(src)
+
+/obj/item/organ/lungs/super
+	name = "super lungs"
+	desc = "Do these things even breathe or are they purely cosmetic?"
+	safe_oxygen_min = 0
+	safe_oxygen_max = 4000
+	safe_nitro_min = 0
+	safe_nitro_max = 0
+	safe_co2_min = 0
+	safe_co2_max = 4000
+	safe_toxins_min = 0
+	safe_toxins_max = 4000
+	SA_para_min = 4000
+	SA_sleep_min = 4000
+	BZ_trip_balls_min = 4000
+	gas_stimulation_min = 0.0005
+	cold_level_1_threshold = 0
+	cold_level_2_threshold = 0
+	cold_level_3_threshold = 0
+	heat_level_1_threshold = 4000
+	heat_level_2_threshold = 4000
+	heat_level_3_threshold = 4000
+	crit_stabilizing_reagent = /datum/reagent/medicine //any medicine will stabilize you lol
+
+/obj/item/organ/heart/undying
+	name = "undying heart"
+	desc = "This heart pumps with passion for life. It won't ever stop beating."
+	organ_flags = ORGAN_SYNTHETIC
+	var/min_next_adrenaline = 0
+	var/amount2heal = 5
+
+/obj/item/organ/heart/undying/Stop() //IT WON'T LET GO.
+	return 0
+
+/obj/item/organ/heart/undying/on_life()
+	. = ..()
+	if(owner.health <= 5 && world.time > min_next_adrenaline)
+		min_next_adrenaline = world.time + rand(300, 600) //anywhere from 30 seconds to 1 minute (i think?)
+		to_chat(owner, "<span class='userdanger'>You feel yourself dying, but you refuse to give up!</span>")
+		owner.heal_overall_damage(amount2heal, amount2heal)
+		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
+			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)
+	if(damage >= (maxHealth/4)*2) //if at 75% or more damage, heal time
+		damage -= rand(1, 15)
+	if(!beating)
+		beating = !beating
+
+/obj/item/clothing/neck/king
+	name = "amulet of kings"
+	desc = "An amulet that shows everyone who the true emperor is."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "amulet_of_kings"
+	item_state = "amulet_of_kings"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/neck.dmi'
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	actions_types = list(/datum/action/item_action/hands_free/memento_mori/king)
+	var/spell2grant = /obj/effect/proc_holder/spell/targeted/shapeshift/dragon/akatosh
+	var/mob/living/carbon/human/active_owner
+
+/obj/item/clothing/neck/king/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_NECK)
+		for(var/datum/action/A in actions_types)
+			A.Grant(user)
+		user.mind.AddSpell(new spell2grant(null))
+
+/obj/item/clothing/neck/king/dropped(mob/living/carbon/human/user)
+	for(var/datum/action/A in actions_types)
+		A.Remove(user)
+	user.mind.RemoveSpell(spell2grant)
+	if(active_owner)
+		active_owner.dust()
+	. = ..()
+
+/obj/item/clothing/neck/king/ui_action_click(mob/user, action)
+	if(istype(action, /datum/action/item_action/hands_free/memento_mori/king))
+		var/datum/action/item_action/hands_free/memento_mori/king/K = action
+		K.Trigger()
+
+//Just in case
+/obj/item/clothing/neck/king/Destroy()
+	if(active_owner)
+		active_owner.dust(TRUE, TRUE)
+	. = ..()
+
+/obj/item/clothing/neck/king/proc/memento(mob/living/carbon/human/user)
+	to_chat(user, "<span class='warning'>You feel your life being drained by the [src]...</span>")
+	if(do_after(user, 40, target = user))
+		to_chat(user, "<span class='notice'>Your lifeforce is now linked to the [src]! You feel like removing it would kill you, and yet you instinctively know that until then, you won't die.</span>")
+		ADD_TRAIT(user, TRAIT_NODEATH, "amulet_of_kings")
+		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "amulet_of_kings")
+		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "amulet_of_kings")
+		active_owner = user
+
+/obj/item/clothing/neck/king/proc/mori()
+	if(!active_owner)
+		return
+	else
+		REMOVE_TRAIT(active_owner, TRAIT_NODEATH, "amulet_of_kings")
+		REMOVE_TRAIT(active_owner, TRAIT_NOHARDCRIT, "amulet_of_kings")
+		REMOVE_TRAIT(active_owner, TRAIT_NOCRITDAMAGE, "amulet_of_kings")
+		to_chat(active_owner, "<span class='warning'>You are no longer bound to the amulet!</span>")
+		active_owner = null
+
+/datum/action/item_action/hands_free/memento_mori/king
+	check_flags = NONE
+	name = "Dragon Binding"
+	desc = "Bind your life to the amulet."
+
+/datum/action/item_action/hands_free/memento_mori/king/Trigger()
+	var/obj/item/clothing/neck/king/K = target
+	if(!K.active_owner)
+		if(ishuman(owner))
+			K.memento(owner)
+	else
+		to_chat(owner, "<span class='warning'>You try to free your lifeforce from the amulet...</span>")
+		if(do_after(owner, 40, target = owner))
+			K.mori()
+
 //colossus
 /obj/structure/closet/crate/necropolis/colossus/PopulateContents()
-	var/list/choices = subtypesof(/obj/machinery/anomalous_crystal)
-	var/random_crystal = pick(choices)
-	new random_crystal(src)
+	new /obj/item/bluecrystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
 	new /obj/item/borg/upgrade/modkit/bolter(src)
+
+//crystal choosing thing from colosssus
+/obj/item/bluecrystal
+	name = "\improper blue crystal"
+	desc = "It's very shiny... one may wonder what it does."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "bluecrystal"
+	w_class = WEIGHT_CLASS_SMALL
+	var/list/choices = list(
+	"Clown" = /obj/machinery/anomalous_crystal/honk,
+	"Theme Warp" = /obj/machinery/anomalous_crystal/theme_warp,
+	"Bolter" = /obj/machinery/anomalous_crystal/emitter,
+	"Dark Revival" = /obj/machinery/anomalous_crystal/dark_reprise,
+	"Lightgeist Healers" = /obj/machinery/anomalous_crystal/helpers,
+	"Refresher" = /obj/machinery/anomalous_crystal/refresher,
+	"Possessor" = /obj/machinery/anomalous_crystal/possessor
+	)
+	var/list/methods = list(
+	"touch",
+	"speech",
+	"heat",
+	"bullet",
+	"energy",
+	"bomb",
+	"bumping",
+	"weapon",
+	"magic"
+	)
+
+/obj/item/bluecrystal/attack_self(mob/user)
+	var/choice = input(user, "Choose your destiny", "Crystal") as null|anything in choices
+	var/method = input(user, "Choose your activation method", "Crystal") as null|anything in methods
+	if(!choice || !method)
+		return
+	playsound(user.loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, TRUE)
+	var/obj/machinery/anomalous_crystal/A = new choice(user.loc)
+	A.activation_method = method
+	to_chat(user, "<span class='userdanger'>[A] appears under your feet as the [src] breaks apart!</span>")
+	qdel(src)
 
 //normal chests
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
 	var/loot = rand(1,31)
+	new /obj/item/stock_parts/cell/high/plus/argent(src)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -446,7 +717,6 @@
 		if(31)
 			new /obj/item/katana/necropolis(src)
 			return /obj/item/katana/necropolis
-	new /obj/item/stock_parts/cell/high/plus/argent(src)
 
 /obj/item/stock_parts/cell/high/plus/argent
 	name = "Argent Energy Cell"
@@ -494,12 +764,9 @@
 
 /obj/structure/closet/crate/necropolis/legion/hard/PopulateContents()
 	new /obj/item/staff/storm(src)
-	new /obj/item/staff/storm(src)
 	new /obj/item/clothing/mask/gas/dagoth(src)
-	new /obj/item/borg/upgrade/modkit/skull(src)
-	new /obj/item/borg/upgrade/modkit/skull(src)
 	new /obj/item/crusher_trophy/legion_shard(src)
-	new /obj/item/crusher_trophy/legion_shard(src)
+	new /obj/item/borg/upgrade/modkit/skull(src)
 	var/obj/structure/closet/crate/necropolis/tendril/T = new /obj/structure/closet/crate/necropolis/tendril //Yup, i know, VERY spaghetti code.
 	var/obj/item/L
 	for(var/i = 0, i < 5, i++)
