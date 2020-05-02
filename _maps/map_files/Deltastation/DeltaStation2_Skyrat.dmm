@@ -26408,6 +26408,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/prize_counter,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar/atrium)
 "aYG" = (
@@ -129556,6 +129557,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"wTn" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/prize_counter,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "xaf" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Holodeck Access"
@@ -183430,7 +183438,7 @@ rqh
 aFm
 fVi
 oLu
-hVw
+wTn
 gBd
 iim
 nhw
