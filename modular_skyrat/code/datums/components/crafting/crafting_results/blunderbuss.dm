@@ -1,7 +1,4 @@
 
-#define PCANNON_FIREALL 1
-#define PCANNON_FILO 2
-#define PCANNON_FIFO 3
 /obj/item/blunderbuss
 	name = "blunderbuss"
 	desc = "A muzzle-loaded firearm powered by welding fuel. It might not be a good idea to use more than 10u of fuel in one shot."
@@ -85,8 +82,8 @@
 		range_multiplier *= 2
 	if(boomtank.reagents.total_volume>20)
 		range_multiplier *= 3
-	var/xlimiter = range_multiplier * 7
-	var/ylimiter = range_multiplier * 7
+	var/xlimiter = 3 * 7
+	var/ylimiter = 3 * 7
 	if(x_o > xlimiter)
 		x_o = xlimiter
 	if(x_o < -xlimiter)
