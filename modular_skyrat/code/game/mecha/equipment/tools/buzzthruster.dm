@@ -1,8 +1,8 @@
 //the buzz's thruster (serves no actual purpose codewise - it actually just "enables" an action that mechas have by default.)
 /obj/item/mecha_parts/mecha_equipment/buzzthrusters
 	name = "buzz type exosuit thrusters"
-	icon = 'icons/mecha/mecha_equipment.dmi'
-	icon_state = "mecha_punching_glove" //actual icon soon(tm)
+	icon = 'modular_skyrat/icons/mecha/mecha_equipment.dmi'
+	icon_state = "buzzthruster"
 	force = 0
 	max_integrity = 300
 	selectable = 0

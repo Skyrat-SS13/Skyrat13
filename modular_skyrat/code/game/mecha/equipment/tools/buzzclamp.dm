@@ -2,7 +2,8 @@
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/buzz
 	name = "titanium alloy hydraulic clamp"
 	desc = "Equipment for Buzz type exosuits. Lifts objects and loads them into cargo."
-	icon_state = "mecha_clamp"
+	icon = 'modular_skyrat/icons/mecha/mecha_equipment.dmi'
+	icon_state = "buzzclamp"
 	equip_cooldown = 10 //slightly speedier
 	energy_drain = 6.5 //more energy efficient
 	dam_force = 20 //same damage
