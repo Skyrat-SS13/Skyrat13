@@ -17,7 +17,7 @@
 	mutantstomach = /obj/item/organ/stomach/ipc
 	mutanteyes = /obj/item/organ/eyes/ipc
 
-	exotic_bloodtype = "S"
+		//Skyrat change - ported to modular_skyrat - // exotic_bloodtype = "SY"
 
 
 /datum/species/synthliz/qualifies_for_rank(rank, list/features)
