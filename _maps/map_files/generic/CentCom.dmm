@@ -16752,7 +16752,7 @@
 	},
 /area/centcom/holding)
 "Nf" = (
-/obj/machinery/autolathe/toy,
+/obj/machinery/autoylathe,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Ni" = (

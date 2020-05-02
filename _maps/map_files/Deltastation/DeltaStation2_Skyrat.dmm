@@ -4140,6 +4140,7 @@
 "amB" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/tile/neutral,
@@ -6942,6 +6943,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -7700,6 +7702,7 @@
 	icon_state = "crateopen"
 	},
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -9236,6 +9239,7 @@
 "avo" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -10909,6 +10913,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/cardboard,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -11197,6 +11202,7 @@
 "ayT" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -12799,6 +12805,7 @@
 	icon_state = "crateopen"
 	},
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -12892,6 +12899,7 @@
 "aBX" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/bot,
@@ -13433,6 +13441,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/bot,
@@ -17197,6 +17206,7 @@
 	icon_state = "crateopen"
 	},
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/bot,
@@ -17631,6 +17641,7 @@
 "aKh" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/tile/neutral,
@@ -34872,6 +34883,7 @@
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/costume,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/bot,
@@ -38200,8 +38212,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/effect/turf_decal/bot,
-/obj/structure/table,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bsz" = (
@@ -64730,6 +64740,7 @@
 "cfR" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -69930,6 +69941,7 @@
 "coC" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating{
@@ -69948,6 +69960,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -73320,6 +73333,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -75893,6 +75907,7 @@
 	icon_state = "crateopen"
 	},
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -79385,6 +79400,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/tile/neutral,
@@ -81270,6 +81286,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -81745,6 +81762,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -83548,6 +83566,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -84502,6 +84521,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -85137,6 +85157,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -90867,6 +90888,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -94168,6 +94190,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -94904,6 +94927,7 @@
 /obj/structure/rack,
 /obj/item/crowbar/red,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -100829,6 +100853,7 @@
 /obj/item/crowbar/red,
 /obj/item/wrench,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/bot,
@@ -102449,18 +102474,23 @@
 /turf/closed/wall,
 /area/medical/surgery)
 "dsN" = (
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/suit/apron/surgical,
+/obj/item/clothing/mask/surgical,
+/obj/item/surgical_drapes,
+/obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/machinery/computer/operating{
-	dir = 4
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dsO" = (
+/obj/item/retractor,
+/obj/item/hemostat,
+/obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -102471,10 +102501,14 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/structure/table/optable,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dsP" = (
+/obj/item/circular_saw,
+/obj/item/surgicaldrill{
+	pixel_y = 5
+	},
+/obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
@@ -102488,11 +102522,12 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/structure/table/reinforced,
-/obj/machinery/computer/med_data/laptop,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dsQ" = (
+/obj/item/scalpel,
+/obj/item/cautery,
+/obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -102505,18 +102540,16 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/structure/table/optable,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dsR" = (
+/obj/machinery/computer/med_data/laptop,
+/obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
-	},
-/obj/machinery/computer/operating{
-	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
@@ -102987,8 +103020,6 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dtR" = (
@@ -103042,11 +103073,13 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/structure/mirror{
+	pixel_x = 26;
+	pixel_y = 32
+	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dtV" = (
@@ -104002,6 +104035,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dvF" = (
+/obj/machinery/computer/operating{
+	dir = 4
+	},
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
@@ -104021,6 +104057,7 @@
 /turf/open/floor/plasteel,
 /area/medical/surgery)
 "dvG" = (
+/obj/structure/table/optable,
 /obj/effect/decal/cleanable/blood/old,
 /obj/structure/cable/white{
 	icon_state = "2-8"
@@ -104179,6 +104216,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plasteel/dark,
@@ -105878,8 +105916,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/structure/closet/crate/freezer/surplus_limbs,
-/obj/item/reagent_containers/glass/beaker/synthflesh,
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery)
 "dyK" = (
@@ -108290,6 +108326,7 @@
 "dCT" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -113284,6 +113321,7 @@
 	icon_state = "crateopen"
 	},
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -113703,6 +113741,7 @@
 	},
 /obj/item/crowbar/red,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -114059,6 +114098,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -114529,6 +114569,7 @@
 "dNt" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
@@ -115172,6 +115213,7 @@
 "dOx" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -120362,6 +120404,7 @@
 /obj/structure/table/wood,
 /obj/item/clothing/under/rank/civilian/curator,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/wood,
@@ -127695,6 +127738,7 @@
 "oZY" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /obj/effect/turf_decal/tile/neutral,

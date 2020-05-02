@@ -60,8 +60,7 @@
 
 #define DESIGN_ID_IGNORE "IGNORE_THIS_DESIGN"
 
-#define RESEARCH_MATERIAL_RECLAMATION_ID		"__materials"
-#define RESEARCH_DEEP_SCAN_ID					"__deepscan"
+#define RESEARCH_MATERIAL_RECLAMATION_ID "__materials"
 
 //When adding new types, update the list below!
 #define TECHWEB_POINT_TYPE_GENERIC "General Research"
