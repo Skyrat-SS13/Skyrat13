@@ -118,7 +118,7 @@
 	. = ..()
 	permutated = list()
 	decayedRange = range
-	speed /= CONFIG_GET(number/projectile_speed_modifier)
+	speed /= CONFIG_GET(number/projectile_speed_modifier) //Skyrat changes
 
 /obj/item/projectile/proc/Range()
 	range--
@@ -316,6 +316,8 @@
 		objs += O
 	var/obj/O = safepick(objs)
 	if(O)
+		if(length(O.buckled_mobs))
+			return pick(O.buckled_mobs)
 		return O
 	//Nothing else is here that we can hit, hit the turf if we haven't.
 	if(!(T in permutated) && can_hit_target(T, permutated, T == original, TRUE))

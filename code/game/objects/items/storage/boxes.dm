@@ -1365,7 +1365,6 @@
 	var/static/items_inside = list(
 		/obj/item/flashlight/emp/debug=1,\
 		/obj/item/pda=1,\
-		/obj/item/modular_computer/tablet/preset/advanced=1,\
 		/obj/item/geiger_counter=1,\
 		/obj/item/construction/rcd/combat/admin=1,\
 		/obj/item/pipe_dispenser=1,\
@@ -1377,7 +1376,8 @@
 		/obj/item/storage/box/beakers/bluespace=1,\
 		/obj/item/storage/box/beakers/variety=1,\
 		/obj/item/storage/box/material=1,\
-		/obj/item/storage/belt/medical/surgery_belt_adv=1
+		/obj/item/storage/belt/medical/surgery_belt_adv=1,\
+		/obj/item/storage/box/handcuffs=1 // Skyrat change
 		)
 	generate_items_inside(items_inside, src)
 

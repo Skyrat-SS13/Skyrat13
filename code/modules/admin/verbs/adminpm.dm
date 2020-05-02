@@ -176,6 +176,17 @@
 				if(!recipient.current_ticket)
 					new /datum/admin_help(msg, recipient, TRUE, src) //SKYRAT EDIT - new variable
 
+				// Skyrat change START
+				if(recipient.current_ticket.handler)
+					if(recipient.current_ticket.handler != usr.ckey)
+						var/response = alert(usr, "This ticket is already being handled by [recipient.current_ticket.handler]. Do you want to continue?", "Ticket already assigned", "Yes", "No")
+
+						if(response == "No")
+							return
+				else
+					recipient.current_ticket.HandleIssue()
+				// Skyrat change END
+
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 				to_chat(recipient, "<span class='danger'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span></span>")
 				to_chat(recipient, "<span class='danger'><i>Click on the administrator's name to reply.</i></span>")
