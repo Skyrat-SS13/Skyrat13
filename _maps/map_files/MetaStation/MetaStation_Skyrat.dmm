@@ -21357,6 +21357,7 @@
 	dir = 1;
 	network = list("ss13","prison")
 	},
+/obj/machinery/prize_counter,
 /turf/open/floor/plasteel/checker,
 /area/security/prison)
 "aPa" = (
