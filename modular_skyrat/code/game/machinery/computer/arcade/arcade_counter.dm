@@ -35,16 +35,19 @@
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		prize_tier = B.rating
 
-/obj/machinery/prize_counter/update_icon()
+/obj/machinery/prize_counter/update_icon_state()
 	if(stat & BROKEN)
 		icon_state = "prize-broken"
-	else if(panel_open)
-		icon_state = "prize-open"
 	else if(stat & NOPOWER)
 		icon_state = "prize-off"
 	else
 		icon_state = "prize"
 	return
+	
+/obj/machinery/prize_counter/update_overlays()
+	. = ..()
+	if(panel_open)
+		. += "prize-panel"
 
 /obj/machinery/prize_counter/attackby(var/obj/item/O as obj, var/mob/user as mob, params)
 	if(istype(O, /obj/item/stack/tickets))
@@ -55,10 +58,7 @@
 		else
 			user << "<span class='warning'>\The [T] seems stuck to your hand!</span>"
 		return
-	if(istype(O, /obj/item/screwdriver) && anchored)
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		panel_open = !panel_open
-		user << "You [panel_open ? "open" : "close"] the maintenance panel."
+	if(default_deconstruction_screwdriver(user, null, null, O))
 		update_icon()
 		return
 	if(panel_open)
@@ -101,9 +101,19 @@ a {
 	font-weight:bold;
 }
 
+.text-center {
+	text-align: center;
+}
+
 a:hover {
 	color:#ffffff;
 }
+
+table {
+	border-spacing: 5px;
+    border-collapse: separate;
+}
+
 tr {
 	background:#303030;
 	border-radius:6px;
@@ -156,14 +166,14 @@ td.cost.toomuch {
 				<th>
 					[itemID]
 				</th>
-				<td>
-					<p><b>[item.name]</b></p>
-					<p>[item.desc]</p>
+				<td class="text-center">
+					<div><b>[item.name]</b></div>
+					[item.desc]
 				</td>
 		"}
 		if(prize_tier >= item.tier_unlocked)
 			dat += {"
-				<td class="cost [cost_class]">
+				<td class="cost [cost_class] text-center">
 					<a href="byond://?src=\ref[src];buy=[itemID]">[item.cost] Tickets</a>
 				</td>
 			</tr>
