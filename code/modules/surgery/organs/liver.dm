@@ -25,19 +25,9 @@
 	var/cachedmoveCalc = 1
 
 /obj/item/organ/liver/on_life()
-	var/mob/living/carbon/C = owner
-
-	if(istype(C))
-		if(!(organ_flags & ORGAN_FAILING))//can't process reagents with a failing liver
-
-			if(filterToxins && !HAS_TRAIT(owner, TRAIT_TOXINLOVER))
-				//handle liver toxin filtration
-				for(var/datum/reagent/toxin/T in C.reagents.reagent_list)
-					var/thisamount = C.reagents.get_reagent_amount(T.type)
-					if (thisamount && thisamount <= toxTolerance)
-						C.reagents.remove_reagent(T.type, 1)
-					else
-						damage += (thisamount*toxLethality)
+	. = ..()
+	if(!. || !owner)//can't process reagents with a failing liver
+		return
 
 			//metabolize reagents
 			C.reagents.metabolize(C, can_overdose=TRUE)

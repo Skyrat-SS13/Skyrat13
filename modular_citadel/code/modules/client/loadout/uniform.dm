@@ -295,6 +295,7 @@
 	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
 
+/* //handled by modular skyrat code as reskins
 //TNG
 /datum/gear/trekcmdtng
 	name = "TNG uniform, cmd"
@@ -382,6 +383,7 @@
 	path = /obj/item/clothing/under/trek/engsec/ent
 	restricted_desc = "Engineering, Security, and Cargo"
 	restricted_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security","Cargo Technician", "Shaft Miner", "Quartermaster")
+*/
 
 //TheMotionPicture
 /datum/gear/trekfedutil
