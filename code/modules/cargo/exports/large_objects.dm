@@ -327,11 +327,6 @@
 	unit_name = "working miner ripley"
 	export_types = list(/obj/mecha/working/ripley/mining)
 
-/datum/export/large/mech/honk
-	cost = 16000 //Still a "Combat class" mech - Comats bordem honk!
-	unit_name = "working honker"
-	export_types = list(/obj/mecha/combat/honker)
-
 /datum/export/large/mech/reticence
 	cost = 16000 //Still a "Combat class" mech - Has cloking and lethal weaponds.
 	unit_name = "working reticence"

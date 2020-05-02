@@ -162,7 +162,7 @@
 	cost = 250
 	unit_name = "mech bullet based weapon"
 	include_subtypes = TRUE
-	export_types = list(/obj/item/mecha_parts/mecha_equipment/medical/syringe_gun, /obj/item/mecha_parts/mecha_equipment/weapon/honker, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic)
+	export_types = list(/obj/item/mecha_parts/mecha_equipment/medical/syringe_gun, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic)
 
 /datum/export/robotics/mech_tools
 	cost = 150
