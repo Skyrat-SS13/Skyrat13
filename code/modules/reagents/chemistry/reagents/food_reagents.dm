@@ -11,7 +11,7 @@
 	name = "Consumable"
 	taste_description = "generic food"
 	taste_mult = 4
-	value = REAGENT_VALUE_VERY_COMMON
+	value = 0.1
 	var/nutriment_factor = 1 * REAGENTS_METABOLISM
 	var/quality = 0	//affects mood, typically higher for mixed drinks with more complex recipes
 
@@ -90,7 +90,7 @@
 /datum/reagent/consumable/nutriment/vitamin
 	name = "Vitamin"
 	description = "All the best vitamins, minerals, and carbohydrates the body needs in pure form."
-	value = REAGENT_VALUE_COMMON
+	value = 0.5
 	nutriment_factor = 15 * REAGENTS_METABOLISM //The are the best food for you!
 	brute_heal = 1
 	burn_heal = 1
@@ -105,7 +105,7 @@
 	description = "A variety of cooking oil derived from fat or plants. Used in food preparation and frying."
 	color = "#EADD6B" //RGB: 234, 221, 107 (based off of canola oil)
 	taste_mult = 0.8
-	value = REAGENT_VALUE_COMMON
+	value = 1
 	taste_description = "oil"
 	nutriment_factor = 5 * REAGENTS_METABOLISM //Not very healthy on its own
 	metabolization_rate = 10 * REAGENTS_METABOLISM
@@ -155,7 +155,7 @@
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 	overdose_threshold = 200 // Hyperglycaemic shock
 	taste_description = "sweetness"
-	value = REAGENT_VALUE_NONE
+	value = 1
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
 	to_chat(M, "<span class='userdanger'>You go into hyperglycaemic shock! Lay off the twinkies!</span>")
@@ -179,7 +179,6 @@
 	description = "A salty sauce made from the soy plant."
 	color = "#792300" // rgb: 121, 35, 0
 	taste_description = "umami"
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/consumable/ketchup
 	name = "Ketchup"
@@ -231,7 +230,7 @@
 	description = "A special oil that noticably chills the body. Extracted from Icepeppers and slimes."
 	color = "#8BA6E9" // rgb: 139, 166, 233
 	taste_description = "mint"
-	value = REAGENT_VALUE_COMMON
+	value = 2
 	pH = 13 //HMM! I wonder
 
 /datum/reagent/consumable/frostoil/on_mob_life(mob/living/carbon/M)
@@ -400,7 +399,6 @@
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	taste_description = "mushroom"
 	pH = 11
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/drug/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
 	M.slurring = max(M.slurring,50)
@@ -431,7 +429,6 @@
 	color = "#FEFEFE"
 	taste_description = "garlic"
 	metabolization_rate = 0.15 * REAGENTS_METABOLISM
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/consumable/garlic/on_mob_life(mob/living/carbon/M)
 	if(isvampire(M)) //incapacitating but not lethal. Unfortunately, vampires cannot vomit.
@@ -462,7 +459,7 @@
 					M.emote("scream")
 				if(prob(min(5, current_cycle)) && iscarbon(M))
 					var/mob/living/carbon/C
-					C.vomit()
+					C.vomit()	
 			if(INJECT)
 				if(prob(min(20, current_cycle)))
 					to_chat(M, "<span class='warning'>You feel like your veins are boiling!</span>")
@@ -471,10 +468,10 @@
 	..()
 /datum/reagent/consumable/sprinkles
 	name = "Sprinkles"
+	value = 3
 	description = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
 	color = "#FF00FF" // rgb: 255, 0, 255
 	taste_description = "childhood whimsy"
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/consumable/sprinkles/on_mob_life(mob/living/carbon/M)
 	if(M.mind && HAS_TRAIT(M.mind, TRAIT_LAW_ENFORCEMENT_METABOLISM))
@@ -486,7 +483,7 @@
 	name = "Peanut Butter"
 	description = "A popular food paste made from ground dry-roasted peanuts."
 	color = "#C29261"
-	value = REAGENT_VALUE_UNCOMMON
+	value = 3
 	nutriment_factor = 10 * REAGENTS_METABOLISM
 	taste_description = "peanuts"
 
@@ -494,7 +491,7 @@
 	name = "Corn Oil"
 	description = "An oil derived from various types of corn."
 	nutriment_factor = 12 * REAGENTS_METABOLISM
-	value = REAGENT_VALUE_UNCOMMON
+	value = 4
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "slime"
 
@@ -512,7 +509,7 @@
 
 /datum/reagent/consumable/enzyme
 	name = "Universal Enzyme"
-	value = REAGENT_VALUE_COMMON
+	value = 1
 	description = "A universal enzyme used in the preperation of certain chemicals and foods."
 	color = "#365E30" // rgb: 54, 94, 48
 	taste_description = "sweetness"
@@ -548,6 +545,7 @@
 
 /datum/reagent/consumable/flour
 	name = "Flour"
+	value = 0.5
 	description = "This is what you rub all over yourself to pretend to be a ghost."
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 0, 0, 0
@@ -564,18 +562,19 @@
 	name = "Cherry Jelly"
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
 	color = "#801E28" // rgb: 128, 30, 40
-	value = REAGENT_VALUE_COMMON
+	value = 1
 	taste_description = "cherry"
 
 /datum/reagent/consumable/bluecherryjelly
 	name = "Blue Cherry Jelly"
 	description = "Blue and tastier kind of cherry jelly."
 	color = "#00F0FF"
-	value = REAGENT_VALUE_UNCOMMON
+	value = 12
 	taste_description = "blue cherry"
 
 /datum/reagent/consumable/rice
 	name = "Rice"
+	value = 0.5
 	description = "tiny nutritious grains"
 	reagent_state = SOLID
 	nutriment_factor = 3 * REAGENTS_METABOLISM
@@ -584,7 +583,7 @@
 
 /datum/reagent/consumable/vanilla
 	name = "Vanilla Powder"
-	value = REAGENT_VALUE_UNCOMMON
+	value = 1
 	description = "A fatty, bitter paste made from vanilla pods."
 	reagent_state = SOLID
 	nutriment_factor = 5 * REAGENTS_METABOLISM
@@ -593,6 +592,7 @@
 
 /datum/reagent/consumable/eggyolk
 	name = "Egg Yolk"
+	value = 1
 	description = "It's full of protein."
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 	color = "#FFB500"
@@ -600,13 +600,14 @@
 
 /datum/reagent/consumable/corn_starch
 	name = "Corn Starch"
+	value = 2
 	description = "A slippery solution."
 	color = "#f7f6e4"
 	taste_description = "slime"
 
 /datum/reagent/consumable/corn_syrup
 	name = "Corn Syrup"
-	value = REAGENT_VALUE_UNCOMMON
+	value = 1
 	description = "Decays into sugar."
 	color = "#fff882"
 	metabolization_rate = 3 * REAGENTS_METABOLISM
@@ -620,7 +621,7 @@
 	name = "honey"
 	description = "Sweet sweet honey that decays into sugar. Has antibacterial and natural healing properties."
 	color = "#d3a308"
-	value = REAGENT_VALUE_COMMON
+	value = 15
 	nutriment_factor = 10 * REAGENTS_METABOLISM
 	metabolization_rate = 1 * REAGENTS_METABOLISM
 	taste_description = "sweetness"
@@ -648,7 +649,6 @@
 	color = "#DFDFDF"
 	value = 5
 	taste_description = "mayonnaise"
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/consumable/tearjuice
 	name = "Tear Juice"
@@ -656,7 +656,6 @@
 	color = "#c0c9a0"
 	taste_description = "bitterness"
 	pH = 5
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/consumable/tearjuice/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(!istype(M))
@@ -695,7 +694,6 @@
 	reagent_state = SOLID
 	nutriment_factor = 12 * REAGENTS_METABOLISM
 	color = "#664330" // rgb: 102, 67, 48
-	value = REAGENT_VALUE_RARE
 
 /datum/reagent/consumable/nutriment/stabilized/on_mob_life(mob/living/carbon/M)
 	if(M.nutrition > NUTRITION_LEVEL_FULL - 25)
@@ -711,7 +709,6 @@
 	color = "#1d043d"
 	taste_description = "bitter mushroom"
 	pH = 12
-	value = REAGENT_VALUE_RARE
 
 /datum/reagent/consumable/entpoly/on_mob_life(mob/living/carbon/M)
 	if(current_cycle >= 10)
@@ -732,7 +729,6 @@
 	color = "#b5a213"
 	taste_description = "tingling mushroom"
 	pH = 11.2
-	value = REAGENT_VALUE_RARE
 
 /datum/reagent/consumable/tinlux/reaction_mob(mob/living/M)
 	M.set_light(2)
@@ -747,7 +743,6 @@
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 	taste_description = "fruity mushroom"
 	pH = 10.4
-	value = REAGENT_VALUE_RARE
 
 /datum/reagent/consumable/vitfro/on_mob_life(mob/living/carbon/M)
 	if(prob(80))
@@ -813,7 +808,6 @@
 	taste_mult = 2
 	taste_description = "caramel"
 	reagent_state = SOLID
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/consumable/secretsauce
 	name = "secret sauce"
@@ -824,7 +818,6 @@
 	taste_mult = 100
 	can_synth = FALSE
 	pH = 6.1
-	value = REAGENT_VALUE_AMAZING
 
 /datum/reagent/consumable/secretsauce/reaction_obj(obj/O, reac_volume)
 	//splashing any amount above or equal to 1u of secret sauce onto a piece of food turns its quality to 100
@@ -845,7 +838,6 @@
 	taste_mult = 6
 	taste_description = "smoke"
 	overdose_threshold = 25
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/consumable/char/overdose_process(mob/living/carbon/M)
 	if(prob(10))
@@ -858,4 +850,3 @@
 	color = "#78280A" // rgb: 120 40, 10
 	taste_mult = 2.5 //sugar's 1.5, capsacin's 1.5, so a good middle ground.
 	taste_description = "smokey sweetness"
-	value = REAGENT_VALUE_COMMON

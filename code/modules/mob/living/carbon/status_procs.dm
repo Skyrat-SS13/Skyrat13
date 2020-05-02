@@ -23,10 +23,10 @@
 		clear_alert("high")
 
 /mob/living/carbon/adjust_disgust(amount)
-	disgust = clamp(disgust+amount, 0, DISGUST_LEVEL_MAXEDOUT)
+	disgust = CLAMP(disgust+amount, 0, DISGUST_LEVEL_MAXEDOUT)
 
 /mob/living/carbon/set_disgust(amount)
-	disgust = clamp(amount, 0, DISGUST_LEVEL_MAXEDOUT)
+	disgust = CLAMP(amount, 0, DISGUST_LEVEL_MAXEDOUT)
 
 
 ////////////////////////////////////////TRAUMAS/////////////////////////////////////////

@@ -52,7 +52,7 @@
 	var/list/affecting = list()
 
 /obj/effect/step_trigger/thrower/Trigger(atom/A)
-	if(!A || !ismovable(A))
+	if(!A || !ismovableatom(A))
 		return
 	var/atom/movable/AM = A
 	var/curtiles = 0

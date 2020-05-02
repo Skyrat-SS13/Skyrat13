@@ -69,7 +69,7 @@
 	for(var/obj/item/stock_parts/manipulator/P in component_parts)
 		speed_coeff += (P.rating / 2)
 	speed_coeff = max(1, speed_coeff)
-	heal_level = clamp((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
+	heal_level = CLAMP((efficiency * 10) + 10, MINIMUM_HEAL_LEVEL, 100)
 
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.
 //TO-DO: Make the genetics machine accept them.
@@ -384,7 +384,7 @@
 		mob_occupant.flash_act()
 		if(jobban_isbanned(mob_occupant) && ishuman(mob_occupant))	// SKYRAT ADDITION -- BEGIN
 			var/mob/living/carbon/human/C = mob_occupant
-			C.update_pacification_ban()	// SKYRAT ADDITION -- END
+			C.update_admin_collar()	// SKYRAT ADDITION -- END
 
 	occupant.forceMove(T)
 	update_icon()

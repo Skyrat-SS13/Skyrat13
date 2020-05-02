@@ -70,7 +70,7 @@
 		com.target = null
 		visible_message("<span class='alert'>Cannot authenticate locked on coordinates. Please reinstate coordinate matrix.</span>")
 		return
-	if (ismovable(M))
+	if (ismovableatom(M))
 		if(do_teleport(M, com.target, channel = TELEPORT_CHANNEL_BLUESPACE))
 			use_power(5000)
 

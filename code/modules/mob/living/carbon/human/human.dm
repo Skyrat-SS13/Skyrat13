@@ -768,7 +768,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = min(health, maxHealth - clamp(getStaminaLoss()-50, 0, 80))//CIT CHANGE - makes staminaloss have less of an impact on the health hud
+			var/health_amount = min(health, maxHealth - CLAMP(getStaminaLoss()-50, 0, 80))//CIT CHANGE - makes staminaloss have less of an impact on the health hud
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
@@ -1041,7 +1041,7 @@
 	return FALSE
 
 /mob/living/carbon/human/proc/clear_shove_slowdown()
-	remove_movespeed_modifier(/datum/movespeed_modifier/shove)
+	remove_movespeed_modifier(MOVESPEED_ID_SHOVE)
 	var/active_item = get_active_held_item()
 	if(is_type_in_typecache(active_item, GLOB.shove_disarming_types))
 		visible_message("<span class='warning'>[src.name] regains their grip on \the [active_item]!</span>", "<span class='warning'>You regain your grip on \the [active_item]</span>", null, COMBAT_MESSAGE_RANGE)
@@ -1050,17 +1050,17 @@
 	. = ..()
 
 	if(HAS_TRAIT(src, TRAIT_IGNORESLOWDOWN))
-		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
-		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
+		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
+		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN_FLYING)
 		return
 	var/stambufferinfluence = (bufferedstam*(100/stambuffer))*0.2 //CIT CHANGE - makes stamina buffer influence movedelay
 	var/health_deficiency = ((100 + stambufferinfluence) - health + (getStaminaLoss()*0.75))//CIT CHANGE - reduces the impact of staminaloss and makes stamina buffer influence it
 	if(health_deficiency >= 40)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, (health_deficiency-39) / 75)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, (health_deficiency-39) / 25)
+		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, override = TRUE, multiplicative_slowdown = ((health_deficiency-39) / 75), blacklisted_movetypes = FLOATING|FLYING)
+		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN_FLYING, override = TRUE, multiplicative_slowdown = ((health_deficiency-39) / 25), movetypes = FLYING, blacklisted_movetypes = FLOATING)
 	else
-		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
-		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
+		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
+		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN_FLYING)
 
 /mob/living/carbon/human/do_after_coefficent()
 	. = ..()

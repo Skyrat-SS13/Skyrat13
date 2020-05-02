@@ -98,7 +98,7 @@
 
 /obj/item/projectile/heckhook/on_hit(atom/target)
 	. = ..()
-	if(ismovable(target))
+	if(ismovableatom(target))
 		var/atom/movable/A = target
 		if(A.anchored)
 			return

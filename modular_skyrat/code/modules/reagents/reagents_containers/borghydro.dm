@@ -109,8 +109,7 @@ Borg Shaker
 						/datum/reagent/consumable/coconutmilk,
 						/datum/reagent/consumable/coffee,
 						/datum/reagent/consumable/tea,
-						/datum/reagent/consumable/lemonade,
-						/datum/reagent/water)
+						/datum/reagent/consumable/lemonade)
 
 /obj/item/reagent_containers/borghypo/borgshaker/hacked
 	name = "cyborg shaker"

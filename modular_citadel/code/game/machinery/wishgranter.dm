@@ -94,8 +94,9 @@
 					var/mob/living/simple_animal/hostile/venus_human_trap/killwish = new /mob/living/simple_animal/hostile/venus_human_trap(loc)
 					killwish.maxHealth = 1500
 					killwish.health = killwish.maxHealth
-					killwish.vine_grab_distance = 6
+					killwish.grasp_range = 6
 					killwish.melee_damage_upper = 30
+					killwish.grasp_chance = 50
 					killwish.loot = list(/obj/item/twohanded/dualsaber/hypereutactic)
 					charges--
 					insisting = FALSE

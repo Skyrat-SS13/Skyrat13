@@ -12,5 +12,3 @@
 #define is_reserved_level(z) SSmapping.level_trait(z, ZTRAIT_RESERVED)
 
 #define is_away_level(z) SSmapping.level_trait(z, ZTRAIT_AWAY)
-
-#define is_vr_level(z) SSmapping.level_trait(z, ZTRAIT_VR)

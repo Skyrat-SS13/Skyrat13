@@ -284,7 +284,7 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 /mob/proc/reset_perspective(atom/A)
 	if(client)
 		if(A)
-			if(ismovable(A))
+			if(ismovableatom(A))
 				//Set the the thing unless it's us
 				if(A != src)
 					client.perspective = EYE_PERSPECTIVE
@@ -1034,22 +1034,17 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 /// Updates the grab state of the mob and updates movespeed
 /mob/setGrabState(newstate)
 	. = ..()
-	switch(grab_state)
-		if(GRAB_PASSIVE)
-			remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
-		if(GRAB_AGGRESSIVE)
-			add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/aggressive)
-		if(GRAB_NECK)
-			add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/neck)
-		if(GRAB_KILL)
-			add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/kill)
+	if(grab_state == GRAB_PASSIVE)
+		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, update=TRUE)
+	else
+		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, update=TRUE, priority=100, override=TRUE, multiplicative_slowdown=grab_state*3, blacklisted_movetypes=FLOATING)
 
 /mob/proc/update_equipment_speed_mods()
 	var/speedies = equipped_speed_mods()
 	if(!speedies)
-		remove_movespeed_modifier(/datum/movespeed_modifier/equipment_speedmod, update=TRUE)
+		remove_movespeed_modifier(MOVESPEED_ID_MOB_EQUIPMENT, update=TRUE)
 	else
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/equipment_speedmod, multiplicative_slowdown = speedies)
+		add_movespeed_modifier(MOVESPEED_ID_MOB_EQUIPMENT, update=TRUE, priority=100, override=TRUE, multiplicative_slowdown=speedies, blacklisted_movetypes=FLOATING)
 
 /// Gets the combined speed modification of all worn items
 /// Except base mob type doesnt really wear items

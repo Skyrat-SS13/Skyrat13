@@ -33,7 +33,7 @@
 
 			to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
 			if(I.use_tool(src, user, 40, volume=40))
-				obj_integrity = clamp(obj_integrity + 20, 0, max_integrity)
+				obj_integrity = CLAMP(obj_integrity + 20, 0, max_integrity)
 	else
 		return ..()
 
@@ -88,7 +88,6 @@
 	drop_amount = 1
 	max_integrity = 50
 	proj_pass_rate = 65
-	layer = CLOSED_DOOR_LAYER + 0.1
 
 /obj/structure/barricade/wooden/crude/snow
 	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."

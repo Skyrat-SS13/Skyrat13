@@ -103,6 +103,10 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"dw" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/space/nearstation)
 "dZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1166,8 +1170,7 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste{
 	dir = 1
 	},
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "Hp" = (
 /obj/machinery/atmospherics/components/binary/pump{
@@ -1329,8 +1332,7 @@
 /area/engine/engineering)
 "LS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "Mf" = (
 /obj/structure/closet/secure_closet/engineering_personal,
@@ -2627,7 +2629,7 @@ EN
 fq
 LS
 Hn
-tw
+dw
 yf
 Rh
 yf
@@ -2653,9 +2655,9 @@ XW
 ST
 Ok
 MP
-tw
-tw
-tw
+dw
+dw
+dw
 Rh
 Rh
 Rh

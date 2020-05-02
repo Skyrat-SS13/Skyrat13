@@ -19399,10 +19399,6 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/structure/table,
-/obj/machinery/plantgenes{
-	pixel_y = 6
-	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aUW" = (
@@ -20814,9 +20810,12 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aXW" = (
+/obj/machinery/plantgenes{
+	pixel_y = 6
+	},
 /obj/structure/table,
-/obj/machinery/smartfridge/disks{
-	pixel_y = 2
+/obj/effect/turf_decal/tile/green{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -22799,7 +22798,7 @@
 	name = "Hydroponics Desk";
 	req_access_txt = "35"
 	},
-/obj/item/reagent_containers/food/snacks/cube/monkey,
+/obj/item/reagent_containers/food/snacks/monkeycube,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "bce" = (
@@ -53076,9 +53075,6 @@
 	dir = 1;
 	pixel_y = -22
 	},
-/obj/structure/reflector/double/anchored{
-	dir = 9
-	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "dEU" = (
@@ -57038,7 +57034,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "kEW" = (
-/obj/machinery/chem_dispenser/upgradeablemutagen,
+/obj/machinery/smartfridge/disks{
+	pixel_y = 2
+	},
+/obj/structure/table,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "kFm" = (
@@ -60092,6 +60091,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "pCo" = (
+/obj/structure/reflector/single/anchored{
+	dir = 6
+	},
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -62099,10 +62101,10 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "tlV" = (
-/obj/structure/reflector/single/anchored{
-	dir = 6
+/obj/structure/reflector/double/anchored{
+	dir = 9
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "tmA" = (
 /obj/effect/turf_decal/tile/green{
@@ -63244,15 +63246,18 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "vsG" = (
-/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
-	dir = 4;
-	filter_type = "n2"
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
 	},
-/turf/open/floor/engine,
-/area/engine/engineering)
+/obj/machinery/door/airlock/maintenance{
+	name = "Research Lab Maintenance";
+	req_one_access_txt = "7;29"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "vsJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -91482,7 +91487,7 @@ aQJ
 aRL
 aSD
 aTT
-aXW
+aXS
 aRL
 aWR
 aXT
@@ -92256,7 +92261,7 @@ aTW
 aUW
 aRL
 kEW
-aYO
+aXW
 aXS
 aZX
 bbd
@@ -96909,7 +96914,7 @@ jZG
 bpY
 bpY
 bpY
-bNZ
+vsG
 bva
 bva
 bva
@@ -96941,7 +96946,7 @@ bXk
 pCo
 wcs
 wcs
-wcs
+tlV
 eyj
 qkM
 miw
@@ -97195,7 +97200,7 @@ bZA
 cam
 mgz
 jeJ
-tlV
+cbX
 wcs
 wcs
 dEy
@@ -97457,7 +97462,7 @@ oHa
 eWi
 cbX
 jeJ
-vsG
+vlC
 cgx
 qeY
 fyO

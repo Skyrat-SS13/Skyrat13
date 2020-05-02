@@ -23,4 +23,3 @@
 	build_path = /obj/item/circuitboard/computer/telesci_console
 	category = list("Teleportation Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
-

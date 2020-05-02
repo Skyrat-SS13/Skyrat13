@@ -14,7 +14,7 @@
 	var/default_rotation_direction = ROTATION_CLOCKWISE
 
 /datum/component/simple_rotation/Initialize(rotation_flags = NONE ,can_user_rotate,can_be_rotated,after_rotation)
-	if(!ismovable(parent))
+	if(!ismovableatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	//throw if no rotation direction is specificed ?

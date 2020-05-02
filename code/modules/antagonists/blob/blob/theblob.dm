@@ -77,7 +77,7 @@
 
 /obj/structure/blob/CanAStarPass(ID, dir, caller)
 	. = 0
-	if(ismovable(caller))
+	if(ismovableatom(caller))
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSBLOB)
 

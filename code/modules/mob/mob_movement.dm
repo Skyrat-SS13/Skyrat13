@@ -80,12 +80,12 @@
 	var/oldloc = mob.loc
 
 	if(L.confused)
-		var/newdir = NONE
-		if((L.confused > 50) && prob(min(L.confused * 0.5, 50)))
+		var/newdir = 0
+		if(L.confused > 40)
 			newdir = pick(GLOB.alldirs)
-		else if(prob(L.confused))
+		else if(prob(L.confused * 1.5))
 			newdir = angle2dir(dir2angle(direction) + pick(90, -90))
-		else if(prob(L.confused * 2))
+		else if(prob(L.confused * 3))
 			newdir = angle2dir(dir2angle(direction) + pick(45, -45))
 		if(newdir)
 			direction = newdir
@@ -251,9 +251,9 @@
 /mob/proc/update_gravity(has_gravity, override=FALSE)
 	var/speed_change = max(0, has_gravity - STANDARD_GRAVITY)
 	if(!speed_change)
-		remove_movespeed_modifier(/datum/movespeed_modifier/gravity)
+		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAVITY, update=TRUE)
 	else
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/gravity, multiplicative_slowdown = speed_change)
+		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAVITY, update=TRUE, priority=100, override=TRUE, multiplicative_slowdown=speed_change, blacklisted_movetypes=FLOATING)
 
 //bodypart selection - Cyberboss
 //8 toggles through head - eyes - mouth

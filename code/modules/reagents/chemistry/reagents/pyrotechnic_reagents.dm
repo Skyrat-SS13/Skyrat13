@@ -5,7 +5,6 @@
 	reagent_state = SOLID
 	color = "#550000"
 	taste_description = "sweet tasting metal"
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/thermite/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
@@ -22,14 +21,13 @@
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
 	color = "#808080" // rgb: 128, 128, 128
 	taste_description = "oil"
-	value = REAGENT_VALUE_EXCEPTIONAL
 
 /datum/reagent/stabilizing_agent
 	name = "Stabilizing Agent"
 	description = "Keeps unstable chemicals stable. This does not work on everything."
 	reagent_state = LIQUID
 	color = "#FFFF00"
-	value = REAGENT_VALUE_VERY_COMMON
+	value = 3
 	taste_description = "metal"
 
 /datum/reagent/clf3
@@ -39,7 +37,6 @@
 	color = "#FFC8C8"
 	metabolization_rate = 4
 	taste_description = "burning"
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
@@ -82,14 +79,13 @@
 	reagent_state = LIQUID
 	color = "#5A64C8"
 	taste_description = "air and bitterness"
-	value = REAGENT_VALUE_UNCOMMON
 
 /datum/reagent/liquid_dark_matter
 	name = "Liquid Dark Matter"
 	description = "Sucks everything into the detonation point."
 	reagent_state = LIQUID
 	color = "#210021"
-	value = REAGENT_VALUE_UNCOMMON
+	value = 10
 	taste_description = "compressed bitterness"
 
 /datum/reagent/blackpowder
@@ -97,9 +93,9 @@
 	description = "Explodes. Violently."
 	reagent_state = LIQUID
 	color = "#000000"
+	value = 5
 	metabolization_rate = 0.05
 	taste_description = "salt"
-	value = REAGENT_VALUE_RARE
 
 /datum/reagent/blackpowder/on_mob_life(mob/living/carbon/M)
 	..()
@@ -119,7 +115,6 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "salt"
-	value = REAGENT_VALUE_UNCOMMON
 
 /datum/reagent/smoke_powder
 	name = "Smoke Powder"
@@ -127,7 +122,6 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "smoke"
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/sonic_powder
 	name = "Sonic Powder"
@@ -135,7 +129,6 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "loud noises"
-	value = REAGENT_VALUE_UNCOMMON
 
 /datum/reagent/phlogiston
 	name = "Phlogiston"
@@ -143,7 +136,6 @@
 	reagent_state = LIQUID
 	color = "#FA00AF"
 	taste_description = "burning"
-	value = REAGENT_VALUE_UNCOMMON
 
 /datum/reagent/phlogiston/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	M.adjust_fire_stacks(1)
@@ -164,8 +156,8 @@
 	description = "Very flammable."
 	reagent_state = LIQUID
 	color = "#FA00AF"
+	value = 1
 	taste_description = "burning"
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)
@@ -182,7 +174,7 @@
 	color = "#0000DC"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "bitterness"
-	value = REAGENT_VALUE_COMMON
+
 
 /datum/reagent/cryostylane/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube
 	if(M.reagents.has_reagent(/datum/reagent/oxygen))
@@ -201,7 +193,6 @@
 	color = "#64FAC8"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "bitterness"
-	value = REAGENT_VALUE_COMMON
 
 /datum/reagent/pyrosium/on_mob_life(mob/living/carbon/M)
 	if(M.reagents.has_reagent(/datum/reagent/oxygen))
@@ -217,7 +208,6 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "charged metal"
 	var/shock_timer = 0
-	value = REAGENT_VALUE_VERY_RARE
 
 /datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++
@@ -252,7 +242,6 @@
 	reagent_state = LIQUID
 	color = "#A6FAFF55"
 	taste_description = "the inside of a fire extinguisher"
-	value = REAGENT_VALUE_UNCOMMON
 
 /datum/reagent/firefighting_foam/reaction_turf(turf/open/T, reac_volume)
 	if (!istype(T))

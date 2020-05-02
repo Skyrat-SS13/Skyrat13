@@ -1,12 +1,9 @@
 /mob/living/carbon/alien/humanoid/hunter
 	name = "alien hunter"
 	caste = "h"
-	maxHealth = 170
-	health = 170
+	maxHealth = 125
+	health = 125
 	icon_state = "alienh"
-	meleeKnockdownPower = 75
-	meleeSlashHumanPower = 20
-	meleeSlashSAPower = 45
 	var/obj/screen/leap_icon = null
 
 /mob/living/carbon/alien/humanoid/hunter/create_internal_organs()
@@ -71,7 +68,6 @@
 			else
 				L.visible_message("<span class ='danger'>[src] pounces on [L]!</span>", "<span class ='userdanger'>[src] pounces on you!</span>")
 				L.DefaultCombatKnockdown(100)
-				L.Stagger(4 SECONDS)
 				sleep(2)//Runtime prevention (infinite bump() calls on hulks)
 				step_towards(src,L)
 

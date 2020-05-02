@@ -217,8 +217,7 @@
 	config_entry_value = list(			//DEFAULTS
 	/mob/living/simple_animal = 1,
 	/mob/living/silicon/pai = 1,
-	/mob/living/carbon/alien/humanoid/sentinel = 0.25,
-	/mob/living/carbon/alien/humanoid/drone = 0.5,
+	/mob/living/carbon/alien/humanoid/hunter = -1,
 	/mob/living/carbon/alien/humanoid/royal/praetorian = 1,
 	/mob/living/carbon/alien/humanoid/royal/queen = 3
 	)
@@ -249,17 +248,7 @@
 
 /datum/config_entry/number/movedelay/run_delay
 
-/datum/config_entry/number/movedelay/run_delay/ValidateAndSet()
-	. = ..()
-	var/datum/movespeed_modifier/config_walk_run/M = get_cached_movespeed_modifier(/datum/movespeed_modifier/config_walk_run/run)
-	M.sync()
-
 /datum/config_entry/number/movedelay/walk_delay
-
-/datum/config_entry/number/movedelay/walk_delay/ValidateAndSet()
-	. = ..()
-	var/datum/movespeed_modifier/config_walk_run/M = get_cached_movespeed_modifier(/datum/movespeed_modifier/config_walk_run/walk)
-	M.sync()
 
 /datum/config_entry/number/movedelay/sprint_speed_increase
 	config_entry_value = 1
@@ -296,14 +285,8 @@
 /datum/config_entry/number/outdated_movedelay/animal_delay
 	movedelay_type = /mob/living/simple_animal
 /////////////////////////////////////////////////
-//Skyrat changes
-/datum/config_entry/number/projectile_speed_modifier
-	config_entry_value = 1
-//End of skyrat changes
 
 /datum/config_entry/flag/roundstart_away	//Will random away mission be loaded.
-
-/datum/config_entry/flag/roundstart_vr 		//Will virtual reality missions be loaded?
 
 /datum/config_entry/number/gateway_delay	//How long the gateway takes before it activates. Default is half an hour. Only matters if roundstart_away is enabled.
 	config_entry_value = 18000
@@ -496,4 +479,5 @@
 	integer = FALSE
 
 //Allows players to set a hexadecimal color of their choice as skin tone, on top of the standard ones.
-/datum/config_entry/flag/allow_custom_skintones
+/datum/config_entry/number/allow_custom_skintones
+	config_entry_value = 1

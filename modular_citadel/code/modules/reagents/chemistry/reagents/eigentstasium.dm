@@ -29,7 +29,6 @@
 	var/teleBool = FALSE
 	pH = 3.7
 	can_synth = TRUE
-	value = REAGENT_VALUE_EXCEPTIONAL
 
 /datum/reagent/fermi/eigenstate/on_new(list/data)
 	location_created = data["location_created"]

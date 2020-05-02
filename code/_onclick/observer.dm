@@ -5,7 +5,7 @@
 			return									// seems legit.
 
 	// Things you might plausibly want to follow
-	if(ismovable(A))
+	if(ismovableatom(A))
 		ManualFollow(A)
 
 	// Otherwise jump

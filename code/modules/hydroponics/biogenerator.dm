@@ -40,14 +40,14 @@
 		updateUsrDialog()
 
 /obj/machinery/biogenerator/RefreshParts()
-	var/E = 0.5
-	var/P = 0.5
-	var/max_storage = 20
+	var/E = 0
+	var/P = 0
+	var/max_storage = 40
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
-		P += B.rating * 0.5
-		max_storage = max(20 * B.rating, max_storage)
+		P += B.rating
+		max_storage = 40 * B.rating
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		E += M.rating * 0.5
+		E += M.rating
 	efficiency = E
 	productivity = P
 	max_items = max_storage
@@ -196,7 +196,7 @@
 						dat += "<A href='?src=[REF(src)];create=[D.id];amount=5'>x5</A>"
 					if(ispath(D.build_path, /obj/item/stack))
 						dat += "<A href='?src=[REF(src)];create=[D.id];amount=10'>x10</A>"
-					dat += "([CEILING(D.materials[SSmaterials.GetMaterialRef(/datum/material/biomass)]/efficiency, 1)])<br>"
+					dat += "([D.materials[SSmaterials.GetMaterialRef(/datum/material/biomass)]/efficiency])<br>"
 				dat += "</div>"
 		else
 			dat += "<div class='statusDisplay'>No container inside, please insert container.</div>"
@@ -214,16 +214,12 @@
 		to_chat(usr, "<span class='warning'>The biogenerator is in the process of working.</span>")
 		return
 	var/S = 0
-	var/total = 0
 	for(var/obj/item/reagent_containers/food/snacks/grown/I in contents)
 		S += 5
-		var/nutri_amount = I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
-		if(nutri_amount < 0.1)
-			total += 1*productivity
-		else
-			total += nutri_amount*10*productivity
+		if(I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) < 0.1)
+			points += 1*productivity
+		else points += I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)*10*productivity
 		qdel(I)
-	points += round(total)
 	if(S)
 		processing = TRUE
 		update_icon()
@@ -239,13 +235,12 @@
 /obj/machinery/biogenerator/proc/check_cost(list/materials, multiplier = 1, remove_points = TRUE)
 	if(materials.len != 1 || materials[1] != SSmaterials.GetMaterialRef(/datum/material/biomass))
 		return FALSE
-	var/cost = CEILING(materials[SSmaterials.GetMaterialRef(/datum/material/biomass)]*multiplier/efficiency, 1)
-	if (cost > points)
+	if (materials[SSmaterials.GetMaterialRef(/datum/material/biomass)]*multiplier/efficiency > points)
 		menustat = "nopoints"
 		return FALSE
 	else
 		if(remove_points)
-			points -= cost
+			points -= materials[SSmaterials.GetMaterialRef(/datum/material/biomass)]*multiplier/efficiency
 		update_icon()
 		updateUsrDialog()
 		return TRUE
@@ -316,7 +311,7 @@
 	else if(href_list["create"])
 		var/amount = (text2num(href_list["amount"]))
 		//Can't be outside these (if you change this keep a sane limit)
-		amount = clamp(amount, 1, 50)
+		amount = CLAMP(amount, 1, 50)
 		var/id = href_list["create"]
 		if(!stored_research.researched_designs.Find(id))
 			//naughty naughty

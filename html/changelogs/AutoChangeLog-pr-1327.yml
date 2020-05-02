@@ -1,0 +1,7 @@
+author: "BobJogaIsForkinBanned"
+delete-after: True
+changes: 
+  - rscadd: "Killdozer ripley variant."
+  - rscadd: "Illegal Combat Mechs tech node for RnD."
+  - imageadd: "Killdozer sprites."
+  - rscdel: "Removed treading."

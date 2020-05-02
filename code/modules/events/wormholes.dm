@@ -57,7 +57,7 @@
 		if(!(ismecha(M) && mech_sized))
 			return
 
-	if(ismovable(M))
+	if(ismovableatom(M))
 		if(GLOB.portals.len)
 			var/obj/effect/portal/P = pick(GLOB.portals)
 			if(P && isturf(P.loc))

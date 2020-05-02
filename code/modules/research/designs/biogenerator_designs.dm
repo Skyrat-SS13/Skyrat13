@@ -2,9 +2,6 @@
 ///////Biogenerator Designs ///////
 ///////////////////////////////////
 
-//Please be wary to not add inorganic items to the results such as generic glass bottles and metal.
-//as they kind of defeat the design of this feature.
-
 /datum/design/milk
 	name = "10u Milk"
 	id = "milk"
@@ -21,12 +18,37 @@
 	make_reagents = list(/datum/reagent/consumable/cream = 10)
 	category = list("initial","Food")
 
+/datum/design/milk_carton
+	name = "Milk Carton"
+	id = "milk_carton"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 100)
+	build_path = /obj/item/reagent_containers/food/condiment/milk
+	category = list("initial","Food")
+
+/datum/design/cream_carton
+	name = "Cream Carton"
+	id = "cream_carton"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 300)
+	build_path = /obj/item/reagent_containers/food/drinks/bottle/cream
+	category = list("initial","Food")
+
 /datum/design/black_pepper
 	name = "10u Black Pepper"
 	id = "black_pepper"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 25)
 	make_reagents = list(/datum/reagent/consumable/blackpepper = 10)
+	category = list("initial","Food")
+
+/datum/design/pepper_mill
+	name = "Pepper Mill"
+	id = "pepper_mill"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 50)
+	build_path = /obj/item/reagent_containers/food/condiment/peppermill
+	make_reagents = list()
 	category = list("initial","Food")
 
 /datum/design/enzyme
@@ -37,12 +59,20 @@
 	make_reagents = list(/datum/reagent/consumable/enzyme = 10)
 	category = list("initial","Food")
 
+/datum/design/flour_sack
+	name = "Flour Sack"
+	id = "flour_sack"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 150)
+	build_path = /obj/item/reagent_containers/food/condiment/flour
+	category = list("initial","Food")
+
 /datum/design/monkey_cube
 	name = "Monkey Cube"
 	id = "mcube"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 250)
-	build_path = /obj/item/reagent_containers/food/snacks/cube/monkey
+	build_path = /obj/item/reagent_containers/food/snacks/monkeycube
 	category = list("initial", "Food")
 
 /datum/design/smeat
@@ -54,43 +84,43 @@
 	category = list("initial", "Food")
 
 /datum/design/ez_nut
-	name = "10u E-Z Nutrient"
+	name = "E-Z Nutrient"
 	id = "ez_nut"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 2)
-	make_reagents = list(/datum/reagent/plantnutriment/eznutriment = 10)
+	materials = list(/datum/material/biomass = 10)
+	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/ez
 	category = list("initial","Botany Chemicals")
 
 /datum/design/l4z_nut
-	name = "10u Left 4 Zed"
+	name = "Left 4 Zed"
 	id = "l4z_nut"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 4)
-	make_reagents = list(/datum/reagent/plantnutriment/left4zednutriment = 10)
+	materials = list(/datum/material/biomass = 20)
+	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/l4z
 	category = list("initial","Botany Chemicals")
 
 /datum/design/rh_nut
-	name = "10u Robust Harvest"
+	name = "Robust Harvest"
 	id = "rh_nut"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 5)
-	make_reagents = list(/datum/reagent/plantnutriment/robustharvestnutriment = 10)
+	materials = list(/datum/material/biomass = 25)
+	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/rh
 	category = list("initial","Botany Chemicals")
 
 /datum/design/weed_killer
 	name = "Weed Killer"
 	id = "weed_killer"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 10)
-	make_reagents = list(/datum/reagent/toxin/plantbgone/weedkiller = 10)
+	materials = list(/datum/material/biomass = 50)
+	build_path = /obj/item/reagent_containers/glass/bottle/killer/weedkiller
 	category = list("initial","Botany Chemicals")
 
 /datum/design/pest_spray
 	name = "Pest Killer"
 	id = "pest_spray"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 10)
-	make_reagents = list(/datum/reagent/toxin/pestkiller = 10)
+	materials = list(/datum/material/biomass = 50)
+	build_path = /obj/item/reagent_containers/glass/bottle/killer/pestkiller
 	category = list("initial","Botany Chemicals")
 
 /datum/design/ammonia
@@ -109,13 +139,13 @@
 	make_reagents = list(/datum/reagent/saltpetre = 10)
 	category = list("initial","Botany Chemicals")
 
-/datum/design/empty_carton
-	name = "Small Empty Carton Box"
-	id = "empty_carton"
+/datum/design/botany_bottle
+	name = "Empty Bottle"
+	id = "botany_bottle"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 15)
-	build_path = /obj/item/reagent_containers/food/drinks/bottle/bio_carton
-	category = list("initial", "Organic Materials")
+	materials = list(/datum/material/biomass = 5)
+	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/empty
+	category = list("initial", "Botany Chemicals")
 
 /datum/design/cloth
 	name = "Roll of Cloth"

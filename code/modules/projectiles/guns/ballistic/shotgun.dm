@@ -41,12 +41,9 @@
 		to_chat(user, "<span class='warning'>You're too exhausted for that.</span>")//CIT CHANGE - ditto
 		return//CIT CHANGE - ditto
 	pump(user, TRUE)
-	if(HAS_TRAIT(user, TRAIT_FAST_PUMP))
-		recentpump = world.time + 2
-	else
-		recentpump = world.time + 10
-		if(istype(user))//CIT CHANGE - makes pumping shotguns cost a lil bit of stamina.
-			user.adjustStaminaLossBuffered(2) //CIT CHANGE - DITTO. make this scale inversely to the strength stat when stats/skills are added
+	recentpump = world.time + 10
+	if(istype(user))//CIT CHANGE - makes pumping shotguns cost a lil bit of stamina.
+		user.adjustStaminaLossBuffered(2) //CIT CHANGE - DITTO. make this scale inversely to the strength stat when stats/skills are added
 	return
 
 /obj/item/gun/ballistic/shotgun/blow_up(mob/user)
@@ -93,7 +90,7 @@
 	fire_delay = 7
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
 	sawn_desc = "Come with me if you want to live."
-	unique_reskin = list("Tactical" = "riotshotgun",
+	unique_reskin = list("Tatical" = "riotshotgun",
 						"Wood Stock" = "wood_riotshotgun"
 						)
 
@@ -215,7 +212,7 @@
 	fire_delay = 5
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
 	w_class = WEIGHT_CLASS_HUGE
-	unique_reskin = list("Tactical" = "cshotgun",
+	unique_reskin = list("Tatical" = "cshotgun",
 						"Slick" = "cshotgun_slick"
 						)
 

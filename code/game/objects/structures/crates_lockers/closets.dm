@@ -505,7 +505,7 @@
 /obj/structure/closet/container_resist(mob/living/user)
 	if(opened)
 		return
-	if(ismovable(loc))
+	if(ismovableatom(loc))
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
 		var/atom/movable/AM = loc

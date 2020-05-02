@@ -127,7 +127,7 @@
 	settableTemperatureRange = cap * 30
 	efficiency = (cap + 1) * 10000
 
-	targetTemperature = clamp(targetTemperature,
+	targetTemperature = CLAMP(targetTemperature,
 		max(settableTemperatureMedian - settableTemperatureRange, TCMB),
 		settableTemperatureMedian + settableTemperatureRange)
 
@@ -230,7 +230,7 @@
 				target= text2num(target) + T0C
 				. = TRUE
 			if(.)
-				targetTemperature = clamp(round(target),
+				targetTemperature = CLAMP(round(target),
 					max(settableTemperatureMedian - settableTemperatureRange, TCMB),
 					settableTemperatureMedian + settableTemperatureRange)
 		if("eject")

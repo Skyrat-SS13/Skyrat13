@@ -93,7 +93,7 @@
 	H.socks = random_socks(H.gender)
 	//H.eye_color = random_eye_color()
 	REMOVE_TRAIT(H, TRAIT_DISFIGURED, null) //
-	H.dna.features = random_features(H.dna.species?.id, H.gender)
+	H.dna.features = random_features(H.dna.species?.id)
 
 	// Apply Appearance
 	H.update_body(TRUE) // Outfit and underwear, also body and privates.

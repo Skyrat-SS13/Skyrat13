@@ -36,26 +36,38 @@
 	sprint_stamina_cost = CONFIG_GET(number/movedelay/sprint_stamina_cost)
 	return ..()
 
+/mob/living/movement_delay(ignorewalk = 0)
+	. = ..()
+	if(!CHECK_MOBILITY(src, MOBILITY_STAND))
+		. += 6
+
 /// whether or not we can slide under another living mob. defaults to if we're not dense. CanPass should check "overriding circumstances" like buckled mobs/having PASSMOB flag, etc.
 /mob/living/proc/can_move_under_living(mob/living/other)
 	return !density
 
 /mob/living/proc/update_move_intent_slowdown()
-	add_movespeed_modifier((m_intent == MOVE_INTENT_WALK)? /datum/movespeed_modifier/config_walk_run/walk : /datum/movespeed_modifier/config_walk_run/run)
+	var/mod = 0
+	if(m_intent == MOVE_INTENT_WALK)
+		mod = CONFIG_GET(number/movedelay/walk_delay)
+	else
+		mod = CONFIG_GET(number/movedelay/run_delay)
+	if(!isnum(mod))
+		mod = 1
+	add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, override = TRUE, multiplicative_slowdown = mod)
 
 /mob/living/proc/update_turf_movespeed(turf/open/T)
-	if(isopenturf(T))
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/turf_slowdown, multiplicative_slowdown = T.slowdown)
+	if(isopenturf(T) && !is_flying())
+		add_movespeed_modifier(MOVESPEED_ID_LIVING_TURF_SPEEDMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = T.slowdown)
 	else
-		remove_movespeed_modifier(/datum/movespeed_modifier/turf_slowdown)
+		remove_movespeed_modifier(MOVESPEED_ID_LIVING_TURF_SPEEDMOD)
 
 /mob/living/proc/update_pull_movespeed()
 	if(pulling && isliving(pulling))
 		var/mob/living/L = pulling
 		if(drag_slowdown && L.lying && !L.buckled && grab_state < GRAB_AGGRESSIVE)
-			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/bulky_drag, multiplicative_slowdown = PULL_PRONE_SLOWDOWN)
+			add_movespeed_modifier(MOVESPEED_ID_PRONE_DRAGGING, multiplicative_slowdown = PULL_PRONE_SLOWDOWN)
 			return
-	remove_movespeed_modifier(/datum/movespeed_modifier/bulky_drag)
+	remove_movespeed_modifier(MOVESPEED_ID_PRONE_DRAGGING)
 
 /mob/living/canZMove(dir, turf/target)
 	return can_zTravel(target, dir) && (movement_type & FLYING)

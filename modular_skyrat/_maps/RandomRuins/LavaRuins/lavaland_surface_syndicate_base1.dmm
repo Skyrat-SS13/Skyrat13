@@ -269,7 +269,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/indestructible/opshuttle,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "aH" = (
 /obj/machinery/door/firedoor,
@@ -6719,12 +6719,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
-"yL" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 10
-	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/lavaland/surface/outdoors)
 "ze" = (
 /obj/structure/table,
 /obj/item/disk/xenobio_console_upgrade/monkey,
@@ -6749,12 +6743,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/syndicate_lava_base/testlab)
-"Aq" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 10
-	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "Ay" = (
 /obj/machinery/porta_turret/syndicate{
@@ -6792,9 +6780,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
-"GW" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/lavaland/surface/outdoors)
 "He" = (
 /obj/machinery/vending/hydroseeds,
 /turf/open/floor/grass,
@@ -6918,7 +6903,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/indestructible/opshuttle,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "QZ" = (
 /obj/structure/grille,
@@ -7378,14 +7363,14 @@ aa
 aa
 ab
 ab
-Aq
-ae
-ae
-ae
-ae
-ae
-ae
-Aq
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+ap
 ab
 ab
 ab
@@ -7434,7 +7419,7 @@ aa
 aa
 ab
 ab
-ae
+ap
 wz
 uN
 Rz
@@ -7490,7 +7475,7 @@ aa
 aa
 ab
 ab
-ae
+ap
 aF
 aF
 aK
@@ -7546,7 +7531,7 @@ aa
 aa
 ab
 ab
-ae
+ap
 aF
 aF
 aJ
@@ -7602,7 +7587,7 @@ aa
 aa
 ab
 ab
-ae
+ap
 aF
 uN
 Rz
@@ -7658,7 +7643,7 @@ aa
 aa
 ab
 ab
-ae
+ap
 wz
 aF
 aK
@@ -7714,7 +7699,7 @@ aa
 ab
 ab
 ab
-ae
+ap
 aF
 aF
 aJ
@@ -7770,7 +7755,7 @@ aa
 ab
 ab
 ab
-ae
+ap
 aF
 uN
 Rz
@@ -7787,7 +7772,7 @@ aj
 eh
 eh
 eh
-aB
+eh
 ab
 ab
 ab
@@ -7826,7 +7811,7 @@ aa
 ab
 ab
 ab
-ae
+ap
 aF
 aF
 aK
@@ -7882,7 +7867,7 @@ aa
 ab
 ab
 ab
-ae
+ap
 wz
 aF
 aJ
@@ -7938,7 +7923,7 @@ aa
 ab
 ab
 ab
-ae
+ap
 aF
 uN
 Rz
@@ -7994,7 +7979,7 @@ aa
 ab
 ab
 ab
-ae
+ap
 aF
 aF
 aK
@@ -8050,7 +8035,7 @@ aa
 ab
 ab
 ab
-ae
+ap
 aF
 aF
 aJ
@@ -8106,7 +8091,7 @@ aa
 ab
 ab
 ab
-ae
+ap
 wz
 uN
 Rz
@@ -8162,7 +8147,7 @@ aa
 ab
 ab
 ab
-ae
+ap
 aF
 aF
 aK
@@ -8218,7 +8203,7 @@ aa
 ab
 ab
 ab
-ae
+ap
 aF
 aF
 aJ
@@ -8274,7 +8259,7 @@ aa
 ab
 ab
 ab
-ae
+ap
 aH
 aH
 ae
@@ -8328,9 +8313,9 @@ ab
 (24,1,1) = {"
 aa
 ab
-Aq
-ae
-ae
+ap
+ap
+ap
 wz
 aF
 sy
@@ -8384,7 +8369,7 @@ ab
 (25,1,1) = {"
 aa
 ab
-ae
+ap
 an
 nB
 Ae
@@ -8440,7 +8425,7 @@ ab
 (26,1,1) = {"
 aa
 ab
-ae
+ap
 ar
 oq
 UZ
@@ -8496,7 +8481,7 @@ ab
 (27,1,1) = {"
 aa
 ab
-ae
+ap
 au
 nB
 Sj
@@ -8552,7 +8537,7 @@ aa
 (28,1,1) = {"
 aa
 ab
-ae
+ap
 aE
 nB
 sa
@@ -8608,12 +8593,12 @@ aa
 (29,1,1) = {"
 aa
 ab
-ae
+ap
 ap
 ap
 aG
 co
-ae
+ap
 VU
 Wl
 NY
@@ -8664,12 +8649,12 @@ ab
 (30,1,1) = {"
 aa
 ab
-ae
+ap
 HG
 aZ
 aG
 aZ
-ae
+ap
 ae
 ae
 ae
@@ -8720,12 +8705,12 @@ ab
 (31,1,1) = {"
 aa
 ab
-ae
+ap
 bb
 PA
 qe
 aZ
-ae
+ap
 Sd
 as
 do
@@ -8776,12 +8761,12 @@ ab
 (32,1,1) = {"
 aa
 ab
-ae
+ap
 aZ
 OP
 QT
-ae
-ae
+ap
+ap
 as
 as
 du
@@ -8832,7 +8817,7 @@ ab
 (33,1,1) = {"
 aa
 ab
-ae
+ap
 ay
 aZ
 yp
@@ -8888,7 +8873,7 @@ ab
 (34,1,1) = {"
 aa
 ab
-ae
+ap
 aZ
 aZ
 SO
@@ -8944,7 +8929,7 @@ aa
 (35,1,1) = {"
 aa
 ab
-ae
+ap
 aZ
 aZ
 aZ
@@ -9000,11 +8985,11 @@ ab
 (36,1,1) = {"
 aa
 ab
-ae
+ap
 aZ
 aZ
 OP
-ae
+ap
 aq
 az
 as
@@ -9056,11 +9041,11 @@ aa
 (37,1,1) = {"
 aa
 ab
-Aq
-ae
-ae
-ae
-ae
+ap
+ap
+ap
+ap
+ap
 ab
 ab
 ac
@@ -9527,7 +9512,7 @@ ha
 ha
 ha
 ha
-ha
+hW
 ju
 jJ
 kl
@@ -9580,11 +9565,11 @@ ho
 hD
 dy
 dy
-GW
-yL
-GW
-GW
-yL
+ac
+ab
+ab
+ab
+ac
 jK
 ju
 km
@@ -9634,7 +9619,7 @@ gf
 dy
 eF
 eF
-aA
+dy
 ab
 ab
 ab

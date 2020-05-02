@@ -191,7 +191,7 @@
 	alert_type = /obj/screen/alert/status_effect/bloodchill
 
 /datum/status_effect/bloodchill/on_apply()
-	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/bloodchill)
+	owner.add_movespeed_modifier("bloodchilled", TRUE, 100, NONE, override = TRUE, multiplicative_slowdown = 3)
 	return ..()
 
 /datum/status_effect/bloodchill/tick()
@@ -199,7 +199,7 @@
 		owner.adjustFireLoss(2)
 
 /datum/status_effect/bloodchill/on_remove()
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/bloodchill)
+	owner.remove_movespeed_modifier("bloodchilled")
 	return ..()
 
 /obj/screen/alert/status_effect/bloodchill
@@ -213,7 +213,7 @@
 	alert_type = /obj/screen/alert/status_effect/bonechill
 
 /datum/status_effect/bonechill/on_apply()
-	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/bonechill)
+	owner.add_movespeed_modifier("bonechilled", TRUE, 100, NONE, override = TRUE, multiplicative_slowdown = 3)
 	return ..()
 
 /datum/status_effect/bonechill/tick()
@@ -223,7 +223,7 @@
 		owner.adjust_bodytemperature(-10)
 
 /datum/status_effect/bonechill/on_remove()
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/bonechill)
+	owner.remove_movespeed_modifier("bonechilled")
 	return ..()
 
 /obj/screen/alert/status_effect/bonechill
@@ -385,11 +385,11 @@ datum/status_effect/rebreathing/tick()
 	duration = 30
 
 /datum/status_effect/tarfoot/on_apply()
-	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/tarfoot)
+	owner.add_movespeed_modifier(MOVESPEED_ID_TARFOOT, update=TRUE, priority=100, multiplicative_slowdown=0.5, blacklisted_movetypes=(FLYING|FLOATING))
 	return ..()
 
 /datum/status_effect/tarfoot/on_remove()
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/tarfoot)
+	owner.remove_movespeed_modifier(MOVESPEED_ID_TARFOOT)
 	return ..()
 
 /datum/status_effect/spookcookie
@@ -624,9 +624,9 @@ datum/status_effect/stabilized/blue/on_remove()
 		O.extinguish() //All shamelessly copied from water's reaction_obj, since I didn't seem to be able to get it here for some reason.
 		O.acid_level = 0
 	// Monkey cube
-	if(istype(O, /obj/item/reagent_containers/food/snacks/cube))
+	if(istype(O, /obj/item/reagent_containers/food/snacks/monkeycube))
 		to_chat(owner, "<span class='warning'>[linked_extract] kept your hands wet! It makes [O] expand!</span>")
-		var/obj/item/reagent_containers/food/snacks/cube/cube = O
+		var/obj/item/reagent_containers/food/snacks/monkeycube/cube = O
 		cube.Expand()
 
 	// Dehydrated carp
@@ -707,15 +707,15 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/sepia/tick()
 	if(prob(50) && mod > -1)
 		mod--
-		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/status_effect/sepia, multiplicative_slowdown = 1)
+		owner.add_movespeed_modifier(MOVESPEED_ID_SEPIA, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 	else if(mod < 1)
 		mod++
 		// yeah a value of 0 does nothing but replacing the trait in place is cheaper than removing and adding repeatedly
-		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/status_effect/sepia, multiplicative_slowdown = 0)
+		owner.add_movespeed_modifier(MOVESPEED_ID_SEPIA, update=TRUE, priority=100, multiplicative_slowdown=0, blacklisted_movetypes=(FLYING|FLOATING))
 	return ..()
 
 /datum/status_effect/stabilized/sepia/on_remove()
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/sepia)
+	owner.remove_movespeed_modifier(MOVESPEED_ID_SEPIA)
 	return ..()
 
 /datum/status_effect/stabilized/cerulean
@@ -777,11 +777,11 @@ datum/status_effect/stabilized/blue/on_remove()
 	colour = "red"
 
 /datum/status_effect/stabilized/red/on_apply()
-	. = ..()
-	owner.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/equipment_speedmod)
+	owner.ignore_slowdown("slimestatus")
+	return ..()
 
 /datum/status_effect/stabilized/red/on_remove()
-	owner.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/equipment_speedmod)
+	owner.unignore_slowdown("slimestatus")
 	return ..()
 
 /datum/status_effect/stabilized/green

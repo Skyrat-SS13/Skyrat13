@@ -333,8 +333,7 @@
 				I.moveToNullspace()
 			else
 				I.forceMove(newloc)
-		if(I.dropped(src) == ITEM_RELOCATED_BY_DROPPED)
-			return FALSE
+		I.dropped(src)
 	return TRUE
 
 //Outdated but still in use apparently. This should at least be a human proc.

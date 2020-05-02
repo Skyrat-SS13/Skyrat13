@@ -361,7 +361,7 @@ SUBSYSTEM_DEF(vote)
 						picked = S
 					runnable_storytellers[S] *= round(stored_gamemode_votes[initial(S.name)]*100000,1)
 				if(!picked)
-					picked = pickweight(runnable_storytellers, 0)
+					picked = pickweightAllowZero(runnable_storytellers)
 				GLOB.dynamic_storyteller_type = picked
 			if("map")
 				var/datum/map_config/VM = config.maplist[.]
