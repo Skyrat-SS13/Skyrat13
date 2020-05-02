@@ -27,6 +27,10 @@
 			itembasedepth = rand(70,100)
 			itemsafedepth = rand(12,14)
 			itemactualdepth = rand(itembasedepth - itemsafedepth,itembasedepth)
+	..()
+
+/obj/item/strangerock/attackby(obj/item/W, mob/user, params)
+	if(istype(W,
 //
 
 /turf/closed/mineral/strange
