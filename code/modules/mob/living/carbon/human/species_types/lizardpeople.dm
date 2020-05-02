@@ -91,4 +91,9 @@
 	if((C.dna.features["spines"] != "None" ) && (C.dna.features["tail_lizard"] == "None")) //tbh, it's kinda ugly for them not to have a tail yet have floating spines
 		C.dna.features["tail_lizard"] = "Smooth"
 		C.update_body()
+	/*if(C.dna.features["legs"] != "digitigrade") //Skyrat change - comments this out cause im pretty sure this will bug them out either by update_body being called too soon or no capitalisation on the legs, and we've got a fix for this in modular_skyrat
+		C.dna.features["legs"] = "digitigrade"
+		for(var/obj/item/bodypart/leggie in C.bodyparts)
+			if(leggie.body_zone == BODY_ZONE_L_LEG || leggie.body_zone == BODY_ZONE_R_LEG)
+				leggie.update_limb(FALSE, C)*/
 	return ..()

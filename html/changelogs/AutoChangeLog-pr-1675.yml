@@ -1,0 +1,7 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Fixed some missing icon states."
+  - bugfix: "Fixed a peeve with cat ears."
+  - bugfix: "Fixed update_disabled() when a bodypart is attached, which caused paraplegic slimes to bypass their inability by removing and then regrowing their legs."
+  - bugfix: "Fixed monkys pickpocketing ranging outside of objects they are stored in."

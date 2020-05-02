@@ -6281,9 +6281,8 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	icon_state = "yellow"
-	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/engineering)
 "np" = (
 /obj/structure/cable/yellow{
@@ -6527,9 +6526,8 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	icon_state = "yellow"
-	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/engineering)
 "nR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -7157,9 +7155,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	icon_state = "redcorner"
-	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/secpost)
 "pn" = (
 /turf/open/floor/plating,

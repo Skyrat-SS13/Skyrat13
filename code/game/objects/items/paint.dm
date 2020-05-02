@@ -114,7 +114,7 @@
 	. = ..()
 	if(!proximity)
 		return
-	if(!(isturf(target) || isobj(target))) //Skyrat change
+	if(!isturf(target) && !isobj(target))
 		return
 	if(target.color != initial(target.color))
 		target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
