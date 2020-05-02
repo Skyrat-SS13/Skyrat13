@@ -101,6 +101,8 @@
 /obj/item/gun/ballistic/shotgun/doomed
 	name = "classic pump-action shotgun"
 	desc = "Shotguns can deliver a heavy punch at close range and a generous pelting from a distance. Not nearly as powerful as it's super variant."
+	icon = 'modular_skyrat/icons/obj/doom.dmi'
+	icon_state = "pumpshotgun"
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/structure/fermenting_barrel/doom
