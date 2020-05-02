@@ -10,21 +10,23 @@
 	var/dugdepth = null
 
 /obj/item/strangerock/Initialize()
-	..()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	var/randomnumber = rand(1,200)
+	switch(randomnumber)
+		if(1 to 159)
+			chosenitem = pick(GLOB.bas_artifact)
+			itembasedepth = rand(30,40)
+			itemsafedepth = rand(3,6)
+			itemactualdepth = rand(itembasedepth - itemsafedepth,itembasedepth)
+		if(160 to 199)
+			chosenitem = pick(GLOB.adv_artifact)
+			itembasedepth = rand(40,60)
+			itemsafedepth = rand(6,12)
+			itemactualdepth = rand(itembasedepth - itemsafedepth,itembasedepth)
+		if(200)
+			chosenitem = pick(GLOB.ult_artifact)
+			itembasedepth = rand(70,100)
+			itemsafedepth = rand(12,14)
+			itemactualdepth = rand(itembasedepth - itemsafedepth,itembasedepth)
 //
 
 /turf/closed/mineral/strange

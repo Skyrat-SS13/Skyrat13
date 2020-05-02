@@ -7,8 +7,7 @@ GLOBAL_LIST_INIT(bas_artifact,list(	/obj/item/kitchen/fork,
 									/obj/item/toy/seashell,
 									/obj/item/shield/riot/roman/fake,
 									/obj/item/trash/plate,
-									/obj/item/extendohand,
-
+									/obj/item/extendohand
 									))
 
 GLOBAL_LIST_INIT(adv_artifact,list(	/obj/item/shield/riot/roman,
