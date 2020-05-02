@@ -101,7 +101,8 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 
 /obj/item/organ/dwarfgland/on_life() //Primary loop to hook into to start delayed loops for other loops..
 	. = ..()
-	dwarf_cycle_ticker()
+	if(owner && owner.stat != DEAD)
+		dwarf_cycle_ticker()
 
 //Handles the delayed tick cycle by just adding on increments per each on_life() tick
 /obj/item/organ/dwarfgland/proc/dwarf_cycle_ticker()

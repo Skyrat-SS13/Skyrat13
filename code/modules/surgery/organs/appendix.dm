@@ -12,8 +12,8 @@
 	var/inflamed
 
 /obj/item/organ/appendix/on_life()
-	..()
-	if(!(organ_flags & ORGAN_FAILING))
+	. = ..()
+	if(. || !owner)
 		return
 	var/mob/living/carbon/M = owner
 	if(M)
