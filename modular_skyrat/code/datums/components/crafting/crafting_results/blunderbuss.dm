@@ -9,7 +9,7 @@
 	righthand_file = 'modular_skyrat/icons/mob/inhands/vg/vg_righthand.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/vg/vg_lefthand.dmi'
 	attack_verb = list("strikes", "hits", "bashes")
-	w_class = W_CLASS_BULKY
+	w_class = WEIGHT_CLASS_BULKY
 	var/obj/item/loaded_item
 	var/obj/item/reagent_containers/beaker/reservoir/boomtank  //shh just take it as a fuel reservoir
 	var/sound/firesound = 'sound/weapons/gunshot2.ogg'
@@ -28,25 +28,26 @@
 /obj/item/blunderbuss/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/R = I
-		if(/datum/reagent/fuel/L in R.reagents.reagent_list && boomtank)
+		if((/datum/reagent/fuel in R.reagents.reagent_list) && boomtank)
+			var/datum/reagent/fuel/L = locate(/datum/reagent/fuel) in R.reagents.reagent_list
 			R.reagents.trans_id_to(boomtank.reagents, L, L.volume)
-			to_chat(user, to_chat(user, "<span class='notice'>You transfer all of [R]'s possible fuel to \the [src].</span>")
+			to_chat(user, "<span class='notice'>You transfer all of [R]'s possible fuel to \the [src].</span>")
 		else
 			if(R.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
 				R.forceMove(src)
 				loaded_item = R
 			else if(loaded_item)
-				to_chat(user, to_chat(user, "<span class='warning'>[src] is already loaded!</span>")
+				to_chat(user, "<span class='warning'>[src] is already loaded!</span>")
 			else
-				to_chat(user, to_chat(user, "<span class='warning'>[R] is too bulky to be shot!</span>")
+				to_chat(user, "<span class='warning'>[R] is too bulky to be shot!</span>")
 	else
 		if(I.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
-				I.forceMove(src)
-				loaded_item = I
+			I.forceMove(src)
+			loaded_item = I
 		else if(loaded_item)
-			to_chat(user, to_chat(user, "<span class='warning'>[src] is already loaded!</span>")
+			to_chat(user, "<span class='warning'>[src] is already loaded!</span>")
 		else
-			to_chat(user, to_chat(user, "<span class='warning'>[I] is too bulky to be shot!</span>")
+			to_chat(user, "<span class='warning'>[I] is too bulky to be shot!</span>")
 
 /obj/item/blunderbuss/examine(mob/user)
 	. = ..()
@@ -56,12 +57,12 @@
 /obj/item/blunderbuss/attack_self(mob/user)
 	. = ..()
 	if(loaded_item)
-		to_chat(user, to_chat(user, "<span class='notice'>You pull [loaded_item] out of \the [src].</span>")
+		to_chat(user, "<span class='notice'>You pull [loaded_item] out of \the [src].</span>")
 		loaded_item.forceMove(user.loc)
 		loaded_item = null
 	else if(!loaded_item && boomtank.reagents.total_volume)
-		to_chat(user, to_chat(user, "<span class='notice'>You empty \the [src]'s fuel reservoir.</span>")
-		R.reagents.remove_all(R.reagents.total_volume)
+		to_chat(user, "<span class='notice'>You empty \the [src]'s fuel reservoir.</span>")
+		boomtank.reagents.remove_all(boomtank.reagents.total_volume)
 
 /obj/item/blunderbuss/proc/explode(mob/user)
 	if(!flawless)
@@ -78,13 +79,12 @@
 	var/x_o = (target.x - starting.x)
 	var/y_o = (target.y - starting.y)
 	var/range_multiplier = 1
-	switch(boomtank.reagents.total_volume)
-		if(<=10)
-			range_multiplier *= 1
-		if(>10 && <=20)
-			range_multiplier *= 2
-		if(>20)
-			range_multiplier *= 3
+	if(boomtank.reagents.total_volume<=10)
+		range_multiplier *= 1
+	if(boomtank.reagents.total_volume>10 && boomtank.reagents.total_volume<=20)
+		range_multiplier *= 2
+	if(boomtank.reagents.total_volume>20)
+		range_multiplier *= 3
 	var/xlimiter = range_multiplier * 7
 	var/ylimiter = range_multiplier * 7
 	if(x_o > xlimiter)
@@ -103,13 +103,12 @@
 /obj/item/blunderbuss/proc/get_fucked(var/i = 0)
 	if(!i)
 		return FALSE
-	switch(i)
-		if(<=10)
-			return 0
-		if(>10 && <=20)
-			return 1
-		if(>20)
-			return 2
+	if(i<=10)
+		return 0
+	if(i>10 && i<=20)
+		return 1
+	if(i>20)
+		return 2
 
 /obj/item/blunderbuss/afterattack(atom/target, mob/living/user, proximity)
 	. = ..()
@@ -130,7 +129,7 @@
 	if(boomtank && (boomtank.reagents.total_volume < 10))
 		to_chat(user, "<span class='warning'>\The [src] lets out a weak hiss and doesn't fire!</span>")
 		return
-	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(75) && clumsyCheck && iscarbon(user))
+	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(75) && iscarbon(user))
 		var/mob/living/carbon/C = user
 		C.visible_message("<span class='warning'>[C] loses [C.p_their()] grip on [src], causing it to go off!</span>", "<span class='userdanger'>[src] slips out of your hands and goes off!</span>")
 		C.dropItemToGround(src, TRUE)
@@ -150,26 +149,26 @@
 	fire_items(T, user, howfucked)
 
 /obj/item/blunderbuss/proc/fire_items(turf/target, mob/user, var/howfucked = 0)
-	if(!loaded_item || (R.reagents.total_volume < 10))
-		break
-	R.reagents.remove_all(R.reagents.total_volume)
+	if(!loaded_item || (boomtank.reagents.total_volume < 10))
+		return
+	boomtank.reagents.remove_all(boomtank.reagents.total_volume)
 	var/obj/item/I
 	I = loaded_item
 	if(!throw_item(target, I, user))
-		break
+		return
 	var/chancetogetfucked = 0
 	switch(howfucked)
 		if(1)
 			chancetogetfucked = 15
 		if(2)
-			changetogetfucked = 30
+			chancetogetfucked = 30
 	if(prob(chancetogetfucked))
 		explode(user)
 
 /obj/item/blunderbuss/proc/throw_item(turf/target, obj/item/I, mob/user)
 	if(!istype(I))
 		return FALSE
-	loaded_item = nul
+	loaded_item = null
 	I.forceMove(get_turf(src))
 	I.throw_at(target, 21, 4, user)
 	return TRUE

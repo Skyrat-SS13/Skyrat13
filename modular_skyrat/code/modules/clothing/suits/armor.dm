@@ -30,7 +30,7 @@
 	name = "makeshift armor"
 	desc = "A hazard vest with metal plate taped on it. It offers minor protection at the cost of speed."
 	icon = 'modular_skyrat/icons/obj/clothing/shitarmor.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/armor.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/shitarmor.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/shitarmor.dmi'
 	icon_state = "makeshiftarmor-worn"
 	item_state = "makeshiftarmor"
