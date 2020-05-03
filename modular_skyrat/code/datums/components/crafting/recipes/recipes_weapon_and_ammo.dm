@@ -5,9 +5,8 @@
 	name = "Makeshift glass hatchet"
 	result = /obj/item/hatchet/improvised
 	parts = list(/obj/item/shard = 1)
-	reqs = list(/obj/item/stack/wrapping_paper = 4,
-				/obj/item/wrench = 1)
-	time = 40
+	reqs = list(/obj/item/wrench_wired = 1)
+	time = 60
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -41,7 +40,7 @@
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/trayshield
-	name = "tray shield"
+	name = "Tray shield"
 	result =  /obj/item/shield/riot/trayshield
 	reqs = list(/obj/item/stack/sheet/metal = 1,
 				/obj/item/storage/bag/tray = 1,
@@ -51,7 +50,7 @@
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/shank
-	name = "shank"
+	name = "Shank"
 	result =  /obj/item/shard/shank
 	parts = list(/obj/item/shard = 1)
 	reqs = list(/obj/item/stack/cable_coil = 1,
@@ -65,7 +64,7 @@
 //////////////////
 
 /datum/crafting_recipe/pipepistol
-	name = "Pipe Pistol(10mm)"
+	name = "Pipe Pistol (10mm)"
 	result = /obj/item/gun/ballistic/automatic/pistol/makeshift
 	reqs = list(/obj/item/weaponcrafting/receiver = 1,
 				/obj/item/pipe = 2,
@@ -113,28 +112,28 @@
 				/obj/item/stock_parts/cell/high/plus/argent = 1,
 				/obj/item/stock_parts/capacitor = 4,
 				/obj/item/stock_parts/micro_laser = 1)
-	time = 500
+	time = 400
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/makeshiftlasrifle
-	name = "makeshift laser rifle"
+	name = "Makeshift laser rifle"
 	result = /obj/item/gun/energy/laser/makeshiftlasrifle
-	reqs = list(/obj/item/stack/cable_coil = 30,
-				/obj/item/weaponcrafting/stock = 1,
-				/obj/item/pipe = 1,
-				/obj/item/stack/sheet/mineral/diamond = 3,
-				/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/stock_parts/micro_laser = 1,
-				/obj/item/stock_parts/capacitor = 4,
+	reqs = list(/obj/item/stack/cable_coil = 30,\
+				/obj/item/weaponcrafting/stock = 1,\
+				/obj/item/pipe = 1,\
+				/obj/item/stack/sheet/mineral/diamond = 3,\
+				/obj/item/weaponcrafting/receiver = 1,\
+				/obj/item/stock_parts/micro_laser = 1,\
+				/obj/item/stock_parts/capacitor = 2,\
 				/obj/item/assembly/igniter = 1)
 	parts = list(/obj/item/stock_parts/cell = 1)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH)
-	time = 250
+	time = 200
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/lasermusket
-	name = "laser musket"
+	name = "Laser musket"
 	result = /obj/item/gun/energy/pumpaction/musket
 	reqs = list(/obj/item/stack/cable_coil = 30,
 				/obj/item/weaponcrafting/stock = 1,
@@ -158,7 +157,7 @@
 //////////////////
 
 /datum/crafting_recipe/makeshiftmagazine
-	name = "makeshift pistol magazine (10mm)"
+	name = "Makeshift pistol magazine (10mm)"
 	result = /obj/item/ammo_box/magazine/m10mm/makeshift
 	reqs = list(/obj/item/pipe = 1,
 				/obj/item/stack/sheet/metal = 2,
@@ -300,6 +299,17 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/sword
+	name = "Makeshift sword"
+	result = /obj/item/melee/sword
+	reqs = list(/obj/item/stack/cable_coil = 5,\
+				/obj/item/stack/wrapping_paper = 5,\
+				/obj/item/metal_blade = 2)
+	tools = list(TOOL_WELDER)
+	time = 20
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/rails
 	name = "Metal rails"
 	result = /obj/item/rail_assembly
@@ -309,7 +319,7 @@
 	time = 50
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
+/* I don't think porting the revialver is worth it
 /datum/crafting_recipe/beakercylinder
 	name = "Beaker cylinder"
 	result = /obj/item/cylinder
@@ -318,7 +328,7 @@
 	time = 20
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
+*/
 /datum/crafting_recipe/assemblygeneral
 	name = "General gun assembly"
 	result = /obj/item/gun_assembly/stock_reservoir_assembly
@@ -349,7 +359,7 @@
 				/obj/item/stock_parts/capacitor = 4,\
 				/obj/item/assembly/igniter = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
-	time = 150
+	time = 200
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -368,17 +378,18 @@
 	result = /obj/item/blunderbuss
 	reqs = list(/obj/item/gun_assembly/stock_reservoir_barrel_assembly = 1,\
 				/obj/item/assembly/igniter = 1)
-	tools = list(TOOL_WRENCH)
-	time = 30
+	tools = list(TOOL_WRENCH, TOOL_SCREWDRIVER)
+	time = 50
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/wiredwrench
 	name = "Wired wrench"
 	result = /obj/item/wrench_wired
-	reqs = list(/obj/item/stack/cable_coil = 5)
+	reqs = list(/obj/item/stack/cable_coil = 10,\
+				/obj/item/wrench = 1)
 	tools = list(NONE)
-	time = 100
+	time = 30
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 

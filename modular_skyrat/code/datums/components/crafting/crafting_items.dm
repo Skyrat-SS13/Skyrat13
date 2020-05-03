@@ -90,11 +90,6 @@
 	icon_state = "railgun_assembly"
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/gun_assembly/revialver_assembly
-	name = "revialver assembly"
-	desc = "A makeshift single-action revolver. It doesn't seem to have a cylinder loaded into it."
-	icon_state = "revialver_assembly"
-
 /obj/item/gun_assembly/stock_pipe_assembly
 	name = "pipe gun assembly"
 	desc = "A metal gun stock. There is a bent pipe tightly fitted to it."

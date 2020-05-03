@@ -81,18 +81,8 @@
 		range_multiplier *= 2
 	if(boomtank.reagents.total_volume>20)
 		range_multiplier *= 3
-	var/xlimiter = 3 * 7
-	var/ylimiter = 3 * 7
-	if(x_o > xlimiter)
-		x_o = xlimiter
-	if(x_o < -xlimiter)
-		x_o = -xlimiter
-	if(y_o > ylimiter)
-		y_o = ylimiter
-	if(y_o < -ylimiter)
-		y_o = -ylimiter
-	var/new_x = clamp((starting.x + max((x_o * range_multiplier), xlimiter)), 0, world.maxx)
-	var/new_y = clamp((starting.y + max((y_o * range_multiplier), ylimiter)), 0, world.maxy)
+	var/new_x = clamp(starting.x + (x_o * range_multiplier), 0, world.maxx)
+	var/new_y = clamp(starting.y + (y_o * range_multiplier), 0, world.maxy)
 	var/turf/newtarget = locate(new_x, new_y, starting.z)
 	return newtarget
 
@@ -142,7 +132,7 @@
 	boomtank.reagents.remove_all(boomtank.reagents.total_volume)
 	var/obj/item/I
 	I = loaded_item
-	if(!throw_item(target, I))
+	if(!throw_item(target, I, howfucked))
 		return
 	var/chancetogetfucked = 0
 	switch(howfucked)
@@ -153,10 +143,10 @@
 	if(prob(chancetogetfucked))
 		explode()
 
-/obj/vehicle/ridden/wheelchair/wheelchair_assembly/cannon/proc/throw_item(turf/target, obj/item/I)
+/obj/vehicle/ridden/wheelchair/wheelchair_assembly/cannon/proc/throw_item(turf/target, obj/item/I, var/range_multiplier)
 	if(!istype(I))
 		return FALSE
 	loaded_item = null
 	I.forceMove(get_turf(src))
-	I.throw_at(target, 30, 5, src)
+	I.throw_at(target, 7 * (range_multiplier + 1), 4, src)
 	return TRUE
