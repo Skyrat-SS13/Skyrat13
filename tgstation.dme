@@ -3571,6 +3571,7 @@
 #include "modular_skyrat\code\modules\clothing\under\jobs\Plasmaman\medsci.dm"
 #include "modular_skyrat\code\modules\clothing\under\jobs\Plasmaman\security.dm"
 #include "modular_skyrat\code\modules\custom_loadout\custom_items.dm"
+#include "modular_skyrat\code\modules\emoji\emoji_modular.dm"
 #include "modular_skyrat\code\modules\events\alien_infestation.dm"
 #include "modular_skyrat\code\modules\events\anomaly_flux.dm"
 #include "modular_skyrat\code\modules\events\anomaly_grav.dm"
