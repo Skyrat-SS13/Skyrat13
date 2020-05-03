@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "Makes privates not drop upon disembowelment or gibbing."
