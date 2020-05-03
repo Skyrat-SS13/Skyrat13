@@ -13,6 +13,10 @@
 	hitsound = 'modular_skyrat/sound/weapons/bloodyslice.ogg'
 	var/obj/item/reagent_containers/hypospray/poison
 
+/obj/item/melee/sword/Initialize()
+	..()
+	AddElement(/datum/element/sword_point)
+
 /obj/item/melee/sword/afterattack(atom/target, mob/user, proximity)
 	if(proximity && isliving(target))
 		var/mob/living/victim = target
