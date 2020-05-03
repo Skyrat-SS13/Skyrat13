@@ -11,3 +11,9 @@
 /area/blueshield
 	name = "Blueshield's Office"
 	icon_state = "bluenew"
+
+/area/antidorm
+	name = "Dormitory"
+	icon_state = "Sleep"
+	power_equip = FALSE
+	blob_allowed = FALSE

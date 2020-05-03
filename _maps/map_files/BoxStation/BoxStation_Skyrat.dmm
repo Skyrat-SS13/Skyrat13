@@ -7950,7 +7950,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "apZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -7964,7 +7964,7 @@
 "aqa" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aqb" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/blue,
@@ -8097,11 +8097,11 @@
 	},
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aqo" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aqp" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/fire/firefighter,
@@ -8470,7 +8470,7 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "arj" = (
 /turf/closed/wall,
 /area/crew_quarters/fitness)
@@ -8479,7 +8479,7 @@
 	pixel_y = 23
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "arl" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -8957,7 +8957,7 @@
 	},
 /obj/structure/dresser,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "asl" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -8970,7 +8970,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "asn" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/landmark/start/lawyer,
@@ -9060,14 +9060,14 @@
 /obj/structure/bed,
 /obj/item/bedsheet/random,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "asu" = (
 /obj/machinery/light/small{
 	dir = 4;
 	light_color = "#d8b1b1"
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "asv" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -9199,7 +9199,7 @@
 	pixel_x = -23
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "asO" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -9316,13 +9316,13 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "atf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "atg" = (
 /obj/machinery/door/airlock{
 	id_tag = "Dorm4";
@@ -9338,7 +9338,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "ati" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -9377,7 +9377,7 @@
 /area/security/prison)
 "atm" = (
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "atn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -9763,7 +9763,7 @@
 	specialfunctions = 4
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aus" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -9779,7 +9779,7 @@
 	pixel_y = -29
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "auu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -9792,7 +9792,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "auw" = (
 /obj/structure/bed,
 /obj/machinery/airalarm{
@@ -9810,7 +9810,7 @@
 	},
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aux" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -11738,7 +11738,7 @@
 	},
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "ayW" = (
 /turf/closed/wall,
 /area/ai_monitored/storage/eva)
@@ -15570,7 +15570,7 @@
 	dir = 10
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aHx" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -28183,7 +28183,7 @@
 	dir = 10
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "blV" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -56597,7 +56597,7 @@
 /area/maintenance/fore/secondary)
 "eQb" = (
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "eRh" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -56617,7 +56617,7 @@
 "eSe" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "eSH" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating,
@@ -57425,7 +57425,7 @@
 	},
 /obj/structure/curtain,
 /turf/open/floor/mineral/titanium/blue,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "gAf" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -59254,7 +59254,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "knx" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Access"
@@ -59421,7 +59421,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "kAH" = (
 /obj/machinery/camera{
 	c_tag = "Bar West";
@@ -59869,7 +59869,7 @@
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "lVq" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -60211,7 +60211,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "mPr" = (
 /obj/structure/rack,
 /obj/item/tank/internals/emergency_oxygen,
@@ -61059,7 +61059,7 @@
 	pixel_y = -6
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "oBB" = (
 /obj/effect/landmark/start/paramedic,
 /turf/open/floor/plasteel/white,
@@ -61114,7 +61114,7 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "oKh" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -61327,7 +61327,7 @@
 /area/library)
 "pgf" = (
 /turf/open/floor/mineral/titanium/blue,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "pgn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -61975,7 +61975,7 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "qNZ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -63156,7 +63156,7 @@
 	},
 /obj/item/soap,
 /turf/open/floor/mineral/titanium/blue,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "tAC" = (
 /obj/structure/closet/athletic_mixed,
 /obj/item/toy/poolnoodle/red,
@@ -65342,7 +65342,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "xPY" = (
 /obj/structure/table/wood,
 /obj/machinery/light{
