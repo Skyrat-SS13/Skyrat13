@@ -2,6 +2,7 @@
 //The pod handles the actual cloning while the computer manages the clone profiles
 
 //Potential replacement for genetics revives or something I dunno (?)
+
 #define CLONE_INITIAL_DAMAGE     150    //Clones in clonepods start with 150 cloneloss damage and 150 brainloss damage, thats just logical
 #define MINIMUM_HEAL_LEVEL 20
 
@@ -36,6 +37,8 @@
 
 	var/list/unattached_flesh
 	var/flesh_number = 0
+	var/biomass = 0
+	var/max_biomass = 1000
 
 /obj/machinery/clonepod/Initialize()
 	. = ..()
@@ -135,6 +138,8 @@
 		return FALSE
 	if(mess || attempting)
 		return FALSE
+	if(biomass < 300)
+		return FALSE
 	clonemind = locate(mindref) in SSticker.minds
 	if(!istype(clonemind))	//not a mind
 		return FALSE
@@ -161,6 +166,10 @@
 		update_icon()
 		return FALSE
 
+	if(biomass >= 300)
+		biomass -= 300
+	else
+		return FALSE
 	attempting = TRUE //One at a time!!
 	countdown.start()
 
@@ -212,7 +221,21 @@
 	attempting = FALSE
 	return TRUE
 
-//Grow clones to maturity then kick them out.  FREELOADERS
+/obj/machinery/clonepod/proc/succ()
+	. = FALSE
+	if(/obj/item/reagent_containers/food/snacks/meat/slab in view(src, 1))
+		playsound(src, 'modular_skyrat/sound/effects/vacuumcleaner.ogg', 50, 0)
+		. = TRUE
+	for(var/obj/item/reagent_containers/food/snacks/meat/slab/meatball in view(src, 1))
+		if(istype(meatball, /obj/item/reagent_containers/food/snacks/meat/slab/biomeat))
+			biomass += 100
+		else
+			biomass += 50
+		if(biomass > max_biomass)
+			biomass = max_biomass
+		qdel(meatball)
+
+//Grow clones to maturity then kick them out.  FREELOADERS.
 /obj/machinery/clonepod/process()
 	var/mob/living/mob_occupant = occupant
 
@@ -499,8 +522,8 @@
 /obj/machinery/clonepod/update_overlays()
 	. = ..()
 	if(mess)
-		var/mutable_appearance/gib1 = mutable_appearance(CRYOMOBS, "gibup")
-		var/mutable_appearance/gib2 = mutable_appearance(CRYOMOBS, "gibdown")
+		var/mutable_appearance/gib1 = mutable_appearance('icons/obj/cryo_mobs.dmi', "gibup")
+		var/mutable_appearance/gib2 = mutable_appearance('icons/obj/cryo_mobs.dmi', "gibdown")
 		gib1.pixel_y = 27 + round(sin(world.time) * 3)
 		gib1.pixel_x = round(sin(world.time * 3))
 		gib2.pixel_y = 27 + round(cos(world.time) * 3)
@@ -516,7 +539,7 @@
 			occupant_overlay.copy_overlays(occupant)
 			. += "cover-on"
 		else
-			occupant_overlay = mutable_appearance(CRYOMOBS, "clone_meat")
+			occupant_overlay = mutable_appearance('icons/obj/cryo_mobs.dmi', "clone_meat")
 			var/matrix/tform = matrix()
 			tform.Scale(completion)
 			tform.Turn(cos(world.time * 2) * 3)
