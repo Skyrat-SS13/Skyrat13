@@ -3421,6 +3421,7 @@
 #include "modular_skyrat\code\datums\weather\weather_types\snow_storm.dm"
 #include "modular_skyrat\code\game\world.dm"
 #include "modular_skyrat\code\game\area\areas.dm"
+#include "modular_skyrat\code\game\area\lavalandelevator.dm"
 #include "modular_skyrat\code\game\area\Space_Station_13_areas.dm"
 #include "modular_skyrat\code\game\area\areas\mining.dm"
 #include "modular_skyrat\code\game\area\areas\ruins\lavaland.dm"
