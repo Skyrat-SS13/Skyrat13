@@ -1,7 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Masquarade now stops jittering."
-  - tweak: "Bloodsuckers wont jitter from bloodloss while unconcious anymore."
-  - bugfix: "Torpor should work more consitently and only wake you up, not when you would instantly die."
-  - tweak: "Bloodsuckers now have slight burn regeneration while unconcious."
