@@ -1,0 +1,5 @@
+author: "Anonymous"
+delete-after: True
+changes: 
+  - code_imp: "Modularizes most for emoji.dmi. Everything is almost the same."
+  - imageadd: "Emojis: Changes plushizzard and plushop, adds +9 emojis (incl. plushlime, plushox, eyes)."
