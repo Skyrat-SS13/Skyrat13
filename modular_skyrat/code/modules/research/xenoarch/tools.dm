@@ -126,10 +126,10 @@
 
 /obj/structure/closet/wardrobe/xenoarch
 	name = "science wardrobe"
-	icon_door = "white"
+	icon_state = "science"
+	icon_door = "science"
 
-/obj/structure/closet/wardrobe/xenoarch
-/PopulateContents()
+/obj/structure/closet/wardrobe/xenoarch/PopulateContents()
 	new /obj/item/xenoarch/help/measuring(src)
 	new /obj/item/xenoarch/help/scanner(src)
 	new /obj/item/xenoarch/clean/brush(src)

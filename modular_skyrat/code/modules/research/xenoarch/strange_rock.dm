@@ -11,6 +11,8 @@
 	var/itemactualdepth = null
 	var/dugdepth = null
 
+	var/tryagain = null
+
 /obj/item/strangerock/Initialize()
 	var/randomnumber = rand(1,200)
 	switch(randomnumber)
@@ -33,6 +35,10 @@
 
 /obj/item/strangerock/attackby(obj/item/W, mob/user, params)
 	if(istype(W,/obj/item/xenoarch/clean/hammer/cm1))
+		if(tryagain)
+			to_chat(user,"You are already mining this.")
+			return
+		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm1/HM = W
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
@@ -42,7 +48,12 @@
 			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
 			qdel(src)
 			return
+		tryagain = FALSE
 	if(istype(W,/obj/item/xenoarch/clean/hammer/cm2))
+		if(tryagain)
+			to_chat(user,"You are already mining this.")
+			return
+		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm2/HM = W
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
@@ -52,7 +63,12 @@
 			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
 			qdel(src)
 			return
+		tryagain = FALSE
 	if(istype(W,/obj/item/xenoarch/clean/hammer/cm3))
+		if(tryagain)
+			to_chat(user,"You are already mining this.")
+			return
+		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm3/HM = W
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
@@ -62,7 +78,12 @@
 			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
 			qdel(src)
 			return
+		tryagain = FALSE
 	if(istype(W,/obj/item/xenoarch/clean/hammer/cm4))
+		if(tryagain)
+			to_chat(user,"You are already mining this.")
+			return
+		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm4/HM = W
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
@@ -72,7 +93,12 @@
 			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
 			qdel(src)
 			return
+		tryagain = FALSE
 	if(istype(W,/obj/item/xenoarch/clean/hammer/cm5))
+		if(tryagain)
+			to_chat(user,"You are already mining this.")
+			return
+		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm5/HM = W
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
@@ -82,7 +108,12 @@
 			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
 			qdel(src)
 			return
+		tryagain = FALSE
 	if(istype(W,/obj/item/xenoarch/clean/hammer/cm6))
+		if(tryagain)
+			to_chat(user,"You are already mining this.")
+			return
+		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm6/HM = W
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
@@ -92,7 +123,12 @@
 			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
 			qdel(src)
 			return
+		tryagain = FALSE
 	if(istype(W,/obj/item/xenoarch/clean/hammer/cm15))
+		if(tryagain)
+			to_chat(user,"You are already mining this.")
+			return
+		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm15/HM = W
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
@@ -102,13 +138,19 @@
 			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
 			qdel(src)
 			return
+		tryagain = FALSE
 	if(istype(W,/obj/item/xenoarch/clean/brush))
+		if(tryagain)
+			to_chat(user,"You are already mining this.")
+			return
+		tryagain = TRUE
 		if(!do_after(user,50,target = src))
 			to_chat(user,"You must stand still to clean.")
 			return
 		if(dugdepth < itemactualdepth)
 			dugdepth++
 			to_chat(user,"You brush away 1cm of debris.")
+			tryagain = FALSE
 			return
 		if(dugdepth > itemactualdepth)
 			to_chat(user,"You somehow managed to destroy a strange rock with a brush... good job?")
