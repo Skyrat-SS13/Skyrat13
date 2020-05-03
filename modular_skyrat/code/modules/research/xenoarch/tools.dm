@@ -53,10 +53,14 @@
 	icon_state = "pick_hand"
 	cleandepth = 15
 
+//
+
 /obj/item/xenoarch/clean/brush
 	name = "mining brush"
 	desc = "cleans off the remaining debris."
 	icon_state = "pick_brush"
+
+//
 
 /obj/item/xenoarch/help/scanner
 	name = "mining scanner"
@@ -72,3 +76,76 @@
 	name = "measuring tape"
 	desc = "measures how far a rock has been dug into."
 	icon_state = "measuring"
+
+/obj/item/xenoarch/help/research
+	name = "research analyzer"
+	desc = "deconstructs artifacts for research."
+	icon_state = "researchscanner"
+
+//
+
+/obj/item/storage/belt/xenoarch
+	name = "xenoarchaeologist belt"
+	desc = "used to store your tools for xenoarchaeology."
+	icon = 'modular_skyrat/code/modules/research/xenoarch/tools.dmi'
+	icon_state = "miningbelt"
+
+/obj/item/storage/belt/xenoarch/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	var/static/list/can_hold = typecacheof(list(
+		/obj/item/xenoarch/help,
+		/obj/item/xenoarch/clean,
+		/obj/item/mining_scanner,
+		/obj/item/pickaxe,
+		/obj/item/t_scanner/adv_mining_scanner,
+		/obj/item/gps,
+		/obj/item/xenoarch/help/research
+		))
+	STR.can_hold = can_hold
+	STR.max_items = 14
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.max_combined_w_class = 200
+
+/obj/item/storage/belt/xenoarch/full/PopulateContents()
+	new /obj/item/xenoarch/help/measuring(src)
+	new /obj/item/xenoarch/help/scanner(src)
+	new /obj/item/xenoarch/clean/brush(src)
+	new /obj/item/xenoarch/clean/hammer/cm15(src)
+	new /obj/item/xenoarch/clean/hammer/cm6(src)
+	new /obj/item/xenoarch/clean/hammer/cm5(src)
+	new /obj/item/xenoarch/clean/hammer/cm4(src)
+	new /obj/item/xenoarch/clean/hammer/cm3(src)
+	new /obj/item/xenoarch/clean/hammer/cm2(src)
+	new /obj/item/xenoarch/clean/hammer/cm1(src)
+	new /obj/item/pickaxe(src)
+	new /obj/item/t_scanner/adv_mining_scanner/lesser(src)
+	new /obj/item/gps(src)
+	new /obj/item/xenoarch/help/research(src)
+	return
+
+/obj/structure/closet/wardrobe/xenoarch
+	name = "science wardrobe"
+	icon_door = "white"
+
+/obj/structure/closet/wardrobe/xenoarch
+/PopulateContents()
+	new /obj/item/xenoarch/help/measuring(src)
+	new /obj/item/xenoarch/help/scanner(src)
+	new /obj/item/xenoarch/clean/brush(src)
+	new /obj/item/xenoarch/clean/hammer/cm15(src)
+	new /obj/item/xenoarch/clean/hammer/cm6(src)
+	new /obj/item/xenoarch/clean/hammer/cm5(src)
+	new /obj/item/xenoarch/clean/hammer/cm4(src)
+	new /obj/item/xenoarch/clean/hammer/cm3(src)
+	new /obj/item/xenoarch/clean/hammer/cm2(src)
+	new /obj/item/xenoarch/clean/hammer/cm1(src)
+	new /obj/item/pickaxe(src)
+	new /obj/item/t_scanner/adv_mining_scanner/lesser(src)
+	new /obj/item/gps(src)
+	new /obj/item/xenoarch/help/research(src)
+	new /obj/item/storage/belt/xenoarch(src)
+	return
+
+//
+
