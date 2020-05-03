@@ -1,5 +1,5 @@
 #define AUTOCLONING_MINIMAL_LEVEL 4
-/* moved to modular_skyrat
+
 /obj/machinery/computer/cloning
 	name = "cloning console"
 	desc = "Used to clone people and manage DNA."
@@ -166,7 +166,9 @@
 		dat += "<span class='linkOff'>Autoclone</span>"
 	dat += "<h3>Cloning Pod Status</h3>"
 	dat += "<div class='statusDisplay'>[temp]&nbsp;</div>"
-
+	if(pod)
+		dat += "<br><div class='statusDisplay'><b>Pod Biomass:</b> [pod.biomass]/[pod.max_biomass]</div>"
+		dat += "<a href='byond://?src=[REF(src)];task=succ'>Biomass</a>"
 	switch(src.menu)
 		if(1)
 			// Modules
@@ -266,7 +268,6 @@
 			dat += "<b><a href='byond://?src=[REF(src)];del_rec=1'>Scan card to confirm.</a></b><br>"
 			dat += "<b><a href='byond://?src=[REF(src)];menu=3'>Cancel</a></b>"
 
-
 	var/datum/browser/popup = new(user, "cloning", "Cloning System Control")
 	popup.set_content(dat)
 	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
@@ -290,6 +291,9 @@
 				autoprocess = FALSE
 				STOP_PROCESSING(SSmachines, src)
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+			if("succ")
+				for(var/obj/machinery/clonepod/pod  in pods)
+					pod.succ()
 
 	else if ((href_list["scan"]) && !isnull(scanner) && scanner.is_operational())
 		scantemp = ""
@@ -412,6 +416,9 @@
 			else if(!CONFIG_GET(flag/revival_cloning))
 				temp = "<font class='bad'>Unable to initiate cloning cycle.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+			else if(pod.biomass < 300) //Bobmed addition - cloners take biomass.
+				temp = "<font class='bad'>Biomass insufficient.</font>"
+				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			else if(pod.occupant)
 				temp = "<font class='bad'>Cloning cycle already in progress.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
@@ -512,4 +519,3 @@
 	board.records = records
 	scantemp = "Subject successfully scanned."
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-*/
