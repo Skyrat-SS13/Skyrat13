@@ -140,7 +140,7 @@ GLOBAL_VAR_INIT(dynamic_forced_storyteller, null)
 
 /datum/game_mode/dynamic/New() // i have NO IDEA if this is the proper way to do this.
 	..()
-	added_threat = CONFIG_GET(number/added_threat)
+	added_threat = CONFIG_GET(number/added_threat) // Skyrat change
 	pop_per_requirement = CONFIG_GET(number/dynamic_pop_per_requirement)
 	second_rule_req = CONFIG_GET(number_list/dynamic_second_rule_requirements)
 	third_rule_req = CONFIG_GET(number_list/dynamic_third_rule_requirements)
