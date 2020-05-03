@@ -1,0 +1,4 @@
+author: "various coders over the ss13 codebases (/tg/ port)"
+delete-after: True
+changes: 
+  - refactor: "byond-extools.dll is now included and part of the game to utilize the maptick function to minimize lag."
