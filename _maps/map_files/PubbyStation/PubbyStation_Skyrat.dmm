@@ -8670,7 +8670,7 @@
 	},
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "avf" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -8682,7 +8682,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "avg" = (
 /obj/machinery/button/door{
 	id = "Dorm3";
@@ -8694,7 +8694,7 @@
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "avh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -9289,12 +9289,12 @@
 "awn" = (
 /obj/structure/dresser,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "awo" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
 	},
-/area/crew_quarters/dorms)
+/area/antidorm)
 "awp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -9302,7 +9302,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
 	},
-/area/crew_quarters/dorms)
+/area/antidorm)
 "awq" = (
 /obj/machinery/door/airlock{
 	id_tag = "Dorm3";
@@ -10118,7 +10118,7 @@
 	},
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "ayk" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -10130,7 +10130,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "ayl" = (
 /obj/machinery/button/door{
 	id = "Dorm2";
@@ -10144,7 +10144,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aym" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -10642,19 +10642,19 @@
 /obj/structure/table/wood,
 /obj/item/storage/book/bible,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "azs" = (
 /obj/structure/chair/wood/normal{
 	dir = 8
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "azt" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "azu" = (
 /obj/machinery/door/airlock{
 	id_tag = "Dorm2";
@@ -11574,7 +11574,7 @@
 	},
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aBN" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -11586,7 +11586,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aBO" = (
 /obj/machinery/button/door{
 	id = "Dorm1";
@@ -11600,7 +11600,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aBP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -12224,19 +12224,19 @@
 /obj/structure/table/wood,
 /obj/item/storage/book/bible,
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aDc" = (
 /obj/structure/chair/wood/normal{
 	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aDd" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "aDe" = (
 /obj/machinery/door/airlock{
 	id_tag = "Dorm1";

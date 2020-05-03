@@ -77759,7 +77759,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cCd" = (
 /obj/structure/table_frame/wood,
 /obj/item/crowbar/red,
@@ -77772,7 +77772,7 @@
 	name = "dust"
 	},
 /turf/open/floor/plating,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cCe" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
@@ -77780,7 +77780,7 @@
 	pixel_x = -32
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cCf" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
@@ -77792,7 +77792,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cCg" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/clothing/suit/jacket/letterman_nanotrasen,
@@ -77808,11 +77808,11 @@
 	pixel_y = 23
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cCh" = (
 /obj/structure/dresser,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cCi" = (
 /obj/structure/bed,
 /obj/machinery/light{
@@ -77823,7 +77823,7 @@
 	},
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cCj" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/clothing/suit/jacket{
@@ -77853,7 +77853,7 @@
 	pixel_y = 23
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cCk" = (
 /obj/machinery/light{
 	dir = 8
@@ -78733,13 +78733,13 @@
 	name = "dust"
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cDD" = (
 /obj/item/flashlight/seclite,
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
 	},
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cDE" = (
 /obj/structure/table/wood,
 /obj/item/folder,
@@ -78748,16 +78748,16 @@
 	},
 /obj/item/razor,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cDF" = (
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cDG" = (
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cDH" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
@@ -78766,10 +78766,10 @@
 	pixel_x = -32
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cDI" = (
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cDJ" = (
 /obj/structure/table,
 /obj/item/paper_bin,
@@ -79840,7 +79840,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken2"
 	},
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cFx" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/dirt{
@@ -79849,16 +79849,16 @@
 	},
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cFy" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cFz" = (
 /obj/structure/bed,
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cFA" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
@@ -79866,13 +79866,13 @@
 	pixel_x = -32
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cFB" = (
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cFC" = (
 /obj/structure/table,
 /obj/item/folder,
@@ -80635,7 +80635,7 @@
 	name = "dust"
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cGU" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
@@ -80656,7 +80656,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
 	},
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cGV" = (
 /obj/machinery/button/door{
 	id = "Dorm2";
@@ -80668,12 +80668,12 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cGW" = (
 /obj/structure/dresser,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cGX" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
@@ -80687,12 +80687,12 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cGY" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cGZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -85701,7 +85701,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cPR" = (
 /obj/structure/dresser,
 /obj/item/radio/intercom{
@@ -85713,7 +85713,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cPS" = (
 /obj/machinery/button/door{
 	id = "Dorm5";
@@ -85727,7 +85727,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cPT" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/item/radio/intercom{
@@ -85739,7 +85739,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cPU" = (
 /obj/structure/table/wood,
 /obj/item/folder/blue,
@@ -85756,10 +85756,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cPV" = (
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cPW" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
@@ -85772,7 +85772,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cPX" = (
 /obj/machinery/vending/cola/random,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -86596,7 +86596,7 @@
 	},
 /obj/item/cane,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cRu" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -86605,7 +86605,7 @@
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cRv" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/structure/sign/nanotrasen{
@@ -86613,7 +86613,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cRw" = (
 /obj/machinery/vending/snack/random,
 /obj/structure/extinguisher_cabinet{
@@ -87650,16 +87650,16 @@
 	pixel_x = -32
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cTb" = (
 /obj/structure/chair/office/dark,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cTc" = (
 /obj/structure/bed,
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cTd" = (
 /obj/structure/table,
 /obj/item/storage/fancy/donut_box,
@@ -88828,7 +88828,7 @@
 	},
 /obj/item/paicard,
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cUW" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/clothing/suit/jacket/letterman_nanotrasen,
@@ -88840,7 +88840,7 @@
 	pixel_y = -22
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cUX" = (
 /obj/structure/bed,
 /obj/machinery/light,
@@ -88849,7 +88849,7 @@
 	},
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cUY" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/clothing/suit/jacket{
@@ -88867,11 +88867,11 @@
 	pixel_y = -22
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cUZ" = (
 /obj/structure/dresser,
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cVa" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/machinery/light,
@@ -88888,7 +88888,7 @@
 /obj/item/clothing/under/dress/redeveninggown,
 /obj/item/clothing/head/rabbitears,
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cVb" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/grown/poppy/lily,
@@ -88899,7 +88899,7 @@
 	pixel_y = -22
 	},
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/dorms)
+/area/antidorm)
 "cVc" = (
 /obj/structure/table,
 /obj/machinery/light{

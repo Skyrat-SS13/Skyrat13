@@ -1464,7 +1464,7 @@
 /obj/item/bedsheet/black,
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
-/area/crew_quarters/locker)
+/area/antidorm)
 "adg" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -5662,7 +5662,7 @@
 	pixel_x = 30
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/locker)
+/area/antidorm)
 "amc" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security/glass{
@@ -43558,7 +43558,7 @@
 	pixel_x = -23
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/locker)
+/area/antidorm)
 "bJR" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -43584,7 +43584,7 @@
 	},
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
-/area/crew_quarters/locker)
+/area/antidorm)
 "bJT" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -43608,7 +43608,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
-/area/crew_quarters/locker)
+/area/antidorm)
 "bJV" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
@@ -43645,7 +43645,7 @@
 	specialfunctions = 4
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/locker)
+/area/antidorm)
 "bJZ" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -43654,7 +43654,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/locker)
+/area/antidorm)
 "bKa" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -43673,16 +43673,16 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/locker)
+/area/antidorm)
 "bKc" = (
 /obj/structure/dresser,
 /turf/open/floor/wood,
-/area/crew_quarters/locker)
+/area/antidorm)
 "bKd" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
-/area/crew_quarters/locker)
+/area/antidorm)
 "bKf" = (
 /obj/structure/sign/poster/contraband/revolver,
 /turf/closed/wall,
@@ -43691,7 +43691,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
 	},
-/area/crew_quarters/locker)
+/area/antidorm)
 "bKh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/black,
@@ -43704,7 +43704,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
 	},
-/area/crew_quarters/locker)
+/area/antidorm)
 "bKi" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -43733,7 +43733,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
 	},
-/area/crew_quarters/locker)
+/area/antidorm)
 "bKm" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
@@ -48630,7 +48630,7 @@
 /area/hallway/secondary/entry)
 "bUa" = (
 /turf/open/floor/wood,
-/area/crew_quarters/locker)
+/area/antidorm)
 "bUb" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -63647,7 +63647,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
-/area/crew_quarters/locker)
+/area/antidorm)
 "cBX" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
