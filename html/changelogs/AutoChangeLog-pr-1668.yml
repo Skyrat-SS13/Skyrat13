@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "scavenging element, and loot piles. Currently backend only."
+  - rscdel: "deleted the long unused archeology component."
