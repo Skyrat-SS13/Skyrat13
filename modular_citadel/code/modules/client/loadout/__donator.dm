@@ -179,7 +179,7 @@
 	name = "Carrot Satchel"
 	category = SLOT_HANDS
 	path = /obj/item/storage/backpack/satchel/carrot
-	ckeywhitelist = list("improvedname")
+	ckeywhitelist = list("improvedname", "tylerbowes", "akrilla")
 
 /datum/gear/naomisweater
 	name = "worn black sweater"

@@ -3,8 +3,8 @@
 	var/taur_icon //leave null if the genital doesn't have a taur counterpart.
 	var/accepted_taurs = STYLE_HOOF_TAURIC|STYLE_PAW_TAURIC //Types that match with the accessory.
 	var/feat_taur //the text string of the dna feature to check for those who want to opt out.
-	var/taur_dimension_y = 0
-	var/taur_dimension_x = 0
+	var/taur_dimension_y = 32
+	var/taur_dimension_x = 32
 
 
 //DICKS,COCKS,PENISES,WHATEVER YOU WANT TO CALL THEM
@@ -23,13 +23,13 @@
 	icon_state = "knotted"
 	name = "Knotted"
 	taur_icon = 'modular_citadel/icons/obj/genitals/taur_penis_onmob.dmi'
-	taur_dimension_y = 64
+	taur_dimension_x = 64
 
 /datum/sprite_accessory/penis/flared
 	icon_state = "flared"
 	name = "Flared"
 	taur_icon = 'modular_citadel/icons/obj/genitals/taur_penis_onmob.dmi'
-	taur_dimension_y = 64
+	taur_dimension_x = 64
 
 /datum/sprite_accessory/penis/barbknot
 	icon_state = "barbknot"
@@ -39,7 +39,7 @@
 	icon_state = "tapered"
 	name = "Tapered"
 	taur_icon = 'modular_citadel/icons/obj/genitals/taur_penis_onmob.dmi'
-	taur_dimension_y = 64
+	taur_dimension_x = 64
 
 /datum/sprite_accessory/penis/tentacle
 	icon_state = "tentacle"

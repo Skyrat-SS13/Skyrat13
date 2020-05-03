@@ -7645,10 +7645,10 @@
 /obj/item/clothing/suit/space/hardsuit/deathsquad{
 	pixel_y = 5
 	},
-/obj/item/clothing/gloves/combat,
 /obj/item/clothing/shoes/combat/swat,
 /obj/item/clothing/mask/gas/sechailer/swat,
 /obj/effect/turf_decal/stripes/line,
+/obj/item/clothing/gloves/tackler/combat/insulated,
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
 "rD" = (
@@ -10434,6 +10434,23 @@
 /obj/structure/chair,
 /turf/open/floor/mineral/titanium,
 /area/centcom/evac)
+"yh" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/smartfridge/disks{
+	pixel_y = 2
+	},
+/obj/structure/table,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "yj" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Security";
@@ -13853,6 +13870,12 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"FV" = (
+/obj/structure/closet/secure_closet/medical2{
+	req_access = null
+	},
+/turf/open/floor/plasteel/white,
+/area/centcom/holding)
 "FW" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -14490,7 +14513,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Hk" = (
@@ -16673,12 +16696,6 @@
 "Mm" = (
 /turf/open/floor/grass,
 /area/centcom/holding)
-"Ms" = (
-/obj/effect/mob_spawn/human/ghostcafe{
-	dir = 8
-	},
-/turf/open/indestructible/hotelwood,
-/area/centcom/holding)
 "Mt" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -16844,7 +16861,7 @@
 	},
 /area/centcom/holding)
 "Nf" = (
-/obj/machinery/autoylathe,
+/obj/machinery/autolathe/toy,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "Ni" = (
@@ -16933,8 +16950,7 @@
 	},
 /area/bluespace_locker)
 "NN" = (
-/obj/item/storage/box/bodybags,
-/obj/item/storage/box/bodybags,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "NP" = (
@@ -16970,8 +16986,6 @@
 /area/syndicate_mothership)
 "NZ" = (
 /obj/structure/table/wood/bar,
-/obj/structure/safe/floor,
-/obj/item/seeds/cherry/bomb,
 /obj/item/key/janitor,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
@@ -17255,6 +17269,15 @@
 	},
 /turf/open/indestructible/boss/air,
 /area/centcom/holding)
+"PC" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/breath/vox,
+/obj/item/clothing/mask/breath/vox,
+/obj/item/clothing/mask/breath/vox,
+/obj/item/clothing/mask/breath/vox,
+/obj/item/clothing/mask/breath/vox,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "PD" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/syndicate_mothership)
@@ -17387,6 +17410,15 @@
 /obj/structure/table/wood,
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"Qj" = (
+/obj/structure/rack,
+/obj/item/tank/internals/nitrogen/belt/full,
+/obj/item/tank/internals/nitrogen/belt/full,
+/obj/item/tank/internals/nitrogen/belt/full,
+/obj/item/tank/internals/nitrogen/belt/full,
+/obj/item/tank/internals/nitrogen/belt/full,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "Qk" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ppflowers,
@@ -17954,6 +17986,15 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/centcom/holding)
+"Tg" = (
+/obj/effect/mob_spawn/human/ghostcafe{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "Tj" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -18467,6 +18508,8 @@
 	id = "crematoriumGhostDojo";
 	pixel_x = -25
 	},
+/obj/item/storage/box/bodybags,
+/obj/item/storage/box/bodybags,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "VO" = (
@@ -44590,7 +44633,7 @@ aa
 Nd
 Tx
 PY
-PY
+yh
 PY
 Um
 XS
@@ -48208,9 +48251,9 @@ Sd
 Sd
 GY
 NT
-Tw
-Ms
-Ro
+Sd
+Sd
+Sd
 NT
 vt
 Mx
@@ -48466,7 +48509,7 @@ Nd
 Nd
 Nd
 Nd
-Nd
+Dl
 Nd
 Nd
 Nd
@@ -48721,10 +48764,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+Nd
+Qj
+Sd
+PC
 Nd
 vv
 VA
@@ -48978,10 +49021,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+Nd
+Sd
+Sd
+Sd
 Nd
 sf
 ZW
@@ -49235,16 +49278,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+Nd
+Tw
+Tg
+Ro
 Nd
 Bq
 RK
 Qy
 Yj
-ZW
+FV
 Wz
 Nd
 xO
@@ -49492,10 +49535,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+Nd
+Nd
+Nd
+Nd
 Nd
 Nd
 Nd

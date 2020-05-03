@@ -82,11 +82,11 @@
 	body += "<A href='?_src_=holder;[HrefToken()];jobban2=[REF(M)]'>Jobban</A> | "
 	body += "<A href='?_src_=holder;[HrefToken()];appearanceban=[REF(M)]'>Identity Ban</A> | "
 	// SKYRAT ADDITION -- BEGIN
-	var/collarline = "[jobban_isbanned(M, COLLARBAN)?"Remove Collar Ban":"Collar Ban"]"
+	var/collarline = "[jobban_isbanned(M, COLLARBAN)?"Remove Pacification Ban":"Pacification Ban"]"
 	if(ishuman(M))
 		var/mob/living/carbon/human/C = M
-		if(!istype(C.wear_neck, COLLARITEM) && jobban_isbanned(M, COLLARBAN))
-			collarline = "FIX COLLAR"
+		if(jobban_isbanned(M, COLLARBAN && !(C.has_trauma_type(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_ABSOLUTE))))
+			collarline = "FIX PACIFY"
 	body += "<A href='?_src_=holder;[HrefToken()];collarban=[REF(M)]'>[collarline]</A> | "
 	// SKYRAT ADDITION -- END
 	var/rm = REF(M)
@@ -437,6 +437,10 @@
 				for(var/datum/dynamic_ruleset/roundstart/rule in GLOB.dynamic_forced_roundstart_ruleset)
 					dat += {"<A href='?src=[REF(src)];[HrefToken()];f_dynamic_roundstart_remove=\ref[rule]'>-> [rule.name] <-</A><br>"}
 				dat += "<A href='?src=[REF(src)];[HrefToken()];f_dynamic_roundstart_clear=1'>(Clear Rulesets)</A><br>"
+			dat += "<A href='?src=[REF(src)];[HrefToken()];f_dynamic_storyteller=1'>(Force Storyteller)</A><br>"
+			if (GLOB.dynamic_forced_storyteller)
+				var/datum/dynamic_storyteller/S = GLOB.dynamic_forced_storyteller
+				dat += "<A href='?src=[REF(src)];[HrefToken()];f_dynamic_storyteller_clear=1'>-> [initial(S.name)] <-</A><br>"
 			dat += "<A href='?src=[REF(src)];[HrefToken()];f_dynamic_options=1'>(Dynamic mode options)</A><br>"
 		else if (SSticker.IsRoundInProgress())
 			dat += "<A href='?src=[REF(src)];[HrefToken()];f_dynamic_latejoin=1'>(Force Next Latejoin Ruleset)</A><br>"
@@ -698,7 +702,7 @@
 	var/prev_dynamic_voting = CONFIG_GET(flag/dynamic_voting)
 	CONFIG_SET(flag/dynamic_voting,!prev_dynamic_voting)
 	if (!prev_dynamic_voting)
-		to_chat(world, "<B>Vote is now a ranked choice of dynamic storytellers.</B>")
+		to_chat(world, "<B>Vote is now between dynamic storytellers.</B>")
 	else
 		to_chat(world, "<B>Vote is now between extended and secret.</B>")
 	log_admin("[key_name(usr)] [prev_dynamic_voting ? "disabled" : "enabled"] dynamic voting.")

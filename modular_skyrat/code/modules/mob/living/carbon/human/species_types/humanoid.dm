@@ -11,7 +11,7 @@
 
 //Dunmer (Yeah, those guys that call you fetcher).
 /datum/species/human/humanoid/dunmer
-	name = "Dunmer"
+	name = "Ashlander"
 	id = "dunmer"
 	icon_limbs = 'modular_skyrat/icons/mob/dunmer_parts.dmi'
 	limbs_id = "dunmer"

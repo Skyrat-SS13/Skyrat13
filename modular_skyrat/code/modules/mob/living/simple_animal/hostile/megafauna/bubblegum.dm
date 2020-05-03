@@ -20,7 +20,7 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 	playsound(src, movesound, 200, TRUE, 2, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/OpenFire()
-	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
+	anger_modifier = clamp(((maxHealth - health)/50),0,20)
 	bloodsmacks()
 	if(charging)
 		return

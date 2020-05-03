@@ -6,3 +6,9 @@ AGE_LOCK_DAYS 30
 
 ## Allow players to not be locked into base skillsets for their characters
 #DISABLE_SKILL_LOCK
+
+## Force people to have the recommended skills for each job
+#ENABLE_FORCED_SKILLS
+
+## How long until someone can be put in cryo if they are SSD
+CRYO_MIN_SSD_TIME 15
