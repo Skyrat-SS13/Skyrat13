@@ -3706,6 +3706,7 @@
 #include "modular_skyrat\code\modules\projectiles\guns\energy\nuclear.dm"
 #include "modular_skyrat\code\modules\projectiles\projectile\pistol.dm"
 #include "modular_skyrat\code\modules\projectiles\projectile\stun.dm"
+#include "modular_skyrat\code\modules\projectiles\projectile\special\plasma.dm"
 #include "modular_skyrat\code\modules\reagents\chemistry\reagents\medicine_reagents.dm"
 #include "modular_skyrat\code\modules\reagents\chemistry\reagents\other_reagents.dm"
 #include "modular_skyrat\code\modules\reagents\chemistry\recipes\slime_extracts.dm"
