@@ -81,7 +81,7 @@
 //Defines for skill ID's
 #define SKILL_EVA "eva"
 
-#define SKILL_BUREAUCRACY "bureaucracy"
+#define SKILL_LEADERSHIP "leadership"
 
 #define SKILL_ATMOS "atmos"
 #define SKILL_CONSTRUCTION "construction"
@@ -111,10 +111,10 @@
 
 /************ORGANIZATIONAL**************/
 
-/datum/skill/bureaucracy
-	name = "Bureaucracy"
-	desc = "Bure's description."
-	id = SKILL_BUREAUCRACY
+/datum/skill/leadership
+	name = "Leadership"
+	desc = "Leader's description."
+	id = SKILL_LEADERSHIP
 	cat_id = SKILL_CAT_ORGANIZATIONAL
 
 /************ENGINEERING**************/

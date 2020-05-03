@@ -42,7 +42,7 @@
 
 /datum/augmentation/organ/eyes/cybernetic
 	name = "Cybernetic eyes"
-	desc = "A cybernetic replacement to your first sense, "augmenting" your vision."
+	desc = "A cybernetic replacement to your first sense, augmenting your vision."
 	id = "cyber"
 	organ_type = /obj/item/organ/eyes/robotic
 
@@ -64,9 +64,9 @@
 	desc = "Default heart."
 	id = "default"
 
-/datum/augmentation/organ/heart/default
+/datum/augmentation/organ/heart/cybernetic
 	name = "Cybernetic heart"
-	desc = "An electronic device that serves like an organic heart, due to EMP's relying on it may prove to be dangerous."
+	desc = "An electronic device that serves like an organic heart, due to EMP's, relying on it may prove to be dangerous."
 	id = "cyber"
 	organ_type = /obj/item/organ/heart/cybernetic
 

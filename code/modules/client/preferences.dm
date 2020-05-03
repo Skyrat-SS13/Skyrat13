@@ -95,11 +95,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/aug_cat = ""
 	var/aug_type = ""
 	var/max_attribute_points = 10 //How much attribute points we're getting to spend on them or augments
-	var/attribute_points = 10
-	var/skill_points = 14 //How many skill points we're getting? More important jobs give you extra points
+	var/attribute_points = 0
 	var/list/attribute_modifiers = list() //How much do we modify attributes by id to integer
 
 	var/list/augments = list() //Hash table of augment types, which are hash tables of augment catogeries, which are hash tables of augment ID's
+
+	var/max_skill_points = 14 //How many skill points we're getting? Jobs also get extra points, depending on the job
+	var/skill_points = 0 
+	var/list/skills = list()
 	//END OF SKYRAT CHANGES
 
 	var/underwear = "Nude"				//underwear type

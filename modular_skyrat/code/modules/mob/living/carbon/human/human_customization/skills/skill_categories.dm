@@ -10,6 +10,7 @@
 /datum/skill_category
 	var/name = "Skill category"
 	var/id = 0
+	var/skill_list = list()
 
 /datum/skill_category/general
 	name = "General"
