@@ -4,7 +4,7 @@
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND,\
 						BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND,\
-						BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOOT,\
+						BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT,\
 						BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT,\
 						BODY_ZONE_HEAD)
 	requires_bodypart_type = 0
@@ -68,12 +68,13 @@
 			O.Remove()
 			O.forceMove(T)
 			organ_spilled = 1
-		var/obj/item/bodypart/chest/funzone = get_bodypart(target_zone)
+		var/obj/item/bodypart/chest/funzone = target.get_bodypart(target_zone)
 		if(funzone)
 			if(funzone.cavity_item)
-				cavity_item.forceMove(T)
-				cavity_item = null
+				var/obj/item/cavity_object = funzone.cavity_item
+				cavity_object.forceMove(get_turf(target))
+				funzone.cavity_item = null
 				organ_spilled = 1
 		if(organ_spilled)
-			C.visible_message("<span class='danger'><B>[C]'s internal organs spill out onto the floor!</B></span>")
+			L.visible_message("<span class='danger'><B>[L]'s internal organs spill out onto the floor!</B></span>")
 	return 1

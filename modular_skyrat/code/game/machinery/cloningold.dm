@@ -2,6 +2,7 @@
 //The pod handles the actual cloning while the computer manages the clone profiles
 
 //Potential replacement for genetics revives or something I dunno (?)
+
 #define CLONE_INITIAL_DAMAGE     150    //Clones in clonepods start with 150 cloneloss damage and 150 brainloss damage, thats just logical
 #define MINIMUM_HEAL_LEVEL 20
 
@@ -36,6 +37,8 @@
 
 	var/list/unattached_flesh
 	var/flesh_number = 0
+	var/biomass = 0
+	var/max_biomass = 1000
 
 /obj/machinery/clonepod/Initialize()
 	. = ..()
@@ -135,6 +138,8 @@
 		return FALSE
 	if(mess || attempting)
 		return FALSE
+	if(biomass < 300)
+		return FALSE
 	clonemind = locate(mindref) in SSticker.minds
 	if(!istype(clonemind))	//not a mind
 		return FALSE
@@ -142,8 +147,6 @@
 		if(clonemind.current.stat != DEAD)	//mind is associated with a non-dead body
 			return FALSE
 		if(clonemind.current.suiciding) // Mind is associated with a body that is suiciding.
-			return FALSE
-		if(AmBloodsucker(clonemind.current)) //If the mind is a bloodsucker
 			return FALSE
 	if(clonemind.active)	//somebody is using that mind
 		if( ckey(clonemind.key)!=ckey )
@@ -160,7 +163,13 @@
 		mess = TRUE
 		update_icon()
 		return FALSE
+	if(isvamp(clonemind)) //If the mind is a bloodsucker
+		return FALSE
 
+	if(biomass >= 300)
+		biomass -= 300
+	else
+		return FALSE
 	attempting = TRUE //One at a time!!
 	countdown.start()
 
@@ -179,7 +188,6 @@
 
 	//Get the clone body ready
 	maim_clone(H)
-	ADD_TRAIT(H, TRAIT_MUTATION_STASIS, CLONING_POD_TRAIT)
 	ADD_TRAIT(H, TRAIT_STABLEHEART, CLONING_POD_TRAIT)
 	ADD_TRAIT(H, TRAIT_STABLELIVER, CLONING_POD_TRAIT)
 	ADD_TRAIT(H, TRAIT_EMOTEMUTE, CLONING_POD_TRAIT)
@@ -212,14 +220,24 @@
 	attempting = FALSE
 	return TRUE
 
-//Grow clones to maturity then kick them out.  FREELOADERS
+/obj/machinery/clonepod/proc/succ()
+	. = FALSE
+	if(/obj/item/reagent_containers/food/snacks/biomeat in view(src, 1))
+		playsound(src, 'modular_skyrat/effects/vacuumcleaner.ogg', 50, 0)
+		. = TRUE
+	for(var/obj/item/reagent_containers/food/snacks/meat/slab/biomeat/meatball in view(src, 1))
+		qdel(meatball)
+		biomass += 100
+		if(biomass > max_biomass)
+			biomass = max_biomass
+
+//Grow clones to maturity then kick them out.  FREELOADERS.
 /obj/machinery/clonepod/process()
 	var/mob/living/mob_occupant = occupant
-
 	if(!is_operational()) //Autoeject if power is lost
 		if(mob_occupant)
 			go_out()
-			mob_occupant.copy_from_prefs_vr()
+			mob_occupant.apply_vore_prefs()
 			connected_message("Clone Ejected: Loss of power.")
 
 	else if(mob_occupant && (mob_occupant.loc == src))
@@ -229,7 +247,7 @@
 				SPEAK("The cloning has been \
 					aborted due to unrecoverable tissue failure.")
 			go_out()
-			mob_occupant.copy_from_prefs_vr()
+			mob_occupant.apply_vore_prefs()
 
 		else if(mob_occupant.cloneloss > (100 - heal_level))
 			mob_occupant.Unconscious(80)
@@ -275,7 +293,7 @@
 					BP.attach_limb(mob_occupant)
 
 			go_out()
-			mob_occupant.copy_from_prefs_vr()
+			mob_occupant.apply_vore_prefs()
 
 	else if (!mob_occupant || mob_occupant.loc != src)
 		occupant = null
@@ -323,7 +341,7 @@
 			SPEAK("An emergency ejection of the current clone has occurred. Survival not guaranteed.")
 			to_chat(user, "<span class='notice'>You force an emergency ejection. </span>")
 			go_out()
-			mob_occupant.copy_from_prefs_vr()
+			mob_occupant.apply_vore_prefs()
 	else
 		return ..()
 
@@ -369,7 +387,6 @@
 		return
 
 	REMOVE_TRAIT(mob_occupant, TRAIT_STABLEHEART, CLONING_POD_TRAIT)
-	REMOVE_TRAIT(mob_occupant, TRAIT_MUTATION_STASIS, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_STABLELIVER, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_EMOTEMUTE, CLONING_POD_TRAIT)
 	REMOVE_TRAIT(mob_occupant, TRAIT_MUTE, CLONING_POD_TRAIT)
@@ -378,12 +395,8 @@
 
 	if(grab_ghost_when == CLONER_MATURE_CLONE)
 		mob_occupant.grab_ghost()
-		to_chat(occupant, "<span class='warning'><b>You remember nothing after you've blacked out and you do not remember who or what events killed you, however, you can have faint recollection of what led up to it.</b>") //Skyrat change - reminds you about the blackout policy
 		to_chat(occupant, "<span class='notice'><b>There is a bright flash!</b><br><i>You feel like a new being.</i></span>")
 		mob_occupant.flash_act()
-		if(jobban_isbanned(mob_occupant) && ishuman(mob_occupant))	// SKYRAT ADDITION -- BEGIN
-			var/mob/living/carbon/human/C = mob_occupant
-			C.update_pacification_ban()	// SKYRAT ADDITION -- END
 
 	occupant.forceMove(T)
 	update_icon()
@@ -426,7 +439,7 @@
 		if(mob_occupant && prob(100/(severity*efficiency)))
 			connected_message(Gibberish("EMP-caused Accidental Ejection", 0))
 			SPEAK(Gibberish("Exposure to electromagnetic fields has caused the ejection of, ERROR: John Doe, prematurely." ,0))
-			mob_occupant.copy_from_prefs_vr()
+			mob_occupant.apply_vore_prefs()
 			go_out()
 
 /obj/machinery/clonepod/ex_act(severity, target)
@@ -530,34 +543,6 @@
 		. += occupant_overlay
 		. += "cover-on"
 	. += "panel"
-
-/*
- *	Manual -- A big ol' manual.
- */
-
-/obj/item/paper/guides/jobs/medical/cloning
-	name = "paper - 'H-87 Cloning Apparatus Manual"
-	info = {"<h4>Getting Started</h4>
-	Congratulations, your station has purchased the H-87 industrial cloning device!<br>
-	Using the H-87 is almost as simple as brain surgery! Simply insert the target humanoid into the scanning chamber and select the scan option to create a new profile!<br>
-	<b>That's all there is to it!</b><br>
-	<i>Notice, cloning system cannot scan inorganic life or small primates.  Scan may fail if subject has suffered extreme brain damage.</i><br>
-	<p>Clone profiles may be viewed through the profiles menu. Scanning implants a complementary HEALTH MONITOR IMPLANT into the subject, which may be viewed from each profile.
-	Profile Deletion has been restricted to \[Station Head\] level access.</p>
-	<h4>Cloning from a profile</h4>
-	Cloning is as simple as pressing the CLONE option at the bottom of the desired profile.<br>
-	Per your company's EMPLOYEE PRIVACY RIGHTS agreement, the H-87 has been blocked from cloning crewmembers while they are still alive.<br>
-	<br>
-	<p>The provided CLONEPOD SYSTEM will produce the desired clone.  Standard clone maturation times (With SPEEDCLONE technology) are roughly 90 seconds.
-	The cloning pod may be unlocked early with any \[Medical Researcher\] ID after initial maturation is complete.</p><br>
-	<i>Please note that resulting clones may have a small DEVELOPMENTAL DEFECT as a result of genetic drift.</i><br>
-	<h4>Profile Management</h4>
-	<p>The H-87 (as well as your station's standard genetics machine) can accept STANDARD DATA DISKETTES.
-	These diskettes are used to transfer genetic information between machines and profiles.
-	A load/save dialog will become available in each profile if a disk is inserted.</p><br>
-	<i>A good diskette is a great way to counter aforementioned genetic drift!</i><br>
-	<br>
-	<font size=1>This technology produced under license from Thinktronic Systems, LTD.</font>"}
 
 #undef CLONE_INITIAL_DAMAGE
 #undef SPEAK

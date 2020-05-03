@@ -76,7 +76,7 @@
 			if(target_zone in L.children_zones)
 				var/bruh = FALSE
 				for(var/obj/item/bodypart/fosterchild in src)
-					if((fosterchild.body_zone in children_zones) && (target_zone == fosterchild.body_zone) && !bruh)
+					if((fosterchild.body_zone in L.children_zones) && (target_zone == fosterchild.body_zone) && !bruh)
 						fosterchild.attach_limb(target)
 						L.forceMove(get_turf(target))
 						bruh = TRUE

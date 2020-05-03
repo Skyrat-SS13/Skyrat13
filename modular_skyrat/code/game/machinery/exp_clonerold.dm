@@ -10,6 +10,8 @@
 
 //Start growing a human clone in the pod!
 /obj/machinery/clonepod/experimental/growclone(clonename, ui, mutation_index, mindref, last_death, blood_type, datum/species/mrace, list/features, factions, list/quirks)
+	if(biomass < 300)
+		return FALSE
 	if(panel_open)
 		return FALSE
 	if(mess || attempting)
@@ -51,7 +53,7 @@
 
 	var/list/candidates = pollCandidatesForMob("Do you want to play as [clonename]'s defective clone?", null, null, null, 100, H)
 	if(LAZYLEN(candidates))
-		var/mob/C = pick(candidates)
+		var/mob/dead/observer/C = pick(candidates)
 		H.key = C.key
 
 	if(grab_ghost_when == CLONER_FRESH_CLONE)
@@ -180,6 +182,10 @@
 
 	dat += "<h3>Cloning Pod Status</h3>"
 	dat += "<div class='statusDisplay'>[temp]&nbsp;</div>"
+	var/obj/machinery/clonepod/pod = GetAvailablePod()
+	if(pod)
+		dat += "<br><div class='statusDisplay'><b>Pod Biomass:</b> [pod.biomass]/[pod.max_biomass]</div>"
+		dat += "<a href='byond://?src=[REF(src)];task=succ'>Biomass</a>"
 
 	if (isnull(src.scanner) || !LAZYLEN(pods))
 		dat += "<h3>Modules</h3>"
@@ -222,6 +228,12 @@
 
 	if(loading)
 		return
+
+	else if(href_list["task"])
+		switch(href_list["task"])
+			if("succ")
+				for(var/obj/machinery/clonepod/experimental/pod in pods)
+					pod.succ()
 
 	else if ((href_list["clone"]) && !isnull(scanner) && scanner.is_operational())
 		scantemp = ""
