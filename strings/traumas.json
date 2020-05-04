@@ -94,6 +94,7 @@
 		"@pick(semicolon)*awoo",
 		"@pick(semicolon)*merp",
 		"@pick(semicolon)*weh",
+<<<<<<< HEAD
 		"@pick(semicolon)I'm a fucking factory worker, i don't care about the quality of my work i just want to get shit done!",
 		"@pick(semicolon)What the fuck is a blueshield again?!1!",
 		"@pick(semicolon)I WANTED ORANGE, IT GAVE ME LEMON-LIME!!",
@@ -125,6 +126,9 @@
 		"@pick(semicolon)BLOOOOOD!!",
 		"@pick(semicolon)sukc my fucc you harloet!",
 		"@pick(semicolon)REMOVE THE COMMENT!11!!"
+=======
+		"@pick(semicolon)My balls finally feel full, again."
+>>>>>>> e36bd50ad9... Makes G gluid calcs only happen when it's required (#12095)
     ],
 
     "mutations": [
