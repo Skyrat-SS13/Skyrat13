@@ -23,11 +23,18 @@
 		if(poison)
 			poison.reagents.trans_to(victim.reagents, 5)
 
+/obj/item/melee/sword/update_icon()
+	cut_overlays()
+	if(poison)
+		var/mutable_appearance/sword_overlay = mutable_appearance(icon, "sword_hypo_overlay")
+		add_overlay(sword_overlay)
+
 /obj/item/melee/sword/attack_self(mob/user)
 	. = ..()
 	if(poison)
 		poison.forceMove(user.loc)
 		poison = null
+		update_icon()
 
 /obj/item/melee/sword/attackby(obj/item/I, mob/living/user)
 	. = ..()
@@ -35,6 +42,7 @@
 		if(!poison)
 			I.forceMove(src)
 			poison = I
+			update_icon()
 	else if(istype(I, /obj/item/large_metal_blade) && !istype(src, /obj/item/melee/sword/executioner))
 		qdel(I)
 		var/obj/item/melee/sword/executioner/E = new (get_turf(user))
@@ -42,7 +50,7 @@
 			poison.forceMove(E)
 			E.poison = poison
 		user.put_in_hands(E)
-		poison = null 
+		poison = null
 		qdel(src)
 	else if(istype(I, /obj/item/metal_blade) && !istype(src, /obj/item/melee/sword/shortsword))
 		qdel(I)
@@ -51,10 +59,10 @@
 			poison.forceMove(S)
 			S.poison = poison
 		user.put_in_hands(S)
-		poison = null 
+		poison = null
 		qdel(src)
 
-/obj/item/melee/sword/executioner 
+/obj/item/melee/sword/executioner
 	name = "executioner's sword"
 	desc = "A huge sword. The top third of the blade seems weaker than the rest of it."
 	force = 5
@@ -67,7 +75,7 @@
 /obj/item/melee/sword/executioner/afterattack(atom/target, mob/living/user, proximity)
 	. = ..()
 	if(iscarbon(target))
-		var/mob/living/carbon/C = target 
+		var/mob/living/carbon/C = target
 		var/obj/item/bodypart/BP = C.get_bodypart(check_zone(user.zone_selected))
 		if(prob(delimb_chance))
 			C.visible_message("<span class='danger'>[C]'s [BP] gets completely chopped off by \the [src]!</span>")
