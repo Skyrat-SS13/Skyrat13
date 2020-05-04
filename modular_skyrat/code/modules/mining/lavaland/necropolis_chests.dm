@@ -13,22 +13,39 @@
 		if(3)
 			new /obj/item/gun/magic/staff/spellblade(src)
 
+/obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
+	new /obj/item/clothing/suit/space/hostile_environment(src)
+	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
+	new /obj/item/crusher_trophy/demon_claws(src)
+	var/loot = rand(1,3)
+	switch(loot)
+		if(1)
+			new /obj/item/book/granter/martial/berserk(src)
+		if(2)
+			new /obj/item/blood_contract(src)
+		if(3)
+			new /obj/item/gun/magic/staff/spellblade(src)
+	
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
 	name = "enraged bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
 	new /obj/item/book/granter/martial/berserk(src)
 	new /obj/item/blood_contract(src)
 	new /obj/item/twohanded/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
 	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
+	new /obj/item/borg/upgrade/modkit/shotgun(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher
 	name = "enraged bloody bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher/PopulateContents()
-	..()
+	new /obj/item/book/granter/martial/berserk(src)
+	new /obj/item/blood_contract(src)
+	new /obj/item/twohanded/crucible(src)
+	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
+	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 	new /obj/item/crusher_trophy/demon_claws(src)
 
 //super shotty changes (meat hook instead of bursto)
@@ -259,7 +276,7 @@
 
 /obj/item/twohanded/crucible/ignition_effect(atom/A, mob/user)
 	if(!wielded)
-		return ""
+		return FALSE
 	var/in_mouth = ""
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
@@ -327,6 +344,20 @@
 		if(4)
 			new /obj/item/dragons_blood(src)
 
+/obj/structure/closet/crate/necropolis/dragon/crusher/PopulateContents()
+	new /obj/item/crusher_trophy/tail_spike(src)
+	var/loot = rand(1,4)
+	switch(loot)
+		if(1)
+			new /obj/item/melee/ghost_sword(src)
+		if(2)
+			new /obj/item/lava_staff(src)
+		if(3)
+			new /obj/item/book/granter/spell/sacredflame(src)
+			new /obj/item/gun/magic/wand/fireball(src)
+		if(4)
+			new /obj/item/dragons_blood(src)
+
 /obj/structure/closet/crate/necropolis/dragon/hard
 	name = "enraged dragon chest"
 
@@ -343,7 +374,12 @@
 	name = "enraged fiery dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher/PopulateContents()
-	..()
+	new /obj/item/melee/ghost_sword(src)
+	new /obj/item/lava_staff(src)
+	new /obj/item/book/granter/spell/sacredflame(src)
+	new /obj/item/gun/magic/wand/fireball(src)
+	new /obj/item/dragons_blood/distilled(src)
+	new /obj/item/clothing/neck/king(src)
 	new /obj/item/crusher_trophy/tail_spike(src)
 
 
@@ -509,12 +545,12 @@
 		user.mind.AddSpell(new spell2grant(null))
 
 /obj/item/clothing/neck/king/dropped(mob/living/carbon/human/user)
+	. = ..()
 	for(var/datum/action/A in actions_types)
 		A.Remove(user)
 	user.mind.RemoveSpell(spell2grant)
 	if(active_owner)
 		active_owner.dust()
-	. = ..()
 
 /obj/item/clothing/neck/king/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/hands_free/memento_mori/king))
@@ -523,9 +559,9 @@
 
 //Just in case
 /obj/item/clothing/neck/king/Destroy()
+	. = ..()
 	if(active_owner)
 		active_owner.dust(TRUE, TRUE)
-	. = ..()
 
 /obj/item/clothing/neck/king/proc/memento(mob/living/carbon/human/user)
 	to_chat(user, "<span class='warning'>You feel your life being drained by the [src]...</span>")
@@ -566,6 +602,11 @@
 	new /obj/item/bluecrystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
 	new /obj/item/borg/upgrade/modkit/bolter(src)
+
+/obj/structure/closet/crate/necropolis/colossus/crusher/PopulateContents()
+	new /obj/item/bluecrystal(src)
+	new /obj/item/organ/vocal_cords/colossus(src)
+	new /obj/item/crusher_trophy/blaster_tubes(src)
 
 //crystal choosing thing from colosssus
 /obj/item/bluecrystal
@@ -766,7 +807,7 @@
 	new /obj/item/borg/upgrade/modkit/skull(src)
 	var/obj/structure/closet/crate/necropolis/tendril/T = new /obj/structure/closet/crate/necropolis/tendril //Yup, i know, VERY spaghetti code.
 	var/obj/item/L
-	for(var/i = 0, i < 5, i++)
+	for(var/i = 0, i < 3, i++)
 		L = T.PopulateContents()
 		new L(src)
 	qdel(T)
@@ -782,7 +823,7 @@
 	item_state = "dagoth"
 	actions_types = list(/datum/action/item_action/ashstorm)
 	flash_protect = 2
-	armor = list("melee" = 15, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)//HOW CAN YOU KILL A GOD?
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)//HOW CAN YOU KILL A GOD?
 	var/static/list/excluded_areas = list(/area/reebe/city_of_cogs)
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
@@ -855,6 +896,7 @@
 	name = "drake chest"
 
 /obj/structure/closet/crate/necropolis/glaurung/PopulateContents()
+	new /obj/item/borg/upgrade/modkit/knockback(src)
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
@@ -871,5 +913,15 @@
 	name = "wise drake chest"
 
 /obj/structure/closet/crate/necropolis/glaurung/crusher/PopulateContents()
-	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
+	var/loot = rand(1,4)
+	switch(loot)
+		if(1)
+			new /obj/item/melee/ghost_sword(src)
+		if(2)
+			new /obj/item/lava_staff(src)
+		if(3)
+			new /obj/item/book/granter/spell/sacredflame(src)
+			new /obj/item/gun/magic/wand/fireball(src)
+		if(4)
+			new /obj/item/dragons_blood(src)
