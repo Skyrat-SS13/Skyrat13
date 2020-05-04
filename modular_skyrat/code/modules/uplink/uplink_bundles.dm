@@ -60,7 +60,7 @@
 	name = "Motherbase Shipment"
 	desc = "A kit containing the essentials for any 'big boss'. Contains a tactical turtleneck, thermal eyepatch, sneaking boots and a robotic CQC arm implanter."
 	item = /obj/item/storage/box/syndie_kit/snake
-	cost = 13
+	cost = 20
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /obj/item/storage/box/syndie_kit/snake
@@ -71,7 +71,6 @@
 	new /obj/item/clothing/glasses/thermal/eyepatch(src)
 	new /obj/item/clothing/under/syndicate(src)
 	new /obj/item/clothing/shoes/combat/sneakboots/snake(src) //HNNNG COLONEL, I'M TRYING TO SNEAK AROUND-
-	new /obj/item/clothing/accessory/padding(src)
 	new /obj/item/encryptionkey/syndicate(src)
 	new /obj/item/limbsurgeon/martialarm(src)
 
@@ -80,7 +79,6 @@
 	desc = "A device that automatically removes an old limb and inserts a new one into the user without the hassle of extensive surgery. It has a slot to insert limbs and a screwdriver slot for removing accidentally added items."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "autoimplanter"
-	item_state = "nothing"
 	w_class = WEIGHT_CLASS_SMALL
 	var/obj/item/bodypart/storedbodypart
 	var/bodypart_type = /obj/item/bodypart
