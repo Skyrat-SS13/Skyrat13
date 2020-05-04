@@ -67,7 +67,7 @@
 	icon = 'modular_skyrat/icons/obj/vg_weaponsmithing.dmi'
 	icon_state = "stock_reservoir"
 
-/obj/item/gun_assembly/stock_reservoir_assembly 
+/obj/item/gun_assembly/stock_reservoir_assembly
 	name = "general gun assembly"
 	desc = "A metal gun stock. There is a fuel reservoir fastened to it."
 	icon_state = "stock_reservoir"
@@ -125,6 +125,6 @@
 	max_occupants = 0
 	max_drivers = 0
 
-/* Secured capacitor and items using it are too gamer for my tastes.ComponentInitialize()
+/* Secured capacitor and items using it are too gamer for my tastes.
 *  And would require a lof of code adaptation. Thus, not yet.
 */
