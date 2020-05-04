@@ -147,11 +147,11 @@
 	if(istype(target, /mob/living))
 		new /obj/effect/temp_visual/hierophant/telegraph/teleport(target.loc)
 	if(istype(target, /mob/living/simple_animal) && ( world.time > cooldown))
-		cooldown = world.time + (W.duration * cdmultiplier)
 		var/mob/living/F = K.firer
 		var/dir_to_target = get_dir(F, target)
 		var/turf/T = get_step(get_turf(F), dir_to_target)
 		var/obj/effect/temp_visual/hierophant/wall/crusher/W = new /obj/effect/temp_visual/hierophant/wall/crusher(T, F) //a wall only you can pass!
+		cooldown = world.time + (W.duration * cdmultiplier)
 		var/turf/otherT = get_step(T, turn(F.dir, 90))
 		if(otherT)
 			new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, F)
