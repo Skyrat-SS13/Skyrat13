@@ -1,4 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 9
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "ai" = (
 /obj/machinery/light{
 	dir = 1
@@ -54,6 +60,9 @@
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
+	},
+/obj/machinery/airalarm{
+	pixel_y = 23
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
@@ -801,6 +810,13 @@
 	},
 /turf/closed/indestructible/riveted/boss,
 /area/ruin/unpowered/ash_walkers)
+"ia" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "ib" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -981,6 +997,12 @@
 	},
 /turf/open/floor/plating,
 /area/mining_level_access)
+"jN" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "jR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1289,6 +1311,17 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/grass,
 /area/lavaland/surface/outdoors)
+"mp" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "mA" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1325,6 +1358,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/xenoarch/gen)
+"mM" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "mU" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -1911,6 +1954,10 @@
 /obj/item/surgical_drapes,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"rj" = (
+/obj/effect/turf_decal/tile/purple,
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "rk" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -2046,6 +2093,12 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
+"st" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/xenoarch/gen)
 "sw" = (
 /obj/machinery/atmospherics/components/binary/volume_pump,
@@ -2223,6 +2276,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/airalarm{
+	pixel_y = 23
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
@@ -2463,6 +2519,18 @@
 "vU" = (
 /turf/open/floor/engine/plasma,
 /area/xenoarch/eng)
+"wf" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "wh" = (
 /obj/structure/stone_tile/cracked{
 	dir = 8
@@ -2899,6 +2967,10 @@
 	},
 /turf/open/floor/grass,
 /area/xenoarch/arch)
+"zl" = (
+/obj/machinery/computer/shuttle/mining/common,
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "zn" = (
 /obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/plasteel,
@@ -2927,6 +2999,13 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"zF" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "zH" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 1
@@ -3130,6 +3209,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
+"BF" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/xenoarch/eng)
 "BK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/toxin_output,
 /turf/open/floor/engine/plasma,
@@ -3286,6 +3371,16 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/xenoarch/gen)
+"Df" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/gen)
 "Dj" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -3296,6 +3391,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
+"Dp" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "Dv" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 8
@@ -3505,12 +3610,27 @@
 	},
 /turf/closed/indestructible/riveted/boss,
 /area/lavaland/surface/outdoors)
+"FK" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "FQ" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 4
 	},
 /turf/closed/indestructible/riveted/boss,
 /area/lavaland/surface/outdoors)
+"FT" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/gen)
 "FU" = (
 /turf/open/water,
 /area/lavaland/surface/outdoors)
@@ -3520,6 +3640,15 @@
 	},
 /turf/closed/indestructible/riveted/boss,
 /area/lavaland/surface/outdoors)
+"FW" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/gen)
 "FZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -3604,6 +3733,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
+"Gw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "GB" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 8
@@ -3804,6 +3942,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/xenoarch/gen)
 "HP" = (
@@ -3813,6 +3954,12 @@
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
+"HQ" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/gen)
 "Ie" = (
 /obj/structure/stone_tile/block/cracked,
 /obj/structure/stone_tile{
@@ -3821,6 +3968,12 @@
 /obj/item/t_scanner/adv_mining_scanner/lesser,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"If" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/gen)
 "Ii" = (
 /obj/structure/stone_tile{
 	dir = 4
@@ -3947,6 +4100,15 @@
 /obj/item/twohanded/bonespear,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
+"IY" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "Jc" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/heater{
 	dir = 8
@@ -4126,6 +4288,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
+"KR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "KT" = (
 /turf/open/floor/plasteel/elevatorshaft,
 /area/mining_level_access/lower)
@@ -4201,6 +4376,10 @@
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/gen)
@@ -4356,6 +4535,15 @@
 /obj/machinery/suit_storage_unit/mining,
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
+"Ng" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "Ni" = (
 /obj/structure/stone_tile/cracked{
 	dir = 8
@@ -4391,6 +4579,9 @@
 /area/xenoarch/eng)
 "Nq" = (
 /obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -4570,6 +4761,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
+"Pb" = (
+/obj/effect/turf_decal/tile/purple,
+/turf/open/floor/plasteel,
+/area/xenoarch/gen)
 "Pc" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -4992,6 +5187,12 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "SD" = (
@@ -5106,11 +5307,9 @@
 /turf/open/floor/grass,
 /area/lavaland/surface/outdoors)
 "Th" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/xenoarch/eng)
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Tk" = (
 /obj/structure/stone_tile/slab,
 /obj/structure/table/wood,
@@ -5531,6 +5730,18 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
+"Yj" = (
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "Ym" = (
@@ -17538,7 +17749,7 @@ tN
 BS
 AU
 AU
-AU
+zl
 AU
 Bf
 AU
@@ -18036,38 +18247,38 @@ tN
 tN
 tN
 BS
-AU
-AU
-AU
+wf
+IY
+IY
 Sy
-AU
-AU
-AU
-AU
+IY
+IY
+IY
+IY
 Sy
-AU
-AU
-AU
-AU
+IY
+IY
+IY
+IY
 Sy
-AU
-AU
-AU
+IY
+IY
+IY
 AU
 Bf
 AU
-AU
-AU
-Sy
-AU
-Tq
-Tq
-Tq
+jN
+jN
+Gw
+jN
+st
+st
+st
 HM
-Tq
-Tq
-Tq
-Tq
+st
+st
+st
+st
 Za
 tN
 tN
@@ -18293,7 +18504,7 @@ tN
 tN
 tN
 BS
-AU
+Ng
 PR
 ly
 ly
@@ -18324,7 +18535,7 @@ Tq
 Tq
 Tq
 Tq
-Tq
+st
 Za
 tN
 tN
@@ -18550,38 +18761,38 @@ tN
 tN
 tN
 BS
-AU
+Ng
 UN
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
-AU
+rj
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+mp
+ia
+ia
+ia
+rj
+rj
+rj
+rj
+rj
+rj
+Pb
+Pb
+Pb
+Pb
+Pb
 Tq
 Tq
-Tq
-Tq
-Tq
-Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -18807,9 +19018,9 @@ tN
 tN
 tN
 BS
-AU
+Ng
 UN
-AU
+zF
 BS
 BS
 BS
@@ -18836,9 +19047,9 @@ Za
 Za
 Za
 Za
+HQ
 Tq
-Tq
-CZ
+FT
 Za
 tN
 tN
@@ -19064,9 +19275,9 @@ tN
 tN
 tN
 BS
-AU
+Ng
 UN
-AU
+zF
 BS
 jn
 jn
@@ -19078,14 +19289,14 @@ BS
 tN
 tN
 tN
-Yp
-Yp
-Yp
-Yp
-Yp
-Yp
-Yp
-vi
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
 tN
 tN
 tN
@@ -19093,9 +19304,9 @@ tN
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -19321,9 +19532,9 @@ tN
 tN
 tN
 BS
-AU
+Ng
 UN
-AU
+zF
 BS
 jn
 jn
@@ -19334,15 +19545,15 @@ jn
 BS
 tN
 tN
-vi
-Yp
-Yp
-FU
-FU
-FU
-FU
-Yp
-Yp
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
 tN
 tN
 tN
@@ -19350,9 +19561,9 @@ tN
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -19578,9 +19789,9 @@ tN
 tN
 tN
 BS
-AU
+Yj
 UN
-AU
+zF
 BS
 jn
 jn
@@ -19591,25 +19802,25 @@ jn
 BS
 tN
 tN
-SG
-SG
+Pd
+Pd
 Ge
 Wa
 Ge
-FU
-FU
-FU
-Yp
-Yp
+Pd
+Pd
+Pd
+Pd
+Pd
 tN
 tN
 tN
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -19835,9 +20046,9 @@ tN
 tN
 tN
 BS
-AU
+Ng
 UN
-di
+FK
 BS
 jn
 jn
@@ -19848,25 +20059,25 @@ jn
 BS
 tN
 tN
-SG
-Tg
+Pd
+Pd
 Ge
 gX
 Ge
-FU
-FU
-FU
-Yp
-Yp
-SG
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
 tN
 tN
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -20092,9 +20303,9 @@ tN
 tN
 tN
 BS
-AU
+Ng
 UN
-AU
+zF
 YC
 jn
 jn
@@ -20105,25 +20316,25 @@ jn
 BS
 tN
 tN
-vi
+Pd
 Ge
 Ge
 rZ
 Ge
 Ge
-FU
-FU
-Yp
-Yp
-vi
+Pd
+Pd
+Pd
+Pd
+Pd
 tN
 tN
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -20349,9 +20560,9 @@ tN
 tN
 tN
 BS
-AU
+Ng
 UN
-AU
+zF
 BS
 jn
 jn
@@ -20368,19 +20579,19 @@ Br
 cU
 UX
 Ge
-FU
-FU
-FU
-Yp
-Tg
-SG
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
 tN
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -20606,9 +20817,9 @@ tN
 tN
 tN
 BS
-AU
+Ng
 UN
-AU
+zF
 BS
 jn
 jn
@@ -20625,19 +20836,19 @@ rl
 LR
 QK
 SL
-FU
-FU
-FU
-Yp
-Yp
-SG
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
 tN
 tN
 tN
 Za
+HQ
 Tq
-Tq
-CZ
+FT
 Za
 Xt
 Xt
@@ -20863,9 +21074,9 @@ tN
 tN
 tN
 BS
-AU
+Ng
 UN
-AU
+zF
 BS
 jn
 jn
@@ -20882,19 +21093,19 @@ WR
 lY
 Ku
 Ge
-FU
-FU
-FU
-Yp
-SG
-SG
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
 tN
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 Xt
 Tg
@@ -21120,9 +21331,9 @@ tN
 tN
 tN
 BS
-AU
+Ng
 UN
-AU
+zF
 BS
 jn
 jn
@@ -21139,19 +21350,19 @@ pO
 La
 PX
 Ge
-FU
-FU
-FU
-Yp
-SG
-vi
+Pd
+Pd
+Pd
+Pd
+Pd
+Pd
 tN
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 vi
 SG
@@ -21377,9 +21588,9 @@ tN
 tN
 tN
 BS
-AU
+Ng
 UN
-di
+FK
 BS
 BS
 BS
@@ -21399,16 +21610,16 @@ Ge
 Ge
 Ge
 Ge
-Yp
-SG
-Tg
+Pd
+BF
+Pd
 tN
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 SG
 vi
@@ -21634,9 +21845,9 @@ tN
 tN
 tN
 BS
-AU
-UN
-AU
+mM
+KR
+Dp
 BS
 tN
 tN
@@ -21657,15 +21868,15 @@ nx
 qo
 Lw
 Th
-vi
-SG
+ac
+Pd
 tN
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 SG
 Tg
@@ -21920,9 +22131,9 @@ Ge
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 Tg
 SG
@@ -22177,9 +22388,9 @@ Ge
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 vi
 SG
@@ -22434,9 +22645,9 @@ Ge
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 SG
 FU
@@ -22693,7 +22904,7 @@ tN
 Za
 Nq
 Tq
-Tq
+st
 um
 SG
 FU
@@ -22948,9 +23159,9 @@ Ge
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 SG
 FU
@@ -23205,9 +23416,9 @@ Ge
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 mk
 FU
@@ -23462,9 +23673,9 @@ Ge
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 SG
 FU
@@ -23719,9 +23930,9 @@ Ge
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 SG
 FU
@@ -23976,9 +24187,9 @@ Ge
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 Tg
 SG
@@ -24233,9 +24444,9 @@ Ge
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 um
 SG
 mk
@@ -24490,9 +24701,9 @@ Ge
 tN
 tN
 Za
+HQ
 Tq
-Tq
-CZ
+FT
 Za
 Xt
 Xt
@@ -24747,9 +24958,9 @@ Ge
 tN
 tN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -25004,9 +25215,9 @@ Ge
 Za
 Za
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -25261,9 +25472,9 @@ GC
 sE
 an
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -25518,9 +25729,9 @@ KT
 KT
 HD
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -25775,9 +25986,9 @@ KT
 KT
 HD
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -26032,9 +26243,9 @@ KT
 KT
 HD
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -26289,9 +26500,9 @@ qg
 qg
 LN
 Za
+HQ
 Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -26548,7 +26759,7 @@ Za
 Za
 Nq
 Tq
-Tq
+st
 Za
 tN
 tN
@@ -26801,11 +27012,11 @@ lo
 YE
 YE
 YE
+HQ
+HQ
+HQ
 Tq
-Tq
-Tq
-Tq
-Tq
+st
 Za
 tN
 tN
@@ -27062,7 +27273,7 @@ Tq
 Tq
 Tq
 Tq
-Tq
+st
 Za
 tN
 tN
@@ -27315,11 +27526,11 @@ Tq
 Tq
 Tq
 Tq
-Tq
-Tq
-Tq
-Tq
-Tq
+If
+If
+If
+Df
+FW
 Za
 tN
 tN
