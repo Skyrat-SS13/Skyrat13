@@ -136,9 +136,9 @@
 /obj/item/borg/upgrade/modkit/wall
 	name = "wall modification kit"
 	desc = "Makes a wall on impact on a living being."
-	cost = 55
-	var/cooldown
-	var/cdmultiplier = 1.1
+	cost = 60
+	var/cooldown = 0
+	var/cdmultiplier = 1.75
 
 /obj/item/borg/upgrade/modkit/wall/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()
@@ -146,12 +146,12 @@
 		new /obj/effect/temp_visual/hierophant/squares(T)
 	if(istype(target, /mob/living))
 		new /obj/effect/temp_visual/hierophant/telegraph/teleport(target.loc)
-	if(istype(target, /mob/living/simple_animal) && (!cooldown || world.time > cooldown))
+	if(istype(target, /mob/living/simple_animal) && ( world.time > cooldown))
+		cooldown = world.time + (W.duration * cdmultiplier)
 		var/mob/living/F = K.firer
 		var/dir_to_target = get_dir(F, target)
 		var/turf/T = get_step(get_turf(F), dir_to_target)
 		var/obj/effect/temp_visual/hierophant/wall/crusher/W = new /obj/effect/temp_visual/hierophant/wall/crusher(T, F) //a wall only you can pass!
-		cooldown = world.time + (W.duration * cdmultiplier)
 		var/turf/otherT = get_step(T, turn(F.dir, 90))
 		if(otherT)
 			new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, F)
@@ -166,7 +166,7 @@
 /obj/item/borg/upgrade/modkit/bolter
 	name = "death bolt modification kit"
 	desc = "Makes your shots reload faster if you hit a mob or mineral."
-	cost = 40
+	cost = 50
 	modifier = 0.4
 
 /obj/item/borg/upgrade/modkit/bolter/modify_projectile(obj/item/projectile/kinetic/K)
@@ -223,7 +223,7 @@
 /obj/item/borg/upgrade/modkit/skull
 	name = "skull launcher modification kit"
 	desc = "Makes your shots create an explosive legion skull on impact. Can backfire."
-	cost = 40
+	cost = 50
 
 /obj/item/borg/upgrade/modkit/skull/projectile_strike(obj/item/projectile/kinetic/K, turf/target_turf, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()
@@ -245,7 +245,7 @@
 	name = "flamethrower modification kit"
 	desc = "Makes your kinetic shots deal a mild amount of burn damage."
 	modifier = 10
-	cost = 20
+	cost = 25
 
 /obj/item/borg/upgrade/modkit/fire/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	..()

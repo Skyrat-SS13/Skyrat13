@@ -211,9 +211,9 @@
 		H.charge_time = 15
 		H.force_wielded = 20
 
-//hierophant crusher small buff compared to citadel
+//hierophant crusher small changes
 /obj/item/crusher_trophy/vortex_talisman
-	var/cdmultiplier = 1.1
+	var/cdmultiplier = 1.25
 
 /obj/item/crusher_trophy/vortex_talisman/on_mark_detonation(mob/living/target, mob/living/user)
 	if(vortex_cd >= world.time)
