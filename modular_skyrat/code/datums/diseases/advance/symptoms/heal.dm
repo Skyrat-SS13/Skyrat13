@@ -310,7 +310,7 @@
 	if(!parts.len)
 		return
 
-	if(prob(5) && (getBruteLoss() || getFireLoss())
+	if(prob(5) && (M.getBruteLoss() || M.getFireLoss()))
 		to_chat(M, "<span class='notice'>The alcohol makes you feel stronger.</span>")
 
 	for(var/obj/item/bodypart/L in parts)
