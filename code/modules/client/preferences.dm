@@ -1358,6 +1358,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/proc/SetLanguage(mob/user)
 	var/list/dat = list()
 	dat += "<center><b>Choose an Additional Language</b></center><br>"
+	dat += "<center>Do note, however, than you can only have one chosen language.</center><br>"
+	dat += "<center>If you want no additional language at all, simply remove the currently chosen language.</center><br>"
 	dat += "<hr>"
 	if(GLOB.all_languages.len)
 		for(var/V in GLOB.all_languages)
