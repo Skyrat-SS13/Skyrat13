@@ -1,4 +1,3 @@
-#define AUTOCLONING_MINIMAL_LEVEL 4
 /obj/machinery/computer/cloning
 	name = "cloning console"
 	desc = "Used to clone people and manage DNA."
