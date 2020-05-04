@@ -1,3 +1,4 @@
+//
 #define OWNER 0
 #define STRANGER 1
 
@@ -219,3 +220,4 @@
 
 #undef OWNER
 #undef STRANGER
+//
