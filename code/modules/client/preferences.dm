@@ -1367,9 +1367,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/language_name = initial(L.name)
 			var/restricted = FALSE
 			var/has_language = FALSE
-			if(L.is_restricted)
+			if(L.restricted)
 				restricted = TRUE
-			if(language_name = language)
+			if(language_name == language)
 				has_language = TRUE
 			var/font_color = "#4682B4"
 			var/nullify = ""
@@ -1493,7 +1493,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				ShowChoices(user)
 			if("update")
 				var/lang = href_list["language"]
-				if(GLOB.all_languages[lang] || lang = "")
+				if(GLOB.all_languages[lang] || lang == "")
 					language = lang
 					SetLanguage(user)
 				else

@@ -17,7 +17,7 @@ SUBSYSTEM_DEF(language)
 
 	return ..()
 
-/datum/controller/subsystem/processing/language/proc/AssignQuirks(mob/living/user, client/cli, spawn_effects, roundstart = FALSE, datum/job/job, silent = FALSE, mob/to_chat_target)
+/datum/controller/subsystem/processing/language/proc/AssignLanguage(mob/living/user, client/cli, spawn_effects, roundstart = FALSE, datum/job/job, silent = FALSE, mob/to_chat_target)
 	var/list/my_lang = cli.prefs.language
 	for(var/I in GLOB.all_languages)
 		var/datum/language/L = GLOB.all_languages[I]
