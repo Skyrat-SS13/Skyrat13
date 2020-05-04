@@ -3431,6 +3431,7 @@
 #include "modular_skyrat\code\game\gamemodes\changeling\traitor_chan.dm"
 #include "modular_skyrat\code\game\gamemodes\cult\cult.dm"
 #include "modular_skyrat\code\game\gamemodes\devil\devil_game_mode.dm"
+#include "modular_skyrat\code\game\gamemodes\dynamic\dynamic_rulesets_latejoin.dm"
 #include "modular_skyrat\code\game\gamemodes\dynamic\dynamic_rulesets_midround.dm"
 #include "modular_skyrat\code\game\gamemodes\dynamic\dynamic_rulesets_roundstart.dm"
 #include "modular_skyrat\code\game\gamemodes\monkey\monkey.dm"
