@@ -22,7 +22,7 @@
 
 /obj/item/ancientartifact/useless
 	name = "nonfunctional artifact"
-	desc = "this artifact is nonfunctional... perhaps it can be researched or sold."
+	desc = "This artifact is nonfunctional... perhaps it can be researched or sold."
 
 /obj/item/ancientartifact/useless/Initialize()
 	icon_state = pick(list("urn","statuette","instrument","unknown1","unknown2","unknown3"))
@@ -39,7 +39,7 @@
 
 /obj/item/ancientartifact/faunafossil
 	name = "fauna fossil"
-	desc = "this is a fossil of an animal... seems dead."
+	desc = "This is a fossil of an animal... seems dead."
 
 /obj/item/ancientartifact/faunafossil/Initialize()
 	icon_state = pick(list("bone1","bone2","bone3","bone4"))
@@ -56,7 +56,7 @@
 
 /obj/item/ancientartifact/florafossil
 	name = "flora fossil"
-	desc = "this is a fossil of a plant... seems dead."
+	desc = "This is a fossil of a plant... seems dead."
 
 /obj/item/ancientartifact/florafossil/Initialize()
 	icon_state = pick(list("plant1","plant2","plant3","plant4"))
@@ -69,4 +69,23 @@
 			return
 		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = 2000))
 		to_chat(user,"You successfully researched the artifact. You have gained 1000 research points.")
+		qdel(src)
+	if(istype(W,/obj/item/xenoarch/help/plant))
+		if(!do_after(user,50,target=src))
+			to_chat(user,"You need to stand still to extract the seeds.")
+			return
+		var/seed = pick(list(	/obj/item/seeds/amauri,
+								/obj/item/seeds/gelthi,
+								/obj/item/seeds/jurlmah,
+								/obj/item/seeds/nofruit,
+								/obj/item/seeds/shand,
+								/obj/item/seeds/surik,
+								/obj/item/seeds/telriis,
+								/obj/item/seeds/thaadra,
+								/obj/item/seeds/vale,
+								/obj/item/seeds/vaporsac
+								))
+
+		new seed(get_turf(user))
+		user.put_in_active_hand(seed)
 		qdel(src)

@@ -1,6 +1,7 @@
 /obj/item/seeds/thaadra
 	name = "pack of thaadra seeds"
 	desc = "These seeds grow into thaadra plants."
+	icon = 'modular_skyrat/code/modules/research/xenoarch/xenobotany/icons/seeds.dmi'
 	icon_state = "thaadra"
 	species = "thaadra"
 	plantname = "Thaadra Plant"
@@ -9,6 +10,7 @@
 	endurance = 35
 	yield = 5
 	growing_icon = 'modular_skyrat/code/modules/research/xenoarch/xenobotany/icons/growing.dmi'
+	icon_grow = "thaadra-stage"
 	growthstages = 4
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/silver = 0.1)
@@ -17,6 +19,7 @@
 	seed = /obj/item/seeds/thaadra
 	name = "thaadra"
 	desc = "It's a little piece of thaadra."
+	icon = 'modular_skyrat/code/modules/research/xenoarch/xenobotany/icons/harvests.dmi'
 	icon_state = "thaadra"
 	filling_color = "#FF4500"
 	bitesize = 100

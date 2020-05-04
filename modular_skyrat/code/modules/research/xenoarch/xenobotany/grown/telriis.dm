@@ -1,6 +1,7 @@
 /obj/item/seeds/telriis
 	name = "pack of telriis seeds"
 	desc = "These seeds grow into telriis plants."
+	icon = 'modular_skyrat/code/modules/research/xenoarch/xenobotany/icons/seeds.dmi'
 	icon_state = "telriis"
 	species = "telriis"
 	plantname = "Telriis Plant"
@@ -9,6 +10,7 @@
 	endurance = 35
 	yield = 5
 	growing_icon = 'modular_skyrat/code/modules/research/xenoarch/xenobotany/icons/growing.dmi'
+	icon_grow = "telriis-stage"
 	growthstages = 4
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/mutationtoxin/pod = 0.1)
@@ -17,6 +19,7 @@
 	seed = /obj/item/seeds/telriis
 	name = "telriis"
 	desc = "It's a little piece of telriis."
+	icon = 'modular_skyrat/code/modules/research/xenoarch/xenobotany/icons/harvests.dmi'
 	icon_state = "telriis"
 	filling_color = "#FF4500"
 	bitesize = 100
