@@ -249,8 +249,8 @@
 /obj/item/shard/shank/CheckParts(list/parts_list)
 	var/obj/item/shard/tip = locate() in parts_list
 	if(istype(tip, /obj/item/shard/plasma))
-		force = 11
-		throwforce = 11
+		force = 6
+		throwforce = 12
 		custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	qdel(tip)
 
