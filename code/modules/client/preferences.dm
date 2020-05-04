@@ -88,6 +88,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/flavor_background = ""
 	var/character_skills = ""
 	var/exploitable_info = ""
+	var/language = ""
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
@@ -297,6 +298,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<center><h2>Quirk Setup</h2>"
 				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Quirks</a><br></center>"
 				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
+			//SKYRAT EDIT - additional language
+			dat += "<h2>Additional Language :</h2>"
+			dat += "<a href='?_src_=prefs;preferencelanguage;task=menu'>[language ? language : "None"]</a><br></center>"
+			//
 			dat += "<h2>Identity</h2>"
 			dat += "<table width='100%'><tr><td width='75%' valign='top'>"
 			if(jobban_isbanned(user, "appearance"))
@@ -1349,6 +1354,42 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(SSquirks.quirk_points[q] > 0)
 			.++
 
+//SKYRAT EDIT - extra language
+/datum/preferences/proc/SetLanguage(mob/user)
+	var/list/dat = list()
+	dat += "<center><b>Choose an Additional Language</b></center><br>"
+	dat += "<hr>"
+	if(GLOB.all_languages.len)
+		for(var/V in GLOB.all_languages)
+			var/datum/language/L = GLOB.all_languages[V]
+			var/language_name = initial(L.name)
+			var/restricted = FALSE
+			var/has_language = FALSE
+			if(L.is_restricted)
+				restricted = TRUE
+			if(language_name = language)
+				has_language = TRUE
+			var/font_color = "#4682B4"
+			var/nullify = ""
+			if(restricted)
+				continue
+			else
+				if(has_language)
+					dat += "<b><font color='[font_color]'>[language_name] :</font></b> [initial(L.desc)]<br>"
+					dat += "<a href='?_src_=prefs;preference=language;task=update;language=[nullify]'>Remove</a>"
+				else
+					dat += "<b><font color='[font_color]'>[language_name] :</font></b> [initial(L.desc)]<br>"
+					dat += "<a href='?_src_=prefs;preference=language;task=update;language=[language_name]'>Choose</a>"
+	else 
+		dat += "<center><b>The language subsystem hasn't fully loaded yet! Please wait a bit and try again.</b></center><br>"
+	dat += "<center><a href='?_src_=prefs;preference=language;task=close'>Done</a></center>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Language Preference</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+//
+
 /datum/preferences/Topic(href, href_list, hsrc)			//yeah, gotta do this I guess..
 	. = ..()
 	if(href_list["close"])
@@ -1442,7 +1483,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			else
 				SetQuirks(user)
 		return TRUE
-
+	//SKYRAT CHANGE - additional language
+	else if(href_list["preference"] == "language")
+		switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+				ShowChoices(user)
+			if("update")
+				var/lang = href_list["language"]
+				if(GLOB.all_languages[lang] || lang = "")
+					language = lang
+					SetLanguage(user)
+				else
+					SetLanguage(user)
+		return TRUE
+	//
 	switch(href_list["task"])
 		if("random")
 			switch(href_list["preference"])

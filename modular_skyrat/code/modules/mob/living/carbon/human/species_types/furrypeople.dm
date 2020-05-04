@@ -17,6 +17,7 @@
 	exotic_bloodtype = "X*"
 	damage_overlay_type = "xeno"
 	liked_food = MEAT
-
+/*
 /datum/species/xeno/after_equip_job(datum/job/J, mob/living/carbon/human/H)
-	H.grant_language(/datum/language/xenocommon)
+	H.grant_language(/datum/language/xenocommon) SKYRAT CHANGE We have an additional language option for this
+*/

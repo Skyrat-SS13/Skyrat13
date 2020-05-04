@@ -9,6 +9,9 @@
 	default_priority = 100
 
 	icon_state = "galcom"
+	//SKYRAT CHANGE - language restriction
+	restricted = TRUE
+	//
 
 //Syllable Lists
 /*
