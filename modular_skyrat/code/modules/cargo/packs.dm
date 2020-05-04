@@ -23,13 +23,3 @@
 					/obj/item/vending_refill/hydronutrients/prisoner)
 	crate_name = "prisoner hydroponics supply crate"
 	crate_type = /obj/structure/closet/crate
-
-/datum/supply_pack/costumes_toys/randomised/toys/generate()
-	. = ..()
-	var/the_toy
-	for(var/i in 1 to num_contained)
-		if(prob(50))
-			the_toy = pickweight(GLOB.arcade_prize_pool)
-		else
-			the_toy = pick(subtypesof(/obj/item/toy/plush) - typesof(/obj/item/toy/plush/goatplushie/angry))
-		new the_toy(.)
