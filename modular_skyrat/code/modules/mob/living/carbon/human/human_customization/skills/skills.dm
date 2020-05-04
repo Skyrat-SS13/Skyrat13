@@ -5,7 +5,7 @@
 #define SKILL_EXPERIENCED 4
 #define SKILL_MASTER 5
 
-/datum/skill
+/datum/real_skill
 	var/name = "Skill"
 	var/desc = "Skill's description."
 	var/id = 0
@@ -14,7 +14,7 @@
 	var/default_max = SKILL_EXPERIENCED
 
 //Guess you could change those procs to feed off of variable lists in the skill.. but is that more efficient? Won't interfere with how they get saved anyway
-/datum/skill/proc/get_cost(level)
+/datum/real_skill/proc/get_cost(level)
 	switch(level)
 		if(SKILL_BASIC, SKILL_TRAINED)
 			return difficulty
@@ -23,7 +23,7 @@
 		else
 			return 0
 
-/datum/skill/proc/get_level_name(level)
+/datum/real_skill/proc/get_level_name(level)
 	switch(level)
 		if(SKILL_UNSKILLED)
 			return "Unskilled"
@@ -38,7 +38,7 @@
 		else
 			return "Something went wrong"
 
-/datum/skill/proc/get_level_desc(level)
+/datum/real_skill/proc/get_level_desc(level)
 	switch(level)
 		if(SKILL_UNSKILLED)
 			return "Description for unskilled level"
@@ -53,7 +53,7 @@
 		else
 			return "Something went wrong"
 
-/datum/skill/proc/get_change_cost(current, target)
+/datum/real_skill/proc/get_change_cost(current, target)
 	if(current == target)
 		return 0
 
@@ -103,7 +103,7 @@
 
 /************GENERAL**************/
 
-/datum/skill/eva
+/datum/real_skill/eva
 	name = "Extra-Vehicular Activity"
 	desc = "EVA's description."
 	id = SKILL_EVA
@@ -111,7 +111,7 @@
 
 /************ORGANIZATIONAL**************/
 
-/datum/skill/leadership
+/datum/real_skill/leadership
 	name = "Leadership"
 	desc = "Leader's description."
 	id = SKILL_LEADERSHIP
@@ -119,19 +119,19 @@
 
 /************ENGINEERING**************/
 
-/datum/skill/atmos
+/datum/real_skill/atmos
 	name = "Atmospherics"
 	desc = "Atmo's description."
 	id = SKILL_ATMOS
 	cat_id = SKILL_CAT_ENGINEERING
 
-/datum/skill/construction
+/datum/real_skill/construction
 	name = "Construction"
 	desc = "const's description."
 	id = SKILL_CONSTRUCTION
 	cat_id = SKILL_CAT_ENGINEERING
 
-/datum/skill/electrical
+/datum/real_skill/electrical
 	name = "Electrical Engineering"
 	desc = "Elec's description."
 	id = SKILL_ELECTRICAL
@@ -139,19 +139,19 @@
 
 /************MEDICAL**************/
 
-/datum/skill/anatomy
+/datum/real_skill/anatomy
 	name = "Anatomy"
 	desc = "anat's description."
 	id = SKILL_ANATOMY
 	cat_id = SKILL_CAT_MEDICAL
 
-/datum/skill/medicine
+/datum/real_skill/medicine
 	name = "Medicine"
 	desc = "medicine's description."
 	id = SKILL_MEDICINE
 	cat_id = SKILL_CAT_MEDICAL
 
-/datum/skill/chemistry
+/datum/real_skill/chemistry
 	name = "Chemistry"
 	desc = "Chem's description."
 	id = SKILL_CHEMISTRY
@@ -159,13 +159,13 @@
 
 /************RESEARCH**************/
 
-/datum/skill/science
+/datum/real_skill/science
 	name = "Science"
 	desc = "Science's description."
 	id = SKILL_SCIENCE
 	cat_id = SKILL_CAT_RESEARCH
 
-/datum/skill/complex_devices
+/datum/real_skill/complex_devices
 	name = "Complex Devices"
 	desc = "comp's description."
 	id = SKILL_COMPLEX_DEVICES
@@ -173,19 +173,19 @@
 
 /************SECURITY**************/
 
-/datum/skill/close_combat
+/datum/real_skill/close_combat
 	name = "Close Combat"
 	desc = "CC's description."
 	id = SKILL_CLOSE_COMBAT
 	cat_id = SKILL_CAT_SECURITY
 
-/datum/skill/weapons_expertise
+/datum/real_skill/weapons_expertise
 	name = "Weapons Expertise"
 	desc = "WE's description."
 	id = SKILL_WEAPONS_EXPERTISE
 	cat_id = SKILL_CAT_SECURITY
 
-/datum/skill/forensics
+/datum/real_skill/forensics
 	name = "Forensics"
 	desc = "Forensics description."
 	id = SKILL_FORENSICS
@@ -193,13 +193,13 @@
 
 /************SERVICE**************/
 
-/datum/skill/botany
+/datum/real_skill/botany
 	name = "Botany"
 	desc = "botany's description."
 	id = SKILL_BOTANY
 	cat_id = SKILL_CAT_SERVICE
 
-/datum/skill/cooking
+/datum/real_skill/cooking
 	name = "Cooking"
 	desc = "Cooking description."
 	id = SKILL_COOKING

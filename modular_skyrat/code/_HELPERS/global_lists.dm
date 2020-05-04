@@ -10,8 +10,8 @@
 		GLOB.skill_cat_list[SC.id] = SC
 
 	//Skills
-	for(var/path in subtypesof(/datum/skill))
-		var/datum/skill/SK = new path()
+	for(var/path in subtypesof(/datum/real_skill))
+		var/datum/real_skill/SK = new path()
 		GLOB.skill_list[SK.id] = SK
 
 	//Reference the skills in categories
@@ -19,7 +19,7 @@
 		var/datum/skill_category/SCat = GLOB.skill_cat_list[i]
 
 		for(var/b in GLOB.skill_list)
-			var/datum/skill/SK = GLOB.skill_list[b]
+			var/datum/real_skill/SK = GLOB.skill_list[b]
 			if(SK.cat_id == SCat.id)
 				SCat.skill_list += SK
 
