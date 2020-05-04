@@ -31,7 +31,6 @@
 		if(range > 0)
 			return BULLET_ACT_FORCE_PIERCE
 
-
 /obj/item/projectile/plasma/adv
 	damage = 28
 	range = 5
