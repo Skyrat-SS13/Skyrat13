@@ -238,5 +238,7 @@
 				possiblelocs += locate(x - 1, y, z)
 				possiblelocs += locate(x - 1, y - 1, z)
 				possiblelocs += locate(x, y - 1, z)
+		var/turf/validloc = get_turf(src)
+		if(possiblelocs.len)
 			var/turf/validloc = pick(possiblelocs)
-			Move(validloc)
+		Move(validloc)
