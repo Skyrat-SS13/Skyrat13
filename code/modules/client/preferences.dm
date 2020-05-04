@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
 			//SKYRAT EDIT - additional language
 			dat += "<h2>Additional Language :</h2>"
-			dat += "<a href='?_src_=prefs;preferencelanguage;task=menu'>[language ? language : "None"]</a><br></center>"
+			dat += "<a href='?_src_=prefs;preference=language;task=menu'>[language ? language : "None"]</a><br></center>"
 			//
 			dat += "<h2>Identity</h2>"
 			dat += "<table width='100%'><tr><td width='75%' valign='top'>"
