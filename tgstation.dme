@@ -3669,6 +3669,7 @@
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\legion.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\legionhard.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\megafauna.dm"
+#include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\megafauna\sif.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\mining_mobs\basilisk.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\mining_mobs\goldgrub.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\hostile\mining_mobs\goliath.dm"

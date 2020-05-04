@@ -38,3 +38,6 @@
 #_maps/RandomRuins/LavaRuins/lavaland_surface_cultaltar.dmm
 #_maps/RandomRuins/LavaRuins/lavaland_surface_hermit.dmm
 #_maps/RandomRuins/LavaRuins/lavaland_surface_swarmer_crash.dmm
+#_maps/RandomRuins/LavaRuins/lavaland_surface_sif_spawn.dmm
+#_maps/RandomRuins/LavaRuins/lavaland_surface_e1m1.dmm
+#_maps/RandomRuins/LavaRuins/lavaland_surface_wrath.dmm
