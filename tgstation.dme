@@ -3738,6 +3738,7 @@
 #include "modular_skyrat\code\modules\uplink\uplink_items.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_roles.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_stealth.dm"
+#include "modular_skyrat\code\modules\vehicles\forklift.dm"
 #include "modular_skyrat\code\modules\vending\autodrobe.dm"
 #include "modular_skyrat\code\modules\vending\clothesmate.dm"
 #include "modular_skyrat\code\modules\vending\dinnerwareprisoner.dm"
