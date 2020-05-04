@@ -191,7 +191,7 @@
 										BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT)))
 			to_chat(user, "<span class='danger'>You can't apply a splint there!</span>")
 			return FALSE
-		
+
 		if(affecting.status == BODYPART_ROBOTIC)
 			to_chat(user, "<span class='danger'>[H]'s [affecting] can't be broken, it's robotic!</span>")
 			return FALSE
@@ -225,7 +225,7 @@
 	singular_name = "nanite paste"
 	icon = 'modular_skyrat/icons/obj/medical.dmi'
 	icon_state = "nanopaste"
-	desc = "01110111 01100101 01100101 01100100 00100000 01100101 01100001 01110100 01100101 01110010."
+	desc = "A paste composed of silicon and healing nanites. Very efficient tool to heal robotic limbs."
 	novariants = TRUE
 	self_delay = 60
 	var/heal_brute = 20
@@ -236,7 +236,7 @@
 		return heal_carbon(M, user)
 
 /obj/item/stack/medical/nanopaste/heal_carbon(mob/living/carbon/C, mob/user, brute, burn)
-	if(iscarbon(C))
+	if(!iscarbon(C))
 		return FALSE
 	var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
 	if(!affecting) //Missing limb?

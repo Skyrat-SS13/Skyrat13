@@ -19,7 +19,6 @@
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/actualhealth = 100 //value we calculate to assume disguise and etc
-	var/obj/item/organ/tongue/faketongue //tongue we use when disguised to handle speech
 	//Same organs as an IPC basically, to share functionality.
 	mutant_heart = /obj/item/organ/heart/ipc
 	mutantlungs = /obj/item/organ/lungs/ipc
@@ -28,7 +27,7 @@
 	mutanteyes = /obj/item/organ/eyes/ipc
 	exotic_blood = /datum/reagent/blood/synthetics
 	exotic_bloodtype = "SY"
-// cheeto
+	//cheeto
 	var/storedeardamage = 0
 	var/storedtaildamage = 0
 
@@ -67,8 +66,6 @@
 			tail.Insert(H)
 			H.setOrganLoss(ORGAN_SLOT_TAIL, storedtaildamage)
 		isdisguised = TRUE
-		if(!faketongue)
-			faketongue = new S.mutanttongue
 		fake_species = new S.type
 	else
 		name = initial(name)
@@ -126,11 +123,8 @@
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
 		var/mob/living/carbon/human/H = source
-		actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
-		if(isdisguised || (actualhealth >= disguise_fail_health))
-			if(faketongue)
-				return faketongue.handle_speech(source, speech_args)
-	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
+		if(!isdisguised || (actualhealth < disguise_fail_health)
+			speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 	return
 
 /datum/species/synth/proc/unassume_disguise(mob/living/carbon/human/H)
