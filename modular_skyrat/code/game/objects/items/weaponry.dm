@@ -240,7 +240,7 @@
 	desc = "A nasty looking shard of glass. There's paper wrapping over one of the ends."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "shank"
-	force = 10 //Average force
+	force = 5 // Bad force, but it stabs twice as fast
 	throwforce = 10
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "shanked", "sliced", "cut")
@@ -253,6 +253,10 @@
 		throwforce = 11
 		custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	qdel(tip)
+
+/obj/item/shard/shank/afterattack(atom/target, mob/living/user, proximity)
+	if(proximity)
+		user.changeNext_move(CLICK_CD_MELEE * 0.5) //twice the stab
 
 //mace of molag bal
 /obj/item/melee/cleric_mace/molagbal
