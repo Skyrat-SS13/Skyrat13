@@ -60,8 +60,7 @@
 	playsound(get_turf(C), 'sound/misc/splort.ogg', 80, 1)
 	for(var/X in C.internal_organs)
 		var/obj/item/organ/O = X
-		var/org_zone = check_zone(O.zone)
-		if(org_zone != BODY_ZONE_CHEST)
+		if(O.organ_flags & ORGAN_NO_DISMEMBERMENT || check_zone(O.zone) != BODY_ZONE_CHEST)
 			continue
 		O.Remove()
 		O.forceMove(T)
@@ -339,6 +338,7 @@
 		O.Insert(C)
 	
 	update_bodypart_damage_state()
+	update_disabled()
 
 	C.updatehealth()
 	C.update_body()

@@ -40,6 +40,7 @@
 	new /obj/structure/falsewall/brass(loc)
 	qdel(src)
 
+/* Moved to Modular Skyrat
 /obj/structure/falsewall/attack_hand(mob/user)
 	if(opening)
 		return
@@ -55,6 +56,7 @@
 			opening = FALSE
 			return
 	addtimer(CALLBACK(src, /obj/structure/falsewall/proc/toggle_open), 5)
+*/
 
 /obj/structure/falsewall/proc/toggle_open()
 	if(!QDELETED(src))
