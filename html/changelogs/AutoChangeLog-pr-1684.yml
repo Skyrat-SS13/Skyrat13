@@ -1,4 +1,0 @@
-author: "Akrilla"
-delete-after: True
-changes: 
-  - tweak: "Checking for false walls has a slight delay."
