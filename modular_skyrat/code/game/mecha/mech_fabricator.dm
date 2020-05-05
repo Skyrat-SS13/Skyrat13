@@ -6,6 +6,8 @@
 						"Ripley",
 						"Firefighter",
 						"Killdozer",
+						"Clarke",
+						"Buzz",
 						"Odysseus",
 						"Gygax",
 						"Durand",
@@ -104,6 +106,7 @@
 
 	var/location = get_step(src,(dir))
 	var/obj/item/I = new D.build_path(location)
+	I.material_flags |= MATERIAL_NO_EFFECTS
 	I.set_custom_materials(res_coef)
 	say("\The [I] is complete.")
 	being_built = null
