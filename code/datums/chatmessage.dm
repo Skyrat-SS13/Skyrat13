@@ -24,6 +24,7 @@
 	var/scheduled_destruction
 	/// Contains the approximate amount of lines for height decay
 	var/approx_lines
+	var/static/list/symbol_to_pixel_lookup = list("i" = 2, "I" = 2, "l" = 2, "!" = 2, "j" = 2, "." = 2, "!" = 2, "," = 2, "|" = 2, ";" = 2, "f" = 3, "1" = 3, "*" = 3, "(" = 3, ")" = 2, "/" = 3, "\\" = 3, "-" = 3, "{" = 3, "}" = 3, "x" = 4, "b" = 4, "^" = 4, "+" = 4, ">" = 4, "Z" = 6, "<" = 4, "A" = 6, "#" = 6, "&" = 6, "G" = 7, "Q" = 7, "R" = 7, "O" = 7, "A" = 7, "H" = 7, "N" = 7, "%" = 7, "W" = 8, "m" = 8, "M" = 9, "@" = 9, "L" = 5, "J" = 5) //Skyrat change
 
 /**
   * Constructs a chat message overlay
@@ -70,20 +71,34 @@
 	owned_by = owner.client
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/qdel, src)
 
+	var/pixels = 10 //Skyrat change
+	var/bold = FALSE //Skyrat change
+
 	// Clip message
 	var/maxlen = owned_by.prefs.max_chat_length
 	if (length_char(text) > maxlen)
 		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 
+	//SKYRAT CHANGES BEGIND
 	// Calculate target color if not already present
 	if (!target.chat_color || target.chat_color_name != target.name)
-		target.chat_color = colorize_string(target.name)
-		target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
+		var/mob/M = target
+		if(GLOB.runechat_color_names[target.name])
+			target.chat_color = GLOB.runechat_color_names[target.name]
+		else if (ismob(target) && M.client?.prefs?.enable_personal_chat_color && M.name == M.real_name && M.name == M.client.prefs.real_name)
+			var/per_color = M.client.prefs.personal_chat_color
+			GLOB.runechat_color_names[target.name] = per_color
+			target.chat_color = per_color
+		else
+			target.chat_color = colorize_string(target.name)
+
+		target.chat_color_darkened = color_shift(target.chat_color, 0.85, 0.85)
 		target.chat_color_name = target.name
+	//SKYRAT CHANGES END
 
 	// Get rid of any URL schemes that might cause BYOND to automatically wrap something in an anchor tag
-	var/static/regex/url_scheme = new(@"[A-Za-z][A-Za-z0-9+-\.]*:\/\/", "g")
-	text = replacetext(text, url_scheme, "")
+	//var/static/regex/url_scheme = new(@"[A-Za-z][A-Za-z0-9+-\.]*:\/\/", "g") //Skyrat change
+	//text = replacetext(text, url_scheme, "") //Skyrat change
 
 	// Reject whitespace
 	var/static/regex/whitespace = new(@"^\s*$")
@@ -95,10 +110,39 @@
 	if (!ismob(target))
 		extra_classes |= "small"
 
+	//Skyrat changes
+	//Below you'll encounter A TERRIBLE WORKAROUND
+	var/cur_char
+	var/cur_lower
+	if(copytext_char(text, -2) == "!!" || extra_classes.Find("bold"))
+		bold = TRUE
+	for(var/i in 1 to length(text))
+		cur_char = text[i]
+		cur_lower = lowertext(cur_char)
+		if(bold)
+			pixels += 2
+		if (cur_char in symbol_to_pixel_lookup)
+			if(symbol_to_pixel_lookup[cur_char] == 2 && bold)
+				pixels += symbol_to_pixel_lookup[cur_char] - 1
+			else
+				pixels += symbol_to_pixel_lookup[cur_char]
+		else if (cur_char != cur_lower) //unfiltered uppercase take 6
+			pixels += 6
+		else //unfiltered lowercase take 5
+			pixels += 5
+	//End of skyrat changes
+
+	//Skyrat changes
 	// Append radio icon if from a virtual speaker
-	if (extra_classes.Find("virtual-speaker"))
-		var/image/r_icon = image('icons/UI_Icons/chat/chat_icons.dmi', icon_state = "radio")
+	if (extra_classes.Find("emote"))
+		var/image/r_icon = image('modular_skyrat/icons/UI_Icons/chat/chat_icons.dmi', icon_state = "emote")
 		text =  "\icon[r_icon]&nbsp;" + text
+		pixels += 10
+	else if (extra_classes.Find("virtual-speaker"))
+		var/image/r_icon = image('modular_skyrat/icons/UI_Icons/chat/chat_icons.dmi', icon_state = "radio")
+		text =  "\icon[r_icon]&nbsp;" + text
+		pixels += 10
+	//End of skyrat changes
 
 	// We dim italicized text to make it more distinguishable from regular text
 	var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
@@ -109,8 +153,11 @@
 	// Construct text
 	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
 	var/complete_text = "<span class='center maptext [extra_classes != null ? extra_classes.Join(" ") : ""]' style='color: [tgt_color]'>[text]</span>"
-	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, CHAT_MESSAGE_WIDTH))
-	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
+	//SKYRAT CHANGES
+	var/lines_est = max(1,(CEILING((pixels/CHAT_MESSAGE_WIDTH),1)))
+	var/mheight = 2 + (lines_est * 9)
+	approx_lines = lines_est
+	//END OF SKYRAT CHANGES
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
 	message_loc = target
@@ -129,7 +176,7 @@
 
 	// Build message image
 	message = image(loc = message_loc, layer = CHAT_LAYER)
-	message.plane = GAME_PLANE
+	message.plane = CHAT_LAYER
 	message.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	message.alpha = 0
 	message.pixel_y = owner.bound_height * 0.95
@@ -180,7 +227,12 @@
 		return
 
 	// Display visual above source
-	new /datum/chatmessage(lang_treat(speaker, message_language, raw_message, spans, null, TRUE), speaker, src, spans)
+	//Skyrat changes
+	if(message_language)
+		new /datum/chatmessage(lang_treat(speaker, message_language, raw_message, spans, null, TRUE), speaker, src, spans)
+	else
+		new /datum/chatmessage(raw_message, speaker, src, spans)
+	//End of skyrat changes
 
 
 // Tweak these defines to change the available color ranges
@@ -221,16 +273,32 @@
 	x = (x + m) * 255
 	c = (c + m) * 255
 	m *= 255
+	//Skyrat changes begin
+	var/final_val
 	switch(h_int)
 		if(0)
-			return "#[num2hex(c, 2)][num2hex(x, 2)][num2hex(m, 2)]"
+			final_val = "#[num2hex(c, 2)][num2hex(x, 2)][num2hex(m, 2)]"
 		if(1)
-			return "#[num2hex(x, 2)][num2hex(c, 2)][num2hex(m, 2)]"
+			final_val = "#[num2hex(x, 2)][num2hex(c, 2)][num2hex(m, 2)]"
 		if(2)
-			return "#[num2hex(m, 2)][num2hex(c, 2)][num2hex(x, 2)]"
+			final_val = "#[num2hex(m, 2)][num2hex(c, 2)][num2hex(x, 2)]"
 		if(3)
-			return "#[num2hex(m, 2)][num2hex(x, 2)][num2hex(c, 2)]"
+			final_val = "#[num2hex(m, 2)][num2hex(x, 2)][num2hex(c, 2)]"
 		if(4)
-			return "#[num2hex(x, 2)][num2hex(m, 2)][num2hex(c, 2)]"
+			final_val = "#[num2hex(x, 2)][num2hex(m, 2)][num2hex(c, 2)]"
 		if(5)
-			return "#[num2hex(c, 2)][num2hex(m, 2)][num2hex(x, 2)]"
+			final_val = "#[num2hex(c, 2)][num2hex(m, 2)][num2hex(x, 2)]"
+
+	GLOB.runechat_color_names[name] = final_val
+	return final_val
+	//End of skyrat changes
+
+//Skyrat changes begin
+/datum/chatmessage/proc/color_shift(color, sat_shift = 1, lum_shift = 1)
+	var/list/HSL = rgb2hsl(hex2num(copytext(color, 2, 4)), hex2num(copytext(color, 4, 6)), hex2num(copytext(color, 6, 8)))
+	HSL[2] = HSL[2] * sat_shift
+	HSL[3] = HSL[3] * lum_shift
+	var/list/RGB = hsl2rgb(arglist(HSL))
+	return "#[num2hex(RGB[1],2)][num2hex(RGB[2],2)][num2hex(RGB[3],2)]" 
+
+//End of skyrat changes
