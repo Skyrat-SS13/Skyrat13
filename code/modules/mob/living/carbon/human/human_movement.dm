@@ -20,24 +20,24 @@
 			. += SSI.config_entry_value
 		else
 			for(var/obj/item/bodypart/r_leg/right in bodyparts)
-				if((right.status_flags & BODYPART_BROKEN) || disabled)
-					if(!(right.status_flags & BODYPART_SPLINTED) || disabled)
+				if((right.status_flags & BODYPART_BROKEN) || right.disabled)
+					if(!(right.status_flags & BODYPART_SPLINTED) || right.disabled)
 						. += SSI.config_entry_value/4
 			for(var/obj/item/bodypart/l_leg/left in bodyparts)
-				if((left.status_flags & BODYPART_BROKEN) || disabled)
-					if(!(left.status_flags & BODYPART_SPLINTED) || disabled)
+				if((left.status_flags & BODYPART_BROKEN) || left.disabled)
+					if(!(left.status_flags & BODYPART_SPLINTED) || left.disabled)
 						. += SSI.config_entry_value/4
 		. -= SSI.config_entry_value
 	if(wrongdirmovedelay)
 		. += 1
 	if(m_intent == MOVE_INTENT_WALK)
 		for(var/obj/item/bodypart/r_leg/right in bodyparts)
-			if((right.status_flags & BODYPART_BROKEN) || disabled)
-				if(!(right.status_flags & BODYPART_SPLINTED) || disabled)
+			if((right.status_flags & BODYPART_BROKEN) || right.disabled)
+				if(!(right.status_flags & BODYPART_SPLINTED) || right.disabled)
 					. += 0.5
 		for(var/obj/item/bodypart/l_leg/left in bodyparts)
-			if((left.status_flags & BODYPART_BROKEN) || disabled)
-				if(!(left.status_flags & BODYPART_SPLINTED) || disabled)
+			if((left.status_flags & BODYPART_BROKEN) || left.disabled)
+				if(!(left.status_flags & BODYPART_SPLINTED) || left.disabled)
 					. += 0.5
 	if(m_intent == MOVE_INTENT_WALK && HAS_TRAIT(src, TRAIT_SPEEDY_STEP))
 		. -= 1.5
