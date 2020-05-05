@@ -8,10 +8,10 @@
 #define LIMB_FRACTURE_RESTRAINT_OFF 50
 // Threshold above which the limb will break with certainty (max_damage * FRACTURE_CONSTANT)
 // (Above 1 means it's pretty much guaranteed to not happen)
-#define FRACTURE_CONSTANT 2
-// Threshold above bleeding has a very high chance to occur
+#define FRACTURE_CONSTANT 0.75
+// Threshold above which internal bleeding has a very high chance to occur
 // (Above 1 means it's pretty much guaranteed to not happen)
-#define BLEEDING_CHANCEUP_CONSTANT 2
+#define BLEEDING_CHANCEUP_CONSTANT 0.9
 // Chance in percentage for a limb to internally bleed after the previous threshold
 #define BLEEDING_CHANCEUP_PROB 20
 // Do sharp weapons have a bigger chance to cause internal bledding? (not implemented yet)
@@ -36,7 +36,7 @@
 	var/list/embedded_objects = list()
 	var/held_index = 0 //are we a hand? if so, which one!
 	var/is_pseudopart = FALSE //For limbs that don't really exist, eg chainsaws
-	//Skymed variables, which may or may not be used.
+	//Bobmed variables, which may or may not be used.
 	var/limb_name
 	var/internal_bleeding = FALSE
 	var/status_flags = 0
@@ -61,7 +61,7 @@
 	//
 	var/disabled = BODYPART_NOT_DISABLED //If disabled, limb is as good as missing
 	var/body_damage_coeff = 1 //Multiplier of the limb's damage that gets applied to the mob
-	var/stam_damage_coeff = 0.75
+	var/stam_damage_coeff = 1
 	var/brutestate = 0
 	var/burnstate = 0
 	var/brute_dam = 0
@@ -219,8 +219,8 @@
 		var/obj/item/organ/todamage = pick(owner.getorganszone(body_zone))
 		if(((brute_dam >= max_damage) || (brute >= LIMB_THRESH_INT_DMG)) && prob(LIMB_DMG_PROB))
 			todamage.applyOrganDamage(brute * 0.5) //Burn and stamina don't count toward organ damage.
-	if(status_flags & BODYPART_BROKEN && prob(40) && brute)
-		owner.emote("scream")	//getting hit on broken limb hurts
+	if(status_flags & BODYPART_BROKEN && prob(50) && brute)
+		owner.say("*scream")	//getting hit on broken limb hurts
 	//taking damage to splinted limbs may remove the splints
 	if(status_flags & BODYPART_SPLINTED && prob((brute + burn)*2))
 		status_flags &= ~BODYPART_SPLINTED
@@ -300,10 +300,9 @@
 					possible_points -= forbidden_limbs
 				if(possible_points.len)
 					//And pass the pain around
-					if(possible_points.len)
-						var/obj/item/bodypart/target = pick(possible_points)
-						if(target)
-							target.receive_damage(brute, burn, stamina, updating_health, forbidden_limbs + src, ignore_resists = TRUE) //If the damage was reduced before, don't reduce it again
+					var/obj/item/bodypart/target = pick(possible_points)
+					if(target)
+						target.receive_damage(brute, burn, stamina, updating_health, forbidden_limbs + src, ignore_resists = TRUE) //If the damage was reduced before, don't reduce it again
 
 				if(dismember_at_max_damage && body_zone != BODY_ZONE_CHEST && body_zone != BODY_ZONE_PRECISE_GROIN && body_zone != BODY_ZONE_HEAD) // We've ensured all damage to the mob is retained, now let's drop it, if necessary.
 					src.dismember() //Gruesome!
@@ -311,8 +310,8 @@
 	var/mob/living/carbon/owner_old = owner //Need to update health, but need a reference in case the below check cuts off a limb.
 	//If limb took enough damage, try to cut or tear it off
 	if(owner && loc == owner)
-		if(can_dismember() && !HAS_TRAIT(owner, TRAIT_NODISMEMBER) && (brute_dam >= max_damage))
-			if(prob(brute/2))
+		if(can_dismember() && !HAS_TRAIT(owner, TRAIT_NODISMEMBER) && ((brute_dam + burn_dam) >= max_damage))
+			if(prob(brute_dam * 0.66))
 				src.dismember()
 	if(owner_old)
 		owner_old.updatehealth()
@@ -382,14 +381,14 @@
 				return BODYPART_DISABLED_DAMAGE
 			else
 				var/obj/item/bodypart/parent = owner.get_bodypart(parent_bodyzone)
-				if(parent.is_disabled() == BODYPART_DISABLED_DAMAGE)
+				if(parent.is_disabled())
 					return	parent.is_disabled()
 		if(status_flags & BODYPART_BROKEN)
 			if(!(status_flags & BODYPART_SPLINTED))
 				return BODYPART_DISABLED_DAMAGE
 		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.8))) || (status == BODYPART_ROBOTIC && (get_damage(TRUE) >= (max_damage * roboticFunnyVariable)))) //Easy limb disable or being robotic disables the limb earlier
 			return BODYPART_DISABLED_DAMAGE
-		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)) && status_flags & ~BODYPART_BROKEN)
+		if(disabled && (get_damage(TRUE) <= max_damage) && (status_flags & ~BODYPART_BROKEN))
 			return BODYPART_NOT_DISABLED
 	else
 		return BODYPART_NOT_DISABLED
@@ -458,11 +457,11 @@
 	if(status == BODYPART_ROBOTIC)
 		return
 	var/local_damage = brute_dam + damage
-	if((damage >= (min_broken_damage * 0.70) && local_damage >= min_broken_damage && prob(damage)))
+	if((damage >= (min_broken_damage * 0.75) && local_damage >= min_broken_damage && prob(damage)))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
-	else if(status_flags & BODYPART_BROKEN && (local_damage >= max_damage) && prob(damage * 1.25))
+	else if((status_flags & BODYPART_BROKEN) && (local_damage >= (max_damage * 0.75)) && prob(damage * 1.25))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
@@ -979,6 +978,7 @@
 	px_y = 0
 	stam_heal_tick = 4
 	max_stamina_damage = 50
+	min_broken_damage = 25
 	children_zones = list(BODY_ZONE_PRECISE_R_HAND)
 	amputation_point = "right shoulder"
 
@@ -991,6 +991,7 @@
 	attack_verb = list("slapped", "punched")
 	max_damage = 30
 	max_stamina_damage = 30
+	min_broken_damage = 15
 	body_zone = BODY_ZONE_PRECISE_R_HAND
 	body_part = HAND_RIGHT
 	body_damage_coeff = 0.8
@@ -1061,6 +1062,7 @@
 	icon_state = "default_human_l_leg"
 	attack_verb = list("slapped")
 	max_damage = 50
+	min_broken_damage = 25
 	body_zone = BODY_ZONE_L_LEG
 	body_part = LEG_LEFT
 	body_damage_coeff = 0.75
@@ -1080,6 +1082,7 @@
 	icon_state = "default_human_l_foot"
 	attack_verb = list("kicked", "stomped")
 	max_damage = 30
+	min_broken_damage = 15
 	body_zone = BODY_ZONE_PRECISE_L_FOOT
 	body_part = FOOT_LEFT
 	body_damage_coeff = 0.75
@@ -1142,6 +1145,7 @@
 	icon_state = "default_human_r_leg"
 	attack_verb = list("slapped")
 	max_damage = 50
+	min_broken_damage = 25
 	body_zone = BODY_ZONE_R_LEG
 	body_part = LEG_RIGHT
 	body_damage_coeff = 0.75
@@ -1161,6 +1165,7 @@
 	icon_state = "default_human_r_foot"
 	attack_verb = list("kicked", "stomped")
 	max_damage = 30
+	min_broken_damage = 15
 	body_zone = BODY_ZONE_PRECISE_R_FOOT
 	body_part = FOOT_RIGHT
 	body_damage_coeff = 0.75
