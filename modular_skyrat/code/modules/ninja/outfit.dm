@@ -5,3 +5,5 @@
 			S.energyKatana = H.belt
 		S.randomize_param()
 	H.grant_language(/datum/language/neokanji)
+	var/datum/language_holder/holder = H.get_language_holder()
+	holder.selected_default_language = /datum/language/neokanji

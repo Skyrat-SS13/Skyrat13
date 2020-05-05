@@ -5,8 +5,8 @@
 	ask_verb = "queries"
 	exclaim_verb = "declares"
 	whisper_verb = "hushes"
-	key = "xing"
-	space_chance = 50
+	key = "c"
+	space_chance = 40
 	default_priority = 90
 	flags = TONGUELESS_SPEECH
 	syllables = list("ka", "ki", "ku", "ke", "ko", "ta",
