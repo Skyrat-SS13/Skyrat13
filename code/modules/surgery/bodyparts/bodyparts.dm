@@ -624,6 +624,7 @@
 		standing += substanding
 	add_overlay(standing)
 
+/***********moved to modular_skyrat
 //Gives you a proper icon appearance for the dismembered limb
 /obj/item/bodypart/proc/get_limb_icon(dropped)
 	cut_overlays()
@@ -782,6 +783,7 @@
 					marking.color = "#141414"
 				else
 					marking.color = list(markings_color)
+*/
 
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)

@@ -386,7 +386,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/dynamic_fhair_suffix = ""
 
 	//for augmented heads
-	if(HD.status == BODYPART_ROBOTIC)
+	if(HD.status == BODYPART_ROBOTIC && !HD.render_like_organic) //Skyrat change, robo limbs that render like organic
 		return
 
 	//we check if our hat or helmet hides our facial hair.
@@ -646,7 +646,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			bodyparts_to_add -= "waggingspines"
 
 	if(mutant_bodyparts["snout"]) //Take a closer look at that snout!
-		if((H.wear_mask && (H.wear_mask.flags_inv & HIDESNOUT)) || (H.head && (H.head.flags_inv & HIDESNOUT)) || !HD || HD.status == BODYPART_ROBOTIC)
+		if((H.wear_mask && (H.wear_mask.flags_inv & HIDESNOUT)) || (H.head && (H.head.flags_inv & HIDESNOUT)) || !HD || (HD.status == BODYPART_ROBOTIC && !HD.render_like_organic)) //Skyrat change, robo limbs that render like organic
 			bodyparts_to_add -= "snout"
 
 	if(mutant_bodyparts["frills"])
@@ -704,7 +704,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			bodyparts_to_add -= "mam_ears"
 
 	if(mutant_bodyparts["mam_snouts"]) //Take a closer look at that snout!
-		if((H.wear_mask && (H.wear_mask.flags_inv & HIDESNOUT)) || (H.head && (H.head.flags_inv & HIDESNOUT)) || !HD || HD.status == BODYPART_ROBOTIC)
+		if((H.wear_mask && (H.wear_mask.flags_inv & HIDESNOUT)) || (H.head && (H.head.flags_inv & HIDESNOUT)) || !HD || (HD.status == BODYPART_ROBOTIC && !HD.render_like_organic)) //Skyrat change, robo limbs that render like organic
 			bodyparts_to_add -= "mam_snouts"
 
 	if(mutant_bodyparts["taur"])
