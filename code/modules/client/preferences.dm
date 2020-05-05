@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Quirks</a><br></center>"
 				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
 			//SKYRAT EDIT - additional language
-			dat += "<h2>Additional Language :</h2>"
+			dat += "<h2>Additional Language</h2>"
 			dat += "<a href='?_src_=prefs;preference=language;task=menu'>[language ? language : "None"]</a><br></center>"
 			//
 			dat += "<h2>Identity</h2>"
@@ -1364,6 +1364,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(GLOB.all_languages.len)
 		for(var/V in GLOB.all_languages)
 			var/datum/language/L = GLOB.all_languages[V]
+			if(!L)
+				return FALSE
 			var/language_name = initial(L.name)
 			var/restricted = FALSE
 			var/has_language = FALSE
@@ -1498,6 +1500,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					SetLanguage(user)
 				else
 					SetLanguage(user)
+			else 
+				SetLanguage(user)
 		return TRUE
 	//
 	switch(href_list["task"])
