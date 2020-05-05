@@ -408,7 +408,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 
-/obj/item/clothing/suit/armor
+/obj/item/clothing/suit/armor/vest
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/suits.dmi',
