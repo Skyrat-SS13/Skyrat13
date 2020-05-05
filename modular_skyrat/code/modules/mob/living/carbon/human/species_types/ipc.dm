@@ -21,7 +21,7 @@
 	exotic_blood = /datum/reagent/oil
 	exotic_bloodtype = ""
 	icon_limbs = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
-	hair_alpha = 180
+	hair_alpha = 210
 	var/saved_screen
 
 /datum/species/ipc/spec_death(gibbed, mob/living/carbon/C)
