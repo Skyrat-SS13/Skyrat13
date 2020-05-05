@@ -9,11 +9,10 @@
 			L.burn_dam = 0
 			L.brutestate = 0
 			L.burnstate = 0
-
+			
 		var/mob/living/carbon/human/H = src
 		if(H.dna && H.dna.species && (ROBOTIC_LIMBS in H.dna.species.species_traits))
 			L.change_bodypart_status(BODYPART_ROBOTIC)
 			L.render_like_organic = TRUE
-
-		L.attach_limb(src, 1)
-		return 1 
+		L.attach_limb(src, 1, ignore_parent_restriction)
+		return 1
