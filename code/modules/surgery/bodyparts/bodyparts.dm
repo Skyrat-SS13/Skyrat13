@@ -405,7 +405,7 @@
 	return TRUE
 
 /obj/item/bodypart/proc/fracture()
-	if((status & BODYPART_BROKEN) || cannot_break)
+	if((status_flags & BODYPART_BROKEN) || cannot_break)
 		return
 	if(owner)
 		owner.visible_message(\
