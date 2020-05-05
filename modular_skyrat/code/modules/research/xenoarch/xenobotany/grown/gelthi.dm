@@ -17,7 +17,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/gelthi
 	seed = /obj/item/seeds/gelthi
-	name = "amauri"
+	name = "gelthi"
 	desc = "It's a little piece of gelthi."
 	icon = 'modular_skyrat/code/modules/research/xenoarch/xenobotany/icons/harvests.dmi'
 	icon_state = "gelthi"
