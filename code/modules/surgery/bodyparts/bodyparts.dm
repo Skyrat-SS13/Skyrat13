@@ -8,10 +8,10 @@
 #define LIMB_FRACTURE_RESTRAINT_OFF 50
 // Threshold above which the limb will break with certainty (max_damage * FRACTURE_CONSTANT)
 // (Above 1 means it's pretty much guaranteed to not happen)
-#define FRACTURE_CONSTANT 0.75
+#define FRACTURE_CONSTANT 2
 // Threshold above which internal bleeding has a very high chance to occur
 // (Above 1 means it's pretty much guaranteed to not happen)
-#define BLEEDING_CHANCEUP_CONSTANT 0.9
+#define BLEEDING_CHANCEUP_CONSTANT 2
 // Chance in percentage for a limb to internally bleed after the previous threshold
 #define BLEEDING_CHANCEUP_PROB 20
 // Do sharp weapons have a bigger chance to cause internal bledding? (not implemented yet)
@@ -319,8 +319,8 @@
 	return update_bodypart_damage_state()
 
 /obj/item/bodypart/proc/check_fracture(var/damage)
-	if(prob(100 * (damage/max_damage)) || (damage >= (max_damage * FRACTURE_CONSTANT)))
-		if(status != BODYPART_ROBOTIC)
+	if(prob(50 * (damage/max_damage)) || (damage >= (max_damage * FRACTURE_CONSTANT)))
+		if((status != BODYPART_ROBOTIC) && !(status_flags & BODYPART_BROKEN))
 			fracture()
 
 /obj/item/bodypart/proc/rejuvenate()
@@ -328,6 +328,7 @@
 	burn_dam = 0
 	open = 0 //Closing all wounds.
 	internal_bleeding = FALSE
+	status_flags &= ~BODYPART_BROKEN
 	// handle internal organs
 	for(var/obj/item/organ/O in owner.getorganszone(body_zone))
 		O.setOrganDamage(0)
@@ -410,7 +411,7 @@
 	if(owner)
 		owner.visible_message(\
 			"<span class='warning'>You hear a loud cracking sound coming from \the [owner].</span>",\
-			"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
+			"<span class='userdanger'>Something feels like it shattered in your [name]!</span>",\
 			"You hear a sickening crack.")
 		playsound(get_turf(owner), pick("sound/effects/bonebreak1.ogg", "sound/effects/bonebreak2.ogg", "sound/effects/bonebreak3.ogg",\
 								"sound/effects/bonebreak4.ogg", "sound/effects/bonebreak5.ogg", "sound/effects/bonebreak6.ogg"), 100, 0)
