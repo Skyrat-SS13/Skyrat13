@@ -32,7 +32,7 @@
 		. += 1
 	if(m_intent == MOVE_INTENT_WALK)
 		for(var/obj/item/bodypart/r_leg/right in bodyparts)
-			if((right.status_flags & BODYPART_BROKEN0 || disabled)
+			if((right.status_flags & BODYPART_BROKEN) || disabled)
 				if(!(right.status_flags & BODYPART_SPLINTED) || disabled)
 					. += 0.5
 		for(var/obj/item/bodypart/l_leg/left in bodyparts)
