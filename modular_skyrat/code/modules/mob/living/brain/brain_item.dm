@@ -7,7 +7,7 @@
 	icon = 'modular_skyrat/icons/obj/surgery.dmi'
 	icon_state = "posibrain-ipc"
 
-/obj/item/organ/brain/positron/Insert(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
+/obj/item/organ/brain/positron/Insert(mob/living/carbon/C, special = 0, drop_if_replaced = TRUE)
 	owner = C
 	C.internal_organs |= src
 	C.internal_organs_slot[slot] = src
