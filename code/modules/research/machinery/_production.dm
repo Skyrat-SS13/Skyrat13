@@ -98,6 +98,7 @@
 		if(efficient_with(O.type))
 			O.set_custom_materials(matlist.Copy())
 			O.rnd_crafted(src)
+			user.put_in_active_hand(O) // SKYRAT EDIT: Puts what you printed in your hand.
 	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
 	investigate_log("[key_name(user)] built [amount] of [path] at [src]([type]).", INVESTIGATE_RESEARCH)
 
