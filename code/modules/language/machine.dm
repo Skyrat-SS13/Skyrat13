@@ -11,7 +11,7 @@
 	space_chance = 10
 	default_priority = 90
 	//SKYRAT CHANGE - language restriction
-	restricted = FALSE
+	restricted = TRUE
 	//
 
 	icon_state = "eal"

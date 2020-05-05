@@ -24,6 +24,7 @@
 	disliked_food = GRAIN | DAIRY
 	liked_food = GROSS | MEAT
 	inert_mutation = FIREBREATH
+	languagewhitelist = list("Draconic") //Skyrat change - species language whitelist
 /*
 /datum/species/lizard/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/draconic) SKYRAT CHANGE= We have an additional language option for this

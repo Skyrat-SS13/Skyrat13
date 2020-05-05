@@ -13,6 +13,7 @@
 	liked_food = MEAT | FRUIT
 	disliked_food = TOXIC
 	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
+	languagewhitelist = list("Moffic") //Skyrat change - species language whitelist
 
 /datum/species/insect/spec_death(gibbed, mob/living/carbon/human/H)
 	if(H)

@@ -108,6 +108,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/icon_limbs //Overrides the icon used for the limbs of this species. Mainly for downstream, and also because hardcoded icons disgust me. Implemented and maintained as a favor in return for a downstream's implementation of synths.
 
 	var/icon_eyes = 'icons/mob/human_face.dmi'//Skyrat change
+	var/list/languagewhitelist = list() //Skyrat change - basically the list of languages which this race can bypass the restrictions
 
 ///////////
 // PROCS //

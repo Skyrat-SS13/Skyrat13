@@ -19,5 +19,5 @@
 	icon_state = "lizard"
 	default_priority = 90
 	//SKYRAT CHANGE - language restriction
-	restricted = FALSE
+	restricted = TRUE
 	//

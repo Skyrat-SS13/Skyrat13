@@ -10,3 +10,4 @@
 	syllables = list("ti","ti","ti","hi","hi","ki","ki","ki","ki","ya","ta","ha","ka","ya", "yi", "chi","cha","kah","SKRE","AHK","EHK","RAWK","KRA","AAA","EEE","KI","II","KRI","KA")
 	icon_state = "swarmer"
 	default_priority = 91
+	restricted = TRUE
