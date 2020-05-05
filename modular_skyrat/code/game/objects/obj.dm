@@ -55,7 +55,7 @@
 		if(I)
 			var/obj/item/clothing/head/helmet/space/hardsuit/H = I
 			if(istype(H))
-				H.hardsuit_type == unique_hardsuit_type[choice]
+				H.hardsuit_type = unique_hardsuit_type[choice]
 	icon_state = unique_reskin[choice]
 	to_chat(M, "[src] is now skinned as '[choice]'.")
 	return TRUE
