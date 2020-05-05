@@ -34,7 +34,6 @@
 	appendix.Remove(C)
 	QDEL_NULL(appendix)
 	for(var/obj/item/bodypart/O in C.bodyparts)
-		O.render_like_organic = TRUE
 		O.synthetic = TRUE
 
 /datum/species/synthliz/on_species_loss(mob/living/carbon/human/C)

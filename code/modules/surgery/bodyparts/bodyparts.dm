@@ -417,6 +417,7 @@
 		I.pixel_y = px_y
 	add_overlay(standing)
 
+/***********moved to modular_skyrat
 //Gives you a proper icon appearance for the dismembered limb
 /obj/item/bodypart/proc/get_limb_icon(dropped)
 	cut_overlays()
@@ -466,7 +467,7 @@
 	if((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST))
 		should_draw_gender = FALSE
 
-	if(is_organic_limb() || render_like_organic) //Skyrat change, robo parts that render like organic
+	if(is_organic_limb())
 		limb.icon = base_bp_icon || 'icons/mob/human_parts.dmi'
 		if(should_draw_gender)
 			limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
@@ -575,6 +576,7 @@
 					marking.color = "#141414"
 				else
 					marking.color = list(markings_color)
+*/
 
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)

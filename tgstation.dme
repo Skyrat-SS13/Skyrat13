@@ -3627,6 +3627,7 @@
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\frills.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\hair_head.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\horns.dm"
+#include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\ipc_chassis.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\snouts.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\tails.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\vox_accessories.dm"
