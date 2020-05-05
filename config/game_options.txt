@@ -435,8 +435,6 @@ ROUNDSTART_RACES plasmaman
 #ROUNDSTART_RACES shadow
 ROUNDSTART_RACES felinid
 ROUNDSTART_RACES dwarf
-ROUNDSTART RACES humanoid
-ROUNDSTART RACES dunmer
 
 ## Races that are better than humans in some ways, but worse in others
 #ROUNDSTART_RACES jelly
@@ -468,7 +466,7 @@ ROUNDSTART_RACES slimeperson
 ROUNDSTART_RACES guilmon
 ROUNDSTART_RACES ipc
 
-## SKYRATS Races
+## SKYRAT Races
 ROUNDSTART_RACES vox
 ROUNDSTART_RACES dunmer
 ROUNDSTART_RACES humanoid
