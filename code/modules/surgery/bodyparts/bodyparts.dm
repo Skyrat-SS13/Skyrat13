@@ -388,18 +388,10 @@
 				return BODYPART_DISABLED_DAMAGE
 		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.8))) || (status == BODYPART_ROBOTIC && (get_damage(TRUE) >= (max_damage * roboticFunnyVariable)))) //Easy limb disable or being robotic disables the limb earlier
 			return BODYPART_DISABLED_DAMAGE
-		if(disabled && (get_damage(TRUE) <= max_damage) && (status_flags & ~BODYPART_BROKEN))
+		if(disabled && (get_damage(TRUE) <= max_damage) && !(status_flags & BODYPART_BROKEN))
 			return BODYPART_NOT_DISABLED
 	else
 		return BODYPART_NOT_DISABLED
-
-/obj/item/bodypart/proc/check_disabled() //This might be depreciated and should be safe to remove.
-	if(!can_dismember() || HAS_TRAIT(owner, TRAIT_NODISMEMBER))
-		return
-	if(!disabled && (get_damage(TRUE) >= max_damage))
-		set_disabled(TRUE)
-	else if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)))
-		set_disabled(FALSE)
 
 /obj/item/bodypart/proc/set_disabled(new_disabled)
 	if(disabled == new_disabled)

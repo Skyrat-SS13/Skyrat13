@@ -74,8 +74,8 @@
 	var/lastpuke = 0
 	var/last_fire_update
 	bodyparts = list(/obj/item/bodypart/head, /obj/item/bodypart/chest, /obj/item/bodypart/chest/groin,\
-					 /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm,\
-					 /obj/item/bodypart/r_leg, /obj/item/bodypart/l_leg,\
-					 /obj/item/bodypart/r_arm/r_hand, /obj/item/bodypart/l_arm/l_hand,\
-					 /obj/item/bodypart/r_leg/r_foot, /obj/item/bodypart/l_leg/l_foot)
+					 /obj/item/bodypart/l_arm, /obj/item/bodypart/r_arm,\
+					 /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg,\
+					 /obj/item/bodypart/l_arm/l_hand, /obj/item/bodypart/r_arm/r_hand,\
+					 /obj/item/bodypart/l_leg/l_foot, /obj/item/bodypart/r_leg/r_foot)
 	hand_bodyparts = list()
