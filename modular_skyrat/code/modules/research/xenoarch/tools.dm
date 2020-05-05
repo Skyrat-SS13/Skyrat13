@@ -219,7 +219,7 @@
 	display_name = "Advanced Xenoarchaeology Tools"
 	description = "Tools that can make your excavation and recovering of artifacts easier."
 	prereq_ids = list("xenoarchtools")
-	design_ids = list("advxenoscanner")
+	design_ids = list("advxenoscanner","hammercmadv")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 
 //Research DESIGNS

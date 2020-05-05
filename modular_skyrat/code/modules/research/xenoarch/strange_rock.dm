@@ -146,6 +146,22 @@
 			qdel(src)
 			return
 		tryagain = FALSE
+	if(istype(W,/obj/item/xenoarch/clean/hammer/advanced))
+		if(tryagain)
+			to_chat(user,"You are already mining this.")
+			return
+		tryagain = TRUE
+		var/obj/item/xenoarch/clean/hammer/advanced/HM = W
+		if(!do_after(user,HM.cleandepth / 2,target = src))
+			to_chat(user,"You must stand still to clean.")
+			tryagain = FALSE
+			return
+		dugdepth += HM.cleandepth
+		if(dugdepth > itemactualdepth)
+			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
+			qdel(src)
+			return
+		tryagain = FALSE
 	if(istype(W,/obj/item/xenoarch/clean/brush))
 		if(tryagain)
 			to_chat(user,"You are already mining this.")
