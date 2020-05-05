@@ -6,7 +6,7 @@
 	exclaim_verb = "declares"
 	whisper_verb = "hushes"
 	key = "xing"
-	space_chance = 10
+	space_chance = 50
 	default_priority = 90
 	flags = TONGUELESS_SPEECH
 	syllables = list("ka", "ki", "ku", "ke", "ko", "ta",
