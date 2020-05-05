@@ -28,7 +28,7 @@
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_VERY_STRONG
 	pull_force = MOVE_FORCE_VERY_STRONG
-	loot = list(/obj/item/twohanded/kinetic_crusher)
+	loot = list()
 	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/mask
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/human = 2, /obj/item/stack/sheet/animalhide/human = 1, /obj/item/stack/sheet/bone = 1)
 	robust_searching = FALSE
