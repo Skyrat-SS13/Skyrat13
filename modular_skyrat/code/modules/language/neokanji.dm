@@ -16,11 +16,11 @@
 					"mi","mu","me","mo","ya","yu","yo","ra",
 					"ri","ru","re","ro","wa","wo", "an", "ang",
 					"ao", "ba", "bai", "ban", "bang", "bao",
-					"bei", "beng", "chuai". "xing", "xong", "zhao",
+					"bei", "beng", "chuai", "xing", "xong", "zhao",
 					"zhong", "xil", "ping", "dang", "guang", "guan",
 					"jing", "jiao", "kung", "fu", "lo", "wang",
 					"liu", "ling", "mang", "nong", "peng", "qiong",
 					"san","tiao", "wan","xiong", "men")
-	icon = 'modular_skyrat/icons/language.dmi'
+	icon = 'modular_skyrat/icons/misc/language.dmi'
 	icon_state = "asian"
 	restricted = FALSE

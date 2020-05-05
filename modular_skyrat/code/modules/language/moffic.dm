@@ -14,7 +14,7 @@
 		"två", "må", "dag", "sjä", "vii", "vuo", "eil", "tun", "käyt", "teh", "vä",
 		"hei", "huo", "suo", "ää", "ten", "ja", "heu", "stu", "uhr", "kön", "we", "hön"
 	)
-	icon = 'modular_skyrat/icons/language.dmi'
+	icon = 'modular_skyrat/icons/misc/language.dmi'
 	icon_state = "moff"
 	default_priority = 90
 	restricted = TRUE

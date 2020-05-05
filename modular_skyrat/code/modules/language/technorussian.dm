@@ -23,6 +23,6 @@
 					 "portal", "systema", "electronika", "nigilizm", "anarhizm", "communistu", "tupuye", "sopla", "obshivka", "obtekaemost", \
 					 "dinamica", "statica", "organizacuya", "yeyenet", "radio", "peredacha", "priem", "slushno", "chastota", "gerts", "stantiya", \
 					 "suda", "huyar", "odin", "dva", "tri", "holod", "granata", "ne", "re", "ru", "korabl")
-	icon = 'modular_skyrat/icons/language.dmi'
-	icon_state = "russian" 
+	icon = 'modular_skyrat/icons/misc/language.dmi'
+	icon_state = "russian"
 	restricted = FALSE

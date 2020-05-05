@@ -15,7 +15,7 @@
     	"ds", "ya", "sck", "crk", "hs", "ws", "mk", "aaa", "skraa", "skee", "hss",
 		"raa", "klk", "tk", "stk", "clk"
 	)
-	icon = 'modular_skyrat/icons/language.dmi'
+	icon = 'modular_skyrat/icons/misc/language.dmi'
 	icon_state = "calcic"
 	default_priority = 90
 	restricted = TRUE

@@ -17,7 +17,7 @@
 		"oad", "rah", "quada", "sad", "rith", "ser","jo",
 		"ra","na","sun", "s'", "wit", "tel","t'","tong"
 	)
-	icon = 'modular_skyrat/icons/language.dmi'
+	icon = 'modular_skyrat/icons/misc/language.dmi'
 	icon_state = "dunmeri"
 	default_priority = 90
 	restricted = FALSE

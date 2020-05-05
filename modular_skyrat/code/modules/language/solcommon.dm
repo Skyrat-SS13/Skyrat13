@@ -14,6 +14,6 @@
 		"et", "quasi", "dicta", "sunt", "enim", "ipsam", "aut", "odit", "qui", "porro", "amet", "que",
 		"eius", "modi", "inci","ad", "vel", "eum", "iure", "hic", "pa", "mit", "dis", "du", "di", "tol", "mi"
 	)
-	icon = 'modular_skyrat/icons/language.dmi'
-	icon_state = "solcommon" 
+	icon = 'modular_skyrat/icons/misc/language.dmi'
+	icon_state = "solcommon"
 	restricted = FALSE

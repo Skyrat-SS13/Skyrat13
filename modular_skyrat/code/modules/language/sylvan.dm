@@ -14,7 +14,7 @@
     	"incas", "int", "elc", "ent", "aws", "qip", "nas", "vil", "jens", "dila", "fa",
     	"la", "re", "do", "ji", "ae", "so", "qe", "ce", "na", "mo", "ha", "yu"
 	)
-	icon = 'modular_skyrat/icons/language.dmi'
+	icon = 'modular_skyrat/icons/misc/language.dmi'
 	icon_state = "plant"
 	default_priority = 90
 	restricted = TRUE
