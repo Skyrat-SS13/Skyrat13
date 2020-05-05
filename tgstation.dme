@@ -3464,6 +3464,7 @@
 #include "modular_skyrat\code\game\objects\items\AI_modules.dm"
 #include "modular_skyrat\code\game\objects\items\BSRPD.dm"
 #include "modular_skyrat\code\game\objects\items\cards_ids.dm"
+#include "modular_skyrat\code\game\objects\items\computermath.dm"
 #include "modular_skyrat\code\game\objects\items\hhmirror.dm"
 #include "modular_skyrat\code\game\objects\items\kitchen.dm"
 #include "modular_skyrat\code\game\objects\items\kits.dm"
