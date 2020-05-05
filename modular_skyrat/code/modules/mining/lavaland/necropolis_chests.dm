@@ -317,18 +317,24 @@
 	name = "enraged dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/hard/PopulateContents()
-	new /obj/item/borg/upgrade/modkit/knockback(src)
 	new /obj/item/melee/ghost_sword(src)
 	new /obj/item/lava_staff(src)
 	new /obj/item/book/granter/spell/sacredflame(src)
 	new /obj/item/gun/magic/wand/fireball(src)
-	new /obj/item/dragons_blood(src)
+	new /obj/item/borg/upgrade/modkit/knockback(src)
+	new /obj/item/dragons_blood/distilled(src)
+	new /obj/item/clothing/neck/king(src)
 
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher
 	name = "enraged fiery dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher/PopulateContents()
-	..()
+	new /obj/item/melee/ghost_sword(src)
+	new /obj/item/lava_staff(src)
+	new /obj/item/book/granter/spell/sacredflame(src)
+	new /obj/item/gun/magic/wand/fireball(src)
+	new /obj/item/dragons_blood/distilled(src)
+	new /obj/item/clothing/neck/king(src)
 	new /obj/item/crusher_trophy/tail_spike(src)
 
 //colossus
