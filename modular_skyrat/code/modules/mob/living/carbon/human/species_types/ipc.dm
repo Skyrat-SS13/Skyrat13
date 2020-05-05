@@ -1,5 +1,5 @@
 /datum/species/ipc
-	species_traits = list(MUTCOLORS_PARTSONLY,NOEYES,NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY)
+	species_traits = list(MUTCOLORS_PARTSONLY,NOEYES,NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY,HAIR)
 	mutant_bodyparts = list("ipc_screen" = "Blank", "ipc_antenna" = "None", ipc_chassis = "Morpheus Cyberkinetics(Greyscale)")
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT)
 	coldmod = 0.5
@@ -21,6 +21,7 @@
 	exotic_blood = /datum/reagent/oil
 	exotic_bloodtype = ""
 	icon_limbs = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	hair_alpha = 180
 	var/saved_screen
 
 /datum/species/ipc/spec_death(gibbed, mob/living/carbon/C)
@@ -40,9 +41,10 @@
 	QDEL_NULL(appendix)
 	var/chassis = C.dna.features["ipc_chassis"]
 	var/datum/sprite_accessory/ipc_chassis/chassis_of_choice = GLOB.ipc_chassis_list[chassis]
-	if(chassis_of_choice.color_src)
-		C.dna.species.species_traits += MUTCOLORS
-	C.dna.species.limbs_id = chassis_of_choice.icon_state
+	if(chassis_of_choice)
+		if(chassis_of_choice.color_src)
+			C.dna.species.species_traits += MUTCOLORS
+		C.dna.species.limbs_id = chassis_of_choice.icon_state
 	for(var/obj/item/bodypart/O in C.bodyparts)
 		O.synthetic = TRUE
 

@@ -8,9 +8,9 @@
 	/datum/surgery_step/prepare_electronics,
 	/datum/surgery_step/add_plating/fullbody,
 	/datum/surgery_step/weld_plating/fullbody,
-	/datum/surgery_step/finalize_chassis_restoration
+	/datum/surgery_step/finalize_chassis_restoration)
 
-	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = BODYPART_ROBOTIC
 	desc = "A surgical procedure that rebuilds a synthetic unit from their skeleton to full integrity, recommended if they are damaged far beyond repair."

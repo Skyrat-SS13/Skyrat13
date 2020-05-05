@@ -150,3 +150,26 @@
 	if(prob(10))
 		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
 	..() 
+
+/datum/reagent/medicine/nanite_slurry
+	name = "Nanite Slurry"
+	description = "If used in touch-based applications, immediately repairs and refurbishes synthetic lifeforms, also does that while circulating in their system."
+	reagent_state = LIQUID
+	pH = 7.2
+	color = "#cccccc"
+	process_flags = REAGENT_SYNTHETIC
+
+/datum/reagent/medicine/nanite_slurry/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+	if(iscarbon(M))
+		if(!(method in list(INGEST, VAPOR, INJECT)))
+			M.adjustFireLoss(-reac_volume)
+			M.adjustBruteLoss(-reac_volume)
+			if(show_message)
+				to_chat(M, "<span class='notice'>You feel much better...</span>")
+	..()
+
+/datum/reagent/medicine/nanite_slurry/on_mob_life(mob/living/carbon/M)
+	M.adjustFireLoss(-0.5*REM, 0)
+	M.adjustBruteLoss(-0.5*REM, 0)
+	..()
+	. = 1

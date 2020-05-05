@@ -30,20 +30,20 @@
 	sc.use_charges(user, 10, FALSE)
 	sc.audible_message("<span class='notice'>You hear spraying.</span>")
 	playsound(target.loc, 'sound/effects/spray.ogg', 5, 1, 5)
-	if(target.dna.species)
+	if(target?.dna?.species)
 		for(var/obj/item/bodypart/O in target.bodyparts)
 			if(O.status == BODYPART_ROBOTIC)
-				O.update_limb(O,target)
 				O.icon = target.dna.species.icon_limbs
 				O.render_like_organic = TRUE
 				O.synthetic = TRUE
-				/*if(O.body_zone == BODY_ZONE_L_LEG || O.body_zone == BODY_ZONE_R_LEG)
-					if(!target.dna.species.default_features["legs"] == "Plantigrade")
-						O.use_digitigrade = FULL_DIGITIGRADE*/
+				if(O.body_zone == BODY_ZONE_L_LEG || O.body_zone == BODY_ZONE_R_LEG)
+					if(!target.dna.features["legs"] == "Plantigrade")
+						O.use_digitigrade = FULL_DIGITIGRADE
+				O.update_limb(O,target)
 		target.update_body()
 	return TRUE
 
 /datum/surgery_step/restore_paintjob/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, "<span class='notice'>You begin to spray paint on [target]...</span>",
 			"[user] begins to spray paint on [target]'s [parse_zone(target_zone)].",
-			"[user] begins to spray paint on [target]'s [parse_zone(target_zone)].") 
+			"[user] begins to spray paint on [target]'s [parse_zone(target_zone)].")

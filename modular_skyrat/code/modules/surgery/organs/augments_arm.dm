@@ -42,8 +42,9 @@
 			break
 		A.charging = 1
 		if(A.cell.charge >= 500)
+			do_sparks(1, FALSE, A)
 			H.nutrition += 50
-			A.cell.charge -= 250
+			A.cell.charge -= 150
 			to_chat(H, "<span class='notice'>You siphon off some of the stored charge for your own use.</span>")
 		else
 			H.nutrition += A.cell.charge/10
