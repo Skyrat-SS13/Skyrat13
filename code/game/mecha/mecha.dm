@@ -426,7 +426,7 @@
 ///// Action processing ////
 ////////////////////////////
 
-
+/* moved to modular_skyrat
 /obj/mecha/proc/click_action(atom/target,mob/user,params)
 	if(!occupant || occupant != user )
 		return
@@ -477,7 +477,7 @@
 		melee_can_hit = 0
 		spawn(melee_cooldown)
 			melee_can_hit = 1
-
+*/
 
 /obj/mecha/proc/range_action(atom/target)
 	return
@@ -581,7 +581,7 @@
 	if(result && stepsound)
 		playsound(src,stepsound,40,1)
 	return result
-
+/* moved to modular_skyrat
 /obj/mecha/Bump(var/atom/obstacle)
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)
 		spawn()
@@ -610,7 +610,7 @@
 			var/mob/M = obstacle
 			if(!M.anchored)
 				step(obstacle, dir)
-
+*/
 
 
 
