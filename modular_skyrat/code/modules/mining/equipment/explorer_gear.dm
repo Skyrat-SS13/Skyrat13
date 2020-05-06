@@ -152,7 +152,8 @@
 /obj/item/clothing/mask/gas/explorer
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 20, "acid" = 50)
 	flags_inv = HIDEEYES|HIDEFACE|HIDESNOUT
-  mutantrace_variation = STYLE_MUZZLE|STYLE_NO_ANTHRO_ICON
+	mutantrace_variation = STYLE_MUZZLE|STYLE_NO_ANTHRO_ICON
+
 //mining hud glasses
 /obj/item/clothing/glasses/hud/mining
 	name = "ore scanner HUD"
