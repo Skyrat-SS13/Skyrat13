@@ -58,3 +58,10 @@
 			continue
 		crate_value -= I.cost
 		new I.item(C)
+
+//cool forklift for real men
+/datum/supply_pack/misc/forklift
+	name = "Forklift"
+	desc = "Only usable by certified forklift drivers."
+	cost = 2000
+	crate_type = /obj/vehicle/ridden/forklift
