@@ -1,4 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - rscadd: "Reworked IPC and synthlizards to be actually robotic! Check https://github.com/Skyrat-SS13/Skyrat13/pull/1727 for more info"
