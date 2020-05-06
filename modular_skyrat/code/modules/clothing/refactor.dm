@@ -784,3 +784,32 @@
 	"Default" = "orv_srv",
 	"The Motion Picture (The Original Series)" = "trek_tmp_service"
 	)
+
+// Changes name/desc to the jackets, makes modern/non-classic jacket to have same list of allowed suit-storage items as classic one.
+/obj/item/clothing/suit/storage/fluff/fedcoat
+	name = "\improper Planetary Federation classic uniform jacket"
+	desc = "A classic uniform jacket. Set phasers to awesome."
+
+/obj/item/clothing/suit/storage/fluff/modernfedcoat
+	name = "\improper Planetary Federation uniform jacket"
+	desc = "An uniform jacket."
+	allowed = list(
+				/obj/item/tank/internals/emergency_oxygen,
+				/obj/item/flashlight,
+				/obj/item/analyzer,
+				/obj/item/radio,
+				/obj/item/gun,
+				/obj/item/melee/baton,
+				/obj/item/restraints/handcuffs,
+				/obj/item/reagent_containers/hypospray,
+				/obj/item/hypospray,
+				/obj/item/healthanalyzer,
+				/obj/item/reagent_containers/syringe,
+				/obj/item/reagent_containers/glass/bottle/vial,
+				/obj/item/reagent_containers/glass/beaker,
+				/obj/item/storage/pill_bottle,
+				/obj/item/taperecorder)
+
+/obj/item/clothing/head/caphat/formal/fedcover
+	name = "\improper Planetary Federation peaked cap"
+	desc = "A peaked cap."
