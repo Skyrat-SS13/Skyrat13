@@ -33,7 +33,7 @@
 		/datum/language/shadowtongue, //Skyrat change - shadowpeople language
 		/datum/language/solcommon, //Skyrat change - sol common blah blah
 		/datum/language/sylvan, //Skyrat change - plantpeople langauge
-		/datum/language/technorussian //Skyrat change - russian sterytype language
+		/datum/language/technorussian //Skyrat change - russian stereotype language
 	))
 	healing_factor = STANDARD_ORGAN_HEALING*5 //Fast!!
 	decay_factor = STANDARD_ORGAN_DECAY/2
