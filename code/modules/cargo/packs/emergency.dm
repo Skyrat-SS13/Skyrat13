@@ -62,7 +62,7 @@
 	crate_type = /obj/structure/closet/crate/internals
 
 /datum/supply_pack/emergency/medicalemergency
-	name = "Emergency Medical Supplies" //Almost all of this can be ordered seperately for a much cheaper price, but the HUD increases it.
+	name = "Emergency Medical Supplies" //Almost all of this can be ordered separately for a much cheaper price, but the HUD increases it.
 	desc = "Emergency supplies for a front-line medic. Contains two boxes of body bags, a medical HUD, a defib unit, medical belt, toxin bottles, epipens, and several types of medical kits."
 	cost = 10000
 	contains = list(/obj/item/storage/box/bodybags,
@@ -82,7 +82,7 @@
 
 /datum/supply_pack/emergency/medemergencylite
 	name = "Emergency Medical Supplies (Lite)"
-	desc = "A less than optimal, but still effective set of tools for emergency care. Contains a box of bodybags, some normal (and advanced) health analyzers, healing sprays, a single first aid kit, charcoal, some gauze, a bottle of toxins, and some spare medipens." //Skyrat change, fixed grammatical error
+	desc = "A less than optimal set of tools for emergency care. Contains a box of bodybags, some normal (and advanced) health analyzers, healing sprays, a single first aid kit, charcoal, some gauze, a bottle of toxins, and some spare medipens." //Skyrat change, fixed grammatical error
 	cost = 2800
 	contains = list(/obj/item/storage/box/bodybags,
 					/obj/item/stack/medical/gauze,
@@ -106,7 +106,7 @@
 
 /datum/supply_pack/emergency/radiatione_emergency
 	name = "Emergency Radiation Protection Crate"
-	desc = "Survive the Nuclear Apocalypse and Supermatter Engine alike with two sets of Radiation suits. Each set contains a helmet, suit and Geiger counter. We'll even throw in a few pill bottles that are able to handles radiation and the affects of the poisoning." //Skyrat change, fixed grammatical error
+	desc = "Survive the Nuclear Apocalypse and Supermatter Engine alike with two sets of Radiation suits. Each set contains a helmet, suit, and Geiger counter. We'll even throw in a few pill bottles that are able to handles radiation and the affects of the poisoning." //Skyrat change, fixed grammatical error
 	cost = 2500
 	contains = list(/obj/item/clothing/head/radiation,
 					/obj/item/clothing/head/radiation,
@@ -301,7 +301,7 @@
 
 /datum/supply_pack/emergency/weedcontrol
 	name = "Weed Control Crate"
-	desc = "Keep those invasive species' OUT. Contains a scythe, gasmask, two sprays of Plant-B-Gone, and two anti-weed chemical grenades. Warranty void if used on ambrosia. Requires Hydroponics access to open." //Skyrat change, fixed grammmatical error
+	desc = "Keep those invasive species OUT. Contains a scythe, gasmask, two sprays of Plant-B-Gone, and two anti-weed chemical grenades. Warranty void if used on ambrosia. Requires Hydroponics access to open." //Skyrat change, fixed grammmatical error
 	cost = 1800
 	access = ACCESS_HYDROPONICS
 	contains = list(/obj/item/scythe,

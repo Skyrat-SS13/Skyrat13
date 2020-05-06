@@ -182,7 +182,7 @@
 
 /datum/supply_pack/security/baton
 	name = "Stun Batons Crate"
-	desc = "Arm the Civil Protection Forces with three stun batons, fully charged and ready to go! Requires Security access to open." //Skyrat change, fixes typo and changes line to sound cooler
+	desc = "Arm the Civil Protection Forces with three stun batons fully charged and ready to go! Requires Security access to open." //Skyrat change, fixes typo and changes line to sound cooler
 	cost = 1200
 	contains = list(/obj/item/melee/baton/loaded,
 					/obj/item/melee/baton/loaded,

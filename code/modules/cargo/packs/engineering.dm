@@ -49,7 +49,7 @@
 
 /datum/supply_pack/engineering/engihardsuit
 	name = "Engineering Hardsuit"
-	desc = "Poly 'Who stole all the hardsuits?!' Well now you can get more hardsuits if needed! NOTE: THERE IS ONLY ONE HARDSUIT IS IN THIS CRATE, as well as one air tank and mask!" //Skyrat Change, fixed grammatical errors
+	desc = "Poly 'Who stole all the hardsuits?!' Well now you can get more hardsuits if needed! NOTE: THERE IS ONLY ONE HARDSUIT IN THIS CRATE, as well as one air tank and mask!" //Skyrat Change, fixed grammatical errors
 	cost = 2250
 	access = ACCESS_ENGINE
 	contains = list(/obj/item/tank/internals/air,

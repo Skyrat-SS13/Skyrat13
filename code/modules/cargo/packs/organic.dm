@@ -411,7 +411,7 @@
 
 /datum/supply_pack/organic/vday
 	name = "Surplus Valentine Crate"
-	desc = "Turns out we've got warehouses of this love-y dove-y crap. We're sending out small bargain buddle of Valentine gear. This crate has two boxes of chocolate, three poppy flowers, five candy hearts, and three cards." //Skyrat change, fixes grammatical error
+	desc = "Turns out we have warehouses of this love-y dove-y crap. We're sending out small bargain buddle of Valentine gear. This crate has two boxes of chocolate, three poppy flowers, five candy hearts, and three cards." //Skyrat change, fixes grammatical error
 	cost = 3000
 	contraband = TRUE
 	contains = list(/obj/item/storage/fancy/heart_box,
