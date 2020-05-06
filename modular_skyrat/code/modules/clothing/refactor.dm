@@ -1,8 +1,12 @@
 /* TEMPLATE
-	unique_reskin_icons = null
-	unique_reskin_worn = null
-	unique_reskin_worn_anthro = null
-	unique_reskin = null
+	unique_reskin_icons = list(
+	)
+	unique_reskin_worn = list(
+	)
+	unique_reskin_worn_anthro = list(
+	)
+	unique_reskin = list(
+	)
 */
 
 //port tg's armor energy resists, adds reskins to various armors

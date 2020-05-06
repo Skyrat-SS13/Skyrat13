@@ -6,6 +6,7 @@
 	fitted = NO_FEMALE_UNIFORM
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 	can_adjust = FALSE
+	mutantrace_variation = STYLE_DIGITIGRADE //how do they show up on taurs otherwise?
 
 /obj/item/clothing/under/shorts/red
 	name = "red athletic shorts"
