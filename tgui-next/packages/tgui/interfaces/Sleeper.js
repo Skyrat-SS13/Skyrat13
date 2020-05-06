@@ -123,12 +123,8 @@ export const Sleeper = props => {
                           (funnylimb.maxdamage/4)*3],
                         bad: [-Infinity, (funnylimb.maxdamage/4)*2],
                       }}>
-                      {funnylimb.broken
-                        ? 'BROKEN, '
-                        : 'NOT BROKEN, '}
-                      {funnylimb.bleeding
-                        ? 'INTERNAL BLEEDING'
-                        : 'NO INTERNAL BLEEDING'}
+                      {funnylimb.broken}
+                      {funnylimb.bleeding}
                     </ProgressBar>
                   </LabeledList.Item>
                 ),
@@ -169,9 +165,7 @@ export const Sleeper = props => {
                           (funnyorgan.maxdamage/4)*3],
                         bad: [-Infinity, (funnyorgan.maxdamage/4)*2],
                       }}>
-                      {funnyorgan.failing
-                        ? 'ORGAN FAILURE'
-                        : 'FUNCTIONAL'}
+                      {funnyorgan.failing}
                     </ProgressBar>
                   </LabeledList.Item>
                 ),

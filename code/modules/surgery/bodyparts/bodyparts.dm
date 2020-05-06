@@ -190,7 +190,7 @@
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 
 /obj/item/bodypart/proc/unsplint()
-	status_flags &= ~BODYPART_SPLINTED
+	status_flags |= ~BODYPART_SPLINTED
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
@@ -223,8 +223,8 @@
 		owner.say("*scream")	//getting hit on broken limb hurts
 	//taking damage to splinted limbs may remove the splints
 	if(status_flags & BODYPART_SPLINTED && prob((brute + burn)*2))
-		status_flags &= ~BODYPART_SPLINTED
-		owner.visible_message("<span class='danger'>The splint on [owner]'s [name] unravels from [owner.p_their()] [name]!</span>","<span class='userdanger'>The splint on your [name] unravels!</span>")
+		status_flags |= ~BODYPART_SPLINTED
+		owner.visible_message("<span class='danger'>The splint on [owner]'s [limb_name] unravels!!</span>","<span class='userdanger'>The splint on your [limb_name] unravels!</span>")
 		owner.handle_splints()
 
 	var/can_inflict = max_damage - get_damage()
@@ -328,11 +328,11 @@
 	burn_dam = 0
 	open = 0 //Closing all wounds.
 	internal_bleeding = FALSE
-	status_flags &= ~BODYPART_BROKEN
+	status_flags |= ~BODYPART_BROKEN
 	// handle internal organs
 	for(var/obj/item/organ/O in owner.getorganszone(body_zone))
 		O.setOrganDamage(0)
-		O.organ_flags &= ~ORGAN_FAILING
+		O.organ_flags |= ~ORGAN_FAILING
 	if(owner)
 		owner.updatehealth()
 	if(!owner)
@@ -411,13 +411,13 @@
 	if(owner)
 		owner.visible_message(\
 			"<span class='warning'>You hear a loud cracking sound coming from \the [owner].</span>",\
-			"<span class='userdanger'>Something feels like it shattered in your [name]!</span>",\
+			"<span class='userdanger'>Something feels like it shattered in your [limb_name]!</span>",\
 			"You hear a sickening crack.")
 		playsound(get_turf(owner), pick("sound/effects/bonebreak1.ogg", "sound/effects/bonebreak2.ogg", "sound/effects/bonebreak3.ogg",\
 								"sound/effects/bonebreak4.ogg", "sound/effects/bonebreak5.ogg", "sound/effects/bonebreak6.ogg"), 100, 0)
 		owner.emote("scream")
 
-	status_flags &= BODYPART_BROKEN
+	status_flags |= BODYPART_BROKEN
 	broken_description = pick("broken", "fracture", "hairline fracture")
 
 	// Fractures have a chance of getting you out of the respective restraints
@@ -432,8 +432,8 @@
 	if(!(status_flags & BODYPART_BROKEN))
 		return FALSE
 
-	status_flags &= ~BODYPART_BROKEN
-	status_flags &= ~BODYPART_SPLINTED
+	status_flags |= ~BODYPART_BROKEN
+	status_flags |= ~BODYPART_SPLINTED
 	if(owner)
 		owner.handle_splints()
 	return TRUE
@@ -453,11 +453,11 @@
 	if((damage >= (min_broken_damage * 0.75) && local_damage >= min_broken_damage && prob(damage)))
 		internal_bleeding = TRUE
 		if(owner)
-			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
-	else if((status_flags & BODYPART_BROKEN) && (local_damage >= (max_damage * 0.75)) && prob(damage * 1.25))
+			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [limb_name]!</span>")
+	else if((status_flags & BODYPART_BROKEN) && (local_damage >= (max_damage * 0.8)) && prob(damage * 1.25))
 		internal_bleeding = TRUE
 		if(owner)
-			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [name]!</span>")
+			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [limb_name]!</span>")
 
 //Updates a bodypart's brute/burn states for use by update_damage_overlays()
 //Returns 1 if we need to update overlays. 0 otherwise.
@@ -921,9 +921,9 @@
 		switch(disabled)
 			if(BODYPART_DISABLED_DAMAGE)
 				owner.emote("scream")
-				to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
+				to_chat(owner, "<span class='userdanger'>Your [limb_name] is too damaged to function!</span>")
 			if(BODYPART_DISABLED_PARALYSIS)
-				to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
+				to_chat(owner, "<span class='userdanger'>You can't feel your [limb_name]!</span>")
 	if(held_index)
 		owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	if(owner.hud_used)
@@ -1011,9 +1011,9 @@
 		switch(disabled)
 			if(BODYPART_DISABLED_DAMAGE)
 				owner.emote("scream")
-				to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
+				to_chat(owner, "<span class='userdanger'>Your [limb_name] is too damaged to function!</span>")
 			if(BODYPART_DISABLED_PARALYSIS)
-				to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
+				to_chat(owner, "<span class='userdanger'>You can't feel your [limb_name]!</span>")
 	if(held_index)
 		owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	if(owner.hud_used)
@@ -1101,9 +1101,9 @@
 	switch(disabled)
 		if(BODYPART_DISABLED_DAMAGE)
 			owner.emote("scream")
-			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
+			to_chat(owner, "<span class='userdanger'>Your [limb_name] is too damaged to function!</span>")
 		if(BODYPART_DISABLED_PARALYSIS)
-			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
+			to_chat(owner, "<span class='userdanger'>You can't feel your [limb_name]!</span>")
 
 
 /obj/item/bodypart/l_leg/digitigrade
@@ -1184,9 +1184,9 @@
 	switch(disabled)
 		if(BODYPART_DISABLED_DAMAGE)
 			owner.emote("scream")
-			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
+			to_chat(owner, "<span class='userdanger'>Your [limb_name] is too damaged to function!</span>")
 		if(BODYPART_DISABLED_PARALYSIS)
-			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
+			to_chat(owner, "<span class='userdanger'>You can't feel your [limb_name]!</span>")
 
 /obj/item/bodypart/r_leg/digitigrade
 	name = "right digitigrade leg"

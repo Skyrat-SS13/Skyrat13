@@ -320,11 +320,11 @@
 
 		if(istype(C)) //Non-carbons shouldn't be able to enter sleepers, but this is to prevent runtimes if something ever breaks
 			for(var/obj/item/organ/Or in currentorgans)
-				data["occupant"]["organs"] += list(list("name" = capitalize(Or.name), "damage" = Or.damage, "maxdamage" = Or.maxHealth, "failing" = (Or.organ_flags & ORGAN_FAILING)))
+				data["occupant"]["organs"] += list(list("name" = capitalize(Or.name), "damage" = Or.damage, "maxdamage" = Or.maxHealth, "failing" = (Or.organ_flags & ORGAN_FAILING ? "ORGAN FAILING" : "FUNCTIONAL")))
 			for(var/obj/item/organ/missing in missingorgans)
 				data["occupant"]["missing_organs"] += list(list("name" = capitalize(missing)))
 			for(var/obj/item/bodypart/BP in currentlimbs)
-				data["occupant"]["limbs"] += list(list("name" = capitalize(BP.name), "damage" = BP.get_damage(include_stamina = FALSE), "maxdamage" = BP.max_damage, "broken" = (BP.status_flags & BODYPART_BROKEN), "bleeding" = BP.internal_bleeding))
+				data["occupant"]["limbs"] += list(list("name" = capitalize(BP.limb_name), "damage" = BP.get_damage(include_stamina = FALSE), "maxdamage" = BP.max_damage, "broken" = (BP.status_flags & BODYPART_BROKEN ? "[uppertext(BP.broken_description)], " : "NOT BROKEN, "), "bleeding" = (BP.internal_bleeding ? "INTERNAL BLEEDING" : "NO INTERNAL BLEEDING")))
 			for(var/obj/item/bodypart/missing in missinglimbs)
 				data["occupant"]["missing_limbs"] += list(list("name" = capitalize(missing)))
 			if(mob_occupant.has_dna()) // Blood-stuff is mostly a copy-paste from the healthscanner.

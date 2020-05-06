@@ -1,4 +1,4 @@
-/mob/living/carbon/regenerate_limb(limb_zone, noheal)
+/mob/living/carbon/regenerate_limb(limb_zone, noheal, ignore_parent_restriction = FALSE)
 	var/obj/item/bodypart/L
 	if(get_bodypart(limb_zone))
 		return 0
@@ -9,7 +9,7 @@
 			L.burn_dam = 0
 			L.brutestate = 0
 			L.burnstate = 0
-			
+
 		var/mob/living/carbon/human/H = src
 		if(H.dna && H.dna.species && (ROBOTIC_LIMBS in H.dna.species.species_traits))
 			L.change_bodypart_status(BODYPART_ROBOTIC)

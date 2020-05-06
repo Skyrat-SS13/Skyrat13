@@ -3,8 +3,11 @@
 	id = "synth"
 	say_mod = "states" //inherited from a user's real species
 	sexes = 0
-	species_traits = list(NOTRANSSTING) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
-	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_EASYLIMBDISABLE) //Now limbs can be disabled and dismembered, and they breathe for balance reasons.
+	species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT)
+	toxmod = 0
+	clonemod = 0
+	reagent_flags = PROCESS_SYNTHETIC
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	dangerous_existence = 0 //not dangerous anymore i guess
 	blacklisted = 0 //not blacklisted anymore
@@ -13,18 +16,20 @@
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
-	initial_species_traits = list(NOTRANSSTING) //for getting these values back for assume_disguise()
-	initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_EASYLIMBDISABLE) //blah blah i explained above piss
-	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
+	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS) //for getting these values back for assume_disguise()
+	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT) //blah blah i explained above piss
+	disguise_fail_health = 45 //When their health gets to this level their synthetic flesh partially falls off
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/actualhealth = 100 //value we calculate to assume disguise and etc
 	//Same organs as an IPC basically, to share functionality.
-	mutant_heart = /obj/item/organ/heart/ipc
-	mutantlungs = /obj/item/organ/lungs/ipc
-	mutantliver = /obj/item/organ/liver/ipc
-	mutantstomach = /obj/item/organ/stomach/ipc
-	mutanteyes = /obj/item/organ/eyes/ipc
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
+	mutant_brain = /obj/item/organ/brain/ipc_positron/synth
+	mutantstomach = /obj/item/organ/stomach/robot_ipc
+	mutantears = /obj/item/organ/ears/robot_ipc
+	mutanteyes = /obj/item/organ/eyes/robot_ipc
+	mutantlungs = /obj/item/organ/lungs/robot_ipc
+	//blood is different though, to fit in with hoomen
 	exotic_blood = /datum/reagent/blood/synthetics
 	exotic_bloodtype = "SY"
 	//cheeto
@@ -97,28 +102,28 @@
 	H.grant_language(/datum/language/machine)
 	assume_disguise(old_species, H)
 	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
+	var/obj/item/organ/appendix/appendix = H.getorganslot("appendix") // Easiest way to remove it.
+	appendix.Remove(H)
+	QDEL_NULL(appendix)
+	for(var/obj/item/bodypart/O in H.bodyparts)
+		O.synthetic = TRUE
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.remove_language(/datum/language/machine)
 	UnregisterSignal(H, COMSIG_MOB_SAY)
+	for(var/obj/item/bodypart/O in H.bodyparts)
+		O.synthetic = FALSE
 
 /datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.type == /datum/reagent/medicine/synthflesh && chem.volume < chem.overdose_threshold)
-		chem.reaction_mob(H, TOUCH, 2 ,0) //heal a little
+		if(chem.volume >= 10)
+			if(!isdisguised)
+				assume_disguise(fake_species)
+				H.visible_message("<span class='warning'>[H] morphs their appearance to that of [fake_species.name].</span>", "<span class='notice'>You morph your appearance to that of [fake_species.name].</span>")
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-		return TRUE
-	else if(chem.type == /datum/reagent/medicine/synthflesh && chem.volume >= chem.overdose_threshold)
-		if(chem.overdosed == FALSE)
-			chem.overdose_start(H)
-			chem.reaction_mob(H, TOUCH, 2 ,0)
-			H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-		else
-			chem.reaction_mob(H, TOUCH, 2 ,0)
-			H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-	else if(chem.type == /datum/reagent/blood/synthetics)
-		chem.reaction_mob(H, INJECT, 2 ,0)
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
+	else
+		..()
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
@@ -166,9 +171,6 @@
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
 		H.visible_message("<span class='danger'>[H]'s disguise falls apart!</span>", "<span class='userdanger'>Your disguise falls apart!</span>")
-	else if((actualhealth >= disguise_fail_health) && !isdisguised)
-		assume_disguise(fake_species, H)
-		H.visible_message("<span class='warning'>[H] morphs their appearance to that of [fake_species.name].</span>", "<span class='notice'>You morph your appearance to that of [fake_species.name].</span>")
 
 /datum/species/synth/handle_hair(mob/living/carbon/human/H, forced_colour)
 	if(fake_species && isdisguised)
