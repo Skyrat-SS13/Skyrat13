@@ -59,3 +59,7 @@
 	icon_state = unique_reskin[choice]
 	to_chat(M, "[src] is now skinned as '[choice]'.")
 	return TRUE
+
+//Plumbing stuff
+/obj/proc/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
+	return
