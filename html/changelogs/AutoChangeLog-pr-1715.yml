@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Engineering is now notified when the radiation collectors run out of plasma"

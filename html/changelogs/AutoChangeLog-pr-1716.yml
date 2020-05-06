@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "sliced foods now have the correct food quality (equal to the sliced item's)"

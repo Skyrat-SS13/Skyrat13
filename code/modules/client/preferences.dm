@@ -48,6 +48,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/UI_style = null
 	var/buttons_locked = FALSE
 	var/hotkeys = FALSE
+	var/chat_on_map = TRUE
+	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
+	var/see_chat_non_mob = TRUE
 	var/tgui_fancy = TRUE
 	var/tgui_lock = TRUE
 	var/windowflashing = TRUE
@@ -88,6 +91,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/flavor_background = ""
 	var/character_skills = ""
 	var/exploitable_info = ""
+	var/see_chat_emotes = TRUE
+	var/enable_personal_chat_color = FALSE
+	var/personal_chat_color = "#ffffff"
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
@@ -374,6 +380,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a>"
 			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
+			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
 			dat += "<h2>Body</h2>"
 			dat += "<b>Gender:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
@@ -870,6 +877,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>UI Style:</b> <a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
 			dat += "<b>tgui Monitors:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary" : "All"]</a><br>"
 			dat += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
+			dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
+			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
+			//SKYRAT CHANGES BEGIN
+			dat += "<b>See Runechat for emotes:</b> <a href='?_src_=prefs;preference=see_chat_emotes'>[see_chat_emotes ? "Enabled" : "Disabled"]</a><br>"
+			//SKYRAT CHANGES END
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
@@ -2229,6 +2242,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedPDASkin = input(user, "Choose your PDA reskin.", "Character Preference", pda_skin) as null|anything in GLOB.pda_reskins
 					if(pickedPDASkin)
 						pda_skin = pickedPDASkin
+				if ("max_chat_length")
+					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
+					if (!isnull(desiredlength))
+						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
+
+				//Skyrat changes begin
+				if("personal_chat_color")
+					var/new_chat_color = input(user, "Choose your character's runechat color:", "Character Preference",personal_chat_color) as color|null
+					if(new_chat_color)
+						var/list/temp_hsl = rgb2hsl(ReadRGB(new_chat_color)[1],ReadRGB(new_chat_color)[2],ReadRGB(new_chat_color)[3])
+						if(new_chat_color == "#000000")
+							personal_chat_color = "#FFFFFF"
+						else if(temp_hsl[3] >= 0.65 && temp_hsl[2] >= 0.15)
+							personal_chat_color = sanitize_hexcolor(new_chat_color, 6, 1)
+						else
+							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
+				//End of skyrat changes
 
 				if("hud_toggle_color")
 					var/new_toggle_color = input(user, "Choose your HUD toggle flash color:", "Game Preference",hud_toggle_color) as color|null
@@ -2358,6 +2388,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=default")
 					else
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+				if("chat_on_map")
+					chat_on_map = !chat_on_map
+				if("see_chat_non_mob")
+					see_chat_non_mob = !see_chat_non_mob
+				//Skyrat changes begin
+				if("see_chat_emotes")
+					see_chat_emotes = !see_chat_emotes
+				if("enable_personal_chat_color")
+					enable_personal_chat_color = !enable_personal_chat_color
+				//End of skyrat changes
 				if("action_buttons")
 					buttons_locked = !buttons_locked
 				if("tgui_fancy")

@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Gibber no longer runtimes when it attempts to make not-meat."

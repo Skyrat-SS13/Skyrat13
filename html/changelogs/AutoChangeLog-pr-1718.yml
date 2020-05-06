@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "vendors will now once again accept space cash in exchange for premium items"
