@@ -162,7 +162,7 @@
 	if(exposed_temperature>max_temperature)
 		mecha_log_message("Exposed to dangerous temperature.", color="red")
 		take_damage(5, BURN, 0, 1)
-
+/* moved to modular_skyrat
 /obj/mecha/attackby(obj/item/W as obj, mob/user as mob, params)
 
 	if(istype(W, /obj/item/mmi))
@@ -282,7 +282,7 @@
 		return
 	else
 		return ..()
-
+*/
 /obj/mecha/attacked_by(obj/item/I, mob/living/user)
 	mecha_log_message("Attacked by [I]. Attacker - [user]")
 	..()

@@ -3456,6 +3456,7 @@
 #include "modular_skyrat\code\game\mecha\mecha.dm"
 #include "modular_skyrat\code\game\mecha\mecha_actions.dm"
 #include "modular_skyrat\code\game\mecha\mecha_construction_paths.dm"
+#include "modular_skyrat\code\game\mecha\mecha_defense.dm"
 #include "modular_skyrat\code\game\mecha\mecha_parts.dm"
 #include "modular_skyrat\code\game\mecha\mecha_wreckage.dm"
 #include "modular_skyrat\code\game\mecha\combat\gygax.dm"
