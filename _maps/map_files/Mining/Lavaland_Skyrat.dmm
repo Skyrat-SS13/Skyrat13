@@ -1855,8 +1855,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
-/obj/machinery/door/airlock/public/glass,
 /obj/structure/fans/tiny/invisible,
+/obj/machinery/door/airlock/atmos/glass,
 /turf/open/floor/engine,
 /area/xenoarch/eng)
 "ma" = (
@@ -2043,7 +2043,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
-/obj/machinery/door/airlock/public/glass,
+/obj/machinery/door/airlock/atmos/glass,
+/obj/structure/fans/tiny/invisible,
 /turf/open/floor/engine,
 /area/xenoarch/eng)
 "nh" = (
