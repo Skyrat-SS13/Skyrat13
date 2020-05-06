@@ -319,9 +319,10 @@
 	return update_bodypart_damage_state()
 
 /obj/item/bodypart/proc/check_fracture(var/damage)
-	if(prob(50 * (damage/max_damage)) || (damage >= (max_damage * FRACTURE_CONSTANT)))
-		if((status != BODYPART_ROBOTIC) && !(status_flags & BODYPART_BROKEN))
-			fracture()
+	if((status != BODYPART_ROBOTIC) && !(status_flags & BODYPART_BROKEN))
+		if((brute_dam > min_broken_damage) || ((brute_dam + burn_dam) >= (max_damage * FRACTURE_CONSTANT)))
+			if(prob(damage))
+				fracture()
 
 /obj/item/bodypart/proc/rejuvenate()
 	brute_dam = 0
