@@ -1,0 +1,7 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - refactor: "Refactored some cosmetic bodyparts procs."
+  - refactor: "Refactored some taur stuff."
+  - imageadd: "See above."
+  - imagedel: "See above."
