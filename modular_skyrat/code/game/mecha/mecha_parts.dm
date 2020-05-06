@@ -2,6 +2,39 @@
 //////Custom Mech Parts //////
 //////////////////////////////
 
+// Skyrat change - Mecha Chassis can have a security level attached. This is used to limit combat mech actions
+// To certain security levels.
+/obj/item/mecha_parts/chassis
+	var/shouldberestricted = FALSE //Maybe a bit redundant. It's just a boolean checked when attacked by an ID card. If true, the ID card will fiddle with restriction, otherwise it won't.
+	var/securitylevelrestriction = null //Does this mech only work fully depending on the security level? If so, at which level will it work?
+	var/savedrestriction = null //Used to save restrictions, for locking/unlocking the chassis or mecha with an armory access ID card.
+
+/obj/item/mecha_parts/chassis/emag_act()
+	. = ..()
+	obj_flags |= EMAGGED
+	shouldberestricted = FALSE
+	securitylevelrestriction = null 
+	savedrestriction = null
+
+
+/obj/item/mecha_parts/chassis/examine(mob/user)
+	. = ..()
+	if(shouldberestricted)
+		. +=  "It's locked to [securitylevelrestriction ? NUM2SECLEVEL(securitylevelrestriction) : "no"] security level."
+
+/obj/item/mecha_parts/chassis/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/card/id) && shouldberestricted)
+		var/obj/item/card/id/id = I
+		if(ACCESS_ARMORY in id.access)
+			to_chat(user, securitylevelrestriction ? "<span class='notice'>You lock \the [src] for security level based use.</span>" : "<span class='notice'>You unlock \the [src] from security level based use.</span>")]
+			if(securitylevelrestriction)
+				savedrestriction = securitylevelrestriction
+				securitylevelrestriction = null
+			else 
+				securitylevelrestriction = savedrestriction
+				savedrestriction = null
+
 ///////// Power Armor (Not actually a mech but meh)
 
 /obj/item/mecha_parts/chassis/powerarmor

@@ -275,7 +275,7 @@
 /datum/action/innate/mecha/mech_toggle_phasing
 	name = "Toggle Phasing"
 	button_icon_state = "mech_phasing_off"
-
+/* moved to modular_skyrat
 /datum/action/innate/mecha/mech_toggle_phasing/Activate()
 	if(!owner || !chassis || chassis.occupant != owner)
 		return
@@ -283,3 +283,4 @@
 	button_icon_state = "mech_phasing_[chassis.phasing ? "on" : "off"]"
 	chassis.occupant_message("<font color=\"[chassis.phasing?"#00f\">En":"#f00\">Dis"]abled phasing.</font>")
 	UpdateButtonIcon()
+*/

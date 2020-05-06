@@ -18,7 +18,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/get_shot_amount()
 	return projectiles_per_shot
-
+/* moved to modular_skyrat
 /obj/item/mecha_parts/mecha_equipment/weapon/action(atom/target, params)
 	if(!action_checks(target))
 		return 0
@@ -55,7 +55,7 @@
 		chassis.newtonian_move(turn(chassis.dir,180))
 	chassis.mecha_log_message("Fired from [src.name], targeting [target].")
 	return 1
-
+*/
 
 //Base energy weapon type
 /obj/item/mecha_parts/mecha_equipment/weapon/energy

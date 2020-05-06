@@ -3,7 +3,7 @@
 ////////////////////////////////
 /datum/component/construction/mecha
 	var/base_icon
-
+/* MOVED TO MODULAR SKYRAT
 /datum/component/construction/mecha/spawn_result()
 	if(!result)
 		return
@@ -16,7 +16,7 @@
 
 	SSblackbox.record_feedback("tally", "mechas_created", 1, M.name)
 	QDEL_NULL(parent)
-
+*/
 /datum/component/construction/mecha/update_parent(step_index)
 	..()
 	// By default, each step in mech construction has a single icon_state:

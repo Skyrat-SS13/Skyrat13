@@ -16,6 +16,7 @@
 						"Cyborg Upgrade Modules",
 						"Misc"
 						)
+	var/defaultmechlevelrestriction = SEC_LEVEL_RED
 
 /obj/machinery/mecha_part_fabricator/Initialize(mapload)
 	stored_research = new
@@ -105,6 +106,11 @@
 	var/location = get_step(src,(dir))
 	var/obj/item/I = new D.build_path(location)
 	I.set_custom_materials(res_coef)
+	if(istype(I, /obj/item/mecha_parts/mecha_equipment/weapon))
+		var/obj/item/mecha_parts/mecha_equipment/weapon/W = I
+		if(!(obj_flags & EMAGGED))
+			W.shouldberestricted = TRUE
+			W.securitylevelrestriction = defaultmechlevelrestriction
 	say("\The [I] is complete.")
 	being_built = null
 

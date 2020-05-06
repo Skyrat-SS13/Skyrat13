@@ -269,7 +269,7 @@
 	return 0
 
 ////////////////////////////////////////////////////////////////////////////////
-
+/* moved to modular_skyrat
 /obj/mecha/examine(mob/user)
 	. = ..()
 	var/integrity = obj_integrity*100/max_integrity
@@ -288,7 +288,7 @@
 		. += "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 			. += "[icon2html(ME, user)] \A [ME]."
-
+*/
 //processing internal damage, temperature, air regulation, alert updates, lights power use.
 /obj/mecha/process()
 	var/internal_temp_regulation = 1

@@ -1,3 +1,20 @@
+//Skyrat base mecha changes
+/datum/component/construction/mecha/spawn_result()
+	if(!result)
+		return
+	// Remove default mech power cell, as we replace it with a new one.
+	var/obj/mecha/M = new result(drop_location())
+	QDEL_NULL(M.cell)
+
+	var/obj/item/mecha_parts/chassis/parent_chassis = parent
+	M.CheckParts(parent_chassis.contents)
+	M.shouldberestricted = parent_chassis.shouldberestricted
+	M.securitylevelrestriction = parent_chassis.securitylevelrestriction
+	M.savedrestriction = parent_chassis.savedrestriction
+
+	SSblackbox.record_feedback("tally", "mechas_created", 1, M.name)
+	QDEL_NULL(parent)
+
 //Killdozer
 /datum/component/construction/unordered/mecha_chassis/killdozer
 	result = /datum/component/construction/mecha/killdozer
