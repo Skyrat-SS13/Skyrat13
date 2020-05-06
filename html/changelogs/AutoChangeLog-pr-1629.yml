@@ -1,0 +1,4 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - rscadd: "Added the ability to hide items and yourself in the trash pile"
