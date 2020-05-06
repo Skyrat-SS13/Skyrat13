@@ -15,7 +15,7 @@
 	if(istype(I, /obj/item/card/id) && shouldberestricted)
 		var/obj/item/card/id/id = I
 		if(ACCESS_ARMORY in id.access)
-			to_chat(user, securitylevelrestriction ? "<span class='notice'>You lock \the [src] for security level based use.</span>" : "<span class='notice'>You unlock \the [src] from security level based use.</span>")]
+			to_chat(user, securitylevelrestriction ? "<span class='notice'>You lock \the [src] for security level based use.</span>" : "<span class='notice'>You unlock \the [src] from security level based use.</span>")
 			if(securitylevelrestriction)
 				savedrestriction = securitylevelrestriction
 				securitylevelrestriction = null

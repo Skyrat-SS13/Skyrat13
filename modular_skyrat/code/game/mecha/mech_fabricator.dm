@@ -111,6 +111,11 @@
 		if(!(obj_flags & EMAGGED))
 			W.shouldberestricted = TRUE
 			W.securitylevelrestriction = defaultmechlevelrestriction
+	if(istype(I, /obj/item/mecha_parts/chassis))
+		var/obj/item/mecha_parts/chassis/W = I
+		if(!(obj_flags & EMAGGED))
+			W.shouldberestricted = TRUE
+			W.securitylevelrestriction = defaultmechlevelrestriction
 	say("\The [I] is complete.")
 	being_built = null
 
