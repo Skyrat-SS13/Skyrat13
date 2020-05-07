@@ -4,9 +4,21 @@
 	icon_state = "seva_suit"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	unique_reskin_icons = list(
+	"Old" = 'icons/obj/clothing/suits.dmi',
+	"Improved" = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	)
+	unique_reskin_worn = list(
+	"Old" = 'icons/mob/clothing/suit.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Old" = 'icons/mob/clothing/suit_digi.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	)
 	unique_reskin = list(
 	"Old" = "seva",
-	"Improved" = "seva_suit"
+	"Improved" = "seva"
 	)
 
 /obj/item/clothing/head/hooded/explorer/seva
@@ -14,9 +26,21 @@
 	icon_state = "seva_helmet"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	unique_reskin_icons = list(
+	"Old" = 'icons/obj/clothing/hats.dmi',
+	"Improved" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	)
+	unique_reskin_worn = list(
+	"Old" = 'icons/mob/clothing/head.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Old" = 'icons/mob/clothing/head_muzzled.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	)
 	unique_reskin = list(
 	"Old" = "seva",
-	"Improved" = "seva_hood"
+	"Improved" = "seva"
 	)
 
 /obj/item/clothing/mask/gas/seva
@@ -24,9 +48,21 @@
 	icon_state = "seva_mask"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
+	unique_reskin_icons = list(
+	"Old" = 'icons/obj/clothing/masks.dmi',
+	"Improved" = 'modular_skyrat/icons/obj/clothing/masks.dmi'
+	)
+	unique_reskin_worn = list(
+	"Old" = 'icons/mob/clothing/mask.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/mask.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Old" = 'icons/mob/clothing/mask_muzzled.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
+	)
 	unique_reskin = list(
 	"Old" = "seva",
-	"Improved" = "seva_mask"
+	"Improved" = "seva"
 	)
 
 //exosuit shit
@@ -35,20 +71,43 @@
 	icon_state = "exo_suit"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	unique_reskin_icons = list(
+	"Old" = 'icons/obj/clothing/suits.dmi',
+	"Improved" = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	)
+	unique_reskin_worn = list(
+	"Old" = 'icons/mob/clothing/suit.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Old" = 'icons/mob/clothing/suit_digi.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	)
 	unique_reskin = list(
 	"Old" = "exo",
-	"Improved" = "exo_suit"
+	"Improved" = "exo"
 	)
-	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/head/hooded/explorer/exo
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "exo_helmet"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	unique_reskin_icons = list(
+	"Old" = 'icons/obj/clothing/hats.dmi',
+	"Improved" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	)
+	unique_reskin_worn = list(
+	"Old" = 'icons/mob/clothing/head.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Old" = 'icons/mob/clothing/head_muzzled.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	)
 	unique_reskin = list(
 	"Old" = "exo",
-	"Improved" = "exo_helmet"
+	"Improved" = "exo"
 	)
 
 /obj/item/clothing/mask/gas/exo
@@ -56,21 +115,33 @@
 	icon_state = "exo_mask"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
+	unique_reskin_icons = list(
+	"Old" = 'icons/obj/clothing/masks.dmi',
+	"Improved" = 'modular_skyrat/icons/obj/clothing/masks.dmi'
+	)
+	unique_reskin_worn = list(
+	"Old" = 'icons/mob/clothing/mask.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/mask.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Old" = 'icons/mob/clothing/mask_muzzled.dmi',
+	"Improved" = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
+	)
 	unique_reskin = list(
 	"Old" = "exo",
-	"Improved" = "exo_mask"
+	"Improved" = "exo"
 	)
 
 //dora the explorer suit
 /obj/item/clothing/suit/hooded/explorer
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/gun/energy/plasmacutter)
-	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_SNEK_TAURIC|STYLE_PAW_TAURIC
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_SNEK_TAURIC|STYLE_PAW_TAURIC|STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/head/hooded/explorer
 	flags_inv = HIDEEARS
-	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_SNEK_TAURIC|STYLE_PAW_TAURIC
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_SNEK_TAURIC|STYLE_PAW_TAURIC|STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/mask/gas/explorer
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 20, "acid" = 50)
 	flags_inv = HIDEEYES|HIDEFACE|HIDESNOUT
-	mutantrace_variation = STYLE_MUZZLE
+	mutantrace_variation = STYLE_MUZZLE|STYLE_NO_ANTHRO_ICON

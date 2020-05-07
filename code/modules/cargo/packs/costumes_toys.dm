@@ -217,7 +217,7 @@
 
 /datum/supply_pack/costumes_toys/formalwear
 	name = "Formalwear Crate"
-	desc = "You're gonna like the way you look, I guaranteed it. Contains an asston of fancy clothing."
+	desc = "You're gonna like the way you look, I guarantee it. Contains an asston of fancy clothing." //Skyrat change, fixed typo
 	cost = 4750 //Lots of fancy clothing that can be sold back!
 	contains = list(/obj/item/clothing/under/dress/blacktango,
 					/obj/item/clothing/under/misc/assistantformal,
