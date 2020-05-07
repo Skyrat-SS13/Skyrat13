@@ -9,3 +9,10 @@
 	marked_underlay.pixel_y = -owner.pixel_y
 	owner.underlays += marked_underlay
 	return TRUE
+
+/datum/status_effect/ebony_damage //tracks the damage dealt to this mob by the ebony blade, based on crusher damage tracking
+	id = "ebony_damage"
+	duration = -1
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = null
+	var/total_damage = 0
