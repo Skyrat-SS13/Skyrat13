@@ -38,11 +38,21 @@ require only minor tweaks.
 #define ZTRAIT_VR "Virtual Reality"
 #define ZTRAIT_SPACE_RUINS "Space Ruins"
 #define ZTRAIT_LAVA_RUINS "Lava Ruins"
+<<<<<<< HEAD
 //SKYRAT CHANGES
 #define ZTRAIT_ICE_RUINS "Ice Ruins"
 #define ZTRAIT_ICE_RUINS_UNDERGROUND "Ice Ruins Underground"
 //
+=======
+#define ZTRAIT_ICE_RUINS "Ice Ruins"
+#define ZTRAIT_ICE_RUINS_UNDERGROUND "Ice Ruins Underground"
+>>>>>>> bd37d45334... Ports TG Icemoon framework and map (#49680) (#12002)
 #define ZTRAIT_ISOLATED_RUINS "Isolated Ruins" //Placing ruins on z levels with this trait will use turf reservation instead of usual placement.
+
+//boolean - weather types that occur on the level
+#define ZTRAIT_SNOWSTORM "Weather_Snowstorm"
+#define ZTRAIT_ASHSTORM "Weather_Ashstorm"
+#define ZTRAIT_ACIDRAIN "Weather_Acidrain"
 
 // number - bombcap is multiplied by this before being applied to bombs
 #define ZTRAIT_BOMBCAP_MULTIPLIER "Bombcap Multiplier"
@@ -88,8 +98,13 @@ require only minor tweaks.
 	ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface) //You see Ivan, defines can't be modularized.
 #define ZTRAITS_ICEMOON list(\
     ZTRAIT_MINING = TRUE, \
+<<<<<<< HEAD
     ZTRAIT_SNOWSTORM = TRUE, \
     ZTRAIT_ICE_RUINS = TRUE, \
+=======
+	ZTRAIT_ASHSTORM = TRUE, \
+    ZTRAIT_LAVA_RUINS = TRUE, \
+>>>>>>> bd37d45334... Ports TG Icemoon framework and map (#49680) (#12002)
     ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
     ZTRAIT_DOWN = -1, \
     ZTRAIT_BASETURF = /turf/open/floor/plating/asteroid/snow/ice)
