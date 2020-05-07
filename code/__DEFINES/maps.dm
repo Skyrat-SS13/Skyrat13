@@ -35,7 +35,6 @@ require only minor tweaks.
 #define ZTRAIT_REEBE "Reebe"
 #define ZTRAIT_RESERVED "Transit/Reserved"
 #define ZTRAIT_AWAY "Away Mission"
-#define ZTRAIT_VR "Virtual Reality"
 #define ZTRAIT_SPACE_RUINS "Space Ruins"
 #define ZTRAIT_LAVA_RUINS "Lava Ruins"
 #define ZTRAIT_ISOLATED_RUINS "Isolated Ruins" //Placing ruins on z levels with this trait will use turf reservation instead of usual placement.
@@ -66,16 +65,11 @@ require only minor tweaks.
 #define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE)
 #define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_STATION = TRUE)
 #define ZTRAITS_SPACE list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_SPACE_RUINS = TRUE)
-//SKYRAT CHANGES MORE LAVALAND.
 #define ZTRAITS_LAVALAND list(\
-	ZTRAIT_MINING = TRUE, \
-	ZTRAIT_ASHSTORM = TRUE, \
-	ZTRAIT_LAVA_RUINS = TRUE, \
-	ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
-	ZTRAIT_DOWN = -1, \
-	ZTRAIT_UP = 1, \
-	ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface) //You see Ivan, defines can't be modularized.
-//
+    ZTRAIT_MINING = TRUE, \
+    ZTRAIT_LAVA_RUINS = TRUE, \
+    ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
+    ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
 #define DL_NAME "name"
@@ -108,7 +102,3 @@ require only minor tweaks.
 #define PLACE_ISOLATED "isolated" //On isolated ruin z level
 //Map type stuff.
 #define MAP_TYPE_STATION "station"
-
-//Random z-levels name defines.
-#define AWAY_MISSION_NAME "Away Mission"
-#define VIRT_REALITY_NAME "Virtual Reality"
