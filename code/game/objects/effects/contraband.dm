@@ -48,7 +48,7 @@
 	name = "poster"
 	var/original_name
 	desc = "A large piece of space-resistant printed paper."
-	icon = 'icons/obj/contraband.dmi'
+	icon = 'modular_skyrat/icons/obj/contraband.dmi'
 	anchored = TRUE
 	var/ruined = FALSE
 	var/random_basetype
