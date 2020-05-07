@@ -5,6 +5,7 @@
 	desc = "An immortal ash walker, whose powers have been granted by the necropolis itself."
 	icon = 'modular_skyrat/icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "gladiator1"
+	icon_dead = "gladiator_dying"
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/slice.ogg'
 	death_sound = 'modular_skyrat/sound/effects/gladiatordeathsound.ogg'
@@ -28,10 +29,12 @@
 	var/phase = 1
 	var/list/introduced = list() //Basically all the mobs which the gladiator has already introduced himself to.
 	var/speen = FALSE
-	var/speenrange = 3
+	var/speenrange = 5
 	var/obj/savedloot = null
 	var/stunned = FALSE
 	var/stunduration = 15
+	song = sound('modular_skyrat/sound/ambience/gladiator.ogg', 100)
+	songlength = 3850
 
 /obj/item/gps/internal/gladiator
 	icon_state = null
@@ -51,9 +54,6 @@
 /mob/living/simple_animal/hostile/megafauna/gladiator/death()
 	..()
 	forceMove(get_step(src, src.dir))
-	icon_state = "gladiator_dying"
-	spawn(35)
-	icon_state = "gladiator_dead"
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/apply_damage(damage, damagetype, def_zone, blocked, forced)
 	if(!wander)
@@ -71,18 +71,43 @@
 		changeNext_move(adjustment_amount)
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/introduction(mob/living/target)
+	if(src == target)
+		introduced += src
+		return
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/datum/species/Hspecies = H.dna.species
 		if(Hspecies.id == "ashlizard")
-			say("Walker.")
+			var/list/messages = list("I am sorry, tribesssmate. I cannot let you through.",\
+									"Pleassse leave, walker.",\
+									"The necropolisss must be protected even from it'ss servants. Pleassse retreat.")
+			say(message = pick(messages), language = /datum/language/draconic)
 			introduced |= H
+		else if(Hspecies.id == "lizard")
+			var/list/messages = list("Thisss isss not the time nor place to be. Leave.",\
+									"Go back where you came from. I am sssafeguarding thisss sssacred place.",\
+									"You ssshould not be here. Turn.",\
+									"I can sssee an outlander from a mile away. You're not one of us."\
+									)
+			say(message = pick(messages), language = /datum/language/draconic)
+			introduced |= H
+		else if(Hspecies.id == "dunmer")
+			var/list/messages = list("I will finisssh what little of your race remainsss, starting with you!",\
+									"Lavaland belongsss to the lizzzards!",\
+									"No marine can save you now, dark elf!",\
+									"Thisss sacred land wasn't your property before, it won't be now!")
+			say(message = pick(messages))
+			introduced |= H
+			GiveTarget(H)
+			Retaliate()
 		else
-			var/list/messages = list("What you interfere with now isss bigger than you can imagine... If you continue, you'll bring down the necropolisss' wrath.",\
-									"You cannot kill the Legion, miner.",\
-									"Retreat, outlander.")
-			say(pick(messages))
+			var/list/messages = list("Get out of my sssight, outlander.",\
+									"You will not run your dirty handsss through what little sssacred land we have left. Out.",\
+									"My urge to end your life isss immeasssurable, but I am willing to ssspare you. Leave.",\
+									"I can sssee an outlander from a mile away. You're not one of us.")
+			say(message = pick(messages))
 			introduced |= H
+
 	else
 		say("You are not welcome into the necropolisss.")
 		introduced |= target
@@ -131,19 +156,20 @@
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/update_phase()
 	var/healthpercentage = 100 * (health/maxHealth)
 	switch(healthpercentage)
-		if(65 to 100)
+		if(70 to 100)
 			phase = 1
 			rapid_melee = initial(rapid_melee)
-		if(30 to 65)
+			move_to_delay = initial(move_to_delay)
+		if(30 to 70)
 			phase = 2
 			icon_state = "gladiator2"
-			rapid_melee = 6
-			move_to_delay = 2.5
+			rapid_melee = 3
+			move_to_delay = 2.3
 		if(0 to 30)
 			phase = 3
 			icon_state = "gladiator3"
-			rapid_melee = 8
-			move_to_delay = 2
+			rapid_melee = 4
+			move_to_delay = 1.6
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/zweispin()
 	visible_message("<span class='boldwarning'>[src] lifts his zweihander, and prepares to spin!</span>")
@@ -172,6 +198,7 @@
 					else
 						visible_message("<span class = 'userdanger'>[src]'s spinning zweihander is stopped by [M]!</span>")
 						woop = TRUE
+			sleep(2)
 		if(woop)
 			break
 		currentdir = angle2dir(dir2angle(currentdir) + (clockwise ? -45 : 45))
@@ -186,9 +213,9 @@
 	animate(src, color = "#ff6666", 3)
 	sleep(3 + phase)
 	var/longstun = FALSE
-	var/dirtotarget = get_dir(src, target)
 	face_atom(target)
 	for(var/i = 0, i >= range, i++)
+		var/dirtotarget = get_dir(src, target)
 		var/turf/T = get_step(src, dirtotarget)
 		if(target in T)
 			if(isliving(target))
@@ -203,25 +230,18 @@
 			break
 		else
 			forceMove(src, T)
-			var/time2sleep = 2
-			switch(phase)
-				if(1)
-					time2sleep = 2.4
-				if(2)
-					time2sleep = 1.6
-				if(3)
-					time2sleep = 1
+			var/time2sleep = 1.4
 			sleep(time2sleep)
 	speen = FALSE
 	stunned = TRUE
 	animate(src, color = initial(color), 7)
-	sleep(longstun ? stunduration : (stunduration/(phase*2)))
+	sleep(longstun ? stunduration : ((stunduration/2) * 1.5))
 	stunned = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/teleport(atom/target)
 	var/turf/T = get_step(target, -target.dir)
 	new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(src))
-	sleep(4 - phase)
+	sleep(4)
 	if(!ischasm(T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		forceMove(T)
@@ -242,7 +262,7 @@
 	. = ..()
 	if(speen || stunned)
 		return
-	if(. && prob(15 * phase))
+	if(. && prob(5 * phase))
 		teleport(target)
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/boneappletea(atom/target)
@@ -250,37 +270,41 @@
 	boned.throwforce = 35
 	playsound(src, 'sound/weapons/fwoosh.wav', 60, 0)
 	boned.throw_at(target, 7, 3, src)
+	QDEL_IN(boned, 30)
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/OpenFire()
-	if(get_dist(src, target) > 4)
-		ranged_cooldown += 30
-		return boneappletea(target)
+	if(world.time < ranged_cooldown)
+		return FALSE
+	if(speen || stunned)
+		return FALSE
+	ranged_cooldown = world.time
 	switch(phase)
 		if(1)
-			if(prob(25))
+			if(prob(35) && (get_dist(src, target) <= 4))
 				zweispin()
 				ranged_cooldown += 60
 			else
-				if(prob(65))
-					chargeattack(target, 8)
+				if(prob(50))
+					chargeattack(target, 21)
+					ranged_cooldown += 120
 				else
 					teleport(target)
-					ranged_cooldown += 30
+					ranged_cooldown += 40
 		if(2)
-			if(prob(40))
+			if(prob(40) && (get_dist(src, target) <= 4))
 				zweispin()
 				ranged_cooldown += 45
 			else
-				if(prob(50))
+				if(prob(30))
 					boneappletea(target)
-					ranged_cooldown += 20
+					ranged_cooldown += 35
 				else
 					teleport(target)
-					ranged_cooldown += 20
+					ranged_cooldown += 30
 		if(3)
-			if(prob(15))
+			if(prob(20))
 				boneappletea(target)
-				ranged_cooldown += 15
+				ranged_cooldown += 30
 			else
 				teleport(target)
-				ranged_cooldown += 15
+				ranged_cooldown += 20
