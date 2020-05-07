@@ -28,7 +28,7 @@
 	//exotic_blood = /datum/reagent/oil
 	exotic_bloodtype = "HF"
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE)
-  	languagewhitelist = list("Encoded Audio Language")
+	languagewhitelist = list("Encoded Audio Language")
 
 /datum/species/synthliz/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
 	. = ..()
