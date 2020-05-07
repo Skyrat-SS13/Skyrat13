@@ -912,29 +912,34 @@
 	desc = "A poster of our home planet... maybe?"
 	icon_state = "poster115"
 
+/obj/structure/sign/poster/contraband/bigboom
+	name = "Nuke"
+	desc = "A poster showing a mushroom cloud."
+	icon_state = "poster116"
+
 /obj/structure/sign/poster/contraband/iceland
 	name = "Iceland"
 	desc = "A poster showing a cold planet."
-	icon_state = "poster116"
+	icon_state = "poster117"
 
 /obj/structure/sign/poster/contraband/pantsdown
 	name = "Pants Down"
 	desc = "A poster with a person's pants down."
-	icon_state = "poster117"
+	icon_state = "poster118"
 
 /obj/structure/sign/poster/contraband/trianglesus
 	name = "Suspicious Triangle"
 	desc = "A poster with a suspicious looking triangle."
-	icon_state = "poster118"
+	icon_state = "poster119"
 
 /obj/structure/sign/poster/contraband/penguin
 	name = "Penguin"
 	desc = "A poster with a penguin."
-	icon_state = "poster119"
+	icon_state = "poster120"
 
 /obj/structure/sign/poster/contraband/leftvalve
 	name = "Valve"
 	desc = "A poster with a man who has a valve on the back... how detailed."
-	icon_state = "poster119"
+	icon_state = "poster121"
 
 #undef PLACE_SPEED
