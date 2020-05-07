@@ -19,16 +19,20 @@
 	name = "Fed uniform, cmd"
 
 /datum/gear/trekmedscitos
-	name = "Fed uniform, med/sci"
+	name = "Fed uniform, medsci"
 
 /datum/gear/trekengtos
-	name = "Fed uniform, ops/sec"
+	name = "Fed uniform, ops"
 
 /datum/gear/trekfedutil
-	name = "Fed utility uniform, enlist"
+	name = "Fed uniform, classic"
 
 /datum/gear/trekfedtrainee
-	name = "Fed utility uniform, trainee"
+	name = "Fed uniform, trainee/assistant"
+	path = /obj/item/clothing/under/trek/orvi
 
 /datum/gear/trekfedservice
-	name = "Fed utility uniform, service"
+	name = "Fed uniform, service"
+	path = /obj/item/clothing/under/trek/orvi/service
+	restricted_desc = "Service and Civilian, barring Lawyer"
+	restricted_roles = list("Head of Personnel", "Bartender", "Botanist", "Cook", "Curator", "Janitor", "Mime", "Clown")
