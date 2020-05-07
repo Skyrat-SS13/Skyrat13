@@ -5,16 +5,24 @@
 	var/list/glorymessagespka = list() //SAME AS ABOVE THE ABOVE BUT PKA
 	var/list/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING
 	var/gloryhealth = 7.5
+	var/glorymodifier = 1.5
 
 /mob/living/simple_animal/hostile/asteroid/Life()
 	..()
-	if(health <= (maxHealth/10 * 1.5) && !glorykill && stat != DEAD)
+	if(health <= (maxHealth/10 * glorymodifier) && !glorykill && stat != DEAD)
 		glorykill = TRUE
 		glory()
+	else if(health > (maxHealth/10 * glorymodifier) && glorykill && stat != DEAD)
+		glorykill = TRUE
+		unglory()
 
 /mob/living/simple_animal/hostile/asteroid/proc/glory()
 	desc += "<br><b>[src] is staggered and can be glory killed!</b>"
 	animate(src, color = "#00FFFF", time = 5)
+
+/mob/living/simple_animal/hostile/asteroid/proc/unglory()
+	desc = initial(desc)
+	animate(src, color = initial(color), time = 5)
 
 /mob/living/simple_animal/hostile/asteroid/death(gibbed)
 	animate(src, color = initial(color), time = 3)

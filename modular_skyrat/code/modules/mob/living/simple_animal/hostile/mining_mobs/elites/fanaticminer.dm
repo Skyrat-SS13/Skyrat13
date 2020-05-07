@@ -133,6 +133,7 @@
 	var/turf/pick1 = pick(turfs)
 	new /obj/effect/temp_visual/small_smoke/halfsecond(pick1)
 	var/mob/living/simple_animal/hostile/asteroid/miner/m1 = new /mob/living/simple_animal/hostile/asteroid/miner(pick1)
+	m1.faction = faction.Copy()
 	m1.GiveTarget(target)
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/dash(atom/dash_target)
@@ -176,7 +177,7 @@
 
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/axe_throw(target)
-	ranged_cooldown = world.time + 50
+	ranged_cooldown = world.time + 20
 	visible_message("<span class='boldwarning'>[src] prepares to throw his axe!</span>")
 	var/turf/targetturf = get_turf(target)
 	playsound(src,'sound/weapons/fwoosh.wav', 200, 1)
@@ -195,7 +196,7 @@
 
 // priest helpers
 /datum/outfit/job/miner/equipped/priest
-	name = "Shaft Miner (necropolis priest)"
+	name = "Shaft Miner (Necropolis Priest)"
 	shoes = /obj/item/clothing/shoes/bronze
 	mask = /obj/item/clothing/mask/gas
 	backpack_contents = list(
@@ -229,7 +230,7 @@
 //loot
 
 /obj/item/melee/diamondaxe
-	name = "Fanatic's Axe"
+	name = "Priest's Axe"
 	desc = "Used to be a diamond pickaxe, now there's no pick, just axe."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "diamondaxe"
@@ -254,5 +255,4 @@
 
 /obj/item/melee/diamondaxe/priest/Initialize()
 	..()
-	sleep(30)
-	qdel(src)
+	QDEL_IN(src, 30)
