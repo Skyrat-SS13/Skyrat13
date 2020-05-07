@@ -7,6 +7,7 @@
 					/obj/item/reagent_containers/medspray/sterilizine = 1,
 					/obj/item/stack/medical/gauze = 8,
 					/obj/item/stack/medical/splint = 4,
+					/obj/item/stack/medical/nanopaste = 5,
 					/obj/item/reagent_containers/pill/patch/styptic = 5,
 					/obj/item/reagent_containers/medspray/styptic = 2,
 					/obj/item/reagent_containers/pill/patch/silver_sulf = 5,
