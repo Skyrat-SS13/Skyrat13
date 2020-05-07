@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "Genital fluids now calculate less often."
+  - rscadd: "A new brain damage message, to commemorate the loss of a classic message."
