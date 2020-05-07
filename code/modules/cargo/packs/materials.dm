@@ -177,7 +177,7 @@
 
 /datum/supply_pack/materials/oxygen
 	name = "Oxygen Canister"
-	desc = "Contains a canister of Oxygen. Canned in Druidia."
+	desc = "Contains a canister of Oxygen." //Skyrat change, removed Druidia for consistency
 	cost = 1500
 	contains = list(/obj/machinery/portable_atmospherics/canister/oxygen)
 	crate_name = "oxygen canister crate"
@@ -185,7 +185,7 @@
 
 /datum/supply_pack/materials/water_vapor
 	name = "Water Vapor Canister"
-	desc = "Contains a canister of Water Vapor. I swear to god if you open this in the halls..."
+	desc = "Contains a canister of Water Vapor. Warranty void if opened in central primary hallway" //Skyrat change, made line more humorous and corporate sounding
 	cost = 2500
 	contains = list(/obj/machinery/portable_atmospherics/canister/water_vapor)
 	crate_name = "water vapor canister crate"
