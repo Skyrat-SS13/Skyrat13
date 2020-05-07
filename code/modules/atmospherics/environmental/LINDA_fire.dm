@@ -9,7 +9,7 @@
 	return
 
 
-/turf/open/hotspot_expose(exposed_temperature, exposed_volume, soh = FALSE, holo = FALSE)
+/turf/open/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	var/datum/gas_mixture/air_contents = return_air()
 	if(!air_contents)
 		return 0
@@ -35,7 +35,7 @@
 		if(oxy < 0.5)
 			return 0
 
-		active_hotspot = new /obj/effect/hotspot(src, holo)
+		active_hotspot = new /obj/effect/hotspot(src)
 		active_hotspot.temperature = exposed_temperature*50
 		active_hotspot.volume = exposed_volume*25
 
@@ -67,10 +67,8 @@
 	var/bypassing = FALSE
 	var/visual_update_tick = 0
 
-/obj/effect/hotspot/Initialize(mapload, holo = FALSE)
+/obj/effect/hotspot/Initialize()
 	. = ..()
-	if(holo)
-		flags_1 |= HOLOGRAM_1
 	SSair.hotspots += src
 	perform_exposure()
 	setDir(pick(GLOB.cardinals))
@@ -194,8 +192,7 @@
 
 	if(bypassing)
 		icon_state = "3"
-		if(!(flags_1 & HOLOGRAM_1))
-			location.burn_tile()
+		location.burn_tile()
 
 		//Possible spread due to radiated heat
 		if(location.air.temperature > FIRE_MINIMUM_TEMPERATURE_TO_SPREAD)
@@ -203,7 +200,7 @@
 			for(var/t in location.atmos_adjacent_turfs)
 				var/turf/open/T = t
 				if(!T.active_hotspot)
-					T.hotspot_expose(radiated_temperature, CELL_VOLUME/4, flags_1 & HOLOGRAM_1)
+					T.hotspot_expose(radiated_temperature, CELL_VOLUME/4)
 
 	else
 		if(volume > CELL_VOLUME*0.4)
@@ -227,8 +224,7 @@
 	var/turf/open/T = loc
 	if(istype(T) && T.active_hotspot == src)
 		T.active_hotspot = null
-	if(!(flags_1 & HOLOGRAM_1))
-		DestroyTurf()
+	DestroyTurf()
 	return ..()
 
 /obj/effect/hotspot/proc/DestroyTurf()

@@ -152,14 +152,10 @@
 	. = ..()
 	if(.)
 		return
-		
-	// Skyrat change
-	to_chat(user, "<span class='notice'>You push at the wall...</span>") 
-	if(do_after(user, 4 SECONDS, target = src))
-		user.changeNext_move(CLICK_CD_MELEE)
-		to_chat(user, "<span class='notice'>...but nothing happens!</span>")
-		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
-		add_fingerprint(user)
+	user.changeNext_move(CLICK_CD_MELEE)
+	to_chat(user, "<span class='notice'>You push the wall but nothing happens!</span>")
+	playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+	add_fingerprint(user)
 
 /turf/closed/wall/attackby(obj/item/W, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)

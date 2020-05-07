@@ -24,9 +24,6 @@ DYNAMIC_FIRST_MIDROUND_DELAY_MAX 30
 DYNAMIC_FIRST_LATEJOIN_DELAY_MIN 2
 DYNAMIC_FIRST_LATEJOIN_DELAY_MAX 30
 
-## Arbitrary number added to the threat on roundstart
-ADDED_THREAT 50
-
 ## How many roundstart players required for high population override to take effect.
 DYNAMIC_HIGH_POP_LIMIT 80 #80 instead of 55 because fewer robust players
 

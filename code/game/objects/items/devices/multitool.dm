@@ -68,9 +68,10 @@
 	update_icon()
 
 /obj/item/multitool/update_icon_state()
-	icon_state = initial(icon_state)
 	if(selected_io)
-		icon_state += "_red"
+		icon_state = "multitool_red"
+	else
+		icon_state = "multitool"
 
 /obj/item/multitool/proc/wire(var/datum/integrated_io/io, mob/user)
 	if(!io.holder.assembly)

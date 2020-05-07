@@ -35,8 +35,3 @@
 		if(client && usr.client.holder)
 			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", "[name]'s exploitable information", replacetext(client.prefs.exploitable_info, "\n", "<BR>")), text("window=[];size=500x200", "[name]'s exp info"))
 			onclose(usr, "[name]'s exp info")
-
-/mob/living/carbon/human/revive(full_heal = 0, admin_revive = 0)
-	if(..())
-		if(dna && dna.species)
-			dna.species.spec_revival(src)

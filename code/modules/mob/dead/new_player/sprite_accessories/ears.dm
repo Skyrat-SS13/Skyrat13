@@ -29,10 +29,9 @@
 /datum/sprite_accessory/ears/human/bigwolfinner
 	name = "Big Wolf (ALT)"
 	icon_state = "bigwolfinner"
+	hasinner = 1
 	icon = 'modular_citadel/icons/mob/mam_ears.dmi'
 	color_src = MATRIXED
-	extra = TRUE
-	extra_color_src = NONE
 
 /datum/sprite_accessory/ears/human/bigwolfdark
 	name = "Dark Big Wolf"
@@ -43,17 +42,15 @@
 /datum/sprite_accessory/ears/human/bigwolfinnerdark
 	name = "Dark Big Wolf (ALT)"
 	icon_state = "bigwolfinnerdark"
+	hasinner = 1
 	icon = 'modular_citadel/icons/mob/mam_ears.dmi'
 	color_src = MATRIXED
-	extra = TRUE
-	extra_color_src = NONE
 
 /datum/sprite_accessory/ears/cat
 	name = "Cat"
 	icon_state = "cat"
+	hasinner = 1
 	color_src = HAIR
-	extra = TRUE
-	extra_color_src = NONE
 
 /datum/sprite_accessory/ears/human/cow
 	name = "Cow"
@@ -199,8 +196,7 @@
 /datum/sprite_accessory/mam_ears/bigwolfinner
 	name = "Big Wolf (ALT)"
 	icon_state = "bigwolfinner"
-	extra = TRUE
-	extra_color_src = NONE
+	hasinner = 1
 
 /datum/sprite_accessory/mam_ears/bigwolfdark
 	name = "Dark Big Wolf"
@@ -209,13 +205,12 @@
 /datum/sprite_accessory/mam_ears/bigwolfinnerdark
 	name = "Dark Big Wolf (ALT)"
 	icon_state = "bigwolfinnerdark"
-	extra = TRUE
-	extra_color_src = NONE
+	hasinner = 1
 
 /datum/sprite_accessory/mam_ears/cat
 	name = "Cat"
 	icon_state = "cat"
-	icon = 'icons/mob/mutant_bodyparts.dmi'
+	hasinner = 1
 	color_src = HAIR
 
 /datum/sprite_accessory/mam_ears/catbig

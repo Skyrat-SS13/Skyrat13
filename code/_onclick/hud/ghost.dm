@@ -36,13 +36,13 @@
 	var/mob/dead/observer/G = usr
 	G.dead_tele()
 
-/obj/screen/ghost/spawners
-	name = "Ghost role spawners"
-	icon_state = "spawners"
+/obj/screen/ghost/pai
+	name = "pAI Candidate"
+	icon_state = "pai"
 
-/obj/screen/ghost/spawners/Click()
+/obj/screen/ghost/pai/Click()
 	var/mob/dead/observer/G = usr
-	G.open_spawners_menu()
+	G.register_pai()
 
 /datum/hud/ghost/New(mob/owner)
 	..()
@@ -68,8 +68,8 @@
 	using.hud = src
 	static_inventory += using
 
-	using = new /obj/screen/ghost/spawners()
-	using.screen_loc = ui_ghost_spawners
+	using = new /obj/screen/ghost/pai()
+	using.screen_loc = ui_ghost_pai
 	using.hud = src
 	static_inventory += using
 

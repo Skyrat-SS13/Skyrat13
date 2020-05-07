@@ -3,11 +3,6 @@
 	icon_state = "lyssa"
 	item_state = "lyssa"
 
-/obj/item/toy/plush/lizardplushie/katra
-	icon = 'modular_skyrat/icons/obj/plushies.dmi'
-	icon_state = "katra"
-	item_state = "katra"
-
 /obj/item/toy/plush/lizardplushie/stalks
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "stalks"

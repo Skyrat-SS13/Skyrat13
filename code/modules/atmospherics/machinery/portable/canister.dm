@@ -159,6 +159,7 @@
 /obj/machinery/portable_atmospherics/canister/proto
 	name = "prototype canister"
 
+
 /obj/machinery/portable_atmospherics/canister/proto/default
 	name = "prototype canister"
 	desc = "The best way to fix an atmospheric emergency... or the best way to introduce one."
@@ -171,6 +172,7 @@
 	can_min_release_pressure = (ONE_ATMOSPHERE / 30)
 	prototype = TRUE
 
+
 /obj/machinery/portable_atmospherics/canister/proto/default/oxygen
 	name = "prototype canister"
 	desc = "A prototype canister for a prototype bike, what could go wrong?"
@@ -178,6 +180,8 @@
 	gas_type = /datum/gas/oxygen
 	filled = 1
 	release_pressure = ONE_ATMOSPHERE*2
+
+
 
 /obj/machinery/portable_atmospherics/canister/New(loc, datum/gas_mixture/existing_mixture)
 	..()
@@ -188,7 +192,7 @@
 	pump = new(src, FALSE)
 	pump.on = TRUE
 	pump.stat = 0
-	SSair.add_to_rebuild_queue(pump)
+	pump.build_network()
 
 	update_icon()
 
@@ -204,7 +208,6 @@
 		air_contents.gases[gas_type] = (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
 		if(starter_temp)
 			air_contents.temperature = starter_temp
-
 /obj/machinery/portable_atmospherics/canister/air/create_gas()
 	air_contents.gases[/datum/gas/oxygen] = (O2STANDARD * maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
 	air_contents.gases[/datum/gas/nitrogen] = (N2STANDARD * maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)

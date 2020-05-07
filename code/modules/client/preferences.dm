@@ -165,7 +165,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		"flavor_text" = "",
 		"meat_type" = "Mammalian",
 		"body_model" = MALE,
-		"ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)", //SKYRAT CHANGE
 		"body_size" = RESIZE_DEFAULT_SIZE
 		)
 
@@ -758,22 +757,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
-
-			//Skyrat changes
-			if(pref_species.mutant_bodyparts["ipc_chassis"])
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
-
-				dat += "<h3>Chassis Type</h3>"
-
-				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=ipc_chassis;task=input'>[features["ipc_chassis"]]</a>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
-
-			//End of skyrat changes
 
 			if(mutant_category)
 				dat += "</td>"
@@ -1755,15 +1738,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					new_ipc_antenna = input(user, "Choose your character's antenna:", "Character Preference") as null|anything in snowflake_antenna_list
 					if(new_ipc_antenna)
 						features["ipc_antenna"] = new_ipc_antenna
-
-				//Skyrat changes
-				if("ipc_chassis")
-					var/new_ipc_chassis
-					new_ipc_chassis = input(user, "Choose your character's chassis:", "Character Preference") as null|anything in GLOB.ipc_chassis_list
-					if(new_ipc_chassis)
-						features["ipc_chassis"] = new_ipc_chassis
-
-				//End of skyrat changes
 
 				if("tail_lizard")
 					var/new_tail

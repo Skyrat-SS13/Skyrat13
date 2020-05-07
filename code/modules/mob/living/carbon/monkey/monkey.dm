@@ -74,10 +74,9 @@
 /mob/living/carbon/monkey/updatehealth()
 	. = ..()
 	var/slow = 0
-	if(!HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))
-		var/health_deficiency = (maxHealth - health)
-		if(health_deficiency >= 45)
-			slow += (health_deficiency / 25)
+	var/health_deficiency = (100 - health)
+	if(health_deficiency >= 45)
+		slow += (health_deficiency / 25)
 	add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/monkey_health_speedmod, TRUE, slow)
 
 /mob/living/carbon/monkey/adjust_bodytemperature(amount)

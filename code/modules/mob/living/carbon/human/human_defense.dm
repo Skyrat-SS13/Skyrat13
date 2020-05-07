@@ -383,7 +383,6 @@
 		electrocution_animation(40)
 
 
-/********moved to modular_skyrat
 /mob/living/carbon/human/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_CONTENTS)
@@ -401,7 +400,6 @@
 				if(2)
 					L.receive_damage(0,5)
 					Stun(100)
-*/
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit)
 	var/list/damaged = list()

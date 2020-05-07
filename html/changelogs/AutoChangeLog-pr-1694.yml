@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "Added a mixing area for atmos in MetaStation"
-  - balance: "Incinerator room is now longer maintenance access"
