@@ -95,6 +95,9 @@
 			B.change_bodypart_status(BODYPART_ROBOTIC, FALSE, TRUE) // Makes all Bodyparts robotic.
 			B.render_like_organic = TRUE
 
+	if(TRAIT_TOXIMMUNE in inherent_traits)
+		C.setToxLoss(0, TRUE, TRUE)
+
 /datum/species/on_species_loss(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
 	if(ROBOTIC_LIMBS in species_traits)
