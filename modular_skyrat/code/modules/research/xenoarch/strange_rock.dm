@@ -1,6 +1,6 @@
 /obj/item/strangerock
 	icon = 'modular_skyrat/code/modules/research/xenoarch/fossil_and_artifact.dmi'
-	name = "Strange Rock"
+	name = "strange rock"
 	desc = "This is a strange rock, it appears to have a relic encased."
 	icon_state = "strange"
 	item_state = "strange"

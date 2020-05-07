@@ -160,7 +160,11 @@
 	dir = 4;
 	id = "garbageL"
 	},
-/turf/open/floor/plating,
+/obj/machinery/status_display/evac{
+	layer = 4;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "bc" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
@@ -856,16 +860,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
-"fw" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/closet/crate{
-	icon_state = "crateopen"
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plating,
-/area/xenoarch/arch)
 "fE" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/machinery/firealarm{
@@ -890,7 +884,10 @@
 	dir = 6;
 	id = "garbageL"
 	},
-/turf/open/floor/plating,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "fI" = (
 /obj/effect/turf_decal/tile/purple{
@@ -1425,10 +1422,7 @@
 "iD" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "iI" = (
 /turf/closed/indestructible/riveted/boss,
@@ -2641,7 +2635,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "pD" = (
 /obj/effect/turf_decal/tile/purple{
@@ -3091,7 +3085,7 @@
 	name = "\improper STAY CLEAR HEAVY MACHINERY";
 	pixel_y = 32
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "ry" = (
 /obj/machinery/mineral/ore_redemption,
@@ -3232,7 +3226,7 @@
 /obj/machinery/conveyor{
 	id = "garbageL"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "sg" = (
 /obj/structure/stone_tile{
@@ -3844,8 +3838,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "vz" = (
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "vG" = (
 /obj/structure/stone_tile/surrounding_tile{
@@ -4282,7 +4275,7 @@
 	name = "Station Intercom (General)";
 	pixel_x = -28
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "xV" = (
 /obj/structure/stone_tile/cracked{
@@ -4543,7 +4536,7 @@
 	icon_state = "crateopen"
 	},
 /obj/effect/turf_decal/bot,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "zg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
@@ -4860,7 +4853,7 @@
 	id = "garbageL"
 	},
 /obj/structure/fans/tiny,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "Bk" = (
 /obj/structure/stone_tile/block/cracked{
@@ -5603,6 +5596,13 @@
 	},
 /turf/open/floor/plating,
 /area/xenoarch/arch)
+"FD" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "garbageL"
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/arch)
 "FG" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
@@ -5917,7 +5917,7 @@
 	id = "garbageL";
 	name = "disposal conveyor"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "GY" = (
 /obj/machinery/door/airlock/maintenance,
@@ -6252,6 +6252,10 @@
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
+/area/xenoarch/arch)
+"Iz" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "IA" = (
 /obj/structure/stone_tile{
@@ -6615,7 +6619,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "KR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -7356,10 +7360,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "OR" = (
 /obj/structure/stone_tile/cracked{
@@ -7512,7 +7513,7 @@
 	dir = 10;
 	id = "garbageL"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "PR" = (
 /obj/structure/cable/yellow{
@@ -7624,7 +7625,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "Qh" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -8020,7 +8021,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "SD" = (
 /obj/structure/stone_tile/block{
@@ -8220,6 +8221,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
+"Tz" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "garbageL"
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/arch)
 "TD" = (
 /obj/structure/stone_tile/cracked,
 /obj/structure/stone_tile/block{
@@ -8470,7 +8478,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "Vd" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible/layer3,
@@ -8612,7 +8620,7 @@
 	dir = 5;
 	id = "garbageL"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "Wt" = (
 /obj/structure/stone_tile/block{
@@ -8668,6 +8676,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/xenoarch/sec)
 "WM" = (
@@ -8891,6 +8900,12 @@
 "Yc" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
+/area/xenoarch/arch)
+"Yh" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "Yj" = (
 /obj/machinery/firealarm{
@@ -22509,12 +22524,12 @@ SZ
 UN
 zF
 BS
-fw
 zc
 zc
 zc
 zc
-fw
+zc
+zc
 BS
 tN
 tN
@@ -22766,12 +22781,12 @@ Dm
 UN
 zF
 BS
-jn
-jn
-jn
-jn
-jn
-jn
+Yh
+vz
+vz
+vz
+vz
+Iz
 BS
 Pd
 tN
@@ -23538,7 +23553,7 @@ UN
 vg
 BS
 bb
-Uh
+FD
 BS
 pU
 BS
@@ -23794,8 +23809,8 @@ Ng
 UN
 sL
 BS
-bb
-Uh
+Tz
+FD
 Ig
 pC
 xT
@@ -24052,11 +24067,11 @@ cr
 uU
 BS
 rw
-Uh
+FD
 Uh
 SB
-jn
-Hl
+vz
+OQ
 BS
 Pd
 tN
@@ -24312,8 +24327,8 @@ fH
 PQ
 Rb
 SB
-jn
-jn
+vz
+Iz
 BS
 tN
 tN
@@ -24566,7 +24581,7 @@ UN
 zF
 YC
 OQ
-Hl
+OQ
 Bx
 KO
 vz

@@ -201,7 +201,7 @@
 	spam_protection = FALSE
 
 /obj/item/storage/bag/strangerockadv
-	name = "strange rock bag"
+	name = "bluespace strange rock bag"
 	desc = "A bag for strange rocks."
 	icon = 'modular_skyrat/code/modules/research/xenoarch/tools.dmi'
 	icon_state = "rockbagadv"
@@ -299,7 +299,7 @@
 	return
 
 /obj/structure/closet/wardrobe/xenoarch
-	name = "science wardrobe"
+	name = "xenoarchaeologist wardrobe"
 	icon_state = "science"
 	icon_door = "science"
 
@@ -492,7 +492,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/xenoresearch
-	name = "Fossil Researcher"
+	name = "Research Scanner"
 	desc = "A tool used to get research points from artifacts."
 	id = "xenoresearch"
 	build_type = PROTOLATHE

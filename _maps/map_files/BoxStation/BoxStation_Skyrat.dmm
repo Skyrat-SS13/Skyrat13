@@ -58388,6 +58388,17 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"iOm" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
+/area/hallway/secondary/entry)
 "iOr" = (
 /obj/structure/table,
 /obj/item/assembly/igniter{
@@ -75429,7 +75440,7 @@ aaa
 aaa
 aaa
 awW
-awZ
+iOm
 ayk
 awW
 awW
