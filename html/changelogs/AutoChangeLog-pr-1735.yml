@@ -1,5 +1,0 @@
-author: "CinderWC"
-delete-after: True
-changes: 
-  - tweak: "tweaked xeno walls in xeno hive"
-  - bugfix: "fixed space tiles under xeno walls"
