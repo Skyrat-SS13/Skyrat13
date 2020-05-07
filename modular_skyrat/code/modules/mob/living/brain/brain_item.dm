@@ -1,9 +1,10 @@
 /obj/item/organ/brain/ipc_positron
 	name = "ipc positronic brain"
-	slot = "brain"
-	zone = "chest"
+	slot = ORGAN_SLOT_BRAIN
+	zone = BODY_ZONE_HEAD
 	status = ORGAN_ROBOTIC
-	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. It is usually slotted into the chest of synthetic crewmembers."
+	organ_flags = ORGAN_SYNTHETIC
+	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. It is usually slotted into the head of synthetic crewmembers."
 	icon = 'modular_skyrat/icons/obj/surgery.dmi'
 	icon_state = "posibrain-ipc"
 

@@ -1,0 +1,6 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - balance: "Material amplification by stock parts upgrading has been drastically reduced."
+  - balance: "Autolathes and protolathes print faster."
+  - bugfix: "Protolathe print time is now the same as their busy-state print-lockout time."

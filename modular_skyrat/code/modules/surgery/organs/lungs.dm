@@ -21,4 +21,4 @@
 			to_chat(owner, "<span class='warning'>Alert: Critical cooling system failure!</span>")
 			owner.adjust_bodytemperature(100*TEMPERATURE_DAMAGE_COEFFICIENT)
 		if(2)
-			owner.adjust_bodytemperature(30*TEMPERATURE_DAMAGE_COEFFICIENT) 
+			owner.adjust_bodytemperature(30*TEMPERATURE_DAMAGE_COEFFICIENT)
