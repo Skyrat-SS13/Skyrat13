@@ -4,7 +4,7 @@
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT)
 	coldmod = 0.5
 	burnmod = 1.1
-	heatmod = 1.5
+	heatmod = 1.2
 	brutemod = 1.1
 	toxmod = 0
 	clonemod = 0
@@ -18,8 +18,10 @@
 	mutanttongue = /obj/item/organ/tongue/robot_ipc
 	mutanteyes = /obj/item/organ/eyes/robot_ipc
 	mutantlungs = /obj/item/organ/lungs/robot_ipc
+	mutant_heart = /obj/item/organ/heart/robot_ipc
+	mutantliver = /obj/item/organ/liver/robot_ipc
 	exotic_blood = /datum/reagent/oil
-	exotic_bloodtype = ""
+	exotic_bloodtype = "OIL"
 	icon_limbs = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
 	hair_alpha = 210
 	var/saved_screen

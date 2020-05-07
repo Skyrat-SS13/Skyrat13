@@ -3750,6 +3750,8 @@
 #include "modular_skyrat\code\modules\surgery\organs\augments_arm.dm"
 #include "modular_skyrat\code\modules\surgery\organs\ears.dm"
 #include "modular_skyrat\code\modules\surgery\organs\eyes.dm"
+#include "modular_skyrat\code\modules\surgery\organs\heart.dm"
+#include "modular_skyrat\code\modules\surgery\organs\liver.dm"
 #include "modular_skyrat\code\modules\surgery\organs\lungs.dm"
 #include "modular_skyrat\code\modules\surgery\organs\stomach.dm"
 #include "modular_skyrat\code\modules\surgery\organs\tongue.dm"
