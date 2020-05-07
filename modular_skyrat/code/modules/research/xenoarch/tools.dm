@@ -10,6 +10,7 @@
 	name = "Parent hammer"
 	desc = "Debug. Parent Hammer."
 	var/cleandepth = 15
+	usesound = list('sound/effects/picaxe1.ogg', 'sound/effects/picaxe2.ogg', 'sound/effects/picaxe3.ogg')
 
 /obj/item/xenoarch/clean/hammer/cm1
 	name = "mining hammer cm1"
@@ -58,6 +59,7 @@
 	desc = "Removes a custom amount of debris."
 	icon_state = "advpick"
 	cleandepth = 30
+	usesound = 'sound/weapons/drill.ogg'
 
 /obj/item/xenoarch/clean/hammer/advanced/attack_self(mob/living/carbon/user)
 	var/depthchoice = input(user, "What depth would you like to mine with? (1-30)", "Change Dig Depth") as null|num
@@ -72,17 +74,24 @@
 	desc = "cleans off the remaining debris."
 	icon_state = "pick_brush"
 
+/obj/item/xenoarch/clean/brushadv
+	name = "advanced mining brush"
+	desc = "cleans off the remaining debris."
+	icon_state = "advbrush"
+
 //
 
 /obj/item/xenoarch/help/scanner
 	name = "mining scanner"
 	desc = "Inaccurately scans a rock's depths."
 	icon_state = "scanner"
+	usesound = 'sound/machines/chime.ogg'
 
 /obj/item/xenoarch/help/scanneradv
 	name = "advanced mining scanner"
 	desc = "Accurately scans a rock's depths."
 	icon_state = "adv_scanner"
+	usesound = 'sound/machines/chime.ogg'
 
 /obj/item/xenoarch/help/measuring
 	name = "measuring tape"
@@ -196,7 +205,7 @@
 	description = "Xenoarchaeology tools that are used for xenoarchaeology, who knew."
 	prereq_ids = list("base")
 	design_ids = list("hammercm1","hammercm2","hammercm3","hammercm4","hammercm5","hammercm6","hammercm15","hammerbrush","xenoscanner","xenomeasure","xenobelt")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
 
 /datum/techweb_node/portxenoarch
 	id = "portxenoarch"
@@ -219,8 +228,8 @@
 	display_name = "Advanced Xenoarchaeology Tools"
 	description = "Tools that can make your excavation and recovering of artifacts easier."
 	prereq_ids = list("xenoarchtools")
-	design_ids = list("advxenoscanner","hammercmadv")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	design_ids = list("advxenoscanner","hammercmadv","hammerbrushadv")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 //Research DESIGNS
 
@@ -314,6 +323,16 @@
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/cleanbrushadv
+	name = "Advanced Brush"
+	desc = "A brush that cleans debris."
+	id = "hammerbrushadv"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/plastic = 1500)
+	build_path = /obj/item/xenoarch/clean/brushadv
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 // Designs for tools
 
 /datum/design/xenoscanner
@@ -331,7 +350,7 @@
 	desc = "A tool that scans depths of rocks."
 	id = "advxenoscanner"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/plastic = 500, /datum/material/bluespace = 250)
+	materials = list(/datum/material/plastic = 1500)
 	build_path = /obj/item/xenoarch/help/scanneradv
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
@@ -351,7 +370,7 @@
 	desc = "A tool used to get research points from artifacts."
 	id = "xenoresearch"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/plastic = 500)
+	materials = list(/datum/material/plastic = 1000)
 	build_path = /obj/item/xenoarch/help/research
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
@@ -361,7 +380,7 @@
 	desc = "A tool to extract the seeds from prehistoric fossils."
 	id = "xenoplant"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/plastic = 500)
+	materials = list(/datum/material/plastic = 1000)
 	build_path = /obj/item/xenoarch/help/plant
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
@@ -371,7 +390,7 @@
 	desc = "A tool used to sell items, virtually."
 	id = "advcargoscanner"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/plastic = 500, /datum/material/bluespace = 500)
+	materials = list(/datum/material/plastic = 1000, /datum/material/bluespace = 1000)
 	build_path = /obj/item/xenoarch/help/cargo
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO
@@ -381,7 +400,7 @@
 	desc = "A belt used to store some xenoarch tools."
 	id = "xenobelt"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/plastic = 1000)
+	materials = list(/datum/material/plastic = 2000)
 	build_path = /obj/item/storage/belt/xenoarch
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

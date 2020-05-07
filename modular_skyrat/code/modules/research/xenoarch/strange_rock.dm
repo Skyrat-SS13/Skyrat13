@@ -40,6 +40,7 @@
 			return
 		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm1/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
 			tryagain = FALSE
@@ -56,6 +57,7 @@
 			return
 		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm2/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
 			tryagain = FALSE
@@ -72,6 +74,7 @@
 			return
 		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm3/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
 			tryagain = FALSE
@@ -88,6 +91,7 @@
 			return
 		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm4/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
 			tryagain = FALSE
@@ -104,6 +108,7 @@
 			return
 		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm5/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
 			tryagain = FALSE
@@ -120,6 +125,7 @@
 			return
 		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm6/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,HM.cleandepth * 5,target = src))
 			to_chat(user,"You must stand still to clean.")
 			tryagain = FALSE
@@ -136,6 +142,7 @@
 			return
 		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/cm15/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,HM.cleandepth * 4,target = src))
 			to_chat(user,"You must stand still to clean.")
 			tryagain = FALSE
@@ -152,6 +159,7 @@
 			return
 		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/advanced/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,HM.cleandepth / 2,target = src))
 			to_chat(user,"You must stand still to clean.")
 			tryagain = FALSE
@@ -167,7 +175,32 @@
 			to_chat(user,"You are already mining this.")
 			return
 		tryagain = TRUE
+		var/obj/item/xenoarch/clean/brush/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,50,target = src))
+			to_chat(user,"You must stand still to clean.")
+			tryagain = FALSE
+			return
+		if(dugdepth < itemactualdepth)
+			dugdepth++
+			to_chat(user,"You brush away 1cm of debris.")
+			tryagain = FALSE
+			return
+		if(dugdepth > itemactualdepth)
+			to_chat(user,"You somehow managed to destroy a strange rock with a brush... good job?")
+		if(dugdepth == itemactualdepth)
+			new chosenitem(get_turf(src))
+			to_chat(user,"You uncover an artifact!")
+			qdel(src)
+			return
+	if(istype(W,/obj/item/xenoarch/clean/brushadv))
+		if(tryagain)
+			to_chat(user,"You are already mining this.")
+			return
+		tryagain = TRUE
+		var/obj/item/xenoarch/clean/brush/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
+		if(!do_after(user,10,target = src))
 			to_chat(user,"You must stand still to clean.")
 			tryagain = FALSE
 			return
@@ -187,16 +220,19 @@
 		if(!do_after(user,30,target = src))
 			to_chat(user,"You must stand still to scan.")
 			return
+		var/obj/item/xenoarch/help/scanner/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		to_chat(user,"Base Depth: [itembasedepth] centimeters.")
 		to_chat(user,"Safe Depth: [itemsafedepth] centimeters.")
 	if(istype(W,/obj/item/xenoarch/help/scanneradv))
 		if(!do_after(user,10,target = src))
 			to_chat(user,"You must stand still to scan.")
 			return
+		var/obj/item/xenoarch/help/scanneradv/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		to_chat(user,"Base Depth: [itembasedepth] centimeters.")
 		to_chat(user,"Safe Depth: [itemsafedepth] centimeters.")
 		to_chat(user,"Item Depth: [itemactualdepth] centimeters.")
-		to_chat(user,"Item Scan: [chosenitem].")
 	if(istype(W,/obj/item/xenoarch/help/measuring))
 		if(!do_after(user,10,target = src))
 			to_chat(user,"You must stand still to measure.")

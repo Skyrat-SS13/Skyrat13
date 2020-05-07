@@ -11,3 +11,13 @@
 	build_path = /obj/item/bspipe_dispenser
 	category = list("Tool Designs")
 	departmental_flags =  DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/alienpowercell
+	name = "Alien Power Cell"
+	desc = "An advanced power cell obtained through Abductor technology."
+	id = "alien_powercell"
+	build_path = /obj/item/stock_parts/cell/infinite/abductor
+	build_type = PROTOLATHE
+	materials = list(/datum/material/bluespace = 2500, /datum/material/silver = 2500, /datum/material/plasma = 5000, /datum/material/titanium = 2000, /datum/material/diamond = 2000)
+	category = list("Power Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
