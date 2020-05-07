@@ -46,3 +46,7 @@
 /area/xenoarch/gen
 	name = "Xenoarchaeology Living Quarters"
 	icon_state = "xenogen"
+
+/area/xenoarch/sec
+	name = "Xenoarchaeology Security"
+	icon_state = "xenosec"
