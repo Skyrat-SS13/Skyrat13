@@ -10,8 +10,13 @@
 	combat_flags = COMBAT_FLAGS_DEFAULT
 	status_flags = CANSTUN|CANKNOCKDOWN|CANUNCONSCIOUS|CANPUSH|CANSTAGGER
 
+<<<<<<< HEAD
 	//blocks_emissive = EMISSIVE_BLOCK_UNIQUE // Skyrat edit -- 512 compatibility
 	
+=======
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
+
+>>>>>>> 888f0a932f... Merge pull request #12124 from Ghommie/Ghommie-cit725
 	//Hair colour and style
 	var/hair_color = "000"
 	var/hair_style = "Bald"
@@ -22,10 +27,6 @@
 
 	//Eye colour
 	var/eye_color = "000"
-
-	var/horn_color = "85615a"	//specific horn colors, because why not?
-
-	var/wing_color = "fff"		//wings too
 
 	var/skin_tone = "caucasian1"	//Skin tone
 
