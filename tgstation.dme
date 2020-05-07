@@ -3640,6 +3640,7 @@
 #include "modular_skyrat\code\modules\mob\dead\observer\observer.dm"
 #include "modular_skyrat\code\modules\mob\living\ssd_indicator.dm"
 #include "modular_skyrat\code\modules\mob\living\brain\brain_item.dm"
+#include "modular_skyrat\code\modules\mob\living\carbon\damage_procs.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\life.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\auto_hiss.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\human.dm"
