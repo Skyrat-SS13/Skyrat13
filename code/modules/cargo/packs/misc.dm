@@ -87,19 +87,6 @@
 	crate_type = /obj/structure/closet/crate/wooden
 	crate_name = "calligraphy crate"
 
-/datum/supply_pack/misc/paper_work
-	name = "Freelance Paper work"
-	desc = "The Nanotrasen Primary Bureaucratic Database Intelligence (PBDI) reports that the station has not completed its funding and grant paperwork this solar cycle. In order to gain further funding, your station is required to fill out (10) ten of these forms or no additional capital will be disbursed. We have sent you ten copies of the following form and we expect every one to be up to Nanotrasen Standards." //Skyrat Change, fixes letterswapping error
-	cost = 700 // Net of 0 credits but makes (120 x 10 = 1200)
-	contains = list(/obj/item/folder/paperwork,
-					/obj/item/pen/fountain
-					)
-	crate_name = "Paperwork"
-
-/datum/supply_pack/misc/paper_work/generate()
-	. = ..()
-	for(var/i in 1 to 9)
-		new /obj/item/folder/paperwork(.)
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////// Entertainment ///////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
