@@ -136,7 +136,132 @@
 	to_chat(user,"You sell the [target].")
 
 
-// Storage: Belt and Locker
+// Storage: Belt and Locker and Bag
+
+/obj/item/storage/bag/strangerock
+	name = "strange rock bag"
+	desc = "A bag for strange rocks."
+	icon = 'modular_skyrat/code/modules/research/xenoarch/tools.dmi'
+	icon_state = "rockbag"
+	w_class = WEIGHT_CLASS_TINY
+	resistance_flags = FLAMMABLE
+	var/mob/listeningTo
+	var/range = null
+
+	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
+
+/obj/item/storage/bag/strangerock/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_GIGANTIC
+	STR.allow_quick_empty = TRUE
+	STR.max_combined_w_class = 200
+	STR.max_items = 10
+	STR.display_numerical_stacking = FALSE
+	STR.can_hold = typecacheof(list(/obj/item/strangerock))
+
+
+/obj/item/storage/bag/strangerock/equipped(mob/user)
+	. = ..()
+	if(listeningTo == user)
+		return
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/Pickup_rocks)
+	listeningTo = user
+
+/obj/item/storage/bag/strangerock/dropped(mob/user)
+	. = ..()
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	listeningTo = null
+
+/obj/item/storage/bag/strangerock/proc/Pickup_rocks(mob/living/user)
+	var/show_message = FALSE
+	var/turf/tile = user.loc
+	if (!isturf(tile))
+		return
+
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	if(STR)
+		for(var/A in tile)
+			if (!is_type_in_typecache(A, STR.can_hold))
+				continue
+			else if(SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, A, user, TRUE))
+				show_message = TRUE
+			else
+				if(!spam_protection)
+					to_chat(user, "<span class='warning'>Your [name] is full and can't hold any more!</span>")
+					spam_protection = TRUE
+					continue
+	if(show_message)
+		playsound(user, "rustle", 50, TRUE)
+		user.visible_message("<span class='notice'>[user] scoops up the rocks beneath [user.p_them()].</span>", \
+			"<span class='notice'>You scoop up the rocks beneath you with your [name].</span>")
+	spam_protection = FALSE
+
+/obj/item/storage/bag/strangerockadv
+	name = "strange rock bag"
+	desc = "A bag for strange rocks."
+	icon = 'modular_skyrat/code/modules/research/xenoarch/tools.dmi'
+	icon_state = "rockbagadv"
+	w_class = WEIGHT_CLASS_TINY
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	var/mob/listeningTo
+	var/range = null
+
+	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
+
+/obj/item/storage/bag/strangerockadv/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_GIGANTIC
+	STR.allow_quick_empty = TRUE
+	STR.max_combined_w_class = 1000
+	STR.max_items = 50
+	STR.display_numerical_stacking = FALSE
+	STR.can_hold = typecacheof(list(/obj/item/strangerock))
+
+/obj/item/storage/bag/strangerockadv/equipped(mob/user)
+	. = ..()
+	if(listeningTo == user)
+		return
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/Pickup_rocks)
+	listeningTo = user
+
+/obj/item/storage/bag/strangerockadv/dropped(mob/user)
+	. = ..()
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	listeningTo = null
+
+/obj/item/storage/bag/strangerockadv/proc/Pickup_rocks(mob/living/user)
+	var/show_message = FALSE
+	var/turf/tile = user.loc
+	if (!isturf(tile))
+		return
+
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	if(STR)
+		for(var/A in tile)
+			if (!is_type_in_typecache(A, STR.can_hold))
+				continue
+			else if(SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, A, user, TRUE))
+				show_message = TRUE
+			else
+				if(!spam_protection)
+					to_chat(user, "<span class='warning'>Your [name] is full and can't hold any more!</span>")
+					spam_protection = TRUE
+					continue
+	if(show_message)
+		playsound(user, "rustle", 50, TRUE)
+		user.visible_message("<span class='notice'>[user] scoops up the rocks beneath [user.p_them()].</span>", \
+			"<span class='notice'>You scoop up the rocks beneath you with your [name].</span>")
+	spam_protection = FALSE
+
+//
 
 /obj/item/storage/belt/xenoarch
 	name = "xenoarchaeologist belt"
@@ -193,6 +318,7 @@
 	new /obj/item/t_scanner/adv_mining_scanner/lesser(src)
 	new /obj/item/gps(src)
 	new /obj/item/storage/belt/xenoarch(src)
+	new /obj/item/storage/bag/strangerock(src)
 	return
 
 //
@@ -204,8 +330,8 @@
 	display_name = "Xenoarchaeology Tools"
 	description = "Xenoarchaeology tools that are used for xenoarchaeology, who knew."
 	prereq_ids = list("base")
-	design_ids = list("hammercm1","hammercm2","hammercm3","hammercm4","hammercm5","hammercm6","hammercm15","hammerbrush","xenoscanner","xenomeasure","xenobelt")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+	design_ids = list("hammercm1","hammercm2","hammercm3","hammercm4","hammercm5","hammercm6","hammercm15","hammerbrush","xenoscanner","xenomeasure","xenobelt","xenorockback")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 750)
 
 /datum/techweb_node/portxenoarch
 	id = "portxenoarch"
@@ -228,8 +354,8 @@
 	display_name = "Advanced Xenoarchaeology Tools"
 	description = "Tools that can make your excavation and recovering of artifacts easier."
 	prereq_ids = list("xenoarchtools")
-	design_ids = list("advxenoscanner","hammercmadv","hammerbrushadv")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	design_ids = list("advxenoscanner","hammercmadv","hammerbrushadv","xenorockbackadv")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
 
 //Research DESIGNS
 
@@ -402,5 +528,25 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 2000)
 	build_path = /obj/item/storage/belt/xenoarch
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/xenorockback
+	name = "Xenoarchaeology Strange Rock Bag"
+	desc = "A bag used to store 10 strange rocks."
+	id = "xenorockback"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/plastic = 2000)
+	build_path = /obj/item/storage/bag/strangerock
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/xenorockbackadv
+	name = "Xenoarchaeology Bluespace Strange Rock Bag"
+	desc = "A bluespace bag used to store 50 strange rocks."
+	id = "xenorockbackadv"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/plastic = 2000, /datum/material/bluespace = 1000)
+	build_path = /obj/item/storage/bag/strangerockadv
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
