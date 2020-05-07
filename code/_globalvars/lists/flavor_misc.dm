@@ -40,6 +40,10 @@ GLOBAL_LIST_EMPTY(insect_fluffs_list)
 GLOBAL_LIST_EMPTY(insect_markings_list)
 GLOBAL_LIST_EMPTY(caps_list)
 
+//Skyrat changes
+GLOBAL_LIST_EMPTY(ipc_chassis_list)
+//End of skyrat changes
+
 GLOBAL_LIST_INIT(ghost_forms_with_directions_list, list("ghost")) //stores the ghost forms that support directional sprites
 GLOBAL_LIST_INIT(ghost_forms_with_accessories_list, list("ghost")) //stores the ghost forms that support hair and other such things
 
@@ -137,8 +141,8 @@ GLOBAL_LIST_INIT(jumpsuitlist, list(PREF_SUIT, PREF_SKIRT))
 #define UPLINK_PEN		"Pen" //like a real spy!
 GLOBAL_LIST_INIT(uplink_spawn_loc_list, list(UPLINK_PDA, UPLINK_RADIO, UPLINK_PEN))
 
-	//Female Uniforms
-GLOBAL_LIST_EMPTY(female_clothing_icons)
+//List of cached alpha masked icons.
+GLOBAL_LIST_EMPTY(alpha_masked_worn_icons)
 
 	//radical shit
 GLOBAL_LIST_INIT(hit_appends, list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF"))
