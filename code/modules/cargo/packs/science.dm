@@ -84,7 +84,7 @@
 
 /datum/supply_pack/science/glasswork
 	name = "Glass Blower Kit Crate"
-	desc = "Learn and make glassworks of useful things for a profit! Contains glassworking tools and blowing rods. Glass not included."
+	desc = "Learn and make useful items out of glass for a profit! Contains glassworking tools and blowing rods. Glass not included." //Skyrat change, fixes line to sound better
 	cost = 1000
 	contains = list(/obj/item/glasswork/glasskit,
 					/obj/item/glasswork/glasskit,
@@ -101,7 +101,7 @@
 
 /datum/supply_pack/science/nitrilegloves
 	name = "Nitrile Gloves Crate"
-	desc = "Handling toxic chemicals? Well worry not, keep your flesh intact with some nitrile made gloves! Contains three pairs of nitrile gloves."
+	desc = "Handling toxic chemicals? Well worry not! Keep your flesh intact with some nitrile made gloves! Contains three pairs of nitrile gloves." //Skyrat change, Fixes grammatical punctuation error
 	cost = 1500
 	contains = list(/obj/item/clothing/gloves/color/latex/nitrile,
 					/obj/item/clothing/gloves/color/latex/nitrile,
@@ -139,7 +139,7 @@
 
 /datum/supply_pack/science/robotics
 	name = "Robotics Assembly Crate"
-	desc = "The tools you need to replace those finicky humans with a loyal robot army! Contains three proximity sensors, two high-powered cells, six flashes, and an electrical toolbox. Requires Robotics access to open."
+	desc = "The tools you need to replace those finicky organics with a loyal robot army! Contains three proximity sensors, two high-powered cells, six flashes, and an electrical toolbox. Requires Robotics access to open." //Skyrat change, made line more inclusive
 	cost = 1500
 	access = ACCESS_ROBOTICS
 	contains = list(/obj/item/assembly/prox_sensor,

@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added pacifying tile and warzone tile"
-  - rscadd: "Added safe zone on CC"

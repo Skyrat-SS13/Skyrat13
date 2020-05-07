@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Engineering department traitors now have access to 12tc powergloves."
+  - bugfix: "Stealth suit fixes in general"

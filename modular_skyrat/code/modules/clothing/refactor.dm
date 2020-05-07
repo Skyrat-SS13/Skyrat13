@@ -8,6 +8,7 @@
 	unique_reskin = list(
 	)
 */
+
 //port tg's armor energy resists, adds reskins to various armors
 /obj/item/clothing/head/helmet
 	can_flashlight = 0 //for the sake of reskins
@@ -38,14 +39,14 @@
 	"Tactical" = "epic_helmet",
 	"Press" = "press_helmet",
 	"HECU" = "hecu_helmet",
-	"HECU Green" = "hecu_green_helmet"
+	"HECU Green" = "hecu_helmet_green"
 	)
 
 /obj/item/clothing/head/helmet/alt
 	can_flashlight = 1
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	unique_reskin_icons = list(
-	"Default" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
 	)
 	unique_reskin_worn = list(
@@ -62,9 +63,8 @@
 	)
 
 /obj/item/clothing/head/helmet/riot
-	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
-	unique_reskin = list(
-	)
+	armor = list("melee" = 55, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/swat
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 50, "bio" = 90, "rad" = 20, "fire" = 50, "acid" = 50)
@@ -77,61 +77,53 @@
 	"Skulldozer" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'icons/mob/clothing/head_muzzled.dmi',
+	"Default" = 'icons/mob/clothing/head.dmi',
 	"Skulldozer" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "swat",
 	"Skulldozer" = "chonker_helmet"
 	)
+	mutantrace_variation = STYLE_NO_ANTHRO_ICON|STYLE_MUZZLE
 
 /obj/item/clothing/head/helmet/thunderdome
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/roman
 	armor = list("melee" = 25, "bullet" = 0, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/roman/fake
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/head/helmet/redtaghelm
 	armor = list("melee" = 15, "bullet" = 10, "laser" = 20,"energy" = 10, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/bluetaghelm
 	armor = list("melee" = 15, "bullet" = 10, "laser" = 20,"energy" = 10, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/knight
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/skull
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/durathread
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 30, "energy" = 40, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/rus_helmet
 	armor = list("melee" = 25, "bullet" = 30, "laser" = 0, "energy" = 10, "bomb" = 10, "bio" = 0, "rad" = 20, "fire" = 20, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/rus_ushanka
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 30, "bomb" = 20, "bio" = 50, "rad" = 20, "fire" = -10, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/caphat
 	armor = list("melee" = 25, "bullet" = 15, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
@@ -155,26 +147,24 @@
 	)
 
 /obj/item/clothing/head/HoS/beret/syndicate
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/warden
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 60)
 	unique_reskin = list(
 	"Default" = "policehelm",
-	"Navy Beret" = "helmet",
 	"Corporate Beret" = "beret_corporate_warden",
 	"Red Security Beret" = "beret_badge",
 	"Helmet" = "helmet"
 	)
 
 /obj/item/clothing/head/beret/sec
-	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 50)
+	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 50)
 	unique_reskin_icons = list(
-	"Default" = "icons/obj/clothing/hats.dmi",
-	"Solfed Contractor" = "modular_skyrat/icons/obj/clothing/hats.dmi",
-	"Tactical" = "modular_skyrat/icons/obj/clothing/hats.dmi",
-	"Green" = "modular_skyrat/icons/obj/clothing/hats.dmi"
+	"Default" = 'icons/obj/clothing/hats.dmi',
+	"Solfed Contractor" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Tactical" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Green" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
@@ -188,23 +178,19 @@
 	"Tactical" = "tactical_beret",
 	"Green" = "green_beret"
 	)
-	mutantrace_variation = STYLE_NO_ANTHRO_ICON
 
 
 /obj/item/clothing/head/beret/sec/navywarden
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/space/hardsuit
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 50, "acid" = 75)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/space/hardsuit
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 50, "acid" = 75)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/space/hardsuit/engine
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 75)
@@ -229,6 +215,10 @@
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Explorer" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	)
+	unique_hardsuit_type = list(
+	"Default" = "mining",
+	"Explorer" = "explorer",
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
@@ -316,6 +306,13 @@
 	"Asset Protection" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi',
 	"ODST" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	)
+	unique_hardsuit_type = list(
+	"Default" = "sec",
+	"Riot" = "riot",
+	"Tactical" = "tactical",
+	"Asset Protection" = "assprotection",
+	"ODST" = "odst"
+	)
 	unique_reskin = list(
 	"Default" = "hardsuit0-sec",
 	"Riot" = "hardsuit0-riot",
@@ -357,13 +354,11 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/security/hos
 	armor = list("melee" = 45, "bullet" = 25, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 95, "acid" = 95)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/space/hardsuit/security/hos
 	armor = list("melee" = 45, "bullet" = 25, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 95, "acid" = 95)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/space/swat
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
@@ -417,7 +412,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 
-/obj/item/clothing/suit/armor
+/obj/item/clothing/suit/armor/vest
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/suits.dmi',
@@ -457,43 +452,36 @@
 	unique_reskin_icons = list(
 	"Default" = 'icons/obj/clothing/suits.dmi',
 	"Trench" = 'icons/obj/clothing/suits.dmi',
-	"Cloak" = 'modular_citadel/icons/mob/citadel/suit.dmi',
-	"Navy Blue" = 'icons/obj/clothing/suits.dmi'
+	"Cloak" = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/suit.dmi',
 	"Trench" = 'icons/mob/clothing/suit.dmi',
-	"Cloak" = 'modular_citadel/icons/mob/citadel/suit.dmi',
-	"Navy Blue" = 'icons/mob/clothing/suit.dmi'
+	"Cloak" = 'modular_citadel/icons/mob/citadel/suit.dmi'
 	)
 	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/suit_digi.dmi',
 	"Trench" = 'icons/mob/clothing/suit_digi.dmi',
 	"Cloak" = 'modular_citadel/icons/mob/citadel/suit.dmi',
-	"Navy blue" = 'icons/mob/clothing/suit_digi.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "hos",
 	"Trench" = "hostrench",
 	"Cloak" = "hostrench",
-	"Navy blue" = "hosbluejacket"
 	)
 
 /obj/item/clothing/suit/armor/vest/capcarapace
 	armor = list("melee" = 50, "bullet" = 40, "laser" = 50, "energy" = 50, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 90)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/riot
 	armor = list("melee" = 55, "bullet" = 20, "laser" = 15, "energy" = 25, "bomb" = 10, "bio" = 10, "rad" = 0, "fire" = 65, "acid" = 70)
 	slowdown = 0
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/bone
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/bulletproof
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
@@ -516,43 +504,35 @@
 
 /obj/item/clothing/suit/armor/laserproof
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 60, "energy" = 60, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/centcom
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/heavy
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/tdome
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/riot/knight/greyscale
 	armor = list("melee" = 35, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/durathread
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 30, "energy" = 40, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/russian
 	armor = list("melee" = 25, "bullet" = 30, "laser" = 0, "energy" = 10, "bomb" = 10, "bio" = 0, "rad" = 20, "fire" = 20, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/russian_coat
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 30, "bomb" = 20, "bio" = 50, "rad" = 20, "fire" = -10, "acid" = 50)
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/det_suit
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 25, "energy" = 35, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 45)
@@ -602,40 +582,31 @@
 	)
 
 /obj/item/clothing/head/helmet/roman
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/gladiator
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/skull
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/knight
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/head/helmet/infiltrator
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/old
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/blueshirt
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/infiltrator
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/riot/knight
-	unique_reskin = list(
-	)
+	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/warden
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC
@@ -645,32 +616,41 @@
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC|STYLE_NO_ANTHRO_ICON
 	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'
 
-// Reskinnable Trek uniforms.
+// Reskinnable Trek uniforms, now using Orvi-like by default.
 /obj/item/clothing/under/trek/command
+	name = "\improper Planetary Federation command uniform"
 	desc = "An uniform worn by command officers."
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	icon_state = "orv_com"
 	unique_reskin_icons = list(
-	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
+	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
 	"Deep Space Nine" = 'icons/obj/clothing/uniforms.dmi',
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default - The Original Series" = "trek_command",
+	"Default" = "orv_com",
+	"The Original Series" = "trek_command",
 	"The New Generation" = "trek_next_command",
 	"Voyager" = "trek_voy_command",
 	"Deep Space Nine" = "trek_ds9_command",
@@ -678,30 +658,39 @@
 	)
 
 /obj/item/clothing/under/trek/engsec
+	name = "\improper Planetary Federation operations uniform"
 	desc = "An uniform worn by operations officers. You feel strangely vulnerable just seeing this..."
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	icon_state = "orv_ops"
 	unique_reskin_icons = list(
-	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
+	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
 	"Deep Space Nine" = 'icons/obj/clothing/uniforms.dmi',
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default - The Original Series" = "trek_engsec",
+	"Default" = "orv_ops",
+	"The Original Series" = "trek_engsec",
 	"The New Generation" = "trek_next_engsec",
 	"Voyager" = "trek_voy_engsec",
 	"Deep Space Nine" = "trek_ds9_engsec",
@@ -709,35 +698,121 @@
 	)
 
 /obj/item/clothing/under/trek/medsci
+	name = "\improper Planetary Federation medsci uniform"
 	desc = "An uniform worn by medsci officers."
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	icon_state = "orv_medsci"
 	unique_reskin_icons = list(
-	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
+	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
 	"Deep Space Nine" = 'icons/obj/clothing/uniforms.dmi',
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default - The Original Series" = "trek_medsci",
+	"Default" = "orv_medsci",
+	"The Original Series" = "trek_medsci",
 	"The New Generation" = "trek_next_medsci",
 	"Voyager" = "trek_voy_medsci",
 	"Deep Space Nine" = "trek_ds9_medsci",
 	"Enterprise" = "trek_ent_medsci"
 	)
+
+// Bonus for assistants and service.
+/obj/item/clothing/under/trek/orvi
+	name = "\improper Planetary Federation assistant uniform"
+	desc = "An uniform worn by volunteered active-duty-cadets... Or in simple terms - an assistants."
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	icon_state = "orv_ass"
+	item_state = "gy_suit"
+	unique_reskin_icons = list(
+	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/obj/clothing/uniforms.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform_digi.dmi'
+	)
+	unique_reskin = list(
+	"Default" = "orv_ass",
+	"The Motion Picture (The Original Series)" = "trek_tmp_trainee"
+	)
+
+/obj/item/clothing/under/trek/orvi/service
+	name = "\improper Planetary Federation service uniform"
+	desc = "An uniform worn by service officers. How service department can have officers is still unknown."
+	icon_state = "orv_srv"
+	item_state = "g_suit"
+	unique_reskin_icons = list(
+	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/obj/clothing/uniforms.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform_digi.dmi'
+	)
+	unique_reskin = list(
+	"Default" = "orv_srv",
+	"The Motion Picture (The Original Series)" = "trek_tmp_service"
+	)
+
+// Changes name/desc to the jackets, makes modern/non-classic jacket to have same list of allowed suit-storage items as classic one.
+/obj/item/clothing/suit/storage/fluff/fedcoat
+	name = "\improper Planetary Federation classic uniform jacket"
+	desc = "A classic uniform jacket. Set phasers to awesome."
+
+/obj/item/clothing/suit/storage/fluff/modernfedcoat
+	name = "\improper Planetary Federation uniform jacket"
+	desc = "An uniform jacket."
+	allowed = list(
+				/obj/item/tank/internals/emergency_oxygen,
+				/obj/item/flashlight,
+				/obj/item/analyzer,
+				/obj/item/radio,
+				/obj/item/gun,
+				/obj/item/melee/baton,
+				/obj/item/restraints/handcuffs,
+				/obj/item/reagent_containers/hypospray,
+				/obj/item/hypospray,
+				/obj/item/healthanalyzer,
+				/obj/item/reagent_containers/syringe,
+				/obj/item/reagent_containers/glass/bottle/vial,
+				/obj/item/reagent_containers/glass/beaker,
+				/obj/item/storage/pill_bottle,
+				/obj/item/taperecorder)
+
+/obj/item/clothing/head/caphat/formal/fedcover
+	name = "\improper Planetary Federation peaked cap"
+	desc = "A peaked cap."
 
 // PrisArch-like color codes for prisoners. Uses _stored variation for Warden's control.
 /obj/item/clothing/under/rank/prisoner
