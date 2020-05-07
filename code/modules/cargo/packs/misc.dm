@@ -87,6 +87,7 @@
 	crate_type = /obj/structure/closet/crate/wooden
 	crate_name = "calligraphy crate"
 
+<<<<<<< HEAD
 /datum/supply_pack/misc/paper_work
 	name = "Freelance Paper work"
 	desc = "The Nanotrasen Primary Bureaucratic Database Intelligence (PBDI) reports that the station has not completed its funding and grant paperwork this solar cycle. In order to gain further funding, your station is required to fill out (10) ten of these forms or no additional capital will be disbursed. We have sent you ten copies of the following form and we expect every one to be up to Nanotrasen Standards." //Skyrat Change, fixes letterswapping error
@@ -100,25 +101,20 @@
 	. = ..()
 	for(var/i in 1 to 9)
 		new /obj/item/folder/paperwork(.)
+=======
+>>>>>>> 7828c4a5ab... Merge pull request #12102 from Ghommie/Ghommie-cit722
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////// Entertainment ///////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-/datum/supply_pack/misc/randombedsheets
-	name = "Bedsheet Crate (R)"
-	desc = "Snuggle up in some sweet sheets with this assorted bedsheet crate. Each set comes with eight random bedsheets for your slumbering pleasure!"
-	cost = 2000
-	contains = list(/obj/item/bedsheet/random)
-	crate_name = "random bedsheet crate"
-
-/datum/supply_pack/misc/randombedsheets/generate()
-	. = ..()
-	for(var/i in 1 to 7)
-		new /obj/item/bedsheet/random(.)
-
 /datum/supply_pack/misc/coloredsheets
+<<<<<<< HEAD
 	name = "Bedsheet Crate (C)"
 	desc = "Give your nightlife a splash of color with this crate filled with bedsheets! Contains a total of nine different-colored sheets." //Skyrat Change, fixes grammatical error
+=======
+	name = "Bedsheet Crate"
+	desc = "Give your night life a splash of color with this crate filled with bedsheets! Contains a total of nine different-colored sheets."
+>>>>>>> 7828c4a5ab... Merge pull request #12102 from Ghommie/Ghommie-cit722
 	cost = 1250
 	contains = list(/obj/item/bedsheet/blue,
 					/obj/item/bedsheet/green,
