@@ -1,7 +1,7 @@
 //seva shit
 /obj/item/clothing/suit/hooded/explorer/seva
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
-	icon_state = "seva_suit"
+	icon_state = "seva"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	unique_reskin_icons = list(
@@ -23,7 +23,7 @@
 
 /obj/item/clothing/head/hooded/explorer/seva
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	icon_state = "seva_helmet"
+	icon_state = "seva"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	unique_reskin_icons = list(
@@ -53,7 +53,7 @@
 
 /obj/item/clothing/mask/gas/seva
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
-	icon_state = "seva_mask"
+	icon_state = "seva"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
 	unique_reskin_icons = list(
@@ -76,7 +76,7 @@
 //exosuit shit
 /obj/item/clothing/suit/hooded/explorer/exo
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
-	icon_state = "exo_suit"
+	icon_state = "exo"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	unique_reskin_icons = list(
@@ -98,7 +98,7 @@
 
 /obj/item/clothing/head/hooded/explorer/exo
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	icon_state = "exo_helmet"
+	icon_state = "exo"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	unique_reskin_icons = list(
@@ -120,7 +120,7 @@
 
 /obj/item/clothing/mask/gas/exo
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
-	icon_state = "exo_mask"
+	icon_state = "exo"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
 	unique_reskin_icons = list(

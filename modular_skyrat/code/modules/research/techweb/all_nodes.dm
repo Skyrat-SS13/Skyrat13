@@ -83,3 +83,11 @@
 	prereq_ids = list("adv_mecha")
 	design_ids = list("buzz_chassis", "buzz_harness", "buzz_cockpit", "buzz_left_arm", "buzz_right_arm", "buzz_left_leg", "buzz_right_leg", "buzz_main", "buzz_peri", "exogps", "buzz_clamp", "buzz_lance", "buzz_thrusters")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+
+/datum/techweb_node/computermath
+	id = "computermath"
+	display_name = "Problem Computer"
+	description = "Solve problems for either cargo credits or research points."
+	prereq_ids = list("base")
+	design_ids = list("computermath")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
