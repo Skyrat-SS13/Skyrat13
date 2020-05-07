@@ -1,4 +1,0 @@
-author: "Bobbahbrown (/tg/ port)"
-delete-after: True
-changes: 
-  - rscadd: "Runechat has been ported. Configure it in preferences."

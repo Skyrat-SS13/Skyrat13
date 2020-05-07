@@ -9,7 +9,7 @@
 	gib_types = list(/obj/effect/gibspawner/ipc, /obj/effect/gibspawner/ipc/bodypartless)
 	coldmod = 0.5
 	burnmod = 1.1
-	heatmod = 1.5
+	heatmod = 1.2
 	brutemod = 1.1
 	toxmod = 0
 	clonemod = 0
@@ -23,10 +23,12 @@
 	mutanttongue = /obj/item/organ/tongue/robot_ipc
 	mutanteyes = /obj/item/organ/eyes/robot_ipc
 	mutantlungs = /obj/item/organ/lungs/robot_ipc
-	exotic_blood = /datum/reagent/oil
-	exotic_bloodtype = ""
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT)
-	languagewhitelist = list("Encoded Audio Language")
+	mutant_heart = /obj/item/organ/heart/robot_ipc
+	mutantliver = /obj/item/organ/liver/robot_ipc
+	//exotic_blood = /datum/reagent/oil
+	exotic_bloodtype = "HF"
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE)
+  languagewhitelist = list("Encoded Audio Language")
 
 /datum/species/synthliz/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
 	. = ..()
