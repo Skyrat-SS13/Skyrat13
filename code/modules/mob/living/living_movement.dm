@@ -42,6 +42,18 @@
 
 /mob/living/proc/update_move_intent_slowdown()
 	add_movespeed_modifier((m_intent == MOVE_INTENT_WALK)? /datum/movespeed_modifier/config_walk_run/walk : /datum/movespeed_modifier/config_walk_run/run)
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if((/obj/item/bodypart/r_leg || /obj/item/bodypart/l_leg || /obj/item/bodypart/l_leg/l_foot || /obj/item/bodypart/r_leg/r_foot) in H.get_missing_limbs())
+			add_movespeed_modifier(/datum/movespeed_modifier/config_walk_run/runpunish)
+		else 
+			var/fuckspeed = FALSE
+			for(var/obj/item/bodypart/bp in H.bodyparts)
+				if((bp.status_flags & BODYPART_BROKEN) && !(bp.status_flags & BODYPART_SPLINTED) && istype(bp, /obj/item/bodypart/r_leg || /obj/item/bodypart/l_leg || /obj/item/bodypart/l_leg/l_foot || /obj/item/bodypart/r_leg/r_foot))
+					fuckspeed = TRUE
+			if(fuckspeed)
+				if(H.m_intent == MOVE_INTENT_RUN)
+					add_movespeed_modifier(/datum/movespeed_modifier/config_walk_run/runpunish)
 
 /mob/living/proc/update_turf_movespeed(turf/open/T)
 	if(isopenturf(T))

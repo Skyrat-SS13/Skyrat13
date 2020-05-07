@@ -187,8 +187,8 @@
 		var/mob/living/carbon/human/H = C
 		var/obj/item/bodypart/affecting = H.get_bodypart(user.zone_selected)
 
-		if(!(affecting in list(BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND,\
-										BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT)))
+		if(!(affecting.body_zone in list(BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND,\
+								BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT)))
 			to_chat(user, "<span class='danger'>You can't apply a splint there!</span>")
 			return FALSE
 

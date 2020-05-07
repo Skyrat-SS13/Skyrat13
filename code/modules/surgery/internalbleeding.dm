@@ -13,9 +13,9 @@
 		/datum/surgery_step/close
 		)
 
-//mend bone
+//mend veins
 /datum/surgery_step/fix_bleeding
-	name = "fix internal bleeding"
+	name = "connect veins"
 	implements = list(TOOL_FIXOVEIN = 100, /obj/item/stack/cable_coil = 20)
 	time = 30
 

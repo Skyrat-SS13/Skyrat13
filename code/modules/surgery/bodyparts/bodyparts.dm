@@ -220,7 +220,7 @@
 		if(((brute_dam >= max_damage) || (brute >= LIMB_THRESH_INT_DMG)) && prob(LIMB_DMG_PROB))
 			todamage.applyOrganDamage(brute * 0.5) //Burn and stamina don't count toward organ damage.
 	if(status_flags & BODYPART_BROKEN && prob(50) && brute)
-		owner.say("*scream")	//getting hit on broken limb hurts
+		owner.emote("scream")	//getting hit on broken limb hurts
 	//taking damage to splinted limbs may remove the splints
 	if(status_flags & BODYPART_SPLINTED && prob((brute + burn)*2))
 		status_flags |= ~BODYPART_SPLINTED
@@ -422,10 +422,10 @@
 	broken_description = pick("broken", "fracture", "hairline fracture")
 
 	// Fractures have a chance of getting you out of the respective restraints
-	if(prob(LIMB_FRACTURE_RESTRAINT_OFF) && ((name = BODY_ZONE_L_ARM) || (name = BODY_ZONE_R_ARM) || (name = BODY_ZONE_PRECISE_R_HAND) || (name = BODY_ZONE_PRECISE_L_HAND)))
+	if(prob(LIMB_FRACTURE_RESTRAINT_OFF) && ((body_zone == BODY_ZONE_L_ARM) || (body_zone == BODY_ZONE_R_ARM) || (body_zone == BODY_ZONE_PRECISE_R_HAND) || (body_zone == BODY_ZONE_PRECISE_L_HAND)))
 		if(owner.handcuffed)
 			owner.handcuffed.Destroy()
-	if(prob(LIMB_FRACTURE_RESTRAINT_OFF) && ((name = BODY_ZONE_L_LEG) || (name = BODY_ZONE_R_LEG) || (name = BODY_ZONE_PRECISE_R_FOOT) || (name = BODY_ZONE_PRECISE_L_FOOT)))
+	if(prob(LIMB_FRACTURE_RESTRAINT_OFF) && ((body_zone == BODY_ZONE_L_LEG) || (body_zone == BODY_ZONE_R_LEG) || (body_zone == BODY_ZONE_PRECISE_R_FOOT) || (body_zone == BODY_ZONE_PRECISE_L_FOOT)))
 		if(owner.legcuffed)
 			owner.legcuffed.Destroy()
 
@@ -451,11 +451,7 @@
 	if(status == BODYPART_ROBOTIC)
 		return
 	var/local_damage = brute_dam + damage
-	if((damage >= (min_broken_damage * 0.75) && local_damage >= min_broken_damage && prob(damage)))
-		internal_bleeding = TRUE
-		if(owner)
-			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [limb_name]!</span>")
-	else if((status_flags & BODYPART_BROKEN) && (local_damage >= (max_damage * 0.8)) && prob(damage * 1.25))
+	if(damage > 15 && local_damage > (min_broken_damage * 2) && prob(damage))
 		internal_bleeding = TRUE
 		if(owner)
 			to_chat(owner, "<span class='userdanger'>You can feel something rip apart in your [limb_name]!</span>")
