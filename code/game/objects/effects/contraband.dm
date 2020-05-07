@@ -879,7 +879,7 @@
 
 /obj/structure/sign/poster/contraband/oxycloset
 	name = "Oxygen Closet"
-	desc = "A poster of an... oxygen closet?
+	desc = "A poster of an... oxygen closet?"
 	icon_state = "poster-oxycloset"
 
 /obj/structure/sign/poster/contraband/nosmokers
