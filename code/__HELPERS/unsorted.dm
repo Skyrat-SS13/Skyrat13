@@ -446,7 +446,7 @@ Turf and target are separate in case you want to teleport some distance from a t
   * * offset - Angle offset, 180 input would make the returned target turf be in the opposite direction
   */
 /proc/get_ranged_target_turf_direct(atom/A, atom/target, range, offset)
-	var/angle = arctan(target.x - A.x, target.y - A.y)
+	var/angle = ATAN2(target.x - A.x, target.y - A.y) // Skyrat edit -- 512 compatibility
 	if(offset)
 		angle += offset
 	var/turf/T = get_turf(A)
