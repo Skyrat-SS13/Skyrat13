@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(language)
 
 	return ..()
 
-/datum/controller/subsystem/language/proc/AssignLanguage(mob/living/user, client/cli, spawn_effects, roundstart = FALSE, datum/job/job, silent = FALSE, mob/to_chat_target)
+/datum/controller/subsystem/language/proc/AssignLanguage(mob/living/user, client/cli)
 	var/list/my_lang = cli.prefs.language
 	if(isnull(my_lang))
 		return
