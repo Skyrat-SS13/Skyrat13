@@ -1,3 +1,19 @@
+/mob/living/simple_animal/hostile/megafauna
+	var/glorykill = FALSE //CAN THIS MOTHERFUCKER BE SNAPPED IN HALF FOR HEALTH?
+	var/list/glorymessageshand = list() //WHAT THE FUCK ARE THE MESSAGES SAID BY THIS FUCK WHEN HE'S GLORY KILLED WITH AN EMPTY HAND?
+	var/list/glorymessagescrusher = list() //SAME AS ABOVE BUT CRUSHER
+	var/list/glorymessagespka = list() //SAME AS ABOVE THE ABOVE BUT PKA
+	var/list/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING
+	var/gloryhealth = 200
+	var/list/songs = list()
+	var/sound/chosensong
+	var/chosenlength
+	var/chosenlengthstring
+	var/songend
+	var/retaliated = FALSE
+	var/retaliatedcooldowntime = 6000
+	var/retaliatedcooldown
+
 /mob/living/simple_animal/hostile/megafauna/SetRecoveryTime(buffer_time, ranged_buffer_time)
 	recovery_time = world.time + buffer_time
 	ranged_cooldown = world.time + buffer_time
@@ -35,19 +51,32 @@
 			var/mob/living/M = A
 			if(faction_check_mob(M) && attack_same || !faction_check_mob(M))
 				enemies |= M
-				if(song && !songend)
-					M.stop_sound_channel(CHANNEL_AMBIENCE)
-					songend = songlength + world.time
-					M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = song) // so silence ambience will mute moosic for people who don't want that
+				chosenlengthstring = pick(songs)
+				chosenlength = text2num(chosenlengthstring)
+				chosensong = songs[chosenlengthstring]
+				if(chosensong && !songend)
+					if(M.client.prefs.toggles & SOUND_AMBIENCE)
+						M.stop_sound_channel(CHANNEL_AMBIENCE)
+						songend = chosenlength + world.time
+						SEND_SOUND(M, chosensong) // so silence ambience will mute moosic for people who don't want that, or it just doesn't play at all if prefs disable it
+				if(!retaliated)
+					src.visible_message("<span class='userdanger'>[src] seems pretty pissed off at [M]!</span>")
+					retaliated = TRUE
+					retaliatedcooldown = world.time + retaliatedcooldowntime
 		else if(ismecha(A))
 			var/obj/mecha/M = A
 			if(M.occupant)
 				enemies |= M
 				enemies |= M.occupant
 				var/mob/living/O = M.occupant
-				O.stop_sound_channel(CHANNEL_AMBIENCE)
-				songend = songlength + world.time
-				O.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = song)
+				if(O.client.prefs.toggles & SOUND_AMBIENCE)
+					O.stop_sound_channel(CHANNEL_AMBIENCE)
+					songend = chosenlength + world.time
+					SEND_SOUND(O, chosensong)
+				if(!retaliated)
+					src.visible_message("<span class='userdanger'>[src] seems pretty pissed off at [M]!</span>")
+					retaliated = TRUE
+					retaliatedcooldown = world.time + retaliatedcooldowntime
 
 	for(var/mob/living/simple_animal/hostile/megafauna/H in around)
 		if(faction_check_mob(H) && !attack_same && !H.attack_same)
@@ -59,25 +88,85 @@
 	if(. > 0 && stat == CONSCIOUS)
 		Retaliate()
 
-/mob/living/simple_animal/hostile/megafauna
-	var/sound/song
-	var/songlength
-	var/songend
-
 /mob/living/simple_animal/hostile/megafauna/Life()
 	..()
 	if(songend)
 		if(world.time >= songend)
 			for(var/mob/living/M in view(src, vision_range))
-				M.stop_sound_channel(CHANNEL_AMBIENCE)
-				songend = songlength + world.time
-				M.playsound_local(null, null, 30, channel = CHANNEL_AMBIENCE, S = song)
+				if(M.client.prefs.toggles & SOUND_AMBIENCE)
+					M.stop_sound_channel(CHANNEL_AMBIENCE)
+					songend = chosenlength + world.time
+					SEND_SOUND(M, chosensong)
+	if(health <= (maxHealth/25) && !glorykill && stat != DEAD)
+		glorykill = TRUE
+		glory()
+	if(retaliated)
+		if(retaliatedcooldown < world.time)
+			retaliated = FALSE
+
+/mob/living/simple_animal/hostile/megafauna/proc/glory()
+	desc += "<br><b>[src] is staggered and can be glory killed!</b>"
+	animate(src, color = "#00FFFF", time = 5)
 
 /mob/living/simple_animal/hostile/megafauna/death()
-	..()
-	for(var/mob/living/M in view(src, vision_range))
-		M.stop_sound_channel(CHANNEL_AMBIENCE)
+	if(health > 0)
+		return
+	else
+		for(var/mob/living/M in view(src, vision_range))
+			M.stop_sound_channel(CHANNEL_AMBIENCE)
+		animate(src, color = initial(color), time = 3)
+		desc = initial(desc)
+		var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+		var/crusher_kill = FALSE
+		if(C && crusher_loot && C.total_damage >= maxHealth * 0.6)
+			spawn_crusher_loot()
+			crusher_kill = TRUE
+		if(!(flags_1 & ADMIN_SPAWNED_1))
+			var/tab = "megafauna_kills"
+			if(crusher_kill)
+				tab = "megafauna_kills_crusher"
+			SSblackbox.record_feedback("tally", tab, 1, "[initial(name)]")
+			if(!elimination)	//used so the achievment only occurs for the last legion to die.
+				grant_achievement(medal_type, score_type, crusher_kill)
+		..()
+
+/mob/living/simple_animal/hostile/megafauna/AltClick(mob/living/carbon/slayer)
+	if(glorykill && stat != DEAD)
+		if(ranged)
+			if(ranged_cooldown >= world.time)
+				ranged_cooldown += 10
+			else
+				ranged_cooldown = 10 + world.time
+		if(do_after(slayer, 10, needhand = TRUE, target = src, progress = FALSE))
+			var/message
+			if(stat != DEAD)
+				if(!slayer.get_active_held_item() || (!istype(slayer.get_active_held_item(), /obj/item/twohanded/kinetic_crusher) && !istype(slayer.get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator)))
+					message = pick(glorymessageshand)
+				else if(istype(slayer.get_active_held_item(), /obj/item/twohanded/kinetic_crusher))
+					message = pick(glorymessagescrusher)
+				else if(istype(slayer.get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator))
+					message = pick(glorymessagespka)
+					var/obj/item/gun/energy/kinetic_accelerator/KA = get_active_held_item()
+					if(KA && KA.bayonet)
+						message = pick(glorymessagespka | glorymessagespkabayonet)
+				if(message)
+					visible_message("<span class='danger'><b>[slayer] [message]</b></span>")
+				else
+					visible_message("<span class='danger'><b>[slayer] does something generally considered brutal to [src]... Whatever that may be!</b></span>")
+				health = 0
+				death()
+				slayer.heal_overall_damage(gloryhealth,gloryhealth)
+		else
+			to_chat(slayer, "<span class='danger'>You fail to glory kill [src]!</span>")
 
 /mob/living/simple_animal/hostile/megafauna/devour(mob/living/L)
+	if(!L)
+		return
+	visible_message(
+		"<span class='danger'>[src] devours [L]!</span>",
+		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+	if(!is_station_level(z) || client) //NPC monsters won't heal while on station
+		adjustBruteLoss(-L.maxHealth/2)
 	L.stop_sound_channel(CHANNEL_AMBIENCE)
+	L.gib()
 	..()

@@ -55,11 +55,10 @@ Difficulty: Medium
 	score_type = DRAKE_SCORE
 	deathmessage = "collapses into a pile of bones, its flesh sloughing away."
 	death_sound = 'sound/magic/demon_dies.ogg'
-	song = null
+	songs = null
 	move_force = MOVE_FORCE_NORMAL
 	move_resist = MOVE_FORCE_NORMAL
 	pull_force = MOVE_FORCE_NORMAL
-	songlength = 0
 	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/dragon/glaurung/Initialize()
@@ -71,7 +70,7 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/dragon/glaurung/proc/line_target(offset, range, atom/at = target)
 	if(!at)
 		return
-	var/angle = ATAN2(at.x - src.x, at.y - src.y) + offset  // Skyrat edit -- 512 compatibility
+	var/angle = ATAN2(at.x - src.x, at.y - src.y) + offset
 	var/turf/T = get_turf(src)
 	for(var/i in 1 to range)
 		var/turf/check = locate(src.x + cos(angle) * i, src.y + sin(angle) * i, src.z)
