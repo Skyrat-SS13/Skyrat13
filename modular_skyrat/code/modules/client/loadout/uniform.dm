@@ -24,6 +24,7 @@
 
 /datum/gear/trekengtos
 	name = "Fed uniform, ops"
+	restricted_roles = list("Chief Engineer", "Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Head of Security", "Brig Physician", "Blueshield", "Cargo Technician", "Shaft Miner", "Quartermaster")
 
 /datum/gear/trekfedutil
 	name = "Fed uniform, classic"
