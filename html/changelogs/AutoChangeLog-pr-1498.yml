@@ -1,4 +1,0 @@
-author: "BobJogaIsForkinBanned"
-delete-after: True
-changes: 
-  - tweak: "Modularizes everything that got deleted in https://github.com/Skyrat-SS13/Skyrat13/pull/1409 , so we can still have these items."
