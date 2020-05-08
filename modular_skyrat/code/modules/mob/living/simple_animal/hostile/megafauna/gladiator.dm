@@ -1,5 +1,15 @@
-//THE GLADIATOR
-//Will write a description later lole
+/* THE GLADIATOR
+* Has 4 special attacks, which are used depending on the phase (the gladiator has 3 phases).
+* AoE Zweihander swing: In a square of 3×3, he swings his sword in a 360 degree arc, damaging anything within it.
+* Shield bash: The gladiator charges and chases you with increased speed for 21 tiles, if he makes contact, he bashes you and knocks you down.
+He will stuns himself for 2 seconds, no matter the result of the charge attack; This leaves him vulnerable for attacks for a few precious moments.
+* Bone daggers: At random times if the player is running, he can throw bone daggers that will go considerably fast in the players direction.
+They deal 35 brute (armor is considered).
+* Additionally, he gets more speedy and aggressive as he raises in phase, at the cost of some special attacks.
+* On phase 1, the gladiator has a 50% block chance for any attack.
+* Loot:
+* To be done.
+*/
 /mob/living/simple_animal/hostile/megafauna/gladiator
 	name = "\proper The Gladiator"
 	desc = "An immortal ash walker, whose powers have been granted by the necropolis itself."
