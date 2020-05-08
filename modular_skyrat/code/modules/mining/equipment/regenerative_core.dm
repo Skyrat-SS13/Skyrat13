@@ -38,10 +38,11 @@
 	else
 		to_chat(user, "<span class='notice'>You start to smear [src] on yourself. Disgusting tendrils hold you together and allow you to keep moving, but for how long?</span>")
 		SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
-	if(is_station_level(H.z))
-		H.adjustStaminaLoss(-20, 0)			
+	if(is_station_level(H.z))		
 		H.adjustBruteLoss(-25, 0)		
 		H.adjustFireLoss(-25, 0)
+		for(var/item/organ in H)
+			damage = 0
 	else 
 		H.revive(full_heal = 1)
 	qdel(src)
