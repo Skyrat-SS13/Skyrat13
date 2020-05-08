@@ -43,7 +43,7 @@ They deal 35 brute (armor is considered).
 	var/speenrange = 4
 	var/obj/savedloot = null
 	var/stunned = FALSE
-	var/stunduration = 20
+	var/stunduration = 15
 	song = sound('modular_skyrat/sound/ambience/gladiator.ogg', 100)
 	songlength = 3850
 	loot = list(/obj/structure/closet/crate/necropolis/gladiator)
@@ -185,7 +185,7 @@ They deal 35 brute (armor is considered).
 			rapid_melee = 4
 			melee_damage_upper = 25
 			melee_damage_lower = 25
-			move_to_delay = 1.75
+			move_to_delay = 1.65
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/zweispin()
 	visible_message("<span class='boldwarning'>[src] lifts his zweihander, and prepares to spin!</span>")
@@ -200,7 +200,7 @@ They deal 35 brute (armor is considered).
 		for(var/i in 1 to speenrange)
 			steppy = get_step(steppy, dirt)
 			var/obj/effect/temp_visual/small_smoke/smonk = new /obj/effect/temp_visual/small_smoke(steppy)
-			QDEL_IN(smonk, 1)
+			QDEL_IN(smonk, 1.5)
 			for(var/mob/living/M in steppy)
 				if(!faction_check(faction, M.faction))
 					playsound(src, 'sound/weapons/slash.ogg', 75, 0)
