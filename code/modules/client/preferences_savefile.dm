@@ -572,21 +572,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!custom_names[custom_name_id])
 			custom_names[custom_name_id] = get_default_name(custom_name_id)
 
-<<<<<<< HEAD
-	if(!features["mcolor"] || features["mcolor"] == "#000")
-		features["mcolor"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
+	auto_hiss		= sanitize_integer(auto_hiss, 0, 1, initial(auto_hiss)) //SKYRAT CHANGE
 
-	if(!features["horn_color"] || features["horn_color"] == "#000")
-		features["horn_color"] = "85615a"
-
-	if(!features["wing_color"] || features["wing_color"] == "#000")
-		features["wing_color"] = "FFFFFF"
-
-	//nameless		= sanitize_integer(nameless, 0, 1, initial(nameless))
-	auto_hiss		= sanitize_integer(auto_hiss, 0, 1, initial(auto_hiss))
-=======
 	nameless		= sanitize_integer(nameless, 0, 1, initial(nameless))
->>>>>>> 888f0a932f... Merge pull request #12124 from Ghommie/Ghommie-cit725
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
 	be_random_body	= sanitize_integer(be_random_body, 0, 1, initial(be_random_body))
 
