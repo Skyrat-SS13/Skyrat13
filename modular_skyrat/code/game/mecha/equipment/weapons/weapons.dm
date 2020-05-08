@@ -2,6 +2,7 @@
 	var/shouldberestricted = FALSE //Maybe a bit redundant. It's just a boolean checked when attacked by an ID card. If true, the ID card will fiddle with restriction, otherwise it won't.
 	var/securitylevelrestriction = null //Does this weapon only work depending on the security level? If so, at which level will it work?
 	var/savedrestriction = null //Used to save restrictions, for locking/unlocking the weapon with an armory access ID card.
+	var/open = FALSE //Used for hacking
 
 /obj/item/mecha_parts/mecha_equipment/weapon/emag_act()
 	. = ..()
@@ -22,6 +23,17 @@
 			else 
 				securitylevelrestriction = savedrestriction
 				savedrestriction = null
+	if(istype(I, /obj/item/screwdriver))
+		open = !open
+		to_chat(user, open ? "You open \the [src]'s hatch.' : 'You close \the [src]'s hatch.")
+	if(istype(I, /obj/item/multitool) && open)
+		if(securitylevelrestriction)
+			savedrestriction = securitylevelrestriction
+			securitylevelrestriction = null
+		else 
+			securitylevelrestriction = savedrestriction
+			savedrestriction = null
+		to_chat(user, "You hack \the [src] to have [securitylevelrestriction ? "no restrictions" : "[NUM2SECLEVEL(securitylevelrestriction)] restriction"].")
 
 /obj/item/mecha_parts/mecha_equipment/weapon/examine(mob/user)
 	. = ..()
