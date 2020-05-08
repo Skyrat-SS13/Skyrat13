@@ -42,7 +42,7 @@
 		H.adjustBruteLoss(-25, 0)		
 		H.adjustFireLoss(-25, 0)
 		for(var/item/organ in H)
-			damage = 0
+			H.damage = 0
 	else 
 		H.revive(full_heal = 1)
 	qdel(src)
