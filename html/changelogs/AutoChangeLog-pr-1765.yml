@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Fixed some dumbness with wings/horns colors features. They are so bad no conscious coder wanted to fix them for months, their mere existence makes the game several magnitudes snowflakier and freakier and like all other custom cosmetic \"bodyparts\" are a waste of development efforts whatsoever."
