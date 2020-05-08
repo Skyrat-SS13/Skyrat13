@@ -25,15 +25,15 @@
 /datum/crafting_recipe/switchblade_deluxe
 	name = "Deluxe Switchblade"
 	result = /obj/item/switchblade/deluxe
-	reqs = list(/obj/item/switchblade = 1,
+	reqs = list(/obj/item/switchblade/crafted = 1,
 				/obj/item/stack/cable_coil = 5,
 				/obj/item/stack/sheet/mineral/diamond = 2,
 				/obj/item/stack/sheet/mineral/plasma = 5,
 				/obj/item/stack/sheet/mineral/titanium = 5,
-				/obj/item/stack/sheet/mineral/plastitanium = 1,
+				/obj/item/stack/sheet/mineral/plastitanium = 3,
 				/obj/item/stack/sheet/mineral/gold = 5,
 				/obj/item/stock_parts/cell = 1,
-				/obj/machinery/igniter = 1)
+				/obj/item/assembly/igniter = 1)
 	time = 250
 	tools = list(TOOL_WELDER)
 	category = CAT_WEAPONRY
