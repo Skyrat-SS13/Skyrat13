@@ -218,3 +218,149 @@
 //watcher wing slight buff
 /obj/item/crusher_trophy/watcher_wing
 	bonus_value = 20 // 1 second isn't enough for much, this should be better
+
+//gladiator tomahawk - it's just a one handed crusher
+/obj/item/melee/tomahawk
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "crusher"
+	item_state = "crusher0"
+	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
+	name = "kinetic tomahawk"
+	desc = "It's just a kinetic destroyer with part of the handle cut off and a bunch of drake and goliath hide on it."
+	force = 15
+	w_class = WEIGHT_CLASS_NORMAL
+	throwforce = 15
+	throw_speed = 4
+	armour_penetration = 20
+	custom_materials = list(/datum/material/titanium=3150, /datum/material/glass=2075, /datum/material/gold=3000, /datum/material/diamond=5000)
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("smashed", "crushed", "cleaved", "chopped", "pulped")
+	sharpness = IS_SHARP
+	actions_types = list(/datum/action/item_action/toggle_light)
+	var/list/trophies = list()
+	var/charged = TRUE
+	var/charge_time = 13
+	var/detonation_damage = 65
+	var/backstab_bonus = 40
+	var/light_on = FALSE
+	var/brightness_on = 7
+
+/obj/item/melee/tomahawk/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 80, 110)
+
+/obj/item/melee/tomahawk/Destroy()
+	QDEL_LIST(trophies)
+	return ..()
+
+/obj/item/melee/tomahawk/examine(mob/living/user)
+	. = ..()
+	. += "<span class='notice'>Mark a large creature with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.</span>"
+	. += "<span class='notice'>Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.</span>"
+	for(var/t in trophies)
+		var/obj/item/crusher_trophy/T = t
+		. += "<span class='notice'>It has \a [T] attached, which causes [T.effect_desc()].</span>"
+
+/obj/item/melee/tomahawk/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/crowbar))
+		if(LAZYLEN(trophies))
+			to_chat(user, "<span class='notice'>You remove [src]'s trophies.</span>")
+			I.play_tool_sound(src)
+			for(var/t in trophies)
+				var/obj/item/crusher_trophy/T = t
+				T.remove_from(src, user)
+		else
+			to_chat(user, "<span class='warning'>There are no trophies on [src].</span>")
+	else if(istype(I, /obj/item/crusher_trophy))
+		var/obj/item/crusher_trophy/T = I
+		T.add_to(src, user)
+	else
+		return ..()
+
+/obj/item/melee/tomahawk/attack(mob/living/target, mob/living/carbon/user)
+	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+	var/target_health = target.health
+	..()
+	for(var/t in trophies)
+		if(!QDELETED(target))
+			var/obj/item/crusher_trophy/T = t
+			T.on_melee_hit(target, user)
+	if(!QDELETED(C) && !QDELETED(target))
+		C.total_damage += target_health - target.health //we did some damage, but let's not assume how much we did
+
+/obj/item/melee/tomahawk/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	. = ..()
+	if(istype(target, /obj/item/crusher_trophy))
+		var/obj/item/crusher_trophy/T = target
+		T.add_to(src, user)
+	if(!proximity_flag && charged)//Mark a target, or mine a tile.
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		var/obj/item/projectile/destabilizer/D = new /obj/item/projectile/destabilizer(proj_turf)
+		for(var/t in trophies)
+			var/obj/item/crusher_trophy/T = t
+			T.on_projectile_fire(D, user)
+		D.preparePixelProjectile(target, user, clickparams)
+		D.firer = user
+		D.hammer_synced = src
+		playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, 1)
+		D.fire()
+		charged = FALSE
+		update_icon()
+		addtimer(CALLBACK(src, .proc/Recharge), charge_time)
+		return
+	if(proximity_flag && isliving(target))
+		var/mob/living/L = target
+		var/datum/status_effect/crusher_mark/CM = L.has_status_effect(STATUS_EFFECT_CRUSHERMARK)
+		if(!CM || CM.hammer_synced != src || !L.remove_status_effect(STATUS_EFFECT_CRUSHERMARK))
+			return
+		var/datum/status_effect/crusher_damage/C = L.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+		var/target_health = L.health
+		for(var/t in trophies)
+			var/obj/item/crusher_trophy/T = t
+			T.on_mark_detonation(target, user)
+		if(!QDELETED(L))
+			if(!QDELETED(C))
+				C.total_damage += target_health - L.health //we did some damage, but let's not assume how much we did
+			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
+			var/backstab_dir = get_dir(user, L)
+			var/def_check = L.getarmor(type = "bomb")
+			if((user.dir & backstab_dir) && (L.dir & backstab_dir))
+				if(!QDELETED(C))
+					C.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
+				L.apply_damage(detonation_damage + backstab_bonus, BRUTE, blocked = def_check)
+				playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
+			else
+				if(!QDELETED(C))
+					C.total_damage += detonation_damage
+				L.apply_damage(detonation_damage, BRUTE, blocked = def_check)
+
+			if(user && lavaland_equipment_pressure_check(get_turf(user))) //CIT CHANGE - makes sure below only happens in low pressure environments
+				user.adjustStaminaLoss(-30)//CIT CHANGE - makes crushers heal stamina
+
+/obj/item/melee/tomahawk/proc/Recharge()
+	if(!charged)
+		charged = TRUE
+		update_icon()
+		playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
+
+/obj/item/melee/tomahawk/ui_action_click(mob/user, actiontype)
+	light_on = !light_on
+	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
+	update_brightness(user)
+	update_icon()
+
+/obj/item/melee/tomahawk/proc/update_brightness(mob/user = null)
+	if(light_on)
+		set_light(brightness_on)
+	else
+		set_light(0)
+
+/obj/item/melee/tomahawk/update_overlays()
+	. = ..()
+	if(!charged)
+		. += "[icon_state]_uncharged"
+	if(light_on)
+		. += "[icon_state]_lit"

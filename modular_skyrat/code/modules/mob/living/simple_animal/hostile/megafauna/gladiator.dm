@@ -10,7 +10,7 @@ They deal 35 brute (armor is considered).
 * Loot:
 * Gladiator tower shield - A powerful and indestructible shield, that can also be used as a surfboard.
 * Shielding modkit - A modkit that grants your PKA a 15% chance to block any incoming attack while held. 
-* Horn - A crusher trophy that grants your crusher a 15% chance to block any incoming attack while held.
+* Tomahawk - Basically a one handed crusher to complement the shield.
 */
 /mob/living/simple_animal/hostile/megafauna/gladiator
 	name = "\proper The Gladiator"
