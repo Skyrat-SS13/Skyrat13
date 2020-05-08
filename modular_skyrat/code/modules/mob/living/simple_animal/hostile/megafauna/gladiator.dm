@@ -116,7 +116,7 @@ They deal 35 brute (armor is considered).
 			var/list/messages = list("Get out of my sssight, outlander.",\
 									"You will not run your dirty handsss through what little sssacred land we have left. Out.",\
 									"My urge to end your life isss immeasssurable, but I am willing to ssspare you. Leave.",\
-									"I can sssee an outlander from a mile away. You're not one of us.")
+									"You're not invited. Get out.")
 			say(message = pick(messages))
 			introduced |= H
 
