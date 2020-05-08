@@ -25,7 +25,7 @@
 				savedrestriction = null
 	if(istype(I, /obj/item/screwdriver))
 		open = !open
-		to_chat(user, open ? "You open \the [src]'s hatch.' : 'You close \the [src]'s hatch.")
+		to_chat(user, open ? "You open \the [src]'s hatch." : "You close \the [src]'s hatch.")
 	if(istype(I, /obj/item/multitool) && open)
 		if(securitylevelrestriction)
 			savedrestriction = securitylevelrestriction
