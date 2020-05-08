@@ -11,18 +11,15 @@
 	var/obj/item/charging = null
 	var/recharge_coeff = 1
 	var/using_power = FALSE //Did we put power into "charging" last process()?
-
+	/* moved to modular_skyrat
 	var/static/list/allowed_devices = typecacheof(list(
 		/obj/item/gun/energy,
 		/obj/item/melee/baton,
 		/obj/item/ammo_box/magazine/recharge,
 		/obj/item/modular_computer,
 		/obj/item/twohanded/electrostaff,
-		/obj/item/gun/ballistic/automatic/magrifle,
-		//SKYRAT CHANGES - POWERGLOVES
-		/obj/item/clothing/gloves/color/yellow/power))
-		//END CHANGES
-
+		/obj/item/gun/ballistic/automatic/magrifle))
+	*/
 /obj/machinery/recharger/RefreshParts()
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		recharge_coeff = C.rating
