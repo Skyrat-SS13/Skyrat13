@@ -70,7 +70,6 @@
 	singular_name = "uranium ore chunk"
 	points = 30
 	custom_materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
-	material_flags = MATERIAL_NO_EFFECTS
 	refined_type = /obj/item/stack/sheet/mineral/uranium
 
 /obj/item/stack/ore/iron

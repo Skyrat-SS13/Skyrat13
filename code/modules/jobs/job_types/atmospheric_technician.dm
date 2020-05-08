@@ -5,7 +5,7 @@
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 3
-	spawn_positions = 2
+	spawn_positions = 3
 	supervisors = "the chief engineer"
 	selection_color = "#ff9b3d"
 	exp_requirements = 120 //SKYRAT CHANGE - upping the exp time on jobs
