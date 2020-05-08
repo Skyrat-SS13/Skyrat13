@@ -508,13 +508,6 @@
 				parent_atom.add_overlay("lockermech_toolbox_default2+o")
 			else
 				parent_atom.add_overlay("lockermech_toolbox_default+o")
-		else if(istype(I, /obj/item/stack/wrapping_paper))
-			var/nosprite = FALSE
-			for(var/mutable_appearance/O in parent_atom.overlays)
-				if(O.icon_state == "locker_mech_wrap_paper+o")
-					nosprite = TRUE
-			if(!nosprite)
-				parent_atom.add_overlay("locker_mech_wrap_paper+o")
 		else if(istype(I, /obj/item/extinguisher))
 			var/secondarysprite = FALSE
 			for(var/mutable_appearance/O in parent_atom.overlays)
