@@ -10,12 +10,6 @@
 	owner.underlays += marked_underlay
 	return TRUE
 
-/datum/status_effect/saw_bleed/bloodletting
-	id = "bloodletting"
-	bleed_buildup = 5
-	bleed_damage = 125
-	delay_before_decay = 20
-
 /datum/status_effect/ebony_damage //tracks the damage dealt to this mob by the ebony blade, based on crusher damage tracking
 	id = "ebony_damage"
 	duration = -1
