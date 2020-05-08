@@ -1049,11 +1049,6 @@
 		/obj/item/storage/toolbox,
 		/obj/item/extinguisher,
 		/obj/item/extinguisher,
-		/obj/item/stack/wrapping_paper,
-		/obj/item/stack/wrapping_paper,
-		/obj/item/stack/wrapping_paper,
-		/obj/item/stack/wrapping_paper,
-		/obj/item/stack/wrapping_paper,
 	)
 
 /datum/component/construction/unordered/mecha_chassis/makeshift/custom_action(obj/item/I, mob/living/user, typepath)
@@ -1070,13 +1065,6 @@
 				parent_atom.add_overlay("lockermech_toolbox_default2+o")
 			else
 				parent_atom.add_overlay("lockermech_toolbox_default+o")
-		else if(istype(I, /obj/item/stack/wrapping_paper))
-			var/nosprite = FALSE
-			for(var/mutable_appearance/O in parent_atom.overlays)
-				if(O.icon_state == "locker_mech_wrap_paper+o")
-					nosprite = TRUE
-			if(!nosprite)
-				parent_atom.add_overlay("locker_mech_wrap_paper+o")
 		else if(istype(I, /obj/item/extinguisher))
 			var/secondarysprite = FALSE
 			for(var/mutable_appearance/O in parent_atom.overlays)
@@ -1125,15 +1113,14 @@
 		),
 		//6
 		list(
-			"key" = /obj/item/stack/wrapping_paper,
-			"amount" = 5,
+			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WRENCH,
 			"desc" = "The airlock control board is secured."
 		),
 		//7
 		list(
 			"key" = /obj/item/flashlight,
-			"back_key" = TOOL_WIRECUTTER,
+			"back_key" = TOOL_WELDER,
 			"desc" = "The chassis is just barely airtight."
 		),
 		//8
@@ -1224,14 +1211,14 @@
 				user.visible_message("[user] pries off [parent]'s airlock control board.", "<span class='notice'>You pry off [parent]'s airlock control board</span>")
 		if(6)
 			if(diff==FORWARD)
-				user.visible_message("[user] wraps [parent] until airtight with [I].", "<span class='notice'>You wrap [parent] until airtight with [I]</span>")
+				user.visible_message("[user] welds [parent] until airtight with [I].", "<span class='notice'>You weld [parent] until airtight with [I]</span>")
 			else
 				user.visible_message("[user] unsecures the airlock control board of [parent].", "<span class='notice'>You unsecure the airlock control board of [parent].</span>")
 		if(7)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs [I] into [parent].", "<span class='notice'>You install [I] into [parent].</span>")
 			else
-				user.visible_message("[user] snips off [parent]'s paper wrappings.", "<span class='notice'>You snip off [parent]'s paper wrappings.</span>")
+				user.visible_message("[user] unwelds the [parent].", "<span class='notice'>You unweld [parent].</span>")
 		if(8)
 			if(diff==FORWARD)
 				user.visible_message("[user] secures the [parent]'s flashlight.", "<span class='notice'>You secure the [parent]'s flashlight.</span>")
