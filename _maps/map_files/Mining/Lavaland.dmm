@@ -1219,16 +1219,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"mH" = (
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "mI" = (
 /obj/structure/stone_tile/cracked{
 	dir = 8
@@ -1238,60 +1228,9 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"mJ" = (
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"mK" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "mL" = (
 /obj/structure/stone_tile{
 	dir = 1
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"mM" = (
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"mN" = (
-/obj/structure/stone_tile,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"mO" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"mP" = (
-/obj/structure/stone_tile{
-	dir = 8
 	},
 /obj/structure/stone_tile/cracked{
 	dir = 4
@@ -1745,10 +1684,10 @@
 	potency = 50;
 	yield = 5
 	},
-/mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck,
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
+/mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "ww" = (
@@ -1835,6 +1774,10 @@
 /obj/item/twohanded/bonespear,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
+"AB" = (
+/obj/effect/step_trigger/gladiator,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "AH" = (
 /obj/structure/stone_tile{
 	dir = 4
@@ -2139,6 +2082,10 @@
 /area/lavaland/surface/outdoors)
 "Mx" = (
 /turf/closed/mineral/volcanic/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"My" = (
+/mob/living/simple_animal/hostile/megafauna/gladiator,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "MQ" = (
 /obj/structure/table/optable,
@@ -32639,7 +32586,7 @@ aj
 aj
 aj
 ab
-ab
+ak
 ak
 ak
 ak
@@ -32895,22 +32842,22 @@ aj
 aj
 aj
 ab
-ab
+ak
+ak
+al
+al
+al
 ab
 al
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+al
+al
+jx
+ab
+al
+al
+al
+al
+al
 ak
 ak
 ak
@@ -33152,23 +33099,23 @@ aj
 aj
 aj
 aj
-mD
+ak
+al
+al
+al
+kN
 ab
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+ab
+al
+ab
+kN
+ab
+ab
+al
+ab
+kN
+al
+al
 ak
 ak
 ak
@@ -33409,23 +33356,23 @@ mA
 aj
 aj
 aj
-ab
-ab
-ak
-ak
-ak
-ak
-ak
 ak
 al
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+ab
+jx
+ab
+jq
+ab
+ab
+jx
+ab
+jq
+ab
+ab
+ab
+jx
+ab
+al
 ak
 ak
 ak
@@ -33666,24 +33613,24 @@ aj
 aj
 aj
 aj
-ab
+al
 jQ
-ak
-ak
-ak
-ak
-al
-iy
+ab
+kN
 ab
 ab
-mK
+ab
+ab
+kN
+ab
+ab
+ab
+jq
+ab
+kN
+ab
+ab
 al
-ak
-ak
-ak
-ak
-ak
-ak
 ak
 ak
 ak
@@ -33925,22 +33872,22 @@ aj
 aj
 ab
 ab
-ak
-ak
-ak
-ak
-ab
+ja
 ab
 jx
 ab
 ab
-mM
+ja
+ab
+jx
+ab
+ab
+ab
+jx
+ab
+jq
+ab
 al
-ak
-ak
-ak
-ak
-ak
 ak
 ak
 ak
@@ -34182,21 +34129,21 @@ aj
 aj
 jx
 jS
-iy
-al
-ak
-al
-jq
+jR
+ab
+ab
+ab
+mL
+jR
+ab
+ab
+ab
+mL
 ab
 kN
 ab
 ab
-jx
 ab
-ab
-mN
-al
-ak
 ak
 ak
 ak
@@ -34449,11 +34396,11 @@ ab
 jq
 ab
 kN
+ja
+ab
+jx
 ab
 ab
-ab
-mO
-ak
 ak
 ak
 ak
@@ -34694,7 +34641,7 @@ lp
 lZ
 lS
 lS
-lp
+AB
 aa
 mE
 ab
@@ -34706,11 +34653,11 @@ ab
 ab
 ab
 ab
+jR
 ab
-jS
 ab
 ab
-al
+mL
 ak
 ak
 ak
@@ -34951,10 +34898,10 @@ lW
 ma
 lq
 mk
-mn
-kR
+AB
+AB
 mF
-ab
+My
 mG
 ab
 ja
@@ -34968,7 +34915,7 @@ ab
 jq
 jR
 ab
-ab
+al
 ak
 ak
 ak
@@ -35208,7 +35155,7 @@ lv
 mb
 lR
 ml
-lR
+AB
 aa
 it
 ab
@@ -35218,9 +35165,9 @@ jR
 ab
 ab
 ab
-mL
-al
-iY
+ab
+jx
+ab
 ab
 ab
 jQ
@@ -35474,16 +35421,16 @@ ab
 jQ
 ab
 mI
+jq
+ab
+kN
+ab
+ab
+ab
+ab
 ab
 ab
 al
-al
-ab
-ab
-ab
-ab
-ab
-ak
 ak
 ak
 ak
@@ -35732,10 +35679,10 @@ ab
 ab
 ab
 ab
+jx
 ab
-jR
-ak
-jS
+jq
+ab
 kN
 ab
 ab
@@ -35981,21 +35928,21 @@ aj
 aj
 ab
 ab
-ak
-al
-ja
-ab
-mH
 ab
 ab
-mJ
-al
-ak
-ak
-al
+jx
 ab
 ab
-mP
+ab
+jx
+ab
+ab
+ab
+jx
+ab
+ab
+ab
+ab
 al
 ak
 ak
@@ -36238,21 +36185,21 @@ aj
 aj
 ab
 ja
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+jq
+ab
+kN
+ab
+jq
+ab
+kN
+ja
+jq
+ab
+kN
+ab
+ab
+ab
+ab
 ak
 ak
 ak
@@ -36493,24 +36440,24 @@ iy
 aj
 aj
 aj
-kN
+al
 ab
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+ab
+jx
+ab
+jq
+ab
+jx
+ab
+jR
+ab
+jx
+ab
+jq
+ab
+jq
+ab
+al
 ak
 ak
 ak
@@ -36750,23 +36697,23 @@ aj
 aj
 aj
 aj
+ak
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+kN
+ab
+ab
+al
+kN
+ab
+ab
+ab
+kN
+ab
+ab
+ab
+ab
+al
 ak
 ak
 ak
@@ -37007,23 +36954,23 @@ aj
 aj
 ab
 ab
+ak
+al
+al
 ab
+jx
+al
+al
 ab
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+jx
+ab
+ja
+ab
+jx
+ab
+al
+al
+al
 ak
 ak
 ak
@@ -37264,23 +37211,23 @@ aj
 aj
 mC
 ab
+ak
+ak
+al
+al
+al
+al
+al
+al
 ab
+al
+al
+al
+al
 ab
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+al
+al
+al
 ak
 ak
 ak
@@ -37522,7 +37469,7 @@ aj
 aj
 aj
 ab
-ab
+ak
 ak
 ak
 ak

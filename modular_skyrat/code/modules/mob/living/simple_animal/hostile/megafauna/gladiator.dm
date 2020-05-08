@@ -27,7 +27,7 @@ They deal 35 brute (armor is considered).
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	speed = 1
-	move_to_delay = 2.5
+	move_to_delay = 2
 	wander = FALSE
 	var/block_chance = 50
 	ranged = 1
@@ -178,11 +178,11 @@ They deal 35 brute (armor is considered).
 			phase = 2
 			icon_state = "gladiator2"
 			rapid_melee = 3
-			move_to_delay = 2
+			move_to_delay = 1.8
 		if(0 to 30)
 			phase = 3
 			icon_state = "gladiator3"
-			rapid_melee = 5
+			rapid_melee = 4
 			move_to_delay = 1.7
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/zweispin()
@@ -210,7 +210,7 @@ They deal 35 brute (armor is considered).
 		steppy = get_turf(src)
 		if(woop)
 			break
-		sleep(1)
+		sleep(1.5)
 	animate(src, color = initial(color), 3)
 	sleep(3)
 	speen = FALSE
@@ -223,7 +223,7 @@ They deal 35 brute (armor is considered).
 	sleep(3 + phase)
 	var/longstun = FALSE
 	face_atom(target)
-	move_to_delay/2
+	move_to_delay = 1.5
 	for(var/i = 0, i >= range, i++)
 		var/dirtotarget = get_dir(src, target)
 		var/turf/T = get_step(src, dirtotarget)
