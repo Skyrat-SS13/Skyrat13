@@ -343,11 +343,11 @@
 								"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinamed"),
 								"Droid" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "medical"),
 								"Eyebot" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "eyebotmed"),
-								"Medihound" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "medihound"),
-								"Medihound Dark" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "medihounddark"),
-								"Vale" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valemed"))
+								"Medihound" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "medihound"),
+								"Medihound Dark" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "medihounddark"),
+								"Vale" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "valemed"))
 	if(R.client && (R.client.ckey in list("nezuli")))
-		medmodels += list("Alina" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "alina-med"))
+		medmodels += list("Alina" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "alina-med"))
 	var/borg_icon = show_radial_menu(R, R , medmodels, radius = 42)
 	if(!borg_icon)
 		return FALSE
@@ -451,10 +451,10 @@
 								"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidereng"),
 								"Loader" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "loaderborg"),
 								"Handy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "handyeng"),
-								"Pup Dozer" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "pupdozer"),
-								"Vale" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valeeng"))
+								"Pup Dozer" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "pupdozer"),
+								"Vale" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "valeeng"))
 	if(R.client && (R.client.ckey in list("nezuli")))
-		engymodels += list("Alina" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "alina-eng"))
+		engymodels += list("Alina" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "alina-eng"))
 	var/borg_icon = show_radial_menu(R, R , engymodels, radius = 42)
 	if(!borg_icon)
 		return FALSE
@@ -537,11 +537,11 @@
 								"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "cansec"),
 								"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinasec"),
 								"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidersec"),
-								"K9" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "k9"),
-								"K9 Dark" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "k9dark"),
-								"Vale" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valesec"))
+								"K9" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "k9"),
+								"K9 Dark" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "k9dark"),
+								"Vale" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "valesec"))
 	if(R.client && (R.client.ckey in list("nezuli")))
-		secmodels += list("Alina" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "alina-sec"))
+		secmodels += list("Alina" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "alina-sec"))
 	var/borg_icon = show_radial_menu(R, R , secmodels, radius = 42)
 	if(!borg_icon)
 		return FALSE
@@ -774,16 +774,16 @@
 									"(Service) Tophat" = image(icon = 'icons/mob/robots.dmi', icon_state = "tophat"),
 									"(Service) Can" = image(icon = 'icons/mob/robots.dmi', icon_state = "kent"),
 									"(Service) Bro" = image(icon = 'icons/mob/robots.dmi', icon_state = "brobot"),
-									"(Service) DarkK9" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "k50"),
-									"(Service) Vale" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valeserv"),
-									"(Service) ValeDark" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valeservdark"),
+									"(Service) DarkK9" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "k50"),
+									"(Service) Vale" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "valeserv"),
+									"(Service) ValeDark" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "valeservdark"),
 
 									"(Janitor) Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "janitor"),
 									"(Janitor) Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekjan"),
 									"(Janitor) Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinajan"),
 									"(Janitor) Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canjan"),
 									"(Janitor) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyres"),
-									"(Janitor) Scrubpuppy" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "scrubpup"))
+									"(Janitor) Scrubpuppy" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "scrubpup"))
 	var/borg_icon = show_radial_menu(R, R , butlermodels, radius = 42)
 	if(!borg_icon)
 		return FALSE
@@ -887,8 +887,8 @@
 								"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidermin"),
 								"Asteroid" = image(icon = 'icons/mob/robots.dmi', icon_state = "minerOLD"),
 								"Droid" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "miner"),
-								"Blade" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "blade"),
-								"Vale" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valemine"))
+								"Blade" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "blade"),
+								"Vale" = image(icon = 'modular_skyrat/icons/mob/dogborg.dmi', icon_state = "valemine"))
 	var/borg_icon = show_radial_menu(R, R , minermodel, radius = 42)
 	if(!borg_icon)
 		return FALSE
