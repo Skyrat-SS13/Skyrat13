@@ -41,7 +41,7 @@
 	if(is_station_level(H.z))		
 		H.adjustBruteLoss(-25, 0)		
 		H.adjustFireLoss(-25, 0)
-		for(var/item/organ/O in H)
+		for(var/obj/item/organ/O in H)
 			O.damage = 0
 	else 
 		H.revive(full_heal = 1)
