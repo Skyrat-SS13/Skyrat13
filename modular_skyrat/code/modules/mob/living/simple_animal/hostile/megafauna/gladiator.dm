@@ -19,7 +19,7 @@ They deal 35 brute (armor is considered).
 	icon_state = "gladiator1"
 	icon_dead = "gladiator_dying"
 	attacktext = "slashes"
-	attack_sound = 'sound/weapons/slice.ogg'
+	attack_sound = 'modular_skyrat/sound/effects/zweihanderslice.ogg'
 	death_sound = 'modular_skyrat/sound/effects/gladiatordeathsound.ogg'
 	deathmessage = "gets discombobulated and fucking dies."
 	rapid_melee = 2
