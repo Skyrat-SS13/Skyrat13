@@ -19,13 +19,13 @@ They deal 35 brute (armor is considered).
 	icon_state = "gladiator1"
 	icon_dead = "gladiator_dying"
 	attacktext = "slashes"
-	attack_sound = 'modular_skyrat/sound/effects/zweihanderslice.ogg'
+	attack_sound = 'modular_skyrat/sound/weapons/zweihanderslice.ogg'
 	death_sound = 'modular_skyrat/sound/effects/gladiatordeathsound.ogg'
 	deathmessage = "gets discombobulated and fucking dies."
-	rapid_melee = 2
+	rapid_melee = 1
 	melee_queue_distance = 2
-	melee_damage_lower = 30
-	melee_damage_upper = 30
+	melee_damage_lower = 35
+	melee_damage_upper = 35
 	speed = 1
 	move_to_delay = 2.25
 	wander = FALSE
@@ -43,7 +43,7 @@ They deal 35 brute (armor is considered).
 	var/speenrange = 4
 	var/obj/savedloot = null
 	var/stunned = FALSE
-	var/stunduration = 15
+	var/stunduration = 30
 	song = sound('modular_skyrat/sound/ambience/gladiator.ogg', 100)
 	songlength = 3850
 	loot = list(/obj/structure/closet/crate/necropolis/gladiator)
@@ -174,18 +174,22 @@ They deal 35 brute (armor is considered).
 			phase = 1
 			rapid_melee = initial(rapid_melee)
 			move_to_delay = initial(move_to_delay)
+			melee_damage_upper = initial(melee_damage_upper)
+			melee_damage_lower = initial(melee_damage_lower)
 		if(30 to 75)
 			phase = 2
 			icon_state = "gladiator2"
-			rapid_melee = 3
+			rapid_melee = 2
 			move_to_delay = 2
+			melee_damage_upper = 30
+			melee_damage_lower = 30
 		if(0 to 30)
 			phase = 3
 			icon_state = "gladiator3"
 			rapid_melee = 4
 			melee_damage_upper = 25
 			melee_damage_lower = 25
-			move_to_delay = 1.65
+			move_to_delay = 1.7
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/zweispin()
 	visible_message("<span class='boldwarning'>[src] lifts his zweihander, and prepares to spin!</span>")
