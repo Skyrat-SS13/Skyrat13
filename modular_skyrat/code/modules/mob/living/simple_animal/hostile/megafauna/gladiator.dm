@@ -177,13 +177,13 @@ They deal 35 brute (armor is considered).
 		if(30 to 70)
 			phase = 2
 			icon_state = "gladiator2"
-			rapid_melee = 3
+			rapid_melee = 4
 			move_to_delay = 1.8
 		if(0 to 30)
 			phase = 3
 			icon_state = "gladiator3"
-			rapid_melee = 4
-			move_to_delay = 1.7
+			rapid_melee = 5
+			move_to_delay = 1.5
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/zweispin()
 	visible_message("<span class='boldwarning'>[src] lifts his zweihander, and prepares to spin!</span>")
