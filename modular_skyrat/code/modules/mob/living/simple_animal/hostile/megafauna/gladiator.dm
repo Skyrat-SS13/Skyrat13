@@ -233,7 +233,6 @@ They deal 35 brute (armor is considered).
 				var/mob/living/L = target
 				visible_message("<span class='userdanger'>[src] knocks [L] down!</span>")
 				L.DefaultCombatKnockdown(20)
-				longstun = TRUE
 				break
 		else if(istype(T, /turf/closed))
 			visible_message("<span class='userdanger'>[src] bashes his head against the [T], stunning himself!</span>")
