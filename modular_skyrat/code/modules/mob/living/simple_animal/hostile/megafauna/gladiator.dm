@@ -183,8 +183,8 @@ They deal 35 brute (armor is considered).
 			phase = 3
 			icon_state = "gladiator3"
 			rapid_melee = 4
-			attack_damage_upper = 25
-			attack_damage_lower = 25
+			melee_damage_upper = 25
+			melee_damage_lower = 25
 			move_to_delay = 1.75
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/zweispin()
@@ -223,7 +223,6 @@ They deal 35 brute (armor is considered).
 	visible_message("<span class='boldwarning'>[src] lifts his shield, and prepares to charge!</span>")
 	animate(src, color = "#ff6666", 3)
 	sleep(4)
-	var/longstun = FALSE
 	face_atom(target)
 	move_to_delay = 1.4
 	for(var/i = 0, i >= range, i++)
