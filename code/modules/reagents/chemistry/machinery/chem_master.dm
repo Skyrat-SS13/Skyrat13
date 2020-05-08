@@ -281,6 +281,8 @@
 				vol_each_max = min(60, vol_each_max)
 			else if (item_type == "smartDart")
 				vol_each_max = min(20, vol_each_max)
+			else if (item_type == "injector")
+				vol_each_max = min(10, vol_each_max)
 			else
 				return FALSE
 			if(vol_each_text == "auto")
@@ -382,6 +384,15 @@
 					reagents.trans_to(P, vol_each)
 					P.mode=!mode
 					P.update_icon()
+				return TRUE
+			if(item_type == "injector")
+				var/obj/item/reagent_containers/hypospray/medipen/empty/P
+				for(var/i = 0; i < amount; i++)
+					P = new /obj/item/reagent_containers/hypospray/medipen/empty(drop_location())
+					P.name = trim("[name] medipen")
+					P.desc = "A medipen that contains [vol_each] of [name]."
+					adjust_item_drop_location(P)
+					reagents.trans_to(P, vol_each)
 				return TRUE
 			return FALSE
 
