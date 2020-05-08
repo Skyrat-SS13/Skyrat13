@@ -203,36 +203,47 @@
 			var/datum/action/A = X
 			A.Remove(user)
 
-/datum/techweb_node/syndicate_basic
-	id = "syndicate_basic"
-	display_name = "Illegal Technology"
-	description = "Dangerous research used to create dangerous objects."
-	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
-	design_ids = list("decloner", "borg_syndicate_module", "suppressor", "largecrossbow", "donksofttoyvendor", "donksoft_refill", "syndiesleeper", "armblade")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
-	hidden = TRUE
-
-/datum/design/armblade
-	name = "Hardsuit Extendable Blade"
-	desc = "An armblade attachment for hardsuits."
-	id = "armblade"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 5000, /datum/material/silver = 5000, /datum/material/diamond = 500, /datum/material/gold = 1500, /datum/material/titanium = 5000)
-	build_path = /obj/item/melee/transforming/armblade
-	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
+//Power armor
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
-	name = "Power Armor Helmet"
+	name = "Power Armor Helmet MK. I"
 	desc = "An advanced helmet attached to a powered exoskeleton suit. Protects well against most forms of harm, but struggles against exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	icon_state = "hardsuit0-powerarmor"
-	item_state = "hardsuit0-powerarmor"
+	icon_state = "hardsuit0-powerarmor-1"
+	item_state = "hardsuit0-powerarmor-1"
 	hardsuit_type = "powerarmor"
 	clothing_flags = THICKMATERIAL //Ouchie oofie my bones
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100)
 	resistance_flags = ACID_PROOF
+	mutantrace_variation = STYLE_MUZZLE
+
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor/Initialize()
+	. = ..()
+	AddComponent(/datum/component/spraycan_paintable)
+	update_icon()
+
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor/update_overlays()
+	. = ..()
+	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hardsuit0-powerarmor-2")
+	if(icon_state == "hardsuit1-powerarmor-1")
+		glass_overlay = mutable_appearance(icon, "hardsuit1-powerarmor-2")
+		var/mutable_appearance/flight_overlay = mutable_appearance(icon, "hardsuit1-powerarmor-3")
+		flight_overlay.appearance_flags = RESET_COLOR
+		. += flight_overlay
+	glass_overlay.appearance_flags = RESET_COLOR
+	. += glass_overlay
+
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
+	. = ..()
+	if(!isinhands)
+		var/mutable_appearance/M1 = mutable_appearance(icon_file, "hardsuit0-powerarmor-2")
+		if(icon_state == "hardsuit1-powerarmor-1")
+			M1 = mutable_appearance(icon_file, "hardsuit1-powerarmor-2")
+			var/mutable_appearance/M2 = mutable_appearance(icon, "hardsuit1-powerarmor-3")
+			M2.appearance_flags = RESET_COLOR
+			. += M2
+		M1.appearance_flags = RESET_COLOR
+		. += M1
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -247,17 +258,46 @@
 		DHUD.remove_hud_from(user)
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor
-	name = "Power Armor"
+	name = "Power Armor MK. I"
 	desc = "A self-powered exoskeleton suit comprised of flexible Plasteel sheets and advanced components, designed to offer excellent protection while still allowing mobility. Does not protect against Space, and struggles against more exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	icon_state = "hardsuit-powerarmor"
-	item_state = "hardsuit-powerarmor"
-	slowdown = -0.05
+	icon_state = "hardsuit-powerarmor-1"
+	item_state = "hardsuit-powerarmor-1"
+	slowdown = -0.1
 	clothing_flags = THICKMATERIAL //Not spaceproof. No, it isn't Spaceproof in Rimworld either.
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine. 
+	armor = list("melee" = 40, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100) //I was asked to buff this again. Here, fine.
 	resistance_flags = ACID_PROOF
+	var/explodioprobemp = 1
+	var/stamdamageemp = 200
+	var/brutedamageemp = 20
+	var/rebootdelay
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
+	mutantrace_variation = STYLE_DIGITIGRADE
+
+/obj/item/clothing/suit/space/hardsuit/powerarmor/Initialize()
+	. = ..()
+	AddComponent(/datum/component/spraycan_paintable)
+	update_icon()
+
+/obj/item/clothing/suit/space/hardsuit/powerarmor/update_overlays()
+	. = ..()
+	var/mutable_appearance/black_overlay = mutable_appearance(icon, "hardsuit-powerarmor-2")
+	black_overlay.appearance_flags = RESET_COLOR
+	var/mutable_appearance/bluecore_overlay = mutable_appearance(icon, "hardsuit-powerarmor-3")
+	bluecore_overlay.appearance_flags = RESET_COLOR
+	. += black_overlay
+	. += bluecore_overlay
+
+/obj/item/clothing/suit/space/hardsuit/powerarmor/worn_overlays(isinhands, icon_file, used_state, style_flags = NONE)
+	. = ..()
+	if(!isinhands)
+		var/mutable_appearance/M1 = mutable_appearance(icon_file, "hardsuit-powerarmor-2")
+		M1.appearance_flags = RESET_COLOR
+		var/mutable_appearance/M2 = mutable_appearance(icon_file, "hardsuit-powerarmor-3")
+		M2.appearance_flags = RESET_COLOR
+		. += M1
+		. += M2
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor/emp_act()
 	. = ..()
@@ -266,15 +306,19 @@
 	if (ishuman(user) && (user.wear_suit == src))
 		to_chat(user, "<span class='danger'>The motors on your armor cease to function, causing the full weight of the suit to weigh on you all at once!</span>")
 		user.emote("scream")
-		user.take_overall_damage(stamina=250)
-		user.take_overall_damage(brute=20)
-	if(prob(1))
+		user.adjustStaminaLoss(stamdamageemp)
+		user.adjustBruteLoss(brutedamageemp)
+	if(prob(explodioprobemp))
 		playsound(src.loc, 'sound/effects/fuse.ogg', 60, 1, 10)
 		visible_message("<span class ='warning'>The power module on the [src] begins to smoke, glowing with an alarming warmth! Get away from it, now!")
 		addtimer(CALLBACK(src, .proc/detonate),50)
 	else
-		visible_message("<span class ='warning'>The power module on the [src] briefly flickers, before humming to life once more.</span>")
+		addtimer(CALLBACK(src, .proc/revivemessage), rebootdelay)
 		return
+
+/obj/item/clothing/suit/space/hardsuit/powerarmor/proc/revivemessage() //we use this proc to add a timer, so we can have it take a while to boot
+	visible_message("<span class ='warning'>The power module on the [src] briefly flickers, before humming to life once more.</span>") //without causing any problems
+	return //that sleep() would
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor/proc/detonate()
 	visible_message("<span class ='danger'>The power module of the [src] overheats, causing it to destabilize and explode!")

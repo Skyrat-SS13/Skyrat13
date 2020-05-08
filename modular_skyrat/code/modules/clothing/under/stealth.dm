@@ -1,7 +1,7 @@
 /obj/item/clothing/under/syndicate/stealthsuit
 	name = "MK.III Tactical Stealth Suit"
 	desc = "A suspicious looking, tight-fitting suit that can make you invisible under the right conditions. Has a MI13 insignia blazoned upon it's forearm."
-	icon = 'modular_skyrat/icons/obj/clothing/stealthsuit.dmi'
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
 	icon_state = "stealth"
@@ -37,6 +37,7 @@
 			animate(M, , alpha -= 75, time = 3)
 		for(var/datum/action/item_action/A in actions_types)
 			A.Grant(M, src)
+
 /obj/item/clothing/under/syndicate/stealthsuit/Bumped(atom/movable/AM)
 	if(!activated)
 		return
@@ -66,7 +67,7 @@
 /obj/item/clothing/under/syndicate/stealthsuit/dropped(mob/living/M, slot)
 	. = ..()
 	M.remove_status_effect(effectapplied)
-	activated = 0
+	activated = FALSE
 	for(var/datum/action/item_action/A in actions_types)
 		A.Remove(M, src)
 

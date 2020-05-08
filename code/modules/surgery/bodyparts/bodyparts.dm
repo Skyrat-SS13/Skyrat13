@@ -164,7 +164,7 @@
 		return FALSE
 
 	switch(animal_origin)
-		if(ALIEN_BODYPART,LARVA_BODYPART) //aliens take double burn //nothing can burn with so much snowflake code around
+		if(ALIEN_BODYPART,LARVA_BODYPART) //aliens take double burn //nothing can burn with so much snowflake code around //Skyrat changes, buffs from 1.2 to 2
 			burn *= 2
 
 	var/can_inflict = max_damage - get_damage()
@@ -183,7 +183,7 @@
 	//We've dealt the physical damages, if there's room lets apply the stamina damage.
 	var/current_damage = get_damage(TRUE)		//This time around, count stamina loss too.
 	var/available_damage = max_damage - current_damage
-	stamina_dam += round(CLAMP(stamina, 0, min(max_stamina_damage - stamina_dam, available_damage)), DAMAGE_PRECISION)
+	stamina_dam += round(clamp(stamina, 0, min(max_stamina_damage - stamina_dam, available_damage)), DAMAGE_PRECISION)
 
 	if(disabled && stamina > 10)
 		incoming_stam_mult = max(0.01, incoming_stam_mult/(stamina*0.1))
@@ -295,7 +295,7 @@
 
 /obj/item/bodypart/proc/is_organic_limb()
 	return (status == BODYPART_ORGANIC)
-
+/* moved to modular_skyrat
 //we inform the bodypart of the changes that happened to the owner, or give it the informations from a source mob.
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C
@@ -404,7 +404,7 @@
 
 	if(dropping_limb)
 		no_update = TRUE //when attached, the limb won't be affected by the appearance changes of its mob owner.
-
+*/
 //to update the bodypart's icon when not attached to a mob
 /obj/item/bodypart/proc/update_icon_dropped()
 	cut_overlays()
@@ -417,6 +417,7 @@
 		I.pixel_y = px_y
 	add_overlay(standing)
 
+/***********moved to modular_skyrat
 //Gives you a proper icon appearance for the dismembered limb
 /obj/item/bodypart/proc/get_limb_icon(dropped)
 	cut_overlays()
@@ -575,6 +576,7 @@
 					marking.color = "#141414"
 				else
 					marking.color = list(markings_color)
+*/
 
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)

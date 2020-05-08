@@ -80,7 +80,7 @@
 	popup.set_content(dat.Join())
 	popup.open()
 
-
+/* moved to modular_skyrat
 /obj/machinery/jukebox/Topic(href, href_list)
 	if(..())
 		return
@@ -119,6 +119,7 @@
 				return
 			selection = available[selected]
 			updateUsrDialog()
+*/
 
 /obj/machinery/jukebox/proc/activate_music()
 	var/jukeboxslottotake = SSjukeboxes.addjukebox(src, selection, 2)

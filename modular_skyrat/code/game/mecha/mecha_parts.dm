@@ -4,13 +4,13 @@
 
 ///////// Power Armor (Not actually a mech but meh)
 
-/obj/item/mecha_parts/part/powerarmor_chassis //Make this into a normal mech chassis if you want to make the assembly work. For right now, I have to make it a part so the crafting will work.
+/obj/item/mecha_parts/chassis/powerarmor
 	name = "\improper Power Armor Chassis"
 	desc = "A heavy steel frame, utilized in the construction of a suit of powered armor."
 	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
 	icon_state = "pwrarmor_skeleton"
 	w_class = WEIGHT_CLASS_HUGE
-	/*construct_type = /datum/component/construction/unordered/mecha_chassis/skyrat/powerarmor*/ //Construction assembly is fucked, uncomment this if you somehow fix it and/or want to fix it.
+	construct_type = /datum/component/construction/unordered/mecha_chassis/powerarmor
 
 /obj/item/mecha_parts/part/powerarmor_torso
 	name = "\improper Power Armor Torso"
@@ -53,3 +53,9 @@
 	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
 	icon_state = "pwrarmor_helmet"
 	w_class = WEIGHT_CLASS_HUGE
+
+//Killdozer
+/obj/item/mecha_parts/chassis/killdozer
+	name = "\improper Killdozer chassis"
+	desc = "Sometimes... reasonable men must do unreasonable things."
+	construct_type = /datum/component/construction/unordered/mecha_chassis/killdozer

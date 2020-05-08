@@ -3,3 +3,6 @@ AGE_LOCK
 
 ## Required age in days if you enabled above
 AGE_LOCK_DAYS 30
+
+## How long until someone can be put in cryo if they are SSD
+CRYO_MIN_SSD_TIME 15

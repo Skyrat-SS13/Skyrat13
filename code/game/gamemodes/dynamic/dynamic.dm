@@ -40,8 +40,10 @@ GLOBAL_VAR_INIT(dynamic_stacking_limit, 90)
 GLOBAL_LIST_EMPTY(dynamic_forced_roundstart_ruleset)
 // Forced threat level, setting this to zero or higher forces the roundstart threat to the value.
 GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
-
+// Storyteller picked by the voting.
 GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
+// Storyteller forced by admins during voting--will be used instead of above.
+GLOBAL_VAR_INIT(dynamic_forced_storyteller, null)
 
 /datum/game_mode/dynamic
 	name = "dynamic mode"
@@ -134,10 +136,11 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 	/// Antags rolled by rules so far, to keep track of and discourage scaling past a certain ratio of crew/antags especially on lowpop.
 	var/antags_rolled = 0
 	// Arbitrary threat addition, for fudging purposes.
-	var/added_threat = 50
+	var/added_threat = 5 //Skyrat change 50 -> 5
 
 /datum/game_mode/dynamic/New() // i have NO IDEA if this is the proper way to do this.
 	..()
+	added_threat = CONFIG_GET(number/added_threat) // Skyrat change
 	pop_per_requirement = CONFIG_GET(number/dynamic_pop_per_requirement)
 	second_rule_req = CONFIG_GET(number_list/dynamic_second_rule_requirements)
 	third_rule_req = CONFIG_GET(number_list/dynamic_third_rule_requirements)
@@ -164,7 +167,7 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 
 	dat += "Current threat: <b>[threat]</b> <a href='?src=\ref[src];[HrefToken()];adjustthreat=1'>\[Adjust\]</A> <a href='?src=\ref[src];[HrefToken()];threatlog=1'>\[View Log\]</a><br/>"
 	dat += "<br/>"
-	dat += "Storyteller: <b>[storyteller.name]</b><br/>"
+	dat += "Storyteller: <a href='?src=\ref[src];[HrefToken()];change_storyteller=1'><b>[storyteller.name]</b></a> <br/>"
 	dat += "Parameters: centre = [GLOB.dynamic_curve_centre] ; width = [GLOB.dynamic_curve_width].<br/>"
 	dat += "<i>On average, <b>[peaceful_percentage]</b>% of the rounds are more peaceful.</i><br/>"
 	dat += "Forced extended: <a href='?src=\ref[src];[HrefToken()];forced_extended=1'><b>[GLOB.dynamic_forced_extended ? "On" : "Off"]</b></a><br/>"
@@ -222,6 +225,15 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 		show_threatlog(usr)
 	else if (href_list["stacking_limit"])
 		GLOB.dynamic_stacking_limit = input(usr,"Change the threat limit at which round-endings rulesets will start to stack.", "Change stacking limit", null) as num
+	else if (href_list["change_storyteller"])
+		var/list/choices = list()
+		for(var/T in config.storyteller_cache)
+			var/datum/dynamic_storyteller/S = T
+			choices[initial(S.name)] = T
+		var/selected_storyteller = choices[input("Select storyteller:", "Storyteller", storyteller.name) as null|anything in choices]
+		storyteller = new selected_storyteller
+		storyteller.on_start()
+		message_admins("[key_name(usr)] changed the storyteller to [storyteller].", 1)
 
 	admin_panel() // Refreshes the window
 
@@ -243,7 +255,7 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 /datum/game_mode/dynamic/send_intercept()
 	. = "<b><i>Central Command Status Summary</i></b><hr>"
 	switch(round(threat_level))
-		if(0 to 20)
+		if(-INFINITY to 20)
 			. += "<b>Peaceful Waypoint</b></center><BR>"
 			. += "Your station orbits deep within controlled, core-sector systems and serves as a waypoint for routine traffic through Nanotrasen's trade empire. Due to the combination of high security, interstellar traffic, and low strategic value, it makes any direct threat of violence unlikely. Your primary enemies will be incompetence and bored crewmen: try to organize team-building events to keep staffers interested and productive. However, even deep in our territory there may be subversive elements, especially for such a high-value target as your station. Keep an eye out, but don't expect much trouble."
 			set_security_level(SEC_LEVEL_GREEN)
@@ -275,7 +287,7 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 			. += "<b>Black Orbit</b></center><BR>"
 			. += "As part of a mandatory security protocol, we are required to inform you that as a result of your orbital pattern directly behind an astrological body (oriented from our nearest observatory), your station will be under decreased monitoring and support. It is anticipated that your extreme location and decreased surveillance could pose security risks. Avoid unnecessary risks and attempt to keep your station in one piece."
 			set_security_level(SEC_LEVEL_AMBER)
-		if(96 to 100)
+		if(96 to INFINITY)
 			. += "<b>Impending Doom</b></center><BR>"
 			. += "Your station is somehow in the middle of hostile territory, in clear view of any enemy of the corporation. Your likelihood to survive is low, and station destruction is expected and almost inevitable. Secure any sensitive material and neutralize any enemy you will come across. It is important that you at least try to maintain the station.<BR>"
 			. += "Good luck."
@@ -346,6 +358,8 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 	SSblackbox.record_feedback("tally","dynamic_threat",peaceful_percentage,"Percent of same-vote rounds that are more peaceful")
 
 /datum/game_mode/dynamic/can_start()
+	if(GLOB.dynamic_forced_storyteller)
+		GLOB.dynamic_storyteller_type = GLOB.dynamic_forced_storyteller
 	storyteller = new GLOB.dynamic_storyteller_type // this is where all the initialization happens
 	storyteller.on_start()
 	SSblackbox.record_feedback("text","dynamic_storyteller",1,storyteller.name)
@@ -441,6 +455,8 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 	if(!drafted_rules.len)
 		message_admins("Not enough threat level for roundstart antags!")
 		log_game("DYNAMIC: Not enough threat level for roundstart antags!")
+		midround_injection_cooldown = round((midround_injection_cooldown + world.time) / 2, 1)
+		latejoin_injection_cooldown = round((latejoin_injection_cooldown + world.time) / 2, 1)
 	var/indice_pop = min(10,round(roundstart_pop_ready/pop_per_requirement)+1)
 	extra_rulesets_amount = 0
 	if (GLOB.dynamic_classic_secret)
@@ -612,7 +628,7 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 					return FALSE
 
 	update_playercounts()
-	if ((forced || (new_rule.acceptable(current_players[CURRENT_LIVING_PLAYERS].len, threat_level) && new_rule.cost <= threat)))
+	if ((forced || (new_rule.acceptable(current_players[CURRENT_LIVING_PLAYERS].len, threat_level - threat)))) // Skyrat change
 		new_rule.trim_candidates()
 		if (new_rule.ready(forced))
 			log_threat("[new_rule.ruletype] - <b>[new_rule.name]</b> [new_rule.cost] threat", verbose = TRUE)
@@ -654,7 +670,7 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 	return FALSE
 
 /datum/game_mode/dynamic/process()
-	if (pop_last_updated < world.time - (120 SECONDS))
+	if (pop_last_updated < world.time - (60 SECONDS)) // Skyrat change
 		pop_last_updated = world.time
 		update_playercounts()
 
@@ -721,7 +737,8 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 				if (O.started_as_observer) // Observers
 					current_players[CURRENT_OBSERVERS].Add(M)
 					continue
-			current_players[CURRENT_DEAD_PLAYERS].Add(M) // Players who actually died (and admins who ghosted, would be nice to avoid counting them somehow)
+			if(!M.voluntary_ghosted)
+				current_players[CURRENT_DEAD_PLAYERS].Add(M) // Players who actually died (and admins who ghosted, would be nice to avoid counting them somehow)
 	threat = storyteller.calculate_threat() + added_threat
 	if(threat_average_weight)
 		var/cur_sample_weight = world.time - last_threat_sample_time
@@ -790,6 +807,9 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 
 /// Decrease the threat level.
 /datum/game_mode/dynamic/proc/remove_threat(loss)
+	if (loss < 0) // Skyrat change BEGIN
+		loss *= -1 // Skyrat change END
+	
 	threat_level -= loss
 	SSblackbox.record_feedback("tally","dynamic_threat",loss,"Removed threat level")
 	log_threat("[loss] removed. Threat level is now [threat_level].", verbose = TRUE)
@@ -823,3 +843,11 @@ GLOBAL_VAR_INIT(dynamic_storyteller_type, /datum/dynamic_storyteller/classic)
 			return RULE_OF_THREE(40, 20, x) + 50
 		if (20 to INFINITY)
 			return rand(90, 100)
+
+/datum/game_mode/dynamic/ghost_info()
+	. = list()
+	. += "Current threat: [threat]"
+	. += "Target threat: [threat_level]"
+	. += "Storyteller: <b>[storyteller.name]</b><br/>"
+	. += "Parameters: centre = [GLOB.dynamic_curve_centre] ; width = [GLOB.dynamic_curve_width].<br/>"
+	. += "<i>On average, <b>[peaceful_percentage]</b>% of the rounds are more peaceful.</i><br/>"

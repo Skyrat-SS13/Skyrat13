@@ -1,7 +1,3 @@
-//explorer mask nerf
-/obj/item/clothing/mask/gas/explorer
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 20, "acid" = 50) 
-
 //seva shit
 /obj/item/clothing/suit/hooded/explorer/seva
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
@@ -16,7 +12,7 @@
 	"Old" = 'icons/mob/clothing/suit.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	)
-	unique_reskin_worn_digi = list(
+	unique_reskin_worn_anthro = list(
 	"Old" = 'icons/mob/clothing/suit_digi.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	)
@@ -24,14 +20,12 @@
 	"Old" = "seva",
 	"Improved" = "seva"
 	)
-	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/head/hooded/explorer/seva
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "seva"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
-	flags_inv = HIDEHAIR
 	unique_reskin_icons = list(
 	"Old" = 'icons/obj/clothing/hats.dmi',
 	"Improved" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
@@ -40,7 +34,7 @@
 	"Old" = 'icons/mob/clothing/head.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
-	unique_reskin_worn_muzzled = list(
+	unique_reskin_worn_anthro = list(
 	"Old" = 'icons/mob/clothing/head_muzzled.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	)
@@ -48,7 +42,6 @@
 	"Old" = "seva",
 	"Improved" = "seva"
 	)
-	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/suit/hooded/explorer/seva/Initialize()
 	. = ..()
@@ -71,7 +64,7 @@
 	"Old" = 'icons/mob/clothing/mask.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/mask.dmi'
 	)
-	unique_reskin_worn_muzzled = list(
+	unique_reskin_worn_anthro = list(
 	"Old" = 'icons/mob/clothing/mask_muzzled.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
 	)
@@ -79,7 +72,6 @@
 	"Old" = "seva",
 	"Improved" = "seva"
 	)
-	mutantrace_variation = STYLE_MUZZLE
 
 //exosuit shit
 /obj/item/clothing/suit/hooded/explorer/exo
@@ -95,7 +87,7 @@
 	"Old" = 'icons/mob/clothing/suit.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	)
-	unique_reskin_worn_digi = list(
+	unique_reskin_worn_anthro = list(
 	"Old" = 'icons/mob/clothing/suit_digi.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	)
@@ -103,7 +95,6 @@
 	"Old" = "exo",
 	"Improved" = "exo"
 	)
-	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/head/hooded/explorer/exo
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
@@ -118,7 +109,7 @@
 	"Old" = 'icons/mob/clothing/head.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
-	unique_reskin_worn_muzzled = list(
+	unique_reskin_worn_anthro = list(
 	"Old" = 'icons/mob/clothing/head_muzzled.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	)
@@ -126,7 +117,6 @@
 	"Old" = "exo",
 	"Improved" = "exo"
 	)
-	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/mask/gas/exo
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
@@ -141,7 +131,7 @@
 	"Old" = 'icons/mob/clothing/mask.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/mask.dmi'
 	)
-	unique_reskin_worn_muzzled = list(
+	unique_reskin_worn_anthro = list(
 	"Old" = 'icons/mob/clothing/mask_muzzled.dmi',
 	"Improved" = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
 	)
@@ -149,4 +139,17 @@
 	"Old" = "exo",
 	"Improved" = "exo"
 	)
-	mutantrace_variation = STYLE_MUZZLE
+
+//dora the explorer suit
+/obj/item/clothing/suit/hooded/explorer
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/gun/energy/plasmacutter)
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_SNEK_TAURIC|STYLE_PAW_TAURIC|STYLE_NO_ANTHRO_ICON
+
+/obj/item/clothing/head/hooded/explorer
+	flags_inv = HIDEEARS
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_SNEK_TAURIC|STYLE_PAW_TAURIC|STYLE_NO_ANTHRO_ICON
+
+/obj/item/clothing/mask/gas/explorer
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 20, "acid" = 50)
+	flags_inv = HIDEEYES|HIDEFACE|HIDESNOUT
+	mutantrace_variation = STYLE_MUZZLE|STYLE_NO_ANTHRO_ICON
