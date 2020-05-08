@@ -27,7 +27,7 @@ They deal 35 brute (armor is considered).
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	speed = 1
-	move_to_delay = 2
+	move_to_delay = 2.25
 	wander = FALSE
 	var/block_chance = 50
 	ranged = 1
@@ -43,7 +43,7 @@ They deal 35 brute (armor is considered).
 	var/speenrange = 4
 	var/obj/savedloot = null
 	var/stunned = FALSE
-	var/stunduration = 15
+	var/stunduration = 20
 	song = sound('modular_skyrat/sound/ambience/gladiator.ogg', 100)
 	songlength = 3850
 	loot = list(/obj/structure/closet/crate/necropolis/gladiator)
@@ -170,20 +170,22 @@ They deal 35 brute (armor is considered).
 	if(src.stat == DEAD)
 		return
 	switch(healthpercentage)
-		if(70 to 100)
+		if(75 to 100)
 			phase = 1
 			rapid_melee = initial(rapid_melee)
 			move_to_delay = initial(move_to_delay)
-		if(30 to 70)
+		if(30 to 75)
 			phase = 2
 			icon_state = "gladiator2"
-			rapid_melee = 4
-			move_to_delay = 1.8
+			rapid_melee = 3
+			move_to_delay = 2
 		if(0 to 30)
 			phase = 3
 			icon_state = "gladiator3"
-			rapid_melee = 5
-			move_to_delay = 1.5
+			rapid_melee = 4
+			attack_damage_upper = 25
+			attack_damage_lower = 25
+			move_to_delay = 1.75
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/zweispin()
 	visible_message("<span class='boldwarning'>[src] lifts his zweihander, and prepares to spin!</span>")
@@ -220,10 +222,10 @@ They deal 35 brute (armor is considered).
 	speen = TRUE
 	visible_message("<span class='boldwarning'>[src] lifts his shield, and prepares to charge!</span>")
 	animate(src, color = "#ff6666", 3)
-	sleep(3 + phase)
+	sleep(4)
 	var/longstun = FALSE
 	face_atom(target)
-	move_to_delay = 1.5
+	move_to_delay = 1.4
 	for(var/i = 0, i >= range, i++)
 		var/dirtotarget = get_dir(src, target)
 		var/turf/T = get_step(src, dirtotarget)
@@ -246,7 +248,7 @@ They deal 35 brute (armor is considered).
 	stunned = TRUE
 	animate(src, color = initial(color), 7)
 	move_to_delay = initial(move_to_delay)
-	sleep(longstun ? stunduration : ((stunduration/2) * 1.5))
+	sleep(stunduration)
 	stunned = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/teleport(atom/target)
@@ -293,18 +295,18 @@ They deal 35 brute (armor is considered).
 		if(1)
 			if(prob(25) && (get_dist(src, target) <= 4))
 				zweispin()
-				ranged_cooldown += 60
+				ranged_cooldown += 70
 			else
 				if(prob(66))
 					chargeattack(target, 21)
 					ranged_cooldown += 40
 				else
 					teleport(target)
-					ranged_cooldown += 40
+					ranged_cooldown += 35
 		if(2)
 			if(prob(40) && (get_dist(src, target) <= 4))
 				zweispin()
-				ranged_cooldown += 45
+				ranged_cooldown += 55
 			else
 				if(prob(35))
 					boneappletea(target)
