@@ -196,19 +196,23 @@
 
 	switch(tdir)
 		if(NORTH)
+			pixel_x = 0
 			pixel_y = 23
 		if(SOUTH)
+			pixel_x = 0
 			pixel_y = -23
 		if(EAST)
+			pixel_y = 0
 			pixel_x = 24
 		if(WEST)
+			pixel_y = 0
 			pixel_x = -25
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apcs_list -= src
 
 	if(malfai && operating)
-		malfai.malf_picker.processing_time = CLAMP(malfai.malf_picker.processing_time - 10,0,1000)
+		malfai.malf_picker.processing_time = clamp(malfai.malf_picker.processing_time - 10,0,1000)
 	area.power_light = FALSE
 	area.power_equip = FALSE
 	area.power_environ = FALSE
@@ -1350,7 +1354,7 @@
 			lighting = autoset(lighting, 0)
 			environ = autoset(environ, 0)
 			area.poweralert(0, src)
-		
+
 		else if(cell_percent < 15 && longtermpower < 0)	// <15%, turn off lighting & equipment
 			equipment = autoset(equipment, 2)
 			lighting = autoset(lighting, 2)
@@ -1447,7 +1451,7 @@
 
 /obj/machinery/power/apc/proc/set_broken()
 	if(malfai && operating)
-		malfai.malf_picker.processing_time = CLAMP(malfai.malf_picker.processing_time - 10,0,1000)
+		malfai.malf_picker.processing_time = clamp(malfai.malf_picker.processing_time - 10,0,1000)
 	stat |= BROKEN
 	operating = FALSE
 	if(occupier)

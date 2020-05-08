@@ -1,3 +1,4 @@
+/* // Skyrat Overwrite.
 /proc/emoji_parse(text) //turns :ai: into an emoji in text.
 	. = text
 	if(!CONFIG_GET(flag/emojis))
@@ -51,3 +52,4 @@
 				continue
 		break
 	return final
+*/

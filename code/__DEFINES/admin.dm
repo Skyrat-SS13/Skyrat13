@@ -90,8 +90,5 @@
 #define MAX_KEYPRESS_AUTOKICK 100
 ///Length of max held keys
 #define MAX_HELD_KEYS 15
-//SKYRAT COLLAR BAN
-#define COLLARBAN	"Collar ban"
-#define COLLARITEM	/obj/item/electropack/shockcollar/pacify/admin
-#define LESSERCOLLARBAN		"Lesser Collar ban"
-#define LESSERCOLLARITEM	/obj/item/electropack/shockcollar/pacify/admin/lesser
+//SKYRAT COLLAR BAN - now no collar
+#define COLLARBAN	"Collar ban" //Pacification but called that so we dont lose our earlier bans

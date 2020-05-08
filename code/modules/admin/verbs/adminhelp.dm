@@ -94,7 +94,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	for(var/I in active_tickets)
 		var/datum/admin_help/AH = I
 		if(AH.initiator)
-			stat("[AH.handler]#[AH.id]. [AH.initiator_key_name]:", AH.statclick.update()) //SKYRAT EDIT
+			//SKYRAT EDIT START
+			var/prefix = ""
+			if(AH.handler)
+				prefix = "H-"
+
+			stat("[prefix][AH.handler]#[AH.id]. [AH.initiator_key_name]:", AH.statclick.update()) 
+			//SKYRAT EDIT END
 		else
 			++num_disconnected
 	if(num_disconnected)
@@ -174,7 +180,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	//SKYRAT CHANGE
 	if(admin_C && is_bwoink)
-		handler = "H-[admin_C.ckey] "
+		handler = "[admin_C.ckey]"
 	//END OF SKYRAT CHANGES
 
 	id = ++ticket_counter
@@ -319,9 +325,19 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		initiator.current_ticket = null
 
 //Mark open ticket as closed/meme
-/datum/admin_help/proc/Close(key_name = key_name_admin(usr), silent = FALSE)
+/datum/admin_help/proc/Close(key_name = key_name_admin(usr), silent = FALSE, ignore_admincheck = FALSE)
 	if(state != AHELP_ACTIVE)
 		return
+	
+	if (!ignore_admincheck)
+		// Skyrat change START
+		if(handler && handler != usr.ckey)
+			var/response = alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", "Yes", "No")
+
+			if(response == "No")
+				return
+		// Skyrat change END
+	
 	RemoveActive()
 	state = AHELP_CLOSED
 	GLOB.ahelp_tickets.ListInsert(src)
@@ -337,6 +353,15 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
 	if(state != AHELP_ACTIVE)
 		return
+
+	// Skyrat change START
+	if(handler && handler != usr.ckey)
+		var/response = alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", "Yes", "No")
+
+		if(response == "No")
+			return
+	// Skyrat change END
+
 	RemoveActive()
 	state = AHELP_RESOLVED
 	GLOB.ahelp_tickets.ListInsert(src)
@@ -356,6 +381,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(state != AHELP_ACTIVE)
 		return
 
+	// Skyrat change START
+	if(handler && handler != usr.ckey)
+		var/response = alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", "Yes", "No")
+
+		if(response == "No")
+			return
+	// Skyrat change END
+
 	if(initiator)
 		initiator.giveadminhelpverb()
 
@@ -370,12 +403,20 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	message_admins(msg)
 	log_admin_private(msg)
 	AddInteraction("Rejected by [key_name].")
-	Close(silent = TRUE)
+	Close(silent = TRUE, ignore_admincheck = TRUE)
 
 //Resolve ticket with IC Issue message
 /datum/admin_help/proc/ICIssue(key_name = key_name_admin(usr))
 	if(state != AHELP_ACTIVE)
 		return
+
+	// Skyrat change START
+	if(handler && handler != usr.ckey)
+		var/response = alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", "Yes", "No")
+
+		if(response == "No")
+			return
+	// Skyrat change END
 
 	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as IC issue by [usr?.client?.holder?.fakekey? usr.client.holder.fakekey : "an administrator"]! -</b></font><br>"
 	msg += "<font color='red'><b>An admin has looked at the submitted issue and has determined that the reported incident is valid.</b></font><br>" // Skyrat Change "uwu its valid uwu uwu uwu"
@@ -395,6 +436,15 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/HandleIssue(key_name = key_name_admin(usr))
 	if(state != AHELP_ACTIVE)
 		return
+
+	// Skyrat change START
+	if(handler && handler != usr.ckey)
+		var/response = alert(usr, "This ticket is already being handled by [handler]. Do you want to replace yourself as the handler for the ticket?", "Ticket already assigned", "Yes", "No")
+
+		if(response == "No")
+			return
+	// Skyrat change END
+
 	var/msg = "<span class ='adminhelp'>Your ticket is now being handled by [usr?.client?.holder?.fakekey? usr.client.holder.fakekey : "an administrator"]!. Please wait while they type their response and/or gather relevant information.</span>" // Skyrat Change
 
 	if(initiator)
@@ -406,7 +456,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	log_admin_private(msg)
 	AddInteraction("Being handled by [key_name]")
 
-	handler = "H-[usr.ckey] " //SKYRAT EDIT
+	handler = "[usr.ckey]" //SKYRAT EDIT
 
 //Show the ticket panel
 /datum/admin_help/proc/TicketPanel()
@@ -539,7 +589,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
 		else
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
-			current_ticket.Close()
+			current_ticket.Close(ignore_admincheck = TRUE)
 
 	new /datum/admin_help(msg, src, FALSE)
 

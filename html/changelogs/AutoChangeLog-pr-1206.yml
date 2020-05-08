@@ -1,4 +1,0 @@
-author: "BurgerBB"
-delete-after: True
-changes: 
-  - balance: "Synthflesh now heals 1.25 brute and 1.25 burn for every 1u of synthflesh applied, but deals 25% of the health healed as toxins damage if the patient is still alive. Synthflesh now de-husks corpses that became husks from burn damage only at 40u instead of 100u."

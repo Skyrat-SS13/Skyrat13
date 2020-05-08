@@ -68,7 +68,7 @@
 		var/obj/O = A
 		if(ObjBump(O))
 			return
-	if(ismovableatom(A))
+	if(ismovable(A))
 		var/atom/movable/AM = A
 		if(PushAM(AM, move_force))
 			return
@@ -502,8 +502,16 @@
 				var/obj/effect/proc_holder/spell/spell = S
 				spell.updateButtonIcon()
 
+//proc used to remove all immobilisation effects + reset stamina
+/mob/living/proc/remove_CC(should_update_mobility = TRUE)
+	SetAllImmobility(0, FALSE)
+	setStaminaLoss(0)
+	SetUnconscious(0, FALSE)
+	if(should_update_mobility)
+		update_mobility()
+
 //proc used to completely heal a mob.
-/mob/living/proc/fully_heal(admin_revive = 0)
+/mob/living/proc/fully_heal(admin_revive = FALSE)
 	restore_blood()
 	setToxLoss(0, 0) //zero as second argument not automatically call updatehealth().
 	setOxyLoss(0, 0)
@@ -645,7 +653,7 @@
 		attempt_resist_grab(FALSE)
 		// Return as we should only resist one thing at a time. Give clickdelay if the grab wasn't passive.
 		return old_gs? TRUE : FALSE
-		
+
 	// unbuckling yourself. stops the chain if you try it.
 	if(buckled && last_special <= world.time)
 		log_combat(src, buckled, "resisted buckle")
@@ -1030,7 +1038,7 @@
 		update_fire()
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, -20, 20)
+	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
 
