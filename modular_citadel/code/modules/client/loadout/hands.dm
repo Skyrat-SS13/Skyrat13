@@ -65,3 +65,9 @@
 	category = SLOT_HANDS
 	path = /obj/item/clothing/mask/cigarette/cigar
 	cost = 4 //smoking is bad mkay
+
+/datum/gear/miniwelder
+	name = "Emergency welding tool"
+	category = SLOT_HANDS
+	path = /obj/item/weldingtool/mini
+	cost = 4
