@@ -99,7 +99,12 @@ obj/item/robot_module/butler/Initialize()
 
 /obj/item/robot_module/peacekeeper/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Default", "Sleek", "Spider", "Borgi", "Marina")
+	var/list/peacemodels = list("Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "peace"),
+								"Sleek" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "sleekpeace"),
+								"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "whitespider"),
+								"Borgi" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "borgi"),
+								"Marina" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "marinapeace"))
+	var/borg_icon = show_radial_menu(R, R , peacemodels, radius = 42)
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)

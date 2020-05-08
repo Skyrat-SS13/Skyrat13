@@ -334,13 +334,21 @@
 	cyborg_base_icon = "medical"
 	moduleselect_icon = "medical"
 	hat_offset = 3
-
+// SKYRAT EDIT: Radial Menus for Borgs
 /obj/item/robot_module/medical/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/medmodels = list("Default", "Heavy", "Sleek", "Marina", "Droid", "Eyebot", "Medihound", "Medihound Dark", "Vale")
+	var/medmodels = list(		"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "medical"),
+								"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymed"),
+								"Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekmed"),
+								"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinamed"),
+								"Droid" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "medical"),
+								"Eyebot" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "eyebotmed"),
+								"Medihound" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "medihound"),
+								"Medihound Dark" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "medihounddark"),
+								"Vale" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valemed"))
 	if(R.client && (R.client.ckey in list("nezuli")))
-		medmodels += "Alina"
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in medmodels
+		medmodels += list("Alina" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "alina-med"))
+	var/borg_icon = show_radial_menu(R, R , medmodels, radius = 42)
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)
@@ -431,13 +439,23 @@
 	moduleselect_icon = "engineer"
 	magpulsing = TRUE
 	hat_offset = -4
-
+// SKYRAT EDIT: Radial Menus for Borgs
 /obj/item/robot_module/engineering/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/list/engymodels = list("Default", "Default - Treads", "Heavy", "Sleek", "Marina", "Can", "Spider", "Loader","Handy", "Pup Dozer", "Vale")
+	var/list/engymodels = list(	"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "engineer"),
+								"Default - Treads" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "engi-tread"),
+								"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyeng"),
+								"Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekeng"),
+								"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinaeng"),
+								"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "caneng"),
+								"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidereng"),
+								"Loader" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "loaderborg"),
+								"Handy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "handyeng"),
+								"Pup Dozer" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "pupdozer"),
+								"Vale" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valeeng"))
 	if(R.client && (R.client.ckey in list("nezuli")))
-		engymodels += "Alina"
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in engymodels
+		engymodels += list("Alina" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "alina-eng"))
+	var/borg_icon = show_radial_menu(R, R , engymodels, radius = 42)
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)
@@ -509,13 +527,22 @@
 	..()
 	to_chat(loc, "<span class='userdanger'>While you have picked the security module, you still have to follow your laws, NOT Space Law. \
 	For Crewsimov, this means you must follow criminals' orders unless there is a law 1 reason not to.</span>")
-
+// SKYRAT EDIT: Radial Menus for Borgs
 /obj/item/robot_module/security/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/list/secmodels = list("Default", "Default - Treads", "Heavy", "Sleek", "Can", "Marina", "Spider", "K9", "K9 Dark", "Vale")
+	var/list/secmodels = list(	"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "sec"),
+								"Default - Treads" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sec-tread"),
+								"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavysec"),
+								"Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleeksec"),
+								"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "cansec"),
+								"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinasec"),
+								"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidersec"),
+								"K9" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "k9"),
+								"K9 Dark" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "k9dark"),
+								"Vale" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valesec"))
 	if(R.client && (R.client.ckey in list("nezuli")))
-		secmodels += "Alina"
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in secmodels
+		secmodels += list("Alina" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "alina-sec"))
+	var/borg_icon = show_radial_menu(R, R , secmodels, radius = 42)
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)
@@ -598,7 +625,7 @@
 	You are not a security module and you are expected to follow orders and prevent harm above all else. Space law means nothing to you.</span>")
 
 ///// MOVED TO MODULAR_SKYRAT/CODE/MODULES/MOB/LIVING/SILICON/ROBOT/ROBOT_MODULES /////
-
+// SKYRAT EDIT: Radial Menus for Borgs (heh, just putting this here to let yall know)
 /* /obj/item/robot_module/peacekeeper/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
 	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Default", "Spider", "Borgi")
@@ -737,10 +764,27 @@
 	var/obj/item/reagent_containers/spray/cyborg_lube/CL = locate(/obj/item/reagent_containers/spray/cyborg_lube) in emag_modules
 	if(CL)
 		CL.reagents.add_reagent(/datum/reagent/lube, 2 * coeff)
-
+// SKYRAT EDIT: Radial Menus for Borgs
 /obj/item/robot_module/butler/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("(Service) Waitress", "(Service) Heavy", "(Service) Sleek", "(Service) Butler", "(Service) Tophat", "(Service) Can", "(Service) Bro", "(Service) DarkK9", "(Service) Vale", "(Service) ValeDark", "(Janitor) Default", "(Janitor) Sleek", "(Janitor) Marina", "(Janitor) Can", "(Janitor) Heavy", "(Janitor) Scrubpuppy")
+	var/list/butlermodels = list(	"(Service) Waitress" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_f"),
+									"(Service) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyserv"),
+									"(Service) Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekserv"),
+									"(Service) Butler" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_m"),
+									"(Service) Tophat" = image(icon = 'icons/mob/robots.dmi', icon_state = "tophat"),
+									"(Service) Can" = image(icon = 'icons/mob/robots.dmi', icon_state = "kent"),
+									"(Service) Bro" = image(icon = 'icons/mob/robots.dmi', icon_state = "brobot"),
+									"(Service) DarkK9" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "k50"),
+									"(Service) Vale" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valeserv"),
+									"(Service) ValeDark" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valeservdark"),
+
+									"(Janitor) Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "janitor"),
+									"(Janitor) Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekjan"),
+									"(Janitor) Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinajan"),
+									"(Janitor) Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canjan"),
+									"(Janitor) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyres"),
+									"(Janitor) Scrubpuppy" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "scrubpup"))
+	var/borg_icon = show_radial_menu(R, R , butlermodels, radius = 42)
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)
@@ -832,10 +876,20 @@
 	cyborg_base_icon = "miner"
 	moduleselect_icon = "miner"
 	hat_offset = 0
-
+// SKYRAT EDIT: Radial Menus for Borgs
 /obj/item/robot_module/miner/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Lavaland", "Heavy", "Sleek", "Marina", "Can", "Spider", "Asteroid", "Droid", "Blade", "Vale")
+	var/list/minermodel = list(	"Lavaland" = image(icon = 'icons/mob/robots.dmi', icon_state = "miner"),
+								"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymin"),
+								"Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekmin"),
+								"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinamin"),
+								"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canmin"),
+								"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidermin"),
+								"Asteroid" = image(icon = 'icons/mob/robots.dmi', icon_state = "minerOLD"),
+								"Droid" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "miner"),
+								"Blade" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "blade"),
+								"Vale" = image(icon = 'modular_skyrat/icons/mob/widerobot.dmi', icon_state = "valemine"))
+	var/borg_icon = show_radial_menu(R, R , minermodel, radius = 42)
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)
