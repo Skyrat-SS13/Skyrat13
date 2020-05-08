@@ -616,32 +616,41 @@
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC|STYLE_NO_ANTHRO_ICON
 	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'
 
-// Reskinnable Trek uniforms.
+// Reskinnable Trek uniforms, now using Orvi-like by default.
 /obj/item/clothing/under/trek/command
+	name = "\improper Planetary Federation command uniform"
 	desc = "An uniform worn by command officers."
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	icon_state = "orv_com"
 	unique_reskin_icons = list(
-	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
+	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
 	"Deep Space Nine" = 'icons/obj/clothing/uniforms.dmi',
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default - The Original Series" = "trek_command",
+	"Default" = "orv_com",
+	"The Original Series" = "trek_command",
 	"The New Generation" = "trek_next_command",
 	"Voyager" = "trek_voy_command",
 	"Deep Space Nine" = "trek_ds9_command",
@@ -649,30 +658,39 @@
 	)
 
 /obj/item/clothing/under/trek/engsec
+	name = "\improper Planetary Federation operations uniform"
 	desc = "An uniform worn by operations officers. You feel strangely vulnerable just seeing this..."
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	icon_state = "orv_ops"
 	unique_reskin_icons = list(
-	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
+	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
 	"Deep Space Nine" = 'icons/obj/clothing/uniforms.dmi',
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default - The Original Series" = "trek_engsec",
+	"Default" = "orv_ops",
+	"The Original Series" = "trek_engsec",
 	"The New Generation" = "trek_next_engsec",
 	"Voyager" = "trek_voy_engsec",
 	"Deep Space Nine" = "trek_ds9_engsec",
@@ -680,32 +698,158 @@
 	)
 
 /obj/item/clothing/under/trek/medsci
+	name = "\improper Planetary Federation medsci uniform"
 	desc = "An uniform worn by medsci officers."
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	icon_state = "orv_medsci"
 	unique_reskin_icons = list(
-	"Default - The Original Series" = 'icons/obj/clothing/uniforms.dmi',
+	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
 	"Deep Space Nine" = 'icons/obj/clothing/uniforms.dmi',
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default - The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Deep Space Nine" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default - The Original Series" = "trek_medsci",
+	"Default" = "orv_medsci",
+	"The Original Series" = "trek_medsci",
 	"The New Generation" = "trek_next_medsci",
 	"Voyager" = "trek_voy_medsci",
 	"Deep Space Nine" = "trek_ds9_medsci",
 	"Enterprise" = "trek_ent_medsci"
+	)
+
+// Bonus for assistants and service.
+/obj/item/clothing/under/trek/orvi
+	name = "\improper Planetary Federation assistant uniform"
+	desc = "An uniform worn by volunteered active-duty-cadets... Or in simple terms - an assistants."
+	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	icon_state = "orv_ass"
+	item_state = "gy_suit"
+	unique_reskin_icons = list(
+	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/obj/clothing/uniforms.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform_digi.dmi'
+	)
+	unique_reskin = list(
+	"Default" = "orv_ass",
+	"The Motion Picture (The Original Series)" = "trek_tmp_trainee"
+	)
+
+/obj/item/clothing/under/trek/orvi/service
+	name = "\improper Planetary Federation service uniform"
+	desc = "An uniform worn by service officers. How service department can have officers is still unknown."
+	icon_state = "orv_srv"
+	item_state = "g_suit"
+	unique_reskin_icons = list(
+	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/obj/clothing/uniforms.dmi'
+	)
+	unique_reskin_worn = list(
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform_digi.dmi'
+	)
+	unique_reskin = list(
+	"Default" = "orv_srv",
+	"The Motion Picture (The Original Series)" = "trek_tmp_service"
+	)
+
+// Changes name/desc to the jackets, makes modern/non-classic jacket to have same list of allowed suit-storage items as classic one.
+/obj/item/clothing/suit/storage/fluff/fedcoat
+	name = "\improper Planetary Federation classic uniform jacket"
+	desc = "A classic uniform jacket. Set phasers to awesome."
+
+/obj/item/clothing/suit/storage/fluff/modernfedcoat
+	name = "\improper Planetary Federation uniform jacket"
+	desc = "An uniform jacket."
+	allowed = list(
+				/obj/item/tank/internals/emergency_oxygen,
+				/obj/item/flashlight,
+				/obj/item/analyzer,
+				/obj/item/radio,
+				/obj/item/gun,
+				/obj/item/melee/baton,
+				/obj/item/restraints/handcuffs,
+				/obj/item/reagent_containers/hypospray,
+				/obj/item/hypospray,
+				/obj/item/healthanalyzer,
+				/obj/item/reagent_containers/syringe,
+				/obj/item/reagent_containers/glass/bottle/vial,
+				/obj/item/reagent_containers/glass/beaker,
+				/obj/item/storage/pill_bottle,
+				/obj/item/taperecorder)
+
+/obj/item/clothing/head/caphat/formal/fedcover
+	name = "\improper Planetary Federation peaked cap"
+	desc = "A peaked cap."
+
+// PrisArch-like color codes for prisoners. Uses _stored variation for Warden's control.
+/obj/item/clothing/under/rank/prisoner
+	unique_reskin_icons = list(
+	"Super Max" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"High Security" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Default - Medium Security" = 'icons/obj/clothing/uniforms.dmi',
+	"Low Security" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Protective Custody" = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
+	)
+	unique_reskin_worn = list(
+	"Super Max" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"High Security" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Default - Medium Security" = 'icons/mob/clothing/uniform.dmi',
+	"Low Security" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Protective Custody" = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
+	)
+	unique_reskin_worn_anthro = list(
+	"Super Max" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"High Security" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Default - Medium Security" = 'icons/mob/clothing/uniform_digi.dmi',
+	"Low Security" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Protective Custody" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
+	)
+	unique_reskin_stored = list(
+	"Super Max" = "prisoner_superwax",
+	"High Security" = "prisoner_highsec",
+	"Default - Medium Security" = "prisoner",
+	"Low Security" = "prisoner_lowsec",
+	"Protective Custody" = "prisoner_protcust"
+	)
+
+/obj/item/clothing/under/rank/prisoner/skirt
+	unique_reskin_stored = list(
+	"Super Max" = "prisoner_superwax_skirt",
+	"High Security" = "prisoner_highsec_skirt",
+	"Default - Medium Security" = "prisoner_skirt",
+	"Low Security" = "prisoner_lowsec_skirt",
+	"Protective Custody" = "prisoner_protcust_skirt"
 	)
