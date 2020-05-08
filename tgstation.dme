@@ -3398,6 +3398,7 @@
 #include "modular_skyrat\code\_DEFINES\jobs.dm"
 #include "modular_skyrat\code\_DEFINES\machines.dm"
 #include "modular_skyrat\code\_DEFINES\melee.dm"
+#include "modular_skyrat\code\_DEFINES\status_effects.dm"
 #include "modular_skyrat\code\_DEFINES\traits.dm"
 #include "modular_skyrat\code\_globalvars\lists\maintenance_loot.dm"
 #include "modular_skyrat\code\_globalvars\lists\names.dm"
