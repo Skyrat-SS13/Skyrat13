@@ -23,6 +23,7 @@
 	icon_state = "gladiator"
 	item_state = "gladiator"
 	shield_flags = SHIELD_FLAGS_DEFAULT | SHIELD_BASH_ALWAYS_DISARM | SHIELD_BASH_GROUND_SLAM_DISARM
+	slowdown = 0
 	shieldbash_cooldown = 6 SECONDS
 	shieldbash_stamcost = 5
 	shieldbash_knockback = 2
@@ -32,7 +33,7 @@
 	shieldbash_push_distance = 2
 	max_integrity = 350
 	block_chance = 50
-	can_shatter = FALSE 
+	can_shatter = FALSE
 	repair_material = /obj/item/stack/sheet/animalhide/goliath_hide
 	w_class = WEIGHT_CLASS_BULKY
 

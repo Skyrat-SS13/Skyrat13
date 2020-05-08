@@ -9,7 +9,7 @@ They deal 35 brute (armor is considered).
 * On phase 1, the gladiator has a 50% block chance for any attack.
 * Loot:
 * Gladiator tower shield - A powerful and indestructible shield, that can also be used as a surfboard.
-* Shielding modkit - A modkit that grants your PKA a 15% chance to block any incoming attack while held. 
+* Shielding modkit - A modkit that grants your PKA a 15% chance to block any incoming attack while held.
 * Tomahawk - Basically a one handed crusher to complement the shield.
 */
 /mob/living/simple_animal/hostile/megafauna/gladiator
@@ -223,6 +223,7 @@ They deal 35 brute (armor is considered).
 	sleep(3 + phase)
 	var/longstun = FALSE
 	face_atom(target)
+	move_to_delay/2
 	for(var/i = 0, i >= range, i++)
 		var/dirtotarget = get_dir(src, target)
 		var/turf/T = get_step(src, dirtotarget)
@@ -239,11 +240,12 @@ They deal 35 brute (armor is considered).
 			break
 		else
 			forceMove(src, T)
-			var/time2sleep = 1.4
+			var/time2sleep = 0.5
 			sleep(time2sleep)
 	speen = FALSE
 	stunned = TRUE
 	animate(src, color = initial(color), 7)
+	move_to_delay = initial(move_to_delay)
 	sleep(longstun ? stunduration : ((stunduration/2) * 1.5))
 	stunned = FALSE
 
@@ -330,7 +332,7 @@ They deal 35 brute (armor is considered).
 
 /obj/effect/step_trigger/gladiator/Trigger(atom/movable/A)
 	if(isliving(A))
-		var/mob/living/bruh = A 
+		var/mob/living/bruh = A
 		glady.enemies |= bruh
 		glady.GiveTarget(bruh)
 		for(var/obj/effect/step_trigger/gladiator/glad in view(7, src))
