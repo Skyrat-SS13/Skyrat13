@@ -189,6 +189,28 @@
 		H.charge_time = 15
 		H.force_wielded = 20
 
+//gladiator
+/obj/item/crusher_trophy/gladiator
+	name = "gladiator's horn"
+	desc = "The remaining horn of the Gladiator. Suitable as a crusher trophy."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "horn"
+	bonus_value = 15
+	denied_type = /obj/item/crusher_trophy/gladiator
+
+/obj/item/crusher_trophy/gladiator/effect_desc()
+	return "the crusher to have a <b>[bonus_value]%</b> chance to block any incoming attack."
+
+/obj/item/crusher_trophy/gladiator/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	if(.)
+		H.block_chance += bonus_value
+
+/obj/item/crusher_trophy/gladiator/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	if(.)
+		H.block_chance -= bonus_value
+
 //hierophant crusher nerf "but muh i deserve it after killing hierocunt" yes but its op fuck you you piece of shit
 /obj/effect/temp_visual/hierophant/wall/crusher
 	duration = 45 //this is more than enough time bro

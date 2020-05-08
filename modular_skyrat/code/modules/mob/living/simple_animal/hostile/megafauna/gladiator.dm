@@ -8,7 +8,9 @@ They deal 35 brute (armor is considered).
 * Additionally, he gets more speedy and aggressive as he raises in phase, at the cost of some special attacks.
 * On phase 1, the gladiator has a 50% block chance for any attack.
 * Loot:
-* To be done.
+* Gladiator tower shield - A powerful and indestructible shield, that can also be used as a surfboard.
+* Shielding modkit - A modkit that grants your PKA a 15% chance to block any incoming attack while held. 
+* Horn - A crusher trophy that grants your crusher a 15% chance to block any incoming attack while held.
 */
 /mob/living/simple_animal/hostile/megafauna/gladiator
 	name = "\proper The Gladiator"
@@ -44,6 +46,8 @@ They deal 35 brute (armor is considered).
 	var/stunduration = 15
 	song = sound('modular_skyrat/sound/ambience/gladiator.ogg', 100)
 	songlength = 3850
+	loot = list(/obj/structure/closet/crate/necropolis/gladiator)
+	crusher_loot = list(/obj/structure/closet/crate/necropolis/gladiator/crusher)
 
 /obj/item/gps/internal/gladiator
 	icon_state = null
@@ -313,3 +317,23 @@ They deal 35 brute (armor is considered).
 			else
 				teleport(target)
 				ranged_cooldown += 20
+
+//Aggression helpers
+/obj/effect/step_trigger/gladiator
+	var/mob/living/simple_animal/hostile/megafauna/gladiator/glady
+
+/obj/effect/step_trigger/gladiator/Initialize()
+	. = ..()
+	for(var/mob/living/simple_animal/hostile/megafauna/gladiator/G in view(7, src))
+		if(!glady)
+			glady = G
+
+/obj/effect/step_trigger/gladiator/Trigger(atom/movable/A)
+	if(isliving(A))
+		var/mob/living/bruh = A 
+		glady.enemies |= bruh
+		glady.GiveTarget(bruh)
+		for(var/obj/effect/step_trigger/gladiator/glad in view(7, src))
+			qdel(glad)
+		return TRUE
+	return FALSE
