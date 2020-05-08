@@ -59815,6 +59815,7 @@
 /area/science/research)
 "ciO" = (
 /obj/structure/chair/stool,
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
 	},
@@ -69374,6 +69375,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "cAP" = (
@@ -69805,6 +69807,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "cBM" = (
@@ -85293,6 +85296,7 @@
 /obj/structure/chair/office/light{
 	dir = 1
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "tDM" = (

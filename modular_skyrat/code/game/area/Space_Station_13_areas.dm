@@ -25,3 +25,28 @@
 
 /area/mining_level_access/upper
 	name = "Upper Mining Level Access"
+
+/area/xenoarch
+	icon = 'modular_skyrat/icons/turf/areas.dmi'
+	icon_state = "xenogen"
+	has_gravity = STANDARD_GRAVITY
+
+/area/xenoarch/arch
+	name = "Xenoarchaeology"
+	icon_state = "xenoarch"
+
+/area/xenoarch/bot
+	name = "Xenoarchaeology Botany"
+	icon_state = "xenobot"
+
+/area/xenoarch/eng
+	name = "Xenoarchaeology Engineering"
+	icon_state = "xenoeng"
+
+/area/xenoarch/gen
+	name = "Xenoarchaeology Living Quarters"
+	icon_state = "xenogen"
+
+/area/xenoarch/sec
+	name = "Xenoarchaeology Security"
+	icon_state = "xenosec"
