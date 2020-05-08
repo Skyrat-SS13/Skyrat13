@@ -12,11 +12,10 @@
 	deathmessage = "gets discombobulated and fucking dies."
 	rapid_melee = 2
 	melee_queue_distance = 2
-	armour_penetration = 20
-	melee_damage_lower = 35
-	melee_damage_upper = 35
+	melee_damage_lower = 30
+	melee_damage_upper = 30
 	speed = 1
-	move_to_delay = 3
+	move_to_delay = 2.5
 	wander = FALSE
 	var/block_chance = 50
 	ranged = 1
@@ -29,7 +28,7 @@
 	var/phase = 1
 	var/list/introduced = list() //Basically all the mobs which the gladiator has already introduced himself to.
 	var/speen = FALSE
-	var/speenrange = 5
+	var/speenrange = 4
 	var/obj/savedloot = null
 	var/stunned = FALSE
 	var/stunduration = 15
@@ -51,24 +50,23 @@
 		if(!(M in introduced))
 			introduction(M)
 
-/mob/living/simple_animal/hostile/megafauna/gladiator/death()
-	..()
-	forceMove(get_step(src, src.dir))
-
 /mob/living/simple_animal/hostile/megafauna/gladiator/apply_damage(damage, damagetype, def_zone, blocked, forced)
-	if(!wander)
-		wander = TRUE
 	if(speen)
-		blocked = 200
 		visible_message("<span class='danger'>[src] brushes off all incoming attacks!")
+		return FALSE
 	else if(prob(50) && (phase == 1) && !stunned)
-		blocked = 200
 		visible_message("<span class='danger'>[src] blocks all incoming damage with his shield!")
+		return FALSE
 	..()
 	update_phase()
 	var/adjustment_amount = damage * 0.1
 	if(world.time + adjustment_amount > next_move)
 		changeNext_move(adjustment_amount)
+
+/mob/living/simple_animal/hostile/megafauna/gladiator/Retaliate()
+	. = ..()
+	if(!wander)
+		wander = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/introduction(mob/living/target)
 	if(src == target)
@@ -155,6 +153,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/update_phase()
 	var/healthpercentage = 100 * (health/maxHealth)
+	if(src.stat == DEAD)
+		return
 	switch(healthpercentage)
 		if(70 to 100)
 			phase = 1
@@ -164,32 +164,27 @@
 			phase = 2
 			icon_state = "gladiator2"
 			rapid_melee = 3
-			move_to_delay = 2.3
+			move_to_delay = 2
 		if(0 to 30)
 			phase = 3
 			icon_state = "gladiator3"
-			rapid_melee = 4
-			move_to_delay = 1.6
+			rapid_melee = 5
+			move_to_delay = 1.7
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/zweispin()
 	visible_message("<span class='boldwarning'>[src] lifts his zweihander, and prepares to spin!</span>")
 	speen = TRUE
 	animate(src, color = "#ff6666", 10)
-	sleep(10)
-	var/list/speendirs = GLOB.alldirs.Copy()
-	var/clockwise = TRUE
-	if(prob(50))
-		clockwise = FALSE
-	var/currentdir = pick(speendirs)
-	while(speendirs.len)
-		var/woop = FALSE
-		speendirs -= currentdir
-		sleep(6 - phase)
-		playsound(src, 'sound/weapons/fwoosh.wav', 50, 0)
-		var/turf/old_step = get_turf(src)
-		for(var/i, i >= speenrange, i++)
-			var/turf/steppy = get_step(old_step, currentdir)
-			new /obj/effect/temp_visual/small_smoke/halfsecond(steppy)
+	sleep(5)
+	var/list/speendirs = list(SOUTH, SOUTHWEST, WEST, NORTHWEST, NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH)
+	var/turf/steppy = get_turf(src)
+	var/woop = FALSE
+	for(var/dirt in speendirs)
+		src.dir = dirt
+		for(var/i in 1 to speenrange)
+			steppy = get_step(steppy, dirt)
+			var/obj/effect/temp_visual/small_smoke/smonk = new /obj/effect/temp_visual/small_smoke(steppy)
+			QDEL_IN(smonk, 1)
 			for(var/mob/living/M in steppy)
 				if(!faction_check(faction, M.faction))
 					playsound(src, 'sound/weapons/slash.ogg', 75, 0)
@@ -198,10 +193,10 @@
 					else
 						visible_message("<span class = 'userdanger'>[src]'s spinning zweihander is stopped by [M]!</span>")
 						woop = TRUE
-			sleep(2)
+		steppy = get_turf(src)
 		if(woop)
 			break
-		currentdir = angle2dir(dir2angle(currentdir) + (clockwise ? -45 : 45))
+		sleep(1)
 	animate(src, color = initial(color), 3)
 	sleep(3)
 	speen = FALSE
@@ -280,13 +275,13 @@
 	ranged_cooldown = world.time
 	switch(phase)
 		if(1)
-			if(prob(35) && (get_dist(src, target) <= 4))
+			if(prob(25) && (get_dist(src, target) <= 4))
 				zweispin()
 				ranged_cooldown += 60
 			else
-				if(prob(50))
+				if(prob(66))
 					chargeattack(target, 21)
-					ranged_cooldown += 120
+					ranged_cooldown += 40
 				else
 					teleport(target)
 					ranged_cooldown += 40
@@ -295,14 +290,14 @@
 				zweispin()
 				ranged_cooldown += 45
 			else
-				if(prob(30))
+				if(prob(35))
 					boneappletea(target)
 					ranged_cooldown += 35
 				else
 					teleport(target)
 					ranged_cooldown += 30
 		if(3)
-			if(prob(20))
+			if(prob(30))
 				boneappletea(target)
 				ranged_cooldown += 30
 			else
