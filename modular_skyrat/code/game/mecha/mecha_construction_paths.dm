@@ -532,8 +532,8 @@
 		),
 		//2
 		list(
-			"key" = /obj/item/tank/internals/oxygen,
-			"action" = ITEM_DELETE,
+			"key" = /obj/item/tank/internals/emergency_oxygen,
+			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_WRENCH,
 			"desc" = "The toolbox feet are connected to the extinguisher."
 		),
@@ -703,3 +703,4 @@
 				user.visible_message("[user] welds [parent] together completely.", "<span class='notice'>You weld [parent] together completely..</span>")
 			else
 				user.visible_message("[user] deadjusts [parent]'s wiring.", "<span class='notice'>You deadjust [parent]'s wiring.</span>")
+	return TRUE
