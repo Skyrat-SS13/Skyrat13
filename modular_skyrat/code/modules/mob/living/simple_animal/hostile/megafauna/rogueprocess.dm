@@ -16,7 +16,7 @@
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	speed = 1
-	move_to_delay = 18
+	move_to_delay = 15
 	ranged_cooldown_time = 75
 	ranged = 1
 	del_on_death = 0
@@ -27,8 +27,10 @@
 	anger_modifier = 0
 	do_footstep = TRUE
 	mob_biotypes = MOB_ROBOTIC
-	song = sound('modular_skyrat/sound/ambience/dummyremix.ogg', 100) //System shock theme remix by Master Boot Record
+	song = sound('modular_skyrat/sound/ambience/mbrsystemshock.ogg', 100) //System shock theme remix by Master Boot Record
 	songlength = 2930
+	var/special = FALSE
+	wander = FALSE
 
 /obj/item/gps/internal/rogueprocess
 	icon_state = null
@@ -46,12 +48,15 @@
 	. = ..()
 	internal = new /obj/item/gps/internal/rogueprocess(src)
 
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/Life()
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/adjustHealth(amount, updating_health, forced)
 	. = ..()
 	anger_modifier = round(clamp(((maxHealth - health) / 42),0,60))
 	move_to_delay = clamp(round((src.health/src.maxHealth) * 10), 3, 18)
+	wander = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
+	if(special)
+		return FALSE
 	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier) //Ranged cooldown will always be at least 15
 	if(anger_modifier < 30)
 		if(prob(50))
@@ -74,6 +79,8 @@
 			INVOKE_ASYNC(src, .proc/shockwave, EAST, 15)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/AttackingTarget(target)
+	if(special)
+		return FALSE
 	if(prob(25))
 		if(prob(50))
 			knockdown()
@@ -85,6 +92,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/Move()
 	. = ..()
+	if(special)
+		return FALSE
 	playsound(src.loc, 'sound/mecha/mechmove01.ogg', 200, 1, 2, 1)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/Bump(atom/A)
@@ -95,9 +104,10 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmashot(atom/target)
 	var/list/theline = getline(src, target)
-	if(theline.len > 2)
+	if(theline.len > 1)
 		visible_message("<span class='boldwarning'>[src] raises it's plasma cutter!</span>")
-		sleep(5)
+		special = TRUE
+		sleep(4)
 		var/turf/T = get_turf(target)
 		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
 		var/turf/startloc = T
@@ -110,9 +120,10 @@
 		P.original = target
 		P.preparePixelProjectile(target, src)
 		P.fire()
+		special = FALSE
 	else
 		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
-		sleep(5)
+		sleep(3)
 		SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
 		in_melee = TRUE
 		target.attack_animal(src)
@@ -121,8 +132,9 @@
 	var/list/theline = getline(src, target)
 	if(theline.len > 2)
 		visible_message("<span class='boldwarning'>[src] raises it's tri-shot plasma cutter!</span>")
+		special = TRUE
 		var/ogdir = src.dir
-		sleep(15)
+		sleep(7)
 		var/turf/T = get_turf(target)
 		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
 		var/turf/otherT = get_step(T, ogdir + 90)
@@ -159,6 +171,7 @@
 		Y.original = target
 		Y.preparePixelProjectile(otherT2, src)
 		Y.fire()
+		special = FALSE
 		return P
 	else
 		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
@@ -169,10 +182,11 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/knockdown()
 	visible_message("<span class='boldwarning'>[src] smashes into the ground!</span>")
+	special = TRUE
 	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	var/list/hit_things = list()
-	sleep(6)
-	for(var/turf/T in oview(1, src))
+	sleep(5)
+	for(var/turf/T in oview(2, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		for(var/mob/living/L in T.contents)
 			if(L != src && !(L in hit_things))
@@ -181,11 +195,14 @@
 					L.safe_throw_at(throwtarget, 10, 1, src)
 					L.Stun(20)
 					L.apply_damage_type(40, BRUTE)
+	sleep(5)
+	special = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/shockwave(direction, range)
 	visible_message("<span class='boldwarning'>[src] smashes the ground in a general direction!!</span>")
+	special = TRUE
 	playsound(src,'sound/misc/crunch.ogg', 200, 1)
-	sleep(10)
+	sleep(5)
 	var/list/hit_things = list()
 	var/turf/T = get_turf(get_step(src, src.dir))
 	var/ogdir = direction
@@ -200,23 +217,24 @@
 				var/throwtarget = get_edge_target_turf(T, get_dir(T, L))
 				L.safe_throw_at(throwtarget, 5, 1, src)
 				L.Stun(10)
-				L.adjustBruteLoss(25)
+				L.apply_damage_type(25, BRUTE)
 		for(var/mob/living/L in otherT.contents)
 			if(L != src && !(L in hit_things))
 				var/throwtarget = get_edge_target_turf(otherT, get_dir(otherT, L))
 				L.safe_throw_at(throwtarget, 5, 1, src)
 				L.Stun(10)
-				L.adjustBruteLoss(25)
+				L.apply_damage_type(25, BRUTE)
 		for(var/mob/living/L in otherT2.contents)
 			if(L != src && !(L in hit_things))
 				var/throwtarget = get_edge_target_turf(otherT2, get_dir(otherT2, L))
 				L.safe_throw_at(throwtarget, 5, 1, src)
 				L.Stun(10)
-				L.adjustBruteLoss(25)
+				L.apply_damage_type(25, BRUTE)
 		T = get_step(T, ogdir)
 		otherT = get_step(otherT, ogdir)
 		otherT2 = get_step(otherT2, ogdir)
 		sleep(2)
+	special = FALSE
 
 //loot
 /obj/item/twohanded/rogue
