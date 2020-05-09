@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "The maploader can once again crop maps, although the functionality may be ... different."
