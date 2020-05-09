@@ -200,7 +200,7 @@ Difficulty: Medium
 	spin(5,2)// Spin me boi
 
 //Chance to dodge projectiles when angered or enraged
-/mob/living/simple_animal/hostile/megafauna/sif/bullet_act(obj/projectile/P)
+/mob/living/simple_animal/hostile/megafauna/sif/bullet_act(obj/item/projectile/P)
 	var/passed = 0
 
 	if(angered)
