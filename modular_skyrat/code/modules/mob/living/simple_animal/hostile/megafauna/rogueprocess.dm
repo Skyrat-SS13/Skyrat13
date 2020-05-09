@@ -108,7 +108,7 @@
 		visible_message("<span class='boldwarning'>[src] raises it's plasma cutter!</span>")
 		special = TRUE
 		sleep(4)
-		var/turf/T = get_turf(target)
+		var/turf/T = get_turf(src)
 		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
 		var/turf/startloc = T
 		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
