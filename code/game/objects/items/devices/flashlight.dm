@@ -195,7 +195,7 @@
 	. = ..()
 	playsound(loc, 'sound/machines/ping.ogg', 50, 0) //make some noise!
 	if(creator)
-		visible_message("<span class='danger'>[creator] created a medical hologram!</span>")
+		visible_message("<span class='danger'>[creator] needs to heal someone!</span>")//skyrat change
 
 
 /obj/item/flashlight/seclite
