@@ -2,6 +2,8 @@
 	name = "General Modification Kit"
 	category = SLOT_HANDS
 	path = /obj/item/skin_kit
+	restricted_roles = FREEMAN_ROLES
+	restricted_desc = "All, barring Prisoners"
 
 /datum/gear/paicard
 	name = "Personal AI device"

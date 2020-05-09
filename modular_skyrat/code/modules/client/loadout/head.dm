@@ -83,7 +83,8 @@
 /datum/gear/baseballcap/security
 	name = "Security Cap"
 	path = /obj/item/clothing/head/soft/sec
-	restricted_roles = list("Security Officer", "Warden", "Head of Security")
+	restricted_roles = SEC_ROLES
+	restricted_desc = "Security"
 
 /datum/gear/baseballcap/emt
 	name = "EMT Cap"

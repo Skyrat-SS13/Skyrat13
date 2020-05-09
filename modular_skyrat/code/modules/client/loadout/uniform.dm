@@ -28,6 +28,7 @@
 
 /datum/gear/trekfedutil
 	name = "Fed uniform, classic"
+	restricted_roles = NONCIV_ROLES // Accomodates for modular and forgotten roles.
 
 /datum/gear/trekfedtrainee
 	name = "Fed uniform, trainee/assistant"
@@ -36,4 +37,5 @@
 /datum/gear/trekfedservice
 	name = "Fed uniform, service"
 	path = /obj/item/clothing/under/trek/orvi/service
-	restricted_roles = list("Head of Personnel", "Bartender", "Botanist", "Cook", "Curator", "Chaplain", "Janitor", "Assistant")
+	restricted_roles = CIV_ROLES
+	restricted_desc = "Civilian and Service"
