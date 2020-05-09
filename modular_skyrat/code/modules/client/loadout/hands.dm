@@ -19,4 +19,4 @@
 	restricted_roles = list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster",
 							"Medical Doctor", "Chemist", "Virologist", "Geneticist", "Scientist", "Roboticist",
 							"Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer",
-							"Cargo Technician", "Shaft Miner")
+							"Cargo Technician", "Shaft Miner", "Paramedic", "Blueshield")
