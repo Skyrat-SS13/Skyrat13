@@ -144,7 +144,6 @@
 	materials = list(/datum/material/iron=15000)
 	construction_time = 150
 	category = list("Ripley","Firefighter", "Killdozer")
-	category = list("Cyborg Upgrade Modules")
 
 ///Power Armor
 /datum/design/powerarmor_skeleton

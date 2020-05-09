@@ -25,7 +25,7 @@
 	antag_flag = ROLE_BLOODSUCKER
 	false_report_weight = 1
 	restricted_jobs = list("AI","Cyborg")
-	protected_jobs = list("Chaplain", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster")
+	protected_jobs = list("Chaplain", "Security Officer", "Warden", "Detective", "Brig Physician", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster") //Skyrat change adds Brig Physician to protected jobs
 	required_players = 20
 	required_enemies = 2
 	recommended_enemies = 4
@@ -53,7 +53,7 @@
 		restricted_jobs += "Assistant"
 
 	// Set number of Vamps
-	recommended_enemies = CLAMP(round(num_players()/10), 1, 6);
+	recommended_enemies = clamp(round(num_players()/10), 1, 6);
 
 	// Select Antags
 	for(var/i = 0, i < recommended_enemies, i++)
@@ -195,7 +195,7 @@
 		return FALSE
 	if(target.stat > UNCONSCIOUS)
 		return FALSE
-	
+
 				// Check Overdose: Am I even addicted to blood? Do I even have any in me?
 				//if (!target.reagents.addiction_list || !target.reagents.reagent_list)
 					//message_admins("DEBUG2: can_make_vassal() Abort: No reagents")

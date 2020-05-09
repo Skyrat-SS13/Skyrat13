@@ -3,6 +3,11 @@
 	icon_state = "lyssa"
 	item_state = "lyssa"
 
+/obj/item/toy/plush/lizardplushie/katra
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "katra"
+	item_state = "katra"
+
 /obj/item/toy/plush/lizardplushie/stalks
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "stalks"
@@ -13,10 +18,20 @@
 	icon_state = "xil"
 	item_state = "xil"
 
+/obj/item/toy/plush/lizardplushie/owai
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "owai"
+	item_state = "owai"
+
 /obj/item/toy/plush/lizardplushie/emily
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "emily"
 	item_state = "emily"
+
+/obj/item/toy/plush/lizardplushie/bottles
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "bottles"
+	item_state = "bottles"
 
 /obj/item/toy/plush/sergal/jadek
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
@@ -45,6 +60,21 @@
 	icon_state = "odrew"
 	item_state = "odrew"
 
+/obj/item/toy/plush/mammal/michael
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "michael"
+	item_state = "michael"
+
+/obj/item/toy/plush/mammal/cinder
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "cinder"
+	item_state = "cinder"
+	attack_verb = list("PRed", "mapped", "gitbashed")
+
+/obj/item/toy/plush/mammal/taff
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "taff"
+	item_state = "taff"
 /obj/item/toy/plush/mammal/odrew/gorelord
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "gorelord-drew"

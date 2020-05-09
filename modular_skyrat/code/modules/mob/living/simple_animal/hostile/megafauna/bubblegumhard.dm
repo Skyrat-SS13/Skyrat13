@@ -38,8 +38,8 @@ Difficulty: Hard
 	var/enrage_till = 0
 	var/enrage_time = 70
 	var/revving_charge = FALSE
-	var/nest_range = 10
-	var/true_spawn = TRUE
+	nest_range = 10
+	true_spawn = TRUE
 
 	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now, slayer... "
 	deathsound = 'sound/magic/enter_blood.ogg'
@@ -58,8 +58,8 @@ obj/item/gps/internal/bubblegum/hard
 	if(charging)
 		return
 
-	anger_modifier = CLAMP(((maxHealth - health)/60),0,20)
-	enrage_time = initial(enrage_time) * CLAMP(anger_modifier / 20, 0.5, 1)
+	anger_modifier = clamp(((maxHealth - health)/60),0,20)
+	enrage_time = initial(enrage_time) * clamp(anger_modifier / 20, 0.5, 1)
 	ranged_cooldown = world.time + 50
 
 	if(!try_bloodattack() || prob(25 + anger_modifier))
