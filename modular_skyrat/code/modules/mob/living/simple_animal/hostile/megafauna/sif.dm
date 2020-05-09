@@ -82,7 +82,9 @@ Difficulty: Medium
 	var/stageTwo = FALSE
 	var/stageThree = FALSE
 	var/currentPower = 0 //Every few seconds this variable gets higher, when it gets high
-						 //enough it will use a special attack then reset the variable to 0
+						 //enough it will use a special attack then reset the variable to 0w
+	song = sound('modular_skyrat/sound/ambience/furidanger802', 100) //Furi is awesome and you should play it, reader.
+	songlength = 2670
 
 /obj/item/gps/internal/sif
 	icon_state = null
