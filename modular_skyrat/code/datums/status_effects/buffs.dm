@@ -30,13 +30,13 @@
 
 /datum/status_effect/stealthsuit/on_remove()
 	. = ..()
-	animate(owner, owner.alpha = 255, time = 10)
+	owner.alpha = 255
 
 /datum/status_effect/stealthsuit/tick()
 	. = ..()
 	currentturf = get_turf(owner)
 	if(currentturf == oldturf) //ALMOST completely invisible
-		animate(owner, owner.alpha = max(owner.alpha - 45, 10), time = 10)
+		owner.alpha = max(owner.alpha - 45, 10)
 	oldturf = currentturf
 
 /datum/status_effect/stealthsuit/process()
@@ -49,7 +49,7 @@
 		if(owner.alpha <= 127) //making it announce everytime you pick something up is annoying bro
 			to_chat(owner, "<span class='warning'>Something interferes with your suit's stealth system, revealing you!</span>")
 		playsound(owner.loc, "sparks", 100, 1)
-		animate(owner, , alpha = 255, time = 5)
+		owner.alpha = 255
 	inhandold = inhand
 	inhandlold = inhandl
 	healthold = health
