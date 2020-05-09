@@ -1,0 +1,16 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - balance: "fleshmend loudness 0 -> 2"
+  - balance: "strained muscles chem cost 15 -> 0"
+  - balance: "strained muscles stacks decay slower. might make it even slower depending on if this is too good or not."
+  - balance: "organic shield evo point cost 1 -> 2"
+  - balance: "resonant shriek evo point cost 1 -> 2"
+  - balance: "dissonance shriek evo point cost 1 -> 2"
+  - balance: "armblade chem cost 20 -> 10"
+  - tweak: "chameleon skin chem cost 20 -> 0"
+  - balance: "biodegrade chem cost 30 -> 15"
+  - tweak: "augmented eyes are now actual thermals (hopefully)"
+  - tweak: "adrenals no longer gives you regen jelly/mannitol (that's what fleshmend is for)"
+  - balance: "chitin armor is now 70 melee, 60 bullet, 30 laser, 40 energy from 40, 40, 40, 20."
+  - balance: "chitin armor reduces chem generation from 25% -> 50%"
