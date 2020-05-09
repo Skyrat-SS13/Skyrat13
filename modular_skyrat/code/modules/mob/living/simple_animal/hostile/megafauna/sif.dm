@@ -90,9 +90,9 @@ Difficulty: Medium
 	gpstag = "Infinity Signal"
 	desc = "No, it's not thanos."
 
-/mob/living/simple_animal/hostile/megafauna/gladiator/Initialize(mapload)
+/mob/living/simple_animal/hostile/megafauna/sif/Initialize(mapload)
 	. = ..()
-	internal = new /obj/item/gps/internal/gladiator(src)
+	internal = new /obj/item/gps/internal/sif(src)
 
 //no medals rewarded for killing the beacon
 /mob/living/simple_animal/hostile/megafauna/sif/living_beacon/grant_achievement(medaltype, scoretype, crusher_kill, list/grant_achievement)
