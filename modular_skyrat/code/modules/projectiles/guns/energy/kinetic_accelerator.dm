@@ -267,6 +267,26 @@
 /obj/item/borg/upgrade/modkit/cooldown/cooler/modify_projectile(obj/item/projectile/kinetic/K)
 	K.damage -= (modifier *2)
 
+//rogue process
+/obj/item/borg/upgrade/modkit/plasma
+	name = "plasma modification kit"
+	desc = "Makes your accelerator also shoot a burst of plasma."
+	modifier = 10
+	cost = 35
+
+/obj/item/borg/upgrade/modkit/plasma/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
+	playsound(KA, 'sound/weapons/laser.ogg', 100, TRUE)
+	var/turf/startloc = K.loc
+	var/obj/item/projectile/P = new /obj/item/projectile/plasma/adv(startloc)
+	P.starting = startloc
+	P.firer = K.firer
+	P.fired_from = KA
+	P.yo = target.y - startloc.y
+	P.xo = target.x - startloc.x
+	P.original = target
+	P.preparePixelProjectile(target, src)
+	P.fire()
+
 //10mm modkit (currently broken, only the 10mm pka works)
 /obj/item/gun/energy/kinetic_accelerator/tenmm
 	desc = "A self recharging, ranged mining tool that does increased damage in low pressure. This one feels a bit heavier than usual."
