@@ -177,7 +177,7 @@
 		//23
 		list(
 			"key" = /obj/item/stack/sheet/mineral/plastitanium,
-			"amount" = 10,
+			"amount" = 5,
 			"back_key" = TOOL_CROWBAR,
 			"desc" = "Additional titanium alloy armoring is being installed."
 		),
@@ -604,8 +604,8 @@
 		),
 		//19
 		list(
-			"key" = /obj/item/stack/sheet/mineral/plastitanium,
-			"amount" = 15,
+			"key" = /obj/item/stack/sheet/mineral/titanium,
+			"amount" = 5,
 			"back_key" = TOOL_WELDER,
 			"desc" = "The inner armor layer is welded."
 		),
