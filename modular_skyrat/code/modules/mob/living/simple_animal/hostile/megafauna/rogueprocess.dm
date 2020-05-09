@@ -211,7 +211,7 @@
 	var/turf/otherT = get_step(T, turn(ogdir, 90))
 	var/turf/otherT2 = get_step(T, turn(ogdir, -90))
 	if(!T)
-		if(speciallize)
+		if(specialize)
 			special = FALSE
 		return
 	for(var/i in 1 to range)
