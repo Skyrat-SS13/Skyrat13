@@ -16,13 +16,13 @@
 	canSmoothWith = null
 	layer = 2.1
 	var/smooth_icon = 'modular_skyrat/icons/turf/floors/smooth_grass.dmi'
+	var/smoothing_groups = list(/turf/open/floor/smooth_grass, /turf/closed/indestructible)
 
 /turf/open/floor/smooth_grass/Initialize()
 	if(!canSmoothWith)
-		canSmoothWith = list(/turf/open/floor/smooth_grass, /turf/closed/indestructible)
+		canSmoothWith = smoothing_groups
 	var/matrix/M = new
 	M.Translate(-8, -8)
 	transform = M
 	icon = smooth_icon
-	icon_state = "[icon_state]+[rand(0,3)]"
 	. = ..()
