@@ -266,7 +266,7 @@ They deal 35 brute (armor is considered).
 			break
 		else
 			forceMove(src, T)
-			var/time2sleep = 0.5
+			var/time2sleep = 0.25
 			sleep(time2sleep)
 	speen = FALSE
 	stunned = TRUE
@@ -283,12 +283,12 @@ They deal 35 brute (armor is considered).
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		forceMove(T)
 	else
-		var/list/possiblelocs = view(3, target)
+		var/list/possiblelocs = (view(3, target) - view(1, target))
 		for(var/atom/A in possiblelocs)
 			if(!isturf(A))
 				possiblelocs -= A
 			else
-				if(ischasm(A) || istype(A, /turf/closed))
+				if(ischasm(A) || istype(A, /turf/closed) || (/mob/living in A))
 					possiblelocs -= A
 		if(possiblelocs.len)
 			T = pick(possiblelocs)
@@ -332,14 +332,14 @@ They deal 35 brute (armor is considered).
 				zweispin()
 				ranged_cooldown += 55
 			else
-				if(prob(35))
+				if(prob(40))
 					boneappletea(target)
 					ranged_cooldown += 35
 				else
 					teleport(target)
 					ranged_cooldown += 30
 		if(3)
-			if(prob(30))
+			if(prob(35))
 				boneappletea(target)
 				ranged_cooldown += 30
 			else
