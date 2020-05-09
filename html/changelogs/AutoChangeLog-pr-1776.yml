@@ -1,0 +1,6 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "Added a Wiring skill, which is more or less how good you are at pulsing, cutting, mending and using wires."
+  - tweak: "some obligatory not-unarmed combat mode tweaks in shove in skills support. Rule of thumb: keep combat mode on when toolboxing people and objects."
+  - rscadd: "Mood now affect skills... well, not that it matters that much, at least until I introduce more of them. Which will be pretty soon I guess."

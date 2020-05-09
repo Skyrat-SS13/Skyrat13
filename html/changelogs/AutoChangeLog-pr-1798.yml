@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - balance: "stimpaks are once again pre-fight buffs, only having one use for 5 minutes of rampaging that doesn't pierce hardsuits. as a tradeoff, they now cost less and can be bought by traitors running scarp/desword as a support consumable."
