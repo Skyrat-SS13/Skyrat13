@@ -4,5 +4,5 @@
 	path = /obj/item/hhmirror
 
 /datum/gear/crowbar
-	restricted_roles = FREEMAN_ROLES
+	restricted_roles = NOPRISON_ROLES
 	restricted_desc = "All, barring Prisoners"

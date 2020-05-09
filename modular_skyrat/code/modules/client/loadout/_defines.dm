@@ -1,11 +1,11 @@
 // Everyone, but Civilian and Service
-#define NONCIV_ROLES list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster",\
+#define NOCIV_ROLES list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster",\
 							"Medical Doctor", "Chemist", "Paramedic", "Virologist", "Geneticist", "Scientist", "Roboticist",\
 							"Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Blueshield", "Brig Physician",\
 							"Cargo Technician", "Shaft Miner")
 
 // Literally everyone, but Prisoners. Hopefully tempoary, until proper blacklist.
-#define FREEMAN_ROLES list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster",\
+#define NOPRISON_ROLES list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster",\
 							"Medical Doctor", "Chemist", "Paramedic", "Virologist", "Geneticist", "Scientist", "Roboticist",\
 							"Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Blueshield", "Brig Physician",\
 							"Cargo Technician", "Shaft Miner",\

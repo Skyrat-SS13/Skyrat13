@@ -34,5 +34,5 @@
 	path = /obj/item/clothing/mask/gas/glass
 	category = SLOT_WEAR_MASK
 	cost = 3
-	restricted_roles = FREEMAN_ROLES
+	restricted_roles = NOPRISON_ROLES
 	restricted_desc = "All, barring Prisoners"

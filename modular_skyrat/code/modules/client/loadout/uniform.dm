@@ -28,7 +28,7 @@
 
 /datum/gear/trekfedutil
 	name = "Fed uniform, classic"
-	restricted_roles = NONCIV_ROLES // Accomodates for modular and forgotten roles.
+	restricted_roles = NOCIV_ROLES // Accomodates for modular and forgotten roles.
 
 /datum/gear/trekfedtrainee
 	name = "Fed uniform, trainee/assistant"

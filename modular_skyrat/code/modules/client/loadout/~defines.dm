@@ -1,6 +1,6 @@
 // Simply undefines loadout stuff to not mess with the rest of code, and because BYOND is BYOND.
-#undef NONCIV_ROLES
-#undef FREEMAN_ROLES
+#undef NOCIV_ROLES
+#undef NOPRISON_ROLES
 
 #undef CMD_ROLES
 #undef MED_ROLES
