@@ -87,7 +87,7 @@
 /obj/item/gun/ballistic/automatic/railgun/shoot_live_shot()
 	. = ..()
 	var/obj/item/ammo_casing/rod/shot = chambered
-	cell.use(shot.energy_cost)
+	cell.use(200)
 
 /obj/item/gun/ballistic/automatic/railgun/emp_act(severity)
 	. = ..()
