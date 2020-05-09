@@ -69,7 +69,6 @@ Difficulty: Medium
 	del_on_death = 1
 	loot = list(/obj/structure/closet/crate/necropolis/sif)
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/sif/crusher)
-	gps_name = "Infinity Signal"
 
 	deathmessage = "falls into the abyss."
 	deathsound = 'modular_skyrat/sound/sif/death_howl.ogg'
@@ -83,7 +82,7 @@ Difficulty: Medium
 	var/stageThree = FALSE
 	var/currentPower = 0 //Every few seconds this variable gets higher, when it gets high
 						 //enough it will use a special attack then reset the variable to 0w
-	song = sound('modular_skyrat/sound/ambience/furidanger802', 100) //Furi is awesome and you should play it, reader.
+	song = sound('modular_skyrat/sound/ambience/furidanger802.ogg', 100) //Furi is awesome and you should play it, reader.
 	songlength = 2670
 
 /obj/item/gps/internal/sif
@@ -226,7 +225,7 @@ Difficulty: Medium
 	src.angered = TRUE
 	src.stageTwo = TRUE
 	src.visible_message("<span class='userdanger'>[src] lets out a ear ripping howl!</span>", "<span class='userdanger'>[src] lets out an ear ripping roar!</span>")
-	playsound(src, 'modular_skyrat/sound/effects/howl.ogg', 100, 1)
+	playsound(src, 'modular_skyrat/sound/sif/howl.ogg', 100, 1)
 	var/mob/living/L = target
 	shake_camera(L, 4, 3)
 	src.speed = 10
@@ -240,7 +239,7 @@ Difficulty: Medium
 	src.stageThree = TRUE
 	src.enraged = TRUE
 	src.visible_message("<span class='userdanger'>[src] lets out a ear ripping yelp!</span>", "<span class='userdanger'>[src] lets out an ear ripping yelp!</span>")
-	playsound(src, 'modular_skyrat/sound/effects/howl.ogg', 100, 1)
+	playsound(src, 'modular_skyrat/sound/sif/howl.ogg', 100, 1)
 	var/mob/living/L = target
 	shake_camera(L, 8, 6)
 	src.speed = 4
@@ -323,8 +322,8 @@ Difficulty: Medium
 			if(isturf(src.loc) || isobj(src.loc) && src.loc.density)
 				src.ex_act(EXPLODE_HEAVY)
 				explosion(get_turf(src), 0, 0, 4, 0, adminlog = FALSE, ignorecap = FALSE, flame_range = 0, silent = TRUE, smoke = FALSE)
-				playsound(src, pick('modular_skyrat/sound/effects/whoosh1.ogg', 'modular_skyrat/sound/effects/whoosh2.ogg', 'modular_skyrat/sound/effects/whoosh3.ogg'), 300, 1)
-				playsound(src, 'modular_skyrat/sound/effects/blade_spin.ogg', 400, 1)
+				playsound(src, pick('modular_skyrat/sound/sif/whoosh1.ogg', 'modular_skyrat/sound/sif/whoosh2.ogg', 'modular_skyrat/sound/sif/whoosh3.ogg'), 300, 1)
+				playsound(src, 'modular_skyrat/sound/sif/blade_spin.ogg', 400, 1)
 				if(angered)
 					src.speed = 8
 					src.move_to_delay = 2
@@ -343,7 +342,7 @@ Difficulty: Medium
 			L.visible_message("<span class='danger'>[src] stomps on [L]!</span>", "<span class='userdanger'>[src] stomps on you!</span>")
 			src.forceMove(get_turf(L))
 			L.apply_damage(20, BRUTE)
-			playsound(get_turf(L), 'modular_skyrat/sound/effects/sif_stomp.ogg', 400, 1)
+			playsound(get_turf(L), 'modular_skyrat/sound/sif/sif_stomp.ogg', 400, 1)
 			shake_camera(L, 4, 3)
 			shake_camera(src, 2, 3)
 	..()
