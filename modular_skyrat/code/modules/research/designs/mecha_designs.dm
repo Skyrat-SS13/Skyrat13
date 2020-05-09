@@ -25,7 +25,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/buzz_peri
-	name = "\"Clarke\" Peripherals Control module"
+	name = "\"Buzz\" Peripherals Control module"
 	desc = "Allows for the construction of a  \"Buzz\" Peripheral Control module."
 	id = "buzz_peri"
 	build_path = /obj/item/circuitboard/mecha/buzz/peripherals
