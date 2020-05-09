@@ -8,6 +8,5 @@
 #undef SEC_ROLES
 #undef ENG_ROLES
 #undef CRG_ROLES
-#undef SRV_ROLES
 #undef CIV_ROLES
 #undef FUN_ROLES
