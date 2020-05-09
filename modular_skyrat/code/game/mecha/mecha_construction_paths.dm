@@ -533,6 +533,7 @@
 		//2
 		list(
 			"key" = /obj/item/tank/internals/oxygen,
+			"action" = ITEM_DELETE,
 			"back_key" = TOOL_WRENCH,
 			"desc" = "The toolbox feet are connected to the extinguisher."
 		),
