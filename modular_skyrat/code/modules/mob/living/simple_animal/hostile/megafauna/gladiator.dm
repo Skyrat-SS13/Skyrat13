@@ -196,24 +196,47 @@ They deal 35 brute (armor is considered).
 	speen = TRUE
 	animate(src, color = "#ff6666", 10)
 	sleep(5)
-	var/list/speendirs = list(SOUTH, SOUTHWEST, WEST, NORTHWEST, NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH)
-	var/turf/steppy = get_turf(src)
+	var/list/speenturfs = list()
+	var/list/temp = (view(speenrange, src) - view(speenrange-1, src))
+	speenturfs.len = temp.len
 	var/woop = FALSE
-	for(var/dirt in speendirs)
-		src.dir = dirt
-		for(var/i in 1 to speenrange)
-			steppy = get_step(steppy, dirt)
-			var/obj/effect/temp_visual/small_smoke/smonk = new /obj/effect/temp_visual/small_smoke(steppy)
+	var/start = 0
+	for(var/i in 0 to speenrange)
+		speenturfs[1+i] = locate(x - i, y - speenrange, z)
+		start = i
+	for(var/i in 1 to (speenrange*2))
+		var/turf/T = speenturfs[start]
+		speenturfs[start+i] = locate(T.x, T.y + i, T.z)
+		if(i == (speenrange*2))
+			start = (start+i)
+	for(var/i in 1 to (speenrange*2))
+		var/turf/T = speenturfs[start]
+		speenturfs[start+i] = locate(T.x + i, T.y, T.z)
+		if(i == (speenrange*2))
+			start = (start+i)
+	for(var/i in 1 to (speenrange*2))
+		var/turf/T = speenturfs[start]
+		speenturfs[start+i] = locate(T.x, T.y - i, T.z)
+		if(i == (speenrange*2))
+			start = (start+i)
+	for(var/i in 1 to speenrange)
+		var/turf/T = speenturfs[start]
+		speenturfs[start+i] = locate(T.x - i, T.y, T.z)
+	var/list/hit_things = list()
+	for(var/turf/T in speenturfs)
+		src.dir = get_dir(src, T)
+		for(var/turf/U in (getline(src, T) - get_turf(src)))
+			var/obj/effect/temp_visual/small_smoke/smonk = new /obj/effect/temp_visual/small_smoke(U)
 			QDEL_IN(smonk, 1.5)
-			for(var/mob/living/M in steppy)
-				if(!faction_check(faction, M.faction))
+			for(var/mob/living/M in U)
+				if(!faction_check(faction, M.faction) && !(M in hit_things))
 					playsound(src, 'sound/weapons/slash.ogg', 75, 0)
 					if(M.apply_damage(40, BRUTE, BODY_ZONE_CHEST))
 						visible_message("<span class = 'userdanger'>[src] slashes [M] with his spinning zweihander!</span>")
 					else
 						visible_message("<span class = 'userdanger'>[src]'s spinning zweihander is stopped by [M]!</span>")
 						woop = TRUE
-		steppy = get_turf(src)
+					hit_things += M
 		if(woop)
 			break
 		sleep(1.5)
