@@ -27,6 +27,19 @@
 	box.dump_box_contents()
 	return ..()
 
+/obj/mecha/working/clarke/Move()
+	. = ..()
+	if(.)
+		collect_ore()
+
+/obj/mecha/working/clarke/proc/collect_ore()
+	if(locate(/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp) in equipment)
+		var/obj/structure/ore_box/ore_box = box
+		if(ore_box)
+			for(var/obj/item/stack/ore/ore in range(1, src))
+				if(ore.Adjacent(src) && ((get_dir(src, ore) & dir) || ore.loc == loc)) //we can reach it and it's in front of us? grab it!
+					ore.forceMove(ore_box)
+
 /obj/mecha/working/clarke/moved_inside(mob/living/carbon/human/H)
 	. = ..()
 	if(.)
