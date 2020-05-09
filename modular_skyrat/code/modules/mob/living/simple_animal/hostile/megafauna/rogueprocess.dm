@@ -96,18 +96,6 @@
 			else
 				INVOKE_ASYNC(src, .proc/ultishockwave, 10, TRUE)
 
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/AttackingTarget(target)
-	if(special)
-		return FALSE
-	if(prob(20))
-		if(prob(50))
-			knockdown(TRUE)
-		else
-			face_atom(target)
-			shockwave(src.dir, 5, TRUE)
-	else
-		..()
-
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/Move()
 	. = ..()
 	if(special)
@@ -261,7 +249,7 @@
 				return
 			new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 			for(var/mob/living/L in T.contents)
-				if(L != src && !(L in hit_things) && !faction_check(L, src))
+				if(L != src && !(L in hit_things) && !faction_check(L.faction, faction))
 					var/throwtarget = get_edge_target_turf(T, get_dir(T, L))
 					L.safe_throw_at(throwtarget, 5, 1, src)
 					L.Stun(10)
