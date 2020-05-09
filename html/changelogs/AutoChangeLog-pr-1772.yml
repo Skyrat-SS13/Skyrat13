@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Fixed some sprite issues and nit-picks with combat boots, an hardsuit helmet, cats and satchel of holding."

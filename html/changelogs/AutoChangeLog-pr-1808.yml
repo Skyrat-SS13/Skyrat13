@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Fixing recharges dropping item on the floor when the latter is withdrawn by hand."
