@@ -1,4 +1,4 @@
-	//kinetic destroyer (premium crusher
+//kinetic destroyer (premium crusher
 /obj/item/twohanded/kinetic_crusher/premiumcrusher
 	icon = 'modular_skyrat/icons/obj/mining.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/hammerspc_lefthand.dmi'
@@ -6,6 +6,7 @@
 	name = "Kinetic Destroyer"
 	desc = "Revised and refined by veteran miners, this crusher design has been improved in nearly everyway. Featuring a lightweight composite body and a hardened plastitanium head, this weapon is exceptional at removing life from most things."
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	armour_penetration = 15
 	detonation_damage = 60
 	backstab_bonus = 40
 
