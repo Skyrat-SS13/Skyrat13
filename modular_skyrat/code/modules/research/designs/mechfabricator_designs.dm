@@ -331,6 +331,7 @@
 /datum/design/exosuit_gps
 	name = "Exosuit GPS"
 	desc = "Allows for the construction of an exosuit-fitted GPS."
+	build_type = MECHFAB
 	id = "exogps"
 	build_path = /obj/item/mecha_parts/mecha_equipment/gps
 	category = list("Exosuit Modules")
@@ -340,6 +341,7 @@
 	name = "Buzz Energy Lance"
 	desc = "Allows for the construction of an energy lance module for Buzz mechs."
 	id = "buzz_lance"
+	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/energylance
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
@@ -348,6 +350,7 @@
 	name = "Buzz Hydraulic Clamp"
 	desc = "Allows for the construction of a titanium alloy clamp for Buzz mechs."
 	id = "buzz_clamp"
+	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/buzz
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
@@ -356,6 +359,7 @@
 	name = "Buzz Thrusters"
 	desc = "Allows for the construction of a thruster module for Buzz mechs."
 	id = "buzz_thrusters"
+	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/buzzthrusters
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
