@@ -54,7 +54,7 @@
 	result =  /obj/item/shard/shank
 	parts = list(/obj/item/shard = 1)
 	reqs = list(/obj/item/stack/cable_coil = 1,
-				/obj/item/stack/wrapping_paper = 1)
+				/obj/item/stack/packageWrap = 1)
 	time = 20
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
