@@ -44,3 +44,20 @@
 	else
 		message = "makes a very loud noise."
 	. = ..()
+
+/datum/emote/living/conga
+	key = "conga"
+	key_third_person = "congas"
+	message = "congas!"
+	emote_type = EMOTE_AUDIBLE
+	muzzle_ignore = TRUE
+	restraint_check = TRUE
+	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
+
+/datum/emote/living/conga/run_emote(mob/living/user, params)
+	if(!(. = ..()))
+		return
+	if(user.nextsoundemote >= world.time)
+		return
+	user.nextsoundemote = world.time + 7
+	playsound(user, 'modular_skyrat/sound/emotes/congaconga.ogg', 90, 1, -1)
