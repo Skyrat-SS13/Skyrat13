@@ -12,7 +12,7 @@
 	icon_dead = "rogue-broken"
 	friendly = "pokes"
 	speak_emote = list("screeches")
-	armour_penetration = 25
+	mob_biotypes = list(MOB_ROBOTIC)
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	speed = 1
@@ -58,35 +58,44 @@
 	if(special)
 		return FALSE
 	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier) //Ranged cooldown will always be at least 15
-	if(anger_modifier < 30)
-		if(prob(50))
-			INVOKE_ASYNC(src, .proc/plasmashot, target)
-		else
-			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 7)
-	if(anger_modifier >= 30 && anger_modifier < 50)
-		if(prob(50))
-			INVOKE_ASYNC(src, .proc/plasmaburst, target)
-		else
-			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 10)
-	if(anger_modifier >= 50)
-		if(prob(50))
-			INVOKE_ASYNC(src, .proc/plasmaburst, target)
-			INVOKE_ASYNC(src, .proc/shockwave, src.dir, 15)
-		else
-			INVOKE_ASYNC(src, .proc/shockwave, NORTH, 15)
-			INVOKE_ASYNC(src, .proc/shockwave, SOUTH, 15)
-			INVOKE_ASYNC(src, .proc/shockwave, WEST, 15)
-			INVOKE_ASYNC(src, .proc/shockwave, EAST, 15)
+	switch(anger_modifier)
+		if(0 to 30)
+			if(prob(50))
+				INVOKE_ASYNC(src, .proc/plasmashot, target, TRUE)
+			else
+				INVOKE_ASYNC(src, .proc/shockwave, src.dir, 7, TRUE)
+		if(30 to 50)
+			if(prob(50))
+				INVOKE_ASYNC(src, .proc/plasmaburst, target, TRUE)
+			else
+				INVOKE_ASYNC(src, .proc/shockwave, src.dir, 10, TRUE)
+		if(50 to INFINITY)
+			if(prob(65))
+				if(prob(75))
+					INVOKE_ASYNC(src, .proc/plasmaburst, target, TRUE)
+					INVOKE_ASYNC(src, .proc/shockwave, src.dir, 15, FALSE)
+				else 
+					var/turf/up = locate(x, y + 10, z)
+					var/turf/down = locate(x, y - 10, z)
+					var/turf/left = locate(x - 10, y, z)
+					var/turf/right = locate(x + 10, y, z)
+					INVOKE_ASYNC(src, .proc/plasmaburst, up, TRUE)
+					INVOKE_ASYNC(src, .proc/plasmaburst, down, FALSE)
+					sleep(3)
+					INVOKE_ASYNC(src, .proc/plasmashot, left, FALSE)
+					INVOKE_ASYNC(src, .proc/plasmashot, right, FALSE)
+			else
+				INVOKE_ASYNC(src, .proc/ultishockwave, 5, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/AttackingTarget(target)
 	if(special)
 		return FALSE
 	if(prob(20))
 		if(prob(50))
-			knockdown()
+			knockdown(TRUE)
 		else
 			face_atom(target)
-			shockwave(src.dir)
+			shockwave(src.dir, 5, TRUE)
 	else
 		..()
 
@@ -102,78 +111,67 @@
 		A.ex_act(EXPLODE_HEAVY)
 		DestroySurroundings()
 
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmashot(atom/target)
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmashot(atom/target, var/specialize = TRUE)
 	var/path = get_dist(src, target)
 	if(path > 2)
+		if(!target)
+			return
 		visible_message("<span class='boldwarning'>[src] raises it's plasma cutter!</span>")
-		special = TRUE
+		if(specialize)
+			special = TRUE
 		sleep(4)
-		var/turf/T = get_turf(src)
-		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
-		var/turf/startloc = T
+		var/turf/startloc = get_turf(src)
+		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(startloc)
 		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
-		P.starting = startloc
+		P.preparePixelProjectile(target, startloc)
 		P.firer = src
-		P.fired_from = src
-		P.yo = target.y - startloc.y
-		P.xo = target.x - startloc.x
 		P.original = target
-		P.preparePixelProjectile(target, src)
-		P.fire()
-		special = FALSE
+		var/set_angle = Get_Angle(src, target)
+		P.fire(set_angle)
+		if(specialize)
+			special = FALSE
 
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaburst(atom/target)
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaburst(atom/target, var/specialize = TRUE)
 	var/list/theline = get_dist(src, target)
 	if(theline > 2)
+		if(!target)
+			return
 		visible_message("<span class='boldwarning'>[src] raises it's tri-shot plasma cutter!</span>")
-		special = TRUE
-		var/ogangle = dir2angle(src.dir)
+		if(specialize)
+			special = TRUE
+		var/ogangle = Get_Angle(src, target)
 		sleep(7)
-		var/turf/T = get_turf(target)
-		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
-		var/turf/otherT = get_step(T, angle2dir(ogangle + 90))
-		var/turf/otherT2 = get_step(T, angle2dir(ogangle - 90))
-		var/turf/startloc = T
+		var/turf/startloc = get_turf(src)
+		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(startloc)
+		var/turf/otherangle = (ogangle + 45)
+		var/turf/otherangle2 = (ogangle - 45)
 		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
-		P.starting = startloc
+		P.preparePixelProjectile(target, startloc)
 		P.firer = src
-		P.fired_from = src
-		P.yo = target.y - startloc.y
-		P.xo = target.x - startloc.x
 		P.original = target
-		P.preparePixelProjectile(target, src)
-		P.fire()
-		var/obj/item/projectile/X = new /obj/item/projectile/plasma/rogue(otherT)
-		startloc = otherT
+		P.fire(ogangle)
+		var/obj/item/projectile/X = new /obj/item/projectile/plasma/rogue(startloc)
 		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
-		X.starting = startloc
+		X.preparePixelProjectile(target, startloc)
 		X.firer = src
-		X.fired_from = src
-		X.yo = target.y - startloc.y
-		X.xo = target.x - startloc.x
 		X.original = target
-		X.preparePixelProjectile(otherT, src)
-		X.fire()
-		var/obj/item/projectile/Y = new /obj/item/projectile/plasma/rogue(otherT2)
-		startloc = otherT2
+		X.fire(otherangle)		
+		var/obj/item/projectile/Y = new /obj/item/projectile/plasma/rogue(startloc)
 		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
-		Y.starting = startloc
+		Y.preparePixelProjectile(target, startloc)
 		Y.firer = src
-		Y.fired_from = src
-		Y.yo = target.y - startloc.y
-		Y.xo = target.x - startloc.x
 		Y.original = target
-		Y.preparePixelProjectile(otherT2, src)
-		Y.fire()
-		special = FALSE
-		return P
+		Y.fire(otherangle2)
+		if(specialize)
+			special = FALSE
 
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/knockdown()
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/knockdown(var/specialize = TRUE)
 	visible_message("<span class='boldwarning'>[src] smashes into the ground!</span>")
-	special = TRUE
+	if(specialize)
+		special = TRUE
 	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	var/list/hit_things = list()
-	sleep(5)
+	sleep(7)
 	for(var/turf/T in oview(2, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		for(var/mob/living/L in T.contents)
@@ -184,11 +182,13 @@
 					L.Stun(20)
 					L.apply_damage_type(40, BRUTE)
 	sleep(5)
-	special = FALSE
+	if(specialize)
+		special = FALSE
 
-/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/shockwave(direction, range)
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/shockwave(direction, range, var/specialize = TRUE)
 	visible_message("<span class='boldwarning'>[src] smashes the ground in a general direction!!</span>")
-	special = TRUE
+	if(specialize)
+		special = TRUE
 	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	sleep(5)
 	var/list/hit_things = list()
@@ -196,7 +196,7 @@
 	var/ogdir = direction
 	var/turf/otherT = get_step(T, turn(ogdir, 90))
 	var/turf/otherT2 = get_step(T, turn(ogdir, -90))
-	for(var/i = 0, i<range, i++)
+	for(var/i in 1 to range)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
@@ -222,7 +222,48 @@
 		otherT = get_step(otherT, ogdir)
 		otherT2 = get_step(otherT2, ogdir)
 		sleep(2)
-	special = FALSE
+	if(specialize)
+		special = FALSE
+
+/mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/ultishockwave(range, var/specialize = TRUE)
+	visible_message("<span class='boldwarning'>[src] smashes the ground in a general direction!!</span>")
+	if(specialize)
+		special = TRUE
+	playsound(src,'sound/misc/crunch.ogg', 200, 1)
+	sleep(5)
+	var/list/hit_things = list()
+	var/turf/T = get_turf(get_step(src, src.dir))
+	var/ogdir = direction
+	var/turf/otherT = get_step(T, turn(ogdir, 90))
+	var/turf/otherT2 = get_step(T, turn(ogdir, -90))
+	for(var/i in 1 to range)
+		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+		new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
+		new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
+		for(var/mob/living/L in T.contents)
+			if(L != src && !(L in hit_things))
+				var/throwtarget = get_edge_target_turf(T, get_dir(T, L))
+				L.safe_throw_at(throwtarget, 5, 1, src)
+				L.Stun(10)
+				L.apply_damage_type(25, BRUTE)
+		for(var/mob/living/L in otherT.contents)
+			if(L != src && !(L in hit_things))
+				var/throwtarget = get_edge_target_turf(otherT, get_dir(otherT, L))
+				L.safe_throw_at(throwtarget, 5, 1, src)
+				L.Stun(10)
+				L.apply_damage_type(25, BRUTE)
+		for(var/mob/living/L in otherT2.contents)
+			if(L != src && !(L in hit_things))
+				var/throwtarget = get_edge_target_turf(otherT2, get_dir(otherT2, L))
+				L.safe_throw_at(throwtarget, 5, 1, src)
+				L.Stun(10)
+				L.apply_damage_type(25, BRUTE)
+		T = get_step(T, ogdir)
+		otherT = get_step(otherT, ogdir)
+		otherT2 = get_step(otherT2, ogdir)
+		sleep(2)
+	if(specialize)
+		special = FALSE
 
 //loot
 /obj/item/twohanded/rogue
@@ -257,42 +298,41 @@
 			var/mob/living/M = target
 			M.DefaultCombatKnockdown(10)
 			M.adjustStaminaLoss(20)
-	if(wielded)
-		if(!proximity_flag)
-			if(cooldown < world.time)
-				cooldown = world.time + cooldowntime
-				playsound(src,'sound/misc/crunch.ogg', 200, 1)
-				var/list/hit_things = list()
-				var/turf/T = get_turf(get_step(user, user.dir))
-				var/ogdir = user.dir
-				var/turf/otherT = get_step(T, turn(ogdir, 90))
-				var/turf/otherT2 = get_step(T, turn(ogdir, -90))
-				for(var/i = 0, i<range, i++)
-					new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-					new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
-					new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
-					for(var/mob/living/L in T.contents)
-						if(L != src && !(L in hit_things))
-							L.Stun(20)
-							L.adjustBruteLoss(10)
-					for(var/mob/living/L in otherT.contents)
-						if(L != src && !(L in hit_things))
-							L.Stun(20)
-							L.adjustBruteLoss(10)
-					for(var/mob/living/L in otherT2.contents)
-						if(L != src && !(L in hit_things))
-							L.Stun(20)
-							L.adjustBruteLoss(10)
-					if(ismineralturf(T))
-						var/turf/closed/mineral/M = T
-						M.gets_drilled(user)
-					if(ismineralturf(otherT))
-						var/turf/closed/mineral/M = otherT
-						M.gets_drilled(user)
-					if(ismineralturf(otherT2))
-						var/turf/closed/mineral/M = otherT2
-						M.gets_drilled(user)
-					T = get_step(T, ogdir)
-					otherT = get_step(otherT, ogdir)
-					otherT2 = get_step(otherT2, ogdir)
-					sleep(2)
+	else if(wielded && !proximity_flag)
+		if(cooldown < world.time)
+			cooldown = world.time + cooldowntime
+			playsound(src,'sound/misc/crunch.ogg', 200, 1)
+			var/list/hit_things = list()
+			var/turf/T = get_turf(get_step(user, user.dir))
+			var/ogdir = user.dir
+			var/turf/otherT = get_step(T, turn(ogdir, 90))
+			var/turf/otherT2 = get_step(T, turn(ogdir, -90))
+			for(var/i in 1 to range)
+				new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+				new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
+				new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
+				for(var/mob/living/L in T.contents)
+					if(L != src && !(L in hit_things))
+						L.Stun(20)
+						L.adjustBruteLoss(10)
+				for(var/mob/living/L in otherT.contents)
+					if(L != src && !(L in hit_things))
+						L.Stun(20)
+						L.adjustBruteLoss(10)
+				for(var/mob/living/L in otherT2.contents)
+					if(L != src && !(L in hit_things))
+						L.Stun(20)
+						L.adjustBruteLoss(10)
+				if(ismineralturf(T))
+					var/turf/closed/mineral/M = T
+					M.gets_drilled(user)
+				if(ismineralturf(otherT))
+					var/turf/closed/mineral/M = otherT
+					M.gets_drilled(user)
+				if(ismineralturf(otherT2))
+					var/turf/closed/mineral/M = otherT2
+					M.gets_drilled(user)
+				T = get_step(T, ogdir)
+				otherT = get_step(otherT, ogdir)
+				otherT2 = get_step(otherT2, ogdir)
+				sleep(2)
