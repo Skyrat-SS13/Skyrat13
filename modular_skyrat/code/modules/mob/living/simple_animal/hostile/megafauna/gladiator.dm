@@ -239,7 +239,7 @@ They deal 35 brute (armor is considered).
 					hit_things += M
 		if(woop)
 			break
-		sleep(1.5)
+		sleep(1)
 	animate(src, color = initial(color), 3)
 	sleep(3)
 	speen = FALSE
