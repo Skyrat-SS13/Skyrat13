@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/megafauna/rogueprocess
 	name = "Rogue Process"
-	desc = "Once an experimental ripley carrying an advanced mining AI, now it's out for blood."
+	desc = "Once an experimental mecha carrying an advanced mining AI, now it's out for blood."
 	health = 2500
 	maxHealth = 2500
 	attacktext = "drills"
@@ -11,7 +11,7 @@
 	icon_dead = "rogue-broken"
 	friendly = "pokes"
 	speak_emote = list("screeches")
-	armour_penetration = 75
+	armour_penetration = 40
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	speed = 1
@@ -44,8 +44,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/Life()
 	. = ..()
-	anger_modifier = round(CLAMP(((maxHealth - health) / 42),0,60))
-	move_to_delay = CLAMP(round((src.health/src.maxHealth) * 10), 3, 18)
+	anger_modifier = round(clamp(((maxHealth - health) / 42),0,60))
+	move_to_delay = clamp(round((src.health/src.maxHealth) * 10), 3, 18)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
 	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier) //Ranged cooldown will always be at least 15
@@ -217,7 +217,7 @@
 	name = "Rogue's Drill"
 	desc = "A drill coupled with an internal mechanism that produces shockwaves on demand. Serves as a very robust melee."
 	force = 0
-	force_wielded = 25
+	force_wielded = 18
 	force_unwielded = 0
 	icon = 'modular_skyrat/icons/obj/mining.dmi'
 	icon_state = "roguedrill"
@@ -240,7 +240,7 @@
 		playsound(src,'sound/misc/crunch.ogg', 200, 1)
 		var/mob/living/M = A
 		if(ishuman(M))
-			M.Knockdown(50, override_stamdmg = 0)
+			M.DefaultCombatKnockdown(10)
 		M.adjustStaminaLoss(20)
 		M.drop_all_held_items()
 
