@@ -12,7 +12,7 @@
 	icon_dead = "rogue-broken"
 	friendly = "pokes"
 	speak_emote = list("screeches")
-	armour_penetration = 40
+	armour_penetration = 25
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	speed = 1
@@ -81,7 +81,7 @@
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/AttackingTarget(target)
 	if(special)
 		return FALSE
-	if(prob(25))
+	if(prob(20))
 		if(prob(50))
 			knockdown()
 		else
@@ -121,16 +121,10 @@
 		P.preparePixelProjectile(target, src)
 		P.fire()
 		special = FALSE
-	else
-		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
-		sleep(3)
-		SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
-		in_melee = TRUE
-		target.attack_animal(src)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmaburst(atom/target)
-	var/list/theline = getline(src, target)
-	if(theline.len > 2)
+	var/list/theline = get_dist(src, target)
+	if(theline > 2)
 		visible_message("<span class='boldwarning'>[src] raises it's tri-shot plasma cutter!</span>")
 		special = TRUE
 		var/ogangle = dir2angle(src.dir)
@@ -173,12 +167,6 @@
 		Y.fire()
 		special = FALSE
 		return P
-	else
-		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
-		sleep(3)
-		SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
-		in_melee = TRUE
-		target.attack_animal(src)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/knockdown()
 	visible_message("<span class='boldwarning'>[src] smashes into the ground!</span>")
@@ -261,17 +249,14 @@
 	var/cooldown = 0
 	var/range = 7
 
-/obj/item/twohanded/rogue/attack(atom/A, mob/living/carbon/human/user)
-	. = ..()
-	if(isliving(A))
-		playsound(src,'sound/misc/crunch.ogg', 200, 1)
-		var/mob/living/M = A
-		if(ishuman(M))
-			M.DefaultCombatKnockdown(10)
-		M.adjustStaminaLoss(20)
-
 /obj/item/twohanded/rogue/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	. = ..()
+	if(wielded && proximity_flag)
+		if(isliving(target))
+			playsound(src,'sound/misc/crunch.ogg', 200, 1)
+			var/mob/living/M = target
+			M.DefaultCombatKnockdown(10)
+			M.adjustStaminaLoss(20)
 	if(wielded)
 		if(!proximity_flag)
 			if(cooldown < world.time)
