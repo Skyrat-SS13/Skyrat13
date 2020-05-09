@@ -227,7 +227,7 @@ They deal 35 brute (armor is considered).
 		src.dir = get_dir(src, T)
 		for(var/turf/U in (getline(src, T) - get_turf(src)))
 			var/obj/effect/temp_visual/small_smoke/smonk = new /obj/effect/temp_visual/small_smoke(U)
-			QDEL_IN(smonk, 1.5)
+			QDEL_IN(smonk, 1.25)
 			for(var/mob/living/M in U)
 				if(!faction_check(faction, M.faction) && !(M in hit_things))
 					playsound(src, 'sound/weapons/slash.ogg', 75, 0)
