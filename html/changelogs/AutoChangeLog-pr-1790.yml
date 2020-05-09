@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "made oitmant and brute packs craft in 1s and not 12s"
