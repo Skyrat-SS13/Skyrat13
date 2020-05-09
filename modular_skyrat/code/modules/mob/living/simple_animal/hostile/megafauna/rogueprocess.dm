@@ -103,8 +103,8 @@
 		DestroySurroundings()
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/plasmashot(atom/target)
-	var/list/theline = getline(src, target)
-	if(theline.len > 1)
+	var/path = get_dist(src, target)
+	if(path > 2)
 		visible_message("<span class='boldwarning'>[src] raises it's plasma cutter!</span>")
 		special = TRUE
 		sleep(4)
@@ -133,12 +133,12 @@
 	if(theline.len > 2)
 		visible_message("<span class='boldwarning'>[src] raises it's tri-shot plasma cutter!</span>")
 		special = TRUE
-		var/ogdir = src.dir
+		var/ogangle = dir2angle(src.dir)
 		sleep(7)
 		var/turf/T = get_turf(target)
 		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(T)
-		var/turf/otherT = get_step(T, ogdir + 90)
-		var/turf/otherT2 = get_step(T, ogdir - 90)
+		var/turf/otherT = get_step(T, angle2dir(ogangle + 90))
+		var/turf/otherT2 = get_step(T, angle2dir(ogangle - 90))
 		var/turf/startloc = T
 		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
 		P.starting = startloc
