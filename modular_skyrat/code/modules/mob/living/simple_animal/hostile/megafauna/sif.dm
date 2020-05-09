@@ -269,7 +269,7 @@ Difficulty: Medium
 	src.move_to_delay = 3
 	return 2
 
-/mob/living/simple_animal/hostile/megafauna/sif/do_attack_animation(atom/A, visual_effect_icon)
+/mob/living/simple_animal/hostile/megafauna/sif/do_attack_animation(atom/A, visual_effect_icon,used_item, no_effect)
 	if(charging == FALSE)
 		..()
 
