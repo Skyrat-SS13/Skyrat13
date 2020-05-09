@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscdel: "The crocins are now gone from emagged booze dispensers."
+  - tweak: "Crocin now just tastes like strawberries."
