@@ -245,21 +245,28 @@
 ///////////////////////
 ///VG WEAPON CRAFTING//
 ///////////////////////
+/datum/crafting_recipe/metalstock
+	name = "Gun stock"
+	result = /obj/item/metal_gun_stock
+	reqs = list(/obj/item/rack_parts = 1)
+	time = 35
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/cylinder
 	name = "Aluminum cylinder"
 	result = /obj/item/aluminum_cylinder
 	reqs = list(/obj/item/reagent_containers/food/drinks/soda_cans = 1)
 	tools = list(TOOL_WIRECUTTER)
-	time = 20
+	time = 35
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/cylinder
+/datum/crafting_recipe/cylinderassembly
 	name = "Cylinder assembly"
 	result = /obj/item/cylinder_assembly
 	reqs = list(/obj/item/aluminum_cylinder = 2)
-	tools = list(NONE)
-	time = 20
+	time = 40
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -388,7 +395,6 @@
 	result = /obj/item/wrench_wired
 	reqs = list(/obj/item/stack/cable_coil = 10,\
 				/obj/item/wrench = 1)
-	tools = list(NONE)
 	time = 30
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON

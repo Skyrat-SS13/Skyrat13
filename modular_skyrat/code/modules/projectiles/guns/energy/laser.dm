@@ -256,7 +256,7 @@
 	cell_type = /obj/item/stock_parts/cell/pumpaction/musket
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/hos, /obj/item/ammo_casing/energy/disabler)
 	obj_flags = UNIQUE_RENAME
-	fire_delay = 20
+	fire_delay = 10
 	spread = 7.5
 	recoil = 1
 
