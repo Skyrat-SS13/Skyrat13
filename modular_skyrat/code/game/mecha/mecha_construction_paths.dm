@@ -780,7 +780,7 @@
 		),
 		//5
 		list(
-			"key" = /obj/item/circuitboard/mecha/clarke/main,
+			"key" = /obj/item/circuitboard/mecha/buzz/main,
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_WIRECUTTER,
 			"desc" = "The wiring is adjusted."
@@ -793,7 +793,7 @@
 		),
 		//7
 		list(
-			"key" = /obj/item/circuitboard/mecha/clarke/peripherals,
+			"key" = /obj/item/circuitboard/mecha/buzz/peripherals,
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_WIRECUTTER,
 			"desc" = "The main board is secured."
