@@ -1,0 +1,6 @@
+author: "ShadeAware"
+delete-after: True
+changes: 
+  - rscadd: "Clockwork and Bronze multitools, which function identically to their base."
+  - rscadd: "Bronze Switchblade graphical upgrade; made the same way you make a fancy switchblade, only this time with brass."
+  - rscadd: "You can now combine the bronze welder and experimental welder to make a bronze experimental welder. Looks exactly like the Clockwork Cult welding tool"
