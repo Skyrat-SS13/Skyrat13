@@ -374,7 +374,7 @@
 	name = "Rail gun"
 	result = /obj/item/gun/ballistic/automatic/railgun
 	reqs = list(/obj/item/stock_parts/cell = 1,
-				/datum/crafting_recipe/railgun_assembly=1)
+				/obj/item/gun_assembly/railgun_assembly=1)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 50
 	category = CAT_WEAPONRY
