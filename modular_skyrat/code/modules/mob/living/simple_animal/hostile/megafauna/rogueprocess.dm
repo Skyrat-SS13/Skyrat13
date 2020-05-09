@@ -57,23 +57,32 @@
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
 	if(special)
 		return FALSE
-	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier) //Ranged cooldown will always be at least 15
+	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier)
 	switch(anger_modifier)
-		if(0 to 30)
+		if(0 to 25)
 			if(prob(50))
-				INVOKE_ASYNC(src, .proc/plasmashot, target, TRUE)
+				INVOKE_ASYNC(src, .proc/plasmashot, target, FALSE)
+				sleep(6)
+				INVOKE_ASYNC(src, .proc/plasmashot, target, FALSE)
+				sleep(4)
+				INVOKE_ASYNC(src, .proc/plasmashot, target, FALSE)
 			else
 				INVOKE_ASYNC(src, .proc/shockwave, src.dir, 7, TRUE)
-		if(30 to 50)
+		if(25 to 50)
 			if(prob(50))
-				INVOKE_ASYNC(src, .proc/plasmaburst, target, TRUE)
+				INVOKE_ASYNC(src, .proc/plasmaburst, target, FALSE)
+				sleep(5)
+				if(prob(50))
+					INVOKE_ASYNC(src, .proc/plasmaburst, target, TRUE)
 			else
 				INVOKE_ASYNC(src, .proc/shockwave, src.dir, 10, TRUE)
 		if(50 to INFINITY)
 			if(prob(65))
 				if(prob(75))
-					INVOKE_ASYNC(src, .proc/plasmaburst, target, TRUE)
+					INVOKE_ASYNC(src, .proc/plasmaburst, target, FALSE)
 					INVOKE_ASYNC(src, .proc/shockwave, src.dir, 15, FALSE)
+					sleep(5)
+					INVOKE_ASYNC(src, .proc/plasmaburst, target, FALSE)
 				else 
 					var/turf/up = locate(x, y + 10, z)
 					var/turf/down = locate(x, y - 10, z)
@@ -85,7 +94,7 @@
 					INVOKE_ASYNC(src, .proc/plasmashot, left, FALSE)
 					INVOKE_ASYNC(src, .proc/plasmashot, right, FALSE)
 			else
-				INVOKE_ASYNC(src, .proc/ultishockwave, 5, TRUE)
+				INVOKE_ASYNC(src, .proc/ultishockwave, 10, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/AttackingTarget(target)
 	if(special)
@@ -173,6 +182,10 @@
 	var/list/hit_things = list()
 	sleep(7)
 	for(var/turf/T in oview(2, src))
+		if(!T)
+			if(specialize)
+				special = FALSE
+			return
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		for(var/mob/living/L in T.contents)
 			if(L != src && !(L in hit_things))
@@ -181,6 +194,7 @@
 					L.safe_throw_at(throwtarget, 10, 1, src)
 					L.Stun(20)
 					L.apply_damage_type(40, BRUTE)
+					hit_things += L
 	sleep(5)
 	if(specialize)
 		special = FALSE
@@ -196,6 +210,10 @@
 	var/ogdir = direction
 	var/turf/otherT = get_step(T, turn(ogdir, 90))
 	var/turf/otherT2 = get_step(T, turn(ogdir, -90))
+	if(!T)
+		if(speciallize)
+			special = FALSE
+		return
 	for(var/i in 1 to range)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
@@ -206,18 +224,21 @@
 				L.safe_throw_at(throwtarget, 5, 1, src)
 				L.Stun(10)
 				L.apply_damage_type(25, BRUTE)
+				hit_things += L
 		for(var/mob/living/L in otherT.contents)
 			if(L != src && !(L in hit_things))
 				var/throwtarget = get_edge_target_turf(otherT, get_dir(otherT, L))
 				L.safe_throw_at(throwtarget, 5, 1, src)
 				L.Stun(10)
 				L.apply_damage_type(25, BRUTE)
+				hit_things += L
 		for(var/mob/living/L in otherT2.contents)
 			if(L != src && !(L in hit_things))
 				var/throwtarget = get_edge_target_turf(otherT2, get_dir(otherT2, L))
 				L.safe_throw_at(throwtarget, 5, 1, src)
 				L.Stun(10)
 				L.apply_damage_type(25, BRUTE)
+				hit_things += L
 		T = get_step(T, ogdir)
 		otherT = get_step(otherT, ogdir)
 		otherT2 = get_step(otherT2, ogdir)
@@ -226,42 +247,27 @@
 		special = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/ultishockwave(range, var/specialize = TRUE)
-	visible_message("<span class='boldwarning'>[src] smashes the ground in a general direction!!</span>")
+	visible_message("<span class='boldwarning'>[src] smashes the ground around them!!</span>")
 	if(specialize)
 		special = TRUE
 	playsound(src,'sound/misc/crunch.ogg', 200, 1)
-	sleep(5)
+	sleep(10)
 	var/list/hit_things = list()
-	var/turf/T = get_turf(get_step(src, src.dir))
-	var/ogdir = direction
-	var/turf/otherT = get_step(T, turn(ogdir, 90))
-	var/turf/otherT2 = get_step(T, turn(ogdir, -90))
 	for(var/i in 1 to range)
-		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-		new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
-		new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)
-		for(var/mob/living/L in T.contents)
-			if(L != src && !(L in hit_things))
-				var/throwtarget = get_edge_target_turf(T, get_dir(T, L))
-				L.safe_throw_at(throwtarget, 5, 1, src)
-				L.Stun(10)
-				L.apply_damage_type(25, BRUTE)
-		for(var/mob/living/L in otherT.contents)
-			if(L != src && !(L in hit_things))
-				var/throwtarget = get_edge_target_turf(otherT, get_dir(otherT, L))
-				L.safe_throw_at(throwtarget, 5, 1, src)
-				L.Stun(10)
-				L.apply_damage_type(25, BRUTE)
-		for(var/mob/living/L in otherT2.contents)
-			if(L != src && !(L in hit_things))
-				var/throwtarget = get_edge_target_turf(otherT2, get_dir(otherT2, L))
-				L.safe_throw_at(throwtarget, 5, 1, src)
-				L.Stun(10)
-				L.apply_damage_type(25, BRUTE)
-		T = get_step(T, ogdir)
-		otherT = get_step(otherT, ogdir)
-		otherT2 = get_step(otherT2, ogdir)
-		sleep(2)
+		for(var/turf/T in (view(i, src) - view(i - 1, src)))
+			if(!T)
+				if(specialize)
+					special = FALSE
+				return
+			new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+			for(var/mob/living/L in T.contents)
+				if(L != src && !(L in hit_things) && !faction_check(L, src))
+					var/throwtarget = get_edge_target_turf(T, get_dir(T, L))
+					L.safe_throw_at(throwtarget, 5, 1, src)
+					L.Stun(10)
+					L.apply_damage_type(25, BRUTE)
+					hit_things += L
+		sleep(3)
 	if(specialize)
 		special = FALSE
 
@@ -315,14 +321,17 @@
 					if(L != src && !(L in hit_things))
 						L.Stun(20)
 						L.adjustBruteLoss(10)
+						hit_things += L
 				for(var/mob/living/L in otherT.contents)
 					if(L != src && !(L in hit_things))
 						L.Stun(20)
 						L.adjustBruteLoss(10)
+						hit_things += L
 				for(var/mob/living/L in otherT2.contents)
 					if(L != src && !(L in hit_things))
 						L.Stun(20)
 						L.adjustBruteLoss(10)
+						hit_things += L
 				if(ismineralturf(T))
 					var/turf/closed/mineral/M = T
 					M.gets_drilled(user)
