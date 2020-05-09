@@ -3,6 +3,7 @@
 	desc = "Once an experimental mecha carrying an advanced mining AI, now it's out for blood."
 	health = 2500
 	maxHealth = 2500
+	movement_type = GROUND
 	attacktext = "drills"
 	attack_sound = 'sound/weapons/drill.ogg'
 	icon = 'modular_skyrat/icons/mob/lavaland/rogue.dmi'
@@ -19,13 +20,15 @@
 	ranged_cooldown_time = 75
 	ranged = 1
 	del_on_death = 0
-	crusher_loot = list(/obj/item/borg/upgrade/modkit/plasma, /obj/item/crusher_trophy/brokentech, /obj/item/twohanded/rogue)
-	loot = list(/obj/item/borg/upgrade/modkit/plasma, /obj/item/twohanded/rogue)
+	crusher_loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/crusher_trophy/brokentech, /obj/item/twohanded/rogue)
+	loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/twohanded/rogue)
 	deathmessage = "sparkles and emits corrupted screams in agony, falling defeated on the ground."
 	death_sound = 'sound/mecha/critdestr.ogg'
 	anger_modifier = 0
 	do_footstep = TRUE
 	mob_biotypes = MOB_ROBOTIC
+	song = sound('modular_skyrat/sound/ambience/dummyremix.ogg', 100) //System shock theme remix by Master Boot Record
+	songlength = 2930
 
 /obj/item/gps/internal/rogueprocess
 	icon_state = null
@@ -34,6 +37,7 @@
 	invisibility = 100
 
 /obj/item/projectile/plasma/rogue
+	dismemberment = 0
 	speed = 2
 	range = 21
 	color = "#FF0000"
@@ -74,6 +78,7 @@
 		if(prob(50))
 			knockdown()
 		else
+			face_atom(target)
 			shockwave(src.dir)
 	else
 		..()
@@ -157,7 +162,7 @@
 		return P
 	else
 		visible_message("<span class='boldwarning'>[src] raises it's drill!</span>")
-		sleep(5)
+		sleep(3)
 		SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
 		in_melee = TRUE
 		target.attack_animal(src)
@@ -166,15 +171,16 @@
 	visible_message("<span class='boldwarning'>[src] smashes into the ground!</span>")
 	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	var/list/hit_things = list()
-	sleep(10)
+	sleep(6)
 	for(var/turf/T in oview(1, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		for(var/mob/living/L in T.contents)
 			if(L != src && !(L in hit_things))
-				var/throwtarget = get_edge_target_turf(src, get_dir(src, L))
-				L.safe_throw_at(throwtarget, 10, 1, src)
-				L.Stun(20)
-				L.adjustBruteLoss(50)
+				if(!faction_check(faction, L.faction))
+					var/throwtarget = get_edge_target_turf(src, get_dir(src, L))
+					L.safe_throw_at(throwtarget, 10, 1, src)
+					L.Stun(20)
+					L.apply_damage_type(40, BRUTE)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/proc/shockwave(direction, range)
 	visible_message("<span class='boldwarning'>[src] smashes the ground in a general direction!!</span>")
@@ -214,11 +220,12 @@
 
 //loot
 /obj/item/twohanded/rogue
-	name = "Rogue's Drill"
+	name = "\proper Rogue's Drill"
 	desc = "A drill coupled with an internal mechanism that produces shockwaves on demand. Serves as a very robust melee."
+	sharpness = IS_SHARP
 	force = 0
-	force_wielded = 18
-	force_unwielded = 0
+	force_wielded = 20
+	force_unwielded = 5
 	icon = 'modular_skyrat/icons/obj/mining.dmi'
 	icon_state = "roguedrill"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/mining_lefthand.dmi'
@@ -228,11 +235,13 @@
 	tool_behaviour = TOOL_MINING
 	toolspeed = 0.1
 	slot_flags = ITEM_SLOT_BELT
-	custom_materials = list(/datum/material/diamond=2000)
+	custom_materials = list(/datum/material/diamond=2000, /datum/material/titanium=20000, /datum/material/plasma=20000)
 	usesound = 'sound/weapons/drill.ogg'
 	hitsound = 'sound/weapons/drill.ogg'
 	attack_verb = list("drilled")
-	var/cooldowntime
+	var/cooldowntime = 40
+	var/cooldown = 0
+	var/range = 7
 
 /obj/item/twohanded/rogue/attack(atom/A, mob/living/carbon/human/user)
 	. = ..()
@@ -242,21 +251,20 @@
 		if(ishuman(M))
 			M.DefaultCombatKnockdown(10)
 		M.adjustStaminaLoss(20)
-		M.drop_all_held_items()
 
 /obj/item/twohanded/rogue/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	. = ..()
 	if(wielded)
 		if(!proximity_flag)
-			if(cooldowntime < world.time)
-				cooldowntime = world.time + 50
+			if(cooldown < world.time)
+				cooldown = world.time + cooldowntime
 				playsound(src,'sound/misc/crunch.ogg', 200, 1)
 				var/list/hit_things = list()
 				var/turf/T = get_turf(get_step(user, user.dir))
 				var/ogdir = user.dir
 				var/turf/otherT = get_step(T, turn(ogdir, 90))
 				var/turf/otherT2 = get_step(T, turn(ogdir, -90))
-				for(var/i = 0, i<7, i++)
+				for(var/i = 0, i<range, i++)
 					new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 					new /obj/effect/temp_visual/small_smoke/halfsecond(otherT)
 					new /obj/effect/temp_visual/small_smoke/halfsecond(otherT2)

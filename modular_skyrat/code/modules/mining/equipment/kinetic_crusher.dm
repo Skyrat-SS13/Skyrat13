@@ -39,6 +39,7 @@
 			playsound(src,'sound/effects/supermatter.ogg',50,1)
 		else
 			(to_chat(user, "<span class='notice'>You cancel turning [target] into a legion.</span>"))
+
 //rogue process
 /obj/item/crusher_trophy/brokentech
 	name = "broken AI"
@@ -47,10 +48,11 @@
 	icon = 'icons/obj/aicards.dmi'
 	icon_state = "pai"
 	var/range = 4
-	var/cooldowntime
+	var/cooldowntime = 50
+	var/cooldown
 
 /obj/item/crusher_trophy/brokentech/effect_desc()
-	return "a kinetic crusher to create shockwaves when fired."
+	return "your kinetic crusher to create shockwaves when fired."
 
 /obj/item/crusher_trophy/brokentech/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
 	. = ..()
@@ -58,16 +60,18 @@
 		INVOKE_ASYNC(src, .proc/invokesmoke, user)
 
 /obj/item/crusher_trophy/brokentech/proc/invokesmoke(mob/living/user)
-	cooldowntime = world.time + 50
+	cooldown = world.time + cooldowntime
 	var/list/hit_things = list()
 	var/turf/T = get_turf(get_step(user, user.dir))
 	var/ogdir = user.dir
 	for(var/i = 0, i < src.range, i++)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		for(var/mob/living/L in T.contents)
-			if(L != src && !(L in hit_things) && !ishuman(L))
-				L.Stun(10)
-				L.adjustBruteLoss(10)
+			if(L != user && !(L in hit_things) && !ishuman(L))
+				if(!faction_check(user.faction, L.faction))
+					if(prob(25))
+						L.Stun(10)
+					L.apply_damage_type(20, BRUTE)
 		if(ismineralturf(T))
 			var/turf/closed/mineral/M = T
 			M.gets_drilled(user)
