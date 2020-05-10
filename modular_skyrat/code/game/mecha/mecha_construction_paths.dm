@@ -638,7 +638,7 @@
 		),
 		//18
 		list(
-			"key" = TOOL_WELDER
+			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WRENCH,
 			"desc" = "The power cell is secured."
 		),
