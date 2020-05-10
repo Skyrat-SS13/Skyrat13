@@ -3,6 +3,8 @@
 	desc = "A weapon that uses the Lorentz force to propel an armature carrying a projectile to incredible velocities."
 	icon = 'modular_skyrat/icons/obj/vg_items.dmi'
 	icon_state = "railgun"
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	item_state = "arg"
 	force = 10
 	fire_sound = 'modular_skyrat/sound/weapons/rodgun_fire.ogg'
@@ -19,8 +21,11 @@
 	spawnwithmagazine = FALSE
 	casing_ejector = FALSE
 	var/obj/item/stock_parts/cell/cell
-	var/cell_type = /obj/item/stock_parts/cell
+	var/obj/item/stock_parts/cell/cell_type = /obj/item/stock_parts/cell
 	var/insert_sound = 'modular_skyrat/sound/weapons/bulletinsert.ogg'
+
+/obj/item/gun/ballistic/automatic/railgun/update_icon()
+	icon_state = "railgun"
 
 /obj/item/gun/ballistic/automatic/railgun/Initialize()
 	. = ..()
@@ -69,6 +74,7 @@
 		. += "<span class='notice'>[src] doesn't seem to have a cell!</span>"
 
 /obj/item/gun/ballistic/automatic/railgun/can_shoot()
+	. = ..()
 	if(QDELETED(cell))
 		return 0
 
@@ -77,12 +83,10 @@
 		return 0
 	if(cell.charge < 200)
 		return 0
-	. = ..()
 
 /obj/item/gun/ballistic/automatic/railgun/shoot_live_shot()
-	var/obj/item/ammo_casing/caseless/magnetic/shot = chambered
-	cell.use(shot.energy_cost)
 	. = ..()
+	cell.use(200)
 
 /obj/item/gun/ballistic/automatic/railgun/emp_act(severity)
 	. = ..()

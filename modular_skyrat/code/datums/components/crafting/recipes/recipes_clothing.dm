@@ -16,11 +16,9 @@
 /datum/crafting_recipe/hazardarmor
 	name = "hazard vest armor"
 	result =  /obj/item/clothing/suit/armor/hazard
-	reqs = list(/obj/item/stack/sheet/metal = 2,
-				/obj/item/stack/cable_coil = 15,
+	reqs = list(/obj/item/stack/packageWrap = 5,
 				/obj/item/stack/sheet/plasteel = 2,
-				/obj/item/clothing/suit/hazardvest = 1,
-				/obj/item/stack/wrapping_paper = 5)
+				/obj/item/clothing/suit/hazardvest = 1)
 	time = 60
 	category = CAT_CLOTHING
 
