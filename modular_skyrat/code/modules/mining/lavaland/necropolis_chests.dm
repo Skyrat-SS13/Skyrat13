@@ -25,7 +25,7 @@
 			new /obj/item/blood_contract(src)
 		if(3)
 			new /obj/item/gun/magic/staff/spellblade(src)
-	
+
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
 	name = "enraged bubblegum chest"
 
@@ -838,16 +838,6 @@
 	var/storm_cooldown = 0
 	w_class = WEIGHT_CLASS_BULKY //its a fucking full metal mask man
 	mutantrace_variation = STYLE_MUZZLE
-
-/obj/item/clothing/mask/gas/dagoth/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if (slot == ITEM_SLOT_MASK)
-		user.faction |= "mining"
-
-/obj/item/clothing/mask/gas/dagoth/dropped(mob/living/carbon/human/user)
-	if (user.wear_mask == src)
-		user.faction -= "mining"
-	..()
 
 /datum/action/item_action/ashstorm
 	name = "Summon Ash Storm"
