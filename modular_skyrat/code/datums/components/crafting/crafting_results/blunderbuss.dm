@@ -3,6 +3,7 @@
 	name = "blunderbuss"
 	desc = "A muzzle-loaded firearm powered by welding fuel. It might not be a good idea to use more than 10u of fuel in one shot."
 	icon = 'modular_skyrat/icons/obj/vg_items.dmi'
+	icon_state = "blunderbuss"
 	righthand_file = 'modular_skyrat/icons/mob/inhands/vg/vg_righthand.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/vg/vg_lefthand.dmi'
 	attack_verb = list("strikes", "hits", "bashes")
@@ -29,14 +30,6 @@
 			var/datum/reagent/fuel/L = locate(/datum/reagent/fuel) in R.reagents.reagent_list
 			R.reagents.trans_id_to(boomtank.reagents, L, L.volume)
 			to_chat(user, "<span class='notice'>You transfer all of [R]'s possible fuel to \the [src].</span>")
-		else
-			if(R.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
-				R.forceMove(src)
-				loaded_item = R
-			else if(loaded_item)
-				to_chat(user, "<span class='warning'>[src] is already loaded!</span>")
-			else
-				to_chat(user, "<span class='warning'>[R] is too bulky to be shot!</span>")
 	else
 		if(I.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
 			I.forceMove(src)
