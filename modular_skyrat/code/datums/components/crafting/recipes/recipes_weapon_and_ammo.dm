@@ -5,7 +5,8 @@
 	name = "Makeshift glass hatchet"
 	result = /obj/item/hatchet/improvised
 	parts = list(/obj/item/shard = 1)
-	reqs = list(/obj/item/wrench_wired = 1)
+	reqs = list(/obj/item/wrench_wired = 1,
+				/obj/item/shard = 1)
 	time = 60
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
