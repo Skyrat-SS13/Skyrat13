@@ -16,7 +16,7 @@
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	speed = 1
-	move_to_delay = 15
+	move_to_delay = 10
 	ranged_cooldown_time = 75
 	ranged = 1
 	del_on_death = 0
@@ -40,7 +40,8 @@
 
 /obj/item/projectile/plasma/rogue
 	dismemberment = 0
-	speed = 2
+	damage = 25
+	speed = 1.25
 	range = 21
 	color = "#FF0000"
 
@@ -51,7 +52,7 @@
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/adjustHealth(amount, updating_health, forced)
 	. = ..()
 	anger_modifier = round(clamp(((maxHealth - health) / 42),0,60))
-	move_to_delay = clamp(round((src.health/src.maxHealth) * 10), 3, 18)
+	move_to_delay = clamp(round((src.health/src.maxHealth) * 10), 2, 10)
 	wander = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
