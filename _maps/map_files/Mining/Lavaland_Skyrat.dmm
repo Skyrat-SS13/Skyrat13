@@ -312,6 +312,10 @@
 "bN" = (
 /turf/open/openspace,
 /area/mining_level_access/upper)
+"bP" = (
+/obj/machinery/bookbinder,
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "bQ" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -1328,9 +1332,16 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "hH" = (
-/obj/machinery/vending/cola/random,
-/turf/open/floor/plasteel/dark,
-/area/xenoarch/gen)
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/white,
+/area/xenoarch/arch)
 "hK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -1680,6 +1691,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
+"ju" = (
+/obj/structure/table,
+/obj/machinery/computer/libraryconsole,
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "jv" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/light/small{
@@ -1904,6 +1920,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/bot)
+"kN" = (
+/obj/machinery/vending/snack/random,
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "kO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -2718,6 +2738,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
+"oX" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "pc" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/green{
@@ -3744,9 +3768,11 @@
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
 "tT" = (
-/obj/machinery/vending/snack/random,
-/turf/open/floor/plasteel/dark,
-/area/xenoarch/gen)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/xenoarch/arch)
 "tU" = (
 /obj/structure/stone_tile/slab,
 /turf/closed/indestructible/riveted/boss,
@@ -4188,8 +4214,16 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "wu" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/white,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "wv" = (
 /obj/effect/mob_spawn/human/seed_vault,
@@ -5194,10 +5228,14 @@
 /turf/open/floor/plasteel,
 /area/xenoarch/bot)
 "Bx" = (
-/obj/machinery/mineral/stacking_unit_console{
-	machinedir = 8
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
-/turf/closed/wall,
+/obj/machinery/mineral/stacking_unit_console{
+	machinedir = 8;
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "Bz" = (
 /obj/machinery/autolathe,
@@ -5269,7 +5307,6 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Cb" = (
-/obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
@@ -5396,6 +5433,13 @@
 /obj/item/pickaxe,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"CJ" = (
+/obj/structure/bookcase/random,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "CK" = (
 /obj/item/reagent_containers/glass/bucket/wood,
 /obj/structure/stone_tile/block/cracked{
@@ -5518,11 +5562,12 @@
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
 "Dk" = (
-/obj/machinery/light,
-/obj/structure/chair{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/disposalpipe/junction/flip{
 	dir = 1
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "Dm" = (
 /obj/effect/turf_decal/tile/purple{
@@ -6682,8 +6727,8 @@
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "IK" = (
-/obj/structure/bookcase/random,
 /obj/machinery/light,
+/obj/machinery/vending/cola/random,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
 "IL" = (
@@ -6961,6 +7006,13 @@
 	},
 /turf/closed/wall/r_wall,
 /area/xenoarch/eng)
+"Kz" = (
+/obj/structure/bookcase/random,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "KC" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible/layer3{
 	dir = 4
@@ -7573,6 +7625,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
+"NQ" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/obj/item/pen/fountain,
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "NT" = (
 /obj/machinery/light{
 	dir = 1
@@ -8180,6 +8238,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
+"QV" = (
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "QW" = (
 /obj/structure/frame,
 /turf/open/floor/plating,
@@ -8326,6 +8388,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
+"RF" = (
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "RJ" = (
 /obj/item/pickaxe,
 /obj/structure/stone_tile/cracked{
@@ -8530,7 +8596,7 @@
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
 "SQ" = (
-/obj/structure/bookcase/random,
+/obj/machinery/vending/cola/random,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
 "SS" = (
@@ -9104,6 +9170,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
+"VW" = (
+/obj/structure/table,
+/obj/item/folder,
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "Wa" = (
 /obj/machinery/door/poddoor/incinerator_atmos_main{
 	id = "atmos_incinerator_mainventL"
@@ -9617,6 +9688,16 @@
 	},
 /turf/open/floor/plating,
 /area/xenoarch/sec)
+"Zq" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "Zy" = (
 /obj/machinery/atmospherics/components/binary/volume_pump/layer3{
 	dir = 1
@@ -18685,7 +18766,7 @@ Lg
 BS
 cv
 as
-HK
+KE
 BS
 tN
 tN
@@ -18942,7 +19023,7 @@ EW
 EW
 AH
 UJ
-Dk
+ND
 BS
 tN
 tN
@@ -19199,7 +19280,7 @@ KE
 Ry
 KE
 as
-wu
+KE
 BS
 tN
 tN
@@ -21505,7 +21586,7 @@ BS
 PO
 Ub
 KE
-DX
+hH
 Sz
 KE
 Cj
@@ -21762,7 +21843,7 @@ BS
 BS
 BS
 oR
-BS
+tT
 BS
 BS
 BS
@@ -22019,7 +22100,7 @@ PZ
 bQ
 Sy
 LM
-IY
+wu
 IY
 IY
 mb
@@ -22276,7 +22357,7 @@ PR
 id
 Je
 IL
-Je
+Dk
 Je
 Je
 ma
@@ -29243,13 +29324,13 @@ HQ
 co
 st
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+Za
+Za
+Za
+Za
+Za
+Za
+Za
 tN
 tN
 tN
@@ -29500,13 +29581,13 @@ rr
 co
 xo
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+DM
+DM
+DM
+DM
+DM
+DM
+Za
 tN
 tN
 tN
@@ -29757,13 +29838,13 @@ Mf
 co
 st
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+pl
+DM
+DM
+DM
+DM
+DM
+Za
 tN
 tN
 tN
@@ -30013,14 +30094,14 @@ Za
 HQ
 co
 st
+iC
+DM
+DM
+DM
+DM
+DM
+DM
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
 tN
 tN
 tN
@@ -30271,13 +30352,13 @@ HQ
 co
 st
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+DM
+DM
+DM
+DM
+DM
+xe
+Za
 tN
 tN
 tN
@@ -30528,13 +30609,13 @@ Nq
 co
 st
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+DM
+DM
+DM
+DM
+DM
+DM
+Za
 tN
 tN
 tN
@@ -30785,13 +30866,13 @@ HQ
 co
 st
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+Za
+Za
+Za
+Za
+Za
+Za
+Za
 tN
 tN
 tN
@@ -31042,13 +31123,13 @@ Fq
 gu
 Nb
 Za
-tN
-tN
-tN
-yE
-tN
-tN
-tN
+pl
+DM
+DM
+DM
+DM
+DM
+Za
 tN
 tN
 tN
@@ -31298,14 +31379,14 @@ If
 If
 Df
 FW
+iC
+DM
+DM
+DM
+DM
+DM
+DM
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
 tN
 tN
 tN
@@ -31548,21 +31629,21 @@ sB
 sl
 sB
 sB
-tT
-hH
 Za
 Za
 Za
 Za
 Za
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+Za
+Za
+DM
+DM
+DM
+DM
+DM
+DM
+Za
 tN
 tN
 tN
@@ -31807,19 +31888,19 @@ sB
 sB
 SQ
 Za
+oX
+oX
+Kz
+oX
+oX
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+DM
+DM
+DM
+DM
+DM
+DM
+Za
 tN
 tN
 tN
@@ -32064,19 +32145,19 @@ sB
 sB
 IK
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+sB
+sB
+sB
+sB
+sB
+Za
+DM
+DM
+DM
+DM
+DM
+xe
+Za
 tN
 tN
 tN
@@ -32319,21 +32400,21 @@ WT
 sl
 sB
 sB
-SQ
+sB
+RF
+sB
+bP
+sB
+NQ
+VW
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+DM
+DM
+DM
+DM
+DM
+DM
+Za
 tN
 tN
 tN
@@ -32576,21 +32657,21 @@ XJ
 gZ
 sZ
 sB
-SQ
+sB
+RF
+sB
+QV
+sB
+ju
+Zq
 Za
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
-tN
+Za
+Za
+Za
+Za
+Za
+Za
+Za
 tN
 tN
 tN
@@ -32833,14 +32914,14 @@ uX
 sB
 sB
 sB
-SQ
+kN
 Za
-tN
-tN
-tN
-tN
-tN
-tN
+sB
+sB
+sB
+sB
+sB
+Za
 tN
 tN
 tN
@@ -33090,14 +33171,14 @@ xI
 Ks
 mQ
 dV
-SQ
+kN
 Za
-tN
-tN
-tN
-tN
-tN
-tN
+oX
+oX
+CJ
+oX
+oX
+Za
 tN
 tN
 tN
@@ -33349,12 +33430,12 @@ Za
 Za
 Za
 Za
-tN
-tN
-tN
-tN
-tN
-tN
+Za
+Za
+Za
+Za
+Za
+Za
 tN
 tN
 tN
