@@ -1,39 +1,63 @@
+/obj/vehicle/ridden/wheelchair/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/gun_barrel) && !istype(src, /obj/vehicle/ridden/wheelchair/wheelchair_assembly))
+		new /obj/vehicle/ridden/wheelchair/wheelchair_assembly(src.loc)
+		to_chat(user, "<span class='notice'>You attach the barrel to the wheelchair.</span>")
+		qdel(I)
+		qdel(src)
+
+/obj/vehicle/ridden/wheelchair/wheelchair_assembly/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/weldingtool) && !istype(src, /obj/vehicle/ridden/wheelchair/wheelchair_assembly/cannon))
+		var/obj/item/weldingtool/weldy = I 
+		if(weldy.isOn())
+			new /obj/vehicle/ridden/wheelchair/wheelchair_assembly/cannon(src.loc)
+			to_chat(user, "<span class='notice'>You weld the barrel to the wheelchair.</span>")
+			qdel(I)
+			qdel(src)
+
 /obj/vehicle/ridden/wheelchair/wheelchair_assembly/cannon
 	name = "cannon"
 	desc = "A makeshift cannon. This primitive weapon uses centuries-old technology."
 	icon = 'modular_skyrat/icons/obj/vg_items.dmi'
 	icon_state = "cannon"
 	var/obj/item/loaded_item
-	var/obj/item/reagent_containers/beaker/reservoir/boomtank  //shh just take it as a fuel reservoir
+	var/obj/item/reagent_containers/glass/beaker/reservoir/boomtank  //shh just take it as a fuel reservoir
 	var/sound/firesound = 'sound/effects/explosion3.ogg'
 	var/cooldowntime = 50
 	var/cooldown = 0
 	var/flawless = 0
-
-/obj/item/reagent_containers/beaker/reservoir/Initialize(mapload, vol)
-	. = ..()
-	vol = 30
+	density = TRUE
 
 /obj/vehicle/ridden/wheelchair/wheelchair_assembly/cannon/Initialize()
 	. = ..()
-	boomtank = new /obj/item/reagent_containers/beaker/reservoir(src)
+	boomtank = new /obj/item/reagent_containers/glass/beaker/reservoir(src)
 
 /obj/vehicle/ridden/wheelchair/wheelchair_assembly/cannon/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers))
-		var/obj/item/reagent_containers/R = I
-		if(/datum/reagent/fuel in boomtank.reagents.reagent_list && boomtank)
-			var/datum/reagent/fuel/L = locate(/datum/reagent/fuel) in boomtank.reagents.reagent_list
-			R.reagents.trans_id_to(boomtank.reagents, L, L.volume)
-			to_chat(user, "<span class='notice'>You transfer all of [R]'s possible fuel to \the [src].</span>")
-		else
-			if(R.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
-				R.forceMove(src)
-				loaded_item = R
+		if(user.a_intent == INTENT_HELP)
+			var/obj/item/reagent_containers/R = I
+			var/datum/reagent/fuel/F
+			for(var/datum/reagent/Re in R.reagents.reagent_list)
+				if(istype(Re, /datum/reagent/fuel))
+					F = Re
+			if(F)
+				if(R.reagents.trans_id_to(boomtank, F.type, F.volume))
+					to_chat(user, "<span class='notice'>You transfer all of [R]'s possible fuel to \the [src].</span>")
+				else
+					to_chat(user, "<span class='notice'>\The [src] is already full.</span>")
+			else 
+				to_chat(user, "<span class='notice'>\The [R] has no fuel.</span>")
+		else 
+			if(I.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
+				I.forceMove(src)
+				loaded_item = I
+				to_chat(user, "<span class='notice'>You load \the [I] on [src].</span>")
 			else if(loaded_item)
 				to_chat(user, "<span class='warning'>[src] is already loaded!</span>")
 			else
-				to_chat(user, "<span class='warning'>[R] is too bulky to be shot!</span>")
-	else if(istype(I, /obj/machinery/igniter))
+				to_chat(user, "<span class='warning'>[I] is too bulky to be shot!</span>")
+	else if(istype(I, /obj/item/assembly/igniter))
 		addtimer(CALLBACK(src, .proc/Fire, user, get_edge_target_turf(src, dir)), 30)
 		visible_message("<span class='danger'>[user] sets the [src]'s wick on fire! Get back!</span>")
 	else if(istype(I, /obj/item/weldingtool))
@@ -99,8 +123,9 @@
 /obj/vehicle/ridden/wheelchair/wheelchair_assembly/cannon/proc/explode()
 	if(!flawless)
 		visible_message("<span class='userdanger'>\The [src]'s barrel gets too pressurized and explodes!</span>")
-		loaded_item.forceMove(src.loc)
-		loaded_item = null
+		if(loaded_item)
+			loaded_item.forceMove(src.loc)
+			loaded_item = null
 		explosion(src, -1, -1, 4, 2)
 		qdel(src)
 		return TRUE
@@ -148,5 +173,5 @@
 		return FALSE
 	loaded_item = null
 	I.forceMove(get_turf(src))
-	I.throw_at(target, 7 * (range_multiplier + 1), 4, src)
+	I.throw_at(target, 7 * (range_multiplier + 1), 4)
 	return TRUE
