@@ -5,6 +5,7 @@
 	var/list/glorymessagespka = list() //SAME AS ABOVE THE ABOVE BUT PKA
 	var/list/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING
 	var/gloryhealth = 200
+	var/glorythreshold = 100
 	var/list/songs = list()
 	var/sound/chosensong
 	var/chosenlength
@@ -49,7 +50,7 @@
 			continue
 		if(isliving(A))
 			var/mob/living/M = A
-			if(faction_check_mob(M) && attack_same || !faction_check_mob(M))
+			if(faction_check_mob(M) && attack_same || !faction_check_mob(M) && M.client)
 				enemies |= M
 				chosenlengthstring = pick(songs)
 				chosenlength = text2num(chosenlengthstring)
@@ -65,7 +66,7 @@
 					retaliatedcooldown = world.time + retaliatedcooldowntime
 		else if(ismecha(A))
 			var/obj/mecha/M = A
-			if(M.occupant)
+			if(M.occupant && M.occupant.client)
 				enemies |= M
 				enemies |= M.occupant
 				var/mob/living/O = M.occupant
@@ -93,11 +94,12 @@
 	if(songend)
 		if(world.time >= songend)
 			for(var/mob/living/M in view(src, vision_range))
-				if(M.client.prefs.toggles & SOUND_AMBIENCE)
-					M.stop_sound_channel(CHANNEL_AMBIENCE)
-					songend = chosenlength + world.time
-					SEND_SOUND(M, chosensong)
-	if(health <= (maxHealth/25) && !glorykill && stat != DEAD)
+				if(client)
+					if(M.client.prefs.toggles & SOUND_AMBIENCE)
+						M.stop_sound_channel(CHANNEL_AMBIENCE)
+						songend = chosenlength + world.time
+						SEND_SOUND(M, chosensong)
+	if(health <= glorythreshold && !glorykill && stat != DEAD)
 		glorykill = TRUE
 		glory()
 	if(retaliated)
@@ -113,7 +115,8 @@
 		return
 	else
 		for(var/mob/living/M in view(src, vision_range))
-			M.stop_sound_channel(CHANNEL_AMBIENCE)
+			if(M.client)
+				M.stop_sound_channel(CHANNEL_AMBIENCE)
 		animate(src, color = initial(color), time = 3)
 		desc = initial(desc)
 		var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
@@ -167,6 +170,7 @@
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
 	if(!is_station_level(z) || client) //NPC monsters won't heal while on station
 		adjustBruteLoss(-L.maxHealth/2)
-	L.stop_sound_channel(CHANNEL_AMBIENCE)
+	if(L.client)
+		L.stop_sound_channel(CHANNEL_AMBIENCE)
 	L.gib()
 	..()

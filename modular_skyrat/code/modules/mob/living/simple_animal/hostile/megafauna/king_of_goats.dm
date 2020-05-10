@@ -61,6 +61,7 @@ Difficulty: Insanely Hard
 	glorymessagespka = list("shoots at goat's maw, the goat seemingly gulping down the blast and exploding!", "kicks the goat into the air, then shoots it in the gut with their PKA's blast, showering everything in... goat guts!")
 	glorymessagespkabayonet = list("repeatedly stabs through the goat's eye and skull with their PKAA's bayonet, until it finally gives up and lets go of their life!")
 	gloryhealth = 50
+	glorythreshold = 50
 	crusher_loot = list(/obj/item/crusher_trophy/king_goat)
 
 /mob/living/simple_animal/hostile/megafauna/king/ex_act(severity, target)
