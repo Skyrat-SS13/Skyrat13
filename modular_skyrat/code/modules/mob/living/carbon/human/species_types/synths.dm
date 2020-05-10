@@ -13,7 +13,7 @@
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
-	mutant_bodyparts = list("legs" = "Digitigrade", "taur" = "None") //this probably isn't gonna work.
+	//mutant_bodyparts = list("legs" = "Digitigrade", "taur" = "None") //this probably isn't gonna work. Note: it didn't work.
 	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //for getting these values back for assume_disguise()
 	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE) //blah blah i explained above
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
