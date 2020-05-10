@@ -3,48 +3,58 @@
 	name = "blunderbuss"
 	desc = "A muzzle-loaded firearm powered by welding fuel. It might not be a good idea to use more than 10u of fuel in one shot."
 	icon = 'modular_skyrat/icons/obj/vg_items.dmi'
+	icon_state = "blunderbuss"
 	righthand_file = 'modular_skyrat/icons/mob/inhands/vg/vg_righthand.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/vg/vg_lefthand.dmi'
 	attack_verb = list("strikes", "hits", "bashes")
 	w_class = WEIGHT_CLASS_BULKY
 	var/obj/item/loaded_item
-	var/obj/item/reagent_containers/beaker/reservoir/boomtank  //shh just take it as a fuel reservoir
+	var/obj/item/reagent_containers/glass/beaker/reservoir/boomtank  //shh just take it as a fuel reservoir
 	var/sound/firesound = 'sound/weapons/gunshot2.ogg'
 	var/cooldowntime = 50
 	var/cooldown = 0
 	var/flawless = 0
 
-/obj/item/reagent_containers/beaker/reservoir/Initialize(mapload, vol)
+/obj/item/reagent_containers/glass/beaker/reservoir/Initialize(mapload, vol)
 	. = ..()
 	vol = 30
 
 /obj/item/blunderbuss/Initialize()
 	. = ..()
-	boomtank = new /obj/item/reagent_containers/beaker/reservoir(src)
+	boomtank = new /obj/item/reagent_containers/glass/beaker/reservoir(src)
 
 /obj/item/blunderbuss/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers))
-		var/obj/item/reagent_containers/R = I
-		if((/datum/reagent/fuel in R.reagents.reagent_list) && boomtank)
-			var/datum/reagent/fuel/L = locate(/datum/reagent/fuel) in R.reagents.reagent_list
-			R.reagents.trans_id_to(boomtank.reagents, L, L.volume)
-			to_chat(user, "<span class='notice'>You transfer all of [R]'s possible fuel to \the [src].</span>")
-		else
-			if(R.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
-				R.forceMove(src)
-				loaded_item = R
+		if(user.a_intent == INTENT_HELP)
+			var/obj/item/reagent_containers/R = I
+			var/datum/reagent/fuel/F
+			for(var/datum/reagent/Re in R.reagents.reagent_list)
+				if(istype(Re, /datum/reagent/fuel))
+					F = Re
+			if(F)
+				if(R.reagents.trans_id_to(boomtank, F.type, F.volume))
+					to_chat(user, "<span class='notice'>You transfer all of [R]'s possible fuel to \the [src].</span>")
+				else
+					to_chat(user, "<span class='notice'>\The [src] is already full.</span>")
+			else 
+				to_chat(user, "<span class='notice'>\The [R] has no fuel.</span>")
+		else 
+			if(I.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
+				I.forceMove(src)
+				loaded_item = I
+				to_chat(user, "<span class='notice'>You load \the [I] on [src].</span>")
 			else if(loaded_item)
 				to_chat(user, "<span class='warning'>[src] is already loaded!</span>")
 			else
-				to_chat(user, "<span class='warning'>[R] is too bulky to be shot!</span>")
+				to_chat(user, "<span class='warning'>[I] is too bulky to be shot!</span>")
+	else if(I.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
+		I.forceMove(src)
+		loaded_item = I
+		to_chat(user, "<span class='notice'>You load \the [I] on [src].</span>")
+	else if(loaded_item)
+		to_chat(user, "<span class='warning'>[src] is already loaded!</span>")
 	else
-		if(I.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
-			I.forceMove(src)
-			loaded_item = I
-		else if(loaded_item)
-			to_chat(user, "<span class='warning'>[src] is already loaded!</span>")
-		else
-			to_chat(user, "<span class='warning'>[I] is too bulky to be shot!</span>")
+		to_chat(user, "<span class='warning'>[I] is too bulky to be shot!</span>")
 
 /obj/item/blunderbuss/examine(mob/user)
 	. = ..()
@@ -64,8 +74,9 @@
 /obj/item/blunderbuss/proc/explode(mob/user)
 	if(!flawless)
 		to_chat(user, "<span class='danger'>\The [src]'s firing mechanism fails!</span>")
-		loaded_item.forceMove(user.loc)
-		loaded_item = null
+		if(loaded_item)
+			loaded_item.forceMove(user.loc)
+			loaded_item = null
 		explosion(user, -1, -1, 2, 1)
 		qdel(src)
 		return TRUE
@@ -157,5 +168,5 @@
 		return FALSE
 	loaded_item = null
 	I.forceMove(get_turf(src))
-	I.throw_at(target, 7 * (range_multiplier + 1), 4, user)
+	I.throw_at(target, 7 * (range_multiplier + 1), 3, user)
 	return TRUE

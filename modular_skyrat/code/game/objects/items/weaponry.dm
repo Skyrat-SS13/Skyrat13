@@ -46,6 +46,16 @@
 	var/burn_force = 3
 	obj_flags = UNIQUE_RENAME
 
+/obj/item/switchblade/deluxe/CheckParts(list/parts_list)
+	var/obj/item/switchblade/source = locate() in parts_list
+	if(istype(source, /obj/item/switchblade) && !istype(source, /obj/item/switchblade/crafted))
+		force = 5
+		throwforce = 5
+		extended_force = 18
+		extended_throwforce = 24
+		burn_force = 4
+	qdel(source)
+
 /obj/item/switchblade/deluxe/afterattack(target, user, proximity_flag)
 	..()
 	if(proximity_flag)
