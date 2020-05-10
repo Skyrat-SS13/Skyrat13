@@ -1189,13 +1189,13 @@
 		),
 		//17
 		list(
-			"key" = TOOL_WRENCH
+			"key" = TOOL_WRENCH,
 			"back_key" = TOOL_CROWBAR,
 			"desc" = "The power cell is installed."
 		),
 		//18
 		list(
-			"key" = TOOL_WELDER
+			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WRENCH,
 			"desc" = "The power cell is secured."
 		),
