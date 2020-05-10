@@ -618,8 +618,8 @@
 
 // Reskinnable Trek uniforms, now using Orvi-like by default.
 /obj/item/clothing/under/trek/command
-	name = "\improper Planetary Federation command uniform"
-	desc = "An uniform worn by command officers."
+	name = "federation command uniform"
+	desc = "A federation uniform worn by command officers."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
@@ -658,8 +658,8 @@
 	)
 
 /obj/item/clothing/under/trek/engsec
-	name = "\improper Planetary Federation operations uniform"
-	desc = "An uniform worn by operations officers. You feel strangely vulnerable just seeing this..."
+	name = "federation operations uniform"
+	desc = "A federation uniform worn by operations officers."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
@@ -698,8 +698,8 @@
 	)
 
 /obj/item/clothing/under/trek/medsci
-	name = "\improper Planetary Federation medsci uniform"
-	desc = "An uniform worn by medsci officers."
+	name = "federation medsci uniform"
+	desc = "A federation uniform worn by medsci officers."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
@@ -739,8 +739,8 @@
 
 // Bonus for assistants and service.
 /obj/item/clothing/under/trek/orvi
-	name = "\improper Planetary Federation assistant uniform"
-	desc = "An uniform worn by volunteered active-duty-cadets... Or in simple terms - an assistants."
+	name = "federation assistant uniform"
+	desc = "A federation uniform worn by officer's trainees."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
@@ -764,8 +764,8 @@
 	)
 
 /obj/item/clothing/under/trek/orvi/service
-	name = "\improper Planetary Federation service uniform"
-	desc = "An uniform worn by service officers. How service department can have officers is still unknown."
+	name = "federation service uniform"
+	desc = "A federation uniform worn by service officers. How service department can have officers is still unknown."
 	icon_state = "orv_srv"
 	item_state = "g_suit"
 	unique_reskin_icons = list(
@@ -787,12 +787,12 @@
 
 // Changes name/desc to the jackets, makes modern/non-classic jacket to have same list of allowed suit-storage items as classic one.
 /obj/item/clothing/suit/storage/fluff/fedcoat
-	name = "\improper Planetary Federation classic uniform jacket"
-	desc = "A classic uniform jacket. Set phasers to awesome."
+	name = "federation classic uniform jacket"
+	desc = "A classic, old federation uniform jacket. Set phasers to awesome!"
 
 /obj/item/clothing/suit/storage/fluff/modernfedcoat
-	name = "\improper Planetary Federation uniform jacket"
-	desc = "An uniform jacket."
+	name = "federation uniform jacket"
+	desc = "A federation uniform jacket."
 	allowed = list(
 				/obj/item/tank/internals/emergency_oxygen,
 				/obj/item/flashlight,
@@ -811,8 +811,8 @@
 				/obj/item/taperecorder)
 
 /obj/item/clothing/head/caphat/formal/fedcover
-	name = "\improper Planetary Federation peaked cap"
-	desc = "A peaked cap."
+	name = "federation peaked cap"
+	desc = "A peaked cap, that demands <i>at least <u>some</u></i> discipline from its wearer."
 
 // PrisArch-like color codes for prisoners. Uses _stored variation for Warden's control.
 /obj/item/clothing/under/rank/prisoner

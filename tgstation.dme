@@ -3694,6 +3694,7 @@
 #include "modular_skyrat\code\modules\ninja\suit\head.dm"
 #include "modular_skyrat\code\modules\ninja\suit\shoes.dm"
 #include "modular_skyrat\code\modules\ninja\suit\suit.dm"
+#include "modular_skyrat\code\modules\paperwork\contract.dm"
 #include "modular_skyrat\code\modules\power\cable.dm"
 #include "modular_skyrat\code\modules\procedural_mapping\mapGenerators\lavaland.dm"
 #include "modular_skyrat\code\modules\projectiles\gun.dm"

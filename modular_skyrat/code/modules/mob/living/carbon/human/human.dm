@@ -5,7 +5,7 @@
 			var/str = "[src]'s OOC Notes : <br> <b>ERP :</b> [client.prefs.erppref] <b>| Non-Con :</b> [client.prefs.nonconpref] <b>| Vore :</b> [client.prefs.vorepref]<br>[client.prefs.ooc_notes]"
 			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", "[name]'s OOC information", replacetext(str, "\n", "<BR>")), text("window=[];size=500x200", "[name]'s ooc info"))
 			onclose(usr, "[name]'s ooc info")
-	
+
 	if(href_list["general_records"])
 		if(client && usr.client.holder)
 			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", "[name]'s general records", replacetext(client.prefs.general_records, "\n", "<BR>")), text("window=[];size=500x200", "[name]'s gen rec"))
@@ -20,6 +20,11 @@
 		if(client && usr.client.holder)
 			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", "[name]'s medical records", replacetext(client.prefs.medical_records, "\n", "<BR>")), text("window=[];size=500x200", "[name]'s med rec"))
 			onclose(usr, "[name]'s med rec")
+
+	if(href_list["flavor_faction"])
+		if(client && usr.client.holder)
+			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", "[name]'s background faction", replacetext(client.prefs.flavor_faction, "\n", "<BR>")), text("window=[];size=500x200", "[name]'s flav fact"))
+			onclose(usr, "[name]'s flav fact")
 
 	if(href_list["flavor_background"])
 		if(client && usr.client.holder)

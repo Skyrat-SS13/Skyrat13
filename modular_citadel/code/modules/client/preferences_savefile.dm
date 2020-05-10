@@ -16,7 +16,7 @@
 	//SKYRAT CHANGES
 	S["enable_personal_chat_color"]			>> enable_personal_chat_color
 	S["personal_chat_color"]			>> personal_chat_color
-  
+
 	S["feature_ipc_chassis"] >> features["ipc_chassis"]
 
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
@@ -31,6 +31,7 @@
 	medical_records = sanitize_text(S["medical_records"])
 	general_records = sanitize_text(S["general_records"])
 	flavor_background = sanitize_text(S["flavor_background"])
+	flavor_faction = sanitize_text(S["flavor_faction"])
 	character_skills = sanitize_text(S["character_skills"])
 	exploitable_info = sanitize_text(S["exploitable_info"])
 	enable_personal_chat_color	= sanitize_integer(enable_personal_chat_color, 0, 1, initial(enable_personal_chat_color))
@@ -78,6 +79,7 @@
 	WRITE_FILE(S["medical_records"], medical_records)
 	WRITE_FILE(S["general_records"], general_records)
 	WRITE_FILE(S["flavor_background"], flavor_background)
+	WRITE_FILE(S["flavor_faction"], flavor_background)
 	WRITE_FILE(S["character_skills"], character_skills)
 	WRITE_FILE(S["exploitable_info"], exploitable_info)
 	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
