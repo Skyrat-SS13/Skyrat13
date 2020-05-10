@@ -42,7 +42,7 @@
 	desc = "This is a fossil of an animal... seems dead."
 
 /obj/item/ancientartifact/faunafossil/Initialize()
-	icon_state = pick(list("bone1","bone2","bone3","bone4"))
+	icon_state = pick(list("bone1","bone2","bone3","bone4","bone5","bone6"))
 	..()
 
 /obj/item/ancientartifact/faunafossil/attackby(obj/item/W, mob/user, params)
@@ -59,7 +59,7 @@
 	desc = "This is a fossil of a plant... seems dead."
 
 /obj/item/ancientartifact/florafossil/Initialize()
-	icon_state = pick(list("plant1","plant2","plant3","plant4"))
+	icon_state = pick(list("plant1","plant2","plant3","plant4","plant5","plant6"))
 	..()
 
 /obj/item/ancientartifact/florafossil/attackby(obj/item/W, mob/user, params)

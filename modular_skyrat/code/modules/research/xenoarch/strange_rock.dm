@@ -14,6 +14,7 @@
 	var/tryagain = null
 
 /obj/item/strangerock/Initialize()
+	icon_state = pick("strange","strange0","strange1","strange2","strange3")
 	var/randomnumber = rand(1,200)
 	switch(randomnumber)
 		if(1 to 159)
