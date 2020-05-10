@@ -79,7 +79,7 @@
 	WRITE_FILE(S["medical_records"], medical_records)
 	WRITE_FILE(S["general_records"], general_records)
 	WRITE_FILE(S["flavor_background"], flavor_background)
-	WRITE_FILE(S["flavor_faction"], flavor_background)
+	WRITE_FILE(S["flavor_faction"], flavor_faction)
 	WRITE_FILE(S["character_skills"], character_skills)
 	WRITE_FILE(S["exploitable_info"], exploitable_info)
 	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
