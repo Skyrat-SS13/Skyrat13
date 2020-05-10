@@ -13,7 +13,7 @@
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
-	mutant_bodyparts = list("legs" = "Digitigrade") //this probably isn't gonna work.
+	mutant_bodyparts = list("legs" = "Digitigrade", "taur" = "None") //this probably isn't gonna work.
 	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //for getting these values back for assume_disguise()
 	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE) //blah blah i explained above
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
@@ -61,9 +61,10 @@
 		ears.Insert(H)
 		H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
 		mutanttail = S.mutanttail
-		qdel(H.getorganslot(ORGAN_SLOT_TAIL))
-		var/obj/item/organ/tail = new mutanttail
-		tail.Insert(H)
+		if(mutanttail)
+			qdel(H.getorganslot(ORGAN_SLOT_TAIL))
+			var/obj/item/organ/tail = new mutanttail
+			tail.Insert(H)
 		H.setOrganLoss(ORGAN_SLOT_TAIL, storedtaildamage)
 		isdisguised = TRUE
 		fake_species = new S.type
@@ -99,6 +100,7 @@
 	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
 		BP.change_bodypart_status(BODYPART_ROBOTIC)
+		BP.render_like_organic = TRUE
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()
@@ -106,6 +108,7 @@
 	UnregisterSignal(H, COMSIG_MOB_SAY)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
 		BP.change_bodypart_status(BODYPART_ORGANIC)
+		BP.render_like_organic = TRUE
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
@@ -146,28 +149,15 @@
 	handle_mutant_bodyparts(H)
 	H.regenerate_icons()
 
-/datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.type == /datum/reagent/medicine/synthflesh && chem.volume < chem.overdose_threshold)
-		chem.reaction_mob(H, TOUCH, 2 ,0) //heal a little
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-		return TRUE
-	else if(chem.type == /datum/reagent/medicine/synthflesh && chem.volume >= chem.overdose_threshold)
-		if(chem.overdosed == FALSE)
-			chem.overdose_start(H)
-			chem.reaction_mob(H, TOUCH, 2 ,0)
-			H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-		else 
-			chem.reaction_mob(H, TOUCH, 2 ,0)
-			H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-	else 
-		..()
-
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
 	..()
 	actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
 		H.visible_message("<span class='danger'>[H]'s disguise falls apart!</span>", "<span class='userdanger'>Your disguise falls apart!</span>")
+	else if((actualhealth >= disguise_fail_health) && !isdisguised)
+		assume_disguise(fake_species, H)
+		H.visible_message("<span class='warning'>[H] morphs their appearance to that of [fake_species.name].</span>", "<span class='notice'>You morph your appearance to that of [fake_species.name].</span>")
 
 /datum/species/synth/handle_hair(mob/living/carbon/human/H, forced_colour)
 	if(fake_species && isdisguised)
