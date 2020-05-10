@@ -42,22 +42,22 @@
 	retracted_icon_state = "switchblade_deluxe"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
-	item_state = null
 	var/firestacking = 5
 	var/burn_force = 3
 	obj_flags = UNIQUE_RENAME
 
-/obj/item/switchblade/deluxe/afterattack(target, user)
+/obj/item/switchblade/deluxe/afterattack(target, user, proximity_flag)
 	..()
-	if(iscarbon(target) && extended)
-		var/mob/living/carbon/L = target
-		var/mob/living/carbon/ourman = user
-		L.apply_damage(damage = burn_force,damagetype = BURN, def_zone = L.get_bodypart(check_zone(ourman.zone_selected)), blocked = FALSE, forced = FALSE)
-		L.fire_stacks += firestacking
-		L.IgniteMob()
-	else if(isliving(target) && extended)
-		var/mob/living/thetarget = target
-		thetarget.adjustBruteLoss(burn_force)
+	if(proximity_flag)
+		if(iscarbon(target) && extended)
+			var/mob/living/carbon/L = target
+			var/mob/living/carbon/ourman = user
+			L.apply_damage(damage = burn_force,damagetype = BURN, def_zone = L.get_bodypart(check_zone(ourman.zone_selected)), blocked = FALSE, forced = FALSE)
+			L.fire_stacks += firestacking
+			L.IgniteMob()
+		else if(isliving(target) && extended)
+			var/mob/living/thetarget = target
+			thetarget.adjustBruteLoss(burn_force)
 
 /obj/item/switchblade/deluxe/attack_self(mob/user)
 	extended = !extended
