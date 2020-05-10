@@ -62,7 +62,7 @@
 
 /turf/open/floor/plating/smooth/dirt/lavaland_jungle
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
-	color = "#66522f"
+	color = "#615c59"
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 
