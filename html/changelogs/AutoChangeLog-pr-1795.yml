@@ -1,6 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "Deep-rooted traumas can no longer be cured by nanites/viruses"
-  - balance: "White matter randomiser no longer causes deep-rooted traumas"
-  - balance: "Lobotomy now has a 50% chance of causing a permanent trauma, instead of 75%"

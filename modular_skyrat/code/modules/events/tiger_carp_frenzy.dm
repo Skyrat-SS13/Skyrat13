@@ -28,4 +28,3 @@
 		else
 			new /mob/living/simple_animal/hostile/carp/megacarp(C.loc)
 
-
