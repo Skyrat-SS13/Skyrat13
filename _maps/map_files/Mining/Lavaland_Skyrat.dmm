@@ -1462,7 +1462,7 @@
 	dir = 8
 	},
 /obj/machinery/button/door{
-	id = "xp2;
+	id = "xp2";
 	normaldoorcontrol = 1;
 	pixel_x = -28;
 	specialfunctions = 4
