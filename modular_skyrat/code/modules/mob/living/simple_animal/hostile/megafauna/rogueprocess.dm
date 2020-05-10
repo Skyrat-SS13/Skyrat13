@@ -12,12 +12,12 @@
 	icon_dead = "rogue-broken"
 	friendly = "pokes"
 	speak_emote = list("screeches")
-	mob_biotypes = list(MOB_ROBOTIC)
+	mob_biotypes = MOB_ROBOTIC
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	speed = 1
 	move_to_delay = 10
-	ranged_cooldown_time = 75
+	ranged_cooldown_time = 70
 	ranged = 1
 	del_on_death = 0
 	crusher_loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/crusher_trophy/brokentech, /obj/item/twohanded/rogue)
@@ -52,7 +52,7 @@
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/adjustHealth(amount, updating_health, forced)
 	. = ..()
 	anger_modifier = round(clamp(((maxHealth - health) / 42),0,60))
-	move_to_delay = clamp(round((src.health/src.maxHealth) * 10), 2, 10)
+	move_to_delay = clamp(round((src.health/src.maxHealth) * 10), 3, 10)
 	wander = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
@@ -95,7 +95,7 @@
 					INVOKE_ASYNC(src, .proc/plasmashot, left, FALSE)
 					INVOKE_ASYNC(src, .proc/plasmashot, right, FALSE)
 			else
-				INVOKE_ASYNC(src, .proc/ultishockwave, 10, TRUE)
+				INVOKE_ASYNC(src, .proc/ultishockwave, 7, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/Move()
 	. = ..()
