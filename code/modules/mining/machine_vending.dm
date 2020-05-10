@@ -147,11 +147,16 @@
 	if(default_deconstruction_crowbar(I))
 		return
 	return ..()
-
+// SKYRAT EDIT: Equipment Radials
 /obj/machinery/mineral/equipment_vendor/proc/RedeemVoucher(obj/item/mining_voucher/voucher, mob/redeemer)
-	var/items = list("Survival Capsule and Explorer's Webbing", "Resonator Kit", "Minebot Kit", "Extraction and Rescue Kit", "Crusher Kit", "Mining Conscription Kit")
+	var/items = list(	"Survival Capsule and Explorer's Webbing" = image(icon = 'icons/obj/storage.dmi', icon_state = "explorerpack"),
+						"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
+						"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
+						"Extraction and Rescue Kit" = image(icon = 'icons/obj/fulton.dmi', icon_state = "extraction_pack"),
+						"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "crusher"),
+						"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel"))
 
-	var/selection = input(redeemer, "Pick your equipment", "Mining Voucher Redemption") as null|anything in items
+	var/selection = show_radial_menu(redeemer, src, items, require_near = TRUE, tooltips = TRUE)
 	if(!selection || !Adjacent(redeemer) || QDELETED(voucher) || voucher.loc != redeemer)
 		return
 	var/drop_location = drop_location()
@@ -320,11 +325,12 @@
 	new /obj/item/card/id/mining(src)
 	new /obj/item/storage/bag/ore(src)
 	new /obj/item/clothing/glasses/meson/prescription(src)
-
+// SKYRAT EDIT: Equipment Radials
 /obj/machinery/mineral/equipment_vendor/proc/RedeemSVoucher(obj/item/suit_voucher/voucher, mob/redeemer)
-	var/items = list("Exo-suit", "SEVA suit")
+	var/items = list(	"Exo-suit" = image(icon = 'icons/obj/clothing/suits.dmi', icon_state = "exo"),
+						"SEVA suit" = image(icon = 'icons/obj/clothing/suits.dmi', icon_state = "seva"))
 
-	var/selection = input(redeemer, "Pick your suit.", "Suit Voucher Redemption") as null|anything in items
+	var/selection = show_radial_menu(redeemer, src, items, require_near = TRUE, tooltips = TRUE)
 	if(!selection || !Adjacent(redeemer) || QDELETED(voucher) || voucher.loc != redeemer)
 		return
 	var/drop_location = drop_location()

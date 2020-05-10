@@ -1,6 +1,6 @@
 //seva shit
 /obj/item/clothing/suit/hooded/explorer/seva
-	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "seva"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
@@ -22,7 +22,7 @@
 	)
 
 /obj/item/clothing/head/hooded/explorer/seva
-	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "seva"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
@@ -75,7 +75,7 @@
 
 //exosuit shit
 /obj/item/clothing/suit/hooded/explorer/exo
-	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "exo"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
@@ -97,7 +97,7 @@
 	)
 
 /obj/item/clothing/head/hooded/explorer/exo
-	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "exo"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
@@ -119,7 +119,7 @@
 	)
 
 /obj/item/clothing/mask/gas/exo
-	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
+	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "exo"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
