@@ -546,6 +546,7 @@
 		//4
 		list(
 			"key" = /obj/item/electronics/airlock,
+			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_WRENCH,
 			"desc" = "The oxygen tank is secured."
 		),
@@ -564,6 +565,7 @@
 		//7
 		list(
 			"key" = /obj/item/flashlight,
+			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_WELDER,
 			"desc" = "The chassis is just barely airtight."
 		),
@@ -577,6 +579,7 @@
 		list(
 			"key" = /obj/item/stack/rods,
 			"amount" = 4,
+			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_WRENCH,
 			"desc" = "The flashlight is secured."
 		),
@@ -589,34 +592,55 @@
 		//11
 		list(
 			"key" = /obj/item/pipe,
-			"amount" = 2,
+			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_WRENCH,
 			"desc" = "The mounting metal rods are secured."
 		),
 		//12
 		list(
-			"key" = TOOL_WRENCH,
+			"key" = /obj/item/pipe,
+			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "The pipe legs are installed."
+			"desc" = "The first pipe leg is installed."
 		),
 		//13
 		list(
+			"key" = TOOL_WRENCH,
+			"back_key" = TOOL_CROWBAR,
+			"desc" = "The two pipe legs are installed."
+		),
+		//14
+		list(
 			"key" = /obj/item/stack/cable_coil,
 			"amount" = 20,
+			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_WRENCH,
 			"desc" = "The pipe legs are secured."
 		),
-		//14
+		//15
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_WIRECUTTER,
 			"desc" = "The limbs and chassis are wired."
 		),
-		//15
+		//16
 		list(
-			"key" = TOOL_WELDER,
+			"key" = /obj/item/stock_parts/cell,
+			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "The limbs and chassis are wired and linked together."
+		),
+		//17
+		list(
+			"key" = TOOL_WRENCH
+			"back_key" = TOOL_CROWBAR,
+			"desc" = "The power cell is installed."
+		),
+		//18
+		list(
+			"key" = TOOL_WELDER
+			"back_key" = TOOL_WRENCH,
+			"desc" = "The power cell is secured."
 		),
 	)
 
@@ -680,27 +704,42 @@
 				user.visible_message("[user] pries the rod mounts off from [parent].", "<span class='notice'>You pry the rod mounts off from [parent].</span>")
 		if(12)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs the pipe legs on [parent].", "<span class='notice'>You install the pipe legs on [parent].</span>")
+				user.visible_message("[user] installs the first pipe leg on [parent].", "<span class='notice'>You install the pipe leg on [parent].</span>")
 			else
 				user.visible_message("[user] unsecures the rod mounts.", "<span class='notice'>You unsecure the rod mounts.</span>")
 		if(13)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the [parent]'s pipe legs.", "<span class='notice'>You secure the [parent]'s pipe legs.</span>")
+				user.visible_message("[user] installs the second pipe leg on [parent].", "<span class='notice'>You install the second pipe leg on [parent].</span>")
 			else
-				user.visible_message("[user] pries the pipe legs off from [parent].", "<span class='notice'>You pry the pipe legs off from [parent].</span>")
+				user.visible_message("[user] pries the pipe leg off from [parent].", "<span class='notice'>You pry the pipe leg off from [parent].</span>")
 		if(14)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures the pipe legs on [parent].", "<span class='notice'>You secure the pipe legs on [parent].</span>")
+			else
+				user.visible_message("[user] pries the pipe leg off from [parent].", "<span class='notice'>You pry the pipe leg off from [parent].</span>")
+		if(15)
 			if(diff==FORWARD)
 				user.visible_message("[user] wires the [parent] and limbs.", "<span class='notice'>You wire the [parent] and limbs.</span>")
 			else
 				user.visible_message("[user] unsecures the [parent]'s pipe legs.", "<span class='notice'>You unsecure the [parent]'s pipe legs.</span>")
-		if(15)
+		if(16)
 			if(diff==FORWARD)
 				user.visible_message("[user] properly adjusts the [parent]'s wires.", "<span class='notice'>You properly adjust the [parent]'s wires.</span>")
 			else
 				user.visible_message("[user] snips the [parent]'s wirings.", "<span class='notice'>You snip the [parent]'s wiring.</span>")
-		if(16)
+		if(17)
+			if(diff==FORWARD)
+				user.visible_message("[user] installs [I] on [parent].", "<span class='notice'>You install [I] on [parent].</span>")
+			else
+				user.visible_message("[user] deadjusts [parent]'s wiring.", "<span class='notice'>You deadjust [parent]'s wiring.</span>")
+		if(18)
+			if(diff==FORWARD)
+				user.visible_message("[user] secures [parent]'s power cell.", "<span class='notice'>You secure [parent]'s power cell.</span>")
+			else
+				user.visible_message("[user] uninstalls [parent]'s power cell.", "<span class='notice'>You uninstall [parent]'s power cell.</span>")
+		if(19)
 			if(diff==FORWARD)
 				user.visible_message("[user] welds [parent] together completely.", "<span class='notice'>You weld [parent] together completely..</span>")
 			else
-				user.visible_message("[user] deadjusts [parent]'s wiring.", "<span class='notice'>You deadjust [parent]'s wiring.</span>")
+				user.visible_message("[user] unsecures [parent]'s power cell.", "<span class='notice'>You unsecure [parent]'s power cell.</span>")
 	return TRUE
