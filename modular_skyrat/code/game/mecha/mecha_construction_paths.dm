@@ -1006,34 +1006,49 @@
 				user.visible_message("<span class='notice'>[user] pries the matter bin from [parent].</span>", "<span class='notice'>You pry the matter bin from [parent].</span>")
 		if(18)
 			if(diff==FORWARD)
-				user.visible_message("<span class='notice'>[user] installs the internal armor layer to [parent].</span>", "<span class='notice'>You install the internal armor layer to [parent].</span>")
+				user.visible_message("<span class='notice'>[user] installs the first oxygen tank on [parent].</span>", "<span class='notice'>You install the first oxygen tank on [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] unfastens the matter bin.</span>", "<span class='notice'>You unfasten the matter bin.</span>")
 		if(19)
 			if(diff==FORWARD)
-				user.visible_message("<span class='notice'>[user] secures the internal armor layer.</span>", "<span class='notice'>You secure the internal armor layer.</span>")
+				user.visible_message("<span class='notice'>[user] installs the second oxygen tank on [parent].</span>", "<span class='notice'>You install the first oxygen tank on [parent].</span>")
 			else
-				user.visible_message("<span class='notice'>[user] pries internal armor layer from [parent].</span>", "<span class='notice'>You pry internal armor layer from [parent].</span>")
+				user.visible_message("<span class='notice'>[user] pries off the oxygen tank from [parent].</span>", "<span class='notice'>You pry off the oxygen tank from [parent].</span>")
 		if(20)
 			if(diff==FORWARD)
-				user.visible_message("<span class='notice'>[user] welds the internal armor layer to [parent].</span>", "<span class='notice'>You weld the internal armor layer to [parent].</span>")
+				user.visible_message("<span class='notice'>[user] installs the internal armor layer to [parent].</span>", "<span class='notice'>You install the internal armor layer to [parent].</span>")
 			else
-				user.visible_message("<span class='notice'>[user] unfastens the internal armor layer.</span>", "<span class='notice'>You unfasten the internal armor layer.</span>")
+				user.visible_message("<span class='notice'>[user] pries off the oxygen tank from [parent].</span>", "<span class='notice'>You pry off the oxygen tank from [parent].</span>")
 		if(21)
 			if(diff==FORWARD)
-				user.visible_message("<span class='notice'>[user] installs the external armor layer to [parent].</span>", "<span class='notice'>You install the external reinforced armor layer to [parent].</span>")
+				user.visible_message("<span class='notice'>[user] secures the internal armor layer.</span>", "<span class='notice'>You secure the internal armor layer.</span>")
 			else
-				user.visible_message("<span class='notice'>[user] cuts the internal armor layer from [parent].</span>", "<span class='notice'>You cut the internal armor layer from [parent].</span>")
+				user.visible_message("<span class='notice'>[user] pries the internal armor layer from [parent].</span>", "<span class='notice'>You pry the internal armor layer from [parent].</span>")
 		if(22)
 			if(diff==FORWARD)
-				user.visible_message("<span class='notice'>[user] secures the external armor layer.</span>", "<span class='notice'>You secure the external reinforced armor layer.</span>")
+				user.visible_message("<span class='notice'>[user] installs the titanium glass visor on [parent].</span>", "<span class='notice'>You install the titanium glass visor on [parent].</span>")
 			else
-				user.visible_message("<span class='notice'>[user] pries the external armor layer from [parent].</span>", "<span class='notice'>You pry the external armor layer from [parent].</span>")
+				user.visible_message("<span class='notice'>[user] unfastens the internal armor layer.</span>", "<span class='notice'>You unfasten the internal armor layer.</span>")
 		if(23)
+			if(diff==FORWARD)
+				user.visible_message("<span class='notice'>[user] welds the titanium glass visor to [parent].</span>", "<span class='notice'>You weld the titanium glass visor to [parent].</span>")
+			else
+				user.visible_message("<span class='notice'>[user] pries the titanium glass visor from [parent].</span>", "<span class='notice'>You pry the titanium visor from [parent].</span>")
+		if(24)
+			if(diff==FORWARD)
+				user.visible_message("<span class='notice'>[user] installs the external titanium alloy armor layer on [parent].</span>", "<span class='notice'>You install the external titanium alloy armor layer on [parent].</span>")
+			else
+				user.visible_message("<span class='notice'>[user] unwelds the titanium glass visor from [parent].</span>", "<span class='notice'>You unweld the titanium glass visor from [parent].</span>")
+		if(25)
+			if(diff==FORWARD)
+				user.visible_message("<span class='notice'>[user] secures the external armor layer to [parent].</span>", "<span class='notice'>You secure the external armor layer to [parent].</span>")
+			else
+				user.visible_message("<span class='notice'>[user] pries off the external armor layer from [parent].</span>", "<span class='notice'>You pry off the external titanium alloy armor layer from [parent].</span>")
+		if(26)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] welds the external armor layer to [parent].</span>", "<span class='notice'>You weld the external armor layer to [parent].</span>")
 			else
-				user.visible_message("<span class='notice'>[user] unfastens the external armor layer.</span>", "<span class='notice'>You unfasten the external armor layer.</span>")
+				user.visible_message("<span class='notice'>[user] unsecures the external armor layer on [parent].</span>", "<span class='notice'>You unseecure the external armor layer on [parent].</span>")
 	return TRUE
 
 /datum/component/construction/mecha/buzz/update_parent(step_index)
