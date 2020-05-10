@@ -632,7 +632,7 @@
 		),
 		//17
 		list(
-			"key" = TOOL_WRENCH
+			"key" = TOOL_WRENCH,
 			"back_key" = TOOL_CROWBAR,
 			"desc" = "The power cell is installed."
 		),
