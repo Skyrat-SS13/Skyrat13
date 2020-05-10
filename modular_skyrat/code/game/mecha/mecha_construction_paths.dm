@@ -821,33 +821,33 @@
 		list(
 			"key" = /obj/item/stock_parts/capacitor,
 			"action" = ITEM_MOVE_INSIDE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_WRENCH,
 			"desc" = "The scanning module is secured."
 		),
 		//12
 		list(
 			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The capacitor is installed."
 		),
 		//13
 		list(
 			"key" = /obj/item/stock_parts/cell,
 			"action" = ITEM_MOVE_INSIDE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_WRENCH,
 			"desc" = "The capacitor is secured."
 		),
 		//14
 		list(
 			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The power cell is installed."
 		),
 		//15
 		list(
 			"key" = /obj/item/stock_parts/matter_bin,
 			"action" = ITEM_MOVE_INSIDE,
-			"back_key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_WRENCH,
 			"desc" = "The power cell is secured."
 		),
 		//16
