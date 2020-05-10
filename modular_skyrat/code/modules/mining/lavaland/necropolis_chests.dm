@@ -12,7 +12,7 @@
 
 /obj/structure/closet/crate/necropolis/gladiator/crusher/PopulateContents()
 	new /obj/item/shield/riot/tower/swat/gladiator(src)
-	new /obj/item/melee/tomahawk(src)
+	new /obj/item/melee/zweihander(src)
 
 /obj/item/shield/riot/tower/swat/gladiator
 	name = "\proper Gladiator's shield"
