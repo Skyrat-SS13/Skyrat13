@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "SS_NO_FIRE subsystems are now under a single \"Debug Misc Subsystems\" button. This can be overridden by SS_ALWAYS_SHOW_STAT."

@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Bear traps can no longer snap to your leg if you already have legcuffs."
-  - rscadd: "You cannot trigger bear traps if you're floating."
