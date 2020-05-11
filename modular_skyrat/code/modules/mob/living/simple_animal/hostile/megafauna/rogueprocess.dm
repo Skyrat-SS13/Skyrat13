@@ -52,13 +52,13 @@
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/adjustHealth(amount, updating_health, forced)
 	. = ..()
 	anger_modifier = round(clamp(((maxHealth - health) / 42),0,60))
-	move_to_delay = clamp(round((src.health/src.maxHealth) * 10), 3, 10)
+	move_to_delay = clamp(round((src.health/src.maxHealth) * 10), 2.5, 8)
 	wander = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
 	if(special)
 		return FALSE
-	ranged_cooldown = world.time + min((ranged_cooldown_time - anger_modifier), 65)
+	ranged_cooldown = world.time + min((ranged_cooldown_time - anger_modifier), 60)
 	switch(anger_modifier)
 		if(0 to 25)
 			if(prob(50))
