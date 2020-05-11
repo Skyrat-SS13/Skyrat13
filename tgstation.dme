@@ -3757,7 +3757,6 @@
 #include "modular_skyrat\code\modules\research\techweb\nodes\misc_nodes.dm"
 #include "modular_skyrat\code\modules\research\techweb\nodes\robotics_nodes.dm"
 #include "modular_skyrat\code\modules\research\techweb\nodes\syndicate_nodes.dm"
-#include "modular_skyrat\code\modules\research\techweb\nodes\tools_nodes.dm"
 #include "modular_skyrat\code\modules\ruins\lavalandruin_code\kinggoat.dm"
 #include "modular_skyrat\code\modules\ruins\lavalandruin_code\misc.dm"
 #include "modular_skyrat\code\modules\ruins\spaceruin_code\oldstation.dm"
