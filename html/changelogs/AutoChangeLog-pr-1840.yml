@@ -1,0 +1,10 @@
+author: "Ghommie (Original PRs by CRTXBacon & Nepeta33Leijon, Dennok, Arkatos1 and RaveRadbury)"
+delete-after: True
+changes: 
+  - rscadd: "New clown mask skin that CRTXBacon totally wasn't forced to help with."
+  - rscadd: "Now ladders has radial menu"
+  - rscadd: "borgs now use a radial menu to select their module skins."
+  - rscadd: "Cardboard cutouts now use a radial menu to choose their skins."
+  - rscadd: "Clown, Mime, Tiki and Paper masks now use radial menus."
+  - rscadd: "Papersacks now use a radial menu to choose their skins."
+  - tweak: "Hands of cards now use radial menus"
