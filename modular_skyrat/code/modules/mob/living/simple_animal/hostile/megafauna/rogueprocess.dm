@@ -17,7 +17,7 @@
 	melee_damage_upper = 30
 	speed = 1
 	move_to_delay = 10
-	ranged_cooldown_time = 70
+	ranged_cooldown_time = 80
 	ranged = 1
 	del_on_death = 0
 	crusher_loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/crusher_trophy/brokentech, /obj/item/twohanded/rogue)
@@ -58,7 +58,7 @@
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
 	if(special)
 		return FALSE
-	ranged_cooldown = world.time + (ranged_cooldown_time - anger_modifier)
+	ranged_cooldown = world.time + min((ranged_cooldown_time - anger_modifier), 65)
 	switch(anger_modifier)
 		if(0 to 25)
 			if(prob(50))
