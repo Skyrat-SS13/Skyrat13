@@ -29,7 +29,7 @@
 	category = list("Mining Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
-/datum/design/wide_titanium_shovel
+/datum/design/wide_diamond_shovel
 	name = "Wide Diamond Shovel"
 	desc = "Don't dig straight up."
 	id = "wide_diamond_shovel"
