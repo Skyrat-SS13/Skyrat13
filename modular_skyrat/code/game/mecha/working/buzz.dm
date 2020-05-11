@@ -27,7 +27,7 @@
 
 /obj/mecha/working/ripley/buzz/GrantActions(mob/living/user, human_occupant = 0)
 	. = ..()
-	if(!(/obj/item/mecha_parts/mecha_equipment/buzzthrusters in src))
+	if(!(/obj/item/mecha_parts/mecha_equipment/buzzthrusters in M.equipment))
 		return
 	thrusters_action.Grant(user, src)
 
