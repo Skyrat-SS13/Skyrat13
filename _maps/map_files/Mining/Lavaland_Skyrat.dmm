@@ -5028,6 +5028,12 @@
 /obj/structure/stone_tile/cracked{
 	dir = 4
 	},
+/obj/item/storage/belt/xenoarch/full,
+/obj/item/storage/belt/xenoarch/full,
+/obj/item/storage/belt/xenoarch/full,
+/obj/item/storage/bag/strangerock,
+/obj/item/storage/bag/strangerock,
+/obj/item/storage/bag/strangerock,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "Ai" = (
