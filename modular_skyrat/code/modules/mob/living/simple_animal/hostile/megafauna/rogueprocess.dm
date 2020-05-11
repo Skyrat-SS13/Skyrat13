@@ -70,19 +70,31 @@
 			else
 				INVOKE_ASYNC(src, .proc/shockwave, src.dir, 7, TRUE)
 		if(25 to 50)
-			if(prob(50))
+			if(prob(60))
 				INVOKE_ASYNC(src, .proc/plasmaburst, target, FALSE)
 				sleep(5)
+				INVOKE_ASYNC(src, .proc/plasmaburst, target, TRUE)
+				sleep(3)
+				INVOKE_ASYNC(src, .proc/plasmashot, target, FALSE)
+				sleep(3)
 				if(prob(50))
-					INVOKE_ASYNC(src, .proc/plasmaburst, target, TRUE)
+					INVOKE_ASYNC(src, .proc/plasmashot, target, FALSE)
 			else
-				INVOKE_ASYNC(src, .proc/shockwave, src.dir, 10, TRUE)
+				INVOKE_ASYNC(src, .proc/shockwave, WEST, 10, TRUE)
+				INVOKE_ASYNC(src, .proc/shockwave, EAST, 10, TRUE)
+				sleep(7)
+				INVOKE_ASYNC(src, .proc/shockwave, NORTH, 10, TRUE)
+				INVOKE_ASYNC(src, .proc/shockwave, SOUTH, 10, TRUE)
 		if(50 to INFINITY)
 			if(prob(65))
-				if(prob(75))
+				if(prob(60))
 					INVOKE_ASYNC(src, .proc/plasmaburst, target, FALSE)
 					INVOKE_ASYNC(src, .proc/shockwave, src.dir, 15, FALSE)
 					sleep(5)
+					INVOKE_ASYNC(src, .proc/plasmaburst, target, FALSE)
+					sleep(5)
+					INVOKE_ASYNC(src, .proc/plasmaburst, target, FALSE)
+					sleep(3)
 					INVOKE_ASYNC(src, .proc/plasmaburst, target, FALSE)
 				else 
 					var/turf/up = locate(x, y + 10, z)
@@ -94,6 +106,10 @@
 					sleep(3)
 					INVOKE_ASYNC(src, .proc/plasmashot, left, FALSE)
 					INVOKE_ASYNC(src, .proc/plasmashot, right, FALSE)
+					sleep(10)
+					if(prob(35))
+						for(var/dire in GLOB.cardinals)
+							INVOKE_ASYNC(src, .proc/shockwave, dire, 7, TRUE)
 			else
 				INVOKE_ASYNC(src, .proc/ultishockwave, 7, TRUE)
 
@@ -117,7 +133,7 @@
 		visible_message("<span class='boldwarning'>[src] raises it's plasma cutter!</span>")
 		if(specialize)
 			special = TRUE
-		sleep(4)
+		sleep(3)
 		var/turf/startloc = get_turf(src)
 		var/obj/item/projectile/P = new /obj/item/projectile/plasma/rogue(startloc)
 		playsound(src, 'sound/weapons/laser.ogg', 100, TRUE)
@@ -184,7 +200,7 @@
 					L.Stun(20)
 					L.apply_damage_type(40, BRUTE)
 					hit_things += L
-	sleep(5)
+	sleep(3)
 	if(specialize)
 		special = FALSE
 
@@ -231,7 +247,7 @@
 		T = get_step(T, ogdir)
 		otherT = get_step(otherT, ogdir)
 		otherT2 = get_step(otherT2, ogdir)
-		sleep(2)
+		sleep(1.5)
 	if(specialize)
 		special = FALSE
 
@@ -281,7 +297,7 @@
 	usesound = 'sound/weapons/drill.ogg'
 	hitsound = 'sound/weapons/drill.ogg'
 	attack_verb = list("drilled")
-	var/cooldowntime = 40
+	var/cooldowntime = 50
 	var/cooldown = 0
 	var/range = 7
 
