@@ -27,9 +27,11 @@
 
 /obj/mecha/working/ripley/buzz/GrantActions(mob/living/user, human_occupant = 0)
 	. = ..()
-	if(!(/obj/item/mecha_parts/mecha_equipment/buzzthrusters in src))
-		return
-	thrusters_action.Grant(user, src)
+	var/thrust = FALSE
+	for(var/obj/item/mecha_parts/mecha_equipment/buzzthrusters/buzzy in equipment)
+		thrust = TRUE
+	if(thrust)
+		thrusters_action.Grant(user, src)
 
 /obj/mecha/working/ripley/buzz/RemoveActions(mob/living/user, human_occupant = 0)
 	. = ..()
@@ -40,8 +42,8 @@
 
 /obj/mecha/working/ripley/buzz/Initialize()
 	..()
-	var/datum/component/armor_plate/C = GetComponent(/datum/component/armor_plate) //funny ripley inheritance gave us the ability to get goliath armoring. we don't want that.
-	C.RemoveComponent()
+	var/datum/component/armor_plate/C = src.GetComponent(/datum/component/armor_plate) //funny ripley inheritance gave us the ability to get goliath armoring. we don't want that.
+	C.Destroy()
 
 /obj/mecha/working/ripley/buzz/update_pressure()
 	var/turf/T = get_turf(loc)
