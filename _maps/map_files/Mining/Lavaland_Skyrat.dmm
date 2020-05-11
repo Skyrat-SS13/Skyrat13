@@ -375,6 +375,7 @@
 /obj/structure/chair/office/dark{
 	dir = 1
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/xenoarch/bot)
 "ch" = (
@@ -933,6 +934,7 @@
 /obj/structure/chair/office/dark,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/landmark/start/paramedic,
 /turf/open/floor/plasteel/white,
 /area/xenoarch/arch)
 "fE" = (
@@ -1769,6 +1771,7 @@
 /area/lavaland/surface/outdoors)
 "jV" = (
 /obj/structure/chair/office/dark,
+/obj/effect/landmark/start/medical_doctor,
 /turf/open/floor/plasteel/white,
 /area/xenoarch/arch)
 "jW" = (
@@ -1808,6 +1811,13 @@
 /obj/machinery/light/small,
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
+/area/xenoarch/arch)
+"ki" = (
+/obj/effect/landmark/start/medical_doctor,
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
 /area/xenoarch/arch)
 "kk" = (
 /obj/structure/stone_tile,
@@ -1899,6 +1909,7 @@
 /area/ruin/unpowered/ash_walkers)
 "kC" = (
 /obj/structure/chair/office/dark,
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "kD" = (
@@ -2726,7 +2737,7 @@
 	dir = 4;
 	layer = 2.47
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/xenoarch/eng)
 "oU" = (
 /obj/structure/chair/sofa/corp,
@@ -4501,6 +4512,7 @@
 /obj/structure/sign/poster/official/random{
 	pixel_x = 32
 	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
 "xK" = (
@@ -6158,6 +6170,7 @@
 /area/xenoarch/arch)
 "Go" = (
 /obj/structure/chair/office/dark,
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/xenoarch/bot)
 "Gq" = (
@@ -6532,6 +6545,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
+"HS" = (
+/obj/structure/chair/office/light{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/landmark/start/paramedic,
+/turf/open/floor/plasteel/white,
+/area/xenoarch/arch)
 "Ia" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -6640,6 +6664,7 @@
 	departmentType = 5;
 	pixel_y = 30
 	},
+/obj/effect/landmark/start/depsec/science,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
 "Im" = (
@@ -7431,6 +7456,7 @@
 /obj/structure/chair/sofa/corp/right{
 	dir = 4
 	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
 "MS" = (
@@ -7446,6 +7472,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+/obj/effect/landmark/start/station_engineer,
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
 "MU" = (
@@ -7487,6 +7514,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
+"Nc" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible,
+/obj/effect/landmark/start/station_engineer,
+/turf/open/floor/plasteel,
+/area/xenoarch/eng)
 "Nd" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -7607,7 +7639,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/xenoarch/eng)
 "NI" = (
 /obj/structure/stone_tile/block{
@@ -8156,6 +8188,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 5
 	},
+/obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
 "QA" = (
@@ -8940,6 +8973,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
+"Us" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/visible{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/landmark/start/atmospheric_technician,
+/turf/open/floor/plasteel,
+/area/xenoarch/eng)
 "Uu" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/machinery/camera{
@@ -19538,7 +19581,7 @@ KE
 DX
 BS
 CR
-dF
+HS
 Lg
 BS
 KE
@@ -21333,7 +21376,7 @@ CT
 jn
 BS
 WD
-KE
+ki
 KE
 KE
 KE
@@ -27511,7 +27554,7 @@ Ge
 jK
 Hq
 NH
-xl
+Us
 xl
 MT
 Wu
@@ -28284,7 +28327,7 @@ IF
 lm
 Qy
 sc
-lw
+Nc
 Ue
 fv
 Tr
