@@ -1,13 +1,13 @@
 /datum/plant_gene/trait/proc/after_harvest(obj/item/reagent_containers/food/snacks/grown/G, newloc)
 	return
 
-/datum/plant_gene/trait/proc/on_flora_grow(/obj/structure/flora/botany/G)
+/datum/plant_gene/trait/proc/on_flora_grow(obj/structure/flora/botany/BF)
 	return
 
-/datum/plant_gene/trait/proc/on_flora_harvest(/obj/structure/flora/botany/G, atom/target)
+/datum/plant_gene/trait/proc/on_flora_harvest(obj/structure/flora/botany/BF, atom/target)
 	return
 
-/datum/plant_gene/trait/proc/on_flora_agitated(/obj/structure/flora/botany/G, atom/target)
+/datum/plant_gene/trait/proc/on_flora_agitated(obj/structure/flora/botany/BF, atom/target)
 	return
 
 /datum/plant_gene/trait/glow/shadow
@@ -42,6 +42,46 @@
 	// min dmg 3, max dmg 6, prob(70)
 	G.AddComponent(/datum/component/caltrop, 3, 6, 70)
 
+/datum/plant_gene/trait/spore_emission
+	// Makes the plant create smoke-like spore gas that carry reagents every now and then (not produce)
+	name = "Spore Emission"
+
+/datum/plant_gene/trait/spore_emission/proc/do_emission(obj/item/seeds/S, loc)
+	var/datum/reagents/R = new/datum/reagents(1000)
+	for(var/rid in S.reagents_add)
+		var/amount = 1 + round(S.potency * S.reagents_add[rid], 1)
+
+		var/list/data = null
+		if(rid == "blood") // Hack to make blood in plants always O-
+			data = list("blood_type" = "O-")
+
+		R.add_reagent(rid, amount, data)
+
+	var/datum/effect_system/smoke_spread/chem/spore/Spore = new
+	var/smoke_amount = round(sqrt(S.potency * 0.1), 1)
+	Spore.attach(loc)
+	Spore.set_up(R, smoke_amount, loc, 0)
+	Spore.start()
+	R.clear_reagents()
+
+/datum/plant_gene/trait/spore_emission/on_flora_grow(obj/structure/flora/botany/BF)
+	var/turf/T = get_turf(BF)
+	var/obj/item/seeds/S = BF.myseed
+	if(S && T)
+		do_emission(S, T)
+
+/datum/plant_gene/trait/spore_emission/on_flora_agitated(obj/structure/flora/botany/BF, atom/target)
+	var/turf/T = get_turf(BF)
+	var/obj/item/seeds/S = BF.myseed
+	if(S && T)
+		do_emission(S, T)
+
+/datum/plant_gene/trait/spore_emission/on_grow(obj/machinery/hydroponics/H)
+	var/turf/T = get_turf(H)
+	var/obj/item/seeds/S = H.myseed
+	if(S && T)
+		do_emission(S, T)
+
 /datum/plant_gene/trait/fragile
 	// Adds a chance for the plant to squash on harvest
 	name = "Fragile"
@@ -52,7 +92,7 @@
 		G.squash()
 
 /datum/plant_gene/trait/territorial
-	// This will agitate botany flora, causing special effects when someone gets close
+	// This will make the agitated flora have much violent effects
 	name = "Territorial"
 
 /datum/plant_gene/trait/anomaly
@@ -117,5 +157,5 @@
 	icon_grow = "poppy-grow"
 	icon_dead = "poppy-dead"
 	mutatelist = list(/obj/item/seeds/poppy/geranium, /obj/item/seeds/poppy/lily)
-	reagents_add = list(/datum/reagent/medicine/bicaridine = 0.2, /datum/reagent/toxin/plasma = 0.05)
-	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/fragile, /datum/plant_gene/trait/foam, /datum/plant_gene/trait/thorns, /datum/plant_gene/trait/squash)
+	reagents_add = list(/datum/reagent/drug/aphrodisiacplus = 0.2, /datum/reagent/drug/space_drugs = 0.05)
+	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/fragile, /datum/plant_gene/trait/foam, /datum/plant_gene/trait/thorns, /datum/plant_gene/trait/squash, /datum/plant_gene/trait/spore_emission)
