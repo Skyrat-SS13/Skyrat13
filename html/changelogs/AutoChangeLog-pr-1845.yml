@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "Ape crate is now gettable via hackes and sci"
+  - rscdel: "Aliens are running away from us!"
