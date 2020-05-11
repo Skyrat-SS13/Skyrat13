@@ -8,13 +8,29 @@
 		/mob/living/simple_animal/hostile/asteroid/miner = 40, /obj/structure/spawner/lavaland/shamblingminer = 2, \
 		/mob/living/simple_animal/hostile/asteroid/imp = 20, /obj/structure/spawner/lavaland/imp = 1, \
 		SPAWN_MEGAFAUNA = 6, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
-//imps are rare because boy they annoying
+		//imps are rare because boy they annoying
+
+/turf/open/floor/plating/asteroid/airless/cave
+	var/list/remainingmegas = list()
+
+/turf/open/floor/plating/asteroid/airless/cave/Initialize()
+	if (!mob_spawn_list)
+		mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goldgrub = 1, /mob/living/simple_animal/hostile/asteroid/goliath = 5, /mob/living/simple_animal/hostile/asteroid/basilisk = 4, /mob/living/simple_animal/hostile/asteroid/hivelord = 3)
+	if (!megafauna_spawn_list)
+		megafauna_spawn_list = list(/mob/living/simple_animal/hostile/megafauna/dragon = 4, /mob/living/simple_animal/hostile/megafauna/colossus = 2, /mob/living/simple_animal/hostile/megafauna/bubblegum = SPAWN_BUBBLEGUM)
+	if (!flora_spawn_list)
+		flora_spawn_list = list(/obj/structure/flora/ash/leaf_shroom = 2 , /obj/structure/flora/ash/cap_shroom = 2 , /obj/structure/flora/ash/stem_shroom = 2 , /obj/structure/flora/ash/cacti = 1, /obj/structure/flora/ash/tall_shroom = 2)
+	remainingmegas = megafauna_spawn_list.Copy()
+
+	. = ..()
+	if(!has_data)
+		produce_tunnel_from_data()
 
 /turf/open/floor/plating/asteroid/airless/cave/proc/SpawnMonster(turf/T)
 	if(!isarea(loc))
 		return
 	var/area/A = loc
-	var/definite_boss = pickweight(megafauna_spawn_list)
+	var/definite_boss = pick_n_take(remainingmegas)
 	var/shouldspawnboss = TRUE
 	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
 		if(definite_boss == M.type)
