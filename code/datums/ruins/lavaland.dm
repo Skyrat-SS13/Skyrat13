@@ -130,6 +130,7 @@
 	description = "A strange, square chunk of metal of massive size. Inside awaits only death and many, many squares."
 	suffix = "lavaland_surface_hierophant.dmm"
 	always_place = TRUE
+	cost = 0 //Skyrat change - FUCK RNG
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner
@@ -138,6 +139,7 @@
 	description = "A strange arrangement of stone tiles and an insane, beastly miner contemplating them."
 	suffix = "lavaland_surface_blooddrunk1.dmm"
 	cost = 0
+	always_place = TRUE //Skyrat change - FUCK RNG
 	allow_duplicates = FALSE //will only spawn one variant of the ruin
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner/guidance
@@ -218,7 +220,7 @@
 	description = "A Syndicate shuttle had an unfortunate stowaway..."
 	suffix = "lavaland_surface_swarmer_crash.dmm"
 	allow_duplicates = FALSE
-	cost = 20
+	cost = 10  //Skyrat change - FUCK SWARMERS
 
 /datum/map_template/ruin/lavaland/miningripley
 	name = "Ripley"
