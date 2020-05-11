@@ -8,8 +8,8 @@
 #define NOPRISON_ROLES list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster",\
 							"Medical Doctor", "Chemist", "Paramedic", "Virologist", "Geneticist", "Scientist", "Roboticist",\
 							"Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Blueshield", "Brig Physician",\
-							"Cargo Technician", "Shaft Miner",\
-							"Bartender", "Botanist", "Cook", "Curator", "Chaplain", "Janitor", "Clown", "Mime", "Lawyer", "Assistant")
+							"Cargo Technician", "Shaft Miner", "Bartender", "Botanist", "Cook", "Curator", "Chaplain", "Janitor",\
+							"Clown", "Mime", "Lawyer", "Assistant")
 
 // Some of these might be left unused, but still it's nice to have them around.
 #define CMD_ROLES list("Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster")
