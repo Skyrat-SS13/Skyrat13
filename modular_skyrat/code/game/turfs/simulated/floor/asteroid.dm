@@ -16,7 +16,7 @@
 	var/area/A = loc
 	var/definite_boss = pickweight(megafauna_spawn_list)
 	var/shouldspawnboss = TRUE
-	for(var/mob/living/megafauna/M in GLOB.mob_living_list)
+	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
 		if(definite_boss == M.type)
 			shouldspawnboss = FALSE
 	if(shouldspawnboss && A.megafauna_spawn_allowed && megafauna_spawn_list && megafauna_spawn_list.len)
