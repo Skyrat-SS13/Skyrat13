@@ -223,7 +223,7 @@
 
 /turf/open/floor/plating/asteroid/airless/cave/snow/underground/has_data //subtype for producing a tunnel with given data
 	has_data = TRUE
-/*
+
 /turf/open/floor/plating/asteroid/airless/cave/Initialize()
 	if (!mob_spawn_list)
 		mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goldgrub = 1, /mob/living/simple_animal/hostile/asteroid/goliath = 5, /mob/living/simple_animal/hostile/asteroid/basilisk = 4, /mob/living/simple_animal/hostile/asteroid/hivelord = 3)
@@ -235,7 +235,7 @@
 	. = ..()
 	if(!has_data)
 		produce_tunnel_from_data()
-*/ //moved to modular_skyrat
+
 /// Sets the tunnel length and direction
 /turf/open/floor/plating/asteroid/airless/cave/proc/get_cave_data(set_length, exclude_dir = -1)
 	// If set_length (arg1) isn't defined, get a random length; otherwise assign our length to the length arg.
