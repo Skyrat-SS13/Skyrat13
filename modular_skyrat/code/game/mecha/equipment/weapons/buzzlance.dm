@@ -4,7 +4,7 @@
 	desc = "A lance - capable of dealing with assailants in any situation, but especially effective in low pressures."
 	icon = 'modular_skyrat/icons/mecha/mecha_equipment.dmi'
 	icon_state = "buzzlance"
-	equip_cooldown = 8
+	equip_cooldown = 10
 	var/cooldown = 0
 	energy_drain = 10
 	force = 5
