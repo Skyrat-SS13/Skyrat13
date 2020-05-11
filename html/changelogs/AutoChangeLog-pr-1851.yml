@@ -1,0 +1,6 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "You can no longer insert items other than regenerative slime extracts inside stabilized rainbow extracts by accident."
+  - bugfix: "Fixed hardsuit helmet onmob overlays not updating when toggling the lights on."
+  - bugfix: "You can block monky attacks with shields etcetera again."

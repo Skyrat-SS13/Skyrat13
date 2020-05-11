@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "mining boots and explorer's gear hoods now have cold resistance to give you proper full-body protection from the cold."

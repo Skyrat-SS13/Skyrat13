@@ -1,0 +1,4 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - rscdel: "Removed the delay on cutting or pulsing wires"

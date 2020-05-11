@@ -134,6 +134,7 @@
 		on_cut(wire, mend = FALSE)
 
 /datum/wires/proc/cut_color(color, mob/living/user)
+	/*Skyrat change - removes delay AND CHAT SPAM on cutting/pulsing wires
 	LAZYINITLIST(current_users)
 	if(current_users[user])
 		return FALSE
@@ -147,6 +148,7 @@
 				return FALSE
 			LAZYREMOVE(current_users, user)
 	to_chat(user, "<span class='notice'>You cut [holder]'s [color] wire.</span>")
+	*/
 	cut(get_wire(color))
 	return TRUE
 
@@ -163,6 +165,7 @@
 	on_pulse(wire, user)
 
 /datum/wires/proc/pulse_color(color, mob/living/user)
+	/*Skyrat change - removes delay AND CHAT SPAM on cutting/pulsing wires
 	LAZYINITLIST(current_users)
 	if(current_users[user])
 		return FALSE
@@ -176,6 +179,7 @@
 				return FALSE
 			LAZYREMOVE(current_users, user)
 	to_chat(user, "<span class='notice'>You pulse [holder]'s [color] wire.</span>")
+	*/
 	pulse(get_wire(color), user)
 	return TRUE
 
