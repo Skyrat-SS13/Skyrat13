@@ -254,8 +254,7 @@
 		if(src.wired)
 			to_chat(user, "<span class='warning'>You have already inserted wire!</span>")
 			return
-		var/obj/item/stack/cable_coil/coil = W
-		if (coil.use(1))
+		if (W.use_tool(src, user, 0, 1))
 			src.wired = 1
 			to_chat(user, "<span class='notice'>You insert the wire.</span>")
 		else

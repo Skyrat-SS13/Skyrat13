@@ -150,6 +150,7 @@
 #define MOOD_LEVEL_SAD4 -25
 
 //Sanity levels for humans
+#define SANITY_AMAZING 150
 #define SANITY_GREAT 125
 #define SANITY_NEUTRAL 100
 #define SANITY_DISTURBED 75
