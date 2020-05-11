@@ -19,15 +19,16 @@
 	var/area/A = loc
 	var/definite_boss = pick_n_take(remainingmegas)
 	var/shouldspawnboss = TRUE
-	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
-		if(definite_boss == M.type)
-			shouldspawnboss = FALSE
-	if(shouldspawnboss && A.megafauna_spawn_allowed && megafauna_spawn_list && megafauna_spawn_list.len)
-		for(var/mob/living/simple_animal/hostile/H in urange(12,T)) //prevents megafauan from spawning too near to each other.
-			if(ismegafauna(H) && get_dist(src, H) <= 7)
-				return
-		new definite_boss(src)
-		return TRUE
+	if(definite_boss)
+		for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
+			if(definite_boss == M.type)
+				shouldspawnboss = FALSE
+		if(shouldspawnboss && A.megafauna_spawn_allowed && megafauna_spawn_list && megafauna_spawn_list.len)
+			for(var/mob/living/simple_animal/hostile/H in urange(12,T)) //prevents megafauan from spawning too near to each other.
+				if(ismegafauna(H) && get_dist(src, H) <= 7)
+					return
+			new definite_boss(src)
+			return TRUE
 	var/shouldspawnlegiontendril = TRUE
 	for(var/obj/structure/spawner/lavaland/legion/L in GLOB.tendrils)
 		shouldspawnlegiontendril = FALSE
