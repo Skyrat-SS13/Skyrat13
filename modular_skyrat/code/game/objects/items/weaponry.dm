@@ -42,7 +42,7 @@
 	retracted_icon_state = "switchblade_deluxe"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
-	var/firestacking = 5
+	var/firestacking = 0
 	var/burn_force = 3
 	obj_flags = UNIQUE_RENAME
 
