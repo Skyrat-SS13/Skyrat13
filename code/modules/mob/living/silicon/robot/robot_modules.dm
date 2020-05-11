@@ -688,13 +688,9 @@
 			hat_offset = INFINITY
 			cyborg_icon_override = 'modular_citadel/icons/mob/robots.dmi'
 			has_snowflake_deadsprite = TRUE
-<<<<<<< HEAD
-	return ..() */
-=======
 		else
 			return FALSE
-	return ..()
->>>>>>> 6b9fc7eccf... Merge pull request #12169 from Ghommie/Ghommie-cit734
+	return ..() */
 
 //Janitor module combined with Service module
 /*
