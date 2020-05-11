@@ -220,7 +220,7 @@
 	description = "A Syndicate shuttle had an unfortunate stowaway..."
 	suffix = "lavaland_surface_swarmer_crash.dmm"
 	allow_duplicates = FALSE
-	cost = 10  //Skyrat change - FUCK SWARMERS
+	cost = 20
 
 /datum/map_template/ruin/lavaland/miningripley
 	name = "Ripley"
@@ -252,4 +252,4 @@
 	cost = 5
 	placement_weight = 3
 	always_place = TRUE
-	allow_duplicates = TRUE 
+	allow_duplicates = TRUE
