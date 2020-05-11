@@ -25,6 +25,15 @@
 				return
 		new definite_boss(src)
 		return TRUE
+	var/shouldspawnlegiontendril = TRUE
+	for(var/structure/spawner/lavaland/legion in GLOB.tendrils)
+		shouldspawnlegiontendril = FALSE
+	if(shouldspawnlegiontendril)
+		for(var/structure/spawner/lavaland/L in urange(12,T))
+			if(istype(L, /obj/structure/spawner/lavaland) && get_dist(src, L) <= 3)
+				return //prevents tendrils spawning in each other's collapse range
+		new /obj/structure/spawner/lavaland/legion(src)
+		return TRUE
 	if(prob(30))
 		if(!A.mob_spawn_allowed)
 			return
@@ -44,7 +53,9 @@
 				return //if there's a megafauna within standard view don't spawn anything at all
 			if(ispath(randumb, /mob/living/simple_animal/hostile/asteroid) || istype(H, /mob/living/simple_animal/hostile/asteroid))
 				return //if the random is a standard mob, avoid spawning if there's another one within 12 tiles
-			if((ispath(randumb, /obj/structure/spawner/lavaland) || istype(H, /obj/structure/spawner/lavaland)) && get_dist(src, H) <= 2)
+		if(ispath(randumb, /obj/structure/spawner/lavaland))
+			for(var/structure/spawner/lavaland/L in urange(12,T))
+				istype(L, /obj/structure/spawner/lavaland)) && get_dist(src, L) <= 3
 				return //prevents tendrils spawning in each other's collapse range
 
 		new randumb(T)
