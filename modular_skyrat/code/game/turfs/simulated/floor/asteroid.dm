@@ -1,6 +1,9 @@
 #define SPAWN_MEGAFAUNA "bluh bluh huge boss"
 #define SPAWN_BUBBLEGUM 6
 
+/turf/open/floor/plating/asteroid/airless/cave
+	var/list/remainingmegas = list(/mob/living/simple_animal/hostile/megafauna/dragon = 4, /mob/living/simple_animal/hostile/megafauna/colossus = 2, /mob/living/simple_animal/hostile/megafauna/bubblegum = SPAWN_BUBBLEGUM)
+
 /turf/open/floor/plating/asteroid/airless/cave/volcanic
 	mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50, /obj/structure/spawner/lavaland/goliath = 3, \
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 40, /obj/structure/spawner/lavaland = 2, \
@@ -9,12 +12,6 @@
 		/mob/living/simple_animal/hostile/asteroid/imp = 20, /obj/structure/spawner/lavaland/imp = 1, \
 		SPAWN_MEGAFAUNA = 6, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
 		//imps are rare because boy they annoying
-
-/turf/open/floor/plating/asteroid/airless/cave
-	var/list/remainingmegas = list()
-
-/turf/open/floor/plating/asteroid/airless/cave/New()
-	remainingmegas = megafauna_spawn_list.Copy()
 
 /turf/open/floor/plating/asteroid/airless/cave/proc/SpawnMonster(turf/T)
 	if(!isarea(loc))
