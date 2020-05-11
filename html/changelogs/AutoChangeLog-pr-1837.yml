@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "ling/suckers/traitor no longer force people with prefs off to become antag"
+  - config: "New config setting, FORCE_ANTAG_COUNT; if enabled, the mode will draft from people with prefs off to make sure there's enough antags."
