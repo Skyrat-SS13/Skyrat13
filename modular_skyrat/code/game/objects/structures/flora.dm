@@ -25,7 +25,7 @@
 	var/variants = 9
 	var/chosen_light
 	var/base_icon
-	var/static/list/random_light = list("#6aff00","#00ffee", "#d9ff00")
+	var/static/list/random_light = list("#6AFF00","#00FFEE", "#D9FF00", "#FFC800")
 
 /obj/structure/flora/biolumi/Initialize()
 	. = ..()

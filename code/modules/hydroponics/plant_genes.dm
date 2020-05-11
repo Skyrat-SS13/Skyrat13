@@ -441,6 +441,7 @@
 /datum/plant_gene/trait/smoke
 	name = "gaseous decomposition"
 
+/**** moved to modular_skyrat
 /datum/plant_gene/trait/smoke/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	var/datum/effect_system/smoke_spread/chem/S = new
 	var/splat_location = get_turf(target)
@@ -449,6 +450,7 @@
 	S.set_up(G.reagents, smoke_amount, splat_location, 0)
 	S.start()
 	G.reagents.clear_reagents()
+*/
 
 /datum/plant_gene/trait/fire_resistance // Lavaland
 	name = "Fire Resistance"
