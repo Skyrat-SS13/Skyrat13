@@ -235,9 +235,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//SKYRAT CHANGES BEGIN
 	S["see_chat_emotes"] 	>> see_chat_emotes
-	S["bloodtype"]			>> bloodtype
-	S["bloodreagent"]		>> bloodreagent
-	S["bloodcolor"]			>> bloodcolor
 	//SKYRAT CHANGES END
 
 
@@ -482,6 +479,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_insect_wings"]			>> features["insect_wings"]
 	S["feature_insect_fluff"]			>> features["insect_fluff"]
 	S["feature_insect_markings"]		>> features["insect_markings"]
+	//SKYRAT CHANGES
+	S["bloodtype"]			>> bloodtype
+	S["bloodreagent"]		>> bloodreagent
+	S["bloodcolor"]			>> bloodcolor
+	//
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
