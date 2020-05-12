@@ -740,7 +740,7 @@
 // Bonus for assistants and service.
 /obj/item/clothing/under/trek/orvi
 	name = "federation assistant uniform"
-	desc = "A federation uniform worn by officer's trainees."
+	desc = "A federation uniform worn by volunteered-for-work cadets... Or in simple terms - assistants."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
@@ -788,7 +788,7 @@
 // Changes name/desc to the jackets, makes modern/non-classic jacket to have same list of allowed suit-storage items as classic one.
 /obj/item/clothing/suit/storage/fluff/fedcoat
 	name = "federation classic uniform jacket"
-	desc = "A classic, old federation uniform jacket. Set phasers to awesome!"
+	desc = "A classic federation uniform jacket. Set phasers to awesome!"
 
 /obj/item/clothing/suit/storage/fluff/modernfedcoat
 	name = "federation uniform jacket"
