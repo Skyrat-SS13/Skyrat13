@@ -485,7 +485,7 @@
 
 /datum/component/construction/mecha/clarke
 	base_icon = "clarke"
-	result = /obj/mecha/working/clarke
+	result = /obj/mecha/working/ripley/clarke
 	steps = list(
 		//1
 		list(
