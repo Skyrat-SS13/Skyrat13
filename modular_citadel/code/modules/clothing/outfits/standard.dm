@@ -42,11 +42,12 @@
 	id = /obj/item/card/id/debug/bst
 	back = /obj/item/storage/backpack/holding
 	box = /obj/item/storage/box/debugtools
-	suit_store = /obj/item/gun/energy/taser/debug
+	suit_store = /obj/item/gun/energy/pulse
 	backpack_contents = list(
 		/obj/item/melee/transforming/energy/axe=1,\
 		/obj/item/storage/part_replacer/bluespace/tier4=1,\
 		/obj/item/debug/human_spawner=1,\
+		/obj/item/gun/energy/taser/debug=1
 		)
 
 /datum/outfit/debug/bsthardsuit //Debug objs plus hardsuit
@@ -68,5 +69,6 @@
 		/obj/item/melee/transforming/energy/axe=1,\
 		/obj/item/storage/part_replacer/bluespace/tier4=1,\
 		/obj/item/debug/human_spawner=1,\
+		/obj/item/gun/energy/pulse=1,\
 		/obj/item/gun/energy/taser/debug,\
 		)

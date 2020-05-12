@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
 	//SKYRAT CHANGES
-	var/ooc_notes
+	var/skyrat_ooc_notes
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
 	var/vorepref = "Ask"
@@ -169,6 +169,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		"ipc_screen" = "Sunburst",
 		"ipc_antenna" = "None",
 		"flavor_text" = "",
+		"ooc_notes" = "",
 		"meat_type" = "Mammalian",
 		"body_model" = MALE,
 		"ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)", //SKYRAT CHANGE
@@ -359,7 +360,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>Flavor Text</h2>"
 			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a>" //skyrat - <br> moved one line down
 			//SKYRAT EDIT
-			dat += 	"<a href='?_src_=prefs;preference=ooc_notes;task=input'>Set OOC Notes</a><br>"
+			dat += 	"<a href='?_src_=prefs;preference=skyrat_ooc_notes;task=input'>Set OOC Notes</a><br>"
 			dat += 	"ERP : <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
 			dat += 	"Non-Con : <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
 			dat += 	"Vore : <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
@@ -382,6 +383,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
 			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
+			/*Skyrat edit - comments out Citadel's OOC notes in favor for our owns
+			dat += "<h2>OOC notes</h2>"
+			dat += "<a href='?_src_=prefs;preference=ooc_notes;task=input'><b>Set OOC notes</b></a><br>"
+			var/ooc_notes_len = length(features["ooc_notes"])
+			if(ooc_notes_len <= 40)
+				if(!ooc_notes_len)
+					dat += "\[...\]"
+				else
+					dat += "[features["ooc_notes"]]"
+			else
+				dat += "[TextPreview(features["ooc_notes"])]...<BR>"
+			*/
 			dat += "<h2>Body</h2>"
 			dat += "<b>Gender:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
 			if(gender != NEUTER && pref_species.sexes)
@@ -1567,10 +1580,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						features["flavor_text"] = html_decode(msg)
 
 				//SKYRAT CHANGES
-				if("ooc_notes")
-					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", ooc_notes, MAX_FLAVOR_LEN, TRUE)
+				if("skyrat_ooc_notes")
+					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", skyrat_ooc_notes, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
-						ooc_notes = html_decode(msg)
+						skyrat_ooc_notes = html_decode(msg)
 
 				if("general_records")
 					var/msg = stripped_multiline_input(usr, "Set your general records", "General Records", general_records, MAX_FLAVOR_LEN, TRUE)
@@ -1602,6 +1615,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(msg)
 						exploitable_info = html_decode(msg)
 				//END OF SKYRAT CHANGES
+				if("ooc_notes")
+					var/msg = stripped_multiline_input(usr, "Set always-visible OOC notes related to content preferences. THIS IS NOT FOR CHARACTE DESCRIPTIONS!!", "OOC notes", features["ooc_notes"], MAX_FLAVOR_LEN, TRUE)
+					if(!isnull(msg))
+						features["ooc_notes"] = html_decode(msg)
 
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null

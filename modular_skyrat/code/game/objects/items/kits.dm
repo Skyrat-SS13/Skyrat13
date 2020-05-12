@@ -23,7 +23,7 @@
 /obj/item/conversion_kit/afterattack(atom/target, mob/user, proximity)
 	if(istype(target, /obj/item/gun/ballistic/revolver/detective || /obj/item/gun/ballistic/revolver/russian) && open)
 		var/obj/item/gun/ballistic/revolver/targetrev = target
-		var/obj/item/gun/ballistic/revolver/newrev = new /obj/item/gun/ballistic/revolver(target.loc)
+		var/obj/item/gun/ballistic/revolver/newrev = new /obj/item/gun/ballistic/revolver(get_turf(user))
 		newrev.name = targetrev.name
 		newrev.desc = targetrev.desc + " This one seems a little odd."
 		newrev.icon = targetrev.icon
@@ -38,7 +38,7 @@
 		return TRUE
 	else if(istype(target, /obj/item/toy/gun) && open)
 		var/obj/item/toy/gun/targetrev = target
-		var/obj/item/gun/ballistic/revolver/newrev = new /obj/item/gun/ballistic/revolver(target.loc)
+		var/obj/item/gun/ballistic/revolver/newrev = new /obj/item/gun/ballistic/revolver(get_turf(user))
 		newrev.name = targetrev.name
 		newrev.desc = targetrev.desc + " This one seems a little odd."
 		newrev.icon = targetrev.icon
