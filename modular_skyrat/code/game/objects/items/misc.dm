@@ -29,21 +29,6 @@
 	attack_verb = list("shoved", "bashed")
 	block_chance = 30 //same as a buckler, but this shit will break easily lol
 	shield_flags = null //no bashing with this piece o' shit
+	slot_flags = null //can't wear this shit, not even on your back
 	max_integrity = 30 //shit and weak
 	repair_material = /obj/item/stack/sheet/metal
-
-//durathread buff
-/obj/item/clothing/head/beanie/durathread
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
-
-/obj/item/clothing/head/helmet/durathread
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
-
-/obj/item/clothing/suit/armor/vest/durathread
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
-
-/obj/item/clothing/suit/hooded/wintercoat/durathread
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
-
-/obj/item/clothing/head/hooded/winterhood/durathread
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)

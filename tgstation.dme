@@ -3753,7 +3753,6 @@
 #include "modular_skyrat\code\modules\projectiles\guns\ballistic\revolver.dm"
 #include "modular_skyrat\code\modules\projectiles\guns\ballistic\rifle.dm"
 #include "modular_skyrat\code\modules\projectiles\guns\ballistic\shotgun.dm"
-#include "modular_skyrat\code\modules\projectiles\guns\constructable\gunsmithing.dm"
 #include "modular_skyrat\code\modules\projectiles\guns\energy\kinetic_accelerator.dm"
 #include "modular_skyrat\code\modules\projectiles\guns\energy\laser.dm"
 #include "modular_skyrat\code\modules\projectiles\guns\energy\nuclear.dm"
