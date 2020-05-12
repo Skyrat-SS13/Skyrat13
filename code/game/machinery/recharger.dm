@@ -18,7 +18,10 @@
 		/obj/item/ammo_box/magazine/recharge,
 		/obj/item/modular_computer,
 		/obj/item/twohanded/electrostaff,
-		/obj/item/gun/ballistic/automatic/magrifle))
+		/obj/item/gun/ballistic/automatic/magrifle,
+		//SKYRAT CHANGES - POWERGLOVES
+		/obj/item/clothing/gloves/color/yellow/power))
+		//END CHANGES
 
 /obj/machinery/recharger/RefreshParts()
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
@@ -52,6 +55,11 @@
 		use_power = IDLE_POWER_USE
 		using_power = FALSE
 		update_icon()
+
+/obj/machinery/recharger/Exited(atom/movable/M, atom/newloc)
+	. = ..()
+	if(charging == M)
+		setCharging()
 
 /obj/machinery/recharger/attackby(obj/item/G, mob/user, params)
 	if(istype(G, /obj/item/wrench))
@@ -109,15 +117,12 @@
 	add_fingerprint(user)
 	if(charging)
 		charging.update_icon()
-		charging.forceMove(drop_location())
 		user.put_in_hands(charging)
-		setCharging(null)
 
 /obj/machinery/recharger/attack_tk(mob/user)
 	if(charging)
 		charging.update_icon()
 		charging.forceMove(drop_location())
-		setCharging(null)
 
 /obj/machinery/recharger/process()
 	if(stat & (NOPOWER|BROKEN) || !anchored)

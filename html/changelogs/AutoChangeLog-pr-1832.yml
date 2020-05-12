@@ -1,0 +1,9 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - rscadd: "Conference room to security."
+  - rscadd: "Computer room added to security."
+  - tweak: "Holding Cell changed to look more like a holding cell."
+  - balance: "Random chance coin spawners in prison are new space cash spawners. Harmless loot also added to the prison."
+  - bugfix: "Many visual bugs."
+  - code_imp: "Adds a table of harmless loot for prisoners so they can have fun at the expense of no one."

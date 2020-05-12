@@ -140,6 +140,7 @@ GLOBAL_VAR_INIT(dynamic_forced_storyteller, null)
 
 /datum/game_mode/dynamic/New() // i have NO IDEA if this is the proper way to do this.
 	..()
+	added_threat = CONFIG_GET(number/added_threat) // Skyrat change
 	pop_per_requirement = CONFIG_GET(number/dynamic_pop_per_requirement)
 	second_rule_req = CONFIG_GET(number_list/dynamic_second_rule_requirements)
 	third_rule_req = CONFIG_GET(number_list/dynamic_third_rule_requirements)
@@ -842,3 +843,11 @@ GLOBAL_VAR_INIT(dynamic_forced_storyteller, null)
 			return RULE_OF_THREE(40, 20, x) + 50
 		if (20 to INFINITY)
 			return rand(90, 100)
+
+/datum/game_mode/dynamic/ghost_info()
+	. = list()
+	. += "Current threat: [threat]"
+	. += "Target threat: [threat_level]"
+	. += "Storyteller: <b>[storyteller.name]</b><br/>"
+	. += "Parameters: centre = [GLOB.dynamic_curve_centre] ; width = [GLOB.dynamic_curve_width].<br/>"
+	. += "<i>On average, <b>[peaceful_percentage]</b>% of the rounds are more peaceful.</i><br/>"
