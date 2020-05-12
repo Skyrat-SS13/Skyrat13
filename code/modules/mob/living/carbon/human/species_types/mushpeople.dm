@@ -23,6 +23,9 @@
 
 	mutanteyes = /obj/item/organ/eyes/night_vision/mushroom
 	var/datum/martial_art/mushpunch/mush
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
+	rainbowblood = TRUE
 
 /datum/species/mush/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/mushroom) //pomf pomf

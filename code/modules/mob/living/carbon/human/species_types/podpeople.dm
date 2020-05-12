@@ -17,6 +17,9 @@
 	var/light_oxyheal = 1
 	var/light_burnheal = 1
 	var/light_bruteheal = 1
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
+	rainbowblood = TRUE
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()

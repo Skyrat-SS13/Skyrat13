@@ -523,12 +523,24 @@
 	if(colors.len)
 		var/sum = 0 //this is all shitcode, but it works; trust me
 		final_rgb = bloodtype_to_color(colors[1])
+		var/temp
+		var/mob/living/carbon/C
+		for(var/b in blood_DNA)
+			temp = b
+		if(temp)
+			for(var/mob/living/carbon/ca in GLOB.mob_living_list)
+				if((ca.dna.unique_enzymes == temp) && ca.dna.blood_color)
+					C = ca
+					final_rgb = C.dna.blood_color
 		sum = colors[colors[1]]
 		if(colors.len > 1)
 			var/i = 2
 			while(i <= colors.len)
 				var/tmp = colors[colors[i]]
-				final_rgb = BlendRGB(final_rgb, bloodtype_to_color(colors[i]), tmp/(tmp+sum))
+				if(!C)
+					final_rgb = BlendRGB(final_rgb, bloodtype_to_color(colors[i]), tmp/(tmp+sum))
+				else 
+					final_rgb = BlendRGB(final_rgb, bloodtype_to_color(colors[i]), tmp/(tmp+sum))
 				sum += tmp
 				i++
 

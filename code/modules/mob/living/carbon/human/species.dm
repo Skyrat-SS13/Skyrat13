@@ -102,8 +102,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/whitelisted = 0 		//Is this species restricted to certain players?
 	var/whitelist = list() 		//List the ckeys that can use this species, if it's whitelisted.: list("John Doe", "poopface666", "SeeALiggerPullTheTrigger") Spaces & capitalization can be included or ignored entirely for each key as it checks for both.
 	var/icon_limbs //Overrides the icon used for the limbs of this species. Mainly for downstream, and also because hardcoded icons disgust me. Implemented and maintained as a favor in return for a downstream's implementation of synths.
-
-	var/icon_eyes = 'icons/mob/human_face.dmi'//Skyrat change
+	//Skyrat snowflake
+	var/icon_eyes = 'icons/mob/human_face.dmi'
+	var/list/bloodtypes = list() //If a race has more than one possible bloodtype, set it here. If you input a non-existant (in game terms) blood type i am going to smack you.
+	var/list/bloodreagents = list() //If a race has more than one possible blood reagent, set it here. Note: Do not use the datums themselves, use their names.
+	var/rainbowblood = FALSE //Set to true if this race can have blood colors different from the default one.
 
 ///////////
 // PROCS //
@@ -299,6 +302,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
 		C.dna.blood_type = exotic_bloodtype
+	
+	if(C.client)
+		var/client/cli = C.client
+		if(rainbowblood && cli.prefs.bloodcolor)
+			C.dna.blood_color = cli.prefs.bloodcolor
 
 	if(old_species.mutanthands)
 		for(var/obj/item/I in C.held_items)

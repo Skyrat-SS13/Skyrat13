@@ -235,6 +235,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//SKYRAT CHANGES BEGIN
 	S["see_chat_emotes"] 	>> see_chat_emotes
+	S["bloodtype"]			>> bloodtype
+	S["bloodreagent"]		>> bloodreagent
+	S["bloodcolor"]			>> bloodcolor
 	//SKYRAT CHANGES END
 
 
@@ -740,6 +743,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_insect_fluff"]			, features["insect_fluff"])
 	WRITE_FILE(S["feature_insect_markings"]			, features["insect_markings"])
 	WRITE_FILE(S["feature_meat"]					, features["meat_type"])
+	//SKYRAT CHANGE - Blood
+	WRITE_FILE(S["bloodcolor"]						, bloodcolor)
+	WRITE_FILE(S["bloodtype"]						, bloodtype)
+	WRITE_FILE(S["bloodreagent"]					, bloodreagent)
+	//
 
 	WRITE_FILE(S["feature_has_cock"], features["has_cock"])
 	WRITE_FILE(S["feature_cock_shape"], features["cock_shape"])

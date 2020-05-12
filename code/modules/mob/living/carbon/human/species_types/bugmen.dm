@@ -13,6 +13,9 @@
 	liked_food = MEAT | FRUIT
 	disliked_food = TOXIC
 	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "BUG")
+	rainbowblood = TRUE
 
 /datum/species/insect/spec_death(gibbed, mob/living/carbon/human/H)
 	if(H)

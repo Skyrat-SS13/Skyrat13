@@ -25,11 +25,13 @@
 	mutantliver = /obj/item/organ/liver/ipc
 	mutantstomach = /obj/item/organ/stomach/ipc
 	mutanteyes = /obj/item/organ/eyes/ipc
-	exotic_blood = /datum/reagent/blood/synthetics
-	exotic_bloodtype = "SY"
 	//cheeto
 	var/storedeardamage = 0
 	var/storedtaildamage = 0
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
+	bloodreagents = list("Blood", "Synthetic Blood", "Oil")
+	rainbowblood = TRUE
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))

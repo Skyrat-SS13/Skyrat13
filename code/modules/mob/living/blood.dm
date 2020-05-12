@@ -187,6 +187,8 @@
 
 		blood_data["blood_DNA"] = dna.unique_enzymes
 		blood_data["bloodcolor"] = bloodtype_to_color(dna.blood_type)
+		if(dna.blood_color)
+			blood_data["bloodcolor"] = dna.blood_color
 		if(disease_resistances && disease_resistances.len)
 			blood_data["resistances"] = disease_resistances.Copy()
 		var/list/temp_chem = list()
