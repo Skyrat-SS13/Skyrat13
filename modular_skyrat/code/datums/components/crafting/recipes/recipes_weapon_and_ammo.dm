@@ -52,7 +52,7 @@
 
 /datum/crafting_recipe/shank
 	name = "Shank"
-	result =  /obj/item/shard/shank
+	result =  /obj/item/shank
 	parts = list(/obj/item/shard = 1)
 	reqs = list(/obj/item/stack/packageWrap = 1,
 				/obj/item/shard = 1)
