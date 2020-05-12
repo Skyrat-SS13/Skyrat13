@@ -153,7 +153,6 @@
 #define TRAIT_PASSTABLE			"passtable"
 #define TRAIT_GIANT				"giant"
 #define TRAIT_DWARF				"dwarf"
-#define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_ALCOHOL_LIGHTWEIGHT		"alcohol_lightweight" //Skyrat change
 #define TRAIT_NO_ALCOHOL		"alcohol_intolerance"
 #define TRAIT_AGEUSIA			"ageusia"
@@ -188,6 +187,7 @@
 #define TRAIT_THERMAL_VISION    "thermal_vision"
 #define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 #define TRAIT_NO_INTERNALS		"no-internals"
+#define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_MUTATION_STASIS			"mutation_stasis" //Prevents processed genetics mutations from processing.
 #define TRAIT_FAST_PUMP				"fast_pump"
 

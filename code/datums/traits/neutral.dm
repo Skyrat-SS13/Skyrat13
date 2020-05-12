@@ -104,13 +104,17 @@
 	gain_text = "<span class='notice'>You desire to be hurt.</span>"
 	lose_text = "<span class='notice'>Pain has become less exciting for you.</span>"
 
-/datum/quirk/alcohol_lightweight  //Skyrat change
+//Skyrat change start
+
+/datum/quirk/alcohol_lightweight  
 	name = "Alcoholic Lightweight"
 	desc = "Alcohol really goes straight to your head, gotta be careful with what you drink."
 	value = 0
 	mob_trait = TRAIT_ALCOHOL_LIGHTWEIGHT
 	gain_text = "<span class='notice'>You feel woozy thinking of alcohol.</span>"
 	lose_text = "<span class='notice'>You regain your stomach for drinks.</span>"
+
+//Skyrat change stop
 
 /datum/quirk/alcohol_intolerance
 	name = "Alcohol Intolerance"
