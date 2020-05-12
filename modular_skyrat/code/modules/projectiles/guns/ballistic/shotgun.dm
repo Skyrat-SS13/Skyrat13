@@ -1,4 +1,4 @@
-// Holorifle: energy pump action shotgun, but kinda shit. Original /tg/ PR made by necromanceranne.
+// Holorifle: ballistic energy pump action shotgun thing. Original /tg/ PR made by necromanceranne.
 /obj/item/gun/ballistic/shotgun/holorifle
 	name = "holorifle"
 	desc = "A shotgun-like weapon crafted to utilize holographic projectors like a laser firing lens. Its power expenditure requires dedicated microfusion cells to fire in place of standard ammunition."
@@ -6,6 +6,8 @@
 	icon_state = "holorifle"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/64x_guns_left.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/64x_guns_right.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/back.dmi'
 	item_state = "holorifle"
 	fire_sound = 'sound/weapons/pulse.ogg'

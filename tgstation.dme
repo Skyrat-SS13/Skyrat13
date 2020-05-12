@@ -3740,7 +3740,7 @@
 #include "modular_skyrat\code\modules\projectiles\gun.dm"
 #include "modular_skyrat\code\modules\projectiles\pins.dm"
 #include "modular_skyrat\code\modules\projectiles\ammunition\ballistic\pistol.dm"
-#include "modular_skyrat\code\modules\projectiles\ammunition\ballistic\rifle.dm"
+#include "modular_skyrat\code\modules\projectiles\ammunition\ballistic\shotgun.dm"
 #include "modular_skyrat\code\modules\projectiles\ammunition\ballistic\special.dm"
 #include "modular_skyrat\code\modules\projectiles\ammunition\energy\stun.dm"
 #include "modular_skyrat\code\modules\projectiles\boxes_magazines\_box_magazine.dm"
