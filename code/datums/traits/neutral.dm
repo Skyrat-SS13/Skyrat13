@@ -104,7 +104,7 @@
 	gain_text = "<span class='notice'>You desire to be hurt.</span>"
 	lose_text = "<span class='notice'>Pain has become less exciting for you.</span>"
 
-/datum/quirk/alcohol_lightweight
+/datum/quirk/alcohol_lightweight  //Skyrat change
 	name = "Alcoholic Lightweight"
 	desc = "Alcohol really goes straight to your head, gotta be careful with what you drink."
 	value = 0

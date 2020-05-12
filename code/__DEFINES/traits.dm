@@ -154,7 +154,7 @@
 #define TRAIT_GIANT				"giant"
 #define TRAIT_DWARF				"dwarf"
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
-#define TRAIT_ALCOHOL_LIGHTWEIGHT		"alcohol_lightweight"
+#define TRAIT_ALCOHOL_LIGHTWEIGHT		"alcohol_lightweight" //Skyrat change
 #define TRAIT_NO_ALCOHOL		"alcohol_intolerance"
 #define TRAIT_AGEUSIA			"ageusia"
 #define TRAIT_HEAVY_SLEEPER		"heavy_sleeper"
