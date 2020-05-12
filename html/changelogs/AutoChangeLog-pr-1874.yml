@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "The syndicate have added a filtering setup to their lavaland science base"
+  - bugfix: "The syndicate lavaland outpost tank consoles now actually work"
