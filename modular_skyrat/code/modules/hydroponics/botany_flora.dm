@@ -45,9 +45,10 @@
 		light_color = T.glow_color
 		light_range = T.glow_range(myseed)
 		light_power = T.glow_power(myseed)
+		update_light()
 		continue
 
-	reagent_color = mix_color_from_reagents(myseed.reagents_add)
+	reagent_color = mix_color_from_reagents_hashtable(myseed.reagents_add)
 
 	base_icon = "[icon_state][rand(1, 4)]"
 	//icon_state = base_icon
@@ -120,6 +121,7 @@
 		if(do_after(user, harvest_time, target = src))
 			harvest(user)
 	else
+		sense(user)
 		return ..()
 
 /obj/structure/flora/botany/attack_hand(mob/user)

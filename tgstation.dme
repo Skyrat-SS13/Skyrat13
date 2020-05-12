@@ -3390,6 +3390,7 @@
 #include "modular_skyrat\code\_globalvars\lists\names.dm"
 #include "modular_skyrat\code\_HELPERS\mobs.dm"
 #include "modular_skyrat\code\_HELPERS\names.dm"
+#include "modular_skyrat\code\_HELPERS\reagents.dm"
 #include "modular_skyrat\code\_HELPERS\text.dm"
 #include "modular_skyrat\code\controllers\configuration\entries\game_options.dm"
 #include "modular_skyrat\code\controllers\configuration\entries\skyrat_config.dm"
