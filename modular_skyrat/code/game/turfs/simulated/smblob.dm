@@ -3,7 +3,7 @@
 	name = "Supermatter Sea"
 	desc = "THE END IS right now actually."
 	icon='modular_skyrat/icons/turf/space.dmi'
-	icon_state = "bluespacecrystal1"
+	icon_state = "bluespacecrystal"
 
 	light_range = 10
 	light_power = 5
@@ -12,10 +12,15 @@
 
 	var/next_check=0
 	var/list/avail_dirs = list(NORTH,SOUTH,EAST,WEST)
+	var/list/card_dirs = list(NORTH,SOUTH,EAST,WEST)
 
 	dynamic_lighting = 0
 
+/turf/closed/wall/supermatter/examine(mob/user)
+	. = ..()
+
 /turf/closed/wall/supermatter/Initialize()
+	icon_state = "bluespacecrystal[rand(1,6)]"
 	START_PROCESSING(SSobj,src)
 	update_light()
 
@@ -23,6 +28,19 @@
 	return ..()
 
 /turf/closed/wall/supermatter/Destroy()
+	for(var/dirs in card_dirs)
+		var/turf/T=get_step(src,dirs)
+		if(istype(T, /turf/closed/wall/supermatter/))
+			var/turf/closed/wall/supermatter/SM
+			if(dirs == NORTH)
+				SM.avail_dirs += list(SOUTH)
+			if(dirs == SOUTH)
+				SM.avail_dirs += list(NORTH)
+			if(dirs == EAST)
+				SM.avail_dirs += list(WEST)
+			if(dirs == WEST)
+				SM.avail_dirs += list(EAST)
+			START_PROCESSING(SSobj,SM)
 	STOP_PROCESSING(SSobj,src)
 	return ..()
 
@@ -63,28 +81,76 @@
 					qdel(A)
 					A = null
 				CHECK_TICK
+			for(var/atom/movable/A in T)
+				if(A)
+					if(istype(A,/mob/living))
+						qdel(A)
+						A = null
+					else if(istype(A,/mob)) // Observers, AI cameras.
+						continue
+					qdel(A)
+					A = null
+				CHECK_TICK
 			T.ChangeTurf(type)
 			var/turf/closed/wall/supermatter/SM = T
 			if(SM.avail_dirs)
 				SM.avail_dirs -= get_dir(T, src)
 
-/turf/closed/wall/supermatter/attack_paw(mob/user as mob)
-	return attack_hand(user)
+/turf/closed/wall/supermatter/attack_tk(mob/user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		log_game("[key_name(C)] has been disintegrated by a telekenetic grab on a supermatter crystal.</span>")
+		to_chat(C, "<span class='userdanger'>That was a really dense idea.</span>")
+		C.visible_message("<span class='userdanger'>A bright flare of radiation is seen from [C]'s head, shortly before you hear a sickening sizzling!</span>")
+		var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in C.internal_organs
+		rip_u.Remove()
+		qdel(rip_u)
+		return
+	return ..()
 
-/turf/closed/wall/supermatter/attack_robot(mob/user as mob)
-	if(Adjacent(user))
-		return attack_hand(user)
+/turf/closed/wall/supermatter/attack_paw(mob/user)
+	dust_mob(user, cause = "monkey attack")
+
+/turf/closed/wall/supermatter/attack_alien(mob/user)
+	dust_mob(user, cause = "alien attack")
+
+/turf/closed/wall/supermatter/attack_animal(mob/living/simple_animal/S)
+	var/murder
+	if(!S.melee_damage_upper && !S.melee_damage_lower)
+		murder = S.friendly
 	else
-		to_chat(user, "<span class = \"warning\">What the fuck are you doing?</span>")
+		murder = S.attacktext
+	dust_mob(S, \
+	"<span class='danger'>[S] unwisely [murder] [src], and [S.p_their()] body burns brilliantly before flashing into ash!</span>", \
+	"<span class='userdanger'>You unwisely touch [src], and your vision glows brightly as your body crumbles to dust. Oops.</span>", \
+	"simple animal attack")
+
+/turf/closed/wall/supermatter/attack_robot(mob/user)
+	if(Adjacent(user))
+		dust_mob(user, cause = "cyborg attack")
+
+/turf/closed/wall/supermatter/attack_ai(mob/user)
 	return
 
-// /vg/: Don't let ghosts fuck with this.
+/turf/closed/wall/supermatter/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	dust_mob(user, cause = "hand")
 
-/turf/closed/wall/supermatter/attack_ghost(mob/user as mob)
-	user.examinate(src)
-
-/turf/closed/wall/supermatter/attack_ai(mob/user as mob)
-	return user.examinate(src)
+/turf/closed/wall/supermatter/proc/dust_mob(mob/living/nom, vis_msg, mob_msg, cause)
+	if(nom.incorporeal_move || nom.status_flags & GODMODE)
+		return
+	if(!vis_msg)
+		vis_msg = "<span class='danger'>[nom] reaches out and touches [src], inducing a resonance... [nom.p_their()] body starts to glow and bursts into flames before flashing into ash"
+	if(!mob_msg)
+		mob_msg = "<span class='userdanger'>You reach out and touch [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\"</span>"
+	if(!cause)
+		cause = "contact"
+	nom.visible_message(vis_msg, mob_msg, "<span class='italics'>You hear an unearthly noise as a wave of heat washes over you.</span>")
+	investigate_log("has been attacked ([cause]) by [key_name(nom)]", INVESTIGATE_SUPERMATTER)
+	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
+	Consume(nom)
 
 /turf/closed/wall/supermatter/attack_hand(mob/user as mob)
 	user.visible_message("<span class=\"warning\">\The [user] reaches out and touches \the [src]... And then blinks out of existance.</span>",\
@@ -95,15 +161,20 @@
 
 	Consume(user)
 
-/turf/closed/wall/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
-	user.visible_message("<span class=\"warning\">\The [user] touches \a [W] to \the [src] as a silence fills the room...</span>",\
-		"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>",\
-		"<span class=\"warning\">Everything suddenly goes silent.</span>")
+/turf/closed/wall/supermatter/attackby(obj/item/W, mob/living/user, params)
+	if(!istype(W) || (W.item_flags & ABSTRACT) || !istype(user))
+		return
+	if (istype(W, /obj/item/melee/roastingstick))
+		return ..()
+	else if(user.dropItemToGround(W))
+		user.visible_message("<span class='danger'>As [user] touches \the [src] with \a [W], silence fills the room...</span>",\
+			"<span class='userdanger'>You touch \the [src] with \the [W], and everything suddenly goes silent.</span>\n<span class='notice'>\The [W] flashes into dust as you flinch away from \the [src].</span>",\
+			"<span class='italics'>Everything suddenly goes silent.</span>")
+		investigate_log("has been attacked ([W]) by [key_name(user)]", INVESTIGATE_SUPERMATTER)
+		Consume(W)
+		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
 
-	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
-
-	Consume(W)
-
+		radiation_pulse(src, 150, 4)
 
 /turf/closed/wall/supermatter/Bumped(atom/AM)
 	if(istype(AM, /mob/living))
