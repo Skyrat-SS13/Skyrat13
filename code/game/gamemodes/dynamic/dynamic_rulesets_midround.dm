@@ -105,7 +105,7 @@
 				if (M.mind && M.mind.assigned_role && (M.mind.assigned_role in enemy_roles) && (!(M in candidates) || (M.mind.assigned_role in restricted_roles)))
 					job_check++ // Checking for "enemies" (such as sec officers). To be counters, they must either not be candidates to that rule, or have a job that restricts them from it
 
-		var/threat = CLAMP(round(mode.threat_level/10),1,10)
+		var/threat = clamp(round(mode.threat_level/10),1,10)
 		if (job_check < required_enemies[threat])
 			SSblackbox.record_feedback("tally","dynamic",1,"Times rulesets rejected due to not enough enemy roles")
 			return FALSE
@@ -200,7 +200,7 @@
 	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_TRAITOR
 	restricted_roles = list("AI", "Cyborg", "Positronic Brain")
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster", "Blueshield") ///Skyrat changes, makes heads of staff no longer traitors
 	required_candidates = 1
 	weight = 7
 	cost = 10
@@ -259,7 +259,7 @@
 	config_tag = "midround_malf_ai"
 	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_MALF
-	enemy_roles = list("Security Officer", "Warden","Detective","Head of Security", "Captain", "Scientist", "Chemist", "Research Director", "Chief Engineer")
+	enemy_roles = list("Security Officer", "Warden","Detective","Head of Security", "Captain", "Scientist", "Chemist", "Research Director", "Chief Engineer", "Blueshield") //Skyrat changes adds Blue to list
 	exclusive_roles = list("AI")
 	required_enemies = list(6,6,6,4,4,4,2,2,2,1)
 	required_candidates = 1
@@ -642,6 +642,9 @@
 		for(var/obj/effect/landmark/carpspawn/L in GLOB.landmarks_list)
 			if(isturf(L.loc))
 				spawn_locs += L.loc
+		for(var/obj/effect/landmark/loneopspawn/L in GLOB.landmarks_list)
+			if(isturf(L.loc))
+				spawn_locs += L.loc
 		if(!spawn_locs.len)
 			return FALSE
 		spawn_loc = pick(spawn_locs)
@@ -671,7 +674,7 @@
 	message_admins("[ADMIN_LOOKUPFLW(Ninja)] has been made into a ninja by dynamic.")
 	log_game("[key_name(Ninja)] was spawned as a ninja by dynamic.")
 	return Ninja
-	
+
 /datum/dynamic_ruleset/midround/from_ghosts/ninja/finish_setup(mob/new_character, index)
 	return
 

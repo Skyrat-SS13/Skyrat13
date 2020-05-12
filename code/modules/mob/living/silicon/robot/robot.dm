@@ -10,7 +10,7 @@
 	has_limbs = 1
 	hud_type = /datum/hud/robot
 
-	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
+	//blocks_emissive = EMISSIVE_BLOCK_UNIQUE // Skyrat edit -- 512 compatibility
 
 	var/custom_name = ""
 	var/braintype = "Cyborg"
@@ -54,8 +54,8 @@
 	var/list/req_access = list(ACCESS_ROBOTICS)
 
 	var/alarms = list("Motion"=list(), "Fire"=list(), "Atmosphere"=list(), "Power"=list(), "Camera"=list(), "Burglar"=list())
-
-	var/speed = 0 // VTEC speed boost.
+	// SKYRAT EDIT: From 0 to -0.75. Borgs are little too slow.
+	var/speed = -0.75 // VTEC speed boost.
 	var/magpulse = FALSE // Magboot-like effect.
 	var/ionpulse = FALSE // Jetpack-like effect.
 	var/ionpulse_on = FALSE // Jetpack-like effect.
@@ -237,7 +237,7 @@
 		return
 
 	if(!CONFIG_GET(flag/disable_secborg) && GLOB.security_level < CONFIG_GET(number/minimum_secborg_alert))
-		to_chat(src, "<span class='notice'>NOTICE: Due to local station regulations, the security cyborg module and its variants are only available during [num2seclevel(CONFIG_GET(number/minimum_secborg_alert))] alert and greater.</span>")
+		to_chat(src, "<span class='notice'>NOTICE: Due to local station regulations, the security cyborg module and its variants are only available during [NUM2SECLEVEL(CONFIG_GET(number/minimum_secborg_alert))] alert and greater.</span>")
 
 	var/list/modulelist = list("Standard" = /obj/item/robot_module/standard, \
 	"Engineering" = /obj/item/robot_module/engineering, \
@@ -427,24 +427,23 @@
 
 	else if(istype(W, /obj/item/stack/cable_coil) && wiresexposed)
 		user.changeNext_move(CLICK_CD_MELEE)
-		var/obj/item/stack/cable_coil/coil = W
 		if (getFireLoss() > 0 || getToxLoss() > 0)
-			if(src == user && coil.use(1))
+			if(src == user)
 				to_chat(user, "<span class='notice'>You start fixing yourself...</span>")
-				if(!do_after(user, 50, target = src))
+				if(!W.use_tool(src, user, 50, 1, max_level = JOB_SKILL_TRAINED))
+					to_chat(user, "<span class='warning'>You need more cable to repair [src]!</span>")
 					return
 				adjustFireLoss(-10)
 				adjustToxLoss(-10)
-			if (coil.use(1))
+			else
 				to_chat(user, "<span class='notice'>You start fixing [src]...</span>")
-				if(!do_after(user, 30, target = src))
+				if(!W.use_tool(src, user, 30, 1))
+					to_chat(user, "<span class='warning'>You need more cable to repair [src]!</span>")
 					return
 				adjustFireLoss(-30)
 				adjustToxLoss(-30)
 				updatehealth()
 				user.visible_message("[user] has fixed some of the burnt wires on [src].", "<span class='notice'>You fix some of the burnt wires on [src].</span>")
-			else
-				to_chat(user, "<span class='warning'>You need more cable to repair [src]!</span>")
 		else
 			to_chat(user, "The wires seem fine, there's no need to fix them.")
 
@@ -1023,7 +1022,7 @@
 
 	upgrades.Cut()
 
-	speed = 0
+	speed = -0.75
 	ionpulse = FALSE
 	revert_shell()
 
@@ -1118,7 +1117,7 @@
 	desc = "Stop controlling your shell and resume normal core operations."
 	icon_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_core"
-	//required_mobility_flags = NONE // Skyrat edit -- I like this, personally. 
+	//required_mobility_flags = NONE // Skyrat edit -- I like this, personally.
 
 /datum/action/innate/undeployment/Trigger()
 	if(!..())

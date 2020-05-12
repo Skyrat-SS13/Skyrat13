@@ -78,9 +78,9 @@
 
 /datum/supply_pack/security/russianclothing
 	name = "Russian Surplus Clothing"
-	desc = "An old russian crate full of surplus armor that they used to use! Has two sets of bulletproff armor, a few union suits and some warm hats!"
+	desc = "An old russian crate full of surplus armor that they used to use! Has two sets of bulletproof armor, a few union suits and some warm hats!" //Skyrat change, fixed typos
 	contraband = TRUE
-	cost = 5750 // Its basicly sec suits, good boots/gloves
+	cost = 5750 // Its basically sec suits, good boots/gloves
 	contains = list(/obj/item/clothing/suit/armor/navyblue/russian,
 					/obj/item/clothing/suit/armor/navyblue/russian,
 					/obj/item/clothing/shoes/combat,
@@ -91,8 +91,8 @@
 					/obj/item/clothing/suit/armor/bulletproof,
 					/obj/item/clothing/head/helmet/alt,
 					/obj/item/clothing/head/helmet/alt,
-					/obj/item/clothing/gloves/combat,
-					/obj/item/clothing/gloves/combat,
+					/obj/item/clothing/gloves/tackler/combat/insulated,
+					/obj/item/clothing/gloves/tackler/combat/insulated,
 					/obj/item/clothing/mask/gas,
 					/obj/item/clothing/mask/gas)
 	crate_name = "surplus russian clothing"
@@ -100,7 +100,7 @@
 
 /datum/supply_pack/security/russianmosin
 	name = "Russian Minutemen Gear"
-	desc = "An old russian Minutemen crate, comes with a full russian outfit, a mosin and a stripper clip."
+	desc = "An old russian Minutemen crate, comes with a full russian uniform, a mosin nagant and a stripper clip." //Skyrat change, stop disrespecting my russian comrades and list the mosin and uniform properly
 	contraband = TRUE
 	access = FALSE
 	cost = 6500 //
@@ -109,7 +109,7 @@
 					/obj/item/clothing/head/ushanka,
 					/obj/item/clothing/suit/armor/bulletproof,
 					/obj/item/clothing/head/helmet/alt,
-					/obj/item/clothing/gloves/combat,
+					/obj/item/clothing/gloves/tackler/combat/insulated,
 					/obj/item/clothing/mask/gas,
 					/obj/item/gun/ballistic/shotgun/boltaction,
 					/obj/item/ammo_box/a762)
@@ -182,7 +182,7 @@
 
 /datum/supply_pack/security/baton
 	name = "Stun Batons Crate"
-	desc = "Arm the Civil Protection Forces with three stun batons. Batteries included. Requires Security access to open."
+	desc = "Arm the Civil Protection Forces with three stun batons fully charged and ready to go! Requires Security access to open." //Skyrat change, fixes typo and changes line to sound cooler
 	cost = 1200
 	contains = list(/obj/item/melee/baton/loaded,
 					/obj/item/melee/baton/loaded,

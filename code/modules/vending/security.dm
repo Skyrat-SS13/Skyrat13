@@ -5,14 +5,14 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access = list(ACCESS_SECURITY)
-	products = list(/obj/item/restraints/handcuffs = 8,
+	products = list(/obj/item/restraints/handcuffs = 8, //Edited by Skyrat
 					/obj/item/restraints/handcuffs/cable/zipties = 10,
 					/obj/item/grenade/flashbang = 4,
 					/obj/item/assembly/flash/handheld = 5,
-					/obj/item/reagent_containers/food/snacks/donut = 12,
-					/obj/item/storage/box/evidence = 6,
 					/obj/item/flashlight/seclite = 4,
+					/obj/item/reagent_containers/food/snacks/donut = 12,
 					/obj/item/restraints/legcuffs/bola/energy = 7,
+					/obj/item/storage/box/evidence = 6,
 					/obj/item/secbat = 5)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,
 					/obj/item/storage/fancy/donut_box = 2,
@@ -21,6 +21,7 @@
 					/obj/item/clothing/head/helmet/blueshirt = 1,
 					/obj/item/clothing/suit/armor/vest/blueshirt = 1,
 					/obj/item/clothing/under/rank/security/officer/blueshirt = 1,
+					/obj/item/clothing/gloves/tackler = 5,
 					/obj/item/ssword_kit = 1)
 	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF

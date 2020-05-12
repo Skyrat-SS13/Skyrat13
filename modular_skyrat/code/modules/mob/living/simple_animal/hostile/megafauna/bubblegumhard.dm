@@ -38,8 +38,8 @@ Difficulty: Hard
 	var/enrage_till = 0
 	var/enrage_time = 70
 	var/revving_charge = FALSE
-	var/nest_range = 10
-	var/true_spawn = TRUE
+	nest_range = 10
+	true_spawn = TRUE
 
 	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now, slayer... "
 	deathsound = 'sound/magic/enter_blood.ogg'
@@ -58,8 +58,8 @@ obj/item/gps/internal/bubblegum/hard
 	if(charging)
 		return
 
-	anger_modifier = CLAMP(((maxHealth - health)/60),0,20)
-	enrage_time = initial(enrage_time) * CLAMP(anger_modifier / 20, 0.5, 1)
+	anger_modifier = clamp(((maxHealth - health)/60),0,20)
+	enrage_time = initial(enrage_time) * clamp(anger_modifier / 20, 0.5, 1)
 	ranged_cooldown = world.time + 50
 
 	if(!try_bloodattack() || prob(25 + anger_modifier))
@@ -339,7 +339,7 @@ obj/item/gps/internal/bubblegum/hard
 /obj/effect/decal/cleanable/blood/gibs/bubblegumhard/can_bloodcrawl_in()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/do_attack_animation(atom/A, visual_effect_icon)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
 	if(!charging)
 		..()
 
@@ -475,28 +475,3 @@ obj/item/gps/internal/bubblegum/hard
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/hallucination/try_bloodattack()
 	return
-
-//special praetor drop
-/obj/item/clothing/suit/space/hardsuit/deathsquad/praetor
-	name = "Praetor Suit"
-	desc = "And those that tasted the bite of his sword named him... The Doom Slayer."
-	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
-	strip_delay = 130
-	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
-	icon_state = "praetor"
-	alternate_worn_icon = 'modular_skyrat/icons/mob/suit.dmi'
-	alternate_worn_icon_digi = 'modular_skyrat/icons/mob/suit_digi.dmi'
-	item_state = "praetor"
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
-	slowdown = 0
-
-/obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
-	name = "Praetor Suit helmet"
-	desc = "That's one doomed space marine."
-	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
-	strip_delay = 130
-	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
-	icon_state = "praetor"
-	alternate_worn_icon = 'modular_skyrat/icons/mob/head.dmi'
-	alternate_worn_icon_muzzled = 'modular_skyrat/icons/mob/head_muzzled.dmi'
-	item_state = "praetor"

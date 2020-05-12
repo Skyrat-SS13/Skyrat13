@@ -63,7 +63,11 @@
 	var/force_escaped = FALSE  // Set by Into The Sunset command of the shuttle manipulator
 	var/list/learned_recipes //List of learned recipe TYPES.
 
+	/// Our skill holder.
+	var/datum/skill_holder/skill_holder
+
 /datum/mind/New(var/key)
+	skill_holder = new(src)
 	src.key = key
 	soulOwner = src
 	martial_art = default_martial_art
@@ -76,6 +80,7 @@
 			if(antag_datum.delete_on_mind_deletion)
 				qdel(i)
 		antag_datums = null
+	QDEL_NULL(skill_holder)
 	return ..()
 
 /datum/mind/proc/get_language_holder()
@@ -512,6 +517,19 @@
 			message_admins("[key_name_admin(usr)] edited [current]'s objective to [new_objective.explanation_text]")
 			log_admin("[key_name(usr)] edited [current]'s objective to [new_objective.explanation_text]")
 
+	else if(href_list["traitor_class"])
+		var/static/list/choices
+		if(!choices)
+			choices = list()
+			for(var/C in GLOB.traitor_classes)
+				var/datum/traitor_class/t = C
+				choices[initial(t.employer)] = C
+		var/datum/antagonist/traitor/T = locate(href_list["target_antag"]) in antag_datums
+		if(T)
+			var/selected_type = input("Select traitor class:", "Traitor class", T.traitor_kind.employer) as null|anything in choices
+			selected_type = choices[selected_type]
+			T.set_traitor_kind(selected_type)
+
 	else if (href_list["obj_delete"])
 		var/datum/objective/objective
 
@@ -650,8 +668,11 @@
 	add_antag_datum(head)
 	special_role = ROLE_REV_HEAD
 
-/datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S)
-	spell_list += S
+// Skyrat change
+/datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S, give_mind = TRUE)
+	if(give_mind)
+		spell_list += S
+		
 	S.action.Grant(current)
 
 /datum/mind/proc/owns_soul()
