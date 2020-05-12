@@ -42,11 +42,12 @@
 		tryagain = TRUE
 		var/obj/item/xenoarch/clean/hammer/HM = W
 		playsound(loc, HM.usesound, 50, 1, -1)
-		if(!do_after(user,HM.cleandepth * 5,target = src))
+		if(!do_after(user,HM.cleanspeed,target = src))
 			to_chat(user,"You must stand still to clean.")
 			tryagain = FALSE
 			return
 		dugdepth += HM.cleandepth
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(dugdepth > itemactualdepth)
 			to_chat(user,"The strange rock crumbles, destroying anything that could have been recovered.")
 			qdel(src)
@@ -59,58 +60,41 @@
 		tryagain = TRUE
 		var/obj/item/xenoarch/clean/brush/HM = W
 		playsound(loc, HM.usesound, 50, 1, -1)
-		if(!do_after(user,50,target = src))
+		if(!do_after(user,HM.brushspeed,target = src))
 			to_chat(user,"You must stand still to clean.")
 			tryagain = FALSE
 			return
 		if(dugdepth < itemactualdepth)
 			dugdepth++
+			playsound(loc, HM.usesound, 50, 1, -1)
 			to_chat(user,"You brush away 1cm of debris.")
 			tryagain = FALSE
 			return
 		if(dugdepth > itemactualdepth)
 			to_chat(user,"You somehow managed to destroy a strange rock with a brush... good job?")
-		if(dugdepth == itemactualdepth)
-			new chosenitem(get_turf(src))
-			to_chat(user,"You uncover an artifact!")
 			qdel(src)
 			return
-	if(istype(W,/obj/item/xenoarch/clean/brushadv))
-		if(tryagain)
-			to_chat(user,"You are already mining this.")
-			return
-		tryagain = TRUE
-		var/obj/item/xenoarch/clean/brush/HM = W
-		playsound(loc, HM.usesound, 50, 1, -1)
-		if(!do_after(user,10,target = src))
-			to_chat(user,"You must stand still to clean.")
-			tryagain = FALSE
-			return
-		if(dugdepth < itemactualdepth)
-			dugdepth++
-			to_chat(user,"You brush away 1cm of debris.")
-			tryagain = FALSE
-			return
-		if(dugdepth > itemactualdepth)
-			to_chat(user,"You somehow managed to destroy a strange rock with a brush... good job?")
 		if(dugdepth == itemactualdepth)
 			new chosenitem(get_turf(src))
+			playsound(loc, HM.usesound, 50, 1, -1)
 			to_chat(user,"You uncover an artifact!")
 			qdel(src)
 			return
 	if(istype(W,/obj/item/xenoarch/help/scanner))
+		var/obj/item/xenoarch/help/scanner/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,30,target = src))
 			to_chat(user,"You must stand still to scan.")
 			return
-		var/obj/item/xenoarch/help/scanner/HM = W
 		playsound(loc, HM.usesound, 50, 1, -1)
 		to_chat(user,"Base Depth: [itembasedepth] centimeters.")
 		to_chat(user,"Safe Depth: [itemsafedepth] centimeters.")
 	if(istype(W,/obj/item/xenoarch/help/scanneradv))
+		var/obj/item/xenoarch/help/scanneradv/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,10,target = src))
 			to_chat(user,"You must stand still to scan.")
 			return
-		var/obj/item/xenoarch/help/scanneradv/HM = W
 		playsound(loc, HM.usesound, 50, 1, -1)
 		to_chat(user,"Base Depth: [itembasedepth] centimeters.")
 		to_chat(user,"Safe Depth: [itemsafedepth] centimeters.")
