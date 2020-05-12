@@ -100,13 +100,17 @@
 		to_chat(user,"Safe Depth: [itemsafedepth] centimeters.")
 		to_chat(user,"Item Depth: [itemactualdepth] centimeters.")
 	if(istype(W,/obj/item/xenoarch/help/measuring))
+		var/obj/item/xenoarch/help/measuring/HM = W
+		playsound(loc, HM.usesound, 50, 1, -1)
 		if(!do_after(user,10,target = src))
 			to_chat(user,"You must stand still to measure.")
 			return
 		if(!dugdepth)
 			to_chat(user,"This rock has not been touched.")
+			playsound(loc, HM.usesound, 50, 1, -1)
 			return
 		to_chat(user,"Current depth dug: [dugdepth] centimeters.")
+		playsound(loc, HM.usesound, 50, 1, -1)
 //
 
 /turf/closed/mineral/strange
