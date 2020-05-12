@@ -81,7 +81,7 @@
 
 /datum/supply_pack/engine/PA
 	name = "Particle Accelerator Crate"
-	desc = "A supermassive black hole or hyper-powered teslaball are the perfect way to spice up any party! This \"My First Apocalypse\" kit contains everything you need to build your own Particle Accelerator! Ages 10 and up."
+	desc = "A supermassive black hole or hyper-powered teslaball is the perfect way to spice up any party! This \"My First Apocalypse\" kit contains everything you need to build your own Particle Accelerator! Ages 10 and up." //Skyrat change, fixed grammatical error
 	cost = 3750
 	contains = list(/obj/structure/particle_accelerator/fuel_chamber,
 					/obj/machinery/particle_accelerator/control_box,
@@ -148,14 +148,6 @@
 	crate_name = "supermatter shard crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
-
-/datum/supply_pack/engine/supermatter_spray
-	name = "Supermatter Spray Crate"
-	desc = "The single thing that can truly heal the supermatter."
-	cost = 2000
-	contains = list(/obj/item/supermatterspray)
-	crate_name = "supermatter shard crate"
-	crate_type = /obj/structure/closet/crate/engineering/electrical
 
 /datum/supply_pack/engine/tesla_coils
 	name = "Tesla Coil Crate"

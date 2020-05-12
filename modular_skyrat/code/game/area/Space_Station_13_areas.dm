@@ -12,8 +12,24 @@
 	name = "Blueshield's Office"
 	icon_state = "bluenew"
 
+
 /area/antidorm
 	name = "Dormitory"
 	icon_state = "Sleep"
 	power_equip = FALSE
 	blob_allowed = FALSE
+
+/area/mining_level_access
+  	name = "Mining Level Access"
+  	icon = 'modular_skyrat/icons/turf/areas.dmi'
+  	icon_state = "milevel"
+  	requires_power = FALSE
+  	has_gravity = STANDARD_GRAVITY
+  	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+
+/area/mining_level_access/lower
+	name = "Lower Mining Level Access"
+
+/area/mining_level_access/upper
+	name = "Upper Mining Level Access"
+
