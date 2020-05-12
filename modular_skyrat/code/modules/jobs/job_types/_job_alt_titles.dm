@@ -7,7 +7,7 @@
 
 //Service
 /datum/job/assistant
-	alt_titles = list("Civilian", "Visitor", "Businessman", "Trader")
+	alt_titles = list("Civilian", "Visitor", "Businessman", "Trader", "Entertainer")
 
 /datum/job/cook
 	alt_titles = list("Cook", "Culinary Artist", "Butcher")
@@ -19,7 +19,7 @@
 	alt_titles = list("Journalist", "Librarian")
 
 /datum/job/janitor
-	alt_titles = list("Custodian")
+	alt_titles = list("Custodian", "Sanitation Technician")
 
 /datum/job/lawyer
 	alt_titles = list("Human Resources Agent", "Internal Affairs Agent")
