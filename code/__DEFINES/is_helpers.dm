@@ -83,6 +83,9 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isxenoperson(A) (is_species(A, /datum/species/xeno))
 #define isstartjelly(A) (is_species(A, /datum/species/jelly/roundstartslime))
 
+// Skyrat specific species
+#define isvox(A) (is_species(A, /datum/species/vox))
+
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
 
