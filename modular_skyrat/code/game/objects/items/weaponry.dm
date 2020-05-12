@@ -254,7 +254,7 @@
 	qdel(tip)
 
 //a fucking shank
-/obj/item/shard/shank
+/obj/item/shank
 	name = "shank"
 	desc = "A nasty looking shard of glass. There's paper wrapping over one of the ends."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
@@ -264,18 +264,27 @@
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "shanked", "sliced", "cut")
 	siemens_coefficient = 0 //We are insulated
+	var/clickmodifier = 0.65
 
-/obj/item/shard/shank/CheckParts(list/parts_list)
+/obj/item/shank/Initialize()
+	..()
+	update_icon()
+
+/obj/item/shank/CheckParts(list/parts_list)
 	var/obj/item/shard/tip = locate() in parts_list
 	if(istype(tip, /obj/item/shard/plasma))
 		force = 6
 		throwforce = 12
 		custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+		clickmodifier = 0.5
 	qdel(tip)
 
-/obj/item/shard/shank/afterattack(atom/target, mob/living/user, proximity)
+/obj/item/shank/update_icon()
+	icon_state = "shank"
+
+/obj/item/shank/afterattack(atom/target, mob/living/user, proximity)
 	if(proximity)
-		user.changeNext_move(CLICK_CD_MELEE * 0.5) //twice the stab
+		user.changeNext_move(CLICK_CD_MELEE * clickmodifier)
 
 //mace of molag bal
 /obj/item/melee/cleric_mace/molagbal
