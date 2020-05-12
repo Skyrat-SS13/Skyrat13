@@ -6,8 +6,10 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/vg/vg_lefthand.dmi'
 	icon_state = "sword"
 	item_state = "sword"
-	w_class = WEIGHT_CLASS_NORMAL
-	slot_flags = SLOT_BELT | SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	flags_1 = CONDUCT_1
+	slot_flags = ITEM_SLOT_BELT
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/belt.dmi'
 	force = 15
 	sharpness = IS_SHARP
 	hitsound = 'modular_skyrat/sound/weapons/bloodyslice.ogg'
@@ -28,6 +30,9 @@
 	if(poison)
 		var/mutable_appearance/sword_overlay = mutable_appearance(icon, "sword_hypo_overlay")
 		add_overlay(sword_overlay)
+
+/obj/item/melee/sword/get_worn_belt_overlay()
+	return mutable_appearance('modular_skyrat/icons/mob/clothing/belt.dmi', icon_state)
 
 /obj/item/melee/sword/attack_self(mob/user)
 	. = ..()
@@ -88,6 +93,7 @@
 	desc = "A short-bladed sword, used for close combat agility, over overpowering your foes."
 	icon_state = "shortsword"
 	item_state = "sword"
+	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = "sound/weapons/slash.ogg"
 	force = 12
 
