@@ -4499,8 +4499,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "kD" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
+/obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "kE" = (
@@ -4708,11 +4707,10 @@
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "lb" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible{
 	dir = 4
 	},
+/obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "lc" = (
@@ -5671,9 +5669,8 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "ng" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "nh" = (
@@ -6719,12 +6716,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
-"yL" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 10
-	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/lavaland/surface/outdoors)
 "ze" = (
 /obj/structure/table,
 /obj/item/disk/xenobio_console_upgrade/monkey,
@@ -6792,9 +6783,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
-"GW" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/lavaland/surface/outdoors)
 "He" = (
 /obj/machinery/vending/hydroseeds,
 /turf/open/floor/grass,
@@ -9580,11 +9568,11 @@ ho
 hD
 dy
 dy
-GW
-yL
-GW
-GW
-yL
+ju
+Ay
+ju
+ju
+Ay
 jK
 ju
 km
@@ -9653,7 +9641,7 @@ mK
 kD
 nG
 og
-Ay
+ju
 ab
 ab
 ab
@@ -9708,9 +9696,9 @@ lb
 ju
 ju
 ju
-Ay
 ju
-ab
+ju
+Ay
 ab
 ab
 ab
@@ -9765,7 +9753,7 @@ ju
 ab
 ab
 ab
-ab
+Ay
 ab
 ab
 ab

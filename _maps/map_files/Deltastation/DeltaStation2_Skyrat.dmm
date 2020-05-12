@@ -5858,27 +5858,22 @@
 /area/maintenance/disposal)
 "apF" = (
 /obj/machinery/mass_driver{
-	dir = 4;
+	dir = 1;
 	id = "trash"
 	},
 /obj/machinery/light/small{
-	dir = 1
+	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "apG" = (
+/obj/structure/fans/tiny,
 /obj/machinery/door/poddoor{
 	id = "trash";
 	name = "Disposals Launch Seal"
 	},
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal)
 "apH" = (
@@ -176968,7 +176963,7 @@ aaa
 aaa
 aaa
 aaa
-aac
+aad
 aaa
 aad
 aaa
@@ -176988,12 +176983,12 @@ aad
 aad
 aad
 aad
-aac
-aad
-abj
 aad
 aad
 abj
+aad
+aad
+abj
 aaa
 aaa
 aaa
@@ -177011,7 +177006,7 @@ aaa
 aaa
 aaa
 aad
-aoF
+apG
 apF
 aqI
 ari
@@ -177269,7 +177264,7 @@ aaa
 aac
 aad
 aoF
-apG
+aoF
 aoF
 aoF
 aoE
