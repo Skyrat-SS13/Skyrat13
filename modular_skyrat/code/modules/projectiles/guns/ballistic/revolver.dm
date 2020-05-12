@@ -39,7 +39,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/contender/box_gun
 	recoil = 3
 	fire_delay = 5
-	var/explodioprob = 60
+	var/explodioprob = 50
 	var/list/blacklist = list("40mm", ".50")
 
 /obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun/afterattack(atom/target, mob/living/user, flag, params)
