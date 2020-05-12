@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Legion cores no longer cause random slowdown."
