@@ -1,6 +1,9 @@
 /datum/plant_gene/trait/proc/after_harvest(obj/item/reagent_containers/food/snacks/grown/G, newloc)
 	return
 
+/datum/plant_gene/trait/proc/after_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/target)
+	return
+
 /datum/plant_gene/trait/proc/on_flora_grow(obj/structure/flora/botany/BF)
 	return
 
@@ -33,6 +36,7 @@
 		S.start()
 		G.reagents.clear_reagents()
 
+/* Messes with slippery and other quirky stuff
 /datum/plant_gene/trait/thorns
 	// Adds glass-like caltrops to a plant
 	name = "Thorny"
@@ -41,6 +45,7 @@
 	. = ..()
 	// min dmg 3, max dmg 6, prob(70)
 	G.AddComponent(/datum/component/caltrop, 3, 6, 70)
+*/
 
 /datum/plant_gene/trait/spore_emission
 	// Makes the plant create smoke-like spore gas that carry reagents every now and then (not produce)
@@ -64,11 +69,13 @@
 	Spore.start()
 	R.clear_reagents()
 
+/*
 /datum/plant_gene/trait/spore_emission/on_flora_grow(obj/structure/flora/botany/BF)
 	var/turf/T = get_turf(BF)
 	var/obj/item/seeds/S = BF.myseed
 	if(S && T)
 		do_emission(S, T)
+*/
 
 /datum/plant_gene/trait/spore_emission/on_flora_agitated(obj/structure/flora/botany/BF, atom/target)
 	var/turf/T = get_turf(BF)
@@ -90,6 +97,11 @@
 	..()
 	if(prob(35))
 		G.squash()
+
+/datum/plant_gene/trait/fragile/after_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/C)
+	if(G.seed.get_gene(/datum/plant_gene/trait/squash))
+		if(prob(50))
+			G.squash()
 
 /datum/plant_gene/trait/territorial
 	// This will make the agitated flora have much violent effects
@@ -128,6 +140,10 @@
 	do_sparks(3, FALSE, G)
 	playsound(src, "sparks", 50, 1)
 
+/datum/plant_gene/trait/cell_charge/on_flora_agitated(obj/structure/flora/botany/BF, atom/target)
+	do_sparks(3, FALSE, BF)
+	playsound(src, "sparks", 50, 1)
+
 /datum/plant_gene/trait/smoke/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	var/datum/effect_system/smoke_spread/chem/S = new
 	var/splat_location = get_turf(G)
@@ -137,6 +153,15 @@
 		S.set_up(G.reagents, smoke_amount, splat_location, 0)
 		S.start()
 		G.reagents.clear_reagents()
+
+/**** moved from core code ****/
+
+/datum/plant_gene/trait/slip/proc/handle_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/M)
+	for(var/datum/plant_gene/trait/T in G.seed.genes)
+		T.on_slip(G, M)
+	for(var/datum/plant_gene/trait/T in G.seed.genes)
+		if(!QDELETED(G) && G)
+			T.after_slip(G, M)
 
 //Testing stuff
 
@@ -158,4 +183,4 @@
 	icon_dead = "poppy-dead"
 	mutatelist = list(/obj/item/seeds/poppy/geranium, /obj/item/seeds/poppy/lily)
 	reagents_add = list(/datum/reagent/drug/aphrodisiacplus = 0.2, /datum/reagent/drug/space_drugs = 0.05)
-	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/fragile, /datum/plant_gene/trait/foam, /datum/plant_gene/trait/thorns, /datum/plant_gene/trait/squash, /datum/plant_gene/trait/spore_emission)
+	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/fragile, /datum/plant_gene/trait/foam, /datum/plant_gene/trait/squash, /datum/plant_gene/trait/spore_emission, /datum/plant_gene/trait/slip, /datum/plant_gene/trait/cell_charge)
