@@ -978,7 +978,12 @@
 /datum/techweb_node/alientech/New()
 	. = ..()
 	boost_item_paths = typesof(/obj/item/gun/energy/alien, /obj/item/circuitboard/machine/abductor,
-							/obj/item/abductor, /obj/item/stack/sheet/mineral/abductor)
+							/obj/item/abductor, /obj/item/stack/sheet/mineral/abductor, /obj/item/screwdriver/abductor, /obj/item/wrench/abductor,
+							/obj/item/crowbar/abductor, /obj/item/multitool/abductor,
+							/obj/item/stock_parts/cell/infinite/abductor, /obj/item/weldingtool/abductor,
+							/obj/item/wirecutters/abductor, /obj/item/scalpel/alien, /obj/item/hemostat/alien,
+							/obj/item/retractor/alien, /obj/item/circular_saw/alien, /obj/item/cautery/alien,
+							/obj/item/surgicaldrill/alien)
 
 /datum/techweb_node/alien_bio
 	id = "alien_bio"
@@ -1000,7 +1005,7 @@
 	display_name = "Alien Engineering"
 	description = "Alien engineering tools."
 	prereq_ids = list("exp_tools")
-	design_ids = list("alien_wrench", "alien_wirecutters", "alien_screwdriver", "alien_crowbar", "alien_welder", "alien_multitool", "alien_powercell")
+	design_ids = list("alien_wrench", "alien_wirecutters", "alien_screwdriver", "alien_crowbar", "alien_welder", "alien_multitool")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	hidden = TRUE
 
