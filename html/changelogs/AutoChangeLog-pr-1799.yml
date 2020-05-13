@@ -1,0 +1,4 @@
+author: "Commandersand"
+delete-after: True
+changes: 
+  - rscadd: "penlight ping cooldown cut, message also more clear"

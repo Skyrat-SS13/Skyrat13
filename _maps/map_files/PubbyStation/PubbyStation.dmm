@@ -4058,6 +4058,9 @@
 	pixel_y = -3
 	},
 /obj/item/gun/energy/e_gun/advtaser,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 5
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/armory)
 "akM" = (
@@ -4068,6 +4071,9 @@
 /obj/effect/landmark/event_spawn,
 /obj/structure/rack,
 /obj/item/key/security,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/armory)
 "akO" = (
@@ -55744,6 +55750,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"jBc" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/armory)
 "jBh" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/glass/fifty{
@@ -58148,6 +58161,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
+"oWF" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/armory)
 "oXe" = (
 /obj/structure/table/glass,
 /obj/item/mmi,
@@ -84753,7 +84775,7 @@ aij
 aiM
 aiM
 ajQ
-akM
+jBc
 akM
 ami
 amW
@@ -85267,7 +85289,7 @@ ail
 aiN
 aji
 ajS
-akO
+oWF
 akO
 amk
 amY

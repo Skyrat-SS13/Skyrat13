@@ -1,0 +1,4 @@
+author: "coldud13"
+delete-after: True
+changes: 
+  - bugfix: "Removes comment being displayed in the security records console"
