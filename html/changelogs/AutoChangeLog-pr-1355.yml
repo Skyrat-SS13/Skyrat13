@@ -1,0 +1,4 @@
+author: "BurgerBB"
+delete-after: True
+changes: 
+  - balance: "Blobs now have double health, but require double the blob tiles to reach critical mass. Blobs can no longer spawn directly on telecoms."
