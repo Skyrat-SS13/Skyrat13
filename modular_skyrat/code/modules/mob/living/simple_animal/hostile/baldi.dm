@@ -33,8 +33,8 @@
 	playsound(src.loc, 'modular_skyrat/sound/baldi/BAL_Slap.wav',80, 0, 10)
 	var/mob/living/M = target
 	for(var/i in 1 to steps_per_slap)
+		var/broke = FALSE
 		if(M)
-			var/broke = FALSE
 			if(M in getline(src, locate(x - vision_range, y, z)))
 				broke = TRUE
 			else if(M in getline(src, locate(x + vision_range, y, z)))
@@ -45,6 +45,8 @@
 				broke = TRUE
 			if(broke)
 				break
+		if(broke)
+			break
 		var/turf/T = get_step(src, dir)
 		..(T, dir, step_x, step_y)
 	movecooldown = world.time + movecooldowntime
