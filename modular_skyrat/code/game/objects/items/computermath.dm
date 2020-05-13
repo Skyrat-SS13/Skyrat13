@@ -53,7 +53,7 @@
 		if("Medium")
 			operator = pick("division", "exponent", "easy algebra")
 		if("Hard")
-			operator = pick("2nd polynominal", "algebra")
+			operator = pick("2nd polynomial", "algebra")
 
 	var/correct = FALSE
 	switch(operator)
@@ -157,7 +157,7 @@
 				correct = TRUE
 
 		
-		if("2nd polynominal") //WIP
+		if("2nd polynomial") //WIP
 			// Math part
 			var/num_a = rand(1, 2)
 			var/num_b = rand(-5, 5)
