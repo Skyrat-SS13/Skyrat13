@@ -1947,6 +1947,7 @@
 	value = REAGENT_VALUE_COMMON
 	taste_description = "bitterness" // apparently what viagra tastes like
 
+/* moved to modular_skyrat
 /datum/reagent/growthserum/on_mob_life(mob/living/carbon/H)
 	var/newsize = current_size
 	switch(volume)
@@ -1965,6 +1966,7 @@
 	current_size = newsize
 	H.update_transform()
 	..()
+*/
 
 /datum/reagent/growthserum/on_mob_end_metabolize(mob/living/M)
 	M.resize = RESIZE_DEFAULT_SIZE/current_size
