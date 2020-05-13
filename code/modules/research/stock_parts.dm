@@ -66,33 +66,33 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 
 /obj/item/storage/part_replacer/bluespace/tier2/PopulateContents()
 	for(var/i in 1 to 10)
-		new /obj/item/stock_parts/capacitor/adv(src)
-		new /obj/item/stock_parts/scanning_module/adv(src)
-		new /obj/item/stock_parts/manipulator/nano(src)
-		new /obj/item/stock_parts/micro_laser/high(src)
-		new /obj/item/stock_parts/matter_bin/adv(src)
+		new /obj/item/stock_parts/capacitor/t2(src) //Skyrat Change
+		new /obj/item/stock_parts/scanning_module/t2(src) //Skyrat Change
+		new /obj/item/stock_parts/manipulator/t2(src) //Skyrat Change
+		new /obj/item/stock_parts/micro_laser/t2(src) //Skyrat Change
+		new /obj/item/stock_parts/matter_bin/t2(src) //Skyrat Change
 		new /obj/item/stock_parts/cell/super(src)
 
 /obj/item/storage/part_replacer/bluespace/tier3
 
 /obj/item/storage/part_replacer/bluespace/tier3/PopulateContents()
 	for(var/i in 1 to 10)
-		new /obj/item/stock_parts/capacitor/super(src)
-		new /obj/item/stock_parts/scanning_module/phasic(src)
-		new /obj/item/stock_parts/manipulator/pico(src)
-		new /obj/item/stock_parts/micro_laser/ultra(src)
-		new /obj/item/stock_parts/matter_bin/super(src)
+		new /obj/item/stock_parts/capacitor/t3(src) //Skyrat Change
+		new /obj/item/stock_parts/scanning_module/t3(src) //Skyrat Change
+		new /obj/item/stock_parts/manipulator/t3(src) //Skyrat Change
+		new /obj/item/stock_parts/micro_laser/t3(src) //Skyrat Change
+		new /obj/item/stock_parts/matter_bin/t3(src) //Skyrat Change
 		new /obj/item/stock_parts/cell/hyper(src)
 
 /obj/item/storage/part_replacer/bluespace/tier4
 
 /obj/item/storage/part_replacer/bluespace/tier4/PopulateContents()
 	for(var/i in 1 to 10)
-		new /obj/item/stock_parts/capacitor/quadratic(src)
-		new /obj/item/stock_parts/scanning_module/triphasic(src)
-		new /obj/item/stock_parts/manipulator/femto(src)
-		new /obj/item/stock_parts/micro_laser/quadultra(src)
-		new /obj/item/stock_parts/matter_bin/bluespace(src)
+		new /obj/item/stock_parts/capacitor/t4(src) //Skyrat Change
+		new /obj/item/stock_parts/scanning_module/t4(src) //Skyrat Change
+		new /obj/item/stock_parts/manipulator/t4(src) //Skyrat Change
+		new /obj/item/stock_parts/micro_laser/t4(src) //Skyrat Change
+		new /obj/item/stock_parts/matter_bin/t4(src) //Skyrat Change
 		new /obj/item/stock_parts/cell/bluespace(src)
 
 /obj/item/storage/part_replacer/cargo //used in a cargo crate
@@ -132,6 +132,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 
 //Rating 1
 
+/* Skyrat change, see the skyrat version of this
 /obj/item/stock_parts/capacitor
 	name = "capacitor"
 	desc = "A basic capacitor used in the construction of a variety of devices."
@@ -272,8 +273,13 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "bluespace_matter_bin"
 	rating = 4
 	custom_materials = list(/datum/material/iron=80)
+*/
+//End of skyrat change
 
 // Subspace stock parts
+
+/obj/item/stock_parts/subspace/ //Skyrat Change
+	icon = 'icons/obj/stock_parts.dmi' //Skyrat Change
 
 /obj/item/stock_parts/subspace/ansible
 	name = "subspace ansible"

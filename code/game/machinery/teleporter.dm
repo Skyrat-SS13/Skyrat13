@@ -102,7 +102,7 @@
 
 /obj/machinery/teleport/hub/syndicate/Initialize()
 	. = ..()
-	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/t3(null) //Skyrat Change
 	RefreshParts()
 
 

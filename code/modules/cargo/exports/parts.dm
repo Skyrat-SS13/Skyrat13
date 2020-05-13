@@ -45,23 +45,23 @@
 
 /datum/export/t1
 	cost = 1
-	unit_name = "basic stock part"
+	unit_name = "t1 stock part" //Skyrat Change
 	export_types = list(/obj/item/stock_parts/capacitor, /obj/item/stock_parts/scanning_module, /obj/item/stock_parts/manipulator, /obj/item/stock_parts/micro_laser, /obj/item/stock_parts/matter_bin)
 
 /datum/export/t2
 	cost = 2
-	unit_name = "upgraded stock part"
-	export_types = list(/obj/item/stock_parts/capacitor/adv, /obj/item/stock_parts/scanning_module/adv, /obj/item/stock_parts/manipulator/nano, /obj/item/stock_parts/micro_laser/high, /obj/item/stock_parts/matter_bin/adv)
+	unit_name = "t2 stock part" //Skyrat Change
+	export_types = list(/obj/item/stock_parts/capacitor/t2, /obj/item/stock_parts/scanning_module/t2, /obj/item/stock_parts/manipulator/t2, /obj/item/stock_parts/micro_laser/t2, /obj/item/stock_parts/matter_bin/t2) //Skyrat Change
 
 /datum/export/t3
 	cost = 3
-	unit_name = "advanced stock part"
-	export_types = list(/obj/item/stock_parts/capacitor/super, /obj/item/stock_parts/scanning_module/phasic, /obj/item/stock_parts/manipulator/pico, /obj/item/stock_parts/micro_laser/ultra, /obj/item/stock_parts/matter_bin/super)
+	unit_name = "t3 stock part" //Skyrat Change
+	export_types = list(/obj/item/stock_parts/capacitor/t3, /obj/item/stock_parts/scanning_module/t3, /obj/item/stock_parts/manipulator/t3, /obj/item/stock_parts/micro_laser/t3, /obj/item/stock_parts/matter_bin/t3) //Skyrat Change
 
 /datum/export/t4
 	cost = 4
-	unit_name = "blue space stock part"
-	export_types = list(/obj/item/stock_parts/capacitor/quadratic, /obj/item/stock_parts/scanning_module/triphasic, /obj/item/stock_parts/manipulator/femto, /obj/item/stock_parts/micro_laser/quadultra, /obj/item/stock_parts/matter_bin/bluespace)
+	unit_name = "t4 stock part" //Skyrat Change
+	export_types = list(/obj/item/stock_parts/capacitor/t4, /obj/item/stock_parts/scanning_module/t4, /obj/item/stock_parts/manipulator/t4, /obj/item/stock_parts/micro_laser/t4, /obj/item/stock_parts/matter_bin/t4) //Skyrat Change
 
 //Cells
 

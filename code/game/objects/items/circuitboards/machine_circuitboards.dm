@@ -490,9 +490,9 @@
 	icon_state = "abductor_mod"
 	// It wasn't made by actual abductors race, so no abductor tech here.
 	def_components = list(
-		/obj/item/stock_parts/manipulator = /obj/item/stock_parts/manipulator/femto,
-		/obj/item/stock_parts/micro_laser = /obj/item/stock_parts/micro_laser/quadultra,
-		/obj/item/stock_parts/scanning_module = /obj/item/stock_parts/scanning_module/triphasic)
+		/obj/item/stock_parts/manipulator = /obj/item/stock_parts/manipulator/t4, //Skyrat Change
+		/obj/item/stock_parts/micro_laser = /obj/item/stock_parts/micro_laser/t4, //Skyrat Change
+		/obj/item/stock_parts/scanning_module = /obj/item/stock_parts/scanning_module/t4) //Skyrat Change
 
 
 /obj/item/circuitboard/machine/hydroponics
@@ -585,8 +585,8 @@
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stock_parts/cell/infinite/abductor = 1)
 	def_components = list(
-		/obj/item/stock_parts/capacitor = /obj/item/stock_parts/capacitor/quadratic,
-		/obj/item/stock_parts/micro_laser = /obj/item/stock_parts/micro_laser/quadultra)
+		/obj/item/stock_parts/capacitor = /obj/item/stock_parts/capacitor/t4, //Skyrat Change
+		/obj/item/stock_parts/micro_laser = /obj/item/stock_parts/micro_laser/t4) //Skyrat Change
 
 /obj/item/circuitboard/machine/emitter
 	name = "Emitter (Machine Board)"
@@ -931,7 +931,7 @@
 	name = "Bluespace Artillery Generator (Machine Board)"
 	build_path = /obj/machinery/bsa/back //No freebies!
 	req_components = list(
-		/obj/item/stock_parts/capacitor/quadratic = 5,
+		/obj/item/stock_parts/capacitor/t4 = 5, //Skyrat Change
 		/obj/item/stack/cable_coil = 2)
 
 /obj/item/circuitboard/machine/bsa/middle
@@ -945,15 +945,15 @@
 	name = "Bluespace Artillery Bore (Machine Board)"
 	build_path = /obj/machinery/bsa/front
 	req_components = list(
-		/obj/item/stock_parts/manipulator/femto = 5,
+		/obj/item/stock_parts/manipulator/t4 = 5, //Skyrat Change
 		/obj/item/stack/cable_coil = 2)
 
 /obj/item/circuitboard/machine/dna_vault
 	name = "DNA Vault (Machine Board)"
 	build_path = /obj/machinery/dna_vault //No freebies!
 	req_components = list(
-		/obj/item/stock_parts/capacitor/super = 5,
-		/obj/item/stock_parts/manipulator/pico = 5,
+		/obj/item/stock_parts/capacitor/t4 = 5, //Skyrat Change
+		/obj/item/stock_parts/manipulator/t4 = 5, //Skyrat Change
 		/obj/item/stack/cable_coil = 2)
 
 /obj/item/circuitboard/machine/microwave

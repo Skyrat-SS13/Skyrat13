@@ -399,10 +399,10 @@
 
 		//5
 		list(
-			"key" = /obj/item/stock_parts/capacitor/quadratic,
+			"key" = /obj/item/stock_parts/capacitor/t3,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "The bluespace crystals are secured."
+			"desc" = "The capacitor is secured."
 		),
 
 		//6

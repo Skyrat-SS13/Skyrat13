@@ -385,8 +385,8 @@
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/sleeper/syndie(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
-	component_parts += new /obj/item/stock_parts/manipulator/pico(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/t3(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/manipulator/t3(null) //Skyrat Change
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stack/cable_coil(null)
@@ -396,8 +396,8 @@
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/sleeper/syndie(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/manipulator/t4(null) //Skyrat Change
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stack/cable_coil(null)

@@ -38,7 +38,7 @@
 
 /obj/item/laser_pointer/upgraded/New()
 	..()
-	diode = new /obj/item/stock_parts/micro_laser/ultra
+	diode = new /obj/item/stock_parts/micro_laser/t3 //Skyrat Change
 
 /obj/item/laser_pointer/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stock_parts/micro_laser))

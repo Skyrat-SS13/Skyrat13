@@ -24,8 +24,8 @@
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/cyborgrecharger(null)
-	component_parts += new /obj/item/stock_parts/capacitor/super(null)
-	component_parts += new /obj/item/stock_parts/manipulator/pico(null)
+	component_parts += new /obj/item/stock_parts/capacitor/t3(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/manipulator/t3(null) //Skyrat Change
 	component_parts += new /obj/item/stock_parts/cell/hyper(null)
 	RefreshParts()
 
@@ -35,8 +35,8 @@
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/cyborgrecharger(null)
-	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stock_parts/capacitor/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/manipulator/t4(null) //Skyrat Change
 	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
 	RefreshParts()
 

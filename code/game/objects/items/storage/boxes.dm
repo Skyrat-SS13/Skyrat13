@@ -1187,21 +1187,21 @@
 	icon_state = "syndiebox"
 
 /obj/item/storage/box/stockparts/deluxe/PopulateContents()
-	new /obj/item/stock_parts/capacitor/quadratic(src)
-	new /obj/item/stock_parts/capacitor/quadratic(src)
-	new /obj/item/stock_parts/capacitor/quadratic(src)
-	new /obj/item/stock_parts/scanning_module/triphasic(src)
-	new /obj/item/stock_parts/scanning_module/triphasic(src)
-	new /obj/item/stock_parts/scanning_module/triphasic(src)
-	new /obj/item/stock_parts/manipulator/femto(src)
-	new /obj/item/stock_parts/manipulator/femto(src)
-	new /obj/item/stock_parts/manipulator/femto(src)
-	new /obj/item/stock_parts/micro_laser/quadultra(src)
-	new /obj/item/stock_parts/micro_laser/quadultra(src)
-	new /obj/item/stock_parts/micro_laser/quadultra(src)
-	new /obj/item/stock_parts/matter_bin/bluespace(src)
-	new /obj/item/stock_parts/matter_bin/bluespace(src)
-	new /obj/item/stock_parts/matter_bin/bluespace(src)
+	new /obj/item/stock_parts/capacitor/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/capacitor/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/capacitor/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/scanning_module/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/scanning_module/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/scanning_module/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/manipulator/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/manipulator/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/manipulator/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/micro_laser/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/micro_laser/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/micro_laser/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/matter_bin/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/matter_bin/t4(src) //Skyrat Change
+	new /obj/item/stock_parts/matter_bin/t4(src) //Skyrat Change
 
 //Colored boxes.
 /obj/item/storage/box/green

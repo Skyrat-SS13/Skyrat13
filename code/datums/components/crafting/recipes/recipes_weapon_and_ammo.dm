@@ -332,8 +332,8 @@
 	name = "Pulse Slug Shell"
 	result = /obj/item/ammo_casing/shotgun/pulseslug
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
-				/obj/item/stock_parts/capacitor/adv = 2,
-				/obj/item/stock_parts/micro_laser/ultra = 1)
+				/obj/item/stock_parts/capacitor/t2 = 2, //Skyrat change
+				/obj/item/stock_parts/micro_laser/t2 = 1) //Skyrat change
 	tools = list(TOOL_SCREWDRIVER)
 	time = 5
 	category = CAT_WEAPONRY
@@ -365,7 +365,7 @@
 	name = "Ion Scatter Shell"
 	result = /obj/item/ammo_casing/shotgun/ion
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
-				/obj/item/stock_parts/micro_laser/ultra = 1,
+				/obj/item/stock_parts/micro_laser/t3 = 1, //Skyrat Change
 				/obj/item/stock_parts/subspace/crystal = 1)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 5
@@ -388,8 +388,8 @@
 	name = "Scatter Laser Shell"
 	result = /obj/item/ammo_casing/shotgun/laserslug
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
-				/obj/item/stock_parts/capacitor/adv = 1,
-				/obj/item/stock_parts/micro_laser/high = 1)
+				/obj/item/stock_parts/capacitor/t2 = 1, //Skyrat Change
+				/obj/item/stock_parts/micro_laser/t2 = 1) //Skyrat change
 	tools = list(TOOL_SCREWDRIVER)
 	time = 5
 	category = CAT_WEAPONRY

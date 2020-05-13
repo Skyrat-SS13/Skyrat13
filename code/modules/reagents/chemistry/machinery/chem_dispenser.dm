@@ -529,10 +529,10 @@
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/chem_dispenser/drinks(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/matter_bin/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/capacitor/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/manipulator/t4(null) //Skyrat Change
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
 	RefreshParts()
@@ -588,10 +588,10 @@
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/chem_dispenser/drinks/beer(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/matter_bin/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/capacitor/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/manipulator/t4(null) //Skyrat Change
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
 	RefreshParts()
@@ -632,10 +632,10 @@
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/matter_bin/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/capacitor/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/manipulator/t4(null) //Skyrat Change
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
 	RefreshParts()
@@ -650,10 +650,10 @@
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/matter_bin/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/capacitor/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/manipulator/t4(null) //Skyrat Change
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
 	RefreshParts()
@@ -714,10 +714,10 @@
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/matter_bin/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/capacitor/t4(null) //Skyrat Change
+	component_parts += new /obj/item/stock_parts/manipulator/t4(null) //Skyrat Change
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
 	RefreshParts()

@@ -73,39 +73,39 @@
 	wanted_types = list(/obj/item/stock_parts/cell/bluespace)
 
 /datum/bounty/item/science/t4manip
-	name = "Femto-Manipulators"
-	description = "One of our Chief Engineers has OCD. Can you send us some femto-manipulators so he stops complaining that his ID doesn't fit perfectly in the PDA slot?"
+	name = "Mega Manipulators" //Skyrat Change
+	description = "One of our Chief Engineers has OCD. Can you send us some mega-manipulators so he stops complaining that his ID doesn't fit perfectly in the PDA slot?" //Skyrat Change
 	reward = 2000
 	required_count = 20 //Easy to make
-	wanted_types = list(/obj/item/stock_parts/manipulator/femto)
+	wanted_types = list(/obj/item/stock_parts/manipulator/t4) //Skyrat Change
 
 /datum/bounty/item/science/t4bins
-	name = "Bluespace Matter Bins"
-	description = "The local Janitorial union has gone on strike. Can you send us some bluespace bins so we don't have to take out our own trash?"
+	name = "Mega Matter Bins" //Skyrat Change
+	description = "The local Janitorial union has gone on strike. Can you send us some mega matter bins so we don't have to take out our own trash?" //Skyrat Change
 	reward = 2000
 	required_count = 20 //Easy to make
-	wanted_types = list(/obj/item/stock_parts/matter_bin/bluespace)
+	wanted_types = list(/obj/item/stock_parts/matter_bin/t4) //Skyrat Change
 
 /datum/bounty/item/science/t4capacitor
-	name = "Quadratic Capacitor"
-	description = "One of our linguists doesn't understand why they're called Quadratic capacitors. Can you give him a few so he leaves us alone about it?"
+	name = "Mega Capacitors" //Skyrat Change
+	description = "One of our philosophers doesn't understand whats so mega about Mega Capacitors. Can you give him a few so he leaves us alone about it?" //Skyrat Change
 	reward = 2000
 	required_count = 20 //Easy to make
-	wanted_types = list(/obj/item/stock_parts/capacitor/quadratic)
+	wanted_types = list(/obj/item/stock_parts/capacitor/t4) //Skyrat Change
 
 /datum/bounty/item/science/t4triphasic
-	name = "Triphasic Scanning Module"
+	name = "Mega Scanning Module" //Skyrat Change
 	description = "One of our scientists got into the liberty caps and is demanding new scanning modules so he can talk to ghosts. At this point we just want him out of our office."
 	reward = 2000
 	required_count = 20 //Easy to make
-	wanted_types = list(/obj/item/stock_parts/scanning_module/triphasic)
+	wanted_types = list(/obj/item/stock_parts/scanning_module/t4) //Skyrat Change
 
 /datum/bounty/item/science/t4microlaser
-	name = "Quad-Ultra Micro-Laser"
+	name = "Mega Micro-Laser" //Skyrat Change
 	description = "The cats on Vega 9 are breeding out of control. We need something to corral them into one area so we can saturation bomb it."
 	reward = 2000
 	required_count = 20 //Easy to make
-	wanted_types = list(/obj/item/stock_parts/micro_laser/quadultra)
+	wanted_types = list(/obj/item/stock_parts/micro_laser/t4) //Skyrat Change
 
 /datum/bounty/item/science/fakecrystals
 	name = "Synthetic Bluespace Crystals"
