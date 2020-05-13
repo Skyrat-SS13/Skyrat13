@@ -99,11 +99,16 @@
 	crate_type = /obj/structure/closet/crate/internals
 
 /datum/supply_pack/security/russianmosin
+<<<<<<< HEAD
 	name = "Russian Minutemen Gear"
 	desc = "An old russian Minutemen crate, comes with a full russian uniform, a mosin nagant and a stripper clip." //Skyrat change, stop disrespecting my russian comrades and list the mosin and uniform properly
+=======
+	name = "Russian Partisan Gear"
+	desc = "An old russian partisan equipment crate, comes with a full russian outfit, a loaded surplus rifle and a second magazine."
+>>>>>>> 871361936c... Replaces mosins in russian crates with 10mm surplus rifles (#12176)
 	contraband = TRUE
 	access = FALSE
-	cost = 6500 //
+	cost = 6500
 	contains = list(/obj/item/clothing/suit/armor/navyblue/russian,
 					/obj/item/clothing/shoes/combat,
 					/obj/item/clothing/head/ushanka,
@@ -111,8 +116,8 @@
 					/obj/item/clothing/head/helmet/alt,
 					/obj/item/clothing/gloves/tackler/combat/insulated,
 					/obj/item/clothing/mask/gas,
-					/obj/item/gun/ballistic/shotgun/boltaction,
-					/obj/item/ammo_box/a762)
+					/obj/item/ammo_box/magazine/m10mm/rifle,
+					/obj/item/gun/ballistic/automatic/surplus)
 	crate_name = "surplus russian gear"
 	crate_type = /obj/structure/closet/crate/internals
 
