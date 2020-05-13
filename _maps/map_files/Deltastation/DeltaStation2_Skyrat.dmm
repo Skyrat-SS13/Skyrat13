@@ -93845,6 +93845,7 @@
 /area/science/lab)
 "dei" = (
 /obj/effect/turf_decal/stripes/line,
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "dej" = (
@@ -110364,6 +110365,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/storage)
 "dHo" = (
@@ -110961,6 +110963,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "dIk" = (
@@ -114894,6 +114897,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/research)
 "dOZ" = (
