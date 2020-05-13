@@ -30,6 +30,6 @@
 
 /obj/item/ammo_box/magazine/usp/emag_act(mob/user)
 	..()
-	to_chat(user, "<span class='notice'>The [src] can now accept lethal 9mm rounds.</span>")
+	to_chat(user, "<span class='notice'>The [src] can now accept lethal 9mm rounds, but cannot accept rubber rounds anymore.</span>")
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = "9mm"

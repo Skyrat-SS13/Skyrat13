@@ -93,3 +93,8 @@
 	automatic_burst_overlay = FALSE
 	actions_types = null
 	mag_type = /obj/item/ammo_box/magazine/smgm9mm/rubber
+
+/obj/item/gun/ballistic/automatic/mp5/emag_act(mob/user)
+	if(magazine)
+		var/obj/item/ammo_box/magazine/M = magazine
+		M.emag_act(user)
