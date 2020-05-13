@@ -24,10 +24,10 @@
 		M.hallucination = max(0, M.hallucination - 10)
 
 	if(A.stage >= 5)
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1)
 		if(trauma_heal_mild && iscarbon(M))
 			var/mob/living/carbon/C = M
-			if(prob(40))
+			if(prob(10))
 				if(trauma_heal_severe)
 					C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
 				else

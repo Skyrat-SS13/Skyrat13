@@ -8,8 +8,9 @@ GLOBAL_LIST(topic_status_cache)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-	if(fexists("byond-extools.dll"))
-		call("byond-extools.dll", "maptick_initialize")()
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || "./byond-extools.dll"
+	if (fexists(extools))
+		call(extools, "maptick_initialize")()
 	enable_debugger()
 
 #if DM_VERSION >= 513 && DM_BUILD >= 1506

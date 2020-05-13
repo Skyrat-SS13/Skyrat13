@@ -28817,6 +28817,7 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "bnp" = (
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "bnq" = (
@@ -38621,6 +38622,7 @@
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bIQ" = (
@@ -58386,6 +58388,17 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"iOm" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
+/area/hallway/secondary/entry)
 "iOr" = (
 /obj/structure/table,
 /obj/item/assembly/igniter{
@@ -62051,6 +62064,7 @@
 	dir = 1;
 	pixel_x = 1
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "qWV" = (
@@ -63842,6 +63856,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"uWj" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/start/scientist,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "uXb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -75419,7 +75440,7 @@ aaa
 aaa
 aaa
 awW
-awZ
+iOm
 ayk
 awW
 awW
@@ -110393,7 +110414,7 @@ bBZ
 bDc
 bEp
 bCX
-bEc
+uWj
 bIA
 bIA
 bJN

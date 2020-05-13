@@ -24832,6 +24832,7 @@
 	dir = 1;
 	pixel_y = 3
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "aXY" = (
@@ -26878,6 +26879,7 @@
 	network = list("toxins");
 	pixel_x = 30
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
 "bcc" = (
@@ -27243,6 +27245,7 @@
 	dir = 1;
 	pixel_y = -22
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
 "bcR" = (
@@ -67549,6 +67552,7 @@
 	pixel_x = -28;
 	pixel_y = 3
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "nJw" = (
