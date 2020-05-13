@@ -160,7 +160,7 @@
 	/obj/structure/flora/biolumi/mine = 1, 
 	/obj/structure/flora/biolumi/flower = 1, 
 	/obj/structure/flora/biolumi/lamp = 1)
-	if(prob(80))
+	if(prob(60))
 		var/flora_type = pickweight(jungle_flora_list)
 		new flora_type(T)
 
