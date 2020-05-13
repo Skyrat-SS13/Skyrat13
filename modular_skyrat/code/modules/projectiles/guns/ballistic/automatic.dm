@@ -77,3 +77,19 @@
 /obj/item/gun/ballistic/automatic/wt550/update_icon()
 	..()
 	icon_state = "[skintype][magazine ? "-[CEILING((	(get_ammo(FALSE) / magazine.max_ammo) * 20) /4, 1)*4]" : "-0"]"	//Sprites only support up to 20.
+
+//HoS MP5
+/obj/item/gun/ballistic/automatic/mp5
+	name = "\proper H&K MP5A1"
+	desc = "An ancient machine gun, used by law enforcement worldwide in the old pre-space exploration days.\
+			This is an antique model, marked as an original Hacky & Kool 1964 prototype."
+	icon = 'modular_skyrat/icons/obj/gun/mp5.dmi'
+	item_state = "arg"
+	icon_state = "mp5"
+	can_suppress = FALSE
+	burst_size = 2
+	burst_shot_delay = 4
+	actions_types = list(/datum/action/item_action/toggle_firemode)
+	automatic_burst_overlay = FALSE
+	actions_types = null
+	mag_type = /obj/item/ammo_box/magazine/smgm9mm/rubber
