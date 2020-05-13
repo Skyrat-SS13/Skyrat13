@@ -320,3 +320,16 @@
 			M.projectile_strike_predamage(src, target_turf, target, kinetic_gun)
 		for(var/obj/item/borg/upgrade/modkit/M in mods)
 			M.projectile_strike(src, target_turf, target, kinetic_gun)
+
+//sif
+/obj/item/borg/upgrade/modkit/critical
+	name = "critical modification kit"
+	desc = "Makes your kinetic accelerator have a <b>10%</b> chance to critically wound your target."
+	modifier = 10
+	cost = 30
+
+/obj/item/borg/upgrade/modkit/critical/modify_projectile(obj/item/projectile/kinetic/K)
+	. = ..()
+	if(prob(modifier))
+		K.damage *= 2
+		K.name = "critical [K.name]"
