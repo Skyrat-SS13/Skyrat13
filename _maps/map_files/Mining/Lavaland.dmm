@@ -118,6 +118,13 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
+"cV" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "dA" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
@@ -1229,12 +1236,13 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "mL" = (
-/obj/structure/stone_tile{
-	dir = 1
+/obj/structure/stone_tile/cracked{
+	dir = 8
 	},
 /obj/structure/stone_tile/cracked{
-	dir = 4
+	dir = 1
 	},
+/obj/structure/stone_tile,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "mQ" = (
@@ -1668,6 +1676,15 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/ruin/unpowered/ash_walkers)
+"vL" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "vR" = (
 /obj/machinery/hydroponics/soil,
 /obj/structure/stone_tile/block/cracked{
@@ -1775,7 +1792,12 @@
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "AB" = (
-/obj/effect/step_trigger/gladiator,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "AH" = (
@@ -2070,6 +2092,15 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"LD" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "LJ" = (
 /turf/open/water,
 /area/lavaland/surface/outdoors)
@@ -2084,7 +2115,13 @@
 /turf/closed/mineral/volcanic/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "My" = (
-/mob/living/simple_animal/hostile/megafauna/gladiator,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "MQ" = (
@@ -2188,6 +2225,13 @@
 /obj/structure/stone_tile/surrounding_tile/cracked,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"QZ" = (
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Rb" = (
 /obj/structure/closet/crate,
 /obj/structure/stone_tile/block/cracked{
@@ -2436,6 +2480,15 @@
 	dir = 8
 	},
 /turf/closed/mineral/volcanic/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"XC" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "XG" = (
 /obj/effect/decal/cleanable/blood,
@@ -32586,7 +32639,7 @@ aj
 aj
 aj
 ab
-ak
+ab
 ak
 ak
 ak
@@ -32842,22 +32895,22 @@ aj
 aj
 aj
 ab
-ak
-ak
-al
-al
-al
+ab
 ab
 al
-al
-al
-jx
-ab
-al
-al
-al
-al
-al
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -33099,23 +33152,23 @@ aj
 aj
 aj
 aj
+mD
+ab
 ak
-al
-al
-al
-kN
-ab
-ab
-al
-ab
-kN
-ab
-ab
-al
-ab
-kN
-al
-al
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -33356,23 +33409,23 @@ mA
 aj
 aj
 aj
+ab
+ab
+ak
+ak
+ak
+ak
+ak
 ak
 al
-ab
-jx
-ab
-jq
-ab
-ab
-jx
-ab
-jq
-ab
-ab
-ab
-jx
-ab
-al
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -33613,24 +33666,24 @@ aj
 aj
 aj
 aj
-al
+ab
 jQ
-ab
-kN
-ab
-ab
-ab
-ab
-kN
-ab
-ab
-ab
-jq
-ab
-kN
-ab
-ab
+ak
+ak
+ak
+ak
 al
+iy
+ab
+ab
+My
+al
+ak
+ak
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -33872,22 +33925,22 @@ aj
 aj
 ab
 ab
-ja
-ab
-jx
-ab
-ab
-ja
-ab
-jx
-ab
+ak
+ak
+ak
+ak
 ab
 ab
 jx
 ab
-jq
 ab
+QZ
 al
+ak
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -34129,21 +34182,21 @@ aj
 aj
 jx
 jS
-jR
-ab
-ab
-ab
-mL
-jR
-ab
-ab
-ab
-mL
+iy
+al
+ak
+al
+jq
 ab
 kN
 ab
 ab
+jx
 ab
+ab
+cV
+al
+ak
 ak
 ak
 ak
@@ -34396,11 +34449,11 @@ ab
 jq
 ab
 kN
-ja
-ab
-jx
 ab
 ab
+ab
+LD
+ak
 ak
 ak
 ak
@@ -34641,7 +34694,7 @@ lp
 lZ
 lS
 lS
-AB
+lp
 aa
 mE
 ab
@@ -34653,11 +34706,11 @@ ab
 ab
 ab
 ab
-jR
+ab
+jS
 ab
 ab
-ab
-mL
+al
 ak
 ak
 ak
@@ -34898,10 +34951,10 @@ lW
 ma
 lq
 mk
-AB
-AB
+mn
+kR
 mF
-My
+ab
 mG
 ab
 ja
@@ -34915,7 +34968,7 @@ ab
 jq
 jR
 ab
-al
+ab
 ak
 ak
 ak
@@ -35155,7 +35208,7 @@ lv
 mb
 lR
 ml
-AB
+lR
 aa
 it
 ab
@@ -35165,9 +35218,9 @@ jR
 ab
 ab
 ab
-ab
-jx
-ab
+XC
+al
+iY
 ab
 ab
 jQ
@@ -35421,16 +35474,16 @@ ab
 jQ
 ab
 mI
-jq
-ab
-kN
-ab
-ab
-ab
-ab
 ab
 ab
 al
+al
+ab
+ab
+ab
+ab
+ab
+ak
 ak
 ak
 ak
@@ -35679,10 +35732,10 @@ ab
 ab
 ab
 ab
-jx
 ab
-jq
-ab
+jR
+ak
+jS
 kN
 ab
 ab
@@ -35928,21 +35981,21 @@ aj
 aj
 ab
 ab
+ak
+al
+ja
+ab
+mL
 ab
 ab
-jx
+AB
+al
+ak
+ak
+al
 ab
 ab
-ab
-jx
-ab
-ab
-ab
-jx
-ab
-ab
-ab
-ab
+vL
 al
 ak
 ak
@@ -36185,21 +36238,21 @@ aj
 aj
 ab
 ja
-jq
-ab
-kN
-ab
-jq
-ab
-kN
-ja
-jq
-ab
-kN
-ab
-ab
-ab
-ab
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -36440,24 +36493,24 @@ iy
 aj
 aj
 aj
-al
+kN
 ab
-ab
-jx
-ab
-jq
-ab
-jx
-ab
-jR
-ab
-jx
-ab
-jq
-ab
-jq
-ab
-al
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -36697,23 +36750,23 @@ aj
 aj
 aj
 aj
+ab
+ab
 ak
-ab
-ab
-kN
-ab
-ab
-al
-kN
-ab
-ab
-ab
-kN
-ab
-ab
-ab
-ab
-al
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -36954,23 +37007,23 @@ aj
 aj
 ab
 ab
+ab
+ab
 ak
-al
-al
-ab
-jx
-al
-al
-ab
-jx
-ab
-ja
-ab
-jx
-ab
-al
-al
-al
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -37211,23 +37264,23 @@ aj
 aj
 mC
 ab
+ab
+ab
 ak
 ak
-al
-al
-al
-al
-al
-al
-ab
-al
-al
-al
-al
-ab
-al
-al
-al
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -37469,7 +37522,7 @@ aj
 aj
 aj
 ab
-ak
+ab
 ak
 ak
 ak
