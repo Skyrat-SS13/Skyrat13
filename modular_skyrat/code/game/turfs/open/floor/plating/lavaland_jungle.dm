@@ -60,34 +60,6 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 
-/*
-/turf/open/floor/plating/smooth/grass/lavaland_jungle/flora_spawn
-	var/spawned_flora = FALSE
-	var/static/list/jungle_flora_list = list(/obj/structure/flora/tree/jungle = 1, 
-	/obj/structure/flora/rock/pile/largejungle = 1, 
-	/obj/structure/flora/tree/jungle/small = 1,
-	/obj/structure/flora/junglebush = 2, 
-	/obj/structure/flora/junglebush/b = 2, 
-	/obj/structure/flora/junglebush/c = 2, 
-	/obj/structure/flora/junglebush/large = 2, 
-	/obj/structure/flora/grass/jungle = 2, 
-	/obj/structure/flora/biolumi = 1, 
-	/obj/structure/flora/biolumi/mine = 1, 
-	/obj/structure/flora/biolumi/flower = 1, 
-	/obj/structure/flora/biolumi/lamp = 1)
-
-/turf/open/floor/plating/smooth/grass/lavaland_jungle/flora_spawn/proc/SpawnFlora()
-	if(spawned_flora)
-		return
-	spawned_flora = TRUE
-	var/flora_type = pickweight(jungle_flora_list)
-	new flora_type(loc)
-
-/turf/open/floor/plating/smooth/grass/lavaland_jungle/flora_spawn/Initialize()
-	. = ..()
-	SpawnFlora()
-*/
-
 /turf/open/floor/plating/smooth/dirt/lavaland_jungle
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
 	color = "#615c59"
