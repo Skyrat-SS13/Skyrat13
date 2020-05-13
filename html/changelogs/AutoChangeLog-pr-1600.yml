@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "cybernetic shields no longer keep slowing down after being dropped."

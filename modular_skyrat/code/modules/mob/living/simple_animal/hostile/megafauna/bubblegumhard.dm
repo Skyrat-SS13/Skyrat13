@@ -38,8 +38,8 @@ Difficulty: Hard
 	var/enrage_till = 0
 	var/enrage_time = 70
 	var/revving_charge = FALSE
-	var/nest_range = 10
-	var/true_spawn = TRUE
+	nest_range = 10
+	true_spawn = TRUE
 
 	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now, slayer... "
 	deathsound = 'sound/magic/enter_blood.ogg'

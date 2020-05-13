@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "fixed a few organs not healing over time provided they aren't failing, or still working otherwise."
-  - code_imp: "see above."

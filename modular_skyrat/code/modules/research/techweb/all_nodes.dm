@@ -46,7 +46,6 @@
 
 /datum/techweb_node/botany/New()
 	design_ids += "prisonerbiogenerator"
-	design_ids += "bot_chem_dis"
 	. = ..()
 
 /datum/techweb_node/illegal_mechs
@@ -60,3 +59,11 @@
 /datum/techweb_node/syndicate_basic/New()
 	design_ids += "armblade"
 	. = ..()
+
+/datum/techweb_node/computermath
+	id = "computermath"
+	display_name = "Problem Computer"
+	description = "Solve problems for either cargo credits or research points."
+	prereq_ids = list("base")
+	design_ids = list("computermath")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
