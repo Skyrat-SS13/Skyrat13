@@ -4,7 +4,7 @@
 	has_limbs = TRUE
 	hud_type = /datum/hud/robot
 
-	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
+	//blocks_emissive = EMISSIVE_BLOCK_UNIQUE // Skyrat edit -- 512 compatibility
 
 	maxHealth = 100
 	health = 100
