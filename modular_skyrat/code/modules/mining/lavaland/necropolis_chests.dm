@@ -651,7 +651,8 @@
 	if(!choice || !method)
 		return
 	playsound(user.loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, TRUE)
-	var/obj/machinery/anomalous_crystal/A = new choice(user.loc)
+	var/choosey = choices[choice]
+	var/obj/machinery/anomalous_crystal/A = new choosey(user.loc)
 	A.activation_method = method
 	to_chat(user, "<span class='userdanger'>[A] appears under your feet as the [src] breaks apart!</span>")
 	qdel(src)
