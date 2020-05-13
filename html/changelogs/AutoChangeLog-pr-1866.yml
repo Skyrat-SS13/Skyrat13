@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Added advanced shovels to mining related techwebs. More specifically: Titanium shovel, wide titanium shovel, diamond shovel and wide diamond shovel."
