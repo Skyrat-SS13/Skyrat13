@@ -1183,7 +1183,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/rank = job.title
 			//Skyrat changes
 			var/displayed_rank = rank
-			if(job.alt_titles.len && rank in alt_titles_preferences)
+			if(job.alt_titles.len && (rank in alt_titles_preferences))
 				displayed_rank = alt_titles_preferences[rank]
 			//End of skyrat changes
 			lastJob = job
