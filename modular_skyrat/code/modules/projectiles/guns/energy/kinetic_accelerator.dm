@@ -229,7 +229,6 @@
 			L.GiveTarget(target)
 
 //blood drunk miner
-
 /obj/item/borg/upgrade/modkit/lifesteal/miner
 	name = "resonant lifesteal crystal"
 	desc = "Causes kinetic accelerator shots to heal the firer on striking a living target."
@@ -266,6 +265,21 @@
 
 /obj/item/borg/upgrade/modkit/cooldown/cooler/modify_projectile(obj/item/projectile/kinetic/K)
 	K.damage -= (modifier *2)
+
+//gladiator
+/obj/item/borg/upgrade/modkit/shielding
+	name = "shielding modification kit"
+	desc = "Makes your kinetic accelerator block <b>15%</b> of all attacks while held."
+	modifier = 15
+	cost = 30
+
+/obj/item/borg/upgrade/modkit/shielding/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
+	. = ..()
+	KA.block_chance += modifier
+
+/obj/item/borg/upgrade/modkit/shielding/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, forcemove)
+	. = ..()
+	KA.block_chance -= modifier
 
 //10mm modkit (currently broken, only the 10mm pka works)
 /obj/item/gun/energy/kinetic_accelerator/tenmm

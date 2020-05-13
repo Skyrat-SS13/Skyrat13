@@ -1,4 +1,68 @@
 //boss chests
+//gladiator
+/obj/structure/closet/crate/necropolis/gladiator
+	name = "gladiator chest"
+
+/obj/structure/closet/crate/necropolis/gladiator/crusher
+	name = "dreadful gladiator chest"
+
+/obj/structure/closet/crate/necropolis/gladiator/PopulateContents()
+	new /obj/item/shield/riot/tower/swat/gladiator(src)
+	new /obj/item/borg/upgrade/modkit/shielding(src)
+
+/obj/structure/closet/crate/necropolis/gladiator/crusher/PopulateContents()
+	new /obj/item/shield/riot/tower/swat/gladiator(src)
+	new /obj/item/melee/zweihander(src)
+
+/obj/item/shield/riot/tower/swat/gladiator
+	name = "\proper Gladiator's shield"
+	desc = "A very powerful and near indestructible shield, reinforced with drake and goliath hide. Can be used as a raft on lava."
+	icon = 'modular_skyrat/icons/obj/shields.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/shields_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/shields_lefthand.dmi'
+	icon_state = "gladiator"
+	item_state = "gladiator"
+	shield_flags = SHIELD_FLAGS_DEFAULT | SHIELD_BASH_ALWAYS_DISARM | SHIELD_BASH_GROUND_SLAM_DISARM
+	slowdown = 0
+	shieldbash_cooldown = 6 SECONDS
+	shieldbash_stamcost = 5
+	shieldbash_knockback = 2
+	shieldbash_brutedamage = 10
+	shieldbash_stamdmg = 25
+	shieldbash_stagger_duration = 4.5 SECONDS
+	shieldbash_push_distance = 2
+	max_integrity = 350
+	block_chance = 50
+	can_shatter = FALSE
+	repair_material = /obj/item/stack/sheet/animalhide/goliath_hide
+	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/shield/riot/tower/swat/gladiator/AltClick(mob/user)
+	if(isliving(user))
+		if(do_after(user, 20, target = src))
+			new /obj/vehicle/ridden/lavaboat/dragon/gladiator(get_turf(user))
+			qdel(src)
+
+/obj/vehicle/ridden/lavaboat/dragon/gladiator
+	name = "lava surfboard"
+	desc = "This thing can be used to cross lava rivers... I guess. Alt click to turn into a shield again."
+	icon = 'modular_skyrat/icons/obj/shields.dmi'
+	icon_state = "raft"
+
+/obj/vehicle/ridden/lavaboat/dragon/gladiator/Initialize()
+	..()
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.vehicle_move_delay = 1
+	D.allowed_turf_typecache = typecacheof(/turf/open)
+	D.keytype = null
+
+/obj/vehicle/ridden/lavaboat/dragon/gladiator/AltClick(mob/user)
+	..()
+	if(isliving(user))
+		if(do_after(user, 20, target = src))
+			new /obj/item/shield/riot/tower/swat/gladiator(get_turf(user))
+			qdel(src)
+
 //bubblegum
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)

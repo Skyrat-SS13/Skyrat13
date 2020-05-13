@@ -1609,12 +1609,7 @@
 /turf/closed/indestructible/riveted/boss,
 /area/lavaland/surface/outdoors)
 "iQ" = (
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
+/obj/effect/step_trigger/gladiator,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "iR" = (
@@ -2221,13 +2216,7 @@
 /turf/open/floor/plasteel/stairs,
 /area/xenoarch/arch)
 "lU" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
+/mob/living/simple_animal/hostile/megafauna/gladiator,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "lV" = (
@@ -2944,13 +2933,12 @@
 /turf/open/floor/engine,
 /area/xenoarch/eng)
 "pP" = (
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked{
+/obj/structure/stone_tile{
 	dir = 1
 	},
-/obj/structure/stone_tile,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "pQ" = (
@@ -3821,13 +3809,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
-"ud" = (
-/obj/structure/stone_tile,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "uf" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -4275,15 +4256,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
-"wH" = (
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "wI" = (
 /obj/structure/table,
 /obj/item/radio/off,
@@ -5850,13 +5822,6 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/ruin/unpowered/ash_walkers)
-"EF" = (
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "EK" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westright{
@@ -6711,15 +6676,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
-"IA" = (
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "IB" = (
 /turf/closed/mineral/random/high_chance/volcanic,
 /area/lavaland/surface/outdoors/unexplored)
@@ -7709,15 +7665,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
-"Oa" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "Ob" = (
 /obj/structure/chair/sofa/corp/left{
 	dir = 4
@@ -105511,7 +105458,7 @@ Pd
 Pd
 Pd
 Yp
-Yp
+JM
 JM
 JM
 JM
@@ -105767,22 +105714,22 @@ Pd
 Pd
 Pd
 Yp
-Yp
+JM
+JM
+Bg
+Bg
+Bg
 Yp
 Bg
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
+Bg
+Bg
+ur
+Yp
+Bg
+Bg
+Bg
+Bg
+Bg
 JM
 JM
 JM
@@ -106024,23 +105971,23 @@ Pd
 Pd
 Pd
 Pd
-XE
+JM
+Bg
+Bg
+Bg
+yl
 Yp
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
+Yp
+Bg
+Yp
+yl
+Yp
+Yp
+Bg
+Yp
+yl
+Bg
+Bg
 JM
 JM
 JM
@@ -106281,23 +106228,23 @@ qd
 Pd
 Pd
 Pd
-Yp
-Yp
-JM
-JM
-JM
-JM
-JM
 JM
 Bg
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
+Yp
+ur
+Yp
+Mg
+Yp
+Yp
+ur
+Yp
+Mg
+Yp
+Yp
+Yp
+ur
+Yp
+Bg
 JM
 JM
 JM
@@ -106538,24 +106485,24 @@ Pd
 Pd
 Pd
 Pd
-Yp
+Bg
 zB
-JM
-JM
-JM
-JM
-Bg
-Zg
+Yp
+yl
 Yp
 Yp
-lU
+Yp
+Yp
+yl
+Yp
+Yp
+Yp
+Mg
+Yp
+yl
+Yp
+Yp
 Bg
-JM
-JM
-JM
-JM
-JM
-JM
 JM
 JM
 JM
@@ -106797,22 +106744,22 @@ Pd
 Pd
 Yp
 Yp
-JM
-JM
-JM
-JM
-Yp
+Kh
 Yp
 ur
 Yp
 Yp
-EF
+Kh
+Yp
+ur
+Yp
+Yp
+Yp
+ur
+Yp
+Mg
+Yp
 Bg
-JM
-JM
-JM
-JM
-JM
 JM
 JM
 JM
@@ -107054,21 +107001,21 @@ Pd
 Pd
 ur
 IN
-Zg
-Bg
-JM
-Bg
-Mg
+AB
+Yp
+Yp
+Yp
+pP
+AB
+Yp
+Yp
+Yp
+pP
 Yp
 yl
 Yp
 Yp
-ur
 Yp
-Yp
-ud
-Bg
-JM
 JM
 JM
 JM
@@ -107321,11 +107268,11 @@ Yp
 Mg
 Yp
 yl
+Kh
+Yp
+ur
 Yp
 Yp
-Yp
-Oa
-JM
 JM
 JM
 JM
@@ -107566,7 +107513,7 @@ vK
 rp
 TP
 TP
-vK
+iQ
 eY
 ES
 Yp
@@ -107578,11 +107525,11 @@ Yp
 Yp
 Yp
 Yp
+AB
 Yp
-IN
 Yp
 Yp
-Bg
+pP
 JM
 JM
 JM
@@ -107823,10 +107770,10 @@ PL
 dP
 jY
 gL
-yp
-dL
+iQ
+iQ
 nY
-Yp
+lU
 vt
 Yp
 Kh
@@ -107840,7 +107787,7 @@ Yp
 Mg
 AB
 Yp
-Yp
+Bg
 JM
 JM
 JM
@@ -108080,7 +108027,7 @@ qC
 is
 bV
 Ve
-bV
+iQ
 eY
 nh
 Yp
@@ -108090,9 +108037,9 @@ AB
 Yp
 Yp
 Yp
-IA
-Bg
-qJ
+Yp
+ur
+Yp
 Yp
 Yp
 zB
@@ -108346,16 +108293,16 @@ Yp
 zB
 Yp
 Mn
+Mg
+Yp
+yl
+Yp
+Yp
+Yp
+Yp
 Yp
 Yp
 Bg
-Bg
-Yp
-Yp
-Yp
-Yp
-Yp
-JM
 JM
 JM
 JM
@@ -108604,10 +108551,10 @@ Yp
 Yp
 Yp
 Yp
+ur
 Yp
-AB
-JM
-IN
+Mg
+Yp
 yl
 Yp
 Yp
@@ -108853,21 +108800,21 @@ Pd
 Pd
 Yp
 Yp
-JM
-Bg
-Kh
-Yp
-pP
 Yp
 Yp
-wH
-Bg
-JM
-JM
-Bg
+ur
 Yp
 Yp
-iQ
+Yp
+ur
+Yp
+Yp
+Yp
+ur
+Yp
+Yp
+Yp
+Yp
 Bg
 JM
 JM
@@ -109110,21 +109057,21 @@ Pd
 Pd
 Yp
 Kh
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
+Mg
+Yp
+yl
+Yp
+Mg
+Yp
+yl
+Kh
+Mg
+Yp
+yl
+Yp
+Yp
+Yp
+Yp
 JM
 JM
 JM
@@ -109365,24 +109312,24 @@ Zg
 Pd
 Pd
 Pd
-yl
+Bg
 Yp
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
+Yp
+ur
+Yp
+Mg
+Yp
+ur
+Yp
+AB
+Yp
+ur
+Yp
+Mg
+Yp
+Mg
+Yp
+Bg
 JM
 JM
 JM
@@ -109622,23 +109569,23 @@ Pd
 Pd
 Pd
 Pd
+JM
 Yp
 Yp
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
+yl
+Yp
+Yp
+Bg
+yl
+Yp
+Yp
+Yp
+yl
+Yp
+Yp
+Yp
+Yp
+Bg
 JM
 JM
 JM
@@ -109879,23 +109826,23 @@ Pd
 Pd
 Yp
 Yp
+JM
+Bg
+Bg
 Yp
+ur
+Bg
+Bg
 Yp
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
+ur
+Yp
+Kh
+Yp
+ur
+Yp
+Bg
+Bg
+Bg
 JM
 JM
 JM
@@ -110136,23 +110083,23 @@ Pd
 Pd
 az
 Yp
+JM
+JM
+Bg
+Bg
+Bg
+Bg
+Bg
+Bg
 Yp
+Bg
+Bg
+Bg
+Bg
 Yp
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
-JM
+Bg
+Bg
+Bg
 JM
 JM
 JM
@@ -110394,7 +110341,7 @@ Pd
 Pd
 Pd
 Yp
-Yp
+JM
 JM
 JM
 JM
