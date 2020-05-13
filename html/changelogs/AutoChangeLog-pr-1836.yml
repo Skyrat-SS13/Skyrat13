@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - tweak: "Synthetic quirk now actually makes you behave like a synthetic."

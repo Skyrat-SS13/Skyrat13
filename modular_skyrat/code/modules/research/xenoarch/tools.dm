@@ -10,6 +10,7 @@
 	name = "Parent hammer"
 	desc = "Debug. Parent Hammer."
 	var/cleandepth = 15
+	var/cleanspeed = 15
 	usesound = list('sound/effects/picaxe1.ogg', 'sound/effects/picaxe2.ogg', 'sound/effects/picaxe3.ogg')
 
 /obj/item/xenoarch/clean/hammer/cm1
@@ -17,54 +18,63 @@
 	desc = "removes 1cm of material."
 	icon_state = "pick1"
 	cleandepth = 1
+	cleanspeed = 5
 
 /obj/item/xenoarch/clean/hammer/cm2
 	name = "mining hammer cm2"
 	desc = "removes 2cm of material."
 	icon_state = "pick2"
 	cleandepth = 2
+	cleanspeed = 10
 
 /obj/item/xenoarch/clean/hammer/cm3
 	name = "mining hammer cm3"
 	desc = "removes 3cm of material."
 	icon_state = "pick3"
 	cleandepth = 3
+	cleanspeed = 15
 
 /obj/item/xenoarch/clean/hammer/cm4
 	name = "mining hammer cm4"
 	desc = "removes 4cm of material."
 	icon_state = "pick4"
 	cleandepth = 4
+	cleanspeed = 20
 
 /obj/item/xenoarch/clean/hammer/cm5
 	name = "mining hammer cm5"
 	desc = "removes 5cm of material."
 	icon_state = "pick5"
 	cleandepth = 5
+	cleanspeed = 25
 
 /obj/item/xenoarch/clean/hammer/cm6
 	name = "mining hammer cm6"
 	desc = "removes 6cm of material."
 	icon_state = "pick6"
 	cleandepth = 6
+	cleanspeed = 30
 
 /obj/item/xenoarch/clean/hammer/cm15
 	name = "mining hammer cm15"
 	desc = "removes 15cm of material."
 	icon_state = "pick_hand"
 	cleandepth = 15
+	cleanspeed = 75
 
 /obj/item/xenoarch/clean/hammer/advanced
 	name = "advanced hammer"
 	desc = "Removes a custom amount of debris."
 	icon_state = "advpick"
 	cleandepth = 30
+	cleanspeed = 30
 	usesound = 'sound/weapons/drill.ogg'
 
 /obj/item/xenoarch/clean/hammer/advanced/attack_self(mob/living/carbon/user)
 	var/depthchoice = input(user, "What depth would you like to mine with? (1-30)", "Change Dig Depth") as null|num
 	if(depthchoice && (depthchoice > 0 && depthchoice <= 30))
 		cleandepth = depthchoice
+		cleanspeed = depthchoice
 		desc = "Removes a custom amount of debris. It will dig [cleandepth] centimeters."
 		to_chat(user, "<span class='notice'>You set the dig depth of the hammer to [cleandepth] centimeters.</span>")
 //
@@ -73,11 +83,16 @@
 	name = "mining brush"
 	desc = "cleans off the remaining debris."
 	icon_state = "pick_brush"
+	var/brushspeed = 100
+	usesound = 'sound/items/towelwipe.ogg'
 
-/obj/item/xenoarch/clean/brushadv
+/obj/item/xenoarch/clean/brush/basic
+	brushspeed = 50
+
+/obj/item/xenoarch/clean/brush/adv
 	name = "advanced mining brush"
-	desc = "cleans off the remaining debris."
 	icon_state = "advbrush"
+	brushspeed = 10
 
 //
 
@@ -97,16 +112,19 @@
 	name = "measuring tape"
 	desc = "Measures how far a rock has been dug into."
 	icon_state = "measuring"
+	usesound = 'sound/items/poster_ripped.ogg'
 
 /obj/item/xenoarch/help/research
 	name = "research analyzer"
 	desc = "Deconstructs artifacts for research."
 	icon_state = "researchscanner"
+	usesound = 'sound/weapons/resonator_blast.ogg'
 
 /obj/item/xenoarch/help/plant
 	name = "fossil seed extractor"
 	desc = "Takes flora fossils and extracts the prehistoric seeds."
 	icon_state = "plantscanner"
+	usesound = 'sound/weapons/resonator_blast.ogg'
 
 // Eventually, make it work on afterattack(atom/target, mob/user , proximity)
 // I dont want to take more time currently though.
@@ -116,6 +134,7 @@
 	name = "dimensional cargo scanner"
 	desc = "teleports items to be sold."
 	icon_state = "cargoscanner"
+	usesound = 'sound/weapons/resonator_blast.ogg'
 
 /obj/item/xenoarch/help/cargo/afterattack(atom/target, mob/user , proximity)
 	if(!proximity)
@@ -133,7 +152,7 @@
 		if(!export_text)
 			continue
 		SSshuttle.points += ex.total_value[E]
-	to_chat(user,"You sell the [target].")
+	to_chat(user,"The [target] disappears!")
 
 
 // Storage: Belt and Locker and Bag
@@ -286,7 +305,7 @@
 /obj/item/storage/belt/xenoarch/full/PopulateContents()
 	new /obj/item/xenoarch/help/measuring(src)
 	new /obj/item/xenoarch/help/scanner(src)
-	new /obj/item/xenoarch/clean/brush(src)
+	new /obj/item/xenoarch/clean/brush/basic(src)
 	new /obj/item/xenoarch/clean/hammer/cm15(src)
 	new /obj/item/xenoarch/clean/hammer/cm6(src)
 	new /obj/item/xenoarch/clean/hammer/cm5(src)
@@ -306,7 +325,7 @@
 /obj/structure/closet/wardrobe/xenoarch/PopulateContents()
 	new /obj/item/xenoarch/help/measuring(src)
 	new /obj/item/xenoarch/help/scanner(src)
-	new /obj/item/xenoarch/clean/brush(src)
+	new /obj/item/xenoarch/clean/brush/basic(src)
 	new /obj/item/xenoarch/clean/hammer/cm15(src)
 	new /obj/item/xenoarch/clean/hammer/cm6(src)
 	new /obj/item/xenoarch/clean/hammer/cm5(src)
@@ -445,7 +464,7 @@
 	id = "hammerbrush"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 500)
-	build_path = /obj/item/xenoarch/clean/brush
+	build_path = /obj/item/xenoarch/clean/brush/basic
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
@@ -455,7 +474,7 @@
 	id = "hammerbrushadv"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 1500)
-	build_path = /obj/item/xenoarch/clean/brushadv
+	build_path = /obj/item/xenoarch/clean/brush/adv
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 

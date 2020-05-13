@@ -1,4 +1,68 @@
 //boss chests
+//gladiator
+/obj/structure/closet/crate/necropolis/gladiator
+	name = "gladiator chest"
+
+/obj/structure/closet/crate/necropolis/gladiator/crusher
+	name = "dreadful gladiator chest"
+
+/obj/structure/closet/crate/necropolis/gladiator/PopulateContents()
+	new /obj/item/shield/riot/tower/swat/gladiator(src)
+	new /obj/item/borg/upgrade/modkit/shielding(src)
+
+/obj/structure/closet/crate/necropolis/gladiator/crusher/PopulateContents()
+	new /obj/item/shield/riot/tower/swat/gladiator(src)
+	new /obj/item/melee/zweihander(src)
+
+/obj/item/shield/riot/tower/swat/gladiator
+	name = "\proper Gladiator's shield"
+	desc = "A very powerful and near indestructible shield, reinforced with drake and goliath hide. Can be used as a raft on lava."
+	icon = 'modular_skyrat/icons/obj/shields.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/shields_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/shields_lefthand.dmi'
+	icon_state = "gladiator"
+	item_state = "gladiator"
+	shield_flags = SHIELD_FLAGS_DEFAULT | SHIELD_BASH_ALWAYS_DISARM | SHIELD_BASH_GROUND_SLAM_DISARM
+	slowdown = 0
+	shieldbash_cooldown = 6 SECONDS
+	shieldbash_stamcost = 5
+	shieldbash_knockback = 2
+	shieldbash_brutedamage = 10
+	shieldbash_stamdmg = 25
+	shieldbash_stagger_duration = 4.5 SECONDS
+	shieldbash_push_distance = 2
+	max_integrity = 350
+	block_chance = 50
+	can_shatter = FALSE
+	repair_material = /obj/item/stack/sheet/animalhide/goliath_hide
+	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/shield/riot/tower/swat/gladiator/AltClick(mob/user)
+	if(isliving(user))
+		if(do_after(user, 20, target = src))
+			new /obj/vehicle/ridden/lavaboat/dragon/gladiator(get_turf(user))
+			qdel(src)
+
+/obj/vehicle/ridden/lavaboat/dragon/gladiator
+	name = "lava surfboard"
+	desc = "This thing can be used to cross lava rivers... I guess. Alt click to turn into a shield again."
+	icon = 'modular_skyrat/icons/obj/shields.dmi'
+	icon_state = "raft"
+
+/obj/vehicle/ridden/lavaboat/dragon/gladiator/Initialize()
+	..()
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.vehicle_move_delay = 1
+	D.allowed_turf_typecache = typecacheof(/turf/open)
+	D.keytype = null
+
+/obj/vehicle/ridden/lavaboat/dragon/gladiator/AltClick(mob/user)
+	..()
+	if(isliving(user))
+		if(do_after(user, 20, target = src))
+			new /obj/item/shield/riot/tower/swat/gladiator(get_turf(user))
+			qdel(src)
+
 //bubblegum
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
@@ -925,3 +989,142 @@
 			new /obj/item/gun/magic/wand/fireball(src)
 		if(4)
 			new /obj/item/dragons_blood(src)
+
+//Sif stuff
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Sword Of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
+
+/*Videos on what the sword can do:
+**
+**Attacking: ----------	https://bungdeep.com/Sif/Sword_of_the_Forsaken_Attack.mp4
+**Butchering: --------- https://bungdeep.com/Sif/Sword_of_the_Forsaken_Butcher.mp4
+**Dodging: ------------ https://bungdeep.com/Sif/Sword_of_the_Forsaken_Block_Melee.png
+**Projectile Dodging: - https://bungdeep.com/Sif/Sword_of_the_Forsaken_Block.png
+**
+*/
+/obj/item/melee/sword_of_the_forsaken
+	name = "Sword of the Forsaken"
+	desc = "A glowing giant heavy blade that grows and slightly shrinks in size depending on the wielder's strength."
+	icon = 'modular_skyrat/icons/obj/lavaland/sif.dmi'
+	icon_state = "sword_of_the_forsaken"
+	item_state = "sword_of_the_forsaken"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/item_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/item_righthand.dmi'
+	w_class = WEIGHT_CLASS_HUGE
+	force = 15
+	throwforce = 10
+	block_chance = 10
+	armour_penetration = 80
+	hitsound = 'modular_skyrat/sound/sif/sif_slash.ogg'
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "gutted", "gored")
+	sharpness = IS_SHARP
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+//Enables the sword to butcher bodies
+/obj/item/melee/sword_of_the_forsaken/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 50, 100, 10)
+
+//Sword blocking attacks, really hard to block projectiles but still possible.
+/obj/item/melee/sword_of_the_forsaken/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(attack_type == ATTACK_TYPE_PROJECTILE)
+		final_block_chance = 5
+	return ..()
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=End of Sworf Of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
+
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Necklace Of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
+
+/*Videos on what the necklace can do:
+**
+**Binding the necklace to yourself: ------- https://bungdeep.com/Sif/Necklace_of_the_Forsaken_Binding.mp4
+**Reviving when died: --------------------- https://bungdeep.com/Sif/Necklace_of_the_Forsaken_Death_Revive.mp4
+**Becomes a cosmetic item after it is used: https://bungdeep.com/Sif/Necklace_of_the_Forsaken_Revive_Used.png
+**
+*/
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken
+	name = "Necklace of the Forsaken"
+	desc = "A rose gold necklace with a small static ember that burns inside of the black gem stone, making it warm to the touch."
+	icon = 'modular_skyrat/icons/obj/lavaland/sif.dmi'
+	icon_state = "necklace_forsaken_active"
+	actions_types = list(/datum/action/item_action/hands_free/necklace_of_the_forsaken)
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	var/mob/living/carbon/human/active_owner
+	var/numUses = 1
+
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/item_action_slot_check(slot)
+	return slot == ITEM_SLOT_NECK
+
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/dropped(mob/user)
+	..()
+	if(active_owner)
+		remove_necklace()
+
+//Apply a temp buff until the necklace is used
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/proc/temp_buff(mob/living/carbon/human/user)
+	to_chat(user, "<span class='warning'>You feel as if you have a second chance at something, but you're not sure what.</span>")
+	if(do_after(user, 40, target = user))
+		to_chat(user, "<span class='notice'>The ember warms you...</span>")
+		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "necklace_of_the_forsaken")//less chance of being gibbed
+		active_owner = user
+
+//Revive the user and remove buffs
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/proc/second_chance()
+	icon_state = "necklace_forsaken_active"
+	if(!active_owner)
+		return
+	var/mob/living/carbon/human/H = active_owner
+	active_owner = null
+	to_chat(H, "<span class='userdanger'>You feel a scorching burn fill your body and limbs!</span>")
+	H.revive(TRUE, FALSE)
+	remove_necklace() //remove buffs
+
+//Remove buffs
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/proc/remove_necklace()
+	icon_state = "necklace_forsaken_active"
+	if(!active_owner)
+		return
+	REMOVE_TRAIT(active_owner, TRAIT_NOHARDCRIT, "necklace_of_the_forsaken")
+	active_owner = null //just in case
+
+//Add action
+/datum/action/item_action/hands_free/necklace_of_the_forsaken
+	check_flags = NONE
+	name = "Necklace of the Forsaken"
+	desc = "Bind the necklaces ember to yourself, so that next time you activate it, it will revive or fully heal you whether dead or knocked out. (Beware of being gibbed)"
+
+//What happens when the user clicks on datum
+/datum/action/item_action/hands_free/necklace_of_the_forsaken/Trigger()
+	var/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/MM = target
+	if(MM.numUses == 0)//skip if it has already been used up
+		return
+	if(!MM.active_owner)//apply bind if there is no active owner
+		if(ishuman(owner))
+			MM.temp_buff(owner)
+		src.desc = "Revive or fully heal yourself, but you can only do this once! Can be used when knocked out or dead."
+		to_chat(MM.active_owner, "<span class='userdanger'>You have binded the ember to yourself! The next time you use the necklace it will heal you!</span>")
+	else if(MM.numUses == 1 && MM.active_owner)//revive / heal then remove usage
+		MM.second_chance()
+		MM.numUses = 0
+		MM.icon_state = "necklace_forsaken"
+		MM.desc = "A rose gold necklace that used to have a bright burning ember inside of it."
+		src.desc = "The necklaces ember has already been used..."
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=End of Necklace of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
+
+
+//Sifs loot chest
+/obj/structure/closet/crate/necropolis/sif
+	name = "Great Brown Wolf Sif's chest"
+
+/obj/structure/closet/crate/necropolis/sif/PopulateContents()
+	new /obj/item/melee/sword_of_the_forsaken(src)
+	new /obj/item/clothing/neck/necklace/necklace_of_the_forsaken(src)
+	new /obj/item/borg/upgrade/modkit/critical(src)
+
+/obj/structure/closet/crate/necropolis/sif/crusher
+	name = "Great Brown Wolf Sif's infinity chest"
+
+/obj/structure/closet/crate/necropolis/sif/crusher/PopulateContents()
+	new /obj/item/melee/sword_of_the_forsaken(src)
+	new /obj/item/clothing/neck/necklace/necklace_of_the_forsaken(src)
+	new /obj/item/crusher_trophy/dark_energy(src)

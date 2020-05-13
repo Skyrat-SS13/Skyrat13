@@ -34,6 +34,7 @@ GLOBAL_LIST_INIT(adv_artifact,list(	/obj/item/shield/riot/roman=1,
 									/obj/item/ammo_casing/caseless/arrow/ash=1,
 									/obj/item/kitchen/knife/ritual=1,
 									/obj/item/slime_extract/grey=1,
+									/obj/item/ancientartifact/useless=5,
 									/obj/item/ancientartifact/faunafossil=10,
 									/obj/item/ancientartifact/florafossil=10
 									))
