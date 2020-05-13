@@ -83,7 +83,7 @@
 	name = "\proper H&K MP5A1"
 	desc = "An ancient machine gun, used by law enforcement worldwide in the old pre-space exploration days.\
 			This is an antique model, marked as an original Hacky & Kool 1964 prototype."
-	icon = 'modular_skyrat/icons/obj/gun/mp5.dmi'
+	icon = 'modular_skyrat/icons/obj/guns/mp5.dmi'
 	item_state = "arg"
 	icon_state = "mp5"
 	can_suppress = FALSE
