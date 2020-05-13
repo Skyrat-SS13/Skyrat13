@@ -9,6 +9,7 @@
 	light_power = 5
 	light_color="#0066FF"
 	explosion_block = INFINITY
+	layer = ABOVE_LIGHTING_PLANE
 
 	var/next_check=0
 	var/list/avail_dirs = list(NORTH,SOUTH,EAST,WEST)
@@ -16,31 +17,20 @@
 
 	dynamic_lighting = 0
 
-/turf/closed/wall/supermatter/examine(mob/user)
-	. = ..()
-
 /turf/closed/wall/supermatter/Initialize()
 	icon_state = "bluespacecrystal[rand(1,6)]"
 	START_PROCESSING(SSobj,src)
 	update_light()
+	..()
 
 /turf/closed/wall/supermatter/New()
 	return ..()
 
 /turf/closed/wall/supermatter/Destroy()
-	for(var/dirs in card_dirs)
-		var/turf/T=get_step(src,dirs)
-		if(istype(T, /turf/closed/wall/supermatter/))
-			var/turf/closed/wall/supermatter/SM
-			if(dirs == NORTH)
-				SM.avail_dirs += list(SOUTH)
-			if(dirs == SOUTH)
-				SM.avail_dirs += list(NORTH)
-			if(dirs == EAST)
-				SM.avail_dirs += list(WEST)
-			if(dirs == WEST)
-				SM.avail_dirs += list(EAST)
-			START_PROCESSING(SSobj,SM)
+	var/dpdir = pick(card_dirs)
+	var/turf/CT = get_step(src,dpdir)
+	if(istype(CT, /turf/closed/wall/supermatter/))
+		CT.ChangeTurf(/turf/closed/wall/supermatter)
 	STOP_PROCESSING(SSobj,src)
 	return ..()
 
