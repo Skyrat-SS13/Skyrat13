@@ -89,15 +89,7 @@ require only minor tweaks.
 	ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
 	ZTRAIT_UP = 1, \
 	ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
-#define ZTRAITS_ICEMOON list(\
-    ZTRAIT_MINING = TRUE, \
-	ZTRAIT_ASHSTORM = TRUE, \
-    ZTRAIT_LAVA_RUINS = TRUE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
-   	ZTRAIT_UP = 1, \
-   	ZTRAIT_DOWN = -1, \
-    ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
-//
+
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
 #define DL_NAME "name"
