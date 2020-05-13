@@ -22,5 +22,5 @@
 	new /obj/item/door_remote/quartermaster(src)
 	new /obj/item/circuitboard/machine/techfab/department/cargo(src)
 	new /obj/item/storage/photo_album/QM(src)
-	new /obj/item/circuitboard/machine/ore_silo(src)
+	//new /obj/item/circuitboard/machine/ore_silo(src) SKYRAT EDIT: Remove roundstart ore silos.
 	new /obj/item/clothing/suit/hooded/wintercoat/qm(src)
