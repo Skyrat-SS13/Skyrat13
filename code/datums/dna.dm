@@ -17,6 +17,7 @@
 	var/mutation_index[DNA_MUTATION_BLOCKS] //List of which mutations this carbon has and its assigned block
 	var/stability = 100
 	var/scrambled = FALSE //Did we take something like mutagen? In that case we cant get our genes scanned to instantly cheese all the powers.
+	var/skin_tone_override //because custom skin tones are not found in the skin_tones global list.
 
 /datum/dna/New(mob/living/new_holder)
 	if(istype(new_holder))
@@ -41,9 +42,11 @@
 /datum/dna/proc/transfer_identity(mob/living/carbon/destination, transfer_SE = 0)
 	if(!istype(destination))
 		return
+	var/old_size = destination.dna.features["body_size"]
 	destination.dna.unique_enzymes = unique_enzymes
 	destination.dna.uni_identity = uni_identity
 	destination.dna.blood_type = blood_type
+	destination.dna.skin_tone_override = skin_tone_override
 	destination.set_species(species.type, icon_update=0)
 	destination.dna.features = features.Copy()
 	destination.dna.real_name = real_name
@@ -56,6 +59,8 @@
 	if(transfer_SE)
 		destination.dna.mutation_index = mutation_index
 
+	destination.dna.update_body_size(old_size)
+
 	SEND_SIGNAL(destination, COMSIG_CARBON_IDENTITY_TRANSFERRED_TO, src, transfer_SE)
 
 /datum/dna/proc/copy_dna(datum/dna/new_dna)
@@ -63,6 +68,7 @@
 	new_dna.mutation_index = mutation_index
 	new_dna.uni_identity = uni_identity
 	new_dna.blood_type = blood_type
+	new_dna.skin_tone_override = skin_tone_override
 	new_dna.features = features.Copy()
 	new_dna.species = new species.type
 	new_dna.real_name = real_name
@@ -146,10 +152,11 @@
 	return .
 
 /datum/dna/proc/generate_dna_blocks()
-	var/bonus
+	var/list/mutations_temp = GLOB.good_mutations + GLOB.bad_mutations + GLOB.not_good_mutations
 	if(species && species.inert_mutation)
-		bonus = GET_INITIALIZED_MUTATION(species.inert_mutation)
-	var/list/mutations_temp = GLOB.good_mutations + GLOB.bad_mutations + GLOB.not_good_mutations + bonus
+		var/bonus = GET_INITIALIZED_MUTATION(species.inert_mutation)
+		if(bonus)
+			mutations_temp += bonus
 	if(!LAZYLEN(mutations_temp))
 		return
 	mutation_index.Cut()
@@ -259,10 +266,11 @@
 		return
 
 /datum/dna/proc/is_same_as(datum/dna/D)
-	if(uni_identity == D.uni_identity && mutation_index == D.mutation_index && real_name == D.real_name && nameless == D.nameless && custom_species == D.custom_species)
-		if(species.type == D.species.type && features == D.features && blood_type == D.blood_type)
-			return 1
-	return 0
+	if(uni_identity != D.uni_identity || mutation_index != D.mutation_index || real_name != D.real_name || nameless != D.nameless || custom_species != D.custom_species)
+		return FALSE
+	if(species.type != D.species.type || features != D.features || blood_type != D.blood_type || skin_tone_override != D.skin_tone_override)
+		return FALSE
+	return TRUE
 
 /datum/dna/proc/update_instability(alert=TRUE)
 	stability = 100
@@ -302,7 +310,7 @@
 	unique_enzymes = generate_unique_enzymes()
 	uni_identity = generate_uni_identity()
 	generate_dna_blocks()
-	features = random_features(species?.id)
+	features = random_features(species?.id, holder?.gender)
 
 
 /datum/dna/stored //subtype used by brain mob's stored_dna
@@ -348,6 +356,11 @@
 		var/datum/species/old_species = dna.species
 		dna.species = new_race
 		dna.species.on_species_gain(src, old_species, pref_load)
+		if(ishuman(src))
+			qdel(language_holder)
+			var/species_holder = initial(mrace.species_language_holder)
+			language_holder = new species_holder(src)
+		update_atom_languages()
 
 /mob/living/carbon/human/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE)
 	..()
@@ -368,7 +381,9 @@
 /mob/living/carbon/human/proc/hardset_dna(ui, list/mutation_index, newreal_name, newblood_type, datum/species/mrace, newfeatures)
 
 	if(newfeatures)
+		var/old_size = dna.features["body_size"]
 		dna.features = newfeatures
+		dna.update_body_size(old_size)
 
 	if(mrace)
 		var/datum/species/newrace = new mrace.type
@@ -425,7 +440,7 @@
 	var/structure = dna.uni_identity
 	hair_color = sanitize_hexcolor(getblock(structure, DNA_HAIR_COLOR_BLOCK))
 	facial_hair_color = sanitize_hexcolor(getblock(structure, DNA_FACIAL_HAIR_COLOR_BLOCK))
-	skin_tone = GLOB.skin_tones[deconstruct_block(getblock(structure, DNA_SKIN_TONE_BLOCK), GLOB.skin_tones.len)]
+	skin_tone = dna.skin_tone_override || GLOB.skin_tones[deconstruct_block(getblock(structure, DNA_SKIN_TONE_BLOCK), GLOB.skin_tones.len)]
 	eye_color = sanitize_hexcolor(getblock(structure, DNA_EYE_COLOR_BLOCK))
 	facial_hair_style = GLOB.facial_hair_styles_list[deconstruct_block(getblock(structure, DNA_FACIAL_HAIR_STYLE_BLOCK), GLOB.facial_hair_styles_list.len)]
 	hair_style = GLOB.hair_styles_list[deconstruct_block(getblock(structure, DNA_HAIR_STYLE_BLOCK), GLOB.hair_styles_list.len)]
@@ -644,3 +659,15 @@
 						gib()
 				else
 					set_species(/datum/species/dullahan)
+
+/datum/dna/proc/update_body_size(old_size)
+	if(!holder || features["body_size"] == old_size)
+		return
+	holder.resize = features["body_size"] / old_size
+	holder.update_transform()
+	var/danger = CONFIG_GET(number/threshold_body_size_slowdown)
+	if(features["body_size"] < danger)
+		var/slowdown = 1 + round(danger/features["body_size"], 0.1) * CONFIG_GET(number/body_size_slowdown_multiplier)
+		holder.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/small_stride, TRUE, slowdown)
+	else if(old_size < danger)
+		holder.remove_movespeed_modifier(/datum/movespeed_modifier/small_stride)

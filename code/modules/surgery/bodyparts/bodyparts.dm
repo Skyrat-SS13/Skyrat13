@@ -164,7 +164,7 @@
 		return FALSE
 
 	switch(animal_origin)
-		if(ALIEN_BODYPART,LARVA_BODYPART) //aliens take double burn //nothing can burn with so much snowflake code around
+		if(ALIEN_BODYPART,LARVA_BODYPART) //aliens take double burn //nothing can burn with so much snowflake code around //Skyrat changes, buffs from 1.2 to 2
 			burn *= 2
 
 	var/can_inflict = max_damage - get_damage()
@@ -183,7 +183,7 @@
 	//We've dealt the physical damages, if there's room lets apply the stamina damage.
 	var/current_damage = get_damage(TRUE)		//This time around, count stamina loss too.
 	var/available_damage = max_damage - current_damage
-	stamina_dam += round(CLAMP(stamina, 0, min(max_stamina_damage - stamina_dam, available_damage)), DAMAGE_PRECISION)
+	stamina_dam += round(clamp(stamina, 0, min(max_stamina_damage - stamina_dam, available_damage)), DAMAGE_PRECISION)
 
 	if(disabled && stamina > 10)
 		incoming_stam_mult = max(0.01, incoming_stam_mult/(stamina*0.1))
@@ -295,7 +295,7 @@
 
 /obj/item/bodypart/proc/is_organic_limb()
 	return (status == BODYPART_ORGANIC)
-
+/* moved to modular_skyrat
 //we inform the bodypart of the changes that happened to the owner, or give it the informations from a source mob.
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C
@@ -350,7 +350,8 @@
 		body_gender = H.dna.features["body_model"]
 		should_draw_gender = S.sexes
 
-		if(MUTCOLORS in S.species_traits)
+		var/mut_colors = (MUTCOLORS in S.species_traits)
+		if(mut_colors)
 			if(S.fixed_mut_color)
 				species_color = S.fixed_mut_color
 			else
@@ -360,7 +361,7 @@
 			species_color = ""
 
 		if(base_bp_icon != DEFAULT_BODYPART_ICON)
-			color_src = MUTCOLORS //TODO - Add color matrix support to base limbs
+			color_src = mut_colors ? MUTCOLORS : ((H.dna.skin_tone_override && S.use_skintones == USE_SKINTONES_GRAYSCALE_CUSTOM) ? CUSTOM_SKINTONE : SKINTONE)
 
 		if(S.mutant_bodyparts["legs"])
 			if(body_zone == BODY_ZONE_L_LEG || body_zone == BODY_ZONE_R_LEG)
@@ -403,7 +404,7 @@
 
 	if(dropping_limb)
 		no_update = TRUE //when attached, the limb won't be affected by the appearance changes of its mob owner.
-
+*/
 //to update the bodypart's icon when not attached to a mob
 /obj/item/bodypart/proc/update_icon_dropped()
 	cut_overlays()
@@ -416,6 +417,7 @@
 		I.pixel_y = px_y
 	add_overlay(standing)
 
+/***********moved to modular_skyrat
 //Gives you a proper icon appearance for the dismembered limb
 /obj/item/bodypart/proc/get_limb_icon(dropped)
 	cut_overlays()
@@ -436,7 +438,7 @@
 
 		if(!isnull(body_markings) && status == BODYPART_ORGANIC)
 			if(!use_digitigrade)
-				if(BODY_ZONE_CHEST)
+				if(body_zone == BODY_ZONE_CHEST)
 					. += image(body_markings_icon, "[body_markings]_[body_zone]_[icon_gender]", -MARKING_LAYER, image_dir)
 				else
 					. += image(body_markings_icon, "[body_markings]_[body_zone]", -MARKING_LAYER, image_dir)
@@ -544,13 +546,23 @@
 		return
 
 	if(color_src) //TODO - add color matrix support for base species limbs
-		var/draw_color = mutation_color || species_color || (skin_tone && skintone2hex(skin_tone))
+		var/draw_color = mutation_color || species_color
+		var/grayscale = FALSE
+		if(!draw_color)
+			draw_color = SKINTONE2HEX(skin_tone)
+			grayscale = color_src == CUSTOM_SKINTONE //Cause human limbs have a very pale pink hue by def.
+		else
+			draw_color = "#[draw_color]"
 		if(draw_color)
-			limb.color = "#[draw_color]"
+			if(grayscale)
+				limb.icon_state += "_g"
+			limb.color = draw_color
 			if(aux_icons)
 				for(var/a in aux)
 					var/image/I = a
-					I.color = "#[draw_color]"
+					if(grayscale)
+						I.icon_state += "_g"
+					I.color = draw_color
 				if(!isnull(aux_marking))
 					for(var/a in auxmarking)
 						var/image/I = a
@@ -564,6 +576,7 @@
 					marking.color = "#141414"
 				else
 					marking.color = list(markings_color)
+*/
 
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)

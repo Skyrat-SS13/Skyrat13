@@ -68,7 +68,7 @@
 		var/obj/O = A
 		if(ObjBump(O))
 			return
-	if(ismovableatom(A))
+	if(ismovable(A))
 		var/atom/movable/AM = A
 		if(PushAM(AM, move_force))
 			return
@@ -316,6 +316,45 @@
 
 			update_pull_movespeed()
 
+		set_pull_offsets(M, state)
+
+/mob/living/proc/set_pull_offsets(mob/living/M, grab_state = GRAB_PASSIVE)
+	if(M.buckled || M.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE)
+		return //don't make them change direction or offset them if they're buckled into something or in combat mode.
+	var/offset = 0
+	switch(grab_state)
+		if(GRAB_PASSIVE)
+			offset = GRAB_PIXEL_SHIFT_PASSIVE
+		if(GRAB_AGGRESSIVE)
+			offset = GRAB_PIXEL_SHIFT_AGGRESSIVE
+		if(GRAB_NECK)
+			offset = GRAB_PIXEL_SHIFT_NECK
+		if(GRAB_KILL)
+			offset = GRAB_PIXEL_SHIFT_NECK
+	M.setDir(get_dir(M, src))
+	switch(M.dir)
+		if(NORTH)
+			animate(M, pixel_x = 0, pixel_y = offset, 3)
+		if(SOUTH)
+			animate(M, pixel_x = 0, pixel_y = -offset, 3)
+		if(EAST)
+			if(M.lying == 270) //update the dragged dude's direction if we've turned
+				M.lying = 90
+				M.update_transform() //force a transformation update, otherwise it'll take a few ticks for update_mobility() to do so
+				M.lying_prev = M.lying
+			animate(M, pixel_x = offset, pixel_y = 0, 3)
+		if(WEST)
+			if(M.lying == 90)
+				M.lying = 270
+				M.update_transform()
+				M.lying_prev = M.lying
+			animate(M, pixel_x = -offset, pixel_y = 0, 3)
+
+/mob/living/proc/reset_pull_offsets(mob/living/M, override)
+	if(!override && M.buckled)
+		return
+	animate(M, pixel_x = 0, pixel_y = 0, 1)
+
 //mob verbs are a lot faster than object verbs
 //for more info on why this is not atom/pull, see examinate() in mob.dm
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
@@ -328,6 +367,8 @@
 		stop_pulling()
 
 /mob/living/stop_pulling()
+	if(ismob(pulling))
+		reset_pull_offsets(pulling)
 	..()
 	update_pull_movespeed()
 	update_pull_hud_icon()
@@ -502,8 +543,16 @@
 				var/obj/effect/proc_holder/spell/spell = S
 				spell.updateButtonIcon()
 
+//proc used to remove all immobilisation effects + reset stamina
+/mob/living/proc/remove_CC(should_update_mobility = TRUE)
+	SetAllImmobility(0, FALSE)
+	setStaminaLoss(0)
+	SetUnconscious(0, FALSE)
+	if(should_update_mobility)
+		update_mobility()
+
 //proc used to completely heal a mob.
-/mob/living/proc/fully_heal(admin_revive = 0)
+/mob/living/proc/fully_heal(admin_revive = FALSE)
 	restore_blood()
 	setToxLoss(0, 0) //zero as second argument not automatically call updatehealth().
 	setOxyLoss(0, 0)
@@ -514,7 +563,7 @@
 	SetAllImmobility(0, FALSE)
 	SetSleeping(0, FALSE)
 	radiation = 0
-	nutrition = NUTRITION_LEVEL_FED + 50
+	set_nutrition(NUTRITION_LEVEL_FED + 50)
 	bodytemperature = BODYTEMP_NORMAL
 	set_blindness(0)
 	set_blurriness(0)
@@ -668,17 +717,20 @@
 			resist_fire() //stop, drop, and roll
 			// Give clickdelay
 			return TRUE
+
 	if(resting) //cit change - allows resisting out of resting
 		resist_a_rest() // ditto
 		// DO NOT GIVE CLCIKDELAY - resist_a_rest() handles spam prevention. Somewhat.
 		return FALSE
-	if(last_special <= world.time)
-		resist_restraints() //trying to remove cuffs.
-		// DO NOT GIVE CLICKDELAY - last_special handles this.
-		return FALSE
+
 	if(CHECK_MOBILITY(src, MOBILITY_USE) && resist_embedded()) //Citadel Change for embedded removal memes - requires being able to use items.
 		// DO NOT GIVE DEFAULT CLICKDELAY - This is a combat action.
 		changeNext_move(CLICK_CD_MELEE)
+		return FALSE
+
+	if(last_special <= world.time)
+		resist_restraints() //trying to remove cuffs.
+		// DO NOT GIVE CLICKDELAY - last_special handles this.
 		return FALSE
 
 /// Proc to resist a grab. moving_resist is TRUE if this began by someone attempting to move. Return FALSE if still grabbed/failed to break out. Use this instead of resist_grab() directly.
@@ -1027,7 +1079,7 @@
 		update_fire()
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, -20, 20)
+	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
 

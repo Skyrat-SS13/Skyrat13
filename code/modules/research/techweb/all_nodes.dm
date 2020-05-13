@@ -10,7 +10,7 @@
 	// Default research tech, prevents bricking
 	design_ids = list("basic_matter_bin", "basic_cell", "basic_scanning", "basic_capacitor", "basic_micro_laser", "micro_mani", "desttagger", "handlabel", "packagewrap",
 	"destructive_analyzer", "circuit_imprinter", "experimentor", "rdconsole", "design_disk", "tech_disk", "rdserver", "rdservercontrol", "mechfab",
-	"space_heater", "beaker", "large_beaker", "bucket", "xlarge_beaker", "sec_beanbag", "sec_rshot", "sec_bshot", "sec_slug", "sec_Islug", "sec_dart", "sec_38", "sec_38lethal",
+	"space_heater", "beaker", "large_beaker", "bucket", "xlarge_beaker", "sec_shellclip", "sec_beanbag", "sec_rshot", "sec_bshot", "sec_slug", "sec_islug", "sec_dart", "sec_38", "sec_38lethal",
 	"rglass","plasteel","plastitanium","plasmaglass","plasmareinforcedglass","titaniumglass","plastitaniumglass")
 
 /datum/techweb_node/mmi
@@ -79,7 +79,7 @@
 	display_name = "Advanced Biotechnology"
 	description = "Advanced Biotechnology"
 	prereq_ids = list("biotech")
-	design_ids = list("piercesyringe", "crewpinpointer", "smoke_machine", "plasmarefiller", "limbgrower", "meta_beaker", "healthanalyzer_advanced", "harvester", "holobarrier_med", "defibrillator_compact", "smartdartgun", "medicinalsmartdart", "pHmeter")
+	design_ids = list("piercesyringe", "crewpinpointer", "smoke_machine", "plasmarefiller", "limbgrower", "meta_beaker", "healthanalyzer_advanced", "harvester", "holobarrier_med", "defibrillator_compact", "smartdartgun", "medicinalsmartdart", "pHmeter", "containmentbodybag")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/bio_process
@@ -221,16 +221,13 @@
 	description = "Unlock the potential of the mysterious of why CC decided to not build these around the station themselves."
 	prereq_ids = list("adv_engi", "high_efficiency")
 	design_ids = list("meteor_defence", "meteor_console")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+/datum/techweb_node/adv_meteor_defense
+	id = "adv_meteor_defense"
+	display_name = "Meteor Defense Research"
+	description = "New and improved coding and lock on tech for meteor defence!"
+	prereq_ids = list("basic_meteor_defense", "adv_datatheory", "emp_adv")
+	design_ids = list("meteor_disk")
 */
-
-//datum/techweb_node/adv_meteor_defense
-	//id = "adv_meteor_defense"
-	//display_name = "Meteor Defense Research"
-	//description = "New and improved coding and lock on tech for meteor defence!"
-	//prereq_ids = list("basic_meteor_defense", "adv_datatheory", "emp_adv")
-	//design_ids = list("meteor_disk")
-	//research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 
 /datum/techweb_node/computer_board_gaming
 	id = "computer_board_gaming"
@@ -537,7 +534,7 @@
 	display_name = "Combat Cybernetic Implants"
 	description = "Military grade combat implants to improve performance."
 	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech","high_efficiency")
-	design_ids = list("ci-xray", "ci-thermals", "ci-antidrop", "ci-antistun", "ci-thrusters")
+	design_ids = list("ci-xray", "ci-thermals", "ci-antidrop", "ci-antistun", "ci-thrusters", "ci-shield")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 ////////////////////////Tools////////////////////////
@@ -546,7 +543,7 @@
 	display_name = "Basic Tools"
 	description = "Basic mechanical, electronic, surgical and botanical tools."
 	prereq_ids = list("base")
-	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "scalpel", "circular_saw", "surgicaldrill", "retractor", "cautery", "hemostat", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet", "mop", "broom")
+	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "scalpel", "circular_saw", "surgicaldrill", "retractor", "cautery", "hemostat", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet", "mop", "broom", "normtrash")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
 
 /datum/techweb_node/basic_mining
@@ -570,7 +567,7 @@
 	display_name = "Advanced Sanitation Technology"
 	description = "Clean things better, faster, stronger, and harder!"
 	prereq_ids = list("adv_engi")
-	design_ids = list("advmop", "buffer", "light_replacer", "spraybottle", "beartrap", "ci-janitor")
+	design_ids = list("advmop", "buffer", "light_replacer", "spraybottle", "beartrap", "ci-janitor", "paint_remover")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1750) // No longer has its bag
 
 /datum/techweb_node/botany
@@ -611,7 +608,7 @@
 	display_name = "Advanced Weapon Development Technology"
 	description = "Our weapons are breaking the rules of reality by now."
 	prereq_ids = list("adv_engi", "weaponry")
-	design_ids = list("pin_loyalty")
+	design_ids = list("pin_loyalty", "laser_shield", "bullet_shield")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 
 /datum/techweb_node/electric_weapons
@@ -959,7 +956,16 @@
 	design_ids = list("spreading_nanites","mindcontrol_nanites","mitosis_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 
+/datum/techweb_node/nanite_replication_protocols
+	id = "nanite_replication_protocols"
+	display_name = "Nanite Replication Protocols"
+	description = "Advanced behaviours that allow nanites to exploit certain circumstances to replicate faster."
+	prereq_ids = list("nanite_smart")
+	design_ids = list("kickstart_nanites","factory_nanites","tinker_nanites","offline_nanites","synergy_nanites")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+
 ////////////////////////Alien technology////////////////////////
+// SKYRAT EDIT: Makes Alien tools separated. Reason: xenoarch.
 /datum/techweb_node/alientech //AYYYYYYYYLMAOO tech
 	id = "alientech"
 	display_name = "Alien Technology"
@@ -971,29 +977,44 @@
 
 /datum/techweb_node/alientech/New()
 	. = ..()
-	boost_item_paths = typesof(/obj/item/gun/energy/alien, /obj/item/scalpel/alien, /obj/item/hemostat/alien,
-							/obj/item/retractor/alien, /obj/item/circular_saw/alien, /obj/item/cautery/alien,
-							/obj/item/surgicaldrill/alien, /obj/item/screwdriver/abductor, /obj/item/wrench/abductor,
+	boost_item_paths = typesof(/obj/item/gun/energy/alien, /obj/item/circuitboard/machine/abductor,
+							/obj/item/abductor, /obj/item/stack/sheet/mineral/abductor, /obj/item/screwdriver/abductor, /obj/item/wrench/abductor,
 							/obj/item/crowbar/abductor, /obj/item/multitool/abductor,
 							/obj/item/stock_parts/cell/infinite/abductor, /obj/item/weldingtool/abductor,
-							/obj/item/wirecutters/abductor, /obj/item/circuitboard/machine/abductor,
-							/obj/item/abductor, /obj/item/stack/sheet/mineral/abductor)
+							/obj/item/wirecutters/abductor, /obj/item/scalpel/alien, /obj/item/hemostat/alien,
+							/obj/item/retractor/alien, /obj/item/circular_saw/alien, /obj/item/cautery/alien,
+							/obj/item/surgicaldrill/alien)
 
 /datum/techweb_node/alien_bio
 	id = "alien_bio"
 	display_name = "Alien Biological Tools"
 	description = "Advanced biological tools."
-	prereq_ids = list("alientech", "advance_surgerytools")
+	prereq_ids = list("advance_surgerytools")
 	design_ids = list("alien_scalpel", "alien_hemostat", "alien_retractor", "alien_saw", "alien_drill", "alien_cautery", "ayyplantgenes")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	hidden = TRUE
+
+/datum/techweb_node/alien_bio/New()
+	. = ..()
+	boost_item_paths = typesof(/obj/item/scalpel/alien, /obj/item/hemostat/alien,
+							/obj/item/retractor/alien, /obj/item/circular_saw/alien, /obj/item/cautery/alien,
+							/obj/item/surgicaldrill/alien)
 
 /datum/techweb_node/alien_engi
 	id = "alien_engi"
 	display_name = "Alien Engineering"
 	description = "Alien engineering tools."
-	prereq_ids = list("alientech", "exp_tools")
+	prereq_ids = list("exp_tools")
 	design_ids = list("alien_wrench", "alien_wirecutters", "alien_screwdriver", "alien_crowbar", "alien_welder", "alien_multitool")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	hidden = TRUE
+
+/datum/techweb_node/alien_engi/New()
+	. = ..()
+	boost_item_paths = typesof(/obj/item/screwdriver/abductor, /obj/item/wrench/abductor,
+							/obj/item/crowbar/abductor, /obj/item/multitool/abductor,
+							/obj/item/stock_parts/cell/infinite/abductor, /obj/item/weldingtool/abductor,
+							/obj/item/wirecutters/abductor)
 
 /datum/techweb_node/syndicate_basic
 	id = "syndicate_basic"

@@ -502,7 +502,7 @@
 		dresscode = outfits[dresscode]
 
 	if(dresscode == "Cancel")
-		return
+		return FALSE // Skyrat change
 
 	if (dresscode == "As Job...")
 		var/list/job_paths = subtypesof(/datum/outfit/job)
@@ -705,10 +705,17 @@
 	var/list/names = list()
 	names += "---- Space Ruins ----"
 	for(var/name in SSmapping.space_ruins_templates)
-		names[name] = list(SSmapping.space_ruins_templates[name], ZTRAIT_SPACE_RUINS, /area/space)
+		names[name] = list(SSmapping.space_ruins_templates[name], ZTRAIT_SPACE_RUINS, list(/area/space))
 	names += "---- Lava Ruins ----"
 	for(var/name in SSmapping.lava_ruins_templates)
 		names[name] = list(SSmapping.lava_ruins_templates[name], ZTRAIT_LAVA_RUINS, /area/lavaland/surface/outdoors/unexplored)
+		names[name] = list(SSmapping.lava_ruins_templates[name], ZTRAIT_LAVA_RUINS, list(/area/lavaland/surface/outdoors/unexplored))
+	names += "---- Ice Ruins ----"
+	for(var/name in SSmapping.ice_ruins_templates)
+		names[name] = list(SSmapping.ice_ruins_templates[name], ZTRAIT_ICE_RUINS, list(/area/icemoon/surface/outdoors/unexplored, /area/icemoon/underground/unexplored))
+	names += "---- Ice Underground Ruins ----"
+	for(var/name in SSmapping.ice_ruins_underground_templates)
+		names[name] = list(SSmapping.ice_ruins_underground_templates[name], ZTRAIT_ICE_RUINS_UNDERGROUND, list(/area/icemoon/underground/unexplored))
 
 	var/ruinname = input("Select ruin", "Spawn Ruin") as null|anything in names
 	var/data = names[ruinname]

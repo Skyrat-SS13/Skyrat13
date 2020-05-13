@@ -508,7 +508,6 @@
 	upgrade_reagents3 = list(
 		/datum/reagent/drug/mushroomhallucinogen,
 		/datum/reagent/consumable/nothing,
-		/datum/reagent/medicine/cryoxadone,
 		/datum/reagent/consumable/peachjuice
 	)
 	emagged_reagents = list(
@@ -516,7 +515,8 @@
 		/datum/reagent/consumable/ethanol/changelingsting,
 		/datum/reagent/consumable/ethanol/whiskey_cola,
 		/datum/reagent/toxin/mindbreaker,
-		/datum/reagent/toxin/staminatoxin
+		/datum/reagent/toxin/staminatoxin,
+		/datum/reagent/medicine/cryoxadone
 	)
 
 /obj/machinery/chem_dispenser/drinks/fullupgrade //fully ugpraded stock parts, emagged
@@ -575,9 +575,7 @@
 		/datum/reagent/consumable/ethanol/alexander,
 		/datum/reagent/consumable/clownstears,
 		/datum/reagent/toxin/minttoxin,
-		/datum/reagent/consumable/ethanol/atomicbomb,
-		/datum/reagent/drug/aphrodisiac,
-		/datum/reagent/drug/aphrodisiacplus
+		/datum/reagent/consumable/ethanol/atomicbomb
 	)
 
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade //fully ugpraded stock parts, emagged

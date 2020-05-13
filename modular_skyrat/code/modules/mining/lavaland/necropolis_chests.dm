@@ -98,7 +98,7 @@
 
 /obj/item/projectile/heckhook/on_hit(atom/target)
 	. = ..()
-	if(ismovableatom(target))
+	if(ismovable(target))
 		var/atom/movable/A = target
 		if(A.anchored)
 			return
@@ -129,6 +129,15 @@
 	else
 		to_chat(user, "You will now fire normal shotgun rounds.")
 
+/obj/item/gun/ballistic/revolver/doublebarrel/super/sawoff(mob/user)
+	to_chat(user, "<span class='warning'>Why would you mutilate this work of art?</span>")
+	return
+
+/obj/item/gun/ballistic/revolver/doublebarrel/super/upgraded
+	desc = "It was fearsome before, now it's even worse with an internal system that makes it fire both barrels at once."
+	burst_size = 2
+	burst_shot_delay = 1
+
 //crucible
 /obj/item/twohanded/crucible
 	name = "Crucible Sword"
@@ -136,8 +145,8 @@
 	icon = 'modular_skyrat/icons/obj/1x2.dmi'
 	icon_state = "crucible0"
 	var/icon_state_on = "crucible1"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/swords_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/swords_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	item_state = "crucible0"
 	var/item_state_on = "crucible1"
 	force = 3
@@ -163,10 +172,6 @@
 	var/brightness_on = 6
 	total_mass = 1
 	var/total_mass_on = TOTAL_MASS_MEDIEVAL_WEAPON
-	/*
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-	*/
 
 /obj/item/twohanded/crucible/suicide_act(mob/living/carbon/user)
 	if(wielded)
@@ -275,6 +280,32 @@
 	. = "<span class='warning'>[user] swings [user.p_their()] [name][in_mouth]. [user.p_they(TRUE)] light[user.p_s()] [user.p_their()] [A.name] in the process.</span>"
 	playsound(loc, hitsound, get_clamped_volume(), 1, -1)
 	add_fingerprint(user)
+
+//praetor suit and helmet
+/obj/item/clothing/suit/space/hardsuit/deathsquad/praetor
+	name = "Praetor Suit"
+	desc = "And those that tasted the bite of his sword named him... The Doom Slayer."
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	strip_delay = 130
+	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	icon_state = "praetor"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	item_state = "praetor"
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
+	slowdown = 0
+	mutantrace_variation = STYLE_DIGITIGRADE
+
+/obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
+	name = "Praetor Suit helmet"
+	desc = "That's one doomed space marine."
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	strip_delay = 130
+	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	icon_state = "praetor"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
+	mutantrace_variation = STYLE_MUZZLE
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
@@ -432,7 +463,7 @@
 	self_recharge = 1
 	maxcharge = 1500 //only barely better than a normal power cell now
 	chargerate = 700 //good recharge time doe
-	icon = 'modular_skyrat/icons/obj/argentcell.dmi'
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "argentcell"
 	ratingdesc = FALSE
 	rating = 6
@@ -490,7 +521,8 @@
 	name = "Golden Mask"
 	desc = "Such a grand and intoxicating innocence."
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
-	alternate_worn_icon = 'modular_skyrat/icons/mob/mask.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
+	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	icon_state = "dagoth"
 	item_state = "dagoth"
 	actions_types = list(/datum/action/item_action/ashstorm)
@@ -500,6 +532,7 @@
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
 	w_class = WEIGHT_CLASS_BULKY //its a fucking full metal mask man
+	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/mask/gas/dagoth/equipped(mob/living/carbon/human/user, slot)
 	..()

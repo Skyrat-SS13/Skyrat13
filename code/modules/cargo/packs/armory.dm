@@ -170,18 +170,17 @@
 	cost = 7500
 	contraband = TRUE
 	contains = list(/obj/item/reagent_containers/food/snacks/rationpack,
-					/obj/item/ammo_box/a762,
-					/obj/item/storage/toolbox/ammo,
+					/obj/item/ammo_box/magazine/m10mm/rifle,
 					/obj/item/clothing/suit/armor/vest/russian,
 					/obj/item/clothing/head/helmet/rus_helmet,
 					/obj/item/clothing/shoes/russian,
-					/obj/item/clothing/gloves/combat,
+					/obj/item/clothing/gloves/tackler/combat/insulated,
 					/obj/item/clothing/under/syndicate/rus_army,
 					/obj/item/clothing/under/costume/soviet,
 					/obj/item/clothing/mask/russian_balaclava,
 					/obj/item/clothing/head/helmet/rus_ushanka,
 					/obj/item/clothing/suit/armor/vest/russian_coat,
-					/obj/item/gun/ballistic/shotgun/boltaction)
+					/obj/item/gun/ballistic/automatic/surplus)
 	crate_name = "surplus military crate"
 
 /datum/supply_pack/security/armory/russian/fill(obj/structure/closet/crate/C)
@@ -201,8 +200,8 @@
 					/obj/item/clothing/mask/gas/sechailer/swat,
 					/obj/item/storage/belt/military/assault,
 					/obj/item/storage/belt/military/assault,
-					/obj/item/clothing/gloves/combat,
-					/obj/item/clothing/gloves/combat)
+					/obj/item/clothing/gloves/tackler/combat/insulated,
+					/obj/item/clothing/gloves/tackler/combat/insulated)
 	crate_name = "swat crate"
 
 /datum/supply_pack/security/armory/wt550

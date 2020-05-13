@@ -293,9 +293,7 @@
 	if(isturf(H.loc)) //else, there's considered to be no light
 		var/turf/T = H.loc
 		light_amount = min(1,T.get_lumcount()) - 0.5
-		H.nutrition += light_amount * 10
-		if(H.nutrition > NUTRITION_LEVEL_FULL)
-			H.nutrition = NUTRITION_LEVEL_FULL
+		H.adjust_nutrition(light_amount * 10, NUTRITION_LEVEL_FULL)
 		if(light_amount > 0.2) //if there's enough light, heal
 			H.heal_overall_damage(1,1)
 			H.adjustToxLoss(-1)
@@ -397,7 +395,7 @@
 				var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
 				var/turf/target = get_turf(P.starting)
 				// redirect the projectile
-				P.preparePixelProjectile(locate(CLAMP(target.x + new_x, 1, world.maxx), CLAMP(target.y + new_y, 1, world.maxy), H.z), H)
+				P.preparePixelProjectile(locate(clamp(target.x + new_x, 1, world.maxx), clamp(target.y + new_y, 1, world.maxy), H.z), H)
 			return BULLET_ACT_FORCE_PIERCE
 	return ..()
 
@@ -469,7 +467,7 @@
 	var/cooldown = 150
 	var/last_teleport = 0
 
-/datum/action/innate/unstable_teleport/IsAvailable()
+/datum/action/innate/unstable_teleport/IsAvailable(silent = FALSE)
 	if(..())
 		if(world.time > last_teleport + cooldown)
 			return 1

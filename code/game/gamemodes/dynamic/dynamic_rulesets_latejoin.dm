@@ -203,7 +203,7 @@
 	antag_datum = ANTAG_DATUM_BLOODSUCKER
 	antag_flag = ROLE_TRAITOR
 	restricted_roles = list("AI", "Cyborg")
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Brig Physician", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster")
 	required_candidates = 1
 	weight = 3
 	cost = 10
@@ -221,6 +221,26 @@
 		log_admin("[M.name] was made into a bloodsucker by dynamic.")
 		message_admins("[M.name] was made into a bloodsucker by dynamic.")
 	return TRUE
+
+//////////////////////////////////////////////
+//                                          //
+//               CHANGELINGS                //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/latejoin/changeling
+	name = "Changeling Infiltrator"
+	config_tag = "latejoin_changeling"
+	antag_flag = ROLE_CHANGELING
+	antag_datum = /datum/antagonist/changeling
+	restricted_roles = list("AI", "Cyborg")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster")
+	required_candidates = 1
+	weight = 3
+	cost = 15
+	requirements = list(101,101,101,101,101,101,101,101,101,101)
+	property_weights = list("trust" = -2, "valid" = 2)
+	high_population_requirement = 101
 
 //////////////////////////////////////////////
 //                                          //

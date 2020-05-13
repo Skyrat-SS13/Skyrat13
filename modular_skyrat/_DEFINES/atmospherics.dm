@@ -1,1 +1,0 @@
-#define ICEMOON_DEFAULT_ATMOS		"o2=5;n2=10;co2=10;TEMP=280"

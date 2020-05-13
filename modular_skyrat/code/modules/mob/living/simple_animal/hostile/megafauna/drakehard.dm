@@ -54,7 +54,7 @@ Difficulty: Medium
 	if(swooping)
 		return
 
-	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
+	anger_modifier = clamp(((maxHealth - health)/50),0,20)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 	if(prob(15 + anger_modifier))
@@ -195,7 +195,7 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/line_target(offset, range, atom/at = target)
 	if(!at)
 		return
-	var/angle = ATAN2(at.x - src.x, at.y - src.y) + offset
+	var/angle = ATAN2(at.x - src.x, at.y - src.y) + offset  // Skyrat edit -- 512 compatibility
 	var/turf/T = get_turf(src)
 	for(var/i in 1 to range)
 		var/turf/check = locate(src.x + cos(angle) * i, src.y + sin(angle) * i, src.z)
@@ -207,29 +207,6 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/fire_line(var/list/turfs)
 	sleep(0)
 	dragon_fire_line(src, turfs)
-
-//fire line keeps going even if dragon is deleted
-/proc/dragon_fire_line(source, list/turfs)
-	var/list/hit_list = list()
-	for(var/turf/T in turfs)
-		if(istype(T, /turf/closed))
-			break
-		new /obj/effect/hotspot(T)
-		T.hotspot_expose(700,50,1)
-		for(var/mob/living/L in T.contents)
-			if(L in hit_list || L == source)
-				continue
-			hit_list += L
-			L.adjustFireLoss(20)
-			to_chat(L, "<span class='userdanger'>You're hit by [source]'s fire breath!</span>")
-
-		// deals damage to mechs
-		for(var/obj/mecha/M in T.contents)
-			if(M in hit_list)
-				continue
-			hit_list += M
-			M.take_damage(45, BRUTE, "melee", 1)
-		sleep(1.5)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/swooop_attack(lava_arena = FALSE, atom/movable/manual_target, swoop_cooldown = 30)
 	if(stat || swooping)
@@ -334,7 +311,7 @@ Difficulty: Medium
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/megafauna/dragon/hard/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs)
+/mob/living/simple_animal/hostile/megafauna/dragon/hard/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, user_msg, runechat_popup)
 	if(swooping & SWOOP_INVULNERABLE) //to suppress attack messages without overriding every single proc that could send a message saying we got hit
 		return
 	return ..()

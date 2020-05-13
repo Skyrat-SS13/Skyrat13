@@ -592,7 +592,7 @@ Code:
 			if(!emoji_table)
 				var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/goonchat)
 				var/list/collate = list("<br><table>")
-				for(var/emoji in sortList(icon_states(icon('icons/emoji.dmi'))))
+				for(var/emoji in sortList(icon_states(icon('modular_skyrat/icons/emoji.dmi')))) // Skyrat Change.
 					var/tag = sheet.icon_tag("emoji-[emoji]")
 					collate += "<tr><td>[emoji]</td><td>[tag]</td></tr>"
 				collate += "</table><br>"
@@ -692,14 +692,14 @@ Code:
 				return
 			GLOB.news_network.SubmitArticle(message,host_pda.owner,current_channel)
 			host_pda.Topic(null,list("choice"=num2text(host_pda.mode)))
-			return
 			playsound(src, 'sound/machines/terminal_select.ogg', 50, 1)
+			return
 
 		if("Newscaster Switch Channel")
 			current_channel = host_pda.msg_input()
 			host_pda.Topic(null,list("choice"=num2text(host_pda.mode)))
-			return
 			playsound(src, 'sound/machines/terminal_select.ogg', 50, 1)
+			return
 
 	//emoji previews
 	if(href_list["emoji"])
