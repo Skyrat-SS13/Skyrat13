@@ -2406,27 +2406,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp)
-"Hk" = (
-/obj/docking_port/stationary{
-	area_type = /area/lavaland/surface/outdoors;
-	dir = 8;
-	dwidth = 3;
-	height = 7;
-	id = "lavaland_common_away";
-	name = "Mining base public dock";
-	width = 7
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"Hm" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external{
-	name = "Lavaland Shuttle Airlock"
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "Ho" = (
 /obj/machinery/door/airlock{
 	name = "Restroom"
@@ -4070,15 +4049,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"Zw" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/door/airlock/external{
-	name = "Lavaland Shuttle Airlock"
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "ZC" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -5482,7 +5452,7 @@ Lm
 Lm
 Lm
 Lm
-Hk
+Lm
 Lm
 Lm
 Lm
@@ -5538,9 +5508,9 @@ Lm
 Lm
 Lm
 Lm
-KV
-Zw
-KV
+Lm
+Lm
+Lm
 Lm
 Lm
 Lm
@@ -5595,9 +5565,9 @@ Lm
 Lm
 Lm
 Lm
-KV
-Ag
-KV
+Lm
+Lm
+Lm
 Lm
 Lm
 VT
@@ -5652,9 +5622,9 @@ VN
 VN
 XX
 VN
-KV
-Hm
-KV
+VN
+VN
+VN
 VT
 VT
 VT
