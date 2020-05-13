@@ -51,11 +51,13 @@
 		if(I)
 			I.anthro_mob_worn_overlay = unique_reskin_worn_anthro[choice]
 	if(LAZYLEN(unique_hardsuit_type))
-		var/obj/item/I = src
-		if(I)
-			var/obj/item/clothing/head/helmet/space/hardsuit/H = I
-			if(istype(H))
-				H.hardsuit_type = unique_hardsuit_type[choice]
+		var/obj/item/clothing/head/helmet/space/hardsuit/H = src
+		if(istype(H))
+			H.hardsuit_type = unique_hardsuit_type[choice]
+	if(LAZYLEN(unique_name))
+		name = unique_name[choice]
+	if(LAZYLEN(unique_desc))
+		desc = unique_desc[choice]
 	icon_state = unique_reskin[choice]
 	to_chat(M, "[src] is now skinned as '[choice]'.")
 	return TRUE
