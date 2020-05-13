@@ -52,6 +52,7 @@
 	if(can_agitate)
 		proximity_monitor = new(src, 0)
 		proximity_monitor.SetHost(src,src)
+		proximity_monitor.SetRange(agitate_range)
 
 	regrow(FALSE)
 
@@ -181,6 +182,7 @@
 			var/mob/living/carbon/human/H = O
 			drop_produce(H)
 
+/*
 /obj/structure/flora/botany/test_stuff
 	can_agitate = TRUE
 	agitate_range = 2
@@ -192,3 +194,4 @@
 /obj/structure/flora/botany/test_stuff/init_seed()
 	var/datum/plant_gene/trait/glow/amber/T = new
 	myseed.genes += T
+*/

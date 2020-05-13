@@ -143,6 +143,11 @@
 /datum/plant_gene/trait/cell_charge/on_flora_agitated(obj/structure/flora/botany/BF, atom/target)
 	do_sparks(3, FALSE, BF)
 	playsound(src, "sparks", 50, 1)
+	if(BF.myseed.get_gene(/datum/plant_gene/trait/territorial) && BF.myseed.potency > 25)
+		playsound(BF, 'sound/magic/lightningshock.ogg', 100, 1, extrarange = 5)
+		tesla_zap(BF, 4, (BF.myseed.potency * 200), TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE | TESLA_MOB_STUN)
+		for(var/mob/M in oview(BF, 4))
+			BF.Beam(M, icon_state="nzcrentrs_power", time=5)
 
 /datum/plant_gene/trait/smoke/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	var/datum/effect_system/smoke_spread/chem/S = new
@@ -164,7 +169,7 @@
 			T.after_slip(G, M)
 
 //Testing stuff
-
+/*
 /obj/item/seeds/test
 	name = "pack of test seeds"
 	desc = "These seeds grow into poppies."
@@ -183,4 +188,5 @@
 	icon_dead = "poppy-dead"
 	mutatelist = list(/obj/item/seeds/poppy/geranium, /obj/item/seeds/poppy/lily)
 	reagents_add = list(/datum/reagent/drug/aphrodisiacplus = 0.2, /datum/reagent/drug/space_drugs = 0.05)
-	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/fragile, /datum/plant_gene/trait/foam, /datum/plant_gene/trait/squash, /datum/plant_gene/trait/spore_emission, /datum/plant_gene/trait/slip, /datum/plant_gene/trait/cell_charge)
+	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/fragile, /datum/plant_gene/trait/foam, /datum/plant_gene/trait/squash, /datum/plant_gene/trait/spore_emission, /datum/plant_gene/trait/slip, /datum/plant_gene/trait/cell_charge, /datum/plant_gene/trait/territorial)
+*/
