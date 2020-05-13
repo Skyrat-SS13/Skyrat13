@@ -308,7 +308,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/jumptokey,
 	/client/proc/jumptoturf,
 	/client/proc/stealth,
-	/datum/admins/proc/open_borgopanel,
 	/client/proc/roll_dices,
 	/datum/admins/proc/toggleMulticam,
 	// Skyrat change stop
