@@ -33,10 +33,19 @@ SUBSYSTEM_DEF(input)
 			"Tab" = "\".winset \\\"input.focus=true?map.focus=true input.background-color=[COLOR_INPUT_DISABLED]:input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
 			"O" = "ooc",
 			"Ctrl+O" = "looc",
+<<<<<<< HEAD
 			"T" = "say_special", //skyrat-edit
 			"Ctrl+T" = "whisper",
 			"M" = "me_special", //skyrat-edit
 			"Ctrl+M" = "subtle",
+=======
+			"T" = "say",
+			"Ctrl+T" = "say_indicator",
+			"Y" = "whisper",
+			"M" = "me",
+			"Ctrl+M" = "me_indicator",
+			"5" = "subtle",
+>>>>>>> 2dedf0d6b6... Merge pull request #12015 from kevinz000/typing_indicators
 			"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"", // This makes it so backspace can remove default inputs
 			"Any" = "\"KeyDown \[\[*\]\]\"",
 			"Any+UP" = "\"KeyUp \[\[*\]\]\"",
@@ -50,8 +59,15 @@ SUBSYSTEM_DEF(input)
 			"Tab" = "\".winset \\\"mainwindow.macro=old_default input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
 			"O" = "ooc",
 			"L" = "looc",
+<<<<<<< HEAD
 			"T" = "say_special", //skyrat-edit
 			"M" = "me_special", //skyrat-edit
+=======
+			"T" = "say",
+			"Ctrl+T" = "say_indicator",
+			"M" = "me",
+			"Ctrl+M" = "me_indicator",
+>>>>>>> 2dedf0d6b6... Merge pull request #12015 from kevinz000/typing_indicators
 			"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"", // This makes it so backspace can remove default inputs
 			"Any" = "\"KeyDown \[\[*\]\]\"",
 			"Any+UP" = "\"KeyUp \[\[*\]\]\"",
