@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isstartjelly(A) (is_species(A, /datum/species/jelly/roundstartslime))
 
 // Skyrat specific species
-#define isvox(A) (is_species(A, /datum/species/vox))
+#define isvox(A) (is_species(A, /datum/species/vox))	//Defines Vox for an !istype verb. Skyrat change.
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
