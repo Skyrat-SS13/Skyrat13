@@ -160,7 +160,7 @@
 	/obj/structure/flora/biolumi/mine = 1, 
 	/obj/structure/flora/biolumi/flower = 1, 
 	/obj/structure/flora/biolumi/lamp = 1)
-	if(prob(60))
+	if(prob(40))
 		var/flora_type = pickweight(jungle_flora_list)
 		new flora_type(T)
 
@@ -172,10 +172,10 @@
 
 /proc/generate_lavaland_jungle_environment(target_z)
 	var/list/AFFECTED_TURFS = list()
-	//Two big patch centered around the middle x-wise
+	//Two big patches
 	for(var/i in 1 to 2)
-		AFFECTED_TURFS |= spawn_patch_like_gen(target_z, required_distance = 0.5, min_radius = 5, max_radius = 7)
-	for(var/i in 1 to 5) //5 random, smaller patches
+		AFFECTED_TURFS |= spawn_patch_like_gen(target_z, required_distance = 0.5, min_radius = 5, max_radius = 6)
+	for(var/i in 1 to 3) //3 random, smaller patches
 		AFFECTED_TURFS |= spawn_patch_like_gen(target_z)
 	spawn_river_like_gen(target_z, 3, turf_type = /turf/open/floor/plating/smooth/dirt/lavaland_jungle) 
 	spawn_river_like_gen(target_z, 3) 
