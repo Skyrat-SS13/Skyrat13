@@ -86,7 +86,7 @@
 			return
 		spans |= speech_span
 		if(!language)
-			language = get_default_language()
+			language = get_selected_language()
 		send_speech(message, 7, src, , spans, message_language=language)
 	else
 		src.log_talk(message, LOG_SAY)
