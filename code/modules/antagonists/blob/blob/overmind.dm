@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/autoplace_max_time = 3600 //six minutes, as long as should be needed
 	var/list/blobs_legit = list()
 	var/max_count = 0 //The biggest it got before death
-	var/blobwincount = 400
+	var/blobwincount = 800 //Skyrat Change
 	var/victory_in_progress = FALSE
 	var/rerolling = FALSE
 

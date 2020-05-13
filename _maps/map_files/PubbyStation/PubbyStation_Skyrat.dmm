@@ -3857,6 +3857,9 @@
 	pixel_y = -3
 	},
 /obj/item/gun/energy/e_gun/advtaser,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 5
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/armory)
 "akM" = (
@@ -3867,6 +3870,9 @@
 /obj/effect/landmark/event_spawn,
 /obj/structure/rack,
 /obj/item/key/security,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/armory)
 "akO" = (
@@ -16180,25 +16186,24 @@
 	},
 /area/hallway/secondary/exit/departure_lounge)
 "aMR" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
-"aMS" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
+/turf/open/floor/plasteel/dark,
+/area/security/armory)
+"aMS" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/armory)
 "aMT" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -87889,7 +87894,7 @@ aij
 aiM
 aiM
 ajQ
-akM
+aMR
 akM
 ami
 amW
@@ -88403,7 +88408,7 @@ ail
 aiN
 aji
 ajS
-akO
+aMS
 akO
 amk
 amY
@@ -88947,7 +88952,7 @@ aAL
 aAL
 aAL
 aAL
-aMR
+aGU
 aAL
 aAL
 aHE
@@ -89204,7 +89209,7 @@ aIL
 aDZ
 aDZ
 aDZ
-aMS
+aGV
 aDZ
 aDZ
 aQB
