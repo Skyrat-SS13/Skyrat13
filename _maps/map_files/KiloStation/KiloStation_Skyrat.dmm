@@ -7966,7 +7966,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aqX" = (
-/obj/machinery/ore_silo,
 /obj/machinery/airalarm{
 	pixel_y = 22
 	},
