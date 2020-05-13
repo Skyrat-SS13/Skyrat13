@@ -46,7 +46,7 @@
 	. = 1
 
 /datum/reagent/medicine/synthflesh
-	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed. Heals toxin damage on synths instead of harming them, unless overdosed."
+	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed. Capable of restoring the appearance of synths."
 	overdose_threshold = 35 //no synth species abusing
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
@@ -88,6 +88,10 @@
 					if(ourguy.dna.species.type == /datum/species/synth)
 						ourguy.adjustToxLoss(-(reac_volume * 0.75))
 						ourguy.adjustCloneLoss(-(reac_volume * 1))
+						var/datum/species/synth/replicant = ourguy.dna.species
+						if(replicant.fake_species && (replicant.isdisguised == FALSE))
+							if(replicant.actualhealth >= replicant.disguise_fail_health)
+								replicant.assume_disguise(replicant.fake_species, ourguy)
 			var/vol = reac_volume + M.reagents.get_reagent_amount(/datum/reagent/medicine/synthflesh)
 			if(HAS_TRAIT_FROM(M, TRAIT_HUSK, "burn") && M.getFireLoss() < THRESHOLD_UNHUSK && (vol > overdose_threshold))
 				M.cure_husk("burn")

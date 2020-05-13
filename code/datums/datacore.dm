@@ -208,6 +208,10 @@
 			assignment = H.job
 		else
 			assignment = "Unassigned"
+		//Skyrat changes
+		if(C && C.prefs && C.prefs.alt_titles_preferences[assignment])
+			assignment = C.prefs.alt_titles_preferences[assignment]
+		//End of skyrat changes
 
 		var/static/record_id_num = 1001
 		var/id = num2hex(record_id_num++,6)

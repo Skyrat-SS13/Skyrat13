@@ -1,3 +1,4 @@
+//fucking clothes
 //Ablative trenchcoat
 /datum/crafting_recipe/ablativecoat
 	name = "Ablative Trenchcoat"
@@ -9,7 +10,16 @@
 				/obj/item/clothing/glasses/hud/security/sunglasses = 1,
 				/obj/item/stock_parts/cell/high = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	time = 90
+	time = 75
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/hazardarmor
+	name = "hazard vest armor"
+	result =  /obj/item/clothing/suit/armor/hazard
+	reqs = list(/obj/item/stack/packageWrap = 5,
+				/obj/item/stack/sheet/plasteel = 2,
+				/obj/item/clothing/suit/hazardvest = 1)
+	time = 60
 	category = CAT_CLOTHING
 
 //Power armor (no longer used, see mecha_construction_paths.dm)
