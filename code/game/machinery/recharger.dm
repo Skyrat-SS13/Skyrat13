@@ -11,7 +11,7 @@
 	var/obj/item/charging = null
 	var/recharge_coeff = 1
 	var/using_power = FALSE //Did we put power into "charging" last process()?
-
+	/* moved to modular_skyrat
 	var/static/list/allowed_devices = typecacheof(list(
 		/obj/item/gun/energy,
 		/obj/item/melee/baton,
@@ -19,7 +19,7 @@
 		/obj/item/modular_computer,
 		/obj/item/twohanded/electrostaff,
 		/obj/item/gun/ballistic/automatic/magrifle))
-
+	*/
 /obj/machinery/recharger/RefreshParts()
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		recharge_coeff = C.rating
@@ -52,6 +52,11 @@
 		use_power = IDLE_POWER_USE
 		using_power = FALSE
 		update_icon()
+
+/obj/machinery/recharger/Exited(atom/movable/M, atom/newloc)
+	. = ..()
+	if(charging == M)
+		setCharging()
 
 /obj/machinery/recharger/attackby(obj/item/G, mob/user, params)
 	if(istype(G, /obj/item/wrench))
@@ -109,15 +114,12 @@
 	add_fingerprint(user)
 	if(charging)
 		charging.update_icon()
-		charging.forceMove(drop_location())
 		user.put_in_hands(charging)
-		setCharging(null)
 
 /obj/machinery/recharger/attack_tk(mob/user)
 	if(charging)
 		charging.update_icon()
 		charging.forceMove(drop_location())
-		setCharging(null)
 
 /obj/machinery/recharger/process()
 	if(stat & (NOPOWER|BROKEN) || !anchored)

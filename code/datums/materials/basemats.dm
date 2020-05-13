@@ -73,7 +73,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 /* SKYRAT CHANGE: Look, I know it's kinda snowflake but it was causing issues with literally any item made with uranium causing massive amounts of fucking memes.
 /datum/material/uranium/on_applied(atom/source, amount, material_flags)
 	. = ..()
-	source.AddComponent(/datum/component/radioactive, amount / 20, source, 0)
+	source.AddComponent(/datum/component/radioactive, amount / 60, source, 0) //half-life of 0 because we keep on going.
 
 /datum/material/uranium/on_removed(atom/source, material_flags)
 	. = ..()

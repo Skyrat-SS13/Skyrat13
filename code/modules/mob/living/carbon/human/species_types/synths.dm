@@ -16,6 +16,7 @@
 	var/list/initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOHUNGER,TRAIT_NOBREATH)
 	var/disguise_fail_health = 75 //When their health gets to this level their synthflesh partially falls off
 	var/datum/species/fake_species = null //a species to do most of our work for us, unless we're damaged
+	species_language_holder = /datum/language_holder/synthetic
 
 /datum/species/synth/military
 	name = "Military Synth"
@@ -25,7 +26,7 @@
 	punchdamagehigh = 19
 	punchstunthreshold = 14
 	disguise_fail_health = 50
-
+/* moved to modular_skyrat
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	..()
 	assume_disguise(old_species, H)
@@ -122,3 +123,4 @@
 					speech_args[SPEECH_SPANS] |= SPAN_CLOWN
 				if (/datum/species/golem/clockwork)
 					speech_args[SPEECH_SPANS] |= SPAN_ROBOT
+*/

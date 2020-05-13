@@ -78,9 +78,9 @@
 
 /datum/supply_pack/security/russianclothing
 	name = "Russian Surplus Clothing"
-	desc = "An old russian crate full of surplus armor that they used to use! Has two sets of bulletproff armor, a few union suits and some warm hats!"
+	desc = "An old russian crate full of surplus armor that they used to use! Has two sets of bulletproof armor, a few union suits and some warm hats!" //Skyrat change, fixed typos
 	contraband = TRUE
-	cost = 5750 // Its basicly sec suits, good boots/gloves
+	cost = 5750 // Its basically sec suits, good boots/gloves
 	contains = list(/obj/item/clothing/suit/armor/navyblue/russian,
 					/obj/item/clothing/suit/armor/navyblue/russian,
 					/obj/item/clothing/shoes/combat,
@@ -99,11 +99,11 @@
 	crate_type = /obj/structure/closet/crate/internals
 
 /datum/supply_pack/security/russianmosin
-	name = "Russian Minutemen Gear"
-	desc = "An old russian Minutemen crate, comes with a full russian outfit, a mosin and a stripper clip."
+	name = "Russian Partisan Gear"
+	desc = "An old russian partisan equipment crate, comes with a full russian outfit, a loaded surplus rifle and a second magazine."
 	contraband = TRUE
 	access = FALSE
-	cost = 6500 //
+	cost = 6500
 	contains = list(/obj/item/clothing/suit/armor/navyblue/russian,
 					/obj/item/clothing/shoes/combat,
 					/obj/item/clothing/head/ushanka,
@@ -111,8 +111,8 @@
 					/obj/item/clothing/head/helmet/alt,
 					/obj/item/clothing/gloves/tackler/combat/insulated,
 					/obj/item/clothing/mask/gas,
-					/obj/item/gun/ballistic/shotgun/boltaction,
-					/obj/item/ammo_box/a762)
+					/obj/item/ammo_box/magazine/m10mm/rifle,
+					/obj/item/gun/ballistic/automatic/surplus)
 	crate_name = "surplus russian gear"
 	crate_type = /obj/structure/closet/crate/internals
 
@@ -182,7 +182,7 @@
 
 /datum/supply_pack/security/baton
 	name = "Stun Batons Crate"
-	desc = "Arm the Civil Protection Forces with three stun batons. Batteries included. Requires Security access to open."
+	desc = "Arm the Civil Protection Forces with three stun batons fully charged and ready to go! Requires Security access to open." //Skyrat change, fixes typo and changes line to sound cooler
 	cost = 1200
 	contains = list(/obj/item/melee/baton/loaded,
 					/obj/item/melee/baton/loaded,

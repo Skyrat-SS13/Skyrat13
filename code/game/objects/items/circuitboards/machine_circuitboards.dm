@@ -233,7 +233,7 @@
 	desc = "You can turn the \"brand selection\" dial using a screwdriver."
 	build_path = /obj/machinery/vending/boozeomat
 	req_components = list(/obj/item/vending_refill/boozeomat = 1)
-
+// SKYRAT EDIT: Fixes the looping vendors.
 	var/static/list/vending_names_paths = list(
 		/obj/machinery/vending/boozeomat = "Booze-O-Mat",
 		/obj/machinery/vending/coffee = "Solar's Best Hot Drinks",
@@ -269,7 +269,9 @@
 		/obj/machinery/vending/wardrobe/viro_wardrobe = "ViroDrobe",
 		/obj/machinery/vending/clothing = "ClothesMate",
 		/obj/machinery/vending/medical = "NanoMed Plus",
-		/obj/machinery/vending/wallmed = "NanoMed")
+		/obj/machinery/vending/wallmed = "NanoMed",
+		/obj/machinery/vending/dinnerware/prisoner = "\improper Plasteel Chef's Prisoner Dinnerware Vendor",
+		/obj/machinery/vending/hydronutrients/prisoner = "\improper Prisoner NutriMax")
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/screwdriver))
@@ -1054,9 +1056,9 @@
 	build_path = /obj/machinery/vending/kink
 	req_components = list(/obj/item/vending_refill/kink = 1)
 
-/obj/item/circuitboard/machine/autoylathe
+/obj/item/circuitboard/machine/autolathe/toy
 	name = "Autoylathe (Machine Board)"
-	build_path = /obj/machinery/autoylathe
+	build_path = /obj/machinery/autolathe/toy
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 3,
 		/obj/item/stock_parts/manipulator = 1,

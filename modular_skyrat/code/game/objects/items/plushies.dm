@@ -3,6 +3,11 @@
 	icon_state = "lyssa"
 	item_state = "lyssa"
 
+/obj/item/toy/plush/lizardplushie/katra
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "katra"
+	item_state = "katra"
+
 /obj/item/toy/plush/lizardplushie/stalks
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "stalks"
@@ -70,6 +75,7 @@
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "taff"
 	item_state = "taff"
+
 /obj/item/toy/plush/mammal/odrew/gorelord
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "gorelord-drew"
@@ -99,6 +105,11 @@
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "edgar"
 	item_state = "edgar"
+
+/obj/item/toy/plush/mammal/kato
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "kato"
+	item_state = "kato"
 
 /obj/item/toy/plush/catgirl/kobe
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'

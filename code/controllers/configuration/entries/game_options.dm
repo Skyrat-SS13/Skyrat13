@@ -35,6 +35,13 @@
 /datum/config_entry/keyed_list/midround_antag/ValidateListEntry(key_name, key_value)
 	return key_name in config.modes
 
+/datum/config_entry/keyed_list/force_antag_count
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_FLAG
+
+/datum/config_entry/keyed_list/force_antag_count/ValidateListEntry(key_name, key_value)
+	return key_name in config.modes
+
 /datum/config_entry/keyed_list/policy
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_TEXT
@@ -296,9 +303,10 @@
 /datum/config_entry/number/outdated_movedelay/animal_delay
 	movedelay_type = /mob/living/simple_animal
 /////////////////////////////////////////////////
-
+//Skyrat changes
 /datum/config_entry/number/projectile_speed_modifier
 	config_entry_value = 1
+//End of skyrat changes
 
 /datum/config_entry/flag/roundstart_away	//Will random away mission be loaded.
 
@@ -349,6 +357,11 @@
 
 /datum/config_entry/number/space_budget
 	config_entry_value = 16
+	min_val = 0
+
+/datum/config_entry/number/icemoon_budget
+	config_entry_value = 90
+	integer = FALSE
 	min_val = 0
 
 /datum/config_entry/number/station_space_budget
