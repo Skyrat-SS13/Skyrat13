@@ -34,14 +34,14 @@
 	var/mob/living/M = target
 	for(var/i in 1 to steps_per_slap)
 		if(M)
-			var/broke
-			if(M in getline(locate(x - vision_range, y, z)))
+			var/broke = FALSE
+			if(M in getline(src, locate(x - vision_range, y, z)))
 				broke = TRUE
-			else if(M in getline(locate(x + vision_range, y, z)))
+			else if(M in getline(src, locate(x + vision_range, y, z)))
 				broke = TRUE
-			else if(M in getline(locate(x, y + vision_range, z)))
+			else if(M in getline(src, locate(x, y + vision_range, z)))
 				broke = TRUE
-			else if(M in getline(locate(x, y - vision_range, z)))
+			else if(M in getline(src, locate(x, y - vision_range, z)))
 				broke = TRUE
 			if(broke)
 				break
