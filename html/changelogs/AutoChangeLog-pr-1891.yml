@@ -1,0 +1,5 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - rscadd: "Added fire alarm to better place on box chemistry"
+  - rscadd: "Added injectors to lavaland syndie base to fix them."

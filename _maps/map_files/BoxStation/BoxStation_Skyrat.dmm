@@ -25974,9 +25974,6 @@
 /obj/machinery/camera{
 	c_tag = "Chemistry"
 	},
-/obj/machinery/firealarm{
-	pixel_y = 24
-	},
 /obj/machinery/chem_heater,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
@@ -29150,6 +29147,10 @@
 	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
@@ -60966,6 +60967,12 @@
 	},
 /obj/item/integrated_circuit_printer,
 /obj/item/stock_parts/cell/high,
+/obj/machinery/camera{
+	c_tag = "Circuit Lab";
+	dir = 8;
+	network = list("ss13","rd");
+	pixel_y = -22
+	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "oqO" = (
@@ -64501,8 +64508,9 @@
 /obj/structure/table/reinforced,
 /obj/machinery/power/apc{
 	areastring = "/area/science/circuit";
+	dir = 4;
 	name = "Circuitry Lab APC";
-	pixel_x = 30
+	pixel_x = 26
 	},
 /obj/structure/cable,
 /obj/item/integrated_electronics/wirer,
