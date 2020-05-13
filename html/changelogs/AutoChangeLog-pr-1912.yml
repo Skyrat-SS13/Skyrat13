@@ -1,0 +1,4 @@
+author: "NotRanged"
+delete-after: True
+changes: 
+  - tweak: "Overhauled computermath for science and cargo. It now has 3 charges max, and there are 3 difficulty levels to choose from, each giving you a different variation of questions."

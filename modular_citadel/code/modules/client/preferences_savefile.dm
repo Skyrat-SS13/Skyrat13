@@ -20,7 +20,7 @@
 	S["feature_ipc_chassis"] >> features["ipc_chassis"]
 
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
-	ooc_notes = sanitize_text(S["ooc_notes"])
+	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
 	nonconpref = sanitize_text(S["noncon_pref"], "Ask")
@@ -70,7 +70,7 @@
 	WRITE_FILE(S["feature_flavor_text"], features["flavor_text"])
 	//SKYRAT CHANGES
 	WRITE_FILE(S["feature_ipc_chassis"], features["ipc_chassis"])
-	WRITE_FILE(S["ooc_notes"], ooc_notes)
+	WRITE_FILE(S["skyrat_ooc_notes"], skyrat_ooc_notes)
 	WRITE_FILE(S["erp_pref"], erppref)
 	WRITE_FILE(S["noncon_pref"], nonconpref)
 	WRITE_FILE(S["vore_pref"], vorepref)
