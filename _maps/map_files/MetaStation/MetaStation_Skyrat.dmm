@@ -16069,7 +16069,6 @@
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "aFl" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -16860,7 +16859,6 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "aGG" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/firedoor,
 /obj/machinery/flasher{
 	id = "secentranceflasher";

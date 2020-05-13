@@ -121452,7 +121452,6 @@
 /turf/closed/wall/r_wall,
 /area/chapel/office)
 "dZO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/bodycontainer/crematorium{
 	dir = 4;
 	id = "cremawheat"
