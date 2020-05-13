@@ -3496,8 +3496,6 @@
 #include "modular_skyrat\code\modules\antagonists\revenant\revenant.dm"
 #include "modular_skyrat\code\modules\antagonists\revenant\revenant_abilities.dm"
 #include "modular_skyrat\code\modules\antagonists\survivalist\survivalist.dm"
-#include "modular_skyrat\code\modules\antagonists\revenant\revenant.dm"
-#include "modular_skyrat\code\modules\antagonists\revenant\revenant_abilities.dm"
 #include "modular_skyrat\code\modules\antagonists\traitor\datum_traitor.dm"
 #include "modular_skyrat\code\modules\atmospherics\environmental\LINDA_fire.dm"
 #include "modular_skyrat\code\modules\atmospherics\gasmixtures\gas_types.dm"
