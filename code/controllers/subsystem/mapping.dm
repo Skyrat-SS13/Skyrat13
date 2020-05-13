@@ -109,6 +109,11 @@ SUBSYSTEM_DEF(mapping)
 		for (var/lava_z in lava_ruins)
 			spawn_rivers(lava_z)
 	// SKYRAT CHANGES
+	var/list/lava_jungle_ruins = levels_by_trait(ZTRAIT_LAVA_JUNGLE_RUINS)
+	if (lava_jungle_ruins.len)
+		for (var/lava_z in lava_jungle_ruins)
+			generate_lavaland_jungle_environment(lava_z)
+
 	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 	if (ice_ruins.len) // needs to be whitelisted for underground too so place_below ruins work
 		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), /area/icemoon/surface/outdoors/unexplored, ice_ruins_templates)
@@ -285,7 +290,7 @@ SUBSYSTEM_DEF(mapping)
 
 	// load mining
 	if(config.minetype == "lavaland")
-		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland_Skyrat.dmm", default_traits = ZTRAITS_LAVALAND) //SKYRAT EDIT
+		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland_Skyrat.dmm", traits = list(ZTRAITS_LAVALAND_JUNGLE, ZTRAITS_LAVALAND), default_traits = ZTRAITS_LAVALAND) //SKYRAT EDIT
 // SKYRAT CHANGES
 	else if (config.minetype == "icemoon")
 		LoadGroup(FailedZs, "Ice moon Underground", "modular_skyrat/_maps/map_files/Mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)

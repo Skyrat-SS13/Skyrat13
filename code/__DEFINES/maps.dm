@@ -38,6 +38,7 @@ require only minor tweaks.
 #define ZTRAIT_VR "Virtual Reality"
 #define ZTRAIT_SPACE_RUINS "Space Ruins"
 #define ZTRAIT_LAVA_RUINS "Lava Ruins"
+#define ZTRAIT_LAVA_JUNGLE_RUINS "Lava Jungle Ruins"
 //SKYRAT CHANGES
 #define ZTRAIT_ICE_RUINS "Ice Ruins"
 #define ZTRAIT_ICE_RUINS_UNDERGROUND "Ice Ruins Underground"
@@ -84,8 +85,14 @@ require only minor tweaks.
 	ZTRAIT_LAVA_RUINS = TRUE, \
 	ZTRAIT_BOMBCAP_MULTIPLIER = 5, \
 	ZTRAIT_DOWN = -1, \
-	ZTRAIT_UP = 1, \
 	ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface) //You see Ivan, defines can't be modularized.
+//SKYRAT CHANGES oh a jungle
+#define ZTRAITS_LAVALAND_JUNGLE list(\
+	ZTRAIT_MINING = TRUE, \
+	ZTRAIT_LAVA_JUNGLE_RUINS = TRUE, \
+	ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
+	ZTRAIT_UP = 1, \
+	ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
 #define ZTRAITS_ICEMOON list(\
     ZTRAIT_MINING = TRUE, \
     ZTRAIT_SNOWSTORM = TRUE, \

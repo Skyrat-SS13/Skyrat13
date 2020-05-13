@@ -3618,6 +3618,7 @@
 #include "modular_skyrat\code\modules\keybindings\bindings_mob.dm"
 #include "modular_skyrat\code\modules\language\dragon.dm"
 #include "modular_skyrat\code\modules\language\vox.dm"
+#include "modular_skyrat\code\modules\mapping\lavaland_jungle_gen.dm"
 #include "modular_skyrat\code\modules\mining\machine_bluespaceminer.dm"
 #include "modular_skyrat\code\modules\mining\machine_vending.dm"
 #include "modular_skyrat\code\modules\mining\mine_items.dm"
