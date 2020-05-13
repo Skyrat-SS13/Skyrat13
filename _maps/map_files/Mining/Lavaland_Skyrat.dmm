@@ -681,6 +681,7 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/effect/landmark/start/medical_doctor,
 /turf/open/floor/plasteel/white,
 /area/xenoarch/arch)
 "dL" = (
@@ -1771,7 +1772,7 @@
 /area/lavaland/surface/outdoors)
 "jV" = (
 /obj/structure/chair/office/dark,
-/obj/effect/landmark/start/medical_doctor,
+/obj/effect/landmark/start/chemist,
 /turf/open/floor/plasteel/white,
 /area/xenoarch/arch)
 "jW" = (
@@ -2214,7 +2215,7 @@
 	dir = 4
 	},
 /obj/structure/fans/tiny/invisible,
-/obj/machinery/door/airlock/atmos/glass,
+/obj/machinery/door/airlock/public/glass/incinerator/atmos_exterior,
 /turf/open/floor/engine,
 /area/xenoarch/eng)
 "ma" = (
@@ -2433,8 +2434,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
-/obj/machinery/door/airlock/atmos/glass,
 /obj/structure/fans/tiny/invisible,
+/obj/machinery/door/airlock/public/glass/incinerator/atmos_interior,
 /turf/open/floor/engine,
 /area/xenoarch/eng)
 "nh" = (
@@ -2709,6 +2710,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
 "oO" = (
@@ -3073,6 +3075,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
 "qu" = (
@@ -5088,6 +5091,9 @@
 	dir = 4
 	},
 /obj/structure/table,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "AD" = (
@@ -5365,6 +5371,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 6
 	},
+/obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
 "Cq" = (
@@ -6449,6 +6456,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
 "Hw" = (
@@ -7647,6 +7655,12 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"NK" = (
+/obj/machinery/newscaster{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel/white,
+/area/xenoarch/arch)
 "NL" = (
 /obj/machinery/air_sensor/atmos/nitrogen_tank,
 /turf/open/floor/engine/n2,
@@ -8149,6 +8163,9 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
+	},
+/obj/machinery/newscaster/security_unit{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
@@ -20094,7 +20111,7 @@ iG
 KE
 RV
 gR
-KE
+NK
 KE
 hB
 IE
