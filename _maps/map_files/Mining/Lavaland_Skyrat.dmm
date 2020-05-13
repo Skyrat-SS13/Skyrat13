@@ -57,6 +57,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
+"ay" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/xenoarch/arch)
 "az" = (
 /obj/structure/stone_tile{
 	dir = 4
@@ -740,6 +745,16 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"eb" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/xenoarch/arch)
 "ec" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -977,7 +992,6 @@
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
 "fM" = (
-/obj/machinery/computer/security,
 /obj/machinery/requests_console{
 	department = "Xenoarchaeology Security";
 	departmentType = 5;
@@ -990,6 +1004,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/computer/security,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
 "fP" = (
@@ -1446,6 +1461,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
@@ -1924,6 +1942,18 @@
 /obj/structure/chair/sofa/corp/left,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
+"kI" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "kK" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/tile/green,
@@ -2228,9 +2258,6 @@
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "mb" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
@@ -3725,21 +3752,6 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "tJ" = (
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
@@ -4646,46 +4658,6 @@
 /turf/open/floor/plating,
 /area/xenoarch/arch)
 "yt" = (
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -5524,7 +5496,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/closed/wall,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/xenoarch/arch)
 "CX" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible/layer3{
@@ -5591,6 +5564,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/junction/flip{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
@@ -6072,6 +6048,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
+"FO" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/yellow,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/xenoarch/arch)
 "FQ" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 4
@@ -6109,6 +6093,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
+"FY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "FZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -6662,16 +6657,6 @@
 /obj/structure/chair/office/dark{
 	dir = 1
 	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_y = 30
-	},
 /obj/effect/landmark/start/depsec/science,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
@@ -6777,6 +6762,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
@@ -7546,6 +7534,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
+"Nh" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/xenoarch/arch)
 "Ni" = (
 /obj/structure/stone_tile/cracked{
 	dir = 8
@@ -8073,6 +8076,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "PT" = (
@@ -8151,7 +8157,6 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "Qe" = (
-/obj/machinery/computer/secure_data,
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_y = 30
 	},
@@ -8167,6 +8172,7 @@
 /obj/machinery/newscaster/security_unit{
 	pixel_x = -32
 	},
+/obj/machinery/computer/secure_data,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
 "Qf" = (
@@ -8946,17 +8952,15 @@
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
 "Un" = (
-/obj/machinery/status_display/evac{
-	layer = 4;
-	pixel_x = -32
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/disposalpipe/segment{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "Up" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9416,7 +9420,6 @@
 /turf/open/floor/plating,
 /area/xenoarch/arch)
 "Xh" = (
-/obj/machinery/computer/card,
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = 28
@@ -9430,6 +9433,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/computer/card,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
 "Xq" = (
@@ -20116,7 +20120,7 @@ KE
 hB
 IE
 KE
-Un
+as
 KE
 BS
 AT
@@ -21910,9 +21914,9 @@ BS
 BS
 oR
 tT
-BS
-BS
-BS
+eb
+FO
+ay
 BS
 BS
 zd
@@ -22167,10 +22171,10 @@ bQ
 Sy
 LM
 wu
-IY
+kI
 IY
 mb
-Rh
+Nh
 IY
 ec
 eo
@@ -22421,10 +22425,10 @@ Ef
 NM
 PR
 id
-Je
+Un
 IL
 Dk
-Je
+FY
 Je
 ma
 Je
