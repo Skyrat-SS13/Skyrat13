@@ -147,29 +147,6 @@
 				cur_turf = get_step(cur_turf, cur_dir)
 	return affected
 
-
-/*
-/proc/seed_lavaland_jungle_flora(target_z, whitelist_area = /area/lavaland/surface/outdoors, turf_type = /turf/open/floor/plating/smooth/grass/lavaland_jungle, min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y)
-	var/static/list/possible_big_jungle_flora = list(/obj/structure/flora/tree/jungle, /obj/structure/flora/rock/pile/largejungle, /obj/structure/flora/tree/jungle/small)
-	var/static/list/possible_small_jungle_flora = list(/obj/structure/flora/junglebush, /obj/structure/flora/junglebush/b, /obj/structure/flora/junglebush/c, /obj/structure/flora/junglebush/large, /obj/structure/flora/grass/jungle)
-	var/static/list/possible_biolumi_jungle_flora = list(/obj/structure/flora/biolumi, /obj/structure/flora/biolumi/mine, /obj/structure/flora/biolumi/flower, /obj/structure/flora/biolumi/lamp)
-	var/list/possible_locs = block(locate(min_x, min_y, target_z), locate(max_x, max_y, target_z))
-	for(var/turf/T in possible_locs)
-		if(istype(T, turf_type))
-			if(prob(80))
-				var/loc = T.loc
-				var/number = rand(1,10)
-				var/picked_type
-				switch(number)
-					if(1 to 6)
-						picked_type = pick(possible_small_jungle_flora)
-					if(7 to 9)
-						picked_type = pick(possible_biolumi_jungle_flora)
-					if(10)
-						picked_type = pick(possible_big_jungle_flora)
-				if(picked_type)
-					new picked_type(loc)
-*/
 /proc/spawn_lavaland_jungle_flora(turf/T)
 	var/static/list/jungle_flora_list = list(/obj/structure/flora/tree/jungle = 1, 
 	/obj/structure/flora/rock/pile/largejungle = 1, 
