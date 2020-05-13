@@ -3639,6 +3639,8 @@
 #include "modular_skyrat\code\modules\hydroponics\plant_genes.dm"
 #include "modular_skyrat\code\modules\hydroponics\seeds.dm"
 #include "modular_skyrat\code\modules\jobs\access.dm"
+#include "modular_skyrat\code\modules\jobs\job_types\_job.dm"
+#include "modular_skyrat\code\modules\jobs\job_types\_job_alt_titles.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\blueshield.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\brig_physician.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\chaplain.dm"
