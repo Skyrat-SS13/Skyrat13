@@ -303,5 +303,6 @@
 /obj/item/bodypart/receive_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE)
 	. = ..()
 	if(status == BODYPART_ROBOTIC)
-		if(prob((20+brute+burn)))
-			do_sparks(3,FALSE,src)
+		if(src.owner)
+			if((brute+burn)>3 && prob((20+brute+burn)))
+				do_sparks(3,FALSE,src.owner)
