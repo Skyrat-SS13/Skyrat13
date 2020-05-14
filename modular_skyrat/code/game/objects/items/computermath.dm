@@ -11,6 +11,7 @@
 	var/baldicount = 1 //Number of baldis an emagged calculator can spawn
 	var/wronglimit = 3
 	var/wrongcounter = 0 //3 wrong answers on an emagged calculator will create an angry baldi
+	var/wrongmultiplier = 1 //Multiplier used for wrong answers to spawn baldi
 	verb_say = "beeps"
 	var/computermath_max_charges = 3
 	var/computermath_charges = 3
@@ -32,7 +33,7 @@
 	return ..()
 
 /obj/item/computermath/process()
-	if(!next_charge_generation) // Newly spawned. 
+	if(!next_charge_generation) // Newly spawned.
 		next_charge_generation = world.time + charge_cooldown
 	if(computermath_charges < computermath_max_charges && world.time >= next_charge_generation) // There's charges to fill & it's time to fill
 		next_charge_generation = world.time + charge_cooldown
@@ -45,7 +46,7 @@
 	if(!reward_type)
 		say("Critical error. Program terminating.")
 		return
-	
+
 	if(!computermath_charges) // Out of charges!
 		say("No current problems available. Try again later.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
@@ -77,7 +78,7 @@
 			if(!answer) // User hit the cancel button
 				return
 			if(answer == solution)
-				correct = TRUE 
+				correct = TRUE
 		if("subtract")
 			var/subnum_1 = rand(-100, 100)
 			var/subnum_2 = rand(-100, 200)
@@ -89,7 +90,7 @@
 			if(answer == solution)
 				correct = TRUE
 		if("multiply")
-			var/multnum_1 = rand(-50, 50) 
+			var/multnum_1 = rand(-50, 50)
 			var/multnum_2 = rand(-250, 500)
 			var/question = "What is [multnum_1] * [multnum_2]?"
 			var/solution = multnum_1 * multnum_2
@@ -97,11 +98,11 @@
 			if(!answer) // User hit the cancel button
 				return
 			if(answer == solution)
-				correct = TRUE 
-		
+				correct = TRUE
+
 		// Medium problems
 		if("division")
-			var/divnum_2 = rand(3, 12) 
+			var/divnum_2 = rand(3, 12)
 			var/divnum_1 = rand(-50, 50) * divnum_2 // Nice numbers only.
 			var/question = "What is [divnum_1] / [divnum_2]? Rounded the answer down if applicable."
 			var/solution = round(divnum_1 / divnum_2)
@@ -125,7 +126,7 @@
 				return
 			if(answer == solution)
 				correct = TRUE
-		
+
 		if("easy algebra")
 			// ax + b = c ----> x = (c-b)/a
 			var/num_a = rand(1,5)
@@ -142,7 +143,7 @@
 		// Hard problems
 		if("algebra") // everyone's favorite :)
 			var/answer
-			var/solution 
+			var/solution
 			if(prob(50)) // 2 variants of the question
 				// a/bx = c  --->  x = a/bc. b and c may not be 0.
 				var/num_a = rand(-100, 100)
@@ -166,7 +167,7 @@
 			if(answer == solution)
 				correct = TRUE
 
-		
+
 		if("2nd polynomial") //WIP
 			// Math part
 			var/num_a = rand(1, 2)
@@ -228,18 +229,23 @@
 		if(difficulty == "Easy")
 			to_chat(user,"<span class='warning'>You feel lightheaded after failing such an easy question...</span>")
 			LM.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
-		//If the calculator is emagged, add to the wrong counter and vibe check the user. The amount added to the counter depends on the difficulty. 
+		//If the calculator is emagged, add to the wrong counter and vibe check the user. The amount added to the counter depends on the difficulty.
 		if(baldied)
 			switch(difficulty)
 				if("Easy")
 					wrongcounter = max(wrongcounter + 1, wronglimit)
+					wrongmultiplier = 1
 				if("Medium")
 					wrongcounter = max(wrongcounter + 2, wronglimit)
+					wrongmultiplier = 2
 				if("Hard")
 					wrongcounter = max(wrongcounter + 3, wronglimit)
+					wrongmultiplier = 3
+			for(var/mob/living/simple_animal/hostile/baldi/bald in GLOB.mob_living_list)
+				bald.adjustHealth(-150 * wrongmultiplier, TRUE, TRUE)
 			vibe_check(LM)
 		return
-	
+
 	// Award points for a correct answer.
 	switch(reward_type)
 		if("Science")
@@ -255,10 +261,15 @@
 		switch(difficulty)
 			if("Easy")
 				wrongcounter = max(wrongcounter - 1, 0)
+				wrongmultiplier = 1
 			if("Medium")
 				wrongcounter = max(wrongcounter - 2, 0)
+				wrongmultiplier = 2
 			if("Hard")
 				wrongcounter = max(wrongcounter - 3, 0)
+				wrongmultiplier = 3
+			for(var/mob/living/simple_animal/hostile/baldi/bald in GLOB.mob_living_list)
+				bald.adjustHealth(150 * wrongmultiplier, TRUE, TRUE)
 	playsound(src, 'sound/machines/chime.ogg', 30, 1)
 
 /obj/item/computermath/default
