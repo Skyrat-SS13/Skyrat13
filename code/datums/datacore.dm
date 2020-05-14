@@ -116,33 +116,34 @@
 	for(var/datum/data/record/t in GLOB.data_core.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
+		var/shown_rank = t.fields["shown_rank"] //Skyrat change
 		var/department = 0
 		if(rank in GLOB.command_positions)
-			heads[name] = rank
+			heads[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.security_positions)
-			sec[name] = rank
+			sec[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.engineering_positions)
-			eng[name] = rank
+			eng[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.medical_positions)
-			med[name] = rank
+			med[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.science_positions)
-			sci[name] = rank
+			sci[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.supply_positions)
-			sup[name] = rank
+			sup[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.civilian_positions)
-			civ[name] = rank
+			civ[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.nonhuman_positions)
-			bot[name] = rank
+			bot[name] = shown_rank //Skyrat change
 			department = 1
 		if(!department && !(name in heads))
-			misc[name] = rank
+			misc[name] = shown_rank //Skyrat change
 	if(heads.len > 0)
 		dat += "<tr><th colspan=3>Heads</th></tr>"
 		for(var/name in heads)
@@ -209,8 +210,9 @@
 		else
 			assignment = "Unassigned"
 		//Skyrat changes
+		var/shown_assignment = assignment
 		if(C && C.prefs && C.prefs.alt_titles_preferences[assignment])
-			assignment = C.prefs.alt_titles_preferences[assignment]
+			shown_assignment = C.prefs.alt_titles_preferences[assignment]
 		//End of skyrat changes
 
 		var/static/record_id_num = 1001
@@ -235,6 +237,7 @@
 		G.fields["id"]			= id
 		G.fields["name"]		= H.real_name
 		G.fields["rank"]		= assignment
+		G.fields["shown_rank"]		= shown_assignment //Skyrat change
 		G.fields["age"]			= H.age
 		G.fields["species"]	= H.dna.species.name
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
