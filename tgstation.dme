@@ -3806,7 +3806,6 @@
 #include "modular_skyrat\code\modules\research\designs\autolathe_designs\autolathe_designs_sec_and_hacked.dm"
 #include "modular_skyrat\code\modules\research\designs\machine_desings\machine_designs_service.dm"
 #include "modular_skyrat\code\modules\research\techweb\_techweb.dm"
-#include "modular_skyrat\code\modules\research\techweb\all_nodes.dm"
 #include "modular_skyrat\code\modules\research\techweb\nodes\biotech_nodes.dm"
 #include "modular_skyrat\code\modules\research\techweb\nodes\bluespace_nodes.dm"
 #include "modular_skyrat\code\modules\research\techweb\nodes\computer_hud_nodes.dm"
