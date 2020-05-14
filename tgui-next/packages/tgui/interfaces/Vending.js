@@ -50,6 +50,21 @@ export const Vending = props => {
       <Section title="Products" >
         <Table>
           {inventory.map((product => {
+<<<<<<< HEAD
+=======
+            const free = (
+              !data.onstation
+              || product.price === 0
+              || (
+                data.cost_mult === 0
+                && !product.premium
+              )
+            );
+            const suffix = (!product.premium
+              ? ' cr' + data.cost_text
+              : ' cr'
+            );
+>>>>>>> f44e9b662b... Merge pull request #12238 from Ghommie/Ghommie-cit747
             return (
               <Table.Row key={product.name}>
                 <Table.Cell>
@@ -90,7 +105,23 @@ export const Vending = props => {
                       })} />
                   ) || (
                     <Button
+<<<<<<< HEAD
                       content={'Vend'}
+=======
+                      disabled={(
+                        data.stock[product.namename] === 0
+                        || (
+                          !free
+                          && (
+                            !data.user
+                            || product.price > data.user.cash
+                          )
+                        )
+                      )}
+                      content={!free
+                        ? Math.round(product.price * data.cost_mult) + suffix
+                        : 'FREE'}
+>>>>>>> f44e9b662b... Merge pull request #12238 from Ghommie/Ghommie-cit747
                       onClick={() => act(ref, 'vend', {
                         'ref': product.ref,
                       })} />

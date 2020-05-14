@@ -194,6 +194,67 @@
 					"<span class='notice'>You show \the [src.name].</span>")
 		add_fingerprint(user)
 		return
+<<<<<<< HEAD
+=======
+	. = FALSE
+	var/datum/bank_account/old_account = registered_account
+
+	var/new_bank_id = input(user, "Enter your account ID number.", "Account Reclamation", 111111) as num | null
+
+	if (isnull(new_bank_id))
+		return
+
+	if(!alt_click_can_use_id(user))
+		return
+	if(!new_bank_id || new_bank_id < 111111 || new_bank_id > 999999)
+		to_chat(user, "<span class='warning'>The account ID number needs to be between 111111 and 999999.</span>")
+		return
+	if (registered_account && registered_account.account_id == new_bank_id)
+		to_chat(user, "<span class='warning'>The account ID was already assigned to this card.</span>")
+		return
+
+	for(var/A in SSeconomy.bank_accounts)
+		var/datum/bank_account/B = A
+		if(B.account_id == new_bank_id)
+			if (old_account)
+				old_account.bank_cards -= src
+
+			B.bank_cards += src
+			registered_account = B
+			to_chat(user, "<span class='notice'>The provided account has been linked to this ID card.</span>")
+
+			return TRUE
+
+	to_chat(user, "<span class='warning'>The account ID number provided is invalid.</span>")
+	return
+
+/obj/item/card/id/AltClick(mob/living/user)
+	. = ..()
+	if(!bank_support || !alt_click_can_use_id(user))
+		return
+
+	if(!registered_account && bank_support == ID_FREE_BANK_ACCOUNT)
+		set_new_account(user)
+		return
+
+	if (world.time < registered_account.withdrawDelay)
+		registered_account.bank_card_talk("<span class='warning'>ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS.</span>", TRUE)
+		return
+
+	var/amount_to_remove =  input(user, "How much do you want to withdraw? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num|null
+
+	if(!amount_to_remove || amount_to_remove < 0)
+		return
+	if(!alt_click_can_use_id(user))
+		return
+	amount_to_remove = FLOOR(min(amount_to_remove, registered_account.account_balance), 1)
+	if(amount_to_remove && registered_account.adjust_money(-amount_to_remove))
+		var/obj/item/holochip/holochip = new (user.drop_location(), amount_to_remove)
+		user.put_in_hands(holochip)
+		to_chat(user, "<span class='notice'>You withdraw [amount_to_remove] credits into a holochip.</span>")
+		return
+	registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account has no sufficient credits to perform that withdrawal.</span>", TRUE)
+>>>>>>> f44e9b662b... Merge pull request #12238 from Ghommie/Ghommie-cit747
 
 /obj/item/card/id/examine(mob/user)
 	. = ..()

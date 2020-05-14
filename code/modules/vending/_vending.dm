@@ -282,6 +282,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(!start_empty)
 			R.amount = amount
 		R.max_amount = amount
+<<<<<<< HEAD
+=======
+		R.custom_price = initial(temp.custom_price)
+		R.custom_premium_price = initial(temp.custom_premium_price)
+>>>>>>> f44e9b662b... Merge pull request #12238 from Ghommie/Ghommie-cit747
 		recordlist += R
 /**
   * Refill a vending machine from a refill canister
@@ -573,9 +578,31 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 /obj/machinery/vending/ui_data(mob/user)
 	. = list()
+<<<<<<< HEAD
+=======
+	var/obj/item/card/id/C = user.get_idcard(TRUE)
+	.["cost_mult"] = 1
+	.["cost_text"] = ""
+	if(C && C.registered_account)
+		.["user"] = list()
+		.["user"]["name"] = C.registered_account.account_holder
+		.["user"]["cash"] = C.registered_account.account_balance
+		if(C.registered_account.account_job)
+			.["user"]["job"] = C.registered_account.account_job.title
+		else
+			.["user"]["job"] = "No Job"
+		var/cost_mult = get_best_discount(C)
+		if(cost_mult != 1)
+			.["cost_mult"] = cost_mult
+			if(cost_mult < 1)
+				.["cost_text"] = " ([(1 - cost_mult) * 100]% OFF)"
+			else
+				.["cost_text"] = " ([(cost_mult - 1) * 100]% EXTRA)"
+>>>>>>> f44e9b662b... Merge pull request #12238 from Ghommie/Ghommie-cit747
 	.["stock"] = list()
 	for(var/datum/data/vending_product/R in product_records + coin_records + hidden_records)
 		.["stock"][R.name] = R.amount
+		.
 	.["extended_inventory"] = extended_inventory
 	.["coin"] = coin
 	.["bill"] = bill
@@ -614,6 +641,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 					to_chat(usr, "<span class='warning'>You need to insert a coin to get this item!</span>")
 					vend_ready = TRUE
 					return
+<<<<<<< HEAD
 				if(coin && coin.string_attached)
 					if(prob(50))
 						if(usr.put_in_hands(coin))
@@ -625,6 +653,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 					else
 						to_chat(usr, "<span class='warning'>You weren't able to pull [coin] out fast enough, the machine ate it, string and all!</span>")
 						QDEL_NULL(coin)
+=======
+				var/datum/bank_account/account = C.registered_account
+				if(coin_records.Find(R) || hidden_records.Find(R))
+					price_to_use = R.custom_premium_price || extra_price
+>>>>>>> f44e9b662b... Merge pull request #12238 from Ghommie/Ghommie-cit747
 				else
 					QDEL_NULL(coin)
 					QDEL_NULL(bill)
