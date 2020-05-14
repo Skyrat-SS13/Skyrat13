@@ -315,7 +315,7 @@
 	B.AddBloodVolume(-CONVERT_COST)
 	target.add_mob_blood(user, "<span class='danger'>Youve used [CONVERT_COST] amount of blood to gain a new vassal!</span>")
 	to_chat(user, )
-	user.visible_message("<span class='notice'>[user] paints a bloody rune on [target]'s forehead, marking them as a vassal!</span>", \ 
+	user.visible_message("<span class='notice'>[user] paints a bloody rune on [target]'s forehead, marking them as a vassal!</span>", \
 				  	  "<span class='notice'>You paint a bloody rune across [target]'s forehead. They are now under your command.</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
 	if(!do_mob(user, src, 50))
 		to_chat(user, "<span class='danger'><i>The ritual has been interrupted!</i></span>")
@@ -328,8 +328,8 @@
 		//	to_chat(user, "<span class='danger'><i>The ritual has been interrupted!</i></span>")
 		//	useLock = FALSE
 		//	return
-		user.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE) 	
-		target.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE) 	
+		user.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
+		target.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
 		target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
 		target.Jitter(25)
 		//target.emote("laugh") SKYRAT CHANGE - MORE NEUTRAL WORDING
