@@ -509,31 +509,38 @@
 		bloody_hands = rand(2, 4)
 	update_inv_gloves()	//handles bloody hands overlays and updating
 	return TRUE
-
+//Skyrat changes - snowflake blood color
 /atom/proc/blood_DNA_to_color()
-	var/list/colors = list()//first we make a list of all bloodtypes present
+	var/list/colors = list() //first we make a list of all blood DNAs present
+	var/list/dna_to_color = list() //then we make another fucking list to see if the DNA has an unique blood color
+	// Yes this is fucking terrible.
 	for(var/bloop in blood_DNA)
-		if(colors[blood_DNA[bloop]])
-			colors[blood_DNA[bloop]]++
+		if(colors[bloop])
+			colors[bloop]++
 		else
-			colors[blood_DNA[bloop]] = 1
+			colors[bloop] = 1
+	for(var/bloop in colors)
+		dna_to_color[bloop] = bloodtype_to_color(blood_DNA[bloop])
+		for(var/mob/living/carbon/C in GLOB.mob_living_list) //writing this makes me feel shame
+			if((C.dna.unique_enzymes == bloop) && C.dna.blood_color) //i should just use a global list for this
+				dna_to_color[bloop] = C.dna.blood_color
 
 	var/final_rgb = BLOOD_COLOR_HUMAN	//a default so we don't have white blood graphics if something messed up
 
 	if(colors.len)
 		var/sum = 0 //this is all shitcode, but it works; trust me
-		final_rgb = bloodtype_to_color(colors[1])
+		final_rgb = dna_to_color[colors[1]]
 		sum = colors[colors[1]]
 		if(colors.len > 1)
 			var/i = 2
 			while(i <= colors.len)
 				var/tmp = colors[colors[i]]
-				final_rgb = BlendRGB(final_rgb, bloodtype_to_color(colors[i]), tmp/(tmp+sum))
+				final_rgb = BlendRGB(final_rgb, dna_to_color[colors[i]], tmp/(tmp+sum))
 				sum += tmp
 				i++
 
 	return final_rgb
-
+//
 /atom/proc/clean_blood()
 	. = blood_DNA? TRUE : FALSE
 	blood_DNA = null

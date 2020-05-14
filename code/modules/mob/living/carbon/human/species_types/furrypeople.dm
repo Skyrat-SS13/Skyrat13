@@ -13,6 +13,9 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/mammal
 	liked_food = MEAT | FRIED
 	disliked_food = TOXIC
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
+	rainbowblood = TRUE
 
 //Curiosity killed the cat's wagging tail.
 /datum/species/mammal/spec_death(gibbed, mob/living/carbon/human/H)
@@ -66,6 +69,8 @@
 	exotic_bloodtype = "X*"
 	damage_overlay_type = "xeno"
 	liked_food = MEAT
+	//Skyrat change - blood
+	rainbowblood = TRUE
 
 //Praise the Omnissiah, A challange worthy of my skills - HS
 

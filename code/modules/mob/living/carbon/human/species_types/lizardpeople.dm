@@ -25,6 +25,12 @@
 	liked_food = GROSS | MEAT
 	inert_mutation = FIREBREATH
 	languagewhitelist = list("Draconic") //Skyrat change - species language whitelist
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
+	rainbowblood = TRUE
+
+/datum/species/lizard/after_equip_job(datum/job/J, mob/living/carbon/human/H)
+	//H.grant_language(/datum/language/draconic)
 	species_language_holder = /datum/language_holder/lizard
 /*
 /datum/species/lizard/after_equip_job(datum/job/J, mob/living/carbon/human/H)
@@ -94,6 +100,7 @@
 	if((C.dna.features["spines"] != "None" ) && (C.dna.features["tail_lizard"] == "None")) //tbh, it's kinda ugly for them not to have a tail yet have floating spines
 		C.dna.features["tail_lizard"] = "Smooth"
 		C.update_body()
+	C.grant_language(/datum/language/draconic) //skyhrat chargne
 	/*if(C.dna.features["legs"] != "digitigrade") //Skyrat change - comments this out cause im pretty sure this will bug them out either by update_body being called too soon or no capitalisation on the legs, and we've got a fix for this in modular_skyrat
 		C.dna.features["legs"] = "digitigrade"
 		for(var/obj/item/bodypart/leggie in C.bodyparts)
