@@ -22,10 +22,6 @@
 	exotic_bloodtype = "HF"
 
 	var/datum/action/innate/monitor_change/screen
-	//Skyrat change - blood
-	bloodtypes = list("HF", "SY")
-	bloodreagents = list("Synthetic Blood", "Oil")
-	rainbowblood = TRUE
 
 /datum/species/ipc/on_species_gain(mob/living/carbon/human/C)
 	if(isipcperson(C) && !screen)

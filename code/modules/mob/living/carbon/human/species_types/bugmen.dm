@@ -15,7 +15,7 @@
 	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "BUG")
-	rainbowblood = TRUE
+	exotic_bloodtype = "BUG"
 
 /datum/species/insect/spec_death(gibbed, mob/living/carbon/human/H)
 	if(H)

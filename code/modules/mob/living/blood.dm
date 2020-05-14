@@ -187,8 +187,6 @@
 
 		blood_data["blood_DNA"] = dna.unique_enzymes
 		blood_data["bloodcolor"] = bloodtype_to_color(dna.blood_type)
-		if(dna.blood_color)
-			blood_data["bloodcolor"] = dna.blood_color
 		if(disease_resistances && disease_resistances.len)
 			blood_data["resistances"] = disease_resistances.Copy()
 		var/list/temp_chem = list()
@@ -265,7 +263,17 @@
 		"X*" = list("X*", "SY"),
 		"SY" = list("SY"),
 		"GEL" = list("GEL","SY"),
-		"BUG" = list("BUG", "SY")
+		"BUG" = list("BUG", "SY"),
+		//Skyrat change - more blood
+		"PL" = list("PL", "SY"),
+		"AL" = list("AL", "SY"),
+		"GREY" = list("GREY", "SY"),
+		"ANGL" = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "ANGL", "SY", "HF", "PL", "AL", "GREY",\
+						"GEL", "BUG", "X", "L", "U", "SPOR", "DRK", "S"),
+		"SPOR" = list("SPOR", "SY"),
+		"DRK" = list("DRK", "HF", "SY"),
+		"S" = list("S", "SY", "HF"),
+		"BHZ" = list("BHZ", "SY", "DRK", "BUG", "GREY")
 	)
 
 	var/safe = bloodtypes_safe[bloodtype]

@@ -17,8 +17,8 @@
 	var/disguise_fail_health = 75 //When their health gets to this level their synthflesh partially falls off
 	var/datum/species/fake_species = null //a species to do most of our work for us, unless we're damaged
 	//Skyrat change - blood
-	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
-	rainbowblood = TRUE
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
+	exotic_bloodtype = "SY"
 	//
 	species_language_holder = /datum/language_holder/synthetic
 

@@ -11,7 +11,6 @@
 	liked_food = JUNKFOOD | FRIED
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
-	rainbowblood = FALSE
 
 /datum/species/human/qualifies_for_rank(rank, list/features)
 	return TRUE	//Pure humans are always allowed in all roles.

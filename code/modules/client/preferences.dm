@@ -82,8 +82,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/age = 30						//age of character
 	//SKYRAT CHANGES
 	var/bloodtype = ""
-	var/bloodreagent = ""
-	var/bloodcolor = ""
 	var/skyrat_ooc_notes
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
@@ -387,18 +385,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
 			var/bloodyoptions = 0 //basically used as a boolean to determine wheter we display the "Not available" message or not
-			dat += "<b>Blood options:</b><br>"
+			dat += "<b>Blood type:</b><br>"
 			if(pref_species.bloodtypes.len)
 				dat += 	"Type: <a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default Blood Type"]</a><br>"
-				bloodyoptions++
-			if(pref_species.bloodreagents.len)
-				dat += 	"Reagent: <a href='?_src_=prefs;preference=bloodreagent;task=input'>[bloodreagent? bloodreagent : "Default Blood Reagent"]</a><br>"
-				bloodyoptions++
-			if(pref_species.rainbowblood)
-				if(bloodcolor)
-					dat += 	"Color: <span style='border: 1px solid #161616; background-color: [bloodcolor];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=bloodcolor;task=input'>[bloodcolor? bloodcolor : "Default Blood Color"]</a><br>"
-				else 
-					dat += 	"Color: <a href='?_src_=prefs;preference=bloodcolor;task=input'>[bloodcolor? bloodcolor : "Default Blood Color"]</a><br>"
 				bloodyoptions++
 			if(!bloodyoptions)
 				dat += "Not available for this species.<br>"
@@ -1641,21 +1630,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							bloodtype = ""
 						else
 							bloodtype = msg
-
-				if("bloodreagent")
-					var/msg = input(usr, "Choose your blood reagent", "Blood Reagent", "") as anything in (pref_species.bloodreagents + "Default")
-					if(msg)
-						if(msg == "Default")
-							bloodreagent = ""
-						else
-							bloodreagent = msg
-
-				if("bloodcolor")
-					var/msg = input(usr, "Choose your blood color", "Blood Color", "") as color|null
-					if(msg)
-						bloodcolor = msg
-					else 
-						bloodcolor = ""
 
 				if("general_records")
 					var/msg = stripped_multiline_input(usr, "Set your general records", "General Records", general_records, MAX_FLAVOR_LEN, TRUE)

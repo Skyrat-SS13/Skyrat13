@@ -19,9 +19,7 @@
 
 	exotic_bloodtype = "S"
 	//Skyrat change - blood
-	bloodtypes = list("HF", "SY")
-	bloodreagents = list("Synthetic Blood", "Oil")
-	rainbowblood = TRUE
+	bloodtypes = list("S", "SY", "HF")
 
 
 /datum/species/synthliz/qualifies_for_rank(rank, list/features)

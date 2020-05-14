@@ -24,7 +24,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic"),list("Ageusia","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Alcohol Intolerance"),list("Alcohol Intolerance","Drunken Resilience"))
 	if(!all_bloodtypes.len)
 		for(var/datum/species/S in subtypesof(/datum/species))
-			all_bloodtypes |= S.exotic_blood
+			all_bloodtypes |= S.exotic_bloodtype
 	return ..()
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
@@ -58,27 +58,11 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	//SKYRAT CHANGE - Blood
 	//You might be asking... "bobyot y u do dis in quirk soobsistem it make no sense"
 	//i just don't want to create a whole other subsystem, along with a new proc, for doing this one time stuff
-	if(cli.prefs.bloodreagent)
-		if(ishuman(user))
-			var/datum/reagent/bloop
-			var/mob/living/carbon/human/H = user
-			if(H.dna.species.bloodreagents.len)
-				for(var/i in all_bloodtypes)
-					var/datum/reagent/R = i
-					if(R.name == cli.prefs.bloodtype)
-						bloop = R
-				if(bloop)
-					H.dna.species.exotic_blood = bloop.type
 	if(cli.prefs.bloodtype)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(H.dna.species.bloodtypes.len)
+			if(cli.prefs.bloodtype in H.dna.species.bloodtypes)
 				H.dna.blood_type = cli.prefs.bloodtype
-	if(cli.prefs.bloodcolor)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(H.dna.species.rainbowblood)
-				H.dna.blood_color = cli.prefs.bloodcolor
 
 /datum/controller/subsystem/processing/quirks/proc/quirk_path_by_name(name)
 	return quirks[name]

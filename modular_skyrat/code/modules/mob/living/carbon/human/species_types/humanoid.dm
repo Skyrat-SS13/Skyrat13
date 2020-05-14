@@ -10,7 +10,6 @@
 						 "mam_body_markings" = "Husky", "taur" = "None", "horns" = "None", "legs" = "Plantigrade", "meat_type" = "Mammalian")
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-" "O+", "O-")
-	rainbowblood = TRUE
 
 //Dunmer (Yeah, those guys that call you fetcher).
 /datum/species/human/humanoid/dunmer
@@ -33,8 +32,8 @@
 	mutantears = /obj/item/organ/ears/dunmer
 	icon_eyes = 'modular_skyrat/icons/mob/dunmer_face.dmi'
 	//Skyrat change - blood
-	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
-	rainbowblood = FALSE
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "DRK")
+	exotic_bloodtype = "DRK"
 
 /obj/item/organ/lungs/dunmer
 	name = "adapted ash lungs"

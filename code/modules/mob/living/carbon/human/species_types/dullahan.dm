@@ -18,7 +18,6 @@
 	var/obj/item/dullahan_relay/myhead
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
-	rainbowblood = FALSE
 
 /datum/species/dullahan/pumpkin
 	name = "Pumpkin Head Dullahan"
