@@ -106,8 +106,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	/// Our default override for typing indicator state
 	var/typing_indicator_state
 	//SKYRAT SNOWFLAKE
-	var/icon_eyes = 'icons/mob/human_face.dmi'
-	var/list/languagewhitelist = list()	
+	var/list/languagewhitelist = list()
 
 ///////////
 // PROCS //
