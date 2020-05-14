@@ -182,7 +182,7 @@
 		var/T = get_turf(target)
 		if(locate(/mob/living) in T)
 			new /obj/effect/temp_visual/medical_holosign(T,user) //produce a holographic glow
-			holo_cooldown = world.time + 100
+			holo_cooldown = world.time + 30 //skyrat change
 			return
 
 /obj/effect/temp_visual/medical_holosign
@@ -350,6 +350,12 @@
 	brightness_on = 6	// luminosity when on
 	light_color = "#FFAA44"
 	flashlight_power = 0.8
+
+/obj/item/flashlight/lantern/jade
+	name = "jade lantern"
+	desc = "An ornate, green lantern."
+	color = LIGHT_COLOR_GREEN
+	light_color = LIGHT_COLOR_GREEN
 
 /obj/item/flashlight/slime
 	gender = PLURAL

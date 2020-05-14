@@ -24,10 +24,12 @@
 	mutanteyes = /obj/item/organ/eyes/night_vision/mushroom
 	var/datum/martial_art/mushpunch/mush
 	languagewhitelist = list("Mushroom") //Skyrat change - species language whitelist
+	species_language_holder = /datum/language_holder/mushroom
 /*
 /datum/species/mush/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/mushroom) //pomf pomf SKYRAT CHANGE= We have an additional language option for this
 */
+
 /datum/species/mush/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
 	if(!ishuman(C))

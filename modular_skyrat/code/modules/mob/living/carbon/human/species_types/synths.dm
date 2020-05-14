@@ -1,10 +1,10 @@
 /datum/species/synth
-	name = "Synthetic" //inherited from the real species, for health scanners and things
+	name = "Synthetic" //inherited from the fake species, for health scanners and things
 	id = "synth"
-	say_mod = "states" //inherited from a user's real species
-	sexes = 0
-	species_traits = list(NOTRANSSTING) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
-	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_EASYLIMBDISABLE) //Now limbs can be disabled and dismembered, and they breathe for balance reasons.
+	say_mod = "states" //inherited from a user's fake species
+	sexes = 0 //it gets it's sexes by the fake species
+	species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	dangerous_existence = 0 //not dangerous anymore i guess
 	blacklisted = 0 //not blacklisted anymore
@@ -13,8 +13,9 @@
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
-	initial_species_traits = list(NOTRANSSTING) //for getting these values back for assume_disguise()
-	initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NOHUNGER,TRAIT_EASYLIMBDISABLE) //blah blah i explained above piss
+	//mutant_bodyparts = list("legs" = "Digitigrade", "taur" = "None") //this probably isn't gonna work. Note: it didn't work.
+	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //for getting these values back for assume_disguise()
+	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE) //blah blah i explained above
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
@@ -27,7 +28,7 @@
 	mutanteyes = /obj/item/organ/eyes/ipc
 	exotic_blood = /datum/reagent/blood/synthetics
 	exotic_bloodtype = "SY"
-	//cheeto
+	//variables used for snowflakey ass races and stuff god i fukcing hate this
 	var/storedeardamage = 0
 	var/storedtaildamage = 0
 
@@ -53,18 +54,18 @@
 		hair_color = S.hair_color
 		screamsounds = S.screamsounds.Copy()
 		femalescreamsounds = S.femalescreamsounds.Copy()
-		if(istype(S, /datum/species/human/felinid)) //Felinid looses their tails and ears when harmed to much
-			storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS) // tail go bye
-			mutantears = S.mutantears						//ears go bye
-			qdel(H.getorganslot(ORGAN_SLOT_EARS))
-			var/obj/item/organ/ears = new mutantears
-			ears.Insert(H)
-			H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
-			mutanttail = S.mutanttail
+		storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
+		mutantears = S.mutantears
+		qdel(H.getorganslot(ORGAN_SLOT_EARS))
+		var/obj/item/organ/ears = new mutantears
+		ears.Insert(H)
+		H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
+		mutanttail = S.mutanttail
+		if(mutanttail)
 			qdel(H.getorganslot(ORGAN_SLOT_TAIL))
 			var/obj/item/organ/tail = new mutanttail
 			tail.Insert(H)
-			H.setOrganLoss(ORGAN_SLOT_TAIL, storedtaildamage)
+		H.setOrganLoss(ORGAN_SLOT_TAIL, storedtaildamage)
 		isdisguised = TRUE
 		fake_species = new S.type
 	else
@@ -97,28 +98,17 @@
 	//H.grant_language(/datum/language/machine) SKYRAT CHANGE= We have an additional language option for this
 	assume_disguise(old_species, H)
 	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
+	for(var/obj/item/bodypart/BP in H.bodyparts)
+		BP.change_bodypart_status(BODYPART_ROBOTIC)
+		BP.render_like_organic = TRUE
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	//H.remove_language(/datum/language/machine) SKYRAT CHANGE= We have an additional language option for this
 	UnregisterSignal(H, COMSIG_MOB_SAY)
-
-/datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.type == /datum/reagent/medicine/synthflesh && chem.volume < chem.overdose_threshold)
-		chem.reaction_mob(H, TOUCH, 2 ,0) //heal a little
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-		return TRUE
-	else if(chem.type == /datum/reagent/medicine/synthflesh && chem.volume >= chem.overdose_threshold)
-		if(chem.overdosed == FALSE)
-			chem.overdose_start(H)
-			chem.reaction_mob(H, TOUCH, 2 ,0)
-			H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-		else
-			chem.reaction_mob(H, TOUCH, 2 ,0)
-			H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-	else if(chem.type == /datum/reagent/blood/synthetics)
-		chem.reaction_mob(H, INJECT, 2 ,0)
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
+	for(var/obj/item/bodypart/BP in H.bodyparts)
+		BP.change_bodypart_status(BODYPART_ORGANIC)
+		BP.render_like_organic = TRUE
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
@@ -141,16 +131,15 @@
 	meat = initial(meat)
 	limbs_id = initial(limbs_id)
 	use_skintones = initial(use_skintones)
-	if(istype(fake_species, /datum/species/human/felinid)) //Organs added by felinid race get added back on
-		storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
-		mutantears = initial(mutantears)
-		qdel(H.getorganslot(ORGAN_SLOT_EARS))
-		var/obj/item/organ/ears = new mutantears
-		ears.Insert(H)
-		H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
-		storedtaildamage = H.getOrganLoss(ORGAN_SLOT_TAIL)
-		mutanttail = initial(mutanttail)
-		qdel(H.getorganslot(ORGAN_SLOT_TAIL))
+	storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
+	mutantears = initial(mutantears)
+	qdel(H.getorganslot(ORGAN_SLOT_EARS))
+	var/obj/item/organ/ears = new mutantears
+	ears.Insert(H)
+	H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
+	storedtaildamage = H.getOrganLoss(ORGAN_SLOT_TAIL)
+	mutanttail = initial(mutanttail)
+	qdel(H.getorganslot(ORGAN_SLOT_TAIL))
 	sexes = initial(sexes)
 	fixed_mut_color = ""
 	hair_color = ""

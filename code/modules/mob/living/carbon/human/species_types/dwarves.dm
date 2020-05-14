@@ -17,6 +17,7 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 	disliked_food = JUNKFOOD | FRIED //Dwarves hate foods that have no nutrition other than alcohol.
 	mutant_organs = list(/obj/item/organ/dwarfgland) //Dwarven alcohol gland, literal gland warrior
 	mutantliver = /obj/item/organ/liver/dwarf //Dwarven super liver (Otherwise they r doomed)
+	species_language_holder = /datum/language_holder/dwarf
 
 /mob/living/carbon/human/species/dwarf //species admin spawn path
 	race = /datum/species/dwarf //and the race the path is set to.
