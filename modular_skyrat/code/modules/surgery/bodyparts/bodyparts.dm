@@ -123,10 +123,11 @@
 			mutation_color = ""
 
 		if(istype(S, /datum/species/synth))
-			var/datum/species/synth/synthspecies = S
-			var/redundantactualhealth = (100 - (owner.getBruteLoss() + owner.getFireLoss() + owner.getOxyLoss() + owner.getToxLoss() + owner.getCloneLoss()))
-			if(synthspecies.isdisguised == FALSE || (synthspecies.actualhealth < 45) || (redundantactualhealth < 45))
-				base_bp_icon = initial(synthspecies.icon_limbs)
+			if(owner)
+				var/datum/species/synth/synthspecies = S
+				var/redundantactualhealth = (100 - (owner.getBruteLoss() + owner.getFireLoss() + owner.getOxyLoss() + owner.getToxLoss() + owner.getCloneLoss()))
+				if(synthspecies.isdisguised == FALSE || (synthspecies.actualhealth < 45) || (redundantactualhealth < 45))
+					base_bp_icon = initial(synthspecies.icon_limbs)
 
 		dmg_overlay_type = S.damage_overlay_type
 
