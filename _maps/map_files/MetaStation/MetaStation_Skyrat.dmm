@@ -67878,7 +67878,7 @@
 	},
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cyO" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
@@ -67886,7 +67886,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cyP" = (
 /obj/structure/sign/map/left{
 	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
@@ -67899,7 +67899,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cyQ" = (
 /obj/structure/sign/map/right{
 	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
@@ -67908,14 +67908,14 @@
 	},
 /obj/structure/chair/sofa/right,
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cyR" = (
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
 /obj/structure/chair/sofa/left,
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cyT" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -68384,14 +68384,14 @@
 	req_access_txt = "5"
 	},
 /turf/open/floor/plating,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "czP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/obj/structure/closet/secure_closet/personal/cabinet,
+/obj/structure/closet/secure_closet/psychologist,
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "czQ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -68400,7 +68400,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "czS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -68409,7 +68409,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "czT" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -68420,13 +68420,16 @@
 	},
 /obj/machinery/door/airlock/medical{
 	id_tag = "psy1";
-	name = "Psychologist Office";
+	name = "Psychology Office";
 	req_access_txt = "71"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
 	},
-/area/medical/medbay/aft)
+/area/medical/psych)
 "czU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -68440,6 +68443,9 @@
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
@@ -68455,6 +68461,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
@@ -69032,10 +69041,10 @@
 	pixel_x = -30
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cAT" = (
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cAU" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/tile/blue{
@@ -69048,7 +69057,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cAV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -69062,7 +69071,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cAW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -69077,8 +69086,11 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cAX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -69089,7 +69101,7 @@
 	name = "psy shutters"
 	},
 /turf/open/floor/plating,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cAY" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/effect/turf_decal/tile/blue{
@@ -69497,14 +69509,14 @@
 	},
 /obj/structure/bookcase/random,
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cBV" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = -30
 	},
 /obj/structure/bookcase/random,
 /turf/open/floor/carpet,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cBW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -69536,7 +69548,7 @@
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cBX" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -69555,8 +69567,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue,
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable/yellow,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "cBY" = (
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/white,
@@ -82104,7 +82118,7 @@
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
+/area/medical/psych)
 "diP" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -85244,6 +85258,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"tTc" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/carpet,
+/area/medical/psych)
 "tVY" = (
 /obj/structure/closet/crate,
 /obj/item/target/alien,
@@ -85457,6 +85483,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"vzK" = (
+/turf/closed/wall,
+/area/medical/psych)
 "vLD" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -106417,12 +106446,12 @@ cuj
 cbx
 dDw
 bXE
-cxU
-cxU
+vzK
+vzK
 czN
-cxU
-cxU
-cxU
+vzK
+vzK
+vzK
 cDL
 dzK
 cFM
@@ -106674,12 +106703,12 @@ bXE
 cvn
 cwn
 cxd
-cxU
+vzK
 cyN
 cAT
 cAS
 cBU
-cxU
+vzK
 dDB
 dzK
 cFN
@@ -106931,12 +106960,12 @@ dux
 dux
 cxU
 cxU
-cxU
+vzK
 cyO
 czP
 cAT
 cBV
-cxU
+vzK
 cDM
 dzK
 cBR
@@ -107188,12 +107217,12 @@ cuk
 cvo
 cwo
 cxe
-cxU
+vzK
 cyP
 czQ
 cAU
 diN
-cxU
+vzK
 cDL
 dux
 cFO
@@ -107445,12 +107474,12 @@ cul
 cvp
 cwp
 cxf
-cxU
+vzK
 cyQ
 czS
 cAV
 cBW
-cxU
+vzK
 cDN
 cEN
 cFP
@@ -107702,12 +107731,12 @@ cum
 cvp
 cwq
 cxg
-cxU
+vzK
 cyR
-czS
+tTc
 cAW
 cBX
-cxU
+vzK
 cDO
 cxU
 cxU
@@ -107959,12 +107988,12 @@ cun
 cvp
 cwr
 cxh
-cxU
-cxU
+vzK
+vzK
 czT
 cAX
-cxU
-cxU
+vzK
+vzK
 cDP
 cxU
 cFQ

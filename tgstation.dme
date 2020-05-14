@@ -3543,6 +3543,7 @@
 #include "modular_skyrat\code\game\objects\structures\windoor_assembly.dm"
 #include "modular_skyrat\code\game\objects\structures\crates_lockers\closets\bluespace_locker.dm"
 #include "modular_skyrat\code\game\objects\structures\crates_lockers\closets\secure\hydroponics.dm"
+#include "modular_skyrat\code\game\objects\structures\crates_lockers\closets\secure\medical.dm"
 #include "modular_skyrat\code\game\objects\structures\crates_lockers\closets\secure\security.dm"
 #include "modular_skyrat\code\game\objects\structures\lavaland\necropolis_tendril.dm"
 #include "modular_skyrat\code\game\turfs\open\pacifytile.dm"

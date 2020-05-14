@@ -340,7 +340,6 @@
 /turf/open/space,
 /area/solar/starboard/fore)
 "abz" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -350,8 +349,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
+/obj/structure/closet/secure_closet/psychologist,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "abC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -80522,11 +80522,11 @@
 	dir = 1
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cHX" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cHY" = (
 /obj/machinery/vending/cigarette,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -80998,7 +80998,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cJa" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
@@ -82165,14 +82165,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/medical{
 	id_tag = "psy1";
-	name = "Psychologist Office";
+	name = "Psychology Office";
 	req_access_txt = "71"
 	},
-/obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cKH" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -82196,7 +82196,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cKJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -82205,7 +82205,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cKK" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -82222,8 +82222,12 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
 	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable/white{
+	icon_state = "0-2"
+	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cKL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -82242,7 +82246,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cKM" = (
 /obj/structure/cable/white{
 	icon_state = "1-4"
@@ -82267,7 +82271,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cKN" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -82283,7 +82287,7 @@
 	req_access_txt = "5"
 	},
 /turf/open/floor/plating,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cKO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/white{
@@ -83081,7 +83085,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cMi" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -83093,7 +83097,7 @@
 	icon_state = "plant-08"
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cMj" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -83113,15 +83117,18 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/cable/white{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cMk" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cMl" = (
 /obj/structure/cable/white{
 	icon_state = "1-8"
@@ -83130,7 +83137,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cMm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -83874,25 +83881,25 @@
 /area/hallway/primary/central)
 "cNG" = (
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cNH" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/chair/comfy/brown{
 	dir = 8
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cNI" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cNJ" = (
 /obj/structure/chair/office/dark{
 	dir = 4
 	},
 /obj/effect/landmark/start/psychologist,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cNK" = (
 /turf/closed/wall/r_wall,
 /area/medical/storage)
@@ -84740,13 +84747,13 @@
 	dir = 1
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cPA" = (
 /obj/structure/chair/sofa/right{
 	dir = 1
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cPB" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -84754,7 +84761,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cPC" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/structure/window/reinforced{
@@ -84768,7 +84775,7 @@
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "cPD" = (
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -124544,7 +124551,7 @@
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "fRr" = (
 /obj/structure/punching_bag,
 /obj/structure/cable{
@@ -124855,6 +124862,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/port/fore)
+"gXk" = (
+/turf/closed/wall/r_wall,
+/area/medical/psych)
 "gXn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -124987,6 +124997,12 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"hvR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/medical/psych)
 "hBa" = (
 /obj/structure/table/glass,
 /obj/item/storage/firstaid/regular,
@@ -125225,7 +125241,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "ile" = (
 /obj/structure/bookcase/random,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -125418,7 +125434,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
-/area/medical/medbay/central)
+/area/medical/psych)
 "iZz" = (
 /obj/machinery/light,
 /obj/structure/sign/poster/official/random{
@@ -125495,12 +125511,8 @@
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "jod" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/turf/closed/wall,
+/area/medical/psych)
 "jqM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -126249,7 +126261,7 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "lTo" = (
 /obj/docking_port/stationary{
 	area_type = /area/construction/mining/aux_base;
@@ -127222,14 +127234,14 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "pBt" = (
+/obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/medical{
 	id_tag = "psy1";
-	name = "Psychologist Office";
+	name = "Psychology Office";
 	req_access_txt = "71"
 	},
-/obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "pDf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -127505,7 +127517,7 @@
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "qts" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red,
@@ -127558,7 +127570,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/central)
+/area/medical/psych)
 "qGl" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -127781,7 +127793,7 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "rpt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -127933,7 +127945,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
-/area/medical/medbay/central)
+/area/medical/psych)
 "rQK" = (
 /obj/structure/table,
 /obj/item/paicard,
@@ -128072,7 +128084,7 @@
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "shX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel,
@@ -128687,6 +128699,10 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"uzr" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall,
+/area/medical/psych)
 "uBy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/disposalpipe/segment,
@@ -129108,7 +129124,7 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/area/medical/psych)
 "wmt" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -173722,13 +173738,13 @@ cAm
 cAm
 cAm
 cAm
-cPy
-cPy
+jod
+jod
 iZu
 cKG
 rQy
-cPy
-cPy
+jod
+jod
 cRc
 cRc
 cUG
@@ -173979,7 +173995,7 @@ cAm
 cBH
 cDn
 cFb
-cPy
+jod
 cHX
 cNG
 ila
@@ -174236,7 +174252,7 @@ cAm
 cBI
 cDo
 cFc
-cPy
+jod
 cHW
 cNG
 cKI
@@ -174493,7 +174509,7 @@ cAm
 cBJ
 cDx
 cFd
-cPy
+jod
 cHX
 cNG
 cKJ
@@ -174750,9 +174766,9 @@ cAm
 cBK
 cDq
 cFe
-cPy
-cPy
-cPy
+jod
+jod
+jod
 cKK
 cMj
 abz
@@ -175009,12 +175025,12 @@ cDx
 cFf
 cGH
 cHY
-cSX
+uzr
 cKL
 cMk
 cNI
 fQa
-cPy
+jod
 cSP
 cUL
 cWm
@@ -175523,15 +175539,15 @@ cDt
 cFh
 cAm
 cAm
-cPy
+jod
 wmq
 lRX
 qsL
 rlq
-cPy
+jod
 cSR
 cPv
-jod
+cPv
 cXX
 cUF
 cWn
@@ -175780,12 +175796,12 @@ cDx
 cFi
 cGJ
 cIa
-cPy
+jod
 cKN
-cMm
-cNK
-cNK
-cRe
+hvR
+gXk
+gXk
+jod
 cSS
 cSS
 cWt
