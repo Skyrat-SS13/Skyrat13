@@ -39,7 +39,7 @@
 	id = "mega_efficiency"
 	display_name = "Mega Efficiency Parts"
 	description = "The very best of the manufacturing techniques that allow for maximum construction efficiency and design."
-	prereq_ids = list("emp_basic","high_efficiency","adv_power","adv_engi")
+	prereq_ids = list("emp_adv","high_efficiency","adv_power","adv_engi")
 	design_ids = list("laser_t4","manipulator_t4", "matter_bin_t4","capacitor_t4","scanning_t4")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 8000)
 //End of Skyrat addition.
