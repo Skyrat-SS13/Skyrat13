@@ -47,7 +47,7 @@
 	var/open = FALSE	//is this limb incised for surgery?
 	var/splinted_count = 0 //Time when this bodypart was last splinted
 	var/encased		//b o n e that encases the limb. used in surgery, but not actually used in "breaking" limbs.
-	var/roboticFunnyVariable //only used by robotic limbs (obviously). basically the threshold at which they get disabled, since they don't break or internally bleed.
+	var/roboticFunnyVariable = 0.8 //only used by robotic limbs (obviously). basically the threshold at which they get disabled, since they don't break or internally bleed.
 							 //also has capitalization because bobalob asked me to on discord.
 	var/dismember_at_max_damage = FALSE
 	var/cannot_amputate
@@ -111,7 +111,7 @@
 /obj/item/bodypart/Initialize()
 	. = ..()
 	if(starting_children.len)
-		for(var/obj/item/I in starting_children)
+		for(var/I in starting_children)
 			new I(src)
 
 /obj/item/bodypart/examine(mob/user)
@@ -332,7 +332,7 @@
 				if(forbidden_limbs.len)
 					possible_points -= forbidden_limbs
 				for(var/possibleloc in possible_points)
-					var/obj/item/bodypart/bpart = owner.get_bodypart(possibleloc)
+					var/obj/item/bodypart/bpart = possibleloc
 					if(bpart)
 						if(bpart.get_damage() >= bpart.max_damage)
 							possible_points -= possibleloc

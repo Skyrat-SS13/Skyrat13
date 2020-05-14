@@ -43,6 +43,7 @@
 	icon_state = "borg_l_arm"
 	status = BODYPART_ROBOTIC
 	roboticFunnyVariable = 0.9
+	starting_children = list()
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -88,6 +89,7 @@
 	icon_state = "borg_r_arm"
 	status = BODYPART_ROBOTIC
 	roboticFunnyVariable = 0.9
+	starting_children = list()
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -132,7 +134,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_l_leg"
 	status = BODYPART_ROBOTIC
-	starting_children = list(/obj/item/bodypart/l_leg/l_foot/robot)
+	starting_children = list()
 	roboticFunnyVariable = 0.9
 
 	brute_reduction = 2
@@ -179,6 +181,7 @@
 	icon_state = "borg_r_leg"
 	status = BODYPART_ROBOTIC
 	roboticFunnyVariable = 0.9
+	starting_children = list()
 
 	brute_reduction = 2
 	burn_reduction = 1
@@ -225,6 +228,7 @@
 	icon_state = "borg_chest"
 	status = BODYPART_ROBOTIC
 	roboticFunnyVariable = 0.9
+	starting_children = list()
 
 	brute_reduction = 2
 	burn_reduction = 1
