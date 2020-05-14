@@ -166,12 +166,12 @@
 /datum/reagent/medicine/nanite_slurry/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M))
 		if(!(method in list(INGEST, VAPOR, INJECT)))
-			M.heal_bodypart_damage(-reac_volume,-reac_volume, only_organic = FALSE, only_robotic = TRUE)
+			M.heal_bodypart_damage(reac_volume, reac_volume, stamina = 0, updating_health = TRUE, only_robotic = TRUE, only_organic = FALSE)
 			if(show_message)
 				to_chat(M, "<span class='notice'>You feel much better...</span>")
 	..()
 
 /datum/reagent/medicine/nanite_slurry/on_mob_life(mob/living/carbon/M)
-	M.heal_bodypart_damage(-0.5*REM,-0.5*REM, only_organic = FALSE, only_robotic = TRUE)
+	M.heal_bodypart_damage(0.5*REM, 0.5*REM, stamina = 0, updating_health = TRUE, only_robotic = TRUE, only_organic = FALSE)
 	..()
 	. = 1
