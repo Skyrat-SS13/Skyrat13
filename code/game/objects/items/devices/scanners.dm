@@ -186,32 +186,29 @@ SLIME SCANNER
 		var/list/missingbodyfarts = C.get_missing_limbs()
 		var/list/missingbodyparts = list()
 		for(var/x in missingbodyfarts)
-			if(!(C.get_bodypart(x)))
-				switch(x)
-					if(BODY_ZONE_HEAD)
-						missingbodyparts += "Head"
-					if(BODY_ZONE_CHEST)
-						missingbodyparts += "Chest"
-					if(BODY_ZONE_PRECISE_GROIN)
-						missingbodyparts += "Groin"
-					if(BODY_ZONE_R_ARM)
-						missingbodyparts += "Right arm"
-					if(BODY_ZONE_L_ARM)
-						missingbodyparts += "Left arm"
-					if(BODY_ZONE_PRECISE_R_HAND)
-						missingbodyparts += "Right hand"
-					if(BODY_ZONE_PRECISE_L_HAND)
-						missingbodyparts += "Left hand"
-					if(BODY_ZONE_R_LEG)
-						missingbodyparts += "Right leg"
-					if(BODY_ZONE_L_LEG)
-						missingbodyparts += "Left leg"
-					if(BODY_ZONE_PRECISE_R_FOOT)
-						missingbodyparts += "Right foot"
-					if(BODY_ZONE_PRECISE_L_FOOT)
-						missingbodyparts += "Left foot"
-			else
-				continue
+			switch(x)
+				if(BODY_ZONE_HEAD)
+					missingbodyparts += "Head"
+				if(BODY_ZONE_CHEST)
+					missingbodyparts += "Chest"
+				if(BODY_ZONE_PRECISE_GROIN)
+					missingbodyparts += "Groin"
+				if(BODY_ZONE_R_ARM)
+					missingbodyparts += "Right arm"
+				if(BODY_ZONE_L_ARM)
+					missingbodyparts += "Left arm"
+				if(BODY_ZONE_PRECISE_R_HAND)
+					missingbodyparts += "Right hand"
+				if(BODY_ZONE_PRECISE_L_HAND)
+					missingbodyparts += "Left hand"
+				if(BODY_ZONE_R_LEG)
+					missingbodyparts += "Right leg"
+				if(BODY_ZONE_L_LEG)
+					missingbodyparts += "Left leg"
+				if(BODY_ZONE_PRECISE_R_FOOT)
+					missingbodyparts += "Right foot"
+				if(BODY_ZONE_PRECISE_L_FOOT)
+					missingbodyparts += "Left foot"
 		if(advanced)
 			for(var/obj/item/bodypart/BP in currentbodyparts)
 				if(BP.status_flags & BODYPART_BROKEN)

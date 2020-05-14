@@ -267,32 +267,29 @@
 		var/list/missinglimps = C.get_missing_limbs()
 		var/list/missinglimbs = list()
 		for(var/x in missinglimps)
-			if(!(C.get_bodypart(x)))
-				switch(x)
-					if(BODY_ZONE_HEAD)
-						missinglimbs += "Head"
-					if(BODY_ZONE_CHEST)
-						missinglimbs += "Chest"
-					if(BODY_ZONE_PRECISE_GROIN)
-						missinglimbs += "Groin"
-					if(BODY_ZONE_R_ARM)
-						missinglimbs += "Right arm"
-					if(BODY_ZONE_L_ARM)
-						missinglimbs += "Left arm"
-					if(BODY_ZONE_PRECISE_R_HAND)
-						missinglimbs += "Right hand"
-					if(BODY_ZONE_PRECISE_L_HAND)
-						missinglimbs += "Left hand"
-					if(BODY_ZONE_R_LEG)
-						missinglimbs += "Right leg"
-					if(BODY_ZONE_L_LEG)
-						missinglimbs += "Left leg"
-					if(BODY_ZONE_PRECISE_R_FOOT)
-						missinglimbs += "Right foot"
-					if(BODY_ZONE_PRECISE_L_FOOT)
-						missinglimbs += "Left foot"
-			else
-				continue
+			switch(x)
+				if(BODY_ZONE_HEAD)
+					missinglimbs += "Head"
+				if(BODY_ZONE_CHEST)
+					missinglimbs += "Chest"
+				if(BODY_ZONE_PRECISE_GROIN)
+					missinglimbs += "Groin"
+				if(BODY_ZONE_R_ARM)
+					missinglimbs += "Right arm"
+				if(BODY_ZONE_L_ARM)
+					missinglimbs += "Left arm"
+				if(BODY_ZONE_PRECISE_R_HAND)
+					missinglimbs += "Right hand"
+				if(BODY_ZONE_PRECISE_L_HAND)
+					missinglimbs += "Left hand"
+				if(BODY_ZONE_R_LEG)
+					missinglimbs += "Right leg"
+				if(BODY_ZONE_L_LEG)
+					missinglimbs += "Left leg"
+				if(BODY_ZONE_PRECISE_R_FOOT)
+					missinglimbs += "Right foot"
+				if(BODY_ZONE_PRECISE_L_FOOT)
+					missinglimbs += "Left foot"
 
 		var/breathes = TRUE
 		var/blooded = TRUE
@@ -325,7 +322,7 @@
 				data["occupant"]["missing_organs"] += list(list("name" = capitalize(missing)))
 			for(var/obj/item/bodypart/BP in currentlimbs)
 				data["occupant"]["limbs"] += list(list("name" = capitalize(BP.limb_name), "damage" = BP.get_damage(include_stamina = FALSE), "maxdamage" = BP.max_damage, "broken" = (BP.status_flags & BODYPART_BROKEN ? "[uppertext(BP.broken_description)], " : "NOT BROKEN, "), "bleeding" = (BP.internal_bleeding ? "INTERNAL BLEEDING" : "NO INTERNAL BLEEDING")))
-			for(var/obj/item/bodypart/missing in missinglimbs)
+			for(var/missing in missinglimbs)
 				data["occupant"]["missing_limbs"] += list(list("name" = capitalize(missing)))
 			if(mob_occupant.has_dna()) // Blood-stuff is mostly a copy-paste from the healthscanner.
 				blood_percent = round((C.blood_volume / BLOOD_VOLUME_NORMAL)*100)
