@@ -517,11 +517,6 @@
 			colors[blood_DNA[bloop]]++
 		else
 			colors[blood_DNA[bloop]] = 1
-	for(var/bloop in colors)
-		dna_to_color[bloop] = bloodtype_to_color(blood_DNA[bloop])
-		for(var/mob/living/carbon/C in GLOB.mob_living_list) //writing this makes me feel shame
-			if((C.dna.unique_enzymes == bloop) && C.dna.blood_color) //i should just use a global list for this
-				dna_to_color[bloop] = C.dna.blood_color
 
 	var/final_rgb = BLOOD_COLOR_HUMAN	//a default so we don't have white blood graphics if something messed up
 

@@ -68,8 +68,6 @@
 	exotic_bloodtype = "X*"
 	damage_overlay_type = "xeno"
 	liked_food = MEAT
-	//Skyrat change - blood
-	rainbowblood = TRUE
 
 //Praise the Omnissiah, A challange worthy of my skills - HS
 
