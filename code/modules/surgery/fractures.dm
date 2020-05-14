@@ -15,7 +15,7 @@
 		/datum/surgery_step/close
 		)
 
-//mend bone
+//set bone
 /datum/surgery_step/set_bone
 	name = "set bone"
 	implements = list(TOOL_SETTER = 100, TOOL_WIRECUTTER = 25)
@@ -36,6 +36,7 @@
 	display_results(user, target, "<span class='notice'>You screw up, stabbing the organs in [parse_zone(target_zone)] with sharp bone!</span>",
 		"[user] screws up, stabbing the organs in [parse_zone(target_zone)] with sharp bone!",
 		"[user] screws up, stabbing the organs in [parse_zone(target_zone)] with sharp bone!")
+	return FALSE
 
 /datum/surgery_step/set_bone/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
@@ -44,8 +45,9 @@
 	display_results(user, target, "<span class='notice'>You set [target]'s [isencased] in place.</span>",
 		"[user] sets [target]'s [isencased] in place.",
 		"[user]	sets [target]'s [isencased] in place.")
+	return TRUE
 
-//gel bone
+//mend bone
 /datum/surgery_step/mend_bone
 	name = "mend fractures"
 	implements = list(TOOL_GEL = 100, /obj/item/stack/medical/ointment = 50)
@@ -64,6 +66,7 @@
 	display_results(user, target, "<span class='notice'>You screw up, splashing all the organs in [parse_zone(target_zone)] with [tool]!</span>",
 		"[user] screws up, splashing all the organs in [parse_zone(target_zone)] with [tool]!",
 		"[user] screws up, splashing all the organs in [parse_zone(target_zone)] with [tool]!")
+	return FALSE
 
 /datum/surgery_step/mend_bone/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
@@ -71,3 +74,4 @@
 	display_results(user, target, "<span class='notice'>You mend the fractures in [target]'s [isencased].</span>",
 		"[user] mends the fractures in [target]'s [isencased].",
 		"[user] mends the fractures in [target]'s [isencased].")
+	return TRUE

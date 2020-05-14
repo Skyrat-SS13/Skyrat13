@@ -33,6 +33,7 @@
 	display_results(user, target, "<span class='notice'>You screw up, tearing even more veins in [parse_zone(target_zone)]!</span>",
 		"[user] screws up, tearing even more veins in [parse_zone(target_zone)]!",
 		"[user] screws up, tearing even more veins in [parse_zone(target_zone)]!")
+	return FALSE
 
 /datum/surgery_step/fix_bleeding/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
@@ -40,3 +41,4 @@
 	display_results(user, target, "<span class='notice'>You fix [target]'s [parse_zone(target_zone)] torn veins.</span>",
 		"[user] fixes [target]'s [parse_zone(target_zone)] torn veins.",
 		"[user]	fixes [target]'s [parse_zone(target_zone)] torn veins.")
+	return TRUE

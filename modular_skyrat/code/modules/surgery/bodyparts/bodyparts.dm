@@ -187,7 +187,7 @@
 			limb.icon_state = "[animal_origin]_[body_zone]"
 		return
 
-	if((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST))
+	if((body_zone != BODY_ZONE_HEAD) && (body_zone != BODY_ZONE_CHEST) && (body_zone != BODY_ZONE_PRECISE_GROIN))
 		should_draw_gender = FALSE
 
 	if(is_organic_limb() || render_like_organic)

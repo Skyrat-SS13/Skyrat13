@@ -216,13 +216,13 @@
 
 	//Internal organ damage
 	if(LAZYLEN(owner.getorganszone(body_zone))) //Runtime in bodyparts.dm,209: pick() from empty list
-		var/obj/item/organ/todamage = pick(owner.getorganszone(body_zone))
 		if(((brute_dam >= max_damage) || (brute >= LIMB_THRESH_INT_DMG)) && prob(LIMB_DMG_PROB))
-			todamage.applyOrganDamage(brute * 0.5) //Burn and stamina don't count toward organ damage.
-	if(status_flags & BODYPART_BROKEN && prob(50) && brute)
+			for(var/obj/item/organ/todamage in owner.getorganszone(body_zone))
+				todamage.applyOrganDamage(brute * 0.5)
+	if(status_flags & BODYPART_BROKEN && prob(40) && (brute || burn))
 		owner.emote("scream")	//getting hit on broken limb hurts
 	//taking damage to splinted limbs may remove the splints
-	if(status_flags & BODYPART_SPLINTED && prob((brute + burn)*2))
+	if((status_flags & BODYPART_SPLINTED) && prob(brute + burn))
 		status_flags |= ~BODYPART_SPLINTED
 		owner.visible_message("<span class='danger'>The splint on [owner]'s [limb_name] unravels!!</span>","<span class='userdanger'>The splint on your [limb_name] unravels!</span>")
 		owner.handle_splints()
@@ -241,11 +241,12 @@
 			// See if bones need to break
 			check_fracture(brute_dam)
 			//We've dealt the physical damages, if there's room lets apply the stamina damage.
-			var/current_damage = get_damage(TRUE)		//This time around, count stamina loss too.
-			var/available_damage = max_damage - current_damage
-			stamina_dam += round(clamp(stamina, 0, min(max_stamina_damage - stamina_dam, available_damage)), DAMAGE_PRECISION)
+			var/current_stamina_damage = stamina_dam
+			var/available_damage = max(max_stamina_damage - current_stamina_damage, 0)
+			stamina_dam += min(round(stamina, DAMAGE_PRECISION), round(available_damage, DAMAGE_PRECISION))
+			stamina = max(0, stamina - available_damage)
 
-			if(disabled && stamina > 10)
+			if(disabled && stamina_dam > 10)
 				incoming_stam_mult = max(0.01, incoming_stam_mult/(stamina*0.1))
 
 			if(owner && updating_health)
@@ -258,26 +259,27 @@
 		else
 			if(brute > 0)
 				//Inflict all brute damage we can
-				brute_dam = min(brute_dam + brute, brute_dam + can_inflict)
 				var/temp = can_inflict
-				//How much more damage can we inflict
-				can_inflict = max(0, can_inflict - brute)
-				//How much brute damage is left to inflict
-				brute = max(0, brute - temp)
+				brute_dam = min(brute_dam + brute, brute_dam + can_inflict)
 				// See if we apply for internal bleeding
 				check_for_internal_bleeding(brute)
 				// See if bones need to break
 				check_fracture(brute)
+				//How much more damage can we inflict
+				can_inflict = max(0, can_inflict - brute)
+				//How much brute damage is left to inflict
+				brute = max(0, brute - temp)
 			if(burn > 0 && can_inflict)
 				//Inflict all burn damage we can
 				burn_dam = min(burn_dam + burn, burn_dam + can_inflict)
 				//How much burn damage is left to inflict
 				burn = max(0, burn - can_inflict)
 			if(stamina > 0)
-				var/current_damage = get_damage(TRUE)
-				var/available_damage = max_damage - current_damage
-				stamina_dam += round(clamp(stamina, 0, min(max_stamina_damage - stamina_dam, available_damage)), DAMAGE_PRECISION)
-				if(disabled && stamina > 10)
+				var/current_stamina_damage = stamina_dam
+				var/available_damage = max(max_stamina_damage - current_stamina_damage, 0)
+				stamina_dam += min(round(stamina, DAMAGE_PRECISION), round(available_damage, DAMAGE_PRECISION))
+				stamina = max(0, stamina - available_damage)
+				if(disabled && stamina_dam > 10)
 					incoming_stam_mult = max(0.01, incoming_stam_mult/(stamina*0.1))
 
 				if(owner && updating_health)
@@ -291,27 +293,52 @@
 				var/list/obj/item/bodypart/possible_points = list()
 				if(parent_bodyzone)
 					if(owner.get_bodypart(parent_bodyzone))
-						possible_points += owner.get_bodypart(parent_bodyzone)
+						possible_points |= owner.get_bodypart(parent_bodyzone)
 				if(children_zones)
 					for(var/BP in children_zones)
 						if(owner.get_bodypart(BP))
-							possible_points += owner.get_bodypart(BP)
+							possible_points |= owner.get_bodypart(BP)
+				if(!possible_points.len)
+					switch(body_zone)
+						if(BODY_ZONE_HEAD)
+							possible_points |= BODY_ZONE_CHEST
+						if(BODY_ZONE_CHEST)
+							possible_points |= list(BODY_ZONE_R_ARM,\
+							BODY_ZONE_L_ARM,\
+							BODY_ZONE_R_LEG,\
+							BODY_ZONE_L_LEG,\
+							BODY_ZONE_PRECISE_GROIN,\
+							BODY_ZONE_HEAD)
+						if(BODY_ZONE_PRECISE_GROIN)
+							possible_points |= list(BODY_ZONE_R_LEG,\
+							BODY_ZONE_L_LEG,\
+							BODY_ZONE_CHEST)
+						else
+							possible_points |= children_zones
+							possible_points |= parent_bodyzone
 				if(forbidden_limbs.len)
 					possible_points -= forbidden_limbs
+				for(var/possibleloc in possible_points)
+					var/obj/item/bodypart/bpart = owner.get_bodypart(possibleloc)
+					if(bpart)
+						if(bpart.get_damage() >= bpart.max_damage)
+							possible_points -= possibleloc
+					else
+						possible_points -= possibleloc
 				if(possible_points.len)
 					//And pass the pain around
 					var/obj/item/bodypart/target = pick(possible_points)
 					if(target)
 						target.receive_damage(brute, burn, stamina, updating_health, forbidden_limbs + src, TRUE) //If the damage was reduced before, don't reduce it again
 
-				if(dismember_at_max_damage && body_zone != BODY_ZONE_CHEST && body_zone != BODY_ZONE_PRECISE_GROIN && body_zone != BODY_ZONE_HEAD) // We've ensured all damage to the mob is retained, now let's drop it, if necessary.
+				if(dismember_at_max_damage && body_zone != BODY_ZONE_CHEST && body_zone != BODY_ZONE_PRECISE_GROIN) // We've ensured all damage to the mob is retained, now let's drop it, if necessary.
 					src.dismember() //Gruesome!
 
 	var/mob/living/carbon/owner_old = owner //Need to update health, but need a reference in case the below check cuts off a limb.
 	//If limb took enough damage, try to cut or tear it off
 	if(owner && loc == owner)
 		if(can_dismember() && !HAS_TRAIT(owner, TRAIT_NODISMEMBER) && ((brute_dam + burn_dam) >= max_damage))
-			if(prob(brute_dam * 0.66))
+			if(prob(brute_dam * 0.5))
 				src.dismember()
 	if(owner_old)
 		owner_old.updatehealth()
@@ -370,15 +397,25 @@
 	return total
 
 //Checks disabled status thresholds
-/obj/item/bodypart/proc/update_disabled()
+/obj/item/bodypart/proc/update_disabled(var/upparent = TRUE, var/upchildren = TRUE)
 	set_disabled(is_disabled())
+	if(upparent)
+		if(parent_bodyzone)
+			var/obj/item/bodypart/BP = owner.get_bodypart(parent_bodyzone)
+			if(BP)
+				BP.update_disabled(FALSE, FALSE)
+	if(children_zones)
+		for(var/zoner in children_zones)
+			var/obj/item/bodypart/CBP = owner.get_bodypart(zoner)
+			if(CBP)
+				CBP.update_disabled(FALSE, FALSE)
 
 /obj/item/bodypart/proc/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS))
 		return BODYPART_DISABLED_PARALYSIS
 	if(can_dismember() && !HAS_TRAIT(owner, TRAIT_NODISMEMBER))
 		. = disabled //inertia, to avoid limbs healing 0.1 damage and being re-enabled
-		if(parent_bodyzone && !istype(src, /obj/item/bodypart/chest/groin))
+		if((parent_bodyzone != null) && !istype(src, /obj/item/bodypart/chest/groin))
 			if(!(owner.get_bodypart(parent_bodyzone)))
 				return BODYPART_DISABLED_DAMAGE
 			else
@@ -388,9 +425,11 @@
 		if(status_flags & BODYPART_BROKEN)
 			if(!(status_flags & BODYPART_SPLINTED))
 				return BODYPART_DISABLED_DAMAGE
-		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.8))) || ((status == BODYPART_ROBOTIC) && (get_damage(TRUE) >= (max_damage * roboticFunnyVariable)))) //Easy limb disable or being robotic disables the limb earlier
+		if((get_damage() >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage() >= (max_damage * 0.8))) || (((status == BODYPART_ROBOTIC) || synthetic) && (get_damage() >= (max_damage * roboticFunnyVariable)))) //Easy limb disable or being robotic disables the limb earlier
 			return BODYPART_DISABLED_DAMAGE
-		if(disabled && (get_damage(TRUE) < max_damage) && !(status_flags & BODYPART_BROKEN))
+		if(stamina_dam >= max_stamina_damage)
+			return BODYPART_DISABLED_DAMAGE
+		if(disabled && (get_damage() < max_damage) && (stamina_dam < max_stamina_damage) && !(status_flags & BODYPART_BROKEN))
 			return BODYPART_NOT_DISABLED
 	else
 		return BODYPART_NOT_DISABLED
@@ -407,7 +446,7 @@
 	return TRUE
 
 /obj/item/bodypart/proc/fracture()
-	if((status_flags & BODYPART_BROKEN) || cannot_break || (status == BODYPART_ROBOTIC))
+	if((status_flags & BODYPART_BROKEN) || cannot_break || (status == BODYPART_ROBOTIC) || synthetic)
 		return
 	if(owner)
 		owner.visible_message(\
@@ -448,7 +487,7 @@
 /obj/item/bodypart/proc/check_for_internal_bleeding(damage)
 	if(owner && (NOBLOOD in owner.dna.species.species_traits))
 		return
-	if(status == BODYPART_ROBOTIC)
+	if((status == BODYPART_ROBOTIC) || synthetic)
 		return
 	var/local_damage = brute_dam + damage
 	if(damage > 15 && local_damage > (min_broken_damage * 2) && prob(damage))
