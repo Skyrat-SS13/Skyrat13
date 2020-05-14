@@ -293,7 +293,7 @@
 				var/list/obj/item/bodypart/possible_points = list()
 				if(parent_bodyzone)
 					if(owner.get_bodypart(parent_bodyzone))
-						possible_points |= parent_bodyzone
+						possible_points |= owner.get_bodypart(parent_bodyzone)
 				if(children_zones)
 					for(var/BP in children_zones)
 						if(owner.get_bodypart(BP))
@@ -304,7 +304,7 @@
 							var/list/possibles = BODY_ZONE_CHEST
 							for(var/pepe in possibles)
 								if(owner.get_bodypart(pepe))
-									possible_points |= get_bodypart(pepe)
+									possible_points |= owner.get_bodypart(pepe)
 						if(BODY_ZONE_CHEST)
 							var/list/possibles = list(BODY_ZONE_R_ARM,\
 							BODY_ZONE_L_ARM,\
@@ -314,21 +314,21 @@
 							BODY_ZONE_HEAD)
 							for(var/pepe in possibles)
 								if(owner.get_bodypart(pepe))
-									possible_points |= get_bodypart(pepe)
+									possible_points |= owner.get_bodypart(pepe)
 						if(BODY_ZONE_PRECISE_GROIN)
 							var/list/possibles = list(BODY_ZONE_R_LEG,\
 							BODY_ZONE_L_LEG,\
 							BODY_ZONE_CHEST)
 							for(var/pepe in possibles)
 								if(owner.get_bodypart(pepe))
-									possible_points |= get_bodypart(pepe)
+									possible_points |= owner.get_bodypart(pepe)
 						else
 							var/list/possibles = list()
 							possibles |= children_zones
 							possibles |= parent_bodyzone
 							for(var/pepe in possibles)
 								if(owner.get_bodypart(pepe))
-									possible_points |= get_bodypart(pepe)
+									possible_points |= owner.get_bodypart(pepe)
 				if(forbidden_limbs.len)
 					possible_points -= forbidden_limbs
 				for(var/possibleloc in possible_points)
