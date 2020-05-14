@@ -230,6 +230,7 @@
 			to_chat(user,"<span class='warning'>You feel lightheaded after failing such an easy question...</span>")
 			LM.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
 		//If the calculator is emagged, add to the wrong counter and vibe check the user. The amount added to the counter depends on the difficulty.
+		//Wrong answers also heal all existing baldis in the world.
 		if(baldied)
 			switch(difficulty)
 				if("Easy")
@@ -256,7 +257,7 @@
 			say("Correct data received. Updating cargo manifests...")
 			say("Completed. [points_awarded] cargo points have been added to station balance.")
 			SSshuttle.points += points_awarded
-	//If emagged, a correct answer will deduct the appropriate amount of "wrongs"
+	//If emagged, a correct answer will deduct the appropriate amount of "wrongs" and harm all existing baldis
 	if(baldied)
 		switch(difficulty)
 			if("Easy")
@@ -268,8 +269,8 @@
 			if("Hard")
 				wrongcounter = max(wrongcounter - 3, 0)
 				wrongmultiplier = 3
-			for(var/mob/living/simple_animal/hostile/baldi/bald in GLOB.mob_living_list)
-				bald.adjustHealth(150 * wrongmultiplier, TRUE, TRUE)
+		for(var/mob/living/simple_animal/hostile/baldi/bald in GLOB.mob_living_list)
+			bald.adjustHealth(150 * wrongmultiplier, TRUE, TRUE)
 	playsound(src, 'sound/machines/chime.ogg', 30, 1)
 
 /obj/item/computermath/default
