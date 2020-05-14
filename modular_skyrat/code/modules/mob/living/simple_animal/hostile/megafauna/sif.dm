@@ -82,8 +82,11 @@ Difficulty: Medium
 	var/stageThree = FALSE
 	var/currentPower = 0 //Every few seconds this variable gets higher, when it gets high
 						 //enough it will use a special attack then reset the variable to 0w
-	song = sound('modular_skyrat/sound/ambience/furidanger802.ogg', 100) //Furi is awesome and you should play it, reader.
-	songlength = 2670
+	songs = ("2670" = sound(file = 'modular_skyrat/sound/ambience/furidanger802.ogg', repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENCE))
+	glorymessageshand = list("climbs atop the wolf's head as it dangles weakly near the ground, ripping its left eye off and jumping down before punching through it's cranium!", "goes around the wolf and rips off their tail, using it as whip on the fiend")
+	glorymessagescrusher = list("chops off the wolf's head by it's neck!")
+	glorymessagespka = list("shoots at the wolf's eyes with their PKA, exploding them into giblets!")
+	glorymessagespkabayonet = list("slides down below Sif, using their bayonet to rip it's stomach open!")
 
 /obj/item/gps/internal/sif
 	icon_state = null
