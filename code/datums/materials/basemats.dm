@@ -70,13 +70,15 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.05
 	armor_modifiers = list("melee" = 1.5, "bullet" = 1.4, "laser" = 0.5, "energy" = 0.5, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 1, "acid" = 1)
 
+/* SKYRAT CHANGE: Look, I know it's kinda snowflake but it was causing issues with literally any item made with uranium causing massive amounts of fucking memes.
 /datum/material/uranium/on_applied(atom/source, amount, material_flags)
 	. = ..()
-	source.AddComponent(/datum/component/radioactive, amount / 20, source, 0) //half-life of 0 because we keep on going.
+	source.AddComponent(/datum/component/radioactive, amount / 60, source, 0) //half-life of 0 because we keep on going.
 
 /datum/material/uranium/on_removed(atom/source, material_flags)
 	. = ..()
 	qdel(source.GetComponent(/datum/component/radioactive))
+*/
 
 
 ///Adds firestacks on hit (Still needs support to turn into gas on destruction)
