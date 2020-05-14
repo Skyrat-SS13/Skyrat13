@@ -3789,6 +3789,7 @@
 #include "modular_skyrat\code\modules\research\techweb\nodes\bluespace_nodes.dm"
 #include "modular_skyrat\code\modules\research\techweb\nodes\mecha_nodes.dm"
 #include "modular_skyrat\code\modules\research\techweb\nodes\misc_nodes.dm"
+#include "modular_skyrat\code\modules\research\techweb\nodes\quantum_nodes.dm"
 #include "modular_skyrat\code\modules\research\techweb\nodes\robotics_nodes.dm"
 #include "modular_skyrat\code\modules\research\techweb\nodes\syndicate_nodes.dm"
 #include "modular_skyrat\code\modules\research\xenoarch\artifact.dm"

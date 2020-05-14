@@ -145,8 +145,8 @@
 				/obj/item/stock_parts/cell/high = 1,
 				/obj/item/assembly/igniter = 1,
 				/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/stock_parts/micro_laser/high = 1,
-				/obj/item/stock_parts/capacitor/adv = 1)
+				/obj/item/stock_parts/micro_laser/t2 = 1,
+				/obj/item/stock_parts/capacitor/t2 = 1)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
 	time = 200
 	category = CAT_WEAPONRY
