@@ -29268,12 +29268,12 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bon" = (
+/obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/medical{
 	id_tag = "psy1";
-	name = "Patient Room";
-	req_access_txt = "5"
+	name = "Psychologist Office";
+	req_access_txt = "71"
 	},
-/obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "boo" = (
@@ -31294,6 +31294,7 @@
 "bsN" = (
 /obj/structure/chair/office/dark,
 /obj/machinery/holopad,
+/obj/effect/landmark/start/psychologist,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bsO" = (
@@ -31489,6 +31490,7 @@
 	normaldoorcontrol = 1;
 	pixel_x = 25;
 	pixel_y = -6;
+	req_access_txt = "71";
 	specialfunctions = 4
 	},
 /obj/machinery/button/door{
@@ -31496,7 +31498,7 @@
 	name = "Shutter button";
 	pixel_x = 25;
 	pixel_y = 6;
-	req_access_txt = "5"
+	req_access_txt = "71"
 	},
 /obj/machinery/requests_console{
 	department = "Medbay";
@@ -31929,7 +31931,7 @@
 	pixel_y = -24
 	},
 /obj/machinery/camera{
-	c_tag = "Genetics Research";
+	c_tag = "Psychologist Office";
 	dir = 1;
 	network = list("ss13","medbay")
 	},
