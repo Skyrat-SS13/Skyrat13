@@ -8,6 +8,7 @@
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
+	replaced_by = /datum/surgery
 	requires_bodypart_type = BODYPART_ROBOTIC
 	ignore_clothes = TRUE
 	var/healing_step_type
@@ -117,6 +118,7 @@
 	name = "Repair robotic limbs (basic)"
 	healing_step_type = /datum/surgery_step/robot_heal/basic
 	desc = "A surgical procedure that provides repairs and maintenance to robotic limbs. Is slightly more efficient when the patient is severely damaged."
+	replaced_by = null
 
 /***************************STEPS***************************/
 
