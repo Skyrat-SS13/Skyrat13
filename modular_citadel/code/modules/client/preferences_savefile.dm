@@ -27,6 +27,10 @@
 	if(!length(nonconpref)) nonconpref = "Ask"
 	vorepref = sanitize_text(S["vore_pref"], "Ask")
 	if(!length(vorepref)) vorepref = "Ask"
+	extremepref = sanitize_text(S["extremepref"], "No") //god has forsaken me
+	if(!length(extremepref)) extremepref = "No"
+	extremeharm = sanitize_text(S["extremeharm"], "No")
+	if(!length(extremeharm)) extremeharm = "No"
 	security_records = sanitize_text(S["security_records"])
 	medical_records = sanitize_text(S["medical_records"])
 	general_records = sanitize_text(S["general_records"])
@@ -74,6 +78,8 @@
 	WRITE_FILE(S["erp_pref"], erppref)
 	WRITE_FILE(S["noncon_pref"], nonconpref)
 	WRITE_FILE(S["vore_pref"], vorepref)
+	WRITE_FILE(S["extremepref"], extremepref)
+	WRITE_FILE(S["extremeharm"], extremeharm)
 	WRITE_FILE(S["security_records"], security_records)
 	WRITE_FILE(S["medical_records"], medical_records)
 	WRITE_FILE(S["general_records"], general_records)

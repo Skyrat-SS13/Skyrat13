@@ -24,11 +24,19 @@
 	var/require_user_anus
 	var/require_user_vagina
 	var/require_user_breasts
+	var/require_user_feet
 
 	var/require_target_penis
 	var/require_target_anus
 	var/require_target_vagina
 	var/require_target_breasts
+	//"just fucking kill me" variables
+	var/extreme
+	var/require_target_ears
+	var/require_target_earsockets
+	var/require_target_eyes
+	var/require_target_eyesockets
+	//
 
 	var/user_refractory_cost
 	var/target_refractory_cost
@@ -69,6 +77,19 @@
 			if(!silent)
 				to_chat(user, "<span class = 'warning'>You don't have breasts.</span>")
 			return FALSE
+		
+		if(require_user_feet && !user.get_num_legs())
+			if(!silent)
+				to_chat(user, "<span class = 'warning'>You have no feet.</span>")
+			return FALSE
+
+		if(extreme)
+			var/client/cli = user.client
+			if(cli)
+				if(cli.prefs.extremepref == "No")
+					if(!silent)
+						to_chat(user, "<span class = 'warning'>That's way too much for you.</span>")
+					return FALSE
 
 		if(require_ooc_consent)
 			if(user.client && user.client.prefs.toggles & VERB_CONSENT)
@@ -82,7 +103,47 @@
 			if(!silent) //same with this
 				to_chat(user, "<span class='warning'>They're still exhausted from the last time. They need to wait [DisplayTimeText(target.get_refraction_dif(), TRUE)] until you can do that!</span>")
 			return FALSE
+		//weird disgusting shit goes here
+		if(require_target_ears && (!target.has_ears() || target.get_item_by_slot(ITEM_SLOT_EARS)))
+			if(!silent)
+				if(!target.has_ears())
+					to_chat(user, "<span class = 'warning'>They have no ears.</span>")
+				else
+					to_chat(user, "<span class = 'warning'>Their ears are covered.</span>")
+			return FALSE
+		
+		if(require_target_eyes && (!target.has_eyes() || target.get_item_by_slot(ITEM_SLOT_EYES)))
+			if(!silent)
+				if(!target.has_eyes())
+					to_chat(user, "<span class = 'warning'>They have no eyes.</span>")
+				else
+					to_chat(user, "<span class = 'warning'>Their eyes are covered.</span>")
+			return FALSE
+		
+		if(require_target_earsockets && (target.has_ears() || target.get_item_by_slot(ITEM_SLOT_EARS)))
+			if(!silent)
+				if(target.has_ears())
+					to_chat(user, "<span class = 'warning'>They still have ears.</span>")
+				else
+					to_chat(user, "<span class = 'warning'>Their earsockets are covered.</span>")
+			return FALSE
+		
+		if(require_target_eyesockets && (target.has_eyes() || target.get_item_by_slot(ITEM_SLOT_EYES)))
+			if(!silent)
+				if(target.has_eyes())
+					to_chat(user, "<span class = 'warning'>They still have eyes.</span>")
+				else
+					to_chat(user, "<span class = 'warning'>Their eyesockets are covered.</span>")
+			return FALSE
 
+		if(extreme)
+			var/client/cli = target.client
+			if(cli)
+				if(target.client.prefs.extremepref == "No")
+					if(!silent)
+						to_chat(user, "<span class = 'warning'>For some reason, you don't want to do this to [target].</span>")
+					return FALSE
+		// honestly coding CBT mechanics would have given me less of a terrible time
 		if(require_target_bottomless && !target.is_bottomless())
 			if(!silent)
 				to_chat(user, "<span class = 'warning'>Their pants are in the way.</span>")
@@ -133,7 +194,7 @@
 
 /datum/interaction/lewd/get_action_link_for(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.stat == DEAD)
-		to_chat(user, "<span class='warning'>You cannot ERP as ghost!</span>")
+		to_chat(user, "<span class='warning'>You cannot while deceased!</span>")
 		return
 	return "<font color='#FF0000'><b>LEWD:</b></font> [..()]"
 
@@ -149,6 +210,21 @@
 		dat += "<br>...are acting rough."
 	else if(a_intent == INTENT_HARM)
 		dat += "<br>...are fighting anyone who comes near."
+	//Here comes the fucking weird shit.
+	if(client)
+		var/client/cli = client
+		if(cli.prefs.extremepref != "No")
+			if(!get_item_by_slot(ITEM_SLOT_EARS))
+				if(getorganslot(ORGAN_SLOT_EARS))
+					dat += "<br>...have unprotected ears."
+				else
+					dat += "<br>...have a hole where their ears should be."
+			if(!get_item_by_slot(ITEM_SLOT_EYES))
+				if(getorganslot(ORGAN_SLOT_EYES))
+					dat += "<br>...have exposed eyes."
+				else
+					dat += "<br>...have exposed eyesockets."
+	//
 	if(is_topless())
 		if(has_breasts())
 			dat += "<br>...have breasts."

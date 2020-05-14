@@ -4,6 +4,11 @@
 #define CUM_TARGET_ANUS "anus"
 #define CUM_TARGET_HAND "hand"
 #define CUM_TARGET_BREASTS "breasts"
+#define CUM_TARGET_FEET "feet"
+//Weird defines go here
+#define CUM_TARGET_EARS "ears"
+#define CUM_TARGET_EYES "eyes"
+//
 #define GRINDING_FACE_WITH_ANUS "faceanus"
 #define GRINDING_FACE_WITH_FEET "facefeet"
 #define GRINDING_MOUTH_WITH_FEET "mouthfeet"
@@ -96,6 +101,30 @@ mob/living/Initialize()
 		return FALSE
 	return TRUE
 
+/mob/living/proc/has_feet()
+	if(get_num_legs() < 1)
+		return FALSE
+	return TRUE
+
+//weird procs go here
+/mob/living/proc/has_ears()
+	if(!getorganslot(ORGAN_SLOT_EARS))
+		return FALSE
+	return TRUE
+
+/mob/living/proc/has_earsockets()
+	return !has_ears()
+
+/mob/living/proc/has_eyes()
+	if(!getorganslot(ORGAN_SLOT_EYES))
+		return FALSE
+	return TRUE
+
+/mob/living/proc/has_eyesockets()
+	return !has_eyes()
+//
+
+
 /mob/living/proc/is_topless()
 	if(istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = src
@@ -168,7 +197,7 @@ mob/living/Initialize()
 				else
 					message = "cums on \the [partner]."
 			if(CUM_TARGET_BREASTS)
-				if(partner.is_topless() && partner.has_vagina())
+				if(partner.is_topless() && partner.has_breasts())
 					message = "cums onto \the [partner]'s breasts."
 				else
 					message = "cums on \the [partner]'s chest and neck."
@@ -179,13 +208,34 @@ mob/living/Initialize()
 					message = "vigorously ruts their nutsack into \the [partner]'s mouth before shooting their thick, sticky jizz all over their eyes and hair."
 
 			if(THIGH_SMOTHERING)
-				if(src.has_penis())
+				if(src.has_penis()) //it already checks for the cock before, why the hell would you do this redundant shit
 
 					message = "keeps \the [partner] locked in their thighs as their cock throbs, dumping its heavy load all over their face."
 
 				else
 
 					message = "reaches their peak, locking their legs around \the [partner]'s head extra hard as they cum straight onto the head stuck between their thighs"
+			if(CUM_TARGET_FEET)
+				if(partner.has_feet())
+					message = "cums on \the [partner]'s feet."
+				else
+					message = "cums on the floor!"
+			//weird shit goes here
+			if(CUM_TARGET_EARS)
+				if(partner.has_ears())
+					message = "cums inside \the [partner]'s ear."
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
+				else
+					message = "cums inside \the [partner]'s earsocket."
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
+			if(CUM_TARGET_EYES)
+				if(partner.has_eyes())
+					message = "cums on \the [partner]'s eyeball."
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
+				else
+					message = "cums inside \the [partner]'s eyesocket."
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
+			//
 
 			else
 				message = "cums on the floor!"
@@ -844,12 +894,85 @@ mob/living/Initialize()
 	partner.dir = get_dir(src, partner)
 	do_fucking_animation(get_dir(src, partner))
 
-/mob/living/proc/get_shoes()
-	var/obj/A = get_item_by_slot(SLOT_SHOES)
-	if(findtext (A.name,"the"))
-		return copytext(A.name, 3, (length(A.name)) + 1)
+/mob/living/proc/do_footjob(mob/living/partner)
+	var/message
+
+	if(partner.is_fucking(src, CUM_TARGET_FEET))
+		message = "[pick("jerks \the [partner] off with their [get_shoes() ? get_shoes(TRUE) : "foot"].",
+			"rubs their [get_shoes() ? get_shoes() : "foot"] on \the [partner]'s shaft.",
+			"rubs their [get_shoes() ? get_shoes() : "toes"] on \the [partner]'s cock.",
+			"works their [get_shoes() ? get_shoes() : "foot"] up and down on \the [partner]'s cock.")]"
 	else
-		return A.name
+		message = "[pick("[get_shoes() ? "positions their [get_shoes(TRUE)] on" :"positions their foot on"] \the [partner]'s cock.",
+			"starts playing around with \the [partner]'s cock, using their [get_shoes() ? get_shoes(TRUE) :"foot"].")]"
+		partner.set_is_fucking(src, CUM_TARGET_FEET)
+
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/foot_dry1.ogg',
+						'modular_skyrat/sound/interactions/foot_dry3.ogg',
+						'modular_skyrat/sound/interactions/foot_wet1.ogg',
+						'modular_skyrat/sound/interactions/foot_wet2.ogg'), 70, 1, -1)
+	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	partner.handle_post_sex(NORMAL_LUST, CUM_TARGET_FEET, src)
+	partner.dir = get_dir(partner,src)
+	do_fucking_animation(get_dir(src, partner))
+
+/mob/living/proc/do_dfootjob(mob/living/partner)
+	var/message
+
+	if(partner.is_fucking(src, CUM_TARGET_FEET))
+		message = "[pick("jerks \the [partner] off with their [get_shoes() ? get_shoes() : (get_num_legs() == 2) ? "feet" : "foot"].",
+			"rubs their [get_shoes() ? get_shoes() : (get_num_legs() == 2) ? "feet" : "foot"] on \the [partner]'s shaft.",
+			"rubs their [get_shoes() ? get_shoes() : "toes"] on \the [partner]'s cock.",
+			"works up and down on \the [partner]'s cock.")]"
+	else
+		message = "[pick("[get_shoes() ? "wraps their [get_shoes()] around" : (get_num_legs() == 2) ? "wraps their feet around" : "positions their foot on"] \the [partner]'s cock.",
+			"starts playing around with \the [partner]'s cock, using their [get_shoes() ? get_shoes() : (get_num_legs() == 2) ? "feet" : "foot"].")]"
+		partner.set_is_fucking(src, CUM_TARGET_FEET)
+
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/foot_dry1.ogg',
+						'modular_skyrat/sound/interactions/foot_dry3.ogg',
+						'modular_skyrat/sound/interactions/foot_wet1.ogg',
+						'modular_skyrat/sound/interactions/foot_wet2.ogg'), 70, 1, -1)
+	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	partner.handle_post_sex(NORMAL_LUST, CUM_TARGET_FEET, src)
+	partner.dir = get_dir(partner,src)
+	do_fucking_animation(get_dir(src, partner))
+
+/mob/living/proc/do_footjob_v(mob/living/partner)
+	var/message
+
+	if(partner.is_fucking(src, CUM_TARGET_FEET))
+		message = "[pick("rubs \the [partner] clit with their [get_shoes() ? get_shoes(TRUE) : "foot"].",
+			"rubs their [get_shoes() ? get_shoes(TRUE) : "foot"] on \the [partner]'s coochie.",
+			"rubs their [get_shoes() ? get_shoes(TRUE) : "toes"] on \the [partner]'s vagina.",
+			"rubs their foot up and down on \the [partner]'s pussy.")]"
+	else
+		message = "[pick("[get_shoes() ? "positions their [get_shoes(TRUE)] on" : "positions their foot on"] \the [partner]'s c.",
+			"starts playing around with \the [partner]'s pussy, using their [get_shoes() ? get_shoes(TRUE) : (get_num_legs() == 2) ? "feet" : "foot"].")]"
+		partner.set_is_fucking(src, CUM_TARGET_FEET)
+
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/foot_dry1.ogg',
+						'modular_skyrat/sound/interactions/foot_dry3.ogg',
+						'modular_skyrat/sound/interactions/foot_wet1.ogg',
+						'modular_skyrat/sound/interactions/foot_wet2.ogg'), 70, 1, -1)
+	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	partner.handle_post_sex(NORMAL_LUST, CUM_TARGET_FEET, src)
+	partner.dir = get_dir(partner,src)
+	do_fucking_animation(get_dir(src, partner))
+
+/mob/living/proc/get_shoes(var/singular = FALSE)
+	var/obj/A = get_item_by_slot(SLOT_SHOES)
+	if(A)
+		var/txt = A.name
+		if(findtext (A.name,"the"))
+			txt = copytext(A.name, 3, (length(A.name)) + 1)
+			if(singular)
+				txt = copytext(A.name, 3, length(A.name))
+			return txt
+		else
+			if(singular)
+				txt = copytext(A.name, 0, length(A.name))
+			return txt
 
 /mob/living/proc/handle_post_sex(amount, orifice, mob/living/partner)
 	if(stat != CONSCIOUS)
@@ -865,3 +988,65 @@ mob/living/Initialize()
 			cum(partner, orifice)
 	else
 		moan()
+
+//Yep, weird shit goes down here.
+/mob/living/proc/do_eyefuck(mob/living/partner)
+	var/message
+
+	if(is_fucking(partner, CUM_TARGET_EYES))
+		message = "[pick(
+			"pounds into \the [partner]'s [has_eyes() ? "eye":"eyesocket"].",
+			"shoves their dick deep into \the [partner]'s skull",
+			"thrusts in and out of \the [partner]'s [has_eyes() ? "eye":"eyesocket"].",
+			"goes balls deep into \the [partner]'s cranium over and over again.")]"
+		var/client/cli = partner.client
+		var/mob/living/carbon/C = partner
+		if(cli && istype(C))
+			if(cli.prefs.extremeharm != "No")
+				if(prob(15))
+					C.bleed(2)
+				if(prob(25))
+					C.adjustOrganLoss(ORGAN_SLOT_EYES,rand(3,7))
+					C.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(3,7))
+	else
+		message = "forcefully slides their cock inbetween \the [partner]'s [has_eyes() ? "eyelid":"eyesocket"]."
+		set_is_fucking(partner, CUM_TARGET_EYES)
+
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/champ1.ogg',
+						'modular_skyrat/sound/interactions/champ2.ogg'), 50, 1, -1)
+	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	handle_post_sex(NORMAL_LUST, CUM_TARGET_EYES, partner)
+	partner.handle_post_sex(LOW_LUST, null, src)
+	partner.dir = get_dir(partner,src)
+	do_fucking_animation(get_dir(src, partner))
+
+/mob/living/proc/do_earfuck(mob/living/partner)
+	var/message
+
+	if(is_fucking(partner, CUM_TARGET_EARS))
+		message = "[pick(
+			"pounds into \the [partner]'s [has_eyes() ? "ear":"earsocker"].",
+			"shoves their dick deep into \the [partner]'s skull",
+			"thrusts in and out of \the [partner]'s [has_eyes() ? "ear":"eyesocket"].",
+			"goes balls deep into \the [partner]'s cranium over and over again.")]"
+		var/client/cli = partner.client
+		var/mob/living/carbon/C = partner
+		if(cli && istype(C))
+			if(cli.prefs.extremeharm != "No")
+				if(prob(15))
+					C.bleed(2)
+				if(prob(25))
+					C.adjustOrganLoss(ORGAN_SLOT_EARS, rand(3,7))
+					C.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(3,7))
+	else
+		message = "forcefully slides their cock inside \the [partner]'s [has_ears() ? "ear":"earsocket"]."
+		set_is_fucking(partner, CUM_TARGET_EARS)
+
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/champ1.ogg',
+						'modular_skyrat/sound/interactions/champ2.ogg'), 50, 1, -1)
+	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	handle_post_sex(NORMAL_LUST, CUM_TARGET_EARS, partner)
+	partner.handle_post_sex(LOW_LUST, null, src)
+	partner.dir = get_dir(partner,src)
+	do_fucking_animation(get_dir(src, partner))
+//

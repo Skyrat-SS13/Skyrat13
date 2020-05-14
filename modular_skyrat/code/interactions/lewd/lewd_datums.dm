@@ -318,6 +318,34 @@
 /datum/interaction/lewd/grindmouth/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.do_grindmouth(target)
 
+/datum/interaction/lewd/footjob
+	command = "footjob"
+	description = "Jerk them off with your foot... or footwear."
+	interaction_sound = null
+	require_user_feet = TRUE
+	require_target_penis = TRUE
+	target_not_tired = TRUE
+	require_target_bottomless = TRUE
+	max_distance = 1
+
+/datum/interaction/lewd/footjob/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.do_footjob(target)
+
+/datum/interaction/lewd/footjob/double
+	command = "double footjob"
+	description = "Jerk them off with your feet... or footwear."
+
+/datum/interaction/lewd/footjob/double/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.do_dfootjob(target)
+
+/datum/interaction/lewd/footjob/vagina
+	command = "vaginal footjob"
+	description = "Rub their vagina with your foot... or footwear."
+	require_target_vagina = TRUE
+	require_target_penis = FALSE
+
+/datum/interaction/lewd/footjob/vagina/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.do_footjob_v(target)
 
 /datum/interaction/lewd/thighs
 	command = "thigh_smother"
@@ -359,3 +387,59 @@
 	max_distance = 1
 	write_log_user = "slapped-nuts"
 	write_log_target = "had their nuts slapped by"
+
+//Weird shit section
+/datum/interaction/lewd/earfuck
+	command = "earfuck"
+	description = "Fuck their ear."
+	interaction_sound = null
+	simple_message = "USER penetrates TARGET's ear!"
+	require_user_penis = TRUE
+	require_target_ears = TRUE
+	max_distance = 1
+	write_log_user = "earfucked"
+	write_log_target = "had their ear fucked by"
+	extreme = TRUE
+
+/datum/interaction/lewd/earfuck/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.do_earfuck(target)
+
+/datum/interaction/lewd/earfuck/earsocketfuck
+	command = "earsocketfuck"
+	description = "Fuck their earsocket."
+	interaction_sound = null
+	simple_message = "USER penetrates TARGET's earsocket!"
+	require_user_penis = TRUE
+	require_target_earsockets = TRUE
+	max_distance = 1
+	write_log_user = "earsocket fucked"
+	write_log_target = "had their earsocket fucked by"
+	extreme = TRUE
+
+/datum/interaction/lewd/eyefuck
+	command = "eyefuck"
+	description = "Fuck their eye."
+	interaction_sound = null
+	simple_message = "USER penetrates TARGET's eye!"
+	require_user_penis = TRUE
+	require_target_eyes = TRUE
+	max_distance = 1
+	write_log_user = "eyefucked"
+	write_log_target = "had their eye fucked by"
+	extreme = TRUE
+
+/datum/interaction/lewd/eyefuck/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.do_eyefuck(target)
+
+/datum/interaction/lewd/eyefuck/eyesocketfuck
+	command = "eyesocketfuck"
+	description = "Fuck their eyesocket."
+	interaction_sound = null
+	simple_message = "USER penetrates TARGET's eyesocket!"
+	require_user_penis = TRUE
+	require_target_eyesockets = TRUE
+	max_distance = 1
+	write_log_user = "eyesocketfucked"
+	write_log_target = "had their eyesocket fucked by"
+	extreme = TRUE
+//
