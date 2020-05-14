@@ -269,6 +269,28 @@
 	subcategory = CAT_TOOL
 	category = CAT_MISC
 
+//Skyrat change start
+/datum/crafting_recipe/glassblower
+	name = "Glass working blow rod"
+	result = /obj/item/glasswork/blowing_rod
+	tools = list(/obj/item/weldingtool)
+	reqs = list(/obj/item/stack/rods = 10)
+	time = 20
+	subcategory = CAT_TOOL
+	category = CAT_MISC
+
+/datum/crafting_recipe/glasskit
+	name = "Glass working tools"
+	result = /obj/item/glasswork/glasskit
+	tools = list(/obj/item/weldingtool,
+				 /obj/item/wrench)
+	reqs = list(/obj/item/stack/sheet/metal = 20,
+				/obj/item/stack/sheet/mineral/wood  = 15)
+	time = 80
+	subcategory = CAT_TOOL
+	category = CAT_MISC
+//Skyrat change stop
+
 ////////////
 //Vehicles//
 ////////////
