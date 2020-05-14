@@ -16,5 +16,5 @@
 	light_range = 3
 	light_color = "#FFFF00"
 	light_power = 2
-	faction = list("mining", "neutral")
+	faction = list("neutral")
 	smallsprite = /datum/action/small_sprite/drake/akatosh
