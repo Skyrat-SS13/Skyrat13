@@ -13,23 +13,23 @@
 	display_name = "Applied Bluespace Research"
 	description = "Using bluespace to make things faster and better."
 	prereq_ids = list("bluespace_basic", "engineering")
-	design_ids = list("bs_rped","biobag_holding","minerbag_holding", "bluespacebeaker", "bluespacesyringe", "phasic_scanning", "bluespacesmartdart", "xenobio_slimebasic")
+	design_ids = list("bs_rped","biobag_holding","minerbag_holding", "bluespacebeaker", "bluespacesyringe", "bluespacesmartdart", "xenobio_slimebasic") //Skyrat Change
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 
 /datum/techweb_node/adv_bluespace
 	id = "adv_bluespace"
 	display_name = "Advanced Bluespace Research"
 	description = "Deeper understanding of how the Bluespace dimension works"
-	prereq_ids = list("practical_bluespace", "high_efficiency")
-	design_ids = list("bluespace_matter_bin", "femto_mani", "triphasic_scanning", "bluespace_crystal", "xenobio_slimeadv")
+	prereq_ids = list("practical_bluespace", "mega_efficiency")  //Skyrat Change
+	design_ids = list("laser_t5","matter_bin_t5", "manipulator_t5", "scanning_t5", "bluespace_crystal", "xenobio_slimeadv")  //Skyrat Change
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 
 /datum/techweb_node/bluespace_power
 	id = "bluespace_power"
 	display_name = "Bluespace Power Technology"
 	description = "Even more powerful.. power!"
-	prereq_ids = list("adv_power", "adv_bluespace")
-	design_ids = list("bluespace_cell", "quadratic_capacitor")
+	prereq_ids = list("adv_power", "adv_bluespace","mega_efficiency")  //Skyrat Change
+	design_ids = list("bluespace_cell", "capacitor_t5")  //Skyrat Change
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/bluespace_holding

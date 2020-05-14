@@ -35,26 +35,18 @@
 /////////////////////////EMP tech/////////////////////////
 /datum/techweb_node/emp_basic //EMP tech for some reason
 	id = "emp_basic"
-	display_name = "Electromagnetic Theory"
+	display_name = "Advanced Electromagnetic Theory" //Skyrat Change
 	description = "Study into usage of frequencies in the electromagnetic spectrum."
-	prereq_ids = list("base")
-	design_ids = list("holosign", "holosignsec", "holosignengi", "holosignatmos", "holosignfirelock", "inducer", "tray_goggles", "holopad")
+	prereq_ids = list("engineering") //Skyrat Change
+	design_ids = list("holosign", "holosignsec", "holosignengi", "holosignatmos", "holosignfirelock", "inducer", "tray_goggles", "holopad", "laser_t2") //Skyrat Change
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/emp_adv
 	id = "emp_adv"
-	display_name = "Advanced Electromagnetic Theory"
+	display_name = "Super Electromagnetic Theory" //Skyrat Change
 	description = "Determining whether reversing the polarity will actually help in a given situation."
 	prereq_ids = list("emp_basic")
-	design_ids = list("ultra_micro_laser")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
-
-/datum/techweb_node/emp_super
-	id = "emp_super"
-	display_name = "Quantum Electromagnetic Technology"	//bs
-	description = "Even better electromagnetic technology."
-	prereq_ids = list("emp_adv")
-	design_ids = list("quadultra_micro_laser")
+	design_ids = list("laser_t3") //Skyrat Change
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
 
 /////////////////////////Clown tech/////////////////////////

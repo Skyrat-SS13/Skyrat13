@@ -27,7 +27,7 @@
 /datum/design/capacitor_t1
 	name = "Basic Capacitor"
 	desc = "A stock part used in the construction of various devices."
-	id = "basic_capacitor"
+	id = "capacitor_t1"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 100)
 	build_path = /obj/item/stock_parts/capacitor
@@ -38,7 +38,7 @@
 /datum/design/capacitor_t2
 	name = "Advanced Capacitor"
 	desc = "A stock part used in the construction of various devices."
-	id = "adv_capacitor"
+	id = "capacitor_t2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 150, /datum/material/glass = 150)
 	build_path = /obj/item/stock_parts/capacitor/t2
@@ -49,7 +49,7 @@
 /datum/design/capacitor_t3
 	name = "Super Capacitor"
 	desc = "A stock part used in the construction of various devices."
-	id = "super_capacitor"
+	id = "capacitor_t3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/gold = 100)
 	build_path = /obj/item/stock_parts/capacitor/t3
@@ -58,12 +58,34 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/capacitor_t4
-	name = "Quadratic Capacitor"
+	name = "Mega Capacitor"
 	desc = "A stock part used in the construction of various devices."
-	id = "quadratic_capacitor"
+	id = "capacitor_t4"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/gold = 100, /datum/material/diamond = 100)
 	build_path = /obj/item/stock_parts/capacitor/t4
+	category = list("Stock Parts")
+	lathe_time_factor = 0.2
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/capacitor_t5
+	name = "Bluespace Capacitor"
+	desc = "A stock part used in the construction of various devices."
+	id = "capacitor_t5"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/gold = 100, /datum/material/diamond = 100, /datum/material/bluespace = 30 )
+	build_path = /obj/item/stock_parts/capacitor/t5
+	category = list("Stock Parts")
+	lathe_time_factor = 0.2
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/capacitor_t6
+	name = "Quantum Capacitor"
+	desc = "A stock part used in the construction of various devices."
+	id = "capacitor_t6"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/gold = 100, /datum/material/diamond = 200, /datum/material/bluespace = 100 )
+	build_path = /obj/item/stock_parts/capacitor/t6
 	category = list("Stock Parts")
 	lathe_time_factor = 0.2
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
@@ -72,7 +94,7 @@
 /datum/design/scanning_t1
 	name = "Basic Scanning Module"
 	desc = "A stock part used in the construction of various devices."
-	id = "basic_scanning"
+	id = "scanning_t1"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 50)
 	build_path = /obj/item/stock_parts/scanning_module
@@ -83,7 +105,7 @@
 /datum/design/scanning_t2
 	name = "Advanced Scanning Module"
 	desc = "A stock part used in the construction of various devices."
-	id = "adv_scanning"
+	id = "scanning_t2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 150, /datum/material/glass = 100)
 	build_path = /obj/item/stock_parts/scanning_module/t2
@@ -92,9 +114,9 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/scanning_t3
-	name = "Phasic Scanning Module"
+	name = "Super Scanning Module"
 	desc = "A stock part used in the construction of various devices."
-	id = "phasic_scanning"
+	id = "scanning_t3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 150, /datum/material/silver = 60)
 	build_path = /obj/item/stock_parts/scanning_module/t3
@@ -103,9 +125,9 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/scanning_t4
-	name = "Triphasic Scanning Module"
+	name = "Mega Scanning Module"
 	desc = "A stock part used in the construction of various devices."
-	id = "triphasic_scanning"
+	id = "scanning_t4"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/diamond = 30, /datum/material/bluespace = 30)
 	build_path = /obj/item/stock_parts/scanning_module/t4
@@ -113,11 +135,33 @@
 	lathe_time_factor = 0.2
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/scanning_t5
+	name = "Bluespace Scanning Module"
+	desc = "A stock part used in the construction of various devices."
+	id = "scanning_t5"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/diamond = 60, /datum/material/bluespace = 60)
+	build_path = /obj/item/stock_parts/scanning_module/t5
+	category = list("Stock Parts")
+	lathe_time_factor = 0.2
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/scanning_t6
+	name = "Quantum Scanning Module"
+	desc = "A stock part used in the construction of various devices."
+	id = "scanning_t6"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/diamond = 100, /datum/material/bluespace = 100)
+	build_path = /obj/item/stock_parts/scanning_module/t6
+	category = list("Stock Parts")
+	lathe_time_factor = 0.2
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
 //Maipulators
 /datum/design/manipulator_t1
-	name = "Micro Manipulator"
+	name = "Basic Manipulator"
 	desc = "A stock part used in the construction of various devices."
-	id = "micro_mani"
+	id = "manipulator_t1"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 100)
 	build_path = /obj/item/stock_parts/manipulator
@@ -126,9 +170,9 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/manipulator_t2
-	name = "Nano Manipulator"
+	name = "Advanced Manipulator"
 	desc = "A stock part used in the construction of various devices."
-	id = "nano_mani"
+	id = "manipulator_t2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 150)
 	build_path = /obj/item/stock_parts/manipulator/t2
@@ -137,9 +181,9 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/manipulator_t3
-	name = "Pico Manipulator"
+	name = "Super Manipulator"
 	desc = "A stock part used in the construction of various devices."
-	id = "pico_mani"
+	id = "manipulator_t3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200)
 	build_path = /obj/item/stock_parts/manipulator/t3
@@ -148,9 +192,9 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/manipulator_t4
-	name = "Femto Manipulator"
+	name = "Mega Manipulator"
 	desc = "A stock part used in the construction of various devices."
-	id = "femto_mani"
+	id = "manipulator_t4"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/diamond = 30, /datum/material/titanium = 30)
 	build_path = /obj/item/stock_parts/manipulator/t4
@@ -158,22 +202,45 @@
 	lathe_time_factor = 0.2
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/manipulator_t5
+	name = "Bluespace Manipulator"
+	desc = "A stock part used in the construction of various devices."
+	id = "manipulator_t5"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 200, /datum/material/diamond = 30, /datum/material/titanium = 30, /datum/material/bluespace = 30)
+	build_path = /obj/item/stock_parts/manipulator/t5
+	category = list("Stock Parts")
+	lathe_time_factor = 0.2
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/manipulator_t6
+	name = "Quantum Manipulator"
+	desc = "A stock part used in the construction of various devices."
+	id = "manipulator_t6"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 200, /datum/material/diamond = 60, /datum/material/titanium = 60, /datum/material/bluespace = 60)
+	build_path = /obj/item/stock_parts/manipulator/t6
+	category = list("Stock Parts")
+	lathe_time_factor = 0.2
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+
 //Micro-lasers
 /datum/design/micro_laser_t1
 	name = "Basic Micro-Laser"
 	desc = "A stock part used in the construction of various devices."
-	id = "basic_micro_laser"
+	id = "laser_t1"
 	build_type = PROTOLATHE | AUTOLATHE
-	materials = list(/datum/material/iron = 100, /datum/material/glass = 50)
+	materials = list(/datum/material/iron = 100, /datum/material/glass = 50, /datum/material/titanium = 60, )
 	build_path = /obj/item/stock_parts/micro_laser
 	category = list("Stock Parts","Machinery","initial")
 	lathe_time_factor = 0.2
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/micro_laser_t2
-	name = "High-Power Micro-Laser"
+	name = "Advanced Micro-Laser"
 	desc = "A stock part used in the construction of various devices."
-	id = "high_micro_laser"
+	id = "laser_t2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 150, /datum/material/glass = 100)
 	build_path = /obj/item/stock_parts/micro_laser/t2
@@ -182,9 +249,9 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/micro_laser_t3
-	name = "Ultra-High-Power Micro-Laser"
+	name = "Super Micro-Laser"
 	desc = "A stock part used in the construction of various devices."
-	id = "ultra_micro_laser"
+	id = "laser_t3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 150, /datum/material/uranium = 60)
 	build_path = /obj/item/stock_parts/micro_laser/t3
@@ -193,9 +260,9 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/micro_laser_t4
-	name = "Quad-Ultra Micro-Laser"
+	name = "Mega Micro-Laser"
 	desc = "A stock part used in the construction of various devices."
-	id = "quadultra_micro_laser"
+	id = "laser_t4"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/uranium = 100, /datum/material/diamond = 60)
 	build_path = /obj/item/stock_parts/micro_laser/t4
@@ -203,10 +270,33 @@
 	lathe_time_factor = 0.2
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/micro_laser_t5
+	name = "Bluespace Micro-Laser"
+	desc = "A stock part used in the construction of various devices."
+	id = "laser_t5"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/uranium = 100, /datum/material/diamond = 60, /datum/material/bluespace = 30)
+	build_path = /obj/item/stock_parts/micro_laser/t5
+	category = list("Stock Parts")
+	lathe_time_factor = 0.2
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/micro_laser_t6
+	name = "Quantum Micro-Laser"
+	desc = "A stock part used in the construction of various devices."
+	id = "laser_t6"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/uranium = 100, /datum/material/diamond = 120, /datum/material/bluespace = 60)
+	build_path = /obj/item/stock_parts/micro_laser/t6
+	category = list("Stock Parts")
+	lathe_time_factor = 0.2
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+//Matter bins
 /datum/design/matter_bin_t1
 	name = "Basic Matter Bin"
 	desc = "A stock part used in the construction of various devices."
-	id = "basic_matter_bin"
+	id = "matter_bin_t1"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 100)
 	build_path = /obj/item/stock_parts/matter_bin
@@ -217,7 +307,7 @@
 /datum/design/matter_bin_t2
 	name = "Advanced Matter Bin"
 	desc = "A stock part used in the construction of various devices."
-	id = "adv_matter_bin"
+	id = "matter_bin_t2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 150)
 	build_path = /obj/item/stock_parts/matter_bin/t2
@@ -228,7 +318,7 @@
 /datum/design/matter_bin_t3
 	name = "Super Matter Bin"
 	desc = "A stock part used in the construction of various devices."
-	id = "super_matter_bin"
+	id = "matter_bin_t3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200)
 	build_path = /obj/item/stock_parts/matter_bin/t3
@@ -237,12 +327,34 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/matter_bin_t4
+	name = "Mega Matter Bin"
+	desc = "A stock part used in the construction of various devices."
+	id = "matter_bin_t4"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 250, /datum/material/diamond = 100)
+	build_path = /obj/item/stock_parts/matter_bin/t4
+	category = list("Stock Parts")
+	lathe_time_factor = 0.2
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/matter_bin_t5
 	name = "Bluespace Matter Bin"
 	desc = "A stock part used in the construction of various devices."
-	id = "bluespace_matter_bin"
+	id = "matter_bin_t5"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 250, /datum/material/diamond = 100, /datum/material/bluespace = 100)
-	build_path = /obj/item/stock_parts/matter_bin/t4
+	build_path = /obj/item/stock_parts/matter_bin/t5
+	category = list("Stock Parts")
+	lathe_time_factor = 0.2
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/matter_bin_t6
+	name = "Quantum Matter Bin"
+	desc = "A stock part used in the construction of various devices."
+	id = "matter_bin_t6"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 250, /datum/material/diamond = 200, /datum/material/bluespace = 200)
+	build_path = /obj/item/stock_parts/matter_bin/t6
 	category = list("Stock Parts")
 	lathe_time_factor = 0.2
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
