@@ -302,7 +302,7 @@
 					//And pass the pain around
 					var/obj/item/bodypart/target = pick(possible_points)
 					if(target)
-						target.receive_damage(brute, burn, stamina, updating_health, forbidden_limbs + src, ignore_resists = TRUE) //If the damage was reduced before, don't reduce it again
+						target.receive_damage(brute, burn, stamina, updating_health, forbidden_limbs + src, TRUE) //If the damage was reduced before, don't reduce it again
 
 				if(dismember_at_max_damage && body_zone != BODY_ZONE_CHEST && body_zone != BODY_ZONE_PRECISE_GROIN && body_zone != BODY_ZONE_HEAD) // We've ensured all damage to the mob is retained, now let's drop it, if necessary.
 					src.dismember() //Gruesome!
