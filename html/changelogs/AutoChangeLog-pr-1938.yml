@@ -1,0 +1,4 @@
+author: "NotRanged"
+delete-after: True
+changes: 
+  - bugfix: "Computermath hard question now rounds, making it actually solveable. Also halved the points for cargo, for balance reasons."

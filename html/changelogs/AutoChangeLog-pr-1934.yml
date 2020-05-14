@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "changed all electroplating recipes to use high capacity power cells instead of Upgraded Power Cell+s, which are not craft-able, order-able, or lathe-able, and would require sabotage to acquire normally."

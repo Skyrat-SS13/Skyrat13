@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - refactor: "Skill bonuses/maluses such as starting job and mood sanity have been refactored into their own separate skill modifier datums."
+  - bugfix: "Fixed a few misplaced max() calls in skill datums. You should now be able to grind skills some more."

@@ -19,6 +19,8 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 	rainbowblood = TRUE
+	//
+	species_language_holder = /datum/language_holder/synthetic
 
 /datum/species/synth/military
 	name = "Military Synth"

@@ -20,12 +20,15 @@
 
 /datum/gear/trekmedscitos
 	name = "Fed uniform, medsci"
+	restricted_roles = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Virologist", "Paramedic", "Geneticist", "Research Director", "Scientist", "Roboticist")
 
 /datum/gear/trekengtos
 	name = "Fed uniform, ops"
+	restricted_roles = list("Chief Engineer", "Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Head of Security", "Brig Physician", "Blueshield", "Cargo Technician", "Shaft Miner", "Quartermaster")
 
 /datum/gear/trekfedutil
 	name = "Fed uniform, classic"
+	restricted_roles = NOCIV_ROLES // Accomodates for modular and forgotten roles.
 
 /datum/gear/trekfedtrainee
 	name = "Fed uniform, trainee/assistant"
@@ -34,5 +37,5 @@
 /datum/gear/trekfedservice
 	name = "Fed uniform, service"
 	path = /obj/item/clothing/under/trek/orvi/service
-	restricted_desc = "Service and Civilian, barring Lawyer"
-	restricted_roles = list("Head of Personnel", "Bartender", "Botanist", "Cook", "Curator", "Janitor", "Mime", "Clown")
+	restricted_roles = CIV_ROLES
+	restricted_desc = "Civilian and Service"
