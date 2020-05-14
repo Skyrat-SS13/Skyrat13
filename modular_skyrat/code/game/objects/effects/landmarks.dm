@@ -20,4 +20,4 @@
 
 /obj/effect/landmark/start/psychologist
 	name = "Psychologist"
-	icon_state = "Psychologist"
+	icon_state = "Medical Doctor"

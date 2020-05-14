@@ -67876,12 +67876,8 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/white/side,
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "cyO" = (
 /obj/machinery/disposal/bin,
@@ -67889,16 +67885,20 @@
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel/white/side,
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "cyP" = (
-/obj/machinery/vending/coffee,
 /obj/structure/sign/map/left{
 	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
 	icon_state = "map-left-MS";
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel/white/side,
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "cyQ" = (
 /obj/structure/sign/map/right{
@@ -67906,15 +67906,15 @@
 	icon_state = "map-right-MS";
 	pixel_y = 32
 	},
-/obj/machinery/vending/cola/random,
-/turf/open/floor/plasteel/white/side,
+/obj/structure/chair/sofa/right,
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "cyR" = (
-/obj/machinery/vending/cigarette,
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel/white/side,
+/obj/structure/chair/sofa/left,
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "cyT" = (
 /obj/structure/cable/yellow{
@@ -68385,18 +68385,12 @@
 	},
 /turf/open/floor/plating,
 /area/medical/medbay/aft)
-"czO" = (
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/medical/medbay/aft)
 "czP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "czQ" = (
 /obj/structure/disposalpipe/segment{
@@ -68405,20 +68399,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/medical/medbay/aft)
-"czR" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "czS" = (
 /obj/structure/disposalpipe/segment{
@@ -68427,22 +68408,20 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/item/cigbutt,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "czT" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/medical{
-	name = "Medbay Break Room";
-	req_access_txt = "5"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/airlock/medical{
+	id_tag = "psy1";
+	name = "Psychologist Office";
+	req_access_txt = "71"
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -69045,7 +69024,6 @@
 /turf/open/floor/plating,
 /area/science/test_area)
 "cAS" = (
-/obj/structure/chair/stool,
 /obj/item/radio/intercom{
 	broadcasting = 1;
 	frequency = 1485;
@@ -69053,47 +69031,62 @@
 	name = "Station Intercom (Medbay)";
 	pixel_x = -30
 	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "cAT" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "cAU" = (
-/obj/item/cigbutt,
 /obj/machinery/holopad,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "cAV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
 	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
+/obj/structure/chair/office/dark,
+/obj/effect/landmark/start/psychologist,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "cAW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-08"
 	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "cAX" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "psyshu";
+	name = "psy shutters"
 	},
 /turf/open/floor/plating,
 /area/medical/medbay/aft)
@@ -69502,51 +69495,67 @@
 /obj/machinery/newscaster{
 	pixel_y = -30
 	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 5
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
+/obj/structure/bookcase/random,
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "cBV" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = -30
 	},
-/obj/item/reagent_containers/spray/cleaner,
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
+/obj/structure/bookcase/random,
+/turf/open/floor/carpet,
 /area/medical/medbay/aft)
 "cBW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
 /obj/machinery/light/small,
+/obj/structure/table/wood,
+/obj/machinery/computer/med_data/laptop{
+	dir = 1;
+	pixel_y = 4
+	},
+/obj/machinery/button/door{
+	id = "psy1";
+	name = "Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = -6;
+	pixel_y = -25;
+	req_access_txt = "71";
+	specialfunctions = 4
+	},
+/obj/machinery/button/door{
+	id = "psyshu";
+	name = "Shutter button";
+	pixel_x = 6;
+	pixel_y = -25;
+	req_access_txt = "71"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
+"cBX" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/folder/white,
+/obj/item/pen,
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -29
 	},
-/obj/machinery/camera{
-	c_tag = "Medbay Break Room";
-	dir = 1;
-	network = list("ss13","medbay")
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
 	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
 	},
-/area/medical/medbay/aft)
-"cBX" = (
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "cBY" = (
 /obj/machinery/door/firedoor,
@@ -82078,13 +82087,23 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "diN" = (
-/obj/structure/chair/stool,
 /obj/structure/sign/poster/official/random{
 	pixel_y = -32
 	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
+/obj/structure/filingcabinet,
+/obj/machinery/camera{
+	c_tag = "Psychologist Office";
+	dir = 1;
+	network = list("ss13","medbay")
 	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "diP" = (
 /obj/structure/cable/yellow{
@@ -106657,7 +106676,7 @@ cwn
 cxd
 cxU
 cyN
-czO
+cAT
 cAS
 cBU
 cxU
@@ -107428,7 +107447,7 @@ cwp
 cxf
 cxU
 cyQ
-czR
+czS
 cAV
 cBW
 cxU
