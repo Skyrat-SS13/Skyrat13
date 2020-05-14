@@ -64,3 +64,6 @@
 
 	var/drunkenness = 0 //Overall drunkenness - check handle_alcohol() in life.dm for effects
 	var/tackling = FALSE //Whether or not we are tackling, this will prevent the knock into effects for carbons
+	//SKYRAT EDIT - borers
+	var/mob/living/simple_animal/borer/borer = null
+	//
