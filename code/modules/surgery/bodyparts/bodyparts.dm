@@ -255,6 +255,10 @@
 					owner.update_stamina()
 			consider_processing()
 			update_disabled()
+			if(status == BODYPART_ROBOTIC)
+				if(src.owner)
+					if((brute+burn)>3 && prob((20+brute+burn)))
+						do_sparks(3,FALSE,src.owner)
 			return update_bodypart_damage_state()
 		else
 			if(brute > 0)
@@ -286,8 +290,8 @@
 					owner.updatehealth()
 					if(stamina > DAMAGE_PRECISION)
 						owner.update_stamina()
-				consider_processing()
-				update_disabled()
+			consider_processing()
+			update_disabled()
 			if(burn || brute || stamina)
 				//List limbs we can pass it to
 				var/list/obj/item/bodypart/possible_points = list()
@@ -355,6 +359,11 @@
 				src.dismember()
 	if(owner_old)
 		owner_old.updatehealth()
+
+	if(status == BODYPART_ROBOTIC)
+		if(src.owner)
+			if((brute+burn)>3 && prob((20+brute+burn)))
+				do_sparks(3,FALSE,src.owner)
 
 	return update_bodypart_damage_state()
 
