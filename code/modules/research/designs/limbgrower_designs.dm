@@ -58,7 +58,7 @@
 	build_path = /obj/item/bodypart/r_leg
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
 
-/datum/design/rightleg
+/datum/design/rightfoot
 	name = "Right Foot"
 	id = "rightfoot"
 	build_type = LIMBGROWER
