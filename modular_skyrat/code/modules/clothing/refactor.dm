@@ -114,7 +114,6 @@
 	unique_reskin = null
 
 /obj/item/clothing/head/helmet/durathread
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 30, "energy" = 40, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50)
 	unique_reskin = null
 
 /obj/item/clothing/head/helmet/rus_helmet
@@ -133,9 +132,6 @@
 
 /obj/item/clothing/head/fedora/det_hat
 	armor = list("melee" = 25, "bullet" = 5, "laser" = 25, "energy" = 35, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50)
-
-/obj/item/clothing/head/beret/durathread
-	armor = list("melee" = 15, "bullet" = 5, "laser" = 15, "energy" = 25, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 5)
 
 /obj/item/clothing/head/HoS
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 60)
@@ -457,17 +453,17 @@
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/suit.dmi',
 	"Trench" = 'icons/mob/clothing/suit.dmi',
-	"Cloak" = 'modular_citadel/icons/mob/citadel/suit.dmi'
+	"Cloak" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	)
 	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/suit_digi.dmi',
 	"Trench" = 'icons/mob/clothing/suit_digi.dmi',
-	"Cloak" = 'modular_citadel/icons/mob/citadel/suit.dmi',
+	"Cloak" = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "hos",
 	"Trench" = "hostrench",
-	"Cloak" = "hostrench",
+	"Cloak" = "hoscloak"
 	)
 
 /obj/item/clothing/suit/armor/vest/capcarapace
@@ -523,7 +519,6 @@
 	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/durathread
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 30, "energy" = 40, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50)
 	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/russian
@@ -579,6 +574,14 @@
 	"HECU" = "hecu_uniform",
 	"Firestarter" = "firestarter_uniform",
 	"Gorka" = "gorka_uniform"
+	)
+	unique_desc = list(
+	"Default" = "A good classic - tactical red jumpsuit for officers complete with Nanotrasen belt buckle.",
+	"Tactical" = "A tactical black jumpsuit with Nanotrasen's security armband.",
+	"Sol Federation" = "A tactical light-blue jumpsuit complete with kneepads and an insignia of Sol Federation.",
+	"HECU" = "A snow-camofluaged t-shirt and pants, perfect fit for hunting down the free man.",
+	"Firestarter" = "A tactical jumpsuit with some rusty colors.",
+	"Gorka" = "A militaristic jumpsuit coming from Russian colonies, perfect for windy mountains and space alike."
 	)
 
 /obj/item/clothing/head/helmet/roman
@@ -656,6 +659,14 @@
 	"Deep Space Nine" = "trek_ds9_command",
 	"Enterprise" = "trek_ent_command"
 	)
+	unique_desc = list(
+	"Default" = "An uniform worn by command officers since 2420s.",
+	"The Original Series" = "An uniform worn by command officers in the mid 2260s.",
+	"The New Generation" = "An uniform worn by command officers. This one is from the mid 2360s.",
+	"Voyager" = "An uniform worn by command officers of the 2370s.",
+	"Deep Space Nine" = "An uniform worn by command officers of the 2380s.",
+	"Enterprise" = "An uniform worn by command officers of the 2140s."
+	)
 
 /obj/item/clothing/under/trek/engsec
 	name = "\improper Planetary Federation operations uniform"
@@ -695,6 +706,14 @@
 	"Voyager" = "trek_voy_engsec",
 	"Deep Space Nine" = "trek_ds9_engsec",
 	"Enterprise" = "trek_ent_engsec"
+	)
+	unique_desc = list(
+	"Default" = "An uniform worn by operations officers since 2420s.",
+	"The Original Series" = "An uniform worn by operations officers in the mid 2260s. You feel strangely vulnerable just seeing this...",
+	"The New Generation" = "An uniform worn by operations officers. This one is from the mid 2360s.",
+	"Voyager" = "An uniform worn by operations officers of the 2370s.",
+	"Deep Space Nine" = "An uniform worn by operations officers of the 2380s.",
+	"Enterprise" = "An uniform worn by operations officers of the 2140s."
 	)
 
 /obj/item/clothing/under/trek/medsci
@@ -736,6 +755,14 @@
 	"Deep Space Nine" = "trek_ds9_medsci",
 	"Enterprise" = "trek_ent_medsci"
 	)
+	unique_desc = list(
+	"Default" = "An uniform worn by medsci officers since 2420s.",
+	"The Original Series" = "An uniform worn by medsci officers in the mid 2260s.",
+	"The New Generation" = "An uniform worn by medsci officers. This one is from the mid 2360s.",
+	"Voyager" = "An uniform worn by medsci officers of the 2370s.",
+	"Deep Space Nine" = "An uniform worn by medsci officers of the 2380s.",
+	"Enterprise" = "An uniform worn by medsci officers of the 2140s."
+	)
 
 // Bonus for assistants and service.
 /obj/item/clothing/under/trek/orvi
@@ -762,6 +789,14 @@
 	"Default" = "orv_ass",
 	"The Motion Picture (The Original Series)" = "trek_tmp_trainee"
 	)
+	unique_name = list(
+	"Default" = "federation assistant uniform",
+	"The Motion Picture (The Original Series)" = "federation trainee uniform"
+	)
+	unique_desc = list(
+	"Default" = "An uniform worn by cadet-assistants since 2550s.",
+	"The Motion Picture (The Original Series)" = "An uniform worn by enlisted trainees in 2285s."
+	)
 
 /obj/item/clothing/under/trek/orvi/service
 	name = "\improper Planetary Federation service uniform"
@@ -783,6 +818,14 @@
 	unique_reskin = list(
 	"Default" = "orv_srv",
 	"The Motion Picture (The Original Series)" = "trek_tmp_service"
+	)
+	unique_name = list(
+	"Default" = "federation service uniform",
+	"The Motion Picture (The Original Series)" = "federation service uniform"
+	)
+	unique_desc = list(
+	"Default" = "An uniform worn by service officers since 2550s.",
+	"The Motion Picture (The Original Series)" = "An uniform worn by enlists for service work in 2285s."
 	)
 
 // Changes name/desc to the jackets, makes modern/non-classic jacket to have same list of allowed suit-storage items as classic one.
@@ -853,3 +896,19 @@
 	"Low Security" = "prisoner_lowsec_skirt",
 	"Protective Custody" = "prisoner_protcust_skirt"
 	)
+
+//durathread buff
+/obj/item/clothing/head/beanie/durathread
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/head/helmet/durathread
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/suit/armor/vest/durathread
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/suit/hooded/wintercoat/durathread
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/head/hooded/winterhood/durathread
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
