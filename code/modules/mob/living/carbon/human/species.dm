@@ -107,7 +107,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	/// Our default override for typing indicator state
 	var/typing_indicator_state
 	//Skyrat snowflake
-	var/icon_eyes = 'icons/mob/human_face.dmi'
 	var/list/bloodtypes = list() //If a race has more than one possible bloodtype, set it here. If you input a non-existant (in game terms) blood type i am going to smack you.
 	var/list/bloodreagents = list() //If a race has more than one possible blood reagent, set it here. Note: Do not use the datums themselves, use their names.
 	var/rainbowblood = FALSE //Set to true if this race can have blood colors different from the default one.
@@ -307,7 +306,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
 		C.dna.blood_type = exotic_bloodtype
-	
+
 	if(C.client)
 		var/client/cli = C.client
 		if(rainbowblood && cli.prefs.bloodcolor)
