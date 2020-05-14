@@ -229,7 +229,6 @@
 			L.GiveTarget(target)
 
 //blood drunk miner
-
 /obj/item/borg/upgrade/modkit/lifesteal/miner
 	name = "resonant lifesteal crystal"
 	desc = "Causes kinetic accelerator shots to heal the firer on striking a living target."
@@ -287,6 +286,21 @@
 	P.preparePixelProjectile(target, src)
 	P.fire()
 
+//gladiator
+/obj/item/borg/upgrade/modkit/shielding
+	name = "shielding modification kit"
+	desc = "Makes your kinetic accelerator block <b>15%</b> of all attacks while held."
+	modifier = 15
+	cost = 30
+
+/obj/item/borg/upgrade/modkit/shielding/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
+	. = ..()
+	KA.block_chance += modifier
+
+/obj/item/borg/upgrade/modkit/shielding/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, forcemove)
+	. = ..()
+	KA.block_chance -= modifier
+
 //10mm modkit (currently broken, only the 10mm pka works)
 /obj/item/gun/energy/kinetic_accelerator/tenmm
 	desc = "A self recharging, ranged mining tool that does increased damage in low pressure. This one feels a bit heavier than usual."
@@ -340,3 +354,16 @@
 			M.projectile_strike_predamage(src, target_turf, target, kinetic_gun)
 		for(var/obj/item/borg/upgrade/modkit/M in mods)
 			M.projectile_strike(src, target_turf, target, kinetic_gun)
+
+//sif
+/obj/item/borg/upgrade/modkit/critical
+	name = "critical modification kit"
+	desc = "Makes your kinetic accelerator have a <b>10%</b> chance to critically wound your target."
+	modifier = 10
+	cost = 30
+
+/obj/item/borg/upgrade/modkit/critical/modify_projectile(obj/item/projectile/kinetic/K)
+	. = ..()
+	if(prob(modifier))
+		K.damage *= 2
+		K.name = "critical [K.name]"

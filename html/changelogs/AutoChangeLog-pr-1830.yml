@@ -1,5 +1,0 @@
-author: "Kathrin Morrison / Floof Ball"
-delete-after: True
-changes: 
-  - tweak: "Chess piece sprites improved to be easier to see on all backgrounds."
-  - tweak: "Padded floor sprite improved to fit better with other TG codebase floor sprites."

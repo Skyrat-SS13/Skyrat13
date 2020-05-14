@@ -1,0 +1,7 @@
+author: "Anonymous"
+delete-after: True
+changes: 
+  - rscadd: "Clear gasmask is now available through loadout for three points."
+  - code_imp: "Adds defines into loadout system of generic role sets for easier restriction handling. It also adds a `NOPRISON_ROLES` to limit certain items from Prisoners, 'til proper blacklist is implemented."
+  - rscdel: "Speaking of, Prisoners may no longer get crowbars and general modification kits from loadout."
+  - tweak: "Loadout: Tweaks restrictions to some items. Really lazy to count them all."
