@@ -25645,7 +25645,7 @@
 	name = "psy shutters"
 	},
 /turf/open/floor/plating,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "biW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/spawner/structure/window/reinforced,
@@ -25654,10 +25654,10 @@
 	name = "psy shutters"
 	},
 /turf/open/floor/plating,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "biX" = (
 /turf/closed/wall,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "biY" = (
 /turf/closed/wall,
 /area/medical/morgue)
@@ -25873,7 +25873,7 @@
 "bjP" = (
 /obj/structure/chair/sofa/right,
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "bjQ" = (
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/zone3)
@@ -25885,7 +25885,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "bjS" = (
 /obj/machinery/airalarm/unlocked{
 	pixel_y = 23
@@ -26313,16 +26313,22 @@
 	icon_state = "0-2";
 	pixel_y = 1
 	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/open/floor/plasteel/freezer,
 /area/storage/emergency/port)
 "bla" = (
 /obj/machinery/door/airlock/medical{
 	id_tag = "psy1";
-	name = "Psychologist Office";
+	name = "Psychology Office";
 	req_access_txt = "71"
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "blb" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -26333,7 +26339,7 @@
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "blc" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
@@ -26342,7 +26348,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "bld" = (
 /obj/structure/bodycontainer/morgue,
 /turf/open/floor/plasteel/dark,
@@ -26960,8 +26966,13 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable{
+	icon_state = "0-2";
+	pixel_y = 1
+	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "bml" = (
 /obj/structure/filingcabinet,
 /obj/machinery/camera{
@@ -26977,14 +26988,14 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "bmn" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
 /obj/machinery/holopad,
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "bmp" = (
 /obj/structure/bodycontainer/morgue,
 /obj/machinery/light/small{
@@ -27428,7 +27439,7 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "bny" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/firealarm{
@@ -27437,7 +27448,7 @@
 	},
 /obj/structure/bookcase/random,
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "bnz" = (
 /obj/structure/table,
 /obj/item/folder/white,
@@ -27875,11 +27886,11 @@
 "boA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "boB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "boC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel/dark,
@@ -52572,7 +52583,7 @@
 /area/maintenance/department/science)
 "cEa" = (
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "cEZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -53774,7 +53785,6 @@
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
 "eIw" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -53782,8 +53792,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/psychologist,
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "eIL" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -56258,7 +56269,7 @@
 	dir = 9
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "iJi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
@@ -57519,8 +57530,11 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "kTj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/stripes/line{
@@ -58103,7 +58117,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "lWy" = (
 /turf/open/floor/plating,
 /area/maintenance/department/science)
@@ -58686,7 +58700,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/bookcase/random,
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "mSY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -59710,7 +59724,7 @@
 	icon_state = "plant-08"
 	},
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "oDP" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -61538,7 +61552,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "rwZ" = (
 /obj/structure/table,
 /obj/structure/cable{
@@ -63148,11 +63162,11 @@
 "uAu" = (
 /obj/machinery/door/airlock/medical{
 	id_tag = "psy1";
-	name = "Psychologist Office";
+	name = "Psychology Office";
 	req_access_txt = "71"
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "uAU" = (
 /obj/structure/table/wood,
 /obj/item/folder/blue,
@@ -64576,7 +64590,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/chair/sofa/left,
 /turf/open/floor/carpet,
-/area/medical/medbay/zone3)
+/area/medical/psych)
 "wUz" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plating{
