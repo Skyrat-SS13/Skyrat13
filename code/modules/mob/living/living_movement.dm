@@ -2,7 +2,7 @@
 	. = ..()
 	update_turf_movespeed(loc)
 	//Hide typing indicator if we move.
-	clear_typing_indicator()
+	//clear_typing_indicator() //Skyrat edit
 	if(is_shifted)
 		is_shifted = FALSE
 		pixel_x = get_standard_pixel_x_offset(lying)

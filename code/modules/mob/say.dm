@@ -20,16 +20,14 @@
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
-<<<<<<< HEAD
 	//SKYRAT EDIT
 	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
 		set_typing_indicator(FALSE)
 	//END OF SKYRAT EDIT
 	if(message)
 		say(message)
-=======
-	clear_typing_indicator()		// clear it immediately!
-	say(message)
+	//clear_typing_indicator()		// clear it immediately! //SKYRAT EDIT
+	//say(message)	//SKYRAT EDIT
 
 /mob/verb/me_typing_indicator()
 	set name = "me_indicator"
@@ -53,10 +51,13 @@
 		return
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
-	clear_typing_indicator()		// clear it immediately!
+	//SKYRAT EDIT
+	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
+		set_typing_indicator(FALSE)
+	//END OF SKYRAT EDIT
+	//clear_typing_indicator()		// clear it immediately! //Skyrat edit
 
 	usr.emote("me",1,message,TRUE)
->>>>>>> 2dedf0d6b6... Merge pull request #12015 from kevinz000/typing_indicators
 
 /mob/say_mod(input, message_mode)
 	var/customsayverb = findtext(input, "*")
@@ -79,24 +80,6 @@
 /mob/proc/whisper(message, datum/language/language=null)
 	say(message, language) //only living mobs actually whisper, everything else just talks
 
-<<<<<<< HEAD
-/mob/verb/me_verb(message as message)
-	set name = "Me"
-	set category = "IC"
-
-	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
-		return
-
-	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
-	//SKYRAT EDIT
-	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
-		set_typing_indicator(FALSE)
-	//END OF SKYRAT EDIT
-	usr.emote("me",1,message,TRUE)
-
-=======
->>>>>>> 2dedf0d6b6... Merge pull request #12015 from kevinz000/typing_indicators
 /mob/proc/say_dead(var/message)
 	var/name = real_name
 	var/alt_name = ""
