@@ -112,7 +112,7 @@
 	display_name = "Advanced Surgery"
 	description = "When simple medicine doesn't cut it."
 	prereq_ids = list("imp_wt_surgery")
-	design_ids = list("surgery_revival", "surgery_lobotomy", "surgery_heal_brute_upgrade_femto","surgery_heal_burn_upgrade_femto", "surgery_heal_combo", "surgery_toxinhealing", "organbox", "surgery_adv_dissection")
+	design_ids = list("surgery_revival", "surgery_lobotomy", "surgery_heal_brute_upgrade_femto","surgery_heal_burn_upgrade_femto", "surgery_heal_combo", "surgery_toxinhealing", "organbox", "surgery_adv_dissection", "bonesetter", "bonegel", "fixovein")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/exp_surgery
