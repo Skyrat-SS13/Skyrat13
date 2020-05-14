@@ -1,3 +1,11 @@
+//Hydraulic clamps
+//clamp change so clarke dont get the clam p
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/can_attach(obj/mecha/working/ripley/M as obj)
+	if(..())
+		if(istype(M) && !istype(M, /obj/mecha/working/ripley/clarke))
+			return 1
+	return 0
+
 //the buzz's hydraulic clamp
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/buzz
 	name = "titanium alloy hydraulic clamp"
