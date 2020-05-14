@@ -3,7 +3,7 @@
 #define MATH_REWARD_HARD  5
 
 #define MATH_MULTIPLIER_SCIENCE  1000 // If science points and cargo points need to be balanced seperately
-#define MATH_MULTIPLIER_CARGO  1000 // Difficulty reward gets multiplied by these
+#define MATH_MULTIPLIER_CARGO  500 // Difficulty reward gets multiplied by these
 
 /obj/item/computermath
 	icon = 'modular_skyrat/icons/obj/computermath.dmi'
@@ -167,14 +167,14 @@
 			var/solution2
 			if(discriminant >= 0) // positive gives 2 solutions, if D=0 then sol1=sol2 anyway
 				// Quadratic formula
-				solution1 = (-num_b+sqrt(discriminant))/(2*num_a)
-				solution2 = (-num_b-sqrt(discriminant))/(2*num_a)
+				solution1 = round((-num_b+sqrt(discriminant))/(2*num_a))
+				solution2 = round((-num_b-sqrt(discriminant))/(2*num_a))
 			else
 				solution1 = 0
 				solution2 = 0
 
 			// Answering part
-			var/question = "[num_a]x^2 + [num_b]x + [num_c] = 0. Solve for x, give any real solution. Fill in 0 for no real solutions."
+			var/question = "[num_a]x^2 + [num_b]x + [num_c] = 0. Solve for x, give any real solution. Fill in 0 for no real solutions. Answers are rounded down. (-0.25 becomes -1)"
 			var/answer = input(user, question, "Math Problem") as null|num
 			if(!answer) // User hit the cancel button
 				return
