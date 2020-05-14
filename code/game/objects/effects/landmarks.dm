@@ -156,12 +156,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Paramedic"
 	icon_state = "Paramedic"
 
-//skyrat change start
-/obj/effect/landmark/start/psychologist
-	name = "Psychologist"
-	icon_state = "Psychologist"
-//skyrat change stop
-
 /obj/effect/landmark/start/scientist
 	name = "Scientist"
 	icon_state = "Scientist"

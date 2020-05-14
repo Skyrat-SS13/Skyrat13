@@ -153,3 +153,21 @@
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+
+//Skyrat changes start    // All WIP aaaa
+/obj/item/clothing/under/rank/medical/psychologist
+	name = "psychologist's suit"
+	desc = "A profesional looking suit, fitting of a psychologist."
+	icon_state = "red_suit"   // Temp
+	item_state = "red_suit"	  // Temp
+	can_adjust = FALSE
+
+/obj/item/clothing/under/rank/medical/psychologist/skirt
+	name = "psychologist's suitskirt"
+	desc = "A profesional looking suitskirt, fitting of a psychologist."
+	icon_state = "red_suit_skirt"  // Temp
+	item_state = "red_suit"        // Temp
+	body_parts_covered = CHEST|GROIN|ARMS
+	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+//Skyrat changes stop

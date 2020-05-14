@@ -3412,7 +3412,6 @@
 #include "modular_citadel\interface\skin.dmf"
 #include "modular_skyrat\code\_DEFINES\access.dm"
 #include "modular_skyrat\code\_DEFINES\DNA.dm"
-#include "modular_skyrat\code\_DEFINES\jobs.dm"
 #include "modular_skyrat\code\_DEFINES\machines.dm"
 #include "modular_skyrat\code\_DEFINES\status_effects.dm"
 #include "modular_skyrat\code\_DEFINES\traits.dm"

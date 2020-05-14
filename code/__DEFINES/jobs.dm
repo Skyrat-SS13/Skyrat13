@@ -12,6 +12,8 @@
 #define ROBOTICIST		(1<<8)
 #define AI_JF			(1<<9)
 #define CYBORG			(1<<10)
+#define BLUESHIELD		(1<<11) //Skyrat change
+#define PRISONER		(1<<12) //Skyrat change
 
 
 #define MEDSCI			(1<<1)
@@ -25,6 +27,7 @@
 #define VIROLOGIST		(1<<6)
 #define PARAMEDIC		(1<<7)
 #define PSYCHOLOGIST    (1<<8) //Skyrat change
+#define BRIG_PHYSICIAN	(1<<9) //Skyrat change
 
 
 #define CIVILIAN		(1<<2)
@@ -92,3 +95,7 @@
 #define JOB_DISPLAY_ORDER_WARDEN 32
 #define JOB_DISPLAY_ORDER_DETECTIVE 33
 #define JOB_DISPLAY_ORDER_SECURITY_OFFICER 34
+#define JOB_DISPLAY_ORDER_BRIG_PHYSICIAN 35
+#define JOB_DISPLAY_ORDER_BLUESHIELD 36
+#define JOB_DISPLAY_ORDER_PRISONER 37
+//Skyrat change stop

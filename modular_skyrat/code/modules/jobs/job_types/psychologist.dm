@@ -13,8 +13,8 @@
 
 	outfit = /datum/outfit/job/psychologist
 
-	access = list(ACCESS_MEDICAL, ACCESS_PSYCHOLOGY,, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_MEDICAL, ACCESS_PSYCHOLOGY, ACCESS_MORGUE, ACCESS_CLONING, ACCESS_MINERAL_STOREROOM)
+	access = list(ACCESS_MEDICAL, ACCESS_PSYCHOLOGY, ACCESS_SURGERY, ACCESS_MORGUE, ACCESS_CLONING, ACCESS_MINERAL_STOREROOM)
+	minimal_access = list(ACCESS_MEDICAL, ACCESS_PSYCHOLOGY, ACCESS_CLONING, ACCESS_MINERAL_STOREROOM)
 
 	display_order = JOB_DISPLAY_ORDER_PSYCHOLOGIST
 	threat = 0.35
@@ -28,13 +28,14 @@
 
 	belt = /obj/item/pda/psychologist
 	ears = /obj/item/radio/headset/headset_med
-	uniform = /obj/item/clothing/under/rank/medical/doctor   // Temp, need sprites
-	shoes = /obj/item/clothing/shoes/sneakers/brown           // temp?
-	//suit =  /obj/item/clothing/suit/toggle/labcoat
+	uniform = /obj/item/clothing/under/rank/medical/psychologist
+	shoes = /obj/item/clothing/shoes/sneakers/brown
+	r_pocket = /obj/item/pen/fountain
+	//suit = 
 	suit_store = /obj/item/flashlight/pen
 
-	backpack = /obj/item/storage/backpack/medic
-	satchel = /obj/item/storage/backpack/satchel/leather 
-	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	backpack = /obj/item/storage/backpack    //Temp?
+	satchel = /obj/item/storage/backpack/satchel/leather //Temp?
+	duffelbag = /obj/item/storage/backpack/duffelbag
 
-	backpack_contents = list(/obj/item/toy/plush/random, /obj/item/pen/fountain)
+	backpack_contents = list(/obj/item/toy/plush/slimeplushie)
