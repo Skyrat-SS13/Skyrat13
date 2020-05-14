@@ -238,3 +238,10 @@
 	name = "geneticist PDA"
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-genetics"
+
+//Skyrat change start
+/obj/item/pda/psychologist
+	name = "psychologist PDA"
+	default_cartridge = /obj/item/cartridge/medical
+	icon_state = "pda-cargo"   //Should probably get something for this
+//Skyrat change stop
