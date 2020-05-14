@@ -131,6 +131,11 @@
 /mob/proc/hivecheck()
 	return 0
 
+//skyrat change start
+/mob/proc/terror_spider_check()
+	return FALSE
+
+//skyrat change stop
 /mob/proc/lingcheck()
 	return LINGHIVE_NONE
 

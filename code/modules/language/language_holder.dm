@@ -232,6 +232,17 @@ Key procs
 	spoken_languages = list(/datum/language/xenocommon = list(LANGUAGE_ATOM))
 	blocked_languages = list(/datum/language/common = list(LANGUAGE_ATOM))
 
+//skyrat change start
+/datum/language_holder/terror_spider
+	understood_languages = list(/datum/language/terrorspider = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/terrorspider = list(LANGUAGE_ATOM))
+
+/datum/language_holder/terror_spider_high
+	understood_languages = list(/datum/language/terrorspider = list(LANGUAGE_ATOM),
+								/datum/language/common = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/terrorspider = list(LANGUAGE_ATOM))
+
+//skyrat change stop
 /datum/language_holder/clockmob
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/ratvar = list(LANGUAGE_ATOM))

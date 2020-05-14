@@ -88,6 +88,26 @@
 	high_population_requirement = 15
 	property_weights = list("chaos" = 1, "valid" = 1)
 
+//skyrat change start
+//////////////////////////////////////////////
+//                                          //
+//               TERROR SPIDERS             //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/event/terror_spider
+	name = "Terror Spiders"
+	config_tag = "spiders"
+	typepath = /datum/round_event/terror_spider
+	enemy_roles = list("AI","Security Officer","Head of Security","Captain")
+	required_enemies = list(2,2,1,1,0,0,0,0,0,0)
+	weight = 5
+	cost = 10
+	requirements = list(70,60,50,50,40,40,40,30,20,15)
+	high_population_requirement = 15
+	property_weights = list("chaos" = 1, "valid" = 1)
+	
+//skyrat change stop
 //////////////////////////////////////////////
 //                                          //
 //              CLOGGED VENTS               //
