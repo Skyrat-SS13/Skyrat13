@@ -388,9 +388,9 @@
 		if(status_flags & BODYPART_BROKEN)
 			if(!(status_flags & BODYPART_SPLINTED))
 				return BODYPART_DISABLED_DAMAGE
-		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.8))) || (status == BODYPART_ROBOTIC && (get_damage(TRUE) >= (max_damage * roboticFunnyVariable)))) //Easy limb disable or being robotic disables the limb earlier
+		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.8))) || ((status == BODYPART_ROBOTIC) && (get_damage(TRUE) >= (max_damage * roboticFunnyVariable)))) //Easy limb disable or being robotic disables the limb earlier
 			return BODYPART_DISABLED_DAMAGE
-		if(disabled && (get_damage(TRUE) <= max_damage) && !(status_flags & BODYPART_BROKEN))
+		if(disabled && (get_damage(TRUE) < max_damage) && !(status_flags & BODYPART_BROKEN))
 			return BODYPART_NOT_DISABLED
 	else
 		return BODYPART_NOT_DISABLED
@@ -407,7 +407,7 @@
 	return TRUE
 
 /obj/item/bodypart/proc/fracture()
-	if((status_flags & BODYPART_BROKEN) || cannot_break)
+	if((status_flags & BODYPART_BROKEN) || cannot_break || (status == BODYPART_ROBOTIC))
 		return
 	if(owner)
 		owner.visible_message(\
