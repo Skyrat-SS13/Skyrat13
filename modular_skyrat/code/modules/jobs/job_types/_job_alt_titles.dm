@@ -12,7 +12,7 @@
 /datum/job/cook
 	alt_titles = list("Cook", "Culinary Artist", "Butcher")
 
-/datum/job/botanist
+/datum/job/hydro
 	alt_titles = list("Gardener", "Herbalist", "Botanical Researcher")
 
 /datum/job/curator
