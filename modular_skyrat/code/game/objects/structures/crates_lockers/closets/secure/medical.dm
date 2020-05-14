@@ -14,3 +14,4 @@
 	new /obj/item/clothing/under/rank/medical/psychologist(src)
 	new /obj/item/clothing/under/rank/medical/psychologist/skirt(src)
 	new /obj/item/storage/briefcase(src)
+	new /obj/item/toy/plush/mammal/fox (src)
