@@ -1,6 +1,0 @@
-author: "Commandersand"
-delete-after: True
-changes: 
-  - balance: "upped blob win condition by 150"
-  - balance: "attack cost down to 1 resource from 2"
-  - balance: "blob starting resources 100 from 60"
