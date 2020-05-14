@@ -24067,7 +24067,7 @@
 	req_access_txt = "5"
 	},
 /turf/open/floor/plating,
-/area/maintenance/port)
+/area/medical/storage)
 "aWp" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
@@ -45121,7 +45121,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/white,
-/area/maintenance/port)
+/area/medical/storage)
 "bMW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -67763,7 +67763,7 @@
 	icon_state = "1-2"
 	},
 /turf/closed/wall,
-/area/maintenance/port)
+/area/medical/storage)
 "whZ" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8

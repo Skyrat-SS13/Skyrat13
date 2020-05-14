@@ -25645,7 +25645,7 @@
 	name = "psy shutters"
 	},
 /turf/open/floor/plating,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "biW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/spawner/structure/window/reinforced,
@@ -25654,11 +25654,10 @@
 	name = "psy shutters"
 	},
 /turf/open/floor/plating,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "biX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "biY" = (
 /turf/closed/wall,
 /area/medical/morgue)
@@ -25863,22 +25862,18 @@
 /turf/closed/wall,
 /area/storage/emergency/port)
 "bjN" = (
-/obj/machinery/door/window/southleft{
-	name = "Medbay Delivery";
-	req_access_txt = "28"
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/medical/glass{
+	name = "Cloning";
+	req_one_access_txt = "5;9"
 	},
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=2";
-	dir = 4;
-	freq = 1400;
-	location = "Medbay"
-	},
-/turf/open/floor/plating,
+/obj/effect/mapping_helpers/airlock/unres,
+/turf/open/floor/plasteel/freezer,
 /area/storage/emergency/port)
 "bjP" = (
 /obj/structure/chair/sofa/right,
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "bjQ" = (
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/zone3)
@@ -25890,7 +25885,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "bjS" = (
 /obj/machinery/airalarm/unlocked{
 	pixel_y = 23
@@ -26327,7 +26322,7 @@
 	req_access_txt = "71"
 	},
 /turf/open/floor/plating,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "blb" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -26338,7 +26333,7 @@
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "blc" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
@@ -26347,7 +26342,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "bld" = (
 /obj/structure/bodycontainer/morgue,
 /turf/open/floor/plasteel/dark,
@@ -26966,7 +26961,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "bml" = (
 /obj/structure/filingcabinet,
 /obj/machinery/camera{
@@ -26982,14 +26977,14 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "bmn" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
 /obj/machinery/holopad,
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "bmp" = (
 /obj/structure/bodycontainer/morgue,
 /obj/machinery/light/small{
@@ -27414,17 +27409,13 @@
 /area/medical/genetics)
 "bnw" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/medical/glass{
-	name = "Cloning";
-	req_one_access_txt = "5;9"
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/mapping_helpers/airlock/unres,
-/turf/open/floor/plasteel/freezer,
+/obj/structure/plasticflaps/opaque,
+/turf/open/floor/plating,
 /area/storage/emergency/port)
 "bnx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -27437,7 +27428,7 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "bny" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/firealarm{
@@ -27446,7 +27437,7 @@
 	},
 /obj/structure/bookcase/random,
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "bnz" = (
 /obj/structure/table,
 /obj/item/folder/white,
@@ -27823,6 +27814,10 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/structure/window/reinforced{
+	dir = 4;
+	layer = 2.9
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "box" = (
@@ -27839,6 +27834,16 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/machinery/door/window/southleft{
+	name = "Medbay Delivery";
+	req_access_txt = "28"
+	},
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=2";
+	dir = 4;
+	freq = 1400;
+	location = "Medbay"
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "boy" = (
@@ -27848,6 +27853,9 @@
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -52564,7 +52572,7 @@
 /area/maintenance/department/science)
 "cEa" = (
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "cEZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -53775,7 +53783,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "eIL" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -56250,7 +56258,7 @@
 	dir = 9
 	},
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "iJi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
@@ -57512,7 +57520,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "kTj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/stripes/line{
@@ -58095,7 +58103,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "lWy" = (
 /turf/open/floor/plating,
 /area/maintenance/department/science)
@@ -58678,7 +58686,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/bookcase/random,
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "mSY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -59702,7 +59710,7 @@
 	icon_state = "plant-08"
 	},
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "oDP" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -61530,7 +61538,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "rwZ" = (
 /obj/structure/table,
 /obj/structure/cable{
@@ -64568,7 +64576,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/chair/sofa/left,
 /turf/open/floor/carpet,
-/area/storage/emergency/port)
+/area/medical/medbay/zone3)
 "wUz" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plating{
@@ -90082,11 +90090,11 @@ bgg
 bhc
 aAL
 big
-aAN
-bjL
+biX
+biX
 bla
-bjL
-bjL
+biX
+biX
 boy
 bpB
 bqY
@@ -90339,11 +90347,11 @@ bgh
 aJI
 aDZ
 aHN
-aAN
+biX
 bmk
 kSO
 eIw
-bjL
+biX
 boz
 bpB
 bqZ
@@ -90596,11 +90604,11 @@ bgi
 aJI
 aDZ
 aHN
-bjL
+biX
 rvH
 blb
 bml
-bjL
+biX
 bnv
 bpC
 bra
@@ -91367,7 +91375,7 @@ bdm
 bhd
 aBI
 bii
-biX
+boB
 bjR
 blc
 mSz
@@ -91625,7 +91633,7 @@ aJI
 aDZ
 bij
 biY
-aPE
+biY
 biY
 biY
 biY
