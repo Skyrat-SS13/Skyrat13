@@ -43,6 +43,11 @@
 	exploitable_info = sanitize_text(S["exploitable_info"])
 	enable_personal_chat_color	= sanitize_integer(enable_personal_chat_color, 0, 1, initial(enable_personal_chat_color))
 	personal_chat_color	= sanitize_hexcolor(personal_chat_color, 6, 1, "#FFFFFF")
+
+	//Moves over the previous OOC notes to our ooc notes
+	if(length(features["ooc_notes"]) > length(skyrat_ooc_notes))
+		skyrat_ooc_notes = features["ooc_notes"]
+		features["ooc_notes"] = ""
 	//END OF SKYRAT CHANGES
 	//gear loadout
 	var/text_to_load
