@@ -34,8 +34,8 @@
 	//suit = 
 	suit_store = /obj/item/flashlight/pen
 
-	backpack = /obj/item/storage/backpack    //Temp?
-	satchel = /obj/item/storage/backpack/satchel/leather //Temp?
+	backpack = /obj/item/storage/backpack
+	satchel = /obj/item/storage/backpack/satchel/leather
 	duffelbag = /obj/item/storage/backpack/duffelbag
 
 	backpack_contents = list(/obj/item/toy/plush/slimeplushie)

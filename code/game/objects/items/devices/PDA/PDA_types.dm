@@ -243,5 +243,5 @@
 /obj/item/pda/psychologist
 	name = "psychologist PDA"
 	default_cartridge = /obj/item/cartridge/medical
-	icon_state = "pda-cargo"   //Should probably get something for this
+	icon_state = "pda-chemistry"					 //No custom sprite atm
 //Skyrat change stop
