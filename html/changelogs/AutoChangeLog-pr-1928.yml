@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscdel: "removed aphrodisiacs from booze dispenser emag results"
+  - tweak: "moved some booze from the soda dispenser to the booze dispenser on emag, moved iron to the soda dispenser"
