@@ -17,15 +17,12 @@
 	var/ventcrawl_chance = 30 // 30% every process(), assuming 33% wander does not trigger
 	var/immediate_ventcrawl = TRUE
 	var/list/enemies = list()
-	var/spider_awaymission = FALSE
 	var/frustration = 0
 	var/debug_ai_choices = FALSE
 
-/obj/structure/spider/spiderling/terror_spiderling/New()
-	..()
+/obj/structure/spider/spiderling/terror_spiderling/Initialize()
+	. = ..()
 	GLOB.ts_spiderling_list += src
-	if(is_away_level(z))
-		spider_awaymission = TRUE
 
 /obj/structure/spider/spiderling/terror_spiderling/Destroy()
 	GLOB.ts_spiderling_list -= src
@@ -159,8 +156,6 @@
 	if(isturf(loc))
 		amount_grown += rand(0,2)
 		if(amount_grown >= 100)
-			if(spider_awaymission && !is_away_level(z))
-				stillborn = TRUE
 			if(stillborn)
 				if(amount_grown >= 300)
 					// Fake spiderlings stick around for awhile, just to be spooky.
@@ -204,8 +199,8 @@
 	var/spiderling_number = 1
 	var/list/enemies = list()
 
-/obj/structure/spider/eggcluster/terror_eggcluster/New()
-	..()
+/obj/structure/spider/eggcluster/terror_eggcluster/Initialize()
+	. = ..()
 	GLOB.ts_egg_list += src
 	spawn(50)
 		if(spiderling_type == /mob/living/simple_animal/hostile/poison/terror_spider/red)

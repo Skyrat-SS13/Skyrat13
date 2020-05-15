@@ -16,7 +16,7 @@
 	health = 1000
 	melee_damage_lower = 30
 	melee_damage_upper = 60
-	ventcrawler = 1
+	ventcrawler = TRUE
 	idle_ventcrawl_chance = 0
 	ai_playercontrol_allowtype = 0
 	rapid = 3
@@ -33,8 +33,8 @@
 	var/datum/action/innate/terrorspider/queen/empress/empresserase/empresserase_action
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 
-/mob/living/simple_animal/hostile/poison/terror_spider/queen/empress/New()
-	..()
+/mob/living/simple_animal/hostile/poison/terror_spider/queen/empress/Initialize()
+	. = ..()
 	empresserase_action = new()
 	empresserase_action.Grant(src)
 
@@ -81,7 +81,7 @@
 /mob/living/simple_animal/hostile/poison/terror_spider/queen/empress/QueenFakeLings()
 	var/numlings = input("How many?") as null|anything in list(10, 20, 30, 40, 50)
 	var/sbpc = input("%chance to be stillborn?") as null|anything in list(0, 25, 50, 75, 100)
-	for(var/i=0, i<numlings, i++)
+	for(var/i in 0 to numlings)
 		var/obj/structure/spider/spiderling/terror_spiderling/S = new /obj/structure/spider/spiderling/terror_spiderling(get_turf(src))
 		S.grow_as = pick(/mob/living/simple_animal/hostile/poison/terror_spider/red, \
 		/mob/living/simple_animal/hostile/poison/terror_spider/gray, \
@@ -98,7 +98,7 @@
 /mob/living/simple_animal/hostile/poison/terror_spider/queen/empress/proc/EraseBrood()
 	for(var/mob/living/simple_animal/hostile/poison/terror_spider/T in GLOB.ts_spiderlist)
 		if(T.spider_tier < spider_tier)
-			T.degenerate = 1
+			T.degenerate = TRUE
 			to_chat(T, "<span class='userdanger'>Through the hivemind, the raw power of [src] floods into your body, burning it from the inside out!</span>")
 	for(var/obj/structure/spider/eggcluster/terror_eggcluster/T in GLOB.ts_egg_list)
 		qdel(T)

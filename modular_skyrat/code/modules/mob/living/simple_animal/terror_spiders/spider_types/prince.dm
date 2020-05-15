@@ -21,7 +21,7 @@
 	regen_points_per_hp = 6 // double the normal - IE halved regen speed
 	melee_damage_lower = 30
 	melee_damage_upper = 40
-	ventcrawler = 0
+	ventcrawler = TRUE
 	ai_ventcrawls = FALSE
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
 	idle_ventcrawl_chance = 0
@@ -29,11 +29,6 @@
 	spider_opens_doors = 2
 	web_type = /obj/structure/spider/terrorweb/purple
 	ai_spins_webs = FALSE
-
-/mob/living/simple_animal/hostile/poison/terror_spider/prince/death(gibbed)
-	if(!(stat == DEAD || (status_flags & GODMODE)) && !hasdied && spider_uo71)
-		UnlockBlastDoors("UO71_SciStorage")
-	return ..()
 
 /mob/living/simple_animal/hostile/poison/terror_spider/prince/spider_specialattack(mob/living/carbon/human/L)
 	if(prob(15))

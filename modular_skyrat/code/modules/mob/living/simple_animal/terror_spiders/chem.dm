@@ -1,6 +1,4 @@
-
 // Terror Spider, Black, Deadly Venom
-
 /datum/reagent/terror_black_toxin
 	name = "Black Terror venom"
 	description = "An incredibly toxic venom injected by the Black Widow spider."

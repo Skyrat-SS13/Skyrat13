@@ -1,6 +1,5 @@
 GLOBAL_LIST_EMPTY(ts_ckey_blacklist)
 GLOBAL_VAR_INIT(ts_count_dead, 0)
-GLOBAL_VAR_INIT(ts_count_alive_awaymission, 0)
 GLOBAL_VAR_INIT(ts_count_alive_station, 0)
 GLOBAL_VAR_INIT(ts_death_last, 0)
 GLOBAL_VAR_INIT(ts_death_window, 9000) // 15 minutes
@@ -17,6 +16,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	// Name / Description
 	name = "terror spider"
 	desc = "The generic parent of all other terror spider types. If you see this in-game, it is a bug."
+	faction = list(ROLE_TERROR_SPIDER)
 
 	// Icons
 	icon = 'icons/mob/terrorspider.dmi'
@@ -53,7 +53,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	// '2' converts to 4.5, or 2.2 tiles/sec.
 
 	// Ventcrawling
-	ventcrawler = 1 // allows player ventcrawling
+	ventcrawler = TRUE // allows player ventcrawling
 	var/ai_ventcrawls = TRUE
 	var/idle_ventcrawl_chance = 15
 	var/freq_ventcrawl_combat = 1800 // 3 minutes
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	// desired: 20hp/minute unmolested, 40hp/min on food boost, assuming one tick every 2 seconds
 	//          90/kill means bonus 30hp/kill regenerated over the next 1-2 minutes
 
-	var/degenerate = 0 // if 1, they slowly degen until they all die off. Used by high-level abilities only.
+	var/degenerate = FALSE // if TRUE, they slowly degen until they all die off. Used by high-level abilities only.
 
 	// Vision
 	vision_range = 10
@@ -117,9 +117,6 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 
 	var/spider_opens_doors = 1 // all spiders can open firedoors (they have no security). 1 = can open depowered doors. 2 = can open powered doors
 	faction = list("terrorspiders")
-	var/spider_awaymission = 0 // if 1, limits certain behavior in away missions
-	var/spider_uo71 = 0 // if 1, spider is in the UO71 away mission
-	var/spider_unlock_id_tag = "" // if defined, unlock awaymission blast doors with this tag on death
 	var/spider_role_summary = "UNDEFINED"
 	var/spider_placed = 0
 
@@ -135,7 +132,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	var/killcount = 0
 	var/busy = 0 // leave this alone!
 	var/spider_tier = TS_TIER_1 // 1 for red,gray,green. 2 for purple,black,white, 3 for prince, mother. 4 for queen
-	var/hasdied = 0
+	var/hasdied = FALSE
 	var/list/spider_special_drops = list()
 	var/attackstep = 0
 	var/attackcycles = 0
@@ -206,11 +203,11 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 			G.attack_animal(src)
 			return
 		else if(G.reagents && (iscarbon(G)))
-			var/can_poison = 1
+			var/can_poison = TRUE
 			if(ishuman(G))
 				var/mob/living/carbon/human/H = G
 				if(!(H.dna.species.reagent_flags & PROCESS_ORGANIC) || (!H.physiology.tox_mod))
-					can_poison = 0
+					can_poison = FALSE
 			spider_specialattack(G,can_poison)
 		else
 			G.attack_animal(src)
@@ -263,13 +260,9 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	name += " ([rand(1, 1000)])"
 	real_name = name
 	msg_terrorspiders("[src] has grown in [get_area(src)].")
-	if(is_away_level(z))
-		spider_awaymission = 1
-		GLOB.ts_count_alive_awaymission++
-		if(spider_tier >= 3)
-			ai_ventcrawls = FALSE // means that pre-spawned bosses on away maps won't ventcrawl. Necessary to keep prince/mother in one place.
-	else
-		GLOB.ts_count_alive_station++
+
+	GLOB.ts_count_alive_station++
+
 	// after 3 seconds, assuming nobody took control of it yet, offer it to ghosts.
 	addtimer(CALLBACK(src, .proc/CheckFaction), 20)
 	addtimer(CALLBACK(src, .proc/announcetoghosts), 30)
@@ -277,8 +270,6 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	U.add_hud_to(src)
 
 /mob/living/simple_animal/hostile/poison/terror_spider/proc/announcetoghosts()
-	if(spider_awaymission)
-		return
 	if(stat == DEAD)
 		return
 	if(ckey)
@@ -318,13 +309,10 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 
 /mob/living/simple_animal/hostile/poison/terror_spider/proc/handle_dying()
 	if(!hasdied)
-		hasdied = 1
+		hasdied = TRUE
 		GLOB.ts_count_dead++
 		GLOB.ts_death_last = world.time
-		if(spider_awaymission)
-			GLOB.ts_count_alive_awaymission--
-		else
-			GLOB.ts_count_alive_station--
+		GLOB.ts_count_alive_station--
 
 /mob/living/simple_animal/hostile/poison/terror_spider/death(gibbed)
 	if(!(stat == DEAD || (status_flags & GODMODE)))
@@ -345,7 +333,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 		var/obj/machinery/door/firedoor/F = O
 		if(F.density && !F.welded)
 			F.open()
-			return 1
+			return TRUE
 	. = ..()
 
 /mob/living/simple_animal/hostile/poison/terror_spider/proc/msg_terrorspiders(msgtext)
@@ -372,7 +360,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 		to_chat(src, "<span class='warning'>The door is bolted shut.</span>")
 	else if(D.allowed(src))
 		D.open(1)
-		return 1
+		return TRUE
 	else if(D.hasPower() && (spider_opens_doors != 2))
 		to_chat(src, "<span class='warning'>The door's motors resist your efforts to force it.</span>")
 	else if(!spider_opens_doors)
@@ -381,4 +369,4 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 		visible_message("<span class='danger'>[src] pries open the door!</span>")
 		playsound(src.loc, "sparks", 100, 1)
 		D.open(1)
-		return 1
+		return TRUE

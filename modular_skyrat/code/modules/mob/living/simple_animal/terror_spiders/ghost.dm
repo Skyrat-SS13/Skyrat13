@@ -1,4 +1,3 @@
-
 /mob/living/simple_animal/hostile/poison/terror_spider/Topic(href, href_list)
 	if(href_list["activate"])
 		var/mob/dead/observer/ghost = usr
@@ -16,8 +15,6 @@
 	humanize_prompt += " Role: [spider_role_summary]"
 	if(user.ckey in GLOB.ts_ckey_blacklist)
 		error_on_humanize = "You are not able to control any terror spider this round."
-	else if(spider_awaymission)
-		error_on_humanize = "Terror spiders that are part of an away mission cannot be controlled by ghosts."
 	else if(!ai_playercontrol_allowtype)
 		error_on_humanize = "This specific type of terror spider is not player-controllable."
 	else if(degenerate)
@@ -30,9 +27,10 @@
 		if(!O.can_reenter_round())
 			return
 
-	if(jobban_isbanned(user, "Syndicate") || jobban_isbanned(user, "alien"))
+	if(jobban_isbanned(user, ROLE_SYNDICATE) || jobban_isbanned(user, ROLE_ALIEN))
 		to_chat(user,"You are jobbanned from role of syndicate and/or alien lifeform.")
 		return
+		
 	if(error_on_humanize == "")
 		var/spider_ask = alert(humanize_prompt, "Join as Terror Spider?", "Yes", "No")
 		if(spider_ask == "No" || !src || QDELETED(src))

@@ -21,13 +21,13 @@
 	regen_points_per_tick = 3
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	ventcrawler = 1
+	ventcrawler = TRUE
 	ai_break_lights = FALSE
 	ai_spins_webs = FALSE
 	ai_ventcrawls = FALSE
 	idle_ventcrawl_chance = 0
 	force_threshold = 18 // outright immune to anything of force under 18, this means welders can't hurt it, only guns can
-	ranged = 1
+	ranged = TRUE
 	retreat_distance = 5
 	minimum_distance = 5
 	projectilesound = 'sound/weapons/pierce.ogg'
@@ -35,8 +35,8 @@
 	spider_tier = TS_TIER_4
 	spider_opens_doors = 2
 	web_type = /obj/structure/spider/terrorweb/queen
-	var/spider_spawnfrequency = 1200 // 120 seconds. Default for player queens and NPC queens on station. Awaymission queens have this changed in New()
-	var/spider_spawnfrequency_stable = 1200 // 120 seconds. Spawnfrequency is set to this on awaymission spiders once nest setup is complete.
+	var/spider_spawnfrequency = 1600 // 160 seconds. Default for player queens and NPC queens on station.
+	var/spider_spawnfrequency_stable = 1600 // 160 seconds.
 	var/spider_lastspawn = 0
 	var/nestfrequency = 300 // 30 seconds
 	var/lastnestsetup = 0
@@ -53,16 +53,13 @@
 	var/datum/action/innate/terrorspider/queen/queenfakelings/queenfakelings_action
 	var/datum/action/innate/terrorspider/ventsmash/ventsmash_action
 
-/mob/living/simple_animal/hostile/poison/terror_spider/queen/New()
-	..()
+/mob/living/simple_animal/hostile/poison/terror_spider/queen/Initialize()
+	. = ..()
 	queennest_action = new()
 	queennest_action.Grant(src)
 	ventsmash_action = new()
 	ventsmash_action.Grant(src)
 	spider_myqueen = src
-	if(spider_awaymission)
-		spider_growinstantly = 1
-		spider_spawnfrequency = 150
 
 /mob/living/simple_animal/hostile/poison/terror_spider/queen/Life(seconds, times_fired)
 	. = ..()
@@ -85,14 +82,12 @@
 
 /mob/living/simple_animal/hostile/poison/terror_spider/queen/death(gibbed)
 	if(!(stat == DEAD || (status_flags & GODMODE)) && !hasdied)
-		if(spider_uo71)
-			UnlockBlastDoors("UO71_Caves")
 		// When a queen dies, so do her player-controlled purple-type guardians. Intended as a motivator for purples to ensure they guard her.
 		for(var/mob/living/simple_animal/hostile/poison/terror_spider/purple/P in GLOB.ts_spiderlist)
 			if(ckey)
 				P.visible_message("<span class='danger'>\The [src] writhes in pain!</span>")
 				to_chat(P,"<span class='userdanger'>\The [src] has died. Without her hivemind link, purple terrors like yourself cannot survive more than a few minutes!</span>")
-				P.degenerate = 1
+				P.degenerate = TRUE
 	return ..()
 
 /mob/living/simple_animal/hostile/poison/terror_spider/queen/Retaliate()
@@ -163,8 +158,6 @@
 				if(world.time > (spider_lastspawn + spider_spawnfrequency))
 					if(prob(20))
 						if(ai_nest_is_full())
-							if(spider_awaymission)
-								spider_spawnfrequency = spider_spawnfrequency_stable
 							neststep = 4
 						else
 							spider_lastspawn = world.time
@@ -209,7 +202,7 @@
 	queensense_action.Grant(src)
 	queennest_action.Remove(src)
 	hasnested = TRUE
-	ventcrawler = 0
+	ventcrawler = FALSE
 	ai_ventcrawls = FALSE
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
 	DoQueenScreech(8, 100, 8, 100)
@@ -328,6 +321,7 @@
 	else
 		to_chat(src, "<span class='danger'>You have run out of uses of this ability.</span>")
 
+
 /obj/item/projectile/terrorqueenspit
 	name = "poisonous spit"
 	damage = 0
@@ -343,6 +337,7 @@
 				L.hallucination = max(L.hallucination, 400)
 		if(!isterrorspider(L))
 			L.adjustToxLoss(bonus_tox)
+
 
 /obj/structure/spider/terrorweb/queen
 	name = "shimmering web"

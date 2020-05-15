@@ -1,5 +1,4 @@
 // ---------- ACTIONS FOR ALL SPIDERS
-
 /datum/action/innate/terrorspider/web
 	name = "Web"
 	icon_icon = 'icons/effects/effects.dmi'
@@ -58,10 +57,6 @@
 	if(feedings_left > 0)
 		to_chat(user, "<span class='warning'>You must wrap [feedings_left] more humanoid prey before you can do this!</span>")
 		return
-	for(var/mob/living/simple_animal/hostile/poison/terror_spider/queen/Q in GLOB.ts_spiderlist)
-		if(Q.spider_awaymission == user.spider_awaymission)
-			to_chat(user, "<span class='warning'>The presence of another Queen in the area is preventing you from maturing.")
-			return
 	user.evolve_to_queen()
 
 // ---------- QUEEN ACTIONS
@@ -77,7 +72,7 @@
 
 /datum/action/innate/terrorspider/queen/queensense
 	name = "Hive Sense"
-	icon_icon = 'icons/mob/actions/actions.dmi'
+	icon_icon = 'icons/mob/actions/actions_terrorspiders.dmi'
 	button_icon_state = "mindswap"
 
 /datum/action/innate/terrorspider/queen/queensense/Activate()
@@ -149,14 +144,14 @@
 		icon_state = "stickyweb2"
 
 /obj/structure/spider/terrorweb/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover, /mob/living/simple_animal/hostile/poison/terror_spider))
-		return 1
+	if(isterrorspider(mover))
+		return TRUE
 	if(istype(mover, /obj/item/projectile/terrorqueenspit))
-		return 1
+		return TRUE
 	if(isliving(mover))
 		var/mob/living/M = mover
 		if(M.lying)
-			return 1
+			return TRUE
 		if(prob(80))
 			to_chat(mover, "<span class='danger'>You get stuck in [src] for a moment.</span>")
 			M.Stun(4) // 8 seconds.
@@ -164,15 +159,17 @@
 			if(iscarbon(mover))
 				var/mob/living/carbon/C = mover
 				web_special_ability(C)
-				spawn(70)
-					if(C.loc == loc)
-						qdel(src)
-			return 1
+				addtimer(CALLBACK(src, .proc/delete_web), 70)
+			return TRUE
 		else
-			return 0
+			return FALSE
 	if(istype(mover, /obj/item/projectile))
 		return prob(20)
 	return ..()
+
+/obj/structure/spider/terrorweb/proc/delete_web(mob/living/carbon/C)
+	if(C.loc == loc)
+		qdel(src)
 
 /obj/structure/spider/terrorweb/bullet_act(obj/item/projectile/Proj)
 	if(Proj.damage_type != BRUTE && Proj.damage_type != BURN)

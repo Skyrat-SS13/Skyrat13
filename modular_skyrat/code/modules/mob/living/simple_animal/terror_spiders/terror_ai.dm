@@ -23,7 +23,7 @@
 				if(C in enemies)
 					targets3 += C
 					continue
-			else if(C.reagents.has_reagent("terror_black_toxin",60))
+			else if(C.reagents.has_reagent(/datum/reagent/terror_black_toxin, 60))
 				// only target those dying of black spider venom if they are close, or our enemy
 				if(get_dist(src,C) <= 2 || (C in enemies))
 					targets2 += C
@@ -161,11 +161,11 @@
 		..()
 
 /mob/living/simple_animal/hostile/poison/terror_spider/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
-	. = ..(damage)
+	. = ..(amount, updating_health, forced)
 	Retaliate()
 
 /mob/living/simple_animal/hostile/poison/terror_spider/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
-	. = ..(damage)
+	. = ..(amount, updating_health, forced)
 	Retaliate()
 
 /mob/living/simple_animal/hostile/poison/terror_spider/proc/Retaliate()
@@ -345,12 +345,3 @@
 	if(!target)
 		return
 	. = ..()
-
-// --------------------------------------------------------------------------------
-// --------------------- TERROR SPIDERS: MISC AI CODE -----------------------------
-// --------------------------------------------------------------------------------
-
-/mob/living/simple_animal/hostile/poison/terror_spider/proc/UnlockBlastDoors(target_id)
-	for(var/obj/machinery/door/poddoor/P in GLOB.airlocks)
-		if(P.density && P.id == target_id && P.z == z && !P.operating)
-			P.open()

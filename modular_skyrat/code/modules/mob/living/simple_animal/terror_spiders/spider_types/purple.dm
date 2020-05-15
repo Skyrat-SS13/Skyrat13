@@ -24,14 +24,14 @@
 	move_to_delay = 5 // at 20ticks/sec, this is 4 tile/sec movespeed, same as a human. Faster than a normal spider, so it can intercept attacks on queen.
 	speed = 0 // '0' (also the default for human mobs) converts to 2.5 total delay, or 4 tiles/sec.
 	spider_opens_doors = 2
-	ventcrawler = 0
+	ventcrawler = TRUE
 	ai_ventcrawls = FALSE
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
 	idle_ventcrawl_chance = 0 // stick to the queen!
 	web_type = /obj/structure/spider/terrorweb/purple
 	ai_spins_webs = FALSE
 	var/dcheck_counter = 0
-	var/queen_visible = 1
+	var/queen_visible = TRUE
 	var/cycles_noqueen = 0
 
 /mob/living/simple_animal/hostile/poison/terror_spider/purple/death(gibbed)
@@ -40,7 +40,7 @@
 		if(Q.stat != DEAD && !Q.ckey)
 			if(get_dist(src,Q) > 20)
 				if(!degenerate && !Q.degenerate)
-					degenerate = 1
+					degenerate = TRUE
 					Q.DoLayTerrorEggs(/mob/living/simple_animal/hostile/poison/terror_spider/purple, 1)
 					visible_message("<span class='notice'>[src] chitters in the direction of [Q]!</span>")
 	return ..()
@@ -61,13 +61,13 @@
 		if(Q)
 			if(Q.stat == DEAD)
 				spider_myqueen = null
-				degenerate = 1
+				degenerate = TRUE
 				to_chat(src,"<span class='userdanger'>Your Queen has died! Her power no longer sustains you!</span>")
 				return
-			queen_visible = 0
+			queen_visible = FALSE
 			for(var/mob/living/M in view(src, vision_range))
 				if(M == Q)
-					queen_visible = 1
+					queen_visible = TRUE
 					break
 			if(queen_visible)
 				cycles_noqueen = 0
@@ -85,7 +85,7 @@
 				to_chat(src,"<span class='danger'>Without your Queen in sight, you feel yourself getting weaker...</span>")
 			else if(cycles_noqueen >= 9)
 				// three minutes without queen sighted, kill them.
-				degenerate = 1
+				degenerate = TRUE
 				to_chat(src,"<span class='userdanger'>Your link to your Queen has been broken! Your life force starts to drain away!</span>")
 				melee_damage_lower = 5
 				melee_damage_upper = 10

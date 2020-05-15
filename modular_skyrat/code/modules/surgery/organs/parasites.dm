@@ -1,5 +1,4 @@
 // Terror Spiders - white spider infection
-
 /obj/item/organ/body_egg/terror_eggs
 	name = "terror eggs"
 	icon = 'icons/effects/effects.dmi'
@@ -10,11 +9,8 @@
 	var/egg_progress = 0 // # of on_life() cycles completed, unlike cycle_num this is reset on each hatch event
 	var/egg_progress_per_hatch = 90 // if egg_progress > this, chance to hatch and reset egg_progress
 	var/eggs_hatched = 0 // num of hatch events completed
-	var/awaymission_checked = FALSE
-	var/awaymission_infection = FALSE // TRUE if infection occurred inside gateway
 	var/list/types_basic = list(/mob/living/simple_animal/hostile/poison/terror_spider/red, /mob/living/simple_animal/hostile/poison/terror_spider/gray)
 	var/list/types_adv = list(/mob/living/simple_animal/hostile/poison/terror_spider/red, /mob/living/simple_animal/hostile/poison/terror_spider/gray, /mob/living/simple_animal/hostile/poison/terror_spider/green)
-
 
 /obj/item/organ/body_egg/terror_eggs/on_life()
 	// Safety first.
@@ -25,18 +21,6 @@
 	cycle_num += 1
 	egg_progress += pick(0, 1, 2)
 	egg_progress += calc_variable_progress()
-
-	// Detect & stop people attempting to bring a gateway white spider infection back to the main station.
-	if(!awaymission_checked)
-		awaymission_checked = TRUE
-		if(is_away_level(owner.z))
-			awaymission_infection = TRUE
-	if(awaymission_infection)
-		var/turf/T = get_turf(owner)
-		if(istype(T) && !is_away_level(T.z))
-			owner.gib()
-			qdel(src)
-			return
 
 	// Once at least one egg has hatched from you, you'll need help to reach medbay.
 	if(eggs_hatched >= 1)
