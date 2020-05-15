@@ -184,7 +184,11 @@
 
 	// Build message image
 	message = image(loc = message_loc, layer = CHAT_LAYER)
+<<<<<<< HEAD
 	message.plane = CHAT_LAYER
+=======
+	message.plane = CHAT_PLANE
+>>>>>>> 7c7147cb3e... Field of Vision component. (#12075)
 	message.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	message.alpha = 0
 	message.pixel_y = owner.bound_height * 0.95

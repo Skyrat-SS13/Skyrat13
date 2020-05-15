@@ -48,7 +48,12 @@
 	name = "poster"
 	var/original_name
 	desc = "A large piece of space-resistant printed paper."
+<<<<<<< HEAD
 	icon = 'modular_skyrat/icons/obj/contraband.dmi'
+=======
+	icon = 'icons/obj/contraband.dmi'
+	plane = ABOVE_WALL_PLANE
+>>>>>>> 7c7147cb3e... Field of Vision component. (#12075)
 	anchored = TRUE
 	var/ruined = FALSE
 	var/random_basetype
