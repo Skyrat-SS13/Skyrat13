@@ -351,6 +351,32 @@
 		final_block_chance = 0
 	return ..()
 
+/obj/item/twohanded/spear/halberd
+	name = "makeshift halberd"
+	desc = "A horrible creation that shouldn't even work. Simply put, a hatchet attached to the end of a makeshift glass spear."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "mhalberd0"
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/axes_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/axes_lefthand.dmi'
+	item_state = "mhalberd0"
+	icon_prefix = "mhalberd"
+	embedding = list("embedded_impact_pain_multiplier" = 3, "embed_chance" = 50)
+	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "stabbed", "slashed")
+
+/obj/item/twohanded/spear/halberd/CheckParts(list/parts_list)
+	var/obj/item/hatchet/tip = locate() in parts_list
+	var/obj/item/twohanded/spear/pear = locate() in parts_list
+	force = tip.force
+	force_unwielded = tip.force
+	if(!istype(pear, /obj/item/twohanded/spear/halberd))
+		force_wielded = pear.force_wielded + (tip.force/10)
+		throwforce = pear.throwforce + (tip.throwforce/10)
+	else
+		force_wielded = pear.force_wielded
+		throwforce = pear.throwforce
+	qdel(tip)
+	qdel(pear)
+	update_icon()
 
 //KINKY. Clone of the banhammer.
 /obj/item/bdsm_whip
