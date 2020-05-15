@@ -666,5 +666,5 @@ BODY_SIZE_SLOWDOWN_MULTIPLIER 0.25
 ## Allows players to set a hexadecimal color of their choice as skin tone, on top of the standard ones.
 ALLOW_CUSTOM_SKINTONES
 
-## Admins are allowed to use custom job titles by default, to change this simply this out
+## Admins are allowed to use custom job titles by default, to change this simply comment this out
 NEPOTISM
