@@ -76,17 +76,21 @@
 	item_state = "executioners_sword"
 	sharpness = IS_SHARP
 	var/delimb_chance = 15
+	var/armorthreshold
 
 /obj/item/melee/sword/executioner/afterattack(atom/target, mob/living/user, proximity)
 	. = ..()
+	var/def_zone = user.zone_selected
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		var/obj/item/bodypart/BP = C.get_bodypart(check_zone(user.zone_selected))
 		if(prob(delimb_chance))
-			C.visible_message("<span class='danger'>[C]'s [BP] gets completely chopped off by \the [src]!</span>")
+			if(BP.body_zone == (BODY_ZONE_CHEST || BODY_ZONE_HEAD))
+				if(H.getarmor(def_zone, "melee") >= 25)
+					return FALSE
 			BP.dismember(BRUTE)
 	if(proximity)
-		user.changeNext_move(CLICK_CD_MELEE * 2.5)
+		user.changeNext_move(CLICK_CD_MELEE * 2)
 
 /obj/item/melee/sword/shortsword
 	name = "shortsword"
