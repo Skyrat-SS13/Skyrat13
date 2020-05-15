@@ -216,6 +216,7 @@
 	if(newval == insanity_effect)
 		return
 
+	/*Skyrat edit oh god oh fuck
 	var/mob/living/L = parent
 	var/apply_malus = newval >= SLIGHT_INSANITY_PEN
 	var/apply_bonus = !apply_malus && newval <= ECSTATIC_SANITY_PEN
@@ -232,6 +233,7 @@
 			ADD_SKILL_MODIFIER_BODY(/datum/skill_modifier/great_mood, bonus_id++, L, bonus)
 	else if(bonus)
 		QDEL_NULL(bonus)
+	*/
 
 	insanity_effect = newval
 
