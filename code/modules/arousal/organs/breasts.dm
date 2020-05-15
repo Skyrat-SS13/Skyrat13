@@ -92,9 +92,9 @@
 	switch(rounded_cached)
 		if(0) //flatchested
 			size = "flat"
-		if(1 to 10) //modest // Skyrat change -- can have breasts up to j without clothes ripping
+		if(1 to 8) //modest
 			size = breast_values[rounded_cached]
-		if(11 to 15) //massive // Skyrat change -- can have breasts up to j without clothes ripping
+		if(9 to 15) //massive
 			size = breast_values[rounded_cached]
 			enlargement = TRUE
 		if(16 to INFINITY) //rediculous

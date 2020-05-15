@@ -116,3 +116,19 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	if(H)
 		H.disable_speech_mod(/datum/speech_mod/impediment_rw)
+
+/datum/quirk/speech_impediment_rw_lw
+	name = "Speech impediment (r and l as w)"
+	desc = "You mispronounce \"r\" and \"l\" as \"w\""
+	value = 0
+	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
+
+/datum/quirk/speech_impediment_rw_lw/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_rw_lw)
+
+/datum/quirk/speech_impediment_rw_lw/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_rw_lw)

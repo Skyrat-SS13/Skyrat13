@@ -18,3 +18,13 @@
 /datum/speech_mod/impediment_rw/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "r", "w")
 	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "R", "W")
+
+/datum/speech_mod/impediment_rw_lw
+	soundtext = "mispronouncing \"r\" and \"l\" as \"w\""
+
+/datum/speech_mod/impediment_rw_lw/handle_speech(datum/source, list/speech_args)
+	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "r", "w")
+	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "R", "W")
+	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "l", "w")
+	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "L", "W")
+
