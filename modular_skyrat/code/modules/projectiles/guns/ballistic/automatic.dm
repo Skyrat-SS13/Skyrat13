@@ -87,7 +87,7 @@
 	item_state = "arg"
 	icon_state = "mp5"
 	can_suppress = FALSE
-	burst_size = 2
+	burst_size = 3
 	burst_shot_delay = 4
 	actions_types = list(/datum/action/item_action/toggle_firemode)
 	automatic_burst_overlay = FALSE
