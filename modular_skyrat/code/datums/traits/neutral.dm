@@ -65,3 +65,58 @@
 				to_chat(H, "<span class='warning'>Uh oh, stinky! Something poopy happened to your fakespecies! You have been set to an IPC as a fallback.</span>") //shouldn't happen. if it does uh oh.
 		else
 			to_chat(H, "<span class='warning'>The [H.dna.species.name] species is blacklisted from being a synth. You will stay with the normal, non-synth race. It could mean that Bob Joga broke the code too.</span>")
+
+
+
+/datum/speech_mod/impediment_rw
+
+//speech impediments
+/datum/quirk/speech_impediment_rl
+	name = "Speech impediment (r as l)"
+	desc = "You mispronounce \"r\" as \"l\""
+	value = 0
+	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
+
+/datum/quirk/speech_impediment_rl/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_rl)
+
+/datum/quirk/speech_impediment_rl/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_rl)
+
+
+/datum/quirk/speech_impediment_lw
+	name = "Speech impediment (l as w)"
+	desc = "You mispronounce \"l\" as \"w\""
+	value = 0
+	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
+
+/datum/quirk/speech_impediment_lw/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_lw)
+
+/datum/quirk/speech_impediment_lw/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_lw)
+
+
+/datum/quirk/speech_impediment_rw
+	name = "Speech impediment (r as w)"
+	desc = "You mispronounce \"r\" as \"w\""
+	value = 0
+	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
+
+/datum/quirk/speech_impediment_rw/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_rw)
+
+/datum/quirk/speech_impediment_rw/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_rw)
