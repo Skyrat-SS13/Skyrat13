@@ -66,10 +66,6 @@
 		else
 			to_chat(H, "<span class='warning'>The [H.dna.species.name] species is blacklisted from being a synth. You will stay with the normal, non-synth race. It could mean that Bob Joga broke the code too.</span>")
 
-
-
-/datum/speech_mod/impediment_rw
-
 //speech impediments
 /datum/quirk/speech_impediment_rl
 	name = "Speech impediment (r as l)"
