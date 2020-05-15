@@ -86,7 +86,7 @@
 		var/obj/item/bodypart/BP = C.get_bodypart(check_zone(user.zone_selected))
 		if(prob(delimb_chance))
 			if(BP.body_zone == (BODY_ZONE_CHEST || BODY_ZONE_HEAD))
-				if(H.getarmor(def_zone, "melee") >= 25)
+				if(C.getarmor(def_zone, "melee") >= 25)
 					return FALSE
 			BP.dismember(BRUTE)
 	if(proximity)
