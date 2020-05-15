@@ -118,7 +118,7 @@
 	var/datum/antagonist/bloodsucker/B = user.mind.has_antag_datum(ANTAG_DATUM_BLOODSUCKER)
 	. = ..()
 	if(B || isobserver(user))
-		. += {"<span class='cult'>This is the vassal rack, which allows you to thrall crewmembers into (likely reluctant) servants in your service.</span>"} //SKYRAT CHANGE - MORE NEUTRAL WORDING
+		. += {"<span class='cult'>This is the vassal rack, which allows you to thrall crewmembers into servants in your service.</span>"} //SKYRAT CHANGE - MORE NEUTRAL WORDING
 		. += {"<span class='cult'>You need to first secure the vassal rack by clicking on it while it is in your lair.</span>"}
 		. += {"<span class='cult'>Simply click and hold on a victim, and then drag their sprite on the vassal rack. Alt click on the vassal rack to unbuckle them.</span>"}
 		. += {"<span class='cult'>Make sure that the victim is handcuffed, or else they can simply run away or resist, as the process is not instant.</span>"}
@@ -393,7 +393,7 @@
 	spawn(10)
 		if(useLock && target && target.client) // Are we still torturing? Did we cancel? Are they still here?
 			to_chat(user, "<span class='notice'>[target] has been given the opportunity for service. You await their decision...</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
-			var/alert_text = "You are being tortured! Do you want to give in and pledge your service (willing or not) to [user]?" //SKYRAT CHANGE - MORE NEUTRAL WORDING
+			var/alert_text = "You are being tortured! Do you want to give in and agree to serve [user]?" //SKYRAT CHANGE - MORE NEUTRAL WORDING
 		/*	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 				alert_text += "\n\nYou will no longer be loyal to the station!"
 			if(SSticker.mode.AmValidAntag(target.mind))  */
