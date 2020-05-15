@@ -1,3 +1,15 @@
+//Kinetic accelerator charging meme bugfix
+/obj/item/gun/energy/kinetic_accelerator/proc/reload()
+	if(ismob(loc) || isturf(loc)) //Kinetic accelerators won't charge inside objects. Period.
+		cell.give(cell.maxcharge)
+		if(!suppressed)
+			playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
+		else
+			to_chat(loc, "<span class='warning'>[src] silently charges up.</span>")
+		update_icon()
+		overheat = FALSE
+
+//BDM pka
 /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer
 	name = "bloody accelerator"
 	desc = "A modded premium kinetic accelerator with an increased mod capacity as well as lesser cooldown."
