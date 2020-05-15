@@ -13,7 +13,7 @@
 	force = 15
 	sharpness = IS_SHARP
 	hitsound = 'modular_skyrat/sound/weapons/bloodyslice.ogg'
-	var/obj/item/reagent_containers/hypospray/poison
+	var/obj/item/reagent_containers/syringe/poison
 
 /obj/item/melee/sword/Initialize()
 	..()
@@ -43,7 +43,7 @@
 
 /obj/item/melee/sword/attackby(obj/item/I, mob/living/user)
 	. = ..()
-	if(istype(I, /obj/item/reagent_containers/hypospray))
+	if(istype(I, /obj/item/reagent_containers/syringe))
 		if(!poison)
 			I.forceMove(src)
 			poison = I
