@@ -74,7 +74,7 @@
 		user.visible_message(msg, user_msg = TRUE, runechat_popup = chat_popup) //SKYRAT CHANGE
 	//Skyrat change
 	if(image_popup)
-		user.flash_popup(image_popup)
+		flick_emote_popup_on_mob(user, image_popup, 40)
 	//End of skyrat changes
 
 /datum/emote/proc/replace_pronoun(mob/user, message)

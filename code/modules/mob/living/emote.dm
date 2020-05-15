@@ -378,6 +378,7 @@
 	if(. && isliving(user))
 		var/mob/living/L = user
 		L.DefaultCombatKnockdown(200)
+		L.Stun(20) //Skyrat Change
 
 /datum/emote/living/sway
 	key = "sway"
