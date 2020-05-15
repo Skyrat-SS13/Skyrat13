@@ -17,6 +17,8 @@ Assistant
 	display_order = JOB_DISPLAY_ORDER_ASSISTANT
 	dresscodecompliant = FALSE
 	threat = 0.2
+	//SKYRAT CHANGE - Custom job titles
+	customtitles = TRUE
 
 /datum/job/assistant/get_access()
 	if(CONFIG_GET(flag/assistants_have_maint_access) || !CONFIG_GET(flag/jobs_have_minimal_access)) //Config has assistant maint access set

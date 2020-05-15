@@ -68,6 +68,8 @@
 
 	/// Starting skill modifiers.
 	var/list/starting_modifiers
+	//SKYRAT CHANGE - custom job title
+	var/customtitles = FALSE //Boolean. Can this job use custom job titles at all?
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it

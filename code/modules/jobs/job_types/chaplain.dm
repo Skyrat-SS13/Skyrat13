@@ -16,6 +16,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHAPLAIN
 	threat = 0.5
+	//SKYRAT CHANGE - Custom job titles
+	customtitles = TRUE
 
 
 /datum/job/chaplain/after_spawn(mob/living/H, mob/M)

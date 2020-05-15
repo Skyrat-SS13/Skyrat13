@@ -1213,7 +1213,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/rank_title_line = "[displayed_rank]"
 			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
 				rank_title_line = "<b>[rank_title_line]</b>"
-			if(job.alt_titles.len || (user.client.ckey in GLOB.titlewhitelist) || (CONFIG_GET(flag/nepotism) && check_rights_for(user.client, R_ADMIN)))
+			if(job.alt_titles.len || (user.client.ckey in GLOB.titlewhitelist) && job.customtitles || (CONFIG_GET(flag/nepotism) && check_rights_for(user.client, R_ADMIN) && job.customtitles))
 				rank_title_line = "<a href='?_src_=prefs;preference=job;task=alt_title;job_title=[job.title]'>[rank_title_line]</a>"
 			else
 				rank_title_line = "<span class='dark'>[rank_title_line]</span>" //Make it dark if we're not adding a button for alt titles

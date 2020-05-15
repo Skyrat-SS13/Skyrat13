@@ -16,6 +16,8 @@
 	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM)
 	display_order = JOB_DISPLAY_ORDER_BARTENDER
 	threat = 0.5
+	//SKYRAT CHANGE - Custom job titles
+	customtitles = TRUE
 
 /datum/outfit/job/bartender
 	name = "Bartender"

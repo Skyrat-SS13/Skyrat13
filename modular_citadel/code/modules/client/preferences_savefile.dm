@@ -27,7 +27,10 @@
 				if(!(alt_titles_preferences[job.title] in job.alt_titles)) 
 					var/client/snowflake = cli
 					if(snowflake)
-						if(!(snowflake.ckey in GLOB.titlewhitelist) && !(CONFIG_GET(flag/nepotism) && check_rights_for(snowflake, R_ADMIN)))
+						if(job.customtitles)
+							if(!(snowflake.ckey in GLOB.titlewhitelist) && !(CONFIG_GET(flag/nepotism) && check_rights_for(snowflake, R_ADMIN)))
+								alt_titles_preferences.Remove(job.title)
+						else
 							alt_titles_preferences.Remove(job.title)
 					else 
 						alt_titles_preferences.Remove(job.title)

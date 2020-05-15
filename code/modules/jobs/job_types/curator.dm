@@ -16,6 +16,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_CURATOR
 	threat = 0.3
+	//SKYRAT CHANGE - Custom job titles
+	customtitles = TRUE
 
 /datum/outfit/job/curator
 	name = "Curator"

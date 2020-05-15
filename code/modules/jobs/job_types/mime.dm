@@ -21,6 +21,8 @@
 	display_order = JOB_DISPLAY_ORDER_MIME
 
 	threat = 0
+	//SKYRAT CHANGE - Custom job titles
+	customtitles = TRUE
 
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
