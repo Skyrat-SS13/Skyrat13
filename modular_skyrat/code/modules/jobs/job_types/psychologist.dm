@@ -18,10 +18,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_PSYCHOLOGIST
 	threat = 0.35
-	/*
-	starting_skills = list(/datum/skill/numerical/surgery = STARTING_SKILL_SURGERY_MEDICAL)    // I need to look at skill stuff still
-	skill_affinities = list(/datum/skill/numerical/surgery = STARTING_SKILL_AFFINITY_SURGERY_MEDICAL)
-	*/
+
 /datum/outfit/job/psychologist
 	name = "Psychologist"
 	jobtype = /datum/job/psychologist
