@@ -362,6 +362,7 @@
 	icon_prefix = "mhalberd"
 	embedding = list("embedded_impact_pain_multiplier" = 3, "embed_chance" = 50)
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "stabbed", "slashed")
+	armour_penetration = 5
 
 /obj/item/twohanded/spear/halberd/CheckParts(list/parts_list)
 	var/obj/item/hatchet/tip = locate() in parts_list
