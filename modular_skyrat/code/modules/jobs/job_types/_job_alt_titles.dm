@@ -34,7 +34,7 @@
 /datum/job/bartender
 	alt_titles = list("Barkeeper")
 
-/datum/job/botanist
+/datum/job/hydro
 	alt_titles = list("Gardener", "Herbalist", "Botanical Researcher", "Hydroponicist")
 
 /datum/job/curator
