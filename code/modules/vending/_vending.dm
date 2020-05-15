@@ -601,8 +601,23 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(!R || !istype(R) || !R.product_path)
 				vend_ready = TRUE
 				return
+<<<<<<< HEAD
 			if(R.amount <= 0)
 				to_chat(usr, "<span class='warning'>Sold out.</span>")
+=======
+			var/price_to_use = R.custom_price || default_price
+			if(R in hidden_records)
+				if(!extended_inventory)
+					vend_ready = TRUE
+					return
+			else if (!(R in record_to_check))
+				vend_ready = TRUE
+				message_admins("Vending machine exploit attempted by [ADMIN_LOOKUPFLW(usr)]!")
+				return
+			if (R.amount <= 0)
+				say("Sold out of [R.name].")
+				flick(icon_deny,src)
+>>>>>>> 63fb4544b4... Another fix for contraband items costing like premium ones. (#12253)
 				vend_ready = TRUE
 				return
 			if(R in hidden_records)
@@ -614,6 +629,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 					to_chat(usr, "<span class='warning'>You need to insert a coin to get this item!</span>")
 					vend_ready = TRUE
 					return
+<<<<<<< HEAD
 				if(coin && coin.string_attached)
 					if(prob(50))
 						if(usr.put_in_hands(coin))
@@ -635,6 +651,25 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(((last_reply + 200) <= world.time) && vend_reply)
 				speak(vend_reply)
 				last_reply = world.time
+=======
+				var/datum/bank_account/account = C.registered_account
+				if(coin_records.Find(R))
+					price_to_use = R.custom_premium_price || extra_price
+				else if(!hidden_records.Find(R))
+					price_to_use = round(price_to_use * get_best_discount(C))
+				if(price_to_use && !account.adjust_money(-price_to_use))
+					say("You do not possess the funds to purchase [R.name].")
+					flick(icon_deny,src)
+					vend_ready = TRUE
+					return
+				var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
+				if(D)
+					D.adjust_money(price_to_use)
+			if(last_shopper != usr || purchase_message_cooldown < world.time)
+				say("Thank you for shopping with [src]!")
+				purchase_message_cooldown = world.time + 5 SECONDS
+				last_shopper = usr
+>>>>>>> 63fb4544b4... Another fix for contraband items costing like premium ones. (#12253)
 			use_power(5)
 			if(icon_vend) //Show the vending animation if needed
 				flick(icon_vend,src)
