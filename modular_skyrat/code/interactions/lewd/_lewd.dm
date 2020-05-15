@@ -102,9 +102,7 @@ mob/living/Initialize()
 	return TRUE
 
 /mob/living/proc/has_feet()
-	if(get_num_legs() < 1)
-		return FALSE
-	return TRUE
+	return get_num_legs()
 
 //weird procs go here
 /mob/living/proc/has_ears()
@@ -141,8 +139,14 @@ mob/living/Initialize()
 	else
 		return TRUE
 
-/proc/cum_splatter(target) // Like blood_splatter(), but much more questionable on a resume.
-	new /obj/effect/decal/cleanable/semen(get_turf(target))
+/proc/cum_splatter(target, var/mob/living/user) // Like blood_splatter(), but much more questionable on a resume.
+	if(user.has_penis() && !user.has_vagina())
+		new /obj/effect/decal/cleanable/semen(get_turf(target))
+	else if(user.has_vagina() && !user.has_penis())
+		new /obj/effect/decal/cleanable/femcum(get_turf(target))
+	else if(user.has_vagina() && user.has_penis())
+		new /obj/effect/decal/cleanable/femcum(get_turf(target))
+		new /obj/effect/decal/cleanable/semen(get_turf(target))
 	//var/obj/effect/decal/cleanable/cum/C = (get_turf(target))
 	//C.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
 
@@ -153,7 +157,7 @@ mob/living/Initialize()
 	if(moan == lastmoan)
 		moan--
 	if(!is_muzzled())
-		visible_message("<font color=purple><B>\The [src]</B> [pick("moans", "moans in pleasure",)].</font>")
+		visible_message(message = "<font color=purple><B>\The [src]</B> [pick("moans", "moans in pleasure",)].</font>", ignored_mobs = get_unconsenting())
 		//playsound(get_turf(src), "code/game/lewd/sound/interactions/moan_[gender == FEMALE ? "f" : "m"][rand(1, 7)].ogg", 70, 1, 0)
 	if(is_muzzled())//immursion
 		src.emote("<font color=purple><B>[src]</B> [pick("mimes a pleasured moan","moans in silence")].</font>")
@@ -217,7 +221,7 @@ mob/living/Initialize()
 					message = "reaches their peak, locking their legs around \the [partner]'s head extra hard as they cum straight onto the head stuck between their thighs"
 			if(CUM_TARGET_FEET)
 				if(partner.has_feet())
-					message = "cums on \the [partner]'s feet."
+					message = "cums on \the [partner]'s [partner.has_feet() == 1 ? pick("foot", "sole") : pick("feet", "soles")]."
 				else
 					message = "cums on the floor!"
 			//weird shit goes here
@@ -239,9 +243,80 @@ mob/living/Initialize()
 
 			else
 				message = "cums on the floor!"
+	else if(has_vagina())
+		if(!istype(partner))
+			target_orifice = null
+
+		switch(target_orifice)
+			if(CUM_TARGET_MOUTH)
+				if(partner.has_mouth() && partner.mouth_is_free())
+					message = "squirts right in \the [partner]'s mouth."
+					partner.reagents.add_reagent(/datum/reagent/consumable/femcum, rand(8,13))
+				else
+					message = "squirts on \the [partner]'s face."
+			if(CUM_TARGET_THROAT)
+				if(partner.has_mouth() && partner.mouth_is_free())
+					message = "rubs their vagina against \the [partner]'s mouth and cums."
+					partner.reagents.add_reagent(/datum/reagent/consumable/femcum, rand(9,15))
+				else
+					message = "squirts on \the [partner]'s face."
+			if(CUM_TARGET_VAGINA)
+				if(partner.is_bottomless() && partner.has_vagina())
+					message = "squirts on \the [partner]'s pussy."
+				else
+					message = "squirts on \the [partner]'s belly."
+			if(CUM_TARGET_ANUS)
+				if(partner.is_bottomless() && partner.has_anus())
+					message = "squirts on \the [partner]'s asshole."
+					partner.reagents.add_reagent(/datum/reagent/consumable/femcum, rand(8,12))
+				else
+					message = "squirts on \the [partner]'s backside."
+			if(CUM_TARGET_HAND)
+				if(partner.has_hand())
+					message = "squirts on \the [partner]'s hand."
+				else
+					message = "squirts on \the [partner]."
+			if(CUM_TARGET_BREASTS)
+				if(partner.is_topless() && partner.has_breasts())
+					message = "squirts onto \the [partner]'s breasts."
+				else
+					message = "squirts on \the [partner]'s chest and neck."
+			if(NUTS_TO_FACE)
+
+				if(partner.has_mouth() && partner.mouth_is_free())
+
+					message = "vigorously ruts their clit into \the [partner]'s mouth before shooting their femcum all over their eyes and hair."
+
+			if(THIGH_SMOTHERING)
+				message = "keeps \the [partner] locked in their thighs as they orgasm, squirting over their face."
+
+			if(CUM_TARGET_FEET)
+				if(partner.has_feet())
+					message = "squirts on \the [partner]'s [partner.has_feet() == 1 ? pick("foot", "sole") : pick("feet", "soles")]."
+				else
+					message = "squirts on the floor!"
+			//weird shit goes here
+			if(CUM_TARGET_EARS)
+				if(partner.has_ears())
+					message = "squirts on \the [partner]'s ear."
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
+				else
+					message = "squirts on \the [partner]'s earsocket."
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
+			if(CUM_TARGET_EYES)
+				if(partner.has_eyes())
+					message = "squirts on \the [partner]'s eyeball."
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
+				else
+					message = "squirts on \the [partner]'s eyesocket."
+					partner.reagents.add_reagent(/datum/reagent/consumable/semen, rand(8,12))
+			//
+
+			else
+				message = "squirts on the floor!"
 
 	else
-		message = pick("cums violently!", "twists in orgasm.")
+		message = pick("orgasms violently!", "twists in orgasm.")
 
 	if(gender == MALE)
 		playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/final_m1.ogg',
@@ -253,8 +328,11 @@ mob/living/Initialize()
 		playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/final_f1.ogg',
 							'modular_skyrat/sound/interactions/final_f2.ogg',
 							'modular_skyrat/sound/interactions/final_f3.ogg'), 70, 1, 0)//, pitch = get_age_pitch())
-
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	else
+		playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/final_f1.ogg',
+							'modular_skyrat/sound/interactions/final_f2.ogg',
+							'modular_skyrat/sound/interactions/final_f3.ogg'), 70, 1, 0)//, pitch = get_age_pitch())
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	multiorgasms += 1
 
 	/*if(multiorgasms == 1)
@@ -270,7 +348,7 @@ mob/living/Initialize()
 
 /mob/living/cum(mob/living/partner, target_orifice)
 	if(multiorgasms < sexual_potency)
-		cum_splatter((gender == MALE && partner) ? partner : src)
+		cum_splatter((partner ? partner : src), src)
 	. = ..()
 
 /mob/living/proc/is_fucking(mob/living/partner, orifice)
@@ -398,7 +476,7 @@ mob/living/Initialize()
 									'modular_skyrat/sound/interactions/bj9.ogg',
 									'modular_skyrat/sound/interactions/bj10.ogg',
 									'modular_skyrat/sound/interactions/bj11.ogg'), 50, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	partner.handle_post_sex(lust_increase, CUM_TARGET_MOUTH, src)
 	partner.dir = get_dir(partner,src)
 	do_fucking_animation(get_dir(src, partner))
@@ -468,9 +546,9 @@ mob/living/Initialize()
 
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/oral1.ogg',
 						'modular_skyrat/sound/interactions/oral2.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	if(retaliation_message)
-		visible_message("<font color=red><b>\The [partner]</b> [retaliation_message]</font>")
+		visible_message(message = "<font color=red><b>\The [partner]</b> [retaliation_message]</font>", ignored_mobs = get_unconsenting())
 	handle_post_sex(NORMAL_LUST, CUM_TARGET_MOUTH, partner)
 	partner.dir = get_dir(partner,src)
 	do_fucking_animation(get_dir(src, partner))
@@ -522,7 +600,7 @@ mob/living/Initialize()
 
 	playlewdinteractionsound(loc, file, 70, 1, -1)
 
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 
 	handle_post_sex(lust_increase, THIGH_SMOTHERING, partner)
 
@@ -574,12 +652,13 @@ mob/living/Initialize()
 
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/oral1.ogg',
 						'modular_skyrat/sound/interactions/oral2.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	if(retaliation_message)
-		visible_message("<font color=red><b>\The [partner]</b> [retaliation_message]</font>")
+		visible_message(message = "<font color=red><b>\The [partner]</b> [retaliation_message]</font>", ignored_mobs = get_unconsenting())
 	handle_post_sex(NORMAL_LUST, CUM_TARGET_THROAT, partner)
 	partner.dir = get_dir(partner,src)
 	do_fucking_animation(get_dir(src, partner))
+
 /mob/living/proc/nut_face(var/mob/living/partner)
 
 	var/message
@@ -600,7 +679,7 @@ mob/living/Initialize()
 						'modular_skyrat/sound/interactions/nuts2.ogg',
 						'modular_skyrat/sound/interactions/nuts3.ogg',
 						'modular_skyrat/sound/interactions/nuts4.ogg'), 70, 1, -1)*/ //These files don't even exist but nobody noticed because double-quotes were used instead of single.
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	handle_post_sex(lust_increase, CUM_TARGET_MOUTH, partner)
 	partner.dir = get_dir(partner,src)
 	do_fucking_animation(get_dir(src, partner))
@@ -624,7 +703,7 @@ mob/living/Initialize()
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
 						'modular_skyrat/sound/interactions/bang2.ogg',
 						'modular_skyrat/sound/interactions/bang3.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	handle_post_sex(NORMAL_LUST, CUM_TARGET_ANUS, partner)
 	partner.handle_post_sex(NORMAL_LUST, null, src)
 	partner.dir = get_dir(src, partner)
@@ -645,7 +724,7 @@ mob/living/Initialize()
 
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/champ1.ogg',
 						'modular_skyrat/sound/interactions/champ2.ogg'), 50, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	handle_post_sex(NORMAL_LUST, CUM_TARGET_VAGINA, partner)
 	partner.handle_post_sex(NORMAL_LUST, null, src)
 	partner.dir = get_dir(partner,src)
@@ -663,7 +742,7 @@ mob/living/Initialize()
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
 						'modular_skyrat/sound/interactions/bang2.ogg',
 						'modular_skyrat/sound/interactions/bang3.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	partner.handle_post_sex(NORMAL_LUST, CUM_TARGET_VAGINA, src)
 	handle_post_sex(NORMAL_LUST, null, partner)
 	partner.dir = get_dir(partner,src)
@@ -681,7 +760,7 @@ mob/living/Initialize()
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
 						'modular_skyrat/sound/interactions/bang2.ogg',
 						'modular_skyrat/sound/interactions/bang3.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	partner.handle_post_sex(NORMAL_LUST, CUM_TARGET_ANUS, src)
 	handle_post_sex(NORMAL_LUST, null, partner)
 	partner.dir = get_dir(partner,src)
@@ -701,32 +780,32 @@ mob/living/Initialize()
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/squelch1.ogg',
 						'modular_skyrat/sound/interactions/squelch2.ogg',
 						'modular_skyrat/sound/interactions/squelch3.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	partner.handle_post_sex(NORMAL_LUST, CUM_TARGET_VAGINA, src)
 	handle_post_sex(NORMAL_LUST, null, partner)
 	partner.dir = get_dir(partner,src)
 	do_fucking_animation(get_dir(src, partner))
 
 /mob/living/proc/do_fingering(mob/living/partner)
-	visible_message("<font color=purple><b>\The [src]</b> [pick("fingers \the [partner].",
+	visible_message(message = "<font color=purple><b>\The [src]</b> [pick("fingers \the [partner].",
 		"fingers \the [partner]'s pussy.",
-		"fingers \the [partner] hard.")]</font>")
+		"fingers \the [partner] hard.")]</font>", ignored_mobs = get_unconsenting())
 	playlewdinteractionsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
 	partner.handle_post_sex(NORMAL_LUST, null, src)
 	partner.dir = get_dir(partner, src)
 	do_fucking_animation(get_dir(src, partner))
 
 /mob/living/proc/do_fingerass(mob/living/partner)
-	visible_message("<font color=purple><b>\The [src]</b> [pick("fingers \the [partner].",
+	visible_message(message = "<font color=purple><b>\The [src]</b> [pick("fingers \the [partner].",
 		"fingers \the [partner]'s asshole.",
-		"fingers \the [partner] hard.")]</font>")
+		"fingers \the [partner] hard.")]</font>", ignored_mobs = get_unconsenting())
 	playlewdinteractionsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
 	partner.handle_post_sex(NORMAL_LUST, null, src)
 	partner.dir = get_dir(partner, src)
 	do_fucking_animation(get_dir(src, partner))
 
 /mob/living/proc/do_rimjob(mob/living/partner)
-	visible_message("<font color=purple><b>\The [src]</b> licks \the [partner]'s asshole.</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> licks \the [partner]'s asshole.</font>", ignored_mobs = get_unconsenting())
 	playlewdinteractionsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
 	partner.handle_post_sex(NORMAL_LUST, null, src)
 	partner.dir = get_dir(src, partner)
@@ -747,7 +826,7 @@ mob/living/Initialize()
 	playlewdinteractionsound(src, pick('modular_skyrat/sound/interactions/bang1.ogg',
 						'modular_skyrat/sound/interactions/bang2.ogg',
 						'modular_skyrat/sound/interactions/bang3.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	partner.handle_post_sex(NORMAL_LUST, CUM_TARGET_HAND, src)
 	partner.dir = get_dir(partner,src)
 	do_fucking_animation(get_dir(src, partner))
@@ -768,7 +847,7 @@ mob/living/Initialize()
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/bang1.ogg',
 						'modular_skyrat/sound/interactions/bang2.ogg',
 						'modular_skyrat/sound/interactions/bang3.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	handle_post_sex(NORMAL_LUST, CUM_TARGET_BREASTS, partner)
 	partner.dir = get_dir(partner,src)
 	do_fucking_animation(get_dir(src, partner))
@@ -788,7 +867,7 @@ mob/living/Initialize()
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/squelch1.ogg',
 						'modular_skyrat/sound/interactions/squelch2.ogg',
 						'modular_skyrat/sound/interactions/squelch3.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	handle_post_sex(LOW_LUST, null, src)
 	partner.dir = get_dir(src, partner)
 	do_fucking_animation(get_dir(src, partner))
@@ -797,12 +876,12 @@ mob/living/Initialize()
 	var/message
 
 	if(partner.get_item_by_slot(SLOT_SHOES) != null)
-		message = "licks \the [partner]'s \ [partner.get_item_by_slot(SLOT_SHOES)]."
+		message = "licks \the [partner]'s \ [partner.get_shoes()]."
 	else
-		message = "licks \the [partner]'s feet."
+		message = "licks \the [partner]'s [partner.has_feet() == 1 ? "foot" : "feet"]."
 
 	playlewdinteractionsound(loc, 'modular_skyrat/sound/interactions/champ_fingering.ogg', 50, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	handle_post_sex(LOW_LUST, null, src)
 	partner.dir = get_dir(src, partner)
 	do_fucking_animation(get_dir(src, partner))
@@ -847,7 +926,7 @@ mob/living/Initialize()
 						'modular_skyrat/sound/interactions/foot_dry2.ogg',
 						'modular_skyrat/sound/interactions/foot_dry3.ogg',
 						'modular_skyrat/sound/interactions/foot_dry4.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	partner.handle_post_sex(LOW_LUST, null, src)
 	partner.dir = get_dir(src, partner)
 	do_fucking_animation(get_dir(src, partner))
@@ -889,19 +968,84 @@ mob/living/Initialize()
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/foot_wet1.ogg',
 						'modular_skyrat/sound/interactions/foot_wet2.ogg',
 						'modular_skyrat/sound/interactions/foot_wet3.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	partner.handle_post_sex(LOW_LUST, null, src)
 	partner.dir = get_dir(src, partner)
+	do_fucking_animation(get_dir(src, partner))
+
+/mob/living/proc/do_footfuck(mob/living/partner)
+	var/message
+
+	if(is_fucking(src, CUM_TARGET_FEET))
+		message = "[pick("fucks \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot", "sole")].",
+			"rubs their dick on \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot", "sole")].",
+			"grinds their cock on \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot", "sole")].")]"
+	else
+		message = "[pick("positions their cock on \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot", "sole")].",
+			"positions their cock on \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot","sole")].",
+			"starts grinding their cock against \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot", "sole")].")]"
+		set_is_fucking(src, CUM_TARGET_FEET)
+
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/foot_dry1.ogg',
+						'modular_skyrat/sound/interactions/foot_dry3.ogg',
+						'modular_skyrat/sound/interactions/foot_wet1.ogg',
+						'modular_skyrat/sound/interactions/foot_wet2.ogg'), 70, 1, -1)
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
+	handle_post_sex(NORMAL_LUST, CUM_TARGET_FEET, src)
+	partner.dir = get_dir(partner,src)
+	do_fucking_animation(get_dir(src, partner))
+
+/mob/living/proc/do_dfootfuck(mob/living/partner)
+	var/message
+
+	if(is_fucking(src, CUM_TARGET_FEET))
+		message = "[pick("fucks \the [partner]'s [partner.get_shoes() ? partner.get_shoes() : pick("feet", "soles")].",
+			"rubs their dick between \the [partner]'s [partner.get_shoes() ? partner.get_shoes() : pick("feet", "soles")].",
+			"thrusts their cock between \the [partner]'s [partner.get_shoes() ? partner.get_shoes() : pick("feet", "soles")].")]"
+	else
+		message = "[pick("positions their cock between \the [partner]'s [partner.get_shoes() ? partner.get_shoes() : pick("feet", "soles")].",
+			"starts grinding their cock against \the [partner]'s [partner.get_shoes() ? partner.get_shoes() : pick("feet", "soles")].",
+			"starts grinding their cock between \the [partner]'s [partner.get_shoes() ? partner.get_shoes() : pick("feet", "soles")].")]"
+		set_is_fucking(src, CUM_TARGET_FEET)
+
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/foot_dry1.ogg',
+						'modular_skyrat/sound/interactions/foot_dry3.ogg',
+						'modular_skyrat/sound/interactions/foot_wet1.ogg',
+						'modular_skyrat/sound/interactions/foot_wet2.ogg'), 70, 1, -1)
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
+	handle_post_sex(NORMAL_LUST, CUM_TARGET_FEET, src)
+	partner.dir = get_dir(partner,src)
+	do_fucking_animation(get_dir(src, partner))
+
+/mob/living/proc/do_vfootfuck(mob/living/partner)
+	var/message
+
+	if(is_fucking(src, CUM_TARGET_FEET))
+		message = "[pick("grinds their pussy against \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot", "sole")].",
+			"rubs their clit on \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot", "sole")].",
+			"ruts on \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot", "sole")].")]"
+	else
+		message = "[pick("positions their vagina on \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot", "sole")].",
+			"positions their clit on \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot","sole")].",
+			"starts grinding their pussy against \the [partner]'s [partner.get_shoes() ? partner.get_shoes(TRUE) : pick("foot", "sole")].")]"
+		set_is_fucking(src, CUM_TARGET_FEET)
+
+	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/foot_dry1.ogg',
+						'modular_skyrat/sound/interactions/foot_dry3.ogg',
+						'modular_skyrat/sound/interactions/foot_wet1.ogg',
+						'modular_skyrat/sound/interactions/foot_wet2.ogg'), 70, 1, -1)
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
+	handle_post_sex(NORMAL_LUST, CUM_TARGET_FEET, src)
+	partner.dir = get_dir(partner,src)
 	do_fucking_animation(get_dir(src, partner))
 
 /mob/living/proc/do_footjob(mob/living/partner)
 	var/message
 
 	if(partner.is_fucking(src, CUM_TARGET_FEET))
-		message = "[pick("jerks \the [partner] off with their [get_shoes() ? get_shoes(TRUE) : "foot"].",
-			"rubs their [get_shoes() ? get_shoes() : "foot"] on \the [partner]'s shaft.",
-			"rubs their [get_shoes() ? get_shoes() : "toes"] on \the [partner]'s cock.",
-			"works their [get_shoes() ? get_shoes() : "foot"] up and down on \the [partner]'s cock.")]"
+		message = "[pick("jerks \the [partner] off with their [get_shoes() ? get_shoes(TRUE) : pick("foot", "sole")].",
+			"rubs their [get_shoes() ? get_shoes() : pick("foot", "sole", "toes")] on \the [partner]'s shaft.",
+			"works their [get_shoes() ? get_shoes() : pick("foot", "sole")] up and down on \the [partner]'s cock.")]"
 	else
 		message = "[pick("[get_shoes() ? "positions their [get_shoes(TRUE)] on" :"positions their foot on"] \the [partner]'s cock.",
 			"starts playing around with \the [partner]'s cock, using their [get_shoes() ? get_shoes(TRUE) :"foot"].")]"
@@ -911,7 +1055,7 @@ mob/living/Initialize()
 						'modular_skyrat/sound/interactions/foot_dry3.ogg',
 						'modular_skyrat/sound/interactions/foot_wet1.ogg',
 						'modular_skyrat/sound/interactions/foot_wet2.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	partner.handle_post_sex(NORMAL_LUST, CUM_TARGET_FEET, src)
 	partner.dir = get_dir(partner,src)
 	do_fucking_animation(get_dir(src, partner))
@@ -920,20 +1064,20 @@ mob/living/Initialize()
 	var/message
 
 	if(partner.is_fucking(src, CUM_TARGET_FEET))
-		message = "[pick("jerks \the [partner] off with their [get_shoes() ? get_shoes() : (get_num_legs() == 2) ? "feet" : "foot"].",
-			"rubs their [get_shoes() ? get_shoes() : (get_num_legs() == 2) ? "feet" : "foot"] on \the [partner]'s shaft.",
-			"rubs their [get_shoes() ? get_shoes() : "toes"] on \the [partner]'s cock.",
-			"works up and down on \the [partner]'s cock.")]"
+		message = "[pick("jerks \the [partner] off with their [get_shoes() ? get_shoes() : pick("feet", "soles")].",
+			"rubs their [get_shoes() ? get_shoes() : pick("feet", "soles")] on \the [partner]'s shaft.",
+			"rubs [get_shoes() ? "their [get_shoes()]" : "all of their toes"] on \the [partner]'s cock.",
+			"works their [get_shoes() ? get_shoes() : pick("feet", "soles")] up and down on \the [partner]'s cock.")]"
 	else
-		message = "[pick("[get_shoes() ? "wraps their [get_shoes()] around" : (get_num_legs() == 2) ? "wraps their feet around" : "positions their foot on"] \the [partner]'s cock.",
-			"starts playing around with \the [partner]'s cock, using their [get_shoes() ? get_shoes() : (get_num_legs() == 2) ? "feet" : "foot"].")]"
+		message = "[pick("[get_shoes() ? "wraps their [get_shoes()] around" : "wraps their [pick("feet", "soles")] around"] \the [partner]'s cock.",
+			"starts playing around with \the [partner]'s cock, using their [get_shoes() ? get_shoes() : "feet"].")]"
 		partner.set_is_fucking(src, CUM_TARGET_FEET)
 
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/foot_dry1.ogg',
 						'modular_skyrat/sound/interactions/foot_dry3.ogg',
 						'modular_skyrat/sound/interactions/foot_wet1.ogg',
 						'modular_skyrat/sound/interactions/foot_wet2.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	partner.handle_post_sex(NORMAL_LUST, CUM_TARGET_FEET, src)
 	partner.dir = get_dir(partner,src)
 	do_fucking_animation(get_dir(src, partner))
@@ -942,20 +1086,20 @@ mob/living/Initialize()
 	var/message
 
 	if(partner.is_fucking(src, CUM_TARGET_FEET))
-		message = "[pick("rubs \the [partner] clit with their [get_shoes() ? get_shoes(TRUE) : "foot"].",
-			"rubs their [get_shoes() ? get_shoes(TRUE) : "foot"] on \the [partner]'s coochie.",
-			"rubs their [get_shoes() ? get_shoes(TRUE) : "toes"] on \the [partner]'s vagina.",
+		message = "[pick("rubs \the [partner] clit with their [get_shoes() ? get_shoes(TRUE) : pick("foot", "sole")].",
+			"rubs their [get_shoes() ? get_shoes(TRUE) : pick("foot", "sole", "toes")] on \the [partner]'s coochie.",
+			"rubs their [get_shoes() ? get_shoes(TRUE) : pick("foot", "sole", "toes")] on \the [partner]'s vagina.",
 			"rubs their foot up and down on \the [partner]'s pussy.")]"
 	else
-		message = "[pick("[get_shoes() ? "positions their [get_shoes(TRUE)] on" : "positions their foot on"] \the [partner]'s c.",
-			"starts playing around with \the [partner]'s pussy, using their [get_shoes() ? get_shoes(TRUE) : (get_num_legs() == 2) ? "feet" : "foot"].")]"
+		message = "[pick("[get_shoes() ? "positions their [get_shoes(TRUE)] on" : "positions their foot on"] \the [partner]'s pussy.",
+			"starts playing around with \the [partner]'s pussy, using their [get_shoes() ? get_shoes(TRUE) : "foot"].")]"
 		partner.set_is_fucking(src, CUM_TARGET_FEET)
 
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/foot_dry1.ogg',
 						'modular_skyrat/sound/interactions/foot_dry3.ogg',
 						'modular_skyrat/sound/interactions/foot_wet1.ogg',
 						'modular_skyrat/sound/interactions/foot_wet2.ogg'), 70, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting())
 	partner.handle_post_sex(NORMAL_LUST, CUM_TARGET_FEET, src)
 	partner.dir = get_dir(partner,src)
 	do_fucking_animation(get_dir(src, partner))
@@ -965,13 +1109,13 @@ mob/living/Initialize()
 	if(A)
 		var/txt = A.name
 		if(findtext (A.name,"the"))
-			txt = copytext(A.name, 3, (length(A.name)) + 1)
+			txt = copytext(A.name, 3, length(A.name))
 			if(singular)
-				txt = copytext(A.name, 3, length(A.name))
+				txt = copytext(A.name, 3, length(A.name)-1)
 			return txt
 		else
 			if(singular)
-				txt = copytext(A.name, 0, length(A.name))
+				txt = copytext(A.name, 1, length(A.name)-1)
 			return txt
 
 /mob/living/proc/handle_post_sex(amount, orifice, mob/living/partner)
@@ -988,6 +1132,18 @@ mob/living/Initialize()
 			cum(partner, orifice)
 	else
 		moan()
+
+/mob/living/proc/get_unconsenting(var/extreme = FALSE, var/list/ignored_mobs)
+	for(var/mob/M in GLOB.player_list)
+		if(M.client)
+			var/client/cli = M.client
+			if(!(cli.prefs.toggles & VERB_CONSENT)) //Note: This probably could do with a specific preference
+				ignored_mobs += M
+			else if(extreme && (cli.prefs.extremepref == "No"))
+				ignored_mobs += M
+		else
+			ignored_mobs += M
+	return ignored_mobs
 
 //Yep, weird shit goes down here.
 /mob/living/proc/do_eyefuck(mob/living/partner)
@@ -1014,7 +1170,7 @@ mob/living/Initialize()
 
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/champ1.ogg',
 						'modular_skyrat/sound/interactions/champ2.ogg'), 50, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting(TRUE))
 	handle_post_sex(NORMAL_LUST, CUM_TARGET_EYES, partner)
 	partner.handle_post_sex(LOW_LUST, null, src)
 	partner.dir = get_dir(partner,src)
@@ -1044,7 +1200,7 @@ mob/living/Initialize()
 
 	playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/champ1.ogg',
 						'modular_skyrat/sound/interactions/champ2.ogg'), 50, 1, -1)
-	visible_message("<font color=purple><b>\The [src]</b> [message]</font>")
+	visible_message(message = "<font color=purple><b>\The [src]</b> [message]</font>", ignored_mobs = get_unconsenting(TRUE))
 	handle_post_sex(NORMAL_LUST, CUM_TARGET_EARS, partner)
 	partner.handle_post_sex(LOW_LUST, null, src)
 	partner.dir = get_dir(partner,src)

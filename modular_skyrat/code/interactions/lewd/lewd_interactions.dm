@@ -30,8 +30,9 @@
 	var/require_target_anus
 	var/require_target_vagina
 	var/require_target_breasts
+	var/require_target_feet
 	//"just fucking kill me" variables
-	var/extreme
+	var/extreme = FALSE //Boolean. Used to hide extreme shit from those who do not want it.
 	var/require_target_ears
 	var/require_target_earsockets
 	var/require_target_eyes
@@ -78,9 +79,9 @@
 				to_chat(user, "<span class = 'warning'>You don't have breasts.</span>")
 			return FALSE
 		
-		if(require_user_feet && !user.get_num_legs())
+		if(require_user_feet && (user.get_num_legs() < require_user_feet))
 			if(!silent)
-				to_chat(user, "<span class = 'warning'>You have no feet.</span>")
+				to_chat(user, "<span class = 'warning'>You don't have enough feet.</span>")
 			return FALSE
 
 		if(extreme)
@@ -178,6 +179,11 @@
 			if(!silent)
 				to_chat(user, "<span class = 'warning'>They don't have breasts.</span>")
 			return FALSE
+		
+		if(require_target_feet && (target.has_feet() < require_target_feet))
+			if(!silent)
+				to_chat(user, "<span class = 'warning'>They don't have enough feet.</span>")
+			return FALSE
 
 		if(require_ooc_consent)
 			if(target.client && target.client.prefs.toggles & VERB_CONSENT)
@@ -196,9 +202,11 @@
 	if(user.stat == DEAD)
 		to_chat(user, "<span class='warning'>You cannot while deceased!</span>")
 		return
+	if(extreme)
+		return "<font color='#FF0000'><b>EXTREME:</b></font> [..()]"
 	return "<font color='#FF0000'><b>LEWD:</b></font> [..()]"
 
-/mob/living/carbon/human/list_interaction_attributes()
+/mob/living/carbon/human/list_interaction_attributes(var/mob/living/LM)
 	var/dat = ..()
 	if(get_refraction_dif())
 		dat += "<br>...are sexually exhausted for the time being."
@@ -213,17 +221,23 @@
 	//Here comes the fucking weird shit.
 	if(client)
 		var/client/cli = client
+		var/client/ucli = LM.client
 		if(cli.prefs.extremepref != "No")
-			if(!get_item_by_slot(ITEM_SLOT_EARS))
-				if(getorganslot(ORGAN_SLOT_EARS))
-					dat += "<br>...have unprotected ears."
+			if(!ucli || (ucli.prefs.extremepref != "No"))
+				if(!get_item_by_slot(ITEM_SLOT_EARS))
+					if(has_ears())
+						dat += "<br>...have unprotected ears."
+					else
+						dat += "<br>...have a hole where their ears should be."
 				else
-					dat += "<br>...have a hole where their ears should be."
-			if(!get_item_by_slot(ITEM_SLOT_EYES))
-				if(getorganslot(ORGAN_SLOT_EYES))
-					dat += "<br>...have exposed eyes."
+					dat += "<br>...have covered ears."
+				if(!get_item_by_slot(ITEM_SLOT_EYES))
+					if(has_eyes())
+						dat += "<br>...have exposed eyes."
+					else
+						dat += "<br>...have exposed eyesockets."
 				else
-					dat += "<br>...have exposed eyesockets."
+					dat += "<br>...have covered eyes."
 	//
 	if(is_topless())
 		if(has_breasts())

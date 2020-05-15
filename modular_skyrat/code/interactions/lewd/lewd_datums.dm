@@ -293,6 +293,7 @@
 	description = "Lick their feet."
 	interaction_sound = null
 	require_user_mouth = TRUE
+	require_target_feet = 1
 	max_distance = 1
 
 /datum/interaction/lewd/lickfeet/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -303,6 +304,7 @@
 	description = "Feet grind their face."
 	interaction_sound = null
 	require_target_mouth = TRUE
+	require_user_feet = 1
 	max_distance = 0
 
 /datum/interaction/lewd/grindface/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -313,16 +315,37 @@
 	description = "Feet grind their mouth."
 	interaction_sound = null
 	require_target_mouth = TRUE
+	require_user_feet = 1
 	max_distance = 0
 
 /datum/interaction/lewd/grindmouth/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.do_grindmouth(target)
 
+/datum/interaction/lewd/footfuck
+	command = "footfuck"
+	description = "Rub your cock on their foot."
+	interaction_sound = null
+	require_target_feet = 1
+	require_user_penis = TRUE
+	user_not_tired = TRUE
+	max_distance = 1
+
+/datum/interaction/lewd/footfuck/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.do_footfuck(target)
+
+/datum/interaction/lewd/footfuck/double
+	command = "footfuckdouble"
+	description = "Rub your cock between their feet."
+	require_target_feet = 2
+
+/datum/interaction/lewd/footfuck/double/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.do_dfootfuck(target)
+
 /datum/interaction/lewd/footjob
 	command = "footjob"
-	description = "Jerk them off with your foot... or footwear."
+	description = "Jerk them off with your foot."
 	interaction_sound = null
-	require_user_feet = TRUE
+	require_user_feet = 1
 	require_target_penis = TRUE
 	target_not_tired = TRUE
 	require_target_bottomless = TRUE
@@ -332,15 +355,16 @@
 	user.do_footjob(target)
 
 /datum/interaction/lewd/footjob/double
-	command = "double footjob"
-	description = "Jerk them off with your feet... or footwear."
+	command = "footjob_double"
+	description = "Jerk them off with both of your feet."
+	require_user_feet = 2
 
 /datum/interaction/lewd/footjob/double/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.do_dfootjob(target)
 
 /datum/interaction/lewd/footjob/vagina
-	command = "vaginal footjob"
-	description = "Rub their vagina with your foot... or footwear."
+	command = "footjob_vaginal"
+	description = "Rub their vagina with your foot."
 	require_target_vagina = TRUE
 	require_target_penis = FALSE
 
