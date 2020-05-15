@@ -1,3 +1,9 @@
+/mob/proc/flash_popup(icon_state)
+	var/image/I = image('modular_skyrat/icons/mob/popup_flicks.dmi', src, icon_state,FLY_LAYER)
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
+	INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay_view, I, src, 40)
+	animate(I, alpha = 255, time = 5, easing = BOUNCE_EASING, pixel_y = 10)
+
 /mob/emote(act, m_type = null, message = null, intentional = FALSE)
 	. = ..()
 	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
