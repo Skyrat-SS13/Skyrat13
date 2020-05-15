@@ -1183,8 +1183,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/rank = job.title
 			//Skyrat changes
 			var/displayed_rank = rank
-			if(job.alt_titles.len && (rank in alt_titles_preferences))
+			if((job.alt_titles.len && (rank in alt_titles_preferences)) || (user.client.ckey in GLOB.titlewhitelist) || (CONFIG_GET(flag/nepotism) && check_rights_for(user.client, R_ADMIN)))
 				displayed_rank = alt_titles_preferences[rank]
+				if(!displayed_rank)
+					displayed_rank = rank
 			//End of skyrat changes
 			lastJob = job
 			if(jobban_isbanned(user, rank))
@@ -1211,7 +1213,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/rank_title_line = "[displayed_rank]"
 			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
 				rank_title_line = "<b>[rank_title_line]</b>"
-			if(job.alt_titles.len)
+			if(job.alt_titles.len || (user.client.ckey in GLOB.titlewhitelist) || (CONFIG_GET(flag/nepotism) && check_rights_for(user.client, R_ADMIN)))
 				rank_title_line = "<a href='?_src_=prefs;preference=job;task=alt_title;job_title=[job.title]'>[rank_title_line]</a>"
 			else
 				rank_title_line = "<span class='dark'>[rank_title_line]</span>" //Make it dark if we're not adding a button for alt titles
@@ -1465,11 +1467,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				for(var/i in J.alt_titles)
 					titles_list += i
 				var/chosen_title
-				chosen_title = input(user, "Choose your job's title:", "Job Preference") as null|anything in titles_list
+				if((CONFIG_GET(flag/nepotism) && check_rights_for(user.client, R_ADMIN)) || (user.client.ckey in GLOB.titlewhitelist))
+					chosen_title = input(user, "Choose your job's title:", "Job Preference") as null|anything in (titles_list + "Custom")
+				else
+					chosen_title = input(user, "Choose your job's title:", "Job Preference") as null|anything in titles_list
 				if(chosen_title)
 					if(chosen_title == job_title)
 						if(alt_titles_preferences[job_title])
 							alt_titles_preferences.Remove(job_title)
+					else if(chosen_title == "Custom")
+						chosen_title = input(user, "Choose your custom job title. Do not abuse this feature, \
+													make sure the title is clear and somewhat realistic.", "Custom title") as null|text
+						if(chosen_title)
+							alt_titles_preferences[job_title] = chosen_title
 					else
 						alt_titles_preferences[job_title] = chosen_title
 				SetChoices(user)

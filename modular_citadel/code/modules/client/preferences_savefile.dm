@@ -1,4 +1,4 @@
-/datum/preferences/proc/cit_character_pref_load(savefile/S)
+/datum/preferences/proc/cit_character_pref_load(savefile/S, var/client/cli)
 	//ipcs
 	S["feature_ipc_screen"] >> features["ipc_screen"]
 	S["feature_ipc_antenna"] >> features["ipc_antenna"]
@@ -24,8 +24,13 @@
 	if(SSjob)
 		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
 			if(alt_titles_preferences[job.title])
-				if(!(alt_titles_preferences[job.title] in job.alt_titles))
-					alt_titles_preferences.Remove(job.title)
+				if(!(alt_titles_preferences[job.title] in job.alt_titles)) 
+					var/client/snowflake = cli
+					if(snowflake)
+						if(!(snowflake.ckey in GLOB.titlewhitelist) && !(CONFIG_GET(flag/nepotism) && check_rights_for(snowflake, R_ADMIN)))
+							alt_titles_preferences.Remove(job.title)
+					else 
+						alt_titles_preferences.Remove(job.title)
 
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
 	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])

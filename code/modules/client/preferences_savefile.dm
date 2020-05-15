@@ -407,6 +407,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			to_chat(parent, "<span class='warning'>You're attempting to load your character a little too fast. Wait half a second, then try again.</span>")
 		return "SLOW THE FUCK DOWN" //the reason this isn't null is to make sure that people don't have their character slots overridden by random chars if they accidentally double-click a slot
 	loadcharcooldown = world.time + PREF_SAVELOAD_COOLDOWN
+	//Skyrat edit - full custom job titles
+	var/client/jobbed
+	if(istype(parent))
+		jobbed = parent
+	//
 	if(!fexists(path))
 		return 0
 	var/savefile/S = new /savefile(path)
@@ -675,8 +680,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	vore_flags						= sanitize_integer(vore_flags, 0, MAX_VORE_FLAG, 0)
 	vore_taste						= copytext(vore_taste, 1, MAX_TASTE_LEN)
 	belly_prefs 					= SANITIZE_LIST(belly_prefs)
-
-	cit_character_pref_load(S)
+	//SKYRAT EDIT - full custom job titles
+	if(jobbed)
+		cit_character_pref_load(S, jobbed)
+	else
+		cit_character_pref_load(S)
+	//
 
 	return 1
 
