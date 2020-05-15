@@ -379,7 +379,8 @@
 		var/mob/living/L = user
 		L.DefaultCombatKnockdown(200)
 		L.Stun(20) //Skyrat Change
-
+		L.set_resting(TRUE) //Skyrat change
+		
 /datum/emote/living/sway
 	key = "sway"
 	key_third_person = "sways"
