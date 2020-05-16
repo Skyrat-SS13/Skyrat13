@@ -127103,7 +127103,13 @@
 /turf/open/floor/plasteel/white,
 /area/science/misc_lab)
 "wFu" = (
+<<<<<<< HEAD
 /turf/closed/wall/r_wall,
+=======
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/open/space/basic,
+>>>>>>> cbc208375d... [Map Fix] Button and Wall (#12285)
 /area/space/nearstation)
 "wHv" = (
 /obj/effect/turf_decal/tile/neutral{
