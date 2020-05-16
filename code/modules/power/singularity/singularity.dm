@@ -293,11 +293,6 @@
 		name = "supermatter-charged [initial(name)]"
 		consumedSupermatter = 1
 		set_light(10)
-	//SKYRAT EDIT - cheemgularity
-	if(istype(A, /mob/living/simple_animal/pet/dog/cheems))
-		new /obj/singularity/cheemgularity(get_turf(src))
-		qdel(src)
-	//
 
 /obj/singularity/proc/move(force_move = 0)
 	if(!move_self)

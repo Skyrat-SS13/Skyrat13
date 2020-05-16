@@ -2,25 +2,31 @@
 //note: will probably add hat and fluff functionality later
 //note 2: will probably get a better sprite later
 /mob/living/simple_animal/pet/dog/cheems
-	name = "\proper Cheems"
+	name = "Cheems"
 	desc = "Cheemsburbger..."
-	icon = 'modular_skyrat/icons/mob/doges.dmi'
+	icon = 'modular_skyrat/icons/mob/cheems.dmi'
 	icon_state = "cheems"
 	icon_dead = "cheemsdead"
 	icon_living = "cheems"
-	speak = list("Burbger...", "McDomnald...", "Whompper...", "Bimg Mac...", "Whemre are the miners?", "Revolutiom!",\
-				"Pizza cramte.", "Collemctable hats...", "Research mining tech stupid sciemtists!", "Where's my rimpley?",\
-				"Shomtgun crate.", "Free cargo!", "No horny.")
+	speak = list("Burbger...", "McDonald...", "Whopper.", "Bimg Mac.", "Whemre are the miners?", "Revolutiom!",\
+				"Pizza cramte.", "Collemctable hats...", "Research mining tech stupid sciemtists.", "I want a rimpley.")
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/burger/cheese = 5)
 	faction = list("dog", "doge")
 	animal_species = /mob/living/simple_animal/pet/dog
 	gold_core_spawnable = FRIENDLY_SPAWN
 
+/mob/living/simple_animal/pet/dog/cheems/examine(mob/user)
+	. = ..()
+	. += "<br>"
+	var/burbgeramount = round((health/maxHealth) * 50)
+	for(var/i = 0, i >= burbgeramount, i++)
+		. += "[icon2html('icons/obj/food/burgerbread.dmi', world, "cheeseburgeralt")]"
+
 /mob/living/simple_animal/pet/dog/cheems/Move(atom/newloc, direct)
 	. = ..()
 	if(.)
 		for(var/obj/item/reagent_containers/food/snacks/burger/burbger in view(1, src))
-			visible_message("<span class='danger'><b>\The [src]</b> consumes the [burbger]!</span>")
+			visible_message("<span class='danger'><b>[src] consumes the [burbger]!</b></span>")
 			qdel(burbger)
 			revive(full_heal = 1)
 
@@ -30,12 +36,24 @@
 		if(istype(I, /obj/item/reagent_containers/food/snacks/burger))
 			qdel(I)
 			if(stat == DEAD)
-				visible_message("<b>\The [src]</b> stands right back up after nibbling the [I]!")
+				visible_message("\The [src] stands right back up after nibbling the [I]!")
 			else 
-				visible_message("<b>\The [src]</b> swallows the [I] whole!")
+				visible_message("\The [src] swallows the [I] whole!")
 			revive(full_heal = 1)
 
 //cheemgularity
+/obj/singularity/consume(atom/A)
+	var/gain = A.singularity_act(current_size, src)
+	src.energy += gain
+	if(istype(A, /obj/machinery/power/supermatter_crystal) && !consumedSupermatter)
+		desc = "[initial(desc)] It glows fiercely with inner fire."
+		name = "supermatter-charged [initial(name)]"
+		consumedSupermatter = 1
+		set_light(10)
+	if(istype(A, /mob/living/simple_animal/pet/dog/cheems))
+		new /obj/singularity/cheemgularity(get_turf(src))
+		qdel(src)
+
 /obj/singularity/cheemgularity
 	name = "cheemgularity"
 	desc = "Praise cheem."
