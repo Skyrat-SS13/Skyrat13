@@ -91,6 +91,7 @@
 
 /datum/species/handle_digestion(mob/living/carbon/human/H)
 	. = ..()
+	H.maxHealth = clamp(200 - (NUTRITION_LEVEL_FED - H.nutrition), 133, 300)
 	if(H.nutrition<NUTRITION_LEVEL_STARVING)
 		if(prob(15))
 			H.Dizzy(10)
