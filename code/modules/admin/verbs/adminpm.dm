@@ -53,6 +53,12 @@
 
 	var/datum/admin_help/AH = ticket // Skyrat change
 
+	// Skyrat change START
+	if(AH.state != AHELP_ACTIVE)
+		to_chat(src, "<span class='danger'>This is no longer an active ticket, it would need to be reopened, or another ticket will need to be made.</span>")
+		return
+	// Skyrat change END
+
 	if(AH)
 		message_admins("[key_name_admin(src)] has started replying to [key_name(C, 0, 0)]'s admin help.")
 	var/msg = input(src,"Message:", "Private message to [key_name(C, 0, 0)]") as message|null
@@ -72,7 +78,8 @@
 
 	if(!holder && !AH)	//no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
 		to_chat(src, "<span class='danger'>You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be.</span>")
-		to_chat(src, "<span class='notice'>Message: [msg]</span>")
+		if (msg)
+			to_chat(src, "<span class='notice'>Message: [msg]</span>")
 		return
 
 	var/client/recipient
@@ -176,7 +183,7 @@
 		else
 			if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
 				if (!AH) //SKYRAT EDIT
-					new /datum/admin_help(msg, recipient, TRUE, src) //SKYRAT EDIT - new variable
+					AH = new /datum/admin_help(msg, recipient, TRUE, src) //SKYRAT EDIT - new variable
 
 				// Skyrat change START
 				if(AH.handler)
@@ -191,7 +198,7 @@
 
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 				to_chat(recipient, "<span class='danger'>Admin PM from-<b>[key_name(src, recipient, 0, AH)]</b>: <span class='linkify'>[msg]</span></span>") // Skyrat change
-				to_chat(recipient, "<span class='danger'><i>Click on the administrator's name to reply.</i></span>")
+				to_chat(recipient, "<span class='danger'><i>Click on the administrator's name to reply, or see all of your tickets in the admin column.</i></span>") // Skyrat change
 				to_chat(src, "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1, AH)]</b>: <span class='linkify'>[msg]</span></span>") // Skyrat change
 
 				admin_ticket_log(recipient, "<font color='purple'>PM From [key_name_admin(src, ticket=AH)]: [keywordparsedmsg]</font>", AH) // Skyrat change
