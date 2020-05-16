@@ -60,7 +60,7 @@
 		anger_modifier = round(clamp(((maxHealth - health) / 42),0,60))
 		move_to_delay = clamp(round((src.health/src.maxHealth) * 10), 2.5, 8)
 		wander = FALSE
-		do_sparks(rand(1,4), FALSE, src)
+		do_sparks(rand(min_sparks,max_sparks), FALSE, src)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
 	if(special)
