@@ -1134,16 +1134,18 @@ mob/living/Initialize()
 		moan()
 
 /mob/living/proc/get_unconsenting(var/extreme = FALSE, var/list/ignored_mobs)
+	var/list/nope = list()
+	nope += ignored_mobs
 	for(var/mob/M in view(DEFAULT_MESSAGE_RANGE, src))
 		if(M.client)
 			var/client/cli = M.client
 			if(!(cli.prefs.toggles & VERB_CONSENT)) //Note: This probably could do with a specific preference
-				ignored_mobs += M
+				nope += M
 			else if(extreme && (cli.prefs.extremepref == "No"))
-				ignored_mobs += M
+				nope += M
 		else
-			ignored_mobs += M
-	return ignored_mobs
+			nope += M
+	return nope
 
 //Yep, weird shit goes down here.
 /mob/living/proc/do_eyefuck(mob/living/partner)
