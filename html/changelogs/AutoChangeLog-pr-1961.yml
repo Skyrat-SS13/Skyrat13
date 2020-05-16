@@ -1,0 +1,4 @@
+author: "NotRanged"
+delete-after: True
+changes: 
+  - tweak: "Fixed zero-answer issue with computermath, tweaked point values a bit and added another question."

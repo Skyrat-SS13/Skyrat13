@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "Wire pulsing now takes 0.75 seconds per skill level difference, instead of 1.5."

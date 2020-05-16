@@ -420,7 +420,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as IC issue by [usr?.client?.holder?.fakekey? usr.client.holder.fakekey : "an administrator"]! -</b></font><br>"
 	msg += "<font color='red'><b>An admin has looked at the submitted issue and has determined that the reported incident is valid.</b></font><br>" // Skyrat Change "uwu its valid uwu uwu uwu"
-	msg += "<font color='red'>Some actions by users, while appearing malicious, can be legitimate due to their status or given situation.</font>"
+	msg += "<font color='red'>Some tickets may be marked IC, simply due to a lack of context, making it seem like an IC issue. If you do not think it is an IC issue, please try again with more detail and context to show why it is not an IC issue.</font>" // Skyrat Change
+	msg += "<font color='red'>Furthermore. Some actions by users, while appearing malicious, can be legitimate due to their status or given situation.</font>" // Skyrat Change
 	msg += "<font color='red'>Please do not be discouraged from reporting similar instances in the future.</font>"
 	if(initiator)
 		to_chat(initiator, msg)
