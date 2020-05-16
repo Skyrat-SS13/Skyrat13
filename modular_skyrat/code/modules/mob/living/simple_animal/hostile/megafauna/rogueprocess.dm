@@ -31,6 +31,10 @@
 	songlength = 2930
 	var/special = FALSE
 	wander = FALSE
+	faction = list("mining", "boss")
+	weather_immunities = list("lava","ash")
+	blood_volume = 0
+	blood
 
 /obj/item/gps/internal/rogueprocess
 	icon_state = null
@@ -51,9 +55,11 @@
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/adjustHealth(amount, updating_health, forced)
 	. = ..()
-	anger_modifier = round(clamp(((maxHealth - health) / 42),0,60))
-	move_to_delay = clamp(round((src.health/src.maxHealth) * 10), 2.5, 8)
-	wander = FALSE
+	if(.)
+		anger_modifier = round(clamp(((maxHealth - health) / 42),0,60))
+		move_to_delay = clamp(round((src.health/src.maxHealth) * 10), 2.5, 8)
+		wander = FALSE
+		do_sparks(rand(1,4), FALSE, src)
 
 /mob/living/simple_animal/hostile/megafauna/rogueprocess/OpenFire(target)
 	if(special)
