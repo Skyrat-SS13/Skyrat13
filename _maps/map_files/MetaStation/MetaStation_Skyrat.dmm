@@ -12403,10 +12403,12 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "ayv" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "InterrogationShutters";
 	name = "Interrogation Shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced/tinted/electrochromatic{
+	electrochromatic_id = "!interrogation_room"
 	},
 /turf/open/floor/plating,
 /area/security/main)
@@ -19828,6 +19830,10 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 8
+	},
+/obj/machinery/button/electrochromatic{
+	id = "!interrogation_room";
+	pixel_y = 25
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -69018,14 +69024,6 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the test chamber.";
-	dir = 8;
-	layer = 4;
-	name = "Test Chamber Telescreen";
-	network = list("toxins");
-	pixel_x = 30
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
@@ -69441,14 +69439,6 @@
 	pixel_x = 24;
 	pixel_y = -24
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the test chamber.";
-	dir = 8;
-	layer = 4;
-	name = "Test Chamber Telescreen";
-	network = list("toxins");
-	pixel_x = 30
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
@@ -69857,6 +69847,15 @@
 	req_access_txt = "7"
 	},
 /obj/effect/turf_decal/loading_area,
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching the test chamber.";
+	dir = 4;
+	layer = 4;
+	name = "Test Chamber Telescreen";
+	network = list("toxins");
+	pixel_x = -32;
+	pixel_y = 0
+	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "cCH" = (
@@ -77070,11 +77069,11 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/light_switch{
-	pixel_x = -23
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
+	},
+/obj/machinery/light_switch{
+	pixel_y = 25
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
@@ -85508,10 +85507,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"wKo" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/closed/wall,
-/area/science/circuit)
 "wOY" = (
 /obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
@@ -102482,7 +102477,7 @@ aIg
 aIg
 aKN
 dIs
-aIg
+aUe
 dIs
 aQg
 aIg
@@ -121306,7 +121301,7 @@ lal
 ygk
 sdi
 fDD
-wKo
+krD
 czD
 cQC
 cBH

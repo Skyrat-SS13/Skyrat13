@@ -127103,9 +127103,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/misc_lab)
 "wFu" = (
-/obj/machinery/button/electrochromatic{
-	pixel_y = -26
-	},
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
 "wHv" = (
