@@ -34,7 +34,6 @@
 	faction = list("mining", "boss")
 	weather_immunities = list("lava","ash")
 	blood_volume = 0
-	blood
 
 /obj/item/gps/internal/rogueprocess
 	icon_state = null
