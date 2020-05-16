@@ -1,3 +1,4 @@
+// skyrat change start
 /datum/team/terror_spider
 	name = "Terror Spiders"
 
@@ -35,3 +36,4 @@
 	..()
 	if(!mind.has_antag_datum(/datum/antagonist/terror_spider))
 		mind.add_antag_datum(/datum/antagonist/terror_spider)
+// skyrat change stop

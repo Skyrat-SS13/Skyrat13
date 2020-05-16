@@ -480,12 +480,12 @@
 //skyrat change start
 //////////////////////////////////////////////
 //                                          //
-//               TERROR SPIDERS (GHOST)     //
+//        TERROR SPIDERS (GHOST)     		//
 //                                          //
 //////////////////////////////////////////////
 
 /datum/dynamic_ruleset/midround/from_ghosts/terror_spiders
-	name = "Terror Spiders"
+	name = "Terror Spiders Infestation"
 	config_tag = "spiders"
 	antag_datum = /datum/antagonist/terror_spider
 	antag_flag = ROLE_TERROR_SPIDER
