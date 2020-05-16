@@ -371,10 +371,21 @@
 /obj/item/radio/borg
 	name = "cyborg radio"
 	subspace_switchable = TRUE
+	subspace_transmission = TRUE //Skyrat change
 	dog_fashion = null
+	canhear_range = 1 //Skyrat change //Giving away private channels is bad, nerfed rang for borgs
 
 /obj/item/radio/borg/Initialize(mapload)
 	. = ..()
+	
+/obj/item/radio/borg/mining
+	keyslot = new /obj/item/encryptionkey/headset_mining
+
+/obj/item/radio/borg/medical
+	/obj/item/encryptionkey/headset_med
+
+/obj/item/radio/borg/security
+	keyslot = new /obj/item/encryptionkey/headset_sec
 
 /obj/item/radio/borg/syndicate
 	syndie = 1
