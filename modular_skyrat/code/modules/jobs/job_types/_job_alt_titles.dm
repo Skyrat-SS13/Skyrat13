@@ -19,7 +19,7 @@
 
 //Engineering
 /datum/job/engineer
-	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician")
+	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician", "Engineer")
 
 /datum/job/atmos
 	alt_titles = list("Firefighter", "Life Support Specialist")
@@ -70,7 +70,7 @@
 	alt_titles = list("Nurse", "Surgeon", "Emergency Physician", "Medic")
 
 /datum/job/paramedic
-	alt_titles = list("Emergency Medical Technician")
+	alt_titles = list("Emergency Medical Technician", "Search and Rescue")
 
 /datum/job/chemist
 	alt_titles = list("Pharmacist", "Pharmacologist")
@@ -83,6 +83,8 @@
 	alt_titles = list("Explorer")
 
 //Security
+/datum/job/officer
+	alt_titles = list("Security Guard", "Junior Officer", "Prison Guard")
 
 /datum/job/detective
-	alt_titles = list("Forensics Technician", "Private Investigator", "Investigator")
+	alt_titles = list("Forensics Technician", "Private Investigator", "Investigator", "Inspector")
