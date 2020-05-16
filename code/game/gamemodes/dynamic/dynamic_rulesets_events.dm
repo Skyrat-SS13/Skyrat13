@@ -87,7 +87,7 @@
 	requirements = list(70,60,50,50,40,40,40,30,20,15)
 	high_population_requirement = 15
 	property_weights = list("chaos" = 1, "valid" = 1)
-	
+
 //////////////////////////////////////////////
 //                                          //
 //              CLOGGED VENTS               //
