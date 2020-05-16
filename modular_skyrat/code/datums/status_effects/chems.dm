@@ -30,11 +30,11 @@
 
 	if (B.size == "huge")
 		if(prob(1))
-			to_chat(owner, "<span class='notice'>Your back is feeling sore.</span>")
+			to_chat(owner, "<span class='notice'>Your back feels painfully sore.</span>")
 			var/target = H.get_bodypart(BODY_ZONE_CHEST)
 			H.apply_damage(0.1, BRUTE, target)
 	else
 		if(prob(1))
-			to_chat(H, "<span class='notice'>Your back is feeling a little sore.</span>")
+			to_chat(H, "<span class='notice'>Your back feels very sore.</span>")
 	last_checked_size = B.cached_size
 	..()
