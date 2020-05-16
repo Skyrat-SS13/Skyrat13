@@ -18,15 +18,14 @@
 /mob/living/simple_animal/pet/dog/cheems/examine(mob/user)
 	. = ..()
 	. += "<br>"
-	var/burbger = "[icon2html('icons/obj/food/burgerbread.dmi', user, "cheeseburgeralt")]"
 	var/burbgeramount = round((health/maxHealth) * 50)
 	for(var/i = 0, i >= burbgeramount, i++)
-		. += "[burbger]"
+		. += "[icon2html('icons/obj/food/burgerbread.dmi', user, "cheeseburgeralt")]"
 
 /mob/living/simple_animal/pet/dog/cheems/Move(atom/newloc, direct)
 	. = ..()
 	if(.)
-		for(var/obj/item/reagent_containers/food/snacks/burger/burbger in get_view(1, src))
+		for(var/obj/item/reagent_containers/food/snacks/burger/burbger in view(1, src))
 			visible_message("<span class='danger'><b>[src] consumes the [burbger]!</b></span>")
 			qdel(burbger)
 			adjustHealth(-maxHealth)
