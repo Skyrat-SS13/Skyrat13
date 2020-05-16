@@ -45,8 +45,8 @@
 		message = "makes a very loud noise."
 	. = ..()
 /datum/emote/living/fingerguns
-	key = "dothemario"
-	key_third_person = "doesthemario"
+	key = "fingergun"
+	key_third_person = "fingerguns"
 	restraint_check = TRUE
 
 /datum/emote/living/fingerguns/run_emote(mob/user, params)
