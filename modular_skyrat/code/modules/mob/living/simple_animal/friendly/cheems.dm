@@ -28,7 +28,18 @@
 		for(var/obj/item/reagent_containers/food/snacks/burger/burbger in view(1, src))
 			visible_message("<span class='danger'><b>[src] consumes the [burbger]!</b></span>")
 			qdel(burbger)
-			adjustHealth(-maxHealth)
+			revive(full_heal = 1)
+
+/mob/living/simple_animal/pet/dog/cheems/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(.)
+		if(istype(I, /obj/item/reagent_containers/food/snacks/burger))
+			qdel(I)
+			if(stat == DEAD)
+				visible_message("\The [src] stands right back up after nibbling the [I]!")
+			else 
+				visible_message("\The [src] swallows the [I] whole!")
+			revive(full_heal = 1)
 
 //cheemgularity
 /obj/singularity/consume(atom/A)
