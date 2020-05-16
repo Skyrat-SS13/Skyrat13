@@ -477,7 +477,6 @@
 	log_game("DYNAMIC: [key_name(new_xeno)] was spawned as an alien by the midround ruleset.")
 	return new_xeno
 
-
 //////////////////////////////////////////////
 //                                          //
 //           NIGHTMARE (GHOST)              //
