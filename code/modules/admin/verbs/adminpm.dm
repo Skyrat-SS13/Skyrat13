@@ -175,7 +175,8 @@
 
 		else
 			if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
-				new /datum/admin_help(msg, recipient, TRUE, src) //SKYRAT EDIT - new variable
+				if (!AH) //SKYRAT EDIT
+					new /datum/admin_help(msg, recipient, TRUE, src) //SKYRAT EDIT - new variable
 
 				// Skyrat change START
 				if(AH.handler)
