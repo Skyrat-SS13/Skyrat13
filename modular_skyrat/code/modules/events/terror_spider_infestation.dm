@@ -39,8 +39,6 @@
 			continue
 		if(is_station_level(temp_vent.loc.z) && !temp_vent.welded)
 			var/datum/pipeline/temp_vent_parent = temp_vent.parents[1]
-			//Stops Aliens getting stuck in small networks.
-			//See: Security, Virology
 			if(temp_vent_parent.other_atmosmch.len > 20)
 				vents += temp_vent
 
