@@ -16,7 +16,7 @@
 	var/list/modules = list() //holds all the usable modules
 	var/list/added_modules = list() //modules not inherient to the robot module, are kept when the module changes
 	var/list/storages = list()
-	var/radio_key = null //Skyrat change
+	var/added_channels = list() //Skyrat change //Borg radio stuffs
 
 	var/cyborg_base_icon = "robot" //produces the icon for the borg and, if no special_light_key is set, the lights
 	var/special_light_key //if we want specific lights, use this instead of copying lights in the dmi
@@ -234,11 +234,11 @@
 	if(RM.dogborg)
 		RM.dogborg_equip()
 	//Skyrat change start
-	if(RM.radio_key)
-		R.radio.keyslot = new radio_key
+	if(RM.added_channels)
+		R.radio.extra_channels = added_channels 
 		R.radio.recalculateChannels()
 	else
-		R.radio.keyslot = null
+		R.radio.added_channels = list.Cut()
 		R.radio.recalculateChannels()
 	//Skyrat change stop
 	R.maxHealth = borghealth
@@ -355,7 +355,7 @@
 		/obj/item/clockwork/weapon/ratvarian_spear)
 	cyborg_base_icon = "medical"
 	moduleselect_icon = "medical"
-	radio_key = /obj/item/encryptionkey/headset_med //Skyrat change
+	added_channels = list(RADIO_CHANNEL_MEDICAL) //Skyrat change
 	hat_offset = 3
 
 /obj/item/robot_module/medical/be_transformed_to(obj/item/robot_module/old_module)
@@ -668,7 +668,7 @@
 		/obj/item/clockwork/weapon/ratvarian_spear)
 	cyborg_base_icon = "peace"
 	moduleselect_icon = "standard"
-	radio_key = /obj/item/encryptionkey/headset_sec //skyrat change
+	added_channels = list(RADIO_CHANNEL_SECURITY) //skyrat change
 	hat_offset = -2
 
 /obj/item/robot_module/peacekeeper/do_transform_animation()
