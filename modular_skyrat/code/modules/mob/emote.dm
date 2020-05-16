@@ -81,21 +81,34 @@
 
 /datum/emote/living/dothemario/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
-	playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/themario.ogg', 50, 0)
+	if(.)
+		playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/themario.ogg', 50, 0)
+		animate(user, pixel_x = pixel_x + 6, 10)
+		sleep(10)
+		animate(user, pixel_x = pixel_x - 12, 10)
+		sleep(10)
+		animate(user, pixel_x = pixel_x + 6, 3)
 
 /datum/emote/living/dab/ultra
 	key = "ultradab"
 	key_third_person = "ultradabs"
+	message = "does the sickest dab a humanoid could ever possibly conjure!"
 
 /datum/emote/living/dab/ultra/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
-	playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/dab.ogg', 50, 0)
+	if(.)
+		playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/dab.ogg', 20, 0)
+		var/initialcolor = user.color
+		user.color = "#8B4513"
+		sleep(5)
+		user.color = initialcolor
 
 /datum/emote/spin/speen
 	key = "speen"
 	key_third_person = "speens"
+	message = "speens!"
 
 /datum/emote/spin/speen/run_emote(mob/user)
 	. = ..()
 	if(.)
-		playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/speen.ogg', 50, 0)
+		playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/speen.ogg', 30, 0)
