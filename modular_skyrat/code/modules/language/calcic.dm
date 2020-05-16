@@ -17,5 +17,5 @@
 	)
 	icon = 'modular_skyrat/icons/misc/language.dmi'
 	icon_state = "calcic"
-	default_priority = 90
+	default_priority = 91
 	restricted = TRUE

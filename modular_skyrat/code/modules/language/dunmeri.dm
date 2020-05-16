@@ -19,5 +19,5 @@
 	)
 	icon = 'modular_skyrat/icons/misc/language.dmi'
 	icon_state = "dunmeri"
-	default_priority = 90
+	default_priority = 92
 	restricted = FALSE

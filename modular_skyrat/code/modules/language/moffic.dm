@@ -16,5 +16,5 @@
 	)
 	icon = 'modular_skyrat/icons/misc/language.dmi'
 	icon_state = "moff"
-	default_priority = 90
+	default_priority = 93
 	restricted = TRUE

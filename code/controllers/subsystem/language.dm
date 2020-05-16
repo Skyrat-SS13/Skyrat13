@@ -29,12 +29,12 @@ SUBSYSTEM_DEF(language)
 		var/datum/language/cool = new L
 		if(my_lang == cool.name)
 			if(!cool.restricted || (cool.name in cli.prefs.pref_species.languagewhitelist))
-				user.grant_language(cool.type)
+				user.grant_language(cool.type, TRUE, TRUE, LANGUAGE_ADDITIONAL)
 				to_chat(user, "<span class='notice'>You are able to speak in [my_lang]. If you're actually good at it or not, is up to you.</span>")
 			else
 				for(var/datum/quirk/Q in cli.prefs.all_quirks)
 					if(cool.name in Q.languagewhitelist)
-						user.grant_language(cool)
+						user.grant_language(cool, TRUE, TRUE, LANGUAGE_ADDITIONAL)
 						to_chat(user, "<span class='notice'>You are able to speak in [my_lang]. If you're actually good at it or not, is up to you.</span>")
 						return
 				to_chat(user, "<span class='warning'>Uh oh. [my_lang] is a restricted language, and couldn't be assigned!</span>")
