@@ -83,11 +83,11 @@
 	. = ..()
 	if(.)
 		playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/themario.ogg', 50, 0)
-		animate(user, pixel_x = pixel_x + 6, 10)
+		animate(user, user.pixel_x = (user.pixel_x + 6), 5)
 		sleep(10)
-		animate(user, pixel_x = pixel_x - 12, 10)
+		animate(user, user.pixel_x = (user.pixel_x - 12), 10)
 		sleep(10)
-		animate(user, pixel_x = pixel_x + 6, 3)
+		animate(user, user.pixel_x = (user.pixel_x + 6), 5)
 
 /datum/emote/living/dab/ultra
 	key = "ultradab"
