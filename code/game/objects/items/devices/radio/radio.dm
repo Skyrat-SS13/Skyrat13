@@ -37,7 +37,7 @@
 	var/independent = FALSE  // If true, can say/hear on the special CentCom channel.
 	var/syndie = FALSE  // If true, hears all well-known channels automatically, and can say/hear on the Syndicate channel.
 	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h).
-	var/extra_channels = list() //Skyrat change //Allows indivudal channels, used for borgs
+	var/list/extra_channels = list() //Skyrat change //Allows indivudal channels, used for borgs
 	var/list/secure_radio_connections
 
 	var/const/FREQ_LISTENING = 1
@@ -69,10 +69,10 @@
 			syndie = TRUE
 		if(keyslot.independent)
 			independent = TRUE
-		//Skyrat edit start
-		for(var/ch_name in extra_channels)
-            channels |= ch_name
-		//Skyrat edit end
+	//Skyrat edit start
+	for(var/ch_name in extra_channels)
+		channels |= ch_name
+	//Skyrat edit end
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
@@ -382,15 +382,6 @@
 /obj/item/radio/borg/Initialize(mapload)
 	. = ..()
 	
-/obj/item/radio/borg/mining
-	keyslot = new /obj/item/encryptionkey/headset_mining
-
-/obj/item/radio/borg/medical
-	/obj/item/encryptionkey/headset_med
-
-/obj/item/radio/borg/security
-	keyslot = new /obj/item/encryptionkey/headset_sec
-
 /obj/item/radio/borg/syndicate
 	syndie = 1
 	keyslot = new /obj/item/encryptionkey/syndicate
