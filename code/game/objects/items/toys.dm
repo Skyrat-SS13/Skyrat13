@@ -136,6 +136,7 @@
 /*
  * Toy gun: Why isnt this an /obj/item/gun?
  */
+ //Skyrat edit - who the fuck thought that not using vars was a good idea?
 /obj/item/toy/gun
 	name = "cap gun"
 	desc = "Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps."
@@ -149,29 +150,38 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
+	//SKYRAT EDIT BLABLA
+	var/dry_fire = TRUE
+	var/shotsound = 'sound/weapons/gunshot.ogg'
+	var/infiniteboolet = FALSE
+	var/max_boolet = 7
+	//
 	var/bullets = 7
 
 /obj/item/toy/gun/examine(mob/user)
 	. = ..()
-	. += "There [bullets == 1 ? "is" : "are"] [bullets] cap\s left."
+	//skyrat edit
+	if(!infiniteboolet)
+		. += "There [bullets == 1 ? "is" : "are"] [bullets] cap\s left."
+	//
 
 /obj/item/toy/gun/attackby(obj/item/toy/ammo/gun/A, mob/user, params)
 
 	if(istype(A, /obj/item/toy/ammo/gun))
-		if (src.bullets >= 7)
+		if (src.bullets >= max_boolet)
 			to_chat(user, "<span class='warning'>It's already fully loaded!</span>")
 			return 1
 		if (A.amount_left <= 0)
 			to_chat(user, "<span class='warning'>There are no more caps!</span>")
 			return 1
-		if (A.amount_left < (7 - src.bullets))
+		if (A.amount_left < (max_boolet - src.bullets))
 			src.bullets += A.amount_left
 			to_chat(user, text("<span class='notice'>You reload [] cap\s.</span>", A.amount_left))
 			A.amount_left = 0
 		else
-			to_chat(user, text("<span class='notice'>You reload [] cap\s.</span>", 7 - src.bullets))
-			A.amount_left -= 7 - src.bullets
-			src.bullets = 7
+			to_chat(user, text("<span class='notice'>You reload [] cap\s.</span>", max_boolet - src.bullets))
+			A.amount_left -= max_boolet - src.bullets
+			src.bullets = max_boolet
 		A.update_icon()
 		return 1
 	else
@@ -186,11 +196,17 @@
 		return
 	src.add_fingerprint(user)
 	if (src.bullets < 1)
-		user.show_message("<span class='warning'>*click*</span>", MSG_AUDIBLE)
-		playsound(src, "gun_dry_fire", 30, 1)
+		//skyrat edit
+		if(dry_fire)
+			user.show_message("<span class='warning'>*click*</span>", MSG_AUDIBLE)
+			playsound(src, "gun_dry_fire", 30, 1)
+		//
 		return
-	playsound(user, 'sound/weapons/gunshot.ogg', 100, 1)
-	src.bullets--
+	playsound(user, shotsound, 100, 1)
+	//skyrat edit
+	if(!infiniteboolet)
+		src.bullets--
+	//
 	user.visible_message("<span class='danger'>[user] fires [src] at [target]!</span>", \
 						"<span class='danger'>You fire [src] at [target]!</span>", \
 						 "<span class='italics'>You hear a gunshot!</span>")

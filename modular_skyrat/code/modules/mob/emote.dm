@@ -44,3 +44,58 @@
 	else
 		message = "makes a very loud noise."
 	. = ..()
+/datum/emote/living/fingerguns
+	key = "dothemario"
+	key_third_person = "doesthemario"
+	restraint_check = TRUE
+
+/datum/emote/living/fingerguns/run_emote(mob/user, params)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/toy/gun/finger/G = new(user)
+	if(user.put_in_hands(G))
+		to_chat(user, "<span class='notice'>You ready your finger gun.</span>")
+	else
+		to_chat(user, "<span class='warning'>You're incapable of finger gunning in your current state.</span>")
+		qdel(G)
+
+/obj/item/toy/gun/finger
+	name = "finger gun"
+	desc = "BANG! BANG! BANG!"
+	item_state = null
+	firesound = 'modular_skyrat/sound/emotes/trash/pew.ogg'
+	dry_fire = FALSE
+	infiniteboolet = TRUE
+
+/obj/item/toy/gun/finger/dropped(mob/user)
+	..()
+	if(loc != user)
+		qdel(src)
+
+/datum/emote/living/dothemario
+	key = "dothemario"
+	key_third_person = "doesthemario"
+	message = "swings their arm from side to side!"
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/dothemario/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/dothemario.ogg', 50, 0)
+
+/datum/emote/living/dab/ultra
+	key = "ultradab"
+	key_third_person = "ultradabs"
+
+/datum/emote/living/dab/ultra/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/dab.ogg', 50, 0)
+
+/datum/emote/spin/speen/
+	key = "speen"
+	key_third_person = "speens"
+
+/datum/emote/spin/speen/run_emote(mob/user)
+	. = ..()
+	if(.)
+		playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/speen.ogg', 50, 0)
