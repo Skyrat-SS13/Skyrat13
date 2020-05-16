@@ -5005,6 +5005,10 @@
 /obj/effect/spawner/lootdrop/soap/seventyfive_percent,
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
+"ako" = (
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "akp" = (
 /obj/structure/rack,
 /obj/item/clothing/gloves/color/yellow,
@@ -78654,10 +78658,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/engine/atmos)
-"cVC" = (
-/mob/living/simple_animal/sloth/citrus,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "cVD" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/effect/turf_decal/bot,
@@ -103259,7 +103259,7 @@ aMv
 aMv
 aKR
 aMv
-cVC
+ako
 aXf
 aYM
 bao

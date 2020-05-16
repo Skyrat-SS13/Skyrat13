@@ -1,4 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aab" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -6304,10 +6311,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall,
 /area/security/brig)
-"ama" = (
-/mob/living/simple_animal/sloth/paperwork,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "amb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -82448,7 +82451,7 @@ dev
 aZE
 xBw
 bjr
-ama
+bjr
 bmh
 bjr
 bjr
@@ -82706,7 +82709,7 @@ gjl
 bjq
 bjr
 bjr
-bmh
+aaa
 bjr
 bjr
 bjr

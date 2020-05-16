@@ -71681,6 +71681,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
+"cRi" = (
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "cVq" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -120089,7 +120093,7 @@ bhK
 bkn
 cnw
 bkn
-bhK
+cRi
 bov
 bgV
 boI

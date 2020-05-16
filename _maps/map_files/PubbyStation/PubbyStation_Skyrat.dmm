@@ -37,6 +37,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aaf" = (
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aag" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 9
@@ -105152,7 +105156,7 @@ aTl
 aUw
 aTm
 aTm
-aTm
+aaf
 aYy
 aZo
 baB
