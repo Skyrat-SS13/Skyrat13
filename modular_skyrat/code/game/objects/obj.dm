@@ -9,6 +9,7 @@
 	var/list/unique_inhand_icon_left
 	var/list/unique_inhand_icon_right
 	var/list/unique_item_state
+	var/list/unique_hardsuit_type //Used so hardsuits update the icon proper without mucking up
 	var/list/unique_name
 	var/list/unique_desc
 //SO MANY FUCKING VARS FUCK
@@ -49,6 +50,14 @@
 		var/obj/item/I = src
 		if(I)
 			I.anthro_mob_worn_overlay = unique_reskin_worn_anthro[choice]
+	if(LAZYLEN(unique_hardsuit_type))
+		var/obj/item/clothing/head/helmet/space/hardsuit/H = src
+		if(istype(H))
+			H.hardsuit_type = unique_hardsuit_type[choice]
+	if(LAZYLEN(unique_name))
+		name = unique_name[choice]
+	if(LAZYLEN(unique_desc))
+		desc = unique_desc[choice]
 	icon_state = unique_reskin[choice]
 	to_chat(M, "[src] is now skinned as '[choice]'.")
 	return TRUE

@@ -2729,12 +2729,11 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "afE" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4;
-	pixel_y = 5
-	},
 /obj/structure/chair/sofa/left{
 	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
@@ -14506,8 +14505,7 @@
 /area/security/prison)
 "aFk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4;
-	pixel_y = 5
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -15050,11 +15048,10 @@
 /turf/closed/wall,
 /area/crew_quarters/theatre)
 "aGw" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4;
-	pixel_y = 5
-	},
 /obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -15797,10 +15794,6 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aHV" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1;
-	pixel_x = 5
-	},
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -15813,6 +15806,9 @@
 /obj/item/reagent_containers/rag/towel/random,
 /obj/item/reagent_containers/rag/towel/random,
 /obj/item/reagent_containers/rag/towel/random,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/toilet)
 "aHW" = (
@@ -24325,7 +24321,10 @@
 /turf/open/floor/carpet,
 /area/bridge/meeting_room)
 "bdb" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bdc" = (
@@ -25973,9 +25972,6 @@
 "bhc" = (
 /obj/machinery/camera{
 	c_tag = "Chemistry"
-	},
-/obj/machinery/firealarm{
-	pixel_y = 24
 	},
 /obj/machinery/chem_heater,
 /turf/open/floor/plasteel/white,
@@ -28817,6 +28813,7 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "bnp" = (
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "bnq" = (
@@ -29150,6 +29147,10 @@
 	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
@@ -37175,8 +37176,7 @@
 	pixel_y = 3
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4;
-	pixel_y = 5
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -38621,6 +38621,7 @@
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bIQ" = (
@@ -56654,6 +56655,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "faM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/white/side,
 /area/hallway/primary/starboard)
 "fck" = (
@@ -58017,11 +58019,10 @@
 /area/maintenance/fore)
 "hOv" = (
 /obj/structure/table/wood/fancy,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4;
-	pixel_y = 5
-	},
 /obj/item/reagent_containers/food/snacks/burger/plain,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "hPs" = (
@@ -58386,6 +58387,17 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"iOm" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
+/area/hallway/secondary/entry)
 "iOr" = (
 /obj/structure/table,
 /obj/item/assembly/igniter{
@@ -59197,6 +59209,7 @@
 	name = "Morgue";
 	req_access_txt = "6"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "kgH" = (
@@ -59577,8 +59590,8 @@
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "kWq" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
@@ -60765,8 +60778,7 @@
 	pixel_y = 20
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4;
-	pixel_y = 5
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -60966,6 +60978,12 @@
 	},
 /obj/item/integrated_circuit_printer,
 /obj/item/stock_parts/cell/high,
+/obj/machinery/camera{
+	c_tag = "Circuit Lab";
+	dir = 8;
+	network = list("ss13","rd");
+	pixel_y = -22
+	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "oqO" = (
@@ -62051,6 +62069,7 @@
 	dir = 1;
 	pixel_x = 1
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "qWV" = (
@@ -63796,11 +63815,10 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "uQS" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	pixel_x = 1
-	},
 /obj/machinery/light/small,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/toilet)
 "uRd" = (
@@ -63842,6 +63860,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"uWj" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/start/scientist,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "uXb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -64501,8 +64526,9 @@
 /obj/structure/table/reinforced,
 /obj/machinery/power/apc{
 	areastring = "/area/science/circuit";
+	dir = 4;
 	name = "Circuitry Lab APC";
-	pixel_x = 30
+	pixel_x = 26
 	},
 /obj/structure/cable,
 /obj/item/integrated_electronics/wirer,
@@ -75419,7 +75445,7 @@ aaa
 aaa
 aaa
 awW
-awZ
+iOm
 ayk
 awW
 awW
@@ -104717,8 +104743,8 @@ aYM
 aJI
 bbA
 aYV
-bdr
-bdb
+bdp
+aYV
 bfL
 bfL
 bfL
@@ -104974,7 +105000,7 @@ aYN
 aJI
 bbz
 aYV
-aYV
+bdp
 aYV
 bfL
 rwt
@@ -105231,7 +105257,7 @@ aJI
 aJI
 aJI
 bcq
-bcq
+bdb
 bcq
 bfL
 bhm
@@ -105488,7 +105514,7 @@ aYP
 bal
 bam
 aYV
-aYV
+bdp
 wrd
 bfL
 beY
@@ -105745,7 +105771,7 @@ aYO
 aRJ
 bbB
 aYV
-aYV
+bdr
 faM
 kgb
 kWq
@@ -110393,7 +110419,7 @@ bBZ
 bDc
 bEp
 bCX
-bEc
+uWj
 bIA
 bIA
 bJN

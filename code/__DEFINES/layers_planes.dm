@@ -1,6 +1,8 @@
 //Defines for atom layers and planes
 //KEEP THESE IN A NICE ACSCENDING ORDER, PLEASE
 
+#define PLANE_VOID -100
+
 #define CLICKCATCHER_PLANE -99
 
 #define PLANE_SPACE -95
@@ -9,8 +11,8 @@
 #define PLANE_SPACE_PARALLAX_RENDER_TARGET "PLANE_SPACE_PARALLAX"
 
 #define OPENSPACE_LAYER 17 //Openspace layer over all
-#define OPENSPACE_PLANE -4 //Openspace plane below all turfs
-#define OPENSPACE_BACKDROP_PLANE -3 //Black square just over openspace plane to guaranteed cover all in openspace turf
+#define OPENSPACE_PLANE 17 //Openspace plane below all turfs // Skyrat edit, 512 compatibility, to make it work without vis_flags, changed from -4
+#define OPENSPACE_BACKDROP_PLANE 17 //Black square just over openspace plane to guaranteed cover all in openspace turf // Skyrat edit, 512 compatibility, to make it work without vis_flags, changed from -3
 
 #define FLOOR_PLANE -2
 #define FLOOR_PLANE_RENDER_TARGET "FLOOR_PLANE"
@@ -78,8 +80,9 @@
 #define SPACEVINE_LAYER 4.8
 #define SPACEVINE_MOB_LAYER 4.9
 //#define FLY_LAYER 5 //For easy recordkeeping; this is a byond define
-#define GASFIRE_LAYER 5.05
-#define RIPPLE_LAYER 5.1
+#define ABOVE_FLY_LAYER 5.1
+#define GASFIRE_LAYER 5.2
+#define RIPPLE_LAYER 5.3
 
 #define GHOST_LAYER 6
 #define LOW_LANDMARK_LAYER 9
@@ -88,6 +91,8 @@
 #define AREA_LAYER 10
 #define MASSIVE_OBJ_LAYER 11
 #define POINT_LAYER 12
+
+#define CHAT_LAYER 20.35 //Skyrat change
 
 #define EMISSIVE_BLOCKER_PLANE 12
 #define EMISSIVE_BLOCKER_LAYER 12
@@ -138,13 +143,15 @@
 
 #define VOLUMETRIC_STORAGE_ITEM_PLANE 24
 #define VOLUMETRIC_STORAGE_ITEM_LAYER 24
+#define VOLUMETRIC_STORAGE_ACTIVE_ITEM_LAYER 25
+#define VOLUMETRIC_STORAGE_ACTIVE_ITEM_PLANE 25
 #define VOLUMETRIC_STORAGE_ITEM_RENDER_TARGET "VOLUME_STORAGE_ITEM_PLANE"
 
-#define ABOVE_HUD_PLANE 25
-#define ABOVE_HUD_LAYER 25
+#define ABOVE_HUD_PLANE 30
+#define ABOVE_HUD_LAYER 30
 #define ABOVE_HUD_RENDER_TARGET "ABOVE_HUD_PLANE"
 
-#define SPLASHSCREEN_LAYER 30
-#define SPLASHSCREEN_PLANE 30
+#define SPLASHSCREEN_LAYER 90
+#define SPLASHSCREEN_PLANE 90
 #define SPLASHSCREEN_RENDER_TARGET "SPLASHSCREEN_PLANE"
 

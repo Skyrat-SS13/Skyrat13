@@ -171,13 +171,13 @@
 	item = /obj/item/sbeacondrop
 	cost = 14
 
-/datum/uplink_item/device_tools/powersink
+/*/datum/uplink_item/device_tools/powersink
 	name = "Power Sink"
 	desc = "When screwed to wiring attached to a power grid and activated, this large device lights up and places excessive \
 			load on the grid, causing a station-wide blackout. The sink is large and cannot be stored in most \
 			traditional bags and boxes. Caution: Will explode if the powernet contains sufficient amounts of energy."
 	item = /obj/item/powersink
-	cost = 6
+	cost = 6 */
 
 /datum/uplink_item/device_tools/rad_laser
 	name = "Radioactive Microlaser"
@@ -201,10 +201,9 @@
 /datum/uplink_item/device_tools/stimpack
 	name = "Stimpack"
 	desc = "Stimpacks, the tool of many great heroes, make you nearly immune to stuns and knockdowns for about \
-			5 minutes after fully injecting yourself. Can inject yourself, or others, 5 times and through hardsuits. \
-			Each injection will gives around a minute of stimulants."
-	item = /obj/item/reagent_containers/hypospray/medipen/stimulants
-	cost = 5
+			5 minutes after injection."
+	item = /obj/item/reagent_containers/syringe/stimulants
+	cost = 3
 	surplus = 90
 
 /datum/uplink_item/device_tools/medkit

@@ -99,6 +99,12 @@
 	if(!GLOB.mam_snouts_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/mam_snouts, GLOB.mam_snouts_list)
 
+	//Skyrat changes
+	if(!GLOB.ipc_chassis_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_chassis, GLOB.ipc_chassis_list)
+
+	//End of skyrat changes
+
 	//snowflake check so people's ckey features don't get randomly put on unmonkeys/spawns
 	var/list/snowflake_mam_tails_list = list()
 	for(var/mtpath in GLOB.mam_tails_list)
@@ -163,9 +169,11 @@
 		"tail_lizard"		= pick(GLOB.tails_list_lizard),
 		"tail_human"		= "None",
 		"wings"				= "None",
+		"wings_color"		= "FFF",
 		"deco_wings"		= "None",
 		"snout"				= pick(GLOB.snouts_list),
-		"horns"				= pick(GLOB.horns_list),
+		"horns"				= "None",
+		"horns_color"		= "85615a",
 		"ears"				= "None",
 		"frills"			= pick(GLOB.frills_list),
 		"spines"			= pick(GLOB.spines_list),
@@ -174,7 +182,7 @@
 		"caps"				= pick(GLOB.caps_list),
 		"insect_wings"		= pick(GLOB.insect_wings_list),
 		"insect_fluff"		= "None",
-		"insect_markings"     = pick(GLOB.insect_markings_list),
+		"insect_markings"	= pick(GLOB.insect_markings_list),
 		"taur"				= "None",
 		"mam_body_markings" = snowflake_markings_list.len ? pick(snowflake_markings_list) : "None",
 		"mam_ears" 			= snowflake_ears_list ? pick(snowflake_ears_list) : "None",
@@ -216,6 +224,7 @@
 		"flavor_text"		= "",
 		"meat_type"			= "Mammalian",
 		"body_model"		= body_model,
+		"ipc_chassis" 		= "Morpheus Cyberkinetics(Greyscale)", //SKYRAT CHANGE
 		"body_size"			= RESIZE_DEFAULT_SIZE
 		))
 
@@ -317,7 +326,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null, ignorehelditem = 0)
+/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null, ignorehelditem = FALSE, resume_time = 0 SECONDS)
 	if(!user || !target)
 		return 0
 	var/user_loc = user.loc
@@ -336,10 +345,10 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/endtime = world.time+time
 	var/starttime = world.time
 	. = 1
-	while (world.time < endtime)
+	while (world.time + resume_time < endtime)
 		stoplag(1)
 		if (progress)
-			progbar.update(world.time - starttime)
+			progbar.update(world.time - starttime + resume_time)
 		if(QDELETED(user) || QDELETED(target))
 			. = 0
 			break
@@ -371,7 +380,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, required_mobility_flags = (MOBILITY_USE|MOBILITY_MOVE))
+/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, required_mobility_flags = (MOBILITY_USE|MOBILITY_MOVE), resume_time = 0 SECONDS)
 	if(!user)
 		return 0
 	var/atom/Tloc = null
@@ -400,10 +409,10 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/starttime = world.time
 	. = 1
 	var/mob/living/L = isliving(user) && user			//evals to last thing eval'd
-	while (world.time < endtime)
+	while (world.time + resume_time < endtime)
 		stoplag(1)
 		if (progress)
-			progbar.update(world.time - starttime)
+			progbar.update(world.time - starttime + resume_time)
 
 		if(drifting && !user.inertia_dir)
 			drifting = 0

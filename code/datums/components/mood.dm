@@ -1,5 +1,8 @@
+#define ECSTATIC_SANITY_PEN -1
+#define SLIGHT_INSANITY_PEN 1
 #define MINOR_INSANITY_PEN 5
 #define MAJOR_INSANITY_PEN 10
+#define MOOD_INSANITY_MALUS 0.0054 // per point of sanity below SANITY_DISTURBED, a 40% debuff to skills at rock bottom depression.
 
 /datum/component/mood
 	var/mood //Real happiness
@@ -11,29 +14,38 @@
 	var/list/datum/mood_event/mood_events = list()
 	var/insanity_effect = 0 //is the owner being punished for low mood? If so, how much?
 	var/obj/screen/mood/screen_obj
+	var/datum/skill_modifier/bad_mood/malus
+	var/datum/skill_modifier/great_mood/bonus
+	var/static/malus_id = 0
+	var/static/bonus_id = 0
 
 /datum/component/mood/Initialize()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	START_PROCESSING(SSmood, src)
+	var/mob/living/owner = parent
+	if(owner.stat != DEAD)
+		START_PROCESSING(SSdcs, src)
 
 	RegisterSignal(parent, COMSIG_ADD_MOOD_EVENT, .proc/add_event)
 	RegisterSignal(parent, COMSIG_CLEAR_MOOD_EVENT, .proc/clear_event)
 	RegisterSignal(parent, COMSIG_MODIFY_SANITY, .proc/modify_sanity)
 	RegisterSignal(parent, COMSIG_LIVING_REVIVE, .proc/on_revive)
-
 	RegisterSignal(parent, COMSIG_MOB_HUD_CREATED, .proc/modify_hud)
-	var/mob/living/owner = parent
+	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/stop_processing)
+
 	if(owner.hud_used)
 		modify_hud()
 		var/datum/hud/hud = owner.hud_used
 		hud.show_hud(hud.hud_version)
 
 /datum/component/mood/Destroy()
-	STOP_PROCESSING(SSmood, src)
+	STOP_PROCESSING(SSdcs, src)
 	unmodify_hud()
 	return ..()
+
+/datum/component/mood/proc/stop_processing()
+	STOP_PROCESSING(SSdcs, src)
 
 /datum/component/mood/proc/print_mood(mob/user)
 	var/msg = "<span class='info'>*---------*\n<EM>Your current mood</EM>\n"
@@ -126,7 +138,7 @@
 		else
 			screen_obj.icon_state = "mood[mood_level]"
 
-/datum/component/mood/process() //Called on SSmood process
+/datum/component/mood/process() //Called on SSdcs process
 	if(QDELETED(parent)) // workaround to an obnoxious sneaky periodical runtime.
 		qdel(src)
 		return
@@ -150,7 +162,7 @@
 		if(8)
 			setSanity(sanity+0.25, maximum=SANITY_GREAT)
 		if(9)
-			setSanity(sanity+0.4, maximum=SANITY_GREAT)
+			setSanity(sanity+0.4, maximum=SANITY_AMAZING)
 
 	HandleNutrition(owner)
 
@@ -182,7 +194,7 @@
 			master.add_movespeed_modifier(/datum/movespeed_modifier/sanity/crazy)
 			sanity_level = 5
 		if(SANITY_UNSTABLE to SANITY_DISTURBED)
-			setInsanityEffect(0)
+			setInsanityEffect(SLIGHT_INSANITY_PEN)
 			master.add_movespeed_modifier(/datum/movespeed_modifier/sanity/disturbed)
 			sanity_level = 4
 		if(SANITY_DISTURBED to SANITY_NEUTRAL)
@@ -194,19 +206,36 @@
 			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY)
 			sanity_level = 2
 		if(SANITY_GREAT+1 to INFINITY)
-			setInsanityEffect(0)
+			setInsanityEffect(ECSTATIC_SANITY_PEN) //It's not a penalty but w/e
 			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY)
 			sanity_level = 1
+
 	//update_mood_icon()
 
 /datum/component/mood/proc/setInsanityEffect(newval)//More code so that the previous proc works
 	if(newval == insanity_effect)
 		return
-	//var/mob/living/master = parent
-	//master.crit_threshold = (master.crit_threshold - insanity_effect) + newval
+
+	var/mob/living/L = parent
+	var/apply_malus = newval >= SLIGHT_INSANITY_PEN
+	var/apply_bonus = !apply_malus && newval <= ECSTATIC_SANITY_PEN
+	if(apply_malus)
+		if(!malus)
+			ADD_SKILL_MODIFIER_BODY(/datum/skill_modifier/bad_mood, malus_id++, L, malus)
+		var/debuff = 1 - (SANITY_DISTURBED - sanity) * MOOD_INSANITY_MALUS
+		malus.value_mod = malus.level_mod = debuff
+	else if(malus)
+		QDEL_NULL(malus)
+
+	if(apply_bonus)
+		if(!bonus)
+			ADD_SKILL_MODIFIER_BODY(/datum/skill_modifier/great_mood, bonus_id++, L, bonus)
+	else if(bonus)
+		QDEL_NULL(bonus)
+
 	insanity_effect = newval
 
-/datum/component/mood/proc/modify_sanity(datum/source, amount, minimum = -INFINITY, maximum = INFINITY)
+/datum/component/mood/proc/modify_sanity(datum/source, amount, minimum = SANITY_INSANE, maximum = SANITY_AMAZING)
 	setSanity(sanity + amount, minimum, maximum)
 
 /datum/component/mood/proc/add_event(datum/source, category, type, param) //Category will override any events in the same category, should be unique unless the event is based on the same thing like hunger.
@@ -281,12 +310,16 @@
 		if(0 to NUTRITION_LEVEL_STARVING)
 			add_event(null, "nutrition", /datum/mood_event/starving)
 
-///Called when parent is ahealed.
+///Called when parent is revived.
 /datum/component/mood/proc/on_revive(datum/source, full_heal)
+	START_PROCESSING(SSdcs, src)
 	if(!full_heal)
 		return
 	remove_temp_moods()
 	setSanity(initial(sanity))
 
+#undef ECSTATIC_SANITY_PEN
+#undef SLIGHT_INSANITY_PEN
 #undef MINOR_INSANITY_PEN
 #undef MAJOR_INSANITY_PEN
+#undef MOOD_INSANITY_MALUS

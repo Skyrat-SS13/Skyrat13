@@ -21,6 +21,12 @@
 	design_ids = list("bluespace_miner")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 
+/datum/techweb_node/radioactive_weapons/New()
+	design_ids += "holorifle"
+	design_ids += "microfusion_cell"
+	design_ids += "microfusion_cell_box"
+	. = ..()
+
 /datum/techweb_node/adv_bluetravel
 	id = "advanced_bluetravel"
 	display_name = "Advanced Bluespace Travel"
@@ -48,6 +54,11 @@
 	design_ids += "prisonerbiogenerator"
 	. = ..()
 
+
+/datum/techweb_node/syndicate_basic/New()
+	design_ids += "armblade"
+	. = ..()
+
 /datum/techweb_node/illegal_mechs
 	id = "illegal_mechs"
 	display_name = "Illegal Combat Mechs"
@@ -56,6 +67,10 @@
 	prereq_ids = list("advanced_illegal_ballistics", "adv_mecha", "adv_mecha_tools", "mech_carbine")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 12500)
 
-/datum/techweb_node/syndicate_basic/New()
-	design_ids += "armblade"
-	. = ..()
+/datum/techweb_node/computermath
+	id = "computermath"
+	display_name = "Problem Computer"
+	description = "Solve problems for either cargo credits or research points."
+	prereq_ids = list("base")
+	design_ids = list("computermath")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)

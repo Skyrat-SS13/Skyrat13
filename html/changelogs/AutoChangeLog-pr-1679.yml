@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "reduced complexity in mixing area in atmos"
-  - balance: "Adds layer manifolds before exit pumps on all of the gas tanks"

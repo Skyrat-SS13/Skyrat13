@@ -14,7 +14,21 @@
 	features["mcolor2"]	= sanitize_hexcolor(features["mcolor2"], 3, 0)
 	features["mcolor3"]	= sanitize_hexcolor(features["mcolor3"], 3, 0)
 	//SKYRAT CHANGES
-	ooc_notes = sanitize_text(S["ooc_notes"])
+	S["enable_personal_chat_color"]			>> enable_personal_chat_color
+	S["personal_chat_color"]			>> personal_chat_color
+  
+	S["feature_ipc_chassis"] >> features["ipc_chassis"]
+
+	S["alt_titles_preferences"]			>> alt_titles_preferences
+	alt_titles_preferences = SANITIZE_LIST(alt_titles_preferences)
+	if(SSjob)
+		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
+			if(alt_titles_preferences[job.title])
+				if(!(alt_titles_preferences[job.title] in job.alt_titles))
+					alt_titles_preferences.Remove(job.title)
+
+	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
+	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
 	nonconpref = sanitize_text(S["noncon_pref"], "Ask")
@@ -27,6 +41,13 @@
 	flavor_background = sanitize_text(S["flavor_background"])
 	character_skills = sanitize_text(S["character_skills"])
 	exploitable_info = sanitize_text(S["exploitable_info"])
+	enable_personal_chat_color	= sanitize_integer(enable_personal_chat_color, 0, 1, initial(enable_personal_chat_color))
+	personal_chat_color	= sanitize_hexcolor(personal_chat_color, 6, 1, "#FFFFFF")
+
+	//Moves over the previous OOC notes to our ooc notes
+	if(length(features["ooc_notes"]) > length(skyrat_ooc_notes))
+		skyrat_ooc_notes = features["ooc_notes"]
+		features["ooc_notes"] = ""
 	//END OF SKYRAT CHANGES
 	//gear loadout
 	var/text_to_load
@@ -61,7 +82,8 @@
 	//flavor text
 	WRITE_FILE(S["feature_flavor_text"], features["flavor_text"])
 	//SKYRAT CHANGES
-	WRITE_FILE(S["ooc_notes"], ooc_notes)
+	WRITE_FILE(S["feature_ipc_chassis"], features["ipc_chassis"])
+	WRITE_FILE(S["skyrat_ooc_notes"], skyrat_ooc_notes)
 	WRITE_FILE(S["erp_pref"], erppref)
 	WRITE_FILE(S["noncon_pref"], nonconpref)
 	WRITE_FILE(S["vore_pref"], vorepref)
@@ -71,6 +93,10 @@
 	WRITE_FILE(S["flavor_background"], flavor_background)
 	WRITE_FILE(S["character_skills"], character_skills)
 	WRITE_FILE(S["exploitable_info"], exploitable_info)
+	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
+	WRITE_FILE(S["personal_chat_color"], personal_chat_color)
+
+	WRITE_FILE(S["alt_titles_preferences"], alt_titles_preferences)
 	//END OF SKYRAT CHANGES
 	//gear loadout
 	if(islist(chosen_gear))

@@ -12,7 +12,7 @@
 
 /datum/supply_pack/critter/animal_feed
 	name = "Animal Feed Crate"
-	desc = "Feed for livestock, like cows and hens. Contains fifty Wheat bundles and fifty Oat bundles."
+	desc = "Food for livestock like cows and hens. Contains fifty Wheat bundles and fifty Oat bundles." //Skyrat change, fixes typo and grammatical error
 	cost = 1500
 	contains = list(/obj/item/reagent_containers/food/snacks/grown/wheat,
 					/obj/item/reagent_containers/food/snacks/grown/oat)
@@ -77,7 +77,7 @@
 
 /datum/supply_pack/critter/crab
 	name = "Crab Rocket"
-	desc = "CRAAAAAAB ROCKET. CRAB ROCKET. CRAB ROCKET. CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB ROCKET. CRAFT. ROCKET. BUY. CRAFT ROCKET. CRAB ROOOCKET. CRAB ROOOOCKET. CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB ROOOOOOOOOOOOOOOOOOOOOOCK EEEEEEEEEEEEEEEEEEEEEEEEE EEEETTTTTTTTTTTTAAAAAAAAA AAAHHHHHHHHHHHHH. CRAB ROCKET. CRAAAB ROCKEEEEEEEEEGGGGHHHHTT CRAB CRAB CRAABROCKET CRAB ROCKEEEET."//fun fact: i actually spent like 10 minutes and transcribed the entire video.
+	desc = "Craaaabb Rocket!" //Skyrat Change, fixed the autistic meltdown that the person who made this crate was having
 	cost = 5000
 	contains = list(/mob/living/simple_animal/crab)
 	crate_name = "look sir free crabs"
@@ -136,7 +136,7 @@
 
 /datum/supply_pack/critter/goose
 	name = "Goose Crate"
-	desc = "Angry and violent birds. Evil, evil creatures."
+	desc = "Angry and violent birds. Evil, evil creatures." //honk
 	cost = 2500
 	contains = list(/mob/living/simple_animal/hostile/retaliate/goose)
 	crate_name = "goose crate"
@@ -157,7 +157,7 @@
 
 /datum/supply_pack/critter/snake
 	name = "Snake Crate"
-	desc = "Tired of these MOTHER FUCKING snakes on this MOTHER FUCKING space station? Then this isn't the crate for you. Contains three poisonous snakes."
+	desc = "Tired of these MOTHERFUCKING snakes on this MOTHERFUCKING space station? Then this isn't the crate for you. Contains three poisonous snakes." //Skyrat change, fixed grammatical error
 	cost = 3000
 	contains = list(/mob/living/simple_animal/hostile/retaliate/poison/snake,
 					/mob/living/simple_animal/hostile/retaliate/poison/snake,
@@ -166,7 +166,7 @@
 
 /datum/supply_pack/critter/mouse
 	name = "Mouse Crate"
-	desc = "Good for snakes and lizards of all ages. Contains ~12 feeder mice."
+	desc = "Good for snakes and lizards of all ages. Contains twelve feeder mice." //Skyrat change, changed number for consistency
 	cost = 2000
 	contains = list(/mob/living/simple_animal/mouse,)
 	crate_name = "mouse crate"

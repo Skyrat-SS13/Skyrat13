@@ -33,10 +33,12 @@ SUBSYSTEM_DEF(input)
 			"Tab" = "\".winset \\\"input.focus=true?map.focus=true input.background-color=[COLOR_INPUT_DISABLED]:input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
 			"O" = "ooc",
 			"Ctrl+O" = "looc",
-			"T" = "say_special", //skyrat-edit
-			"Ctrl+T" = "whisper",
-			"M" = "me_special", //skyrat-edit
-			"Ctrl+M" = "subtle",
+			"T" = "say_special", //Skyrat edit
+			"Ctrl+T" = "whisper", //Skyrat edit
+			//"Y" = "whisper", //Skyrat edit
+			"M" = "me_special", //Skyrat edit
+			"Ctrl+M" = "subtle", //Skyrat edit
+			//"5" = "subtle", //Skyrat edit
 			"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"", // This makes it so backspace can remove default inputs
 			"Any" = "\"KeyDown \[\[*\]\]\"",
 			"Any+UP" = "\"KeyUp \[\[*\]\]\"",
@@ -50,8 +52,10 @@ SUBSYSTEM_DEF(input)
 			"Tab" = "\".winset \\\"mainwindow.macro=old_default input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
 			"O" = "ooc",
 			"L" = "looc",
-			"T" = "say_special", //skyrat-edit
-			"M" = "me_special", //skyrat-edit
+			"T" = "say_special", //Skyrat edit
+			"Ctrl+T" = "whisper", //Skyrat edit
+			"M" = "me_special", //Skyrat edit
+			"Ctrl+M" = "subtle", //Skyrat edit
 			"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"", // This makes it so backspace can remove default inputs
 			"Any" = "\"KeyDown \[\[*\]\]\"",
 			"Any+UP" = "\"KeyUp \[\[*\]\]\"",
