@@ -1044,8 +1044,8 @@ mob/living/Initialize()
 
 	if(partner.is_fucking(src, CUM_TARGET_FEET))
 		message = "[pick("jerks \the [partner] off with their [get_shoes() ? get_shoes(TRUE) : pick("foot", "sole")].",
-			"rubs their [get_shoes() ? get_shoes() : pick("foot", "sole", "toes")] on \the [partner]'s shaft.",
-			"works their [get_shoes() ? get_shoes() : pick("foot", "sole")] up and down on \the [partner]'s cock.")]"
+			"rubs their [get_shoes() ? get_shoes(TRUE) : pick("foot", "sole", "toes")] on \the [partner]'s shaft.",
+			"works their [get_shoes() ? get_shoes(TRUE) : pick("foot", "sole")] up and down on \the [partner]'s cock.")]"
 	else
 		message = "[pick("[get_shoes() ? "positions their [get_shoes(TRUE)] on" :"positions their foot on"] \the [partner]'s cock.",
 			"starts playing around with \the [partner]'s cock, using their [get_shoes() ? get_shoes(TRUE) :"foot"].")]"
@@ -1109,13 +1109,13 @@ mob/living/Initialize()
 	if(A)
 		var/txt = A.name
 		if(findtext (A.name,"the"))
-			txt = copytext(A.name, 3, length(A.name))
+			txt = copytext(A.name, 3, length(A.name)+1)
 			if(singular)
-				txt = copytext(A.name, 3, length(A.name)-1)
+				txt = copytext(A.name, 3, length(A.name))
 			return txt
 		else
 			if(singular)
-				txt = copytext(A.name, 1, length(A.name)-1)
+				txt = copytext(A.name, 1, length(A.name))
 			return txt
 
 /mob/living/proc/handle_post_sex(amount, orifice, mob/living/partner)
