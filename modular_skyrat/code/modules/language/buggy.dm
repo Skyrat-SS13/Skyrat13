@@ -12,6 +12,6 @@
 		"tsk","pzz", "tzzz", "pzt", "krrr"
 	)
 	icon = 'modular_skyrat/icons/misc/language.dmi'
-	icon_state = "buzz"
+	icon_state = "buggy"
 	default_priority = 94
 	restricted = TRUE

@@ -17,6 +17,6 @@
     	"s'wit", "b'vehk", "f'lah", "muth", "sera", "sedura", "bal", "dun"
 	)
 	icon = 'modular_skyrat/icons/misc/language.dmi'
-	icon_state = "shadow"
-	default_priority = 90
+	icon_state = "shadowtongue"
+	default_priority = 95
 	restricted = TRUE

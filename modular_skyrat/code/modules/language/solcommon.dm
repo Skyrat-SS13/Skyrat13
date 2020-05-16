@@ -7,7 +7,7 @@
 	whisper_verb = "hushes"
 	key = "p"
 	space_chance = 30
-	default_priority = 90
+	default_priority = 96
 	flags = TONGUELESS_SPEECH
 	syllables = list(
 		"sed", "ut", "unde", "omnis", "iste", "natus", "sit", "vol", "totam", "rem", "eaque", "ipsa", "quae", "ab", "illo",

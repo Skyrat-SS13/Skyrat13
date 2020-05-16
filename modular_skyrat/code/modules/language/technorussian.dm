@@ -7,7 +7,7 @@
 	whisper_verb = "hushes"
 	key = "2"
 	space_chance = 70
-	default_priority = 90
+	default_priority = 98
 	flags = TONGUELESS_SPEECH
 	syllables = list("zhena", "reb", "kot", "tvoy", "vodka", "blyad", "verbovka", "ponimat", "zhit", "kley", "sto", "yat", "si", "det", \
 					 "re", "be", "nok", "chto", "techno", "kak", "govor", "navernoe", "da", "net", "horosho", "pochemu", "privet","lubov", \
@@ -24,5 +24,5 @@
 					 "dinamica", "statica", "organizacuya", "yeyenet", "radio", "peredacha", "priem", "slushno", "chastota", "gerts", "stantiya", \
 					 "suda", "huyar", "odin", "dva", "tri", "holod", "granata", "ne", "re", "ru", "korabl")
 	icon = 'modular_skyrat/icons/misc/language.dmi'
-	icon_state = "russian"
+	icon_state = "technorussian"
 	restricted = FALSE

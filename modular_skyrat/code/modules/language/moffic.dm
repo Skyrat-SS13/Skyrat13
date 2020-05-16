@@ -15,6 +15,6 @@
 		"hei", "huo", "suo", "ää", "ten", "ja", "heu", "stu", "uhr", "kön", "we", "hön"
 	)
 	icon = 'modular_skyrat/icons/misc/language.dmi'
-	icon_state = "moff"
+	icon_state = "moffic"
 	default_priority = 93
 	restricted = TRUE

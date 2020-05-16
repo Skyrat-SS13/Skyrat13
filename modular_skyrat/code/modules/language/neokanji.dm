@@ -7,7 +7,7 @@
 	whisper_verb = "hushes"
 	key = "c"
 	space_chance = 40
-	default_priority = 90
+	default_priority = 94
 	flags = TONGUELESS_SPEECH
 	syllables = list("ka", "ki", "ku", "ke", "ko", "ta",
 					"chi", "tsu", "te", "to", "sa", "shi",
@@ -22,5 +22,5 @@
 					"liu", "ling", "mang", "nong", "peng", "qiong",
 					"san","tiao", "wan","xiong", "men")
 	icon = 'modular_skyrat/icons/misc/language.dmi'
-	icon_state = "asian"
+	icon_state = "neokanji"
 	restricted = FALSE
