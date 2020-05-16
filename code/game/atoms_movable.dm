@@ -228,7 +228,7 @@
 /atom/movable/Destroy(force)
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
-	QDEL_NULL(em_block)
+	//QDEL_NULL(em_block) // Skyrat edit -- 512 compatibility
 
 	unbuckle_all_mobs(force=1)
 
