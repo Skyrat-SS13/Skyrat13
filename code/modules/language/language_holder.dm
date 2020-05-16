@@ -261,7 +261,7 @@ Key procs
 /datum/language_holder/jelly
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
 							//	/datum/language/slime = list(LANGUAGE_ATOM))
-	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM))
 							// /datum/language/slime = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
 
 /datum/language_holder/lightbringer
