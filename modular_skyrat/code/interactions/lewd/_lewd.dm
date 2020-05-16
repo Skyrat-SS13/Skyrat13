@@ -1134,7 +1134,7 @@ mob/living/Initialize()
 		moan()
 
 /mob/living/proc/get_unconsenting(var/extreme = FALSE, var/list/ignored_mobs)
-	for(var/mob/M in GLOB.player_list)
+	for(var/mob/M in view(DEFAULT_MESSAGE_RANGE, src))
 		if(M.client)
 			var/client/cli = M.client
 			if(!(cli.prefs.toggles & VERB_CONSENT)) //Note: This probably could do with a specific preference
