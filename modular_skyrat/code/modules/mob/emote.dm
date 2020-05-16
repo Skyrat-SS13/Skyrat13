@@ -64,7 +64,7 @@
 	name = "finger gun"
 	desc = "BANG! BANG! BANG!"
 	item_state = null
-	shotsound = 'modular_skyrat/sound/emotes/trash/pew.ogg'
+	shotsound = sound('modular_skyrat/sound/emotes/trash/pew.ogg')
 	dry_fire = FALSE
 	infiniteboolet = TRUE
 
@@ -83,11 +83,16 @@
 	. = ..()
 	if(.)
 		playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/themario.ogg', 50, 0)
-		animate(user, user.pixel_x = (user.pixel_x + 6), 5)
-		sleep(10)
-		animate(user, user.pixel_x = (user.pixel_x - 12), 10)
-		sleep(10)
-		animate(user, user.pixel_x = (user.pixel_x + 6), 5)
+		var/mob/living/u = user
+		if(u)
+			u.dothemario()
+
+/mob/living/proc/dothemario()
+	animate(src, pixel_x = pixel_x + 6, time =  5)
+	sleep(10)
+	animate(src, pixel_x = pixel_x - 12, time =  10)
+	sleep(15)
+	animate(src, pixel_x = pixel_x + 6, time = 5)
 
 /datum/emote/living/dab/ultra
 	key = "ultradab"

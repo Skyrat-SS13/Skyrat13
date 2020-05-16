@@ -152,7 +152,7 @@
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
 	//SKYRAT EDIT BLABLA
 	var/dry_fire = TRUE
-	var/shotsound = 'sound/weapons/gunshot.ogg'
+	var/sound/shotsound = sound('sound/weapons/gunshot.ogg')
 	var/infiniteboolet = FALSE
 	var/max_boolet = 7
 	//
