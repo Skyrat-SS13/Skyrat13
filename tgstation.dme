@@ -3685,6 +3685,8 @@
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\vox_accessories.dm"
 #include "modular_skyrat\code\modules\mob\dead\new_player\sprite_accessories\wings.dm"
 #include "modular_skyrat\code\modules\mob\dead\observer\observer.dm"
+#include "modular_skyrat\code\modules\mob\living\combat_indicator.dm"
+#include "modular_skyrat\code\modules\mob\living\emote.dm"
 #include "modular_skyrat\code\modules\mob\living\say.dm"
 #include "modular_skyrat\code\modules\mob\living\ssd_indicator.dm"
 #include "modular_skyrat\code\modules\mob\living\brain\brain_item.dm"
