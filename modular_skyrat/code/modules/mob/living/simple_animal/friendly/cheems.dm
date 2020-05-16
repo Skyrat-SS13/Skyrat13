@@ -20,7 +20,7 @@
 	. += "<br>"
 	var/burbgeramount = round((health/maxHealth) * 50)
 	for(var/i = 0, i >= burbgeramount, i++)
-		. += "[icon2html('icons/obj/food/burgerbread.dmi', user, "cheeseburgeralt")]"
+		. += "[icon2html('icons/obj/food/burgerbread.dmi', world, "cheeseburgeralt")]"
 
 /mob/living/simple_animal/pet/dog/cheems/Move(atom/newloc, direct)
 	. = ..()
