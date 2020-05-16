@@ -36,6 +36,19 @@
 			revive(full_heal = 1)
 
 //cheemgularity
+/* disabled for now because error: maximum number of internal arrays exceeded (65535)
+/obj/singularity/proc/consume(atom/A)
+	var/gain = A.singularity_act(current_size, src)
+	src.energy += gain
+	if(istype(A, /obj/machinery/power/supermatter_crystal) && !consumedSupermatter)
+		desc = "[initial(desc)] It glows fiercely with inner fire."
+		name = "supermatter-charged [initial(name)]"
+		consumedSupermatter = 1
+		set_light(10)
+	if(istype(A, /mob/living/simple_animal/pet/dog/cheems))
+		new /obj/singularity/cheemgularity(get_turf(src))
+		qdel(src)
+
 /obj/singularity/cheemgularity
 	name = "cheemgularity"
 	desc = "Praise cheem."
@@ -44,19 +57,23 @@
 
 /obj/singularity/cheemgularity/expand(force_size)
 	..()
-	switch(icon_state)
-		if("singularity_s1")
+	switch(force_size)
+		if(STAGE_ONE to STAGE_TWO)
 			icon = initial(icon)
 			icon_state = "cheemgulo_s1"
-		if("singularity_s3")
+		if(STAGE_TWO to STAGE_THREE)
 			icon = 'modular_skyrat/icons/effects/96x96.dmi'
 			icon_state = "cheemgulo_s3"
-		if("singularity_s5")
+		if(STAGE_THREE to STAGE_FOUR)
 			icon = 'modular_skyrat/icons/effects/160x160.dmi'
 			icon_state = "cheemgulo_s5"
-		if("singularity_s7")
+		if(STAGE_FOUR to STAGE_FIVE)
 			icon = 'modular_skyrat/icons/effects/224x224.dmi'
 			icon_state = "cheemgulo_s7"
-		else
-			icon_state = "cheemgulo_s1"
-			icon = initial(icon)
+		if(STAGE_FIVE to STAGE_SIX)
+			icon = 'modular_skyrat/icons/effects/288x288.dmi'
+			icon_state = "cheemgulo_s9"
+		if(STAGE_SIX)
+			icon = 'modular_skyrat/icons/effects/352x352.dmi'
+			icon_state = "cheemgulo_s11"
+*/
