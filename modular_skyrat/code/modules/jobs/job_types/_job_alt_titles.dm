@@ -26,13 +26,13 @@
 
 //Service
 /datum/job/assistant
-	alt_titles = list("Civilian", "Visitor", "Businessman", "Trader", "Entertainer", "Off-duty Worker")
+	alt_titles = list("Civilian", "Visitor", "Businessman", "Trader", "Entertainer", "Off-duty Employee")
 
 /datum/job/cook
 	alt_titles = list("Cook", "Culinary Artist", "Butcher", "Chef")
 
 /datum/job/bartender
-	alt_titles = list("Barkeeper")
+	alt_titles = list("Barkeeper", "Server")
 
 /datum/job/hydro
 	alt_titles = list("Gardener", "Herbalist", "Botanical Researcher", "Hydroponicist")
