@@ -16490,6 +16490,9 @@
 	pixel_y = 32
 	},
 /obj/machinery/vending/snack/random,
+/obj/structure/sign/poster/contraband/robust_softdrinks{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "aJw" = (
@@ -17578,10 +17581,6 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
-	},
-/obj/structure/sign/poster/contraband/robust_softdrinks{
-	pixel_x = -32;
-	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -55898,6 +55897,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"djj" = (
+/obj/machinery/status_display/evac,
+/turf/closed/wall,
+/area/ai_monitored/storage/eva)
 "dly" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -61093,6 +61096,10 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/fitness)
+"oEP" = (
+/obj/machinery/status_display/evac,
+/turf/closed/wall,
+/area/hallway/primary/central)
 "oEZ" = (
 /obj/effect/spawner/lootdrop/keg,
 /turf/open/floor/plating,
@@ -83681,7 +83688,7 @@ blW
 blW
 bqi
 cyD
-blW
+aZE
 cyD
 bvS
 blW
@@ -92650,7 +92657,7 @@ ayL
 ayW
 ayW
 ayW
-ayW
+djj
 aJq
 aJq
 aOE
@@ -96248,7 +96255,7 @@ gfD
 woR
 dgz
 aJw
-aJw
+oEP
 aMh
 aJq
 aOE

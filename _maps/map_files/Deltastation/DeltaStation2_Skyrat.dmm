@@ -14024,10 +14024,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"aEh" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "aEi" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -34884,10 +34880,10 @@
 /obj/structure/cable/white{
 	icon_state = "0-2"
 	},
-/obj/effect/spawner/structure/window/reinforced/tinted,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "bob" = (
@@ -37162,10 +37158,10 @@
 /area/crew_quarters/heads/hos)
 "brF" = (
 /obj/structure/cable/white,
-/obj/effect/spawner/structure/window/reinforced/tinted,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "brG" = (
@@ -41500,7 +41496,9 @@
 /obj/structure/cable/white{
 	icon_state = "0-2"
 	},
-/obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/effect/spawner/structure/window/reinforced/tinted/electrochromatic{
+	electrochromatic_id = "!interrogation_room"
+	},
 /turf/open/floor/plating,
 /area/security/main)
 "byP" = (
@@ -42574,7 +42572,9 @@
 /obj/structure/cable/white{
 	icon_state = "0-4"
 	},
-/obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/effect/spawner/structure/window/reinforced/tinted/electrochromatic{
+	electrochromatic_id = "!interrogation_room"
+	},
 /turf/open/floor/plating,
 /area/security/main)
 "bAt" = (
@@ -43881,9 +43881,11 @@
 /area/security/main)
 "bCm" = (
 /obj/structure/cable/white,
-/obj/effect/spawner/structure/window/reinforced/tinted,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/effect/spawner/structure/window/reinforced/tinted/electrochromatic{
+	electrochromatic_id = "!interrogation_room"
 	},
 /turf/open/floor/plating,
 /area/security/main)
@@ -43903,6 +43905,10 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/button/electrochromatic{
+	id = "!interrogation_room";
+	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -175513,7 +175519,7 @@ azG
 aAI
 aCb
 aDf
-aEh
+avW
 aFk
 aGD
 aHW
