@@ -466,6 +466,7 @@
 		/obj/item/clockwork/replica_fabricator/cyborg)
 	cyborg_base_icon = "engineer"
 	moduleselect_icon = "engineer"
+	added_channels = list(RADIO_CHANNEL_ENGINEERING = 1) //skyrat change
 	magpulsing = TRUE
 	hat_offset = -4
 
@@ -560,6 +561,7 @@
 		/obj/item/clockwork/weapon/ratvarian_spear)
 	cyborg_base_icon = "sec"
 	moduleselect_icon = "security"
+	added_channels = list(RADIO_CHANNEL_SECURITY = 1) //skyrat change
 	hat_offset = 3
 
 /obj/item/robot_module/security/do_transform_animation()
@@ -799,6 +801,7 @@
 	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/service,
 		/obj/item/borg/sight/xray/truesight_lens)
 	moduleselect_icon = "service"
+	added_channels = list(RADIO_CHANNEL_SERVICE = 1)
 	hat_offset = 0
 	clean_on_move = TRUE
 
@@ -939,6 +942,7 @@
 		/obj/item/borg/sight/xray/truesight_lens)
 	cyborg_base_icon = "miner"
 	moduleselect_icon = "miner"
+	added_channels = list(RADIO_CHANNEL_SUPPLY = 1) //skyrat change
 	hat_offset = 0
 
 /obj/item/robot_module/miner/be_transformed_to(obj/item/robot_module/old_module)
