@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	faction = list(ROLE_TERROR_SPIDER)
 
 	// Icons
-	icon = 'icons/mob/terrorspider.dmi'
+	icon = 'modular_skyrat/icons/mob/terrorspider.dmi'
 	icon_state = "terror_red"
 	icon_living = "terror_red"
 	icon_dead = "terror_red_dead"
@@ -273,10 +273,10 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	if(stat == DEAD)
 		return
 	if(ckey)
-		var/image/alert_overlay = image('icons/mob/terrorspider.dmi', icon_state)
+		var/image/alert_overlay = image('modular_skyrat/icons/mob/terrorspider.dmi', icon_state)
 		notify_ghosts("[src] has appeared in [get_area(src)]. (already player-controlled)", source = src, alert_overlay = alert_overlay)
 	else if(ai_playercontrol_allowtype)
-		var/image/alert_overlay = image('icons/mob/terrorspider.dmi', icon_state)
+		var/image/alert_overlay = image('modular_skyrat/icons/mob/terrorspider.dmi', icon_state)
 		notify_ghosts("[src] has appeared in [get_area(src)].", enter_link = "<a href=?src=[REF(src)];activate=1>(Click to control)</a>", source = src, alert_overlay = alert_overlay, action = NOTIFY_ATTACK)
 
 /mob/living/simple_animal/hostile/poison/terror_spider/Destroy()

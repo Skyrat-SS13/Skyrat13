@@ -45,7 +45,7 @@
 
 /datum/action/innate/terrorspider/evolvequeen
 	name = "Evolve Queen"
-	icon_icon = 'icons/mob/terrorspider.dmi'
+	icon_icon = 'modular_skyrat/icons/mob/terrorspider.dmi'
 	button_icon_state = "terror_queen"
 
 /datum/action/innate/terrorspider/evolvequeen/Activate()
@@ -63,7 +63,7 @@
 
 /datum/action/innate/terrorspider/queen/queennest
 	name = "Nest"
-	icon_icon = 'icons/mob/terrorspider.dmi'
+	icon_icon = 'modular_skyrat/icons/mob/terrorspider.dmi'
 	button_icon_state = "terror_queen"
 
 /datum/action/innate/terrorspider/queen/queennest/Activate()
@@ -72,7 +72,7 @@
 
 /datum/action/innate/terrorspider/queen/queensense
 	name = "Hive Sense"
-	icon_icon = 'icons/mob/actions/actions_terrorspiders.dmi'
+	icon_icon = 'modular_skyrat/icons/mob/actions/actions_terrorspiders.dmi'
 	button_icon_state = "mindswap"
 
 /datum/action/innate/terrorspider/queen/queensense/Activate()
