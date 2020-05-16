@@ -64,7 +64,7 @@
 	name = "finger gun"
 	desc = "BANG! BANG! BANG!"
 	item_state = null
-	firesound = 'modular_skyrat/sound/emotes/trash/pew.ogg'
+	shotsound = 'modular_skyrat/sound/emotes/trash/pew.ogg'
 	dry_fire = FALSE
 	infiniteboolet = TRUE
 
@@ -81,7 +81,7 @@
 
 /datum/emote/living/dothemario/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
-	playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/dothemario.ogg', 50, 0)
+	playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/themario.ogg', 50, 0)
 
 /datum/emote/living/dab/ultra
 	key = "ultradab"
@@ -91,7 +91,7 @@
 	. = ..()
 	playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/dab.ogg', 50, 0)
 
-/datum/emote/spin/speen/
+/datum/emote/spin/speen
 	key = "speen"
 	key_third_person = "speens"
 
