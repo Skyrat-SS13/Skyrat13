@@ -62,7 +62,8 @@ Difficulty: Medium
 	melee_damage_upper = 35
 	speed = 1.5
 	pixel_x = -32 //Hit box perfectly centered
-	move_to_delay = 3.5
+	pixel_y = -16
+	move_to_delay = 3
 	rapid_melee = 2
 	melee_queue_distance = 10
 	ranged = FALSE
@@ -81,7 +82,8 @@ Difficulty: Medium
 	var/stageTwo = FALSE
 	var/stageThree = FALSE
 	var/currentPower = 0 //Every few seconds this variable gets higher, when it gets high
-						 //enough it will use a special attack then reset the variable to 0w
+						 //enough it will use a special attack then reset the variable to 0
+	var/list/hit_things = list() //used to know who has been hit by the spinning attack, so it doesn't get spammed
 	song = sound('modular_skyrat/sound/ambience/furidanger802.ogg', 100) //Furi is awesome and you should play it, reader.
 	songlength = 2670
 
@@ -228,8 +230,8 @@ Difficulty: Medium
 	playsound(src, 'modular_skyrat/sound/sif/howl.ogg', 100, 1)
 	var/mob/living/L = target
 	shake_camera(L, 4, 3)
-	src.speed = 8
-	src.move_to_delay = 2.3
+	src.speed = 6
+	src.move_to_delay = 2
 	src.melee_damage_lower = 25
 	src.melee_damage_upper = 25
 	src.rapid_melee = 3
@@ -260,13 +262,13 @@ Difficulty: Medium
 
 /mob/living/simple_animal/hostile/megafauna/sif/proc/default_attackspeed()
 	if(stageTwo)
-		src.move_to_delay = 2.3
+		src.move_to_delay = 2
 		return 10
 	if(stageThree)
 		src.move_to_delay = 4
 		return 4
 
-	src.move_to_delay = 3.25
+	src.move_to_delay = 3
 	return 2
 
 /mob/living/simple_animal/hostile/megafauna/sif/do_attack_animation(atom/A, visual_effect_icon,used_item, no_effect)
@@ -301,6 +303,7 @@ Difficulty: Medium
 		src.spinIntervals = 0
 		spinning = FALSE
 		src.speed = default_attackspeed()
+		hit_things = list()
 
 /mob/living/simple_animal/hostile/megafauna/sif/Moved()
 
@@ -315,19 +318,25 @@ Difficulty: Medium
 			src.spinIntervals = 0
 			spinning = FALSE
 			src.speed = default_attackspeed()
+			hit_things = list()
 
 		//Start spinning
 		if(spinning == TRUE)
 			icon_state = "Great_Brown_Wolf_Spin"
 			src.spinIntervals += 1
 			if(isturf(src.loc) || isobj(src.loc) && src.loc.density)
-				src.ex_act(EXPLODE_HEAVY)
-				explosion(get_turf(src), 0, 0, 4, 0, adminlog = FALSE, ignorecap = FALSE, flame_range = 0, silent = TRUE, smoke = FALSE)
+				for(var/turf/T in view(2, src))
+					var/obj/effect/smoke/sm = new /obj/effect/smoke(T)
+					sm.duration = 3
+				for(var/mob/living/LM in view(2, src))
+					if(!(LM in hit_things))
+						LM.Stun(30, TRUE)
+						hit_things += LM
 				playsound(src, pick('modular_skyrat/sound/sif/whoosh1.ogg', 'modular_skyrat/sound/sif/whoosh2.ogg', 'modular_skyrat/sound/sif/whoosh3.ogg'), 300, 1)
 				playsound(src, 'modular_skyrat/sound/sif/blade_spin.ogg', 400, 1)
 				if(angered)
 					src.speed = 6
-					src.move_to_delay = 2.3
+					src.move_to_delay = 2
 
 	playsound(src, 'sound/effects/meteorimpact.ogg', 200, 1, 2, 1)
 	..()
