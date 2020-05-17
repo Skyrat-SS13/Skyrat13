@@ -10,7 +10,6 @@
 	id = "encryption_key"
 	display_name = "Communication Encryption"
 	description = "Study into usage of frequencies within headsets and their repoduction."
-	prereq_ids = list("base")
 	prereq_ids = list("telecomms")
 	design_ids = list("eng_key", "sci_key", "med_key", "supply_key", "serv_key")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
