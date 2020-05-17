@@ -23,7 +23,7 @@
 	new /obj/item/door_remote/chief_engineer(src)
 	new /obj/item/pipe_dispenser(src)
 	new /obj/item/inducer(src)
-	new /obj/item/circuitboard/machine/techfab/department/engineering(src)
+//	new /obj/item/circuitboard/machine/techfab/department/engineering(src) //Skyrat change, go to science nerds
 	new /obj/item/extinguisher/advanced(src)
 	new /obj/item/storage/photo_album/CE(src)
 	new	/obj/item/storage/lockbox/medal/engineering(src)
