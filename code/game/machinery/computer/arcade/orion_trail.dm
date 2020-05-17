@@ -730,7 +730,11 @@
 		message_admins("[ADMIN_LOOKUPFLW(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
 		log_game("[key_name(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
 	else
-		prizevend(user)
+		// Skyrat change START
+		var/score = alive + round(food/2) + round(fuel/5) + engine + hull + electronics - lings_aboard
+		prizevend(user, score)
+		// Skyrat change END
+		
 	obj_flags &= ~EMAGGED
 	name = "The Orion Trail"
 	desc = "Learn how our ancestors got to Orion, and have fun in the process!"

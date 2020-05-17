@@ -21211,6 +21211,7 @@
 	dir = 1;
 	network = list("ss13","prison")
 	},
+/obj/machinery/prize_counter,
 /turf/open/floor/plasteel/checker,
 /area/security/prison)
 "aPa" = (
@@ -39883,6 +39884,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
+/obj/machinery/prize_counter,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bwS" = (
