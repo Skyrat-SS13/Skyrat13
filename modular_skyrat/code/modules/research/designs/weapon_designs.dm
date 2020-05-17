@@ -25,7 +25,7 @@
 	id = "microfusion_cell_box"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 2000, /datum/material/uranium = 2500) //10 times the shots, 10 times the price
-	build_path = /obj/item/ammo_casing/microfusion
+	build_path = /obj/item/ammo_box/microfusion
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
