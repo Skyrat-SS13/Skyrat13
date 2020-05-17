@@ -70,12 +70,17 @@
 		if(keyslot.independent)
 			independent = TRUE
 	//Skyrat edit start
-	for(var/ch_name in extra_channels)
-		channels |= ch_name
+	if(extra_channels)
+		for(var/ch_name2 in extra_channels)
+			if(!(ch_name2 in channels))
+				channels[ch_name2] = extra_channels[ch_name2]
 	//Skyrat edit end
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
-
+	//skyrat change start
+	for(var/ch_name2 in channels)
+		secure_radio_connections[ch_name2] = add_radio(src, GLOB.radiochannels[ch_name2])
+	//Skyratchange stop
 /obj/item/radio/proc/make_syndie() // Turns normal radios into Syndicate radios!
 	qdel(keyslot)
 	keyslot = new /obj/item/encryptionkey/syndicate
@@ -377,7 +382,7 @@
 	subspace_switchable = TRUE
 	subspace_transmission = TRUE //Skyrat change
 	dog_fashion = null
-	canhear_range = 1 //Skyrat change //Giving away private channels is bad, nerfed rang for borgs
+	canhear_range = 1 //Skyrat change //Giving away private channels is bad, nerfed range for borgs
 
 /obj/item/radio/borg/Initialize(mapload)
 	. = ..()
