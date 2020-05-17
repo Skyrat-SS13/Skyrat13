@@ -5974,12 +5974,12 @@
 /turf/open/floor/plating,
 /area/security/processing)
 "alq" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Evidence Storage";
-	req_access_txt = "4;3"
-	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/door/airlock/security{
+	name = "Evidence Storage";
+	req_one_access_txt = "63"
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "alr" = (
@@ -40629,7 +40629,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Office";
-	req_access_txt = "31"
+	req_one_access_txt = "31;48;50"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
