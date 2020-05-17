@@ -20,13 +20,13 @@
 		if (character_option == "Cancel")
 			return
 		var/initial_outfits = input("Select outfit", "Quick Dress") as null|anything in outfits
+		if (!initial_outfits || initial_outfits == "" || initial_outfits == "Cancel")
+			return
 
 		if (initial_outfits == "Show All")
 			dresscode = client.robust_dress_shop()
 			if (!dresscode)
 				return
-		else if (initial_outfits == "")
-			return
 		else 
 			dresscode = outfits[initial_outfits] 
 
