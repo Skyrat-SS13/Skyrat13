@@ -828,7 +828,7 @@
 
 	spirits = current_spirits
 	return length(spirits)
-
+/* moved to modular_skyrat
 /obj/item/melee/ghost_sword/attack(mob/living/target, mob/living/carbon/human/user)
 	force = 0
 	var/ghost_counter = ghost_check()
@@ -842,7 +842,7 @@
 	final_block_chance += clamp((ghost_counter * 5), 0, 75)
 	owner.visible_message("<span class='danger'>[owner] is protected by a ring of [ghost_counter] ghosts!</span>")
 	return ..()
-
+*/
 //Blood
 
 /obj/item/dragons_blood

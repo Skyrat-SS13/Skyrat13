@@ -358,7 +358,7 @@
 	item_state = "praetor"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	slowdown = 0
-	mutantrace_variation = STYLE_DIGITIGRADE
+	mutantrace_variation = STYLE_DIGITIGRADE | STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit helmet"
@@ -369,7 +369,7 @@
 	icon_state = "praetor"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
-	mutantrace_variation = STYLE_MUZZLE
+	mutantrace_variation = STYLE_MUZZLE | STYLE_NO_ANTHRO_ICON
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
@@ -403,6 +403,32 @@
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
+
+//ghost sword buff because it is dogshit
+/obj/item/melee/ghost_sword
+	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/melee/ghost_sword/attack(mob/living/target, mob/living/carbon/human/user)
+	. = ..()
+	force = 0
+	throwforce = 0
+	armour_penetration = 0
+	var/ghost_counter = ghost_check()
+
+	force = clamp((ghost_counter * 10), 15, 75)
+	throwforce = clamp((ghost_counter * 10), 10, 50)
+	armour_penetration = clamp((ghost_counter * 10), 10, 50)
+	user.visible_message("<span class='danger'>[user] strikes with the force of [ghost_counter] vengeful spirits!</span>")
+	if(ghost_counter > 7)
+		if(.)
+			var/healmodifier = ghost_counter - 7
+			user.adjustHealth(-max(min(healmodifier * 3, 10), 0), TRUE)
+
+/obj/item/melee/ghost_sword/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	var/ghost_counter = ghost_check()
+	final_block_chance += clamp((ghost_counter * 10), 15, 75)
+	owner.visible_message("<span class='danger'>[owner] is protected by a ring of [ghost_counter] ghosts!</span>")
+	return ..()
 
 //colossus
 /obj/structure/closet/crate/necropolis/colossus/PopulateContents()
