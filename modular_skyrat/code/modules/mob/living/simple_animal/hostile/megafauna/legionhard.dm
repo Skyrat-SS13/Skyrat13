@@ -163,8 +163,8 @@
 	if(last_legion)
 		loot = list(/obj/structure/closet/crate/necropolis/legion/hard)
 		elimination = FALSE
-	else if(prob(100)) //100% chance for sick loots!
-		loot = list(/obj/structure/closet/crate/necropolis/tendril)
+	else if(prob(100)) //100% chance for sick lootz!
+		loot = list(/obj/structure/closet/crate/necropolis/tendril/legion_loot)
 		if(!true_spawn)
 			loot = null
 	return ..()

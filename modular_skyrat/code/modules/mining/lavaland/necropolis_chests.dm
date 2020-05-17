@@ -414,124 +414,121 @@
 
 //normal chests
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,35)
+	var/loot = rand(1,34)
 	new /obj/item/stock_parts/cell/high/plus/argent(src)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
-			return /obj/item/shared_storage/red
+			return list(/obj/item/shared_storage/red)
 		if(2)
 			new /obj/item/clothing/suit/space/hardsuit/cult(src)
-			return /obj/item/clothing/suit/space/hardsuit/cult
+			return list(/obj/item/clothing/suit/space/hardsuit/cult)
 		if(3)
 			new /obj/item/soulstone/anybody(src)
-			return /obj/item/soulstone/anybody
+			return list(/obj/item/soulstone/anybody)
 		if(4)
 			new /obj/item/katana/cursed(src)
-			return /obj/item/katana/cursed
+			return list(/obj/item/katana/cursed)
 		if(5)
 			new /obj/item/clothing/glasses/godeye(src)
-			return /obj/item/clothing/glasses/godeye
+			return list(/obj/item/clothing/glasses/godeye)
 		if(6)
 			new /obj/item/reagent_containers/glass/bottle/potion/flight(src)
-			return /obj/item/reagent_containers/glass/bottle/potion/flight
+			return list(/obj/item/reagent_containers/glass/bottle/potion/flight)
 		if(7)
 			new /obj/item/pickaxe/diamond(src)
-			return /obj/item/pickaxe/diamond
+			return list(/obj/item/pickaxe/diamond)
 		if(8)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
-				return /obj/item/disk/design_disk/modkit_disc/resonator_blast
+				return list(/obj/item/disk/design_disk/modkit_disc/resonator_blast)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
-				return /obj/item/disk/design_disk/modkit_disc/rapid_repeater
+				return list(/obj/item/disk/design_disk/modkit_disc/rapid_repeater)
 		if(9)
 			new /obj/item/rod_of_asclepius(src)
-			return /obj/item/rod_of_asclepius
+			return list(/obj/item/rod_of_asclepius)
 		if(10)
 			new /obj/item/organ/heart/cursed/wizard(src)
-			return /obj/item/organ/heart/cursed/wizard
+			return list(/obj/item/organ/heart/cursed/wizard)
 		if(11)
 			new /obj/item/ship_in_a_bottle(src)
-			return /obj/item/ship_in_a_bottle
+			return list(/obj/item/ship_in_a_bottle)
 		if(12)
 			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker/damaged(src)
-			return /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker
+			return list(/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker)
 		if(13)
 			new /obj/item/jacobs_ladder(src)
-			return /obj/item/jacobs_ladder
+			return list(/obj/item/jacobs_ladder)
 		if(14)
 			new /obj/item/nullrod/scythe/talking(src)
-			return /obj/item/nullrod/scythe/talking
+			return list(/obj/item/nullrod/scythe/talking)
 		if(15)
 			new /obj/item/nullrod/armblade(src)
-			return /obj/item/nullrod/armblade
+			return list(/obj/item/nullrod/armblade)
 		if(16)
 			new /obj/item/guardiancreator(src)
-			return /obj/item/guardiancreator
+			return list(/obj/item/guardiancreator)
 		if(17)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
-				return /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe
+				return list(/obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
-				return /obj/item/disk/design_disk/modkit_disc/bounty
+				return list(/obj/item/disk/design_disk/modkit_disc/bounty)
 		if(18)
 			new /obj/item/warp_cube/red(src)
-			return /obj/item/warp_cube/red
+			return list(/obj/item/warp_cube/red)
 		if(19)
 			new /obj/item/wisp_lantern(src)
-			return /obj/item/wisp_lantern
+			return list(/obj/item/wisp_lantern)
 		if(20)
 			new /obj/item/immortality_talisman(src)
-			return /obj/item/immortality_talisman
+			return list(/obj/item/immortality_talisman)
 		if(21)
 			new /obj/item/gun/magic/hook(src)
-			return /obj/item/gun/magic/hook
+			return list(/obj/item/gun/magic/hook)
 		if(22)
 			new /obj/item/voodoo(src)
-			return /obj/item/voodoo
+			return list(/obj/item/voodoo)
 		if(23)
 			new /obj/item/grenade/clusterbuster/inferno(src)
-			return /obj/item/grenade/clusterbuster/inferno
+			return list(/obj/item/grenade/clusterbuster/inferno)
 		if(24)
 			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
 			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor/damaged(src)
-			return /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor
+			return list(/obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor, /obj/item/reagent_containers/food/drinks/bottle/holywater/hell)
 		if(25)
 			new /obj/item/book/granter/spell/summonitem(src)
-			return /obj/item/book/granter/spell/summonitem
+			return list(/obj/item/book/granter/spell/summonitem)
 		if(26)
 			new /obj/item/book_of_babel(src)
-			return /obj/item/book_of_babel
+			return list(/obj/item/book_of_babel)
 		if(27)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-			return /obj/item/borg/upgrade/modkit/lifesteal
+			return list(/obj/item/borg/upgrade/modkit/lifesteal, /obj/item/bedsheet/cult)
 		if(28)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-			return /obj/item/clothing/neck/necklace/memento_mori
+			return list(/obj/item/clothing/neck/necklace/memento_mori)
 		if(29)
 			new /obj/item/gun/magic/staff/door(src)
-			return /obj/item/gun/magic/staff/door
+			return list(/obj/item/gun/magic/staff/door)
 		if(30)
 			new /obj/item/katana/necropolis(src)
-			return /obj/item/katana/necropolis
+			return list(/obj/item/katana/necropolis)
 		if(31)
 			new /obj/item/gun/ballistic/shotgun/boltaction(src)
-			return /obj/item/gun/ballistic/shotgun/boltaction
+			return list(/obj/item/gun/ballistic/shotgun/boltaction)
 		if(32)
 			new /obj/item/gun/magic/staff/locker/onecharge
-			return /obj/item/gun/magic/staff/locker
+			return list(/obj/item/gun/magic/staff/locker)
 		if(33)
-			new /obj/item/gun/energy/kinetic_accelerator/premiumka
-			return /obj/item/gun/energy/kinetic_accelerator/premiumka
-		if(34)
 			new /obj/item/clothing/accessory/fireresist(src)
-			return /obj/item/clothing/accessory/fireresist
-		if(35)
+			return list(/obj/item/clothing/accessory/fireresist)
+		if(34)
 			new /obj/item/clothing/accessory/lavawalk(src)
-			return /obj/item/clothing/accessory/lavawalk
+			return list(/obj/item/clothing/accessory/lavawalk)
 
 /obj/item/gun/magic/staff/locker/onecharge
 	max_charges = 1
@@ -648,6 +645,16 @@
 /obj/item/immortality_talisman
 	w_class = WEIGHT_CLASS_SMALL //why the fuck are they large anyways
 //legion
+/obj/structure/closet/crate/necropolis/tendril/legion_loot
+	name = "screeching crate"
+
+/obj/structure/closet/crate/necropolis/tendril/legion_loot/PopulateContents()
+	var/obj/structure/closet/crate/necropolis/tendril/N = new /obj/structure/closet/crate/necropolis/tendril()
+	var/list/weedeater = N.PopulateContents()
+	for(var/loot in weedeater)
+		new loot(src)
+	qdel(N)
+
 /obj/structure/closet/crate/necropolis/legion
 	name = "echoing legion crate"
 
@@ -671,7 +678,8 @@
 	var/obj/item/L
 	for(var/i = 0, i < 5, i++)
 		L = T.PopulateContents()
-		new L(src)
+		for(var/loot in L)
+			new loot(src)
 	qdel(T)
 
 //dagoth ur mask
