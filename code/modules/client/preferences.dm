@@ -69,6 +69,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/pda_style = MONO
 	var/pda_color = "#808000"
 	var/pda_skin = PDA_SKIN_ALT
+	// SKYRAT EDIT: Credits
+	var/show_credits = TRUE
 
 	var/uses_glasses_colour = 0
 
@@ -2394,7 +2396,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							damagescreenshake = 1
 				if("nameless")
 					nameless = !nameless
-         
+
 				if("erp_pref")
 					switch(erppref)
 						if("Yes")
