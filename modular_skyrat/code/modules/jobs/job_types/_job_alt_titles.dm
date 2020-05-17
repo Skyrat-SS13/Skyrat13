@@ -3,7 +3,7 @@
 	alt_titles = list("Overseer", "Station Manager")
 
 /datum/job/hop
-	alt_titles = list("Crew Resources Officer", "Vice-Captain", "Head of Staff")
+	alt_titles = list("Vice-Captain", "Head of Staff", "Crew Supervisor")
 	
 /datum/job/hos
 	alt_titles = list("Security Commander", "Chief of Security")
@@ -44,7 +44,7 @@
 	alt_titles = list("Custodian", "Sanitation Technician", "Maid")
 
 /datum/job/lawyer
-	alt_titles = list("Human Resources Agent", "Internal Affairs Agent") //Human Resources Agent? Why though?
+	alt_titles = list("Internal Affairs Agent", "Legal Advisor", "Attorney", "Consultant")
 
 /datum/job/chaplain
 	alt_titles = list("Counselor")
