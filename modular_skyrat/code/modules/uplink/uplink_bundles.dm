@@ -16,7 +16,7 @@
 /obj/item/gun/ballistic/revolver/detective/joker
 	name = "\proper Smith and Wesson Model 36"
 	desc = "Wanna hear another joke, captain?"
-	/obj/item/ammo_box/magazine/internal/cylinder/rev38/joker
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38/joker
 
 /obj/item/ammo_box/magazine/internal/cylinder/rev38/joker
 	caliber = list("38", "357")

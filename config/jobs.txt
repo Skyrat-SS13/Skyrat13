@@ -37,7 +37,7 @@ Chemist=2,2
 Geneticist=2,2
 Virologist=1,1
 
-Scientist=5,3
+Scientist=9,7
 Roboticist=2,2
 
 Warden=1,1

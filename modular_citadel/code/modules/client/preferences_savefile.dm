@@ -19,6 +19,14 @@
   
 	S["feature_ipc_chassis"] >> features["ipc_chassis"]
 
+	S["alt_titles_preferences"]			>> alt_titles_preferences
+	alt_titles_preferences = SANITIZE_LIST(alt_titles_preferences)
+	if(SSjob)
+		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
+			if(alt_titles_preferences[job.title])
+				if(!(alt_titles_preferences[job.title] in job.alt_titles))
+					alt_titles_preferences.Remove(job.title)
+
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
 	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])
 	erppref = sanitize_text(S["erp_pref"], "Ask")
@@ -39,6 +47,11 @@
 	exploitable_info = sanitize_text(S["exploitable_info"])
 	enable_personal_chat_color	= sanitize_integer(enable_personal_chat_color, 0, 1, initial(enable_personal_chat_color))
 	personal_chat_color	= sanitize_hexcolor(personal_chat_color, 6, 1, "#FFFFFF")
+
+	//Moves over the previous OOC notes to our ooc notes
+	if(length(features["ooc_notes"]) > length(skyrat_ooc_notes))
+		skyrat_ooc_notes = features["ooc_notes"]
+		features["ooc_notes"] = ""
 	//END OF SKYRAT CHANGES
 	//gear loadout
 	var/text_to_load
@@ -88,6 +101,8 @@
 	WRITE_FILE(S["exploitable_info"], exploitable_info)
 	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
 	WRITE_FILE(S["personal_chat_color"], personal_chat_color)
+
+	WRITE_FILE(S["alt_titles_preferences"], alt_titles_preferences)
 	//END OF SKYRAT CHANGES
 	//gear loadout
 	if(islist(chosen_gear))

@@ -1,5 +1,5 @@
 /datum/surgery/robot_restore_looks
-	name = "restore chassis looks"
+	name = "Restore chassis looks"
 	steps = list(
 	/datum/surgery_step/weld_plating,
 	/datum/surgery_step/restore_paintjob)
