@@ -3014,12 +3014,6 @@
 /turf/closed/wall,
 /area/hallway/primary/fore)
 "agp" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/emergency{
-	pixel_y = 5
-	},
-/obj/item/stack/cable_coil,
-/obj/item/wirecutters,
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -22
@@ -3034,6 +3028,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/prize_counter,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
 "agq" = (
