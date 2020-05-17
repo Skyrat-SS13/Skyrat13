@@ -3580,6 +3580,7 @@
 #include "modular_skyrat\code\modules\cargo\packs.dm"
 #include "modular_skyrat\code\modules\cargo\exports\sheets.dm"
 #include "modular_skyrat\code\modules\cargo\packs\bloat.dm"
+#include "modular_skyrat\code\modules\cargo\packs\misc.dm"
 #include "modular_skyrat\code\modules\cargo\packs\special.dm"
 #include "modular_skyrat\code\modules\client\preferences_toggles.dm"
 #include "modular_skyrat\code\modules\client\loadout\__donator.dm"

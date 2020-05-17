@@ -43,6 +43,6 @@
 	name = "Service radio encryption key"
 	desc = "Encryption key for the Service channel."
 	id = "serv_key"
-	build_path = /obj/item/encryptionkey/headset_eng
+	build_path = /obj/item/encryptionkey/headset_service
 	category = list("Subspace Telecomms")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
