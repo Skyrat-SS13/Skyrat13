@@ -196,6 +196,7 @@
 		user.refractory_period = world.time + user_refractory_cost*10
 	if(target_refractory_cost)
 		target.refractory_period = world.time + target_refractory_cost*10
+	user.last_lewd_datum = src
 	return ..()
 
 /datum/interaction/lewd/get_action_link_for(mob/living/carbon/human/user, mob/living/carbon/human/target)
