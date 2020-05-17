@@ -912,3 +912,17 @@
 
 /obj/item/clothing/head/hooded/winterhood/durathread
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+//citadel wants to nerf these so fuck that
+/obj/item/clothing/suit/hooded/cloak/drake
+	armor = list("melee" = 70, "bullet" = 30, "laser" = 50, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)
+
+/obj/item/clothing/head/hooded/cloakhood/drake
+	armor = list("melee" = 70, "bullet" = 30, "laser" = 50, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)
+
+//heck suit armor adjustments because honestly why the fuck is the drake armor statistically better
+/obj/item/clothing/suit/space/hostile_environment
+	armor = list("melee" = 70, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)
+
+/obj/item/clothing/head/helmet/space/hostile_environment
+	armor = list("melee" = 70, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)

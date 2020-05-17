@@ -73,7 +73,7 @@ They deal 35 brute (armor is considered).
 		return FALSE
 	..()
 	update_phase()
-	var/adjustment_amount = damage * 0.1
+	var/adjustment_amount = min(damage * 0.15, 15)
 	if(world.time + adjustment_amount > next_move)
 		changeNext_move(adjustment_amount)
 

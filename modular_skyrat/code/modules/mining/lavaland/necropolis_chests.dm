@@ -414,7 +414,8 @@
 
 //normal chests
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,31)
+	var/loot = rand(1,35)
+	new /obj/item/stock_parts/cell/high/plus/argent(src)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -454,7 +455,7 @@
 			new /obj/item/ship_in_a_bottle(src)
 			return /obj/item/ship_in_a_bottle
 		if(12)
-			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker(src)
+			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker/damaged(src)
 			return /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker
 		if(13)
 			new /obj/item/jacobs_ladder(src)
@@ -495,7 +496,7 @@
 			return /obj/item/grenade/clusterbuster/inferno
 		if(24)
 			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
-			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor(src)
+			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor/damaged(src)
 			return /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor
 		if(25)
 			new /obj/item/book/granter/spell/summonitem(src)
@@ -511,15 +512,108 @@
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
 			return /obj/item/clothing/neck/necklace/memento_mori
 		if(29)
-			new /obj/item/gun/ballistic/shotgun/boltaction/enchanted(src)
-			return /obj/item/gun/ballistic/shotgun/boltaction/enchanted
-		if(30)
 			new /obj/item/gun/magic/staff/door(src)
 			return /obj/item/gun/magic/staff/door
-		if(31)
+		if(30)
 			new /obj/item/katana/necropolis(src)
 			return /obj/item/katana/necropolis
-	new /obj/item/stock_parts/cell/high/plus/argent(src)
+		if(31)
+			new /obj/item/gun/ballistic/shotgun/boltaction(src)
+			return /obj/item/gun/ballistic/shotgun/boltaction
+		if(32)
+			new /obj/item/gun/magic/staff/locker/onecharge
+			return /obj/item/gun/magic/staff/locker
+		if(33)
+			new /obj/item/gun/energy/kinetic_accelerator/premiumka
+			return /obj/item/gun/energy/kinetic_accelerator/premiumka
+		if(34)
+			new /obj/item/clothing/accessory/fireresist(src)
+			return /obj/item/clothing/accessory/fireresist
+		if(35)
+			new /obj/item/clothing/accessory/lavawalk(src)
+			return /obj/item/clothing/accessory/lavawalk
+
+/obj/item/gun/magic/staff/locker/onecharge
+	max_charges = 1
+	recharge_rate = 1
+
+/obj/item/clothing/accessory/fireresist
+	name = "fire resistance medal"
+	desc = "A golden medal. Capable of making any jumpsuit able to withstand fire."
+	icon_state = "gold"
+	var/storedarmor = 0
+
+/obj/item/clothing/accessory/fireresist/attach(obj/item/clothing/under/U, user)
+	. = ..()
+	storedarmor = U.armor["fire"]
+	U.armor["fire"] = 100
+
+/obj/item/clothing/accessory/fireresist/detach(obj/item/clothing/under/U, user)
+	. = ..()
+	U.armor["fire"] = storedarmor
+	storedarmor = 0
+
+/obj/item/clothing/accessory/lavawalk
+	name = "lava walking medal"
+	desc = "A golden medal. Capable of making any jumpsuit completely lava proof for a brief window of time."
+	icon_state = "gold"
+	actions_types = list(/datum/action/item_action/lavawalk)
+	var/cool_down = 0
+	var/cooldown_time = 1200 //two full minutes
+	var/effectduration = 100 //10 seconds of lava walking
+	var/storedimmunities = list()
+
+/obj/item/clothing/accessory/lavawalk/on_uniform_equip(obj/item/clothing/under/U, user)
+	. = ..()
+	var/mob/living/L = U.loc
+	if(L)
+		for(var/datum/action/A in actions_types)
+			A.Grant(L)
+
+/obj/item/clothing/accessory/lavawalk/on_uniform_equip(obj/item/clothing/under/U, user)
+	. = ..()
+	var/mob/living/L = U.loc
+	if(L)
+		for(var/datum/action/A in actions_types)
+			A.Remove(L)
+/datum/action/item_action/lavawalk
+	name = "Lava Walk"
+	desc = "Become immune to lava for a brief period of time."
+
+/obj/item/clothing/accessory/lavawalk/ui_action_click(mob/user, actiontype)
+	if(istype(actiontype, /datum/action/item_action/lavawalk))
+		if(world.time >= cool_down)
+			var/mob/living/L = user
+			if(istype(L))
+				storedimmunities = L.weather_immunities
+				L.weather_immunities |= list("ash", "lava")
+				cool_down = world.time + cooldown_time
+				addtimer(CALLBACK(src, .proc/reset_user, L), effectduration)
+
+/obj/item/clothing/accessory/lavawalk/proc/reset_user(mob/living/user)
+	user.weather_immunities = storedimmunities
+	storedimmunities = list()
+
+//Nerfing those on the chest because too OP yada yada
+/obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor/damaged
+	name = "damaged inquisitor's hardsuit"
+	desc = "It's not really in good shape, but still serves decent protection."
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/inquisitor/damaged
+	armor = list("melee" = 65, "bullet" = 25, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 40)
+
+/obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/inquisitor/damaged
+	name = "damaged inquisitor's hardsuit helmet"
+	armor = list("melee" = 65, "bullet" = 25, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 40)
+
+/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker/damaged
+	name = "damaged berserker's hardsuit"
+	desc = "It's not really in good shape, but still serves decent protection."
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/beserker/damaged
+	armor = list("melee" = 65, "bullet" = 25, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 40)
+
+/obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/beserker/damaged
+	name = "damaged berserker's hardsuit helmet"
+	armor = list("melee" = 65, "bullet" = 25, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 40)
 
 /obj/item/stock_parts/cell/high/plus/argent
 	name = "Argent Energy Cell"
@@ -596,7 +690,7 @@
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
 	w_class = WEIGHT_CLASS_BULKY //its a fucking full metal mask man
-	mutantrace_variation = STYLE_MUZZLE
+	mutantrace_variation = STYLE_MUZZLE | STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/mask/gas/dagoth/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -703,10 +797,10 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/item_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/item_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
-	force = 15
+	force = 20 //slight buff because 15 just doesn't cut it for megafauna loot... hehe "cut it"
 	throwforce = 10
-	block_chance = 10
-	armour_penetration = 80
+	block_chance = 20 //again, slight buff
+	armour_penetration = 100 //the armor penetration is really what makes this unique and actually worth it so boomp it
 	hitsound = 'modular_skyrat/sound/sif/sif_slash.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "gutted", "gored")
 	sharpness = IS_SHARP
@@ -720,7 +814,7 @@
 //Sword blocking attacks, really hard to block projectiles but still possible.
 /obj/item/melee/sword_of_the_forsaken/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	if(attack_type == ATTACK_TYPE_PROJECTILE)
-		final_block_chance = 5
+		final_block_chance = 10 //buffy time
 	return ..()
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=End of Sworf Of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//

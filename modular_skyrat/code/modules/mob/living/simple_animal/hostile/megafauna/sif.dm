@@ -60,10 +60,10 @@ Difficulty: Medium
 	armour_penetration = 50
 	melee_damage_lower = 35
 	melee_damage_upper = 35
-	speed = 2
+	speed = 1.5
 	pixel_x = -32 //Hit box perfectly centered
-	move_to_delay = 3
-	rapid_melee = 4
+	move_to_delay = 3.5
+	rapid_melee = 2
 	melee_queue_distance = 10
 	ranged = FALSE
 	del_on_death = 1
@@ -145,7 +145,7 @@ Difficulty: Medium
 	DestroySurroundings()
 	walk(src, 0)
 	setDir(dir)
-	var/movespeed = 0.7
+	var/movespeed = 1
 	walk_to(src, T, movespeed)
 	var/atom/prevLoc = target.loc
 	sleep((get_dist(src, T) * movespeed) + 1)
@@ -228,11 +228,11 @@ Difficulty: Medium
 	playsound(src, 'modular_skyrat/sound/sif/howl.ogg', 100, 1)
 	var/mob/living/L = target
 	shake_camera(L, 4, 3)
-	src.speed = 10
-	src.move_to_delay = 2
+	src.speed = 8
+	src.move_to_delay = 2.3
 	src.melee_damage_lower = 25
 	src.melee_damage_upper = 25
-	src.rapid_melee = 6
+	src.rapid_melee = 3
 
 //Sets Sif's enraged stats
 /mob/living/simple_animal/hostile/megafauna/sif/proc/enraged()
@@ -242,12 +242,12 @@ Difficulty: Medium
 	playsound(src, 'modular_skyrat/sound/sif/howl.ogg', 100, 1)
 	var/mob/living/L = target
 	shake_camera(L, 8, 6)
-	src.speed = 4
+	src.speed = 3
 	src.move_to_delay = 4
 	src.melee_damage_lower = 30
 	src.melee_damage_upper = 30
-	src.rapid_melee = 8
-	src.dodge_prob = 65
+	src.rapid_melee = 4
+	src.dodge_prob = 50
 
 //Chooses a random special
 /mob/living/simple_animal/hostile/megafauna/sif/proc/special()
@@ -260,13 +260,13 @@ Difficulty: Medium
 
 /mob/living/simple_animal/hostile/megafauna/sif/proc/default_attackspeed()
 	if(stageTwo)
-		src.move_to_delay = 2
+		src.move_to_delay = 2.3
 		return 10
 	if(stageThree)
 		src.move_to_delay = 4
 		return 4
 
-	src.move_to_delay = 3
+	src.move_to_delay = 3.25
 	return 2
 
 /mob/living/simple_animal/hostile/megafauna/sif/do_attack_animation(atom/A, visual_effect_icon,used_item, no_effect)
@@ -274,11 +274,12 @@ Difficulty: Medium
 		..()
 
 //Attack speed delay
+//bob's note: everything here is well coded except this like why would you not just use changeNext_move()
 /mob/living/simple_animal/hostile/megafauna/sif/AttackingTarget()
 	if(charging == FALSE)
 		. = ..()
 		if(.)
-			recovery_time = world.time + 7
+			recovery_time = world.time + 10
 
 /mob/living/simple_animal/hostile/megafauna/sif/Goto(target, delay, minimum_distance)
 	if(charging == FALSE)
@@ -325,8 +326,8 @@ Difficulty: Medium
 				playsound(src, pick('modular_skyrat/sound/sif/whoosh1.ogg', 'modular_skyrat/sound/sif/whoosh2.ogg', 'modular_skyrat/sound/sif/whoosh3.ogg'), 300, 1)
 				playsound(src, 'modular_skyrat/sound/sif/blade_spin.ogg', 400, 1)
 				if(angered)
-					src.speed = 8
-					src.move_to_delay = 2
+					src.speed = 6
+					src.move_to_delay = 2.3
 
 	playsound(src, 'sound/effects/meteorimpact.ogg', 200, 1, 2, 1)
 	..()
