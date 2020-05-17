@@ -59,7 +59,7 @@
 		else
 			transfer_ckey(spawned_player)
 
-		if(give_return == "Yes")
+		if(give_return != "No")
 			spawned_player.mind.AddSpell(new /obj/effect/proc_holder/spell/self/return_back, FALSE)
 		
 		if(dresscode != "Naked")
