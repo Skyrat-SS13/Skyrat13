@@ -422,7 +422,7 @@
 	if(ghost_counter > 7)
 		if(.)
 			var/healmodifier = ghost_counter - 7
-			user.adjustHealth(-max(min(healmodifier * 3, 10), 0), TRUE)
+			user.adjustBruteLoss(-max(min(healmodifier * 3, 10), 0), TRUE)
 
 /obj/item/melee/ghost_sword/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	var/ghost_counter = ghost_check()
