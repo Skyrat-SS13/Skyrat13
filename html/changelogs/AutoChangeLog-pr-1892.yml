@@ -1,0 +1,4 @@
+author: "BurgerBB"
+delete-after: True
+changes: 
+  - balance: "Limits the amount of events of a single type can spawn in a round."
