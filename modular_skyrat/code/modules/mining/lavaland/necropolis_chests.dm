@@ -416,7 +416,7 @@
 	var/ghost_counter = ghost_check()
 
 	force = clamp((ghost_counter * 10), 15, 50)
-	throwforce = clamp((ghost_counter * 5), 10, 40)
+	throwforce = clamp((ghost_counter * 5), 10, 50)
 	armour_penetration = clamp((ghost_counter * 5), 10, 50)
 	user.visible_message("<span class='danger'>[user] strikes with the force of [ghost_counter] vengeful spirits!</span>")
 	if(ghost_counter > 7)
@@ -426,7 +426,7 @@
 
 /obj/item/melee/ghost_sword/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	var/ghost_counter = ghost_check()
-	final_block_chance = clamp((ghost_counter * 10), 15, 65)
+	final_block_chance = clamp((ghost_counter * 10), 15, 67)
 	owner.visible_message("<span class='danger'>[owner] is protected by a ring of [ghost_counter] ghosts!</span>")
 	return ..()
 
