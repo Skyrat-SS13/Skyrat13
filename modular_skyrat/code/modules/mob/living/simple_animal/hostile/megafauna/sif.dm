@@ -326,7 +326,7 @@ Difficulty: Medium
 			src.spinIntervals += 1
 			if(isturf(src.loc) || isobj(src.loc) && src.loc.density)
 				for(var/turf/T in view(2, src))
-					var/obj/effect/smoke/sm = new /obj/effect/smoke(T)
+					var/obj/effect/temp_visual/small_smoke/sm = new /obj/effect/temp_visual/small_smoke(T)
 					sm.duration = 3
 				for(var/mob/living/LM in view(2, src))
 					if(!(LM in hit_things))
