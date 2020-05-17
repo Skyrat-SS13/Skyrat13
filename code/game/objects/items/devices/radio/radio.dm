@@ -71,16 +71,13 @@
 			independent = TRUE
 	//Skyrat edit start
 	if(extra_channels)
-		for(var/ch_name2 in extra_channels)
-			if(!(ch_name2 in channels))
-				channels[ch_name2] = extra_channels[ch_name2]
+		for(var/ch_name in extra_channels)
+			if(!(ch_name in channels))
+				channels[ch_name] = extra_channels[ch_name]
 	//Skyrat edit end
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
-	//skyrat change start
-	for(var/ch_name2 in channels)
-		secure_radio_connections[ch_name2] = add_radio(src, GLOB.radiochannels[ch_name2])
-	//Skyratchange stop
+
 /obj/item/radio/proc/make_syndie() // Turns normal radios into Syndicate radios!
 	qdel(keyslot)
 	keyslot = new /obj/item/encryptionkey/syndicate
@@ -386,7 +383,7 @@
 
 /obj/item/radio/borg/Initialize(mapload)
 	. = ..()
-	
+/*     Skyrat change, code no longer applies
 /obj/item/radio/borg/syndicate
 	syndie = 1
 	keyslot = new /obj/item/encryptionkey/syndicate
@@ -394,7 +391,7 @@
 /obj/item/radio/borg/syndicate/Initialize()
 	. = ..()
 	set_frequency(FREQ_SYNDICATE)
-
+*/
 /obj/item/radio/borg/attackby(obj/item/W, mob/user, params)
 
 	if(istype(W, /obj/item/screwdriver))
@@ -427,7 +424,6 @@
 			keyslot = W
 
 		recalculateChannels()
-
 
 /obj/item/radio/off	// Station bounced radios, their only difference is spawning with the speakers off, this was made to help the lag.
 	listening = 0			// And it's nice to have a subtype too for future features.

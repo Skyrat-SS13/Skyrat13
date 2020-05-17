@@ -234,8 +234,7 @@
 	if(RM.dogborg)
 		RM.dogborg_equip()
 	//Skyrat change start
-	R.radio.extra_channels.Cut()
-	R.radio.extra_channels = added_channels.Copy()
+	R.radio.extra_channels = RM.added_channels
 	R.radio.recalculateChannels()
 //	for (var/X in added_channels)
 //		R.radio.extra_channels += X
@@ -1024,6 +1023,7 @@
 		/obj/item/clockwork/weapon/ratvarian_spear)
 	cyborg_base_icon = "synd_sec"
 	moduleselect_icon = "malf"
+	added_channels = list(RADIO_CHANNEL_SYNDICATE = 1) //Skyrat change
 	hat_offset = 3
 
 /obj/item/robot_module/syndicate/rebuild_modules()
@@ -1063,6 +1063,7 @@
 		/obj/item/clockwork/weapon/ratvarian_spear)
 	cyborg_base_icon = "synd_medical"
 	moduleselect_icon = "malf"
+	added_channels = list(RADIO_CHANNEL_SYNDICATE = 1) //Skyrat change
 	hat_offset = 3
 
 /obj/item/robot_module/saboteur
@@ -1101,6 +1102,7 @@
 
 	cyborg_base_icon = "synd_engi"
 	moduleselect_icon = "malf"
+	added_channels = list(RADIO_CHANNEL_SYNDICATE = 1) //Skyrat change
 	magpulsing = TRUE
 	hat_offset = -4
 	canDispose = TRUE
