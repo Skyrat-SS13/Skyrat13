@@ -1,13 +1,13 @@
 /datum/action/vampire
 	name = "Vampiric Gift"
 	desc = "A vampiric gift."
-	button_icon = 'icons/mob/actions/bloodsucker.dmi'	//This is the file for the BACKGROUND icon
+	button_icon = 'modular_skyrat/icons/mob/actions/vampire.dmi'	//This is the file for the BACKGROUND icon
 	background_icon_state = "vamp_power_off"		//And this is the state for the background icon
 	var/background_icon_state_on = "vamp_power_on"		// FULP: Our "ON" icon alternative.
 	var/background_icon_state_off = "vamp_power_off"	// FULP: Our "OFF" icon alternative.
-	icon_icon = 'icons/mob/actions/bloodsucker.dmi'		//This is the file for the ACTION icon
+	icon_icon = 'modular_skyrat/icons/mob/actions/vampire.dmi'		//This is the file for the ACTION icon
 	button_icon_state = "power_feed" 				//And this is the state for the action icon
-	buttontooltipstyle = "cult"
+	buttontooltipstyle = "vampire"
 
 	// Action-Related
 	//var/amPassive = FALSE		// REMOVED: Just made it its own kind. // Am I just "on" at all times? (aka NO ICON)
@@ -21,6 +21,10 @@
 	var/level_current = 0		// Can increase to yield new abilities. Each power goes up in strength each Rank.
 	//var/level_max = 1			//
 	var/bloodcost = 10
+	var/required_bloodlevel = 300
+
+	var/powercost = 0
+
 	var/needs_button = TRUE 			// Taken from Changeling - for passive abilities that dont need a button
 	var/bloodsucker_can_buy = FALSE 	// Must be a bloodsucker to use this power.
 	var/warn_constant_cost = FALSE		// Some powers charge you for staying on. Masquerade, Cloak, Veil, etc.
@@ -74,9 +78,9 @@
 		return FALSE
 	// Have enough blood?
 	var/mob/living/L = owner
-	if(L.blood_volume < bloodcost)
+	if(L.blood_volume > required_bloodlevel)
 		if(display_error)
-			to_chat(owner, "<span class='warning'>You need at least [bloodcost] blood to activate [name]</span>")
+			to_chat(owner, "<span class='warning'>You need more blood to activate [name]</span>")
 		return FALSE
 	return TRUE
 

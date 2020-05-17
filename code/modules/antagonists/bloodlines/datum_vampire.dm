@@ -6,6 +6,8 @@
 	job_rank = ROLE_BLOODLINE_VAMPIRE
 	threat = 5
 
+	var/power = 0
+	var/max_power = 100
 	var/list/powers = list() //all powers we've gained from being a vampire
 
 /datum/antagonist/vampire/on_gain()
@@ -22,6 +24,7 @@
 	//update_hud(TRUE) 	// Set blood value, current rank
 	// Powers
 	BuyPower(new /datum/action/vampire/vitality)
+	BuyPower(new /datum/action/vampire/stamina)
 	//BuyPower(new /datum/action/vampire/masquerade)
 	//BuyPower(new /datum/action/vampire/veil)
 	/*

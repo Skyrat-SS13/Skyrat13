@@ -1383,6 +1383,7 @@
 #include "code\modules\antagonists\bloodlines\datum_vampire.dm"
 #include "code\modules\antagonists\bloodlines\vampire_powers\_vampire_powers.dm"
 #include "code\modules\antagonists\bloodlines\vampire_powers\supernatural_vitality.dm"
+#include "code\modules\antagonists\bloodlines\vampire_powers\undying_stamina.dm"
 #include "code\modules\antagonists\bloodsucker\bloodsucker_flaws.dm"
 #include "code\modules\antagonists\bloodsucker\bloodsucker_integration.dm"
 #include "code\modules\antagonists\bloodsucker\bloodsucker_life.dm"
