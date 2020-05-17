@@ -1,0 +1,4 @@
+author: "Akrilla"
+delete-after: True
+changes: 
+  - config: "adds in scaling cost for roundstart dynamic rules"
