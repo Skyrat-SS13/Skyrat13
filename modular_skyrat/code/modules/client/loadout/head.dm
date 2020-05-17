@@ -124,7 +124,7 @@
 	path = /obj/item/clothing/head/beanie/cyan
 
 /datum/gear/trekcapmedisci
-	restricted_roles = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Virologist", "Paramedic", "Geneticist", "Research Director", "Scientist", "Roboticist")
+	restricted_roles = MEDSCI_ROLES
 
 /datum/gear/trekcapsec
 	restricted_roles = list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster", "Blueshield", "Brig Physician", "Warden", "Detective", "Security Officer")

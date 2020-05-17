@@ -17,14 +17,15 @@
 
 /datum/gear/trekcmdtos
 	name = "Fed uniform, cmd"
+	restricted_roles = CMD_ROLES
 
 /datum/gear/trekmedscitos
 	name = "Fed uniform, medsci"
-	restricted_roles = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Virologist", "Paramedic", "Geneticist", "Research Director", "Scientist", "Roboticist")
+	restricted_roles = MEDSCI_ROLES
 
 /datum/gear/trekengtos
 	name = "Fed uniform, ops"
-	restricted_roles = list("Chief Engineer", "Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Head of Security", "Brig Physician", "Blueshield", "Cargo Technician", "Shaft Miner", "Quartermaster")
+	restricted_roles = OPRS_ROLES
 
 /datum/gear/trekfedutil
 	name = "Fed uniform, classic"
