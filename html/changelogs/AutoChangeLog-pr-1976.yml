@@ -1,0 +1,4 @@
+author: "Akrilla"
+delete-after: True
+changes: 
+  - rscadd: "Adds the player ticket manager, allowing players to have more than one active ticket (ahelp) at once. You can see your active tickets using the \"View Tickets verb in the admin tab."
