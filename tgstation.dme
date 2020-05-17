@@ -3569,6 +3569,7 @@
 #include "modular_skyrat\code\modules\admin\admin_verbs.dm"
 #include "modular_skyrat\code\modules\admin\pacify_ban.dm"
 #include "modular_skyrat\code\modules\admin\watchlist_track.dm"
+#include "modular_skyrat\code\modules\admin\verbs\adminhelp.dm"
 #include "modular_skyrat\code\modules\antagonists\bloodsucker\datum_vassal.dm"
 #include "modular_skyrat\code\modules\antagonists\changeling\changeling.dm"
 #include "modular_skyrat\code\modules\antagonists\devil\sintouched\sintouched.dm"
