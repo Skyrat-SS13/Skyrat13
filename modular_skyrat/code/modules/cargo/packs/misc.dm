@@ -66,7 +66,7 @@
 	name = "Service Headset Encryption Key"
 	desc = "Spare service headset encryption keys. Requires HoP access to open."
 	cost = 1250
-	access = ACCESS_HOP || ACCESS_KITCHEN || ACCESS_HYDROPONICS || ACCESS_BAR || ACCESS_JANITOR
+	access = ACCESS_HOP
 	contains = list(/obj/item/encryptionkey/headset_service, /obj/item/encryptionkey/headset_service, /obj/item/encryptionkey/headset_service)
 	crate_name = "service headset encryption crate"
 	crate_type = /obj/structure/closet/crate/secure
