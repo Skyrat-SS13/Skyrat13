@@ -30,6 +30,14 @@
 		else 
 			dresscode = outfits[initial_outfits] 
 
+		// We're spawning someone else
+		var/give_return
+		if (user != usr)
+			give_return = alert("Do you want to give them the power to return? Not recommended for non-admins.","Give power?","Yes","No", "Cancel")
+			if(give_return == "Cancel")
+				return
+
+
 		var/turf/current_turf = get_turf(src)
 		var/mob/living/carbon/human/spawned_player = new(src)
 
@@ -51,7 +59,8 @@
 		else
 			transfer_ckey(spawned_player)
 
-		spawned_player.mind.AddSpell(new /obj/effect/proc_holder/spell/self/return_back, FALSE)
+		if(give_return == "Yes")
+			spawned_player.mind.AddSpell(new /obj/effect/proc_holder/spell/self/return_back, FALSE)
 		
 		if(dresscode != "Naked")
 			spawned_player.equipOutfit(dresscode)
