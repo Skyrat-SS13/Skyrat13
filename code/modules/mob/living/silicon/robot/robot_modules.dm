@@ -236,8 +236,6 @@
 	//Skyrat change start
 	R.radio.extra_channels = RM.added_channels
 	R.radio.recalculateChannels()
-//	for (var/X in added_channels)
-//		R.radio.extra_channels += X
 	//Skyrat change stop
 	R.maxHealth = borghealth
 	R.health = min(borghealth, R.health)
