@@ -20,6 +20,9 @@
 	var/static/list/emote_list = list()
 	var/static/regex/stop_bad_mime = regex(@"says|exclaims|yells|asks")
 
+	var/chat_popup = TRUE //Skyrat edit
+	var/image_popup
+
 /datum/emote/New()
 	if(key_third_person)
 		emote_list[key_third_person] = src
@@ -66,9 +69,13 @@
 			M.show_message(dchatmsg) //SKYRAT CHANGE
 
 	if(emote_type == EMOTE_AUDIBLE)
-		user.audible_message(msg, user_msg = TRUE, runechat_popup = TRUE) //SKYRAT CHANGE
+		user.audible_message(msg, user_msg = TRUE, runechat_popup = chat_popup) //SKYRAT CHANGE
 	else
-		user.visible_message(msg, user_msg = TRUE, runechat_popup = TRUE) //SKYRAT CHANGE
+		user.visible_message(msg, user_msg = TRUE, runechat_popup = chat_popup) //SKYRAT CHANGE
+	//Skyrat change
+	if(image_popup)
+		flick_emote_popup_on_mob(user, image_popup, 40)
+	//End of skyrat changes
 
 /datum/emote/proc/replace_pronoun(mob/user, message)
 	if(findtext(message, "their"))

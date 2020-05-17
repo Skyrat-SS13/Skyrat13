@@ -1,0 +1,5 @@
+author: "Akrilla"
+delete-after: True
+changes: 
+  - tweak: "Ports in Paradise-like arcade machines. No longer dispensing toys, and instead give tickets."
+  - rscadd: "Added the prize counter, letting you redeem your won tickets from arcade machines."

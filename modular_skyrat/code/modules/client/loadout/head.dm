@@ -25,7 +25,7 @@
 
 /datum/gear/neethelm
 	name = "Desperate Assistance Battleforce helmet"
-  
+
 /datum/gear/papersack
 	name = "Paper Sack"
 	category = SLOT_HEAD
@@ -83,7 +83,8 @@
 /datum/gear/baseballcap/security
 	name = "Security Cap"
 	path = /obj/item/clothing/head/soft/sec
-	restricted_roles = list("Security Officer", "Warden", "Head of Security")
+	restricted_roles = SEC_ROLES
+	restricted_desc = "Security"
 
 /datum/gear/baseballcap/emt
 	name = "EMT Cap"
@@ -121,3 +122,12 @@
 /datum/gear/beanie/cyan
 	name = "Cyan Beanie"
 	path = /obj/item/clothing/head/beanie/cyan
+
+/datum/gear/trekcapmedisci
+	restricted_roles = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Virologist", "Paramedic", "Geneticist", "Research Director", "Scientist", "Roboticist")
+
+/datum/gear/trekcapsec
+	restricted_roles = list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster", "Blueshield", "Brig Physician", "Warden", "Detective", "Security Officer")
+
+/datum/gear/trekcapcap
+	restricted_roles = list("Captain", "Head of Personnel", "Blueshield")
