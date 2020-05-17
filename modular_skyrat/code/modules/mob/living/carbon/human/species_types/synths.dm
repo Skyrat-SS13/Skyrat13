@@ -10,7 +10,7 @@
 	blacklisted = 0 //not blacklisted anymore
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc //fuck it
 	gib_types = /obj/effect/gibspawner/robot
-	damage_overlay_type = "synth"
+	damage_overlay_type = "robotic"
 	limbs_id = "synth"
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
 	//mutant_bodyparts = list("legs" = "Digitigrade", "taur" = "None") //this probably isn't gonna work. Note: it didn't work.
