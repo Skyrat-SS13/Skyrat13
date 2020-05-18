@@ -1,0 +1,5 @@
+author: "Anonymous"
+delete-after: True
+changes: 
+  - rscadd: "Added bland variant of worn shirt, replacing the one in loadout. Reskinnable incl. Ian."
+  - rscadd: "Added Polychromic worn shirt into loadout."
