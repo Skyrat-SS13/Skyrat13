@@ -411,9 +411,9 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/prisoner
 	name = "prisoner ID card"
 	desc = "You are a number, you are not a free man. The ID looks outdated." //Skyrat change
-	icon = 'icons/obj/card.dmi' //Skyrat change
 	icon_state = "orange"
 	item_state = "orange-id"
+	icon = 'icons/obj/card.dmi' //Skyrat change
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	assignment = "Prisoner"

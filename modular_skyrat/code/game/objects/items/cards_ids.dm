@@ -146,6 +146,6 @@
 	
 /obj/item/card/id/department/serv
 	name = "service identification card"
-	desc = "An service ID card."
+	desc = "A service ID card."
 	icon_state = "serv"
 	item_state = "serv-id"
