@@ -1,0 +1,4 @@
+author: "Afya"
+delete-after: True
+changes: 
+  - tweak: "combat mode disabled when surrendering."
