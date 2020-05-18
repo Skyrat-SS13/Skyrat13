@@ -1,0 +1,12 @@
+author: "spessbro"
+delete-after: True
+changes: 
+  - rscadd: "ethanol recipe"
+  - rscadd: "sulphuric acid recipe"
+  - rscadd: "electrolysis recipe"
+  - rscadd: "monkey powder"
+  - rscadd: "cellulose"
+  - rscadd: "stable plasma recipe"
+  - rscadd: "butterflium recipe
+tweak:changed grind reagents to new reagents"
+  - bugfix: "liquid electricity description"
