@@ -19,3 +19,12 @@
 
 /datum/gear/trekcmdcap
 	restricted_roles = list("Captain", "Head of Personnel", "Blueshield")
+
+/datum/gear/ianshirt
+	name = "worn/baggy shirt"
+	path = /obj/item/clothing/suit/wornshirt
+
+/datum/gear/ianshirt_polychromic
+	name = "Polychromic worn/baggy shirt"
+	category = SLOT_WEAR_SUIT
+	path = /obj/item/clothing/suit/wornshirt/polychromic
