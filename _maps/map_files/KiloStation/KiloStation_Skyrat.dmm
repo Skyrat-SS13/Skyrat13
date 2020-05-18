@@ -3014,12 +3014,6 @@
 /turf/closed/wall,
 /area/hallway/primary/fore)
 "agp" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/emergency{
-	pixel_y = 5
-	},
-/obj/item/stack/cable_coil,
-/obj/item/wirecutters,
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -22
@@ -3034,6 +3028,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/prize_counter,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
 "agq" = (
@@ -23879,6 +23874,14 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching the test chamber.";
+	dir = 4;
+	layer = 4;
+	name = "Test Chamber Telescreen";
+	network = list("toxins");
+	pixel_x = -30
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
 "aVT" = (
@@ -24832,6 +24835,7 @@
 	dir = 1;
 	pixel_y = 3
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "aXY" = (
@@ -26870,14 +26874,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the test chamber.";
-	dir = 8;
-	layer = 4;
-	name = "Test Chamber Telescreen";
-	network = list("toxins");
-	pixel_x = 30
-	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
 "bcc" = (
@@ -27230,19 +27227,12 @@
 	pixel_x = 24;
 	pixel_y = -24
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the test chamber.";
-	dir = 8;
-	layer = 4;
-	name = "Test Chamber Telescreen";
-	network = list("toxins");
-	pixel_x = 30
-	},
 /obj/machinery/light/small,
 /obj/machinery/airalarm{
 	dir = 1;
 	pixel_y = -22
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
 "bcR" = (
@@ -49972,6 +49962,11 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 24
 	},
+/obj/machinery/button/electrochromatic{
+	pixel_x = 38;
+	pixel_y = -5;
+	id = "!interrogation_room"
+	},
 /turf/open/floor/plasteel,
 /area/security/warden)
 "bWO" = (
@@ -67549,6 +67544,7 @@
 	pixel_x = -28;
 	pixel_y = 3
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "nJw" = (
@@ -67684,6 +67680,12 @@
 /mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
+"rtk" = (
+/obj/effect/spawner/structure/window/reinforced/tinted/electrochromatic{
+	electrochromatic_id = "!interrogation_room"
+	},
+/turf/open/floor/plating,
+/area/security/warden)
 "ruL" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -90086,7 +90088,7 @@ agX
 agX
 agX
 aef
-acH
+rtk
 aBH
 aef
 aef
@@ -108578,7 +108580,7 @@ bki
 bhQ
 bkN
 bIG
-bki
+bhQ
 bIG
 blH
 bhQ

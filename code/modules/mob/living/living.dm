@@ -469,6 +469,14 @@
 		if(alert(src, "You sure you want to sleep for a while?", "Sleep", "Yes", "No") == "Yes")
 			SetSleeping(400) //Short nap
 
+//Skyrat change start
+/mob/living/proc/surrender()
+	set name = "Surrender"
+	set category = "IC"
+
+	emote("surrender")
+//Skyrat change stop
+
 /mob/proc/get_contents()
 
 /*CIT CHANGE - comments out lay_down proc to be modified in modular_citadel
@@ -563,7 +571,7 @@
 	SetAllImmobility(0, FALSE)
 	SetSleeping(0, FALSE)
 	radiation = 0
-	nutrition = NUTRITION_LEVEL_FED + 50
+	set_nutrition(NUTRITION_LEVEL_FED + 50)
 	bodytemperature = BODYTEMP_NORMAL
 	set_blindness(0)
 	set_blurriness(0)
