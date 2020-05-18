@@ -20,8 +20,8 @@
 
 #define REQUIRE_NONE 0
 #define REQUIRE_EXPOSED 1
-#define REQUIRE_ANY 2
-#define REQUIRE_UNEXPOSED 3
+#define REQUIRE_UNEXPOSED 2
+#define REQUIRE_ANY 3
 
 /*--------------------------------------------------
   -------------------MOB STUFF----------------------
