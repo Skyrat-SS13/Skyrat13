@@ -33,13 +33,13 @@
 	name = "Quartermaster"
 	jobtype = /datum/job/qm
 
+	id = /obj/item/card/id/department/cargo/head
 	belt = /obj/item/pda/quartermaster
 	ears = /obj/item/radio/headset/heads/qm
 	uniform = /obj/item/clothing/under/rank/cargo/qm
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/clipboard
-	id = /obj/item/card/id/silver
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic = 1, /obj/item/modular_computer/tablet/preset/advanced = 1)
 
 	chameleon_extras = /obj/item/stamp/qm

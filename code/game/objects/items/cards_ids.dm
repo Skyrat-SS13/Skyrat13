@@ -14,7 +14,7 @@
 /obj/item/card
 	name = "card"
 	desc = "Does card things."
-	icon = 'icons/obj/card.dmi'
+	icon = 'modular_skyrat/icons/obj/card.dmi' //Skyrat change
 	w_class = WEIGHT_CLASS_TINY
 
 	var/list/files = list()
@@ -348,6 +348,11 @@ update_label("John Doe", "Clowny")
 	name = "\improper CentCom ID"
 	desc = "An ID straight from Central Command."
 	icon_state = "centcom"
+	//Skyrat change start
+	item_state = "centcom-id"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/idcards_righthand.dmi'
+	//Skyrat change stop
 	registered_name = "Central Command"
 	assignment = "General"
 
@@ -359,6 +364,11 @@ update_label("John Doe", "Clowny")
 	name = "\improper CentCom ID"
 	desc = "An ERT ID card."
 	icon_state = "centcom"
+	//Skyrat change start
+	item_state = "centcom-id"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/idcards_righthand.dmi'
+	//Skyrat change stop
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
 
@@ -400,7 +410,8 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/prisoner
 	name = "prisoner ID card"
-	desc = "You are a number, you are not a free man."
+	desc = "You are a number, you are not a free man. The ID looks outdated." //Skyrat change
+	icon = 'icons/obj/card.dmi' //Skyrat change
 	icon_state = "orange"
 	item_state = "orange-id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
@@ -491,7 +502,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/away/old
 	name = "a perfectly generic identification card"
 	desc = "A perfectly generic identification card. Looks like it could use some flavor."
-	icon_state = "centcom"
+	icon_state = "centcom_old" //Skyrat change
 
 /obj/item/card/id/away/old/sec
 	name = "Charlie Station Security Officer's ID card"
@@ -520,6 +531,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/knight
 	name = "knight badge"
+	icon = 'icons/obj/card.dmi' //Skyrat change
 	icon_state = "knight"
 	desc = "A badge denoting the owner as a knight! It has a strip for swiping like an ID"
 	var/id_color = "#00FF00" //defaults to green
