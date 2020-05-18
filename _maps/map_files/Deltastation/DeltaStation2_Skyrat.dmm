@@ -240,6 +240,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/detectives_office)
+"aaA" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "aaE" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space,
@@ -19342,13 +19349,6 @@
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
-"aVT" = (
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/mob/living/simple_animal/sloth/citrus,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "aVU" = (
@@ -147280,7 +147280,7 @@ aPf
 aQP
 aSu
 aUk
-aVT
+aaA
 aXz
 aZd
 aQQ
