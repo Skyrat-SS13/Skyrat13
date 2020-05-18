@@ -1,7 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added prize counter to pubby and kilo"
-  - rscadd: "Added skyrat maint piles to meta"
-  - rscdel: "Removed citadel maint piles from meta"
-  - rscdel: "Removed some decals from delta and meta"
