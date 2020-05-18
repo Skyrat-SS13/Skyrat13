@@ -17,9 +17,9 @@
 
 /datum/interaction/lewd/kiss/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.get_lust() >= 3)
-		user.visible_message("<span class='warning'>\The <b>[user]</b> gives an intense, lingering kiss to \the <b>[target]</b>.</span>")
+		user.visible_message("<font color=purple>\The <b>[user]</b> gives an intense, lingering kiss to \the <b>[target]</b>.</font>")
 	else
-		user.visible_message("<span class='warning'>\The <b>[user]</b> kisses \the <b>[target]</b> deeply.</span>")
+		user.visible_message("<font color=purple>\The <b>[user]</b> kisses \the <b>[target]</b> deeply.</font>")
 
 /datum/interaction/lewd/titgrope
 	command = "titgrope"
@@ -36,58 +36,58 @@
 /datum/interaction/lewd/titgrope/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.a_intent == INTENT_HELP)
 		user.visible_message(
-				pick("<span class='warning'>\The <b>[user]</b> gently gropes \the <b>[target]</b>'s breast.</span>",
-					 "<span class='warning'>\The <b>[user]</b> softly squeezes \the <b>[target]</b>'s breasts.</span>",
-					 "<span class='warning'>\The <b>[user]</b> grips \the <b>[target]</b>'s breasts.</span>",
-					 "<span class='warning'>\The <b>[user]</b> runs a few fingers over \the <b>[target]</b>'s breast.</span>",
-					 "<span class='warning'>\The <b>[user]</b> delicately teases \the <b>[target]</b>'s nipple.</span>",
-					 "<span class='warning'>\The <b>[user]</b> traces a touch across \the <b>[target]</b>'s breast.</span>"))
+				pick("<font color=purple>\The <b>[user]</b> gently gropes \the <b>[target]</b>'s breast.</font>",
+					 "<font color=purple>\The <b>[user]</b> softly squeezes \the <b>[target]</b>'s breasts.</font>",
+					 "<font color=purple>\The <b>[user]</b> grips \the <b>[target]</b>'s breasts.</font>",
+					 "<font color=purple>\The <b>[user]</b> runs a few fingers over \the <b>[target]</b>'s breast.</font>",
+					 "<font color=purple>\The <b>[user]</b> delicately teases \the <b>[target]</b>'s nipple.</font>",
+					 "<font color=purple>\The <b>[user]</b> traces a touch across \the <b>[target]</b>'s breast.</font>"))
 	if(user.a_intent == INTENT_HARM)
 		user.visible_message(
-				pick("<span class='warning'>\The <b>[user]</b> aggressively gropes \the <b>[target]</b>'s breast.</span>",
-					 "<span class='warning'>\The <b>[user]</b> grabs \the <b>[target]</b>'s breasts.</span>",
-					 "<span class='warning'>\The <b>[user]</b> tightly squeezes \the <b>[target]</b>'s breasts.</span>",
-					 "<span class='warning'>\The <b>[user]</b> slaps at \the <b>[target]</b>'s breasts.</span>",
-					 "<span class='warning'>\The <b>[user]</b> gropes \the <b>[target]</b>'s breasts roughly.</span>"))
+				pick("<font color=purple>\The <b>[user]</b> aggressively gropes \the <b>[target]</b>'s breast.</font>",
+					 "<font color=purple>\The <b>[user]</b> grabs \the <b>[target]</b>'s breasts.</font>",
+					 "<font color=purple>\The <b>[user]</b> tightly squeezes \the <b>[target]</b>'s breasts.</font>",
+					 "<font color=purple>\The <b>[user]</b> slaps at \the <b>[target]</b>'s breasts.</font>",
+					 "<font color=purple>\The <b>[user]</b> gropes \the <b>[target]</b>'s breasts roughly.</font>"))
 	if(prob(5 + target.get_lust()))
 		if(target.a_intent == INTENT_HELP)
 			user.visible_message(
-				pick("<span class='warning'>\The <b>[target]</b> shivers in arousal.</span>",
-					 "<span class='warning'>\The <b>[target]</b> moans quietly.</span>",
-					 "<span class='warning'>\The <b>[target]</b> breathes out a soft moan.</span>",
-					 "<span class='warning'>\The <b>[target]</b> gasps.</span>",
-					 "<span class='warning'>\The <b>[target]</b> shudders softly.</span>",
-					 "<span class='warning'>\The <b>[target]</b> trembles as hands run across bare skin.</span>"))
+				pick("<font color=purple>\The <b>[target]</b> shivers in arousal.</font>",
+					 "<font color=purple>\The <b>[target]</b> moans quietly.</font>",
+					 "<font color=purple>\The <b>[target]</b> breathes out a soft moan.</font>",
+					 "<font color=purple>\The <b>[target]</b> gasps.</font>",
+					 "<font color=purple>\The <b>[target]</b> shudders softly.</font>",
+					 "<font color=purple>\The <b>[target]</b> trembles as hands run across bare skin.</font>"))
 			if(target.get_lust() < 5)
 				target.set_lust(5)
 		if(target.a_intent == INTENT_DISARM)
 			if (target.restrained())
 				user.visible_message(
-					pick("<span class='warning'>\The <b>[target]</b> twists playfully against the restraints.</span>",
-						 "<span class='warning'>\The <b>[target]</b> squirms away from <b>[user]</b>'s hand.</span>",
-						 "<span class='warning'>\The <b>[target]</b> slides back from <b>[user]</b>'s roaming hand.</span>",
-						 "<span class='warning'>\The <b>[target]</b> thrusts bare breasts forward into <b>[user]</b>'s hands.</span>"))
+					pick("<font color=purple>\The <b>[target]</b> twists playfully against the restraints.</font>",
+						 "<font color=purple>\The <b>[target]</b> squirms away from <b>[user]</b>'s hand.</font>",
+						 "<font color=purple>\The <b>[target]</b> slides back from <b>[user]</b>'s roaming hand.</font>",
+						 "<font color=purple>\The <b>[target]</b> thrusts bare breasts forward into <b>[user]</b>'s hands.</font>"))
 			else
 				user.visible_message(
-					pick("<span class='warning'>\The <b>[target]</b> playfully bats at <b>[user]</b>'s hand.</span>",
-						 "<span class='warning'>\The <b>[target]</b> squirms away from <b>[user]</b>'s hand.</span>",
-						 "<span class='warning'>\The <b>[target]</b> guides <b>[user]</b>'s hand across bare breasts.</span>",
-						 "<span class='warning'>\The <b>[target]</b> teasingly laces a few fingers over <b>[user]</b>'s knuckles.</span>"))
+					pick("<font color=purple>\The <b>[target]</b> playfully bats at <b>[user]</b>'s hand.</font>",
+						 "<font color=purple>\The <b>[target]</b> squirms away from <b>[user]</b>'s hand.</font>",
+						 "<font color=purple>\The <b>[target]</b> guides <b>[user]</b>'s hand across bare breasts.</font>",
+						 "<font color=purple>\The <b>[target]</b> teasingly laces a few fingers over <b>[user]</b>'s knuckles.</font>"))
 			if(target.get_lust() < 10)
 				target.add_lust(1)
 	if(target.a_intent == INTENT_GRAB)
 		user.visible_message(
-				pick("<span class='warning'>\The <b>[target]</b> grips <b>[user]</b>'s wrist tight.</span>",
-				 "<span class='warning'>\The <b>[target]</b> digs nails into <b>[user]</b>'s arm.</span>",
-				 "<span class='warning'>\The <b>[target]</b> grabs <b>[user]</b>'s wrist for a second.</span>"))
+				pick("<font color=purple>\The <b>[target]</b> grips <b>[user]</b>'s wrist tight.</font>",
+				 "<font color=purple>\The <b>[target]</b> digs nails into <b>[user]</b>'s arm.</font>",
+				 "<font color=purple>\The <b>[target]</b> grabs <b>[user]</b>'s wrist for a second.</font>"))
 	if(target.a_intent == INTENT_HARM)
 		user.adjustBruteLoss(1)
 		user.visible_message(
-				pick("<span class='warning'>\The <b>[target]</b> pushes <b>[user]</b> roughly away.</span>",
-				 "<span class='warning'>\The <b>[target]</b> digs nails angrily into <b>[user]</b>'s arm.</span>",
-				 "<span class='warning'>\The <b>[target]</b> fiercely struggles against <b>[user]</b>.</span>",
-				 "<span class='warning'>\The <b>[target]</b> claws <b>[user]</b>'s forearm, drawing blood.</span>",
-				 "<span class='warning'>\The <b>[target]</b> slaps <b>[user]</b>'s hand away.</span>"))
+				pick("<font color=purple>\The <b>[target]</b> pushes <b>[user]</b> roughly away.</font>",
+				 "<font color=purple>\The <b>[target]</b> digs nails angrily into <b>[user]</b>'s arm.</font>",
+				 "<font color=purple>\The <b>[target]</b> fiercely struggles against <b>[user]</b>.</font>",
+				 "<font color=purple>\The <b>[target]</b> claws <b>[user]</b>'s forearm, drawing blood.</font>",
+				 "<font color=purple>\The <b>[target]</b> slaps <b>[user]</b>'s hand away.</font>"))
 	return
 
 /datum/interaction/lewd/nipsuck
@@ -103,9 +103,9 @@
 /datum/interaction/lewd/nipsuck/display_interaction(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if((user.a_intent == INTENT_HELP) || (user.a_intent == INTENT_DISARM))
 		user.visible_message(
-				pick("<span class='warning'>\The <b>[user]</b> gently sucks on \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>",
-					"<span class='warning'>\The <b>[user]</b> gently nibs \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>",
-					"<span class='warning'>\The <b>[user]</b> licks \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>"))
+				pick("<font color=purple>\The <b>[user]</b> gently sucks on \the <b>[target]</b>'s [pick("nipple", "nipples")].</font>",
+					"<font color=purple>\The <b>[user]</b> gently nibs \the <b>[target]</b>'s [pick("nipple", "nipples")].</font>",
+					"<font color=purple>\The <b>[user]</b> licks \the <b>[target]</b>'s [pick("nipple", "nipples")].</font>"))
 		if(target.has_breasts(REQUIRE_EXPOSED))
 			var/modifier = 1
 			var/obj/item/organ/genital/breasts/B = target.getorganslot(ORGAN_SLOT_BREASTS)
@@ -124,8 +124,8 @@
 		
 	if(user.a_intent == INTENT_HARM)
 		user.visible_message(
-				pick("<span class='warning'>\The <b>[user]</b> bites \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>",
-					"<span class='warning'>\The <b>[user]</b> aggressively sucks \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>"))
+				pick("<font color=purple>\The <b>[user]</b> bites \the <b>[target]</b>'s [pick("nipple", "nipples")].</font>",
+					"<font color=purple>\The <b>[user]</b> aggressively sucks \the <b>[target]</b>'s [pick("nipple", "nipples")].</font>"))
 		if(target.has_breasts(REQUIRE_EXPOSED))
 			var/modifier = 1
 			var/obj/item/organ/genital/breasts/B = target.getorganslot(ORGAN_SLOT_BREASTS)
@@ -144,9 +144,9 @@
 	
 	if(user.a_intent == INTENT_GRAB)
 		user.visible_message(
-				pick("<span class='warning'>\The <b>[user]</b> sucks \the <b>[target]</b>'s [pick("nipple", "nipples")] intently.</span>",
-					"<span class='warning'>\The <b>[user]</b> feasts \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>",
-					"<span class='warning'>\The <b>[user]</b> glomps \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>"))
+				pick("<font color=purple>\The <b>[user]</b> sucks \the <b>[target]</b>'s [pick("nipple", "nipples")] intently.</font>",
+					"<font color=purple>\The <b>[user]</b> feasts \the <b>[target]</b>'s [pick("nipple", "nipples")].</font>",
+					"<font color=purple>\The <b>[user]</b> glomps \the <b>[target]</b>'s [pick("nipple", "nipples")].</font>"))
 		if(target.has_breasts(REQUIRE_EXPOSED))
 			var/modifier = 1
 			var/obj/item/organ/genital/breasts/B = target.getorganslot(ORGAN_SLOT_BREASTS)
@@ -167,66 +167,66 @@
 		if(target.a_intent == INTENT_HELP)
 			if(!target.has_breasts())
 				user.visible_message(
-					pick("<span class='warning'>\The <b>[target]</b> shivers in arousal.</span>",
-						"<span class='warning'>\The <b>[target]</b> moans quietly.</span>",
-						"<span class='warning'>\The <b>[target]</b> breathes out a soft moan.</span>",
-						"<span class='warning'>\The <b>[target]</b> gasps.</span>",
-						"<span class='warning'>\The <b>[target]</b> shudders softly.</span>",
-						"<span class='warning'>\The <b>[target]</b> trembles as their chest gets molested.</span>"))
+					pick("<font color=purple>\The <b>[target]</b> shivers in arousal.</font>",
+						"<font color=purple>\The <b>[target]</b> moans quietly.</font>",
+						"<font color=purple>\The <b>[target]</b> breathes out a soft moan.</font>",
+						"<font color=purple>\The <b>[target]</b> gasps.</font>",
+						"<font color=purple>\The <b>[target]</b> shudders softly.</font>",
+						"<font color=purple>\The <b>[target]</b> trembles as their chest gets molested.</font>"))
 			else
 				user.visible_message(
-					pick("<span class='warning'>\The <b>[target]</b> shivers in arousal.</span>",
-						"<span class='warning'>\The <b>[target]</b> moans quietly.</span>",
-						"<span class='warning'>\The <b>[target]</b> breathes out a soft moan.</span>",
-						"<span class='warning'>\The <b>[target]</b> gasps.</span>",
-						"<span class='warning'>\The <b>[target]</b> shudders softly.</span>",
-						"<span class='warning'>\The <b>[target]</b> trembles as their breasts gets molested.</span>",
-						"<span class='warning'>\The <b>[target]</b> quivers in arousal as \the <b>[user]</b> delights themselves on their milk.</span>"))
+					pick("<font color=purple>\The <b>[target]</b> shivers in arousal.</font>",
+						"<font color=purple>\The <b>[target]</b> moans quietly.</font>",
+						"<font color=purple>\The <b>[target]</b> breathes out a soft moan.</font>",
+						"<font color=purple>\The <b>[target]</b> gasps.</font>",
+						"<font color=purple>\The <b>[target]</b> shudders softly.</font>",
+						"<font color=purple>\The <b>[target]</b> trembles as their breasts get molested.</font>",
+						"<font color=purple>\The <b>[target]</b> quivers in arousal as \the <b>[user]</b> delights themselves on their milk.</font>"))
 			if(target.get_lust() < 5)
 				target.set_lust(5)
 		if(target.a_intent == INTENT_DISARM)
 			if (target.restrained())
 				if(!target.has_breasts())
 					user.visible_message(
-						pick("<span class='warning'>\The <b>[target]</b> twists playfully against the restraints.</span>",
-							"<span class='warning'>\The <b>[target]</b> squirms away from \the <b>[user]</b>'s mouth.</span>",
-							"<span class='warning'>\The <b>[target]</b> slides back from \the <b>[user]</b>'s mouth.</span>",
-							"<span class='warning'>\The <b>[target]</b> thrusts their bare chest forward into \the <b>[user]</b>'s mouth.</span>"))
+						pick("<font color=purple>\The <b>[target]</b> twists playfully against the restraints.</font>",
+							"<font color=purple>\The <b>[target]</b> squirms away from \the <b>[user]</b>'s mouth.</font>",
+							"<font color=purple>\The <b>[target]</b> slides back from \the <b>[user]</b>'s mouth.</font>",
+							"<font color=purple>\The <b>[target]</b> thrusts their bare chest forward into \the <b>[user]</b>'s mouth.</font>"))
 				else 
 					user.visible_message(
-						pick("<span class='warning'>\The <b>[target]</b> twists playfully against the restraints.</span>",
-							"<span class='warning'>\The <b>[target]</b> squirms away from \the <b>[user]</b>'s mouth.</span>",
-							"<span class='warning'>\The <b>[target]</b> slides back from \the <b>[user]</b>'s mouth.</span>",
-							"<span class='warning'>\The <b>[target]</b> thrusts their bare breasts forward into \the <b>[user]</b>'s mouth.</span>"))
+						pick("<font color=purple>\The <b>[target]</b> twists playfully against the restraints.</font>",
+							"<font color=purple>\The <b>[target]</b> squirms away from \the <b>[user]</b>'s mouth.</font>",
+							"<font color=purple>\The <b>[target]</b> slides back from \the <b>[user]</b>'s mouth.</font>",
+							"<font color=purple>\The <b>[target]</b> thrust their bare breasts forward into \the <b>[user]</b>'s mouth.</font>"))
 			else
 				if(!target.has_breasts())
 					user.visible_message(
-						pick("<span class='warning'>\The <b>[target]</b> playfully shoos away \the <b>[user]</b>'s head.</span>",
-							"<span class='warning'>\The <b>[target]</b> squirms away from \the <b>[user]</b>'s mouth.</span>",
-							"<span class='warning'>\The <b>[target]</b> holds \the <b>[user]</b>'s head against their chest.</span>",
-							"<span class='warning'>\The <b>[target]</b> teasingly caresses \the <b>[user]</b>'s neck.</span>"))
+						pick("<font color=purple>\The <b>[target]</b> playfully shoos away \the <b>[user]</b>'s head.</font>",
+							"<font color=purple>\The <b>[target]</b> squirms away from \the <b>[user]</b>'s mouth.</font>",
+							"<font color=purple>\The <b>[target]</b> holds \the <b>[user]</b>'s head against their chest.</font>",
+							"<font color=purple>\The <b>[target]</b> teasingly caresses \the <b>[user]</b>'s neck.</font>"))
 				else
 					user.visible_message(
-						pick("<span class='warning'>\The <b>[target]</b> playfully shoos away \the <b>[user]</b>'s head.</span>",
-							"<span class='warning'>\The <b>[target]</b> squirms away from \the <b>[user]</b>'s mouth.</span>",
-							"<span class='warning'>\The <b>[target]</b> holds \the <b>[user]</b>'s head against their breast.</span>",
-							"<span class='warning'>\The <b>[target]</b> teasingly caresses \the <b>[user]</b>'s neck.</span>",
-							"<span class='warning'>\The <b>[target]</b> rubs their breasts against \the <b>[user]</b>'s head.</span>"))
+						pick("<font color=purple>\The <b>[target]</b> playfully shoos away \the <b>[user]</b>'s head.</font>",
+							"<font color=purple>\The <b>[target]</b> squirms away from \the <b>[user]</b>'s mouth.</font>",
+							"<font color=purple>\The <b>[target]</b> holds \the <b>[user]</b>'s head against their breast.</font>",
+							"<font color=purple>\The <b>[target]</b> teasingly caresses \the <b>[user]</b>'s neck.</font>",
+							"<font color=purple>\The <b>[target]</b> rubs their breasts against \the <b>[user]</b>'s head.</font>"))
 			if(target.get_lust() < 10)
 				target.add_lust(1)
 	if(target.a_intent == INTENT_GRAB)
 		user.visible_message(
-				pick("<span class='warning'>\The <b>[target]</b> grips \the <b>[user]</b>'s head tight.</span>",
-				 "<span class='warning'>\The <b>[target]</b> digs nails into \the <b>[user]</b>'s scalp.</span>",
-				 "<span class='warning'>\The <b>[target]</b> grabs and shoves \the <b>[user]</b>'s head away.</span>"))
+				pick("<font color=purple>\The <b>[target]</b> grips \the <b>[user]</b>'s head tight.</font>",
+				 "<font color=purple>\The <b>[target]</b> digs nails into \the <b>[user]</b>'s scalp.</font>",
+				 "<font color=purple>\The <b>[target]</b> grabs and shoves \the <b>[user]</b>'s head away.</font>"))
 	if(target.a_intent == INTENT_HARM)
 		user.adjustBruteLoss(1)
 		user.visible_message(
-				pick("<span class='warning'>\The <b>[target]</b> slaps \the <b>[user]</b> away.</span>",
-				 "<span class='warning'>\The <b>[target]</b> scratches <b>[user]</b>'s face.</span>",
-				 "<span class='warning'>\The <b>[target]</b> fiercely struggles against <b>[user]</b>.</span>",
-				 "<span class='warning'>\The <b>[target]</b> claws <b>[user]</b>'s face, drawing blood.</span>",
-				 "<span class='warning'>\The <b>[target]</b> elbows <b>[user]</b>'s mouth away.</span>"))
+				pick("<font color=purple>\The <b>[target]</b> slaps \the <b>[user]</b> away.</font>",
+				 "<font color=purple>\The <b>[target]</b> scratches <b>[user]</b>'s face.</font>",
+				 "<font color=purple>\The <b>[target]</b> fiercely struggles against <b>[user]</b>.</font>",
+				 "<font color=purple>\The <b>[target]</b> claws <b>[user]</b>'s face, drawing blood.</font>",
+				 "<font color=purple>\The <b>[target]</b> elbows <b>[user]</b>'s mouth away.</font>"))
 	return
 
 /datum/interaction/lewd/oral
@@ -517,7 +517,7 @@
 	command = "nut_face"
 	description = "Nuts to face."
 	interaction_sound = null
-	require_user_penis = REQUIRE_EXPOSED
+	require_user_balls = REQUIRE_EXPOSED
 	require_target_mouth = TRUE
 	max_distance = 0
 	write_log_user = "make-them-suck-their-nuts"
@@ -531,7 +531,7 @@
 	description = "Smack their nuts."
 	interaction_sound = 'modular_skyrat/sound/interactions/slap.ogg'
 	simple_message = "USER slaps TARGET's nuts!"
-	require_target_penis = REQUIRE_EXPOSED
+	require_target_balls = REQUIRE_EXPOSED
 	needs_physical_contact = TRUE
 	max_distance = 1
 	write_log_user = "slapped-nuts"
@@ -564,7 +564,7 @@
 	write_log_user = "earsocket fucked"
 	write_log_target = "had their earsocket fucked by"
 	extreme = TRUE
-/* commented out for now (or hopefully forever)
+
 /datum/interaction/lewd/eyefuck
 	command = "eyefuck"
 	description = "Fuck their eye."
@@ -591,5 +591,4 @@
 	write_log_user = "eyesocketfucked"
 	write_log_target = "had their eyesocket fucked by"
 	extreme = TRUE
-*/
 //

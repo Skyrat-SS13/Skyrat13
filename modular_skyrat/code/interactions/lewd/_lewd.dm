@@ -96,50 +96,90 @@
 	lastlusttime = world.time
 
 /mob/living/proc/has_penis(var/nintendo = REQUIRE_ANY)
-	var/obj/item/organ/genital/peepee
-	for(var/obj/item/organ/genital/penis/weiner in src)
-		peepee = weiner
-	if(peepee)
-		switch(nintendo)
-			if(REQUIRE_ANY)
-				return TRUE
-			if(REQUIRE_EXPOSED)
-				if(peepee.is_exposed())
+	var/mob/living/carbon/C = src
+	if(istype(C))
+		var/obj/item/organ/genital/peepee = C.getorganslot(ORGAN_SLOT_PENIS)
+		if(peepee)
+			switch(nintendo)
+				if(REQUIRE_ANY)
 					return TRUE
-			if(REQUIRE_UNEXPOSED)
-				if(!peepee.is_exposed())
+				if(REQUIRE_EXPOSED)
+					if(peepee.is_exposed())
+						return TRUE
+					else
+						return FALSE
+				if(REQUIRE_UNEXPOSED)
+					if(!peepee.is_exposed())
+						return TRUE
+					else
+						return FALSE
+				else
+					return TRUE
+	return FALSE
+
+/mob/living/proc/has_balls(var/nintendo = REQUIRE_ANY)
+	var/mob/living/carbon/C = src
+	if(istype(C))
+		var/obj/item/organ/genital/peepee = C.getorganslot(ORGAN_SLOT_TESTICLES)
+		if(peepee)
+			switch(nintendo)
+				if(REQUIRE_ANY)
+					return TRUE
+				if(REQUIRE_EXPOSED)
+					if(peepee.is_exposed())
+						return TRUE
+					else
+						return FALSE
+				if(REQUIRE_UNEXPOSED)
+					if(!peepee.is_exposed())
+						return TRUE
+					else
+						return FALSE
+				else
 					return TRUE
 	return FALSE
 
 /mob/living/proc/has_vagina(var/nintendo = REQUIRE_ANY)
-	var/obj/item/organ/genital/peepee
-	for(var/obj/item/organ/genital/vagina/weiner in src)
-		peepee = weiner
-	if(peepee)
-		switch(nintendo)
-			if(REQUIRE_ANY)
-				return TRUE
-			if(REQUIRE_EXPOSED)
-				if(peepee.is_exposed())
+	var/mob/living/carbon/C = src
+	if(istype(C))
+		var/obj/item/organ/genital/peepee = C.getorganslot(ORGAN_SLOT_VAGINA)
+		if(peepee)
+			switch(nintendo)
+				if(REQUIRE_ANY)
 					return TRUE
-			if(REQUIRE_UNEXPOSED)
-				if(!peepee.is_exposed())
+				if(REQUIRE_EXPOSED)
+					if(peepee.is_exposed())
+						return TRUE
+					else
+						return FALSE
+				if(REQUIRE_UNEXPOSED)
+					if(!peepee.is_exposed())
+						return TRUE
+					else
+						return FALSE
+				else
 					return TRUE
 	return FALSE
 
 /mob/living/proc/has_breasts(var/nintendo = REQUIRE_ANY)
-	var/obj/item/organ/genital/peepee
-	for(var/obj/item/organ/genital/breasts/weiner in src)
-		peepee = weiner
-	if(peepee)
-		switch(nintendo)
-			if(REQUIRE_ANY)
-				return TRUE
-			if(REQUIRE_EXPOSED)
-				if(peepee.is_exposed())
+	var/mob/living/carbon/C = src
+	if(istype(C))
+		var/obj/item/organ/genital/peepee = C.getorganslot(ORGAN_SLOT_BREASTS)
+		if(peepee)
+			switch(nintendo)
+				if(REQUIRE_ANY)
 					return TRUE
-			if(REQUIRE_UNEXPOSED)
-				if(!peepee.is_exposed())
+				if(REQUIRE_EXPOSED)
+					if(peepee.is_exposed())
+						return TRUE
+					else
+						return FALSE
+				if(REQUIRE_UNEXPOSED)
+					if(!peepee.is_exposed())
+						return TRUE
+					else
+						return FALSE
+				else
 					return TRUE
 	return FALSE
 
@@ -148,12 +188,17 @@
 		if(REQUIRE_EXPOSED)
 			if(is_bottomless())
 				return TRUE
+			else
+				return FALSE
 		if(REQUIRE_ANY)
 			return TRUE
 		if(REQUIRE_UNEXPOSED)
 			if(!is_bottomless())
 				return TRUE
-	return FALSE
+			else
+				return FALSE
+		else
+			return TRUE
 
 /mob/living/proc/has_hand(var/nintendo = REQUIRE_ANY)
 	if(iscarbon(src))
@@ -161,9 +206,9 @@
 		var/handcount = 0
 		var/covered = 0
 		var/iscovered = FALSE
-		for(var/obj/item/bodypart/l_arm/L in C)
+		for(var/obj/item/bodypart/l_arm/L in C.bodyparts)
 			handcount++
-		for(var/obj/item/bodypart/r_arm/R in C)
+		for(var/obj/item/bodypart/r_arm/R in C.bodyparts)
 			handcount++
 		if(C.get_item_by_slot(ITEM_SLOT_HANDS))
 			var/obj/item/clothing/gloves/G = C.get_item_by_slot(ITEM_SLOT_HANDS)
@@ -176,10 +221,14 @@
 			if(REQUIRE_EXPOSED)
 				if(iscovered)
 					return FALSE
-				return handcount
+				else
+					return handcount
 			if(REQUIRE_UNEXPOSED)
 				if(!iscovered)
 					return FALSE
+				else
+					return handcount
+			else
 				return handcount
 	return FALSE
 
@@ -189,9 +238,9 @@
 		var/feetcount = 0
 		var/covered = 0
 		var/iscovered = FALSE
-		for(var/obj/item/bodypart/l_leg/L in C)
+		for(var/obj/item/bodypart/l_leg/L in C.bodyparts)
 			feetcount++
-		for(var/obj/item/bodypart/r_leg/R in C)
+		for(var/obj/item/bodypart/r_leg/R in C.bodyparts)
 			feetcount++
 		if(C.get_item_by_slot(ITEM_SLOT_FEET))
 			var/obj/item/clothing/shoes/S = C.get_item_by_slot(ITEM_SLOT_FEET)
@@ -204,10 +253,14 @@
 			if(REQUIRE_EXPOSED)
 				if(iscovered)
 					return FALSE
-				return feetcount
+				else
+					return feetcount
 			if(REQUIRE_UNEXPOSED)
 				if(!iscovered)
 					return FALSE
+				else
+					return feetcount
+			else
 				return feetcount
 	return FALSE
 
@@ -216,75 +269,91 @@
 
 //weird procs go here
 /mob/living/proc/has_ears(var/nintendo = REQUIRE_ANY)
-	var/obj/item/organ/peepee
-	for(var/obj/item/organ/ears/eare in src)
-		peepee = eare
-	if(peepee)
-		switch(nintendo)
-			if(REQUIRE_ANY)
-				return TRUE
-			if(REQUIRE_EXPOSED)
-				if(get_item_by_slot(ITEM_SLOT_EARS))
-					return FALSE
-				return TRUE
-			if(REQUIRE_UNEXPOSED)
-				if(!get_item_by_slot(ITEM_SLOT_EARS))
-					return FALSE
-				return TRUE
+	var/mob/living/carbon/C = src
+	if(istype(C))
+		var/obj/item/organ/peepee = C.getorganslot(ORGAN_SLOT_EARS)
+		if(peepee)
+			switch(nintendo)
+				if(REQUIRE_ANY)
+					return TRUE
+				if(REQUIRE_EXPOSED)
+					if(C.get_item_by_slot(ITEM_SLOT_EARS))
+						return FALSE
+					else
+						return TRUE
+				if(REQUIRE_UNEXPOSED)
+					if(!C.get_item_by_slot(ITEM_SLOT_EARS))
+						return FALSE
+					else
+						return TRUE
+				else
+					return TRUE
 	return FALSE
 
 /mob/living/proc/has_earsockets(var/nintendo = REQUIRE_ANY)
-	var/obj/item/organ/peepee
-	for(var/obj/item/organ/ears/eare in src)
-		peepee = eare
-	if(!peepee)
-		switch(nintendo)
-			if(REQUIRE_ANY)
-				return TRUE
-			if(REQUIRE_EXPOSED)
-				if(get_item_by_slot(ITEM_SLOT_EARS))
-					return FALSE
-				return TRUE
-			if(REQUIRE_UNEXPOSED)
-				if(!get_item_by_slot(ITEM_SLOT_EARS))
-					return FALSE
-				return TRUE
+	var/mob/living/carbon/C = src
+	if(istype(C))
+		var/obj/item/organ/peepee = C.getorganslot(ORGAN_SLOT_EARS)
+		if(!peepee)
+			switch(nintendo)
+				if(REQUIRE_ANY)
+					return TRUE
+				if(REQUIRE_EXPOSED)
+					if(C.get_item_by_slot(ITEM_SLOT_EARS))
+						return FALSE
+					else
+						return TRUE
+				if(REQUIRE_UNEXPOSED)
+					if(!C.get_item_by_slot(ITEM_SLOT_EARS))
+						return FALSE
+					else
+						return TRUE
+				else
+					return TRUE
 	return FALSE
 
 /mob/living/proc/has_eyes(var/nintendo = REQUIRE_ANY)
-	var/obj/item/organ/peepee
-	for(var/obj/item/organ/eyes/eyese in src)
-		peepee = eyese
-	if(peepee)
-		switch(nintendo)
-			if(REQUIRE_ANY)
-				return TRUE
-			if(REQUIRE_EXPOSED)
-				if(get_item_by_slot(ITEM_SLOT_EYES))
-					return FALSE
-				return TRUE
-			if(REQUIRE_UNEXPOSED)
-				if(!get_item_by_slot(ITEM_SLOT_EYES))
-					return FALSE
-				return TRUE
+	var/mob/living/carbon/C = src
+	if(istype(C))
+		var/obj/item/organ/peepee = C.getorganslot(ORGAN_SLOT_EYES)
+		if(peepee)
+			switch(nintendo)
+				if(REQUIRE_ANY)
+					return TRUE
+				if(REQUIRE_EXPOSED)
+					if(C.get_item_by_slot(ITEM_SLOT_EYES))
+						return FALSE
+					else
+						return TRUE
+				if(REQUIRE_UNEXPOSED)
+					if(!C.get_item_by_slot(ITEM_SLOT_EYES))
+						return FALSE
+					else
+						return TRUE
+				else
+					return TRUE
 	return FALSE
 
 /mob/living/proc/has_eyesockets(var/nintendo = REQUIRE_ANY)
-	var/obj/item/organ/peepee
-	for(var/obj/item/organ/eyes/eyese in src)
-		peepee = eyese
-	if(!peepee)
-		switch(nintendo)
-			if(REQUIRE_ANY)
-				return TRUE
-			if(REQUIRE_EXPOSED)
-				if(get_item_by_slot(ITEM_SLOT_EYES))
-					return FALSE
-				return TRUE
-			if(REQUIRE_UNEXPOSED)
-				if(!get_item_by_slot(ITEM_SLOT_EYES))
-					return FALSE
-				return TRUE
+	var/mob/living/carbon/C = src
+	if(istype(C))
+		var/obj/item/organ/peepee = C.getorganslot(ORGAN_SLOT_EYES)
+		if(!peepee)
+			switch(nintendo)
+				if(REQUIRE_ANY)
+					return TRUE
+				if(REQUIRE_EXPOSED)
+					if(get_item_by_slot(ITEM_SLOT_EYES))
+						return FALSE
+					else
+						return TRUE
+				if(REQUIRE_UNEXPOSED)
+					if(!get_item_by_slot(ITEM_SLOT_EYES))
+						return FALSE
+					else
+						return TRUE
+				else
+					return TRUE
 	return FALSE
 //
 
@@ -496,7 +565,7 @@
 		else
 			message = pick("orgasms violently!", "twists in orgasm.")
 	else //todo: better self cum messages
-		message = "cum all over themselves!"
+		message = "cums all over themselves!"
 	if(gender == MALE)
 		playlewdinteractionsound(loc, pick('modular_skyrat/sound/interactions/final_m1.ogg',
 							'modular_skyrat/sound/interactions/final_m2.ogg',

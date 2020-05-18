@@ -37,6 +37,7 @@
 	var/require_user_vagina
 	var/require_user_breasts
 	var/require_user_feet
+	var/require_user_balls
 
 	//Different from the others above. Use the number of required feet.
 	var/require_user_num_feet
@@ -47,6 +48,7 @@
 	var/require_target_vagina
 	var/require_target_breasts
 	var/require_target_feet
+	var/require_target_balls
 
 	var/require_target_num_feet
 
@@ -99,6 +101,24 @@
 					if(!user.has_penis(REQUIRE_UNEXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your penis need to be unexposed.</span>")
+						return FALSE
+
+		if(require_user_balls)
+			switch(require_user_balls)
+				if(REQUIRE_EXPOSED)
+					if(!user.has_balls(REQUIRE_EXPOSED))
+						if(!silent)
+							to_chat(user, "<span class = 'warning'>Your balls need to be exposed.</span>")
+						return FALSE
+				if(REQUIRE_ANY)
+					if(!user.has_balls(REQUIRE_ANY))
+						if(!silent)
+							to_chat(user, "<span class = 'warning'>You don't have balls.</span>")
+						return FALSE
+				if(REQUIRE_UNEXPOSED)
+					if(!user.has_balls(REQUIRE_UNEXPOSED))
+						if(!silent)
+							to_chat(user, "<span class = 'warning'>Your balls need to be unexposed.</span>")
 						return FALSE
 
 		if(require_user_anus)
@@ -288,6 +308,24 @@
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Their penis needs to be unexposed.</span>")
 						return FALSE
+					
+		if(require_target_balls)
+			switch(require_target_balls)
+				if(REQUIRE_EXPOSED)
+					if(!target.has_balls(REQUIRE_EXPOSED))
+						if(!silent)
+							to_chat(user, "<span class = 'warning'>Their balls need to be exposed.</span>")
+						return FALSE
+				if(REQUIRE_ANY)
+					if(!target.has_balls(REQUIRE_ANY))
+						if(!silent)
+							to_chat(user, "<span class = 'warning'>They don't have balls.</span>")
+						return FALSE
+				if(REQUIRE_UNEXPOSED)
+					if(!target.has_balls(REQUIRE_UNEXPOSED))
+						if(!silent)
+							to_chat(user, "<span class = 'warning'>Their balls need to be unexposed.</span>")
+						return FALSE
 
 		if(require_target_anus)
 			switch(require_target_anus)
@@ -475,7 +513,7 @@
 	user.last_lewd_datum = src
 	if(user.cleartimer)
 		deltimer(user.cleartimer)
-	user.cleartimer = addtimer(CALLBACK(user, /mob/living/proc/clear_lewd_datum), 300)
+	user.cleartimer = addtimer(CALLBACK(user, /mob/living/proc/clear_lewd_datum), 300, TIMER_STOPPABLE)
 	return ..()
 
 /datum/interaction/lewd/get_action_link_for(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -530,6 +568,8 @@
 		dat += "<br>...have breasts."
 	if(has_penis(REQUIRE_EXPOSED))
 		dat += "<br>...have a penis."
+	if(has_balls(REQUIRE_EXPOSED))
+		dat += "<br>...have a ballsack."
 	if(has_vagina(REQUIRE_EXPOSED))
 		dat += "<br>...have a vagina."
 	if(has_anus(REQUIRE_EXPOSED))
