@@ -19,6 +19,7 @@
   
 	S["feature_ipc_chassis"] >> features["ipc_chassis"]
 
+<<<<<<< HEAD
 	S["alt_titles_preferences"]			>> alt_titles_preferences
 	alt_titles_preferences = SANITIZE_LIST(alt_titles_preferences)
 	if(SSjob)
@@ -60,6 +61,8 @@
 		if(path)
 			LAZYADD(chosen_gear, path)
 			gear_points -= initial(path.cost)
+=======
+>>>>>>> 20ac2f26f4... Demodularizing the gear loadout code a little. (#12261)
 
 /datum/preferences/proc/cit_character_pref_save(savefile/S)
 	//ipcs
@@ -96,6 +99,7 @@
 	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
 	WRITE_FILE(S["personal_chat_color"], personal_chat_color)
 
+<<<<<<< HEAD
 	WRITE_FILE(S["alt_titles_preferences"], alt_titles_preferences)
 	//END OF SKYRAT CHANGES
 	//gear loadout
@@ -105,3 +109,5 @@
 			S["loadout"] << text_to_save
 		else
 			S["loadout"] << "" //empty string to reset the value
+=======
+>>>>>>> 20ac2f26f4... Demodularizing the gear loadout code a little. (#12261)
