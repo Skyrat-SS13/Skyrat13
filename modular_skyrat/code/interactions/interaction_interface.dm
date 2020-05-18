@@ -28,7 +28,7 @@
 	set category = "IC"
 	set src in view()
 
-	if(usr != src && !usr.restrained() && ishuman(src))
+	if(!usr.restrained() && ishuman(src))
 		usr.try_interaction(src)
 
 /mob/living/carbon/human/try_interaction(mob/living/carbon/human/partner)
