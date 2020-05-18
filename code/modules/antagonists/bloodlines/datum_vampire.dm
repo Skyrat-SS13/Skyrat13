@@ -18,6 +18,14 @@
 	SSticker.mode.vampires -= owner
 	ClearAllPowersAndStats()// Clear Powers & Stats
 
+/datum/antagonist/vampire/proc/AddPower(pwr)
+	power = min(power+pwr,max_power)
+	update_hud()
+
+/datum/antagonist/vampire/proc/RemovePower(pwr)
+	power = max(power-pwr,0)
+	update_hud()
+
 /datum/antagonist/vampire/proc/ClearAllPowersAndStats()
 	remove_hud()
 
