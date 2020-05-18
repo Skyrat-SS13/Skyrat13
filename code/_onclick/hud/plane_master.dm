@@ -46,6 +46,35 @@
 	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_OVERLAY
 
+<<<<<<< HEAD
+=======
+/obj/screen/plane_master/wall
+	name = "wall plane master"
+	plane = WALL_PLANE
+	appearance_flags = PLANE_MASTER
+
+/obj/screen/plane_master/wall/backdrop(mob/mymob)
+	if(mymob?.client?.prefs.ambientocclusion)
+		add_filter("ambient_occlusion", 0, AMBIENT_OCCLUSION(4, "#04080FAA"))
+	else
+		remove_filter("ambient_occlusion")
+
+/obj/screen/plane_master/above_wall
+	name = "above wall plane master"
+	plane = ABOVE_WALL_PLANE
+	appearance_flags = PLANE_MASTER
+
+/obj/screen/plane_master/above_wall/Initialize()
+	. = ..()
+	add_filter("vision_cone", 100, list(type="alpha", render_source=FIELD_OF_VISION_RENDER_TARGET, flags=MASK_INVERSE))
+
+/obj/screen/plane_master/above_wall/backdrop(mob/mymob)
+	if(mymob?.client?.prefs.ambientocclusion)
+		add_filter("ambient_occlusion", 0, AMBIENT_OCCLUSION(3, "#04080F64"))
+	else
+		remove_filter("ambient_occlusion")
+
+>>>>>>> 335f5a37b9... Plane adjustments on several low layer objects. (#12286)
 ///Contains most things in the game world
 /obj/screen/plane_master/game_world
 	name = "game world plane master"
@@ -54,8 +83,13 @@
 	blend_mode = BLEND_OVERLAY
 
 /obj/screen/plane_master/game_world/backdrop(mob/mymob)
+<<<<<<< HEAD
 	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
 		add_filter("ambient_occlusion", 0, AMBIENT_OCCLUSION)
+=======
+	if(mymob?.client?.prefs.ambientocclusion)
+		add_filter("ambient_occlusion", 0, AMBIENT_OCCLUSION(4, "#04080FAA"))
+>>>>>>> 335f5a37b9... Plane adjustments on several low layer objects. (#12286)
 	else
 		remove_filter("ambient_occlusion")
 	update_filters()
