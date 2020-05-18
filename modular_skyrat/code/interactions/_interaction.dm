@@ -47,6 +47,8 @@ var/list/interactions
 	var/require_target_hands
 	var/needs_physical_contact
 
+	var/user_is_target = FALSE //Boolean. Pretty self explanatory.
+
 /datum/interaction/proc/evaluate_user(mob/living/carbon/human/user, silent = TRUE)
 	if(user.get_refraction_dif())
 		if(!silent) //bye spam
@@ -74,6 +76,12 @@ var/list/interactions
 	return FALSE
 
 /datum/interaction/proc/evaluate_target(mob/living/carbon/human/user, mob/living/carbon/human/target, silent = TRUE)
+	if(!user_is_target)
+		if(user == target)
+			if(!silent)
+				to_chat(user, "<span class = 'warning'>You can't do that to yourself.</span>")
+			return FALSE
+	
 	if(require_target_mouth)
 		if(!target.has_mouth())
 			if(!silent)
@@ -104,9 +112,10 @@ var/list/interactions
 	return FALSE
 
 /datum/interaction/proc/do_action(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if(user == target) //tactical href fix
-		to_chat(user, "<span class='warning'>You cannot target yourself!</span>")
-		return
+	if(!user_is_target)
+		if(user == target) //tactical href fix
+			to_chat(user, "<span class='warning'>You cannot target yourself!</span>")
+			return
 	if(get_dist(user, target) > max_distance)
 		//user << "<span class='warning'>They are too far away.</span>"
 		user.visible_message("<span class='warning'>They are too far away.</span>")
