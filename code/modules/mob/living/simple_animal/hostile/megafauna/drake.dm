@@ -83,11 +83,7 @@ Difficulty: Medium
 		return FALSE
 	return ..()
 
-<<<<<<< HEAD
-/mob/living/simple_animal/hostile/megafauna/dragon/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, user_msg, runechat_popup) //SKYRAT CHANGE
-=======
-/mob/living/simple_animal/hostile/megafauna/dragon/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, mob/target, target_message)
->>>>>>> 9eccef2836... Porting "Personal interaction messages to simple animals" and more. (#12268)
+/mob/living/simple_animal/hostile/megafauna/dragon/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, user_msg, runechat_popup, mob/target, target_message) //SKYRAT CHANGE
 	if(swooping & SWOOP_INVULNERABLE) //to suppress attack messages without overriding every single proc that could send a message saying we got hit
 		return
 	return ..()
