@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/UI_style = null
 	var/buttons_locked = FALSE
 	var/hotkeys = FALSE
-	var/chat_on_map = TRUE
+	var/chat_on_map = FALSE
 	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
 	var/see_chat_non_mob = TRUE
 	var/tgui_fancy = TRUE
@@ -2435,8 +2435,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=default")
 					else
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+				/*
 				if("chat_on_map")
-					chat_on_map = !chat_on_map
+					chat_on_map = !chat_on_map*/
 				if("see_chat_non_mob")
 					see_chat_non_mob = !see_chat_non_mob
 				//Skyrat changes begin

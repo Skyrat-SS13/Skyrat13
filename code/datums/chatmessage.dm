@@ -221,6 +221,8 @@
   */
 /mob/proc/create_chat_message(atom/movable/speaker, datum/language/message_language, raw_message, list/spans, message_mode)
 	// Ensure the list we are using, if present, is a copy so we don't modify the list provided to us
+	return
+	/*
 	spans = spans ? spans.Copy() : list() //Skyrat edit
 
 	// Check for virtual speakers (aka hearing a message through a radio)
@@ -241,6 +243,7 @@
 	else
 		new /datum/chatmessage(raw_message, speaker, src, spans)
 	//End of skyrat changes
+	*/
 
 
 // Tweak these defines to change the available color ranges
