@@ -49,11 +49,14 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	see_in_dark = 4
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+<<<<<<< HEAD
+=======
+	footstep_type = FOOTSTEP_MOB_CLAW
+	has_field_of_vision = FALSE // 360° vision.
+>>>>>>> 75dec8ce2c... Ports "Removes the absolute istype fest from footsteps" (#12259)
 	var/playable_spider = FALSE
 	var/datum/action/innate/spider/lay_web/lay_web
 	var/directive = "" //Message passed down to children, to relay the creator's orders
-
-	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/poison/giant_spider/Initialize()
 	. = ..()
