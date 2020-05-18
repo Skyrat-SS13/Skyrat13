@@ -3712,6 +3712,7 @@
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\synths.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\vox.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\zombies.dm"
+#include "modular_skyrat\code\modules\mob\living\silicon\silicon.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot.dm"
 #include "modular_skyrat\code\modules\mob\living\silicon\robot\robot_modules.dm"
 #include "modular_skyrat\code\modules\mob\living\simple_animal\corpse.dm"
