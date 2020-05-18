@@ -36,7 +36,9 @@
 	name = "Bluespace Tech"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	suit = /obj/item/clothing/suit/armor/vest/darkcarapace/debug
+	glasses = null
 	ears = /obj/item/radio/headset/headset_cent/commander/alt/generic
+	mask = null
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	belt = /obj/item/storage/belt/utility/chief/full/debug
 	shoes = /obj/item/clothing/shoes/combat/debug
