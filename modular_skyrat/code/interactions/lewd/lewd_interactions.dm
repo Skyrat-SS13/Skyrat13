@@ -1,8 +1,3 @@
-#define REQUIRE_NONE 0
-#define REQUIRE_EXPOSED 1
-#define REQUIRE_ANY 2
-#define REQUIRE_UNEXPOSED 3
-
 // If I could have gotten away with using a tilde in the type path, I would have.
 /datum/interaction/lewd
 	command = "assslap"
@@ -30,7 +25,7 @@
 	var/require_user_topless
 	var/require_target_topless
 	var/require_user_bottomless
-	var/require_target_bottomles
+	var/require_target_bottomless
 	//
 
 	//REQUIRE_NONE for doesn't require.
@@ -91,17 +86,17 @@
 		if(require_user_penis)
 			switch(require_user_penis)
 				if(REQUIRE_EXPOSED)
-					if(!has_penis(REQUIRE_EXPOSED))
+					if(!user.has_penis(REQUIRE_EXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your penis need to be exposed.</span>")
 						return FALSE
 				if(REQUIRE_ANY)
-					if(!has_penis(REQUIRE_ANY))
+					if(!user.has_penis(REQUIRE_ANY))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>You don't have a penis.</span>")
 						return FALSE
 				if(REQUIRE_UNEXPOSED)
-					if(!has_penis(REQUIRE_UNEXPOSED))
+					if(!user.has_penis(REQUIRE_UNEXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your penis need to be unexposed.</span>")
 						return FALSE
@@ -109,17 +104,17 @@
 		if(require_user_anus)
 			switch(require_user_anus)
 				if(REQUIRE_EXPOSED)
-					if(!has_anus(REQUIRE_EXPOSED))
+					if(!user.has_anus(REQUIRE_EXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your anus need to be exposed.</span>")
 						return FALSE
 				if(REQUIRE_ANY)
-					if(!has_anus(REQUIRE_ANY))
+					if(!user.has_anus(REQUIRE_ANY))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>You don't have an anus.</span>")
 						return FALSE
 				if(REQUIRE_UNEXPOSED)
-					if(!has_anus(REQUIRE_UNEXPOSED))
+					if(!user.has_anus(REQUIRE_UNEXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your anus need to be unexposed.</span>")
 						return FALSE
@@ -127,17 +122,17 @@
 		if(require_user_vagina)
 			switch(require_user_vagina)
 				if(REQUIRE_EXPOSED)
-					if(!has_vagina(REQUIRE_EXPOSED))
+					if(!user.has_vagina(REQUIRE_EXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your vagina need to be exposed.</span>")
 						return FALSE
 				if(REQUIRE_ANY)
-					if(!has_vagina(REQUIRE_ANY))
+					if(!user.has_vagina(REQUIRE_ANY))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>You don't have a vagina.</span>")
 						return FALSE
 				if(REQUIRE_UNEXPOSED)
-					if(!has_vagina(REQUIRE_UNEXPOSED))
+					if(!user.has_vagina(REQUIRE_UNEXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your vagina need to be unexposed.</span>")
 						return FALSE
@@ -145,17 +140,17 @@
 		if(require_user_breasts)
 			switch(require_user_breasts)
 				if(REQUIRE_EXPOSED)
-					if(!has_breasts(REQUIRE_EXPOSED))
+					if(!user.has_breasts(REQUIRE_EXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your breasts need to be exposed.</span>")
 						return FALSE
 				if(REQUIRE_ANY)
-					if(!has_breasts(REQUIRE_ANY))
+					if(!user.has_breasts(REQUIRE_ANY))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>You don't have breasts.</span>")
 						return FALSE
 				if(REQUIRE_UNEXPOSED)
-					if(!has_breasts(REQUIRE_UNEXPOSED))
+					if(!user.has_breasts(REQUIRE_UNEXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your breasts need to be unexposed.</span>")
 						return FALSE
@@ -163,17 +158,17 @@
 		if(require_user_feet)
 			switch(require_user_feet)
 				if(REQUIRE_EXPOSED)
-					if(!has_feet(REQUIRE_EXPOSED))
+					if(!user.has_feet(REQUIRE_EXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your feet need to be exposed.</span>")
 						return FALSE
 				if(REQUIRE_ANY)
-					if(!has_feet(REQUIRE_ANY))
+					if(!user.has_feet(REQUIRE_ANY))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>You don't have enough feet.</span>")
 						return FALSE
 				if(REQUIRE_UNEXPOSED)
-					if(!has_feet(REQUIRE_UNEXPOSED))
+					if(!user.has_feet(REQUIRE_UNEXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your feet need to be unexposed.</span>")
 						return FALSE
@@ -186,17 +181,17 @@
 		if(require_user_eyes)
 			switch(require_user_eyes)
 				if(REQUIRE_EXPOSED)
-					if(!has_eyes(REQUIRE_EXPOSED))
+					if(!user.has_eyes(REQUIRE_EXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your eyes need to be exposed.</span>")
 						return FALSE
 				if(REQUIRE_ANY)
-					if(!has_eyes(REQUIRE_ANY))
+					if(!user.has_eyes(REQUIRE_ANY))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>You don't have eyes.</span>")
 						return FALSE
 				if(REQUIRE_UNEXPOSED)
-					if(!has_eyes(REQUIRE_UNEXPOSED))
+					if(!user.has_eyes(REQUIRE_UNEXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your eyes need to be unexposed.</span>")
 						return FALSE
@@ -204,17 +199,17 @@
 		if(require_user_eyesockets)
 			switch(require_user_eyesockets)
 				if(REQUIRE_EXPOSED)
-					if(!has_eyesockets(REQUIRE_EXPOSED))
+					if(!user.has_eyesockets(REQUIRE_EXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your eyesockets need to be exposed.</span>")
 						return FALSE
 				if(REQUIRE_ANY)
-					if(!has_eyesockets(REQUIRE_ANY))
+					if(!user.has_eyesockets(REQUIRE_ANY))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>You still have eyes.</span>")
 						return FALSE
 				if(REQUIRE_UNEXPOSED)
-					if(!has_eyesockets(REQUIRE_UNEXPOSED))
+					if(!user.has_eyesockets(REQUIRE_UNEXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your eyesockets need to be unexposed.</span>")
 						return FALSE
@@ -222,17 +217,17 @@
 		if(require_user_ears)
 			switch(require_user_ears)
 				if(REQUIRE_EXPOSED)
-					if(!has_ears(REQUIRE_EXPOSED))
+					if(!user.has_ears(REQUIRE_EXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your ears need to be exposed.</span>")
 						return FALSE
 				if(REQUIRE_ANY)
-					if(!has_ears(REQUIRE_ANY))
+					if(!user.has_ears(REQUIRE_ANY))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>You don't have ears.</span>")
 						return FALSE
 				if(REQUIRE_UNEXPOSED)
-					if(!has_ears(REQUIRE_UNEXPOSED))
+					if(!user.has_ears(REQUIRE_UNEXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your ears need to be unexposed.</span>")
 						return FALSE
@@ -240,17 +235,17 @@
 		if(require_user_earsockets)
 			switch(require_user_earsockets)
 				if(REQUIRE_EXPOSED)
-					if(!has_earsockets(REQUIRE_EXPOSED))
+					if(!user.has_earsockets(REQUIRE_EXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your earsockets need to be exposed.</span>")
 						return FALSE
 				if(REQUIRE_ANY)
-					if(!has_earsockets(REQUIRE_ANY))
+					if(!user.has_earsockets(REQUIRE_ANY))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>You still have eyes.</span>")
 						return FALSE
 				if(REQUIRE_UNEXPOSED)
-					if(!has_earsockets(REQUIRE_UNEXPOSED))
+					if(!user.has_earsockets(REQUIRE_UNEXPOSED))
 						if(!silent)
 							to_chat(user, "<span class = 'warning'>Your earsockets need to be unexposed.</span>")
 						return FALSE
@@ -480,7 +475,7 @@
 	user.last_lewd_datum = src
 	if(user.cleartimer)
 		deltimer(user.cleartimer)
-	user.cleartimer = addtimer(CALLBACK(user, .proc/clear_lewd_datum), 300)
+	user.cleartimer = addtimer(CALLBACK(user, /mob/living/proc/clear_lewd_datum), 300)
 	return ..()
 
 /datum/interaction/lewd/get_action_link_for(mob/living/carbon/human/user, mob/living/carbon/human/target)

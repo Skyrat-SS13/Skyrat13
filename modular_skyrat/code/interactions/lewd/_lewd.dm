@@ -18,6 +18,11 @@
 #define NORMAL_LUST 10
 #define LOW_LUST 1
 
+#define REQUIRE_NONE 0
+#define REQUIRE_EXPOSED 1
+#define REQUIRE_ANY 2
+#define REQUIRE_UNEXPOSED 3
+
 /*--------------------------------------------------
   -------------------MOB STUFF----------------------
   --------------------------------------------------
@@ -141,13 +146,12 @@
 /mob/living/proc/has_anus(var/nintendo = REQUIRE_ANY)
 	switch(nintendo)
 		if(REQUIRE_EXPOSED)
-			if(has_anus && is_bottomless())
+			if(is_bottomless())
 				return TRUE
 		if(REQUIRE_ANY)
-			if(has_anus)
-				return TRUE
+			return TRUE
 		if(REQUIRE_UNEXPOSED)
-			if(has_anus && !is_bottomless)
+			if(!is_bottomless())
 				return TRUE
 	return FALSE
 
@@ -190,7 +194,7 @@
 			feetcount++
 		for(var/obj/item/clothing/clothes in C)
 			covered |= clothes.body_parts_covered
-		if((covered & BODY_ZONE_L_LEG) || (covered & BODY_ZONE_PRECISE_R_LEG))
+		if((covered & BODY_ZONE_L_LEG) || (covered & BODY_ZONE_R_LEG))
 			iscovered = TRUE
 		switch(nintendo)
 			if(REQUIRE_ANY)
@@ -205,10 +209,13 @@
 				return feetcount
 	return FALSE
 
+/mob/living/proc/get_num_feet()
+	return has_feet(REQUIRE_ANY)
+
 //weird procs go here
 /mob/living/proc/has_ears(var/nintendo = REQUIRE_ANY)
 	var/obj/item/organ/peepee
-	for(var/obj/item/organ/ear/eare in src)
+	for(var/obj/item/organ/ears/eare in src)
 		peepee = eare
 	if(peepee)
 		switch(nintendo)
@@ -226,7 +233,7 @@
 
 /mob/living/proc/has_earsockets(var/nintendo = REQUIRE_ANY)
 	var/obj/item/organ/peepee
-	for(var/obj/item/organ/ear/eare in src)
+	for(var/obj/item/organ/ears/eare in src)
 		peepee = eare
 	if(!peepee)
 		switch(nintendo)
@@ -242,7 +249,7 @@
 				return TRUE
 	return FALSE
 
-/mob/living/proc/has_eyes()
+/mob/living/proc/has_eyes(var/nintendo = REQUIRE_ANY)
 	var/obj/item/organ/peepee
 	for(var/obj/item/organ/eyes/eyese in src)
 		peepee = eyese
@@ -260,7 +267,7 @@
 				return TRUE
 	return FALSE
 
-/mob/living/proc/has_eyesockets(var/nintend = REQUIRE_ANY)
+/mob/living/proc/has_eyesockets(var/nintendo = REQUIRE_ANY)
 	var/obj/item/organ/peepee
 	for(var/obj/item/organ/eyes/eyese in src)
 		peepee = eyese

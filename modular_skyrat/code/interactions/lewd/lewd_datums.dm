@@ -106,62 +106,62 @@
 				pick("<span class='warning'>\The <b>[user]</b> gently sucks on \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>",
 					"<span class='warning'>\The <b>[user]</b> gently nibs \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>",
 					"<span class='warning'>\The <b>[user]</b> licks \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>"))
-				if(target.has_breasts(REQUIRE_EXPOSED))
-					var/modifier = 1
-					var/obj/item/organ/genital/breasts/B = target.getorganslot(ORGAN_SLOT_BREASTS)
-					switch(B.size)
-						if("c" || "d" || "e")
-							modifier = 2
-						if("f" || "g" || "h")
-							modifier = 3
-						if("i")
-							modifier = 4
-						if("j")
-							modifier = 5
-						else
-							modifier = 1
-					target.reagents.add_reagent(/datum/reagent/consumable/milk, rand(1,2 * modifier))
+		if(target.has_breasts(REQUIRE_EXPOSED))
+			var/modifier = 1
+			var/obj/item/organ/genital/breasts/B = target.getorganslot(ORGAN_SLOT_BREASTS)
+			switch(B.size)
+				if("c" || "d" || "e")
+					modifier = 2
+				if("f" || "g" || "h")
+					modifier = 3
+				if("i")
+					modifier = 4
+				if("j")
+					modifier = 5
+				else
+					modifier = 1
+			target.reagents.add_reagent(/datum/reagent/consumable/milk, rand(1,2 * modifier))
 		
 	if(user.a_intent == INTENT_HARM)
 		user.visible_message(
 				pick("<span class='warning'>\The <b>[user]</b> bites \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>",
 					"<span class='warning'>\The <b>[user]</b> aggressively sucks \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>"))
-				if(target.has_breasts(REQUIRE_EXPOSED))
-					var/modifier = 1
-					var/obj/item/organ/genital/breasts/B = target.getorganslot(ORGAN_SLOT_BREASTS)
-					switch(B.size)
-						if("c" || "d" || "e")
-							modifier = 2
-						if("f" || "g" || "h")
-							modifier = 3
-						if("i")
-							modifier = 4
-						if("j")
-							modifier = 5
-						else
-							modifier = 1
-					target.reagents.add_reagent(/datum/reagent/consumable/milk, rand(1,3 * modifier)) //aggressive sucking leads to high rewards
-			
+		if(target.has_breasts(REQUIRE_EXPOSED))
+			var/modifier = 1
+			var/obj/item/organ/genital/breasts/B = target.getorganslot(ORGAN_SLOT_BREASTS)
+			switch(B.size)
+				if("c" || "d" || "e")
+					modifier = 2
+				if("f" || "g" || "h")
+					modifier = 3
+				if("i")
+					modifier = 4
+				if("j")
+					modifier = 5
+				else
+					modifier = 1
+			target.reagents.add_reagent(/datum/reagent/consumable/milk, rand(1,3 * modifier)) //aggressive sucking leads to high rewards
+	
 	if(user.a_intent == INTENT_GRAB)
 		user.visible_message(
 				pick("<span class='warning'>\The <b>[user]</b> sucks \the <b>[target]</b>'s [pick("nipple", "nipples")] intently.</span>",
 					"<span class='warning'>\The <b>[user]</b> feasts \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>",
 					"<span class='warning'>\The <b>[user]</b> glomps \the <b>[target]</b>'s [pick("nipple", "nipples")].</span>"))
-				if(target.has_breasts(REQUIRE_EXPOSED))
-					var/modifier = 1
-					var/obj/item/organ/genital/breasts/B = target.getorganslot(ORGAN_SLOT_BREASTS)
-					switch(B.size)
-						if("c" || "d" || "e")
-							modifier = 2
-						if("f" || "g" || "h")
-							modifier = 3
-						if("i")
-							modifier = 4
-						if("j")
-							modifier = 5
-						else
-							modifier = 1
-					target.reagents.add_reagent(/datum/reagent/consumable/milk, rand(1,3 * modifier)) //aggressive sucking leads to high rewards
+		if(target.has_breasts(REQUIRE_EXPOSED))
+			var/modifier = 1
+			var/obj/item/organ/genital/breasts/B = target.getorganslot(ORGAN_SLOT_BREASTS)
+			switch(B.size)
+				if("c" || "d" || "e")
+					modifier = 2
+				if("f" || "g" || "h")
+					modifier = 3
+				if("i")
+					modifier = 4
+				if("j")
+					modifier = 5
+				else
+					modifier = 1
+			target.reagents.add_reagent(/datum/reagent/consumable/milk, rand(1,3 * modifier)) //aggressive sucking leads to high rewards
 
 	if(prob(5 + target.get_lust()))
 		if(target.a_intent == INTENT_HELP)
@@ -186,7 +186,7 @@
 				target.set_lust(5)
 		if(target.a_intent == INTENT_DISARM)
 			if (target.restrained())
-				if(!target.has_brests())
+				if(!target.has_breasts())
 					user.visible_message(
 						pick("<span class='warning'>\The <b>[target]</b> twists playfully against the restraints.</span>",
 							"<span class='warning'>\The <b>[target]</b> squirms away from \the <b>[user]</b>'s mouth.</span>",
