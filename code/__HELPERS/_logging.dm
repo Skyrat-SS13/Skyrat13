@@ -201,12 +201,13 @@
 
 
 /* Helper procs for building detailed log lines */
-/proc/key_name(whom, include_link = null, include_name = TRUE)
+/proc/key_name(whom, include_link = null, include_name = TRUE, ticket) // Skyrat change
 	var/mob/M
 	var/client/C
 	var/key
 	var/ckey
 	var/fallback_name
+	var/datum/admin_help/AH = ticket // Skyrat change
 
 	if(!whom)
 		return "*null*"
@@ -258,11 +259,11 @@
 	if(key)
 		if(C && C.holder && C.holder.fakekey && !include_name)
 			if(include_link)
-				. += "<a href='?priv_msg=[C.findStealthKey()]'>"
+				. += "<a href='?priv_msg=[C.findStealthKey()];ahelp_player=[REF(AH)]'>" // Skyrat change
 			. += "Administrator"
 		else
 			if(include_link)
-				. += "<a href='?priv_msg=[ckey]'>"
+				. += "<a href='?priv_msg=[ckey];ahelp_player=[REF(AH)]'>" // Skyrat change
 			. += key
 		if(!C)
 			. += "\[DC\]"
@@ -283,8 +284,8 @@
 
 	return .
 
-/proc/key_name_admin(whom, include_name = TRUE)
-	return key_name(whom, TRUE, include_name)
+/proc/key_name_admin(whom, include_name = TRUE, ticket) // Skyrat change
+	return key_name(whom, TRUE, include_name, ticket)
 
 /proc/loc_name(atom/A)
 	if(!istype(A))

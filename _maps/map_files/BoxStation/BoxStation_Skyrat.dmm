@@ -5985,12 +5985,12 @@
 /turf/open/floor/plating,
 /area/security/processing)
 "alq" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Evidence Storage";
-	req_access_txt = "4;3"
-	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/door/airlock/security{
+	name = "Evidence Storage";
+	req_one_access_txt = "63"
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "alr" = (
@@ -16504,6 +16504,9 @@
 	pixel_y = 32
 	},
 /obj/machinery/vending/snack/random,
+/obj/structure/sign/poster/contraband/robust_softdrinks{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "aJw" = (
@@ -17593,10 +17596,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/structure/sign/poster/contraband/robust_softdrinks{
-	pixel_x = -32;
-	pixel_y = 32
-	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aMh" = (
@@ -18122,6 +18121,7 @@
 	dir = 4;
 	light_color = "#d8b1b1"
 	},
+/obj/machinery/prize_counter,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aNJ" = (
@@ -40644,7 +40644,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Office";
-	req_access_txt = "31"
+	req_one_access_txt = "31;48;50"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
@@ -55912,6 +55912,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"djj" = (
+/obj/machinery/status_display/evac,
+/turf/closed/wall,
+/area/ai_monitored/storage/eva)
 "dly" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -61093,6 +61097,10 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/fitness)
+"oEP" = (
+/obj/machinery/status_display/evac,
+/turf/closed/wall,
+/area/hallway/primary/central)
 "oEZ" = (
 /obj/effect/spawner/lootdrop/keg,
 /turf/open/floor/plating,
@@ -61815,6 +61823,13 @@
 	},
 /turf/closed/wall,
 /area/quartermaster/miningdock)
+"qlX" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/prize_counter,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "qmg" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -83681,7 +83696,7 @@ blW
 blW
 bqi
 cyD
-blW
+aZE
 cyD
 bvS
 blW
@@ -92327,7 +92342,7 @@ gXs
 aai
 aao
 aaW
-aaB
+qlX
 aat
 acK
 afK
@@ -92650,7 +92665,7 @@ ayL
 ayW
 ayW
 ayW
-ayW
+djj
 aJq
 aJq
 aOE
@@ -96248,7 +96263,7 @@ gfD
 woR
 dgz
 aJw
-aJw
+oEP
 aMh
 aJq
 aOE

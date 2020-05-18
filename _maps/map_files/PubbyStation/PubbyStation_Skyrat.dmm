@@ -22092,11 +22092,11 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "bao" = (
-/obj/machinery/computer/slot_machine,
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = 26
 	},
+/obj/machinery/prize_counter,
 /turf/open/floor/carpet{
 	icon_state = "carpetsymbol"
 	},
@@ -106696,7 +106696,7 @@ coL
 cDa
 aTr
 aUy
-aPd
+aLg
 aUy
 aXz
 aLg
