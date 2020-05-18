@@ -375,6 +375,16 @@
 	sunlight_display.hud = src
 	infodisplay += sunlight_display
 
+	//SKYRAT CHANGES start
+	vamp_blood_display = new /obj/screen/vampire/blood_counter
+	vamp_blood_display.hud = src
+	infodisplay += vamp_blood_display
+
+	vamp_power_display = new /obj/screen/vampire/power_counter
+	vamp_power_display.hud = src
+	infodisplay += vamp_power_display
+	//SKYRAT CHANGES end
+
 	zone_select =  new /obj/screen/zone_sel()
 	zone_select.icon = ui_style
 	zone_select.hud = src

@@ -6,13 +6,20 @@
 	job_rank = ROLE_BLOODLINE_VAMPIRE
 	threat = 5
 
-	var/power = 0
+	var/power = 35
 	var/max_power = 100
 	var/list/powers = list() //all powers we've gained from being a vampire
 
 /datum/antagonist/vampire/on_gain()
 	SSticker.mode.vampires |= owner
 	AssignStarterPowersAndStats()// Give Powers & Stats
+
+/datum/antagonist/vampire/on_removal()
+	SSticker.mode.vampires -= owner
+	ClearAllPowersAndStats()// Clear Powers & Stats
+
+/datum/antagonist/vampire/proc/ClearAllPowersAndStats()
+	remove_hud()
 
 /datum/antagonist/vampire/proc/BuyPower(datum/action/vampire/power) //(obj/effect/proc_holder/spell/power)
 	powers += power
@@ -28,6 +35,7 @@
 	//BuyPower(new /datum/action/vampire/masquerade)
 	//BuyPower(new /datum/action/vampire/veil)
 	/*
+
 	// Traits
 	for(var/T in defaultTraits)
 		ADD_TRAIT(owner.current, T, BLOODSUCKER_TRAIT)
@@ -64,3 +72,76 @@
 	// Disabilities
 	CureDisabilities()
 	*/
+	update_hud()
+
+/datum/antagonist/vampire/proc/remove_hud()
+	// No Hud? Get out.
+	if (!owner.current.hud_used)
+		return
+	owner.current.hud_used.vamp_blood_display.invisibility = INVISIBILITY_ABSTRACT
+	owner.current.hud_used.vamp_power_display.invisibility = INVISIBILITY_ABSTRACT
+
+/datum/antagonist/vampire/proc/update_hud()
+	// No Hud? Get out.
+	if(!owner.current.hud_used)
+		return
+	// Update Blood Counter
+	if (owner.current.hud_used.vamp_blood_display)
+		var/valuecolor = "#FF6666"
+		if(owner.current.blood_volume > BLOOD_VOLUME_SAFE)
+			valuecolor =  "#FFDDDD"
+		else if(owner.current.blood_volume > BLOOD_VOLUME_BAD)
+			valuecolor =  "#FFAAAA"
+		var/new_state =  round((owner.current.blood_volume / (BLOOD_VOLUME_NORMAL * owner.current.blood_ratio))*10, 1)
+		if(new_state > 10)
+			new_state = 10
+		else if (new_state < 0)
+			new_state = 0
+		owner.current.hud_used.vamp_blood_display.update_counter(owner.current.blood_volume, valuecolor, new_state)
+
+	if (owner.current.hud_used.vamp_power_display)
+		var/new_state = round((power/10), 1)
+		if(new_state > 10)
+			new_state = 10
+		else if (new_state < 0)
+			new_state = 0
+		owner.current.hud_used.vamp_power_display.update_counter(power, "#FFDD9E", new_state)
+
+/datum/hud
+	var/obj/screen/vampire/blood_counter/vamp_blood_display
+	var/obj/screen/vampire/power_counter/vamp_power_display
+
+/obj/screen/vampire
+	invisibility = INVISIBILITY_ABSTRACT
+	var/base_icon
+
+/obj/screen/vampire/Initialize()
+	base_icon = icon_state
+
+/obj/screen/vampire/proc/clear()
+	invisibility = INVISIBILITY_ABSTRACT
+
+/obj/screen/vampire/proc/update_counter(value, valuecolor)
+	invisibility = 0
+
+/obj/screen/vampire/blood_counter
+	icon = 'modular_skyrat/icons/mob/actions/vampire_ui.dmi'
+	name = "Blood Consumed"
+	icon_state = "blood_display"
+	screen_loc = "WEST:6,CENTER-2:0"
+
+/obj/screen/vampire/blood_counter/update_counter(value, valuecolor, new_state)
+	..()
+	maptext = "<div class='statusDisplay' align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[round(value,1)]</font></div>"
+	icon_state = "[base_icon][new_state]"
+
+/obj/screen/vampire/power_counter
+	icon = 'modular_skyrat/icons/mob/actions/vampire_ui.dmi'
+	name = "Power Collected"
+	icon_state = "power_display"
+	screen_loc = "WEST:6,CENTER-1:0"
+
+/obj/screen/vampire/power_counter/update_counter(value, valuecolor, new_state)
+	..()
+	maptext = "<div class='statusDisplay' align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[round(value,1)]</font></div>"
+	icon_state = "[base_icon][new_state]"

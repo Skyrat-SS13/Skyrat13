@@ -46,10 +46,11 @@
 		if (!antag_candidates.len)
 			break
 		var/datum/mind/vampire = pick(antag_candidates)
-		initial_vampires += vampire
-		vampire.restricted_roles = restricted_jobs
-		log_game("[vampire.key] (ckey) has been selected as a Vampire.")
-		antag_candidates.Remove(vampire)
+		if(can_make_vampire(vampire))
+			initial_vampires += vampire
+			vampire.restricted_roles = restricted_jobs
+			log_game("[vampire.key] (ckey) has been selected as a Vampire.")
+			antag_candidates.Remove(vampire)
 
 	// Do we have enough vamps to continue?
 	if(initial_vampires.len < required_enemies)
@@ -64,3 +65,25 @@
 	for(var/datum/mind/vamp_mind in initial_vampires)
 		var/datum/antagonist/vampire/V = vamp_mind.add_antag_datum(/datum/antagonist/vampire)
 	return ..()
+
+/proc/can_make_vampire(var/datum/mind/Mind)
+	// No Mind
+	if(!Mind || !Mind.key) // KEY is client login?
+		//if(creator) // REMOVED. You wouldn't see their name if there is no mind, so why say anything?
+		return FALSE
+	var/mob/living/carbon/human/Human = Mind.current
+	if(!ishuman(Human))
+		return FALSE
+	if(NOBLOOD in Human.dna.species.species_traits) //Duh
+		return FALSE
+	if(TRAIT_NOBREATH in Human.dna.species.inherent_traits) //No breathing usually means a disconnect from blood/heart mechanics
+		return FALSE
+	if(Human.dna.species.inherent_biotypes & MOB_ROBOTIC) //Self explanatory
+		return FALSE
+	// Already a Non-Human Antag
+	if(Mind.has_antag_datum(/datum/antagonist/abductor) || Mind.has_antag_datum(/datum/antagonist/devil) || Mind.has_antag_datum(/datum/antagonist/changeling) || Mind.has_antag_datum(/datum/antagonist/bloodsucker))
+		return FALSE
+	// Already a vamp
+	if(Mind.has_antag_datum(/datum/antagonist/vampire))
+		return FALSE
+	return TRUE

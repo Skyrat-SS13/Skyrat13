@@ -78,7 +78,7 @@
 		return FALSE
 	// Have enough blood?
 	var/mob/living/L = owner
-	if(L.blood_volume > required_bloodlevel)
+	if(L.blood_volume < required_bloodlevel)
 		if(display_error)
 			to_chat(owner, "<span class='warning'>You need more blood to activate [name]</span>")
 		return FALSE
@@ -149,7 +149,9 @@
 	// owner for actions is the mob, not mind.
 	var/mob/living/L = owner
 	L.blood_volume -= bloodcost
-
+	var/datum/antagonist/vampire/V = L.mind.has_antag_datum(/datum/antagonist/vampire)
+	if(V)
+		V.update_hud()
 
 /datum/action/vampire/proc/ActivatePower()
 

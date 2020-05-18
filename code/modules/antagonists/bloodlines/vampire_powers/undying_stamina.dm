@@ -1,6 +1,6 @@
 /datum/action/vampire/stamina
 	name = "Undying Stamina"
-	desc = "Enhance your body with regenerative properties, quickly regenerating brute damage aswell as some burn damage. Being set on fire halts the regeneration. This wont drain your blood if it's not healing you."
+	desc = "Your heart pumps faster and your rushes, making you regenerate stamina. This will not drain blood if no stamina is regenerated."
 	button_icon_state = "power_stamina"
 	warn_constant_cost = TRUE
 	amToggle = TRUE
@@ -25,8 +25,8 @@
 			if(C.getStaminaLoss() > 100)
 				effectiveness = 2
 				C.Jitter(5)
-			C.blood_volume -= 0.5 * effectiveness
-			C.adjustStaminaLoss(-5 * effectiveness)
+			C.blood_volume -= 0.6 * effectiveness
+			C.adjustStaminaLoss(-3 * effectiveness)
 		sleep(10)
 	// DONE!
 	//DeactivatePower(owner)

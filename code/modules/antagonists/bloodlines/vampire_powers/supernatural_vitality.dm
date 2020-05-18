@@ -43,7 +43,7 @@
 			C.adjustBruteLoss(-1.5 * effectiveness)
 			C.adjustFireLoss(-0.5 * effectiveness)
 			C.adjustToxLoss(-0.5 * effectiveness, forced = TRUE)
-			C.blood_volume -= 0.2 * effectiveness
+			C.blood_volume -= 0.3 * effectiveness
 			//C.adjustStaminaLoss(-15)
 			// Stop Bleeding
 			if(istype(H) && H.bleed_rate > 0 && rand(20) == 0)
