@@ -70,8 +70,8 @@
 /obj/item/storage/backpack/courier/hydr
 	name = "botanist courier bag"
 	desc = "It's a bag made for delivery, for botanists."
-	icon_state = "courierbaghydr"
-	item_state = "courierbaghydr"
+	icon_state = "courierbaghyd"
+	item_state = "courierbaghyd"
 
 /obj/item/storage/backpack/courier/sec
 	name = "security courier bag"
