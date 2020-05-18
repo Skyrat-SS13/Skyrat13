@@ -165,9 +165,10 @@
 			handcount++
 		for(var/obj/item/bodypart/r_arm/R in C)
 			handcount++
-		for(var/obj/item/clothing/clothes in C)
-			covered |= clothes.body_parts_covered
-		if((covered & BODY_ZONE_PRECISE_L_HAND) || (covered & BODY_ZONE_PRECISE_R_HAND))
+		if(C.get_item_by_slot(ITEM_SLOT_HANDS))
+			var/obj/item/clothing/gloves/G = C.get_item_by_slot(ITEM_SLOT_HANDS)
+			covered = G.body_parts_covered
+		if(covered & HANDS)
 			iscovered = TRUE
 		switch(nintendo)
 			if(REQUIRE_ANY)
@@ -192,9 +193,10 @@
 			feetcount++
 		for(var/obj/item/bodypart/r_leg/R in C)
 			feetcount++
-		for(var/obj/item/clothing/clothes in C)
-			covered |= clothes.body_parts_covered
-		if((covered & BODY_ZONE_L_LEG) || (covered & BODY_ZONE_R_LEG))
+		if(C.get_item_by_slot(ITEM_SLOT_FEET))
+			var/obj/item/clothing/shoes/S = C.get_item_by_slot(ITEM_SLOT_FEET)
+			covered = S.body_parts_covered
+		if(covered & FEET)
 			iscovered = TRUE
 		switch(nintendo)
 			if(REQUIRE_ANY)
