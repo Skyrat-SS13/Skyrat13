@@ -1,0 +1,6 @@
+author: "NopemanMcHalt"
+delete-after: True
+changes: 
+  - rscadd: "Added option to select background faction (employer)."
+  - tweak: "Rewords employment contract to accommodate factions... With yet another HL reference."
+  - tweak: "Once again renames Fed uniforms, dropping \"Planetary\"."
