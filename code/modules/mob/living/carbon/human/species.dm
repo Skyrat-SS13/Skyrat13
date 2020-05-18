@@ -364,6 +364,14 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		C.dna.mutation_index[location] = new_species.inert_mutation
 		C.dna.mutation_index[new_species.inert_mutation] = create_sequence(new_species.inert_mutation)
 
+<<<<<<< HEAD
+=======
+	if(!new_species.has_field_of_vision && has_field_of_vision && ishuman(C) && CONFIG_GET(flag/use_field_of_vision))
+		var/datum/component/field_of_vision/F = C.GetComponent(/datum/component/field_of_vision)
+		if(F)
+			qdel(F)
+
+>>>>>>> f624ce5fd4... Update species.dm (#12295)
 	SEND_SIGNAL(C, COMSIG_SPECIES_LOSS, src)
 
 /datum/species/proc/handle_hair(mob/living/carbon/human/H, forced_colour)
