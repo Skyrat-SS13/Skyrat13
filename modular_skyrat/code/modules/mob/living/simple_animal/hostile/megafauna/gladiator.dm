@@ -1,6 +1,6 @@
 /* THE GLADIATOR
 * Has 4 special attacks, which are used depending on the phase (the gladiator has 3 phases).
-* AoE Zweihander swing: In a square of 3×3, he swings his sword in a 360 degree arc, damaging anything within it.
+* AoE Zweihander swing: In a square of 4×4, he swings his sword in a 360 degree arc, damaging anything within it.
 * Shield bash: The gladiator charges and chases you with increased speed for 21 tiles, if he makes contact, he bashes you and knocks you down.
 He will stuns himself for 2 seconds, no matter the result of the charge attack; This leaves him vulnerable for attacks for a few precious moments.
 * Bone daggers: At random times if the player is running, he can throw bone daggers that will go considerably fast in the players direction.
@@ -47,6 +47,7 @@ They deal 35 brute (armor is considered).
 	var/chargerange = 21
 	var/stunned = FALSE
 	var/stunduration = 15
+	var/move_to_charge = 1.5
 	song = sound('modular_skyrat/sound/ambience/gladiator.ogg', 100)
 	songlength = 3850
 	loot = list(/obj/structure/closet/crate/necropolis/gladiator)
@@ -181,6 +182,7 @@ They deal 35 brute (armor is considered).
 	if(charging)
 		if(isliving(A))
 			var/mob/living/LM
+			forceMove(LM.loc)
 			visible_message("<span class='userdanger'>[src] knocks [LM] down!</span>")
 			LM.DefaultCombatKnockdown(20)
 			discharge()
@@ -214,7 +216,7 @@ They deal 35 brute (armor is considered).
 			melee_damage_lower = 25
 			move_to_delay = 1.7
 	if(charging)
-		move_to_delay = 1.4
+		move_to_delay = move_to_charge
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/zweispin()
 	visible_message("<span class='boldwarning'>[src] lifts his zweihander, and prepares to spin!</span>")
@@ -275,7 +277,7 @@ They deal 35 brute (armor is considered).
 	animate(src, color = "#ff6666", 3)
 	sleep(4)
 	face_atom(target)
-	move_to_delay = 1.4
+	move_to_delay = move_to_charge
 	minimum_distance = 0
 	charging = TRUE
 
@@ -293,7 +295,7 @@ They deal 35 brute (armor is considered).
 	var/turf/T = get_step(target, -target.dir)
 	new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(src))
 	sleep(4)
-	if(!ischasm(T))
+	if(!ischasm(T) && !(/mob/living in T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		forceMove(T)
 	else
@@ -311,8 +313,10 @@ They deal 35 brute (armor is considered).
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/AttackingTarget()
 	. = ..()
-	if(speen || stunned || charging)
-		return
+	if(speen || stunned)
+		return FALSE
+	if(charging)
+		Bump(target)
 	if(. && prob(5 * phase))
 		teleport(target)
 
