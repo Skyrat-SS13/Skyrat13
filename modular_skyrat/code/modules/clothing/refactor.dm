@@ -767,7 +767,7 @@
 // Bonus for assistants and service.
 /obj/item/clothing/under/trek/orvi
 	name = "federation assistant uniform"
-	desc = "A federation uniform worn by volunteered-for-work cadets... Or in simple terms - assistants."
+	desc = "A federation uniform worn by adjutants."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
