@@ -3,6 +3,8 @@
 	name = "armored hazard vest"
 	desc = "A hazard vest with plasteel and metal plates taped on it. It offers minor protection against kinetic damage, but slows you down a significant bit."
 	icon = 'modular_skyrat/icons/obj/clothing/shitarmor.dmi'
+	//if this takes too long to be merged and icon file conflicts appear...
+	//too bad! armor stays invisible.
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/shitarmor.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/shitarmor_digi.dmi'
 	icon_state = "makeshiftarmor"
