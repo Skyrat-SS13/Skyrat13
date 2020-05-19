@@ -58,9 +58,6 @@
 	var/framed_offset_x = 11
 	var/framed_offset_y = 10
 
-	pixel_x = 10
-	pixel_y = 9
-
 /obj/item/canvas/Initialize()
 	. = ..()
 	reset_grid()
@@ -133,13 +130,9 @@
 	if(!icon_generated)
 		if(used)
 			var/mutable_appearance/detail = mutable_appearance(icon,"[icon_state]wip")
-			detail.pixel_x = 1
-			detail.pixel_y = 1
 			. += detail
 	else
 		var/mutable_appearance/detail = mutable_appearance(generated_icon)
-		detail.pixel_x = 1
-		detail.pixel_y = 1
 		. += detail
 
 /obj/item/canvas/proc/generate_proper_overlay()
@@ -192,8 +185,6 @@
 	height = 19
 	ui_x = 600
 	ui_y = 600
-	pixel_x = 6
-	pixel_y = 9
 	framed_offset_x = 8
 	framed_offset_y = 9
 
@@ -203,8 +194,6 @@
 	height = 19
 	ui_x = 800
 	ui_y = 600
-	pixel_x = 4
-	pixel_y = 10
 	framed_offset_x = 6
 	framed_offset_y = 8
 
@@ -214,8 +203,6 @@
 	height = 23
 	ui_x = 800
 	ui_y = 800
-	pixel_x = 5
-	pixel_y = 9
 	framed_offset_x = 5
 	framed_offset_y = 6
 
