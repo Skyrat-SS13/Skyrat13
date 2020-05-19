@@ -184,7 +184,7 @@ They deal 35 brute (armor is considered).
 			var/mob/living/LM = A
 			forceMove(LM.loc)
 			visible_message("<span class='userdanger'>[src] knocks [LM] down!</span>")
-			LM.DefaultCombatKnockdown(20)
+			LM.DefaultCombatKnockdown(60)
 			discharge()
 		else if(istype(A, /turf/closed))
 			visible_message("<span class='userdanger'>[src] crashes headfirst into [A]!</span>")
