@@ -42,8 +42,11 @@ They deal 35 brute (armor is considered).
 	var/speen = FALSE
 	var/speenrange = 4
 	var/obj/savedloot = null
+	var/charging = FALSE
+	var/chargetiles = 0
+	var/chargerange = 21
 	var/stunned = FALSE
-	var/stunduration = 30
+	var/stunduration = 15
 	song = sound('modular_skyrat/sound/ambience/gladiator.ogg', 100)
 	songlength = 3850
 	loot = list(/obj/structure/closet/crate/necropolis/gladiator)
@@ -160,10 +163,30 @@ They deal 35 brute (armor is considered).
 					possiblelocs -= T
 			if(possiblelocs.len)
 				var/turf/validloc = pick(possiblelocs)
+				if(charging)
+					chargetiles++
+					if(chargetiles >= chargerange)
+						discharge()
 				return ..(validloc)
 			return FALSE
 		else
+			if(charging)
+				chargetiles++
+				if(chargetiles >= chargerange)
+					discharge()
 			..()
+
+/mob/living/simple_animal/hostile/megafauna/gladiator/Bump(atom/A)
+	. = ..()
+	if(charging)
+		if(isliving(A))
+			var/mob/living/LM
+			visible_message("<span class='userdanger'>[src] knocks [L] down!</span>")
+			L.DefaultCombatKnockdown(20)
+			discharge()
+		else if(istype(A, /turf/closed))
+			visible_message("<span class='userdanger'>[src] crashes headfirst into [A]!</span>")
+			discharge(1.33)
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/update_phase()
 	var/healthpercentage = 100 * (health/maxHealth)
@@ -190,6 +213,8 @@ They deal 35 brute (armor is considered).
 			melee_damage_upper = 25
 			melee_damage_lower = 25
 			move_to_delay = 1.7
+	if(charging)
+		move_to_delay = 1.4
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/zweispin()
 	visible_message("<span class='boldwarning'>[src] lifts his zweihander, and prepares to spin!</span>")
@@ -252,27 +277,16 @@ They deal 35 brute (armor is considered).
 	sleep(4)
 	face_atom(target)
 	move_to_delay = 1.4
-	for(var/i = 0, i >= range, i++)
-		var/dirtotarget = get_dir(src, target)
-		var/turf/T = get_step(src, dirtotarget)
-		if(target in T)
-			if(isliving(target))
-				var/mob/living/L = target
-				visible_message("<span class='userdanger'>[src] knocks [L] down!</span>")
-				L.DefaultCombatKnockdown(20)
-				break
-		else if(istype(T, /turf/closed))
-			visible_message("<span class='userdanger'>[src] bashes his head against the [T], stunning himself!</span>")
-			break
-		else
-			forceMove(src, T)
-			var/time2sleep = 0.25
-			sleep(time2sleep)
+	charging = TRUE
+
+/mob/living/simple_animal/hostile/megafauna/gladiator/proc/discharge(var/modifier = 1)
 	speen = FALSE
 	stunned = TRUE
+	charging = FALSE
+	chargetiles = 0
 	animate(src, color = initial(color), 7)
-	move_to_delay = initial(move_to_delay)
-	sleep(stunduration)
+	update_phase()
+	sleep(stunduration * modifier)
 	stunned = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/teleport(atom/target)
