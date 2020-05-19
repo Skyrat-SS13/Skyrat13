@@ -7,6 +7,18 @@
 	parts = list(/obj/item/shard = 1)
 	reqs = list(/obj/item/wrench_wired = 1,
 				/obj/item/shard = 1)
+	time = 30
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/halberd
+	name = "Makeshift halberd"
+	result = /obj/item/twohanded/spear/halberd
+	parts = list(/obj/item/twohanded/spear = 1,\
+				/obj/item/hatchet = 1)
+	reqs = list(/obj/item/stack/cable_coil = 5,\
+				/obj/item/twohanded/spear = 1,\
+				/obj/item/hatchet = 1)
 	time = 60
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
