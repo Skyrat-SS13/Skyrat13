@@ -2,10 +2,9 @@
 /obj/item/clothing/suit/armor/hazard
 	name = "armored hazard vest"
 	desc = "A hazard vest with plasteel and metal plates taped on it. It offers minor protection against kinetic damage, but slows you down a significant bit."
-	//if this takes too long to be merged i'm not fucking fixing icon conflicts and the armor will stay invisible
-	icon = 'modular_skyrat/icons/obj/clothing/suit.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
+	icon = 'modular_skyrat/icons/obj/clothing/shitarmor.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/shitarmor.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/shitarmor_digi.dmi'
 	icon_state = "makeshiftarmor"
 	item_state = "makeshiftarmor"
 	w_class = 3
