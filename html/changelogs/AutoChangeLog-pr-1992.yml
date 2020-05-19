@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Assistant Leagon no longer always spawn with a bag, and when it does the bag is not full of wire"
