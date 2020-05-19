@@ -268,6 +268,9 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("apiary", /obj/structure/beebox, 40, time = 50),\
 	null, \
 	new/datum/stack_recipe("picture frame", /obj/item/wallframe/picture, 1, time = 10),\
+	//skyrat edit
+	new/datum/stack_recipe("painting frame", /obj/item/wallframe/painting, 1, time = 10),\
+	//
 	new/datum/stack_recipe("mortar", /obj/item/reagent_containers/glass/mortar, 3), \
 	new/datum/stack_recipe("honey frame", /obj/item/honey_frame, 5, time = 10),\
 	))
