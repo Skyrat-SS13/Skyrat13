@@ -88,6 +88,8 @@
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
 	icon_state = "trace"
 	item_state = "trace"
+	attack_verb = list("wehs", "screeched", "shanked")
+	desc = "A stuffed toy resembling a very sad, very angry femboy."
 
 /obj/item/toy/plush/mammal/monika
 	icon = 'modular_skyrat/icons/obj/plushies.dmi'
