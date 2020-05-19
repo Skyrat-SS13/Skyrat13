@@ -82,7 +82,8 @@
 			if(visible)
 				if(world.time >= combatmessagecooldown)
 					combatmessagecooldown = world.time + 10 SECONDS
-					if(a_intent != INTENT_HELP)
-						visible_message("<span class='warning'>[src] [resting ? "tenses up" : (prob(95)? "drops into a combative stance" : (prob(95)? "poses aggressively" : "asserts dominance with their pose"))].</span>")
-					else
-						visible_message("<span class='notice'>[src] [pick("looks","seems","goes")] [pick("alert","attentive","vigilant")].</span>")
+					//SKYRAT CHANGES - no more friendly message when help intent
+					visible_message("<span class='warning'>[src] [resting ? "tenses up" : (prob(95)? "drops into a combative stance" : (prob(95)? "poses aggressively" : "asserts dominance with their pose"))].</span>")
+					playsound(src, 'sound/machines/chime.ogg', 10) 
+					flick_emote_popup_on_mob(src, "combat", 20)
+					//END OF SKYRAT CHANGES
