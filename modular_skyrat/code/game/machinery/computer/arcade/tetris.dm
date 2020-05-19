@@ -4,7 +4,7 @@
 	desc = "The pinnacle of human technology."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "arcade"
-	circuit = "/obj/item/circuitboard/computer/tetris"
+	circuit = /obj/item/circuitboard/computer/arcade/tetris
 	light_color = LIGHT_COLOR_GREEN
 
 /obj/machinery/computer/arcade/tetris/Topic(href, href_list)
