@@ -41,10 +41,10 @@ GLOBAL_DATUM_INIT(physical_obscured_state, /datum/ui_state/physical_obscured_sta
 	return UI_CLOSE
 
 /mob/living/physical_obscured_can_use_topic(src_object)
-	return shared_living_ui_distance(src_object, viewcheck = FALSE)
+	return shared_living_ui_distance(src_object)
 
 /mob/living/silicon/physical_obscured_can_use_topic(src_object)
-	return max(UI_UPDATE, shared_living_ui_distance(src_object, viewcheck = FALSE)) // Silicons can always see.
+	return max(UI_UPDATE, shared_living_ui_distance(src_object)) // Silicons can always see.
 
 /mob/living/silicon/ai/physical_obscured_can_use_topic(src_object)
 	return UI_UPDATE // AIs are not physical.
