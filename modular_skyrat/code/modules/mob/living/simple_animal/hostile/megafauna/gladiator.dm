@@ -271,18 +271,18 @@ They deal 35 brute (armor is considered).
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/chargeattack(atom/target, var/range)
 	face_atom(target)
-	speen = TRUE
 	visible_message("<span class='boldwarning'>[src] lifts his shield, and prepares to charge!</span>")
 	animate(src, color = "#ff6666", 3)
 	sleep(4)
 	face_atom(target)
 	move_to_delay = 1.4
+	minimum_distance = 0
 	charging = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/discharge(var/modifier = 1)
-	speen = FALSE
 	stunned = TRUE
 	charging = FALSE
+	minimum_distance = 1
 	chargetiles = 0
 	animate(src, color = initial(color), 7)
 	update_phase()
@@ -311,7 +311,7 @@ They deal 35 brute (armor is considered).
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/AttackingTarget()
 	. = ..()
-	if(speen || stunned)
+	if(speen || stunned || charging)
 		return
 	if(. && prob(5 * phase))
 		teleport(target)
@@ -326,7 +326,7 @@ They deal 35 brute (armor is considered).
 /mob/living/simple_animal/hostile/megafauna/gladiator/OpenFire()
 	if(world.time < ranged_cooldown)
 		return FALSE
-	if(speen || stunned)
+	if(speen || stunned || charging)
 		return FALSE
 	ranged_cooldown = world.time
 	switch(phase)
