@@ -43,5 +43,3 @@
 	id = "techfab_serv"
 	build_path = /obj/item/circuitboard/machine/techfab/department/service
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_SCIENCE
-
-//	Travis big dumb
