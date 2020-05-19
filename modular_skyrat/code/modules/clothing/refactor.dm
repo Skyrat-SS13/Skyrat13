@@ -767,7 +767,7 @@
 // Bonus for assistants and service.
 /obj/item/clothing/under/trek/orvi
 	name = "\improper Planetary Federation assistant uniform"
-	desc = "An uniform worn by volunteered active-duty-cadets... Or in simple terms - an assistants."
+	desc = "An uniform worn by adjutants."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
@@ -794,7 +794,7 @@
 	"The Motion Picture (The Original Series)" = "federation trainee uniform"
 	)
 	unique_desc = list(
-	"Default" = "An uniform worn by cadet-assistants since 2550s.",
+	"Default" = "An uniform worn by adjutants since 2550s.",
 	"The Motion Picture (The Original Series)" = "An uniform worn by enlisted trainees in 2285s."
 	)
 
