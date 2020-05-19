@@ -1,4 +1,6 @@
 #define REWARD_DIVISOR 1000
+// At the end of the game, the thing yields tetris_score/REWARD_DIVISOR prize tickets. Adjust accordingly.
+
 /obj/machinery/computer/arcade/tetris
 	name = "T.E.T.R.I.S."
 	desc = "The pinnacle of human technology."
