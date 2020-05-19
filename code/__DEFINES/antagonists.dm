@@ -81,3 +81,6 @@
 #define BLOB_SPREAD_COST 4
 #define BLOB_ATTACK_REFUND 3 //blob refunds this much if it attacks and doesn't spread also SKYRAT CHANGE FROM 2
 #define BLOB_REFLECTOR_COST 15
+
+//SKYRAT STUFF:
+#define ANTAG_DATUM_VAMPIRE				/datum/antagonist/vampire

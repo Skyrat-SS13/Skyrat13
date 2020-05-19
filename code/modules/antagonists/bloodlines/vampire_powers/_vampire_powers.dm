@@ -9,6 +9,10 @@
 	button_icon_state = "power_feed" 				//And this is the state for the action icon
 	buttontooltipstyle = "vampire"
 
+	var/required_discipline
+	var/purchasable = FALSE
+	var/gift_cost = 3
+
 	// Action-Related
 	//var/amPassive = FALSE		// REMOVED: Just made it its own kind. // Am I just "on" at all times? (aka NO ICON)
 	var/amTargetted = FALSE		// Am I asked to choose a target when enabled? (Shows as toggled ON when armed)
@@ -18,7 +22,8 @@
 	var/cooldown = 20 		// 10 ticks, 1 second.
 	var/cooldownUntil = 0 //  From action.dm:  	next_use_time = world.time + cooldown_time
 	// Power-Related
-	var/level_current = 0		// Can increase to yield new abilities. Each power goes up in strength each Rank.
+	var/level_current = 1		// Can increase to yield new abilities. Each power goes up in strength each Rank.
+	var/level_max = 1
 	//var/level_max = 1			//
 	var/bloodcost = 10
 	var/required_bloodlevel = 300
@@ -36,8 +41,10 @@
 	//var/not_bloodsucker = FALSE		// This goes to Vassals or Hunters, but NOT bloodsuckers.
 
 /datum/action/vampire/New()
+	if(powercost > 0)
+		desc += "<br><br><font color = #ffde0a><b>POWER COST:</b> [powercost] Power</font>"
 	if(bloodcost > 0)
-		desc += "<br><br><b>COST:</b> [bloodcost] Blood"	// Modify description to add cost.
+		desc += "<br><br><font color = #fc0000><b>BLOOD COST:</b> [bloodcost] Blood</font>"	// Modify description to add cost.
 	if(warn_constant_cost)
 		desc += "<br><br><i>Your over-time blood consumption increases while [name] is active.</i>"
 	if(amSingleUse)
@@ -82,6 +89,15 @@
 		if(display_error)
 			to_chat(owner, "<span class='warning'>You need more blood to activate [name]</span>")
 		return FALSE
+	if(power_cost)
+		var/datum/antagonist/vampire/Vamp = L.mind.has_antag_datum(/datum/antagonist/vampire)
+		if(Vamp)
+			if(Vamp.power < power_cost)
+				if(display_error)
+					to_chat(owner, "<span class='warning'>You need more power to activate [name]</span>")
+				return FALSE
+		else
+			return TRUE //This is when a non vampire gets a power-cost ability and tries to use it, assume its badmins so return TRUE
 	return TRUE
 
 /datum/action/vampire/proc/CheckCanUse(display_error)	// These checks can be scanned every frame while a ranged power is on.
@@ -151,6 +167,8 @@
 	L.blood_volume -= bloodcost
 	var/datum/antagonist/vampire/V = L.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(V)
+		if(power_cost)
+			V.power -= power_cost
 		V.update_hud()
 
 /datum/action/vampire/proc/ActivatePower()

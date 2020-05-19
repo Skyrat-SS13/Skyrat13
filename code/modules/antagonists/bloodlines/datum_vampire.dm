@@ -6,50 +6,131 @@
 	job_rank = ROLE_BLOODLINE_VAMPIRE
 	threat = 5
 
+	var/gift_points = 6
+	var/bloodlines = list() //What bloodlines do we have available?
+	var/vampire_clan //To which clan do we belong?
 	var/power = 35
 	var/max_power = 100
+	var/max_blood_volume = 600
+	var/static/list/defaultTraits = list(TRAIT_STABLEHEART, TRAIT_NOCRITDAMAGE, TRAIT_RESISTCOLD, TRAIT_RADIMMUNE, TRAIT_NIGHT_VISION, \
+										      TRAIT_NOMARROW, TRAIT_VIRUSIMMUNE, TRAIT_NOSOFTCRIT)
+
+	var/had_toxlover
+
 	var/list/powers = list() //all powers we've gained from being a vampire
 
+	var/static/list/all_powers = typecacheof(/datum/action/vampire,TRUE)
+	var/datum/vampiric_gifts/vampiric_gifts
+	var/datum/action/innate/vampiric_gifts/vampiric_gifts_action
+
 /datum/antagonist/vampire/on_gain()
+	. = ..()
 	SSticker.mode.vampires |= owner
+	vampiric_gifts = new(src)
+	vampiric_gifts_action = new(vampiric_gifts)
+	vampiric_gifts_action.Grant(owner.current)
 	AssignStarterPowersAndStats()// Give Powers & Stats
 
 /datum/antagonist/vampire/on_removal()
 	SSticker.mode.vampires -= owner
+	QDEL_NULL(vampiric_gifts)
+	QDEL_NULL(vampiric_gifts_action)
 	ClearAllPowersAndStats()// Clear Powers & Stats
+	. = ..()
 
-/datum/antagonist/vampire/proc/AddPower(pwr)
-	power = min(power+pwr,max_power)
+/datum/antagonist/vampire/proc/GainBloodlinesFromClan(var/datum/vampire_clan/VampClan)
+	for(var/path in VampClan.bloodlines)
+		bloodlines |= path
+
+/datum/antagonist/vampire/proc/AddBloodVolume(value)
+	owner.current.blood_volume = clamp(owner.current.blood_volume + value, 0, max_blood_volume)
 	update_hud()
 
-/datum/antagonist/vampire/proc/RemovePower(pwr)
-	power = max(power-pwr,0)
+/datum/antagonist/vampire/proc/BloodlinePermitsPurchase(ability_typepath)
+	var/datum/action/vampire/abil = ability_typepath
+	if(!abil.purchasable)
+		return FALSE
+	for(var/datum/bloodline/Bld in bloodlines)
+		for(var/datum/discipline/disci in Bld.disciplines)
+			if(ability_typepath in disci)
+				return TRUE
+	return FALSE
+
+
+/datum/antagonist/vampire/proc/AddPower(pwr)
+	power += pwr
+	if(power > max_power)
+		power = max_power
+	else if (power < 0)
+		power = 0
 	update_hud()
 
 /datum/antagonist/vampire/proc/ClearAllPowersAndStats()
+	// Blood/Rank Counter
 	remove_hud()
+	// Powers
+	while(powers.len)
+		var/datum/action/bloodsucker/power = pick(powers)
+		powers -= power
+		power.Remove(owner.current)
+		// owner.RemoveSpell(power)
+	// Traits
+	for(var/T in defaultTraits)
+		REMOVE_TRAIT(owner.current, T, BLOODSUCKER_TRAIT)
+	if(had_toxlover)
+		ADD_TRAIT(owner.current, TRAIT_TOXINLOVER, SPECIES_TRAIT)
 
-/datum/antagonist/vampire/proc/BuyPower(datum/action/vampire/power) //(obj/effect/proc_holder/spell/power)
+	// Traits: Species
+	if(ishuman(owner.current))
+		var/mob/living/carbon/human/H = owner.current
+		H.set_species(H.dna.species.type)
+	// Stats
+	if(ishuman(owner.current))
+		var/mob/living/carbon/human/H = owner.current
+		var/datum/species/S = H.dna.species
+		// Make Changes
+		H.physiology.brute_mod *= 1.25
+		H.physiology.cold_mod = 1
+		H.physiology.stun_mod *= 2 //Not like this matters in stam combat
+		H.physiology.siemens_coeff *= 1.25 	//base electrocution coefficient  1
+		S.punchdamagelow -= 1       //lowest possible punch damage   0
+		S.punchdamagehigh -= 1      //highest possible punch damage	 9
+		// Clown
+		if(istype(H) && owner.assigned_role == "Clown")
+			H.dna.add_mutation(CLOWNMUT)
+
+	// Language
+	owner.current.remove_language(/datum/language/vampiric, TRUE, TRUE, LANGUAGE_BLOODSUCKER)
+	// Soul
+	if (owner.soulOwner == owner) // Return soul, if *I* own it.
+		owner.hasSoul = TRUE
+
+/datum/antagonist/vampire/proc/GainPowerAbility(datum/action/vampire/power) //(obj/effect/proc_holder/spell/power)
 	powers += power
 	power.Grant(owner.current)// owner.AddSpell(power)
+
+/datum/antagonist/vampire/proc/PurchasePowerAbility(ability_typepath)
+	return
 
 /datum/antagonist/vampire/proc/AssignStarterPowersAndStats()
 	// Blood/Rank Counter
 	//add_hud()
 	//update_hud(TRUE) 	// Set blood value, current rank
 	// Powers
-	BuyPower(new /datum/action/vampire/vitality)
-	BuyPower(new /datum/action/vampire/stamina)
+	GainPowerAbility(new /datum/action/vampire/vitality)
+	GainPowerAbility(new /datum/action/vampire/stamina)
 	//BuyPower(new /datum/action/vampire/masquerade)
 	//BuyPower(new /datum/action/vampire/veil)
-	/*
+	
 
 	// Traits
 	for(var/T in defaultTraits)
-		ADD_TRAIT(owner.current, T, BLOODSUCKER_TRAIT)
+		ADD_TRAIT(owner.current, T, VAMPIRE_TRAIT)
+	/*
 	if(HAS_TRAIT(owner.current, TRAIT_TOXINLOVER)) //No slime bonuses here, no thank you
 		had_toxlover = TRUE
 		REMOVE_TRAIT(owner.current, TRAIT_TOXINLOVER, SPECIES_TRAIT)
+	*/
 	// Traits: Species
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
@@ -64,23 +145,33 @@
 		// Make Changes
 		H.physiology.brute_mod *= 0.8
 		H.physiology.cold_mod = 0
-		H.physiology.stun_mod *= 0.5
-		H.physiology.siemens_coeff *= 0.75 	//base electrocution coefficient  1
+		H.physiology.stun_mod *= 0.5 //Not like this matters in stam combat
+		H.physiology.siemens_coeff *= 0.8 	//base electrocution coefficient  1
 		S.punchdamagelow += 1       //lowest possible punch damage   0
 		S.punchdamagehigh += 1      //highest possible punch damage	 9
 		if(istype(H) && owner.assigned_role == "Clown")
 			H.dna.remove_mutation(CLOWNMUT)
 			to_chat(H, "As a vampiric clown, you are no longer a danger to yourself. Your nature is subdued.")
-	// Physiology
-	CheckVampOrgans() // Heart, Eyes
 	// Language
 	owner.current.grant_language(/datum/language/vampiric, TRUE, TRUE, LANGUAGE_BLOODSUCKER)
 	owner.hasSoul = FALSE 		// If false, renders the character unable to sell their soul.
 	owner.isholy = FALSE 		// is this person a chaplain or admin role allowed to use bibles
 	// Disabilities
 	CureDisabilities()
-	*/
 	update_hud()
+
+/datum/antagonist/vampire/proc/CureDisabilities()
+	var/mob/living/carbon/C = owner.current
+	C.cure_blind(list(EYE_DAMAGE))//()
+	C.cure_nearsighted(EYE_DAMAGE)
+	C.set_blindness(0) 	// Added 9/2/19
+	C.set_blurriness(0) // Added 9/2/19
+	C.update_tint() 	// Added 9/2/19
+	C.update_sight() 	// Added 9/2/19
+	for(var/O in C.internal_organs) //owner.current.adjust_eye_damage(-100)  // This was removed by TG
+		var/obj/item/organ/organ = O
+		organ.setOrganDamage(0)
+	owner.current.cure_husk()
 
 /datum/antagonist/vampire/proc/remove_hud()
 	// No Hud? Get out.

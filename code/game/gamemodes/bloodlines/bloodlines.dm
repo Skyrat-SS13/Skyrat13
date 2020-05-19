@@ -1,5 +1,6 @@
 /datum/game_mode
 	var/list/vampires = list()
+	var/list/vampire_clans = list()
 
 /datum/game_mode/bloodlines
 	name = "bloodlines"
@@ -46,11 +47,13 @@
 		if (!antag_candidates.len)
 			break
 		var/datum/mind/vampire = pick(antag_candidates)
-		if(can_make_vampire(vampire))
+		if(can_be_vampire_canditate(vampire))
 			initial_vampires += vampire
 			vampire.restricted_roles = restricted_jobs
 			log_game("[vampire.key] (ckey) has been selected as a Vampire.")
-			antag_candidates.Remove(vampire)
+			message_admins("[pick(GLOB.vamp_disciplines)]")
+			message_admins("[pick(GLOB.vamp_bloodlines)]")
+		antag_candidates.Remove(vampire)
 
 	// Do we have enough vamps to continue?
 	if(initial_vampires.len < required_enemies)
@@ -58,32 +61,59 @@
 		return FALSE
 	return TRUE
 
-
 // Gamemode is all done being set up. We have all our Vamps. We now pick objectives and let them know what's happening.
 /datum/game_mode/bloodlines/post_setup()
 	// Vamps
+	var/datum/vampire_clan/vamp_clan = new 
+	vamp_clan.setup_clan(pick(GLOB.vamp_bloodlines))
+	SSticker.mode.vampire_clans += vamp_clan
 	for(var/datum/mind/vamp_mind in initial_vampires)
 		var/datum/antagonist/vampire/V = vamp_mind.add_antag_datum(/datum/antagonist/vampire)
+		vamp_clan.add_member(vamp_mind)
 	return ..()
+
+/proc/can_be_vampire_canditate(var/datum/mind/Mind) //No human yet, for gamemode setup
+	// No Mind
+	if(!Mind || !Mind.key)
+		return FALSE
+	var/client/C = Mind.current.client
+	if(!C)
+		return FALSE
+	if(NOBLOOD in C.prefs.pref_species.species_traits)
+		return FALSE
+	if("no_breath" in C.prefs.pref_species.inherent_traits) //So apparently someone fucked with this define
+		return FALSE
+	if(NO_DNA_COPY in C.prefs.pref_species.species_traits)
+		return FALSE
+	return TRUE
+
 
 /proc/can_make_vampire(var/datum/mind/Mind)
 	// No Mind
 	if(!Mind || !Mind.key) // KEY is client login?
 		//if(creator) // REMOVED. You wouldn't see their name if there is no mind, so why say anything?
+		message_admins("mind")
 		return FALSE
 	var/mob/living/carbon/human/Human = Mind.current
+	message_admins("a")
 	if(!ishuman(Human))
+		message_admins("human")
 		return FALSE
 	if(NOBLOOD in Human.dna.species.species_traits) //Duh
+		message_admins("noblood")
 		return FALSE
 	if(TRAIT_NOBREATH in Human.dna.species.inherent_traits) //No breathing usually means a disconnect from blood/heart mechanics
+		message_admins("no breath")
 		return FALSE
 	if(Human.dna.species.inherent_biotypes & MOB_ROBOTIC) //Self explanatory
+		message_admins("robotic")
 		return FALSE
 	// Already a Non-Human Antag
 	if(Mind.has_antag_datum(/datum/antagonist/abductor) || Mind.has_antag_datum(/datum/antagonist/devil) || Mind.has_antag_datum(/datum/antagonist/changeling) || Mind.has_antag_datum(/datum/antagonist/bloodsucker))
+		message_admins("already a non human antag")
 		return FALSE
 	// Already a vamp
 	if(Mind.has_antag_datum(/datum/antagonist/vampire))
+		message_admins("already a vamp")
 		return FALSE
 	return TRUE
