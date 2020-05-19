@@ -370,6 +370,7 @@
 /////////////////////////////////// Misc /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
 /datum/supply_pack/organic/hunting
 	name = "Hunting Gear"
 	desc = "Even in space, we can find prey to hunt, this crate contains everthing a fine hunter needs to have a sporting time. This crate needs armory access to open. A true huntter only needs a fine bottle of cognac, a nice coat, some good ol' cigars, and of cource a hunting shotgun." //Skyrat change, fixes missing letter that changes what a word means
@@ -386,6 +387,8 @@
 	crate_name = "sporting crate"
 	crate_type = /obj/structure/closet/crate/secure // Would have liked a wooden crate but access >:(
 
+=======
+>>>>>>> fc77954be3... Merge pull request #12290 from Ghommie/Ghommie-cit767
 /datum/supply_pack/organic/party
 	name = "Party Equipment"
 	desc = "Celebrate both life and death on the station with Nanotrasen's Party Essentials(tm)! Contains seven colored glowsticks, four beers, two ales, a drinking shaker, and a bottle of patron & goldschlager!"
