@@ -1,4 +1,0 @@
-author: "BurgerBB"
-delete-after: True
-changes: 
-  - balance: "Reduced the range of bag of holding bombs from 8 to 6. Bag of Holding bombs no longer hardgib the user. Bag of Holding bombs no longer have a singularity in the center."
