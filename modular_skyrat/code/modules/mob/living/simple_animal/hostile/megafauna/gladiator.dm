@@ -181,7 +181,7 @@ They deal 35 brute (armor is considered).
 	. = ..()
 	if(charging)
 		if(isliving(A))
-			var/mob/living/LM
+			var/mob/living/LM = A
 			forceMove(LM.loc)
 			visible_message("<span class='userdanger'>[src] knocks [LM] down!</span>")
 			LM.DefaultCombatKnockdown(20)
