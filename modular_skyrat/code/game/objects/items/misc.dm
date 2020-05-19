@@ -5,7 +5,7 @@
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	//if this takes too long to be merged and icon file conflicts appear...
 	//too bad! armor stays invisible.
-	mob_overlay_icon = 'modular_skyrat/icons/mob/suit.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	icon_state = "makeshiftarmor"
 	item_state = "makeshiftarmor"
