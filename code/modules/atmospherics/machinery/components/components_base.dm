@@ -144,7 +144,7 @@
 		var/datum/pipeline/parent = parents[i]
 		if(!parent)
 			stack_trace("Component is missing a pipenet! Rebuilding...")
-			SSair.add_to_rebuild_queue(src)
+			build_network()
 		parent.update = 1
 
 /obj/machinery/atmospherics/components/returnPipenets()
