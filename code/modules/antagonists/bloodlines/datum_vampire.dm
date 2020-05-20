@@ -6,7 +6,7 @@
 	job_rank = ROLE_BLOODLINE_VAMPIRE
 	threat = 5
 
-	var/gift_points = 6
+	var/gift_points = 12
 	var/bloodlines = list() //What bloodlines do we have available?
 	var/vampire_clan //To which clan do we belong?
 	var/power = 35
@@ -29,6 +29,7 @@
 	vampiric_gifts = new(src)
 	vampiric_gifts_action = new(vampiric_gifts)
 	vampiric_gifts_action.Grant(owner.current)
+	bloodlines += /datum/bloodline/brujah
 	AssignStarterPowersAndStats()// Give Powers & Stats
 
 /datum/antagonist/vampire/on_removal()
@@ -109,8 +110,29 @@
 	powers += power
 	power.Grant(owner.current)// owner.AddSpell(power)
 
-/datum/antagonist/vampire/proc/PurchasePowerAbility(ability_typepath)
-	return
+/datum/antagonist/vampire/proc/AttemptPurchasePowerAbility(ability_typepath)
+	var/datum/action/vampire/target_ability = ability_typepath
+	if(!target_ability)
+		return
+	var/upgrading = FALSE
+	var/datum/action/vampire/upgraded_ability
+	for(var/datum/action/vampire/P in powers)
+		if(initial(target_ability.name) == P.name)
+			upgrading = TRUE
+			upgraded_ability = P
+			break
+	if(upgrading && upgraded_ability.level_current == upgraded_ability.level_max)
+		return
+	var/cost = initial(target_ability.gift_cost)
+	if(cost <= gift_points)
+		message_admins("[cost]")
+		message_admins("[gift_points]")
+		gift_points -= cost
+		message_admins("[gift_points]")
+		if(upgrading)
+			upgraded_ability.level_current += 1
+		else
+			GainPowerAbility(new target_ability)
 
 /datum/antagonist/vampire/proc/AssignStarterPowersAndStats()
 	// Blood/Rank Counter

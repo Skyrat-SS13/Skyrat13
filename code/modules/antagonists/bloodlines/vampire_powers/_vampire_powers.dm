@@ -89,10 +89,10 @@
 		if(display_error)
 			to_chat(owner, "<span class='warning'>You need more blood to activate [name]</span>")
 		return FALSE
-	if(power_cost)
+	if(powercost)
 		var/datum/antagonist/vampire/Vamp = L.mind.has_antag_datum(/datum/antagonist/vampire)
 		if(Vamp)
-			if(Vamp.power < power_cost)
+			if(Vamp.power < powercost)
 				if(display_error)
 					to_chat(owner, "<span class='warning'>You need more power to activate [name]</span>")
 				return FALSE
@@ -167,8 +167,8 @@
 	L.blood_volume -= bloodcost
 	var/datum/antagonist/vampire/V = L.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(V)
-		if(power_cost)
-			V.power -= power_cost
+		if(powercost)
+			V.power -= powercost
 		V.update_hud()
 
 /datum/action/vampire/proc/ActivatePower()

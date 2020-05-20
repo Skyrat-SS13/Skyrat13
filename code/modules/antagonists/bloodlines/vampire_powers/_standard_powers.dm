@@ -130,7 +130,7 @@
 		// Pay Blood Toll (if awake)
 		owner.alpha = max(35, owner.alpha - min(75, 10 + 5 * level_current))
 		vamp_datum.AddBloodVolume(-0.2)
-		
+
 		runintent = (user.m_intent == MOVE_INTENT_RUN)
 		var/turf/T = get_turf(user)
 		lum = T.get_lumcount()
@@ -145,7 +145,7 @@
 				if(!runintent)
 					user.toggle_move_intent()
 					REMOVE_TRAIT(user, TRAIT_NORUNNING, "cloak of darkness")
-		
+
 		sleep(5) // Check every few ticks
 
 /datum/action/vampire/cloak/ContinueActive(mob/living/user, mob/living/target)

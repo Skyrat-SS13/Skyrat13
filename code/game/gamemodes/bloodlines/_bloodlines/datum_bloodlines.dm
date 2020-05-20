@@ -6,6 +6,7 @@
 /datum/bloodline/brujah
 	name = "Brujah Bloodline"
 	desc = "Lots of power and stuff, it's a vampire blood afterall."
+	disciplines = list(/datum/discipline/celerity, /datum/discipline/potence)
 
 /datum/bloodline/tremere
 	name = "Tremere Bloodline"
