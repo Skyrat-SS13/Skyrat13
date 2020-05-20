@@ -1549,18 +1549,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	else if(aim_for_mouth && ( target_on_help || target_restrained || target_aiming_for_mouth))
 		playsound(target.loc, 'sound/weapons/slap.ogg', 50, 1, -1)
 
-<<<<<<< HEAD
-		user.visible_message(\
-			"<span class='danger'>\The [user] slaps \the [target] in the face!</span>",\
-			"<span class='notice'>You slap [user == target ? "yourself" : "\the [target]"] in the face! </span>",\
-			"You hear a slap."
-		)
-=======
 		target.visible_message(\
 			"<span class='danger'>\The [user] slaps [user == target ? "[user.p_them()]self" : "\the [target]"] in the face!</span>",\
 			"<span class='notice'>[user] slaps you in the face! </span>",\
 			"You hear a slap.", target = user, target_message = "<span class='notice'>You slap [user == target ? "yourself" : "\the [target]"] in the face! </span>")
->>>>>>> 9eccef2836... Porting "Personal interaction messages to simple animals" and more. (#12268)
 		user.do_attack_animation(target, ATTACK_EFFECT_FACE_SLAP)
 		user.adjustStaminaLossBuffered(3)
 		if (!HAS_TRAIT(target, TRAIT_PERMABONER))
@@ -1578,19 +1570,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if (!HAS_TRAIT(target, TRAIT_PERMABONER))
 			stop_wagging_tail(target)
 		playsound(target.loc, 'sound/weapons/slap.ogg', 50, 1, -1)
-<<<<<<< HEAD
-		user.visible_message(\
-			"<span class='danger'>\The [user] slaps \the [target]'s ass!</span>",\
-			"<span class='notice'>You slap [user == target ? "your" : "\the [target]'s"] ass!</span>",\
-			"You hear a slap."
-		)
-=======
 		target.visible_message(\
 			"<span class='danger'>\The [user] slaps [user == target ? "[user.p_their()] own" : "\the [target]'s"] ass!</span>",\
 			"<span class='notice'>[user] slaps your ass! </span>",\
 			"You hear a slap.", target = user, target_message = "<span class='notice'>You slap [user == target ? "your own" : "\the [target]'s"] ass! </span>")
 
->>>>>>> 9eccef2836... Porting "Personal interaction messages to simple animals" and more. (#12268)
 		return FALSE
 
 	else
@@ -1885,27 +1869,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			var/targetatrest = !CHECK_MOBILITY(target, MOBILITY_STAND)
 			if((directional_blocked || !(target_collateral_human || target_shove_turf.shove_act(target, user))) && !targetatrest)
 				target.DefaultCombatKnockdown(SHOVE_KNOCKDOWN_SOLID)
-<<<<<<< HEAD
-				user.visible_message("<span class='danger'>[user.name] shoves [target.name], knocking them down!</span>",
-					"<span class='danger'>You shove [target.name], knocking them down!</span>", null, COMBAT_MESSAGE_RANGE)
-=======
 				target.visible_message("<span class='danger'>[user.name] shoves [target.name], knocking them down!</span>",
 					"<span class='danger'>[user.name] shoves you, knocking you down!</span>", null, COMBAT_MESSAGE_RANGE, null,
 					user, "<span class='danger'>You shove [target.name], knocking them down!</span>")
->>>>>>> 9eccef2836... Porting "Personal interaction messages to simple animals" and more. (#12268)
 				log_combat(user, target, "shoved", "knocking them down")
 			else if(target_collateral_human && !targetatrest)
 				target.DefaultCombatKnockdown(SHOVE_KNOCKDOWN_HUMAN)
 				target_collateral_human.DefaultCombatKnockdown(SHOVE_KNOCKDOWN_COLLATERAL)
-<<<<<<< HEAD
-				user.visible_message("<span class='danger'>[user.name] shoves [target.name] into [target_collateral_human.name]!</span>",
-					"<span class='danger'>You shove [target.name] into [target_collateral_human.name]!</span>", null, COMBAT_MESSAGE_RANGE)
-				append_message += ", into [target_collateral_human.name]"
-
-		else
-			user.visible_message("<span class='danger'>[user.name] shoves [target.name]!</span>",
-				"<span class='danger'>You shove [target.name]!</span>", null, COMBAT_MESSAGE_RANGE)
-=======
 				target.visible_message("<span class='danger'>[user.name] shoves [target.name] into [target_collateral_human.name]!</span>",
 					"<span class='danger'>[user.name] shoves you into [target_collateral_human.name]!</span>", null, COMBAT_MESSAGE_RANGE, null,
 					user, "<span class='danger'>You shove [target.name] into [target_collateral_human.name]!</span>")
@@ -1915,7 +1885,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			target.visible_message("<span class='danger'>[user.name] shoves [target.name]!</span>",
 				"<span class='danger'>[user.name] shoves you!</span>", null, COMBAT_MESSAGE_RANGE, null,
 				user, "<span class='danger'>You shove [target.name]!</span>")
->>>>>>> 9eccef2836... Porting "Personal interaction messages to simple animals" and more. (#12268)
 		var/obj/item/target_held_item = target.get_active_held_item()
 		if(!is_type_in_typecache(target_held_item, GLOB.shove_disarming_types))
 			target_held_item = null
