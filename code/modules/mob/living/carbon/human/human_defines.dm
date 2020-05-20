@@ -9,16 +9,10 @@
 	/// Enable stamina combat
 	combat_flags = COMBAT_FLAGS_DEFAULT
 	status_flags = CANSTUN|CANKNOCKDOWN|CANUNCONSCIOUS|CANPUSH|CANSTAGGER
-<<<<<<< HEAD
-	
-	//blocks_emissive = EMISSIVE_BLOCK_UNIQUE // Skyrat edit -- 512 compatibility
-	
-=======
 	has_field_of_vision = FALSE //Handled by species.
 
-	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
+	//blocks_emissive = EMISSIVE_BLOCK_UNIQUE // Skyrat edit -- 512 compatibility
 
->>>>>>> 7c7147cb3e... Field of Vision component. (#12075)
 	//Hair colour and style
 	var/hair_color = "000"
 	var/hair_style = "Bald"

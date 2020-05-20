@@ -11,13 +11,8 @@
 #define PLANE_SPACE_PARALLAX_RENDER_TARGET "PLANE_SPACE_PARALLAX"
 
 #define OPENSPACE_LAYER 17 //Openspace layer over all
-<<<<<<< HEAD
-#define OPENSPACE_PLANE 17 //Openspace plane below all turfs // Skyrat edit, 512 compatibility, to make it work without vis_flags, changed from -4
-#define OPENSPACE_BACKDROP_PLANE 17 //Black square just over openspace plane to guaranteed cover all in openspace turf // Skyrat edit, 512 compatibility, to make it work without vis_flags, changed from -3
-=======
 #define OPENSPACE_PLANE -10 //Openspace plane below all turfs
 #define OPENSPACE_BACKDROP_PLANE -9 //Black square just over openspace plane to guaranteed cover all in openspace turf
->>>>>>> 7c7147cb3e... Field of Vision component. (#12075)
 
 #define FLOOR_PLANE -8
 #define FLOOR_PLANE_RENDER_TARGET "FLOOR_PLANE"
@@ -118,11 +113,8 @@
 #define MASSIVE_OBJ_LAYER 11
 #define POINT_LAYER 12
 
-<<<<<<< HEAD
 #define CHAT_LAYER 20.35 //Skyrat change
 
-=======
->>>>>>> 7c7147cb3e... Field of Vision component. (#12075)
 #define EMISSIVE_BLOCKER_PLANE 12
 #define EMISSIVE_BLOCKER_LAYER 12
 #define EMISSIVE_BLOCKER_RENDER_TARGET "*EMISSIVE_BLOCKER_PLANE"
@@ -170,15 +162,10 @@
 #define VOLUMETRIC_STORAGE_BOX_LAYER 22
 #define VOLUMETRIC_STORAGE_BOX_RENDER_TARGET "VOLUME_STORAGE_BOX_PLANE"
 
-<<<<<<< HEAD
-#define VOLUMETRIC_STORAGE_ITEM_PLANE 24
-#define VOLUMETRIC_STORAGE_ITEM_LAYER 24
-=======
 #define VOLUMETRIC_STORAGE_ITEM_PLANE 23
 #define VOLUMETRIC_STORAGE_ITEM_LAYER 23
 #define VOLUMETRIC_STORAGE_ACTIVE_ITEM_LAYER 25
 #define VOLUMETRIC_STORAGE_ACTIVE_ITEM_PLANE 25
->>>>>>> 7c7147cb3e... Field of Vision component. (#12075)
 #define VOLUMETRIC_STORAGE_ITEM_RENDER_TARGET "VOLUME_STORAGE_ITEM_PLANE"
 
 #define ABOVE_HUD_PLANE 25
