@@ -128,7 +128,7 @@
   * * target (optional) is the other mob involved with the visible message. For example, the attacker in many combat messages.
   * * target_message (optional) is what the target mob will see e.g. "[src] does something to you!"
   */
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, user_msg, runechat_popup, mob/target, target_message) //SKYRAT CHANGE
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, mob/target, target_message, user_msg, runechat_popup) //SKYRAT CHANGE
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
@@ -171,7 +171,7 @@
 		M.show_message(final_msg, MSG_VISUAL,blind_message, MSG_AUDIBLE) //SKYRAT CHANGE
 
 ///Adds the functionality to self_message.
-mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, user_msg, runechat_popup, mob/target, target_message) //SKYRAT CHANGE
+mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, mob/target, target_message, user_msg, runechat_popup) //SKYRAT CHANGE
 	. = ..()
 	if(self_message && target != src)
 		if (runechat_popup && client?.prefs.chat_on_map && client.prefs.see_chat_emotes) //SKYRAT CHANGE
