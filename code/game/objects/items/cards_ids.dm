@@ -229,6 +229,7 @@ update_label("John Doe", "Clowny")
 	desc = "A silver card which shows honour and dedication."
 	icon_state = "silver"
 	item_state = "silver_id"
+	icon = 'icons/obj/card.dmi' //Skyrat change
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 
@@ -243,12 +244,19 @@ update_label("John Doe", "Clowny")
 	desc = "A golden card which shows power and might."
 	icon_state = "gold"
 	item_state = "gold_id"
+	icon = 'icons/obj/card.dmi' //Skyrat change
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 
 /obj/item/card/id/syndicate
 	name = "agent card"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
+	//Skyrat change start
+	icon_state = "syndicate"
+	item_state = "sec_id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	//Skyratchange stop
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 
@@ -334,6 +342,7 @@ update_label("John Doe", "Clowny")
 	desc = "The spare ID of the High Lord himself."
 	icon_state = "gold"
 	item_state = "gold_id"
+	icon = 'icons/obj/card.dmi' //Skyrat change
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	registered_name = "Captain"
@@ -410,7 +419,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/prisoner
 	name = "prisoner ID card"
-	desc = "You are a number, you are not a free man. The ID looks outdated." //Skyrat change
+	desc = "You are a number, you are not a free man."
 	icon_state = "orange"
 	item_state = "orange-id"
 	icon = 'icons/obj/card.dmi' //Skyrat change
