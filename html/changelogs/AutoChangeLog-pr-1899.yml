@@ -1,5 +1,0 @@
-author: "Afya"
-delete-after: True
-changes: 
-  - bugfix: "Organic surgeries don't work on robo stuffs."
-  - tweak: "Removed ability to embalm living people."
