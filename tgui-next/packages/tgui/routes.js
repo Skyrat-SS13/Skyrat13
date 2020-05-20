@@ -100,6 +100,7 @@ import { VaultController } from './interfaces/VaultController';
 import { Vending } from './interfaces/Vending';
 import { Wires } from './interfaces/Wires';
 import { AtmosRelief } from './interfaces/AtmosRelief';
+import { FaxMachine } from './interfaces/FaxMachine';
 
 const ROUTES = {
   achievements: {
@@ -537,6 +538,10 @@ const ROUTES = {
   },
   wires: {
     component: () => Wires,
+    scrollable: false,
+  },
+  faxmachine: {
+    component: () => FaxMachine,
     scrollable: false,
   },
 };
