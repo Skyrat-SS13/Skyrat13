@@ -32,7 +32,7 @@
 	if(mytarget && !used)
 		var/mob/living/carbon/target = mytarget
 		var/datum/disease/D = new /datum/disease/transformation/corgi(0)
-			D.infect(target)
+		D.infect(target)
 	return ..()
 
 /obj/item/paper/evilfax/process()
