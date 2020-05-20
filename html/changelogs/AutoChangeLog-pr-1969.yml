@@ -1,0 +1,9 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Holorifle no longer spawns with a pin."
+  - bugfix: "PKAs are now completely unable to recharge inside containers."
+  - imageadd: "New holorifle projectile icon"
+  - bugfix: "Hazard vest armor now displays sprites proper"
+  - tweak: "Crafted swords now use syringes as a source of poison"
+  - bugfix: "Fixed the holorifle ammo box design to actually spawn an ammo box."
