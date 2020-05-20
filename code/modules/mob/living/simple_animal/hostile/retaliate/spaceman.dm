@@ -23,13 +23,8 @@
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	del_on_death = 0
-<<<<<<< HEAD
-
-	do_footstep = TRUE
-=======
 	footstep_type = FOOTSTEP_MOB_SHOE
-	has_field_of_vision = FALSE //Legacy gameplay experience. Also they only have one dir visually.
->>>>>>> 75dec8ce2c... Ports "Removes the absolute istype fest from footsteps" (#12259)
+	//has_field_of_vision = FALSE //Legacy gameplay experience. Also they only have one dir visually. - SKYRAT EDIT, COMMENTED OUT
 
 /mob/living/simple_animal/hostile/retaliate/nanotrasenpeace //this should be in a different file
 	name = "Nanotrasen Private Security Officer"
