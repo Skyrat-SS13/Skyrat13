@@ -25,7 +25,7 @@
 	deathmessage = "sparkles and emits corrupted screams in agony, falling defeated on the ground."
 	death_sound = 'sound/mecha/critdestr.ogg'
 	anger_modifier = 0
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_HEAVY
 	mob_biotypes = MOB_ROBOTIC
 	song = sound('modular_skyrat/sound/ambience/mbrsystemshock.ogg', 100) //System shock theme remix by Master Boot Record
 	songlength = 2930
