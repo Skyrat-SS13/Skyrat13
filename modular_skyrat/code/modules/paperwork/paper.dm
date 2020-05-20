@@ -13,7 +13,7 @@
 		if(istype(user, /mob/living/carbon))
 			var/mob/living/carbon/C = user
 			evilpaper_specialaction(C)
-			..()
+			. = ..()
 		else
 			// This should never happen, but just in case someone is adminbussing
 			evilpaper_selfdestruct()
@@ -31,7 +31,8 @@
 	STOP_PROCESSING(SSobj, src)
 	if(mytarget && !used)
 		var/mob/living/carbon/target = mytarget
-		target.ForceContractDisease(new /datum/disease/transformation/corgi(0))
+		var/datum/disease/D = new /datum/disease/transformation/corgi(0)
+			D.infect(target)
 	return ..()
 
 /obj/item/paper/evilfax/process()
@@ -54,11 +55,13 @@
 /obj/item/paper/evilfax/proc/handle_specialaction(var/mob/living/carbon/target)
 	if(istype(target,/mob/living/carbon))
 		if(myeffect == "Borgification")
+			var/datum/disease/D = new /datum/disease/transformation/robot(0)
+			D.infect(target)
 			to_chat(target,"<span class='userdanger'>You seem to comprehend the AI a little better. Why are your muscles so stiff?</span>")
-			target.ForceContractDisease(new /datum/disease/transformation/robot(0))
 		else if(myeffect == "Corgification")
+			var/datum/disease/D = new /datum/disease/transformation/corgi(0)
+			D.infect(target)
 			to_chat(target,"<span class='userdanger'>You hear distant howling as the world seems to grow bigger around you. Boy, that itch sure is getting worse!</span>")
-			target.ForceContractDisease(new /datum/disease/transformation/corgi(0))
 		else if(myeffect == "Death By Fire")
 			to_chat(target,"<span class='userdanger'>You feel hotter than usual. Maybe you should lowe-wait, is that your hand melting?</span>")
 			var/turf/open/fire_spot = get_turf(target)
