@@ -77,7 +77,7 @@
 	popup.open()
 
 /datum/vampiric_gifts/Topic(href, href_list)
-	var/ability_path = href_list["bought_ability"]
+	var/ability_path = text2path(href_list["bought_ability"])
 	if(ability_path)
 		vampire_datum.AttemptPurchasePowerAbility(ability_path)
 		ui_interact(usr)

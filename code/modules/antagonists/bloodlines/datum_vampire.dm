@@ -118,6 +118,7 @@
 	var/datum/action/vampire/upgraded_ability
 	for(var/datum/action/vampire/P in powers)
 		if(initial(target_ability.name) == P.name)
+			message_admins("breaking loop")
 			upgrading = TRUE
 			upgraded_ability = P
 			break
@@ -125,6 +126,9 @@
 		return
 	var/cost = initial(target_ability.gift_cost)
 	if(cost <= gift_points)
+		message_admins("[upgrading]")
+		if(upgraded_ability)
+			message_admins("upgraded: [upgraded_ability]")
 		message_admins("[cost]")
 		message_admins("[gift_points]")
 		gift_points -= cost

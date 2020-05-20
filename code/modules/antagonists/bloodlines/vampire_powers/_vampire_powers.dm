@@ -192,6 +192,9 @@
 /datum/action/vampire/proc/Upgrade()
 	level_current ++
 
+/datum/action/vampire/IsAvailable(silent = FALSE)
+	. = CheckCanUse(FALSE)
+
 ///////////////////////////////////  PASSIVE POWERS	///////////////////////////////////
 
 // New Type: Passive (Always on, no button)
