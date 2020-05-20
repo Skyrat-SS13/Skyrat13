@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Fixes being stuck in torpor as a bloodsucker due to having a damaged prosthetic, and loosing blood due to it."
