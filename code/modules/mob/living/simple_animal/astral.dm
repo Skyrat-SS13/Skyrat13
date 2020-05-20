@@ -5,13 +5,7 @@
 	icon_state = "ghost"
 	icon_living = "ghost"
 	mob_biotypes = MOB_SPIRIT
-<<<<<<< HEAD
-	attacktext = "raises the hairs on the neck of"
-	response_harm = "disrupts the concentration of"
-	response_disarm = "wafts"
-	friendly = "communes with"
-=======
-	has_field_of_vision = FALSE //we are a spoopy ghost
+	//has_field_of_vision = FALSE //we are a spoopy ghost (COMMENDTED OUT - SKYRAT EDIT)
 	attack_verb_continuous = "raises the hair on the neck of"
 	attack_verb_simple = "raise the hair on the neck of"
 	response_harm_continuous = "disrupts the concentration of"
@@ -20,7 +14,6 @@
 	response_disarm_simple = "waft"
 	friendly_verb_continuous = "communes with"
 	friendly_verb_simple = "commute with"
->>>>>>> 9eccef2836... Porting "Personal interaction messages to simple animals" and more. (#12268)
 	loot = null
 	maxHealth = 10
 	health = 10
