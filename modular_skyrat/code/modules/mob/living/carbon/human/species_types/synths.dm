@@ -10,7 +10,7 @@
 	blacklisted = 0 //not blacklisted anymore
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc //fuck it
 	gib_types = /obj/effect/gibspawner/robot
-	damage_overlay_type = "synth"
+	damage_overlay_type = "robotic"
 	limbs_id = "synth"
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
 	//mutant_bodyparts = list("legs" = "Digitigrade", "taur" = "None") //this probably isn't gonna work. Note: it didn't work.
@@ -99,6 +99,7 @@
 	assume_disguise(old_species, H)
 	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
+		BP.synthetic = TRUE
 		BP.change_bodypart_status(BODYPART_ROBOTIC)
 		BP.render_like_organic = TRUE
 
@@ -107,6 +108,7 @@
 	//H.remove_language(/datum/language/machine) SKYRAT CHANGE= We have an additional language option for this
 	UnregisterSignal(H, COMSIG_MOB_SAY)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
+		BP.synthetic = FALSE
 		BP.change_bodypart_status(BODYPART_ORGANIC)
 		BP.render_like_organic = TRUE
 

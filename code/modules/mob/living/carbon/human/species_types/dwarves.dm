@@ -34,12 +34,11 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 	//H.grant_language(/datum/language/dwarf) SKYRAT CHANGE= We have an additional language option for this
 	H.facial_hair_style = dwarf_hair
 	H.update_hair()
-	H.transform = H.transform.Scale(1, 0.8) //We use scale, and yeah. Dwarves can become gnomes with DWARFISM.
+	AddElement(/datum/element/dwarfism, COMSIG_SPECIES_LOSS, src)
 	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech) //We register handle_speech is being used.
 
 /datum/species/dwarf/on_species_loss(mob/living/carbon/H, datum/species/new_species)
 	. = ..()
-	H.transform = H.transform.Scale(1, 1.25) //And we undo it.
 	UnregisterSignal(H, COMSIG_MOB_SAY) //We register handle_speech is not being used.
 	//H.remove_language(/datum/language/dwarf) SKYRAT CHANGE= We have an additional language option for this
 
