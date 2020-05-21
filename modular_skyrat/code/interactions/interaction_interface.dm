@@ -11,8 +11,10 @@
 
 /mob/living/carbon/human/MouseDrop_T(mob/M as mob, mob/living/carbon/human/user as mob)
 	. = ..()
+	/*
 	if(M == src || src == usr || M != usr)
 		return
+	*/
 	if(usr.restrained())
 		return
 	if(!ishuman(src))
@@ -26,14 +28,19 @@
 	set category = "IC"
 	set src in view()
 
-	if(usr != src && !usr.restrained() && ishuman(src))
+	if(!usr.restrained() && ishuman(src))
 		usr.try_interaction(src)
 
 /mob/living/carbon/human/try_interaction(mob/living/carbon/human/partner)
-	var/dat = "<B><HR><FONT size=3>Interacting with \the [partner]...</FONT></B><HR>"
+	var/dat
+	if(partner != src)
+		dat = "<B><HR><FONT size=3>Interacting with \the [partner]...</FONT></B><HR>"
+	else
+		dat = "<B><HR><FONT size=3>Interacting with yourself...</FONT></B><HR>"
 
-	dat += "You...<br>[list_interaction_attributes()]<hr>"
-	dat += "They...<br>[partner.list_interaction_attributes()]<hr>"
+	dat += "You...<br>[list_interaction_attributes(src)]<hr>"
+	if(partner != src)
+		dat += "They...<br>[partner.list_interaction_attributes(src)]<hr>"
 
 	make_interactions()
 	for(var/interaction_key in interactions)
