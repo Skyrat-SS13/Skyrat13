@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'master'
+      - 'upstream-merge-**'
     paths:
       - 'tgui-next/**.js'
       - 'tgui-next/**.scss'
