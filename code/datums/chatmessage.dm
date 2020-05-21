@@ -36,11 +36,8 @@
   * * extra_classes - Extra classes to apply to the span that holds the text
   * * lifespan - The lifespan of the message in deciseconds
   */
-<<<<<<< HEAD
-/datum/chatmessage/New(text, atom/target, mob/owner, list/extra_classes = list(), lifespan = CHAT_MESSAGE_LIFESPAN) //Skyrat changes
-=======
+
 /datum/chatmessage/New(text, atom/target, mob/owner, list/extra_classes = list(), lifespan = CHAT_MESSAGE_LIFESPAN)
->>>>>>> 73a27c8fe5... Porting "Fixes Null Reference + Qdel Issue in Runechat" (#12271)
 	. = ..()
 	if (!istype(target))
 		CRASH("Invalid target given for chatmessage")
@@ -87,14 +84,10 @@
 /datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan)
 	// Register client who owns this message
 	owned_by = owner.client
-<<<<<<< HEAD
-	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_parent_qdel) //Skyrat edit
+	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_parent_qdel)
 
 	var/pixels = 10 //Skyrat change
 	var/bold = FALSE //Skyrat change
-=======
-	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_parent_qdel)
->>>>>>> 73a27c8fe5... Porting "Fixes Null Reference + Qdel Issue in Runechat" (#12271)
 
 	// Clip message
 	var/maxlen = owned_by.prefs.max_chat_length
@@ -174,18 +167,12 @@
 	// BYOND Bug #2563917
 	// Construct text
 	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
-<<<<<<< HEAD
 	//SKYRAT CHANGES
 	var/complete_text = "<span class='center maptext [extra_classes.Join(" ")]' style='color: [tgt_color]'>[text]</span>"
 	var/lines_est = max(1,(CEILING((pixels/CHAT_MESSAGE_WIDTH),1)))
 	var/mheight = 2 + (lines_est * 9)
 	approx_lines = lines_est
 	//END OF SKYRAT CHANGES
-=======
-	var/complete_text = "<span class='center maptext [extra_classes.Join(" ")]' style='color: [tgt_color]'>[text]</span>"
-	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, CHAT_MESSAGE_WIDTH))
-	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
->>>>>>> 73a27c8fe5... Porting "Fixes Null Reference + Qdel Issue in Runechat" (#12271)
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
 	message_loc = target
@@ -241,11 +228,7 @@
   */
 /mob/proc/create_chat_message(atom/movable/speaker, datum/language/message_language, raw_message, list/spans, message_mode)
 	// Ensure the list we are using, if present, is a copy so we don't modify the list provided to us
-<<<<<<< HEAD
-	spans = spans ? spans.Copy() : list() //Skyrat edit
-=======
 	spans = spans ? spans.Copy() : list()
->>>>>>> 73a27c8fe5... Porting "Fixes Null Reference + Qdel Issue in Runechat" (#12271)
 
 	// Check for virtual speakers (aka hearing a message through a radio)
 	var/atom/movable/originalSpeaker = speaker
