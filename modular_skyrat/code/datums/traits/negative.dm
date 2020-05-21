@@ -49,3 +49,11 @@
 		"in your backpack" = SLOT_IN_BACKPACK
 	)
 	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
+
+//airhead
+/datum/quirk/airhead
+	name = "Airhead"
+	desc = "You are exceptionally airheaded... but who cares?"
+	value = -1
+	mob_trait = TRAIT_DUMB
+	medical_record_text = "Patient exhibits rather low mental capabilities."
