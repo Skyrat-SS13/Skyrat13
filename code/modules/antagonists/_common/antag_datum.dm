@@ -70,22 +70,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //Proc called when the datum is given to a mind.
 /datum/antagonist/proc/on_gain()
-<<<<<<< HEAD
-	if(owner && owner.current)
-		if(!silent)
-			greet()
-		apply_innate_effects()
-		give_antag_moodies()
-		remove_blacklisted_quirks()
-		if(is_banned(owner.current) && replace_banned)
-			replace_banned_player()
-		//Skyrat changes - warns the antag banned player if the role doesn't ghost him
-		else if (is_banned(owner.current))
-			to_chat(owner, "<span class='boldwarning'>You are currently banned from antagonist roles and it's likely you've been converted. Please stay at your best behaviour, remember our rules and guidelines.")
-			message_admins("([key_name_admin(owner.current)]), as an antag banned player became a [src.name].")
-		//Skyrat changes END
-		SEND_SIGNAL(owner.current, COMSIG_MOB_ANTAG_ON_GAIN, src)
-=======
 	if(!(owner?.current))
 		return
 	if(!silent)
@@ -95,11 +79,15 @@ GLOBAL_LIST_EMPTY(antagonists)
 	remove_blacklisted_quirks()
 	if(is_banned(owner.current) && replace_banned)
 		replace_banned_player()
+	//Skyrat changes - warns the antag banned player if the role doesn't ghost him
+	else if (is_banned(owner.current))
+		to_chat(owner, "<span class='boldwarning'>You are currently banned from antagonist roles and it's likely you've been converted. Please stay at your best behaviour, remember our rules and guidelines.")
+		message_admins("([key_name_admin(owner.current)]), as an antag banned player became a [src.name].")
+	//Skyrat changes END
 	if(skill_modifiers)
 		for(var/A in skill_modifiers)
 			ADD_SINGLETON_SKILL_MODIFIER(owner, A, type)
 	SEND_SIGNAL(owner.current, COMSIG_MOB_ANTAG_ON_GAIN, src)
->>>>>>> 7f38e0714b... Skill calculation fixes, tweaks, antag and brain damage modifiers. (#12302)
 
 /datum/antagonist/proc/is_banned(mob/M)
 	if(!M)
