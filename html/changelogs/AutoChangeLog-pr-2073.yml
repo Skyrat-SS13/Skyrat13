@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Fixes dwarfism / dwarf raceswap not (un)applying properly when resting."

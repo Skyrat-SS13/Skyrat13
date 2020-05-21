@@ -114,7 +114,6 @@
 	unique_reskin = null
 
 /obj/item/clothing/head/helmet/durathread
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 30, "energy" = 40, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50)
 	unique_reskin = null
 
 /obj/item/clothing/head/helmet/rus_helmet
@@ -133,9 +132,6 @@
 
 /obj/item/clothing/head/fedora/det_hat
 	armor = list("melee" = 25, "bullet" = 5, "laser" = 25, "energy" = 35, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50)
-
-/obj/item/clothing/head/beret/durathread
-	armor = list("melee" = 15, "bullet" = 5, "laser" = 15, "energy" = 25, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 5)
 
 /obj/item/clothing/head/HoS
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 60)
@@ -523,7 +519,6 @@
 	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/durathread
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 30, "energy" = 40, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50)
 	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/russian
@@ -626,8 +621,8 @@
 
 // Reskinnable Trek uniforms, now using Orvi-like by default.
 /obj/item/clothing/under/trek/command
-	name = "\improper Planetary Federation command uniform"
-	desc = "An uniform worn by command officers."
+	name = "enterprise command uniform"
+	desc = "An enterprise corps uniform worn by command officers."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
@@ -674,8 +669,8 @@
 	)
 
 /obj/item/clothing/under/trek/engsec
-	name = "\improper Planetary Federation operations uniform"
-	desc = "An uniform worn by operations officers. You feel strangely vulnerable just seeing this..."
+	name = "enterprise operations uniform"
+	desc = "An enterprise corps uniform worn by operations officers."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
@@ -722,8 +717,8 @@
 	)
 
 /obj/item/clothing/under/trek/medsci
-	name = "\improper Planetary Federation medsci uniform"
-	desc = "An uniform worn by medsci officers."
+	name = "enterprise medsci uniform"
+	desc = "An enterprise corps uniform worn by medsci officers."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
@@ -771,8 +766,8 @@
 
 // Bonus for assistants and service.
 /obj/item/clothing/under/trek/orvi
-	name = "\improper Planetary Federation assistant uniform"
-	desc = "An uniform worn by volunteered active-duty-cadets... Or in simple terms - an assistants."
+	name = "enterprise assistant uniform"
+	desc = "An enterprise corps uniform worn by adjutants."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
@@ -795,17 +790,17 @@
 	"The Motion Picture (The Original Series)" = "trek_tmp_trainee"
 	)
 	unique_name = list(
-	"Default" = "federation assistant uniform",
+	"Default" = "enterprise assistant uniform",
 	"The Motion Picture (The Original Series)" = "federation trainee uniform"
 	)
 	unique_desc = list(
-	"Default" = "An uniform worn by cadet-assistants since 2550s.",
+	"Default" = "An uniform worn by adjutants since 2550s.",
 	"The Motion Picture (The Original Series)" = "An uniform worn by enlisted trainees in 2285s."
 	)
 
 /obj/item/clothing/under/trek/orvi/service
-	name = "\improper Planetary Federation service uniform"
-	desc = "An uniform worn by service officers. How service department can have officers is still unknown."
+	name = "enterprise service uniform"
+	desc = "An enterprise corps uniform worn by service officers... Or is it just <i>service uniform</i> worn by officers?"
 	icon_state = "orv_srv"
 	item_state = "g_suit"
 	unique_reskin_icons = list(
@@ -825,7 +820,7 @@
 	"The Motion Picture (The Original Series)" = "trek_tmp_service"
 	)
 	unique_name = list(
-	"Default" = "federation service uniform",
+	"Default" = "enterprise service uniform",
 	"The Motion Picture (The Original Series)" = "federation service uniform"
 	)
 	unique_desc = list(
@@ -835,12 +830,12 @@
 
 // Changes name/desc to the jackets, makes modern/non-classic jacket to have same list of allowed suit-storage items as classic one.
 /obj/item/clothing/suit/storage/fluff/fedcoat
-	name = "\improper Planetary Federation classic uniform jacket"
-	desc = "A classic uniform jacket. Set phasers to awesome."
+	name = "federation classic uniform jacket"
+	desc = "The federation's classic uniform jacket. Set phasers to awesome!"
 
 /obj/item/clothing/suit/storage/fluff/modernfedcoat
-	name = "\improper Planetary Federation uniform jacket"
-	desc = "An uniform jacket."
+	name = "enterprise uniform jacket"
+	desc = "An enterprise corps uniform jacket."
 	allowed = list(
 				/obj/item/tank/internals/emergency_oxygen,
 				/obj/item/flashlight,
@@ -859,8 +854,8 @@
 				/obj/item/taperecorder)
 
 /obj/item/clothing/head/caphat/formal/fedcover
-	name = "\improper Planetary Federation peaked cap"
-	desc = "A peaked cap."
+	name = "enterprise officer cap"
+	desc = "A peaked cap, that demands <i>at least <u>some</u></i> discipline from its wearer."
 
 // PrisArch-like color codes for prisoners. Uses _stored variation for Warden's control.
 /obj/item/clothing/under/rank/prisoner
@@ -901,3 +896,19 @@
 	"Low Security" = "prisoner_lowsec_skirt",
 	"Protective Custody" = "prisoner_protcust_skirt"
 	)
+
+//durathread buff
+/obj/item/clothing/head/beanie/durathread
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/head/helmet/durathread
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/suit/armor/vest/durathread
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/suit/hooded/wintercoat/durathread
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+/obj/item/clothing/head/hooded/winterhood/durathread
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)

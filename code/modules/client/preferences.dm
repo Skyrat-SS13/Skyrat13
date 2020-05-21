@@ -8,6 +8,22 @@
 		\*												*/
 
 GLOBAL_LIST_EMPTY(preferences_datums)
+GLOBAL_LIST_INIT(food, list( // Skyrat addition
+		"Meat" = MEAT,
+		"Vegetables" = VEGETABLES,
+		"Raw" = RAW,
+		"Junk Food" = JUNKFOOD,
+		"Grain" = GRAIN,
+		"Fruit" = FRUIT,
+		"Dairy" = DAIRY,
+		"Fried" = FRIED,
+		"Alcohol" = ALCOHOL,
+		"Sugar" = SUGAR,
+		"Gross" = GROSS,
+		"Toxic" = TOXIC,
+		"Pineapple" = PINEAPPLE,
+		"Breakfast" = BREAKFAST
+	))
 
 /datum/preferences
 	var/client/parent
@@ -69,6 +85,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/pda_style = MONO
 	var/pda_color = "#808000"
 	var/pda_skin = PDA_SKIN_ALT
+	// SKYRAT EDIT: Credits
+	var/show_credits = TRUE
 
 	var/uses_glasses_colour = 0
 
@@ -81,19 +99,28 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
 	//SKYRAT CHANGES
-	var/skyrat_ooc_notes
+	var/skyrat_ooc_notes = ""
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
 	var/vorepref = "Ask"
+	var/extremepref = "No" //This is for extreme shit, maybe even literal shit, better to keep it on no by default
+	var/extremeharm = "No" //If "extreme content" is enabled, this option serves as a toggle for the related interactions to cause damage or not
 	var/general_records = ""
 	var/security_records = ""
 	var/medical_records = ""
 	var/flavor_background = ""
+	var/flavor_faction = "UNSET"
 	var/character_skills = ""
 	var/exploitable_info = ""
 	var/see_chat_emotes = TRUE
 	var/enable_personal_chat_color = FALSE
 	var/personal_chat_color = "#ffffff"
+	var/list/foodlikes = list() //Skyrat additions BEGIN
+	var/list/fooddislikes = list()
+	var/maxlikes = 3
+	var/maxdislikes = 3 //Skyrat additions END
+
+	var/list/alt_titles_preferences = list()
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
@@ -305,6 +332,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<center><h2>Quirk Setup</h2>"
 				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Quirks</a><br></center>"
 				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
+			//Skyrat edit - food preferences
+			dat += "<center><h2>Food Setup</h2>"
+			dat += "<a href='?_src_=prefs;preference=food;task=menu'>Configure Foods</a></center><br>"
+			dat += "<center><b>Current Likings:</b> [foodlikes.len ? foodlikes.Join(", ") : "None"]</center>"
+			dat += "<center><b>Current Dislikings:</b> [fooddislikes.len ? fooddislikes.Join(", ") : "None"]</center>"
+			//
 			dat += "<h2>Identity</h2>"
 			dat += "<table width='100%'><tr><td width='75%' valign='top'>"
 			if(jobban_isbanned(user, "appearance"))
@@ -364,10 +397,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += 	"ERP : <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
 			dat += 	"Non-Con : <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
 			dat += 	"Vore : <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
+			dat += 	"Extreme content : <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
+			if(extremepref != "No")
+				dat += "Harmful extreme content : <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
 			//END OF SKYRAT EDIT
 			if(length(features["flavor_text"]) <= 40)
 				if(!length(features["flavor_text"]))
-					dat += "\[...\]<BR>" //skyrat - adds <br>
+					dat += "\[...\]<BR>" //skyrat - adds <br> //come to brazil or brazil comes to you
 				else
 					dat += "[features["flavor_text"]]<BR>" //skyrat - adds <br>
 			else
@@ -381,6 +417,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a>"
 			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
+			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction]</a><br>"
 			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
 			/*Skyrat edit - comments out Citadel's OOC notes in favor for our owns
@@ -431,7 +468,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				mutant_colors = TRUE
 
 			if (CONFIG_GET(number/body_size_min) != CONFIG_GET(number/body_size_max))
-				dat += "<b>Sprite Size:</b> <a href='?_src_=prefs;preference=body_size;task=input'>[features["body_size"]]%</a><br>"
+				dat += "<b>Sprite Size:</b> <a href='?_src_=prefs;preference=body_size;task=input'>[features["body_size"]*100]%</a><br>"
 
 			if((EYECOLOR in pref_species.species_traits) && !(NOEYES in pref_species.species_traits))
 
@@ -1179,6 +1216,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 			var/rank = job.title
+			//Skyrat changes
+			var/displayed_rank = rank
+			if(job.alt_titles.len && (rank in alt_titles_preferences))
+				displayed_rank = alt_titles_preferences[rank]
+			//End of skyrat changes
 			lastJob = job
 			if(jobban_isbanned(user, rank))
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
@@ -1200,10 +1242,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if((job_preferences["[SSjob.overflow_role]"] == JP_LOW) && (rank != SSjob.overflow_role) && !jobban_isbanned(user, SSjob.overflow_role))
 				HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 				continue
+			//Skyrat changes
+			var/rank_title_line = "[displayed_rank]"
 			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
-				HTML += "<b><span class='dark'>[rank]</span></b>"
+				rank_title_line = "<b>[rank_title_line]</b>"
+			if(job.alt_titles.len)
+				rank_title_line = "<a href='?_src_=prefs;preference=job;task=alt_title;job_title=[job.title]'>[rank_title_line]</a>"
 			else
-				HTML += "<span class='dark'>[rank]</span>"
+				rank_title_line = "<span class='dark'>[rank_title_line]</span>" //Make it dark if we're not adding a button for alt titles
+			HTML += rank_title_line
+			//End of skyrat changes
 
 			HTML += "</td><td width='40%'>"
 
@@ -1399,6 +1447,49 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(C)
 			C.clear_character_previews()
 
+//Skyrat edit - food prefs
+/datum/preferences/proc/SetFood(mob/user)
+	var/list/dat = list()
+	dat += "<center><b>Choose food setup</b></center><br>"
+	dat += "<div align='center'>Click on \"like\" to add a food type to your likings. Click on \"dislike\" to add it to your dislikings.<br>"
+	dat += "Food types cannot be liked and disliked at the same time.<br>"
+	dat += "If a food type is already liked or disliked, simply click the appropriate button again to remove it from your like or dislike list.<br>"
+	dat += "Having no food preferences means you'll just default your species' standard instead.</div><br>"
+	dat += "<center><a href='?_src_=prefs;preference=food;task=close'>Done</a></center>"
+	dat += "<hr>"
+	dat += "<center><b>Current Likings:</b> [foodlikes.len ? foodlikes.Join(", ") : "None"] ([foodlikes.len]/[maxlikes])</center><br>"
+	dat += "<center><b>Current Dislikings:</b> [fooddislikes.len ? fooddislikes.Join(", ") : "None"] ([fooddislikes.len]/[maxdislikes])</center>"
+	dat += "<hr>"
+	for(var/F in GLOB.food)
+		var/likes = FALSE
+		var/dislikes = FALSE
+		for(var/food in foodlikes)
+			if(food == F)
+				likes = TRUE
+		for(var/food in fooddislikes)
+			if(food == F)
+				dislikes = TRUE
+		var/font_color = "#8686ff"
+		if(likes)
+			dat += "<center><p style='color: [font_color];'><b>[F]: </p></b>"
+			dat += "<a style='background-color: #32c232;' href='?_src_=prefs;preference=food;task=update;like=[F]'>Like</a>"
+			dat += "<a href='?_src_=prefs;preference=food;task=update;dislike=[F]'>Dislike</a></center>"
+		else if(dislikes)
+			dat += "<center><p style='color: [font_color];'><b>[F]: </p></b>"
+			dat += "<a href='?_src_=prefs;preference=food;task=update;like=[F]'>Like</a>"
+			dat += "<a style='background-color: #ff1a1a;' href='?_src_=prefs;preference=food;task=update;dislike=[F]'>Dislike</a></center>"
+		else
+			dat += "<center><p style='color: [font_color];'><b>[F]: </p></b>"
+			dat += "<a href='?_src_=prefs;preference=food;task=update;like=[F]'>Like</a>"
+			dat += "<a href='?_src_=prefs;preference=food;task=update;dislike=[F]'>Dislike</a></center>"
+	dat += "<br><center><a href='?_src_=prefs;preference=food;task=reset'>Reset Food Preferences</a></center>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Food Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+//
+
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(href_list["jobbancheck"])
 		var/job = sanitizeSQL(href_list["jobbancheck"])
@@ -1444,6 +1535,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				SetChoices(user)
 			if("setJobLevel")
 				UpdateJobPreference(user, href_list["text"], text2num(href_list["level"]))
+			//SKYRAT CHANGES
+			if("alt_title")
+				var/job_title = href_list["job_title"]
+				var/titles_list = list(job_title)
+				var/datum/job/J = SSjob.GetJob(job_title)
+				for(var/i in J.alt_titles)
+					titles_list += i
+				var/chosen_title
+				chosen_title = input(user, "Choose your job's title:", "Job Preference") as null|anything in titles_list
+				if(chosen_title)
+					if(chosen_title == job_title)
+						if(alt_titles_preferences[job_title])
+							alt_titles_preferences.Remove(job_title)
+					else
+						alt_titles_preferences[job_title] = chosen_title
+				SetChoices(user)
+			//END OF SKYRAT CHANGES
 			else
 				SetChoices(user)
 		return 1
@@ -1485,7 +1593,40 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			else
 				SetQuirks(user)
 		return TRUE
-
+	//Skyrat edit - food prefs
+	else if(href_list["preference"] == "food")
+		switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+				ShowChoices(user)
+			if("update")
+				if(href_list["like"])
+					for(var/F in GLOB.food)
+						if(F == href_list["like"])
+							if(!foodlikes[F])
+								foodlikes[F] = GLOB.food[F]
+								if(fooddislikes[F])
+									fooddislikes.Remove(F)
+							else
+								foodlikes.Remove(F)
+				if(href_list["dislike"])
+					for(var/F in GLOB.food)
+						if(F == href_list["dislike"])
+							if(!fooddislikes[F])
+								fooddislikes[F] = GLOB.food[F]
+								if(foodlikes[F])
+									foodlikes.Remove(F)
+							else
+								fooddislikes.Remove(F)
+				SetFood(user)
+			if("reset")
+				foodlikes = list()
+				fooddislikes = list()
+				SetFood(user)
+			else
+				SetFood(user)
+		return TRUE
+	//
 	switch(href_list["task"])
 		if("random")
 			switch(href_list["preference"])
@@ -1604,6 +1745,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/msg = stripped_multiline_input(usr, "Set your background", "Character Background", flavor_background, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
 						flavor_background = html_decode(msg)
+
+				if("flavor_faction")
+					var/new_faction = input(user, "Set your faction", "Character Faction") as null|anything in GLOB.factions_list
+					if(new_faction)
+						flavor_faction = new_faction
 
 				if("character_skills")
 					var/msg = stripped_multiline_input(usr, "Set your skills or hobbies", "Character Skills", character_skills, MAX_FLAVOR_LEN, TRUE)
@@ -2364,7 +2510,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							damagescreenshake = 1
 				if("nameless")
 					nameless = !nameless
-         
+
 				if("erp_pref")
 					switch(erppref)
 						if("Yes")
@@ -2389,6 +2535,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							vorepref = "No"
 						if("No")
 							vorepref = "Yes"
+				//Skyrat edit - *someone* offered me actual money for this shit
+				if("extremepref") //i hate myself for doing this
+					switch(extremepref) //why the fuck did this need to use cycling instead of input from a list
+						if("Yes")		//seriously this confused me so fucking much
+							extremepref = "Ask"
+						if("Ask")
+							extremepref = "No"
+						if("No")
+							extremepref = "Yes"
+				if("extremeharm")
+					switch(extremeharm)
+						if("Yes")	//this is cursed code
+							extremeharm = "No"
+						if("No")
+							extremeharm = "Yes"
 				if("auto_hiss")
 					auto_hiss = !auto_hiss
 				//END CITADEL EDIT

@@ -1,3 +1,4 @@
+//Dildo changes.
 /obj/item/dildo
 	/*name = "dildo"
 	desc = "Hmmm, deal throw."
@@ -43,7 +44,7 @@
 
 /obj/item/dildo/attack(mob/living/carbon/human/M, mob/living/carbon/human/user)
 	var/message = ""
-	if(istype(M, /mob/living/carbon/human) && user.zone_selected == "groin" && M.is_bottomless())
+	if(istype(M, /mob/living/carbon/human) && user.zone_selected == BODY_ZONE_PRECISE_GROIN && M.is_bottomless())
 		if(M.client && M.client.prefs)
 			if(M.client.prefs.toggles & VERB_CONSENT)
 				if(hole == CUM_TARGET_VAGINA && M.has_vagina())

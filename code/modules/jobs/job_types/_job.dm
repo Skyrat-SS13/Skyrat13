@@ -66,10 +66,8 @@
 	// How much threat this job is worth in dynamic. Is subtracted if the player's not an antag, added if they are.
 	var/threat = 0
 
-	/// Starting skill levels.
-	var/list/starting_skills
-	/// Skill affinities to set
-	var/list/skill_affinities
+	/// Starting skill modifiers.
+	var/list/starting_modifiers
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
@@ -171,15 +169,10 @@
 	to_chat(M, "<b>Prefix your message with :h to speak on your department's radio. To see other prefixes, look closely at your headset.</b>")
 
 /datum/job/proc/standard_assign_skills(datum/mind/M)
-	if(!starting_skills)
+	if(!starting_modifiers)
 		return
-	for(var/skill in starting_skills)
-		M.skill_holder.boost_skill_value_to(skill, starting_skills[skill], TRUE) //silent
-	// do wipe affinities though
-	M.skill_holder.skill_affinities = list()
-	for(var/skill in skill_affinities)
-		M.skill_holder.skill_affinities[skill] = skill_affinities[skill]
-	UNSETEMPTY(M.skill_holder.skill_affinities)		//if we didn't set any.
+	for(var/mod in starting_modifiers)
+		ADD_SINGLETON_SKILL_MODIFIER(M, mod, null)
 
 /datum/outfit/job
 	name = "Standard Gear"
@@ -246,14 +239,24 @@
 		C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
-		C.assignment = J.title
+		//Skyrat change
+		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
+			C.assignment = preference_source.prefs.alt_titles_preferences[J.title]
+		else
+			C.assignment = J.title
+		//End of skyrat change
 		C.update_label()
 		H.sec_hud_set_ID()
 
 	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)
 	if(istype(PDA))
 		PDA.owner = H.real_name
-		PDA.ownjob = J.title
+		//Skyrat change
+		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
+			PDA.ownjob = preference_source.prefs.alt_titles_preferences[J.title]
+		else
+			PDA.ownjob = J.title
+		//End of skyrat change
 		PDA.update_label()
 		if(preference_source && !PDA.equipped) //PDA's screen color, font style and look depend on client preferences.
 			PDA.update_style(preference_source)

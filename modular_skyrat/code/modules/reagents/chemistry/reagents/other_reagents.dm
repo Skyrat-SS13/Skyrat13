@@ -7,7 +7,19 @@
 	color = "#535452" // RGB (18, 53, 36) <--- Get a load of this guy.
 	taste_description = "copper"
 
+//monkey powder heehoo
+/datum/reagent/monkey_powder
+	name = "Monkey Powder"
+	description = "Just add water!"
+	color = "#9C5A19"
+	taste_description = "bananas"
 
+/datum/reagent/cellulose
+	name = "Cellulose Fibers"
+	description = "A crystaline polydextrose polymer, plants swear by this stuff."
+	reagent_state = SOLID
+	color = "#E6E6DA"
+	taste_mult = 0
 
 /datum/reagent/tranquility
 	name = "Gondola Essence"
@@ -71,3 +83,18 @@
 	if(C.isRobotic() && C.blood_volume < (BLOOD_VOLUME_NORMAL*C.blood_ratio))
 		C.blood_volume += 0.5
 	..() 
+
+/datum/reagent/growthserum/on_mob_life(mob/living/carbon/H)
+	var/newsize = current_size
+	switch(volume)
+		if(0 to 19)
+			newsize = 1.25*RESIZE_DEFAULT_SIZE
+		if(20 to 49)
+			newsize = 1.5*RESIZE_DEFAULT_SIZE
+		if(50 to INFINITY)
+			newsize = 2*RESIZE_DEFAULT_SIZE
+
+	H.resize = newsize/current_size
+	current_size = newsize
+	H.update_transform()
+	..()

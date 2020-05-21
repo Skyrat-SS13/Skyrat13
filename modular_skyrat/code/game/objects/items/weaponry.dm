@@ -1,3 +1,4 @@
+//switchblades
 /obj/item/switchblade/crafted
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "switchblade_ms"
@@ -29,6 +30,74 @@
 		icon_state = "switchblade_msf"
 		to_chat(user, "<span class='notice'>You use part of the silver to improve your Switchblade. Stylish!</span>")
 
+/obj/item/switchblade/deluxe
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "switchblade_deluxe"
+	desc = "A powered switchblade that also burns on impact."
+	force = 2
+	throwforce = 3
+	extended_force = 15
+	extended_throwforce = 20
+	extended_icon_state = "switchblade_deluxe_ext"
+	retracted_icon_state = "switchblade_deluxe"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
+	var/firestacking = 0
+	var/burn_force = 3
+	obj_flags = UNIQUE_RENAME
+
+/obj/item/switchblade/deluxe/CheckParts(list/parts_list)
+	var/obj/item/switchblade/source = locate() in parts_list
+	if(istype(source, /obj/item/switchblade) && !istype(source, /obj/item/switchblade/crafted))
+		force = 5
+		throwforce = 5
+		extended_force = 18
+		extended_throwforce = 24
+		burn_force = 4
+	qdel(source)
+
+/obj/item/switchblade/deluxe/afterattack(target, user, proximity_flag)
+	..()
+	if(proximity_flag)
+		if(iscarbon(target) && extended)
+			var/mob/living/carbon/L = target
+			var/mob/living/carbon/ourman = user
+			L.apply_damage(damage = burn_force,damagetype = BURN, def_zone = L.get_bodypart(check_zone(ourman.zone_selected)), blocked = FALSE, forced = FALSE)
+			L.fire_stacks += firestacking
+			L.IgniteMob()
+		else if(isliving(target) && extended)
+			var/mob/living/thetarget = target
+			thetarget.adjustBruteLoss(burn_force)
+
+/obj/item/switchblade/deluxe/attack_self(mob/user)
+	extended = !extended
+	playsound(user, extended ? 'sound/weapons/saberon.ogg' : 'sound/weapons/saberoff.ogg', 15, 1)
+	if(extended)
+		force = extended_force
+		w_class = WEIGHT_CLASS_NORMAL
+		throwforce = extended_throwforce
+		icon_state = extended_icon_state
+		attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		hitsound = 'sound/weapons/bladeslice.ogg'
+		sharpness = IS_SHARP
+		light_color = "#cc00ff"
+		light_range = 1
+		light_power = 1
+		item_state = "switchblade_deluxe_ext"
+	else
+		force = initial(force)
+		w_class = WEIGHT_CLASS_SMALL
+		throwforce = initial(throwforce)
+		icon_state = retracted_icon_state
+		attack_verb = list("stubbed", "poked")
+		hitsound = 'sound/weapons/genhit.ogg'
+		sharpness = IS_BLUNT
+		light_color = null
+		light_range = 0
+		light_power = 0
+		item_state = null
+
+//dumb roblox sword
 /obj/item/claymore/roblox
 	name = "Fencing Sword"
 	desc = "It seems otherworldly."
@@ -85,6 +154,7 @@
 	duration = 4
 	layer = ABOVE_MOB_LAYER
 
+//ebony blade
 /obj/item/twohanded/ebonyblade
 	name = "Ebony Blade"
 	desc = "Forged in deceit, this weapon gets more powerful with the blood of those that are alligned with you."
@@ -153,7 +223,7 @@
 				if(user.mind.special_role == target.mind.special_role)
 					src.force_wielded += forceadd_sameantagonist
 					src.lifesteal += forceadd_sameantagonist/2
-					src.block_chance_wielded += blockadd_anydeceit
+					src.block_chance_wielded += (blockadd_anydeceit * 2)
 					if(src.block_chance_wielded > 90)
 						src.block_chance_wielded = 90
 				if(user.mind.isholy == target.mind.isholy)
@@ -163,6 +233,62 @@
 					if(src.block_chance_wielded > 90)
 						src.block_chance_wielded = 90
 
+//shitty hatchet
+/obj/item/hatchet/improvised
+	name = "glass hatchet"
+	desc = "A makeshift hand axe with a crude blade of broken glass."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "glasshatchet"
+	item_state = "glasshatchet"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/righthand.dmi'
+	force = 11
+	throwforce = 11
+
+/obj/item/hatchet/improvised/CheckParts(list/parts_list)
+	var/obj/item/shard/tip = locate() in parts_list
+	if (istype(tip, /obj/item/shard/plasma))
+		force = 12
+		throwforce = 12
+		custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	qdel(tip)
+
+//a fucking shank
+/obj/item/shank
+	name = "shank"
+	desc = "A nasty looking shard of glass. There's paper wrapping over one of the ends."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "shank"
+	force = 5 // Bad force, but it stabs twice as fast
+	throwforce = 10
+	sharpness = IS_SHARP
+	w_class = WEIGHT_CLASS_TINY
+	item_state = "shard-glass"
+	attack_verb = list("stabbed", "shanked", "sliced", "cut")
+	siemens_coefficient = 0 //We are insulated
+	var/clickmodifier = 0.5
+
+/obj/item/shank/Initialize()
+	..()
+	update_icon()
+
+/obj/item/shank/CheckParts(list/parts_list)
+	var/obj/item/shard/tip = locate() in parts_list
+	if(istype(tip, /obj/item/shard/plasma))
+		force = 6
+		throwforce = 12
+		custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+		clickmodifier = 0.40
+	qdel(tip)
+
+/obj/item/shank/update_icon()
+	icon_state = "shank"
+
+/obj/item/shank/afterattack(atom/target, mob/living/user, proximity)
+	if(proximity)
+		user.changeNext_move(CLICK_CD_MELEE * clickmodifier)
+
+//mace of molag bal
 /obj/item/melee/cleric_mace/molagbal
 	name = "Mace of Molag Bal"
 	desc = "Make the weak and frail bend to you."
@@ -227,6 +353,33 @@
 		final_block_chance = 0
 	return ..()
 
+/obj/item/twohanded/spear/halberd
+	name = "makeshift halberd"
+	desc = "A horrible creation that shouldn't even work. Simply put, a hatchet attached to the end of a makeshift glass spear."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "mhalberd0"
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/axes_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/axes_lefthand.dmi'
+	item_state = "mhalberd0"
+	icon_prefix = "mhalberd"
+	embedding = list("embedded_impact_pain_multiplier" = 3, "embed_chance" = 50)
+	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "stabbed", "slashed")
+	armour_penetration = 5
+
+/obj/item/twohanded/spear/halberd/CheckParts(list/parts_list)
+	var/obj/item/hatchet/tip = locate() in parts_list
+	var/obj/item/twohanded/spear/pear = locate() in parts_list
+	force = tip.force
+	force_unwielded = tip.force
+	if(!istype(pear, /obj/item/twohanded/spear/halberd))
+		force_wielded = pear.force_wielded + (tip.force/10)
+		throwforce = pear.throwforce + (tip.throwforce/10)
+	else
+		force_wielded = pear.force_wielded
+		throwforce = pear.throwforce
+	qdel(tip)
+	qdel(pear)
+	update_icon()
 
 //KINKY. Clone of the banhammer.
 /obj/item/bdsm_whip

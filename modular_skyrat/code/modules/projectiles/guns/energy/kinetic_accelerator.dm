@@ -1,3 +1,15 @@
+//Kinetic accelerator charging meme bugfix
+/obj/item/gun/energy/kinetic_accelerator/proc/reload()
+	if(ismob(loc) || isturf(loc)) //Kinetic accelerators won't charge inside objects. Period.
+		cell.give(cell.maxcharge)
+		if(!suppressed)
+			playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
+		else
+			to_chat(loc, "<span class='warning'>[src] silently charges up.</span>")
+		update_icon()
+		overheat = FALSE
+
+//BDM pka
 /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer
 	name = "bloody accelerator"
 	desc = "A modded premium kinetic accelerator with an increased mod capacity as well as lesser cooldown."
@@ -193,14 +205,16 @@
 	icon_aggro = "legion_head"
 	icon_dead = "legion_head"
 	icon_gib = "syndicate_gib"
-	friendly = "buzzes near"
+	friendly_verb_continuous = "buzzes near"
+	friendly_verb_simple = "buzz near"
 	vision_range = 10
 	maxHealth = 1
 	health = 5
 	harm_intent_damage = 5
 	melee_damage_lower = 12
 	melee_damage_upper = 12
-	attacktext = "bites"
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
 	speak_emote = list("echoes")
 	attack_sound = 'sound/weapons/pierce.ogg'
 	throw_message = "is shrugged off by"
@@ -229,7 +243,6 @@
 			L.GiveTarget(target)
 
 //blood drunk miner
-
 /obj/item/borg/upgrade/modkit/lifesteal/miner
 	name = "resonant lifesteal crystal"
 	desc = "Causes kinetic accelerator shots to heal the firer on striking a living target."
@@ -266,6 +279,41 @@
 
 /obj/item/borg/upgrade/modkit/cooldown/cooler/modify_projectile(obj/item/projectile/kinetic/K)
 	K.damage -= (modifier *2)
+
+//rogue process
+/obj/item/borg/upgrade/modkit/plasma
+	name = "plasma modification kit"
+	desc = "Makes your accelerator also shoot a burst of plasma."
+	modifier = 10
+	cost = 35
+
+/obj/item/borg/upgrade/modkit/plasma/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
+	playsound(KA, 'sound/weapons/laser.ogg', 100, TRUE)
+	var/turf/startloc = K.loc
+	var/obj/item/projectile/P = new /obj/item/projectile/plasma/adv(startloc)
+	P.starting = startloc
+	P.firer = K.firer
+	P.fired_from = KA
+	P.yo = target.y - startloc.y
+	P.xo = target.x - startloc.x
+	P.original = target
+	P.preparePixelProjectile(target, src)
+	P.fire()
+
+//gladiator
+/obj/item/borg/upgrade/modkit/shielding
+	name = "shielding modification kit"
+	desc = "Makes your kinetic accelerator block <b>15%</b> of all attacks while held."
+	modifier = 15
+	cost = 30
+
+/obj/item/borg/upgrade/modkit/shielding/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
+	. = ..()
+	KA.block_chance += modifier
+
+/obj/item/borg/upgrade/modkit/shielding/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, forcemove)
+	. = ..()
+	KA.block_chance -= modifier
 
 //10mm modkit (currently broken, only the 10mm pka works)
 /obj/item/gun/energy/kinetic_accelerator/tenmm
@@ -320,3 +368,16 @@
 			M.projectile_strike_predamage(src, target_turf, target, kinetic_gun)
 		for(var/obj/item/borg/upgrade/modkit/M in mods)
 			M.projectile_strike(src, target_turf, target, kinetic_gun)
+
+//sif
+/obj/item/borg/upgrade/modkit/critical
+	name = "critical modification kit"
+	desc = "Makes your kinetic accelerator have a <b>10%</b> chance to critically wound your target."
+	modifier = 10
+	cost = 30
+
+/obj/item/borg/upgrade/modkit/critical/modify_projectile(obj/item/projectile/kinetic/K)
+	. = ..()
+	if(prob(modifier))
+		K.damage *= 2
+		K.name = "critical [K.name]"
