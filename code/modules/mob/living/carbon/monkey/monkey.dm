@@ -172,3 +172,26 @@
 		var/obj/item/clothing/head/helmet/justice/escape/helmet = new(src)
 		equip_to_slot_or_del(helmet,SLOT_HEAD)
 		helmet.attack_self(src) // todo encapsulate toggle
+
+/mob/living/carbon/monkey/coder
+	name = "coder monkey"
+	aggressive = TRUE
+	verb_say = "criticizes"
+
+/mob/living/carbon/monkey/coder/Initialize()
+	. = ..()
+	var/list/possible_hats = list(
+		/obj/item/clothing/head/cone = 2,
+		/obj/item/clothing/head/crown = 1,
+		/obj/item/clothing/head/fedora = 2,
+		/obj/item/clothing/head/foilhat = 1,
+		/obj/item/clothing/head/hardhat/cakehat = 1,
+		/obj/item/clothing/head/helmet/justice = 2,
+		/obj/item/clothing/head/mikuhair = 2,
+		/obj/item/clothing/head/papersack = 2,
+		/obj/item/clothing/head/sombrero/shamebrero = 1
+	)
+	var/obj/item/clothing/head/H = pickweight(possible_hats)
+	H = new H(src)
+	equip_to_slot_or_del(H,SLOT_HEAD)
+

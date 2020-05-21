@@ -177,7 +177,7 @@
 
 /obj/item/gun/energy/kinetic_accelerator/emp_act(severity)
 	return
-
+/* moved to modular_skyrat
 /obj/item/gun/energy/kinetic_accelerator/proc/reload()
 	cell.give(cell.maxcharge)
 	if(!suppressed)
@@ -186,7 +186,7 @@
 		to_chat(loc, "<span class='warning'>[src] silently charges up.</span>")
 	update_icon()
 	overheat = FALSE
-
+*/
 /obj/item/gun/energy/kinetic_accelerator/update_icon()
 	..()
 	if(!can_shoot())

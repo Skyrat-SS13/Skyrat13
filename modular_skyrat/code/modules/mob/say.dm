@@ -41,3 +41,6 @@
 	spawn(20)
 	for(var/client/C in show_to)
 		C.images -= I 
+
+/mob/proc/terror_spider_check()
+	return FALSE

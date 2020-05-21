@@ -302,7 +302,7 @@
 	key = "shake"
 	key_third_person = "shakes"
 	message = "shakes their head."
-	emote_type = EMOTE_AUDIBLE
+//	emote_type = EMOTE_AUDIBLE // Skyrat change // ??
 
 /datum/emote/living/shiver
 	key = "shiver"
@@ -371,14 +371,20 @@
 	key = "surrender"
 	key_third_person = "surrenders"
 	message = "puts their hands on their head and falls to the ground, they surrender!"
-	emote_type = EMOTE_AUDIBLE
+//	emote_type = EMOTE_AUDIBLE //Skyrat change
 
 /datum/emote/living/surrender/run_emote(mob/user, params)
 	. = ..()
 	if(. && isliving(user))
 		var/mob/living/L = user
+		//Skyrat change start
+		if(L.client?.prefs?.autostand)
+			if(!(L.combat_flags & COMBAT_FLAG_INTENTIONALLY_RESTING))
+				TOGGLE_BITFIELD(L.combat_flags, COMBAT_FLAG_INTENTIONALLY_RESTING)
 		L.DefaultCombatKnockdown(200)
-
+		L.Stun(20) //Skyrat Change
+		L.disable_combat_mode(FALSE)
+		//Skyrat change stop
 /datum/emote/living/sway
 	key = "sway"
 	key_third_person = "sways"

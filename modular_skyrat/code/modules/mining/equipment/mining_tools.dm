@@ -20,7 +20,7 @@
 /obj/item/shovel/titanium
 	name = "titanium shovel"
 	icon = 'modular_skyrat/icons/obj/shovel.dmi'
-	icon_state = "titanium_shovel"
+	icon_state = "shovel_titanium"
 	force = 12
 	throwforce = 5
 	toolspeed = 0.05
@@ -28,7 +28,7 @@
 /obj/item/shovel/wide/titanium
 	name = "wide titanium shovel"
 	icon = 'modular_skyrat/icons/obj/shovel.dmi'
-	icon_state = "wide_titanium_shovel"
+	icon_state = "shovel_wide_titanium"
 	force = 14
 	throwforce = 4
 	widespeed = 0.15
@@ -36,7 +36,7 @@
 /obj/item/shovel/diamond
 	name = "diamond shovel"
 	icon = 'modular_skyrat/icons/obj/shovel.dmi'
-	icon_state = "diamond_shovel"
+	icon_state = "shovel_diamond"
 	force = 14
 	throwforce = 6
 	toolspeed = 0.025
@@ -44,7 +44,7 @@
 /obj/item/shovel/wide/diamond
 	name = "wide diamond shovel"
 	icon = 'modular_skyrat/icons/obj/shovel.dmi'
-	icon_state = "diamond_shovel_wide"
+	icon_state = "shovel_wide_diamond"
 	force = 16
 	throwforce = 8
 	widespeed = 0.075
