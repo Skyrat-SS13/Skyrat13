@@ -33,7 +33,7 @@
 		if(earliest_start >= world.time-SSticker.round_start_time)
 			return FALSE
 		//Start of Skyrat Change
-		if(occurances_max && occurances_current < occurances_max)
+		if(occurances_max && occurances_current > occurances_max)
 			return FALSE
 		//End of Skyrat Change
 		var/job_check = 0
