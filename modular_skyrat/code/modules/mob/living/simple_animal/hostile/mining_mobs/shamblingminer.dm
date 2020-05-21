@@ -34,7 +34,7 @@
 	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/mask
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/human = 2, /obj/item/stack/sheet/animalhide/human = 1, /obj/item/stack/sheet/bone = 1)
 	robust_searching = FALSE
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 	minimum_distance = 1
 	glorymessageshand = list("grabs the miner's eyes and rips them out, shoving the bloody miner aside!", "grabs and crushes the miner's skull apart with their bare hands!", "rips the miner's head clean off with their bare hands!")
 	glorymessagespka = list("sticks their PKA into the miner's mouth and shoots it, showering everything in gore!", "bashes the miner's head into their chest with their PKA!", "shoots off both legs of the miner with their PKA!")
