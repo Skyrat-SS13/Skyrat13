@@ -156,6 +156,7 @@
 					/obj/item/storage/backpack/polychromic = 3,
 					/obj/item/storage/backpack/satchel/polychromic = 3,
 					/obj/item/storage/backpack/duffelbag/polychromic = 3)
+					// SKYRAT EDIT CLOSE
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 3,
 					/obj/item/clothing/under/syndicate/tacticool/skirt = 3,
 					/obj/item/clothing/mask/balaclava = 3,
