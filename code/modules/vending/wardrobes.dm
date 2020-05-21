@@ -40,6 +40,7 @@
 					/obj/item/storage/backpack/medic = 5,
 					/obj/item/storage/backpack/satchel/med = 5,
 					/obj/item/storage/backpack/courier/med = 5,
+					// SKYRAT EDIT CLOSE
 					/obj/item/clothing/suit/hooded/wintercoat/medical = 5,
 					/obj/item/clothing/under/rank/medical/doctor/nurse = 5,
 					/obj/item/clothing/head/nursehat = 5,
