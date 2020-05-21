@@ -132,6 +132,11 @@
 /datum/reagent/consumable/maint_energy/raid/blood_red/on_mob_add(mob/living/L, amount)
 	. = ..()
 	L.apply_status_effect(STATUS_EFFECT_KYLE)
+	if(prob(33))
+		var/code = (num2text(rand(0,9)) + num2text(rand(0,9)) + num2text(rand(0,9)))
+		var/designation = pick("Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Zero", "Niner")
+		L.say("[code] [designation]")
+		playsound(L, 'sound/ambience/antag/tatoralert.ogg', 100)
 	to_chat(L, "<span class='userdanger'>The [src] makes you invincible!</span>")
 
 /datum/reagent/consumable/maint_energy/raid/blood_red/on_mob_delete(mob/living/L)
