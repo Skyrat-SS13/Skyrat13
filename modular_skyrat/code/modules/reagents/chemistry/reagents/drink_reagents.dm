@@ -113,7 +113,7 @@
 /datum/reagent/consumable/maint_energy/raid/blood_red
 	name = "Maintenance Energy Blood Red"
 	description = "Favored by operatives all around the frontier."
-	nutriment_factor = 2 * REAGENTS_METABOLISM
+	nutriment_factor = 0.357 * REAGENTS_METABOLISM
 	overdose_threshold = 25
 	pH = 4.5 //more acidic
 	color = "#ff0000d8"
