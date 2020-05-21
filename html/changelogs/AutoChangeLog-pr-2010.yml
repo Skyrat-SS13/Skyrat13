@@ -1,0 +1,6 @@
+author: "Afya + Too many"
+delete-after: True
+changes: 
+  - rscadd: "Borgs now get department radios with module selection."
+  - tweak: "You have to be closer to borgs to hear their radios."
+  - bugfix: "Fixed a minor syndicate borg thing."
