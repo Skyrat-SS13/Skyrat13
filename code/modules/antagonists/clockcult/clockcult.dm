@@ -5,6 +5,11 @@
 	antagpanel_category = "Clockcult"
 	job_rank = ROLE_SERVANT_OF_RATVAR
 	antag_moodlet = /datum/mood_event/cult
+<<<<<<< HEAD
+=======
+	skill_modifiers = list(/datum/skill_modifier/job/level/wiring)
+	var/datum/action/innate/hierophant/hierophant_network = new
+>>>>>>> 7f38e0714b... Skill calculation fixes, tweaks, antag and brain damage modifiers. (#12302)
 	threat = 3
 	var/datum/action/innate/hierophant/hierophant_network = new()
 	var/datum/team/clockcult/clock_team

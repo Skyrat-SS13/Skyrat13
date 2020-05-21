@@ -24,6 +24,8 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/list/blacklisted_quirks = list(/datum/quirk/nonviolent,/datum/quirk/mute) // Quirks that will be removed upon gaining this antag. Pacifist and mute are default.
 	var/threat = 0 // Amount of threat this antag poses, for dynamic mode
 
+	var/list/skill_modifiers
+
 /datum/antagonist/New()
 	GLOB.antagonists += src
 	typecache_datum_blacklist = typecacheof(typecache_datum_blacklist)
@@ -68,6 +70,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //Proc called when the datum is given to a mind.
 /datum/antagonist/proc/on_gain()
+<<<<<<< HEAD
 	if(owner && owner.current)
 		if(!silent)
 			greet()
@@ -82,6 +85,21 @@ GLOBAL_LIST_EMPTY(antagonists)
 			message_admins("([key_name_admin(owner.current)]), as an antag banned player became a [src.name].")
 		//Skyrat changes END
 		SEND_SIGNAL(owner.current, COMSIG_MOB_ANTAG_ON_GAIN, src)
+=======
+	if(!(owner?.current))
+		return
+	if(!silent)
+		greet()
+	apply_innate_effects()
+	give_antag_moodies()
+	remove_blacklisted_quirks()
+	if(is_banned(owner.current) && replace_banned)
+		replace_banned_player()
+	if(skill_modifiers)
+		for(var/A in skill_modifiers)
+			ADD_SINGLETON_SKILL_MODIFIER(owner, A, type)
+	SEND_SIGNAL(owner.current, COMSIG_MOB_ANTAG_ON_GAIN, src)
+>>>>>>> 7f38e0714b... Skill calculation fixes, tweaks, antag and brain damage modifiers. (#12302)
 
 /datum/antagonist/proc/is_banned(mob/M)
 	if(!M)
@@ -104,6 +122,8 @@ GLOBAL_LIST_EMPTY(antagonists)
 	clear_antag_moodies()
 	if(owner)
 		LAZYREMOVE(owner.antag_datums, src)
+		for(var/A in skill_modifiers)
+			owner.remove_skill_modifier(GET_SKILL_MOD_ID(A, type))
 		if(!silent && owner.current)
 			farewell()
 	var/datum/team/team = get_team()
