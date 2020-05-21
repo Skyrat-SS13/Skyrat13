@@ -14,3 +14,18 @@
 	surplus = 5
 	illegal_tech = FALSE
 
+/datum/uplink_item/badass/kyle
+	name = "Maintenance Energy Can"
+	desc = "Temporarily gives you damage resistance, more unarmed combat damage and the power to punch through weaker walls."
+	item = /obj/item/reagent_containers/food/drinks/soda_cans/maint_energy/blood_red
+	cost = 2
+	surplus = 10
+	illegal_tech = FALSE
+
+/datum/uplink_item/badass/kyle/six_pack
+	name = "Maintenance Energy Can"
+	desc = "Temporarily gives you damage resistance, more unarmed combat damage and the power to punch through weaker walls. Drink with caution."
+	item = /obj/item/storage/box/syndie_kit/sixpack
+	cost = 8
+	surplus = 5
+	illegal_tech = FALSE
