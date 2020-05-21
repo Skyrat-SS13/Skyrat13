@@ -552,7 +552,8 @@
 		"botany",
 		"botanist",
 		"wood",
-		"organic"
+		"organic",
+		"mushroom"
 	)
 
 /obj/item/kitchen/knife/combat/nettlebane/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
