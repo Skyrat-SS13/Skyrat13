@@ -216,6 +216,7 @@
 			back = /obj/item/storage/backpack/courier/polychromic //Polychromic Courier bag
 		if(PLYSDB)
 			back = /obj/item/storage/backpack/duffelbag/polychromic //Polychromic Duffel bag
+		// SKYRAT EDIT CLOSE
 		else
 			back = backpack //Department backpack
 
