@@ -5,7 +5,7 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/traitorclothes.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/traitorclothes_anthro.dmi'
 	icon_state = "ghostmask"
-	voice_unknown = TRUE
+	voice_unknown = FALSE
 	var/datum/dna/disguise
 	var/datum/dna/stored
 
