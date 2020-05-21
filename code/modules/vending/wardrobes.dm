@@ -379,6 +379,7 @@
 					/obj/item/storage/backpack/satchel/chem = 3,
 					/obj/item/storage/bag/chemistry = 3,
 					/obj/item/storage/backpack/courier/chem = 3,
+					// SKYRAT EDIT CLOSE
 					/obj/item/fermichem/pHbooklet = 3)//pH indicator)
 	refill_canister = /obj/item/vending_refill/wardrobe/chem_wardrobe
 
