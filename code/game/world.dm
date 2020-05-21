@@ -12,7 +12,7 @@ GLOBAL_LIST(topic_status_cache)
 	var/extools // Skyrat change -- BEGIN
 	switch(system_type)
 		if(MS_WINDOWS) extools = "./byond-extools.dll"
-		if(UNIX) extools = "./byond-extools.so"
+		if(UNIX) extools = "./libbyond-extools.so"
 	extools = world.GetConfig("env", "EXTOOLS_DLL") || extools // Skyrat change -- END
 	if (fexists(extools))
 		call(extools, "maptick_initialize")()
