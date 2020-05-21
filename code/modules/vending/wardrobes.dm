@@ -186,6 +186,7 @@
 	products = list(/obj/item/storage/backpack/botany = 3,
 					/obj/item/storage/backpack/satchel/hyd = 3,
 					/obj/item/storage/backpack/courier/hydr = 3,
+					// SKYRAT EDIT CLOSE
 					/obj/item/clothing/suit/hooded/wintercoat/hydro = 2,
 					/obj/item/clothing/suit/apron = 3,
 					/obj/item/clothing/suit/apron/overalls = 5,
