@@ -23,17 +23,3 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, lewd_verb_sound_consent)()
 
 /datum/verbs/menu/Settings/lewd_verb_sound_consent/Get_checked(client/C)
 	return C.prefs.toggles & LEWD_VERB_SOUNDS
-
-TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, toggle_asynchronous_say)()
-	set name = "Toggle Asynchronous Say"
-	set category = "Preferences"
-	set desc = "Toggle Asynchronous Say"
-
-	usr.client.prefs.toggles ^= ASYNCHRONOUS_SAY
-	usr.client.prefs.save_preferences()
-	usr.client.set_macros()
-	to_chat(usr, "You [(usr.client.prefs.toggles & ASYNCHRONOUS_SAY) ? "turn on" : "turn off"] asynchronous speech.")
-	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Asynchronous Say", "[usr.client.prefs.toggles & LEWD_VERB_SOUNDS ? "Yes" : "No"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/verbs/menu/Settings/toggle_asynchronous_say/Get_checked(client/C)
-	return C.prefs.toggles & ASYNCHRONOUS_SAY

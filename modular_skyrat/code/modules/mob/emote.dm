@@ -15,8 +15,7 @@
 
 /mob/emote(act, m_type = null, message = null, intentional = FALSE)
 	. = ..()
-	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
-		set_typing_indicator(FALSE)
+	set_typing_indicator(FALSE)
 
 /datum/emote/living/scream/run_emote(mob/living/user, params) //I can't not port this shit, come on.
 	if(user.nextsoundemote >= world.time || user.stat != CONSCIOUS)
