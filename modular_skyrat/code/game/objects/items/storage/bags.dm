@@ -23,6 +23,8 @@
 		/obj/item/wallframe/camera
 		))
 
+// COURIER BAGS
+
 /obj/item/storage/backpack/courier
 	name = "courier bag"
 	desc = "It's a bag made for delivery."
@@ -86,6 +88,7 @@
 	item_state = "courierbagblack"
 
 // POLYCHROMIC BACKPACKS
+
 /obj/item/storage/backpack/courier/polychromic
 	name = "polychromic courier bag"
 	desc = "Show off your awful tastes with your courier bag."
