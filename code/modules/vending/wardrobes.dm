@@ -439,6 +439,7 @@
 					/obj/item/storage/backpack/satchel/cap = 1,
 					/obj/item/storage/backpack/duffelbag/captain = 1,
 					/obj/item/storage/backpack/courier/com = 1,
+					// SKYRAT EDIT CLOSE
 					/obj/item/clothing/neck/cloak/cap = 1,
 					/obj/item/clothing/shoes/sneakers/brown = 2,
 					/obj/item/clothing/under/rank/captain = 1,
