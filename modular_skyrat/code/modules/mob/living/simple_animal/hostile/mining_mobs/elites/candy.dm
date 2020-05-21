@@ -27,7 +27,8 @@
 	health = 800
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	attacktext = "punches"
+	attack_verb_continuous = "punches"
+	attack_verb_simple = "punch"
 	attack_sound = 'sound/magic/demon_consume.ogg'
 	speed = 1
 	move_to_delay = 3

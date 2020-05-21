@@ -1,0 +1,6 @@
+author: "ShadeAware"
+delete-after: True
+changes: 
+  - rscadd: "Robotics Backpack, Satchel, and Duffelbag"
+  - rscadd: "Robotics now spawns with their own special backpacks"
+  - rscadd: "Robotics Backpack, Satchel, and Duffelbag to Robodrobe"

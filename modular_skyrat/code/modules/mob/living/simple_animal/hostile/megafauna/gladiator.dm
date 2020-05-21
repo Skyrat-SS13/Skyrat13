@@ -18,7 +18,8 @@ They deal 35 brute (armor is considered).
 	icon = 'modular_skyrat/icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "gladiator1"
 	icon_dead = "gladiator_dying"
-	attacktext = "slashes"
+	attack_verb_simple = "slashes"
+	attack_verb_continuous = "slash"
 	attack_sound = 'modular_skyrat/sound/weapons/zweihanderslice.ogg'
 	death_sound = 'modular_skyrat/sound/effects/gladiatordeathsound.ogg'
 	deathmessage = "gets discombobulated and fucking dies."
