@@ -193,7 +193,7 @@
 	level_current ++
 
 /datum/action/vampire/IsAvailable(silent = FALSE)
-	. = CheckCanUse(FALSE)
+	. = ..()
 
 ///////////////////////////////////  PASSIVE POWERS	///////////////////////////////////
 
