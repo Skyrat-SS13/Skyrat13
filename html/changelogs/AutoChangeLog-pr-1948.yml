@@ -1,0 +1,5 @@
+author: "Vampmare"
+delete-after: True
+changes: 
+  - rscadd: "Ported Terror Spiders from Paradise. Talk in the Terror hivemind with 't'."
+  - tweak: "Reduced Queen Terror egg refresh rate from 120->160 seconds"

@@ -11,7 +11,7 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 /mob/living/simple_animal/hostile/megafauna/bubblegum
 	death_sound = 'modular_skyrat/sound/misc/gorenest.ogg' //fuck it
 	var/movesound = 'sound/effects/meteorimpact.ogg'
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_HEAVY
 	song = sound('modular_skyrat/sound/ambience/bfgdivision.ogg', 100) //Thanks Mr. Infringio!
 	songlength = 1860
 

@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - spellcheck: "WT-550 now state the correct amount of ammo it has in a clip"

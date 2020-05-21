@@ -316,6 +316,8 @@ GLOBAL_LIST_EMPTY(family_heirlooms)
 
 /datum/quirk/social_anxiety/on_process()
 	var/nearby_people = 0
+	if(HAS_TRAIT(quirk_holder, TRAIT_FEARLESS)) //Skyrat change
+		return //Skyrat change
 	for(var/mob/living/carbon/human/H in oview(3, quirk_holder))
 		if(H.client)
 			nearby_people++
