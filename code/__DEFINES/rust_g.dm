@@ -1,5 +1,5 @@
 // rust_g.dm - DM API for rust_g extension library
-#define RUST_G "rust_g"
+#define RUST_G "./rust_g"
 
 #define RUSTG_JOB_NO_RESULTS_YET "NO RESULTS YET"
 #define RUSTG_JOB_NO_SUCH_JOB "NO SUCH JOB"
