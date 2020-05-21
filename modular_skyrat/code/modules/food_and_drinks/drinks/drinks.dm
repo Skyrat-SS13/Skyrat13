@@ -66,7 +66,7 @@
 	icon = 'modular_skyrat/icons/obj/drinks.dmi'
 	icon_state = "maintenergy_bloodred"
 	crushed_icon = 'modular_skyrat/icons/obj/janitor.dmi'
-	crushed_state = "maintenergy_trash"
+	crushed_state = "maintenergy_bloodred_trash"
 	list_reagents = list(/datum/reagent/consumable/maint_energy/raid/blood_red = 50)
 	foodtype = SUGAR
 
