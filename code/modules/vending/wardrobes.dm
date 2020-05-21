@@ -164,6 +164,7 @@
 					/obj/item/storage/backpack/science = 3,
 					/obj/item/storage/backpack/satchel/tox = 3,
 					/obj/item/storage/backpack/courier/sci = 3,
+					// SKYRAT EDIT CLOSE
 					/obj/item/clothing/suit/hooded/wintercoat/science = 3,
 					/obj/item/clothing/under/rank/rnd/scientist = 4,
 					/obj/item/clothing/under/rank/rnd/scientist/skirt = 4,
