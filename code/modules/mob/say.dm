@@ -21,8 +21,7 @@
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 	//SKYRAT EDIT
-	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
-		set_typing_indicator(FALSE)
+	set_typing_indicator(FALSE)
 	//END OF SKYRAT EDIT
 	if(message)
 		say(message)
@@ -52,8 +51,7 @@
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	//SKYRAT EDIT
-	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
-		set_typing_indicator(FALSE)
+	set_typing_indicator(FALSE)
 	//END OF SKYRAT EDIT
 	//clear_typing_indicator()		// clear it immediately! //Skyrat edit
 

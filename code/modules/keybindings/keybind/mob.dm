@@ -77,6 +77,7 @@
 		user.mob.dropItemToGround(I)
 	return TRUE
 
+/* Skyrat edit - typing indicator is handled asynchronously on normal say
 /datum/keybinding/mob/say_with_indicator
 	hotkey_keys = list("CtrlT")
 	classic_keys = list()
@@ -98,6 +99,7 @@
 	var/mob/M = user.mob
 	M.me_typing_indicator()
 	return TRUE
+*/
 
 /datum/keybinding/living/subtle
 	hotkey_keys = list("5")

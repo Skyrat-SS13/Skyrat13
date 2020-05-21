@@ -935,7 +935,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			//SKYRAT CHANGES END
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
-			dat += "<b>Asynchronous(no-delay) Say:</b> <a href='?_src_=prefs;preference=toggle_asynch_say'>[(toggles & ASYNCHRONOUS_SAY) ? "Enabled":"Disabled"]</a><br>" //SKYRAT CHANGE
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
@@ -2747,13 +2746,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("mute_lewd_verb_sounds") // Skyrat - ERP Mechanic Addition
 					toggles ^= LEWD_VERB_SOUNDS // Skyrat - ERP Mechanic Addition
-
-				// SKYRAT CHANGES - Asynchronous say for typing indicator
-				if("toggle_asynch_say")
-					toggles ^= ASYNCHRONOUS_SAY
-					if(user.client)
-						user.client.set_macros()
-				// END OF SKYRAT CHANGES
 
 				if("lobby_music")
 					toggles ^= SOUND_LOBBY
