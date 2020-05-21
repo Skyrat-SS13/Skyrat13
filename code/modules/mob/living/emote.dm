@@ -302,7 +302,7 @@
 	key = "shake"
 	key_third_person = "shakes"
 	message = "shakes their head."
-	emote_type = EMOTE_AUDIBLE
+//	emote_type = EMOTE_AUDIBLE // Skyrat change // ??
 
 /datum/emote/living/shiver
 	key = "shiver"
@@ -371,7 +371,7 @@
 	key = "surrender"
 	key_third_person = "surrenders"
 	message = "puts their hands on their head and falls to the ground, they surrender!"
-	emote_type = EMOTE_AUDIBLE
+//	emote_type = EMOTE_AUDIBLE //Skyrat change
 
 /datum/emote/living/surrender/run_emote(mob/user, params)
 	. = ..()

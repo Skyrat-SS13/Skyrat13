@@ -36,7 +36,8 @@
   * * extra_classes - Extra classes to apply to the span that holds the text
   * * lifespan - The lifespan of the message in deciseconds
   */
-/datum/chatmessage/New(text, atom/target, mob/owner, list/extra_classes = list(), lifespan = CHAT_MESSAGE_LIFESPAN) //Skyrat changes
+
+/datum/chatmessage/New(text, atom/target, mob/owner, list/extra_classes = list(), lifespan = CHAT_MESSAGE_LIFESPAN)
 	. = ..()
 	if (!istype(target))
 		CRASH("Invalid target given for chatmessage")
@@ -56,13 +57,11 @@
 	message = null
 	return ..()
 
-//Skyrat changes
 /**
   * Calls qdel on the chatmessage when its parent is deleted, used to register qdel signal
   */
 /datum/chatmessage/proc/on_parent_qdel()
 	qdel(src)
-//End of skyrat changes
 
 /**
   * Generates a chat message image representation
@@ -77,7 +76,7 @@
 /datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan)
 	// Register client who owns this message
 	owned_by = owner.client
-	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_parent_qdel) //Skyrat edit
+	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_parent_qdel)
 
 	var/pixels = 10 //Skyrat change
 	var/bold = FALSE //Skyrat change
@@ -221,7 +220,7 @@
   */
 /mob/proc/create_chat_message(atom/movable/speaker, datum/language/message_language, raw_message, list/spans, message_mode)
 	// Ensure the list we are using, if present, is a copy so we don't modify the list provided to us
-	spans = spans ? spans.Copy() : list() //Skyrat edit
+	spans = spans ? spans.Copy() : list()
 
 	// Check for virtual speakers (aka hearing a message through a radio)
 	var/atom/movable/originalSpeaker = speaker
