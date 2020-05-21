@@ -3540,6 +3540,7 @@
 #include "modular_skyrat\code\game\objects\items\storage\medkit.dm"
 #include "modular_skyrat\code\game\objects\items\storage\uplink_kits.dm"
 #include "modular_skyrat\code\game\objects\items\storage\backpacks\blueshield.dm"
+#include "modular_skyrat\code\game\objects\items\storage\backpacks\roboticist.dm"
 #include "modular_skyrat\code\game\objects\items\storage\backpacks\uplink_kits.dm"
 #include "modular_skyrat\code\game\objects\items\tanks\n2_tanks.dm"
 #include "modular_skyrat\code\game\objects\items\tools\weldingtool.dm"
