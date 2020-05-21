@@ -57,14 +57,6 @@
 	message = null
 	return ..()
 
-//Skyrat changes
-/**
-  * Calls qdel on the chatmessage when its parent is deleted, used to register qdel signal
-  */
-/datum/chatmessage/proc/on_parent_qdel()
-	qdel(src)
-//End of skyrat changes
-
 /**
   * Calls qdel on the chatmessage when its parent is deleted, used to register qdel signal
   */
