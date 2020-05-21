@@ -35,12 +35,6 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 ///Prevent clicking things below it on the same turf eg. doors/ fulltile windows.
 #define PREVENT_CLICK_UNDER_1		(1<<11)
 #define HOLOGRAM_1					(1<<12)
-<<<<<<< HEAD
-#define TESLA_IGNORE_1				(1<<13) // TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
-#define INITIALIZED_1				(1<<14)  //Whether /atom/Initialize() has already run for the object
-#define ADMIN_SPAWNED_1			(1<<15) 	//was this spawned by an admin? used for stat tracking stuff.
-#define PREVENT_CONTENTS_EXPLOSION_1 (1<<16) /// should not get harmed if this gets caught by an explosion?
-=======
 ///Prevents mobs from getting chainshocked by teslas and the supermatter.
 #define SHOCKED_1 					(1<<13)
 ///Whether /atom/Initialize() has already run for the object.
@@ -51,7 +45,6 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define PREVENT_CONTENTS_EXPLOSION_1 (1<<16)
 /// Early returns mob.face_atom()
 #define BLOCK_FACE_ATOM_1			(1<<17)
->>>>>>> 12ac08d7c5... Porting tesla/electrocute code updates. (#12280)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
