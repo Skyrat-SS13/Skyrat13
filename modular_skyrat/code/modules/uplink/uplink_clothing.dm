@@ -1,4 +1,4 @@
-/datum/uplink_item/suits/truedab
+/datum/uplink_item/suits/graycowl
 	name = "Gray Cowl"
 	desc = "A completely unassuming cowl, that makes you completely unrecognizable when worn."
 	item = /obj/item/storage/box/syndie_kit/truedab
