@@ -834,7 +834,7 @@
 	force = 20 //slight buff because 15 just doesn't cut it for megafauna loot... hehe "cut it"
 	throwforce = 10
 	block_chance = 20 //again, slight buff
-	armour_penetration = 100 //the armor penetration is really what makes this unique and actually worth it so boomp it
+	armour_penetration = 200 //the armor penetration is really what makes this unique and actually worth it so boomp it
 	hitsound = 'modular_skyrat/sound/sif/sif_slash.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "gutted", "gored")
 	sharpness = IS_SHARP
