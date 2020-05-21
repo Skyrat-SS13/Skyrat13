@@ -9,6 +9,8 @@
 	pH = 5 //slightly acidic
 	glass_name = "glass of Maintenance Energy"
 	glass_desc = "Unleash the tide."
+	var/list/healed_roles = list("Assistant")
+	var/heal_amount = 0.25
 
 /datum/reagent/consumable/maint_energy/on_mob_add(mob/living/L, amount)
 	. = ..()
@@ -18,6 +20,12 @@
 	. = ..()
 	M.Jitter(20)
 	M.drowsyness = max(M.drowsyness - 0.5, 0)
+	if(M.mind)
+		if((M.mind.assigned_role in healed_roles) || (M.mind.special_role in healed_roles))
+			M.adjustBruteLoss(-heal_amount, 0)
+			M.adjustFireLoss(-heal_amount, 0)
+			M.adjustToxLoss(-heal_amount, 0)
+			M.adjustOxyLoss(-heal_amount, 0)
 
 /datum/reagent/consumable/maint_energy/zero_fusion
 	name = "Maintenance Energy Zero Fusion"
@@ -37,6 +45,7 @@
 	taste_description = "radioactive lemon"
 	glass_name = "glass of Maintenance Energy Tritium Flood"
 	glass_desc = "Unleash the tesla."
+	healed_roles = list("Station Engineer", "Atmospheric Technician")
 
 /datum/reagent/consumable/maint_energy/plasma_fire
 	name = "Maintenance Energy Plasma Fire"
@@ -46,6 +55,7 @@
 	taste_description = "burning mango"
 	glass_name = "glass of Maintenance Energy Plasma Fire"
 	glass_desc = "Unleash the supermatter."
+	healed_roles = list("Station Engineer", "Atmospheric Technician")
 
 /datum/reagent/consumable/maint_energy/raid
 	name = "Maintenance Energy Raid"
@@ -55,6 +65,8 @@
 	taste_description = "cherries"
 	glass_name = "glass of Maintenance Energy Raid"
 	glass_desc = "Unleash the Death Squad."
+	healed_roles = list("Captain", "Head of Security", "Head of Personnel", "Blueshield",\
+						"Security Officer", "Detective", "Brig Physician", "Warden")
 	var/extraresist = 10
 	var/stunmod = 0
 	var/storedstunmod = 0
@@ -86,6 +98,7 @@
 	taste_description = "bubblegum"
 	glass_name = "glass of Maintenance Energy Megaflavor"
 	glass_desc = "Only drink capable of turning you into a Blood-Drunk Miner."
+	healed_roles = list("Quartermaster", "Cargo Technician", "Shaft Miner")
 
 /datum/reagent/consumable/maint_energy/raid/blood_red
 	name = "Maintenance Energy Blood Red"
@@ -102,6 +115,8 @@
 				This is not a drill.</b></span>"
 	extraresist = 20
 	stunmod = -0.5
+	healed_roles = list(ROLE_SYNDICATE, ROLE_TRAITOR)
+	heal_amount = 0.3
 	var/traumatized = 0
 
 /datum/reagent/consumable/maint_energy/raid/blood_red/on_mob_add(mob/living/L, amount)
