@@ -581,8 +581,8 @@
 		var/mob/living/carbon/human/H = target
 		var/datum/species/S = H.dna.species
 		if(istype(S, /datum/species/pod) || istype(S, /datum/species/mush))
-			ooser.visible_message("<span class='userdanger'>[user] slits [LM]'s throat with [src]!</span>", \
-					"<span class='userdanger'>You slit [LM]'s throat!</span>")
+			ooser.visible_message("<span class='userdanger'>[user] slits [H]'s throat with [src]!</span>", \
+					"<span class='userdanger'>You slit [H]'s throat!</span>")
 			H.bleed_rate = 30
 			if(NOBLOOD in H.dna.species.species_traits)
 				H.apply_damage(100, BRUTE, user.zone_selected, 0, TRUE)
