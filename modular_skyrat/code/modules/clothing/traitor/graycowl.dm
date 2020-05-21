@@ -18,21 +18,21 @@
 	. = ..()
 	if(iscarbon(M))
 		var/mob/living/carbon/human/idiot = new(src)
-		disguised.unique_enzymes = idiot.dna.unique_enzymes
-		disguised.uni_identity = idiot.dna.uni_identity
-		disguised.blood_type = idiot.dna.blood_type
-		disguised.species = new idiot.dna.species.type()
-		disguised.features = idiot.dna.features.Copy()
-		disguised.real_name = idiot.dna.real_name
-		disguised.nameless = idiot.dna.nameless
-		disguised.custom_species = idiot.dna.custom_species
-		disguised.mutations = idiot.dna.mutations.Copy()
-		disguised.temporary_mutations = idiot.dna.temporary_mutations.Copy()
-		disguised.delete_species = idiot.dna.delete_species
-		disguised.mutation_index = idiot.dna.mutation_index.Copy()
-		disguised.stability = idiot.dna.stability
-		disguised.scrambled = idiot.dna.scrambled
-		disguised.skin_tone_override = idiot.dna.skin_tone_override
+		disguise.unique_enzymes = idiot.dna.unique_enzymes
+		disguise.uni_identity = idiot.dna.uni_identity
+		disguise.blood_type = idiot.dna.blood_type
+		disguise.species = new idiot.dna.species.type()
+		disguise.features = idiot.dna.features.Copy()
+		disguise.real_name = idiot.dna.real_name
+		disguise.nameless = idiot.dna.nameless
+		disguise.custom_species = idiot.dna.custom_species
+		disguise.mutations = idiot.dna.mutations.Copy()
+		disguise.temporary_mutations = idiot.dna.temporary_mutations.Copy()
+		disguise.delete_species = idiot.dna.delete_species
+		disguise.mutation_index = idiot.dna.mutation_index.Copy()
+		disguise.stability = idiot.dna.stability
+		disguise.scrambled = idiot.dna.scrambled
+		disguise.skin_tone_override = idiot.dna.skin_tone_override
 		qdel(idiot)
 		var/mob/living/carbon/user = M
 		if(slot == SLOT_WEAR_MASK)
