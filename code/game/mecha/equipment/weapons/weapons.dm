@@ -12,7 +12,7 @@
 //SKYRAT EDIT - killdozer compatibility
 /obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/M)
 	if(..())
-		if(istype(M) && M.schut)
+		if(istype(M) && M.weaponized)
 			return 1
 	return 0
 //

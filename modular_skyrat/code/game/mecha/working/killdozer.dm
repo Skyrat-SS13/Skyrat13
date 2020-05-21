@@ -19,5 +19,5 @@
 	max_equip = 4
 	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter/killdozer
 	cargo_capacity = 20
-	schut = TRUE
+	weaponized = TRUE
 	smashcooldown = 6 //you can still cause a lotta damage with this
