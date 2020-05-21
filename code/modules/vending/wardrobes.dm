@@ -420,6 +420,7 @@
 					/obj/item/storage/backpack/virology = 3,
 					/obj/item/storage/backpack/satchel/vir = 3,
 					/obj/item/storage/backpack/courier/viro = 3)
+					// SKYRAT EDIT CLOSE
 	refill_canister = /obj/item/vending_refill/wardrobe/viro_wardrobe
 
 /obj/item/vending_refill/wardrobe/viro_wardrobe
