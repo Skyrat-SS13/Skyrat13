@@ -34,38 +34,6 @@
 
 	erase_all_macros()
 
-<<<<<<< HEAD
-	var/list/macro_sets = SSinput.macro_sets
-	for(var/i in 1 to macro_sets.len)
-		var/setname = macro_sets[i]
-		if(setname != "default")
-			winclone(src, "default", setname)
-		var/list/macro_set = macro_sets[setname]
-		for(var/k in 1 to macro_set.len)
-			var/key = macro_set[k]
-			var/command = macro_set[key]
-			//SKYRAT CHANGES - asynch keybind option
-			if(prefs.toggles & ASYNCHRONOUS_SAY)
-				switch(macro_sets[i])
-					if("default")
-						if(key == "T")
-							command = "say"
-						else if(key == "M")
-							command = "me"
-					if("old_default")
-						if(key == "Ctrl+T")
-							command = "say"
-					if("old_hotkeys")
-						if(key == "T")
-							command = "say"
-						else if(key == "M")
-							command = "me"
-			//END OF SKYRAT
-			winset(src, "[setname]-[REF(key)]", "parent=[setname];name=[key];command=[command]")
-
-	if(prefs.hotkeys)
-		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=default")
-=======
 	apply_macro_set(SKIN_MACROSET_HOTKEYS, SSinput.macroset_hotkey)
 	apply_macro_set(SKIN_MACROSET_CLASSIC_HOTKEYS, SSinput.macroset_classic_hotkey)
 	apply_macro_set(SKIN_MACROSET_CLASSIC_INPUT, SSinput.macroset_classic_input)
@@ -75,6 +43,5 @@
 /client/proc/set_hotkeys_preference(datum/preferences/prefs_override = prefs)
 	if(prefs_override.hotkeys)
 		winset(src, null, "map.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=[SKIN_MACROSET_HOTKEYS]")
->>>>>>> b57e1c1e93... Rebindable Hotkeys (#12138)
 	else
 		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=[SKIN_MACROSET_CLASSIC_INPUT]")

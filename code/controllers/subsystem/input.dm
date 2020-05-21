@@ -27,60 +27,11 @@ SUBSYSTEM_DEF(input)
 
 	return ..()
 
-<<<<<<< HEAD
-// This is for when macro sets are eventualy datumized
-/datum/controller/subsystem/input/proc/setup_default_macro_sets()
-	var/list/static/default_macro_sets
-
-	if(default_macro_sets)
-		macro_sets = default_macro_sets
-		return
-
-	default_macro_sets = list(
-		"default" = list(
-			"Tab" = "\".winset \\\"input.focus=true?map.focus=true input.background-color=[COLOR_INPUT_DISABLED]:input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
-			"O" = "ooc",
-			"Ctrl+O" = "looc",
-			"T" = "say_special", //Skyrat edit
-			"Ctrl+T" = "whisper", //Skyrat edit
-			//"Y" = "whisper", //Skyrat edit
-			"M" = "me_special", //Skyrat edit
-			"Ctrl+M" = "subtle", //Skyrat edit
-			//"5" = "subtle", //Skyrat edit
-			"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"", // This makes it so backspace can remove default inputs
-			"Any" = "\"KeyDown \[\[*\]\]\"",
-			"Any+UP" = "\"KeyUp \[\[*\]\]\"",
-			),
-		"old_default" = list(
-			"Tab" = "\".winset \\\"mainwindow.macro=old_hotkeys map.focus=true input.background-color=[COLOR_INPUT_DISABLED]\\\"\"",
-			"Ctrl+T" = "say_special", //skyrat-edit
-			"Ctrl+O" = "ooc",
-			),
-		"old_hotkeys" = list(
-			"Tab" = "\".winset \\\"mainwindow.macro=old_default input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
-			"O" = "ooc",
-			"L" = "looc",
-			"T" = "say_special", //Skyrat edit
-			"Ctrl+T" = "whisper", //Skyrat edit
-			"M" = "me_special", //Skyrat edit
-			"Ctrl+M" = "subtle", //Skyrat edit
-			"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"", // This makes it so backspace can remove default inputs
-			"Any" = "\"KeyDown \[\[*\]\]\"",
-			"Any+UP" = "\"KeyUp \[\[*\]\]\"",
-			),
-		)
-
-	// Because i'm lazy and don't want to type all these out twice
-	var/list/old_default = default_macro_sets["old_default"]
-
-	var/list/static/oldmode_keys = list(
-=======
 /// Sets up the key list for classic mode for when badmins screw up vv's.
 /datum/controller/subsystem/input/proc/setup_macrosets()
 	// First, let's do the snowflake keyset!
 	macroset_classic_input = list()
 	var/list/classic_mode_keys = list(
->>>>>>> b57e1c1e93... Rebindable Hotkeys (#12138)
 		"North", "East", "South", "West",
 		"Northeast", "Southeast", "Northwest", "Southwest",
 		"Insert", "Delete", "Ctrl", "Alt", "Shift",
