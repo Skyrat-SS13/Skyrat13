@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 /obj/item/pen/jammerpen/update_icon()
 	icon_state = "jammerpen[active]"
 
-/obj/item/pen/jammerpen/attack_self(mob/user)
+/obj/item/pen/jammerpen/AltClick(mob/user)
 	to_chat(user,"<span class='notice'>You [active ? "deactivate" : "activate"] [src].</span>")
 	active = !active
 	if(active)
