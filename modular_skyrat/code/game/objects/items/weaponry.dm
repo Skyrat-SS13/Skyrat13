@@ -57,12 +57,13 @@
 	qdel(source)
 
 /obj/item/switchblade/deluxe/afterattack(target, user, proximity_flag)
-	..()
+	. = ..()
 	if(proximity_flag)
 		if(iscarbon(target) && extended)
 			var/mob/living/carbon/L = target
 			var/mob/living/carbon/ourman = user
-			L.apply_damage(damage = burn_force,damagetype = BURN, def_zone = L.get_bodypart(check_zone(ourman.zone_selected)), blocked = FALSE, forced = FALSE)
+			var/obj/item/bodypart/affecting = L.get_bodypart(check_zone(ourman.zone_selected))
+			L.apply_damage(damage = burn_force,damagetype = BURN, def_zone = affecting, blocked = L.getarmor(affecting,  "melee"), forced = FALSE)
 			L.fire_stacks += firestacking
 			L.IgniteMob()
 		else if(isliving(target) && extended)
@@ -282,8 +283,9 @@
 /obj/item/shank/update_icon()
 	icon_state = "shank"
 
-/obj/item/shank/afterattack(atom/target, mob/living/user, proximity)
-	if(proximity)
+/obj/item/shank/afterattack(atom/target, mob/living/user, proximity_flag)
+	. = ..()
+	if(proximity_flag)
 		user.changeNext_move(CLICK_CD_MELEE * clickmodifier)
 
 //mace of molag bal
@@ -299,13 +301,13 @@
 	custom_materials = list(/datum/material/iron = 12000)
 	slot_flags = ITEM_SLOT_BELT
 	force = 15
-	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 8
+	w_class = WEIGHT_CLASS_BULKY
 	block_chance = 30
 	armour_penetration = 200
 	var/stamdamage = 30
-	var/confusion = 8
-	var/organdamage = 7
+	var/confusion = 10
+	var/organdamage = 10
 	overlay_state = null
 	overlay = null
 	attack_verb = list("disciplined", "struck", "dominated", "consumed", "beaten", "enslaved")
@@ -314,16 +316,16 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/H = target
-		var/loss = H.getStaminaLoss()
 		H.confused += confusion
 		H.adjust_blurriness(confusion)
 		if(prob(15) && user.zone_selected == BODY_ZONE_HEAD)
 			H.gain_trauma(/datum/brain_trauma/mild/concussion)
-		if(prob(25))
+		if(prob(67))
 			for(var/obj/item/organ/O in H.getorganszone(user.zone_selected))
 				O.damage += organdamage
 		H.adjustStaminaLoss(stamdamage)
-		if(loss > 100)
+		var/stamloss = H.getStaminaLoss()
+		if(stamloss > 100)
 			H.Sleeping(60)
 
 //stun baton staff
@@ -401,3 +403,288 @@
 	playsound(loc, 'sound/weapons/whip.ogg', 30)
 	if(user.a_intent != INTENT_HELP)
 		return ..(M, user)
+
+//blade of woe
+/obj/item/kitchen/knife/combat/woe
+	name = "Blade of Woe"
+	desc = "With friends like these..."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "bladeofwoe"
+	w_class = WEIGHT_CLASS_NORMAL
+	var/currentbrute = 0
+	var/mob/living/currenttarget = null
+
+/obj/item/kitchen/knife/combat/woe/pre_attack(atom/A, mob/living/user, params)
+	. = ..()
+	var/mob/living/LM = A
+	if(istype(LM))
+		currentbrute = LM.bruteloss
+		currenttarget = LM
+
+/obj/item/kitchen/knife/combat/woe/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(currenttarget == target)
+		var/newbrute = currenttarget.bruteloss - currentbrute
+		if(newbrute > 0)
+			var/mob/living/ooser = user
+			if(istype(ooser))
+				ooser.adjustBruteLoss(newbrute * -0.5)
+
+//ghostface's knife
+/obj/item/kitchen/knife/combat/ghost
+	name = "silvery knife"
+	desc = "Just killing. Chilling."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "ghostknife"
+	force = 15
+	var/forceunder = 15
+	var/forceover = 20
+	var/attackspeed = 0.65
+	var/attackspeedunder = 0.65
+	var/attackspeedover = 1.3
+	var/slowdownunder = 0
+	var/slowdownover = -2
+	slowdown = 0
+	var/mode = 1 //1 is under hand, 2 is over head
+	var/list/oversounds = list(
+		'modular_skyrat/sound/ghostface/highnote1.ogg',
+		'modular_skyrat/sound/ghostface/highnote2.ogg',
+		'modular_skyrat/sound/ghostface/highnote3.ogg',
+		'modular_skyrat/sound/ghostface/highnote4.ogg',
+		'modular_skyrat/sound/ghostface/highnote5.ogg'
+	)
+	var/dramaticsound = 'modular_skyrat/sound/ghostface/psychoviolin.ogg'
+	var/playingsound = 0
+	var/soundlength = 600
+	var/soundend = 0
+
+/obj/item/kitchen/knife/combat/ghost/examine(mob/user)
+	. = ..()
+	. += "<br>"
+	. += "<span class='danger' style='font-family:\"Times New Roman\", Times, serif;'><b>Currently attacking in [mode == 1 ? "under hand" : "over head"] mode.</b></span>"
+
+/obj/item/kitchen/knife/combat/ghost/process()
+	. = ..()
+	if(istype(loc, /mob))
+		if(playingsound && (world.time > soundend))
+			playsound(loc, dramaticsound, 100, 0, 0, 1, null, channel = CHANNEL_HIGHEST_AVAILABLE)
+			soundend = world.time + soundlength
+	
+/obj/item/kitchen/knife/combat/ghost/attack_self(mob/user)
+	. = ..()
+	switch(mode)
+		if(1)
+			user.visible_message("<span class='danger'><b>[user]</b> lifts the [src] over their head.</span>", \
+							"<span class='danger'>You lift the [src] over your head.</span>")
+			mode = 2
+			slowdown = slowdownover
+			attackspeed = attackspeedover
+			force = forceover
+			playingsound = 0
+			STOP_PROCESSING(SSobj, src)
+			for(var/mob/L in view(5, user))
+				L.stop_sound_channel(CHANNEL_HIGHEST_AVAILABLE)
+		if(2)
+			user.visible_message("<span class='danger'><b>[user]</b> lowers the [src].</span>", \
+							"<span class='danger'>You lower [src].</span>")
+			mode = 1
+			slowdown = slowdownunder
+			attackspeed = attackspeedunder
+			force = forceunder
+			if(/mob/living in (view(5, user) - user))
+				playsound(user, dramaticsound, 100, 0, 0, 1, null, channel = CHANNEL_HIGHEST_AVAILABLE)
+				playingsound = 1
+				soundend = world.time + soundlength
+				START_PROCESSING(SSobj, src)
+
+/obj/item/kitchen/knife/combat/ghost/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(proximity_flag)
+		if(mode == 2)
+			playsound(user, pick(oversounds), 100, 0)
+		user.changeNext_move(CLICK_CD_MELEE * attackspeed)
+
+//mehrunes razor
+/obj/item/kitchen/knife/combat/mehrunes
+	name = "Mehrune's Razor"
+	desc = "You found my razor. Good. Can you feel it's hunger? Can you feel it's... Frustration?"
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "mehrunesrazor"
+	force = 10
+	throwforce = 8
+	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/kitchen/knife/combat/mehrunes/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(isliving(target) && isliving(user))
+		var/mob/living/LM = target
+		var/mob/living/ooser
+		if(prob(25))
+			user.changeNext_move(CLICK_CD_MELEE * 0.5)
+		if(prob(10))
+			ooser.visible_message("<span class='userdanger'>[ooser] tears through [LM]'s flesh with [src]!</span>", \
+							"<span class='userdanger'>You tear through [LM]'s flesh with [src]!</span>")
+			var/def_zone = ooser.zone_selected
+			var/obj/item/bodypart/affecting = LM.get_bodypart(check_zone(def_zone))
+			LM.apply_damage(50, BRUTE, affecting, LM.getarmor(affecting,  "melee"), FALSE)
+		if(prob(1))
+			ooser.visible_message("<span class='userdanger'>[user] slits [LM]'s throat with [src]!</span>", \
+					"<span class='userdanger'>You slit [LM]'s throat!</span>")
+			LM.apply_damage(25, BRUTE, BODY_ZONE_HEAD, 0, TRUE)
+			if(ishuman(LM))
+				var/mob/living/carbon/human/H = LM
+				H.bleed_rate += 30
+			if(!LM.has_status_effect(/datum/status_effect/neck_slice))
+				LM.apply_status_effect(/datum/status_effect/neck_slice)
+
+//nettlebane
+/obj/item/kitchen/knife/combat/nettlebane
+	name = "Nettlebane"
+	desc = "A sharp, green dagger. Able to destroy plant matter instantly."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "nettlebane"
+	w_class = WEIGHT_CLASS_NORMAL
+	var/list/plantlist = list(
+		"plant",
+		"vegetable",
+		"fruit",
+		"hydroponics",
+		"botany",
+		"botanist",
+		"wood",
+		"organic"
+	)
+
+/obj/item/kitchen/knife/combat/nettlebane/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	var/mob/living/ooser = user
+	if(!istype(ooser) || !proximity_flag)
+		return FALSE
+	if(ooser.a_intent != INTENT_HARM)
+		return .
+	for(var/plont in plantlist)
+		if((findtext(target.name, plont) || findtext(target.desc, plont)) && (!isliving(target)))
+			qdel(target)
+			return FALSE
+		else if((findtext(target.name, plont) || findtext(target.desc, plont)) && (isliving(target)))
+			var/mob/living/LM = target
+			LM.death()
+	for(var/obj/item/reagent_containers/food/snacks/grown/plant in target)
+		qdel(plant)
+	if(istype(target, /obj/item/reagent_containers/food/snacks/grown))
+		qdel(target)
+		return FALSE
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		var/datum/species/S = H.dna.species
+		if(istype(S, /datum/species/pod) || istype(S, /datum/species/mush))
+			H.death()
+			return FALSE
+
+//butterfly knife
+/obj/item/melee/transforming/butterfly
+	name = "balisong knife"
+	desc = "A stealthy knife famously used by spy organisations. Capable of piercing armour and causing massive backstab damage when used with harm intent."
+	flags_1 = CONDUCT_1
+	force = 0
+	force_on = 10
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "butterflyknife0"
+	icon_state_on = "butterflyknife1"
+	hitsound_on = 'modular_skyrat/sound/weapons/knife.ogg'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
+	item_state = null
+	var/item_state_on = "switchblade_butterfly_ext"
+	throwforce = 0
+	throwforce_on = 10
+	var/backstabforce = 30
+	armour_penetration = 20
+	attack_verb_on = list("poked", "slashed", "stabbed", "sliced", "torn", "pierced", "diced", "cut")
+	attack_verb_off = list("tapped", "prodded")
+	w_class = WEIGHT_CLASS_SMALL
+	sharpness = IS_BLUNT
+	var/sharpness_on = IS_SHARP_ACCURATE
+	w_class_on = WEIGHT_CLASS_NORMAL
+	custom_materials = list(MAT_METAL=12000)
+	var/onsound
+	var/offsound
+
+/obj/item/melee/transforming/butterfly/transform_weapon(mob/living/user, supress_message_text)
+	. = ..()
+	if(.)
+		if(active)
+			item_state = item_state_on
+			sharpness = sharpness_on
+		else if(!active)
+			item_state = initial(item_state)
+			sharpness = initial(sharpness)
+
+
+/obj/item/melee/transforming/butterfly/attack(mob/living/carbon/M, mob/living/carbon/user)
+	if(check_target_facings(user, M) == FACING_SAME_DIR && active && user.a_intent != INTENT_HELP && ishuman(M))
+		var/mob/living/carbon/human/U = M
+		return backstab(U,user,backstabforce)
+
+	if(user.zone_selected == "eyes" && active)
+		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
+			M = user
+		return eyestab(M,user)
+	else
+		return ..()
+
+/obj/item/melee/transforming/butterfly/transform_messages(mob/living/user, supress_message_text)//no fucking esword on sound
+	playsound(user, active ? onsound  : offsound , 50, 1)
+	if(!supress_message_text)
+		to_chat(user, "<span class='notice'>[src] [active ? "is now active":"can now be concealed"].</span>")
+
+
+/obj/item/melee/transforming/butterfly/proc/backstab(mob/living/carbon/human/U, mob/living/carbon/user, damage)
+	var/obj/item/bodypart/affecting = U.get_bodypart("chest")
+
+	if(!affecting || U == user || U.stat == DEAD) //no chest???!!!!
+		return
+
+	U.visible_message("<span class='danger'>[user] has backstabbed [U] with [src]!</span>", \
+						"<span class='userdanger'>[user] backstabs you with [src]!</span>")
+
+	src.add_fingerprint(user)
+	playsound(loc,'modular_skyrat/sound/weapons/knifecrit.ogg', 40, 1, -1)
+	user.do_attack_animation(U)
+	U.apply_damage(damage, BRUTE, affecting, U.getarmor(affecting, "melee"))
+	U.dropItemToGround(U.get_active_held_item())
+
+	log_combat(user, U, "backstabbed", "[src.name]", "(INTENT: [uppertext(user.a_intent)])")
+
+//energy butterfly knife
+/obj/item/melee/transforming/butterfly/energy
+	name = "energy balisong"
+	desc = "A vicious carbon fibre blade and plasma tip allow for unparelled precision strikes against unknowing targets."
+	force_on = 15
+	throwforce_on = 20
+	backstabforce = 100
+	item_state_on = "switchblade_butterfly_energy_ext"
+	icon_state = "butterflyknifeenergy0"
+	icon_state_on = "butterflyknifeenergy1"
+	onsound = 'modular_skyrat/sound/weapons/knifeopen.ogg'
+	offsound = 'modular_skyrat/sound/weapons/knifeclose.ogg'
+
+//cock cleaver
+/obj/item/kitchen/knife/butcher/cockchopper
+	name = "cock cleaver"
+	desc = "Capable of castrating any invidual."
+	force = 20
+	throwforce = 25
+
+/obj/item/kitchen/knife/butcher/cockchopper/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/castrated = target
+		var/cockchopped = 0
+		for(var/obj/item/organ/genital/peepee in castrated)
+			peepee.Remove()
+			peepee.forceMove(castrated.loc)
+			cockchopped = 1
+		if(cockchopped)
+			castrated.visible_message("<span class='userdanger'>[castrated] has his genitals get completely chopped off!</span>", \
+						"<span class='userdanger'>Your genitals get cut off! AGH!</span>")

@@ -5,6 +5,35 @@
 	cost = 10
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/dangerous/mehrunesrazor
+	name = "Mehrune's Razor"
+	desc = "A magical dagger. Through it's chaotic will, the user may bring certain death to their target."
+	item = /obj/item/kitchen/knife/combat/mehrunes
+	cost = 16
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/dangerous/bladeofwoe
+	name = "Blade of Woe"
+	desc = "A dagger, capable of using your enemies' blood to heal your own ailments."
+	item = /obj/item/kitchen/knife/combat/woe
+	cost = 12
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/dangerous/nettlebane
+	name = "Nettlebane"
+	desc = "A dagger. As effective as a combat knife, with the added benefit of causing death on any plant matter instantaneously."
+	item = /obj/item/kitchen/knife/combat/nettlebane
+	cost = 12
+	restricted_roles = list("Botanist")
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/dangerous/energybalisong
+	name = "Energy Balisong"
+	desc = "An advanced, energy tipped version of the classic knife design. Able to do massive backstab damage on targets."
+	item = /obj/item/melee/transforming/butterfly/energy
+	cost = 14
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/dangerous/contender
 	name = "Contender Kit"
 	desc = "A kit containing a Contender, a double barreled rifle that accepts any kind of ammunition, a swat helmet, a combat knife, and four 7.62mm  bullets to help you."
@@ -26,14 +55,14 @@
 	name = "Mace of Molag Bal"
 	desc = "A cursed artifact, capable of penetrating all armor and knocking down your targets senseless"
 	item = /obj/item/melee/cleric_mace/molagbal
-	cost = 12
+	cost = 14
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/morphcube
 	name = "Morph Cube"
 	desc = "Gives you the ability to shapeshift into the currrent scanned animal on the cube."
 	item = /obj/item/morphcube
-	cost = 18
+	cost = 16
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/cxneb
