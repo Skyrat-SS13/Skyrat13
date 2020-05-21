@@ -36,6 +36,16 @@
 	glass_name = "glass of Maintenance Energy Zero Fusion"
 	glass_desc = "Unleash the singulo."
 
+/datum/reagent/consumable/maint_energy/zero_fusion/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.age >= 30)
+			M.adjustBruteLoss(-(2 * heal_amount), 0)
+			M.adjustFireLoss(-(2 * heal_amount), 0)
+			M.adjustToxLoss(-(2 * heal_amount), 0)
+			M.adjustOxyLoss(-(2 * heal_amount), 0)
+
 /datum/reagent/consumable/maint_energy/tritium_flood
 	name = "Maintenance Energy Tritium Flood"
 	description = "The flavor of atmosia, inside your mouth."
