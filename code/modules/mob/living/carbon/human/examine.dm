@@ -340,7 +340,7 @@
 			msg += "[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.\n"
 		else
 			if(HAS_TRAIT(src, TRAIT_DUMB))
-				msg += "[t_He] [t_has] a stupid expression on [t_his] face.\n"
+				msg += "[t_He] [t_has] a vapid expression on [t_his] face.\n" // Skyrat edit
 			if(InCritical())
 				msg += "[t_He] [t_is] barely conscious.\n"
 		if(getorgan(/obj/item/organ/brain))
