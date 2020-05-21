@@ -1,0 +1,4 @@
+author: "Funce"
+delete-after: True
+changes: 
+  - rscadd: "You can now view the OOC notes of Cyborgs!"
