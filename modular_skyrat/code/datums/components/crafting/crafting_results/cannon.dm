@@ -9,7 +9,7 @@
 /obj/vehicle/ridden/wheelchair/wheelchair_assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/weldingtool) && !istype(src, /obj/vehicle/ridden/wheelchair/wheelchair_assembly/cannon))
-		var/obj/item/weldingtool/weldy = I 
+		var/obj/item/weldingtool/weldy = I
 		if(weldy.isOn())
 			new /obj/vehicle/ridden/wheelchair/wheelchair_assembly/cannon(src.loc)
 			to_chat(user, "<span class='notice'>You weld the barrel to the wheelchair.</span>")
@@ -42,14 +42,14 @@
 				if(istype(Re, /datum/reagent/fuel))
 					F = Re
 			if(F)
-				if(R.reagents.trans_id_to(boomtank, F.type, F.volume))
+				if(R.reagents.trans_id_to(boomtank, F.type, min(10, F.volume)))
 					to_chat(user, "<span class='notice'>You transfer all of [R]'s possible fuel to \the [src].</span>")
 				else
 					to_chat(user, "<span class='notice'>\The [src] is already full.</span>")
-			else 
+			else
 				to_chat(user, "<span class='notice'>\The [R] has no fuel.</span>")
-		else 
-			if(I.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
+		else
+			if(!loaded_item)
 				I.forceMove(src)
 				loaded_item = I
 				to_chat(user, "<span class='notice'>You load \the [I] on [src].</span>")
@@ -71,7 +71,7 @@
 			addtimer(CALLBACK(src, .proc/Fire, user, get_edge_target_turf(src, dir)), 30)
 			visible_message("<span class='danger'>[user] sets the [src]'s wick on fire! Get back!</span>")
 	else
-		if(I.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
+		if(!loaded_item)
 			I.forceMove(src)
 			loaded_item = I
 		else if(loaded_item)
