@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/infiltrator/ghostface
 	name =  "screaming mask"
-	desc = "A very suspicious mask. Reminds you of an old painting..."
+	desc = "Sometimes, it's more important to ask where they are, rather than who they are."
 	icon = 'modular_skyrat/icons/obj/clothing/traitorclothes.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/traitorclothes.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/traitorclothes_anthro.dmi'
@@ -12,7 +12,7 @@
 /obj/item/clothing/mask/infiltrator/ghostface/Initialize()
 	. = ..()
 	disguise = new /datum/dna()
-	disguise.real_name = "Ghostface"
+	disguise.real_name = "Screamer"
 	stored = new /datum/dna()
 
 /obj/item/clothing/mask/infiltrator/ghostface/equipped(mob/M, slot)
@@ -88,7 +88,7 @@
 
 /obj/item/clothing/suit/hooded/cultrobes/ghostface
 	name = "black robes"
-	desc = "Many people would kill to have this."
+	desc = "Many people would kill to have these."
 	icon = 'modular_skyrat/icons/obj/clothing/traitorclothes.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/traitorclothes.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/traitorclothes_anthro.dmi'

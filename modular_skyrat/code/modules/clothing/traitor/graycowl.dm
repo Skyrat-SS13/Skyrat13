@@ -1,20 +1,25 @@
-/obj/item/clothing/head/helmet/graycowl
-	name = "gray cowl"
-	desc = "Just a normal, everyday cowl. Nothing to see here."
+//"gray cowl"
+/obj/item/clothing/mask/infiltrator/graycowl
+	name = "Mask-querade"
+	desc = "Sometimes, it's better to be someone else."
 	icon = 'modular_skyrat/icons/obj/clothing/traitorclothes.dmi'
+	flags_inv = 0
+	visor_flags_inv = 0
+	flags_cover = 0
 	icon_state = "graycowl"
 	mob_overlay_icon = null
 	anthro_mob_worn_overlay = null
 	item_state = null
+	voice_unknown = FALSE
 	var/datum/dna/disguise
 	var/datum/dna/stored
 
-/obj/item/clothing/head/helmet/graycowl/Initialize()
+/obj/item/clothing/mask/infiltrator/graycowl/Initialize()
 	. = ..()
 	disguise = new /datum/dna()
 	stored = new /datum/dna()
 
-/obj/item/clothing/head/helmet/graycowl/equipped(mob/M, slot)
+/obj/item/clothing/mask/infiltrator/graycowl/equipped(mob/M, slot)
 	. = ..()
 	if(iscarbon(M))
 		var/mob/living/carbon/human/idiot = new(src)
@@ -70,7 +75,7 @@
 			user.dna.skin_tone_override = disguise.skin_tone_override
 			user.regenerate_icons()
 
-/obj/item/clothing/mask/infiltrator/ghostface/dropped(mob/M)
+/obj/item/clothing/mask/infiltrator/graycowl/dropped(mob/M)
 	. = ..()
 	if(iscarbon(M))
 		var/mob/living/carbon/user = M

@@ -1,6 +1,6 @@
 /datum/uplink_item/suits/graycowl
-	name = "Gray Cowl"
-	desc = "A completely unassuming cowl, that makes you completely unrecognizable when worn."
-	item = /obj/item/storage/box/syndie_kit/truedab
+	name = "Mask-querade"
+	desc = "A completely unassuming mask, that makes you completely unrecognizable when worn."
+	item = /obj/item/clothing/mask/infiltrator/graycowl
 	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)

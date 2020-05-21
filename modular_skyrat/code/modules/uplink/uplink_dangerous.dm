@@ -6,25 +6,17 @@
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/mehrunesrazor
-	name = "Mehrune's Razor"
-	desc = "A magical dagger. Through it's chaotic will, the user may bring certain death to their target."
+	name = "Serrated Blade"
+	desc = "A dagger. Through it's chaotic will, the user may bring certain death to their target."
 	item = /obj/item/kitchen/knife/combat/mehrunes
 	cost = 16
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/bladeofwoe
-	name = "Blade of Woe"
+	name = "Blackened Dagger"
 	desc = "A dagger, capable of using your enemies' blood to heal your own ailments."
 	item = /obj/item/kitchen/knife/combat/woe
 	cost = 12
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
-
-/datum/uplink_item/dangerous/nettlebane
-	name = "Nettlebane"
-	desc = "A dagger. As effective as a combat knife, with the added benefit of causing death on any plant matter instantaneously."
-	item = /obj/item/kitchen/knife/combat/nettlebane
-	cost = 12
-	restricted_roles = list("Botanist")
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/energybalisong
@@ -52,7 +44,7 @@
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/molagmace
-	name = "Mace of Molag Bal"
+	name = "Will Breaker"
 	desc = "A cursed artifact, capable of penetrating all armor and knocking down your targets senseless"
 	item = /obj/item/melee/cleric_mace/molagbal
 	cost = 14

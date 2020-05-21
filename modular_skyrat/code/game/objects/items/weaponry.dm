@@ -171,7 +171,7 @@
 	force = 5
 	force_unwielded = 5
 	force_wielded = 13
-	var/current_lifesteal = 2.5
+	var/current_lifesteal = 0
 	var/lifesteal = 2.5
 	var/forceadd_samerole = 5
 	var/forceadd_sameantagonist = 10
@@ -288,10 +288,10 @@
 	if(proximity_flag)
 		user.changeNext_move(CLICK_CD_MELEE * clickmodifier)
 
-//mace of molag bal
+//"mace of molag bal"
 /obj/item/melee/cleric_mace/molagbal
-	name = "Mace of Molag Bal"
-	desc = "Make the weak and frail bend to you."
+	name = "Will Breaker"
+	desc = "A heavy mace, covered in intricate runes."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "molagmace"
 	item_state = "molagmace"
@@ -404,10 +404,10 @@
 	if(user.a_intent != INTENT_HELP)
 		return ..(M, user)
 
-//blade of woe
+//"blade of woe"
 /obj/item/kitchen/knife/combat/woe
-	name = "Blade of Woe"
-	desc = "With friends like these..."
+	name = "Blackened Dagger"
+	desc = "An ornate obsidian-black dagger, with deep grooves for blood, you feel a slight prick everytime you touch the handle."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "bladeofwoe"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -504,10 +504,10 @@
 			playsound(user, pick(oversounds), 100, 0)
 		user.changeNext_move(CLICK_CD_MELEE * attackspeed)
 
-//mehrunes razor
+//"mehrunes razor"
 /obj/item/kitchen/knife/combat/mehrunes
-	name = "Mehrune's Razor"
-	desc = "You found my razor. Good. Can you feel it's hunger? Can you feel it's... Frustration?"
+	name = "Serrated Blade"
+	desc = "<span class='danger'>Feeling lucky?</span>"
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "mehrunesrazor"
 	force = 10
@@ -534,13 +534,15 @@
 			if(ishuman(LM))
 				var/mob/living/carbon/human/H = LM
 				H.bleed_rate += 30
+				if(NOBLOOD in H.dna.species.species_traits)
+					H.apply_damage(125, BRUTE, user.zone_selected, 0, TRUE)
 			if(!LM.has_status_effect(/datum/status_effect/neck_slice))
 				LM.apply_status_effect(/datum/status_effect/neck_slice)
 
-//nettlebane
+//"nettlebane"
 /obj/item/kitchen/knife/combat/nettlebane
-	name = "Nettlebane"
-	desc = "A sharp, green dagger. Able to destroy plant matter instantly."
+	name = "Mors Plant"
+	desc = "For when you're sick of being green."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "nettlebane"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -579,7 +581,13 @@
 		var/mob/living/carbon/human/H = target
 		var/datum/species/S = H.dna.species
 		if(istype(S, /datum/species/pod) || istype(S, /datum/species/mush))
-			H.death()
+			ooser.visible_message("<span class='userdanger'>[user] slits [LM]'s throat with [src]!</span>", \
+					"<span class='userdanger'>You slit [LM]'s throat!</span>")
+			H.bleed_rate = 30
+			if(NOBLOOD in H.dna.species.species_traits)
+				H.apply_damage(100, BRUTE, user.zone_selected, 0, TRUE)
+			if(!H.has_status_effect(/datum/status_effect/neck_slice))
+				H.apply_status_effect(/datum/status_effect/neck_slice)
 			return FALSE
 
 //butterfly knife
@@ -669,23 +677,3 @@
 	icon_state_on = "butterflyknifeenergy1"
 	onsound = 'modular_skyrat/sound/weapons/knifeopen.ogg'
 	offsound = 'modular_skyrat/sound/weapons/knifeclose.ogg'
-
-//cock cleaver
-/obj/item/kitchen/knife/butcher/cockchopper
-	name = "cock cleaver"
-	desc = "Capable of castrating any invidual."
-	force = 20
-	throwforce = 25
-
-/obj/item/kitchen/knife/butcher/cockchopper/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(iscarbon(target))
-		var/mob/living/carbon/castrated = target
-		var/cockchopped = 0
-		for(var/obj/item/organ/genital/peepee in castrated)
-			peepee.Remove()
-			peepee.forceMove(castrated.loc)
-			cockchopped = 1
-		if(cockchopped)
-			castrated.visible_message("<span class='userdanger'>[castrated] has his genitals get completely chopped off!</span>", \
-						"<span class='userdanger'>Your genitals get cut off! AGH!</span>")
