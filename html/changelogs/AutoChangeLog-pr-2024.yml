@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - refactor: "The ERP menu has now been updated to The Coom Menu. Features are detailed in PR #2024 ."
+  - rscdel: "Removed what little sanity i had."

@@ -123,11 +123,20 @@
 	name = "Cyan Beanie"
 	path = /obj/item/clothing/head/beanie/cyan
 
+/datum/gear/trekcap
+	name = "EntCorp Officer's Cap (White)"
+
 /datum/gear/trekcapmedisci
+	name = "EntCorp Officer's Cap (Blue)"
 	restricted_roles = MEDSCI_ROLES
 
 /datum/gear/trekcapsec
+	name = "EntCorp Officer's Cap (Red)"
 	restricted_roles = list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster", "Blueshield", "Brig Physician", "Warden", "Detective", "Security Officer")
 
+/datum/gear/trekcapeng
+	name = "EntCorp Officer's Cap (Yellow)"
+
 /datum/gear/trekcapcap
+	name = "EntCorp Officer's Cap (Black)"
 	restricted_roles = list("Captain", "Head of Personnel", "Blueshield")

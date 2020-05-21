@@ -74,3 +74,7 @@
 	prereq_ids = list("base")
 	design_ids = list("computermath")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/computer_board_gaming/New()
+	design_ids += "tetris"
+	. = ..()

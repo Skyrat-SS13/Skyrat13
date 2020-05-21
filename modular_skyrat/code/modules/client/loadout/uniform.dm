@@ -16,15 +16,15 @@
 	path = /obj/item/clothing/under/syndicate/tacticool/skirt
 
 /datum/gear/trekcmdtos
-	name = "Fed uniform, cmd"
+	name = "EntCorp uniform, cmd"
 	restricted_roles = CMD_ROLES
 
 /datum/gear/trekmedscitos
-	name = "Fed uniform, medsci"
+	name = "EntCorp uniform, medsci"
 	restricted_roles = MEDSCI_ROLES
 
 /datum/gear/trekengtos
-	name = "Fed uniform, ops"
+	name = "EntCorp uniform, ops"
 	restricted_roles = OPRS_ROLES
 
 /datum/gear/trekfedutil
@@ -32,11 +32,11 @@
 	restricted_roles = NOCIV_ROLES // Accomodates for modular and forgotten roles.
 
 /datum/gear/trekfedtrainee
-	name = "Fed uniform, trainee/assistant"
+	name = "EntCorp uniform, trainee/assistant"
 	path = /obj/item/clothing/under/trek/orvi
 
 /datum/gear/trekfedservice
-	name = "Fed uniform, service"
+	name = "EntCorp uniform, service"
 	path = /obj/item/clothing/under/trek/orvi/service
 	restricted_roles = CIV_ROLES
 	restricted_desc = "Civilian and Service"

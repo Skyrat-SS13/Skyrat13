@@ -38,7 +38,7 @@
 	var/moveCalc = 1
 	var/cachedmoveCalc = 1
 	var/last_checked_size //used to prevent potential cpu waste from happening every tick.
-
+/* //Skyrat edit -- moved to modular_skyrat
 /datum/status_effect/chem/breast_enlarger/on_apply()//Removes clothes, they're too small to contain you. You belong to space now.
 	log_game("FERMICHEM: [owner]'s breasts has reached comical sizes. ID: [owner.key]")
 	var/mob/living/carbon/human/H = owner
@@ -89,7 +89,7 @@
 			to_chat(H, "<span class='notice'>Your back is feeling a little sore.</span>")
 	last_checked_size = B.cached_size
 	..()
-
+*/ //Skyrat edit -- moved to modular_skyrat
 /datum/status_effect/chem/breast_enlarger/on_remove()
 	log_game("FERMICHEM: [owner]'s breasts has reduced to an acceptable size. ID: [owner.key]")
 	to_chat(owner, "<span class='notice'>Your expansive chest has become a more managable size, liberating your movements.</b></span>")
