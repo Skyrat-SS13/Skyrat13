@@ -8,7 +8,7 @@
 		\*												*/
 
 GLOBAL_LIST_EMPTY(preferences_datums)
-GLOBAL_LIST_INIT(food, list(
+GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		"Meat" = MEAT,
 		"Vegetables" = VEGETABLES,
 		"Raw" = RAW,
