@@ -77,6 +77,7 @@
 					/obj/item/storage/backpack/industrial = 3,
 					/obj/item/storage/backpack/satchel/eng = 3,
 					/obj/item/storage/backpack/courier/engi = 3,
+					// SKYRAT EDIT CLOSE
 					/obj/item/clothing/suit/hooded/wintercoat/engineering = 3,
 					/obj/item/clothing/under/rank/engineering/engineer = 5,
 					/obj/item/clothing/under/rank/engineering/engineer/skirt = 5,
