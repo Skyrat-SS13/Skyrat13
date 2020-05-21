@@ -73,8 +73,8 @@
 	var/list/clicklimiter
 
 	var/datum/chatOutput/chatOutput
-
-	var/list/credits //lazy list of all credit object bound to this client
+	// SKYRAT EDIT: Credits
+	//var/list/credits //lazy list of all credit object bound to this client
 
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
 

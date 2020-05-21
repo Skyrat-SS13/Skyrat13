@@ -12,6 +12,8 @@ GLOBAL_LIST_EMPTY(gangs)
 	required_enemies = 0
 	recommended_enemies = 2
 	enemy_minimum_age = 14
+	// SKYRAT EDIT: Credits
+	title_icon = "gang"
 
 	announce_span = "danger"
 	announce_text = "A violent turf war has erupted on the station!\n\
@@ -64,3 +66,21 @@ GLOBAL_LIST_EMPTY(gangs)
 		var/datum/antagonist/gang/boss/B = new()
 		M.add_antag_datum(B)
 		B.equip_gang()
+// SKYRAT EDIT: Credits
+/datum/game_mode/gang/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	for(var/datum/team/gang/G in GLOB.gangs)
+		round_credits += "<center><h1>The [G.name] Gang:</h1>"
+		len_before_addition = round_credits.len
+		for(var/datum/mind/boss in G.leaders)
+			round_credits += "<center><h2>[boss.name] as a [G.name] Gang leader</h2>"
+		for(var/datum/mind/gangster in (G.members - G.leaders))
+			round_credits += "<center><h2>[gangster.name] as a [G.name] gangster</h2>"
+		if(len_before_addition == round_credits.len)
+			round_credits += list("<center><h2>The [G.name] Gang was wiped out!</h2>", "<center><h2>The competition was too tough!</h2>")
+		round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits
