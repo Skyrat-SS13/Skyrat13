@@ -12,6 +12,7 @@
 					/obj/item/storage/backpack/satchel/sec = 5,
 					/obj/item/storage/backpack/duffelbag/sec = 5,
 					/obj/item/storage/backpack/courier/sec = 5,
+// SKYRAT EDIT CLOSE
 					/obj/item/clothing/under/rank/security/officer = 5,
 					/obj/item/clothing/shoes/jackboots = 5,
 					/obj/item/clothing/head/beret/sec =5,
