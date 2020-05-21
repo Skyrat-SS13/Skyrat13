@@ -87,7 +87,7 @@
 			window_name = "Automatic Station Cleaner v2.1 BETA" //New!
 			qdel(W)
 		if(!open)
-			to_chat(user, "<span class='notice'>The [src] access pannle is not open!</span>")
+			to_chat(user, "<span class='notice'>The [src] access pannel is not open!</span>")
 			return
 		if(!bot_core.allowed(user))
 			to_chat(user, "<span class='notice'>The [src] access pannel locked off to you!</span>")
