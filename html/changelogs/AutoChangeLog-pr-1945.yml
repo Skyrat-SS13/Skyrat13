@@ -1,0 +1,5 @@
+author: "Afya + jjpark-kb"
+delete-after: True
+changes: 
+  - rscadd: "Added Psychologist Job and locker"
+  - rscadd: "Psychologist office added to maps"
