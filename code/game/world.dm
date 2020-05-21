@@ -9,11 +9,7 @@ GLOBAL_LIST(topic_status_cache)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-	var/extools // Skyrat change -- BEGIN
-	switch(system_type)
-		if(MS_WINDOWS) extools = "./byond-extools.dll"
-		if(UNIX) extools = "./libbyond-extools.so"
-	extools = world.GetConfig("env", "EXTOOLS_DLL") || extools // Skyrat change -- END
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || return system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so" // Skyrat edit
 	if (fexists(extools))
 		call(extools, "maptick_initialize")()
 	enable_debugger()
