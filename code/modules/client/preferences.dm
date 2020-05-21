@@ -110,10 +110,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/see_chat_emotes = TRUE
 	var/enable_personal_chat_color = FALSE
 	var/personal_chat_color = "#ffffff"
-	var/list/foodlikes = list()
+	var/list/foodlikes = list() //Skyrat additions BEGIN
 	var/list/fooddislikes = list()
 	var/maxlikes = 3
-	var/maxdislikes = 3
+	var/maxdislikes = 3 //Skyrat additions END
 
 	var/list/alt_titles_preferences = list()
 	//END OF SKYRAT CHANGES
