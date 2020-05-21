@@ -34,7 +34,7 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	var/obj/item/udder/udder = null
 
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/hostile/retaliate/goat/Initialize()
 	udder = new()
@@ -140,7 +140,7 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	blood_volume = BLOOD_VOLUME_NORMAL
 
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/cow/Initialize()
 	udder = new()
@@ -222,7 +222,7 @@
 	mob_size = MOB_SIZE_TINY
 	gold_core_spawnable = FRIENDLY_SPAWN
 
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/chick/Initialize()
 	. = ..()
@@ -284,7 +284,7 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	var/static/chicken_count = 0
 
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/chicken/Initialize()
 	. = ..()
@@ -378,6 +378,8 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	var/static/kiwi_count = 0
 
+	footstep_type = FOOTSTEP_MOB_CLAW
+
 /mob/living/simple_animal/kiwi/Destroy()
 	--kiwi_count
 	return ..()
@@ -453,6 +455,8 @@
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	gold_core_spawnable = FRIENDLY_SPAWN
+
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/babyKiwi/Initialize()
 	. = ..()

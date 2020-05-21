@@ -61,7 +61,6 @@ Difficulty: Medium
 	move_force = MOVE_FORCE_NORMAL
 	move_resist = MOVE_FORCE_NORMAL
 	pull_force = MOVE_FORCE_NORMAL
-	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/dragon/glaurung/Initialize()
 	smallsprite.Grant(src)

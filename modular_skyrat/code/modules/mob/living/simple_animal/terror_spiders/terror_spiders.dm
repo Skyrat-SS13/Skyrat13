@@ -31,7 +31,8 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	// Melee attacks
 	melee_damage_lower = 15
 	melee_damage_upper = 20
-	attacktext = "bites"
+	attack_verb_continuous = "bites";
+	attack_verb_simple = "bite";
 	attack_sound = 'sound/weapons/bite.ogg'
 	a_intent = INTENT_HARM
 
@@ -76,8 +77,10 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	initial_language_holder = /datum/language_holder/terror_spider
 
 	// Interaction keywords
-	response_help  = "pets"
-	response_disarm = "gently pushes aside"
+	response_help_continuous = "pets"
+	response_help_simple = "pet"
+	response_disarm_continuous = "gently pushes aside"
+	response_disarm_simple = "gently push aside"
 
 	// regeneration settings - overridable by child classes
 	var/regen_points = 0 // number of regen points they have by default
