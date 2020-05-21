@@ -37,7 +37,7 @@
 #define FIELD_OF_VISION_VISUAL_RENDER_TARGET "FIELD_OF_VISION_VISUAL_PLANE"
 
 #define CHAT_PLANE -1 //We don't want heard messages to be hidden by FoV.
-#define CHAT_LAYER 12.1 //Legacy, it doesn't matter that much because we are displayed above the game plane anyway.
+#define CHAT_LAYER 20.35  //Legacy, it doesn't matter that much because we are displayed above the game plane anyway. //Skyrat change fom 12.1
 
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 #define BLACKNESS_PLANE_RENDER_TARGET "BLACKNESS_PLANE"
@@ -112,8 +112,6 @@
 #define AREA_LAYER 10
 #define MASSIVE_OBJ_LAYER 11
 #define POINT_LAYER 12
-
-#define CHAT_LAYER 20.35 //Skyrat change
 
 #define EMISSIVE_BLOCKER_PLANE 12
 #define EMISSIVE_BLOCKER_LAYER 12
