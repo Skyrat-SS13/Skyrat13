@@ -11,7 +11,8 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	ranged = 0
-	friendly = "hugs"
+	friendly_verb_continuous = "hugs"
+	friendly_verb_simple = "hug"
 	speak_emote = list("moans")
 	speed = 1
 	move_to_delay = 3
@@ -20,7 +21,8 @@
 	obj_damage = 100
 	melee_damage_lower = 20
 	melee_damage_upper = 20
-	attacktext = "smashes"
+	attack_verb_continuous = "smashes"
+	attack_verb_simple = "smash"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	throw_message = "barely affects the"
 	vision_range = 3

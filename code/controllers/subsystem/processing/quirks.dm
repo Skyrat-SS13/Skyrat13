@@ -48,6 +48,19 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		cli.prefs.save_character()
 	if (!silent && LAZYLEN(cut))
 		to_chat(to_chat_target || user, "<span class='boldwarning'>Some quirks have been cut from your character because of these quirks conflicting with your job assignment: [english_list(cut)].</span>")
+	//Skyrat edit - food preferences
+	//Yes, i am using the quirk subsystem to assign food preferences. Too bad!
+	var/mob/living/carbon/human/H = user
+	if(istype(H))
+		if(cli.prefs.foodlikes.len)
+			H.dna.species.liked_food = 0
+			for(var/V in cli.prefs.foodlikes)
+				H.dna.species.liked_food |= cli.prefs.foodlikes[V]
+		if(cli.prefs.fooddislikes.len)
+			H.dna.species.disliked_food = 0
+			for(var/V in cli.prefs.fooddislikes)
+				H.dna.species.disliked_food |= cli.prefs.fooddislikes[V]
+	//
 
 /datum/controller/subsystem/processing/quirks/proc/quirk_path_by_name(name)
 	return quirks[name]

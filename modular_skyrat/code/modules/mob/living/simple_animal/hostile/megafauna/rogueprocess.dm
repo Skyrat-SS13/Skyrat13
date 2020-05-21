@@ -4,13 +4,15 @@
 	health = 2500
 	maxHealth = 2500
 	movement_type = GROUND
-	attacktext = "drills"
+	attack_verb_continuous = "drills"
+	attack_verb_simple = "drill"
 	attack_sound = 'sound/weapons/drill.ogg'
 	icon = 'modular_skyrat/icons/mob/lavaland/rogue.dmi'
 	icon_state = "rogue"
 	icon_living = "rogue"
 	icon_dead = "rogue-broken"
-	friendly = "pokes"
+	friendly_verb_continuous = "pokes"
+	friendly_verb_simple = "poke"
 	speak_emote = list("screeches")
 	mob_biotypes = MOB_ROBOTIC
 	melee_damage_lower = 30
