@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - bugfix: "fixed weird airlocks on a ship"
-  - bugfix: "fixed shovel errors"

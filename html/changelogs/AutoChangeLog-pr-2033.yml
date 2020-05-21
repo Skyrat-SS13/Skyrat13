@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Clockies can create shields with empowerable bashes."
-  - bugfix: "Shield repairing now works properly for materials other than titanium."

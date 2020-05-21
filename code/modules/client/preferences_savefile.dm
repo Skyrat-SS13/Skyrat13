@@ -495,6 +495,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["joblessrole"]		>> joblessrole
 	//Load prefs
 	S["job_preferences"]	>> job_preferences
+	job_preferences		= SANITIZE_LIST(job_preferences) //Skyrat edit - lack of this could cause game-mode failure
 
 	//Quirks
 	S["all_quirks"]			>> all_quirks
