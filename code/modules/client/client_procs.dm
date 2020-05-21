@@ -495,8 +495,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 //////////////
 
 /client/Del()
-	if(credits)
-		QDEL_LIST(credits)
+	// SKYRAT EDIT: Credits
+	//if(credits)
+		//QDEL_LIST(credits)
 	log_access("Logout: [key_name(src)]")
 	if(holder)
 		adminGreet(1)

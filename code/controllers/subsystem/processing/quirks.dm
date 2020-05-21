@@ -21,7 +21,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 /datum/controller/subsystem/processing/quirks/Initialize(timeofday)
 	if(!quirks.len)
 		SetupQuirks()
-		quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic"),list("Ageusia","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Alcohol Intolerance"),list("Alcohol Intolerance","Drunken Resilience"))
+		quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic"),list("Ageusia","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Alcohol Intolerance"),list("Alcohol Intolerance","Drunken Resilience"),list("Speech impediment (r as l)","Speech impediment (l as w)","Speech impediment (r as w)", "Speech impediment (r and l as w)")) // Skyrat edit
 	if(!all_bloodtypes.len)
 		for(var/datum/species/S in subtypesof(/datum/species))
 			all_bloodtypes |= S.exotic_bloodtype
@@ -63,6 +63,19 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 			var/mob/living/carbon/human/H = user
 			if(cli.prefs.bloodtype in H.dna.species.bloodtypes)
 				H.dna.blood_type = cli.prefs.bloodtype
+	//SKYRAT CHANGE - food preferences
+	//Yes, i am using the quirk subsystem to assign food preferences. Too bad!
+	var/mob/living/carbon/human/H = user
+	if(istype(H))
+		if(cli.prefs.foodlikes.len)
+			H.dna.species.liked_food = 0
+			for(var/V in cli.prefs.foodlikes)
+				H.dna.species.liked_food |= cli.prefs.foodlikes[V]
+		if(cli.prefs.fooddislikes.len)
+			H.dna.species.disliked_food = 0
+			for(var/V in cli.prefs.fooddislikes)
+				H.dna.species.disliked_food |= cli.prefs.fooddislikes[V]
+	//
 
 /datum/controller/subsystem/processing/quirks/proc/quirk_path_by_name(name)
 	return quirks[name]

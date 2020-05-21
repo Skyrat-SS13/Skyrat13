@@ -1,0 +1,7 @@
+author: "Bob Joga, Ghommie, AnturK, Nemvar, Mickyan, Fikou, /tg/station."
+delete-after: True
+changes: 
+  - rscadd: "Persistent paintings."
+  - rscadd: "TGUI-next based painting interface."
+  - rscadd: "Art component that gives you mood modifiers when looking at an \"art\" object."
+  - refactor: "Betters painting code overall."

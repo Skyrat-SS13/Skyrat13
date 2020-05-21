@@ -35,6 +35,10 @@
 	if(!length(nonconpref)) nonconpref = "Ask"
 	vorepref = sanitize_text(S["vore_pref"], "Ask")
 	if(!length(vorepref)) vorepref = "Ask"
+	extremepref = sanitize_text(S["extremepref"], "No") //god has forsaken me
+	if(!length(extremepref)) extremepref = "No"
+	extremeharm = sanitize_text(S["extremeharm"], "No")
+	if(!length(extremeharm)) extremeharm = "No"
 	security_records = sanitize_text(S["security_records"])
 	medical_records = sanitize_text(S["medical_records"])
 	general_records = sanitize_text(S["general_records"])
@@ -44,6 +48,8 @@
 	exploitable_info = sanitize_text(S["exploitable_info"])
 	enable_personal_chat_color	= sanitize_integer(enable_personal_chat_color, 0, 1, initial(enable_personal_chat_color))
 	personal_chat_color	= sanitize_hexcolor(personal_chat_color, 6, 1, "#FFFFFF")
+	foodlikes = SANITIZE_LIST(S["foodlikes"])
+	fooddislikes = SANITIZE_LIST(S["fooddislikes"])
 
 	//Moves over the previous OOC notes to our ooc notes
 	if(length(features["ooc_notes"]) > length(skyrat_ooc_notes))
@@ -88,6 +94,8 @@
 	WRITE_FILE(S["erp_pref"], erppref)
 	WRITE_FILE(S["noncon_pref"], nonconpref)
 	WRITE_FILE(S["vore_pref"], vorepref)
+	WRITE_FILE(S["extremepref"], extremepref)
+	WRITE_FILE(S["extremeharm"], extremeharm)
 	WRITE_FILE(S["security_records"], security_records)
 	WRITE_FILE(S["medical_records"], medical_records)
 	WRITE_FILE(S["general_records"], general_records)
@@ -99,6 +107,8 @@
 	WRITE_FILE(S["personal_chat_color"], personal_chat_color)
 
 	WRITE_FILE(S["alt_titles_preferences"], alt_titles_preferences)
+	WRITE_FILE(S["foodlikes"], foodlikes)
+	WRITE_FILE(S["fooddislikes"], fooddislikes)
 	//END OF SKYRAT CHANGES
 	//gear loadout
 	if(islist(chosen_gear))

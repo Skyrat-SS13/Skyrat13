@@ -180,10 +180,9 @@
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
-
+	// SKYRAT EDIT: Credits
+	RollCredits()
 	for(var/client/C in GLOB.clients)
-		if(!C.credits)
-			C.RollCredits()
 		C.playtitlemusic(40)
 	CONFIG_SET(flag/suicide_allowed,TRUE) // EORG suicides allowed
 	var/popcount = gather_roundend_feedback()
