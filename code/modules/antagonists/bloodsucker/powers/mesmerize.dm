@@ -133,7 +133,7 @@
 	spawn(power_time)
 	if(istype(target) && success)
 		target.notransform = FALSE
-		if(istype(L) && target.stat == CONSCIOUS && (target in view(10, get_turf(L))) // They Woke Up! (Notice if within view)
+		if(istype(L) && target.stat == CONSCIOUS && (target in view(10, get_turf(L)))) // They Woke Up! (Notice if within view)
 			to_chat(L, "<span class='warning'>[target] has snapped out of their trance.</span>")
 
 
