@@ -1675,7 +1675,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					for(var/F in GLOB.food)
 						if(F == href_list["like"])
 							if(!foodlikes[F])
-								foodlikes[F] = GLOB.food[F]
+								if(foodlikes.len < maxlikes)
+									foodlikes[F] = GLOB.food[F]
 								if(fooddislikes[F])
 									fooddislikes.Remove(F)
 							else
@@ -1684,11 +1685,16 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					for(var/F in GLOB.food)
 						if(F == href_list["dislike"])
 							if(!fooddislikes[F])
-								fooddislikes[F] = GLOB.food[F]
+								if(fooddislikes.len < maxdislikes)
+									fooddislikes[F] = GLOB.food[F]
 								if(foodlikes[F])
 									foodlikes.Remove(F)
 							else
 								fooddislikes.Remove(F)
+				if(foodlikes.len > maxlikes)
+					foodlikes.Cut(maxlikes+1)
+				if(fooddislikes.len > maxdislikes)
+					foodlikes.Cut(maxdislikes+1)
 				SetFood(user)
 			if("reset")
 				foodlikes = list()
