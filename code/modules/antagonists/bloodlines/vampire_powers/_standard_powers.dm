@@ -165,3 +165,350 @@
 
 	if(!runintent && moveintent_was_run)
 		user.toggle_move_intent()
+
+/datum/action/vampire/feed
+	name = "Feed"
+	desc = "Sink your teeth into the neck of your victim and drink their blood! You need to aggressively grab them. This will make mortals unconscious"
+	button_icon_state = "power_feed"
+
+	bloodcost = 0
+	cooldown = 900
+	amToggle = TRUE
+	purchasable = TRUE
+
+	var/mob/living/feed_target 	// So we can validate more than just the guy we're grappling.
+	var/target_grappled = FALSE // If you started grappled, then ending it will end your Feed.
+
+/datum/action/vampire/feed/CheckCanUse(display_error)
+	. = ..()
+	if(!.)
+		return
+	// Wearing mask
+	var/mob/living/L = owner
+	if(L.is_mouth_covered())
+		if(display_error)
+			to_chat(owner, "<span class='warning'>You cannot feed with your mouth covered! Remove your mask.</span>")
+		return FALSE
+	// Find my Target!
+	if(!FindMyTarget(display_error)) // Sets feed_target within after Validating
+		return FALSE
+		// Not in correct state
+	// DONE!
+	return TRUE
+
+/datum/action/vampire/feed/proc/ValidateTarget(mob/living/target, display_error) // Called twice: validating a subtle victim, or validating your grapple victim.
+	// Must have Target
+	if(!target)	 //  || !ismob(target)
+		if(display_error)
+			to_chat(owner, "<span class='warning'>You must be next to or grabbing a victim to feed from them.</span>")
+		return FALSE
+	// Not even living!
+	if(!isliving(target) || issilicon(target) || target.isRobotic())
+		if(display_error)
+			to_chat(owner, "<span class='warning'>You may only feed from living beings.</span>")
+		return FALSE
+	var/victim_blood_percent = (target.blood_volume / (BLOOD_VOLUME_NORMAL * target.blood_ratio))
+	if(victim_blood_percent <= 0.70)
+		if(display_error)
+			to_chat(owner, "<span class='warning'>Your victim has too little blood.</span>")
+		return FALSE
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(NOBLOOD in H.dna.species.species_traits)// || owner.get_blood_id() != target.get_blood_id())
+			if(display_error)
+				to_chat(owner, "<span class='warning'>Your victim's blood is not suitable for you to take.</span>")
+			return FALSE
+	return TRUE
+
+// If I'm not grabbing someone, find me someone nearby.
+/datum/action/vampire/feed/proc/FindMyTarget(display_error)
+	// Default
+	feed_target = null
+	target_grappled = FALSE
+	// If you are pulling a mob, that's your target. If you don't like it, then release them.
+	if(owner.pulling && ismob(owner.pulling) && owner.grab_state >= GRAB_AGGRESSIVE)
+		// Check grapple target Valid
+		if(!ValidateTarget(owner.pulling, display_error)) // Grabbed targets display error.
+			return FALSE
+		target_grappled = TRUE
+		feed_target = owner.pulling
+		return TRUE
+
+	to_chat(owner, "<span class='warning'>You must aggressively grab your victim!</span>")
+	return FALSE
+
+/datum/action/vampire/feed/ActivatePower()
+	// set waitfor = FALSE   <---- DONT DO THIS!We WANT this power to hold up Activate(), so Deactivate() can happen after.
+	var/mob/living/target = feed_target // Stored during CheckCanUse(). Can be a grabbed OR adjecent character.
+	var/mob/living/user = owner
+	var/datum/antagonist/vampire/vampiredatum = user.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+	// Initial Wait
+	var/feed_time = (25) - (2.5 * level_current)
+	feed_time = max(15, feed_time)
+	to_chat(user, "<span class='warning'>You pull [target] close to you and draw out your fangs...</span>")
+	if(!do_mob(user, target, feed_time, 0, 1, extra_checks = CALLBACK(src, .proc/ContinueActive, user, target)))//sleep(10)
+		to_chat(user, "<span class='warning'>Your feeding was interrupted.</span>")
+		//DeactivatePower(user,target)
+		return
+	ApplyVictimEffects(target)	// Sleep, paralysis, immobile, unconscious, and mute
+	if(target.stat <= UNCONSCIOUS)
+		sleep(1)
+		// Wait, then Cancel if Invalid
+		if(!ContinueActive(user,target)) // Cancel. They're gone.
+			//DeactivatePower(user,target)
+			return
+	// Pull Target Close
+	if(!target.density) // Pull target to you if they don't take up space.
+		target.Move(user.loc)
+
+	user.visible_message("<span class='warning'>[user] closes [user.p_their()] mouth around [target]'s neck!</span>", \
+						 "<span class='warning'>You sink your fangs into [target]'s neck.</span>")
+	// My mouth is full!
+	ADD_TRAIT(user, TRAIT_MUTE, "bloodsucker_feed")
+
+	// Begin Feed Loop
+	var/warning_target_inhuman = FALSE
+	var/warning_target_dead = FALSE
+	var/warning_target_bloodvol = 99999
+	var/amount_taken = 0
+	var/blood_take_mult =  1 
+	var/was_alive = target.stat < DEAD && ishuman(target)
+	// Activate Effects
+	//target.add_trait(TRAIT_MUTE, "bloodsucker_victim")  // <----- Make mute a power you buy?
+
+	// FEEEEEEEEED!!! //
+	vampiredatum.poweron_feed = TRUE
+	while(vampiredatum && target && active)
+	//user.mobility_flags &= ~MOBILITY_MOVE // user.canmove = 0 // Prevents spilling blood accidentally.
+
+		// Abort? A bloody mistake.
+		if(!do_mob(user, target, 20, 0, 0, extra_checks=CALLBACK(src, .proc/ContinueActive, user, target)))
+			// May have disabled Feed during do_mob
+			if(!active || !ContinueActive(user, target))
+				break
+
+			to_chat(user, "<span class='warning'>Your feeding has been interrupted!</span>")
+			user.visible_message("<span class='danger'>[user] is ripped from [target]'s throat. [target.p_their(TRUE)] blood sprays everywhere!</span>", \
+						 			 "<span class='userdanger'>Your teeth are ripped from [target]'s throat. [target.p_their(TRUE)] blood sprays everywhere!</span>")
+
+			// Deal Damage to Target (should have been more careful!)
+			if(iscarbon(target))
+				var/mob/living/carbon/C = target
+				C.bleed(15)
+			playsound(get_turf(target), 'sound/effects/splat.ogg', 40, 1)
+			if(ishuman(target))
+				var/mob/living/carbon/human/H = target
+				H.bleed_rate += 5
+			target.add_splatter_floor(get_turf(target))
+			user.add_mob_blood(target) // Put target's blood on us. The donor goes in the ( )
+			target.add_mob_blood(target)
+			target.take_overall_damage(10,0)
+			target.emote("scream")
+
+			// Killed Target?
+			if(was_alive)
+				CheckKilledTarget(user,target)
+
+			return
+
+		///////////////////////////////////////////////////////////
+		// 		Handle Feeding! User & Victim Effects (per tick)
+		vampiredatum.HandleFeeding(target, blood_take_mult)
+		amount_taken += 1
+		ApplyVictimEffects(target)	// Sleep, paralysis, immobile, unconscious, and mute
+		if(amount_taken > 5 && target.stat < DEAD && ishuman(target))
+			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankblood", /datum/mood_event/drankblood) // GOOD // in bloodsucker_life.dm
+
+		///////////////////////////////////////////////////////////
+		// Not Human?
+		if(!ishuman(target))
+			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankblood", /datum/mood_event/drankblood_bad) // BAD // in bloodsucker_life.dm
+			if(!warning_target_inhuman)
+				to_chat(user, "<span class='notice'>You recoil at the taste of a lesser lifeform.</span>")
+				warning_target_inhuman = TRUE
+		// Dead Blood?
+		if(target.stat >= DEAD)
+			if(ishuman(target))
+				SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankblood", /datum/mood_event/drankblood_dead) // BAD // in bloodsucker_life.dm
+			if(!warning_target_dead)
+				to_chat(user, "<span class='notice'>Your victim is dead. [target.p_their(TRUE)] blood barely nourishes you.</span>")
+				warning_target_dead = TRUE
+		// Blood Remaining? (Carbons/Humans only)
+		if(iscarbon(target) && !AmBloodsucker(target, TRUE))
+			if(target.blood_volume <= BLOOD_VOLUME_BAD && warning_target_bloodvol > BLOOD_VOLUME_BAD)
+				to_chat(user, "<span class='warning'>Your victim's blood volume is fatally low!</span>")
+			else if(target.blood_volume <= BLOOD_VOLUME_OKAY && warning_target_bloodvol > BLOOD_VOLUME_OKAY)
+				to_chat(user, "<span class='warning'>Your victim's blood volume is dangerously low.</span>")
+			else if(target.blood_volume <= BLOOD_VOLUME_SAFE && warning_target_bloodvol > BLOOD_VOLUME_SAFE)
+				to_chat(user, "<span class='notice'>Your victim's blood is at an unsafe level.</span>")
+			warning_target_bloodvol = target.blood_volume // If we had a warning to give, it's been given by now.
+		// Done?
+		// Full?
+		if(user.blood_volume >= vampiredatum.max_blood_volume)
+			to_chat(user, "<span class='notice'>You are fully sated, you can't drink any more.</span>")
+			break
+		var/victim_blood_percent = (target.blood_volume / (BLOOD_VOLUME_NORMAL * target.blood_ratio))
+		if(victim_blood_percent <= 0.65)
+			to_chat(user, "<span class='notice'>You have bled your victim dry.</span>")
+			break
+
+		// Blood Gulp Sound
+		owner.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
+		target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
+	// DONE!
+	//DeactivatePower(user,target)
+	user.visible_message("<span class='warning'>[user] unclenches their teeth from [target]'s neck.</span>", \
+							 "<span class='warning'>You retract your fangs and release [target] from your bite.</span>")
+
+	// /proc/log_combat(atom/user, atom/target, what_done, atom/object=null, addition=null)
+	log_combat(owner, target, "fed on blood", addition="(and took [amount_taken] blood)")
+
+	// Killed Target?
+	if(was_alive)
+		CheckKilledTarget(user,target)
+
+
+/datum/action/vampire/feed/proc/CheckKilledTarget(mob/living/user, mob/living/target)
+	// Bad Bloodsucker. You shouldn't do that.
+	if(target && target.stat >= DEAD && ishuman(target))
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled) // BAD // in bloodsucker_life.dm
+
+/datum/action/vampire/feed/ContinueActive(mob/living/user, mob/living/target)
+	return ..()  && target && (!target_grappled || user.pulling == target) && blood_sucking_checks(target, TRUE, TRUE) // Active, and still antag,
+	// NOTE: We only care about pulling if target started off that way. Mostly only important for Aggressive feed.
+
+/datum/action/vampire/feed/proc/ApplyVictimEffects(mob/living/target)
+	// Bloodsuckers not affected by "the Kiss" of another vampire
+	if(!target.mind || !target.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE))
+		target.Unconscious(200)
+		target.DefaultCombatKnockdown(40 + 5 * level_current,1)
+		// NOTE: THis is based on level of power!
+		if(ishuman(target))
+			target.adjustStaminaLoss(5, forced = TRUE)// Base Stamina Damage
+
+/datum/action/vampire/feed/DeactivatePower(mob/living/user = owner, mob/living/target)
+	..() // activate = FALSE
+	var/datum/antagonist/vampire/vampiredatum = user.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+	// No longer Feeding
+	if(vampiredatum)
+		vampiredatum.poweron_feed = FALSE
+	feed_target = null
+	// My mouth is no longer full
+	REMOVE_TRAIT(owner, TRAIT_MUTE, "bloodsucker_feed")
+	// Let me move immediately
+	user.update_mobility()
+
+/////// EMBRACE DOWN BELOW ///////////
+/datum/action/vampire/embrace
+	name = "Embrace"
+	desc = "Sink your teeth into the neck of your victim and drink their blood! You need to aggressively grab them. This will make mortals unconscious"
+	button_icon_state = "power_feed"
+
+	bloodcost = 0
+	powercost = 0
+	cooldown = 900
+	amToggle = FALSE
+	purchasable = TRUE
+
+	var/mob/living/feed_target 	// So we can validate more than just the guy we're grappling.
+	var/target_grappled = FALSE // If you started grappled, then ending it will end your Feed.
+
+/datum/action/vampire/embrace/CheckCanUse(display_error)
+	. = ..()
+	if(!.)
+		return
+	// Wearing mask
+	var/mob/living/L = owner
+	if(L.is_mouth_covered())
+		if(display_error)
+			to_chat(owner, "<span class='warning'>You cannot feed with your mouth covered! Remove your mask.</span>")
+		return FALSE
+	// Find my Target!
+	if(!FindMyTarget(display_error)) // Sets feed_target within after Validating
+		return FALSE
+		// Not in correct state
+	// DONE!
+	return TRUE
+
+/datum/action/vampire/embrace/proc/ValidateTarget(mob/living/target, display_error) // Called twice: validating a subtle victim, or validating your grapple victim.
+	// Must have Target
+	if(!target)	 //  || !ismob(target)
+		if(display_error)
+			to_chat(owner, "<span class='warning'>You must be next to or grabbing a victim to feed from them.</span>")
+		return FALSE
+	// Not even living!
+	if(!isliving(target) || issilicon(target) || target.isRobotic())
+		if(display_error)
+			to_chat(owner, "<span class='warning'>You may only feed from living beings.</span>")
+		return FALSE
+	var/victim_blood_percent = (target.blood_volume / (BLOOD_VOLUME_NORMAL * target.blood_ratio))
+	if(victim_blood_percent <= 0.70)
+		if(display_error)
+			to_chat(owner, "<span class='warning'>Your victim has too little blood.</span>")
+		return FALSE
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(NOBLOOD in H.dna.species.species_traits)// || owner.get_blood_id() != target.get_blood_id())
+			if(display_error)
+				to_chat(owner, "<span class='warning'>Your victim's blood is not suitable for you to take.</span>")
+			return FALSE
+	return TRUE
+
+// If I'm not grabbing someone, find me someone nearby.
+/datum/action/vampire/embrace/proc/FindMyTarget(display_error)
+	// Default
+	feed_target = null
+	target_grappled = FALSE
+	// If you are pulling a mob, that's your target. If you don't like it, then release them.
+	if(owner.pulling && ismob(owner.pulling) && owner.grab_state >= GRAB_AGGRESSIVE)
+		// Check grapple target Valid
+		if(!ValidateTarget(owner.pulling, display_error)) // Grabbed targets display error.
+			return FALSE
+		target_grappled = TRUE
+		feed_target = owner.pulling
+		return TRUE
+
+	to_chat(owner, "<span class='warning'>You must aggressively grab your victim!</span>")
+	return FALSE
+
+/datum/action/vampire/embrace/ActivatePower()
+	// set waitfor = FALSE   <---- DONT DO THIS!We WANT this power to hold up Activate(), so Deactivate() can happen after.
+	var/mob/living/target = feed_target // Stored during CheckCanUse(). Can be a grabbed OR adjecent character.
+	var/mob/living/user = owner
+	var/datum/antagonist/vampire/vampiredatum = user.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+	// Initial Wait
+	var/feed_time = 60
+	to_chat(user, "<span class='warning'>You pull [target] close to you and draw out your fangs...</span>")
+	if(!do_mob(user, target, feed_time, 0, 1, extra_checks = CALLBACK(src, .proc/CheckEmbraceTarget, user, target)))//sleep(10)
+		to_chat(user, "<span class='warning'>Your embrace was interrupted.</span>")
+		//DeactivatePower(user,target)
+		return
+
+	// Bloodsuckers not affected by "the Kiss" of another vampire
+	if(!target.mind || !target.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE))
+		target.Unconscious(200)
+		target.DefaultCombatKnockdown(40 + 5 * level_current,1)
+		// NOTE: THis is based on level of power!
+		if(ishuman(target))
+			target.adjustStaminaLoss(5, forced = TRUE)// Base Stamina Damage
+
+	// Pull Target Close
+	if(!target.density) // Pull target to you if they don't take up space.
+		target.Move(user.loc)
+
+	user.visible_message("<span class='warning'>[user] closes [user.p_their()] mouth around [target]'s neck!</span>", \
+						 "<span class='warning'>You sink your fangs into [target]'s neck.</span>")
+
+		// Blood Gulp Sound
+	owner.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
+	target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
+	// DONE!
+	//DeactivatePower(user,target)
+	user.visible_message("<span class='warning'>[user] unclenches their teeth from [target]'s neck.</span>", \
+							 "<span class='warning'>You retract your fangs and release [target] from your bite.</span>")
+
+	// /proc/log_combat(atom/user, atom/target, what_done, atom/object=null, addition=null)
+	log_combat(owner, target, "fed on blood", addition="(and took 0 blood)")
+
+/datum/action/vampire/embrace/proc/CheckEmbraceTarget(mob/living/user, mob/living/target)
+	return  target && (!target_grappled || user.pulling == target) && blood_sucking_checks(target, TRUE, TRUE)
