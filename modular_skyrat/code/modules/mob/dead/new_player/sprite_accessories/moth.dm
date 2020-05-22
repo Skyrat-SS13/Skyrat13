@@ -80,7 +80,7 @@
 	icon_state = "witchwing"
 
 /datum/sprite_accessory/body_markings/moth_markings
-	icon = 'icons/mob/moth_markings.dmi'
+	icon = 'modular_skyrat/icons/mob/moth_markings.dmi'
 	color_src = null
 
 /datum/sprite_accessory/body_markings/moth_markings/none

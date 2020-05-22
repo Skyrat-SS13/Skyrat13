@@ -15,7 +15,7 @@
 	liked_food = VEGETABLES | FRUIT | CLOTH
 	disliked_food = GROSS
 	toxic_food = MEAT | RAW
-	mutanteyes = /obj/item/organ/eyes/moth
+	mutanteyes = /obj/item/organ/eyes/insect/moth
 
 /datum/species/moth/random_name(gender,unique,lastname)
 	if(unique)
