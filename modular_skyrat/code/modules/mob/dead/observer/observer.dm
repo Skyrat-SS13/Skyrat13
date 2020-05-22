@@ -1,3 +1,6 @@
+/mob/dead/observer
+	var/datum/event_menu/event_menu
+
 /mob/dead/observer/proc/on_click_ctrl_shift(mob/user)
 	if(isobserver(user) && check_rights(R_SPAWN))
 		change_mob_type( /mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
@@ -101,3 +104,11 @@
 	// Recompose the message, because it's scrambled by default
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode, FALSE, source)
 	to_chat(src, "[link] [message]")
+
+/mob/dead/observer/proc/open_event_menu()
+	set name = "Event Panel"
+	set desc = "Toggle your event participation interest, and change your preferences"
+	set category = "Ghost"
+	if(!event_menu)
+		event_menu = new(src)
+	event_menu.ui_interact(src)
