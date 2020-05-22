@@ -2,15 +2,15 @@
 #define MATH_REWARD_MEDIUM  2.5
 #define MATH_REWARD_HARD  5
 
-#define MATH_MULTIPLIER_SCIENCE  1000 // If science points and cargo points need to be balanced seperately
-#define MATH_MULTIPLIER_CARGO  1000 // Difficulty reward gets multiplied by these
+#define MATH_MULTIPLIER_SCIENCE  750 // If science points and cargo points need to be balanced seperately
+#define MATH_MULTIPLIER_CARGO  500 // Difficulty reward gets multiplied by these
 
 /obj/item/computermath
 	icon = 'modular_skyrat/icons/obj/computermath.dmi'
 	verb_say = "beeps"
 	var/computermath_max_charges = 3
 	var/computermath_charges = 3
-	var/charge_cooldown = 300 // 30 seconds
+	var/charge_cooldown = 600 // 60 seconds
 	var/next_charge_generation
 
 /obj/item/computermath/Initialize()
@@ -22,8 +22,9 @@
 	return ..()
 
 /obj/item/computermath/process()
-	if(!next_charge_generation) // Newly spawned. 
+	if(!next_charge_generation && computermath_charges != computermath_max_charges) // Newly spawned and a question has been taken
 		next_charge_generation = world.time + charge_cooldown
+		return
 	if(computermath_charges < computermath_max_charges && world.time >= next_charge_generation) // There's charges to fill & it's time to fill
 		next_charge_generation = world.time + charge_cooldown
 		computermath_charges += 1
@@ -53,7 +54,7 @@
 		if("Medium")
 			operator = pick("division", "exponent", "easy algebra")
 		if("Hard")
-			operator = pick("2nd polynomial", "algebra")
+			operator = pick("2nd polynomial", "algebra", "line intersection")
 
 	var/correct = FALSE
 	switch(operator)
@@ -64,7 +65,7 @@
 			var/question = "What is [addnum_1] + [addnum_2]?"
 			var/solution = addnum_1 + addnum_2
 			var/answer = input(user, question, "Math Problem") as null|num
-			if(!answer) // User hit the cancel button
+			if(isnull(answer)) // User hit the cancel button
 				return
 			if(answer == solution)
 				correct = TRUE 
@@ -74,7 +75,7 @@
 			var/question = "What is [subnum_1] - [subnum_2]?"
 			var/solution = subnum_1 - subnum_2
 			var/answer = input(user, question, "Math Problem") as null|num
-			if(!answer) // User hit the cancel button
+			if(isnull(answer)) // User hit the cancel button
 				return
 			if(answer == solution)
 				correct = TRUE
@@ -84,7 +85,7 @@
 			var/question = "What is [multnum_1] * [multnum_2]?"
 			var/solution = multnum_1 * multnum_2
 			var/answer = input(user, question, "Math Problem") as null|num
-			if(!answer) // User hit the cancel button
+			if(isnull(answer)) // User hit the cancel button
 				return
 			if(answer == solution)
 				correct = TRUE 
@@ -96,14 +97,14 @@
 			var/question = "What is [divnum_1] / [divnum_2]? Rounded the answer down if applicable."
 			var/solution = round(divnum_1 / divnum_2)
 			var/answer = input(user, question, "Math Problem") as null|num
-			if(!answer) // User hit the cancel button
+			if(isnull(answer)) // User hit the cancel button
 				return
 			if(answer == solution)
 				correct = TRUE
 
 		if("exponent")
 			var/expnum_1 = rand(-50, 50)
-			var/expnum_2 = pick(list(2, 3, -1, 1/2)) // Also square root!
+			var/expnum_2 = pick(list(2, 3, 1/2)) // Also square root!
 			var/question = "What is ([expnum_1]) ^ [expnum_2]? Answer is rounded down if applicable."
 			var/solution
 			if(expnum_2 == 1/2) // For some reason, a ** 1/2 throws a runtime error, so just use sqrt()
@@ -111,7 +112,7 @@
 			else
 				solution = round(expnum_1 ** expnum_2)
 			var/answer = input(user, question, "Math Problem") as null|num
-			if(!answer) // User hit the cancel button
+			if(isnull(answer)) // User hit the cancel button
 				return
 			if(answer == solution)
 				correct = TRUE
@@ -124,12 +125,12 @@
 			var/question = "[num_a]x + [num_b] = [num_c]. Solve for x."
 			var/solution = (num_c - num_b)/num_a
 			var/answer = input(user, question, "Math Problem") as null|num
-			if(!answer) // User hit the cancel button
+			if(isnull(answer)) // User hit the cancel button
 				return
 			if(answer == solution)
 				correct = TRUE
 
-		// Hard problems
+		// Hard problems, where 'hard' is high school maths
 		if("algebra") // everyone's favorite :)
 			var/answer
 			var/solution 
@@ -151,13 +152,13 @@
 				var/question = "([num_a]-x)/[num_b] = x/[num_c]. Solve for x. Round down if applicable."
 				solution = round((num_a * num_c)/(num_b + num_c))
 				answer = input(user, question, "Math Problem") as null|num
-			if(!answer) // User hit the cancel button
+			if(isnull(answer)) // User hit the cancel button
 				return
 			if(answer == solution)
 				correct = TRUE
 
 		
-		if("2nd polynomial") //WIP
+		if("2nd polynomial")
 			// Math part
 			var/num_a = rand(1, 2)
 			var/num_b = rand(-5, 5)
@@ -167,19 +168,44 @@
 			var/solution2
 			if(discriminant >= 0) // positive gives 2 solutions, if D=0 then sol1=sol2 anyway
 				// Quadratic formula
-				solution1 = (-num_b+sqrt(discriminant))/(2*num_a)
-				solution2 = (-num_b-sqrt(discriminant))/(2*num_a)
+				solution1 = round((-num_b+sqrt(discriminant))/(2*num_a))
+				solution2 = round((-num_b-sqrt(discriminant))/(2*num_a))
 			else
 				solution1 = 0
 				solution2 = 0
 
 			// Answering part
-			var/question = "[num_a]x^2 + [num_b]x + [num_c] = 0. Solve for x, give any real solution. Fill in 0 for no real solutions."
+			var/question = "[num_a]x^2 + [num_b]x + [num_c] = 0. Solve for x, give any real solution. Fill in 0 for no real solutions. Answers are rounded down. (-0.25 becomes -1)"
 			var/answer = input(user, question, "Math Problem") as null|num
-			if(!answer) // User hit the cancel button
+			if(isnull(answer)) // User hit the cancel button
 				return
 			if(answer == solution1 || answer == solution2)
 				correct = TRUE
+
+		if("line intersection")
+			// y1=ax+b
+			// y2=cx+d
+			// intersect: x=(d-c)/(a-b), y=a(d-c)/(a-b)+c. So a-b or c-d may never be 0.
+			var/num_a = rand(1,5)
+			var/num_b = rand(-10,-1)
+			var/num_c = rand(1, 10)
+			var/num_d = rand(-10, -1)
+			var/x_intersect = round((num_d-num_c)/(num_a-num_b))
+			var/y_intersect = round(num_a * (num_d - num_c)/(num_a - num_b) + num_c)
+			var/question
+			var/answer
+			if(prob(50)) // 50% chance to ask for x, or y
+				question = "Given the lines y=[num_a]x+[num_b] and y=[num_c]x+[num_d], what is the x-value of their intersection point? Rounded down if applicable."
+				answer = input(user, question, "Math Problem") as null|num
+				if(answer == x_intersect)
+					correct = TRUE
+			else
+				question = "Given the lines y=[num_a]x+[num_b] and y=[num_c]x+[num_d], what is the y-value of their intersection point? Rounded down if applicable."
+				answer = input(user, question, "Math Problem") as null|num
+				if(answer == y_intersect)
+					correct = TRUE
+			if(isnull(answer)) // User hit the cancel button
+				return
 
 	// An answer has been submitted, remove a charge and check if it's correct!
 	computermath_charges -= 1
@@ -213,9 +239,8 @@
 			if("Cargo")
 				say("To solve the resulting bureaucratic error, [points_lost] cargo points have been deducted from the balance.")
 				SSshuttle.points -= points_lost
-		// me fail arithmetic, me brian hurt
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
-		if(difficulty == "Easy")
+		if(difficulty == "Easy") // me fail arithmetic, me brian hurt
 			to_chat(user,"<span class='warning'>You feel lightheaded after failing such an easy question...</span>")
 			LM.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
 		return
@@ -228,7 +253,7 @@
 			SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = points_awarded))
 		if("Cargo")
 			say("Correct data received. Updating cargo manifests...")
-			say("Completed. [points_awarded] cargo points have been added to station balance.")
+			say("Completed. [points_awarded] cargo credits have been added to station balance.")
 			SSshuttle.points += points_awarded
 	playsound(src, 'sound/machines/chime.ogg', 30, 1)
 

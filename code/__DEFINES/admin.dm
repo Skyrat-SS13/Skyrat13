@@ -78,17 +78,12 @@
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2
 #define AHELP_RESOLVED 3
+#define AHELP_ANTAGREQ 4 // Skyrat change
 
 #define ROUNDSTART_LOGOUT_REPORT_TIME	6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 #define SPAM_TRIGGER_WARNING	5	//Number of identical messages required before the spam-prevention will warn you to stfu
 #define SPAM_TRIGGER_AUTOMUTE	10	//Number of identical messages required before the spam-prevention will automute you
 
-///Max length of a keypress command before it's considered to be a forged packet/bogus command
-#define MAX_KEYPRESS_COMMANDLENGTH 16
-///Max amount of keypress messages per second over two seconds before client is autokicked
-#define MAX_KEYPRESS_AUTOKICK 100
-///Length of max held keys
-#define MAX_HELD_KEYS 15
 //SKYRAT COLLAR BAN - now no collar
 #define COLLARBAN	"Collar ban" //Pacification but called that so we dont lose our earlier bans

@@ -96,10 +96,29 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && LAZYLEN(href_list) == 2))
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 
+	// Skyrat change START
+	// Show tickets
+	if(href_list["my_ahelp_tickets"])
+		GLOB.ahelp_tickets.BrowserPlayerTickets()
+		return
+
+	if(href_list["ahelp_player"])
+		var/ahelp_ref = href_list["ahelp_player"]
+		var/datum/admin_help/AH = locate(ahelp_ref)
+
+		switch(href_list["ahelp_action"])
+			if("player_ticket")
+				AH.PlayerTicketPanel()
+	// Skyrat change END
+
 	// Admin PM
 	if(href_list["priv_msg"])
-		cmd_admin_pm(href_list["priv_msg"],null)
-		return
+		// Skyrat change START
+		var/ahelp_ref = href_list["ahelp_player"]
+		var/datum/admin_help/AH = locate(ahelp_ref)
+
+		cmd_admin_pm(href_list["priv_msg"],null,AH)
+		// Skyrat change END
 
 	// CITADEL Start - Mentor PM
 	if (citadel_client_procs(href_list))
@@ -265,6 +284,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	else
 		prefs = new /datum/preferences(src)
 		GLOB.preferences_datums[ckey] = prefs
+	if(SSinput.initialized)
+		set_macros()
+	update_movement_keys(prefs)
 
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
@@ -327,9 +349,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			else
 				qdel(src)
 				return
-
-	if(SSinput.initialized)
-		set_macros()
 
 	chatOutput.start() // Starts the chat
 
@@ -476,8 +495,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 //////////////
 
 /client/Del()
-	if(credits)
-		QDEL_LIST(credits)
+	// SKYRAT EDIT: Credits
+	//if(credits)
+		//QDEL_LIST(credits)
 	log_access("Logout: [key_name(src)]")
 	if(holder)
 		adminGreet(1)
@@ -901,6 +921,23 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	x = clamp(x+change, min, max)
 	y = clamp(y+change, min,max)
 	change_view("[x]x[y]")
+
+/client/proc/update_movement_keys(datum/preferences/direct_prefs)
+	var/datum/preferences/D = prefs || direct_prefs
+	if(!D?.key_bindings)
+		return
+	movement_keys = list()
+	for(var/key in D.key_bindings)
+		for(var/kb_name in D.key_bindings[key])
+			switch(kb_name)
+				if("North")
+					movement_keys[key] = NORTH
+				if("East")
+					movement_keys[key] = EAST
+				if("West")
+					movement_keys[key] = WEST
+				if("South")
+					movement_keys[key] = SOUTH
 
 /client/proc/change_view(new_size)
 	if (isnull(new_size))
