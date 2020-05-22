@@ -1267,8 +1267,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	return FALSE
 
 ////////
-	//LIFE//
-	////////
+//LIFE//
+////////
 
 /datum/species/proc/handle_digestion(mob/living/carbon/human/H)
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))

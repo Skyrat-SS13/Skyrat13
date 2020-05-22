@@ -13,6 +13,10 @@
 
 	var/needs_update = FALSE
 	var/turf/myturf
+	//skyrat edit - moth
+	/// Cached value of max generated during [update()][/atom/movable/lighting_object/proc/update]
+	var/tmp/cached_max
+	//
 
 /atom/movable/lighting_object/Initialize(mapload)
 	. = ..()
@@ -83,6 +87,9 @@
 		ca = corners[1] || dummy_lighting_corner
 
 	var/max = max(cr.cache_mx, cg.cache_mx, cb.cache_mx, ca.cache_mx)
+	//skyrat edit
+	cached_max = max
+	//
 
 	var/rr = cr.cache_r
 	var/rg = cr.cache_g

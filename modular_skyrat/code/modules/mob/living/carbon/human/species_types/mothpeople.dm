@@ -1,5 +1,5 @@
 //why did citadel take the moths away anyways
-/datum/species/moth
+/datum/species/insect/moth
 	name = "Mothperson"
 	id = "moth"
 	say_mod = "flutters"
@@ -16,8 +16,9 @@
 	disliked_food = GROSS
 	toxic_food = MEAT | RAW
 	mutanteyes = /obj/item/organ/eyes/insect/moth
+	icon_limbs = 'modular_skyrat/icons/mob/moth_parts.dmi'
 
-/datum/species/moth/random_name(gender,unique,lastname)
+/datum/species/insect/moth/random_name(gender,unique,lastname)
 	if(unique)
 		return random_unique_moth_name()
 
@@ -28,13 +29,21 @@
 
 	return randname
 
-/datum/species/moth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+/datum/species/insect/moth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
 	if(chem.type == /datum/reagent/toxin/pestkiller)
 		H.adjustToxLoss(3)
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 
-/datum/species/moth/check_species_weakness(obj/item/weapon, mob/living/attacker)
+/datum/species/insect/moth/check_weakness(obj/item/weapon, mob/living/attacker)
 	if(istype(weapon, /obj/item/melee/flyswatter))
-		return 9 //flyswatters deal 10x damage to moths
+		return 10 //flyswatters deal 10x damage to moths
 	return 0
+
+/datum/species/insect/moth/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	. = ..()
+	C.AddComponent(/datum/component/lightdrawn)
+
+/datum/species/insect/moth/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	. = ..()
+	qdel(C.GetComponent(/datum/component/lightdrawn))

@@ -55,6 +55,9 @@
 	return 2
 
 /mob/living/brain/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0)
+	//skyrat edit
+	SHOULD_CALL_PARENT(FALSE)
+	//
 	return // no eyes, no flashing
 
 /mob/living/brain/can_be_revived()
