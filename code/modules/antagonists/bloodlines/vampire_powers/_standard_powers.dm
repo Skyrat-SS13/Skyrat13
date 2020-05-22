@@ -430,29 +430,20 @@
 	// DONE!
 	return TRUE
 
-/datum/action/vampire/embrace/proc/ValidateTarget(mob/living/target, display_error) // Called twice: validating a subtle victim, or validating your grapple victim.
-	// Must have Target
-	if(!target)	 //  || !ismob(target)
+/datum/action/vampire/embrace/proc/ValidateTarget(mob/living/target, display_error)
+	if(!target)
 		if(display_error)
-			to_chat(owner, "<span class='warning'>You must be next to or grabbing a victim to feed from them.</span>")
-		return FALSE
-	// Not even living!
-	if(!isliving(target) || issilicon(target) || target.isRobotic())
-		if(display_error)
-			to_chat(owner, "<span class='warning'>You may only feed from living beings.</span>")
-		return FALSE
-	var/victim_blood_percent = (target.blood_volume / (BLOOD_VOLUME_NORMAL * target.blood_ratio))
-	if(victim_blood_percent <= 0.70)
-		if(display_error)
-			to_chat(owner, "<span class='warning'>Your victim has too little blood.</span>")
+			to_chat(owner, "<span class='warning'>You must be next to or grabbing a victim to embrace them.</span>")
 		return FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(NOBLOOD in H.dna.species.species_traits)// || owner.get_blood_id() != target.get_blood_id())
+		if(!can_make_vampire(H.mind))
 			if(display_error)
-				to_chat(owner, "<span class='warning'>Your victim's blood is not suitable for you to take.</span>")
+				to_chat(owner, "<span class='warning'>Your victim is not suitable to be embraced.</span>")
 			return FALSE
-	return TRUE
+		return TRUE
+	to_chat(owner, "<span class='warning'>Your victim needs to be a human.</span>")
+	return FALSE
 
 // If I'm not grabbing someone, find me someone nearby.
 /datum/action/vampire/embrace/proc/FindMyTarget(display_error)
