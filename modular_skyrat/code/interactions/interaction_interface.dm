@@ -7,7 +7,7 @@
 		try_interaction(dropped_on)
 		return
 	return ..()
-*/
+
 
 /mob/living/carbon/human/MouseDrop_T(mob/M as mob, mob/living/carbon/human/user as mob)
 	. = ..()
@@ -21,6 +21,7 @@
 		return
 
 	user.try_interaction(src)
+*/
 
 /mob/living/carbon/human/verb/interact_with()
 	set name = "Interact With"
