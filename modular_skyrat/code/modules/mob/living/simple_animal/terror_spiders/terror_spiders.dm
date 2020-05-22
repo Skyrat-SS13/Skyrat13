@@ -50,8 +50,9 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	// Higher numbers mean slower speed. Can be negative for major speed increase. Call movement_delay() on mob to convert this var to into a step delay.
 	// '-1' (default for fast humans) converts to 1.5 or 6.6 tiles/sec
 	// '0' (default for human mobs) converts to 2.5, or 4 tiles/sec.
-	// '1' (default for most simple_mobs, including terror spiders) converts to 3.5, or 2.8 tiles/sec.
+	// '1' (default for most simple_mobs) converts to 3.5, or 2.8 tiles/sec.
 	// '2' converts to 4.5, or 2.2 tiles/sec.
+	speed = 0.30
 
 	// Ventcrawling
 	ventcrawler = TRUE // allows player ventcrawling
