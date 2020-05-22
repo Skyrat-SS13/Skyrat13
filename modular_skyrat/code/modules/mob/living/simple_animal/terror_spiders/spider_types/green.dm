@@ -24,6 +24,9 @@
 	var/feedings_to_lay = 2
 	var/datum/action/innate/terrorspider/greeneggs/greeneggs_action
 
+	// Small and speedy
+	speed = 0.5
+
 
 /mob/living/simple_animal/hostile/poison/terror_spider/green/Initialize()
 	. = ..()
