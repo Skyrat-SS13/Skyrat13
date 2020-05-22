@@ -9963,12 +9963,12 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/structure/table/wood,
+/obj/machinery/recharger,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "axT" = (
 /obj/structure/table/wood,
-/obj/machinery/recharger,
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Captain's Desk";
@@ -9976,6 +9976,7 @@
 	name = "Captain RC";
 	pixel_y = 30
 	},
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "axU" = (
@@ -10434,9 +10435,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/captain)
-"ayZ" = (
 /obj/machinery/door/window{
 	dir = 8;
 	name = "Captain's Desk";
@@ -10444,6 +10442,38 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
+"ayZ" = (
+/obj/item/cartridge/engineering{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/item/cartridge/engineering{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/cartridge/engineering{
+	pixel_x = 3
+	},
+/obj/structure/table/reinforced,
+/obj/item/cartridge/atmos,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Chief Engineer's Desk";
+	departmentType = 3;
+	name = "Chief Engineer RC";
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/chief)
 "aza" = (
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
@@ -11017,6 +11047,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/table/wood,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "aAv" = (
@@ -11520,8 +11551,8 @@
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
-/obj/structure/bed/dogbed/ian,
-/mob/living/simple_animal/pet/dog/corgi/Ian,
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "aBG" = (
@@ -12687,6 +12718,8 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/obj/structure/bed/dogbed/ian,
+/mob/living/simple_animal/pet/dog/corgi/Ian,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
 "aDZ" = (
@@ -23490,6 +23523,8 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
+/obj/structure/table,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "bdG" = (
@@ -33943,7 +33978,6 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hor)
 "bBu" = (
-/obj/item/twohanded/required/kirbyplants/dead,
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
@@ -33977,6 +34011,8 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/structure/table/glass,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hor)
 "bBw" = (
@@ -35744,9 +35780,6 @@
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/cmo)
 "bEH" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-16"
-	},
 /obj/machinery/light_switch{
 	pixel_y = -22
 	},
@@ -35756,6 +35789,8 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/table,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/cmo)
 "bEI" = (
@@ -43052,42 +43087,24 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bUG" = (
-/obj/machinery/power/emitter,
+/obj/item/wrench,
+/obj/structure/chair/office{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bUH" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/chief)
 "bUI" = (
-/obj/item/cartridge/engineering{
-	pixel_x = 4;
-	pixel_y = 5
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = 3
-	},
-/obj/structure/table/reinforced,
-/obj/item/cartridge/atmos,
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Chief Engineer's Desk";
-	departmentType = 3;
-	name = "Chief Engineer RC";
-	pixel_x = -32
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
+/obj/structure/table/reinforced,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "bUJ" = (
@@ -43492,41 +43509,12 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bVD" = (
-/obj/machinery/button/door{
-	desc = "A remote control-switch for the engineering security doors.";
-	id = "Engineering";
-	name = "Engineering Lockdown";
-	pixel_x = -24;
-	pixel_y = -10;
-	req_access_txt = "10"
+/obj/item/shard{
+	icon_state = "small"
 	},
-/obj/machinery/button/door{
-	desc = "A remote control-switch for secure storage.";
-	id = "Secure Storage";
-	name = "Engineering Secure Storage";
-	pixel_x = -24;
-	req_access_txt = "11"
-	},
-/obj/machinery/button/door{
-	id = "atmos";
-	name = "Atmospherics Lockdown";
-	pixel_x = -24;
-	pixel_y = 10;
-	req_access_txt = "24"
-	},
-/obj/structure/table/reinforced,
-/obj/item/folder/yellow,
-/obj/item/paper/monitorkey,
-/obj/item/pen,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/mob/living/simple_animal/parrot/Poly,
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/chief)
+/obj/item/stack/cable_coil/red,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "bVE" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
@@ -43825,17 +43813,39 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bWn" = (
-/obj/structure/closet/secure_closet/engineering_chief,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
+/obj/machinery/button/door{
+	desc = "A remote control-switch for the engineering security doors.";
+	id = "Engineering";
+	name = "Engineering Lockdown";
+	pixel_x = -24;
+	pixel_y = -10;
+	req_access_txt = "10"
 	},
-/obj/item/clothing/glasses/meson/gar,
+/obj/machinery/button/door{
+	desc = "A remote control-switch for secure storage.";
+	id = "Secure Storage";
+	name = "Engineering Secure Storage";
+	pixel_x = -24;
+	req_access_txt = "11"
+	},
+/obj/machinery/button/door{
+	id = "atmos";
+	name = "Atmospherics Lockdown";
+	pixel_x = -24;
+	pixel_y = 10;
+	req_access_txt = "24"
+	},
+/obj/structure/table/reinforced,
+/obj/item/folder/yellow,
+/obj/item/paper/monitorkey,
+/obj/item/pen,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/mob/living/simple_animal/parrot/Poly,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "bWo" = (
@@ -44211,25 +44221,27 @@
 	dir = 8
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	icon_state = "0-8"
 	},
-/turf/open/floor/plasteel,
+/obj/structure/cable{
+	icon_state = "0-2";
+	pixel_y = 1
+	},
+/obj/structure/cable,
+/obj/structure/grille,
+/turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bXe" = (
-/obj/structure/cable{
-	icon_state = "1-8"
+/obj/machinery/power/emitter{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bXf" = (
-/obj/machinery/suit_storage_unit/ce,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "bXg" = (
@@ -47549,7 +47561,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/item/stack/cable_coil/yellow,
+/obj/structure/cable,
+/obj/structure/grille,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "cig" = (
@@ -54287,15 +54300,19 @@
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "fzu" = (
-/obj/effect/turf_decal/stripes/line{
+/obj/structure/closet/secure_closet/engineering_chief,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/obj/item/clothing/glasses/meson/gar,
+/obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
-/obj/item/clothing/gloves/color/black,
-/obj/structure/cable{
-	icon_state = "1-8"
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/maintenance/department/engine)
+/area/crew_quarters/heads/chief)
 "fAx" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -55491,16 +55508,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/item/wrench,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
+/obj/machinery/field/generator,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "hzd" = (
@@ -57095,9 +57103,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "krU" = (
-/obj/structure/chair{
-	dir = 4
-	},
+/obj/machinery/field/generator,
 /turf/open/floor/plasteel,
 /area/maintenance/department/engine)
 "ksf" = (
@@ -58089,8 +58095,10 @@
 	dir = 9
 	},
 /obj/structure/cable{
-	icon_state = "1-4"
+	icon_state = "0-2";
+	pixel_y = 1
 	},
+/obj/structure/grille,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "lUO" = (
@@ -60666,7 +60674,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "pXT" = (
-/obj/item/twohanded/required/kirbyplants,
 /obj/machinery/power/apc{
 	areastring = "/area/lawoffice";
 	dir = 8;
@@ -60674,6 +60681,8 @@
 	pixel_x = -24
 	},
 /obj/structure/cable,
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine/longrange,
 /turf/open/floor/wood,
 /area/lawoffice)
 "pYh" = (
@@ -61328,10 +61337,16 @@
 /turf/open/floor/wood,
 /area/maintenance/department/engine)
 "reV" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical,
-/turf/open/floor/plating,
-/area/maintenance/department/engine)
+/obj/machinery/suit_storage_unit/ce,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/chief)
 "rgn" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -63105,7 +63120,8 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "uwX" = (
-/obj/machinery/field/generator,
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "uxI" = (
@@ -63270,11 +63286,7 @@
 	},
 /area/hallway/secondary/exit/departure_lounge)
 "uMe" = (
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
-/obj/structure/grille,
+/obj/item/clothing/gloves/color/black,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "uMi" = (
@@ -64076,13 +64088,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/department/security/brig)
-"wiB" = (
-/obj/item/shard{
-	icon_state = "small"
-	},
-/obj/item/stack/cable_coil/red,
-/turf/open/floor/plating,
-/area/maintenance/department/engine)
 "wjj" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/tile/green{
@@ -64458,13 +64463,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/department/crew_quarters/dorms)
-"wMM" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/structure/grille,
-/turf/open/floor/plating,
-/area/maintenance/department/engine)
 "wMX" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
@@ -92709,7 +92707,7 @@ bQZ
 bTm
 bPB
 bUG
-uMe
+bVD
 hzc
 bXe
 krU
@@ -92965,11 +92963,11 @@ cCF
 cCH
 bTn
 bPB
-uwX
-wMM
-fzu
-wiB
-reV
+bUH
+bUH
+bUH
+bUH
+bUH
 bXk
 sKa
 iFI
@@ -93152,7 +93150,7 @@ auK
 avN
 awU
 axT
-ayZ
+aza
 aAv
 aBm
 aCA
@@ -93222,10 +93220,10 @@ bRa
 bSy
 bTo
 bPB
-bUH
-bUH
-bUH
-bUH
+ayZ
+bWn
+fzu
+reV
 bUH
 bXk
 bTE
@@ -93480,8 +93478,8 @@ cCP
 bTp
 bPB
 bUI
-bVD
-bWn
+bVE
+bVE
 bXf
 bUH
 bYI
