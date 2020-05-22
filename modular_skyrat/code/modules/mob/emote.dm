@@ -58,3 +58,86 @@
 	else
 		message = "makes a very loud noise."
 	. = ..()
+
+// Bababooey, and his lads.
+/datum/emote/living/bababooey
+	key = "bababooey"
+	key_third_person = "bababooeys"
+	message = "spews bababooey."
+	emote_type = EMOTE_AUDIBLE
+	muzzle_ignore = FALSE
+	restraint_check = FALSE
+	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
+
+/datum/emote/living/bababooey/run_emote(mob/living/user, params)
+	if(!(. = ..()))
+		return
+	if(user.is_muzzled())
+		user.nextsoundemote = world.time + 7
+		playsound(user, 'modular_skyrat/sound/voice/ffffhfh.ogg', 25, 1, -1)
+	if(user.nextsoundemote >= world.time)
+		return
+	user.nextsoundemote = world.time + 7
+	playsound(user, 'modular_skyrat/sound/voice/bababooey.ogg', 50, 1, -1)
+
+/datum/emote/living/fafafooey
+	key = "fafafooey"
+	key_third_person = "fafafooeys"
+	message = "spews fafafooey."
+	emote_type = EMOTE_AUDIBLE
+	muzzle_ignore = FALSE
+	restraint_check = FALSE
+	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
+
+/datum/emote/living/fafafooey/run_emote(mob/living/user, params)
+	if(!(. = ..()))
+		return
+	if(user.is_muzzled())
+		user.nextsoundemote = world.time + 7
+		playsound(user, 'modular_skyrat/sound/voice/ffffhfh.ogg', 25, 1, -1)
+	if(user.nextsoundemote >= world.time)
+		return
+	user.nextsoundemote = world.time + 7
+	var/sound = pick('modular_skyrat/sound/voice/fafafooey.ogg', 'modular_skyrat/sound/voice/fafafooey2.ogg')
+	playsound(user, sound, 50, 1, -1)
+
+/datum/emote/living/fafafoggy
+	key = "fafafoggy"
+	key_third_person = "fafafoggys"
+	message = "spews fafafoggy."
+	emote_type = EMOTE_AUDIBLE
+	muzzle_ignore = FALSE
+	restraint_check = FALSE
+	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
+
+/datum/emote/living/fafafoggy/run_emote(mob/living/user, params)
+	if(!(. = ..()))
+		return
+	if(user.is_muzzled())
+		user.nextsoundemote = world.time + 7
+		playsound(user, 'modular_skyrat/sound/voice/ffffhfh.ogg', 25, 1, -1)
+	if(user.nextsoundemote >= world.time)
+		return
+	user.nextsoundemote = world.time + 7
+	var/sound = pick('modular_skyrat/sound/voice/fafafoggy.ogg', 'modular_skyrat/sound/voice/fafafoggy2.ogg')
+	playsound(user, sound, 50, 1, -1)
+
+/datum/emote/living/hohohoy
+	key = "hohohoy"
+	key_third_person = "hohohoys"
+	message = "spews hohohoy."
+	emote_type = EMOTE_AUDIBLE
+	muzzle_ignore = FALSE
+	restraint_check = FALSE
+	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
+
+/datum/emote/living/hohohoy/run_emote(mob/living/user, params)
+	if(!(. = ..()))
+		return
+	if(user.is_muzzled())
+		user.nextsoundemote = world.time + 7
+		playsound(user, 'modular_skyrat/sound/voice/ffffhfh.ogg', 25, 1, -1)
+	if(user.nextsoundemote >= world.time)
+		return
+	user.nextsoundemote = world.time + 7
+	playsound(user, 'modular_skyrat/sound/voice/hohohoy.ogg', 50, 1, -1)
