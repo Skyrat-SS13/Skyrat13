@@ -1,7 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added courier bags"
-  - rscadd: "Added polychromic bags: backpacks, courier bags, satchels, duffel bags"
-  - rscadd: "Added polychromic bags to character appearance setup"
-  - rscadd: "Added courier bag job forms to certain vendors"

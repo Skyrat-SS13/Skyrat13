@@ -1,4 +1,0 @@
-author: "Funce"
-delete-after: True
-changes: 
-  - bugfix: "Circuit pneumatic cannons are no longer silent"
