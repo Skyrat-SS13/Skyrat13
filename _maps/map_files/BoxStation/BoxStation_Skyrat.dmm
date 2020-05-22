@@ -8400,6 +8400,10 @@
 /obj/item/paper/fluff/jobs/security/beepsky_mom,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"aqV" = (
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "aqW" = (
 /turf/open/floor/carpet,
 /area/security/detectives_office)
@@ -87549,7 +87553,7 @@ biT
 boU
 bmP
 buF
-bbR
+aqV
 bbR
 btu
 bbR

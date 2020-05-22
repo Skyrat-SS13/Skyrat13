@@ -71685,6 +71685,11 @@
 /mob/living/simple_animal/pet/dog/cheems,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"cRj" = (
+/obj/effect/turf_decal/bot,
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "cVq" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -120090,7 +120095,7 @@ bff
 bfC
 bij
 bhK
-bkn
+cRj
 cnw
 bkn
 cRi

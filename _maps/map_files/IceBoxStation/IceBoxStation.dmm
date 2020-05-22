@@ -45,6 +45,10 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"aae" = (
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aaf" = (
 /obj/docking_port/stationary{
 	dheight = 1;
@@ -82412,7 +82416,7 @@ bjr
 bjr
 bmh
 boK
-bjr
+aae
 boK
 bjr
 bjr

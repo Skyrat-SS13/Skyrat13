@@ -102,6 +102,13 @@
 	luminosity = 2
 	},
 /area/ai_monitored/turret_protected/ai)
+"aao" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 8
+	},
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aap" = (
 /turf/closed/mineral/random/low_chance,
 /area/space/nearstation)
@@ -107298,7 +107305,7 @@ bpD
 blO
 blL
 api
-blK
+aao
 api
 bOI
 bAP
