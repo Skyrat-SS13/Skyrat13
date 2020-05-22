@@ -52,7 +52,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	// '0' (default for human mobs) converts to 2.5, or 4 tiles/sec.
 	// '1' (default for most simple_mobs) converts to 3.5, or 2.8 tiles/sec.
 	// '2' converts to 4.5, or 2.2 tiles/sec.
-	speed = 0.30
+	speed = 0.5
 
 	// Ventcrawling
 	ventcrawler = TRUE // allows player ventcrawling
