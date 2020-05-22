@@ -1,0 +1,4 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - rscdel: "Removed gigantism and small quirk. Use the sprite size % pref in character appearance instead"
