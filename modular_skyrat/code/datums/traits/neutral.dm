@@ -65,3 +65,84 @@
 				to_chat(H, "<span class='warning'>Uh oh, stinky! Something poopy happened to your fakespecies! You have been set to an IPC as a fallback.</span>") //shouldn't happen. if it does uh oh.
 		else
 			to_chat(H, "<span class='warning'>The [H.dna.species.name] species is blacklisted from being a synth. You will stay with the normal, non-synth race. It could mean that Bob Joga broke the code too.</span>")
+
+//speech impediments
+/datum/quirk/speech_impediment_rl
+	name = "Speech impediment (r as l)"
+	desc = "You mispronounce \"r\" as \"l\""
+	value = 0
+	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
+
+/datum/quirk/speech_impediment_rl/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_rl)
+
+/datum/quirk/speech_impediment_rl/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_rl)
+
+
+/datum/quirk/speech_impediment_lw
+	name = "Speech impediment (l as w)"
+	desc = "You mispronounce \"l\" as \"w\""
+	value = 0
+	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
+
+/datum/quirk/speech_impediment_lw/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_lw)
+
+/datum/quirk/speech_impediment_lw/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_lw)
+
+
+/datum/quirk/speech_impediment_rw
+	name = "Speech impediment (r as w)"
+	desc = "You mispronounce \"r\" as \"w\""
+	value = 0
+	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
+
+/datum/quirk/speech_impediment_rw/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_rw)
+
+/datum/quirk/speech_impediment_rw/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_rw)
+
+/datum/quirk/speech_impediment_rw_lw
+	name = "Speech impediment (r and l as w)"
+	desc = "You mispronounce \"r\" and \"l\" as \"w\""
+	value = 0
+	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
+
+/datum/quirk/speech_impediment_rw_lw/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_rw_lw)
+
+/datum/quirk/speech_impediment_rw_lw/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_rw_lw)
+
+/datum/quirk/hypnotic_stupor
+	name = "Hypnotic Stupor"
+	desc = "Your prone to episodes of extreme stupor that leaves you extremely suggestible."
+	value = 0
+	human_only = TRUE
+	gain_text = null // Handled by trauma.
+	lose_text = null
+	medical_record_text = "Patient has an untreatable condition with their brain, wiring them to be extreamly suggestible..."
+
+/datum/quirk/hypnotic_stupor/add()
+	var/datum/brain_trauma/severe/hypnotic_stupor/T = new()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
