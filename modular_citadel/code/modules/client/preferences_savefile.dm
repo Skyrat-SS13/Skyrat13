@@ -52,7 +52,7 @@
 	if(foodlikes.len > maxlikes)
 		foodlikes.Cut(maxlikes+1)
 	fooddislikes = SANITIZE_LIST(S["fooddislikes"])
-	if(fooddislikes.len > maxddislikes)
+	if(fooddislikes.len > maxdislikes)
 		fooddislikes.Cut(maxdislikes+1)
 
 	//Moves over the previous OOC notes to our ooc notes
