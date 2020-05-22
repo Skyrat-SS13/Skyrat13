@@ -49,12 +49,14 @@ Difficulty: Medium
 	health = 2000
 	maxHealth = 2000
 	movement_type = GROUND
-	attacktext = "slash"
+	attack_verb_continuous = "slashes"
+	attack_verb_simple = "slash"
 	attack_sound = 'modular_skyrat/sound/sif/sif_slash.ogg'
 	icon_state = "Great_Brown_Wolf"
 	icon_living = "Great_Brown_Wolf"
 	icon_dead = ""
-	friendly = "stares down"
+	friendly_verb_continuous = "stares down"
+	friendly_verb_simple = "stare down"
 	icon = 'modular_skyrat/icons/mob/lavaland/sif.dmi'
 	speak_emote = list("growls")
 	armour_penetration = 50

@@ -22,6 +22,15 @@
 	description = "RIP AND TEAR, UNTIL IT IS DONE."
 	suffix = "lavaland_surface_wrath.dmm"
 
+/datum/map_template/ruin/lavaland/rogue
+	name = "Rogue's Arena"
+	id = "roguearena"
+	description = "LOOK AT YOU HACKER."
+	suffix = "lavaland_surface_rogue.dmm"
+	cost = 0
+	always_place = TRUE
+	allow_duplicates = FALSE
+
 //always spawn sif's summoner sword
 /datum/map_template/ruin/lavaland/sif
 	name = "Sif's Sword"
