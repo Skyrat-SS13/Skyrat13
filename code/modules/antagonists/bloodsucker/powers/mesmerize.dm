@@ -133,12 +133,7 @@
 	spawn(power_time)
 	if(istype(target) && success)
 		target.notransform = FALSE
-<<<<<<< HEAD
-		REMOVE_TRAIT(target, TRAIT_COMBAT_MODE_LOCKED, src)
-		if(istype(L) && target.stat == CONSCIOUS && (target in view(10, get_turf(L)))) // They Woke Up! (Notice if within view)
-=======
 		if(istype(L) && target.stat == CONSCIOUS && (target in L.fov_view(10))) // They Woke Up! (Notice if within view)
->>>>>>> 8dd4fd4e66... Actually fixes mesmerize (#12330)
 			to_chat(L, "<span class='warning'>[target] has snapped out of their trance.</span>")
 
 
