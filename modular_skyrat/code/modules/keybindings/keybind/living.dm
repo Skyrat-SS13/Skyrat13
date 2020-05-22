@@ -1,5 +1,5 @@
 /datum/keybinding/living/toggle_combat_indication
-	hotkey_keys = list("CtrlC")
+	hotkey_keys = list("CtrlC", "6")
 	name = "toggle_combat_indication"
 	full_name = "Toggle combat indication"
 	description = "Toggles whether or not you're escalating or de-escalating from mechanical combat."
