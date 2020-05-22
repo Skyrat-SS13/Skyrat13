@@ -13,25 +13,25 @@
 /datum/gear/polyunder
 	name = "Polychromic Under"
 	category = SLOT_W_UNIFORM
-	path = /obj/item/clothing/under/polychromic
+	path = /obj/item/clothing/under/suit/polychromic
 	cost = 3
 
 /datum/gear/polypleat
 	name = "Polychromic Pleated Skirt"
 	category = SLOT_W_UNIFORM
-	path = /obj/item/clothing/under/polychromic/pleat
+	path = /obj/item/clothing/under/dress/skirt/polychromic/pleated
 	cost = 3
 
 /datum/gear/polyfemtank
 	name = "Polychromic Feminine Tanktop"
 	category = SLOT_W_UNIFORM
-	path = /obj/item/clothing/under/polychromic/femtank
+	path = /obj/item/clothing/under/misc/poly_tanktop/female
 	cost = 3
 
 /datum/gear/polytshirt
 	name = "Polychromic Shirt"
 	category = SLOT_W_UNIFORM
-	path = /obj/item/clothing/under/polychromic/shirt
+	path = /obj/item/clothing/under/misc/poly_shirt
 	cost = 3
 
 /datum/gear/skirtleneck
