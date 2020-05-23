@@ -315,6 +315,7 @@ Key procs
 								/datum/language/machine = list(LANGUAGE_ATOM),
 								/datum/language/draconic = list(LANGUAGE_ATOM),
 								/datum/language/slime = list(LANGUAGE_ATOM),
+								// SKYRAT EDIT - additional languages
 								/datum/language/solcommon = list(LANGUAGE_ATOM),
 								/datum/language/technorussian = list(LANGUAGE_ATOM),
 								/datum/language/neokanji = list(LANGUAGE_ATOM),
