@@ -600,6 +600,11 @@
 	set category = "Server"
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
+	if(!isnull(usr.client.address)) //skyrat edit - confirm early game start unless connecting locally
+		message_admins("[key_name(usr)] is deciding to start the game early")
+		if(alert(usr, "Start game NOW?", "Game Start Confirmation", "Yes", "No")!= "Yes")
+			message_admins("[key_name(usr)] has cancelled starting the game early")
+			return 0 //end skyrat edit
 	if(SSticker.current_state == GAME_STATE_PREGAME || SSticker.current_state == GAME_STATE_STARTUP)
 		SSticker.start_immediately = TRUE
 		log_admin("[usr.key] has started the game.")
