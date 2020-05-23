@@ -537,7 +537,13 @@
 	var/jobtext = ""
 	if(ply.assigned_role)
 		jobtext = " the <b>[ply.assigned_role]</b>"
+	//skyrat edit - show ckey on round end report preference
 	var/text = "<b>[ply.key]</b> was <b>[ply.name]</b>[jobtext] and"
+	for(var/client/C in GLOB.clients)
+		if(C.key == ply.key)
+			if(!(C.prefs.toggles & ROUNDEND_CKEY))
+				text = "<b>[pick(GLOB.spoofckeys)]</b> was <b>[ply.name]</b>[jobtext] and"
+	//
 	if(ply.current)
 		if(ply.current.stat == DEAD)
 			text += " <span class='redtext'>died</span>"
