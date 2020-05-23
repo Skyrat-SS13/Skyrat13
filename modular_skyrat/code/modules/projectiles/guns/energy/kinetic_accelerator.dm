@@ -1,4 +1,7 @@
 //Kinetic accelerator charging meme bugfix
+/obj/item/gun/energy/kinetic_accelerator/
+	var/chargetimer = null
+
 /obj/item/gun/energy/kinetic_accelerator/proc/reload()
 	if(ismob(loc) || isturf(loc)) //Kinetic accelerators won't charge inside objects. Period.
 		cell.give(cell.maxcharge)
@@ -9,7 +12,8 @@
 		update_icon()
 		overheat = FALSE
 	else //this is a terrible solution, but it ensures that it wont be stuck on dischaged if it fails to reload in an obj
-		addtimer(CALLBACK(src, .proc/reload), overheat_time * 2, TIMER_STOPPABLE)
+		deltimer(chargetimer)
+		chargetimer = addtimer(CALLBACK(src, .proc/reload), overheat_time * 2, TIMER_STOPPABLE)
 
 //BDM pka
 /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer
