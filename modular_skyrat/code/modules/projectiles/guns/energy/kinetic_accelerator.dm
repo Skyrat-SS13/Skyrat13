@@ -8,6 +8,8 @@
 			to_chat(loc, "<span class='warning'>[src] silently charges up.</span>")
 		update_icon()
 		overheat = FALSE
+	else //this is a terrible solution, but it ensures that it wont be stuck on dischaged if it fails to reload in an obj
+		addtimer(CALLBACK(src, .proc/reload), recharge_time * carried, TIMER_STOPPABLE)
 
 //BDM pka
 /obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer
