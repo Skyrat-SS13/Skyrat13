@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 		grants--
 		var/obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/spell = new /obj/effect/proc_holder/spell/targeted/shapeshift/morphcube()
 		user.mind.AddSpell(spell)
+		spell.owner = user.mind
 		spell.possible_shapes = list()
 		spell.possible_shapes += ourmob
 		spell.shapeshift_type = ourmob
@@ -53,6 +54,7 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 	invocation_type = "none"
 	charge_max = 100
 	possible_shapes = list()
+	var/datum/mind/owner = null
 	var/obj/item/morphcube/ourcube = null
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/cast(list/targets, mob/user = usr)
