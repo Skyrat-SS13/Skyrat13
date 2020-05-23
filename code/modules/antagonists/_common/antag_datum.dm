@@ -5,6 +5,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/roundend_category = "other antagonists"				//Section of roundend report, datums with same category will be displayed together, also default header for the section
 	var/show_in_roundend = TRUE								//Set to false to hide the antagonists from roundend report
 	var/datum/mind/owner						//Mind that owns this datum
+	//skyrat edit
+	var/key2use = ""				//ckey we show on the roundend report
+	//
 	var/silent = FALSE							//Silent will prevent the gain/lose texts to show
 	var/can_coexist_with_others = TRUE			//Whether or not the person will be able to have more than one datum
 	var/list/typecache_datum_blacklist = list()	//List of datums this type can't coexist with
@@ -80,9 +83,18 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if(is_banned(owner.current) && replace_banned)
 		replace_banned_player()
 	//Skyrat changes - warns the antag banned player if the role doesn't ghost him
+	//also roundendreport ckey preference
 	else if (is_banned(owner.current))
 		to_chat(owner, "<span class='boldwarning'>You are currently banned from antagonist roles and it's likely you've been converted. Please stay at your best behaviour, remember our rules and guidelines.")
 		message_admins("([key_name_admin(owner.current)]), as an antag banned player became a [src.name].")
+	if(owner.current)
+		if(owner.current.client)
+			if(owner.current.client.prefs.toggles & ROUNDEND_CKEY)
+				key2use = owner.key
+			else
+				key2use = pick(GLOB.spoofckeys)
+	else
+		key2use = owner.key
 	//Skyrat changes END
 	if(skill_modifiers)
 		for(var/A in skill_modifiers)

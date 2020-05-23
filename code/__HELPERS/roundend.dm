@@ -101,12 +101,10 @@
 			continue
 
 		var/list/antag_info = list()
-		antag_info["key"] = A.owner.key
 		//skyrat edit - hide ckey on roundend report
-		for(var/client/C in GLOB.clients)
-			if(C.key == A.owner.key)
-				if(!(C.prefs.toggles & ROUNDEND_CKEY))
-					antag_info["key"] = pick(GLOB.spoofckeys)
+		antag_info["key"] = A.key2use
+		if(!antag_info["key"])
+			antag_info["key"] = A.owner.key
 		//
 		antag_info["name"] = A.owner.name
 		antag_info["antagonist_type"] = A.type
