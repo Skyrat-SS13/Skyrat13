@@ -53,9 +53,15 @@
 	if(check_rights(R_ADMIN))
 		icon_state = "eventsignupon"
 
+	RegisterSignal(src, COMSIG_EVENTPREF_UPDATE, .proc/icon_update)
+
 /obj/screen/ghost/eventsignup/Click()
 	var/mob/dead/observer/G = usr
 	G.open_event_menu()
+
+/obj/screen/ghost/eventsignup/proc/icon_update()
+	icon_state = "eventsignup" + usr.client.prefs.event_participation ? "on" : "off"
+	update_icon()
 		
 /// Skyrat change END
 
