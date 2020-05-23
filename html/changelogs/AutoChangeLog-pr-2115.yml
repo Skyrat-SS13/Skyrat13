@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Food preferences now respect the limits of likes and dislikes."
