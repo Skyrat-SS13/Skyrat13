@@ -65,6 +65,8 @@
 			and seeing people of the same species as yours will positively impact your mood."
 	value = -1
 	medical_record_text = "Patient exhibits an unnatural distaste for people of differing species."
+	var/pcooldown = 0
+	var/pcooldown_time = 30 SECONDS
 	var/master_race
 
 /datum/quirk/specism/add()
@@ -76,6 +78,9 @@
 
 /datum/quirk/specism/on_process()
 	. = ..()
+	if(pcooldown > world.time)
+		return
+	pcooldown = world.time + pcooldown_time
 	if(!ishuman(quirk_holder))
 		remove() //prejudice is a human problem.
 	var/mob/living/carbon/human/trianglehatman = quirk_holder
