@@ -72,7 +72,7 @@
 	..()
 	if(loc != user)
 		qdel(src)
-
+/* bad emotes do not uncomment
 /datum/emote/living/dothemario
 	key = "dothemario"
 	key_third_person = "doesthemario"
@@ -117,3 +117,4 @@
 	. = ..()
 	if(.)
 		playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/speen.ogg', 30, 0)
+*/
