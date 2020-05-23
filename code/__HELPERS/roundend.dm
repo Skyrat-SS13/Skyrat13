@@ -542,7 +542,7 @@
 	for(var/client/C in GLOB.clients)
 		if(C.key == ply.key)
 			if(!(C.prefs.toggles & ROUNDEND_CKEY))
-				text = "<b>[pick(GLOB.spoofckeys)]</b> was <b>[ply.name]</b>[jobtext] and"
+				text = "<b>[pick(GLOB.spoofckeys)]</b> <i><span style='color:#808080;'>(key hidden)</span></i> was <b>[ply.name]</b>[jobtext] and"
 	//
 	if(ply.current)
 		if(ply.current.stat == DEAD)
