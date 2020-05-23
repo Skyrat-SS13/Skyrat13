@@ -1,6 +1,7 @@
 //cheems, the true cargo pet
 //note: will probably add hat and fluff functionality later
 //note 2: will probably get a better sprite later
+//note 3: ignore note 2 the sprite is actually good now
 /mob/living/simple_animal/pet/dog/cheems
 	name = "\proper Cheems"
 	desc = "Cheemsburbger..."
