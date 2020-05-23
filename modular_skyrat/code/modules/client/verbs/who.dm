@@ -87,7 +87,7 @@
 	set category = "Admin"
 	set name = "Staffwho"
 
-	var/msg = "<b>Current Admins:</b>\n"
+	var/msg = "<b>Current Staff:</b>\n"
 	if(check_rights_for(src, R_ADMIN))
 		for(var/X in GLOB.admins)
 			var/client/C = X
