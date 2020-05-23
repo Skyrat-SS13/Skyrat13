@@ -21,11 +21,12 @@
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/actualhealth = 100 //value we calculate to assume disguise and etc
 	//Same organs as an IPC basically, to share functionality.
-	mutant_heart = /obj/item/organ/heart/ipc
-	mutantlungs = /obj/item/organ/lungs/ipc
-	mutantliver = /obj/item/organ/liver/ipc
-	mutantstomach = /obj/item/organ/stomach/ipc
-	mutanteyes = /obj/item/organ/eyes/ipc
+	mutantstomach = /obj/item/organ/stomach/robot_ipc
+	mutantears = /obj/item/organ/ears/robot_ipc
+	mutanteyes = /obj/item/organ/eyes/robot_ipc
+	mutantlungs = /obj/item/organ/lungs/robot_ipc
+	mutant_heart = /obj/item/organ/heart/robot_ipc
+	mutantliver = /obj/item/organ/liver/robot_ipc
 	exotic_blood = /datum/reagent/blood/synthetics
 	exotic_bloodtype = "SY"
 	//variables used for snowflakey ass races and stuff god i fukcing hate this
@@ -115,6 +116,7 @@
 		BP.render_like_organic = TRUE
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
+	. = ..()
 	if(ishuman(source))
 		var/mob/living/carbon/human/H = source
 		actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
