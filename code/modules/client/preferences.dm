@@ -31,6 +31,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/muted = 0
 	var/last_ip
 	var/last_id
+	var/log_clicks = FALSE
 
 	var/icon/custom_holoform_icon
 	var/list/cached_holoform_icons
