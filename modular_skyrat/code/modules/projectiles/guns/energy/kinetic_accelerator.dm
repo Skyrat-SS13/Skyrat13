@@ -12,7 +12,8 @@
 		update_icon()
 		overheat = FALSE
 	else //this is a terrible solution, but it ensures that it wont be stuck on dischaged if it fails to reload in an obj
-		deltimer(chargetimer)
+		if(chargetimer)
+			deltimer(chargetimer)
 		chargetimer = addtimer(CALLBACK(src, .proc/reload), overheat_time * 2, TIMER_STOPPABLE)
 
 //BDM pka
