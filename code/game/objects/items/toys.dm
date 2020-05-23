@@ -155,6 +155,8 @@
 	var/sound/shotsound = sound('sound/weapons/gunshot.ogg')
 	var/infiniteboolet = FALSE
 	var/max_boolet = 7
+	var/shoot_cooldown = 0
+	var/shoot_cooldown_time = 5
 	//
 	var/bullets = 7
 
@@ -189,6 +191,11 @@
 
 /obj/item/toy/gun/afterattack(atom/target as mob|obj|turf|area, mob/user, flag)
 	. = ..()
+	//skyrat edit - no shot sound spam
+	if(shoot_cooldown > world.time)
+		return
+	shoot_cooldown = world.time + shoot_cooldown_time
+	//
 	if (flag)
 		return
 	if (!user.IsAdvancedToolUser())

@@ -67,6 +67,7 @@
 	shotsound = sound('modular_skyrat/sound/emotes/trash/pew.ogg')
 	dry_fire = FALSE
 	infiniteboolet = TRUE
+	shoot_cooldown_time = 10
 
 /obj/item/toy/gun/finger/dropped(mob/user)
 	..()
