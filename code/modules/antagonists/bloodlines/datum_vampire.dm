@@ -341,13 +341,13 @@
 		var/lost_blood = passive_blood_loss
 		//Drain blood for nutrition, if we are full on blood
 		var/mob/living/carbon/human/H = owner.current
-		if(H.blood_volume > (BLOOD_VOLUME_NORMAL*H.blood_ratio) && H.nutrition < NUTRITION_LEVEL_FULL-5)
-			if(H.nutrition < NUTRITION_LEVEL_FULL-5)
-				H.nutrition = min(H.nutrition + 1, NUTRITION_LEVEL_FULL-1)
-				lost_blood += 0.05
-			if(power < max_power)
-				power += power_gain
-				lost_blood += 0.1
-
-		AddBloodVolume(-lost_blood)
+		if(H) //Probably doesn't exist when you get gibbed and wait for cloning
+			if(H.blood_volume > (BLOOD_VOLUME_NORMAL*H.blood_ratio) && H.nutrition < NUTRITION_LEVEL_FULL-5)
+				if(H.nutrition < NUTRITION_LEVEL_FULL-5)
+					H.nutrition = min(H.nutrition + 1, NUTRITION_LEVEL_FULL-1)
+					lost_blood += 0.05
+				if(power < max_power)
+					power += power_gain
+					lost_blood += 0.1
+			AddBloodVolume(-lost_blood)
 		sleep(10)

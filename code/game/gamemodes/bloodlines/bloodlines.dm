@@ -1,3 +1,4 @@
+//Implemented by Azarak as a part of code bounty from Rayford. Irkalla Epsilon contributed to a lot of the ideas and abilities
 /datum/game_mode
 	var/list/vampires = list()
 	var/list/vampire_clans = list()

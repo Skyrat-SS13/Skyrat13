@@ -380,7 +380,7 @@
 /datum/action/vampire/feed/proc/ApplyVictimEffects(mob/living/target)
 	// Bloodsuckers not affected by "the Kiss" of another vampire
 	if(!target.mind || !target.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE))
-		target.Unconscious(200)
+		target.Unconscious(100)
 		target.DefaultCombatKnockdown(40 + 5 * level_current,1)
 		// NOTE: THis is based on level of power!
 		if(ishuman(target))
@@ -518,13 +518,6 @@
 				user_has_clan = TRUE
 			if(user_has_clan && target_has_clan && target_vamp_datum.vampire_clan == user_vamp_datum.vampire_clan)
 				same_clan = TRUE
-			if(same_clan)
-				to_chat(user, "<span class='warning'>You shouldn't be embracing your clan members.</span>")
-				return
-
-			if(target_vampire && !user_has_clan)
-				to_chat(user, "<span class='warning'>You can't bestow them with anything more.</span>")
-				return
 
 			if(target_vampire)
 				question_string = "Would you like to join [user.name]'s clan?"
@@ -535,25 +528,39 @@
 
 			if(target.client)
 				var/failed = TRUE
-				var/time_thershold = world.time + 400
-				action = alert(target.client, question_string, "", "Yes", "No")
-				if(!(world.time > time_thershold))
-					if(action == "Yes")
-						failed = FALSE
-						to_chat(target, "<span class='boldwarning'>You give into the invigorating power flowing through your veins, you have became a supernatural entity, a vampire.</span>")
-						if(target_vampire)
-							var/datum/vampire_clan/VC = user_vamp_datum.vampire_clan
-							VC.add_member(target_mind, FALSE)
-							to_chat(user, "<span class='notice'>[target.name] embraced our gift and joined the clan.</span>")
-						else if (user_has_clan)
-							var/datum/vampire_clan/VC = user_vamp_datum.vampire_clan
-							target_mind.add_antag_datum(/datum/antagonist/vampire,)
-							VC.add_member(target_mind, FALSE)
-							to_chat(user, "<span class='notice'>[target.name] embraced our gift and joined the clan.</span>")
+				var/proceed = TRUE
+				if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+					to_chat(target, "<span class='notice'>Your mindshield forces you to resist the influence!.</span>")
+					to_chat(user, "<span class='warning'>You feel your influence being repelled by something!</span>")
+					proceed = FALSE
+				if(same_clan)
+					to_chat(user, "<span class='warning'>You shouldn't be embracing your clan members!</span>")
+					proceed = FALSE
+				if(target_vampire && !user_has_clan)
+					to_chat(user, "<span class='warning'>You can't bestow them with anything more!</span>")
+					proceed = FALSE
+				if(proceed)
+					var/time_thershold = world.time + 400
+					action = alert(target.client, question_string, "", "Yes", "No")
+					if(!(world.time > time_thershold))
+						if(action == "Yes")
+							failed = FALSE
+							to_chat(target, "<span class='boldwarning'>You give into the invigorating power flowing through your veins, you have became a supernatural entity, a vampire.</span>")
+							if(target_vampire)
+								var/datum/vampire_clan/VC = user_vamp_datum.vampire_clan
+								VC.add_member(target_mind, FALSE)
+								to_chat(user, "<span class='notice'>[target.name] embraced our gift and joined the clan.</span>")
+							else if (user_has_clan)
+								var/datum/vampire_clan/VC = user_vamp_datum.vampire_clan
+								target_mind.add_antag_datum(/datum/antagonist/vampire,)
+								VC.add_member(target_mind, FALSE)
+								to_chat(user, "<span class='notice'>[target.name] embraced our gift and joined the clan.</span>")
+							else
+								target_mind.add_antag_datum(/datum/antagonist/vampire)
+								to_chat(user, "<span class='notice'>[target.name] embraced our gift and is now one of us.</span>")
+							log_combat(owner, target, "converted to vampire")
 						else
-							target_mind.add_antag_datum(/datum/antagonist/vampire)
-							to_chat(user, "<span class='notice'>[target.name] embraced our gift and is now one of us.</span>")
-						log_combat(owner, target, "converted to vampire")
+							to_chat(target, "<span class='boldwarning'>You resist against the corrupting force and succeed!</span>")
 
 				if(failed) //We refund
 					if(user)
@@ -564,7 +571,7 @@
 						user_vamp_datum.AddPower(powercost + 20)
 					if(target)
 						target.Unconscious(200)
-						to_chat(target, "<span class='boldwarning'>You resisting against the corrupting force and succeed, however this leaves you drained and weakened. You do not remember this.</span>")
+						to_chat(target, "<span class='boldwarning'>This experience leaves you drained and weakened. You will not remember this encounter when you wake.</span>")
 
 
 /datum/action/vampire/embrace/proc/CheckEmbraceTarget(mob/living/user, mob/living/target)
