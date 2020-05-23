@@ -116,7 +116,6 @@
 		BP.render_like_organic = TRUE
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
-	. = ..()
 	if(ishuman(source))
 		var/mob/living/carbon/human/H = source
 		actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
@@ -156,7 +155,7 @@
 	H.regenerate_icons()
 
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
-	..()
+	. = ..()
 	actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
