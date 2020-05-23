@@ -70,7 +70,7 @@
 	for(var/datum/mind/vamp_mind in initial_vampires)
 		var/datum/antagonist/vampire/V = vamp_mind.add_antag_datum(/datum/antagonist/vampire)
 		vamp_clan.add_member(vamp_mind)
-		vamp_clan.full_greet(vamp_mind)
+		V.post_greet(vamp_mind)
 	return ..()
 
 /proc/can_be_vampire_canditate(var/datum/mind/Mind) //No human yet, for gamemode setup

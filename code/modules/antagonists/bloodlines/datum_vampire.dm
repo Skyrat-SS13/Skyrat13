@@ -9,7 +9,7 @@
 	var/passive_blood_loss = 0.02 //Just enough to balance out blood regen from nutriment
 	var/gift_points = 12
 	var/bloodlines = list() //What bloodlines do we have available?
-	var/vampire_clan //To which clan do we belong?
+	var/datum/vampire_clan/vampire_clan //To which clan do we belong?
 	var/power = 75
 	var/power_gain = 0.1
 	var/max_power = 100
@@ -38,12 +38,15 @@
 	owner.current.playsound_local(null, 'sound/bloodsucker/BloodsuckerAlert.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/vampire/proc/post_greet()
-	return
+	if(vampire_clan)
+		vampire_clan.full_greet(owner)
+	else
+		to_chat(owner.current, "<B><font size=2 color=orange>Despite possessing a powerful bloodline, you do not belong to any clan. You've heard rumours of other entities such as you on the station. Perhaps it'd be wise to keep your eyes open.</font></B>")
 
 /datum/antagonist/vampire/on_gain()
 	. = ..()
 	SSticker.mode.vampires |= owner
-	owner.special_role = ROLE_VAMPIRE
+	owner.special_role = ROLE_BLOODLINE_VAMPIRE
 	vampiric_gifts = new(src)
 	vampiric_gifts_action = new(vampiric_gifts)
 	vampiric_gifts_action.Grant(owner.current)
@@ -57,6 +60,9 @@
 	QDEL_NULL(vampiric_gifts)
 	QDEL_NULL(vampiric_gifts_action)
 	ClearAllPowersAndStats()// Clear Powers & Stats
+	if(!silent && owner.current)
+		to_chat(owner.current,"<span class='userdanger'> You are no longer the Vampire! </span>")
+	owner.special_role = null
 	. = ..()
 
 /datum/antagonist/vampire/proc/GainBloodlinesFromClan(var/datum/vampire_clan/VampClan)
