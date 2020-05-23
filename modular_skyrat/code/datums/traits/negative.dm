@@ -41,6 +41,8 @@
 		/obj/item/toy/cards/deck,
 		/obj/item/lighter,
 		/obj/item/dice/d20)
+	if(is_species(H, /datum/species/insect/moth) && prob(50))
+		heirloom_type = /obj/item/flashlight/lantern/heirloom_moth
 	heirloom = new heirloom_type(get_turf(quirk_holder))
 	GLOB.family_heirlooms += heirloom
 	var/list/slots = list(
