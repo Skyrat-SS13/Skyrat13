@@ -86,3 +86,8 @@
 		window_flash(X, ignorepref = TRUE)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "loudAsay") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/add_admin_verbs()
+	GLOB.admin_verbs_fun |= /client/proc/fax_panel
+	GLOB.admin_verbs_hideable |= /client/proc/fax_panel
+	. = ..()

@@ -34,7 +34,7 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 	//H.grant_language(/datum/language/dwarf) SKYRAT CHANGE= We have an additional language option for this
 	H.facial_hair_style = dwarf_hair
 	H.update_hair()
-	AddElement(/datum/element/dwarfism, COMSIG_SPECIES_LOSS, src)
+	H.AddElement(/datum/element/dwarfism, COMSIG_SPECIES_LOSS, src)
 	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech) //We register handle_speech is being used.
 
 /datum/species/dwarf/on_species_loss(mob/living/carbon/H, datum/species/new_species)

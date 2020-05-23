@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "fixed surgery skill providing up to 3.5x speed boost instead of 2.5x"
-  - rscadd: "Antags can now have skill modifiers."
