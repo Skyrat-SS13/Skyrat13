@@ -1,4 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - rscadd: "Adds a hotkey for a combat indicator that doesn't require combat mode."
