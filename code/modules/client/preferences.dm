@@ -115,10 +115,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/see_chat_emotes = TRUE
 	var/enable_personal_chat_color = FALSE
 	var/personal_chat_color = "#ffffff"
-	var/list/foodlikes = list() //Skyrat additions BEGIN
+	var/list/foodlikes = list()
 	var/list/fooddislikes = list()
 	var/maxlikes = 3
-	var/maxdislikes = 3 //Skyrat additions END
+	var/maxdislikes = 3
 
 	var/list/alt_titles_preferences = list()
 	//END OF SKYRAT CHANGES
@@ -1070,6 +1070,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					else
 						dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;preference=be_special;be_special_type=[i]'>[(i in be_special) ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Midround Antagonist:</b> <a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Show ckey on endround stats:</b> <a href='?_src_=prefs;preference=show_ckey_roundend'>[(toggles & ROUNDEND_CKEY) ? "Yes" : "No"]</a><br>"
 
 			dat += "<br>"
 
@@ -2780,6 +2781,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("allow_midround_antag")
 					toggles ^= MIDROUND_ANTAG
+				//SKYRAT EDIT - show ckey on round end reports
+				if("show_ckey_roundend")
+					toggles ^= ROUNDEND_CKEY
+				//
 
 				if("parallaxup")
 					parallax = WRAP(parallax + 1, PARALLAX_INSANE, PARALLAX_DISABLE + 1)

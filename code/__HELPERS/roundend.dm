@@ -28,7 +28,13 @@
 		if(m.mind)
 			if(m.stat != DEAD && !isbrain(m) && !iscameramob(m))
 				num_survivors++
-			mob_data += list("name" = m.name, "ckey" = ckey(m.mind.key))
+			//skyrat edit - hide ckey on roundend report
+			var/client/temp = m.client
+			if(temp)
+				mob_data += list("name" = m.name, "ckey" = (temp.prefs.toggles & ROUNDEND_CKEY ? ckey(m.mind.key) : pick(GLOB.spoofckeys)))
+			else
+				mob_data += list("name" = m.name, "ckey" = ckey(m.mind.key))
+			//
 			if(isobserver(m))
 				escaped = "ghosts"
 			else if(isliving(m))
@@ -96,6 +102,12 @@
 
 		var/list/antag_info = list()
 		antag_info["key"] = A.owner.key
+		//skyrat edit - hide ckey on roundend report
+		for(var/client/C in GLOB.clients)
+			if(C.key == A.owner.key)
+				if(!(C.prefs.toggles & ROUNDEND_CKEY))
+					antag_info["key"] = pick(GLOB.spoofckeys)
+		//
 		antag_info["name"] = A.owner.name
 		antag_info["antagonist_type"] = A.type
 		antag_info["antagonist_name"] = A.name //For auto and custom roles

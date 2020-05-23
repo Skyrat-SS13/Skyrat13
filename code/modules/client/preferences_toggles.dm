@@ -350,7 +350,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	if(isobserver(mob))
 		mob.hud_used.show_hud()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Ghost HUD", "[prefs.ghost_hud ? "Enabled" : "Disabled"]"))
-// SKYRAT EDIT: Credits
+// SKYRAT EDIT
 /client/verb/toggle_show_credits()
 	set name = "Toggle Credits"
 	set category = "Preferences"
@@ -361,6 +361,16 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	prefs.save_preferences()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Credits", "[prefs.show_credits ? "Enabled" : "Disabled"]"))
 
+/client/verb/toggle_roundend_ckey()
+	set name = "Toggle Roundend Ckey"
+	set category = "Preferences"
+	set desc = "Hide/Show Roundend Ckey"
+
+	prefs.toggles ^= ROUNDEND_CKEY
+	prefs.save_preferences()
+	to_chat(src, "Your ckey will be [prefs.toggles & ROUNDEND_CKEY ? "visible" : "hidden"] on roundend reports.")
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Roundend Ckey", "[prefs.toggles & ROUNDEND_CKEY ? "Enabled" : "Disabled"]"))
+//
 /client/verb/toggle_inquisition() // warning: unexpected inquisition
 	set name = "Toggle Inquisitiveness"
 	set desc = "Sets whether your ghost examines everything on click by default"

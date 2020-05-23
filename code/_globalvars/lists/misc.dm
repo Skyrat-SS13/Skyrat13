@@ -57,3 +57,7 @@ GLOBAL_LIST_INIT(flirts, list("Roses are red / Violets are good / One day while 
 		"Wanna empty out my tool storage?",
 		"Did you visit the medbay after you fell from heaven?",
 		"Are you wearing space pants? Wanna not be?" ))
+
+//skyrat edit - hide ckey on roundend report preferences
+GLOBAL_LIST_INIT(spoofckeys, world.file2list("strings/spoofckeys.txt"))
+//
