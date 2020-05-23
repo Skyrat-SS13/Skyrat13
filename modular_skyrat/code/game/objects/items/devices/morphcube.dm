@@ -1,8 +1,7 @@
 GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
-										/mob/living/simple_animal/hostile/boss,\
 										/mob/living/carbon, /mob/living/simple_animal/hostile/asteroid/elite,\
 										/mob/living/simple_animal/hostile/boss, /mob/living/silicon,\
-										/mob/dead)))
+										/mob/dead,/mob/living/brain,/mob/living/simple_animal/hostile/guardian)))
 
 /obj/item/morphcube
 	name = "strange cube"
@@ -13,17 +12,16 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 	var/mob/living/ourmob = /mob/living/simple_animal/mouse
 	var/mob/living/targettype
 	var/obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/ourspell
-	var/list/cubelist = list()
 
 /obj/item/morphcube/attack_self(mob/user)
 	if(grants > 0)
 		grants--
 		var/obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/spell = new /obj/effect/proc_holder/spell/targeted/shapeshift/morphcube()
 		user.mind.AddSpell(spell)
-		spell.owner = user.mind
 		spell.possible_shapes = list()
 		spell.possible_shapes += ourmob
 		spell.shapeshift_type = ourmob
+		spell.ourcube = src
 		ourspell = spell
 		to_chat(user, "<span class='danger'>[src] grants you a new ability...</span>")
 	else
@@ -51,22 +49,18 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 /obj/effect/proc_holder/spell/targeted/shapeshift/morphcube
 	name = "Morphing"
 	desc = "Take the shape of the animal selected by your morph cube. Only works within a 7 tile range of the cube!"
-	invocation = "MORPH!!"
+	invocation = "none" //it really doesn't do you much good if everything around you knows who you are
+	invocation_type = "none"
 	charge_max = 100
 	possible_shapes = list()
-	var/datum/mind/owner = null
+	var/obj/item/morphcube/ourcube = null
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/cast(list/targets, mob/user = usr)
-	if(istype(user, /mob/living/carbon))
-		for(var/obj/item/morphcube/ourcube in view(user, 7))
-			if(ourcube.ourspell == src)
-				..()
-				return TRUE
+	if(istype(user, /mob/living/carbon) && get_dist(get_turf(ourcube),get_turf(user)) > 7)
 		to_chat(user, "<span class='danger'>The cube is out of range, or has been entirely destroyed!</span>")
 		return FALSE
-	else
-		..()
-		return TRUE
+	..()
+	return TRUE
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/morphcube/Shapeshift(mob/living/caster)
 	var/obj/shapeshift_holder/H = locate() in caster
