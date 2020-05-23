@@ -83,7 +83,7 @@
 		master_race = trianglehatman.dna.species.type
 	var/pridecount = 0
 	var/hatecount = 0
-	for(var/mob/living/carbon/human/H in view(5, trianglehatman))
+	for(var/mob/living/carbon/human/H in (view(5, trianglehatman) - trianglehatman))
 		if(H.dna.species.type != master_race)
 			hatecount++
 		else
