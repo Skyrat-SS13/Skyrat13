@@ -404,8 +404,8 @@
 	desc = "Sink your teeth into the neck of your victim and drink their blood! You need to aggressively grab them. This will make mortals unconscious"
 	button_icon_state = "power_feed"
 
-	bloodcost = 0
-	powercost = 0
+	bloodcost = 40
+	powercost = 50
 	cooldown = 900
 	amToggle = FALSE
 	purchasable = TRUE
@@ -437,9 +437,14 @@
 		return FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
+		var/victim_blood_percent = (H.blood_volume / (BLOOD_VOLUME_NORMAL * H.blood_ratio))
 		if(!can_make_vampire(H.mind))
 			if(display_error)
 				to_chat(owner, "<span class='warning'>Your victim is not suitable to be embraced.</span>")
+			return FALSE
+		if(victim_blood_percent <= 0.80) //Dont suck off and then embrace people, alright
+			if(display_error)
+				to_chat(owner, "<span class='warning'>Your victim has too little blood to recieve your gifts.</span>")
 			return FALSE
 		return TRUE
 	to_chat(owner, "<span class='warning'>Your victim needs to be a human.</span>")
@@ -466,7 +471,6 @@
 	// set waitfor = FALSE   <---- DONT DO THIS!We WANT this power to hold up Activate(), so Deactivate() can happen after.
 	var/mob/living/target = feed_target // Stored during CheckCanUse(). Can be a grabbed OR adjecent character.
 	var/mob/living/user = owner
-	var/datum/antagonist/vampire/vampiredatum = user.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
 	// Initial Wait
 	var/feed_time = 60
 	to_chat(user, "<span class='warning'>You pull [target] close to you and draw out your fangs...</span>")
@@ -490,16 +494,78 @@
 	user.visible_message("<span class='warning'>[user] closes [user.p_their()] mouth around [target]'s neck!</span>", \
 						 "<span class='warning'>You sink your fangs into [target]'s neck.</span>")
 
-		// Blood Gulp Sound
+	// Blood Gulp Sound
 	owner.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
 	target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
-	// DONE!
-	//DeactivatePower(user,target)
-	user.visible_message("<span class='warning'>[user] unclenches their teeth from [target]'s neck.</span>", \
-							 "<span class='warning'>You retract your fangs and release [target] from your bite.</span>")
 
 	// /proc/log_combat(atom/user, atom/target, what_done, atom/object=null, addition=null)
-	log_combat(owner, target, "fed on blood", addition="(and took 0 blood)")
+	var/datum/mind/target_mind = target.mind
+	if(can_make_vampire(target_mind))
+		var/datum/antagonist/vampire/user_vamp_datum = user.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+		var/datum/antagonist/vampire/target_vamp_datum = target.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+		if(user_vamp_datum)
+			var/action = ""
+			var/question_string = ""
+			var/target_vampire = FALSE
+			var/same_clan = FALSE
+			var/target_has_clan = FALSE
+			var/user_has_clan = FALSE
+			if(target_vamp_datum)
+				target_vampire = TRUE
+				if(target_vamp_datum.vampire_clan)
+					target_has_clan = TRUE
+			if(user_vamp_datum.vampire_clan)
+				user_has_clan = TRUE
+			if(user_has_clan && target_has_clan && target_vamp_datum.vampire_clan == user_vamp_datum.vampire_clan)
+				same_clan = TRUE
+			if(same_clan)
+				to_chat(user, "<span class='warning'>You shouldn't be embracing your clan members.</span>")
+				return
+
+			if(target_vampire && !user_has_clan)
+				to_chat(user, "<span class='warning'>You can't bestow them with anything more.</span>")
+				return
+
+			if(target_vampire)
+				question_string = "Would you like to join [user.name]'s clan?"
+			else if (user_has_clan)
+				question_string = "Would you like to be converted into a vampire and join [user.name]'s clan?"
+			else
+				question_string = "Would you like to be converted into a vampire?"
+
+			if(target.client)
+				var/failed = TRUE
+				var/time_thershold = world.time + 400
+				action = alert(target.client, question_string, "", "Yes", "No")
+				if(!(world.time > time_thershold))
+					if(action == "Yes")
+						failed = FALSE
+						to_chat(target, "<span class='boldwarning'>You give into the invigorating power flowing through your veins, you have became a supernatural entity, a vampire.</span>")
+						if(target_vampire)
+							var/datum/vampire_clan/VC = user_vamp_datum.vampire_clan
+							VC.add_member(target_mind, FALSE)
+							to_chat(user, "<span class='notice'>[target.name] embraced our gift and joined the clan.</span>")
+						else if (user_has_clan)
+							var/datum/vampire_clan/VC = user_vamp_datum.vampire_clan
+							target_mind.add_antag_datum(/datum/antagonist/vampire,)
+							VC.add_member(target_mind, FALSE)
+							to_chat(user, "<span class='notice'>[target.name] embraced our gift and joined the clan.</span>")
+						else
+							target_mind.add_antag_datum(/datum/antagonist/vampire)
+							to_chat(user, "<span class='notice'>[target.name] embraced our gift and is now one of us.</span>")
+						log_combat(owner, target, "converted to vampire")
+
+				if(failed) //We refund
+					if(user)
+						to_chat(user, "<span class='warning'>[target.name] rejected your embrace. We feed on them instead!</span>")
+						to_chat(user, "<span class='warning'>They will not remember this.</span>")
+					if(user_vamp_datum)
+						user_vamp_datum.AddBloodVolume(bloodcost + 40)
+						user_vamp_datum.AddPower(powercost + 20)
+					if(target)
+						target.Unconscious(200)
+						to_chat(target, "<span class='boldwarning'>You resisting against the corrupting force and succeed, however this leaves you drained and weakened. You do not remember this.</span>")
+
 
 /datum/action/vampire/embrace/proc/CheckEmbraceTarget(mob/living/user, mob/living/target)
 	return  target && (!target_grappled || user.pulling == target) && blood_sucking_checks(target, TRUE, TRUE)

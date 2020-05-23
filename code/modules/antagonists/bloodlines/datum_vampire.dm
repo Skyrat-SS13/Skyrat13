@@ -28,9 +28,22 @@
 	var/datum/vampiric_gifts/vampiric_gifts
 	var/datum/action/innate/vampiric_gifts/vampiric_gifts_action
 
+/datum/antagonist/vampire/greet()
+	to_chat(owner.current, "<B><font size=3 color=red>You are the Vampire.</font></B>")
+	to_chat(owner.current, "<B><font size=2 color=red>Ancient bloodlines flow through your veins, granting you powers far exceeding mortals. You are capable of regenerating health and stamina at unnatural pace.</font></B>")
+	to_chat(owner.current, "<span class='announce'>Tip: You are vulnerable to fire, but more resistant to brute.</span>")
+	to_chat(owner.current, "<span class='announce'>Tip: You can buy new powers with the 'Vampiric Gifts' ability, based on your bloodlines.</span>")
+	to_chat(owner.current, "<span class='announce'>Tip: Your power resource aswell as nutrition raise if your blood level is high.</span>")
+	owner.announce_objectives()
+	owner.current.playsound_local(null, 'sound/bloodsucker/BloodsuckerAlert.ogg', 100, FALSE, pressure_affected = FALSE)
+
+/datum/antagonist/vampire/proc/post_greet()
+	return
+
 /datum/antagonist/vampire/on_gain()
 	. = ..()
 	SSticker.mode.vampires |= owner
+	owner.special_role = ROLE_VAMPIRE
 	vampiric_gifts = new(src)
 	vampiric_gifts_action = new(vampiric_gifts)
 	vampiric_gifts_action.Grant(owner.current)

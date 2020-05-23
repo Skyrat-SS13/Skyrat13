@@ -70,6 +70,7 @@
 	for(var/datum/mind/vamp_mind in initial_vampires)
 		var/datum/antagonist/vampire/V = vamp_mind.add_antag_datum(/datum/antagonist/vampire)
 		vamp_clan.add_member(vamp_mind)
+		vamp_clan.full_greet(vamp_mind)
 	return ..()
 
 /proc/can_be_vampire_canditate(var/datum/mind/Mind) //No human yet, for gamemode setup
@@ -112,8 +113,10 @@
 	if(Mind.has_antag_datum(/datum/antagonist/abductor) || Mind.has_antag_datum(/datum/antagonist/devil) || Mind.has_antag_datum(/datum/antagonist/changeling) || Mind.has_antag_datum(/datum/antagonist/bloodsucker))
 		message_admins("already a non human antag")
 		return FALSE
+	/*
 	// Already a vamp
 	if(Mind.has_antag_datum(/datum/antagonist/vampire))
 		message_admins("already a vamp")
 		return FALSE
+	*/
 	return TRUE
