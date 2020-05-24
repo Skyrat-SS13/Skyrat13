@@ -45,9 +45,12 @@
 						<div id='commands'>
 						[src.get_commands()]
 						</div>
+						<div id='gps'>
+						[src.gps_meme()]
+						</div>
 						</body>
 						</html>
-					 "}
+					 "} //SKYRAT CHANGE - FUNNY MECH GPS
 
 
 
@@ -148,7 +151,28 @@
 		. += "<div id='[REF(MT)]'>[MT.get_equip_info()]</div>"
 	. += "</div>"
 
-
+//SKYRAT CHANGE - funny gps
+//terrible html formatting below, be warned.
+/obj/mecha/proc/gps_meme()
+	var/obj/item/mecha_parts/mecha_equipment/gps/funny = null
+	for(var/obj/item/mecha_parts/mecha_equipment/gps/funney in equipment)
+		funny = funney
+	if(!funny)
+		return
+	var/list/data = funny.ui_data()
+	. = "<div style=\"text-align: center\"><b>GPS Information:</b></div><div style=\"margin-left: 10px;margin-right: 10px\"><br><hr>"
+	. += "<b><div style=\"text-align: center\">Our signal ([data["tag"]]):</div><hr></b><br>"
+	. += "<div style=\"margin-left: 30px\"><b>X, Y, Z coordinates:</b> [data["currentCoords"]]<br><b>Area:</b> [data["currentArea"]]</div><hr>"
+	. += "<b><div style=\"text-align: center\">Other signals:</div><hr></b><br>"
+	for(var/list/signal in data["signals"])
+		var/guacamole = signal["dist"] ? TRUE : FALSE
+		if(guacamole)
+			. += "<b><div>[signal["entrytag"]]:</b> [signal["coords"]]<br>"
+			. += "([signal["dist"]] tiles away, [signal["degrees"]] degrees)</div><br>"
+		else 
+			. += "<b><div>[signal["entrytag"]]:</b> [signal["coords"]]</div><br>"
+	. += "</div>"
+//
 
 /obj/mecha/proc/get_log_html()
 	. = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>[src.name] Log</title></head><body style='font: 13px 'Courier', monospace;'>"
