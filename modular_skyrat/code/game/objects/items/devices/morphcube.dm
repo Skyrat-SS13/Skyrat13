@@ -1,7 +1,7 @@
 GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 										/mob/living/simple_animal/hostile/boss,\
 										/mob/living/carbon, /mob/living/simple_animal/hostile/asteroid/elite,\
-										/mob/living/simple_animal/hostile/boss, /mob/living/silicon,\
+										/mob/living/simple_animal/hostile/megafauna, /mob/living/silicon,\
 										/mob/dead)))
 
 /obj/item/morphcube
