@@ -181,7 +181,7 @@
 	name = "Scary Box"
 	desc = "A box to make everyone scream."
 
-/obj/item/storage/box/syndie_kit/snake/PopulateContents()
+/obj/item/storage/box/syndie_kit/ghostface/PopulateContents()
 	new /obj/item/clothing/mask/infiltrator/ghostface(src)
 	new /obj/item/clothing/suit/hooded/cultrobes/ghostface(src)
 	new /obj/item/kitchen/knife/combat/ghost(src)

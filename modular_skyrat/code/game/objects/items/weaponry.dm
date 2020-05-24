@@ -435,9 +435,9 @@
 	name = "silvery knife"
 	desc = "Just killing. Chilling."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
-	icon_state = "ghostknife"
-	force = 15
-	var/forceunder = 15
+	icon_state = "ghoststabber"
+	force = 12
+	var/forceunder = 12
 	var/forceover = 20
 	var/attackspeed = 0.65
 	var/attackspeedunder = 0.65
@@ -460,14 +460,13 @@
 
 /obj/item/kitchen/knife/combat/ghost/examine(mob/user)
 	. = ..()
-	. += "<br>"
 	. += "<span class='danger' style='font-family:\"Times New Roman\", Times, serif;'><b>Currently attacking in [mode == 1 ? "under hand" : "over head"] mode.</b></span>"
 
 /obj/item/kitchen/knife/combat/ghost/process()
 	. = ..()
-	if(istype(loc, /mob))
+	if(ismob(loc))
 		if(playingsound && (world.time > soundend))
-			playsound(loc, dramaticsound, 100, 0, 0, 1, null, channel = CHANNEL_HIGHEST_AVAILABLE)
+			playsound(loc, dramaticsound, 100, 0, 0, 1, null, channel = CHANNEL_AMBIENCE)
 			soundend = world.time + soundlength
 	
 /obj/item/kitchen/knife/combat/ghost/attack_self(mob/user)
@@ -480,10 +479,12 @@
 			slowdown = slowdownover
 			attackspeed = attackspeedover
 			force = forceover
-			playingsound = 0
-			STOP_PROCESSING(SSobj, src)
-			for(var/mob/L in view(5, user))
-				L.stop_sound_channel(CHANNEL_HIGHEST_AVAILABLE)
+			playingsound = 1
+			if(/mob/living in (view(5, user) - user))
+				playsound(user, dramaticsound, 100, 0, 0, 1, null, channel = CHANNEL_HIGHEST_AVAILABLE)
+				playingsound = 1
+				soundend = world.time + soundlength
+				START_PROCESSING(SSobj, src)
 		if(2)
 			user.visible_message("<span class='danger'><b>[user]</b> lowers the [src].</span>", \
 							"<span class='danger'>You lower [src].</span>")
@@ -491,11 +492,9 @@
 			slowdown = slowdownunder
 			attackspeed = attackspeedunder
 			force = forceunder
-			if(/mob/living in (view(5, user) - user))
-				playsound(user, dramaticsound, 100, 0, 0, 1, null, channel = CHANNEL_HIGHEST_AVAILABLE)
-				playingsound = 1
-				soundend = world.time + soundlength
-				START_PROCESSING(SSobj, src)
+			STOP_PROCESSING(SSobj, src)
+			for(var/mob/L in view(5, user))
+				L.stop_sound_channel(CHANNEL_AMBIENCE)
 
 /obj/item/kitchen/knife/combat/ghost/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()

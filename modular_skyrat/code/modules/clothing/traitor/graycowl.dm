@@ -11,89 +11,54 @@
 	anthro_mob_worn_overlay = null
 	item_state = null
 	voice_unknown = FALSE
+	var/new_disguise_cooldown = 0
+	var/new_disguise_cooldown_time = 50
 	var/datum/dna/disguise
+	var/list/disguise_features
 	var/datum/dna/stored
+	var/list/stored_features
 
 /obj/item/clothing/mask/infiltrator/graycowl/Initialize()
 	. = ..()
-	disguise = new /datum/dna()
-	stored = new /datum/dna()
+	NewDisguise()
+
+/obj/item/clothing/mask/infiltrator/graycowl/proc/NewDisguise()
+	var/mob/living/carbon/human/idiot = new(src)
+	scramble_dna(idiot, TRUE, FALSE, 100)
+	randomize_human(idiot)
+	disguise = copify_dna(idiot.dna)
+	disguise_features = copify_features(idiot, TRUE, FALSE)
+	qdel(idiot)
+
+/obj/item/clothing/mask/infiltrator/graycowl/AltClick(mob/user)
+	. = ..()
+	var/mob/living/carbon/human/H = user
+	if(H && istype(H) && (H.get_item_by_slot(SLOT_WEAR_MASK) != src))
+		if(world.time < new_disguise_cooldown)
+			return
+		new_disguise_cooldown = world.time + new_disguise_cooldown_time
+		to_chat(H, "<span class='notice'>You rub some dust off \the [src]. It seems to glow for a moment.</span>")
+		NewDisguise()
 
 /obj/item/clothing/mask/infiltrator/graycowl/equipped(mob/M, slot)
 	. = ..()
-	if(iscarbon(M))
-		var/mob/living/carbon/human/idiot = new(src)
-		disguise.unique_enzymes = idiot.dna.unique_enzymes
-		disguise.uni_identity = idiot.dna.uni_identity
-		disguise.blood_type = idiot.dna.blood_type
-		disguise.species = new idiot.dna.species.type()
-		disguise.features = idiot.dna.features.Copy()
-		disguise.real_name = idiot.dna.real_name
-		disguise.nameless = idiot.dna.nameless
-		disguise.custom_species = idiot.dna.custom_species
-		disguise.mutations = idiot.dna.mutations.Copy()
-		disguise.temporary_mutations = idiot.dna.temporary_mutations.Copy()
-		disguise.delete_species = idiot.dna.delete_species
-		disguise.mutation_index = idiot.dna.mutation_index.Copy()
-		disguise.stability = idiot.dna.stability
-		disguise.scrambled = idiot.dna.scrambled
-		disguise.skin_tone_override = idiot.dna.skin_tone_override
-		qdel(idiot)
-		var/mob/living/carbon/user = M
+	if(ishuman(M))
+		var/mob/living/carbon/human/user = M
 		if(slot == SLOT_WEAR_MASK)
-			stored.unique_enzymes = user.dna.unique_enzymes
-			stored.uni_identity = user.dna.uni_identity
-			stored.blood_type = user.dna.blood_type
-			stored.species = new user.dna.species.type()
-			stored.features = user.dna.features.Copy()
-			stored.real_name = user.dna.real_name
-			stored.nameless = user.dna.nameless
-			stored.custom_species = user.dna.custom_species
-			stored.mutations = user.dna.mutations.Copy()
-			stored.temporary_mutations = user.dna.temporary_mutations.Copy()
-			stored.delete_species = user.dna.delete_species
-			stored.mutation_index = user.dna.mutation_index.Copy()
-			stored.stability = user.dna.stability
-			stored.scrambled = user.dna.scrambled
-			stored.skin_tone_override = user.dna.skin_tone_override
-			user.dna.unique_enzymes = disguise.unique_enzymes
-			user.dna.uni_identity = disguise.uni_identity
-			user.dna.blood_type = disguise.blood_type
-			user.dna.species = new disguise.species.type()
-			user.dna.features = disguise.features.Copy()
-			user.dna.real_name = disguise.real_name
-			user.name = disguise.real_name
-			user.real_name = disguise.real_name
-			user.dna.nameless = disguise.nameless
-			user.dna.custom_species = disguise.custom_species
-			user.dna.mutations = disguise.mutations.Copy()
-			user.dna.temporary_mutations = disguise.temporary_mutations.Copy()
-			user.dna.delete_species = disguise.delete_species
-			user.dna.mutation_index = disguise.mutation_index.Copy()
-			user.dna.stability = disguise.stability
-			user.dna.scrambled = disguise.scrambled
-			user.dna.skin_tone_override = disguise.skin_tone_override
+			stored = copify_dna(user.dna)
+			stored_features = copify_features(user, TRUE, TRUE)
+			user.dna = copify_dna(disguise)
+			featurize_human(user, disguise_features)
 			user.regenerate_icons()
 
 /obj/item/clothing/mask/infiltrator/graycowl/dropped(mob/M)
 	. = ..()
-	if(iscarbon(M))
-		var/mob/living/carbon/user = M
-		user.dna.unique_enzymes = stored.unique_enzymes
-		user.dna.uni_identity = stored.uni_identity
-		user.dna.blood_type = stored.blood_type
-		user.dna.species = stored.species
-		user.dna.features = stored.features.Copy()
-		user.dna.real_name = stored.real_name
-		user.name = stored.real_name
-		user.real_name = stored.real_name
-		user.dna.nameless = stored.nameless
-		user.dna.custom_species = stored.custom_species
-		user.dna.mutations = stored.mutations.Copy()
-		user.dna.temporary_mutations = stored.temporary_mutations.Copy()
-		user.dna.delete_species = stored.delete_species
-		user.dna.mutation_index = stored.mutation_index.Copy()
-		user.dna.stability = stored.stability
-		user.dna.scrambled = stored.scrambled
-		user.dna.skin_tone_override = stored.skin_tone_override
-		user.regenerate_icons()
+	if(ishuman(M))
+		var/mob/living/carbon/human/user = M
+		if(user && istype(user) && (user.get_item_by_slot(SLOT_WEAR_MASK) == src))
+			user.dna = copify_dna(stored)
+			featurize_human(user, stored_features)
+			qdel(stored)
+			stored = null
+			stored_features = list()
+			user.regenerate_icons()
