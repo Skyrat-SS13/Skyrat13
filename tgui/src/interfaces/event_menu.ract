@@ -4,7 +4,7 @@
 			{{#each data.participating_observers}}
 				<ui-display title='{{ckey}} - {{time_played}}' button>
 					{{#partial button}}
-						<ui-button action='show_panel' params='{"mob_ref" : {{mob_ref}}}>
+						<ui-button action='show_panel' params='{"mob_ref" : {{mob_ref}}}'>
 							Player Panel
 						</ui-button>
 					{{/partial}}
