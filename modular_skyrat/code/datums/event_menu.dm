@@ -25,7 +25,7 @@
 					"ckey" = M.client.ckey,
 					"time_played" = M.client.get_exp_living(),
 					"prefs" = M.client.prefs.event_prefs,
-					"mob_ref" = M
+					"ref" = "[REF(M)]"
 				))
 
 	data["participating"] = user.client.prefs.event_participation
@@ -47,6 +47,7 @@
 				the station as a whole.", "Event Preferences", usr.client.prefs.event_prefs, MAX_MESSAGE_LEN)
 			usr.client.prefs.event_prefs = new_preference
 		if("show_panel")
-			usr.client.holder.show_player_panel(locate(params["mob_ref"]))
+			var/mob/to_show = locate(params["ref"])
+			usr.client.holder.show_player_panel(to_show)
 
 	owner.client.prefs.save_preferences()
