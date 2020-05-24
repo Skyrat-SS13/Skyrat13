@@ -32,7 +32,7 @@
 				M.dizziness = max(0,M.dizziness-2)
 				M.jitteriness = max(0,M.jitteriness-2)
 				M.confused = max(M.confused-1)
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "goodmusic", /datum/mood_event/goodmusic)
+				//SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "goodmusic", /datum/mood_event/goodmusic) //Skyrat change
 		tune_time_left -= wait
 	else
 		tune_time_left = 0
