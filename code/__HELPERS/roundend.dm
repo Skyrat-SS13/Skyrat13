@@ -31,7 +31,7 @@
 			//skyrat edit - hide ckey on roundend report
 			var/client/temp = m.client
 			if(temp)
-				mob_data += list("name" = m.name, "ckey" = (temp.prefs.toggles & ROUNDEND_CKEY ? ckey(m.mind.key) : pick(GLOB.spoofckeys)))
+				mob_data += list("name" = m.name, "ckey" = (temp.prefs.toggles & ROUNDEND_CKEY ? ckey(m.mind.key) : ckey(pick(GLOB.spoofckeys))))
 			else
 				mob_data += list("name" = m.name, "ckey" = ckey(m.mind.key))
 			//
