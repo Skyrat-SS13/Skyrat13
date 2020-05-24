@@ -49,7 +49,11 @@
 	enable_personal_chat_color	= sanitize_integer(enable_personal_chat_color, 0, 1, initial(enable_personal_chat_color))
 	personal_chat_color	= sanitize_hexcolor(personal_chat_color, 6, 1, "#FFFFFF")
 	foodlikes = SANITIZE_LIST(S["foodlikes"])
+	if(foodlikes.len > maxlikes)
+		foodlikes.Cut(maxlikes+1)
 	fooddislikes = SANITIZE_LIST(S["fooddislikes"])
+	if(fooddislikes.len > maxdislikes)
+		fooddislikes.Cut(maxdislikes+1)
 
 	//Moves over the previous OOC notes to our ooc notes
 	if(length(features["ooc_notes"]) > length(skyrat_ooc_notes))
