@@ -378,4 +378,4 @@
 #define COMSIG_XENO_MONKEY_CLICK_CTRL "xeno_monkey_click_ctrl"				//from monkey CtrlClickOn(): (/mob)
 
 // Observer signals
-#define COMSIG_EVENTPREF_UPDATE "observer_eventpref_update"
+#define COMSIG_EVENTPREF_UPDATE "observer_eventpref_update" // Skyrat changes
