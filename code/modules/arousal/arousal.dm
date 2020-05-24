@@ -189,7 +189,8 @@
 	return TRUE
 
 //Here's the main proc itself
-/mob/living/carbon/human/proc/mob_climax(forced_climax=FALSE) //Forced is instead of the other proc, makes you cum if you have the tools for it, ignoring restraints
+//skyrat edit - forced partner and spillage
+/mob/living/carbon/human/proc/mob_climax(forced_climax=FALSE, var/mob/living/forced_partner = null, var/forced_spillage = TRUE) //Forced is instead of the other proc, makes you cum if you have the tools for it, ignoring restraints
 	if(mb_cd_timer > world.time)
 		if(!forced_climax) //Don't spam the message to the victim if forced to come too fast
 			to_chat(src, "<span class='warning'>You need to wait [DisplayTimeText((mb_cd_timer - world.time), TRUE)] before you can do that again!</span>")
@@ -224,8 +225,17 @@
 							partner = C
 					else //A cat is fine too
 						partner = check_target
+				//skyrat edit
+				if(forced_partner)
+					if((forced_partner == TRUE) || (!istype(forced_partner)))
+						partner = null
+					else
+						partner = forced_partner
+				//
 				if(partner) //Did they pass the clothing checks?
-					mob_climax_partner(G, partner, mb_time = 0) //Instant climax due to forced
+					//skyrat edit
+					mob_climax_partner(G, partner, spillage = forced_spillage, mb_time = 0) //Instant climax due to forced
+					//
 					continue //You've climaxed once with this organ, continue on
 			//not exposed OR if no partner was found while exposed, climax alone
 			mob_climax_outside(G, mb_time = 0) //removed climax timer for sudden, forced orgasms
