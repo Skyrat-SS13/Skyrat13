@@ -1,13 +1,21 @@
 <ui-display title='{{name}}' button>
-
 	<div style="padding:5px">
 		{{#if data.is_admin}}
-
+			{{#each data.participating_observers}}
+				<ui-display title='{{ckey}} - {{time_played}}' button>
+					{{#partial button}}
+						<ui-button action='show_panel' params='{"mob_ref" : {{mob_ref}}}>
+							Player Panel
+						</ui-button>
+					{{/partial}}
+					{{{prefs}}}
+  				</ui-display>
+			{{/each}}
 		{{else}}
 			<div style="text-align:center">
 				<ui-section label='Info'>
 					<p>
-						Admin created events commonly run during rounds; here you can toggle if you'd like to be chosen for them while being an observer, and also 
+						Admin created events commonly run during rounds; here you can toggle if you'd like to be chosen for them while being an observer. You can also 
 						set your preferences to what sort of events you'd like to be a part of.
 					</p>
 					<p>

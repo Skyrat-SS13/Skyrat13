@@ -1,12 +1,12 @@
 /mob/dead/observer
 	var/datum/event_menu/event_menu
 
-/mob/dead/observer/proc/open_event_menu()
+/mob/dead/observer/proc/open_event_menu(var/icon)
 	set name = "Event Panel"
 	set desc = "Toggle your event participation interest, and change your preferences"
 	set category = "Ghost"
 	if(!event_menu)
-		event_menu = new(src)
+		event_menu = new(src, icon)
 	event_menu.ui_interact(src)
 
 /mob/dead/observer/proc/on_click_ctrl_shift(mob/user)
