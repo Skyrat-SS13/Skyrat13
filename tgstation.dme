@@ -3502,6 +3502,7 @@
 #include "modular_skyrat\code\game\machinery\computer\arcade\minesweeper.dm"
 #include "modular_skyrat\code\game\machinery\computer\arcade\prize_datums.dm"
 #include "modular_skyrat\code\game\machinery\computer\arcade\tetris.dm"
+#include "modular_skyrat\code\game\machinery\cryptominer\cryptominers.dm"
 #include "modular_skyrat\code\game\machinery\doors\airlock.dm"
 #include "modular_skyrat\code\game\machinery\doors\brigdoors.dm"
 #include "modular_skyrat\code\game\machinery\pipe\construction.dm"

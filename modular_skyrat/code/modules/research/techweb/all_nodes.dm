@@ -21,6 +21,22 @@
 	design_ids = list("bluespace_miner")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 
+/datum/techweb_node/cryptominer
+	id = "cryptominer"
+	display_name = "Cryptocurrency Mining"
+	description = "Harness the power of cryptocurrency to make credits for Cargo-- slowly."
+	prereq_ids = list("bluespace_mining")
+	design_ids = list("cryptominer")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+
+/datum/techweb_node/cryptominersyndie
+	id = "cryptominersyndie"
+	display_name = "Illegal Cryptocurrency Mining"
+	description = "Harness the power of bluespace to make credits for Cargo-- slowly."
+	prereq_ids = list("cryptominer","syndicate_basic")
+	design_ids = list("cryptominersyndie")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+
 /datum/techweb_node/radioactive_weapons/New()
 	design_ids += "holorifle"
 	design_ids += "microfusion_cell"
