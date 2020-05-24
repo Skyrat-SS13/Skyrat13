@@ -1,6 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "3 variant shutters frame delay"
-  - balance: "No more instant crush from firelock and shutters,they now took 10 delay before they can crush anyone"
-  - bugfix: "Trash bag icon_state now change correctly when emptied"

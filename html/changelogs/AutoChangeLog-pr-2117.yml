@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "NT is no longer cutting costs on their kinetic accelerators. They won't fry when put in containers anymore."
