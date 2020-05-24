@@ -70,6 +70,12 @@
 		R.trans_to(target, R.total_volume * (spill ? G.fluid_transfer_factor : 1))
 	G.time_since_last_orgasm = 0
 	R.clear_reagents()
+	//skyrat edit - chock i am going to beat you to death
+	//this is not a joke i am actually going to break your
+	//ribcage
+	if(!Process_Spacemove(turn(dir, 180)))
+		newtonian_move(turn(dir, 180))
+	//
 
 /mob/living/carbon/human/proc/mob_climax_outside(obj/item/organ/genital/G, mb_time = 30) //This is used for forced orgasms and other hands-free climaxes
 	var/datum/reagents/fluid_source = G.climaxable(src, TRUE)
