@@ -75,6 +75,7 @@
 	design_ids = list("computermath")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+
 /datum/techweb_node/encryption
 	id = "encryption_key"
 	display_name = "Communication Encryption"
@@ -82,3 +83,8 @@
 	prereq_ids = list("telecomms")
 	design_ids = list("eng_key", "sci_key", "med_key", "supply_key", "serv_key")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
+
+/datum/techweb_node/computer_board_gaming/New()
+	design_ids += "tetris"
+	. = ..()
+

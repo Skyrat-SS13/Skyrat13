@@ -4,3 +4,8 @@
 
 /datum/emote/living/surrender/ff
 	key = "ff"
+
+/datum/emote/living/tilt
+	key = "tilt"
+	key_third_person = "tilts"
+	message = "tilts their head."

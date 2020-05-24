@@ -1,7 +1,7 @@
 /datum/round_event_control/tiger_carp_frenzy
 	name = "Tiger Carp Frenzy"
 	typepath = /datum/round_event/tiger_carp_frenzy
-	weight = 10
+	weight = 5
 	min_players = 15
 	earliest_start = 20 MINUTES
 	max_occurrences = 6
