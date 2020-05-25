@@ -52,7 +52,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/makeshift/welder
-	name = "Makeshift Screwdriver"
+	name = "Makeshift Welder"
 	tools = list(/obj/item/hammer/makeshift, /obj/item/screwdriver, /obj/item/wirecutters)
 	result = /obj/item/weldingtool/makeshift
 	reqs = list(/obj/item/tank/internals/emergency_oxygen = 1,
