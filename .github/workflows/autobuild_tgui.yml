@@ -2,6 +2,8 @@ name: Autobuild TGUI
 
 on:
   push:
+    branches:
+      - 'master'
     paths:
       - 'tgui-next/**.js'
       - 'tgui-next/**.scss'
