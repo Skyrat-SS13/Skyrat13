@@ -8345,9 +8345,7 @@
 /obj/item/seeds/cotton{
 	yield = 5
 	},
-/obj/item/seeds/cotton{
-	yield = 5
-	},
+/obj/item/seeds/cotton/durathread,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "Rt" = (

@@ -284,6 +284,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	else
 		prefs = new /datum/preferences(src)
 		GLOB.preferences_datums[ckey] = prefs
+	if(SSinput.initialized)
+		set_macros()
+	update_movement_keys(prefs)
 
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
@@ -346,9 +349,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			else
 				qdel(src)
 				return
-
-	if(SSinput.initialized)
-		set_macros()
 
 	chatOutput.start() // Starts the chat
 
@@ -495,8 +495,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 //////////////
 
 /client/Del()
-	if(credits)
-		QDEL_LIST(credits)
+	// SKYRAT EDIT: Credits
+	//if(credits)
+		//QDEL_LIST(credits)
 	log_access("Logout: [key_name(src)]")
 	if(holder)
 		adminGreet(1)
@@ -920,6 +921,23 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	x = clamp(x+change, min, max)
 	y = clamp(y+change, min,max)
 	change_view("[x]x[y]")
+
+/client/proc/update_movement_keys(datum/preferences/direct_prefs)
+	var/datum/preferences/D = prefs || direct_prefs
+	if(!D?.key_bindings)
+		return
+	movement_keys = list()
+	for(var/key in D.key_bindings)
+		for(var/kb_name in D.key_bindings[key])
+			switch(kb_name)
+				if("North")
+					movement_keys[key] = NORTH
+				if("East")
+					movement_keys[key] = EAST
+				if("West")
+					movement_keys[key] = WEST
+				if("South")
+					movement_keys[key] = SOUTH
 
 /client/proc/change_view(new_size)
 	if (isnull(new_size))

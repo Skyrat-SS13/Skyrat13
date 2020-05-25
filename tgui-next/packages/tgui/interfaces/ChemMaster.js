@@ -209,6 +209,7 @@ class PackagingControls extends Component {
       packAmount: 1,
       vialAmount: 1,
       dartAmount: 1,
+      injectorAmount: 1,
     };
   }
 
@@ -222,6 +223,7 @@ class PackagingControls extends Component {
       packAmount,
       vialAmount,
       dartAmount,
+      injectorAmount,
     } = this.state;
     const {
       condi,
@@ -317,6 +319,21 @@ class PackagingControls extends Component {
             onCreate={() => act(ref, 'create', {
               type: 'smartDart',
               amount: dartAmount,
+              volume: 'auto',
+            })} />
+        )}
+        {!condi && (
+          <PackagingControlsItem
+            label="Medipens"
+            amount={injectorAmount}
+            amountUnit="medipens"
+            sideNote="max 10u"
+            onChangeAmount={(e, value) => this.setState({
+              injectorAmount: value,
+            })}
+            onCreate={() => act(ref, 'create', {
+              type: 'injector',
+              amount: injectorAmount,
               volume: 'auto',
             })} />
         )}

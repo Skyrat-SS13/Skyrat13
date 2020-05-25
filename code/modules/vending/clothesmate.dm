@@ -150,7 +150,13 @@
 					/obj/item/clothing/under/costume/qipao/red = 3,
 					/obj/item/clothing/under/costume/cheongsam = 3,
 					/obj/item/clothing/under/costume/cheongsam/white = 3,
-					/obj/item/clothing/under/costume/cheongsam/red = 3)
+					/obj/item/clothing/under/costume/cheongsam/red = 3,
+					// SKYRAT EDIT: Courier Bags and Polychromics
+					/obj/item/storage/backpack/courier/polychromic = 3,
+					/obj/item/storage/backpack/polychromic = 3,
+					/obj/item/storage/backpack/satchel/polychromic = 3,
+					/obj/item/storage/backpack/duffelbag/polychromic = 3)
+					// SKYRAT EDIT CLOSE
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 3,
 					/obj/item/clothing/under/syndicate/tacticool/skirt = 3,
 					/obj/item/clothing/mask/balaclava = 3,

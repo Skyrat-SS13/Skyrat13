@@ -312,7 +312,7 @@
 
 /datum/crafting_recipe/largeblade
 	name = "Large metal blade"
-	result = /obj/item/metal_blade
+	result = /obj/item/large_metal_blade
 	reqs = list(/obj/item/kitchen/knife/butcher = 1)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 20

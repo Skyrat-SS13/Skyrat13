@@ -31,6 +31,8 @@
 	//variables used for snowflakey ass races and stuff god i fukcing hate this
 	var/storedeardamage = 0
 	var/storedtaildamage = 0
+	//AAAAAAAAAAAAAAAAAAAAAAAA I CANT EAT AAAAAAAAAAAAAAAAAAAAAAAAAA
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))
