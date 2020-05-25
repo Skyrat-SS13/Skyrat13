@@ -1,38 +1,3 @@
-//gigantism
-/datum/quirk/gigantism
-	name = "Gigantism"
-	desc = "You are exceptionally big."
-	value = 0
-	mob_trait = TRAIT_GIGANTISM
-	medical_record_text = "Patient's body is exceptionally large."
-
-/datum/quirk/gigantism/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.transform = H.transform.Scale(1.25, 1.25)
-
-/datum/quirk/gigantism/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.transform = H.transform.Scale(0.8, 0.8)
-
-//small
-/datum/quirk/small
-	name = "Small"
-	desc = "You are a bit... small. With none of the benefits."
-	value = 0
-	mob_trait = TRAIT_SMALL
-
-/datum/quirk/small/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.transform = H.transform.Scale(0.9, 0.9)
-
-/datum/quirk/small/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.transform = H.transform.Scale(1.1, 1.1)
-
 //synth thing (doing it as an actual species thing would be wayyy harder to do).
 /datum/quirk/synthetic
 	name = "Synthetic"
@@ -132,3 +97,17 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	if(H)
 		H.disable_speech_mod(/datum/speech_mod/impediment_rw_lw)
+
+/datum/quirk/hypnotic_stupor
+	name = "Hypnotic Stupor"
+	desc = "Your prone to episodes of extreme stupor that leaves you extremely suggestible."
+	value = 0
+	human_only = TRUE
+	gain_text = null // Handled by trauma.
+	lose_text = null
+	medical_record_text = "Patient has an untreatable condition with their brain, wiring them to be extreamly suggestible..."
+
+/datum/quirk/hypnotic_stupor/add()
+	var/datum/brain_trauma/severe/hypnotic_stupor/T = new()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
