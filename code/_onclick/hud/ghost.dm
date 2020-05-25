@@ -44,25 +44,6 @@
 	var/mob/dead/observer/G = usr
 	G.open_spawners_menu()
 
-/// Skyrat change START
-/obj/screen/ghost/eventsignup
-	name = "Event Signup"
-	icon_state = "eventsignupoff"
-
-/obj/screen/ghost/eventsignup/New()
-	if(check_rights(R_ADMIN, FALSE))
-		icon_state = "eventsignupon"
-
-/obj/screen/ghost/eventsignup/Click()
-	var/mob/dead/observer/G = usr
-	G.open_event_menu(src)
-
-/obj/screen/ghost/eventsignup/proc/icon_update()
-	icon_state = "eventsignup" + (usr.client.prefs.event_participation ? "on" : "off")
-	update_icon()
-		
-/// Skyrat change END
-
 /datum/hud/ghost/New(mob/owner)
 	..()
 	var/obj/screen/using
@@ -91,13 +72,6 @@
 	using.screen_loc = ui_ghost_spawners
 	using.hud = src
 	static_inventory += using
-
-	/// Skyrat change START
-	using = new /obj/screen/ghost/eventsignup()
-	using.screen_loc = ui_ghost_eventsignup
-	using.hud = src
-	static_inventory += using
-	/// Skyrat change END
 
 	using = new /obj/screen/language_menu
 	using.icon = ui_style
