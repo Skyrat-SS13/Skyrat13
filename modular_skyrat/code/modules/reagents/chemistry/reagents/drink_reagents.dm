@@ -10,7 +10,7 @@
 	glass_name = "glass of Maintenance Energy"
 	glass_desc = "Unleash the tide."
 	var/list/healed_roles = list("Assistant")
-	var/heal_amount = 0.25
+	var/heal_amount = 0.20
 
 /datum/reagent/consumable/maint_energy/on_mob_add(mob/living/L, amount)
 	. = ..()
@@ -77,7 +77,7 @@
 	glass_desc = "Unleash the Death Squad."
 	healed_roles = list("Captain", "Head of Security", "Head of Personnel", "Blueshield",\
 						"Security Officer", "Detective", "Brig Physician", "Warden")
-	var/extraresist = 10
+	var/extraresist = 0
 	var/stunmod = 0
 	var/storedstunmod = 0
 	var/storedresistance = 0
@@ -114,7 +114,6 @@
 	name = "Maintenance Energy Blood Red"
 	description = "Favored by operatives all around the frontier."
 	nutriment_factor = 0.357 * REAGENTS_METABOLISM
-	overdose_threshold = 25
 	pH = 4.5 //more acidic
 	color = "#ff0000d8"
 	taste_description = "delta alert"
@@ -123,15 +122,13 @@
 				All crew are instructed to obey all instructions given by heads of staff. \
 				Any violations of these orders can be punished by death. \
 				This is not a drill.</b></span>"
-	extraresist = 20
-	stunmod = -0.5
+	extraresist = 0
+	stunmod = 0
 	healed_roles = list(ROLE_SYNDICATE, ROLE_TRAITOR)
-	heal_amount = 0.3
-	var/traumatized = 0
+	heal_amount = 0.5
 
 /datum/reagent/consumable/maint_energy/raid/blood_red/on_mob_add(mob/living/L, amount)
 	. = ..()
-	L.apply_status_effect(STATUS_EFFECT_KYLE)
 	if(prob(33))
 		var/code = (num2text(rand(0,9)) + num2text(rand(0,9)) + num2text(rand(0,9)))
 		var/designation = pick("Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Zero", "Niner")
@@ -141,19 +138,4 @@
 
 /datum/reagent/consumable/maint_energy/raid/blood_red/on_mob_delete(mob/living/L)
 	. = ..()
-	L.remove_status_effect(STATUS_EFFECT_KYLE)
 	to_chat(L, "<span class='danger'>You feel weak again.../span>")
-
-/datum/reagent/consumable/maint_energy/raid/blood_red/overdose_process(mob/living/M)
-	. = ..()
-	var/mob/living/carbon/human/C = M
-	if(!traumatized && istype(C))
-		to_chat(C, "<span class='userdanger'>YEEEEEAGH!</span>")
-		C.physiology.damage_resistance = (extraresist/4)
-		if(prob(80))
-			C.gain_trauma(/datum/brain_trauma/mild/hallucinations)
-		if(prob(60))
-			C.gain_trauma(/datum/brain_trauma/mild/healthy)
-		if(prob(30))
-			C.gain_trauma(/datum/brain_trauma/mild/concussion)
-		traumatized = 1
