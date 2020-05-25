@@ -10,7 +10,7 @@
 	glass_name = "glass of Maintenance Energy"
 	glass_desc = "Unleash the tide."
 	var/list/healed_roles = list("Assistant")
-	var/heal_amount = 0.20
+	var/heal_amount = 0.25
 
 /datum/reagent/consumable/maint_energy/on_mob_add(mob/living/L, amount)
 	. = ..()
@@ -125,7 +125,7 @@
 	extraresist = 0
 	stunmod = -0.5
 	healed_roles = list(ROLE_SYNDICATE, ROLE_TRAITOR)
-	heal_amount = 0.5
+	heal_amount = 0.6
 	var/stamina_heal_amount = 1
 	var/stamina_buffer_heal_amount = 0.5
 
