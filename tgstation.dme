@@ -3729,6 +3729,7 @@
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\designatedspeciesscreamfile.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\furrypeople.dm"
+#include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\humanoid.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\ipc.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\lizardpeople.dm"
 #include "modular_skyrat\code\modules\mob\living\carbon\human\species_types\plasmamen.dm"
