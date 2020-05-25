@@ -1,4 +1,4 @@
--//Cool stuff taken away from us by citadel
+//Cool stuff taken away from us by citadel
 /datum/uplink_item/badass/claymore
 	name = "Claymore"
 	cost = 10
