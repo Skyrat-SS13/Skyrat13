@@ -85,8 +85,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/pda_style = MONO
 	var/pda_color = "#808000"
 	var/pda_skin = PDA_SKIN_ALT
-	// SKYRAT EDIT: Credits
+	// SKYRAT CHANGE START
 	var/show_credits = TRUE
+	var/event_participation = FALSE
+	var/event_prefs = ""
+	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
 
