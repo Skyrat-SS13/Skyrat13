@@ -123,9 +123,11 @@
 				Any violations of these orders can be punished by death. \
 				This is not a drill.</b></span>"
 	extraresist = 0
-	stunmod = 0
+	stunmod = -0.5
 	healed_roles = list(ROLE_SYNDICATE, ROLE_TRAITOR)
 	heal_amount = 0.5
+	var/stamina_heal_amount = 1
+	var/stamina_buffer_heal_amount = 0.5
 
 /datum/reagent/consumable/maint_energy/raid/blood_red/on_mob_add(mob/living/L, amount)
 	. = ..()
@@ -135,6 +137,15 @@
 		L.say("[code] [designation]")
 		playsound(L, 'sound/ambience/antag/tatoralert.ogg', 100)
 	to_chat(L, "<span class='userdanger'>The [src] makes you invincible.</span>")
+
+/datum/reagent/consumable/maint_energy/raid/blood_red/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.adjustStaminaLoss(-stamina_heal_amount)
+		H.adjustStaminaLossBuffered(-stamina_buffer_heal_amount)
+		H.sprint_buffer = min(H.sprint_buffer_max, H.sprint_buffer + (H.sprint_buffer_regen_ds*3))
+		H.AdjustSleeping(-50)
 
 /datum/reagent/consumable/maint_energy/raid/blood_red/on_mob_delete(mob/living/L)
 	. = ..()
