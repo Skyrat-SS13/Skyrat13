@@ -31,7 +31,7 @@
 	toolspeed = 4
 	w_class = WEIGHT_CLASS_HUGE
 	max_fuel = 5
-	heat = 2000
+	heat = 1800
 
 /obj/item/wirecutters/makeshift
 	name = "makeshift wirecutters"
@@ -51,7 +51,7 @@
 	icon_state = "makeshift_wrench"
 	force = 2
 	throwforce = 2
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_NORMAL
 	toolspeed = 4
 
 

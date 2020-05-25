@@ -26,7 +26,7 @@
 	tools = list(/obj/item/hammer/makeshift)
 	result = /obj/item/crowbar/makeshift
 	reqs = list(/obj/item/stack/sheet/metal = 4,
-				/obj/item/stack/sheet/cloth = 2)
+				/obj/item/stack/cable_coil = 2)
 	time = 120
 	subcategory = CAT_TOOL
 	category = CAT_MISC
@@ -34,7 +34,7 @@
 /datum/crafting_recipe/makeshift/hammer
 	name = "Makeshift Hammer"
 	result = /obj/item/hammer/makeshift
-	reqs = list(/obj/item/stack/sheet/cloth = 1,
+	reqs = list(/obj/item/stack/cable_coil = 2,
 				/obj/item/stack/rods = 2,
 				/obj/item/kitchen/rollingpin = 1)
 	time = 80
@@ -45,7 +45,7 @@
 	name = "Makeshift Screwdriver"
 	tools = list(/obj/item/hammer/makeshift)
 	result = /obj/item/screwdriver/makeshift
-	reqs = list(/obj/item/stack/sheet/cloth = 2,
+	reqs = list(/obj/item/stack/cable_coil = 2,
 				/obj/item/stack/rods = 2)
 	time = 80
 	subcategory = CAT_TOOL
@@ -53,20 +53,21 @@
 
 /datum/crafting_recipe/makeshift/welder
 	name = "Makeshift Screwdriver"
-	tools = list(/obj/item/hammer/makeshift, /obj/item/screwdriver, /obj/item/wirecutters)    //Testing needed
+	tools = list(/obj/item/hammer/makeshift, /obj/item/screwdriver, /obj/item/wirecutters)
 	result = /obj/item/weldingtool/makeshift
 	reqs = list(/obj/item/tank/internals/emergency_oxygen = 1,
 				/obj/item/stack/sheet/metal = 6,
-				/obj/item/stack/rods = 4)
+				/obj/item/stack/sheet/glass, = 2
+				/obj/item/stack/cable_coil = 2)
 	time = 160
 	subcategory = CAT_TOOL
 	category = CAT_MISC
 
 /datum/crafting_recipe/makeshift/wirecutters
 	name = "Makeshift Wirecutters"
-	tools = list(/obj/item/hammer/makeshift, /obj/item/screwdriver)   //Testing needed
+	tools = list(/obj/item/hammer/makeshift, /obj/item/screwdriver)
 	result = /obj/item/wirecutters/makeshift
-	reqs = list(/obj/item/stack/sheet/cloth = 2,
+	reqs = list(/obj/item/stack/cable_coil = 2,
 				/obj/item/stack/sheet/metal = 2,
 				/obj/item/stack/rods = 2)
 	time = 80
@@ -75,11 +76,11 @@
 
 /datum/crafting_recipe/makeshift/wrench
 	name = "Makeshift Wrench"
-	tools = list(/obj/item/hammer/makeshift, /obj/item/screwdriver)   //Testing needed
+	tools = list(/obj/item/hammer/makeshift, /obj/item/screwdriver)
 	result = /obj/item/wrench/makeshift
-	reqs = list(/obj/item/stack/sheet/cloth = 1,
+	reqs = list(/obj/item/stack/cable_coil = 1,
 				/obj/item/stack/sheet/metal = 3,
-				/obj/item/stack/rods = 2)
+				/obj/item/stack/rods = 1)
 	time = 80
 	subcategory = CAT_TOOL
 	category = CAT_MISC
