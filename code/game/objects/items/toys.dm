@@ -136,7 +136,7 @@
 /*
  * Toy gun: Why isnt this an /obj/item/gun?
  */
- //Skyrat edit - who the fuck thought that not using vars was a good idea?
+
 /obj/item/toy/gun
 	name = "cap gun"
 	desc = "Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps."
