@@ -17,6 +17,8 @@
 /datum/hud/ghost/New(mob/owner)
 	..()
 	
+	var/obj/screen/using
+
 	using = new /obj/screen/ghost/eventsignup()
 	using.screen_loc = ui_ghost_eventsignup
 	using.hud = src
