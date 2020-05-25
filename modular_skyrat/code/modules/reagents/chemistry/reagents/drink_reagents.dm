@@ -1,4 +1,4 @@
--//maint energy and subtypes
+//maint energy and subtypes
 /datum/reagent/consumable/maint_energy
 	name = "Maintenance Energy"
 	description = "Assistant's favorite energy drink."
