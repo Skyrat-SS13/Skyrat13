@@ -28,13 +28,14 @@
 	mutanteyes = /obj/item/organ/eyes/ipc
 	//cheeto
 	exotic_blood = /datum/reagent/blood/synthetics
-	exotic_bloodtype = "SY"
 	//variables used for snowflakey ass races and stuff god i fukcing hate this
 	var/storedeardamage = 0
 	var/storedtaildamage = 0
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
 	exotic_bloodtype = "SY"
+	//AAAAAAAAAAAAAAAAAAAAAAAA I CANT EAT AAAAAAAAAAAAAAAAAAAAAAAAAA
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))

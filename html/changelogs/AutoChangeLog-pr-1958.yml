@@ -1,8 +1,0 @@
-author: "Useroth"
-delete-after: True
-changes: 
-  - rscadd: "new quirk: airhead - you're dumb, but who really cares?"
-  - rscadd: "new quirks: speech impediments (\"r\" as \"l\", \"l\" as \"w\", \"r\" as \"w\")"
-  - tweak: "breasts now rip clothes on \"k\" cup size, instead of \"i\""
-  - tweak: "changed some descriptions and messages"
-  - config: "5 more breast cup sizes to pick from upon character configuration: f, g, h, i, j"

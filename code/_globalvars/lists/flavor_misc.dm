@@ -128,7 +128,13 @@ GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_
 #define DBACKPACK "Department Backpack"
 #define DSATCHEL "Department Satchel"
 #define DDUFFELBAG "Department Duffel Bag"
-GLOBAL_LIST_INIT(backbaglist, list(DBACKPACK, DSATCHEL, DDUFFELBAG, GBACKPACK, GSATCHEL, GDUFFELBAG, LSATCHEL))
+// SKYRAT EDIT: Courier Bags and Polychromics
+#define PLYSBP "Polychromic Backpack"
+#define PLYSS "Polychromic Satchel"
+#define PLYSCB "Polychromic Courier Bag"
+#define PLYSDB "Polychromic Duffel Bag"
+GLOBAL_LIST_INIT(backbaglist, list(DBACKPACK, DSATCHEL, DDUFFELBAG, GBACKPACK, GSATCHEL, GDUFFELBAG, LSATCHEL, PLYSBP, PLYSS, PLYSCB, PLYSDB))
+// SKYRAT EDIT CLOSE
 
 //Suit/Skirt
 #define PREF_SUIT "Jumpsuit"
