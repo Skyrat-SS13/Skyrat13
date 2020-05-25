@@ -10,7 +10,9 @@
 	circuit = /obj/item/circuitboard/machine/cryptominer
 	var/mining = FALSE
 	var/miningtime = 600
-	var/miningpoints = 10
+	var/miningpoints = 50
+	var/mintemp = T0C - 270
+	var/maxtemp = T0C + 130
 
 /obj/machinery/cryptominer/update_icon()
 	. = ..()
@@ -29,10 +31,26 @@
 	return ..()
 
 /obj/machinery/cryptominer/process()
-	if(mining)
-		playsound(loc, 'sound/machines/beep.ogg', 50, 1, -1)
-		playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-		SSshuttle.points += miningpoints
+	var/turf/L = loc
+	var/datum/gas_mixture/env = L.return_air()
+	if(env.temperature > maxtemp)
+		if(mining)
+			playsound(loc, 'sound/machines/beep.ogg', 50, 1, -1)
+		mining = FALSE
+		update_icon()
+		return
+	if(env.temperature < maxtemp && env.temperature > mintemp)
+		if(mining)
+			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
+			SSshuttle.points += miningpoints
+			env.temperature += 100
+			air_update_turf()
+	if(env.temperature <= mintemp)
+		if(mining)
+			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
+			SSshuttle.points += (miningpoints * 2)
+			env.temperature += 100
+			air_update_turf()
 
 /obj/machinery/cryptominer/attack_hand(mob/living/user)
 	. = ..()
@@ -65,7 +83,7 @@
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/machine/cryptominer/syndie
 	miningtime = 6000
-	miningpoints = 20
+	miningpoints = 100
 
 /obj/machinery/cryptominer/nanotrasen
 	name = "cryptocurrency miner"
@@ -77,4 +95,4 @@
 	idle_power_usage = 1
 	active_power_usage = 1
 	miningtime = 600000
-	miningpoints = 100
+	miningpoints = 1000
