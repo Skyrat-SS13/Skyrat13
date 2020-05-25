@@ -151,4 +151,3 @@
 		return
 	user.nextsoundemote = world.time + 7
 	playsound(user, 'modular_skyrat/sound/voice/hohohoy.ogg', 50, 1, -1)
-
