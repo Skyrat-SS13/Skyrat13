@@ -265,7 +265,7 @@ As a Devil, as long as you control at least one other soul, you will automatical
 At which time a Devil's nameth is spake on the tongue of man, the Devil may appeareth. 
 You can swap floor tiles by holding a crowbar in one hand and a stack of tiles in the other.
 When hacking doors, cutting and mending the "test light wire" will restore power to the door.
-When hacking, remote singulars pluse when attached to a wire and pinged. This can allow you to hack things or set traps from far away.
+When hacking, remote singulars pulse when attached to a wire and pinged. This can allow you to hack things or set traps from far away.
 When crafting most items, you can either manually combine parts or use the crafting menu.
 Suit storage units not only remove blood and dirt from clothing, but also radiation!
 Remote devices will work when used through cameras. For example: Bluespace RPEDs and door remotes.
