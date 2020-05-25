@@ -134,7 +134,7 @@
 		var/designation = pick("Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Zero", "Niner")
 		L.say("[code] [designation]")
 		playsound(L, 'sound/ambience/antag/tatoralert.ogg', 100)
-	to_chat(L, "<span class='userdanger'>The [src] makes you invincible!</span>")
+	to_chat(L, "<span class='userdanger'>The [src] makes you invincible.</span>")
 
 /datum/reagent/consumable/maint_energy/raid/blood_red/on_mob_delete(mob/living/L)
 	. = ..()
