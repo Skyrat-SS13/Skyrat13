@@ -57,8 +57,8 @@
 	result = /obj/item/weldingtool/makeshift
 	reqs = list(/obj/item/tank/internals/emergency_oxygen = 1,
 				/obj/item/stack/sheet/metal = 6,
-				/obj/item/stack/sheet/glass, = 2
-				/obj/item/stack/cable_coil = 2)
+				/obj/item/stack/sheet/glass = 2,
+				/obj/item/stack/cable_coil = 4)
 	time = 160
 	subcategory = CAT_TOOL
 	category = CAT_MISC
@@ -68,8 +68,7 @@
 	tools = list(/obj/item/hammer/makeshift, /obj/item/screwdriver)
 	result = /obj/item/wirecutters/makeshift
 	reqs = list(/obj/item/stack/cable_coil = 2,
-				/obj/item/stack/sheet/metal = 2,
-				/obj/item/stack/rods = 2)
+				/obj/item/stack/rods = 4)
 	time = 80
 	subcategory = CAT_TOOL
 	category = CAT_MISC
@@ -78,7 +77,7 @@
 	name = "Makeshift Wrench"
 	tools = list(/obj/item/hammer/makeshift, /obj/item/screwdriver)
 	result = /obj/item/wrench/makeshift
-	reqs = list(/obj/item/stack/cable_coil = 1,
+	reqs = list(/obj/item/stack/cable_coil = 2,
 				/obj/item/stack/sheet/metal = 3,
 				/obj/item/stack/rods = 1)
 	time = 80

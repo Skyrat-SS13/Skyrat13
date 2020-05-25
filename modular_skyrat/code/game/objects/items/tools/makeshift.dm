@@ -51,7 +51,7 @@
 	icon_state = "makeshift_wrench"
 	force = 2
 	throwforce = 2
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_HUGE
 	toolspeed = 4
 
 
