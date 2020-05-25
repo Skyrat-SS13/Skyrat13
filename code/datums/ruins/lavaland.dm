@@ -253,3 +253,14 @@
 	placement_weight = 3
 	always_place = TRUE
 	allow_duplicates = TRUE
+<<<<<<< HEAD
+=======
+
+/datum/map_template/ruin/lavaland/elephant_graveyard
+	name = "Elephant Graveyard"
+	id = "Graveyard"
+	description = "An abandoned graveyard, calling to those unable to continue."
+	suffix = "lavaland_surface_elephant_graveyard.dmm"
+	allow_duplicates = FALSE
+	cost = 10
+>>>>>>> 85186a9714... Porting updates related to material datums. (#12317)

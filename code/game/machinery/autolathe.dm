@@ -58,7 +58,8 @@
 		/datum/material/runite,
 		/datum/material/plastic,
 		/datum/material/adamantine,
-		/datum/material/mythril
+		/datum/material/mythril,
+		/datum/material/wood
 		)
 
 	/// Base print speed
