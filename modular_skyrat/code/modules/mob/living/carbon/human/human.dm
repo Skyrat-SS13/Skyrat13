@@ -1,11 +1,14 @@
 /mob/living/carbon/human/Topic(href, href_list)
 	. = ..()
-	if(href_list["ooc_notes"])
+	if(href_list["skyrat_ooc_notes"])
 		if(client)
-			var/str = "[src]'s OOC Notes : <br> <b>ERP :</b> [client.prefs.erppref] <b>| Non-Con :</b> [client.prefs.nonconpref] <b>| Vore :</b> [client.prefs.vorepref]<br>[client.prefs.ooc_notes]"
+			var/str = "[src]'s OOC Notes : <br> <b>ERP :</b> [client.prefs.erppref] <b>| Non-Con :</b> [client.prefs.nonconpref] <b>| Vore :</b> [client.prefs.vorepref]<br>[client.prefs.skyrat_ooc_notes]<br>\
+						<b>Extreme content :</b> [client.prefs.extremepref]"
+			if(client.prefs.extremepref)
+				str += " | <b>Extreme content harm :</b> [client.prefs.extremeharm]"
 			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", "[name]'s OOC information", replacetext(str, "\n", "<BR>")), text("window=[];size=500x200", "[name]'s ooc info"))
 			onclose(usr, "[name]'s ooc info")
-	
+
 	if(href_list["general_records"])
 		if(client && usr.client.holder)
 			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", "[name]'s general records", replacetext(client.prefs.general_records, "\n", "<BR>")), text("window=[];size=500x200", "[name]'s gen rec"))
@@ -20,6 +23,11 @@
 		if(client && usr.client.holder)
 			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", "[name]'s medical records", replacetext(client.prefs.medical_records, "\n", "<BR>")), text("window=[];size=500x200", "[name]'s med rec"))
 			onclose(usr, "[name]'s med rec")
+
+	if(href_list["flavor_faction"])
+		if(client && usr.client.holder)
+			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", "[name]'s background faction", replacetext(client.prefs.flavor_faction, "\n", "<BR>")), text("window=[];size=500x200", "[name]'s flav fact"))
+			onclose(usr, "[name]'s flav fact")
 
 	if(href_list["flavor_background"])
 		if(client && usr.client.holder)

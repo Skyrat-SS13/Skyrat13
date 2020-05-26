@@ -46,7 +46,7 @@
 	. = 1
 
 /datum/reagent/medicine/synthflesh
-	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed. Heals toxin damage on synths instead of harming them, unless overdosed."
+	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed. Capable of restoring the appearance of synths."
 	overdose_threshold = 35 //no synth species abusing
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
@@ -88,6 +88,10 @@
 					if(ourguy.dna.species.type == /datum/species/synth)
 						ourguy.adjustToxLoss(-(reac_volume * 0.75))
 						ourguy.adjustCloneLoss(-(reac_volume * 1))
+						var/datum/species/synth/replicant = ourguy.dna.species
+						if(replicant.fake_species && (replicant.isdisguised == FALSE))
+							if(replicant.actualhealth >= replicant.disguise_fail_health)
+								replicant.assume_disguise(replicant.fake_species, ourguy)
 			var/vol = reac_volume + M.reagents.get_reagent_amount(/datum/reagent/medicine/synthflesh)
 			if(HAS_TRAIT_FROM(M, TRAIT_HUSK, "burn") && M.getFireLoss() < THRESHOLD_UNHUSK && (vol > overdose_threshold))
 				M.cure_husk("burn")
@@ -160,16 +164,16 @@
 	process_flags = REAGENT_SYNTHETIC
 
 /datum/reagent/medicine/nanite_slurry/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
-	if(iscarbon(M))
+	var/mob/living/carbon/C = M
+	if(C)
 		if(!(method in list(INGEST, VAPOR, INJECT)))
-			M.adjustFireLoss(-reac_volume)
-			M.adjustBruteLoss(-reac_volume)
+			C.heal_bodypart_damage(reac_volume, reac_volume, stamina = 0, updating_health = TRUE, only_robotic = TRUE, only_organic = FALSE)
 			if(show_message)
-				to_chat(M, "<span class='notice'>You feel much better...</span>")
+				to_chat(C, "<span class='notice'>You feel much better...</span>")
 	..()
 
-/datum/reagent/medicine/nanite_slurry/on_mob_life(mob/living/carbon/M)
-	M.adjustFireLoss(-0.5*REM, 0)
-	M.adjustBruteLoss(-0.5*REM, 0)
+/datum/reagent/medicine/nanite_slurry/on_mob_life(mob/living/L)
+	var/mob/living/carbon/C = L
+	C.heal_bodypart_damage(0.5*REM, 0.5*REM, stamina = 0, updating_health = TRUE, only_robotic = TRUE, only_organic = FALSE)
 	..()
 	. = 1

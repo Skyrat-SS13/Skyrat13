@@ -5,12 +5,25 @@
 	for(var/datum/speech_mod/S in speech_mods)
 		if(istype(S,datumtype))
 			S.remove_speech_mod()
-			S.Destroy()
+			qdel(S)
 			checkbool = FALSE
 			break
 	if(checkbool)
 		var/datum/speech_mod/speech = new datumtype
 		speech.add_speech_mod(src)
+
+/mob/living/carbon/human/proc/enable_speech_mod(datumtype)
+	for(var/datum/speech_mod/S in speech_mods)
+		if(istype(S,datumtype))
+			return
+	var/datum/speech_mod/speech = new datumtype
+	speech.add_speech_mod(src)
+
+/mob/living/carbon/human/proc/disable_speech_mod(datumtype)
+	for(var/datum/speech_mod/S in speech_mods)
+		if(istype(S,datumtype))
+			S.remove_speech_mod()
+			qdel(S)
 
 /datum/speech_mod
 	var/soundtext = ""

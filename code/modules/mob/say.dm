@@ -1,16 +1,61 @@
 //Speech verbs.
-/mob/verb/say_verb(message as text)
-	set name = "Say"
+// the _keybind verbs uses "as text" versus "as text|null" to force a popup when pressed by a keybind.
+/mob/verb/say_typing_indicator()
+	set name = "say_indicator"
+	set hidden = TRUE
 	set category = "IC"
+	display_typing_indicator()
+	var/message = input(usr, "", "say") as text|null
+	// If they don't type anything just drop the message.
+	clear_typing_indicator()		// clear it immediately!
+	if(!length(message))
+		return
+	return say_verb(message)
+
+/mob/verb/say_verb(message as text)
+	set name = "say"
+	set category = "IC"
+	if(!length(message))
+		return
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 	//SKYRAT EDIT
-	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
-		set_typing_indicator(FALSE)
+	set_typing_indicator(FALSE)
 	//END OF SKYRAT EDIT
 	if(message)
 		say(message)
+	//clear_typing_indicator()		// clear it immediately! //SKYRAT EDIT
+	//say(message)	//SKYRAT EDIT
+
+/mob/verb/me_typing_indicator()
+	set name = "me_indicator"
+	set hidden = TRUE
+	set category = "IC"
+	display_typing_indicator()
+	var/message = input(usr, "", "me") as message|null
+	// If they don't type anything just drop the message.
+	clear_typing_indicator()		// clear it immediately!
+	if(!length(message))
+		return
+	return me_verb(message)
+
+/mob/verb/me_verb(message as message)
+	set name = "me"
+	set category = "IC"
+	if(!length(message))
+		return
+	if(GLOB.say_disabled)	//This is here to try to identify lag problems
+		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		return
+
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+	//SKYRAT EDIT
+	set_typing_indicator(FALSE)
+	//END OF SKYRAT EDIT
+	//clear_typing_indicator()		// clear it immediately! //Skyrat edit
+
+	usr.emote("me",1,message,TRUE)
 
 /mob/say_mod(input, message_mode)
 	var/customsayverb = findtext(input, "*")
@@ -20,9 +65,17 @@
 	else
 		return ..()
 
+/mob/proc/whisper_keybind()
+	var/message = input(src, "", "whisper") as text|null
+	if(!length(message))
+		return
+	return whisper_verb(message)
+
 /mob/verb/whisper_verb(message as text)
 	set name = "Whisper"
 	set category = "IC"
+	if(!length(message))
+		return
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
@@ -30,21 +83,6 @@
 
 /mob/proc/whisper(message, datum/language/language=null)
 	say(message, language) //only living mobs actually whisper, everything else just talks
-
-/mob/verb/me_verb(message as message)
-	set name = "Me"
-	set category = "IC"
-
-	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
-		return
-
-	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
-	//SKYRAT EDIT
-	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
-		set_typing_indicator(FALSE)
-	//END OF SKYRAT EDIT
-	usr.emote("me",1,message,TRUE)
 
 /mob/proc/say_dead(var/message)
 	var/name = real_name

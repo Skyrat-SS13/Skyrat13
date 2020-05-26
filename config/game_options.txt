@@ -143,6 +143,20 @@ MIDROUND_ANTAG CHANGELING
 MIDROUND_ANTAG WIZARD
 #MIDROUND_ANTAG  MONKEY
 
+## Toggles for whether this mode should force antags even if not enough players have it enabled.
+## If it's off, it just won't roll as many antags.
+#FORCE_ANTAG_COUNT TRAITOR
+#FORCE_ANTAG_COUNT TRAITORBRO
+#FORCE_ANTAG_COUNT TRAITORCHAN
+#FORCE_ANTAG_COUNT INTERNAL_AFFAIRS
+FORCE_ANTAG_COUNT  NUCLEAR
+FORCE_ANTAG_COUNT  REVOLUTION
+FORCE_ANTAG_COUNT CULT
+FORCE_ANTAG_COUNT CLOCKWORK_CULT
+#FORCE_ANTAG_COUNT CHANGELING
+#FORCE_ANTAG_COUNT WIZARD
+#FORCE_ANTAG_COUNT  MONKEY
+
 ## Uncomment these for overrides of the minimum / maximum number of players in a round type.
 ## If you set any of these occasionally check to see if you still need them as the modes
 ## will still be actively rebalanced around the SUGGESTED populations, not your overrides.
@@ -631,6 +645,11 @@ BREASTS_CUPS_PREFS b
 BREASTS_CUPS_PREFS c
 BREASTS_CUPS_PREFS d
 BREASTS_CUPS_PREFS e
+BREASTS_CUPS_PREFS f
+BREASTS_CUPS_PREFS g
+BREASTS_CUPS_PREFS h
+BREASTS_CUPS_PREFS i
+BREASTS_CUPS_PREFS j
 
 ## Minimum and maximum limits for penis length from the character creation menu.
 PENIS_MIN_INCHES_PREFS 1

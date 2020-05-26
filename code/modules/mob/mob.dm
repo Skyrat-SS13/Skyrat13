@@ -35,7 +35,7 @@
 			continue
 		var/datum/atom_hud/alternate_appearance/AA = v
 		AA.onNewMob(src)
-	nutrition = rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX)
+	set_nutrition(rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX))
 	. = ..()
 	update_config_movespeed()
 	update_movespeed(TRUE)
@@ -125,8 +125,10 @@
   * * blind_message (optional) is what blind people will hear e.g. "You hear something!"
   * * vision_distance (optional) define how many tiles away the message can be seen.
   * * ignored_mobs (optional) doesn't show any message to any given mob in the list.
+  * * target (optional) is the other mob involved with the visible message. For example, the attacker in many combat messages.
+  * * target_message (optional) is what the target mob will see e.g. "[src] does something to you!"
   */
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, user_msg, runechat_popup) //SKYRAT CHANGE
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, mob/target, target_message, user_msg, runechat_popup) //SKYRAT CHANGE
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
@@ -137,7 +139,19 @@
 	if(!islist(ignored_mobs))
 		ignored_mobs = list(ignored_mobs)
 	hearers -= ignored_mobs
-	if(self_message)
+
+	if(target_message && target && istype(target) && target.client)
+		hearers -= target
+		//This entire if/else chain could be in two lines but isn't for readibilties sake.
+		var/msg = target_message
+		if(target.see_invisible<invisibility) //if src is invisible to us,
+			msg = blind_message
+		//the light object is dark and not invisible to us, darkness does not matter if you're directly next to the target
+		else if(T.lighting_object && T.lighting_object.invisibility <= target.see_invisible && T.is_softly_lit() && !in_range(T,target))
+			msg = blind_message
+		if(msg)
+			target.show_message(msg, MSG_VISUAL,blind_message, MSG_AUDIBLE)
+	else if(self_message)
 		hearers -= src
 	for(var/mob/M in hearers)
 		if(!M.client)
@@ -157,9 +171,9 @@
 		M.show_message(final_msg, MSG_VISUAL,blind_message, MSG_AUDIBLE) //SKYRAT CHANGE
 
 ///Adds the functionality to self_message.
-mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, user_msg, runechat_popup) //SKYRAT CHANGE
+mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, mob/target, target_message, user_msg, runechat_popup) //SKYRAT CHANGE
 	. = ..()
-	if(self_message)
+	if(self_message && target != src)
 		if (runechat_popup && client?.prefs.chat_on_map && client.prefs.see_chat_emotes) //SKYRAT CHANGE
 			create_chat_message(src, null, self_message, list("emote", "italics"), null) //Skyrat change
 		show_message(user_msg ? "<b>[src]</b> " + self_message : self_message, MSG_VISUAL, blind_message, MSG_AUDIBLE) //SKYRAT CHANGE
@@ -604,7 +618,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 				stat("Failsafe Controller:", "ERROR")
 			if(Master)
 				stat(null)
-				for(var/datum/controller/subsystem/SS in Master.subsystems)
+				for(var/datum/controller/subsystem/SS in Master.statworthy_subsystems)
 					SS.stat_entry()
 			GLOB.cameranet.stat_entry()
 		if(statpanel("Tickets"))
@@ -1033,6 +1047,14 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 
 	var/datum/language_holder/H = get_language_holder()
 	H.open_language_menu(usr)
+
+///Adjust the nutrition of a mob
+/mob/proc/adjust_nutrition(change, max = INFINITY) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
+	nutrition = clamp(0, nutrition + change, max)
+
+///Force set the mob nutrition
+/mob/proc/set_nutrition(var/change) //Seriously fuck you oldcoders.
+	nutrition = max(0, change)
 
 /mob/setMovetype(newval)
 	. = ..()

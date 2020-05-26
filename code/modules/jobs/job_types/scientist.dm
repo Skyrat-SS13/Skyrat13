@@ -4,8 +4,8 @@
 	department_head = list("Research Director")
 	department_flag = MEDSCI
 	faction = "Station"
-	total_positions = 5
-	spawn_positions = 3
+	total_positions = 9
+	spawn_positions = 7
 	supervisors = "the research director"
 	selection_color = "#9574cd"
 	exp_requirements = 120 //SKYRAT CHANGE - upping the exp time on jobs
@@ -23,6 +23,7 @@
 	name = "Scientist"
 	jobtype = /datum/job/scientist
 
+	id = /obj/item/card/id/department/sci //Skyrat change
 	belt = /obj/item/pda/toxins
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/rnd/scientist

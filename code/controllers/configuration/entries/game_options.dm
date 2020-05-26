@@ -35,6 +35,13 @@
 /datum/config_entry/keyed_list/midround_antag/ValidateListEntry(key_name, key_value)
 	return key_name in config.modes
 
+/datum/config_entry/keyed_list/force_antag_count
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_FLAG
+
+/datum/config_entry/keyed_list/force_antag_count/ValidateListEntry(key_name, key_value)
+	return key_name in config.modes
+
 /datum/config_entry/keyed_list/policy
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_TEXT
@@ -457,7 +464,7 @@
 /datum/config_entry/keyed_list/breasts_cups_prefs
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
-	config_entry_value = list("a", "b", "c", "d", "e") //keep these lowercase
+	config_entry_value = list("a", "b", "c", "d", "e", "f", "g", "h", "i", "j") //keep these lowercase //Skyrat edit, added 5 new sizes
 
 /datum/config_entry/number/penis_min_inches_prefs
 	config_entry_value = 1

@@ -116,33 +116,34 @@
 	for(var/datum/data/record/t in GLOB.data_core.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
+		var/shown_rank = t.fields["shown_rank"] //Skyrat change
 		var/department = 0
 		if(rank in GLOB.command_positions)
-			heads[name] = rank
+			heads[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.security_positions)
-			sec[name] = rank
+			sec[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.engineering_positions)
-			eng[name] = rank
+			eng[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.medical_positions)
-			med[name] = rank
+			med[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.science_positions)
-			sci[name] = rank
+			sci[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.supply_positions)
-			sup[name] = rank
+			sup[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.civilian_positions)
-			civ[name] = rank
+			civ[name] = shown_rank //Skyrat change
 			department = 1
 		if(rank in GLOB.nonhuman_positions)
-			bot[name] = rank
+			bot[name] = shown_rank //Skyrat change
 			department = 1
 		if(!department && !(name in heads))
-			misc[name] = rank
+			misc[name] = shown_rank //Skyrat change
 	if(heads.len > 0)
 		dat += "<tr><th colspan=3>Heads</th></tr>"
 		for(var/name in heads)
@@ -208,6 +209,11 @@
 			assignment = H.job
 		else
 			assignment = "Unassigned"
+		//Skyrat changes
+		var/shown_assignment = assignment
+		if(C && C.prefs && C.prefs.alt_titles_preferences[assignment])
+			shown_assignment = C.prefs.alt_titles_preferences[assignment]
+		//End of skyrat changes
 
 		var/static/record_id_num = 1001
 		var/id = num2hex(record_id_num++,6)
@@ -230,7 +236,9 @@
 		var/datum/data/record/G = new()
 		G.fields["id"]			= id
 		G.fields["name"]		= H.real_name
+		G.fields["faction"]		= C.prefs.flavor_faction // Skyrat Edit
 		G.fields["rank"]		= assignment
+		G.fields["shown_rank"]		= shown_assignment //Skyrat change
 		G.fields["age"]			= H.age
 		G.fields["species"]	= H.dna.species.name
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
@@ -279,6 +287,7 @@
 		var/datum/data/record/S = new()
 		S.fields["id"]			= id
 		S.fields["name"]		= H.real_name
+		S.fields["faction"]		= C.prefs.flavor_faction // Skyrat Edit
 		S.fields["criminal"]	= "None"
 		S.fields["mi_crim"]		= list()
 		S.fields["ma_crim"]		= list()
@@ -296,6 +305,7 @@
 		L.fields["id"]			= md5("[H.real_name][H.mind.assigned_role]")	//surely this should just be id, like the others?
 		L.fields["name"]		= H.real_name
 		L.fields["rank"] 		= H.mind.assigned_role
+		L.fields["faction"]		= C.prefs.flavor_faction // Skyrat Edit
 		L.fields["age"]			= H.age
 		if(H.gender == MALE)
 			G.fields["gender"]  = "Male"
