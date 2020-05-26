@@ -3,16 +3,16 @@
 
 //This list basically counts if we have reached the minimum quantity
 //of every megafauna type that doesn't spawn with ruins.
-GLOBAL_LIST_INIT(remaining_megas,
-	list(/mob/living/simple_animal/hostile/megafauna/dragon = 1,
-	/mob/living/simple_animal/hostile/megafauna/colossus = 1,
+GLOBAL_LIST_INIT(remaining_megas,\
+	list(/mob/living/simple_animal/hostile/megafauna/dragon = 1,\
+	/mob/living/simple_animal/hostile/megafauna/colossus = 1,\
 	/mob/living/simple_animal/hostile/megafauna/bubblegum = 1))
 
 //This list prevents spawning more than the associated amount
 //of megafauna.
-GLOBAL_LIST_INIT(cap_megas,
-	list(/mob/living/simple_animal/hostile/megafauna/dragon = 3,
-	/mob/living/simple_animal/hostile/megafauna/colossus = 3,
+GLOBAL_LIST_INIT(cap_megas,\
+	list(/mob/living/simple_animal/hostile/megafauna/dragon = 3,\
+	/mob/living/simple_animal/hostile/megafauna/colossus = 3,\
 	/mob/living/simple_animal/hostile/megafauna/bubblegum = 3))
 
 /turf/open/floor/plating/asteroid/airless/cave/volcanic
@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(cap_megas,
 					GLOB.remaining_megas[definite_boss] += 1
 					return FALSE
 			new definite_boss(src)
-			GLOB.remaining_megas[definite_boss] = max(0, remainingmegas[definite_boss] - 1)
+			GLOB.remaining_megas[definite_boss] = max(0, GLOB.remainingmegas[definite_boss] - 1)
 			return TRUE
 	var/shouldspawnlegiontendril = TRUE
 	for(var/obj/structure/spawner/lavaland/legion/L in GLOB.tendrils)
@@ -64,7 +64,7 @@ GLOBAL_LIST_INIT(cap_megas,
 					for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
 						if(istype(M, maybe_boss))
 							count++
-					if(count < cap_megas[maybe_boss])
+					if(count < GLOB.cap_megas[maybe_boss])
 						randumb = maybe_boss
 					else
 						randumb = pickweight(mob_spawn_list)
