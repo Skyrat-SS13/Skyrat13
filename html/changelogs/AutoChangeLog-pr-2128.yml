@@ -1,5 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Locker mech won't turn invisible in construction anymore."
-  - bugfix: "Locker mech now has proper overlays for construction."
