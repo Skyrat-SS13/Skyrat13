@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(cap_megas,\
 					GLOB.remaining_megas[definite_boss] += 1
 					return FALSE
 			new definite_boss(src)
-			GLOB.remaining_megas[definite_boss] = max(0, GLOB.remainingmegas[definite_boss] - 1)
+			GLOB.remaining_megas[definite_boss] = max(0, GLOB.remaining_megas[definite_boss] - 1)
 			return TRUE
 	var/shouldspawnlegiontendril = TRUE
 	for(var/obj/structure/spawner/lavaland/legion/L in GLOB.tendrils)
