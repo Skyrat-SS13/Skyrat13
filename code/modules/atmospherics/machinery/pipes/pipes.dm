@@ -3,7 +3,9 @@
 	var/volume = 0
 
 	level = 1
-
+	// SKYRAT EDIT - PLASTIC WORLD
+	plane = FLOOR_PLANE
+	// SKYRAT EDIT END
 	use_power = NO_POWER_USE
 	can_unwrench = 1
 	var/datum/pipeline/parent = null

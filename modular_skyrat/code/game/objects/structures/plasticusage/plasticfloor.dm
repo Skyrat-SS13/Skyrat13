@@ -3,6 +3,17 @@
 	icon = 'modular_skyrat/code/game/objects/structures/plasticusage/plasticstructures.dmi'
 	icon_state = "white"
 	floor_tile = /obj/item/stack/tile/plastic
+/* Doesnt work dammit
+/turf/open/floor/plastic/grate
+	name = "plastic grate"
+	icon_state = "grate"
+	layer = ABOVE_PIPE_LAYER
+	floor_tile = /obj/item/stack/tile/plasticgrate
+*/
+/turf/open/floor/plastic/plate
+	name = "plastic plate"
+	icon_state = "plate"
+	floor_tile = /obj/item/stack/tile/plasticplate
 
 /turf/open/floor/plating/plastic
 	name = "plastic plating"
@@ -74,11 +85,31 @@
 			var/obj/item/stack/tile/W = C
 			if(!W.use(1))
 				return
-			var/turf/open/floor/T = PlaceOnTop(W.turf_type, flags = CHANGETURF_INHERIT_AIR)
-			if(istype(W, /obj/item/stack/tile/light)) //TODO: get rid of this ugly check somehow
-				var/obj/item/stack/tile/light/L = W
-				var/turf/open/floor/light/F = T
-				F.state = L.state
+			if(!istype(C, /obj/item/stack/plasticgrate)||!istype(C, /obj/item/stack/tile/plasticplate))
+				var/turf/open/floor/T = PlaceOnTop(W.turf_type, flags = CHANGETURF_INHERIT_AIR)
+				if(istype(W, /obj/item/stack/tile/light)) //TODO: get rid of this ugly check somehow
+					var/obj/item/stack/tile/light/L = W
+					var/turf/open/floor/light/F = T
+					F.state = L.state
+				playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
+			else
+		else
+			to_chat(user, "<span class='warning'>This section is too damaged to support a tile! Use a welder to fix the damage.</span>")
+
+	else if(istype(C, /obj/item/stack/plasticgrate))
+		if(!broken && !burnt)
+			for(var/obj/O in src)
+				if(O.level == 1) //ex. pipes laid underneath a tile
+					for(var/M in O.buckled_mobs)
+						to_chat(user, "<span class='warning'>Someone is buckled to \the [O]! Unbuckle [M] to move \him out of the way.</span>")
+						return
+			var/obj/item/stack/plasticgrate/W = C
+			if(!W.use(1))
+				return
+			if(istype(W, /obj/item/stack/plasticgrate && !istype(C, /obj/item/stack/plasticgrate/windowfloor)))
+				new/obj/structure/plasticgrate(src)
+			if(istype(W, /obj/item/stack/plasticgrate/windowfloor))
+				new/obj/structure/plasticgrate/window(src)
 			playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 		else
 			to_chat(user, "<span class='warning'>This section is too damaged to support a tile! Use a welder to fix the damage.</span>")

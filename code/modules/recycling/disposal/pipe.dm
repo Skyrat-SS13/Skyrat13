@@ -10,6 +10,7 @@
 	density = FALSE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
 	level = 1			// underfloor only
+	plane = FLOOR_PLANE
 	dir = NONE			// dir will contain dominant direction for junction pipes
 	max_integrity = 200
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)

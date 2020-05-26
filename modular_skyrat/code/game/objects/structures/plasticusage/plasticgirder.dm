@@ -68,6 +68,8 @@
 				transfer_fingerprints_to(T)
 				qdel(src)
 			return
+	else if(istype(W, /obj/item/stack/rods))
+		return
 	else
 		return ..()
 

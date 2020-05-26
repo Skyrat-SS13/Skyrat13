@@ -286,7 +286,10 @@
 
 	if(locate(/obj/structure/lattice) in range(1, get_turf(src))) //Not realistic but makes pushing things in space easier
 		return 1
-
+	// SKYRAT EDIT - PLASTIC WORLD
+	if(locate(/obj/structure/plasticgrate) in range(1, get_turf(src))) //Not realistic but makes pushing things in space easier
+		return 1
+	// SKYRAT EDIT END
 	return 0
 
 /atom/movable/proc/newtonian_move(direction) //Only moves the object if it's under no gravity
