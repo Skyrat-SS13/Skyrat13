@@ -753,7 +753,7 @@ GLOBAL_LIST_INIT(bone_recipes, list(
 	/*
  * Plastic
  */
-
+/* SKYRAT EDIT: Plastic World
 GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("see-through plastic flaps", /obj/structure/plasticflaps, 5, one_per_turf = TRUE, on_floor = TRUE, time = 40), \
 	new /datum/stack_recipe("opaque plastic flaps", /obj/structure/plasticflaps/opaque, 5, one_per_turf = TRUE, on_floor = TRUE, time = 40), \
@@ -762,7 +762,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("shower curtain", /obj/structure/curtain, 10, time = 10, one_per_turf = 1, on_floor = 1), \
 	new /datum/stack_recipe("laser pointer case", /obj/item/glasswork/glass_base/laserpointer_shell, 30), \
 	new /datum/stack_recipe("wet floor sign", /obj/item/caution, 2)))
-
+*/
 /obj/item/stack/sheet/plastic
 	name = "plastic"
 	desc = "Compress dinosaur over millions of years, then refine, split and mold, and voila! You have plastic."

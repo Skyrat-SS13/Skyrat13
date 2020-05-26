@@ -132,7 +132,7 @@
 	if(ismovable(caller))
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSGRILLE)
-
+/* SKYRAT EDIT: Plastic World
 /obj/structure/grille/attackby(obj/item/W, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
 	add_fingerprint(user)
@@ -201,7 +201,7 @@
 
 	else if(istype(W, /obj/item/shard) || !shock(user, 70))
 		return ..()
-
+*/
 /obj/structure/grille/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
 		if(BRUTE)

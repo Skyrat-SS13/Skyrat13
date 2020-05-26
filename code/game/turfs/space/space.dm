@@ -91,7 +91,7 @@
 /turf/open/space/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube)
 	if(lube & FLYING_DOESNT_HELP)
 		return ..()
-
+/* SKYRAT EDIT: Plastic World
 /turf/open/space/attackby(obj/item/C, mob/user, params)
 	..()
 	if(!CanBuildHere())
@@ -131,7 +131,7 @@
 				to_chat(user, "<span class='warning'>You need one floor tile to build a floor!</span>")
 		else
 			to_chat(user, "<span class='warning'>The plating is going to need some support! Place metal rods first.</span>")
-
+*/
 /turf/open/space/Entered(atom/movable/A)
 	..()
 	if ((!(A) || src != A.loc))
