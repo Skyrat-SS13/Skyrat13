@@ -1,11 +1,19 @@
-/datum/vampire_clan
-	var/name = "Example Clan"
-	var/desc = "Is this gonna be used?"
+/datum/team/vampire_clan
+	name = "Example Clan"
 	var/list/bloodlines = list()
-	var/list/members = list()
 	var/datum/mind/leader
+	var/vote_called = FALSE
 
-/datum/vampire_clan/proc/setup_clan(bloodline_type)
+/datum/team/vampire_clan/New(bloodline_type)
+	. = ..()
+	SSticker.mode.vampire_clans += src
+	//setup_clan(bloodline_type)
+
+/datum/team/vampire_clan/Destroy()
+	SSticker.mode.vampire_clans -= src
+	. = ..()
+
+/datum/team/vampire_clan/proc/setup_clan(bloodline_type)
 	bloodlines += bloodline_type
 	var/number = rand(1,3)
 	switch(number)
@@ -16,16 +24,18 @@
 		if(3)
 			name = pick(list("Bleeding Stones", "Bloody Eagles", "Rose's Thorns", "Apex Predators"))
 
-/datum/vampire_clan/proc/add_member(var/datum/mind/vampire_mind, silent = TRUE)
+/datum/team/vampire_clan/add_member(var/datum/mind/vampire_mind, silent = TRUE)
 	var/datum/antagonist/vampire/vamp_datum = vampire_mind.has_antag_datum(/datum/antagonist/vampire)
 	if(vamp_datum)
 		members += vampire_mind
 		vamp_datum.vampire_clan = src
 		vamp_datum.GainBloodlinesFromClan(src)
+		if(!leader)
+			vamp_datum.voteskill = vamp_datum.GainPowerAbility(new /datum/action/vampire/assert_leadership)
 		if(!silent)
 			to_chat(vampire_mind.current, "<B><font size=2 color=orange>You are now a member of [name], a clan of vampires</font></B>")
 
-/datum/vampire_clan/proc/full_greet(var/datum/mind/vampire_mind)
+/datum/team/vampire_clan/proc/full_greet(var/datum/mind/vampire_mind)
 	var/mob/living/carbon/human/current_member = vampire_mind.current
 	to_chat(current_member, "<B><font size=3 color=orange>You are a member of [name], a clan of vampires</font></B>")
 	if(members.len > 1)

@@ -65,9 +65,8 @@
 // Gamemode is all done being set up. We have all our Vamps. We now pick objectives and let them know what's happening.
 /datum/game_mode/bloodlines/post_setup()
 	// Vamps
-	var/datum/vampire_clan/vamp_clan = new 
+	var/datum/team/vampire_clan/vamp_clan = new
 	vamp_clan.setup_clan(pick(GLOB.vamp_bloodlines))
-	SSticker.mode.vampire_clans += vamp_clan
 	for(var/datum/mind/vamp_mind in initial_vampires)
 		var/datum/antagonist/vampire/V = vamp_mind.add_antag_datum(/datum/antagonist/vampire)
 		vamp_clan.add_member(vamp_mind)

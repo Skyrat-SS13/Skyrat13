@@ -547,11 +547,11 @@
 							failed = FALSE
 							to_chat(target, "<span class='boldwarning'>You give into the invigorating power flowing through your veins, you have became a supernatural entity, a vampire.</span>")
 							if(target_vampire)
-								var/datum/vampire_clan/VC = user_vamp_datum.vampire_clan
+								var/datum/team/vampire_clan/VC = user_vamp_datum.vampire_clan
 								VC.add_member(target_mind, FALSE)
 								to_chat(user, "<span class='notice'>[target.name] embraced our gift and joined the clan.</span>")
 							else if (user_has_clan)
-								var/datum/vampire_clan/VC = user_vamp_datum.vampire_clan
+								var/datum/team/vampire_clan/VC = user_vamp_datum.vampire_clan
 								target_mind.add_antag_datum(/datum/antagonist/vampire,)
 								VC.add_member(target_mind, FALSE)
 								to_chat(user, "<span class='notice'>[target.name] embraced our gift and joined the clan.</span>")
@@ -576,3 +576,83 @@
 
 /datum/action/vampire/embrace/proc/CheckEmbraceTarget(mob/living/user, mob/living/target)
 	return  target && (!target_grappled || user.pulling == target) && blood_sucking_checks(target, TRUE, TRUE)
+
+/datum/action/vampire/assert_leadership
+	name = "Assert Leadership"
+	bloodcost = 0
+
+/datum/action/vampire/assert_leadership/CheckCanUse(display_error)
+	. = ..()
+	var/datum/antagonist/vampire/user_vamp_datum = owner.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+	if(!user_vamp_datum.vampire_clan)
+		return FALSE
+	if(user_vamp_datum.vampire_clan.vote_called)
+		return FALSE
+	if(user_vamp_datum.vampire_clan.leader)
+		return FALSE
+
+#define VAMP_CULT_POLL_WAIT 5
+
+/datum/action/vampire/assert_leadership/ActivatePower()
+	var/datum/antagonist/vampire/user_vamp_datum = owner.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+	if(!user_vamp_datum)
+		return
+	var/datum/team/vampire_clan/vamp_clan = user_vamp_datum.vampire_clan
+	if(!vamp_clan)
+		return
+
+	//STUFF
+	if(world.time < VAMP_CULT_POLL_WAIT)
+		to_chat(owner, "It would be premature to select a leader while everyone is still settling in, try again in [DisplayTimeText(CULT_POLL_WAIT-world.time)].")
+		return
+	vamp_clan.vote_called = TRUE //somebody's trying to be a master, make sure we don't let anyone else try
+	for(var/datum/mind/B in vamp_clan.members)
+		if(B.current)
+			B.current.update_action_buttons_icon()
+			if(!B.current.incapacitated())
+				SEND_SOUND(B.current, 'sound/hallucinations/im_here1.ogg')
+				to_chat(B.current, "<span class='cultlarge'>Vampire [owner] has asserted that [owner.p_theyre()] worthy of leading the clan. A vote will be called shortly.</span>")
+	sleep(100)
+	var/list/asked_cultists = list()
+	for(var/datum/mind/B in vamp_clan.members)
+		if(B.current && B.current != owner && !B.current.incapacitated())
+			SEND_SOUND(B.current, 'sound/magic/exit_blood.ogg')
+			asked_cultists += B.current
+	var/list/yes_voters = pollCandidates("[owner] seeks to lead your clan, do you support [owner.p_them()]?", poll_time = 300, group = asked_cultists)
+	if(QDELETED(owner) || owner.incapacitated())
+		vamp_clan.vote_called = FALSE
+		for(var/datum/mind/B in vamp_clan.members)
+			if(B.current)
+				B.current.update_action_buttons_icon()
+				if(!B.current.incapacitated())
+					to_chat(B.current,"<span class='cultlarge'>[owner] has died in the process of attempting to win the clan's support!</span>")
+		return FALSE
+	if(!owner.mind)
+		vamp_clan.vote_called = FALSE
+		for(var/datum/mind/B in vamp_clan.members)
+			if(B.current)
+				B.current.update_action_buttons_icon()
+				if(!B.current.incapacitated())
+					to_chat(B.current,"<span class='cultlarge'>[owner] has gone catatonic in the process of attempting to win the clan's support!</span>")
+		return FALSE
+	if(LAZYLEN(yes_voters) <= LAZYLEN(asked_cultists) * 0.5)
+		vamp_clan.vote_called = FALSE
+		for(var/datum/mind/B in vamp_clan.members)
+			if(B.current)
+				B.current.update_action_buttons_icon()
+				if(!B.current.incapacitated())
+					to_chat(B.current, "<span class='cultlarge'>[owner] could not win the clan's support and shall continue to serve as an acolyte.</span>")
+		return FALSE
+	vamp_clan.leader = owner
+	user_vamp_datum.is_leader = TRUE
+	for(var/datum/mind/B in vamp_clan.members)
+		if(B.current)
+			var/datum/antagonist/vampire/vamp_datum = B.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+			var/datum/action/vampire/vote_power = vamp_datum.voteskill
+			vote_power.Remove(B.current)
+			if(!B.current.incapacitated())
+				to_chat(B.current,"<span class='cultlarge'>[owner] has won the clan's support and is now their master. Follow [owner.p_their()] orders to the best of your ability!</span>")
+	return TRUE
+	//STUFF
+
+#undef VAMP_CULT_POLL_WAIT

@@ -6,10 +6,12 @@
 	job_rank = ROLE_BLOODLINE_VAMPIRE
 	threat = 5
 
+	var/is_leader = FALSE
+
 	var/passive_blood_loss = 0.02 //Just enough to balance out blood regen from nutriment
 	var/gift_points = 12
 	var/bloodlines = list() //What bloodlines do we have available?
-	var/datum/vampire_clan/vampire_clan //To which clan do we belong?
+	var/datum/team/vampire_clan/vampire_clan //To which clan do we belong?
 	var/power = 75
 	var/power_gain = 0.1
 	var/max_power = 100
@@ -27,6 +29,8 @@
 	var/static/list/all_powers = typecacheof(/datum/action/vampire,TRUE)
 	var/datum/vampiric_gifts/vampiric_gifts
 	var/datum/action/innate/vampiric_gifts/vampiric_gifts_action
+
+	var/datum/action/vampire/assert_leadership/voteskill
 
 /datum/antagonist/vampire/greet()
 	to_chat(owner.current, "<B><font size=3 color=red>You are the Vampire.</font></B>")
@@ -65,7 +69,7 @@
 	owner.special_role = null
 	. = ..()
 
-/datum/antagonist/vampire/proc/GainBloodlinesFromClan(var/datum/vampire_clan/VampClan)
+/datum/antagonist/vampire/proc/GainBloodlinesFromClan(var/datum/team/vampire_clan/VampClan)
 	for(var/path in VampClan.bloodlines)
 		bloodlines |= path
 
