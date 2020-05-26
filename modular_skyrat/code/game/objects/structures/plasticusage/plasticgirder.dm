@@ -6,7 +6,7 @@
 	max_integrity = 30
 
 /obj/structure/girder/plastic/displaced
-	name = "displaced girder"
+	name = "displaced plastic girder"
 	icon_state = "displaced"
 	max_integrity = 20
 	anchored = FALSE
@@ -40,19 +40,34 @@
 
 	else if(istype(W, /obj/item/stack/sheet/plastic))
 		var/obj/item/stack/sheet/plastic/P = W
-		if(P.get_amount() < 2)
-			to_chat(user, "<span class='warning'>You need at least two plastic sheets to build a plastic wall!</span>")
-			return 0
-		user.visible_message("<span class='notice'>[user] begins plating [src] with plastic...</span>", "<span class='notice'>You begin constructing a plastic wall...</span>")
-		if(do_after(user, 50, target = src))
+		if(state == GIRDER_DISPLACED)
 			if(P.get_amount() < 2)
+				to_chat(user, "<span class='warning'>You need two sheets of plastic to create a false wall!</span>")
 				return
-			user.visible_message("<span class='notice'>[user] plates [src] with plastic!</span>", "<span class='notice'>You construct a plastic wall.</span>")
-			P.use(2)
-			var/turf/T = get_turf(src)
-			T.PlaceOnTop(/turf/closed/wall/plastic)
-			qdel(src)
-
+			to_chat(user, "<span class='notice'>You start building a false wall...</span>")
+			if(do_after(user, 20, target = src))
+				if(P.get_amount() < 2)
+					return
+				P.use(2)
+				to_chat(user, "<span class='notice'>You create a false wall. Push on it to open or close the passage.</span>")
+				var/obj/structure/falsewall/plastic/F = new (loc)
+				transfer_fingerprints_to(F)
+				qdel(src)
+		else
+			if(P.get_amount() < 2)
+				to_chat(user, "<span class='warning'>You need two sheets of plastic to finish a wall!</span>")
+				return
+			to_chat(user, "<span class='notice'>You start adding plating...</span>")
+			if (do_after(user, 40, target = src))
+				if(P.get_amount() < 2)
+					return
+				P.use(2)
+				to_chat(user, "<span class='notice'>You add the plating.</span>")
+				var/turf/T = get_turf(src)
+				T.PlaceOnTop(/turf/closed/wall/plastic)
+				transfer_fingerprints_to(T)
+				qdel(src)
+			return
 	else
 		return ..()
 
@@ -81,9 +96,6 @@
 
 // Screwdriver Act
 /obj/structure/girder/plastic/screwdriver_act(mob/user, obj/item/tool)
-	if(..())
-		return TRUE
-
 	. = FALSE
 	if(state == GIRDER_DISPLACED)
 		user.visible_message("<span class='warning'>[user] disassembles the girder.</span>",
@@ -97,22 +109,4 @@
 			var/obj/item/stack/sheet/plastic/P = new (loc, 2)
 			P.add_fingerprint(user)
 			qdel(src)
-		return TRUE
-
-	else if(state == GIRDER_REINF)
-		to_chat(user, "<span class='notice'>You start unsecuring support struts...</span>")
-		if(tool.use_tool(src, user, 40, volume=100))
-			if(state != GIRDER_REINF)
-				return
-			to_chat(user, "<span class='notice'>You unsecure the support struts.</span>")
-			state = GIRDER_REINF_STRUTS
-		return TRUE
-
-	else if(state == GIRDER_REINF_STRUTS)
-		to_chat(user, "<span class='notice'>You start securing support struts...</span>")
-		if(tool.use_tool(src, user, 40, volume=100))
-			if(state != GIRDER_REINF_STRUTS)
-				return
-			to_chat(user, "<span class='notice'>You secure the support struts.</span>")
-			state = GIRDER_REINF
 		return TRUE

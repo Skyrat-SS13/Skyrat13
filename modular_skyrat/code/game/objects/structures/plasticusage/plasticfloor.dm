@@ -4,6 +4,11 @@
 	icon_state = "white"
 	floor_tile = /obj/item/stack/tile/plastic
 
+/turf/open/floor/plating/plastic
+	name = "plastic plating"
+	icon = 'modular_skyrat/code/game/objects/structures/plasticusage/plasticstructures.dmi'
+	icon_state = "plating"
+
 /turf/open/floor/engine/plastic
 	name = "reinforced plastic floor"
 	icon = 'modular_skyrat/code/game/objects/structures/plasticusage/plasticstructures.dmi'

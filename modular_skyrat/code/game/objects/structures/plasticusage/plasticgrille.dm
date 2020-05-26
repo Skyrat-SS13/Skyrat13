@@ -10,6 +10,7 @@
 /obj/structure/grille/broken/plastic
 	icon = 'modular_skyrat/code/game/objects/structures/plasticusage/plasticstructures.dmi'
 	icon_state = "brokengrille"
+	grille_type = /obj/structure/grille/plastic
 
 /obj/structure/grille/attackby(obj/item/W, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
