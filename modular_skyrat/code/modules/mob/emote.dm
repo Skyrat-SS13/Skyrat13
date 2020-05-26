@@ -65,8 +65,6 @@
 						sound = pick(userspecies.femalescreamsounds)
 		if(isalien(user))
 			sound = 'sound/voice/hiss6.ogg'
-		if (isvox(user))
-			sound = 'modular_skyrat/sound/emotes/voxscream.ogg'
 		LAZYINITLIST(user.alternate_screams)
 		if(LAZYLEN(user.alternate_screams))
 			sound = pick(user.alternate_screams)
