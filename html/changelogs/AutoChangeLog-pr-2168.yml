@@ -1,0 +1,4 @@
+author: "CinderWC"
+delete-after: True
+changes: 
+  - rscdel: "Removed the Combat Shotgun from the Warden's Locker"
