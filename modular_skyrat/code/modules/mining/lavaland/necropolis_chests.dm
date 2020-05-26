@@ -622,20 +622,24 @@
 	name = "damaged inquisitor's hardsuit"
 	desc = "It's not really in good shape, but still serves decent protection."
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/inquisitor/damaged
+	clothing_flags = THICKMATERIAL // no space protection
 	armor = list("melee" = 65, "bullet" = 25, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 40)
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/inquisitor/damaged
 	name = "damaged inquisitor's hardsuit helmet"
+	clothing_flags = THICKMATERIAL // no space protection
 	armor = list("melee" = 65, "bullet" = 25, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 40)
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker/damaged
 	name = "damaged berserker's hardsuit"
 	desc = "It's not really in good shape, but still serves decent protection."
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/beserker/damaged
+	clothing_flags = THICKMATERIAL // no space protection
 	armor = list("melee" = 65, "bullet" = 25, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 40)
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/beserker/damaged
 	name = "damaged berserker's hardsuit helmet"
+	clothing_flags = THICKMATERIAL // no space protection
 	armor = list("melee" = 65, "bullet" = 25, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 40)
 
 /obj/item/stock_parts/cell/high/plus/argent
@@ -665,11 +669,12 @@
 
 /obj/item/katana/necropolis
 	force = 25 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
-	armour_penetration = 25
+	armour_penetration = 33
 	block_chance = 0 //blocky bad
 
 /obj/item/immortality_talisman
 	w_class = WEIGHT_CLASS_SMALL //why the fuck are they large anyways
+
 //legion
 /obj/structure/closet/crate/necropolis/tendril/legion_loot
 	name = "screeching crate"
