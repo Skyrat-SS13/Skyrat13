@@ -277,13 +277,6 @@
 		return TRUE
 	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
 		return FALSE
-	//skyrat change - unequip delays
-	if(I.strip_self_delay && ishuman(src))
-		var/mob/living/carbon/human/H = src
-		H.visible_message("<span class='notice'>[H] start unequipping [I]...</span>", "<span class='notice'>You start unequipping [I]...</span>")
-		if(!do_after(H, I.strip_self_delay, TRUE, H))
-			return FALSE
-	//
 	return TRUE
 
 /mob/proc/putItemFromInventoryInHandIfPossible(obj/item/I, hand_index, force_removal = FALSE)
@@ -321,9 +314,17 @@
 													//Invdrop is used to prevent stuff in pockets dropping. only set to false if it's going to immediately be replaced
 	if(!I) //If there's nothing to drop, the drop is automatically succesfull. If(unEquip) should generally be used to check for TRAIT_NODROP.
 		return TRUE
-
+	
 	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
 		return FALSE
+		
+	//skyrat change - unequip delays
+	if((I.item_flags & IN_INVENTORY) && I.strip_self_delay && ishuman(src))
+		var/mob/living/carbon/human/H = src
+		H.visible_message("<span class='notice'>[H] starts unequipping [I]...</span>", "<span class='notice'>You start unequipping [I]...</span>")
+		if(!do_after(H, I.strip_self_delay, TRUE, H))
+			return FALSE
+	//
 
 	var/hand_index = get_held_index_of_item(I)
 	if(hand_index)
