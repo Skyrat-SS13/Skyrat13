@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
   * All security levels, per ascending alert. Nothing too fancy, really.
   * Their positions should also match their numerical values.
   */
-GLOBAL_LIST_INIT(all_security_levels, list("green", "blue", "amber", "violet", "orange", "red", "delta")) //Skyrat change
+GLOBAL_LIST_INIT(all_security_levels, list("green", "blue", "violet", "orange", "amber",  "red", "delta")) //Skyrat change
 
 //config.alert_desc_blue_downto
 
@@ -64,7 +64,7 @@ GLOBAL_LIST_INIT(all_security_levels, list("green", "blue", "amber", "violet", "
 					if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 						SSshuttle.emergency.modTimer(1.6)
 				GLOB.security_level = SEC_LEVEL_VIOLET
-				sound_to_playing_players('sound/effects/alert.ogg', volume = 50) // Citadel change - Makes alerts play a sound
+				sound_to_playing_players('modular_skyrat/sound/misc/notice1.ogg', volume = 50)
 				for(var/obj/machinery/firealarm/FA in GLOB.machines)
 					if(is_station_level(FA.z))
 						FA.update_icon()
@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(all_security_levels, list("green", "blue", "amber", "violet", "
 					if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 						SSshuttle.emergency.modTimer(1.6)
 				GLOB.security_level = SEC_LEVEL_ORANGE
-				sound_to_playing_players('sound/effects/alert.ogg', volume = 50) // Citadel change - Makes alerts play a sound
+				sound_to_playing_players('modular_skyrat/sound/misc/notice1.ogg', volume = 50)
 				for(var/obj/machinery/firealarm/FA in GLOB.machines)
 					if(is_station_level(FA.z))
 						FA.update_icon()
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(all_security_levels, list("green", "blue", "amber", "violet", "
 					if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 						SSshuttle.emergency.modTimer(1.6)
 				GLOB.security_level = SEC_LEVEL_AMBER
-				sound_to_playing_players('sound/effects/alert.ogg', volume = 50) // Citadel change - Makes alerts play a sound
+				sound_to_playing_players('modular_skyrat/sound/misc/notice1.ogg', volume = 50) // Skyrat change
 				for(var/obj/machinery/firealarm/FA in GLOB.machines)
 					if(is_station_level(FA.z))
 						FA.update_icon()
@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(all_security_levels, list("green", "blue", "amber", "violet", "
 				else
 					minor_announce(CONFIG_GET(string/alert_red_downto), "Attention! Code red!")
 				GLOB.security_level = SEC_LEVEL_RED
-				sound_to_playing_players('sound/misc/voyalert.ogg', volume = 50) // Citadel change - Makes alerts play a sound
+				sound_to_playing_players('modular_skyrat/sound/misc/redalert1.ogg', volume = 50) // Skyrat Change
 
 				for(var/obj/machinery/firealarm/FA in GLOB.machines)
 					if(is_station_level(FA.z))
