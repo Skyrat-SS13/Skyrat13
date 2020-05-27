@@ -30,13 +30,6 @@
 	},
 /turf/open/floor/engine/n2,
 /area/xenoarch/eng)
-"an" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/mining_level_access/lower)
 "as" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -314,9 +307,6 @@
 /obj/effect/spawner/lootdrop/seed_vault,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
-"bN" = (
-/turf/open/openspace,
-/area/mining_level_access/upper)
 "bP" = (
 /obj/machinery/bookbinder,
 /turf/open/floor/plasteel/dark,
@@ -1290,12 +1280,6 @@
 "hs" = (
 /turf/closed/wall,
 /area/xenoarch/bot)
-"hu" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
 "hv" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -1661,9 +1645,6 @@
 /obj/machinery/vending/clothing,
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
-"jd" = (
-/turf/open/floor/plating,
-/area/mining_level_access)
 "je" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -2094,10 +2075,6 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/ruin/powered/golem_ship)
-"lo" = (
-/obj/machinery/computer/shuttle/elevator/mining,
-/turf/open/floor/plasteel/dark,
-/area/xenoarch/gen)
 "lt" = (
 /obj/effect/landmark/stationroom/lavaland/station,
 /turf/open/lava/smooth/lava_land_surface,
@@ -2987,15 +2964,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/sec)
-"qb" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/mining_level_access/lower)
 "qd" = (
 /obj/structure/stone_tile/cracked{
 	dir = 4
@@ -3028,12 +2996,6 @@
 /mob/living/simple_animal/hostile/asteroid/gutlunch/guthen,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
-"qg" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/mining_level_access/lower)
 "qi" = (
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
@@ -3557,12 +3519,6 @@
 "sB" = (
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
-"sE" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/mining_level_access/lower)
 "sL" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -4510,12 +4466,6 @@
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
-"xL" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/mining_level_access/lower)
 "xM" = (
 /obj/machinery/atmospherics/components/binary/volume_pump{
 	dir = 4
@@ -5989,10 +5939,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
-"FI" = (
-/obj/machinery/light/small,
-/turf/open/floor/plating,
-/area/mining_level_access)
 "FJ" = (
 /obj/structure/stone_tile/block{
 	dir = 4
@@ -6213,24 +6159,6 @@
 /obj/structure/stone_tile/center/cracked,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"GC" = (
-/obj/docking_port/stationary{
-	area_type = /area/mining_level_access/lower;
-	dir = 4;
-	dwidth = 2;
-	height = 5;
-	id = "lavaland_mining_down";
-	name = "lavaland mining bottom";
-	width = 5
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/mining_level_access/lower)
 "GD" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/visible{
 	dir = 1
@@ -6449,10 +6377,6 @@
 /obj/machinery/biogenerator,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
-"HD" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/elevatorshaft,
-/area/mining_level_access/lower)
 "HF" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -7073,9 +6997,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
-"KT" = (
-/turf/open/floor/plasteel/elevatorshaft,
-/area/mining_level_access/lower)
 "KX" = (
 /obj/machinery/chem_dispenser/mutagensaltpeter,
 /turf/open/floor/plasteel/freezer,
@@ -7211,10 +7132,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/xenoarch/arch)
-"LK" = (
-/obj/machinery/computer/shuttle/elevator/mining,
-/turf/open/floor/plating,
-/area/mining_level_access)
 "LL" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plasteel/dark,
@@ -7231,13 +7148,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
-"LN" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/mining_level_access/lower)
 "LO" = (
 /obj/machinery/door/airlock/titanium,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -7331,11 +7241,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
-"Mk" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/firedoor,
-/turf/open/floor/plating,
-/area/xenoarch/gen)
 "Mm" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -8410,9 +8315,6 @@
 /obj/effect/turf_decal/vg_decals/atmos/plasma,
 /turf/open/floor/engine/plasma,
 /area/xenoarch/eng)
-"RM" = (
-/turf/closed/wall,
-/area/mining_level_access)
 "RQ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -8430,19 +8332,6 @@
 	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
-"RU" = (
-/obj/docking_port/stationary{
-	area_type = /area/mining_level_access/upper;
-	dir = 4;
-	dwidth = 2;
-	height = 5;
-	id = "lavaland_mining_top";
-	name = "lavaland mining top";
-	roundstart_template = /datum/map_template/shuttle/lavaland/mining;
-	width = 5
-	},
-/turf/open/openspace,
-/area/mining_level_access/upper)
 "RV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -8957,15 +8846,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
-"Uz" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/mining_level_access/lower)
 "UD" = (
 /obj/structure/table/wood,
 /obj/machinery/reagentgrinder,
@@ -9017,12 +8897,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
-"US" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
 "UW" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -9419,12 +9293,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"XB" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/mining_level_access)
 "XD" = (
 /obj/structure/stone_tile/block{
 	dir = 4
@@ -9561,12 +9429,6 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating,
 /area/xenoarch/arch)
-"YE" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/xenoarch/gen)
 "YJ" = (
 /obj/structure/stone_tile/cracked{
 	dir = 4
@@ -29075,8 +28937,8 @@ Ge
 Ge
 Ge
 Ge
-Za
-Za
+tN
+tN
 Za
 HQ
 co
@@ -29329,11 +29191,11 @@ Za
 GS
 Lc
 Za
-Uz
-sE
-GC
-sE
-an
+tN
+tN
+tN
+tN
+tN
 Za
 HQ
 co
@@ -29586,11 +29448,11 @@ Za
 ch
 Lc
 Za
-xL
-KT
-KT
-KT
-HD
+tN
+tN
+tN
+tN
+tN
 Za
 rr
 co
@@ -29843,11 +29705,11 @@ Za
 Za
 ty
 Za
-xL
-KT
-KT
-KT
-HD
+tN
+tN
+tN
+tN
+tN
 Za
 Mf
 co
@@ -30100,11 +29962,11 @@ Fo
 sB
 sB
 Za
-xL
-KT
-KT
-KT
-HD
+tN
+tN
+tN
+tN
+tN
 Za
 HQ
 co
@@ -30357,11 +30219,11 @@ ui
 ix
 CZ
 Za
-qb
-qg
-qg
-qg
-LN
+tN
+tN
+tN
+tN
+tN
 Za
 HQ
 co
@@ -30615,9 +30477,9 @@ Za
 Za
 Za
 Za
-Mk
-Mk
-Mk
+Za
+Za
+Za
 Za
 Za
 Nq
@@ -30871,10 +30733,10 @@ Up
 Pm
 nt
 bi
-lo
-YE
-YE
-YE
+sB
+sB
+sB
+sB
 Xe
 uv
 HQ
@@ -94607,13 +94469,13 @@ tN
 tN
 Yp
 Yp
-RM
-US
-jd
-jd
-jd
-FI
-RM
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
 Yp
 Yp
 Yp
@@ -94864,13 +94726,13 @@ tN
 tN
 tN
 Yp
-hu
-bN
-bN
-RU
-bN
-bN
-hu
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
 Yp
 Yp
 Yp
@@ -95121,14 +94983,14 @@ tN
 tN
 tN
 tN
-jd
-bN
-bN
-bN
-bN
-bN
-jd
-jd
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
 Yp
 Yp
 Yp
@@ -95378,14 +95240,14 @@ Pd
 Pd
 Yp
 Yp
-jd
-bN
-bN
-bN
-bN
-bN
-LK
-jd
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
 Yp
 Yp
 Yp
@@ -95635,14 +95497,14 @@ Pd
 Pd
 Yp
 Yp
-jd
-bN
-bN
-bN
-bN
-bN
-jd
-jd
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
 Yp
 Yp
 Yp
@@ -95892,13 +95754,13 @@ Pd
 Pd
 Pd
 Yp
-XB
-bN
-bN
-bN
-bN
-bN
-XB
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
 Yp
 Yp
 Yp
@@ -96149,13 +96011,13 @@ Pd
 Pd
 Pd
 Yp
-RM
-US
-jd
-jd
-jd
-FI
-RM
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
 Yp
 Yp
 Yp
