@@ -46,3 +46,11 @@
 	item = /obj/item/melee/transforming/energy/sword/cx/traitor
 	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/dangerous/wrestlebelt
+	name = "Nanotech Wrestling Belt"
+	desc = "A nanite augmented wrestling belt that imprints the knowledge of wrestling into whoever  \
+			wears it similar to certain combat gloves do with Krav Maga. Taking the belt off removes the knowledge."
+	item = /obj/item/storage/belt/champion/wrestling
+	cost = 14 
+	
