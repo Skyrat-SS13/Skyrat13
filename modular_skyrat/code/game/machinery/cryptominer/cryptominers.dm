@@ -12,6 +12,7 @@
 	var/miningtime = 600
 	var/miningpoints = 50
 	var/mintemp = T0C - 270
+	var/midtemp = T0C -70
 	var/maxtemp = T0C + 130
 
 /obj/machinery/cryptominer/update_icon()
@@ -39,7 +40,13 @@
 		mining = FALSE
 		update_icon()
 		return
-	if(env.temperature < maxtemp && env.temperature > mintemp)
+	if(env.temperature < maxtemp && env.temperature > midtemp)
+		if(mining)
+			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
+			SSshuttle.points += (miningpoints / 5)
+			env.temperature += 100
+			air_update_turf()
+	if(env.temperature < midtemp && env.temperature > mintemp)
 		if(mining)
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
 			SSshuttle.points += miningpoints
@@ -48,7 +55,7 @@
 	if(env.temperature <= mintemp)
 		if(mining)
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			SSshuttle.points += (miningpoints * 2)
+			SSshuttle.points += (miningpoints * 3)
 			env.temperature += 100
 			air_update_turf()
 
@@ -73,7 +80,7 @@
 	update_icon()
 
 /obj/machinery/cryptominer/syndie
-	name = "cryptocurrency miner"
+	name = "syndicate cryptocurrency miner"
 	desc = "This handy-dandy machine will produce credits for your enjoyment. It lasts a little longer."
 	icon = 'modular_skyrat/code/game/machinery/cryptominer/syndie.dmi'
 	icon_state = "off"
@@ -86,7 +93,7 @@
 	miningpoints = 100
 
 /obj/machinery/cryptominer/nanotrasen
-	name = "cryptocurrency miner"
+	name = "nanotrasen cryptocurrency miner"
 	desc = "This handy-dandy machine will produce credits for your enjoyment. This doesn't turn off easily."
 	icon = 'modular_skyrat/code/game/machinery/cryptominer/nanotrasen.dmi'
 	icon_state = "off"
