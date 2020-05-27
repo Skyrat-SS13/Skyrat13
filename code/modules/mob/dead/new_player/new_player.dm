@@ -449,6 +449,12 @@
 			level = "green"
 		if(SEC_LEVEL_BLUE)
 			level = "blue"
+		//Skyrat change start
+		if(SEC_LEVEL_ORANGE)
+			level = "orange"
+		if(SEC_LEVEL_VIOLET)
+			level = "violet"
+		//Skyrat change stop
 		if(SEC_LEVEL_AMBER)
 			level = "amber"
 		if(SEC_LEVEL_RED)

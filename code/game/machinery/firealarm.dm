@@ -14,7 +14,7 @@
 /obj/machinery/firealarm
 	name = "fire alarm"
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'modular_skyrat/icons/obj/monitors.dmi'
 	icon_state = "fire0"
 	max_integrity = 250
 	integrity_failure = 0.4
@@ -42,6 +42,10 @@
 		. += "The current alert level is blue."
 	if(GLOB.security_level == SEC_LEVEL_AMBER)
 		. += "The current alert level is amber."
+	if(GLOB.security_level == SEC_LEVEL_ORANGE)
+		. += "The current alert level is orange."
+	if(GLOB.security_level == SEC_LEVEL_VIOLET)
+		. += "The current alert level is violet."
 	if(GLOB.security_level == SEC_LEVEL_RED)
 		. += "The current alert level is red!"
 	if(GLOB.security_level == SEC_LEVEL_DELTA)
