@@ -4,9 +4,9 @@
 	button_icon_state = "power_stamina"
 	warn_constant_cost = TRUE
 	amToggle = TRUE
-	purchasable = TRUE
+	purchasable = FALSE
 	bloodcost = 0
-	required_bloodlevel = 450
+	required_bloodlevel = 400
 	cooldown = 0
 
 /datum/action/vampire/stamina/CheckCanUse(display_error)
@@ -54,9 +54,9 @@
 	button_icon_state = "power_vitality"
 	warn_constant_cost = TRUE
 	amToggle = TRUE
-	purchasable = TRUE
+	purchasable = FALSE
 	bloodcost = 0
-	required_bloodlevel = 450
+	required_bloodlevel = 400
 	cooldown = 0
 
 /datum/action/vampire/vitality/CheckCanUse(display_error)
@@ -174,7 +174,7 @@
 	bloodcost = 0
 	cooldown = 900
 	amToggle = TRUE
-	purchasable = TRUE
+	purchasable = FALSE
 
 	var/mob/living/feed_target 	// So we can validate more than just the guy we're grappling.
 	var/target_grappled = FALSE // If you started grappled, then ending it will end your Feed.
@@ -269,7 +269,6 @@
 	// Begin Feed Loop
 	var/warning_target_inhuman = FALSE
 	var/warning_target_dead = FALSE
-	var/warning_target_bloodvol = 99999
 	var/amount_taken = 0
 	var/blood_take_mult =  1 
 	var/was_alive = target.stat < DEAD && ishuman(target)
@@ -333,16 +332,6 @@
 			if(!warning_target_dead)
 				to_chat(user, "<span class='notice'>Your victim is dead. [target.p_their(TRUE)] blood barely nourishes you.</span>")
 				warning_target_dead = TRUE
-		// Blood Remaining? (Carbons/Humans only)
-		if(iscarbon(target) && !AmBloodsucker(target, TRUE))
-			if(target.blood_volume <= BLOOD_VOLUME_BAD && warning_target_bloodvol > BLOOD_VOLUME_BAD)
-				to_chat(user, "<span class='warning'>Your victim's blood volume is fatally low!</span>")
-			else if(target.blood_volume <= BLOOD_VOLUME_OKAY && warning_target_bloodvol > BLOOD_VOLUME_OKAY)
-				to_chat(user, "<span class='warning'>Your victim's blood volume is dangerously low.</span>")
-			else if(target.blood_volume <= BLOOD_VOLUME_SAFE && warning_target_bloodvol > BLOOD_VOLUME_SAFE)
-				to_chat(user, "<span class='notice'>Your victim's blood is at an unsafe level.</span>")
-			warning_target_bloodvol = target.blood_volume // If we had a warning to give, it's been given by now.
-		// Done?
 		// Full?
 		if(user.blood_volume >= vampiredatum.max_blood_volume)
 			to_chat(user, "<span class='notice'>You are fully sated, you can't drink any more.</span>")
@@ -401,14 +390,14 @@
 /////// EMBRACE DOWN BELOW ///////////
 /datum/action/vampire/embrace
 	name = "Embrace"
-	desc = "Sink your teeth into the neck of your victim and drink their blood! You need to aggressively grab them. This will make mortals unconscious"
-	button_icon_state = "power_feed"
+	desc = "Sink your teeth into the neck of your victim and share your powers with them, if they accept they'll be converted and join your clan if you belong to any, if they deny your powers are refunded."
+	button_icon_state = "power_embrace"
 
 	bloodcost = 40
 	powercost = 50
 	cooldown = 900
 	amToggle = FALSE
-	purchasable = TRUE
+	purchasable = FALSE
 
 	var/mob/living/feed_target 	// So we can validate more than just the guy we're grappling.
 	var/target_grappled = FALSE // If you started grappled, then ending it will end your Feed.
@@ -579,6 +568,8 @@
 
 /datum/action/vampire/assert_leadership
 	name = "Assert Leadership"
+	desc = "Declare yourself worthy of becoming the leader of the clan. This will commence a vote."
+	button_icon_state = "power_assert"
 	bloodcost = 0
 
 /datum/action/vampire/assert_leadership/CheckCanUse(display_error)
@@ -643,16 +634,40 @@
 				if(!B.current.incapacitated())
 					to_chat(B.current, "<span class='cultlarge'>[owner] could not win the clan's support and shall continue to serve as an acolyte.</span>")
 		return FALSE
-	vamp_clan.leader = owner
-	user_vamp_datum.is_leader = TRUE
+	vamp_clan.make_leader(owner.mind)
 	for(var/datum/mind/B in vamp_clan.members)
 		if(B.current)
 			var/datum/antagonist/vampire/vamp_datum = B.has_antag_datum(ANTAG_DATUM_VAMPIRE)
-			var/datum/action/vampire/vote_power = vamp_datum.voteskill
-			vote_power.Remove(B.current)
+			for(var/datum/action/vampire/Action in vamp_datum.powers)
+				if(Action.name == "Assert Leadership")
+					Action.Remove(B.current)
+					break
 			if(!B.current.incapacitated())
 				to_chat(B.current,"<span class='cultlarge'>[owner] has won the clan's support and is now their master. Follow [owner.p_their()] orders to the best of your ability!</span>")
 	return TRUE
 	//STUFF
 
 #undef VAMP_CULT_POLL_WAIT
+
+/datum/action/vampire/mist
+	name = "Conjure Mist"
+	desc = "You conjure a smoke like mist, which quickly spreads across the room and blocks people's vision."
+	button_icon_state = "power_mist"
+
+	bloodcost = 20
+	powercost = 10
+	cooldown = 100 		
+	amToggle = FALSE
+	level_max = 1
+
+	purchasable = TRUE 
+	can_be_immobilized = TRUE
+
+/datum/action/vampire/mist/ActivatePower()
+	var/mob/living/carbon/user = owner
+	var/datum/effect_system/smoke_spread/bad/smoke
+	smoke = new /datum/effect_system/smoke_spread/bad
+	smoke.attach(user)
+	playsound(user.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+	smoke.set_up(6, src)
+	smoke.start()

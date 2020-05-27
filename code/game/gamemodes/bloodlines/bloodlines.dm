@@ -93,25 +93,18 @@
 	// No Mind
 	if(!Mind || !Mind.key) // KEY is client login?
 		//if(creator) // REMOVED. You wouldn't see their name if there is no mind, so why say anything?
-		message_admins("mind")
 		return FALSE
 	var/mob/living/carbon/human/Human = Mind.current
-	message_admins("a")
 	if(!ishuman(Human))
-		message_admins("human")
 		return FALSE
 	if(NOBLOOD in Human.dna.species.species_traits) //Duh
-		message_admins("noblood")
 		return FALSE
 	if(TRAIT_NOBREATH in Human.dna.species.inherent_traits) //No breathing usually means a disconnect from blood/heart mechanics
-		message_admins("no breath")
 		return FALSE
 	if(Human.dna.species.inherent_biotypes & MOB_ROBOTIC) //Self explanatory
-		message_admins("robotic")
 		return FALSE
 	// Already a Non-Human Antag
 	if(Mind.has_antag_datum(/datum/antagonist/abductor) || Mind.has_antag_datum(/datum/antagonist/devil) || Mind.has_antag_datum(/datum/antagonist/changeling) || Mind.has_antag_datum(/datum/antagonist/bloodsucker))
-		message_admins("already a non human antag")
 		return FALSE
 	/*
 	// Already a vamp

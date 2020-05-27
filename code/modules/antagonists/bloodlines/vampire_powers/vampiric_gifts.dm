@@ -16,10 +16,7 @@
 	for(var/path in vampire_datum.bloodlines)
 		var/datum/bloodline/bl = path
 		for(var/path2 in initial(bl.disciplines))
-			message_admins("[path2]")
 			available_disciplines |= path2
-
-	message_admins("[available_disciplines.len]")
 
 	var/bright = FALSE
 	var/dat = "<center>"
@@ -32,9 +29,6 @@
 	dat += "<td width=15%><font size=2><b>Buy</b></font></td></tr>"
 	for(var/ability_path in vampire_datum.all_powers)
 		var/datum/action/vampire/action_datum = ability_path
-		message_admins("[action_datum]")
-		message_admins("[initial(action_datum.required_discipline)]")
-		message_admins("[initial(action_datum.purchasable)]")
 		if(initial(action_datum.purchasable) && (!(initial(action_datum.required_discipline) || initial(action_datum.required_discipline) in available_disciplines)))
 			var/max_level = FALSE
 			var/can_buy = FALSE

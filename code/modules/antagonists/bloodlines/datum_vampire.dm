@@ -30,8 +30,6 @@
 	var/datum/vampiric_gifts/vampiric_gifts
 	var/datum/action/innate/vampiric_gifts/vampiric_gifts_action
 
-	var/datum/action/vampire/assert_leadership/voteskill
-
 /datum/antagonist/vampire/greet()
 	to_chat(owner.current, "<B><font size=3 color=red>You are the Vampire.</font></B>")
 	to_chat(owner.current, "<B><font size=2 color=red>Ancient bloodlines flow through your veins, granting you powers far exceeding mortals. You are capable of regenerating health and stamina at unnatural pace.</font></B>")
@@ -148,7 +146,6 @@
 	var/datum/action/vampire/upgraded_ability
 	for(var/datum/action/vampire/P in powers)
 		if(initial(target_ability.name) == P.name)
-			message_admins("breaking loop")
 			upgrading = TRUE
 			upgraded_ability = P
 			break
@@ -156,13 +153,7 @@
 		return
 	var/cost = initial(target_ability.gift_cost)
 	if(cost <= gift_points)
-		message_admins("[upgrading]")
-		if(upgraded_ability)
-			message_admins("upgraded: [upgraded_ability]")
-		message_admins("[cost]")
-		message_admins("[gift_points]")
 		gift_points -= cost
-		message_admins("[gift_points]")
 		if(upgrading)
 			upgraded_ability.level_current += 1
 		else

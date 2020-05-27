@@ -26,7 +26,7 @@
 	var/level_max = 1
 	//var/level_max = 1			//
 	var/bloodcost = 10
-	var/required_bloodlevel = 300
+	var/required_bloodlevel = 0
 
 	var/powercost = 0
 

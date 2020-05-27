@@ -31,7 +31,7 @@
 		vamp_datum.vampire_clan = src
 		vamp_datum.GainBloodlinesFromClan(src)
 		if(!leader)
-			vamp_datum.voteskill = vamp_datum.GainPowerAbility(new /datum/action/vampire/assert_leadership)
+			vamp_datum.GainPowerAbility(new /datum/action/vampire/assert_leadership)
 		if(!silent)
 			to_chat(vampire_mind.current, "<B><font size=2 color=orange>You are now a member of [name], a clan of vampires</font></B>")
 
@@ -52,3 +52,9 @@
 		to_chat(current_member, "<B><font size=2 color=orange>[string]</font></B>")
 	if(!leader)
 		to_chat(current_member, "<B><font size=2 color=orange>Your clan didn't choose a leader yet.. you should meet up and discuss matters.</font></B>")
+
+/datum/team/vampire_clan/proc/make_leader(var/datum/mind/vampire_mind)
+	var/datum/antagonist/vampire/vamp_datum = vampire_mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+	vamp_datum.is_leader = TRUE
+	leader = vampire_mind
+	vamp_datum.GainPowerAbility(new /datum/action/vampire/beckon)
