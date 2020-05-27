@@ -66,7 +66,7 @@
 	value = -1
 	medical_record_text = "Patient exhibits an unnatural distaste for people of differing species."
 	var/pcooldown = 0
-	var/pcooldown_time = 30 SECONDS
+	var/pcooldown_time = 15 SECONDS
 	var/master_race
 
 /datum/quirk/specism/add()
