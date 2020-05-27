@@ -353,9 +353,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(!allow_attack_hand_drop(user) || !user.temporarilyRemoveItemFromInventory(src))
 			return
 	//skyrat change - unequip delays
-	if(C.strip_self_delay && ishuman(user))
+	if(strip_self_delay && ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.visible_message("<span class='notice'>[H] start unequipping [I]...</span>", "<span class='notice'>You start unequipping [I]...</span>")
+		H.visible_message("<span class='notice'>[H] start unequipping [src]...</span>", "<span class='notice'>You start unequipping [src]...</span>")
 		if(!do_after(user, strip_self_delay, TRUE, user))
 			return
 	//
