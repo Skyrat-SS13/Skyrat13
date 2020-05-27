@@ -97,6 +97,14 @@
 			to_chat(user, "<span class='warning'>This section is too damaged to support a tile! Use a welder to fix the damage.</span>")
 
 	else if(istype(C, /obj/item/stack/plasticgrate))
+		var/obj/structure/plasticgrate/GC = locate(/obj/structure/plasticgrate,src)
+		var/obj/structure/plasticgrate/window/WC = locate(/obj/structure/plasticgrate/window,src)
+		if(GC)
+			to_chat(user, "<span class='warning'>This section already has something on it.</span>")
+			return
+		if(WC)
+			to_chat(user, "<span class='warning'>This section already has something on it.</span>")
+			return
 		if(!broken && !burnt)
 			for(var/obj/O in src)
 				if(O.level == 1) //ex. pipes laid underneath a tile
@@ -106,7 +114,7 @@
 			var/obj/item/stack/plasticgrate/W = C
 			if(!W.use(1))
 				return
-			if(istype(W, /obj/item/stack/plasticgrate && !istype(C, /obj/item/stack/plasticgrate/windowfloor)))
+			if(!istype(W, /obj/item/stack/plasticgrate/windowfloor))
 				new/obj/structure/plasticgrate(src)
 			if(istype(W, /obj/item/stack/plasticgrate/windowfloor))
 				new/obj/structure/plasticgrate/window(src)

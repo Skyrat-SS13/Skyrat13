@@ -3571,7 +3571,6 @@
 #include "modular_skyrat\code\game\objects\structures\crates_lockers\closets\secure\medical.dm"
 #include "modular_skyrat\code\game\objects\structures\crates_lockers\closets\secure\security.dm"
 #include "modular_skyrat\code\game\objects\structures\lavaland\necropolis_tendril.dm"
-#include "modular_skyrat\code\game\objects\structures\plasticusage\plasticcage.dm"
 #include "modular_skyrat\code\game\objects\structures\plasticusage\plasticfloor.dm"
 #include "modular_skyrat\code\game\objects\structures\plasticusage\plasticgirder.dm"
 #include "modular_skyrat\code\game\objects\structures\plasticusage\plasticgrille.dm"

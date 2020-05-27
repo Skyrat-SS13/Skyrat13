@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("plastic rod", /obj/item/stack/rods/plastic, 1, 2, 60), \
 	new /datum/stack_recipe("plastic tile", /obj/item/stack/tile/plastic, 1, 4, 20), \
 	new /datum/stack_recipe("plastic grate", /obj/item/stack/plasticgrate, 1, 4, 20), \
-	new /datum/stack_recipe("plastic grate", /obj/item/stack/plasticgrate/windowfloor, 1, 4, 20), \
+	new /datum/stack_recipe("plastic window floor", /obj/item/stack/plasticgrate/windowfloor, 1, 4, 20), \
 	new /datum/stack_recipe("plastic plate", /obj/item/stack/tile/plasticplate, 1, 4, 20), \
 	))
 
@@ -41,12 +41,14 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	//turf_type = /turf/open/floor/plasticgrate
 	//mineralType = "plastic"
 	custom_materials = list(/datum/material/plastic=500)
-
+// Weird shit here, with the grate and the windor floor. Since they are the same and one is a child, they seem to stack sometimes. Careful
 /obj/item/stack/plasticgrate/windowfloor
 	name = "plastic window floor"
 	singular_name = "plastic window floor"
 	desc = "A window floor made out of plastic."
 	icon_state = "windowfloor"
+	merge_type = /obj/item/stack/plasticgrate/windowfloor
+// I think this merge_type fixes that issue mentioned above, but keeping that comment in and this one for documentation.
 
 /obj/item/stack/tile/plasticplate
 	name = "plastic plate"

@@ -23,6 +23,7 @@
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
 	smooth = SMOOTH_TRUE
+	glass_amount = 2
 
 /obj/structure/window/plastic/fulltile/unanchored
 	anchored = FALSE
