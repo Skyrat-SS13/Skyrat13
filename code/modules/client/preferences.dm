@@ -124,6 +124,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/maxdislikes = 3 //Skyrat additions END
 
 	var/list/alt_titles_preferences = list()
+
+	var/appear_in_round_end_report = TRUE //whether the player of the character is listed on the round-end report
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
@@ -346,7 +348,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			if(jobban_isbanned(user, "appearance"))
 				dat += "<b>You are banned from using custom names and appearances. You can continue to adjust your characters, but you will be randomised once you join the game.</b><br>"
 			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=name;task=random'>Random Name</A> "
-			dat += "<b>Always Random Name:</b><a style='display:block;width:30px' href='?_src_=prefs;preference=name'>[be_random_name ? "Yes" : "No"]</a><BR>"
+//SKYRAT CHANGES
+			dat += "<b>Always Random Name:</b> <a href='?_src_=prefs;preference=name'>[be_random_name ? "Yes" : "No"]</a><BR>"  //Skyrat change
+			dat += "<b>Show player name at round-end report:</b> <a href='?_src_=prefs;preference=appear_in_round_end_report'>[appear_in_round_end_report ? "Yes" : "No"]</a><BR>"  //Skyrat change
+//END OF SKYRAT CHANGES
 
 			dat += "<b>[nameless ? "Default designation" : "Name"]:</b>"
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
@@ -2745,6 +2750,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("name")
 					be_random_name = !be_random_name
+
+//SKYRAT CHANGES
+				if("appear_in_round_end_report")
+					appear_in_round_end_report = !appear_in_round_end_report
+					user.mind?.appear_in_round_end_report = appear_in_round_end_report
+//END OF SKYRAT CHANGES
 
 				if("all")
 					be_random_body = !be_random_body

@@ -455,6 +455,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["auto_hiss"]				>> auto_hiss
 	S["custom_species"]			>> custom_species
 	S["name_is_always_random"]	>> be_random_name
+//SKYRAT CHANGES
+	S["appear_in_round_end_report"]	>> appear_in_round_end_report
+//END OF SKYRAT CHANGES
 	S["body_is_always_random"]	>> be_random_body
 	S["gender"]					>> gender
 	S["body_model"]				>> features["body_model"]
@@ -593,6 +596,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	nameless		= sanitize_integer(nameless, 0, 1, initial(nameless))
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
+//SKYRAT CHANGES
+	appear_in_round_end_report	= sanitize_integer(appear_in_round_end_report, 0, 1, initial(appear_in_round_end_report))
+//END OF SKYRAT CHANGES
 	be_random_body	= sanitize_integer(be_random_body, 0, 1, initial(be_random_body))
 
 	hair_style					= sanitize_inlist(hair_style, GLOB.hair_styles_list)
