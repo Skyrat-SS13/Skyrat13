@@ -25,7 +25,6 @@
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	//skyrat edit - self equip delay
 	use_standard_equip_delay = TRUE
-	self_equip_mod = 0.7
 	//
 
 /obj/item/clothing/suit/space
