@@ -207,6 +207,16 @@
 			back = satchel //Department satchel
 		if(DDUFFELBAG)
 			back = duffelbag //Department duffel bag
+		// SKYRAT EDIT: Courier Bags and Polychromics
+		if(PLYSBP)
+			back = /obj/item/storage/backpack/polychromic //Polychromic Backpack
+		if(PLYSS)
+			back = /obj/item/storage/backpack/satchel/polychromic //Polychromic Satchel
+		if(PLYSCB)
+			back = /obj/item/storage/backpack/courier/polychromic //Polychromic Courier bag
+		if(PLYSDB)
+			back = /obj/item/storage/backpack/duffelbag/polychromic //Polychromic Duffel bag
+		// SKYRAT EDIT CLOSE
 		else
 			back = backpack //Department backpack
 

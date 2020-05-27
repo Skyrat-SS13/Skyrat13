@@ -1,7 +1,21 @@
+/obj/effect/overlay/emote_popup
+	icon = 'modular_skyrat/icons/mob/popup_flicks.dmi'
+	icon_state = "combat"
+	layer = FLY_LAYER
+	plane = GAME_PLANE
+	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
+	mouse_opacity = 0
+
+/proc/flick_emote_popup_on_mob(mob/M, state, time)
+	var/obj/effect/overlay/emote_popup/I = new
+	I.icon_state = state
+	M.vis_contents += I
+	animate(I, alpha = 255, time = 5, easing = BOUNCE_EASING, pixel_y = 10)
+	QDEL_IN_CLIENT_TIME(I, time)
+
 /mob/emote(act, m_type = null, message = null, intentional = FALSE)
 	. = ..()
-	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
-		set_typing_indicator(FALSE)
+	set_typing_indicator(FALSE)
 
 /datum/emote/living/scream/run_emote(mob/living/user, params) //I can't not port this shit, come on.
 	if(user.nextsoundemote >= world.time || user.stat != CONSCIOUS)
@@ -44,6 +58,7 @@
 	else
 		message = "makes a very loud noise."
 	. = ..()
+
 /datum/emote/living/fingerguns
 	key = "fingergun"
 	key_third_person = "fingerguns"
@@ -119,3 +134,13 @@
 	if(.)
 		playsound(get_turf(user), 'modular_skyrat/sound/emotes/trash/speen.ogg', 30, 0)
 */
+
+/datum/emote/flip/run_emote(mob/living/user, params) //no fun allowed :)
+	if(prob(20))
+		user.visible_message("<span class='warning'>[user] tries to flip, but lands flat on their face!</span>", "<span class='danger'>You try to flip, but land flat on your face!</span>")
+		user.Knockdown(20)
+		user.setDir(NORTH)
+		user.apply_damage(rand(1, 8), BRUTE, BODY_ZONE_HEAD)
+		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1, 5), 20)
+	else
+		. = ..()

@@ -32,13 +32,13 @@
 				if(istype(Re, /datum/reagent/fuel))
 					F = Re
 			if(F)
-				if(R.reagents.trans_id_to(boomtank, F.type, F.volume))
+				if(R.reagents.trans_id_to(boomtank, F.type, min(10, F.volume)))
 					to_chat(user, "<span class='notice'>You transfer all of [R]'s possible fuel to \the [src].</span>")
 				else
 					to_chat(user, "<span class='notice'>\The [src] is already full.</span>")
-			else 
+			else
 				to_chat(user, "<span class='notice'>\The [R] has no fuel.</span>")
-		else 
+		else
 			if(I.w_class <= WEIGHT_CLASS_NORMAL && !loaded_item)
 				I.forceMove(src)
 				loaded_item = I

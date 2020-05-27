@@ -770,7 +770,7 @@
 				H.visible_message("<span class='danger'>[user] headbutts the airlock.</span>", \
 									"<span class='userdanger'>You headbutt the airlock!</span>")
 				H.DefaultCombatKnockdown(100)
-				H.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
+				H.apply_damage(2, BRUTE, BODY_ZONE_HEAD) // Skyrat edit -- made headbanging on doors a lot less harmful, 10 -> 2
 			else
 				visible_message("<span class='danger'>[user] headbutts the airlock. Good thing [user.p_theyre()] wearing a helmet.</span>")
 

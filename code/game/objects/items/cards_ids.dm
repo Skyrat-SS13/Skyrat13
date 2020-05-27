@@ -14,7 +14,7 @@
 /obj/item/card
 	name = "card"
 	desc = "Does card things."
-	icon = 'icons/obj/card.dmi'
+	icon = 'modular_skyrat/icons/obj/card.dmi' //Skyrat change
 	w_class = WEIGHT_CLASS_TINY
 
 	var/list/files = list()
@@ -229,6 +229,7 @@ update_label("John Doe", "Clowny")
 	desc = "A silver card which shows honour and dedication."
 	icon_state = "silver"
 	item_state = "silver_id"
+	icon = 'icons/obj/card.dmi' //Skyrat change
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 
@@ -243,12 +244,19 @@ update_label("John Doe", "Clowny")
 	desc = "A golden card which shows power and might."
 	icon_state = "gold"
 	item_state = "gold_id"
+	icon = 'icons/obj/card.dmi' //Skyrat change
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 
 /obj/item/card/id/syndicate
 	name = "agent card"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
+	//Skyrat change start
+	icon_state = "syndicate"
+	item_state = "sec_id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	//Skyratchange stop
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 
@@ -334,6 +342,7 @@ update_label("John Doe", "Clowny")
 	desc = "The spare ID of the High Lord himself."
 	icon_state = "gold"
 	item_state = "gold_id"
+	icon = 'icons/obj/card.dmi' //Skyrat change
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	registered_name = "Captain"
@@ -348,6 +357,11 @@ update_label("John Doe", "Clowny")
 	name = "\improper CentCom ID"
 	desc = "An ID straight from Central Command."
 	icon_state = "centcom"
+	//Skyrat change start
+	item_state = "centcom-id"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/idcards_righthand.dmi'
+	//Skyrat change stop
 	registered_name = "Central Command"
 	assignment = "General"
 
@@ -359,6 +373,11 @@ update_label("John Doe", "Clowny")
 	name = "\improper CentCom ID"
 	desc = "An ERT ID card."
 	icon_state = "centcom"
+	//Skyrat change start
+	item_state = "centcom-id"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/idcards_righthand.dmi'
+	//Skyrat change stop
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
 
@@ -403,6 +422,7 @@ update_label("John Doe", "Clowny")
 	desc = "You are a number, you are not a free man."
 	icon_state = "orange"
 	item_state = "orange-id"
+	icon = 'icons/obj/card.dmi' //Skyrat change
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	assignment = "Prisoner"
@@ -491,7 +511,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/away/old
 	name = "a perfectly generic identification card"
 	desc = "A perfectly generic identification card. Looks like it could use some flavor."
-	icon_state = "centcom"
+	icon_state = "centcom_old" //Skyrat change
 
 /obj/item/card/id/away/old/sec
 	name = "Charlie Station Security Officer's ID card"
@@ -520,6 +540,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/knight
 	name = "knight badge"
+	icon = 'icons/obj/card.dmi' //Skyrat change
 	icon_state = "knight"
 	desc = "A badge denoting the owner as a knight! It has a strip for swiping like an ID"
 	var/id_color = "#00FF00" //defaults to green

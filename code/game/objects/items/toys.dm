@@ -136,7 +136,7 @@
 /*
  * Toy gun: Why isnt this an /obj/item/gun?
  */
- //Skyrat edit - who the fuck thought that not using vars was a good idea?
+
 /obj/item/toy/gun
 	name = "cap gun"
 	desc = "Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps."
@@ -582,6 +582,21 @@
 	var/timer = 0
 	var/cooldown = 30
 	var/quiet = 0
+
+GLOBAL_LIST_INIT(valid_mechtoy_paths, valid_mechtoy_paths())
+/proc/valid_mechtoy_paths()
+	. = list()
+	for(var/i in subtypesof(/obj/item/toy/prize))
+		. += i
+
+/obj/item/toy/prize/random
+	name = "Illegal mech"
+	desc = "Something fucked up"
+
+/obj/item/toy/prize/random/Initialize()
+	var/newtype = pick(GLOB.valid_mechtoy_paths)
+	new newtype(loc)
+	return INITIALIZE_HINT_QDEL
 
 //all credit to skasi for toy mech fun ideas
 /obj/item/toy/prize/attack_self(mob/user)
@@ -1341,6 +1356,21 @@
 /obj/item/toy/figure/New()
 	desc = "A \"Space Life\" brand [src]."
 	..()
+
+GLOBAL_LIST_INIT(valid_toy_paths, valid_toy_paths())
+/proc/valid_toy_paths()
+	. = list()
+	for(var/i in subtypesof(/obj/item/toy/figure))
+		. += i
+
+/obj/item/toy/figure/random
+	name = "Illegal toy"
+	desc = "Something fucked up"
+
+/obj/item/toy/figure/random/Initialize()
+	var/newtype = pick(GLOB.valid_toy_paths)
+	new newtype(loc)
+	return INITIALIZE_HINT_QDEL
 
 /obj/item/toy/figure/attack_self(mob/user as mob)
 	if(cooldown <= world.time)
