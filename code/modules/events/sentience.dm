@@ -16,9 +16,9 @@
 /datum/round_event/ghost_role/sentience/announce(fake)
 	var/sentience_report = ""
 
-	var/data = pick("scans from our long-range sensors", "our sophisticated probabilistic models", "our omnipotence", "the communications traffic on your station", "energy emissions we detected", "\[REDACTED\]")
-	var/pets = pick("animals/bots", "bots/animals", "pets", "simple animals", "lesser lifeforms", "\[REDACTED\]")
-	var/strength = pick("human", "moderate", "lizard", "security", "command", "clown", "low", "very low", "\[REDACTED\]")
+	var/data = pick("Bioscans", "a recent Bioscan")
+	var/pets = pick("animals/bots", "bots/animals", "pets", "simple animals", "lesser lifeforms",)
+	var/strength = pick("human", "moderate", "lizard", "security", "command", "clown", "low", "very low", "sergal", "anthropromorph", "xenomorph", "alien", "shadowperson", "slime", "dwarf", "slimeperson", "catgirl", "felinid")
 
 	sentience_report += "Based on [data], we believe that [one] of the station's [pets] has developed [strength] level intelligence, and the ability to communicate."
 
