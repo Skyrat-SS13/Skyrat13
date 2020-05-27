@@ -23,9 +23,6 @@
 	dog_fashion = null
 	mutantrace_variation = STYLE_MUZZLE
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
-	//skyrat edit - self equip delay
-	use_standard_equip_delay = TRUE
-	//
 
 /obj/item/clothing/suit/space
 	name = "space suit"
