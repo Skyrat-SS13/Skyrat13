@@ -18,7 +18,7 @@
 		into [location].", "Migration Alert",
 		'sound/effects/mousesqueek.ogg')
 	else
-		print_command_report("Bioscans indicate that [plural] [name] have [movement] into [location].", "Rodent Migration")
+		print_command_report("Bioscans indicate that [plural] [name] have [movement] into [location].", "Rodent Migration") //Skyrat change
 
 /datum/round_event/mice_migration/start()
 	SSminor_mapping.trigger_migration(rand(minimum_mice, maximum_mice))
