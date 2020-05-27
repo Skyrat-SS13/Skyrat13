@@ -14,7 +14,7 @@
 /obj/machinery/firealarm
 	name = "fire alarm"
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
-	icon = 'modular_skyrat/icons/obj/monitors.dmi'
+	icon = 'modular_skyrat/icons/obj/monitors.dmi' //Skyrat change
 	icon_state = "fire0"
 	max_integrity = 250
 	integrity_failure = 0.4
