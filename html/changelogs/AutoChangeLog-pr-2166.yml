@@ -1,0 +1,5 @@
+author: "Afya"
+delete-after: True
+changes: 
+  - rscadd: "Added makeshift tools"
+  - imageadd: "Makeshift tool sprites courtesy of JungleRat"
