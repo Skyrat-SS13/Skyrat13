@@ -51,7 +51,7 @@
 	//Time in ticks needed to equip something on yourself. Uses the equip_delay_self var.
 	//Set use_standard_equip_delay to false if you want to set a custom delay by changing equip_delay_self.
 	var/use_standard_equip_delay = FALSE //Basically sets the self equip delay on initialize to self_equip_mod * equip_delay_other
-	var/self_equip_mod = 0.75
+	var/self_equip_mod = 0.65
 	//
 
 /obj/item/clothing/Initialize()
