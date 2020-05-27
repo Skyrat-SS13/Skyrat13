@@ -27,9 +27,18 @@
 				continue
 			pick_turfs += T
 
-	for(var/i = 1, i <= number_of_wormholes, i++)
+	//Start of Skyrat Changes.
+	for(var/i = 1, i <= CEILING(number_of_wormholes,2), i++) //Force even number of wormholes.
 		var/turf/T = pick(pick_turfs)
-		wormholes += new /obj/effect/portal/wormhole(T, null, 0, null, FALSE)
+		var/obj/effect/portal/wormhole/W = new /obj/effect/portal/wormhole(T, null, 0, null, FALSE)
+		animate(W,alpha = 75, time = (endWhen - startWhen)*10, easing = CIRCULAR_EASING | EASE_IN) //Animate it.
+		if(i > 0 && i % 2 == 0) //Only trigger on even numbers greater than 0.
+			//Link the two wormholes together.
+			var/obj/effect/portal/wormhole/OLD_W = wormholes[i - 1]
+			OLD_W.hard_target = W.loc
+			W.hard_target = OLD_W.loc
+		wormholes += W
+	//End of Skyrat changes.
 
 /datum/round_event/wormholes/announce(fake)
 	priority_announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", "spanomalies")
@@ -62,7 +71,7 @@
 			return
 
 	if(ismovable(M))
-		if(GLOB.portals.len)
+		if(!hard_target && GLOB.portals.len) //SKYRAT CHANGE, CHECK IF IT HAS A HARD TARGET.
 			var/obj/effect/portal/P = pick(GLOB.portals)
 			if(P && isturf(P.loc))
 				hard_target = P.loc
