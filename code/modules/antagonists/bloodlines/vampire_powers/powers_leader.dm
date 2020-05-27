@@ -28,9 +28,12 @@
 	var/datum/team/vampire_clan/vamp_clan = user_vamp_datum.vampire_clan
 	if(!vamp_clan)
 		return
-	var/datum/mind/chosen_mind = input(owner, "Choose who you wish to beckon:", "Beckon") as null|anything in vamp_clan.members
-	if(chosen_mind)
-		if(!chosen_mind.current)
-			to_chat(owner, "<span class='cult'>You're having trouble to signal the target, perhaps they're dead?</span>")
-		to_chat(owner, "<span class='cult'>You signal [chosen_mind.name], calling them to you.</span>")
-		to_chat(chosen_mind.current, "<span class='cult'>You feel your blood pulsing, [owner.name] calls you.</span>")
+	var/list/candidates = vamp_clan.members.Copy()
+	candidates -= owner.mind
+	if(candidates.len>1)
+		var/datum/mind/chosen_mind = input(owner, "Choose who you wish to beckon:", "Beckon") as null|anything in candidates
+		if(chosen_mind)
+			if(!chosen_mind.current)
+				to_chat(owner, "<span class='cult'>You're having trouble to signal the target, perhaps they're dead?</span>")
+			to_chat(owner, "<span class='cult'>You signal [chosen_mind.name], calling them to you.</span>")
+			to_chat(chosen_mind.current, "<span class='cultlarge'>You feel your blood pulsing, [owner.name] calls you.</span>")

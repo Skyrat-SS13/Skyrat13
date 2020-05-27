@@ -30,6 +30,8 @@
 
 	var/powercost = 0
 
+	var/late_pay = FALSE //If this is TRUE, pay the cost manually somewhere in the ability
+
 	var/needs_button = TRUE 			// Taken from Changeling - for passive abilities that dont need a button
 	var/bloodsucker_can_buy = FALSE 	// Must be a bloodsucker to use this power.
 	var/warn_constant_cost = FALSE		// Some powers charge you for staying on. Masquerade, Cloak, Veil, etc.
@@ -63,7 +65,8 @@
 		return
 	if(!CheckCanPayCost(TRUE) || !CheckCanUse(TRUE))
 		return
-	PayCost()
+	if(!late_pay)
+		PayCost()
 	if(amToggle)
 		active = !active
 		UpdateButtonIcon()

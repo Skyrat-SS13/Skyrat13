@@ -1388,6 +1388,7 @@
 #include "code\modules\antagonists\bloodlines\vampire_powers\_vampire_powers.dm"
 #include "code\modules\antagonists\bloodlines\vampire_powers\powers_celerity.dm"
 #include "code\modules\antagonists\bloodlines\vampire_powers\powers_leader.dm"
+#include "code\modules\antagonists\bloodlines\vampire_powers\powers_potence.dm"
 #include "code\modules\antagonists\bloodlines\vampire_powers\vampiric_gifts.dm"
 #include "code\modules\antagonists\bloodsucker\bloodsucker_flaws.dm"
 #include "code\modules\antagonists\bloodsucker\bloodsucker_integration.dm"

@@ -398,6 +398,7 @@
 	cooldown = 900
 	amToggle = FALSE
 	purchasable = FALSE
+	late_pay = TRUE
 
 	var/mob/living/feed_target 	// So we can validate more than just the guy we're grappling.
 	var/target_grappled = FALSE // If you started grappled, then ending it will end your Feed.
@@ -533,6 +534,7 @@
 					action = alert(target.client, question_string, "", "Yes", "No")
 					if(!(world.time > time_thershold))
 						if(action == "Yes")
+							PayCost()
 							failed = FALSE
 							to_chat(target, "<span class='boldwarning'>You give into the invigorating power flowing through your veins, you have became a supernatural entity, a vampire.</span>")
 							if(target_vampire)
@@ -551,13 +553,10 @@
 						else
 							to_chat(target, "<span class='boldwarning'>You resist against the corrupting force and succeed!</span>")
 
-				if(failed) //We refund
+				if(failed)
 					if(user)
-						to_chat(user, "<span class='warning'>[target.name] rejected your embrace. We feed on them instead!</span>")
+						to_chat(user, "<span class='warning'>[target.name] rejected your embrace.. what a waste.</span>")
 						to_chat(user, "<span class='warning'>They will not remember this.</span>")
-					if(user_vamp_datum)
-						user_vamp_datum.AddBloodVolume(bloodcost + 40)
-						user_vamp_datum.AddPower(powercost + 20)
 					if(target)
 						target.Unconscious(200)
 						to_chat(target, "<span class='boldwarning'>This experience leaves you drained and weakened. You will not remember this encounter when you wake.</span>")
@@ -643,7 +642,7 @@
 					Action.Remove(B.current)
 					break
 			if(!B.current.incapacitated())
-				to_chat(B.current,"<span class='cultlarge'>[owner] has won the clan's support and is now their master. Follow [owner.p_their()] orders to the best of your ability!</span>")
+				to_chat(B.current,"<span class='cultlarge'>[owner] has won the clan's support and is now their master. Follow their orders to the best of your ability!</span>")
 	return TRUE
 	//STUFF
 
