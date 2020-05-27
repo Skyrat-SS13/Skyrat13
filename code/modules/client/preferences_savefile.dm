@@ -238,6 +238,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["see_chat_emotes"] 	>> see_chat_emotes
 	S["event_participation"] >> event_participation
 	S["event_prefs"] >> event_prefs
+	S["appear_in_round_end_report"]	>> appear_in_round_end_report
 	//SKYRAT CHANGES END
 
 
@@ -281,10 +282,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["preferred_chaos"]	>> preferred_chaos
 	S["auto_ooc"]			>> auto_ooc
 	S["no_tetris_storage"]		>> no_tetris_storage
-
-//SKYRAT CHANGES
-	S["appear_in_round_end_report"]	>> appear_in_round_end_report
-//END OF SKYRAT CHANGES
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
