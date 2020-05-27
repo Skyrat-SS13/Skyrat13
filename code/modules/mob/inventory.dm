@@ -278,10 +278,10 @@
 	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
 		return FALSE
 	//skyrat change - unequip delays
-	if(I.strip_self_delay && ishuman(user))
-		var/mob/living/carbon/human/H = user
+	if(I.strip_self_delay && ishuman(src))
+		var/mob/living/carbon/human/H = src
 		H.visible_message("<span class='notice'>[H] start unequipping [I]...</span>", "<span class='notice'>You start unequipping [I]...</span>")
-		if(!do_after(user, strip_self_delay, TRUE, user))
+		if(!do_after(H, I.strip_self_delay, TRUE, H))
 			return FALSE
 	//
 	return TRUE
