@@ -6,7 +6,6 @@
 	min_players = 2
 	gamemode_blacklist = list("dynamic")
 
-
 /datum/round_event/wormholes
 	announceWhen = 10
 	endWhen = 60
@@ -35,12 +34,14 @@
 /datum/round_event/wormholes/announce(fake)
 	priority_announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", "spanomalies")
 
+/* SKYRAT CHANGE: NO WORMHOLE SHIFTING.
 /datum/round_event/wormholes/tick()
 	if(activeFor % shift_frequency == 0)
 		for(var/obj/effect/portal/wormhole/O in wormholes)
 			var/turf/T = pick(pick_turfs)
 			if(T)
 				O.forceMove(T)
+*/
 
 /datum/round_event/wormholes/end()
 	QDEL_LIST(wormholes)
@@ -48,7 +49,7 @@
 
 /obj/effect/portal/wormhole
 	name = "wormhole"
-	desc = "It looks highly unstable; It could close at any moment."
+	desc = "It looks highly unstable. You could end up literally anywhere." //SKYRAT CHANGE.
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "anom"
 	mech_sized = TRUE
