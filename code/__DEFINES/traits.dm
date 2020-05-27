@@ -191,6 +191,10 @@
 #define TRAIT_NO_ALCOHOL		"alcohol_intolerance"
 #define TRAIT_MUTATION_STASIS			"mutation_stasis" //Prevents processed genetics mutations from processing.
 #define TRAIT_FAST_PUMP				"fast_pump"
+//SKYRAT traits
+#define TRAIT_HARD_SOLES		"hard_soles"
+#define TRAIT_SCREWY_MOOD		"screwy_mood"
+//
 
 // mobility flag traits
 // IN THE FUTURE, IT WOULD BE NICE TO DO SOMETHING SIMILAR TO https://github.com/tgstation/tgstation/pull/48923/files (ofcourse not nearly the same because I have my.. thoughts on it)
