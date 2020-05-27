@@ -282,6 +282,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["auto_ooc"]			>> auto_ooc
 	S["no_tetris_storage"]		>> no_tetris_storage
 
+//SKYRAT CHANGES
+	S["appear_in_round_end_report"]	>> appear_in_round_end_report
+//END OF SKYRAT CHANGES
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -332,6 +335,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	see_chat_emotes	= sanitize_integer(see_chat_emotes, 0, 1, initial(see_chat_emotes))
 	event_participation = sanitize_integer(event_participation, 0, 1, initial(event_participation))
 	event_prefs = sanitize_text(event_prefs)
+	appear_in_round_end_report	= sanitize_integer(appear_in_round_end_report, 0, 1, initial(appear_in_round_end_report))
 	//SKYRAT CHANGES END
 
 	return 1
@@ -406,6 +410,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["see_chat_emotes"], see_chat_emotes)
 	WRITE_FILE(S["event_participation"], event_participation)
 	WRITE_FILE(S["event_prefs"], event_prefs)
+	WRITE_FILE(S["appear_in_round_end_report"], appear_in_round_end_report)
 	//SKYRAT CHANGES END
 
 	return 1
@@ -455,9 +460,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["auto_hiss"]				>> auto_hiss
 	S["custom_species"]			>> custom_species
 	S["name_is_always_random"]	>> be_random_name
-//SKYRAT CHANGES
-	S["appear_in_round_end_report"]	>> appear_in_round_end_report
-//END OF SKYRAT CHANGES
 	S["body_is_always_random"]	>> be_random_body
 	S["gender"]					>> gender
 	S["body_model"]				>> features["body_model"]
@@ -596,9 +598,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	nameless		= sanitize_integer(nameless, 0, 1, initial(nameless))
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
-//SKYRAT CHANGES
-	appear_in_round_end_report	= sanitize_integer(appear_in_round_end_report, 0, 1, initial(appear_in_round_end_report))
-//END OF SKYRAT CHANGES
 	be_random_body	= sanitize_integer(be_random_body, 0, 1, initial(be_random_body))
 
 	hair_style					= sanitize_inlist(hair_style, GLOB.hair_styles_list)
