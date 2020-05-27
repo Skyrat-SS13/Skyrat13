@@ -202,7 +202,8 @@
 		visible_message("<span class='danger'>[src] has thrown [thrown_thing].</span>")
 		log_message("has thrown [thrown_thing]", LOG_ATTACK)
 		do_attack_animation(target, no_effect = 1)
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
+		if(throwforce)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 50, TRUE, -1)
 		newtonian_move(get_dir(target, src))
 		thrown_thing.safe_throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, null, null, null, move_force, random_turn)
 
