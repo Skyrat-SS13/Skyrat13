@@ -47,23 +47,12 @@
 	//Add a "exclude" string to do the opposite, making it only only species listed that can't wear it.
 	//You append this to clothing objects.
 
-	//SKYRAT CHANGE - self equip delays
-	//Time in ticks needed to equip something on yourself. Uses the equip_delay_self var.
-	//Set use_standard_equip_delay to false if you want to set a custom delay by changing equip_delay_self.
-	var/use_standard_equip_delay = FALSE //Basically sets the self equip delay on initialize to self_equip_mod * equip_delay_other
-	var/self_equip_mod = 0.65
-	//
-
 /obj/item/clothing/Initialize()
 	. = ..()
 	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
 		actions_types += /datum/action/item_action/toggle_voice_box
 	if(ispath(pocket_storage_component_path))
 		LoadComponent(pocket_storage_component_path)
-	//skyrat change
-	if(use_standard_equip_delay && !equip_delay_self)
-		equip_delay_self = self_equip_mod * equip_delay_other
-	//
 
 /obj/item/clothing/MouseDrop(atom/over_object)
 	. = ..()
