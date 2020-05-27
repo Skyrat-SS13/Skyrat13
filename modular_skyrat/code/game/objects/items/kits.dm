@@ -36,7 +36,7 @@
 		qdel(targetrev)
 		qdel(src)
 		return TRUE
-	else if(istype(target, /obj/item/toy/gun) && open)
+	else if(istype(target, /obj/item/toy/gun) && open && !istype(target, /obj/item/toy/gun/finger))
 		var/obj/item/toy/gun/targetrev = target
 		var/obj/item/gun/ballistic/revolver/newrev = new /obj/item/gun/ballistic/revolver(get_turf(user))
 		newrev.name = targetrev.name
