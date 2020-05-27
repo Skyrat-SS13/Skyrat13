@@ -47,12 +47,24 @@
 	//Add a "exclude" string to do the opposite, making it only only species listed that can't wear it.
 	//You append this to clothing objects.
 
+	//SKYRAT CHANGE - self equip delays
+	//Time in ticks needed to equip something on yourself.
+	//Set use_standard_equip_delay to false if you want to set a custom delay.
+	var/self_equip_delay = 0
+	var/use_standard_equip_delay = FALSE //Basically sets the self equip delay on initialize to self_equip_mod * strip_delay
+	var/self_equip_mod = 0.5
+	//
+
 /obj/item/clothing/Initialize()
 	. = ..()
 	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
 		actions_types += /datum/action/item_action/toggle_voice_box
 	if(ispath(pocket_storage_component_path))
 		LoadComponent(pocket_storage_component_path)
+	//skyrat change
+	if(use_standard_equip_delay && !self_equip_delay)
+		self_equip_delay = self_equip_mod * strip_delay
+	//
 
 /obj/item/clothing/MouseDrop(atom/over_object)
 	. = ..()
@@ -108,8 +120,13 @@
 		user_vars_remembered = initial(user_vars_remembered) // Effectively this sets it to null.
 
 /obj/item/clothing/equipped(mob/user, slot)
-	..()
-	if (!istype(user))
+	//skyrat change - self equip delay
+	if(!self_equip_delay || do_after(user, self_equip_delay, TRUE, user))
+		..()
+	else
+		return FALSE
+	//
+	if(!istype(user))
 		return
 	if(slot_flags & slotdefine2slotbit(slot)) //Was equipped to a valid slot for this item?
 		if (LAZYLEN(user_vars_to_edit))
