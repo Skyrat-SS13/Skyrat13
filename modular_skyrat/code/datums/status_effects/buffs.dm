@@ -60,3 +60,40 @@
 	desc = "You are one with the dark. You'll get more and more invisible over time, as long as you stay immobile. The invisibility effect is reset whenever you interact with something."
 	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
 	icon_state = "stealth"
+
+/datum/status_effect/fists_of_caine
+	id = "fists_of_caine"
+	alert_type = /obj/screen/alert/status_effect/fists_of_caine
+	duration = 600
+	tick_interval = 0
+	alert_type = null
+	var/datum/martial_art/MA
+
+/datum/status_effect/fists_of_caine/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod *= 0.8
+		H.physiology.stamina_mod *= 0.5
+		H.dna.species.punchdamagelow += 6
+		H.dna.species.punchdamagehigh += 8
+		if(!MA)
+			MA = new /datum/martial_art/fists_of_caine
+		MA.teach(H)
+
+
+/datum/status_effect/fists_of_caine/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod *= 1.25
+		H.physiology.stamina_mod *= 2
+		H.dna.species.punchdamagelow -= 6
+		H.dna.species.punchdamagehigh -= 8
+		MA.remove(H)
+
+/obj/screen/alert/status_effect/fists_of_caine
+	name = "Fists of Caine"
+	desc = "Ambidexterity and power surges through you."
+	icon = 'modular_skyrat/icons/mob/actions/vampire.dmi'
+	icon_state = "fists_status"

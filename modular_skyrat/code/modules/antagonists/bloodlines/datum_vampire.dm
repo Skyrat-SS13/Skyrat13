@@ -170,7 +170,7 @@
 	GainPowerAbility(new /datum/action/vampire/embrace)
 	//BuyPower(new /datum/action/vampire/masquerade)
 	//BuyPower(new /datum/action/vampire/veil)
-	
+
 
 	// Traits
 	for(var/T in defaultTraits)
