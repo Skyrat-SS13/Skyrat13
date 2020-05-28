@@ -25,6 +25,9 @@
 	stat_attack = UNCONSCIOUS // ensures they will target people in crit, too!
 	spider_tier = TS_TIER_2
 
+	// Speedy
+	speed = 0.25
+
 /mob/living/simple_animal/hostile/poison/terror_spider/black/spider_specialattack(mob/living/carbon/human/L, poisonable)
 	if(!poisonable)
 		return ..()

@@ -28,7 +28,9 @@
 					alt_titles_preferences.Remove(job.title)
 
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
+	// SKYRAT CHANGE START
 	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])
+	// SKYRAT CHANGE END
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
 	nonconpref = sanitize_text(S["noncon_pref"], "Ask")
@@ -49,7 +51,11 @@
 	enable_personal_chat_color	= sanitize_integer(enable_personal_chat_color, 0, 1, initial(enable_personal_chat_color))
 	personal_chat_color	= sanitize_hexcolor(personal_chat_color, 6, 1, "#FFFFFF")
 	foodlikes = SANITIZE_LIST(S["foodlikes"])
+	if(foodlikes.len > maxlikes)
+		foodlikes.Cut(maxlikes+1)
 	fooddislikes = SANITIZE_LIST(S["fooddislikes"])
+	if(fooddislikes.len > maxdislikes)
+		fooddislikes.Cut(maxdislikes+1)
 
 	//Moves over the previous OOC notes to our ooc notes
 	if(length(features["ooc_notes"]) > length(skyrat_ooc_notes))

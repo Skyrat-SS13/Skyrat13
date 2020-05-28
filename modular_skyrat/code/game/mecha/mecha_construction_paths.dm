@@ -493,6 +493,8 @@
 		/obj/item/extinguisher,
 		/obj/item/extinguisher,
 	)
+	var/coolboxes = 0
+	var/xxxtinguishers = 0
 
 /datum/component/construction/unordered/mecha_chassis/makeshift/custom_action(obj/item/I, mob/living/user, typepath)
 	. = user.transferItemToLoc(I, parent)
@@ -500,23 +502,19 @@
 		var/atom/parent_atom = parent
 		user.visible_message("[user] has connected [I] to [parent].", "<span class='notice'>You connect [I] to [parent].</span>")
 		if(istype(I, /obj/item/storage/toolbox))
-			var/secondarysprite = FALSE
-			for(var/mutable_appearance/O in parent_atom.overlays)
-				if(O.icon_state == "lockermech_toolbox_default+o")
-					secondarysprite = TRUE
-			if(secondarysprite)
-				parent_atom.add_overlay("lockermech_toolbox_default2+o")
-			else
-				parent_atom.add_overlay("lockermech_toolbox_default+o")
+			coolboxes++
+			switch(coolboxes)
+				if(1)
+					parent_atom.add_overlay("lockermech_toolbox_default+o")
+				if(2)
+					parent_atom.add_overlay("lockermech_toolbox_default2+o")
 		else if(istype(I, /obj/item/extinguisher))
-			var/secondarysprite = FALSE
-			for(var/mutable_appearance/O in parent_atom.overlays)
-				if(O.icon_state == "lockermech_toolbox_default+o")
-					secondarysprite = TRUE
-			if(secondarysprite)
-				parent_atom.add_overlay("lockermech_toolbox_extinguisher_closed2+o")
-			else
-				parent_atom.add_overlay("lockermech_toolbox_extinguisher_closed+o")
+			xxxtinguishers++
+			switch(xxxtinguishers)
+				if(1)
+					parent_atom.add_overlay("lockermech_extinguisher_closed+o")
+				if(2)
+					parent_atom.add_overlay("lockermech_extinguisher_closed2+o")
 		else
 			parent_atom.add_overlay("[I.icon_state]+o")
 		qdel(I)
