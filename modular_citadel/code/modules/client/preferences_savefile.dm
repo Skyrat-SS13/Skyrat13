@@ -30,7 +30,6 @@
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
 	// SKYRAT CHANGE START
 	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])
-	event_prefs = sanitize_text(S["event_prefs"])
 	// SKYRAT CHANGE END
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
@@ -98,7 +97,6 @@
 	//SKYRAT CHANGES
 	WRITE_FILE(S["feature_ipc_chassis"], features["ipc_chassis"])
 	WRITE_FILE(S["skyrat_ooc_notes"], skyrat_ooc_notes)
-	WRITE_FILE(S["event_prefs"], event_prefs)
 	WRITE_FILE(S["erp_pref"], erppref)
 	WRITE_FILE(S["noncon_pref"], nonconpref)
 	WRITE_FILE(S["vore_pref"], vorepref)
