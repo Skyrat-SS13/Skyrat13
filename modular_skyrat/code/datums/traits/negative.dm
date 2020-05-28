@@ -113,3 +113,26 @@
 	value = -1
 	mob_trait = TRAIT_SCREWY_MOOD
 	medical_record_text = "Patient is incapable of communicating their emotions."
+
+//man of solitude, also non-speech impending alternative/addon to a social anxiety
+/datum/quirk/lone_wolf
+	name = "Loner"
+	desc = "You enjoy the solitude, and being part of the crowd makes you unhappy."
+	value = -1
+	medical_record_text = "Patient experiences a strong dislike toward crowds, prefering company of just themselves."
+	var/wcooldown = 0
+	var/wcooldown_time = 15 SECONDS
+
+/datum/quirk/lone_wolf/on_process()
+	. = ..()
+	if(wcooldown > world.time)
+		return
+	wcooldown = world.time + wcooldown_time
+	var/mob/living/carbon/human/quietkid = quirk_holder // Some of you guys are alright, don't come to #main-dev tomorrow.
+	var/people = 0
+	for(var/mob/living/carbon/human/H in (view(5, quietkid) - quietkid))
+		people++
+	if(people >= 3)
+		SEND_SIGNAL(quietkid, COMSIG_ADD_MOOD_EVENT, "lone_wolf_hate", /datum/mood_event/lone_wolf_hate)
+	else if(people <= 0) //Not sure if it ever will go below the zero, but still putting it that way just in case.
+		SEND_SIGNAL(quietkid, COMSIG_ADD_MOOD_EVENT, "lone_wolf_happy", /datum/mood_event/lone_wolf_happy)
