@@ -237,6 +237,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//SKYRAT CHANGES BEGIN
 	S["see_chat_emotes"] 	>> see_chat_emotes
 	S["event_participation"] >> event_participation
+	S["event_prefs"] >> event_prefs
 	//SKYRAT CHANGES END
 
 
@@ -330,6 +331,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//SKYRAT CHANGES BEGIN
 	see_chat_emotes	= sanitize_integer(see_chat_emotes, 0, 1, initial(see_chat_emotes))
 	event_participation = sanitize_integer(event_participation, 0, 1, initial(event_participation))
+	event_prefs = sanitize_text(event_prefs)
 	//SKYRAT CHANGES END
 
 	return 1
@@ -403,6 +405,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//SKYRAT CHANGES BEGIN
 	WRITE_FILE(S["see_chat_emotes"], see_chat_emotes)
 	WRITE_FILE(S["event_participation"], event_participation)
+	WRITE_FILE(S["event_prefs"], event_prefs)
 	//SKYRAT CHANGES END
 
 	return 1
