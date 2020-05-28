@@ -1,0 +1,4 @@
+author: "Akrilla"
+delete-after: True
+changes: 
+  - bugfix: "Fixes event prefs in the event panel. This will now properly persist across rounds."
