@@ -28,7 +28,9 @@
 					alt_titles_preferences.Remove(job.title)
 
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
+	// SKYRAT CHANGE START
 	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])
+	// SKYRAT CHANGE END
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
 	nonconpref = sanitize_text(S["noncon_pref"], "Ask")

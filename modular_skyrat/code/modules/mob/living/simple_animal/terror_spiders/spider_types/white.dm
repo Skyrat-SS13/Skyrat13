@@ -22,6 +22,8 @@
 	spider_tier = TS_TIER_2
 	web_type = /obj/structure/spider/terrorweb/white
 
+	speed = 0.5
+
 /mob/living/simple_animal/hostile/poison/terror_spider/white/LoseTarget()
 	stop_automated_movement = 0
 	attackstep = 0

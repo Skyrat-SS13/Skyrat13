@@ -21,12 +21,12 @@
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/actualhealth = 100 //value we calculate to assume disguise and etc
 	//Same organs as an IPC basically, to share functionality.
-	mutant_heart = /obj/item/organ/heart/ipc
-	mutantlungs = /obj/item/organ/lungs/ipc
-	mutantliver = /obj/item/organ/liver/ipc
-	mutantstomach = /obj/item/organ/stomach/ipc
-	mutanteyes = /obj/item/organ/eyes/ipc
-	//cheeto
+	mutantstomach = /obj/item/organ/stomach/robot_ipc
+	mutantears = /obj/item/organ/ears/robot_ipc
+	mutanteyes = /obj/item/organ/eyes/robot_ipc
+	mutantlungs = /obj/item/organ/lungs/robot_ipc
+	mutant_heart = /obj/item/organ/heart/robot_ipc
+	mutantliver = /obj/item/organ/liver/robot_ipc
 	exotic_blood = /datum/reagent/blood/synthetics
 	//variables used for snowflakey ass races and stuff god i fukcing hate this
 	var/storedeardamage = 0
@@ -157,7 +157,7 @@
 	H.regenerate_icons()
 
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
-	..()
+	. = ..()
 	actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)

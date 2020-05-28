@@ -9,6 +9,30 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/misc/polyjumpsuit
 	cost = 3
+	
+/datum/gear/polyunder
+	name = "Polychromic Under"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/suit/polychromic
+	cost = 3
+
+/datum/gear/polypleat
+	name = "Polychromic Pleated Skirt"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/dress/skirt/polychromic/pleated
+	cost = 3
+
+/datum/gear/polyfemtank
+	name = "Polychromic Feminine Tanktop"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/misc/poly_tanktop/female
+	cost = 3
+
+/datum/gear/polytshirt
+	name = "Polychromic Shirt"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/misc/poly_shirt
+	cost = 3
 
 /datum/gear/skirtleneck
 	name = "Tacticool Skirtleneck"
@@ -17,14 +41,15 @@
 
 /datum/gear/trekcmdtos
 	name = "EntCorp uniform, cmd"
+	restricted_roles = CMD_ROLES
 
 /datum/gear/trekmedscitos
 	name = "EntCorp uniform, medsci"
-	restricted_roles = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Virologist", "Paramedic", "Geneticist", "Research Director", "Scientist", "Roboticist")
+	restricted_roles = MEDSCI_ROLES
 
 /datum/gear/trekengtos
 	name = "EntCorp uniform, ops"
-	restricted_roles = list("Chief Engineer", "Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Head of Security", "Brig Physician", "Blueshield", "Cargo Technician", "Shaft Miner", "Quartermaster")
+	restricted_roles = OPRS_ROLES
 
 /datum/gear/trekfedutil
 	name = "Fed uniform, classic"

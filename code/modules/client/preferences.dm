@@ -85,8 +85,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/pda_style = MONO
 	var/pda_color = "#808000"
 	var/pda_skin = PDA_SKIN_ALT
-	// SKYRAT EDIT: Credits
+	// SKYRAT CHANGE START
 	var/show_credits = TRUE
+	var/event_participation = FALSE
+	var/event_prefs = ""
+	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
 
@@ -398,9 +401,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += 	"ERP : <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
 			dat += 	"Non-Con : <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
 			dat += 	"Vore : <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
-			dat += 	"Extreme content : <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
-			if(extremepref != "No")
-				dat += "Harmful extreme content : <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
 			//END OF SKYRAT EDIT
 			if(length(features["flavor_text"]) <= 40)
 				if(!length(features["flavor_text"]))
@@ -1151,6 +1151,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Hypno:</b> <a href='?_src_=prefs;preference=never_hypno'>[(cit_toggles & NEVER_HYPNO) ? "Disallowed" : "Allowed"]</a><br>"
 			dat += "<b>Aphrodisiacs:</b> <a href='?_src_=prefs;preference=aphro'>[(cit_toggles & NO_APHRO) ? "Disallowed" : "Allowed"]</a><br>"
 			dat += "<b>Ass Slapping:</b> <a href='?_src_=prefs;preference=ass_slap'>[(cit_toggles & NO_ASS_SLAP) ? "Disallowed" : "Allowed"]</a><br>"
+			//SKYRAT EDIT
+			dat += 	"Extreme ERP verbs : <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
+			if(extremepref != "No")
+				dat += "Harmful ERP verbs : <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
+			//END OF SKYRAT EDIT
 			dat += "</tr></table>"
 			dat += "<br>"
 		if(5) // Custom keybindings
