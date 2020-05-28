@@ -18484,10 +18484,10 @@
 /area/quartermaster/qm)
 "aUm" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "aUn" = (
@@ -31135,13 +31135,14 @@
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
 "buW" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
 /obj/item/pen,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
 "buX" = (
@@ -42784,8 +42785,7 @@
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
-/obj/item/clipboard,
-/obj/item/toy/figure/ce,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "bSb" = (
@@ -43126,7 +43126,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/flashlight/lamp/green,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/camera{
 	c_tag = "Bridge - Captain's Office";
@@ -43137,13 +43136,11 @@
 	dir = 1;
 	layer = 2.9
 	},
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "bSM" = (
 /obj/structure/table/wood,
-/obj/item/folder/blue,
-/obj/item/pen/fourcolor,
-/obj/item/stamp/captain,
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
@@ -43162,6 +43159,9 @@
 	dir = 1;
 	layer = 2.9
 	},
+/obj/item/folder/blue,
+/obj/item/stamp/captain,
+/obj/item/pen/fourcolor,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "bSO" = (
@@ -43761,6 +43761,8 @@
 	pixel_y = 6
 	},
 /obj/item/reagent_containers/pill/patch/silver_sulf,
+/obj/item/clipboard,
+/obj/item/toy/figure/ce,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "bTS" = (
@@ -48439,12 +48441,13 @@
 	name = "Lawyer's Privacy Control";
 	pixel_y = 24
 	},
+/obj/item/clipboard,
+/obj/item/toy/figure/lawyer,
 /turf/open/floor/wood,
 /area/lawoffice)
 "cdh" = (
 /obj/structure/table/wood,
-/obj/item/clipboard,
-/obj/item/toy/figure/lawyer,
+/obj/machinery/photocopier/faxmachine/longrange,
 /turf/open/floor/wood,
 /area/lawoffice)
 "cdi" = (
@@ -52862,8 +52865,9 @@
 /obj/machinery/status_display/ai{
 	pixel_x = 32
 	},
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "cmD" = (
@@ -80126,8 +80130,6 @@
 /area/science/mixing)
 "duK" = (
 /obj/structure/table/reinforced,
-/obj/item/clipboard,
-/obj/item/toy/figure/rd,
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Research Director's Desk";
@@ -80140,6 +80142,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hor)
 "duL" = (
@@ -80933,6 +80936,8 @@
 	pixel_y = -26
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/clipboard,
+/obj/item/toy/figure/rd,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hor)
 "dwp" = (
@@ -83381,7 +83386,6 @@
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
-/obj/item/paper_bin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -83391,6 +83395,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/cmo)
 "dBl" = (
@@ -83405,8 +83410,6 @@
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/obj/item/folder/white,
-/obj/item/pen,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
@@ -83416,6 +83419,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/item/paper_bin,
+/obj/item/folder/white,
+/obj/item/pen,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/cmo)
 "dBm" = (
@@ -96877,10 +96883,6 @@
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/aft)
-"egC" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/chapel/office)
 "egD" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -137101,7 +137103,7 @@ edT
 eeC
 efp
 egd
-egC
+efg
 aaa
 aad
 aaa
@@ -137358,7 +137360,7 @@ edU
 eeD
 efq
 ege
-egC
+efg
 aaa
 aad
 aaa
@@ -137615,7 +137617,7 @@ edV
 eeE
 efr
 ege
-egC
+efg
 aad
 ajr
 aaa

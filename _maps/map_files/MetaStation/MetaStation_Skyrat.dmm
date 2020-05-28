@@ -17450,9 +17450,8 @@
 	name = "Law Office APC";
 	pixel_y = 24
 	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine/longrange,
 /turf/open/floor/wood,
 /area/lawoffice)
 "aIY" = (
@@ -19786,6 +19785,10 @@
 	pixel_y = 23
 	},
 /obj/item/clipboard,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "aNS" = (
@@ -19945,6 +19948,8 @@
 /obj/structure/sign/poster/official/obey{
 	pixel_y = -32
 	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "aOk" = (
@@ -21742,14 +21747,11 @@
 /area/quartermaster/qm)
 "aRN" = (
 /obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "aRO" = (
@@ -25476,8 +25478,7 @@
 /area/crew_quarters/heads/chief)
 "aZF" = (
 /obj/structure/table/reinforced,
-/obj/item/clipboard,
-/obj/item/paper/monitorkey,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "aZG" = (
@@ -26475,6 +26476,8 @@
 	pixel_x = -3;
 	pixel_y = 7
 	},
+/obj/item/clipboard,
+/obj/item/paper/monitorkey,
 /obj/item/pen,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
@@ -35328,15 +35331,12 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
-"bsO" = (
-/mob/living/simple_animal/pet/dog/corgi/Ian,
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hop)
 "bsP" = (
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
-/obj/structure/bed/dogbed/ian,
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "bsQ" = (
@@ -35498,12 +35498,8 @@
 /area/crew_quarters/heads/captain/private)
 "bte" = (
 /obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
-	},
-/obj/item/pen,
 /obj/structure/window/reinforced,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "btf" = (
@@ -35528,6 +35524,11 @@
 	name = "Station Intercom (General)";
 	pixel_x = 27
 	},
+/obj/item/paper_bin{
+	pixel_x = 1;
+	pixel_y = 9
+	},
+/obj/item/pen,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "bth" = (
@@ -35804,6 +35805,8 @@
 	name = "Head of Personnel APC";
 	pixel_y = 24
 	},
+/obj/structure/bed/dogbed/ian,
+/mob/living/simple_animal/pet/dog/corgi/Ian,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
 "btI" = (
@@ -58126,15 +58129,14 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "cnE" = (
-/obj/item/folder/blue,
 /obj/structure/table/glass,
-/obj/item/stamp/cmo,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "cnF" = (
@@ -58153,6 +58155,8 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/item/folder/blue,
+/obj/item/stamp/cmo,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "cnG" = (
@@ -63174,22 +63178,11 @@
 	},
 /area/crew_quarters/heads/hor)
 "cwQ" = (
-/obj/item/paper_bin{
-	pixel_y = 7
-	},
 /obj/structure/table,
 /obj/machinery/newscaster{
 	pixel_y = -30
 	},
-/obj/item/stamp/rd{
-	pixel_x = 3;
-	pixel_y = -2
-	},
-/obj/item/folder/white{
-	pixel_x = 9;
-	pixel_y = -1
-	},
-/obj/item/pen,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
 	},
@@ -63211,6 +63204,18 @@
 	network = list("ss13","rd")
 	},
 /obj/machinery/light,
+/obj/item/paper_bin{
+	pixel_y = 7
+	},
+/obj/item/folder/white{
+	pixel_x = 9;
+	pixel_y = -1
+	},
+/obj/item/stamp/rd{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/pen,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
 	},
@@ -105221,7 +105226,7 @@ bkz
 bmq
 boo
 bqD
-bsO
+bsQ
 bup
 bwk
 bkz

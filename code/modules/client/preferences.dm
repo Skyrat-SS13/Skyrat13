@@ -85,8 +85,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/pda_style = MONO
 	var/pda_color = "#808000"
 	var/pda_skin = PDA_SKIN_ALT
-	// SKYRAT EDIT: Credits
+	// SKYRAT CHANGE START
 	var/show_credits = TRUE
+	var/event_participation = FALSE
+	var/event_prefs = ""
+	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
 
@@ -112,6 +115,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/flavor_faction = "UNSET"
 	var/character_skills = ""
 	var/exploitable_info = ""
+	var/language = ""
 	var/see_chat_emotes = TRUE
 	var/enable_personal_chat_color = FALSE
 	var/personal_chat_color = "#ffffff"
@@ -363,7 +367,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					dat += "<br>"
 				dat += "<a href ='?_src_=prefs;preference=[custom_name_id];task=input'><b>[namedata["pref_name"]]:</b> [custom_names[custom_name_id]]</a> "
 			dat += "<br><br>"
-
+			//SKYRAT EDIT - additional language
+			dat += "<b>Additional Language</b><br>"
+			dat += "<a href='?_src_=prefs;preference=language;task=menu'>[language ? language : "None"]</a></center><br>"
+			//
 			dat += "<b>Custom job preferences:</b><BR>"
 			dat += "<a href='?_src_=prefs;preference=ai_core_icon;task=input'><b>Preferred AI Core Display:</b> [preferred_ai_core_display]</a><br>"
 			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Preferred Security Department:</b> [prefered_security_department]</a><BR></td>"
@@ -397,9 +404,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += 	"ERP : <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
 			dat += 	"Non-Con : <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
 			dat += 	"Vore : <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
-			dat += 	"Extreme content : <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
-			if(extremepref != "No")
-				dat += "Harmful extreme content : <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
 			//END OF SKYRAT EDIT
 			if(length(features["flavor_text"]) <= 40)
 				if(!length(features["flavor_text"]))
@@ -1147,6 +1151,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Hypno:</b> <a href='?_src_=prefs;preference=never_hypno'>[(cit_toggles & NEVER_HYPNO) ? "Disallowed" : "Allowed"]</a><br>"
 			dat += "<b>Aphrodisiacs:</b> <a href='?_src_=prefs;preference=aphro'>[(cit_toggles & NO_APHRO) ? "Disallowed" : "Allowed"]</a><br>"
 			dat += "<b>Ass Slapping:</b> <a href='?_src_=prefs;preference=ass_slap'>[(cit_toggles & NO_ASS_SLAP) ? "Disallowed" : "Allowed"]</a><br>"
+			//SKYRAT EDIT
+			dat += 	"Extreme ERP verbs : <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
+			if(extremepref != "No")
+				dat += "Harmful ERP verbs : <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
+			//END OF SKYRAT EDIT
 			dat += "</tr></table>"
 			dat += "<br>"
 		if(5) // Custom keybindings
@@ -1511,6 +1520,48 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		if(SSquirks.quirk_points[q] > 0)
 			.++
 
+//SKYRAT EDIT - extra language
+/datum/preferences/proc/SetLanguage(mob/user)
+	var/list/dat = list()
+	dat += "<center><b>Choose an Additional Language</b></center><br>"
+	dat += "<center>Do note, however, than you can only have one chosen language.</center><br>"
+	dat += "<center>If you want no additional language at all, simply remove the currently chosen language.</center><br>"
+	dat += "<hr>"
+	if(SSlanguage && SSlanguage.languages_by_name.len)
+		for(var/V in SSlanguage.languages_by_name)
+			var/datum/language/L = SSlanguage.languages_by_name[V]
+			if(!L)
+				return
+			var/language_name = initial(L.name)
+			var/restricted = FALSE
+			var/has_language = FALSE
+			if(L.restricted)
+				restricted = TRUE
+			if(language_name == language)
+				has_language = TRUE
+			var/font_color = "#4682B4"
+			var/nullify = ""
+			if(restricted && !(language_name in pref_species.languagewhitelist))
+				var/quirklanguagefound = FALSE
+				for(var/datum/quirk/Q in all_quirks)
+					if(language_name in Q.languagewhitelist)
+						quirklanguagefound = TRUE
+				if(!quirklanguagefound)
+					continue
+			else
+				dat += "<b><font color='[font_color]'>[language_name]:</font></b> [initial(L.desc)]"
+				dat += "<a href='?_src_=prefs;preference=language;task=update;language=[has_language ? nullify : language_name]'>[has_language ? "Remove" : "Choose"]</a><br>"
+	else 
+		dat += "<center><b>The language subsystem hasn't fully loaded yet! Please wait a bit and try again.</b></center><br>"
+	dat += "<hr>"
+	dat += "<center><a href='?_src_=prefs;preference=language;task=close'>Done</a></center>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Language Preference</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+//
+
 /datum/preferences/Topic(href, href_list, hsrc)			//yeah, gotta do this I guess..
 	. = ..()
 	if(href_list["close"])
@@ -1664,7 +1715,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else
 				SetQuirks(user)
 		return TRUE
-	//Skyrat edit - food prefs
+	//SKYRAT CHANGE - food prefs and language pref
 	else if(href_list["preference"] == "food")
 		switch(href_list["task"])
 			if("close")
@@ -1675,7 +1726,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					for(var/F in GLOB.food)
 						if(F == href_list["like"])
 							if(!foodlikes[F])
-								foodlikes[F] = GLOB.food[F]
+								if(foodlikes.len < maxlikes)
+									foodlikes[F] = GLOB.food[F]
 								if(fooddislikes[F])
 									fooddislikes.Remove(F)
 							else
@@ -1684,11 +1736,16 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					for(var/F in GLOB.food)
 						if(F == href_list["dislike"])
 							if(!fooddislikes[F])
-								fooddislikes[F] = GLOB.food[F]
+								if(fooddislikes.len < maxdislikes)
+									fooddislikes[F] = GLOB.food[F]
 								if(foodlikes[F])
 									foodlikes.Remove(F)
 							else
 								fooddislikes.Remove(F)
+				if(foodlikes.len > maxlikes)
+					foodlikes.Cut(maxlikes+1)
+				if(fooddislikes.len > maxdislikes)
+					foodlikes.Cut(maxdislikes+1)
 				SetFood(user)
 			if("reset")
 				foodlikes = list()
@@ -1696,6 +1753,21 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				SetFood(user)
 			else
 				SetFood(user)
+		return TRUE
+	else if(href_list["preference"] == "language")
+		switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+				ShowChoices(user)
+			if("update")
+				var/lang = href_list["language"]
+				if(SSlanguage.languages_by_name[lang] || lang == "")
+					language = lang
+					SetLanguage(user)
+				else
+					SetLanguage(user)
+			else
+				SetLanguage(user)
 		return TRUE
 	//
 	switch(href_list["task"])

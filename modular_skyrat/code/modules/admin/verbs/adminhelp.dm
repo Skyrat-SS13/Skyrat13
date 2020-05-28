@@ -61,7 +61,7 @@
 		dat += "<br>Closed at: [GAMETIMESTAMP("hh:mm:ss", closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
 	dat += "<br><br>"
 	dat += "<br><b>Log:</b><br><br>"
-	for(var/I in _interactions)
+	for(var/I in _interactions_user)
 		dat += "[I]<br>"
 
 	usr << browse(dat.Join(), "window=ahelp[id];size=620x480")
@@ -136,7 +136,7 @@
 
 //Use this proc when an admin takes action that may be related to an open ticket on what
 //what can be a client, ckey, or mob
-/proc/admin_ticket_log(what, message, ticket)
+/proc/admin_ticket_log(what, message, ticket, private = FALSE)
 	var/client/C
 	var/mob/Mob = what
 	var/datum/admin_help/AH_ticket = ticket
@@ -148,17 +148,17 @@
 
 	if(istype(C)) 
 		if(AH_ticket)
-			AH_ticket.AddInteraction(message)
+			AH_ticket.AddInteraction(message, private) 
 		else if(C.tickets.len)
 			for(var/datum/admin_help/single_ticket in C.tickets)
-				single_ticket.AddInteraction(message)
+				single_ticket.AddInteraction(message, private)
 			return C.tickets
 
 	var/list/ckey_tickets = GLOB.ahelp_tickets.CKey2ActiveTicket(what)
 	if(istext(what))	//ckey
 		if(AH_ticket)
-			AH_ticket.AddInteraction(message)
+			AH_ticket.AddInteraction(message, private)
 		else if(ckey_tickets.len)
 			for(var/datum/admin_help/single_ticket in ckey_tickets)
-				single_ticket.AddInteraction(message)
+				single_ticket.AddInteraction(message, private)
 			return ckey_tickets

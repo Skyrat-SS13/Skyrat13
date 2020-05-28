@@ -181,6 +181,7 @@ GLOBAL_LIST_INIT(admin_verbs_poll, list(/client/proc/create_poll))
 
 //verbs which can be hidden - needs work
 GLOBAL_PROTECT(admin_verbs_poll)
+/* Skyrat change, now modular
 GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/set_ooc,
 	/client/proc/reset_ooc,
@@ -248,6 +249,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/cmd_admin_man_up, //CIT CHANGE - adds man up verb
 	/client/proc/cmd_admin_man_up_global //CIT CHANGE - ditto
 	))
+	*/
 GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/add_admin_verbs()

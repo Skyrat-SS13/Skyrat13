@@ -1,6 +1,0 @@
-author: "With help of Putnam"
-delete-after: True
-changes: 
-  - rscadd: "Medibots can now be upgraded with MK II hypos diamond needles and medical based boards"
-  - rscadd: "Floor bot can now be upgraded with art tool boxes and syndi boxes"
-  - bugfix: "Medibot now can be opened via access like before but works"
