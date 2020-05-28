@@ -24142,8 +24142,7 @@
 /area/hallway/secondary/exit)
 "bcB" = (
 /obj/machinery/door/airlock/external{
-	name = "Security Escape Airlock";
-	req_access_txt = "2"
+	name = "Escape Airlock"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
