@@ -28,7 +28,7 @@
 	return 0
 /*
 /datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H)
-	H.grant_language(/datum/language/vox) SKYRAT CHANGE= We have an additional language option for this
+	H.grant_language(/datum/language/vox)
 */
 /datum/species/vox/random_name(gender,unique,lastname)
 	if(unique)
