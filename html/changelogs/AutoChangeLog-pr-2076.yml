@@ -1,0 +1,13 @@
+author: "Bob Joga and Junglerat"
+delete-after: True
+changes: 
+  - rscadd: "Butterfly knives, traitor variant and makeshift variant."
+  - rscadd: "Serrated blade traitor item."
+  - rscadd: "Blackened dagger traitor item."
+  - rscadd: "Mors Plant botanist traitor item."
+  - rscadd: "Jammer pen traitor item."
+  - rscadd: "Mask-querade traitor item."
+  - rscadd: "Screamer traitor bundle."
+  - balance: "Upped the cost of the mace of molag bal, made it bulky, but made it deal more \"special\" damage. Changed the name to \"Will Breaker\"."
+  - balance: "Motherbase equipment bundle cost lowered. Added melee padding to the bundle."
+  - imageadd: "Proper icons for the CQC arm."

@@ -11,10 +11,8 @@
 
 /mob/living/carbon/human/MouseDrop_T(mob/M as mob, mob/living/carbon/human/user as mob)
 	. = ..()
-	/*
 	if(M == src || src == usr || M != usr)
 		return
-	*/
 	if(usr.restrained())
 		return
 	if(!ishuman(src))

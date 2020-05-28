@@ -33,6 +33,8 @@
 	var/melee_damage_lower_rage2 = 35
 	var/melee_damage_upper_rage2 = 40
 
+	speed = 0.5
+
 /mob/living/simple_animal/hostile/poison/terror_spider/red/AttackingTarget()
 	if(enrage == 0)
 		if(health < maxHealth)
