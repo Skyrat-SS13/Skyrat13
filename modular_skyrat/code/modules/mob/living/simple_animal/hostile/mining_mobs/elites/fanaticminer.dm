@@ -27,7 +27,8 @@
 	health = 800
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	attacktext = "slashes"
+	attack_verb_continuous = "slashes"
+	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	speed = 1
 	move_to_delay = 2

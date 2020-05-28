@@ -262,10 +262,12 @@
 	icon_state = "shank"
 	force = 5 // Bad force, but it stabs twice as fast
 	throwforce = 10
+	sharpness = IS_SHARP
+	w_class = WEIGHT_CLASS_TINY
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "shanked", "sliced", "cut")
 	siemens_coefficient = 0 //We are insulated
-	var/clickmodifier = 0.65
+	var/clickmodifier = 0.5
 
 /obj/item/shank/Initialize()
 	..()
@@ -277,7 +279,7 @@
 		force = 6
 		throwforce = 12
 		custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
-		clickmodifier = 0.5
+		clickmodifier = 0.40
 	qdel(tip)
 
 /obj/item/shank/update_icon()

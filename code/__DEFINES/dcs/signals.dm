@@ -305,6 +305,9 @@
 #define COMSIG_SPECIES_GAIN "species_gain"						//from datum/species/on_species_gain(): (datum/species/new_species, datum/species/old_species)
 #define COMSIG_SPECIES_LOSS "species_loss"						//from datum/species/on_species_loss(): (datum/species/lost_species)
 
+// /datum/mutation signals
+#define COMSIG_HUMAN_MUTATION_LOSS "human_mutation_loss"		//from datum/mutation/human/on_losing(): (datum/mutation/human/lost_mutation)
+
 /*******Component Specific Signals*******/
 //Janitor
 #define COMSIG_TURF_IS_WET "check_turf_wet"							//(): Returns bitflags of wet values.
@@ -373,3 +376,6 @@
 #define COMSIG_XENO_TURF_CLICK_SHIFT "xeno_turf_click_shift"				//from turf ShiftClickOn(): (/mob)
 #define COMSIG_XENO_TURF_CLICK_CTRL "xeno_turf_click_alt"					//from turf AltClickOn(): (/mob)
 #define COMSIG_XENO_MONKEY_CLICK_CTRL "xeno_monkey_click_ctrl"				//from monkey CtrlClickOn(): (/mob)
+
+// Observer signals
+#define COMSIG_EVENTPREF_UPDATE "observer_eventpref_update" // Skyrat changes
