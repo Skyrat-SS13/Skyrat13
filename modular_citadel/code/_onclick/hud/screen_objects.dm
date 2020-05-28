@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /obj/screen/restbutton
 	name = "rest"
 	icon = 'modular_citadel/icons/ui/screen_midnight.dmi'
@@ -43,21 +44,27 @@
 			flashy.color = user.client.prefs.hud_toggle_color
 		. += flashy //TODO - beg lummox jr for the ability to force mutable appearances or images to be created rendering from their first frame of animation rather than being based entirely around the client's frame count
 
+=======
+>>>>>>> 968426fd48... Combat mode component. (#12338)
 /obj/screen/voretoggle
 	name = "toggle vore mode"
 	icon = 'modular_citadel/icons/ui/screen_midnight.dmi'
 	icon_state = "nom_off"
 
 /obj/screen/voretoggle/Click()
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
-		C.toggle_vore_mode()
+	if(usr != hud.mymob)
+		return
+	var/mob/living/carbon/C = usr
+	if(SEND_SIGNAL(usr, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
+		to_chat(usr, "<span class='warning'>Disable combat mode first.</span>")
+		return
+	C.toggle_vore_mode()
 
 /obj/screen/voretoggle/update_icon_state()
 	var/mob/living/carbon/user = hud?.mymob
 	if(!istype(user))
 		return
-	if(user.voremode && !(user.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE))
+	if(user.voremode)
 		icon_state = "nom"
 	else
 		icon_state = "nom_off"
