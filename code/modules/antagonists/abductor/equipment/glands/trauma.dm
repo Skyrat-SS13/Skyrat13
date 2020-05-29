@@ -10,6 +10,6 @@
 /obj/item/organ/heart/gland/trauma/activate()
 	to_chat(owner, "<span class='warning'>You feel a spike of pain in your head.</span>")
 	if(prob(33))
-		owner.gain_trauma_type(BRAIN_TRAUMA_SPECIAL)
+		owner.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_BASIC)
 	else
-		owner.gain_trauma_type(BRAIN_TRAUMA_MILD)	//skyrats change end
+		owner.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_BASIC)	//skyrats change end
