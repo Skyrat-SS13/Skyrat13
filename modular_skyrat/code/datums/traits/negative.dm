@@ -199,7 +199,7 @@
 //mom grab the epipen
 /datum/quirk/allergic
 	name = "Allergic"
-	desc = "Ever since you were born, some foods caused you illness."
+	desc = "You have had terrible allergies for as long as you can remember. Some foods will become toxic to your palate."
 	value = -1
 	medical_record_text = "Patient is allergic to a certain type of food."
 
