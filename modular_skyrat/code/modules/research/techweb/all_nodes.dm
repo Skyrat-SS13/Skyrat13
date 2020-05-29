@@ -27,6 +27,10 @@
 	design_ids += "microfusion_cell_box"
 	. = ..()
 
+/datum/techweb_node/ballistic_weapons/New()
+	. = ..()
+	design_ids += "oldsmg"
+
 /datum/techweb_node/adv_bluetravel
 	id = "advanced_bluetravel"
 	display_name = "Advanced Bluespace Travel"
