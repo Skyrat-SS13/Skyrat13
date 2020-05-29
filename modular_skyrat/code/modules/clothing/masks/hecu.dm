@@ -1,4 +1,4 @@
-/obj/item/clothing/mask/gas/hecu2
+/obj/item/clothing/mask/gas/hecu
 	name = "HECU mask"
 	desc = "MY. ASS. IS. HEAVY."
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
@@ -32,12 +32,12 @@
 		"yes" , "yessir" , "you" , "your" , "zero" , "zone" , "zulu" , "meters" , "seven" , "eight" , "hundred" , "to" , "too"
 		)
 
-/obj/item/clothing/mask/gas/hecu2/examine(var/mob/user)
+/obj/item/clothing/mask/gas/hecu/examine(var/mob/user)
 	. = ..()
 	. += "<span class='notice'>Alt-click the mask to see the list of available words.</span>"
 	. += "<span class='notice'>Charge: [mask_charge]/[max_charge] </span>"
 
-/obj/item/clothing/mask/gas/hecu2/AltClick(var/mob/user)
+/obj/item/clothing/mask/gas/hecu/AltClick(var/mob/user)
 	var/message = "Known words: "
 	if((user.incapacitated() || !Adjacent(user)))
 		return
@@ -46,15 +46,15 @@
 	to_chat(user, "[message]")
 
 //Recharging the mask over time
-/obj/item/clothing/mask/gas/hecu2/Initialize()
+/obj/item/clothing/mask/gas/hecu/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/clothing/mask/gas/hecu2/Destroy()
+/obj/item/clothing/mask/gas/hecu/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/clothing/mask/gas/hecu2/process()
+/obj/item/clothing/mask/gas/hecu/process()
 	if(can_say)
 		can_say = !can_say
 		say_words()
@@ -62,7 +62,7 @@
 		return
 	mask_charge++
 
-/obj/item/clothing/mask/gas/hecu2/handle_speech(datum/source, list/speech_args)
+/obj/item/clothing/mask/gas/hecu/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/list/word_list = splittext(message," ")
 
@@ -79,7 +79,7 @@
 				can_say = 1
 	..()
 
-/obj/item/clothing/mask/gas/hecu2/proc/say_words()
+/obj/item/clothing/mask/gas/hecu/proc/say_words()
 	if(words_to_say.len > 0)
 		for(var/i=1,i<=words_to_say.len,i++)
 			if(mask_charge >= word_cost)
