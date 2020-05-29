@@ -29,7 +29,7 @@
 /datum/action/vampire/fists
 	name = "Fists of Caine"
 	desc = "Indulge yourself into a combatative trance, dodging projectiles and resisting the hardest blows, all while delivering devastating punches to the enemies. You'll also gain a couple new moves for the duration."
-	button_icon_state = "power_earthshock"
+	button_icon_state = "power_fists"
 
 	required_discipline = /datum/discipline/potence
 	bloodcost = 40
@@ -48,7 +48,7 @@
 /datum/action/vampire/overwhelming_power
 	name = "Overwhelming Power"
 	desc = "Burst of power surges through you and breaks all restraints, including handcuffs legcuffs and straight jackets!"
-	button_icon_state = "power_earthshock"
+	button_icon_state = "power_overpower"
 
 	required_discipline = /datum/discipline/potence
 	bloodcost = 40
@@ -66,22 +66,25 @@
 
 /datum/action/vampire/overwhelming_power/ActivatePower()
 	var/mob/living/carbon/user = owner
+	user.visible_message("<span class='warning'>[user] tenses up, his muscles throbbing and straining against his restraints!</span>", \
+						 "<span class='warning'>You tense up and press against the restraints, you feel them ready to break at any moment!</span>")
+	sleep(20)
 	if(user.handcuffed)
 		var/obj/O = user.handcuffed
-		user.visible_message("<span class='warning'>[user] tenses up and breaks the [O.name] with sheer force!</span>", \
-						 "<span class='notice'>You tense up and break [O.name] with sheer force.</span>")
+		user.visible_message("<span class='warning'>[user] breaks the [O.name] with sheer force!</span>", \
+						 "<span class='notice'>You break [O.name] with sheer force.</span>")
 		user.dropItemToGround(O)
 	if(user.legcuffed)
 		var/obj/O = user.legcuffed
-		user.visible_message("<span class='warning'>[user] tenses up and breaks the [O.name] with sheer force!</span>", \
-						 "<span class='notice'>You tense up and break [O.name] with sheer force.</span>")
+		user.visible_message("<span class='warning'>[user] breaks the [O.name] with sheer force!</span>", \
+						 "<span class='notice'>You break [O.name] with sheer force.</span>")
 		user.dropItemToGround(O)
 	user.log_message("has freed themselves from restraints", LOG_ATTACK)
 
 /datum/action/vampire/predatory_leap
 	name = "Predatory Leap"
 	desc = "Indulge yourself into a combatative trance, dodging projectiles and resisting the hardest blows, all while delivering devastating punches to the enemies. You'll also gain a couple new moves for the duration."
-	button_icon_state = "power_earthshock"
+	button_icon_state = "power_predleap"
 
 	required_discipline = /datum/discipline/potence
 	bloodcost = 40
@@ -92,6 +95,7 @@
 
 	purchasable = TRUE 
 	must_be_capacitated = TRUE
+	var/mob/living/carbon/locked_target 
 
 /datum/action/vampire/predatory_leap/ActivatePower()
 	var/mob/living/carbon/user = owner
