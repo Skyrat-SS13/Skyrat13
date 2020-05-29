@@ -160,12 +160,13 @@
 			ADD_TRAIT(woops, TRAIT_NODROP, "stateproperty")
 			woops.set_frequency(storedfreq)
 			woops.code = storedcode
-			woops.name = initial(woops.name) + " - freq: [woops.frequency/10] code: [woops.code]"
+			woops.name = "CentComm issue shock collar - freq: [woops.frequency/10] code: [woops.code]"
+			woops.desc = "Issued to those who have been deemed naughty."
 			var/datum/signal/singnal = new /datum/signal
 			singnal.frequency = woops.frequency
 			singnal.data["code"] = woops.code
 			if(!initial)
-				to_chat(H, "<span class='userdanger'>Your collar grows back like a raging tumor!</span>")
+				to_chat(H, "<span class='userdanger'>Your collar grows like a raging tumor!</span>")
 				woops.receive_signal(singnal)
 		else
 			var/obj/item/electropack/shockcollar/cooler = H.get_item_by_slot(SLOT_NECK)
@@ -214,7 +215,10 @@
 				randumb = GLOB.food[foodie]
 			H.dna.species.toxic_food |= randumb
 			H.dna.species.liked_food -= randumb
-			to_chat(H, "<span class='danger'><i>You are allergic to [lowertext(foodie)].</i></span>")
+			addtimer(CALLBACK(src, .proc/allergy, foodie), 5 SECONDS)
+
+/datum/quirk/allergic/proc/inform(var/allergy = "bad coders")
+	to_chat(quirk_holder, "<span class='danger'><b><i>You are allergic to [lowertext(allergy)].</i></b></span>")
 
 //incel quirk
 /datum/quirk/ugly

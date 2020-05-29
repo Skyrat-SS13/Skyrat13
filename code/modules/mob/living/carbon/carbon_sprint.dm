@@ -10,13 +10,15 @@
 		sprint_buffer -= use
 		tiles -= use
 	update_hud_sprint_bar()
-	if(!tiles)		//we had enough, we're done!
+	if(!tiles || (tiles < 0))		//we had enough, we're done! //skyrat change - asthma
 		return
 	adjustStaminaLoss(tiles * sprint_stamina_cost)		//use stamina to cover deficit.
 	//SKYRAT CHANGE - asthma quirk
 	if(HAS_TRAIT(src, TRAIT_ASTHMATIC))
 		if(prob(tiles * 5))
 			adjustOxyLoss(rand(1 * tiles,5 * tiles), TRUE)
+			if(prob(25))
+				to_chat(src, "<span class='danger'><i>You struggle to breathe.</i></span>")
 	//
 
 /mob/living/carbon/proc/doSprintBufferRegen(updating = TRUE)
