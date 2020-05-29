@@ -508,13 +508,15 @@
 	. = ..()
 	if(.)
 		if(mode == 2)
-			user.add_movespeed_modifier(/datum/movespeed_modifier/slaughter)
+			user.add_movespeed_modifier(/datum/movespeed_modifier/slaughter/ghostface)
 
 /obj/item/kitchen/knife/combat/ghost/dropped(mob/user)
 	. = ..()
 	if(.)
-		if(loc != user)
-			user.remove_movespeed_modifier(/datum/movespeed_modifier/slaughter)
+		var/mob/living/carbon/H = user
+		if(H && istype(H))
+			if((loc != user) || !(src in H.held_items))
+				user.remove_movespeed_modifier(/datum/movespeed_modifier/slaughter/ghostface)
 
 /obj/item/kitchen/knife/combat/ghost/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
