@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<a href ='?_src_=prefs;preference=[custom_name_id];task=input'><b>[namedata["pref_name"]]:</b> [custom_names[custom_name_id]]</a> "
 			dat += "<br><br>"
 			//SKYRAT EDIT - additional language
-			dat += "<b>Additional Language</b><br>"
+			dat += "<b>Additional Language:</b><br>"
 			dat += "<a href='?_src_=prefs;preference=language;task=menu'>[language ? language : "None"]</a></center><br>"
 			//
 			dat += "<b>Custom job preferences:</b><BR>"
