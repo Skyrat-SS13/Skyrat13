@@ -215,7 +215,7 @@
 				randumb = GLOB.food[foodie]
 			H.dna.species.toxic_food |= randumb
 			H.dna.species.liked_food -= randumb
-			addtimer(CALLBACK(src, .proc/allergy, foodie), 5 SECONDS)
+			addtimer(CALLBACK(src, .proc/inform, foodie), 5 SECONDS)
 
 /datum/quirk/allergic/proc/inform(var/allergy = "bad coders")
 	to_chat(quirk_holder, "<span class='danger'><b><i>You are allergic to [lowertext(allergy)].</i></b></span>")
