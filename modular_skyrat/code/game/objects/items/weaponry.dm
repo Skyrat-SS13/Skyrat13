@@ -433,6 +433,9 @@
 				ooser.adjustBruteLoss(newbrute * -0.5)
 
 //ghostface's knife
+/datum/movespeed_modifier/slaughter/ghostface
+	multiplicative_slowdown = -0.2
+
 /obj/item/kitchen/knife/combat/ghost
 	name = "silvery knife"
 	desc = "Just killing. Chilling."
@@ -483,7 +486,7 @@
 			user.visible_message("<span class='danger'><b>[user]</b> lifts the [src] over their head.</span>", \
 							"<span class='danger'>You lift the [src] over your head.</span>")
 			mode = 2
-			user.add_movespeed_modifier(/datum/movespeed_modifier/slaughter)
+			user.add_movespeed_modifier(/datum/movespeed_modifier/slaughter/ghostface)
 			attackspeed = attackspeedover
 			force = forceover
 			for(var/mob/living/bro in (view(5, user) - user))
@@ -492,10 +495,11 @@
 			user.visible_message("<span class='danger'><b>[user]</b> lowers the [src].</span>", \
 							"<span class='danger'>You lower [src].</span>")
 			mode = 1
-			user.remove_movespeed_modifier(/datum/movespeed_modifier/slaughter)
+			user.remove_movespeed_modifier(/datum/movespeed_modifier/slaughter/ghostface)
 			attackspeed = attackspeedunder
 			force = forceunder
 			playingsound = 0
+			soundend = 0
 			for(var/mob/L in view(5, user))
 				L.stop_sound_channel(CHANNEL_AMBIENCE)
 	user.changeNext_move(CLICK_CD_MELEE * 4)
