@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Lavaland won't spawn an absurd amount of megafauna anymore. It will only spawn up to 3 of each type of megafauna, with a minimum of 1 for each type."
