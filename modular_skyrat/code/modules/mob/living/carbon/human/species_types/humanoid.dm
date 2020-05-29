@@ -10,6 +10,7 @@
 						 "mam_body_markings" = "Husky", "taur" = "None", "horns" = "None", "legs" = "Plantigrade", "meat_type" = "Mammalian")
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-" "O+", "O-")
+	//
 
 //Dunmer (Yeah, those guys that call you fetcher).
 /datum/species/human/humanoid/dunmer
@@ -35,7 +36,7 @@
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "DRK")
 	exotic_bloodtype = "DRK"
 	languagewhitelist = list("Dunmeri")
-  //
+	//
 
 /obj/item/organ/lungs/dunmer
 	name = "adapted ash lungs"

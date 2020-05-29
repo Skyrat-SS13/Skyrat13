@@ -15,6 +15,7 @@
 	disliked_food = TOXIC
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
+	//
 
 //Curiosity killed the cat's wagging tail.
 /datum/species/mammal/spec_death(gibbed, mob/living/carbon/human/H)

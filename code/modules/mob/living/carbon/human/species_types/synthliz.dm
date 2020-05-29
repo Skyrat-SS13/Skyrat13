@@ -20,6 +20,7 @@
 	exotic_bloodtype = "S"
 	//Skyrat change - blood
 	bloodtypes = list("S", "SY", "HF")
+	//
 
 
 /datum/species/synthliz/qualifies_for_rank(rank, list/features)

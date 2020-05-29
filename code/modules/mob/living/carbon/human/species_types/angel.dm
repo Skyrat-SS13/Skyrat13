@@ -12,6 +12,7 @@
 	//SKYRAT CHANGE - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "ANGL")
 	exotic_bloodtype = "ANGL"
+	//
 
 	var/datum/action/innate/flight/fly
 

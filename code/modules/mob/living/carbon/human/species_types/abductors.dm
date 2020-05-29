@@ -8,6 +8,7 @@
 	mutanttongue = /obj/item/organ/tongue/abductor
 	//SKYRAT CHANGE - blood
 	exotic_bloodtype = "GREY"
+	//
 
 /datum/species/abductor/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()

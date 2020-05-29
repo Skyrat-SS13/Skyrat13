@@ -17,7 +17,7 @@
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "BUG")
 	exotic_bloodtype = "BUG"
 	languagewhitelist = list("Moffic", "Buggy")
-  //
+	//
 
 /datum/species/insect/spec_death(gibbed, mob/living/carbon/human/H)
 	if(H)

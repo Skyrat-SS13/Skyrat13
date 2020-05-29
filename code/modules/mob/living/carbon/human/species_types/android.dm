@@ -14,6 +14,7 @@
 	//SKYRAT CHANGE - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
 	exotic_bloodtype = "SY"
+	//
 
 /datum/species/android/on_species_gain(mob/living/carbon/C)
 	. = ..()
