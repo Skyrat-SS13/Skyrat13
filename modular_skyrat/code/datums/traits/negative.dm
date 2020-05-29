@@ -115,8 +115,8 @@
 	medical_record_text = "Patient is incapable of communicating their emotions."
 
 //aaaaaa im bleeding aaaaaaaaa
-/datum/quirk/hemophilia
-	name = "Hemophilia"
+/datum/quirk/hemophiliac
+	name = "Hemophiliac"
 	desc = "Your body is bad at coagulating blood. Bleeding will always be two times worse when compared to the average person."
 	value = -2
 	mob_trait = TRAIT_HEMOPHILIA
