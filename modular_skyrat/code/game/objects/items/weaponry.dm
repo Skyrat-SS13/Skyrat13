@@ -441,11 +441,9 @@
 	force = 12
 	var/forceunder = 12
 	var/forceover = 20
-	var/attackspeed = 0.65
-	var/attackspeedunder = 0.65
+	var/attackspeed = 0.5
+	var/attackspeedunder = 0.5
 	var/attackspeedover = 1.3
-	var/slowdownunder = 0
-	var/slowdownover = -2
 	slowdown = 0
 	var/mode = 1 //1 is under hand, 2 is over head
 	var/list/oversounds = list(
@@ -488,7 +486,7 @@
 			user.add_movespeed_modifier(/datum/movespeed_modifier/slaughter)
 			attackspeed = attackspeedover
 			force = forceover
-			if(/mob/living in (view(5, user) - user))
+			for(var/mob/living/bro in (view(5, user) - user))
 				playingsound = 1
 		if(2)
 			user.visible_message("<span class='danger'><b>[user]</b> lowers the [src].</span>", \
