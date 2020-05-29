@@ -434,7 +434,7 @@
 
 //ghostface's knife
 /datum/movespeed_modifier/slaughter/ghostface
-	multiplicative_slowdown = -0.2
+	multiplicative_slowdown = -0.25
 
 /obj/item/kitchen/knife/combat/ghost
 	name = "silvery knife"
