@@ -113,9 +113,9 @@
 			if(MOOD_LEVEL_HAPPY4 to INFINITY)
 				. += "[t_He] look[p_s()] ecstatic."
 	//skyrat change - ugliness
-	if(HAS_TRAIT(src, TRAIT_UGLY) && !src.is_mouth_covered)
+	if(HAS_TRAIT(src, TRAIT_UGLY) && !src.is_mouth_covered())
 		. += "<span class='danger'>[t_He] look[p_s()] absolutely hideous.</span>"
-	else if(HAS_TRAIT(src, TRAIT_BEAUTY) && !src.is_mouth_covered)
+	else if(HAS_TRAIT(src, TRAIT_BEAUTY) && !src.is_mouth_covered())
 		. += "<span class='nicegreen'>[t_He] look[p_s()] stunningly beautiful.</span>"
 	//
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)

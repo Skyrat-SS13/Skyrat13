@@ -40,7 +40,7 @@
 	pcooldown = world.time + pcooldown_time
 	var/mob/living/carbon/human/H = quirk_holder
 	if(H && istype(H))
-		if(!H.is_mouth_covered)
+		if(!H.is_mouth_covered())
 			for(var/mob/living/carbon/human/disgusted in (view(7, H) - H))
 				SEND_SIGNAL(disgusted, COMSIG_ADD_MOOD_EVENT, "beauty", /datum/mood_event/beauty)
 
