@@ -502,7 +502,7 @@
 			soundend = 0
 			for(var/mob/L in view(5, user))
 				L.stop_sound_channel(CHANNEL_AMBIENCE)
-	user.changeNext_move(CLICK_CD_MELEE * 4)
+	user.changeNext_move(CLICK_CD_MELEE * 2)
 
 /obj/item/kitchen/knife/combat/ghost/pickup(mob/living/user)
 	. = ..()
