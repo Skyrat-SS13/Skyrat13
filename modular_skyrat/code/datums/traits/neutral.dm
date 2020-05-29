@@ -4,6 +4,7 @@
 	desc = "You're not actually the species you seem to be. You're a synth! You will still have your old species traits, however you will not be infected by viruses, get hungry nor process any reagents aside from synthflesh."
 	value = 0
 	mob_trait = TRAIT_SYNTH
+	languagewhitelist =list("Encoded Audio Language")
 	var/list/blacklistedspecies = list(/datum/species/synth, /datum/species/android, /datum/species/ipc, /datum/species/synthliz, /datum/species/shadow, /datum/species/plasmaman, /datum/species/jelly, /datum/species/jelly/slime)
 
 /datum/quirk/synthetic/add()

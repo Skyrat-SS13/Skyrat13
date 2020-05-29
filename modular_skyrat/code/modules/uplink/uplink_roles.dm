@@ -25,7 +25,7 @@
 
 //engineer/atmos tech exclusives
 /datum/uplink_item/role_restricted/powergloves
-	name = "Not-tendo (TM) Power Gloves"
+	name = "Not-tendo(TM) Power Gloves"
 	desc = "Rechargeable gloves that are capable of stunning targets and throwing lightning at them."
 	item = /obj/item/clothing/gloves/color/yellow/power
 	cost = 12
@@ -63,3 +63,11 @@
 	cost = 2
 	restricted_roles = list("Botanist")
 	illegal_tech = FALSE
+
+/datum/uplink_item/dangerous/nettlebane
+	name = "Mors Plant"
+	desc = "A dagger. As effective as a combat knife, with the added benefit of causing death on any plant matter instantaneously."
+	item = /obj/item/kitchen/knife/combat/nettlebane
+	cost = 12
+	restricted_roles = list("Botanist")
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)

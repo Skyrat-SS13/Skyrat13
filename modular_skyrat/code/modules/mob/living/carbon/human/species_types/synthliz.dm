@@ -28,10 +28,11 @@
 	//exotic_blood = /datum/reagent/oil
 	exotic_bloodtype = "S"
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE)
+	languagewhitelist = list("Encoded Audio Language")
 
 /datum/species/synthliz/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
 	. = ..()
-	C.grant_language(/datum/language/machine)
+	//C.grant_language(/datum/language/machine)
 	var/obj/item/organ/appendix/appendix = C.getorganslot("appendix") // Easiest way to remove it.
 	appendix.Remove(C)
 	QDEL_NULL(appendix)
@@ -40,7 +41,7 @@
 
 /datum/species/synthliz/on_species_loss(mob/living/carbon/human/C)
 	..()
-	C.remove_language(/datum/language/machine)
+	//C.remove_language(/datum/language/machine)
 
 /datum/species/synthliz/spec_revival(mob/living/carbon/human/H)
 	H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]...")

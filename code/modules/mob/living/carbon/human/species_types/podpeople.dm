@@ -21,6 +21,8 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "PL")
 	exotic_bloodtype = "PL"
+  languagewhitelist = list("Sylvan") //Skyrat change - species language whitelist
+  //
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()

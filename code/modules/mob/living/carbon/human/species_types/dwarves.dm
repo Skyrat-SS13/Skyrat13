@@ -34,6 +34,7 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 	. = ..()
 	var/dwarf_hair = pick("Beard (Dwarf)", "Beard (Very Long)", "Beard (Long)") //beard roullette
 	var/mob/living/carbon/human/H = C
+	//H.grant_language(/datum/language/dwarf) SKYRAT CHANGE= We have an additional language option for this
 	H.facial_hair_style = dwarf_hair
 	H.update_hair()
 	H.AddElement(/datum/element/dwarfism, COMSIG_SPECIES_LOSS, src)
@@ -42,6 +43,7 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 /datum/species/dwarf/on_species_loss(mob/living/carbon/H, datum/species/new_species)
 	. = ..()
 	UnregisterSignal(H, COMSIG_MOB_SAY) //We register handle_speech is not being used.
+	//H.remove_language(/datum/language/dwarf) SKYRAT CHANGE= We have an additional language option for this
 
 //Dwarf Name stuff
 /proc/dwarf_name() //hello caller: my name is urist mcuristurister

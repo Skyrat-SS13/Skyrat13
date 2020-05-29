@@ -1,0 +1,4 @@
+author: "coldud13"
+delete-after: True
+changes: 
+  - bugfix: "fixed escape airlock on box requiring sec access"

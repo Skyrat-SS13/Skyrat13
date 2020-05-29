@@ -26,10 +26,16 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SPOR")
 	exotic_bloodtype = "SPOR"
+  languagewhitelist = list("Mushroom") //Skyrat change - species language whitelist
+  //
 
 /datum/species/mush/after_equip_job(datum/job/J, mob/living/carbon/human/H)
-	H.grant_language(/datum/language/mushroom) //pomf pomf
+	//H.grant_language(/datum/language/mushroom) //pomf pomf
 	species_language_holder = /datum/language_holder/mushroom
+/*
+/datum/species/mush/after_equip_job(datum/job/J, mob/living/carbon/human/H)
+	H.grant_language(/datum/language/mushroom) //pomf pomf SKYRAT CHANGE= We have an additional language option for this
+*/
 
 /datum/species/mush/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()

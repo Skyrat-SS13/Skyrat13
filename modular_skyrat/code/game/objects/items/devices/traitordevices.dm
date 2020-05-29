@@ -1,7 +1,9 @@
+//morph cube
 GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 										/mob/living/simple_animal/hostile/boss,\
-										/mob/living/carbon, /mob/living/simple_animal/hostile/asteroid/elite,\
-										/mob/living/simple_animal/hostile/boss, /mob/living/silicon,\
+										/mob/living/simple_animal/hostile/megafauna,\
+										/mob/living/carbon,\
+										/mob/living/silicon,\
 										/mob/dead)))
 
 /obj/item/morphcube
@@ -83,3 +85,22 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 	clothes_req = NONE
 	mobs_whitelist = null
 	mobs_blacklist = null
+
+//jammer pen
+/obj/item/pen/jammerpen
+	icon = 'modular_skyrat/icons/obj/radio.dmi'
+	icon_state = "jammerpen0"
+	var/active = FALSE
+	var/range = 12
+
+/obj/item/pen/jammerpen/update_icon()
+	icon_state = "jammerpen[active]"
+
+/obj/item/pen/jammerpen/AltClick(mob/user)
+	to_chat(user,"<span class='notice'>You [active ? "deactivate" : "activate"] [src].</span>")
+	active = !active
+	if(active)
+		GLOB.active_jammers |= src
+	else
+		GLOB.active_jammers -= src
+	update_icon()

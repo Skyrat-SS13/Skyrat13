@@ -34,6 +34,8 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "DRK")
 	exotic_bloodtype = "DRK"
+	languagewhitelist = list("Dunmeri")
+  //
 
 /obj/item/organ/lungs/dunmer
 	name = "adapted ash lungs"
