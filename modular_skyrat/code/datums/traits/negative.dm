@@ -125,9 +125,9 @@
 //remember collar bans? i do and i miss them
 /datum/quirk/state_property
 	name = "Collared"
-	desc = "Due to your concerning behavior, NanoTrasen has installed a permanent shock collar on you, with a publically available code and channel."
+	desc = "Due to your concerning behavior, CentCom has installed a permanent shock collar on you, with a publically available code and channel."
 	value = -2
-	medical_record_text = "Patient has been deemed unstable by NanoTrasen and local authorities."
+	medical_record_text = "Patient has been deemed unstable by CentCom and local authorities."
 	var/pcooldown = 0
 	var/pcooldown_time = 30 SECONDS
 	var/storedcode = 2
@@ -199,7 +199,7 @@
 //mom grab the epipen
 /datum/quirk/allergic
 	name = "Allergic"
-	desc = "You have had terrible allergies for as long as you can remember. Some foods will become toxic to your palate."
+	desc = "You have had terrible allergies for as long as you can remember. Some foods will become toxic to your palate and cause unforeseen consequences."
 	value = -1
 	medical_record_text = "Patient is allergic to a certain type of food."
 
@@ -215,6 +215,7 @@
 				randumb = GLOB.food[foodie]
 			H.dna.species.toxic_food |= randumb
 			H.dna.species.liked_food -= randumb
+			H.physiology.allergies |= randumb
 			addtimer(CALLBACK(src, .proc/inform, foodie), 5 SECONDS)
 
 /datum/quirk/allergic/proc/inform(var/allergy = "bad coders")

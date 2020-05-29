@@ -9,3 +9,9 @@
 	description = "<span class='danger'>How can someone look so horrendous?</span>\n"
 	mood_change = -2
 	timeout = 1 MINUTES
+
+//mom get the epipen quirk
+/datum/mood_event/allergyshock
+	description = "<span class='userdanger'>WHERE IS THE EPI PEN?!?!</span>\n"
+	mood_change = -10
+	timeout = 10 SECONDS
