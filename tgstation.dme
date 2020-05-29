@@ -3644,6 +3644,7 @@
 #include "modular_skyrat\code\modules\clothing\masks\breath.dm"
 #include "modular_skyrat\code\modules\clothing\masks\gasmask.dm"
 #include "modular_skyrat\code\modules\clothing\masks\hailer.dm"
+#include "modular_skyrat\code\modules\clothing\masks\hecu.dm"
 #include "modular_skyrat\code\modules\clothing\outfits\plasmaman.dm"
 #include "modular_skyrat\code\modules\clothing\outfits\vox.dm"
 #include "modular_skyrat\code\modules\clothing\spacesuits\hardsuit.dm"
