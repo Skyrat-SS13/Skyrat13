@@ -50,48 +50,63 @@
 /datum/component/mood/proc/print_mood(mob/user)
 	var/msg = "<span class='info'>*---------*\n<EM>Your current mood</EM>\n"
 	msg += "<span class='notice'>My mental status: </span>" //Long term
-	switch(sanity)
-		if(SANITY_GREAT to INFINITY)
-			msg += "<span class='nicegreen'>My mind feels like a temple!<span>\n"
-		if(SANITY_NEUTRAL to SANITY_GREAT)
-			msg += "<span class='nicegreen'>I have been feeling great lately!<span>\n"
-		if(SANITY_DISTURBED to SANITY_NEUTRAL)
-			msg += "<span class='nicegreen'>I have felt quite decent lately.<span>\n"
-		if(SANITY_UNSTABLE to SANITY_DISTURBED)
-			msg += "<span class='warning'>I'm feeling a little bit unhinged...</span>\n"
-		if(SANITY_CRAZY to SANITY_UNSTABLE)
-			msg += "<span class='boldwarning'>I'm freaking out!!</span>\n"
-		if(SANITY_INSANE to SANITY_CRAZY)
-			msg += "<span class='boldwarning'>AHAHAHAHAHAHAHAHAHAH!!</span>\n"
+	//skyrat edit - screwy mood
+	if(!HAS_TRAIT(user, TRAIT_SCREWY_MOOD))
+		switch(sanity)
+			if(SANITY_GREAT to INFINITY)
+				msg += "<span class='nicegreen'>My mind feels like a temple!<span>\n"
+			if(SANITY_NEUTRAL to SANITY_GREAT)
+				msg += "<span class='nicegreen'>I have been feeling great lately!<span>\n"
+			if(SANITY_DISTURBED to SANITY_NEUTRAL)
+				msg += "<span class='nicegreen'>I have felt quite decent lately.<span>\n"
+			if(SANITY_UNSTABLE to SANITY_DISTURBED)
+				msg += "<span class='warning'>I'm feeling a little bit unhinged...</span>\n"
+			if(SANITY_CRAZY to SANITY_UNSTABLE)
+				msg += "<span class='boldwarning'>I'm freaking out!!</span>\n"
+			if(SANITY_INSANE to SANITY_CRAZY)
+				msg += "<span class='boldwarning'>AHAHAHAHAHAHAHAHAHAH!!</span>\n"
+	else
+		msg += "<span class='nicegreen'>I don't really know.<span>\n"
+	//
 
 	msg += "<span class='notice'>My current mood: </span>" //Short term
-	switch(mood_level)
-		if(1)
-			msg += "<span class='boldwarning'>I wish I was dead!<span>\n"
-		if(2)
-			msg += "<span class='boldwarning'>I feel terrible...<span>\n"
-		if(3)
-			msg += "<span class='boldwarning'>I feel very upset.<span>\n"
-		if(4)
-			msg += "<span class='boldwarning'>I'm a bit sad.<span>\n"
-		if(5)
-			msg += "<span class='nicegreen'>I'm alright.<span>\n"
-		if(6)
-			msg += "<span class='nicegreen'>I feel pretty okay.<span>\n"
-		if(7)
-			msg += "<span class='nicegreen'>I feel pretty good.<span>\n"
-		if(8)
-			msg += "<span class='nicegreen'>I feel amazing!<span>\n"
-		if(9)
-			msg += "<span class='nicegreen'>I love life!<span>\n"
+	//skyrat edit - screwy mood
+	if(!HAS_TRAIT(user, TRAIT_SCREWY_MOOD))
+		switch(mood_level)
+			if(1)
+				msg += "<span class='boldwarning'>I wish I was dead!<span>\n"
+			if(2)
+				msg += "<span class='boldwarning'>I feel terrible...<span>\n"
+			if(3)
+				msg += "<span class='boldwarning'>I feel very upset.<span>\n"
+			if(4)
+				msg += "<span class='boldwarning'>I'm a bit sad.<span>\n"
+			if(5)
+				msg += "<span class='nicegreen'>I'm alright.<span>\n"
+			if(6)
+				msg += "<span class='nicegreen'>I feel pretty okay.<span>\n"
+			if(7)
+				msg += "<span class='nicegreen'>I feel pretty good.<span>\n"
+			if(8)
+				msg += "<span class='nicegreen'>I feel amazing!<span>\n"
+			if(9)
+				msg += "<span class='nicegreen'>I love life!<span>\n"
+	else
+		msg += "<span class='nicegreen'>No clue.<span>\n"
+	//
 
 	msg += "<span class='notice'>Moodlets:\n</span>"//All moodlets
-	if(mood_events.len)
-		for(var/i in mood_events)
-			var/datum/mood_event/event = mood_events[i]
-			msg += event.description
+	//skyrat edit - screwy mood
+	if(!HAS_TRAIT(user, TRAIT_SCREWY_MOOD))
+		if(mood_events.len)
+			for(var/i in mood_events)
+				var/datum/mood_event/event = mood_events[i]
+				msg += event.description
+		else
+			msg += "<span class='nicegreen'>I don't have much of a reaction to anything right now.<span>\n"
 	else
-		msg += "<span class='nicegreen'>I don't have much of a reaction to anything right now.<span>\n"
+		msg += "<span class='nicegreen'>No idea.<span>\n"
+	//
 	to_chat(user || parent, msg)
 
 ///Called after moodevent/s have been added/removed.
@@ -130,13 +145,18 @@
 
 /datum/component/mood/proc/update_mood_icon()
 	var/mob/living/owner = parent
-	if(owner.client && owner.hud_used)
-		if(sanity < 25)
-			screen_obj.icon_state = "mood_insane"
-		else if (owner.has_status_effect(/datum/status_effect/chem/enthrall))//Fermichem enthral chem, maybe change?
-			screen_obj.icon_state = "mood_entrance"
-		else
-			screen_obj.icon_state = "mood[mood_level]"
+	//skyrat edit - screwy mood
+	if(!HAS_TRAIT(owner, TRAIT_SCREWY_MOOD))
+		if(owner.client && owner.hud_used)
+			if(sanity < 25)
+				screen_obj.icon_state = "mood_insane"
+			else if (owner.has_status_effect(/datum/status_effect/chem/enthrall))//Fermichem enthral chem, maybe change?
+				screen_obj.icon_state = "mood_entrance"
+			else
+				screen_obj.icon_state = "mood[mood_level]"
+	else
+		screen_obj.icon_state = "mood5"
+	//
 
 /datum/component/mood/process() //Called on SSdcs process
 	if(QDELETED(parent)) // workaround to an obnoxious sneaky periodical runtime.

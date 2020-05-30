@@ -154,7 +154,7 @@
 
 	// Build message image
 	message = image(loc = message_loc, layer = CHAT_LAYER)
-	message.plane = CHAT_LAYER
+	message.plane = CHAT_PLANE
 	message.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	message.alpha = 0
 	message.pixel_y = owner.bound_height * 0.95
@@ -277,6 +277,6 @@
 	HSL[2] = HSL[2] * sat_shift
 	HSL[3] = HSL[3] * lum_shift
 	var/list/RGB = hsl2rgb(arglist(HSL))
-	return "#[num2hex(RGB[1],2)][num2hex(RGB[2],2)][num2hex(RGB[3],2)]" 
+	return "#[num2hex(RGB[1],2)][num2hex(RGB[2],2)][num2hex(RGB[3],2)]"
 
 //End of skyrat changes

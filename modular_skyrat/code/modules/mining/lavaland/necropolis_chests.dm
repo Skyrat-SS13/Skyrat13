@@ -853,7 +853,7 @@
 
 /obj/item/stock_parts/cell/high/plus/argent/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/katana/necropolis
 	force = 25 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?

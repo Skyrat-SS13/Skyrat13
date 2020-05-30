@@ -25,6 +25,7 @@ var/static/mutable_appearance/combat_indicator
 		nextcombatpopup = world.time + 10 SECONDS
 		playsound(src, 'sound/machines/chime.ogg', 10) 
 		flick_emote_popup_on_mob(src, "combat", 20)
+		src.log_message("<font color='red'>has used the combat indicator!</font>", INDIVIDUAL_ATTACK_LOG)
 	if(state && world.time >= combatmessagecooldown) //If combat mode didn't make a message
 		combatmessagecooldown = world.time + 10 SECONDS
 		visible_message("<span class='warning'>[src] gets ready for combat!</span>")

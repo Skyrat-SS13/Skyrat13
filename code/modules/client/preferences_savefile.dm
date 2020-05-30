@@ -236,6 +236,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//SKYRAT CHANGES BEGIN
 	S["see_chat_emotes"] 	>> see_chat_emotes
+	S["event_participation"] >> event_participation
+	S["event_prefs"] >> event_prefs
 	//SKYRAT CHANGES END
 
 
@@ -328,9 +330,26 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//SKYRAT CHANGES BEGIN
 	see_chat_emotes	= sanitize_integer(see_chat_emotes, 0, 1, initial(see_chat_emotes))
+	event_participation = sanitize_integer(event_participation, 0, 1, initial(event_participation))
+	event_prefs = sanitize_text(event_prefs)
 	//SKYRAT CHANGES END
 
+	verify_keybindings_valid()		// one of these days this will runtime and you'll be glad that i put it in a different proc so no one gets their saves wiped
+
 	return 1
+
+/datum/preferences/proc/verify_keybindings_valid()
+	// Sanitize the actual keybinds to make sure they exist.
+	for(var/key in key_bindings)
+		if(!islist(key_bindings[key]))
+			key_bindings -= key
+		var/list/binds = key_bindings[key]
+		for(var/bind in binds)
+			if(!GLOB.keybindings_by_name[bind])
+				binds -= bind
+		if(!length(binds))
+			key_bindings -= key
+	// End
 
 /datum/preferences/proc/save_preferences()
 	if(!path)
@@ -400,6 +419,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//SKYRAT CHANGES BEGIN
 	WRITE_FILE(S["see_chat_emotes"], see_chat_emotes)
+	WRITE_FILE(S["event_participation"], event_participation)
+	WRITE_FILE(S["event_prefs"], event_prefs)
 	//SKYRAT CHANGES END
 
 	return 1
@@ -504,6 +525,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Quirks
 	S["all_quirks"]			>> all_quirks
+	//SKYRAT ADDITION - additional language
+	S["language"]			>> language
+	//
 
 	//Citadel code
 	S["feature_genitals_use_skintone"]	>> features["genitals_use_skintone"]
@@ -793,6 +817,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Quirks
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
+	//SKYRAT ADDITION - additional language
+	WRITE_FILE(S["language"]			, language)
+	//
 
 	WRITE_FILE(S["vore_flags"]			, vore_flags)
 	WRITE_FILE(S["vore_taste"]			, vore_taste)

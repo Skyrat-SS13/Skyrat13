@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "parse_gas_string now archives the gas"
