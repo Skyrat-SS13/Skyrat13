@@ -820,7 +820,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 					message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] is using the middle click aimbot exploit</span>")
 					add_system_note("aimbot", "Is using the middle click aimbot exploit")
 					//log_click(object, location, control, params, src, "lockout (spam - minute ab c [ab] s [middragtime])") //SKYRAT EDIT
-				else
+				//else //Skyrat edit
 					//log_click(object, location, control, params, src, "lockout (spam - minute)") //SKYRAT EDIT
 				log_game("[key_name(src)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
 				message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
