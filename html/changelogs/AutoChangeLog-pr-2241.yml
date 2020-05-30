@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Fixes Radiation Shutters to actually start blocking radiation. Doesn't block all radiation, so don't think you're safe from a delaminating crystal."
