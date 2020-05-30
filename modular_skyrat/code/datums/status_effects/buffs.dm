@@ -66,7 +66,6 @@
 	alert_type = /obj/screen/alert/status_effect/fists_of_caine
 	duration = 600
 	tick_interval = 0
-	alert_type = null
 	var/datum/martial_art/MA
 
 /datum/status_effect/fists_of_caine/on_apply()

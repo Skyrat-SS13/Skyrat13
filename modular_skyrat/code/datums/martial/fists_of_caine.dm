@@ -11,10 +11,14 @@
 /datum/martial_art/fists_of_caine/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(findtext(streak,HEADBUTT_COMBO))
 		streak = ""
+		if (!CHECK_MOBILITY(D, MOBILITY_STAND) || !CHECK_MOBILITY(A, MOBILITY_STAND))
+			return FALSE
 		headbutt(A,D)
 		return TRUE
 	if(findtext(streak,VIOLENT_KICK_COMBO))
 		streak = ""
+		if (!CHECK_MOBILITY(D, MOBILITY_STAND) || !CHECK_MOBILITY(A, MOBILITY_STAND))
+			return FALSE
 		violentKick(A,D)
 		return TRUE
 	return FALSE
@@ -38,6 +42,7 @@
 	D.visible_message("<span class='warning'>[A] headbutts [D], knocking them out cold!</span>", \
 						  "<span class='userdanger'>[A] headbutts you, knocking you out cold!</span>")
 	D.apply_damage(damage, BRUTE, BODY_ZONE_HEAD)
+	A.apply_damage(damage, BRUTE, BODY_ZONE_HEAD)
 	D.Sleeping(knockdown_duration)
 	log_combat(A, D, "headbutt (Fists of Caine)")
 	return TRUE
@@ -98,8 +103,8 @@
 
 	to_chat(usr, "<b><i>You recall how to use the techniques of Fists of Caine...</i></b>")
 
-	to_chat(usr, "<span class='notice'>Headbutt</span>: Grab Harm. Slam your head into your opponents, knocking them out cold and causing some damage to both of you.")
-	to_chat(usr, "<span class='notice'>Violent Kick</span>: Harm Disarm. Kick your opponent in the chest, knocking them away.")
+	to_chat(usr, "<span class='notice'>Headbutt</span>: Grab Harm. Slam your head into your opponents, knocking them out cold and causing some damage to both of you. Both you and target need to be standing.")
+	to_chat(usr, "<span class='notice'>Violent Kick</span>: Harm Disarm. Kick your opponent in the chest, knocking them away. Both you and target need to be standing.")
 
 /datum/martial_art/fists_of_caine/teach(mob/living/carbon/human/H, make_temporary = FALSE)
 	. = ..()
