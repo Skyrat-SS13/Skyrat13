@@ -452,7 +452,7 @@
 	new /obj/item/book/granter/spell/sacredflame(src)
 	new /obj/item/gun/magic/wand/fireball(src)
 	new /obj/item/dragons_blood/distilled(src)
-	new /obj/item/clothing/neck/king(src)
+	new /obj/item/clothing/neck/necklace/memento_mori/king(src)
 	new /obj/item/crusher_trophy/tail_spike(src)
 
 
