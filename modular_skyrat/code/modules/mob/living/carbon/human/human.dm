@@ -40,7 +40,7 @@
 			onclose(usr, "[name]'s char skill")
 
 	if(href_list["exploitable_info"])
-		if(client && usr.client.holder)
+		if(client && (usr.client.holder || usr.mind?.antag_datums))
 			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", "[name]'s exploitable information", replacetext(client.prefs.exploitable_info, "\n", "<BR>")), text("window=[];size=500x200", "[name]'s exp info"))
 			onclose(usr, "[name]'s exp info")
 
