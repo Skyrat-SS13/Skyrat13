@@ -414,7 +414,7 @@
 	throwforce = 0
 	armour_penetration = 0
 	var/ghost_counter = ghost_check()
-	force = clamp((ghost_counter * 3), 15, 25)
+	force = clamp((ghost_counter * 2.5), 15, 25)
 	throwforce = clamp((ghost_counter * 3), 5, 18)
 	armour_penetration = clamp((ghost_counter * 3), 0, 35)
 	user.visible_message("<span class='danger'>[user] strikes with the force of [ghost_counter] vengeful spirits!</span>")
