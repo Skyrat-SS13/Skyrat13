@@ -6,11 +6,13 @@
 	antag_moodlet = /datum/mood_event/focused
 	skill_modifiers = list(/datum/skill_modifier/job/level/wiring/basic)
 	var/special_role = ROLE_TRAITOR
-	var/employer = "The Syndicate"
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE
 	var/should_equip = TRUE
 	var/datum/traitor_class/traitor_kind
+	//skyrat change
+	var/datum/traitor_employer/employer
+	//
 	var/datum/contractor_hub/contractor_hub
 	hijack_speed = 0.5				//10 seconds per hijack stage by default
 	threat = 5
@@ -29,6 +31,14 @@
 		swap_from_old = TRUE
 	traitor_kind = GLOB.traitor_classes[kind]
 	traitor_kind.apply_innate_effects(owner.current)
+	//skyrat edit
+	var/temp = pick(SSantagonist.employer_typeaths)
+	employer = new temp()
+	if(owner.preferred_traitor_employer)
+		if(SSantagonist.employer_typeaths[owner.preferred_traitor_employer])
+			var/poo = employer_typepaths[owner.preferred_traitor_employer]
+			employer = new poo()
+	//
 	if(give_objectives)
 		for(var/O in objectives)
 			qdel(O)

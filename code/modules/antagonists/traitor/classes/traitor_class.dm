@@ -18,6 +18,10 @@ GLOBAL_LIST_EMPTY(traitor_classes)
 		GLOB.traitor_classes[src.type] = src
 
 /datum/traitor_class/proc/forge_objectives(datum/antagonist/traitor/T)
+	//skyrat change
+	if(T.employer)
+		T.employer.attempt_forge_special_objectives(T)
+	//
 	// Like the old forge_human_objectives. Makes all the objectives for this traitor class.
 
 /datum/traitor_class/proc/forge_single_objective(datum/antagonist/traitor/T)
