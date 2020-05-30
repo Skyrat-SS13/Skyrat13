@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(shuttle)
 	//PROBLEM COMPUTER CHARGES
 	var/problem_computer_max_charges = 5
 	var/problem_computer_charges = 5
-	var/problem_computer_charge_time = 1.5 MINUTES
+	var/problem_computer_charge_time = 90 SECONDS
 	var/problem_computer_next_charge_time = 0
 	//END SKYRAT CHANGE
 
