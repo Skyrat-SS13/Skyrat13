@@ -1339,7 +1339,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "adf" = (
-/obj/structure/toilet/secret/prison{
+/obj/structure/toilet{
 	dir = 1
 	},
 /turf/open/floor/plasteel/freezer,
@@ -13439,7 +13439,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/cryopod)
 "aDL" = (
-/obj/structure/toilet/secret/low_loot{
+/obj/structure/toilet{
 	dir = 4
 	},
 /obj/structure/mirror{
@@ -14326,7 +14326,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "aGk" = (
-/obj/structure/toilet/secret/low_loot{
+/obj/structure/toilet{
 	dir = 4
 	},
 /obj/structure/mirror{
@@ -21830,7 +21830,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "aZt" = (
-/obj/structure/toilet/secret/low_loot{
+/obj/structure/toilet{
 	dir = 4
 	},
 /obj/structure/mirror{
@@ -57480,7 +57480,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "oIW" = (
-/obj/structure/toilet/secret/low_loot{
+/obj/structure/toilet{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -60804,7 +60804,7 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
 "ycd" = (
-/obj/structure/toilet/secret/low_loot{
+/obj/structure/toilet{
 	dir = 4
 	},
 /obj/structure/mirror{
