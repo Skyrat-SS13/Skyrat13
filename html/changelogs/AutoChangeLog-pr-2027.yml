@@ -1,6 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Fidex horns/wings colors not being loaded."
-  - tweak: "made podpeople/wood golems nutriment generation less drastic."
-  - bugfix: "Fixed casually worn cargo pants showing the digi version on non-digitigrades."

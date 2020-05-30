@@ -1,13 +1,24 @@
-		/* CAUTION! CAUTION! CAUTION! CAUTION! CAUTION! *\
-		|		THIS FILE CONTAINS HOOKS FOR FOR		 |
-		|		CHANGES SPECIFIC TO CITADEL. IF			 |
-		|		 YOU'RE FIXING A MERGE CONFLICT			 |
-		|		HERE, PLEASE ASK FOR REVIEW FROM		 |
-		|		ANOTHER MAINTAINER TO ENSURE YOU		 |
-		|		  DON'T INTRODUCE REGRESSIONS.			 |
-		\*												*/
+#define DEFAULT_SLOT_AMT	2
+#define HANDS_SLOT_AMT		2
+#define BACKPACK_SLOT_AMT	4
 
 GLOBAL_LIST_EMPTY(preferences_datums)
+GLOBAL_LIST_INIT(food, list( // Skyrat addition
+		"Meat" = MEAT,
+		"Vegetables" = VEGETABLES,
+		"Raw" = RAW,
+		"Junk Food" = JUNKFOOD,
+		"Grain" = GRAIN,
+		"Fruit" = FRUIT,
+		"Dairy" = DAIRY,
+		"Fried" = FRIED,
+		"Alcohol" = ALCOHOL,
+		"Sugar" = SUGAR,
+		"Gross" = GROSS,
+		"Toxic" = TOXIC,
+		"Pineapple" = PINEAPPLE,
+		"Breakfast" = BREAKFAST
+	))
 
 /datum/preferences
 	var/client/parent
@@ -20,6 +31,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/muted = 0
 	var/last_ip
 	var/last_id
+	var/log_clicks = FALSE
 
 	var/icon/custom_holoform_icon
 	var/list/cached_holoform_icons
@@ -51,6 +63,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/chat_on_map = TRUE
 	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
 	var/see_chat_non_mob = TRUE
+
+	/// Custom Keybindings
+	var/list/key_bindings = list()
+
+
 	var/tgui_fancy = TRUE
 	var/tgui_lock = TRUE
 	var/windowflashing = TRUE
@@ -69,6 +86,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/pda_style = MONO
 	var/pda_color = "#808000"
 	var/pda_skin = PDA_SKIN_ALT
+	// SKYRAT CHANGE START
+	var/show_credits = TRUE
+	var/event_participation = FALSE
+	var/event_prefs = ""
+	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
 
@@ -85,6 +107,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
 	var/vorepref = "Ask"
+	var/extremepref = "No" //This is for extreme shit, maybe even literal shit, better to keep it on no by default
+	var/extremeharm = "No" //If "extreme content" is enabled, this option serves as a toggle for the related interactions to cause damage or not
 	var/general_records = ""
 	var/security_records = ""
 	var/medical_records = ""
@@ -92,9 +116,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/flavor_faction = "UNSET"
 	var/character_skills = ""
 	var/exploitable_info = ""
+	var/language = ""
 	var/see_chat_emotes = TRUE
 	var/enable_personal_chat_color = FALSE
 	var/personal_chat_color = "#ffffff"
+	var/list/foodlikes = list() //Skyrat additions BEGIN
+	var/list/fooddislikes = list()
+	var/maxlikes = 3
+	var/maxdislikes = 3 //Skyrat additions END
 
 	var/list/alt_titles_preferences = list()
 	//END OF SKYRAT CHANGES
@@ -209,9 +238,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/uplink_spawn_loc = UPLINK_PDA
 
-	var/sprint_spacebar = FALSE
-	var/sprint_toggle = FALSE
-
 	var/hud_toggle_flash = TRUE
 	var/hud_toggle_color = "#ffffff"
 
@@ -253,6 +279,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return
 	//we couldn't load character data so just randomize the character appearance + name
 	random_character()		//let's create a random character then - rather than a fat, bald and naked man.
+	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
+	C?.update_movement_keys(src)
 	real_name = pref_species.random_name(gender,1)
 	if(!loaded_preferences_successfully)
 		save_preferences()
@@ -274,6 +302,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Loadout</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>Content Preferences</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=5' [current_tab == 5 ? "class='linkOn'" : ""]>Keybindings</a>"
 
 	if(!path)
 		dat += "<div class='notice'>Please create an account to save your preferences</div>"
@@ -308,6 +337,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<center><h2>Quirk Setup</h2>"
 				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Quirks</a><br></center>"
 				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
+			//Skyrat edit - food preferences
+			dat += "<center><h2>Food Setup</h2>"
+			dat += "<a href='?_src_=prefs;preference=food;task=menu'>Configure Foods</a></center><br>"
+			dat += "<center><b>Current Likings:</b> [foodlikes.len ? foodlikes.Join(", ") : "None"]</center>"
+			dat += "<center><b>Current Dislikings:</b> [fooddislikes.len ? fooddislikes.Join(", ") : "None"]</center>"
+			//
 			dat += "<h2>Identity</h2>"
 			dat += "<table width='100%'><tr><td width='75%' valign='top'>"
 			if(jobban_isbanned(user, "appearance"))
@@ -333,7 +368,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "<br>"
 				dat += "<a href ='?_src_=prefs;preference=[custom_name_id];task=input'><b>[namedata["pref_name"]]:</b> [custom_names[custom_name_id]]</a> "
 			dat += "<br><br>"
-
+			//SKYRAT EDIT - additional language
+			dat += "<b>Additional Language</b><br>"
+			dat += "<a href='?_src_=prefs;preference=language;task=menu'>[language ? language : "None"]</a></center><br>"
+			//
 			dat += "<b>Custom job preferences:</b><BR>"
 			dat += "<a href='?_src_=prefs;preference=ai_core_icon;task=input'><b>Preferred AI Core Display:</b> [preferred_ai_core_display]</a><br>"
 			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Preferred Security Department:</b> [prefered_security_department]</a><BR></td>"
@@ -370,7 +408,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			//END OF SKYRAT EDIT
 			if(length(features["flavor_text"]) <= 40)
 				if(!length(features["flavor_text"]))
-					dat += "\[...\]<BR>" //skyrat - adds <br>
+					dat += "\[...\]<BR>" //skyrat - adds <br> //come to brazil or brazil comes to you
 				else
 					dat += "[features["flavor_text"]]<BR>" //skyrat - adds <br>
 			else
@@ -902,8 +940,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			//SKYRAT CHANGES END
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
-			dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
-			dat += "<b>Asynchronous(no-delay) Say:</b> <a href='?_src_=prefs;preference=toggle_asynch_say'>[(toggles & ASYNCHRONOUS_SAY) ? "Enabled":"Disabled"]</a><br>" //SKYRAT CHANGE
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
@@ -994,8 +1030,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</a><br>"
 			dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
-			dat += "<b>Sprint Key:</b> <a href='?_src_=prefs;preference=sprint_key'>[sprint_spacebar ? "Space" : "Shift"]</a><br>"
-			dat += "<b>Toggle Sprint:</b> <a href='?_src_=prefs;preference=sprint_toggle'>[sprint_toggle ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>HUD Button Flashes:</b> <a href='?_src_=prefs;preference=hud_toggle_flash'>[hud_toggle_flash ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>HUD Button Flash Color:</b> <span style='border: 1px solid #161616; background-color: [hud_toggle_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hud_toggle_color;task=input'>Change</a><br>"
 
@@ -1118,8 +1152,63 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Hypno:</b> <a href='?_src_=prefs;preference=never_hypno'>[(cit_toggles & NEVER_HYPNO) ? "Disallowed" : "Allowed"]</a><br>"
 			dat += "<b>Aphrodisiacs:</b> <a href='?_src_=prefs;preference=aphro'>[(cit_toggles & NO_APHRO) ? "Disallowed" : "Allowed"]</a><br>"
 			dat += "<b>Ass Slapping:</b> <a href='?_src_=prefs;preference=ass_slap'>[(cit_toggles & NO_ASS_SLAP) ? "Disallowed" : "Allowed"]</a><br>"
+			//SKYRAT EDIT
+			dat += 	"Extreme ERP verbs : <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
+			if(extremepref != "No")
+				dat += "Harmful ERP verbs : <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
+			//END OF SKYRAT EDIT
 			dat += "</tr></table>"
 			dat += "<br>"
+		if(5) // Custom keybindings
+			dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Input"]</a><br>"
+			dat += "Keybindings mode controls how the game behaves with tab and map/input focus.<br>If it is on <b>Hotkeys</b>, the game will always attempt to force you to map focus, meaning keypresses are sent \
+			directly to the map instead of the input. You will still be able to use the command bar, but you need to tab to do it every time you click on the game map.<br>\
+			If it is on <b>Input</b>, the game will not force focus away from the input bar, and you can switch focus using TAB between these two modes: If the input bar is pink, that means that you are in non-hotkey mode, sending all keypresses of the normal \
+			alphanumeric characters, punctuation, spacebar, backspace, enter, etc, typing keys into the input bar. If the input bar is white, you are in hotkey mode, meaning all keypresses go into the game's keybind handling system unless you \
+			manually click on the input bar to shift focus there.<br>\
+			Input mode is the closest thing to the old input system.<br>\
+			<b>IMPORTANT:</b> While in input mode's non hotkey setting (tab toggled), Ctrl + KEY will send KEY to the keybind system as the key itself, not as Ctrl + KEY. This means Ctrl + T/W/A/S/D/all your familiar stuff still works, but you \
+			won't be able to access any regular Ctrl binds.<br>"
+			// Create an inverted list of keybindings -> key
+			var/list/user_binds = list()
+			for (var/key in key_bindings)
+				for(var/kb_name in key_bindings[key])
+					user_binds[kb_name] += list(key)
+
+			var/list/kb_categories = list()
+			// Group keybinds by category
+			for (var/name in GLOB.keybindings_by_name)
+				var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
+				kb_categories[kb.category] += list(kb)
+
+			dat += "<style>label { display: inline-block; width: 200px; }</style><body>"
+
+			for (var/category in kb_categories)
+				dat += "<h3>[category]</h3>"
+				for (var/i in kb_categories[category])
+					var/datum/keybinding/kb = i
+					if(!length(user_binds[kb.name]))
+						dat += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=["Unbound"]'>Unbound</a>"
+						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
+						if(LAZYLEN(default_keys))
+							dat += "| Default: [default_keys.Join(", ")]"
+						dat += "<br>"
+					else
+						var/bound_key = user_binds[kb.name][1]
+						dat += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
+						for(var/bound_key_index in 2 to length(user_binds[kb.name]))
+							bound_key = user_binds[kb.name][bound_key_index]
+							dat += " | <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
+						if(length(user_binds[kb.name]) < MAX_KEYS_PER_KEYBIND)
+							dat += "| <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name]'>Add Secondary</a>"
+						var/list/default_keys = hotkeys ? kb.classic_keys : kb.hotkey_keys
+						if(LAZYLEN(default_keys))
+							dat += "| Default: [default_keys.Join(", ")]"
+						dat += "<br>"
+
+			dat += "<br><br>"
+			dat += "<a href ='?_src_=prefs;preference=keybindings_reset'>\[Reset to default\]</a>"
+			dat += "</body>"
 
 
 	dat += "<hr><center>"
@@ -1139,6 +1228,31 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 #undef APPEARANCE_CATEGORY_COLUMN
 #undef MAX_MUTANT_ROWS
+
+/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, var/old_key)
+	var/HTML = {"
+	<div id='focus' style="outline: 0;" tabindex=0>Keybinding: [kb.full_name]<br>[kb.description]<br><br><b>Press any key to change<br>Press ESC to clear</b></div>
+	<script>
+	var deedDone = false;
+	document.onkeyup = function(e) {
+		if(deedDone){ return; }
+		var alt = e.altKey ? 1 : 0;
+		var ctrl = e.ctrlKey ? 1 : 0;
+		var shift = e.shiftKey ? 1 : 0;
+		var numpad = (95 < e.keyCode && e.keyCode < 112) ? 1 : 0;
+		var escPressed = e.keyCode == 27 ? 1 : 0;
+		var url = 'byond://?_src_=prefs;preference=keybindings_set;keybinding=[kb.name];old_key=[old_key];clear_key='+escPressed+';key='+e.key+';alt='+alt+';ctrl='+ctrl+';shift='+shift+';numpad='+numpad+';key_code='+e.keyCode;
+		window.location=url;
+		deedDone = true;
+	}
+	document.getElementById('focus').focus();
+	</script>
+	"}
+	winshow(user, "capturekeypress", TRUE)
+	var/datum/browser/popup = new(user, "capturekeypress", "<div align='center'>Keybindings</div>", 350, 300)
+	popup.set_content(HTML)
+	popup.open(FALSE)
+	onclose(user, "capturekeypress", src)
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs = list("Chief Engineer"), widthPerColumn = 295, height = 620)
 	if(!SSjob)
@@ -1407,12 +1521,97 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(SSquirks.quirk_points[q] > 0)
 			.++
 
+//SKYRAT EDIT - extra language
+/datum/preferences/proc/SetLanguage(mob/user)
+	var/list/dat = list()
+	dat += "<center><b>Choose an Additional Language</b></center><br>"
+	dat += "<center>Do note, however, than you can only have one chosen language.</center><br>"
+	dat += "<center>If you want no additional language at all, simply remove the currently chosen language.</center><br>"
+	dat += "<hr>"
+	if(SSlanguage && SSlanguage.languages_by_name.len)
+		for(var/V in SSlanguage.languages_by_name)
+			var/datum/language/L = SSlanguage.languages_by_name[V]
+			if(!L)
+				return
+			var/language_name = initial(L.name)
+			var/restricted = FALSE
+			var/has_language = FALSE
+			if(L.restricted)
+				restricted = TRUE
+			if(language_name == language)
+				has_language = TRUE
+			var/font_color = "#4682B4"
+			var/nullify = ""
+			if(restricted && !(language_name in pref_species.languagewhitelist))
+				var/quirklanguagefound = FALSE
+				for(var/datum/quirk/Q in all_quirks)
+					if(language_name in Q.languagewhitelist)
+						quirklanguagefound = TRUE
+				if(!quirklanguagefound)
+					continue
+			else
+				dat += "<b><font color='[font_color]'>[language_name]:</font></b> [initial(L.desc)]"
+				dat += "<a href='?_src_=prefs;preference=language;task=update;language=[has_language ? nullify : language_name]'>[has_language ? "Remove" : "Choose"]</a><br>"
+	else 
+		dat += "<center><b>The language subsystem hasn't fully loaded yet! Please wait a bit and try again.</b></center><br>"
+	dat += "<hr>"
+	dat += "<center><a href='?_src_=prefs;preference=language;task=close'>Done</a></center>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Language Preference</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+//
+
 /datum/preferences/Topic(href, href_list, hsrc)			//yeah, gotta do this I guess..
 	. = ..()
 	if(href_list["close"])
 		var/client/C = usr.client
 		if(C)
 			C.clear_character_previews()
+
+//Skyrat edit - food prefs
+/datum/preferences/proc/SetFood(mob/user)
+	var/list/dat = list()
+	dat += "<center><b>Choose food setup</b></center><br>"
+	dat += "<div align='center'>Click on \"like\" to add a food type to your likings. Click on \"dislike\" to add it to your dislikings.<br>"
+	dat += "Food types cannot be liked and disliked at the same time.<br>"
+	dat += "If a food type is already liked or disliked, simply click the appropriate button again to remove it from your like or dislike list.<br>"
+	dat += "Having no food preferences means you'll just default your species' standard instead.</div><br>"
+	dat += "<center><a href='?_src_=prefs;preference=food;task=close'>Done</a></center>"
+	dat += "<hr>"
+	dat += "<center><b>Current Likings:</b> [foodlikes.len ? foodlikes.Join(", ") : "None"] ([foodlikes.len]/[maxlikes])</center><br>"
+	dat += "<center><b>Current Dislikings:</b> [fooddislikes.len ? fooddislikes.Join(", ") : "None"] ([fooddislikes.len]/[maxdislikes])</center>"
+	dat += "<hr>"
+	for(var/F in GLOB.food)
+		var/likes = FALSE
+		var/dislikes = FALSE
+		for(var/food in foodlikes)
+			if(food == F)
+				likes = TRUE
+		for(var/food in fooddislikes)
+			if(food == F)
+				dislikes = TRUE
+		var/font_color = "#8686ff"
+		if(likes)
+			dat += "<center><p style='color: [font_color];'><b>[F]: </p></b>"
+			dat += "<a style='background-color: #32c232;' href='?_src_=prefs;preference=food;task=update;like=[F]'>Like</a>"
+			dat += "<a href='?_src_=prefs;preference=food;task=update;dislike=[F]'>Dislike</a></center>"
+		else if(dislikes)
+			dat += "<center><p style='color: [font_color];'><b>[F]: </p></b>"
+			dat += "<a href='?_src_=prefs;preference=food;task=update;like=[F]'>Like</a>"
+			dat += "<a style='background-color: #ff1a1a;' href='?_src_=prefs;preference=food;task=update;dislike=[F]'>Dislike</a></center>"
+		else
+			dat += "<center><p style='color: [font_color];'><b>[F]: </p></b>"
+			dat += "<a href='?_src_=prefs;preference=food;task=update;like=[F]'>Like</a>"
+			dat += "<a href='?_src_=prefs;preference=food;task=update;dislike=[F]'>Dislike</a></center>"
+	dat += "<br><center><a href='?_src_=prefs;preference=food;task=reset'>Reset Food Preferences</a></center>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Food Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+//
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(href_list["jobbancheck"])
@@ -1517,7 +1716,61 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			else
 				SetQuirks(user)
 		return TRUE
-
+	//SKYRAT CHANGE - food prefs and language pref
+	else if(href_list["preference"] == "food")
+		switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+				ShowChoices(user)
+			if("update")
+				if(href_list["like"])
+					for(var/F in GLOB.food)
+						if(F == href_list["like"])
+							if(!foodlikes[F])
+								if(foodlikes.len < maxlikes)
+									foodlikes[F] = GLOB.food[F]
+								if(fooddislikes[F])
+									fooddislikes.Remove(F)
+							else
+								foodlikes.Remove(F)
+				if(href_list["dislike"])
+					for(var/F in GLOB.food)
+						if(F == href_list["dislike"])
+							if(!fooddislikes[F])
+								if(fooddislikes.len < maxdislikes)
+									fooddislikes[F] = GLOB.food[F]
+								if(foodlikes[F])
+									foodlikes.Remove(F)
+							else
+								fooddislikes.Remove(F)
+				if(foodlikes.len > maxlikes)
+					foodlikes.Cut(maxlikes+1)
+				if(fooddislikes.len > maxdislikes)
+					foodlikes.Cut(maxdislikes+1)
+				SetFood(user)
+			if("reset")
+				foodlikes = list()
+				fooddislikes = list()
+				SetFood(user)
+			else
+				SetFood(user)
+		return TRUE
+	else if(href_list["preference"] == "language")
+		switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+				ShowChoices(user)
+			if("update")
+				var/lang = href_list["language"]
+				if(SSlanguage.languages_by_name[lang] || lang == "")
+					language = lang
+					SetLanguage(user)
+				else
+					SetLanguage(user)
+			else
+				SetLanguage(user)
+		return TRUE
+	//
 	switch(href_list["task"])
 		if("random")
 			switch(href_list["preference"])
@@ -2426,6 +2679,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							vorepref = "No"
 						if("No")
 							vorepref = "Yes"
+				//Skyrat edit - *someone* offered me actual money for this shit
+				if("extremepref") //i hate myself for doing this
+					switch(extremepref) //why the fuck did this need to use cycling instead of input from a list
+						if("Yes")		//seriously this confused me so fucking much
+							extremepref = "Ask"
+						if("Ask")
+							extremepref = "No"
+						if("No")
+							extremepref = "Yes"
+				if("extremeharm")
+					switch(extremeharm)
+						if("Yes")	//this is cursed code
+							extremeharm = "No"
+						if("No")
+							extremeharm = "Yes"
 				if("auto_hiss")
 					auto_hiss = !auto_hiss
 				//END CITADEL EDIT
@@ -2438,10 +2706,73 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("hotkeys")
 					hotkeys = !hotkeys
-					if(hotkeys)
-						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=default")
-					else
-						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+					user.client.set_macros()
+
+				if("keybindings_capture")
+					var/datum/keybinding/kb = GLOB.keybindings_by_name[href_list["keybinding"]]
+					var/old_key = href_list["old_key"]
+					CaptureKeybinding(user, kb, old_key)
+					return
+
+				if("keybindings_set")
+					var/kb_name = href_list["keybinding"]
+					if(!kb_name)
+						user << browse(null, "window=capturekeypress")
+						ShowChoices(user)
+						return
+
+					var/clear_key = text2num(href_list["clear_key"])
+					var/old_key = href_list["old_key"]
+					if(clear_key)
+						if(key_bindings[old_key])
+							key_bindings[old_key] -= kb_name
+							if(!length(key_bindings[old_key]))
+								key_bindings -= old_key
+						user << browse(null, "window=capturekeypress")
+						save_preferences()
+						ShowChoices(user)
+						return
+
+					var/new_key = uppertext(href_list["key"])
+					var/AltMod = text2num(href_list["alt"]) ? "Alt" : ""
+					var/CtrlMod = text2num(href_list["ctrl"]) ? "Ctrl" : ""
+					var/ShiftMod = text2num(href_list["shift"]) ? "Shift" : ""
+					var/numpad = text2num(href_list["numpad"]) ? "Numpad" : ""
+					// var/key_code = text2num(href_list["key_code"])
+
+					if(GLOB._kbMap[new_key])
+						new_key = GLOB._kbMap[new_key]
+
+					var/full_key
+					switch(new_key)
+						if("Alt")
+							full_key = "[new_key][CtrlMod][ShiftMod]"
+						if("Ctrl")
+							full_key = "[AltMod][new_key][ShiftMod]"
+						if("Shift")
+							full_key = "[AltMod][CtrlMod][new_key]"
+						else
+							full_key = "[AltMod][CtrlMod][ShiftMod][numpad][new_key]"
+					if(key_bindings[old_key])
+						key_bindings[old_key] -= kb_name
+						if(!length(key_bindings[old_key]))
+							key_bindings -= old_key
+					key_bindings[full_key] += list(kb_name)
+					key_bindings[full_key] = sortList(key_bindings[full_key])
+
+					user << browse(null, "window=capturekeypress")
+					user.client.update_movement_keys()
+					save_preferences()
+
+				if("keybindings_reset")
+					var/choice = tgalert(user, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")
+					if(choice == "Cancel")
+						ShowChoices(user)
+						return
+					hotkeys = (choice == "Hotkey")
+					key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+					user.client.update_movement_keys()
+
 				if("chat_on_map")
 					chat_on_map = !chat_on_map
 				if("see_chat_non_mob")
@@ -2488,13 +2819,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("mute_lewd_verb_sounds") // Skyrat - ERP Mechanic Addition
 					toggles ^= LEWD_VERB_SOUNDS // Skyrat - ERP Mechanic Addition
-
-				// SKYRAT CHANGES - Asynchronous say for typing indicator
-				if("toggle_asynch_say")
-					toggles ^= ASYNCHRONOUS_SAY
-					if(user.client)
-						user.client.set_macros()
-				// END OF SKYRAT CHANGES
 
 				if("lobby_music")
 					toggles ^= SOUND_LOBBY
@@ -2585,13 +2909,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					auto_fit_viewport = !auto_fit_viewport
 					if(auto_fit_viewport && parent)
 						parent.fit_viewport()
-
-				if("sprint_key")
-					sprint_spacebar = !sprint_spacebar
-
-				if("sprint_toggle")
-					sprint_toggle = !sprint_toggle
-
 
 				if("hud_toggle_flash")
 					hud_toggle_flash = !hud_toggle_flash
@@ -2776,3 +3093,37 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!cached_holoform_icons[filter_type])
 		cached_holoform_icons[filter_type] = process_holoform_icon_filter(custom_holoform_icon, filter_type)
 	return cached_holoform_icons[filter_type]
+
+//Used in savefile update 32, can be removed once that is no longer relevant.
+/datum/preferences/proc/force_reset_keybindings()
+	var/choice = tgalert(parent.mob, "Your basic keybindings need to be reset, emotes will remain as before. Would you prefer 'hotkey' or 'classic' mode?", "Reset keybindings", "Hotkey", "Classic")
+	hotkeys = (choice != "Classic")
+	var/list/oldkeys = key_bindings
+	key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+
+	for(var/key in oldkeys)
+		if(!key_bindings[key])
+			key_bindings[key] = oldkeys[key]
+	parent.update_movement_keys()
+
+/datum/preferences/proc/is_loadout_slot_available(slot)
+	var/list/L
+	LAZYINITLIST(L)
+	for(var/i in chosen_gear)
+		var/datum/gear/G = i
+		var/occupied_slots = L[slot_to_string(initial(G.category))] ? L[slot_to_string(initial(G.category))] + 1 : 1
+		LAZYSET(L, slot_to_string(initial(G.category)), occupied_slots)
+	switch(slot)
+		if(SLOT_IN_BACKPACK)
+			if(L[slot_to_string(SLOT_IN_BACKPACK)] < BACKPACK_SLOT_AMT)
+				return TRUE
+		if(SLOT_HANDS)
+			if(L[slot_to_string(SLOT_HANDS)] < HANDS_SLOT_AMT)
+				return TRUE
+		else
+			if(L[slot_to_string(slot)] < DEFAULT_SLOT_AMT)
+				return TRUE
+
+#undef DEFAULT_SLOT_AMT
+#undef HANDS_SLOT_AMT
+#undef BACKPACK_SLOT_AMT

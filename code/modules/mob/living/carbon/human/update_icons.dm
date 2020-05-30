@@ -425,12 +425,12 @@ There are several things that need to be remembered:
 					if(STYLE_HOOF_TAURIC)
 						worn_icon = 'icons/mob/clothing/taur_hooved.dmi'
 					if(STYLE_SNEK_TAURIC)
-						worn_icon = 'icons/mob/clothing/taur_naga.dmi'
+						worn_icon = 'modular_skyrat/icons/mob/clothing/taur_naga.dmi'
 					if(STYLE_PAW_TAURIC)
 						worn_icon = 'icons/mob/clothing/taur_canine.dmi'
 				if(worn_icon != init_worn_icon) //worn icon sprite was changed, taur offsets will have to be applied.
 					if(S.taur_mob_worn_overlay) //not going to make several new variables for all taur types. Nope.
-						var/static/list/icon_to_state = list('icons/mob/clothing/taur_hooved.dmi' = "_hooved", 'icons/mob/clothing/taur_naga.dmi' = "_naga", 'icons/mob/clothing/taur_canine.dmi' = "_paws")
+						var/static/list/icon_to_state = list('icons/mob/clothing/taur_hooved.dmi' = "_hooved", 'modular_skyrat/icons/mob/clothing/taur_naga.dmi' = "_naga", 'icons/mob/clothing/taur_canine.dmi' = "_paws")
 						worn_state += icon_to_state[worn_icon]
 						worn_icon = S.taur_mob_worn_overlay
 					center = T.center

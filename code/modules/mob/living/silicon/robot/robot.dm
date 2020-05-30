@@ -14,7 +14,7 @@
 	spark_system.attach(src)
 
 	wires = new /datum/wires/robot(src)
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
 
 	robot_modules_background = new()
 	robot_modules_background.icon_state = "block"
@@ -727,7 +727,7 @@
 /mob/living/silicon/robot/modules/syndicate/Initialize()
 	. = ..()
 	cell = new /obj/item/stock_parts/cell/hyper(src, 25000)
-	radio = new /obj/item/radio/borg/syndicate(src)
+//	radio = new /obj/item/radio/borg/syndicate(src) //Skyrat change
 	laws = new /datum/ai_laws/syndicate_override()
 	addtimer(CALLBACK(src, .proc/show_playstyle), 5)
 
