@@ -115,7 +115,6 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 	category = list("Misc. Machinery")
 
-<<<<<<< HEAD
 /datum/design/board/prize_counter
 	name = "Machine Design (Prize Counter)"
 	desc = "The circuit board for an arcade Prize Counter."
@@ -123,7 +122,7 @@
 	build_path = /obj/item/circuitboard/machine/prize_counter
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 	category = list("Misc. Machinery") 
-=======
+
 /datum/design/board/hypnochair
 	name = "Machine Design (Enhanced Interrogation Chamber)"
 	desc = "Allows for the construction of circuit boards used to build an Enhanced Interrogation Chamber."
@@ -131,4 +130,3 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 	build_path = /obj/item/circuitboard/machine/hypnochair
 	category = list("Misc. Machinery")
->>>>>>> ab5d65a454... Porting the BEPIS research machinery. (#12277)
