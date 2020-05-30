@@ -49,3 +49,67 @@
 		"in your backpack" = SLOT_IN_BACKPACK
 	)
 	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
+
+//airhead
+/datum/quirk/airhead
+	name = "Airhead"
+	desc = "You are exceptionally airheaded... but who cares?"
+	value = -1
+	mob_trait = TRAIT_DUMB
+	medical_record_text = "Patient exhibits rather low mental capabilities."
+
+//specism
+/datum/quirk/specism
+	name = "Specist"
+	desc = "Other species are a mistake on the gene pool and you know it. Seeing people of differing species negatively impacts your mood, \
+			and seeing people of the same species as yours will positively impact your mood."
+	value = -1
+	medical_record_text = "Patient exhibits an unnatural distaste for people of differing species."
+	var/pcooldown = 0
+	var/pcooldown_time = 15 SECONDS
+	var/master_race
+
+/datum/quirk/specism/add()
+	. = ..()
+	if(!ishuman(quirk_holder))
+		remove() //prejudice is a human problem.
+	var/mob/living/carbon/human/trianglehatman = quirk_holder
+	master_race = trianglehatman.dna.species.type
+
+/datum/quirk/specism/on_process()
+	. = ..()
+	if(pcooldown > world.time)
+		return
+	pcooldown = world.time + pcooldown_time
+	if(!ishuman(quirk_holder))
+		remove() //prejudice is a human problem.
+	var/mob/living/carbon/human/trianglehatman = quirk_holder
+	if(!master_race)
+		master_race = trianglehatman.dna.species.type
+	var/pridecount = 0
+	var/hatecount = 0
+	for(var/mob/living/carbon/human/H in (view(5, trianglehatman) - trianglehatman))
+		if(H.dna.species.type != master_race)
+			hatecount++
+		else
+			pridecount++
+	if(hatecount > pridecount)
+		SEND_SIGNAL(trianglehatman, COMSIG_ADD_MOOD_EVENT, "specism_hate", /datum/mood_event/specism_hate)
+	else if(pridecount > hatecount)
+		SEND_SIGNAL(trianglehatman, COMSIG_ADD_MOOD_EVENT, "specism_pride", /datum/mood_event/specism_pride)
+
+//clumsyness
+/datum/quirk/disaster_artist
+	name = "Disaster Artist"
+	desc = "You always manage to wreak havoc on everything you touch."
+	value = -2
+	mob_trait = TRAIT_CLUMSY
+	medical_record_text = "Patient lacks proper spatial awareness."
+
+//aaa i dont know my mood aaa
+/datum/quirk/screwy_mood
+	name = "Alexithymia"
+	desc = "You cannot accurately assess your feelings."
+	value = -1
+	mob_trait = TRAIT_SCREWY_MOOD
+	medical_record_text = "Patient is incapable of communicating their emotions."

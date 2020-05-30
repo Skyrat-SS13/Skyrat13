@@ -28,6 +28,10 @@
 /obj/structure/closet/wardrobe/black/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/under/color/black(src)
+// SKYRAT EDIT: Courier Bags
+	for(var/i in 1 to 3)
+		new /obj/item/storage/backpack/courier/black(src)
+// SKYRAT EDIT CLOSE
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/under/color/jumpskirt/black(src)
 	if(prob(25))
@@ -113,6 +117,10 @@
 /obj/structure/closet/wardrobe/grey/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/under/color/grey(src)
+// SKYRAT EDIT: Courier Bags
+	for(var/i in 1 to 3)
+		new /obj/item/storage/backpack/courier(src)
+// SKYRAT EDIT CLOSE
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/under/color/jumpskirt/grey(src)
 	for(var/i in 1 to 3)

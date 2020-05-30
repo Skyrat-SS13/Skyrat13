@@ -24,7 +24,6 @@
 	var/scheduled_destruction
 	/// Contains the approximate amount of lines for height decay
 	var/approx_lines
-	var/static/list/symbol_to_pixel_lookup = list("i" = 2, "I" = 2, "l" = 2, "!" = 2, "j" = 2, "." = 2, "!" = 2, "," = 2, "|" = 2, ";" = 2, "f" = 3, "1" = 3, "*" = 3, "(" = 3, ")" = 2, "/" = 3, "\\" = 3, "-" = 3, "{" = 3, "}" = 3, "x" = 4, "b" = 4, "^" = 4, "+" = 4, ">" = 4, "Z" = 6, "<" = 4, "A" = 6, "#" = 6, "&" = 6, "G" = 7, "Q" = 7, "R" = 7, "O" = 7, "A" = 7, "H" = 7, "N" = 7, "%" = 7, "W" = 8, "m" = 8, "M" = 9, "@" = 9, "L" = 5, "J" = 5) //Skyrat change
 
 /**
   * Constructs a chat message overlay
@@ -36,7 +35,8 @@
   * * extra_classes - Extra classes to apply to the span that holds the text
   * * lifespan - The lifespan of the message in deciseconds
   */
-/datum/chatmessage/New(text, atom/target, mob/owner, list/extra_classes = list(), lifespan = CHAT_MESSAGE_LIFESPAN) //Skyrat changes
+
+/datum/chatmessage/New(text, atom/target, mob/owner, list/extra_classes = list(), lifespan = CHAT_MESSAGE_LIFESPAN)
 	. = ..()
 	if (!istype(target))
 		CRASH("Invalid target given for chatmessage")
@@ -56,13 +56,11 @@
 	message = null
 	return ..()
 
-//Skyrat changes
 /**
   * Calls qdel on the chatmessage when its parent is deleted, used to register qdel signal
   */
 /datum/chatmessage/proc/on_parent_qdel()
 	qdel(src)
-//End of skyrat changes
 
 /**
   * Generates a chat message image representation
@@ -77,10 +75,7 @@
 /datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan)
 	// Register client who owns this message
 	owned_by = owner.client
-	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_parent_qdel) //Skyrat edit
-
-	var/pixels = 10 //Skyrat change
-	var/bold = FALSE //Skyrat change
+	//RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_parent_qdel) //Skyrat change
 
 	// Clip message
 	var/maxlen = owned_by.prefs.max_chat_length
@@ -119,37 +114,13 @@
 		extra_classes |= "small"
 
 	//Skyrat changes
-	//Below you'll encounter A TERRIBLE WORKAROUND
-	var/cur_char
-	var/cur_lower
-	if(copytext_char(text, -2) == "!!" || extra_classes.Find("bold"))
-		bold = TRUE
-	for(var/i in 1 to length(text))
-		cur_char = text[i]
-		cur_lower = lowertext(cur_char)
-		if(bold)
-			pixels += 2
-		if (cur_char in symbol_to_pixel_lookup)
-			if(symbol_to_pixel_lookup[cur_char] == 2 && bold)
-				pixels += symbol_to_pixel_lookup[cur_char] - 1
-			else
-				pixels += symbol_to_pixel_lookup[cur_char]
-		else if (cur_char != cur_lower) //unfiltered uppercase take 6
-			pixels += 6
-		else //unfiltered lowercase take 5
-			pixels += 5
-	//End of skyrat changes
-
-	//Skyrat changes
 	// Append radio icon if from a virtual speaker
 	if (extra_classes.Find("emote"))
 		var/image/r_icon = image('modular_skyrat/icons/UI_Icons/chat/chat_icons.dmi', icon_state = "emote")
 		text =  "\icon[r_icon]&nbsp;" + text
-		pixels += 10
 	else if (extra_classes.Find("virtual-speaker"))
 		var/image/r_icon = image('modular_skyrat/icons/UI_Icons/chat/chat_icons.dmi', icon_state = "radio")
 		text =  "\icon[r_icon]&nbsp;" + text
-		pixels += 10
 	//End of skyrat changes
 
 	// We dim italicized text to make it more distinguishable from regular text
@@ -162,9 +133,8 @@
 	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
 	//SKYRAT CHANGES
 	var/complete_text = "<span class='center maptext [extra_classes.Join(" ")]' style='color: [tgt_color]'>[text]</span>"
-	var/lines_est = max(1,(CEILING((pixels/CHAT_MESSAGE_WIDTH),1)))
-	var/mheight = 2 + (lines_est * 9)
-	approx_lines = lines_est
+	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, CHAT_MESSAGE_WIDTH))
+	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
 	//END OF SKYRAT CHANGES
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
@@ -221,7 +191,7 @@
   */
 /mob/proc/create_chat_message(atom/movable/speaker, datum/language/message_language, raw_message, list/spans, message_mode)
 	// Ensure the list we are using, if present, is a copy so we don't modify the list provided to us
-	spans = spans ? spans.Copy() : list() //Skyrat edit
+	spans = spans ? spans.Copy() : list()
 
 	// Check for virtual speakers (aka hearing a message through a radio)
 	var/atom/movable/originalSpeaker = speaker

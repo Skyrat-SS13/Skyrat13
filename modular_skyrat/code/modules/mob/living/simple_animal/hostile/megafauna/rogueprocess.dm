@@ -4,13 +4,15 @@
 	health = 2500
 	maxHealth = 2500
 	movement_type = GROUND
-	attacktext = "drills"
+	attack_verb_continuous = "drills"
+	attack_verb_simple = "drill"
 	attack_sound = 'sound/weapons/drill.ogg'
 	icon = 'modular_skyrat/icons/mob/lavaland/rogue.dmi'
 	icon_state = "rogue"
 	icon_living = "rogue"
 	icon_dead = "rogue-broken"
-	friendly = "pokes"
+	friendly_verb_continuous = "pokes"
+	friendly_verb_simple = "poke"
 	speak_emote = list("screeches")
 	mob_biotypes = MOB_ROBOTIC
 	melee_damage_lower = 30
@@ -25,7 +27,7 @@
 	deathmessage = "sparkles and emits corrupted screams in agony, falling defeated on the ground."
 	death_sound = 'sound/mecha/critdestr.ogg'
 	anger_modifier = 0
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_HEAVY
 	mob_biotypes = MOB_ROBOTIC
 	song = sound('modular_skyrat/sound/ambience/mbrsystemshock.ogg', 100) //System shock theme remix by Master Boot Record
 	songlength = 2930
