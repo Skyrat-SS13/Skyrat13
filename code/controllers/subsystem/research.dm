@@ -24,12 +24,18 @@ SUBSYSTEM_DEF(research)
 	var/list/techweb_categories = list()		//category name = list(node.id = TRUE)
 	var/list/techweb_boost_items = list()		//associative double-layer path = list(id = list(point_type = point_discount))
 	var/list/techweb_nodes_hidden = list()		//Node ids that should be hidden by default.
+	//SKYRAT CHANGE
+	//PROBLEM COMPUTER CHARGES
+	var/problem_computer_max_charges = 5
+	var/problem_computer_charges = 5
+	var/problem_computer_charge_time = 1.5 MINUTES
+	var/problem_computer_next_charge_time = 0
 
 	var/list/techweb_point_items = list(		//path = list(point type = value)
 	/obj/item/assembly/signaler/anomaly            = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
-	//SKYRAT CHANGE
+
 	/obj/item/stock_parts/cell/high/plus/argent    = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
-	//
+	//END SKYRAT CHANGE
 	//   -   Slime Extracts!   - Basics
 	/obj/item/slime_extract/grey                   = list(TECHWEB_POINT_TYPE_GENERIC = 500),
 	/obj/item/slime_extract/metal                  = list(TECHWEB_POINT_TYPE_GENERIC = 750),
@@ -335,6 +341,10 @@ SUBSYSTEM_DEF(research)
 			bitcoins[i] *= income_time_difference / 10
 		science_tech.add_point_list(bitcoins)
 	last_income = world.time
+	// Skyrat change. Handles Problem Computer charges here
+	if(problem_computer_charges < problem_computer_max_charges && world.time >= problem_computer_next_charge_time)
+		problem_computer_next_charge_time = world.time + problem_computer_charge_time
+		problem_computer_charges += 1
 
 /datum/controller/subsystem/research/proc/calculate_server_coefficient()	//Diminishing returns.
 	var/amt = servers.len
