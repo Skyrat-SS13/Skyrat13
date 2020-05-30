@@ -7,6 +7,18 @@
 	parts = list(/obj/item/shard = 1)
 	reqs = list(/obj/item/wrench_wired = 1,
 				/obj/item/shard = 1)
+	time = 30
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/halberd
+	name = "Makeshift halberd"
+	result = /obj/item/twohanded/spear/halberd
+	parts = list(/obj/item/twohanded/spear = 1,\
+				/obj/item/hatchet = 1)
+	reqs = list(/obj/item/stack/cable_coil = 5,\
+				/obj/item/twohanded/spear = 1,\
+				/obj/item/hatchet = 1)
 	time = 60
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -16,10 +28,22 @@
 	result = /obj/item/switchblade/crafted
 	reqs = list(/obj/item/weaponcrafting/stock = 1,
 				/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/kitchen/knife = 1,
+				/obj/item/metal_blade = 1,
 				/obj/item/stack/cable_coil = 2)
 	tools = list(TOOL_WELDER)
 	time = 45
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/balisong
+	name = "Butterfly Knife"
+	result = /obj/item/melee/transforming/butterfly
+	reqs = list(/obj/item/metal_gun_stock = 1,
+				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/metal_blade = 1,
+				/obj/item/stack/cable_coil = 5)
+	tools = list(TOOL_WELDER)
+	time = 60
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -194,6 +218,7 @@
 	time = 75
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/lockermechdrill
 	name = "Makeshift exosuit drill"
 	result = /obj/item/mecha_parts/mecha_equipment/drill/makeshift
@@ -300,7 +325,7 @@
 
 /datum/crafting_recipe/largeblade
 	name = "Large metal blade"
-	result = /obj/item/metal_blade
+	result = /obj/item/large_metal_blade
 	reqs = list(/obj/item/kitchen/knife/butcher = 1)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 20

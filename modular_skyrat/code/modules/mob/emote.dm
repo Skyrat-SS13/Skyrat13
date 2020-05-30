@@ -15,8 +15,7 @@
 
 /mob/emote(act, m_type = null, message = null, intentional = FALSE)
 	. = ..()
-	if(client && client.prefs.toggles & ASYNCHRONOUS_SAY && typing)
-		set_typing_indicator(FALSE)
+	set_typing_indicator(FALSE)
 
 /datum/emote/living/scream/run_emote(mob/living/user, params) //I can't not port this shit, come on.
 	if(user.nextsoundemote >= world.time || user.stat != CONSCIOUS)
@@ -59,3 +58,13 @@
 	else
 		message = "makes a very loud noise."
 	. = ..()
+
+/datum/emote/flip/run_emote(mob/living/user, params) //no fun allowed :)
+	if(prob(20))
+		user.visible_message("<span class='warning'>[user] tries to flip, but lands flat on their face!</span>", "<span class='danger'>You try to flip, but land flat on your face!</span>")
+		user.Knockdown(20)
+		user.setDir(NORTH)
+		user.apply_damage(rand(1, 8), BRUTE, BODY_ZONE_HEAD)
+		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1, 5), 20)
+	else
+		. = ..()

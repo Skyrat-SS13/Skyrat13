@@ -2,7 +2,6 @@
 /mob/living/update_transform()
 	var/matrix/ntransform = matrix(transform) //aka transform.Copy()
 	var/final_pixel_y = pixel_y
-	var/final_dir = dir
 	var/changed = 0
 	if(lying != lying_prev && rotate_on_lying)
 		changed++
@@ -14,7 +13,7 @@
 				pixel_y = get_standard_pixel_y_offset()
 				final_pixel_y = get_standard_pixel_y_offset(lying)
 				if(dir & (EAST|WEST)) //Facing east or west
-					final_dir = pick(NORTH, SOUTH) //So you fall on your side rather than your face or ass
+					setDir(pick(NORTH, SOUTH)) //So you fall on your side rather than your face or ass
 
 	if(resize != RESIZE_DEFAULT_SIZE)
 		changed++

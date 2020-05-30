@@ -118,7 +118,7 @@
 	var/datum/antagonist/bloodsucker/B = user.mind.has_antag_datum(ANTAG_DATUM_BLOODSUCKER)
 	. = ..()
 	if(B || isobserver(user))
-		. += {"<span class='cult'>This is the vassal rack, which allows you to thrall crewmembers into loyal minions in your service.</span>"}
+		. += {"<span class='cult'>This is the vassal rack, which allows you to thrall crewmembers into servants in your service.</span>"} //SKYRAT CHANGE - MORE NEUTRAL WORDING
 		. += {"<span class='cult'>You need to first secure the vassal rack by clicking on it while it is in your lair.</span>"}
 		. += {"<span class='cult'>Simply click and hold on a victim, and then drag their sprite on the vassal rack. Alt click on the vassal rack to unbuckle them.</span>"}
 		. += {"<span class='cult'>Make sure that the victim is handcuffed, or else they can simply run away or resist, as the process is not instant.</span>"}
@@ -166,8 +166,8 @@
 	if(!buckle_mob(M)) // force=TRUE))
 		return
 	// Attempt Buckle
-	user.visible_message("<span class='notice'>[user] straps [M] into the rack, immobilizing them.</span>", \
-			  		 "<span class='boldnotice'>You secure [M] tightly in place. They won't escape you now.</span>")
+	user.visible_message("<span class='notice'>[user] straps [M] into the rack.</span>", \
+			  		 "<span class='boldnotice'>You secure [M] tightly in place.</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
 
 	playsound(src.loc, 'sound/effects/pop_expl.ogg', 25, 1)
 	//M.forceMove(drop_location()) <--- CANT DO! This cancels the buckle_mob() we JUST did (even if we foced the move)
@@ -263,7 +263,7 @@
 	var/datum/antagonist/bloodsucker/B = user.mind.has_antag_datum(ANTAG_DATUM_BLOODSUCKER)
 	// Check Bloodmob/living/M, force = FALSE, check_loc = TRUE
 	if(user.blood_volume < CONVERT_COST + 5)
-		to_chat(user, "<span class='notice'>You don't have enough blood to initiate the Dark Communion with [target].</span>")
+		to_chat(user, "<span class='notice'>You don't have enough blood to initiate the ritual with [target].</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
 		return
 	if(B.count_vassals(user.mind) > B.bloodsucker_level)
 		to_chat(user, "<span class='notice'>Your power is yet too weak to bring more vassals under your control....</span>")
@@ -284,17 +284,17 @@
 			if(convert_progress <= 0)
 				// FAIL: Can't be Vassal
 				if(!SSticker.mode.can_make_vassal(target, user, display_warning = FALSE) || HAS_TRAIT(target, TRAIT_MINDSHIELD)) // If I'm an unconvertable Antag ONLY
-					to_chat(user, "<span class='danger'>[target] doesn't respond to your persuasion. It doesn't appear they can be converted to follow you, they either have a mindshield or their external loyalties are too difficult for you to break.<i>\[ALT+click to release\]</span>")
+					to_chat(user, "<span class='danger'>[target] doesn't respond to your ritual. It doesn't appear they can be converted to follow you, they either have a mindshield or their external loyalties are too difficult for you to break.<i>\[ALT+click to release\]</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
 					convert_progress ++ // Pop it back up some. Avoids wasting Blood on a lost cause.
 				// SUCCESS: All done!
 				else
 					if(RequireDisloyalty(target))
-						to_chat(user, "<span class='boldwarning'>[target] has external loyalties! [target.p_they(TRUE)] will require more <i>persuasion</i> to break [target.p_them()] to your will!</span>")
+						to_chat(user, "<span class='boldwarning'>[target] has external loyalties! [target.p_they(TRUE)] will require more effort to force under your command!</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
 					else
-						to_chat(user, "<span class='notice'>[target] looks ready for the <b>Dark Communion</b>.</span>")
+						to_chat(user, "<span class='notice'>[target] looks ready for the ritual.</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
 			// Still Need More Persuasion...
 			else
-				to_chat(user, "<span class='notice'>[target] could use [convert_progress == 1?"a little":"some"] more <i>persuasion</i>.</span>")
+				to_chat(user, "<span class='notice'>[target] could use [convert_progress == 1?"a little":"some"] more time.</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
 		useLock = FALSE
 		return
 	// Check: Mindshield & Antag
@@ -302,21 +302,21 @@
 		if(!do_disloyalty(user,target))
 			to_chat(user, "<span class='danger'><i>The ritual has been interrupted!</i></span>")
 		else if (!disloyalty_confirm)
-			to_chat(user, "<span class='danger'>[target] refuses to give into your persuasion. Perhaps a little more?</span>")
+			to_chat(user, "<span class='danger'>[target] refuses to give into your ritual. A little bit more effort may suffice.</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
 		else
-			to_chat(user, "<span class='notice'>[target] looks ready for the <b>Dark Communion</b>.</span>")
+			to_chat(user, "<span class='notice'>[target] looks ready for the ritual.</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
 		useLock = FALSE
 		return
 	// Check: Blood
 	if(user.blood_volume < CONVERT_COST)
-		to_chat(user, "<span class='notice'>You don't have enough blood to initiate the Dark Communion with [target], you need [CONVERT_COST - user.blood_volume] units more!</span>")
+		to_chat(user, "<span class='notice'>You don't have enough blood to initiate the ritual with [target], you need [CONVERT_COST - user.blood_volume] units more!</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
 		useLock = FALSE
 		return
 	B.AddBloodVolume(-CONVERT_COST)
 	target.add_mob_blood(user, "<span class='danger'>Youve used [CONVERT_COST] amount of blood to gain a new vassal!</span>")
 	to_chat(user, )
-	user.visible_message("<span class='notice'>[user] marks a bloody smear on [target]'s forehead and puts a wrist up to [target.p_their()] mouth!</span>", \
-				  	  "<span class='notice'>You paint a bloody marking across [target]'s forehead, place your wrist to [target.p_their()] mouth, and subject [target.p_them()] to the Dark Communion.</span>")
+	user.visible_message("<span class='notice'>[user] paints a bloody rune on [target]'s forehead, marking them as a vassal!</span>", \
+				  	  "<span class='notice'>You paint a bloody rune across [target]'s forehead. They are now under your command.</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
 	if(!do_mob(user, src, 50))
 		to_chat(user, "<span class='danger'><i>The ritual has been interrupted!</i></span>")
 		useLock = FALSE
@@ -328,11 +328,11 @@
 		//	to_chat(user, "<span class='danger'><i>The ritual has been interrupted!</i></span>")
 		//	useLock = FALSE
 		//	return
-		user.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE) 	
-		target.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE) 	
+		user.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
+		target.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
 		target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
 		target.Jitter(25)
-		target.emote("laugh")
+		//target.emote("laugh") SKYRAT CHANGE - MORE NEUTRAL WORDING
 		//remove_victim(target) // Remove on CLICK ONLY!
 	useLock = FALSE
 
@@ -392,14 +392,14 @@
 	// OFFER YES/NO NOW!
 	spawn(10)
 		if(useLock && target && target.client) // Are we still torturing? Did we cancel? Are they still here?
-			to_chat(user, "<span class='notice'>[target] has been given the opportunity for servitude. You await their decision...</span>")
-			var/alert_text = "You are being tortured! Do you want to give in and pledge your undying loyalty to [user]?"
+			to_chat(user, "<span class='notice'>[target] has been given the opportunity for service. You await their decision...</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING
+			var/alert_text = "You are being tortured! Do you want to give in and agree to serve [user]?" //SKYRAT CHANGE - MORE NEUTRAL WORDING
 		/*	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 				alert_text += "\n\nYou will no longer be loyal to the station!"
 			if(SSticker.mode.AmValidAntag(target.mind))  */
-			alert_text += "\n\nYou will not lose your current objectives, but they come second to the will of your new master!"
-			switch(alert(target, alert_text,"THE HORRIBLE PAIN! WHEN WILL IT END?!","Yes, Master!", "NEVER!"))
-				if("Yes, Master!")
+			alert_text += "\n\nYou will not lose your current objectives, but they come second to the orders of your new commander!"
+			switch(alert(target, alert_text,"The pain is starting to become unbearable!","FINE!", "NEVER!")) //SKYRAT CHANGE - MORE NEUTRAL WORDING
+				if("FINE!")
 					disloyalty_accept(target)
 				else
 					disloyalty_refuse(target)
@@ -428,7 +428,7 @@
 	// Failsafe: You already said YES.
 	if(disloyalty_confirm)
 		return
-	to_chat(target, "<span class='notice'>You refuse to give in! You <i>will not</i> break!</span>")
+	to_chat(target, "<span class='notice'>You refuse to give in!</span>") //SKYRAT CHANGE - MORE NEUTRAL WORDING ------- END OF SKYRAT CHANGES
 
 
 /obj/structure/bloodsucker/vassalrack/proc/remove_loyalties(mob/living/target)
@@ -490,13 +490,14 @@
 	update_icon()
 
 /obj/structure/bloodsucker/candelabrum/process()
-	if(lit)
-		for(var/mob/living/carbon/human/H in viewers(7, src))
-			var/datum/antagonist/vassal/T = H.mind.has_antag_datum(ANTAG_DATUM_VASSAL)
-			if(AmBloodsucker(H) || T) //We dont want vassals or vampires affected by this
-				return
-			H.hallucination = 20
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "vampcandle", /datum/mood_event/vampcandle)
+	if(!lit)
+		return
+	for(var/mob/living/carbon/human/H in get_actual_viewers(7, src))
+		var/datum/antagonist/vassal/T = H.mind.has_antag_datum(ANTAG_DATUM_VASSAL)
+		if(AmBloodsucker(H) || T) //We dont want vassals or vampires affected by this
+			return
+		H.hallucination = 20
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "vampcandle", /datum/mood_event/vampcandle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //   OTHER THINGS TO USE: HUMAN BLOOD. /obj/effect/decal/cleanable/blood
 
