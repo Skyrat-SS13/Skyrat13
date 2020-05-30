@@ -396,11 +396,19 @@
 	greet = "<span class='userdanger' style='color:rgb(0, 0, 0);'><b>DIG THE PROWESS. THE CAPACITY FOR VIOLENCE!</b></span>"
 	pages_to_mastery = 0
 	remarks = list("In the first age, in the first battle...", "Rip and tear...", "Huge guts...", "Big Fucking gun...")
+	do_after_time = 10
 
 /obj/item/book/granter/martial/berserk/onlearned(mob/user)
-	playsound(source = get_turf(src), soundin = 'modular_skyrat/sound/ambience/e1m1riff.mid', vol = 150, vary = 0, pressure_affected = FALSE)
-	sleep(35) //i could use a timer but this works too whatever.
-	playsound(source = get_turf(src), soundin = 'modular_skyrat/sound/ambience/e1m1.mid', vol = 100, vary = 0, pressure_affected = FALSE)
+	playsound(source = user, soundin = 'modular_skyrat/sound/ambience/e1m1riff.mid', vol = 150, vary = 0, pressure_affected = FALSE)
+	sleep(30) //i could use a timer but this works too whatever.
+	playsound(source = user, soundin = 'modular_skyrat/sound/ambience/e1m1.mid', vol = 100, vary = 0, pressure_affected = FALSE)
+
+/obj/item/book/granter/martial/berserk/on_reading_finished(mob/user)
+	. = ..()
+	var/obj/effect/mine/pickup/bloodbath/berserk/B = new(user)
+	INVOKE_ASYNC(B, /obj/effect/mine/pickup/bloodbath/proc/mineEffect, user)
+	forceMove(user)
+	QDEL_IN(src, 1200)
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()

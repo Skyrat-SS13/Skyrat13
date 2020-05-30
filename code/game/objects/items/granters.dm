@@ -8,6 +8,10 @@
 	var/reading = FALSE //sanity
 	var/oneuse = TRUE //default this is true, but admins can var this to 0 if we wanna all have a pass around of the rod form book
 	var/used = FALSE //only really matters if oneuse but it might be nice to know if someone's used it for admin investigations perhaps
+	//skyrat edit memery
+	var/do_after_time = 50
+	var/do_do_after = TRUE
+	//
 
 /obj/item/book/granter/proc/turn_page(mob/user)
 	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, 1)
@@ -53,8 +57,13 @@
 				on_reading_stopped()
 				reading = FALSE
 				return
-		if(do_after(user,50, TRUE, user))
+		//skyrat edit
+		if(do_do_after)
+			if(do_after(user, do_after_time, TRUE, user))
+				on_reading_finished(user)
+		else
 			on_reading_finished(user)
+		//
 		reading = FALSE
 	return TRUE
 ///TRAITS///

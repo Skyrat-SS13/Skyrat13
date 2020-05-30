@@ -28,33 +28,27 @@
 	light_range = 2
 	light_color = "#0000FF"
 
-/obj/item/book/granter/martial/berserk/on_reading_finished(mob/user)
-	var/obj/effect/mine/pickup/bloodbath/berserk/B = new(user)
-	INVOKE_ASYNC(B, /obj/effect/mine/pickup/bloodbath/.proc/mineEffect, user)
-	message_admins("<span class='adminnotice'>[ADMIN_LOOKUPFLW(user)] has activated a berserk rune!</span>")
-	log_combat(user, null, "activated a berserk rune", src)
-	qdel(src)
-
 /obj/effect/mine/pickup/bloodbath/berserk
-	duration = 300
+	duration = 100
+	var/extraduration = 1100
 
 /obj/effect/mine/pickup/bloodbath/berserk/mineEffect(mob/living/carbon/victim)
 	if(!victim.client || !istype(victim))
 		return
-	to_chat(victim, "<span class='reallybig redtext'>RIP AND TEAR</span>")
+	to_chat(victim, "<span class='reallybig redtext'><b>RIP AND TEAR</b></span>")
 	var/old_color = victim.client.color
 	var/static/list/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
 	var/static/list/pure_red = list(0,0,0,0,0,0,0,0,0,1,0,0)
 
-	victim.log_message("entered a blood frenzy", LOG_ATTACK)
+	victim.log_message("entered a berserk frenzy", LOG_ATTACK)
 	victim.reagents.add_reagent(/datum/reagent/medicine/adminordrazine,50)
 	to_chat(victim, "<span class='warning'>KILL, KILL, KILL!</span>")
 	victim.client.color = pure_red
 	animate(victim.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
 	sleep(duration)
 	victim.client.color = old_color
-	to_chat(victim, "<span class='notice'>Your bloodlust seeps back into the bog of your subconscious and you regain self control.</span>")
-	victim.log_message("exited a blood frenzy", LOG_ATTACK)
+	sleep(extraduration)
+	victim.log_message("exited a berserk frenzy", LOG_ATTACK)
 	qdel(src)
 
 /turf/open/floor/carpet/blue/doomed
