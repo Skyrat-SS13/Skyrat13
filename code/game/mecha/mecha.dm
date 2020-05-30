@@ -52,6 +52,7 @@
 	var/completely_disabled = FALSE //stops the mech from doing anything
 	var/breach_time = 0
 	var/recharge_rate = 0
+	var/weaponized = FALSE //SKYRAT EDIT - Can this mech use weapon equipments?
 
 	var/bumpsmash = 0 //Whether or not the mech destroys walls by running into it.
 	//inner atmos
