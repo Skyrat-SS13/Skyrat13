@@ -545,7 +545,7 @@
 			new /obj/item/gun/ballistic/shotgun/boltaction(src)
 			return list(/obj/item/gun/ballistic/shotgun/boltaction)
 		if(32)
-			new /obj/item/gun/magic/staff/locker/onecharge
+			new /obj/item/gun/magic/staff/locker/trashy
 			return list(/obj/item/gun/magic/staff/locker)
 		if(33)
 			new /obj/item/clothing/accessory/fireresist(src)
@@ -554,9 +554,9 @@
 			new /obj/item/clothing/accessory/lavawalk(src)
 			return list(/obj/item/clothing/accessory/lavawalk)
 
-/obj/item/gun/magic/staff/locker/onecharge
+/obj/item/gun/magic/staff/locker/trashy
 	max_charges = 1
-	recharge_rate = 1
+	recharge_rate = 30 //should take a literal minute to recharge a shot
 
 /obj/item/clothing/accessory/fireresist
 	name = "fire resistance medal"
