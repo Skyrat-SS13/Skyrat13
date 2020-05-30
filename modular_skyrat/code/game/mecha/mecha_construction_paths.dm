@@ -527,21 +527,21 @@
 		),
 		//7
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The main board is installed."
 		),
 		//8
 		list(
 			"key" = /obj/item/circuitboard/mecha/clarke/peripherals,
 			"action" = ITEM_DELETE,
-			"back_key" = TOOL_WIRECUTTER,
+			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "The main board is secured."
 		),
 		//9
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The peripherals control module is installed."
 		),
 		//10
@@ -553,8 +553,8 @@
 		),
 		//11
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The scanning module is installed."
 		),
 		//12
@@ -566,8 +566,8 @@
 		),
 		//13
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The capacitor is installed."
 		),
 		//14
@@ -579,8 +579,8 @@
 		),
 		//15
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The power cell is installed."
 		),
 		//16
