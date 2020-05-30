@@ -819,9 +819,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 					log_game("[key_name(src)] is using the middle click aimbot exploit")
 					message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] is using the middle click aimbot exploit</span>")
 					add_system_note("aimbot", "Is using the middle click aimbot exploit")
-					log_click(object, location, control, params, src, "lockout (spam - minute ab c [ab] s [middragtime])")
+					//log_click(object, location, control, params, src, "lockout (spam - minute ab c [ab] s [middragtime])") //SKYRAT EDIT
 				else
-					log_click(object, location, control, params, src, "lockout (spam - minute)")
+					//log_click(object, location, control, params, src, "lockout (spam - minute)") //SKYRAT EDIT
 				log_game("[key_name(src)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
 				message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
 			to_chat(src, "<span class='danger'>[msg]</span>")
@@ -841,11 +841,11 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			return
 
 	if(ab) //Citadel edit, things with stuff.
-		log_click(object, location, control, params, src, "dropped (ab c [ab] s [middragtime])")
+		//log_click(object, location, control, params, src, "dropped (ab c [ab] s [middragtime])") SKYRAT EDIT
 		return
 
-	if(prefs.log_clicks)
-		log_click(object, location, control, params, src)
+	//if(prefs.log_clicks) //SKYRAT EDIT
+		//log_click(object, location, control, params, src) //SKYRAT EDIT
 
 	if (prefs.hotkeys)
 		// If hotkey mode is enabled, then clicking the map will automatically
