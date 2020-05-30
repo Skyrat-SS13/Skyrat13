@@ -17,7 +17,7 @@ Difficulty: Medium
 */
 /mob/living/simple_animal/hostile/megafauna/dragon/hard
 	name = "enraged ash drake"
-	desc = "Ultra-guardians of the necropolis."
+	desc = "Ultra-guardian of the necropolis."
 	health = 2500
 	maxHealth = 2500
 	armour_penetration = 40
