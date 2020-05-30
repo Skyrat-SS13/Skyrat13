@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Skewer-freeing-fail no longer forces speech if the skewee is dead."

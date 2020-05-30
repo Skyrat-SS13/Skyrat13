@@ -707,24 +707,8 @@
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "acc" = (
-/obj/machinery/computer/security/telescreen/toxins{
-	layer = 4;
-	network = list("toxins");
-	pixel_y = 30
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
-"acd" = (
-/obj/machinery/computer/security/telescreen/toxins{
-	layer = 4;
-	network = list("toxins");
-	pixel_y = 30
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
@@ -1182,6 +1166,10 @@
 	dir = 4;
 	name = "Mass Driver Door";
 	req_access_txt = "7"
+	},
+/obj/machinery/computer/security/telescreen/toxins{
+	dir = 1;
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
@@ -39131,12 +39119,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "btD" = (
-/obj/machinery/chem_dispenser{
-	layer = 2.7
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
+/obj/machinery/chem_dispenser/apothecary,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "btE" = (
@@ -112984,7 +112970,7 @@ aAY
 aAY
 aAY
 abK
-acd
+ace
 acH
 ajC
 abJ
@@ -134611,7 +134597,7 @@ aab
 aab
 aJw
 aKk
-aKk
+aPB
 aLY
 aMU
 aNT

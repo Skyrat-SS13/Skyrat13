@@ -480,7 +480,7 @@ ROUNDSTART_RACES slimeperson
 ROUNDSTART_RACES guilmon
 ROUNDSTART_RACES ipc
 
-## SKYRATS Races
+## SKYRAT Races
 ROUNDSTART_RACES vox
 ROUNDSTART_RACES dunmer
 ROUNDSTART_RACES humanoid
@@ -648,6 +648,11 @@ BREASTS_CUPS_PREFS b
 BREASTS_CUPS_PREFS c
 BREASTS_CUPS_PREFS d
 BREASTS_CUPS_PREFS e
+BREASTS_CUPS_PREFS f
+BREASTS_CUPS_PREFS g
+BREASTS_CUPS_PREFS h
+BREASTS_CUPS_PREFS i
+BREASTS_CUPS_PREFS j
 
 ## Minimum and maximum limits for penis length from the character creation menu.
 PENIS_MIN_INCHES_PREFS 1
@@ -668,3 +673,7 @@ BODY_SIZE_SLOWDOWN_MULTIPLIER 0.25
 
 ## Allows players to set a hexadecimal color of their choice as skin tone, on top of the standard ones.
 ALLOW_CUSTOM_SKINTONES
+
+## Enables the FoV component, which hides objects and mobs behind the parent from their sight, unless they turn around, duh.
+## Camera mobs, AIs, ghosts and some other are of course exempt from this. This also doesn't influence simplemob AI, for the best.
+#USE_FIELD_OF_VISION

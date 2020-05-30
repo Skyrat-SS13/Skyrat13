@@ -466,7 +466,7 @@
 /datum/config_entry/keyed_list/breasts_cups_prefs
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
-	config_entry_value = list("a", "b", "c", "d", "e") //keep these lowercase
+	config_entry_value = list("a", "b", "c", "d", "e", "f", "g", "h", "i", "j") //keep these lowercase //Skyrat edit, added 5 new sizes
 
 /datum/config_entry/number/penis_min_inches_prefs
 	config_entry_value = 1
@@ -511,3 +511,9 @@
 
 //Allows players to set a hexadecimal color of their choice as skin tone, on top of the standard ones.
 /datum/config_entry/flag/allow_custom_skintones
+
+/**
+  * Enables the FoV component, which hides objects and mobs behind the parent from their sight, unless they turn around, duh.
+  * Camera mobs, AIs, ghosts and some other are of course exempt from this. This also doesn't influence simplemob AI, for the best.
+  */
+/datum/config_entry/flag/use_field_of_vision

@@ -27,6 +27,7 @@
 	name = "Shaft Miner (Lavaland)"
 	jobtype = /datum/job/mining
 
+	id = /obj/item/card/id/department/cargo // Skyrat change
 	belt = /obj/item/pda/shaftminer
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	shoes = /obj/item/clothing/shoes/workboots/mining

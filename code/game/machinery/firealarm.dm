@@ -17,6 +17,7 @@
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
+	plane = ABOVE_WALL_PLANE
 	max_integrity = 250
 	integrity_failure = 0.4
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
@@ -34,7 +35,20 @@
 	var/buildstage = 2 // 2 = complete, 1 = no wires, 0 = circuit gone
 	var/last_alarm = 0
 	var/area/myarea = null
-
+//Skyrat changes start
+/obj/machinery/firealarm/examine(mob/user)
+	. = ..()
+	if(GLOB.security_level == SEC_LEVEL_GREEN)
+		. += "The current alert level is green."
+	if(GLOB.security_level == SEC_LEVEL_BLUE)
+		. += "The current alert level is blue."
+	if(GLOB.security_level == SEC_LEVEL_AMBER)
+		. += "The current alert level is amber."
+	if(GLOB.security_level == SEC_LEVEL_RED)
+		. += "The current alert level is red!"
+	if(GLOB.security_level == SEC_LEVEL_DELTA)
+		. += "The current alert level is delta! Evacuate!"
+//Skyrat changes stop
 /obj/machinery/firealarm/Initialize(mapload, dir, building)
 	. = ..()
 	if(dir)

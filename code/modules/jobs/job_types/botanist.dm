@@ -22,6 +22,7 @@
 	name = "Botanist"
 	jobtype = /datum/job/hydro
 
+	id = /obj/item/card/id/department/serv //Skyrat change
 	belt = /obj/item/pda/botanist
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/civilian/hydroponics

@@ -122,3 +122,11 @@
 	build_path = /obj/item/circuitboard/machine/autolathe/toy
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 	category = list("Misc. Machinery")
+
+/datum/design/board/prize_counter
+	name = "Machine Design (Prize Counter)"
+	desc = "The circuit board for an arcade Prize Counter."
+	id = "prize_counter"
+	build_path = /obj/item/circuitboard/machine/prize_counter
+	departmental_flags = DEPARTMENTAL_FLAG_ALL
+	category = list("Misc. Machinery") 

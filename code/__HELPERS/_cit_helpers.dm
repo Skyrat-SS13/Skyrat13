@@ -105,7 +105,8 @@ GLOBAL_VAR_INIT(miscreants_allowed, FALSE)
 		if(!src.holder)	return
 		message_admins("[key_name_admin(usr)] manually reloaded mentors")
 
-/mob/living/carbon/has_penis() //Skyrat change
+/*pretty much everything got moved to modular_skyrat (interactions)
+/mob/living/carbon/has_penis() // Skyrat Change
 	var/obj/item/organ/genital/G = getorganslot(ORGAN_SLOT_PENIS)
 	if(G && istype(G, /obj/item/organ/genital/penis))
 		return TRUE
@@ -126,6 +127,7 @@ GLOBAL_VAR_INIT(miscreants_allowed, FALSE)
 	if(getorganslot(ORGAN_SLOT_BREASTS))
 		return TRUE
 	return FALSE
+*/
 
 /mob/living/carbon/proc/is_groin_exposed(list/L)
 	if(!L)

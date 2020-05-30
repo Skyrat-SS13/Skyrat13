@@ -1,5 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - rscadd: "Added indicators for combat mode, surrendering"
-  - rscadd: "Surrender can now be done by using the \"ff\" emote shortcut in say"
