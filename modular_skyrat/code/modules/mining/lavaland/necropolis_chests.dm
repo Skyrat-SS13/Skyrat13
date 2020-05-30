@@ -441,7 +441,7 @@
 	new /obj/item/gun/magic/wand/fireball(src)
 	new /obj/item/borg/upgrade/modkit/knockback(src)
 	new /obj/item/dragons_blood/distilled(src)
-	new /obj/item/clothing/neck/king(src)
+	new /obj/item/clothing/neck/necklace/memento_mori/king(src)
 
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher
 	name = "enraged fiery dragon chest"
@@ -462,7 +462,7 @@
 	var/uses = 1 //originally the intent was for it to be shared with other miners but apparently improvedname likes when miners powergame and keep shit for themselves so there you go
 	var/list/users = list() //list of people who already drank it. Take your choice, you're not gonna be both lava and stormproof.
 	var/communist = TRUE //can you drink it more than once? true if no
-	var/list/choices = list("Lizard", "Skeleton", "Lava", "Storm", "Organs", "Nothing")
+	var/list/choices = list("Lizard", "Skeleton", "Lava", "Storm", "Organs", "Dragon", "Nothing")
 
 /obj/item/dragons_blood/distilled/attack_self(mob/living/carbon/human/user)
 	if(!istype(user))
@@ -506,6 +506,11 @@
 				newheart.Insert(H)
 				users |= H
 				uses--
+			if("Dragon")
+				to_chat(user, "<span class='danger'>Power courses through you! You can now shift your form at will.</span>")
+				if(user.mind)
+					var/obj/effect/proc_holder/spell/targeted/shapeshift/dragon/akatosh/D = new
+					user.mind.AddSpell(D)
 			else
 				to_chat(user, "<span class='warning'>You think again and take a step back from drinking from the bottle.</span>")
 		if(choice && choice != "Nothing")
@@ -598,77 +603,14 @@
 	if(!beating)
 		beating = !beating
 
-/obj/item/clothing/neck/king
+/obj/item/clothing/neck/necklace/memento_mori/king
 	name = "amulet of kings"
 	desc = "An amulet that shows everyone who the true emperor is."
-	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon = 'modular_skyrat/icons/obj/clothing/neck.dmi'
 	icon_state = "dragon_amulet"
 	item_state = "dragon_amulet"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/neck.dmi'
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	actions_types = list(/datum/action/item_action/hands_free/memento_mori/king)
-	var/spell2grant = /obj/effect/proc_holder/spell/targeted/shapeshift/dragon/akatosh
-	var/mob/living/carbon/human/active_owner
-
-/obj/item/clothing/neck/king/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(slot == SLOT_NECK)
-		for(var/datum/action/A in actions_types)
-			A.Grant(user)
-		user.mind.AddSpell(new spell2grant(null))
-
-/obj/item/clothing/neck/king/dropped(mob/living/carbon/human/user)
-	. = ..()
-	for(var/datum/action/A in actions_types)
-		A.Remove(user)
-	user.mind.RemoveSpell(spell2grant)
-	if(active_owner)
-		active_owner.dust()
-
-/obj/item/clothing/neck/king/ui_action_click(mob/user, action)
-	if(istype(action, /datum/action/item_action/hands_free/memento_mori/king))
-		var/datum/action/item_action/hands_free/memento_mori/king/K = action
-		K.Trigger()
-
-//Just in case
-/obj/item/clothing/neck/king/Destroy()
-	. = ..()
-	if(active_owner)
-		active_owner.dust(TRUE, TRUE)
-
-/obj/item/clothing/neck/king/proc/memento(mob/living/carbon/human/user)
-	to_chat(user, "<span class='warning'>You feel your life being drained by the [src]...</span>")
-	if(do_after(user, 40, target = user))
-		to_chat(user, "<span class='notice'>Your lifeforce is now linked to the [src]! You feel like removing it would kill you, and yet you instinctively know that until then, you won't die.</span>")
-		ADD_TRAIT(user, TRAIT_NODEATH, "amulet_of_kings")
-		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "amulet_of_kings")
-		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "amulet_of_kings")
-		active_owner = user
-
-/obj/item/clothing/neck/king/proc/mori()
-	if(!active_owner)
-		return
-	else
-		REMOVE_TRAIT(active_owner, TRAIT_NODEATH, "amulet_of_kings")
-		REMOVE_TRAIT(active_owner, TRAIT_NOHARDCRIT, "amulet_of_kings")
-		REMOVE_TRAIT(active_owner, TRAIT_NOCRITDAMAGE, "amulet_of_kings")
-		to_chat(active_owner, "<span class='warning'>You are no longer bound to the amulet!</span>")
-		active_owner = null
-
-/datum/action/item_action/hands_free/memento_mori/king
-	check_flags = NONE
-	name = "Dragon Binding"
-	desc = "Bind your life to the amulet."
-
-/datum/action/item_action/hands_free/memento_mori/king/Trigger()
-	var/obj/item/clothing/neck/king/K = target
-	if(!K.active_owner)
-		if(ishuman(owner))
-			K.memento(owner)
-	else
-		to_chat(owner, "<span class='warning'>You try to free your lifeforce from the amulet...</span>")
-		if(do_after(owner, 40, target = owner))
-			K.mori()
 
 //colossus
 /obj/structure/closet/crate/necropolis/colossus/PopulateContents()
