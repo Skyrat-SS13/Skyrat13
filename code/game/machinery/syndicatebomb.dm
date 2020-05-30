@@ -98,6 +98,25 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
+// Skyrat change
+/obj/machinery/syndicatebomb/emag_act(mob/user)
+	. = ..()
+	// Yes, I know it is better to place this under /obj/machinery/syndicatebomb/training/emag_act()
+	// However, adding /any/ proc under that path gave me a compile error 'error: maximum number of internal arrays exceeded (65535)' every single time and I have no clue why
+	// Adding it here doesn't. Idk. The wonders of BYOND.
+	if(!istype(src, /obj/machinery/syndicatebomb/training))
+		return // This functionality is only for making training bombs into real bombs.
+
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
+		return
+	ENABLE_BITFIELD(obj_flags, EMAGGED)
+	to_chat(user, "<span class='warning'>The [src] beeps ominously, and a faint synthetic voice says \"Hardmode activated.\"!</span>")
+	qdel(payload)
+	payload = new /obj/item/bombcore(src)
+	user.log_message("emagged [src] into a real bomb.",LOG_GAME)
+	return TRUE
+// End skyrat change
+
 /obj/machinery/syndicatebomb/examine(mob/user)
 	. = ..()
 	. += "A digital display on it reads \"[seconds_remaining()]\"."
