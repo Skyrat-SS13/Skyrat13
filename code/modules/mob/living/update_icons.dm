@@ -22,10 +22,5 @@
 		resize = RESIZE_DEFAULT_SIZE
 
 	if(changed)
-<<<<<<< HEAD
-		animate(src, transform = ntransform, time = 2, pixel_y = final_pixel_y, dir = final_dir, easing = EASE_IN|EASE_OUT)
-		setMovetype(movement_type & ~FLOATING)  // If we were without gravity, the bouncing animation got stopped, so we make sure we restart it in next life().
-=======
 		animate(src, transform = ntransform, time = 2, pixel_y = final_pixel_y, easing = EASE_IN|EASE_OUT)
 		floating_need_update = TRUE
->>>>>>> 95249a4d79... Fixing some issues with floating movetype & co. (#12262)
