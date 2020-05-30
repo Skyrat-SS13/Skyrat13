@@ -201,13 +201,13 @@
 	config_entry_value = "A major engineering emergency has developed. Non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff."
 
 /datum/config_entry/string/alert_orange_downto
-	config_entry_value = "A major engineering emergency is still underway. Non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff."
+	config_entry_value = "A major engineering emergency has developed. Non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff."
 
 /datum/config_entry/string/alert_violet_upto
 	config_entry_value = "A major medical emergency has developed. Non-medical personnel are required to obey all relevant instructions from medical staff."
 
 /datum/config_entry/string/alert_violet_downto
-	config_entry_value = "A major medical emergency is still underway. Non-medical personnel are required to obey all relevant instructions from medical staff."
+	config_entry_value = "A major medical emergency has developed. Non-medical personnel are required to obey all relevant instructions from medical staff."
 //Skyrat change stop
 /datum/config_entry/string/alert_red_upto
 	config_entry_value = "There is an immediate serious threat to the station. Security is now authorized to use lethal force. Additionally, access requirements on some machines have been lifted."
