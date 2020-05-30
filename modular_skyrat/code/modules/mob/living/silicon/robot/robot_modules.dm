@@ -105,7 +105,7 @@ obj/item/robot_module/butler/Initialize()
 		"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "whitespider"),
 		"Sleek" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "sleekpeace"),
 		"Marina" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "marinapeace"),
-		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakepeacebox")
+		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "drakepeacebox")
 		))
 	var/peace_borg_icon = show_radial_menu(R, R , peace_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 	switch(peace_borg_icon)
