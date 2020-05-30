@@ -55,7 +55,7 @@
 
 //Killdozer
 /datum/design/killdozer_chassis
-	name = "Exosuit Chassis (APLU \"Killdozeer\")"
+	name = "Exosuit Chassis (APLU \"Killdozer\")"
 	id = "killdozer_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/killdozer
@@ -209,3 +209,162 @@
 	construction_time = 500
 	category = list("Misc")
 ///End of Power Armor
+
+//Clarke
+/datum/design/clarke_chassis
+	name = "Exosuit Chassis (\"Clarke\")"
+	id = "clarke_chassis"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/chassis/clarke
+	materials = list(/datum/material/iron=20000)
+	construction_time = 100
+	category = list("Clarke")
+
+/datum/design/clarke_torso
+	name = "Exosuit Torso (\"Clarke\")"
+	id = "clarke_torso"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/clarke_torso
+	materials = list(/datum/material/iron=20000,/datum/material/glass = 7500)
+	construction_time = 200
+	category = list("Clarke")
+
+/datum/design/clarke_head
+	name = "Exosuit Head (\"Clarke\")"
+	id = "clarke_head"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/clarke_head
+	materials = list(/datum/material/iron=6000,/datum/material/glass = 10000)
+	construction_time = 100
+	category = list("Clarke")
+
+/datum/design/clarke_left_arm
+	name = "Exosuit Left Arm (\"Clarke\")"
+	id = "clarke_left_arm"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/clarke_left_arm
+	materials = list(/datum/material/iron=15000)
+	construction_time = 150
+	category = list("Clarke")
+
+/datum/design/clarke_right_arm
+	name = "Exosuit Right Arm (\"Clarke\")"
+	id = "clarke_right_arm"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/clarke_right_arm
+	materials = list(/datum/material/iron=15000)
+	construction_time = 150
+	category = list("Clarke")
+
+/datum/design/conveyor_belt_mechfab
+	name = "Conveyor Belt"
+	id = "conveyor_belt_mechfab"
+	build_type = MECHFAB
+	build_path = /obj/item/stack/conveyor
+	materials = list(/datum/material/iron=2000) //costs less than building one at the autolathe
+	construction_time = 30
+	category = list("Clarke")
+
+//Buzz
+/datum/design/buzz_chassis
+	name = "Exosuit Chassis (\"Buzz\")"
+	id = "buzz_chassis"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/chassis/buzz
+	materials = list(/datum/material/iron=10000, /datum/material/titanium=3000)
+	construction_time = 200
+	category = list("Buzz")
+
+/datum/design/buzz_harness
+	name = "Exosuit Harness (\"Buzz\")"
+	id = "buzz_harness"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_harness
+	materials = list(/datum/material/iron=15000, /datum/material/titanium=2000)
+	construction_time = 165
+	category = list("Buzz")
+
+/datum/design/buzz_cockpit
+	name = "Exosuit Cockpit (\"Buzz\")"
+	id = "buzz_cockpit"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_cockpit
+	materials = list(/datum/material/iron=3000,/datum/material/glass = 15000)
+	construction_time = 150
+	category = list("Buzz")
+
+/datum/design/buzz_left_arm
+	name = "Exosuit Left Arm (\"Buzz\")"
+	id = "buzz_left_arm"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_left_arm
+	materials = list(/datum/material/iron=15000, /datum/material/titanium=2500)
+	construction_time = 100
+	category = list("Buzz")
+
+/datum/design/buzz_right_arm
+	name = "Exosuit Right Arm (\"Buzz\")"
+	id = "buzz_right_arm"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_right_arm
+	materials = list(/datum/material/iron=15000, /datum/material/titanium=2500)
+	construction_time = 100
+	category = list("Buzz")
+
+/datum/design/buzz_left_leg
+	name = "Exosuit Left Leg (\"Buzz\")"
+	id = "buzz_left_leg"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_left_leg
+	materials = list(/datum/material/iron=10000, /datum/material/titanium=2500)
+	construction_time = 75
+	category = list("Buzz")
+
+/datum/design/buzz_right_leg
+	name = "Exosuit Right Leg (\"Buzz\")"
+	id = "buzz_right_leg"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/part/buzz_right_leg
+	materials = list(/datum/material/iron=10000, /datum/material/titanium=2500)
+	construction_time = 75
+	category = list("Buzz")
+
+/datum/design/exosuit_gps
+	name = "Exosuit GPS"
+	desc = "Allows for the construction of an exosuit-fitted GPS."
+	build_type = MECHFAB
+	id = "exogps"
+	build_path = /obj/item/mecha_parts/mecha_equipment/gps
+	materials = list(/datum/material/iron=5000)
+	category = list("Exosuit Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/buzz_lance
+	name = "Buzz Energy Lance"
+	desc = "Allows for the construction of an energy lance module for Buzz mechs."
+	id = "buzz_lance"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/energylance
+	materials = list(/datum/material/iron=5000, /datum/material/titanium=7500, /datum/material/plasma=5000, /datum/material/glass=5000)
+	category = list("Exosuit Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/buzz_clamp
+	name = "Buzz Hydraulic Clamp"
+	desc = "Allows for the construction of a titanium alloy clamp for Buzz mechs."
+	id = "buzz_clamp"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/buzz
+	materials = list(/datum/material/iron=5000, /datum/material/titanium=5000, /datum/material/glass=5000, /datum/material/diamond=1000)
+	category = list("Exosuit Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/buzz_thrusters
+	name = "Buzz Thrusters"
+	desc = "Allows for the construction of a thruster module for Buzz mechs."
+	id = "buzz_thrusters"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/buzzthrusters
+	materials = list(/datum/material/iron=5000, /datum/material/titanium=5000, /datum/material/diamond=3000, /datum/material/uranium=5000)
+	category = list("Exosuit Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
