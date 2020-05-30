@@ -619,7 +619,7 @@
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC|STYLE_NO_ANTHRO_ICON
 	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'
 
-// Reskinnable Trek uniforms, now using Orvi-like by default.
+// Reskinnable Trek uniforms
 /obj/item/clothing/under/trek/command
 	name = "enterprise command uniform"
 	desc = "An enterprise corps uniform worn by command officers."
