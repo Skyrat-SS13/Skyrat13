@@ -365,7 +365,7 @@
 		"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinamed"),
 		"Eyebot" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "eyebotmed"),
 		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymed"),
-		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakemed")
+		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakemedbox") //Need to merge drake into widerobot dmi to make this cleaner.
 		)
 		var/list/L = list("Medihound" = "medihound", "Medihound Dark" = "medihounddark", "Vale" = "valemed")
 		for(var/a in L)
@@ -491,7 +491,7 @@
 		"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinaeng"),
 		"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidereng"),
 		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyeng"),
-		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakeeng")
+		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakeengbox")
 		)
 		var/list/L = list("Pup Dozer" = "pupdozer", "Vale" = "valeeng")
 		for(var/a in L)
@@ -594,7 +594,7 @@
 		"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinasec"),
 		"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidersec"),
 		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavysec"),
-		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakesec")
+		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakesecbox")
 		)
 		var/list/L = list("K9" = "k9", "Vale" = "valesec", "K9 Dark" = "k9dark")
 		for(var/a in L)
@@ -976,7 +976,7 @@
 		"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinamin"),
 		"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canmin"),
 		"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymin"),
-		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakemine")
+		"Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "Drakeminebox")
 		)
 		var/list/L = list("Blade" = "blade", "Vale" = "valemine")
 		for(var/a in L)
