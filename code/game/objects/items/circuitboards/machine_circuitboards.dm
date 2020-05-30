@@ -1078,7 +1078,6 @@
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stack/sheet/glass = 1)
 
-<<<<<<< HEAD
 /obj/item/circuitboard/machine/prize_counter
 	name = "Prize Counter (Machine Board)"
 	build_path = /obj/machinery/prize_counter
@@ -1087,7 +1086,7 @@
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stack/cable_coil = 1,
 		/obj/item/stack/sheet/glass = 1)
-=======
+
 /obj/item/circuitboard/machine/hypnochair
 	name = "Enhanced Interrogation Chamber (Machine Board)"
 	icon_state = "security"
@@ -1096,4 +1095,3 @@
 		/obj/item/stock_parts/micro_laser = 2,
 		/obj/item/stock_parts/scanning_module = 2
 	)
->>>>>>> ab5d65a454... Porting the BEPIS research machinery. (#12277)
