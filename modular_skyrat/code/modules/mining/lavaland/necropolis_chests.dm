@@ -556,7 +556,7 @@
 
 /obj/item/gun/magic/staff/locker/trashy
 	max_charges = 1
-	recharge_rate = 30 //should take a literal minute to recharge a shot
+	recharge_rate = 150 //should take a literal 5 minutes to recharge a single shot
 
 /obj/item/clothing/accessory/fireresist
 	name = "fire resistance medal"
