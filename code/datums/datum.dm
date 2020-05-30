@@ -39,6 +39,11 @@
 	/// A weak reference to another datum
 	var/datum/weakref/weak_reference
 
+//SKYRAT CHANGES BEGIN
+	///Lazy associative list of currently active cooldowns.
+	var/list/cooldowns
+//SKYRAT CHANGES END
+
 #ifdef TESTING
 	var/running_find_references
 	var/last_find_references = 0
@@ -201,3 +206,11 @@
 		qdel(D)
 	else
 		return returned
+
+//SKYRAT CHANGES BEGIN
+///Callback called by a timer to end an associative-list-indexed cooldown.
+/proc/end_cooldown(datum/source, index)
+	if(QDELETED(source))
+		return
+	COOLDOWN_END(source, index)
+//SKYRAT CHANGES END
