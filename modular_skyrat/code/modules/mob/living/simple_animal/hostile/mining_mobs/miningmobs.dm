@@ -53,6 +53,10 @@
 			slayer.heal_overall_damage(gloryhealth,gloryhealth)
 			playsound(src.loc, death_sound, 150, TRUE, -1)
 			crusher_drop_mod *= 2
-			gib()
+			adjustHealth(maxHealth, TRUE, TRUE)
+			if(mob_biotypes & MOB_ORGANIC)
+				new /obj/effect/gibspawner/generic(src.loc)
+			else if(mob_biotypes & MOB_ROBOTIC)
+				new /obj/effect/gibspawner/robot(src.loc)
 		else
 			to_chat(slayer, "<span class='danger'>You fail to glory kill [src]!</span>")

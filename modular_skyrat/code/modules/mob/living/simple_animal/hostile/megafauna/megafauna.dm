@@ -156,8 +156,11 @@
 					visible_message("<span class='danger'><b>[slayer] [message]</b></span>")
 				else
 					visible_message("<span class='danger'><b>[slayer] does something generally considered brutal to [src]... Whatever that may be!</b></span>")
-				health = 0
-				death()
+				adjustHealth(maxHealth, TRUE, TRUE)
+				if(mob_biotypes & MOB_ORGANIC)
+					new /obj/effect/gibspawner/generic(src.loc)
+				else if(mob_biotypes & MOB_ROBOTIC)
+					new /obj/effect/gibspawner/robot(src.loc)
 				slayer.heal_overall_damage(gloryhealth,gloryhealth)
 		else
 			to_chat(slayer, "<span class='danger'>You fail to glory kill [src]!</span>")
