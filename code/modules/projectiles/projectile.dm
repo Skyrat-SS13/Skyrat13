@@ -135,7 +135,7 @@
 	. = ..()
 	permutated = list()
 	decayedRange = range
-	speed /= CONFIG_GET(number/projectile_speed_modifier) //Skyrat changes
+	pixels_per_second *= CONFIG_GET(number/projectile_speed_modifier) //Skyrat changes
 
 /**
   * Artificially modified to be called at around every world.icon_size pixels of movement.
