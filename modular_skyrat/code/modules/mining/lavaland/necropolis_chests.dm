@@ -414,19 +414,14 @@
 	throwforce = 0
 	armour_penetration = 0
 	var/ghost_counter = ghost_check()
-
-	force = clamp((ghost_counter * 10), 15, 50)
-	throwforce = clamp((ghost_counter * 5), 10, 50)
-	armour_penetration = clamp((ghost_counter * 5), 10, 50)
+	force = clamp((ghost_counter * 3), 15, 25)
+	throwforce = clamp((ghost_counter * 3), 5, 18)
+	armour_penetration = clamp((ghost_counter * 3), 0, 35)
 	user.visible_message("<span class='danger'>[user] strikes with the force of [ghost_counter] vengeful spirits!</span>")
-	if(ghost_counter > 7)
-		if(.)
-			var/healmodifier = ghost_counter - 7
-			user.adjustBruteLoss(-max(min(healmodifier * 3, 10), 0), TRUE)
 
 /obj/item/melee/ghost_sword/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	var/ghost_counter = ghost_check()
-	final_block_chance = clamp((ghost_counter * 10), 15, 67)
+	final_block_chance = clamp((ghost_counter * 5), 10, 50)
 	owner.visible_message("<span class='danger'>[owner] is protected by a ring of [ghost_counter] ghosts!</span>")
 	return ..()
 
@@ -853,7 +848,7 @@
 //Sword blocking attacks, really hard to block projectiles but still possible.
 /obj/item/melee/sword_of_the_forsaken/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	if(attack_type == ATTACK_TYPE_PROJECTILE)
-		final_block_chance = 10 //buffy time
+		final_block_chance = 10 //half as much what you get in melee
 	return ..()
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=End of Sworf Of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
