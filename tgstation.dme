@@ -3347,11 +3347,7 @@
 #include "modular_citadel\code\datums\status_effects\chems.dm"
 #include "modular_citadel\code\game\objects\cit_screenshake.dm"
 #include "modular_citadel\code\game\objects\effects\temporary_visuals\souldeath.dm"
-<<<<<<< HEAD
 #include "modular_citadel\code\game\objects\items\cards_ids.dm"
-#include "modular_citadel\code\modules\admin\chat_commands.dm"
-=======
->>>>>>> 07df0102f8... Demodularizing a few reagents, a client var, the rest hud button. (#12329)
 #include "modular_citadel\code\modules\admin\holder2.dm"
 #include "modular_citadel\code\modules\admin\secrets.dm"
 #include "modular_citadel\code\modules\client\client_procs.dm"
@@ -3422,8 +3418,6 @@
 #include "modular_citadel\code\modules\reagents\chemistry\recipes\fermi.dm"
 #include "modular_citadel\code\modules\reagents\objects\clothes.dm"
 #include "modular_citadel\code\modules\reagents\objects\items.dm"
-<<<<<<< HEAD
-#include "modular_citadel\code\modules\reagents\reagents\cit_reagents.dm"
 #include "modular_citadel\code\modules\spells\spell.dm"
 #include "modular_skyrat\code\_DEFINES\access.dm"
 #include "modular_skyrat\code\_DEFINES\admin.dm"
@@ -3925,6 +3919,4 @@
 #include "modular_skyrat\code\modules\zombie\items.dm"
 #include "modular_skyrat\code\modules\zombie\organs.dm"
 #include "modular_skyrat\tools\Redirector\textprocs.dm"
-=======
->>>>>>> 07df0102f8... Demodularizing a few reagents, a client var, the rest hud button. (#12329)
 // END_INCLUDE
