@@ -336,6 +336,7 @@
 	id = "exogps"
 	build_path = /obj/item/mecha_parts/mecha_equipment/gps
 	materials = list(/datum/material/iron=5000)
+	construction_time = 100
 	category = list("Exosuit Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
@@ -346,6 +347,7 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/energylance
 	materials = list(/datum/material/iron=5000, /datum/material/titanium=7500, /datum/material/plasma=5000, /datum/material/glass=5000)
+	construction_time = 100
 	category = list("Exosuit Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
@@ -356,6 +358,7 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/buzz
 	materials = list(/datum/material/iron=5000, /datum/material/titanium=5000, /datum/material/glass=5000, /datum/material/diamond=1000)
+	construction_time = 100
 	category = list("Exosuit Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
@@ -366,5 +369,6 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/buzzthrusters
 	materials = list(/datum/material/iron=5000, /datum/material/titanium=5000, /datum/material/diamond=3000, /datum/material/uranium=5000)
+	construction_time = 100
 	category = list("Exosuit Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
