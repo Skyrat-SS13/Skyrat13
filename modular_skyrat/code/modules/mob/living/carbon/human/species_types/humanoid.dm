@@ -29,6 +29,7 @@
 	mutanteyes = /obj/item/organ/eyes/dunmer
 	mutantears = /obj/item/organ/ears/dunmer
 	icon_eyes = 'modular_skyrat/icons/mob/dunmer_face.dmi'
+	languagewhitelist = list("Dunmeri")
 
 /obj/item/organ/lungs/dunmer
 	name = "adapted ash lungs"

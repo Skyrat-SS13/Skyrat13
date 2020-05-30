@@ -52,7 +52,8 @@
 			var/new_preference = stripped_multiline_input(usr, "Here you can add what kinds of events you'd \
 				like to be part of most. Add your own ideas for ones you'd like done for yourself, or for \
 				the station as a whole.", "Event Preferences", usr.client.prefs.event_prefs, MAX_MESSAGE_LEN)
-			usr.client.prefs.event_prefs = new_preference
+			if (new_preference)
+				usr.client.prefs.event_prefs = new_preference
 		if("show_panel")
 			var/mob/to_show = locate(params["ref"])
 			usr.client.holder.show_player_panel(to_show)
