@@ -109,6 +109,10 @@
 				disguise = "Drake"
 				disguise_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
 				disguise_pixel_offset = -16
+			if("Drake")
+				disguise = "Drake"
+				disguise_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
+				disguise_pixel_offset = -16
 		animation_playing = TRUE
 		to_chat(user, "<span class='notice'>You activate \the [src].</span>")
 		playsound(src, 'sound/effects/seedling_chargeup.ogg', 100, TRUE, -6)
