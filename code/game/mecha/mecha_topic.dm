@@ -46,7 +46,7 @@
 						[src.get_commands()]
 						</div>
 						<div id='gps'>
-						[src.gps_meme()]
+						[src.gps_info()]
 						</div>
 						</body>
 						</html>
@@ -153,7 +153,7 @@
 
 //SKYRAT CHANGE - funny gps
 //terrible html formatting below, be warned.
-/obj/mecha/proc/gps_meme()
+/obj/mecha/proc/gps_info()
 	var/obj/item/mecha_parts/mecha_equipment/gps/funny = null
 	for(var/obj/item/mecha_parts/mecha_equipment/gps/funney in equipment)
 		funny = funney
