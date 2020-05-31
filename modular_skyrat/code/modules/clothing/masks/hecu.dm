@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/gas/hecu
 	name = "HECU mask"
-	desc = "MY. ASS. IS. HEAVY."
+	desc = "An ancient gas mask with the letters HECU stamped on the side. Comes with a shouting-activated voice modulator that slowly recharges. \n MY. ASS. IS. HEAVY."
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
 	icon_state = "hecu_mask"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
@@ -31,12 +31,12 @@
 		"yes" , "yessir" , "you" , "your" , "zero" , "zone" , "zulu" , "meters" , "seven" , "eight" , "hundred" , "to" , "too"
 		)
 
-/obj/item/clothing/mask/gas/hecu/examine(var/mob/user)
+/obj/item/clothing/mask/gas/hecu/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Alt-click the mask to see the list of available words.</span>"
 	. += "<span class='notice'>Charge: [mask_charge]/[max_charge] </span>"
 
-/obj/item/clothing/mask/gas/hecu/AltClick(var/mob/user)
+/obj/item/clothing/mask/gas/hecu/AltClick(mob/user)
 	var/message = "Known words: "
 	if((user.incapacitated() || !Adjacent(user)))
 		return
@@ -83,6 +83,6 @@
 		for(var/i=1,i<=words_to_say.len,i++)
 			if(mask_charge >= word_cost)
 				mask_charge -= word_cost
-				playsound(src.loc, "modular_skyrat/sound/voice/vox_hecu/[words_to_say[i]]!.wav", 100, 0, 4)
+				playsound(src.loc, "modular_skyrat/sound/voice/vox_hecu/[words_to_say[i]]!.wav", 40, 0, 4)
 				sleep(7)
 		words_to_say.Cut()
