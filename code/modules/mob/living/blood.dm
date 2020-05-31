@@ -263,7 +263,17 @@
 		"X*" = list("X*", "SY"),
 		"SY" = list("SY"),
 		"GEL" = list("GEL","SY"),
-		"BUG" = list("BUG", "SY")
+		"BUG" = list("BUG", "SY"),
+		//Skyrat change - more blood
+		"PL" = list("PL", "SY"),
+		"AL" = list("AL", "SY"),
+		"GREY" = list("GREY", "SY"),
+		"ANGL" = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "ANGL", "SY", "HF", "PL", "AL", "GREY",\
+						"GEL", "BUG", "X", "L", "U", "SPOR", "DRK", "S"),
+		"SPOR" = list("SPOR", "SY"),
+		"DRK" = list("DRK", "HF", "SY"),
+		"S" = list("S", "SY", "HF"),
+		"BHZ" = list("BHZ", "SY", "DRK", "BUG", "GREY")
 	)
 
 	var/safe = bloodtypes_safe[bloodtype]

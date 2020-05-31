@@ -23,7 +23,14 @@
 
 	mutanteyes = /obj/item/organ/eyes/night_vision/mushroom
 	var/datum/martial_art/mushpunch/mush
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SPOR")
+	exotic_bloodtype = "SPOR"
 	languagewhitelist = list("Mushroom") //Skyrat change - species language whitelist
+	//
+
+/datum/species/mush/after_equip_job(datum/job/J, mob/living/carbon/human/H)
+	//H.grant_language(/datum/language/mushroom) //pomf pomf
 	species_language_holder = /datum/language_holder/mushroom
 /*
 /datum/species/mush/after_equip_job(datum/job/J, mob/living/carbon/human/H)
