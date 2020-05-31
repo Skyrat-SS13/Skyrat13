@@ -1,0 +1,4 @@
+author: "Anonymous"
+delete-after: True
+changes: 
+  - bugfix: "Fixes missing trek uniforms that wasn't TOS by object path. This will, however, revert default appearance of enterprise corp uniforms (cmd/medsci/ops) back to TOS-era. Use reskinning!"
