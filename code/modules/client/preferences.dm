@@ -429,7 +429,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			if(pref_species.bloodtypes.len)
 				dat += "Blood type :"
 				dat += 	"<a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default"]</a><br>"
-			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>
+			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
 			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
 			/*Skyrat edit - comments out Citadel's OOC notes in favor for our owns
