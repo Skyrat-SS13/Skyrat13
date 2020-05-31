@@ -22,9 +22,11 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	if(!quirks.len)
 		SetupQuirks()
 		quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic"),list("Ageusia","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Alcohol Intolerance"),list("Alcohol Intolerance","Drunken Resilience"),list("Speech impediment (r as l)","Speech impediment (l as w)","Speech impediment (r as w)", "Speech impediment (r and l as w)")) // Skyrat edit
+	//skyrat edit
 	if(!all_bloodtypes.len)
 		for(var/datum/species/S in subtypesof(/datum/species))
 			all_bloodtypes |= S.exotic_bloodtype
+	//
 	return ..()
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
