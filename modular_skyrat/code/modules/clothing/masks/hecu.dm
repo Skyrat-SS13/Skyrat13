@@ -80,9 +80,12 @@
 
 /obj/item/clothing/mask/gas/hecu/proc/say_words()
 	if(words_to_say.len > 0)
+		playsound(src.loc, "modular_skyrat/sound/voice/vox_hecu/_beginning.wav", 40, 0, 4)
+		sleep(7)
 		for(var/i=1,i<=words_to_say.len,i++)
 			if(mask_charge >= word_cost)
 				mask_charge -= word_cost
 				playsound(src.loc, "modular_skyrat/sound/voice/vox_hecu/[words_to_say[i]]!.wav", 40, 0, 4)
 				sleep(7)
+		playsound(src.loc, "modular_skyrat/sound/voice/vox_hecu/_end.wav", 40, 0, 4)
 		words_to_say.Cut()
