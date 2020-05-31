@@ -162,7 +162,7 @@
 	icon_state = "mininghud"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/eyes.dmi'
 	var/mob/living/carbon/human/wearer
-	cooldown = 35
+	cooldown = 30
 	var/current_cooldown = 0
 	var/range = 7
 
@@ -192,12 +192,6 @@
 	desc = "Essentially a worn version of the advanced mining scanner. Helps the nearsighted."
 	vision_correction = 1
 
-/obj/item/clothing/glasses/hud/mining/meson
-	desc = "Essentially a worn version of the advanced mining scanner. Works as meson goggles too."
-	darkness_view = 2
-	vision_flags = SEE_TURFS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-
 /obj/item/clothing/glasses/hud/mining/sunglasses
 	name = "sunglasses ore scanner HUD"
 	desc = "Mine with style!"
@@ -215,16 +209,7 @@
 	flash_protect = 1
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
-
-/obj/item/clothing/glasses/hud/mining/meson/sunglasses
-	name = "sunglasses ore scanner HUD"
-	desc = "Mine with style! And with mesons, because your vision is augmented."
-	icon_state = "sunhudmine"
-	darkness_view = 1
-	flash_protect = 1
-	tint = 1
-	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
-
+/* this is quite buggy and doesn't work well
 /obj/item/clothing/glasses/hud/mining/fauna
 	name = "ore and fauna scanner HUD"
 	desc = "Essentially a worn version of the advanced mining scanner, but also allows you to scan the health of fauna."
@@ -246,3 +231,4 @@
 	flash_protect = 1
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
+*/

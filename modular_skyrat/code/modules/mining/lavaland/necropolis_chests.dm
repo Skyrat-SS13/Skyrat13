@@ -71,7 +71,7 @@
 	var/loot = rand(1,3)
 	switch(loot)
 		if(1)
-			new /obj/item/book/granter/martial/berserk(src)
+			new /obj/item/mayhem(src)
 		if(2)
 			new /obj/item/blood_contract(src)
 		if(3)
@@ -84,7 +84,7 @@
 	var/loot = rand(1,3)
 	switch(loot)
 		if(1)
-			new /obj/item/book/granter/martial/berserk(src)
+			new /obj/item/mayhem(src)
 		if(2)
 			new /obj/item/blood_contract(src)
 		if(3)
@@ -94,7 +94,7 @@
 	name = "enraged bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
-	new /obj/item/book/granter/martial/berserk(src)
+	new /obj/item/mayhem(src)
 	new /obj/item/blood_contract(src)
 	new /obj/item/twohanded/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
@@ -105,7 +105,7 @@
 	name = "enraged bloody bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher/PopulateContents()
-	new /obj/item/book/granter/martial/berserk(src)
+	new /obj/item/mayhem(src)
 	new /obj/item/blood_contract(src)
 	new /obj/item/twohanded/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
@@ -385,31 +385,6 @@
 	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	mutantrace_variation = STYLE_MUZZLE
 
-//berserk rune
-/obj/item/book/granter/martial/berserk
-	name = "Strange Rune"
-	desc = "Tales tell that this rune may grant the user power beyond measure... for a limited time."
-	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
-	icon_state = "berserk"
-	martial = /datum/martial_art/berserk
-	martialname = "berserk"
-	greet = "<span class='userdanger' style='color:rgb(0, 0, 0);'><b>DIG THE PROWESS. THE CAPACITY FOR VIOLENCE!</b></span>"
-	pages_to_mastery = 0
-	remarks = list("In the first age, in the first battle...", "Rip and tear...", "Huge guts...", "Big Fucking gun...")
-	do_after_time = 10
-
-/obj/item/book/granter/martial/berserk/onlearned(mob/user)
-	playsound(source = user, soundin = 'modular_skyrat/sound/ambience/e1m1riff.mid', vol = 150, vary = 0, pressure_affected = FALSE)
-	sleep(30) //i could use a timer but this works too whatever.
-	playsound(source = user, soundin = 'modular_skyrat/sound/ambience/e1m1.mid', vol = 100, vary = 0, pressure_affected = FALSE)
-
-/obj/item/book/granter/martial/berserk/on_reading_finished(mob/user)
-	. = ..()
-	var/obj/effect/mine/pickup/bloodbath/berserk/B = new(user)
-	INVOKE_ASYNC(B, /obj/effect/mine/pickup/bloodbath/.proc/mineEffect, user)
-	forceMove(user)
-	QDEL_IN(src, 1200)
-
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
 	new /obj/item/borg/upgrade/modkit/knockback(src)
@@ -470,7 +445,7 @@
 	var/uses = 1 //originally the intent was for it to be shared with other miners but apparently improvedname likes when miners powergame and keep shit for themselves so there you go
 	var/list/users = list() //list of people who already drank it. Take your choice, you're not gonna be both lava and stormproof.
 	var/communist = TRUE //can you drink it more than once? true if no
-	var/list/choices = list("Lizard", "Skeleton", "Lava", "Storm", "Organs", "Dragon", "Nothing")
+	var/list/choices = list("Lizard", "Skeleton", "Lava", "Storm", "Dragon", "Nothing")
 
 /obj/item/dragons_blood/distilled/attack_self(mob/living/carbon/human/user)
 	if(!istype(user))
@@ -506,14 +481,6 @@
 				H.weather_immunities |= "snow"
 				users |= H
 				uses--
-			if("Organs")
-				to_chat(user, "<span class='danger'>Your lungs and heart feel... way more robust. Wait, what is that on the ground?</span>")
-				var/obj/item/organ/lungs/super/newlungs = new /obj/item/organ/lungs/super(src.loc)
-				newlungs.Insert(H)
-				var/obj/item/organ/heart/undying/newheart = new /obj/item/organ/heart/undying(src.loc)
-				newheart.Insert(H)
-				users |= H
-				uses--
 			if("Dragon")
 				to_chat(user, "<span class='danger'>Power courses through you! You can now shift your form at will.</span>")
 				if(user.mind)
@@ -533,7 +500,7 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-	var/random = rand(1,6)
+	var/random = rand(1,5)
 
 	switch(random)
 		if(1)
@@ -556,60 +523,8 @@
 			to_chat(user, "<span class='danger'>You feel like no type of storm could burn you.</span>")
 			H.weather_immunities |= "ash"
 			H.weather_immunities |= "snow"
-		if(6)
-			to_chat(user, "<span class='danger'>Your lungs and heart feel... way more robust. Wait, what is that on the ground?</span>")
-			var/obj/item/organ/lungs/super/newlungs = new /obj/item/organ/lungs/super(src.loc)
-			newlungs.Insert(H)
-			var/obj/item/organ/heart/undying/newheart = new /obj/item/organ/heart/undying(src.loc)
-			newheart.Insert(H)
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
-
-/obj/item/organ/lungs/super
-	name = "super lungs"
-	desc = "Do these things even breathe or are they purely cosmetic?"
-	safe_oxygen_min = 0
-	safe_oxygen_max = 4000
-	safe_nitro_min = 0
-	safe_nitro_max = 0
-	safe_co2_min = 0
-	safe_co2_max = 4000
-	safe_toxins_min = 0
-	safe_toxins_max = 4000
-	SA_para_min = 4000
-	SA_sleep_min = 4000
-	BZ_trip_balls_min = 4000
-	gas_stimulation_min = 0.0005
-	cold_level_1_threshold = 0
-	cold_level_2_threshold = 0
-	cold_level_3_threshold = 0
-	heat_level_1_threshold = 4000
-	heat_level_2_threshold = 4000
-	heat_level_3_threshold = 4000
-	crit_stabilizing_reagent = /datum/reagent/medicine //any medicine will stabilize you lol
-
-/obj/item/organ/heart/undying
-	name = "undying heart"
-	desc = "This heart pumps with passion for life. It won't ever stop beating."
-	organ_flags = ORGAN_SYNTHETIC
-	var/min_next_adrenaline = 0
-	var/amount2heal = 5
-
-/obj/item/organ/heart/undying/Stop() //IT WON'T LET GO.
-	return 0
-
-/obj/item/organ/heart/undying/on_life()
-	. = ..()
-	if(owner.health <= 5 && world.time > min_next_adrenaline)
-		min_next_adrenaline = world.time + rand(300, 600) //anywhere from 30 seconds to 1 minute (i think?)
-		to_chat(owner, "<span class='userdanger'>You feel yourself dying, but you refuse to give up!</span>")
-		owner.heal_overall_damage(amount2heal, amount2heal)
-		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
-			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)
-	if(damage >= (maxHealth/4)*2) //if at 75% or more damage, heal time
-		damage -= rand(1, 15)
-	if(!beating)
-		beating = !beating
 
 /obj/item/clothing/neck/necklace/memento_mori/king
 	name = "amulet of kings"

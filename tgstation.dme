@@ -3464,7 +3464,6 @@
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\heal.dm"
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\sensory.dm"
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\viral.dm"
-#include "modular_skyrat\code\datums\martial\berserk.dm"
 #include "modular_skyrat\code\datums\mood_events\generic_negative_events.dm"
 #include "modular_skyrat\code\datums\mood_events\generic_positive_events.dm"
 #include "modular_skyrat\code\datums\ruins\lavaland.dm"
