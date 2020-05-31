@@ -3,7 +3,7 @@
 					/obj/item/clothing/suit/armor/vest/cparmor = 3,
 					/obj/item/clothing/mask/gas/sechailer/cpmask = 3,
 					/obj/item/clothing/head/helmet/cphood = 3,
-					/obj/item/clothing/mask/gas/sechailer/hecu = 3)
+					/obj/item/clothing/mask/gas/hecu = 3)
 
 /obj/machinery/vending/wardrobe/robo_wardrobe/Initialize()
 	products[/obj/item/storage/backpack/science/robo] = 3
