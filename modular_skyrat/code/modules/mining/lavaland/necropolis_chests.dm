@@ -423,7 +423,7 @@
 	new /obj/item/book/granter/spell/sacredflame(src)
 	new /obj/item/gun/magic/wand/fireball(src)
 	new /obj/item/borg/upgrade/modkit/knockback(src)
-	new /obj/item/dragons_blood/distilled(src)
+	new /obj/item/dragons_blood(src)
 	new /obj/item/clothing/neck/necklace/memento_mori/king(src)
 
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher
@@ -434,97 +434,9 @@
 	new /obj/item/lava_staff(src)
 	new /obj/item/book/granter/spell/sacredflame(src)
 	new /obj/item/gun/magic/wand/fireball(src)
-	new /obj/item/dragons_blood/distilled(src)
+	new /obj/item/dragons_blood(src)
 	new /obj/item/clothing/neck/necklace/memento_mori/king(src)
 	new /obj/item/crusher_trophy/tail_spike(src)
-
-
-/obj/item/dragons_blood/distilled
-	name = "bottle of distilled dragon's blood"
-	desc = "You ARE going to drink this. Once."
-	var/uses = 1 //originally the intent was for it to be shared with other miners but apparently improvedname likes when miners powergame and keep shit for themselves so there you go
-	var/list/users = list() //list of people who already drank it. Take your choice, you're not gonna be both lava and stormproof.
-	var/communist = TRUE //can you drink it more than once? true if no
-	var/list/choices = list("Lizard", "Skeleton", "Lava", "Storm", "Dragon", "Nothing")
-
-/obj/item/dragons_blood/distilled/attack_self(mob/living/carbon/human/user)
-	if(!istype(user))
-		return
-	var/mob/living/carbon/human/H = user
-	var/choice = input(H,"What blessing will you receive?","Choose your blessing") as null|anything in choices
-	if(uses)
-		if(communist)
-			if(users.Find(H))
-				to_chat(user, "<span class='danger'>You have already gotten your blessing, fool!</span>")
-				return
-		switch(choice)
-			if("Lizard")
-				to_chat(user, "<span class='danger'>Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a freak without the cool abilities.</span>")
-				H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade")
-				H.eye_color = "fee5a3"
-				H.set_species(/datum/species/lizard)
-				users |= H
-				uses--
-			if("Skeleton")
-				to_chat(user, "<span class='danger'>Your flesh begins to melt! Miraculously, you seem fine otherwise.</span>")
-				H.set_species(/datum/species/skeleton)
-				users |= H
-				uses--
-			if("Lava")
-				to_chat(user, "<span class='danger'>You feel like you could walk straight through lava now.</span>")
-				H.weather_immunities |= "lava"
-				users |= H
-				uses--
-			if("Storm")
-				to_chat(user, "<span class='danger'>You feel like no type of storm could burn you.</span>")
-				H.weather_immunities |= "ash"
-				H.weather_immunities |= "snow"
-				users |= H
-				uses--
-			if("Dragon")
-				to_chat(user, "<span class='danger'>Power courses through you! You can now shift your form at will.</span>")
-				if(user.mind)
-					var/obj/effect/proc_holder/spell/targeted/shapeshift/dragon/akatosh/D = new
-					user.mind.AddSpell(D)
-			else
-				to_chat(user, "<span class='warning'>You think again and take a step back from drinking from the bottle.</span>")
-		if(choice && choice != "Nothing")
-			playsound(user.loc,'sound/items/drink.ogg', rand(25,50), 1)
-	else
-		to_chat(user, "<span class='warning'>You try drinking the bottle... but it's empty! And now it's just a normal vial!</span>")
-		new /obj/item/reagent_containers/glass/bottle/vial(user.loc)
-		qdel(src)
-
-/obj/item/dragons_blood/attack_self(mob/living/carbon/human/user)
-	if(!istype(user))
-		return
-
-	var/mob/living/carbon/human/H = user
-	var/random = rand(1,5)
-
-	switch(random)
-		if(1)
-			to_chat(user, "<span class='danger'>Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a freak without the cool abilities.</span>")
-			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade")
-			H.eye_color = "fee5a3"
-			H.set_species(/datum/species/lizard)
-		if(2)
-			to_chat(user, "<span class='danger'>Your flesh begins to melt! Miraculously, you seem fine otherwise.</span>")
-			H.set_species(/datum/species/skeleton)
-		if(3)
-			to_chat(user, "<span class='danger'>Power courses through you! You can now shift your form at will.</span>")
-			if(user.mind)
-				var/obj/effect/proc_holder/spell/targeted/shapeshift/dragon/D = new
-				user.mind.AddSpell(D)
-		if(4)
-			to_chat(user, "<span class='danger'>You feel like you could walk straight through lava now.</span>")
-			H.weather_immunities |= "lava"
-		if(5)
-			to_chat(user, "<span class='danger'>You feel like no type of storm could burn you.</span>")
-			H.weather_immunities |= "ash"
-			H.weather_immunities |= "snow"
-	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
-	qdel(src)
 
 /obj/item/clothing/neck/necklace/memento_mori/king
 	name = "amulet of kings"
