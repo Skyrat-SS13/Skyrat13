@@ -14,7 +14,6 @@
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	speech_span = SPAN_ROBOT
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1
-	vore_flags = NO_VORE
 	/// Enable sprint system but not stamina
 	combat_flags = COMBAT_FLAGS_STAMEXEMPT_YESSPRINT
 
