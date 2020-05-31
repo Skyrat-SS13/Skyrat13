@@ -10,3 +10,4 @@
 	earliest_start = 10 MINUTES
 	repeatable = TRUE
 	property_weights = list("extended" = 1)
+	occurances_max = 1
