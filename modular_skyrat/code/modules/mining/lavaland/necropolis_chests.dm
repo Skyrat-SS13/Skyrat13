@@ -406,7 +406,7 @@
 /obj/item/book/granter/martial/berserk/on_reading_finished(mob/user)
 	. = ..()
 	var/obj/effect/mine/pickup/bloodbath/berserk/B = new(user)
-	INVOKE_ASYNC(B, /obj/effect/mine/pickup/bloodbath/proc/mineEffect, user)
+	INVOKE_ASYNC(B, /obj/effect/mine/pickup/bloodbath/.proc/mineEffect, user)
 	forceMove(user)
 	QDEL_IN(src, 1200)
 
