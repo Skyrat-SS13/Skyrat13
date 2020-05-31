@@ -238,6 +238,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["see_chat_emotes"] 	>> see_chat_emotes
 	S["event_participation"] >> event_participation
 	S["event_prefs"] >> event_prefs
+	S["appear_in_round_end_report"]	>> appear_in_round_end_report
 	//SKYRAT CHANGES END
 
 
@@ -281,7 +282,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["preferred_chaos"]	>> preferred_chaos
 	S["auto_ooc"]			>> auto_ooc
 	S["no_tetris_storage"]		>> no_tetris_storage
-
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -332,9 +332,25 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	see_chat_emotes	= sanitize_integer(see_chat_emotes, 0, 1, initial(see_chat_emotes))
 	event_participation = sanitize_integer(event_participation, 0, 1, initial(event_participation))
 	event_prefs = sanitize_text(event_prefs)
+	appear_in_round_end_report	= sanitize_integer(appear_in_round_end_report, 0, 1, initial(appear_in_round_end_report))
 	//SKYRAT CHANGES END
 
+	verify_keybindings_valid()		// one of these days this will runtime and you'll be glad that i put it in a different proc so no one gets their saves wiped
+
 	return 1
+
+/datum/preferences/proc/verify_keybindings_valid()
+	// Sanitize the actual keybinds to make sure they exist.
+	for(var/key in key_bindings)
+		if(!islist(key_bindings[key]))
+			key_bindings -= key
+		var/list/binds = key_bindings[key]
+		for(var/bind in binds)
+			if(!GLOB.keybindings_by_name[bind])
+				binds -= bind
+		if(!length(binds))
+			key_bindings -= key
+	// End
 
 /datum/preferences/proc/save_preferences()
 	if(!path)
@@ -406,6 +422,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["see_chat_emotes"], see_chat_emotes)
 	WRITE_FILE(S["event_participation"], event_participation)
 	WRITE_FILE(S["event_prefs"], event_prefs)
+	WRITE_FILE(S["appear_in_round_end_report"], appear_in_round_end_report)
 	//SKYRAT CHANGES END
 
 	return 1

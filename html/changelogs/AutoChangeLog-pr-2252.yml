@@ -1,0 +1,5 @@
+author: "ShadeAware"
+delete-after: True
+changes: 
+  - rscadd: "New AI Malf nuke sound.
+remove: Old AI Malf nuke sound."
