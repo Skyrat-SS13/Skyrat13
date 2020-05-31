@@ -3459,6 +3459,7 @@
 #include "modular_skyrat\code\datums\components\crafting\recipes\recipes_misc.dm"
 #include "modular_skyrat\code\datums\components\crafting\recipes\recipes_weapon_and_ammo.dm"
 #include "modular_skyrat\code\datums\components\crafting\recipes\recipeswhat.dm"
+#include "modular_skyrat\code\datums\diseases\anaphylactic.dm"
 #include "modular_skyrat\code\datums\diseases\fluxitus.dm"
 #include "modular_skyrat\code\datums\diseases\advance\presets.dm"
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\genetics.dm"

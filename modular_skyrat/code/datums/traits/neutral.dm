@@ -112,3 +112,25 @@
 	var/datum/brain_trauma/severe/hypnotic_stupor/T = new()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
+
+//uncontrollable laughter
+/datum/quirk/joker
+	name = "Pseudobulbar Affect"
+	desc = "At random intervals, you suffer uncontrollable bursts of laughter."
+	value = 0
+	medical_record_text = "Patient suffers with sudden and uncontrollable bursts of laughter."
+	var/pcooldown = 0
+	var/pcooldown_time = 20 SECONDS
+
+/datum/quirk/joker/process()
+	if(pcooldown > world.time)
+		return
+	pcooldown = world.time + pcooldown_time
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H && istype(H))
+		if(H.stat == CONSCIOUS)
+			if(prob(15))
+				H.emote("laugh")
+				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 3 SECONDS)
+				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 6 SECONDS)
+				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 10 SECONDS)
