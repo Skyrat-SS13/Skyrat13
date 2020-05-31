@@ -25,7 +25,10 @@
 		to_chat(usr, "You seem to be selecting a mob that doesn't exist anymore.")
 		return
 
-	var/body = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Options for [M.key]</title></head>"
+//SKYRAT CHANGES BEGIN
+	var/list/body = list("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Options for [M.key]</title></head>")
+//SKYRAT CHANGES END
+
 	body += "<body>Options panel for <b>[M]</b>"
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
@@ -126,6 +129,10 @@
 	body += "<A href='?_src_=holder;[HrefToken()];narrateto=[REF(M)]'>Narrate to</A> | "
 	body += "<A href='?_src_=holder;[HrefToken()];subtlemessage=[REF(M)]'>Subtle message</A> | "
 	body += "<A href='?_src_=holder;[HrefToken()];languagemenu=[REF(M)]'>Language Menu</A>"
+//SKYRAT CHANGES BEGIN
+	if(M.mind)
+		body += " | <A href='?_src_=holder;[HrefToken()];ObjectiveRequest=[REF(M.mind)]'>Objective-Ambition Menu</A>"
+//SKYRAT CHANGES END
 
 	if (M.client)
 		if(!isnewplayer(M))
@@ -207,7 +214,12 @@
 	body += "<br>"
 	body += "</body></html>"
 
-	usr << browse(body, "window=adminplayeropts-[REF(M)];size=550x515")
+//SKYRAT CHANGES BEGIN
+	var/datum/browser/popup = new(usr, "adminplayeropts-[REF(M)]", "Player Panel", nwidth = 550, nheight = 515)
+	popup.set_content(body.Join())
+	popup.open()
+//SKYRAT CHANGES END
+
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Player Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
