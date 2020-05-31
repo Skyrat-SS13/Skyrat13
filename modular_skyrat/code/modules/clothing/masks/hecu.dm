@@ -7,7 +7,6 @@
 	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES
 	modifies_speech = TRUE
-	var/togglestate = 1
 	var/max_charge = 100
 	var/mask_charge = 100
 	var/word_cost = 7
