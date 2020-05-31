@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Character setup now has blood type selection."
+  - rscadd: "Many new blood types for various species."
