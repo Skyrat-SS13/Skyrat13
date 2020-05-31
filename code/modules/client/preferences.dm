@@ -2903,9 +2903,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						var/obj/screen/plane_master/game_world/G = parent.mob.hud_used.plane_masters["[GAME_PLANE]"]
 						var/obj/screen/plane_master/above_wall/A = parent.mob.hud_used.plane_masters["[ABOVE_WALL_PLANE]"]
 						var/obj/screen/plane_master/wall/W = parent.mob.hud_used.plane_masters["[WALL_PLANE]"]
+						var/obj/screen/plane_master/object/O = parent.mob.hud_used.plane_masters["[OBJECT_PLANE]"]
 						G.backdrop(parent.mob)
 						A.backdrop(parent.mob)
 						W.backdrop(parent.mob)
+						O.backdrop(parent.mob)
 
 				if("auto_fit_viewport")
 					auto_fit_viewport = !auto_fit_viewport

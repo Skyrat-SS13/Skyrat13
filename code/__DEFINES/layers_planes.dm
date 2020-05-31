@@ -23,17 +23,20 @@
 #define ABOVE_WALL_PLANE -7 // Skyrat change -- reduced by 1 to make space for another plane
 #define ABOVE_WALL_PLANE_RENDER_TARGET "ABOVE_WALL_PLANE"
 
-#define FIELD_OF_VISION_BLOCKER_PLANE -6 // Skyrat change -- reduced by 1 to make space for another plane
+#define OBJECT_PLANE -6 //Skyrat change - for FOV
+#define OBJECT_PLANE_RENDER_TARGET "OBJECT_PLANE" //Skyrat change - for FOV
+
+#define FIELD_OF_VISION_BLOCKER_PLANE -5
 #define FIELD_OF_VISION_BLOCKER_RENDER_TARGET "*FIELD_OF_VISION_BLOCKER_PLANE"
 
-#define FIELD_OF_VISION_PLANE -5 // Skyrat change -- reduced by 1 to make space for another plane
+#define FIELD_OF_VISION_PLANE -4
 #define FIELD_OF_VISION_RENDER_TARGET "*FIELD_OF_VISION_PLANE"
 #define FIELD_OF_VISION_LAYER 17 //used to place the visual (not the mask) shadow cone above any other floor plane stuff.
 
-#define GAME_PLANE -4 // Skyrat change -- reduced by 1 to make space for another plane
+#define GAME_PLANE -3
 #define GAME_PLANE_RENDER_TARGET "GAME_PLANE"
 
-#define FIELD_OF_VISION_VISUAL_PLANE -3 //Yea, FoV does require quite a few planes to work with 513 filters to a decent degree.  // Skyrat change -- reduced by 1 to make space for another plane
+#define FIELD_OF_VISION_VISUAL_PLANE -2 //Yea, FoV does require quite a few planes to work with 513 filters to a decent degree.
 #define FIELD_OF_VISION_VISUAL_RENDER_TARGET "FIELD_OF_VISION_VISUAL_PLANE"
 
 #define CHAT_PLANE -1 //We don't want heard messages to be hidden by FoV.

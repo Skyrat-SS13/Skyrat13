@@ -3438,6 +3438,7 @@
 #include "modular_skyrat\code\_HELPERS\text.dm"
 #include "modular_skyrat\code\_HELPERS\unique_ids.dm"
 #include "modular_skyrat\code\_onclick\hud\ghost.dm"
+#include "modular_skyrat\code\_onclick\hud\plane_master.dm"
 #include "modular_skyrat\code\controllers\configuration\entries\skyrat_config.dm"
 #include "modular_skyrat\code\controllers\subsystem\bluespace_locker.dm"
 #include "modular_skyrat\code\controllers\subsystem\collarbans.dm"

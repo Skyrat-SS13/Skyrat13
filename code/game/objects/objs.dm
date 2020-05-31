@@ -1,5 +1,6 @@
 
 /obj
+	plane = OBJECT_PLANE //SKYRAT CHANGE
 	var/crit_fail = FALSE
 	animate_movement = 2
 	speech_span = SPAN_ROBOT
