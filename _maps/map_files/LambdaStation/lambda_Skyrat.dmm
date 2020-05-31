@@ -48408,12 +48408,9 @@
 /turf/open/floor/plating,
 /area/hydroponics/garden/abandoned)
 "bKT" = (
-/obj/item/poster/random_contraband,
-/turf/open/floor/plating,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/maintenance/aft)
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "bKU" = (
 /obj/effect/landmark/start/medical_doctor,
 /turf/open/floor/plasteel/white,
@@ -63740,13 +63737,12 @@
 /area/maintenance/disposal/incinerator)
 "coh" = (
 /obj/structure/cable{
-	icon_state = "0-4"
+	icon_state = "1-2"
 	},
-/turf/open/floor/plating,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/maintenance/department/electrical)
+/obj/structure/disposalpipe/segment,
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "coi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/dark/visible{
@@ -65200,9 +65196,7 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "crd" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/item/poster/random_contraband,
 /turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -65234,6 +65228,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"crh" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/department/electrical)
 "cri" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -66911,6 +66914,15 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
+"cuL" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/aft)
 "cuM" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior,
@@ -122150,7 +122162,7 @@ bYa
 bYa
 bYa
 bYa
-bKT
+crd
 bYa
 bYa
 ceG
@@ -124467,11 +124479,11 @@ cmd
 aaA
 cSc
 cVT
-coh
+crh
 cXu
 cXz
 ceG
-crd
+cuL
 cTU
 cyo
 aab
@@ -133353,7 +133365,7 @@ aNO
 aOF
 aOF
 aOF
-aOF
+coh
 aOF
 aTk
 aUC
@@ -135409,7 +135421,7 @@ aNR
 aOK
 aLX
 aQv
-aMU
+bKT
 aSi
 aTr
 aUJ
