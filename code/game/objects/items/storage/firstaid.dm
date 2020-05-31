@@ -223,8 +223,13 @@
 /obj/item/storage/pill_bottle/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+<<<<<<< HEAD
 	//STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT //SKYRAT CHANGE
 	//STR.max_volume = 14 //SKYRAT CHANGE
+=======
+	STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT
+	STR.max_volume = STORAGE_VOLUME_PILL_BOTTLE
+>>>>>>> 48b327ea74... chemistry/bio bags nerf and little pill volumetric tweak. (#12392)
 	STR.allow_quick_gather = TRUE
 	STR.click_gather = TRUE
 	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/pill, /obj/item/dice))
