@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/security_records = ""
 	var/medical_records = ""
 	var/flavor_background = ""
-	var/flavor_faction = "UNSET"
+	var/flavor_faction = null
 	var/character_skills = ""
 	var/exploitable_info = ""
 	var/language = ""
@@ -422,7 +422,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a>"
 			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
-			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction]</a><br>"
+			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
 			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
 			/*Skyrat edit - comments out Citadel's OOC notes in favor for our owns
@@ -1891,9 +1891,14 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						flavor_background = html_decode(msg)
 
 				if("flavor_faction")
-					var/new_faction = input(user, "Set your faction", "Character Faction") as null|anything in GLOB.factions_list
+					var/new_faction = input(user, "Set your faction", "Character Faction") as null|anything in GLOB.factions_list + list("None (Freelancer)", "Other")
 					if(new_faction)
-						flavor_faction = new_faction
+						if(new_faction == "Other")
+							var/custom_faction = reject_bad_name(input(user, "Set your custom faction/subfaction, if unique. Don't abuse this.", "Character Faction", flavor_faction) as null|text)
+							if(custom_faction)
+								flavor_faction = custom_faction
+						else
+							flavor_faction = new_faction
 
 				if("character_skills")
 					var/msg = stripped_multiline_input(usr, "Set your skills or hobbies", "Character Skills", character_skills, MAX_FLAVOR_LEN, TRUE)
