@@ -8,7 +8,7 @@
 /datum/mood_event/lone_wolf_happy
 	description = "<span class='nicegreen'>Finally, solitude!</span>\n"
 	mood_change = 4
-	timeout = 2 MINUTES
+	timeout = 1 MINUTES
 
 //kirk quirk
 /datum/mood_event/kirk_happy
