@@ -109,7 +109,7 @@
 
 /obj/item/clothing/equipped(mob/user, slot)
 	..()
-	if (!istype(user))
+	if(!istype(user))
 		return
 	if(slot_flags & slotdefine2slotbit(slot)) //Was equipped to a valid slot for this item?
 		if (LAZYLEN(user_vars_to_edit))
