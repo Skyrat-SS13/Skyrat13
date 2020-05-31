@@ -144,9 +144,9 @@
 			</i>\
 			<br>\
 			<center>\
-			<b>
+			<b>\
 			MORE ON BACK\
-			</b>
+			</b>\
 			</center>"
 	var/info2 = "<i>\
 			<div style='border-style:solid;text-align:center;border-width:5px;margin: 20px;margin-bottom:0px'>\
