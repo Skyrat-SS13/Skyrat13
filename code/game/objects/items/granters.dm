@@ -9,7 +9,7 @@
 	var/oneuse = TRUE //default this is true, but admins can var this to 0 if we wanna all have a pass around of the rod form book
 	var/used = FALSE //only really matters if oneuse but it might be nice to know if someone's used it for admin investigations perhaps
 	//skyrat edit memery
-	var/do_after_time = 50
+	var/do_after_time = 5 SECONDS
 	var/do_do_after = TRUE
 	//
 
