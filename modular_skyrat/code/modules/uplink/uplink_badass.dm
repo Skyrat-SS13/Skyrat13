@@ -14,3 +14,18 @@
 	surplus = 5
 	illegal_tech = FALSE
 
+/datum/uplink_item/badass/kyle
+	name = "Maintenance Energy Blood Red"
+	desc = "The favorite drink for any operative. Helps you regain stamina quickly."
+	item = /obj/item/reagent_containers/food/drinks/soda_cans/maint_energy/blood_red
+	cost = 2
+	surplus = 5
+	illegal_tech = FALSE
+
+/datum/uplink_item/badass/kyle/six_pack
+	name = "Maintenance Energy Blood Red (Six Pack)"
+	desc = "The favorite drink for any operative, now in a six pack."
+	item = /obj/item/storage/box/syndie_kit/sixpack
+	cost = 8
+	surplus = 2
+	illegal_tech = FALSE

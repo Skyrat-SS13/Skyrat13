@@ -1,0 +1,4 @@
+author: "SiliconMain"
+delete-after: True
+changes: 
+  - bugfix: "Engineer (now Industrial) courier bags now properly shield contents from radiation like the other engineering bags."

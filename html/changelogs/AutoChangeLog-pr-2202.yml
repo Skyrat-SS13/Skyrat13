@@ -1,0 +1,8 @@
+author: "Afya"
+delete-after: True
+changes: 
+  - rscadd: "Added violet alert (For medical emergencies)"
+  - rscadd: "Added orange alert (For engineering emergencies)"
+  - tweak: "Renamed security alert level to alert level, reworded some alert text"
+  - soundadd: "Added couple new alert sounds"
+  - imageadd: "Violet/Orange alert fire alarm sprites"

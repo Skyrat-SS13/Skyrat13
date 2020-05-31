@@ -138,6 +138,16 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/skill_difficulty = THRESHOLD_UNTRAINED //how difficult it's to use this item in general.
 	var/skill_gain = DEF_SKILL_GAIN //base skill value gain from using this item.
 
+	//SKYRAT CHANGE - self equip delays
+	//Time in ticks needed to equip something on yourself. Uses the equip_delay_self var.
+	//Set use_standard_equip_delay to false if you want to set a custom delay by changing equip_delay_self.
+	var/use_standard_equip_delay = FALSE //Basically sets the self equip delay on initialize to self_equip_mod * equip_delay_other
+	var/self_equip_mod = 0.65
+	var/strip_self_delay = 0
+	var/use_standard_strip_self_delay = TRUE //Basically makes the unequip delay take as long as strip_self_delay_mod * equip_delay on initialize
+	var/strip_self_delay_mod = 0.85
+	//
+
 /obj/item/Initialize()
 
 	if (attack_verb)
@@ -169,6 +179,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	if(sharpness) //give sharp objects butchering functionality, for consistency
 		AddComponent(/datum/component/butchering, 80 * toolspeed)
+	
+	//skyrat change
+	if(use_standard_equip_delay && !equip_delay_self)
+		equip_delay_self = self_equip_mod * equip_delay_other
+	if(use_standard_strip_self_delay && !strip_self_delay && equip_delay_self)
+		strip_self_delay = strip_self_delay_mod * equip_delay_self
+	//
 
 /obj/item/Destroy()
 	item_flags &= ~DROPDEL	//prevent reqdels
@@ -335,7 +352,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(loc == user)
 		if(!allow_attack_hand_drop(user) || !user.temporarilyRemoveItemFromInventory(src))
 			return
-
 	pickup(user)
 	add_fingerprint(user)
 	if(!user.put_in_active_hand(src, FALSE, FALSE))

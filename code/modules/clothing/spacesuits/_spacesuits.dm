@@ -47,3 +47,7 @@
 	resistance_flags = NONE
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE //rated for cosmic radation :honk:
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_SNEK_TAURIC|STYLE_PAW_TAURIC
+	//skyrat edit - self equip delay
+	use_standard_equip_delay = TRUE
+	self_equip_mod = 0.7
+	//
