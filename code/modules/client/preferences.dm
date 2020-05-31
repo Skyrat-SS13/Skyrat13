@@ -2569,17 +2569,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("ambientocclusion")
 					ambientocclusion = !ambientocclusion
 					if(parent && parent.screen && parent.screen.len)
-<<<<<<< HEAD
-						var/obj/screen/plane_master/game_world/PM = locate(/obj/screen/plane_master/game_world) in parent.screen
-						PM.backdrop(parent.mob)
-=======
 						var/obj/screen/plane_master/game_world/G = parent.mob.hud_used.plane_masters["[GAME_PLANE]"]
 						var/obj/screen/plane_master/above_wall/A = parent.mob.hud_used.plane_masters["[ABOVE_WALL_PLANE]"]
 						var/obj/screen/plane_master/wall/W = parent.mob.hud_used.plane_masters["[WALL_PLANE]"]
 						G.backdrop(parent.mob)
 						A.backdrop(parent.mob)
 						W.backdrop(parent.mob)
->>>>>>> 335f5a37b9... Plane adjustments on several low layer objects. (#12286)
 
 				if("auto_fit_viewport")
 					auto_fit_viewport = !auto_fit_viewport
