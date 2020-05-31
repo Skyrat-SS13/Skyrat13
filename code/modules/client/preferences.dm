@@ -90,6 +90,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/show_credits = TRUE
 	var/event_participation = FALSE
 	var/event_prefs = ""
+	var/appear_in_round_end_report = TRUE //whether the player of the character is listed on the round-end report
 	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
@@ -348,7 +349,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			if(jobban_isbanned(user, "appearance"))
 				dat += "<b>You are banned from using custom names and appearances. You can continue to adjust your characters, but you will be randomised once you join the game.</b><br>"
 			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=name;task=random'>Random Name</A> "
-			dat += "<b>Always Random Name:</b><a style='display:block;width:30px' href='?_src_=prefs;preference=name'>[be_random_name ? "Yes" : "No"]</a><BR>"
+//SKYRAT EDIT
+			dat += "<b>Always Random Name:</b> <a href='?_src_=prefs;preference=name'>[be_random_name ? "Yes" : "No"]</a><BR>"
+//END OF SKYRAT EDIT
 
 			dat += "<b>[nameless ? "Default designation" : "Name"]:</b>"
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
@@ -988,6 +991,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else
 				p_chaos = preferred_chaos
 			dat += "<b>Preferred Chaos Amount:</b> <a href='?_src_=prefs;preference=preferred_chaos;task=input'>[p_chaos]</a><br>"
+//SKYRAT CHANGES
+			dat += "<b>Show name at round-end report:</b> <a href='?_src_=prefs;preference=appear_in_round_end_report'>[appear_in_round_end_report ? "Yes" : "No"]</a><br>"
+//END OF SKYRAT CHANGES
 			dat += "<br>"
 			dat += "</td>"
 			dat += "</tr></table>"
@@ -2531,6 +2537,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if ("preferred_chaos")
 					var/pickedchaos = input(user, "Choose your preferred level of chaos. This will help with dynamic threat level ratings.", "Character Preference") as null|anything in list(CHAOS_NONE,CHAOS_LOW,CHAOS_MED,CHAOS_HIGH,CHAOS_MAX)
 					preferred_chaos = pickedchaos
+
 				if ("clientfps")
 					var/desiredfps = input(user, "Choose your desired fps. (0 = synced with server tick rate (currently:[world.fps]))", "Character Preference", clientfps)  as null|num
 					if (!isnull(desiredfps))
@@ -2787,6 +2794,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					see_chat_emotes = !see_chat_emotes
 				if("enable_personal_chat_color")
 					enable_personal_chat_color = !enable_personal_chat_color
+				if("appear_in_round_end_report")
+					appear_in_round_end_report = !appear_in_round_end_report
+					user.mind?.appear_in_round_end_report = appear_in_round_end_report
 				//End of skyrat changes
 				if("action_buttons")
 					buttons_locked = !buttons_locked
