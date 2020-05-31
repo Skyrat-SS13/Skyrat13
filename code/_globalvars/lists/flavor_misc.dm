@@ -232,6 +232,6 @@ GLOBAL_LIST_INIT(station_numerals, greek_letters + phonetic_alphabet + numbers_a
 
 GLOBAL_LIST_INIT(admiral_messages, list("Do you know how expensive these stations are?","Stop wasting my time.","I was sleeping, thanks a lot.","Stand and fight you cowards!","You knew the risks coming in.","Stop being paranoid.","Whatever's broken just build a new one.","No.", "<i>null</i>","<i>Error: No comment given.</i>", "It's a good day to die!"))
 
-// Skyrat changes. TODO: Ask loremasters for the proper confrimed/likely faction list.
-GLOBAL_LIST_INIT(factions_list, list("NanoTrasen", "Sol Federation", "Free Trade Union", "Other/Independent"))
+// Skyrat changes. Please, consult with loredevs if you want add faction(s) to this list.
+GLOBAL_LIST_INIT(factions_list, list("NanoTrasen", "Sol Federation", "Free Trade Union", "Letheia"))
 // End of Skyrat changes

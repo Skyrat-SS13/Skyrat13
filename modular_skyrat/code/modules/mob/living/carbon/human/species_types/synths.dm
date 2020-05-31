@@ -98,7 +98,7 @@
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.grant_language(/datum/language/machine)
+	//H.grant_language(/datum/language/machine)
 	assume_disguise(old_species, H)
 	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
@@ -108,7 +108,7 @@
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()
-	H.remove_language(/datum/language/machine)
+	//H.remove_language(/datum/language/machine)
 	UnregisterSignal(H, COMSIG_MOB_SAY)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
 		BP.synthetic = FALSE

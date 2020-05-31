@@ -190,13 +190,25 @@
 
 /datum/config_entry/string/alert_blue_downto
 	config_entry_value = "Significant confirmed threats have been neutralized. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still permitted."
-
+//Skyrat change start
 /datum/config_entry/string/alert_amber_upto
-	config_entry_value = "There are significant confirmed threats to the station. Security staff may have weapons unholstered at all times. Random searches are allowed and advised."
+	config_entry_value = "A major security emergency has developed. Security staff may have weapons unholstered at all times. Random searches are allowed and advised."
 
 /datum/config_entry/string/alert_amber_downto
-	config_entry_value = "The immediate threat has passed. Security is no longer authorized to use lethal force, but may continue to have weapons drawn. Access requirements have been restored."
+	config_entry_value = "A major security emergency is still underway. Non-security personnel are required to obey all relevant instructions from security staff."
 
+/datum/config_entry/string/alert_orange_upto
+	config_entry_value = "A major engineering emergency has developed. Non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff."
+
+/datum/config_entry/string/alert_orange_downto
+	config_entry_value = "A major engineering emergency has developed. Non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff."
+
+/datum/config_entry/string/alert_violet_upto
+	config_entry_value = "A major medical emergency has developed. Non-medical personnel are required to obey all relevant instructions from medical staff."
+
+/datum/config_entry/string/alert_violet_downto
+	config_entry_value = "A major medical emergency has developed. Non-medical personnel are required to obey all relevant instructions from medical staff."
+//Skyrat change stop
 /datum/config_entry/string/alert_red_upto
 	config_entry_value = "There is an immediate serious threat to the station. Security is now authorized to use lethal force. Additionally, access requirements on some machines have been lifted."
 
@@ -509,3 +521,9 @@
 
 //Allows players to set a hexadecimal color of their choice as skin tone, on top of the standard ones.
 /datum/config_entry/flag/allow_custom_skintones
+
+/**
+  * Enables the FoV component, which hides objects and mobs behind the parent from their sight, unless they turn around, duh.
+  * Camera mobs, AIs, ghosts and some other are of course exempt from this. This also doesn't influence simplemob AI, for the best.
+  */
+/datum/config_entry/flag/use_field_of_vision
