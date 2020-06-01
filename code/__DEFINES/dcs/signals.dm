@@ -390,6 +390,5 @@
 #define COMSIG_XENO_TURF_CLICK_CTRL "xeno_turf_click_alt"					//from turf AltClickOn(): (/mob)
 #define COMSIG_XENO_MONKEY_CLICK_CTRL "xeno_monkey_click_ctrl"				//from monkey CtrlClickOn(): (/mob)
 
-//skyrat funnies
-#define COMSIG_LIVING_FLASH_ACT "living_flash_act"				///from base of [/mob/living/proc/flash_act] //moth
-#define COMSIG_EVENTPREF_UPDATE "observer_eventpref_update"
+// Observer signals
+#define COMSIG_EVENTPREF_UPDATE "observer_eventpref_update" // Skyrat changes

@@ -18,8 +18,3 @@
 	owner.flash_act(visual = 1)
 	if(severity == EMP_HEAVY)
 		owner.adjustOrganLoss(ORGAN_SLOT_EYES, 20) 
-
-//moth eyes
-/obj/item/organ/eyes/insect/moth
-	name = "moffic eyes"
-	desc = "They can only see lämp."
