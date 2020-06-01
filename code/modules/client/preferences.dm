@@ -1163,9 +1163,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Aphrodisiacs:</b> <a href='?_src_=prefs;preference=aphro'>[(cit_toggles & NO_APHRO) ? "Disallowed" : "Allowed"]</a><br>"
 			dat += "<b>Ass Slapping:</b> <a href='?_src_=prefs;preference=ass_slap'>[(cit_toggles & NO_ASS_SLAP) ? "Disallowed" : "Allowed"]</a><br>"
 			//SKYRAT EDIT
-			dat += 	"Extreme ERP verbs : <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
+			dat += 	"<b>Extreme ERP verbs :</b> <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
 			if(extremepref != "No")
-				dat += "Harmful ERP verbs : <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
+				dat += "<b><span style='color: #e60000;'Harmful ERP verbs :</b> <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
 			//END OF SKYRAT EDIT
 			dat += "</tr></table>"
 			dat += "<br>"
