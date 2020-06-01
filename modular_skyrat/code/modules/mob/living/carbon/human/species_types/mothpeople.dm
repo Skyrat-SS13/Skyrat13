@@ -39,11 +39,3 @@
 	if(istype(weapon, /obj/item/melee/flyswatter))
 		return 10 //flyswatters deal 10x damage to moths
 	return 0
-
-/datum/species/insect/moth/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
-	. = ..()
-	C.AddComponent(/datum/component/lightdrawn)
-
-/datum/species/insect/moth/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
-	. = ..()
-	qdel(C.GetComponent(/datum/component/lightdrawn))
