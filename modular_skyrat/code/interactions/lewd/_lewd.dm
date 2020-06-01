@@ -607,7 +607,7 @@
 								message = "reaches their peak, locking their legs around \the <b>[partner]</b>'s head extra hard as they cum straight onto the head stuck between their thighs"
 							cumin = TRUE
 						if(CUM_TARGET_FEET)
-							if(!last_lewd_datum.require_target_num_feet)
+							if(!last_lewd_datum || !last_lewd_datum.require_target_num_feet)
 								if(partner.has_feet())
 									message = "cums on \the <b>[partner]</b>'s [partner.has_feet() == 1 ? pick("foot", "sole") : pick("feet", "soles")]."
 								else
@@ -680,7 +680,7 @@
 							message = "keeps \the <b>[partner]</b> locked in their thighs as they orgasm, squirting over their face."
 
 						if(CUM_TARGET_FEET)
-							if(!last_lewd_datum.require_target_num_feet)
+							if(!last_lewd_datum || !last_lewd_datum.require_target_num_feet)
 								if(partner.has_feet())
 									message = "squirts on \the <b>[partner]</b>'s [partner.has_feet() == 1 ? pick("foot", "sole") : pick("feet", "soles")]."
 								else
