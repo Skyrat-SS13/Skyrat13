@@ -44,7 +44,7 @@ var/static/mutable_appearance/combat_indicator
 /mob/living/proc/user_toggle_intentional_combat_indication()
 	if(CAN_TOGGLE_COMBAT_MODE(src))
 		var/combat_enabled = (combat_flags & COMBAT_FLAG_COMBAT_TOGGLED)
-		if(combat_enabled)
+		if(combat_enabled && iscarbon(src))
 			to_chat(src, "<span class='warning'>Disable combat mode first!</span>")
 		else if (enabled_combat_indicator)
 			change_combat_indicator(FALSE)
