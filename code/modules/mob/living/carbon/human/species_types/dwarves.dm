@@ -17,6 +17,9 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 	disliked_food = JUNKFOOD | FRIED //Dwarves hate foods that have no nutrition other than alcohol.
 	mutant_organs = list(/obj/item/organ/dwarfgland) //Dwarven alcohol gland, literal gland warrior
 	mutantliver = /obj/item/organ/liver/dwarf //Dwarven super liver (Otherwise they r doomed)
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "AL")
+	//
 	species_language_holder = /datum/language_holder/dwarf
 
 /mob/living/carbon/human/species/dwarf //species admin spawn path
@@ -122,7 +125,7 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 		return
 	//Filth Reactions - Since miasma now exists
 	var/filth_counter = 0 //Holder for the filth check cycle, basically contains how much filth dwarf sees numerically.
-	for(var/fuck in view(owner,7)) //hello byond for view loop.
+	for(var/fuck in owner.fov_view(7)) //hello byond for view loop.
 		if(istype(fuck, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = fuck
 			if(H.stat == DEAD || (HAS_TRAIT(H, TRAIT_FAKEDEATH)))

@@ -1,7 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Additional language option in the character setup. Some races are still locked behind species however, as in, you cannot choose a secondary language that is race exclusive and doesn't pertain to your species."
-  - rscadd: "A bunch of new languages. Notable ones include: Dunmeri, the language of the ashlander elves of lavaland. Neo-Kanji, an asian rooted language that is considered the official language of the spider clan. Technorussian, a language based on eastern european dialects (mostly russian of course). Sol Common, the bog standard human language."
-  - tweak: "Space ninjas now know how to speak Neo-Kanji by default."
-  - bugfix: "Humanoids and Dunmer are back."
