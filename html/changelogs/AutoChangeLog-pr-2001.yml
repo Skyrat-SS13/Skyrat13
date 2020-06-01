@@ -1,6 +1,0 @@
-author: "Afya"
-delete-after: True
-changes: 
-  - rscadd: "Med, eng, sci, sup, and serv encryption keys now researchable/craftable"
-  - rscadd: "Cargo can now order encryption keys"
-  - tweak: "looc assumes less"

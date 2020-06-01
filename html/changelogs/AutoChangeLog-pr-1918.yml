@@ -1,6 +1,0 @@
-author: "Afya"
-delete-after: True
-changes: 
-  - admin: "Adminverbs - Hide Most is now useful"
-  - admin: "Combined Adminwho and Mentorwho into Staffwho"
-  - bugfix: "Admuns no longer appear as mentors."

@@ -524,6 +524,24 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 			. = BLOOD_COLOR_SLIME
 		if("BUG")// yellowish, like, y'know bug guts I guess.
 			. = BLOOD_COLOR_BUG
+		//Skyrat blood types
+		if("S") //Synthlizard
+			. = BLOOD_COLOR_LIZARD
+		if("PL")
+			. = "#99ff33" //Plant people blood. Bright green.
+		if("AL")
+			. = "#800000" //"Alcohol" blood, used by dwarves. Very dark red.
+		if("GREY")
+			. = "#a6a6a6" //Abductor blood. Grey, as the name implies.
+		if("ANGL")
+			. = "#ff1a66" //Angel blood. Pinkish.
+		if("SPOR")
+			. = "#730099" //Mushroom people blood. Dark purple.
+		if("DRK")
+			. = "#1a1a1a" //"Dark" blood. Used by dunmer and shadowpeople. Straight up dark.
+		if("BHZ")
+			. = "#008000" //"Biohazard" blood. Used by zombies. Dark green.
+		//
 		//add more stuff to the switch if you have more blood colors for different types
 		// the defines are in _DEFINES/misc.dm
 

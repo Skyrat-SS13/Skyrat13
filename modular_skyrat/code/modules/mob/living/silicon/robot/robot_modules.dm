@@ -97,6 +97,40 @@ obj/item/robot_module/butler/Initialize()
 	name = "Plasma Buffer Container"
 	recharge_rate = 0
 
+/obj/item/robot_module/standard/be_transformed_to(obj/item/robot_module/old_module)
+	var/mob/living/silicon/robot/R = loc
+	var/static/list/standard_icons = sortList(list(
+		"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "robot"),
+		"Marina" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "marinasd"),
+		"Heavy" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "heavysd"),
+		"Eyebot" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "eyebotsd"),
+		"Robot" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "robot_old"),
+		))
+	var/standard_borg_icon = show_radial_menu(R, R , standard_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
+	switch(standard_borg_icon)
+		if("Default")
+			cyborg_base_icon = "robot"
+			cyborg_icon_override = 'icons/mob/robots.dmi'
+		if("Marina")
+			cyborg_base_icon = "marinasd"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+			has_snowflake_deadsprite = TRUE
+		if("Heavy")
+			cyborg_base_icon = "heavysd"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+			has_snowflake_deadsprite = TRUE
+		if("Eyebot")
+			cyborg_base_icon = "eyebotsd"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+			has_snowflake_deadsprite = TRUE
+		if("Robot")
+			cyborg_base_icon = "robot_old"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+			has_snowflake_deadsprite = TRUE
+		else
+			return FALSE
+	return ..()
+
 /obj/item/robot_module/peacekeeper/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
 	var/static/list/peace_icons = sortList(list(

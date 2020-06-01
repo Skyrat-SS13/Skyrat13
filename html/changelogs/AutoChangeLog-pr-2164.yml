@@ -1,4 +1,0 @@
-author: "KathrinBailey"
-delete-after: True
-changes: 
-  - code_imp: "Modularises the sea shanty 2 men keg so its removal on upstream doesn't break out maps."

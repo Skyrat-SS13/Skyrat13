@@ -447,6 +447,10 @@
 	reagent_flags = NONE
 	spillable = FALSE
 	isGlass = FALSE
+	//skyrat edit - makes crushed cans able to use other icon states and icon files
+	var/crushed_icon = 'icons/obj/janitor.dmi'
+	var/crushed_state
+	//
 
 /obj/item/reagent_containers/food/drinks/soda_cans/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] is trying to eat \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -460,7 +464,16 @@
 		user.visible_message("<span class='warning'>[user] crushes the can of [src] on [user.p_their()] forehead!</span>", "<span class='notice'>You crush the can of [src] on your forehead.</span>")
 		playsound(user.loc,'sound/weapons/pierce.ogg', rand(10,50), 1)
 		var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(user.loc)
-		crushed_can.icon_state = icon_state
+		//Skyrat edit
+		if(!crushed_icon)
+			crushed_can.icon = 'icons/obj/janitor.dmi'
+		else
+			crushed_can.icon = crushed_icon
+		if(!crushed_state)
+			crushed_can.icon_state = icon_state
+		else
+			crushed_can.icon_state = crushed_state
+		//
 		qdel(src)
 	..()
 
