@@ -69,8 +69,10 @@
 		name = "poster - [name]"
 		desc = "A large piece of space-resistant printed paper. [desc]"
 
-/obj/structure/sign/poster/proc/randomise(base_type)
+/obj/structure/sign/poster/proc/randomise(base_type, override = FALSE)
 	var/list/poster_types = subtypesof(base_type)
+	if(override)
+		poster_types = list(base_type)
 	var/list/approved_types = list()
 	for(var/t in poster_types)
 		var/obj/structure/sign/poster/T = t
@@ -177,6 +179,21 @@
 	icon_state = "random_anything"
 	never_random = TRUE
 	random_basetype = /obj/structure/sign/poster
+
+/obj/item/poster/gmod
+	name = "error poster"
+	desc = "<span style='color:#d75050;'>Runtime in contraband.dm, line 183: Cannot read null.desc.</span>"
+	icon_state = "rolled_poster"
+	poster_type = /obj/structure/sign/poster/gmod
+
+/obj/structure/sign/poster/gmod
+	name = "missing texture poster"
+	desc = "Looks like you'll have to install CS Source."
+	icon_state = "gmod"
+	never_random = TRUE
+	poster_item_name = "error poster"
+	poster_item_desc = "<span style='color:#d75050;'>Runtime in contraband.dm, line 183: Cannot read null.desc.</span>"
+	poster_item_icon_state = "rolled_poster"
 
 /obj/structure/sign/poster/contraband
 	poster_item_name = "contraband poster"
@@ -942,5 +959,15 @@
 	name = "Valve"
 	desc = "A poster with a man who has a valve on the back... how detailed."
 	icon_state = "poster121"
+
+/obj/structure/sign/poster/contraband/shadow
+	name = "Shadow"
+	desc = "A poster with an armed hedgehog, captioned with <span style='font-family:Impact'>\"Nice cock, retard\"</span>."
+	icon_state = "poster122"
+
+/obj/structure/sign/poster/contraband/rouge
+	name = "Rouge"
+	desc = "A poster with a seductive bat, captioned with <span style='font-family:Impact'>\"Nice tits, hoe\"</span>."
+	icon_state = "poster123"
 
 #undef PLACE_SPEED
