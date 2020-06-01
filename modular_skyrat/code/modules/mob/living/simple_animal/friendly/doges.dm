@@ -4,7 +4,7 @@
 //note 3: ignore note 2 the sprite is actually good now
 /mob/living/simple_animal/pet/dog/cheems
 	name = "\proper Cheems"
-	desc = "Cheemsburbger..."
+	desc = "Cheems, the most important cargo worker."
 	icon = 'modular_skyrat/icons/mob/doges.dmi'
 	icon_state = "cheems"
 	icon_dead = "cheemsdead"
@@ -24,7 +24,7 @@
 		for(var/obj/item/reagent_containers/food/snacks/junk in view(1, src))
 			if(liked_food & junk.foodtype)
 				visible_message("<span class='danger'><b>\The [src]</b> consumes the [junk]!</span>")
-				qdel(burbger)
+				qdel(junk)
 				revive(full_heal = 1)
 
 /mob/living/simple_animal/pet/dog/cheems/attacked_by(obj/item/I, mob/living/user)
@@ -48,45 +48,53 @@
 						junk.safe_throw_at(get_edge_target_turf(src, get_dir(src, user)), 21, 6, src)
 						say("Disgustimg.")
 
-//cheemgularity
-/* disabled for now because error: maximum number of internal arrays exceeded (65535)
-/obj/singularity/proc/consume(atom/A)
-	var/gain = A.singularity_act(current_size, src)
-	src.energy += gain
-	if(istype(A, /obj/machinery/power/supermatter_crystal) && !consumedSupermatter)
-		desc = "[initial(desc)] It glows fiercely with inner fire."
-		name = "supermatter-charged [initial(name)]"
-		consumedSupermatter = 1
-		set_light(10)
-	if(istype(A, /mob/living/simple_animal/pet/dog/cheems))
-		new /obj/singularity/cheemgularity(get_turf(src))
-		qdel(src)
+//walter
+/mob/living/simple_animal/pet/dog/walter
+	name = "\proper Walter"
+	desc = "Walter, the atmospheric technician's loyal pet."
+	icon = 'modular_skyrat/icons/mob/doges.dmi'
+	icon_state = "walter"
+	icon_dead = "walter_dead"
+	icon_living = "cheems"
+	speak = list("Walter", "I like fire trucks and moster trucks", "I like fusion and hellburn", "Who's Joe?",
+				"Why is the supermatter delaminating", "I will beat you to death", "I will inject plasma in the distro loop",
+				"I am going to farm tritium", "Why are the vents expelling cum")
+	butcher_results = list(/obj/item/clothing/suit/fire/firefighter = 1, /obj/item/clothing/head/hardhat/red = 1)
+	faction = list("dog", "doge")
+	animal_species = /mob/living/simple_animal/pet/dog
+	gold_core_spawnable = FRIENDLY_SPAWN
+	//headset so that walter can do rap battles against Poly on the engineering channel
+	var/obj/item/radio/headset/ears = null
 
-/obj/singularity/cheemgularity
-	name = "cheemgularity"
-	desc = "Praise cheem."
-	icon = 'modular_skyrat/icons/obj/singularity.dmi'
-	icon_state = "cheemgulo_s1"
+/mob/living/simple_animal/pet/dog/walter/Initialize()
+	. = ..()
+	if(.)
+		handle_ears
 
-/obj/singularity/cheemgularity/expand(force_size)
-	..()
-	switch(force_size)
-		if(STAGE_ONE to STAGE_TWO)
-			icon = initial(icon)
-			icon_state = "cheemgulo_s1"
-		if(STAGE_TWO to STAGE_THREE)
-			icon = 'modular_skyrat/icons/effects/96x96.dmi'
-			icon_state = "cheemgulo_s3"
-		if(STAGE_THREE to STAGE_FOUR)
-			icon = 'modular_skyrat/icons/effects/160x160.dmi'
-			icon_state = "cheemgulo_s5"
-		if(STAGE_FOUR to STAGE_FIVE)
-			icon = 'modular_skyrat/icons/effects/224x224.dmi'
-			icon_state = "cheemgulo_s7"
-		if(STAGE_FIVE to STAGE_SIX)
-			icon = 'modular_skyrat/icons/effects/288x288.dmi'
-			icon_state = "cheemgulo_s9"
-		if(STAGE_SIX)
-			icon = 'modular_skyrat/icons/effects/352x352.dmi'
-			icon_state = "cheemgulo_s11"
-*/
+/mob/living/simple_animal/pet/dog/walter/proc/handle_ears() //i think i was going to use the proc for something else i dunno
+	if(ears)
+		desc = initial(desc) + "<br><span class='notice'>Click <a href='?src=\ref[src]' style='color:#1E90FF'>here</a> to remove their headset.</span>"
+	else
+		desc = initial(desc) + "<span class='notice'>They have no headset.</span>"
+	return TRUE
+
+/mob/living/simple_animal/pet/dog/walter/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/radio/headset) && user.a_intent != INTENT_HARM)
+		I.forceMove(src)
+		ears = I
+		to_chat(user, "<span class='notice'>You put [I] on [src].")
+		handle_ears()
+
+/mob/living/simple_animal/pet/dog/walter/radio(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
+	. = ..()
+	if(ears)
+		return ears.talk_into(src, message, pick(ears.channels), spans, language)
+
+/mob/living/simple_animal/pet/dog/walter/Topic(href, href_list)
+	. = ..()
+	if(ears)
+		ears.forceMove(user.loc)
+		to_chat(user, "<span class='notice'>You take off [src]'s [ears].")
+		ears = null
+		handle_ears()
