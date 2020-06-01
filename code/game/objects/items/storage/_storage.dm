@@ -4,9 +4,6 @@
 	icon = 'icons/obj/storage.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	var/component_type = /datum/component/storage/concrete
-	//skyrat change - equip and unequip delays
-	use_standard_equip_delay = TRUE
-	//
 
 /obj/item/storage/get_dumping_location(obj/item/storage/source,mob/user)
 	return src
