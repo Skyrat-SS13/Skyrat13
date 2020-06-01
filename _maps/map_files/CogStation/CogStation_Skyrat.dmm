@@ -71690,6 +71690,13 @@
 /mob/living/simple_animal/sloth/paperwork,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"cRk" = (
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 6
+	},
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "cVq" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -72172,12 +72179,6 @@
 "qWY" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	name = "Waste In"
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
-"rdF" = (
-/obj/machinery/atmospherics/pipe/simple/dark/visible{
-	dir = 6
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -121365,7 +121366,7 @@ cVO
 sRD
 cMe
 cai
-rdF
+cRk
 cMk
 ceU
 cMJ

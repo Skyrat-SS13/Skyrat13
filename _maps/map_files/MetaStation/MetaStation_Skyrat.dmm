@@ -3048,6 +3048,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"agu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "agv" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -42864,16 +42875,6 @@
 /turf/open/floor/plasteel/dark/corner{
 	dir = 1
 	},
-/area/engine/atmos)
-"bIP" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
 /area/engine/atmos)
 "bIQ" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
@@ -123225,7 +123226,7 @@ bCo
 bDT
 bFM
 bHu
-bIP
+agu
 bKw
 bMc
 bNQ

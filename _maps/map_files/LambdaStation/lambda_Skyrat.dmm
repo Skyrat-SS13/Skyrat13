@@ -65196,12 +65196,12 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "crd" = (
-/obj/item/poster/random_contraband,
-/turf/open/floor/plating,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
 	},
-/area/maintenance/aft)
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "cre" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -65229,14 +65229,12 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "crh" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
+/obj/item/poster/random_contraband,
 /turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
-/area/maintenance/department/electrical)
+/area/maintenance/aft)
 "cri" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -66915,14 +66913,14 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
 "cuL" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/cable{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
-/area/maintenance/aft)
+/area/maintenance/department/electrical)
 "cuM" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior,
@@ -66940,6 +66938,15 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+"cuO" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/aft)
 "cuP" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -122162,7 +122169,7 @@ bYa
 bYa
 bYa
 bYa
-crd
+crh
 bYa
 bYa
 ceG
@@ -124479,11 +124486,11 @@ cmd
 aaA
 cSc
 cVT
-crh
+cuL
 cXu
 cXz
 ceG
-cuL
+cuO
 cTU
 cyo
 aab
@@ -136292,7 +136299,7 @@ cdy
 cdy
 cKQ
 cLc
-cqV
+crd
 crS
 csN
 csN

@@ -132,6 +132,18 @@
 	},
 /turf/open/floor/engine,
 /area/ai_monitored/turret_protected/ai)
+"aat" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/machinery/atmospherics/pipe/manifold/yellow/visible{
+	dir = 1
+	},
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "aau" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
@@ -5318,7 +5330,7 @@
 	min_oxy = 5;
 	name = "Lia";
 	real_name = "Lia";
-	response_help = "pets";
+	!INVALID_VAR! = "pets";
 	turns_per_move = 10
 	},
 /turf/open/floor/plasteel/dark,
@@ -97928,7 +97940,7 @@ cml
 aMs
 aHH
 aIE
-cqD
+aat
 clI
 cmq
 aIO

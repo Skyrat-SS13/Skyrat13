@@ -2196,6 +2196,13 @@
 /mob/living/simple_animal/pet/dog/cheems,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"adu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "adv" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
@@ -74042,7 +74049,7 @@ qFw
 asw
 jxc
 mae
-hqX
+adu
 bpB
 qoT
 eaf

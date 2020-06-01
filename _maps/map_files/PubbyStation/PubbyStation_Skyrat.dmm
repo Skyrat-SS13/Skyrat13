@@ -47,6 +47,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aah" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 6
+	},
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "abf" = (
 /obj/structure/bed,
 /turf/open/floor/plating,
@@ -101191,7 +101198,7 @@ bQI
 bQI
 bTM
 bUs
-ljG
+aah
 hjk
 pmB
 bXw

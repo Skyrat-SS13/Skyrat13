@@ -61,6 +61,10 @@
 	},
 /turf/closed/mineral/random/snow/more_caves,
 /area/icemoon/surface/outdoors/unexplored/rivers/no_monsters)
+"aag" = (
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "aah" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -94669,7 +94673,7 @@ bWT
 bZG
 bOd
 bOd
-bOd
+aag
 bOd
 bOd
 bOd

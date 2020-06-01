@@ -8408,6 +8408,10 @@
 "aqW" = (
 /turf/open/floor/carpet,
 /area/security/detectives_office)
+"aqX" = (
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "aqY" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -98682,7 +98686,7 @@ bSK
 ccy
 cli
 bOd
-bOd
+aqX
 bOd
 bYS
 bOd

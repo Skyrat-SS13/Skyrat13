@@ -265,6 +265,10 @@
 /mob/living/simple_animal/sloth/citrus,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
+"aaD" = (
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aaE" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space,
@@ -145715,7 +145719,7 @@ aDd
 aAG
 aAG
 aAG
-aAG
+aaD
 aAG
 aKR
 aAG
