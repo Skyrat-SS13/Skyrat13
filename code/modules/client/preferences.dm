@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/age = 30						//age of character
 	//SKYRAT CHANGES
 	var/bloodtype = ""
-	var/skyrat_ooc_notes
+	var/skyrat_ooc_notes = ""
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
 	var/vorepref = "Ask"
