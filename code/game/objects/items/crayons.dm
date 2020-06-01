@@ -37,12 +37,15 @@
 
 	var/static/list/graffiti = list("amyjon","face","matt","revolution","engie","guy","end","dwarf","uboa","body","cyka","star","poseur tag","prolizard","antilizard", "tile")
 	var/static/list/symbols = list("danger","firedanger","electricdanger","biohazard","radiation","safe","evac","space","med","trade","shop","food","peace","like","skull","nay","heart","credit")
-	var/static/list/drawings = list("smallbrush","brush","largebrush","splatter","snake","stickman","carp","ghost","clown","taser","disk","fireaxe","toolbox","corgi","cat","toilet","blueprint","beepsky","scroll","bottle","shotgun")
+	var/static/list/drawings = list("smallbrush","brush","largebrush","splatter","snake","stickman","carp","ghost","clown","taser","disk","fireaxe","toolbox","corgi","cat","toilet","blueprint","beepsky","scroll","bottle","shotgun", "penis") //kyrat edit
 	var/static/list/oriented = list("arrow","line","thinline","shortline","body","chevron","footprint","clawprint","pawprint") // These turn to face the same way as the drawer
 	var/static/list/runes = list("rune1","rune2","rune3","rune4","rune5","rune6")
 	var/static/list/randoms = list(RANDOM_ANY, RANDOM_RUNE, RANDOM_ORIENTED,
 		RANDOM_NUMBER, RANDOM_GRAFFITI, RANDOM_LETTER, RANDOM_SYMBOL, RANDOM_PUNCTUATION, RANDOM_DRAWING)
 	var/static/list/graffiti_large_h = list("yiffhell", "secborg", "paint")
+	//skyrat change - basically used to inform when to use the modular file on decal effect
+	var/static/list/skyrat_graffiti = list("penis")
+	//
 
 	var/static/list/all_drawables = graffiti + symbols + drawings + oriented + runes + graffiti_large_h
 
@@ -396,7 +399,13 @@
 		else
 			switch(paint_mode)
 				if(PAINT_NORMAL)
-					var/obj/effect/decal/cleanable/crayon/C = new(target, paint_color, drawing, temp, graf_rot)
+					var/obj/effect/decal/cleanable/crayon/C
+					//skyrat change
+					if(drawtype in skyrat_graffiti)
+						C = new(target, paint_color, drawing, temp, graf_rot, 'modular_skyrat/icons/effects/crayondecal.dmi')
+					else
+						C = new(target, paint_color, drawing, temp, graf_rot)
+					//
 					C.add_hiddenprint(user)
 					C.pixel_x = clickx
 					C.pixel_y = clicky
