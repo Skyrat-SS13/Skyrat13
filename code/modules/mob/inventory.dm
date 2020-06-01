@@ -294,22 +294,23 @@
 
 //for when you want the item to end up on the ground
 //will force move the item to the ground and call the turf's Entered
-/mob/proc/dropItemToGround(obj/item/I, force = FALSE)
-	return doUnEquip(I, force, drop_location(), FALSE)
+/mob/proc/dropItemToGround(obj/item/I, force = FALSE, ignore_strip_self = TRUE) //skyrat edit
+	return doUnEquip(I, force, drop_location(), FALSE, TRUE)
 
 //for when the item will be immediately placed in a loc other than the ground
-/mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE)
-	return doUnEquip(I, force, newloc, FALSE)
+/mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, ignore_strip_self = TRUE) //skyrat edit
+	return doUnEquip(I, force, newloc, FALSE, TRUE)
 
 //visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
 //item MUST BE FORCEMOVE'D OR QDEL'D
-/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE, idrop = TRUE)
-	return doUnEquip(I, force, null, TRUE, idrop)
+/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE, idrop = TRUE, ignore_strip_self = TRUE) //skyrat edit
+	return doUnEquip(I, force, null, TRUE, idrop, TRUE)
 
 //DO NOT CALL THIS PROC
 //use one of the above 3 helper procs
 //you may override it, but do not modify the args
-/mob/proc/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE) //Force overrides TRAIT_NODROP for things like wizarditis and admin undress.
+//SKYRAT EDIT BELOW. ignore_strip_self to just completely ignore the self strip delay.
+/mob/proc/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE, ignore_strip_self = TRUE) //Force overrides TRAIT_NODROP for things like wizarditis and admin undress.
 													//Use no_move if the item is just gonna be immediately moved afterward
 													//Invdrop is used to prevent stuff in pockets dropping. only set to false if it's going to immediately be replaced
 	if(!I) //If there's nothing to drop, the drop is automatically succesfull. If(unEquip) should generally be used to check for TRAIT_NODROP.
@@ -319,12 +320,13 @@
 		return FALSE
 		
 	//skyrat change - unequip delays
-	if((I.item_flags & IN_INVENTORY) && I.strip_self_delay && ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(!(I in H.held_items))
-			H.visible_message("<span class='notice'>[H] starts unequipping [I]...</span>", "<span class='notice'>You start unequipping [I]...</span>")
-			if(!do_after(H, I.strip_self_delay, TRUE, H))
-				return FALSE
+	if(!ignore_strip_self)
+		if((I.item_flags & IN_INVENTORY) && I.strip_self_delay && ishuman(src))
+			var/mob/living/carbon/human/H = src
+			if(!(I in H.held_items))
+				H.visible_message("<span class='notice'>[H] starts stripping [I]...</span>", "<span class='notice'>You start stripping [I]...</span>")
+				if(!do_after(H, I.strip_self_delay, TRUE, H))
+					return FALSE
 	//
 
 	var/hand_index = get_held_index_of_item(I)
