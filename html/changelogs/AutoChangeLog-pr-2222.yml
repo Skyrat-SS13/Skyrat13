@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - rscadd: "Added a ton of new quirks. Details are in PR #2222 ."
