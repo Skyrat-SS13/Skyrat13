@@ -28,10 +28,12 @@
 	mutant_heart = /obj/item/organ/heart/robot_ipc
 	mutantliver = /obj/item/organ/liver/robot_ipc
 	exotic_blood = /datum/reagent/blood/synthetics
-	exotic_bloodtype = "SY"
 	//variables used for snowflakey ass races and stuff god i fukcing hate this
 	var/storedeardamage = 0
 	var/storedtaildamage = 0
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
+	exotic_bloodtype = "SY"
 	//AAAAAAAAAAAAAAAAAAAAAAAA I CANT EAT AAAAAAAAAAAAAAAAAAAAAAAAAA
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 
@@ -98,7 +100,7 @@
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.grant_language(/datum/language/machine)
+	//H.grant_language(/datum/language/machine)
 	assume_disguise(old_species, H)
 	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
@@ -108,7 +110,7 @@
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()
-	H.remove_language(/datum/language/machine)
+	//H.remove_language(/datum/language/machine)
 	UnregisterSignal(H, COMSIG_MOB_SAY)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
 		BP.synthetic = FALSE

@@ -14,6 +14,11 @@
 
 	dangerous_existence = 1
 	mutanteyes = /obj/item/organ/eyes/night_vision
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "DRK")
+	exotic_bloodtype = "DRK"
+	languagewhitelist = list("Shadowtongue") //Skyrat change - species language whitelist
+	//
 
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)

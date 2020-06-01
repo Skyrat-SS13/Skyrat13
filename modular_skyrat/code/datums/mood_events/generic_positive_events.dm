@@ -15,3 +15,9 @@
 	description = "<span class='nicegreen'>Glad to be around different species.</span>\n"
 	mood_change = 4
 	timeout = 2 MINUTES
+
+//belle delphine quirk
+/datum/mood_event/beauty
+	description = "<span class='nicegreen'>How can someone look so majestic?</span>\n"
+	mood_change = 2
+	timeout = 1 MINUTES

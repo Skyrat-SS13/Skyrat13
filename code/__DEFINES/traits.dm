@@ -147,6 +147,8 @@
 #define TRAIT_NORUNNING			"norunning"		// You walk!
 #define TRAIT_NOMARROW			"nomarrow"		// You don't make blood, with chemicals or nanites.
 #define TRAIT_NOPULSE			"nopulse"		// Your heart doesn't beat.
+#define TRAIT_NOGUT				"nogutting"		//Your chest cant be gutted of organs
+#define TRAIT_NODECAP			"nodecapping"	//Your head cant be cut off in combat
 #define TRAIT_EXEMPT_HEALTH_EVENTS	"exempt-health-events"
 #define TRAIT_NO_MIDROUND_ANTAG	"no-midround-antag" //can't be turned into an antag by random events
 #define TRAIT_PUGILIST	"pugilist" //This guy punches people for a living
@@ -194,6 +196,10 @@
 //SKYRAT traits
 #define TRAIT_HARD_SOLES		"hard_soles"
 #define TRAIT_SCREWY_MOOD		"screwy_mood"
+#define TRAIT_HEMOPHILIA		"hemophilia"
+#define TRAIT_ASTHMATIC			"asthmatic"
+#define TRAIT_UGLY				"ugly"
+#define TRAIT_BEAUTY			"beauty"
 //
 
 // mobility flag traits

@@ -8,6 +8,9 @@
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAIR,HORNCOLOR,WINGCOLOR)
 	mutant_bodyparts = list("mcolor" = "FFF","mcolor2" = "FFF","mcolor3" = "FFF", "mam_snouts" = "Husky", "mam_tail" = "Husky", "mam_ears" = "Husky", "deco_wings" = "None",
 						 "mam_body_markings" = "Husky", "taur" = "None", "horns" = "None", "legs" = "Plantigrade", "meat_type" = "Mammalian")
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-","O+", "O-")
+	//
 
 //Dunmer (Yeah, those guys that call you fetcher).
 /datum/species/human/humanoid/dunmer
@@ -29,6 +32,11 @@
 	mutanteyes = /obj/item/organ/eyes/dunmer
 	mutantears = /obj/item/organ/ears/dunmer
 	icon_eyes = 'modular_skyrat/icons/mob/dunmer_face.dmi'
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "DRK")
+	exotic_bloodtype = "DRK"
+	languagewhitelist = list("Dunmeri")
+	//
 
 /obj/item/organ/lungs/dunmer
 	name = "adapted ash lungs"
