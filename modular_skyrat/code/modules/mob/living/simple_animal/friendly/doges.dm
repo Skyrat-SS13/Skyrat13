@@ -45,7 +45,7 @@
 				if(stat != DEAD)
 					if(user.dropItemToGround(junk))
 						visible_message("<b>\The [src]</b> spits the [junk]!")
-						junk.safe_throw_at(get_edge_target_turf(src, get_dir(src, user)), 21, 6, src)
+						junk.throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), 21, 6, src)
 						say("Disgustimg.")
 
 //walter
