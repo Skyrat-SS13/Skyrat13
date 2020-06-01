@@ -16,25 +16,37 @@
 	faction = list("dog", "doge")
 	animal_species = /mob/living/simple_animal/pet/dog
 	gold_core_spawnable = FRIENDLY_SPAWN
+	var/liked_food = JUNKFOOD | SUGAR | FRIED | DAIRY
 
 /mob/living/simple_animal/pet/dog/cheems/Move(atom/newloc, direct)
 	. = ..()
 	if(.)
-		for(var/obj/item/reagent_containers/food/snacks/burger/burbger in view(1, src))
-			visible_message("<span class='danger'><b>\The [src]</b> consumes the [burbger]!</span>")
-			qdel(burbger)
-			revive(full_heal = 1)
+		for(var/obj/item/reagent_containers/food/snacks/junk in view(1, src))
+			if(liked_food & junk.foodtype)
+				visible_message("<span class='danger'><b>\The [src]</b> consumes the [junk]!</span>")
+				qdel(burbger)
+				revive(full_heal = 1)
 
 /mob/living/simple_animal/pet/dog/cheems/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
 	if(.)
-		if(istype(I, /obj/item/reagent_containers/food/snacks/burger))
-			qdel(I)
-			if(stat == DEAD)
-				visible_message("<b>\The [src]</b> stands right back up after nibbling the [I]!")
-			else 
-				visible_message("<b>\The [src]</b> swallows the [I] whole!")
-			revive(full_heal = 1)
+		if(istype(I, /obj/item/reagent_containers/food/snacks))
+			var/obj/item/reagent_containers/food/snacks/junk = I
+			if(liked_food & junk.foodtype)
+				if(stat == DEAD)
+					visible_message("<b>\The [src]</b> stands right back up after nibbling the [I]!")
+					junk.bitecount++
+				else 
+					visible_message("<b>\The [src]</b> swallows the [I] whole!")
+					qdel(junk)
+				playsound(src, 'sound/weapons/bite.ogg', 75)
+				revive(full_heal = 1)
+			else
+				if(stat != DEAD)
+					if(user.dropItemToGround(junk))
+						visible_message("<b>\The [src]</b> spits the [junk]!")
+						junk.safe_throw_at(get_edge_target_turf(src, get_dir(src, user)), 21, 6, src)
+						say("Disgustimg.")
 
 //cheemgularity
 /* disabled for now because error: maximum number of internal arrays exceeded (65535)
