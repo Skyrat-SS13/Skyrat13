@@ -69,7 +69,7 @@
 /mob/living/simple_animal/pet/dog/walter/Initialize()
 	. = ..()
 	if(.)
-		handle_ears
+		handle_ears()
 
 /mob/living/simple_animal/pet/dog/walter/proc/handle_ears() //i think i was going to use the proc for something else i dunno
 	if(ears)
@@ -94,7 +94,7 @@
 /mob/living/simple_animal/pet/dog/walter/Topic(href, href_list)
 	. = ..()
 	if(ears)
-		ears.forceMove(user.loc)
-		to_chat(user, "<span class='notice'>You take off [src]'s [ears].")
+		ears.forceMove(usr.loc)
+		to_chat(usr, "<span class='notice'>You take off [src]'s [ears].")
 		ears = null
 		handle_ears()
