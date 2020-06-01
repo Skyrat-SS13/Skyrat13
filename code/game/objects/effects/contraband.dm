@@ -970,4 +970,49 @@
 	desc = "A poster with a seductive bat, captioned with <span style='font-family:Impact'>\"Nice tits, hoe\"</span>."
 	icon_state = "poster123"
 
+/obj/structure/sign/poster/contraband/burning_skull
+	name = "Burning Skull"
+	desc = "A Skull on pixelated fire. In the background there is a moon in a clear night sky."
+	icon_state = "poster124"
+
+/obj/structure/sign/poster/contraband/skull_and_roses
+	name = "Skull and Roses"
+	desc = "Painting of a skeleton at night with red flowers in the foreground. The original painting is very different, depicting a woman sitting in a couch, while the skull is in the middle of a body of glacial water of sorts."
+	icon_state = "poster125"
+
+/obj/structure/sign/poster/contraband/graham
+	name = "Graham"
+	desc = "A small picture of King Graham, the player character in the King's Quest series."
+	icon_state = "poster126"
+
+/obj/structure/sign/poster/contraband/bust
+	name = "Bust"
+	desc = "Painting of a statue bust of Marcus Aurelius surrounded by pixelated fire."
+	icon_state = "poster126"
+
+/obj/structure/sign/poster/contraband/bust
+	name = "Bust"
+	desc = "Painting of a statue bust of Marcus Aurelius surrounded by pixelated fire."
+	icon_state = "poster127"
+
+/obj/structure/sign/poster/contraband/cheems
+	name = "Cheems"
+	desc = "A poster, depicting Cheems pointing at you. It simply reads: \"HORNY\"."
+	icon_state = "poster128"
+
+/obj/structure/sign/poster/contraband/ao_oni
+	name = "Jailed"
+	desc = "A poster with a purple man struggling behind bars."
+	icon_state = "poster129"
+
+/obj/structure/sign/poster/contraband/consume
+	name = "The Chalice"
+	desc = "A motivational poster, depicting a goblet filled with \"milk\" captioned with the word \"CONSUME\"."
+	icon_state = "poster130"
+
+/obj/structure/sign/poster/official/hate_cheems
+	name = "Hate Cheems"
+	desc = "A motivational poster of Cheems, encouraging the reader to spread hate and violence."
+	icon_state = "poster131"
+
 #undef PLACE_SPEED
