@@ -3467,7 +3467,6 @@
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\sensory.dm"
 #include "modular_skyrat\code\datums\diseases\advance\symptoms\viral.dm"
 #include "modular_skyrat\code\datums\mood_events\generic_negative_events.dm"
-#include "modular_skyrat\code\datums\mood_events\generic_positive_events.dm"
 #include "modular_skyrat\code\datums\ruins\lavaland.dm"
 #include "modular_skyrat\code\datums\ruins\space.dm"
 #include "modular_skyrat\code\datums\speech_mod\_speech_mod.dm"
