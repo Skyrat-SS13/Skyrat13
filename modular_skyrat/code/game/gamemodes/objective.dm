@@ -40,7 +40,7 @@
 	return target
 
 /datum/objective/blackmail_implant
-	name = "blcakmail implant"
+	name = "blackmail implant"
 	var/target_role_type=0
 	martyr_compatible = 1
 	var/special_equipment = list(/obj/item/implanter/blackmail)
