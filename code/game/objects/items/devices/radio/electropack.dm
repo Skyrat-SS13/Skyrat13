@@ -160,6 +160,24 @@ Code:
 	custom_materials = list(/datum/material/iron = 5000, /datum/material/glass = 2000)
 
 	var/tagname = null
+	//skyrat edit
+	var/datum/quirk/quirky
+	//
+
+/obj/item/electropack/shockcollar/dropped(mob/user)
+	..()
+	punish()
+
+/obj/item/electropack/shockcollar/Destroy()
+	. = ..()
+	punish()
+
+/obj/item/electropack/shockcollar/proc/punish()
+	if(quirky)
+		var/mob/living/carbon/human/H = quirky.quirk_holder
+		if(H && istype(H))
+			if(!H.get_item_by_slot(SLOT_NECK) || (H.get_item_by_slot(SLOT_NECK) != src))
+				quirky.activate()
 
 /datum/design/electropack/shockcollar
 	name = "Shockcollar"

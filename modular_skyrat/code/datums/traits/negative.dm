@@ -92,6 +92,7 @@
 	medical_record_text = "Patient has been deemed unstable by CentCom and local authorities."
 	var/storedcode = 2
 	var/storedfreq = FREQ_ELECTROPACK
+	var/obj/item/electropack/shockcollar/bruno
 
 /datum/quirk/state_property/add()
 	. = ..()
@@ -100,21 +101,35 @@
 	if(.)
 		collar()
 
-/datum/quirk/state_property/proc/collar()
+/datum/quirk/state_property/proc/activate()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(!H.get_item_by_slot(SLOT_NECK) || !istype(H.get_item_by_slot(SLOT_NECK), /obj/item/electropack/shockcollar) || !bruno)
+		collar(FALSE)
+
+/datum/quirk/state_property/proc/collar(var/initial = FALSE)
 	var/mob/living/carbon/human/H = quirk_holder
 	if(istype(H))
-		if(H.get_item_by_slot(SLOT_NECK))
-			var/obj/item/I = H.get_item_by_slot(SLOT_NECK)
-			I.forceMove(get_turf(H))
-		var/obj/item/electropack/shockcollar/woops = new /obj/item/electropack/shockcollar(get_turf(H))
-		H.equip_to_slot_or_del(woops, SLOT_NECK)
-		if(!woops)
-			return FALSE
-		ADD_TRAIT(woops, TRAIT_NODROP, "stateproperty")
-		woops.set_frequency(storedfreq)
-		woops.code = storedcode
-		woops.name = "CentComm issue shock collar - freq: [woops.frequency/10] code: [woops.code]"
-		woops.desc = "Issued to those who have been deemed naughty."
+		if(!H.get_item_by_slot(SLOT_NECK) || !istype(H.get_item_by_slot(SLOT_NECK), /obj/item/electropack/shockcollar))
+			if(H.get_item_by_slot(SLOT_NECK))
+				var/obj/item/I = H.get_item_by_slot(SLOT_NECK)
+				I.forceMove(get_turf(H))
+			var/obj/item/electropack/shockcollar/woops = new /obj/item/electropack/shockcollar(get_turf(H))
+			H.equip_to_slot_or_del(woops, SLOT_NECK)
+			if(!woops)
+				return FALSE
+			ADD_TRAIT(woops, TRAIT_NODROP, "stateproperty")
+			bruno = woops
+			woops.quirky = src
+			woops.set_frequency(storedfreq)
+			woops.code = storedcode
+			woops.name = "CentComm issue shock collar - freq: [woops.frequency/10] code: [woops.code]"
+			woops.desc = "Issued to those who have been deemed naughty."
+			var/datum/signal/singnal = new /datum/signal
+			singnal.frequency = woops.frequency
+			singnal.data["code"] = woops.code
+			if(!initial)
+				to_chat(H, "<span class='userdanger'>Your collar grows like a raging tumor!</span>")
+				woops.receive_signal(singnal)
 
 //i cant run help
 /datum/quirk/asthmatic
