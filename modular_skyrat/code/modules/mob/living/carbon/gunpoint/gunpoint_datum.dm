@@ -11,6 +11,7 @@
 	var/image/aim_image
 
 	var/safeguard_time = 0
+	var/next_autoshot = 0
 	var/locked = FALSE
 	var/was_running = FALSE
 
@@ -91,7 +92,7 @@
 	return FALSE
 
 /datum/gunpoint/proc/CanReact()
-	if(locked && (world.time >= safeguard_time))
+	if(locked && (world.time >= safeguard_time) && !(target.combat_flags & COMBAT_FLAG_HARD_STAMCRIT) && !target.InCritical() && source.next_move <= world.time && next_autoshot <= world.time)
 		return TRUE
 	return FALSE
 
@@ -140,9 +141,9 @@
 		ClickDestroy()
 
 /datum/gunpoint/proc/ShootTarget()
-	if(source.next_move <= world.time)
-		log_combat(target, source, "auto-shot with aim")
-		aimed_gun.process_afterattack(target, source)
+	next_autoshot = world.time + 7
+	log_combat(target, source, "auto-shot with aim")
+	aimed_gun.process_afterattack(target, source)
 
 /datum/gunpoint/proc/RadioReact(datum/datum_source, obj/item/radio/radio, message, channel, list/spans, datum/language/language, direct)
 	if(!allow_radio && CanReact())
