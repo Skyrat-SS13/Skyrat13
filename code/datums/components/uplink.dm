@@ -181,6 +181,18 @@ GLOBAL_LIST_EMPTY(uplinks)
 					continue
 					if(is_inaccessible)
 						continue
+			//skyrat edit
+			if(I.restricted_species.len)
+				if(ishuman(user))
+					var/is_inaccessible = TRUE
+					var/mob/living/carbon/human/H = user
+					for(var/F in I.restricted_species)
+						if(F == H.dna.species.id || debug)
+							is_inaccessible = FALSE
+							break
+					if(is_inaccessible)
+						continue
+			//
 			cat["items"] += list(list(
 				"name" = I.name,
 				"cost" = I.cost,
