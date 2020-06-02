@@ -111,6 +111,22 @@
 						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					return 1
 
+		//SKYRAT CHANGES START
+		if(L.gunpointed.len)
+			var/is_pointing = FALSE
+			for(var/datum/gunpoint/gp in L.gunpointed)
+				if(gp.source == src)
+					is_pointing = TRUE
+					break
+			if(!is_pointing)
+				if(!(world.time % 5))
+					to_chat(src, "<span class='warning'>[L] is being held at gunpoint, it's not wise to push him.</span>")
+				return TRUE
+		if(L.gunpointing)
+			if(!(world.time % 5))
+				to_chat(src, "<span class='warning'>[L] is holding someone at gunpoint, you cannot push past.</span>")
+			return TRUE
+		//END OF SKYRAT CHANGES
 	//CIT CHANGES START HERE - makes it so resting stops you from moving through standing folks without a short delay
 		if(!CHECK_MOBILITY(src, MOBILITY_STAND) && CHECK_MOBILITY(L, MOBILITY_STAND))
 			var/origtargetloc = L.loc
