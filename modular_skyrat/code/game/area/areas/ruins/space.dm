@@ -11,16 +11,12 @@
 	icon_state = "medbay"
 	has_gravity = FALSE
 
-/area/ruin/space/has_grav/ancientstation
-	name = "Charlie Station Main Corridor"
-	icon_state = "green"
-
 /area/ruin/space/has_grav/ancientstation/cargo
 	name = "Charlie Station Cargo Bay"
 	icon_state = "cargo_bay"
 
 /area/ruin/space/has_grav/ancientstation/dorms
-	name = "Charlie Station Dorms"
+	name = "Charlie Station Living Quarters"
 	icon_state = "sleep_cabin"
 
 /area/ruin/space/has_grav/ancientstation/solars
