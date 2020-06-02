@@ -66,7 +66,7 @@
 			if(SANITY_INSANE to SANITY_CRAZY)
 				msg += "<span class='boldwarning'>AHAHAHAHAHAHAHAHAHAH!!</span>\n"
 	else
-		msg += "<span class='nicegreen'>I don't really know.<span>\n"
+		msg += "<span class='notice'>I don't really know.<span>\n"
 	//
 
 	msg += "<span class='notice'>My current mood: </span>" //Short term
@@ -92,7 +92,7 @@
 			if(9)
 				msg += "<span class='nicegreen'>I love life!<span>\n"
 	else
-		msg += "<span class='nicegreen'>No clue.<span>\n"
+		msg += "<span class='notice'>No clue.<span>\n"
 	//
 
 	msg += "<span class='notice'>Moodlets:\n</span>"//All moodlets
@@ -105,7 +105,7 @@
 		else
 			msg += "<span class='nicegreen'>I don't have much of a reaction to anything right now.<span>\n"
 	else
-		msg += "<span class='nicegreen'>No idea.<span>\n"
+		msg += "<span class='notice'>No idea.<span>\n"
 	//
 	to_chat(user || parent, msg)
 
