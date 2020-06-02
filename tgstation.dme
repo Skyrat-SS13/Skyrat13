@@ -3485,6 +3485,7 @@
 #include "modular_skyrat\code\game\area\lavalandelevator.dm"
 #include "modular_skyrat\code\game\area\Space_Station_13_areas.dm"
 #include "modular_skyrat\code\game\area\areas\ruins\lavaland.dm"
+#include "modular_skyrat\code\game\area\areas\ruins\space.dm"
 #include "modular_skyrat\code\game\gamemodes\objective.dm"
 #include "modular_skyrat\code\game\gamemodes\brother\traitor_bro.dm"
 #include "modular_skyrat\code\game\gamemodes\changeling\changeling.dm"
