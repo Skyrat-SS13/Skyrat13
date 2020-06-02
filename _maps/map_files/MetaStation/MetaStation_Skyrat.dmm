@@ -2160,13 +2160,13 @@
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "aey" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/structure/table/wood,
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1;
 	sortType = 7
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/table/wood,
 /turf/open/floor/plasteel,
 /area/security/main)
 "aez" = (
@@ -2885,14 +2885,14 @@
 /turf/open/floor/wood,
 /area/security/courtroom)
 "afW" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -3250,6 +3250,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "agR" = (
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/chair/comfy/brown{
@@ -3258,7 +3259,6 @@
 	dir = 1;
 	name = "Premium Cozy Chair"
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/security/main)
 "agS" = (
@@ -3283,25 +3283,25 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "agU" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
 "agV" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 9
-	},
-/obj/structure/disposalpipe/segment{
 	dir = 9
 	},
 /turf/open/floor/plasteel,
@@ -8097,13 +8097,13 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "aqZ" = (
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -10667,6 +10667,7 @@
 /turf/open/floor/plating,
 /area/maintenance/bar)
 "awf" = (
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4
 	},
@@ -10676,7 +10677,6 @@
 	dir = 4;
 	name = "Premium Cozy Chair"
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/security/main)
 "awg" = (
@@ -11355,15 +11355,18 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "axt" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
 "axu" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -11374,9 +11377,6 @@
 	c_tag = "Security - Lounge";
 	dir = 1;
 	network = list("ss13","prison")
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -13936,13 +13936,13 @@
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "aCw" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 6
-	},
-/obj/structure/disposalpipe/segment{
 	dir = 6
 	},
 /turf/open/floor/plasteel,
@@ -14454,13 +14454,13 @@
 /turf/open/floor/wood,
 /area/security/prison)
 "aDD" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/light/small,
@@ -15054,6 +15054,9 @@
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "aEJ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
@@ -15061,9 +15064,6 @@
 	dir = 4
 	},
 /obj/structure/table/wood,
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
 /turf/open/floor/plasteel,
 /area/security/main)
 "aEK" = (
@@ -16021,15 +16021,15 @@
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "aGy" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/chair/comfy/brown{
 	color = "#c45c57";
 	desc = "Remarkably soft, with plush cozy cushions, premium memory-foam and covered in stain-resistant fabric. Made by Kat-Kea???!";
 	name = "Premium Cozy Chair";
 	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -18688,11 +18688,11 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 8
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "aLB" = (
@@ -21154,14 +21154,14 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/sorting/mail{
 	dir = 4;
 	sortType = 8
 	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "aQJ" = (
@@ -75543,11 +75543,11 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+/obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/obj/structure/disposalpipe/segment{
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
@@ -77640,10 +77640,10 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/door/firedoor,
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "jGs" = (
@@ -78295,13 +78295,13 @@
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "mQd" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/structure/table/wood,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/item/folder/red{
 	pixel_x = 3
 	},
@@ -79502,13 +79502,13 @@
 	name = "Evidence Storage";
 	req_one_access_txt = "63"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -79550,11 +79550,11 @@
 	name = "Security Maintenance";
 	req_access_txt = "1"
 	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
