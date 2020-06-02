@@ -69,7 +69,8 @@ SUBSYSTEM_DEF(atoms)
 		while(get_mega_count(I) < 1)
 			attempts++
 			var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
-			T.BruteForceSpawn(I)
+			if(istype(T))
+				T.BruteForceSpawn(I)
 			if(attempts >= 30)
 				testing("Static megafauna spawning failed after [attempts] attempts.")
 				break
