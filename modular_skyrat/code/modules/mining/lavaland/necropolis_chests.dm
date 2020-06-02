@@ -68,14 +68,12 @@
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
 	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	var/loot = rand(1,3)
+	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
 			new /obj/item/mayhem(src)
 		if(2)
 			new /obj/item/gun/magic/staff/spellblade(src)
-		if(3)
-			new /obj/item/organ/heart/demon(src)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
 	name = "enraged bubblegum chest"
@@ -84,7 +82,6 @@
 	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 	new /obj/item/borg/upgrade/modkit/shotgun(src)
 	new /obj/item/mayhem(src)
-	new /obj/item/organ/heart/demon(src)
 	new /obj/item/twohanded/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
 
