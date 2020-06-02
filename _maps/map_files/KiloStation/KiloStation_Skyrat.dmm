@@ -39,6 +39,11 @@
 "aaf" = (
 /turf/closed/wall/r_wall,
 /area/security/brig)
+"aag" = (
+/obj/effect/turf_decal/bot,
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aah" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -97,6 +102,13 @@
 	luminosity = 2
 	},
 /area/ai_monitored/turret_protected/ai)
+"aao" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 8
+	},
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aap" = (
 /turf/closed/mineral/random/low_chance,
 /area/space/nearstation)
@@ -107127,7 +107139,7 @@ byJ
 bjR
 api
 blb
-api
+aag
 blK
 bkY
 bOI
@@ -107385,7 +107397,7 @@ hpg
 blO
 blL
 api
-blK
+aao
 api
 bOI
 bAP

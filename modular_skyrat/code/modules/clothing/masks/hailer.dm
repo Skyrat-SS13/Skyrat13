@@ -148,7 +148,7 @@
 	name = "HECU mask"
 	desc = "MY. ASS. IS. HEAVY."
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
-	icon_state = "hecu_mask"
+	icon_state = "hecu"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
 	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
 	actions_types = list(/datum/action/item_action/halt)

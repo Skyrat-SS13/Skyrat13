@@ -240,6 +240,31 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/detectives_office)
+"aaA" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
+"aaB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
+"aaC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/mob/living/simple_animal/sloth/citrus,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "aaE" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space,
@@ -16692,16 +16717,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"aQM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "aQN" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -19344,13 +19359,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"aVT" = (
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/mob/living/simple_animal/sloth/citrus,
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "aVU" = (
 /obj/machinery/holopad,
 /obj/structure/cable/white{
@@ -20021,12 +20029,6 @@
 	dir = 4
 	},
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
-"aXz" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "aXA" = (
@@ -145462,7 +145464,7 @@ aKP
 aLX
 aSo
 aOZ
-aQM
+aaB
 aSo
 aUd
 aVL
@@ -147521,8 +147523,8 @@ aPf
 aQP
 aSu
 aUk
-aVT
-aXz
+aaA
+aaC
 aZd
 aQQ
 bcD

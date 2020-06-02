@@ -307,6 +307,14 @@ SUBSYSTEM_DEF(shuttle)
 		if(SEC_LEVEL_BLUE)
 			if(emergency.timeLeft(1) < emergencyCallTime * 0.6)
 				return
+		//Skyrat change start
+		if(SEC_LEVEL_ORANGE)
+			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
+				return
+		if(SEC_LEVEL_VIOLET)
+			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
+				return
+		//Skyrat change stop
 		if(SEC_LEVEL_AMBER)
 			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
 				return
