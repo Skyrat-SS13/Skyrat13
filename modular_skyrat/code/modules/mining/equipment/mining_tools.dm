@@ -12,7 +12,7 @@
 	. = ..()
 	if(proximity_flag && istype(target, /turf/open/floor/plating/asteroid))
 		var/turf/open/floor/plating/asteroid/ass = target
-		if(ass && istype(ass))
+		if(ass && istype(ass) && ass.can_dig(user))
 			if(do_after(user, 200 * widespeed, TRUE, src))
 				for(var/turf/open/floor/plating/asteroid/steroid in view(digrange, ass))
 					steroid.getDug()
