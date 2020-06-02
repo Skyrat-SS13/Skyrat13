@@ -104,3 +104,12 @@
 	if (isvox(user))
 		playsound(user, 'modular_skyrat/sound/emotes/voxsneeze.ogg', 50, 1, -1)
 
+/datum/emote/living/deathgasp/run_emote(mob/living/user, params)
+	if(!(. = ..()))
+		return
+	if(user.nextsoundemote >= world.time)
+		return
+	user.nextsoundemote = world.time + 7
+	if (isipcperson(user))
+		playsound(user, 'modular_skyrat/sound/emotes/ipcdeathgasp.ogg', 50, 0, -1)
+		
