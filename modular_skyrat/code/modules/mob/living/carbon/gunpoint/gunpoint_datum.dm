@@ -94,7 +94,7 @@
 	return FALSE
 
 /datum/gunpoint/proc/CanReact()
-	if(locked && (world.time >= safeguard_time) && !(target.combat_flags & COMBAT_FLAG_HARD_STAMCRIT) && !target.InCritical() && source.next_move <= world.time && next_autoshot <= world.time && source.get_active_held_item() == aimed_gun)
+	if(locked && (world.time >= safeguard_time) && !(target.combat_flags & COMBAT_FLAG_HARD_STAMCRIT) && !target.InCritical() && source.next_move <= world.time && next_autoshot <= world.time)
 		return TRUE
 	return FALSE
 
