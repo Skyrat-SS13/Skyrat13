@@ -90,8 +90,6 @@
 	desc = "Due to your concerning behavior, CentCom has installed a permanent shock collar on you, with a publically available code and channel."
 	value = -2
 	medical_record_text = "Patient has been deemed unstable by CentCom and local authorities."
-	var/pcooldown = 0
-	var/pcooldown_time = 30 SECONDS
 	var/storedcode = 2
 	var/storedfreq = FREQ_ELECTROPACK
 
@@ -100,41 +98,23 @@
 	storedcode = rand(1, 100)
 	storedfreq = sanitize_frequency(rand(MIN_FREE_FREQ, MAX_FREE_FREQ), TRUE)
 	if(.)
-		collar(TRUE)
+		collar()
 
-/datum/quirk/state_property/on_process()
-	if(pcooldown > world.time)
-		return
-	pcooldown = world.time + pcooldown_time
-	collar(FALSE)
-
-/datum/quirk/state_property/proc/collar(var/initial = FALSE)
+/datum/quirk/state_property/proc/collar()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(istype(H))
-		if(!istype(H.get_item_by_slot(SLOT_NECK), /obj/item/electropack/shockcollar))
-			if(H.get_item_by_slot(SLOT_NECK))
-				var/obj/item/I = H.get_item_by_slot(SLOT_NECK)
-				I.forceMove(get_turf(H))
-			var/obj/item/electropack/shockcollar/woops = new /obj/item/electropack/shockcollar(get_turf(H))
-			H.equip_to_slot_or_del(woops, SLOT_NECK)
-			if(!woops)
-				return FALSE
-			ADD_TRAIT(woops, TRAIT_NODROP, "stateproperty")
-			woops.set_frequency(storedfreq)
-			woops.code = storedcode
-			woops.name = "CentComm issue shock collar - freq: [woops.frequency/10] code: [woops.code]"
-			woops.desc = "Issued to those who have been deemed naughty."
-			var/datum/signal/singnal = new /datum/signal
-			singnal.frequency = woops.frequency
-			singnal.data["code"] = woops.code
-			if(!initial)
-				to_chat(H, "<span class='userdanger'>Your collar grows like a raging tumor!</span>")
-				woops.receive_signal(singnal)
-		else
-			var/obj/item/electropack/shockcollar/cooler = H.get_item_by_slot(SLOT_NECK)
-			cooler.frequency = storedfreq
-			cooler.code = storedcode
-			cooler.on = TRUE
+		if(H.get_item_by_slot(SLOT_NECK))
+			var/obj/item/I = H.get_item_by_slot(SLOT_NECK)
+			I.forceMove(get_turf(H))
+		var/obj/item/electropack/shockcollar/woops = new /obj/item/electropack/shockcollar(get_turf(H))
+		H.equip_to_slot_or_del(woops, SLOT_NECK)
+		if(!woops)
+			return FALSE
+		ADD_TRAIT(woops, TRAIT_NODROP, "stateproperty")
+		woops.set_frequency(storedfreq)
+		woops.code = storedcode
+		woops.name = "CentComm issue shock collar - freq: [woops.frequency/10] code: [woops.code]"
+		woops.desc = "Issued to those who have been deemed naughty."
 
 //i cant run help
 /datum/quirk/asthmatic
