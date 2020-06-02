@@ -5129,6 +5129,24 @@
 "ala" = (
 /turf/open/floor/wood,
 /area/maintenance/bar)
+"alb" = (
+/obj/structure/musician/piano{
+	icon_state = "piano"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"alc" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 6;
+	name = "64maintenance loot spawner"
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"ald" = (
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "alf" = (
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
@@ -6289,6 +6307,12 @@
 	icon_state = "chapel"
 	},
 /area/security/prison)
+"any" = (
+/obj/structure/musician/piano{
+	icon_state = "piano"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "anz" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
@@ -8341,6 +8365,17 @@
 "arB" = (
 /turf/closed/wall,
 /area/crew_quarters/dorms)
+"arC" = (
+/obj/structure/closet,
+/obj/item/instrument/eguitar,
+/obj/item/instrument/guitar,
+/obj/item/instrument/harmonica,
+/obj/item/instrument/recorder,
+/obj/item/instrument/saxophone,
+/obj/item/instrument/trombone,
+/obj/item/instrument/violin,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "arD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
@@ -10205,6 +10240,16 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard)
+"avs" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "avt" = (
 /obj/structure/closet,
 /obj/item/clothing/gloves/color/fyellow,
@@ -52339,7 +52384,10 @@
 /turf/open/floor/wood,
 /area/security/vacantoffice)
 "cem" = (
-/obj/machinery/door/airlock/grunge,
+/obj/machinery/door/airlock/grunge{
+	name = "Entertainer Closet";
+	req_access_txt = "46"
+	},
 /turf/open/floor/plating,
 /area/security/vacantoffice)
 "cen" = (
@@ -70778,10 +70826,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"cQs" = (
-/obj/effect/spawner/lootdrop/grille_or_trash,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "cQt" = (
 /obj/structure/closet/wardrobe/grey,
 /obj/effect/spawner/lootdrop/coins/iron/twentyfivepercent,
@@ -99218,7 +99262,7 @@ cui
 cwj
 dyg
 dux
-cxS
+any
 dux
 aaf
 aaf
@@ -109236,7 +109280,7 @@ cpg
 cqA
 crI
 csQ
-bJr
+cdm
 bTs
 tKT
 tKT
@@ -109493,7 +109537,7 @@ cph
 cqB
 cJm
 csR
-bJr
+alc
 bTs
 czl
 cBc
@@ -109750,7 +109794,7 @@ cIm
 cnX
 cgd
 csS
-bJr
+ald
 bTs
 cAm
 cxI
@@ -110007,7 +110051,7 @@ cpj
 cqC
 crV
 cvY
-bJr
+cJl
 bTs
 cAp
 cJR
@@ -114082,7 +114126,7 @@ bkU
 bmP
 boP
 byC
-byC
+alb
 bmP
 dCS
 bAo
@@ -115676,7 +115720,7 @@ cyK
 dwL
 dwL
 dwL
-cSv
+avs
 dvY
 dvY
 lam
@@ -116190,7 +116234,7 @@ cJQ
 dvY
 cQt
 cSv
-cQs
+ciL
 vis
 dvY
 oni
@@ -117217,7 +117261,7 @@ cIR
 cyK
 dwL
 dwL
-ciL
+arC
 qDZ
 ciL
 cTT
