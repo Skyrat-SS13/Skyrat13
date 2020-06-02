@@ -56,7 +56,12 @@
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
 		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
+<<<<<<< HEAD
 		/obj/item/firing_pin, /obj/item/toy/plush/snakeplushie
+=======
+		/obj/item/firing_pin, /obj/item/gun/ballistic/automatic/pistol, /obj/item/gun/ballistic/automatic/magrifle/pistol,
+		/obj/item/toy/plush/snakeplushie, /obj/item/gun/energy/e_gun/mini
+>>>>>>> f926dd7f5e... Update pockets.dm (#12421)
 		))
 
 /datum/component/storage/concrete/pockets/shoes/clown/Initialize()
@@ -67,7 +72,7 @@
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
 		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
-		/obj/item/firing_pin, /obj/item/bikehorn, /obj/item/gun/ballistic/automatic/pistol))
+		/obj/item/firing_pin, /obj/item/bikehorn, /obj/item/gun/ballistic/automatic/pistol, /obj/item/gun/energy/e_gun/mini))
 
 /datum/component/storage/concrete/pockets/pocketprotector
 	max_items = 3
