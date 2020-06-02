@@ -60,46 +60,6 @@
 	mob_trait = TRAIT_DUMB
 	medical_record_text = "Patient exhibits rather low mental capabilities."
 
-//specism
-/datum/quirk/specism
-	name = "Specist"
-	desc = "Other species are a mistake on the gene pool and you know it. Seeing people of differing species negatively impacts your mood, \
-			and seeing people of the same species as yours will positively impact your mood."
-	value = -1
-	medical_record_text = "Patient exhibits an unnatural distaste for people of differing species."
-	var/pcooldown = 0
-	var/pcooldown_time = 15 SECONDS
-	var/master_race
-
-/datum/quirk/specism/add()
-	. = ..()
-	if(!ishuman(quirk_holder))
-		remove() //prejudice is a human problem.
-	var/mob/living/carbon/human/trianglehatman = quirk_holder
-	master_race = trianglehatman.dna.species.type
-
-/datum/quirk/specism/on_process()
-	. = ..()
-	if(pcooldown > world.time)
-		return
-	pcooldown = world.time + pcooldown_time
-	if(!ishuman(quirk_holder))
-		remove() //prejudice is a human problem.
-	var/mob/living/carbon/human/trianglehatman = quirk_holder
-	if(!master_race)
-		master_race = trianglehatman.dna.species.type
-	var/pridecount = 0
-	var/hatecount = 0
-	for(var/mob/living/carbon/human/H in (view(5, trianglehatman) - trianglehatman))
-		if(H.dna.species.type != master_race)
-			hatecount++
-		else
-			pridecount++
-	if(hatecount > pridecount)
-		SEND_SIGNAL(trianglehatman, COMSIG_ADD_MOOD_EVENT, "specism_hate", /datum/mood_event/specism_hate)
-	else if(pridecount > hatecount)
-		SEND_SIGNAL(trianglehatman, COMSIG_ADD_MOOD_EVENT, "specism_pride", /datum/mood_event/specism_pride)
-
 //clumsyness
 /datum/quirk/disaster_artist
 	name = "Disaster Artist"
@@ -222,23 +182,3 @@
 
 /datum/quirk/allergic/proc/inform(var/allergy = "bad coders")
 	to_chat(quirk_holder, "<span class='danger'><b><i>You are allergic to [lowertext(allergy)].</i></b></span>")
-
-//incel quirk
-/datum/quirk/ugly
-	name = "Ugly"
-	desc = "Your face looks like a tumor. People around you will have their mood negatively impacted if you don't cover your face."
-	value = -1
-	mob_trait = TRAIT_UGLY
-	medical_record_text = "Patient is considered exceptionally ugly by most standards."
-	var/pcooldown = 0
-	var/pcooldown_time = 20 SECONDS
-
-/datum/quirk/ugly/process()
-	if(pcooldown > world.time)
-		return
-	pcooldown = world.time + pcooldown_time
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H && istype(H))
-		if(!H.is_mouth_covered())
-			for(var/mob/living/carbon/human/disgusted in (view(7, H) - H))
-				SEND_SIGNAL(disgusted, COMSIG_ADD_MOOD_EVENT, "ugly", /datum/mood_event/ugly)
