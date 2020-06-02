@@ -2,7 +2,7 @@
 	name = "HECU mask"
 	desc = "An ancient gas mask with the letters HECU stamped on the side. Comes with a shouting-activated voice modulator that slowly recharges. \n MY. ASS. IS. HEAVY."
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
-	icon_state = "hecu_mask"
+	icon_state = "hecu"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/mask.dmi'
 	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/mask_muzzled.dmi'
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES
