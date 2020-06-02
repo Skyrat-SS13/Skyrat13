@@ -568,7 +568,7 @@
 		return FALSE
 	else
 		var/mob/living/holdingdude = user
-		if(istype(holdingdude) && ((holdingdude.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE) || ((holdingdude.gunpointing && holdingdude.gunpointing.aimed_gun == src)))) //Skyrat change - gunpointing accuracy
+		if(istype(holdingdude) && ((holdingdude.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE)))
 			return 0
 		else
 			return ((weapon_weight * 25) * inaccuracy_modifier)

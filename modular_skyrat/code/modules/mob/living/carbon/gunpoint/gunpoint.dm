@@ -1,6 +1,6 @@
 /mob/living/ShiftMiddleClickOn(atom/A)
 	var/obj/item/gun/G = get_active_held_item()
-	if(CHECK_MOBILITY(src, MOBILITY_STAND) && ((G && isliving(A)) || (gunpointing && (G == gunpointing.aimed_gun))))
+	if(combat_flags & COMBAT_FLAG_COMBAT_ACTIVE && istype(G, /obj/item/gun) && CHECK_MOBILITY(src, MOBILITY_STAND) && isliving(A) || (gunpointing && (G == gunpointing.aimed_gun)))
 		DoGunpoint(A)
 	else
 		src.pointed(A)

@@ -63,6 +63,8 @@
 	RegisterSignal(target, COMSIG_MOB_ITEM_ATTACK_SELF, .proc/UseReact)
 	RegisterSignal(target, COMSIG_MOB_ITEM_AFTERATTACK, .proc/UseReact)
 
+	RegisterSignal(source, COMSIG_LIVING_COMBAT_DISABLED, .proc/ClickDestroy)
+
 	addtimer(CALLBACK(src, .proc/LockOn), 7)
 
 /datum/gunpoint/proc/LockOn()
@@ -92,7 +94,7 @@
 	return FALSE
 
 /datum/gunpoint/proc/CanReact()
-	if(locked && (world.time >= safeguard_time) && !(target.combat_flags & COMBAT_FLAG_HARD_STAMCRIT) && !target.InCritical() && source.next_move <= world.time && next_autoshot <= world.time)
+	if(locked && (world.time >= safeguard_time) && !(target.combat_flags & COMBAT_FLAG_HARD_STAMCRIT) && !target.InCritical() && source.next_move <= world.time && next_autoshot <= world.time && source.get_active_held_item() == aimed_gun)
 		return TRUE
 	return FALSE
 
@@ -116,6 +118,8 @@
 	UnregisterSignal(target, COMSIG_MOB_ATTACK_HAND)
 	UnregisterSignal(target, COMSIG_MOB_ITEM_ATTACK_SELF)
 	UnregisterSignal(target, COMSIG_MOB_ITEM_AFTERATTACK)
+
+	UnregisterSignal(source, COMSIG_LIVING_COMBAT_DISABLED)
 
 	if(source.client)
 		source.client.images -= aim_image
@@ -141,7 +145,7 @@
 		ClickDestroy()
 
 /datum/gunpoint/proc/ShootTarget()
-	next_autoshot = world.time + 7
+	next_autoshot = world.time + 6
 	log_combat(target, source, "auto-shot with aim")
 	aimed_gun.process_afterattack(target, source)
 
