@@ -8366,16 +8366,14 @@
 /turf/closed/wall,
 /area/crew_quarters/dorms)
 "arC" = (
-/obj/structure/closet,
-/obj/item/instrument/eguitar,
-/obj/item/instrument/guitar,
-/obj/item/instrument/harmonica,
-/obj/item/instrument/recorder,
-/obj/item/instrument/saxophone,
-/obj/item/instrument/trombone,
-/obj/item/instrument/violin,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "arD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
@@ -10241,15 +10239,11 @@
 	},
 /area/maintenance/starboard)
 "avs" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "avt" = (
 /obj/structure/closet,
 /obj/item/clothing/gloves/color/fyellow,
@@ -31280,6 +31274,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"bkY" = (
+/obj/structure/closet,
+/obj/item/instrument/eguitar,
+/obj/item/instrument/guitar,
+/obj/item/instrument/harmonica,
+/obj/item/instrument/recorder,
+/obj/item/instrument/saxophone,
+/obj/item/instrument/trombone,
+/obj/item/instrument/violin,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "bkZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -31666,6 +31671,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"blQ" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "blR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/line{
@@ -63085,6 +63100,9 @@
 /area/science/mixing)
 "czG" = (
 /obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "czH" = (
@@ -66659,11 +66677,11 @@
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
 "cHh" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
@@ -114428,7 +114446,7 @@ crR
 crR
 crR
 cCs
-vhG
+arC
 cAH
 cBC
 cHg
@@ -114685,7 +114703,7 @@ cAu
 cAx
 crR
 xAp
-vhG
+arC
 cAI
 cBD
 cCD
@@ -115722,7 +115740,7 @@ cyK
 dwL
 dwL
 dwL
-avs
+blQ
 dvY
 dvY
 lam
@@ -116231,7 +116249,7 @@ xVP
 cGg
 czF
 cHh
-nQv
+avs
 cJQ
 dvY
 cQt
@@ -117263,7 +117281,7 @@ cIR
 cyK
 dwL
 dwL
-arC
+bkY
 qDZ
 ciL
 cTT
