@@ -48,7 +48,7 @@
 /obj/item/projectile/plasma/rogue
 	dismemberment = 0
 	damage = 25
-	speed = 1.25
+	pixels_per_second = TILES_TO_PIXELS(10)
 	range = 21
 	color = "#FF0000"
 

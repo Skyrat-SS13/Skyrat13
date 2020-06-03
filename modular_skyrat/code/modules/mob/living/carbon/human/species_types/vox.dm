@@ -19,6 +19,7 @@
 	exotic_bloodtype = "SY" //synthetic, oxygenless blood
 	liked_food = MEAT | FRIED
 	brutemod = 1.2
+	languagewhitelist = list("Vox-pidgin")
 
 /datum/species/vox/before_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/datum/outfit/vox/O = new /datum/outfit/vox
@@ -26,10 +27,10 @@
 	H.internal = H.get_item_for_held_index(2)
 	H.update_internals_hud_icon(1)
 	return 0
-
+/*
 /datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/vox)
-
+*/
 /datum/species/vox/random_name(gender,unique,lastname)
 	if(unique)
 		return random_unique_vox_name()

@@ -170,6 +170,7 @@
 	name = "pepper spray refiller"
 	desc = "Contains condensed capsaicin for use in law \"enforcement.\""
 	icon_state = "pepper"
+	plane = ABOVE_WALL_PLANE
 	anchored = TRUE
 	density = FALSE
 	reagent_id = /datum/reagent/consumable/condensedcapsaicin
@@ -183,6 +184,7 @@
 	name = "virus food dispenser"
 	desc = "A dispenser of low-potency virus mutagenic."
 	icon_state = "virus_food"
+	plane = ABOVE_WALL_PLANE
 	anchored = TRUE
 	density = FALSE
 	reagent_id = /datum/reagent/consumable/virus_food
@@ -238,12 +240,6 @@
 	desc = "A keg of pasteurised, homogenised, filtered and semi-skimmed space milk."
 	icon_state = "whitekeg"
 	reagent_id = /datum/reagent/consumable/milk
-
-/obj/structure/reagent_dispensers/keg/semen
-	name = "keg of semen"
-	desc = "Dear lord, where did this even come from?"
-	icon_state = "whitekeg"
-	reagent_id = /datum/reagent/consumable/semen
 
 /obj/structure/reagent_dispensers/keg/gargle
 	name = "keg of pan galactic gargleblaster"

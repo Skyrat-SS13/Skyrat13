@@ -28,5 +28,9 @@
 	/// footstep type override for both shoeless and not footstep sounds.
 	var/footstep_type
 
+	//skyrat edit - allergies
+	var/allergies = 0
+	//
+
 /datum/physiology/New()
 	armor = new

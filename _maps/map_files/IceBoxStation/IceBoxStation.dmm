@@ -1,4 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aab" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -38,6 +45,10 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"aae" = (
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aaf" = (
 /obj/docking_port/stationary{
 	dheight = 1;
@@ -6308,10 +6319,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall,
 /area/security/brig)
-"ama" = (
-/mob/living/simple_animal/sloth/paperwork,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "amb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -18477,7 +18484,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aQV" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -29367,14 +29374,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "brz" = (
-/obj/structure/table,
-/obj/item/pen,
-/obj/machinery/camera{
-	c_tag = "Experimentor Lab";
-	network = list("ss13","rd")
-	},
-/obj/item/hand_labeler,
-/obj/item/stack/packageWrap,
+/obj/machinery/rnd/bepis,
 /turf/open/floor/plasteel/white/side,
 /area/science/explab)
 "brA" = (
@@ -29396,6 +29396,10 @@
 	pixel_y = 23
 	},
 /obj/item/radio/off,
+/obj/machinery/camera{
+	c_tag = "Experimentor Lab";
+	network = list("ss13","rd")
+	},
 /turf/open/floor/plasteel/white/side,
 /area/science/explab)
 "brD" = (
@@ -38320,7 +38324,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/chem_dispenser,
+/obj/machinery/chem_dispenser/apothecary,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bLV" = (
@@ -56859,10 +56863,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"kQO" = (
-/obj/structure/reagent_dispensers/keg/semen,
-/turf/open/floor/plating,
-/area/maintenance/bar)
 "kSb" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
@@ -57041,7 +57041,7 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "lsk" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
 "ltK" = (
@@ -59042,18 +59042,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"rca" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 4
-	},
-/obj/structure/closet/secure_closet/atmospherics,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/corner{
-	dir = 1
-	},
-/area/engine/atmos)
 "rcD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -60016,7 +60004,7 @@
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "sXA" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/closed/wall,
 /area/maintenance/bar)
 "sXM" = (
@@ -82567,7 +82555,7 @@ bjr
 bjr
 bmh
 boK
-bjr
+aae
 boK
 bjr
 bjr
@@ -82821,7 +82809,7 @@ dev
 aZE
 xBw
 bjr
-ama
+bjr
 bmh
 bjr
 bjr
@@ -83079,7 +83067,7 @@ gjl
 bjq
 bjr
 bjr
-bmh
+aaa
 bjr
 bjr
 bjr
@@ -84144,7 +84132,7 @@ mrR
 dKP
 odx
 rBq
-kQO
+evR
 bCq
 bUs
 bLv
@@ -93127,7 +93115,7 @@ bOX
 bQm
 bRv
 bRs
-rca
+glY
 bTP
 bVX
 bWQ
@@ -93384,7 +93372,7 @@ bOW
 bQl
 bRu
 bRs
-rca
+glY
 bUI
 bVR
 bWQ

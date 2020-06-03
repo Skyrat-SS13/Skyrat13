@@ -4768,6 +4768,10 @@
 /obj/effect/spawner/lootdrop/soap/seventyfive_percent,
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
+"ako" = (
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "akp" = (
 /obj/structure/rack,
 /obj/item/clothing/gloves/color/yellow,
@@ -8388,7 +8392,7 @@
 /turf/closed/wall,
 /area/crew_quarters/dorms)
 "arC" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /obj/structure/table/wood,
 /obj/machinery/light{
 	dir = 1
@@ -35908,7 +35912,17 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "btW" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
 "btX" = (
@@ -43800,7 +43814,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bLe" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bLf" = (
@@ -56047,7 +56061,7 @@
 /turf/open/floor/plating/airless,
 /area/engine/atmos)
 "cjp" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
 "cjq" = (
@@ -74512,10 +74526,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/engine/atmos)
-"cVC" = (
-/mob/living/simple_animal/sloth/citrus,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "cVD" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/effect/turf_decal/bot,
@@ -99045,7 +99055,7 @@ aMv
 aMv
 aKR
 aMv
-cVC
+ako
 aXf
 aYM
 bao
