@@ -39117,12 +39117,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "btD" = (
-/obj/machinery/chem_dispenser{
-	layer = 2.7
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
+/obj/machinery/chem_dispenser/apothecary,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "btE" = (
@@ -46155,7 +46153,7 @@
 /turf/open/floor/wood,
 /area/maintenance/bar)
 "bGM" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/maintenance/bar)
 "bGN" = (
@@ -48393,7 +48391,6 @@
 /area/hydroponics/garden/abandoned)
 "bKT" = (
 /obj/item/poster/random_contraband,
-/turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
@@ -60160,7 +60157,7 @@
 /turf/open/space,
 /area/space/nearstation)
 "cgJ" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "cgK" = (
@@ -63726,7 +63723,6 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
@@ -65187,7 +65183,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
@@ -74603,7 +74598,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/bridge)
 "cIV" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
@@ -78049,7 +78044,6 @@
 	},
 /area/maintenance/department/medical)
 "cPo" = (
-/turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
@@ -78152,7 +78146,6 @@
 	},
 /area/maintenance/fore/secondary)
 "cPB" = (
-/turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
@@ -78177,17 +78170,10 @@
 	},
 /area/maintenance/department/crew_quarters/dorms)
 "cPE" = (
-/turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/department/crew_quarters/dorms)
-"cPF" = (
-/turf/open/floor/plating,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/maintenance/aft)
 "cPG" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -117688,7 +117674,7 @@ cgm
 cMP
 cCh
 boU
-cPF
+cfm
 chI
 cqg
 cWW
@@ -120790,7 +120776,7 @@ aaA
 ceG
 cqt
 bYa
-cPF
+cfm
 ceG
 aaA
 aaA
@@ -121548,7 +121534,7 @@ cQK
 bYa
 bYa
 cRQ
-cPF
+cfm
 chI
 cRv
 bYa
