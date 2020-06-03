@@ -619,16 +619,12 @@
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC|STYLE_NO_ANTHRO_ICON
 	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'
 
-// Reskinnable Trek uniforms, now using Orvi-like by default.
+// Reskinnable Trek uniforms
 /obj/item/clothing/under/trek/command
-	name = "\improper Planetary Federation command uniform"
-	desc = "An uniform worn by command officers."
-	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
-	icon_state = "orv_com"
+	name = "enterprise command uniform"
+	desc = "An enterprise corps uniform worn by command officers."
 	unique_reskin_icons = list(
-	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Orvlike" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
 	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
@@ -636,7 +632,7 @@
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Orvlike" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
@@ -644,7 +640,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Orvlike" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
@@ -652,7 +648,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default" = "orv_com",
+	"Orvlike" = "orv_com",
 	"The Original Series" = "trek_command",
 	"The New Generation" = "trek_next_command",
 	"Voyager" = "trek_voy_command",
@@ -660,7 +656,7 @@
 	"Enterprise" = "trek_ent_command"
 	)
 	unique_desc = list(
-	"Default" = "An uniform worn by command officers since 2420s.",
+	"Orvlike" = "An uniform worn by command officers since 2420s.",
 	"The Original Series" = "An uniform worn by command officers in the mid 2260s.",
 	"The New Generation" = "An uniform worn by command officers. This one is from the mid 2360s.",
 	"Voyager" = "An uniform worn by command officers of the 2370s.",
@@ -669,14 +665,10 @@
 	)
 
 /obj/item/clothing/under/trek/engsec
-	name = "\improper Planetary Federation operations uniform"
-	desc = "An uniform worn by operations officers. You feel strangely vulnerable just seeing this..."
-	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
-	icon_state = "orv_ops"
+	name = "enterprise operations uniform"
+	desc = "An enterprise corps uniform worn by operations officers."
 	unique_reskin_icons = list(
-	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Orvlike" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
 	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
@@ -684,7 +676,7 @@
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Orvlike" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
@@ -692,7 +684,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Orvlike" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
@@ -700,7 +692,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default" = "orv_ops",
+	"Orvlike" = "orv_ops",
 	"The Original Series" = "trek_engsec",
 	"The New Generation" = "trek_next_engsec",
 	"Voyager" = "trek_voy_engsec",
@@ -708,7 +700,7 @@
 	"Enterprise" = "trek_ent_engsec"
 	)
 	unique_desc = list(
-	"Default" = "An uniform worn by operations officers since 2420s.",
+	"Orvlike" = "An uniform worn by operations officers since 2420s.",
 	"The Original Series" = "An uniform worn by operations officers in the mid 2260s. You feel strangely vulnerable just seeing this...",
 	"The New Generation" = "An uniform worn by operations officers. This one is from the mid 2360s.",
 	"Voyager" = "An uniform worn by operations officers of the 2370s.",
@@ -717,14 +709,10 @@
 	)
 
 /obj/item/clothing/under/trek/medsci
-	name = "\improper Planetary Federation medsci uniform"
-	desc = "An uniform worn by medsci officers."
-	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
-	icon_state = "orv_medsci"
+	name = "enterprise medsci uniform"
+	desc = "An enterprise corps uniform worn by medsci officers."
 	unique_reskin_icons = list(
-	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Orvlike" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
 	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
@@ -732,7 +720,7 @@
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Orvlike" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
@@ -740,7 +728,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Orvlike" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
@@ -748,7 +736,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default" = "orv_medsci",
+	"Orvlike" = "orv_medsci",
 	"The Original Series" = "trek_medsci",
 	"The New Generation" = "trek_next_medsci",
 	"Voyager" = "trek_voy_medsci",
@@ -756,7 +744,7 @@
 	"Enterprise" = "trek_ent_medsci"
 	)
 	unique_desc = list(
-	"Default" = "An uniform worn by medsci officers since 2420s.",
+	"Orvlike" = "An uniform worn by medsci officers since 2420s.",
 	"The Original Series" = "An uniform worn by medsci officers in the mid 2260s.",
 	"The New Generation" = "An uniform worn by medsci officers. This one is from the mid 2360s.",
 	"Voyager" = "An uniform worn by medsci officers of the 2370s.",
@@ -766,8 +754,8 @@
 
 // Bonus for assistants and service.
 /obj/item/clothing/under/trek/orvi
-	name = "\improper Planetary Federation assistant uniform"
-	desc = "An uniform worn by volunteered active-duty-cadets... Or in simple terms - an assistants."
+	name = "enterprise assistant uniform"
+	desc = "An enterprise corps uniform worn by adjutants."
 	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
@@ -790,17 +778,17 @@
 	"The Motion Picture (The Original Series)" = "trek_tmp_trainee"
 	)
 	unique_name = list(
-	"Default" = "federation assistant uniform",
+	"Default" = "enterprise assistant uniform",
 	"The Motion Picture (The Original Series)" = "federation trainee uniform"
 	)
 	unique_desc = list(
-	"Default" = "An uniform worn by cadet-assistants since 2550s.",
+	"Default" = "An uniform worn by adjutants since 2550s.",
 	"The Motion Picture (The Original Series)" = "An uniform worn by enlisted trainees in 2285s."
 	)
 
 /obj/item/clothing/under/trek/orvi/service
-	name = "\improper Planetary Federation service uniform"
-	desc = "An uniform worn by service officers. How service department can have officers is still unknown."
+	name = "enterprise service uniform"
+	desc = "An enterprise corps uniform worn by service officers... Or is it just <i>service uniform</i> worn by officers?"
 	icon_state = "orv_srv"
 	item_state = "g_suit"
 	unique_reskin_icons = list(
@@ -820,7 +808,7 @@
 	"The Motion Picture (The Original Series)" = "trek_tmp_service"
 	)
 	unique_name = list(
-	"Default" = "federation service uniform",
+	"Default" = "enterprise service uniform",
 	"The Motion Picture (The Original Series)" = "federation service uniform"
 	)
 	unique_desc = list(
@@ -830,12 +818,12 @@
 
 // Changes name/desc to the jackets, makes modern/non-classic jacket to have same list of allowed suit-storage items as classic one.
 /obj/item/clothing/suit/storage/fluff/fedcoat
-	name = "\improper Planetary Federation classic uniform jacket"
-	desc = "A classic uniform jacket. Set phasers to awesome."
+	name = "federation classic uniform jacket"
+	desc = "The federation's classic uniform jacket. Set phasers to awesome!"
 
 /obj/item/clothing/suit/storage/fluff/modernfedcoat
-	name = "\improper Planetary Federation uniform jacket"
-	desc = "An uniform jacket."
+	name = "enterprise uniform jacket"
+	desc = "An enterprise corps uniform jacket."
 	allowed = list(
 				/obj/item/tank/internals/emergency_oxygen,
 				/obj/item/flashlight,
@@ -854,8 +842,8 @@
 				/obj/item/taperecorder)
 
 /obj/item/clothing/head/caphat/formal/fedcover
-	name = "\improper Planetary Federation peaked cap"
-	desc = "A peaked cap."
+	name = "enterprise officer cap"
+	desc = "A peaked cap, that demands <i>at least <u>some</u></i> discipline from its wearer."
 
 // PrisArch-like color codes for prisoners. Uses _stored variation for Warden's control.
 /obj/item/clothing/under/rank/prisoner

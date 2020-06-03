@@ -8,7 +8,7 @@
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/mob_sleep
 	verbs += /mob/living/proc/lay_down
-	verbs += /mob/living/proc/surrender
+	verbs += /mob/living/proc/surrender //Skyrat change
 	verbs += /mob/living/carbon/human/proc/underwear_toggle //fwee
 
 	//initialize limbs first
@@ -27,6 +27,7 @@
 	physiology = new()
 
 	AddComponent(/datum/component/personal_crafting)
+	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN, 1, 2)
 	. = ..()
 
 	if(CONFIG_GET(flag/disable_stambuffer))

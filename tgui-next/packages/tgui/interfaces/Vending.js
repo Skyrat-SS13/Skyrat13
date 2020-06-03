@@ -9,49 +9,44 @@ export const Vending = props => {
   const { ref } = config;
   let inventory;
   let custom = false;
-  const onstation = true;
-  if (data.extended_inventory && (data.coin || data.bill)) {
-    inventory = [
-      ...data.product_records,
-      ...data.hidden_records,
-      ...data.coin_records,
-    ];
+  if (data.vending_machine_input) {
+    inventory = data.vending_machine_input;
+    custom = true;
   } else if (data.extended_inventory) {
     inventory = [
       ...data.product_records,
-      ...data.hidden_records,
-    ];
-  } else if (data.coin || data.bill) {
-    inventory = [
-      ...data.product_records,
       ...data.coin_records,
+      ...data.hidden_records,
     ];
   } else {
     inventory = [
       ...data.product_records,
+      ...data.coin_records,
     ];
   }
   return (
     <Fragment>
-      {data.coin && (
-        <Section title="Coins">
-          <Button
-            content={"Take out the coin"}
-            onClick={() => act(ref, 'takeoutcoin')} />
-        </Section>
-      )}
-      {data.bill && (
-        <Section title="Space Cash">
-          <Button
-            content={"Take out the bill"}
-            onClick={() => act(ref, 'takeoutbill')} />
+      {!!data.onstation && (
+        <Section title="User">
+          {data.user && (
+            <Box>
+              Welcome, <b>{data.user.name}</b>,
+              {' '}
+              <b>{data.user.job || "Unemployed"}</b>!
+              <br />
+              Your balance is <b>{data.user.cash} credits</b>.
+            </Box>
+          ) || (
+            <Box color="light-gray">
+              No registered ID card!<br />
+              Please contact your local HoP!
+            </Box>
+          )}
         </Section>
       )}
       <Section title="Products" >
         <Table>
           {inventory.map((product => {
-<<<<<<< HEAD
-=======
             const free = (
               !data.onstation
               || product.price === 0
@@ -64,7 +59,6 @@ export const Vending = props => {
               ? to_pay + ' cr' + data.cost_text
               : to_pay + ' cr'
             );
->>>>>>> d8d59e5052... Fixing old and new issues alike. (#12281)
             return (
               <Table.Row key={product.name}>
                 <Table.Cell>
@@ -99,15 +93,12 @@ export const Vending = props => {
                 <Table.Cell>
                   {custom && (
                     <Button
-                      content={'Vend'}
+                      content={data.access ? 'FREE' : product.price + ' cr'}
                       onClick={() => act(ref, 'dispense', {
                         'item': product.name,
                       })} />
                   ) || (
                     <Button
-<<<<<<< HEAD
-                      content={'Vend'}
-=======
                       disabled={(
                         data.stock[product.namename] === 0
                         || (
@@ -119,7 +110,6 @@ export const Vending = props => {
                         )
                       )}
                       content={!free ? pay_text : 'FREE'}
->>>>>>> d8d59e5052... Fixing old and new issues alike. (#12281)
                       onClick={() => act(ref, 'vend', {
                         'ref': product.ref,
                       })} />

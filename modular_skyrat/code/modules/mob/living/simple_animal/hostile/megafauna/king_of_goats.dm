@@ -33,8 +33,10 @@ Difficulty: Insanely Hard
 	speak_emote = list("brays in a booming voice")
 	emote_hear = list("brays in a booming voice")
 	emote_see = list("stamps a mighty foot, shaking the surroundings")
-	response_help = "placates"
-	response_harm  = "assaults"
+	response_help_continuous = "placates"
+	response_help_simple = "placate"
+	response_harm_continuous = "assaults"
+	response_harm_simple = "assault"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	health = 500
 	a_intent = INTENT_HARM

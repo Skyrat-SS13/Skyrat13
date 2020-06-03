@@ -32,13 +32,15 @@ Difficulty: Medium
 	initial_language_holder = /datum/language_holder/dragon
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	sight = SEE_TURFS|SEE_MOBS|SEE_OBJS
-	attacktext = "chomps"
+	attack_verb_continuous = "chomps"
+	attack_verb_simple = "chomp"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	icon = 'icons/mob/lavaland/glaurung.dmi'
 	icon_state = "glaurung"
 	icon_living = "glaurung"
 	icon_dead = "glaurung_dead"
-	friendly = "stares down"
+	friendly_verb_continuous = "stares down"
+	friendly_verb_simple = "stare down"
 	speak_emote = list("roars")
 	armour_penetration = 45
 	melee_damage_lower = 20
@@ -60,7 +62,7 @@ Difficulty: Medium
 	move_resist = MOVE_FORCE_NORMAL
 	pull_force = MOVE_FORCE_NORMAL
 	songlength = 0
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_HEAVY
 
 /mob/living/simple_animal/hostile/megafauna/dragon/glaurung/Initialize()
 	smallsprite.Grant(src)

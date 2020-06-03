@@ -145,7 +145,7 @@
 	playsound(src, "sparks", 50, 1)
 	if(BF.myseed.get_gene(/datum/plant_gene/trait/territorial) && BF.myseed.potency > 25)
 		playsound(BF, 'sound/magic/lightningshock.ogg', 100, 1, extrarange = 5)
-		tesla_zap(BF, 4, (BF.myseed.potency * 200), TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE | TESLA_MOB_STUN)
+		tesla_zap(BF, 4, (BF.myseed.potency * 200), ZAP_MOB_DAMAGE  | ZAP_OBJ_DAMAGE  | ZAP_MOB_STUN )
 		for(var/mob/M in oview(BF, 4))
 			BF.Beam(M, icon_state="nzcrentrs_power", time=5)
 

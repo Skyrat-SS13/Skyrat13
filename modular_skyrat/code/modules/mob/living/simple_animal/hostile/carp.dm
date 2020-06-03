@@ -15,4 +15,5 @@
 	obj_damage = 65
 	melee_damage_lower = 17
 	melee_damage_upper = 17
-	attacktext = "thrashes"
+	attack_verb_continuous = "thrashes"
+	attack_verb_simple = "thrash"

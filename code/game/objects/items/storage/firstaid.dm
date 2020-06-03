@@ -223,6 +223,8 @@
 /obj/item/storage/pill_bottle/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	//STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT //SKYRAT CHANGE
+	//STR.max_volume = 14 //SKYRAT CHANGE
 	STR.allow_quick_gather = TRUE
 	STR.click_gather = TRUE
 	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/pill, /obj/item/dice))
@@ -244,7 +246,7 @@
 	desc = "Contains pills used to counter radiation poisoning."
 
 /obj/item/storage/pill_bottle/anitrad/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in 1 to 4)
 		new /obj/item/reagent_containers/pill/antirad(src)
 
 /obj/item/storage/pill_bottle/epinephrine
@@ -276,7 +278,7 @@
 	desc = "Guaranteed to give you that extra burst of energy during a long shift!"
 
 /obj/item/storage/pill_bottle/stimulant/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in 1 to 4)
 		new /obj/item/reagent_containers/pill/stimulant(src)
 
 /obj/item/storage/pill_bottle/mining
@@ -430,6 +432,8 @@
 	throw_range = 7
 	var/empty = FALSE
 	item_state = "firstaid"
+	custom_price = 300
+	custom_premium_price = 500
 
 /obj/item/storage/hypospraykit/ComponentInitialize()
 	. = ..()

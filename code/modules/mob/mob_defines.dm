@@ -12,6 +12,9 @@
 
 	//vis_flags = VIS_INHERIT_PLANE //when this be added to vis_contents of something it inherit something.plane, important for visualisation of mob in openspace. // Skyrat edit -- 512 compatibility
 
+	/// What receives our keyboard input. src by default.
+	var/datum/focus
+
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	var/datum/mind/mind
 	var/list/datum/action/actions = list()
@@ -131,8 +134,9 @@
 
 	var/voluntary_ghosted = FALSE		//whether or not they voluntarily ghosted.
 
-	var/flavor_text = ""
-	var/flavor_text_2 = "" //version of the above that only lasts for the current round.
+	var/has_field_of_vision = FALSE
+	var/field_of_vision_type = FOV_90_DEGREES
+
 
 	///////TYPING INDICATORS///////
 	/// Set to true if we want to show typing indicators.
