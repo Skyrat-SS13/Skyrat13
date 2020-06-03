@@ -509,8 +509,6 @@
 
 //Allows players to set a hexadecimal color of their choice as skin tone, on top of the standard ones.
 /datum/config_entry/flag/allow_custom_skintones
-<<<<<<< HEAD
-=======
 
 ///Initial loadout points
 /datum/config_entry/number/initial_gear_points
@@ -521,4 +519,3 @@
   * Camera mobs, AIs, ghosts and some other are of course exempt from this. This also doesn't influence simplemob AI, for the best.
   */
 /datum/config_entry/flag/use_field_of_vision
->>>>>>> 20ac2f26f4... Demodularizing the gear loadout code a little. (#12261)

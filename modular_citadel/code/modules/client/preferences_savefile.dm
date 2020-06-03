@@ -19,7 +19,6 @@
   
 	S["feature_ipc_chassis"] >> features["ipc_chassis"]
 
-<<<<<<< HEAD
 	S["alt_titles_preferences"]			>> alt_titles_preferences
 	alt_titles_preferences = SANITIZE_LIST(alt_titles_preferences)
 	if(SSjob)
@@ -50,19 +49,6 @@
 		skyrat_ooc_notes = features["ooc_notes"]
 		features["ooc_notes"] = ""
 	//END OF SKYRAT CHANGES
-	//gear loadout
-	var/text_to_load
-	S["loadout"] >> text_to_load
-	var/list/saved_loadout_paths = splittext(text_to_load, "|")
-	LAZYCLEARLIST(chosen_gear)
-	gear_points = initial(gear_points)
-	for(var/i in saved_loadout_paths)
-		var/datum/gear/path = text2path(i)
-		if(path)
-			LAZYADD(chosen_gear, path)
-			gear_points -= initial(path.cost)
-=======
->>>>>>> 20ac2f26f4... Demodularizing the gear loadout code a little. (#12261)
 
 /datum/preferences/proc/cit_character_pref_save(savefile/S)
 	//ipcs
