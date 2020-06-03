@@ -16,7 +16,7 @@
 	//SKYRAT CHANGES
 	S["enable_personal_chat_color"]			>> enable_personal_chat_color
 	S["personal_chat_color"]			>> personal_chat_color
-  
+
 	S["feature_ipc_chassis"] >> features["ipc_chassis"]
 
 	S["alt_titles_preferences"]			>> alt_titles_preferences
@@ -28,21 +28,34 @@
 					alt_titles_preferences.Remove(job.title)
 
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
+	// SKYRAT CHANGE START
 	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])
+	// SKYRAT CHANGE END
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
 	nonconpref = sanitize_text(S["noncon_pref"], "Ask")
 	if(!length(nonconpref)) nonconpref = "Ask"
 	vorepref = sanitize_text(S["vore_pref"], "Ask")
 	if(!length(vorepref)) vorepref = "Ask"
+	extremepref = sanitize_text(S["extremepref"], "No") //god has forsaken me
+	if(!length(extremepref)) extremepref = "No"
+	extremeharm = sanitize_text(S["extremeharm"], "No")
+	if(!length(extremeharm)) extremeharm = "No"
 	security_records = sanitize_text(S["security_records"])
 	medical_records = sanitize_text(S["medical_records"])
 	general_records = sanitize_text(S["general_records"])
 	flavor_background = sanitize_text(S["flavor_background"])
+	flavor_faction = sanitize_text(S["flavor_faction"])
 	character_skills = sanitize_text(S["character_skills"])
 	exploitable_info = sanitize_text(S["exploitable_info"])
 	enable_personal_chat_color	= sanitize_integer(enable_personal_chat_color, 0, 1, initial(enable_personal_chat_color))
 	personal_chat_color	= sanitize_hexcolor(personal_chat_color, 6, 1, "#FFFFFF")
+	foodlikes = SANITIZE_LIST(S["foodlikes"])
+	if(foodlikes.len > maxlikes)
+		foodlikes.Cut(maxlikes+1)
+	fooddislikes = SANITIZE_LIST(S["fooddislikes"])
+	if(fooddislikes.len > maxdislikes)
+		fooddislikes.Cut(maxdislikes+1)
 
 	//Moves over the previous OOC notes to our ooc notes
 	if(length(features["ooc_notes"]) > length(skyrat_ooc_notes))
@@ -76,10 +89,13 @@
 	WRITE_FILE(S["erp_pref"], erppref)
 	WRITE_FILE(S["noncon_pref"], nonconpref)
 	WRITE_FILE(S["vore_pref"], vorepref)
+	WRITE_FILE(S["extremepref"], extremepref)
+	WRITE_FILE(S["extremeharm"], extremeharm)
 	WRITE_FILE(S["security_records"], security_records)
 	WRITE_FILE(S["medical_records"], medical_records)
 	WRITE_FILE(S["general_records"], general_records)
 	WRITE_FILE(S["flavor_background"], flavor_background)
+	WRITE_FILE(S["flavor_faction"], flavor_faction)
 	WRITE_FILE(S["character_skills"], character_skills)
 	WRITE_FILE(S["exploitable_info"], exploitable_info)
 	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
@@ -87,6 +103,8 @@
 
 <<<<<<< HEAD
 	WRITE_FILE(S["alt_titles_preferences"], alt_titles_preferences)
+	WRITE_FILE(S["foodlikes"], foodlikes)
+	WRITE_FILE(S["fooddislikes"], fooddislikes)
 	//END OF SKYRAT CHANGES
 	//gear loadout
 	if(islist(chosen_gear))

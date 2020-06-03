@@ -229,11 +229,12 @@
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
 
 /obj/item/circuitboard/machine/vendor
-	name = "Booze-O-Mat Vendor (Machine Board)"
+	name = "Custom Vendor (Machine Board)"
 	desc = "You can turn the \"brand selection\" dial using a screwdriver."
-	build_path = /obj/machinery/vending/boozeomat
-	req_components = list(/obj/item/vending_refill/boozeomat = 1)
-// SKYRAT EDIT: Fixes the looping vendors.
+	custom_premium_price = 100
+	build_path = /obj/machinery/vending/custom
+	req_components = list(/obj/item/vending_refill/custom = 1)
+
 	var/static/list/vending_names_paths = list(
 		/obj/machinery/vending/boozeomat = "Booze-O-Mat",
 		/obj/machinery/vending/coffee = "Solar's Best Hot Drinks",
@@ -271,7 +272,8 @@
 		/obj/machinery/vending/medical = "NanoMed Plus",
 		/obj/machinery/vending/wallmed = "NanoMed",
 		/obj/machinery/vending/dinnerware/prisoner = "\improper Plasteel Chef's Prisoner Dinnerware Vendor",
-		/obj/machinery/vending/hydronutrients/prisoner = "\improper Prisoner NutriMax")
+		/obj/machinery/vending/hydronutrients/prisoner = "\improper Prisoner NutriMax",
+		/obj/machinery/vending/custom = "Custom Vendor")
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/screwdriver))
@@ -692,6 +694,17 @@
 	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/chem_dispenser/apothecary
+	name = "Apotechary Chem Dispenser (Machine Board)"
+	build_path = /obj/machinery/chem_dispenser/apothecary
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/stock_parts/cell = 1)
+	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/upgraded/plus)
+
 /obj/item/circuitboard/machine/chem_dispenser/drinks
 	name = "Soda Dispenser (Machine Board)"
 	build_path = /obj/machinery/chem_dispenser/drinks
@@ -1040,6 +1053,11 @@
 /obj/item/circuitboard/machine/ore_silo
 	name = "Ore Silo (Machine Board)"
 	build_path = /obj/machinery/ore_silo
+	req_components = list()
+
+/obj/item/circuitboard/machine/paystand
+	name = "Pay Stand (Machine Board)"
+	build_path = /obj/machinery/paystand
 	req_components = list()
 
 /obj/item/circuitboard/machine/autobottler

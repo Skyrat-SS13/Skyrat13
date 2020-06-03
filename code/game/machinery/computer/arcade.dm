@@ -91,6 +91,7 @@
 		var/list/gameodds = list(/obj/item/circuitboard/computer/arcade/battle = 33,
 								/obj/item/circuitboard/computer/arcade/orion_trail = 33,
 								/obj/item/circuitboard/computer/arcade/minesweeper = 33,
+								/obj/item/circuitboard/computer/arcade/tetris = 33, // Skyrat addition
 								/obj/item/circuitboard/computer/arcade/amputation = 2)
 		var/thegame = pickweight(gameodds)
 		var/obj/item/circuitboard/CB = new thegame()
