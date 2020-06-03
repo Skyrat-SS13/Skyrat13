@@ -1,4 +1,0 @@
-author: "Akrilla"
-delete-after: True
-changes: 
-  - rscadd: "Adds the event panel, allowing players to show their interest in participating in admin spawned events. Preferences can be added to show which event you'd most like to be chosen for, and put your own ideas for interesting, creative ideas."

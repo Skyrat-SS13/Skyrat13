@@ -14,7 +14,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/hazardarmor
-	name = "hazard vest armor"
+	name = "Hazard Vest Armor"
 	result =  /obj/item/clothing/suit/armor/hazard
 	reqs = list(/obj/item/stack/packageWrap = 5,
 				/obj/item/stack/sheet/plasteel = 2,

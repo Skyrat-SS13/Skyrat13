@@ -1,6 +1,7 @@
 <ui-display title='{{name}}' button>
 	<div style="padding:5px">
-		{{#if data.is_admin}}
+		{{#if data.state == "admin"}}
+			<ui-button action='back'><i class="fas fa-arrow-left"></i> Back</ui-button>
 			{{#each data.participating_observers}}
 				<ui-display title='{{ckey}} - {{time_played}}' button>
 					{{#partial button}}
@@ -45,6 +46,11 @@
 					Edit
 				</ui-button>
 			</p>
+			{{#if data.is_admin}}
+				<p>
+					<ui-button action='admin_view_toggle'>Admin Panel</ui-button>
+				</p>
+			{{/if}}
 		{{/if}}
 	</div>
 

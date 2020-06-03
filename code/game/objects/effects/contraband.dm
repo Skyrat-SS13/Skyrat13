@@ -49,6 +49,7 @@
 	var/original_name
 	desc = "A large piece of space-resistant printed paper."
 	icon = 'modular_skyrat/icons/obj/contraband.dmi'
+	plane = ABOVE_WALL_PLANE
 	anchored = TRUE
 	buildable_sign = FALSE //Cannot be unwrenched from a wall.
 	var/ruined = FALSE

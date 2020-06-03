@@ -11361,7 +11361,7 @@
 "ayW" = (
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -80822,7 +80822,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
 "cGO" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -97847,17 +97847,17 @@
 /obj/structure/sign/poster/official/science{
 	pixel_x = -32
 	},
+/obj/item/clothing/mask/gas,
 /turf/open/floor/plasteel,
 /area/science/explab)
 "djC" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
+/obj/machinery/rnd/bepis,
 /turf/open/floor/plasteel,
 /area/science/explab)
 "djD" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -97868,7 +97868,6 @@
 /turf/open/floor/plasteel,
 /area/science/explab)
 "djE" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
@@ -98852,34 +98851,20 @@
 /obj/machinery/newscaster{
 	pixel_x = -32
 	},
-/obj/item/crowbar,
-/obj/item/wrench,
-/obj/item/clothing/mask/gas,
 /obj/effect/turf_decal/bot,
+/obj/item/storage/bag/money,
 /turf/open/floor/plasteel,
 /area/science/explab)
 "dlp" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 5
-	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
+	},
+/obj/structure/chair/office/light{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "dlq" = (
-/obj/machinery/atmospherics/components/trinary/filter{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/explab)
-"dlr" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 9
-	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
@@ -107940,7 +107925,7 @@
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = -32
 	},
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/plating,
 /area/crew_quarters/abandoned_gambling_den)
 "dBS" = (
@@ -124886,10 +124871,6 @@
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/aft)
-"egC" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/chapel/office)
 "egD" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -156764,7 +156745,7 @@ cOM
 dgs
 cMY
 djE
-dlr
+dlq
 dmE
 dow
 dqm
@@ -162464,7 +162445,7 @@ edT
 eeC
 efp
 egd
-egC
+efg
 aaa
 aad
 aaa
@@ -162721,7 +162702,7 @@ edU
 eeD
 efq
 ege
-egC
+efg
 aaa
 aad
 aaa
@@ -162978,7 +162959,7 @@ edV
 eeE
 efr
 ege
-egC
+efg
 aad
 ajr
 aaa

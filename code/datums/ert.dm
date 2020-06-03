@@ -22,7 +22,7 @@
 /datum/ert/amber
 	code = "Amber"
 	leader_role = /datum/antagonist/ert/commander/amber
-	roles = list(/datum/antagonist/ert/security/amber, /datum/antagonist/ert/medic/amber, /datum/antagonist/ert/engineer/amber)
+	roles = list(/datum/antagonist/ert/security/amber, /datum/antagonist/ert/medic/amber) //Skyrat change
 
 /datum/ert/red
 	leader_role = /datum/antagonist/ert/commander/red

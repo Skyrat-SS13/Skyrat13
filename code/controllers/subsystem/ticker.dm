@@ -158,7 +158,7 @@ SUBSYSTEM_DEF(ticker)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
 			to_chat(world, "<span class='boldnotice'>Welcome to [station_name()]!</span>")
-			send2chat("New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/chat_announce_new_game))
+			send2chat("<@&656268126253744152> New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/chat_announce_new_game)) // Skyrat edit -- role ping
 			current_state = GAME_STATE_PREGAME
 			//Everyone who wants to be an observer is now spawned
 			create_observers()
@@ -396,6 +396,10 @@ SUBSYSTEM_DEF(ticker)
 				SSjob.EquipRank(N, player.mind.assigned_role, 0)
 				if(CONFIG_GET(flag/roundstart_traits) && ishuman(N.new_character))
 					SSquirks.AssignQuirks(N.new_character, N.client, TRUE, TRUE, SSjob.GetJob(player.mind.assigned_role), FALSE, N)
+				//skyrat change
+				if(ishuman(N.new_character))
+					SSlanguage.AssignLanguage(N.new_character, N.client)
+				//
 		CHECK_TICK
 	if(captainless)
 		for(var/mob/dead/new_player/N in GLOB.player_list)

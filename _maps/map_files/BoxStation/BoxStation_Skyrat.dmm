@@ -4642,6 +4642,10 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"aiJ" = (
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aiK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -4777,6 +4781,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"ajd" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/mob/living/simple_animal/slime,
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "aje" = (
 /obj/machinery/door/airlock/security{
 	name = "Armory";
@@ -6304,9 +6315,12 @@
 /turf/closed/wall,
 /area/security/brig)
 "ama" = (
-/mob/living/simple_animal/sloth/paperwork,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/mob/living/simple_animal/slime,
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "amb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -8387,6 +8401,10 @@
 /obj/item/paper/fluff/jobs/security/beepsky_mom,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"aqV" = (
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "aqW" = (
 /turf/open/floor/carpet,
 /area/security/detectives_office)
@@ -19303,10 +19321,10 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aQV" = (
-/obj/machinery/vending/autodrobe/all_access,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aQW" = (
@@ -24142,8 +24160,7 @@
 /area/hallway/secondary/exit)
 "bcB" = (
 /obj/machinery/door/airlock/external{
-	name = "Security Escape Airlock";
-	req_access_txt = "2"
+	name = "Escape Airlock"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -57244,13 +57261,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"gfm" = (
-/mob/living/simple_animal/slime,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "gfr" = (
 /obj/structure/bed,
 /turf/open/floor/plating,
@@ -59096,8 +59106,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "jUb" = (
-/obj/machinery/vending/boozeomat/all_access,
 /obj/structure/spider/stickyweb/genetic,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/plating,
 /area/maintenance/bar)
 "jUx" = (
@@ -59753,7 +59763,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
 "lsk" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
 "ltK" = (
@@ -60087,13 +60097,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"mvT" = (
-/mob/living/simple_animal/slime,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "mwV" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 9
@@ -86057,7 +86060,7 @@ dev
 aZE
 xBw
 bjr
-ama
+aiJ
 bmh
 bjr
 bjr
@@ -87602,7 +87605,7 @@ biT
 boU
 bmP
 buF
-bbR
+aqV
 bbR
 btu
 bbR
@@ -108187,7 +108190,7 @@ bRU
 lMg
 bDb
 bEm
-mvT
+ama
 bXe
 cgi
 qOL
@@ -110754,7 +110757,7 @@ clq
 bPJ
 cAc
 bEm
-gfm
+ajd
 bXe
 cgi
 rBj
@@ -110763,7 +110766,7 @@ cgi
 rBj
 bXe
 cgi
-gfm
+ajd
 bXe
 cgi
 rBj
