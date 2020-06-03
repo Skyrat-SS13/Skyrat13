@@ -1,0 +1,7 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "fixing vending UIs, again."
+  - bugfix: "Fixed licking causing unreasonable 10 seconds click delays."
+  - rscdel: "Removed banana spooders from gold core friendly mob spawning"
+  - bugfix: "Fixed the missing icon on the goonchat darkmode toggle."
