@@ -28566,15 +28566,21 @@
 /obj/structure/chair/office/light{
 	dir = 8
 	},
+/obj/effect/landmark/start/medical_doctor,
 /obj/machinery/button/door{
 	desc = "A remote control switch for the medbay foyer.";
 	id = "MedbayFoyer";
-	name = "Medbay Doors Control";
+	name = "Medbay Exit Button";
 	normaldoorcontrol = 1;
-	pixel_x = -26;
-	req_access_txt = "5"
+	pixel_x = -26
 	},
-/obj/effect/landmark/start/medical_doctor,
+/obj/machinery/button/door{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "MedbayFoyer";
+	name = "Medbay Exit Button";
+	normaldoorcontrol = 1;
+	pixel_x = -26
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bmM" = (
@@ -31976,8 +31982,8 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
-/obj/structure/disposalpipe/junction{
-	dir = 8
+/obj/structure/disposalpipe/junction/flip{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/medical/medbay/central)
