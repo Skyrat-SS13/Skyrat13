@@ -101,17 +101,7 @@
 	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
 	WRITE_FILE(S["personal_chat_color"], personal_chat_color)
 
-<<<<<<< HEAD
 	WRITE_FILE(S["alt_titles_preferences"], alt_titles_preferences)
 	WRITE_FILE(S["foodlikes"], foodlikes)
 	WRITE_FILE(S["fooddislikes"], fooddislikes)
 	//END OF SKYRAT CHANGES
-	//gear loadout
-	if(islist(chosen_gear))
-		if(chosen_gear.len)
-			var/text_to_save = chosen_gear.Join("|")
-			S["loadout"] << text_to_save
-		else
-			S["loadout"] << "" //empty string to reset the value
-=======
->>>>>>> 20ac2f26f4... Demodularizing the gear loadout code a little. (#12261)
