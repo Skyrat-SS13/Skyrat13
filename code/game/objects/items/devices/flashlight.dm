@@ -358,6 +358,23 @@
 	color = LIGHT_COLOR_GREEN
 	light_color = LIGHT_COLOR_GREEN
 
+//Skyrat edit - möth
+/obj/item/flashlight/lantern/heirloom_moth
+	name = "old lantern"
+	desc = "An old lantern that has seen plenty of use."
+	brightness_on = 4
+
+/obj/item/flashlight/lantern/syndicate
+	name = "suspicious lantern"
+	desc = "A suspicious looking lantern."
+	icon = 'modular_skyrat/icons/obj/lamp.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/lamp_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/lamp_lefthand.dmi'
+	icon_state = "syndilantern"
+	item_state = "syndilantern"
+	brightness_on = 10
+//
+
 /obj/item/flashlight/slime
 	gender = PLURAL
 	name = "glowing slime extract"

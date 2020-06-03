@@ -57,6 +57,14 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/realtimeofstart = 0
 
+	//SKYRAT CHANGE
+	//PROBLEM COMPUTER CHARGES
+	var/problem_computer_max_charges = 5
+	var/problem_computer_charges = 5
+	var/problem_computer_charge_time = 90 SECONDS
+	var/problem_computer_next_charge_time = 0
+	//END SKYRAT CHANGE
+
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
 	ordernum = rand(1, 9000)
 
@@ -110,6 +118,15 @@ SUBSYSTEM_DEF(shuttle)
 			if(idle && not_centcom_evac && not_in_use)
 				qdel(T, force=TRUE)
 	CheckAutoEvac()
+
+	if(!(times_fired % CEILING(600/wait, 1)))
+		points += passive_supply_points_per_minute
+	
+	// Skyrat change. Handles Problem Computer charges here
+	if(problem_computer_charges < problem_computer_max_charges && world.time >= problem_computer_next_charge_time)
+		problem_computer_next_charge_time = world.time + problem_computer_charge_time
+		problem_computer_charges += 1
+	// End Skyrat change.
 
 	var/esETA = emergency?.getModeStr()
 	emergency_shuttle_stat_text = "[esETA? "[esETA] [emergency.getTimerStr()]" : ""]"
@@ -288,6 +305,14 @@ SUBSYSTEM_DEF(shuttle)
 		if(SEC_LEVEL_BLUE)
 			if(emergency.timeLeft(1) < emergencyCallTime * 0.6)
 				return
+		//Skyrat change start
+		if(SEC_LEVEL_ORANGE)
+			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
+				return
+		if(SEC_LEVEL_VIOLET)
+			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
+				return
+		//Skyrat change stop
 		if(SEC_LEVEL_AMBER)
 			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
 				return

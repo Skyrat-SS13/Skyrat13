@@ -783,10 +783,16 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
-	if(!isplasmaman(loc))
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+	// Skyrat change: check for different race first, else give oxy internals
+	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
+		return
+		
+	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
+		new /obj/item/tank/internals/nitrogen/belt(src)
+		return
+
+	new /obj/item/tank/internals/emergency_oxygen(src)
 
 /obj/item/storage/box/rubbershot
 	name = "box of rubber shots"

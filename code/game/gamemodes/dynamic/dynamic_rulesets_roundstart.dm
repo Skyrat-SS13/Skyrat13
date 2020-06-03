@@ -13,7 +13,7 @@
 	antag_datum = /datum/antagonist/traitor/
 	minimum_required_age = 0
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster", "Cyborg", "Blueshield")
-	restricted_roles = list("Cyborg", "AI")
+	restricted_roles = list("Cyborg")
 	required_candidates = 1
 	weight = 5
 	cost = 10	// Avoid raising traitor threat above 10, as it is the default low cost ruleset.

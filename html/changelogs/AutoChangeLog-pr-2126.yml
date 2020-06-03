@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - code_imp: "Turfs and lighting corners now use 4 variables to reference each other each instead of 1 list each of 4."

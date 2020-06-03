@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Fixing door and light tubes overlays not showing up (I erroneusly thought I fixed them before, my bad)."
-  - bugfix: "Fixing APCs not updating after the shorted wire is pulsed or cut."

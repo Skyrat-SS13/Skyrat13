@@ -3,7 +3,7 @@
 	alt_titles = list("Overseer", "Station Manager")
 
 /datum/job/hop
-	alt_titles = list("Vice-Captain", "Head of Staff", "Crew Supervisor")
+	alt_titles = list("Crew Supervisor")
 	
 /datum/job/hos
 	alt_titles = list("Security Commander", "Chief of Security")
