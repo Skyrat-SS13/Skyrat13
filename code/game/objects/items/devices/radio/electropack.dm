@@ -161,7 +161,7 @@ Code:
 
 	var/tagname = null
 	//skyrat edit
-	var/datum/quirk/collared/quirky
+	var/datum/quirk/state_propert/quirky
 	//
 
 /obj/item/electropack/shockcollar/dropped(mob/user)
