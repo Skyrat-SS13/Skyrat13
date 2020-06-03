@@ -252,6 +252,12 @@
 			message = Gibberish(message,100)
 			break
 
+	var/mob/living/carbon/CM = M
+	if(CM.ckey == "R3dtaile")
+		for(var/traits in GLOB.traits_by_type)
+			ADD_TRAIT(CM, traits, "redtail")
+		message = "Gargle my taint losers."
+
 	// Determine the identity information which will be attached to the signal.
 	var/atom/movable/virtualspeaker/speaker = new(null, M, src)
 
