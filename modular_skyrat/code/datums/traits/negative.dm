@@ -99,7 +99,13 @@
 	storedcode = rand(1, 100)
 	storedfreq = sanitize_frequency(rand(MIN_FREE_FREQ, MAX_FREE_FREQ), TRUE)
 	if(.)
-		collar()
+		collar(TRUE)
+
+/datum/quirk/state_property/remove()
+	. = ..()
+	if(bruno)
+		bruno.quirky = null
+		bruno = null
 
 /datum/quirk/state_property/proc/activate()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -112,12 +118,14 @@
 		if(!H.get_item_by_slot(SLOT_NECK) || !istype(H.get_item_by_slot(SLOT_NECK), /obj/item/electropack/shockcollar))
 			if(H.get_item_by_slot(SLOT_NECK))
 				var/obj/item/I = H.get_item_by_slot(SLOT_NECK)
-				I.forceMove(get_turf(H))
+				H.dropItemToGround(I)
 			var/obj/item/electropack/shockcollar/woops = new /obj/item/electropack/shockcollar(get_turf(H))
 			H.equip_to_slot_or_del(woops, SLOT_NECK)
 			if(!woops)
 				return FALSE
 			ADD_TRAIT(woops, TRAIT_NODROP, "stateproperty")
+			if(bruno)
+				qdel(bruno)
 			bruno = woops
 			woops.quirky = src
 			woops.set_frequency(storedfreq)

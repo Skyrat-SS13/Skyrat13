@@ -170,7 +170,9 @@ Code:
 
 /obj/item/electropack/shockcollar/Destroy()
 	. = ..()
-	punish()
+	if(quirky)
+		quirky.bruno = null
+		punish()
 
 /obj/item/electropack/shockcollar/proc/punish()
 	if(quirky)
