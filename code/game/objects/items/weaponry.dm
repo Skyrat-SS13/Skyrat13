@@ -538,6 +538,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "skateboard2"
 	item_state = "skateboard2"
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/pro
+	custom_premium_price = 500
 
 /obj/item/melee/skateboard/hoverboard
 	name = "hoverboard"
@@ -545,6 +546,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "hoverboard_red"
 	item_state = "hoverboard_red"
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/hoverboard
+	custom_premium_price = 2015
 
 /obj/item/melee/skateboard/hoverboard/admin
 	name = "\improper Board Of Directors"

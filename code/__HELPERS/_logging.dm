@@ -195,7 +195,7 @@
 /proc/start_log(log)
 	WRITE_LOG(log, "Starting up round ID [GLOB.round_id].\n-------------------------")
 
-/* ui logging */ 
+/* ui logging */
 
 /proc/log_tgui(text)
 	WRITE_LOG(GLOB.tgui_log, text)
