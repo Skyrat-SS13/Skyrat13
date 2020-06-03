@@ -281,17 +281,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 	..()
 
 
-///Sends a message to the admins notifying them of a change request. Is a bit more insistent if there's pending requests.
-/datum/antagonist/proc/notify_admins_of_request(notification_message)
-	if(LAZYLEN(requested_objective_changes) > 1) //Not the first unprocessed request, be a bit more insistent.
-		for(var/a in GLOB.admins)
-			var/client/admin_client = a
-			if(admin_client.prefs.toggles & SOUND_ADMINHELP)
-				SEND_SOUND(admin_client, sound('sound/effects/adminhelp.ogg'))
-			window_flash(admin_client)
-	message_admins(notification_message)
-
-
 ///Clears change requests from deleted objectives to avoid broken references.
 /datum/antagonist/proc/clean_request_from_del_objective(datum/objective/source, force)
 	var/objective_reference = REF(source)

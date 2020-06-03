@@ -31,7 +31,8 @@
 
 //SKYRAT CHANGES BEGIN
 #define AMBITION_COOLDOWN_TIME (5 SECONDS)
-#define OBJECTIVES_COOLDOWN_TIME (10 MINUTES)
+#define OBJECTIVES_COOLDOWN_TIME (2 SECONDS)
+#define ADMIN_PING_COOLDOWN_TIME (10 MINUTES)
 //SKYRAT CHANGES END
 
 /datum/mind
@@ -460,8 +461,8 @@
 		if(self_mind)
 			output += " <a href='?src=[REF(antag_datum.owner)];req_obj_add=1;target_antag=[REF(antag_datum)]'>Request objective</a>"
 		output += "<ul>"
-		if(!length(antag_datum.requested_objective_changes))
-			output += "<li><i><b>NONE</b></i>"
+		if(!LAZYLEN(antag_datum.requested_objective_changes))
+			output += "<li><i><b>NONE</b></i></ul><br>"
 		else
 			for(var/uid in antag_datum.requested_objective_changes)
 				var/list/objectives_info = antag_datum.requested_objective_changes[uid]
@@ -471,6 +472,8 @@
 						var/datum/objective/type_cast_objective = objectives_info["target"]
 						var/objective_text = objectives_info["text"]
 						output += "<li><B>Request #[uid]</B>: ADD [initial(type_cast_objective.name)] - [objective_text]"
+						if(self_mind)
+							output += " <a href='?src=[REF(antag_datum.owner)];req_obj_cancel=[uid];target_antag=[REF(antag_datum)]'>Cancel Request</a>"
 						if(is_admin)
 							output += " <a href='?src=[REF(antag_datum.owner)];req_obj_accept=[REF(antag_datum)];req_obj_id=[uid]'>Accept</a> <a href='?src=[REF(antag_datum.owner)];req_obj_edit=[REF(antag_datum)];req_obj_id=[uid]'>Edit</a> <a href='?src=[REF(antag_datum.owner)];req_obj_deny=[REF(antag_datum)];req_obj_id=[uid]'>Deny</a>"
 					if(REQUEST_DEL_OBJECTIVE)
@@ -480,6 +483,8 @@
 							antag_datum.remove_objective_change(uid)
 							continue
 						output += "<li><B>Request #[uid]</B>: DEL [objective_ref.name] - [objective_ref.explanation_text] - [objectives_info["text"]]"
+						if(self_mind)
+							output += " <a href='?src=[REF(antag_datum.owner)];req_obj_cancel=[uid];target_antag=[REF(antag_datum)]'>Cancel Request</a>"
 						if(is_admin)
 							output += " <a href='?src=[REF(antag_datum.owner)];req_obj_accept=[REF(antag_datum)];req_obj_id=[uid]'>Accept</a> <a href='?src=[REF(antag_datum.owner)];req_obj_deny=[REF(antag_datum)];req_obj_id=[uid]'>Deny</a>"
 					if(REQUEST_WIN_OBJECTIVE, REQUEST_LOSE_OBJECTIVE)
@@ -489,14 +494,19 @@
 							antag_datum.remove_objective_change(uid)
 							continue
 						output += "<li><B>Request #[uid]</B>: [obj_request == REQUEST_WIN_OBJECTIVE ? "WIN" : "LOSE"] [objective_ref.name] - [objective_ref.explanation_text] - [objectives_info["text"]]"
+						if(self_mind)
+							output += " <a href='?src=[REF(antag_datum.owner)];req_obj_cancel=[uid];target_antag=[REF(antag_datum)]'>Cancel Request</a>"
 						if(is_admin)
 							output += " <a href='?src=[REF(antag_datum.owner)];req_obj_accept=[REF(antag_datum)];req_obj_id=[uid]'>Accept</a> <a href='?src=[REF(antag_datum.owner)];req_obj_deny=[REF(antag_datum)];req_obj_id=[uid]'>Deny</a>"
 					else
 						stack_trace("Objective request found with no request index. UID: [uid] | Antag: [antag_datum] | Mind: [src] | User: [usr]")
 						continue
-
-		output += "</ul><br>"
-	output += "<b>[current.real_name]'s Ambitions:</b>"
+			output += "</ul><br>"
+			if(self_mind)
+				output += "<a href='?src=[REF(src)];req_obj_ping=1'>Ping the admins</a><br>"
+			if(is_admin)
+				output += "<a href='?src=[REF(src)];req_obj_ping_cd_clear=1'>Clear ping cooldown</a><br>"
+	output += "<br><b>[current.real_name]'s Ambitions:</b>"
 	if(LAZYLEN(ambitions) < CONFIG_GET(number/max_ambitions))
 		output += " <a href='?src=[REF(src)];add_ambition=1'>Add Ambition</a>"
 	output += "<ul>"
@@ -575,15 +585,16 @@ GLOBAL_LIST(objective_choices)
 
 
 /datum/mind/proc/on_objectives_request_cd_end(datum/source)
-	UnregisterSignal(src, COMSIG_CD_STOP(COOLDOWN_OBJECTIVES))
+	UnregisterSignal(src, list(COMSIG_CD_STOP(COOLDOWN_OBJ_ADMIN_PING), COMSIG_CD_RESET(COOLDOWN_OBJ_ADMIN_PING)))
 	if(!antag_datums)
 		return
-	to_chat(current, "<span class='boldnotice'>The cooldown for objective change requests is over, you can make new ones now.</span>")
+	to_chat(current, "<span class='boldnotice'>You are now again able to ping the admins objective changes review requests.</span>")
 	for(var/a in antag_datums)
 		var/datum/antagonist/antag_datum = a
 		if(!antag_datum.requested_objective_changes)
 			continue
-		to_chat(current, "<span class='boldnotice'>You seem to have unanswered change requests. The next one you do will bwoink the admins.</span>")
+		to_chat(current, "<span class='boldnotice'>You seem to have unanswered change requests. If there are online admins another gentle reminder might be in order.</span>")
+		break
 //SKYRAT CHANGES END
 
 /datum/mind/Topic(href, href_list)
@@ -629,7 +640,6 @@ GLOBAL_LIST(objective_choices)
 			do_edit_objectives_ambitions()
 			return
 		TIMER_COOLDOWN_START(src, COOLDOWN_AMBITION, AMBITION_COOLDOWN_TIME)
-		RegisterSignal(src, COMSIG_CD_STOP(COOLDOWN_OBJECTIVES), .proc/on_objectives_request_cd_end)
 		LAZYADD(ambitions, new_ambition)
 		if(usr == current)
 			log_game("[key_name(usr)] has created their ambition of index [LAZYLEN(ambitions)].\nNEW AMBITION:\n[new_ambition]")
@@ -682,7 +692,6 @@ GLOBAL_LIST(objective_choices)
 			do_edit_objectives_ambitions()
 			return
 		TIMER_COOLDOWN_START(src, COOLDOWN_AMBITION, AMBITION_COOLDOWN_TIME)
-		RegisterSignal(src, COMSIG_CD_STOP(COOLDOWN_OBJECTIVES), .proc/on_objectives_request_cd_end)
 		ambitions[ambition_index] = new_ambition
 		if(usr == current)
 			log_game("[key_name(usr)] has edited their ambition of index [ambition_index].\nOLD AMBITION:\n[old_ambition]\nNEW AMBITION:\n[new_ambition]")
@@ -735,7 +744,6 @@ GLOBAL_LIST(objective_choices)
 			do_edit_objectives_ambitions()
 			return
 		TIMER_COOLDOWN_START(src, COOLDOWN_AMBITION, AMBITION_COOLDOWN_TIME)
-		RegisterSignal(src, COMSIG_CD_STOP(COOLDOWN_OBJECTIVES), .proc/on_objectives_request_cd_end)
 		LAZYCUT(ambitions, ambition_index, ambition_index + 1)
 		if(usr == current)
 			log_game("[key_name(usr)] has deleted their ambition of index [ambition_index].\nDELETED AMBITION:\n[old_ambition]")
@@ -745,11 +753,69 @@ GLOBAL_LIST(objective_choices)
 		do_edit_objectives_ambitions()
 		return
 
+	else if (href_list["req_obj_ping"])
+		if(usr != current)
+			return
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJ_ADMIN_PING))
+			to_chat(usr, "<span class='warning'>You must wait [S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_OBJ_ADMIN_PING) * 0.1] seconds before your next admin ping.</span>")
+			do_edit_objectives_ambitions()
+			return
+		if(!antag_datums)
+			return
+		var/pending_request = FALSE
+		for(var/a in antag_datums)
+			var/datum/antagonist/antag_datum = a
+			if(antag_datum.requested_objective_changes)
+				pending_request = TRUE
+				break
+		if(!pending_request)
+			to_chat(usr, "<span class='warning'>You have no pending requests to warn the admins about. Request changes for them to review before poking them.</span>")
+			do_edit_objectives_ambitions()
+			return
+		var/justification = stripped_multiline_input(usr,
+			"Send a message to the admins requesting a review of your objective change requests.\
+			There's a [ADMIN_PING_COOLDOWN_TIME * 0.1] seconds cooldown between requests, so try to think it through before sending it. Cancelling this does not trigger the cooldown.",
+			"Request Admin Review", max_length = MAX_MESSAGE_LEN)
+		if(isnull(justification))
+			return
+		if(usr != current)
+			return
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJ_ADMIN_PING))
+			to_chat(usr, "<span class='warning'>You must wait [S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_OBJ_ADMIN_PING) * 0.1] seconds before your next admin ping.</span>")
+			do_edit_objectives_ambitions()
+			return
+		if(!antag_datums)
+			return
+		pending_request = FALSE
+		for(var/a in antag_datums)
+			var/datum/antagonist/antag_datum = a
+			if(antag_datum.requested_objective_changes)
+				pending_request = TRUE
+				break
+		if(!pending_request)
+			return
+		if(!length(GLOB.admins))
+			to_chat(usr, "<span class='warning'>No admins currently connected, failed to notify them. Wait for one to connect before trying to ping them again.</span>")
+			do_edit_objectives_ambitions()
+			return
+		S_TIMER_COOLDOWN_START(src, COOLDOWN_OBJ_ADMIN_PING, ADMIN_PING_COOLDOWN_TIME)
+		RegisterSignal(src, list(COMSIG_CD_STOP(COOLDOWN_OBJ_ADMIN_PING), COMSIG_CD_RESET(COOLDOWN_OBJ_ADMIN_PING)), .proc/on_objectives_request_cd_end)
+		log_admin("Objectives review request - [key_name(usr)] has requested a review of their objective changes, pinging the admins.")
+		for(var/a in GLOB.admins)
+			var/client/admin_client = a
+			if(admin_client.prefs.toggles & SOUND_ADMINHELP)
+				SEND_SOUND(admin_client, sound('sound/effects/adminhelp.ogg'))
+			window_flash(admin_client)
+		message_admins("<span class='adminhelp'>[ADMIN_TPMONTY(usr)] has requested a review of their objective changes. (<a href='?_src_=holder;[HrefToken(TRUE)];ObjectiveRequest=[REF(src)]'>RPLY</a>)</span>")
+		do_edit_objectives_ambitions()
+		return
+
 	else if (href_list["req_obj_add"])
 		if(usr != current)
 			return
 		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJECTIVES))
-			to_chat(usr, "<span class='warning'>You must wait [round(OBJECTIVES_COOLDOWN_TIME / 600, 0.1)] minutes between requests.</span>")
+			to_chat(usr, "<span class='warning'>You must wait [OBJECTIVES_COOLDOWN_TIME * 0.1] seconds between request changes.</span>")
+			do_edit_objectives_ambitions()
 			return
 		var/datum/antagonist/target_antag = locate(href_list["target_antag"]) in antag_datums
 		if(QDELETED(target_antag))
@@ -764,27 +830,57 @@ GLOBAL_LIST(objective_choices)
 			return
 		var/new_objective = stripped_multiline_input(usr,\
 			selected_type == /datum/objective/custom\
-			? "Write the custom objective you'd like to request the admins to grant you.\
-			Remember they can edit or deny your request. There's a 10 minutes cooldown between requests, so try to think it through before sending it. Cancelling does not trigger the cooldown."\
-			: "Justify your request for a new objective to the admins. Add the required clarifations, if you have a specific targets in mind or the likes.\
-			Remember they can edit or deny your request. There's a 10 minutes cooldown between requests, so try to think it through before sending it. Cancelling does not trigger the cooldown.",\
+			? "Write the custom objective you'd like to request the admins to grant you. Remember they can edit or deny your request at their own discretion."\
+			: "Justify your request for a new objective to the admins. Add the required clarifations, if you have a specific targets in mind and the likes.",\
 			"New Objective", max_length = MAX_MESSAGE_LEN)
 		if(isnull(new_objective))
 			return
 		if(usr != current)
 			return
 		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJECTIVES))
-			to_chat(usr, "<span class='warning'>You must wait [round(OBJECTIVES_COOLDOWN_TIME / 600, 0.1)] minutes between requests.</span>")
+			to_chat(usr, "<span class='warning'>You must wait [OBJECTIVES_COOLDOWN_TIME] minutes between request changes.</span>")
 			return
 		if(QDELETED(target_antag))
 			return
 		TIMER_COOLDOWN_START(src, COOLDOWN_OBJECTIVES, OBJECTIVES_COOLDOWN_TIME)
-		RegisterSignal(src, COMSIG_CD_STOP(COOLDOWN_OBJECTIVES), .proc/on_objectives_request_cd_end)
 		var/uid = "[GLOB.requested_objective_uid++]"
 		target_antag.add_objective_change(uid, list("request" = REQUEST_NEW_OBJECTIVE, "target" = selected_type, "text" = new_objective))
 		log_admin("Objectives request [uid] - [key_name(usr)] has requested a [choice] objective: [new_objective]")
-		target_antag.notify_admins_of_request("<span class='adminhelp'>[ADMIN_TPMONTY(usr)] has requested a [choice] objective. (<a href='?_src_=holder;[HrefToken(TRUE)];ObjectiveRequest=[REF(src)]'>RPLY</a>)</span>")
-		to_chat(usr, "<span class='boldnotice'>The admins have been notified of your request!</span>")
+		do_edit_objectives_ambitions()
+		return
+
+	else if (href_list["req_obj_cancel"])
+		if(usr != current)
+			return
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJECTIVES))
+			to_chat(usr, "<span class='warning'>You must wait [OBJECTIVES_COOLDOWN_TIME * 0.1] seconds between request changes.</span>")
+			return
+		var/datum/antagonist/target_antag = locate(href_list["target_antag"]) in antag_datums
+		if(QDELETED(target_antag))
+			to_chat(usr, "<span class='warning'>No antagonist found for this objective.</span>")
+			do_edit_objectives_ambitions()
+			return
+		var/uid = href_list["req_obj_cancel"]
+		if(!LAZYACCESS(target_antag.requested_objective_changes, uid))
+			to_chat(usr, "<span class='warning'>No requested objective change found. Perhaps it was deleted already?</span>")
+			do_edit_objectives_ambitions()
+			return
+		if(alert(usr, "Are you sure you want to delete this change request?", "Delete change request", "Yes", "No") != "Yes")
+			return
+		if(usr != current)
+			return
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJECTIVES))
+			to_chat(usr, "<span class='warning'>You must wait [OBJECTIVES_COOLDOWN_TIME * 0.1] seconds between request changes.</span>")
+			return
+		if(QDELETED(target_antag))
+			do_edit_objectives_ambitions()
+			return
+		if(!LAZYACCESS(target_antag.requested_objective_changes, uid))
+			do_edit_objectives_ambitions()
+			return
+		TIMER_COOLDOWN_START(src, COOLDOWN_OBJECTIVES, OBJECTIVES_COOLDOWN_TIME)
+		log_admin("Objectives request deletion - [key_name(usr)] has deleted the objective change request of UID [uid].")
+		target_antag.remove_objective_change(uid)
 		do_edit_objectives_ambitions()
 		return
 
@@ -792,7 +888,7 @@ GLOBAL_LIST(objective_choices)
 		if(usr != current)
 			return
 		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJECTIVES))
-			to_chat(usr, "<span class='warning'>You must wait [round(OBJECTIVES_COOLDOWN_TIME / 600, 0.1)] minutes between requests.</span>")
+			to_chat(usr, "<span class='warning'>You must wait [OBJECTIVES_COOLDOWN_TIME * 0.1] seconds between request changes.</span>")
 			return
 		var/datum/antagonist/target_antag = locate(href_list["target_antag"]) in antag_datums
 		if(QDELETED(target_antag))
@@ -806,32 +902,46 @@ GLOBAL_LIST(objective_choices)
 			do_edit_objectives_ambitions()
 			return
 		var/justification = stripped_multiline_input(usr,
-			"Justify your request for a deleting this objective to the admins.\
-			There's a 10 minutes cooldown between requests, so try to think it through before sending it. Cancelling does not trigger the cooldown.",
+			"Justify your request for a deleting this objective to the admins.",
 			"Objective Deletion", max_length = MAX_MESSAGE_LEN)
 		if(isnull(justification))
 			return
 		if(usr != current)
 			return
 		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJECTIVES))
-			to_chat(usr, "<span class='warning'>You must wait [round(OBJECTIVES_COOLDOWN_TIME / 600, 0.1)] minutes between requests.</span>")
+			to_chat(usr, "<span class='warning'>You must wait [OBJECTIVES_COOLDOWN_TIME * 0.1] seconds between request changes.</span>")
 			return
 		if(QDELETED(objective_to_delete) || QDELETED(target_antag))
 			do_edit_objectives_ambitions()
 			return
+		var/matching_request = FALSE
 		for(var/index in target_antag.requested_objective_changes)
 			var/list/change_request = target_antag.requested_objective_changes[index]
 			if(change_request["target"] != objective_reference)
 				continue
-			to_chat(usr, "<span class='warning'>There is already a change request tied to this objective waiting to be processed. Ahelp or wait for it to be resolved before adding a new one.</span>")
-			return
+			matching_request = TRUE
+			break
+		if(matching_request)
+			if(alert(usr, "There is already a change request tied to this objective waiting to be processed. Adding this request will delete the old ones.", "Delete matching objective requests?", "Yes", "No") != "Yes")
+				do_edit_objectives_ambitions()
+				return
+			if(usr != current)
+				return
+			if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJECTIVES))
+				to_chat(usr, "<span class='warning'>You must wait [OBJECTIVES_COOLDOWN_TIME * 0.1] seconds between request changes.</span>")
+				return
+			if(QDELETED(objective_to_delete) || QDELETED(target_antag))
+				do_edit_objectives_ambitions()
+				return
+			for(var/index in target_antag.requested_objective_changes)
+				var/list/change_request = target_antag.requested_objective_changes[index]
+				if(change_request["target"] != objective_reference)
+					continue
+				target_antag.remove_objective_change(index)
 		TIMER_COOLDOWN_START(src, COOLDOWN_OBJECTIVES, OBJECTIVES_COOLDOWN_TIME)
-		RegisterSignal(src, COMSIG_CD_STOP(COOLDOWN_OBJECTIVES), .proc/on_objectives_request_cd_end)
 		var/uid = "[GLOB.requested_objective_uid++]"
 		target_antag.add_objective_change(uid, list("request" = REQUEST_DEL_OBJECTIVE, "target" = objective_reference, "text" = justification))
 		log_admin("Objectives request [uid] - [key_name(usr)] has requested the deletion of the following objective: [objective_to_delete.explanation_text].\nTheir justification is as follows: [justification]")
-		target_antag.notify_admins_of_request("<span class='adminhelp'>[ADMIN_TPMONTY(usr)] has requested the deletion of an objective: (<a href='?_src_=holder;[HrefToken(TRUE)];ObjectiveRequest=[REF(src)]'>RPLY</a>)</span>")
-		to_chat(usr, "<span class='boldnotice'>The admins have been notified of your request!</span>")
 		do_edit_objectives_ambitions()
 		return
 
@@ -839,7 +949,7 @@ GLOBAL_LIST(objective_choices)
 		if(usr != current)
 			return
 		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJECTIVES))
-			to_chat(usr, "<span class='warning'>You must wait [round(OBJECTIVES_COOLDOWN_TIME / 600, 0.1)] minutes between requests.</span>")
+			to_chat(usr, "<span class='warning'>You must wait [OBJECTIVES_COOLDOWN_TIME * 0.1] seconds between request changes.</span>")
 			return
 		var/datum/antagonist/target_antag = locate(href_list["target_antag"]) in antag_datums
 		if(QDELETED(target_antag))
@@ -853,32 +963,45 @@ GLOBAL_LIST(objective_choices)
 			do_edit_objectives_ambitions()
 			return
 		var/justification = stripped_multiline_input(usr,
-			"Justify to the admins your request to mark this objective as [objective_to_complete.completed ? "incomplete" : "completed"].\
-			There's a 10 minutes cooldown between requests, so try to think it through before sending it. Cancelling does not trigger the cooldown.",
+			"Justify to the admins your request to mark this objective as [objective_to_complete.completed ? "incomplete" : "completed"].",
 			"Objective [objective_to_complete.completed ? "Incompletion" : "Completion"]", max_length = MAX_MESSAGE_LEN)
 		if(isnull(justification))
 			return
 		if(usr != current)
 			return
 		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJECTIVES))
-			to_chat(usr, "<span class='warning'>You must wait [round(OBJECTIVES_COOLDOWN_TIME / 600, 0.1)] minutes between requests.</span>")
+			to_chat(usr, "<span class='warning'>You must wait [OBJECTIVES_COOLDOWN_TIME * 0.1] seconds between request changes.</span>")
 			return
 		if(QDELETED(objective_to_complete) || QDELETED(target_antag))
 			do_edit_objectives_ambitions()
 			return
+		var/matching_request = FALSE
 		for(var/index in target_antag.requested_objective_changes)
 			var/list/change_request = target_antag.requested_objective_changes[index]
 			if(change_request["target"] != objective_reference)
 				continue
-			to_chat(usr, "<span class='warning'>There is already a change request tied to this objective waiting to be processed. Ahelp or wait for it to be resolved before adding a new one.</span>")
-			return
+			matching_request = TRUE
+			break
+		if(matching_request)
+			if(alert(usr, "There is already a change request tied to this objective waiting to be processed. Adding this request will delete the old ones.", "Delete matching objective requests?", "Yes", "No") != "Yes")
+				return
+			if(usr != current)
+				return
+			if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJECTIVES))
+				to_chat(usr, "<span class='warning'>You must wait [OBJECTIVES_COOLDOWN_TIME * 0.1] seconds between request changes.</span>")
+				return
+			if(QDELETED(objective_to_complete) || QDELETED(target_antag))
+				do_edit_objectives_ambitions()
+				return
+			for(var/index in target_antag.requested_objective_changes)
+				var/list/change_request = target_antag.requested_objective_changes[index]
+				if(change_request["target"] != objective_reference)
+					continue
+				target_antag.remove_objective_change(index)
 		TIMER_COOLDOWN_START(src, COOLDOWN_OBJECTIVES, OBJECTIVES_COOLDOWN_TIME)
-		RegisterSignal(src, COMSIG_CD_STOP(COOLDOWN_OBJECTIVES), .proc/on_objectives_request_cd_end)
 		var/uid = "[GLOB.requested_objective_uid++]"
 		target_antag.add_objective_change(uid, list("request" = (objective_to_complete.completed ? REQUEST_LOSE_OBJECTIVE : REQUEST_WIN_OBJECTIVE), "target" = objective_reference, "text" = justification))
 		log_admin("Objectives request [uid] - [key_name(usr)] has requested the [objective_to_complete.completed ? "incompletion" : "completion"] of the following objective: [objective_to_complete.explanation_text].\nTheir justification is as follows: [justification]")
-		target_antag.notify_admins_of_request("<span class='adminhelp'>[ADMIN_TPMONTY(usr)] has requested the [objective_to_complete.completed ? "incompletion" : "completion"] of an objective: (<a href='?_src_=holder;[HrefToken(TRUE)];ObjectiveRequest=[REF(src)]'>RPLY</a>)</span>")
-		to_chat(usr, "<span class='boldnotice'>The admins have been notified of your request!</span>")
 		do_edit_objectives_ambitions()
 		return
 
@@ -888,6 +1011,23 @@ GLOBAL_LIST(objective_choices)
 	var/self_antagging = usr == current
 
 	if(href_list["edit_ambitions_panel"])
+		do_edit_objectives_ambitions()
+		return
+
+	else if(href_list["req_obj_ping_cd_clear"])
+		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJ_ADMIN_PING))
+			to_chat(usr, "<span class='warning'>Mind is not under a cooldown.</span>")
+			do_edit_objectives_ambitions()
+			return
+		if(alert(usr, "Are you sure you want reset this cooldown, letting the user ping the admins again?", "Clear ping cooldown", "Yes", "No") != "Yes")
+			do_edit_objectives_ambitions()
+			return
+		if(!check_rights(R_ADMIN))
+			return
+		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_OBJ_ADMIN_PING))
+			do_edit_objectives_ambitions()
+			return
+		S_TIMER_COOLDOWN_RESET(src, COOLDOWN_OBJ_ADMIN_PING)
 		do_edit_objectives_ambitions()
 		return
 
