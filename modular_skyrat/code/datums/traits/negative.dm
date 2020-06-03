@@ -94,6 +94,26 @@
 	var/storedfreq = FREQ_ELECTROPACK
 	var/obj/item/electropack/shockcollar/bruno
 
+/obj/item/electropack/shockcollar
+	var/datum/quirk/state_property/quirky
+
+/obj/item/electropack/shockcollar/dropped(mob/user)
+	..()
+	punish()
+
+/obj/item/electropack/shockcollar/Destroy()
+	. = ..()
+	if(quirky)
+		quirky.bruno = null
+		punish()
+
+/obj/item/electropack/shockcollar/proc/punish()
+	if(quirky)
+		var/mob/living/carbon/human/H = quirky.quirk_holder
+		if(H && istype(H))
+			if(!H.get_item_by_slot(SLOT_NECK) || (H.get_item_by_slot(SLOT_NECK) != src))
+				quirky.activate()
+
 /datum/quirk/state_property/add()
 	. = ..()
 	storedcode = rand(1, 100)
