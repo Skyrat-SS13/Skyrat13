@@ -119,9 +119,6 @@ SUBSYSTEM_DEF(shuttle)
 				qdel(T, force=TRUE)
 	CheckAutoEvac()
 
-	if(!(times_fired % CEILING(600/wait, 1)))
-		points += passive_supply_points_per_minute
-	
 	// Skyrat change. Handles Problem Computer charges here
 	if(problem_computer_charges < problem_computer_max_charges && world.time >= problem_computer_next_charge_time)
 		problem_computer_next_charge_time = world.time + problem_computer_charge_time
