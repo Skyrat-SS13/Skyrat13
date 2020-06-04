@@ -99,10 +99,6 @@ Difficulty: Medium
 	. = ..()
 	internal = new /obj/item/gps/internal/sif(src)
 
-//no medals rewarded for killing the beacon
-/mob/living/simple_animal/hostile/megafauna/sif/living_beacon/grant_achievement(medaltype, scoretype, crusher_kill, list/grant_achievement)
-	return
-
 //Sword structure, used to summon sif.
 /obj/structure/sword/sif
 	name = "Massive Glowing Sword"
@@ -112,6 +108,11 @@ Difficulty: Medium
 	icon = 'modular_skyrat/icons/mob/lavaland/sif_sword.dmi'
 	icon_state = "Idle_Sword"
 	layer = HIGH_OBJ_LAYER //Looks better when its over everything... cause its huge
+	var/obj/item/gps/internal/geepm
+
+/obj/structure/sword/sif/Initialize()
+	. = ..()
+	geepm = new /obj/item/gps/internal/sif(src)
 
 //When the sword is touched it will spawn sif.
 /obj/structure/sword/sif/attack_hand(mob/user)
