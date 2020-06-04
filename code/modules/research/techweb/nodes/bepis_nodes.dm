@@ -50,16 +50,6 @@
 	hidden = TRUE
 	experimental = TRUE
 
-/datum/techweb_node/nanite_replication_protocols
-	id = "nanite_replication_protocols"
-	display_name = "Nanite Replication Protocols"
-	description = "Advanced behaviours that allow nanites to exploit certain circumstances to replicate faster."
-	prereq_ids = list("nanite_smart")
-	design_ids = list("kickstart_nanites","factory_nanites","tinker_nanites","offline_nanites","synergy_nanites")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
-	hidden = TRUE
-	experimental = TRUE
-
 /datum/techweb_node/interrogation
 	id = "interrogation"
 	display_name = "Enhanced Interrogation Technology"
