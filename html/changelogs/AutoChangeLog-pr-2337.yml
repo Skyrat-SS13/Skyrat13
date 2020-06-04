@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Fixing various icons problems with some clothings. Namely, reindeer hard hat, pumpkin head, syndie baseball caps, telegram hats, redcoat custome, generic crusader prophet hat."
+  - rscdel: "Removed a two hats with no icon whatsoever: Singer cap and hunter hat."
