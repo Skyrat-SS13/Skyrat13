@@ -300,12 +300,12 @@
 		multiplier = max(boozepowers)/100
 		for(var/datum/reagent/consumable/ethanol/E in M.reagents)
 			M.reagents.remove_reagent(E, 1 * absorption_coeff)
-		. += (power * multiplier)/2
+		. += power * multiplier
 
 /datum/symptom/heal/alcohol/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
 	var/heal_amt = actual_power
 
-	var/list/parts = M.get_damaged_bodyparts(1,1) //more effective on burns
+	var/list/parts = M.get_damaged_bodyparts(1,1)
 
 	if(!parts.len)
 		return
