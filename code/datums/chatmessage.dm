@@ -154,7 +154,7 @@
 
 	// Build message image
 	message = image(loc = message_loc, layer = CHAT_LAYER)
-	message.plane = CHAT_PLANE
+	message.plane = CHAT_LAYER //Skyrat change
 	message.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	message.alpha = 0
 	message.pixel_y = owner.bound_height * 0.95
