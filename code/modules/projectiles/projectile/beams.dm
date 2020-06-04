@@ -88,10 +88,10 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		if(C.staminaloss >= 75)
+		if(C.getStaminaLoss() >= (C.maxHealth * 0.75))
 			damage = 0
-		else if((C.staminaloss + damage) >= 75) //fuck you nerd
-			damage *= 0.5
+		else if((C.getStaminaLoss() + damage) >= (C.maxHealth * 0.75)) //fuck you nerd
+			damage *= 0.65
 //
 
 /obj/item/projectile/beam/pulse
