@@ -1,6 +1,7 @@
 /obj/item/flashlight
 	name = "flashlight"
 	desc = "A hand-held emergency light."
+	custom_price = 100
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
 	item_state = "flashlight"
@@ -357,6 +358,23 @@
 	color = LIGHT_COLOR_GREEN
 	light_color = LIGHT_COLOR_GREEN
 
+//Skyrat edit - möth
+/obj/item/flashlight/lantern/heirloom_moth
+	name = "old lantern"
+	desc = "An old lantern that has seen plenty of use."
+	brightness_on = 4
+
+/obj/item/flashlight/lantern/syndicate
+	name = "suspicious lantern"
+	desc = "A suspicious looking lantern."
+	icon = 'modular_skyrat/icons/obj/lamp.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/lamp_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/lamp_lefthand.dmi'
+	icon_state = "syndilantern"
+	item_state = "syndilantern"
+	brightness_on = 10
+//
+
 /obj/item/flashlight/slime
 	gender = PLURAL
 	name = "glowing slime extract"
@@ -428,6 +446,7 @@
 /obj/item/flashlight/glowstick
 	name = "glowstick"
 	desc = "A military-grade glowstick."
+	custom_price = 50
 	w_class = WEIGHT_CLASS_SMALL
 	brightness_on = 4
 	color = LIGHT_COLOR_GREEN
