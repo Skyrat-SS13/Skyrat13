@@ -90,6 +90,19 @@
 		if(3)
 			new /obj/item/gun/magic/staff/spellblade(src)
 
+/obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
+	new /obj/item/clothing/suit/space/hostile_environment(src)
+	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
+	new /obj/item/crusher_trophy/demon_claws(src)
+	var/loot = rand(1,3)
+	switch(loot)
+		if(1)
+			new /obj/item/mayhem(src)
+		if(2)
+			new /obj/item/blood_contract(src)
+		if(3)
+			new /obj/item/gun/magic/staff/spellblade(src)
+
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
 	name = "enraged bubblegum chest"
 
@@ -604,8 +617,8 @@
 		min_next_adrenaline = world.time + rand(300, 600) //anywhere from 30 seconds to 1 minute (i think?)
 		to_chat(owner, "<span class='userdanger'>You feel yourself dying, but you refuse to give up!</span>")
 		owner.heal_overall_damage(amount2heal, amount2heal)
-		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
-			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)
+		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/epinephrine < 20))
+			owner.reagents.add_reagent(/datum/reagent/medicine/epinephrine, 10)
 	if(damage >= (maxHealth/4)*2) //if at 75% or more damage, heal time
 		damage -= rand(1, 15)
 	if(!beating)

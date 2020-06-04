@@ -135,6 +135,7 @@
 #define TRAIT_LAW_ENFORCEMENT_METABOLISM "law-enforcement-metabolism"
 #define TRAIT_QUICK_CARRY		"quick-carry"
 #define TRAIT_QUICKER_CARRY		"quicker-carry"
+#define TRAIT_QUICK_BUILD		"quick-build"
 #define TRAIT_STRONG_GRABBER	"strong_grabber"
 #define TRAIT_CALCIUM_HEALER	"calcium_healer"
 #define TRAIT_MAGIC_CHOKE		"magic_choke"
@@ -196,6 +197,8 @@
 //SKYRAT traits
 #define TRAIT_HARD_SOLES		"hard_soles"
 #define TRAIT_SCREWY_MOOD		"screwy_mood"
+#define TRAIT_HEMOPHILIA		"hemophilia"
+#define TRAIT_ASTHMATIC			"asthmatic"
 //
 
 // mobility flag traits

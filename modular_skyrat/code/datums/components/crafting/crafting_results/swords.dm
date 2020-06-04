@@ -28,7 +28,7 @@
 /obj/item/melee/sword/update_icon()
 	cut_overlays()
 	if(poison)
-		var/mutable_appearance/sword_overlay = mutable_appearance(icon, "sword_hypo_overlay")
+		var/mutable_appearance/sword_overlay = mutable_appearance(icon, "[icon_state]_syringe_overlay")
 		add_overlay(sword_overlay)
 
 /obj/item/melee/sword/get_worn_belt_overlay()

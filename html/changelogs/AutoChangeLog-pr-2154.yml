@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "gun weight checks work the other way around when akimbo-ing."

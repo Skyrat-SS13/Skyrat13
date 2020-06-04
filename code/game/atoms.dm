@@ -32,6 +32,9 @@
 
 	var/list/filter_data //For handling persistent filters
 
+	var/custom_price
+	var/custom_premium_price
+
 	var/datum/component/orbiter/orbiters
 
 	var/rad_flags = NONE // Will move to flags_1 when i can be arsed to
@@ -56,6 +59,10 @@
 	var/chat_color
 	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
 	var/chat_color_darkened
+	//skyrat edit - custom examine icon
+	var/examine_icon
+	var/examine_icon_state
+	//
 
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
@@ -300,8 +307,10 @@
 		. = override.Join("")
 
 ///Generate the full examine string of this atom (including icon for goonchat)
+//skyrat change - custom examine icons
 /atom/proc/get_examine_string(mob/user, thats = FALSE)
-	return "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
+	return "[icon2html(examine_icon ? examine_icon : src, user, examine_icon_state ? examine_icon_state : icon_state)] [thats? "That's ":""][get_examine_name(user)]"
+//end changes (yeah the whole proc was modified)
 
 /atom/proc/examine(mob/user)
 	. = list("[get_examine_string(user, TRUE)].")
