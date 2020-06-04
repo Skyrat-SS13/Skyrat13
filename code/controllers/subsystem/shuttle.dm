@@ -35,10 +35,8 @@ SUBSYSTEM_DEF(shuttle)
 		//supply shuttle stuff
 	var/obj/docking_port/mobile/supply/supply
 	var/ordernum = 1					//order number given to next order
-	var/points = 5000					//number of trade-points we have
 	var/centcom_message = ""			//Remarks from CentCom on how well you checked the last order.
 	var/list/discoveredPlants = list()	//Typepaths for unusual plants we've already sent CentCom, associated with their potencies
-	var/passive_supply_points_per_minute = 125
 
 	var/list/supply_packs = list()
 	var/list/shoppinglist = list()
@@ -58,6 +56,14 @@ SUBSYSTEM_DEF(shuttle)
 	var/endvote_passed = FALSE
 
 	var/realtimeofstart = 0
+
+	//SKYRAT CHANGE
+	//PROBLEM COMPUTER CHARGES
+	var/problem_computer_max_charges = 5
+	var/problem_computer_charges = 5
+	var/problem_computer_charge_time = 90 SECONDS
+	var/problem_computer_next_charge_time = 0
+	//END SKYRAT CHANGE
 
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
 	ordernum = rand(1, 9000)
@@ -113,8 +119,11 @@ SUBSYSTEM_DEF(shuttle)
 				qdel(T, force=TRUE)
 	CheckAutoEvac()
 
-	if(!(times_fired % CEILING(600/wait, 1)))
-		points += passive_supply_points_per_minute
+	// Skyrat change. Handles Problem Computer charges here
+	if(problem_computer_charges < problem_computer_max_charges && world.time >= problem_computer_next_charge_time)
+		problem_computer_next_charge_time = world.time + problem_computer_charge_time
+		problem_computer_charges += 1
+	// End Skyrat change.
 
 	var/esETA = emergency?.getModeStr()
 	emergency_shuttle_stat_text = "[esETA? "[esETA] [emergency.getTimerStr()]" : ""]"
@@ -293,6 +302,14 @@ SUBSYSTEM_DEF(shuttle)
 		if(SEC_LEVEL_BLUE)
 			if(emergency.timeLeft(1) < emergencyCallTime * 0.6)
 				return
+		//Skyrat change start
+		if(SEC_LEVEL_ORANGE)
+			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
+				return
+		if(SEC_LEVEL_VIOLET)
+			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
+				return
+		//Skyrat change stop
 		if(SEC_LEVEL_AMBER)
 			if(emergency.timeLeft(1) < emergencyCallTime * 0.4)
 				return
@@ -559,7 +576,6 @@ SUBSYSTEM_DEF(shuttle)
 
 	centcom_message = SSshuttle.centcom_message
 	ordernum = SSshuttle.ordernum
-	points = SSshuttle.points
 	emergencyNoEscape = SSshuttle.emergencyNoEscape
 	emergencyCallAmount = SSshuttle.emergencyCallAmount
 	shuttle_purchased = SSshuttle.shuttle_purchased

@@ -24,12 +24,20 @@ SUBSYSTEM_DEF(research)
 	var/list/techweb_categories = list()		//category name = list(node.id = TRUE)
 	var/list/techweb_boost_items = list()		//associative double-layer path = list(id = list(point_type = point_discount))
 	var/list/techweb_nodes_hidden = list()		//Node ids that should be hidden by default.
+	var/list/techweb_nodes_experimental = list()	//Node ids that are exclusive to the BEPIS.
+
+	//SKYRAT CHANGE
+	//PROBLEM COMPUTER CHARGES
+	var/problem_computer_max_charges = 5
+	var/problem_computer_charges = 5
+	var/problem_computer_charge_time = 90 SECONDS
+	var/problem_computer_next_charge_time = 0
 
 	var/list/techweb_point_items = list(		//path = list(point type = value)
 	/obj/item/assembly/signaler/anomaly            = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
-	//SKYRAT CHANGE
+
 	/obj/item/stock_parts/cell/high/plus/argent    = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
-	//
+	//END SKYRAT CHANGE
 	//   -   Slime Extracts!   - Basics
 	/obj/item/slime_extract/grey                   = list(TECHWEB_POINT_TYPE_GENERIC = 500),
 	/obj/item/slime_extract/metal                  = list(TECHWEB_POINT_TYPE_GENERIC = 750),
@@ -309,7 +317,11 @@ SUBSYSTEM_DEF(research)
 	for(var/A in subtypesof(/obj/item/seeds))
 		var/obj/item/seeds/S = A
 		var/list/L = list()
-		L[TECHWEB_POINT_TYPE_GENERIC] = 50 + initial(S.rarity) * 2
+		//First we get are yield and rarity and times it by two
+		//Then we subtract production and maturation, making it so faster growing plants are better for RnD
+		//Then we add in lifespan and potency,
+		//A basic seed can be worth 268 points if its the best it can be.
+		L[TECHWEB_POINT_TYPE_GENERIC] = 50 + initial(S.rarity) * 2 + initial(S.yield) * 2 - initial(S.maturation) - initial(S.production) + initial(S.lifespan) + initial(S.potency)
 		techweb_point_items[S] = L
 
 	return ..()
@@ -335,6 +347,10 @@ SUBSYSTEM_DEF(research)
 			bitcoins[i] *= income_time_difference / 10
 		science_tech.add_point_list(bitcoins)
 	last_income = world.time
+	// Skyrat change. Handles Problem Computer charges here
+	if(problem_computer_charges < problem_computer_max_charges && world.time >= problem_computer_next_charge_time)
+		problem_computer_next_charge_time = world.time + problem_computer_charge_time
+		problem_computer_charges += 1
 
 /datum/controller/subsystem/research/proc/calculate_server_coefficient()	//Diminishing returns.
 	var/amt = servers.len
@@ -511,6 +527,8 @@ SUBSYSTEM_DEF(research)
 			D.unlocked_by += node.id
 		if(node.hidden)
 			techweb_nodes_hidden[node.id] = TRUE
+		if(node.experimental)
+			techweb_nodes_experimental[node.id] = TRUE
 		CHECK_TICK
 	generate_techweb_unlock_linking()
 
