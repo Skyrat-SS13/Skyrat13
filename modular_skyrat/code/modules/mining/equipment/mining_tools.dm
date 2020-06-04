@@ -1,3 +1,10 @@
+/obj/item/shovel/afterattack(atom/target, mob/user, proximity_flag, click_parameters) //shovel_dogborg.mp4
+	. = ..()
+	if(proximity_flag && istype(target, /mob/living/silicon/robot))
+		var/mob/living/silicon/robot/bad_pup = target
+		if(bad_pup.dogborg)
+			attack(bad_pup, user) //we attack the dogborg again with no checks, essentially doubling the damage
+
 /obj/item/shovel/wide
 	name = "wide shovel"
 	desc = "It's a shovel, but american."
