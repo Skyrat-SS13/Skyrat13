@@ -5333,6 +5333,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
 "anU" = (
@@ -9967,9 +9969,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/structure/table/wood,
-/obj/machinery/recharger,
-/turf/open/floor/carpet,
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
 "axT" = (
 /obj/structure/table/wood,
@@ -10439,12 +10439,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
-/obj/machinery/door/window{
-	dir = 8;
-	name = "Captain's Desk";
-	req_access_txt = "20"
-	},
-/turf/open/floor/carpet,
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
 "ayZ" = (
 /obj/item/cartridge/engineering{
@@ -11051,8 +11046,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/table/wood,
-/turf/open/floor/carpet,
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
 "aAv" = (
 /obj/structure/table/wood,
@@ -11065,6 +11059,12 @@
 /obj/item/paper_bin{
 	layer = 2.9
 	},
+/obj/item/folder/blue{
+	pixel_x = 10
+	},
+/obj/item/stamp/captain{
+	pixel_x = 10
+	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "aAx" = (
@@ -11073,11 +11073,10 @@
 /area/crew_quarters/heads/captain)
 "aAy" = (
 /obj/structure/table/wood,
-/obj/item/folder/blue,
-/obj/item/stamp/captain,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/recharger,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "aAz" = (
@@ -59708,6 +59707,14 @@
 	},
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
+"oBL" = (
+/obj/machinery/door/window{
+	dir = 8;
+	name = "Captain's Desk";
+	req_access_txt = "20"
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/captain)
 "oCn" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -93154,7 +93161,7 @@ auK
 avN
 awU
 axT
-aza
+oBL
 aAv
 aBm
 aCA
