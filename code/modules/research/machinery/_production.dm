@@ -82,7 +82,7 @@
 	. = ..()
 	var/datum/component/remote_materials/materials = GetComponent(/datum/component/remote_materials)
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Storing up to <b>[materials.local_size]</b> material units locally.<br>Material usage cost at <b>[print_cost_coeff*100]%</b>.</span>"
+		. += "<span class='notice'>The status display reads: Storing up to <b>[materials.local_size]</b> material units locally.<br>Material usage cost at <b>[CEILING(print_cost_coeff*100,5)]%</b>.</span>" //Skyrat Change. Materials OCD update.
 
 //we eject the materials upon deconstruction.
 /obj/machinery/rnd/production/on_deconstruction()
@@ -113,7 +113,7 @@
 	// these types don't have their .materials set in do_print, so don't allow
 	// them to be constructed efficiently
 	var/ef = efficient_with(being_built.build_path) ? print_cost_coeff : 1
-	return round(A / max(1, all_materials[mat] * ef))
+	return round(A / max(1, MAT_COST_WITH_COEFF(all_materials[mat],ef))) //Skyrat Change. Materials OCD update.
 
 /obj/machinery/rnd/production/proc/efficient_with(path)
 	return !ispath(path, /obj/item/stack/sheet) && !ispath(path, /obj/item/stack/ore/bluespace_crystal)
@@ -155,18 +155,18 @@
 	var/coeff = efficient_with(D.build_path) ? print_cost_coeff : 1
 	var/list/efficient_mats = list()
 	for(var/MAT in D.materials)
-		efficient_mats[MAT] = D.materials[MAT] * coeff
+		efficient_mats[MAT] = MAT_COST_WITH_COEFF(D.materials[MAT],coeff) //Skyrat Change. Materials OCD update.
 	if(!materials.mat_container.has_materials(efficient_mats, amount))
 		say("Not enough materials to complete prototype[amount > 1? "s" : ""].")
 		return FALSE
 	for(var/R in D.reagents_list)
-		if(!reagents.has_reagent(R, D.reagents_list[R] * amount * coeff))
+		if(!reagents.has_reagent(R, MAT_COST_WITH_COEFF(D.reagents_list[R],coeff) * amount)) //Skyrat Change. Materials OCD update.
 			say("Not enough reagents to complete prototype[amount > 1? "s" : ""].")
 			return FALSE
 	materials.mat_container.use_materials(efficient_mats, amount)
 	materials.silo_log(src, "built", -amount, "[D.name]", efficient_mats)
 	for(var/R in D.reagents_list)
-		reagents.remove_reagent(R, D.reagents_list[R] * amount * coeff)
+		reagents.remove_reagent(R, MAT_COST_WITH_COEFF(D.reagents_list[R],coeff) * amount) //Skyrat Change. Materials OCD update.
 	busy = TRUE
 	if(production_animation)
 		flick(production_animation, src)
@@ -276,9 +276,9 @@
 		t = check_mat(D, M)
 		temp_material += " | "
 		if (t < 1)
-			temp_material += "<span class='bad'>[all_materials[M] * coeff] [CallMaterialName(M)]</span>"
+			temp_material += "<span class='bad'>[MAT_COST_WITH_COEFF(all_materials[M],coeff)] [CallMaterialName(M)]</span>" //Skyrat Change. Materials OCD update.
 		else
-			temp_material += " [all_materials[M] * coeff] [CallMaterialName(M)]"
+			temp_material += " [MAT_COST_WITH_COEFF(all_materials[M],coeff)] [CallMaterialName(M)]" //Skyrat Change. Materials OCD update.
 		c = min(c,t)
 
 	var/clearance = !(obj_flags & EMAGGED) && (offstation_security_levels || is_station_level(z))

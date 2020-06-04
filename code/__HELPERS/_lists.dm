@@ -630,6 +630,8 @@
 			L["[key]"] = "[value]"
 	return list2params(L)
 
+#define NUMLIST2TEXTLIST(list) splittext(list2params(list), "&")
+
 //Picks from the list, with some safeties, and returns the "default" arg if it fails
 #define DEFAULTPICK(L, default) ((islist(L) && length(L)) ? pick(L) : default)
 
