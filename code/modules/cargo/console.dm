@@ -184,8 +184,6 @@
 				name = usr.real_name
 				rank = "Silicon"
 
-<<<<<<< HEAD
-=======
 			var/datum/bank_account/account
 			if(self_paid)
 				if(!pack.can_private_buy && !(obj_flags & EMAGGED))
@@ -199,7 +197,6 @@
 					say("Invalid bank account.")
 					return
 
->>>>>>> fc77954be3... Merge pull request #12290 from Ghommie/Ghommie-cit767
 			var/reason = ""
 			if(requestonly)
 				reason = stripped_input("Reason:", name, "")
