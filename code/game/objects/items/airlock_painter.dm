@@ -125,8 +125,6 @@
 		user.put_in_hands(ink)
 		to_chat(user, "<span class='notice'>You remove [ink] from [src].</span>")
 		ink = null
-<<<<<<< HEAD
-=======
 
 
 /obj/item/airlock_painter/decal
@@ -236,4 +234,3 @@
 /obj/item/airlock_painter/decal/debug/Initialize()
 	. = ..()
 	ink = new /obj/item/toner/extreme(src)
->>>>>>> 25dbed5b0b... Made the decal component an element. (#12388)
