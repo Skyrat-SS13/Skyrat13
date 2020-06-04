@@ -1015,4 +1015,9 @@
 	desc = "A motivational poster of Cheems, encouraging the reader to spread hate and violence."
 	icon_state = "poster131"
 
+/obj/structure/sign/poster/official/bold_and_brash
+	name = "Bold and Brash"
+	desc = "It's a poster, not a painting, because paintings are art. Belongs in the trash."
+	icon_state = "poster132"
+
 #undef PLACE_SPEED
