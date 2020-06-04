@@ -32,6 +32,9 @@
 
 	var/list/filter_data //For handling persistent filters
 
+	var/custom_price
+	var/custom_premium_price
+
 	var/datum/component/orbiter/orbiters
 
 	var/rad_flags = NONE // Will move to flags_1 when i can be arsed to
@@ -316,10 +319,11 @@
 		. += desc
 
 	if(custom_materials)
+		var/list/materials_list = list()
 		for(var/i in custom_materials)
 			var/datum/material/M = i
-			. += "<u>It is made out of [M.name]</u>."
-
+			materials_list += "[M.name]"
+		. += "<u>It is made out of [english_list(materials_list)]</u>."
 	if(reagents)
 		if(reagents.reagents_holder_flags & TRANSPARENT)
 			. += "It contains:"

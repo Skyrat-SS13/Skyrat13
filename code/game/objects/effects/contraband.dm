@@ -51,6 +51,7 @@
 	icon = 'modular_skyrat/icons/obj/contraband.dmi'
 	plane = ABOVE_WALL_PLANE
 	anchored = TRUE
+	buildable_sign = FALSE //Cannot be unwrenched from a wall.
 	var/ruined = FALSE
 	var/random_basetype
 	var/never_random = FALSE // used for the 'random' subclasses.
@@ -70,6 +71,7 @@
 		desc = "A large piece of space-resistant printed paper. [desc]"
 
 /obj/structure/sign/poster/proc/randomise(base_type, override = FALSE)
+	addtimer(CALLBACK(src, /datum.proc/_AddElement, list(/datum/element/beauty, 300)), 0)
 	var/list/poster_types = subtypesof(base_type)
 	if(override)
 		poster_types = list(base_type)
