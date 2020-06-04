@@ -214,14 +214,9 @@
 	var/bonus_spread = 0
 	var/loop_counter = 0
 
-<<<<<<< HEAD
-	bonus_spread += getinaccuracy(user) //CIT CHANGE - adds bonus spread while not aiming
-	if(ishuman(user) && user.a_intent == INTENT_HARM)
-=======
 	if(user)
 		bonus_spread += getinaccuracy(user) //CIT CHANGE - adds bonus spread while not aiming
 	if(ishuman(user) && user.a_intent == INTENT_HARM && weapon_weight <= WEAPON_LIGHT)
->>>>>>> 968426fd48... Combat mode component. (#12338)
 		var/mob/living/carbon/human/H = user
 		for(var/obj/item/gun/G in H.held_items)
 			if(G == src || G.weapon_weight >= WEAPON_MEDIUM)
