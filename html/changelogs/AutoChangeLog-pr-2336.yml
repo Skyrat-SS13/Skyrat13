@@ -1,5 +1,0 @@
-author: "CinderWC"
-delete-after: True
-changes: 
-  - bugfix: "https://github.com/Skyrat-SS13/Skyrat13/issues/2269"
-  - bugfix: "Fixed disposal pipe in cloning being the wrong way and messing up."
