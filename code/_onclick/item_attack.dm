@@ -107,10 +107,6 @@
 /obj/attacked_by(obj/item/I, mob/living/user)
 	var/totitemdamage = I.force
 	var/bad_trait
-<<<<<<< HEAD
-	if(!(user.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE) && iscarbon(user))
-		totitemdamage *= 0.5
-=======
 
 	var/stamloss = user.getStaminaLoss()
 	var/next_move_mult = 1
@@ -121,7 +117,6 @@
 	user.changeNext_move(I.click_delay*next_move_mult)
 
 	if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
->>>>>>> a41f40503d... More lenient soft stamina combat, decentralized gun inaccuracy from combat mode. (#12347)
 		bad_trait = SKILL_COMBAT_MODE //blacklist combat skills.
 
 	if(I.used_skills && user.mind)
@@ -182,13 +177,6 @@
 	I.attack_delay_done = TRUE
 
 	var/bad_trait
-<<<<<<< HEAD
-	if(!(user.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE) && iscarbon(user))
-		. *= 0.5
-		bad_trait = SKILL_COMBAT_MODE //blacklist combat skills.
-	if(!CHECK_MOBILITY(user, MOBILITY_STAND))
-		. *= 0.5
-=======
 	if(!(I.item_flags & NO_COMBAT_MODE_FORCE_MODIFIER))
 		if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
 			bad_trait = SKILL_COMBAT_MODE //blacklist combat skills.
@@ -197,7 +185,6 @@
 		else if(SEND_SIGNAL(src, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
 			. *= 1.5
 
->>>>>>> a41f40503d... More lenient soft stamina combat, decentralized gun inaccuracy from combat mode. (#12347)
 	if(!user.mind || !I.used_skills)
 		return
 	if(.)
@@ -207,14 +194,6 @@
 			continue
 		user.mind.auto_gain_experience(skill, I.skill_gain)
 
-<<<<<<< HEAD
-/mob/living/carbon/pre_attacked_by(obj/item/I, mob/living/user)
-	. = ..()
-	if(!(combat_flags & COMBAT_FLAG_COMBAT_ACTIVE))
-		. *= 1.5
-
-=======
->>>>>>> a41f40503d... More lenient soft stamina combat, decentralized gun inaccuracy from combat mode. (#12347)
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
 /obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)

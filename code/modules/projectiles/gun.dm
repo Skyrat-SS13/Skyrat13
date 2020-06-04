@@ -215,12 +215,8 @@
 	var/bonus_spread = 0
 	var/loop_counter = 0
 
-<<<<<<< HEAD
-	bonus_spread += getinaccuracy(user) //CIT CHANGE - adds bonus spread while not aiming
-=======
 	if(user)
 		bonus_spread = getinaccuracy(user, bonus_spread, stamloss) //CIT CHANGE - adds bonus spread while not aiming
->>>>>>> a41f40503d... More lenient soft stamina combat, decentralized gun inaccuracy from combat mode. (#12347)
 	if(ishuman(user) && user.a_intent == INTENT_HARM && weapon_weight <= WEAPON_LIGHT)
 		var/mob/living/carbon/human/H = user
 		for(var/obj/item/gun/G in H.held_items)
@@ -573,17 +569,6 @@
 		chambered = null
 		update_icon()
 
-<<<<<<< HEAD
-/obj/item/gun/proc/getinaccuracy(mob/living/user)
-	if(!isliving(user))
-		return FALSE
-	else
-		var/mob/living/holdingdude = user
-		if(istype(holdingdude) && (holdingdude.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE))
-			return 0
-		else
-			return ((weapon_weight * 25) * inaccuracy_modifier)
-=======
 /obj/item/gun/proc/getinaccuracy(mob/living/user, bonus_spread, stamloss)
 	if(inaccuracy_modifier == 0)
 		return bonus_spread
@@ -606,4 +591,3 @@
 	. = recoil
 	if(user && !user.has_gravity())
 		. = recoil*5
->>>>>>> a41f40503d... More lenient soft stamina combat, decentralized gun inaccuracy from combat mode. (#12347)
