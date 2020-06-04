@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "Ratvar's Faithful have studied skirmishes of ages past, and have recollected some old battle chants."
+  - rscadd: "Re-adds Mending Mantra and Volt Blaster, an offensive but slow charging bolt of energy, and a chant that repairs those clad in armor, as well as structures built."
