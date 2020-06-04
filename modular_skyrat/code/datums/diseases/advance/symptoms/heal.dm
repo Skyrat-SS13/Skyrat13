@@ -297,7 +297,7 @@
 			boozereagents += E
 		for(var/datum/reagent/consumable/ethanol/E in boozereagents)
 			boozepowers += E.boozepwr
-		multiplier = max(boozepowers)/100
+		multiplier = max(boozepowers)/50
 		for(var/datum/reagent/consumable/ethanol/E in M.reagents)
 			M.reagents.remove_reagent(E, 1 * absorption_coeff)
 		. += power * multiplier
