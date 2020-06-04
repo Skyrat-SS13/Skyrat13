@@ -43117,7 +43117,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
 "bIZ" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
 "bJb" = (
@@ -62357,7 +62357,7 @@
 /turf/open/floor/wood,
 /area/maintenance/port/fore)
 "cxd" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /obj/structure/noticeboard{
 	dir = 4;
 	pixel_x = -27
@@ -67308,7 +67308,7 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "iLn" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/maintenance/port/fore)
 "iMb" = (

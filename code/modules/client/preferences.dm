@@ -252,6 +252,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/vore_flags = 0
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
+	var/toggleeatingnoise = TRUE
+	var/toggledigestionnoise = TRUE
+	var/hound_sleeper = TRUE
+	var/cit_toggles = TOGGLES_CITADEL
 
 	//backgrounds
 	var/mutable_appearance/character_background
@@ -261,6 +265,19 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/show_mismatched_markings = FALSE //determines whether or not the markings lists should show markings that don't match the currently selected species. Intentionally left unsaved.
 
 	var/no_tetris_storage = FALSE
+
+	///loadout stuff
+	var/gear_points = 10
+	var/list/gear_categories
+	var/list/chosen_gear = list()
+	var/gear_tab
+
+	var/screenshake = 100
+	var/damagescreenshake = 2
+	var/arousable = TRUE
+	var/widescreenpref = TRUE
+	var/autostand = TRUE
+	var/auto_ooc = FALSE
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -1024,7 +1041,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 			dat += "<b>Ghosts of Others:</b> <a href='?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a><br>"
 			dat += "<br>"
+
 			dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a><br>"
+
+			dat += "<b>Income Updates:</b> <a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Allowed" : "Muted"]</a><br>"
+			dat += "<br>"
+
 			dat += "<b>Parallax (Fancy Space):</b> <a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
 			switch (parallax)
 				if (PARALLAX_LOW)
@@ -2868,6 +2890,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("ghost_pda")
 					chat_toggles ^= CHAT_GHOSTPDA
+
+				if("income_pings")
+					chat_toggles ^= CHAT_BANKCARD
 
 				if("pull_requests")
 					chat_toggles ^= CHAT_PULLR

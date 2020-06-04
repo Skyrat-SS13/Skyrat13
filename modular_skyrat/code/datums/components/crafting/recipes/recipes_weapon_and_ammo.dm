@@ -27,7 +27,7 @@
 	name = "Switchblade"
 	result = /obj/item/switchblade/crafted
 	reqs = list(/obj/item/weaponcrafting/stock = 1,
-				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
 				/obj/item/metal_blade = 1,
 				/obj/item/stack/cable_coil = 2)
 	tools = list(TOOL_WELDER)
@@ -39,7 +39,7 @@
 	name = "Butterfly Knife"
 	result = /obj/item/melee/transforming/butterfly
 	reqs = list(/obj/item/metal_gun_stock = 1,
-				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
 				/obj/item/metal_blade = 1,
 				/obj/item/stack/cable_coil = 5)
 	tools = list(TOOL_WELDER)
@@ -91,7 +91,7 @@
 /datum/crafting_recipe/pipepistol
 	name = "Pipe Pistol (10mm)"
 	result = /obj/item/gun/ballistic/automatic/pistol/makeshift
-	reqs = list(/obj/item/weaponcrafting/receiver = 1,
+	reqs = list(/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
 				/obj/item/pipe = 2,
 				/obj/item/stack/sheet/mineral/wood = 7,
 				/obj/item/stack/packageWrap = 5)
@@ -103,7 +103,7 @@
 /datum/crafting_recipe/crossbow
 	name = "Makeshift Crossbow"
 	result = /obj/item/gun/ballistic/crossbow
-	reqs = list(/obj/item/weaponcrafting/receiver = 1,
+	reqs = list(/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
 				/obj/item/pipe = 1,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/stack/packageWrap = 5,
@@ -120,7 +120,7 @@
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/stack/cable_coil = 5,
 				/obj/item/storage/box = 1,
-				/obj/item/weaponcrafting/receiver = 1)
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 60
 	category = CAT_WEAPONRY
@@ -132,7 +132,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 3,
 				/obj/item/stack/ore/diamond = 5,
 				/obj/item/stack/sheet/sinew = 3,
-				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
 				/obj/item/assembly/igniter = 1,
 				/obj/item/stock_parts/cell/high/plus/argent = 1,
 				/obj/item/stock_parts/capacitor = 4,
@@ -147,7 +147,7 @@
 				/obj/item/weaponcrafting/stock = 1,\
 				/obj/item/pipe = 1,\
 				/obj/item/stack/sheet/mineral/diamond = 3,\
-				/obj/item/weaponcrafting/receiver = 1,\
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,\
 				/obj/item/stock_parts/micro_laser = 1,\
 				/obj/item/stock_parts/capacitor = 2,\
 				/obj/item/assembly/igniter = 1,
@@ -168,7 +168,7 @@
 				/obj/item/stack/sheet/plasmaglass = 1,
 				/obj/item/stock_parts/cell/high = 1,
 				/obj/item/assembly/igniter = 1,
-				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
 				/obj/item/stock_parts/micro_laser/high = 1,
 				/obj/item/stock_parts/capacitor/adv = 1)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
