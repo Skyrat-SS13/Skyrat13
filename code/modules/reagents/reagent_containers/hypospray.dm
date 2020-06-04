@@ -96,6 +96,8 @@
 	reagent_flags = DRAWABLE
 	flags_1 = null
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 10, /datum/reagent/preservahyde = 3)
+	custom_price = 150
+	custom_premium_price = 300
 
 /obj/item/reagent_containers/hypospray/medipen/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to choke on \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -193,6 +195,14 @@
 	volume = 250
 	list_reagents = list(/datum/reagent/water/holywater = 150, /datum/reagent/peaceborg_tire = 50, /datum/reagent/peaceborg_confuse = 50)
 	amount_per_transfer_from_this = 50
+// SKYRAT EDIT: Adding Injectors to ChemMaster
+/obj/item/reagent_containers/hypospray/medipen/empty
+	name = "medipen"
+	desc = "An empty medipen."
+	volume = 10
+	list_reagents = null
+	amount_per_transfer_from_this = 10
+	ignore_flags = FALSE //so you can't medipen through hardsuits
 
 #define HYPO_SPRAY 0
 #define HYPO_INJECT 1

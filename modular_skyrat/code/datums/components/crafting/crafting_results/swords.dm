@@ -13,7 +13,7 @@
 	force = 15
 	sharpness = IS_SHARP
 	hitsound = 'modular_skyrat/sound/weapons/bloodyslice.ogg'
-	var/obj/item/reagent_containers/hypospray/poison
+	var/obj/item/reagent_containers/syringe/poison
 
 /obj/item/melee/sword/Initialize()
 	..()
@@ -28,7 +28,7 @@
 /obj/item/melee/sword/update_icon()
 	cut_overlays()
 	if(poison)
-		var/mutable_appearance/sword_overlay = mutable_appearance(icon, "sword_hypo_overlay")
+		var/mutable_appearance/sword_overlay = mutable_appearance(icon, "[icon_state]_syringe_overlay")
 		add_overlay(sword_overlay)
 
 /obj/item/melee/sword/get_worn_belt_overlay()
@@ -43,7 +43,7 @@
 
 /obj/item/melee/sword/attackby(obj/item/I, mob/living/user)
 	. = ..()
-	if(istype(I, /obj/item/reagent_containers/hypospray))
+	if(istype(I, /obj/item/reagent_containers/syringe))
 		if(!poison)
 			I.forceMove(src)
 			poison = I
@@ -76,17 +76,21 @@
 	item_state = "executioners_sword"
 	sharpness = IS_SHARP
 	var/delimb_chance = 15
+	var/armorthreshold
 
 /obj/item/melee/sword/executioner/afterattack(atom/target, mob/living/user, proximity)
 	. = ..()
+	var/def_zone = user.zone_selected
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		var/obj/item/bodypart/BP = C.get_bodypart(check_zone(user.zone_selected))
 		if(prob(delimb_chance))
-			C.visible_message("<span class='danger'>[C]'s [BP] gets completely chopped off by \the [src]!</span>")
+			if(BP.body_zone == (BODY_ZONE_CHEST || BODY_ZONE_HEAD))
+				if(C.getarmor(def_zone, "melee") >= 25)
+					return FALSE
 			BP.dismember(BRUTE)
 	if(proximity)
-		user.changeNext_move(CLICK_CD_MELEE * 2.5)
+		user.changeNext_move(CLICK_CD_MELEE * 2)
 
 /obj/item/melee/sword/shortsword
 	name = "shortsword"

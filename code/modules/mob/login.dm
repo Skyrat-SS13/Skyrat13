@@ -52,6 +52,12 @@
 				var/datum/callback/CB = foo
 				CB.Invoke()
 
+//SKYRAT CHANGES
+	mind?.appear_in_round_end_report = client?.prefs?.appear_in_round_end_report
+//END OF SKYRAT CHANGES
+
 	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
 
+	if(has_field_of_vision && CONFIG_GET(flag/use_field_of_vision))
+		LoadComponent(/datum/component/field_of_vision, field_of_vision_type)

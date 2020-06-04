@@ -128,7 +128,13 @@ GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_
 #define DBACKPACK "Department Backpack"
 #define DSATCHEL "Department Satchel"
 #define DDUFFELBAG "Department Duffel Bag"
-GLOBAL_LIST_INIT(backbaglist, list(DBACKPACK, DSATCHEL, DDUFFELBAG, GBACKPACK, GSATCHEL, GDUFFELBAG, LSATCHEL))
+// SKYRAT EDIT: Courier Bags and Polychromics
+#define PLYSBP "Polychromic Backpack"
+#define PLYSS "Polychromic Satchel"
+#define PLYSCB "Polychromic Courier Bag"
+#define PLYSDB "Polychromic Duffel Bag"
+GLOBAL_LIST_INIT(backbaglist, list(DBACKPACK, DSATCHEL, DDUFFELBAG, GBACKPACK, GSATCHEL, GDUFFELBAG, LSATCHEL, PLYSBP, PLYSS, PLYSCB, PLYSDB))
+// SKYRAT EDIT CLOSE
 
 //Suit/Skirt
 #define PREF_SUIT "Jumpsuit"
@@ -226,6 +232,8 @@ GLOBAL_LIST_INIT(station_numerals, greek_letters + phonetic_alphabet + numbers_a
 
 GLOBAL_LIST_INIT(admiral_messages, list("Do you know how expensive these stations are?","Stop wasting my time.","I was sleeping, thanks a lot.","Stand and fight you cowards!","You knew the risks coming in.","Stop being paranoid.","Whatever's broken just build a new one.","No.", "<i>null</i>","<i>Error: No comment given.</i>", "It's a good day to die!"))
 
-// Skyrat changes. TODO: Ask loremasters for the proper confrimed/likely faction list.
-GLOBAL_LIST_INIT(factions_list, list("NanoTrasen", "Sol Federation", "Free Trade Union", "Other/Independent"))
+GLOBAL_LIST_INIT(redacted_strings, list("\[REDACTED\]", "\[CLASSIFIED\]", "\[ARCHIVED\]", "\[EXPLETIVE DELETED\]", "\[EXPUNGED\]", "\[INFORMATION ABOVE YOUR SECURITY CLEARANCE\]", "\[MOVE ALONG CITIZEN\]", "\[NOTHING TO SEE HERE\]", "\[ACCESS DENIED\]"))
+
+// Skyrat changes. Please, consult with loredevs if you want add faction(s) to this list.
+GLOBAL_LIST_INIT(factions_list, list("NanoTrasen", "Sol Federation", "Free Trade Union", "Letheia"))
 // End of Skyrat changes

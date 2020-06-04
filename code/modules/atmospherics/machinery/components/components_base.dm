@@ -32,7 +32,7 @@
 	var/turf/T = loc
 	if(level == 2 || (istype(T) && !T.intact))
 		showpipe = TRUE
-		plane = GAME_PLANE
+		plane = ABOVE_WALL_PLANE
 	else
 		showpipe = FALSE
 		plane = FLOOR_PLANE
@@ -65,7 +65,7 @@
 // Pipenet stuff; housekeeping
 
 /obj/machinery/atmospherics/components/nullifyNode(i)
-	if(nodes[i])
+	if(parents[i])
 		nullifyPipenet(parents[i])
 		QDEL_NULL(airs[i])
 	..()
