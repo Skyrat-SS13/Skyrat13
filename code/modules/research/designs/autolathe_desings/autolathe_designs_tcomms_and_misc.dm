@@ -256,8 +256,6 @@
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 150)
 	build_path = /obj/item/key/collar
 	category = list("initial", "Misc")
-<<<<<<< HEAD
-=======
 
 /datum/design/price_tagger
 	name = "Price Tagger"
@@ -282,5 +280,3 @@
 	materials = list(/datum/material/iron = 6500, /datum/material/glass = 50)
 	build_path = /obj/item/weaponcrafting/improvised_parts/trigger_assembly
 	category = list("initial", "Misc")
-
->>>>>>> ff51c9d2db... Improvised Weapons Update: Part 1 (#12226)
