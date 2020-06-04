@@ -1,7 +1,0 @@
-author: "Anonymous"
-delete-after: True
-changes: 
-  - rscadd: "Added ability for setting a custom faction. Select \"Other\" if you want to set one."
-  - rscdel: "Removes \"Other/Independent\" from the global faction list, for obvious reasons. You can still set yourself independent with \"None\" option."
-  - rscadd: "Letheia is added to global faction list."
-  - bugfix: "Characters with unset faction/employer will be now properly displayed on preference setup and in records."

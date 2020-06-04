@@ -182,7 +182,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 					if(is_inaccessible)
 						continue
 			//skyrat edit
-			if(I.restricted_species)
+			if(I.restricted_species.len)
 				if(ishuman(user))
 					var/is_inaccessible = TRUE
 					var/mob/living/carbon/human/H = user

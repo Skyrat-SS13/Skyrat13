@@ -1,0 +1,5 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - bugfix: "Fixing some edge cases with recyclers."
+  - bugfix: "People are yet again crushed by emagged recyclers."
