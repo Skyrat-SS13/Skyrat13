@@ -1,0 +1,7 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - balance: "Made stamina combat a bit more lenient, you should now be able to use weapons/guns while soft critted, while incurring into damage penalties, inaccuracy and longer attack delays."
+  - balance: "Modified the way gun inaccuracy is calculated to take in consideration the time passed since your last click (a few other actions can cause delays, but most of them are clicks), take a second or two to aim your shots if you want no spread, Combat mode helps, but not as much."
+  - balance: "The item attack combat mode checks for user and target do not stack anymore and lead to a 0.75x modifier when both parties are not in combat mode."
+  - balance: "Removed the combat mode check for object damage from items."
