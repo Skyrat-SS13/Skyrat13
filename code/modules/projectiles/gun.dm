@@ -126,7 +126,7 @@
 		zoom(user, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
 
 //called after the gun has successfully fired its chambered ammo.
-/obj/item/gun/proc/process_chamber()
+/obj/item/gun/proc/process_chamber(mob/living/user)
 	return FALSE
 
 //check if there's enough ammo/energy/whatever to shoot one time
@@ -304,7 +304,7 @@
 		else
 			shoot_with_empty_chamber(user)
 			return
-		process_chamber()
+		process_chamber(user)
 		update_icon()
 
 	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
@@ -343,7 +343,7 @@
 		shoot_with_empty_chamber(user)
 		firing = FALSE
 		return FALSE
-	process_chamber()
+	process_chamber(user)
 	update_icon()
 	return TRUE
 
