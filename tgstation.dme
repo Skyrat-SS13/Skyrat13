@@ -3676,6 +3676,7 @@
 #include "modular_skyrat\code\modules\clothing\suits\cloaks.dm"
 #include "modular_skyrat\code\modules\clothing\suits\jobs.dm"
 #include "modular_skyrat\code\modules\clothing\suits\labcoat.dm"
+#include "modular_skyrat\code\modules\clothing\shoes\miscellaneous.dm"
 #include "modular_skyrat\code\modules\clothing\suits\miscellaneous.dm"
 #include "modular_skyrat\code\modules\clothing\traitor\ghostface.dm"
 #include "modular_skyrat\code\modules\clothing\traitor\graycowl.dm"
