@@ -1,0 +1,10 @@
+author: "Ghommie porting PRs by: nightred, defiantGrace, ArcaneMusic, Arkatos1, Firecage, Floyd / Qustinnus, uomo91, coiax"
+delete-after: True
+changes: 
+  - refactor: "Changed custom material output on examine to be on a single line"
+  - rscadd: "makes toilets constructable"
+  - rscadd: "makes sinks constructable"
+  - rscadd: "Adds a new Lavaland Ruin, the Elephant Graveyard."
+  - rscadd: "You can now learn to create several bone statues, and a new, dangerous shovel. The only thing stopping you are the consequences."
+  - rscadd: "You can now appreciate rooms for being very well decorated."
+  - tweak: "Wood is now a datum material, and behaves like other datum materials."

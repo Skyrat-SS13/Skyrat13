@@ -234,7 +234,7 @@
 	if(!user)
 		return
 	var/bad_trait
-	if(iscarbon(user) && !(user.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE))
+	if(SEND_SIGNAL(user, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_INACTIVE))
 		. *= STAM_COST_NO_COMBAT_MULT
 		bad_trait = SKILL_COMBAT_MODE
 	if(used_skills && user.mind)

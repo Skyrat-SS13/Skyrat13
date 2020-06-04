@@ -19321,10 +19321,10 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aQV" = (
-/obj/machinery/vending/autodrobe/all_access,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aQW" = (
@@ -27654,15 +27654,6 @@
 /turf/open/floor/plating,
 /area/quartermaster/office)
 "bkO" = (
-/obj/machinery/power/apc{
-	areastring = "/area/medical/medbay/central";
-	dir = 4;
-	name = "Medbay APC";
-	pixel_x = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -28575,30 +28566,26 @@
 /obj/structure/chair/office/light{
 	dir = 8
 	},
+/obj/effect/landmark/start/medical_doctor,
 /obj/machinery/button/door{
 	desc = "A remote control switch for the medbay foyer.";
 	id = "MedbayFoyer";
-	name = "Medbay Doors Control";
+	name = "Medbay Exit Button";
 	normaldoorcontrol = 1;
-	pixel_x = -26;
-	req_access_txt = "5"
+	pixel_x = -26
 	},
-/obj/effect/landmark/start/medical_doctor,
+/obj/machinery/button/door{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "MedbayFoyer";
+	name = "Medbay Exit Button";
+	normaldoorcontrol = 1;
+	pixel_x = -26
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bmM" = (
 /obj/structure/chair/office/light{
 	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
-"bmN" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -29257,18 +29244,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"bok" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/medical/glass{
-	id_tag = "MedbayFoyer";
-	name = "Medbay";
-	req_access_txt = "5"
-	},
-/obj/effect/mapping_helpers/airlock/unres,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "bol" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -29846,15 +29821,6 @@
 /obj/machinery/status_display/evac,
 /turf/closed/wall,
 /area/medical/medbay/central)
-"bpx" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "bpy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -29976,12 +29942,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
-"bpP" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bpQ" = (
@@ -30511,15 +30471,6 @@
 "bre" = (
 /turf/open/floor/carpet,
 /area/medical/psych)
-"brf" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "brg" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -32031,8 +31982,8 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
-/obj/structure/disposalpipe/junction{
-	dir = 8
+/obj/structure/disposalpipe/junction/flip{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/medical/medbay/central)
@@ -59106,8 +59057,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "jUb" = (
-/obj/machinery/vending/boozeomat/all_access,
 /obj/structure/spider/stickyweb/genetic,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/plating,
 /area/maintenance/bar)
 "jUx" = (
@@ -59763,7 +59714,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
 "lsk" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
 "ltK" = (
@@ -103279,11 +103230,11 @@ gRl
 bhh
 bhh
 bhh
-bmN
-bok
-bpx
-bpP
-brf
+bhg
+syP
+btV
+bhh
+bsx
 bhh
 bvh
 bwJ
