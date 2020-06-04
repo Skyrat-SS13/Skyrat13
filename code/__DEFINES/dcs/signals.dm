@@ -400,3 +400,4 @@
 #define COMSIG_MOB_ITEM_ATTACK_SELF "item_attack_self"				//from base of obj/item/attack_self(): (obj/item)
 // Living signals
 #define COMSIG_LIVING_FLASH_ACT "living_flash_act"				///from base of [/mob/living/proc/flash_act] //moth
+#define COMSIG_LIVING_UPDATED_MOBILITY "living_updated_mobility" //from base of (/mob/living/proc/update_mobility): (mobility_flags)
