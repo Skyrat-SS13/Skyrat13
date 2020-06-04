@@ -1,0 +1,6 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "Telecomms now use tgui-next interfaces"
+  - bugfix: "req. consoles not prioritizing properly"
+  - rscdel: "Removed old htmlui for telecomms"

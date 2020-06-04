@@ -1,5 +1,0 @@
-author: "Afya"
-delete-after: True
-changes: 
-  - rscadd: "Renault does the cute"
-  - bugfix: "fixed double message on Renault."

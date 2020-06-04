@@ -55,6 +55,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	/// How long, in deciseconds, this staggers for, if null it will autocalculate from w_class and force. Unlike total mass this supports 0 and negatives.
 	var/stagger_force
 
+	/**
+	  * Set FALSE and then checked at the end of on mob/living/attackby(), set TRUE on living/pre_attacked_by().
+	  * Should it be FALSE by the end of the item/attack(), that means the item overrode the standard attack behaviour
+	  * and the user still needs the delay applied. We can't be using return values since that'll stop afterattack() from being triggered.
+	  */
+	var/attack_delay_done = FALSE
+	///next_move click/attack delay of this item.
+	var/click_delay = CLICK_CD_MELEE
+
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	pass_flags = PASSTABLE
 	pressure_resistance = 4
@@ -138,15 +147,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/skill_difficulty = THRESHOLD_UNTRAINED //how difficult it's to use this item in general.
 	var/skill_gain = DEF_SKILL_GAIN //base skill value gain from using this item.
 
-	//SKYRAT CHANGE - self equip delays
-	//Time in ticks needed to equip something on yourself. Uses the equip_delay_self var.
-	//Set use_standard_equip_delay to false if you want to set a custom delay by changing equip_delay_self.
-	var/use_standard_equip_delay = FALSE //Basically sets the self equip delay on initialize to self_equip_mod * equip_delay_other
-	var/self_equip_mod = 0.65
-	var/strip_self_delay = 0
-	var/use_standard_strip_self_delay = TRUE //Basically makes the unequip delay take as long as strip_self_delay_mod * equip_delay on initialize
-	var/strip_self_delay_mod = 0.85
-	//
+	var/canMouseDown = FALSE
+
 
 /obj/item/Initialize()
 
@@ -179,13 +181,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	if(sharpness) //give sharp objects butchering functionality, for consistency
 		AddComponent(/datum/component/butchering, 80 * toolspeed)
-	
-	//skyrat change
-	if(use_standard_equip_delay && !equip_delay_self)
-		equip_delay_self = self_equip_mod * equip_delay_other
-	if(use_standard_strip_self_delay && !strip_self_delay && equip_delay_self)
-		strip_self_delay = strip_self_delay_mod * equip_delay_self
-	//
 
 /obj/item/Destroy()
 	item_flags &= ~DROPDEL	//prevent reqdels
@@ -352,6 +347,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(loc == user)
 		if(!allow_attack_hand_drop(user) || !user.temporarilyRemoveItemFromInventory(src))
 			return
+
 	pickup(user)
 	add_fingerprint(user)
 	if(!user.put_in_active_hand(src, FALSE, FALSE))
@@ -436,14 +432,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return usr.client.Click(src, src_location, src_control, params)
 	var/list/directaccess = usr.DirectAccess()	//This, specifically, is what requires the copypaste. If this were after the adjacency check, then it'd be impossible to use items in your inventory, among other things.
 												//If this were before the above checks, then trying to click on items would act a little funky and signal overrides wouldn't work.
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
-		if((C.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE) && ((C.CanReach(src) || (src in directaccess)) && (C.CanReach(over) || (over in directaccess))))
-			if(!C.get_active_held_item())
-				C.UnarmedAttack(src, TRUE)
-				if(C.get_active_held_item() == src)
-					melee_attack_chain(C, over)
-				return TRUE //returning TRUE as a "is this overridden?" flag
+	if(SEND_SIGNAL(usr, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE) && ((usr.CanReach(src) || (src in directaccess)) && (usr.CanReach(over) || (over in directaccess))))
+		if(!usr.get_active_held_item())
+			usr.UnarmedAttack(src, TRUE)
+			if(usr.get_active_held_item() == src)
+				melee_attack_chain(usr, over)
+			return TRUE //returning TRUE as a "is this overridden?" flag
 	if(!Adjacent(usr) || !over.Adjacent(usr))
 		return // should stop you from dragging through windows
 

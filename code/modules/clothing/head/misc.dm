@@ -129,6 +129,7 @@
 	dog_fashion = /datum/dog_fashion/head/pirate
 
 /obj/item/clothing/head/pirate/captain
+	name = "pirate captain hat"
 	icon_state = "hgpiratecap"
 	item_state = "hgpiratecap"
 
@@ -373,12 +374,6 @@
 	desc = "A bright red cap warn by hotel staff. Or people who want to be a singing telegram"
 	icon_state = "telegram"
 	dog_fashion = /datum/dog_fashion/head/telegram
-
-/obj/item/clothing/head/colour
-	name = "Singer cap"
-	desc = "A light white hat that has bands of color. Just makes you want to sing and dance!"
-	icon_state = "colour"
-	dog_fashion = /datum/dog_fashion/head/colour
 
 /obj/item/clothing/head/christmashat
 	name = "red santa hat"

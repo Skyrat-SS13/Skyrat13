@@ -14,8 +14,7 @@
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	speech_span = SPAN_ROBOT
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1
-	/// Enable sprint system but not stamina
-	combat_flags = COMBAT_FLAGS_STAMEXEMPT_YESSPRINT
+	combat_flags = COMBAT_FLAGS_STAMEXEMPT_YESSPRINT /// Enable sprint system but not stamina
 
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	var/last_lawchange_announce = 0
