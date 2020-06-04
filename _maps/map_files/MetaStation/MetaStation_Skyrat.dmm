@@ -6359,9 +6359,10 @@
 /turf/closed/wall,
 /area/security/prison)
 "anE" = (
-/obj/machinery/vending/boozeomat/all_access,
 /obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks/beer,
 /turf/open/floor/wood,
+/area/maintenance/bar,
 /area/maintenance/bar)
 "anF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -35746,7 +35747,7 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "btW" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
 "btX" = (
@@ -41066,8 +41067,8 @@
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
 "bGg" = (
-/obj/machinery/chem_dispenser/drinks/beer,
 /obj/structure/table/wood,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/maintenance/bar)
 "bGh" = (
@@ -43831,7 +43832,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bMF" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bMG" = (
@@ -55066,9 +55067,10 @@
 /turf/open/floor/plating/airless,
 /area/engine/atmos)
 "cjp" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
-/area/maintenance/port/aft)
+/area/maintenance/port/aft,
+/area/space)
 "cjq" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
@@ -61249,7 +61251,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -76738,7 +76740,9 @@
 /turf/open/floor/plating,
 /area/science/xenobiology)
 "etr" = (
-/obj/machinery/vr_sleeper,
+/obj/machinery/vr_sleeper{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
 "evy" = (
@@ -79016,6 +79020,7 @@
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
 "rbM" = (
+/obj/item/vending_refill/boozeomat,
 /obj/item/electropack/shockcollar,
 /obj/item/assembly/signaler,
 /turf/open/floor/plating,
