@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscdel: "Removed paper bin, box and crowbar loadout items."
-  - tweak: "Made the joy mask price more tolerable. Now if only certain contributors would stop thinking every boisterous jest or shitcode they make could become a running gag..."
