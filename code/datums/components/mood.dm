@@ -66,7 +66,7 @@
 			if(SANITY_INSANE to SANITY_CRAZY)
 				msg += "<span class='boldwarning'>AHAHAHAHAHAHAHAHAHAH!!</span>\n"
 	else
-		msg += "<span class='nicegreen'>I don't really know.<span>\n"
+		msg += "<span class='notice'>I don't really know.<span>\n"
 	//
 
 	msg += "<span class='notice'>My current mood: </span>" //Short term
@@ -92,7 +92,7 @@
 			if(9)
 				msg += "<span class='nicegreen'>I love life!<span>\n"
 	else
-		msg += "<span class='nicegreen'>No clue.<span>\n"
+		msg += "<span class='notice'>No clue.<span>\n"
 	//
 
 	msg += "<span class='notice'>Moodlets:\n</span>"//All moodlets
@@ -105,7 +105,7 @@
 		else
 			msg += "<span class='nicegreen'>I don't have much of a reaction to anything right now.<span>\n"
 	else
-		msg += "<span class='nicegreen'>No idea.<span>\n"
+		msg += "<span class='notice'>No idea.<span>\n"
 	//
 	to_chat(user || parent, msg)
 
@@ -340,6 +340,28 @@
 			add_event(null, "nutrition", /datum/mood_event/hungry)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			add_event(null, "nutrition", /datum/mood_event/starving)
+
+/datum/component/mood/proc/update_beauty(area/A)
+	if(A.outdoors) //if we're outside, we don't care.
+		clear_event(null, "area_beauty")
+		return FALSE
+	if(HAS_TRAIT(parent, TRAIT_SNOB))
+		switch(A.beauty)
+			if(-INFINITY to BEAUTY_LEVEL_HORRID)
+				add_event(null, "area_beauty", /datum/mood_event/horridroom)
+				return
+			if(BEAUTY_LEVEL_HORRID to BEAUTY_LEVEL_BAD)
+				add_event(null, "area_beauty", /datum/mood_event/badroom)
+				return
+	switch(A.beauty)
+		if(-INFINITY to BEAUTY_LEVEL_DECENT)
+			clear_event(null, "area_beauty")
+		if(BEAUTY_LEVEL_DECENT to BEAUTY_LEVEL_GOOD)
+			add_event(null, "area_beauty", /datum/mood_event/decentroom)
+		if(BEAUTY_LEVEL_GOOD to BEAUTY_LEVEL_GREAT)
+			add_event(null, "area_beauty", /datum/mood_event/goodroom)
+		if(BEAUTY_LEVEL_GREAT to INFINITY)
+			add_event(null, "area_beauty", /datum/mood_event/greatroom)
 
 ///Called when parent is revived.
 /datum/component/mood/proc/on_revive(datum/source, full_heal)
