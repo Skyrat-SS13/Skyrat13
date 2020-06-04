@@ -81,6 +81,19 @@
 	muzzle_type = /obj/effect/projectile/muzzle/disabler
 	impact_type = /obj/effect/projectile/impact/disabler
 
+//skyrat edit - disablers can't do more than 75 stamina damage.
+//They serve as an effective slowdown weapon, but to truly down
+//someone you gotta pick the USP or baton.
+/obj/item/projectile/beam/disabler/on_hit(atom/target, blocked)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		if(C.staminaloss >= 75)
+			damage = 0
+		else if((C.staminaloss + damage) >= 75) //fuck you nerd
+			damage *= 0.5
+//
+
 /obj/item/projectile/beam/pulse
 	name = "pulse"
 	icon_state = "u_laser"

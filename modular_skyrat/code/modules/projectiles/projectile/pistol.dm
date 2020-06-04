@@ -4,4 +4,4 @@
 	name = "9mm rubber bullet"
 	desc = "Vacate, citizen."
 	damage = 0
-	stamina = 25
+	stamina = 30 //2 more damage when compared to the disabler, to compensate for the armor being taken in account
