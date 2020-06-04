@@ -36,10 +36,7 @@
 	targetitem = /obj/item/gun/energy/e_gun/hos
 	difficulty = 10
 	excludefromjob = list("Head Of Security")
-<<<<<<< HEAD
-=======
 	altitems = list(/obj/item/gun/ballistic/revolver/mws, /obj/item/choice_beacon/hosgun) //We now look for eather the alt verson of the hos gun or the beacon picker.
->>>>>>> 916a1ab349... Update objective_items.dm (#12420)
 
 /datum/objective_item/steal/handtele
 	name = "a hand teleporter."
