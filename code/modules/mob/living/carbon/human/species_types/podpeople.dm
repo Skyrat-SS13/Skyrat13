@@ -14,22 +14,15 @@
 	liked_food = VEGETABLES | FRUIT | GRAIN
 	species_language_holder = /datum/language_holder/sylvan
 	var/light_nutrition_gain_factor = 4
-<<<<<<< HEAD
-	var/light_toxheal = 1
-	var/light_oxyheal = 1
-	var/light_burnheal = 1
-	var/light_bruteheal = 1
-	//Skyrat change - blood
-	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "PL")
-	exotic_bloodtype = "PL"
-	languagewhitelist = list("Sylvan") //Skyrat change - species language whitelist
-	//
-=======
 	var/light_toxheal = -1
 	var/light_oxyheal = -1
 	var/light_burnheal = -1
 	var/light_bruteheal = -1
->>>>>>> ea763df326... Photosynthesis element. (#12394)
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "PL")
+	exotic_bloodtype = "PL"
+	languagewhitelist = list("Sylvan") //Skyrat change - species language whitelist
+	//Skyrat changes end
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
