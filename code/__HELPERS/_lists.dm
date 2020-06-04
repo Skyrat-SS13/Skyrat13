@@ -630,6 +630,8 @@
 			L["[key]"] = "[value]"
 	return list2params(L)
 
+#define NUMLIST2TEXTLIST(list) splittext(list2params(list), "&")
+
 //Picks from the list, with some safeties, and returns the "default" arg if it fails
 #define DEFAULTPICK(L, default) ((islist(L) && length(L)) ? pick(L) : default)
 
@@ -669,3 +671,13 @@
 	for(var/key in input)
 		ret += key
 	return ret
+
+/proc/is_type_in_ref_list(path, list/L)
+	if(!ispath(path))//not a path
+		return
+	for(var/i in L)
+		var/datum/D = i
+		if(!istype(D))//not an usable reference
+			continue
+		if(istype(D, path))
+			return TRUE

@@ -253,6 +253,10 @@
 		G.fields["photo_side"]	= photo_side
 		//Skyrat edit - rp records
 		if(C)
+			if(C.prefs.flavor_faction)
+				G.fields["faction"]  = C.prefs.flavor_faction
+			else
+				G.fields["faction"]  = "UNSET"
 			G.fields["past_records"] = C.prefs.general_records
 		else
 			G.fields["past_records"] = ""
@@ -292,6 +296,10 @@
 		S.fields["notes"]		= "No notes."
 		//Skyrat edit - rp records
 		if(C)
+			if(C.prefs.flavor_faction)
+				S.fields["faction"]  = C.prefs.flavor_faction
+			else
+				S.fields["faction"]  = "UNSET"
 			S.fields["past_records"] = C.prefs.security_records
 		else
 			S.fields["past_records"] = ""
@@ -317,6 +325,12 @@
 		L.fields["features"]	= H.dna.features
 		L.fields["image"]		= image
 		L.fields["mindref"]		= H.mind
+		//Skyrat edit - faction
+		if(C.prefs.flavor_faction)
+			L.fields["faction"] = C.prefs.flavor_faction
+		else
+			L.fields["faction"] = "UNSET"
+		//End of skyrat edit
 		locked += L
 	return
 

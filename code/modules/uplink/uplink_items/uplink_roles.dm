@@ -91,7 +91,7 @@
 	cost = 20
 	player_minimum = 20
 	refundable = TRUE
-	restricted_roles = list("Chaplain")
+	//restricted_roles = list("Chaplain") skyrat change - fuck the chaplain i want to build my shoko asara cult
 
 /datum/uplink_item/role_restricted/arcane_tome
 	name = "Arcane Tome"
@@ -100,7 +100,7 @@
 	cost = 20
 	player_minimum = 20
 	refundable = TRUE
-	restricted_roles = list("Chaplain")
+	//restricted_roles = list("Chaplain") skyrat change - fuck the chaplain i want to build my shoko asara cult
 
 /datum/uplink_item/role_restricted/explosive_hot_potato
 	name = "Exploding Hot Potato"

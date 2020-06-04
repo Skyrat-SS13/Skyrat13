@@ -1401,9 +1401,15 @@
 				log_admin_private("[key_name(usr)] has banned [key_name(M)].\nReason: [key_name(M)]\nThis will be removed in [mins] minutes.")
 				var/msg = "<span class='adminnotice'>[key_name_admin(usr)] has banned [key_name_admin(M)].\nReason: [reason]\nThis will be removed in [mins] minutes.</span>"
 				message_admins(msg)
-				var/datum/admin_help/AH = M.client ? M.client.current_ticket : null
-				if(AH)
-					AH.Resolve()
+				
+				// Skyrat change START
+				if (M.client)
+					for(var/ticket in M.client.tickets)
+						var/datum/admin_help/AH = ticket
+						if(AH)
+							AH.Resolve()
+				// Skyrat change END
+
 				qdel(M.client)
 			if("No")
 				var/reason = input(usr,"Please State Reason For Banning [M.key].","Reason") as message|null
@@ -1430,9 +1436,15 @@
 				log_admin_private("[key_name(usr)] has banned [key_name(M)].\nReason: [reason]\nThis is a permanent ban.")
 				var/msg = "<span class='adminnotice'>[key_name_admin(usr)] has banned [key_name_admin(M)].\nReason: [reason]\nThis is a permanent ban.</span>"
 				message_admins(msg)
-				var/datum/admin_help/AH = M.client ? M.client.current_ticket : null
-				if(AH)
-					AH.Resolve()
+				
+				// Skyrat change START
+				if (M.client)
+					for(var/ticket in M.client.tickets)
+						var/datum/admin_help/AH = ticket
+						if(AH)
+							AH.Resolve()
+				// Skyrat change END
+
 				qdel(M.client)
 			if("Cancel")
 				return

@@ -560,6 +560,21 @@
 	var/cooldown = 30
 	var/quiet = 0
 
+GLOBAL_LIST_INIT(valid_mechtoy_paths, valid_mechtoy_paths())
+/proc/valid_mechtoy_paths()
+	. = list()
+	for(var/i in subtypesof(/obj/item/toy/prize))
+		. += i
+
+/obj/item/toy/prize/random
+	name = "Illegal mech"
+	desc = "Something fucked up"
+
+/obj/item/toy/prize/random/Initialize()
+	var/newtype = pick(GLOB.valid_mechtoy_paths)
+	new newtype(loc)
+	return INITIALIZE_HINT_QDEL
+
 //all credit to skasi for toy mech fun ideas
 /obj/item/toy/prize/attack_self(mob/user)
 	if(timer < world.time)
@@ -777,6 +792,7 @@
 	var/cooldown = 0
 	var/obj/machinery/computer/holodeck/holo = null // Holodeck cards should not be infinite
 	var/list/cards = list()
+	var/original_size = 52
 
 /obj/item/toy/cards/deck/Initialize()
 	. = ..()
@@ -834,11 +850,11 @@
 
 /obj/item/toy/cards/deck/update_icon_state()
 	switch(cards.len)
-		if(27 to INFINITY)
+		if(INFINITY to original_size/2)
 			icon_state = "deck_[deckstyle]_full"
-		if(11 to 27)
+		if(original_size/2 to  original_size/4)
 			icon_state = "deck_[deckstyle]_half"
-		if(1 to 11)
+		if(original_size/4 to 1)
 			icon_state = "deck_[deckstyle]_low"
 		else
 			icon_state = "deck_[deckstyle]_empty"
@@ -1318,6 +1334,21 @@
 /obj/item/toy/figure/New()
 	desc = "A \"Space Life\" brand [src]."
 	..()
+
+GLOBAL_LIST_INIT(valid_toy_paths, valid_toy_paths())
+/proc/valid_toy_paths()
+	. = list()
+	for(var/i in subtypesof(/obj/item/toy/figure))
+		. += i
+
+/obj/item/toy/figure/random
+	name = "Illegal toy"
+	desc = "Something fucked up"
+
+/obj/item/toy/figure/random/Initialize()
+	var/newtype = pick(GLOB.valid_toy_paths)
+	new newtype(loc)
+	return INITIALIZE_HINT_QDEL
 
 /obj/item/toy/figure/attack_self(mob/user as mob)
 	if(cooldown <= world.time)

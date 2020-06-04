@@ -13,6 +13,7 @@ import { BluespaceArtillery } from './interfaces/BluespaceArtillery';
 import { Bepis } from './interfaces/Bepis';
 import { BorgPanel } from './interfaces/BorgPanel';
 import { BrigTimer } from './interfaces/BrigTimer';
+import { Canvas } from './interfaces/Canvas';
 import { Canister } from './interfaces/Canister';
 import { Cargo, CargoExpress } from './interfaces/Cargo';
 import { CellularEmporium } from './interfaces/CellularEmporium';
@@ -44,6 +45,7 @@ import { GravityGenerator } from './interfaces/GravityGenerator';
 import { GulagTeleporterConsole } from './interfaces/GulagTeleporterConsole';
 import { GulagItemReclaimer } from './interfaces/GulagItemReclaimer';
 import { Holodeck } from './interfaces/Holodeck';
+import { HypnoChair } from './interfaces/HypnoChair';
 import { ImplantChair } from './interfaces/ImplantChair';
 import { Intellicard } from './interfaces/Intellicard';
 import { KeycardAuth } from './interfaces/KeycardAuth';
@@ -100,6 +102,7 @@ import { VaultController } from './interfaces/VaultController';
 import { Vending } from './interfaces/Vending';
 import { Wires } from './interfaces/Wires';
 import { AtmosRelief } from './interfaces/AtmosRelief';
+import { FaxMachine } from './interfaces/FaxMachine';
 
 const ROUTES = {
   achievements: {
@@ -164,6 +167,10 @@ const ROUTES = {
   },
   bsa: {
     component: () => BluespaceArtillery,
+    scrollable: false,
+  },
+  canvas: {
+    component: () => Canvas,
     scrollable: false,
   },
   canister: {
@@ -289,6 +296,10 @@ const ROUTES = {
   holodeck: {
     component: () => Holodeck,
     scrollable: true,
+  },
+  hypnochair: {
+    component: () => HypnoChair,
+    scrollable: false,
   },
   implantchair: {
     component: () => ImplantChair,
@@ -537,6 +548,10 @@ const ROUTES = {
   },
   wires: {
     component: () => Wires,
+    scrollable: false,
+  },
+  faxmachine: {
+    component: () => FaxMachine,
     scrollable: false,
   },
 };

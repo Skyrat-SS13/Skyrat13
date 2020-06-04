@@ -197,10 +197,10 @@
 		if(obj_integrity >= max_integrity)
 			to_chat(user, "<span class='warning'>[src] is already in perfect condition.</span>")
 		else
-			var/obj/item/stack/sheet/mineral/titanium/T = W
-			T.use(1)
+			var/obj/item/stack/S = W
+			S.use(1)
 			obj_integrity = max_integrity
-			to_chat(user, "<span class='notice'>You repair [src] with [T].</span>")
+			to_chat(user, "<span class='notice'>You repair [src] with [S].</span>")
 	else
 		return ..()
 
@@ -274,7 +274,7 @@ obj/item/shield/riot/bullet_proof
 	item_state = "buckler"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
-	custom_materials = null
+	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 10)
 	resistance_flags = FLAMMABLE
 	repair_material = /obj/item/stack/sheet/mineral/wood
 	block_chance = 30
