@@ -43,19 +43,25 @@
 	if(env.temperature < maxtemp && env.temperature > midtemp)
 		if(mining)
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			SSshuttle.points += (miningpoints / 5)
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(D)
+				D.adjust_money((miningpoints / 5))
 			env.temperature += 100
 			air_update_turf()
 	if(env.temperature < midtemp && env.temperature > mintemp)
 		if(mining)
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			SSshuttle.points += miningpoints
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(D)
+				D.adjust_money((miningpoints))
 			env.temperature += 100
 			air_update_turf()
 	if(env.temperature <= mintemp)
 		if(mining)
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			SSshuttle.points += (miningpoints * 3)
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(D)
+				D.adjust_money((miningpoints * 3))
 			env.temperature += 100
 			air_update_turf()
 

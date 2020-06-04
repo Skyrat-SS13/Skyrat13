@@ -223,8 +223,8 @@
 /obj/item/storage/pill_bottle/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	//STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT //SKYRAT CHANGE
-	//STR.max_volume = 14 //SKYRAT CHANGE
+	//STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT //Skyrat change
+	//STR.max_volume = STORAGE_VOLUME_PILL_BOTTLE //Skyrat change
 	STR.allow_quick_gather = TRUE
 	STR.click_gather = TRUE
 	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/pill, /obj/item/dice))
@@ -432,6 +432,8 @@
 	throw_range = 7
 	var/empty = FALSE
 	item_state = "firstaid"
+	custom_price = 300
+	custom_premium_price = 500
 
 /obj/item/storage/hypospraykit/ComponentInitialize()
 	. = ..()
