@@ -3430,6 +3430,15 @@
 /mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
+"ahi" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel/dark/corner{
+	dir = 1
+	},
+/area/engine/atmos)
 "ahj" = (
 /obj/structure/chair,
 /obj/effect/landmark/start/assistant,
@@ -121618,7 +121627,7 @@ bNP
 bPp
 bPp
 bSg
-bDS
+ahi
 bDS
 bVI
 bXi
