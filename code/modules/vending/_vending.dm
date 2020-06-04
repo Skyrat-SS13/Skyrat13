@@ -174,12 +174,26 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		build_inv = TRUE
 	. = ..()
 	wires = new /datum/wires/vending(src)
+	//skyrat edit - pride month for real
+	if(SSevents.holidays && SSevents.holidays[PRIDE_MONTH])
+		default_price *= 1.2
+		extra_price *= 1.2
+	//
 	if(build_inv) //non-constructable vending machine
 		build_inventory(products, product_records)
 		build_inventory(contraband, hidden_records)
 		build_inventory(premium, coin_records)
 
 	slogan_list = splittext(product_slogans, ";")
+	//skyrat edit - pride month for real
+	if(SSevents.holidays && SSevents.holidays[PRIDE_MONTH])
+		slogan_list = list("At BRAND we care about your sexuality. Now please buy PRODUCT.",
+							"To comemorate diversity, BRAND has reduced the price of all products by negative 20%.",
+							"Pride stationwide.",
+							"Ignore the fact we don't celebrate pride month in more conservative sectors of space. BRAND cares about you!"
+							"Just consume already.")
+		product_ads = "<span style='color:red;'>WE ARE PROGRESSIVE. CONSUME.</span>"
+	//
 	// So not all machines speak at the exact same time.
 	// The first time this machine says something will be at slogantime + this random value,
 	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
@@ -194,6 +208,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 			circuit.onstation = onstation //sync up the circuit so the pricing schema is carried over if it's reconstructed.
 	else if(circuit && (circuit.onstation != onstation)) //check if they're not the same to minimize the amount of edited values.
 		onstation = circuit.onstation //if it was constructed outside mapload, sync the vendor up with the circuit's var so you can't bypass price requirements by moving / reconstructing it off station.
+	//skyrat edit - pride month for real
+	update_overlays()
+	//
 
 /obj/machinery/vending/Destroy()
 	QDEL_NULL(wires)
@@ -243,6 +260,11 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	if(!(stat & BROKEN) && powered())
 		SSvis_overlays.add_vis_overlay(src, icon, light_mask, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE) //SKYRAT CHANGE reverts emissive
+	//skyrat edit - true pride
+	if(SSevents.holidays && SSevents.holidays[PRIDE_MONTH])
+		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+		SSvis_overlays.add_vis_overlay(src, 'modular_skyrat/icons/obj/vending.dmi', "pride", ABOVE_OBJ_LAYER, GAME_PLANE)
+	//
 
 /obj/machinery/vending/obj_break(damage_flag)
 	. = ..()
@@ -297,7 +319,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 			R.amount = amount
 		R.max_amount = amount
 		R.custom_price = initial(temp.custom_price)
+		//skyrat edit
+		if(SSevents.holidays && SSevents.holidays[PRIDE_MONTH])
+			R.custom_price *= 1.2
+		//
 		R.custom_premium_price = initial(temp.custom_premium_price)
+		//skyrat edit
+		if(SSevents.holidays && SSevents.holidays[PRIDE_MONTH])
+			R.custom_premium_price *= 1.2
+		//
 		recordlist += R
 /**
   * Refill a vending machine from a refill canister
