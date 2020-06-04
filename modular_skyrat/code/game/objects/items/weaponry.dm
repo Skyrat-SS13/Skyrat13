@@ -700,3 +700,18 @@
 	icon_state_on = "butterflyknifeenergy1"
 	onsound = 'modular_skyrat/sound/weapons/knifeopen.ogg'
 	offsound = 'modular_skyrat/sound/weapons/knifeclose.ogg'
+
+//curator claymore custom icons
+/obj/item/claymore/weak/ceremonial
+	desc = "A rusted claymore, once at the heart of a powerful scottish clan struck down and oppressed by tyrants, it has been passed down the ages as a symbol of defiance."
+	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon_state = "clay"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
+	item_state = "clay"
+	force = 15
+	block_chance = 30
+	armour_penetration = 5
+
+/obj/item/claymore/weak/ceremonial/get_belt_overlay()
+	return mutable_appearance('modular_skyrat/icons/mob/clothing/belt.dmi', icon_state)
