@@ -90,8 +90,10 @@
 		var/mob/living/carbon/C = target
 		if(C.getStaminaLoss() >= (C.maxHealth * 0.75))
 			damage = 0
+			name = "weakened [name]"
 		else if((C.getStaminaLoss() + damage) >= (C.maxHealth * 0.75)) //fuck you nerd
 			damage *= 0.65
+			name = "weakened [name]"
 //
 
 /obj/item/projectile/beam/pulse
