@@ -1,0 +1,8 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "New weapon crafting parts for improvised weapons (will be utilised more in future PRs)"
+  - balance: "Improvised shotguns now have a 0.8 damage modifier, credit ro Kevin for doing this."
+  - balance: "Improvised rifles and shotguns require more tools to craft and more parts to craft."
+  - tweak: "Descriptions of improvised weapons a bit."
+  - tweak: "New sprites for improvised weapons."

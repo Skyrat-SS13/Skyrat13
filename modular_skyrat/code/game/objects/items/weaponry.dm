@@ -433,6 +433,9 @@
 				ooser.adjustBruteLoss(newbrute * -0.5)
 
 //ghostface's knife
+/datum/movespeed_modifier/slaughter/ghostface
+	multiplicative_slowdown = -0.25
+
 /obj/item/kitchen/knife/combat/ghost
 	name = "silvery knife"
 	desc = "Just killing. Chilling."
@@ -441,11 +444,9 @@
 	force = 12
 	var/forceunder = 12
 	var/forceover = 20
-	var/attackspeed = 0.65
-	var/attackspeedunder = 0.65
+	var/attackspeed = 0.5
+	var/attackspeedunder = 0.5
 	var/attackspeedover = 1.3
-	var/slowdownunder = 0
-	var/slowdownover = -2
 	slowdown = 0
 	var/mode = 1 //1 is under hand, 2 is over head
 	var/list/oversounds = list(
@@ -460,16 +461,23 @@
 	var/soundlength = 600
 	var/soundend = 0
 
+/obj/item/kitchen/knife/combat/ghost/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
 /obj/item/kitchen/knife/combat/ghost/examine(mob/user)
 	. = ..()
 	. += "<span class='danger' style='font-family:\"Times New Roman\", Times, serif;'><b>Currently attacking in [mode == 1 ? "under hand" : "over head"] mode.</b></span>"
 
 /obj/item/kitchen/knife/combat/ghost/process()
-	. = ..()
 	if(ismob(loc))
 		if(playingsound && (world.time > soundend))
-			playsound(loc, dramaticsound, 100, 0, 0, 1, null, channel = CHANNEL_AMBIENCE)
+			playsound(loc, dramaticsound, 100, 0, 0, -3, null, channel = CHANNEL_AMBIENCE)
 			soundend = world.time + soundlength
+
+/obj/item/kitchen/knife/combat/ghost/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSobj, src)
 	
 /obj/item/kitchen/knife/combat/ghost/attack_self(mob/user)
 	. = ..()
@@ -478,31 +486,45 @@
 			user.visible_message("<span class='danger'><b>[user]</b> lifts the [src] over their head.</span>", \
 							"<span class='danger'>You lift the [src] over your head.</span>")
 			mode = 2
-			slowdown = slowdownover
+			user.add_movespeed_modifier(/datum/movespeed_modifier/slaughter/ghostface)
 			attackspeed = attackspeedover
 			force = forceover
-			playingsound = 1
-			if(/mob/living in (view(5, user) - user))
-				playsound(user, dramaticsound, 100, 0, 0, 1, null, channel = CHANNEL_HIGHEST_AVAILABLE)
+			for(var/mob/living/bro in (view(5, user) - user))
 				playingsound = 1
-				soundend = world.time + soundlength
-				START_PROCESSING(SSobj, src)
 		if(2)
 			user.visible_message("<span class='danger'><b>[user]</b> lowers the [src].</span>", \
 							"<span class='danger'>You lower [src].</span>")
 			mode = 1
-			slowdown = slowdownunder
+			user.remove_movespeed_modifier(/datum/movespeed_modifier/slaughter/ghostface)
 			attackspeed = attackspeedunder
 			force = forceunder
-			STOP_PROCESSING(SSobj, src)
+			playingsound = 0
+			soundend = 0
 			for(var/mob/L in view(5, user))
 				L.stop_sound_channel(CHANNEL_AMBIENCE)
+	user.changeNext_move(CLICK_CD_MELEE * 2)
+
+/obj/item/kitchen/knife/combat/ghost/pickup(mob/living/user)
+	. = ..()
+	if(.)
+		if(mode == 2)
+			user.add_movespeed_modifier(/datum/movespeed_modifier/slaughter/ghostface)
+
+/obj/item/kitchen/knife/combat/ghost/dropped(mob/user)
+	. = ..()
+	if(.)
+		var/mob/living/carbon/H = user
+		if(H && istype(H))
+			if((loc != user) || !(src in H.held_items))
+				user.remove_movespeed_modifier(/datum/movespeed_modifier/slaughter/ghostface)
 
 /obj/item/kitchen/knife/combat/ghost/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(proximity_flag)
 		if(mode == 2)
 			playsound(user, pick(oversounds), 100, 0)
+			if(!playingsound)
+				playingsound = 1
 		user.changeNext_move(CLICK_CD_MELEE * attackspeed)
 
 //"mehrunes razor"

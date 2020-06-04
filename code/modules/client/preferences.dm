@@ -31,6 +31,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/muted = 0
 	var/last_ip
 	var/last_id
+	var/log_clicks = FALSE
 
 	var/icon/custom_holoform_icon
 	var/list/cached_holoform_icons
@@ -89,6 +90,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/show_credits = TRUE
 	var/event_participation = FALSE
 	var/event_prefs = ""
+	var/appear_in_round_end_report = TRUE //whether the player of the character is listed on the round-end report
 	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
@@ -102,6 +104,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
 	//SKYRAT CHANGES
+	var/bloodtype = ""
 	var/skyrat_ooc_notes = ""
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
@@ -112,7 +115,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/security_records = ""
 	var/medical_records = ""
 	var/flavor_background = ""
-	var/flavor_faction = "UNSET"
+	var/flavor_faction = null
 	var/character_skills = ""
 	var/exploitable_info = ""
 	var/language = ""
@@ -249,6 +252,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/vore_flags = 0
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
+	var/toggleeatingnoise = TRUE
+	var/toggledigestionnoise = TRUE
+	var/hound_sleeper = TRUE
+	var/cit_toggles = TOGGLES_CITADEL
 
 	//backgrounds
 	var/mutable_appearance/character_background
@@ -258,6 +265,19 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/show_mismatched_markings = FALSE //determines whether or not the markings lists should show markings that don't match the currently selected species. Intentionally left unsaved.
 
 	var/no_tetris_storage = FALSE
+
+	///loadout stuff
+	var/gear_points = 10
+	var/list/gear_categories
+	var/list/chosen_gear = list()
+	var/gear_tab
+
+	var/screenshake = 100
+	var/damagescreenshake = 2
+	var/arousable = TRUE
+	var/widescreenpref = TRUE
+	var/autostand = TRUE
+	var/auto_ooc = FALSE
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -347,7 +367,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			if(jobban_isbanned(user, "appearance"))
 				dat += "<b>You are banned from using custom names and appearances. You can continue to adjust your characters, but you will be randomised once you join the game.</b><br>"
 			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=name;task=random'>Random Name</A> "
-			dat += "<b>Always Random Name:</b><a style='display:block;width:30px' href='?_src_=prefs;preference=name'>[be_random_name ? "Yes" : "No"]</a><BR>"
+//SKYRAT EDIT
+			dat += "<b>Always Random Name:</b> <a href='?_src_=prefs;preference=name'>[be_random_name ? "Yes" : "No"]</a><BR>"
+//END OF SKYRAT EDIT
 
 			dat += "<b>[nameless ? "Default designation" : "Name"]:</b>"
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
@@ -368,7 +390,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<a href ='?_src_=prefs;preference=[custom_name_id];task=input'><b>[namedata["pref_name"]]:</b> [custom_names[custom_name_id]]</a> "
 			dat += "<br><br>"
 			//SKYRAT EDIT - additional language
-			dat += "<b>Additional Language</b><br>"
+			dat += "<b>Additional Language:</b><br>"
 			dat += "<a href='?_src_=prefs;preference=language;task=menu'>[language ? language : "None"]</a></center><br>"
 			//
 			dat += "<b>Custom job preferences:</b><BR>"
@@ -421,7 +443,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a>"
 			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
-			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction]</a><br>"
+			if(pref_species.bloodtypes.len)
+				dat += "Blood type :"
+				dat += 	"<a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default"]</a><br>"
+			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
 			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
 			/*Skyrat edit - comments out Citadel's OOC notes in favor for our owns
@@ -987,6 +1012,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else
 				p_chaos = preferred_chaos
 			dat += "<b>Preferred Chaos Amount:</b> <a href='?_src_=prefs;preference=preferred_chaos;task=input'>[p_chaos]</a><br>"
+//SKYRAT CHANGES
+			dat += "<b>Show name at round-end report:</b> <a href='?_src_=prefs;preference=appear_in_round_end_report'>[appear_in_round_end_report ? "Yes" : "No"]</a><br>"
+//END OF SKYRAT CHANGES
 			dat += "<br>"
 			dat += "</td>"
 			dat += "</tr></table>"
@@ -1013,7 +1041,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 			dat += "<b>Ghosts of Others:</b> <a href='?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a><br>"
 			dat += "<br>"
+
 			dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a><br>"
+
+			dat += "<b>Income Updates:</b> <a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Allowed" : "Muted"]</a><br>"
+			dat += "<br>"
+
 			dat += "<b>Parallax (Fancy Space):</b> <a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
 			switch (parallax)
 				if (PARALLAX_LOW)
@@ -1868,6 +1901,14 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", skyrat_ooc_notes, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
 						skyrat_ooc_notes = html_decode(msg)
+				
+				if("bloodtype")
+					var/msg = input(usr, "Choose your blood type", "Blood Type", "") as anything in (pref_species.bloodtypes + "Default")
+					if(msg)
+						if(msg == "Default")
+							bloodtype = ""
+						else
+							bloodtype = msg
 
 				if("general_records")
 					var/msg = stripped_multiline_input(usr, "Set your general records", "General Records", general_records, MAX_FLAVOR_LEN, TRUE)
@@ -1890,9 +1931,14 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						flavor_background = html_decode(msg)
 
 				if("flavor_faction")
-					var/new_faction = input(user, "Set your faction", "Character Faction") as null|anything in GLOB.factions_list
+					var/new_faction = input(user, "Set your faction", "Character Faction") as null|anything in GLOB.factions_list + list("None (Freelancer)", "Other")
 					if(new_faction)
-						flavor_faction = new_faction
+						if(new_faction == "Other")
+							var/custom_faction = reject_bad_name(input(user, "Set your custom faction/subfaction, if unique. Don't abuse this.", "Character Faction", flavor_faction) as null|text)
+							if(custom_faction)
+								flavor_faction = custom_faction
+						else
+							flavor_faction = new_faction
 
 				if("character_skills")
 					var/msg = stripped_multiline_input(usr, "Set your skills or hobbies", "Character Skills", character_skills, MAX_FLAVOR_LEN, TRUE)
@@ -2525,6 +2571,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if ("preferred_chaos")
 					var/pickedchaos = input(user, "Choose your preferred level of chaos. This will help with dynamic threat level ratings.", "Character Preference") as null|anything in list(CHAOS_NONE,CHAOS_LOW,CHAOS_MED,CHAOS_HIGH,CHAOS_MAX)
 					preferred_chaos = pickedchaos
+
 				if ("clientfps")
 					var/desiredfps = input(user, "Choose your desired fps. (0 = synced with server tick rate (currently:[world.fps]))", "Character Preference", clientfps)  as null|num
 					if (!isnull(desiredfps))
@@ -2781,6 +2828,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					see_chat_emotes = !see_chat_emotes
 				if("enable_personal_chat_color")
 					enable_personal_chat_color = !enable_personal_chat_color
+				if("appear_in_round_end_report")
+					appear_in_round_end_report = !appear_in_round_end_report
+					user.mind?.appear_in_round_end_report = appear_in_round_end_report
 				//End of skyrat changes
 				if("action_buttons")
 					buttons_locked = !buttons_locked
@@ -2841,6 +2891,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("ghost_pda")
 					chat_toggles ^= CHAT_GHOSTPDA
 
+				if("income_pings")
+					chat_toggles ^= CHAT_BANKCARD
+
 				if("pull_requests")
 					chat_toggles ^= CHAT_PULLR
 
@@ -2899,8 +2952,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("ambientocclusion")
 					ambientocclusion = !ambientocclusion
 					if(parent && parent.screen && parent.screen.len)
-						var/obj/screen/plane_master/game_world/PM = locate(/obj/screen/plane_master/game_world) in parent.screen
-						PM.backdrop(parent.mob)
+						var/obj/screen/plane_master/game_world/G = parent.mob.hud_used.plane_masters["[GAME_PLANE]"]
+						var/obj/screen/plane_master/above_wall/A = parent.mob.hud_used.plane_masters["[ABOVE_WALL_PLANE]"]
+						var/obj/screen/plane_master/wall/W = parent.mob.hud_used.plane_masters["[WALL_PLANE]"]
+						G.backdrop(parent.mob)
+						A.backdrop(parent.mob)
+						W.backdrop(parent.mob)
 
 				if("auto_fit_viewport")
 					auto_fit_viewport = !auto_fit_viewport
