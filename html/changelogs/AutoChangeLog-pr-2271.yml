@@ -1,4 +1,0 @@
-author: "NotRanged"
-delete-after: True
-changes: 
-  - balance: "Problem Computers (both cargo and science) now have a shared pool of charges. One gets added every 90 seconds."

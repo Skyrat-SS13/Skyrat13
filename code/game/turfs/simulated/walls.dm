@@ -154,12 +154,20 @@
 		return
 		
 	// Skyrat change
-	to_chat(user, "<span class='notice'>You push at the wall...</span>") 
-	if(do_after(user, 4 SECONDS, target = src))
-		user.changeNext_move(CLICK_CD_MELEE)
-		to_chat(user, "<span class='notice'>...but nothing happens!</span>")
-		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
-		add_fingerprint(user)
+	if(user.a_intent != INTENT_HARM)
+		to_chat(user, "<span class='notice'>You push at the wall...</span>") 
+		if(do_after(user, 4 SECONDS, target = src))
+			user.changeNext_move(CLICK_CD_MELEE)
+			to_chat(user, "<span class='notice'>...but nothing happens!</span>")
+			playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+			add_fingerprint(user)
+	else
+		if(isliving(user))
+			var/mob/living/ooser = user
+			if(ooser.has_status_effect(/datum/status_effect/kyle))
+				if(hardness > 20)
+					return attack_hulk(ooser, TRUE)
+	//
 
 /turf/closed/wall/attackby(obj/item/W, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)

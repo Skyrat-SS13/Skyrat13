@@ -25,29 +25,21 @@
 	for(var/ab in boss_abilities)
 		boss_abilities -= ab
 		var/datum/action/boss/AB = new ab()
-		AB.boss = src
 		AB.Grant(src)
 		boss_abilities += AB
 
 	atb.assign_abilities(boss_abilities)
 
-
 /mob/living/simple_animal/hostile/boss/Destroy()
-	qdel(atb)
-	atb = null
-	for(var/ab in boss_abilities)
-		var/datum/action/boss/AB = ab
-		AB.boss = null
-		AB.Remove(src)
-		qdel(AB)
-	boss_abilities.Cut()
+	QDEL_NULL(atb)
+	QDEL_LIST(boss_abilities)
 	return ..()
-
 
 //Action datum for bosses
 //Override Trigger() as shown below to do things
 /datum/action/boss
 	check_flags = AB_CHECK_CONSCIOUS //Incase the boss is given a player
+	required_mobility_flags = NONE
 	var/boss_cost = 100 //Cost of usage for the boss' AI 1-100
 	var/usage_probability = 100
 	var/list/req_statuses //If set, will only trigger if the mob AI status is present in this list.
@@ -56,25 +48,6 @@
 	var/needs_target = TRUE //Does the boss need to have a target? (Only matters for the AI)
 	var/say_when_triggered = "" //What does the boss Say() when the ability triggers?
 
-<<<<<<< HEAD
-/datum/action/boss/Trigger()
-	. = ..()
-	if(.)
-		if(!istype(boss, boss_type))
-			return 0
-		if(!boss.atb)
-			return 0
-		if(boss.atb.points < boss_cost)
-			return 0
-		if(!boss.client)
-			if(needs_target && !boss.target)
-				return 0
-		if(boss)
-			if(say_when_triggered)
-				boss.say(say_when_triggered, forced = "boss action")
-			if(!boss.atb.spend(boss_cost))
-				return 0
-=======
 /datum/action/boss/Destroy()
 	boss = null
 	return ..()
@@ -108,7 +81,6 @@
 		return FALSE
 	if(say_when_triggered)
 		boss.say(say_when_triggered, forced = "boss action")
->>>>>>> 348885a58d... Merge pull request #12382 from Ghommie/Ghommie-cit797
 
 //Example:
 /*
@@ -121,15 +93,10 @@
 //Designed for boss mobs only
 /datum/boss_active_timed_battle
 	var/list/abilities //a list of /datum/action/boss owned by a boss mob
-<<<<<<< HEAD
-	var/point_regen_delay = 5
-	var/points = 50 //1-100, start with 50 so we can use some abilities but not insta-buttfug somebody
-=======
 	var/point_regen_delay = 20
 	var/point_regen_amount = 1
 	var/max_points = 100
 	var/points = 50 //start with 50 so we can use some abilities but not insta-buttfug somebody
->>>>>>> 348885a58d... Merge pull request #12382 from Ghommie/Ghommie-cit797
 	var/next_point_time = 0
 	var/chance_to_hold_onto_points = 50
 	var/highest_cost = 0
@@ -150,36 +117,16 @@
 
 /datum/boss_active_timed_battle/proc/spend(cost)
 	if(cost <= points)
-<<<<<<< HEAD
-		points = max(0,points-cost)
-		return 1
-	return 0
-=======
 		points -= cost
 		return TRUE
 	return FALSE
->>>>>>> 348885a58d... Merge pull request #12382 from Ghommie/Ghommie-cit797
 
 /datum/boss_active_timed_battle/proc/refund(cost)
-	points = min(points+cost, 100)
+	points = min(points+cost, max_points)
 
 /datum/boss_active_timed_battle/process()
-	if(world.time >= next_point_time)
+	if(world.time >= next_point_time && points < max_points)
 		next_point_time = world.time + point_regen_delay
-<<<<<<< HEAD
-		points = min(100, ++points) //has to be out of 100
-
-	if(abilities)
-		chance_to_hold_onto_points = highest_cost*0.5
-		if(points != 100 && prob(chance_to_hold_onto_points))
-			return //Let's save our points for a better ability (unless we're at max points, in which case we can't save anymore!)
-		if(!boss.client)
-			abilities = shuffle(abilities)
-			for(var/ab in abilities)
-				var/datum/action/boss/AB = ab
-				if(prob(AB.usage_probability) && AB.Trigger())
-					break
-=======
 		points = min(max_points, points + point_regen_amount)
 
 	if(!abilities)
@@ -194,10 +141,9 @@
 		if(!boss.client && (!AB.req_statuses || (boss.AIStatus in AB.req_statuses)) && prob(AB.usage_probability) && AB.Trigger())
 			break
 		AB.UpdateButtonIcon(TRUE)
->>>>>>> 348885a58d... Merge pull request #12382 from Ghommie/Ghommie-cit797
 
 
 /datum/boss_active_timed_battle/Destroy()
 	abilities = null
-	SSobj.processing.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
