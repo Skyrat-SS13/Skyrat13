@@ -3061,6 +3061,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"agu" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/maintenance/port/aft)
 "agv" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -3101,6 +3105,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"agz" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/mob/living/simple_animal/pet/dog/pug{
+	desc = "It's Pugley IV, the research department's lovable pug clone. Hopefully nothing happens to this one - fourth time lucky!";
+	name = "Pugley IV";
+	real_name = "Pugley IV"
+	},
+/turf/open/floor/engine,
+/area/science/explab)
 "agA" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/solars/port/fore)
@@ -3403,6 +3418,18 @@
 "ahg" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"ahh" = (
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 1
+	},
+/obj/structure/flora/ausbushes/leafybush,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/mob/living/carbon/monkey,
+/turf/open/floor/grass,
+/area/medical/genetics)
 "ahj" = (
 /obj/structure/chair,
 /obj/effect/landmark/start/assistant,
@@ -6362,7 +6389,6 @@
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/beer,
 /turf/open/floor/wood,
-/area/maintenance/bar,
 /area/maintenance/bar)
 "anF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -55066,11 +55092,6 @@
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating/airless,
 /area/engine/atmos)
-"cjp" = (
-/obj/machinery/vending/boozeomat,
-/turf/open/floor/wood,
-/area/maintenance/port/aft,
-/area/space)
 "cjq" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
@@ -58092,17 +58113,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"cpn" = (
-/mob/living/simple_animal/pet/dog/pug{
-	desc = "It's Pugley IV, the research department's lovable pug clone. Hopefully nothing happens to this one - fourth time lucky!";
-	name = "Pugley IV";
-	real_name = "Pugley IV"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 10
-	},
-/turf/open/floor/engine,
-/area/science/explab)
 "cpo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -77698,18 +77708,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"jLl" = (
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 1
-	},
-/obj/structure/flora/ausbushes/leafybush,
-/mob/living/carbon/monkey,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/grass,
-/area/medical/genetics)
 "jLY" = (
 /obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/plating,
@@ -95933,7 +95931,7 @@ dux
 bXE
 rbM
 dux
-cjp
+agu
 ckO
 cmg
 cnh
@@ -105970,7 +105968,7 @@ cze
 cBb
 cxv
 cyi
-jLl
+ahh
 dXF
 ctB
 cCi
@@ -115208,7 +115206,7 @@ ceZ
 cgq
 cmO
 cLU
-cpn
+agz
 clU
 cmU
 coo
