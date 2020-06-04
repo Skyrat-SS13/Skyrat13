@@ -80,7 +80,7 @@
 
 /obj/item/melee/sword/executioner/afterattack(atom/target, mob/living/user, proximity)
 	. = ..()
-	if(. && proximity)
+	if(proximity)
 		var/def_zone = user.zone_selected
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
