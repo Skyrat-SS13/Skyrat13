@@ -14,7 +14,7 @@
 	name = "soap"
 	desc = "A cheap bar of soap. Doesn't smell."
 	gender = PLURAL
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'modular_skyrat/icons/obj/items.dmi' //SKYRAT EDIT - SANITARY
 	icon_state = "soap"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
@@ -37,7 +37,7 @@
 
 /obj/item/soap/homemade
 	desc = "A homemade bar of soap. Smells of... well...."
-	icon_state = "soapgibs"
+	icon_state = "soapgib"
 	cleanspeed = 45 // a little faster to reward chemists for going to the effort
 
 /obj/item/soap/deluxe
@@ -81,6 +81,20 @@
 			to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
 			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 			target.set_opacity(initial(target.opacity))
+	// SKYRAT EDIT - SANITARY
+	else if(istype(target, /turf/closed/wall/rust))
+		var/turf/closed/wall/rust/R = target
+		user.visible_message("[user] begins to clean \the [target.name] with [src]...", "<span class='notice'>You begin to clean \the [target.name] with [src]...</span>")
+		if(do_after(user, src.cleanspeed, target = target))
+			to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
+			R.ChangeTurf(/turf/closed/wall)
+	else if(istype(target, /turf/closed/wall/r_wall/rust))
+		var/turf/closed/wall/r_wall/rust/R = target
+		user.visible_message("[user] begins to clean \the [target.name] with [src]...", "<span class='notice'>You begin to clean \the [target.name] with [src]...</span>")
+		if(do_after(user, src.cleanspeed, target = target))
+			to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
+			R.ChangeTurf(/turf/closed/wall/r_wall)
+	// SKYRAT EDIT END
 	else
 		user.visible_message("[user] begins to clean \the [target.name] with [src]...", "<span class='notice'>You begin to clean \the [target.name] with [src]...</span>")
 		if(do_after(user, src.cleanspeed, target = target))
