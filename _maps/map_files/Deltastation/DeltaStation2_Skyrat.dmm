@@ -273,6 +273,71 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/starboard/fore)
+"aaF" = (
+/obj/structure/cable/white{
+	icon_state = "2-4"
+	},
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/hydroponics/garden/abandoned{
+	name = "Maintenance Garden"
+	})
+"aaG" = (
+/obj/machinery/status_display/evac{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/poppy/geranium,
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/hydroponics/garden/abandoned{
+	name = "Maintenance Garden"
+	})
+"aaH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/delivery,
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/hydroponics/garden/abandoned{
+	name = "Maintenance Garden"
+	})
+"aaI" = (
+/mob/living/simple_animal/pet/dog/walter,
+/turf/closed/wall,
+/area/hydroponics/garden/abandoned{
+	name = "Maintenance Garden"
+	})
+"aaJ" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"aaK" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Maintenance Hatch";
+	req_access_txt = "12"
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/hydroponics/garden/abandoned{
+	name = "Maintenance Garden"
+	})
+"aaL" = (
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/crew_quarters/toilet/restrooms)
 "aaO" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -11085,14 +11150,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space,
 /area/space/nearstation)
-"aEB" = (
-/obj/structure/cable/white{
-	icon_state = "2-4"
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics/garden/abandoned{
-	name = "Maintenance Garden"
-	})
 "aEC" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -11653,29 +11710,11 @@
 /area/hydroponics/garden/abandoned{
 	name = "Maintenance Garden"
 	})
-"aFM" = (
-/obj/machinery/status_display/evac{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/delivery,
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/poppy/geranium,
-/turf/open/floor/plasteel,
-/area/hydroponics/garden/abandoned{
-	name = "Maintenance Garden"
-	})
 "aFN" = (
 /obj/structure/table,
 /obj/item/plant_analyzer,
 /obj/item/hatchet,
 /obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/hydroponics/garden/abandoned{
-	name = "Maintenance Garden"
-	})
-"aFO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden/abandoned{
 	name = "Maintenance Garden"
@@ -12455,22 +12494,6 @@
 	req_access_txt = "12"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics/garden/abandoned{
-	name = "Maintenance Garden"
-	})
-"aHn" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Maintenance Hatch";
-	req_access_txt = "12"
-	},
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -131850,7 +131873,7 @@ aAb
 aBi
 aCv
 aCw
-aEB
+aaF
 aFL
 aAb
 gVZ
@@ -132108,7 +132131,7 @@ aBj
 aCv
 pfC
 aEC
-aFM
+aaG
 aAb
 gVZ
 ary
@@ -132622,7 +132645,7 @@ aBl
 aCv
 aDy
 aED
-aFO
+aaH
 aHm
 aII
 qAV
@@ -132880,7 +132903,7 @@ aCv
 aCv
 aEE
 aFP
-aHn
+aaK
 aIJ
 gVZ
 aLz
@@ -133137,7 +133160,7 @@ aCx
 pgU
 aCv
 aFQ
-aAb
+aaI
 mpP
 gVZ
 aLz
@@ -133651,7 +133674,7 @@ aCv
 aDA
 aCv
 aFJ
-aAb
+aaI
 mpP
 aKl
 aLz
@@ -133907,8 +133930,8 @@ aAb
 aAb
 aAb
 aAb
-aAb
-aAb
+aaI
+aaI
 mpP
 gVZ
 aLz
@@ -134164,7 +134187,7 @@ aBq
 aCz
 tBE
 aFS
-aFS
+aaJ
 tBE
 aIM
 tBE
@@ -148103,7 +148126,7 @@ cxa
 cyM
 cAm
 cBO
-cDx
+aaL
 cFi
 cGJ
 cIa

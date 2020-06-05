@@ -65196,12 +65196,9 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "crd" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
-	},
 /mob/living/simple_animal/pet/dog/walter,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
+/turf/open/floor/wood,
+/area/security/vacantoffice/a)
 "cre" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -65229,12 +65226,12 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "crh" = (
-/obj/item/poster/random_contraband,
-/turf/open/floor/plating,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
 	},
-/area/maintenance/aft)
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "cri" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -66913,14 +66910,12 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
 "cuL" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
+/obj/item/poster/random_contraband,
 /turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
-/area/maintenance/department/electrical)
+/area/maintenance/aft)
 "cuM" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior,
@@ -66939,14 +66934,14 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
 "cuO" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/cable{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
-/area/maintenance/aft)
+/area/maintenance/department/electrical)
 "cuP" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -67623,6 +67618,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"cwt" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/aft)
 "cwv" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics Maintenance";
@@ -115734,7 +115738,7 @@ cfQ
 cCH
 cqg
 clc
-clc
+crd
 cmH
 cnx
 con
@@ -122169,7 +122173,7 @@ bYa
 bYa
 bYa
 bYa
-crh
+cuL
 bYa
 bYa
 ceG
@@ -124486,11 +124490,11 @@ cmd
 aaA
 cSc
 cVT
-cuL
+cuO
 cXu
 cXz
 ceG
-cuO
+cwt
 cTU
 cyo
 aab
@@ -136299,7 +136303,7 @@ cdy
 cdy
 cKQ
 cLc
-crd
+crh
 crS
 csN
 csN

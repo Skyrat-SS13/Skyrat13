@@ -267,6 +267,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aaH" = (
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "aaI" = (
 /obj/structure/bookcase,
 /turf/open/floor/plasteel,
@@ -110843,7 +110847,7 @@ aPq
 aXC
 aZi
 baC
-aPq
+aaH
 aPq
 bdy
 beH

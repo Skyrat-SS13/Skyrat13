@@ -8410,8 +8410,8 @@
 /area/security/detectives_office)
 "aqX" = (
 /mob/living/simple_animal/pet/dog/walter,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
+/turf/open/floor/carpet,
+/area/crew_quarters/theatre)
 "aqY" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -86250,7 +86250,7 @@ aCr
 aCr
 uJx
 ikk
-hcb
+aqX
 aKu
 aLE
 aLE
@@ -98637,7 +98637,7 @@ bSK
 ccy
 cli
 bOd
-aqX
+bOd
 bOd
 bYS
 bOd

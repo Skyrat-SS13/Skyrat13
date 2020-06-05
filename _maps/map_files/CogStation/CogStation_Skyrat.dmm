@@ -71697,6 +71697,12 @@
 /mob/living/simple_animal/pet/dog/walter,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"cRl" = (
+/mob/living/simple_animal/pet/dog/walter,
+/turf/open/floor/carpet{
+	icon_state = "carpetsymbol"
+	},
+/area/crew_quarters/lounge/jazz)
 "cVq" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -110023,7 +110029,7 @@ aVs
 aUq
 bhv
 bka
-bka
+cRl
 bnb
 boV
 bpt

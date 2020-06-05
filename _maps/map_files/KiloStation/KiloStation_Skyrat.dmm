@@ -133,17 +133,12 @@
 /turf/open/floor/engine,
 /area/ai_monitored/turret_protected/ai)
 "aat" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/machinery/atmospherics/pipe/manifold/yellow/visible{
-	dir = 1
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
 	},
 /mob/living/simple_animal/pet/dog/walter,
 /turf/open/floor/plasteel,
-/area/engine/atmos)
+/area/hallway/secondary/entry)
 "aau" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
@@ -52101,12 +52096,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"caP" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "caQ" = (
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -97940,7 +97929,7 @@ cml
 aMs
 aHH
 aIE
-aat
+cqD
 clI
 cmq
 aIO
@@ -107947,7 +107936,7 @@ bWy
 bXk
 bYi
 bVl
-caP
+aat
 bWX
 bXc
 bUf
