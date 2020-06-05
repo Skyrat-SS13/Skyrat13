@@ -21,7 +21,7 @@
 /mob/living/simple_animal/pet/dog/cheems/Move(atom/newloc, direct)
 	. = ..()
 	if(.)
-		for(var/obj/item/reagent_containers/food/snacks/junk in view(1, src))
+		for(var/obj/item/reagent_containers/food/snacks/junk in loc)
 			if(liked_food & junk.foodtype)
 				visible_message("<span class='danger'><b>\The [src]</b> consumes the [junk]!</span>")
 				qdel(junk)
