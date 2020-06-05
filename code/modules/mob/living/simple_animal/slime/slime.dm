@@ -110,7 +110,8 @@
 	for (var/A in actions)
 		var/datum/action/AC = A
 		AC.Remove(src)
-	return ..()
+	..()
+	return QDEL_HINT_QUEUE
 
 /mob/living/simple_animal/slime/proc/initialize_mutations()
 	var/list/cached = color_mutation_cache[colour]

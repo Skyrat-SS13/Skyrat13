@@ -643,3 +643,7 @@
 
 		return FALSE //This is the only case someone should actually be completely blocked from antag rolling as well
 	return TRUE
+
+/mob/dead/new_player/Destroy()
+	..()
+	return QDEL_HINT_QUEUE
