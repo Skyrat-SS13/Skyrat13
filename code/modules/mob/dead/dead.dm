@@ -128,3 +128,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 /mob/dead/onTransitZ(old_z,new_z)
 	..()
 	update_z(new_z)
+
+/mob/dead/Destroy()
+	..()
+	return QDEL_HINT_QUEUE
