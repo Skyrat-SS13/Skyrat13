@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Holo bed sheets can't be cut up for real cloth anymore."

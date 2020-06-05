@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Revamped the paper wizard robes. You can now rally your summoned stickmen to a target and mark a mob as foe (with harm intent) by simply pointing at them (shift middle click if you didn't know) while wearing the robes. On the downside you can only have up to 8 minions at a time."
-  - tweak: "Buffed the paper wizard boss' summon minions action. It'll now replace older minions when casting it over its maximum summon capacity"

@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "Rebalanced spears etc to be less dumb in combat, dropped embed rates to 65/75/0, and the pain multiplier from 3.0 to 1.5"

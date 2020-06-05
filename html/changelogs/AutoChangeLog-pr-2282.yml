@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "chemistry/bio bags are now normal sized (can still be worn on the pocket slot though)"
-  - balance: "chemistry bags now use the volumetric storage system. (doesn't affect their UI)"
