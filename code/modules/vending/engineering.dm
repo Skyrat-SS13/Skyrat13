@@ -32,3 +32,6 @@
 	extra_price = 500
 	payment_department = ACCOUNT_ENG
 	cost_multiplier_per_dept = list(ACCOUNT_ENG = 0)
+	//skyrat edit
+	brand = "Robco."
+	//

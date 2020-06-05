@@ -22,6 +22,9 @@
 	default_price = 50
 	extra_price = 100
 	payment_department = NO_FREEBIES
+	//skyrat edit
+	brand = "Random Parts Vendor"
+	//
 
 /obj/item/vending_refill/assist
 	icon_state = "refill_engi"

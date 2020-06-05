@@ -24,6 +24,9 @@
 	default_price = 45
 	extra_price = 200
 	payment_department = ACCOUNT_SRV
+	//skyrat edit
+	brand = "Robust Softdrinks"
+	//
 
 /obj/item/vending_refill/cola
 	machine_name = "Robust Softdrinks"
@@ -33,6 +36,9 @@
 	name = "\improper Random Drinkies"
 	icon_state = "random_cola"
 	desc = "Uh oh!"
+	//skyrat edit
+	brand = "Random Drinkies"
+	//
 
 /obj/machinery/vending/cola/random/Initialize()
 	..()
@@ -51,6 +57,9 @@
 	name = "\improper Space Cola Vendor"
 	desc = "It vends cola, in space."
 	product_slogans = "Cola in space!"
+	//skyrat edit
+	brand = "Space Cola"
+	//
 
 /obj/machinery/vending/cola/space_up
 	icon_state = "space_up"
@@ -63,6 +72,9 @@
 	name = "\improper Star-kist Vendor"
 	desc = "The taste of a star in liquid form."
 	product_slogans = "Drink the stars! Star-kist!"
+	//skyrat edit
+	brand = "Star-kist"
+	//
 
 /obj/machinery/vending/cola/sodie
 	icon_state = "soda"
@@ -72,6 +84,9 @@
 	name = "\improper Pwr Game Vendor"
 	desc = "You want it, we got it. Brought to you in partnership with Vlad's Salads."
 	product_slogans = "The POWER that gamers crave! PWR GAME!"
+	//skyrat edit
+	brand = "Pwr Game"
+	//
 
 /obj/machinery/vending/cola/shamblers
 	name = "\improper Shambler's Vendor"
@@ -88,6 +103,9 @@
 					/obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 10)
 	product_slogans = "~Shake me up some of that Shambler's Juice!~"
 	product_ads = "Refreshing!;Jyrbv dv lg jfdv fw kyrk Jyrdscvi'j Alztv!;Over 1 trillion souls drank!;Thirsty? Nyp efk uizeb kyv uribevjj?;Kyv Jyrdscvi uizebj kyv ezxyk!;Drink up!;Krjkp."
+	//skyrat edit
+	brand = "Shambler's Drinks"
+	//
 
 /obj/machinery/vending/cola/buzz_fuzz
 	name = "\improper Buzz Fuzz Vendor"
@@ -107,4 +125,7 @@
 	premium = list(/obj/item/reagent_containers/food/drinks/beer/light = 1,
 					/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1)
 	product_slogans = "~A hive of Flavour!~"
-	product_ads = "Stinging flavour!;Ideal of the worker drone!;Buzz Buzz!;Got Honey?;The Queen approves of this drink!;Sap back that missing energy!;Bee the consumer unit!"
+	product_ads = "Stinging flavour!;Ideal of the worker drone!;Buzz Buzz!;Got Honey?;The Queen approves of this drink!;Sap back that missing energy!;Bee the consumer unit!;1, 2, Buzz, 4, Fuzz, Buzz!" //Skyrat edit - fizz buzz funny joke
+	//skyrat edit
+	brand = "Buzz Fuzz"
+	//

@@ -28,6 +28,9 @@
 	default_price = 150
 	extra_price = 300
 	payment_department = NO_FREEBIES
+	//skyrat edit
+	brand = "Donk Co."
+	//
 
 /obj/machinery/vending/toyliberationstation/Initialize()
 	. = ..()

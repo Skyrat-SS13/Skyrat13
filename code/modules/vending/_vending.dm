@@ -154,6 +154,10 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	///Name of lighting mask for the vending machine
 	var/light_mask
 
+	//skyrat edit
+	var/brand = "CentCom"
+	//
+
 /obj/item/circuitboard
     ///determines if the circuit board originated from a vendor off station or not.
 	var/onstation = TRUE
@@ -187,11 +191,11 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	slogan_list = splittext(product_slogans, ";")
 	//skyrat edit - pride month for real
 	if(SSevents.holidays && SSevents.holidays[PRIDE_MONTH])
-		slogan_list = list("At BRAND we care about your sexuality. Now please buy PRODUCT.",
-							"To comemorate diversity, BRAND has reduced the price of all products by negative 20%.",
+		slogan_list = list("At [brand] we care about your sexuality. Now please buy PRODUCT.",
+							"To comemorate diversity, [brand] has reduced the price of all products by negative 20%.",
 							"Pride stationwide.",
-							"Ignore the fact we don't celebrate pride month in more conservative sectors of space. BRAND cares about you!"
-							"Just consume already.")
+							"Ignore the fact we don't celebrate pride month in more conservative sectors of space. [brand] cares about you!",
+							"Just consume already, random boy, girl or non-binary individual.")
 		product_ads = "<span style='color:red;'>WE ARE PROGRESSIVE. CONSUME.</span>"
 	//
 	// So not all machines speak at the exact same time.

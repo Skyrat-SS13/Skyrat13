@@ -29,6 +29,9 @@
 	extra_price = 700
 	payment_department = ACCOUNT_SEC
 	cost_multiplier_per_dept = list(ACCOUNT_SEC = 0)
+	//skyrat edit
+	brand = "NanoTrasen Armory"
+	//
 
 /obj/machinery/vending/security/pre_throw(obj/item/I)
 	if(istype(I, /obj/item/grenade))

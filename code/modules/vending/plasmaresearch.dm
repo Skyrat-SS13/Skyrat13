@@ -15,3 +15,6 @@
 	extra_price = 600
 	payment_department = ACCOUNT_SCI
 	cost_multiplier_per_dept = list(ACCOUNT_SCI = 0)
+	//skyrat edit
+	brand = "CentCom"
+	//

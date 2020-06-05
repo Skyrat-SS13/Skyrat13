@@ -16,6 +16,9 @@
 	extra_price = 250
 	payment_department = ACCOUNT_SRV
 	cost_multiplier_per_dept = list(ACCOUNT_SRV = 0)
+	//skyrat edit
+	brand = "Good Clean Fun"
+	//
 
 /obj/item/vending_refill/games
 	machine_name = "\improper Good Clean Fun"

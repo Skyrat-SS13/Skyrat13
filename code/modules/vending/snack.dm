@@ -32,6 +32,9 @@
 	payment_department = ACCOUNT_SRV
 	cost_multiplier_per_dept = list(ACCOUNT_SRV = 0)
 	input_display_header = "Chef's Food Selection"
+	//skyrat edit
+	brand = "Getmore Chocolate Corp"
+	//
 
 /obj/item/vending_refill/snack
 	machine_name = "Getmore Chocolate Corp"

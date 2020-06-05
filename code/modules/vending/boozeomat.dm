@@ -44,6 +44,9 @@
 	extra_price = 100
 	payment_department = ACCOUNT_SRV
 	cost_multiplier_per_dept = list(ACCOUNT_SRV = 0)
+	//skyrat edit
+	brand = "Booze Vendor"
+	//
 
 /obj/machinery/vending/boozeomat/pubby_maint //abandoned bar on Pubbystation
 	products = list(/obj/item/reagent_containers/food/drinks/bottle/whiskey = 1,

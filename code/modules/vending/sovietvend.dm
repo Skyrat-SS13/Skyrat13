@@ -26,6 +26,9 @@
 	default_price = 1
 	extra_price = 1
 	payment_department = NO_FREEBIES
+	//skyrat edit
+	brand = "Actually we're homophobic but CentCom has forced these messages on every vendor in the sector"
+	//
 
 /obj/item/vending_refill/soviet
 	machine_name 	= "sovietvend"

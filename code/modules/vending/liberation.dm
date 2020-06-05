@@ -31,3 +31,6 @@
 	default_price = 150
 	extra_price = 500
 	payment_department = ACCOUNT_SEC
+	//skyrat edit
+	brand = "Liberation Station"
+	//

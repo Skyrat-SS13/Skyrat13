@@ -22,6 +22,9 @@
 	extra_price = 100
 	payment_department = ACCOUNT_MED
 	cost_multiplier_per_dept = list(ACCOUNT_MED = 0)
+	//skyrat edit
+	brand = "NanoTrasen"
+	//
 
 /obj/item/vending_refill/wallmed
 	machine_name = "NanoMed"

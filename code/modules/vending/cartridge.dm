@@ -20,6 +20,9 @@
 	extra_price = 500
 	payment_department = ACCOUNT_SRV
 	cost_multiplier_per_dept = list(ACCOUNT_SRV = 0)
+	//skyrat edit
+	brand = "PDA Vendor"
+	//
 
 /obj/item/vending_refill/cart
 	icon_state = "refill_pda"

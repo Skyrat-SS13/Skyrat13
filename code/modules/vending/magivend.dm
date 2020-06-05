@@ -19,3 +19,6 @@
 	default_price = 250
 	extra_price = 500
 	payment_department = ACCOUNT_SRV
+	//skyrat edit
+	brand = "Wizard Federation"
+	//

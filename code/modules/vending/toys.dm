@@ -28,6 +28,9 @@
 	default_price = 150
 	extra_price = 300
 	payment_department = ACCOUNT_SRV
+	//skyrat edit
+	brand = "Donk Co."
+	//
 
 /obj/item/vending_refill/donksoft
 	machine_name = "Donksoft Toy Vendor"

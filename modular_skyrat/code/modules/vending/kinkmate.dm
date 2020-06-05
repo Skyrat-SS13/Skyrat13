@@ -46,6 +46,9 @@
 	)
 
 	refill_canister = /obj/item/vending_refill/kink
+	//skyrat edit
+	brand = "Not-Good Dragon"
+	//
 
 /obj/item/vending_refill/kink
 	machine_name 	= "KinkMate"

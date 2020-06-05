@@ -23,6 +23,9 @@
 	default_price = 75
 	extra_price = 250
 	payment_department = ACCOUNT_SRV
+	//skyrat edit
+	brand = "Cigarette Vendor" //i would use the british slang for cigarette, if that didn't mean getting a github ban.
+	//
 
 /obj/machinery/vending/cigarette/syndicate
 	products = list(/obj/item/storage/fancy/cigarettes/cigpack_syndicate = 7,

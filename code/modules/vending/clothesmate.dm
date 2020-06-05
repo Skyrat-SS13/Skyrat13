@@ -182,6 +182,9 @@
 	default_price = 60
 	extra_price = 120
 	payment_department = NO_FREEBIES
+	//skyrat edit
+	brand = "ClothesMate"
+	//
 
 /obj/machinery/vending/clothing/canLoadItem(obj/item/I,mob/user)
 	return (I.type in products)

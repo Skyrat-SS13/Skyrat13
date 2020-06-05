@@ -62,6 +62,9 @@
 	extra_price = 350
 	payment_department = ACCOUNT_SRV
 	cost_multiplier_per_dept = list(ACCOUNT_SRV = 0)
+	//skyrat edit
+	brand = "MegaSeed"
+	//
 
 /obj/item/vending_refill/hydroseeds
 	icon_state = "refill_hydro"

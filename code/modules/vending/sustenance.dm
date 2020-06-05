@@ -17,6 +17,9 @@
 	default_price = 0
 	extra_price = 0
 	payment_department = NO_FREEBIES
+	//skyrat edit
+	brand = "Sol Gov Food and Drug Administration"
+	//
 
 /obj/item/vending_refill/sustenance
 	icon_state = "refill_cook"

@@ -23,6 +23,9 @@
 	extra_price = 250
 	payment_department = ACCOUNT_SRV
 	cost_multiplier_per_dept = list(ACCOUNT_SRV = 0)
+	//skyrat edit
+	brand = "NutriMax"
+	//
 
 /obj/item/vending_refill/hydronutrients
 	icon_state = "refill_hydro"

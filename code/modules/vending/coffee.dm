@@ -17,6 +17,9 @@
 	default_price = 45
 	extra_price = 150
 	payment_department = ACCOUNT_SRV
+	//skyrat edit
+	brand = "Solar Hot Drinks"
+	//
 
 /obj/item/vending_refill/coffee
 	machine_name = "Solar's Best Hot Drinks"

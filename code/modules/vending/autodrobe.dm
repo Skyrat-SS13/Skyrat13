@@ -142,6 +142,9 @@
 	default_price = 180
 	extra_price = 360
 	payment_department = ACCOUNT_SRV
+	//skyrat edit
+	brand = "AutoDrobe"
+	//
 
 /obj/machinery/vending/autodrobe/Initialize()
 	. = ..()

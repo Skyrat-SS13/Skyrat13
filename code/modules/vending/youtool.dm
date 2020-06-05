@@ -26,6 +26,9 @@
 	extra_price = 300
 	payment_department = ACCOUNT_ENG
 	cost_multiplier_per_dept = list(ACCOUNT_ENG = 0)
+	//skyrat edit
+	brand = "YouTool"
+	//
 
 /obj/item/vending_refill/tool
 	icon_state = "refill_engi"
