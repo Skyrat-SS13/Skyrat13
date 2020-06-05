@@ -80,8 +80,6 @@
 	name = "enraged bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
-	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
 	new /obj/item/twohanded/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
 	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
