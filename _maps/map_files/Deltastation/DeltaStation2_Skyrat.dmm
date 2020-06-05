@@ -28050,6 +28050,9 @@
 	c_tag = "Central Hallway - Fore Starboard";
 	name = "hallway camera"
 	},
+/obj/machinery/atm{
+	pixel_y = 30
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "boT" = (
@@ -44213,6 +44216,9 @@
 "bUA" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
+	},
+/obj/machinery/atm{
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -62570,6 +62576,9 @@
 	},
 /obj/effect/turf_decal/plaque{
 	icon_state = "L11"
+	},
+/obj/machinery/atm{
+	pixel_y = 30
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -97229,6 +97238,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/prison)
+"eWN" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atm{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "eXd" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
@@ -97743,6 +97762,13 @@
 	},
 /turf/closed/wall,
 /area/engine/atmos)
+"hch" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atm{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness/recreation)
 "hds" = (
 /obj/structure/closet/crate/bin,
 /obj/machinery/requests_console{
@@ -98658,6 +98684,18 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/prison)
+"lnX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "loe" = (
 /obj/structure/rack,
 /obj/item/flashlight,
@@ -98765,6 +98803,14 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"lxm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atm{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "lyU" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/incinerator_toxmix{
 	dir = 8
@@ -99796,6 +99842,14 @@
 /obj/effect/spawner/lootdrop/bedsheet,
 /turf/open/floor/plating,
 /area/crew_quarters/abandoned_gambling_den)
+"pqa" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atm{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/aft)
 "pqo" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -100441,6 +100495,13 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"rQM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atm{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "rTq" = (
 /obj/structure/holohoop,
 /obj/structure/cable{
@@ -101492,6 +101553,14 @@
 /obj/item/hatchet,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"wlB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atm{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "wmt" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -101839,6 +101908,15 @@
 "xKS" = (
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
+"xKU" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "xMn" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal/bin,
@@ -136536,7 +136614,7 @@ czP
 cwY
 cwY
 cwY
-cwY
+rQM
 cwY
 cIA
 cKv
@@ -137266,7 +137344,7 @@ bdJ
 bjC
 blr
 aYC
-boT
+xKU
 bqL
 bsO
 buq
@@ -138387,7 +138465,7 @@ dUv
 dVi
 dVi
 dWS
-dVi
+wlB
 dVi
 dZn
 dZV
@@ -141183,7 +141261,7 @@ dgS
 dek
 dek
 dlS
-cXE
+pqa
 dpf
 cXE
 dsn
@@ -145758,7 +145836,7 @@ bzV
 bvN
 bDT
 csJ
-csJ
+eWN
 bIZ
 bKV
 bvN
@@ -145779,7 +145857,7 @@ cmQ
 cos
 bvN
 bup
-csJ
+eWN
 csJ
 cvG
 cwY
@@ -145789,7 +145867,7 @@ ccT
 bvN
 bvN
 cik
-bvN
+lxm
 cIU
 cKF
 cMe
@@ -149122,7 +149200,7 @@ cqb
 crp
 csR
 cbk
-cvM
+lnX
 cxh
 cyM
 cAm
@@ -155297,7 +155375,7 @@ cAy
 cCk
 cDJ
 cFC
-cNW
+hch
 cIk
 cJt
 cLj

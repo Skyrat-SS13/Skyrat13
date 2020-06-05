@@ -65,7 +65,6 @@
 					CID.registered_account.account_balance -= ddeposit
 					BA.account_balance += ddeposit
 					successful_transaction()
-					qdel(HC)
 					break
 	if(istype(W, /obj/item/holochip))
 		var/obj/item/holochip/HC = W
