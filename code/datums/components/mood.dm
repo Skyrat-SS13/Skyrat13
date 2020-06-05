@@ -25,7 +25,7 @@
 
 	var/mob/living/owner = parent
 	if(owner.stat != DEAD)
-		START_PROCESSING(SSdcs, src)
+		START_PROCESSING(SSobj, src)
 
 	RegisterSignal(parent, COMSIG_ADD_MOOD_EVENT, .proc/add_event)
 	RegisterSignal(parent, COMSIG_CLEAR_MOOD_EVENT, .proc/clear_event)
@@ -40,58 +40,73 @@
 		hud.show_hud(hud.hud_version)
 
 /datum/component/mood/Destroy()
-	STOP_PROCESSING(SSdcs, src)
+	STOP_PROCESSING(SSobj, src)
 	unmodify_hud()
 	return ..()
 
 /datum/component/mood/proc/stop_processing()
-	STOP_PROCESSING(SSdcs, src)
+	STOP_PROCESSING(SSobj, src)
 
 /datum/component/mood/proc/print_mood(mob/user)
 	var/msg = "<span class='info'>*---------*\n<EM>Your current mood</EM>\n"
 	msg += "<span class='notice'>My mental status: </span>" //Long term
-	switch(sanity)
-		if(SANITY_GREAT to INFINITY)
-			msg += "<span class='nicegreen'>My mind feels like a temple!<span>\n"
-		if(SANITY_NEUTRAL to SANITY_GREAT)
-			msg += "<span class='nicegreen'>I have been feeling great lately!<span>\n"
-		if(SANITY_DISTURBED to SANITY_NEUTRAL)
-			msg += "<span class='nicegreen'>I have felt quite decent lately.<span>\n"
-		if(SANITY_UNSTABLE to SANITY_DISTURBED)
-			msg += "<span class='warning'>I'm feeling a little bit unhinged...</span>\n"
-		if(SANITY_CRAZY to SANITY_UNSTABLE)
-			msg += "<span class='boldwarning'>I'm freaking out!!</span>\n"
-		if(SANITY_INSANE to SANITY_CRAZY)
-			msg += "<span class='boldwarning'>AHAHAHAHAHAHAHAHAHAH!!</span>\n"
+	//skyrat edit - screwy mood
+	if(!HAS_TRAIT(user, TRAIT_SCREWY_MOOD))
+		switch(sanity)
+			if(SANITY_GREAT to INFINITY)
+				msg += "<span class='nicegreen'>My mind feels like a temple!<span>\n"
+			if(SANITY_NEUTRAL to SANITY_GREAT)
+				msg += "<span class='nicegreen'>I have been feeling great lately!<span>\n"
+			if(SANITY_DISTURBED to SANITY_NEUTRAL)
+				msg += "<span class='nicegreen'>I have felt quite decent lately.<span>\n"
+			if(SANITY_UNSTABLE to SANITY_DISTURBED)
+				msg += "<span class='warning'>I'm feeling a little bit unhinged...</span>\n"
+			if(SANITY_CRAZY to SANITY_UNSTABLE)
+				msg += "<span class='boldwarning'>I'm freaking out!!</span>\n"
+			if(SANITY_INSANE to SANITY_CRAZY)
+				msg += "<span class='boldwarning'>AHAHAHAHAHAHAHAHAHAH!!</span>\n"
+	else
+		msg += "<span class='notice'>I don't really know.<span>\n"
+	//
 
 	msg += "<span class='notice'>My current mood: </span>" //Short term
-	switch(mood_level)
-		if(1)
-			msg += "<span class='boldwarning'>I wish I was dead!<span>\n"
-		if(2)
-			msg += "<span class='boldwarning'>I feel terrible...<span>\n"
-		if(3)
-			msg += "<span class='boldwarning'>I feel very upset.<span>\n"
-		if(4)
-			msg += "<span class='boldwarning'>I'm a bit sad.<span>\n"
-		if(5)
-			msg += "<span class='nicegreen'>I'm alright.<span>\n"
-		if(6)
-			msg += "<span class='nicegreen'>I feel pretty okay.<span>\n"
-		if(7)
-			msg += "<span class='nicegreen'>I feel pretty good.<span>\n"
-		if(8)
-			msg += "<span class='nicegreen'>I feel amazing!<span>\n"
-		if(9)
-			msg += "<span class='nicegreen'>I love life!<span>\n"
+	//skyrat edit - screwy mood
+	if(!HAS_TRAIT(user, TRAIT_SCREWY_MOOD))
+		switch(mood_level)
+			if(1)
+				msg += "<span class='boldwarning'>I wish I was dead!<span>\n"
+			if(2)
+				msg += "<span class='boldwarning'>I feel terrible...<span>\n"
+			if(3)
+				msg += "<span class='boldwarning'>I feel very upset.<span>\n"
+			if(4)
+				msg += "<span class='boldwarning'>I'm a bit sad.<span>\n"
+			if(5)
+				msg += "<span class='nicegreen'>I'm alright.<span>\n"
+			if(6)
+				msg += "<span class='nicegreen'>I feel pretty okay.<span>\n"
+			if(7)
+				msg += "<span class='nicegreen'>I feel pretty good.<span>\n"
+			if(8)
+				msg += "<span class='nicegreen'>I feel amazing!<span>\n"
+			if(9)
+				msg += "<span class='nicegreen'>I love life!<span>\n"
+	else
+		msg += "<span class='notice'>No clue.<span>\n"
+	//
 
 	msg += "<span class='notice'>Moodlets:\n</span>"//All moodlets
-	if(mood_events.len)
-		for(var/i in mood_events)
-			var/datum/mood_event/event = mood_events[i]
-			msg += event.description
+	//skyrat edit - screwy mood
+	if(!HAS_TRAIT(user, TRAIT_SCREWY_MOOD))
+		if(mood_events.len)
+			for(var/i in mood_events)
+				var/datum/mood_event/event = mood_events[i]
+				msg += event.description
+		else
+			msg += "<span class='nicegreen'>I don't have much of a reaction to anything right now.<span>\n"
 	else
-		msg += "<span class='nicegreen'>I don't have much of a reaction to anything right now.<span>\n"
+		msg += "<span class='notice'>No idea.<span>\n"
+	//
 	to_chat(user || parent, msg)
 
 ///Called after moodevent/s have been added/removed.
@@ -130,15 +145,20 @@
 
 /datum/component/mood/proc/update_mood_icon()
 	var/mob/living/owner = parent
-	if(owner.client && owner.hud_used)
-		if(sanity < 25)
-			screen_obj.icon_state = "mood_insane"
-		else if (owner.has_status_effect(/datum/status_effect/chem/enthrall))//Fermichem enthral chem, maybe change?
-			screen_obj.icon_state = "mood_entrance"
-		else
-			screen_obj.icon_state = "mood[mood_level]"
+	//skyrat edit - screwy mood
+	if(!HAS_TRAIT(owner, TRAIT_SCREWY_MOOD))
+		if(owner.client && owner.hud_used)
+			if(sanity < 25)
+				screen_obj.icon_state = "mood_insane"
+			else if (owner.has_status_effect(/datum/status_effect/chem/enthrall))//Fermichem enthral chem, maybe change?
+				screen_obj.icon_state = "mood_entrance"
+			else
+				screen_obj.icon_state = "mood[mood_level]"
+	else
+		screen_obj.icon_state = "mood5"
+	//
 
-/datum/component/mood/process() //Called on SSdcs process
+/datum/component/mood/process() //Called on SSobj process
 	if(QDELETED(parent)) // workaround to an obnoxious sneaky periodical runtime.
 		qdel(src)
 		return
@@ -321,9 +341,31 @@
 		if(0 to NUTRITION_LEVEL_STARVING)
 			add_event(null, "nutrition", /datum/mood_event/starving)
 
+/datum/component/mood/proc/update_beauty(area/A)
+	if(A.outdoors) //if we're outside, we don't care.
+		clear_event(null, "area_beauty")
+		return FALSE
+	if(HAS_TRAIT(parent, TRAIT_SNOB))
+		switch(A.beauty)
+			if(-INFINITY to BEAUTY_LEVEL_HORRID)
+				add_event(null, "area_beauty", /datum/mood_event/horridroom)
+				return
+			if(BEAUTY_LEVEL_HORRID to BEAUTY_LEVEL_BAD)
+				add_event(null, "area_beauty", /datum/mood_event/badroom)
+				return
+	switch(A.beauty)
+		if(-INFINITY to BEAUTY_LEVEL_DECENT)
+			clear_event(null, "area_beauty")
+		if(BEAUTY_LEVEL_DECENT to BEAUTY_LEVEL_GOOD)
+			add_event(null, "area_beauty", /datum/mood_event/decentroom)
+		if(BEAUTY_LEVEL_GOOD to BEAUTY_LEVEL_GREAT)
+			add_event(null, "area_beauty", /datum/mood_event/goodroom)
+		if(BEAUTY_LEVEL_GREAT to INFINITY)
+			add_event(null, "area_beauty", /datum/mood_event/greatroom)
+
 ///Called when parent is revived.
 /datum/component/mood/proc/on_revive(datum/source, full_heal)
-	START_PROCESSING(SSdcs, src)
+	START_PROCESSING(SSobj, src)
 	if(!full_heal)
 		return
 	remove_temp_moods()

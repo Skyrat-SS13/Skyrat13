@@ -76,12 +76,13 @@
 	new /obj/item/storage/box/flashbangs(src)
 	new /obj/item/shield/riot/tele(src)
 	new /obj/item/storage/belt/security/full(src)
-	new /obj/item/gun/energy/e_gun/hos(src)
+	new /obj/item/choice_beacon/hosgun(src)
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/pinpointer/nuke(src)
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
 	new /obj/item/storage/photo_album/HoS(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/hos(src)
+
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
 	req_access = list(ACCESS_ARMORY)
@@ -105,7 +106,7 @@
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/door_remote/head_of_security(src)
-	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
+	//new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src) | SKYRAT CHANGE, REMOVES COMPACT SHOTGUN
 	new /obj/item/clothing/head/beret/sec/corporatewarden(src)
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"

@@ -32,6 +32,9 @@
 
 	var/list/filter_data //For handling persistent filters
 
+	var/custom_price
+	var/custom_premium_price
+
 	var/datum/component/orbiter/orbiters
 
 	var/rad_flags = NONE // Will move to flags_1 when i can be arsed to
@@ -43,6 +46,8 @@
 	var/material_flags = NONE
 	///Modifier that raises/lowers the effect of the amount of a material, prevents small and easy to get items from being death machines.
 	var/material_modifier = 1
+
+	var/datum/wires/wires = null
 
 	var/icon/blood_splatter_icon
 	var/list/fingerprints
@@ -56,6 +61,10 @@
 	var/chat_color
 	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
 	var/chat_color_darkened
+	//skyrat edit - custom examine icon
+	var/examine_icon
+	var/examine_icon_state
+	//
 
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
@@ -300,8 +309,10 @@
 		. = override.Join("")
 
 ///Generate the full examine string of this atom (including icon for goonchat)
+//skyrat change - custom examine icons
 /atom/proc/get_examine_string(mob/user, thats = FALSE)
-	return "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
+	return "[icon2html(examine_icon ? examine_icon : src, user, examine_icon_state ? examine_icon_state : icon_state)] [thats? "That's ":""][get_examine_name(user)]"
+//end changes (yeah the whole proc was modified)
 
 /atom/proc/examine(mob/user)
 	. = list("[get_examine_string(user, TRUE)].")
@@ -310,10 +321,11 @@
 		. += desc
 
 	if(custom_materials)
+		var/list/materials_list = list()
 		for(var/i in custom_materials)
 			var/datum/material/M = i
-			. += "<u>It is made out of [M.name]</u>."
-
+			materials_list += "[M.name]"
+		. += "<u>It is made out of [english_list(materials_list)]</u>."
 	if(reagents)
 		if(reagents.reagents_holder_flags & TRANSPARENT)
 			. += "It contains:"
@@ -932,14 +944,14 @@ Proc for attack log creation, because really why not
 		target.log_message(reverse_message, LOG_ATTACK, color="orange", log_globally=FALSE)
 
 // Filter stuff
-/atom/movable/proc/add_filter(name,priority,list/params)
+/atom/proc/add_filter(name,priority,list/params)
 	LAZYINITLIST(filter_data)
 	var/list/p = params.Copy()
 	p["priority"] = priority
 	filter_data[name] = p
 	update_filters()
 
-/atom/movable/proc/update_filters()
+/atom/proc/update_filters()
 	filters = null
 	filter_data = sortTim(filter_data, /proc/cmp_filter_data_priority, TRUE)
 	for(var/f in filter_data)
@@ -948,11 +960,11 @@ Proc for attack log creation, because really why not
 		arguments -= "priority"
 		filters += filter(arglist(arguments))
 
-/atom/movable/proc/get_filter(name)
+/atom/proc/get_filter(name)
 	if(filter_data && filter_data[name])
 		return filters[filter_data.Find(name)]
 
-/atom/movable/proc/remove_filter(name)
+/atom/proc/remove_filter(name)
 	if(filter_data && filter_data[name])
 		filter_data -= name
 		update_filters()

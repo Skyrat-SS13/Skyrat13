@@ -45044,7 +45044,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bLe" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bLf" = (
@@ -56936,21 +56936,12 @@
 	},
 /area/science/research)
 "ciS" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
-/mob/living/simple_animal/pet/dog/pug{
-	desc = "It's Pugley IV, the research department's lovable pug clone. Hopefully nothing happens to this one - fourth time lucky!";
-	name = "Pugley IV";
-	real_name = "Pugley IV"
-	},
+/obj/machinery/rnd/bepis,
 /turf/open/floor/engine,
 /area/science/explab)
 "ciT" = (
 /obj/item/beacon,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 10
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/engine,
 /area/science/explab)
 "ciU" = (
@@ -57069,7 +57060,7 @@
 /turf/open/floor/plating/airless,
 /area/engine/atmos)
 "cjp" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
 "cjq" = (
@@ -59548,6 +59539,11 @@
 "col" = (
 /obj/structure/chair/office/light{
 	dir = 4
+	},
+/mob/living/simple_animal/pet/dog/pug{
+	desc = "It's Pugley IV, the research department's lovable pug clone. Hopefully nothing happens to this one - fourth time lucky!";
+	name = "Pugley IV";
+	real_name = "Pugley IV"
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
@@ -63920,9 +63916,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/machinery/chem_dispenser{
-	layer = 2.7
-	},
+/obj/machinery/chem_dispenser/apothecary,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "cwp" = (

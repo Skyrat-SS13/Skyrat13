@@ -2,6 +2,16 @@
 	var/enabled_combat_indicator = FALSE
 	var/nextcombatpopup = 0
 
+//this is not ideal but I really just want to catch up with everything
+/mob/living/Initialize()
+	RegisterSignal(src, COMSIG_LIVING_COMBAT_ENABLED, .proc/combat_mode_enabled_signal)
+	RegisterSignal(src, COMSIG_LIVING_COMBAT_DISABLED, .proc/combat_mode_disabled_signal)
+	. = ..()
+
+/mob/living/Destroy()
+	UnregisterSignal(src, COMSIG_LIVING_COMBAT_ENABLED)
+	UnregisterSignal(src, COMSIG_LIVING_COMBAT_DISABLED)
+	. = ..()
 
 var/static/mutable_appearance/combat_indicator
 
@@ -23,26 +33,25 @@ var/static/mutable_appearance/combat_indicator
 /mob/living/proc/change_combat_indicator(state)
 	if(state && !enabled_combat_indicator && world.time >= nextcombatpopup) //No cooldown
 		nextcombatpopup = world.time + 10 SECONDS
-		playsound(src, 'sound/machines/chime.ogg', 10) 
+		playsound(src, 'sound/machines/chime.ogg', 10)
 		flick_emote_popup_on_mob(src, "combat", 20)
+		src.log_message("<font color='red'>has used the combat indicator!</font>", INDIVIDUAL_ATTACK_LOG)
 	if(state && world.time >= combatmessagecooldown) //If combat mode didn't make a message
 		combatmessagecooldown = world.time + 10 SECONDS
 		visible_message("<span class='warning'>[src] gets ready for combat!</span>")
 
 	set_combat_indicator(state)
 
-/mob/living/disable_combat_mode(silent = TRUE, was_forced = FALSE, visible = FALSE, update_icon = TRUE)
-	. = ..()
+/mob/living/proc/combat_mode_disabled_signal()
 	change_combat_indicator(FALSE)
 
 
-/mob/living/enable_combat_mode(silent = TRUE, was_forced = FALSE, visible = FALSE, update_icon = TRUE)
-	. = ..()
-	change_combat_indicator(TRUE) 
+/mob/living/proc/combat_mode_enabled_signal()
+	change_combat_indicator(TRUE)
 
 /mob/living/proc/user_toggle_intentional_combat_indication()
-	if(CAN_TOGGLE_COMBAT_MODE(src))
-		var/combat_enabled = (combat_flags & COMBAT_FLAG_COMBAT_TOGGLED)
+	if(FORCE_BOOLEAN((src.stat == CONSCIOUS) && !(src.combat_flags & COMBAT_FLAG_HARD_STAMCRIT)))
+		var/combat_enabled = (SEND_SIGNAL(src, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_TOGGLED))
 		if(combat_enabled)
 			to_chat(src, "<span class='warning'>Disable combat mode first!</span>")
 		else if (enabled_combat_indicator)

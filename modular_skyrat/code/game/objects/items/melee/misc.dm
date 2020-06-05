@@ -47,7 +47,7 @@
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus
 
 /obj/item/melee/baton/blueshieldprod/update_icon_state() // Thanks Trilby i nut -CinderWC
-    if(status)
+    if(turned_on)
         icon_state = "bsprod_active"
     else if(!cell)
         icon_state = "bsprod_nocell"
@@ -67,7 +67,7 @@
         var/mob/living/carbon/human/L = M
         if(check_martial_counter(L, user))
             return TRUE
-    if(status)
+    if(turned_on)
         if(baton_stun(M, user, disarming))
             user.do_attack_animation(M)
             user.adjustStaminaLossBuffered(getweight())        //CIT CHANGE - makes stunbatonning others cost stamina

@@ -240,6 +240,31 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/detectives_office)
+"aaA" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
+"aaB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
+"aaC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/mob/living/simple_animal/sloth/citrus,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "aaE" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space,
@@ -8802,7 +8827,8 @@
 /area/maintenance/port/fore)
 "ayW" = (
 /obj/machinery/light/small,
-/obj/machinery/vending/autodrobe/all_access,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/autodrobe,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -16692,16 +16718,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"aQM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "aQN" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -19344,13 +19360,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"aVT" = (
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/mob/living/simple_animal/sloth/citrus,
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "aVU" = (
 /obj/machinery/holopad,
 /obj/structure/cable/white{
@@ -20021,12 +20030,6 @@
 	dir = 4
 	},
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
-"aXz" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "aXA" = (
@@ -61709,7 +61712,17 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
 "cGO" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
 "cGP" = (
@@ -83694,7 +83707,7 @@
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = -32
 	},
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/plating,
 /area/crew_quarters/abandoned_gambling_den)
 "dBS" = (
@@ -96883,10 +96896,6 @@
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/aft)
-"egC" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/chapel/office)
 "egD" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -137107,7 +137116,7 @@ edT
 eeC
 efp
 egd
-egC
+efg
 aaa
 aad
 aaa
@@ -137364,7 +137373,7 @@ edU
 eeD
 efq
 ege
-egC
+efg
 aaa
 aad
 aaa
@@ -137621,7 +137630,7 @@ edV
 eeE
 efr
 ege
-egC
+efg
 aad
 ajr
 aaa
@@ -145466,7 +145475,7 @@ aKP
 aLX
 aSo
 aOZ
-aQM
+aaB
 aSo
 aUd
 aVL
@@ -147525,8 +147534,8 @@ aPf
 aQP
 aSu
 aUk
-aVT
-aXz
+aaA
+aaC
 aZd
 aQQ
 bcD
