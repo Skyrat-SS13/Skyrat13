@@ -3533,6 +3533,7 @@
 #include "modular_skyrat\code\game\machinery\doors\airlock.dm"
 #include "modular_skyrat\code\game\machinery\doors\brigdoors.dm"
 #include "modular_skyrat\code\game\machinery\pipe\construction.dm"
+#include "modular_skyrat\code\game\machinery\wirelesscharger\wirelesscharger.dm"
 #include "modular_skyrat\code\game\mecha\mech_fabricator.dm"
 #include "modular_skyrat\code\game\mecha\mecha_construction_paths.dm"
 #include "modular_skyrat\code\game\mecha\mecha_parts.dm"
