@@ -33,6 +33,7 @@
 						"Beretta" = "beretta",
 						"M1911" = "1911")
 	obj_flags = UNIQUE_RENAME
+	req_access = list(ACCESS_HOS)
 
 /obj/item/gun/ballistic/automatic/pistol/uspm/update_icon()
 	..()
@@ -46,7 +47,8 @@
 		var/obj/item/ammo_box/magazine/M = magazine
 		M.emag_act(user)
 
-/obj/item/gun/ballistic/automatic/pistol/uspm/attacked_by(obj/item/I, mob/living/user)
+/obj/item/gun/ballistic/automatic/pistol/uspm/attackby(obj/item/A, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/card/id))
-		magazine.attacked_by(I, user)
+	if(check_access(A))
+		if(magazine)
+			magazine.attackby(A, user)
