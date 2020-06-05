@@ -5,7 +5,23 @@
 
 /datum/traitor_class/ai/New() // Skyrat change
     employer = Gibberish(employer, chance = 10)
+	
+/* /datum/traitor_class/ai/forge_objectives(datum/antagonist/traitor/T)
+	var/objective_count = 0
 
+	if(prob(30))
+		objective_count += forge_single_objective()
+
+	for(var/i = objective_count, i < CONFIG_GET(number/traitor_objectives_amount), i++)
+		var/datum/objective/assassinate/kill_objective = new
+		kill_objective.owner = T.owner
+		kill_objective.find_target()
+		T.add_objective(kill_objective)
+
+	var/datum/objective/survive/exist/exist_objective = new
+	exist_objective.owner = T.owner
+	T.add_objective(exist_objective) */
+	
 /datum/traitor_class/ai/forge_objectives(datum/antagonist/traitor/T)
 	var/special_pick = rand(1,7) //Skyrat change, 5,6 and 7
 	switch(special_pick)
