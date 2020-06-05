@@ -297,9 +297,7 @@
 			boozereagents += E
 		for(var/datum/reagent/consumable/ethanol/E in boozereagents)
 			boozepowers += E.boozepwr
-		multiplier = max(boozepowers)/50
-		for(var/datum/reagent/consumable/ethanol/E in M.reagents)
-			M.reagents.remove_reagent(E, 1 * absorption_coeff)
+		multiplier = max(boozepowers)/100
 		. += power * multiplier
 
 /datum/symptom/heal/alcohol/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
@@ -316,5 +314,7 @@
 	for(var/obj/item/bodypart/L in parts)
 		if(L.heal_damage(heal_amt/parts.len * 0.5, heal_amt/parts.len))
 			M.update_damage_overlays()
+	
+	M.drunkenness = max(M.drunkenness - 7, 0) //almost as effective as antihol being processed
 
 	return 1
