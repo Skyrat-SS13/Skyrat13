@@ -60,29 +60,3 @@
 	desc = "You are one with the dark. You'll get more and more invisible over time, as long as you stay immobile. The invisibility effect is reset whenever you interact with something."
 	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
 	icon_state = "stealth"
-
-//maint energy blood red effect
-/datum/status_effect/kyle
-	id = "kyle"
-	duration = -1
-	tick_interval = 0
-	alert_type = null
-	examine_text = "<span class='danger'><b>They look restless.</b></span>"
-	var/extra_punchlow = 5
-	var/extra_punchhigh = 12
-
-/datum/status_effect/kyle/on_apply()
-	. = ..()
-	if(ishuman(owner))
-		//there is no physiology for this, so i had to force my hand
-		var/mob/living/carbon/human/kyle = owner
-		kyle.dna.species.punchdamagelow += extra_punchlow
-		kyle.dna.species.punchdamagehigh += extra_punchhigh
-
-/datum/status_effect/kyle/on_remove()
-	. = ..()
-	if(ishuman(owner))
-		//there is no physiology for this, so i had to force my hand
-		var/mob/living/carbon/human/kyle = owner
-		kyle.dna.species.punchdamagelow -= extra_punchlow
-		kyle.dna.species.punchdamagehigh -= extra_punchhigh
