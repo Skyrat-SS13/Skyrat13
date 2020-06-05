@@ -21,7 +21,7 @@
 			var/datum/objective/robot_army/robot_objective = new
 			robot_objective.owner = T.owner
 			T.add_objective(robot_objective)
-		if(4) //Protect and strand a target
+		if(4,5) //Protect and strand a target -- Skyrat change, basically increased the chance to get yandere objectives yeee
 			var/datum/objective/protect/yandere_one = new
 			yandere_one.owner = T.owner
 			T.add_objective(yandere_one)
@@ -30,16 +30,6 @@
 			yandere_two.owner = T.owner
 			yandere_two.target = yandere_one.target
 			yandere_two.update_explanation_text() // normally called in find_target()
-			T.add_objective(yandere_two)
-		if(5) // Skyrat Change - I'm just gonna add in another yandere objective here and increase the chance to roll it because yandere ai is  y e s.
-			var/datum/objective/protect/yandere_one = new
-			yandere_one.owner = T.owner
-			T.add_objective(yandere_one)
-			yandere_one.find_target()
-			var/datum/objective/maroon/yandere_two = new
-			yandere_two.owner = T.owner
-			yandere_two.target = yandere_one.target
-			yandere_two.update_explanation_text()
 			T.add_objective(yandere_two)
 		if(6) //Skyrat change
 			var/datum/objective/assassinate/once/kill_objective = new
