@@ -655,8 +655,80 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	return TRUE
 
 
-//Robotic Factory: Places a large machine that converts humans that go through it into cyborgs. Unlocking this ability removes shunting.
-// /datum/AI_Module/large/place_cyborg_transformer //Okay but i'm removing this until i find a way to fix this broke ass machine.
+//Robotic Factory: Places a large machine that converts humans that go through it into cyborgs. Unlocking this ability removes shunting. | Skyrat change, Removing this until I find a way to have the MMI transfers identity.
+/* /datum/AI_Module/large/place_cyborg_transformer
+	module_name = "Robotic Factory (Removes Shunting)"
+	mod_pick_name = "cyborgtransformer"
+	description = "Build a machine anywhere, using expensive nanomachines, that can convert a living human into a loyal cyborg slave when placed inside."
+	cost = 100
+	one_purchase = TRUE
+	power_type = /datum/action/innate/ai/place_transformer
+	unlock_text = "<span class='notice'>You make contact with Space Amazon and request a robotics factory for delivery.</span>"
+	unlock_sound = 'sound/machines/ping.ogg'
+
+/datum/action/innate/ai/place_transformer
+	name = "Place Robotics Factory"
+	desc = "Places a machine that converts humans into cyborgs. Conveyor belts included!"
+	button_icon_state = "robotic_factory"
+	uses = 1
+	auto_use_uses = FALSE //So we can attempt multiple times
+	var/list/turfOverlays
+
+/datum/action/innate/ai/place_transformer/New()
+	..()
+	for(var/i in 1 to 3)
+		var/image/I = image("icon"='icons/turf/overlays.dmi')
+		LAZYADD(turfOverlays, I)
+
+/datum/action/innate/ai/place_transformer/Activate()
+	if(!owner_AI.can_place_transformer(src))
+		return
+	active = TRUE
+	if(alert(owner, "Are you sure you want to place the machine here?", "Are you sure?", "Yes", "No") == "No")
+		active = FALSE
+		return
+	if(!owner_AI.can_place_transformer(src))
+		active = FALSE
+		return
+	var/turf/T = get_turf(owner_AI.eyeobj)
+	var/obj/machinery/transformer/conveyor = new(T)
+	conveyor.masterAI = owner
+	playsound(T, 'sound/effects/phasein.ogg', 100, 1)
+	owner_AI.can_shunt = FALSE
+	to_chat(owner, "<span class='warning'>You are no longer able to shunt your core to APCs.</span>")
+	adjust_uses(-1)
+
+/mob/living/silicon/ai/proc/remove_transformer_image(client/C, image/I, turf/T)
+	if(C && I.loc == T)
+		C.images -= I
+
+/mob/living/silicon/ai/proc/can_place_transformer(datum/action/innate/ai/place_transformer/action)
+	if(!eyeobj || !isturf(loc) || incapacitated() || !action)
+		return
+	var/turf/middle = get_turf(eyeobj)
+	var/list/turfs = list(middle, locate(middle.x - 1, middle.y, middle.z), locate(middle.x + 1, middle.y, middle.z))
+	var/alert_msg = "There isn't enough room! Make sure you are placing the machine in a clear area and on a floor."
+	var/success = TRUE
+	for(var/n in 1 to 3) //We have to do this instead of iterating normally because of how overlay images are handled
+		var/turf/T = turfs[n]
+		if(!isfloorturf(T))
+			success = FALSE
+		var/datum/camerachunk/C = GLOB.cameranet.getCameraChunk(T.x, T.y, T.z)
+		if(!C.visibleTurfs[T])
+			alert_msg = "You don't have camera vision of this location!"
+			success = FALSE
+		for(var/atom/movable/AM in T.contents)
+			if(AM.density)
+				alert_msg = "That area must be clear of objects!"
+				success = FALSE
+		var/image/I = action.turfOverlays[n]
+		I.loc = T
+		client.images += I
+		I.icon_state = "[success ? "green" : "red"]Overlay" //greenOverlay and redOverlay for success and failure respectively
+		addtimer(CALLBACK(src, .proc/remove_transformer_image, client, I, T), 30)
+	if(!success)
+		to_chat(src, "<span class='warning'>[alert_msg]</span>")
+	return success */
 
 //Blackout: Overloads a random number of lights across the station. Three uses.
 /datum/AI_Module/small/blackout
