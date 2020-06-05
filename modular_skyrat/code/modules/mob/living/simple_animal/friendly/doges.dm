@@ -56,9 +56,9 @@
 	icon_state = "walter"
 	icon_dead = "walter_dead"
 	icon_living = "cheems"
-	speak = list("Walter", "I like fire trucks and moster trucks", "I like fusion and hellburn", "Who's Joe?",
-				"Why is the supermatter delaminating", "I will beat you to death", "I will inject plasma in the distro loop",
-				"I am going to farm tritium", "Why are the vents expelling cum")
+	speak = list("Walter.", "I like fire trucks and moster trucks.", "CentCom has put me out of my job, help.",
+				"I am starving but CentCom doesn't let people feed me.", "I wish the ARC would send rescue...",
+				"CentCom supports animal abuse.")
 	butcher_results = list(/obj/item/clothing/suit/fire/firefighter = 1, /obj/item/clothing/head/hardhat/red = 1)
 	faction = list("dog", "doge")
 	animal_species = /mob/living/simple_animal/pet/dog
