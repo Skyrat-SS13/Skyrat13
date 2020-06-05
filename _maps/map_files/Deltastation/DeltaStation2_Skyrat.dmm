@@ -8827,7 +8827,8 @@
 /area/maintenance/port/fore)
 "ayW" = (
 /obj/machinery/light/small,
-/obj/machinery/vending/autodrobe/all_access,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/autodrobe,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -61711,7 +61712,17 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
 "cGO" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
 "cGP" = (
@@ -83696,7 +83707,7 @@
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = -32
 	},
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/plating,
 /area/crew_quarters/abandoned_gambling_den)
 "dBS" = (

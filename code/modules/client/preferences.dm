@@ -203,6 +203,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		"ipc_screen" = "Sunburst",
 		"ipc_antenna" = "None",
 		"flavor_text" = "",
+		"silicon_flavor_text" = "",
 		"ooc_notes" = "",
 		"meat_type" = "Mammalian",
 		"body_model" = MALE,
@@ -252,6 +253,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/vore_flags = 0
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
+	var/toggleeatingnoise = TRUE
+	var/toggledigestionnoise = TRUE
+	var/hound_sleeper = TRUE
+	var/cit_toggles = TOGGLES_CITADEL
 
 	//backgrounds
 	var/mutable_appearance/character_background
@@ -261,6 +266,19 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/show_mismatched_markings = FALSE //determines whether or not the markings lists should show markings that don't match the currently selected species. Intentionally left unsaved.
 
 	var/no_tetris_storage = FALSE
+
+	///loadout stuff
+	var/gear_points = 10
+	var/list/gear_categories
+	var/list/chosen_gear = list()
+	var/gear_tab
+
+	var/screenshake = 100
+	var/damagescreenshake = 2
+	var/arousable = TRUE
+	var/widescreenpref = TRUE
+	var/autostand = TRUE
+	var/auto_ooc = FALSE
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -432,6 +450,15 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
 			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
+			dat += "<h2>Silicon Flavor Text</h2>"
+			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicon Examine Text</b></a><br>"
+			if(length(features["silicon_flavor_text"]) <= 40)
+				if(!length(features["silicon_flavor_text"]))
+					dat += "\[...\]"
+				else
+					dat += "[features["silicon_flavor_text"]]"
+			else
+				dat += "[TextPreview(features["silicon_flavor_text"])]...<BR>"
 			/*Skyrat edit - comments out Citadel's OOC notes in favor for our owns
 			dat += "<h2>OOC notes</h2>"
 			dat += "<a href='?_src_=prefs;preference=ooc_notes;task=input'><b>Set OOC notes</b></a><br>"
@@ -1024,7 +1051,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 			dat += "<b>Ghosts of Others:</b> <a href='?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a><br>"
 			dat += "<br>"
+
 			dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a><br>"
+
+			dat += "<b>Income Updates:</b> <a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Allowed" : "Muted"]</a><br>"
+			dat += "<br>"
+
 			dat += "<b>Parallax (Fancy Space):</b> <a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
 			switch (parallax)
 				if (PARALLAX_LOW)
@@ -1163,9 +1195,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Aphrodisiacs:</b> <a href='?_src_=prefs;preference=aphro'>[(cit_toggles & NO_APHRO) ? "Disallowed" : "Allowed"]</a><br>"
 			dat += "<b>Ass Slapping:</b> <a href='?_src_=prefs;preference=ass_slap'>[(cit_toggles & NO_ASS_SLAP) ? "Disallowed" : "Allowed"]</a><br>"
 			//SKYRAT EDIT
-			dat += 	"Extreme ERP verbs : <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
+			dat += 	"<b>Extreme ERP verbs :</b> <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
 			if(extremepref != "No")
-				dat += "Harmful ERP verbs : <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
+				dat += "<b><span style='color: #e60000;'Harmful ERP verbs :</b> <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
 			//END OF SKYRAT EDIT
 			dat += "</tr></table>"
 			dat += "<br>"
@@ -1873,6 +1905,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", features["flavor_text"], MAX_FLAVOR_LEN, TRUE)
 					if(!isnull(msg))
 						features["flavor_text"] = html_decode(msg)
+				
+				if("silicon_flavor_text")
+					var/msg = stripped_multiline_input(usr, "Set the silicon flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Silicon Flavor Text", features["silicon_flavor_text"], MAX_FLAVOR_LEN, TRUE)
+					if(!isnull(msg))
+						features["silicon_flavor_text"] = html_decode(msg)
 
 				//SKYRAT CHANGES
 				if("skyrat_ooc_notes")
@@ -2869,6 +2906,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("ghost_pda")
 					chat_toggles ^= CHAT_GHOSTPDA
 
+				if("income_pings")
+					chat_toggles ^= CHAT_BANKCARD
+
 				if("pull_requests")
 					chat_toggles ^= CHAT_PULLR
 
@@ -2961,8 +3001,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						current_tab = text2num(href_list["tab"])
 	if(href_list["preference"] == "gear")
 		if(href_list["clear_loadout"])
-			LAZYCLEARLIST(chosen_gear)
-			gear_points = initial(gear_points)
+			chosen_gear = list()
+			gear_points = CONFIG_GET(number/initial_gear_points)
 			save_preferences()
 		if(href_list["select_category"])
 			for(var/i in GLOB.loadout_items)
@@ -2974,7 +3014,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				return
 			var/toggle = text2num(href_list["toggle_gear"])
 			if(!toggle && (G.type in chosen_gear))//toggling off and the item effectively is in chosen gear)
-				LAZYREMOVE(chosen_gear, G.type)
+				chosen_gear -= G.type
 				gear_points += initial(G.cost)
 			else if(toggle && (!(is_type_in_ref_list(G, chosen_gear))))
 				if(!is_loadout_slot_available(G.category))
@@ -2984,7 +3024,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					to_chat(user, "<span class='danger'>This is an item intended for donator use only. You are not authorized to use this item.</span>")
 					return
 				if(gear_points >= initial(G.cost))
-					LAZYADD(chosen_gear, G.type)
+					chosen_gear += G.type
 					gear_points -= initial(G.cost)
 
 	ShowChoices(user)

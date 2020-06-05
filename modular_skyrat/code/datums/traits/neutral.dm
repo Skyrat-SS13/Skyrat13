@@ -1,7 +1,7 @@
 //synth thing (doing it as an actual species thing would be wayyy harder to do).
 /datum/quirk/synthetic
 	name = "Synthetic"
-	desc = "You're not actually the species you seem to be. You're a synth! You will still have your old species traits, however you will not be infected by viruses, get hungry nor process any reagents aside from synthflesh."
+	desc = "You're not actually the species you seem to be. You're a synth! You generally function in the same manner as IPCs, but with a organic skin hiding your true self."
 	value = 0
 	mob_trait = TRAIT_SYNTH
 	languagewhitelist =list("Encoded Audio Language")

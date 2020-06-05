@@ -149,4 +149,4 @@
 
 /datum/reagent/consumable/maint_energy/raid/blood_red/on_mob_delete(mob/living/L)
 	. = ..()
-	to_chat(L, "<span class='danger'>You feel weak again.../span>")
+	to_chat(L, "<span class='danger'>You feel weak again...</span>")

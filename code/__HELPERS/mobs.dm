@@ -222,6 +222,7 @@
 		"ipc_screen"		= snowflake_ipc_antenna_list ? pick(snowflake_ipc_antenna_list) : "None",
 		"ipc_antenna"		= "None",
 		"flavor_text"		= "",
+		"silicon_flavor_text"		= "",
 		"meat_type"			= "Mammalian",
 		"body_model"		= body_model,
 		"ipc_chassis" 		= "Morpheus Cyberkinetics(Greyscale)", //SKYRAT CHANGE
