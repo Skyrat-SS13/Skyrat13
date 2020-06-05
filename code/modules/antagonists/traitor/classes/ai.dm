@@ -3,6 +3,9 @@
 	employer = "ERROR ER0RR $R0RRO$"
 	threat = 20
 
+/datum/traitor_class/ai/New() // Skyrat change
+    employer = Gibberish(employer, chance = 10)
+
 /datum/traitor_class/ai/forge_objectives(datum/antagonist/traitor/T)
 	var/special_pick = rand(1,7) //Skyrat change, 5,6 and 7
 	switch(special_pick)
