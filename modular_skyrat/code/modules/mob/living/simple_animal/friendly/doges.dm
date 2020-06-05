@@ -7,7 +7,7 @@
 	desc = "Cheems, the most important cargo worker."
 	icon = 'modular_skyrat/icons/mob/doges.dmi'
 	icon_state = "cheems"
-	icon_dead = "cheemsdead"
+	icon_dead = "cheems_dead"
 	icon_living = "cheems"
 	speak = list("Burbger...", "McDomnald...", "Whompper...", "Bimg Mac...", "Whemre are the miners?", "Revolutiom!",\
 				"Pizza cramte.", "Collemctable hats...", "Research mining tech stupid sciemtists!", "Where's my rimpley?",\
@@ -36,7 +36,7 @@
 				if(stat == DEAD)
 					visible_message("<b>\The [src]</b> stands right back up after nibbling the [I]!")
 					junk.bitecount++
-				else 
+				else
 					visible_message("<b>\The [src]</b> swallows the [I] whole!")
 					qdel(junk)
 				playsound(src, 'sound/weapons/bite.ogg', 75)
