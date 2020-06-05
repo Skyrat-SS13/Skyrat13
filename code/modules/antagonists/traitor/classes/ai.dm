@@ -1,6 +1,6 @@
 /datum/traitor_class/ai // this one is special, so has no weight
 	name = "Malfunctioning AI"
-	employer = "ERROR ER0RR $R0RRO$"
+	employer = "ERROR ER0RR $R0RRO$" //Skyrat change
 	threat = 20
 
 /datum/traitor_class/ai/New() // Skyrat change

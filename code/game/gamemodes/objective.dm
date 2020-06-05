@@ -343,7 +343,7 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/block
 	name = "no organics on shuttle"
-	explanation_text = "Do not allow any organic life forms aboard the shuttle." //Skyrat Change
+	explanation_text = "Do not allow any organic lifeforms aboard the shuttle." //Skyrat Change
 	martyr_compatible = 1
 
 /datum/objective/block/check_completion()
