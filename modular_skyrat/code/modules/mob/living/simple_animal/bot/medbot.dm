@@ -1,20 +1,30 @@
 // Medibots are afraid of apples
-/mob/living/simple_animal/bot
+/mob/living/simple_animal/bot/medbot
 	var/spookedcooldown = 0
-	var/spookedcooldowntime = 50
+	var/spookedcooldowntime = 200
 	var/spookedlocationset = FALSE
 	var/spooked = FALSE
 	var/screamcooldowntime = 10
 	var/screamcooldown = 0
+	var/my_code_is_bad_cd = 0
+	var/my_code_is_bad_cd_time = 1 MINUTE
 
 /mob/living/simple_animal/bot/medbot/handle_automated_action()
 	if(!..())
 		return
 	
-	for(var/atom/A in view(12, src))
-		if(findtext(lowertext(A.name), "apple"))
-			mode = BOT_PATROL
-			return bot_patrol()
+	//i literally have no fucking idea how i could evade using the view proc in this situation
+	//i have to use a long cooldown here because there is no other choice
+	//i also limited the range which might help maybe
+	//why the fuck is the view proc so bad
+	//why is byond
+	if(world.time >= my_code_is_bad_cd)
+		my_code_is_bad_cd = world.time + my_code_is_bad_cd_time
+		for(var/atom/A in view(4, src))
+			if(findtext(lowertext(A.name), "apple"))
+				mode = BOT_PATROL
+				return bot_patrol()
+	//
 
 	if(mode == BOT_HEALING)
 		return
@@ -87,9 +97,10 @@
 	if(client)		// In use by player, don't actually move.
 		return
 
-	for(var/atom/A in view(12, src))
+	for(var/atom/A in view(4, src))
 		if(findtext(lowertext(A.name), "apple"))
 			spooked = TRUE
+	
 	if(spooked)
 		var/message = "An apple a day keeps me away."
 		if(world.time > spookedcooldown || !spookedcooldown)
@@ -135,7 +146,7 @@
 			//Ignore the beacon if were are located on it.
 			if(dist>1 && dist<get_dist(src,nearest_beacon_loc))
 				var/spooky = FALSE
-				for(var/atom/A in view(14, NB))
+				for(var/atom/A in view(4, NB))
 					if(findtext(lowertext(A.name), "apple"))
 						spooky = TRUE 
 				if(spooky)
