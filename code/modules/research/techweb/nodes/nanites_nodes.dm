@@ -81,4 +81,4 @@
 	description = "Advanced behaviours that allow nanites to exploit certain circumstances to replicate faster."
 	prereq_ids = list("nanite_smart")
 	design_ids = list("kickstart_nanites","factory_nanites","tinker_nanites","offline_nanites","synergy_nanites")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000) //Skyrats change end
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 12500) //Skyrats change end
