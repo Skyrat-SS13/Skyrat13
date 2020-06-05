@@ -4,7 +4,7 @@
 	threat = 20
 
 /datum/traitor_class/ai/forge_objectives(datum/antagonist/traitor/T)
-	var/special_pick = rand(1,7)
+	var/special_pick = rand(1,7) //Skyrat change, 5,6 and 7
 	switch(special_pick)
 		if(1)
 			var/datum/objective/block/block_objective = new
@@ -49,7 +49,7 @@
 			freeform.owner = T.owner
 			T.add_objective(freeform)
 
-	var/datum/objective/survive/exist/exist_objective = new // Skyrat change. I don't know, Am i retarded?
+	var/datum/objective/survive/exist/exist_objective = new // Skyrat change. I don't know how they work, okay? Am i retarded?
 	exist_objective.owner = T.owner
 	T.add_objective(exist_objective)
 
