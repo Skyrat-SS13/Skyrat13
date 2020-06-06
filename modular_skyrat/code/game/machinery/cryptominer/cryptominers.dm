@@ -6,8 +6,9 @@
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
-	active_power_usage = 200
+	active_power_usage = 1000
 	circuit = /obj/item/circuitboard/machine/cryptominer
+	var/datum/looping_sound/cryptominer/soundloop
 	var/mining = FALSE
 	var/miningtime = 3000
 	var/miningpoints = 50
@@ -27,6 +28,7 @@
 /obj/machinery/cryptominer/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj,src)
+	soundloop = new(list(src), FALSE)
 
 /obj/machinery/cryptominer/Destroy()
 	return ..()
@@ -51,10 +53,11 @@
 			playsound(loc, 'sound/machines/beep.ogg', 50, 1, -1)
 		mining = FALSE
 		update_icon()
+		soundloop.stop()
+		use_power = IDLE_POWER_USE
 		return
 	if(env.temperature < maxtemp && env.temperature > midtemp)
 		if(mining)
-			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if(D)
 				D.adjust_money((miningpoints / 5))
@@ -62,7 +65,6 @@
 			air_update_turf()
 	if(env.temperature < midtemp && env.temperature > mintemp)
 		if(mining)
-			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if(D)
 				D.adjust_money((miningpoints))
@@ -70,7 +72,6 @@
 			air_update_turf()
 	if(env.temperature <= mintemp)
 		if(mining)
-			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if(D)
 				D.adjust_money((miningpoints * 3))
@@ -92,10 +93,14 @@
 		addtimer(CALLBACK(src, .proc/stopmining, user),miningtime)
 		mining = TRUE
 		update_icon()
+		soundloop.start() //haha money printer go brrrrr
+		use_power = ACTIVE_POWER_USE
 
 /obj/machinery/cryptominer/proc/stopmining(mob/living/user)
 	mining = FALSE
 	update_icon()
+	soundloop.stop()
+	use_power = IDLE_POWER_USE
 
 /obj/machinery/cryptominer/syndie
 	name = "syndicate cryptocurrency miner"
