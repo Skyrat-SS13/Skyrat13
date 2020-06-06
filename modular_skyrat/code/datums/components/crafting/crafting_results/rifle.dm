@@ -25,17 +25,12 @@
 		var/obj/item/melee/transforming/energy/W = A
 		if(W.active)
 			sawoff(user)
-	if(istype)
 
 /obj/item/gun/ballistic/shotgun/improvised_rifle/sawoff(mob/user)
 	. = ..()
-	if(!sawn_off && sawntype)
+	if(!sawn_off && sawn_type)
 		if(.)
-			if(slung)
-				new /obj/item/stack/cable_coil(get_turf(src), 10)
-				slung = 0
-				update_icon()
-			new sawntype(get_turf(user))
+			new sawn_type(get_turf(user))
 			return qdel(src)
 	else
 		to_chat(user, "<span class='warning'>\The [src] can't be sawn off!")
@@ -98,10 +93,6 @@
 	. = ..()
 	if(!sawn_off && sawn_type)
 		if(.)
-			if(slung)
-				new /obj/item/stack/cable_coil(get_turf(src), 10)
-				slung = 0
-				update_icon()
 			new sawn_type(get_turf(user))
 			return qdel(src)
 	else

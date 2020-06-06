@@ -4,6 +4,6 @@
 	damage = 35
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
 
-/obj/item/projectile/bullet/22mag/Initialize()
+/obj/item/projectile/bullet/mag22/Initialize()
 	. = ..()
-	do_sparks(rand(1, 4), GLOB.all_dirs, src)
+	do_sparks(rand(1, 4), GLOB.alldirs, src)

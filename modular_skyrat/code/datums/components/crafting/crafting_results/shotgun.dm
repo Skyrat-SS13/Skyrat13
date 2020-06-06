@@ -15,7 +15,7 @@
 	unique_reskin = null
 	projectile_damage_multiplier = 1
 	var/slung = FALSE
-	var/obj/item/gun/sawntype = /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn
+	var/obj/item/gun/sawn_type = /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn
 	var/explodes_on_dual = TRUE
 
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised/attackby(obj/item/A, mob/user, params)
@@ -54,7 +54,7 @@
 			new /obj/item/stack/cable_coil(get_turf(src), 10)
 			slung = 0
 			update_icon()
-		new /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn(get_turf(user))
+		new sawn_type(get_turf(user))
 		return qdel(src)
 
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn
@@ -72,7 +72,7 @@
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn/Initialize()
 	. = ..()
 	inaccuracy_modifier *= 2
-	uodate_icon()
+	update_icon()
 
 //pocket shotgun
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn/pocket

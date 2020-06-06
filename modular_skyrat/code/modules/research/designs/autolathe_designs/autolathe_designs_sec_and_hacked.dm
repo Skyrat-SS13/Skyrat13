@@ -22,17 +22,17 @@
 	build_path = /obj/item/ammo_box/magazine/usp
 	category = list("initial", "Security")
 
-/datum/design/22mag
+/datum/design/mag22
 	name = ".22 Magnum Cartridge"
-	id = "22mag_casing"
+	id = "mag22_casing"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 1000)
 	build_path = /obj/item/ammo_casing/mag22
 	category = list("hacked", "Security")
 
-/datum/design/22mag_box
+/datum/design/mag22_box
 	name = ".22 Magnum Box"
-	id = "22mag_box"
+	id = "mag22_box"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 10000)
 	build_path = /obj/item/ammo_box/mag22
