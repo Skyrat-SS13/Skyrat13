@@ -261,7 +261,7 @@
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
+/* moved to modular skyrat to use a new bolt action improv rifle
 /datum/crafting_recipe/irifle
 	name = "Improvised Rifle (7.62mm)"
 	result = /obj/item/gun/ballistic/shotgun/boltaction/improvised
@@ -275,7 +275,7 @@
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
+*/
 //////////////////
 ///AMMO CRAFTING//
 //////////////////

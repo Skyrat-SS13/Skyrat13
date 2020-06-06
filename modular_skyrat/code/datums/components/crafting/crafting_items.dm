@@ -125,6 +125,13 @@
 	max_occupants = 0
 	max_drivers = 0
 
+//Receiver (not actually VG, just necessary because Kat removed them and it broke many recipes)
+/obj/item/weaponcrafting/improvised_parts/generic_receiver
+	name = "modular receiver"	
+	desc = "A prototype modular receiver and trigger assembly for a firearm."
+	icon = 'icons/obj/improvised.dmi'
+	icon_state = "receiver"
+
 /* Secured capacitor and items using it are too gamer for my tastes.
 *  And would require a lof of code adaptation. Thus, not yet.
 */

@@ -27,9 +27,9 @@
 	name = "Switchblade"
 	result = /obj/item/switchblade/crafted
 	reqs = list(/obj/item/weaponcrafting/stock = 1,
-				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/generic_receiver = 1,
 				/obj/item/metal_blade = 1,
-				/obj/item/stack/cable_coil = 2)
+				/obj/item/stack/cable_coil = 5)
 	tools = list(TOOL_WELDER)
 	time = 45
 	category = CAT_WEAPONRY
@@ -38,8 +38,8 @@
 /datum/crafting_recipe/balisong
 	name = "Butterfly Knife"
 	result = /obj/item/melee/transforming/butterfly
-	reqs = list(/obj/item/metal_gun_stock = 1,
-				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
+	reqs = list(/obj/item/metal_gun_stock = 2,
+				/obj/item/weaponcrafting/improvised_parts/generic_receiver = 1,
 				/obj/item/metal_blade = 1,
 				/obj/item/stack/cable_coil = 5)
 	tools = list(TOOL_WELDER)
@@ -91,23 +91,27 @@
 /datum/crafting_recipe/pipepistol
 	name = "Pipe Pistol (10mm)"
 	result = /obj/item/gun/ballistic/automatic/pistol/makeshift
-	reqs = list(/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
+	reqs = list(/obj/item/weaponcrafting/improvised_parts/generic_receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1,
+				/obj/item/gun_barrel = 1,
 				/obj/item/pipe = 2,
-				/obj/item/stack/sheet/mineral/wood = 7,
+				/obj/item/stack/sheet/mineral/wood = 8,
 				/obj/item/stack/packageWrap = 5)
 	tools = list(TOOL_WELDER)
-	time = 400
+	time = 300
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/crossbow
 	name = "Makeshift Crossbow"
 	result = /obj/item/gun/ballistic/crossbow
-	reqs = list(/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
+	reqs = list(/obj/item/weaponcrafting/improvised_parts/generic_receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1,
+				/obj/item/weaponcrafting/improvised_parts/wooden_body = 1,
 				/obj/item/pipe = 1,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/stack/packageWrap = 5,
-				/obj/item/stack/cable_coil = 15,
+				/obj/item/stack/cable_coil = 5,
 				/obj/item/stack/rods = 5)
 	tools = list(TOOL_WELDER, TOOL_WRENCH)
 	time = 400
@@ -120,9 +124,61 @@
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/stack/cable_coil = 5,
 				/obj/item/storage/box = 1,
-				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1)
+				/obj/item/weaponcrafting/improvised_parts/generic_receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 60
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/irifle
+	name = "Improvised lever action rifle (7.62mm)"
+	result = /obj/item/gun/ballistic/shotgun/improvised_rifle
+	reqs = list(/obj/item/weaponcrafting/improvised_parts/barrel_rifle = 1,
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1,
+				/obj/item/weaponcrafting/improvised_parts/wooden_body = 1,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/stack/packageWrap = 5)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/irifle
+	name = "Improvised over under rifle (7.62mm)"
+	result = /obj/item/gun/ballistic/revolver/doublebarrel/improvised_rifle_ou
+	reqs = list(/obj/item/weaponcrafting/improvised_parts/barrel_rifle = 2,
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 2,
+				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1,
+				/obj/item/weaponcrafting/improvised_parts/wooden_body = 1,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/stack/cable_coil = 5,
+				/obj/item/stack/packageWrap = 5)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/irifle
+	name = "Improvised zip rifle (7.62mm)"
+	result = /obj/item/gun/ballistic/shotgun/improvised_rifle
+	reqs = list(/obj/item/pipe = 1,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/weaponcrafting/improvised_parts/generic_receiver = 1,
+				/obj/item/stack/cable_coil = 5,
+				/obj/item/stack/packageWrap = 5)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/pocket_shotgun
+	name = "Pocket shotgun"
+	result = /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn/pocket
+	reqs = list(/obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn = 1)
+	tools = list(TOOL_SAW)
+	time = 50
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -132,7 +188,8 @@
 	reqs = list(/obj/item/stack/sheet/bone = 3,
 				/obj/item/stack/ore/diamond = 5,
 				/obj/item/stack/sheet/sinew = 3,
-				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/generic_receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1,
 				/obj/item/assembly/igniter = 1,
 				/obj/item/stock_parts/cell/high/plus/argent = 1,
 				/obj/item/stock_parts/capacitor = 4,
@@ -143,13 +200,13 @@
 /datum/crafting_recipe/makeshiftlasrifle
 	name = "Makeshift laser rifle"
 	result = /obj/item/gun/energy/laser/makeshiftlasrifle
-	reqs = list(/obj/item/stack/cable_coil = 30,\
-				/obj/item/weaponcrafting/stock = 1,\
-				/obj/item/pipe = 1,\
-				/obj/item/stack/sheet/mineral/diamond = 3,\
-				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,\
-				/obj/item/stock_parts/micro_laser = 1,\
-				/obj/item/stock_parts/capacitor = 2,\
+	reqs = list(/obj/item/stack/cable_coil = 30,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/gun_barrel = 1,
+				/obj/item/stack/sheet/mineral/diamond = 3,
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
+				/obj/item/stock_parts/micro_laser = 1,
+				/obj/item/stock_parts/capacitor = 2,
 				/obj/item/assembly/igniter = 1,
 				/obj/item/stock_parts/cell = 1)
 	parts = list(/obj/item/stock_parts/cell = 1)
@@ -163,12 +220,14 @@
 	result = /obj/item/gun/energy/pumpaction/musket
 	reqs = list(/obj/item/stack/cable_coil = 10,
 				/obj/item/weaponcrafting/stock = 1,
-				/obj/item/pipe = 1,
+				/obj/item/gun_barrel = 1,
 				/obj/item/stack/sheet/mineral/uranium = 1,
 				/obj/item/stack/sheet/plasmaglass = 1,
 				/obj/item/stock_parts/cell/high = 1,
 				/obj/item/assembly/igniter = 1,
 				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1,
+				/obj/item/weaponcrafting/improvised_parts/wooden_body = 1,
 				/obj/item/stock_parts/micro_laser/high = 1,
 				/obj/item/stock_parts/capacitor/adv = 1)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
@@ -210,9 +269,8 @@
 	name = "Stun Baton Staff"
 	result = /obj/item/melee/baton/staff
 	reqs = list(/obj/item/melee/baton = 2,
-				/obj/item/stack/sheet/metal = 2,
-				/obj/item/stack/cable_coil = 5,
-				/obj/item/stock_parts/cell = 1)
+				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1,
+				/obj/item/stack/cable_coil = 5)
 	parts = list(/obj/item/stock_parts/cell)
 	tools = list(TOOL_WELDER)
 	time = 75
@@ -271,7 +329,7 @@
 ///////////////////////
 ///VG WEAPON CRAFTING//
 ///////////////////////
-/datum/crafting_recipe/metalstock
+/datum/crafting_recipe/metal_stock
 	name = "Gun stock"
 	result = /obj/item/metal_gun_stock
 	reqs = list(/obj/item/rack_parts = 1)
@@ -288,7 +346,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/cylinderassembly
+/datum/crafting_recipe/cylinder_assembly
 	name = "Cylinder assembly"
 	result = /obj/item/cylinder_assembly
 	reqs = list(/obj/item/aluminum_cylinder = 2)
@@ -297,7 +355,7 @@
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/barrel
-	name = "Makeshift gun barrel"
+	name = "Generic makeshift gun barrel"
 	result = /obj/item/gun_barrel
 	reqs = list(/obj/item/cylinder_assembly = 1)
 	tools = list(TOOL_WELDER)
@@ -323,7 +381,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/largeblade
+/datum/crafting_recipe/blade_large
 	name = "Large metal blade"
 	result = /obj/item/large_metal_blade
 	reqs = list(/obj/item/kitchen/knife/butcher = 1)
@@ -335,8 +393,8 @@
 /datum/crafting_recipe/sword
 	name = "Makeshift sword"
 	result = /obj/item/melee/sword
-	reqs = list(/obj/item/stack/cable_coil = 5,\
-				/obj/item/stack/packageWrap = 5,\
+	reqs = list(/obj/item/stack/cable_coil = 5,
+				/obj/item/stack/packageWrap = 5,
 				/obj/item/metal_blade = 2)
 	tools = list(TOOL_WELDER)
 	time = 20
@@ -365,8 +423,8 @@
 /datum/crafting_recipe/assemblygeneral
 	name = "General gun assembly"
 	result = /obj/item/gun_assembly/stock_reservoir_assembly
-	reqs = list(/obj/item/metal_gun_stock = 1,\
-				/obj/item/fuel_reservoir = 1)
+	reqs = list(/obj/item/metal_gun_stock = 1,
+				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1)
 	tools = list(TOOL_WRENCH, TOOL_WELDER)
 	time = 150
 	category = CAT_WEAPONRY
@@ -375,22 +433,42 @@
 /datum/crafting_recipe/assemblygeneralbarreled
 	name = "General barreled gun assembly"
 	result = /obj/item/gun_assembly/stock_reservoir_barrel_assembly
-	reqs = list(/obj/item/gun_assembly/stock_reservoir_assembly = 1,\
+	reqs = list(/obj/item/gun_assembly/stock_reservoir_assembly = 1,
 				/obj/item/gun_barrel = 1)
 	tools = list(TOOL_WRENCH)
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/blunderbuss_assembly
+	name = "Blunderbuss assembly"
+	result = /obj/item/gun_assembly/blunderbuss_assembly
+	reqs = list(/obj/item/gun_assembly/stock_reservoir_barrel_assembly = 1,
+				/obj/item/fuel_reservoir = 1)
+	tools = list(TOOL_WRENCH, TOOL_WELDER)
+	time = 150
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/blunderbuss
+	name = "Blunderbuss"
+	result = /obj/item/blunderbuss
+	reqs = list(/obj/item/gun_assembly/blunderbuss_assembly = 1,
+				/obj/item/assembly/igniter = 1)
+	tools = list(TOOL_WRENCH, TOOL_SCREWDRIVER)
+	time = 50
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/railgun_assembly
 	name = "Rail gun assembly"
 	result = /obj/item/gun_assembly/railgun_assembly
-	reqs = list(/obj/item/metal_gun_stock = 1,\
-				/obj/item/rail_assembly = 1,\
-				/obj/item/wallframe/button = 1,\
-				/obj/item/gun_barrel = 1,\
-				/obj/item/stock_parts/capacitor = 4,\
-				/obj/item/assembly/igniter = 1)
+	reqs = list(/obj/item/gun_assembly/stock_reservoir_barrel_assembly = 1,
+				/obj/item/rail_assembly = 1,
+				/obj/item/stack/rods = 1,
+				/obj/item/stock_parts/capacitor = 4,
+				/obj/item/assembly/igniter = 1,
+				/obj/item/weaponcrafting/improvised_parts/trigger_assembly = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
 	time = 200
 	category = CAT_WEAPONRY
@@ -406,20 +484,10 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/blunderbuss
-	name = "Blunderbuss"
-	result = /obj/item/blunderbuss
-	reqs = list(/obj/item/gun_assembly/stock_reservoir_barrel_assembly = 1,\
-				/obj/item/assembly/igniter = 1)
-	tools = list(TOOL_WRENCH, TOOL_SCREWDRIVER)
-	time = 50
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
 /datum/crafting_recipe/wiredwrench
 	name = "Wired wrench"
 	result = /obj/item/wrench_wired
-	reqs = list(/obj/item/stack/cable_coil = 10,\
+	reqs = list(/obj/item/stack/cable_coil = 10,
 				/obj/item/wrench = 1)
 	time = 30
 	category = CAT_WEAPONRY

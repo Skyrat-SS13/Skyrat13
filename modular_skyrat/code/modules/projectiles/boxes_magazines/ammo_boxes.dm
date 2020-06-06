@@ -6,8 +6,15 @@
 	max_ammo = 30
 
 /obj/item/ammo_box/microfusion
-	name = "microfusion cell box"
+	name = "ammo box (microfusion)"
 	icon_state = "40mm" //placeholder
 	ammo_type = /obj/item/ammo_casing/microfusion
 	caliber = "microfusion"
+	max_ammo = 10
+
+/obj/item/ammo_box/mag22
+	name = "ammo box (.22 magnum)"
+	icon_state = "10mmbox" //placeholder
+	ammo_type = /obj/item/ammo_casing/mag22
+	caliber = "mag22"
 	max_ammo = 10

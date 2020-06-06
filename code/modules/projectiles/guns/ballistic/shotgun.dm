@@ -11,12 +11,19 @@
 	casing_ejector = FALSE
 	var/recentpump = 0 // to prevent spammage
 	weapon_weight = WEAPON_HEAVY
+	//skyrat edit
+	var/one_shot = FALSE
+	//
 
 /obj/item/gun/ballistic/shotgun/attackby(obj/item/A, mob/user, params)
 	. = ..()
 	if(.)
 		return
-	var/num_loaded = magazine.attackby(A, user, params, 1)
+	//skyrat edit
+	var/num_loaded = 0
+	if(!one_shot || (one_shot && !chambered))
+		num_loaded =  magazine.attackby(A, user, params, 1)
+	//
 	if(num_loaded)
 		to_chat(user, "<span class='notice'>You load [num_loaded] shell\s into \the [src]!</span>")
 		playsound(user, 'sound/weapons/shotguninsert.ogg', 60, 1)
@@ -122,7 +129,7 @@
 	can_bayonet = TRUE
 	knife_x_offset = 27
 	knife_y_offset = 13
-
+/*
 /obj/item/gun/ballistic/shotgun/boltaction/improvised
 	name = "Makeshift 7.62mm Rifle"
 	icon_state = "ishotgun"
@@ -131,7 +138,7 @@
 	desc = "A bolt-action breechloaded rifle that takes 7.62mm bullets."
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/improvised
 	can_bayonet = FALSE
-
+*/
 /obj/item/gun/ballistic/shotgun/boltaction/pump(mob/M)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
 	if(bolt_open)

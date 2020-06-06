@@ -35,6 +35,9 @@
 	if(isgun(fired_from))
 		var/obj/item/gun/G = fired_from
 		BB.damage *= G.projectile_damage_multiplier
+		//skyrat edit
+		BB.armour_penetration *= G.projectile_ap_multiplier
+		//
 
 	if(reagents && BB.reagents)
 		reagents.trans_to(BB, reagents.total_volume) //For chemical darts/bullets

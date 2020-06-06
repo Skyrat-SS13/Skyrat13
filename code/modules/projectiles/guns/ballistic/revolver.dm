@@ -316,7 +316,7 @@
 /////////////////////////////
 //   IMPROVISED SHOTGUN    //
 /////////////////////////////
-
+/* moved to modular_skyrat so it can be balanced sensibly.
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised
 	name = "improvised shotgun"
 	desc = "Essentially a tube that aims shotgun shells."
@@ -364,7 +364,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	sawn_off = TRUE
 	slot_flags = ITEM_SLOT_BELT
-
+*/
 
 /obj/item/gun/ballistic/revolver/reverse //Fires directly at its user... unless the user is a clown, of course.
 	clumsy_check = 0

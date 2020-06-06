@@ -18,8 +18,10 @@ k// PARTS //
 ////////////////////////////////
 
 /obj/item/weaponcrafting/improvised_parts
-	name = "Eerie bunch of coloured dots."
-	desc = "You feel the urge to report to Central that the parent type of guncrafting, which should never appear in this reality, has appeared. Whatever that means."
+	//skyrat edit
+	name = "improvised parts parent"
+	desc = "If you're seeing this, the coders are bad."
+	//
 	icon = 'icons/obj/guns/gun_parts.dmi'
 	icon_state = "palette"
 
@@ -38,14 +40,18 @@ k// PARTS //
 // RECEIVERS
 
 /obj/item/weaponcrafting/improvised_parts/rifle_receiver
-	name = "bolt action receiver"
-	desc = "A crudely constructed receiver to create an improvised bolt-action breechloaded rifle."
+	//skyrat edit
+	name = "rifle receiver"
+	desc = "A crudely constructed receiver to create an improvised rifle."
+	//
 	icon_state = "receiver_rifle"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/weaponcrafting/improvised_parts/shotgun_receiver
-	name = "break-action assembly"
-	desc = "An improvised receiver to create a break-action breechloaded shotgun."
+	//skyrat edit
+	name = "shotgun receiver"
+	desc = "An improvised receiver to create an improvised shotgun."
+	//
 	icon_state = "receiver_shotgun"
 	w_class = WEIGHT_CLASS_SMALL
 
