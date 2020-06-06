@@ -330,7 +330,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
 	sawn_desc = "I'm just here for the gasoline."
 	unique_reskin = null
-	projectile_damage_multiplier = 0.8
+	//projectile_damage_multiplier = 0.8     SKYRAT CHANGE - You either make it more difficult to craft or you nerf its damage, not both.
 	var/slung = FALSE
 
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised/attackby(obj/item/A, mob/user, params)
