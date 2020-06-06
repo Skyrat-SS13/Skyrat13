@@ -2,6 +2,7 @@
 //the procs are cause you can't put the comments in the GLOB var define
 GLOBAL_LIST_INIT(admin_verbs_default, world.AVerbsDefault())
 GLOBAL_PROTECT(admin_verbs_default)
+/*Skyrat change - now modular
 /world/proc/AVerbsDefault()
 	return list(
 	/client/proc/deadmin,				/*destroys our own admin datum so we can play as a regular player*/
@@ -12,7 +13,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
 	/client/proc/toggleprayers,
 	/client/proc/toggleadminhelpsound
-	)
+	)*/
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
 /world/proc/AVerbsAdmin()

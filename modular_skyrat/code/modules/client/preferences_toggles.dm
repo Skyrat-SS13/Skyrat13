@@ -23,3 +23,12 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, lewd_verb_sound_consent)()
 
 /datum/verbs/menu/Settings/lewd_verb_sound_consent/Get_checked(client/C)
 	return C.prefs.toggles & LEWD_VERB_SOUNDS
+
+/client/proc/togglegloballoocs()
+	set name = "Show/Hide LOOC Globally"
+	set category = "Preferences"
+	set desc = "Toggles seeing LocalOutOfCharacter chat globally"
+	usr.client.prefs.chat_toggles ^= CHAT_LOOC_ADMIN
+	usr.client.prefs.save_preferences()
+	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & CHAT_LOOC_ADMIN) ? "now see all" : "now only see local"] messages on the LOOC channel.")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Seeing LOOC Globally", "[usr.client.prefs.chat_toggles & CHAT_LOOC_ADMIN ? "Enabled" : "Disabled"]"))

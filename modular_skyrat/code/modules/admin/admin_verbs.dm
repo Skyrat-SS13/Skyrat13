@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/show_tip,
 	/client/proc/smite,
 	/datum/admins/proc/podspawn_atom,
-	/datum/admins/proc/access_news_network,	
+	/datum/admins/proc/access_news_network,
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/cmd_change_command_name,
@@ -195,6 +195,18 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/cmd_admin_man_up_global //CIT CHANGE - ditto
 	))
 
+/world/proc/AVerbsDefault()
+	return list(
+	/client/proc/deadmin,				/*destroys our own admin datum so we can play as a regular player*/
+	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
+	/client/proc/dsay,					/*talk in deadchat using our ckey/fakekey*/
+	/client/proc/deadchat,
+	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
+	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
+	/client/proc/toggleprayers,
+	/client/proc/toggleadminhelpsound,
+	/client/proc/togglegloballoocs //SKYRAT CHANGE - allows admins to toggle seeing LOOC globally
+	)
 
 /client/proc/cmd_loud_admin_say(msg as text)
 	set category = "Special Verbs"
