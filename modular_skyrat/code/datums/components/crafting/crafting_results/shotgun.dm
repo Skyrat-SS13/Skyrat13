@@ -1,8 +1,7 @@
 //improv shotgun
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised
 	name = "improvised shotgun"
-	desc = "Essentially a tube that aims shotgun shells."
-	desc = "A shoddy break-action breechloaded shotgun. Its lacklustre construction will probably result in it hurting people less than a normal shotgun."
+	desc = "A shoddy break-action breechloaded shotgun."
 	icon = 'modular_skyrat/icons/obj/guns/projectile.dmi'
 	icon_state = "ishotgun"
 	item_state = "shotgun"
@@ -16,7 +15,7 @@
 	projectile_damage_multiplier = 1
 	var/slung = FALSE
 	var/obj/item/gun/sawn_type = /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn
-	var/explodes_on_dual = TRUE
+	explodes_on_dual = TRUE
 
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised/attackby(obj/item/A, mob/user, params)
 	..()
@@ -28,19 +27,6 @@
 			update_icon()
 		else
 			to_chat(user, "<span class='warning'>You need at least ten lengths of cable if you want to make a sling!</span>")
-
-/obj/item/gun/ballistic/revolver/doublebarrel/improvised/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread, stam_cost)
-	. = ..()
-	if(iscarbon(user) && explodes_on_dual)
-		var/mob/living/carbon/C = user
-		var/obj/item/gun = C.get_inactive_held_item()
-		if(gun && istype(gun) && (user.a_intent == INTENT_HARM))
-			..()
-			to_chat(user, "<span class='userdanger'>\The [src] blows up in your face!</span>")
-			C.take_bodypart_damage(0,20)
-			C.DefaultCombatKnockdown(40, TRUE)
-			C.drop_all_held_items()
-			return FALSE
 
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised/update_icon()
 	..()

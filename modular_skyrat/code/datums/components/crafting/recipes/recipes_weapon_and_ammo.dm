@@ -329,6 +329,12 @@
 ///////////////////////
 ///VG WEAPON CRAFTING//
 ///////////////////////
+
+//also known as
+
+////////////////
+///BOB WEAPONS//
+////////////////
 /datum/crafting_recipe/metal_stock
 	name = "Gun stock"
 	result = /obj/item/weaponcrafting/improvised_parts/vg/metal_gun_stock

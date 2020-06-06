@@ -82,6 +82,7 @@
 
 	//skyrat edit
 	var/projectile_ap_multiplier = 1
+	var/explodes_on_dual = FALSE
 	//
 
 	var/automatic = 0 //can gun use it, 0 is no, anything above 0 is the delay between clicks in ds
@@ -279,6 +280,17 @@
 	if(user)
 		user.update_inv_hands()
 		SEND_SIGNAL(user, COMSIG_LIVING_GUN_PROCESS_FIRE, target, params, zone_override, bonus_spread, stam_cost)
+	//skyrat edit
+	if(iscarbon(user) && explodes_on_dual)
+		var/mob/living/carbon/C = user
+		var/obj/item/gun = C.get_inactive_held_item()
+		if(gun && istype(gun) && (user.a_intent == INTENT_HARM))
+			to_chat(user, "<span class='userdanger'>\The [src] blows up in your face!</span>")
+			C.take_bodypart_damage(0,20)
+			C.DefaultCombatKnockdown(40, TRUE)
+			C.drop_all_held_items()
+			return FALSE
+	//
 
 /obj/item/gun/proc/do_fire(atom/target, mob/living/user, message = TRUE, params, zone_override = "", bonus_spread = 0, stam_cost = 0)
 	var/sprd = 0

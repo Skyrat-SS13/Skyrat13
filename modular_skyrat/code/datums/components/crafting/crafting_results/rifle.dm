@@ -10,6 +10,7 @@
 	var/obj/item/gun/sawn_type = /obj/item/gun/ballistic/shotgun/improvised_rifle/sawn
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
+	explodes_on_dual = TRUE
 
 /obj/item/ammo_box/magazine/internal/shot/improvised/rifle/lever_rifle
 	name = "7.62mm lever action rifle internal magazine"
@@ -46,6 +47,7 @@
 	sawn_off = TRUE
 	slot_flags = ITEM_SLOT_BELT
 	projectile_damage_multiplier = 0.8 //The sawn off needs to be shittier for ""balance"" because of ""alpha strikes""
+	explodes_on_dual = FALSE
 
 /obj/item/gun/ballistic/shotgun/improvised_rifle/sawn/Initialize()
 	. = ..()
@@ -68,6 +70,7 @@
 	burst_shot_delay = 2
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
+	explodes_on_dual = TRUE
 
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised_rifle_ou/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/toggle_firemode))
@@ -111,7 +114,7 @@
 	sawn_type = /obj/item/gun/ballistic/revolver/doublebarrel/improvised/bad_improvised_rifle/sawn
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
-	explodes_on_dual = FALSE
+	explodes_on_dual = TRUE
 
 /obj/item/ammo_box/magazine/internal/shot/improvised/rifle
 	name = "7.62mm zip rifle internal magazine"
@@ -129,6 +132,7 @@
 	sawn_off = TRUE
 	slot_flags = ITEM_SLOT_BELT
 	projectile_damage_multiplier = 0.8 //The sawn off needs to be shittier for ""balance""
+	explodes_on_dual = FALSE
 
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised/bad_improvised_rifle/sawn/Initialize()
 	. = ..()
