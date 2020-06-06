@@ -11,9 +11,10 @@
 	var/mining = FALSE
 	var/miningtime = 3000
 	var/miningpoints = 50
-	var/mintemp = T0C - 270
-	var/midtemp = T0C -70
-	var/maxtemp = T0C + 130
+	var/mintemp = TCRYO // 225K equals approximately -55F or -48C
+	var/midtemp = T0C // 273K equals 32F or 0C
+	var/maxtemp = 500 // 500K equals approximately 440F or 226C
+	var/heatingPower = 40000
 
 /obj/machinery/cryptominer/update_icon()
 	. = ..()
@@ -26,13 +27,14 @@
 
 /obj/machinery/cryptominer/Initialize()
 	. = ..()
-	START_PROCESSING(SSobj,src)
+	START_PROCESSING(SSmachines,src)
 
 /obj/machinery/cryptominer/Destroy()
+	STOP_PROCESSING(SSmachines,src)
 	return ..()
 
 /obj/machinery/cryptominer/deconstruct()
-	STOP_PROCESSING(SSobj,src)
+	STOP_PROCESSING(SSmachines,src)
 	return ..()
 
 /obj/machinery/cryptominer/attackby(obj/item/W, mob/user, params)
@@ -44,29 +46,41 @@
 		return
 
 /obj/machinery/cryptominer/process()
-	var/turf/L = loc
+	var/turf/L = get_turf(src)
+	if(!L)
+		return
 	var/datum/gas_mixture/env = L.return_air()
-	if(env.temperature > maxtemp)
+	if(!env)
+		return
+	var/heat_capacity = env.heat_capacity()
+	if(!heat_capacity)
+		return
+	var/requiredPower = abs(env.temperature - maxtemp) * heat_capacity
+	requiredPower = min(requiredPower, heatingPower)
+	if(requiredPower < 1)
+		return
+	var/deltaTemperature = requiredPower / heat_capacity
+	if(env.temperature >= maxtemp)
 		if(mining)
 			playsound(loc, 'sound/machines/beep.ogg', 50, 1, -1)
 		mining = FALSE
 		update_icon()
 		return
-	if(env.temperature < maxtemp && env.temperature > midtemp)
+	if(env.temperature <= maxtemp && env.temperature >= midtemp)
 		if(mining)
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if(D)
 				D.adjust_money((miningpoints / 5))
-			env.temperature += 100
+			env.temperature += deltaTemperature
 			air_update_turf()
-	if(env.temperature < midtemp && env.temperature > mintemp)
+	if(env.temperature <= midtemp && env.temperature >= mintemp)
 		if(mining)
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if(D)
 				D.adjust_money((miningpoints))
-			env.temperature += 100
+			env.temperature += deltaTemperature
 			air_update_turf()
 	if(env.temperature <= mintemp)
 		if(mining)
@@ -74,7 +88,7 @@
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if(D)
 				D.adjust_money((miningpoints * 3))
-			env.temperature += 100
+			env.temperature += deltaTemperature
 			air_update_turf()
 
 /obj/machinery/cryptominer/attack_hand(mob/living/user)
