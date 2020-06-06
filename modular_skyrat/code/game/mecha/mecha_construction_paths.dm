@@ -1267,42 +1267,42 @@
 				user.visible_message("[user] secures the [parent]'s rod mounts.", "<span class='notice'>You secure the [parent]'s rod mounts.</span>")
 			else
 				user.visible_message("[user] pries the rod mounts off from [parent].", "<span class='notice'>You pry the rod mounts off from [parent].</span>")
-		if(12)
+		if(11)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs the first pipe leg on [parent].", "<span class='notice'>You install the pipe leg on [parent].</span>")
 			else
 				user.visible_message("[user] unsecures the rod mounts.", "<span class='notice'>You unsecure the rod mounts.</span>")
-		if(13)
+		if(12)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs the second pipe leg on [parent].", "<span class='notice'>You install the second pipe leg on [parent].</span>")
 			else
 				user.visible_message("[user] pries the pipe leg off from [parent].", "<span class='notice'>You pry the pipe leg off from [parent].</span>")
-		if(14)
+		if(13)
 			if(diff==FORWARD)
 				user.visible_message("[user] secures the pipe legs on [parent].", "<span class='notice'>You secure the pipe legs on [parent].</span>")
 			else
 				user.visible_message("[user] pries the pipe leg off from [parent].", "<span class='notice'>You pry the pipe leg off from [parent].</span>")
-		if(15)
+		if(14)
 			if(diff==FORWARD)
 				user.visible_message("[user] wires the [parent] and limbs.", "<span class='notice'>You wire the [parent] and limbs.</span>")
 			else
 				user.visible_message("[user] unsecures the [parent]'s pipe legs.", "<span class='notice'>You unsecure the [parent]'s pipe legs.</span>")
-		if(16)
+		if(15)
 			if(diff==FORWARD)
 				user.visible_message("[user] properly adjusts the [parent]'s wires.", "<span class='notice'>You properly adjust the [parent]'s wires.</span>")
 			else
 				user.visible_message("[user] snips the [parent]'s wirings.", "<span class='notice'>You snip the [parent]'s wiring.</span>")
-		if(17)
+		if(16)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs [I] on [parent].", "<span class='notice'>You install [I] on [parent].</span>")
 			else
 				user.visible_message("[user] deadjusts [parent]'s wiring.", "<span class='notice'>You deadjust [parent]'s wiring.</span>")
-		if(18)
+		if(17)
 			if(diff==FORWARD)
 				user.visible_message("[user] secures [parent]'s power cell.", "<span class='notice'>You secure [parent]'s power cell.</span>")
 			else
 				user.visible_message("[user] uninstalls [parent]'s power cell.", "<span class='notice'>You uninstall [parent]'s power cell.</span>")
-		if(19)
+		if(18)
 			if(diff==FORWARD)
 				user.visible_message("[user] welds [parent] together completely.", "<span class='notice'>You weld [parent] together completely..</span>")
 			else
