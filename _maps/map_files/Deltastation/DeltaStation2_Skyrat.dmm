@@ -22293,6 +22293,11 @@
 /obj/structure/cable/white{
 	icon_state = "2-4"
 	},
+/obj/machinery/door/airlock/security/glass{
+	desc = "The red door means be scared that you're here. Unless you're the person in red.";
+	name = "Prison";
+	req_access_txt = "63"
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "bcM" = (
@@ -22306,6 +22311,11 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/machinery/door/airlock/security/glass{
+	desc = "The red door means be scared that you're here. Unless you're the person in red.";
+	name = "Prison";
+	req_access_txt = "63"
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -24152,6 +24162,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/door/airlock/security{
+	name = "Brig";
+	req_access_txt = "63"
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bhb" = (
@@ -24159,11 +24173,6 @@
 	icon_state = "0-2"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/directions/engineering{
-	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
-	name = "WARNING: BLAST DOORS"
-	},
 /turf/open/floor/plating,
 /area/security/brig)
 "bhc" = (
@@ -24172,6 +24181,10 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/machinery/door/airlock/security{
+	name = "Brig";
+	req_access_txt = "63"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -28079,6 +28092,7 @@
 	pixel_x = 26;
 	pixel_y = 26
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "bpu" = (
@@ -36381,6 +36395,8 @@
 "bFR" = (
 /obj/structure/closet/bombcloset/security,
 /obj/effect/turf_decal/box,
+/obj/item/clothing/suit/bomb_suit/security,
+/obj/item/clothing/head/bomb_hood/security,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "bFS" = (
@@ -40993,13 +41009,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door_timer{
 	id = "brig1";
-	name = "Cell 1";
+	name = "Holding Cell";
 	pixel_x = 32;
 	pixel_y = 32
 	},
 /obj/structure/closet/secure_closet/brig{
 	id = "brig1";
-	name = "Cell 1 Locker"
+	name = "Holding Cell Locker"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -43972,7 +43988,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bVk" = (
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/door_timer{
 	id = "brig2";
 	name = "Cell 2";
@@ -47220,6 +47235,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
+/obj/item/sensor_device,
 /turf/open/floor/plasteel,
 /area/security/warden)
 "cbG" = (
@@ -96983,6 +96999,8 @@
 /obj/item/roller,
 /obj/item/clothing/gloves/color/latex,
 /obj/item/clothing/under/rank/medical/doctor/purple,
+/obj/item/sensor_device,
+/obj/item/sensor_device,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "fow" = (
@@ -101388,9 +101406,9 @@
 /area/security/prison)
 "rkG" = (
 /obj/machinery/door/window/brigdoor/security/cell/westright{
+	dir = 1;
 	id = "brig1";
-	name = "Cell 1";
-	dir = 1
+	name = "Holding Cell"
 	},
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -102568,6 +102586,14 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
+/area/security/prison)
+"uRQ" = (
+/obj/structure/sign/directions/engineering{
+	desc = "A sign that shows there are doors here. There are doors everywhere!";
+	icon_state = "doors";
+	name = "WARNING: BLAST DOORS"
+	},
+/turf/closed/wall/r_wall,
 /area/security/prison)
 "uYS" = (
 /obj/machinery/door/airlock/atmos/glass/critical{
@@ -155401,7 +155427,7 @@ aWd
 rZL
 gwW
 bbf
-aFm
+uRQ
 aFm
 bfQ
 bhd
