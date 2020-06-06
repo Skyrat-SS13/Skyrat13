@@ -1,6 +1,6 @@
 /obj/vehicle/ridden/wheelchair/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/gun_barrel) && !istype(src, /obj/vehicle/ridden/wheelchair/wheelchair_assembly))
+	if(istype(I, /obj/item/weaponcrafting/improvised_parts/vg/gun_barrel) && !istype(src, /obj/vehicle/ridden/wheelchair/wheelchair_assembly))
 		new /obj/vehicle/ridden/wheelchair/wheelchair_assembly(src.loc)
 		to_chat(user, "<span class='notice'>You attach the barrel to the wheelchair.</span>")
 		qdel(I)

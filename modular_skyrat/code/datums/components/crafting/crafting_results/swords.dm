@@ -48,7 +48,7 @@
 			I.forceMove(src)
 			poison = I
 			update_icon()
-	else if(istype(I, /obj/item/large_metal_blade) && !istype(src, /obj/item/melee/sword/executioner))
+	else if(istype(I, /obj/item/weaponcrafting/improvised_parts/vg/large_metal_blade) && !istype(src, /obj/item/melee/sword/executioner))
 		qdel(I)
 		var/obj/item/melee/sword/executioner/E = new (get_turf(user))
 		if(poison)
@@ -57,7 +57,7 @@
 		user.put_in_hands(E)
 		poison = null
 		qdel(src)
-	else if(istype(I, /obj/item/metal_blade) && !istype(src, /obj/item/melee/sword/shortsword))
+	else if(istype(I, /obj/item/weaponcrafting/improvised_parts/vg/metal_blade) && !istype(src, /obj/item/melee/sword/shortsword))
 		qdel(I)
 		var/obj/item/melee/sword/shortsword/S = new (get_turf(user))
 		if(poison)
