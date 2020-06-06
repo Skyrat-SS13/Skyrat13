@@ -76,16 +76,6 @@
 		message = "makes a very loud noise."
 	. = ..()
 
-/datum/emote/flip/run_emote(mob/living/user, params) //no fun allowed :)
-	if(prob(20))
-		user.visible_message("<span class='warning'>[user] tries to flip, but lands flat on their face!</span>", "<span class='danger'>You try to flip, but land flat on your face!</span>")
-		user.Knockdown(20)
-		user.setDir(NORTH)
-		user.apply_damage(rand(1, 8), BRUTE, BODY_ZONE_HEAD)
-		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1, 5), 20)
-	else
-		. = ..()
-
 /datum/emote/living/cough/run_emote(mob/living/user, params)
 	if(!(. = ..()))
 		return
@@ -103,4 +93,3 @@
 	user.nextsoundemote = world.time + 7
 	if (isvox(user))
 		playsound(user, 'modular_skyrat/sound/emotes/voxsneeze.ogg', 50, 1, -1)
-

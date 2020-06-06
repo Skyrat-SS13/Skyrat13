@@ -35143,7 +35143,7 @@
 "bsF" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/gloves/color/fyellow,
-/obj/item/weaponcrafting/receiver,
+/obj/item/weaponcrafting/improvised_parts/shotgun_receiver,
 /obj/item/weaponcrafting/stock,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -35764,7 +35764,7 @@
 "btU" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/costume,
-/obj/item/weaponcrafting/receiver,
+/obj/item/weaponcrafting/improvised_parts/shotgun_receiver,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)

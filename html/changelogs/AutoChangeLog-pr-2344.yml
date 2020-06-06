@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - bugfix: "Fixed missing fax at HoS for Pubby"
-  - bugfix: "Fixed captain's desk for Pubby"
