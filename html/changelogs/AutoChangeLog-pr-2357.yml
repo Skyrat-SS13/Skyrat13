@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - tweak: "makes snow tiles no longer force you to go at slowdown 2, but slowdown 1.5 meaning your 50% faster then before on snow!"

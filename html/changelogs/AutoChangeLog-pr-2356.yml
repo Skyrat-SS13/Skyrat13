@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "The ability for silicons to have flavortexts (borgs,drones,etc)"
-  - server: "CHANGES PREF SAVING (HEAVILY REVIEW THIS)"
