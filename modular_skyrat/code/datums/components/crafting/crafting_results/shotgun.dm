@@ -34,7 +34,7 @@
 	if(iscarbon(user) && explodes_on_dual)
 		var/mob/living/carbon/C = user
 		var/obj/item/gun = C.get_inactive_held_item()
-		if(gun && istype(gun))
+		if(gun && istype(gun) && (user.a_intent == INTENT_HARM))
 			..()
 			to_chat(user, "<span class='userdanger'>\The [src] blows up in your face!</span>")
 			C.take_bodypart_damage(0,20)
