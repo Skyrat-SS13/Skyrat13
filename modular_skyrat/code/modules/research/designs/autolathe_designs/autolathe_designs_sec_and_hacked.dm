@@ -7,6 +7,14 @@
 /////////////
 
 /datum/design/c9mmrubber
+	name = "9mm Rubber Casing"
+	id = "9mm_rubber_casing"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 800)
+	build_path = /obj/item/ammo_casing/c9mm/rubber
+	category = list("initial", "Security")
+
+/datum/design/c9mmrubberbox
 	name = "9mm Rubber Box"
 	id = "9mm_rubber_box"
 	build_type = AUTOLATHE
