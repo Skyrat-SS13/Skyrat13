@@ -213,6 +213,8 @@
 		var/shown_assignment = assignment
 		if(C && C.prefs && C.prefs.alt_titles_preferences[assignment])
 			shown_assignment = C.prefs.alt_titles_preferences[assignment]
+		if((assignment == "Roboticist") && SSevents.holidays && SSevents.holidays[KILLDOZER_DAY])
+			shown_assignment = "Welder"
 		//End of skyrat changes
 
 		var/static/record_id_num = 1001

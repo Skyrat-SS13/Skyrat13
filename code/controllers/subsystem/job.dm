@@ -473,6 +473,8 @@ SUBSYSTEM_DEF(job)
 	var/display_rank = rank
 	if(M.client && M.client.prefs && M.client.prefs.alt_titles_preferences[rank])
 		display_rank = M.client.prefs.alt_titles_preferences[rank]
+	if((rank == "Roboticist") && SSevents.holidays && SSevents.holidays[KILLDOZER_DAY])
+		display_rank = "Welder"
 	//End of skyrat changes
 	to_chat(M, "<b>You are the [display_rank].</b>") //Skyrat change
 	if(job)

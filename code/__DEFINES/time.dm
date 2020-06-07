@@ -22,6 +22,10 @@
 #define CHRISTMAS				"Christmas"
 #define FESTIVE_SEASON			"Festive Season"
 
+//skyrat holidays
+#define KILLDOZER_DAY			"Killdozer Day"
+//
+
 /*
 
 Days of the week to make it easier to reference them.

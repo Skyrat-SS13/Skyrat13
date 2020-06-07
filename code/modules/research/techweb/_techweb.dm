@@ -63,6 +63,14 @@
 	id = "SCIENCE"
 	organization = "Nanotrasen"
 
+//skyrat edit
+/datum/techweb/science/New()
+	. = ..()
+	if(SSevents.holidays && SSevents.holidays[KILLDOZER_DAY])
+		var/datum/techweb_node/illegal_mechs/Node = new()
+		research_node(Node, TRUE)
+//
+
 /datum/techweb/bepis	//Should contain only 1 BEPIS tech selected at random.
 	id = "EXPERIMENTAL"
 	organization = "Nanotrasen R&D"

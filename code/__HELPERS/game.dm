@@ -545,6 +545,8 @@
 	var/displayed_rank = rank
 	if(character.client && character.client.prefs && character.client.prefs.alt_titles_preferences[rank])
 		displayed_rank = character.client.prefs.alt_titles_preferences[rank]
+	if((rank == "Roboticist") && SSevents.holidays && SSevents.holidays[KILLDOZER_DAY])
+		display_rank = "Welder"
 	var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
 	announcer.announce("ARRIVAL", character.real_name, displayed_rank, list()) //make the list empty to make it announce it in common
 	//End of skyrat changes

@@ -263,6 +263,9 @@
 			C.assignment = preference_source.prefs.alt_titles_preferences[J.title]
 		else
 			C.assignment = J.title
+		if(SSevents.holidays && SSevents.holidays[KILLDOZER_DAY])
+			if(istype(J, /datum/job/roboticist))
+				assignment = "Welder"
 		//End of skyrat change
 		C.update_label()
 		for(var/A in SSeconomy.bank_accounts)
