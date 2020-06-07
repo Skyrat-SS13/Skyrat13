@@ -553,3 +553,14 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	SSevents.holidays = list(HALLOWEEN = new /datum/holiday/halloween)
 	generate_selectable_species(FALSE)
 	SSevents.holidays = oldlist
+
+//skyrat holidays
+/datum/holiday/killdozer
+	name = KILLDOZER_DAY
+	begin_day = 1
+	begin_month = JUNE
+	end_day = 2
+
+/datum/holiday/killdozer/getStationPrefix()
+	return pick("Free", "American", "Independent", "Libertarian", "USA", "Marvin", "Welder", "Reasonable", "Furious", "Stateless", "Freedom", "Bulldozer", "Killdozer")
+//
