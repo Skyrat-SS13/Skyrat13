@@ -151,7 +151,7 @@
 		new /obj/item/tank/internals/nitrogen/belt(src)
 		return
 
-	new /obj/item/tank/internals/emergency_oxygen(src)
+	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
@@ -170,7 +170,7 @@
 		new /obj/item/tank/internals/nitrogen/belt(src)
 		return
 
-	new /obj/item/tank/internals/emergency_oxygen(src)
+	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 
 // Security survival box
 /obj/item/storage/box/security/PopulateContents()

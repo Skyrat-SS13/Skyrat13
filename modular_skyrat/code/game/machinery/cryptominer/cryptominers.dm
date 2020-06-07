@@ -9,7 +9,7 @@
 	active_power_usage = 200
 	circuit = /obj/item/circuitboard/machine/cryptominer
 	var/mining = FALSE
-	var/miningtime = 600
+	var/miningtime = 3000
 	var/miningpoints = 50
 	var/mintemp = T0C - 270
 	var/midtemp = T0C -70
@@ -30,6 +30,18 @@
 
 /obj/machinery/cryptominer/Destroy()
 	return ..()
+
+/obj/machinery/cryptominer/deconstruct()
+	STOP_PROCESSING(SSobj,src)
+	return ..()
+
+/obj/machinery/cryptominer/attackby(obj/item/W, mob/user, params)
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
+		return
+	if(default_deconstruction_crowbar(W))
+		return
+	if(default_unfasten_wrench(user, W))
+		return
 
 /obj/machinery/cryptominer/process()
 	var/turf/L = loc
