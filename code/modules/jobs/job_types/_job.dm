@@ -265,7 +265,7 @@
 			C.assignment = J.title
 		if(SSevents.holidays && SSevents.holidays[KILLDOZER_DAY])
 			if(istype(J, /datum/job/roboticist))
-				assignment = "Welder"
+				C.assignment = "Welder"
 		//End of skyrat change
 		C.update_label()
 		for(var/A in SSeconomy.bank_accounts)
