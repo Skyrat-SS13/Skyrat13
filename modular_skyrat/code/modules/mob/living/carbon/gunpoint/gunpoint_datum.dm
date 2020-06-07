@@ -209,7 +209,6 @@
 
 /datum/gunpoint/proc/SourceUpdatedMobility()
 	if(!(CHECK_MOBILITY(source, MOBILITY_STAND)))
-		message_admins("Mobility update")
 		Destroy()
 
 /datum/gunpoint/proc/ConstructChoiceList()
