@@ -127,5 +127,5 @@
 	product_slogans = "~A hive of Flavour!~"
 	product_ads = "Stinging flavour!;Ideal of the worker drone!;Buzz Buzz!;Got Honey?;The Queen approves of this drink!;Sap back that missing energy!;Bee the consumer unit!;1, 2, Buzz, 4, Fuzz, Buzz!" //Skyrat edit - fizz buzz funny joke
 	//skyrat edit
-	brand = "Buzz Fuzz"
+	brand = "Shambler's Drinks"
 	//
