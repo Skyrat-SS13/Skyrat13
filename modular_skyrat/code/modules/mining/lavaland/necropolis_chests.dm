@@ -649,17 +649,32 @@
 	name = "fire resistance medal"
 	desc = "A golden medal. Capable of making any jumpsuit able to withstand fire."
 	icon_state = "gold"
-	var/storedarmor = 0
+	var/stored_name = ""
+	var/stored_desc = ""
+	var/stored_resistance_flags = 0
+	var/stored_heat_protection = 0
+	var/stored_max_heat_protection_temperature = 0
 
 /obj/item/clothing/accessory/fireresist/attach(obj/item/clothing/under/U, user)
 	. = ..()
-	storedarmor = U.armor["fire"]
-	U.armor["fire"] = 100
+	stored_name = U.name
+	stored_desc = U.desc
+	stored_resistance_flags = U.resistance_flags
+	stored_max_heat_protection_temperature = U.max_heat_protection_temperature
+	stored_heat_protection = U.heat_protection
+	U.name = "fireproofed " + U.name
+	U.desc += " It has been fireproofed with [src]."
+	U.max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	U.heat_protection = FULL_BODY
+	U.resistance_flags |= FIRE_PROOF
 
 /obj/item/clothing/accessory/fireresist/detach(obj/item/clothing/under/U, user)
 	. = ..()
-	U.armor["fire"] = storedarmor
-	storedarmor = 0
+	U.name = stored_name
+	U.desc = stored_desc
+	U.max_heat_protection_temperature = stored_max_heat_protection_temperature
+	U.heat_protection = stored_heat_protection
+	U.resistance_flags = stored_resistance_flags
 
 /obj/item/clothing/accessory/lavawalk
 	name = "lava walking medal"
@@ -674,16 +689,17 @@
 /obj/item/clothing/accessory/lavawalk/on_uniform_equip(obj/item/clothing/under/U, user)
 	. = ..()
 	var/mob/living/L = U.loc
-	if(L)
+	if(L && istype(L))
 		for(var/datum/action/A in actions_types)
 			A.Grant(L)
 
-/obj/item/clothing/accessory/lavawalk/on_uniform_equip(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/lavawalk/on_uniform_dropped(obj/item/clothing/under/U, user)
 	. = ..()
 	var/mob/living/L = U.loc
-	if(L)
+	if(L && istype(L))
 		for(var/datum/action/A in actions_types)
 			A.Remove(L)
+
 /datum/action/item_action/lavawalk
 	name = "Lava Walk"
 	desc = "Become immune to lava for a brief period of time."
@@ -693,7 +709,7 @@
 		if(world.time >= cool_down)
 			var/mob/living/L = user
 			if(istype(L))
-				storedimmunities = L.weather_immunities
+				storedimmunities = L.weather_immunities.Copy()
 				L.weather_immunities |= list("ash", "lava")
 				cool_down = world.time + cooldown_time
 				addtimer(CALLBACK(src, .proc/reset_user, L), effectduration)

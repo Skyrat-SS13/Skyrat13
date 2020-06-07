@@ -90,6 +90,7 @@ Difficulty: Medium
 	glorymessagescrusher = list("chops off the wolf's head by it's neck!")
 	glorymessagespka = list("shoots at the wolf's eyes with their PKA, exploding them into giblets!")
 	glorymessagespkabayonet = list("slides down below Sif, using their bayonet to rip it's stomach open!")
+	var/list/hit_things = list()
 
 /obj/item/gps/internal/sif
 	icon_state = null
