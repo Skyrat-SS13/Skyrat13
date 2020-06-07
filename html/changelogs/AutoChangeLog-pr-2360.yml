@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - tweak: "Change cryptominers from 1 minute to 5 minutes"
-  - bugfix: "fixed cryptominers being non-deconstructable"
