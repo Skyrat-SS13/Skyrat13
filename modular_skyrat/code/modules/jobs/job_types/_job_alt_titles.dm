@@ -61,6 +61,11 @@
 
 /datum/job/roboticist
 	alt_titles = list("Biomechanical Engineer", "Mechatronic Engineer")
+
+/datum/job/roboticist/New()
+	. = ..()
+	if(SSevents.holidays && SSevents.holidays[KILLDOZER_DAY])
+		alt_titles += "Welder"
 	
 /datum/job/geneticist
 	alt_titles = list("Biochemist")
