@@ -6,6 +6,7 @@
 	max_integrity = 350
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 30, "acid" = 30)
 	layer = ABOVE_WINDOW_LAYER
+	plane = GAME_PLANE
 	state_open = FALSE
 	circuit = /obj/item/circuitboard/machine/cryo_tube
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
@@ -32,6 +33,9 @@
 	var/escape_in_progress = FALSE
 	var/message_cooldown
 	var/breakout_time = 300
+
+	fair_market_price = 10
+	payment_department = ACCOUNT_MED
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Initialize()
 	. = ..()
@@ -148,6 +152,9 @@
 	add_overlay("cover-on")
 	addtimer(CALLBACK(src, .proc/run_anim, anim_up, occupant_overlay), 7, TIMER_UNIQUE)
 
+/obj/machinery/atmospherics/components/unary/cryo_cell/nap_violation(mob/violator)
+	open_machine()
+
 /obj/machinery/atmospherics/components/unary/cryo_cell/process()
 	..()
 
@@ -161,7 +168,8 @@
 		return
 
 	var/mob/living/mob_occupant = occupant
-
+	if(!check_nap_violations())
+		return
 	if(mob_occupant.stat == DEAD) // We don't bother with dead people.
 		return
 

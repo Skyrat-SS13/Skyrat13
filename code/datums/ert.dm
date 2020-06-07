@@ -31,6 +31,7 @@
 
 /datum/ert/amber
 	code = "Amber"
+
 	leader_role = /datum/antagonist/ert/commander/elevated
 	roles = list(/datum/antagonist/ert/security/elevated)
 

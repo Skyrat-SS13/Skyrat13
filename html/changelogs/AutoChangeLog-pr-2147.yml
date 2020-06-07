@@ -1,6 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Pill bottles now use volumetric storage."
-  - balance: "Pills and patches storage volume now varies with the amount of reagents they contain."
-  - balance: "Lowered the reagent amounts of a few pills so they can fit their respective pill bottles."

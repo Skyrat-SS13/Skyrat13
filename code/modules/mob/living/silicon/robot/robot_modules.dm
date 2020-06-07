@@ -94,6 +94,7 @@
 	return new storage_type(src)
 /* moved to modular_skyrat
 /obj/item/robot_module/proc/add_module(obj/item/I, nonstandard, requires_rebuild)
+	rad_flags |= RAD_NO_CONTAMINATE
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I
 
@@ -780,9 +781,9 @@
 		/obj/item/toy/crayon/spraycan/borg,
 		/obj/item/hand_labeler/borg,
 		/obj/item/razor,
+		/obj/item/rsf,
 		/obj/item/instrument/violin,
 		/obj/item/instrument/guitar,
-		/obj/item/rsf/cyborg,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/lighter,
 		/obj/item/storage/bag/tray,

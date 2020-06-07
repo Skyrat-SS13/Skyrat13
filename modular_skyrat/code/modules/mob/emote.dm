@@ -17,6 +17,23 @@
 	. = ..()
 	set_typing_indicator(FALSE)
 
+/datum/emote/living/quill
+	key = "quill"
+	key_third_person = "quills"
+	message = "rustles their quills."
+	emote_type = EMOTE_AUDIBLE
+	muzzle_ignore = TRUE
+	restraint_check = FALSE
+	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
+
+/datum/emote/living/quill/run_emote(mob/living/user, params)
+	if(!(. = ..()))
+		return
+	if(user.nextsoundemote >= world.time)
+		return
+	user.nextsoundemote = world.time + 7
+	playsound(user, 'modular_skyrat/sound/emotes/voxrustle.ogg', 50, 1, -1)
+
 /datum/emote/living/scream/run_emote(mob/living/user, params) //I can't not port this shit, come on.
 	if(user.nextsoundemote >= world.time || user.stat != CONSCIOUS)
 		return
@@ -59,12 +76,20 @@
 		message = "makes a very loud noise."
 	. = ..()
 
-/datum/emote/flip/run_emote(mob/living/user, params) //no fun allowed :)
-	if(prob(20))
-		user.visible_message("<span class='warning'>[user] tries to flip, but lands flat on their face!</span>", "<span class='danger'>You try to flip, but land flat on your face!</span>")
-		user.Knockdown(20)
-		user.setDir(NORTH)
-		user.apply_damage(rand(1, 8), BRUTE, BODY_ZONE_HEAD)
-		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1, 5), 20)
-	else
-		. = ..()
+/datum/emote/living/cough/run_emote(mob/living/user, params)
+	if(!(. = ..()))
+		return
+	if(user.nextsoundemote >= world.time)
+		return
+	user.nextsoundemote = world.time + 7
+	if (isvox(user))
+		playsound(user, 'modular_skyrat/sound/emotes/voxcough.ogg', 50, 1, -1)
+
+/datum/emote/living/sneeze/run_emote(mob/living/user, params)
+	if(!(. = ..()))
+		return
+	if(user.nextsoundemote >= world.time)
+		return
+	user.nextsoundemote = world.time + 7
+	if (isvox(user))
+		playsound(user, 'modular_skyrat/sound/emotes/voxsneeze.ogg', 50, 1, -1)
