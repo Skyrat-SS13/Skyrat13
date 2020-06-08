@@ -46,20 +46,14 @@
 		return
 
 /obj/machinery/cryptominer/process()
-	var/turf/L = get_turf(src)
-	if(!L)
+	var/turf/T = get_turf(src)
+	if(!T)
 		return
-	var/datum/gas_mixture/env = L.return_air()
+	var/datum/gas_mixture/env = T.return_air()
 	if(!env)
 		return
-	var/heat_capacity = env.heat_capacity()
-	if(!heat_capacity)
+	if(!mining)
 		return
-	var/requiredPower = abs(env.temperature - maxtemp) * heat_capacity
-	requiredPower = min(requiredPower, heatingPower)
-	if(requiredPower < 1)
-		return
-	var/deltaTemperature = requiredPower / heat_capacity
 	if(env.temperature >= maxtemp)
 		if(mining)
 			playsound(loc, 'sound/machines/beep.ogg', 50, 1, -1)
@@ -68,28 +62,37 @@
 		return
 	if(env.temperature <= maxtemp && env.temperature >= midtemp)
 		if(mining)
-			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-			if(D)
-				D.adjust_money((miningpoints / 5))
-			env.temperature += deltaTemperature
-			air_update_turf()
+			produce_points(0.20)
+			produce_heat()
 	if(env.temperature <= midtemp && env.temperature >= mintemp)
 		if(mining)
-			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-			if(D)
-				D.adjust_money((miningpoints))
-			env.temperature += deltaTemperature
-			air_update_turf()
+			produce_points(1)
+			produce_heat()
 	if(env.temperature <= mintemp)
 		if(mining)
-			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-			if(D)
-				D.adjust_money((miningpoints * 3))
-			env.temperature += deltaTemperature
-			air_update_turf()
+			produce_points(3)
+			produce_heat()
+
+/obj/machinery/cryptominer/proc/produce_points(number)
+	playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(FLOOR(miningpoints * number,1))
+
+/obj/machinery/cryptominer/proc/produce_heat()
+	var/turf/T = get_turf(src)
+	if(!T)
+		return
+	var/datum/gas_mixture/env = T.return_air()
+	if(!env)
+		return
+	var/transfer_moles = 0.25 * env.total_moles()
+	var/datum/gas_mixture/removed = env.remove(transfer_moles)
+	if(!removed)
+		return
+	removed.temperature += env.temperature
+	env.merge(removed)
+	air_update_turf()
 
 /obj/machinery/cryptominer/attack_hand(mob/living/user)
 	. = ..()
@@ -97,8 +100,12 @@
 		to_chat(user, "<span class='warning'>[src] has to be on to do this!</span>")
 		return FALSE
 	if(mining)
-		to_chat(user, "<span class='warning'>[src] is already mining!</span>")
-		return FALSE
+		mining = FALSE
+		update_icon()
+		visible_message("<span class='warning'>[src] slowly comes to a halt.</span>",
+						"<span class='warning'>You turn off [src].</span>",
+						runechat_popup = TRUE)
+		return
 	startmining(user)
 
 /obj/machinery/cryptominer/proc/startmining(mob/living/user)
