@@ -236,6 +236,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//SKYRAT CHANGES BEGIN
 	S["see_chat_emotes"] 	>> see_chat_emotes
+	S["event_participation"] >> event_participation
+	S["event_prefs"] >> event_prefs
+	S["appear_in_round_end_report"]	>> appear_in_round_end_report
 	//SKYRAT CHANGES END
 
 
@@ -280,7 +283,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["auto_ooc"]			>> auto_ooc
 	S["no_tetris_storage"]		>> no_tetris_storage
 
-
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
@@ -298,7 +300,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	buttons_locked	= sanitize_integer(buttons_locked, 0, 1, initial(buttons_locked))
 	windowflashing		= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
 	default_slot	= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
-	toggles			= sanitize_integer(toggles, 0, 16777215, initial(toggles)) // skyrat - its 24 bit ree
+	toggles			= sanitize_integer(toggles, 0, 16777215, initial(toggles))
 	clientfps		= sanitize_integer(clientfps, 0, 1000, 0)
 	if (clientfps == 0) clientfps = world.fps*2 // Skyrat edit
 	parallax		= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
@@ -321,16 +323,34 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	damagescreenshake	= sanitize_integer(damagescreenshake, 0, 2, initial(damagescreenshake))
 	widescreenpref		= sanitize_integer(widescreenpref, 0, 1, initial(widescreenpref))
 	autostand			= sanitize_integer(autostand, 0, 1, initial(autostand))
-	cit_toggles			= sanitize_integer(cit_toggles, 0, 16777215, initial(cit_toggles)) // skyrate - its 24 bit ree
+	cit_toggles			= sanitize_integer(cit_toggles, 0, 16777215, initial(cit_toggles))
 	auto_ooc			= sanitize_integer(auto_ooc, 0, 1, initial(auto_ooc))
 	no_tetris_storage		= sanitize_integer(no_tetris_storage, 0, 1, initial(no_tetris_storage))
 	key_bindings 	= sanitize_islist(key_bindings, list())
 
 	//SKYRAT CHANGES BEGIN
 	see_chat_emotes	= sanitize_integer(see_chat_emotes, 0, 1, initial(see_chat_emotes))
+	event_participation = sanitize_integer(event_participation, 0, 1, initial(event_participation))
+	event_prefs = sanitize_text(event_prefs)
+	appear_in_round_end_report	= sanitize_integer(appear_in_round_end_report, 0, 1, initial(appear_in_round_end_report))
 	//SKYRAT CHANGES END
 
+	verify_keybindings_valid()		// one of these days this will runtime and you'll be glad that i put it in a different proc so no one gets their saves wiped
+
 	return 1
+
+/datum/preferences/proc/verify_keybindings_valid()
+	// Sanitize the actual keybinds to make sure they exist.
+	for(var/key in key_bindings)
+		if(!islist(key_bindings[key]))
+			key_bindings -= key
+		var/list/binds = key_bindings[key]
+		for(var/bind in binds)
+			if(!GLOB.keybindings_by_name[bind])
+				binds -= bind
+		if(!length(binds))
+			key_bindings -= key
+	// End
 
 /datum/preferences/proc/save_preferences()
 	if(!path)
@@ -400,6 +420,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//SKYRAT CHANGES BEGIN
 	WRITE_FILE(S["see_chat_emotes"], see_chat_emotes)
+	WRITE_FILE(S["event_participation"], event_participation)
+	WRITE_FILE(S["event_prefs"], event_prefs)
+	WRITE_FILE(S["appear_in_round_end_report"], appear_in_round_end_report)
 	//SKYRAT CHANGES END
 
 	return 1
@@ -486,7 +509,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_insect_markings"]		>> features["insect_markings"]
 	S["feature_horns_color"]			>> features["horns_color"]
 	S["feature_wings_color"]			>> features["wings_color"]
-
+	//SKYRAT CHANGES
+	S["bloodtype"]			>> bloodtype
+	//
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
@@ -504,6 +529,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Quirks
 	S["all_quirks"]			>> all_quirks
+	//SKYRAT ADDITION - additional language
+	S["language"]			>> language
+	//
 
 	//Citadel code
 	S["feature_genitals_use_skintone"]	>> features["genitals_use_skintone"]
@@ -558,12 +586,31 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	else //We have no old flavortext, default to new
 		S["feature_flavor_text"]		>> features["flavor_text"]
+		
+	
+	S["silicon_feature_flavor_text"]		>> features["silicon_flavor_text"]
 
 	S["feature_ooc_notes"]				>> features["ooc_notes"]
+	S["silicon_flavor_text"] >> features["silicon_flavor_text"]
 
 	S["vore_flags"]						>> vore_flags
 	S["vore_taste"]						>> vore_taste
 	S["belly_prefs"]					>> belly_prefs
+
+	//gear loadout
+	var/text_to_load
+	S["loadout"] >> text_to_load
+	var/list/saved_loadout_paths = splittext(text_to_load, "|")
+	chosen_gear = list()
+	gear_points = CONFIG_GET(number/initial_gear_points)
+	for(var/i in saved_loadout_paths)
+		var/datum/gear/path = text2path(i)
+		if(path)
+			var/init_cost = initial(path.cost)
+			if(init_cost > gear_points)
+				continue
+			chosen_gear += path
+			gear_points -= init_cost
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -671,6 +718,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 
 	features["flavor_text"]			= copytext(features["flavor_text"], 1, MAX_FLAVOR_LEN)
+	features["silicon_flavor_text"]			= copytext(features["silicon_flavor_text"], 1, MAX_FLAVOR_LEN)
 	features["ooc_notes"]			= copytext(features["ooc_notes"], 1, MAX_FLAVOR_LEN)
 
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
@@ -749,6 +797,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_insect_fluff"]			, features["insect_fluff"])
 	WRITE_FILE(S["feature_insect_markings"]			, features["insect_markings"])
 	WRITE_FILE(S["feature_meat"]					, features["meat_type"])
+	//SKYRAT CHANGE - Blood
+	WRITE_FILE(S["bloodtype"]						, bloodtype)
+	//
 
 	WRITE_FILE(S["feature_has_cock"], features["has_cock"])
 	WRITE_FILE(S["feature_cock_shape"], features["cock_shape"])
@@ -793,10 +844,20 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Quirks
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
+	//SKYRAT ADDITION - additional language
+	WRITE_FILE(S["language"]			, language)
+	//
 
 	WRITE_FILE(S["vore_flags"]			, vore_flags)
 	WRITE_FILE(S["vore_taste"]			, vore_taste)
 	WRITE_FILE(S["belly_prefs"]			, belly_prefs)
+
+	//gear loadout
+	if(chosen_gear.len)
+		var/text_to_save = chosen_gear.Join("|")
+		S["loadout"] << text_to_save
+	else
+		S["loadout"] << "" //empty string to reset the value
 
 	cit_character_pref_save(S)
 

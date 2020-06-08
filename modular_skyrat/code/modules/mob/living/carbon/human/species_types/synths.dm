@@ -21,16 +21,21 @@
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/actualhealth = 100 //value we calculate to assume disguise and etc
 	//Same organs as an IPC basically, to share functionality.
-	mutant_heart = /obj/item/organ/heart/ipc
-	mutantlungs = /obj/item/organ/lungs/ipc
-	mutantliver = /obj/item/organ/liver/ipc
-	mutantstomach = /obj/item/organ/stomach/ipc
-	mutanteyes = /obj/item/organ/eyes/ipc
+	mutantstomach = /obj/item/organ/stomach/robot_ipc
+	mutantears = /obj/item/organ/ears/robot_ipc
+	mutanteyes = /obj/item/organ/eyes/robot_ipc
+	mutantlungs = /obj/item/organ/lungs/robot_ipc
+	mutant_heart = /obj/item/organ/heart/robot_ipc
+	mutantliver = /obj/item/organ/liver/robot_ipc
 	exotic_blood = /datum/reagent/blood/synthetics
-	exotic_bloodtype = "SY"
 	//variables used for snowflakey ass races and stuff god i fukcing hate this
 	var/storedeardamage = 0
 	var/storedtaildamage = 0
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
+	exotic_bloodtype = "SY"
+	//AAAAAAAAAAAAAAAAAAAAAAAA I CANT EAT AAAAAAAAAAAAAAAAAAAAAAAAAA
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))
@@ -95,7 +100,7 @@
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.grant_language(/datum/language/machine)
+	//H.grant_language(/datum/language/machine)
 	assume_disguise(old_species, H)
 	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
@@ -105,7 +110,7 @@
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()
-	H.remove_language(/datum/language/machine)
+	//H.remove_language(/datum/language/machine)
 	UnregisterSignal(H, COMSIG_MOB_SAY)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
 		BP.synthetic = FALSE
@@ -152,7 +157,7 @@
 	H.regenerate_icons()
 
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
-	..()
+	. = ..()
 	actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)

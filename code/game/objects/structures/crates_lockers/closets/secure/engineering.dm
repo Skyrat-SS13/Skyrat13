@@ -5,6 +5,9 @@
 
 /obj/structure/closet/secure_closet/engineering_chief/PopulateContents()
 	..()
+	//SKYRAT EDIT - ATMS
+	new /obj/item/card/id/departmental_budget/eng(src)
+	//SKYRAT EDIT END
 	new /obj/item/clothing/neck/cloak/ce(src)
 	new /obj/item/clothing/head/beret/ce(src)
 	new /obj/item/clothing/under/rank/engineering/chief_engineer(src)

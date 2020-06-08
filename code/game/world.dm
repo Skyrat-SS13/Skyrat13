@@ -9,7 +9,7 @@ GLOBAL_LIST(topic_status_cache)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || "./byond-extools.dll"
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (system_type == MS_WINDOWS) ? "./byond-extools.dll" : "./libbyond-extools.so" // Skyrat edit
 	if (fexists(extools))
 		call(extools, "maptick_initialize")()
 	enable_debugger()
@@ -138,6 +138,7 @@ GLOBAL_LIST(topic_status_cache)
 	GLOB.subsystem_log = "[GLOB.log_directory]/subsystem.log"
 	GLOB.reagent_log = "[GLOB.log_directory]/reagents.log"
 	GLOB.world_crafting_log = "[GLOB.log_directory]/crafting.log"
+	GLOB.click_log = "[GLOB.log_directory]/click.log"
 
 
 #ifdef UNIT_TESTS
@@ -157,6 +158,7 @@ GLOBAL_LIST(topic_status_cache)
 	start_log(GLOB.subsystem_log)
 	start_log(GLOB.reagent_log)
 	start_log(GLOB.world_crafting_log)
+	start_log(GLOB.click_log)
 
 	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))

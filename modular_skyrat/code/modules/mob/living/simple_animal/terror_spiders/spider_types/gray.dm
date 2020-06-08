@@ -26,6 +26,9 @@
 	ai_spins_webs = FALSE // uses massweb instead
 	var/prob_ai_massweb = 10
 
+	// Small and speedy
+	speed = 0.25
+
 /mob/living/simple_animal/hostile/poison/terror_spider/gray/Move(turf/T)
 	. = ..(T)
 	if(stat == DEAD)

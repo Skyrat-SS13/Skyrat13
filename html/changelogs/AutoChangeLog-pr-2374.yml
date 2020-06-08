@@ -1,0 +1,6 @@
+author: "Funce"
+delete-after: True
+changes: 
+  - bugfix: "Clarke Diagnostic Overlay properly works."
+  - bugfix: "Killdozer, Lockermech, Buzz and Clarke construction paths no longer desync from what you're actually putting in."
+  - bugfix: "New Mecha Equipment from Eternal no longer builds instantly."

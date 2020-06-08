@@ -42,7 +42,7 @@
 	update_icon()
 
 /obj/mecha/working/ripley/moved_inside(mob/living/carbon/human/H)
-	..()
+	. = ..() //Skyrat EDIT - For Mech Overlays
 	update_icon()
 
 /obj/mecha/working/ripley/Initialize()

@@ -15,6 +15,8 @@
 
 /obj/item/photo/Initialize(mapload, datum/picture/P, datum_name = TRUE, datum_desc = TRUE)
 	set_picture(P, datum_name, datum_desc, TRUE)
+	if(!istype(picture)) // Skyrat addition -- helps with errors in some edge cases
+		picture = new() // Skyrat addition
 	return ..()
 
 /obj/item/photo/proc/set_picture(datum/picture/P, setname, setdesc, name_override = FALSE)
