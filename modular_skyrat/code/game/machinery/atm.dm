@@ -58,7 +58,6 @@
 					CID.registered_account.account_balance -= ddeposit
 					totalmoney = ddeposit
 					emagcheck()
-					BA.account_balance += totalmoney
 					successful_transaction()
 					break
 	if(istype(W, /obj/item/holochip))
@@ -73,7 +72,6 @@
 				continue
 			totalmoney = HC.credits
 			emagcheck()
-			BA.account_balance += totalmoney
 			successful_transaction()
 			qdel(HC)
 			break
@@ -89,7 +87,6 @@
 				continue
 			totalmoney = SC.get_item_credit_value()
 			emagcheck()
-			BA.account_balance += totalmoney
 			successful_transaction()
 			qdel(SC)
 			break
@@ -105,7 +102,6 @@
 				continue
 			totalmoney = CM.get_item_credit_value()
 			emagcheck()
-			BA.account_balance += totalmoney
 			successful_transaction()
 			qdel(CM)
 			break
@@ -125,7 +121,6 @@
 				qdel(physical_money)
 			totalmoney = total
 			emagcheck()
-			BA.account_balance += totalmoney
 			successful_transaction()
 			break
 		
@@ -162,4 +157,6 @@
 				continue
 			BA.account_balance += totalmoney
 			break
+	else
+		BA.account_balance += totalmoney
 		
