@@ -5,6 +5,9 @@
 
 /obj/structure/closet/secure_closet/quartermaster/PopulateContents()
 	..()
+	//SKYRAT EDIT - ATMS
+	new /obj/item/card/id/departmental_budget/car(src)
+	//SKYRAT EDIT END
 	new /obj/item/clothing/neck/cloak/qm(src)
 	new /obj/item/clothing/head/beret/qm(src)
 	new /obj/item/storage/lockbox/medal/cargo(src)

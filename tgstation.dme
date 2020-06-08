@@ -3513,6 +3513,7 @@
 #include "modular_skyrat\code\game\gamemodes\monkey\monkey.dm"
 #include "modular_skyrat\code\game\gamemodes\revolution\revolution.dm"
 #include "modular_skyrat\code\game\gamemodes\traitor\traitor.dm"
+#include "modular_skyrat\code\game\machinery\atm.dm"
 #include "modular_skyrat\code\game\machinery\cryopod.dm"
 #include "modular_skyrat\code\game\machinery\dance_machine.dm"
 #include "modular_skyrat\code\game\machinery\lpchutes.dm"
