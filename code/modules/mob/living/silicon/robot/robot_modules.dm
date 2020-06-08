@@ -16,6 +16,7 @@
 	var/list/modules = list() //holds all the usable modules
 	var/list/added_modules = list() //modules not inherient to the robot module, are kept when the module changes
 	var/list/storages = list()
+	var/list/added_channels = list() //Skyrat change //Borg radio stuffs
 
 	var/cyborg_base_icon = "robot" //produces the icon for the borg and, if no special_light_key is set, the lights
 	var/special_light_key //if we want specific lights, use this instead of copying lights in the dmi
@@ -93,6 +94,7 @@
 	return new storage_type(src)
 /* moved to modular_skyrat
 /obj/item/robot_module/proc/add_module(obj/item/I, nonstandard, requires_rebuild)
+	rad_flags |= RAD_NO_CONTAMINATE
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I
 
@@ -232,6 +234,10 @@
 	INVOKE_ASYNC(RM, .proc/do_transform_animation)
 	if(RM.dogborg)
 		RM.dogborg_equip()
+	//Skyrat change start
+	R.radio.extra_channels = RM.added_channels
+	R.radio.recalculateChannels()
+	//Skyrat change stop
 	R.maxHealth = borghealth
 	R.health = min(borghealth, R.health)
 	qdel(src)
@@ -346,6 +352,7 @@
 		/obj/item/clockwork/weapon/ratvarian_spear)
 	cyborg_base_icon = "medical"
 	moduleselect_icon = "medical"
+	added_channels = list(RADIO_CHANNEL_MEDICAL = 1) //Skyrat change
 	hat_offset = 3
 
 /obj/item/robot_module/medical/be_transformed_to(obj/item/robot_module/old_module)
@@ -459,6 +466,7 @@
 		/obj/item/clockwork/replica_fabricator/cyborg)
 	cyborg_base_icon = "engineer"
 	moduleselect_icon = "engineer"
+	added_channels = list(RADIO_CHANNEL_ENGINEERING = 1) //skyrat change
 	magpulsing = TRUE
 	hat_offset = -4
 
@@ -553,6 +561,7 @@
 		/obj/item/clockwork/weapon/ratvarian_spear)
 	cyborg_base_icon = "sec"
 	moduleselect_icon = "security"
+	added_channels = list(RADIO_CHANNEL_SECURITY = 1) //skyrat change
 	hat_offset = 3
 
 /obj/item/robot_module/security/do_transform_animation()
@@ -658,6 +667,7 @@
 		/obj/item/clockwork/weapon/ratvarian_spear)
 	cyborg_base_icon = "peace"
 	moduleselect_icon = "standard"
+	added_channels = list(RADIO_CHANNEL_SECURITY = 1) //skyrat change
 	hat_offset = -2
 
 /obj/item/robot_module/peacekeeper/do_transform_animation()
@@ -771,9 +781,9 @@
 		/obj/item/toy/crayon/spraycan/borg,
 		/obj/item/hand_labeler/borg,
 		/obj/item/razor,
+		/obj/item/rsf,
 		/obj/item/instrument/violin,
 		/obj/item/instrument/guitar,
-		/obj/item/rsf/cyborg,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/lighter,
 		/obj/item/storage/bag/tray,
@@ -791,6 +801,7 @@
 	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/service,
 		/obj/item/borg/sight/xray/truesight_lens)
 	moduleselect_icon = "service"
+	added_channels = list(RADIO_CHANNEL_SERVICE = 1)
 	hat_offset = 0
 	clean_on_move = TRUE
 
@@ -931,6 +942,7 @@
 		/obj/item/borg/sight/xray/truesight_lens)
 	cyborg_base_icon = "miner"
 	moduleselect_icon = "miner"
+	added_channels = list(RADIO_CHANNEL_SUPPLY = 1) //skyrat change
 	hat_offset = 0
 
 /obj/item/robot_module/miner/be_transformed_to(obj/item/robot_module/old_module)
@@ -1010,6 +1022,7 @@
 		/obj/item/clockwork/weapon/ratvarian_spear)
 	cyborg_base_icon = "synd_sec"
 	moduleselect_icon = "malf"
+	added_channels = list(RADIO_CHANNEL_SYNDICATE = 1) //Skyrat change
 	hat_offset = 3
 
 /obj/item/robot_module/syndicate/rebuild_modules()
@@ -1049,6 +1062,7 @@
 		/obj/item/clockwork/weapon/ratvarian_spear)
 	cyborg_base_icon = "synd_medical"
 	moduleselect_icon = "malf"
+	added_channels = list(RADIO_CHANNEL_SYNDICATE = 1) //Skyrat change
 	hat_offset = 3
 
 /obj/item/robot_module/saboteur
@@ -1087,6 +1101,7 @@
 
 	cyborg_base_icon = "synd_engi"
 	moduleselect_icon = "malf"
+	added_channels = list(RADIO_CHANNEL_SYNDICATE = 1) //Skyrat change
 	magpulsing = TRUE
 	hat_offset = -4
 	canDispose = TRUE

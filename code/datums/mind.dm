@@ -60,6 +60,10 @@
 	var/unconvertable = FALSE
 	var/late_joiner = FALSE
 
+//SKYRAT CHANGES
+	var/appear_in_round_end_report = TRUE  //Skyrat change
+//END OF SKYRAT CHANGES
+
 	var/force_escaped = FALSE  // Set by Into The Sunset command of the shuttle manipulator
 	var/list/learned_recipes //List of learned recipe TYPES.
 
@@ -67,7 +71,7 @@
 	var/datum/skill_holder/skill_holder
 
 /datum/mind/New(var/key)
-	skill_holder = new(src)
+	skill_holder = new()
 	src.key = key
 	soulOwner = src
 	martial_art = default_martial_art
@@ -97,9 +101,6 @@
 	if(current)	// remove ourself from our old body's mind variable
 		current.mind = null
 		SStgui.on_transfer(current, new_character)
-		if(iscarbon(current))
-			var/mob/living/carbon/C = current
-			C.disable_intentional_combat_mode(TRUE)
 
 	if(key)
 		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
@@ -134,6 +135,10 @@
 		var/mob/living/L = new_character
 		if(L.client?.prefs && L.client.prefs.auto_ooc && L.client.prefs.chat_toggles & CHAT_OOC)
 			DISABLE_BITFIELD(L.client.prefs.chat_toggles,CHAT_OOC)
+
+//SKYRAT CHANGES
+	appear_in_round_end_report = current.client?.prefs?.appear_in_round_end_report
+//END OF SKYRAT CHANGES
 
 	SEND_SIGNAL(src, COMSIG_MIND_TRANSFER, new_character, old_character)
 	SEND_SIGNAL(new_character, COMSIG_MOB_ON_NEW_MIND)
@@ -776,6 +781,9 @@
 	if(!mind.name)
 		mind.name = real_name
 	mind.current = src
+//SKYRAT CHANGES
+	mind.appear_in_round_end_report = client?.prefs?.appear_in_round_end_report
+//END OF SKYRAT CHANGES
 
 /mob/living/carbon/mind_initialize()
 	..()

@@ -11,16 +11,38 @@
 #define PLANE_SPACE_PARALLAX_RENDER_TARGET "PLANE_SPACE_PARALLAX"
 
 #define OPENSPACE_LAYER 17 //Openspace layer over all
-#define OPENSPACE_PLANE 17 //Openspace plane below all turfs // Skyrat edit, 512 compatibility, to make it work without vis_flags, changed from -4
-#define OPENSPACE_BACKDROP_PLANE 17 //Black square just over openspace plane to guaranteed cover all in openspace turf // Skyrat edit, 512 compatibility, to make it work without vis_flags, changed from -3
+#define OPENSPACE_PLANE -2 //Openspace plane below all turfs // Skyrat change -- 512 compatibility -- changed to 0 from -10
+#define OPENSPACE_BACKDROP_PLANE -2 //Black square just over openspace plane to guaranteed cover all in openspace turf // Skyrat change -- 512 compatibility -- changed to 0 from -9
 
-#define FLOOR_PLANE -2
+#define FLOOR_PLANE -9 // Skyrat change -- reduced by 1 to make space for another plane
 #define FLOOR_PLANE_RENDER_TARGET "FLOOR_PLANE"
-#define GAME_PLANE -1
+
+#define WALL_PLANE -8 // Skyrat change -- reduced by 1 to make space for another plane
+#define WALL_PLANE_RENDER_TARGET "WALL_PLANE"
+
+#define ABOVE_WALL_PLANE -7 // Skyrat change -- reduced by 1 to make space for another plane
+#define ABOVE_WALL_PLANE_RENDER_TARGET "ABOVE_WALL_PLANE"
+
+#define FIELD_OF_VISION_BLOCKER_PLANE -6 // Skyrat change -- reduced by 1 to make space for another plane
+#define FIELD_OF_VISION_BLOCKER_RENDER_TARGET "*FIELD_OF_VISION_BLOCKER_PLANE"
+
+#define FIELD_OF_VISION_PLANE -5 // Skyrat change -- reduced by 1 to make space for another plane
+#define FIELD_OF_VISION_RENDER_TARGET "*FIELD_OF_VISION_PLANE"
+#define FIELD_OF_VISION_LAYER 17 //used to place the visual (not the mask) shadow cone above any other floor plane stuff.
+
+#define GAME_PLANE -4 // Skyrat change -- reduced by 1 to make space for another plane
 #define GAME_PLANE_RENDER_TARGET "GAME_PLANE"
+
+#define FIELD_OF_VISION_VISUAL_PLANE -3 //Yea, FoV does require quite a few planes to work with 513 filters to a decent degree.  // Skyrat change -- reduced by 1 to make space for another plane
+#define FIELD_OF_VISION_VISUAL_RENDER_TARGET "FIELD_OF_VISION_VISUAL_PLANE"
+
+#define CHAT_PLANE -1 //We don't want heard messages to be hidden by FoV.
+#define CHAT_LAYER 20.35  //Legacy, it doesn't matter that much because we are displayed above the game plane anyway. //Skyrat change fom 12.1
+
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 #define BLACKNESS_PLANE_RENDER_TARGET "BLACKNESS_PLANE"
 
+///Layers most often used by atoms of plane lower than GAME_PLANE
 #define SPACE_LAYER 1.8
 //#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
 #define MID_TURF_LAYER 2.02
@@ -40,11 +62,12 @@
 #define GAS_PIPE_VISIBLE_LAYER 2.47
 #define GAS_FILTER_LAYER 2.48
 #define GAS_PUMP_LAYER 2.49
+
 #define LOW_OBJ_LAYER 2.5
 #define LOW_SIGIL_LAYER 2.52
 #define SIGIL_LAYER 2.54
 #define HIGH_SIGIL_LAYER 2.56
-
+///Layers most often used by atoms of plane equal or higher than GAME_PLANE
 #define BELOW_OPEN_DOOR_LAYER 2.6
 #define BLASTDOOR_LAYER 2.65
 #define OPEN_DOOR_LAYER 2.7
@@ -92,8 +115,6 @@
 #define MASSIVE_OBJ_LAYER 11
 #define POINT_LAYER 12
 
-#define CHAT_LAYER 20.35 //Skyrat change
-
 #define EMISSIVE_BLOCKER_PLANE 12
 #define EMISSIVE_BLOCKER_LAYER 12
 #define EMISSIVE_BLOCKER_RENDER_TARGET "*EMISSIVE_BLOCKER_PLANE"
@@ -137,19 +158,21 @@
 #define HUD_LAYER 21
 #define HUD_RENDER_TARGET "HUD_PLANE"
 
-#define VOLUMETRIC_STORAGE_BOX_PLANE 23
-#define VOLUMETRIC_STORAGE_BOX_LAYER 23
+
+#define VOLUMETRIC_STORAGE_BOX_PLANE 22
+#define VOLUMETRIC_STORAGE_BOX_LAYER 22
 #define VOLUMETRIC_STORAGE_BOX_RENDER_TARGET "VOLUME_STORAGE_BOX_PLANE"
 
-#define VOLUMETRIC_STORAGE_ITEM_PLANE 24
-#define VOLUMETRIC_STORAGE_ITEM_LAYER 24
+#define VOLUMETRIC_STORAGE_ITEM_PLANE 23
+#define VOLUMETRIC_STORAGE_ITEM_LAYER 23
+#define VOLUMETRIC_STORAGE_ACTIVE_ITEM_LAYER 25
+#define VOLUMETRIC_STORAGE_ACTIVE_ITEM_PLANE 25
 #define VOLUMETRIC_STORAGE_ITEM_RENDER_TARGET "VOLUME_STORAGE_ITEM_PLANE"
 
-#define ABOVE_HUD_PLANE 25
-#define ABOVE_HUD_LAYER 25
+#define ABOVE_HUD_PLANE 30
+#define ABOVE_HUD_LAYER 30
 #define ABOVE_HUD_RENDER_TARGET "ABOVE_HUD_PLANE"
 
-#define SPLASHSCREEN_LAYER 30
-#define SPLASHSCREEN_PLANE 30
+#define SPLASHSCREEN_LAYER 90
+#define SPLASHSCREEN_PLANE 90
 #define SPLASHSCREEN_RENDER_TARGET "SPLASHSCREEN_PLANE"
-

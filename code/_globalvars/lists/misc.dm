@@ -57,3 +57,14 @@ GLOBAL_LIST_INIT(flirts, list("Roses are red / Violets are good / One day while 
 		"Wanna empty out my tool storage?",
 		"Did you visit the medbay after you fell from heaven?",
 		"Are you wearing space pants? Wanna not be?" ))
+
+//Vars that will not be copied when using /DuplicateObject
+GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
+	"tag", "datum_components", "area", "type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key",
+	"power_supply", "contents", "reagents", "stat", "x", "y", "z", "group", "atmos_adjacent_turfs", "comp_lookup"
+	))
+
+GLOBAL_LIST_INIT(duplicate_forbidden_vars_by_type, typecacheof_assoc_list(list(
+	/obj/item/gun/energy = "ammo_type"
+	)))
+

@@ -7,6 +7,18 @@
 	parts = list(/obj/item/shard = 1)
 	reqs = list(/obj/item/wrench_wired = 1,
 				/obj/item/shard = 1)
+	time = 30
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/halberd
+	name = "Makeshift halberd"
+	result = /obj/item/twohanded/spear/halberd
+	parts = list(/obj/item/twohanded/spear = 1,\
+				/obj/item/hatchet = 1)
+	reqs = list(/obj/item/stack/cable_coil = 5,\
+				/obj/item/twohanded/spear = 1,\
+				/obj/item/hatchet = 1)
 	time = 60
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -15,11 +27,23 @@
 	name = "Switchblade"
 	result = /obj/item/switchblade/crafted
 	reqs = list(/obj/item/weaponcrafting/stock = 1,
-				/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/kitchen/knife = 1,
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
+				/obj/item/metal_blade = 1,
 				/obj/item/stack/cable_coil = 2)
 	tools = list(TOOL_WELDER)
 	time = 45
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/balisong
+	name = "Butterfly Knife"
+	result = /obj/item/melee/transforming/butterfly
+	reqs = list(/obj/item/metal_gun_stock = 1,
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
+				/obj/item/metal_blade = 1,
+				/obj/item/stack/cable_coil = 5)
+	tools = list(TOOL_WELDER)
+	time = 60
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -67,7 +91,7 @@
 /datum/crafting_recipe/pipepistol
 	name = "Pipe Pistol (10mm)"
 	result = /obj/item/gun/ballistic/automatic/pistol/makeshift
-	reqs = list(/obj/item/weaponcrafting/receiver = 1,
+	reqs = list(/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
 				/obj/item/pipe = 2,
 				/obj/item/stack/sheet/mineral/wood = 7,
 				/obj/item/stack/packageWrap = 5)
@@ -79,7 +103,7 @@
 /datum/crafting_recipe/crossbow
 	name = "Makeshift Crossbow"
 	result = /obj/item/gun/ballistic/crossbow
-	reqs = list(/obj/item/weaponcrafting/receiver = 1,
+	reqs = list(/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
 				/obj/item/pipe = 1,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/stack/packageWrap = 5,
@@ -96,7 +120,7 @@
 	reqs = list(/obj/item/stack/rods = 2,
 				/obj/item/stack/cable_coil = 5,
 				/obj/item/storage/box = 1,
-				/obj/item/weaponcrafting/receiver = 1)
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 60
 	category = CAT_WEAPONRY
@@ -108,7 +132,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 3,
 				/obj/item/stack/ore/diamond = 5,
 				/obj/item/stack/sheet/sinew = 3,
-				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
 				/obj/item/assembly/igniter = 1,
 				/obj/item/stock_parts/cell/high/plus/argent = 1,
 				/obj/item/stock_parts/capacitor = 4,
@@ -123,7 +147,7 @@
 				/obj/item/weaponcrafting/stock = 1,\
 				/obj/item/pipe = 1,\
 				/obj/item/stack/sheet/mineral/diamond = 3,\
-				/obj/item/weaponcrafting/receiver = 1,\
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,\
 				/obj/item/stock_parts/micro_laser = 1,\
 				/obj/item/stock_parts/capacitor = 2,\
 				/obj/item/assembly/igniter = 1,
@@ -144,7 +168,7 @@
 				/obj/item/stack/sheet/plasmaglass = 1,
 				/obj/item/stock_parts/cell/high = 1,
 				/obj/item/assembly/igniter = 1,
-				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 1,
 				/obj/item/stock_parts/micro_laser/high = 1,
 				/obj/item/stock_parts/capacitor/adv = 1)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
@@ -194,6 +218,7 @@
 	time = 75
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/lockermechdrill
 	name = "Makeshift exosuit drill"
 	result = /obj/item/mecha_parts/mecha_equipment/drill/makeshift
@@ -300,7 +325,7 @@
 
 /datum/crafting_recipe/largeblade
 	name = "Large metal blade"
-	result = /obj/item/metal_blade
+	result = /obj/item/large_metal_blade
 	reqs = list(/obj/item/kitchen/knife/butcher = 1)
 	tools = list(TOOL_SCREWDRIVER)
 	time = 20

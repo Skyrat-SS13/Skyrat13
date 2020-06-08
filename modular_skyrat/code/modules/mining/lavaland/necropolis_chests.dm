@@ -68,31 +68,30 @@
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
 	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	var/loot = rand(1,3)
-	switch(loot)
-		if(1)
-			new /obj/item/mayhem(src)
-		if(2)
-			new /obj/item/blood_contract(src)
-		if(3)
-			new /obj/item/gun/magic/staff/spellblade(src)
+	new /obj/item/gun/magic/staff/spellblade(src)
+
+/obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
+	new /obj/item/clothing/suit/space/hostile_environment(src)
+	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
+	new /obj/item/crusher_trophy/demon_claws(src)
+	new /obj/item/gun/magic/staff/spellblade(src)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
 	name = "enraged bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
-	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	new /obj/item/mayhem(src)
-	new /obj/item/blood_contract(src)
 	new /obj/item/twohanded/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
+	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
+	new /obj/item/borg/upgrade/modkit/shotgun(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher
 	name = "enraged bloody bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher/PopulateContents()
-	..()
+	new /obj/item/twohanded/crucible(src)
+	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
+	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 	new /obj/item/crusher_trophy/demon_claws(src)
 
 //super shotty changes (meat hook instead of bursto)
@@ -162,12 +161,9 @@
 
 /obj/item/projectile/heckhook/on_hit(atom/target)
 	. = ..()
-	if(ismovable(target))
-		var/atom/movable/A = target
-		if(A.anchored)
-			return
-		A.visible_message("<span class='danger'>[A] is snagged by [firer]'s hook!</span>")
-		new /datum/forced_movement(firer, get_turf(A), 5, TRUE)
+	var/atom/A = target
+	A.visible_message("<span class='danger'>[A] is snagged by [firer]'s hook!</span>")
+	new /datum/forced_movement(firer, get_turf(A), 1, TRUE)
 
 /obj/item/projectile/heckhook/Destroy()
 	qdel(chain)
@@ -335,7 +331,7 @@
 
 /obj/item/twohanded/crucible/ignition_effect(atom/A, mob/user)
 	if(!wielded)
-		return ""
+		return FALSE
 	var/in_mouth = ""
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
@@ -386,35 +382,108 @@
 		if(4)
 			new /obj/item/dragons_blood(src)
 
+/obj/structure/closet/crate/necropolis/dragon/crusher/PopulateContents()
+	new /obj/item/crusher_trophy/tail_spike(src)
+	var/loot = rand(1,4)
+	switch(loot)
+		if(1)
+			new /obj/item/melee/ghost_sword(src)
+		if(2)
+			new /obj/item/lava_staff(src)
+		if(3)
+			new /obj/item/book/granter/spell/sacredflame(src)
+			new /obj/item/gun/magic/wand/fireball(src)
+		if(4)
+			new /obj/item/dragons_blood(src)
+
 /obj/structure/closet/crate/necropolis/dragon/hard
 	name = "enraged dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/hard/PopulateContents()
-	new /obj/item/borg/upgrade/modkit/knockback(src)
 	new /obj/item/melee/ghost_sword(src)
 	new /obj/item/lava_staff(src)
 	new /obj/item/book/granter/spell/sacredflame(src)
 	new /obj/item/gun/magic/wand/fireball(src)
+	new /obj/item/borg/upgrade/modkit/knockback(src)
 	new /obj/item/dragons_blood(src)
+	new /obj/item/clothing/neck/necklace/memento_mori/king(src)
 
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher
 	name = "enraged fiery dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher/PopulateContents()
-	..()
+	new /obj/item/melee/ghost_sword(src)
+	new /obj/item/lava_staff(src)
+	new /obj/item/book/granter/spell/sacredflame(src)
+	new /obj/item/gun/magic/wand/fireball(src)
+	new /obj/item/dragons_blood(src)
+	new /obj/item/clothing/neck/necklace/memento_mori/king(src)
 	new /obj/item/crusher_trophy/tail_spike(src)
+
+/obj/item/clothing/neck/necklace/memento_mori/king
+	name = "amulet of kings"
+	desc = "An amulet that shows everyone who the true emperor is."
+	icon = 'modular_skyrat/icons/obj/clothing/neck.dmi'
+	icon_state = "dragon_amulet"
+	item_state = "dragon_amulet"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/neck.dmi'
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 //colossus
 /obj/structure/closet/crate/necropolis/colossus/PopulateContents()
-	var/list/choices = subtypesof(/obj/machinery/anomalous_crystal)
-	var/random_crystal = pick(choices)
-	new random_crystal(src)
+	new /obj/item/bluecrystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
 	new /obj/item/borg/upgrade/modkit/bolter(src)
+
+/obj/structure/closet/crate/necropolis/colossus/crusher/PopulateContents()
+	new /obj/item/bluecrystal(src)
+	new /obj/item/organ/vocal_cords/colossus(src)
+	new /obj/item/crusher_trophy/blaster_tubes(src)
+
+//crystal choosing thing from colosssus
+/obj/item/bluecrystal
+	name = "\improper blue crystal"
+	desc = "It's very shiny... one may wonder what it does."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "bluecrystal"
+	w_class = WEIGHT_CLASS_SMALL
+	var/list/choices = list(
+	"Clown" = /obj/machinery/anomalous_crystal/honk,
+	"Theme Warp" = /obj/machinery/anomalous_crystal/theme_warp,
+	"Bolter" = /obj/machinery/anomalous_crystal/emitter,
+	"Dark Revival" = /obj/machinery/anomalous_crystal/dark_reprise,
+	"Lightgeist Healers" = /obj/machinery/anomalous_crystal/helpers,
+	"Refresher" = /obj/machinery/anomalous_crystal/refresher,
+	"Possessor" = /obj/machinery/anomalous_crystal/possessor
+	)
+	var/list/methods = list(
+	"touch",
+	"speech",
+	"heat",
+	"bullet",
+	"energy",
+	"bomb",
+	"bumping",
+	"weapon",
+	"magic"
+	)
+
+/obj/item/bluecrystal/attack_self(mob/user)
+	var/choice = input(user, "Choose your destiny", "Crystal") as null|anything in choices
+	var/method = input(user, "Choose your activation method", "Crystal") as null|anything in methods
+	if(!choice || !method)
+		return
+	playsound(user.loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, TRUE)
+	var/choosey = choices[choice]
+	var/obj/machinery/anomalous_crystal/A = new choosey(user.loc)
+	A.activation_method = method
+	to_chat(user, "<span class='userdanger'>[A] appears under your feet as the [src] breaks apart!</span>")
+	qdel(src)
 
 //normal chests
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
 	var/loot = rand(1,31)
+	new /obj/item/stock_parts/cell/high/plus/argent(src)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -519,7 +588,6 @@
 		if(31)
 			new /obj/item/katana/necropolis(src)
 			return /obj/item/katana/necropolis
-	new /obj/item/stock_parts/cell/high/plus/argent(src)
 
 /obj/item/stock_parts/cell/high/plus/argent
 	name = "Argent Energy Cell"
@@ -544,7 +612,7 @@
 
 /obj/item/stock_parts/cell/high/plus/argent/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/katana/necropolis
 	force = 25 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
@@ -559,7 +627,7 @@
 
 /obj/structure/closet/crate/necropolis/legion/PopulateContents()
 	new /obj/item/staff/storm(src)
-	new /obj/item/crusher_trophy/legion_shard(src)
+	new /obj/item/crusher_trophy/golden_skull(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
 
 /obj/structure/closet/crate/necropolis/legion/hard
@@ -567,15 +635,12 @@
 
 /obj/structure/closet/crate/necropolis/legion/hard/PopulateContents()
 	new /obj/item/staff/storm(src)
-	new /obj/item/staff/storm(src)
 	new /obj/item/clothing/mask/gas/dagoth(src)
+	new /obj/item/crusher_trophy/golden_skull(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
-	new /obj/item/borg/upgrade/modkit/skull(src)
-	new /obj/item/crusher_trophy/legion_shard(src)
-	new /obj/item/crusher_trophy/legion_shard(src)
 	var/obj/structure/closet/crate/necropolis/tendril/T = new /obj/structure/closet/crate/necropolis/tendril //Yup, i know, VERY spaghetti code.
 	var/obj/item/L
-	for(var/i = 0, i < 5, i++)
+	for(var/i = 0, i < 3, i++)
 		L = T.PopulateContents()
 		new L(src)
 	qdel(T)
@@ -591,22 +656,12 @@
 	item_state = "dagoth"
 	actions_types = list(/datum/action/item_action/ashstorm)
 	flash_protect = 2
-	armor = list("melee" = 15, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)//HOW CAN YOU KILL A GOD?
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)//HOW CAN YOU KILL A GOD?
 	var/static/list/excluded_areas = list(/area/reebe/city_of_cogs)
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
 	w_class = WEIGHT_CLASS_BULKY //its a fucking full metal mask man
 	mutantrace_variation = STYLE_MUZZLE
-
-/obj/item/clothing/mask/gas/dagoth/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if (slot == ITEM_SLOT_MASK)
-		user.faction |= "mining"
-
-/obj/item/clothing/mask/gas/dagoth/dropped(mob/living/carbon/human/user)
-	if (user.wear_mask == src)
-		user.faction -= "mining"
-	..()
 
 /datum/action/item_action/ashstorm
 	name = "Summon Ash Storm"
@@ -664,6 +719,7 @@
 	name = "drake chest"
 
 /obj/structure/closet/crate/necropolis/glaurung/PopulateContents()
+	new /obj/item/borg/upgrade/modkit/knockback(src)
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
@@ -680,8 +736,18 @@
 	name = "wise drake chest"
 
 /obj/structure/closet/crate/necropolis/glaurung/crusher/PopulateContents()
-	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
+	var/loot = rand(1,4)
+	switch(loot)
+		if(1)
+			new /obj/item/melee/ghost_sword(src)
+		if(2)
+			new /obj/item/lava_staff(src)
+		if(3)
+			new /obj/item/book/granter/spell/sacredflame(src)
+			new /obj/item/gun/magic/wand/fireball(src)
+		if(4)
+			new /obj/item/dragons_blood(src)
 
 //Sif stuff
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Sword Of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//

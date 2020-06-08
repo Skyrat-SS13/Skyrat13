@@ -13,6 +13,7 @@
 	to_chat(owner, "<big><span class='warning'><b>You can't remember how you got here...</b></span></big>")
 	owner.announce_objectives()
 
+/*Modular Skyrat
 /datum/antagonist/abductee/proc/give_objective()
 	var/mob/living/carbon/human/H = owner.current
 	if(istype(H))
@@ -20,6 +21,7 @@
 	var/objtype = (prob(75) ? /datum/objective/abductee/random : pick(subtypesof(/datum/objective/abductee/) - /datum/objective/abductee/random))
 	var/datum/objective/abductee/O = new objtype()
 	objectives += O
+*/
 
 /datum/antagonist/abductee/apply_innate_effects(mob/living/mob_override)
 	update_abductor_icons_added(mob_override ? mob_override.mind : owner,"abductee")
