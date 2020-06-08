@@ -90,7 +90,7 @@
 	var/datum/gas_mixture/removed = env.remove(transfer_moles)
 	if(!removed)
 		return
-	removed.temperature += env.temperature
+	removed.temperature += 400
 	env.merge(removed)
 	air_update_turf()
 
