@@ -12,6 +12,9 @@
 	exp_requirements = 2400
 	exp_type = EXP_TYPE_SECURITY
 
+	paycheck = PAYCHECK_HARD
+	paycheck_department = ACCOUNT_SEC
+
 	outfit = /datum/outfit/job/blueshield
 
 	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_FORENSICS_LOCKERS, \
