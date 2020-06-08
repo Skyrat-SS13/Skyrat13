@@ -206,6 +206,7 @@
 		return ..()
 	if(istype(W, /obj/item/holochip))
 		insert_money(W, user)
+	/* SKYRAT EDIT - Making the ATM more useful
 	else if(istype(W, /obj/item/stack/spacecash) || istype(W, /obj/item/coin))
 		insert_money(W, user, TRUE)
 	else if(istype(W, /obj/item/storage/bag/money))
@@ -214,6 +215,7 @@
 		var/money_added = mass_insert_money(money_contained, user)
 		if (money_added)
 			to_chat(user, "<span class='notice'>You stuff the contents into the card! They disappear in a puff of bluespace smoke, adding [money_added] worth of credits to the linked account.</span>")
+	SKYRAT EDIT END */
 	else
 		return ..()
 
