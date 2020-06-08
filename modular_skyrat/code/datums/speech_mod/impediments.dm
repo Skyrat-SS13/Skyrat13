@@ -10,7 +10,7 @@
 
 /datum/speech_mod/impediment_lw/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "l", "w")
-	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "L", "w")
+	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "L", "W")
 
 /datum/speech_mod/impediment_rw
 	soundtext = "mispronouncing \"r\" as \"w\""
