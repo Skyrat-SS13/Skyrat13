@@ -18,17 +18,17 @@
 /datum/ert/blue
 	opendoors = FALSE
 	code = "Blue"
-
+/* //Skyrat change moved to modular
 /datum/ert/amber
 	code = "Amber"
 	leader_role = /datum/antagonist/ert/commander/amber
-	roles = list(/datum/antagonist/ert/security/amber, /datum/antagonist/ert/medic/amber, /datum/antagonist/ert/engineer/amber)
+	roles = list(/datum/antagonist/ert/security/amber, /datum/antagonist/ert/medic/amber) //Skyrat change
 
 /datum/ert/red
 	leader_role = /datum/antagonist/ert/commander/red
 	roles = list(/datum/antagonist/ert/security/red, /datum/antagonist/ert/medic/red, /datum/antagonist/ert/engineer/red)
 	code = "Red"
-
+*/
 /datum/ert/deathsquad
 	roles = list(/datum/antagonist/ert/deathsquad)
 	leader_role = /datum/antagonist/ert/deathsquad/leader
