@@ -169,6 +169,7 @@
 	user.nextsoundemote = world.time + 7
 	playsound(user, 'modular_citadel/sound/voice/weh.ogg', 50, 1, -1)
 
+/* SKYRAT MODULAR BEGIN (modular_skyrat/code/modules/mob/emote.dm)
 /datum/emote/living/peep
 	key = "peep"
 	key_third_person = "peeps like a bird"
@@ -185,6 +186,8 @@
 		return
 	user.nextsoundemote = world.time + 7
 	playsound(user, 'modular_citadel/sound/voice/peep.ogg', 50, 1, -1)
+
+SKYRAT MODULAR END */
 
 /datum/emote/living/dab
 	key = "dab"
