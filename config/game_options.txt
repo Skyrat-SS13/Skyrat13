@@ -46,7 +46,7 @@ MULTIPLICATIVE_MOVESPEED /mob/living/carbon/human 1
 ##MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal/slime 0
 MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal 1
 
-## PROJECTILES 
+## PROJECTILES
 
 ## 1 is the default projectile speed, so 1.5 would be 50% faster.
 PROJECTILE_SPEED_MODIFIER 1
@@ -466,7 +466,7 @@ ROUNDSTART_RACES dwarf
 #ROUNDSTART_RACES silver
 #ROUNDSTART_RACES uranium
 #ROUNDSTART_RACES abductor
-#ROUNDSTART_RACES synth
+ROUNDSTART_RACES synth
 
 ## Races that are straight upgrades. If these are on expect powergamers to always pick them
 #ROUNDSTART_RACES skeleton
@@ -495,7 +495,7 @@ ROUNDSTART_RACES moth
 ##-------------------------------------------------------------------------------------------
 
 ## Uncomment to give players the choice of joining as a human with mutant bodyparts before they join the game
-#JOIN_WITH_MUTANT_HUMANS
+JOIN_WITH_MUTANT_HUMANS
 
 ##Overflow job. Default is assistant
 OVERFLOW_JOB Assistant
@@ -666,17 +666,18 @@ PENIS_MIN_INCHES_PREFS 1
 PENIS_MAX_INCHES_PREFS 20
 
 ## Body size configs, the feature will be disabled if both min and max have the same value.
-BODY_SIZE_MIN 1
-BODY_SIZE_MAX 1
+BODY_SIZE_MIN 0.60
+BODY_SIZE_MAX 1.25
 
 ## Pun-Pun movement slowdown given to characters with a body size smaller than this value,
 ## to compensate for their smaller hitbox.
-## To disable, just make sure the value is lower than 'body_size_min'
+## To completely disable this slowdown function, set the value below to 0.
 THRESHOLD_BODY_SIZE_SLOWDOWN 0.85
 
 ## Multiplier used in the smaller strides slowdown calculation.
+## This is a linear function that smoothly intensifies as the player size decreases below the above threshold.
 ## Doesn't apply to floating or crawling mobs.
-BODY_SIZE_SLOWDOWN_MULTIPLIER 0.25
+BODY_SIZE_SLOWDOWN_MULTIPLIER 3.0
 
 ## Allows players to set a hexadecimal color of their choice as skin tone, on top of the standard ones.
 ALLOW_CUSTOM_SKINTONES
