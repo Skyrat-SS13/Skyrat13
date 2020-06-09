@@ -11,10 +11,10 @@
 
 /datum/supply_pack/emergency/vehicle
 	name = "Biker Gang Kit" //TUNNEL SNAKES OWN THIS TOWN
-	desc = "TUNNEL SNAKES OWN THIS TOWN. Contains an unbranded All Terrain Vehicle, two cans of spraypaint, and a complete gang outfit -- consists of black gloves, a menacing skull bandanna, and a SWEET leather overcoat!"
+	desc = "TUNNEL SNAKES OWN THIS TOWN. Contains two cans of spraypaint, and a complete gang outfit -- consists of black gloves, a menacing skull bandanna, and a SWEET leather overcoat!" //skyrat edit
 	cost = 2500
 	contraband = TRUE
-	contains = list(/obj/vehicle/ridden/atv,
+	contains = list(///obj/vehicle/ridden/atv, //skyrat edit fuck you
 					/obj/item/key,
 					/obj/item/toy/crayon/spraycan,
 					/obj/item/toy/crayon/spraycan,
