@@ -59,6 +59,7 @@
 //                                      //
 //////////////////////////////////////////
 
+/*
 /datum/dynamic_ruleset/roundstart/overthrow
 	name = "Overthrow"
 	config_tag = "overthrow"
@@ -91,3 +92,4 @@
 		var/datum/antagonist/overthrow/O = agent.add_antag_datum(/datum/antagonist/overthrow) // create_team called on_gain will create the team
 		O.equip_initial_overthrow_agent()
 	return TRUE
+	*/
