@@ -5,19 +5,21 @@
 /turf/open/floor/proc/CitDirtify(atom/obj, atom/oldloc)
 	var/cleanprob = 50
 	var/cleanamount = 0.05
-	if(ishuman(obj))
-		var/mob/living/carbon/human/H = obj
-		if(HAS_TRAIT(H, TRAIT_CLEANFOOT) && !HAS_TRAIT(H, TRAIT_DIRTYFOOT))
-			if(oldloc && istype(oldloc, /turf/open/floor))
-				var/obj/effect/decal/cleanable/cleanable = locate(/obj/effect/decal/cleanable, oldloc)
-				if(cleanable)
-					qdel(cleanable)
-			return
-		if(HAS_TRAIT(H, TRAIT_CLEANFOOT) || HAS_TRAIT(H, TRAIT_LIGHT_STEP))
-			return
-		if(HAS_TRAIT(H, TRAIT_DIRTYFOOT))
-			cleanprob = 100
-			cleanamount = 0.5
+	if(!ishuman(obj))
+		return
+	var/mob/living/carbon/human/H = obj
+	if(HAS_TRAIT(H, TRAIT_CLEANFOOT) && !HAS_TRAIT(H, TRAIT_DIRTYFOOT))
+		if(oldloc && istype(oldloc, /turf/open/floor))
+			var/obj/effect/decal/cleanable/cleanable = locate(/obj/effect/decal/cleanable, oldloc)
+			if(!cleanable)
+				return
+			qdel(cleanable)
+		return
+	if(HAS_TRAIT(H, TRAIT_CLEANFOOT) || HAS_TRAIT(H, TRAIT_LIGHT_STEP))
+		return
+	if(HAS_TRAIT(H, TRAIT_DIRTYFOOT))
+		cleanprob = 100
+		cleanamount = 0.5
 	if(prob(cleanprob))
 		if(has_gravity(src) && !isobserver(obj))
 			var/dirtamount
