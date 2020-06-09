@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(polish_toilet_count, 0) //skyrat edit - polish toilet
+
 /obj/structure/toilet
 	name = "toilet"
 	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
@@ -18,6 +20,11 @@
 	. = ..()
 	open = round(rand(0, 1))
 	update_icon()
+	//skyrat edit - polish toilet
+	if(prob(1))
+		if(GLOB.polish_toilet_count < 3)
+			toilet_spin(TRUE)
+	//
 
 /obj/structure/toilet/attack_hand(mob/living/user)
 	. = ..()
@@ -120,6 +127,11 @@
 		var/obj/item/reagent_containers/RG = I
 		RG.reagents.add_reagent(/datum/reagent/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		to_chat(user, "<span class='notice'>You fill [RG] from [src]. Gross.</span>")
+	//skyrat edit - polish toilet
+	else if(istype(I, /obj/item/soap || /obj/item/reagent_containers/rag))
+		toilet_spin()
+		to_chat(user, "<span class='notice'>You polish the [src] with [I].</span>")
+	//
 	else
 		return ..()
 

@@ -30,7 +30,7 @@
 				return
 
 			var/list/available = list()
-			var/search = input(usr, "Input what track you are looking for. Not inputing means every song will be displayed.", "Search") as text
+			var/search = input(usr, "Input what track you are looking for. Not inputing means every song will be displayed.", "Search") as null|text
 			for(var/datum/track/S in SSjukeboxes.songs)
 				if(!search)
 					available[S.song_name] = S
