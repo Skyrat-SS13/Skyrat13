@@ -271,8 +271,11 @@
 		/obj/machinery/vending/clothing = "ClothesMate",
 		/obj/machinery/vending/medical = "NanoMed Plus",
 		/obj/machinery/vending/wallmed = "NanoMed",
+		// SKYRAT EDIT - Prison Variants & PDA Vendors
 		/obj/machinery/vending/dinnerware/prisoner = "\improper Plasteel Chef's Prisoner Dinnerware Vendor",
 		/obj/machinery/vending/hydronutrients/prisoner = "\improper Prisoner NutriMax",
+		/obj/machinery/vending/pdavendor = "\improper PDA Vending",
+		// SKYRAT EDIT END
 		/obj/machinery/vending/custom = "Custom Vendor")
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)

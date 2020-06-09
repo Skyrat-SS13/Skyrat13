@@ -6803,9 +6803,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-22"
-	},
+/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aul" = (
@@ -48982,10 +48980,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "cen" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/hallway/primary/central)
 "ceo" = (
@@ -101741,6 +101739,11 @@
 /obj/item/soap/homemade,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
+"xdg" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/vending/pdavendor,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "xdp" = (
 /obj/docking_port/stationary{
 	dwidth = 3;
@@ -141808,7 +141811,7 @@ dWg
 dVl
 dVl
 dVl
-dVl
+xdg
 dVl
 dVl
 dVl

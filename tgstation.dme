@@ -3517,6 +3517,7 @@
 #include "modular_skyrat\code\game\machinery\cryopod.dm"
 #include "modular_skyrat\code\game\machinery\dance_machine.dm"
 #include "modular_skyrat\code\game\machinery\lpchutes.dm"
+#include "modular_skyrat\code\game\machinery\pdavendor.dm"
 #include "modular_skyrat\code\game\machinery\prisonlabor.dm"
 #include "modular_skyrat\code\game\machinery\recharger.dm"
 #include "modular_skyrat\code\game\machinery\Sleeper.dm"

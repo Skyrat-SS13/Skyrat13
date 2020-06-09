@@ -30757,6 +30757,7 @@
 	icon_state = "map-right-MS";
 	pixel_y = 32
 	},
+/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "bkg" = (
@@ -70687,10 +70688,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/item/beacon,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/item/beacon,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "cPT" = (
@@ -70971,8 +70972,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "cQM" = (
-/obj/machinery/holopad,
 /obj/effect/turf_decal/delivery,
+/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "cQN" = (
@@ -77575,6 +77576,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
+"jkc" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/holopad,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "jrT" = (
 /obj/machinery/door/airlock/maintenance{
 	req_one_access_txt = "12;47"
@@ -106535,7 +106541,7 @@ cOs
 cOW
 cMU
 cPS
-cMf
+jkc
 cQM
 cPv
 aaa
