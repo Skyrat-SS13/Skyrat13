@@ -8,16 +8,6 @@
 	. = ..()
 	. += "<span class='notice'>There's a <b>small crack</b> on the edge of it.</span>"
 
-// SKYRAT EDIT - SANITARY
-/*
-/turf/open/floor/plasteel/Exit(atom/movable/mover, atom/newloc)
-	. = ..()
-	if(istype(mover, /mob/living/carbon/human))
-		if(prob(2))
-			new /obj/effect/decal/cleanable/dirt(get_turf(mover))
-*/
-// SKYRAT EDIT END
-
 /turf/open/floor/plasteel/update_icon()
 	if(!..())
 		return 0

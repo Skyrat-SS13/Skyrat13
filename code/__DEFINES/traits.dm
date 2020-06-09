@@ -200,6 +200,8 @@
 #define TRAIT_SCREWY_MOOD		"screwy_mood"
 #define TRAIT_HEMOPHILIA		"hemophilia"
 #define TRAIT_ASTHMATIC			"asthmatic"
+#define TRAIT_CLEANFOOT			"cleanfoot" // gotta clean those floors
+#define TRAIT_DIRTYFOOT			"dirtyfoot" // gotta dirty those floors
 //
 
 // mobility flag traits

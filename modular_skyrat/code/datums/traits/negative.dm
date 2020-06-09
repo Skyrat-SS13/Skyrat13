@@ -162,3 +162,13 @@
 
 /datum/quirk/allergic/proc/inform(var/allergy = "bad coders")
 	to_chat(quirk_holder, "<span class='danger'><b><i>You are allergic to [lowertext(allergy)].</i></b></span>")
+
+// Make the floors even more dirty by just walking on them. / There is also the cleanfoot trait, check goods.
+/datum/quirk/dirtyfoot
+	name = "Dirty Feet"
+	desc = "You are an animal. Your feet are so dirty, they make the floor by just existing."
+	value = -2
+	mob_trait = TRAIT_DIRTYFOOT
+	gain_text = "<span class='notice'>The ground starts to feel grimy.</span>"
+	lose_text = "<span class='danger'>The ground starts to look cleaner already.</span>"
+	medical_record_text = "Patient's feet are covered in dirt."

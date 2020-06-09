@@ -24,3 +24,12 @@
 			H.dna.species.punchdamagelow += 5
 			H.dna.species.punchstunthreshold += 5
 
+// Clean the floors with your feet / There is also the dirtyfoot trait, check negatives.
+/datum/quirk/cleanfoot
+	name = "Clean Feet"
+	desc = "You are the definition of hygienic. Your feet are so clean, they clean the floor they walk on."
+	value = 4
+	mob_trait = TRAIT_CLEANFOOT
+	gain_text = "<span class='notice'>The ground starts to have a greater shine than before.</span>"
+	lose_text = "<span class='danger'>The ground returns to its regular dull.</span>"
+	medical_record_text = "Patient's feet are exceptionally sanitary."
