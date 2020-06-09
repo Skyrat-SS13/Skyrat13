@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added emag functionality to ATMs"
-  - rscdel: "Removed coin and spacecash insert-ability into IDs"
