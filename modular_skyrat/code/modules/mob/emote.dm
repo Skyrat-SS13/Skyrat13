@@ -94,7 +94,6 @@
 	if (isvox(user))
 		playsound(user, 'modular_skyrat/sound/emotes/voxsneeze.ogg', 50, 1, -1)
 
-
 /datum/emote/living/peep
 	key = "peep"
 	key_third_person = "peeps like a bird"
