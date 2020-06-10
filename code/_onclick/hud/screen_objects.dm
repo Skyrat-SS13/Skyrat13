@@ -210,6 +210,66 @@
 		user.swap_hand(held_index)
 	return TRUE
 
+//skyrat edit - underwear button
+/obj/screen/underwear
+	name = "underwear"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "craft"
+	screen_loc = ui_crafting
+
+/obj/screen/underwear/Click(location, control, params)
+	. = ..()
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/H = usr
+	if(H.canUseTopic(src, FALSE, FALSE, FALSE, FALSE))
+		var/list/available = list()
+		if(H.underwear)
+			available |= H.underwear
+		if(H.undershirt)
+			available |= H.undershirt
+		if(H.socks)
+			available |= H.socks
+		available -= "Nude"
+		if(!available.len)
+			to_chat(H, "<span class='warning'>You aren't wearing any underwear.</span>")
+			return
+		available += "Cancel"
+		var/choose = input(H, "What undergarment do you want to remove?", "Underwear") as anything in available
+		if((choose != "Cancel") && choose)
+			var/obj/item/clothing/under/underwear/W = new /obj/item/clothing/under/underwear(get_turf(H))
+			var/datum/sprite_accessory/underwear/und
+			var/color2use
+			if(GLOB.underwear_list[choose])
+				und = GLOB.underwear_list[choose]
+				color2use = H.undie_color
+				H.underwear = ""
+			else if(GLOB.undershirt_list[choose])
+				und = GLOB.undershirt_list[choose]
+				color2use = H.shirt_color
+				H.undershirt = ""
+			else if(GLOB.socks_list[choose])
+				und = GLOB.socks_list[choose]
+				color2use = H.socks_color
+				H.socks = ""
+			if(!und)
+				H.update_body()
+				return
+			W.name = und.name
+			W.desc = "It's [lowertext(W.name)]."
+			W.icon = und.icon
+			W.mob_overlay_icon = und.icon
+			W.icon_state = und.icon_state
+			W.stored_icon_state = und.icon_state
+			if(und.has_color && color2use)
+				W.color = color2use
+				W.stored_color = color2use
+			W.stored_underwear = und.name
+			W.update_icon()
+			if(!H.put_in_active_hand(W))
+				H.put_in_inactive_hand(W)
+			H.update_body()
+//
 
 /obj/screen/drop
 	name = "drop"

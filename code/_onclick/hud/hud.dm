@@ -14,8 +14,27 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Clockwork" = 'icons/mob/screen_clockwork.dmi'
 ))
 
+//skyrat edit
+GLOBAL_LIST_INIT(modular_ui_styles, list(
+	'modular_skyrat/icons/mob/screen_midnight.dmi' = 'modular_skyrat/icons/mob/screen_midnight.dmi',
+	'modular_skyrat/icons/mob/screen_retro.dmi' = 'icons/mob/screen_retro.dmi',
+	'modular_skyrat/icons/mob/screen_plasmafire.dmi' = 'icons/mob/screen_plasmafire.dmi',
+	'modular_skyrat/icons/mob/screen_slimecore.dmi' = 'icons/mob/screen_slimecore.dmi',
+	'modular_skyrat/icons/mob/screen_operative.dmi' = 'icons/mob/screen_operative.dmi',
+	'modular_skyrat/icons/mob/screen_clockwork.dmi' = 'icons/mob/screen_clockwork.dmi'
+))
+//
+
 /proc/ui_style2icon(ui_style)
 	return GLOB.available_ui_styles[ui_style] || GLOB.available_ui_styles[GLOB.available_ui_styles[1]]
+
+//skyrat edit
+/proc/ui_style_modular(ui_style)
+	if(isfile(ui_style))
+		return GLOB.modular_ui_styles[ui_style] || GLOB.modular_ui_styles[GLOB.modular_ui_styles[1]]
+	else
+		return GLOB.modular_ui_styles[ui_style] || GLOB.modular_ui_styles[GLOB.modular_ui_styles[1]]
+//
 
 /datum/hud
 	var/mob/mymob

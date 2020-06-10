@@ -300,6 +300,15 @@
 	inv_box.slot_id = SLOT_SHOES
 	toggleable_inventory += inv_box
 
+	//skyrat edit
+	inv_box = new /obj/screen/underwear()
+	inv_box.name = "underwear"
+	inv_box.icon = ui_style_modular(ui_style)
+	inv_box.icon_state = "underwear"
+	inv_box.screen_loc = ui_undies
+	toggleable_inventory += inv_box
+	//
+
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "belt"
 	inv_box.icon = ui_style

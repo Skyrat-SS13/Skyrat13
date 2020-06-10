@@ -156,6 +156,10 @@
 #define ui_neck "WEST:6,SOUTH+2:9"
 #define ui_head "WEST+1:8,SOUTH+3:11"
 
+//skyrat underwear
+#define ui_undies "WEST+2:10,SOUTH:5"
+//
+
 //Ghosts
 
 #define ui_ghost_jumptomob "SOUTH:6,CENTER-2:24"
