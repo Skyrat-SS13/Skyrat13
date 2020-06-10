@@ -464,6 +464,7 @@
 	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
 	icon_state = "donkpocketbox"
 	illustration=null
+	custom_premium_price = PRICE_ABOVE_NORMAL // git gud
 
 /obj/item/storage/box/donkpockets/ComponentInitialize()
 	. = ..()
@@ -652,7 +653,7 @@
 	item_state = "zippo"
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = ITEM_SLOT_BELT
-	custom_price = 20
+	custom_price = PRICE_REALLY_CHEAP
 
 /obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()
@@ -1379,6 +1380,7 @@
 	name = "box of marshmallows"
 	desc = "A box of marshmallows."
 	illustration = "marshmallow"
+	custom_premium_price = PRICE_BELOW_NORMAL
 
 /obj/item/storage/box/marshmallow/PopulateContents()
 	for (var/i in 1 to 5)
