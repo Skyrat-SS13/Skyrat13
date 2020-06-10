@@ -809,7 +809,7 @@
 
 /mob/living/simple_animal/parrot/Moved(oldLoc, dir)
 	. = ..()
-	if(. && !stat && client && parrot_state == PARROT_PERCH)
+	if(. && !stat && client && parrot_state == PARROT_PERCH && !buckled) //skyrat change - makes it so that the parrot won't switch to a living icon_state when perching and buckled ie no more flying parrot when perching on a person
 		parrot_state = PARROT_WANDER
 		icon_state = icon_living
 		pixel_x = initial(pixel_x)
