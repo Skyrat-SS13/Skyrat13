@@ -67,6 +67,9 @@
 		if(HC.credits <= 0 || !HC.credits)
 			return
 		var/selectaccount = input(user, "Please enter an account number:", "Account Selection") as null|num
+		var/chosenitem = user.get_active_held_item()
+		if(!chosenitem)
+			return
 		if(!selectaccount)
 			not_selected_account()
 		for(var/datum/bank_account/BA in SSeconomy.bank_accounts)
@@ -77,13 +80,16 @@
 			if(!emagaccount)
 				BA.account_balance += totalmoney
 			successful_transaction()
-			qdel(HC)
+			QDEL_NULL(HC)
 			break
 	if(istype(W, /obj/item/stack/spacecash))
 		var/obj/item/stack/spacecash/SC = W
 		if(SC.get_item_credit_value() <= 0 || !SC.get_item_credit_value())
 			return
 		var/selectaccount = input(user, "Please enter an account number:", "Account Selection") as null|num
+		var/chosenitem = user.get_active_held_item()
+		if(!chosenitem)
+			return
 		if(!selectaccount)
 			not_selected_account()
 		for(var/datum/bank_account/BA in SSeconomy.bank_accounts)
@@ -94,13 +100,16 @@
 			if(!emagaccount)
 				BA.account_balance += totalmoney
 			successful_transaction()
-			qdel(SC)
+			QDEL_NULL(SC)
 			break
 	if(istype(W, /obj/item/coin))
 		var/obj/item/coin/CM = W
 		if(CM.get_item_credit_value() <= 0 || !CM.get_item_credit_value())
 			return
 		var/selectaccount = input(user, "Please enter an account number:", "Account Selection") as null|num
+		var/chosenitem = user.get_active_held_item()
+		if(!chosenitem)
+			return
 		if(!selectaccount)
 			not_selected_account()
 		for(var/datum/bank_account/BA in SSeconomy.bank_accounts)
@@ -111,7 +120,7 @@
 			if(!emagaccount)
 				BA.account_balance += totalmoney
 			successful_transaction()
-			qdel(CM)
+			QDEL_NULL(CM)
 			break
 	if(istype(W, /obj/item/storage/bag/money))
 		var/selectaccount = input(user, "Please enter an account number:", "Account Selection") as null|num
@@ -126,7 +135,7 @@
 			for (var/obj/item/physical_money in money_contained)
 				var/cash_money = physical_money.get_item_credit_value()
 				total += cash_money
-				qdel(physical_money)
+				QDEL_NULL(physical_money)
 			totalmoney = total
 			emagcheck()
 			if(!emagaccount)
