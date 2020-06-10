@@ -1,0 +1,12 @@
+author: "Kathrin Morrison / Floof Ball#0798"
+delete-after: True
+changes: 
+  - rscadd: "General Population prison (perma) to Delta with tweaked loot."
+  - rscadd: "Conference room to Delta security."
+  - rscadd: "New locker room for Delta security."
+  - rscadd: "New armoury for Delta security."
+  - rscdel: "Old Delta Station prison. Now two maps have the old prison, two the new one."
+  - tweak: "Rudimentary 'Hard Mode' for the prison. You now have to ferment food for alcohol and grow more from scratch. It's not the true 'Hard Mode' but it's a start."
+  - tweak: "Most of the security staff will now spawn around the new conference table."
+  - tweak: "Cloning room now up to date for economy. You can't use vendors with no ID, and you clone naked. Chromatic windows added too because I'm trying to get rid of the whole \"I'm not going to have a single reaction to an entire department seeing me fully naked!\" thing. It's literally NRP, there's no RP in it."
+  - bugfix: "Station ruin areas messed up by other people mapping with copy and paste and not cleaning up after themselves."
