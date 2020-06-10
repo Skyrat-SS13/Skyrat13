@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Joining with an alt title now has a disclaimer."
