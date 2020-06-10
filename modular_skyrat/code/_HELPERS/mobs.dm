@@ -54,7 +54,7 @@
 	return features
 
 //proc to change a human's features based on a list made by the copify_features() proc
-/proc/featurize_human(var/mob/living/carbon/human/H, var/list/features, var/paste_hairs = FALSE, var/paste_wings = FALSE)
+/proc/featurize_human(mob/living/carbon/human/H, list/features, paste_hairs = FALSE, paste_wings = FALSE)
 	if(!H || !istype(H) || !features.len)
 		return FALSE
 	H.gender = features["gender"]
