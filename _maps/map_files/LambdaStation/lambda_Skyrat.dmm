@@ -82212,6 +82212,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /mob/living/simple_animal/pet/roro/roboticsroro,
+/mob/living/simple_animal/pet/fizz/roboticsfizz,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "hvl" = (

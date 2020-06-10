@@ -12619,6 +12619,7 @@
 /area/security/nuke_storage)
 "aAC" = (
 /mob/living/simple_animal/pet/roro/roboticsroro,
+/mob/living/simple_animal/pet/fizz/roboticsfizz,
 /turf/open/floor/plasteel/showroomfloor,
 /area/science/robotics/lab)
 "aAE" = (

@@ -85593,6 +85593,7 @@
 "dGa" = (
 /obj/effect/turf_decal/stripes/line,
 /mob/living/simple_animal/pet/roro/roboticsroro,
+/mob/living/simple_animal/pet/fizz/roboticsfizz,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "dGb" = (

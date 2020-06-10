@@ -61901,6 +61901,7 @@
 /area/maintenance/fore)
 "qpj" = (
 /mob/living/simple_animal/pet/roro/roboticsroro,
+/mob/living/simple_animal/pet/fizz/roboticsfizz,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "qpR" = (
