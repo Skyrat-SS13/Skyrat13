@@ -430,7 +430,12 @@
 			if(client.prefs.exploitable_info)
 				line += "<a href='?src=[REF(src)];exploitable_info=1'>\[EXP\]</a>"
 		else if(user.mind?.antag_datums && client.prefs.exploitable_info)
-			line += "<a href='?src=[REF(src)];exploitable_info=1'>\[Exploitable Info\]</a>"
+			for(var/a in user.mind.antag_datums)
+				var/datum/antagonist/curious_antag = a
+				if(!(curious_antag.antag_flags & CAN_SEE_EXPOITABLE_INFO))
+					continue
+				line += "<a href='?src=[REF(src)];exploitable_info=1'>\[Exploitable Info\]</a>"
+				break
 
 		. += line.Join()
 	//END OF SKYRAT EDIT
