@@ -455,15 +455,11 @@
 	reagent_flags = NONE
 	spillable = FALSE
 	isGlass = FALSE
-<<<<<<< HEAD
-	custom_price = 45
 	//skyrat edit - makes crushed cans able to use other icon states and icon files
 	var/crushed_icon = 'icons/obj/janitor.dmi'
 	var/crushed_state
 	//
-=======
 	custom_price = PRICE_CHEAP_AS_FREE
->>>>>>> 8cb15f9279... Actually Balanced and Standardized Vendor Prices. (#12495)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] is trying to eat \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
