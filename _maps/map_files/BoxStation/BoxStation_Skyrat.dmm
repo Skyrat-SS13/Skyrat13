@@ -56677,6 +56677,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall/r_wall,
 /area/science/mixing)
+"fdf" = (
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "fee" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -58189,6 +58195,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/machinery/atm{
+	pixel_x = -30
+	},
 /turf/open/floor/plasteel/white/corner{
 	dir = 8
 	},
@@ -58619,6 +58628,16 @@
 /obj/machinery/atmospherics/pipe/manifold4w/violet/hidden,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"jjv" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/machinery/atm{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/aft)
 "jkx" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/machinery/computer/slot_machine,
@@ -58846,6 +58865,12 @@
 "jGc" = (
 /turf/closed/wall,
 /area/blueshield)
+"jGq" = (
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
 "jGW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -59700,6 +59725,15 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"lof" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "lpM" = (
 /obj/machinery/door/poddoor/incinerator_atmos_aux,
 /turf/open/floor/engine/vacuum,
@@ -61064,6 +61098,21 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
 /area/hallway/secondary/exit)
+"oAA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "oAB" = (
 /obj/structure/fireplace{
 	pixel_y = -6
@@ -62414,6 +62463,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"rPc" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "rPH" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced{
@@ -64083,6 +64141,13 @@
 /obj/structure/pool/Lboard,
 /turf/open/pool,
 /area/crew_quarters/fitness/pool)
+"vpB" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atm{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "vpH" = (
 /obj/structure/sign/warning/fire{
 	desc = "A sign that states the labeled room's number.";
@@ -83678,7 +83743,7 @@ aDo
 aDo
 aIW
 aBQ
-aLE
+jGq
 aLE
 aOl
 aPC
@@ -92159,7 +92224,7 @@ azW
 azW
 aJf
 ayW
-aJr
+lof
 aJq
 aOE
 aJn
@@ -93216,7 +93281,7 @@ ktS
 aaf
 ktS
 fxV
-aXf
+rPc
 aJq
 bBi
 bCs
@@ -94266,7 +94331,7 @@ bSA
 bSA
 bWL
 bSA
-bSA
+jjv
 bZx
 bSR
 bUl
@@ -97287,7 +97352,7 @@ arf
 arf
 arf
 arf
-ltK
+oAA
 xAv
 awr
 awr
@@ -98348,7 +98413,7 @@ aYG
 aYG
 ble
 bmE
-bmE
+vpB
 bpn
 bqL
 bsp
@@ -102708,7 +102773,7 @@ aXk
 aKR
 aKR
 aJC
-aYV
+fdf
 aYV
 bev
 bfH
