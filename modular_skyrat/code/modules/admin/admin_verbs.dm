@@ -123,6 +123,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/callproc_datum,
+	/client/proc/qdel_and_findref_datum,
+	/client/proc/find_ref_datum_list,
 	/client/proc/SDQL2_query,
 	/client/proc/test_movable_UI,
 	/client/proc/test_snap_UI,

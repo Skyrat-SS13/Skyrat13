@@ -348,7 +348,9 @@ SUBSYSTEM_DEF(garbage)
 
 	find_references(FALSE)
 
-/datum/proc/find_references(skip_alert)
+/datum/proc/find_references(skip_alert, sure = FALSE)
+	if(!sure)
+		return
 	running_find_references = type
 	if(usr && usr.client)
 		if(usr.client.running_find_references)
@@ -446,9 +448,7 @@ SUBSYSTEM_DEF(garbage)
 			else if (islist(I))
 				DoSearchVar(I, "[Xname] -> list", recursive_limit-1)
 
-#ifndef FIND_REF_NO_CHECK_TICK
-	CHECK_TICK
-#endif
+	//CHECK_TICK
 
 #endif
 

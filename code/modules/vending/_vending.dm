@@ -794,6 +794,18 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/onTransitZ()
 	return
 
+/obj/machinery/vending/proc/LastShopperQdeleting()
+	UnregisterSignal(last_shopper, COMSIG_PARENT_QDELETING)
+	last_shopper = null
+
+
+/obj/machinery/vending/proc/SetLastShopper(_last_shopper)
+	if(last_shopper)
+		UnregisterSignal(last_shopper, COMSIG_PARENT_QDELETING)
+	last_shopper = _last_shopper
+	RegisterSignal(last_shopper, COMSIG_PARENT_QDELETING, .proc/LastShopperQdeleting)
+	
+
 /obj/machinery/vending/custom
 	name = "Custom Vendor"
 	icon_state = "robotics"

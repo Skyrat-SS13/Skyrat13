@@ -90,7 +90,7 @@
 /client/MouseMove(object,location,control,params)
 	mouseParams = params
 	mouseLocation = location
-	mouseObject = object
+	SetMouseObject(object)
 	mouseControlObject = control
 	if(mob)
 		SEND_SIGNAL(mob, COMSIG_MOB_CLIENT_MOUSEMOVE, object, location, control, params)
@@ -107,7 +107,7 @@
 			middragatom = null
 	mouseParams = params
 	mouseLocation = over_location
-	mouseObject = over_object
+	SetMouseObject(over_object)
 	mouseControlObject = over_control
 	if(selected_target[1] && over_object && over_object.IsAutoclickable())
 		selected_target[1] = over_object
@@ -124,3 +124,14 @@
 		middragtime = 0
 		middragatom = null
 	..()
+
+/client/proc/MouseObjectQdeleting()
+	UnregisterSignal(mouseObject, COMSIG_PARENT_QDELETING)
+	mouseObject = null
+
+/client/proc/SetMouseObject(object)
+	if(mouseObject)
+		UnregisterSignal(mouseObject, COMSIG_PARENT_QDELETING)
+	mouseObject = object
+	if(mouseObject)
+		RegisterSignal(mouseObject, COMSIG_PARENT_QDELETING, .proc/MouseObjectQdeleting)

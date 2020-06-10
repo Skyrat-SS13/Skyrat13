@@ -206,3 +206,31 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	else
 		. = "<span class='notice'>[procname] returned: [!isnull(returnval) ? returnval : "null"]</span>"
+
+/client/proc/qdel_and_findref_datum(datum/A as null|area|mob|obj|turf)
+	set category = "Debug"
+	set name = "Find Ref"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	A.find_references(TRUE, TRUE)
+
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Qdel and findref") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/find_ref_datum_list(mob/M in GLOB.mob_list)
+	set category = "Debug"
+	set name = "FindRefList"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	M.find_references(TRUE, TRUE)
+
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "findref from mob list") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/vv_qdel_and_ref(datum/D)
+	if(!holder)
+		return
+	qdel(D)
+	D.find_references(TRUE, TRUE)

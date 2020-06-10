@@ -31,6 +31,7 @@
 	VV_DROPDOWN_OPTION(VV_HK_EXPOSE, "Show VV To Player")
 	VV_DROPDOWN_OPTION(VV_HK_ADDCOMPONENT, "Add Component/Element")
 	VV_DROPDOWN_OPTION(VV_HK_MODIFY_TRAITS, "Modify Traits")
+	VV_DROPDOWN_OPTION(VV_QDEL_AND_REF, "Qdel and Find Reference")
 
 //This proc is only called if everything topic-wise is verified. The only verifications that should happen here is things like permission checks!
 //href_list is a reference, modifying it in these procs WILL change the rest of the proc in topic.dm of admin/view_variables!
@@ -40,6 +41,8 @@
 		return FALSE			//This is VV, not to be called by anything else.
 	if(href_list[VV_HK_MODIFY_TRAITS])
 		usr.client.holder.modify_traits(src)
+	if(href_list[VV_QDEL_AND_REF])
+		usr.client.vv_qdel_and_ref(src)
 	return TRUE
 
 /datum/proc/vv_get_header()

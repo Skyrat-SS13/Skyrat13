@@ -70,11 +70,22 @@
 /datum/callback/New(thingtocall, proctocall, ...)
 	if (thingtocall)
 		object = thingtocall
+	//RegisterSignal(object, COMSIG_PARENT_QDELETING, .proc/CalledDestroy)
 	delegate = proctocall
 	if (length(args) > 2)
 		arguments = args.Copy(3)
 	if(usr)
 		user = WEAKREF(usr)
+
+/*
+/datum/callback/proc/CalledDestroy()
+	message_admins("Callback signalled destroy")
+	Destroy()
+
+/datum/callback/Destroy()
+	UnregisterSignal(object, COMSIG_PARENT_QDELETING)
+	object = null
+	return ..()*/
 /**
   * Immediately Invoke proctocall on thingtocall, with waitfor set to false
   *

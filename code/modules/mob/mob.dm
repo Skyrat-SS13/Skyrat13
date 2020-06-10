@@ -3,6 +3,7 @@
 	GLOB.dead_mob_list -= src
 	GLOB.alive_mob_list -= src
 	GLOB.all_clockwork_mobs -= src
+	GLOB.mob_directory -= src
 	GLOB.mob_directory -= tag
 	focus = null
 	LAssailant = null
@@ -16,10 +17,25 @@
 	qdel(hud_used)
 	for(var/cc in client_colours)
 		qdel(cc)
+	if(client)
+		if(client.movingmob == src)
+			client.movingmob = null
+		if(client.mob == src)
+			client.mob = null
+		if(client.eye == src)
+			client.eye = null
+		if(client.virtual_eye == src)
+			client.virtual_eye = null
+		if(client.statobj == src)
+			client.statobj = null
+	if(mind && mind.current == src)
+		mind.current = null
+	message_admins("[src]") 
+	focus = null
 	client_colours = null
 	ghostize()
 	..()
-	return QDEL_HINT_HARDDEL
+	return QDEL_HINT_QUEUE
 
 /mob/Initialize()
 	GLOB.mob_list += src

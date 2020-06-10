@@ -20,6 +20,11 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		verbs += /mob/dead/proc/server_hop
 	set_focus(src)
 	return INITIALIZE_HINT_NORMAL
+	
+/mob/dead/Destroy()
+	if(registered_z)
+		SSmobs.dead_players_by_zlevel[registered_z] -= src
+	return ..()
 
 /mob/dead/canUseStorage()
 	return FALSE

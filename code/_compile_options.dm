@@ -1,4 +1,4 @@
-//#define TESTING				//By using the testing("message") proc you can create debug-feedback for people with this
+#define TESTING				//By using the testing("message") proc you can create debug-feedback for people with this
 								//uncommented, but not visible in the release version)
 
 //#define DATUMVAR_DEBUGGING_MODE	//Enables the ability to cache datum vars and retrieve later for debugging which vars changed.
@@ -14,7 +14,7 @@
 //#define GC_FAILURE_HARD_LOOKUP	//makes paths that fail to GC call find_references before del'ing.
 									//implies FIND_REF_NO_CHECK_TICK
 
-//#define FIND_REF_NO_CHECK_TICK	//Sets world.loop_checks to false and prevents find references from sleeping
+#define FIND_REF_NO_CHECK_TICK	//Sets world.loop_checks to false and prevents find references from sleeping
 
 
 //#define VISUALIZE_ACTIVE_TURFS	//Highlights atmos active turfs in green
