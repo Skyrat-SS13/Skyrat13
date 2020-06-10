@@ -12,7 +12,7 @@
 
 	outfit = /datum/outfit/job/prisoner
 
-	paycheck = PAYCHECK_MINIMAL // Really nice to not be able to buy sustenance items. Alternatively - make security actually care, or better: fix price balance.
+	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_CIV
 
 	display_order = JOB_DISPLAY_ORDER_PRISONER
