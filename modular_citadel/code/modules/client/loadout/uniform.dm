@@ -396,6 +396,7 @@
 							"Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer",
 							"Cargo Technician", "Shaft Miner")
 
+/* handled by modular code
 /datum/gear/trekfedtrainee
 	name = "TMP uniform, trainee"
 	category = SLOT_W_UNIFORM
@@ -448,6 +449,7 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/orv/engsec
 	restricted_roles = list("Chief Engineer", "Head of Security")
+*/
 
 /datum/gear/orvass
 	name = "ORV uniform, assistant"

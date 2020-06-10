@@ -9,7 +9,7 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/misc/polyjumpsuit
 	cost = 3
-	
+
 /datum/gear/polyunder
 	name = "Polychromic Under"
 	category = SLOT_W_UNIFORM
@@ -55,12 +55,29 @@
 	name = "Fed uniform, classic"
 	restricted_roles = NOCIV_ROLES // Accomodates for modular and forgotten roles.
 
-/datum/gear/trekfedtrainee
-	name = "EntCorp uniform, trainee/assistant"
-	path = /obj/item/clothing/under/trek/orvi
+/datum/gear/orvass
+	name = "EntCorp uniform, assistant/trainee"
 
-/datum/gear/trekfedservice
+/datum/gear/orvsrv
 	name = "EntCorp uniform, service"
-	path = /obj/item/clothing/under/trek/orvi/service
 	restricted_roles = CIV_ROLES
 	restricted_desc = "Civilian and Service"
+
+// Yes, it was in non-modular code. Yes, I'm retarded --Nopeman
+/datum/gear/orvcmd_capt
+	name = "EntCorp uniform, capt"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/command/orv/captain
+	restricted_roles = list("Captain")
+
+/datum/gear/orvcmd_medsci
+	name = "EntCorp uniform, medsci, cmd"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/command/orv/medsci
+	restricted_roles = MEDSCI_ROLES
+
+/datum/gear/orvcmd_ops
+	name = "EntCorp uniform, ops, cmd"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/command/orv/engsec
+	restricted_roles = OPRS_ROLES
