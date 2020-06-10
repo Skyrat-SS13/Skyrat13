@@ -17,7 +17,7 @@
 	return D
 
 //proc to copy a human's general appearance etc
-/proc/copify_features(var/mob/living/carbon/human/H, var/copy_hairs = FALSE, var/copy_wings = FALSE)
+/proc/copify_features(mob/living/carbon/human/H, copy_hairs = FALSE, copy_wings = FALSE)
 	if(!istype(H))
 		return FALSE
 	var/list/features = list()
