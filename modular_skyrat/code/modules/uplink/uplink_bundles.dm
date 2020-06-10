@@ -9,7 +9,7 @@
 
 /obj/item/clothing/mask/gas/clown_hat/joker
 	name = "\proper Society's Mask"
-	desc = "I'm the joker, baby! ...This mask is incredibly armored, somehow."
+	desc = "I'm the joker, baby! This mask is incredibly armored, somehow."
 	icon_state = "joker"
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25,"energy" = 25, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 
@@ -62,6 +62,7 @@
 	item = /obj/item/storage/box/syndie_kit/snake
 	cost = 20
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	cant_discount = TRUE
 
 /obj/item/storage/box/syndie_kit/snake
 	name = "Motherbase Shipment"
