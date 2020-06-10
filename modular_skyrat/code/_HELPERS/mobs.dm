@@ -18,9 +18,9 @@
 
 //proc to copy a human's general appearance etc
 /proc/copify_features(var/mob/living/carbon/human/H, var/copy_hairs = FALSE, var/copy_wings = FALSE)
-	var/list/features = list()
-	if(!H || !istype(H))
+	if(!istype(H))
 		return FALSE
+	var/list/features = list()
 	features["gender"] = H.gender
 	features["real_name"] = H.real_name
 	features["name"] = H.name
