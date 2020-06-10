@@ -29192,7 +29192,6 @@
 /area/security/main)
 "brt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/obj/effect/turf_decal/loading_area,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
