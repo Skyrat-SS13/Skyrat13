@@ -267,9 +267,9 @@
 			W.stored_underwear = und.name
 			if(istype(und, /datum/sprite_accessory/underwear/bottom))
 				W.body_parts_covered = GROIN
-			else if(istype(und, /datum/sprite_accessory/top))
+			else if(istype(und, /datum/sprite_accessory/underwear/top))
 				W.body_parts_covered = CHEST
-			else if(istype(und, /datum/sprite_accessory/socks))
+			else if(istype(und, /datum/sprite_accessory/underwear/socks))
 				W.body_parts_covered = FEET
 			W.update_icon()
 			if(!H.put_in_active_hand(W))
