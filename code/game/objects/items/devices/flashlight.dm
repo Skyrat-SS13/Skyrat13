@@ -359,7 +359,6 @@
 	desc = "An ornate, green lantern."
 	color = LIGHT_COLOR_GREEN
 	light_color = LIGHT_COLOR_GREEN
-<<<<<<< HEAD
 
 //Skyrat edit - möth
 /obj/item/flashlight/lantern/heirloom_moth
@@ -377,8 +376,6 @@
 	item_state = "syndilantern"
 	brightness_on = 10
 //
-=======
->>>>>>> 8cb15f9279... Actually Balanced and Standardized Vendor Prices. (#12495)
 
 /obj/item/flashlight/slime
 	gender = PLURAL
