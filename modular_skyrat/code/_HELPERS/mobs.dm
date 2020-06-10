@@ -1,5 +1,5 @@
 //proc used to create perfect copies of dna and species.
-/proc/copify_dna(var/datum/tocopy)
+/proc/copify_dna(datum/tocopy)
 	if(!tocopy)
 		return FALSE
 	var/datum/D = new tocopy.type()
