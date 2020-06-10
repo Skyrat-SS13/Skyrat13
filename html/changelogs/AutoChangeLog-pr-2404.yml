@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - balance: "Keycard auth devices now require two seperate IDs with sufficient access to auth."
