@@ -31938,9 +31938,6 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bxp" = (
-/obj/machinery/newscaster/security_unit{
-	pixel_x = 32
-	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
