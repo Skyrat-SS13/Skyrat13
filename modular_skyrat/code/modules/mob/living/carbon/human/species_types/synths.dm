@@ -4,7 +4,7 @@
 	say_mod = "states" //inherited from a user's fake species
 	sexes = 0 //it gets it's sexes by the fake species
 	species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE)
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	dangerous_existence = 0 //not dangerous anymore i guess
 	blacklisted = 0 //not blacklisted anymore
@@ -44,8 +44,8 @@
 		sexes = S.sexes
 		species_traits = initial_species_traits.Copy()
 		inherent_traits = initial_inherent_traits.Copy()
-		species_traits |= S.species_traits
-		inherent_traits |= S.inherent_traits
+		species_traits |= (S.species_traits - list(DIGITIGRADE))
+		inherent_traits |= (S.inherent_traits - list(TRAIT_NOLIMBDISABLE, TRAIT_NODISMEMBER))
 		attack_verb = S.attack_verb
 		attack_sound = S.attack_sound
 		miss_sound = S.miss_sound
@@ -97,6 +97,7 @@
 
 	handle_mutant_bodyparts(H)
 	H.regenerate_icons()
+	H.revive()
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -134,7 +135,7 @@
 	attack_sound = initial(attack_sound)
 	miss_sound = initial(miss_sound)
 	nojumpsuit = initial(nojumpsuit)
-	no_equip = list()
+	no_equip = initial(no_equip)
 	meat = initial(meat)
 	limbs_id = initial(limbs_id)
 	use_skintones = initial(use_skintones)
