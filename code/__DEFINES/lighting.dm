@@ -83,13 +83,9 @@
 #define FLASH_LIGHT_DURATION 2
 #define FLASH_LIGHT_POWER 3
 #define FLASH_LIGHT_RANGE 3.8
-/* // Skyrat edit -- 512 compatibility
 /// Uses vis_overlays to leverage caching so that very few new items need to be made for the overlay. For anything that doesn't change outline or opaque area much or at all.
 #define EMISSIVE_BLOCK_GENERIC 1
 /// Uses a dedicated render_target object to copy the entire appearance in real time to the blocking layer. For things that can change in appearance a lot from the base state, like humans.
-<<<<<<< HEAD
-#define EMISSIVE_BLOCK_UNIQUE 2*/
-=======
 #define EMISSIVE_BLOCK_UNIQUE 2
 
 
@@ -116,4 +112,3 @@ do { \
 		source.lum_b = 1; \
 	}; \
 } while (FALSE)
->>>>>>> 798de9baf1... Porting "Speeds up /datum/light_source/proc/update_corners() by 16% or so" (#12496)
