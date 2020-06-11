@@ -56,7 +56,7 @@
 	if(!client)
 		return
 	client.color = ""
-	if(!client_colours.len)
+	if(!length(client_colours)) //Skyrat change
 		return
 	var/datum/client_colour/CC = client_colours[1]
 	if(CC)

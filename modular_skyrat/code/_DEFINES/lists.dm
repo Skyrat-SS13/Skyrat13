@@ -1,0 +1,2 @@
+GLOBAL_LIST_EMPTY(ckey_assigned_new_player)
+GLOBAL_LIST_EMPTY(ckey_assigned_observer)

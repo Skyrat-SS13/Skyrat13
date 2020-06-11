@@ -56,5 +56,8 @@
 		transfer_ckey(M)
 
 	if(delete_old_mob)
-		QDEL_IN(src, 1)
+		if(isobserver(src))
+			mob_assignment_stow_observer(src.ckey)
+		else
+			QDEL_IN(src, 1)
 	return M

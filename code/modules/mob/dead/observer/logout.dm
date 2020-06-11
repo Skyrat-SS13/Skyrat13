@@ -13,4 +13,5 @@
 	..()
 	spawn(0)
 		if(src && !key)	//we've transferred to another mob. This ghost should be deleted.
-			qdel(src)
+			//qdel(src) //Skyrat change
+			mob_assignment_stow_observer(src)

@@ -412,7 +412,7 @@ SUBSYSTEM_DEF(ticker)
 	for(var/mob/dead/new_player/player in GLOB.mob_list)
 		var/mob/living = player.transfer_character()
 		if(living)
-			qdel(player)
+			//qdel(player) //Skyrat change
 			living.notransform = TRUE
 			if(living.client)
 				if (living.client.prefs && living.client.prefs.auto_ooc)

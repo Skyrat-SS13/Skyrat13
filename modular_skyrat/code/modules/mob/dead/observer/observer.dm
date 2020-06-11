@@ -60,7 +60,7 @@
 			client?.prefs.copy_to(H)
 			H.dna.update_dna_identity()
 
-		QDEL_IN(src, 1)
+		mob_assignment_stow_observer(src)
 
 		if (teleport_option == "Bluespace")
 			playsound(spawned_player, 'sound/magic/Disable_Tech.ogg', 100, 1)

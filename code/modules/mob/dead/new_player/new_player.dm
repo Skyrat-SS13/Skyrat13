@@ -174,7 +174,7 @@
 		if(MS.attack_ghost(src, latejoinercalling = TRUE))
 			SSticker.queued_players -= src
 			SSticker.queue_delay = 4
-			qdel(src)
+			//qdel(src) //Skyrat change
 
 	if(!ready && href_list["preference"])
 		if(client)
@@ -280,7 +280,7 @@
 		new_player_panel()
 		return FALSE
 
-	var/mob/dead/observer/observer = new()
+	var/mob/dead/observer/observer = mob_assignment_get_observer(ckey(key))
 	spawning = TRUE
 
 	observer.started_as_observer = TRUE
@@ -301,7 +301,7 @@
 	observer.update_icon()
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	QDEL_NULL(mind)
-	qdel(src)
+	//qdel(src) //Skyrat change
 	return TRUE
 
 /proc/get_job_unavailable_error_message(retval, jobtitle)
@@ -595,7 +595,7 @@
 		new_character.key = key		//Manually transfer the key to log them in
 		new_character.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 		new_character = null
-		qdel(src)
+		//qdel(src) //Skyrat change
 
 /mob/dead/new_player/proc/ViewManifest()
 	var/dat = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><body>"
@@ -643,3 +643,9 @@
 
 		return FALSE //This is the only case someone should actually be completely blocked from antag rolling as well
 	return TRUE
+
+//Skyrat changes
+/mob/dead/new_player/Destroy()
+	stack_trace("A new player was deleted - notiyfy Azarak with this runtime!") //Skyrat change
+	return ..()
+//End of skyrat changes

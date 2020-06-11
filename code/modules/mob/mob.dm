@@ -474,10 +474,10 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 		log_game("[key_name(usr)] AM failed due to disconnect.")
 		return
 
-	var/mob/dead/new_player/M = new /mob/dead/new_player()
+	var/mob/dead/new_player/M = mob_assignment_get_new_player(ckey(key)) //Skyrat change
 	if(!client)
 		log_game("[key_name(usr)] AM failed due to disconnect.")
-		qdel(M)
+		//qdel(M) //Skyrat change
 		return
 
 	M.key = key

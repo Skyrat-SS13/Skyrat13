@@ -22,6 +22,7 @@
 
 	sight |= SEE_TURFS
 
+	mob_assignment_new_player_login(src) //Skyrat change
 	new_player_panel()
 	client.playtitlemusic()
 	if(SSticker.current_state < GAME_STATE_SETTING_UP)
