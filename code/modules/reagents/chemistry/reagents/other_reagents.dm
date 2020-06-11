@@ -1045,6 +1045,14 @@
 			// +20% success propability on each step, useful while operating in less-than-perfect conditions
 	..()
 
+/datum/reagent/space_cleaner/sterilizine/reaction_obj(obj/O, reac_volume)
+	if(istype(O, /obj/item/stack/medical/gauze))
+		var/obj/item/stack/medical/gauze/G = O
+		reac_volume = min((reac_volume / 10), G.amount)
+		new/obj/item/stack/medical/gauze/adv(get_turf(G), reac_volume)
+		G.use(reac_volume)
+
+
 /datum/reagent/iron
 	name = "Iron"
 	description = "Pure iron is a metal."
@@ -2078,6 +2086,7 @@
 		to_chat(M, "You should sit down and take a rest...")
 	..()
 
+/* SEE MODULAR SKYRAT
 /datum/reagent/tranquility
 	name = "Tranquility"
 	description = "A highly mutative liquid of unknown origin."
@@ -2089,6 +2098,7 @@
 /datum/reagent/tranquility/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
 		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
+*/
 
 /datum/reagent/moonsugar
 	name = "Moonsugar"

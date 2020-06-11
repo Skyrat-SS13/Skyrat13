@@ -7,7 +7,7 @@
 	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS)
 	mutant_bodyparts = list("xenotail"="Xenomorph Tail","xenohead"="Standard","xenodorsal"="Standard", "mam_body_markings" = "Xeno","mcolor" = "0F0","mcolor2" = "0F0","mcolor3" = "0F0","taur" = "None", "legs" = "Digitigrade")
-	mutanttongue = /obj/item/organ/tongue/alien
+	mutanttongue = /obj/item/organ/tongue/alien/xenohybrid
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -20,7 +20,3 @@
 
 /datum/species/xeno/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/xenocommon)
-
-
-
-

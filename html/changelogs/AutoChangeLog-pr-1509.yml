@@ -1,0 +1,7 @@
+author: "Strazyplus"
+delete-after: True
+changes: 
+  - tweak: "tweaked K9Dark & Medihound Dark sprites"
+  - tweak: "corrected coloration errors on all Valeborg sprites"
+  - tweak: "Redone Vale Engineer borg sprite colors to be in-line of the other Valeborg color scheme."
+  - bugfix: "fixed some missing animations on Valeborg wreck animations"

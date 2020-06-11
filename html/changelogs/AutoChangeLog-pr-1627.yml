@@ -1,0 +1,4 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - balance: "No longer can use headset if you're handcuffed or disabled"

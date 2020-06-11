@@ -35,7 +35,7 @@
 								"Misc"
 								)
 
-/obj/machinery/mecha_part_fabricator/Initialize()
+/*/obj/machinery/mecha_part_fabricator/Initialize() // Skyrat edit -- BEGIN -- Moved to modular_skyrat/code/game/mecha/mech_fabricator.dm
 	var/static/list/allowed_types = list(
 		/datum/material/iron,
 		/datum/material/glass,
@@ -81,7 +81,7 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.</span>"
-
+*/ // Skyrat edit -- END -- Moved to modular
 /obj/machinery/mecha_part_fabricator/emag_act()
 	. = ..()
 	if(obj_flags & EMAGGED)
@@ -141,7 +141,7 @@
 		i++
 	return output
 
-/obj/machinery/mecha_part_fabricator/proc/output_available_resources()
+/*/obj/machinery/mecha_part_fabricator/proc/output_available_resources()  // Skyrat edit -- BEGIN -- Moved to modular_skyrat/code/game/mecha/mech_fabricator.dm
 	var/output
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	for(var/mat_id in materials.materials)
@@ -154,7 +154,7 @@
 				output += " | \[<a href='?src=[REF(src)];remove_mat=10;material=[REF(M)]'>10</a>\]"
 			output += " | \[<a href='?src=[REF(src)];remove_mat=50;material=[REF(M)]'>All</a>\]</span>"
 		output += "<br/>"
-	return output
+	return output*/  // Skyrat edit -- END -- Moved to modular
 
 /obj/machinery/mecha_part_fabricator/proc/get_resources_w_coeff(datum/design/D)
 	var/list/resources = list()
@@ -163,7 +163,7 @@
 		resources[M] = get_resource_cost_w_coeff(D, M)
 	return resources
 
-/obj/machinery/mecha_part_fabricator/proc/check_resources(datum/design/D)
+/*/obj/machinery/mecha_part_fabricator/proc/check_resources(datum/design/D) // Skyrat edit -- BEGIN -- Moved to modular_skyrat/code/game/mecha/mech_fabricator.dm
 	if(D.reagents_list.len) // No reagents storage - no reagent designs.
 		return FALSE
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
@@ -194,7 +194,7 @@
 	being_built = null
 
 	updateUsrDialog()
-	return TRUE
+	return TRUE */ // Skyrat edit -- END -- Moved to modular
 
 /obj/machinery/mecha_part_fabricator/proc/update_queue_on_page()
 	send_byjax(usr,"mecha_fabricator.browser","queue",list_queue())
@@ -221,7 +221,7 @@
 	queue.Cut(index,++index)
 	return TRUE
 
-/obj/machinery/mecha_part_fabricator/proc/process_queue()
+/*/obj/machinery/mecha_part_fabricator/proc/process_queue() // Skyrat edit -- BEGIN -- Moved to modular_skyrat/code/game/mecha/mech_fabricator.dm
 	var/datum/design/D = queue[1]
 	if(!D)
 		remove_from_queue(1)
@@ -246,7 +246,7 @@
 		remove_from_queue(1)
 		build_part(D)
 		D = listgetindex(queue, 1)
-	say("Queue processing finished successfully.")
+	say("Queue processing finished successfully.")*/ // Skyrat edit -- END -- Moved to modular
 
 /obj/machinery/mecha_part_fabricator/proc/list_queue()
 	var/output = "<b>Queue contains:</b>"
@@ -352,7 +352,7 @@
 	onclose(user, "mecha_fabricator")
 	return
 
-/obj/machinery/mecha_part_fabricator/Topic(href, href_list)
+/*/obj/machinery/mecha_part_fabricator/Topic(href, href_list)  // Skyrat edit -- BEGIN -- Moved to modular_skyrat/code/game/mecha/mech_fabricator.dm
 	if(..())
 		return
 	if(href_list["part_set"])
@@ -436,7 +436,7 @@
 /obj/machinery/mecha_part_fabricator/on_deconstruction()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.retrieve_all()
-	..()
+	..()*/ // Skyrat edit -- END -- Moved to modular
 
 /obj/machinery/mecha_part_fabricator/proc/AfterMaterialInsert(item_inserted, id_inserted, amount_inserted)
 	var/datum/material/M = id_inserted
