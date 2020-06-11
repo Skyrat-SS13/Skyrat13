@@ -194,3 +194,19 @@
 				H.emote("laugh")
 				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 5 SECONDS)
 				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 10 SECONDS)
+
+/datum/quirk/speech_impediment_japanese
+	name = "Speech impediment (Ninja)"
+	desc = "You speak like a ninja"
+	value = 0
+	medical_record_text = "Patient struggles with enunciating clearly."
+
+/datum/quirk/speech_impediment_japanese/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_japanese)
+
+/datum/quirk/speech_impediment_japanese/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_japanese)
