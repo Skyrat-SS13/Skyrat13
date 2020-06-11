@@ -1,5 +1,0 @@
-author: "Afya212"
-delete-after: True
-changes: 
-  - rscadd: "Added new alert level ERTs"
-  - tweak: "Ambert ert now red, Red now Delta."
