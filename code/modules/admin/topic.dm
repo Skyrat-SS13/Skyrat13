@@ -1903,9 +1903,9 @@
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
 		message_admins("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
 
-		var/mob/dead/new_player/NP = new()
+		var/mob/dead/new_player/NP = mob_assignment_get_new_player(ckey(M.key)) //Skyrat change
 		NP.ckey = M.ckey
-		qdel(M)
+		//qdel(M) //Skyrat change
 
 	else if(href_list["tdome1"])
 		if(!check_rights(R_FUN))
