@@ -462,7 +462,7 @@ SUBSYSTEM_DEF(job)
 				M = H
 
 		//Skyrat changes
-		if(!(GLOB.respawned_ckeys[M.client.ckey]))
+		if(!(GLOB.respawned_ckeys[M.client?.ckey]))
 			SSpersistence.antag_rep_change[M.client.ckey] += job.GetAntagRep()
 		//End of skyrat changes
 
