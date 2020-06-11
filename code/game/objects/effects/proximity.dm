@@ -104,7 +104,11 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/effect/abstract/proximity_checker/Destroy()
-	monitor = null
+	//Skyrat changes
+	if(monitor)
+		monitor.checkers -= src
+		monitor = null
+	//End of skyrat changes
 	return ..()
 
 /obj/effect/abstract/proximity_checker/Crossed(atom/movable/AM)
