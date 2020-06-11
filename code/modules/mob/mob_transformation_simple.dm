@@ -57,7 +57,7 @@
 
 	if(delete_old_mob)
 		if(isobserver(src))
-			mob_assignment_stow_observer(src.ckey)
+			mob_assignment_stow_observer(src)
 		else
 			QDEL_IN(src, 1)
 	return M

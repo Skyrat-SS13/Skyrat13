@@ -11,7 +11,7 @@
 				UNSETEMPTY(target.observers)
 			observetarget = null
 	..()
-	spawn(0)
-		if(src && !key)	//we've transferred to another mob. This ghost should be deleted.
-			//qdel(src) //Skyrat change
-			mob_assignment_stow_observer(src)
+	//Skyrat changes
+	if(!key)	//we've transferred to another mob. This ghost should be deleted.
+		mob_assignment_stow_observer(src)
+	//End of skyrat changes

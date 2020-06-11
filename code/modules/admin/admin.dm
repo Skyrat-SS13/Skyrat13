@@ -1008,7 +1008,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
 
 	tomob.ckey = frommob.ckey
-	qdel(frommob)
+	//qdel(frommob) //Skyrat change
 
 	return 1
 

@@ -3,14 +3,10 @@
 	var/real_key = ckey(NP.key)
 	if(!(GLOB.ckey_assigned_new_player[real_key]))
 		GLOB.ckey_assigned_new_player[real_key] = NP
-	else
-		message_admins("new player already registered")
-		GLOB.ckey_assigned_new_player[real_key] = NP
 
 /proc/mob_assignment_get_new_player(ckey)
 	var/mob/dead/new_player/NP = GLOB.ckey_assigned_new_player[ckey]
 	if(!NP)
-		message_admins("Something went wrong and we had to make a new player")
 		NP = new
 		GLOB.ckey_assigned_new_player[ckey] = NP
 	return NP
@@ -20,7 +16,6 @@
 	if(GLOB.ckey_assigned_observer[ckey])
 		obs = GLOB.ckey_assigned_observer[ckey]
 		if(!obs)
-			message_admins("Something went wrong - our registered ghost is gone!")
 			obs = new(location, body)
 			GLOB.ckey_assigned_observer[ckey] = obs
 		if(location)
