@@ -186,6 +186,7 @@
 /// Give your candidates or assignees equipment and antag datum here.
 /datum/dynamic_ruleset/proc/execute()
 	for(var/datum/mind/M in assigned)
+		GLOB.antag_rolled_ckeys[M.ckey] = TRUE //Skyrat change
 		M.add_antag_datum(antag_datum)
 	return TRUE
 
