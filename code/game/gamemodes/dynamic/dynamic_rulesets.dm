@@ -186,7 +186,6 @@
 /// Give your candidates or assignees equipment and antag datum here.
 /datum/dynamic_ruleset/proc/execute()
 	for(var/datum/mind/M in assigned)
-		GLOB.antag_rolled_ckeys[M.ckey] = TRUE //Skyrat change
 		M.add_antag_datum(antag_datum)
 	return TRUE
 
@@ -273,7 +272,6 @@
 			if(!(antag_flag in P.client.prefs.be_special) || jobban_isbanned(P.ckey, antag_flag))
 				candidates.Remove(P)
 				continue
-		GLOB.antag_rolled_ckeys[P.ckey] = TRUE //Skyrat change
 
 /// Do your checks if the ruleset is ready to be executed here.
 /// Should ignore certain checks if forced is TRUE

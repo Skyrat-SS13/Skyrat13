@@ -461,6 +461,7 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
 		return
 
+	GLOB.respawned_ckeys[M.ckey] = TRUE //Skyrat change
 	log_game("[key_name(usr)] used abandon mob.")
 
 	to_chat(usr, "<span class='boldnotice'>Please roleplay correctly!</span>")

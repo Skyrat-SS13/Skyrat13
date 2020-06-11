@@ -1,1 +1,1 @@
-GLOBAL_LIST_EMPTY(antag_rolled_ckeys)
+GLOBAL_LIST_EMPTY(respawned_ckeys)

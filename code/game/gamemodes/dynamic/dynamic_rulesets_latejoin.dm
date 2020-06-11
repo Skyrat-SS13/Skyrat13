@@ -27,10 +27,9 @@
 			candidates.Remove(P)
 			continue
 		//Skyrat changes
-		if (GLOB.antag_rolled_ckeys[P.ckey])
+		if (GLOB.respawned_ckeys[P.ckey])
 			candidates.Remove(P)
 			continue
-		GLOB.antag_rolled_ckeys[P.ckey] = TRUE
 		//Skyrat changes end
 
 /datum/dynamic_ruleset/latejoin/ready(forced = 0)
