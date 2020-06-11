@@ -58,7 +58,7 @@
 	. = ..()
 	if(istype(AM, /obj/mecha/working/ripley/clarke))
 		var/obj/mecha/working/ripley/clarke/C = AM
-		forcemove(C)
+		forceMove(C)
 		C.cargo.Add(src)
 		if(C.occupant)
 			to_chat(C.occupant, "<span class = 'notice'>\The [C] picks up \the [src].")
