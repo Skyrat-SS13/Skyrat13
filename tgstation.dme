@@ -3466,7 +3466,6 @@
 #include "modular_skyrat\code\datums\event_menu.dm"
 #include "modular_skyrat\code\datums\saymode.dm"
 #include "modular_skyrat\code\datums\components\crafting\crafting_items.dm"
-#include "modular_skyrat\code\datums\components\crafting\lightdrawn.dm"
 #include "modular_skyrat\code\datums\components\crafting\crafting_results\blunderbuss.dm"
 #include "modular_skyrat\code\datums\components\crafting\crafting_results\cannon.dm"
 #include "modular_skyrat\code\datums\components\crafting\crafting_results\railgun.dm"
