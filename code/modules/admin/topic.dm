@@ -1905,7 +1905,7 @@
 
 		var/mob/dead/new_player/NP = mob_assignment_get_new_player(ckey(M.key)) //Skyrat change
 		NP.ckey = M.ckey
-		//qdel(M) //Skyrat change
+		//qdel(M) //skyrat change
 
 	else if(href_list["tdome1"])
 		if(!check_rights(R_FUN))
