@@ -7,3 +7,4 @@
 	H.grant_language(/datum/language/neokanji, TRUE, TRUE, LANGUAGE_NINJA)
 	var/datum/language_holder/LH = H.get_language_holder()
 	LH.selected_language = /datum/language/neokanji
+	H.enable_speech_mod(/datum/speech_mod/impediment_japanese)

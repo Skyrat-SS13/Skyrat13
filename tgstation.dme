@@ -15,6 +15,7 @@
 
 // BEGIN_INCLUDE
 #include "_maps\_basemap.dm"
+#include "_maps\snaxi.dm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\__512_compatibility_skyrat.dm"
@@ -3372,6 +3373,7 @@
 #include "modular_citadel\code\modules\admin\holder2.dm"
 #include "modular_citadel\code\modules\admin\secrets.dm"
 #include "modular_citadel\code\modules\client\client_procs.dm"
+#include "modular_citadel\code\modules\client\preferences.dm"
 #include "modular_citadel\code\modules\client\preferences_savefile.dm"
 #include "modular_citadel\code\modules\client\preferences_toggles.dm"
 #include "modular_citadel\code\modules\client\loadout\__donator.dm"
@@ -3521,6 +3523,7 @@
 #include "modular_skyrat\code\game\machinery\recharger.dm"
 #include "modular_skyrat\code\game\machinery\Sleeper.dm"
 #include "modular_skyrat\code\game\machinery\syndicatebeacon.dm"
+#include "modular_skyrat\code\game\machinery\wishgranter.dm"
 #include "modular_skyrat\code\game\machinery\syndicatebomb.dm"
 #include "modular_skyrat\code\game\machinery\computer\card.dm"
 #include "modular_skyrat\code\game\machinery\computer\crew.dm"
@@ -3725,6 +3728,7 @@
 #include "modular_skyrat\code\modules\jobs\job_types\clown.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\head_of_security.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\prisoner.dm"
+#include "modular_skyrat\code\modules\jobs\job_types\shaft_miner.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\psychologist.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\security_officer.dm"
 #include "modular_skyrat\code\modules\jobs\job_types\warden.dm"

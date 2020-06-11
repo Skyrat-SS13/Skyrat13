@@ -33,6 +33,9 @@
 
 /datum/speech_mod/impediment_japanese/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
+	var/datum/language/languie = speech_args[SPEECH_LANGUAGE]
+	if(istype(languie, /datum/language/neokanji)) //ching cheng han chi
+		return //kitchen in the dungeon
 	if(message[1] != "*")
 		var/list/temp_message = splittext(message, " ")
 		var/list/pick_list = list()

@@ -22,7 +22,7 @@ Contents:
 /obj/item/clothing/mask/gas/space_ninja/dropped(mob/user)
 	. = ..()
 	REMOVE_TRAIT(src, TRAIT_NODROP, NINJA_SUIT_TRAIT)
-
+/* speech impediment mask is gone
 /obj/item/clothing/mask/gas/space_ninja/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
@@ -64,3 +64,4 @@ Contents:
 		message = replacetext(message, ".", "")
 		message = lowertext(message)
 		speech_args[SPEECH_MESSAGE] = message
+*/
