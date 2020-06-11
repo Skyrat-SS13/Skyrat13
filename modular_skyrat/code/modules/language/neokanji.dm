@@ -5,6 +5,7 @@
 	ask_verb = "queries"
 	exclaim_verb = "declares"
 	whisper_verb = "hushes"
+	sing_verb = "sings"
 	key = "c"
 	space_chance = 40
 	default_priority = 94
