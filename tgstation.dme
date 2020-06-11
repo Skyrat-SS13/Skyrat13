@@ -3658,6 +3658,7 @@
 #include "modular_skyrat\code\modules\client\loadout\uniform.dm"
 #include "modular_skyrat\code\modules\client\loadout\~defines.dm"
 #include "modular_skyrat\code\modules\client\verbs\who.dm"
+#include "modular_skyrat\code\modules\clothing\clothing.dm"
 #include "modular_skyrat\code\modules\clothing\refactor.dm"
 #include "modular_skyrat\code\modules\clothing\glasses\_glasses.dm"
 #include "modular_skyrat\code\modules\clothing\glasses\hud.dm"

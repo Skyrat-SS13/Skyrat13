@@ -1070,7 +1070,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 /datum/species/proc/auto_equip(mob/living/carbon/human/H)
 	// handles the equipping of species-specific gear
 	return
-
+/* moved to modular_skyrat
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
 	if(slot in no_equip)
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
@@ -1260,7 +1260,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 					return TRUE
 			return FALSE
 	return FALSE //Unsupported slot
-
+*/
 /datum/species/proc/equip_delay_self_check(obj/item/I, mob/living/carbon/human/H, bypass_equip_delay_self)
 	if(!I.equip_delay_self || bypass_equip_delay_self)
 		return TRUE

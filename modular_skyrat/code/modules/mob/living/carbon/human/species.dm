@@ -88,3 +88,200 @@
 		for(var/obj/item/bodypart/B in C.bodyparts)
 			B.change_bodypart_status(BODYPART_ORGANIC, FALSE, TRUE)
 			B.render_like_organic = FALSE
+
+/datum/species/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self)
+	. = ..()	
+	if(slot in no_equip)
+		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
+			return FALSE
+
+	var/num_arms = H.get_num_arms(FALSE)
+	var/num_legs = H.get_num_legs(FALSE)
+
+	if(istype(I, /obj/item/clothing))
+		var/obj/item/clothing/digidestroyer = I
+		if(digidestroyer.no_digi && mutant_bodyparts["legs"] && (H.dna.features["legs"] == "Digitigrade" || H.dna.features["legs"] == "Avian"))
+			to_chat(H, "<span clas='warning'><i>You just can't seem to fit the [src] on your legs!</span>")
+			return FALSE
+
+	switch(slot)
+		if(SLOT_HANDS)
+			if(H.get_empty_held_indexes())
+				return TRUE
+			return FALSE
+		if(SLOT_WEAR_MASK)
+			if(H.wear_mask)
+				return FALSE
+			if(!(I.slot_flags & ITEM_SLOT_MASK))
+				return FALSE
+			if(!H.get_bodypart(BODY_ZONE_HEAD))
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_NECK)
+			if(H.wear_neck)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_NECK) )
+				return FALSE
+			return TRUE
+		if(SLOT_BACK)
+			if(H.back)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_BACK) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_WEAR_SUIT)
+			if(H.wear_suit)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_OCLOTHING) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_GLOVES)
+			if(H.gloves)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_GLOVES) )
+				return FALSE
+			if(num_arms < 2)
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_SHOES)
+			if(H.shoes)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_FEET) )
+				return FALSE
+			if(num_legs < 2)
+				return FALSE
+			if(DIGITIGRADE in species_traits)
+				if(!is_species(H, /datum/species/lizard/ashwalker))
+					H.update_inv_shoes()
+				else
+					return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_BELT)
+			if(H.belt)
+				return FALSE
+			if(!CHECK_BITFIELD(I.item_flags, NO_UNIFORM_REQUIRED))
+				var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
+				if(!H.w_uniform && !nojumpsuit && (!O || O.status != BODYPART_ROBOTIC))
+					if(!disable_warning)
+						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [I.name]!</span>")
+					return FALSE
+			if(!(I.slot_flags & ITEM_SLOT_BELT))
+				return
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_GLASSES)
+			if(H.glasses)
+				return FALSE
+			if(!(I.slot_flags & ITEM_SLOT_EYES))
+				return FALSE
+			if(!H.get_bodypart(BODY_ZONE_HEAD))
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_HEAD)
+			if(H.head)
+				return FALSE
+			if(!(I.slot_flags & ITEM_SLOT_HEAD))
+				return FALSE
+			if(!H.get_bodypart(BODY_ZONE_HEAD))
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_EARS)
+			if(H.ears)
+				return FALSE
+			if(!(I.slot_flags & ITEM_SLOT_EARS))
+				return FALSE
+			if(!H.get_bodypart(BODY_ZONE_HEAD))
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_W_UNIFORM)
+			if(H.w_uniform)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_ICLOTHING) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_WEAR_ID)
+			if(H.wear_id)
+				return FALSE
+			if(!CHECK_BITFIELD(I.item_flags, NO_UNIFORM_REQUIRED))
+				var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
+				if(!H.w_uniform && !nojumpsuit && (!O || O.status != BODYPART_ROBOTIC))
+					if(!disable_warning)
+						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [I.name]!</span>")
+					return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_ID) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_L_STORE)
+			if(HAS_TRAIT(I, TRAIT_NODROP)) //Pockets aren't visible, so you can't move TRAIT_NODROP items into them.
+				return FALSE
+			if(H.l_store)
+				return FALSE
+
+			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_L_LEG)
+
+			if(!H.w_uniform && !nojumpsuit && (!O || O.status != BODYPART_ROBOTIC))
+				if(!disable_warning)
+					to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [I.name]!</span>")
+				return FALSE
+			if(I.slot_flags & ITEM_SLOT_DENYPOCKET)
+				return FALSE
+			if( I.w_class <= WEIGHT_CLASS_SMALL || (I.slot_flags & ITEM_SLOT_POCKET) )
+				return TRUE
+		if(SLOT_R_STORE)
+			if(HAS_TRAIT(I, TRAIT_NODROP))
+				return FALSE
+			if(H.r_store)
+				return FALSE
+
+			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_R_LEG)
+
+			if(!H.w_uniform && !nojumpsuit && (!O || O.status != BODYPART_ROBOTIC))
+				if(!disable_warning)
+					to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [I.name]!</span>")
+				return FALSE
+			if(I.slot_flags & ITEM_SLOT_DENYPOCKET)
+				return FALSE
+			if( I.w_class <= WEIGHT_CLASS_SMALL || (I.slot_flags & ITEM_SLOT_POCKET) )
+				return TRUE
+			return FALSE
+		if(SLOT_S_STORE)
+			if(HAS_TRAIT(I, TRAIT_NODROP))
+				return FALSE
+			if(H.s_store)
+				return FALSE
+			if(!H.wear_suit)
+				if(!disable_warning)
+					to_chat(H, "<span class='warning'>You need a suit before you can attach this [I.name]!</span>")
+				return FALSE
+			if(!H.wear_suit.allowed)
+				if(!disable_warning)
+					to_chat(H, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
+				return FALSE
+			if(I.w_class > WEIGHT_CLASS_BULKY)
+				if(!disable_warning)
+					to_chat(H, "The [I.name] is too big to attach.") //should be src?
+				return FALSE
+			if( istype(I, /obj/item/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
+				return TRUE
+			return FALSE
+		if(SLOT_HANDCUFFED)
+			if(H.handcuffed)
+				return FALSE
+			if(!istype(I, /obj/item/restraints/handcuffs))
+				return FALSE
+			if(num_arms < 2)
+				return FALSE
+			return TRUE
+		if(SLOT_LEGCUFFED)
+			if(H.legcuffed)
+				return FALSE
+			if(!istype(I, /obj/item/restraints/legcuffs))
+				return FALSE
+			if(num_legs < 2)
+				return FALSE
+			return TRUE
+		if(SLOT_IN_BACKPACK)
+			if(H.back)
+				if(SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_CAN_INSERT, I, H, TRUE))
+					return TRUE
+			return FALSE
+	return FALSE //Unsupported slot
