@@ -101,7 +101,7 @@
 	if(istype(I, /obj/item/clothing))
 		var/obj/item/clothing/digidestroyer = I
 		if(digidestroyer.no_digi && mutant_bodyparts["legs"] && (H.dna.features["legs"] == "Digitigrade" || H.dna.features["legs"] == "Avian"))
-			to_chat(H, "<span clas='warning'><i>You just can't seem to fit the [src] on your legs!</span>")
+			to_chat(H, "<span clas='warning'><i>You just can't seem to fit the [src] on your legs!</i></span>")
 			return FALSE
 
 	switch(slot)
