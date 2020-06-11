@@ -30,6 +30,7 @@
 		if (GLOB.antag_rolled_ckeys[P.ckey])
 			candidates.Remove(P)
 			continue
+		GLOB.antag_rolled_ckeys[P.ckey] = TRUE
 		//Skyrat changes end
 
 /datum/dynamic_ruleset/latejoin/ready(forced = 0)
@@ -52,7 +53,6 @@
 	assigned += M.mind
 	M.mind.special_role = antag_flag
 	M.mind.add_antag_datum(antag_datum)
-	GLOB.antag_rolled_ckeys[M.ckey] = TRUE //Skyrat change
 	log_admin("[M.name] was made into a [name] by dynamic.")
 	message_admins("[M.name] was made into a [name] by dynamic.")
 	return TRUE

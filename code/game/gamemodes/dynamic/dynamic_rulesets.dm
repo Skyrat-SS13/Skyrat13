@@ -273,6 +273,7 @@
 			if(!(antag_flag in P.client.prefs.be_special) || jobban_isbanned(P.ckey, antag_flag))
 				candidates.Remove(P)
 				continue
+		GLOB.antag_rolled_ckeys[P.ckey] = TRUE //Skyrat change
 
 /// Do your checks if the ruleset is ready to be executed here.
 /// Should ignore certain checks if forced is TRUE
