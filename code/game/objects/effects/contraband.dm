@@ -1022,4 +1022,14 @@
 	desc = "It's a poster, not a painting, because paintings are art. Belongs in the trash."
 	icon_state = "poster132"
 
+/obj/structure/sign/poster/official/rip_n_tear_borgs
+	name = "Rip and Tear"
+	desc = "A motivational poster, depicting a dogborg's head on a pike with a simple scrawled message RIP AND TEAR."
+	icon_state = "poster133"
+
+/obj/structure/sign/poster/official/cryptominer
+	name = "Cryptominer"
+	desc = "A poster, depicting a glowing red cryptomining supercomputer."
+	icon_state = "poster134"
+
 #undef PLACE_SPEED
