@@ -52,6 +52,7 @@
 
 /obj/structure/ore_box/clarke
 	name = "clarke ore box"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF
 
 /obj/structure/ore_box/clarke/Bumped(atom/movable/AM)
 	. = ..()
