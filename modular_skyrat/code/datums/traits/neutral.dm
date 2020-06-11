@@ -66,6 +66,22 @@
 	if(H)
 		H.disable_speech_mod(/datum/speech_mod/impediment_lw)
 
+/datum/quirk/speech_impediment_cheems
+	name = "Speech impediment (n as m)"
+	desc = "You mispronounce \"n\" as \"m\"."
+	value = 0
+	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
+
+/datum/quirk/speech_impediment_cheems/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_cheems)
+
+/datum/quirk/speech_impediment_cheems/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_cheems)
+
 
 /datum/quirk/speech_impediment_rw
 	name = "Speech impediment (r as w)"
