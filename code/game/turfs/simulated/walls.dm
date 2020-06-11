@@ -31,6 +31,18 @@
 
 	var/list/dent_decals
 
+// SKYRAT EDIT - SANITARY
+/turf/closed/wall/Initialize(mapload)
+	. = ..()
+	if(prob(5))
+		if(istype(src, /turf/closed/wall/clockwork))
+			return
+		else if(istype(src, /turf/closed/wall/r_wall))
+			src.ChangeTurf(/turf/closed/wall/r_wall/rust)
+		else if(istype(src, /turf/closed/wall))
+			src.ChangeTurf(/turf/closed/wall/rust)
+// SKYRAT EDIT END
+
 /turf/closed/wall/examine(mob/user)
 	. = ..()
 	deconstruction_hints(user)
