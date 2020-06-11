@@ -24,16 +24,21 @@
  * Text sanitization
  */
 
+//SKYRAT CHANGES BEGIN - Unicode support addition.
 //Simply removes < and > and limits the length of the message
-/proc/strip_html_simple(t,limit=MAX_MESSAGE_LEN)
-	var/list/strip_chars = list("<",">")
-	t = copytext(t,1,limit)
+/proc/strip_html_simple(t, limit = MAX_MESSAGE_LEN, unicode = FALSE)
+	var/static/list/strip_chars
+	if(!strip_chars)
+		strip_chars = list("<", ">")
+	t = unicode ? copytext_char(t, 1, limit) : copytext(t, 1, limit)
 	for(var/char in strip_chars)
+		var/char_len = length(char)
 		var/index = findtext(t, char)
 		while(index)
-			t = copytext(t, 1, index) + copytext(t, index+1)
+			t = copytext(t, 1, index) + copytext(t, index + char_len)
 			index = findtext(t, char)
 	return t
+//SKYRAT CHANGES END
 
 //Removes a few problematic characters
 /proc/sanitize_simple(t,list/repl_chars = list("\n"="#","\t"="#"))

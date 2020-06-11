@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(mobs_with_editable_flavor_text) //et tu, hacky code
 	var/lower_name = lowertext(flavor_name)
 	var/new_text = input(user, "Set the [lower_name] displayed on 'examine'. [addendum]", flavor_name, texts_by_atom[usr]) as message|null //Skyrat edit, removed stripped_multiline_input()
 	if(!isnull(new_text) && (user in texts_by_atom))
-		texts_by_atom[user] = strip_html_simple(new_text, MAX_FLAVOR_LEN) //Skyrat edit, removed html_decode()
+		texts_by_atom[user] = strip_html_simple(new_text, MAX_FLAVOR_LEN, TRUE) //Skyrat edit, removed html_decode()
 		to_chat(src, "Your [lower_name] has been updated.")
 		return TRUE
 	return FALSE
