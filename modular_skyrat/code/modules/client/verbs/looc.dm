@@ -70,9 +70,8 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 			var/prefix = "(R)LOOC"
 			if (C.mob in heard)
 				prefix = "LOOC"
-			else
-				if (!(C.prefs.toggles & CHAT_LOOC_ADMIN))
-					continue
+			else if (!(C.prefs.toggles & CHAT_LOOC_ADMIN))
+				continue
 			if(GLOB.LOOC_COLOR)
 				to_chat(C, "<font color='[GLOB.LOOC_COLOR]'><b>[ADMIN_FLW(usr)] <span class='prefix'>[prefix]:</span> <EM>[src.key]/[src.mob.name]:</EM> <span class='message'>[msg]</span></b></font>")
 			else
