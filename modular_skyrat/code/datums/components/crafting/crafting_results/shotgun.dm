@@ -59,7 +59,7 @@
 	. = ..()
 	inaccuracy_modifier *= 2
 	update_icon()
-
+/*
 //pocket shotgun
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn/pocket
 	name = "pocket shotgun"
@@ -72,3 +72,4 @@
 	projectile_damage_multiplier = 0.4 //why
 	projectile_ap_multiplier = 0.5 //god why
 	explodes_on_dual = TRUE
+*/
