@@ -149,7 +149,9 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	if(istype(L, /mob/living/simple_animal/pet/dog/cheems))
 		L.visible_message("<span class='userdanger'>[L] <i>consumes</i> the immovable rod!</span>")
 		playsound(L, 'modular_skyrat/sound/roblox/chezburger.ogg', 100, 0)
-		new pick(subtypesof(/obj/item/assembly/signaler/anomaly))(get_turf(L))
+		var/list/aaaa = subtypesof(/obj/item/assembly/signaler/anomaly)
+		var/ooooo = pick(subtypesof(/obj/item/assembly/signaler/anomaly))
+		new ooooo(get_turf(L))
 		var/mob/living/simple_animal/pet/dog/cheems/blue/god = new(get_turf(L))
 		god.dir = L.dir
 		god.vored = src
