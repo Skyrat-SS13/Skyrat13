@@ -49,7 +49,7 @@
 		if((stat == CONSCIOUS) && liked_food & junk.foodtype)
 			qdel(junk)
 			should_heal = TRUE
-		junktext = junk
+		junk_text = junk
 	if(count)
 		visible_message("<span class='danger'><b>\The [src]</b> consumes [count > 1 ? "all the junk food he can" : junk_text]!</span>")
 	if(should_heal)
@@ -88,13 +88,13 @@
 	desc = "It's Cheems. But blue and almighty."
 	health = 5000 //the weak must fear the strong
 	speak = list("I am cheemsus", "I am god", "Comsume", "Bow bemfore me")
-	var/obj/effect/immovable_rod/vored
+	var/obj/effect/immovablerod/vored
 
 /mob/living/simple_animal/pet/dog/cheems/blue/Initialize()
 	. = ..()
 	add_atom_colour("#00FFFF")
 
-/mob/living/simple_animal/pet/dog/cheems/blue/death()
+/mob/living/simple_animal/pet/dog/cheems/blue/death(gibbed)
 	. = ..()
 	gibbed = TRUE
 	if(vored)
