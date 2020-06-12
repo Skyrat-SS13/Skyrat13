@@ -42,43 +42,43 @@
 
 /datum/antagonist/ert/security // kinda handled by the base template but here for completion
 
-/datum/antagonist/ert/security/amber
+/datum/antagonist/ert/security/elevated //Skyrat change
 	outfit = /datum/outfit/ert/security/alert
 
-/datum/antagonist/ert/security/red
-	outfit = /datum/outfit/ert/security/alert/red
+/datum/antagonist/ert/security/delta //Skyrat change
+	outfit = /datum/outfit/ert/security/alert/delta
 
 /datum/antagonist/ert/engineer
 	role = "Engineer"
 	outfit = /datum/outfit/ert/engineer
 	skill_modifiers = list(/datum/skill_modifier/job/level/wiring)
 
-/datum/antagonist/ert/engineer/amber
+/datum/antagonist/ert/engineer/elevated //Skyrat change
 	outfit = /datum/outfit/ert/engineer/alert
 
-/datum/antagonist/ert/engineer/red
-	outfit = /datum/outfit/ert/engineer/alert/red
+/datum/antagonist/ert/engineer/delta //Skyrat change
+	outfit = /datum/outfit/ert/engineer/alert/delta
 
 /datum/antagonist/ert/medic
 	role = "Medical Officer"
 	outfit = /datum/outfit/ert/medic
 	skill_modifiers = list(/datum/skill_modifier/job/affinity/surgery)
 
-/datum/antagonist/ert/medic/amber
+/datum/antagonist/ert/medic/elevated //Skyrat change
 	outfit = /datum/outfit/ert/medic/alert
 
-/datum/antagonist/ert/medic/red
-	outfit = /datum/outfit/ert/medic/alert/red
+/datum/antagonist/ert/medic/delta //Skyrat change
+	outfit = /datum/outfit/ert/medic/alert/delta
 
 /datum/antagonist/ert/commander
 	role = "Commander"
 	outfit = /datum/outfit/ert/commander
 
-/datum/antagonist/ert/commander/amber
+/datum/antagonist/ert/commander/elevated //Skyrat change
 	outfit = /datum/outfit/ert/commander/alert
 
-/datum/antagonist/ert/commander/red
-	outfit = /datum/outfit/ert/commander/alert/red
+/datum/antagonist/ert/commander/delta //Skyrat change
+	outfit = /datum/outfit/ert/commander/alert/delta
 
 /datum/antagonist/ert/deathsquad
 	name = "Deathsquad Trooper"
