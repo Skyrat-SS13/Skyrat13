@@ -55,10 +55,12 @@
 			ears.forceMove(get_turf(src))
 			to_chat(usr, "<span class='notice'>You take off [src]'s [ears].</span>")
 			ears = null
+			handle_fluff()
 		else if(href_list["kidswithguns"] && shomtgun)
 			shomtgun.forceMove(get_turf(src))
 			to_chat(usr, "<span class='notice'>You take off [src]'s [shomtgun].</span>")
 			shomtgun = null
+			handle_fluff()
 	
 /mob/living/simple_animal/pet/dog/cheems/Moved()
 	. = ..()
