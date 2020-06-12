@@ -276,6 +276,7 @@
 					var/spillage = input(src, "Would your fluids spill outside?", "Choose overflowing option", "Yes") as null|anything in list("Yes", "No")
 					if(spillage && in_range(src, partner))
 						mob_climax_partner(picked_organ, partner, spillage == "Yes" ? TRUE : FALSE)
+		/* skyrat edit - memes b gone
 		if("Fill container")
 			//We'll need hands and no restraints.
 			if(!available_rosie_palms(FALSE, /obj/item/reagent_containers))
@@ -288,6 +289,7 @@
 				var/obj/item/reagent_containers/fluid_container = pick_climax_container()
 				if(fluid_container && available_rosie_palms(TRUE, /obj/item/reagent_containers))
 					mob_fill_container(picked_organ, fluid_container)
+		*/
 
 	mb_cd_timer = world.time + mb_cd_length
 

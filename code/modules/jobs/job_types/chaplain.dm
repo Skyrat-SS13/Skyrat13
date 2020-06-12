@@ -74,8 +74,13 @@
 		if("lampism")
 			B.name = "Fluorescent Incandescence"
 		if("lol", "wtf", "gay", "penis", "ass", "poo", "badmin", "shitmin", "deadmin", "cock", "cocks", "meme", "memes")
+		/* skyrat edit - memes b gone
 			B.name = pick("Woodys Got Wood: The Aftermath", "War of the Cocks", "Sweet Bro and Hella Jef: Expanded Edition","F.A.T.A.L. Rulebook")
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 100) // starts off [censored for github] as fuck
+		*/
+		// skyrat edit - memes b gone
+			log_admin("[key_name(H)] has chosen a LRP religion name. [ADMIN_SMITE(H)]")
+		//
 		if("monkeyism","apism","gorillism","primatism")
 			B.name = pick("Going Bananas", "Bananas Out For Harambe")
 		if("mormonism")

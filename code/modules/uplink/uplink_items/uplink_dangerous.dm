@@ -42,7 +42,7 @@
 	cost = 14
 	surplus = 25
 	include_modes = list(/datum/game_mode/nuclear)
-
+/* skyrat edit - no more memes
 /datum/uplink_item/dangerous/pie_cannon
 	name = "Banana Cream Pie Cannon"
 	desc = "A special pie cannon for a special clown, this gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
@@ -69,7 +69,7 @@
 	cost = 3
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-
+*/
 /datum/uplink_item/dangerous/bioterror
 	name = "Biohazardous Chemical Sprayer"
 	desc = "A handheld chemical sprayer that allows a wide dispersal of selected chemicals. Especially tailored by the Tiger \
@@ -161,7 +161,7 @@
 	cost = 12
 	surplus = 30
 	include_modes = list(/datum/game_mode/nuclear)
-
+/* skyrat edit - no more memes
 /datum/uplink_item/dangerous/rapid
 	name = "Bands of the North Star"
 	desc = "These armbands let the user punch people very fast and with the lethality of a legendary martial artist. \
@@ -170,7 +170,7 @@
 	item = /obj/item/clothing/gloves/fingerless/pugilist/rapid
 	cost = 30
 	include_modes = list(/datum/game_mode/nuclear)
-
+*/
 /datum/uplink_item/dangerous/guardian
 	name = "Holoparasites"
 	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an \

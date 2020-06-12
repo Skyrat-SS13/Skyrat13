@@ -16,7 +16,7 @@
 	cost = 5
 	surplus = 35
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
-
+/* skyrat edit - no more memes
 /datum/uplink_item/explosives/bombanana
 	name = "Bombanana"
 	desc = "A banana with an explosive taste! discard the peel quickly, as it will explode with the force of a syndicate minibomb \
@@ -25,7 +25,7 @@
 	cost = 4 //it is a bit cheaper than a minibomb because you have to take off your helmet to eat it, which is how you arm it
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-
+*/
 /datum/uplink_item/explosives/buzzkill
 	name = "Buzzkill Grenade Box"
 	desc = "A box with three grenades that release a swarm of angry bees upon activation. These bees indiscriminately attack friend or foe \
@@ -58,7 +58,7 @@
 	item = /obj/item/storage/backpack/duffelbag/syndie/x4
 	cost = 4 //
 	cant_discount = TRUE
-
+/* skyrat edit - no more memes
 /datum/uplink_item/explosives/clown_bomb_clownops
 	name = "Clown Bomb"
 	desc = "The Clown bomb is a hilarious device capable of massive pranks. It has an adjustable timer, \
@@ -70,7 +70,7 @@
 	cost = 15
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-
+*/
 /datum/uplink_item/explosives/detomatix
 	name = "Detomatix PDA Cartridge"
 	desc = "When inserted into a personal digital assistant, this cartridge gives you four opportunities to \

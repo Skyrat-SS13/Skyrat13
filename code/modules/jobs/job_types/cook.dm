@@ -47,6 +47,8 @@
 	..()
 	if(visualsOnly)
 		return
+	/* skyrat edit - memes b gone
 	var/datum/martial_art/cqc/under_siege/justacook = new
 	justacook.teach(H)
+	*/
 

@@ -13,10 +13,10 @@
 
 /datum/species/lizard
 	screamsounds = list('modular_citadel/sound/voice/scream_lizard.ogg')
-
+/* no more memes
 /datum/species/skeleton
 	screamsounds = list('modular_citadel/sound/voice/scream_skeleton.ogg')
-
+*/
 /datum/species/fly
 	screamsounds = list('modular_citadel/sound/voice/scream_moth.ogg')
 

@@ -13,14 +13,15 @@
 	item = /obj/item/clothing/under/color/grey/glorf
 	cost = 20
 	restricted_roles = list("Assistant")
-
+/* skyrat edit - no more memes
 /datum/uplink_item/role_restricted/pie_cannon
 	name = "Banana Cream Pie Cannon"
 	desc = "A special pie cannon for a special clown, this gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
 	cost = 10
 	item = /obj/item/pneumatic_cannon/pie/selfcharge
 	restricted_roles = list("Clown")
-
+*/
+/* skyrat edit - no more memes
 /datum/uplink_item/role_restricted/blastcannon
 	name = "Blast Cannon"
 	desc = "A highly specialized weapon, the Blast Cannon is actually relatively simple. It contains an attachment for a tank transfer valve mounted to an angled pipe specially constructed \
@@ -30,7 +31,7 @@
 	item = /obj/item/gun/blastcannon
 	cost = 14							//High cost because of the potential for extreme damage in the hands of a skilled gas masked scientist.
 	restricted_roles = list("Research Director", "Scientist")
-
+*/
 /datum/uplink_item/role_restricted/alientech
 	name = "Alien Research Disk"
 	desc = "A technology disk holding a terabyte of highly confidential abductor technology. \
@@ -38,7 +39,7 @@
 	item = /obj/item/disk/tech_disk/abductor
 	cost = 12
 	restricted_roles = list("Research Director", "Scientist", "Roboticist")
-
+/* skyrat edit - no more memes
 /datum/uplink_item/role_restricted/clown_bomb
 	name = "Clown Bomb"
 	desc = "The Clown bomb is a hilarious device capable of massive pranks. It has an adjustable timer, \
@@ -50,6 +51,7 @@
 	item = /obj/item/sbeacondrop/clownbomb
 	cost = 15
 	restricted_roles = list("Clown")
+*/
 
 /*
 /datum/uplink_item/role_restricted/clowncar
@@ -72,7 +74,7 @@
 	cost = 2
 	restricted_roles = list("Curator")
 	limited_stock = 1 //please don't spam deadchat
-
+/* skyrat edit - no more memes
 /datum/uplink_item/role_restricted/his_grace
 	name = "His Grace"
 	desc = "An incredibly dangerous weapon recovered from a station overcome by the grey tide. Once activated, He will thirst for blood and must be used to kill to sate that thirst. \
@@ -83,7 +85,7 @@
 	cost = 20
 	restricted_roles = list("Chaplain")
 	surplus = 5 //Very low chance to get it in a surplus crate even without being the chaplain
-
+*/
 /datum/uplink_item/role_restricted/clockwork_slab
 	name = "Clockwork Slab"
 	desc = "A reverse engineered clockwork slab. Is this really a good idea?."
@@ -101,7 +103,7 @@
 	player_minimum = 20
 	refundable = TRUE
 	//restricted_roles = list("Chaplain") skyrat change - fuck the chaplain i want to build my shoko asara cult
-
+/* skyrat edit - no more memes
 /datum/uplink_item/role_restricted/explosive_hot_potato
 	name = "Exploding Hot Potato"
 	desc = "A potato rigged with explosives. On activation, a special mechanism is activated that prevents it from being dropped. \
@@ -109,7 +111,7 @@
 	item = /obj/item/hot_potato/syndicate
 	cost = 4
 	restricted_roles = list("Cook", "Botanist", "Clown", "Mime")
-
+*/
 /datum/uplink_item/role_restricted/strange_seeds_10pack
 	name = "Pack of strange seeds"
 	desc = "Mysterious seeds as strange as their name implies. Spooky. These come in bulk"
@@ -157,7 +159,7 @@
 	cost = 5 //you need two for full damage, so total of 10 for maximum damage
 	limited_stock = 2 //you can't use more than two!
 	restricted_roles = list("Shaft Miner")
-
+/* skyrat edit - no more memes
 /datum/uplink_item/role_restricted/kitchen_gun
 	name = "Kitchen Gun (TM)"
 	desc = "A revolutionary .45 caliber cleaning solution! Say goodbye to daily stains and dirty surfaces with Kitchen Gun (TM)! \
@@ -173,7 +175,7 @@
 	cost = 1
 	restricted_roles = list("Cook", "Janitor")
 	item = /obj/item/ammo_box/magazine/m45/kitchengun
-
+*/
 /datum/uplink_item/role_restricted/magillitis_serum
 	name = "Magillitis Serum Autoinjector"
 	desc = "A single-use autoinjector which contains an experimental serum that causes rapid muscular growth in Hominidae. \
@@ -204,7 +206,7 @@
 	cost = 5
 	item = /obj/item/reverse_bear_trap
 	restricted_roles = list("Clown")
-
+/* skyrat edit - no more memes
 /datum/uplink_item/role_restricted/reverse_revolver
 	name = "Reverse Revolver"
 	desc = "A revolver that always fires at its user. \"Accidentally\" drop your weapon, then watch as the greedy corporate pigs blow their own brains all over the wall. \
@@ -219,7 +221,7 @@
 	cost = 14
 	item = /obj/item/clothing/shoes/clown_shoes/taeclowndo
 	restricted_roles = list("Clown")
-
+*/
 /datum/uplink_item/role_restricted/emitter_cannon
 	name = "Emitter Cannon"
 	desc = "A small emitter fitted into a gun case, do to size constraints and safety it can only shoot about ten times when fully charged."

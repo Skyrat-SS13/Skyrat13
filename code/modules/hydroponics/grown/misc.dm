@@ -174,6 +174,16 @@
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	reagents_add = list(/datum/reagent/sulfur = 0.1, /datum/reagent/carbon = 0.1, /datum/reagent/nitrogen = 0.07, /datum/reagent/potassium = 0.05)
 
+//skyrat edit - no more memes
+/obj/item/seeds/gatfruit/Initialize(mapload, nogenes)
+	..()
+	qdel(src)
+
+/obj/item/reagent_containers/food/snacks/grown/shell/gatfruit/Initialize(mapload, obj/item/seeds/new_seed)
+	..()
+	qdel(src)
+//
+
 /obj/item/reagent_containers/food/snacks/grown/shell/gatfruit
 	seed = /obj/item/seeds/gatfruit
 	name = "gatfruit"

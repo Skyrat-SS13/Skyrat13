@@ -23,7 +23,7 @@
 	desc = "Ask the crew to \"inspect\" their nuclear disk and weapons system, and then when they decline, pull out a fully automatic rifle and gun down the Captain. \
 			Radio headset does not include encryption key. No gun included."
 	item = /obj/item/storage/box/syndie_kit/centcom_costume
-
+/* skyrat edit - no more memes
 /datum/uplink_item/badass/costumes/clown
 	name = "Clown Costume"
 	desc = "Nothing is more terrifying than clowns with fully automatic weaponry."
@@ -34,7 +34,7 @@
 	desc = "A very high impact toolbox. Excels at destroying stationary structures."
 	item = /obj/item/storage/toolbox/plastitanium
 	cost = 2		//18 damage on mobs, 50 on objects, 4.5 stam/hit
-
+*/
 /datum/uplink_item/badass/balloon
 	name = "Syndicate Balloon"
 	desc = "For showing that you are THE BOSS: A useless red balloon with the Syndicate logo on it. \
@@ -69,7 +69,7 @@
 	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	illegal_tech = FALSE
-
+/* skyrat edit - no more memes
 /datum/uplink_item/badass/tactical_naptime
 	name = "Sleepy Time Pajama Bundle"
 	desc = "Even soldiers need to get a good nights rest. Comes with some cozy as heck sleeping wear, a blankie to keep yourself warm in deep space, a hot mug of cocoa for you and your fuzzy friend."
@@ -78,3 +78,4 @@
 	limited_stock = 1
 	cant_discount = TRUE
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+*/

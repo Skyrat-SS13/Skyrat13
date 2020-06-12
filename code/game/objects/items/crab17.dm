@@ -1,3 +1,4 @@
+/* skyrat edit - memes b gone
 /obj/item/suspiciousphone
 	name = "suspicious phone"
 	desc = "This device raises pink levels to unknown highs."
@@ -227,3 +228,4 @@
 	playsound(src, "explosion", 80, TRUE)
 	dump.forceMove(get_turf(src))
 	qdel(src) //The target's purpose is complete. It can rest easy now
+*/
