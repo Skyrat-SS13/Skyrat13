@@ -123,6 +123,23 @@
 	lose_text = "<span class='notice'>You regain your stomach for drinks.</span>"
 //Skyrat change stop
 
+/datum/quirk/speech_impediment_insect
+	name = "Speech impediment (insect)"
+	desc = "You replace S sounds with a buzzing noise."."
+	value = 0
+	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
+
+/datum/quirk/speech_impediment_cheems/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_insect)
+
+/datum/quirk/speech_impediment_cheems/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_insect)
+
+
 /datum/quirk/alcohol_intolerance
 	name = "Alcohol Intolerance"
 	desc = "You take toxin damage from alcohol rather than getting drunk."
