@@ -35,7 +35,7 @@
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/corgi = 3, /obj/item/stack/sheet/animalhide/corgi = 1)
-	childtype = list(/mob/living/simple_animal/pet/dog/corgi/puppy = 95, /mob/living/simple_animal/pet/dog/corgi/puppy/void = 5)
+	childtype = list(/mob/living/simple_animal/pet/dog/corgi/puppy = 100)// skyrat edit - dogs have to be normal
 	animal_species = /mob/living/simple_animal/pet/dog
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "corgi"
@@ -72,7 +72,7 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "pug"
 	held_icon = "pug"
-
+/* skyrat edit - dogs have to be normal
 /mob/living/simple_animal/pet/dog/corgi/exoticcorgi
 	name = "Exotic Corgi"
 	desc = "As cute as it is colorful!"
@@ -99,7 +99,7 @@
 		. = ..()
 		var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 		add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
-
+*/
 /mob/living/simple_animal/pet/dog/corgi/death(gibbed)
 	..(gibbed)
 	regenerate_icons()
@@ -421,9 +421,9 @@
 
 /mob/living/simple_animal/pet/dog/corgi/Ian/Life()
 	..()
-
 	//Feeding, chasing food, FOOOOODDDD
 	if(!stat && CHECK_MULTIPLE_BITFIELDS(mobility_flags, MOBILITY_STAND|MOBILITY_MOVE) && !buckled)
+	/* skyrat edit - dogs have to be normal
 		turns_since_scan++
 		if(turns_since_scan > 5)
 			turns_since_scan = 0
@@ -465,20 +465,20 @@
 					else if(ishuman(movement_target.loc) )
 						if(prob(20))
 							emote("me", EMOTE_VISIBLE, "stares at [movement_target.loc]'s [movement_target] with a sad puppy-face")
-
+		*/
 		if(prob(1))
 			emote("me", EMOTE_VISIBLE, pick("dances around.","chases its tail!"))
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					setDir(i)
 					sleep(1)
-
+/* skyrat edit - dogs have to be normal
 /mob/living/simple_animal/pet/dog/corgi/Ian/narsie_act()
 	playsound(src, 'sound/magic/demon_dies.ogg', 75, TRUE)
 	var/mob/living/simple_animal/pet/dog/corgi/narsie/N = new(loc)
 	N.setDir(dir)
 	gib()
-
+*/
 /mob/living/simple_animal/pet/dog/corgi/narsie
 	name = "Nars-Ian"
 	desc = "Ia! Ia!"
@@ -575,7 +575,7 @@
 		return
 	..()
 
-
+/* skyrat edit - dogs have to be normal
 /mob/living/simple_animal/pet/dog/corgi/puppy/void		//Tribute to the corgis born in nullspace
 	name = "\improper void puppy"
 	real_name = "voidy"
@@ -591,7 +591,7 @@
 
 /mob/living/simple_animal/pet/dog/corgi/puppy/void/Process_Spacemove(movement_dir = 0)
 	return 1	//Void puppies can navigate space.
-
+*/
 
 //LISA! SQUEEEEEEEEE~
 /mob/living/simple_animal/pet/dog/corgi/Lisa
@@ -617,9 +617,9 @@
 
 /mob/living/simple_animal/pet/dog/corgi/Lisa/Life()
 	..()
-
+	/* skyrat edit - dogs have to be normal
 	make_babies()
-
+	*/
 	if(!stat && CHECK_MULTIPLE_BITFIELDS(mobility_flags, MOBILITY_STAND|MOBILITY_MOVE) && !buckled)
 		if(prob(1))
 			emote("me", EMOTE_VISIBLE, pick("dances around.","chases her tail."))

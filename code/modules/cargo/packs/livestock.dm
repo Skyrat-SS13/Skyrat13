@@ -103,7 +103,7 @@
 		if(D.gender == FEMALE)
 			qdel(D)
 			new /mob/living/simple_animal/pet/dog/corgi/Lisa(.)
-
+/* skyrat edit - dogs have to be normal
 /datum/supply_pack/critter/corgis/exotic
 	name = "Exotic Corgi Crate"
 	desc = "Corgis fit for a king, these corgis come in a unique color to signify their superiority. Comes with a cute collar!"
@@ -111,7 +111,7 @@
 	contains = list(/mob/living/simple_animal/pet/dog/corgi/exoticcorgi,
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "exotic corgi crate"
-
+*/
 /datum/supply_pack/critter/cow
 	name = "Cow Crate"
 	desc = "The cow goes moo!"
