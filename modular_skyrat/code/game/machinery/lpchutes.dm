@@ -14,7 +14,6 @@
 								/obj/item/stack/sheet/mineral/wood,
 								/obj/item/stack/sheet/leather,
 								/obj/item/stack/sheet/cloth,
-								/obj/item/stack/sheet/silk,
 								/obj/item/stack/sheet/durathread,
 								/obj/item/stack/sheet/cardboard,
 								/obj/item/glasswork/glass_base/lens,

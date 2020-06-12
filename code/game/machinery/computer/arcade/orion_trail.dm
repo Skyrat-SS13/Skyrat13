@@ -117,7 +117,7 @@
 			if(food <= 0)
 				dat += "<br>You ran out of food and starved."
 				if(obj_flags & EMAGGED)
-					user.nutrition = 0 //yeah you pretty hongry
+					user.set_nutrition(0) //yeah you pretty hongry
 					to_chat(user, "<span class='userdanger'>Your body instantly contracts to that of one who has not eaten in months. Agonizing cramps seize you as you fall to the floor.</span>")
 			if(fuel <= 0)
 				dat += "<br>You ran out of fuel, and drift, slowly, into a star."
@@ -730,7 +730,11 @@
 		message_admins("[ADMIN_LOOKUPFLW(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
 		log_game("[key_name(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
 	else
-		prizevend(user)
+		// Skyrat change START
+		var/score = alive + round(food/2) + round(fuel/5) + engine + hull + electronics - lings_aboard
+		prizevend(user, score)
+		// Skyrat change END
+		
 	obj_flags &= ~EMAGGED
 	name = "The Orion Trail"
 	desc = "Learn how our ancestors got to Orion, and have fun in the process!"

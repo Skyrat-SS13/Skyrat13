@@ -164,6 +164,7 @@ obj/item/seeds/proc/is_gene_forbidden(typepath)
 	return return_yield
 
 
+/*****moved to modular_skyrat
 /obj/item/seeds/proc/harvest(mob/user)
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_amount = 0
@@ -189,6 +190,7 @@ obj/item/seeds/proc/is_gene_forbidden(typepath)
 	parent.investigate_log("[user] harvested [getYield()] of [src], with seed traits [english_list(genes)] and reagents_add [english_list(reagents_add)] and potency [potency].", INVESTIGATE_BOTANY)
 	parent.update_tray(user)
 	return result
+*/
 
 
 /obj/item/seeds/proc/prepare_result(var/obj/item/reagent_containers/food/snacks/grown/T)

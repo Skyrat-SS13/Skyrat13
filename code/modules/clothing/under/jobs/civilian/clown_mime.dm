@@ -31,6 +31,7 @@
 	item_state = "clown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	mutantrace_variation = STYLE_DIGITIGRADE //The clown suit must look funny, no taur alpha masks where possible.
 
 /obj/item/clothing/under/rank/civilian/clown/blue
 	name = "blue clown suit"
@@ -91,6 +92,7 @@
 	desc = "A jolly dress, well suited to entertain your master, nuncle."
 	icon_state = "jester"
 	can_adjust = FALSE
+	mutantrace_variation = STYLE_DIGITIGRADE|USE_TAUR_CLIP_MASK
 
 /obj/item/clothing/under/rank/civilian/clown/jester/alt
 	icon_state = "jester2"
@@ -101,6 +103,7 @@
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
 	can_adjust = FALSE
+	mutantrace_variation = STYLE_DIGITIGRADE|USE_TAUR_CLIP_MASK
 
 /obj/item/clothing/under/rank/civilian/clown/Initialize()
 	. = ..()

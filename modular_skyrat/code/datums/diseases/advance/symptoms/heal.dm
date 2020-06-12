@@ -36,7 +36,7 @@
 	level = 6
 
 /datum/symptom/heal/plasma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = 4 * actual_power
+	var/heal_amt = actual_power
 
 	if(M.fire_stacks > 0)	//New hippie add, otherwise you die from plasma fires even if you're doing the suck on the plasma
 		actual_power = actual_power + (M.fire_stacks*0.75)
@@ -85,7 +85,7 @@
 
 	 //100% chance to activate for slow but consistent healing
 /datum/symptom/heal/toxin/Heal(mob/living/M, datum/disease/advance/A)
-	var/heal_amt = 1 * power
+	var/heal_amt = 0.33 * power
 	M.adjustToxLoss(-heal_amt)
 	return TRUE
 
@@ -100,7 +100,7 @@
 	threshold_desc = ""
 
 /datum/symptom/heal/supertoxin/Heal(mob/living/M, datum/disease/advance/A)
-	var/heal_amt = 4
+	var/heal_amt = 0.7
 	M.adjustToxLoss(-heal_amt)
 	return TRUE
 
@@ -121,7 +121,7 @@
 		power = 2
 
 /datum/symptom/heal/brute/Heal(mob/living/carbon/M, datum/disease/advance/A)
-	var/heal_amt = 1 * power
+	var/heal_amt = 0.33 * power
 	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
 	if(!parts.len)
@@ -150,7 +150,7 @@
 		power = 2
 
 /datum/symptom/heal/superbrute/Heal(mob/living/carbon/M, datum/disease/advance/A)
-	var/heal_amt = 4 * power
+	var/heal_amt = 0.7 * power
 
 	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
 
@@ -184,7 +184,7 @@
 		power = 2
 
 /datum/symptom/heal/burn/Heal(mob/living/carbon/M, datum/disease/advance/A)
-	var/heal_amt = 1 * power
+	var/heal_amt = 0.33 * power
 
 	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
@@ -208,7 +208,7 @@
 	threshold_desc = list(
 	"Resistance 4" = "Doubles healing power.",
 	)
-	var/temp_rate = 4
+	var/temp_rate = 1
 	power = 1
 
 /datum/symptom/heal/heatresistance/Heal(mob/living/carbon/M, datum/disease/advance/A)
@@ -218,7 +218,7 @@
 	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
 	if(M.on_fire && M.fire_stacks > 0)
-		heal_amt = 1.5 * (M.fire_stacks*0.75) * power
+		heal_amt = 1.5 * (M.fire_stacks*0.25) * power
 	else
 		heal_amt = 0
 	if(M.bodytemperature > BODYTEMP_NORMAL)	//Shamelessly stolen from plasma fixation, whew lad
@@ -249,18 +249,17 @@
 	if(A.properties["resistance"] >= 6) //stronger healing
 		healing_brain = TRUE
 
-
 /datum/symptom/heal/dna/Heal(mob/living/carbon/M, datum/disease/advance/A)
-	var/amt_healed = 2
+	var/amt_healed = 0.5
 	if(healing_brain)
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -amt_healed)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -(2 * amt_healed))
 		var/mob/living/carbon/C = M
 		if(prob(40))
 			C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
 	//Non-power mutations, excluding race, so the virus does not force monkey -> human transformations.
-	var/list/unclean_mutations = (GLOB.not_good_mutations|GLOB.bad_mutations) - GLOB.all_mutations[RACEMUT]
+	var/list/unclean_mutations = GLOB.all_mutations[RACEMUT] - (GLOB.not_good_mutations|GLOB.bad_mutations)
 	M.dna.remove_mutation_group(unclean_mutations)
-	M.radiation = max(M.radiation - (2 * amt_healed), 0)
+	M.radiation = max(M.radiation - amt_healed, 0)
 	return TRUE
 
 //skyrat addition - alcohol healing disease thing
@@ -301,17 +300,17 @@
 		multiplier = max(boozepowers)/100
 		for(var/datum/reagent/consumable/ethanol/E in M.reagents)
 			M.reagents.remove_reagent(E, 1 * absorption_coeff)
-		. += power * multiplier
+		. += (power * multiplier)/2
 
 /datum/symptom/heal/alcohol/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = 2 * actual_power
+	var/heal_amt = actual_power
 
 	var/list/parts = M.get_damaged_bodyparts(1,1) //more effective on burns
 
 	if(!parts.len)
 		return
 
-	if(prob(5))
+	if(prob(5) && (M.getBruteLoss() || M.getFireLoss()))
 		to_chat(M, "<span class='notice'>The alcohol makes you feel stronger.</span>")
 
 	for(var/obj/item/bodypart/L in parts)
@@ -319,8 +318,3 @@
 			M.update_damage_overlays()
 
 	return 1
-
-/datum/symptom/heal/water/passive_message_condition(mob/living/M)
-	if(M.getBruteLoss() || M.getFireLoss())
-		return TRUE
-	return FALSE

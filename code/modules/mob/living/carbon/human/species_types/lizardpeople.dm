@@ -24,10 +24,18 @@
 	disliked_food = GRAIN | DAIRY
 	liked_food = GROSS | MEAT
 	inert_mutation = FIREBREATH
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "L")
+	languagewhitelist = list("Draconic") //Skyrat change - species language whitelist
+	//
 
 /datum/species/lizard/after_equip_job(datum/job/J, mob/living/carbon/human/H)
-	H.grant_language(/datum/language/draconic)
-
+	//H.grant_language(/datum/language/draconic)
+	species_language_holder = /datum/language_holder/lizard
+/*
+/datum/species/lizard/after_equip_job(datum/job/J, mob/living/carbon/human/H)
+	H.grant_language(/datum/language/draconic) SKYRAT CHANGE= We have an additional language option for this
+*/
 /datum/species/lizard/random_name(gender,unique,lastname)
 	if(unique)
 		return random_unique_lizard_name(gender)
@@ -86,6 +94,7 @@
 	mutantlungs = /obj/item/organ/lungs/ashwalker
 	burnmod = 0.9
 	brutemod = 0.9
+	species_language_holder = /datum/language_holder/lizard/ash
 
 /datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/human/C, datum/species/old_species)
 	if((C.dna.features["spines"] != "None" ) && (C.dna.features["tail_lizard"] == "None")) //tbh, it's kinda ugly for them not to have a tail yet have floating spines

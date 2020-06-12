@@ -469,9 +469,14 @@ SUBSYSTEM_DEF(job)
 			else
 				handle_auto_deadmin_roles(M.client, rank) */
 
-	to_chat(M, "<b>You are the [rank].</b>")
+	//Skyrat changes
+	var/display_rank = rank
+	if(M.client && M.client.prefs && M.client.prefs.alt_titles_preferences[rank])
+		display_rank = M.client.prefs.alt_titles_preferences[rank]
+	//End of skyrat changes
+	to_chat(M, "<b>You are the [display_rank].</b>") //Skyrat change
 	if(job)
-		to_chat(M, "<b>As the [rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
+		to_chat(M, "<b>As the [display_rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>") //Skyrat change
 		job.radio_help_message(M)
 		if(job.req_admin_notify)
 			to_chat(M, "<b>You are playing a job that is important for Game Progression. If you have to disconnect immediately, please notify the admins via adminhelp. Otherwise put your locker gear back into the locker and cryo out.</b>")
@@ -479,6 +484,15 @@ SUBSYSTEM_DEF(job)
 			to_chat(M, "<b>[job.custom_spawn_text]</b>")
 		if(CONFIG_GET(number/minimal_access_threshold))
 			to_chat(M, "<span class='notice'><B>As this station was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></span>")
+		//skyrat edit
+		if(display_rank != rank)
+			to_chat(M, "<span class='warning'>Remember that alternate titles are, for the most part, for flavor and roleplay. \
+					<b>Do not use your alt title as an excuse to forego your duties as a [rank].</b></span>")
+		//
+	if(ishuman(H))
+		var/mob/living/carbon/human/wageslave = H
+		to_chat(M, "<b><span class = 'big'>Your account ID is [wageslave.account_id].</span></b>")
+		H.add_memory("Your account ID is [wageslave.account_id].")
 	if(job && H)
 		if(job.dresscodecompliant)// CIT CHANGE - dress code compliance
 			equip_loadout(N, H) // CIT CHANGE - allows players to spawn with loadout items

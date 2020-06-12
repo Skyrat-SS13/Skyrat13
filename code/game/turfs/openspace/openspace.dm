@@ -17,7 +17,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	icon_state = "transparent"
 	baseturfs = /turf/open/openspace
 	CanAtmosPassVertical = ATMOS_PASS_YES
-	//mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT // Skyrat edit -- 512 compatibility, normally commented out
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE
 
@@ -146,3 +146,13 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 			PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			return TRUE
 	return FALSE
+
+/turf/open/openspace/icemoon
+	name = "ice chasm"
+	baseturfs = /turf/open/openspace/icemoon
+	can_cover_up = FALSE
+	can_build_on = FALSE
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/openspace/icemoon/can_zFall(atom/movable/A, levels = 1, turf/target)
+	return TRUE

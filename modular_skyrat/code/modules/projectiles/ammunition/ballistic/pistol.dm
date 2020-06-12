@@ -5,5 +5,5 @@
 	desc = "A 9mm rubber bullet casing."
 	icon = 'modular_skyrat/icons/obj/ammo.dmi'
 	icon_state = "9mmr-casing"
-	caliber = "9mmr"
+	caliber = "9mm"
 	projectile_type = /obj/item/projectile/bullet/c9mm/rubber

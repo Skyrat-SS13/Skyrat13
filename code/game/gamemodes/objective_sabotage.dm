@@ -33,19 +33,20 @@
 /datum/sabotage_objective/processing/check_conditions()
 	return won
 
-/datum/sabotage_objective/processing/power_sink
+
+/*/datum/sabotage_objective/processing/power_sink
 	name = "Drain at least 100 megajoules of power using a power sink."
 	sabotage_type = "powersink"
 	special_equipment = list(/obj/item/sbeacondrop/powersink)
 	var/sink_found = FALSE
 	var/count = 0
 
-/*/datum/sabotage_objective/processing/power_sink/check_condition_processing()
+/datum/sabotage_objective/processing/power_sink/check_condition_processing()
 	for(var/s in GLOB.power_sinks)
 		var/obj/item/powersink/sink = s
-		won = max(won,sink.power_drained/1e8)
+		won = max(won,sink.power_drained/1e8)*/
 
-/obj/item/paper/guides/antag/supermatter_sabotage
+/*/obj/item/paper/guides/antag/supermatter_sabotage
 	info = "Ways to sabotage a supermatter:<br>\
 	<ul>\
 	<li>Set the air alarm's operating mode to anything that isn't 'draught' (yes, anything, though 'off' works best). Or just smash the air alarm, that works too.</li>\
@@ -90,7 +91,10 @@
 	sabotage_type = "cloner"
 
 /datum/sabotage_objective/cloner/check_conditions()
-	return !(locate(/obj/machinery/clonepod) in GLOB.machines)
+	for(var/obj/machinery/clonepod/cloner in GLOB.machines)
+		if(is_station_level(cloner.z))
+			return FALSE
+	return TRUE
 
 /datum/sabotage_objective/ai_law
 	name = "Upload a hacked law to the AI."

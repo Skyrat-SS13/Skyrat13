@@ -1,10 +1,22 @@
+//kinetic destroyer (premium crusher
+/obj/item/twohanded/kinetic_crusher/premiumcrusher
+	icon = 'modular_skyrat/icons/obj/mining.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/hammerspc_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/hammerspc_righthand.dmi'
+	name = "Kinetic Destroyer"
+	desc = "Revised and refined by veteran miners, this crusher design has been improved in nearly everyway. Featuring a lightweight composite body and a hardened plastitanium head, this weapon is exceptional at removing life from most things."
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	armour_penetration = 15
+	detonation_damage = 60
+	backstab_bonus = 40
+
 //legion (the big one!)
-/obj/item/crusher_trophy/legion_shard
-	name = "legion bone shard"
-	desc = "Part of a legion's cranium. Suitable as a trophy for a kinetic crusher."
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "bone"
-	denied_type = /obj/item/crusher_trophy/legion_shard
+/obj/item/crusher_trophy/golden_skull
+	name = "golden legion skull"
+	desc = "Nope, it's not the crystal one, but still valuable. Suitable as a trophy for a kinetic crusher."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "goldenskull"
+	denied_type = /obj/item/crusher_trophy/golden_skull
 
 /obj/item/crusher_trophy/legion_shard/effect_desc()
 	return "a kinetic crusher to make dead animals into friendly fauna, as well as turning corpses into legions"
@@ -18,6 +30,7 @@
 				L.attack_same = 0
 			L.loot = null
 			L.crusher_loot = null
+			L.faction = user.faction.Copy()
 			user.visible_message("<span class='notice'>[user] revives [target] with [src], as a friendly fauna</span>")
 			playsound(src,'sound/effects/supermatter.ogg',50,1)
 
@@ -29,7 +42,7 @@
 			var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion(H.loc)
 			L.stored_mob = H
 			H.forceMove(L)
-			L.faction = list("neutral")
+			L.faction = user.faction.Copy()
 			L.revive(full_heal = 1, admin_revive = 1)
 			if(ishostile(L))
 				L.attack_same = 0
@@ -40,17 +53,55 @@
 		else
 			(to_chat(user, "<span class='notice'>You cancel turning [target] into a legion.</span>"))
 
+//rogue process
+/obj/item/crusher_trophy/brokentech
+	name = "broken AI"
+	desc = "It used to control a mecha, now it's just trash. Suitable as a trophy for a kinetic crusher."
+	denied_type = /obj/item/crusher_trophy/brokentech
+	icon = 'icons/obj/aicards.dmi'
+	icon_state = "pai"
+	var/range = 4
+	var/cooldowntime = 50
+	var/cooldown
+
+/obj/item/crusher_trophy/brokentech/effect_desc()
+	return "your kinetic crusher to create shockwaves when fired."
+
+/obj/item/crusher_trophy/brokentech/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+	. = ..()
+	if(cooldowntime < world.time)
+		INVOKE_ASYNC(src, .proc/invokesmoke, user)
+
+/obj/item/crusher_trophy/brokentech/proc/invokesmoke(mob/living/user)
+	cooldown = world.time + cooldowntime
+	var/list/hit_things = list()
+	var/turf/T = get_turf(get_step(user, user.dir))
+	var/ogdir = user.dir
+	for(var/i = 0, i < src.range, i++)
+		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+		for(var/mob/living/L in T.contents)
+			if(L != user && !(L in hit_things) && !ishuman(L))
+				if(!faction_check(user.faction, L.faction))
+					if(prob(25))
+						L.Stun(10)
+					L.apply_damage_type(20, BRUTE)
+		if(ismineralturf(T))
+			var/turf/closed/mineral/M = T
+			M.gets_drilled(user)
+		T = get_step(T, ogdir)
+		sleep(2)
+
 //shambling miner
 /obj/item/crusher_trophy/blaster_tubes/mask
 	name = "mask of a shambling miner"
 	desc = "It really doesn't seem like it could be worn. Suitable as a crusher trophy."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "miner_mask"
-	bonus_value = 5
+	bonus_value = 0
 	denied_type = /obj/item/crusher_trophy/blaster_tubes/mask
 
 /obj/item/crusher_trophy/blaster_tubes/mask/effect_desc()
-	return "mark detonation to make the next destabilizer shot deal <b>[bonus_value]</b> damage"
+	return "the crusher have no slowdown when wielded"
 
 /obj/item/crusher_trophy/blaster_tubes/mask/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
 	if(deadly_shot)
@@ -63,6 +114,16 @@
 /obj/item/crusher_trophy/blaster_tubes/mask/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark)
 	new /obj/effect/temp_visual/kinetic_blast(target)
 	playsound(target.loc, 'sound/weapons/kenetic_accel.ogg', 60, 0)
+
+/obj/item/crusher_trophy/blaster_tubes/mask/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	H.slowdown = 0
+	H.slowdown_wielded = 0
+
+/obj/item/crusher_trophy/blaster_tubes/mask/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	H.slowdown = initial(H.slowdown)
+	H.slowdown_wielded = initial(H.slowdown_wielded)
 
 //lava imp
 /obj/item/crusher_trophy/blaster_tubes/impskull
@@ -172,7 +233,7 @@
 	denied_type = /obj/item/crusher_trophy/king_goat
 
 /obj/item/crusher_trophy/king_goat/effect_desc()
-	return "you to passivily recharge markers 5x as fast while equipped and do a decent amount of damage at the cost of dulling the blade"
+	return "you also passively recharge markers 5x as fast while equipped and do a decent amount of damage at the cost of dulling the blade"
 
 /obj/item/crusher_trophy/king_goat/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
 	marker.damage = 10 //in my testing only does damage to simple mobs so should be fine to have it high
@@ -189,10 +250,212 @@
 		H.charge_time = 15
 		H.force_wielded = 20
 
+//hierophant crusher small changes
+/obj/item/crusher_trophy/vortex_talisman
+	var/cdmultiplier = 1.25
+
+/obj/item/crusher_trophy/vortex_talisman/on_mark_detonation(mob/living/target, mob/living/user)
+	if(vortex_cd >= world.time)
+		return
+	var/turf/T = get_turf(user)
+	var/obj/effect/temp_visual/hierophant/wall/crusher/wall = new /obj/effect/temp_visual/hierophant/wall/crusher(T, user) //a wall only you can pass!
+	var/turf/otherT = get_step(T, turn(user.dir, 90))
+	if(otherT)
+		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
+	otherT = get_step(T, turn(user.dir, -90))
+	if(otherT)
+		new /obj/effect/temp_visual/hierophant/wall/crusher(otherT, user)
+	vortex_cd = world.time + (wall.duration * cdmultiplier)
+
+//gladiator
+/obj/item/crusher_trophy/gladiator
+	name = "gladiator's horn"
+	desc = "The remaining horn of the Gladiator. Suitable as a crusher trophy."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "horn"
+	bonus_value = 15
+	denied_type = /obj/item/crusher_trophy/gladiator
+
+/obj/item/crusher_trophy/gladiator/effect_desc()
+	return "the crusher to have a <b>[bonus_value]%</b> chance to block any incoming attack."
+
+/obj/item/crusher_trophy/gladiator/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	if(.)
+		H.block_chance += bonus_value
+
+/obj/item/crusher_trophy/gladiator/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	if(.)
+		H.block_chance -= bonus_value
+
 //hierophant crusher nerf "but muh i deserve it after killing hierocunt" yes but its op fuck you you piece of shit
 /obj/effect/temp_visual/hierophant/wall/crusher
-	duration = 45 //this is more than enough time bro
+	duration = 40 //this is more than enough time bro
 
 //watcher wing slight buff
 /obj/item/crusher_trophy/watcher_wing
-	bonus_value = 20 // 1 second isn't enough for much, this should be better
+	bonus_value = 5
+
+//gladiator zweihander - it's just a one handed crusher
+/obj/item/melee/zweihander
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "zweihander"
+	item_state = "zweihander"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
+	name = "Zweihander"
+	desc = "A surprisingly tough sword, made out of drake hide and bone. Somehow, despite it's large size, it's easy to carry one handed."
+	force = 15
+	w_class = WEIGHT_CLASS_BULKY
+	throwforce = 15
+	throw_speed = 4
+	armour_penetration = 20
+	custom_materials = list(/datum/material/titanium=3150, /datum/material/glass=2075, /datum/material/gold=3000, /datum/material/diamond=5000)
+	hitsound = 'modular_skyrat/sound/weapons/zweihanderslice.ogg'
+	attack_verb = list("smashed", "crushed", "cleaved", "chopped", "pulped")
+	sharpness = IS_SHARP
+	var/list/trophies = list()
+	var/charged = TRUE
+	var/charge_time = 13
+	var/detonation_damage = 65
+	var/backstab_bonus = 40
+	var/brightness = 7
+
+/obj/item/melee/zweihander/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 80, 110)
+	set_light(brightness)
+
+/obj/item/melee/zweihander/Destroy()
+	QDEL_LIST(trophies)
+	return ..()
+
+/obj/item/melee/zweihander/examine(mob/living/user)
+	. = ..()
+	. += "<span class='notice'>Mark a large creature with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.</span>"
+	. += "<span class='notice'>Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.</span>"
+	for(var/t in trophies)
+		var/obj/item/crusher_trophy/T = t
+		. += "<span class='notice'>It has \a [T] attached, which causes [T.effect_desc()].</span>"
+
+/obj/item/melee/zweihander/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/crowbar))
+		if(LAZYLEN(trophies))
+			to_chat(user, "<span class='notice'>You remove [src]'s trophies.</span>")
+			I.play_tool_sound(src)
+			for(var/t in trophies)
+				var/obj/item/crusher_trophy/T = t
+				T.remove_from(src, user)
+		else
+			to_chat(user, "<span class='warning'>There are no trophies on [src].</span>")
+	else if(istype(I, /obj/item/crusher_trophy))
+		var/obj/item/crusher_trophy/T = I
+		T.add_to(src, user)
+	else
+		return ..()
+
+/obj/item/melee/zweihander/attack(mob/living/target, mob/living/carbon/user)
+	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+	var/target_health = target.health
+	..()
+	for(var/t in trophies)
+		if(!QDELETED(target))
+			var/obj/item/crusher_trophy/T = t
+			T.on_melee_hit(target, user)
+	if(!QDELETED(C) && !QDELETED(target))
+		C.total_damage += target_health - target.health //we did some damage, but let's not assume how much we did
+
+/obj/item/melee/zweihander/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	. = ..()
+	if(istype(target, /obj/item/crusher_trophy))
+		var/obj/item/crusher_trophy/T = target
+		T.add_to(src, user)
+	if(!proximity_flag && charged)//Mark a target, or mine a tile.
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		var/obj/item/projectile/destabilizer/D = new /obj/item/projectile/destabilizer(proj_turf)
+		for(var/t in trophies)
+			var/obj/item/crusher_trophy/T = t
+			T.on_projectile_fire(D, user)
+		D.preparePixelProjectile(target, user, clickparams)
+		D.firer = user
+		D.hammer_synced = src
+		playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, 1)
+		D.fire()
+		charged = FALSE
+		update_icon()
+		addtimer(CALLBACK(src, .proc/Recharge), charge_time)
+		return
+	if(proximity_flag && isliving(target))
+		var/mob/living/L = target
+		var/datum/status_effect/crusher_mark/CM = L.has_status_effect(STATUS_EFFECT_CRUSHERMARK)
+		if(!CM || CM.hammer_synced != src || !L.remove_status_effect(STATUS_EFFECT_CRUSHERMARK))
+			return
+		var/datum/status_effect/crusher_damage/C = L.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+		var/target_health = L.health
+		for(var/t in trophies)
+			var/obj/item/crusher_trophy/T = t
+			T.on_mark_detonation(target, user)
+		if(!QDELETED(L))
+			if(!QDELETED(C))
+				C.total_damage += target_health - L.health //we did some damage, but let's not assume how much we did
+			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
+			var/backstab_dir = get_dir(user, L)
+			var/def_check = L.getarmor(type = "bomb")
+			if((user.dir & backstab_dir) && (L.dir & backstab_dir))
+				if(!QDELETED(C))
+					C.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
+				L.apply_damage(detonation_damage + backstab_bonus, BRUTE, blocked = def_check)
+				playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
+			else
+				if(!QDELETED(C))
+					C.total_damage += detonation_damage
+				L.apply_damage(detonation_damage, BRUTE, blocked = def_check)
+
+			if(user && lavaland_equipment_pressure_check(get_turf(user))) //CIT CHANGE - makes sure below only happens in low pressure environments
+				user.adjustStaminaLoss(-30)//CIT CHANGE - makes crushers heal stamina
+
+/obj/item/melee/zweihander/proc/Recharge()
+	if(!charged)
+		charged = TRUE
+		update_icon()
+		playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
+
+//great brown wolf sif
+/obj/item/crusher_trophy/dark_energy
+	name = "dark energy"
+	desc = "A black ball of energy that was formed when Sif miraculously imploded. Suitable as a trophy for a kinetic crusher."
+	icon = 'modular_skyrat/icons/obj/lavaland/sif.dmi'
+	icon_state = "sif_energy"
+	denied_type = /obj/item/crusher_trophy/dark_energy
+	bonus_value = 30
+
+/obj/item/crusher_trophy/dark_energy/effect_desc()
+	return "mark detonation to perform a bash dealing <b>[bonus_value]</b> damage"
+
+/obj/item/crusher_trophy/dark_energy/on_mark_detonation(mob/living/target, mob/living/user)
+	if(!target)
+		return
+	var/chargeturf = get_turf(target) //get target turf
+	if(!chargeturf)
+		return
+	var/dir = get_dir(user, chargeturf)//get direction
+	var/turf/T = get_ranged_target_turf(chargeturf,dir,2)//get range of the turf
+	if(!T)
+		return
+	playsound(user, pick('modular_skyrat/sound/sif/whoosh1.ogg', 'modular_skyrat/sound/sif/whoosh2.ogg', 'modular_skyrat/sound/sif/whoosh3.ogg'), 300, 1)
+	new /obj/effect/temp_visual/decoy/fading(loc,user)
+	//Start bashing
+	walk(user,0)
+	setDir(dir)
+	var/movespeed = 0.7
+	walk_to(user, T, movespeed)
+	target.apply_damage(bonus_value, BRUTE) // Damage
+	var/atom/prevLoc = target.loc
+	user.loc = prevLoc
+	walk(user, 0)
+	//Stop bashing
+	new /obj/effect/temp_visual/decoy/fading(loc,user)
+	playsound(user, 'sound/effects/meteorimpact.ogg', 200, 1, 2, 1)

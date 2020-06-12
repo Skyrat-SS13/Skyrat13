@@ -85,7 +85,7 @@
 	name = "meditopia banner"
 	desc = "The banner of Meditopia, generous benefactors that cure wounds and shelter the weak."
 	icon_state = "banner_medical"
-	job_loyalties = list("Medical Doctor", "Chemist", "Geneticist", "Virologist", "Chief Medical Officer")
+	job_loyalties = list("Medical Doctor", "Chemist", "Geneticist", "Virologist", "Chief Medical Officer", "Psychologist") // Skyrat change
 	warcry = "No wounds cannot be healed!"
 */
 /obj/item/banner/medical/mundane
@@ -215,8 +215,9 @@
 /obj/item/clothing/head/helmet/plate/crusader/prophet
 	name = "Prophet's Hat"
 	desc = "A religious-looking hat."
+	icon_state = "prophet"
 	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
-	flags_1 = 0
+	flags_1 = NONE
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 50, "bomb" = 70, "bio" = 50, "rad" = 50, "fire" = 60, "acid" = 60) //religion protects you from disease and radiation, honk.
 	worn_x_dimension = 64
 	worn_y_dimension = 64

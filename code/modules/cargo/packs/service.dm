@@ -53,7 +53,7 @@
 
 /datum/supply_pack/service/minerkit
 	name = "Shaft Miner Starter Kit"
-	desc = "All the miners died too fast? Assistant wants to get a taste of life off-station? Either way, this kit is the best way to turn a regular crewman into an ore-producing, monster-slaying machine. Contains meson goggles, a pickaxe, advanced mining scanner, cargo headset, ore bag, gasmask, and explorer suit. Requires QM access to open."
+	desc = "All the miners died too fast? Assistant wants to get a taste of life off-station? Either way, this kit is the best way to turn a regular crewman into an ore-producing, monster-slaying machine. Contains meson goggles, a pickaxe, advanced mining scanner, cargo headset, ore bag, gasmask, and explorer suit. Requires QM access to open." //They'll just die without a prescan anyway, don't bother
 	cost = 2500
 	access = ACCESS_QM
 	contains = list(/obj/item/pickaxe/mini,
@@ -66,13 +66,23 @@
 	crate_name = "shaft miner starter kit"
 	crate_type = /obj/structure/closet/crate/secure
 
+/datum/supply_pack/service/snowmobile
+	name = "Snowmobile kit"
+	desc = "trapped on a frigid wasteland? need to get around fast? purchase a refurbished snowmobile, with a FREE 10 microsecond warranty!"
+	cost = 1500 // 1000 points cheaper than ATV
+	contains = list(/obj/vehicle/ridden/atv/snowmobile = 1,
+			/obj/item/key = 1,
+			/obj/item/clothing/mask/gas/explorer = 1)
+	crate_name = "Snowmobile kit"
+	crate_type = /obj/structure/closet/crate/large
+
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////// Chef, Botanist, Bartender ////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/service/buildabar
 	name = "Build a Bar Crate"
-	desc = "Looking to set up your own little safe haven? Maintenance bar too much of a bummer to work on? Maybe you just want to set up shop right in front of the bartender. Whatever your reasons, get a jump-start on this with this handy kit. Contains circuitboards for bar equipment, some parts, and some basic bartending supplies. (Batteries not Included)"
+	desc = "Looking to set up your own little safe haven? Maintenance bar too much of a bummer to work on? Maybe you just want to set up shop right in front of the bartender. Whatever your reasons, get a jump-start on it with this handy kit. Contains circuitboards for bar equipment, some parts, and some basic bartending supplies. (Batteries not included)" //Skyrat change, fixed grammatical error and capitalization error
 	cost = 3750
 	contains = list(/obj/item/storage/box/drinkingglasses,
 					/obj/item/storage/box/drinkingglasses,
@@ -110,7 +120,7 @@
 
 /datum/supply_pack/service/icecream_cart
 	name = "Ice Cream Cart Crate"
-	desc = "Plasma fire too hot for you? Want a nice treat after a hard days work? Well now we have the cart for you! This Ice Cream Vat has everthing you need to make you and your friends so ice cream treats! This cart comes stocked with some ingredients for each type of scoopable icecream."
+	desc = "Plasma fire too hot for you? Want a nice treat after a hard day's work? Well now we have the cart for you! This Ice Cream Vat has everthing you need to make you and your friends some ice cream treats! This cart comes stocked with some ingredients for each type of scoopable icecream." //Skyrat change, fixes grammatical errors and missing letters
 	cost = 2750 //Comes prestocked with basic ingredients
 	contains = list(/obj/machinery/icecream_vat)
 	crate_name = "ice cream vat crate"
@@ -118,7 +128,7 @@
 
 /datum/supply_pack/service/grill
 	name = "Grilling Starter Kit"
-	desc = "Hey dad I'm Hungry. Hi Hungry I'm THE NEW GRILLING STARTER KIT ONLY 5000 BUX GET NOW! Contains a cooking grill and five fuel coal sheets."
+	desc = "Hey Dad I'm Hungry. Hi Hungry I'm THE NEW GRILLING STARTER KIT ONLY 5000 BUX GET NOW! Contains a cooking grill and five fuel coal sheets." //Skyrat change, fixed capitalization. god you're unfunny
 	cost = 3000
 	contains = list(/obj/item/stack/sheet/mineral/coal/five,
 					/obj/machinery/grill/unwrenched)
@@ -162,7 +172,7 @@
 /datum/supply_pack/service/replacementdb
 	name = "Replacement Defensive Bar Shotgun"
 	desc = "Someone stole the Bartender's twin-barreled possession? Give them another one at a significant markup. Comes with one unused double-barrel shotgun, shells not included. Requires bartender access to open."
-	cost = 2200
+	cost = 4000 //Skyrat change, who made it so cheap? This is a lethal weapon sold at such a cheap price. Anyway i am changing it now
 	access = ACCESS_BAR
 	contraband = TRUE
 	contains = list(/obj/item/gun/ballistic/revolver/doublebarrel)
@@ -175,7 +185,7 @@
 
 /datum/supply_pack/service/advlighting
 	name = "Advanced Lighting crate"
-	desc = "Thanks to advanced lighting tech we here at the Lamp Factory have be able to produce more lamps and lamp items! This crate has three lamps, a box of lights and a state of the art rapid-light-device!"
+	desc = "Thanks to advanced lighting tech, we here at the Lamp Factory have been able to produce more lamps and lamp items! This crate has three lamps, a box of lights and a state of the art rapid-light-device!" //Skyrat change, fixes punctuation error and missing letters
 	cost = 2750
 	contains = list(/obj/item/construction/rld,
 					/obj/item/flashlight/lamp,
@@ -187,7 +197,7 @@
 
 /datum/supply_pack/service/lightbulbs
 	name = "Replacement Lights" //Subgrouping this with Advanced Lighting Crate, they're both lighting related.
-	desc = "May the light of Aether shine upon this station! Or at least, the light of forty two light tubes and twenty one light bulbs as well as a light replacer."
+	desc = "May the light of Aether shine upon this station! Or at least, the light of forty-two light tubes and twenty-one light bulbs as well as a light replacer." //Skyrat change, added lines to the numbers
 	cost = 1200
 	contains = list(/obj/item/storage/box/lights/mixed,
 					/obj/item/storage/box/lights/mixed,
@@ -230,7 +240,7 @@
 
 /datum/supply_pack/service/janitor/janpremium
 	name = "Janitor Supplies (Premium)"
-	desc = "The custodial union is in a tizzy, so we've gathered up some better supplies for you. In this crate you can get a brand new chem, Drying Agent. This stuff is the work of slimes or magic! This crate also contains a rag to test out the Drying Angent magic, several cleaning grenades, some spare bottles of ammonia, and an MCE (or Massive Cleaning Explosive)."
+	desc = "The custodial union is in a tizzy, so we've gathered up some better supplies for you. In this crate you can get a brand new chem, Drying Agent. This stuff is the work of slimes or magic! This crate also contains a rag to test out the Drying Agent magic, several cleaning grenades, some spare bottles of ammonia, and an MCE (or Massive Cleaning Explosive)." //Skyrat change, fixed typo
 	cost = 2700
 	contains = list(/obj/item/grenade/clusterbuster/cleaner,
 					/obj/item/grenade/chem_grenade/cleaner,
@@ -245,7 +255,7 @@
 
 /datum/supply_pack/service/janitor/starter
 	name = "Janitorial Supplies (Standard)"
-	desc = "Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)! Contains three buckets, caution signs, and cleaner grenades. Also has a single mop, spray cleaner, rag, NT soap and a trash bag."
+	desc = "Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)! Contains three buckets, caution signs, and cleaner grenades. Also has a single mop, spray cleaner, rag, NT soap and a trash bag." //Skyrat change, fixes punctuation error
 	cost = 1300
 	contains = list(/obj/item/reagent_containers/glass/bucket,
 					/obj/item/reagent_containers/glass/bucket,
@@ -271,4 +281,3 @@
 					/obj/item/clothing/shoes/galoshes)
 	crate_name = "janitorial cart crate"
 	crate_type = /obj/structure/closet/crate/large
-

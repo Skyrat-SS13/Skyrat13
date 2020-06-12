@@ -1744,13 +1744,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/unpowered)
-"fT" = (
-/obj/structure/alien/resin/wall,
-/turf/closed/indestructible/riveted{
-	icon = 'icons/turf/walls/rusty_reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/ruin/space/has_grav/ancientstation/hivebot)
 "fU" = (
 /obj/item/stack/cable_coil,
 /turf/open/floor/plating/airless,
@@ -2955,12 +2948,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/hivebot)
-"jb" = (
-/turf/closed/indestructible/riveted{
-	icon = 'icons/turf/walls/rusty_reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/ruin/space/has_grav/ancientstation/hivebot)
 "jc" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/suit/space/hardsuit/ancient,
@@ -3383,10 +3370,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/proto)
-"km" = (
-/obj/structure/alien/resin/wall,
-/turf/open/space/basic,
-/area/ruin/space/has_grav/ancientstation/hivebot)
 "kn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -3536,10 +3519,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation)
-"kM" = (
-/obj/structure/alien/resin/membrane,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/hivebot)
 "kN" = (
 /obj/structure/grille,
 /obj/effect/spawner/structure/window/hollow/reinforced,
@@ -3877,11 +3856,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
-"mA" = (
-/obj/structure/alien/resin/wall,
-/obj/structure/alien/resin/wall,
-/turf/open/space/basic,
-/area/ruin/space/has_grav/ancientstation/hivebot)
 "mC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -5048,11 +5022,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
-"uJ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/alien/weeds,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/hivebot)
 "uO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair{
@@ -8898,10 +8867,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
-"Wl" = (
-/obj/structure/alien/resin/wall,
-/turf/open/space/basic,
-/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "Wo" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/rust,
@@ -12976,18 +12941,18 @@ aa
 aa
 aa
 aa
-aE
-aE
-aE
+aD
 aD
 aD
 aD
 aE
-aD
 aE
 aE
 aE
-aD
+aE
+aE
+aE
+aE
 cD
 cD
 bo
@@ -13043,7 +13008,7 @@ ah
 hh
 aq
 MN
-aD
+aE
 II
 bD
 Lk
@@ -13088,7 +13053,7 @@ aa
 aa
 aa
 aa
-aD
+aE
 ho
 hP
 Il
@@ -13099,7 +13064,7 @@ ac
 aq
 aq
 MZ
-aD
+aE
 II
 bD
 FQ
@@ -13144,7 +13109,7 @@ aa
 aa
 aa
 cA
-aD
+aE
 hp
 hP
 aq
@@ -13155,7 +13120,7 @@ hM
 aq
 aq
 aq
-aD
+aE
 II
 bD
 xV
@@ -13211,7 +13176,7 @@ ac
 aq
 MZ
 MN
-aD
+aE
 II
 bD
 QN
@@ -13256,17 +13221,17 @@ oo
 aa
 cA
 cA
-fT
-jb
-jb
-jb
-fT
+aD
+aD
+aD
+aD
+aD
 jF
-nk
-kM
 xn
-nk
-nk
+xn
+xn
+aF
+aF
 aD
 bD
 bD
@@ -13312,11 +13277,11 @@ aa
 aa
 ao
 cA
-jb
+aD
 CL
 hq
 IV
-fT
+aD
 ac
 ac
 ag
@@ -13324,8 +13289,8 @@ ac
 Wq
 ac
 Zm
-uJ
-nk
+ac
+aF
 Rr
 wj
 dy
@@ -13368,11 +13333,11 @@ aa
 aa
 cA
 cA
-jb
+aD
 hr
 ig
 TE
-jb
+aD
 ac
 ac
 ac
@@ -13424,11 +13389,11 @@ aa
 cA
 cA
 ao
-jb
+aD
 hB
 os
 iO
-jb
+aD
 dY
 ac
 ac
@@ -13480,11 +13445,11 @@ aa
 aa
 cA
 cA
-jb
+aD
 vD
 xg
 iw
-jb
+aD
 ac
 hM
 ah
@@ -13536,11 +13501,11 @@ aa
 aa
 aa
 cA
-jb
-jb
+aD
+aD
 KR
-jb
-jb
+aD
+aD
 jJ
 nk
 nk
@@ -13648,7 +13613,7 @@ aa
 aa
 aa
 aa
-aD
+aE
 bH
 ac
 Wq
@@ -13704,7 +13669,7 @@ aa
 aa
 aa
 aa
-km
+aE
 ac
 ac
 ac
@@ -13760,7 +13725,7 @@ aa
 aa
 aa
 aa
-km
+aE
 ac
 ac
 ac
@@ -13816,7 +13781,7 @@ aa
 aa
 oo
 aa
-km
+aD
 ac
 ac
 hM
@@ -13939,8 +13904,8 @@ kP
 lL
 lt
 lt
-km
-Wl
+aE
+bD
 bD
 HI
 bD
@@ -13984,7 +13949,7 @@ aa
 aa
 aa
 aa
-km
+aD
 ac
 hM
 ac
@@ -13995,8 +13960,8 @@ Li
 lt
 lt
 Mi
-km
-Wl
+aE
+bD
 jl
 jl
 jl
@@ -14040,7 +14005,7 @@ aa
 aa
 aa
 aa
-km
+aD
 ac
 ac
 ac
@@ -14049,10 +14014,10 @@ ac
 ac
 nk
 aF
+nk
 aF
-aF
-km
-Wl
+aD
+bD
 ur
 lP
 UX
@@ -14096,7 +14061,7 @@ aa
 aa
 aa
 aa
-aD
+aE
 ac
 ah
 ac
@@ -14107,7 +14072,7 @@ kS
 lM
 Xk
 lM
-aE
+aD
 cD
 cD
 cD
@@ -14152,7 +14117,7 @@ aa
 oo
 aa
 aa
-km
+aE
 hM
 ac
 ac
@@ -14163,7 +14128,7 @@ bq
 Ew
 xm
 lM
-aE
+aD
 cA
 cA
 cA
@@ -14208,16 +14173,16 @@ aa
 aa
 aa
 aa
-mA
-km
-km
 aD
 aD
 aD
 aD
+aE
+aE
+aE
 aD
 aD
-aD
+aE
 aD
 aD
 cA

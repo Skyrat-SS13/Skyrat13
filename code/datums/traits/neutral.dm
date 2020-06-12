@@ -10,6 +10,15 @@
 	lose_text = "<span class='notice'>You can taste again!</span>"
 	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
 
+/datum/quirk/snob
+	name = "Snob"
+	desc = "You care about the finer things, if a room doesn't look nice its just not really worth it, is it?"
+	value = 0
+	gain_text = "<span class='notice'>You feel like you understand what things should look like.</span>"
+	lose_text = "<span class='notice'>Well who cares about deco anyways?</span>"
+	medical_record_text = "Patient seems to be rather stuck up."
+	mob_trait = TRAIT_SNOB
+
 /datum/quirk/pineapple_liker
 	name = "Ananas Affinity"
 	desc = "You find yourself greatly enjoying fruits of the ananas genus. You can't seem to ever get enough of their sweet goodness!"
@@ -103,6 +112,16 @@
 	mob_trait = TRAIT_MASO
 	gain_text = "<span class='notice'>You desire to be hurt.</span>"
 	lose_text = "<span class='notice'>Pain has become less exciting for you.</span>"
+
+//Skyrat change start
+/datum/quirk/alcohol_lightweight  
+	name = "Alcoholic Lightweight"
+	desc = "Alcohol really goes straight to your head, gotta be careful with what you drink."
+	value = 0
+	mob_trait = TRAIT_ALCOHOL_LIGHTWEIGHT
+	gain_text = "<span class='notice'>You feel woozy thinking of alcohol.</span>"
+	lose_text = "<span class='notice'>You regain your stomach for drinks.</span>"
+//Skyrat change stop
 
 /datum/quirk/alcohol_intolerance
 	name = "Alcohol Intolerance"

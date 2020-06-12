@@ -22,7 +22,7 @@
 	icon_state = "cmoturtle"
 	item_state = "w_suit"
 	alt_covers_chest = TRUE
-	mutantrace_variation = NONE
+	mutantrace_variation = USE_TAUR_CLIP_MASK
 
 /obj/item/clothing/under/rank/medical/geneticist
 	desc = "It's made of a special fiber that gives special protection against biohazards. It has a genetics rank stripe on it."
@@ -153,3 +153,21 @@
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+
+//Skyrat changes start    // All WIP aaaa
+/obj/item/clothing/under/rank/medical/psychologist
+	name = "psychologist's suit"
+	desc = "A profesional looking suit, fitting of a psychologist, it seems oddly famliar."			//New sprite plz
+	icon_state = "red_suit"									//No custom sprite atm
+	item_state = "red_suit"
+	can_adjust = FALSE
+
+/obj/item/clothing/under/rank/medical/psychologist/skirt
+	name = "psychologist's suitskirt"
+	desc = "A profesional looking suitskirt, fitting of a psychologist, it seems oddly famliar."	//New sprite plz
+	icon_state = "red_suit_skirt"							//No custom sprite atm
+	item_state = "red_suit"
+	body_parts_covered = CHEST|GROIN|ARMS
+	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+//Skyrat changes stop

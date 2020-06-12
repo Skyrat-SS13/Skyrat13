@@ -7,7 +7,14 @@
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
-	requires_bodypart_type = 0
+	requires_bodypart_type = BODYPART_ORGANIC //Skyrat change
+
+//skyrat change start
+/datum/surgery/embalming/can_start(mob/user, mob/living/target, obj/item/tool)
+  . = ..()
+  if(target.stat != DEAD)
+    return FALSE
+//skyrat change stop
 
 /datum/surgery_step/embalming
 	name = "embalming body"

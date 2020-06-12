@@ -4,7 +4,7 @@
 	icon_state = "blob_shield"
 	desc = "A solid wall of slightly twitching tendrils."
 	var/damaged_desc = "A wall of twitching tendrils."
-	max_integrity = 150
+	max_integrity = 300 //Skyrat Change.
 	brute_resist = 0.25
 	explosion_block = 3
 	point_return = 4

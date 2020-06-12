@@ -316,6 +316,12 @@
 				set_coefficient = 2
 			if(SEC_LEVEL_BLUE)
 				set_coefficient = 1.2
+			//Skyrat change start
+			if(SEC_LEVEL_VIOLET)
+				set_coefficient = 0.8
+			if(SEC_LEVEL_ORANGE)
+				set_coefficient = 0.8
+			//Skyrat change stop
 			if(SEC_LEVEL_AMBER)
 				set_coefficient = 0.8
 			else
@@ -557,7 +563,7 @@
 	dwidth = 1
 	width = 3
 	height = 4
-	var/target_area = /area/lavaland/surface/outdoors
+	var/target_area = list(/area/lavaland/surface/outdoors, /area/icemoon/underground/unexplored/rivers)
 	var/edge_distance = 16
 	// Minimal distance from the map edge, setting this too low can result in shuttle landing on the edge and getting "sliced"
 

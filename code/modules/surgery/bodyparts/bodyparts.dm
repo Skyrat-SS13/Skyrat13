@@ -285,7 +285,7 @@
 		if(status == BODYPART_ORGANIC)
 			icon = base_bp_icon || DEFAULT_BODYPART_ICON_ORGANIC
 		else if(status == BODYPART_ROBOTIC)
-			icon = base_bp_icon || DEFAULT_BODYPART_ICON_ROBOTIC
+			icon = DEFAULT_BODYPART_ICON_ROBOTIC
 
 	if(owner)
 		owner.updatehealth()
@@ -417,6 +417,7 @@
 		I.pixel_y = px_y
 	add_overlay(standing)
 
+/***********moved to modular_skyrat
 //Gives you a proper icon appearance for the dismembered limb
 /obj/item/bodypart/proc/get_limb_icon(dropped)
 	cut_overlays()
@@ -575,6 +576,7 @@
 					marking.color = "#141414"
 				else
 					marking.color = list(markings_color)
+*/
 
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)

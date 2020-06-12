@@ -76,8 +76,19 @@
 		note_severity = input("Set the severity of the note.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
 		if(!note_severity)
 			return
+	
 	note_severity = sanitizeSQL(note_severity)
-	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery("INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp, severity) VALUES ('[type]', '[target_ckey]', '[admin_ckey]', '[text]', '[timestamp]', '[server]', INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')), '[world.port]', '[GLOB.round_id]','[secret]', [expiry ? "'[expiry]'" : "NULL"], [note_severity ? "'[note_severity]'" : "NULL"])")
+	// Skyrat change START
+	var/playtime = 0
+	var/datum/DBQuery/playtime_read = SSdbcore.NewQuery("SELECT minutes FROM [format_table_name("role_time")] WHERE ckey = '[target_ckey]' and job = 'Living'")
+	if(!playtime_read.warn_execute())
+		qdel(playtime_read)
+		return
+	while(playtime_read.NextRow())
+		playtime = playtime_read.item[1]
+	// Skyrat change END
+
+	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery("INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp, severity, playtime) VALUES ('[type]', '[target_ckey]', '[admin_ckey]', '[text]', '[timestamp]', '[server]', INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')), '[world.port]', '[GLOB.round_id]','[secret]', [expiry ? "'[expiry]'" : "NULL"], [note_severity ? "'[note_severity]'" : "NULL"], '[playtime]')")
 	var/pm = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]: [text]"
 	var/header = "[key_name_admin(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]"
 	if(!query_create_message.warn_execute())
@@ -87,8 +98,8 @@
 	if(logged)
 		log_admin_private(pm)
 		message_admins("[header]:<br>[text]")
-		admin_ticket_log(target_ckey, "<font color='blue'>[header]</font>")
-		admin_ticket_log(target_ckey, text)
+		admin_ticket_log(target_ckey, "<font color='blue'>[header]</font>" , private = TRUE) // Skyrat change
+		admin_ticket_log(target_ckey, text, private = TRUE) // Skyrat change
 		if(browse)
 			browse_messages("[type]")
 		else
@@ -362,7 +373,8 @@
 	if(target_ckey)
 		target_ckey = sanitizeSQL(target_ckey)
 		var/target_key
-		var/datum/DBQuery/query_get_messages = SSdbcore.NewQuery("SELECT type, secret, id, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey), text, timestamp, server, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), lasteditor), DATEDIFF(NOW(), timestamp), IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), expire_timestamp, severity FROM [format_table_name("messages")] WHERE type <> 'memo' AND targetckey = '[target_ckey]' AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC")
+		// Skyrat change 
+		var/datum/DBQuery/query_get_messages = SSdbcore.NewQuery("SELECT type, secret, id, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey), text, timestamp, server, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), lasteditor), DATEDIFF(NOW(), timestamp), IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), expire_timestamp, severity, playtime FROM [format_table_name("messages")] WHERE type <> 'memo' AND targetckey = '[target_ckey]' AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC")
 		if(!query_get_messages.warn_execute())
 			qdel(query_get_messages)
 			return
@@ -389,6 +401,7 @@
 			target_key = query_get_messages.item[10]
 			var/expire_timestamp = query_get_messages.item[11]
 			var/severity = query_get_messages.item[12]
+			var/playtime = query_get_messages.item[13] // Skyrat change
 			var/alphatext = ""
 			var/nsd = CONFIG_GET(number/note_stale_days)
 			var/nfd = CONFIG_GET(number/note_fresh_days)
@@ -405,7 +418,7 @@
 			var/list/data = list("<div style='margin:0px;[alphatext]'><p class='severity'>")
 			if(severity)
 				data += "<img src='[severity]_button.png' height='24' width='24'></img> "
-			data += "<b>[timestamp] | [server] | [admin_key][secret ? " | <i>- Secret</i>" : ""]"
+			data += "<b>[timestamp] | [server] | [admin_key] | [get_exp_format(text2num(playtime))][secret ? " | <i>- Secret</i>" : ""]" // Skyrat change START
 			if(expire_timestamp)
 				data += " | Expires [expire_timestamp]"
 			data += "</b></p><center>"

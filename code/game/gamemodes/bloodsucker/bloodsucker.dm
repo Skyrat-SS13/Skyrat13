@@ -25,7 +25,7 @@
 	antag_flag = ROLE_BLOODSUCKER
 	false_report_weight = 1
 	restricted_jobs = list("AI","Cyborg")
-	protected_jobs = list("Chaplain", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster")
+	protected_jobs = list("Chaplain", "Security Officer", "Warden", "Detective", "Brig Physician", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster") //Skyrat change adds Brig Physician to protected jobs
 	required_players = 20
 	required_enemies = 2
 	recommended_enemies = 4

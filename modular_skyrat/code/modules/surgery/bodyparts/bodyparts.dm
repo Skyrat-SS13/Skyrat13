@@ -1,3 +1,31 @@
+/obj/item/bodypart
+	var/synthetic = FALSE //Synthetic bodyparts can have patches applied but are harder to repair by conventional means
+	var/render_like_organic = FALSE //Skyrat change - for robotic limbs that pretend to be organic, for the sake of features, icon paths etc. etc.
+
+//Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
+//Damage cannot go below zero.
+//Cannot remove negative damage (i.e. apply damage)
+/obj/item/bodypart/heal_damage(brute, burn, stamina, only_robotic = FALSE, only_organic = TRUE, updating_health = TRUE)
+
+	if(only_robotic && status != BODYPART_ROBOTIC) //This makes organic limbs not heal when the proc is in Robotic mode.
+		return
+
+	if(only_organic && status != BODYPART_ORGANIC) //This makes robolimbs not healable by chems.
+		return
+
+	brute_dam	= round(max(brute_dam - brute, 0), DAMAGE_PRECISION)
+	burn_dam	= round(max(burn_dam - burn, 0), DAMAGE_PRECISION)
+	stamina_dam = round(max(stamina_dam - stamina, 0), DAMAGE_PRECISION)
+	if(owner && updating_health)
+		owner.updatehealth()
+	if(owner.dna && owner.dna.species && (REVIVESBYHEALING in owner.dna.species.species_traits))
+		if(owner.health > owner.dna.species.revivesbyhealreq && !owner.hellbound)
+			owner.revive(0)
+			owner.cure_husk(0) // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
+	consider_processing()
+	update_disabled()
+	return update_bodypart_damage_state() 
+
 //Update_limb changes because synths
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C
@@ -107,8 +135,174 @@
 
 	if(status == BODYPART_ROBOTIC)
 		dmg_overlay_type = "robotic"
-		body_markings = null
-		aux_marking = null
+		if(!render_like_organic)
+			body_markings = null
+			aux_marking = null
 
 	if(dropping_limb)
 		no_update = TRUE //when attached, the limb won't be affected by the appearance changes of its mob owner.
+
+/obj/item/bodypart/proc/get_limb_icon(dropped)
+	cut_overlays()
+	icon_state = "" //to erase the default sprite, we're building the visual aspects of the bodypart through overlays alone.
+
+	. = list()
+
+	var/image_dir = 0
+	var/icon_gender = (body_gender == FEMALE) ? "f" : "m" //gender of the icon, if applicable
+
+	if(dropped)
+		image_dir = SOUTH
+		if(dmg_overlay_type)
+			if(brutestate)
+				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+			if(burnstate)
+				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
+
+		if(!isnull(body_markings) && status == BODYPART_ORGANIC)
+			if(!use_digitigrade)
+				if(body_zone == BODY_ZONE_CHEST)
+					. += image(body_markings_icon, "[body_markings]_[body_zone]_[icon_gender]", -MARKING_LAYER, image_dir)
+				else
+					. += image(body_markings_icon, "[body_markings]_[body_zone]", -MARKING_LAYER, image_dir)
+			else
+				. += image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+
+	var/image/limb = image(layer = -BODYPARTS_LAYER, dir = image_dir)
+	var/list/aux = list()
+	var/image/marking
+	var/list/auxmarking = list()
+
+	. += limb
+
+	if(animal_origin)
+		if(is_organic_limb())
+			limb.icon = 'icons/mob/animal_parts.dmi'
+			if(species_id == "husk")
+				limb.icon_state = "[animal_origin]_husk_[body_zone]"
+			else
+				limb.icon_state = "[animal_origin]_[body_zone]"
+		else
+			limb.icon = 'icons/mob/augmentation/augments.dmi'
+			limb.icon_state = "[animal_origin]_[body_zone]"
+		return
+
+	if((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST))
+		should_draw_gender = FALSE
+
+	if(is_organic_limb() || render_like_organic)
+		limb.icon = base_bp_icon || 'icons/mob/human_parts.dmi'
+		if(should_draw_gender)
+			limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
+		else if (use_digitigrade)
+			if(base_bp_icon == DEFAULT_BODYPART_ICON_ORGANIC) //Compatibility hack for the current iconset.
+				limb.icon_state = "[digitigrade_type]_[use_digitigrade]_[body_zone]"
+			else
+				limb.icon_state = "[species_id]_[digitigrade_type]_[use_digitigrade]_[body_zone]"
+		else
+			limb.icon_state = "[species_id]_[body_zone]"
+
+		// Body markings
+		if(!isnull(body_markings))
+			if(species_id == "husk")
+				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[body_zone]", -MARKING_LAYER, image_dir)
+			else if(species_id == "husk" && use_digitigrade)
+				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+
+			else if(!use_digitigrade)
+				if(body_zone == BODY_ZONE_CHEST)
+					marking = image(body_markings_icon, "[body_markings]_[body_zone]_[icon_gender]", -MARKING_LAYER, image_dir)
+				else
+					marking = image(body_markings_icon, "[body_markings]_[body_zone]", -MARKING_LAYER, image_dir)
+			else
+				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+
+			. += marking
+
+		// Citadel End
+
+		if(aux_icons)
+			for(var/I in aux_icons)
+				var/aux_layer = aux_icons[I]
+				aux += image(limb.icon, "[species_id]_[I]", -aux_layer, image_dir)
+				if(!isnull(aux_marking))
+					if(species_id == "husk")
+						auxmarking += image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[I]", -aux_layer, image_dir)
+					else
+						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
+			. += aux
+			. += auxmarking
+
+	else
+		limb.icon = icon
+		if(should_draw_gender)
+			limb.icon_state = "[body_zone]_[icon_gender]"
+		else
+			limb.icon_state = "[body_zone]"
+
+		if(aux_icons)
+			for(var/I in aux_icons)
+				var/aux_layer = aux_icons[I]
+				aux += image(limb.icon, "[I]", -aux_layer, image_dir)
+				if(!isnull(aux_marking))
+					if(species_id == "husk")
+						auxmarking += image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[I]", -aux_layer, image_dir)
+					else
+						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
+			. += auxmarking
+			. += aux
+
+		if(!isnull(body_markings))
+			if(species_id == "husk")
+				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[body_zone]", -MARKING_LAYER, image_dir)
+			else if(species_id == "husk" && use_digitigrade)
+				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_digitigrade_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+
+			else if(!use_digitigrade)
+				if(body_zone == BODY_ZONE_CHEST)
+					marking = image(body_markings_icon, "[body_markings]_[body_zone]_[icon_gender]", -MARKING_LAYER, image_dir)
+				else
+					marking = image(body_markings_icon, "[body_markings]_[body_zone]", -MARKING_LAYER, image_dir)
+			else
+				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+			. += marking
+		return
+
+	if(color_src) //TODO - add color matrix support for base species limbs
+		var/draw_color = mutation_color || species_color
+		var/grayscale = FALSE
+		if(!draw_color)
+			draw_color = SKINTONE2HEX(skin_tone)
+			grayscale = color_src == CUSTOM_SKINTONE //Cause human limbs have a very pale pink hue by def.
+		else
+			draw_color = "#[draw_color]"
+		if(draw_color)
+			if(grayscale)
+				limb.icon_state += "_g"
+			limb.color = draw_color
+			if(aux_icons)
+				for(var/a in aux)
+					var/image/I = a
+					if(grayscale)
+						I.icon_state += "_g"
+					I.color = draw_color
+				if(!isnull(aux_marking))
+					for(var/a in auxmarking)
+						var/image/I = a
+						if(species_id == "husk")
+							I.color = "#141414"
+						else
+							I.color = list(markings_color)
+
+			if(!isnull(body_markings))
+				if(species_id == "husk")
+					marking.color = "#141414"
+				else
+					marking.color = list(markings_color)
+
+/obj/item/bodypart/receive_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE)
+	. = ..()
+	if(status == BODYPART_ROBOTIC)
+		if(src.owner)
+			if((brute+burn)>3 && prob((20+brute+burn)))
+				do_sparks(3,FALSE,src.owner)

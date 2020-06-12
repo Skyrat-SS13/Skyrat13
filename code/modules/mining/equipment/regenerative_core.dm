@@ -68,7 +68,7 @@
 	. = ..()
 	if(owner.health < owner.crit_threshold)
 		ui_action_click()
-
+/*
 /obj/item/organ/regenerative_core/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
 	if(proximity_flag)
@@ -85,22 +85,19 @@
 		to_chat(user, "<span class='notice'>[src] are useless on the dead.</span>")
 		return
 	if(H != user)
-		H.visible_message("[user] forces [H] to apply [src]... [H.p_they()] quickly regenerate all injuries!")
+		H.visible_message("[user] forces [H] to apply [src]... Black tendrils entangle and reinforce [H.p_them()]!")
 		SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "other"))
 	else
-		to_chat(user, "<span class='notice'>You start to smear [src] on yourself. It feels and smells disgusting, but you feel amazingly refreshed in mere moments.</span>")
+		to_chat(user, "<span class='notice'>You start to smear [src] on yourself. Disgusting tendrils hold you together and allow you to keep moving, but for how long?</span>")
 		SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
-	if(AmBloodsucker(H))
-		H.revive(full_heal = FALSE)
-	else
-		H.revive(full_heal = TRUE)
+	H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
 	qdel(src)
 	user.log_message("[user] used [src] to heal [H == user ? "[H.p_them()]self" : H]! Wake the fuck up, Samurai!", LOG_ATTACK, color="green") //Logging for 'old' style legion core use, when clicking on a sprite of yourself or another.
 
 /obj/item/organ/regenerative_core/attack_self(mob/user) //Knouli's first hack! Allows for the use of the core in hand rather than needing to click on the target, yourself, to selfheal. Its a rip of the proc just above - but skips on distance check and only uses 'user' rather than 'target'
 	. = ..()
 	apply_healing_core(user, user)
-
+*/
 
 /obj/item/organ/regenerative_core/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	. = ..()

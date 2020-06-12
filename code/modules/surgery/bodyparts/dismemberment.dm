@@ -14,7 +14,6 @@
 		return FALSE
 	if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
 		return FALSE
-
 	var/obj/item/bodypart/affecting = C.get_bodypart(BODY_ZONE_CHEST)
 	affecting.receive_damage(clamp(brute_dam/2 * affecting.body_damage_coeff, 15, 50), clamp(burn_dam/2 * affecting.body_damage_coeff, 0, 50)) //Damage the chest based on limb's existing damage
 	C.visible_message("<span class='danger'><B>[C]'s [src.name] has been violently dismembered!</B></span>")
@@ -44,6 +43,10 @@
 	throw_at(target_turf, throw_range, throw_speed)
 	return TRUE
 
+/obj/item/bodypart/head/dismember()
+	if(HAS_TRAIT(owner, TRAIT_NODECAP))
+		return FALSE
+	..()
 
 /obj/item/bodypart/chest/dismember()
 	if(!owner)
@@ -53,6 +56,8 @@
 		return FALSE
 	if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
 		return FALSE
+	if(HAS_TRAIT(C, TRAIT_NOGUT)) //Just for not allowing gutting
+		return FALSE
 	. = list()
 	var/organ_spilled = 0
 	var/turf/T = get_turf(C)
@@ -60,8 +65,7 @@
 	playsound(get_turf(C), 'sound/misc/splort.ogg', 80, 1)
 	for(var/X in C.internal_organs)
 		var/obj/item/organ/O = X
-		var/org_zone = check_zone(O.zone)
-		if(org_zone != BODY_ZONE_CHEST)
+		if(O.organ_flags & ORGAN_NO_DISMEMBERMENT || check_zone(O.zone) != BODY_ZONE_CHEST)
 			continue
 		O.Remove()
 		O.forceMove(T)

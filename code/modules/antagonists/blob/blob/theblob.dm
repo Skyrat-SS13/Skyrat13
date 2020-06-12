@@ -10,7 +10,7 @@
 	layer = BELOW_MOB_LAYER
 	CanAtmosPass = ATMOS_PASS_PROC
 	var/point_return = 0 //How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
-	max_integrity = 30
+	max_integrity = 60 //Skyrat change.
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
 	var/health_regen = 2 //how much health this blob regens when pulsed
 	var/pulse_timestamp = 0 //we got pulsed when?
@@ -207,8 +207,8 @@
 		if(prob(100 - severity * 30))
 			new /obj/effect/temp_visual/emp(get_turf(src))
 
-/obj/structure/blob/tesla_act(power)
-	..()
+/obj/structure/blob/zap_act(power)
+	. = ..()
 	if(overmind)
 		if(overmind.blobstrain.tesla_reaction(src, power))
 			take_damage(power/400, BURN, "energy")

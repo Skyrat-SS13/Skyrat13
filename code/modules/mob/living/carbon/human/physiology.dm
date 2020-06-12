@@ -25,5 +25,12 @@
 
 	var/do_after_speed = 1 //Speed mod for do_after. Lower is better. If temporarily adjusting, please only modify using *= and /=, so you don't interrupt other calculations.
 
+	/// footstep type override for both shoeless and not footstep sounds.
+	var/footstep_type
+
+	//skyrat edit - allergies
+	var/allergies = 0
+	//
+
 /datum/physiology/New()
 	armor = new

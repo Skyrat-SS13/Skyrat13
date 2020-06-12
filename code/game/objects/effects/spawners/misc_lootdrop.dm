@@ -100,6 +100,50 @@
 	loot = list(
 		/obj/item/coin/iron = 10,
 		"" = 90)
+
+// SPACE CASH
+
+/obj/effect/spawner/lootdrop/space_cash/very_low_chance
+	name = "10% cash"
+	lootcount = 1
+	loot = list(
+				/obj/item/stack/spacecash/c1    = 9,
+				/obj/item/stack/spacecash/c10   = 1,
+				"" = 90)
+
+/obj/effect/spawner/lootdrop/space_cash/low_chance
+	name = "25% cash"
+	lootcount = 1
+	loot = list(
+				/obj/item/stack/spacecash/c1    = 15,
+				/obj/item/stack/spacecash/c10   = 10,
+				"" = 75)
+
+/obj/effect/spawner/lootdrop/space_cash/medium_chance
+	name = "50% cash"
+	lootcount = 1
+	loot = list(
+				/obj/item/stack/spacecash/c1    = 5,
+				/obj/item/stack/spacecash/c10   = 15,
+				/obj/item/stack/spacecash/c50   = 15,
+				/obj/item/stack/spacecash/c100  = 7,
+				/obj/item/stack/spacecash/c200  = 7,
+				/obj/item/stack/spacecash/c500  = 1,
+				"" = 50)
+
+/obj/effect/spawner/lootdrop/prison_safe
+	name = "prison loot"
+	lootcount = 1
+	loot = list(
+				/obj/item/pda= 10,
+				/obj/item/restraints/handcuffs = 1,
+				/obj/item/radio/off = 10,
+				/obj/item/instrument/violin = 7,
+				/obj/item/instrument/eguitar = 7,
+				/obj/item/flashlight = 10,
+				/obj/item/analyzer = 5,
+				"" = 50)
+
 // SEEDS
 
 /obj/effect/spawner/lootdrop/seeds

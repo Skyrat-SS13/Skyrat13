@@ -340,7 +340,7 @@
 			msg += "[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.\n"
 		else
 			if(HAS_TRAIT(src, TRAIT_DUMB))
-				msg += "[t_He] [t_has] a stupid expression on [t_his] face.\n"
+				msg += "[t_He] [t_has] a vapid expression on [t_his] face.\n" // Skyrat edit
 			if(InCritical())
 				msg += "[t_He] [t_is] barely conscious.\n"
 		if(getorgan(/obj/item/organ/brain))
@@ -412,7 +412,7 @@
 	var/invisible_man = skipface || get_visible_name() == "Unknown" // SKYRAT EDIT -- BEGIN
 	if(!invisible_man)
 		if(client)
-			. += "OOC Notes: <a href='?src=[REF(src)];ooc_notes=1'>\[View\]</a>" // SKYRAT EDIT -- END
+			. += "OOC Notes: <a href='?src=[REF(src)];skyrat_ooc_notes=1'>\[View\]</a>" // SKYRAT EDIT -- END
 	//SKYRAT EDIT - admin lookup on records/extra flavor
 	if(client && user.client?.holder && isobserver(user))
 		var/line = ""

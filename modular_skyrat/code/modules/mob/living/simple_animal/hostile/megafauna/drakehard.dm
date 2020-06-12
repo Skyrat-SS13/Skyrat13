@@ -15,20 +15,16 @@ When an ash drake dies, it leaves behind a chest that can contain four things:
 When butchered, they leave behind diamonds, sinew, bone, and ash drake hide. Ash drake hide can be used to create a hooded cloak that protects its wearer from ash storms.
 Difficulty: Medium
 */
-/mob/living/simple_animal/hostile/megafauna/dragon
-	song = sound('modular_skyrat/sound/ambience/duskcreations.ogg', 100) // Andrew is a nice guy, he'll let it slide. Taken from the DUSK OST.
-	songlength = 1860
-
 /mob/living/simple_animal/hostile/megafauna/dragon/hard
 	name = "enraged ash drake"
-	desc = "Ultra-guardians of the necropolis."
+	desc = "Ultra-guardian of the necropolis."
 	health = 2500
 	maxHealth = 2500
 	armour_penetration = 40
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	speed = 5
-	move_to_delay = 5
+	move_to_delay = 4
 	ranged = TRUE
 	pixel_x = -16
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/dragon/hard/crusher)
@@ -57,13 +53,26 @@ Difficulty: Medium
 	anger_modifier = clamp(((maxHealth - health)/50),0,20)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
-	if(prob(15 + anger_modifier))
+	if(prob(25 + anger_modifier))
 		lava_swoop()
-
+	else if(prob(15 + anger_modifier))
+		if(prob(75))
+			swooop_attack()
+		else
+			triple_swooop()
+	else if(prob(5 + anger_modifier))
+		triple_lava_swoop()
 	else if(prob(10+anger_modifier))
 		shoot_fire_attack()
 	else
-		fire_cone()
+		if(prob(50))
+			fire_cone()
+		else
+			if(prob(75))
+				fire_rain()
+			else
+				fire_cone()
+				fire_rain()
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/shoot_fire_attack()
 	if(health < maxHealth*0.5)
@@ -100,12 +109,19 @@ Difficulty: Medium
 	swooop_attack(FALSE, target, 1000) // longer cooldown until it gets reset below
 	sleep(0)
 	fire_cone()
-	if(health < maxHealth*0.5)
+	if(health < maxHealth*0.66)
 		sleep(10)
 		fire_cone()
 		sleep(10)
 		fire_cone()
-	SetRecoveryTime(40)
+	SetRecoveryTime(20)
+
+/mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/triple_lava_swoop(amount = 45)
+	lava_swoop()
+	sleep(2)
+	lava_swoop()
+	sleep(2)
+	lava_swoop()
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/mass_fire(spiral_count = 12, range = 15, times = 3)
 	sleep(0)
@@ -195,7 +211,7 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/line_target(offset, range, atom/at = target)
 	if(!at)
 		return
-	var/angle = ATAN2(at.x - src.x, at.y - src.y) + offset  // Skyrat edit -- 512 compatibility
+	var/angle = ATAN2(at.x - src.x, at.y - src.y) + offset
 	var/turf/T = get_turf(src)
 	for(var/i in 1 to range)
 		var/turf/check = locate(src.x + cos(angle) * i, src.y + sin(angle) * i, src.z)
@@ -207,29 +223,6 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/fire_line(var/list/turfs)
 	sleep(0)
 	dragon_fire_line(src, turfs)
-
-//fire line keeps going even if dragon is deleted
-/proc/dragon_fire_line(source, list/turfs)
-	var/list/hit_list = list()
-	for(var/turf/T in turfs)
-		if(istype(T, /turf/closed))
-			break
-		new /obj/effect/hotspot(T)
-		T.hotspot_expose(700,50,1)
-		for(var/mob/living/L in T.contents)
-			if(L in hit_list || L == source)
-				continue
-			hit_list += L
-			L.adjustFireLoss(20)
-			to_chat(L, "<span class='userdanger'>You're hit by [source]'s fire breath!</span>")
-
-		// deals damage to mechs
-		for(var/obj/mecha/M in T.contents)
-			if(M in hit_list)
-				continue
-			hit_list += M
-			M.take_damage(45, BRUTE, "melee", 1)
-		sleep(1.5)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/swooop_attack(lava_arena = FALSE, atom/movable/manual_target, swoop_cooldown = 30)
 	if(stat || swooping)
@@ -324,6 +317,13 @@ Difficulty: Medium
 	if(!lava_success)
 		arena_escape_enrage()
 
+/mob/living/simple_animal/hostile/megafauna/dragon/hard/proc/triple_swooop(lava_arena = FALSE, atom/movable/manual_target, swoop_cooldown = 4)
+	swooop_attack(lava_arena, manual_target, swoop_cooldown)
+	sleep(15)
+	swooop_attack(lava_arena, manual_target, swoop_cooldown)
+	sleep(15)
+	swooop_attack(lava_arena, manual_target, swoop_cooldown)
+
 /mob/living/simple_animal/hostile/megafauna/dragon/hard/ex_act(severity, target)
 	if(severity == EXPLODE_LIGHT)
 		return
@@ -334,7 +334,7 @@ Difficulty: Medium
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/megafauna/dragon/hard/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs)
+/mob/living/simple_animal/hostile/megafauna/dragon/hard/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, mob/target, target_message, user_msg, runechat_popup) //SKYRAT EDIT
 	if(swooping & SWOOP_INVULNERABLE) //to suppress attack messages without overriding every single proc that could send a message saying we got hit
 		return
 	return ..()
@@ -507,68 +507,3 @@ obj/effect/temp_visual/fireball/hard
 			flame_hit[L] = TRUE
 		else
 			L.adjustFireLoss(10) //if we've already hit them, do way less damage
-
-/mob/living/simple_animal/hostile/megafauna/dragon/hard/space_dragon
-	name = "space dragon"
-	maxHealth = 250
-	health = 250
-	faction = list("neutral")
-	desc = "A space carp turned dragon by vile magic.  Has the same ferocity of a space carp, but also a much more enabling body."
-	obj_damage = 80
-	melee_damage_upper = 35
-	melee_damage_lower = 35
-	speed = 0
-	mouse_opacity = MOUSE_OPACITY_ICON
-	loot = list()
-	crusher_loot = list()
-	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
-	move_force = MOVE_FORCE_NORMAL
-	move_resist = MOVE_FORCE_NORMAL
-	pull_force = MOVE_FORCE_NORMAL
-	deathmessage = "screeches as its wings turn to dust and it collapses on the floor, life estinguished."
-
-/mob/living/simple_animal/hostile/megafauna/dragon/space_dragon/hard/Initialize()
-	var/obj/effect/proc_holder/spell/aoe_turf/repulse/spacedragon/repulse_action = new /obj/effect/proc_holder/spell/aoe_turf/repulse/spacedragon(src)
-	repulse_action.action.Grant(src)
-	mob_spell_list += repulse_action
-	. = ..()
-
-/mob/living/simple_animal/hostile/megafauna/dragon/hard/space_dragon/proc/fire_stream(var/atom/at = target)
-	playsound(get_turf(src),'sound/magic/fireball.ogg', 200, TRUE)
-	sleep(0)
-	var/range = 20
-	var/list/turfs = list()
-	turfs = line_target(0, range, at)
-	INVOKE_ASYNC(src, .proc/fire_line, turfs)
-
-/mob/living/simple_animal/hostile/megafauna/dragon/hard/space_dragon/OpenFire()
-	if(swooping)
-		return
-	ranged_cooldown = world.time + ranged_cooldown_time
-	fire_stream()
-
-/obj/effect/proc_holder/spell/aoe_turf/repulse/spacedragon
-	name = "Tail Sweep"
-	desc = "Throw back attackers with a sweep of your tail."
-	sound = 'sound/magic/tail_swing.ogg'
-	charge_max = 150
-	clothes_req = FALSE
-	antimagic_allowed = TRUE
-	range = 1
-	cooldown_min = 150
-	invocation_type = "none"
-	sparkle_path = /obj/effect/temp_visual/dir_setting/tailsweep
-	action_icon = 'icons/mob/actions/actions_xeno.dmi'
-	action_icon_state = "tailsweep"
-	action_background_icon_state = "bg_alien"
-	anti_magic_check = FALSE
-
-/obj/effect/proc_holder/spell/aoe_turf/repulse/spacedragon/cast(list/targets,mob/user = usr)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		playsound(C.loc,'sound/effects/hit_punch.ogg', 80, TRUE, TRUE)
-		C.spin(6,1)
-	..(targets, user, 60)
-
-/mob/living/simple_animal/hostile/megafauna/dragon/space_dragon/AltClickOn(atom/movable/A)
-	return

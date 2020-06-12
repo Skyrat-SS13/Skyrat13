@@ -174,10 +174,11 @@
 						<tr><td>Age:</td><td><A href='?src=[REF(src)];choice=Edit Field;field=age'>&nbsp;[active1.fields["age"]]&nbsp;</A></td></tr>"}
 						dat += "<tr><td>Species:</td><td><A href ='?src=[REF(src)];choice=Edit Field;field=species'>&nbsp;[active1.fields["species"]]&nbsp;</A></td></tr>"
 						dat += {"<tr><td>Rank:</td><td><A href='?src=[REF(src)];choice=Edit Field;field=rank'>&nbsp;[active1.fields["rank"]]&nbsp;</A></td></tr>
+						<tr><td>Employer:</td><td>&nbsp;[active1.fields["faction"]]&nbsp;</td></tr> <!--Skyrat change-->
 						<tr><td>Fingerprint:</td><td><A href='?src=[REF(src)];choice=Edit Field;field=fingerprint'>&nbsp;[active1.fields["fingerprint"]]&nbsp;</A></td></tr>
 						<tr><td>Physical Status:</td><td>&nbsp;[active1.fields["p_stat"]]&nbsp;</td></tr>
 						<tr><td>Mental Status:</td><td>&nbsp;[active1.fields["m_stat"]]&nbsp;</td></tr>
-						<tr><td>General Records:</td><td><A href='?src=[REF(src)];choice=View Past General'>View&nbsp;</A></td></tr> //Skyrat change
+						<tr><td>General Records:</td><td><A href='?src=[REF(src)];choice=View Past General'>View&nbsp;</A></td></tr> <!--Skyrat change-->
 						</table></td>
 						<td><table><td align = center><a href='?src=[REF(src)];choice=Edit Field;field=show_photo_front'><img src=photo_front height=80 width=80 border=4></a><br>
 						<a href='?src=[REF(src)];choice=Edit Field;field=print_photo_front'>Print photo</a><br>

@@ -1,34 +1,97 @@
 //boss chests
+//gladiator
+/obj/structure/closet/crate/necropolis/gladiator
+	name = "gladiator chest"
+
+/obj/structure/closet/crate/necropolis/gladiator/crusher
+	name = "dreadful gladiator chest"
+
+/obj/structure/closet/crate/necropolis/gladiator/PopulateContents()
+	new /obj/item/shield/riot/tower/swat/gladiator(src)
+	new /obj/item/borg/upgrade/modkit/shielding(src)
+
+/obj/structure/closet/crate/necropolis/gladiator/crusher/PopulateContents()
+	new /obj/item/shield/riot/tower/swat/gladiator(src)
+	new /obj/item/melee/zweihander(src)
+
+/obj/item/shield/riot/tower/swat/gladiator
+	name = "\proper Gladiator's shield"
+	desc = "A very powerful and near indestructible shield, reinforced with drake and goliath hide. Can be used as a raft on lava."
+	icon = 'modular_skyrat/icons/obj/shields.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/shields_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/shields_lefthand.dmi'
+	icon_state = "gladiator"
+	item_state = "gladiator"
+	shield_flags = SHIELD_FLAGS_DEFAULT | SHIELD_BASH_ALWAYS_DISARM | SHIELD_BASH_GROUND_SLAM_DISARM
+	slowdown = 0
+	shieldbash_cooldown = 6 SECONDS
+	shieldbash_stamcost = 5
+	shieldbash_knockback = 2
+	shieldbash_brutedamage = 10
+	shieldbash_stamdmg = 25
+	shieldbash_stagger_duration = 4.5 SECONDS
+	shieldbash_push_distance = 2
+	max_integrity = 350
+	block_chance = 50
+	can_shatter = FALSE
+	repair_material = /obj/item/stack/sheet/animalhide/goliath_hide
+	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/shield/riot/tower/swat/gladiator/AltClick(mob/user)
+	if(isliving(user))
+		if(do_after(user, 20, target = src))
+			new /obj/vehicle/ridden/lavaboat/dragon/gladiator(get_turf(user))
+			qdel(src)
+
+/obj/vehicle/ridden/lavaboat/dragon/gladiator
+	name = "lava surfboard"
+	desc = "This thing can be used to cross lava rivers... I guess. Alt click to turn into a shield again."
+	icon = 'modular_skyrat/icons/obj/shields.dmi'
+	icon_state = "raft"
+
+/obj/vehicle/ridden/lavaboat/dragon/gladiator/Initialize()
+	..()
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.vehicle_move_delay = 1
+	D.allowed_turf_typecache = typecacheof(/turf/open)
+	D.keytype = null
+
+/obj/vehicle/ridden/lavaboat/dragon/gladiator/AltClick(mob/user)
+	..()
+	if(isliving(user))
+		if(do_after(user, 20, target = src))
+			new /obj/item/shield/riot/tower/swat/gladiator(get_turf(user))
+			qdel(src)
+
 //bubblegum
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
 	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	var/loot = rand(1,3)
-	switch(loot)
-		if(1)
-			new /obj/item/mayhem(src)
-		if(2)
-			new /obj/item/blood_contract(src)
-		if(3)
-			new /obj/item/gun/magic/staff/spellblade(src)
+	new /obj/item/gun/magic/staff/spellblade(src)
+
+/obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
+	new /obj/item/clothing/suit/space/hostile_environment(src)
+	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
+	new /obj/item/crusher_trophy/demon_claws(src)
+	new /obj/item/gun/magic/staff/spellblade(src)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
 	name = "enraged bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/PopulateContents()
-	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
-	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	new /obj/item/mayhem(src)
-	new /obj/item/blood_contract(src)
 	new /obj/item/twohanded/crucible(src)
 	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
+	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
+	new /obj/item/borg/upgrade/modkit/shotgun(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher
 	name = "enraged bloody bubblegum chest"
 
 /obj/structure/closet/crate/necropolis/bubblegum/hard/crusher/PopulateContents()
-	..()
+	new /obj/item/twohanded/crucible(src)
+	new /obj/item/gun/ballistic/revolver/doublebarrel/super(src)
+	new /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor(src)
 	new /obj/item/crusher_trophy/demon_claws(src)
 
 //super shotty changes (meat hook instead of bursto)
@@ -98,12 +161,9 @@
 
 /obj/item/projectile/heckhook/on_hit(atom/target)
 	. = ..()
-	if(ismovable(target))
-		var/atom/movable/A = target
-		if(A.anchored)
-			return
-		A.visible_message("<span class='danger'>[A] is snagged by [firer]'s hook!</span>")
-		new /datum/forced_movement(firer, get_turf(A), 5, TRUE)
+	var/atom/A = target
+	A.visible_message("<span class='danger'>[A] is snagged by [firer]'s hook!</span>")
+	new /datum/forced_movement(firer, get_turf(A), 1, TRUE)
 
 /obj/item/projectile/heckhook/Destroy()
 	qdel(chain)
@@ -128,6 +188,15 @@
 		to_chat(user, "You will now fire a hookshot.")
 	else
 		to_chat(user, "You will now fire normal shotgun rounds.")
+
+/obj/item/gun/ballistic/revolver/doublebarrel/super/sawoff(mob/user)
+	to_chat(user, "<span class='warning'>Why would you mutilate this work of art?</span>")
+	return
+
+/obj/item/gun/ballistic/revolver/doublebarrel/super/upgraded
+	desc = "It was fearsome before, now it's even worse with an internal system that makes it fire both barrels at once."
+	burst_size = 2
+	burst_shot_delay = 1
 
 //crucible
 /obj/item/twohanded/crucible
@@ -262,7 +331,7 @@
 
 /obj/item/twohanded/crucible/ignition_effect(atom/A, mob/user)
 	if(!wielded)
-		return ""
+		return FALSE
 	var/in_mouth = ""
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
@@ -313,35 +382,108 @@
 		if(4)
 			new /obj/item/dragons_blood(src)
 
+/obj/structure/closet/crate/necropolis/dragon/crusher/PopulateContents()
+	new /obj/item/crusher_trophy/tail_spike(src)
+	var/loot = rand(1,4)
+	switch(loot)
+		if(1)
+			new /obj/item/melee/ghost_sword(src)
+		if(2)
+			new /obj/item/lava_staff(src)
+		if(3)
+			new /obj/item/book/granter/spell/sacredflame(src)
+			new /obj/item/gun/magic/wand/fireball(src)
+		if(4)
+			new /obj/item/dragons_blood(src)
+
 /obj/structure/closet/crate/necropolis/dragon/hard
 	name = "enraged dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/hard/PopulateContents()
-	new /obj/item/borg/upgrade/modkit/knockback(src)
 	new /obj/item/melee/ghost_sword(src)
 	new /obj/item/lava_staff(src)
 	new /obj/item/book/granter/spell/sacredflame(src)
 	new /obj/item/gun/magic/wand/fireball(src)
+	new /obj/item/borg/upgrade/modkit/knockback(src)
 	new /obj/item/dragons_blood(src)
+	new /obj/item/clothing/neck/necklace/memento_mori/king(src)
 
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher
 	name = "enraged fiery dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/hard/crusher/PopulateContents()
-	..()
+	new /obj/item/melee/ghost_sword(src)
+	new /obj/item/lava_staff(src)
+	new /obj/item/book/granter/spell/sacredflame(src)
+	new /obj/item/gun/magic/wand/fireball(src)
+	new /obj/item/dragons_blood(src)
+	new /obj/item/clothing/neck/necklace/memento_mori/king(src)
 	new /obj/item/crusher_trophy/tail_spike(src)
+
+/obj/item/clothing/neck/necklace/memento_mori/king
+	name = "amulet of kings"
+	desc = "An amulet that shows everyone who the true emperor is."
+	icon = 'modular_skyrat/icons/obj/clothing/neck.dmi'
+	icon_state = "dragon_amulet"
+	item_state = "dragon_amulet"
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/neck.dmi'
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 //colossus
 /obj/structure/closet/crate/necropolis/colossus/PopulateContents()
-	var/list/choices = subtypesof(/obj/machinery/anomalous_crystal)
-	var/random_crystal = pick(choices)
-	new random_crystal(src)
+	new /obj/item/bluecrystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
 	new /obj/item/borg/upgrade/modkit/bolter(src)
+
+/obj/structure/closet/crate/necropolis/colossus/crusher/PopulateContents()
+	new /obj/item/bluecrystal(src)
+	new /obj/item/organ/vocal_cords/colossus(src)
+	new /obj/item/crusher_trophy/blaster_tubes(src)
+
+//crystal choosing thing from colosssus
+/obj/item/bluecrystal
+	name = "\improper blue crystal"
+	desc = "It's very shiny... one may wonder what it does."
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "bluecrystal"
+	w_class = WEIGHT_CLASS_SMALL
+	var/list/choices = list(
+	"Clown" = /obj/machinery/anomalous_crystal/honk,
+	"Theme Warp" = /obj/machinery/anomalous_crystal/theme_warp,
+	"Bolter" = /obj/machinery/anomalous_crystal/emitter,
+	"Dark Revival" = /obj/machinery/anomalous_crystal/dark_reprise,
+	"Lightgeist Healers" = /obj/machinery/anomalous_crystal/helpers,
+	"Refresher" = /obj/machinery/anomalous_crystal/refresher,
+	"Possessor" = /obj/machinery/anomalous_crystal/possessor
+	)
+	var/list/methods = list(
+	"touch",
+	"speech",
+	"heat",
+	"bullet",
+	"energy",
+	"bomb",
+	"bumping",
+	"weapon",
+	"magic"
+	)
+
+/obj/item/bluecrystal/attack_self(mob/user)
+	var/choice = input(user, "Choose your destiny", "Crystal") as null|anything in choices
+	var/method = input(user, "Choose your activation method", "Crystal") as null|anything in methods
+	if(!choice || !method)
+		return
+	playsound(user.loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, TRUE)
+	var/choosey = choices[choice]
+	var/obj/machinery/anomalous_crystal/A = new choosey(user.loc)
+	A.activation_method = method
+	to_chat(user, "<span class='userdanger'>[A] appears under your feet as the [src] breaks apart!</span>")
+	qdel(src)
 
 //normal chests
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
 	var/loot = rand(1,31)
+	new /obj/item/stock_parts/cell/high/plus/argent(src)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -446,7 +588,6 @@
 		if(31)
 			new /obj/item/katana/necropolis(src)
 			return /obj/item/katana/necropolis
-	new /obj/item/stock_parts/cell/high/plus/argent(src)
 
 /obj/item/stock_parts/cell/high/plus/argent
 	name = "Argent Energy Cell"
@@ -471,7 +612,7 @@
 
 /obj/item/stock_parts/cell/high/plus/argent/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/katana/necropolis
 	force = 25 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
@@ -486,7 +627,7 @@
 
 /obj/structure/closet/crate/necropolis/legion/PopulateContents()
 	new /obj/item/staff/storm(src)
-	new /obj/item/crusher_trophy/legion_shard(src)
+	new /obj/item/crusher_trophy/golden_skull(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
 
 /obj/structure/closet/crate/necropolis/legion/hard
@@ -494,15 +635,12 @@
 
 /obj/structure/closet/crate/necropolis/legion/hard/PopulateContents()
 	new /obj/item/staff/storm(src)
-	new /obj/item/staff/storm(src)
 	new /obj/item/clothing/mask/gas/dagoth(src)
+	new /obj/item/crusher_trophy/golden_skull(src)
 	new /obj/item/borg/upgrade/modkit/skull(src)
-	new /obj/item/borg/upgrade/modkit/skull(src)
-	new /obj/item/crusher_trophy/legion_shard(src)
-	new /obj/item/crusher_trophy/legion_shard(src)
 	var/obj/structure/closet/crate/necropolis/tendril/T = new /obj/structure/closet/crate/necropolis/tendril //Yup, i know, VERY spaghetti code.
 	var/obj/item/L
-	for(var/i = 0, i < 5, i++)
+	for(var/i = 0, i < 3, i++)
 		L = T.PopulateContents()
 		new L(src)
 	qdel(T)
@@ -518,22 +656,12 @@
 	item_state = "dagoth"
 	actions_types = list(/datum/action/item_action/ashstorm)
 	flash_protect = 2
-	armor = list("melee" = 15, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)//HOW CAN YOU KILL A GOD?
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)//HOW CAN YOU KILL A GOD?
 	var/static/list/excluded_areas = list(/area/reebe/city_of_cogs)
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
 	w_class = WEIGHT_CLASS_BULKY //its a fucking full metal mask man
 	mutantrace_variation = STYLE_MUZZLE
-
-/obj/item/clothing/mask/gas/dagoth/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if (slot == ITEM_SLOT_MASK)
-		user.faction |= "mining"
-
-/obj/item/clothing/mask/gas/dagoth/dropped(mob/living/carbon/human/user)
-	if (user.wear_mask == src)
-		user.faction -= "mining"
-	..()
 
 /datum/action/item_action/ashstorm
 	name = "Summon Ash Storm"
@@ -591,6 +719,7 @@
 	name = "drake chest"
 
 /obj/structure/closet/crate/necropolis/glaurung/PopulateContents()
+	new /obj/item/borg/upgrade/modkit/knockback(src)
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
@@ -607,5 +736,154 @@
 	name = "wise drake chest"
 
 /obj/structure/closet/crate/necropolis/glaurung/crusher/PopulateContents()
-	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
+	var/loot = rand(1,4)
+	switch(loot)
+		if(1)
+			new /obj/item/melee/ghost_sword(src)
+		if(2)
+			new /obj/item/lava_staff(src)
+		if(3)
+			new /obj/item/book/granter/spell/sacredflame(src)
+			new /obj/item/gun/magic/wand/fireball(src)
+		if(4)
+			new /obj/item/dragons_blood(src)
+
+//Sif stuff
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Sword Of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
+
+/*Videos on what the sword can do:
+**
+**Attacking: ----------	https://bungdeep.com/Sif/Sword_of_the_Forsaken_Attack.mp4
+**Butchering: --------- https://bungdeep.com/Sif/Sword_of_the_Forsaken_Butcher.mp4
+**Dodging: ------------ https://bungdeep.com/Sif/Sword_of_the_Forsaken_Block_Melee.png
+**Projectile Dodging: - https://bungdeep.com/Sif/Sword_of_the_Forsaken_Block.png
+**
+*/
+/obj/item/melee/sword_of_the_forsaken
+	name = "Sword of the Forsaken"
+	desc = "A glowing giant heavy blade that grows and slightly shrinks in size depending on the wielder's strength."
+	icon = 'modular_skyrat/icons/obj/lavaland/sif.dmi'
+	icon_state = "sword_of_the_forsaken"
+	item_state = "sword_of_the_forsaken"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/item_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/item_righthand.dmi'
+	w_class = WEIGHT_CLASS_HUGE
+	force = 15
+	throwforce = 10
+	block_chance = 10
+	armour_penetration = 80
+	hitsound = 'modular_skyrat/sound/sif/sif_slash.ogg'
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "gutted", "gored")
+	sharpness = IS_SHARP
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+//Enables the sword to butcher bodies
+/obj/item/melee/sword_of_the_forsaken/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 50, 100, 10)
+
+//Sword blocking attacks, really hard to block projectiles but still possible.
+/obj/item/melee/sword_of_the_forsaken/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(attack_type == ATTACK_TYPE_PROJECTILE)
+		final_block_chance = 5
+	return ..()
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=End of Sworf Of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
+
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Necklace Of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
+
+/*Videos on what the necklace can do:
+**
+**Binding the necklace to yourself: ------- https://bungdeep.com/Sif/Necklace_of_the_Forsaken_Binding.mp4
+**Reviving when died: --------------------- https://bungdeep.com/Sif/Necklace_of_the_Forsaken_Death_Revive.mp4
+**Becomes a cosmetic item after it is used: https://bungdeep.com/Sif/Necklace_of_the_Forsaken_Revive_Used.png
+**
+*/
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken
+	name = "Necklace of the Forsaken"
+	desc = "A rose gold necklace with a small static ember that burns inside of the black gem stone, making it warm to the touch."
+	icon = 'modular_skyrat/icons/obj/lavaland/sif.dmi'
+	icon_state = "necklace_forsaken_active"
+	actions_types = list(/datum/action/item_action/hands_free/necklace_of_the_forsaken)
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	var/mob/living/carbon/human/active_owner
+	var/numUses = 1
+
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/item_action_slot_check(slot)
+	return slot == ITEM_SLOT_NECK
+
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/dropped(mob/user)
+	..()
+	if(active_owner)
+		remove_necklace()
+
+//Apply a temp buff until the necklace is used
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/proc/temp_buff(mob/living/carbon/human/user)
+	to_chat(user, "<span class='warning'>You feel as if you have a second chance at something, but you're not sure what.</span>")
+	if(do_after(user, 40, target = user))
+		to_chat(user, "<span class='notice'>The ember warms you...</span>")
+		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "necklace_of_the_forsaken")//less chance of being gibbed
+		active_owner = user
+
+//Revive the user and remove buffs
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/proc/second_chance()
+	icon_state = "necklace_forsaken_active"
+	if(!active_owner)
+		return
+	var/mob/living/carbon/human/H = active_owner
+	active_owner = null
+	to_chat(H, "<span class='userdanger'>You feel a scorching burn fill your body and limbs!</span>")
+	H.revive(TRUE, FALSE)
+	remove_necklace() //remove buffs
+
+//Remove buffs
+/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/proc/remove_necklace()
+	icon_state = "necklace_forsaken_active"
+	if(!active_owner)
+		return
+	REMOVE_TRAIT(active_owner, TRAIT_NOHARDCRIT, "necklace_of_the_forsaken")
+	active_owner = null //just in case
+
+//Add action
+/datum/action/item_action/hands_free/necklace_of_the_forsaken
+	check_flags = NONE
+	name = "Necklace of the Forsaken"
+	desc = "Bind the necklaces ember to yourself, so that next time you activate it, it will revive or fully heal you whether dead or knocked out. (Beware of being gibbed)"
+
+//What happens when the user clicks on datum
+/datum/action/item_action/hands_free/necklace_of_the_forsaken/Trigger()
+	var/obj/item/clothing/neck/necklace/necklace_of_the_forsaken/MM = target
+	if(MM.numUses == 0)//skip if it has already been used up
+		return
+	if(!MM.active_owner)//apply bind if there is no active owner
+		if(ishuman(owner))
+			MM.temp_buff(owner)
+		src.desc = "Revive or fully heal yourself, but you can only do this once! Can be used when knocked out or dead."
+		to_chat(MM.active_owner, "<span class='userdanger'>You have binded the ember to yourself! The next time you use the necklace it will heal you!</span>")
+	else if(MM.numUses == 1 && MM.active_owner)//revive / heal then remove usage
+		MM.second_chance()
+		MM.numUses = 0
+		MM.icon_state = "necklace_forsaken"
+		MM.desc = "A rose gold necklace that used to have a bright burning ember inside of it."
+		src.desc = "The necklaces ember has already been used..."
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=End of Necklace of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
+
+
+//Sifs loot chest
+/obj/structure/closet/crate/necropolis/sif
+	name = "Great Brown Wolf Sif's chest"
+
+/obj/structure/closet/crate/necropolis/sif/PopulateContents()
+	new /obj/item/melee/sword_of_the_forsaken(src)
+	new /obj/item/clothing/neck/necklace/necklace_of_the_forsaken(src)
+	new /obj/item/borg/upgrade/modkit/critical(src)
+
+/obj/structure/closet/crate/necropolis/sif/crusher
+	name = "Great Brown Wolf Sif's infinity chest"
+
+/obj/structure/closet/crate/necropolis/sif/crusher/PopulateContents()
+	new /obj/item/melee/sword_of_the_forsaken(src)
+	new /obj/item/clothing/neck/necklace/necklace_of_the_forsaken(src)
+	new /obj/item/crusher_trophy/dark_energy(src)

@@ -71,7 +71,8 @@
 					/obj/item/clothing/mask/gas/syndicate,
 					/obj/item/clothing/neck/necklace/dope,
 					/obj/item/vending_refill/donksoft,
-					/obj/item/circuitboard/computer/arcade/amputation)
+					/obj/item/circuitboard/computer/arcade/amputation,
+					/obj/item/storage/bag/ammo)
 	crate_name = "crate"
 
 /datum/supply_pack/costumes_toys/foamforce
@@ -217,7 +218,7 @@
 
 /datum/supply_pack/costumes_toys/formalwear
 	name = "Formalwear Crate"
-	desc = "You're gonna like the way you look, I guaranteed it. Contains an asston of fancy clothing."
+	desc = "You're gonna like the way you look, I guarantee it. Contains an asston of fancy clothing." //Skyrat change, fixed typo
 	cost = 4750 //Lots of fancy clothing that can be sold back!
 	contains = list(/obj/item/clothing/under/dress/blacktango,
 					/obj/item/clothing/under/misc/assistantformal,

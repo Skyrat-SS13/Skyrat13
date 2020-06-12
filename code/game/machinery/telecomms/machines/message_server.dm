@@ -16,7 +16,6 @@
 	active_power_usage = 100
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
 
-
 // The message server itself.
 /obj/machinery/telecomms/message_server
 	icon = 'icons/obj/machines/research.dmi'
@@ -27,6 +26,8 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
+	// SKYRAT EDIT: Adds a circuit for the message server.
+	circuit = /obj/item/circuitboard/machine/telecomms/message_server
 
 	id = "Messaging Server"
 	network = "tcommsat"
@@ -140,11 +141,16 @@
 	..()
 	if(href_list["photo"])
 		var/mob/M = usr
-		M << browse_rsc(picture.picture_image, "pda_photo.png")
-		M << browse("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>PDA Photo</title></head>" \
-		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
-		+ "<img src='pda_photo.png' width='192' style='-ms-interpolation-mode:nearest-neighbor' />" \
-		+ "</body></html>", "window=pdaphoto;size=[picture.psize_x]x[picture.psize_y];can-close=true")
+		
+		M << browse_rsc(picture.picture_image, "pda_photo.png") 
+		
+		var/dat = "<div style='overflow: hidden; margin :0; text-align: center'>"
+		dat += "<img src='pda_photo.png' width='192' style='-ms-interpolation-mode:nearest-neighbor' />"
+		dat += "</div>"
+
+		var/datum/browser/popup = new(M, "pdaphoto", "PDA Photo", picture.psize_x, picture.psize_y)
+		popup.set_content(dat)
+		popup.open()
 		onclose(M, "pdaphoto")
 
 /datum/data_rc_msg

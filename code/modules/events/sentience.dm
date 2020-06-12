@@ -9,14 +9,18 @@
 	role_name = "random animal"
 	var/animals = 1
 	var/one = "one"
+	/// Blacklisted mob_biotypes - Hey can we like, not have player controlled megafauna?
+	var/blacklisted_biotypes = MOB_EPIC
 	fakeable = TRUE
 
 /datum/round_event/ghost_role/sentience/announce(fake)
 	var/sentience_report = ""
 
-	var/data = pick("scans from our long-range sensors", "our sophisticated probabilistic models", "our omnipotence", "the communications traffic on your station", "energy emissions we detected", "\[REDACTED\]")
-	var/pets = pick("animals/bots", "bots/animals", "pets", "simple animals", "lesser lifeforms", "\[REDACTED\]")
-	var/strength = pick("human", "moderate", "lizard", "security", "command", "clown", "low", "very low", "\[REDACTED\]")
+	//Skyrat change start
+	var/data = pick("Bioscans", "a recent Bioscan")
+	var/pets = pick("animals/bots", "bots/animals", "pets", "simple animals", "lesser lifeforms",)
+	var/strength = pick("human", "moderate", "security", "command", "clown", "low", "very low", "alien")
+	//Skyrat change stop
 
 	sentience_report += "Based on [data], we believe that [one] of the station's [pets] has developed [strength] level intelligence, and the ability to communicate."
 
@@ -32,6 +36,8 @@
 	for(var/mob/living/simple_animal/L in GLOB.alive_mob_list)
 		var/turf/T = get_turf(L)
 		if(!T || !is_station_level(T.z))
+			continue
+		if(L.mob_biotypes & blacklisted_biotypes)		//hey can you don't
 			continue
 		if(!(L in GLOB.player_list) && !L.mind)
 			potential += L
@@ -50,7 +56,7 @@
 
 		SG.transfer_ckey(SA, FALSE)
 
-		SA.grant_all_languages(TRUE)
+		SA.grant_all_languages(TRUE, FALSE, FALSE)
 
 		SA.sentience_act()
 

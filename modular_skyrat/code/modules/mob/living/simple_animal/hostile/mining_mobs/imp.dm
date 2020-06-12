@@ -24,7 +24,8 @@
 	obj_damage = 60
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attacktext = "claws"
+	attack_verb_continuous = "claws"
+	attack_verb_simple = "claw"
 	a_intent = INTENT_HARM
 	speak_emote = list("groans")
 	attack_sound = 'modular_skyrat/sound/misc/impattacks.wav'

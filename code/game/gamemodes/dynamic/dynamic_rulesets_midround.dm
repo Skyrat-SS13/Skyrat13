@@ -199,7 +199,7 @@
 	config_tag = "midround_traitor"
 	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_TRAITOR
-	restricted_roles = list("AI", "Cyborg", "Positronic Brain")
+	restricted_roles = list("Cyborg", "Positronic Brain")
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster", "Blueshield") ///Skyrat changes, makes heads of staff no longer traitors
 	required_candidates = 1
 	weight = 7
@@ -640,6 +640,9 @@
 	if(!spawn_loc)
 		var/list/spawn_locs = list()
 		for(var/obj/effect/landmark/carpspawn/L in GLOB.landmarks_list)
+			if(isturf(L.loc))
+				spawn_locs += L.loc
+		for(var/obj/effect/landmark/loneopspawn/L in GLOB.landmarks_list)
 			if(isturf(L.loc))
 				spawn_locs += L.loc
 		if(!spawn_locs.len)

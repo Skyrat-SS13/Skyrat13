@@ -3,7 +3,7 @@
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_resource"
 	desc = "A thin spire of slightly swaying tendrils."
-	max_integrity = 60
+	max_integrity = 120 //Skyrat Change.
 	point_return = 15
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90)
 	var/resource_delay = 0

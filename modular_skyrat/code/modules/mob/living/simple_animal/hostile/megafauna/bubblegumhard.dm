@@ -23,7 +23,8 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
 	name = "enraged bubblegum"
 	desc = "In what passes for a hierarchy among slaughter demons, this one is god."
-	attacktext = "brutally rends"
+	attack_verb_continuous = "brutally rends"
+	attack_verb_simple = "brutally rend"
 	speed = 5
 	move_to_delay = 5
 	retreat_distance = 5
@@ -38,8 +39,8 @@ Difficulty: Hard
 	var/enrage_till = 0
 	var/enrage_time = 70
 	var/revving_charge = FALSE
-	var/nest_range = 10
-	var/true_spawn = TRUE
+	nest_range = 10
+	true_spawn = TRUE
 
 	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now, slayer... "
 	deathsound = 'sound/magic/enter_blood.ogg'

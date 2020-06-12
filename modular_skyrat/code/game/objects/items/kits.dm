@@ -9,7 +9,7 @@
 	var/open = 0
 
 /obj/item/conversion_kit/Initialize()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/conversion_kit/update_icon()
@@ -21,39 +21,42 @@
 	update_icon()
 
 /obj/item/conversion_kit/afterattack(atom/target, mob/user, proximity)
-	if(istype(target, /obj/item/gun/ballistic/revolver/detective || /obj/item/gun/ballistic/revolver/russian) && open)
-		var/obj/item/gun/ballistic/revolver/targetrev = target
-		var/obj/item/gun/ballistic/revolver/newrev = new /obj/item/gun/ballistic/revolver(target.loc)
-		newrev.name = targetrev.name
-		newrev.desc = targetrev.desc + " This one seems a little odd."
-		newrev.icon = targetrev.icon
-		newrev.icon_state = targetrev.icon_state
-		newrev.lefthand_file = targetrev.lefthand_file
-		newrev.righthand_file = targetrev.righthand_file
-		newrev.attack_verb = targetrev.attack_verb
-		newrev.item_state = targetrev.item_state
-		to_chat(user, "<span class='notice'>You succesfully convert the [targetrev] with \the [src].</span>")
-		qdel(targetrev)
-		qdel(src)
-		return TRUE
-	else if(istype(target, /obj/item/toy/gun) && open)
-		var/obj/item/toy/gun/targetrev = target
-		var/obj/item/gun/ballistic/revolver/newrev = new /obj/item/gun/ballistic/revolver(target.loc)
-		newrev.name = targetrev.name
-		newrev.desc = targetrev.desc + " This one seems a little odd."
-		newrev.icon = targetrev.icon
-		newrev.icon_state = targetrev.icon_state
-		newrev.lefthand_file = targetrev.lefthand_file
-		newrev.righthand_file = targetrev.righthand_file
-		newrev.attack_verb = targetrev.attack_verb
-		newrev.item_state = targetrev.item_state
-		to_chat(user, "<span class='notice'>You succesfully convert the [targetrev] with \the [src]. Impressive, this kit can even work with a shitty toy!</span>")
-		qdel(targetrev)
-		qdel(src)
-		return TRUE
-	else if(istype(target, /obj/item/gun/ballistic/revolver/detective || /obj/item/gun/ballistic/revolver/russian) || istype(target, /obj/item/toy/gun) && !open)
-		to_chat(user, "<span class='notice'>You have to open the conversion kit first.</span>")
-		return FALSE
+	if(proximity)
+		if((istype(target, /obj/item/gun/ballistic/revolver/detective) || istype(target, /obj/item/gun/ballistic/revolver/russian)) && open)
+			var/obj/item/gun/ballistic/revolver/targetrev = target
+			var/obj/item/gun/ballistic/revolver/newrev = new /obj/item/gun/ballistic/revolver(user.loc)
+			newrev.name = targetrev.name
+			newrev.desc = targetrev.desc + " This one seems a little odd."
+			newrev.icon = targetrev.icon
+			newrev.icon_state = targetrev.icon_state
+			newrev.lefthand_file = targetrev.lefthand_file
+			newrev.righthand_file = targetrev.righthand_file
+			newrev.attack_verb = targetrev.attack_verb
+			newrev.item_state = targetrev.item_state
+			user.put_in_active_hand(newrev)
+			to_chat(user, "<span class='notice'>You succesfully convert the [targetrev] with \the [src].</span>")
+			qdel(targetrev)
+			qdel(src)
+			return TRUE
+		else if(istype(target, /obj/item/toy/gun) && open)
+			var/obj/item/toy/gun/targetrev = target
+			var/obj/item/gun/ballistic/revolver/newrev = new /obj/item/gun/ballistic/revolver(user.loc)
+			newrev.name = targetrev.name
+			newrev.desc = targetrev.desc + " This one seems a little odd."
+			newrev.icon = targetrev.icon
+			newrev.icon_state = targetrev.icon_state
+			newrev.lefthand_file = targetrev.lefthand_file
+			newrev.righthand_file = targetrev.righthand_file
+			newrev.attack_verb = targetrev.attack_verb
+			newrev.item_state = targetrev.item_state
+			user.put_in_active_hand(newrev)
+			to_chat(user, "<span class='notice'>You succesfully convert the [targetrev] with \the [src]. Impressive, this kit can even work with a shitty toy!</span>")
+			qdel(targetrev)
+			qdel(src)
+			return TRUE
+		else if((istype(target, /obj/item/gun/ballistic/revolver/detective) || istype(target, /obj/item/gun/ballistic/revolver/russian) || istype(target, /obj/item/toy/gun)) && !open)
+			to_chat(user, "<span class='notice'>You have to open the conversion kit first.</span>")
+			return FALSE
 
 //clothing reskinning kit
 /obj/item/skin_kit

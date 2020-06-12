@@ -7,6 +7,7 @@
 		new /datum/data/mining_equipment("Whiskey",						/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100),
 		new /datum/data/mining_equipment("Absinthe",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100),
 		new /datum/data/mining_equipment("Cigar",						/obj/item/clothing/mask/cigarette/cigar/havana,						150),
+		new /datum/data/mining_equipment("Miner's Salve Patch",			/obj/item/reagent_containers/pill/patch/salve,						150),
 		new /datum/data/mining_equipment("Soap",						/obj/item/soap/nanotrasen,											200),
 		new /datum/data/mining_equipment("Laser Pointer",				/obj/item/laser_pointer,											300),
 		new /datum/data/mining_equipment("Alien Toy",					/obj/item/clothing/mask/facehugger/toy,								300),
@@ -18,7 +19,6 @@
 		new /datum/data/mining_equipment("Explorer's Webbing",			/obj/item/storage/belt/mining,										500),
 		new /datum/data/mining_equipment("Larger Ore Bag",				/obj/item/storage/bag/ore/large,									500),
 		new /datum/data/mining_equipment("500 Point Transfer Card",		/obj/item/card/mining_point_card/mp500,								500),
-		new /datum/data/mining_equipment("Miner's Salve Patch",			/obj/item/reagent_containers/pill/patch/salve,						500),
 		new /datum/data/mining_equipment("Tracking Implant Kit", 		/obj/item/storage/box/minertracker,									600),
 		new /datum/data/mining_equipment("Jaunter",						/obj/item/wormhole_jaunter,											750),
 		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/twohanded/kinetic_crusher,								750),
@@ -61,5 +61,6 @@
 		new /datum/data/mining_equipment("KA Cooldown Decrease",		/obj/item/borg/upgrade/modkit/cooldown,								1000),
 		new /datum/data/mining_equipment("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,								2000),
 		new /datum/data/mining_equipment("Miner Full Replacement",		/obj/item/storage/backpack/duffelbag/mining_cloned,					3000),
-		new /datum/data/mining_equipment("Premium Accelerator",			/obj/item/gun/energy/kinetic_accelerator/premiumka,					8000)
+		new /datum/data/mining_equipment("Premium Accelerator",			/obj/item/gun/energy/kinetic_accelerator/premiumka,					8000),
+		new /datum/data/mining_equipment("Kinetic Destroyer",			/obj/item/twohanded/kinetic_crusher/premiumcrusher,					12000)
 		)

@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	29
+#define SAVEFILE_VERSION_MAX	32
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -42,7 +42,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 //if your savefile is 3 months out of date, then 'tough shit'.
 
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
-	return
+	if(current_version < 32)	//If you remove this, remove force_reset_keybindings() too.
+		addtimer(CALLBACK(src, .proc/force_reset_keybindings), 30)	//No mob available when this is run, timer allows user choice.
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
 	if(current_version < 19)
@@ -162,7 +163,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(malformed_hockeys[hockey])
 			features["cock_shape"] = malformed_hockeys[hockey]
 			features["cock_taur"] = TRUE
-	
+
 	if(current_version < 29)
 		var/digestable
 		var/devourable
@@ -180,6 +181,19 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			ENABLE_BITFIELD(vore_flags,FEEDING)
 		if(lickable)
 			ENABLE_BITFIELD(vore_flags,LICKABLE)
+
+	if(current_version < 30)
+		switch(features["taur"])
+			if("Husky", "Lab", "Shepherd", "Fox", "Wolf")
+				features["taur"] = "Canine"
+			if("Panther", "Tiger")
+				features["taur"] = "Feline"
+			if("Cow")
+				features["taur"] = "Cow (Spotted)"
+
+	if(current_version < 31)
+		S["wing_color"]			>> features["wings_color"]
+		S["horn_color"]			>> features["horns_color"]
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -211,11 +225,21 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["lastchangelog"]		>> lastchangelog
 	S["UI_style"]			>> UI_style
 	S["hotkeys"]			>> hotkeys
+	S["chat_on_map"]		>> chat_on_map
+	S["max_chat_length"]	>> max_chat_length
+	S["see_chat_non_mob"] 	>> see_chat_non_mob
 	S["tgui_fancy"]			>> tgui_fancy
 	S["tgui_lock"]			>> tgui_lock
 	S["buttons_locked"]		>> buttons_locked
 	S["windowflash"]		>> windowflashing
 	S["be_special"] 		>> be_special
+
+	//SKYRAT CHANGES BEGIN
+	S["see_chat_emotes"] 	>> see_chat_emotes
+	S["event_participation"] >> event_participation
+	S["event_prefs"] >> event_prefs
+	S["appear_in_round_end_report"]	>> appear_in_round_end_report
+	//SKYRAT CHANGES END
 
 
 	S["default_slot"]		>> default_slot
@@ -234,8 +258,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["parallax"]			>> parallax
 	S["ambientocclusion"]	>> ambientocclusion
 	S["auto_fit_viewport"]	>> auto_fit_viewport
-	S["sprint_spacebar"]	>> sprint_spacebar
-	S["sprint_toggle"]		>> sprint_toggle
 	S["hud_toggle_flash"]	>> hud_toggle_flash
 	S["hud_toggle_color"]	>> hud_toggle_color
 	S["menuoptions"]		>> menuoptions
@@ -244,6 +266,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["pda_style"]			>> pda_style
 	S["pda_color"]			>> pda_color
 	S["pda_skin"]			>> pda_skin
+	// SKYRAT EDIT: Credits
+	S["show_credits"] 		>> show_credits
+
+	// Custom hotkeys
+	S["key_bindings"]		>> key_bindings
+	S["modless_key_bindings"]		>> modless_key_bindings
 
 	//citadel code
 	S["arousable"]			>> arousable
@@ -256,7 +284,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["auto_ooc"]			>> auto_ooc
 	S["no_tetris_storage"]		>> no_tetris_storage
 
-
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
@@ -266,19 +293,20 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
 	UI_style		= sanitize_inlist(UI_style, GLOB.available_ui_styles, GLOB.available_ui_styles[1])
 	hotkeys			= sanitize_integer(hotkeys, 0, 1, initial(hotkeys))
+	chat_on_map		= sanitize_integer(chat_on_map, 0, 1, initial(chat_on_map))
+	max_chat_length = sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))
+	see_chat_non_mob	= sanitize_integer(see_chat_non_mob, 0, 1, initial(see_chat_non_mob))
 	tgui_fancy		= sanitize_integer(tgui_fancy, 0, 1, initial(tgui_fancy))
 	tgui_lock		= sanitize_integer(tgui_lock, 0, 1, initial(tgui_lock))
 	buttons_locked	= sanitize_integer(buttons_locked, 0, 1, initial(buttons_locked))
 	windowflashing		= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
 	default_slot	= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
-	toggles			= sanitize_integer(toggles, 0, 16777215, initial(toggles)) // skyrat - its 24 bit ree
+	toggles			= sanitize_integer(toggles, 0, 16777215, initial(toggles))
 	clientfps		= sanitize_integer(clientfps, 0, 1000, 0)
 	if (clientfps == 0) clientfps = world.fps*2 // Skyrat edit
 	parallax		= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	ambientocclusion	= sanitize_integer(ambientocclusion, 0, 1, initial(ambientocclusion))
 	auto_fit_viewport	= sanitize_integer(auto_fit_viewport, 0, 1, initial(auto_fit_viewport))
-	sprint_spacebar	= sanitize_integer(sprint_spacebar, 0, 1, initial(sprint_spacebar))
-	sprint_toggle	= sanitize_integer(sprint_toggle, 0, 1, initial(sprint_toggle))
 	hud_toggle_flash = sanitize_integer(hud_toggle_flash, 0, 1, initial(hud_toggle_flash))
 	hud_toggle_color = sanitize_hexcolor(hud_toggle_color, 6, 1, initial(hud_toggle_color))
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
@@ -290,15 +318,46 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 	pda_skin		= sanitize_inlist(pda_skin, GLOB.pda_reskins, PDA_SKIN_ALT)
+	// SKYRAT EDIT: Credits
+	show_credits		= sanitize_integer(show_credits, 0, 1, initial(show_credits))
 	screenshake			= sanitize_integer(screenshake, 0, 800, initial(screenshake))
 	damagescreenshake	= sanitize_integer(damagescreenshake, 0, 2, initial(damagescreenshake))
 	widescreenpref		= sanitize_integer(widescreenpref, 0, 1, initial(widescreenpref))
 	autostand			= sanitize_integer(autostand, 0, 1, initial(autostand))
-	cit_toggles			= sanitize_integer(cit_toggles, 0, 16777215, initial(cit_toggles)) // skyrate - its 24 bit ree
+	cit_toggles			= sanitize_integer(cit_toggles, 0, 16777215, initial(cit_toggles))
 	auto_ooc			= sanitize_integer(auto_ooc, 0, 1, initial(auto_ooc))
 	no_tetris_storage		= sanitize_integer(no_tetris_storage, 0, 1, initial(no_tetris_storage))
+	key_bindings 			= sanitize_islist(key_bindings, list())
+	modless_key_bindings 	= sanitize_islist(modless_key_bindings, list())
+
+	//SKYRAT CHANGES BEGIN
+	see_chat_emotes	= sanitize_integer(see_chat_emotes, 0, 1, initial(see_chat_emotes))
+	event_participation = sanitize_integer(event_participation, 0, 1, initial(event_participation))
+	event_prefs = sanitize_text(event_prefs)
+	appear_in_round_end_report	= sanitize_integer(appear_in_round_end_report, 0, 1, initial(appear_in_round_end_report))
+	//SKYRAT CHANGES END
+
+	verify_keybindings_valid()		// one of these days this will runtime and you'll be glad that i put it in a different proc so no one gets their saves wiped
 
 	return 1
+
+/datum/preferences/proc/verify_keybindings_valid()
+	// Sanitize the actual keybinds to make sure they exist.
+	for(var/key in key_bindings)
+		if(!islist(key_bindings[key]))
+			key_bindings -= key
+		var/list/binds = key_bindings[key]
+		for(var/bind in binds)
+			if(!GLOB.keybindings_by_name[bind])
+				binds -= bind
+		if(!length(binds))
+			key_bindings -= key
+	// End
+	// I hate copypaste but let's do it again but for modless ones
+	for(var/key in modless_key_bindings)
+		var/bindname = modless_key_bindings[key]
+		if(!GLOB.keybindings_by_name[bindname])
+			modless_key_bindings -= key
 
 /datum/preferences/proc/save_preferences()
 	if(!path)
@@ -320,6 +379,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["UI_style"], UI_style)
 	WRITE_FILE(S["hotkeys"], hotkeys)
+	WRITE_FILE(S["chat_on_map"], chat_on_map)
+	WRITE_FILE(S["max_chat_length"], max_chat_length)
+	WRITE_FILE(S["see_chat_non_mob"], see_chat_non_mob)
 	WRITE_FILE(S["tgui_fancy"], tgui_fancy)
 	WRITE_FILE(S["tgui_lock"], tgui_lock)
 	WRITE_FILE(S["buttons_locked"], buttons_locked)
@@ -341,8 +403,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["parallax"], parallax)
 	WRITE_FILE(S["ambientocclusion"], ambientocclusion)
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
-	WRITE_FILE(S["sprint_spacebar"], sprint_spacebar)
-	WRITE_FILE(S["sprint_toggle"], sprint_toggle)
 	WRITE_FILE(S["hud_toggle_flash"], hud_toggle_flash)
 	WRITE_FILE(S["hud_toggle_color"], hud_toggle_color)
 	WRITE_FILE(S["menuoptions"], menuoptions)
@@ -351,6 +411,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
 	WRITE_FILE(S["pda_skin"], pda_skin)
+	WRITE_FILE(S["show_credits"], show_credits) // SKYRAT EDIT: Credits
+	WRITE_FILE(S["key_bindings"], key_bindings)
+	WRITE_FILE(S["modless_key_bindings"], modless_key_bindings)
 
 	//citadel code
 	WRITE_FILE(S["screenshake"], screenshake)
@@ -362,6 +425,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["preferred_chaos"], preferred_chaos)
 	WRITE_FILE(S["auto_ooc"], auto_ooc)
 	WRITE_FILE(S["no_tetris_storage"], no_tetris_storage)
+
+	//SKYRAT CHANGES BEGIN
+	WRITE_FILE(S["see_chat_emotes"], see_chat_emotes)
+	WRITE_FILE(S["event_participation"], event_participation)
+	WRITE_FILE(S["event_prefs"], event_prefs)
+	WRITE_FILE(S["appear_in_round_end_report"], appear_in_round_end_report)
+	//SKYRAT CHANGES END
 
 	return 1
 
@@ -404,15 +474,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(newtype)
 			pref_species = new newtype
 
-	if(!S["features["mcolor"]"] || S["features["mcolor"]"] == "#000")
-		WRITE_FILE(S["features["mcolor"]"]	, "#FFF")
-
-	if(!S["features["horn_color"]"] || S["features["horn_color"]"] == "#000")
-		WRITE_FILE(S["features["horn_color"]"]	, "#85615a")
-
-	if(!S["features["wing_color"]"] || S["features["wing_color"]"] == "#000")
-		WRITE_FILE(S["features["wing_color"]"]	, "#FFF")
-
 	//Character
 	S["real_name"]				>> real_name
 	//S["nameless"]				>> nameless
@@ -437,8 +498,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["shirt_color"]			>> shirt_color
 	S["socks"]					>> socks
 	S["socks_color"]			>> socks_color
-	S["horn_color"]				>> horn_color
-	S["wing_color"]				>> wing_color
 	S["backbag"]				>> backbag
 	S["jumpsuit_style"]			>> jumpsuit_style
 	S["uplink_loc"]				>> uplink_spawn_loc
@@ -456,6 +515,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_insect_wings"]			>> features["insect_wings"]
 	S["feature_insect_fluff"]			>> features["insect_fluff"]
 	S["feature_insect_markings"]		>> features["insect_markings"]
+	S["feature_horns_color"]			>> features["horns_color"]
+	S["feature_wings_color"]			>> features["wings_color"]
+	//SKYRAT CHANGES
+	S["bloodtype"]			>> bloodtype
+	//
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
@@ -469,9 +533,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["joblessrole"]		>> joblessrole
 	//Load prefs
 	S["job_preferences"]	>> job_preferences
+	job_preferences		= SANITIZE_LIST(job_preferences) //Skyrat edit - lack of this could cause game-mode failure
 
 	//Quirks
 	S["all_quirks"]			>> all_quirks
+	//SKYRAT ADDITION - additional language
+	S["language"]			>> language
+	//
 
 	//Citadel code
 	S["feature_genitals_use_skintone"]	>> features["genitals_use_skintone"]
@@ -527,9 +595,30 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	else //We have no old flavortext, default to new
 		S["feature_flavor_text"]		>> features["flavor_text"]
 
+
+	S["silicon_feature_flavor_text"]		>> features["silicon_flavor_text"]
+
+	S["feature_ooc_notes"]				>> features["ooc_notes"]
+	S["silicon_flavor_text"] >> features["silicon_flavor_text"]
+
 	S["vore_flags"]						>> vore_flags
 	S["vore_taste"]						>> vore_taste
 	S["belly_prefs"]					>> belly_prefs
+
+	//gear loadout
+	var/text_to_load
+	S["loadout"] >> text_to_load
+	var/list/saved_loadout_paths = splittext(text_to_load, "|")
+	chosen_gear = list()
+	gear_points = CONFIG_GET(number/initial_gear_points)
+	for(var/i in saved_loadout_paths)
+		var/datum/gear/path = text2path(i)
+		if(path)
+			var/init_cost = initial(path.cost)
+			if(init_cost > gear_points)
+				continue
+			chosen_gear += path
+			gear_points -= init_cost
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -549,17 +638,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!custom_names[custom_name_id])
 			custom_names[custom_name_id] = get_default_name(custom_name_id)
 
-	if(!features["mcolor"] || features["mcolor"] == "#000")
-		features["mcolor"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
+	auto_hiss		= sanitize_integer(auto_hiss, 0, 1, initial(auto_hiss)) //SKYRAT CHANGE
 
-	if(!features["horn_color"] || features["horn_color"] == "#000")
-		features["horn_color"] = "85615a"
-
-	if(!features["wing_color"] || features["wing_color"] == "#000")
-		features["wing_color"] = "FFFFFF"
-
-	//nameless		= sanitize_integer(nameless, 0, 1, initial(nameless))
-	auto_hiss		= sanitize_integer(auto_hiss, 0, 1, initial(auto_hiss))
+	nameless		= sanitize_integer(nameless, 0, 1, initial(nameless))
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
 	be_random_body	= sanitize_integer(be_random_body, 0, 1, initial(be_random_body))
 
@@ -585,8 +666,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	else
 		skin_tone					= sanitize_inlist(skin_tone, GLOB.skin_tones - GLOB.nonstandard_skin_tones, initial(skin_tone))
 
-	horn_color						= sanitize_hexcolor(horn_color, 3, FALSE)
-	wing_color						= sanitize_hexcolor(wing_color, 3, FALSE, "#FFFFFF")
+	features["horns_color"]			= sanitize_hexcolor(features["horns_color"], 3, FALSE, "85615a")
+	features["wings_color"]			= sanitize_hexcolor(features["wings_color"], 3, FALSE, "FFFFFF")
 	backbag							= sanitize_inlist(backbag, GLOB.backbaglist, initial(backbag))
 	jumpsuit_style					= sanitize_inlist(jumpsuit_style, GLOB.jumpsuitlist, initial(jumpsuit_style))
 	uplink_spawn_loc				= sanitize_inlist(uplink_spawn_loc, GLOB.uplink_spawn_loc_list, initial(uplink_spawn_loc))
@@ -645,6 +726,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 
 	features["flavor_text"]			= copytext(features["flavor_text"], 1, MAX_FLAVOR_LEN)
+	features["silicon_flavor_text"]			= copytext(features["silicon_flavor_text"], 1, MAX_FLAVOR_LEN)
+	features["ooc_notes"]			= copytext(features["ooc_notes"], 1, MAX_FLAVOR_LEN)
 
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
 	//Validate job prefs
@@ -701,8 +784,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["shirt_color"]				, shirt_color)
 	WRITE_FILE(S["socks"]					, socks)
 	WRITE_FILE(S["socks_color"]				, socks_color)
-	WRITE_FILE(S["horn_color"]				, horn_color)
-	WRITE_FILE(S["wing_color"]				, wing_color)
 	WRITE_FILE(S["backbag"]					, backbag)
 	WRITE_FILE(S["jumpsuit_style"]			, jumpsuit_style)
 	WRITE_FILE(S["uplink_loc"]				, uplink_spawn_loc)
@@ -718,10 +799,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_lizard_body_markings"]	, features["body_markings"])
 	WRITE_FILE(S["feature_lizard_legs"]				, features["legs"])
 	WRITE_FILE(S["feature_deco_wings"]				, features["deco_wings"])
+	WRITE_FILE(S["feature_horns_color"]				, features["horns_color"])
+	WRITE_FILE(S["feature_wings_color"]				, features["wings_color"])
 	WRITE_FILE(S["feature_insect_wings"]			, features["insect_wings"])
 	WRITE_FILE(S["feature_insect_fluff"]			, features["insect_fluff"])
 	WRITE_FILE(S["feature_insect_markings"]			, features["insect_markings"])
 	WRITE_FILE(S["feature_meat"]					, features["meat_type"])
+	//SKYRAT CHANGE - Blood
+	WRITE_FILE(S["bloodtype"]						, bloodtype)
+	//
 
 	WRITE_FILE(S["feature_has_cock"], features["has_cock"])
 	WRITE_FILE(S["feature_cock_shape"], features["cock_shape"])
@@ -749,6 +835,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	WRITE_FILE(S["feature_has_womb"], features["has_womb"])
 
+	WRITE_FILE(S["feature_ooc_notes"], features["ooc_notes"])
+
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		var/savefile_slot_name = custom_name_id + "_name" //TODO remove this
@@ -764,10 +852,20 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Quirks
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
+	//SKYRAT ADDITION - additional language
+	WRITE_FILE(S["language"]			, language)
+	//
 
 	WRITE_FILE(S["vore_flags"]			, vore_flags)
 	WRITE_FILE(S["vore_taste"]			, vore_taste)
 	WRITE_FILE(S["belly_prefs"]			, belly_prefs)
+
+	//gear loadout
+	if(chosen_gear.len)
+		var/text_to_save = chosen_gear.Join("|")
+		S["loadout"] << text_to_save
+	else
+		S["loadout"] << "" //empty string to reset the value
 
 	cit_character_pref_save(S)
 

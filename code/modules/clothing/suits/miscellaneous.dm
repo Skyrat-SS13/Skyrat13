@@ -647,6 +647,19 @@
 	desc = "A white winter coat hood with green markings."
 	icon_state = "winterhood_viro"
 
+/obj/item/clothing/suit/hooded/wintercoat/paramedic
+	name = "paramedic winter coat"
+	desc = "A winter coat with blue markings. Warm, but probably won't protect from biological agents. For the cozy doctor on the go."
+	icon_state = "coatparamed"
+	item_state = "coatparamed"
+	allowed = list(/obj/item/analyzer, /obj/item/stack/medical, /obj/item/dnainjector, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/hypospray, /obj/item/healthanalyzer, /obj/item/flashlight/pen, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/pill, /obj/item/storage/pill_bottle, /obj/item/paper, /obj/item/melee/classic_baton/telescopic, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 45)
+	hoodtype = /obj/item/clothing/head/hooded/winterhood/paramedic
+
+/obj/item/clothing/head/hooded/winterhood/paramedic
+	desc = "A white winter coat hood with blue markings."
+	icon_state = "winterhood_paramed"
+
 /obj/item/clothing/suit/hooded/wintercoat/science
 	name = "science winter coat"
 	desc = "A white winter coat with an outdated atomic model instead of a plastic zipper tab."
@@ -811,7 +824,7 @@
 	desc = "A dusty button up winter coat. The zipper tab looks like a tiny pickaxe."
 	icon_state = "coatminer"
 	item_state = "coatminer"
-	allowed = list(/obj/item/pickaxe, /obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter)
+	allowed = list(/obj/item/pickaxe, /obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter)
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/miner
 

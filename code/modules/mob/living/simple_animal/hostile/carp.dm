@@ -12,9 +12,10 @@
 	speak_chance = 0
 	turns_per_move = 5
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/carpmeat = 2)
-	response_help = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
+	response_help_continuous = "pets"
+	response_help_simple = "pet"
+	response_disarm_continuous = "gently pushes aside"
+	response_disarm_simple = "gently push aside"
 	emote_taunt = list("gnashes")
 	taunt_chance = 30
 	speed = 0
@@ -25,7 +26,8 @@
 	obj_damage = 50
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attacktext = "bites"
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("gnashes")
 	//Space carp aren't affected by cold.
@@ -62,24 +64,6 @@
 	maxbodytemp = INFINITY
 	gold_core_spawnable = NO_SPAWN
 	del_on_death = 1
-
-/mob/living/simple_animal/hostile/carp/tigercarp
-	name = "tiger carp"
-	desc = "A rare patterned offshoot of the typical space carp. Reports of significant aggression."
-	icon_state = "tigercarp"
-	icon_living = "tigercarp"
-	icon_dead = "tigercarp_dead"
-	icon_gib = "tigercarp_gib"
-	maxHealth = 50
-	health = 50
-	turns_per_move = 6
-	vision_range = 13
-	aggro_vision_range = 11
-	move_to_delay = 2.8
-	obj_damage = 65
-	melee_damage_lower = 17
-	melee_damage_upper = 17
-	attacktext = "thrashes"
 
 /mob/living/simple_animal/hostile/carp/megacarp
 	icon = 'icons/mob/broadMobs.dmi'

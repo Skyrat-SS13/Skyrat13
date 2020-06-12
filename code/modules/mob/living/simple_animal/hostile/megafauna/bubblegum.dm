@@ -29,12 +29,14 @@ Difficulty: Hard
 	threat = 35
 	health = 2500
 	maxHealth = 2500
-	attacktext = "rends"
+	attack_verb_continuous = "rends"
+	attack_verb_simple = "rend"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	icon_state = "bubblegum"
 	icon_living = "bubblegum"
 	icon_dead = ""
-	friendly = "stares down"
+	friendly_verb_continuous = "stares down"
+	friendly_verb_simple = "stare down"
 	icon = 'icons/mob/lavaland/96x96megafauna.dmi'
 	speak_emote = list("gurgles")
 	armour_penetration = 40
@@ -55,7 +57,7 @@ Difficulty: Hard
 	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now... "
 	death_sound = 'sound/magic/enter_blood.ogg'
 
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_HEAVY
 
 /obj/item/gps/internal/bubblegum
 	icon_state = null
@@ -89,9 +91,11 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Initialize()
 	. = ..()
+	/*
 	for(var/mob/living/simple_animal/hostile/megafauna/bubblegum/B in GLOB.mob_list)
 		if(B != src)
 			return INITIALIZE_HINT_QDEL //There can be only one
+	*/ //Skyrat change - There can be many
 	var/obj/effect/proc_holder/spell/bloodcrawl/bloodspell = new
 	AddSpell(bloodspell)
 	if(istype(loc, /obj/effect/dummy/phased_mob/slaughter))
@@ -227,11 +231,13 @@ Difficulty: Hard
 	icon_state = "bloodbrood"
 	icon_living = "bloodbrood"
 	icon_aggro = "bloodbrood"
-	attacktext = "pierces"
+	attack_verb_continuous = "pierces"
+	attack_verb_simple = "pierce"
 	color = "#C80000"
 	density = FALSE
 	faction = list("mining", "boss")
 	weather_immunities = list("lava","ash")
+	has_field_of_vision = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/slaughter/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /mob/living/simple_animal/hostile/megafauna/bubblegum))

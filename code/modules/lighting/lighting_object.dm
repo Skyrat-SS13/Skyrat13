@@ -13,6 +13,10 @@
 
 	var/needs_update = FALSE
 	var/turf/myturf
+	//skyrat edit - moth
+	/// Cached value of max generated during [update()][/atom/movable/lighting_object/proc/update]
+	var/tmp/cached_max
+	//
 
 /atom/movable/lighting_object/Initialize(mapload)
 	. = ..()
@@ -55,7 +59,7 @@
 		if (loc)
 			var/turf/oldturf = get_turf(myturf)
 			var/turf/newturf = get_turf(loc)
-			warning("A lighting object realised it's loc had changed in update() ([myturf]\[[myturf ? myturf.type : "null"]]([COORD(oldturf)]) -> [loc]\[[ loc ? loc.type : "null"]]([COORD(newturf)]))!")
+			stack_trace("A lighting object realised it's loc had changed in update() ([myturf]\[[myturf ? myturf.type : "null"]]([COORD(oldturf)]) -> [loc]\[[ loc ? loc.type : "null"]]([COORD(newturf)]))!")
 
 		qdel(src, TRUE)
 		return
@@ -71,18 +75,15 @@
 	// See LIGHTING_CORNER_DIAGONAL in lighting_corner.dm for why these values are what they are.
 	var/static/datum/lighting_corner/dummy/dummy_lighting_corner = new
 
-	var/list/corners = myturf.corners
-	var/datum/lighting_corner/cr = dummy_lighting_corner
-	var/datum/lighting_corner/cg = dummy_lighting_corner
-	var/datum/lighting_corner/cb = dummy_lighting_corner
-	var/datum/lighting_corner/ca = dummy_lighting_corner
-	if (corners) //done this way for speed
-		cr = corners[3] || dummy_lighting_corner
-		cg = corners[2] || dummy_lighting_corner
-		cb = corners[4] || dummy_lighting_corner
-		ca = corners[1] || dummy_lighting_corner
+	var/datum/lighting_corner/cr = myturf.lc_bottomleft || dummy_lighting_corner
+	var/datum/lighting_corner/cg = myturf.lc_bottomright || dummy_lighting_corner
+	var/datum/lighting_corner/cb = myturf.lc_topleft || dummy_lighting_corner
+	var/datum/lighting_corner/ca = myturf.lc_topright || dummy_lighting_corner
 
 	var/max = max(cr.cache_mx, cg.cache_mx, cb.cache_mx, ca.cache_mx)
+	//skyrat edit
+	cached_max = max
+	//
 
 	var/rr = cr.cache_r
 	var/rg = cr.cache_g

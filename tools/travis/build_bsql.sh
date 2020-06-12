@@ -18,4 +18,4 @@ cmake .. -DMARIA_LIBRARY=/usr/lib/i386-linux-gnu/libmariadb.so
 make
 
 mkdir -p ~/.byond/bin
-ln -s $PWD/src/BSQL/libBSQL.so ../../libBSQL.so
+ln -sf $PWD/src/BSQL/libBSQL.so ../../libBSQL.so

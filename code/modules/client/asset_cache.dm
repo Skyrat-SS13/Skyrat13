@@ -603,7 +603,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	name = "chat"
 
 /datum/asset/spritesheet/goonchat/register()
-	InsertAll("emoji", 'icons/emoji.dmi')
+//	InsertAll("emoji", 'icons/emoji.dmi') // Skyrat Overwrite
 
 	// pre-loading all lanugage icons also helps to avoid meta
 	InsertAll("language", 'icons/misc/language.dmi')
@@ -743,4 +743,9 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"dna_discovered.gif"	= 'html/dna_discovered.gif',
 		"dna_undiscovered.gif"	= 'html/dna_undiscovered.gif',
 		"dna_extra.gif" 		= 'html/dna_extra.gif'
-)
+	)
+
+/datum/asset/simple/vv
+	assets = list(
+		"view_variables.css" = 'html/admin/view_variables.css'
+	)

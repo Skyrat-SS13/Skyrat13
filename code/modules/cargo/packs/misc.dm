@@ -35,7 +35,7 @@
 
 /datum/supply_pack/misc/book_crate
 	name = "Book Crate"
-	desc = "Surplus from the Nanotrasen Archives, these five books are sure to be good reads."
+	desc = "Surplus from the Nanotrasen Archives. These five books are sure to be good reads." //Skyrat change, fixes grammatical error
 	cost = 1500
 	contains = list(/obj/item/book/codex_gigas,
 					/obj/item/book/manual/random/,
@@ -46,7 +46,7 @@
 
 /datum/supply_pack/misc/paper
 	name = "Bureaucracy Crate"
-	desc = "High stacks of papers on your desk Are a big problem - make it Pea-sized with these bureaucratic supplies! Contains five pens, some camera film, hand labeler supplies, a paper bin, three folders, two clipboards and two stamps as well as a briefcase."//that was too forced
+	desc = "High stacks of papers on your desk Are a big problem - make it pea-sized with these bureaucratic supplies! Contains five pens, some camera film, hand labeler supplies, a paper bin, three folders, two clipboards and two stamps as well as a briefcase."//Skyrat change, fixes capitalization errors
 	cost = 1500
 	contains = list(/obj/structure/filingcabinet/chestdrawer/wheeled,
 					/obj/item/camera_film,
@@ -76,7 +76,7 @@
 	cost = 5000
 	contains = list(/obj/item/pen/fountain/captain)
 	crate_name = "captain pen"
-	crate_type = /obj/structure/closet/crate/secure/weapon //It is a combat pen
+	crate_type = /obj/structure/closet/crate/secure/weapon //It's a combat pen
 
 /datum/supply_pack/misc/fountainpens
 	name = "Calligraphy Crate"
@@ -87,37 +87,12 @@
 	crate_type = /obj/structure/closet/crate/wooden
 	crate_name = "calligraphy crate"
 
-/datum/supply_pack/misc/paper_work
-	name = "Freelance Paper work"
-	desc = "The Nanotrasen Primary Bureaucratic Database Intelligence (PDBI) reports that the station has not completed its funding and grant paperwork this solar cycle. In order to gain further funding, your station is required to fill out (10) ten of these forms or no additional capital will be disbursed. We have sent you ten copies of the following form and we expect every one to be up to Nanotrasen Standards." // Disbursement. It's not a typo, look it up.
-	cost = 700 // Net of 0 credits but makes (120 x 10 = 1200)
-	contains = list(/obj/item/folder/paperwork,
-					/obj/item/pen/fountain
-					)
-	crate_name = "Paperwork"
-
-/datum/supply_pack/misc/paper_work/generate()
-	. = ..()
-	for(var/i in 1 to 9)
-		new /obj/item/folder/paperwork(.)
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////// Entertainment ///////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-/datum/supply_pack/misc/randombedsheets
-	name = "Bedsheet Crate (R)"
-	desc = "Snuggle up in some sweet sheets with this assorted bedsheet crate. Each set comes with eight random bedsheets for your slumbering pleasure!"
-	cost = 2000
-	contains = list(/obj/item/bedsheet/random)
-	crate_name = "random bedsheet crate"
-
-/datum/supply_pack/misc/randombedsheets/generate()
-	. = ..()
-	for(var/i in 1 to 7)
-		new /obj/item/bedsheet/random(.)
-
 /datum/supply_pack/misc/coloredsheets
-	name = "Bedsheet Crate (C)"
+	name = "Bedsheet Crate"
 	desc = "Give your night life a splash of color with this crate filled with bedsheets! Contains a total of nine different-colored sheets."
 	cost = 1250
 	contains = list(/obj/item/bedsheet/blue,
@@ -249,7 +224,7 @@
 
 /datum/supply_pack/misc/diamondring
 	name = "Diamond Ring"
-	desc = "Show them your love is like a diamond: unbreakable and forever lasting. Shipped straight from child slave cartels in the space african mines."
+	desc = "Show them your love is like a diamond: unbreakable and everlasting. Shipped straight from child slave cartels in the space african mines." //Skyrat change, fixes grammatical error
 	cost = 10000
 	contains = list(/obj/item/storage/fancy/ringbox/diamond)
 	crate_name = "diamond ring crate"
@@ -272,7 +247,7 @@
 
 /datum/supply_pack/misc/funeral
 	name = "Funeral Supplies"
-	desc = "Mourn your dead properly buy sending them off with love filled notes, clean clothes, and a proper ceremony. Contains two candle packs, funeral garb, flowers, a paperbin , and crayons to help aid in religious rituals. Coffin included."
+	desc = "Mourn your dead properly by sending them off with love filled notes, clean clothes, and a proper ceremony. Contains two candle packs, funeral garb, flowers, a paperbin , and crayons to help aid in religious rituals. Coffin included." //Skyrat change, fixes typo
 	cost = 1200
 	contains = list(/obj/item/clothing/under/misc/burial,
 					/obj/item/storage/fancy/candle_box,
@@ -329,7 +304,7 @@
 
 /datum/supply_pack/misc/religious_supplies
 	name = "Religious Supplies Crate"
-	desc = "Keep your local chaplain happy and well-supplied, lest they call down judgement upon your cargo bay. Contains two bottles of holywater, bibles, chaplain robes, and burial garmets."
+	desc = "Keep your local chaplain happy and well-supplied, lest they call down divine judgement upon your cargo bay. Contains two bottles of holy water, bibles, chaplain robes, and burial garmets." //Skyrat Change, clarifies judgement and fixes grammatical error
 	cost = 4000	// it costs so much because the Space Church needs funding to build a cathedral
 	contains = list(/obj/item/reagent_containers/food/drinks/bottle/holywater,
 					/obj/item/reagent_containers/food/drinks/bottle/holywater,
@@ -386,7 +361,7 @@
 
 /datum/supply_pack/misc/carpet
 	name = "Premium Carpet Crate"
-	desc = "Plasteel floor tiles getting on your nerves? These stacks of extra soft carpet will tie any room together. Contains some classic carpet, along with black, red, and monochrome varients."
+	desc = "Plasteel floor tiles getting on your nerves? These stacks of extra soft carpet will tie any room together. Contains some classic carpet, along with black, red, and monochrome variants." //Skyrat change, fixes typo
 	cost = 1350
 	contains = list(/obj/item/stack/tile/carpet/fifty,
 					/obj/item/stack/tile/carpet/fifty,
@@ -400,7 +375,7 @@
 
 /datum/supply_pack/misc/noslipfloor
 	name = "High-traction Floor Tiles"
-	desc = "Make slipping a thing of the past with sixty industrial-grade anti-slip floortiles!"
+	desc = "Makes Slippin' Jimmy a thing of the past with sixty industrial-grade anti-slip floortiles!" //Skyrat change, added BCS reference
 	cost = 2000
 	contains = list(/obj/item/stack/tile/noslip/thirty,
 					/obj/item/stack/tile/noslip/thirty)
@@ -412,7 +387,7 @@
 
 /datum/supply_pack/misc/lewd
 	name = "Lewd Crate" // OwO
-	desc = "Pssst, want to have a good time with your sluts? Well I got what you want! Maid clothing, dildos, collars and more!"
+	desc = "Pssst. Want to have a good time with your sluts? Well I got what you want! Maid clothing, dildos, collars and more!" //Skyrat change, fixed grammatical error
 	cost = 5250
 	contraband = TRUE
 	contains = list(/obj/item/dildo/custom,
@@ -440,5 +415,4 @@
 	contains = list(/obj/structure/reagent_dispensers/keg/aphro/strong)
 	crate_name = "deluxe keg"
 	crate_type = /obj/structure/closet/crate
-
 

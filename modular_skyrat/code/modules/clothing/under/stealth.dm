@@ -37,6 +37,7 @@
 			animate(M, , alpha -= 75, time = 3)
 		for(var/datum/action/item_action/A in actions_types)
 			A.Grant(M, src)
+
 /obj/item/clothing/under/syndicate/stealthsuit/Bumped(atom/movable/AM)
 	if(!activated)
 		return
@@ -66,7 +67,7 @@
 /obj/item/clothing/under/syndicate/stealthsuit/dropped(mob/living/M, slot)
 	. = ..()
 	M.remove_status_effect(effectapplied)
-	activated = 0
+	activated = FALSE
 	for(var/datum/action/item_action/A in actions_types)
 		A.Remove(M, src)
 

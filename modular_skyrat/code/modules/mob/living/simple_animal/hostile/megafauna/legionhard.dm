@@ -42,7 +42,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	size = 3
 	charging = FALSE
-	var/true_spawn = TRUE
+	true_spawn = TRUE
 
 /obj/item/gps/internal/legion/hard
 	icon_state = null

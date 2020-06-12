@@ -23,23 +23,21 @@
 	var/healthold
 	var/obj/item/inhandold
 	var/obj/item/inhandlold
-	var/oldloc
-	var/turf/currentloc
+	var/turf/oldturf
+	var/turf/currentturf
 	var/stam
 	var/stamold
 
 /datum/status_effect/stealthsuit/on_remove()
 	. = ..()
-	animate(owner, , alpha = 255, time = 10)
+	owner.alpha = 255
 
 /datum/status_effect/stealthsuit/tick()
 	. = ..()
-	currentloc = get_turf(owner)
-	if(owner.alpha >= 10 && currentloc == oldloc && (owner.alpha - 45 >= 10)) //ALMOST completely invisible
-		animate(owner, owner.alpha -= 45, time = 5)
-	else if((owner.alpha >= 10) && (owner.alpha - 45 < 10) && (currentloc == oldloc))
-		animate(owner, owner.alpha = 10, time = 5)
-	oldloc = currentloc
+	currentturf = get_turf(owner)
+	if(currentturf == oldturf) //ALMOST completely invisible
+		owner.alpha = max(owner.alpha - 45, 10)
+	oldturf = currentturf
 
 /datum/status_effect/stealthsuit/process()
 	..()
@@ -48,10 +46,10 @@
 	health = owner.health
 	stam = owner.getStaminaLoss()
 	if((inhand != inhandold) || (inhandl != inhandlold) || (health != healthold) || (stam > stamold))
-		if(owner.alpha <= 113) //making it announce everytime you pick something up is annoying bro
+		if(owner.alpha <= 127) //making it announce everytime you pick something up is annoying bro
 			to_chat(owner, "<span class='warning'>Something interferes with your suit's stealth system, revealing you!</span>")
 		playsound(owner.loc, "sparks", 100, 1)
-		animate(owner, alpha = 255, time = 2)
+		owner.alpha = 255
 	inhandold = inhand
 	inhandlold = inhandl
 	healthold = health
@@ -62,3 +60,29 @@
 	desc = "You are one with the dark. You'll get more and more invisible over time, as long as you stay immobile. The invisibility effect is reset whenever you interact with something."
 	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
 	icon_state = "stealth"
+
+//maint energy blood red effect
+/datum/status_effect/kyle
+	id = "kyle"
+	duration = -1
+	tick_interval = 0
+	alert_type = null
+	examine_text = "<span class='danger'><b>They look restless.</b></span>"
+	var/extra_punchlow = 5
+	var/extra_punchhigh = 12
+
+/datum/status_effect/kyle/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		//there is no physiology for this, so i had to force my hand
+		var/mob/living/carbon/human/kyle = owner
+		kyle.dna.species.punchdamagelow += extra_punchlow
+		kyle.dna.species.punchdamagehigh += extra_punchhigh
+
+/datum/status_effect/kyle/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		//there is no physiology for this, so i had to force my hand
+		var/mob/living/carbon/human/kyle = owner
+		kyle.dna.species.punchdamagelow -= extra_punchlow
+		kyle.dna.species.punchdamagehigh -= extra_punchhigh

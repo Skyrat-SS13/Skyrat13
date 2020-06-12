@@ -67,7 +67,8 @@
 	description = "Lumbering humanoids, made out of precious metals, move inside this ship. They frequently leave to mine more minerals, which they somehow turn into more of them. \
 	Seem very intent on research and individual liberty, and also geology based naming?"
 	cost = 20
-	suffix = "lavaland_surface_golem_ship.dmm"
+	prefix = "_maps/RandomRuins/AnywhereRuins/"
+	suffix = "golem_ship.dmm"
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/animal_hospital
@@ -129,6 +130,7 @@
 	description = "A strange, square chunk of metal of massive size. Inside awaits only death and many, many squares."
 	suffix = "lavaland_surface_hierophant.dmm"
 	always_place = TRUE
+	cost = 0 //Skyrat change - FUCK RNG
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner
@@ -137,6 +139,7 @@
 	description = "A strange arrangement of stone tiles and an insane, beastly miner contemplating them."
 	suffix = "lavaland_surface_blooddrunk1.dmm"
 	cost = 0
+	always_place = TRUE //Skyrat change - FUCK RNG
 	allow_duplicates = FALSE //will only spawn one variant of the ruin
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner/guidance
@@ -175,7 +178,8 @@
 	name = "Fountain Hall"
 	id = "fountain"
 	description = "The fountain has a warning on the side. DANGER: May have undeclared side effects that only become obvious when implemented."
-	suffix = "lavaland_surface_fountain_hall.dmm"
+	prefix = "_maps/RandomRuins/AnywhereRuins/"
+	suffix = "fountain_hall.dmm"
 	cost = 5
 	allow_duplicates = FALSE
 
@@ -248,4 +252,12 @@
 	cost = 5
 	placement_weight = 3
 	always_place = TRUE
-	allow_duplicates = TRUE 
+	allow_duplicates = TRUE
+
+/datum/map_template/ruin/lavaland/elephant_graveyard
+	name = "Elephant Graveyard"
+	id = "Graveyard"
+	description = "An abandoned graveyard, calling to those unable to continue."
+	suffix = "lavaland_surface_elephant_graveyard.dmm"
+	allow_duplicates = FALSE
+	cost = 10

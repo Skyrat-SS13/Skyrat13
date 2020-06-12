@@ -4,3 +4,12 @@
 
 		if(!findname(.))
 			break
+
+/mob/proc/isRobotic()
+	return FALSE
+
+/mob/living/carbon/human/isRobotic()
+	if(dna && dna.species.inherent_biotypes & MOB_ROBOTIC)
+		return TRUE
+	else
+		return FALSE
