@@ -145,7 +145,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		H.adjustBruteLoss(160)
 	if(L && (L.density || prob(10)))
 		L.ex_act(EXPLODE_HEAVY)
-
+/* skyrat edit - no more memes
 obj/effect/immovablerod/attack_hand(mob/living/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/U = user
@@ -165,3 +165,4 @@ obj/effect/immovablerod/attack_hand(mob/living/user)
 				new /obj/structure/festivus/anchored(drop_location())
 				new /obj/effect/anomaly/flux(drop_location())
 				qdel(src)
+*/
