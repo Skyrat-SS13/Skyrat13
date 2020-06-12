@@ -87,7 +87,7 @@
 	name = "anomalous cheems"
 	desc = "It's Cheems. But blue and almighty."
 	health = 5000 //the weak must fear the strong
-	speak = list("I am cheemsus", "I am god", "Comsume" "Bow bemfore me")
+	speak = list("I am cheemsus", "I am god", "Comsume", "Bow bemfore me")
 	var/obj/effect/immovable_rod/vored
 
 /mob/living/simple_animal/pet/dog/cheems/blue/Initialize()
