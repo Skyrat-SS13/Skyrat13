@@ -91,38 +91,40 @@
 
 /mob/living/simple_animal/pet/dog/cheems/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
-	if(.)
-		if(istype(I, /obj/item/radio/headset) && user.a_intent != INTENT_HARM)
-			I.forceMove(src)
-			ears = I
-			to_chat(user, "<span class='notice'>You put \the [I] on [src].</span>")
-			handle_fluff()
-		
-		else if((istype(I, /obj/item/gun/ballistic/shotgun) || istype(I, /obj/item/gun/ballistic/revolver/doublebarrel)) && (user.a_intent != INTENT_HARM))
-			I.forceMove(src)
-			shomtgun = I
-			to_chat(user, "<span class='notice'>You put \the [I] on [src]'s neck.</span>")
-			playsound(src, 'modular_skyrat/sound/effects/kidswithgunsbutnokidsandnoguns.ogg', 100, 0)
-			handle_fluff()
-		
-		else if(istype(I, /obj/item/reagent_containers/food/snacks))
-			var/obj/item/reagent_containers/food/snacks/junk = I
-			if(liked_food & junk.foodtype)
-				if(stat == DEAD)
-					visible_message("<span class='notice'><b>\The [src]</b> stands right back up after nibbling the [I]!</span>")
-					junk.bitecount++
-				else
-					visible_message("<span class='notice'><b>\The [src]</b> swallows the [I] whole!</span>")
-					qdel(junk)
-				playsound(src, 'sound/weapons/bite.ogg', 75)
-				revive(full_heal = 1)
+	if(istype(I, /obj/item/radio/headset) && user.a_intent != INTENT_HARM)
+		I.forceMove(src)
+		ears = I
+		to_chat(user, "<span class='notice'>You put \the [I] on [src].</span>")
+		handle_fluff()
+		return FALSE
+	
+	else if((istype(I, /obj/item/gun/ballistic/shotgun) || istype(I, /obj/item/gun/ballistic/revolver/doublebarrel)) && (user.a_intent != INTENT_HARM))
+		I.forceMove(src)
+		shomtgun = I
+		to_chat(user, "<span class='notice'>You put \the [I] on [src]'s neck.</span>")
+		playsound(src, 'modular_skyrat/sound/effects/kidswithgunsbutnokidsandnoguns.ogg', 100, 0)
+		handle_fluff()
+		return FALSE
+	
+	else if(istype(I, /obj/item/reagent_containers/food/snacks))
+		var/obj/item/reagent_containers/food/snacks/junk = I
+		if(liked_food & junk.foodtype)
+			if(stat == DEAD)
+				visible_message("<span class='notice'><b>\The [src]</b> stands right back up after nibbling the [I]!</span>")
+				junk.bitecount++
 			else
-				if(stat != DEAD)
-					if(user.dropItemToGround(junk))
-						junk.bitecount++
-						visible_message("<span class='warning'><b>\The [src]</b> spits the [junk]!</span>")
-						junk.throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), 21, 6, src)
-						say("Disgustimg.")
+				visible_message("<span class='notice'><b>\The [src]</b> swallows the [I] whole!</span>")
+				qdel(junk)
+			playsound(src, 'sound/weapons/bite.ogg', 75)
+			revive(full_heal = 1)
+		else
+			if(stat != DEAD)
+				if(user.dropItemToGround(junk))
+					junk.bitecount++
+					visible_message("<span class='warning'><b>\The [src]</b> spits the [junk]!</span>")
+					junk.throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), 21, 6, src)
+					say("Disgustimg.")
+		return FALSE
 
 /mob/living/simple_animal/pet/dog/cheems/blue
 	name = "anomalous cheems"
