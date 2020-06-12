@@ -47,4 +47,20 @@
 		if(L.getStaminaLoss() >= 60)
 			L.Sleeping(300)
 		else
+<<<<<<< HEAD
 			L.adjustStaminaLoss(25) 
+=======
+			L.adjustStaminaLoss(25)
+
+// .32 ACP (Improvised Pistol)
+
+/obj/item/projectile/bullet/c32acp
+	name = ".32 bullet"
+	damage = 13
+
+/obj/item/projectile/bullet/r32acp
+	name = ".32 rubber bullet"
+	damage = 3
+	eyeblur = 1
+	stamina = 20
+>>>>>>> 862ed61b86... [Ready] Improvised Weapons Update: Part 2 (#12386)
