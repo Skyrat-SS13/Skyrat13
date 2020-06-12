@@ -64,14 +64,17 @@
 		if(mining)
 			produce_points(0.20)
 			produce_heat()
+		return
 	if(env.temperature <= midtemp && env.temperature >= mintemp)
 		if(mining)
 			produce_points(1)
 			produce_heat()
+		return
 	if(env.temperature <= mintemp)
 		if(mining)
 			produce_points(3)
 			produce_heat()
+		return
 
 /obj/machinery/cryptominer/proc/produce_points(number)
 	playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
@@ -80,19 +83,7 @@
 		D.adjust_money(FLOOR(miningpoints * number,1))
 
 /obj/machinery/cryptominer/proc/produce_heat()
-	var/turf/T = get_turf(src)
-	if(!T)
-		return
-	var/datum/gas_mixture/env = T.return_air()
-	if(!env)
-		return
-	var/transfer_moles = 0.25 * env.total_moles()
-	var/datum/gas_mixture/removed = env.remove(transfer_moles)
-	if(!removed)
-		return
-	removed.temperature += 400
-	env.merge(removed)
-	air_update_turf()
+	atmos_spawn_air("co2=10;TEMP=2000")
 
 /obj/machinery/cryptominer/attack_hand(mob/living/user)
 	. = ..()
