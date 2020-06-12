@@ -27,6 +27,11 @@
 	//finally, shomtgun
 	var/obj/item/gun/shomtgun
 
+/mob/living/simple_animal/pet/dog/cheems/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
+	. = ..()
+	if(ears)
+		return ears.talk_into(src, message, MODE_DEPARTMENT)
+
 /mob/living/simple_animal/pet/dog/cheems/Initialize()
 	. = ..()
 	handle_fluff()
