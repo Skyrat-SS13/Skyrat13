@@ -172,7 +172,7 @@
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
+/*
 /datum/crafting_recipe/pocket_shotgun
 	name = "Pocket shotgun"
 	result = /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn/pocket
@@ -181,7 +181,7 @@
 	time = 50
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
+*/
 /datum/crafting_recipe/watcherproj
 	name = "Watcher Projector"
 	result = /obj/item/gun/energy/watcherprojector
