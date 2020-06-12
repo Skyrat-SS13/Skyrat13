@@ -22,6 +22,7 @@ GLOBAL_LIST_INIT(medical_positions, list(
 	"Virologist",
 	"Paramedic",
 	"Brig Physician",
+	"Psychologist",  //Skyrat change
 	"Chemist"))
 
 

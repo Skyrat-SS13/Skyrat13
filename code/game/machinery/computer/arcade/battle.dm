@@ -135,7 +135,10 @@
 				Reset()
 				obj_flags &= ~EMAGGED
 			else
-				prizevend(user)
+				// Skyrat change START
+				var/score = player_hp + player_mp + 5
+				prizevend(user, score)
+				// Skyrat change END
 			SSblackbox.record_feedback("nested tally", "arcade_results", 1, list("win", (obj_flags & EMAGGED ? "emagged":"normal")))
 
 

@@ -52,3 +52,8 @@
 /area/xenoarch/sec
 	name = "Xenoarchaeology Security"
 	icon_state = "xenosec"
+
+/area/medical/psych
+	name = "Psychology Office"
+	icon = 'modular_skyrat/icons/turf/areas.dmi'
+	icon_state = "psychoff"

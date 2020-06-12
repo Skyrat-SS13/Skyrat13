@@ -13,9 +13,13 @@
 /mob/living/proc/foot_is_free()
 	return TRUE
 
-///mob/living/carbon/human/has_mouth()
-//	var/datum/organ/external/head/head = get_organ("head")
-//	return head && !(head.status & ORGAN_DESTROYED)
+/mob/living/carbon/human/has_mouth()
+	var/obj/item/bodypart/head/headass
+	for(var/obj/item/bodypart/head/shoeonhead in bodyparts)
+		headass = shoeonhead
+	if(headass)
+		return TRUE
+	return FALSE
 
 /mob/living/mouth_is_free()
 	if(istype(src, /mob/living/carbon/human))

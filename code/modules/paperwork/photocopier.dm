@@ -28,7 +28,7 @@
 	var/greytoggle = "Greyscale"
 	var/mob/living/ass //i can't believe i didn't write a stupid-ass comment about this var when i first coded asscopy.
 	var/busy = FALSE
-
+/* // Skyrat edit -- moved to modular_skyrat because of the fax port -- BEGIN
 /obj/machinery/photocopier/ui_interact(mob/user)
 	. = ..()
 	var/dat = "Photocopier<BR><BR>"
@@ -320,7 +320,7 @@
 		if(AM.density)
 			return 1
 	return 0
-
+*/ // Skyrat edit -- moved to modular_skyrat because of the fax port -- END
 /obj/machinery/photocopier/proc/copier_empty()
 	if(copy || photocopy || check_ass())
 		return 0
@@ -334,6 +334,18 @@
 	name = "toner cartridge"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "tonercartridge"
-	grind_results = list(/datum/reagent/iodine = 40, /datum/reagent/iron = 10)
+	//grind_results = list(/datum/reagent/iodine = 40, /datum/reagent/iron = 10) // Skyrat change
 	var/charges = 5
 	var/max_charges = 5
+
+/obj/item/toner/large
+	name = "large toner cartridge"
+	grind_results = list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
+	charges = 15
+	max_charges = 15
+
+/obj/item/toner/extreme
+	name = "extremely large toner cartridge"
+	desc = "Why would ANYONE need THIS MUCH TONER?"
+	charges = 200
+	max_charges = 200

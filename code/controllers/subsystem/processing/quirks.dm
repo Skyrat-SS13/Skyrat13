@@ -14,10 +14,19 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	var/list/quirk_objects = list()	//A list of all quirk objects in the game, since some may process
 	var/list/quirk_blacklist = list() //A list a list of quirks that can not be used with each other. Format: list(quirk1,quirk2),list(quirk3,quirk4)
 
+	//SKYRAT CHANGE - Blood
+	var/list/all_bloodtypes = list()
+	//yes this is terrible but i want to make it automatic
+
 /datum/controller/subsystem/processing/quirks/Initialize(timeofday)
 	if(!quirks.len)
 		SetupQuirks()
-		quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic"),list("Ageusia","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Alcohol Intolerance"),list("Alcohol Intolerance","Drunken Resilience"))
+		quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic"),list("Ageusia","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Alcohol Intolerance"),list("Alcohol Intolerance","Drunken Resilience"),list("Speech impediment (r as l)","Speech impediment (l as w)","Speech impediment (r as w)", "Speech impediment (r and l as w)")) // Skyrat edit
+	//skyrat edit
+	if(!all_bloodtypes.len)
+		for(var/datum/species/S in subtypesof(/datum/species))
+			all_bloodtypes |= S.exotic_bloodtype
+	//
 	return ..()
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
@@ -48,6 +57,27 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		cli.prefs.save_character()
 	if (!silent && LAZYLEN(cut))
 		to_chat(to_chat_target || user, "<span class='boldwarning'>Some quirks have been cut from your character because of these quirks conflicting with your job assignment: [english_list(cut)].</span>")
+	//SKYRAT CHANGE - Blood
+	//You might be asking... "bobyot y u do dis in quirk soobsistem it make no sense"
+	//i just don't want to create a whole other subsystem, along with a new proc, for doing this one time stuff
+	if(cli.prefs.bloodtype)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(cli.prefs.bloodtype in H.dna.species.bloodtypes)
+				H.dna.blood_type = cli.prefs.bloodtype
+	//SKYRAT CHANGE - food preferences
+	//Yes, i am using the quirk subsystem to assign food preferences. Too bad!
+	var/mob/living/carbon/human/H = user
+	if(istype(H))
+		if(cli.prefs.foodlikes.len)
+			H.dna.species.liked_food = 0
+			for(var/V in cli.prefs.foodlikes)
+				H.dna.species.liked_food |= cli.prefs.foodlikes[V]
+		if(cli.prefs.fooddislikes.len)
+			H.dna.species.disliked_food = 0
+			for(var/V in cli.prefs.fooddislikes)
+				H.dna.species.disliked_food |= cli.prefs.fooddislikes[V]
+	//
 
 /datum/controller/subsystem/processing/quirks/proc/quirk_path_by_name(name)
 	return quirks[name]

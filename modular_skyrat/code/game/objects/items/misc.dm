@@ -3,15 +3,17 @@
 	name = "armored hazard vest"
 	desc = "A hazard vest with plasteel and metal plates taped on it. It offers minor protection against kinetic damage, but slows you down a significant bit."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	//if this takes too long to be merged and icon file conflicts appear...
+	//too bad! armor stays invisible.
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
 	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	icon_state = "makeshiftarmor"
 	item_state = "makeshiftarmor"
 	w_class = 3
 	blood_overlay_type = "armor"
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 5, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 35, "fire" = 20, "acid" = 30)
-	slowdown = 0.5 //not completely terrible but will not help you either
-	mutantrace_variation = STYLE_DIGITIGRADE
+	armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 35, "fire" = 20, "acid" = 30)
+	slowdown = 0.3 //not completely terrible but will not help you either
+	mutantrace_variation = STYLE_DIGITIGRADE | STYLE_NO_ANTHRO_ICON
 
 //trayshield
 /obj/item/shield/riot/trayshield

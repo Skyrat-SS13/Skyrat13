@@ -3,6 +3,12 @@
 #define ARCADE_WEIGHT_RARE 1
 #define ARCADE_RATIO_PLUSH 0.20 // average 1 out of 6 wins is a plush.
 
+// Skyrat Change BEGIN
+#define ARCADE_TICKET_DISPENSE_BEST rand(17-30)
+#define ARCADE_TICKET_DISPENSE_MED rand(11, 16)
+#define ARCADE_TICKET_DISPENSE_LOW rand(5,10)
+// Skyrat Change END
+
 /obj/machinery/computer/arcade
 	name = "random arcade"
 	desc = "random arcade machine"
@@ -85,6 +91,7 @@
 		var/list/gameodds = list(/obj/item/circuitboard/computer/arcade/battle = 33,
 								/obj/item/circuitboard/computer/arcade/orion_trail = 33,
 								/obj/item/circuitboard/computer/arcade/minesweeper = 33,
+								/obj/item/circuitboard/computer/arcade/tetris = 33, // Skyrat addition
 								/obj/item/circuitboard/computer/arcade/amputation = 2)
 		var/thegame = pickweight(gameodds)
 		var/obj/item/circuitboard/CB = new thegame()
@@ -96,6 +103,7 @@
 	prizes[/obj/item/toy/plush/random] = counterlist_sum(prizes) * ARCADE_RATIO_PLUSH
 	Reset()
 
+/* Moved to Modular Skyrat
 /obj/machinery/computer/arcade/proc/prizevend(mob/user, list/rarity_classes)
 	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "arcade", /datum/mood_event/arcade)
 
@@ -104,35 +112,32 @@
 		SSmedals.UnlockMedal(MEDAL_PULSE, usr.client)
 
 	if(!contents.len)
-		var/list/toy_raffle
-		if(rarity_classes)
-			for(var/A in prizes)
-				if(prizes[A] in rarity_classes)
-					LAZYSET(toy_raffle, A, prizes[A])
-		if(!toy_raffle)
-			toy_raffle = prizes
-		var/prizeselect = pickweight(toy_raffle)
-		new prizeselect(src)
-
-	var/atom/movable/prize = pick(contents)
-	visible_message("<span class='notice'>[src] dispenses [prize]!</span>", "<span class='notice'>You hear a chime and a clunk.</span>")
-
-	prize.forceMove(get_turf(src))
+		var/prize_amount
+		if(score)
+			prize_amount = score
+		else
+			prize_amount = rand(1, 10)
+		new prize(get_turf(src), prize_amount)
+	else
+		var/atom/movable/prize = pick(contents)
+		visible_message("<span class='notice'>[src] dispenses [prize]!</span>", "<span class='notice'>You hear a chime and a clunk.</span>")
+		prize.forceMove(get_turf(src))
+*/
 
 /obj/machinery/computer/arcade/emp_act(severity)
 	. = ..()
-
 	if(stat & (NOPOWER|BROKEN) || . & EMP_PROTECT_SELF)
 		return
 
-	var/empprize = null
 	var/num_of_prizes = 0
 	switch(severity)
 		if(1)
 			num_of_prizes = rand(1,4)
 		if(2)
 			num_of_prizes = rand(0,2)
+
+
 	for(var/i = num_of_prizes; i > 0; i--)
-		empprize = pickweight(prizes)
-		new empprize(loc)
+		prizevend() // Skyrat change
+
 	explosion(loc, -1, 0, 1+num_of_prizes, flame_range = 1+num_of_prizes)

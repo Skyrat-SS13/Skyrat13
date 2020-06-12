@@ -5056,7 +5056,7 @@
 /area/ruin/unpowered/ash_walkers)
 "AG" = (
 /obj/docking_port/stationary{
-	area_type = /area/lavaland/surface/outdoors;
+	area_type = /area/xenoarch/arch;
 	dir = 8;
 	dwidth = 3;
 	height = 7;
@@ -5402,6 +5402,14 @@
 /obj/item/pickaxe,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"CI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atm{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/gen)
 "CJ" = (
 /obj/structure/bookcase/random,
 /obj/machinery/light{
@@ -6201,6 +6209,18 @@
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/dark,
+/area/xenoarch/arch)
+"Gy" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "GB" = (
 /obj/structure/stone_tile/surrounding_tile{
@@ -7358,6 +7378,12 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"Mv" = (
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel/white,
+/area/xenoarch/arch)
 "My" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -8345,9 +8371,7 @@
 /obj/item/seeds/cotton{
 	yield = 5
 	},
-/obj/item/seeds/cotton{
-	yield = 5
-	},
+/obj/item/seeds/cotton/durathread,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "Rt" = (
@@ -21608,7 +21632,7 @@ Sz
 KE
 Cj
 BS
-KE
+Mv
 as
 OM
 BS
@@ -24168,7 +24192,7 @@ AU
 kC
 nW
 BS
-Ng
+Gy
 UN
 vg
 BS
@@ -31389,7 +31413,7 @@ oI
 LV
 oI
 oI
-oI
+CI
 oI
 my
 If

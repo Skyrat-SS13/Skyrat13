@@ -1,3 +1,14 @@
+/mob/dead/observer
+	var/datum/event_menu/event_menu
+
+/mob/dead/observer/proc/open_event_menu(var/icon)
+	set name = "Event Panel"
+	set desc = "Toggle your event participation interest, and change your preferences"
+	set category = "Ghost"
+	if(!event_menu)
+		event_menu = new(src, icon)
+	event_menu.ui_interact(src)
+
 /mob/dead/observer/proc/on_click_ctrl_shift(mob/user)
 	if(isobserver(user) && check_rights(R_SPAWN))
 		change_mob_type( /mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
@@ -20,15 +31,23 @@
 		if (character_option == "Cancel")
 			return
 		var/initial_outfits = input("Select outfit", "Quick Dress") as null|anything in outfits
+		if (!initial_outfits || initial_outfits == "" || initial_outfits == "Cancel")
+			return
 
 		if (initial_outfits == "Show All")
 			dresscode = client.robust_dress_shop()
 			if (!dresscode)
 				return
-		else if (initial_outfits == "")
-			return
 		else 
 			dresscode = outfits[initial_outfits] 
+
+		// We're spawning someone else
+		var/give_return
+		if (user != usr)
+			give_return = alert("Do you want to give them the power to return? Not recommended for non-admins.","Give power?","Yes","No", "Cancel")
+			if(give_return == "Cancel")
+				return
+
 
 		var/turf/current_turf = get_turf(src)
 		var/mob/living/carbon/human/spawned_player = new(src)
@@ -51,7 +70,8 @@
 		else
 			transfer_ckey(spawned_player)
 
-		spawned_player.mind.AddSpell(new /obj/effect/proc_holder/spell/self/return_back, FALSE)
+		if(give_return != "No")
+			spawned_player.mind.AddSpell(new /obj/effect/proc_holder/spell/self/return_back, FALSE)
 		
 		if(dresscode != "Naked")
 			spawned_player.equipOutfit(dresscode)

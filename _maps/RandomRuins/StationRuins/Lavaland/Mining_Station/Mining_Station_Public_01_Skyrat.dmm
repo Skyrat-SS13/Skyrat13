@@ -829,6 +829,9 @@
 /obj/effect/turf_decal/loading_area{
 	dir = 8
 	},
+/obj/machinery/atm{
+	pixel_y = 30
+	},
 /turf/open/floor/plasteel,
 /area/mine/production)
 "my" = (
@@ -1377,6 +1380,18 @@
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel,
 /area/mine/production)
+"sC" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "sE" = (
 /obj/structure/closet/crate,
 /obj/effect/turf_decal/tile/purple,
@@ -2200,6 +2215,12 @@
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
+"DM" = (
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "DN" = (
 /obj/machinery/computer/shuttle/mining/common{
 	dir = 4
@@ -3812,6 +3833,16 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
+"WQ" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/machinery/atm{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/mine/production)
 "WU" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -6070,7 +6101,7 @@ VN
 HY
 MF
 VN
-Ag
+DM
 JH
 cr
 VN
@@ -7545,7 +7576,7 @@ Ed
 eL
 PO
 Aj
-zN
+WQ
 Sq
 qH
 Aj
@@ -7876,7 +7907,7 @@ MD
 MD
 MD
 bg
-tq
+sC
 SY
 hK
 SY

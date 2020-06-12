@@ -4,7 +4,9 @@
 #define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
 #define SEND_TEXT(target, text) DIRECT_OUTPUT(target, text)
 #define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
-#define WRITE_LOG(log, text) rustg_log_write(log, text)
+//This is an external call, "true" and "false" are how rust parses out booleans
+#define WRITE_LOG(log, text) rustg_log_write(log, text, "true")
+#define WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
 
 //print a warning message to world.log
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
@@ -161,6 +163,9 @@
 /proc/log_subsystem(subsystem, text)
 	WRITE_LOG(GLOB.subsystem_log, "[subsystem]: [text]")
 
+/proc/log_click(atom/object, atom/location, control, params, client/C, event = "clicked", unexpected)
+	WRITE_LOG(GLOB.click_log, "[unexpected? "ERROR" :"CLICK"]: [C.ckey] - [event] : [istype(object)? "[object] ([COORD(object)])" : object] | [istype(location)? "[location] ([COORD(location)])" : location] | [control] | [params]")
+
 /* Log to both DD and the logfile. */
 /proc/log_world(text)
 #ifdef USE_CUSTOM_ERROR_HANDLER
@@ -190,7 +195,7 @@
 /proc/start_log(log)
 	WRITE_LOG(log, "Starting up round ID [GLOB.round_id].\n-------------------------")
 
-/* ui logging */ 
+/* ui logging */
 
 /proc/log_tgui(text)
 	WRITE_LOG(GLOB.tgui_log, text)
@@ -201,12 +206,13 @@
 
 
 /* Helper procs for building detailed log lines */
-/proc/key_name(whom, include_link = null, include_name = TRUE)
+/proc/key_name(whom, include_link = null, include_name = TRUE, ticket) // Skyrat change
 	var/mob/M
 	var/client/C
 	var/key
 	var/ckey
 	var/fallback_name
+	var/datum/admin_help/AH = ticket // Skyrat change
 
 	if(!whom)
 		return "*null*"
@@ -258,11 +264,11 @@
 	if(key)
 		if(C && C.holder && C.holder.fakekey && !include_name)
 			if(include_link)
-				. += "<a href='?priv_msg=[C.findStealthKey()]'>"
+				. += "<a href='?priv_msg=[C.findStealthKey()];ahelp_player=[REF(AH)]'>" // Skyrat change
 			. += "Administrator"
 		else
 			if(include_link)
-				. += "<a href='?priv_msg=[ckey]'>"
+				. += "<a href='?priv_msg=[ckey];ahelp_player=[REF(AH)]'>" // Skyrat change
 			. += key
 		if(!C)
 			. += "\[DC\]"
@@ -283,8 +289,8 @@
 
 	return .
 
-/proc/key_name_admin(whom, include_name = TRUE)
-	return key_name(whom, TRUE, include_name)
+/proc/key_name_admin(whom, include_name = TRUE, ticket) // Skyrat change
+	return key_name(whom, TRUE, include_name, ticket)
 
 /proc/loc_name(atom/A)
 	if(!istype(A))

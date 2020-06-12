@@ -164,16 +164,16 @@
 	process_flags = REAGENT_SYNTHETIC
 
 /datum/reagent/medicine/nanite_slurry/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
-	if(iscarbon(M))
+	var/mob/living/carbon/C = M
+	if(C)
 		if(!(method in list(INGEST, VAPOR, INJECT)))
-			M.adjustFireLoss(-reac_volume)
-			M.adjustBruteLoss(-reac_volume)
+			C.heal_bodypart_damage(reac_volume, reac_volume, stamina = 0, updating_health = TRUE, only_robotic = TRUE, only_organic = FALSE)
 			if(show_message)
-				to_chat(M, "<span class='notice'>You feel much better...</span>")
+				to_chat(C, "<span class='notice'>You feel much better...</span>")
 	..()
 
-/datum/reagent/medicine/nanite_slurry/on_mob_life(mob/living/carbon/M)
-	M.adjustFireLoss(-0.5*REM, 0)
-	M.adjustBruteLoss(-0.5*REM, 0)
+/datum/reagent/medicine/nanite_slurry/on_mob_life(mob/living/L)
+	var/mob/living/carbon/C = L
+	C.heal_bodypart_damage(0.5*REM, 0.5*REM, stamina = 0, updating_health = TRUE, only_robotic = TRUE, only_organic = FALSE)
 	..()
 	. = 1

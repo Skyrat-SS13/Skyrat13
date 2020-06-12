@@ -35,14 +35,14 @@
 		cell = new(src)
 
 /obj/item/gun/ballistic/automatic/railgun/attackby(obj/item/A, mob/living/user, params)
-	if (!chambered)
-		if (istype(A, /obj/item/stack/rods))
+	if(!chambered)
+		if(istype(A, /obj/item/stack/rods))
 			var/obj/item/stack/rods/R = A
-			if (R.use(1))
-				chambered = new /obj/item/ammo_casing/rod
+			if(R.use(1))
+				chambered = new /obj/item/ammo_casing/rod(src)
 				var/obj/item/projectile/rod/PR = chambered.BB
 
-				if (PR)
+				if(PR)
 					PR.range = PR.range * (cell.charge/1000 * 3)
 					PR.damage = PR.damage * (cell.charge/1000 * 3)
 					PR.charge = (cell.charge/1000 * 3)
@@ -58,13 +58,15 @@
 	return
 
 /obj/item/gun/ballistic/automatic/railgun/attack_self(mob/living/user)
-	user.visible_message("<span class='notice'>[user] removes the [chambered.BB] from the [src].</span>", \
-						"<span class='notice'>You remove the [chambered.BB] from the [src].</span>")
-	user.put_in_hands(new /obj/item/stack/rods)
-	chambered = null
-	playsound(user, insert_sound, 50, 1)
-	update_icon()
-	return
+	. = ..()
+	if(chambered)
+		if(chambered.BB)
+			user.visible_message("<span class='notice'>[user] removes the [chambered.BB] from the [src].</span>", \
+								"<span class='notice'>You remove the [chambered.BB] from the [src].</span>")
+			user.put_in_hands(new /obj/item/stack/rods)
+			chambered = null
+			playsound(user, insert_sound, 50, 1)
+			update_icon()
 
 /obj/item/gun/ballistic/automatic/railgun/examine(mob/user)
 	. = ..()

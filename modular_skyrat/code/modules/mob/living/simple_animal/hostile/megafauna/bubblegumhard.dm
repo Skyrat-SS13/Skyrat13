@@ -23,7 +23,8 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
 	name = "enraged bubblegum"
 	desc = "In what passes for a hierarchy among slaughter demons, this one is god."
-	attacktext = "brutally rends"
+	attack_verb_continuous = "brutally rends"
+	attack_verb_simple = "brutally rend"
 	speed = 5
 	move_to_delay = 5
 	retreat_distance = 5

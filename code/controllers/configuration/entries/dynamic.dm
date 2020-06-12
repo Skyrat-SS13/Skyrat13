@@ -4,6 +4,18 @@
 /datum/config_entry/number/added_threat
 	config_entry_value = 5
 	min_val = 0
+
+/datum/config_entry/number/traitor_scale_cost
+	config_entry_value = 10
+	min_val = 0
+
+/datum/config_entry/number/bro_scale_cost
+	config_entry_value = 10
+	min_val = 0
+
+/datum/config_entry/number/bloodsucker_scale_cost
+	config_entry_value = 10
+	min_val = 0
 // Skyrat change END
 
 /datum/config_entry/number/dynamic_high_pop_limit

@@ -28,3 +28,11 @@
 	name = "Skull Bandana"
 	description = "A fine black bandana with nanotech lining and a skull emblem."
 	path = /obj/item/clothing/mask/bandana/skull
+
+/datum/gear/cleargasmask
+	name = "gasmask, clear"
+	path = /obj/item/clothing/mask/gas/glass
+	category = SLOT_WEAR_MASK
+	cost = 3
+	restricted_roles = NOPRISON_ROLES
+	restricted_desc = "All, barring Prisoners"

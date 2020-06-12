@@ -250,6 +250,27 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_ooc)()
 /datum/verbs/menu/Settings/listen_ooc/Get_checked(client/C)
 	return C.prefs.chat_toggles & CHAT_OOC
 
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_looc)()
+	set name = "Show/Hide LOOC"
+	set category = "Preferences"
+	set desc = "Toggles seeing LocalOutOfCharacter chat"
+	usr.client.prefs.chat_toggles ^= CHAT_LOOC
+	usr.client.prefs.save_preferences()
+	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel.")
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Seeing LOOC", "[usr.client.prefs.chat_toggles & CHAT_LOOC ? "Enabled" : "Disabled"]"))
+/datum/verbs/menu/Settings/listen_ooc/Get_checked(client/C)
+	return C.prefs.chat_toggles & CHAT_LOOC
+
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_bank_card)()
+	set name = "Show/Hide Income Updates"
+	set category = "Preferences"
+	set desc = "Show or hide updates to your income"
+	usr.client.prefs.chat_toggles ^= CHAT_BANKCARD
+	usr.client.prefs.save_preferences()
+	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & CHAT_BANKCARD) ? "now" : "no longer"] be notified when you get paid.")
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Income Notifications", "[(usr.client.prefs.chat_toggles & CHAT_BANKCARD) ? "Enabled" : "Disabled"]"))
+/datum/verbs/menu/Settings/listen_bank_card/Get_checked(client/C)
+	return C.prefs.chat_toggles & CHAT_BANKCARD
 
 GLOBAL_LIST_INIT(ghost_forms, list("ghost","ghostking","ghostian2","skeleghost","ghost_red","ghost_black", \
 							"ghost_blue","ghost_yellow","ghost_green","ghost_pink", \
@@ -350,6 +371,16 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	if(isobserver(mob))
 		mob.hud_used.show_hud()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Ghost HUD", "[prefs.ghost_hud ? "Enabled" : "Disabled"]"))
+// SKYRAT EDIT: Credits
+/client/verb/toggle_show_credits()
+	set name = "Toggle Credits"
+	set category = "Preferences"
+	set desc = "Hide/Show Credits"
+
+	prefs.show_credits = !prefs.show_credits
+	to_chat(src, "Credits will now be [prefs.show_credits ? "visible" : "hidden"].")
+	prefs.save_preferences()
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Credits", "[prefs.show_credits ? "Enabled" : "Disabled"]"))
 
 /client/verb/toggle_inquisition() // warning: unexpected inquisition
 	set name = "Toggle Inquisitiveness"

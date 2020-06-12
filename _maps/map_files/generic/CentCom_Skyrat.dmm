@@ -10115,6 +10115,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"wW" = (
+/mob/living/carbon/monkey/coder,
+/turf/open/indestructible/airblock,
+/area/fabric_of_reality)
 "wX" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -13328,7 +13332,7 @@
 /turf/open/floor/engine/cult,
 /area/wizard_station)
 "ED" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/closed/indestructible{
 	icon = 'icons/turf/walls/wood_wall.dmi';
 	icon_state = "wood";
@@ -17403,10 +17407,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
-"Qm" = (
-/obj/singularity/wizard/mapped,
-/turf/open/indestructible/binary,
-/area/fabric_of_reality)
 "Qo" = (
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/evac)
@@ -17897,7 +17897,7 @@
 /turf/open/floor/wood,
 /area/syndicate_mothership)
 "Sj" = (
-/obj/machinery/vending/autodrobe/all_access{
+/obj/machinery/vending/autodrobe{
 	extended_inventory = 1
 	},
 /obj/machinery/light,
@@ -19211,6 +19211,10 @@
 	},
 /turf/open/floor/plating,
 /area/syndicate_mothership)
+"XZ" = (
+/mob/living/carbon/monkey/coder,
+/turf/open/indestructible/binary,
+/area/fabric_of_reality)
 "Ya" = (
 /obj/machinery/button/door{
 	id = "Ninja1";
@@ -31421,9 +31425,9 @@ To
 To
 To
 To
-MB
-MB
-MB
+XZ
+XZ
+XZ
 To
 To
 To
@@ -31678,9 +31682,9 @@ To
 To
 To
 To
-MB
-Qm
-MB
+XZ
+XZ
+XZ
 To
 To
 To
@@ -31935,9 +31939,9 @@ To
 MB
 MB
 MB
-MB
-To
-MB
+XZ
+wW
+XZ
 MB
 To
 To
@@ -33735,7 +33739,7 @@ To
 To
 To
 To
-To
+NF
 MB
 To
 To
@@ -59359,7 +59363,7 @@ iX
 iX
 jm
 jr
-iX
+iF
 jr
 jK
 iX

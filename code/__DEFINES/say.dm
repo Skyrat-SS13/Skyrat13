@@ -38,6 +38,11 @@
 #define MODE_ALIEN "alientalk"
 #define MODE_HOLOPAD "holopad"
 
+//skyrat change start
+#define MODE_TERROR_SPIDER "terrortalk"
+#define MODE_KEY_TERROR_SPIDER "t"
+//skyrat change stop
+
 #define MODE_CHANGELING "changeling"
 #define MODE_KEY_CHANGELING "g"
 #define MODE_TOKEN_CHANGELING ":g"

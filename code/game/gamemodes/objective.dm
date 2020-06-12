@@ -1152,7 +1152,7 @@ GLOBAL_LIST_EMPTY(possible_sabotages)
 	switch(owner.assigned_role)
 		if("Station Engineer", "Atmospheric Technician")
 			. += world.file2list("strings/flavor_objectives/traitor/engineering.txt")
-		if("Medical Doctor","Chemist","Virologist","Geneticist")
+		if("Medical Doctor","Chemist","Virologist","Geneticist", "Psychologist") // Skyrat change
 			. += world.file2list("strings/flavor_objectives/traitor/medical.txt")
 		if("Scientist","Roboticist","Geneticist")
 			. += world.file2list("strings/flavor_objectives/traitor/science.txt")

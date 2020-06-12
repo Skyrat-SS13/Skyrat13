@@ -21,6 +21,7 @@
 	coldmod = 6   // = 3x cold damage
 	heatmod = 0.5 // = 1/4x heat damage
 	burnmod = 0.5 // = 1/2x generic burn damage
+	languagewhitelist = list("Slime") //Skyrat change - species language whitelist
 	species_language_holder = /datum/language_holder/jelly
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
@@ -28,12 +29,14 @@
 		regenerate_limbs.Remove(C)
 	if(slime_change)	//CIT CHANGE
 		slime_change.Remove(C)	//CIT CHANGE
+	//C.remove_language(/datum/language/slime) SKYRAT CHANGE= We have an additional language option for this
 	C.faction -= "slime"
 	..()
 	C.faction -= "slime"
 
 /datum/species/jelly/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
+	//C.grant_language(/datum/language/slime) SKYRAT CHANGE= We have an additional language option for this
 	if(ishuman(C))
 		regenerate_limbs = new
 		regenerate_limbs.Grant(C)

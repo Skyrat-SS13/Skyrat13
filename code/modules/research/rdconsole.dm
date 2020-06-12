@@ -299,9 +299,9 @@ Nothing else in the console has ID requirements.
 			var/t = linked_lathe.check_mat(D, M)
 			temp_material += " | "
 			if (t < 1)
-				temp_material += "<span class='bad'>[all_materials[M] * coeff] [CallMaterialName(M)]</span>"
+				temp_material += "<span class='bad'>[MAT_COST_WITH_COEFF(all_materials[M],coeff)] [CallMaterialName(M)]</span>" //Skyrat Change. Materials OCD update.
 			else
-				temp_material += " [all_materials[M] * coeff] [CallMaterialName(M)]"
+				temp_material += " [MAT_COST_WITH_COEFF(all_materials[M],coeff)] [CallMaterialName(M)]" //Skyrat Change. Materials OCD update.
 			c = min(c,t)
 
 		var/clearance = !(linked_lathe.obj_flags & EMAGGED) && (linked_lathe.offstation_security_levels || is_station_level(linked_lathe.z))
@@ -363,9 +363,9 @@ Nothing else in the console has ID requirements.
 			var/t = linked_lathe.check_mat(D, M)
 			temp_material += " | "
 			if (t < 1)
-				temp_material += "<span class='bad'>[all_materials[M] * coeff] [CallMaterialName(M)]</span>"
+				temp_material += "<span class='bad'>[MAT_COST_WITH_COEFF(all_materials[M],coeff)] [CallMaterialName(M)]</span>" //Skyrat Change. Materials OCD update.
 			else
-				temp_material += " [all_materials[M] * coeff] [CallMaterialName(M)]"
+				temp_material += " [MAT_COST_WITH_COEFF(all_materials[M],coeff)] [CallMaterialName(M)]" //Skyrat Change. Materials OCD update.
 			c = min(c,t)
 
 		if (c >= 1)
@@ -465,9 +465,9 @@ Nothing else in the console has ID requirements.
 			temp_materials += " | "
 			if (!linked_imprinter.check_mat(D, M))
 				check_materials = FALSE
-				temp_materials += " <span class='bad'>[all_materials[M] * coeff] [CallMaterialName(M)]</span>"
+				temp_materials += " <span class='bad'>[MAT_COST_WITH_COEFF(all_materials[M],coeff)] [CallMaterialName(M)]</span>" //Skyrat Change. Materials OCD update.
 			else
-				temp_materials += " [all_materials[M] * coeff] [CallMaterialName(M)]"
+				temp_materials += " [MAT_COST_WITH_COEFF(all_materials[M],coeff)] [CallMaterialName(M)]" //Skyrat Change. Materials OCD update.
 		if (check_materials)
 			l += "<A href='?src=[REF(src)];imprint=[D.id]'>[D.name]</A>[temp_materials]"
 		else
@@ -495,9 +495,9 @@ Nothing else in the console has ID requirements.
 			temp_materials += " | "
 			if (!linked_imprinter.check_mat(D, M))
 				check_materials = FALSE
-				temp_materials += " <span class='bad'>[all_materials[M] * coeff] [CallMaterialName(M)]</span>"
+				temp_materials += " <span class='bad'>[MAT_COST_WITH_COEFF(all_materials[M],coeff)] [CallMaterialName(M)]</span>" //Skyrat Change. Materials OCD update.
 			else
-				temp_materials += " [all_materials[M] * coeff] [CallMaterialName(M)]"
+				temp_materials += " [MAT_COST_WITH_COEFF(all_materials[M],coeff)] [CallMaterialName(M)]" //Skyrat Change. Materials OCD update.
 		if (check_materials)
 			l += "<A href='?src=[REF(src)];imprint=[D.id]'>[D.name]</A>[temp_materials]"
 		else

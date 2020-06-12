@@ -162,7 +162,13 @@
 /obj/item/organ/genital/proc/generate_fluid(datum/reagents/R)
 	var/amount = clamp(fluid_rate * time_since_last_orgasm * fluid_mult,0,fluid_max_volume)
 	R.clear_reagents()
-	R.add_reagent(fluid_id,amount)
+	//skyrat edit - fix coom
+	if(fluid_id)
+		R.add_reagent(fluid_id,amount)
+	else if(linked_organ && linked_organ.fluid_id)
+		amount = clamp(linked_organ.fluid_rate * time_since_last_orgasm * linked_organ.fluid_mult,0,linked_organ.fluid_max_volume)
+		R.add_reagent(linked_organ.fluid_id, amount)
+	//
 	return TRUE
 
 /obj/item/organ/genital/proc/update_link()

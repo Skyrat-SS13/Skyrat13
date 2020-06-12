@@ -82,3 +82,59 @@
 				entry += " - <b><font color='red'>Antagonist</font></b>"
 	entry += " (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[C.mob]'>?</A>)"
 	return entry
+
+/client/verb/staffwho()
+	set category = "Admin"
+	set name = "Staffwho"
+
+	var/msg = "<b>Current Staff:</b>\n"
+	if(check_rights_for(src, R_ADMIN))
+		for(var/X in GLOB.admins)
+			var/client/C = X
+			if(!check_rights_for(C, R_ADMIN))
+				continue
+			msg += "\t[C] is a [C.holder.rank]"
+
+			if(C.holder.fakekey)
+				msg += " <i>(as [C.holder.fakekey])</i>"
+
+			if(isobserver(C.mob))
+				msg += " - Observing"
+			else if(isnewplayer(C.mob))
+				msg += " - Lobby"
+			else
+				msg += " - Playing"
+
+			if(C.is_afk())
+				msg += " (AFK)"
+			msg += "\n"
+	else
+		for(var/X in GLOB.admins)
+			var/client/C = X
+			if(!check_rights_for(C, R_ADMIN))
+				continue
+			if(C.is_afk())
+				continue //Don't show afk admins to adminwho
+			if(!C.holder.fakekey)
+				msg += "\t[C] is a [C.holder.rank]\n"
+
+	msg += "<b>Current Mentors:</b>\n"
+	for(var/X in GLOB.mentors)
+		var/client/C = X
+		if(!C)
+			GLOB.mentors -= C
+			continue // weird runtime that happens randomly
+		var/suffix = ""
+		if(holder)
+			if(isobserver(C.mob))
+				suffix += " - Observing"
+			else if(istype(C.mob,/mob/dead/new_player))
+				suffix += " - Lobby"
+			else
+				suffix += " - Playing"
+
+			if(C.is_afk())
+				suffix += " (AFK)"
+		msg += "\t[C][suffix]\n"
+	msg += "<span class='info'>Adminhelps are also sent to Discord. If no admins are available in game adminhelp anyways and an admin on Discord will see it and respond.</span>"
+	to_chat(src, msg)

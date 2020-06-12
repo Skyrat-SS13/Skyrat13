@@ -253,16 +253,16 @@ Key procs
 	blocked_languages = null
 
 /datum/language_holder/dwarf
-	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/dwarf = list(LANGUAGE_ATOM))
-	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/dwarf = list(LANGUAGE_ATOM))
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
+							//	/datum/language/dwarf = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
+							// /datum/language/dwarf = list(LANGUAGE_ATOM))
 
 /datum/language_holder/jelly
-	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/slime = list(LANGUAGE_ATOM))
-	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/slime = list(LANGUAGE_ATOM))
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
+							//	/datum/language/slime = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM))
+							// /datum/language/slime = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
 
 /datum/language_holder/lightbringer
 	understood_languages = list(/datum/language/slime = list(LANGUAGE_ATOM))
@@ -270,13 +270,17 @@ Key procs
 	blocked_languages = list(/datum/language/common = list(LANGUAGE_ATOM))
 
 /datum/language_holder/lizard
-	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/draconic = list(LANGUAGE_ATOM))
-	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/draconic = list(LANGUAGE_ATOM))
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
+							//	/datum/language/draconic = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM))
+						//	/datum/language/draconic = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
 
 /datum/language_holder/lizard/ash
 	selected_language = /datum/language/draconic
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM), //SKYRAT EDIT - additional languages
+								/datum/language/draconic = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+							/datum/language/draconic = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
 
 /datum/language_holder/monkey
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
@@ -284,10 +288,10 @@ Key procs
 	spoken_languages = list(/datum/language/monkey = list(LANGUAGE_ATOM))
 
 /datum/language_holder/mushroom
-	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/mushroom = list(LANGUAGE_ATOM))
-	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/mushroom = list(LANGUAGE_ATOM))
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
+							//	/datum/language/mushroom = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM))
+						//	/datum/language/mushroom = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
 
 /datum/language_holder/slime
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
@@ -300,10 +304,10 @@ Key procs
 	blocked_languages = list(/datum/language/common = list(LANGUAGE_ATOM))
 
 /datum/language_holder/sylvan
-	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/sylvan = list(LANGUAGE_ATOM))
-	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-							/datum/language/sylvan = list(LANGUAGE_ATOM))
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
+							//	/datum/language/sylvan = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM))
+						//	/datum/language/sylvan = list(LANGUAGE_ATOM)) //SKYRAT EDIT - additional languages
 
 
 /datum/language_holder/synthetic
@@ -311,10 +315,20 @@ Key procs
 								/datum/language/machine = list(LANGUAGE_ATOM),
 								/datum/language/draconic = list(LANGUAGE_ATOM),
 								/datum/language/slime = list(LANGUAGE_ATOM),
+								// SKYRAT EDIT - additional languages
+								/datum/language/solcommon = list(LANGUAGE_ATOM),
+								/datum/language/technorussian = list(LANGUAGE_ATOM),
+								/datum/language/neokanji = list(LANGUAGE_ATOM),
+								/datum/language/dunmeri = list(LANGUAGE_ATOM),
 								/datum/language/dwarf = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 							/datum/language/machine = list(LANGUAGE_ATOM),
 							/datum/language/draconic = list(LANGUAGE_ATOM),
+							// SKYRAT EDIT - additional languages
+							/datum/language/solcommon = list(LANGUAGE_ATOM),
+							/datum/language/technorussian = list(LANGUAGE_ATOM),
+							/datum/language/neokanji = list(LANGUAGE_ATOM),
+							/datum/language/dunmeri = list(LANGUAGE_ATOM),
 							/datum/language/slime = list(LANGUAGE_ATOM),
 							/datum/language/dwarf = list(LANGUAGE_ATOM))
 
