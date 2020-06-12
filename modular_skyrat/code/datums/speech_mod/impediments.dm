@@ -28,3 +28,11 @@
 	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "l", "w")
 	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "L", "W")
 
+/datum/speech_mod/impediment_insect
+	soundtext = "mispronouncing \"s\" as \"zzz\""
+
+/datum/speech_mod/impediment_cheems/handle_speech(datum/source, list/speech_args)
+	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "s", "zzz")
+	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "S", "ZZZ")
+	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "x", "kzzz")
+	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "X", "KZZZ")
