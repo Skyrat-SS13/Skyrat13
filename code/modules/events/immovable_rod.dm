@@ -57,6 +57,11 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 
 /obj/effect/immovablerod/New(atom/start, atom/end, aimed_at)
 	..()
+	//skyrat edit - makes all of this a proc instead for cheems stuff
+	rodify(start, end, aimed_at)
+	//
+//skyrat edit
+/obj/effect/immovablerod/proc/rodify(atom/start, atom/end, aimed_at)
 	SSaugury.register_doom(src, 2000)
 	z_original = z
 	destination = end
@@ -65,7 +70,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		notify_ghosts("\A [src] is inbound!",
 			enter_link="<a href=?src=[REF(src)];orbit=1>(Click to orbit)</a>",
 			source=src, action=NOTIFY_ORBIT)
-	GLOB.poi_list += src
+	GLOB.poi_list |= src
 
 	var/special_target_valid = FALSE
 	if(special_target)
@@ -76,6 +81,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		walk_towards(src, special_target, 1)
 	else if(end && end.z==z_original)
 		walk_towards(src, destination, 1)
+//
 
 /obj/effect/immovablerod/Topic(href, href_list)
 	if(href_list["orbit"])
@@ -139,6 +145,17 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		qdel(other)
 
 /obj/effect/immovablerod/proc/penetrate(mob/living/L)
+	//skyrat edit
+	if(istype(L, /mob/living/simple_animal/pet/dog/cheems))
+		L.visible_message("<span class='userdanger'>[L] <i>consumes</i> the immovable rod!</span>")
+		playsound(L, 'modular_skyrat/sound/roblox/chezburger.ogg', 100, 0)
+		new pick(subtypesof(/obj/item/assembly/signaler/anomaly))(get_turf(L))
+		var/mob/living/simple_animal/pet/dog/cheems/blue/god = new(get_turf(L))
+		god.dir = L.dir
+		god.vored = src
+		forceMove(god)
+		return FALSE
+	//
 	L.visible_message("<span class='danger'>[L] is penetrated by an immovable rod!</span>" , "<span class='userdanger'>The rod penetrates you!</span>" , "<span class ='danger'>You hear a CLANG!</span>")
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
