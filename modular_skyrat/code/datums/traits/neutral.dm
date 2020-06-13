@@ -72,7 +72,7 @@
 	value = 0
 	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
 
-/datum/quirk/speech_impediment_cheems/add()
+/datum/quirk/speech_impediment_nm/add()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(H)
 		H.enable_speech_mod(/datum/speech_mod/impediment_cheems)
