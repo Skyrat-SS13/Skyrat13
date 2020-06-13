@@ -80,7 +80,7 @@
 /datum/quirk/speech_impediment_nm/remove()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(H)
-		H.disable_speech_mod(/datum/speech_mod/impediment_cheems)
+		H.disable_speech_mod(/datum/speech_mod/impediment_nm)
 
 
 /datum/quirk/speech_impediment_rw
