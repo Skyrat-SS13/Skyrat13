@@ -1,0 +1,4 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - bugfix: "cryptominers can be researched again"
