@@ -25,10 +25,6 @@
 	else
 		icon_state = "on"
 
-/obj/machinery/cryptominer/Initialize()
-	. = ..()
-	START_PROCESSING(SSmachines,src)
-
 /obj/machinery/cryptominer/Destroy()
 	STOP_PROCESSING(SSmachines,src)
 	return ..()
@@ -57,8 +53,7 @@
 	if(env.temperature >= maxtemp)
 		if(mining)
 			playsound(loc, 'sound/machines/beep.ogg', 50, 1, -1)
-		mining = FALSE
-		update_icon()
+		set_mining(FALSE)
 		return
 	if(env.temperature <= maxtemp && env.temperature >= midtemp)
 		if(mining)
@@ -91,23 +86,23 @@
 		to_chat(user, "<span class='warning'>[src] has to be on to do this!</span>")
 		return FALSE
 	if(mining)
-		mining = FALSE
-		update_icon()
+		set_mining(FALSE)
 		visible_message("<span class='warning'>[src] slowly comes to a halt.</span>",
 						"<span class='warning'>You turn off [src].</span>",
 						runechat_popup = TRUE)
 		return
 	startmining(user)
 
-/obj/machinery/cryptominer/proc/startmining(mob/living/user)
-	if(!mining)
-		addtimer(CALLBACK(src, .proc/stopmining, user),miningtime)
-		mining = TRUE
-		update_icon()
-
-/obj/machinery/cryptominer/proc/stopmining(mob/living/user)
-	mining = FALSE
+/obj/machinery/cryptominer/proc/set_mining(new_value)
+	if(new_value == mining)
+		return //No changes
+	mining = new_value
+	if(mining)
+		START_PROCESSING(SSmachines, src)
+	else
+		STOP_PROCESSING(SSmachines, src)
 	update_icon()
+
 
 /obj/machinery/cryptominer/syndie
 	name = "syndicate cryptocurrency miner"
