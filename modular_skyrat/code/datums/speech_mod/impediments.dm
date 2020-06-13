@@ -31,6 +31,6 @@
 /datum/speech_mod/impediment_nm
 	soundtext = "mispronouncing \"n\" as \"m\""
 
-/datum/speech_mod/impediment_cheems/handle_speech(datum/source, list/speech_args)
+/datum/speech_mod/impediment_nm/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "n", "m")
 	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], "N", "M")
