@@ -66,7 +66,7 @@
 	if(H)
 		H.disable_speech_mod(/datum/speech_mod/impediment_lw)
 
-/datum/quirk/speech_impediment_cheems
+/datum/quirk/speech_impediment_nm
 	name = "Speech impediment (n as m)"
 	desc = "You mispronounce \"n\" as \"m\"."
 	value = 0
