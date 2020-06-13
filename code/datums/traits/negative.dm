@@ -244,6 +244,7 @@ GLOBAL_LIST_EMPTY(family_heirlooms)
 	mob_trait = TRAIT_PROSOPAGNOSIA
 	medical_record_text = "Patient suffers from prosopagnosia and cannot recognize faces."
 
+/* Skyrat change - we're using augments system now
 /datum/quirk/prosthetic_limb
 	name = "Prosthetic Limb"
 	desc = "An accident caused you to lose one of your limbs. Because of this, you now have a random prosthetic!"
@@ -279,6 +280,7 @@ GLOBAL_LIST_EMPTY(family_heirlooms)
 /datum/quirk/prosthetic_limb/post_add()
 	to_chat(quirk_holder, "<span class='boldannounce'>Your [slot_string] has been replaced with a surplus prosthetic. It is fragile and will easily come apart under duress. Additionally, \
 	you need to use a welding tool and cables to repair it, instead of bruise packs and ointment.</span>")
+*/
 
 /datum/quirk/insanity
 	name = "Reality Dissociation Syndrome"

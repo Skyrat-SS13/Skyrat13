@@ -30,7 +30,7 @@
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
 	// SKYRAT CHANGE START
 	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])
-	// SKYRAT CHANGE END
+	
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
 	nonconpref = sanitize_text(S["noncon_pref"], "Ask")
@@ -57,6 +57,31 @@
 	if(fooddislikes.len > maxdislikes)
 		fooddislikes.Cut(maxdislikes+1)
 
+	var/list/loaded_augments = SANITIZE_LIST(S["augments"])
+	augments = list()
+	//Validation, please dont scream at me
+	for(var/i in loaded_augments)
+		if(GLOB.aug_type_list[i])
+			augments[i] = list()
+
+			var/loaded_cat_type_list = loaded_augments[i]
+			for(var/b in loaded_cat_type_list)
+				if(GLOB.aug_type_list[i].cat_list[b])
+					var/aug_id = loaded_augments[i][b]
+					if(aug_id in GLOB.aug_type_list[i].cat_list[b].aug_list)
+						augments[i][b] = aug_id
+					else
+						augments[i][b] = "default"
+
+	for(var/i in GLOB.aug_type_list)
+		if(!(augments[i]))
+			augments[i] = list()
+
+		for(var/b in GLOB.aug_type_list[i].cat_list)
+			if(!(augments[i][b]))
+				augments[i][b] = "default"
+
+	validate_augments()
 	//Moves over the previous OOC notes to our ooc notes
 	if(length(features["ooc_notes"]) > length(skyrat_ooc_notes))
 		skyrat_ooc_notes = features["ooc_notes"]
@@ -105,4 +130,5 @@
 	WRITE_FILE(S["alt_titles_preferences"], alt_titles_preferences)
 	WRITE_FILE(S["foodlikes"], foodlikes)
 	WRITE_FILE(S["fooddislikes"], fooddislikes)
+	WRITE_FILE(S["augments"] , augments)
 	//END OF SKYRAT CHANGES

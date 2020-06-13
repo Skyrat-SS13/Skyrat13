@@ -77,6 +77,10 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 			H.dna.species.disliked_food = 0
 			for(var/V in cli.prefs.fooddislikes)
 				H.dna.species.disliked_food |= cli.prefs.fooddislikes[V]
+	//Hey augmentations are here too, they are related to quirks though
+	var/list/augments = ListOfPrefAugments(cli.prefs)
+	for(var/datum/augmentation/AUG in augments)
+		AUG.apply_to_mob(H)
 	//
 
 /datum/controller/subsystem/processing/quirks/proc/quirk_path_by_name(name)

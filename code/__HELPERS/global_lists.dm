@@ -89,6 +89,8 @@
 
 	init_subtypes(/datum/crafting_recipe, GLOB.crafting_recipes)
 
+	init_augments() //Skyrat change
+
 	INVOKE_ASYNC(GLOBAL_PROC, /proc/init_ref_coin_values) //so the current procedure doesn't sleep because of UNTIL()
 	INVOKE_ASYNC(GLOBAL_PROC, /proc/setupGenetics)
 

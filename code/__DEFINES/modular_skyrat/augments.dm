@@ -1,0 +1,1 @@
+GLOBAL_LIST_EMPTY(aug_type_list)

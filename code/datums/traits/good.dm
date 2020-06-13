@@ -178,6 +178,7 @@
 	lose_text = "<span class='danger'>You no longer feel HONGRY.</span>"
 	medical_record_text = "Patient demonstrates a disturbing capacity for eating."
 
+/*Skyrat change - we're using augment system now
 /datum/quirk/trandening
 	name = "High Luminosity Eyes"
 	desc = "When the next big fancy implant came out you had to buy one on impluse!"
@@ -190,6 +191,7 @@
 	var/obj/item/autosurgeon/gloweyes/gloweyes = new(get_turf(H))
 	H.equip_to_slot(gloweyes, SLOT_IN_BACKPACK)
 	H.regenerate_icons()
+*/
 
 /datum/quirk/bloodpressure
 	name = "Polycythemia vera"

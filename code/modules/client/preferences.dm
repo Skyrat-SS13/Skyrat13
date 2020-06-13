@@ -93,6 +93,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/event_participation = FALSE
 	var/event_prefs = ""
 	var/appear_in_round_end_report = TRUE //whether the player of the character is listed on the round-end report
+	var/list/augments = list() //Associative list of augment types, which are associative lists of augment catogeries, which are associative lists of augment ID's. Oh my god
+	var/aug_cat = ""
+	var/aug_type = ""
 	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
@@ -321,6 +324,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Character Appearance</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=6' [current_tab == 6 ? "class='linkOn'" : ""]>Augmentations</a>" //Skyrat change
 	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Loadout</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>Content Preferences</a>"
@@ -1268,6 +1272,74 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<a href ='?_src_=prefs;preference=keybindings_reset'>\[Reset to default\]</a>"
 			dat += "</body>"
 
+		//Skyrat changes - augmentations
+		if(6) // Augmentations
+			if(!SSquirks || !SSquirks.quirks.len)
+				to_chat(parent, "<span class='danger'>The quirk subsystem is still initializing! Try again in a minute.</span>")
+				return
+			dat += "<center><h2>Augmentations:</h2></center>"
+			dat += "<center><b>Remaining quirk points: [GetQuirkBalance()]</b></center>"
+			dat += "<table><tr>"
+			for(var/type_id in GLOB.aug_type_list)
+				var/datum/aug_type/AUG_TYPE = GLOB.aug_type_list[type_id]
+
+				dat += "<td valign='top' width='23%'>"
+				dat += "<h2>[AUG_TYPE.name]:</h2>"
+
+				for(var/cat_id in AUG_TYPE.cat_list)
+					var/datum/aug_category/AUG_CAT = AUG_TYPE.cat_list[cat_id]
+					var/datum/augmentation/AUG = GetAugment(type_id, cat_id, augments[type_id][cat_id])
+					var/link = "href='?_src_=prefs;switch_tab=aug_tab;aug_type=[AUG.type_id];aug_cat=[AUG.cat_id]'"
+					var/dis_name = AUG.name
+					var/dis_desc = AUG.desc
+					if(AUG.id == "default")
+						dis_name = "<font color=#454852>[dis_name]</font>"
+						dis_desc = "<font color=#454852>[dis_desc]</font>"
+
+					if(aug_cat == AUG.cat_id && aug_type == AUG.type_id)
+						link += "class='linkOn'"
+					dat += "<a [link]>[AUG_CAT.name]</a>: [dis_name]<br>"
+					dat += "<i>[dis_desc]</i><br>"
+					dat += "<br>"
+
+				dat += "</td>"
+
+			dat += "<td valign='top' width='31%'>"
+
+			if(aug_type != "")
+				var/datum/aug_category/augc = GLOB.aug_type_list[aug_type].cat_list[aug_cat]
+				var/list/li = augc.aug_list
+
+				dat += "<table width=100%; style='background-color:#13171C'>"
+				dat += "<center><h2>[augc.name]</h2></center>"
+				dat += "<tr style='vertical-align:top;'>"
+				dat += "<td width=20%><b>Name</b></td>"
+				dat += "<td width=10%><b>Cost</b></td>"
+				dat += "<td width=70%><b>Description</b></td>"
+				dat += "</tr>"
+
+				if(li)
+					var/datum/augmentation/CurAu = GetAugment(aug_type, aug_cat, augments[aug_type][aug_cat])
+
+					for(var/i in li)
+						var/datum/augmentation/Au = li[i]
+
+						var/aug_link = "class='linkOff'"
+						if (CurAu == Au)
+							aug_link = "class='linkOn'"
+						else if(can_get_augment(Au, CurAu.cost))
+							aug_link = "href='?_src_=prefs;augments=set;aug_type=[aug_type];aug_cat=[aug_cat];aug_id=[Au.id]'"
+
+						dat += "<tr>"
+						dat += "<td><b><a [aug_link]>[Au.name]</a></b></td>"
+						dat += "<td>[Au.cost]</td>"
+						dat += "<td><i>[Au.desc]</i></td>"
+						dat += "</tr>"
+				dat += "</table>"
+
+			dat += "</td>"
+			dat += "</tr></table>"
+
 
 	dat += "<hr><center>"
 
@@ -1571,6 +1643,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	for(var/V in all_quirks)
 		var/datum/quirk/T = SSquirks.quirks[V]
 		bal -= initial(T.value)
+	//Skyrat changes
+	for(var/datum/augmentation/AUG in ListOfPrefAugments(src))
+		bal -= AUG.cost
+	//End of skyrat changes
 	return bal
 
 /datum/preferences/proc/GetPositiveQuirkCount()
@@ -2086,6 +2162,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							features["mcolor2"] = pref_species.default_color
 						if(features["mcolor3"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
 							features["mcolor3"] = pref_species.default_color
+						validate_augments() //Skyrat change
 
 				if("custom_species")
 					var/new_species = reject_bad_name(input(user, "Choose your species subtype, if unique. This will show up on examinations and health scans. Do not abuse this:", "Character Preference", custom_species) as null|text)
@@ -3051,8 +3128,55 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					chosen_gear += G.type
 					gear_points -= initial(G.cost)
 
+	//SKYRAT CHANGES START
+	switch(href_list["switch_tab"])
+		if("aug_tab")
+			aug_cat = href_list["aug_cat"]
+			aug_type = href_list["aug_type"]
+
+	switch(href_list["augments"])
+		if("set")
+			var/aug_type = href_list["aug_type"]
+			var/aug_cat = href_list["aug_cat"]
+			var/aug_id = href_list["aug_id"]
+			var/datum/augmentation/CurAu = GetAugment(aug_type, aug_cat, augments[aug_type][aug_cat])
+			var/datum/augmentation/TargetAu = GetAugment(aug_type, aug_cat, aug_id)
+
+			if(CurAu == TargetAu)
+				return
+
+			if(!can_get_augment(TargetAu, CurAu.cost))
+				return
+
+			augments[aug_type][aug_cat] = aug_id
+	//END OF SKYRAT CHANGES
+
 	ShowChoices(user)
 	return 1
+
+//Skyrat changes
+/datum/preferences/proc/can_get_augment(datum/augmentation/TargetAu, leisure = 0)
+	if(!SSquirks || !SSquirks.quirks.len)
+		to_chat(parent, "<span class='danger'>The quirk subsystem is still initializing! Try again in a minute.</span>")
+		return FALSE
+	if(TargetAu.restricted_species && (pref_species.id in TargetAu.restricted_species))
+		return FALSE
+	if(TargetAu.ckey_whitelist && !(parent.key in TargetAu.ckey_whitelist) && !parent.holder)
+		return FALSE
+	if((TargetAu.cost - leisure) > GetQuirkBalance())
+		return FALSE
+	if((TargetAu.organic_compatible && pref_species.inherent_biotypes & MOB_ORGANIC) || (TargetAu.robotic_compatible && pref_species.inherent_biotypes & MOB_ROBOTIC))
+		return TRUE
+	return FALSE
+
+/datum/preferences/proc/validate_augments()
+	for(var/type_id in GLOB.aug_type_list)
+		var/datum/aug_type/AUG_TYPE = GLOB.aug_type_list[type_id]
+		for(var/cat_id in AUG_TYPE.cat_list)
+			var/datum/augmentation/AUG = GetAugment(type_id, cat_id, augments[type_id][cat_id])
+			if(!AUG.can_get_augment())
+				augments[type_id][cat_id] = "default"
+//End of skyrat changes
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1, roundstart_checks = TRUE)
 	if(be_random_name)
