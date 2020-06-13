@@ -2671,6 +2671,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/max = CONFIG_GET(number/body_size_max)
 					var/danger = CONFIG_GET(number/threshold_body_size_slowdown)
 					var/new_body_size = input(user, "Choose your desired sprite size: ([min*100]%-[max*100]%)\nWarning: This may make your character look distorted[danger > min ? "! Additionally, a proportional movement speed penalty will be applied to characters smaller than [danger*100]%." : "!"]", "Character Preference", features["body_size"]*100) as num|null
+					if (new_body_size)
 						new_body_size = clamp(new_body_size * 0.01, min, max)
 						var/dorfy
 						if(new_body_size < danger)
