@@ -91,7 +91,7 @@
 						"<span class='warning'>You turn off [src].</span>",
 						runechat_popup = TRUE)
 		return
-	startmining(user)
+	set_mining(TRUE)
 
 /obj/machinery/cryptominer/proc/set_mining(new_value)
 	if(new_value == mining)
