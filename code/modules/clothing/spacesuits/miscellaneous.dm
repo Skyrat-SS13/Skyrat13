@@ -470,8 +470,12 @@ Contains:
 	desc = "Voices echo from the hardsuit, driving the user insane. This one is pretty battle-worn, but still fearsome."
 	armor = list("melee" = 55, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 40, "bio" = 80, "rad" = 80, "fire" = 60, "acid" = 60)
 	slowdown = 0.8
+<<<<<<< HEAD
 	obj_flags = IMMUTABLE_SLOW //rest in peace rusty joints.
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/inquisitor/old
+=======
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/beserker/old
+>>>>>>> 37294fd4b7... Fixing wrong helmet type for old beserker hardsuit (#12503)
 	charges = 6
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/beserker/old
