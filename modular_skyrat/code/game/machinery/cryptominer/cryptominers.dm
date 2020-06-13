@@ -52,7 +52,7 @@
 		return
 	if(env.temperature >= maxtemp)
 		if(mining)
-			playsound(loc, 'sound/machines/beep.ogg', 50, 1, -1)
+			playsound(loc, 'sound/machines/beep.ogg', 50, TRUE, -1)
 		set_mining(FALSE)
 		return
 	if(env.temperature <= maxtemp && env.temperature >= midtemp)
@@ -72,7 +72,7 @@
 		return
 
 /obj/machinery/cryptominer/proc/produce_points(number)
-	playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
+	playsound(loc, 'sound/machines/ping.ogg', 50, TRUE, -1)
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
 		D.adjust_money(FLOOR(miningpoints * number,1))
