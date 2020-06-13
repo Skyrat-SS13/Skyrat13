@@ -402,6 +402,9 @@
 				setTimer(SSshuttle.emergencyDockTime)
 				send2irc("Server", "The Emergency Shuttle has docked with the station.")
 				priority_announce("The Emergency Shuttle has docked with the station. You have [timeLeft(600)] minutes to board the Emergency Shuttle.", null, "shuttledock", "Priority")
+				// SKYRAT EDIT - Announce Docking
+				world.TgsTargetedChatBroadcast("The Emergency Shuttle has docked with the station. Please get onboard the Emergency Shuttle to begin the relocation process.", FALSE)
+				// SKYRAT EDIT END
 				ShuttleDBStuff()
 
 
