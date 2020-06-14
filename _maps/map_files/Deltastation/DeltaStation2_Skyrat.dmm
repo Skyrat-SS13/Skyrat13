@@ -22351,6 +22351,9 @@
 	name = "Prison";
 	req_access_txt = "63"
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "bcM" = (
@@ -22369,6 +22372,9 @@
 	desc = "The red door means be scared that you're here. Unless you're the person in red.";
 	name = "Prison";
 	req_access_txt = "63"
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -24222,6 +24228,9 @@
 	name = "Brig";
 	req_access_txt = "63"
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bhb" = (
@@ -24241,6 +24250,9 @@
 /obj/machinery/door/airlock/security{
 	name = "Brig";
 	req_access_txt = "63"
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -35565,6 +35577,9 @@
 	req_access_txt = "63"
 	},
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "bEe" = (
@@ -76421,7 +76436,7 @@
 	},
 /obj/machinery/button/electrochromatic{
 	id = "cloning_windows";
-	name = "Window Privacy COntrol";
+	name = "Window Privacy Control";
 	pixel_x = -18;
 	pixel_y = 25;
 	req_one_access_txt = "5;68"
@@ -76477,14 +76492,14 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/button/electrochromatic{
 	id = "cloning_windows";
-	name = "Window Privacy COntrol";
+	name = "Window Privacy Control";
 	pixel_x = 15;
 	pixel_y = 25;
 	req_one_access_txt = "5;68"
 	},
-/obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "dns" = (
@@ -78707,7 +78722,7 @@
 	},
 /obj/machinery/button/electrochromatic{
 	id = "cloning_windows";
-	name = "Window Privacy COntrol";
+	name = "Window Privacy Control";
 	pixel_x = 26;
 	pixel_y = -26;
 	req_one_access_txt = "5;68"
