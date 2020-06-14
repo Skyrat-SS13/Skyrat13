@@ -58,7 +58,6 @@
 	/client/proc/revokebunkerbypass,
 	/client/proc/stop_sounds,
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
-	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/datum/admins/proc/open_borgopanel,
 	/client/proc/cmd_loud_admin_say
 	)
@@ -205,6 +204,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
 	/client/proc/toggleprayers,
 	/client/proc/toggleadminhelpsound,
+	/client/proc/hide_most_verbs,
 	/client/proc/togglegloballoocs 
 	)
 

@@ -108,6 +108,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/smite,
 	/client/proc/admin_away,
 	/client/proc/cmd_admin_toggle_fov,
+	/client/proc/everyone_random, //Skyrat change
 	/client/proc/roll_dices					//CIT CHANGE - Adds dice verb
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -121,7 +122,7 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 	/datum/admins/proc/end_round,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
-	/client/proc/everyone_random,
+//	/client/proc/everyone_random,	//Skyrat change
 	/datum/admins/proc/toggleAI,
 	/datum/admins/proc/toggleMulticam,
 	/datum/admins/proc/toggledynamicvote,
