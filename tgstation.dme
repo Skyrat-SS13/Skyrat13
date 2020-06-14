@@ -3521,6 +3521,7 @@
 #include "modular_skyrat\code\game\machinery\Sleeper.dm"
 #include "modular_skyrat\code\game\machinery\syndicatebeacon.dm"
 #include "modular_skyrat\code\game\machinery\syndicatebomb.dm"
+#include "modular_skyrat\code\game\machinery\wishgranter.dm"
 #include "modular_skyrat\code\game\machinery\computer\card.dm"
 #include "modular_skyrat\code\game\machinery\computer\crew.dm"
 #include "modular_skyrat\code\game\machinery\computer\arcade\arcade.dm"
