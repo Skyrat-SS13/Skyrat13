@@ -27,22 +27,24 @@
 
 	if (QDELETED(src))
 		return 0
+// skyrat
+	if(!IS_IN_STASIS(src))
 
-	if(.) //not dead
-		handle_active_genes()
+		if(.) //not dead
+			handle_active_genes()
 
-	if(stat != DEAD)
-		//heart attack stuff
-		handle_heart()
+		if(stat != DEAD)
+			//heart attack stuff
+			handle_heart()
 
-	if(stat != DEAD)
-		//Stuff jammed in your limbs hurts
-		handle_embedded_objects()
+		if(stat != DEAD)
+			//Stuff jammed in your limbs hurts
+			handle_embedded_objects()
 
+		dna.species.spec_life(src) // for mutantraces
+// skyrat
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
-
-	dna.species.spec_life(src) // for mutantraces
 
 	if(stat != DEAD)
 		return 1

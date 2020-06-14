@@ -7,35 +7,36 @@
 	if(damageoverlaytemp)
 		damageoverlaytemp = 0
 		update_damage_hud()
+// skyrat
+	if(!IS_IN_STASIS(src))
+		//Reagent processing needs to come before breathing, to prevent edge cases.
+		handle_organs()
 
-	//Reagent processing needs to come before breathing, to prevent edge cases.
-	handle_organs()
+		. = ..()
 
-	. = ..()
+		if (QDELETED(src))
+			return
 
-	if (QDELETED(src))
-		return
+		if(.) //not dead
+			handle_blood()
 
-	if(.) //not dead
-		handle_blood()
+		if(stat != DEAD)
+			var/bprv = handle_bodyparts()
+			if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
+				updatehealth()
+		update_stamina()
 
-	if(stat != DEAD)
-		var/bprv = handle_bodyparts()
-		if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
-			updatehealth()
-	update_stamina()
+		if(stat != DEAD)
+			handle_brain_damage()
 
-	if(stat != DEAD)
-		handle_brain_damage()
+		if(stat != DEAD)
+			handle_liver()
 
-	if(stat != DEAD)
-		handle_liver()
-
-	if(stat == DEAD)
-		stop_sound_channel(CHANNEL_HEARTBEAT)
-		handle_death()
-		rot()
-
+		if(stat == DEAD)
+			stop_sound_channel(CHANNEL_HEARTBEAT)
+			handle_death()
+			rot()
+// skyrat
 	//Updates the number of stored chemicals for powers
 	handle_changeling()
 

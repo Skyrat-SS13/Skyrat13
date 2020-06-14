@@ -8,9 +8,9 @@
 
 	if (notransform)
 		return
-
-	if(..())
-
+// skyrat
+	if(..() && !IS_IN_STASIS(src))
+// skyrat
 		if(!client)
 			if(stat == CONSCIOUS)
 				if(on_fire || buckled || restrained() || (!CHECK_MOBILITY(src, MOBILITY_STAND) && CHECK_MOBILITY(src, MOBILITY_MOVE))) //CIT CHANGE - makes it so monkeys attempt to resist if they're resting)
