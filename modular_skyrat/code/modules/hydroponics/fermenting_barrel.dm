@@ -11,9 +11,9 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/fermenting_barrel/Destroy()
-	. = ..()
-	for(var/mob/living/carbon/C in src.contents)
-		C.forceMove(loc)
+	for(var/atom/movable/AM in contents)
+		AM.forceMove(loc)
+	return ..()
 
 /obj/structure/fermenting_barrel/process()
 	for(var/mob/living/carbon/C in src.contents)
