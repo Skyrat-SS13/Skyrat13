@@ -123,12 +123,6 @@
 /obj/item/gun/ballistic/automatic/calculate_extra_inaccuracy(mob/living/user, bonus_spread, stamloss)
 	if(select == FULLAUTO)
 		return getinaccuracy(user, bonus_spread, stamloss)
-
-/obj/item/gun/ballistic/automatic/shoot_with_empty_chamber(mob/living/user)
-	if((select == FULLAUTO) && on_cooldown())
-		return FALSE
-	else
-		return ..()
 //
 
 /obj/item/gun/ballistic/automatic/c20r
