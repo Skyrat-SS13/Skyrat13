@@ -1,0 +1,5 @@
+author: "Owai-Seek"
+delete-after: True
+changes: 
+  - tweak: "Cheems now makes dog noises. Description updated."
+  - bugfix: "Cheems now shows up when dead."
