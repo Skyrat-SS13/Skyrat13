@@ -142,10 +142,6 @@
 	return TRUE
 
 /obj/item/gun/proc/shoot_with_empty_chamber(mob/living/user as mob|obj)
-	//skyrat edit
-	if(on_cooldown())
-		return
-	//
 	to_chat(user, "<span class='danger'>*click*</span>")
 	playsound(src, "gun_dry_fire", 30, 1)
 
