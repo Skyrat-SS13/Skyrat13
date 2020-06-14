@@ -77580,6 +77580,13 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"jCw" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet,
+/turf/open/floor/plating,
+/area/maintenance/department/science/xenobiology)
 "jGs" = (
 /obj/machinery/door/airlock/research/glass{
 	name = "Nanite Programming";
@@ -78033,6 +78040,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
+"lPE" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/science/xenobiology)
 "lQK" = (
 /obj/structure/fireplace,
 /turf/open/floor/carpet,
@@ -78249,10 +78262,7 @@
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "mKg" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/structure/disposaloutlet,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/airless,
 /area/maintenance/department/science/xenobiology)
 "mQd" = (
@@ -78269,8 +78279,10 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "mTH" = (
-/obj/structure/disposalpipe/segment,
-/turf/closed/wall/r_wall,
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
 /area/maintenance/department/science/xenobiology)
 "mUX" = (
 /turf/open/floor/wood{
@@ -78519,6 +78531,10 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"ofK" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall/r_wall,
+/area/maintenance/department/science/xenobiology)
 "ogz" = (
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel/cafeteria{
@@ -79012,6 +79028,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/cryopod)
+"qYu" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/science/xenobiology)
 "qZY" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin/bundlenatural{
@@ -79650,6 +79675,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"uPD" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/science/xenobiology)
 "uRM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -79931,6 +79962,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
 /area/security/detectives_office)
+"wuO" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/maintenance/department/science/xenobiology)
 "wxc" = (
 /obj/machinery/door/airlock/external{
 	name = "Atmospherics External Airlock";
@@ -80087,6 +80123,9 @@
 	dir = 4;
 	name = "Test Chamber Maintenance APC";
 	pixel_x = 26
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science/xenobiology)
@@ -111790,8 +111829,8 @@ aaf
 aaf
 aaa
 aaa
-aaa
-aaa
+lMJ
+lMJ
 aaa
 aaa
 aaa
@@ -112022,7 +112061,7 @@ dbw
 cRi
 cRi
 cRi
-cSd
+cRi
 cRi
 cRi
 cRi
@@ -112046,8 +112085,8 @@ aaa
 aaf
 aaa
 aaa
-aaa
-aaa
+lMJ
+lMJ
 aaa
 aaa
 aaa
@@ -112302,9 +112341,9 @@ dlV
 dlV
 dlV
 dlV
+dlV
+dlV
 lMJ
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -112558,10 +112597,10 @@ dde
 dde
 dde
 dde
-mTH
+dde
 mKg
-aaa
-aaa
+ofK
+jCw
 aaa
 aaa
 aaa
@@ -112816,8 +112855,8 @@ cRi
 cRi
 cRi
 cRi
-lMJ
-lMJ
+mTH
+wuO
 aaa
 aaa
 aaa
@@ -113073,11 +113112,11 @@ cSn
 whj
 eyY
 cRi
+uPD
+dlV
 lMJ
-aaa
-aaa
-aaa
-aaa
+lMJ
+lMJ
 aaa
 aaa
 aaa
@@ -113330,8 +113369,8 @@ cSn
 cSn
 cSn
 cRi
-lMJ
-aaa
+qYu
+wuO
 aaa
 aaa
 aaa
@@ -113587,10 +113626,10 @@ cTb
 cSV
 cSn
 cRi
+uPD
+dlV
 lMJ
 lMJ
-lMJ
-aaa
 aaa
 aaa
 aaa
@@ -113844,8 +113883,8 @@ cSn
 cSn
 ddc
 cRi
-lMJ
-aaa
+qYu
+wuO
 aaa
 aaa
 aaa
@@ -114101,12 +114140,12 @@ cSn
 wXp
 dgy
 cRi
+uPD
+dlV
 lMJ
-aaa
-aaa
-aaa
-aaa
-aaa
+lMJ
+lMJ
+lMJ
 aaa
 aaa
 aaa
@@ -114358,8 +114397,8 @@ cSn
 cSn
 ddd
 cRi
-lMJ
-aaa
+qYu
+wuO
 aaa
 aaa
 aaa
@@ -114589,7 +114628,7 @@ cIP
 cIZ
 cIZ
 dbV
-cSd
+cRi
 cRi
 cRi
 cRi
@@ -114615,9 +114654,9 @@ sqJ
 qvX
 iLR
 cRi
+uPD
+dlV
 lMJ
-lMJ
-aaa
 aaa
 aaa
 aaa
@@ -114846,7 +114885,7 @@ cIY
 cKH
 cIZ
 cNZ
-cSd
+cRi
 aaa
 aaa
 cRi
@@ -114872,8 +114911,8 @@ cRi
 cRi
 cRi
 cRi
-lMJ
-aaa
+qYu
+wuO
 aaa
 aaa
 aaa
@@ -115103,7 +115142,7 @@ cIZ
 cIZ
 cNi
 dbW
-cSd
+cRi
 aaa
 aaa
 cRi
@@ -115127,10 +115166,10 @@ ivq
 ivq
 ivq
 xol
-diP
+ivq
+ivq
+lPE
 dlV
-lMJ
-aaa
 aaa
 aaa
 aaa
@@ -115360,7 +115399,7 @@ cJH
 cJH
 cNo
 cMq
-cSd
+cRi
 aaa
 aaa
 cRi
@@ -115386,9 +115425,9 @@ dlV
 dlV
 dlV
 dlV
+dlV
+dlV
 lMJ
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -115644,9 +115683,9 @@ aaf
 aaf
 aaf
 aaa
-aaa
-aaa
-aaa
+lMJ
+lMJ
+lMJ
 aaa
 aaa
 aaa
@@ -115903,7 +115942,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+lMJ
 aaa
 aaa
 aaa
