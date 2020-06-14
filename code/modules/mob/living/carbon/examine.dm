@@ -90,7 +90,7 @@
 		if(digitalcamo)
 			. += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly unsimian manner."
 
-	if(combat_flags & COMBAT_FLAG_COMBAT_ACTIVE)
+	if(SEND_SIGNAL(src, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
 		. += "[t_He] [t_is] visibly tense[CHECK_MOBILITY(src, MOBILITY_STAND) ? "." : ", and [t_is] standing in combative stance."]"
 
 	var/trait_exam = common_trait_examine()
@@ -112,11 +112,5 @@
 				. += "[t_He] look[p_s()] very happy."
 			if(MOOD_LEVEL_HAPPY4 to INFINITY)
 				. += "[t_He] look[p_s()] ecstatic."
-	//skyrat change - ugliness
-	if(HAS_TRAIT(src, TRAIT_UGLY) && !src.is_mouth_covered())
-		. += "<span class='danger'>[t_He] look[p_s()] absolutely hideous.</span>"
-	else if(HAS_TRAIT(src, TRAIT_BEAUTY) && !src.is_mouth_covered())
-		. += "<span class='nicegreen'>[t_He] look[p_s()] stunningly beautiful.</span>"
-	//
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 	. += "*---------*</span>"

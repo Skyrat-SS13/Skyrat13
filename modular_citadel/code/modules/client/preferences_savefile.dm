@@ -62,17 +62,6 @@
 		skyrat_ooc_notes = features["ooc_notes"]
 		features["ooc_notes"] = ""
 	//END OF SKYRAT CHANGES
-	//gear loadout
-	var/text_to_load
-	S["loadout"] >> text_to_load
-	var/list/saved_loadout_paths = splittext(text_to_load, "|")
-	LAZYCLEARLIST(chosen_gear)
-	gear_points = initial(gear_points)
-	for(var/i in saved_loadout_paths)
-		var/datum/gear/path = text2path(i)
-		if(path)
-			LAZYADD(chosen_gear, path)
-			gear_points -= initial(path.cost)
 
 /datum/preferences/proc/cit_character_pref_save(savefile/S)
 	//ipcs
@@ -94,6 +83,8 @@
 	WRITE_FILE(S["feature_xeno_head"], features["xenohead"])
 	//flavor text
 	WRITE_FILE(S["feature_flavor_text"], features["flavor_text"])
+	WRITE_FILE(S["silicon_feature_flavor_text"], features["silicon_flavor_text"])
+	
 	//SKYRAT CHANGES
 	WRITE_FILE(S["feature_ipc_chassis"], features["ipc_chassis"])
 	WRITE_FILE(S["skyrat_ooc_notes"], skyrat_ooc_notes)
@@ -111,15 +102,7 @@
 	WRITE_FILE(S["exploitable_info"], exploitable_info)
 	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
 	WRITE_FILE(S["personal_chat_color"], personal_chat_color)
-
 	WRITE_FILE(S["alt_titles_preferences"], alt_titles_preferences)
 	WRITE_FILE(S["foodlikes"], foodlikes)
 	WRITE_FILE(S["fooddislikes"], fooddislikes)
 	//END OF SKYRAT CHANGES
-	//gear loadout
-	if(islist(chosen_gear))
-		if(chosen_gear.len)
-			var/text_to_save = chosen_gear.Join("|")
-			S["loadout"] << text_to_save
-		else
-			S["loadout"] << "" //empty string to reset the value

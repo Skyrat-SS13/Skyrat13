@@ -189,7 +189,7 @@
 	display_report(popcount)
 
 	CHECK_TICK
-
+	/* Skyrat change, removed.
 	// Add AntagHUD to everyone, see who was really evil the whole time!
 	for(var/datum/atom_hud/antag/H in GLOB.huds)
 		for(var/m in GLOB.player_list)
@@ -197,7 +197,7 @@
 			H.add_hud_to(M)
 
 	CHECK_TICK
-
+	*/
 	//Set news report and mode result
 	mode.set_round_result()
 
@@ -490,6 +490,10 @@
 			currrent_category = A.roundend_category
 			previous_category = A
 		result += A.roundend_report()
+//SKYRAT CHANGES BEGIN
+		for(var/count in 1 to LAZYLEN(A.owner.ambitions))
+			result += "<br><B>Ambition #[count]</B>: [A.owner.ambitions[count]]"
+//SKYRAT CHANGES END
 		result += "<br><br>"
 		CHECK_TICK
 

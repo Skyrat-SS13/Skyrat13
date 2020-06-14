@@ -234,7 +234,10 @@
 				SSresearch.science_tech.remove_point_list(list(TECHWEB_POINT_TYPE_GENERIC = points_lost))
 			if("Cargo")
 				say("To solve the resulting bureaucratic error, [points_lost] cargo points have been deducted from the balance.")
-				SSshuttle.points -= points_lost
+				var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+				if(D)
+					D.adjust_money(-points_lost)
+		// me fail arithmetic, me brian hurt
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
 		if(difficulty == "Easy") // me fail arithmetic, me brian hurt
 			to_chat(user,"<span class='warning'>You feel lightheaded after failing such an easy question...</span>")
@@ -249,8 +252,10 @@
 			SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = points_awarded))
 		if("Cargo")
 			say("Correct data received. Updating cargo manifests...")
-			say("Completed. [points_awarded] cargo credits have been added to station balance.")
-			SSshuttle.points += points_awarded
+			say("Completed. [points_awarded] cargo points have been added to station balance.")
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(D)
+				D.adjust_money(points_awarded)
 	playsound(src, 'sound/machines/chime.ogg', 30, 1)
 
 /obj/item/computermath/default

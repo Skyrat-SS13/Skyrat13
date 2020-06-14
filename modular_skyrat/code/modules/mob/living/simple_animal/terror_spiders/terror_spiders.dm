@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	name = "terror spider"
 	desc = "The generic parent of all other terror spider types. If you see this in-game, it is a bug."
 	faction = list(ROLE_TERROR_SPIDER)
-
+	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	// Icons
 	icon = 'modular_skyrat/icons/mob/terrorspider.dmi'
 	icon_state = "terror_red"

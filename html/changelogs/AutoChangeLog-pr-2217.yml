@@ -1,0 +1,4 @@
+author: "Azarak"
+delete-after: True
+changes: 
+  - balance: "Synthlizards and IPC no longer have a cap on their limb damage for purposes of repairing it with welder /cable"
