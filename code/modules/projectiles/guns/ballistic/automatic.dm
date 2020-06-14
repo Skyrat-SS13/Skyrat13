@@ -4,7 +4,7 @@
 	//woops skyrat edit
 	canMouseDown = TRUE
 	var/select = SEMIAUTO
-	var/can_fullauto = FALSE
+	var/can_fullauto = TRUE
 	//
 	var/automatic_burst_overlay = TRUE
 	can_suppress = TRUE
