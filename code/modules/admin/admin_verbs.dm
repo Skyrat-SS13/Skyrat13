@@ -16,6 +16,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	)*/
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
+/* Skyrat change, this list was already redundant, reee
 /world/proc/AVerbsAdmin()
 	return list(
 	/client/proc/invisimin,				/*allows our mob to go invisible/visible*/
@@ -80,10 +81,12 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/datum/admins/proc/open_borgopanel
 	)
+*/
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/DB_ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
 GLOBAL_LIST_INIT(admin_verbs_sounds, list(/client/proc/play_local_sound, /client/proc/play_sound, /client/proc/manual_play_web_sound, /client/proc/set_round_end_sound))
 GLOBAL_PROTECT(admin_verbs_sounds)
+/* Skyrat change, lists gone modular
 GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_gib_self,
@@ -110,10 +113,12 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/cmd_admin_toggle_fov,
 	/client/proc/roll_dices					//CIT CHANGE - Adds dice verb
 	))
+*/
 GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character))
 GLOBAL_PROTECT(admin_verbs_spawn)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
+/* Skyrat change, we wooo modulaaar
 /world/proc/AVerbsServer()
 	return list(
 	/datum/admins/proc/startnow,
@@ -132,6 +137,7 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 	/client/proc/adminchangemap,
 	/client/proc/toggle_hub
 	)
+*/
 GLOBAL_PROTECT(admin_verbs_server)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
 /world/proc/AVerbsDebug()
