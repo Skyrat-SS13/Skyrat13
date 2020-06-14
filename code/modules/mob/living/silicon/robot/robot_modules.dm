@@ -370,6 +370,7 @@
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_medical"),
 		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_med"),
 		"Qualified Doctor" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "qualified_doctor")
+		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_med")
 		)
 		var/list/L = list("Medihound" = "medihound", "Medihound Dark" = "medihounddark", "Vale" = "valemed")
 		for(var/a in L)
@@ -385,6 +386,8 @@
 	switch(med_borg_icon)
 		if("Default")
 			cyborg_base_icon = "medical"
+		if("Zoomba")
+			cyborg_base_icon = "zoomba_med"
 		if("Droid")
 			cyborg_base_icon = "medical"
 			cyborg_icon_override = 'modular_citadel/icons/mob/robots.dmi'
@@ -503,6 +506,7 @@
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyeng"), //Skyrat change
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_eng"),
 		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_eng")
+		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_engi")
 		)
 		var/list/L = list("Pup Dozer" = "pupdozer", "Vale" = "valeeng")
 		for(var/a in L)
@@ -518,6 +522,8 @@
 	switch(engi_borg_icon)
 		if("Default")
 			cyborg_base_icon = "engineer"
+		if("Zoomba")
+			cyborg_base_icon = "zoomba_engi"
 		if("Default - Treads")
 			cyborg_base_icon = "engi-tread"
 			special_light_key = "engineer"
@@ -612,6 +618,7 @@
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysecurity"), //Skyrat change
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_security"),
 		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_security")
+		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_sec")
 		)
 		var/list/L = list("K9" = "k9", "Vale" = "valesec", "K9 Dark" = "k9dark")
 		for(var/a in L)
@@ -627,6 +634,8 @@
 	switch(sec_borg_icon)
 		if("Default")
 			cyborg_base_icon = "sec"
+		if("Zoomba")
+			cyborg_base_icon = "zoomba_sec"
 		if("Default - Treads")
 			cyborg_base_icon = "sec-tread"
 			special_light_key = "sec"
@@ -891,7 +900,8 @@
 		"(Janitor) Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyjanitor"), //Skyrat change
 		"(Janitor) Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_janitor"),
 		"(Janitor) Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_janitor"),
-
+		"(Janitor) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyjan"),
+		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_jani")
 		)
 		var/list/L = list("(Service) DarkK9" = "k50", "(Service) Vale" = "valeserv", "(Service) ValeDark" = "valeservdark",
 						"(Janitor) Scrubpuppy" = "scrubpup")
@@ -906,6 +916,8 @@
 		service_icons = sortList(service_icons)
 	var/service_robot_icon = show_radial_menu(R, R , service_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 	switch(service_robot_icon)
+		if("Zoomba")
+			cyborg_base_icon = "zoomba_jani"
 		if("(Service) Waitress")
 			cyborg_base_icon = "service_f"
 			special_light_key = "service"
@@ -1031,6 +1043,7 @@
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyminer"), //Skyrat change
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_miner"),
 		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_miner")
+		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_miner")
 		)
 		var/list/L = list("Blade" = "blade", "Vale" = "valemine")
 		for(var/a in L)
@@ -1083,6 +1096,8 @@
 		if("Miss m")
 			cyborg_base_icon = "missm_miner"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("Zoomba")
+			cyborg_base_icon = "zoomba_miner"
 		else
 			return FALSE
 	return ..()
