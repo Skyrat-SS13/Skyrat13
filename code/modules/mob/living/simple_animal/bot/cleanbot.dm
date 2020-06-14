@@ -176,11 +176,7 @@
 			window_name = "Automatic Station Cleaner v2.1 BETA" //New!
 			qdel(W)
 		if(!open)
-<<<<<<< HEAD
-			to_chat(user, "<span class='notice'>The [src] access pannel is not open!</span>")
-=======
 			to_chat(user, "<span class='notice'>The [src] access panel is not open!</span>")
->>>>>>> 894e6c7459... Merge pull request #12502 from kevinz000/shaps_is_once_again_based
 			return
 		if(!bot_core.allowed(user))
 			to_chat(user, "<span class='notice'>The [src] access panel locked off to you!</span>")
