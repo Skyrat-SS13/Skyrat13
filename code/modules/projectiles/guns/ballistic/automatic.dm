@@ -5,6 +5,7 @@
 	canMouseDown = TRUE
 	var/select = SEMIAUTO
 	var/can_fullauto = TRUE
+	var/done_empty = 0
 	//
 	var/automatic_burst_overlay = TRUE
 	can_suppress = TRUE
@@ -123,6 +124,15 @@
 /obj/item/gun/ballistic/automatic/calculate_extra_inaccuracy(mob/living/user, bonus_spread, stamloss)
 	if(select == FULLAUTO)
 		return getinaccuracy(user, bonus_spread, stamloss)
+
+/obj/item/gun/ballistic/automatic/shoot_with_empty_chamber(mob/living/user)
+	if(done_empty >= world.time)
+		return FALSE
+	else
+		done_empty = world.time + 2 SECONDS
+		return ..()
+
+/obj/item/gun/ballistic/automatic/
 //
 
 /obj/item/gun/ballistic/automatic/c20r
