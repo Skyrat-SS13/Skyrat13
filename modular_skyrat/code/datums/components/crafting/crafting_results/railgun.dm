@@ -35,8 +35,9 @@
 		cell = new(src)
 
 /obj/item/gun/ballistic/automatic/railgun/attackby(obj/item/A, mob/living/user, params)
-	if(!chambered)
-		if(istype(A, /obj/item/stack/rods))
+	. = ..()
+	if(istype(A, /obj/item/stack/rods))
+		if(!chambered)
 			var/obj/item/stack/rods/R = A
 			if(R.use(1))
 				chambered = new /obj/item/ammo_casing/rod(src)
@@ -51,22 +52,22 @@
 
 				user.visible_message("<span class='notice'>[user] carefully places the [chambered.BB] into the [src].</span>", \
                                     "<span class='notice'>You carefully place the [chambered.BB] into the [src].</span>")
-	else
-		to_chat(user, "<span class='warning'>There's already a [chambered.BB] loaded!<span>")
+		else
+			to_chat(user, "<span class='warning'>There's already \a [chambered.BB] loaded!<span>")
+		return FALSE
 
 	update_icon()
 	return
 
 /obj/item/gun/ballistic/automatic/railgun/attack_self(mob/living/user)
-	. = ..()
 	if(chambered)
-		if(chambered.BB)
-			user.visible_message("<span class='notice'>[user] removes the [chambered.BB] from the [src].</span>", \
-								"<span class='notice'>You remove the [chambered.BB] from the [src].</span>")
-			user.put_in_hands(new /obj/item/stack/rods)
-			chambered = null
-			playsound(user, insert_sound, 50, 1)
-			update_icon()
+		user.visible_message("<span class='notice'>[user] removes the [chambered.BB] from the [src].</span>", \
+							"<span class='notice'>You remove the [chambered.BB] from the [src].</span>")
+		user.put_in_hands(new /obj/item/stack/rods(get_turf(user)))
+		qdel(chambered)
+		chambered = null
+		playsound(user, insert_sound, 50, 1)
+		update_icon()
 
 /obj/item/gun/ballistic/automatic/railgun/examine(mob/user)
 	. = ..()

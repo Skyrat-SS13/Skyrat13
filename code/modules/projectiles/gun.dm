@@ -281,13 +281,15 @@
 		user.update_inv_hands()
 		SEND_SIGNAL(user, COMSIG_LIVING_GUN_PROCESS_FIRE, target, params, zone_override, bonus_spread, stam_cost)
 	//skyrat edit
-	if(iscarbon(user) && explodes_on_dual)
+	if(explodes_on_dual && iscarbon(user))
 		var/mob/living/carbon/C = user
 		var/obj/item/gun = C.get_inactive_held_item()
-		if(gun && istype(gun) && (user.a_intent == INTENT_HARM))
-			to_chat(user, "<span class='userdanger'>\The [src] blows up in your face!</span>")
-			C.take_bodypart_damage(0,20)
-			C.DefaultCombatKnockdown(40, TRUE)
+		if(istype(gun) && (user.a_intent == INTENT_HARM))
+			to_chat(user, "<span class='userdanger'>\The [src]'s recoil wrecks your arm!</span>")
+			var/obj/item/bodypart/BP = C.hand_bodyparts[C.active_hand_index]
+			if(istype(BP))
+				BP.receive_damage(BP.max_damage)
+			C.DefaultCombatKnockdown(120, TRUE)
 			C.drop_all_held_items()
 			return FALSE
 	//

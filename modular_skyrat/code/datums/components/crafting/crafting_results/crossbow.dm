@@ -37,12 +37,12 @@
 
 					playsound(user, insert_sound, 50, 1)
 
-					user.visible_message("<span class='notice'>[user] carefully places the [chambered.BB] into the [src].</span>", \
-                                         "<span class='notice'>You carefully place the [chambered.BB] into the [src].</span>")
+					user.visible_message("<span class='notice'>[user] carefully places \the [chambered] into the [src].</span>", \
+                                         "<span class='notice'>You carefully place \the [chambered] into the [src].</span>")
 		else
 			to_chat(user, "<span class='warning'>You need to draw the bow string before loading a bolt!</span>")
 	else
-		to_chat(user, "<span class='warning'>There's already a [chambered.BB] loaded!<span>")
+		to_chat(user, "<span class='warning'>There's already a [chambered] loaded!<span>")
 
 	update_icon()
 	return
@@ -91,7 +91,8 @@
 	else
 		user.visible_message("<span class='notice'>[user] removes the [chambered.BB] from the [src].</span>", \
 							"<span class='notice'>You remove the [chambered.BB] from the [src].</span>")
-		user.put_in_hands(new /obj/item/stack/rods)
+		user.put_in_hands(new /obj/item/stack/rods(get_turf(user)))
+		qdel(chambered)
 		chambered = null
 		playsound(user, insert_sound, 50, 1)
 	update_icon()
@@ -111,8 +112,8 @@
 		bowstring = bowstring + "not drawn"
 	. += "[bowstring][charge > 2 ? "!" : "."]"
 
-	if (chambered?.BB)
-		. += "A [chambered.BB] is loaded."
+	if (chambered)
+		. += "\A [chambered.BB] is loaded."
 
 /obj/item/gun/ballistic/crossbow/update_icon()
 	..()
