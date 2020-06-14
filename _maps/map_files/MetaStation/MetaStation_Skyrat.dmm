@@ -55980,9 +55980,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "clh" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -55996,6 +55993,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "cli" = (
@@ -56979,14 +56977,8 @@
 /area/medical/surgery)
 "cnp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/table/optable,
+/obj/machinery/stasis,
 /turf/open/floor/plasteel/white/side,
-/area/medical/surgery)
-"cnq" = (
-/obj/machinery/computer/operating{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/medical/surgery)
 "cnr" = (
 /obj/machinery/computer/med_data{
@@ -57654,14 +57646,8 @@
 	},
 /area/maintenance/port/aft)
 "coy" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/medspray/sterilizine{
-	pixel_y = 15;
-	pixel_x = -9
-	},
-/obj/item/reagent_containers/medspray/sterilizine{
-	pixel_y = 15;
-	pixel_x = -1
+/obj/machinery/computer/operating{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 4
@@ -57689,11 +57675,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_y = 7
+/obj/machinery/computer/operating{
+	dir = 8
 	},
-/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
@@ -75937,9 +75921,12 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/port/aft)
 "dzP" = (
-/obj/machinery/computer/operating{
-	dir = 8
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/medspray/sterilizine{
+	pixel_y = 15;
+	pixel_x = -1
 	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel,
 /area/medical/surgery)
 "dzQ" = (
@@ -98536,7 +98523,7 @@ cia
 cjw
 ckU
 cmk
-cnq
+dzP
 coy
 cpU
 crj

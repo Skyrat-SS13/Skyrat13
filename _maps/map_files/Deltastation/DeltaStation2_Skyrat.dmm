@@ -72391,12 +72391,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "deF" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
 /obj/effect/turf_decal/stripes/end{
 	dir = 8
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel,
 /area/medical/medbay/central)
 "deG" = (
@@ -78896,9 +78894,12 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/machinery/computer/operating{
-	dir = 4
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/medspray/sterilizine{
+	pixel_y = 15;
+	pixel_x = -1
 	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dsO" = (
@@ -78946,7 +78947,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/structure/table/optable,
+/obj/machinery/stasis,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dsR" = (
@@ -78956,9 +78957,12 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/machinery/computer/operating{
-	dir = 8
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/medspray/sterilizine{
+	pixel_y = 15;
+	pixel_x = -1
 	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dsS" = (
@@ -79334,8 +79338,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dtR" = (
@@ -79382,8 +79387,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/machinery/computer/operating{
+	dir = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dtV" = (

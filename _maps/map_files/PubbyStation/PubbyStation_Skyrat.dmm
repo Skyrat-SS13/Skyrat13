@@ -34443,9 +34443,6 @@
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bCj" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -34456,6 +34453,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bCl" = (
@@ -39158,8 +39156,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bLN" = (
@@ -39186,8 +39185,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/machinery/computer/operating{
+	dir = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bLR" = (
@@ -39649,22 +39649,6 @@
 	dir = 8
 	},
 /obj/structure/table/optable,
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
-"bMR" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/computer/operating{
-	dir = 4
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bMS" = (
@@ -56538,6 +56522,20 @@
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
+"jjQ" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/stasis,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "jlV" = (
 /obj/machinery/shower{
 	dir = 4
@@ -62859,8 +62857,11 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/machinery/computer/operating{
-	dir = 8
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/reagent_containers/medspray/sterilizine{
+	pixel_y = 15;
+	pixel_x = -1
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
@@ -95598,7 +95599,7 @@ bIo
 bJu
 bKE
 bLM
-bMR
+tYj
 bFU
 bCz
 bPE
@@ -96369,7 +96370,7 @@ bIr
 bJx
 bJx
 bLP
-bMQ
+jjQ
 bFU
 bCz
 bPE
