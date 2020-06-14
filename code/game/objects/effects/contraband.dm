@@ -71,10 +71,12 @@
 		desc = "A large piece of space-resistant printed paper. [desc]"
 	addtimer(CALLBACK(src, /datum.proc/_AddElement, list(/datum/element/beauty, 300)), 0)
 
-/obj/structure/sign/poster/proc/randomise(base_type, override = FALSE)
+/obj/structure/sign/poster/proc/randomise(base_type, override = FALSE) //skyrat edit
 	var/list/poster_types = subtypesof(base_type)
+	//skyrat edit
 	if(override)
 		poster_types = list(base_type)
+	//
 	var/list/approved_types = list()
 	for(var/t in poster_types)
 		var/obj/structure/sign/poster/T = t
