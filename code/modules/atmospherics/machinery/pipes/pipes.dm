@@ -64,6 +64,7 @@
 
 /obj/machinery/atmospherics/pipe/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(parent.air, user, src)
+	return TRUE // Skyrat change
 
 /obj/machinery/atmospherics/pipe/returnPipenet()
 	return parent
