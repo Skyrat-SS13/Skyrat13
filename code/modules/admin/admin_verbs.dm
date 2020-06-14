@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	))
 */
 GLOBAL_PROTECT(admin_verbs_fun)
-GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character))
+GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /client/proc/cmd_admin_delete)) //Skyrat change
 GLOBAL_PROTECT(admin_verbs_spawn)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 /* Skyrat change, we wooo modulaaar
@@ -178,6 +178,7 @@ GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
 	/client/proc/cmd_display_overlay_log,
 	/client/proc/reload_configuration,
 	/datum/admins/proc/create_or_modify_area,
+	/client/proc/cmd_admin_delete, //Skyrat change
 	/client/proc/generate_wikichem_list //DO NOT PRESS UNLESS YOU WANT SUPERLAG
 	)
 GLOBAL_PROTECT(admin_verbs_debug)
