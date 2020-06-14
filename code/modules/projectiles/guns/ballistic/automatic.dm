@@ -129,7 +129,8 @@
 	if(done_empty >= world.time)
 		return FALSE
 	else
-		done_empty = world.time + 2 SECONDS
+		if(select == FULLAUTO)
+			done_empty = world.time + 2 SECONDS
 		return ..()
 
 /obj/item/gun/ballistic/automatic/
