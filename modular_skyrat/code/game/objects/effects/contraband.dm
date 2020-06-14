@@ -1,4 +1,19 @@
 //skyrat posters
+/obj/item/poster/gmod
+	name = "error poster"
+	desc = "<span style='color:#d75050;'>Runtime in contraband.dm, line 183: Cannot read null.desc.</span>"
+	icon_state = "rolled_poster"
+	poster_type = /obj/structure/sign/poster/gmod
+
+/obj/structure/sign/poster/gmod
+	name = "missing texture poster"
+	desc = "Looks like you'll have to install CS Source."
+	icon_state = "gmod"
+	never_random = TRUE
+	poster_item_name = "error poster"
+	poster_item_desc = "<span style='color:#d75050;'>Runtime in contraband.dm, line 183: Cannot read null.desc.</span>"
+	poster_item_icon_state = "rolled_poster"
+
 /obj/structure/sign/poster/contraband/goldstar
 	name = "Gold Star"
 	desc = "A poster of a golden star."
