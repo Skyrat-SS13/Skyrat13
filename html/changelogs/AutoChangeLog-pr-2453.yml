@@ -1,0 +1,6 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - balance: "The ghostface bundle now costs 12tc."
+  - balance: "Motherbase shipment now costs 20tc."
+  - balance: "True DAB suit bundle now costs 6tc, and the suit has received a minor buff in melee."
