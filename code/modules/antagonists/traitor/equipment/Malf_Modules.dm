@@ -578,7 +578,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		var/turf/T = get_turf(M)
 		message_admins("[ADMIN_LOOKUPFLW(usr)] overloaded [M.name] at [ADMIN_VERBOSEJMP(T)].")
 		log_game("[key_name(usr)] overloaded [M.name] at [AREACOORD(T)].")
-		explosion(get_turf(M), 0, 1, 4, flame_range=3) //Skyrat change
+		explosion(get_turf(M), 0, 2, 3, 0)
 		if(M) //to check if the explosion killed it before we try to delete it
 			qdel(M)
 
@@ -612,7 +612,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 /datum/AI_Module/small/override_machine
 	module_name = "Machine Override"
 	mod_pick_name = "override"
-	description = "Overrides a machine's programming, causing it to rise up and attack everyone except other machines. Two uses." // Skyrat Change
+	description = "Overrides a machine's programming, causing it to rise up and attack everyone except other machines. Four uses."
 	cost = 30
 	power_type = /datum/action/innate/ai/ranged/override_machine
 	unlock_text = "<span class='notice'>You procure a virus from the Space Dark Web and distribute it to the station's machines.</span>"
@@ -622,7 +622,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	name = "Override Machine"
 	desc = "Animates a targeted machine, causing it to attack anyone nearby."
 	button_icon_state = "override_machine"
-	uses = 2 //Skyrat Change
+	uses = 4
 	linked_ability_type = /obj/effect/proc_holder/ranged_ai/override_machine
 
 /datum/action/innate/ai/ranged/override_machine/proc/animate_machine(obj/machinery/M)
