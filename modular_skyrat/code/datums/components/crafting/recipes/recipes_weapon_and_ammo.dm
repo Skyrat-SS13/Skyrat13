@@ -131,7 +131,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/irifle
+/datum/crafting_recipe/irifle_lever
 	name = "Improvised lever action rifle (7.62mm)"
 	result = /obj/item/gun/ballistic/shotgun/improvised_rifle
 	reqs = list(/obj/item/weaponcrafting/improvised_parts/barrel_rifle = 1,
@@ -145,7 +145,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/irifle
+/datum/crafting_recipe/irifle_ou
 	name = "Improvised over under rifle (7.62mm)"
 	result = /obj/item/gun/ballistic/revolver/doublebarrel/improvised_rifle_ou
 	reqs = list(/obj/item/weaponcrafting/improvised_parts/barrel_rifle = 2,
