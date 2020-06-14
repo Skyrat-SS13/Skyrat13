@@ -3863,7 +3863,6 @@
 #include "modular_skyrat\code\modules\paperwork\faxmachine.dm"
 #include "modular_skyrat\code\modules\paperwork\paper.dm"
 #include "modular_skyrat\code\modules\paperwork\photocopier.dm"
-#include "modular_skyrat\code\modules\power\cable.dm"
 #include "modular_skyrat\code\modules\procedural_mapping\mapGenerators\lavaland.dm"
 #include "modular_skyrat\code\modules\projectiles\gun.dm"
 #include "modular_skyrat\code\modules\projectiles\ammunition\ballistic\pistol.dm"
