@@ -118,6 +118,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/panicbunker,
 	/client/proc/reestablish_db_connection,
 	/datum/admins/proc/toggleguests,
+	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/toggle_hub
 	)
 
