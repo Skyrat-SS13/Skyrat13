@@ -194,3 +194,19 @@
 				H.emote("laugh")
 				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 5 SECONDS)
 				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 10 SECONDS)
+				
+				/datum/quirk/speech_impediment_insect
+	name = "Speech impediment (buzzing)"
+	desc = "You buzz S sounds."
+	value = 0
+	medical_record_text = "Patient experiences difficulty in pronouncing certain phonemes."
+
+/datum/quirk/speech_impediment_insect/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.enable_speech_mod(/datum/speech_mod/impediment_insect)
+
+/datum/quirk/speech_impediment_insect/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H)
+		H.disable_speech_mod(/datum/speech_mod/impediment_insect)
