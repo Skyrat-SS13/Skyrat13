@@ -315,6 +315,6 @@
 		if(L.heal_damage(heal_amt/parts.len * 0.5, heal_amt/parts.len))
 			M.update_damage_overlays()
 	
-	M.drunkenness = max(M.drunkenness - 7, 0) //almost as effective as antihol being processed
+	M.drunkenness = max(M.drunkenness - 2.5, 0) //1/4th as effective as antihol being processed
 
 	return 1
