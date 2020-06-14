@@ -58,6 +58,13 @@
 	desc = "Disable augmentations for mouth."
 	id = "default"
 
+/datum/augmentation/implant/mouth/breathing_tube
+	name = "Breathing Tube"
+	desc = "An integrated connection through your back, which allows you to use internals without a mask. Provides protection from being chocked."
+	id = "breath_tube"
+	cost = 2
+	organ_type = /obj/item/organ/cyberimp/mouth/breathing_tube
+
 /************RIGHT ARM*************/
 /********************************/
 
