@@ -1,3 +1,5 @@
+/*SKYRAT CHANGE - moved to modular_skyrat
+
 GLOBAL_VAR_INIT(LOOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwise, use a custom colour.
 GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 
@@ -74,3 +76,4 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 				to_chat(C, "<font color='[GLOB.LOOC_COLOR]'><b>[ADMIN_FLW(usr)] <span class='prefix'>[prefix]:</span> <EM>[src.key]/[src.mob.name]:</EM> <span class='message'>[msg]</span></b></font>")
 			else
 				to_chat(C, "<span class='looc'>[ADMIN_FLW(usr)] <span class='prefix'>[prefix]:</span> <EM>[src.key]/[src.mob.name]:</EM> <span class='message'>[msg]</span></span>")
+*/

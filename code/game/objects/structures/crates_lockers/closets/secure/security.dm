@@ -4,6 +4,9 @@
 	icon_state = "cap"
 /obj/structure/closet/secure_closet/captains/PopulateContents() //Excess clothing and such can be found in the Captain's Wardrobe. You can also find this file in code/modules/vending/wardrobes.
 	..()
+	//SKYRAT EDIT - ATMS
+	new /obj/item/card/id/departmental_budget/civ(src)
+	//SKYRAT EDIT END
 	new /obj/item/clothing/neck/petcollar(src) //I considered removing the pet stuff too but eh, who knows. We might get Renault back. Plus I guess you could use that collar for... other means. Aren't you supposed to be guarding the disk?
 	new /obj/item/pet_carrier(src)
 	new /obj/item/clothing/suit/armor/vest/capcarapace(src)
@@ -24,6 +27,9 @@
 	icon_state = "hop"
 /obj/structure/closet/secure_closet/hop/PopulateContents()
 	..()
+	//SKYRAT EDIT - ATMS
+	new /obj/item/card/id/departmental_budget/ser(src)
+	//SKYRAT EDIT END
 	new /obj/item/clothing/neck/cloak/hop(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skirt(src)
@@ -54,6 +60,9 @@
 	icon_state = "hos"
 /obj/structure/closet/secure_closet/hos/PopulateContents()
 	..()
+	//SKYRAT EDIT - ATMS
+	new /obj/item/card/id/departmental_budget/sec(src)
+	//SKYRAT EDIT END
 	new /obj/item/clothing/neck/cloak/hos(src)
 	new /obj/item/cartridge/hos(src)
 	new /obj/item/radio/headset/heads/hos(src)

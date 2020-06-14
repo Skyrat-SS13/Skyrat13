@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - balance: "Certain cargo packs (mostly armory and security) can not be privately purchased anymore."
-  - rscadd: "private purchase are not restricted to humans only anymore (you still need an ID in your hand)"

@@ -16718,6 +16718,9 @@
 	codes_txt = "patrol;next_patrol=14.9-CrewQuarters-Central";
 	location = "14.8-Dorms-Lockers"
 	},
+/obj/machinery/atm{
+	pixel_x = -30
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "aHN" = (
@@ -26250,6 +26253,9 @@
 /obj/machinery/camera{
 	c_tag = "Central Primary Hallway - Fore - Starboard Corner";
 	dir = 8
+	},
+/obj/machinery/atm{
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -68740,6 +68746,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/atm{
+	pixel_x = 30
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "cLv" = (
@@ -78811,6 +78820,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"pUm" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "pWB" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -79855,6 +79873,13 @@
 /obj/effect/decal/cleanable/flour,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"wmD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atm{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "wow" = (
 /obj/machinery/door/airlock/security{
 	name = "Detective's Office";
@@ -80089,6 +80114,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"yaR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atm{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "ybn" = (
 /obj/structure/chair/comfy/brown,
 /obj/effect/landmark/blobstart,
@@ -102836,7 +102868,7 @@ bra
 bdz
 bSQ
 bSQ
-bSQ
+wmD
 bOn
 bmn
 bSQ
@@ -103115,7 +103147,7 @@ bGy
 bGy
 bGy
 bGy
-bTS
+pUm
 dCE
 bWk
 bXK
@@ -112622,7 +112654,7 @@ bIs
 bIs
 bIs
 bIs
-bIs
+yaR
 bUc
 bUc
 bVp

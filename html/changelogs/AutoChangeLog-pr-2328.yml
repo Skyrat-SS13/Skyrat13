@@ -1,5 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Fixing projectiles fired by non-mobs sources checking the mean armor value and not the hitzone's"
-  - bugfix: "Fixing deck of cards icon states."

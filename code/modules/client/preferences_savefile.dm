@@ -271,6 +271,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// Custom hotkeys
 	S["key_bindings"]		>> key_bindings
+	S["modless_key_bindings"]		>> modless_key_bindings
 
 	//citadel code
 	S["arousable"]			>> arousable
@@ -326,7 +327,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	cit_toggles			= sanitize_integer(cit_toggles, 0, 16777215, initial(cit_toggles))
 	auto_ooc			= sanitize_integer(auto_ooc, 0, 1, initial(auto_ooc))
 	no_tetris_storage		= sanitize_integer(no_tetris_storage, 0, 1, initial(no_tetris_storage))
-	key_bindings 	= sanitize_islist(key_bindings, list())
+	key_bindings 			= sanitize_islist(key_bindings, list())
+	modless_key_bindings 	= sanitize_islist(modless_key_bindings, list())
 
 	//SKYRAT CHANGES BEGIN
 	see_chat_emotes	= sanitize_integer(see_chat_emotes, 0, 1, initial(see_chat_emotes))
@@ -351,6 +353,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!length(binds))
 			key_bindings -= key
 	// End
+	// I hate copypaste but let's do it again but for modless ones
+	for(var/key in modless_key_bindings)
+		var/bindname = modless_key_bindings[key]
+		if(!GLOB.keybindings_by_name[bindname])
+			modless_key_bindings -= key
 
 /datum/preferences/proc/save_preferences()
 	if(!path)
@@ -406,6 +413,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_skin"], pda_skin)
 	WRITE_FILE(S["show_credits"], show_credits) // SKYRAT EDIT: Credits
 	WRITE_FILE(S["key_bindings"], key_bindings)
+	WRITE_FILE(S["modless_key_bindings"], modless_key_bindings)
 
 	//citadel code
 	WRITE_FILE(S["screenshake"], screenshake)
@@ -587,7 +595,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	else //We have no old flavortext, default to new
 		S["feature_flavor_text"]		>> features["flavor_text"]
 
+
+	S["silicon_feature_flavor_text"]		>> features["silicon_flavor_text"]
+
 	S["feature_ooc_notes"]				>> features["ooc_notes"]
+	S["silicon_flavor_text"] >> features["silicon_flavor_text"]
 
 	S["vore_flags"]						>> vore_flags
 	S["vore_taste"]						>> vore_taste
@@ -714,6 +726,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 
 	features["flavor_text"]			= copytext(features["flavor_text"], 1, MAX_FLAVOR_LEN)
+	features["silicon_flavor_text"]			= copytext(features["silicon_flavor_text"], 1, MAX_FLAVOR_LEN)
 	features["ooc_notes"]			= copytext(features["ooc_notes"], 1, MAX_FLAVOR_LEN)
 
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))

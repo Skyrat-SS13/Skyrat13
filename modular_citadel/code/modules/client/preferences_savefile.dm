@@ -83,6 +83,8 @@
 	WRITE_FILE(S["feature_xeno_head"], features["xenohead"])
 	//flavor text
 	WRITE_FILE(S["feature_flavor_text"], features["flavor_text"])
+	WRITE_FILE(S["silicon_feature_flavor_text"], features["silicon_flavor_text"])
+	
 	//SKYRAT CHANGES
 	WRITE_FILE(S["feature_ipc_chassis"], features["ipc_chassis"])
 	WRITE_FILE(S["skyrat_ooc_notes"], skyrat_ooc_notes)
@@ -100,7 +102,6 @@
 	WRITE_FILE(S["exploitable_info"], exploitable_info)
 	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
 	WRITE_FILE(S["personal_chat_color"], personal_chat_color)
-
 	WRITE_FILE(S["alt_titles_preferences"], alt_titles_preferences)
 	WRITE_FILE(S["foodlikes"], foodlikes)
 	WRITE_FILE(S["fooddislikes"], fooddislikes)

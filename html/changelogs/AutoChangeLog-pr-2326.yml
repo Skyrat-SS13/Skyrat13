@@ -1,6 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - bugfix: "Fixing mech construction steps not being shown up on examine."
-  - bugfix: "Fixing Android limbs being invisible."
-  - bugfix: "Fixing Eutactic energy swords icon state when on."
