@@ -2990,7 +2990,7 @@
 /datum/admins/proc/makeMentor(ckey)
 	if(!usr.client)
 		return
-	if (!check_rights(0))
+	if (!check_rights(R_PERMISSIONS)) //Skyrat change
 		return
 	if(!ckey)
 		return
@@ -3020,7 +3020,7 @@
 /datum/admins/proc/removeMentor(ckey)
 	if(!usr.client)
 		return
-	if (!check_rights(0))
+	if (!check_rights(R_PERMISSIONS)) // Skyrat change
 		return
 	if(!ckey)
 		return
