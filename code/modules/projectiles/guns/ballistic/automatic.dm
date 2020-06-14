@@ -143,9 +143,6 @@
 /obj/item/gun/ballistic/automatic/c20r/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/automatic/c20r/unrestricted/fullauto
-	can_fullauto = TRUE
-
 /obj/item/gun/ballistic/automatic/c20r/Initialize()
 	. = ..()
 	update_icon()
