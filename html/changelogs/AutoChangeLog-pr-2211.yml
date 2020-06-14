@@ -1,0 +1,5 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - tweak: "Deathsquad members now a new pool of 40 non-meme names based on cities, moons and World War phonetics."
+  - rscdel: "Removes a few shit OOC memes from IC."
