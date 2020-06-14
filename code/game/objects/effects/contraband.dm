@@ -69,9 +69,9 @@
 		original_name = name // can't use initial because of random posters
 		name = "poster - [name]"
 		desc = "A large piece of space-resistant printed paper. [desc]"
+	addtimer(CALLBACK(src, /datum.proc/_AddElement, list(/datum/element/beauty, 300)), 0)
 
 /obj/structure/sign/poster/proc/randomise(base_type, override = FALSE)
-	addtimer(CALLBACK(src, /datum.proc/_AddElement, list(/datum/element/beauty, 300)), 0)
 	var/list/poster_types = subtypesof(base_type)
 	if(override)
 		poster_types = list(base_type)
