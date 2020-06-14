@@ -1,15 +1,10 @@
-//woops skyrat defines
-#define SEMIAUTO	1
-#define ROUNDBURST	2
-#define FULLAUTO	3
-
 /obj/item/gun/ballistic/automatic
 	w_class = WEIGHT_CLASS_NORMAL
 	var/alarmed = 0
 	//woops skyrat edit
-	var/select = SEMIAUTO
-	var/can_fullauto = TRUE
 	canMouseDown = TRUE
+	var/select = SEMIAUTO
+	var/can_fullauto = FALSE
 	//
 	var/automatic_burst_overlay = TRUE
 	can_suppress = TRUE
@@ -124,6 +119,10 @@
 
 /obj/item/gun/ballistic/automatic/on_cooldown()
 	return busy_action || firing || (last_fire + fire_delay > world.time) || ((select == FULLAUTO) && (last_fire + burst_shot_delay >= world.time))
+
+/obj/item/gun/ballistic/automatic/calculate_extra_inaccuracy(mob/living/user, bonus_spread, stamloss)
+	if(select = FULLAUTO)
+		return getinaccuracy(user, bonus_spread, stamloss)
 //
 
 /obj/item/gun/ballistic/automatic/c20r

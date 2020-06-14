@@ -1,5 +1,10 @@
 
 #define DUALWIELD_PENALTY_EXTRA_MULTIPLIER 1.4
+//woops skyrat defines
+#define SEMIAUTO	1
+#define ROUNDBURST	2
+#define FULLAUTO	3
+//
 
 /obj/item/gun
 	name = "gun"
@@ -223,6 +228,10 @@
 
 	if(user)
 		bonus_spread = getinaccuracy(user, bonus_spread, stamloss) //CIT CHANGE - adds bonus spread while not aiming
+	//skyrat edit full auto
+	if(user)
+		bonus_spread += calculate_extra_inaccuracy(user, bonus_spread, stamloss)
+	//
 	if(ishuman(user) && user.a_intent == INTENT_HARM && weapon_weight <= WEAPON_LIGHT)
 		var/mob/living/carbon/human/H = user
 		for(var/obj/item/gun/G in H.held_items)
@@ -246,6 +255,11 @@
 	if(HAS_TRAIT(user, TRAIT_PACIFISM) && chambered?.harmful) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
 		to_chat(user, "<span class='notice'> [src] is lethally chambered! You don't want to risk harming anyone...</span>")
 		return FALSE
+
+//skyrat edit
+/obj/item/gun/proc/calculate_extra_inaccuracy()
+	return 0
+//
 
 /obj/item/gun/proc/handle_pins(mob/living/user)
 	if(no_pin_required)
