@@ -9,7 +9,7 @@
 	active_power_usage = 200
 	circuit = /obj/item/circuitboard/machine/cryptominer
 	var/mining = FALSE
-	var/miningtime = 600
+	var/miningtime = 3000
 	var/miningpoints = 50
 	var/mintemp = T0C - 270
 	var/midtemp = T0C -70
@@ -31,6 +31,18 @@
 /obj/machinery/cryptominer/Destroy()
 	return ..()
 
+/obj/machinery/cryptominer/deconstruct()
+	STOP_PROCESSING(SSobj,src)
+	return ..()
+
+/obj/machinery/cryptominer/attackby(obj/item/W, mob/user, params)
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
+		return
+	if(default_deconstruction_crowbar(W))
+		return
+	if(default_unfasten_wrench(user, W))
+		return
+
 /obj/machinery/cryptominer/process()
 	var/turf/L = loc
 	var/datum/gas_mixture/env = L.return_air()
@@ -43,19 +55,25 @@
 	if(env.temperature < maxtemp && env.temperature > midtemp)
 		if(mining)
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			SSshuttle.points += (miningpoints / 5)
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(D)
+				D.adjust_money((miningpoints / 5))
 			env.temperature += 100
 			air_update_turf()
 	if(env.temperature < midtemp && env.temperature > mintemp)
 		if(mining)
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			SSshuttle.points += miningpoints
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(D)
+				D.adjust_money((miningpoints))
 			env.temperature += 100
 			air_update_turf()
 	if(env.temperature <= mintemp)
 		if(mining)
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			SSshuttle.points += (miningpoints * 3)
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(D)
+				D.adjust_money((miningpoints * 3))
 			env.temperature += 100
 			air_update_turf()
 

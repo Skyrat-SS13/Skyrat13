@@ -29,22 +29,6 @@
 	var/light_on = FALSE
 	var/brightness_on = 7
 
-/obj/item/twohanded/kinetic_crusher/premiumcrusher
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "destroyer"
-	item_state = "destroyer0"
-	lefthand_file = 'icons/mob/inhands/weapons/hammerspc_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/hammerspc_righthand.dmi'
-	name = "Kinetic Destroyer"
-	desc = "Revised and refined by veteran miners, this crusher design has been improved in nearly everyway. Featuring a lightweight composite body and a hardened plastitanium head, this weapon is exceptional at removing life from most things."
-	throwforce = 10
-	armour_penetration = 15
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	charge_time = 13
-	detonation_damage = 65
-	backstab_bonus = 40
-	item_flags = null
-
 /obj/item/twohanded/kinetic_crusher/cyborg //probably give this a unique sprite later
 	desc = "An integrated version of the standard kinetic crusher with a grinded down axe head to dissuade mis-use against crewmen. Deals damage equal to the standard crusher against creatures, however."
 	force = 10 //wouldn't want to give a borg a 20 brute melee weapon unemagged now would we
@@ -173,16 +157,6 @@
 
 /obj/item/twohanded/kinetic_crusher/update_icon_state()
 	item_state = "crusher[wielded]"
-
-/obj/item/twohanded/kinetic_crusher/update_overlays()
-	. = ..()
-	if(!charged)
-		. += "[icon_state]_uncharged"
-	if(light_on)
-		. += "[icon_state]_lit"
-
-/obj/item/twohanded/kinetic_crusher/premiumcrusher/update_icon_state()
-	item_state = "destroyer[wielded]"
 
 /obj/item/twohanded/kinetic_crusher/update_overlays()
 	. = ..()

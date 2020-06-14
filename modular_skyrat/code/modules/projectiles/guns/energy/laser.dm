@@ -218,6 +218,7 @@
 	else if(istype(I, /obj/item/stock_parts/capacitor/quadratic) && !upgraded_energycosts)
 		for(var/obj/item/ammo_casing/energy/laser/L in ammo_type)
 			L.e_cost /= 2
+		upgraded_energycosts = TRUE
 		to_chat(user, "<span class='notice'>You connect the [I] to [src], making every shot less costly.</span>")
 		update_overlays()
 	else if(istype(I, /obj/item/stock_parts/capacitor/quadratic) && upgraded_energycosts)
