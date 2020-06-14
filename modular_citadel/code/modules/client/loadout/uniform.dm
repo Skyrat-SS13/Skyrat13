@@ -286,7 +286,7 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/medsci
 	restricted_desc = "Medical and Science"
-	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Geneticist","Research Director","Scientist", "Roboticist")
+	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
 /datum/gear/trekengtos
 	name = "TOS uniform, ops/sec"
@@ -309,7 +309,7 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/medsci/next
 	restricted_desc = "Medical and Science"
-	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Geneticist","Research Director","Scientist", "Roboticist")
+	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
 /datum/gear/trekengtng
 	name = "TNG uniform, ops/sec"
@@ -331,7 +331,7 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/medsci/voy
 	restricted_desc = "Medical and Science"
-	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Geneticist","Research Director","Scientist", "Roboticist")
+	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
 /datum/gear/trekengvoy
 	name = "VOY uniform, ops/sec"
@@ -353,7 +353,7 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/medsci/ds9
 	restricted_desc = "Medical and Science"
-	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Geneticist","Research Director","Scientist", "Roboticist")
+	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
 /datum/gear/trekengds9
 	name = "DS9 uniform, ops/sec"
@@ -375,7 +375,7 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/medsci/ent
 	restricted_desc = "Medical and Science"
-	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Geneticist","Research Director","Scientist", "Roboticist")
+	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
 /datum/gear/trekengent
 	name = "ENT uniform, ops/sec"
@@ -392,10 +392,11 @@
 	path = /obj/item/clothing/under/trek/fedutil
 	restricted_desc = "All, barring Service and Civilian"
 	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster",
-							"Medical Doctor","Chemist","Virologist","Geneticist","Scientist", "Roboticist",
+							"Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Scientist", "Roboticist",
 							"Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer",
 							"Cargo Technician", "Shaft Miner")
 
+/* handled by modular code
 /datum/gear/trekfedtrainee
 	name = "TMP uniform, trainee"
 	category = SLOT_W_UNIFORM
@@ -407,7 +408,61 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/fedutil/service
 	restricted_desc = "Service and Civilian, barring Clown, Mime and Lawyer"
-	restricted_roles = list("Assistant", "Bartender", "Botanist", "Cook", "Curator", "Janitor")
+	restricted_roles = list("Assistant", "Bartender", "Botanist", "Cook", "Curator", "Janitor", "Chaplain")
+
+//Orvilike
+/datum/gear/orvcmd
+	name = "ORV uniform, cmd"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/command/orv
+	restricted_desc = "Heads of Staff"
+	restricted_roles = list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster")
+
+/datum/gear/orvcmd_capt
+	name = "ORV uniform, capt"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/command/orv/captain
+	restricted_roles = list("Captain")
+
+/datum/gear/orvmedsci
+	name = "ORV uniform, med/sci"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/medsci/orv
+	restricted_desc = "Medical and Science"
+	restricted_roles = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Virologist", "Paramedic", "Geneticist", "Research Director", "Scientist", "Roboticist")
+
+/datum/gear/orvcmd_medsci
+	name = "ORV uniform, med/sci, cmd"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/command/orv/medsci
+	restricted_roles = list("Chief Medical Officer", "Research Director")
+
+/datum/gear/orvops
+	name = "ORV uniform, ops/sec"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/engsec/orv
+	restricted_desc = "Engineering, Security and Cargo"
+	restricted_roles = list("Chief Engineer", "Atmospheric Technician", "Station Engineer", "Warden", "Detective", "Security Officer", "Head of Security", "Cargo Technician", "Shaft Miner", "Quartermaster")
+
+/datum/gear/orvcmd_ops
+	name = "ORV uniform, ops/sec, cmd"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/command/orv/engsec
+	restricted_roles = list("Chief Engineer", "Head of Security")
+*/
+
+/datum/gear/orvass
+	name = "ORV uniform, assistant"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/orv
+	restricted_roles = list("Assistant")
+
+/datum/gear/orvsrv
+	name = "ORV uniform, service"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/trek/orv/service
+	restricted_roles = list("Assistant", "Bartender", "Botanist", "Cook", "Curator", "Janitor", "Chaplain")
+	restricted_desc = "Service and Civilian, barring Clown, Mime and Lawyer"
 
 //Memes
 /datum/gear/gear_harnesses

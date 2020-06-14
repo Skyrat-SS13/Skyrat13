@@ -781,7 +781,9 @@
 		/obj/item/toy/crayon/spraycan/borg,
 		/obj/item/hand_labeler/borg,
 		/obj/item/razor,
-		/obj/item/rsf,
+		// SKYRAT EDIT - Service Borg Fix
+		/obj/item/rsf/cyborg,
+		// SKYRAT EDIT END
 		/obj/item/instrument/violin,
 		/obj/item/instrument/guitar,
 		/obj/item/reagent_containers/dropper,
@@ -809,15 +811,20 @@
 	..()
 	var/obj/item/reagent_containers/O = locate(/obj/item/reagent_containers/food/condiment/enzyme) in basic_modules
 	var/obj/item/lightreplacer/LR = locate(/obj/item/lightreplacer) in basic_modules
+	// SKYRAT EDIT - Service Borg Fix (RSF)
+	var/obj/item/reagent_containers/spray/cyborg_drying/CD = locate(/obj/item/reagent_containers/spray/cyborg_drying) in basic_modules
+	var/obj/item/rsf/cyborg/CR = locate(/obj/item/rsf/cyborg) in basic_modules
 	if(O)
 		O.reagents.add_reagent(/datum/reagent/consumable/enzyme, 2 * coeff)
 	if(LR)
 		for(var/i in 1 to coeff)
 			LR.Charge(R)
-	var/obj/item/reagent_containers/spray/cyborg_drying/CD = locate(/obj/item/reagent_containers/spray/cyborg_drying) in basic_modules
 	if(CD)
 		CD.reagents.add_reagent(/datum/reagent/drying_agent, 5 * coeff)
-
+	if(CR)
+		if(CR.matter < 30)
+			CR.matter++
+	// SKYRAT EDIT END
 	var/obj/item/reagent_containers/spray/cyborg_lube/CL = locate(/obj/item/reagent_containers/spray/cyborg_lube) in emag_modules
 	if(CL)
 		CL.reagents.add_reagent(/datum/reagent/lube, 2 * coeff)

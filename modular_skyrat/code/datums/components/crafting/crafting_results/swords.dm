@@ -85,10 +85,13 @@
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
 			var/obj/item/bodypart/BP = C.get_bodypart(check_zone(user.zone_selected))
+			if(!istype(BP))
+				return
 			if(prob(delimb_chance))
 				if(BP.body_zone == (BODY_ZONE_CHEST || BODY_ZONE_HEAD))
 					if(C.getarmor(def_zone, "melee") >= armorthreshold)
-						return FALSE
+						user.changeNext_move(CLICK_CD_MELEE * 2)
+						return
 				BP.dismember(BRUTE)
 			user.changeNext_move(CLICK_CD_MELEE * 2)
 
