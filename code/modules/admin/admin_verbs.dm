@@ -284,7 +284,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			verbs += GLOB.admin_verbs_permissions
 		if(rights & R_STEALTH)
 			verbs += /client/proc/stealth
-		if(rights & R_ADMIN)
+		if(rights & R_POLL) //Skyrat change
 			verbs += GLOB.admin_verbs_poll
 		if(rights & R_SOUNDS)
 			verbs += GLOB.admin_verbs_sounds
