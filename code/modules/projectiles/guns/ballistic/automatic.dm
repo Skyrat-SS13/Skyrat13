@@ -123,7 +123,7 @@
 		process_afterattack(over_object, L, TRUE)
 
 /obj/item/gun/ballistic/automatic/on_cooldown()
-	return busy_action || firing || (last_fire + fire_delay > world.time) || ((select == FULLAUTO) && last_fire + burst_shot_delay >= world.time)
+	return busy_action || firing || (last_fire + fire_delay > world.time) || ((select == FULLAUTO) && (last_fire + burst_shot_delay >= world.time))
 //
 
 /obj/item/gun/ballistic/automatic/c20r
