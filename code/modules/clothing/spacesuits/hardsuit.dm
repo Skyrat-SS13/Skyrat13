@@ -95,7 +95,7 @@
 	item_state = "eng_hardsuit"
 	max_integrity = 300
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 50, "acid" = 75)
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/t_scanner, /obj/item/construction/rcd, /obj/item/pipe_dispenser)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/t_scanner, /obj/item/construction/rcd, /obj/item/pipe_dispenser, /obj/item/bspipe_dispenser) //Skyrat edit
 	siemens_coefficient = 0
 	var/obj/item/clothing/head/helmet/space/hardsuit/helmet
 	actions_types = list(/datum/action/item_action/toggle_helmet)
@@ -915,8 +915,8 @@
 /obj/item/clothing/head/helmet/space/hardsuit/lavaknight/worn_overlays(isinhands = FALSE, icon_file, used_state, style_flags = NONE)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/energy_overlay = mutable_appearance(icon_file, "knight_cydonia_overlay", ABOVE_LIGHTING_LAYER)
-		energy_overlay.plane = ABOVE_LIGHTING_LAYER
+		var/mutable_appearance/energy_overlay = mutable_appearance(icon_file, "knight_cydonia_overlay", EMISSIVE_LAYER)
+		energy_overlay.plane = EMISSIVE_PLANE
 		energy_overlay.color = energy_color
 		. += energy_overlay
 
@@ -946,8 +946,8 @@
 /obj/item/clothing/suit/space/hardsuit/lavaknight/worn_overlays(isinhands = FALSE, icon_file, used_state, style_flags = NONE)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/energy_overlay = mutable_appearance(icon_file, "knight_cydonia_overlay", ABOVE_LIGHTING_LAYER)
-		energy_overlay.plane = ABOVE_LIGHTING_LAYER
+		var/mutable_appearance/energy_overlay = mutable_appearance(icon_file, "knight_cydonia_overlay", EMISSIVE_LAYER)
+		energy_overlay.plane = EMISSIVE_PLANE
 		energy_overlay.color = energy_color
 		. += energy_overlay
 

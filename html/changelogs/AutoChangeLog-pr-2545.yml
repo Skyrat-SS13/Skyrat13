@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - rscadd: "slimes can now change their color using alter form"

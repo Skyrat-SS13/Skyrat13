@@ -4,6 +4,9 @@
 	icon_state = "cap"
 /obj/structure/closet/secure_closet/captains/PopulateContents() //Excess clothing and such can be found in the Captain's Wardrobe. You can also find this file in code/modules/vending/wardrobes.
 	..()
+	//SKYRAT EDIT - ATMS
+	new /obj/item/card/id/departmental_budget/civ(src)
+	//SKYRAT EDIT END
 	new /obj/item/clothing/neck/petcollar(src) //I considered removing the pet stuff too but eh, who knows. We might get Renault back. Plus I guess you could use that collar for... other means. Aren't you supposed to be guarding the disk?
 	new /obj/item/pet_carrier(src)
 	new /obj/item/clothing/suit/armor/vest/capcarapace(src)
@@ -24,6 +27,9 @@
 	icon_state = "hop"
 /obj/structure/closet/secure_closet/hop/PopulateContents()
 	..()
+	//SKYRAT EDIT - ATMS
+	new /obj/item/card/id/departmental_budget/ser(src)
+	//SKYRAT EDIT END
 	new /obj/item/clothing/neck/cloak/hop(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skirt(src)
@@ -54,6 +60,9 @@
 	icon_state = "hos"
 /obj/structure/closet/secure_closet/hos/PopulateContents()
 	..()
+	//SKYRAT EDIT - ATMS
+	new /obj/item/card/id/departmental_budget/sec(src)
+	//SKYRAT EDIT END
 	new /obj/item/clothing/neck/cloak/hos(src)
 	new /obj/item/cartridge/hos(src)
 	new /obj/item/radio/headset/heads/hos(src)
@@ -76,12 +85,13 @@
 	new /obj/item/storage/box/flashbangs(src)
 	new /obj/item/shield/riot/tele(src)
 	new /obj/item/storage/belt/security/full(src)
-	new /obj/item/gun/energy/e_gun/hos(src)
+	new /obj/item/choice_beacon/hosgun(src)
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/pinpointer/nuke(src)
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
 	new /obj/item/storage/photo_album/HoS(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/hos(src)
+
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
 	req_access = list(ACCESS_ARMORY)
@@ -105,7 +115,7 @@
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/door_remote/head_of_security(src)
-	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
+	//new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src) | SKYRAT CHANGE, REMOVES COMPACT SHOTGUN
 	new /obj/item/clothing/head/beret/sec/corporatewarden(src)
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"

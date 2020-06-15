@@ -1,4 +1,5 @@
 /obj/item/robot_module/proc/add_module(obj/item/I, nonstandard, requires_rebuild)
+	rad_flags |= RAD_NO_CONTAMINATE
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I
 
@@ -97,6 +98,52 @@ obj/item/robot_module/butler/Initialize()
 	name = "Plasma Buffer Container"
 	recharge_rate = 0
 
+/obj/item/robot_module/standard/be_transformed_to(obj/item/robot_module/old_module)
+	var/mob/living/silicon/robot/R = loc
+	var/static/list/standard_icons = sortList(list(
+		"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "robot"),
+		"Marina" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "marinasd"),
+		"Heavy" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "heavysd"),
+		"Eyebot" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "eyebotsd"),
+		"Robot" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "robot_old"),
+		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysd"),
+		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_standard"),
+		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_sd"),
+		))
+	var/standard_borg_icon = show_radial_menu(R, R , standard_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
+	switch(standard_borg_icon)
+		if("Default")
+			cyborg_base_icon = "robot"
+			cyborg_icon_override = 'icons/mob/robots.dmi'
+		if("Marina")
+			cyborg_base_icon = "marinasd"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+			has_snowflake_deadsprite = TRUE
+		if("Heavy")
+			cyborg_base_icon = "heavysd"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+			has_snowflake_deadsprite = TRUE
+		if("Eyebot")
+			cyborg_base_icon = "eyebotsd"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+			has_snowflake_deadsprite = TRUE
+		if("Robot")
+			cyborg_base_icon = "robot_old"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+			has_snowflake_deadsprite = TRUE
+		if("Bootyborg")
+			cyborg_base_icon = "bootysd"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("Protectron")
+			cyborg_base_icon = "protectron_standard"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("Miss m")
+			cyborg_base_icon = "missm_sd"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		else
+			return FALSE
+	return ..()
+
 /obj/item/robot_module/peacekeeper/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
 	var/static/list/peace_icons = sortList(list(
@@ -104,7 +151,9 @@ obj/item/robot_module/butler/Initialize()
 		"Borgi" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "borgi"),
 		"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "whitespider"),
 		"Sleek" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "sleekpeace"),
-		"Marina" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "marinapeace")
+		"Marina" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "marinapeace"),
+		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootypeace"),
+		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_peacekeeper")
 		))
 	var/peace_borg_icon = show_radial_menu(R, R , peace_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 	switch(peace_borg_icon)
@@ -127,6 +176,48 @@ obj/item/robot_module/butler/Initialize()
 		if("Marina")
 			cyborg_base_icon = "marinapeace"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/customrobot.dmi'
+			has_snowflake_deadsprite = TRUE
+		if("Bootyborg")
+			cyborg_base_icon = "bootypeace"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("Protectron")
+			cyborg_base_icon = "protectron_peacekeeper"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		else
+			return FALSE
+	return ..()
+
+/obj/item/robot_module/clown/be_transformed_to(obj/item/robot_module/old_module)
+	var/mob/living/silicon/robot/R = loc
+	var/static/list/clown_icons = sortList(list(
+		"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "clown"),
+		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "bootyclown"),
+		"Marina" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "marina_mommy"),
+		"Garish" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "garish"),
+		"Robot" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "clownbot"),
+		"Sleek" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "clownman")
+		))
+	var/clown_borg_icon = show_radial_menu(R, R , clown_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
+	switch(clown_borg_icon)
+		if("Default")
+			cyborg_base_icon = "clown"
+			cyborg_icon_override = 'icons/mob/robots.dmi'
+		if("Bootyborg")
+			cyborg_base_icon = "bootyclown"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
+		if("Marina")
+			cyborg_base_icon = "marina_mommy"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
+			has_snowflake_deadsprite = TRUE
+		if("Garish")
+			cyborg_base_icon = "garish"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
+		if("Robot")
+			cyborg_base_icon = "clownbot"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
+		if("Sleek")
+			cyborg_base_icon = "clownman"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
 			has_snowflake_deadsprite = TRUE
 		else
 			return FALSE

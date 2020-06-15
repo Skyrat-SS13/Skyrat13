@@ -56,6 +56,9 @@
 	//can be overridden by antag_rep.txt config
 	var/antag_rep = 10
 
+	var/paycheck = PAYCHECK_MINIMAL
+	var/paycheck_department = ACCOUNT_CIV
+
 	var/list/mind_traits // Traits added to the mind of the mob assigned this job
 	var/list/blacklisted_quirks		//list of quirk typepaths blacklisted.
 
@@ -102,7 +105,13 @@
 /datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	if(!H)
 		return FALSE
-
+	if(!visualsOnly)
+		var/datum/bank_account/bank_account = new(H.real_name, src)
+		bank_account.account_holder = H.real_name
+		bank_account.account_job = src
+		bank_account.account_id = rand(111111,999999)
+		bank_account.payday(STARTING_PAYCHECKS, TRUE)
+		H.account_id = bank_account.account_id
 	if(CONFIG_GET(flag/enforce_human_authority) && (title in GLOB.command_positions))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
@@ -245,17 +254,23 @@
 			H.real_name = "[J.title] #[rand(10000, 99999)]"
 
 	var/obj/item/card/id/C = H.wear_id
-	if(istype(C))
+	if(istype(C) && C.bank_support)
 		C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
 		//Skyrat change
+		C.assignment = J.title
 		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
-			C.assignment = preference_source.prefs.alt_titles_preferences[J.title]
+			C.update_label(C.registered_name, preference_source.prefs.alt_titles_preferences[J.title])
 		else
-			C.assignment = J.title
+			C.update_label()
 		//End of skyrat change
-		C.update_label()
+		for(var/A in SSeconomy.bank_accounts)
+			var/datum/bank_account/B = A
+			if(B.account_id == H.account_id)
+				C.registered_account = B
+				B.bank_cards += C
+				break
 		H.sec_hud_set_ID()
 
 	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)

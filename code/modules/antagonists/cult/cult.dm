@@ -47,7 +47,10 @@
 	cult_team = new_team
 
 /datum/antagonist/cult/proc/add_objectives()
-	objectives |= cult_team?.objectives
+//SKYRAT CHANGES BEGIN
+	if(cult_team)
+		objectives |= cult_team.objectives
+//SKYRAT CHANGES END
 
 /datum/antagonist/cult/Destroy()
 	QDEL_NULL(communion)

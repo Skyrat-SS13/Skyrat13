@@ -178,6 +178,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/handler = "" //SKYRAT EDIT - string of admin who takes care of the ticket to display at stat()
 
 	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
+	var/list/_interactions_user // Skyrat change
 
 	var/obj/effect/statclick/ahelp/statclick
 
@@ -213,6 +214,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	statclick = new(null, src)
 	_interactions = list()
+	_interactions_user = list()
 
 	if(is_bwoink)
 		AddInteraction("<font color='blue'>[key_name_admin(usr, ticket=src)] PM'd [LinkedReplyName()]</font>") // Skyrat Change
@@ -235,11 +237,17 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.resolved_tickets -= src
 	return ..()
 
-/datum/admin_help/proc/AddInteraction(formatted_message)
+// Skyrat change, private interactions
+/datum/admin_help/proc/AddInteraction(formatted_message, admin_only = FALSE)
 	if(heard_by_no_admins && usr && usr.ckey != initiator_ckey)
 		heard_by_no_admins = FALSE
 		send2irc(initiator_ckey, "Ticket #[id]: Answered by [key_name(usr)]")
 	_interactions += "[TIME_STAMP("hh:mm:ss", FALSE)]: [formatted_message]"
+
+	// Skyrat change START
+	if(!admin_only)
+		_interactions_user += "[TIME_STAMP("hh:mm:ss", FALSE)]: [formatted_message]"
+	// Skyrat change END
 
 //Removes the ahelp verb and returns it after 2 minutes
 /datum/admin_help/proc/TimeoutVerb()

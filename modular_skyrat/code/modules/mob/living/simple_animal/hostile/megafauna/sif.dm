@@ -84,8 +84,11 @@ Difficulty: Medium
 	var/stageThree = FALSE
 	var/currentPower = 0 //Every few seconds this variable gets higher, when it gets high
 						 //enough it will use a special attack then reset the variable to 0w
-	song = sound('modular_skyrat/sound/ambience/furidanger802.ogg', 100) //Furi is awesome and you should play it, reader.
-	songlength = 2670
+	songs = list("2670" = sound(file = 'modular_skyrat/sound/ambience/furidanger802.ogg', repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENCE))
+	glorymessageshand = list("climbs atop the wolf's head as it dangles weakly near the ground, ripping its left eye off and jumping down before punching through it's cranium!", "goes around the wolf and rips off their tail, using it as whip on the fiend")
+	glorymessagescrusher = list("chops off the wolf's head by it's neck!")
+	glorymessagespka = list("shoots at the wolf's eyes with their PKA, exploding them into giblets!")
+	glorymessagespkabayonet = list("slides down below Sif, using their bayonet to rip it's stomach open!")
 
 /obj/item/gps/internal/sif
 	icon_state = null
@@ -96,10 +99,6 @@ Difficulty: Medium
 	. = ..()
 	internal = new /obj/item/gps/internal/sif(src)
 
-//no medals rewarded for killing the beacon
-/mob/living/simple_animal/hostile/megafauna/sif/living_beacon/grant_achievement(medaltype, scoretype, crusher_kill, list/grant_achievement)
-	return
-
 //Sword structure, used to summon sif.
 /obj/structure/sword/sif
 	name = "Massive Glowing Sword"
@@ -109,6 +108,11 @@ Difficulty: Medium
 	icon = 'modular_skyrat/icons/mob/lavaland/sif_sword.dmi'
 	icon_state = "Idle_Sword"
 	layer = HIGH_OBJ_LAYER //Looks better when its over everything... cause its huge
+	var/obj/item/gps/internal/geepm
+
+/obj/structure/sword/sif/Initialize()
+	. = ..()
+	geepm = new /obj/item/gps/internal/sif(src)
 
 //When the sword is touched it will spawn sif.
 /obj/structure/sword/sif/attack_hand(mob/user)
