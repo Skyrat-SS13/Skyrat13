@@ -32,4 +32,4 @@
 /// runs stoplag if tick_usage is above 40, for low priority usage
 #define CHECK_TICK_LOW_PRIORITY ( TICK_CHECK_LOW_PRIORITY? stoplag() : 0 )
 
-#define MC_TICK_CHECK_LOW_PRIORITY ( ( TICK_USAGE > 40 || src.state != SS_RUNNING ) ? pause() : 0 )
+#define MC_TICK_CHECK_LOW_PRIORITY ( ( TICK_CHECK_LOW_PRIORITY || src.state != SS_RUNNING ) ? pause() : 0 )
