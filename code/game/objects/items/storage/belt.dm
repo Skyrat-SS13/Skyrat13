@@ -446,6 +446,7 @@
 	icon_state = "webbing-durathread"
 	item_state = "webbing-durathread"
 	resistance_flags = FIRE_PROOF
+	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE //Skyrat edit
 
 /obj/item/storage/belt/durathread/ComponentInitialize()
 	. = ..()
@@ -478,7 +479,9 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/tile/plasteel,
 		/obj/item/grenade/chem_grenade/metalfoam,
-		/obj/item/grenade/chem_grenade/smart_metal_foam
+		/obj/item/grenade/chem_grenade/smart_metal_foam,
+		/obj/item/storage/bag/construction, //Skyrat edit
+		/obj/item/bspipe_dispenser //Skyrat edit
 		))
 
 /obj/item/storage/belt/grenade
