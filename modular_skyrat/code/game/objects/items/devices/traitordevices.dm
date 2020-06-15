@@ -103,3 +103,25 @@ GLOBAL_LIST_INIT(blacklistedmorphcubemobs, typecacheof(list(\
 	else
 		GLOB.active_jammers -= src
 	update_icon()
+
+// credit to tc
+/obj/item/holochiptransformer
+	name = "holochip transformer"
+	desc = "Takes holochips and transforms them into telecrystals at a rate of 6,000 credits to 1 telecrystal. WARNING: Will not refund or give change!"
+	icon = 'modular_skyrat/icons/obj/traitorgear.dmi'
+	icon_state = "holochiptransformer"
+
+/obj/item/holochiptransformer/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	var/mob/living/carbon/C = user
+	if(istype(W, /obj/item/holochip))
+		var/obj/item/holochip/H = W
+		var/value = H.credits
+		if(!value || value <= 0)
+			qdel(H)
+			return
+		var/tcamount = FLOOR(value / 6000 , 1)
+		qdel(H)
+		var/obj/item/stack/telecrystal/TC = new /obj/item/stack/telecrystal(get_turf(src))
+		TC.amount = tcamount
+		C.put_in_active_hand(TC)

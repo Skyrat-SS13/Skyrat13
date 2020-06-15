@@ -16,3 +16,10 @@
 	desc = "A stealthier, more lightweight, radio jammer."
 	item = /obj/item/pen/jammerpen
 	cost = 2
+
+/datum/uplink_item/device_tools/holochiptransformer
+	name = "Holochip Transformer"
+	desc = "Transforms credits into telecrystals. The conversion rate is 6000 credits to 1 telecrystal. WARNING: Will not give refunds or give change!"
+	item = /obj/item/holochiptransformer
+	cost = 20
+	cant_discount = TRUE
