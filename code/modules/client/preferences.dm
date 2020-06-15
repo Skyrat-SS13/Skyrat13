@@ -1923,15 +1923,15 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						features["flavor_text"] = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE) //Skyrat edit, removed strip_html_simple()
 
 				if("silicon_flavor_text")
-					var/msg = stripped_multiline_input(usr, "Set the silicon flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Silicon Flavor Text", html_decode(features["silicon_flavor_text"]), MAX_FLAVOR_LEN, TRUE)
+					var/msg = input(usr, "Set the silicon flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Silicon Flavor Text", features["silicon_flavor_text"]) as message|null //Skyrat edit, removed stripped_multiline_input()
 					if(!isnull(msg))
-						features["silicon_flavor_text"] = msg
+						features["silicon_flavor_text"] = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE) //Skyrat edit, uses strip_html_simple()
 
 				//SKYRAT CHANGES
 				if("skyrat_ooc_notes")
-					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", skyrat_ooc_notes, MAX_FLAVOR_LEN, TRUE)
+					var/msg = input(usr, "Set your OOC Notes", "OOC Notes", skyrat_ooc_notes) as message|null
 					if(msg)
-						skyrat_ooc_notes = html_decode(msg)
+						skyrat_ooc_notes = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 				
 				if("bloodtype")
 					var/msg = input(usr, "Choose your blood type", "Blood Type", "") as anything in (pref_species.bloodtypes + "Default")
@@ -1942,49 +1942,50 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							bloodtype = msg
 
 				if("general_records")
-					var/msg = stripped_multiline_input(usr, "Set your general records", "General Records", general_records, MAX_FLAVOR_LEN, TRUE)
+					var/msg = input(usr, "Set your general records", "General Records", general_records) as message|null 
 					if(msg)
-						general_records = html_decode(msg)
+						general_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("security_records")
-					var/msg = stripped_multiline_input(usr, "Set your security records", "Security Records", security_records, MAX_FLAVOR_LEN, TRUE)
+					var/msg = input(usr, "Set your security records", "Security Records", security_records) as message|null 
 					if(msg)
-						security_records = html_decode(msg)
+						security_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("medical_records")
-					var/msg = stripped_multiline_input(usr, "Set your medical records", "Medical Records", medical_records, MAX_FLAVOR_LEN, TRUE)
+					var/msg = input(usr, "Set your medical records", "Medical Records", medical_records) as message|null 
 					if(msg)
-						medical_records = html_decode(msg)
+						medical_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("flavor_background")
-					var/msg = stripped_multiline_input(usr, "Set your background", "Character Background", flavor_background, MAX_FLAVOR_LEN, TRUE)
+					var/msg = input(usr, "Set your background", "Character Background", flavor_background) as message|null 
 					if(msg)
-						flavor_background = html_decode(msg)
+						flavor_background = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("flavor_faction")
 					var/new_faction = input(user, "Set your faction", "Character Faction") as null|anything in GLOB.factions_list + list("None (Freelancer)", "Other")
 					if(new_faction)
 						if(new_faction == "Other")
-							var/custom_faction = reject_bad_name(input(user, "Set your custom faction/subfaction, if unique. Don't abuse this.", "Character Faction", flavor_faction) as null|text)
+							var/custom_faction = input(user, "Set your custom faction/subfaction, if unique. Don't abuse this.", "Character Faction", flavor_faction) as null|text
 							if(custom_faction)
-								flavor_faction = custom_faction
+								flavor_faction = strip_html_simple(custom_faction, 30, TRUE) 
 						else
 							flavor_faction = new_faction
 
 				if("character_skills")
-					var/msg = stripped_multiline_input(usr, "Set your skills or hobbies", "Character Skills", character_skills, MAX_FLAVOR_LEN, TRUE)
+					var/msg = input(usr, "Set your skills or hobbies", "Character Skills", character_skills) as message|null 
 					if(msg)
-						character_skills = html_decode(msg)
+						character_skills = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("exploitable_info")
-					var/msg = stripped_multiline_input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info, MAX_FLAVOR_LEN, TRUE)
+					var/msg = input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info) as message|null 
 					if(msg)
-						exploitable_info = html_decode(msg)
+						exploitable_info = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 				//END OF SKYRAT CHANGES
+				/* Skyrat changes - do nothing here because we dont use this and this may be exploited
 				if("ooc_notes")
 					var/msg = stripped_multiline_input(usr, "Set always-visible OOC notes related to content preferences. THIS IS NOT FOR CHARACTER DESCRIPTIONS!", "OOC notes", html_decode(features["ooc_notes"]), MAX_FLAVOR_LEN, TRUE)
 					if(!isnull(msg))
-						features["ooc_notes"] = msg
+						features["ooc_notes"] = msg*/
 
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
