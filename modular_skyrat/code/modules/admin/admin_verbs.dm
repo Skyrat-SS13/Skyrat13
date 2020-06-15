@@ -85,6 +85,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/smite,
 	/client/proc/everyone_random,
 	/client/proc/admin_away,
+	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/cmd_admin_world_narrate,
 	/client/proc/cmd_admin_local_narrate,
