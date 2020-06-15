@@ -84,38 +84,6 @@
 	mob_trait = TRAIT_HEMOPHILIA
 	medical_record_text = "Patient exhibits abnormal blood coagulation behavior."
 
-//remember collar bans? i do and i miss them
-/datum/quirk/state_property
-	name = "Collared"
-	desc = "Due to your concerning behavior, CentCom has installed a permanent shock collar on you, with a publically available code and channel."
-	value = -2
-	medical_record_text = "Patient has been deemed unstable by CentCom and local authorities."
-	var/storedcode = 2
-	var/storedfreq = FREQ_ELECTROPACK
-
-/datum/quirk/state_property/add()
-	. = ..()
-	storedcode = rand(1, 100)
-	storedfreq = sanitize_frequency(rand(MIN_FREE_FREQ, MAX_FREE_FREQ), TRUE)
-	if(.)
-		collar()
-
-/datum/quirk/state_property/proc/collar()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(istype(H))
-		if(H.get_item_by_slot(SLOT_NECK))
-			var/obj/item/I = H.get_item_by_slot(SLOT_NECK)
-			I.forceMove(get_turf(H))
-		var/obj/item/electropack/shockcollar/woops = new /obj/item/electropack/shockcollar(get_turf(H))
-		H.equip_to_slot_or_del(woops, SLOT_NECK)
-		if(!woops)
-			return FALSE
-		ADD_TRAIT(woops, TRAIT_NODROP, "stateproperty")
-		woops.set_frequency(storedfreq)
-		woops.code = storedcode
-		woops.name = "CentComm issue shock collar - freq: [woops.frequency/10] code: [woops.code]"
-		woops.desc = "Issued to those who have been deemed naughty."
-
 //i cant run help
 /datum/quirk/asthmatic
 	name = "Asthmatic"
