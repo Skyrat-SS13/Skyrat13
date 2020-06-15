@@ -259,12 +259,12 @@
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
 		//Skyrat change
+		C.assignment = J.title
 		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
-			C.assignment = preference_source.prefs.alt_titles_preferences[J.title]
+			C.update_label(C.registered_name, preference_source.prefs.alt_titles_preferences[J.title])
 		else
-			C.assignment = J.title
+			C.update_label()
 		//End of skyrat change
-		C.update_label()
 		for(var/A in SSeconomy.bank_accounts)
 			var/datum/bank_account/B = A
 			if(B.account_id == H.account_id)

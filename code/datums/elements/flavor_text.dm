@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(mobs_with_editable_flavor_text) //et tu, hacky code
 	if(examine_no_preview)
 		examine_list += "<span class='notice'><a href='?src=[REF(src)];show_flavor=[REF(target)]'>\[[flavor_name]\]</a></span>"
 		return
-	var/msg = replacetext(text, "\n", " ")
+	var/msg = replacetext(html_encode(text), "\n", " ") //Skyrat edit, added html_encode()
 	if(length_char(msg) <= 40)
 		examine_list += "<span class='notice'>[msg]</span>"
 	else
@@ -117,9 +117,9 @@ GLOBAL_LIST_EMPTY(mobs_with_editable_flavor_text) //et tu, hacky code
 		return FALSE
 
 	var/lower_name = lowertext(flavor_name)
-	var/new_text = stripped_multiline_input(user, "Set the [lower_name] displayed on 'examine'. [addendum]", flavor_name, texts_by_atom[usr], max_len, TRUE)
+	var/new_text = input(user, "Set the [lower_name] displayed on 'examine'. [addendum]", flavor_name, texts_by_atom[usr]) as message|null //Skyrat edit, removed stripped_multiline_input()
 	if(!isnull(new_text) && (user in texts_by_atom))
-		texts_by_atom[user] = html_decode(new_text)
+		texts_by_atom[user] = strip_html_simple(new_text, MAX_FLAVOR_LEN, TRUE) //Skyrat edit, removed html_decode()
 		to_chat(src, "Your [lower_name] has been updated.")
 		return TRUE
 	return FALSE

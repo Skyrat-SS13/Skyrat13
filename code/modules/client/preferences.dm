@@ -434,9 +434,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(!length(features["flavor_text"]))
 					dat += "\[...\]<BR>" //skyrat - adds <br> //come to brazil or brazil comes to you
 				else
-					dat += "[features["flavor_text"]]<BR>" //skyrat - adds <br>
+					dat += "[html_encode(features["flavor_text"])]<BR>" //skyrat - adds <br> and uses html_encode
 			else
-				dat += "[TextPreview(features["flavor_text"])]...<BR>"
+				dat += "[TextPreview(html_encode(features["flavor_text"]))]...<BR>" //skyrat edit, uses html_encode
 			//SKYRAT EDIT
 			dat += 	"Records :"
 			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a>"
@@ -1918,9 +1918,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("flavor_text")
-					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", features["flavor_text"], MAX_FLAVOR_LEN, TRUE)
+					var/msg = input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", features["flavor_text"]) as message|null //Skyrat edit, removed stripped_multiline_input()
 					if(!isnull(msg))
-						features["flavor_text"] = html_decode(msg)
+						features["flavor_text"] = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE) //Skyrat edit, removed html_decode()
 
 				if("silicon_flavor_text")
 					var/msg = stripped_multiline_input(usr, "Set the silicon flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Silicon Flavor Text", features["silicon_flavor_text"], MAX_FLAVOR_LEN, TRUE)
