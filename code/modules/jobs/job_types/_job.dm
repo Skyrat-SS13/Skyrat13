@@ -261,7 +261,7 @@
 		//Skyrat change
 		C.assignment = J.title
 		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
-			C.update_label(null, preference_source.prefs.alt_titles_preferences[J.title])
+			C.update_label(C.registered_name, preference_source.prefs.alt_titles_preferences[J.title])
 		else
 			C.update_label()
 		//End of skyrat change

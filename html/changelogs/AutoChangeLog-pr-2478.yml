@@ -1,8 +1,0 @@
-author: "KathrinBailey"
-delete-after: True
-changes: 
-  - rscadd: "Unrestricted access on some security doors from one direction, allowing released prisoners to get changed and enter the brig, where security can see them and let them out."
-  - rscadd: "Locker of clothes in Meta cloning lab since vendors require IDs and money to use."
-  - tweak: "Metastation changing rooms moved to the prisoner locker area for consistency between maps."
-  - bugfix: "Missing temperature gun in Meta armoury."
-  - spellcheck: "Fixed chromatic window shutter button typo."

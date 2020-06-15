@@ -1,6 +1,0 @@
-author: "Avunia"
-delete-after: True
-changes: 
-  - tweak: "Changed *peep to only do one peep"
-  - rscadd: "Added a *peep2 emote for the original *peep sound"
-  - soundadd: "Added peep_once.ogg for the new *peep emote"
