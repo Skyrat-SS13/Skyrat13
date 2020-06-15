@@ -340,7 +340,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 /obj/item/pipe_dispenser/proc/dispense(atom/A, mob/user)
 	var/turf/T = get_turf(A)
 	if(!user.IsAdvancedToolUser() || !T || istype(T, /turf/open/space/transit) || isindestructiblewall(T))
-		return ..()
+		return
 
 	//So that changing the menu settings doesn't affect the pipes already being built.
 	var/queued_p_type = recipe.id
@@ -387,7 +387,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 		switch(category) //if we've gotten this var, the target is valid
 			if(ATMOS_CATEGORY) //Making pipes
 				if(!can_make_pipe)
-					return ..()
+					return
 				A = T
 				if(is_type_in_typecache(recipe, GLOB.ventcrawl_machinery) && isclosedturf(A)) //wall escapism sanity check.
 					to_chat(user, "<span class='warning'>[src]'s error light flickers; there's something in the way!</span>")
@@ -423,7 +423,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 
 			if(DISPOSALS_CATEGORY) //Making disposals pipes
 				if(!can_make_pipe)
-					return ..()
+					return
 				A = T
 				if(isclosedturf(A))
 					to_chat(user, "<span class='warning'>[src]'s error light flickers; there's something in the way!</span>")
@@ -448,7 +448,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 
 			if(TRANSIT_CATEGORY) //Making transit tubes
 				if(!can_make_pipe)
-					return ..()
+					return
 				A = T
 				if(isclosedturf(A))
 					to_chat(user, "<span class='warning'>[src]'s error light flickers; there's something in the way!</span>")
@@ -481,7 +481,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 					return
 
 			else
-				return ..()
+				return 
 // End skyrat edit
 
 /obj/item/pipe_dispenser/proc/activate()
