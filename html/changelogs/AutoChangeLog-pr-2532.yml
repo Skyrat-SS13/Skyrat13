@@ -1,4 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - rscdel: "Removed fusion with concerns due to breaking time and space, accidently griefing the entire round or making TD 100%"

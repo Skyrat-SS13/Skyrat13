@@ -1,8 +1,0 @@
-author: "KathrinBailey"
-delete-after: True
-changes: 
-  - rscadd: "Fashionable cloak sprites. They're just a bit smaller and don't go ten hundred pixels above your shoulders anymore."
-  - rscadd: "Long Hair 4: It's just Long Hair 1 but neater."
-  - rscadd: "Greater fashion opportunities!"
-  - bugfix: "All cloaks are no longer lopsided."
-  - bugfix: "Cloaks having inconsistent wrapping through their directional sprites."

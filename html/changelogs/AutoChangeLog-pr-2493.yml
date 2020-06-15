@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Ghosts can now scan air inside most objects that contain air by clicking on them."

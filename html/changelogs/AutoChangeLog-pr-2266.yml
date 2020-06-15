@@ -1,4 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - rscadd: "Antags gain the Objectives and Ambitions verb (in the IC tab), which allows them to set custom ambitions that will be shown at the end of the round's report to give better context to their actions, plus allows them to request the removal, addition or modification of their objectives to the admins."

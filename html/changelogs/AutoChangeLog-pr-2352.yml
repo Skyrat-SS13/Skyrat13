@@ -1,8 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "Adds the QM and CE offices to Omega Station"
-  - rscadd: "Adds spawn points for most roles that lacked them prior"
-  - rscadd: "Marks the Custodial Closet for clarity's sake"
-  - tweak: "Minor area designation fixes"
-  - bugfix: "Removes a loose wire that served no purpose"
