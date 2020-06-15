@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(adjacent_air)
 		currT.ImmediateCalculateAdjacentTurfs()
 
 		if(mc_check)
-			if(CHECK_TICK_LOW_PRIORITY)
+			if(MC_TICK_CHECK_LOW_PRIORITY)
 				break
 		else
 			CHECK_TICK

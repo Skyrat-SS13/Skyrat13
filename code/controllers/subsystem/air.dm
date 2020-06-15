@@ -158,7 +158,7 @@ SUBSYSTEM_DEF(air)
 			thing.process()
 		else
 			networks.Remove(thing)
-		if(CHECK_TICK_LOW_PRIORITY)
+		if(MC_TICK_CHECK_LOW_PRIORITY)
 			return
 
 /datum/controller/subsystem/air/proc/add_to_rebuild_queue(atmos_machine)
@@ -176,7 +176,7 @@ SUBSYSTEM_DEF(air)
 		currentrun.len--
 		if(!M || (M.process_atmos(seconds) == PROCESS_KILL))
 			atmos_machinery.Remove(M)
-		if(CHECK_TICK_LOW_PRIORITY)
+		if(MC_TICK_CHECK_LOW_PRIORITY)
 			return
 
 
