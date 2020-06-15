@@ -3,7 +3,8 @@
 	icon_state = "pdaterm"
 	icon_vend = "pdaterm-purchase"
 	icon_deny = "pdaterm-problem"
-	products = list(/obj/item/pda = 20)
+	products = list(/obj/item/pda = 20,
+					/obj/item/modular_computer/tablet/preset/cheap = 10)
 	contraband = list(/obj/item/pda/neko = 1)
 	premium = list(/obj/item/pda/clear = 1)
 	product_ads = "PDAs here!;Slick and informative!;Grab another?;Got a penpal?"
