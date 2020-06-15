@@ -11,14 +11,9 @@ GLOBAL_LIST(topic_status_cache)
 
 // Skyrat edit
 /world/New()
-	if(system_type == MS_WINDOWS)
-		var/wextools = world.GetConfig("env", "EXTOOLS_DLL") || "./byond-extools.dll" 
-		if(fexists(wextools))
-			call(wextools, "maptick_initialize")()
-	if(system_type == UNIX)
-		var/uextools = world.GetConfig("env", "EXTOOLS_DLL") || "./libbyond-extools.so" // Skyrat edit
-		if (fexists(uextools))
-			call(uextools, "maptick_initialize")()
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
+	if (fexists(extools))
+		call(extools, "maptick_initialize")()
 	enable_debugger()
 // Skyrat edit
 
