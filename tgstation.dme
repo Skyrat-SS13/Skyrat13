@@ -3463,6 +3463,7 @@
 #include "modular_skyrat\code\controllers\subsystem\recycling.dm"
 #include "modular_skyrat\code\datums\action.dm"
 #include "modular_skyrat\code\datums\ai_laws.dm"
+#include "modular_skyrat\code\datums\dna.dm"
 #include "modular_skyrat\code\datums\ert.dm"
 #include "modular_skyrat\code\datums\event_menu.dm"
 #include "modular_skyrat\code\datums\saymode.dm"
