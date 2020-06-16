@@ -1,5 +1,0 @@
-author: "Anonymous"
-delete-after: True
-changes: 
-  - bugfix: "Removes modular modifications of crowbar loadout since upstream removed original. This will remove blank category."
-  - bugfix: "EntCorp defined command uniform is now properly available to command only."

@@ -1,4 +1,0 @@
-author: "KathrinBailey"
-delete-after: True
-changes: 
-  - bugfix: "DeltaStation disposals now properly sends mail into the start of the disposals loop when sent with the rest of the trash in the mail room."
