@@ -30,6 +30,7 @@
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
 	// SKYRAT CHANGE START
 	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])
+	skyrat_ooc_notes = strip_html_simple(skyrat_ooc_notes, MAX_FLAVOR_LEN, TRUE)
 	// SKYRAT CHANGE END
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"

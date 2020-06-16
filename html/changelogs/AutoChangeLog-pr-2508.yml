@@ -1,5 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - rscadd: "Added DMI viewing in VSCode"
-  - bugfix: "fixed debugging on VSCode"

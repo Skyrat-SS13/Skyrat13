@@ -90,7 +90,7 @@
 /client/MouseMove(object,location,control,params)
 	mouseParams = params
 	mouseLocation = location
-	mouseObject = object
+	//mouseObject = object //Skyrat change
 	mouseControlObject = control
 	if(mob)
 		SEND_SIGNAL(mob, COMSIG_MOB_CLIENT_MOUSEMOVE, object, location, control, params)
@@ -107,7 +107,7 @@
 			middragatom = null
 	mouseParams = params
 	mouseLocation = over_location
-	mouseObject = over_object
+	//mouseObject = over_object //Skyrat change
 	mouseControlObject = over_control
 	if(selected_target[1] && over_object && over_object.IsAutoclickable())
 		selected_target[1] = over_object

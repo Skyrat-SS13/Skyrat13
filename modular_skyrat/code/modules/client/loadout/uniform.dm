@@ -74,10 +74,10 @@
 	name = "EntCorp uniform, medsci, cmd"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/orv/medsci
-	restricted_roles = MEDSCI_ROLES
+	restricted_roles = list("Research Director", "Chief Medical Officer")
 
 /datum/gear/orvcmd_ops
 	name = "EntCorp uniform, ops, cmd"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/orv/engsec
-	restricted_roles = OPRS_ROLES
+	restricted_roles = list("Head of Security", "Chief Engineer")

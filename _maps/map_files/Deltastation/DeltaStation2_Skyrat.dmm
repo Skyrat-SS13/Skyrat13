@@ -5441,8 +5441,7 @@
 	base_state = "left";
 	dir = 1;
 	icon_state = "left";
-	name = "Danger: Conveyor Access";
-	req_access_txt = "12"
+	name = "Danger: Conveyor Access"
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
@@ -5787,6 +5786,9 @@
 /area/maintenance/starboard/fore)
 "asd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "ase" = (
@@ -6452,19 +6454,21 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/oil,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal)
 "atA" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 2;
+	name = "Mail Sorter";
+	sortType = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "atB" = (
@@ -7015,9 +7019,6 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "auI" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -7025,18 +7026,21 @@
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal)
-"auJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal)
+"auJ" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal)
@@ -97125,6 +97129,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"fyr" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/closed/wall,
+/area/maintenance/disposal)
 "fBd" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/flasher/portable,
@@ -149148,7 +149158,7 @@ aoE
 aoE
 aoE
 aoF
-aoF
+fyr
 atz
 auI
 aoF
