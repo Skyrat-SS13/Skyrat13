@@ -5,6 +5,8 @@
 	/client/proc/cmd_loud_admin_say,
 	/client/proc/dsay,					/*talk in deadchat using our ckey/fakekey*/
 	/client/proc/deadchat,
+	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags*/
+	/datum/verbs/menu/Admin/verb/playerpanel,
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/game_panel,
 	/client/proc/secrets,
@@ -18,8 +20,6 @@
 /world/proc/AVerbsAdmin()
 	return list(
 	/client/proc/invisimin,				/*allows our mob to go invisible/visible*/
-	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags*/
-	/datum/verbs/menu/Admin/verb/playerpanel,
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleooclocal,	/*toggles looc on/off for everyone*/
