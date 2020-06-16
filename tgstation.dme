@@ -3497,6 +3497,7 @@
 #include "modular_skyrat\code\datums\traits\neutral.dm"
 #include "modular_skyrat\code\datums\weather\weather_types\radiation_storm.dm"
 #include "modular_skyrat\code\game\world.dm"
+#include "modular_skyrat\code\game\area\cere_station.dm"
 #include "modular_skyrat\code\game\area\lavalandelevator.dm"
 #include "modular_skyrat\code\game\area\Space_Station_13_areas.dm"
 #include "modular_skyrat\code\game\area\areas\ruins\lavaland.dm"
