@@ -76,6 +76,7 @@
 	new /obj/item/limbsurgeon/martialarm(src)
 	new /obj/item/headsetupgrader(src)
 	new /obj/item/encryptionkey/syndicate(src)
+	new /obj/item/kitchen/knife/combat/survival(src)
 
 /obj/item/limbsurgeon //autosurgeon is shit and does not support limbs, i had to do it to 'em
 	name = "limb autosurgeon"
