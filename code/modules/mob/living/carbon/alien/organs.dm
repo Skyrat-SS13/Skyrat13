@@ -11,6 +11,8 @@
 			alien_powers += new A(src)
 
 /obj/item/organ/alien/Destroy()
+	if(owner)
+		Remove()
 	QDEL_LIST(alien_powers)
 	return ..()
 
