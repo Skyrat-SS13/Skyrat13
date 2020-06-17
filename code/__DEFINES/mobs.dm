@@ -58,9 +58,11 @@
 #define BODYPART_DISABLED_DAMAGE 1
 #define BODYPART_DISABLED_PARALYSIS 2
 
-#define DEFAULT_BODYPART_ICON 'icons/mob/human_parts.dmi'
-#define DEFAULT_BODYPART_ICON_ORGANIC 'icons/mob/human_parts_greyscale.dmi'
-#define DEFAULT_BODYPART_ICON_ROBOTIC 'icons/mob/augmentation/augments.dmi'
+//skyrat edit
+#define DEFAULT_BODYPART_ICON 'modular_skyrat/icons/mob/human_parts.dmi'
+#define DEFAULT_BODYPART_ICON_ORGANIC 'modular_skyrat/icons/mob/human_parts_greyscale.dmi'
+#define DEFAULT_BODYPART_ICON_ROBOTIC 'modular_skyrat/icons/mob/augments/augments.dmi'
+//
 #define DEFAULT_BODYPART_ICON_CITADEL 'modular_citadel/icons/mob/mutant_bodyparts.dmi'
 
 #define MONKEY_BODYPART "monkey"

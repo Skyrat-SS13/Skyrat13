@@ -902,7 +902,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			//skyrat edit
 			if(CAN_SCAR in pref_species.species_traits)
 				dat += "<BR><b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</A>"
-				dat += "<a href='?_src_=prefs;preference=clear_scars'>Clear scar slots</A>"
+				dat += "<a href='?_src_=prefs;preference=clear_scars'>Clear scar slots</A><BR>"
 			//
 			dat += "<b>Uplink Location:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a>"
 			dat += "</td>"

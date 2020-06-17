@@ -1,4 +1,4 @@
-//skyrat edit
+//skyrat meme
 /mob/living/carbon/proc/create_bodyparts()
 	var/l_hand_index_next = -1
 	var/r_hand_index_next = 0

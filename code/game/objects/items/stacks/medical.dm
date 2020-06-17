@@ -1,7 +1,7 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
-	icon = 'icons/obj/stack_objects.dmi'
+	icon = 'modular_skyrat/icons/obj/stack_objects.dmi' //skyrat edit
 	amount = 12
 	max_amount = 12
 	w_class = WEIGHT_CLASS_TINY
