@@ -368,7 +368,7 @@
 
 /datum/supply_pack/organic/exoticseeds/fill(obj/structure/closet/crate/C)
 	. = ..()
-	for(i=0, i < 2, i++) // 2 extra seeds
+	for(var/i=0, i < 2, i++) // 2 extra seeds
 		if(prob(33))
 			new /obj/item/seeds/cherry/bomb(C)
 		else if(prob(33))
