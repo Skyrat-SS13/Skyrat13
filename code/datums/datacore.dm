@@ -236,7 +236,6 @@
 		var/datum/data/record/G = new()
 		G.fields["id"]			= id
 		G.fields["name"]		= H.real_name
-		G.fields["faction"]		= C.prefs.flavor_faction // Skyrat Edit
 		G.fields["rank"]		= assignment
 		G.fields["shown_rank"]		= shown_assignment //Skyrat change
 		G.fields["age"]			= H.age
@@ -254,6 +253,10 @@
 		G.fields["photo_side"]	= photo_side
 		//Skyrat edit - rp records
 		if(C)
+			if(C.prefs.flavor_faction)
+				G.fields["faction"]  = C.prefs.flavor_faction
+			else
+				G.fields["faction"]  = "UNSET"
 			G.fields["past_records"] = C.prefs.general_records
 		else
 			G.fields["past_records"] = ""
@@ -287,13 +290,16 @@
 		var/datum/data/record/S = new()
 		S.fields["id"]			= id
 		S.fields["name"]		= H.real_name
-		S.fields["faction"]		= C.prefs.flavor_faction // Skyrat Edit
 		S.fields["criminal"]	= "None"
 		S.fields["mi_crim"]		= list()
 		S.fields["ma_crim"]		= list()
 		S.fields["notes"]		= "No notes."
 		//Skyrat edit - rp records
 		if(C)
+			if(C.prefs.flavor_faction)
+				S.fields["faction"]  = C.prefs.flavor_faction
+			else
+				S.fields["faction"]  = "UNSET"
 			S.fields["past_records"] = C.prefs.security_records
 		else
 			S.fields["past_records"] = ""
@@ -305,7 +311,6 @@
 		L.fields["id"]			= md5("[H.real_name][H.mind.assigned_role]")	//surely this should just be id, like the others?
 		L.fields["name"]		= H.real_name
 		L.fields["rank"] 		= H.mind.assigned_role
-		L.fields["faction"]		= C.prefs.flavor_faction // Skyrat Edit
 		L.fields["age"]			= H.age
 		if(H.gender == MALE)
 			G.fields["gender"]  = "Male"
@@ -320,6 +325,12 @@
 		L.fields["features"]	= H.dna.features
 		L.fields["image"]		= image
 		L.fields["mindref"]		= H.mind
+		//Skyrat edit - faction
+		if(C.prefs.flavor_faction)
+			L.fields["faction"] = C.prefs.flavor_faction
+		else
+			L.fields["faction"] = "UNSET"
+		//End of skyrat edit
 		locked += L
 	return
 

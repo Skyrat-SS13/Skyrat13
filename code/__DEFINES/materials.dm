@@ -9,3 +9,5 @@
 #define MATERIAL_ADD_PREFIX (1<<1)
 #define MATERIAL_EFFECTS (1<<2)
 #define MATERIAL_AFFECT_STATISTICS (1<<3)
+
+#define MAT_COST_WITH_COEFF(cost,coeff) (CEILING(cost*coeff,CEILING(50*coeff,5))) //Skyrat Change. Materials OCD update.

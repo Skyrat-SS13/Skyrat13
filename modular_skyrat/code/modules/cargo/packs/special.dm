@@ -58,3 +58,27 @@
 			continue
 		crate_value -= I.cost
 		new I.item(C)
+
+//maint energy crate
+/datum/supply_pack/emergency/maint_energy
+	name = "Maintenance Energy Freezer"
+	desc = "A freezer containing a six pack of maint energy to keep you hydrated and energized."
+	cost = 1000
+	crate_name = "maintenance energy freezer"
+	crate_type = /obj/structure/closet/crate/maint_energy
+	contraband = TRUE
+
+/obj/structure/closet/crate/maint_energy
+	name = "maintenance energy freezer"
+	desc = "<i>Sips.</i> Yep."
+	icon = 'modular_skyrat/icons/obj/crates.dmi'
+	icon_state = "maintenergy"
+
+/obj/structure/closet/crate/maint_energy/PopulateContents()
+	var/list/drinktypepaths = typesof(/obj/item/reagent_containers/food/drinks/soda_cans/maint_energy) - list(/obj/item/reagent_containers/food/drinks/soda_cans/maint_energy/blood_red)
+	var/list/illegaldrinks = list(/obj/item/reagent_containers/food/drinks/soda_cans/maint_energy/blood_red)
+	for(var/i in 1 to 6)
+		var/chosen = pick(drinktypepaths)
+		if(prob(1))
+			chosen = pick(illegaldrinks)
+		new chosen(src)

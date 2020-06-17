@@ -2182,6 +2182,20 @@
 	},
 /turf/open/floor/plating,
 /area/engine/supermatter)
+"adt" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "adv" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
@@ -89693,7 +89707,7 @@ ajI
 aid
 aiJ
 agw
-afE
+adt
 afE
 amw
 anm

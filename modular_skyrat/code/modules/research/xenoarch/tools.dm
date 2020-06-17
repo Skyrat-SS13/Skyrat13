@@ -151,7 +151,9 @@
 		var/export_text = E.total_printout(ex)
 		if(!export_text)
 			continue
-		SSshuttle.points += ex.total_value[E]
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+		if(D)
+			D.adjust_money(ex.total_value[E])
 	to_chat(user,"The [target] disappears!")
 
 

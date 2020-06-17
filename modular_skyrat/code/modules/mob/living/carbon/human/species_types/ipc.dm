@@ -1,7 +1,7 @@
 /datum/species/ipc
 	species_traits = list(MUTCOLORS_PARTSONLY,NOEYES,NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY,HAIR)
 	mutant_bodyparts = list("ipc_screen" = "Blank", "ipc_antenna" = "None", ipc_chassis = "Morpheus Cyberkinetics(Greyscale)")
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE)
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE, TRAIT_CLONEIMMUNE)
 	coldmod = 0.5
 	burnmod = 1.1
 	heatmod = 1.2
@@ -25,6 +25,7 @@
 	icon_limbs = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
 	hair_alpha = 210
 	var/saved_screen
+	languagewhitelist = list("Encoded Audio Language")
 
 /datum/species/ipc/spec_death(gibbed, mob/living/carbon/C)
 	saved_screen = C.dna.features["ipc_screen"]
@@ -37,7 +38,7 @@
 
 /datum/species/ipc/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
 	. = ..()
-	C.grant_language(/datum/language/machine)
+	//C.grant_language(/datum/language/machine)
 	var/obj/item/organ/appendix/appendix = C.getorganslot("appendix") // Easiest way to remove it.
 	appendix.Remove(C)
 	QDEL_NULL(appendix)
@@ -66,4 +67,4 @@
 
 /datum/species/ipc/on_species_loss(mob/living/carbon/human/C)
 	..()
-	C.remove_language(/datum/language/machine)
+	//C.remove_language(/datum/language/machine)
