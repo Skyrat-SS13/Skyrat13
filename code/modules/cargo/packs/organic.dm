@@ -368,13 +368,14 @@
 
 /datum/supply_pack/organic/exoticseeds/fill(obj/structure/closet/crate/C)
 	. = ..()
-	if(prob(33))
-		new /obj/item/seeds/cherry/bomb(C)
-	else if(prob(33))
-		new /obj/item/seeds/gatfruit(C)
-	else new /obj/item/seeds/starthistle/corpse_flower(C)
+	for(i=0, i < 2, i++) // 2 extra seeds
+		if(prob(33))
+			new /obj/item/seeds/cherry/bomb(C)
+		else if(prob(33))
+			new /obj/item/seeds/gatfruit(C)
+		else
+			new /obj/item/seeds/starthistle/corpse_flower(C)
 	
-
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////// Misc /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
