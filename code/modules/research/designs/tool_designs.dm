@@ -84,7 +84,7 @@
 
 /datum/design/ranged_analyzer // Skyrat addition
 	name = "Long-range Analyzer"
-	desc = "A new advanced atmospheric Analyzer design, capable of performing scans at long range"
+	desc = "A new advanced atmospheric analyzer design, capable of performing scans at long range."
 	id = "ranged_analyzer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 400, /datum/material/glass = 1000, /datum/material/uranium = 800, /datum/material/gold = 200, /datum/material/plastic = 200)
