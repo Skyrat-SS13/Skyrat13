@@ -127,7 +127,7 @@
 ///Changes the user direction to (try) keep match the pointer.
 /datum/component/combat_mode/proc/on_move(atom/movable/source, dir, atom/oldloc, forced)
 	var/mob/living/L = source
-	if(mode_flags & COMBAT_MODE_ACTIVE && L.client && world.time < click_time && L.dir != lastmousedir) //Skyrat change
+	if(mode_flags & COMBAT_MODE_ACTIVE && L.client && lastmousedir && world.time < click_time && L.dir != lastmousedir) //Skyrat change
 		L.setDir(lastmousedir, ismousemovement = TRUE)
 
 /*/// Added movement delay if moving backward. //Skyrat change - unusued
