@@ -386,8 +386,8 @@
 /obj/item/bonesetter
 	name = "bonesetter"
 	desc = "For setting things right."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "bone setter"
+	icon = 'modular_skyrat/icons/obj/surgery.dmi'
+	icon_state = "bone-setter"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	custom_materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
@@ -401,7 +401,7 @@
 /obj/item/fixovein
 	name = "fix o' vein"
 	desc = "Allan, please add details."
-	icon = 'icons/obj/surgery.dmi'
+	icon = 'modular_skyrat/icons/obj/surgery.dmi'
 	icon_state = "fixovein"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
