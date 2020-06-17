@@ -11,11 +11,8 @@
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
 	baseturfs = /turf/open/floor/plating
-	//skyrat edit
-	///lower numbers are harder. Used to determine the probability of a hulk smashing through. Also, (hardness - 40) is used as a modifier for objects trying to embed in this (hardness of 30 results in a -10% chance)
-	var/hardness = 40
-	flags_ricochet = RICOCHET_HARD
-	//
+
+	var/hardness = 40 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
 	var/slicing_duration = 100  //default time taken to slice the wall
 	var/sheet_type = /obj/item/stack/sheet/metal
 	var/sheet_amount = 2
@@ -43,8 +40,8 @@
 
 /turf/closed/wall/attack_tk()
 	return
-/* skyrat edit
-/turf/closed/wall/handle_ricochet(obj/item/projectile/P)			//A huge pile of shitcode!
+
+/turf/closed/wall/handle_projectile_ricochet(obj/item/projectile/P)			//A huge pile of shitcode!
 	var/turf/p_turf = get_turf(P)
 	var/face_direction = get_dir(src, p_turf)
 	var/face_angle = dir2angle(face_direction)
@@ -54,7 +51,7 @@
 	var/new_angle_s = SIMPLIFY_DEGREES(face_angle + incidence_s)
 	P.setAngle(new_angle_s)
 	return TRUE
-*/
+
 /turf/closed/wall/proc/dismantle_wall(devastated=0, explode=0)
 	if(devastated)
 		devastate_wall()
