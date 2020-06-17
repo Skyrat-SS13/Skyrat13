@@ -41,3 +41,36 @@
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 75)
 	build_path = /obj/item/melee/synthetic_arm_blade
 	category = list("other","emagged")
+
+//skyrat designs
+/datum/design/lefthand
+	name = "Left Hand"
+	id = "lefthand"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
+	build_path = /obj/item/bodypart/l_hand
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
+/datum/design/righthand
+	name = "Right Hand"
+	id = "righthand"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
+	build_path = /obj/item/bodypart/r_hand
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
+/datum/design/leftfoot
+	name = "Left Foot"
+	id = "leftfoot"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
+	build_path = /obj/item/bodypart/l_foot
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
+
+/datum/design/rightfoot
+	name = "Right Foot"
+	id = "rightfoot"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
+	build_path = /obj/item/bodypart/r_foot
+	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")

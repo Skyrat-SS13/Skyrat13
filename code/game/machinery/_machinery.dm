@@ -125,6 +125,10 @@ Class Procs:
 	var/fair_market_price = 69
 	var/market_verb = "Customer"
 	var/payment_department = ACCOUNT_ENG
+	//skyrat vars
+	flags_ricochet = RICOCHET_HARD
+	ricochet_chance_mod = 0.3
+	//
 
 /obj/machinery/Initialize()
 	if(!armor)

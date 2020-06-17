@@ -4,8 +4,12 @@
 
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
-	damage = 5
 	stamina = 70
+	//skyrat edit
+	damage = 10
+	wound_bonus = 20
+	sharpness = FALSE
+	//
 
 /obj/item/projectile/bullet/incendiary/shotgun
 	name = "incendiary slug"
@@ -77,6 +81,9 @@
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
 	damage = 12.5
+	//skyrat edit
+	wound_bonus = -10
+	//
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
@@ -112,3 +119,14 @@
 /obj/item/projectile/bullet/seed
 	damage = 4
 	stamina = 1
+
+//skyrat fucking edit
+/obj/item/projectile/bullet/shotgun_slug/executioner
+	name = "executioner slug" // admin only, can dismember limbs
+	sharpness = TRUE
+	wound_bonus = 0
+
+/obj/item/projectile/bullet/shotgun_slug/pulverizer
+	name = "pulverizer slug" // admin only, can crush bones
+	sharpness = FALSE
+	wound_bonus = 0

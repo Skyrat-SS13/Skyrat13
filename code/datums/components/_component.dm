@@ -38,9 +38,16 @@
 	parent = raw_args[1]
 	var/list/arguments = raw_args.Copy(2)
 	if(Initialize(arglist(arguments)) == COMPONENT_INCOMPATIBLE)
+		//skyrat edit
+		stack_trace("Incompatible [type] assigned to a [parent.type]! args: [json_encode(arguments)]")
+		//
 		qdel(src, TRUE, TRUE)
+		/* skyrat edit
 		CRASH("Incompatible [type] assigned to a [parent.type]! args: [json_encode(arguments)]")
-
+		*/
+		//skyrat edit
+		return
+		//
 	_JoinParent(parent)
 
 /**

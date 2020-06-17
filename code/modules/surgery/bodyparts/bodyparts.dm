@@ -4,7 +4,7 @@
 	desc = "Why is it detached..."
 	force = 3
 	throwforce = 3
-	icon = 'icons/mob/human_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/human_parts.dmi' //skyrat edit
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = ""
 	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
@@ -14,7 +14,7 @@
 	var/needs_processing = FALSE
 
 	var/body_zone //BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
-	var/list/aux_icons // associative list, currently used for hands
+	var/list/aux_icons // associative list, currently used on hands
 	var/body_part = null //bitflag used to check which clothes cover this bodypart
 	var/use_digitigrade = NOT_DIGITIGRADE //Used for alternate legs, useless elsewhere
 	var/list/embedded_objects = list()
@@ -70,7 +70,40 @@
 	var/light_burn_msg = "numb"
 	var/medium_burn_msg = "blistered"
 	var/heavy_burn_msg = "peeling away"
+	//skyrat variables
+	var/parent_bodyzone //body zone that is considered a "parent" of this bodypart's zone
+	var/list/starting_children = list() //children that are already "inside" this limb on spawn. could be organs or limbs.
+	var/list/children_zones = list() //body zones that are considered "children" of this bodypart's zone
+	var/amputation_point //descriptive string used in amputation.
+	var/obj/item/cavity_item
+	/// The wounds currently afflicting this body part
+	var/list/wounds
 
+	/// The scars currently afflicting this body part
+	var/list/scars
+	/// Our current stored wound damage multiplier
+	var/wound_damage_multiplier = 1
+	/// This number is subtracted from all wound rolls on this bodypart, higher numbers mean more defense, negative means easier to wound
+	var/wound_resistance = 0
+	/// When this bodypart hits max damage, this number is added to all wound rolls. Obviously only relevant for bodyparts that have damage caps.
+	var/disabled_wound_penalty = 15
+
+	/// A hat won't cover your face, but a shirt covering your chest will cover your... you know, chest
+	var/scars_covered_by_clothes = TRUE
+	/// Descriptions for the locations on the limb for scars to be assigned, just cosmetic
+	var/list/specific_locations = list("general area")
+	/// So we know if we need to scream if this limb hits max damage
+	var/last_maxed
+	/// How much generic bleedstacks we have on this bodypart
+	var/generic_bleedstacks
+	//
+//skyrat edit
+/obj/item/bodypart/Initialize()
+	. = ..()
+	if(starting_children.len)
+		for(var/I in starting_children)
+			new I(src)
+//
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
 	if(brute_dam > DAMAGE_PRECISION)
@@ -149,13 +182,21 @@
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE)
+//skyrat editted as a whole
+/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE) // maybe separate BRUTE_SHARP and BRUTE_OTHER eventually somehow hmm
+	var/hit_percent = (100-blocked)/100
+	if((!brute && !burn && !stamina) || hit_percent <= 0)
+		return FALSE
 	if(owner && (owner.status_flags & GODMODE))
 		return FALSE	//godmode
-	var/dmg_mlt = CONFIG_GET(number/damage_multiplier)
+
+	if(required_status && (status != required_status))
+		return FALSE
+
+	var/dmg_mlt = CONFIG_GET(number/damage_multiplier) * hit_percent
 	brute = round(max(brute * dmg_mlt, 0),DAMAGE_PRECISION)
 	burn = round(max(burn * dmg_mlt, 0),DAMAGE_PRECISION)
-	stamina = round(max((stamina * dmg_mlt) * incoming_stam_mult, 0),DAMAGE_PRECISION)
+	stamina = round(max(stamina * dmg_mlt, 0),DAMAGE_PRECISION)
 	brute = max(0, brute - brute_reduction)
 	burn = max(0, burn - burn_reduction)
 	//No stamina scaling.. for now..
@@ -163,38 +204,51 @@
 	if(!brute && !burn && !stamina)
 		return FALSE
 
+	brute *= wound_damage_multiplier
+	burn *= wound_damage_multiplier
+
 	switch(animal_origin)
-		if(ALIEN_BODYPART,LARVA_BODYPART) //aliens take double burn //nothing can burn with so much snowflake code around //Skyrat changes, buffs from 1.2 to 2
+		if(ALIEN_BODYPART,LARVA_BODYPART) //aliens take double burn //nothing can burn with so much snowflake code around
 			burn *= 2
 
+	var/wounding_type = (brute > burn ? WOUND_BRUTE : WOUND_BURN)
+	var/wounding_dmg = max(brute, burn)
+	if(wounding_type == WOUND_BRUTE && sharpness)
+		wounding_type = WOUND_SHARP
+	// i know this is effectively the same check as above but i don't know if those can null the damage by rounding and want to be safe
+	if(owner && wounding_dmg > 4 && wound_bonus != CANT_WOUND)
+		// if you want to make tox wounds or some other type, this will need to be expanded and made more modular
+		// handle all our wounding stuff
+		check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
+
 	var/can_inflict = max_damage - get_damage()
+	var/total_damage = brute + burn
+	if(total_damage > can_inflict && total_damage > 0) // TODO: the second part of this check should be removed once disabling is all done
+		brute = round(brute * (can_inflict / total_damage),DAMAGE_PRECISION)
+		burn = round(burn * (can_inflict / total_damage),DAMAGE_PRECISION)
+
 	if(can_inflict <= 0)
 		return FALSE
-
-	var/total_damage = brute + burn
-
-	if(total_damage > can_inflict)
-		brute = round(brute * (max_damage / total_damage),DAMAGE_PRECISION)
-		burn = round(burn * (max_damage / total_damage),DAMAGE_PRECISION)
 
 	brute_dam += brute
 	burn_dam += burn
 
-	//We've dealt the physical damages, if there's room lets apply the stamina damage.
-	var/current_damage = get_damage(TRUE)		//This time around, count stamina loss too.
-	var/available_damage = max_damage - current_damage
-	stamina_dam += round(clamp(stamina, 0, min(max_stamina_damage - stamina_dam, available_damage)), DAMAGE_PRECISION)
+	for(var/i in wounds)
+		var/datum/wound/W = i
+		W.receive_damage(wounding_type, wounding_dmg, wound_bonus)
 
-	if(disabled && stamina > 10)
-		incoming_stam_mult = max(0.01, incoming_stam_mult/(stamina*0.1))
+	//We've dealt the physical damages, if there's room lets apply the stamina damage.
+	stamina_dam += round(clamp(stamina, 0, max_stamina_damage - stamina_dam), DAMAGE_PRECISION)
 
 	if(owner && updating_health)
 		owner.updatehealth()
 		if(stamina > DAMAGE_PRECISION)
 			owner.update_stamina()
+			. = TRUE
 	consider_processing()
 	update_disabled()
-	return update_bodypart_damage_state()
+	return update_bodypart_damage_state() || .
+//
 
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
@@ -226,21 +280,55 @@
 //Checks disabled status thresholds
 
 //Checks disabled status thresholds
-/obj/item/bodypart/proc/update_disabled()
+//skyrat edit
+/obj/item/bodypart/proc/update_disabled(var/upparent = TRUE, var/upchildren = TRUE)
+	if(!owner)
+		return
 	set_disabled(is_disabled())
-
+	if(upparent)
+		if(parent_bodyzone)
+			var/obj/item/bodypart/BP = owner.get_bodypart(parent_bodyzone)
+			if(BP)
+				BP.update_disabled(FALSE, FALSE)
+	if(children_zones)
+		for(var/zoner in children_zones)
+			var/obj/item/bodypart/CBP = owner.get_bodypart(zoner)
+			if(CBP)
+				CBP.update_disabled(FALSE, FALSE)
+//skyrat edit
 /obj/item/bodypart/proc/is_disabled()
+	if(!owner)
+		return
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS))
 		return BODYPART_DISABLED_PARALYSIS
+	for(var/i in wounds)
+		var/datum/wound/W = i
+		if(W.disabling)
+			return BODYPART_DISABLED_WOUND
 	if(can_dismember() && !HAS_TRAIT(owner, TRAIT_NODISMEMBER))
 		. = disabled //inertia, to avoid limbs healing 0.1 damage and being re-enabled
+		if((parent_bodyzone != null) && !istype(src, /obj/item/bodypart/groin))
+			if(!(owner.get_bodypart(parent_bodyzone)))
+				return BODYPART_DISABLED_DAMAGE
+			else
+				var/obj/item/bodypart/parent = owner.get_bodypart(parent_bodyzone)
+				if(parent.is_disabled())
+					return	parent.is_disabled()
 		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.6)))) //Easy limb disable disables the limb at 40% health instead of 0%
+			if(!last_maxed)
+				owner.emote("scream")
+				last_maxed = TRUE
+			if(!is_organic_limb())
+				return BODYPART_DISABLED_DAMAGE
+		else if(disabled && (get_damage(TRUE) <= (max_damage * 0.8))) // reenabled at 80% now instead of 50% as of wounds update
+			last_maxed = FALSE
+		if(stamina_dam >= max_stamina_damage)
 			return BODYPART_DISABLED_DAMAGE
 		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)))
 			return BODYPART_NOT_DISABLED
 	else
 		return BODYPART_NOT_DISABLED
-
+//
 /obj/item/bodypart/proc/check_disabled() //This might be depreciated and should be safe to remove.
 	if(!can_dismember() || HAS_TRAIT(owner, TRAIT_NODISMEMBER))
 		return
@@ -251,9 +339,13 @@
 
 
 /obj/item/bodypart/proc/set_disabled(new_disabled)
-	if(disabled == new_disabled)
+	if(disabled == new_disabled || !owner) //skyrat edit
 		return FALSE
 	disabled = new_disabled
+	//skyrat edit
+	if(disabled && owner.get_item_for_held_index(held_index))
+		owner.dropItemToGround(owner.get_item_for_held_index(held_index))
+	//
 	owner.update_health_hud() //update the healthdoll
 	owner.update_body()
 	owner.update_mobility()
@@ -272,7 +364,7 @@
 		return TRUE
 	return FALSE
 
-//Change organ status
+//Change bodypart status
 /obj/item/bodypart/proc/change_bodypart_status(new_limb_status, heal_limb, change_icon_to_default)
 	status = new_limb_status
 	if(heal_limb)
@@ -409,12 +501,25 @@
 /obj/item/bodypart/proc/update_icon_dropped()
 	cut_overlays()
 	var/list/standing = get_limb_icon(1)
+	/* skyrat edit
 	if(!standing.len)
 		icon_state = initial(icon_state)//no overlays found, we default back to initial icon.
 		return
+	*/
 	for(var/image/I in standing)
 		I.pixel_x = px_x
 		I.pixel_y = px_y
+	//skyrat edit
+	for(var/obj/item/bodypart/BP in src)
+		var/list/substanding = BP.get_limb_icon(1)
+		for(var/image/I in substanding)
+			I.pixel_x = BP.px_x
+			I.pixel_y = BP.px_y
+		standing |= substanding
+	if(!standing.len)
+		icon_state = initial(icon_state)//no overlays found, we default back to initial icon.
+		return
+	//
 	add_overlay(standing)
 
 /***********moved to modular_skyrat
@@ -432,9 +537,9 @@
 		image_dir = SOUTH
 		if(dmg_overlay_type)
 			if(brutestate)
-				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+				. += image('modular_skyrat/icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
 			if(burnstate)
-				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
+				. += image('modular_skyrat/icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
 
 		if(!isnull(body_markings) && status == BODYPART_ORGANIC)
 			if(!use_digitigrade)
@@ -454,13 +559,13 @@
 
 	if(animal_origin)
 		if(is_organic_limb())
-			limb.icon = 'icons/mob/animal_parts.dmi'
+			limb.icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 			if(species_id == "husk")
 				limb.icon_state = "[animal_origin]_husk_[body_zone]"
 			else
 				limb.icon_state = "[animal_origin]_[body_zone]"
 		else
-			limb.icon = 'icons/mob/augmentation/augments.dmi'
+			limb.icon = 'modular_skyrat/icons/mob/augmentation/augments.dmi'
 			limb.icon_state = "[animal_origin]_[body_zone]"
 		return
 
@@ -468,7 +573,7 @@
 		should_draw_gender = FALSE
 
 	if(is_organic_limb())
-		limb.icon = base_bp_icon || 'icons/mob/human_parts.dmi'
+		limb.icon = base_bp_icon || 'modular_skyrat/icons/mob/human_parts.dmi'
 		if(should_draw_gender)
 			limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 		else if (use_digitigrade)
@@ -482,9 +587,9 @@
 		// Body markings
 		if(!isnull(body_markings))
 			if(species_id == "husk")
-				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[body_zone]", -MARKING_LAYER, image_dir)
+				marking = image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_[body_zone]", -MARKING_LAYER, image_dir)
 			else if(species_id == "husk" && use_digitigrade)
-				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+				marking = image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
 
 			else if(!use_digitigrade)
 				if(body_zone == BODY_ZONE_CHEST)
@@ -504,7 +609,7 @@
 				aux += image(limb.icon, "[species_id]_[I]", -aux_layer, image_dir)
 				if(!isnull(aux_marking))
 					if(species_id == "husk")
-						auxmarking += image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[I]", -aux_layer, image_dir)
+						auxmarking += image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_[I]", -aux_layer, image_dir)
 					else
 						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
 			. += aux
@@ -523,7 +628,7 @@
 				aux += image(limb.icon, "[I]", -aux_layer, image_dir)
 				if(!isnull(aux_marking))
 					if(species_id == "husk")
-						auxmarking += image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[I]", -aux_layer, image_dir)
+						auxmarking += image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_[I]", -aux_layer, image_dir)
 					else
 						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
 			. += auxmarking
@@ -531,9 +636,9 @@
 
 		if(!isnull(body_markings))
 			if(species_id == "husk")
-				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[body_zone]", -MARKING_LAYER, image_dir)
+				marking = image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_[body_zone]", -MARKING_LAYER, image_dir)
 			else if(species_id == "husk" && use_digitigrade)
-				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_digitigrade_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+				marking = image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_digitigrade_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
 
 			else if(!use_digitigrade)
 				if(body_zone == BODY_ZONE_CHEST)
@@ -594,7 +699,10 @@
 	px_y = 0
 	stam_damage_coeff = 1
 	max_stamina_damage = 200
-	var/obj/item/cavity_item
+	//skyrat variables
+	amputation_point = "spine"
+	children_zones = list(BODY_ZONE_PRECISE_GROIN)
+	//
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)
 	if(!((owner.stat == DEAD) || owner.InFullCritical()))
@@ -612,32 +720,97 @@
 		cavity_item = null
 	..()
 
+//skyrat edit
+/obj/item/bodypart/groin
+	name = BODY_ZONE_PRECISE_GROIN
+	desc = "Some say groin came from  Grynde, which is middle-ages speak for depression. Makes sense for the situation."
+	icon_state = "default_human_groin"
+	max_damage = 100
+	body_zone = BODY_ZONE_PRECISE_GROIN
+	body_part = GROIN
+	px_x = 0
+	px_y = -3
+	stam_damage_coeff = 1
+	max_stamina_damage = 100
+	amputation_point = "lumbar"
+	parent_bodyzone = BODY_ZONE_CHEST
+	children_zones = list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+
+/obj/item/bodypart/groin/can_dismember(obj/item/I)
+	if(!((owner.stat == DEAD) || owner.InFullCritical()))
+		return FALSE
+	return ..()
+
+/obj/item/bodypart/groin/Destroy()
+	if(cavity_item)
+		qdel(cavity_item)
+	return ..()
+
+/obj/item/bodypart/groin/drop_organs(mob/user)
+	if(cavity_item)
+		cavity_item.forceMove(user.loc)
+		cavity_item = null
+	..()
+//
+
 /obj/item/bodypart/chest/monkey
-	icon = 'icons/mob/animal_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_chest"
 	animal_origin = MONKEY_BODYPART
 
+//skyrat edit
+/obj/item/bodypart/groin/monkey
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
+	icon_state = "default_monkey_groin"
+	animal_origin = MONKEY_BODYPART
+//
+
 /obj/item/bodypart/chest/alien
-	icon = 'icons/mob/animal_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 	icon_state = "alien_chest"
 	dismemberable = 0
 	max_damage = 500
 	animal_origin = ALIEN_BODYPART
+
+//skyrat edit
+/obj/item/bodypart/groin/alien
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
+	icon_state = "alien_groin"
+	dismemberable = 0
+	max_damage = 500
+	animal_origin = ALIEN_BODYPART
+//
 
 /obj/item/bodypart/chest/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
 
+//skyrat edit
+/obj/item/bodypart/chest/devil
+	dismemberable = 0
+	max_damage = 5000
+	animal_origin = DEVIL_BODYPART
+//
+
 /obj/item/bodypart/chest/larva
-	icon = 'icons/mob/animal_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 	icon_state = "larva_chest"
 	dismemberable = 0
 	max_damage = 50
 	animal_origin = LARVA_BODYPART
 
+//skyrat edit
+/obj/item/bodypart/chest/larva
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
+	icon_state = "larva_chest"
+	dismemberable = 0
+	max_damage = 50
+	animal_origin = LARVA_BODYPART
+//
+
 /obj/item/bodypart/l_arm
-	name = "left arm"
+	name = BODY_ZONE_L_ARM //skyrat edit
 	desc = "Did you know that the word 'sinister' stems originally from the \
 		Latin 'sinestra' (left hand), because the left hand was supposed to \
 		be possessed by the devil? This arm appears to be possessed by no \
@@ -648,19 +821,41 @@
 	max_stamina_damage = 50
 	body_zone = BODY_ZONE_L_ARM
 	body_part = ARM_LEFT
-	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
+	//aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER) //skyrat edit
 	body_damage_coeff = 0.75
-	held_index = 1
 	px_x = -6
 	px_y = 0
 	stam_heal_tick = 4
+	//skyrat variables
+	amputation_point = "left shoulder"
+	children_zones = list(/obj/item/bodypart/l_hand)
+	//
 
-/obj/item/bodypart/l_arm/is_disabled()
+//skyrat edit
+/obj/item/bodypart/l_hand
+	name = BODY_ZONE_PRECISE_L_HAND //skyrat edit
+	desc = "In old english, left meant weak, guess they were onto something if you're finding this."
+	icon_state = "default_human_l_hand"
+	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
+	attack_verb = list("slapped", "punched")
+	max_damage = 50
+	max_stamina_damage = 50
+	body_zone = BODY_ZONE_PRECISE_L_HAND
+	body_part = HAND_LEFT
+	held_index = 1
+	px_x = -6
+	px_y = -3
+	stam_heal_tick = 3
+	parent_bodyzone = BODY_ZONE_L_ARM
+	amputation_point = "left arm"
+	children_zones = list()
+
+/obj/item/bodypart/l_hand/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
 		return BODYPART_DISABLED_PARALYSIS
 	return ..()
 
-/obj/item/bodypart/l_arm/set_disabled(new_disabled)
+/obj/item/bodypart/l_hand/set_disabled(new_disabled)
 	. = ..()
 	if(!.)
 		return
@@ -677,51 +872,95 @@
 		var/obj/screen/inventory/hand/L = owner.hud_used.hand_slots["[held_index]"]
 		if(L)
 			L.update_icon()
+//
 
 /obj/item/bodypart/l_arm/monkey
-	icon = 'icons/mob/animal_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_l_arm"
 	animal_origin = MONKEY_BODYPART
 	px_x = -5
 	px_y = -3
-
+//skyrat edit
+/obj/item/bodypart/l_hand/monkey
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
+	icon_state = "default_monkey_l_hand"
+	animal_origin = MONKEY_BODYPART
+	px_x = -7
+	px_y = -3
+//
 /obj/item/bodypart/l_arm/alien
-	icon = 'icons/mob/animal_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 	icon_state = "alien_l_arm"
 	px_x = 0
 	px_y = 0
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
-
+//skyrat edit
+/obj/item/bodypart/l_hand/alien
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
+	icon_state = "alien_l_hand"
+	px_x = 0
+	px_y = 0
+	dismemberable = 0
+	max_damage = 100
+	animal_origin = ALIEN_BODYPART
+//
 /obj/item/bodypart/l_arm/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
-
+//skyrat edit
+/obj/item/bodypart/l_hand/devil
+	dismemberable = 0
+	max_damage = 5000
+	animal_origin = DEVIL_BODYPART
+//
 /obj/item/bodypart/r_arm
-	name = "right arm"
+	name = BODY_ZONE_R_ARM //skyrat edit
 	desc = "Over 87% of humans are right handed. That figure is much lower \
 		among humans missing their right arm."
-	icon_state = "default_human_r_arm"
+	icon_state = "default_human_r_hand"
 	attack_verb = list("slapped", "punched")
 	max_damage = 50
 	body_zone = BODY_ZONE_R_ARM
 	body_part = ARM_RIGHT
 	aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER)
 	body_damage_coeff = 0.75
-	held_index = 2
 	px_x = 6
 	px_y = 0
 	stam_heal_tick = 4
 	max_stamina_damage = 50
+	//skyrat variables
+	amputation_point = "right shoulder"
+	children_zones = list(/obj/item/bodypart/r_hand)
+	//
 
-/obj/item/bodypart/r_arm/is_disabled()
-	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
+//skyrat edit
+/obj/item/bodypart/r_hand
+	name = BODY_ZONE_PRECISE_R_HAND
+	desc = "It probably wasn't the right hand."
+	icon_state = "default_human_r_hand"
+	aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER)
+	attack_verb = list("slapped", "punched")
+	max_damage = 50
+	max_stamina_damage = 50
+	body_zone = BODY_ZONE_PRECISE_R_HAND
+	body_part = HAND_RIGHT
+	held_index = 2
+	px_x = 6
+	px_y = -3
+	stam_heal_tick = 4
+	parent_bodyzone = BODY_ZONE_R_ARM
+	amputation_point = "left arm"
+	children_zones = list()
+
+/obj/item/bodypart/r_hand/is_disabled()
+	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
 		return BODYPART_DISABLED_PARALYSIS
 	return ..()
 
-/obj/item/bodypart/r_arm/set_disabled(new_disabled)
+/obj/item/bodypart/r_hand/set_disabled(new_disabled)
 	. = ..()
 	if(!.)
 		return
@@ -735,34 +974,55 @@
 	if(held_index)
 		owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	if(owner.hud_used)
-		var/obj/screen/inventory/hand/R = owner.hud_used.hand_slots["[held_index]"]
-		if(R)
-			R.update_icon()
-
+		var/obj/screen/inventory/hand/L = owner.hud_used.hand_slots["[held_index]"]
+		if(L)
+			L.update_icon()
+//
 
 /obj/item/bodypart/r_arm/monkey
-	icon = 'icons/mob/animal_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_r_arm"
 	animal_origin = MONKEY_BODYPART
 	px_x = 5
 	px_y = -3
-
+//skyrat edit
+/obj/item/bodypart/r_hand/monkey
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
+	icon_state = "default_monkey_r_hand"
+	animal_origin = MONKEY_BODYPART
+	px_x = 5
+	px_y = -9
+//
 /obj/item/bodypart/r_arm/alien
-	icon = 'icons/mob/animal_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 	icon_state = "alien_r_arm"
 	px_x = 0
 	px_y = 0
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
-
+//skyrat edit
+/obj/item/bodypart/r_hand/alien
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
+	icon_state = "alien_r_hand"
+	animal_origin = ALIEN_BODYPART
+	px_x = 5
+	px_y = -6
+//
 /obj/item/bodypart/r_arm/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
 
+//skyrat edit
+/obj/item/bodypart/r_hand/devil
+	dismemberable = 0
+	max_damage = 5000
+	animal_origin = DEVIL_BODYPART
+//
+
 /obj/item/bodypart/l_leg
-	name = "left leg"
+	name = BODY_ZONE_L_LEG //skyrat edit
 	desc = "Some athletes prefer to tie their left shoelaces first for good \
 		luck. In this instance, it probably would not have helped."
 	icon_state = "default_human_l_leg"
@@ -775,7 +1035,28 @@
 	px_y = 12
 	stam_heal_tick = 4
 	max_stamina_damage = 50
-
+	//skyrat vars
+	amputation_point = "groin"
+	children_zones = list(/obj/item/bodypart/r_foot)
+	//
+//skyrat edit
+/obj/item/bodypart/r_foot
+	name = BODY_ZONE_PRECISE_L_FOOT //skyrat edit
+	desc = "You feel like someones gonna be needing a peg-leg."
+	icon_state = "default_human_r_foot"
+	attack_verb = list("kicked", "stomped")
+	max_damage = 50
+	body_zone = BODY_ZONE_PRECISE_R_FOOT
+	body_part = FOOT_RIGHT
+	body_damage_coeff = 0.75
+	px_x = -2
+	px_y = 9
+	stam_heal_tick = 4
+	max_stamina_damage = 50
+	children_zones = list()
+	amputation_point = "right leg"
+	parent_bodyzone = BODY_ZONE_R_LEG
+//
 /obj/item/bodypart/l_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
 		return BODYPART_DISABLED_PARALYSIS
@@ -794,31 +1075,56 @@
 
 
 /obj/item/bodypart/l_leg/digitigrade
-	name = "left digitigrade leg"
+	name = BODY_ZONE_L_LEG //skyrat edit
 	use_digitigrade = FULL_DIGITIGRADE
-
+//skyrat edit
+/obj/item/bodypart/l_foot/digitigrade
+	name = BODY_ZONE_PRECISE_L_FOOT
+	use_digitigrade = FULL_DIGITIGRADE
+//
 /obj/item/bodypart/l_leg/monkey
-	icon = 'icons/mob/animal_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_l_leg"
 	animal_origin = MONKEY_BODYPART
 	px_y = 4
-
+//skyrat edit
+/obj/item/bodypart/l_foot/monkey
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
+	icon_state = "default_monkey_l_foot"
+	animal_origin = MONKEY_BODYPART
+	px_y = 2
+//
 /obj/item/bodypart/l_leg/alien
-	icon = 'icons/mob/animal_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 	icon_state = "alien_l_leg"
 	px_x = 0
 	px_y = 0
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
-
+//skyrat edit
+/obj/item/bodypart/l_foot/alien
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
+	icon_state = "alien_l_foot"
+	px_x = 0
+	px_y = -3
+	dismemberable = 0
+	max_damage = 100
+	animal_origin = ALIEN_BODYPART
+//
 /obj/item/bodypart/l_leg/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+//skyrat edit
+/obj/item/bodypart/l_foot/devil
+	dismemberable = 0
+	max_damage = 5000
+	animal_origin = DEVIL_BODYPART
+//
 
 /obj/item/bodypart/r_leg
-	name = "right leg"
+	name = BODY_ZONE_R_LEG //skyrat edit
 	desc = "You put your right leg in, your right leg out. In, out, in, out, \
 		shake it all about. And apparently then it detaches.\n\
 		The hokey pokey has certainly changed a lot since space colonisation."
@@ -833,7 +1139,28 @@
 	px_y = 12
 	max_stamina_damage = 50
 	stam_heal_tick = 4
-
+	//skyrat variables
+	amputation_point = "groin"
+	children_zones = list(/obj/item/bodypart/r_foot)
+	//
+//skyrat edit
+/obj/item/bodypart/r_foot
+	name = BODY_ZONE_PRECISE_R_FOOT
+	desc = "You feel like someones gonna be needing a peg-leg."
+	icon_state = "default_human_r_foot"
+	attack_verb = list("kicked", "stomped")
+	max_damage = 50
+	body_zone = BODY_ZONE_PRECISE_R_FOOT
+	body_part = FOOT_RIGHT
+	body_damage_coeff = 0.75
+	px_x = 2
+	px_y = 9
+	stam_heal_tick = 4
+	max_stamina_damage = 50
+	children_zones = list()
+	amputation_point = "right leg"
+	parent_bodyzone = BODY_ZONE_R_LEG
+//
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
 		return BODYPART_DISABLED_PARALYSIS
@@ -853,23 +1180,194 @@
 /obj/item/bodypart/r_leg/digitigrade
 	name = "right digitigrade leg"
 	use_digitigrade = FULL_DIGITIGRADE
-
+//skyrat edit
+/obj/item/bodypart/r_foot/digitigrade
+	name = "right digitigrade foot"
+	use_digitigrade = FULL_DIGITIGRADE
+//
 /obj/item/bodypart/r_leg/monkey
-	icon = 'icons/mob/animal_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_r_leg"
 	animal_origin = MONKEY_BODYPART
 	px_y = 4
-
+//skyrat edit
+/obj/item/bodypart/r_foot/monkey
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
+	icon_state = "default_monkey_r_foot"
+	animal_origin = MONKEY_BODYPART
+	px_y = 2
+//
 /obj/item/bodypart/r_leg/alien
-	icon = 'icons/mob/animal_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
 	icon_state = "alien_r_leg"
 	px_x = 0
 	px_y = 0
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
-
+//skyrat edit
+/obj/item/bodypart/r_foot/alien
+	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
+	icon_state = "alien_r_foot"
+	px_x = 0
+	px_y = -3
+	dismemberable = 0
+	max_damage = 100
+	animal_origin = ALIEN_BODYPART
+//
 /obj/item/bodypart/r_leg/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+//skyrat edit
+/obj/item/bodypart/r_leg/devil
+	dismemberable = 0
+	max_damage = 5000
+	animal_origin = DEVIL_BODYPART
+//
+
+//skyrat edit
+/**
+  * check_wounding() is where we handle rolling for, selecting, and applying a wound if we meet the criteria
+  *
+  * We generate a "score" for how woundable the attack was based on the damage and other factors discussed in [check_wounding_mods()], then go down the list from most severe to least severe wounds in that category.
+  * We can promote a wound from a lesser to a higher severity this way, but we give up if we have a wound of the given type and fail to roll a higher severity, so no sidegrades/downgrades
+  *
+  * Arguments:
+  * * woundtype- Either WOUND_SHARP, WOUND_BRUTE, or WOUND_BURN based on the attack type.
+  * * damage- How much damage is tied to this attack, since wounding potential scales with damage in an attack (see: WOUND_DAMAGE_EXPONENT)
+  * * wound_bonus- The wound_bonus of an attack
+  * * bare_wound_bonus- The bare_wound_bonus of an attack
+  */
+/obj/item/bodypart/proc/check_wounding(woundtype, damage, wound_bonus, bare_wound_bonus)
+	// actually roll wounds if applicable
+	if(HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE))
+		damage *= 1.5
+
+	var/base_roll = rand(1, round(damage ** WOUND_DAMAGE_EXPONENT))
+	var/injury_roll = base_roll
+	injury_roll += check_woundings_mods(woundtype, damage, wound_bonus, bare_wound_bonus)
+	var/list/wounds_checking
+
+	switch(woundtype)
+		if(WOUND_SHARP)
+			wounds_checking = WOUND_LIST_CUT
+		if(WOUND_BRUTE)
+			wounds_checking = WOUND_LIST_BONE
+		if(WOUND_BURN)
+			wounds_checking = WOUND_LIST_BURN
+
+	//cycle through the wounds of the relevant category from the most severe down
+	for(var/PW in wounds_checking)
+		var/datum/wound/possible_wound = PW
+		var/datum/wound/replaced_wound
+		for(var/i in wounds)
+			var/datum/wound/existing_wound = i
+			if(existing_wound.type in wounds_checking)
+				if(existing_wound.severity >= initial(possible_wound.severity))
+					return
+				else
+					replaced_wound = existing_wound
+
+		if(initial(possible_wound.threshold_minimum) < injury_roll)
+			if(replaced_wound)
+				var/datum/wound/new_wound = replaced_wound.replace_wound(possible_wound)
+				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll)
+			else
+				var/datum/wound/new_wound = new possible_wound
+				new_wound.apply_wound(src)
+				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll)
+			return
+
+// try forcing a specific wound, but only if there isn't already a wound of that severity or greater for that type on this bodypart
+/obj/item/bodypart/proc/force_wound_upwards(specific_woundtype, smited = FALSE)
+	var/datum/wound/potential_wound = specific_woundtype
+	for(var/i in wounds)
+		var/datum/wound/existing_wound = i
+		if(existing_wound.type in (initial(potential_wound.wound_type)))
+			if(existing_wound.severity < initial(potential_wound.severity)) // we only try if the existing one is inferior to the one we're trying to force
+				existing_wound.replace_wound(potential_wound, smited)
+			return
+
+	var/datum/wound/new_wound = new potential_wound
+	new_wound.apply_wound(src, smited = smited)
+
+/obj/item/bodypart/proc/check_woundings_mods(wounding_type, damage, wound_bonus, bare_wound_bonus)
+	var/armor_ablation = 0
+	var/injury_mod = 0
+
+	//var/bwb = 0
+
+	if(owner && ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		var/list/clothing = H.clothingonpart(src)
+		for(var/c in clothing)
+			var/obj/item/clothing/C = c
+			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
+			armor_ablation += C.armor.getRating("wound")
+			if(wounding_type == WOUND_SHARP)
+				C.take_damage_zone(body_zone, damage, BRUTE, armour_penetration)
+			else if(wounding_type == WOUND_BURN && damage >= 10) // lazy way to block freezing from shredding clothes without adding another var onto apply_damage()
+				C.take_damage_zone(body_zone, damage, BURN, armour_penetration)
+
+		if(!armor_ablation)
+			injury_mod += bare_wound_bonus
+
+	injury_mod -= armor_ablation
+	injury_mod += wound_bonus
+
+	for(var/thing in wounds)
+		var/datum/wound/W = thing
+		injury_mod += W.threshold_penalty
+
+	var/part_mod = -wound_resistance
+	if(is_disabled())
+		part_mod += disabled_wound_penalty
+
+	injury_mod += part_mod
+
+	return injury_mod
+
+/// Get whatever wound of the given type is currently attached to this limb, if any
+/obj/item/bodypart/proc/get_wound_type(checking_type)
+	if(isnull(wounds))
+		return
+
+	for(var/thing in wounds)
+		var/datum/wound/W = thing
+		if(istype(W, checking_type))
+			return W
+
+/// very rough start for updating efficiency and other stats on a body part whenever a wound is gained/lost
+/obj/item/bodypart/proc/update_wounds()
+	var/dam_mul = 1 //initial(wound_damage_multiplier)
+
+	// we can only have one wound per type, but remember there's multiple types
+	for(var/datum/wound/W in wounds)
+		dam_mul *= W.damage_mulitplier_penalty
+
+	wound_damage_multiplier = dam_mul
+	update_disabled()
+
+/obj/item/bodypart/proc/get_bleed_rate()
+	if(status != BODYPART_ORGANIC) // maybe in the future we can bleed oil from aug parts, but not now
+		return
+
+	var/bleed_rate = 0
+	if(generic_bleedstacks > 0)
+		bleed_rate++
+
+	if(brute_dam >= 40)
+		bleed_rate += (brute_dam * 0.008)
+
+	//We want an accurate reading of .len
+	listclearnulls(embedded_objects)
+	for(var/obj/item/embeddies in embedded_objects)
+		if(!embeddies.isEmbedHarmless())
+			bleed_rate += 0.5
+
+	for(var/thing in wounds)
+		var/datum/wound/W = thing
+		bleed_rate += W.blood_flow
+
+	return bleed_rate

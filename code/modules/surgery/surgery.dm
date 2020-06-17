@@ -18,6 +18,10 @@
 	var/lying_required = TRUE								//Does the vicitm needs to be lying down.
 	var/requires_tech = FALSE
 	var/replaced_by
+	//skyrat edit
+	var/datum/wound/operated_wound								//The actual wound datum instance we're targeting
+	var/datum/wound/targetable_wound							//The wound type this surgery targets
+	//
 
 /datum/surgery/New(surgery_target, surgery_location, surgery_bodypart)
 	..()
@@ -28,8 +32,17 @@
 			location = surgery_location
 		if(surgery_bodypart)
 			operated_bodypart = surgery_bodypart
+			//skyrat edit
+			if(targetable_wound)
+				operated_wound = operated_bodypart.get_wound_type(targetable_wound)
+				operated_wound.attached_surgery = src
+			//
 
 /datum/surgery/Destroy()
+	//skyrat edit
+	if(operated_wound)
+		operated_wound.attached_surgery = null
+	//
 	if(target)
 		target.surgeries -= src
 	target = null

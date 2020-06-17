@@ -75,7 +75,7 @@
 							item_to_retrieve = null
 							break
 						M.dropItemToGround(item_to_retrieve)
-
+						/* skyrat edit
 						if(iscarbon(M)) //Edge case housekeeping
 							var/mob/living/carbon/C = M
 							if(C.stomach_contents && (item_to_retrieve in C.stomach_contents))
@@ -89,6 +89,7 @@
 										C.clear_alert("embeddedobject")
 										SEND_SIGNAL(C, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 									break
+						*/
 
 					else
 						if(istype(item_to_retrieve.loc, /obj/machinery/portable_atmospherics/)) //Edge cases for moved machinery

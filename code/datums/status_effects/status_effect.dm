@@ -278,3 +278,8 @@
 /datum/status_effect/grouped/before_remove(source)
 	sources -= source
 	return !length(sources)
+
+//skyrat meme
+//do_after modifier!
+/datum/status_effect/proc/interact_speed_modifier()
+	return 1

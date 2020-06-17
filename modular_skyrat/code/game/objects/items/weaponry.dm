@@ -556,7 +556,10 @@
 			LM.apply_damage(25, BRUTE, BODY_ZONE_HEAD, 0, TRUE)
 			if(ishuman(LM))
 				var/mob/living/carbon/human/H = LM
-				H.bleed_rate += 30
+				for(var/x in H.bodyparts)
+					var/obj/item/bodypart/BP = x
+					if(istype(BP))
+						BP.generic_bleedstacks += 5
 				if(NOBLOOD in H.dna.species.species_traits)
 					H.apply_damage(125, BRUTE, user.zone_selected, 0, TRUE)
 			if(!LM.has_status_effect(/datum/status_effect/neck_slice))
@@ -606,7 +609,10 @@
 		if(istype(S, /datum/species/pod) || istype(S, /datum/species/mush))
 			ooser.visible_message("<span class='userdanger'>[user] slits [H]'s throat with [src]!</span>", \
 					"<span class='userdanger'>You slit [H]'s throat!</span>")
-			H.bleed_rate = 30
+			for(var/x in H.bodyparts)
+				var/obj/item/bodypart/BP = x
+				if(istype(BP))
+					BP.generic_bleedstacks += 5
 			if(NOBLOOD in H.dna.species.species_traits)
 				H.apply_damage(100, BRUTE, user.zone_selected, 0, TRUE)
 			if(!H.has_status_effect(/datum/status_effect/neck_slice))

@@ -21,6 +21,9 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	max_amount = 50
 	attack_verb = list("hit", "bludgeoned", "whacked")
 	hitsound = 'sound/weapons/grenadelaunch.ogg'
+	//skyrat edit
+	embedding = list()
+	//
 	novariants = TRUE
 
 /obj/item/stack/rods/suicide_act(mob/living/carbon/user)

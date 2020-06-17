@@ -186,3 +186,6 @@
 #define G_FEMALE 2
 #define G_PLURAL 3
 #define G_NEUTER 4
+
+//skyrat defines
+#define CAN_SCAR		27

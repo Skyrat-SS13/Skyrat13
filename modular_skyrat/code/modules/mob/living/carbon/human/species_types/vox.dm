@@ -6,7 +6,7 @@
 	icon_limbs = 'modular_skyrat/icons/mob/vox_parts_greyscale.dmi'
 	say_mod = "shrieks"
 	default_color = "00FF00"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,LIPS,EYECOLOR)
+	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,LIPS,EYECOLOR,CAN_SCAR) //skyrat edit
 	inherent_traits = list(TRAIT_RESISTCOLD)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	mutantlungs = /obj/item/organ/lungs/vox

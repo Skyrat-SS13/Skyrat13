@@ -414,10 +414,16 @@
 	if(W.type in list(/obj/structure/window, /obj/structure/window/fulltile, /obj/structure/window/unanchored, /obj/structure/window/fulltile/unanchored)) // boring unreinforced windows
 		for(var/i = 0, i < speed, i++)
 			var/obj/item/shard/shard = new /obj/item/shard(get_turf(user))
+			//skyrat edit
+			shard.updateEmbedding()
+			//
 			//shard.embedding = list(embed_chance = 100, ignore_throwspeed_threshold = TRUE, impact_pain_mult=3, pain_chance=5)
 			//shard.AddElement(/datum/element/embed, shard.embedding)
 			user.hitby(shard, skipcatch = TRUE, hitpush = FALSE)
 			//shard.embedding = list()
+			//skyrat edit
+			shard.updateEmbedding()
+			//
 			//shard.AddElement(/datum/element/embed, shard.embedding)
 		W.obj_destruction()
 		user.adjustStaminaLoss(10 * speed)

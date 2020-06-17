@@ -168,6 +168,10 @@
 	var/can_drop = FALSE
 	var/fake = FALSE
 	total_mass = TOTAL_MASS_HAND_REPLACEMENT
+	//skyrat edit
+	wound_bonus = -60
+	bare_wound_bonus = 20
+	//
 
 /obj/item/melee/arm_blade/Initialize(mapload,silent,synthetic)
 	. = ..()

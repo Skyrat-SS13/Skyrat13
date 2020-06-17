@@ -102,8 +102,11 @@
 #define TRAUMA_RESILIENCE_BASIC 1      //Curable with chems
 #define TRAUMA_RESILIENCE_SURGERY 2    //Curable with brain surgery
 #define TRAUMA_RESILIENCE_LOBOTOMY 3   //Curable with lobotomy
-#define TRAUMA_RESILIENCE_MAGIC 4      //Curable only with magic
-#define TRAUMA_RESILIENCE_ABSOLUTE 5   //This is here to stay
+//skyrat edit
+#define TRAUMA_RESILIENCE_WOUND 4    //Curable by healing the head wound
+#define TRAUMA_RESILIENCE_MAGIC 5      //Curable only with magic
+#define TRAUMA_RESILIENCE_ABSOLUTE 6   //This is here to stay
+//
 
 //Limit of traumas for each resilience tier
 #define TRAUMA_LIMIT_BASIC 3
@@ -309,3 +312,11 @@
 #define FOV_90_DEGREES	90
 #define FOV_180_DEGREES	180
 #define FOV_270_DEGREES	270
+
+//skyrat defines
+/// If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()
+#define EXAMINE_MORE_TIME	1 SECONDS
+
+#define BODYPART_DISABLED_WOUND 3
+
+#define TRAUMA_LIMIT_WOUND 2

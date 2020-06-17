@@ -91,11 +91,35 @@
 			for(var/datum/surgery/S in surgeries)
 				if(S.next_step(user,user.a_intent))
 					return 1
+	//skyrat edit
+	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
+		return ..()
+
+	// The following priority/nonpriority searching is so that if we have two wounds on a limb that use the same item for treatment (gauze can bandage cuts AND splint broken bones),
+	// we prefer whichever wound is not already treated (ignore the splinted broken bone for the open cut). If there's no priority wounds that this can treat, go through the
+	// non-priority ones randomly.
+	var/list/nonpriority_wounds = list()
+	for(var/datum/wound/W in shuffle(all_wounds))
+		if(!W.treat_priority)
+			nonpriority_wounds += W
+		else if(W.treat_priority && W.try_treating(I, user))
+			return 1
+
+	for(var/datum/wound/W in shuffle(nonpriority_wounds))
+		if(W.try_treating(I, user))
+			return 1
+
+	//
 	return ..()
 
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	var/hurt = TRUE
+	//skyrat edit
+	var/extra_speed = 0
+	if(throwingdatum.thrower != src)
+		extra_speed = min(max(0, throwingdatum.speed - initial(throw_speed)), 3)
+	//
 	if(GetComponent(/datum/component/tackler))
 		return
 	if(throwingdatum?.thrower && iscyborg(throwingdatum.thrower))
@@ -105,18 +129,22 @@
 	if(hit_atom.density && isturf(hit_atom))
 		if(hurt)
 			DefaultCombatKnockdown(20)
-			take_bodypart_damage(10)
+			take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed) //skyrat edit
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.movement_type & FLYING)
 			return
 		if(hurt)
-			victim.take_bodypart_damage(10)
-			take_bodypart_damage(10)
+			//skyrat edit
+			victim.take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
+			take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
+			//
 			victim.DefaultCombatKnockdown(20)
 			DefaultCombatKnockdown(20)
-			visible_message("<span class='danger'>[src] crashes into [victim], knocking them both over!</span>",\
-				"<span class='userdanger'>You violently crash into [victim]!</span>")
+			//skyrat edit
+			visible_message("<span class='danger'>[src] crashes into [victim] [extra_speed ? "really hard" : ""], knocking them both over!</span>",\
+				"<span class='userdanger'>You violently crash into [victim] [extra_speed ? "extra hard" : ""]!</span>")
+			//
 		playsound(src,'sound/weapons/punch1.ogg',50,1)
 
 
@@ -181,13 +209,24 @@
 			if(HAS_TRAIT(src, TRAIT_PACIFISM))
 				to_chat(src, "<span class='notice'>You gently let go of [throwable_mob].</span>")
 				return
-
-			adjustStaminaLossBuffered(25)//CIT CHANGE - throwing an entire person shall be very tiring
-			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
-			var/turf/end_T = get_turf(target)
-			if(start_T && end_T)
-				log_combat(src, throwable_mob, "thrown", addition="grab from tile in [AREACOORD(start_T)] towards tile at [AREACOORD(end_T)]")
-
+			
+			//skyrat edit
+			if(isliving(throwable_mob))
+				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
+				var/turf/end_T = get_turf(target)
+				if(start_T && end_T)
+					log_combat(src, throwable_mob, "thrown", addition="grab from tile in [AREACOORD(start_T)] towards tile at [AREACOORD(end_T)]")
+			var/power_throw = 0
+			if(HAS_TRAIT(src, TRAIT_HULK))
+				power_throw++
+			if(pulling && grab_state >= GRAB_NECK)
+				power_throw++
+			visible_message("<span class='danger'>[src] throws [throwable_mob][power_throw ? " really hard!" : "."]</span>", \
+							"<span class='danger'>You throw [throwable_mob][power_throw ? " really hard!" : "."]</span>")
+			log_message("has thrown [throwable_mob] [power_throw ? "really hard" : ""]", LOG_ATTACK)
+			newtonian_move(get_dir(target, src))
+			throwable_mob.safe_throw_at(target, throwable_mob.throw_range, throwable_mob.throw_speed + power_throw, src, null, null, null, move_force)
+			//
 	else if(!CHECK_BITFIELD(I.item_flags, ABSTRACT) && !HAS_TRAIT(I, TRAIT_NODROP))
 		thrown_thing = I
 		dropItemToGround(I)
@@ -270,7 +309,17 @@
 					visible_message("<span class='danger'>[usr] [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name].</span>", \
 									"<span class='userdanger'>[usr] [internal ? "opens" : "closes"] the valve on your [ITEM.name].</span>", \
 									target = usr, target_message = "<span class='danger'>You [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name].</span>")
-
+	//skyrat edit fuck
+	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
+		var/obj/item/bodypart/L = locate(href_list["embedded_limb"]) in bodyparts
+		if(!L)
+			return
+		var/obj/item/I = locate(href_list["embedded_object"]) in L.embedded_objects
+		if(!I || I.loc != src) //no item, no limb, or item is not in limb or in the person anymore
+			return
+		SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L)
+		return
+	//
 
 /mob/living/carbon/fall(forced)
 	loc.handle_fall(src, forced)//it's loc so it doesn't call the mob's handle_fall which does nothing
@@ -953,7 +1002,7 @@
 		C.forceMove(src)
 		stomach_contents.Add(C)
 		log_combat(src, C, "devoured")
-
+/* moved to modular_skyrat
 /mob/living/carbon/proc/create_bodyparts()
 	var/l_arm_index_next = -1
 	var/r_arm_index_next = 0
@@ -970,7 +1019,7 @@
 			r_arm_index_next += 2
 			O.held_index = r_arm_index_next //2, 4, 6, 8...
 			hand_bodyparts += O
-
+*/
 /mob/living/carbon/do_after_coefficent()
 	. = ..()
 	var/datum/component/mood/mood = src.GetComponent(/datum/component/mood) //Currently, only carbons or higher use mood, move this once that changes.
@@ -1156,3 +1205,47 @@
 			dna.features["body_model"] = MALE
 	if(update_icon)
 		update_body()
+
+//skyrat edit
+/**
+  * generate_fake_scars()- for when you want to scar someone, but you don't want to hurt them first. These scars don't count for temporal scarring (hence, fake)
+  *
+  * If you want a specific wound scar, pass that wound type as the second arg, otherwise you can pass a list like WOUND_LIST_CUT to generate a random cut scar.
+  *
+  * Arguments:
+  * * num_scars- A number for how many scars you want to add
+  * * forced_type- Which wound or category of wounds you want to choose from, WOUND_LIST_BONE, WOUND_LIST_CUT, or WOUND_LIST_BURN (or some combination). If passed a list, picks randomly from the listed wounds. Defaults to all 3 types
+  */
+/mob/living/carbon/proc/generate_fake_scars(num_scars, forced_type)
+	for(var/i in 1 to num_scars)
+		var/datum/scar/S = new
+		var/obj/item/bodypart/BP = pick(bodyparts)
+
+		var/wound_type
+		if(forced_type)
+			if(islist(forced_type))
+				wound_type = pick(forced_type)
+			else
+				wound_type = forced_type
+		else
+			wound_type = pick(WOUND_LIST_BONE + WOUND_LIST_CUT + WOUND_LIST_BURN)
+
+		var/datum/wound/W = new wound_type
+		S.generate(BP, W)
+		S.fake = TRUE
+		QDEL_NULL(W)
+
+/mob/living/carbon/proc/get_total_bleed_rate()
+	var/total_bleed_rate = 0
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		total_bleed_rate += BP.get_bleed_rate()
+
+	return total_bleed_rate
+
+/// if any of our bodyparts are bleeding
+/mob/living/carbon/proc/is_bleeding()
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		if(BP.get_bleed_rate())
+			return TRUE

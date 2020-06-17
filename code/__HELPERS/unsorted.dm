@@ -677,10 +677,11 @@ Turf and target are separate in case you want to teleport some distance from a t
 
 //For objects that should embed, but make no sense being is_sharp or is_pointed()
 //e.g: rods
+/* woops skyrat edit
 GLOBAL_LIST_INIT(can_embed_types, typecacheof(list(
 	/obj/item/stack/rods,
 	/obj/item/pipe)))
-
+*/
 /*
 Checks if that loc and dir has an item on the wall
 */

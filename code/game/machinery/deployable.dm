@@ -171,6 +171,9 @@
 	to_chat(user, "[src] is now in [mode] mode.")
 
 /obj/item/grenade/barrier/prime()
+	//skyrat edit
+	. = ..()
+	//
 	new /obj/structure/barricade/security(get_turf(src.loc))
 	switch(mode)
 		if(VERTICAL)

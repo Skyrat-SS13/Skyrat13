@@ -362,7 +362,19 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 		if(flags & COMPONENT_EXAMINATE_BLIND)
 			to_chat(src, "<span class='warning'>Something is there but you can't see it!</span>")
 		return
-	var/list/result = A.examine(src)
+	//skyrat edit
+	var/list/result
+	if(client)
+		LAZYINITLIST(client.recent_examines)
+		if(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time) // originally this wasn't an assoc list, but sometimes the timer failed and atoms stayed in a client's recent_examines, so we check here manually
+			client.recent_examines[A] = world.time + EXAMINE_MORE_TIME
+			result = A.examine(src)
+			addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
+		else
+			result = A.examine_more(src)
+	else
+		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
+	//
 	to_chat(src, result.Join("\n"))
 
 //same as above
@@ -1097,3 +1109,21 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	for(var/obj/item/I in held_items)
 		if(I.item_flags & SLOWS_WHILE_IN_HAND)
 			. += I.slowdown
+
+//skyrat edit
+/mob/proc/clear_from_recent_examines(atom/A)
+	if(QDELETED(A) || !client)
+		return
+	LAZYREMOVE(client.recent_examines, A)
+
+/obj/item/ammo_casing/shotgun/executioner
+	name = "executioner slug"
+	desc = "A 12 gauge lead slug purpose built to annihilate flesh on impact."
+	icon_state = "stunshell"
+	projectile_type = /obj/item/projectile/bullet/shotgun_slug/executioner
+
+/obj/item/ammo_casing/shotgun/pulverizer
+	name = "pulverizer slug"
+	desc = "A 12 gauge lead slug purpose built to annihilate bones on impact."
+	icon_state = "stunshell"
+	projectile_type = /obj/item/projectile/bullet/shotgun_slug/pulverizer

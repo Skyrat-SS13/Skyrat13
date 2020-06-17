@@ -34,11 +34,11 @@
 	if(stat != DEAD)
 		//heart attack stuff
 		handle_heart()
-
+	/* skyrat edit
 	if(stat != DEAD)
 		//Stuff jammed in your limbs hurts
 		handle_embedded_objects()
-
+	*/
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
@@ -303,7 +303,7 @@
 			return TRUE
 	return ..()
 
-
+/* skyrat edit
 /mob/living/carbon/human/proc/handle_embedded_objects()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
@@ -321,7 +321,7 @@
 				if(!has_embedded_objects())
 					clear_alert("embeddedobject")
 					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
-
+*/
 /mob/living/carbon/human/proc/handle_active_genes()
 	if(HAS_TRAIT(src, TRAIT_MUTATION_STASIS))
 		return

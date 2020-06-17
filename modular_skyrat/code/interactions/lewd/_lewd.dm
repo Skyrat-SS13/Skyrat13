@@ -265,10 +265,10 @@
 			else
 				return feetcount
 	return FALSE
-
+/*
 /mob/living/proc/get_num_feet()
 	return has_feet(REQUIRE_ANY)
-
+*/
 //weird procs go here
 /mob/living/proc/has_ears(var/nintendo = REQUIRE_ANY)
 	var/mob/living/carbon/C = src

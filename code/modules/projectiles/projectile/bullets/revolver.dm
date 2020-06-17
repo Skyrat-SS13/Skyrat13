@@ -15,6 +15,43 @@
 /obj/item/projectile/bullet/c38
 	name = ".38 bullet"
 	damage = 25
+//the longest of skyrat edits
+	ricochets_max = 2
+	ricochet_chance = 50
+	ricochet_auto_aim_angle = 10
+	ricochet_auto_aim_range = 3
+	wound_bonus = -35
+	sharpness = TRUE
+
+/obj/item/projectile/bullet/c38/match
+	name = ".38 Match bullet"
+	ricochets_max = 4
+	ricochet_chance = 100
+	ricochet_auto_aim_angle = 40
+	ricochet_auto_aim_range = 5
+	ricochet_incidence_leeway = 50
+	ricochet_decay_chance = 1
+	ricochet_decay_damage = 1
+
+/obj/item/projectile/bullet/c38/match/bouncy
+	name = ".38 Rubber bullet"
+	damage = 10
+	stamina = 30
+	armour_penetration = -30
+	ricochets_max = 6
+	ricochet_incidence_leeway = 70
+	ricochet_chance = 130
+	ricochet_decay_damage = 0.8
+	shrapnel_type = NONE
+
+/obj/item/projectile/bullet/c38/dumdum
+	name = ".38 DumDum bullet"
+	damage = 15
+	armour_penetration = -30
+	ricochets_max = 0
+	wound_bonus = 0
+	shrapnel_type = /obj/item/shrapnel/bullet/c38/dumdum
+//
 
 /obj/item/projectile/bullet/c38/rubber
 	name = ".38 rubber bullet"
@@ -24,6 +61,9 @@
 /obj/item/projectile/bullet/c38/trac
 	name = ".38 TRAC bullet"
 	damage = 10
+	//skyrat edit
+	ricochets_max = 0
+	//
 
 /obj/item/projectile/bullet/c38/trac/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -39,6 +79,9 @@
 /obj/item/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
 	name = ".38 Hot Shot bullet"
 	damage = 20
+	//skyrat edit
+	ricochets_max = 0
+	//
 
 /obj/item/projectile/bullet/c38/hotshot/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -51,6 +94,9 @@
 	name = ".38 Iceblox bullet"
 	damage = 20
 	var/temperature = 100
+	//skyrat edit
+	ricochets_max = 0
+	//
 
 /obj/item/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -69,3 +115,14 @@
 	name = ".357 armor-piercing bullet"
 	damage = 45
 	armour_penetration = 45
+
+//skyrat regedit
+// admin only really, for ocelot memes
+/obj/item/projectile/bullet/a357/match
+	name = ".357 match bullet"
+	ricochets_max = 5
+	ricochet_chance = 140
+	ricochet_auto_aim_angle = 50
+	ricochet_auto_aim_range = 6
+	ricochet_incidence_leeway = 80
+	ricochet_decay_chance = 1

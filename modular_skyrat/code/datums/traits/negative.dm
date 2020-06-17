@@ -162,3 +162,12 @@
 
 /datum/quirk/allergic/proc/inform(var/allergy = "bad coders")
 	to_chat(quirk_holder, "<span class='danger'><b><i>You are allergic to [lowertext(allergy)].</i></b></span>")
+
+/datum/quirk/frail
+	name = "Frail"
+	desc = "Your bones might as well be made of glass! You suffer wounds much more easily than most."
+	value = -2
+	mob_trait = TRAIT_EASYLIMBDISABLE
+	gain_text = "<span class='danger'>You feel frail.</span>"
+	lose_text = "<span class='notice'>You feel sturdy again.</span>"
+	medical_record_text = "Patient has unusually frail bones, recommend calcium-rich diet."

@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/tape/random = 5,
 	/obj/item/toy/plush/random = 5,
 	/obj/item/toy/plush/random_snowflake = 1,
+	/obj/item/stack/sticky_tape = 1,
 
 	//Loot here.
 	/obj/effect/spawner/lootdrop/breathing_masks = 200,

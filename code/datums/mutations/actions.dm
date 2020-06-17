@@ -490,11 +490,13 @@
 
 	var/obj/item/bodypart/L = spikey.checkembedded()
 
-	L.embedded_objects -= spikey
+	//L.embedded_objects -= spikey //skyrat edit
 	//this is where it would deal damage, if it transfers chems it removes itself so no damage
 	spikey.forceMove(get_turf(L))
 	transfered.visible_message("<span class='notice'>[spikey] falls out of [transfered]!</span>")
+	/* skyrat edit
 	if(!transfered.has_embedded_objects())
 		transfered.clear_alert("embeddedobject")
 		SEND_SIGNAL(transfered, COMSIG_CLEAR_MOOD_EVENT, "embedded")
+	*/
 	spikey.unembedded()

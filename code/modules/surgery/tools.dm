@@ -166,6 +166,9 @@
 	sharpness = IS_SHARP_ACCURATE
 	tool_behaviour = TOOL_SCALPEL
 	toolspeed = 1
+	//skyrat edit
+	bare_wound_bonus = 20
+	//
 
 /obj/item/scalpel/Initialize()
 	. = ..()
@@ -242,11 +245,15 @@
 	throwforce = 9
 	throw_speed = 2
 	throw_range = 5
-	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
+	custom_materials = list(/datum/material/iron=10000) //skyrat edit
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharpness = IS_SHARP
 	tool_behaviour = TOOL_SAW
 	toolspeed = 1
+	//skyrat edit
+	wound_bonus = 10
+	bare_wound_bonus = 15
+	//
 
 /obj/item/circular_saw/Initialize()
 	. = ..()
@@ -374,3 +381,39 @@
 			advanced_surgeries |= OC.advanced_surgeries
 		return TRUE
 	return
+
+//skyrat tools
+/obj/item/bonesetter
+	name = "bonesetter"
+	desc = "For setting things right."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "bone setter"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	custom_materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
+	flags_1 = CONDUCT_1
+	item_flags = SURGICAL_TOOL
+	w_class = WEIGHT_CLASS_SMALL
+	attack_verb = list("corrected", "properly set")
+	tool_behaviour = TOOL_BONESET
+	toolspeed = 1
+
+/obj/item/fixovein
+	name = "fix o' vein"
+	desc = "Allan, please add details."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "fixovein"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	item_flags = SURGICAL_TOOL
+	flags_1 = CONDUCT_1
+	force = 0
+	w_class = WEIGHT_CLASS_SMALL
+	throwforce = 5
+	throw_speed = 2
+	throw_range = 7
+	custom_materials = list(/datum/material/iron=10000, /datum/material/silver=4000)
+	attack_verb = list("gelled")
+	tool_behaviour = TOOL_FIXOVEIN
+	toolspeed = 1
+//

@@ -85,5 +85,8 @@
 #define SPAM_TRIGGER_WARNING	5	//Number of identical messages required before the spam-prevention will warn you to stfu
 #define SPAM_TRIGGER_AUTOMUTE	10	//Number of identical messages required before the spam-prevention will automute you
 
-//SKYRAT COLLAR BAN - now no collar
-#define COLLARBAN	"Collar ban" //Pacification but called that so we dont lose our earlier bans
+//SKYRAT defines
+#define COLLARBAN	"Collar ban" //Pacification ban but called that so we dont lose our earlier bans
+#define ADMIN_PUNISHMENT_CRACK ":B:oneless"
+#define ADMIN_PUNISHMENT_BLEED ":B:loodless"
+#define ADMIN_PUNISHMENT_SCARIFY "Scarify"

@@ -94,7 +94,7 @@
 			color_src = mut_colors ? MUTCOLORS : ((H.dna.skin_tone_override && S.use_skintones == USE_SKINTONES_GRAYSCALE_CUSTOM) ? CUSTOM_SKINTONE : SKINTONE)
 
 		if(S.mutant_bodyparts["legs"])
-			if(body_zone == BODY_ZONE_L_LEG || body_zone == BODY_ZONE_R_LEG)
+			if(body_zone == BODY_ZONE_L_LEG || body_zone == BODY_ZONE_R_LEG || body_zone == BODY_ZONE_PRECISE_R_FOOT || body_zone == BODY_ZONE_PRECISE_L_FOOT)
 				if(DIGITIGRADE in S.species_traits)
 					digitigrade_type = lowertext(H.dna.features["legs"])
 			else
@@ -300,7 +300,7 @@
 				else
 					marking.color = list(markings_color)
 
-/obj/item/bodypart/receive_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE)
+/obj/item/bodypart/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE)
 	. = ..()
 	if(status == BODYPART_ROBOTIC)
 		if(src.owner)

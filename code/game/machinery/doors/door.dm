@@ -36,6 +36,9 @@
 	var/red_alert_access = FALSE //if TRUE, this door will always open on red alert
 	var/poddoor = FALSE
 	var/unres_sides = 0 //Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
+	//skyrat vars
+	ricochet_chance_mod = 0.8
+	//
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
@@ -313,6 +316,12 @@
 /obj/machinery/door/proc/crush()
 	for(var/mob/living/L in get_turf(src))
 		L.visible_message("<span class='warning'>[src] closes on [L], crushing [L.p_them()]!</span>", "<span class='userdanger'>[src] closes on you and crushes you!</span>")
+		//skyrat edit
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			for(var/datum/wound/W in C.all_wounds)
+				W.crush(DOOR_CRUSH_DAMAGE)
+		//
 		if(isalien(L))  //For xenos
 			L.adjustBruteLoss(DOOR_CRUSH_DAMAGE * 1.5) //Xenos go into crit after aproximately the same amount of crushes as humans.
 			L.emote("roar")

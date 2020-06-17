@@ -233,6 +233,9 @@
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
 	resistance_flags = FIRE_PROOF
+	//skyrat edit
+	wound_bonus = -20
+	//
 
 /obj/item/twohanded/fireaxe/Initialize()
 	. = ..()
@@ -297,6 +300,10 @@
 	var/spinnable = TRUE
 	total_mass = 0.4 //Survival flashlights typically weigh around 5 ounces.
 	var/total_mass_on = 3.4
+	//skyrat edit
+	wound_bonus = -110
+	bare_wound_bonus = 20
+	//
 
 /obj/item/twohanded/dualsaber/suicide_act(mob/living/carbon/user)
 	if(wielded)
@@ -593,6 +600,10 @@
 	var/obj/item/grenade/explosive = null
 	var/war_cry = "AAAAARGH!!!"
 	var/icon_prefix = "spearglass"
+	//skyrat edit
+	wound_bonus = -25
+	bare_wound_bonus = 15
+	//
 
 /obj/item/twohanded/spear/Initialize()
 	. = ..()
@@ -667,7 +678,7 @@
 		force_wielded = 19
 		force_unwielded = 11
 		throwforce = 21
-		embedding = getEmbeddingBehavior(embed_chance = 75, embedded_pain_multiplier = 1.5) //plasmaglass spears are sharper
+		//embedding = getEmbeddingBehavior(embed_chance = 75, embedded_pain_multiplier = 1.5) //plasmaglass spears are sharper //skyrat edit
 		icon_prefix = "spearplasma"
 	qdel(tip)
 	var/obj/item/twohanded/spear/S = locate() in parts_list
@@ -682,7 +693,7 @@
 	if(G)
 		explosive = G
 		name = "explosive lance"
-		embedding = getEmbeddingBehavior(embed_chance = 0, embedded_pain_multiplier = 1)//elances should not be embeddable
+		//embedding = getEmbeddingBehavior(embed_chance = 0, embedded_pain_multiplier = 1)//elances should not be embeddable //skyrat edit
 		desc = "A makeshift spear with [G] attached to it."
 	update_icon()
 

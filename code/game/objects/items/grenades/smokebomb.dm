@@ -18,6 +18,9 @@
 	return ..()
 
 /obj/item/grenade/smokebomb/prime()
+	//skyrat edit
+	. = ..()
+	//
 	update_mob()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
 	smoke.set_up(4, src)
@@ -28,4 +31,7 @@
 		var/damage = round(30/(get_dist(B,src)+1))
 		B.take_damage(damage, BURN, "melee", 0)
 	sleep(80)
+	/* skyrat edit
 	qdel(src)
+	*/
+	resolve()

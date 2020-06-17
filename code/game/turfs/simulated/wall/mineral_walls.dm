@@ -32,6 +32,10 @@
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
 	slicing_duration = 200   //diamond wall takes twice as much time to slice
 	explosion_block = 3
+	//skyrat edit
+	flags_1 = CAN_BE_DIRTY_1
+	flags_ricochet = RICOCHET_SHINY | RICOCHET_HARD
+	//
 	canSmoothWith = list(/turf/closed/wall/mineral/diamond, /obj/structure/falsewall/diamond)
 
 /turf/closed/wall/mineral/bananium
@@ -191,7 +195,7 @@
 	icon = 'icons/turf/walls/shuttle_wall.dmi'
 	icon_state = "map-shuttle"
 	explosion_block = 3
-	flags_1 = CAN_BE_DIRTY_1 | CHECK_RICOCHET_1
+	flags_1 = CAN_BE_DIRTY_1 //skyrat edit
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
 	smooth = SMOOTH_MORE|SMOOTH_DIAGONAL
 	canSmoothWith = list(/turf/closed/wall/mineral/titanium, /obj/machinery/door/airlock/shuttle, /obj/machinery/door/airlock, /obj/structure/window/shuttle, /obj/structure/shuttle/engine/heater, /obj/structure/falsewall/titanium)

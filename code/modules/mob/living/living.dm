@@ -642,7 +642,7 @@
 						TH.transfer_mob_blood_dna(src)
 
 /mob/living/carbon/human/makeTrail(turf/T)
-	if((NOBLOOD in dna.species.species_traits) || !bleed_rate || bleedsuppress)
+	if((NOBLOOD in dna.species.species_traits) || !is_bleeding() || bleedsuppress) //skyrat edit
 		return
 	..()
 
@@ -734,7 +734,7 @@
 		// DO NOT GIVE CLCIKDELAY - resist_a_rest() handles spam prevention. Somewhat.
 		return FALSE
 
-	if(CHECK_MOBILITY(src, MOBILITY_USE) && resist_embedded()) //Citadel Change for embedded removal memes - requires being able to use items.
+	if(CHECK_MOBILITY(src, MOBILITY_USE)) //Citadel Change for embedded removal memes - requires being able to use items. //skyrat edit
 		// DO NOT GIVE DEFAULT CLICKDELAY - This is a combat action.
 		changeNext_move(CLICK_CD_MELEE)
 		return FALSE

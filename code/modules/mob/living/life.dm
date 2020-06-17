@@ -46,6 +46,10 @@
 
 	handle_diseases()// DEAD check is in the proc itself; we want it to spread even if the mob is dead, but to handle its disease-y properties only if you're not.
 
+	//skyrat edit
+	handle_wounds()
+	//
+
 	if (QDELETED(src)) // diseases can qdel the mob via transformations
 		return
 
@@ -167,3 +171,7 @@
 	if(gravity >= GRAVITY_DAMAGE_TRESHOLD) //Aka gravity values of 3 or more
 		var/grav_stregth = gravity - GRAVITY_DAMAGE_TRESHOLD
 		adjustBruteLoss(min(grav_stregth,3))
+
+//skyrat edit
+/mob/living/proc/handle_wounds()
+	return

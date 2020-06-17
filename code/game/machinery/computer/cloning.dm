@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 #define AUTOCLONING_MINIMAL_LEVEL 4
 
 /obj/machinery/computer/cloning
@@ -520,3 +521,4 @@
 	board.records = records
 	scantemp = "Subject successfully scanned."
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
+*/

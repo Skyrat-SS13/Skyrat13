@@ -20,3 +20,8 @@
 /obj/item/ammo_box/magazine/mm195x129/update_icon()
 	..()
 	icon_state = "a762-[round(ammo_count(),10)]"
+
+//slyraft edit
+/obj/item/ammo_box/magazine/mm712x82/match
+	name = "box magazine (Match 7.12x82mm)"
+	ammo_type = /obj/item/ammo_casing/mm712x82/match

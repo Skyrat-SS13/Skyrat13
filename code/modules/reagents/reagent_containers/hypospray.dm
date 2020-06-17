@@ -95,8 +95,12 @@
 	ignore_flags = 1 //so you can medipen through hardsuits
 	reagent_flags = DRAWABLE
 	flags_1 = null
-	list_reagents = list(/datum/reagent/medicine/epinephrine = 10, /datum/reagent/preservahyde = 3)
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 10, /datum/reagent/toxin/formaldehyde = 3, /datum/reagent/medicine/coagulant = 2) //skyrat edit
 	custom_premium_price = PRICE_ALMOST_EXPENSIVE
+	//skyrat edit
+	amount_per_transfer_from_this = 15
+	volume = 15
+	//
 
 /obj/item/reagent_containers/hypospray/medipen/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to choke on \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -445,6 +449,15 @@
 /obj/item/hypospray/mkii/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'><b>Ctrl-Click</b> it to toggle its mode from spraying to injecting and vice versa.</span>"
+
+//skyrat edit
+/obj/item/reagent_containers/hypospray/medipen/ekit
+	name = "emergency first-aid autoinjector"
+	desc = "An epinephrine medipen with trace amounts of coagulants and antibiotics to help stabilize bad cuts and burns."
+	volume = 15
+	amount_per_transfer_from_this = 15
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 12, /datum/reagent/medicine/coagulant = 2.5, /datum/reagent/medicine/spaceacillin = 0.5)
+//
 
 #undef HYPO_SPRAY
 #undef HYPO_INJECT

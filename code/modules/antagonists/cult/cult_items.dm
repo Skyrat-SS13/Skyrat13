@@ -36,6 +36,10 @@
 	throwforce = 25
 	armour_penetration = 35
 	actions_types = list(/datum/action/item_action/cult_dagger)
+	//skyrat edit
+	wound_bonus = -30
+	bare_wound_bonus = 30
+	//
 
 /obj/item/melee/cultblade/dagger/Initialize()
 	. = ..()
@@ -57,6 +61,10 @@
 	throwforce = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "rended")
+	//skyrat edit
+	wound_bonus = -80
+	bare_wound_bonus = 30
+	//
 
 /obj/item/melee/cultblade/Initialize()
 	. = ..()

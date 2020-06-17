@@ -43,6 +43,10 @@ GLOBAL_LIST_EMPTY(electrochromatic_window_lookup)
 	var/electrochromatic_status = NOT_ELECTROCHROMATIC
 	/// Electrochromatic ID. Set the first character to ! to replace with a SSmapping generated pseudorandom obfuscated ID for mapping purposes.
 	var/electrochromatic_id
+	//skyratatouille edit
+	flags_ricochet = RICOCHET_HARD
+	ricochet_chance_mod = 0.4
+	//
 
 /obj/structure/window/examine(mob/user)
 	. = ..()
@@ -525,6 +529,9 @@ GLOBAL_LIST_EMPTY(electrochromatic_window_lookup)
 	explosion_block = 1
 	glass_type = /obj/item/stack/sheet/rglass
 	rad_insulation = RAD_HEAVY_INSULATION
+	//skyrateeth edit
+	ricochet_chance_mod = 0.8
+	//
 
 /obj/structure/window/reinforced/spawner/east
 	dir = EAST
@@ -690,6 +697,9 @@ GLOBAL_LIST_EMPTY(electrochromatic_window_lookup)
 	level = 3
 	glass_type = /obj/item/stack/sheet/titaniumglass
 	glass_amount = 2
+	//skyrat edit
+	ricochet_chance_mod = 0.9
+	//
 
 /obj/structure/window/shuttle/narsie_act()
 	add_atom_colour("#3C3434", FIXED_COLOUR_PRIORITY)

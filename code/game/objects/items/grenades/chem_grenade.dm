@@ -177,7 +177,9 @@
 /obj/item/grenade/chem_grenade/prime()
 	if(stage != READY)
 		return FALSE
-
+	//skyrat edit - i'm losing my shit i'm wrecking the files with so god damned many of these edits FUCK
+	. = ..()
+	//
 	var/list/datum/reagents/reactants = list()
 	for(var/obj/item/reagent_containers/glass/G in beakers)
 		reactants += G.reagents

@@ -1,7 +1,7 @@
 /datum/surgery/organ_manipulation
 	name = "organ manipulation"
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
+	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_PRECISE_GROIN) //skyrat edit
 	requires_bodypart_type = BODYPART_ORGANIC //Skyrat change
 	requires_real_bodypart = 1
 	steps = list(
@@ -15,7 +15,7 @@
 		/datum/surgery_step/close
 		)
 /datum/surgery/organ_manipulation/soft
-	possible_locs = list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+	possible_locs = list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND,  BODY_ZONE_PRECISE_L_HAND) //skyrat edit
 	steps = list(
 		/datum/surgery_step/incise,
 		/datum/surgery_step/retract_skin,
@@ -38,7 +38,7 @@
 		)
 /datum/surgery/organ_manipulation/mechanic
 	name = "Prosthesis organ manipulation"
-	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
+	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_HEAD) //skyrat edit
 	requires_bodypart_type = BODYPART_ROBOTIC
 	steps = list(
 		/datum/surgery_step/mechanic_open,
@@ -50,7 +50,7 @@
 		/datum/surgery_step/mechanic_close
 		)
 /datum/surgery/organ_manipulation/mechanic/soft
-	possible_locs = list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+	possible_locs = list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND,  BODY_ZONE_PRECISE_L_HAND) //skyrat edit
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/open_hatch,

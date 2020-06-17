@@ -34,6 +34,11 @@
 	var/lip_color = "white"
 	//If the head is a special sprite
 	var/custom_head
+	//skyrat edit
+	wound_resistance = 10
+	specific_locations = list("left eyebrow", "cheekbone", "neck", "throat", "jawline", "entire face")
+	scars_covered_by_clothes = FALSE
+	//
 
 /obj/item/bodypart/head/can_dismember(obj/item/I)
 	if(!((owner.stat == DEAD) || owner.InFullCritical()))

@@ -226,6 +226,9 @@
 	obj_flags = UNIQUE_RENAME
 	var/chaplain_spawnable = TRUE
 	total_mass = TOTAL_MASS_MEDIEVAL_WEAPON
+	//skyrat edit
+	wound_bonus = -10
+	//
 
 /obj/item/nullrod/Initialize()
 	. = ..()
@@ -657,6 +660,10 @@
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = IS_SHARP
 	total_mass = TOTAL_MASS_HAND_REPLACEMENT
+	//skyrat edit
+	wound_bonus = -20
+	bare_wound_bonus = 25
+	//
 
 /obj/item/nullrod/armblade/Initialize()
 	. = ..()

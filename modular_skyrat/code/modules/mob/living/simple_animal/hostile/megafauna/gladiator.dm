@@ -72,7 +72,7 @@ They deal 35 brute (armor is considered).
 		if(!(M in introduced))
 			introduction(M)
 
-/mob/living/simple_animal/hostile/megafauna/gladiator/apply_damage(damage, damagetype, def_zone, blocked, forced)
+/mob/living/simple_animal/hostile/megafauna/gladiator/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE) //skyrat edit
 	if(speen)
 		visible_message("<span class='danger'>[src] brushes off all incoming attacks!")
 		return FALSE

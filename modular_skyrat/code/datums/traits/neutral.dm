@@ -120,7 +120,7 @@
 	value = 0
 	medical_record_text = "Patient suffers with sudden and uncontrollable bursts of laughter."
 	var/pcooldown = 0
-	var/pcooldown_time = 20 SECONDS
+	var/pcooldown_time = 60 SECONDS
 
 /datum/quirk/joker/on_spawn()
 	. = ..()
@@ -190,7 +190,14 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	if(H && istype(H))
 		if(H.stat == CONSCIOUS)
-			if(prob(5))
+			if(prob(20))
 				H.emote("laugh")
 				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 5 SECONDS)
 				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 10 SECONDS)
+
+/datum/quirk/longtimer
+	name = "Longtimer"
+	desc = "You've been around for a long time and seen more than your fair share of action, suffering some pretty nasty scars along the way. For whatever reason, you've declined to get them removed or augmented."
+	value = 0
+	gain_text = "<span class='notice'>Your body has seen better days.</span>"
+	lose_text = "<span class='notice'>Your sins may wash away, but those scars are here to stay...</span>"

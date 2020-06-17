@@ -94,11 +94,24 @@
 	return  blood_volume < (BLOOD_VOLUME_OKAY * blood_ratio) // && !(bodytemperature <= get_temperature() + 2)
 
 /mob/living/carbon/human/ShowAsPaleExamine()
+	. = ..()
 	// Check for albino, as per human/examine.dm's check.
 	if(dna.species.use_skintones && skin_tone == "albino")
 		return TRUE
-
-	return ..() // Return vamp check
+	//skyrat edit
+	var/t_He = p_they(TRUE)
+	var/t_has = p_have()
+	var/apparent_blood_volume = blood_volume
+	var/msg = ""
+	switch(apparent_blood_volume)
+		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
+			msg += "[t_He] [t_has] pale skin.\n"
+		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
+			msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
+		if(-INFINITY to BLOOD_VOLUME_BAD)
+			msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
+	//
+	return msg
 
 /mob/living/carbon/proc/scan_blood_volume()
 	// Vamps don't show up normally to scanners unless Masquerade power is on ----> scanner.dm

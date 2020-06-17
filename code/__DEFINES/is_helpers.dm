@@ -85,6 +85,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 // Skyrat specific species
 #define isvox(A) (is_species(A, /datum/species/vox))	//Defines Vox for an !istype verb. Skyrat change.
+#define isdunmer(A) (is_species(A, /datum/species/humanoid/dunmer))	//Defines Vox for an !istype verb. Skyrat change.
+#define ishumanoid(A) (is_species(A, /datum/species/humanoid))	//Defines Vox for an !istype verb. Skyrat change.
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
@@ -236,3 +238,10 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 #define isblobmonster(O) (istype(O, /mob/living/simple_animal/hostile/blob))
 
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
+
+//general skyrat defines
+#define isgrenade(A) (istype(A, /obj/item/grenade))
+
+#define islandmine(A) (istype(A, /obj/effect/mine))
+
+#define isammocasing(A) (istype(A, /obj/item/ammo_casing))

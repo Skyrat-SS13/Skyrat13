@@ -22,6 +22,10 @@
 	reach = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
+	//skyrat edit
+	wound_bonus = 15
+	bare_wound_bonus = 10
+	//
 	hitsound = 'sound/weapons/chainhit.ogg'
 	custom_materials = list(/datum/material/iron = 1000)
 
@@ -227,6 +231,10 @@
 	var/force_off // Damage when off - not stunning
 	var/weight_class_on // What is the new size class when turned on
 
+	//skyrat edit
+	wound_bonus = 15
+	//
+
 /obj/item/melee/classic_baton/Initialize()
 	. = ..()
 
@@ -352,6 +360,9 @@
 	force_off = 0
 	weight_class_on = WEIGHT_CLASS_BULKY
 	total_mass = TOTAL_MASS_NORMAL_ITEM
+	//skyrat edit
+	bare_wound_bonus = 5
+	//
 
 /obj/item/melee/classic_baton/telescopic/suicide_act(mob/user)
 	var/mob/living/carbon/human/H = user

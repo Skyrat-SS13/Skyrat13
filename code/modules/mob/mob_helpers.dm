@@ -15,6 +15,7 @@
 			zone = BODY_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_MOUTH)
 			zone = BODY_ZONE_HEAD
+		/* skyrat edit
 		if(BODY_ZONE_PRECISE_L_HAND)
 			zone = BODY_ZONE_L_ARM
 		if(BODY_ZONE_PRECISE_R_HAND)
@@ -25,6 +26,7 @@
 			zone = BODY_ZONE_R_LEG
 		if(BODY_ZONE_PRECISE_GROIN)
 			zone = BODY_ZONE_CHEST
+		*/
 	return zone
 
 
