@@ -75,6 +75,18 @@
 					/obj/item/storage/bag/ammo)
 	crate_name = "crate"
 
+/datum/supply_pack/costumes_toys/randomised/contraband/fill(obj/structure/closet/crate/C)
+	. = ..()
+	// Some chance to get some useful and dangerous botany seeds.
+	if(prob(50))
+		new /obj/item/seeds/cherry/bomb(C)
+	else // Guaranteed either one of those
+		new /obj/item/seeds/gatfruit(C)
+	if(prob(33))
+		new /obj/item/seeds/starthistle/corpse_flower(C)
+	if(prob(10))
+		new /obj/item/seeds/kudzu(C)
+
 /datum/supply_pack/costumes_toys/foamforce
 	name = "Foam Force Crate"
 	desc = "Break out the big guns with eight Foam Force shotguns!"
