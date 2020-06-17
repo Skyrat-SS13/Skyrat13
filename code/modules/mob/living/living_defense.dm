@@ -1,9 +1,6 @@
-
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = "Your armor absorbs the blow!", soften_text = "Your armor softens the blow!", armour_penetration, penetrated_text = "Your armor was penetrated!", silent=FALSE)
+//skyrat edit pretty much the whole proc is different
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = null, soften_text = null, silent=FALSE, armour_penetration, penetrated_text)
 	var/armor = getarmor(def_zone, attack_flag)
-	
-	if(silent)
-		return max(0, armor - armour_penetration)
 
 	if(armor <= 0)
 		return armor
@@ -129,7 +126,12 @@
 		hitpush = FALSE
 		skipcatch = TRUE
 		blocked = TRUE
-	
+	/* skyrat edit
+	else if(I && I.throw_speed >= EMBED_THROWSPEED_THRESHOLD && can_embed(I, src) && prob(I.embedding.embed_chance) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE) && (!HAS_TRAIT(src, TRAIT_AUTO_CATCH_ITEM) || incapacitated() || get_active_held_item()))
+		embed_item(I)
+		hitpush = FALSE
+		skipcatch = TRUE //can't catch the now embedded item
+	*/
 	if(I)
 		if(!skipcatch && isturf(I.loc) && catch_item(I))
 			return TRUE

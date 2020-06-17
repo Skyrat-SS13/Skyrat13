@@ -174,11 +174,12 @@
 	message_admins(message)
 	user.log_message("primed [src] ([reagent_string])",LOG_GAME)
 
-/obj/item/grenade/chem_grenade/prime(mob/living/lanced_by)
+/obj/item/grenade/chem_grenade/prime()
 	if(stage != READY)
 		return FALSE
-
+	//skyrat edit - i'm losing my shit i'm wrecking the files with so god damned many of these edits FUCK
 	. = ..()
+	//
 	var/list/datum/reagents/reactants = list()
 	for(var/obj/item/reagent_containers/glass/G in beakers)
 		reactants += G.reagents
@@ -218,7 +219,7 @@
 	ignition_temp = 25 // Large grenades are slightly more effective at setting off heat-sensitive mixtures than smaller grenades.
 	threatscale = 1.1	// 10% more effective.
 
-/obj/item/grenade/chem_grenade/large/prime(mob/living/lanced_by)
+/obj/item/grenade/chem_grenade/large/prime()
 	if(stage != READY)
 		return FALSE
 
@@ -287,7 +288,7 @@
 		return
 	..()
 
-/obj/item/grenade/chem_grenade/adv_release/prime(mob/living/lanced_by)
+/obj/item/grenade/chem_grenade/adv_release/prime()
 	if(stage != READY)
 		return FALSE
 

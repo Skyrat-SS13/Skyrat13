@@ -186,11 +186,11 @@
 		//
 		missing -= BP.body_zone
 		for(var/obj/item/I in BP.embedded_objects)
+		//skyrat edit
 			if(I.isEmbedHarmless())
 				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] stuck to [t_his] [BP.name]!</B>\n"
 			else
 				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
-		//skyrat edit
 		for(var/datum/wound/W in BP.wounds)
 			msg += "[W.get_examine_description(user)]\n"
 		//

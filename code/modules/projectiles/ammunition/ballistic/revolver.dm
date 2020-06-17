@@ -11,12 +11,6 @@
 	desc = "A .357 armor-piercing bullet casing."
 	projectile_type = /obj/item/projectile/bullet/a357/ap
 
-/obj/item/ammo_casing/a357/match
-	name = ".357 match bullet casing"
-	desc = "A .357 bullet casing, manufactured to exceedingly high standards."
-	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/a357/match
-
 // 7.62x38mmR (Nagant Revolver)
 
 /obj/item/ammo_casing/n762
@@ -54,6 +48,13 @@
 	desc = "A .38 Iceblox bullet casing."
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38/iceblox
+
+//skyrat edit ohhijrhtnifji
+/obj/item/ammo_casing/a357/match
+	name = ".357 match bullet casing"
+	desc = "A .357 bullet casing, manufactured to exceedingly high standards."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/a357/match
 
 /obj/item/ammo_casing/c38/match
 	name = ".38 Match bullet casing"

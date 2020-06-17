@@ -17,6 +17,7 @@
 	var/det_time = 50
 	var/display_timer = 1
 	var/clumsy_check = GRENADE_CLUMSY_FUMBLE
+	//skyrat edit
 	var/sticky = FALSE
 	// I moved the explosion vars and behavior to base grenades because we want all grenades to call [/obj/item/grenade/proc/prime] so we can send COMSIG_GRENADE_PRIME
 	///how big of a devastation explosion radius on prime
@@ -34,14 +35,11 @@
 	/// the higher this number, the more projectiles are created as shrapnel
 	var/shrapnel_radius
 	var/shrapnel_initialized
+	//
 
 /obj/item/grenade/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] primes [src], then eats it! It looks like [user.p_theyre()] trying to commit suicide!</span>")
-	if(shrapnel_type && shrapnel_radius)
-		shrapnel_initialized = TRUE
-		AddComponent(/datum/component/pellet_cloud, projectile_type=shrapnel_type, magnitude=shrapnel_radius)
 	playsound(src, 'sound/items/eatfood.ogg', 50, 1)
-	SEND_SIGNAL(src, COMSIG_GRENADE_ARMED, det_time)
 	preprime(user, det_time)
 	user.transferItemToLoc(src, user, TRUE)//>eat a grenade set to 5 seconds >rush captain
 	sleep(det_time)//so you dont die instantly
@@ -53,21 +51,23 @@
 	if(!QDELETED(src))
 		qdel(src)
 
-/obj/item/grenade/proc/botch_check(mob/living/carbon/human/user)
+/obj/item/grenade/proc/botch_check(mob/living/carbon/human/user) //skyrat edit
 	var/clumsy = HAS_TRAIT(user, TRAIT_CLUMSY)
 	if(clumsy)
 		if(clumsy_check == GRENADE_CLUMSY_FUMBLE && prob(50))
 			to_chat(user, "<span class='warning'>Huh? How does this thing work?</span>")
 			preprime(user, 5, FALSE)
-			return TRUE
+			return TRUE //skyrat edit
 	else if(clumsy_check == GRENADE_NONCLUMSY_FUMBLE && !(user.mind && HAS_TRAIT(user.mind, TRAIT_CLOWN_MENTALITY)))
 		to_chat(user, "<span class='warning'>You pull the pin on [src]. Attached to it is a pink ribbon that says, \"<span class='clown'>HONK</span>\"</span>")
 		preprime(user, 5, FALSE)
-		return TRUE
-
+		return TRUE //skyrat edit
+	//skyrat edit
 	else if(sticky && prob(50)) // to add risk to sticky tape grenade cheese, no return cause we still prime as normal after
 		to_chat(user, "<span class='warning'>What the... [src] is stuck to your hand!</span>")
 		ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
+	//
+
 
 /obj/item/grenade/examine(mob/user)
 	. = ..()
@@ -79,16 +79,8 @@
 
 
 /obj/item/grenade/attack_self(mob/user)
-	if(HAS_TRAIT(src, TRAIT_NODROP))
-		to_chat(user, "<span class='notice'>You try prying [src] off your hand...</span>")
-		if(do_after(user, 70, target=src))
-			to_chat(user, "<span class='notice'>You manage to remove [src] from your hand.</span>")
-			REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
-
-		return
-
 	if(!active)
-		if(!botch_check(user)) // if they botch the prime, it'll be handled in botch_check
+		if(!botch_check(user)) //skyrat edit
 			preprime(user)
 
 /obj/item/grenade/proc/log_grenade(mob/user, turf/T)
@@ -107,20 +99,29 @@
 			C.throw_mode_on()
 		if(msg)
 			to_chat(user, "<span class='warning'>You prime [src]! [DisplayTimeText(det_time)]!</span>")
+	//skyrat edit
+	if(shrapnel_type && shrapnel_radius)
+		shrapnel_initialized = TRUE
+		AddComponent(/datum/component/pellet_cloud, projectile_type=shrapnel_type, magnitude=shrapnel_radius)
+	//
 	playsound(src, 'sound/weapons/armbomb.ogg', volume, 1)
 	active = TRUE
 	icon_state = initial(icon_state) + "_active"
+	//skyrat edit
+	SEND_SIGNAL(src, COMSIG_GRENADE_ARMED, det_time, delayoverride)
+	//
 	addtimer(CALLBACK(src, .proc/prime), isnull(delayoverride)? det_time : delayoverride)
 
-/obj/item/grenade/proc/prime(mob/living/lanced_by)
+/obj/item/grenade/proc/prime()
+	/* skyrat edit?
 	var/turf/T = get_turf(src)
 	log_game("Grenade detonation at [AREACOORD(T)], location [loc]")
-
+	*/
 	if(shrapnel_type && shrapnel_radius && !shrapnel_initialized) // add a second check for adding the component in case whatever triggered the grenade went straight to prime (badminnery for example)
 		shrapnel_initialized = TRUE
 		AddComponent(/datum/component/pellet_cloud, projectile_type=shrapnel_type, magnitude=shrapnel_radius)
 
-	SEND_SIGNAL(src, COMSIG_GRENADE_PRIME, lanced_by)
+	SEND_SIGNAL(src, COMSIG_GRENADE_PRIME)
 	if(ex_dev || ex_heavy || ex_light || ex_flame)
 		explosion(loc, ex_dev, ex_heavy, ex_light, flame_range = ex_flame)
 
@@ -165,3 +166,12 @@
 
 /obj/item/proc/grenade_prime_react(obj/item/grenade/nade)
 	return
+
+//skyrat edit
+/// Don't call qdel() directly on the grenade after it booms, call this instead so it can still resolve its pellet_cloud component if it has shrapnel, then the component will qdel it
+/obj/item/grenade/proc/resolve()
+	if(shrapnel_type)
+		moveToNullspace()
+	else
+		qdel(src)
+//

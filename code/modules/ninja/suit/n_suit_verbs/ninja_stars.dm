@@ -15,4 +15,6 @@
 /obj/item/throwing_star/ninja
 	name = "ninja throwing star"
 	throwforce = 30
+	//skyrat edit the mafia is threatening to kill me with these comments
 	embedding = list("pain_mult" = 6, "embed_chance" = 100, "fall_chance" = 0, "embed_chance_turf_mod" = 15)
+	//

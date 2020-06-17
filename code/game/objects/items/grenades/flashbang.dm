@@ -6,8 +6,10 @@
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	var/flashbang_range = 7 //how many tiles away the mob will be stunned.
 
-/obj/item/grenade/flashbang/prime(mob/living/lanced_by)
+/obj/item/grenade/flashbang/prime()
+	//skyrat edit
 	. = ..()
+	//
 	update_mob()
 	var/flashbang_turf = get_turf(src)
 	if(!flashbang_turf)
@@ -16,7 +18,10 @@
 	playsound(flashbang_turf, 'sound/weapons/flashbang.ogg', 100, TRUE, 8, 0.9)
 	new /obj/effect/dummy/lighting_obj (flashbang_turf, LIGHT_COLOR_WHITE, (flashbang_range + 2), 4, 2)
 	flashbang_mobs(flashbang_turf, flashbang_range)
+	/* skyrat edit
 	qdel(src)
+	*/
+	resolve()
 
 /obj/item/grenade/flashbang/proc/flashbang_mobs(turf/source, range)
 	var/list/banged = get_hearers_in_view(range, source)
@@ -44,6 +49,8 @@
 	if(M.flash_act(affect_silicon = 1))
 		M.DefaultCombatKnockdown(max(200/max(1,distance), 60))
 
+//skyrat edit weehoo
+
 /obj/item/grenade/stingbang
 	name = "stingbang"
 	icon_state = "timeg"
@@ -60,7 +67,7 @@
 	shrapnel_type = /obj/item/projectile/bullet/pellet/stingball/mega
 	shrapnel_radius = 12
 
-/obj/item/grenade/stingbang/prime(mob/living/lanced_by)
+/obj/item/grenade/stingbang/prime()
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
 		var/obj/item/bodypart/B = C.get_holding_bodypart_of_item(src)
@@ -78,21 +85,20 @@
 	new /obj/effect/dummy/lighting_obj (flashbang_turf, LIGHT_COLOR_WHITE, (flashbang_range + 2), 2, 1)
 	for(var/mob/living/M in get_hearers_in_view(flashbang_range, flashbang_turf))
 		pop(get_turf(M), M)
-	qdel(src)
+	resolve()
 
 /obj/item/grenade/stingbang/proc/pop(turf/T , mob/living/M)
 	if(M.stat == DEAD)	//They're dead!
 		return
 	M.show_message("<span class='warning'>POP</span>", MSG_AUDIBLE)
 	var/distance = max(0,get_dist(get_turf(src),T))
-
 //Flash
 	if(M.flash_act(affect_silicon = 1))
 		M.Paralyze(max(10/max(1,distance), 5))
 		M.Knockdown(max(100/max(1,distance), 60))
 
 //Bang
-	if(!distance || loc == M || loc == M.loc)
+	if(!distance || loc == M || loc == M.loc)	//Stop allahu akbarring rooms with this.
 		M.Paralyze(20)
 		M.Knockdown(200)
 		M.soundbang_act(1, 200, 10, 15)
@@ -120,10 +126,10 @@
 		rots++
 		user.changeNext_move(CLICK_CD_RAPID)
 
-/obj/item/grenade/primer/prime(mob/living/lanced_by)
+/obj/item/grenade/primer/prime()
 	shrapnel_radius = round(rots / rots_per_mag)
 	. = ..()
-	qdel(src)
+	resolve()
 
 /obj/item/grenade/primer/stingbang
 	name = "rotsting"
@@ -132,3 +138,11 @@
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	rots_per_mag = 2
 	shrapnel_type = /obj/item/projectile/bullet/pellet/stingball
+
+/obj/item/grenade/stingbang/breaker
+	name = "breakbang"
+	shrapnel_type = /obj/item/projectile/bullet/pellet/stingball/breaker
+
+/obj/item/grenade/stingbang/shred
+	name = "shredbang"
+	shrapnel_type = /obj/item/projectile/bullet/pellet/stingball/shred
