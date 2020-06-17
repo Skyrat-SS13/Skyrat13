@@ -45,3 +45,11 @@
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stock_parts/scanning_module = 2,
 		/obj/item/stack/ore/bluespace_crystal = 2)
+
+/obj/item/circuitboard/machine/mint //don't put this in a techweb or cargo will go overkill, one per station is enough
+	name = "Coin Press (Machine Board)"
+	build_path = /obj/machinery/mineral/mint
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/manipulator = 1)
+	needs_anchored = TRUE

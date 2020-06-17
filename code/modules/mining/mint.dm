@@ -10,7 +10,9 @@
 	var/processing = FALSE
 	var/chosen = /datum/material/iron //which material will be used to make coins
 	var/coinsToProduce = 10
+	var/coinsToMakePerProcess = 1 //skyrat change
 	speed_process = TRUE
+	circuit = /obj/item/circuitboard/machine/mint //skyrat edit
 
 
 /obj/machinery/mineral/mint/Initialize()
@@ -62,12 +64,14 @@
 	var/datum/material/M = chosen
 
 	dat += "<br><br>Will produce [coinsToProduce] [lowertext(M.name)] coins if enough materials are available.<br>"
+	dat += "<A href='?src=[REF(src)];chooseAmt=-100'>-100</A> "
 	dat += "<A href='?src=[REF(src)];chooseAmt=-10'>-10</A> "
 	dat += "<A href='?src=[REF(src)];chooseAmt=-5'>-5</A> "
 	dat += "<A href='?src=[REF(src)];chooseAmt=-1'>-1</A> "
 	dat += "<A href='?src=[REF(src)];chooseAmt=1'>+1</A> "
 	dat += "<A href='?src=[REF(src)];chooseAmt=5'>+5</A> "
 	dat += "<A href='?src=[REF(src)];chooseAmt=10'>+10</A> "
+	dat += "<A href='?src=[REF(src)];chooseAmt=100'>+100</A> "
 
 	dat += "<br><br>In total this machine produced <font color='green'><b>[newCoins]</b></font> coins."
 	dat += "<br><A href='?src=[REF(src)];makeCoins=[1]'>Make coins</A>"
@@ -93,15 +97,14 @@
 		var/temp_coins = coinsToProduce
 		processing = TRUE
 		icon_state = "coinpress1"
-		var/coin_mat = MINERAL_MATERIAL_AMOUNT * 0.2
+		var/coin_mat = MINERAL_MATERIAL_AMOUNT * 0.2 * min(coinsToProduce,coinsToMakePerProcess)
 		var/datum/material/M = chosen
 		if(!M)
 			updateUsrDialog()
 			return
 
 		while(coinsToProduce > 0 && materials.use_amount_mat(coin_mat, chosen))
-			create_coins()
-			coinsToProduce--
+			coinsToProduce = coinsToProduce - create_coins(coinsToProduce) //skyrat change
 			newCoins++
 			src.updateUsrDialog()
 			sleep(5)
@@ -112,15 +115,19 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/mineral/mint/proc/create_coins()
+/obj/machinery/mineral/mint/proc/create_coins(coinsToProduce) //skyrat change
 	var/turf/T = get_step(src,output_dir)
 	var/temp_list = list()
 	temp_list[chosen] = 400
-	if(T)
-		var/obj/item/O = new /obj/item/coin(src)
-		var/obj/item/storage/bag/money/B = locate(/obj/item/storage/bag/money, T)
-		O.set_custom_materials(temp_list)
-		if(!B)
-			B = new /obj/item/storage/bag/money(src)
-			unload_mineral(B)
-		O.forceMove(B)
+	if(T) //skyrat change - more coins per iteration if upgraded
+		var/coinsmade = 0
+		while (coinsToProduce > 0 && coinsmade < coinsToMakePerProcess)
+			var/obj/item/O = new /obj/item/coin(src)
+			var/obj/item/storage/bag/money/B = locate(/obj/item/storage/bag/money, T)
+			O.set_custom_materials(temp_list)
+			if(!B)
+				B = new /obj/item/storage/bag/money(src)
+				unload_mineral(B)
+			O.forceMove(B)
+			coinsmade++
+		return coinsmade //end skyrat change
