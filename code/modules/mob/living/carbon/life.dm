@@ -765,5 +765,5 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 /mob/living/carbon/handle_wounds()
 	for(var/thing in all_wounds)
 		var/datum/wound/W = thing
-		if(W.processes) // meh
+		if(istype(W) && W.processes) // meh
 			W.handle_process()

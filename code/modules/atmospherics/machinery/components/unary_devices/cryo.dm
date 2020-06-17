@@ -181,7 +181,7 @@
 		//skyrat edit
 		if(iscarbon(mob_occupant))
 			var/mob/living/carbon/C = mob_occupant
-			if(C.all_wounds)
+			if(C.all_wounds && C.all_wounds.len)
 				if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
 					treating_wounds = TRUE
 					playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.

@@ -6,7 +6,7 @@
 	name = "Debride infected flesh"
 	steps = list(/datum/surgery_step/debride, /datum/surgery_step/dress)
 	target_mobtypes = list(/mob/living/carbon/human)
-	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
+	possible_locs = ALL_BODYPARTS
 	requires_real_bodypart = TRUE
 	targetable_wound = /datum/wound/burn
 

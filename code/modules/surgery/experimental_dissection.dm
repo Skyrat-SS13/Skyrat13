@@ -9,7 +9,7 @@
 				/datum/surgery_step/dissection,
 				/datum/surgery_step/clamp_bleeders,
 				/datum/surgery_step/close)
-	possible_locs = list(BODY_ZONE_CHEST)
+	possible_locs = TORSO_BODYPARTS //skyrat edit
 	target_mobtypes = list(/mob/living) //Feel free to dissect devils but they're magic.
 	replaced_by = /datum/surgery/advanced/experimental_dissection/adv
 	requires_tech = FALSE

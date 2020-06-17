@@ -32,6 +32,7 @@
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 	//skyrat vars
 	starting_children = list(/obj/item/bodypart/l_hand/robot)
+	bleedsuppress = TRUE
 	//
 //skyrat edit
 /obj/item/bodypart/l_hand/robot
@@ -55,6 +56,7 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 	starting_children = list()
+	bleedsuppress = TRUE
 //
 /obj/item/bodypart/r_arm/robot
 	name = "cyborg right arm"
@@ -78,6 +80,7 @@
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 	//skyrat edit
 	starting_children = list(/obj/item/bodypart/r_hand/robot)
+	bleedsuppress = TRUE
 	//
 //skyrat edit
 /obj/item/bodypart/r_hand/robot
@@ -101,6 +104,7 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 	starting_children = list()
+	bleedsuppress = TRUE
 //
 /obj/item/bodypart/l_leg/robot
 	name = "cyborg left leg"
@@ -124,6 +128,7 @@
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 	//skyrat vars
 	starting_children = list(/obj/item/bodypart/l_foot/robot)
+	bleedsuppress = TRUE
 	//
 
 //skyrat edit
@@ -148,6 +153,7 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 	starting_children = list()
+	bleedsuppress = TRUE
 //
 /obj/item/bodypart/r_leg/robot
 	name = "cyborg right leg"
@@ -171,6 +177,7 @@
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 	//skyrat vars
 	starting_children = list(/obj/item/bodypart/r_foot/robot)
+	bleedsuppress = TRUE
 	//
 //skyrat edit
 /obj/item/bodypart/r_foot/robot
@@ -194,6 +201,7 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 	starting_children = list()
+	bleedsuppress = TRUE
 //
 
 /obj/item/bodypart/chest/robot
@@ -220,6 +228,7 @@
 	var/obj/item/stock_parts/cell/cell = null
 	//skyrat vars
 	starting_children = list(/obj/item/bodypart/groin/robot)
+	bleedsuppress = TRUE
 	//
 //skyrat edit
 /obj/item/bodypart/groin/robot
@@ -242,6 +251,7 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 	starting_children = list()
+	bleedsuppress = TRUE
 //
 
 /obj/item/bodypart/chest/robot/attackby(obj/item/W, mob/user, params)
@@ -304,8 +314,9 @@
 
 	var/obj/item/assembly/flash/handheld/flash1 = null
 	var/obj/item/assembly/flash/handheld/flash2 = null
-
-
+	//skyrat vars
+	bleedsuppress = TRUE
+	//
 
 /obj/item/bodypart/head/robot/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/assembly/flash/handheld))

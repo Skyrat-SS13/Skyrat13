@@ -790,13 +790,15 @@
 					if(hal_screwyhud == SCREWYHUD_HEALTHY)
 						icon_num = 0
 					if(icon_num)
-						hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[BP.body_zone][icon_num]"))
+			//skyrat edit - modular health doll
+						hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[BP.body_zone][icon_num]"))
 				for(var/t in get_missing_limbs()) //Missing limbs
-					hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[t]6"))
+					hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[t]6"))
 				for(var/t in get_disabled_limbs()) //Disabled limbs
-					hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[t]7"))
+					hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[t]7"))
 			else
 				hud_used.healthdoll.icon_state = "healthdoll_DEAD"
+			//
 
 		hud_used.staminas?.update_icon_state()
 		hud_used.staminabuffer?.update_icon_state()
@@ -1244,7 +1246,7 @@
 
 //skyrat edit
 /mob/living/carbon/human/is_bleeding()
-	if(NOBLOOD in dna.species.species_traits || bleedsuppress)
+	if(NOBLOOD in dna.species.species_traits)
 		return FALSE
 	return ..()
 

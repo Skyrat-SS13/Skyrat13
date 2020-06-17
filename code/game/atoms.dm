@@ -1093,9 +1093,9 @@ Proc for attack log creation, because really why not
   * * base_roll- Base wounding ability of an attack is a random number from 1 to (dealt_damage ** WOUND_DAMAGE_EXPONENT). This is the number that was rolled in there, before mods
   */
 /proc/log_wound(atom/victim, datum/wound/suffered_wound, dealt_damage, dealt_wound_bonus, dealt_bare_wound_bonus, base_roll)
-	if(!victim || !suffered_wound)
+	if(!istype(victim) || !istype(suffered_wound))
 		return FALSE
-	var/message = "has suffered: [suffered_wound] to [suffered_wound.limb.name]" // maybe indicate if it's a promote/demote?
+	var/message = "has suffered: [suffered_wound][suffered_wound.limb ? " to [suffered_wound.limb.name]" : "" ]" // maybe indicate if it's a promote/demote?
 
 	if(dealt_damage)
 		message += " | Damage: [dealt_damage]"

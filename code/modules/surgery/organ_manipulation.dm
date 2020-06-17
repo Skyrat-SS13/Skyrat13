@@ -1,7 +1,7 @@
 /datum/surgery/organ_manipulation
 	name = "organ manipulation"
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_PRECISE_GROIN) //skyrat edit
+	possible_locs = ORGAN_BODYPARTS //skyrat edit
 	requires_bodypart_type = BODYPART_ORGANIC //Skyrat change
 	requires_real_bodypart = 1
 	steps = list(
@@ -14,6 +14,7 @@
 		//there should be bone fixing
 		/datum/surgery_step/close
 		)
+
 /datum/surgery/organ_manipulation/soft
 	possible_locs = list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND,  BODY_ZONE_PRECISE_L_HAND) //skyrat edit
 	steps = list(
@@ -24,6 +25,7 @@
 		/datum/surgery_step/manipulate_organs,
 		/datum/surgery_step/close
 		)
+
 /datum/surgery/organ_manipulation/alien
 	name = "Alien organ manipulation"
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
@@ -36,6 +38,7 @@
 		/datum/surgery_step/manipulate_organs,
 		/datum/surgery_step/close
 		)
+
 /datum/surgery/organ_manipulation/mechanic
 	name = "Prosthesis organ manipulation"
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_HEAD) //skyrat edit
@@ -49,6 +52,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close
 		)
+
 /datum/surgery/organ_manipulation/mechanic/soft
 	possible_locs = list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND,  BODY_ZONE_PRECISE_L_HAND) //skyrat edit
 	steps = list(
@@ -58,6 +62,7 @@
 		/datum/surgery_step/manipulate_organs,
 		/datum/surgery_step/mechanic_close
 		)
+
 /datum/surgery_step/manipulate_organs
 	time = 64
 	name = "manipulate organs"
@@ -66,9 +71,11 @@
 	var/implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 55)
 	var/current_type
 	var/obj/item/organ/I = null
+
 /datum/surgery_step/manipulate_organs/New()
 	..()
 	implements = implements + implements_extract
+
 /datum/surgery_step/manipulate_organs/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	I = null
 	if(istype(tool, /obj/item/organ_storage))
@@ -115,6 +122,7 @@
 	else if(istype(tool, /obj/item/reagent_containers/food/snacks/organ))
 		to_chat(user, "<span class='warning'>[tool] was bitten by someone! It's too damaged to use!</span>")
 		return -1
+
 /datum/surgery_step/manipulate_organs/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(current_type == "insert")
 		if(istype(tool, /obj/item/organ_storage))

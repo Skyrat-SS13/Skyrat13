@@ -147,7 +147,8 @@
 		//skyrat edit
 		for(var/i in M.all_wounds)
 			var/datum/wound/W = i
-			W.on_xadone(power)
+			if(istype(W))
+				W.on_xadone(power)
 		//
 		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC) //fixes common causes for disfiguration
 		. = 1
@@ -200,7 +201,8 @@
 		//skyrat edit
 		for(var/i in M.all_wounds)
 			var/datum/wound/W = i
-			W.on_xadone(power)
+			if(istype(W))
+				W.on_xadone(power)
 		//
 		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		. = 1

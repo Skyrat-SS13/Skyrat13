@@ -7,7 +7,7 @@
 				/datum/surgery_step/close)
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = list(BODY_ZONE_CHEST)
+	possible_locs = TORSO_BODYPARTS //skyrat edit
 	requires_bodypart_type = BODYPART_ORGANIC //Skyrat change
 	replaced_by = /datum/surgery
 	ignore_clothes = TRUE

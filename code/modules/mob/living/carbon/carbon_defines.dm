@@ -49,7 +49,6 @@
 					 /obj/item/bodypart/r_arm, /obj/item/bodypart/r_hand,\
 					 /obj/item/bodypart/l_leg, /obj/item/bodypart/l_foot,\
 					 /obj/item/bodypart/r_leg, /obj/item/bodypart/r_foot)
-	var/bleedsuppress = 0 //for stopping bloodloss, eventually this will be limb-based like bleeding
 	//
 	//Gets filled up in create_bodyparts()
 	var/list/hand_bodyparts = list() //a collection of arms (or actually whatever the fug /bodyparts you monsters use to wreck my systems)
@@ -70,6 +69,6 @@
 	
 	//skyrat edit
 	/// All of the wounds a carbon has afflicted throughout their limbs
-	var/list/all_wounds
+	var/list/all_wounds = list()
 	/// All of the scars a carbon has afflicted throughout their limbs
-	var/list/all_scars
+	var/list/all_scars = list()

@@ -175,13 +175,13 @@
 */
 
 /datum/wound/brute/bone/proc/update_inefficiencies()
-	if(limb.body_zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
+	if(limb.body_zone in list(BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_GROIN))
 		if(splinted)
 			limp_slowdown = initial(limp_slowdown) * splinted.splint_factor
 		else
 			limp_slowdown = initial(limp_slowdown)
 		victim.apply_status_effect(STATUS_EFFECT_LIMP)
-	else if(limb.body_zone in list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+	else if(limb.body_zone in list(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM))
 		if(splinted)
 			interaction_efficiency_penalty = 1 + ((interaction_efficiency_penalty - 1) * splinted.splint_factor)
 		else
@@ -226,7 +226,7 @@
 	examine_desc = "is awkwardly jammed out of place"
 	occur_text = "jerks violently and becomes unseated"
 	severity = WOUND_SEVERITY_MODERATE
-	viable_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	viable_zones = LIMB_BODYPARTS
 	interaction_efficiency_penalty = 1.5
 	limp_slowdown = 3
 	threshold_minimum = 35
@@ -260,7 +260,7 @@
 /// If someone is snapping our dislocated joint back into place by hand with an aggro grab and help intent
 /datum/wound/brute/bone/moderate/proc/chiropractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
-	var/time_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, 5 SECONDS, THRESHOLD_UNTRAINED, TRUE)
+	var/time_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, 3 SECONDS, THRESHOLD_UNTRAINED, FALSE)
 	var/prob_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, 50, THRESHOLD_COMPETENT, TRUE)
 	if(time_mod)
 		time *= time_mod
@@ -283,7 +283,7 @@
 /// If someone is snapping our dislocated joint into a fracture by hand with an aggro grab and harm or disarm intent
 /datum/wound/brute/bone/moderate/proc/malpractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
-	var/time_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, 2 SECONDS, THRESHOLD_UNTRAINED, TRUE)
+	var/time_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, 3 SECONDS, THRESHOLD_UNTRAINED, FALSE)
 	var/prob_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, 30, THRESHOLD_COMPETENT, TRUE)
 	if(time_mod)
 		time *= time_mod
@@ -459,4 +459,6 @@
 		. += "Cranial Trauma Detected: Patient will suffer random bouts of [severity == WOUND_SEVERITY_SEVERE ? "mild" : "severe"] brain traumas until bone is repaired."
 	else if(limb.body_zone == BODY_ZONE_CHEST && victim.blood_volume)
 		. += "Ribcage Trauma Detected: Further trauma to chest is likely to worsen internal bleeding until bone is repaired."
+	else if(limb.body_zone == BODY_ZONE_PRECISE_GROIN && victim.blood_volume)
+		. += "Pelvis Trauma Detected: Further trauma to groin is likely to worsen internal bleeding until bone is repaired."
 	. += "</div>"

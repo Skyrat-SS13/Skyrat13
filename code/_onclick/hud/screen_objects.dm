@@ -529,7 +529,6 @@
 /obj/screen/zone_sel/robot
 	icon = 'icons/mob/screen_cyborg.dmi'
 
-
 /obj/screen/flash
 	name = "flash"
 	icon_state = "blank"
@@ -552,6 +551,13 @@
 	name = "health"
 	icon_state = "health0"
 	screen_loc = ui_health
+
+//skyrat edit
+/obj/screen/healths/Click(location, control, params)
+	var/mob/living/carbon/C = usr
+	if(istype(C))
+		C.check_self_for_injuries()
+//
 
 /obj/screen/healths/alien
 	icon = 'icons/mob/screen_alien.dmi'
@@ -617,11 +623,16 @@
 /obj/screen/healthdoll
 	name = "health doll"
 	screen_loc = ui_healthdoll
+	//skyrat edit
+	icon = 'modular_skyrat/icons/mob/screen_gen.dmi'
+	//
 
 //skyrat edit
 /obj/screen/healthdoll/Click()
 	var/mob/living/carbon/C = usr
-	C.check_self_for_injuries()
+	if(istype(C))
+		C.check_self_for_injuries()
+	C.update_health_hud()
 //
 
 /obj/screen/mood

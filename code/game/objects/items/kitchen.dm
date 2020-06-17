@@ -228,6 +228,6 @@
 	desc = "A knife used to cleanly butcher. Its razor-sharp edge has been honed for butchering, but has been poorly maintained over the years."
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/kitchen/knife/scimiar/Initialize()
+/obj/item/kitchen/knife/scimitar/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 90 - force, 100, force - 60) //bonus chance increases depending on force

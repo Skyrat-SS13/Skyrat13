@@ -1,4 +1,3 @@
-
 /obj/item/bodypart
 	name = "limb"
 	desc = "Why is it detached..."
@@ -70,17 +69,19 @@
 	var/light_burn_msg = "numb"
 	var/medium_burn_msg = "blistered"
 	var/heavy_burn_msg = "peeling away"
+
 	//skyrat variables
 	var/parent_bodyzone //body zone that is considered a "parent" of this bodypart's zone
 	var/list/starting_children = list() //children that are already "inside" this limb on spawn. could be organs or limbs.
 	var/list/children_zones = list() //body zones that are considered "children" of this bodypart's zone
 	var/amputation_point //descriptive string used in amputation.
 	var/obj/item/cavity_item
+	var/cremation_progress = 0 //Gradually increases while burning when at full damage, destroys the limb when at 100
 	/// The wounds currently afflicting this body part
-	var/list/wounds
+	var/list/wounds = list()
 
 	/// The scars currently afflicting this body part
-	var/list/scars
+	var/list/scars = list()
 	/// Our current stored wound damage multiplier
 	var/wound_damage_multiplier = 1
 	/// This number is subtracted from all wound rolls on this bodypart, higher numbers mean more defense, negative means easier to wound
@@ -96,6 +97,8 @@
 	var/last_maxed
 	/// How much generic bleedstacks we have on this bodypart
 	var/generic_bleedstacks
+	/// Does the limb just not bleed at all?
+	var/bleedsuppress = FALSE
 	//
 //skyrat edit
 /obj/item/bodypart/Initialize()
@@ -158,7 +161,7 @@
 	pixel_y = rand(-3, 3)
 
 //empties the bodypart from its organs and other things inside it
-/obj/item/bodypart/proc/drop_organs(mob/user)
+/obj/item/bodypart/proc/drop_organs(mob/user, violent_removal)
 	var/turf/T = get_turf(src)
 	if(status != BODYPART_ROBOTIC)
 		playsound(T, 'sound/misc/splort.ogg', 50, 1, -1)
@@ -253,12 +256,9 @@
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
 //Cannot remove negative damage (i.e. apply damage)
-/obj/item/bodypart/proc/heal_damage(brute, burn, stamina, only_robotic = FALSE, only_organic = TRUE, updating_health = TRUE)
+/obj/item/bodypart/proc/heal_damage(brute, burn, stamina, required_status, updating_health = TRUE)
 
-	if(only_robotic && status != BODYPART_ROBOTIC) //This makes organic limbs not heal when the proc is in Robotic mode.
-		return
-
-	if(only_organic && status != BODYPART_ORGANIC) //This makes robolimbs not healable by chems.
+	if(required_status && (status != required_status)) //So we can only heal certain kinds of limbs, ie robotic vs organic.
 		return
 
 	brute_dam	= round(max(brute_dam - brute, 0), DAMAGE_PRECISION)
@@ -268,6 +268,7 @@
 		owner.updatehealth()
 	consider_processing()
 	update_disabled()
+	cremation_progress = min(0, cremation_progress - ((brute_dam + burn_dam)*(100/max_damage)))
 	return update_bodypart_damage_state()
 
 //Returns total damage.
@@ -289,12 +290,12 @@
 		if(parent_bodyzone)
 			var/obj/item/bodypart/BP = owner.get_bodypart(parent_bodyzone)
 			if(BP)
-				BP.update_disabled(FALSE, FALSE)
+				BP.update_disabled(TRUE, FALSE)
 	if(children_zones)
 		for(var/zoner in children_zones)
 			var/obj/item/bodypart/CBP = owner.get_bodypart(zoner)
 			if(CBP)
-				CBP.update_disabled(FALSE, FALSE)
+				CBP.update_disabled(FALSE, TRUE)
 //skyrat edit
 /obj/item/bodypart/proc/is_disabled()
 	if(!owner)
@@ -925,7 +926,7 @@
 	max_damage = 50
 	body_zone = BODY_ZONE_R_ARM
 	body_part = ARM_RIGHT
-	aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER)
+	//aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER) //skyrat edit
 	body_damage_coeff = 0.75
 	px_x = 6
 	px_y = 0
@@ -1046,8 +1047,8 @@
 	icon_state = "default_human_r_foot"
 	attack_verb = list("kicked", "stomped")
 	max_damage = 50
-	body_zone = BODY_ZONE_PRECISE_R_FOOT
-	body_part = FOOT_RIGHT
+	body_zone = BODY_ZONE_PRECISE_L_FOOT
+	body_part = FOOT_LEFT
 	body_damage_coeff = 0.75
 	px_x = -2
 	px_y = 9
@@ -1230,7 +1231,7 @@
 /**
   * check_wounding() is where we handle rolling for, selecting, and applying a wound if we meet the criteria
   *
-  * We generate a "score" for how woundable the attack was based on the damage and other factors discussed in [check_wounding_mods()], then go down the list from most severe to least severe wounds in that category.
+  * We generate a "score" for how woundable the attack was based on the damage and other factors discussed in [check_woundings_mods()], then go down the list from most severe to least severe wounds in that category.
   * We can promote a wound from a lesser to a higher severity this way, but we give up if we have a wound of the given type and fail to roll a higher severity, so no sidegrades/downgrades
   *
   * Arguments:
@@ -1369,5 +1370,8 @@
 	for(var/thing in wounds)
 		var/datum/wound/W = thing
 		bleed_rate += W.blood_flow
+	
+	if(bleedsuppress)
+		bleed_rate = 0
 
 	return bleed_rate

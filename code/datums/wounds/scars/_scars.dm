@@ -22,7 +22,7 @@
 	/// Whether this scar can actually be covered up by clothing
 	var/coverable = TRUE
 	/// What zones this scar can be applied to
-	var/list/applicable_zones = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG)
+	var/list/applicable_zones = ALL_BODYPARTS
 
 /datum/scar/Destroy(force, ...)
 	if(limb)
@@ -111,9 +111,7 @@
 /// Whether a scar can currently be seen by the viewer
 /datum/scar/proc/is_visible(mob/viewer)
 	if(!victim || !viewer)
-		return
-	if(get_dist(viewer, victim) > visibility)
-		return
+		return FALSE
 
 	if(!ishuman(victim) || isobserver(viewer) || victim == viewer)
 		return TRUE
@@ -122,10 +120,9 @@
 	if(istype(limb, /obj/item/bodypart/head))
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)))
 			return FALSE
-	else if(limb.scars_covered_by_clothes)
-		var/num_covers = LAZYLEN(H.clothingonpart(limb))
-		if(num_covers + get_dist(viewer, victim) >= visibility)
-			return FALSE
+	
+	else if(limb.scars_covered_by_clothes && H.clothingonpart(limb))
+		return FALSE
 
 	return TRUE
 

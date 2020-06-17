@@ -2,24 +2,23 @@
 	name = "Prosthetic replacement"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/add_prosthetic)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN,\
-						BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND,\
-						BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND,\
-						BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT,\
-						BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT) //skyrat edit
+	possible_locs = ALL_BODYPARTS //skyrat edit
 	requires_bodypart = FALSE //need a missing limb
 	requires_bodypart_type = 0
+
 /datum/surgery/prosthetic_replacement/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
 	if(!iscarbon(target))
 		return 0
 	var/mob/living/carbon/C = target
 	if(!C.get_bodypart(user.zone_selected)) //can only start if limb is missing
 		return 1
+
 /datum/surgery_step/add_prosthetic
 	name = "add prosthetic"
 	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item/twohanded/required/chainsaw = 100, /obj/item/melee/synthetic_arm_blade = 100)
 	time = 32
 	var/organ_rejection_dam = 0
+
 /datum/surgery_step/add_prosthetic/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(istype(tool, /obj/item/organ_storage))
 		if(!tool.contents.len)
@@ -66,6 +65,7 @@
 	else
 		to_chat(user, "<span class='warning'>[tool] must be installed onto an arm.</span>")
 		return -1
+
 /datum/surgery_step/add_prosthetic/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(istype(tool, /obj/item/organ_storage))
 		tool.icon_state = initial(tool.icon_state)

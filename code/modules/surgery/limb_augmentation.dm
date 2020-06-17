@@ -6,6 +6,7 @@
 	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100)
 	time = 32
 	var/obj/item/bodypart/L = null // L because "limb"
+
 /datum/surgery_step/replace_limb/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(istype(tool, /obj/item/organ_storage) && istype(tool.contents[1], /obj/item/bodypart))
 		tool = tool.contents[1]
@@ -29,13 +30,9 @@
 	name = "Augmentation"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/replace_limb)
 	target_mobtypes = list(/mob/living/carbon/human)
-	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_PRECISE_R_HAND,\
-						BODY_ZONE_L_ARM,BODY_ZONE_PRECISE_L_HAND,\
-						BODY_ZONE_R_LEG,BODY_ZONE_PRECISE_R_FOOT,\
-						BODY_ZONE_L_LEG,BODY_ZONE_PRECISE_L_FOOT,\
-						BODY_ZONE_CHEST,BODY_ZONE_PRECISE_GROIN,\
-						BODY_ZONE_HEAD) //skyrat edit
+	possible_locs = ALL_BODYPARTS //skyrat edit
 	requires_real_bodypart = TRUE
+
 //SURGERY STEP SUCCESSES
 /datum/surgery_step/replace_limb/success(mob/user, mob/living/carbon/target, target_zone, obj/item/bodypart/tool, datum/surgery/surgery)
 	if(L)

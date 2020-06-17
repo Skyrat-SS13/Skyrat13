@@ -282,10 +282,7 @@
 
 	if(ShowAsPaleExamine())
 		msg += "[t_He] [t_has] pale skin.\n"
-	//skyrat edit
-	if(bleedsuppress)
-		msg += "[t_He] [t_is] embued with a power that defies bleeding.\n" // only statues and highlander sword can cause this so whatever
-	else if(is_bleeding())
+	if(is_bleeding())
 		var/list/obj/item/bodypart/bleeding_limbs = list()
 
 		for(var/i in bodyparts)
@@ -308,6 +305,28 @@
 		
 		bleed_text += "!</B>\n"
 		msg += bleed_text
+	
+	var/list/obj/item/bodypart/suppress_limbs = list()
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		if(BP.bleedsuppress)
+			suppress_limbs += BP
+
+	var/num_suppress = LAZYLEN(suppress_limbs)
+	var/suppress_text = "<span class='notice'><B>[t_His]"
+	switch(num_suppress)
+		if(1 to 2)
+			suppress_text += " [suppress_limbs[1].name][num_suppress == 2 ? " and [suppress_limbs[2].name]" : ""]"
+		if(3 to INFINITY)
+			for(var/i in 1 to (num_suppress - 1))
+				var/obj/item/bodypart/BP = suppress_limbs[i]
+				suppress_text += " [BP.name],"
+			suppress_text += " and [suppress_limbs[num_suppress].name]"
+	suppress_text += "[num_suppress == 1 ? " is impervious to bleeding" : " are impervious to bleeding"]"
+	
+	suppress_text += ".</B></span>\n"
+	if(num_suppress)
+		msg += suppress_text
 	//
 
 	if(reagents.has_reagent(/datum/reagent/teslium))
@@ -388,7 +407,7 @@
 	var/scar_severity = 0
 	for(var/i in all_scars)
 		var/datum/scar/S = i
-		if(S.is_visible(user))
+		if(istype(S) && S.is_visible(user))
 			scar_severity += S.severity
 
 	switch(scar_severity)

@@ -119,7 +119,7 @@
 	var/scar_severity = 0
 	for(var/i in all_scars)
 		var/datum/scar/S = i
-		if(S.is_visible(user))
+		if(istype(S) && S.is_visible(user))
 			scar_severity += S.severity
 
 	switch(scar_severity)
@@ -172,13 +172,13 @@
 
 //skyrat edit
 /mob/living/carbon/examine_more(mob/user)
-	if(!all_scars)
+	if(!all_scars || !all_scars.len)
 		return ..()
 
 	var/list/visible_scars
 	for(var/i in all_scars)
 		var/datum/scar/S = i
-		if(S.is_visible(user))
+		if(istype(S) && S.is_visible(user))
 			LAZYADD(visible_scars, S)
 
 	if(!visible_scars)

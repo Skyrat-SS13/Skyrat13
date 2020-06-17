@@ -124,18 +124,18 @@
 		bandage(I, user)
 	else if(istype(I, /obj/item/stack/medical/suture))
 		suture(I, user)
-
+/*
 /datum/wound/brute/cut/try_handling(mob/living/carbon/human/user)
 	if(user.pulling != victim || user.zone_selected != limb.body_zone || user.a_intent == INTENT_GRAB)
 		return FALSE
-	/* no.
+	
 	if(!iscatperson(user))
 		return FALSE
 
 	lick_wounds(user)
-	*/
+	
 	return TRUE
-
+*/
 /// if a felinid is licking this cut to reduce bleeding
 /*
 /datum/wound/brute/cut/proc/lick_wounds(mob/living/carbon/human/user)
@@ -180,9 +180,9 @@
 
 /// If someone is using either a cautery tool or something with heat to cauterize this cut
 /datum/wound/brute/cut/proc/tool_cauterize(obj/item/I, mob/user)
-	var/self_penalty_mult = (user == victim ? 1.5 : 1)
+	var/self_penalty_mult = (user == victim ? 1 : 0)
 	user.visible_message("<span class='danger'>[user] begins cauterizing [victim]'s [limb.name] with [I]...</span>", "<span class='danger'>You begin cauterizing [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
-	var/time_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, 2 SECONDS, THRESHOLD_UNTRAINED, TRUE) || 1
+	var/time_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, (3 + self_penalty_mult) SECONDS, THRESHOLD_UNTRAINED, FALSE) || 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
@@ -201,9 +201,9 @@
 
 /// If someone is using a suture to close this cut
 /datum/wound/brute/cut/proc/suture(obj/item/stack/medical/suture/I, mob/user)
-	var/self_penalty_mult = (user == victim ? 1.4 : 1)
+	var/self_penalty_mult = (user == victim ? 1.4 : 0)
 	user.visible_message("<span class='notice'>[user] begins stitching [victim]'s [limb.name] with [I]...</span>", "<span class='notice'>You begin stitching [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
-	var/time_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, 2 SECONDS, THRESHOLD_UNTRAINED, TRUE) || 1
+	var/time_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, (3 + self_penalty_mult) SECONDS, THRESHOLD_UNTRAINED, FALSE) || 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 	user.visible_message("<span class='green'>[user] stitches up some of the bleeding on [victim].</span>", "<span class='green'>You stitch up some of the bleeding on [user == victim ? "yourself" : "[victim]"].</span>")
@@ -227,7 +227,7 @@
 			user.visible_message("<span class='warning'>[user] begins rewrapping the cuts on [victim]'s [limb.name] with [I]...</span>", "<span class='warning'>You begin rewrapping the cuts on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
 	else
 		user.visible_message("<span class='warning'>[user] begins wrapping the cuts on [victim]'s [limb.name] with [I]...</span>", "<span class='warning'>You begin wrapping the cuts on [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
-	var/time_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, 2 SECONDS, THRESHOLD_UNTRAINED, TRUE) || 1
+	var/time_mod = user.mind.action_skill_mod(/datum/skill/numerical/surgery, 3 SECONDS, THRESHOLD_UNTRAINED, FALSE) || 1
 	if(!do_after(user, base_treat_time * time_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
@@ -292,13 +292,12 @@
 	status_effect_type = /datum/status_effect/wound/cut/critical
 	scarring_descriptions = list("a winding path of very badly healed scar tissue", "a series of peaks and valleys along a gruesome line of cut scar tissue", "a grotesque snake of indentations and stitching scars")
 
-// TODO: see about moving dismemberment over to this, i'll have to add judging dismembering power/wound potential wrt item size i guess
 /datum/wound/brute/cut/loss
 	name = "Dismembered"
-	desc = "oof ouch!!"
+	desc = "Patient's limb has been violently dismembered, leaving only a severely damaged stump."
 	occur_text = "is violently dismembered!"
 	sound_effect = 'modular_skyrat/sound/effects/dismember.ogg'
-	viable_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	viable_zones = LIMB_AND_HEAD_BODYPARTS
 	severity = WOUND_SEVERITY_LOSS
 	threshold_minimum = 180
 	status_effect_type = null

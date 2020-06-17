@@ -158,7 +158,9 @@
 /datum/reagent/toxin/carpotoxin/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	for(var/i in M.all_scars)
-		qdel(i)
+		var/datum/scar/S = i
+		if(istype(S))
+			qdel(i)
 //
 
 /datum/reagent/toxin/zombiepowder

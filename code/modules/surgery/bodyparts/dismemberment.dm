@@ -115,7 +115,7 @@
 //
 
 //limb removal. The "special" argument is used for swapping a limb with a new one without the effects of losing a limb kicking in.
-/obj/item/bodypart/proc/drop_limb(special, ignore_children = FALSE, dismembered) //skyrat edit
+/obj/item/bodypart/proc/drop_limb(special, dismembered, ignore_children = FALSE) //skyrat edit
 	if(!owner)
 		return
 	var/atom/Tsec = owner.drop_location()
@@ -130,8 +130,9 @@
 	//skyrat edit
 	for(var/thing in scars)
 		var/datum/scar/S = thing
-		S.victim = null
-		LAZYREMOVE(owner.all_scars, S)
+		if(istype(S))
+			S.victim = null
+			LAZYREMOVE(owner.all_scars, S)
 
 	for(var/thing in wounds)
 		var/datum/wound/W = thing
@@ -143,7 +144,7 @@
 		for(var/BP in children_zones)
 			var/obj/item/bodypart/thing = C.get_bodypart(BP)
 			if(thing)
-				thing.drop_limb(special, ignore_children)
+				thing.drop_limb(special, ignore_children, dismembered)
 				thing.forceMove(src)
 		C.updatehealth()
 	//
@@ -324,7 +325,7 @@
 	//skyrat edit
 	if(SEND_SIGNAL(C, COMSIG_CARBON_ATTACH_LIMB, src, special) & COMPONENT_NO_ATTACH)
 		return FALSE
-	if(!ignore_parent_restriction && !owner.get_bodypart(parent_bodyzone))
+	if(!ignore_parent_restriction && !C.get_bodypart(parent_bodyzone))
 		return FALSE
 	. = TRUE
 	//
@@ -360,8 +361,9 @@
 	//skyrat edit
 	for(var/thing in scars)
 		var/datum/scar/S = thing
-		S.victim = C
-		LAZYADD(C.all_scars, thing)
+		if(istype(S))
+			S.victim = C
+			LAZYADD(C.all_scars, thing)
 
 	for(var/i in wounds)
 		var/datum/wound/W = i

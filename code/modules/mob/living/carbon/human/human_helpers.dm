@@ -156,12 +156,13 @@
 //skyrat edit
 /// For use formatting all of the scars this human has for saving for persistent scarring
 /mob/living/carbon/human/proc/format_scars()
-	if(!all_scars)
+	if(!all_scars || all_scars.len)
 		return
 	var/scars = ""
 	for(var/i in all_scars)
 		var/datum/scar/S = i
-		scars += "[S.format()];"
+		if(istype(S))
+			scars += "[S.format()];"
 	return scars
 
 /// Takes a single scar from the persistent scar loader and recreates it from the saved data

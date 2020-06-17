@@ -32,7 +32,8 @@
 		//skyrat edit
 		for(var/i in C.all_wounds)
 			var/datum/wound/W = i
-			W.remove_wound()
+			if(istype(W))
+				W.remove_wound()
 		//
 		if(!user.getorganslot(ORGAN_SLOT_BRAIN))
 			var/obj/item/organ/brain/B

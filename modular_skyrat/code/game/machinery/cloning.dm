@@ -40,6 +40,12 @@
 	var/biomass = 0
 	var/max_biomass = 1000
 
+	var/pays_for_clone = TRUE
+	var/cost_per_clone = 500 //cost in credits for a clone, of course.
+	var/dep_id = ACCOUNT_MED
+	var/datum/bank_account/currently_linked_account
+	var/datum/bank_account/initial_account
+
 /obj/machinery/clonepod/Initialize()
 	. = ..()
 
@@ -51,6 +57,9 @@
 		radio.subspace_transmission = TRUE
 		radio.canhear_range = 0
 		radio.recalculateChannels()
+	
+	initial_account = SSeconomy.get_dep_account(dep_id)
+	currently_linked_account = initial_account
 
 	update_icon()
 
@@ -134,11 +143,17 @@
 
 //Start growing a human clone in the pod!
 /obj/machinery/clonepod/proc/growclone(ckey, clonename, ui, mutation_index, mindref, datum/species/mrace, list/features, factions, list/quirks)
+	if(pays_for_clone && !currently_linked_account.adjust_money(-cost_per_clone))
+		if(radio)
+			radio.talk_into("Insufficient amount of credits to initiate cloning procedure.")
+		return FALSE
+	if(biomass < 300)
+		if(radio)
+			radio.talk_into("Insufficient amount of biomass to initiate cloning procedure.")
+		return FALSE
 	if(panel_open)
 		return FALSE
 	if(mess || attempting)
-		return FALSE
-	if(biomass < 300)
 		return FALSE
 	clonemind = locate(mindref) in SSticker.minds
 	if(!istype(clonemind))	//not a mind
@@ -222,10 +237,9 @@
 	return TRUE
 
 /obj/machinery/clonepod/proc/succ()
-	. = FALSE
-	if(/obj/item/reagent_containers/food/snacks/meat/slab in view(src, 1))
-		. = TRUE
+	var/ping = FALSE
 	for(var/obj/item/reagent_containers/food/snacks/meat/slab/meatball in view(src, 1))
+		ping = TRUE
 		if(istype(meatball, /obj/item/reagent_containers/food/snacks/meat/slab/biomeat))
 			biomass += 100
 		else
@@ -233,6 +247,9 @@
 		if(biomass > max_biomass)
 			biomass = max_biomass
 		qdel(meatball)
+	if(ping)
+		playsound(src, 'sound/machines/nuke/general_beep.ogg',  75, 0)
+	return ping
 
 //Grow clones to maturity then kick them out.  FREELOADERS.
 /obj/machinery/clonepod/process()

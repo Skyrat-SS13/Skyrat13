@@ -1,4 +1,3 @@
-
 /mob/living/proc/get_bodypart(zone)
 	return
 
@@ -11,6 +10,8 @@
 			return L
 
 /mob/living/carbon/has_hand_for_held_index(i)
+	if(i >= hand_bodyparts.len)
+		i = hand_bodyparts.len
 	if(i)
 		var/obj/item/bodypart/L = hand_bodyparts[i]
 		if(L && !L.disabled)
@@ -263,16 +264,36 @@
 	switch(zone)
 		if(BODY_ZONE_L_ARM)
 			L = new /obj/item/bodypart/l_arm/monkey()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_HAND)
+			L = new /obj/item/bodypart/l_hand/monkey()
+		//
 		if(BODY_ZONE_R_ARM)
 			L = new /obj/item/bodypart/r_arm/monkey()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_R_HAND)
+			L = new /obj/item/bodypart/r_hand/monkey()
+		//
 		if(BODY_ZONE_HEAD)
 			L = new /obj/item/bodypart/head/monkey()
 		if(BODY_ZONE_L_LEG)
 			L = new /obj/item/bodypart/l_leg/monkey()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			L = new /obj/item/bodypart/l_foot/monkey()
+		//
 		if(BODY_ZONE_R_LEG)
 			L = new /obj/item/bodypart/r_leg/monkey()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			L = new /obj/item/bodypart/r_foot/monkey()
+		//
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest/monkey()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_GROIN)
+			L = new /obj/item/bodypart/groin/monkey()
+		//
 	if(L)
 		L.update_limb(fixed_icon, src)
 		if(robotic)
@@ -297,16 +318,36 @@
 	switch(zone)
 		if(BODY_ZONE_L_ARM)
 			L = new /obj/item/bodypart/l_arm/alien()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_HAND)
+			L = new /obj/item/bodypart/l_hand/alien()
+		//
 		if(BODY_ZONE_R_ARM)
 			L = new /obj/item/bodypart/r_arm/alien()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_R_HAND)
+			L = new /obj/item/bodypart/r_hand/alien()
+		//
 		if(BODY_ZONE_HEAD)
 			L = new /obj/item/bodypart/head/alien()
 		if(BODY_ZONE_L_LEG)
 			L = new /obj/item/bodypart/l_leg/alien()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			L = new /obj/item/bodypart/l_foot/alien()
+		//
 		if(BODY_ZONE_R_LEG)
 			L = new /obj/item/bodypart/r_leg/alien()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			L = new /obj/item/bodypart/r_foot/alien()
+		//
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest/alien()
+		//skyrat edit
+		if(BODY_ZONE_PRECISE_GROIN)
+			L = new /obj/item/bodypart/groin/alien()
+		//
 	if(L)
 		L.update_limb(fixed_icon, src)
 		if(robotic)
@@ -316,7 +357,7 @@
 /mob/living/carbon/proc/Digitigrade_Leg_Swap(swap_back)
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/O = X
-		if((O.body_part == LEG_LEFT || O.body_part == LEG_RIGHT) && ((!O.use_digitigrade && !swap_back) || (O.use_digitigrade && swap_back)))
+		if((O.body_part == LEG_LEFT || O.body_part == LEG_RIGHT || O.body_part == FOOT_RIGHT || O.body_part == FOOT_LEFT) && ((!O.use_digitigrade && !swap_back) || (O.use_digitigrade && swap_back))) //skyrat edit
 			O.use_digitigrade = swap_back ? NOT_DIGITIGRADE : FULL_DIGITIGRADE
 			O.update_limb(FALSE, src)
 

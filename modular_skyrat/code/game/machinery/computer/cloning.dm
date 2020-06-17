@@ -166,8 +166,10 @@
 	dat += "<div class='statusDisplay'>[temp]&nbsp;</div>"
 	var/obj/machinery/clonepod/pod = GetAvailablePod()
 	if(pod)
-		dat += "<br><div class='statusDisplay'><b>Pod Biomass:</b> [pod.biomass]/[pod.max_biomass]</div>"
-		dat += "<a href='byond://?src=[REF(src)];task=succ'>Biomass</a>"
+		dat += "<br><div class='statusDisplay'><b>Pod Biomass:</b> [pod.biomass]/[pod.max_biomass]"
+		dat += " <a href='byond://?src=[REF(src)];task=succ'>Collect Biomass</a></div>"
+		dat += "<br><div class='statusDisplay'><b>Paying Account:</b> [pod.currently_linked_account.account_holder]"
+		dat += " <a href='byond://?src=[REF(src)];task=payday'>Change Account</a></div>"
 	switch(src.menu)
 		if(1)
 			// Modules
@@ -291,8 +293,21 @@
 				STOP_PROCESSING(SSmachines, src)
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			if("succ")
-				for(var/obj/machinery/clonepod/pod  in pods)
+				for(var/obj/machinery/clonepod/pod in pods)
 					pod.succ()
+			if("payday")
+				var/obj/machinery/clonepod/pod = GetAvailablePod()
+				var/list/possible_accounts = list()
+				if(pod.initial_account)
+					possible_accounts[pod.initial_account.account_holder] = pod.initial_account
+				if(ishuman(usr))
+					var/mob/living/carbon/human/H = usr
+					for(var/obj/item/card/id/C in H)
+						if(C.registered_account)
+							possible_accounts[C.registered_account.account_holder] = C.registered_account
+				if(possible_accounts.len)
+					var/choice = input(usr, "Which bank account do you want to use?", "Bank Account", possible_accounts[1]) as anything in possible_accounts
+					pod.currently_linked_account = possible_accounts[choice]
 
 	else if ((href_list["scan"]) && !isnull(scanner) && scanner.is_operational())
 		scantemp = ""
