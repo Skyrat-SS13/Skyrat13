@@ -79923,6 +79923,9 @@
 	c_tag = "Robotics - Lab";
 	network = list("ss13","rd")
 	},
+/obj/machinery/posialert{
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "xeC" = (

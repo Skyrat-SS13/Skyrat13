@@ -81306,10 +81306,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
-"dye" = (
-/obj/structure/sign/departments/science,
-/turf/closed/wall,
-/area/science/robotics/lab)
 "dyf" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable/white{
@@ -82098,6 +82094,9 @@
 /obj/item/circuitboard/mecha/ripley/main,
 /obj/item/circuitboard/mecha/ripley/peripherals,
 /obj/effect/turf_decal/bot,
+/obj/machinery/posialert{
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "dzJ" = (
@@ -141037,7 +141036,7 @@ dsi
 dty
 duX
 dwy
-dye
+dyc
 dzI
 dAM
 dCs
