@@ -20,7 +20,7 @@
 	client_colours = null
 	ghostize()
 	..()
-	return QDEL_HINT_HARDDEL
+	return QDEL_HINT_QUEUE //Skyrat change
 
 /mob/Initialize()
 	GLOB.mob_list += src
