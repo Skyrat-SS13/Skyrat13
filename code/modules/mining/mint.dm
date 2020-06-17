@@ -97,7 +97,7 @@
 		var/temp_coins = coinsToProduce
 		processing = TRUE
 		icon_state = "coinpress1"
-		var/coin_mat = MINERAL_MATERIAL_AMOUNT * 0.2 * min(coinsToProduce,coinsToMakePerProcess)
+		var/coin_mat = MINERAL_MATERIAL_AMOUNT * 0.2 * min(coinsToProduce,coinsToMakePerProcess) //skyrat change
 		var/datum/material/M = chosen
 		if(!M)
 			updateUsrDialog()
