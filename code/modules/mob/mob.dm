@@ -9,7 +9,7 @@
 	movespeed_modification = null
 	for (var/alert in alerts)
 		clear_alert(alert, TRUE)
-	QDEL_LIST(mob_spell_list)
+	QDEL_LIST(mob_spell_list) //Skyrat edit to appease the GC
 	if(observers && observers.len)
 		for(var/M in observers)
 			var/mob/dead/observe = M
