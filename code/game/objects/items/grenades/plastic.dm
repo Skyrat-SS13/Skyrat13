@@ -122,11 +122,9 @@
 			var/obj/item/I = AM
 			I.throw_speed = max(1, (I.throw_speed - 3))
 			I.throw_range = max(1, (I.throw_range - 3))
-			//skyrat edit
 			if(I.embedding)
 				I.embedding["embed_chance"] = 0
 				I.updateEmbedding()
-			//
 
 		target.add_overlay(plastic_overlay, TRUE)
 		if(!nadeassembly)
@@ -160,9 +158,7 @@
 	shout_syndicate_crap(user)
 	explosion(user,0,2,0) //Cheap explosion imitation because putting prime() here causes runtimes
 	user.gib(1, 1)
-	//skyrat edit
-	resolve()
-	//
+	qdel(src)
 
 /obj/item/grenade/plastic/update_icon_state()
 	if(nadeassembly)
@@ -211,9 +207,10 @@
 	else
 		return ..()
 
-/obj/item/grenade/plastic/c4/prime()
+/obj/item/grenade/plastic/c4/prime(mob/living/lanced_by)
 	if(QDELETED(src))
 		return
+	. = ..()
 	var/turf/location
 	if(target)
 		if(!QDELETED(target))

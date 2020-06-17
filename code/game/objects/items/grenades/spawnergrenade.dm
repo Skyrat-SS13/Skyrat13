@@ -7,10 +7,8 @@
 	var/spawner_type = null // must be an object path
 	var/deliveryamt = 1 // amount of type to deliver
 
-/obj/item/grenade/spawnergrenade/prime()			// Prime now just handles the two loops that query for people in lockers and people who can see it.
-	//skyrat edit
+/obj/item/grenade/spawnergrenade/prime(mob/living/lanced_by) // Prime now just handles the two loops that query for people in lockers and people who can see it.
 	. = ..()
-	//
 	update_mob()
 	if(spawner_type && deliveryamt)
 		// Make a quick flash
@@ -22,10 +20,7 @@
 		// Spawn some hostile syndicate critters and spread them out
 		spawn_and_random_walk(spawner_type, T, deliveryamt, walk_chance=50, admin_spawn=((flags_1 & ADMIN_SPAWNED_1) ? TRUE : FALSE))
 
-	/* skyrat edit
 	qdel(src)
-	*/
-	resolve()
 
 /obj/item/grenade/spawnergrenade/manhacks
 	name = "viscerator delivery grenade"

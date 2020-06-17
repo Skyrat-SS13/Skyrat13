@@ -51,12 +51,6 @@
 			if(!(martial_art_result == BULLET_ACT_HIT))
 				return martial_art_result
 	return ..()
-/* skyrat edit
-/mob/living/carbon/human/can_embed(obj/item/I)
-	if(I.get_sharpness() || is_pointed(I) || is_type_in_typecache(I, GLOB.can_embed_types))
-		return TRUE
-	return FALSE
-*/
 /mob/living/carbon/human/proc/check_martial_melee_block()
 	if(mind)
 		if(mind.martial_art && prob(mind.martial_art.block_chance) && mind.martial_art.can_use(src) && in_throw_mode && !incapacitated(FALSE, TRUE))
@@ -596,6 +590,10 @@
 					to_chat(src, "<span class='notice'>You succesfuly remove the durathread strand.</span>")
 					remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 				return
+			//skyrat edit
+			else
+				check_self_for_injuries()
+			//
 			/* skyrat edit im losing my shit
 			var/to_send = ""
 			visible_message("[src] examines [p_them()]self.", \
@@ -650,12 +648,10 @@
 				to_send += "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [HAS_TRAIT(src, TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>\n"
 
 				for(var/obj/item/I in LB.embedded_objects)
-					//skyrat edit
-					if(I.is_embed_harmless())
+					if(I.isEmbedHarmless())
 						to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] stuck to your [LB.name]!</a>")
 					else
 						to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
-					//
 
 			for(var/t in missing)
 				to_send += "<span class='boldannounce'>Your [parse_zone(t)] is missing!</span>\n"

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 //whole file is a skyrat change
+=======
+>>>>>>> upstream/upstream-merge-12540
 /datum/round_event_control/wizard/embedpocalypse
 	name = "Make Everything Embeddable"
 	weight = 2

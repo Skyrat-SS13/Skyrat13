@@ -164,9 +164,8 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 	/obj/item/gun)))
 
 
-//Combat object defines
-
 //Embedded objects
+
 #define EMBEDDED_PAIN_CHANCE 					15	//Chance for embedded objects to cause pain (damage user)
 #define EMBEDDED_ITEM_FALLOUT 					5	//Chance for embedded object to fall out (causing pain but removing the object)
 #define EMBED_CHANCE							45	//Chance for an object to embed into somebody when thrown (if it's sharp)
@@ -175,8 +174,7 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define EMBEDDED_IMPACT_PAIN_MULTIPLIER			4	//Coefficient of multiplication for the damage the item does when it first embeds (this*item.w_class)
 #define EMBED_THROWSPEED_THRESHOLD				4	//The minimum value of an item's throw_speed for it to embed (Unless it has embedded_ignore_throwspeed_threshold set to 1)
 #define EMBEDDED_UNSAFE_REMOVAL_PAIN_MULTIPLIER 8	//Coefficient of multiplication for the damage the item does when removed without a surgery (this*item.w_class)
-#define EMBEDDED_UNSAFE_REMOVAL_TIME			150	//A Time in ticks, total removal time = (this/item.w_class)
-//skyrat edit
+#define EMBEDDED_UNSAFE_REMOVAL_TIME			30	//A Time in ticks, total removal time = (this*item.w_class)
 #define EMBEDDED_JOSTLE_CHANCE					5	//Chance for embedded objects to cause pain every time they move (jostle)
 #define EMBEDDED_JOSTLE_PAIN_MULTIPLIER			1	//Coefficient of multiplication for the damage the item does while
 #define EMBEDDED_PAIN_STAM_PCT					0.0	//This percentage of all pain will be dealt as stam damage rather than brute (0-1)
@@ -186,13 +184,6 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define EMBED_HARMLESS_SUPERIOR list("pain_mult" = 0, "jostle_pain_mult" = 0, "ignore_throwspeed_threshold" = TRUE, "embed_chance" = 100, "fall_chance" = 0.1)
 #define EMBED_POINTY list("ignore_throwspeed_threshold" = TRUE)
 #define EMBED_POINTY_SUPERIOR list("embed_chance" = 100, "ignore_throwspeed_threshold" = TRUE)
-
-#define SUPPRESSED_NONE 0
-#define SUPPRESSED_QUIET 1 ///standard suppressed
-#define SUPPRESSED_VERY 2 /// no message
-
-#define NICE_SHOT_RICOCHET_BONUS	10			//if the shooter has the NICE_SHOT trait and they fire a ricocheting projectile, add this to the ricochet chance and auto aim angle
-//
 
 //Gun weapon weight
 #define WEAPON_LIGHT 1
@@ -206,6 +197,14 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define EGUN_NO_SELFCHARGE 0
 #define EGUN_SELFCHARGE 1
 #define EGUN_SELFCHARGE_BORG 2
+
+//Gun suppression
+#define SUPPRESSED_NONE 0
+#define SUPPRESSED_QUIET 1 ///standard suppressed
+#define SUPPRESSED_VERY 2 /// no message
+
+//Nice shot bonus
+#define NICE_SHOT_RICOCHET_BONUS	10	//if the shooter has the NICE_SHOT trait and they fire a ricocheting projectile, add this to the ricochet chance and auto aim angle
 
 ///Time to spend without clicking on other things required for your shots to become accurate.
 #define GUN_AIMING_TIME (2 SECONDS)
@@ -245,6 +244,7 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define BODY_ZONE_R_ARM		"r_arm"
 #define BODY_ZONE_L_LEG		"l_leg"
 #define BODY_ZONE_R_LEG		"r_leg"
+
 #define BODY_ZONE_PRECISE_EYES		"eyes"
 #define BODY_ZONE_PRECISE_MOUTH		"mouth"
 #define BODY_ZONE_PRECISE_GROIN		"groin"
@@ -290,7 +290,6 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
   * a "inefficiently" prefix will be added to the message.
   */
 #define FEEBLE_ATTACK_MSG_THRESHOLD 0.5
-<<<<<<< HEAD
 
 
 //bullet_act() return values
@@ -359,5 +358,3 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define BLOCK_PRIORITY_UNIFORM					25
 
 #define BLOCK_PRIORITY_DEFAULT BLOCK_PRIORITY_HELD_ITEM
-=======
->>>>>>> fd662047f3... Merge pull request #12518 from kevinz000/pp_fix
