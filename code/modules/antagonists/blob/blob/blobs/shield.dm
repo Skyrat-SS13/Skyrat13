@@ -4,7 +4,9 @@
 	icon_state = "blob_shield"
 	desc = "A solid wall of slightly twitching tendrils."
 	var/damaged_desc = "A wall of twitching tendrils."
-	max_integrity = 300 //Skyrat Change.
+	//skyrat changes
+	max_integrity = 300
+	//
 	brute_resist = 0.25
 	explosion_block = 3
 	point_return = 4
@@ -45,15 +47,18 @@
 	desc = "A solid wall of slightly twitching tendrils with a reflective glow."
 	damaged_desc = "A wall of twitching tendrils with a reflective glow."
 	icon_state = "blob_glow"
+	//skyrat edit
+	flags_ricochet = RICOCHET_SHINY
+	//
+	/* skyrat edit
+	flags_1 = CHECK_RICOCHET_1
+	*/
 	point_return = 8
 	max_integrity = 100
 	brute_resist = 1
 	explosion_block = 2
-
-/obj/structure/blob/shield/reflective/check_projectile_ricochet(obj/item/projectile/P)
-	return PROJECTILE_RICOCHET_FORCE
-
-/obj/structure/blob/shield/reflective/handle_projectile_ricochet(obj/item/projectile/P)
+/* skyrat edit
+/obj/structure/blob/shield/reflective/handle_ricochet(obj/item/projectile/P)
 	var/turf/p_turf = get_turf(P)
 	var/face_direction = get_dir(src, p_turf)
 	var/face_angle = dir2angle(face_direction)
@@ -64,3 +69,4 @@
 	P.setAngle(new_angle_s)
 	visible_message("<span class='warning'>[P] reflects off [src]!</span>")
 	return TRUE
+*/
