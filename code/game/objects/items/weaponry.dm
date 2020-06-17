@@ -660,6 +660,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	spider_panic = typecacheof(list(
 					/mob/living/simple_animal/banana_spider,
 					/mob/living/simple_animal/hostile/poison/giant_spider,
+					/mob/living/simple_animal/hostile/poison/terror_spider, //Skyrat addition, spiders are now spiders to a flyswatter
 	))
 
 /obj/item/melee/flyswatter/afterattack(atom/target, mob/user, proximity_flag)
@@ -675,7 +676,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 			to_chat(user, "<span class='warning'>You easily land a critical blow on the [target].</span>")
 			if(istype(target, /mob/living/))
 				var/mob/living/bug = target
-				bug.adjustBruteLoss(-35) //What kinda mad man would go into melee with a spider?!
+				bug.adjustBruteLoss(35) //What kinda mad man would go into melee with a spider?!
 			else
 				qdel(target)
 

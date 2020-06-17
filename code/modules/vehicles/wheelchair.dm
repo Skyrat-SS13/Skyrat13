@@ -67,7 +67,15 @@
 /obj/vehicle/ridden/wheelchair/setDir(newdir)
 	..()
 	handle_rotation(newdir)
-
+//Skyrat change start
+/obj/vehicle/ridden/wheelchair/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
+	if(has_buckled_mobs())
+		user.visible_message("<span class='warning'>[user] starts undoing the straps of the wheelchair.</span>")
+		if(do_mob(user, src, 20))
+			. = ..()
+		else
+			user.visible_message("<span class='warning'>[user] has stopped undoing the straps of the wheelchair.</span>")
+//Skyrat change stop
 /obj/vehicle/ridden/wheelchair/wrench_act(mob/living/user, obj/item/I)	//Attackby should stop it attacking the wheelchair after moving away during decon
 	to_chat(user, "<span class='notice'>You begin to detach the wheels...</span>")
 	if(I.use_tool(src, user, 40, volume=50))
