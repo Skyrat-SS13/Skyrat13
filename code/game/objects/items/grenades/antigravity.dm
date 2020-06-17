@@ -7,7 +7,7 @@
 	var/forced_value = 0
 	var/duration = 300
 
-/obj/item/grenade/antigravity/prime()
+/obj/item/grenade/antigravity/prime(mob/living/lanced_by)
 	//skyrat edit
 	. = ..()
 	//
@@ -19,4 +19,4 @@
 	/* skyrat edit
 	qdel(src)
 	*/
-	resolve()
+	qdel(src)

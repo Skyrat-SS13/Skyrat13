@@ -6,7 +6,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	var/flashbang_range = 7 //how many tiles away the mob will be stunned.
 
-/obj/item/grenade/flashbang/prime()
+/obj/item/grenade/flashbang/prime(mob/living/lanced_by)
 	//skyrat edit
 	. = ..()
 	//
@@ -21,7 +21,7 @@
 	/* skyrat edit
 	qdel(src)
 	*/
-	resolve()
+	qdel(src)
 
 /obj/item/grenade/flashbang/proc/flashbang_mobs(turf/source, range)
 	var/list/banged = get_hearers_in_view(range, source)
@@ -67,7 +67,7 @@
 	shrapnel_type = /obj/item/projectile/bullet/pellet/stingball/mega
 	shrapnel_radius = 12
 
-/obj/item/grenade/stingbang/prime()
+/obj/item/grenade/stingbang/prime(mob/living/lanced_by)
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
 		var/obj/item/bodypart/B = C.get_holding_bodypart_of_item(src)
@@ -85,7 +85,7 @@
 	new /obj/effect/dummy/lighting_obj (flashbang_turf, LIGHT_COLOR_WHITE, (flashbang_range + 2), 2, 1)
 	for(var/mob/living/M in get_hearers_in_view(flashbang_range, flashbang_turf))
 		pop(get_turf(M), M)
-	resolve()
+	qdel(src)
 
 /obj/item/grenade/stingbang/proc/pop(turf/T , mob/living/M)
 	if(M.stat == DEAD)	//They're dead!
@@ -126,10 +126,10 @@
 		rots++
 		user.changeNext_move(CLICK_CD_RAPID)
 
-/obj/item/grenade/primer/prime()
+/obj/item/grenade/primer/prime(mob/living/lanced_by)
 	shrapnel_radius = round(rots / rots_per_mag)
 	. = ..()
-	resolve()
+	qdel(src)
 
 /obj/item/grenade/primer/stingbang
 	name = "rotsting"

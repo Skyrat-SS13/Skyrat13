@@ -34,4 +34,4 @@
 	/* skyrat edit
 	qdel(src)
 	*/
-	resolve()
+	qdel(src)

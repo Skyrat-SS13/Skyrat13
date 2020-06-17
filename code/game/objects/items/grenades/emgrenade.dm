@@ -4,7 +4,7 @@
 	icon_state = "emp"
 	item_state = "emp"
 
-/obj/item/grenade/empgrenade/prime()
+/obj/item/grenade/empgrenade/prime(mob/living/lanced_by)
 	//skyrat edit
 	. = ..()
 	//
@@ -13,4 +13,4 @@
 	/* skyrat edit
 	qdel(src)
 	*/
-	resolve()
+	qdel(src)

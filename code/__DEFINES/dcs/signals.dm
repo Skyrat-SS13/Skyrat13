@@ -404,6 +404,7 @@
 
 //skyrat funnies
 #define COMSIG_ITEM_DISABLE_EMBED "item_disable_embed"
+#define COMSIG_MINE_TRIGGERED "minegoboom"
 
 #define COMSIG_LIVING_FLASH_ACT "living_flash_act"				///from base of [/mob/living/proc/flash_act] //moth
 #define COMSIG_EVENTPREF_UPDATE "observer_eventpref_update"

@@ -50,7 +50,7 @@
 			cut_overlay("improvised_grenade_filled")
 			preprime(user, null, FALSE)
 
-/obj/item/grenade/iedcasing/prime() //Blowing that can up
+/obj/item/grenade/iedcasing/prime(mob/living/lanced_by) //Blowing that can up
 	//skyrat edit
 	. = ..()
 	//
@@ -59,7 +59,7 @@
 	/* skyrat edit
 	qdel(src)
 	*/
-	resolve()
+	qdel(src)
 
 /obj/item/grenade/iedcasing/examine(mob/user)
 	. = ..()
