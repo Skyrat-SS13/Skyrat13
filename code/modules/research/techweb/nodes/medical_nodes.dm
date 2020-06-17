@@ -96,7 +96,7 @@
 	display_name = "Improved Wound-Tending Surgery"
 	description = "Who would have known being more gentle with a hemostat decreases patient pain?"
 	prereq_ids = list("biotech")
-	design_ids = list("surgery_heal_brute_upgrade","surgery_heal_burn_upgrade", "bonesetter", "bonegel", "fixovein") //skyrat edit
+	design_ids = list("surgery_heal_brute_upgrade","surgery_heal_burn_upgrade", "bonesetter", "fixovein") //skyrat edit
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
 /datum/techweb_node/advance_surgerytools

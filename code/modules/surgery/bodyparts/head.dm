@@ -1,5 +1,5 @@
 /obj/item/bodypart/head
-	name = BODY_ZONE_HEAD
+	name = "head" //skyrat edit
 	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
 	icon = 'icons/mob/human_parts.dmi'
 	icon_state = "default_human_head"

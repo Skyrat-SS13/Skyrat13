@@ -406,7 +406,7 @@
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
-	var/overlay_icon = 'icons/mob/screen_gen.dmi'
+	var/overlay_icon = 'modular_skyrat/icons/mob/screen_gen.dmi' //skyrat edit
 	var/static/list/hover_overlays_cache = list()
 	var/hovering
 
@@ -448,7 +448,7 @@
 	vis_contents += overlay_object
 
 /obj/effect/overlay/zone_sel
-	icon = 'icons/mob/screen_gen.dmi'
+	icon = 'modular_skyrat/icons/mob/screen_gen.dmi' //skyrat edit
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 128
 	anchored = TRUE

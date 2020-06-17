@@ -257,6 +257,9 @@
 	stop_bleeding = 0.6
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
 
+/obj/item/stack/medical/suture/one
+	amount = 1
+
 /obj/item/stack/medical/suture/emergency
 	name = "emergency suture"
 	desc = "A value pack of cheap sutures, not very good at repairing damage, but still decent at stopping bleeding."
@@ -354,6 +357,9 @@
 
 	var/is_open = TRUE ///This var determines if the sterile packaging of the mesh has been opened.
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
+
+/obj/item/stack/medical/mesh/one
+	amount = 1
 
 /obj/item/stack/medical/mesh/Initialize()
 	. = ..()

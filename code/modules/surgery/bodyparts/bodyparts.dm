@@ -689,7 +689,7 @@
 	qdel(src)
 
 /obj/item/bodypart/chest
-	name = BODY_ZONE_CHEST
+	name = "chest" //skyrat edit
 	desc = "It's impolite to stare at a person's chest."
 	icon_state = "default_human_chest"
 	max_damage = 200
@@ -722,7 +722,7 @@
 
 //skyrat edit
 /obj/item/bodypart/groin
-	name = BODY_ZONE_PRECISE_GROIN
+	name = "groin"
 	desc = "Some say groin came from  Grynde, which is middle-ages speak for depression. Makes sense for the situation."
 	icon_state = "default_human_groin"
 	max_damage = 100
@@ -810,7 +810,7 @@
 //
 
 /obj/item/bodypart/l_arm
-	name = BODY_ZONE_L_ARM //skyrat edit
+	name = "left arm" //skyrat edit
 	desc = "Did you know that the word 'sinister' stems originally from the \
 		Latin 'sinestra' (left hand), because the left hand was supposed to \
 		be possessed by the devil? This arm appears to be possessed by no \
@@ -833,7 +833,7 @@
 
 //skyrat edit
 /obj/item/bodypart/l_hand
-	name = BODY_ZONE_PRECISE_L_HAND //skyrat edit
+	name = "left hand"
 	desc = "In old english, left meant weak, guess they were onto something if you're finding this."
 	icon_state = "default_human_l_hand"
 	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
@@ -917,7 +917,7 @@
 	animal_origin = DEVIL_BODYPART
 //
 /obj/item/bodypart/r_arm
-	name = BODY_ZONE_R_ARM //skyrat edit
+	name = "right arm" //skyrat edit
 	desc = "Over 87% of humans are right handed. That figure is much lower \
 		among humans missing their right arm."
 	icon_state = "default_human_r_hand"
@@ -938,7 +938,7 @@
 
 //skyrat edit
 /obj/item/bodypart/r_hand
-	name = BODY_ZONE_PRECISE_R_HAND
+	name = "right hand"
 	desc = "It probably wasn't the right hand."
 	icon_state = "default_human_r_hand"
 	aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER)
@@ -1022,7 +1022,7 @@
 //
 
 /obj/item/bodypart/l_leg
-	name = BODY_ZONE_L_LEG //skyrat edit
+	name = "left leg" //skyrat edit
 	desc = "Some athletes prefer to tie their left shoelaces first for good \
 		luck. In this instance, it probably would not have helped."
 	icon_state = "default_human_l_leg"
@@ -1040,8 +1040,8 @@
 	children_zones = list(/obj/item/bodypart/r_foot)
 	//
 //skyrat edit
-/obj/item/bodypart/r_foot
-	name = BODY_ZONE_PRECISE_L_FOOT //skyrat edit
+/obj/item/bodypart/l_foot
+	name = "left foot" //skyrat edit
 	desc = "You feel like someones gonna be needing a peg-leg."
 	icon_state = "default_human_r_foot"
 	attack_verb = list("kicked", "stomped")
@@ -1075,11 +1075,11 @@
 
 
 /obj/item/bodypart/l_leg/digitigrade
-	name = BODY_ZONE_L_LEG //skyrat edit
+	name = "digitigrade left leg" //skyrat edit
 	use_digitigrade = FULL_DIGITIGRADE
 //skyrat edit
 /obj/item/bodypart/l_foot/digitigrade
-	name = BODY_ZONE_PRECISE_L_FOOT
+	name = "digitigrade left foot" //skyrat edit
 	use_digitigrade = FULL_DIGITIGRADE
 //
 /obj/item/bodypart/l_leg/monkey
@@ -1124,7 +1124,7 @@
 //
 
 /obj/item/bodypart/r_leg
-	name = BODY_ZONE_R_LEG //skyrat edit
+	name = "right leg" //skyrat edit
 	desc = "You put your right leg in, your right leg out. In, out, in, out, \
 		shake it all about. And apparently then it detaches.\n\
 		The hokey pokey has certainly changed a lot since space colonisation."
@@ -1145,7 +1145,7 @@
 	//
 //skyrat edit
 /obj/item/bodypart/r_foot
-	name = BODY_ZONE_PRECISE_R_FOOT
+	name = "right foot" //skyrat edit
 	desc = "You feel like someones gonna be needing a peg-leg."
 	icon_state = "default_human_r_foot"
 	attack_verb = list("kicked", "stomped")
