@@ -47,11 +47,3 @@
 	L.nest = src
 	L.faction = src.faction
 	P.visible_message("<span class='danger'>[L] [spawn_text] [P].</span>")
-	RegisterSignal(L, COMSIG_PARENT_QDELETING, .proc/unreference_spawn) //Skyrat change
-
-//Skyrat changes
-/datum/component/spawner/proc/unreference_spawn(mob/living/simple_animal/source)
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
-	spawned_mobs -= source
-	source.nest = null
-//End of skyrat changes
