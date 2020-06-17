@@ -7,6 +7,11 @@
 	max_ammo = 7
 	multiple_sprites = 1
 
+/obj/item/ammo_box/a357/match
+	name = "speed loader (.357 Match)"
+	desc = "Designed to quickly reload revolvers. These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	ammo_type = /obj/item/ammo_casing/a357/match
+
 /obj/item/ammo_box/a357/ap
 	name = "speed loader (.357 AP)"
 	ammo_type = /obj/item/ammo_casing/a357/ap
@@ -40,6 +45,31 @@
 	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
 	ammo_type = /obj/item/ammo_casing/c38/iceblox
 
+<<<<<<< HEAD
+=======
+/obj/item/ammo_box/c38/dumdum
+	name = "speed loader (.38 DumDum)"
+	desc = "Designed to quickly reload revolvers. DumDum bullets shatter on impact and shred the target's innards, likely getting caught inside."
+	ammo_type = /obj/item/ammo_casing/c38/dumdum
+
+/obj/item/ammo_box/c38/match
+	name = "speed loader (.38 Match)"
+	desc = "Designed to quickly reload revolvers. These rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	ammo_type = /obj/item/ammo_casing/c38/match
+
+/obj/item/ammo_box/c32mm
+	name = "ammo box (.32 acp)"
+	desc = "Lethal .32 acp bullets, there's forty in the box."
+	ammo_type = /obj/item/ammo_casing/c32acp
+	max_ammo = 40
+
+/obj/item/ammo_box/r32mm
+	name = "ammo box (rubber .32 acp)"
+	desc = "Non-lethal .32 acp bullets, there's forty in the box."
+	ammo_type = /obj/item/ammo_casing/r32acp
+	max_ammo = 40
+
+>>>>>>> 53dc2da8c7... Merge pull request #12540 from timothyteakettle/embed-changes
 /obj/item/ammo_box/c9mm
 	name = "ammo box (9mm)"
 	icon_state = "9mmbox"

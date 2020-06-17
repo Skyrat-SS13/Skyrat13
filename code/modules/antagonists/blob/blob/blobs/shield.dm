@@ -51,6 +51,7 @@
 	brute_resist = 1
 	explosion_block = 2
 
+<<<<<<< HEAD
 /obj/structure/blob/shield/reflective/handle_ricochet(obj/item/projectile/P)
 	var/turf/p_turf = get_turf(P)
 	var/face_direction = get_dir(src, p_turf)
@@ -62,3 +63,8 @@
 	P.setAngle(new_angle_s)
 	visible_message("<span class='warning'>[P] reflects off [src]!</span>")
 	return TRUE
+=======
+/obj/structure/blob/shield/reflective/check_projectile_ricochet(obj/item/projectile/P)
+	return PROJECTILE_RICOCHET_FORCE
+
+>>>>>>> 53dc2da8c7... Merge pull request #12540 from timothyteakettle/embed-changes
