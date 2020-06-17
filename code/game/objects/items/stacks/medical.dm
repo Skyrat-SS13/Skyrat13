@@ -13,6 +13,8 @@
 	novariants = FALSE
 	item_flags = NOBLUDGEON
 	var/self_delay = 50
+	var/other_delay = 0
+	var/repeating = FALSE
 	//skyrat edit
 	/// How much brute we heal per application
 	var/heal_brute
@@ -28,15 +30,28 @@
 
 /obj/item/stack/medical/attack(mob/living/M, mob/user)
 	. = ..()
+	try_heal(M, user)
+
+
+/obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!M.can_inject(user, TRUE))
 		return
 	if(M == user)
-		user.visible_message("<span class='notice'>[user] starts to apply \the [src] on [user.p_them()]self...</span>", "<span class='notice'>You begin applying \the [src] on yourself...</span>")
+		if(!silent)
+			user.visible_message("<span class='notice'>[user] starts to apply \the [src] on [user.p_them()]self...</span>", "<span class='notice'>You begin applying \the [src] on yourself...</span>")
 		if(!do_mob(user, M, self_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
 			return
+	else if(other_delay)
+		if(!silent)
+			user.visible_message("<span class='notice'>[user] starts to apply \the [src] on [M].</span>", "<span class='notice'>You begin applying \the [src] on [M]...</span>")
+		if(!do_mob(user, M, other_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
+			return
+
 	if(heal(M, user))
 		log_combat(user, M, "healed", src.name)
 		use(1)
+		if(repeating && amount > 0)
+			try_heal(M, user, TRUE)
 
 
 /obj/item/stack/medical/proc/heal(mob/living/M, mob/user)
@@ -71,6 +86,7 @@
 	//skyrat edit
 	heal_brute = 40
 	self_delay = 40
+	other_delay = 20
 	//
 	grind_results = list(/datum/reagent/medicine/styptic_powder = 10)
 
@@ -115,6 +131,7 @@
 	icon_state = "gauze"
 	//skyrat edit
 	self_delay = 50
+	other_delay = 25
 	//
 	custom_price = PRICE_REALLY_CHEAP
 	//skyrat edit
@@ -169,6 +186,7 @@
 	//skyrat edit
 	desc = "A roll of cloth roughly cut from something that does a decent job of stabilizing wounds, but less efficiently so than real medical gauze."
 	self_delay = 60
+	other_delay = 30
 	absorption_rate = 0.15
 	absorption_capacity = 4
 	//
@@ -199,6 +217,7 @@
 	amount = 10
 	max_amount = 10
 	self_delay = 40
+	other_delay = 20
 
 	heal_burn = 5
 	flesh_regeneration = 2.5
@@ -231,6 +250,7 @@
 	singular_name = "suture"
 	icon_state = "suture"
 	self_delay = 30
+	other_delay = 20
 	amount = 10
 	max_amount = 10
 	heal_brute = 10

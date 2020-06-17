@@ -108,7 +108,7 @@
 	///Used in MouseDrag to preserve the last mouse-entered location.
 	var/mouseLocation = null
 	///Used in MouseDrag to preserve the last mouse-entered object.
-	var/mouseObject = null
+	//var/mouseObject = null //Skyrat change - this messes up with GC and isnt really used
 	var/mouseControlObject = null
 	//Middle-mouse-button click dragtime control for aimbot exploit detection.
 	var/middragtime = 0

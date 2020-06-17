@@ -188,6 +188,10 @@
 			registered_account = new /datum/bank_account/remote/non_transferable(pick(GLOB.redacted_strings))
 
 /obj/item/card/id/Destroy()
+	//Skyrat change - proper GC
+	if(registered_account)
+		registered_account.bank_cards -= src
+	//End of skyrat change 
 	if(bank_support == ID_LOCKED_BANK_ACCOUNT)
 		QDEL_NULL(registered_account)
 	else

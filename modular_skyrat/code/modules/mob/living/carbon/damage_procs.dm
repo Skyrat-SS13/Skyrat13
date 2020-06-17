@@ -20,3 +20,8 @@
 		if(O.type in missing)
 			missing -= O.type
 	. = missing
+
+/mob/living/carbon/adjustCloneLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(HAS_TRAIT(src, TRAIT_CLONEIMMUNE)) //Prevents bleed damage, but not healing
+		amount = min(amount, 0)
+	return ..()

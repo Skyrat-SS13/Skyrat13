@@ -435,3 +435,7 @@
 #define COMSIG_CARBON_ATTACH_LIMB "carbon_attach_limb"
 #define COMSIG_CARBON_REMOVE_LIMB "carbon_remove_limb"			//from base of /obj/item/bodypart/proc/drop_limb(special, dismembered)
 #define COMPONENT_NO_ATTACH (1<<0)
+
+//Mob stuff
+#define COMSIG_MOB_CLIENT_MOUSEUP "mob_client_mouseup" ///from base of [client/MouseUp()] (datum/source, object, location, control, params)
+#define COMSIG_MOB_CLIENT_MOUSEDOWN "mob_client_mousedown" ///from base of [client/MouseDown()] (datum/source, object, location, control, params)
