@@ -169,6 +169,12 @@
 		id = "[SSshuttle.stationary.len]"
 	if(name == "dock")
 		name = "dock[SSshuttle.stationary.len]"
+<<<<<<< HEAD
+=======
+	if(!area_type)
+		var/area/place = get_area(src)
+		area_type = place?.type || SHUTTLE_DEFAULT_UNDERLYING_AREA // We might be created in nullspace
+>>>>>>> 1f53cd34d3... Merge pull request #12563 from kevinz000/shuttles
 
 	if(mapload)
 		for(var/turf/T in return_turfs())
