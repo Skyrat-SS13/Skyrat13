@@ -1,0 +1,5 @@
+author: "NotRanged"
+delete-after: True
+changes: 
+  - rscadd: "New experimental tool: Long-range Analyzer. Unlocked by science, for engineering."
+  - bugfix: "Jaws of life retain name changes (hand labeler etc) when switching modes."
