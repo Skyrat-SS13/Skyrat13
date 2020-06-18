@@ -110,7 +110,7 @@
 	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
 		return
-		
+
 	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
 		new /obj/item/tank/internals/nitrogen/belt(src)
 		return
@@ -130,7 +130,7 @@
 	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
 		return
-		
+
 	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
 		new /obj/item/tank/internals/nitrogen/belt(src)
 		return
@@ -146,7 +146,7 @@
 	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
 		return
-		
+
 	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
 		new /obj/item/tank/internals/nitrogen/belt(src)
 		return
@@ -165,7 +165,7 @@
 	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
 		return
-		
+
 	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
 		new /obj/item/tank/internals/nitrogen/belt(src)
 		return
@@ -181,7 +181,7 @@
 	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
 		return
-		
+
 	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
 		new /obj/item/tank/internals/nitrogen/belt(src)
 		return
@@ -788,7 +788,7 @@
 	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
 		return
-		
+
 	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
 		new /obj/item/tank/internals/nitrogen/belt(src)
 		return

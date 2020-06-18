@@ -21071,7 +21071,6 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/atrium)
 "aRq" = (
-/obj/machinery/vending/snack/random,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -21087,6 +21086,7 @@
 /obj/machinery/atm{
 	pixel_x = 30
 	},
+/obj/machinery/vending/mre,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/atrium)
 "aRr" = (
@@ -49992,9 +49992,9 @@
 	pixel_x = 24
 	},
 /obj/machinery/button/electrochromatic{
+	id = "!interrogation_room";
 	pixel_x = 38;
-	pixel_y = -5;
-	id = "!interrogation_room"
+	pixel_y = -5
 	},
 /turf/open/floor/plasteel,
 /area/security/warden)

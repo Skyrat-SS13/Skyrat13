@@ -59725,6 +59725,10 @@
 /obj/item/clothing/under/rank/civilian/lawyer/red,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"liM" = (
+/obj/machinery/vending/mre,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "lnk" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -101753,7 +101757,7 @@ aJC
 aKO
 aMw
 aNI
-aKR
+liM
 aKR
 acN
 acN
