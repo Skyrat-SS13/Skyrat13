@@ -234,6 +234,11 @@ GLOBAL_LIST_INIT(admiral_messages, list("Do you know how expensive these station
 
 GLOBAL_LIST_INIT(redacted_strings, list("\[REDACTED\]", "\[CLASSIFIED\]", "\[ARCHIVED\]", "\[EXPLETIVE DELETED\]", "\[EXPUNGED\]", "\[INFORMATION ABOVE YOUR SECURITY CLEARANCE\]", "\[MOVE ALONG CITIZEN\]", "\[NOTHING TO SEE HERE\]", "\[ACCESS DENIED\]"))
 
+<<<<<<< HEAD
 // Skyrat changes. Please, consult with loredevs if you want add faction(s) to this list.
 GLOBAL_LIST_INIT(factions_list, list("NanoTrasen", "Sol Federation", "Free Trade Union", "Letheia"))
 // End of Skyrat changes
+=======
+
+GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/wisdoms.txt"))
+>>>>>>> 118ac1a775... Merge pull request #12548 from timothyteakettle/more-events
