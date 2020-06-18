@@ -1786,19 +1786,19 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += " <a href='?_src_=prefs;preference=cosmetic_scars;task=update;new_scar=custom;body_zone=[BP];specific_location=[specific];'>Custom</a>"
 			dat += "<BR>"
 			dat += "<div style='color: [font_severity];'><b>Severity:</b> </div>"
-			if(cosmetic_scars[BP][specific]["severity"] != 1)
+			if(cosmetic_scars[BP][specific]["severity"] != 0)
 				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=trivial;specific_location=[specific];'>Trivial</a>"
 			else
 				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=trivial;specific_location=[specific];'>Trivial</a>"
-			if(cosmetic_scars[BP][specific]["severity"] != 2)
+			if(cosmetic_scars[BP][specific]["severity"] != 1)
 				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=moderate;specific_location=[specific];'>Moderate</a>"
 			else
 				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=moderate;specific_location=[specific];'>Moderate</a>"
-			if(cosmetic_scars[BP][specific]["severity"] != 3)
+			if(cosmetic_scars[BP][specific]["severity"] != 2)
 				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=severe;specific_location=[specific];'>Severe</a>"
 			else
 				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=critical;specific_location=[specific];'>Severe</a>"
-			if(cosmetic_scars[BP][specific]["severity"] != 4)
+			if(cosmetic_scars[BP][specific]["severity"] != 3)
 				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=critical;specific_location=[specific];'>Critical</a>"
 			else
 				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=critical;specific_location=[specific];'>Critical</a>"
@@ -2004,6 +2004,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							choice = "None"
 						if(choice && (choice != "None"))
 							var/list/presets = list()
+							typepath = text2path(typepath)
 							for(var/W in subtypesof(/datum/wound))
 								var/datum/wound/w = W
 								if(istype(w, typepath) && (body_zone in w.viable_zones))
