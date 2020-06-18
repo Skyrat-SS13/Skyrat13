@@ -214,9 +214,9 @@
 		if(t==BODY_ZONE_HEAD)
 			msg += "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>\n"
 			continue
-		if(t == BODY_ZONE_L_ARM || t == BODY_ZONE_L_LEG)
+		if(t == BODY_ZONE_L_ARM || t == BODY_ZONE_L_LEG || t == BODY_ZONEPRECISE_L_FOOT || t == BODY_ZONE_PRECISE_R_FOOT)
 			l_limbs_missing++
-		else if(t == BODY_ZONE_R_ARM || t == BODY_ZONE_R_LEG)
+		else if(t == BODY_ZONE_R_ARM || t == BODY_ZONE_R_LEG || t == BODY_ZONE_PRECISE_L_HAND || t == BODY_ZONE_PRECISE_R_HAND)
 			r_limbs_missing++
 
 		msg += "<B>[capitalize(t_his)] [parse_zone(t)] is missing!</B>\n"
@@ -305,7 +305,7 @@
 		
 		bleed_text += "!</B>\n"
 		msg += bleed_text
-	
+	//skyrat edit
 	var/list/obj/item/bodypart/suppress_limbs = list()
 	for(var/i in bodyparts)
 		var/obj/item/bodypart/BP = i
@@ -328,7 +328,6 @@
 	if(num_suppress)
 		msg += suppress_text
 	//
-
 	if(reagents.has_reagent(/datum/reagent/teslium))
 		msg += "[t_He] [t_is] emitting a gentle blue glow!\n"
 

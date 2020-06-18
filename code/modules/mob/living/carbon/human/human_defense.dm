@@ -596,6 +596,7 @@
 					to_chat(src, "<span class='notice'>You succesfuly remove the durathread strand.</span>")
 					remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 				return
+			M.check_self_for_injuries()
 			/* skyrat edit im losing my shit
 			var/to_send = ""
 			visible_message("[src] examines [p_them()]self.", \

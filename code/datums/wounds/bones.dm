@@ -372,6 +372,9 @@
 	if(L.body_zone == BODY_ZONE_HEAD)
 		occur_text = "splits open, exposing a bare, cracked skull through the flesh and blood"
 		examine_desc = "has an unsettling indent, with bits of skull poking out"
+	else if(L.body_zone == BODY_ZONE_PRECISE_GROIN)
+		occur_text = "cracks apart, exposing fragments of the pelvis to open air"
+		examine_desc = "looks mushy and mangled, parts of it exposed to the elements"
 	. = ..()
 
 /// if someone is using bone gel on our wound
