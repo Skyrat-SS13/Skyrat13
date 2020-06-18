@@ -482,7 +482,7 @@
 		/obj/item/grenade/chem_grenade/metalfoam,
 		/obj/item/grenade/chem_grenade/smart_metal_foam,
 		/obj/item/storage/bag/construction, //Skyrat edit
-		/obj/item/bspipe_dispenser //Skyrat edit
+		/obj/item/pipe_dispenser/bluespace //Skyrat edit
 		))
 
 /obj/item/storage/belt/grenade
