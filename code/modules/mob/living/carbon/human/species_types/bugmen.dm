@@ -1,6 +1,7 @@
 /datum/species/insect
 	name = "Anthromorphic Insect"
 	id = "insect"
+	say_mod = "chitters"
 	default_color = "00FF00"
 	species_traits = list(LIPS,EYECOLOR,HAIR,FACEHAIR,MUTCOLORS,HORNCOLOR,WINGCOLOR)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
@@ -13,11 +14,15 @@
 	liked_food = MEAT | FRUIT
 	disliked_food = TOXIC
 	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
+<<<<<<< HEAD
 	//Skyrat change
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "BUG")
 	exotic_bloodtype = "BUG"
 	languagewhitelist = list("Moffic", "Buggy")
 	//
+=======
+	exotic_bloodtype = "BUG"
+>>>>>>> 46fdb476b5... Merge pull request #12482 from TheSpaghetti/patch-1
 
 /datum/species/insect/spec_death(gibbed, mob/living/carbon/human/H)
 	if(H)
