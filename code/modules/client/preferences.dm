@@ -2003,6 +2003,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						else
 							choice = "None"
 						if(choice && (choice != "None"))
+							var/list/presets = list()
 							for(var/W in subtypesof(/datum/wound))
 								var/datum/wound/w = W
 								if(istype(w, typepath) && (body_zone in w.viable_zones))
