@@ -1,0 +1,11 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Lava walking and fire resistance medals to necropolis tendrils."
+  - rscadd: "Locker staff as a necropolis tendril drop (1 max charge and horrendous charging times)."
+  - balance: "Only legion chest drops have a chance to spawn the real inquisitor and champion hardsuits."
+  - balance: "Replaced the enchanted mosin necropolis chest drop with a normal mosin."
+  - balance: "Nerfed Sif a ton to be actually reasonable on our movespeeds and stamina system."
+  - balance: "Nerfed inquisitor and champion hardsuits on the necropolis chests."
+  - balance: "Buffed Sif's sword drop."
+  - balance: "Buffed the drake's ghost sword."
