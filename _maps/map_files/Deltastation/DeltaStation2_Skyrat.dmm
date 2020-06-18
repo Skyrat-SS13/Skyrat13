@@ -11413,10 +11413,6 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 8
 	},
@@ -11433,6 +11429,9 @@
 	alpha = 170;
 	dir = 4;
 	name = "engineering corner"
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -15385,12 +15384,11 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -18571,9 +18569,6 @@
 /area/security/prison)
 "aUA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -97521,12 +97516,11 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -98381,13 +98375,12 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	contents = newlist(/obj/item/toy/snappop/phoenix);
 	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -99667,16 +99660,15 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	contents = newlist(/obj/item/toy/snappop/phoenix);
 	dir = 4
 	},
 /obj/structure/cable/white{
 	icon_state = "1-2"
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -101302,15 +101294,14 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -102365,12 +102356,11 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -102817,13 +102807,12 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	contents = newlist(/obj/item/toy/snappop/phoenix);
 	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
