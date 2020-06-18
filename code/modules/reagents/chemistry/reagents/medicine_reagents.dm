@@ -72,6 +72,12 @@
 		if(D.severity == DISEASE_SEVERITY_POSITIVE)
 			continue
 		D.cure()
+	//skyrat edit
+	for(var/i in M.all_scars)
+		var/datum/scar/S = i
+		if(istype(S))
+			qdel(i)
+	//
 	..()
 	. = 1
 
