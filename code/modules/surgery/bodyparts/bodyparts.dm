@@ -79,7 +79,6 @@
 	var/cremation_progress = 0 //Gradually increases while burning when at full damage, destroys the limb when at 100
 	/// The wounds currently afflicting this body part
 	var/list/wounds = list()
-
 	/// The scars currently afflicting this body part
 	var/list/scars = list()
 	/// Our current stored wound damage multiplier
@@ -703,6 +702,7 @@
 	//skyrat variables
 	amputation_point = "spine"
 	children_zones = list(BODY_ZONE_PRECISE_GROIN)
+	specific_locations = list("upper chest", "lower abdomen", "midsection", "collarbone", "lower back")
 	//
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)
@@ -736,6 +736,7 @@
 	amputation_point = "lumbar"
 	parent_bodyzone = BODY_ZONE_CHEST
 	children_zones = list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+	specific_locations = list("left buttock", "right buttock", "inner left thigh", "inner right thigh", "perineum")
 
 /obj/item/bodypart/groin/can_dismember(obj/item/I)
 	if(!((owner.stat == DEAD) || owner.InFullCritical()))
@@ -830,6 +831,7 @@
 	//skyrat variables
 	amputation_point = "left shoulder"
 	children_zones = list(/obj/item/bodypart/l_hand)
+	specific_locations = list("outer left forearm", "inner left wrist", "outer left wrist", "left elbow", "left bicep", "left shoulder")
 	//
 
 //skyrat edit
@@ -850,6 +852,7 @@
 	parent_bodyzone = BODY_ZONE_L_ARM
 	amputation_point = "left arm"
 	children_zones = list()
+	specific_locations = list("left palm", "left back palm")
 
 /obj/item/bodypart/l_hand/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
@@ -935,6 +938,7 @@
 	//skyrat variables
 	amputation_point = "right shoulder"
 	children_zones = list(/obj/item/bodypart/r_hand)
+	specific_locations = list("outer right forearm", "inner right wrist", "outer right wrist", "right elbow", "right bicep", "right shoulder")
 	//
 
 //skyrat edit
@@ -953,8 +957,9 @@
 	px_y = -3
 	stam_heal_tick = 4
 	parent_bodyzone = BODY_ZONE_R_ARM
-	amputation_point = "left arm"
+	amputation_point = "right arm"
 	children_zones = list()
+	specific_locations = list("right palm", "right back palm")
 
 /obj/item/bodypart/r_hand/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
@@ -1039,6 +1044,7 @@
 	//skyrat vars
 	amputation_point = "groin"
 	children_zones = list(/obj/item/bodypart/r_foot)
+	specific_locations = list("inner left thigh", "outer left calf", "outer left hip", " left kneecap", "lower left shin")
 	//
 //skyrat edit
 /obj/item/bodypart/l_foot
@@ -1057,6 +1063,7 @@
 	children_zones = list()
 	amputation_point = "right leg"
 	parent_bodyzone = BODY_ZONE_R_LEG
+	specific_locations = list("left sole", "left ankle", "left heel")
 //
 /obj/item/bodypart/l_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
@@ -1143,6 +1150,7 @@
 	//skyrat variables
 	amputation_point = "groin"
 	children_zones = list(/obj/item/bodypart/r_foot)
+	specific_locations = list("right sole", "right ankle", "right heel")
 	//
 //skyrat edit
 /obj/item/bodypart/r_foot
@@ -1161,6 +1169,7 @@
 	children_zones = list()
 	amputation_point = "right leg"
 	parent_bodyzone = BODY_ZONE_R_LEG
+	specific_locations = list("right sole", "right ankle", "right heel")
 //
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))

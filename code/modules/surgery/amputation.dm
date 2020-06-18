@@ -11,13 +11,15 @@
 	time = 64
 
 /datum/surgery_step/sever_limb/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, "<span class='notice'>You begin to sever [target]'s [parse_zone(target_zone)]...</span>",
+	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
+	display_results(user, target, "<span class='notice'>You begin to sever [target]'s [parse_zone(target_zone)] by \the [BP.amputation_point]...</span>",
 		"[user] begins to sever [target]'s [parse_zone(target_zone)]!",
 		"[user] begins to sever [target]'s [parse_zone(target_zone)]!")
 
 /datum/surgery_step/sever_limb/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/mob/living/carbon/human/L = target
-	display_results(user, target, "<span class='notice'>You sever [L]'s [parse_zone(target_zone)].</span>",
+	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
+	display_results(user, target, "<span class='notice'>You sever [L]'s [parse_zone(target_zone)] from \the [BP.amputation_point].</span>",
 		"[user] severs [L]'s [parse_zone(target_zone)]!",
 		"[user] severs [L]'s [parse_zone(target_zone)]!")
 	if(surgery.operated_bodypart)
@@ -31,7 +33,7 @@
 	name = "Disembowelment"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/disembowel)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)
+	possible_locs = ORGAN_BODYPARTS
 	requires_bodypart_type = 0
 
 /datum/surgery_step/disembowel
@@ -65,12 +67,19 @@
 			O.Remove()
 			O.forceMove(T)
 			organ_spilled = 1
-		var/obj/item/bodypart/chest/funzone = target.get_bodypart(target_zone)
-		if(istype(funzone))
-			if(funzone.cavity_item)
-				var/obj/item/cavity_object = funzone.cavity_item
+		if(istype(target_limb, /obj/item/bodypart/chest))
+			var/obj/item/bodypart/chest/spoon = target_limb
+			if(spoon.cavity_item)
+				var/obj/item/cavity_object = spoon.cavity_item
 				cavity_object.forceMove(get_turf(target))
-				funzone.cavity_item = null
+				spoon.cavity_item = null
+				organ_spilled = 1
+		else if(istype(target_limb, /obj/item/bodypart/groin))
+			var/obj/item/bodypart/groin/spoon = target_limb
+			if(spoon.cavity_item)
+				var/obj/item/cavity_object = spoon.cavity_item
+				cavity_object.forceMove(get_turf(target))
+				spoon.cavity_item = null
 				organ_spilled = 1
 		if(organ_spilled)
 			L.visible_message("<span class='danger'><B>[L]'s internal organs spill out onto the floor!</B></span>")

@@ -159,7 +159,7 @@
 	. = ..()
 	for(var/i in M.all_scars)
 		var/datum/scar/S = i
-		if(istype(S))
+		if(istype(S) && !S.permanent)
 			to_chat(M, "<span class='notice'>You feel \the [lowertext(S.description)] quickly fading away!</span>")
 			qdel(i)
 //

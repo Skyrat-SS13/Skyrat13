@@ -23,6 +23,8 @@
 	var/coverable = TRUE
 	/// What zones this scar can be applied to
 	var/list/applicable_zones = ALL_BODYPARTS
+	/// Can this scar be removed via normal means? Used for character setup cosmetic scars
+	var/permanent = FALSE
 
 /datum/scar/Destroy(force, ...)
 	if(limb)
@@ -57,6 +59,29 @@
 	description = pick(W.scarring_descriptions)
 	precise_location = pick(limb.specific_locations)
 	switch(W.severity)
+		if(WOUND_SEVERITY_MODERATE)
+			visibility = 2
+		if(WOUND_SEVERITY_SEVERE)
+			visibility = 3
+		if(WOUND_SEVERITY_CRITICAL)
+			visibility = 5
+
+/datum/scar/proc/pref_apply(obj/item/bodypart/BP, specific_location, new_description, new_severity = 0, add_to_scars=TRUE)
+	if(!(BP.body_zone in applicable_zones))
+		qdel(src)
+		return
+	limb = BP
+	severity = new_severity
+	if(limb.owner)
+		victim = limb.owner
+	if(add_to_scars)
+		LAZYADD(limb.scars, src)
+		if(victim)
+			LAZYADD(victim.all_scars, src)
+
+	description = new_description
+	precise_location = specific_location
+	switch(severity)
 		if(WOUND_SEVERITY_MODERATE)
 			visibility = 2
 		if(WOUND_SEVERITY_SEVERE)
@@ -126,7 +151,7 @@
 
 	return TRUE
 
-/// Used to format a scar to safe in preferences for persistent scars
+/// Used to format a scar to save in preferences for persistent scars
 /datum/scar/proc/format()
 	if(!fake)
 		return "[limb.body_zone]|[description]|[precise_location]|[severity]"

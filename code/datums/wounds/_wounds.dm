@@ -38,12 +38,7 @@
 	var/wound_type
 
 	/// What body zones can we affect
-	var/list/viable_zones = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST,
-								BODY_ZONE_PRECISE_GROIN,
-								BODY_ZONE_L_ARM, BODY_ZONE_R_ARM,
-								BODY_ZONE_L_LEG, BODY_ZONE_R_LEG,
-								BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND,
-								BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT)
+	var/list/viable_zones = ALL_BODYPARTS
 	/// Who owns the body part that we're wounding
 	var/mob/living/carbon/victim = null
 	/// If we only work on organics (everything right now)

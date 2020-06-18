@@ -349,6 +349,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	event_participation = sanitize_integer(event_participation, 0, 1, initial(event_participation))
 	event_prefs = sanitize_text(event_prefs)
 	appear_in_round_end_report	= sanitize_integer(appear_in_round_end_report, 0, 1, initial(appear_in_round_end_report))
+	scars_list = SANITIZE_LIST(scars_list)
+	cosmetic_scars = SANITIZE_LIST(cosmetic_scars)
 	//SKYRAT CHANGES END
 
 	verify_keybindings_valid()		// one of these days this will runtime and you'll be glad that i put it in a different proc so no one gets their saves wiped
@@ -445,6 +447,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["event_participation"], event_participation)
 	WRITE_FILE(S["event_prefs"], event_prefs)
 	WRITE_FILE(S["appear_in_round_end_report"], appear_in_round_end_report)
+	WRITE_FILE(S["scars_list"], scars_list)
 	//SKYRAT CHANGES END
 
 	return 1
@@ -542,6 +545,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["scars3"]							>> scars_list["3"]
 	S["scars4"]							>> scars_list["4"]
 	S["scars5"]							>> scars_list["5"]
+	S["cosmetic_scars"]					>> cosmetic_scars		
 	//
 
 	//Custom names
@@ -715,6 +719,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	scars_list["3"] = sanitize_text(scars_list["3"])
 	scars_list["4"] = sanitize_text(scars_list["4"])
 	scars_list["5"] = sanitize_text(scars_list["5"])
+	cosmetic_scars = SANITIZE_LIST(cosmetic_scars)
 	//
 
 	var/static/size_min
@@ -837,13 +842,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_insect_markings"]			, features["insect_markings"])
 	WRITE_FILE(S["feature_meat"]					, features["meat_type"])
 	//SKYRAT CHANGE
-	WRITE_FILE(S["bloodtype"]						, bloodtype)
+	WRITE_FILE(S["bloodtype"]					, bloodtype)
 	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
 	WRITE_FILE(S["scars1"]						, scars_list["1"])
 	WRITE_FILE(S["scars2"]						, scars_list["2"])
 	WRITE_FILE(S["scars3"]						, scars_list["3"])
 	WRITE_FILE(S["scars4"]						, scars_list["4"])
 	WRITE_FILE(S["scars5"]						, scars_list["5"])
+	WRITE_FILE(S["cosmetic_scars"]				, cosmetic_scars)
 	//
 
 	WRITE_FILE(S["feature_has_cock"], features["has_cock"])

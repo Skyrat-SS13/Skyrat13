@@ -201,7 +201,7 @@
 		if(method_used == (INJECT || PATCH))
 			if(C.all_scars && C.all_scars.len)
 				var/datum/scar/S = pick(C.all_scars)
-				if(istype(S))
+				if(istype(S) && !S.permanent)
 					to_chat(C, "<span class='notice'>You feel \the [lowertext(S.description)] quickly fading away!</span>")
 					qdel(S)
 		else

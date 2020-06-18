@@ -75,7 +75,7 @@
 	//skyrat edit
 	for(var/i in M.all_scars)
 		var/datum/scar/S = i
-		if(istype(S))
+		if(istype(S) && !S.permanent)
 			qdel(i)
 	//
 	..()
