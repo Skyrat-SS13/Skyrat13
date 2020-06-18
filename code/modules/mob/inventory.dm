@@ -295,16 +295,16 @@
 //for when you want the item to end up on the ground
 //will force move the item to the ground and call the turf's Entered
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE, ignore_strip_self = TRUE) //skyrat edit
-	return doUnEquip(I, force, drop_location(), FALSE, TRUE)
+	return doUnEquip(I, force, drop_location(), FALSE, ignore_strip_self)
 
 //for when the item will be immediately placed in a loc other than the ground
 /mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, ignore_strip_self = TRUE) //skyrat edit
-	return doUnEquip(I, force, newloc, FALSE, TRUE)
+	return doUnEquip(I, force, newloc, FALSE, ignore_strip_self)
 
 //visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
 //item MUST BE FORCEMOVE'D OR QDEL'D
 /mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE, idrop = TRUE, ignore_strip_self = TRUE) //skyrat edit
-	return doUnEquip(I, force, null, TRUE, idrop, TRUE)
+	return doUnEquip(I, force, null, TRUE, idrop, ignore_strip_self) //skyrat edit
 
 //DO NOT CALL THIS PROC
 //use one of the above 3 helper procs
