@@ -13,7 +13,7 @@
 					/obj/item/reagent_containers/food/condiment/pack/astrotame = 5,
 					/obj/item/reagent_containers/food/condiment/pack/bbqsauce = 5,
 					/obj/item/reagent_containers/food/condiment/pack/soysauce = 5)
-	contraband = list(/obj/item/storage/mre/unusual)
+	contraband = list(/obj/item/storage/mre/unusual = 3)
 	refill_canister = /obj/item/vending_refill/mre
 	resistance_flags = FIRE_PROOF
 
