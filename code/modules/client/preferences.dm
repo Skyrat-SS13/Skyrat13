@@ -2969,6 +2969,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							extremepref = "Ask"
 						if("Ask")
 							extremepref = "No"
+							extremeharm = "No"
 						if("No")
 							extremepref = "Yes"
 				if("extremeharm")
@@ -2977,6 +2978,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							extremeharm = "No"
 						if("No")
 							extremeharm = "Yes"
+					if(extremepref == "No")
+						extremeharm = "No"
 				if("auto_hiss")
 					auto_hiss = !auto_hiss
 				//END CITADEL EDIT

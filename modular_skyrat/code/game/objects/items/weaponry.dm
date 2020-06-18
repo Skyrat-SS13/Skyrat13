@@ -48,13 +48,16 @@
 
 /obj/item/switchblade/deluxe/CheckParts(list/parts_list)
 	var/obj/item/switchblade/source = locate() in parts_list
-	if(istype(source, /obj/item/switchblade) && !istype(source, /obj/item/switchblade/crafted))
-		force = 5
-		throwforce = 5
-		extended_force = 18
-		extended_throwforce = 24
-		burn_force = 4
-	qdel(source)
+	if(source)
+		if(istype(source, /obj/item/switchblade) && !istype(source, /obj/item/switchblade/crafted))
+			force = 5
+			throwforce = 5
+			extended_force = 18
+			extended_throwforce = 24
+			burn_force = 4
+		parts_list -= source
+		qdel(source)
+	return ..()
 
 /obj/item/switchblade/deluxe/afterattack(target, user, proximity_flag)
 	. = ..()
@@ -248,11 +251,14 @@
 
 /obj/item/hatchet/improvised/CheckParts(list/parts_list)
 	var/obj/item/shard/tip = locate() in parts_list
-	if (istype(tip, /obj/item/shard/plasma))
-		force = 12
-		throwforce = 12
-		custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
-	qdel(tip)
+	if(tip)
+		if (istype(tip, /obj/item/shard/plasma))
+			force = 12
+			throwforce = 12
+			custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+		parts_list -= tip
+		qdel(tip)
+	return ..()
 
 //a fucking shank
 /obj/item/shank
@@ -275,12 +281,15 @@
 
 /obj/item/shank/CheckParts(list/parts_list)
 	var/obj/item/shard/tip = locate() in parts_list
-	if(istype(tip, /obj/item/shard/plasma))
-		force = 6
-		throwforce = 12
-		custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
-		clickmodifier = 0.40
-	qdel(tip)
+	if(tip)
+		if(istype(tip, /obj/item/shard/plasma))
+			force = 6
+			throwforce = 12
+			custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+			clickmodifier = 0.4
+		parts_list -= tip
+		qdel(tip)
+	return ..()
 
 /obj/item/shank/update_icon()
 	icon_state = "shank"
@@ -370,18 +379,23 @@
 
 /obj/item/twohanded/spear/halberd/CheckParts(list/parts_list)
 	var/obj/item/hatchet/tip = locate() in parts_list
+	if(tip)
+		force = tip.force
+		force_unwielded = tip.force
+		parts_list -= tip
+		qdel(tip)
 	var/obj/item/twohanded/spear/pear = locate() in parts_list
-	force = tip.force
-	force_unwielded = tip.force
-	if(!istype(pear, /obj/item/twohanded/spear/halberd))
-		force_wielded = pear.force_wielded + (tip.force/10)
-		throwforce = pear.throwforce + (tip.throwforce/10)
-	else
-		force_wielded = pear.force_wielded
-		throwforce = pear.throwforce
-	qdel(tip)
-	qdel(pear)
+	if(pear)
+		if(!istype(pear, /obj/item/twohanded/spear/halberd))
+			force_wielded = pear.force_wielded + (tip.force/10)
+			throwforce = pear.throwforce + (tip.throwforce/10)
+		else
+			force_wielded = pear.force_wielded
+			throwforce = pear.throwforce
+		parts_list -= pear
+		qdel(pear)
 	update_icon()
+	return ..()
 
 //KINKY. Clone of the banhammer.
 /obj/item/bdsm_whip

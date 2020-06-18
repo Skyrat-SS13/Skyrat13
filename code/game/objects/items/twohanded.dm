@@ -674,13 +674,17 @@
 
 /obj/item/twohanded/spear/CheckParts(list/parts_list)
 	var/obj/item/shard/tip = locate() in parts_list
-	if (istype(tip, /obj/item/shard/plasma))
-		force_wielded = 19
-		force_unwielded = 11
-		throwforce = 21
-		//embedding = getEmbeddingBehavior(embed_chance = 75, embedded_pain_multiplier = 1.5) //plasmaglass spears are sharper //skyrat edit
-		icon_prefix = "spearplasma"
-	qdel(tip)
+//SKYRAT CHANGES BEGIN - GC issues fixing
+	if(tip)
+		if (istype(tip, /obj/item/shard/plasma))
+			force_wielded = 19
+			force_unwielded = 11
+			throwforce = 21
+			//embedding = getEmbeddingBehavior(embed_chance = 75, embedded_pain_multiplier = 1.5) //plasmaglass spears are sharper
+			icon_prefix = "spearplasma"
+		parts_list -= tip
+		qdel(tip)
+//SKIRAT CHANGES END
 	var/obj/item/twohanded/spear/S = locate() in parts_list
 	if(S)
 		if(S.explosive)

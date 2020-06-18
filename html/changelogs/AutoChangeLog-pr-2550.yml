@@ -1,0 +1,5 @@
+author: "NotRanged"
+delete-after: True
+changes: 
+  - rscadd: "The Bluespace Rapid Pipe Dispenser can now perform its functions at range!"
+  - rscadd: "The CE locker now spawns with a single BSRPD instead of a RPD."

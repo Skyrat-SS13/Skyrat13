@@ -13837,10 +13837,6 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/machinery/button/door{
 	id = "Bath1";
 	name = "Door Bolt Control";
@@ -13851,6 +13847,9 @@
 	},
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/toilet)
@@ -14953,10 +14952,6 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/machinery/button/door{
 	id = "Bath2";
 	name = "Door Bolt Control";
@@ -14967,6 +14962,9 @@
 	},
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/toilet)
@@ -23043,10 +23041,6 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/machinery/button/door{
 	id = "LockerShitter1";
 	name = "Door Bolt Control";
@@ -23057,6 +23051,9 @@
 	},
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/toilet/locker)
@@ -61941,8 +61938,7 @@
 	pixel_y = 32
 	},
 /obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
+	pixel_y = 28
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/toilet)
@@ -62056,12 +62052,11 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/machinery/light/small{
 	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/dorms)
@@ -65596,10 +65591,6 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/machinery/button/door{
 	id = "LockerShitter2";
 	name = "Door Bolt Control";
@@ -65610,6 +65601,9 @@
 	},
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/toilet/locker)

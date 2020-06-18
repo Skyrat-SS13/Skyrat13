@@ -1,5 +1,0 @@
-author: "Azarak"
-delete-after: True
-changes: 
-  - rscdel: "removed combat mode backpeddle slowdown"
-  - tweak: "tweaked how combat mode rotates you"
