@@ -2103,7 +2103,7 @@
 		show_player_panel(M)
 
 	else if(href_list["adminplayerobservefollow"])
-		if(!isobserver(usr) && !check_rights(R_ADMIN))
+		if(!isobserver(usr) && !check_rights(0)) //Skyrat change
 			return
 
 		var/atom/movable/AM = locate(href_list["adminplayerobservefollow"])
@@ -2124,7 +2124,7 @@
 		AM.forceMove(get_turf(usr))
 
 	else if(href_list["adminplayerobservecoodjump"])
-		if(!isobserver(usr) && !check_rights(R_ADMIN))
+		if(!isobserver(usr) && !check_rights(0)) //Skyrat change
 			return
 
 		var/x = text2num(href_list["X"])
@@ -2352,7 +2352,7 @@
 		if(istype(charter))
 			charter.reject_proposed(usr)
 	else if(href_list["jumpto"])
-		if(!isobserver(usr) && !check_rights(R_ADMIN))
+		if(!isobserver(usr) && !check_rights(0)) //Skyrat change
 			return
 
 		var/mob/M = locate(href_list["jumpto"])
@@ -3002,7 +3002,7 @@
 /datum/admins/proc/makeMentor(ckey)
 	if(!usr.client)
 		return
-	if (!check_rights(0))
+	if (!check_rights(R_PERMISSIONS)) //Skyrat change
 		return
 	if(!ckey)
 		return
@@ -3032,7 +3032,7 @@
 /datum/admins/proc/removeMentor(ckey)
 	if(!usr.client)
 		return
-	if (!check_rights(0))
+	if (!check_rights(R_PERMISSIONS)) // Skyrat change
 		return
 	if(!ckey)
 		return
