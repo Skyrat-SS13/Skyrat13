@@ -83,7 +83,7 @@
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 	new /obj/item/extinguisher/mini(src)
-	new /obj/item/analyzer(src)
+	new /obj/item/analyzer/ranged(src) // Skyrat change
 	//much roomier now that we've managed to remove two tools
 
 /obj/item/storage/belt/utility/full/PopulateContents()
@@ -447,6 +447,7 @@
 	icon_state = "webbing-durathread"
 	item_state = "webbing-durathread"
 	resistance_flags = FIRE_PROOF
+	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE //Skyrat edit
 
 /obj/item/storage/belt/durathread/ComponentInitialize()
 	. = ..()
@@ -479,7 +480,9 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/tile/plasteel,
 		/obj/item/grenade/chem_grenade/metalfoam,
-		/obj/item/grenade/chem_grenade/smart_metal_foam
+		/obj/item/grenade/chem_grenade/smart_metal_foam,
+		/obj/item/storage/bag/construction, //Skyrat edit
+		/obj/item/pipe_dispenser/bluespace //Skyrat edit
 		))
 
 /obj/item/storage/belt/grenade

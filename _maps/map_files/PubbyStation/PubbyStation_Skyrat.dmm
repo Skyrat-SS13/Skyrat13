@@ -16224,6 +16224,13 @@
 	dir = 1
 	},
 /area/hallway/secondary/exit/departure_lounge)
+"aMN" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/storage)
 "aMR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
@@ -34113,25 +34120,20 @@
 /turf/open/floor/engine,
 /area/science/storage)
 "bBE" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/obj/effect/turf_decal/delivery,
-/obj/machinery/light{
-	dir = 1
+/obj/structure/sign/poster/random{
+	pixel_y = 32
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/science/storage)
-"bBF" = (
-/obj/machinery/portable_atmospherics/scrubber/huge,
-/obj/machinery/airalarm{
-	pixel_y = 22
-	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/engine,
 /area/science/storage)
 "bBG" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
+/obj/effect/turf_decal/bot,
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#d1dfff"
+	},
 /turf/open/floor/engine,
 /area/science/storage)
 "bBH" = (
@@ -34842,15 +34844,9 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/storage)
-"bCQ" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/science/storage)
 "bCR" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/engine,
 /area/science/storage)
 "bCS" = (
@@ -35270,29 +35266,41 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
 "bDL" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/engine,
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
 /area/science/storage)
 "bDM" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/engine,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
 /area/science/storage)
 "bDN" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/stripes/line{
-	dir = 4
+	dir = 1
 	},
-/turf/open/floor/engine,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
 /area/science/storage)
 "bDO" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
-/turf/open/floor/engine,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/science/storage)
 "bDP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -35301,7 +35309,10 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/floor/engine,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/science/storage)
 "bDQ" = (
 /obj/machinery/door/firedoor/heavy,
@@ -36068,28 +36079,20 @@
 /area/hallway/primary/aft)
 "bFa" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/engine,
 /area/science/storage)
 "bFb" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/bot,
-/turf/open/floor/engine,
-/area/science/storage)
-"bFc" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
 /turf/open/floor/engine,
 /area/science/storage)
 "bFd" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/dark,
 /area/science/storage)
 "bFf" = (
 /obj/effect/turf_decal/tile/purple,
@@ -36138,6 +36141,7 @@
 	pixel_y = 10
 	},
 /obj/item/analyzer,
+/obj/item/pipe_dispenser,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "bFl" = (
@@ -36523,23 +36527,18 @@
 /area/hallway/primary/aft)
 "bGf" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/effect/turf_decal/stripes/line,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/open/floor/engine,
 /area/science/storage)
 "bGg" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/engine,
 /area/science/storage)
 "bGh" = (
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/machinery/portable_atmospherics/scrubber,
 /obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
 /turf/open/floor/engine,
 /area/science/storage)
 "bGi" = (
@@ -36555,7 +36554,7 @@
 	dir = 8;
 	pixel_x = 28
 	},
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/dark,
 /area/science/storage)
 "bGj" = (
 /obj/machinery/vending/coffee,
@@ -37228,16 +37227,24 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/open/floor/engine,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/science/storage)
 "bHv" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/sign/poster/random{
-	pixel_x = 32
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
 	},
-/turf/open/floor/engine,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
 /area/science/storage)
 "bHw" = (
 /turf/closed/wall/r_wall,
@@ -37794,51 +37801,51 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
 "bIF" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Toxins Storage APC";
-	pixel_x = -25
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/effect/turf_decal/stripes/line,
+/obj/structure/tank_dispenser,
+/obj/effect/turf_decal/bot,
+/obj/machinery/light,
 /turf/open/floor/engine,
 /area/science/storage)
 "bIG" = (
 /obj/structure/cable{
-	icon_state = "2-8"
+	icon_state = "2-4"
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/dark,
 /area/science/storage)
 "bIH" = (
-/obj/machinery/light,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
+/obj/machinery/power/apc{
+	name = "Toxins Storage APC";
+	pixel_y = -25
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/science/storage)
 "bII" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/sign/warning/nosmoking{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/engine,
 /area/science/storage)
 "bIJ" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/effect/turf_decal/bot,
+/obj/machinery/light,
 /turf/open/floor/engine,
 /area/science/storage)
 "bIK" = (
@@ -53209,6 +53216,11 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/department/engine)
+"dAH" = (
+/obj/machinery/portable_atmospherics/scrubber/huge,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
+/area/science/storage)
 "dCE" = (
 /obj/machinery/light{
 	dir = 8;
@@ -54391,6 +54403,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"fGF" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/storage)
 "fIu" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -57357,6 +57375,13 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
+"kHx" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/storage)
 "kIc" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Monastery Transit"
@@ -59019,6 +59044,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"nrg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plasteel/dark,
+/area/science/storage)
 "nrk" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red,
@@ -64340,6 +64372,15 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"wAC" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#d1dfff"
+	},
+/turf/open/floor/engine,
+/area/science/storage)
 "wAI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
@@ -103298,12 +103339,12 @@ bvK
 bxt
 byS
 bAA
-bBC
+wAC
 bBC
 bDL
 bFa
 bGf
-bCR
+kHx
 bIF
 bHw
 bKV
@@ -103813,11 +103854,11 @@ bxv
 byU
 bAA
 bBE
-bCQ
-bDN
-bFc
-bGh
 bCR
+bDN
+bGh
+bGh
+nrg
 bIH
 bHw
 cqG
@@ -104069,12 +104110,12 @@ bvN
 bxw
 byV
 bAA
-bBF
+bCR
 bCR
 bDO
-bCR
-bCR
-bCR
+fGF
+fGF
+aMN
 bII
 bHw
 bKY
@@ -104327,7 +104368,7 @@ bxx
 byW
 bAA
 bBG
-bCR
+dAH
 bDP
 bFd
 bGi

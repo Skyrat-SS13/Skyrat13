@@ -9,6 +9,7 @@
 	movespeed_modification = null
 	for (var/alert in alerts)
 		clear_alert(alert, TRUE)
+	QDEL_LIST(mob_spell_list) //Skyrat edit to appease the GC
 	if(observers && observers.len)
 		for(var/M in observers)
 			var/mob/dead/observe = M
@@ -19,7 +20,7 @@
 	client_colours = null
 	ghostize()
 	..()
-	return QDEL_HINT_HARDDEL
+	return QDEL_HINT_QUEUE //Skyrat change
 
 /mob/Initialize()
 	GLOB.mob_list += src
@@ -435,7 +436,11 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 	set category = "IC"
 	set desc = "View your character's notes memory."
 	if(mind)
-		mind.show_memory(src)
+//SKYRAT CHANGES BEGIN
+		var/datum/browser/popup = new(src, "memory", "Memory and Notes")
+		popup.set_content(mind.show_memory())
+		popup.open()
+//SKYRAT CHANGES END
 	else
 		to_chat(src, "You don't have a mind datum for some reason, so you can't look at your notes, if you had any.")
 

@@ -1,0 +1,5 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - bugfix: "Sinks facing the wrong direction on Box, Meta and Delta."
+  - bugfix: "Incorrect turf decal at Delta prison entrance."
