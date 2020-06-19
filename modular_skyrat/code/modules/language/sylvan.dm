@@ -4,7 +4,7 @@
 	speech_verb = "expresses"
 	ask_verb = "inquires"
 	exclaim_verb = "declares"
-	key = "h"
+	key = "sv"
 	flags = TONGUELESS_SPEECH
 	space_chance = 20
 	syllables = list(

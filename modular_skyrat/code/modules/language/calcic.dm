@@ -5,7 +5,7 @@
 	ask_verb = "queries"
 	exclaim_verb = "screeches"
 	whisper_verb = "clicks"
-	key = "q"
+	key = "cal"
 	flags = TONGUELESS_SPEECH
 	space_chance = 10
 	syllables = list(
