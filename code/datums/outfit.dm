@@ -28,6 +28,13 @@
 	var/can_be_admin_equipped = TRUE // Set to FALSE if your outfit requires runtime parameters
 	var/list/chameleon_extras //extra types for chameleon outfit changes, mostly guns
 
+	//skyrat edit
+	var/underwear = null
+	var/socks = null
+	var/shirt = null
+	var/ears_extra = null
+	//
+
 /datum/outfit/proc/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
 	//to be overridden for customization depending on client prefs,species etc
 	return
@@ -66,6 +73,16 @@
 		H.equip_to_slot_or_del(new id(H),SLOT_WEAR_ID)
 	if(suit_store)
 		H.equip_to_slot_or_del(new suit_store(H),SLOT_S_STORE)
+	//skyrat edit
+	if(ears_extra)
+		H.equip_to_slot_or_del(new ears(H),SLOT_EARS_RIGHT)
+	if(underwear)
+		H.equip_to_slot_or_del(new underwear(H),SLOT_W_UNDERWEAR)
+	if(socks)
+		H.equip_to_slot_or_del(new underwear(H),SLOT_W_SOCKS)
+	if(shirt)
+		H.equip_to_slot_or_del(new underwear(H),SLOT_W_SHIRT)
+	//
 
 	if(accessory)
 		var/obj/item/clothing/under/U = H.w_uniform

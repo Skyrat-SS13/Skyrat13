@@ -145,12 +145,17 @@
 		dat += "<tr><td><font color=grey><B>Eyes:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
 		dat += "<tr><td><B>Eyes:</B></td><td><A href='?src=[REF(src)];item=[SLOT_GLASSES]'>[(glasses && !(glasses.item_flags & ABSTRACT))	? glasses : "<font color=grey>Empty</font>"]</A></td></tr>"
-
-	if(SLOT_EARS in obscured)
-		dat += "<tr><td><font color=grey><B>Ears:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	//skyrat edit
+	if(SLOT_EARS_LEFT in obscured)
+		dat += "<tr><td><font color=grey><B>Left ear:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
-		dat += "<tr><td><B>Ears:</B></td><td><A href='?src=[REF(src)];item=[SLOT_EARS]'>[(ears && !(ears.item_flags & ABSTRACT))		? ears		: "<font color=grey>Empty</font>"]</A></td></tr>"
-
+		dat += "<tr><td><B>Left ear:</B></td><td><A href='?src=[REF(src)];item=[SLOT_EARS_LEFT]'>[(ears && !(ears.item_flags & ABSTRACT))		? ears		: "<font color=grey>Empty</font>"]</A></td></tr>"
+	
+	if(SLOT_EARS_RIGHT in obscured)
+		dat += "<tr><td><font color=grey><B>Right ear:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	else
+		dat += "<tr><td><B>Right ear:</B></td><td><A href='?src=[REF(src)];item=[SLOT_EARS_RIGHT]'>[(ears_extra && !(ears_extra.item_flags & ABSTRACT))		? ears_extra		: "<font color=grey>Empty</font>"]</A></td></tr>"
+	//
 	dat += "<tr><td>&nbsp;</td></tr>"
 
 	dat += "<tr><td><B>Exosuit:</B></td><td><A href='?src=[REF(src)];item=[SLOT_WEAR_SUIT]'>[(wear_suit && !(wear_suit.item_flags & ABSTRACT)) ? wear_suit : "<font color=grey>Empty</font>"]</A></td></tr>"
@@ -176,7 +181,20 @@
 		dat += "<tr><td><font color=grey><B>Uniform:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
 		dat += "<tr><td><B>Uniform:</B></td><td><A href='?src=[REF(src)];item=[SLOT_W_UNIFORM]'>[(w_uniform && !(w_uniform.item_flags & ABSTRACT)) ? w_uniform : "<font color=grey>Empty</font>"]</A></td></tr>"
-
+	//skyrat edit
+	if(SLOT_W_UNDERWEAR in obscured)
+		dat += "<tr><td><font color=grey><B>Underwear:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	else
+		dat += "<tr><td><B>Underwear:</B></td><td><A href='?src=[REF(src)];item=[SLOT_W_UNDERWEAR]'>[(w_underwear && !(w_underwear.item_flags & ABSTRACT)) ? w_underwear : "<font color=grey>Empty</font>"]</A></td></tr>"
+	if(SLOT_W_SOCKS in obscured)
+		dat += "<tr><td><font color=grey><B>Socks:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	else
+		dat += "<tr><td><B>Socks:</B></td><td><A href='?src=[REF(src)];item=[SLOT_W_SOCKS]'>[(w_socks && !(w_socks.item_flags & ABSTRACT)) ? w_socks : "<font color=grey>Empty</font>"]</A></td></tr>"
+	if(SLOT_W_SHIRT in obscured)
+		dat += "<tr><td><font color=grey><B>Shirt:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	else
+		dat += "<tr><td><B>Shirt:</B></td><td><A href='?src=[REF(src)];item=[SLOT_W_SHIRT]'>[(w_shirt && !(w_shirt.item_flags & ABSTRACT)) ? w_shirt : "<font color=grey>Empty</font>"]</A></td></tr>"
+	//
 	if((w_uniform == null && !(dna && dna.species.nojumpsuit)) || (SLOT_W_UNIFORM in obscured))
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Pockets:</B></font></td></tr>"
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>ID:</B></font></td></tr>"

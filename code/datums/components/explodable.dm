@@ -78,6 +78,9 @@
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			equipment_items += list(H.wear_suit, H.w_uniform, H.belt, H.s_store, H.wear_id)
+			//skyrat edit
+			equipment_items += list(H.w_socks, H.w_underwear, H.w_shirt, H.ears_extra)
+			//
 
 	for(var/bp in equipment_items)
 		if(!bp)

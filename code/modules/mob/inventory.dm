@@ -372,6 +372,16 @@
 		items += wear_suit
 	if(w_uniform)
 		items += w_uniform
+	//skyrat edit
+	if(ears_extra)
+		items += w_uniform
+	if(w_underwear)
+		items += w_underwear
+	if(w_socks)
+		items += w_socks
+	if(w_shirt)
+		items += w_shirt
+	//
 	if(include_pockets)
 		if(l_store)
 			items += l_store

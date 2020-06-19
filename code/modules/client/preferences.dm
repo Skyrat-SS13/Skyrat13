@@ -880,6 +880,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "</td>"
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>Clothing & Equipment</h2>"
+			/* skyrat change
 			dat += "<b>Underwear:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=underwear;task=input'>[underwear]</a>"
 			if(GLOB.underwear_list[underwear]?.has_color)
 				dat += "<b>Underwear Color:</b> <span style='border:1px solid #161616; background-color: #[undie_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=undie_color;task=input'>Change</a><BR>"
@@ -889,6 +890,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Socks:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=socks;task=input'>[socks]</a>"
 			if(GLOB.socks_list[socks]?.has_color)
 				dat += "<b>Socks Color:</b> <span style='border:1px solid #161616; background-color: #[socks_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=socks_color;task=input'>Change</a><BR>"
+			*/
 			dat += "<b>Backpack:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=bag;task=input'>[backbag]</a>"
 			dat += "<b>Jumpsuit:</b><BR><a href ='?_src_=prefs;preference=suit;task=input'>[jumpsuit_style]</a><BR>"
 			dat += "<b>Uplink Location:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a>"
@@ -1828,6 +1830,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					facial_hair_color = random_short_color()
 				if("facial_hair_style")
 					facial_hair_style = random_facial_hair_style(gender)
+				/* skyrat edit
 				if("underwear")
 					underwear = random_underwear(gender)
 					undie_color = random_short_color()
@@ -1837,6 +1840,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("socks")
 					socks = random_socks()
 					socks_color = random_short_color()
+				*/
 				if(BODY_ZONE_PRECISE_EYES)
 					eye_color = random_eye_color()
 				if("s_tone")
@@ -2006,7 +2010,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("cycle_bg")
 					bgstate = next_list_item(bgstate, bgstate_options)
-
+				/* skyrat edit
 				if("underwear")
 					var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference")  as null|anything in GLOB.underwear_list
 					if(new_underwear)
@@ -2036,7 +2040,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/n_socks_color = input(user, "Choose your socks' color.", "Character Preference", "#[socks_color]") as color|null
 					if(n_socks_color)
 						socks_color = sanitize_hexcolor(n_socks_color)
-
+				*/
 				if("eyes")
 					var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference","#"+eye_color) as color|null
 					if(new_eyes)
@@ -3068,6 +3072,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	character.dna.skin_tone_override = use_custom_skin_tone ? skin_tone : null
 	character.hair_style = hair_style
 	character.facial_hair_style = facial_hair_style
+	/* skyrat edit
 	character.underwear = underwear
 
 	character.saved_underwear = underwear
@@ -3075,6 +3080,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	character.saved_undershirt = undershirt
 	character.socks = socks
 	character.saved_socks = socks
+	*/
 	character.undie_color = undie_color
 	character.shirt_color = shirt_color
 	character.socks_color = socks_color

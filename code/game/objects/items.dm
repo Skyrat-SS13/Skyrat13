@@ -149,6 +149,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/canMouseDown = FALSE
 
+	//skyrat edit
+	var/hide_underwear_examine = FALSE //Does it hide the underwear on examine,  but still display the underwear icons?
+	//
+
 
 /obj/item/Initialize()
 
@@ -656,6 +660,16 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		owner.update_inv_wear_suit()
 	if(flags & ITEM_SLOT_ICLOTHING)
 		owner.update_inv_w_uniform()
+	//skyrat edit
+	if(flags & ITEM_SLOT_UNDERWEAR)
+		owner.update_inv_w_underwear()
+	if(flags & ITEM_SLOT_SOCKS)
+		owner.update_inv_w_socks()
+	if(flags & ITEM_SLOT_SHIRT)
+		owner.update_inv_w_shirt()
+	if(flags & ITEM_SLOT_EARS_RIGHT)
+		owner.update_inv_ears_extra()
+	//
 	if(flags & ITEM_SLOT_GLOVES)
 		owner.update_inv_gloves()
 	if(flags & ITEM_SLOT_EYES)

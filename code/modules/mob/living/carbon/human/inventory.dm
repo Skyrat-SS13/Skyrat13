@@ -56,8 +56,11 @@
 		wear_id,
 		l_store,
 		r_store,
-		w_uniform
-		)
+		w_uniform,
+		w_underwear,
+		w_socks,
+		w_shirt,
+		) //skyrat edit
 
 /mob/living/carbon/human/proc/get_head_slots()
 	return list(
@@ -66,7 +69,8 @@
 		wear_neck,
 		glasses,
 		ears,
-		)
+		ears_extra,
+		) //skyrat edit
 
 /mob/living/carbon/human/proc/get_storage_slots()
 	return list(
@@ -92,9 +96,14 @@
 			wear_id = I
 			sec_hud_set_ID()
 			update_inv_wear_id()
-		if(SLOT_EARS)
+		//skyrat edit
+		if(SLOT_EARS_LEFT)
 			ears = I
 			update_inv_ears()
+		if(SLOT_EARS_RIGHT)
+			ears = I
+			update_inv_ears_extra()
+		//
 		if(SLOT_GLASSES)
 			glasses = I
 			var/obj/item/clothing/glasses/G = I
@@ -126,6 +135,17 @@
 			w_uniform = I
 			update_suit_sensors()
 			update_inv_w_uniform()
+		//skyrat edit
+		if(SLOT_W_UNDERWEAR)
+			w_underwear = I
+			update_inv_w_underwear()
+		if(SLOT_W_SOCKS)
+			w_socks = I
+			update_inv_w_socks()
+		if(SLOT_W_SHIRT)
+			w_shirt = I
+			update_inv_w_shirt()
+		//
 		if(SLOT_L_STORE)
 			l_store = I
 			update_inv_pockets()
@@ -183,6 +203,20 @@
 		update_suit_sensors()
 		if(!QDELETED(src))
 			update_inv_w_uniform()
+	//skyrat edit
+	else if(I == w_underwear)
+		w_underwear = null
+		if(!QDELETED(src))
+			update_inv_w_underwear()
+	else if(I == w_socks)
+		w_socks = null
+		if(!QDELETED(src))
+			update_inv_w_socks()
+	else if(I == w_shirt)
+		w_shirt = null
+		if(!QDELETED(src))
+			update_inv_w_shirt()
+	//
 	else if(I == gloves)
 		gloves = null
 		if(!QDELETED(src))
@@ -205,6 +239,12 @@
 		ears = null
 		if(!QDELETED(src))
 			update_inv_ears()
+	//skyrat edit
+	else if(I == ears_extra)
+		ears_extra = null
+		if(!QDELETED(src))
+			update_inv_ears_extra()
+	//
 	else if(I == shoes)
 		shoes = null
 		if(!QDELETED(src))

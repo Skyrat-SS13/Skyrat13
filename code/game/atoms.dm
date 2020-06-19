@@ -513,6 +513,17 @@
 	else if(w_uniform)
 		w_uniform.add_blood_DNA(blood_dna, diseases)
 		update_inv_w_uniform()
+	//skyrat edit
+	else if(w_underwear)
+		w_underwear.add_blood_DNA(blood_dna, diseases)
+		update_inv_w_underwear()
+	else if(w_socks)
+		w_socks.add_blood_DNA(blood_dna, diseases)
+		update_inv_w_socks()
+	else if(w_shirt)
+		w_shirt.add_blood_DNA(blood_dna, diseases)
+		update_inv_w_shirt()
+	//
 	if(gloves)
 		var/obj/item/clothing/gloves/G = gloves
 		G.add_blood_DNA(blood_dna, diseases)
