@@ -909,7 +909,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			if(CAN_SCAR in pref_species.species_traits)
 				dat += "<BR><b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</A>"
 				dat += "<a href='?_src_=prefs;preference=clear_scars'>Clear persistent scar slots</A><BR>"
-				dat += "<BR><b>Cosmetic Scarring:</b><BR>"
+				dat += "<b>Cosmetic Scarring:</b><BR>"
 				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=menu'>Configure Scars</A><BR>"
 			//
 			dat += "<b>Uplink Location:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a>"
@@ -1991,10 +1991,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					else if(new_scar == "custom")
 						choice = input(user, "Type in the description of your scar. Leave blank or cancel to not change anything.", "Custom Scar", "None") as null|text
 					else if(new_scar in list("moderate", "severe", "critical"))
-						var/typepath = "/datum/wound/"
+						var/typepath = "/datum/wound"
 						choice = input(user, "What type of damage will you use?", "Preset Scar", "None") as null|anything in list("Brute", "Burn")
 						if(choice && (choice != "None"))
-							typepath += "[lowertext(choice)]"
+							typepath += "/[lowertext(choice)]"
 							switch(choice)
 								if("Brute")
 									choice = input(user, "What type of preset will you use?", "Preset Scar", "None") as null|anything in list("Cut", "Bone", "None")
@@ -2005,11 +2005,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						if(choice && (choice != "None"))
 							var/list/presets = list()
 							typepath = text2path(typepath)
-							for(var/W in subtypesof(/datum/wound))
-								var/datum/wound/w = W
-								if(istype(w, typepath) && (body_zone in w.viable_zones))
-									presets += w.scarring_descriptions
-							choice = input(user, "What preset will you use?", "Preset Scar", "None") as null|anything in (presets + "None")
+							for(var/W in typesof(typepath))
+								var/datum/wound/w = new W()
+								if(body_zone in w.viable_zones)
+									presets |= w.scarring_descriptions
+							presets |= list("None")
+							choice = input(user, "What preset will you use?", "Preset Scar", "None") as null|anything in (presets)
 						
 					if(choice && (choice != "None"))
 						cosmetic_scars[body_zone][specific_location]["desc"] = strip_html_simple(choice, 256)
