@@ -48579,14 +48579,8 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
 "bTS" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 3;
-	height = 5;
-	id = "commonmining_home";
-	name = "SS13: Common Mining Dock";
-	roundstart_template = /datum/map_template/shuttle/mining_common/meta;
-	width = 7
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
@@ -49744,8 +49738,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "bWn" = (
-/obj/machinery/door/airlock/external{
-	name = "Common Mining Dock"
+/obj/machinery/quantumpad{
+	map_pad_id = "toxenoarch";
+	map_pad_link_id = "tostation"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -49850,16 +49845,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bWx" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/computer/shuttle/mining/common{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
+/obj/machinery/light,
+/turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "bWy" = (
 /obj/machinery/holopad,
@@ -106427,9 +106414,9 @@ bTq
 bSL
 cyG
 cyG
-cyG
-cyG
-cyG
+caQ
+caQ
+caQ
 cyG
 cyG
 bSr
@@ -106682,13 +106669,13 @@ bhY
 car
 bTr
 bSr
+bTS
 cyG
+caQ
+bWn
+caQ
 cyG
-cyG
-cyG
-cyG
-cyG
-cyG
+bWx
 bSr
 bYf
 ceU
@@ -106941,9 +106928,9 @@ bTs
 cav
 cyG
 cyG
-cyG
-cyG
-cyG
+caQ
+caQ
+caQ
 cyG
 cyG
 bSr
@@ -107199,7 +107186,7 @@ bSr
 cyG
 cyG
 cyG
-bTS
+caQ
 cyG
 cyG
 cyG
@@ -107456,8 +107443,8 @@ bOc
 bOc
 bOc
 bPe
-bWn
-bWx
+caQ
+bSr
 bSr
 bSL
 bSr
