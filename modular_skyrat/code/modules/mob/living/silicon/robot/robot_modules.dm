@@ -224,7 +224,7 @@ obj/item/robot_module/butler/Initialize()
 	return ..()
 
 /obj/item/robot_module/syndicatejack
-	name = "Syndicate Cyborg" 
+	name = "Syndicate" 
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/borg/sight/thermal,

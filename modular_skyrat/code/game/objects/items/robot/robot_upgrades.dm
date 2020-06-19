@@ -208,4 +208,8 @@
 	name = "borg module picker (Syndicate)"
 	desc = "Allows you to to turn a cyborg into a experimental syndicate cyborg."
 	icon_state = "cyborg_upgrade3"
-	new_module = /obj/item/robot_module/syndicatejack
+	if(emagged)
+		new_module = /obj/item/robot_module/syndicatejack
+		return
+	else
+		to_chat(user, "<span class='warning'>Unable to install module, This cyborg isn't emagged!</span>")
