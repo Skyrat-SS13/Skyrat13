@@ -96,9 +96,8 @@
 	. = ..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.adjustStaminaLoss(-stamina_heal_amount)
-		H.adjustStaminaLossBuffered(-stamina_buffer_heal_amount)
-		H.sprint_buffer = min(H.sprint_buffer_max, H.sprint_buffer + (H.sprint_buffer_regen_ds*2.5))
+		H.adjustStaminaLoss(-H.sprint_buffer_regen_ds*2.5)
+		H.adjustStaminaLossBuffered(-H.sprint_buffer_regen_ds*1.5)
 		H.AdjustSleeping(-50)
 	M.adjustBruteLoss(-0.6, 0)
 	M.adjustFireLoss(-0.6, 0)
