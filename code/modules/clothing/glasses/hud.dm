@@ -5,14 +5,16 @@
 	var/hud_type = null
 
 /obj/item/clothing/glasses/hud/CheckParts(list/parts_list)
-	. = ..()
+//SKYRAT CHANGES BEGIN - Caling parent
 	if(vision_correction)
-		return
+		return ..()
 	for(var/obj/item/clothing/glasses/G in parts_list)
 		if(G.vision_correction)
 			vision_correction = TRUE
 			name = "prescription [name]"
-			return
+			break
+	return ..()
+//SKYRAT CHANGES END
 
 /obj/item/clothing/glasses/hud/equipped(mob/living/carbon/human/user, slot)
 	..()
