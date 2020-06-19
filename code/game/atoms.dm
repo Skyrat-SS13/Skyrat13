@@ -47,6 +47,8 @@
 	///Modifier that raises/lowers the effect of the amount of a material, prevents small and easy to get items from being death machines.
 	var/material_modifier = 1
 
+	var/datum/wires/wires = null
+
 	var/icon/blood_splatter_icon
 	var/list/fingerprints
 	var/list/fingerprintshidden
@@ -213,6 +215,7 @@
 				L.transferItemToLoc(M, src)
 			else
 				M.forceMove(src)
+	parts_list.Cut() //Skyrat edit to avoid GC issues
 
 //common name
 /atom/proc/update_multiz(prune_on_fail = FALSE)
@@ -319,10 +322,11 @@
 		. += desc
 
 	if(custom_materials)
+		var/list/materials_list = list()
 		for(var/i in custom_materials)
 			var/datum/material/M = i
-			. += "<u>It is made out of [M.name]</u>."
-
+			materials_list += "[M.name]"
+		. += "<u>It is made out of [english_list(materials_list)]</u>."
 	if(reagents)
 		if(reagents.reagents_holder_flags & TRANSPARENT)
 			. += "It contains:"

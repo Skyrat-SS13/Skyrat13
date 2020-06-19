@@ -4,15 +4,13 @@
 //note 3: ignore note 2 the sprite is actually good now
 /mob/living/simple_animal/pet/dog/cheems
 	name = "\proper Cheems"
-	desc = "Cheemsburbger..."
+	desc = "Cargo's overfed and slightly greasy disposal bin."
 	icon = 'modular_skyrat/icons/mob/doges.dmi'
 	icon_state = "cheems"
-	icon_dead = "cheemsdead"
+	icon_dead = "cheems_dead"
 	icon_living = "cheems"
-	speak = list("Burbger...", "McDomnald...", "Whompper...", "Bimg Mac...", "Whemre are the miners?", "Revolutiom!",\
-				"Pizza cramte.", "Collemctable hats...", "Research mining tech stupid sciemtists!", "Where's my rimpley?",\
-				"Shomtgun crate.", "Free cargo!", "No horny.")
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/burger/cheese = 5)
+	speak = list("Borf!", "Boof!", "Bork!")
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/burger/cheese = 1, /obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/trash/syndi_cakes = 1)
 	faction = list("dog", "doge")
 	animal_species = /mob/living/simple_animal/pet/dog
 	gold_core_spawnable = FRIENDLY_SPAWN

@@ -253,77 +253,77 @@
 				user.visible_message("[user] secures the scanner module.", "<span class='notice'>You secure the scanner module.</span>")
 			else
 				user.visible_message("[user] removes the scanner module from [parent].", "<span class='notice'>You remove the scanner module from [parent].</span>")
-		if(12)
+		if(11)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs [I] to [parent].", "<span class='notice'>You install [I] to [parent].</span>")
 			else
 				user.visible_message("[user] unfastens the scanner module.", "<span class='notice'>You unfasten the scanner module.</span>")
-		if(13)
+		if(12)
 			if(diff==FORWARD)
 				user.visible_message("[user] secures the capacitor.", "<span class='notice'>You secure the capacitor.</span>")
 			else
 				user.visible_message("[user] removes the capacitor from [parent].", "<span class='notice'>You remove the capacitor from [parent].</span>")
-		if(14)
+		if(13)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs [I] into [parent].", "<span class='notice'>You install [I] into [parent].</span>")
 			else
 				user.visible_message("[user] unfastens the capacitor.", "<span class='notice'>You unfasten the capacitor.</span>")
-		if(15)
+		if(14)
 			if(diff==FORWARD)
 				user.visible_message("[user] secures the power cell.", "<span class='notice'>You secure the power cell.</span>")
 			else
 				user.visible_message("[user] pries the power cell from [parent].", "<span class='notice'>You pry the power cell from [parent].</span>")
-		if(16)
+		if(15)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs the internal armor layer to [parent].", "<span class='notice'>You install the internal armor layer to [parent].</span>")
 			else
 				user.visible_message("[user] unfastens the power cell.", "<span class='notice'>You unfasten the power cell.</span>")
-		if(17)
+		if(16)
 			if(diff==FORWARD)
 				user.visible_message("[user] secures the internal armor layer.", "<span class='notice'>You secure the internal armor layer.</span>")
 			else
 				user.visible_message("[user] pries internal armor layer from [parent].", "<span class='notice'>You pry internal armor layer from [parent].</span>")
-		if(18)
+		if(17)
 			if(diff==FORWARD)
 				user.visible_message("[user] welds the internal armor layer to [parent].", "<span class='notice'>You weld the internal armor layer to [parent].</span>")
 			else
 				user.visible_message("[user] unfastens the internal armor layer.", "<span class='notice'>You unfasten the internal armor layer.</span>")
-		if(19)
+		if(18)
 			if(diff==FORWARD)
 				user.visible_message("[user] starts to install the external armor layer to [parent].", "<span class='notice'>You install the external armor layer to [parent].</span>")
 			else
 				user.visible_message("[user] cuts the internal armor layer from [parent].", "<span class='notice'>You cut the internal armor layer from [parent].</span>")
-		if(20)
+		if(19)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs the external reinforced armor layer to [parent].", "<span class='notice'>You install the external reinforced armor layer to [parent].</span>")
 			else
 				user.visible_message("[user] removes the external armor from [parent].", "<span class='notice'>You remove the external armor from [parent].</span>")
-		if(21)
+		if(20)
 			if(diff==FORWARD)
 				user.visible_message("[user] secures the external armor layer.", "<span class='notice'>You secure the external reinforced armor layer.</span>")
 			else
 				user.visible_message("[user] pries external armor layer from [parent].", "<span class='notice'>You pry external armor layer from [parent].</span>")
-		if(22)
+		if(21)
 			if(diff==FORWARD)
 				user.visible_message("[user] welds the external armor layer to [parent].", "<span class='notice'>You weld the external armor layer to [parent].</span>")
 			else
 				user.visible_message("[user] unfastens the external armor layer.", "<span class='notice'>You unfasten the external armor layer.</span>")
-		if(23)
+		if(22)
 			if(diff==FORWARD)
 				user.visible_message("[user] starts to install the additional titanium alloy armor layer on [parent].", "<span class='notice'>You start to install the additional titanium alloy armor layer on [parent].</span>")
 			else
 				user.visible_message("[user] welds off the external armor layer.", "<span class='notice'>You weld off the external armor layer.</span>")
-		if(24)
+		if(23)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs the titanium alloy on [parent].", "<span class='notice'>You install the titanium alloy on [parent].</span>")
 			else
 				user.visible_message("[user] removes the additional titanium armor layer.", "<span class='notice'>You remove the additional titanium armor layer.</span>")
-		if(25)
+		if(24)
 			if(diff==FORWARD)
 				user.visible_message("[user] secures the titanium alloy layer on [parent].", "<span class='notice'>You secure the titanium alloy layer on [parent].</span>")
 			else
 				user.visible_message("[user] pries the additional titanium armor layer from [parent].", "<span class='notice'>You pry the additional titanium armor layer from [parent]</span>")
-		if(26)
+		if(25)
 			if(diff==FORWARD)
 				user.visible_message("[user] welds the titanium alloy layer on [parent].", "<span class='notice'>You weld the titanium alloy layer on [parent].</span>")
 			else
@@ -527,21 +527,21 @@
 		),
 		//7
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The main board is installed."
 		),
 		//8
 		list(
 			"key" = /obj/item/circuitboard/mecha/clarke/peripherals,
 			"action" = ITEM_DELETE,
-			"back_key" = TOOL_WIRECUTTER,
+			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "The main board is secured."
 		),
 		//9
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The peripherals control module is installed."
 		),
 		//10
@@ -553,8 +553,8 @@
 		),
 		//11
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The scanning module is installed."
 		),
 		//12
@@ -566,8 +566,8 @@
 		),
 		//13
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The capacitor is installed."
 		),
 		//14
@@ -579,8 +579,8 @@
 		),
 		//15
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The power cell is installed."
 		),
 		//16
@@ -635,7 +635,6 @@
 				user.visible_message("<span class='notice'>[user] connects [parent] hydraulic systems.</span>", "<span class='notice'>You connect [parent] hydraulic systems.</span>")
 			else
 				user.visible_message("<span class='notice'>[user] removes the tread systems.</span>", "<span class='notice'>You remove the tread systems.</span>")
-
 		if(3)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] activates [parent] hydraulic systems.</span>", "<span class='notice'>You activate [parent] hydraulic systems.</span>")
@@ -787,8 +786,8 @@
 		),
 		//6
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The main board is installed."
 		),
 		//7
@@ -800,8 +799,8 @@
 		),
 		//8
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The peripherals control module is installed."
 		),
 		//9
@@ -813,20 +812,20 @@
 		),
 		//10
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The scanning module is installed."
 		),
 		//11
 		list(
 			"key" = /obj/item/stock_parts/capacitor,
 			"action" = ITEM_MOVE_INSIDE,
-			"back_key" = TOOL_WRENCH,
+			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "The scanning module is secured."
 		),
 		//12
 		list(
-			"key" = TOOL_WRENCH,
+			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
 			"desc" = "The capacitor is installed."
 		),
@@ -839,7 +838,7 @@
 		),
 		//14
 		list(
-			"key" = TOOL_WRENCH,
+			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
 			"desc" = "The power cell is installed."
 		),
@@ -847,19 +846,20 @@
 		list(
 			"key" = /obj/item/stock_parts/matter_bin,
 			"action" = ITEM_MOVE_INSIDE,
-			"back_key" = TOOL_WRENCH,
+			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "The power cell is secured."
 		),
 		//16
 		list(
-			"key" = TOOL_WRENCH,
-			"back_key" = TOOL_SCREWDRIVER,
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_CROWBAR,
 			"desc" = "The matter bin is installed."
 		),
 		//17
 		list(
 			"key" = /obj/item/tank/internals/oxygen,
-			"back_key" = TOOL_WRENCH,
+			"action" = ITEM_MOVE_INSIDE,
+			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "The matter bin is secured."
 		),
 		//18
@@ -926,125 +926,120 @@
 				user.visible_message("<span class='notice'>[user] connects [parent] hydraulic systems.</span>", "<span class='notice'>You connect [parent] hydraulic systems.</span>")
 		if(2)
 			if(diff==FORWARD)
-				user.visible_message("<span class='notice'>[user] secures [parent] hydraulic systems.</span>", "<span class='notice'>You secure [parent] hydraulic systems.</span>")
+				user.visible_message("<span class='notice'>[user] activates [parent] hydraulic systems.</span>", "<span class='notice'>You activate [parent] hydraulic systems.</span>")
 			else
 				user.visible_message("<span class='notice'>[user] disconnects [parent] hydraulic systems.</span>", "<span class='notice'>You disconnect [parent] hydraulic systems.</span>")
 		if(3)
 			if(diff==FORWARD)
-				user.visible_message("<span class='notice'>[user] activates [parent]'s hydraulic systems.</span>", "<span class='notice'>You activate [parent] hydraulic systems.</span>")
-			else
-				user.visible_message("<span class='notice'>[user] unsecures [parent] hydraulic systems.</span>", "<span class='notice'>You unsecure [parent] hydraulic systems.</span>")
-		if(4)
-			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] adds the wiring to [parent].</span>", "<span class='notice'>You add the wiring to [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] deactivates [parent] hydraulic systems.</span>", "<span class='notice'>You deactivate [parent] hydraulic systems.</span>")
-		if(5)
+		if(4)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] adjusts the wiring of [parent].</span>", "<span class='notice'>You adjust the wiring of [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] removes the wiring from [parent].</span>", "<span class='notice'>You remove the wiring from [parent].</span>")
-		if(6)
+		if(5)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] installs [I] into [parent].</span>", "<span class='notice'>You install [I] into [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] disconnects the wiring of [parent].</span>", "<span class='notice'>You disconnect the wiring of [parent].</span>")
-		if(7)
+		if(6)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] secures the mainboard.</span>", "<span class='notice'>You secure the mainboard.</span>")
 			else
 				user.visible_message("<span class='notice'>[user] removes the central control module from [parent].</span>", "<span class='notice'>You remove the central computer mainboard from [parent].</span>")
-		if(8)
+		if(7)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] installs [I] into [parent].</span>", "<span class='notice'>You install [I] into [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] unfastens the mainboard.</span>", "<span class='notice'>You unfasten the mainboard.</span>")
-		if(9)
+		if(8)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] secures the peripherals control module.</span>", "<span class='notice'>You secure the peripherals control module.</span>")
 			else
 				user.visible_message("<span class='notice'>[user] removes the peripherals control module from [parent].</span>", "<span class='notice'>You remove the peripherals control module from [parent].</span>")
-		if(10)
+		if(9)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] installs [I] into [parent].</span>", "<span class='notice'>You install [I] into [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] unfastens the peripherals control module.</span>", "<span class='notice'>You unfasten the peripherals control module.</span>")
-		if(11)
+		if(10)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] secures the scanner module.</span>", "<span class='notice'>You secure the scanner module.</span>")
 			else
 				user.visible_message("<span class='notice'>[user] removes the scanner module from [parent].</span>", "<span class='notice'>You remove the scanner module from [parent].</span>")
-		if(12)
+		if(11)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] installs [I] to [parent].</span>", "<span class='notice'>You install [I] to [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] unfastens the scanner module.</span>", "<span class='notice'>You unfasten the scanner module.</span>")
-		if(13)
+		if(12)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] secures the capacitor.</span>", "<span class='notice'>You secure the capacitor.</span>")
 			else
 				user.visible_message("<span class='notice'>[user] removes the capacitor from [parent].</span>", "<span class='notice'>You remove the capacitor from [parent].</span>")
-		if(14)
+		if(13)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] installs [I] into [parent].</span>", "<span class='notice'>You install [I] into [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] unfastens the capacitor.</span>", "<span class='notice'>You unfasten the capacitor.</span>")
-		if(15)
+		if(14)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] secures the power cell.</span>", "<span class='notice'>You secure the power cell.</span>")
 			else
 				user.visible_message("<span class='notice'>[user] pries the power cell from [parent].</span>", "<span class='notice'>You pry the power cell from [parent].</span>")
-		if(16)
+		if(15)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] installs [I] into [parent].</span>", "<span class='notice'>You install [I] into [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] unfastens the power cell from [parent].</span>", "<span class='notice'>You unfasten the power cell from [parent].</span>")
-		if(17)
+		if(16)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] secures the matter bin.</span>", "<span class='notice'>You secure the matter bin.</span>")
 			else
 				user.visible_message("<span class='notice'>[user] pries the matter bin from [parent].</span>", "<span class='notice'>You pry the matter bin from [parent].</span>")
-		if(18)
+		if(17)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] installs the first oxygen tank on [parent].</span>", "<span class='notice'>You install the first oxygen tank on [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] unfastens the matter bin.</span>", "<span class='notice'>You unfasten the matter bin.</span>")
-		if(19)
+		if(18)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] installs the second oxygen tank on [parent].</span>", "<span class='notice'>You install the first oxygen tank on [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] pries off the oxygen tank from [parent].</span>", "<span class='notice'>You pry off the oxygen tank from [parent].</span>")
-		if(20)
+		if(19)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] installs the internal armor layer to [parent].</span>", "<span class='notice'>You install the internal armor layer to [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] pries off the oxygen tank from [parent].</span>", "<span class='notice'>You pry off the oxygen tank from [parent].</span>")
-		if(21)
+		if(20)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] secures the internal armor layer.</span>", "<span class='notice'>You secure the internal armor layer.</span>")
 			else
 				user.visible_message("<span class='notice'>[user] pries the internal armor layer from [parent].</span>", "<span class='notice'>You pry the internal armor layer from [parent].</span>")
-		if(22)
+		if(21)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] installs the titanium glass visor on [parent].</span>", "<span class='notice'>You install the titanium glass visor on [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] unfastens the internal armor layer.</span>", "<span class='notice'>You unfasten the internal armor layer.</span>")
-		if(23)
+		if(22)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] welds the titanium glass visor to [parent].</span>", "<span class='notice'>You weld the titanium glass visor to [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] pries the titanium glass visor from [parent].</span>", "<span class='notice'>You pry the titanium visor from [parent].</span>")
-		if(24)
+		if(23)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] installs the external titanium alloy armor layer on [parent].</span>", "<span class='notice'>You install the external titanium alloy armor layer on [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] unwelds the titanium glass visor from [parent].</span>", "<span class='notice'>You unweld the titanium glass visor from [parent].</span>")
-		if(25)
+		if(24)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] secures the external armor layer to [parent].</span>", "<span class='notice'>You secure the external armor layer to [parent].</span>")
 			else
 				user.visible_message("<span class='notice'>[user] pries off the external armor layer from [parent].</span>", "<span class='notice'>You pry off the external titanium alloy armor layer from [parent].</span>")
-		if(26)
+		if(25)
 			if(diff==FORWARD)
 				user.visible_message("<span class='notice'>[user] welds the external armor layer to [parent].</span>", "<span class='notice'>You weld the external armor layer to [parent].</span>")
 			else
@@ -1272,42 +1267,42 @@
 				user.visible_message("[user] secures the [parent]'s rod mounts.", "<span class='notice'>You secure the [parent]'s rod mounts.</span>")
 			else
 				user.visible_message("[user] pries the rod mounts off from [parent].", "<span class='notice'>You pry the rod mounts off from [parent].</span>")
-		if(12)
+		if(11)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs the first pipe leg on [parent].", "<span class='notice'>You install the pipe leg on [parent].</span>")
 			else
 				user.visible_message("[user] unsecures the rod mounts.", "<span class='notice'>You unsecure the rod mounts.</span>")
-		if(13)
+		if(12)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs the second pipe leg on [parent].", "<span class='notice'>You install the second pipe leg on [parent].</span>")
 			else
 				user.visible_message("[user] pries the pipe leg off from [parent].", "<span class='notice'>You pry the pipe leg off from [parent].</span>")
-		if(14)
+		if(13)
 			if(diff==FORWARD)
 				user.visible_message("[user] secures the pipe legs on [parent].", "<span class='notice'>You secure the pipe legs on [parent].</span>")
 			else
 				user.visible_message("[user] pries the pipe leg off from [parent].", "<span class='notice'>You pry the pipe leg off from [parent].</span>")
-		if(15)
+		if(14)
 			if(diff==FORWARD)
 				user.visible_message("[user] wires the [parent] and limbs.", "<span class='notice'>You wire the [parent] and limbs.</span>")
 			else
 				user.visible_message("[user] unsecures the [parent]'s pipe legs.", "<span class='notice'>You unsecure the [parent]'s pipe legs.</span>")
-		if(16)
+		if(15)
 			if(diff==FORWARD)
 				user.visible_message("[user] properly adjusts the [parent]'s wires.", "<span class='notice'>You properly adjust the [parent]'s wires.</span>")
 			else
 				user.visible_message("[user] snips the [parent]'s wirings.", "<span class='notice'>You snip the [parent]'s wiring.</span>")
-		if(17)
+		if(16)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs [I] on [parent].", "<span class='notice'>You install [I] on [parent].</span>")
 			else
 				user.visible_message("[user] deadjusts [parent]'s wiring.", "<span class='notice'>You deadjust [parent]'s wiring.</span>")
-		if(18)
+		if(17)
 			if(diff==FORWARD)
 				user.visible_message("[user] secures [parent]'s power cell.", "<span class='notice'>You secure [parent]'s power cell.</span>")
 			else
 				user.visible_message("[user] uninstalls [parent]'s power cell.", "<span class='notice'>You uninstall [parent]'s power cell.</span>")
-		if(19)
+		if(18)
 			if(diff==FORWARD)
 				user.visible_message("[user] welds [parent] together completely.", "<span class='notice'>You weld [parent] together completely..</span>")
 			else

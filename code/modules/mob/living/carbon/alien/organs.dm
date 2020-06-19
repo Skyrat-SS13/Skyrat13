@@ -11,6 +11,10 @@
 			alien_powers += new A(src)
 
 /obj/item/organ/alien/Destroy()
+//SKYRAT CHANGES BEGIN - to appease the GC
+	if(owner)
+		Remove()
+//SKYRAT CHANGES END
 	QDEL_LIST(alien_powers)
 	return ..()
 

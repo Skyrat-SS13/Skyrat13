@@ -477,20 +477,12 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	throw_speed = 5
 	throw_range = 2
 	attack_verb = list("busted")
+	var/impressiveness = 45
 
-/obj/item/statuebust/attack_self(mob/living/user)
-	add_fingerprint(user)
-	user.examinate(src)
-
-/obj/item/statuebust/examine(mob/living/user)
+/obj/item/statuebust/Initialize()
 	. = ..()
-	if(.)
-		return
-	if (!isliving(user))
-		return
-	user.visible_message("[user] stops to admire [src].", \
-						 "<span class='notice'>You take in [src], admiring its fine craftsmanship.</span>")
-	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "artgood", /datum/mood_event/artgood)
+	AddElement(/datum/element/art, impressiveness)
+	addtimer(CALLBACK(src, /datum.proc/_AddElement, list(/datum/element/beauty, 1000)), 0)
 
 /obj/item/tailclub
 	name = "tail club"
@@ -566,6 +558,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	force = 10
 	throwforce = 12
 	attack_verb = list("beat", "smacked")
+	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 3.5)
 	w_class = WEIGHT_CLASS_BULKY
 	var/homerun_ready = 0
 	var/homerun_able = 0
@@ -667,6 +660,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	spider_panic = typecacheof(list(
 					/mob/living/simple_animal/banana_spider,
 					/mob/living/simple_animal/hostile/poison/giant_spider,
+					/mob/living/simple_animal/hostile/poison/terror_spider, //Skyrat addition, spiders are now spiders to a flyswatter
 	))
 
 /obj/item/melee/flyswatter/afterattack(atom/target, mob/user, proximity_flag)
@@ -682,7 +676,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 			to_chat(user, "<span class='warning'>You easily land a critical blow on the [target].</span>")
 			if(istype(target, /mob/living/))
 				var/mob/living/bug = target
-				bug.adjustBruteLoss(-35) //What kinda mad man would go into melee with a spider?!
+				bug.adjustBruteLoss(35) //What kinda mad man would go into melee with a spider?!
 			else
 				qdel(target)
 
