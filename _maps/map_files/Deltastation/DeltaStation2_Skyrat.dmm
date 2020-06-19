@@ -41175,10 +41175,6 @@
 	pixel_x = 32;
 	pixel_y = 32
 	},
-/obj/structure/closet/secure_closet/brig{
-	id = "brig1";
-	name = "Holding Cell Locker"
-	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bPq" = (
@@ -42907,6 +42903,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bTd" = (
@@ -98075,7 +98072,10 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/structure/closet/secure_closet/brig{
+	id = "brig1";
+	name = "Holding Cell Locker"
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "iai" = (
@@ -101229,6 +101229,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"rcu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "rdr" = (
 /obj/effect/spawner/lootdrop/wall/twentyfive_percent_falsewall,
 /turf/open/floor/plating,
@@ -155097,7 +155108,7 @@ btl
 buK
 lLc
 cfh
-cfh
+bmi
 bAm
 bCf
 bEd
@@ -155354,7 +155365,7 @@ btm
 mYl
 bAn
 bxp
-bkq
+rcu
 bAn
 bCg
 bEe
