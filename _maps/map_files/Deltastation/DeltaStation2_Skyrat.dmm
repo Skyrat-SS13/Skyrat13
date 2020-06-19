@@ -41175,7 +41175,6 @@
 	pixel_x = 32;
 	pixel_y = 32
 	},
-/obj/machinery/computer/secure_data,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bPq" = (
@@ -98408,17 +98407,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/research/abandoned)
-"jft" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "jiJ" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -101241,6 +101229,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"rcu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "rdr" = (
 /obj/effect/spawner/lootdrop/wall/twentyfive_percent_falsewall,
 /turf/open/floor/plating,
@@ -155366,7 +155365,7 @@ btm
 mYl
 bAn
 bxp
-jft
+rcu
 bAn
 bCg
 bEe
