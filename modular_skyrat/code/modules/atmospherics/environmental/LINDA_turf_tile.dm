@@ -43,7 +43,7 @@
 			SSair.remove_from_active(aff_turf)
 		else
 			SSair.add_to_active(aff_turf)
-			SSair_turfs.currentrun -= aff_turf //We dont want it to process this run either way
+		SSair_turfs.currentrun -= aff_turf
 		SSair_turfs.exempt_currentrun[aff_turf] = TRUE
 
 

@@ -251,7 +251,7 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/proc/remove_from_active(turf/open/T)
 	active_turfs -= T
-	SSair_turfs.currentrun -= T
+	//SSair_turfs.currentrun -= T //Skyrat change
 	#ifdef VISUALIZE_ACTIVE_TURFS
 	T.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#00ff00")
 	#endif
@@ -267,7 +267,7 @@ SUBSYSTEM_DEF(air)
 		T.add_atom_colour("#00ff00", TEMPORARY_COLOUR_PRIORITY)
 		#endif
 		T.excited = TRUE
-		active_turfs[T] = /*SSair_turfs.currentrun[T] =*/ TRUE
+		active_turfs[T] = /*SSair_turfs.currentrun[T] =*/ TRUE //Skyrat change
 		if(blockchanges && T.excited_group)
 			T.excited_group.garbage_collect()
 		add_to_react_queue(T)
