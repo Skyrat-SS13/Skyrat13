@@ -1,6 +1,0 @@
-author: "IrkallaEpsilon"
-delete-after: True
-changes: 
-  - rscadd: "Psychic Domination Gland"
-  - rscdel: "Species Transformation Gland"
-  - balance: "Trauma Gland less bothersome for the receiving end, has a higher chance to roll special trauma which are gimmicky and not nearly as bothersome as severe traumas."
