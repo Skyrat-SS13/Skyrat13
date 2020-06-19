@@ -8,6 +8,7 @@ SUBSYSTEM_DEF(air_turfs)
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	var/list/currentrun = list()
+	var/list/exempt_currentrun = list()
 
 /datum/controller/subsystem/air_turfs/fire(resumed = 0)
 	var/fire_count = times_fired
@@ -15,6 +16,7 @@ SUBSYSTEM_DEF(air_turfs)
 		src.currentrun = SSair.active_turfs.Copy()
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
+	exempt_currentrun = list()
 	while(currentrun.len)
 		var/turf/open/T = currentrun[currentrun.len]
 		currentrun.len--
