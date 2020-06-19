@@ -41175,10 +41175,7 @@
 	pixel_x = 32;
 	pixel_y = 32
 	},
-/obj/structure/closet/secure_closet/brig{
-	id = "brig1";
-	name = "Holding Cell Locker"
-	},
+/obj/machinery/computer/secure_data,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bPq" = (
@@ -98076,7 +98073,10 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/computer/secure_data,
+/obj/structure/closet/secure_closet/brig{
+	id = "brig1";
+	name = "Holding Cell Locker"
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "iai" = (
@@ -98408,6 +98408,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/research/abandoned)
+"jft" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "jiJ" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -103149,17 +103160,6 @@
 	icon_state = "chapel"
 	},
 /area/security/prison)
-"wqo" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "wrf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/wood,
@@ -155366,7 +155366,7 @@ btm
 mYl
 bAn
 bxp
-wqo
+jft
 bAn
 bCg
 bEe
