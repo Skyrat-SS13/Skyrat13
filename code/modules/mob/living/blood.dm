@@ -116,6 +116,10 @@
 
 /mob/living/carbon/human/bleed(amt)
 	amt *= physiology.bleed_mod
+	//skyrat edit - hemophilia quirk
+	if(HAS_TRAIT(src, TRAIT_HEMOPHILIA))
+		amt *= 2
+	//
 	if(!(NOBLOOD in dna.species.species_traits))
 		.=..()
 		if(dna.species.exotic_blood && .) // Do we have exotic blood, and have we left any on the ground?

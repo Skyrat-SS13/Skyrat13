@@ -1,7 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - refactor: "USP code is now actually sane."
-  - balance: "Security officers now spawn with an USP and spare mag in their backpacks."
-  - balance: "The HoS now gets an USP too."
-  - balance: "The HoS can now swipe his ID on USP magazines so they can accept lethal bullets."

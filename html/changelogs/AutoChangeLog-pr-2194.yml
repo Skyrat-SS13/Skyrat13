@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - balance: "Some types of clothing now have equipping and unequipping delays (only spacesuits, hardsuits and storage items for the moment)."

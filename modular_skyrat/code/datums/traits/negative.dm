@@ -45,12 +45,18 @@
 		heirloom_type = /obj/item/flashlight/lantern/heirloom_moth
 	heirloom = new heirloom_type(get_turf(quirk_holder))
 	GLOB.family_heirlooms += heirloom
+	RegisterSignal(heirloom, COMSIG_PARENT_QDELETING, .proc/deleting_heirloom)
 	var/list/slots = list(
 		"in your left pocket" = SLOT_L_STORE,
 		"in your right pocket" = SLOT_R_STORE,
 		"in your backpack" = SLOT_IN_BACKPACK
 	)
 	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
+
+/datum/quirk/family_heirloom/proc/deleting_heirloom()
+	GLOB.family_heirlooms -= heirloom
+	UnregisterSignal(heirloom, COMSIG_PARENT_QDELETING)
+	heirloom = null
 
 //airhead
 /datum/quirk/airhead
@@ -59,46 +65,6 @@
 	value = -1
 	mob_trait = TRAIT_DUMB
 	medical_record_text = "Patient exhibits rather low mental capabilities."
-
-//specism
-/datum/quirk/specism
-	name = "Specist"
-	desc = "Other species are a mistake on the gene pool and you know it. Seeing people of differing species negatively impacts your mood, \
-			and seeing people of the same species as yours will positively impact your mood."
-	value = -1
-	medical_record_text = "Patient exhibits an unnatural distaste for people of differing species."
-	var/pcooldown = 0
-	var/pcooldown_time = 15 SECONDS
-	var/master_race
-
-/datum/quirk/specism/add()
-	. = ..()
-	if(!ishuman(quirk_holder))
-		remove() //prejudice is a human problem.
-	var/mob/living/carbon/human/trianglehatman = quirk_holder
-	master_race = trianglehatman.dna.species.type
-
-/datum/quirk/specism/on_process()
-	. = ..()
-	if(pcooldown > world.time)
-		return
-	pcooldown = world.time + pcooldown_time
-	if(!ishuman(quirk_holder))
-		remove() //prejudice is a human problem.
-	var/mob/living/carbon/human/trianglehatman = quirk_holder
-	if(!master_race)
-		master_race = trianglehatman.dna.species.type
-	var/pridecount = 0
-	var/hatecount = 0
-	for(var/mob/living/carbon/human/H in (view(5, trianglehatman) - trianglehatman))
-		if(H.dna.species.type != master_race)
-			hatecount++
-		else
-			pridecount++
-	if(hatecount > pridecount)
-		SEND_SIGNAL(trianglehatman, COMSIG_ADD_MOOD_EVENT, "specism_hate", /datum/mood_event/specism_hate)
-	else if(pridecount > hatecount)
-		SEND_SIGNAL(trianglehatman, COMSIG_ADD_MOOD_EVENT, "specism_pride", /datum/mood_event/specism_pride)
 
 //clumsyness
 /datum/quirk/disaster_artist
@@ -115,3 +81,58 @@
 	value = -1
 	mob_trait = TRAIT_SCREWY_MOOD
 	medical_record_text = "Patient is incapable of communicating their emotions."
+
+//aaaaaa im bleeding aaaaaaaaa
+/datum/quirk/hemophiliac
+	name = "Hemophiliac"
+	desc = "Your body is bad at coagulating blood. Bleeding will always be two times worse when compared to the average person."
+	value = -2
+	mob_trait = TRAIT_HEMOPHILIA
+	medical_record_text = "Patient exhibits abnormal blood coagulation behavior."
+
+//i cant run help
+/datum/quirk/asthmatic
+	name = "Asthmatic"
+	desc = "You have been diagnosed with asthma. You can only run half of what a healthy person can, and running may cause oxygen damage."
+	value = -2
+	mob_trait = TRAIT_ASTHMATIC
+	medical_record_text = "Patient exhibits asthmatic symptoms."
+
+//owie everythign hurt
+/datum/quirk/paper_skin
+	name = "Paper skin"
+	desc = "Your skin and body are fragile. Damage from most sources is increased by 10%."
+	value = -3
+	medical_record_text = "Patient is frail and  tends to be damaged quite easily."
+
+/datum/quirk/paper_skin/add()
+	. = ..()
+	if(.)
+		var/mob/living/carbon/human/H = quirk_holder
+		if(H && istype(H))
+			H.physiology.armor -= 10
+
+//mom grab the epipen
+/datum/quirk/allergic
+	name = "Allergic"
+	desc = "You have had terrible allergies for as long as you can remember. Some foods will become toxic to your palate and cause unforeseen consequences."
+	value = -1
+	medical_record_text = "Patient is allergic to a certain type of food."
+
+/datum/quirk/allergic/add()
+	. = ..()
+	if(.)
+		var/mob/living/carbon/human/H = quirk_holder
+		if(H && istype(H))
+			var/foodie = pick(GLOB.food)
+			var/randumb = GLOB.food[foodie]
+			while((H.dna.species.toxic_food | randumb) == H.dna.species.toxic_food)
+				foodie = pick(GLOB.food)
+				randumb = GLOB.food[foodie]
+			H.dna.species.toxic_food |= randumb
+			H.dna.species.liked_food -= randumb
+			H.physiology.allergies |= randumb
+			addtimer(CALLBACK(src, .proc/inform, foodie), 5 SECONDS)
+
+/datum/quirk/allergic/proc/inform(var/allergy = "bad coders")
+	to_chat(quirk_holder, "<span class='danger'><b><i>You are allergic to [lowertext(allergy)].</i></b></span>")

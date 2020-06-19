@@ -76,20 +76,22 @@
 	item_state = "executioners_sword"
 	sharpness = IS_SHARP
 	var/delimb_chance = 15
-	var/armorthreshold
+	var/armorthreshold = 25
 
-/obj/item/melee/sword/executioner/afterattack(atom/target, mob/living/user, proximity)
-	. = ..()
+/obj/item/melee/sword/executioner/melee_attack_chain(mob/user, atom/target, params)
+	..()
 	var/def_zone = user.zone_selected
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		var/obj/item/bodypart/BP = C.get_bodypart(check_zone(user.zone_selected))
+		if(!istype(BP))
+			return
 		if(prob(delimb_chance))
 			if(BP.body_zone == (BODY_ZONE_CHEST || BODY_ZONE_HEAD))
-				if(C.getarmor(def_zone, "melee") >= 25)
-					return FALSE
+				if(C.getarmor(def_zone, "melee") >= armorthreshold)
+					user.changeNext_move(CLICK_CD_MELEE * 2)
+					return
 			BP.dismember(BRUTE)
-	if(proximity)
 		user.changeNext_move(CLICK_CD_MELEE * 2)
 
 /obj/item/melee/sword/shortsword
@@ -101,7 +103,6 @@
 	hitsound = "sound/weapons/slash.ogg"
 	force = 12
 
-/obj/item/melee/sword/shortsword/afterattack(atom/target, mob/living/user, proximity)
-	. = ..()
-	if(proximity)
-		user.changeNext_move(CLICK_CD_MELEE * 0.75)
+/obj/item/melee/sword/shortsword/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE * 0.75)

@@ -1,4 +1,0 @@
-author: "Avunia"
-delete-after: True
-changes: 
-  - bugfix: "Fix clown vox spawning without n2 in their box"
