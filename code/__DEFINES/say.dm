@@ -85,6 +85,9 @@
 #define EMOTE_AUDIBLE 2
 
 //Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
+//SKYRAT CHANGES BEGIN
+#define MAX_AMBITION_LEN		1024
+//SKYRAT CHANGES END
 #define MAX_MESSAGE_LEN			2048		//Citadel edit: What's the WORST that could happen?
 #define MAX_FLAVOR_LEN			4096		//double the maximum message length.
 #define MAX_TASTE_LEN			40 //lick... vore... ew...

@@ -27,3 +27,6 @@
 			/datum/reagent/medicine/rezadone
 		)
 	)
+
+/obj/machinery/sleeper/party
+	icon = 'modular_skyrat/icons/obj/machines/sleeper.dmi'

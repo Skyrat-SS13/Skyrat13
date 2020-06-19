@@ -11,9 +11,10 @@
 	var/mining = FALSE
 	var/miningtime = 3000
 	var/miningpoints = 50
-	var/mintemp = T0C - 270
-	var/midtemp = T0C -70
-	var/maxtemp = T0C + 130
+	var/mintemp = TCRYO // 225K equals approximately -55F or -48C
+	var/midtemp = T0C // 273K equals 32F or 0C
+	var/maxtemp = 500 // 500K equals approximately 440F or 226C
+	var/heatingPower = 40000
 
 /obj/machinery/cryptominer/update_icon()
 	. = ..()
@@ -24,15 +25,12 @@
 	else
 		icon_state = "on"
 
-/obj/machinery/cryptominer/Initialize()
-	. = ..()
-	START_PROCESSING(SSobj,src)
-
 /obj/machinery/cryptominer/Destroy()
+	STOP_PROCESSING(SSmachines,src)
 	return ..()
 
 /obj/machinery/cryptominer/deconstruct()
-	STOP_PROCESSING(SSobj,src)
+	STOP_PROCESSING(SSmachines,src)
 	return ..()
 
 /obj/machinery/cryptominer/attackby(obj/item/W, mob/user, params)
@@ -44,38 +42,43 @@
 		return
 
 /obj/machinery/cryptominer/process()
-	var/turf/L = loc
-	var/datum/gas_mixture/env = L.return_air()
-	if(env.temperature > maxtemp)
-		if(mining)
-			playsound(loc, 'sound/machines/beep.ogg', 50, 1, -1)
-		mining = FALSE
-		update_icon()
+	var/turf/T = get_turf(src)
+	if(!T)
 		return
-	if(env.temperature < maxtemp && env.temperature > midtemp)
+	var/datum/gas_mixture/env = T.return_air()
+	if(!env)
+		return
+	if(!mining)
+		return
+	if(env.temperature >= maxtemp)
 		if(mining)
-			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-			if(D)
-				D.adjust_money((miningpoints / 5))
-			env.temperature += 100
-			air_update_turf()
-	if(env.temperature < midtemp && env.temperature > mintemp)
+			playsound(loc, 'sound/machines/beep.ogg', 50, TRUE, -1)
+		set_mining(FALSE)
+		return
+	if(env.temperature <= maxtemp && env.temperature >= midtemp)
 		if(mining)
-			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-			if(D)
-				D.adjust_money((miningpoints))
-			env.temperature += 100
-			air_update_turf()
+			produce_points(0.20)
+			produce_heat()
+		return
+	if(env.temperature <= midtemp && env.temperature >= mintemp)
+		if(mining)
+			produce_points(1)
+			produce_heat()
+		return
 	if(env.temperature <= mintemp)
 		if(mining)
-			playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-			if(D)
-				D.adjust_money((miningpoints * 3))
-			env.temperature += 100
-			air_update_turf()
+			produce_points(3)
+			produce_heat()
+		return
+
+/obj/machinery/cryptominer/proc/produce_points(number)
+	playsound(loc, 'sound/machines/ping.ogg', 50, TRUE, -1)
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(FLOOR(miningpoints * number,1))
+
+/obj/machinery/cryptominer/proc/produce_heat()
+	atmos_spawn_air("co2=10;TEMP=2000")
 
 /obj/machinery/cryptominer/attack_hand(mob/living/user)
 	. = ..()
@@ -83,19 +86,23 @@
 		to_chat(user, "<span class='warning'>[src] has to be on to do this!</span>")
 		return FALSE
 	if(mining)
-		to_chat(user, "<span class='warning'>[src] is already mining!</span>")
-		return FALSE
-	startmining(user)
+		set_mining(FALSE)
+		visible_message("<span class='warning'>[src] slowly comes to a halt.</span>",
+						"<span class='warning'>You turn off [src].</span>",
+						runechat_popup = TRUE)
+		return
+	set_mining(TRUE)
 
-/obj/machinery/cryptominer/proc/startmining(mob/living/user)
-	if(!mining)
-		addtimer(CALLBACK(src, .proc/stopmining, user),miningtime)
-		mining = TRUE
-		update_icon()
-
-/obj/machinery/cryptominer/proc/stopmining(mob/living/user)
-	mining = FALSE
+/obj/machinery/cryptominer/proc/set_mining(new_value)
+	if(new_value == mining)
+		return //No changes
+	mining = new_value
+	if(mining)
+		START_PROCESSING(SSmachines, src)
+	else
+		STOP_PROCESSING(SSmachines, src)
 	update_icon()
+
 
 /obj/machinery/cryptominer/syndie
 	name = "syndicate cryptocurrency miner"

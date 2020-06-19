@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	32
+#define SAVEFILE_VERSION_MAX	33
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -194,6 +194,20 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 31)
 		S["wing_color"]			>> features["wings_color"]
 		S["horn_color"]			>> features["horns_color"]
+	
+	if(current_version < 33)
+		//Skyrat changes
+		features["flavor_text"]			= strip_html_simple(features["flavor_text"], MAX_FLAVOR_LEN, TRUE)
+		features["silicon_flavor_text"]			= strip_html_simple(features["silicon_flavor_text"], MAX_FLAVOR_LEN, TRUE)
+		features["ooc_notes"]			= strip_html_simple(features["ooc_notes"], MAX_FLAVOR_LEN, TRUE)
+		features["general_records"]			= strip_html_simple(features["general_records"], MAX_FLAVOR_LEN, TRUE)
+		features["security_records"]			= strip_html_simple(features["security_records"], MAX_FLAVOR_LEN, TRUE)
+		features["medical_records"]			= strip_html_simple(features["medical_records"], MAX_FLAVOR_LEN, TRUE)
+		features["flavor_background"]			= strip_html_simple(features["flavor_background"], MAX_FLAVOR_LEN, TRUE)
+		features["character_skills"]			= strip_html_simple(features["character_skills"], MAX_FLAVOR_LEN, TRUE)
+		features["exploitable_info"]			= strip_html_simple(features["exploitable_info"], MAX_FLAVOR_LEN, TRUE)
+		//End of skyrat changes
+
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -271,6 +285,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// Custom hotkeys
 	S["key_bindings"]		>> key_bindings
+	S["modless_key_bindings"]		>> modless_key_bindings
 
 	//citadel code
 	S["arousable"]			>> arousable
@@ -326,7 +341,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	cit_toggles			= sanitize_integer(cit_toggles, 0, 16777215, initial(cit_toggles))
 	auto_ooc			= sanitize_integer(auto_ooc, 0, 1, initial(auto_ooc))
 	no_tetris_storage		= sanitize_integer(no_tetris_storage, 0, 1, initial(no_tetris_storage))
-	key_bindings 	= sanitize_islist(key_bindings, list())
+	key_bindings 			= sanitize_islist(key_bindings, list())
+	modless_key_bindings 	= sanitize_islist(modless_key_bindings, list())
 
 	//SKYRAT CHANGES BEGIN
 	see_chat_emotes	= sanitize_integer(see_chat_emotes, 0, 1, initial(see_chat_emotes))
@@ -351,6 +367,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!length(binds))
 			key_bindings -= key
 	// End
+	// I hate copypaste but let's do it again but for modless ones
+	for(var/key in modless_key_bindings)
+		var/bindname = modless_key_bindings[key]
+		if(!GLOB.keybindings_by_name[bindname])
+			modless_key_bindings -= key
 
 /datum/preferences/proc/save_preferences()
 	if(!path)
@@ -406,6 +427,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_skin"], pda_skin)
 	WRITE_FILE(S["show_credits"], show_credits) // SKYRAT EDIT: Credits
 	WRITE_FILE(S["key_bindings"], key_bindings)
+	WRITE_FILE(S["modless_key_bindings"], modless_key_bindings)
 
 	//citadel code
 	WRITE_FILE(S["screenshake"], screenshake)
@@ -586,8 +608,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	else //We have no old flavortext, default to new
 		S["feature_flavor_text"]		>> features["flavor_text"]
-		
-	
+
+
 	S["silicon_feature_flavor_text"]		>> features["silicon_flavor_text"]
 
 	S["feature_ooc_notes"]				>> features["ooc_notes"]
