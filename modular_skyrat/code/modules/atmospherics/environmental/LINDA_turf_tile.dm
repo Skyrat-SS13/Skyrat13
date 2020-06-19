@@ -13,8 +13,9 @@
 	var/datum/gas_mixture/current_gasmix
 	affected_turfs[src] = TRUE
 	for(var/turfloop in 1 to 3)
-		for(var/turf/open/aff_turf in affected_turfs) //Adjacent turfs handles multi-z too
-			for(var/turf/open/AdjTurf in aff_turf.atmos_adjacent_turfs)
+		for(var/t in affected_turfs) //Adjacent turfs handles multi-z too
+			var/turf/open/aff_turf = t
+			for(var/AdjTurf in aff_turf.atmos_adjacent_turfs)
 				if(!SSair_turfs.exempt_currentrun[AdjTurf])
 					affected_turfs[AdjTurf] = TRUE
 
@@ -55,7 +56,7 @@
 /datum/gas_mixture
 	var/cached_pressure = 101.3 //Doesn't matter much if it's wrong initially
 
-/datum/gas_mixture/proc/similar_pressure(cached)
+/datum/gas_mixture/proc/similar_pressure()
 	var/epic = cached_pressure
 	var/leisure = 1
 	if(epic>500) //Higher pressure similarity when on fire/high pressure. Done this way for speed?
