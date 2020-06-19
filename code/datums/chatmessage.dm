@@ -131,10 +131,9 @@
 	// BYOND Bug #2563917
 	// Construct text
 	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
-<<<<<<< HEAD
 	//SKYRAT CHANGES
 	var/complete_text = "<span class='center maptext [extra_classes.Join(" ")]' style='color: [tgt_color]'>[text]</span>"
-=======
+
 	var/complete_text = "<span class='center maptext [extra_classes.Join(" ")]' style='color: [tgt_color]'>[owner.say_emphasis(text)]</span>"
 >>>>>>> 3cdc73ff35... Merge pull request #12487 from kevinz000/erp_2
 	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, CHAT_MESSAGE_WIDTH))
