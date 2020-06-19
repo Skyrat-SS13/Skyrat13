@@ -1,8 +1,9 @@
 //TODO:
-//Better space handling
+//Better space tiles handling
 //Planetary atmos
 //High pressure pushes
 //Check if thermal energy is behaving properly
+//Calculate pressure more efficiently by using the group, not the individual tiles
 
 /turf/proc/process_cell(fire_count)
 	SSair.remove_from_active(src)
