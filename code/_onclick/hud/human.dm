@@ -334,7 +334,7 @@
 
 	//skyrat edit
 	using = new /obj/screen/human/toggle/extra()
-	using.icon = ui_style
+	using.icon = ui_style_modular(ui_style)
 	using.screen_loc = ui_inventory_extra
 	using.hud = src
 	toggleable_inventory += using
