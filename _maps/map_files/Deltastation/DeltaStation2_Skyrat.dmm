@@ -42907,6 +42907,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bTd" = (
@@ -98075,7 +98076,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/computer/secure_data,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "iai" = (
@@ -103148,6 +103149,17 @@
 	icon_state = "chapel"
 	},
 /area/security/prison)
+"wqo" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "wrf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/wood,
@@ -155097,7 +155109,7 @@ btl
 buK
 lLc
 cfh
-cfh
+bmi
 bAm
 bCf
 bEd
@@ -155354,7 +155366,7 @@ btm
 mYl
 bAn
 bxp
-bkq
+wqo
 bAn
 bCg
 bEe
