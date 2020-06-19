@@ -62,9 +62,9 @@
 		if(epic>4000)
 			leisure = 800
 		else if(epic>1100)
-			leisure = 300
+			leisure = 100
 		else
-			leisure = 50
+			leisure = 25
 	//var/percent = cached * 0.015
 	cached_pressure = return_pressure()
 	if(cached_pressure < epic+leisure && cached_pressure > epic-leisure)
