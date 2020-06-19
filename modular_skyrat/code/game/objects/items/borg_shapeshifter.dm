@@ -107,6 +107,19 @@
 	. = ..()
 	disrupt(user)
 
+/**
+  * check_menu: Checks if we are allowed to interact with a radial menu
+  *
+  * Arguments:
+  * * user The mob interacting with a menu
+  */
+/obj/item/borg_shapeshifter/proc/check_menu(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
 /obj/item/borg_shapeshifter/attack_self(mob/living/silicon/robot/user)
 	if (user && user.cell && user.cell.charge >  activationCost)
 		if (isturf(user.loc))
@@ -126,8 +139,201 @@
 			to_chat(user, "<span class='notice'>\the [src] is recharging.</span>")
 			return
 		var/borg_icon = input(user, "Select an icon!", "Robot Icon", null) as null|anything in borgmodels
-		if(!borg_icon)
+		var/mob/living/silicon/robot/R = loc
+		var/static/list/module_icons = sortList(list(
+		"Standard" = image(icon = 'icons/mob/robots.dmi', icon_state = "robot"),
+		"Medical" = image(icon = 'icons/mob/robots.dmi', icon_state = "medical"),
+		"Engineer" = image(icon = 'icons/mob/robots.dmi', icon_state = "engineer"),
+		"Security" = image(icon = 'icons/mob/robots.dmi', icon_state = "sec"),
+		"Service" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_f"),
+		"Miner" = image(icon = 'icons/mob/robots.dmi', icon_state = "miner"),
+		"Peacekeeper" = image(icon = 'icons/mob/robots.dmi', icon_state = "peace"),
+		"Clown" = image(icon = 'icons/mob/robots.dmi', icon_state = "clown"),
+		"Syndicate" = image(icon = 'icons/mob/robots.dmi', icon_state = "synd_sec")
+		))
+		var/module_selection = show_radial_menu(R, R , module_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
+		if(!module_selection)
 			return FALSE
+
+		switch(module_selection)
+			if("Standard")
+				var/static/list/standard_icons = sortList(list(
+					"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "robot"),
+					"Marina" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "marinasd"),
+					"Heavy" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "heavysd"),
+					"Eyebot" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "eyebotsd"),
+					"Robot" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "robot_old"),
+					"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysd"),
+					"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_standard"),
+					"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_sd")
+					))
+				var/borg_icon = show_radial_menu(R, R , standard_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
+				if(!borg_icon)
+					return FALSE
+				switch(borg_icon)
+					if("Default")
+						cyborg_base_icon = "robot"
+						cyborg_icon_override = 'icons/mob/robots.dmi'
+					if("Marina")
+						cyborg_base_icon = "marinasd"
+						cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+					if("Heavy")
+						cyborg_base_icon = "heavysd"
+						cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+					if("Eyebot")
+						cyborg_base_icon = "eyebotsd"
+						cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+					if("Robot")
+						cyborg_base_icon = "robot_old"
+						cyborg_icon_override = 'modular_skyrat/icons/mob/robotssd.dmi'
+					if("Bootyborg")
+						cyborg_base_icon = "bootysd"
+						cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Protectron")
+						cyborg_base_icon = "protectron_standard"
+						cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Miss m")
+						cyborg_base_icon = "missm_sd"
+						cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					else
+						return FALSE
+
+			if("Medical")
+				var/static/list/med_icons = list(
+					"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "medical"),
+					"Droid" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "medical"),
+					"Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekmed"),
+					"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinamed"),
+					"Eyebot" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "eyebotmed"),
+					"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymed"),
+					"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootymedical"),
+					"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_medical"),
+					"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_med"),
+					"Qualified Doctor" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "qualified_doctor"),
+					"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_med")
+				)
+				var/list/L = list("Medihound" = "medihound", "Medihound Dark" = "medihounddark", "Vale" = "valemed")
+				for(var/a in L)
+					var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+					wide.pixel_x = -16
+					med_icons[a] = wide
+				med_icons = sortList(med_icons)
+				var/borg_icon = show_radial_menu(R, R , med_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
+				if(!borg_icon)
+					return FALSE
+				switch(borg_icon)
+					if("Default")
+						disguise = "medical"
+						disguise_icon_override = 'icons/mob/robots.dmi'
+					if("Droid")
+						disguise = "medical"
+						disguise_icon_override = 'modular_citadel/icons/mob/robots.dmi'
+					if("Sleek")
+						disguise = "sleekmed"
+						disguise_icon_override = 'modular_citadel/icons/mob/robots.dmi'
+					if("Marina")
+						disguise = "marinamed"
+						disguise_icon_override = 'modular_citadel/icons/mob/robots.dmi'
+					if("Eyebot")
+						disguise = "eyebotmed"
+						disguise_icon_override = 'modular_citadel/icons/mob/robots.dmi'
+					if("Heavy")
+						disguise = "heavymed"
+						disguise_icon_override = 'modular_citadel/icons/mob/robots.dmi'
+					if("Bootyborg")
+						disguise = "bootymedical"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Protectron")
+						disguise = "protectron_medical"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Miss m")
+						disguise = "missm_med"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Qualified Doctor")
+						disguise = "qualified_doctor"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Zoomba")
+						disguise = "zoomba_med"
+						disguise_icon_override = 'icons/mob/robots.dmi'
+					if("Medihound")
+						disguise = "medihound"
+						disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+						disguise_pixel_offset = -16
+					if("Medihound Dark")
+						disguise = "medihounddark"
+						disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+						disguise_pixel_offset = -16
+					if("Vale")
+						disguise = "valemed"
+						disguise_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
+						disguise_pixel_offset = -16
+					else
+						return FALSE
+			if("Engineer")
+				engi_icons = list(
+					"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "engineer"),
+					"Default - Treads" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "engi-tread"),
+					"Loader" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "loaderborg"),
+					"Handy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "handyeng"),
+					"Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekeng"),
+					"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "caneng"),
+					"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinaeng"),
+					"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidereng"),
+					"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyeng"),
+					"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyeng"), //Skyrat change
+					"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_eng"),
+					"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_eng"),
+					"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_engi")
+				)
+				var/list/L = list("Pup Dozer" = "pupdozer", "Vale" = "valeeng")
+				for(var/a in L)
+					var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
+					wide.pixel_x = -16
+					engi_icons[a] = wide
+				engi_icons = sortList(engi_icons)
+				if(!borg_icon)
+					return FALSE
+				switch(borg_icon)
+					else
+						return FALSE
+			if("Security")
+				if(!borg_icon)
+					return FALSE
+				switch(borg_icon)
+					else
+						return FALSE
+			if("Service")
+				if(!borg_icon)
+					return FALSE
+				switch(borg_icon)
+					else
+						return FALSE
+			if("Miner")
+				if(!borg_icon)
+					return FALSE
+				switch(borg_icon)
+					else
+						return FALSE
+			if("Peacekeeper")
+				if(!borg_icon)
+					return FALSE
+				switch(borg_icon)
+					else
+						return FALSE
+			if("Clown")
+				if(!borg_icon)
+					return FALSE
+				switch(borg_icon)
+					else
+						return FALSE
+			if("Syndicate")
+				if(!borg_icon)
+					return FALSE
+				switch(borg_icon)
+					else
+						return FALSE
+			else
+				return FALSE
 		switch(borg_icon)
 			if("(Standard) Default")
 				disguise = "robot"
