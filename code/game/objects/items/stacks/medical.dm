@@ -82,7 +82,10 @@
 	heal_brute = 40
 	self_delay = 40
 	other_delay = 20
-	grind_results = list(/datum/reagent/medicine/c2/libital = 10)
+	grind_results = list(/datum/reagent/medicine/styptic_powder = 10)
+
+/obj/item/stack/medical/bruise_pack/one
+	amount = 1
 
 /obj/item/stack/medical/bruise_pack/heal(mob/living/M, mob/user)
 	if(M.stat == DEAD)
@@ -117,11 +120,11 @@
 	other_delay = 20
 	amount = 8
 	max_amount = 16
-	grind_results = list(/datum/reagent/cellulose = 2)
 	custom_price = 100
 	absorption_rate = 0.25
 	absorption_capacity = 5
 	splint_factor = 0.35
+	custom_price = PRICE_REALLY_CHEAP
 
 // gauze is only relevant for wounds, which are handled in the wounds themselves
 /obj/item/stack/medical/gauze/try_heal(mob/living/M, mob/user, silent)
@@ -166,6 +169,15 @@
 	is_cyborg = 1
 	cost = 250
 
+/obj/item/stack/medical/gauze/adv
+	name = "sterilized medical gauze"
+	desc = "A roll of elastic sterilized cloth that is extremely effective at stopping bleeding, heals minor wounds and cleans them."
+	singular_name = "sterilized medical gauze"
+	self_delay = 5
+
+/obj/item/stack/medical/gauze/adv/one
+	amount = 1
+
 /obj/item/stack/medical/suture
 	name = "suture"
 	desc = "Basic sterile sutures used to seal up cuts and lacerations and stop bleeding."
@@ -180,6 +192,9 @@
 	heal_brute = 10
 	stop_bleeding = 0.6
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
+
+/obj/item/stack/medical/suture/one
+	amount = 1
 
 /obj/item/stack/medical/suture/emergency
 	name = "emergency suture"
@@ -233,7 +248,10 @@
 	heal_burn = 5
 	flesh_regeneration = 2.5
 	sanitization = 0.3
-	grind_results = list(/datum/reagent/medicine/c2/lenturi = 10)
+	grind_results = list(/datum/reagent/medicine/silver_sulfadiazine = 10)
+
+/obj/item/stack/medical/ointment/one
+	amount = 1
 
 /obj/item/stack/medical/ointment/heal(mob/living/M, mob/user)
 	if(M.stat == DEAD)
@@ -264,6 +282,9 @@
 
 	var/is_open = TRUE ///This var determines if the sterile packaging of the mesh has been opened.
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
+
+/obj/item/stack/medical/mesh/one
+	amount = 1
 
 /obj/item/stack/medical/mesh/Initialize()
 	. = ..()
@@ -317,14 +338,13 @@
 /obj/item/stack/medical/mesh/advanced
 	name = "advanced regenerative mesh"
 	desc = "An advanced mesh made with aloe extracts and sterilizing chemicals, used to treat burns."
-
 	gender = PLURAL
 	singular_name = "advanced regenerative mesh"
 	icon_state = "aloe_mesh"
 	heal_burn = 15
 	sanitization = 1.25
 	flesh_regeneration = 3.5
-	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
+	//grind_results = list(/datum/reagent/consumable/aloejuice = 1) //will port later
 
 /obj/item/stack/medical/mesh/advanced/update_icon_state()
 	if(!is_open)
@@ -343,7 +363,7 @@
 	amount = 20
 	max_amount = 20
 	var/heal = 3
-	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
+	//grind_results = list(/datum/reagent/consumable/aloejuice = 1) //will port later
 
 /obj/item/stack/medical/aloe/heal(mob/living/M, mob/user)
 	. = ..()
@@ -387,7 +407,7 @@
 	amount = 5
 	max_amount = 10
 	self_delay = 20
-	grind_results = list(/datum/reagent/medicine/c2/libital = 10)
+	grind_results = list(/datum/reagent/medicine/styptic_powder = 10)
 	novariants = TRUE
 
 /obj/item/stack/medical/bone_gel/attack(mob/living/M, mob/user)
