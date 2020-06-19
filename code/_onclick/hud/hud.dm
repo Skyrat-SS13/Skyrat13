@@ -267,6 +267,11 @@ GLOBAL_LIST_INIT(modular_ui_styles, list(
 /datum/hud/proc/hidden_inventory_update()
 	return
 
+//skyrat edit
+/datum/hud/proc/extra_inventory_update()
+	return
+//
+
 /datum/hud/proc/persistent_inventory_update(mob/viewer)
 	if(!mymob)
 		return

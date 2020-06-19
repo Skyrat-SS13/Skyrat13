@@ -562,7 +562,10 @@
 		if(head.flags_inv & HIDEEYES)
 			obscured |= SLOT_GLASSES
 		if(head.flags_inv & HIDEEARS)
-			obscured |= SLOT_EARS
+			//skyrat edit
+			obscured |= SLOT_EARS_LEFT
+			obscured |= SLOT_EARS_RIGHT
+			//
 
 	if(wear_mask)
 		if(wear_mask.flags_inv & HIDEEYES)

@@ -402,7 +402,7 @@
 		if(SLOT_GLOVES, SLOT_HANDS, SLOT_HANDCUFFED)
 			return pick(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 
-		if(SLOT_HEAD, SLOT_NECK, SLOT_NECK, SLOT_EARS)
+		if(SLOT_HEAD, SLOT_NECK, SLOT_NECK, SLOT_EARS_LEFT, SLOT_EARS_RIGHT) //skyrat edit
 			return BODY_ZONE_HEAD
 
 		if(SLOT_WEAR_MASK)
@@ -640,8 +640,12 @@
 			return "Hands"
 		if(SLOT_BELT)
 			return "Belt"
-		if(SLOT_EARS)
-			return "Ears"
+		//skyrat edit
+		if(SLOT_EARS_LEFT)
+			return "Left ear"
+		if(SLOT_EARS_RIGHT)
+			return "Right ear"
+		//
 		if(SLOT_GLASSES)
 			return "Glasses"
 		if(SLOT_GLOVES)

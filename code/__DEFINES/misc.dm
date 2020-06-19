@@ -45,8 +45,8 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define SHIRT_LAYER				26
 #define SOCKS_LAYER				25
 #define UNDERWEAR_LAYER			24
-#define HANDS_PART_LAYER		23
-#define UNIFORM_LAYER			22
+#define UNIFORM_LAYER			23
+#define HANDS_PART_LAYER		22
 #define ID_LAYER				21
 #define SHOES_LAYER				20
 #define GLOVES_LAYER			19

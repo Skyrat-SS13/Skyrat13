@@ -66,7 +66,7 @@
 	if(neck)
 		H.equip_to_slot_or_del(new neck(H),SLOT_NECK)
 	if(ears)
-		H.equip_to_slot_or_del(new ears(H),SLOT_EARS)
+		H.equip_to_slot_or_del(new ears(H),SLOT_EARS_LEFT) //skyrat edit
 	if(glasses)
 		H.equip_to_slot_or_del(new glasses(H),SLOT_GLASSES)
 	if(id)

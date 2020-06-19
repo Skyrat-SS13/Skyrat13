@@ -10,7 +10,7 @@
 #define ITEM_SLOT_ICLOTHING		(1<<1)
 #define ITEM_SLOT_GLOVES		(1<<2)
 #define ITEM_SLOT_EYES			(1<<3)
-#define ITEM_SLOT_EARS_LEFT		(1<<4) //skyrat edit
+#define ITEM_SLOT_EARS			(1<<4)
 #define ITEM_SLOT_MASK			(1<<5)
 #define ITEM_SLOT_HEAD			(1<<6)
 #define ITEM_SLOT_FEET			(1<<7)
@@ -27,8 +27,6 @@
 #define ITEM_SLOT_UNDERWEAR		(1<<17)
 #define ITEM_SLOT_SOCKS			(1<<18)
 #define ITEM_SLOT_SHIRT			(1<<19)
-#define ITEM_SLOT_EARS_RIGHT	(1<<20)
-#define ITEM_SLOT_EARS			(ITEM_SLOT_EARS_RIGHT | ITEM_SLOT_EARS_LEFT)
 //
 
 //SLOTS
@@ -58,7 +56,6 @@
 #define	SLOT_W_SOCKS		22
 #define	SLOT_W_SHIRT		23
 #define SLOT_EARS_RIGHT		24
-#define SLOT_EARS			(SLOT_EARS_LEFT | SLOT_EARS_RIGHT)
 //
 
 
@@ -78,13 +75,11 @@
 			. = ITEM_SLOT_BELT
 		if(SLOT_WEAR_ID)
 			. = ITEM_SLOT_ID
-		if(SLOT_EARS)
-			. = ITEM_SLOT_EARS
 		//skyrat edit
 		if(SLOT_EARS_RIGHT)
-			. = ITEM_SLOT_EARS_RIGHT
+			. = ITEM_SLOT_EARS
 		if(SLOT_EARS_LEFT)
-			. = ITEM_SLOT_EARS_LEFT
+			. = ITEM_SLOT_EARS
 		//
 		if(SLOT_GLASSES)
 			. = ITEM_SLOT_EYES

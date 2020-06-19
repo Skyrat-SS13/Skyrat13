@@ -18,8 +18,12 @@
 			return belt
 		if(SLOT_WEAR_ID)
 			return wear_id
-		if(SLOT_EARS)
+		if(SLOT_EARS_LEFT) //skyrat edit
 			return ears
+		//skyrat edit
+		if(SLOT_EARS_RIGHT)
+			return ears_extra
+		//
 		if(SLOT_GLASSES)
 			return glasses
 		if(SLOT_GLOVES)
@@ -32,6 +36,14 @@
 			return wear_suit
 		if(SLOT_W_UNIFORM)
 			return w_uniform
+		//skyrat edit
+		if(SLOT_W_UNDERWEAR)
+			return w_underwear
+		if(SLOT_W_SOCKS)
+			return w_socks
+		if(SLOT_W_UNDERWEAR)
+			return w_shirt
+		//
 		if(SLOT_L_STORE)
 			return l_store
 		if(SLOT_R_STORE)
@@ -101,7 +113,7 @@
 			ears = I
 			update_inv_ears()
 		if(SLOT_EARS_RIGHT)
-			ears = I
+			ears_extra = I
 			update_inv_ears_extra()
 		//
 		if(SLOT_GLASSES)

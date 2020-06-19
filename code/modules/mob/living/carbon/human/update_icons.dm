@@ -77,6 +77,12 @@ There are several things that need to be remembered:
 		update_body(TRUE)
 		update_hair()
 		update_inv_w_uniform()
+		//skyrat edit
+		update_inv_w_underwear()
+		update_inv_w_socks()
+		update_inv_w_shirt()
+		update_inv_ears_extra()
+		//
 		update_inv_wear_id()
 		update_inv_gloves()
 		update_inv_glasses()
@@ -421,7 +427,7 @@ There are several things that need to be remembered:
 				client.screen += ears_extra			//add it to the client's screen
 		update_observer_view(ears_extra,1)
 
-		overlays_standing[EAR_RIGHT_LAYER] = ears.build_worn_icon(default_layer = EAR_RIGHT_LAYER, default_icon_file = 'modular_skyrat/icons/mob/ears_extra.dmi')
+		overlays_standing[EAR_RIGHT_LAYER] = ears_extra.build_worn_icon(default_layer = EAR_RIGHT_LAYER, default_icon_file = 'modular_skyrat/icons/mob/ears_extra.dmi', use_mob_overlay_icon = FALSE)
 		var/mutable_appearance/ears_overlay = overlays_standing[EAR_RIGHT_LAYER]
 		if(OFFSET_EARS in dna.species.offset_features)
 			ears_overlay.pixel_x += dna.species.offset_features[OFFSET_EARS][1]
@@ -775,7 +781,7 @@ use_mob_overlay_icon: if FALSE, it will always use the default_icon_file even if
 	var/file2use
 	if(!isinhands && mob_overlay_icon && use_mob_overlay_icon)
 		file2use = mob_overlay_icon
-	if(!file2use || (default_layer = EAR_RIGHT_LAYER))//skyrat edit
+	if(!file2use)
 		file2use = default_icon_file
 
 	//Find a valid layer from variables+arguments

@@ -680,7 +680,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		owner.update_inv_w_socks()
 	if(flags & ITEM_SLOT_SHIRT)
 		owner.update_inv_w_shirt()
-	if(flags & ITEM_SLOT_EARS_RIGHT)
+	if(flags & ITEM_SLOT_EARS)
 		owner.update_inv_ears_extra()
 	//
 	if(flags & ITEM_SLOT_GLOVES)

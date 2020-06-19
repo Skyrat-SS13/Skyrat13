@@ -1173,7 +1173,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
-		if(SLOT_EARS)
+		if(SLOT_EARS_LEFT) //skyrat edit
 			if(H.ears)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_EARS))
@@ -1181,6 +1181,34 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//skyrat edit
+		if(SLOT_EARS_RIGHT)
+			if(H.ears_extra)
+				return FALSE
+			if(!(I.slot_flags & ITEM_SLOT_EARS))
+				return FALSE
+			if(!H.get_bodypart(BODY_ZONE_HEAD))
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_W_UNDERWEAR)
+			if(H.w_underwear)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_UNDERWEAR) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_W_SOCKS)
+			if(H.w_socks)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_SOCKS) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(SLOT_W_SHIRT)
+			if(H.w_shirt)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_SHIRT) )
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//
 		if(SLOT_W_UNIFORM)
 			if(H.w_uniform)
 				return FALSE

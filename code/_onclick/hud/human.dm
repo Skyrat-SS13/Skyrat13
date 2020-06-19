@@ -16,20 +16,16 @@
 
 	if(usr.hud_used.inventory_shown && targetmob.hud_used)
 		usr.hud_used.inventory_shown = FALSE
-		//skyrat edit
-		if(usr.hud_used.extra_shown && targetmob.hud_used)
-			usr.client.screen -= targetmob.hud_used.extra_inventory
-		//
 		usr.client.screen -= targetmob.hud_used.toggleable_inventory
+		usr.client.screen -= targetmob.hud_used.extra_inventory
 	else
 		usr.hud_used.inventory_shown = TRUE
-		//skyrat edit
-		if(usr.hud_used.extra_shown && targetmob.hud_used)
-			usr.client.screen += targetmob.hud_used.extra_inventory
-		//
 		usr.client.screen += targetmob.hud_used.toggleable_inventory
+		if(usr.hud_used.extra_shown)
+			usr.client.screen += targetmob.hud_used.extra_inventory
 
 	targetmob.hud_used.hidden_inventory_update(usr)
+	targetmob.hud_used.extra_inventory_update(usr)
 
 //skyrat edit
 /obj/screen/human/toggle/extra
@@ -46,13 +42,13 @@
 			targetmob = M
 
 	if(usr.hud_used.extra_shown && targetmob.hud_used)
-		usr.hud_used.inventory_shown = FALSE
+		usr.hud_used.extra_shown = FALSE
 		usr.client.screen -= targetmob.hud_used.extra_inventory
 	else
 		usr.hud_used.extra_shown = TRUE
 		usr.client.screen += targetmob.hud_used.extra_inventory
 
-	targetmob.hud_used.hidden_inventory_update(usr)
+	targetmob.hud_used.extra_inventory_update(usr)
 //
 
 /obj/screen/human/equip
@@ -309,11 +305,11 @@
 	toggleable_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
-	inv_box.name = "right ear" //skyrat edit
+	inv_box.name = "left ear" //skyrat edit
 	inv_box.icon = ui_style
 	inv_box.icon_state = "ears"
 	inv_box.screen_loc = ui_ears
-	inv_box.slot_id = SLOT_EARS_RIGHT //skyrat edit
+	inv_box.slot_id = SLOT_EARS_LEFT //skyrat edit
 	toggleable_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -364,7 +360,7 @@
 	extra_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
-	inv_box.name = "left ear"
+	inv_box.name = "right ear"
 	inv_box.icon = ui_style_modular(ui_style)
 	inv_box.icon_state = "ears"
 	inv_box.screen_loc = ui_ears_extra
@@ -514,6 +510,33 @@
 		if(H.wear_neck)	screenmob.client.screen -= H.wear_neck
 		if(H.head)		screenmob.client.screen -= H.head
 
+//skyrat edit
+/datum/hud/human/extra_inventory_update(mob/viewer)
+	if(!mymob)
+		return
+	var/mob/living/carbon/human/H = mymob
+
+	var/mob/screenmob = viewer || H
+
+	if(screenmob.hud_used.extra_shown && screenmob.hud_used.inventory_shown && screenmob.hud_used.hud_shown)
+		if(H.ears_extra)
+			H.ears_extra.screen_loc = ui_ears_extra
+			screenmob.client.screen += H.ears_extra
+		if(H.w_underwear)
+			H.w_underwear.screen_loc = ui_boxers
+			screenmob.client.screen += H.w_underwear
+		if(H.w_socks)
+			H.w_socks.screen_loc = ui_socks
+			screenmob.client.screen += H.w_socks
+		if(H.w_shirt)
+			H.w_shirt.screen_loc = ui_shirt
+			screenmob.client.screen += H.w_shirt
+	else
+		if(H.ears_extra)		screenmob.client.screen -= H.ears_extra
+		if(H.w_underwear)		screenmob.client.screen -= H.w_underwear
+		if(H.w_socks)			screenmob.client.screen -= H.w_socks
+		if(H.w_shirt)			screenmob.client.screen -= H.w_shirt
+//
 
 
 /datum/hud/human/persistent_inventory_update(mob/viewer)

@@ -385,7 +385,7 @@
 		items += w_uniform
 	//skyrat edit
 	if(ears_extra)
-		items += w_uniform
+		items += ears_extra
 	if(w_underwear)
 		items += w_underwear
 	if(w_socks)

@@ -127,7 +127,7 @@
 				. += "<b><font color=orange>[t_His] eyes are flickering a bright yellow!</font></b>"
 
 	//ears
-	if(ears && !(SLOT_EARS in obscured))
+	if(ears && !(SLOT_EARS_LEFT in obscured)) //skyrat edit
 		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."
 
 	//ID
