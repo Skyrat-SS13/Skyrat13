@@ -313,7 +313,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "ears"
 	inv_box.screen_loc = ui_ears
-	inv_box.slot_id = SLOT_EARS
+	inv_box.slot_id = SLOT_EARS_RIGHT //skyrat edit
 	toggleable_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -344,6 +344,7 @@
 	inv_box.icon = ui_style_modular(ui_style)
 	inv_box.icon_state = "underwear"
 	inv_box.screen_loc = ui_boxers
+	inv_box.slot_id = SLOT_W_UNDERWEAR //skyrat edit
 	extra_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -351,6 +352,7 @@
 	inv_box.icon = ui_style_modular(ui_style)
 	inv_box.icon_state = "socks"
 	inv_box.screen_loc = ui_socks
+	inv_box.slot_id = SLOT_W_SOCKS //skyrat edit
 	extra_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -358,6 +360,7 @@
 	inv_box.icon = ui_style_modular(ui_style)
 	inv_box.icon_state = "shirt"
 	inv_box.screen_loc = ui_shirt
+	inv_box.slot_id = SLOT_W_SHIRT //skyrat edit
 	extra_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -365,6 +368,7 @@
 	inv_box.icon = ui_style_modular(ui_style)
 	inv_box.icon_state = "ears"
 	inv_box.screen_loc = ui_ears_extra
+	inv_box.slot_id = SLOT_EARS_RIGHT //skyrat edit
 	extra_inventory += inv_box
 	//
 
