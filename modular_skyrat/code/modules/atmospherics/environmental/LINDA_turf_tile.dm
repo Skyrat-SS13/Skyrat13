@@ -39,7 +39,7 @@
 			current_gasmix.gases[gas_datum] = final_gas_mix[gas_datum]
 		current_gasmix.temperature = final_temp
 		aff_turf.update_visuals()
-		if(current_gasmix.similar_pressure(current_gasmix.cached_pressure))
+		if(current_gasmix.similar_pressure())
 			SSair.remove_from_active(aff_turf)
 		else
 			SSair.add_to_active(aff_turf)
@@ -56,7 +56,7 @@
 	var/cached_pressure = 101.3 //Doesn't matter much if it's wrong initially
 
 /datum/gas_mixture/proc/similar_pressure(cached)
-	var/epic = cached
+	var/epic = cached_pressure
 	var/leisure = 1
 	if(epic>500) //Higher pressure similarity when on fire/high pressure. Done this way for speed?
 		if(epic>4000)
