@@ -162,7 +162,7 @@
 
 /datum/crafting_recipe/irifle
 	name = "Improvised zip rifle (7.62mm)"
-	result = /obj/item/gun/ballistic/shotgun/improvised_rifle
+	result = /obj/item/gun/ballistic/revolver/doublebarrel/improvised/bad_improvised_rifle
 	reqs = list(/obj/item/pipe = 1,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/weaponcrafting/improvised_parts/generic_receiver = 1,
