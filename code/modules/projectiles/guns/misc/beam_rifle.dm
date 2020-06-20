@@ -197,7 +197,7 @@
 	else
 		P.color = rgb(0, 255, 0)
 	var/turf/curloc = get_turf(src)
-	var/turf/targloc = get_turf(current_user.client.mouseObject)
+	var/turf/targloc = current_user.client.mouseLocation //Skyrat change
 	if(!istype(targloc))
 		if(!istype(curloc))
 			return
@@ -290,7 +290,7 @@
 	process_aim()
 	if(fire_check() && can_trigger_gun(M))
 		sync_ammo()
-		do_fire(M.client.mouseObject, M, FALSE, M.client.mouseParams, M.zone_selected)
+		do_fire(M.client.mouseLocation, M, FALSE, M.client.mouseParams, M.zone_selected) //Skyrat change
 	stop_aiming()
 	QDEL_LIST(current_tracers)
 	return ..()
