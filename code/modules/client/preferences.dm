@@ -1691,7 +1691,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	if(!SSlanguage.languages_by_name)
 		return to_chat(user, "<span class='warning'>The language subsystem hasn't initialized yet. Please wait a bit!</span>")
 	var/list/dat = list()
-	dat += "<center><b>Speech setup</b></center><br>"
+	dat += "<center><b>Speech setup</b></center>"
 	dat += "<div align='center'>"
 	dat += "<br>"
 	dat += "Verbs refer to the verb used when you say something.<br>"
