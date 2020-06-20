@@ -551,8 +551,23 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Quirks
 	S["all_quirks"]			>> all_quirks
-	//SKYRAT ADDITION - additional language
+	//SKYRAT ADDITION
 	S["language"]			>> language
+	S["say_verb"]			>> say_verb
+	S["ask_verb"]			>> ask_verb
+	S["exclaim_verb"]		>> exclaim_verb
+	S["whisper_verb"]		>> whisper_verb
+	S["yell_verb"]			>> yell_verb
+	S["speech_soundtext"]	>> speech_soundtext
+	speech_soundtext = sanitize_text(speech_soundtext, initial(speech_soundtext))
+	S["ignored_speech"]		>> ignored_speech
+	ignored_speech = SANITIZE_LIST(ignored_speech)
+	S["exclusive_speech"]	>> exclusive_speech
+	exclusive_speech = SANITIZE_LIST(exclusive_speech)
+	S["speech_spans"]		>> speech_spans
+	speech_spans = SANITIZE_LIST(speech_spans)
+	S["speech_replacers"]	>> speech_replacers
+	speech_replacers = SANITIZE_LIST(speech_replacers)
 	//
 
 	//Citadel code
@@ -866,8 +881,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Quirks
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
-	//SKYRAT ADDITION - additional language
+	//SKYRAT ADDITION
 	WRITE_FILE(S["language"]			, language)
+	WRITE_FILE(S["say_verb"]			, say_verb)
+	WRITE_FILE(S["ask_verb"]			, ask_verb)
+	WRITE_FILE(S["exclaim_verb"]		, exclaim_verb)
+	WRITE_FILE(S["whisper_verb"]		, whisper_verb)
+	WRITE_FILE(S["yell_verb"]			, yell_verb)
+	WRITE_FILE(S["speech_soundtext"]	, speech_soundtext)
+	WRITE_FILE(S["ignored_speech"]		, ignored_speech)
+	WRITE_FILE(S["exclusive_speech"]	, exclusive_speech)
+	WRITE_FILE(S["speech_spans"]		, speech_spans)
+	WRITE_FILE(S["speech_replacers"]	, speech_replacers)
 	//
 
 	WRITE_FILE(S["vore_flags"]			, vore_flags)

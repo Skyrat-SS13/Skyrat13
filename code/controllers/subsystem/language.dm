@@ -43,4 +43,29 @@ SUBSYSTEM_DEF(language)
 				to_chat(user, "<span class='warning'>This probably shouldn't be happening. Scream at Bob on #main-dev.</span>")
 		else
 			continue
+	var/mob/living/carbon/H = user
+	if(istype(H))
+		if(cli.prefs.say_verb)
+			H.dna.species.say_mod = cli.prefs.say_verb
+		if(cli.prefs.ask_verb)
+			H.dna.species.ask_mod = cli.prefs.ask_verb
+		if(cli.prefs.exclaim_verb)
+			H.dna.species.exclaim_mod = cli.prefs.exclaim_verb
+		if(cli.prefs.whisper_verb)
+			H.dna.species.whisper_mod = cli.prefs.whisper_verb
+		if(cli.prefs.yell_verb)
+			H.dna.species.yell_mod = cli.prefs.yell_verb
+	if(cli.prefs.speech_replacers.len || cli.prefs.speech_spans.len)
+		var/datum/speech_mod/custom/C = new()
+		if(cli.prefs.speech_soundtext)
+			C.soundtext = cli.prefs.speech_soundtext
+		if(cli.prefs.speech_spans.len)
+			C.speech_spans = cli.prefs.speech_spans.Copy()
+		if(cli.prefs.ignored_speech.len)
+			C.ignored_languages = cli.prefs.ignored_speech.Copy()
+		if(cli.prefs.exclusive_speech.len)
+			C.exclusive_languages = cli.prefs.exclusive_speech.Copy()
+		if(cli.prefs.speech_replacers.len)
+			C.replacers = cli.prefs.speech_replacers.Copy()
+		C.add_speech_mod(user)
 //

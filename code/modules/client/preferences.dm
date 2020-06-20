@@ -130,6 +130,19 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/maxdislikes = 3 //Skyrat additions END
 
 	var/list/alt_titles_preferences = list()
+
+	var/say_verb = ""
+	var/ask_verb = ""
+	var/exclaim_verb = ""
+	var/whisper_verb = ""
+	var/yell_verb = ""
+
+	var/max_speech_replacers = 50 //it's still a lot ngl
+	var/speech_soundtext = "speaking differently."
+	var/list/ignored_speech = list()
+	var/list/exclusive_speech = list()
+	var/list/speech_spans = list() //i'll probably use this later
+	var/list/speech_replacers = list()
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
@@ -359,11 +372,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<center><h2>Quirk Setup</h2>"
 				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Quirks</a><br></center>"
 				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
-			//Skyrat edit - food preferences
+			//Skyrat edit
 			dat += "<center><h2>Food Setup</h2>"
 			dat += "<a href='?_src_=prefs;preference=food;task=menu'>Configure Foods</a></center><br>"
 			dat += "<center><b>Current Likings:</b> [foodlikes.len ? foodlikes.Join(", ") : "None"]</center>"
 			dat += "<center><b>Current Dislikings:</b> [fooddislikes.len ? fooddislikes.Join(", ") : "None"]</center>"
+			dat += "<center><h2>Speech Setup</h2>"
+			dat += "<a href='?_src_=prefs;preference=speech;task=menu'>Configure Speech</a></center><br>"
 			//
 			dat += "<h2>Identity</h2>"
 			dat += "<table width='100%'><tr><td width='75%' valign='top'>"
@@ -1671,6 +1686,83 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	popup.open(FALSE)
 //
 
+//Skyrat edit - speech impediment prefs
+/datum/preferences/proc/SetSpeech(mob/user)
+	if(!SSlanguage.languages_by_name)
+		return to_chat(user, "<span class='warning'>The language subsystem hasn't initialized yet. Please wait a bit!</span>")
+	var/list/dat = list()
+	dat += "<center><b>Speech setup</b></center><br>"
+	dat += "<div align='center'>"
+	dat += "<br>"
+	dat += "Verbs refer to the verb used when you say something.<br>"
+	dat += "Say is used for normal speaking, ask for phrases that end in \"?\", exclaim for phrases that end in \"!\", yell for phrases that end in a lot of \"!\".<br>"
+	dat += "Format: (name) (verb), \"(message)\"<br>"
+	dat += "Example: [real_name] says, \"Lorem ipsum.\"<br>"
+	dat += "Soundtext refers to the message you see when you gain this impediment.<br>"
+	dat += "Format: You start (soundtext).<br>"
+	dat += "Example: \"You start speaking differently.\"<br>"
+	dat += "Exclusive languages are used when you want to apply the impediment on only exclusive languages.<br>"
+	dat += "Ignored languages are used when you want to apply the impediment on every language, except ignored ones.<br>"
+	dat += "Replacers replace certain words or characters with their associated one."
+	dat += "</div>"
+	dat += "<br>"
+	dat += "<center><a href='?_src_=prefs;preference=speech;task=close'>Done</a></center>"
+	dat += "<br>"
+	dat += "<hr>"
+	dat += "<div style='padding-left: 15px;'>"
+	dat += "<b>Say verb:</b> [say_verb ? say_verb : "Default"] "
+	dat += "<a href='?_src_=prefs;preference=speech;task=update;verb=say'>Modify</a><br>"
+	dat += "<b>Ask verb:</b> [ask_verb ? ask_verb : "Default"] "
+	dat += "<a href='?_src_=prefs;preference=speech;task=update;verb=ask'>Modify</a><br>"
+	dat += "<b>Exclaim verb:</b> [exclaim_verb ? exclaim_verb : "Default"] "
+	dat += "<a href='?_src_=prefs;preference=speech;task=update;verb=exclaim'>Modify</a><br>"
+	dat += "<b>Whisper verb:</b> [whisper_verb ? whisper_verb : "Default"] "
+	dat += "<a href='?_src_=prefs;preference=speech;task=update;verb=whisper'>Modify</a><br>"
+	dat += "<b>Yell verb:</b> [yell_verb ? yell_verb : "Default"] "
+	dat += "<a href='?_src_=prefs;preference=speech;task=update;verb=yell'>Modify</a>"
+	dat += "</div>"
+	dat += "<hr>"
+	dat += "<div style='padding-left: 15px;'>"
+	dat += "<b>Soundtext:</b> [speech_soundtext ? speech_soundtext : "None"]<br>"
+	dat += "<a href='?_src_=prefs;preference=speech;task=update;soundtext=modify'>Modify</a>"
+	dat += "</div>"
+	dat += "<hr>"
+	dat += "<div style='padding-left: 15px;'>"
+	dat += "<b>Ignored languages:</b> [ignored_speech.len ? ignored_speech.Join(", ") : "None"]<br>"
+	dat += "<a href='?_src_=prefs;preference=speech;task=update;ignore=add'>Add</a><a href='?_src_=prefs;preference=speech;task=update;ignore=remove'>Remove</a><br>"
+	dat += "<b>Exclusive languages:</b> [exclusive_speech.len ? exclusive_speech.Join(", ") : "None"]<br>"
+	dat += "<a href='?_src_=prefs;preference=speech;task=update;exclusive=add'>Add</a><a href='?_src_=prefs;preference=speech;task=update;exclusive=remove'>Remove</a><br>"
+	dat += "<span align='center' style='color: #ff3333;'>Using exclusive languages will cancel the use of ignored languages. Use only one of them.</span>"
+	dat += "</div>"
+	dat += "<hr>"
+	dat += "<div style='padding-left: 15px;'>"
+	dat += "<b>Replacers:</b><br>"
+	if(speech_replacers.len)
+		for(var/list/replacer in speech_replacers)
+			dat += "<b>[replacer[1]]</b> to <b>[replacer[2]]</b> "
+			if(replacer[3] == "strong")
+				dat += "<a style='background-color: #32c232;' href='?_src_=prefs;preference=speech;task=update;replacer_task=strong;replacer=[replacer[1]]'>Strong</a>"
+			else
+				dat += "<a style='background-color: #32c232;' href='?_src_=prefs;preference=speech;task=update;replacer_task=strong;replacer=[replacer[1]]'>Weak</a>"
+			dat += "<a href='?_src_=prefs;preference=speech;task=update;replacer_task=remove;replacer=[replacer[1]]'>Remove</a>"
+	else
+		dat += "None."
+	dat += "<br>"
+	dat += "<a href='?_src_=prefs;preference=speech;task=update;replacer_task=add'>Add Replacer</a>"
+	dat += "<br>"
+	dat += "<span align='center' style='color: #ff3333;'>Keep in mind that the replacer will replace the characters as exactly written.</span><br>"
+	dat += "<span align='center' style='color: #ff3333;'>If you want the replacer to apply regardless of capitalization, make it a strong replacer.</span>"
+	dat += "</div>"
+	dat += "<hr>"
+
+	dat += "<br><center><a href='?_src_=prefs;preference=speech;task=reset'>Reset Speech Preferences</a></center>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Speech Preferences</div>", 950, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+//
+
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(href_list["jobbancheck"])
 		var/job = sanitizeSQL(href_list["jobbancheck"])
@@ -1774,7 +1866,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else
 				SetQuirks(user)
 		return TRUE
-	//SKYRAT CHANGE - food prefs and language pref
+	//SKYRAT CHANGE
 	else if(href_list["preference"] == "food")
 		switch(href_list["task"])
 			if("close")
@@ -1827,6 +1919,115 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					SetLanguage(user)
 			else
 				SetLanguage(user)
+		return TRUE
+	else if(href_list["preference"] == "speech")
+		switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+				ShowChoices(user)
+			if("update")
+				switch(href_list["soundtext"])
+					if("modify")
+						var/choice = input(user, "What do you want your soundtext to be? Cancel to reset it.", "Soundtext", "") as null|text
+						if(choice)
+							speech_soundtext = strip_html_simple(choice, 128)
+						else
+							speech_soundtext = initial(speech_soundtext)
+				switch(href_list["ignore"])
+					if("add")
+						var/list/poslanguages = list()
+						for(var/i in SSlanguage.languages_by_name)
+							poslanguages |= i
+						poslanguages -= ignored_speech
+						var/choice = input(user, "Which language do you want to ignore?", "Ignore language", "") as null|anything in poslanguages
+						if(choice)
+							ignored_speech |= choice
+					if("remove")
+						var/choice = input(user, "Which language do you want to stop ignoring?", "Ignore language", "") as null|anything in ignored_speech
+						if(choice)
+							ignored_speech -= choice
+				switch(href_list["exclusive"])
+					if("add")
+						var/list/poslanguages = list()
+						for(var/i in SSlanguage.languages_by_name)
+							poslanguages |= i
+						poslanguages -= exclusive_speech
+						var/choice = input(user, "Which language do you want to be exclusive?", "Exclusive language", "") as null|anything in poslanguages
+						if(choice)
+							exclusive_speech |= choice
+					if("remove")
+						var/choice = input(user, "Which language do you want to stop being exclusive?", "Exclusive language", "") as null|anything in exclusive_speech
+						if(choice)
+							exclusive_speech -= choice
+				switch(href_list["replacer_task"])
+					if("add")
+						var/rep1
+						var/rep2
+						var/choice =  input(user, "What do you want to replace?", "Replacer", "") as null|text
+						if(choice)
+							rep1 = strip_html_simple(choice, 25)
+							choice = input(user, "What do you want to replace [rep1] with?", "Replacer", "") as null|text
+							if(choice)
+								rep2 = strip_html_simple(choice, 25)
+								choice = input(user, "Do you want the replacer to be strong?", "Replacer", "") as anything in list("Yes", "No")
+								if(choice == "Yes")
+									speech_replacers |= list(list("[rep1]", "[rep2]", "strong"))
+								else
+									speech_replacers |= list(list("[rep1]", "[rep2]", "weak"))
+					if("remove")
+						var/toremove = href_list["replacer"]
+						for(var/list/maybe in speech_replacers)
+							if(maybe[1] == toremove)
+								speech_replacers -= maybe
+					if("strong")
+						var/chump = href_list["replacer"]
+						for(var/list/maybe in speech_replacers)
+							if(maybe[1] == chump)
+								if(maybe[3] == "strong")
+									maybe[3] = "weak"
+								else
+									maybe[3] = "strong"
+				if(href_list["verb"])
+					var/mcclunky = href_list["verb"]
+					var/choice =  input(user, "What do you want to be your [mcclunky] verb? Cancel to use the default verb.", "[capitalize(mcclunky)] verb", "") as null|text
+					if(choice)
+						switch(mcclunky)
+							if("say")
+								say_verb = strip_html_simple(choice, 15)
+							if("ask")
+								ask_verb = strip_html_simple(choice, 15)
+							if("exclaim")
+								exclaim_verb = strip_html_simple(choice, 15)
+							if("whisper")
+								whisper_verb = strip_html_simple(choice, 15)
+							if("yell")
+								yell_verb = strip_html_simple(choice, 15)
+					else
+						switch(mcclunky)
+							if("say")
+								say_verb = initial(say_verb)
+							if("ask")
+								ask_verb = initial(ask_verb)
+							if("exclaim")
+								exclaim_verb = initial(exclaim_verb)
+							if("whisper")
+								whisper_verb = initial(whisper_verb)
+							if("yell")
+								yell_verb = initial(yell_verb)
+				SetSpeech(user)
+			if("reset")
+				say_verb = initial(say_verb)
+				ask_verb = initial(ask_verb)
+				exclaim_verb = initial(exclaim_verb)
+				whisper_verb = initial(whisper_verb)
+				yell_verb = initial(yell_verb)
+				ignored_speech = list()
+				exclusive_speech = list()
+				speech_spans = list()
+				speech_replacers = list()
+				SetSpeech(user)
+			else
+				SetSpeech(user)
 		return TRUE
 	//
 	switch(href_list["task"])
