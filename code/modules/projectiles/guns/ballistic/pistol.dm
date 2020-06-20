@@ -171,4 +171,4 @@
 
 /obj/item/gun/ballistic/automatic/pistol/improvised/nomag
 	spawnwithmagazine = FALSE // For crafting as you shouldn't get eight bullets for free otherwise people will reaper reload.
->>>>>>> 862ed61b86... [Ready] Improvised Weapons Update: Part 2 (#12386)
+
