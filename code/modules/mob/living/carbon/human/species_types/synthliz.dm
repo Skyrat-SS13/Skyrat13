@@ -19,7 +19,10 @@
 
 	exotic_bloodtype = "S"
 	//Skyrat change - blood
-	bloodtypes = list("S", "SY", "HF")
+	languagewhitelist = list("Encoded Audio Language")
+	bloodtypes = list("HF", "SY", "S")
+	bloodreagents = list("Synthetic Blood", "Oil")
+	rainbowblood = TRUE
 	//
 
 
