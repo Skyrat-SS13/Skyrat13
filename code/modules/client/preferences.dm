@@ -1723,7 +1723,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	dat += "</div>"
 	dat += "<hr>"
 	dat += "<div style='padding-left: 15px;'>"
-	dat += "<b>Soundtext:</b> [speech_soundtext ? speech_soundtext : "None"]<br>"
+	dat += "<b>Soundtext:</b> [speech_soundtext ? speech_soundtext : "None"] "
 	dat += "<a href='?_src_=prefs;preference=speech;task=update;soundtext=modify'>Modify</a>"
 	dat += "</div>"
 	dat += "<hr>"
