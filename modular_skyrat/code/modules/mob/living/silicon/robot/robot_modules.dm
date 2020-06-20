@@ -100,7 +100,7 @@ obj/item/robot_module/butler/Initialize()
 
 /obj/item/robot_module/standard/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/static/list/standard_icons = sortList(list(
+	var/static/list/standard_icons = list(
 		"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "robot"),
 		"Marina" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "marinasd"),
 		"Heavy" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "heavysd"),
@@ -108,8 +108,12 @@ obj/item/robot_module/butler/Initialize()
 		"Robot" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "robot_old"),
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysd"),
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_standard"),
-		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_sd"),
-		))
+		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_sd")
+		)
+	if(R.client && R.client.ckey == "banangarang")
+		var/image/cus_maid = image(icon = 'modular_skyrat/icons/mob/robo-maid2.dmi', icon_state = "robomaid_sd")
+		standard_icons["RoboMaid"] = cus_maid
+	standard_icons = sortList(standard_icons)
 	var/standard_borg_icon = show_radial_menu(R, R , standard_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 	switch(standard_borg_icon)
 		if("Default")
@@ -140,6 +144,9 @@ obj/item/robot_module/butler/Initialize()
 		if("Miss m")
 			cyborg_base_icon = "missm_sd"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("RoboMaid")
+			cyborg_base_icon = "robomaid_sd"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
 		else
 			return FALSE
 	return ..()
