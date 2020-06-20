@@ -280,8 +280,6 @@
 	materials = list(/datum/material/iron = 6500, /datum/material/glass = 50)
 	build_path = /obj/item/weaponcrafting/improvised_parts/trigger_assembly
 	category = list("initial", "Misc")
-<<<<<<< HEAD
-=======
 
 /datum/design/focusing_lens
 	name = "Makeshift Lens"
@@ -290,4 +288,4 @@
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 4000)
 	build_path = /obj/item/weaponcrafting/improvised_parts/makeshift_lens
 	category = list("initial", "Misc")
->>>>>>> 862ed61b86... [Ready] Improvised Weapons Update: Part 2 (#12386)
+
