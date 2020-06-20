@@ -109,7 +109,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/bloodtype = ""
 	var/bloodreagent = ""
 	var/bloodcolor = ""
-	var/skyrat_ooc_notes
 	var/skyrat_ooc_notes = ""
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
