@@ -47,10 +47,7 @@
 		if(L.getStaminaLoss() >= 60)
 			L.Sleeping(300)
 		else
-<<<<<<< HEAD
 			L.adjustStaminaLoss(25) 
-=======
-			L.adjustStaminaLoss(25)
 
 // .32 ACP (Improvised Pistol)
 
@@ -63,4 +60,4 @@
 	damage = 3
 	eyeblur = 1
 	stamina = 20
->>>>>>> 862ed61b86... [Ready] Improvised Weapons Update: Part 2 (#12386)
+
