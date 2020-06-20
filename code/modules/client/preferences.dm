@@ -1695,7 +1695,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	dat += "<div align='center'>"
 	dat += "<br>"
 	dat += "Verbs refer to the verb used when you say something.<br>"
-	dat += "Say is used for normal speaking, ask for phrases that end in \"?\", exclaim for phrases that end in \"!\", yell for phrases that end in a lot of \"!\".<br>"
+	dat += "Say is used for normal speaking, ask for phrases that end in \"?\", exclaim for phrases that end in \"!\", whisper for whispering, yell for phrases that end in a lot of \"!\".<br>"
 	dat += "Format: (name) (verb), \"(message)\"<br>"
 	dat += "Example: [real_name] says, \"Lorem ipsum.\"<br>"
 	dat += "Soundtext refers to the message you see when you gain this impediment.<br>"
