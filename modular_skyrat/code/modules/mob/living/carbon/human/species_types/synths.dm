@@ -108,6 +108,7 @@
 		BP.synthetic = TRUE
 		BP.change_bodypart_status(BODYPART_ROBOTIC)
 		BP.render_like_organic = TRUE
+	H.update_body_parts(force = TRUE)
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()
