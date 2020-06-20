@@ -350,7 +350,8 @@
 /datum/supply_pack/organic/exoticseeds
 	name = "Seeds Crate (Exotic)"
 	desc = "Any entrepreneuring botanist's dream. Contains twelve different seeds, including three replica-pod seeds and two mystery seeds! Has a slight chance to come with some additional, dangerous seeds."
-	cost = 2500
+	cost = 5000
+	access = ACCESS_HYDROPONICS
 	contains = list(/obj/item/seeds/nettle,
 					/obj/item/seeds/replicapod,
 					/obj/item/seeds/replicapod,
@@ -374,6 +375,8 @@
 		new /obj/item/seeds/gatfruit(C)
 	else
 		new /obj/item/seeds/starthistle/corpse_flower(C)
+	if(prob(5))
+		new /obj/item/seeds/kudzu(C)
 	
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////// Misc /////////////////////////////////////
