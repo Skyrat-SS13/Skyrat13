@@ -25892,7 +25892,17 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/purple,
-/turf/open/floor/plasteel/grimy,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_x = 26;
+	prison_radio = 1
+	},
+/turf/open/floor/plasteel,
 /area/security/prison)
 "bkB" = (
 /obj/structure/lattice/catwalk,
@@ -76434,8 +76444,7 @@
 	id = "cloning_windows";
 	name = "Window Privacy Control";
 	pixel_x = -18;
-	pixel_y = 25;
-	req_one_access_txt = "5;68"
+	pixel_y = 25
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -76493,8 +76502,7 @@
 	id = "cloning_windows";
 	name = "Window Privacy Control";
 	pixel_x = 15;
-	pixel_y = 25;
-	req_one_access_txt = "5;68"
+	pixel_y = 25
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -78720,8 +78728,7 @@
 	id = "cloning_windows";
 	name = "Window Privacy Control";
 	pixel_x = 26;
-	pixel_y = -26;
-	req_one_access_txt = "5;68"
+	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
