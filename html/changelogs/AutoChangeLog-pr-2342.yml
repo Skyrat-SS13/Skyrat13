@@ -1,0 +1,5 @@
+author: "Bob Joga, ported from Baystation"
+delete-after: True
+changes: 
+  - rscadd: "High heels."
+  - imageadd: "High heels icons."
