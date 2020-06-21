@@ -171,6 +171,12 @@
 	color_src = MATRIXED
 	icon = 'modular_citadel/icons/mob/mam_ears.dmi'
 
+/datum/sprite_accessory/ears/human/rabbit
+	name = "Rabbit Lop-Eared"
+	icon_state = "rabbitlop"
+	color_src = MATRIXED
+	icon = 'modular_citadel/icons/mob/mam_ears.dmi'
+
 /******************************************
 *************** Furry Ears ****************
 *******************************************/
@@ -323,3 +329,7 @@
 /datum/sprite_accessory/mam_ears/bunny
 	name = "Bunny"
 	icon_state = "bunny"
+
+/datum/sprite_accessory/mam_ears/Rabbit_Lop
+	name = "Rabbit Lop-Eared"
+	icon_state = "rabbitlop"
