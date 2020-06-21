@@ -65,6 +65,7 @@
 		throw_mode_off()
 		return TRUE
 
+<<<<<<< HEAD
 /mob/living/carbon/embed_item(obj/item/I)
 	throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
 	var/obj/item/bodypart/L = pick(bodyparts)
@@ -78,6 +79,10 @@
 
 /mob/living/carbon/attacked_by(obj/item/I, mob/living/user)
 	var/totitemdamage = pre_attacked_by(I, user)
+=======
+/mob/living/carbon/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
+	var/totitemdamage = pre_attacked_by(I, user) * damage_multiplier
+>>>>>>> 8cd81ff89b... Merge pull request #12488 from Ghommie/Ghommie-cit813
 	var/impacting_zone = (user == src)? check_zone(user.zone_selected) : ran_zone(user.zone_selected)
 	if((user != src) && (mob_run_block(I, totitemdamage, "the [I]", ATTACK_TYPE_MELEE, I.armour_penetration, user, impacting_zone, null) & BLOCK_SUCCESS))
 		return FALSE
