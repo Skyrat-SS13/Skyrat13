@@ -434,17 +434,12 @@
 			if(show_message)
 				to_chat(M, "<span class='danger'>You feel your wounds fade away to nothing!</span>" )
 	..()
-	
-/datum/reagent/medicine/mine_salve/on_mob_metabolize(mob/living/M)
-	..()
-	if(iscarbon(M))
-		ADD_TRAIT(M, TRAIT_PAINKILLER, "Painkiller:MINERS SALVE")
 			
 /datum/reagent/medicine/mine_salve/on_mob_end_metabolize(mob/living/M)
 	if(iscarbon(M))
 		var/mob/living/carbon/N = M
 		N.hal_screwyhud = SCREWYHUD_NONE
-		REMOVE_TRAIT(M, TRAIT_PAINKILLER, "Painkiller:MINERS SALVE")
+		REMOVE_TRAIT(M, TRAIT_PAINKILLER, "Painkiller:MINERS SALVE") //SKYRAT EDIT, Painkiller.
 	..()
 
 /datum/reagent/medicine/synthflesh
@@ -745,12 +740,12 @@
 
 /datum/reagent/medicine/morphine/on_mob_metabolize(mob/living/L)
 	..()
-	ADD_TRAIT(L, TRAIT_PAINKILLER, "Painkiller:MORPHINE")
+	ADD_TRAIT(L, TRAIT_PAINKILLER, "Painkiller:MORPHINE") //SKYRAT EDIT, Painkiller.
 	L.add_movespeed_mod_immunities(type, list(/datum/movespeed_modifier/damage_slowdown, /datum/movespeed_modifier/damage_slowdown_flying, /datum/movespeed_modifier/monkey_health_speedmod))
 
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_mod_immunities(type, list(/datum/movespeed_modifier/damage_slowdown, /datum/movespeed_modifier/damage_slowdown_flying, /datum/movespeed_modifier/monkey_health_speedmod))
-	REMOVE_TRAIT(L, TRAIT_PAINKILLER, "Painkiller:MORPHINE")
+	REMOVE_TRAIT(L, TRAIT_PAINKILLER, "Painkiller:MORPHINE") //SKYRAT EDIT, Painkiller.
 	..()
 
 /datum/reagent/medicine/morphine/on_mob_life(mob/living/carbon/M)
