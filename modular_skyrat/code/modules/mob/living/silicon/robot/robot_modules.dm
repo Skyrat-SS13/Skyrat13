@@ -257,12 +257,9 @@ obj/item/robot_module/butler/Initialize()
 		/obj/item/twohanded/shockpaddles/cyborg,
 		/obj/item/healthanalyzer/advanced,
 		/obj/item/surgical_drapes/advanced,
-		/obj/item/retractor,
-		/obj/item/hemostat,
-		/obj/item/cautery,
-		/obj/item/surgicaldrill,
-		/obj/item/scalpel,
-		/obj/item/circular_saw,
+		/obj/item/retractor/advanced,
+		/obj/item/surgicaldrill/advanced,
+		/obj/item/scalpel/advanced,
 		/obj/item/gun/medbeam,
 		/obj/item/reagent_containers/borghypo/syndicate,
 		/obj/item/borg/lollipop,
@@ -282,10 +279,6 @@ obj/item/robot_module/butler/Initialize()
 	magpulsing = TRUE
 	hat_offset = INFINITY
 	canDispose = TRUE
-
-/obj/item/robot_module/syndicatejack/do_transform_animation()
-	..()
-	to_chat(loc, "<span class='userdanger'>Pog</span>")
 
 /obj/item/robot_module/syndicatejack/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
@@ -328,3 +321,13 @@ obj/item/robot_module/butler/Initialize()
 		else
 			return FALSE
 	return ..()
+	
+/obj/item/robot_module/syndicatejack/rebuild_modules()
+    ..()
+    var/mob/living/silicon/robot/syndicatejack = loc
+    syndicatejack.scrambledcodes = TRUE // We're rouge now
+
+/obj/item/robot_module/syndicatejack/remove_module(obj/item/I, delete_after)
+    ..()
+    var/mob/living/silicon/robot/syndicatejack = loc
+    syndicatejack.scrambledcodes = FALSE // Friends with the AI again

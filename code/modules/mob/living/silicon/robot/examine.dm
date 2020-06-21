@@ -1,7 +1,7 @@
 /mob/living/silicon/robot/examine(mob/user)
 	//Skyrat changes - fixes chameleon borgs examine
 	var/module_name
-	var/obj/item/borg_shapeshifter/BC = locate() in src //skyrat change
+	var/obj/item/borg_chameleon/BC = locate() in src
 	if(BC && BC.active)
 		module_name = "Engineering" //The borg is a saboteur disguised as another borg, always engi unit
 	else

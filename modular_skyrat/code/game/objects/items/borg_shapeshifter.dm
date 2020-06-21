@@ -14,9 +14,10 @@
 	var/savedBubbleIcon
 	var/savedOverride
 	var/savedPixelOffset
+	var/savedModuleName
 	var/active = FALSE
-	var/activationCost = 300
-	var/activationUpkeep = 50
+	var/activationCost = 150
+	var/activationUpkeep = 5
 	var/disguise = null
 	var/disguise_icon_override = null
 	var/disguise_pixel_offset = null
@@ -442,7 +443,7 @@
 					"(Janitor) Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyjanitor"),
 					"(Janitor) Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_janitor"),
 					"(Janitor) Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_janitor"),
-					"(Janitor) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyjan"),
+					"(Janitor) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyres"),
 					"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_jani")
 				)
 				var/list/L = list("(Service) DarkK9" = "k50", "(Service) Vale" = "valeserv", "(Service) ValeDark" = "valeservdark",
@@ -730,7 +731,7 @@
 		if (do_after(user, 50, target=user) && user.cell.use(activationCost))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
 			to_chat(user, "<span class='notice'>You are now disguised as the Nanotrasen cyborg \"[friendlyName]\".</span>")
-			activate(user)
+			activate(user, module_selection)
 		else
 			to_chat(user, "<span class='warning'>The chameleon field fizzles.</span>")
 			do_sparks(3, FALSE, user)
@@ -747,7 +748,7 @@
 	else
 		return PROCESS_KILL
 
-/obj/item/borg_shapeshifter/proc/activate(mob/living/silicon/robot/user)
+/obj/item/borg_shapeshifter/proc/activate(mob/living/silicon/robot/user, disguiseModuleName)
 	START_PROCESSING(SSobj, src)
 	src.user = user
 	savedName = user.name
@@ -755,7 +756,9 @@
 	savedBubbleIcon = user.bubble_icon //tf is that
 	savedOverride = user.module.cyborg_icon_override
 	savedPixelOffset = user.module.cyborg_pixel_offset
+	savedModuleName = user.module.name
 	user.name = friendlyName
+	user.module.name = disguiseModuleName
 	user.module.cyborg_base_icon = disguise
 	user.module.cyborg_icon_override = disguise_icon_override
 	user.module.cyborg_pixel_offset = disguise_pixel_offset
@@ -777,6 +780,7 @@
 		listeningTo = null
 	do_sparks(5, FALSE, user)
 	user.name = savedName
+	user.module.name = savedModuleName
 	user.module.cyborg_base_icon = savedIcon
 	user.module.cyborg_icon_override = savedOverride
 	user.bubble_icon = savedBubbleIcon
