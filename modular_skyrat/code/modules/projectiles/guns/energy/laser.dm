@@ -238,10 +238,14 @@
 /obj/item/gun/energy/laser/makeshiftlasrifle/CheckParts(list/parts_list)
 	var/obj/item/stock_parts/cell/partcell = locate() in parts_list
 	if(partcell)
+		parts_list -= partcell
 		if(partcell.maxcharge <= maxcellcharge)
 			qdel(cell)
 			partcell.forceMove(src)
 			cell = partcell
+		else
+			qdel(partcell)
+	return ..()
 
 //laser musket
 /obj/item/gun/energy/pumpaction/musket

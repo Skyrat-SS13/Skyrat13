@@ -71,15 +71,14 @@
 	else if(eye_blurry)			//blurry eyes heal slowly
 		adjust_blurriness(-1)
 
-	if (getOrganLoss(ORGAN_SLOT_BRAIN) >= 30) //Citadel change to make memes more often.
+	//Skyrat changes - adjusts brain damage insanity
+	if (getOrganLoss(ORGAN_SLOT_BRAIN) >= 50) //Citadel change to make memes more often. //Back to a bit higher
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "brain_damage", /datum/mood_event/brain_damage)
-		if(prob(3))
-			if(prob(25))
-				emote("drool")
-			else
-				say(pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"))
+		if(prob(1))
+			emote("drool")
 	else
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "brain_damage")
+	//End of skyrat changes
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(!dna || !dna.species.handle_mutations_and_radiation(src))
