@@ -231,13 +231,13 @@
 					var/image/I
 					if((adv_marking.body_zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)) && use_digitigrade)
 						I = image(accessory.icon, "[accessory.icon_state]-[adv_marking.body_zone]_[digitigrade_type]_[use_digitigrade]", -MARKING_LAYER, image_dir)
-						if((species_id != "husk") && adv_marking.has_color)
+						if((species_id != "husk") && adv_marking.has_colors)
 							I.color = adv_marking.color
 						else
 							I.color = "FFFFFF"
 					else
 						I = image(accessory.icon, "[accessory.icon_state]-[adv_marking.body_zone]", -MARKING_LAYER, image_dir)
-						if((species_id != "husk") && adv_marking.has_color)
+						if((species_id != "husk") && adv_marking.has_colors)
 							I.color = adv_marking.color
 						else
 							I.color = "FFFFFF"
@@ -298,13 +298,13 @@
 					var/image/I
 					if((adv_marking.body_zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)) && use_digitigrade)
 						I = image(accessory.icon, "[accessory.icon_state]-[adv_marking.body_zone]_[digitigrade_type]_[use_digitigrade]", -MARKING_LAYER, image_dir)
-						if((species_id != "husk") && adv_marking.has_color)
+						if((species_id != "husk") && adv_marking.has_colors)
 							I.color = adv_marking.color
 						else
 							I.color = "FFFFFF"
 					else
 						I = image(accessory.icon, "[accessory.icon_state]-[adv_marking.body_zone]", -MARKING_LAYER, image_dir)
-						if((species_id != "husk") && adv_marking.has_color)
+						if((species_id != "husk") && adv_marking.has_colors)
 							I.color = adv_marking.color
 						else
 							I.color = "FFFFFF"

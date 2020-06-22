@@ -1750,7 +1750,8 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 			var/list/bruh = adv_markings[BP][listy]
 			dat += "<div style='color: [font_color];padding-top: 10px;'><b>[capitalize(bruh["name"])]</b></div>"
 			dat += "<div style='color: [font_desc];'><b>Description:</b> [bruh["desc"] ? bruh["desc"] : "None"]</div> "
-			dat += "<span style='border: 1px solid #161616; background-color: [bruh["color"]];'>&nbsp;&nbsp;&nbsp;</span><a href='?_src_=prefs;preference=adv_markings;task=update;new_mark=color;body_zone=[BP];marking=[listy];'>Color</a>"
+			if(bruh["has_color"])
+				dat += "<span style='border: 1px solid #161616; background-color: [bruh["color"]];'>&nbsp;&nbsp;&nbsp;</span><a href='?_src_=prefs;preference=adv_markings;task=update;new_mark=color;body_zone=[BP];marking=[listy];'>Color</a>"
 			dat += " <a href='?_src_=prefs;preference=adv_markings;task=update;new_mark=edit;body_zone=[BP];marking=[listy];'>Modify</a>"
 			dat += " <a style='style='color:[bg_remove];' href='?_src_=prefs;preference=adv_markings;task=update;new_mark=remove;body_zone=[BP];marking=[listy];'>Remove</a>"
 			dat += "<BR>"
@@ -1941,12 +1942,13 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 							possible["Cancel"] = 0
 							choice = input(user, "What marking do you want on your [parse_zone(body_zone)]?", "Advanced Marking", "") as null|anything in possible
 							if(choice && (choice != "Cancel") && (length(adv_markings[body_zone]) < max_marking_per_bp))
-								adv_markings[body_zone][choice] = list("name" = choice, "color" = "#FFFFFF", "desc" = "", "datum" = possible[choice])
+								var/datum/sprite_accessory/adv_marking/meme = possible[choice]
+								adv_markings[body_zone][choice] = list("name" = choice, "has_color" = "[meme.has_colors]", "color" = "#FFFFFF", "desc" = "", "datum" = meme)
 						else if(choice == "No")
 							choice = input(user, "What marking do you want on your [parse_zone(body_zone)]?", "Advanced Marking", "") as text
 							if(choice)
 								choice = strip_html_simple(choice, 64)
-								adv_markings[body_zone][choice] = list("name" = choice, "color" = "#FFFFFF", "desc" = "", "datum" = "None")
+								adv_markings[body_zone][choice] = list("name" = choice, "has_color" = FALSE, "color" = "#FFFFFF", "desc" = "", "datum" = "None")
 					if("remove")
 						var/todelete = href_list["marking"]
 						adv_markings[body_zone] -= todelete
@@ -3289,6 +3291,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				var/datum/adv_marking/marked = new()
 				marked.name = bruh["name"]
 				marked.examine_text = bruh["desc"]
+				marked.has_colors = bruh["has_colors"]
 				marked.color = bruh["color"]
 				marked.attached_accessory = bruh["datum"]
 				marked.body_zone = check_zone(BP)
