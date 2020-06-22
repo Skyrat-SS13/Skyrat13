@@ -244,9 +244,8 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/construction/mining/aux_base)
 "abe" = (
-/obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/stripes/end{
-	dir = 1
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -99564,11 +99563,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "mvx" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+/obj/machinery/quantumpad{
+	map_pad_id = "toxenoarch";
+	map_pad_link_id = "tostation"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -99684,13 +99681,8 @@
 /turf/open/space,
 /area/engine/atmos)
 "mLI" = (
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -100087,11 +100079,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
-"nQR" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/computer/shuttle/mining/common,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "nSh" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /turf/closed/wall/r_wall,
@@ -100124,19 +100111,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/medical/psych)
-"nSS" = (
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "nUG" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/box,
@@ -103334,17 +103308,6 @@
 "xbV" = (
 /turf/open/floor/wood,
 /area/security/prison)
-"xdp" = (
-/obj/docking_port/stationary{
-	dwidth = 3;
-	height = 5;
-	id = "commonmining_home";
-	name = "SS13: Common Mining Dock";
-	roundstart_template = /datum/map_template/shuttle/mining_common/meta;
-	width = 7
-	},
-/turf/open/space/basic,
-/area/space)
 "xdL" = (
 /obj/machinery/requests_console{
 	department = "Prison";
@@ -135761,11 +135724,11 @@ oZp
 aaa
 aaa
 aaa
-aaa
-aaa
-rqh
-rqh
-aad
+aaO
+aaO
+aaO
+aaO
+aaO
 aad
 aaa
 aaa
@@ -136018,10 +135981,10 @@ oZp
 aaa
 aaa
 aaa
-aaa
 aaO
-aaO
-aaO
+aco
+abe
+aco
 aaO
 abf
 aaO
@@ -136275,11 +136238,11 @@ oZp
 aaa
 aaa
 aaa
-xdp
-mLI
+aaO
+aco
 mvx
-nSS
-abe
+aco
+aeb
 abp
 abC
 abC
@@ -136532,11 +136495,11 @@ oZp
 aaa
 aaa
 aaa
-aaa
 aaO
+aco
+mLI
+aco
 aaO
-aaO
-nQR
 abq
 abD
 abD
@@ -136789,12 +136752,12 @@ oZp
 aaa
 aaa
 aaa
-aaa
-aaa
-rqh
 aaO
 aaO
-abf
+aaO
+aaO
+aaO
+aaO
 aaO
 aaO
 abf
