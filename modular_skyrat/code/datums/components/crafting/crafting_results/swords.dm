@@ -87,12 +87,11 @@
 		if(!istype(BP))
 			return
 		if(prob(delimb_chance))
-			if(BP.body_zone == (BODY_ZONE_CHEST || BODY_ZONE_HEAD))
-				if(C.getarmor(def_zone, "melee") >= armorthreshold)
-					user.changeNext_move(CLICK_CD_MELEE * 2)
-					return
+			if((C.getarmor(def_zone, "melee") >= armorthreshold) || (def_zone == (BODY_ZONE_HEAD || BODY_ZONE_CHEST || BODY_ZONE_PRECISE_GROIN)))
+				user.changeNext_move(CLICK_CD_MELEE * 2)
+				return
 			BP.dismember(BRUTE)
-		user.changeNext_move(CLICK_CD_MELEE * 2)
+	user.changeNext_move(CLICK_CD_MELEE * 2)
 
 /obj/item/melee/sword/shortsword
 	name = "shortsword"
