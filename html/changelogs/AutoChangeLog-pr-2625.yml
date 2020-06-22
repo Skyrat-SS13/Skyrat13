@@ -1,0 +1,5 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - rscadd: "Added xenoarch quantum pad"
+  - rscdel: "Removed public mining shuttle"
