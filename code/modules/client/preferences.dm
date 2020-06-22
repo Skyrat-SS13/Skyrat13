@@ -1721,7 +1721,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			var/list/bruh = cosmetic_scars[BP][specific]
 			if(istype(bruh) && bruh.len)
 				if(cosmetic_scars[BP][specific]["desc"] && (cosmetic_scars[BP][specific]["desc"] != "None"))
-					current_scars += "[specific]"
+					current_scars |= "[specific]"
 	dat += "<div>"
 	dat += "<b>Currently scarred locations:</b> [current_scars.len ? capitalize(current_scars.Join(", ")) : "None"]"
 	dat += "</div>"
