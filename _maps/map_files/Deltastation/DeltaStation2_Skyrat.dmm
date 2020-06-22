@@ -11413,10 +11413,6 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 8
 	},
@@ -11433,6 +11429,9 @@
 	alpha = 170;
 	dir = 4;
 	name = "engineering corner"
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -15385,12 +15384,11 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -18571,9 +18569,6 @@
 /area/security/prison)
 "aUA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -25897,7 +25892,17 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/purple,
-/turf/open/floor/plasteel/grimy,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_x = 26;
+	prison_radio = 1
+	},
+/turf/open/floor/plasteel,
 /area/security/prison)
 "bkB" = (
 /obj/structure/lattice/catwalk,
@@ -41180,10 +41185,6 @@
 	pixel_x = 32;
 	pixel_y = 32
 	},
-/obj/structure/closet/secure_closet/brig{
-	id = "brig1";
-	name = "Holding Cell Locker"
-	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bPq" = (
@@ -42912,6 +42913,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bTd" = (
@@ -76442,8 +76444,7 @@
 	id = "cloning_windows";
 	name = "Window Privacy Control";
 	pixel_x = -18;
-	pixel_y = 25;
-	req_one_access_txt = "5;68"
+	pixel_y = 25
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -76501,8 +76502,7 @@
 	id = "cloning_windows";
 	name = "Window Privacy Control";
 	pixel_x = 15;
-	pixel_y = 25;
-	req_one_access_txt = "5;68"
+	pixel_y = 25
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -78728,8 +78728,7 @@
 	id = "cloning_windows";
 	name = "Window Privacy Control";
 	pixel_x = 26;
-	pixel_y = -26;
-	req_one_access_txt = "5;68"
+	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -81306,10 +81305,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
-"dye" = (
-/obj/structure/sign/departments/science,
-/turf/closed/wall,
-/area/science/robotics/lab)
 "dyf" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable/white{
@@ -82098,6 +82093,9 @@
 /obj/item/circuitboard/mecha/ripley/main,
 /obj/item/circuitboard/mecha/ripley/peripherals,
 /obj/effect/turf_decal/bot,
+/obj/machinery/posialert{
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "dzJ" = (
@@ -97521,12 +97519,11 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -98082,7 +98079,10 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/structure/closet/secure_closet/brig{
+	id = "brig1";
+	name = "Holding Cell Locker"
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "iai" = (
@@ -98381,13 +98381,12 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	contents = newlist(/obj/item/toy/snappop/phoenix);
 	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -99667,16 +99666,15 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	contents = newlist(/obj/item/toy/snappop/phoenix);
 	dir = 4
 	},
 /obj/structure/cable/white{
 	icon_state = "1-2"
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -101238,6 +101236,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"rcu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "rdr" = (
 /obj/effect/spawner/lootdrop/wall/twentyfive_percent_falsewall,
 /turf/open/floor/plating,
@@ -101302,15 +101311,14 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -102365,12 +102373,11 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -102817,13 +102824,12 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	contents = newlist(/obj/item/toy/snappop/phoenix);
 	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -141037,7 +141043,7 @@ dsi
 dty
 duX
 dwy
-dye
+dyc
 dzI
 dAM
 dCs
@@ -155109,7 +155115,7 @@ btl
 buK
 lLc
 cfh
-cfh
+bmi
 bAm
 bCf
 bEd
@@ -155366,7 +155372,7 @@ btm
 mYl
 bAn
 bxp
-bkq
+rcu
 bAn
 bCg
 bEe

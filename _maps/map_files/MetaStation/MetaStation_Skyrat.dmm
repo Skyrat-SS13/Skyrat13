@@ -286,12 +286,11 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -315,13 +314,12 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	contents = newlist(/obj/item/toy/snappop/phoenix);
 	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -1083,11 +1081,10 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/machinery/light/small,
+/obj/structure/sink{
+	pixel_y = 28
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/heads/hos)
 "acn" = (
@@ -1915,12 +1912,11 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -1937,13 +1933,12 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	contents = newlist(/obj/item/toy/snappop/phoenix);
 	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -2732,15 +2727,14 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -3583,10 +3577,6 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 8
 	},
@@ -3603,6 +3593,9 @@
 	alpha = 170;
 	dir = 4;
 	name = "engineering corner"
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -10293,11 +10286,10 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/machinery/light/small,
+/obj/structure/sink{
+	pixel_y = 28
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/dorms)
 "avr" = (
@@ -15265,14 +15257,13 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/machinery/shower{
 	dir = 8
 	},
 /obj/effect/spawner/lootdrop/soap,
+/obj/structure/sink{
+	pixel_y = 28
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/dorms)
 "aFh" = (
@@ -16614,10 +16605,6 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -16630,6 +16617,9 @@
 	normaldoorcontrol = 1;
 	pixel_x = -25;
 	specialfunctions = 4
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/toilet/restrooms)
@@ -22914,10 +22904,6 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -22930,6 +22916,9 @@
 	},
 /obj/machinery/newscaster{
 	pixel_y = -32
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/toilet/restrooms)
@@ -24056,10 +24045,6 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -24072,6 +24057,9 @@
 	},
 /obj/machinery/newscaster{
 	pixel_y = -32
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/toilet/restrooms)
@@ -76729,12 +76717,11 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = 25
-	},
 /obj/structure/toilet{
 	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
@@ -79922,6 +79909,9 @@
 /obj/machinery/camera{
 	c_tag = "Robotics - Lab";
 	network = list("ss13","rd")
+	},
+/obj/machinery/posialert{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
