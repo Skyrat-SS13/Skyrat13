@@ -532,7 +532,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_horns_color"]			>> features["horns_color"]
 	S["feature_wings_color"]			>> features["wings_color"]
 	//SKYRAT CHANGES
-	S["bloodtype"]			>> bloodtype
+	S["adv_markings"]			>> adv_markings
+	S["bloodtype"]				>> bloodtype
 	//
 
 	//Custom names
@@ -819,7 +820,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_insect_fluff"]			, features["insect_fluff"])
 	WRITE_FILE(S["feature_insect_markings"]			, features["insect_markings"])
 	WRITE_FILE(S["feature_meat"]					, features["meat_type"])
-	//SKYRAT CHANGE - Blood
+	//SKYRAT CHANGE
+	WRITE_FILE(S["adv_markings"])					, adv_markings)
 	WRITE_FILE(S["bloodtype"]						, bloodtype)
 	//
 
