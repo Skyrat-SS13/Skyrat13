@@ -9,6 +9,7 @@
 	var/mob/living/carbon/owner
 	var/body_zone = BODY_ZONE_CHEST
 	var/color = "#FFFFFF"
+	var/has_colors = TRUE
 	var/datum/sprite_accessory/attached_accessory
 
 /datum/adv_marking/proc/is_visible(mob/viewer)

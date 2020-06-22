@@ -31,6 +31,9 @@
 	var/list/species_allowed = list()
 	//Body zones that this accessory can go on.
 	var/list/body_parts = list()
+	//This dummy is able to be recolored
+	var/has_colors = TRUE
+
 /* i need to unfuck all of these later for our marking system, for now only spriteless markings
 /datum/sprite_accessory/adv_marking/tat_heart
 	name = "Tattoo (Heart)"
