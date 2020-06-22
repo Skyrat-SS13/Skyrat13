@@ -1931,7 +1931,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				var/body_zone = href_list["body_zone"]
 				switch(href_list["new_mark"])
 					if("add")
-						var/choice = input(user, "Does the marking have a sprite?", "Advanced Marking", "Yes") as text in list("Yes", "No", "Cancel")
+						var/choice = input(user, "Does the marking have a sprite?", "Advanced Marking", "Yes") as null|text in list("Yes", "No", "Cancel")
 						if(choice == "Yes")
 							var/list/possible = list()
 							for(var/i in GLOB.adv_markings)

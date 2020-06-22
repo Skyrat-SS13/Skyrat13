@@ -25,14 +25,13 @@
 	icon = 'modular_skyrat/icons/mob/skyrat_markings.dmi'
 
 //VORE markings
-/* i need to unfuck all of these later for our marking system, for now only spriteless markings
 /datum/sprite_accessory/adv_marking
 	icon = 'modular_skyrat/icons/mob/adv_markings/markings.dmi'
 	//Empty list is unrestricted. Should only restrict the ones that make NO SENSE on other species.
 	var/list/species_allowed = list()
 	//Body zones that this accessory can go on.
 	var/list/body_parts = list()
-
+/* i need to unfuck all of these later for our marking system, for now only spriteless markings
 /datum/sprite_accessory/adv_marking/tat_heart
 	name = "Tattoo (Heart)"
 	icon_state = "tat_heart"
