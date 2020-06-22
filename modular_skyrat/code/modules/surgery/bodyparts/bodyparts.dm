@@ -1,6 +1,8 @@
 /obj/item/bodypart
 	var/synthetic = FALSE //Synthetic bodyparts can have patches applied but are harder to repair by conventional means
 	var/render_like_organic = FALSE //Skyrat change - for robotic limbs that pretend to be organic, for the sake of features, icon paths etc. etc.
+	var/list/adv_markings = list() //Skyrat change - advanced markings. Should be filled with adv_marking datums.
+	var/update_adv_markings = TRUE
 
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
@@ -26,7 +28,7 @@
 	update_disabled()
 	return update_bodypart_damage_state() 
 
-//Update_limb changes because synths
+//Update_limb changes
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C
 	if(source)
@@ -116,6 +118,9 @@
 		else
 			body_markings = null
 			aux_marking = null
+		
+		if(!S.allow_adv_markings)
+			update_adv_markings = FALSE
 
 		if(!dropping_limb && H.dna.check_mutation(HULK))
 			mutation_color = "00aa00"
@@ -218,7 +223,26 @@
 				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
 
 			. += marking
-
+		
+		if(update_adv_markings && istype(adv_markings) && length(adv_markings))
+			for(var/datum/adv_marking/adv_marking in adv_markings)
+				var/datum/sprite_accessory/accessory = adv_marking.attached_accessory
+				if(istype(accessory))
+					var/image/I
+					if((adv_marking.body_zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)) && use_digitigrade)
+						I = image(accessory.icon, "[accessory.icon_state]-[adv_marking.body_zone]_[digitigrade_type]_[use_digitigrade]", -MARKING_LAYER, image_dir)
+						if((species_id != "husk") && adv_marking.has_color)
+							I.color = adv_marking.color
+						else
+							I.color = "FFFFFF"
+					else
+						I = image(accessory.icon, "[accessory.icon_state]-[adv_marking.body_zone]", -MARKING_LAYER, image_dir)
+						if((species_id != "husk") && adv_marking.has_color)
+							I.color = adv_marking.color
+						else
+							I.color = "FFFFFF"
+					. += I
+		
 		// Citadel End
 
 		if(aux_icons)
@@ -266,6 +290,25 @@
 			else
 				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
 			. += marking
+		
+		if(update_adv_markings && istype(adv_markings) && length(adv_markings))
+			for(var/datum/adv_marking/adv_marking in adv_markings)
+				var/datum/sprite_accessory/accessory = adv_marking.attached_accessory
+				if(istype(accessory))
+					var/image/I
+					if((adv_marking.body_zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)) && use_digitigrade)
+						I = image(accessory.icon, "[accessory.icon_state]-[adv_marking.body_zone]_[digitigrade_type]_[use_digitigrade]", -MARKING_LAYER, image_dir)
+						if((species_id != "husk") && adv_marking.has_color)
+							I.color = adv_marking.color
+						else
+							I.color = "FFFFFF"
+					else
+						I = image(accessory.icon, "[accessory.icon_state]-[adv_marking.body_zone]", -MARKING_LAYER, image_dir)
+						if((species_id != "husk") && adv_marking.has_color)
+							I.color = adv_marking.color
+						else
+							I.color = "FFFFFF"
+					. += I
 		return
 
 	if(color_src) //TODO - add color matrix support for base species limbs

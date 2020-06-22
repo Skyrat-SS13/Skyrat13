@@ -90,6 +90,10 @@
 	var/mob/living/carbon/C = owner
 	update_limb(1)
 	C.bodyparts -= src
+	
+	//skyrat edit
+	C.all_markings -= adv_markings
+	//
 
 	if(held_index)
 		C.dropItemToGround(owner.get_item_for_held_index(held_index), 1)
@@ -297,6 +301,10 @@
 
 	for(var/obj/item/organ/O in contents)
 		O.Insert(C)
+	
+	//skyrat edit
+	C.all_markings |= adv_markings
+	//
 
 	update_bodypart_damage_state()
 	update_disabled()

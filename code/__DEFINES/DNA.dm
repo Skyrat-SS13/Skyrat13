@@ -140,6 +140,9 @@
 #define CUSTOM_SKINTONE	24	//adds a "_g" suffix to bodypart overlays icon states if a custom skintone is used.
 #define HORNCOLOR		25
 #define WINGCOLOR		26
+//skyrat edit - advanced markings
+#define SELF			27 //the advanced marking will take the color from it's c_color var
+//
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

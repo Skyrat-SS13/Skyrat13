@@ -263,6 +263,16 @@
 			. += "-organic"
 		else
 			. += "-robotic"
+		//skyrat edit
+		. += "-advmark"
+		if(length(all_markings))
+			for(var/datum/adv_marking/mark in BP.adv_markings)
+				var/datum/sprite_accessory/M = mark.attached_accessory
+				if(istype(M))
+					. += "_[M.icon_state]"
+		else
+			. += "_none"
+		//
 
 	if(HAS_TRAIT(src, TRAIT_HUSK))
 		. += "-husk"

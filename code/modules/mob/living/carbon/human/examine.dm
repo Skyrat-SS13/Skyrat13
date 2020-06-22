@@ -407,8 +407,10 @@
 							"<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
 	else if(isobserver(user) && traitstring)
 		. += "<span class='info'><b>Traits:</b> [traitstring]</span>"
-
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .) //This also handles flavor texts now
+	//skyrat edit - advanced markings
+	. += get_marking_strings(user)
+	//
 	var/invisible_man = skipface || get_visible_name() == "Unknown" // SKYRAT EDIT -- BEGIN
 	if(!invisible_man)
 		if(client)
@@ -446,3 +448,14 @@
 			dat += "[new_text]\n" //dat.Join("\n") doesn't work here, for some reason
 	if(dat.len)
 		return dat.Join()
+
+//skyrat edit - advanced markings
+/mob/living/carbon/human/proc/get_marking_strings(mob/viewer)
+	var/t_He = p_they(TRUE)
+	var/t_his = p_their()
+	var/t_has = p_have()
+	var/msg = ""
+	for(var/datum/adv_marking/mark in src.all_markings)
+		if(istype(mark) && mark.is_visible(viewer))
+			msg += "<span class='notice'><i>[t_He] [t_has] [mark.examine_text] on [t_his] [parse_zone(mark.body_zone)].</i></span><br>"
+	return msg

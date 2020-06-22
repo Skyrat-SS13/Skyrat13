@@ -111,6 +111,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/typing_indicator_state
 	//SKYRAT SNOWFLAKE
 	var/list/languagewhitelist = list()
+	var/allow_adv_markings = TRUE
 
 ///////////
 // PROCS //

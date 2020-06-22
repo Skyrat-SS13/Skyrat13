@@ -20,6 +20,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		"Breakfast" = BREAKFAST
 	))
 
+GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
+
 /datum/preferences
 	var/client/parent
 	//doohickeys for savefiles
@@ -124,10 +126,18 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/see_chat_emotes = TRUE
 	var/enable_personal_chat_color = FALSE
 	var/personal_chat_color = "#ffffff"
-	var/list/foodlikes = list() //Skyrat additions BEGIN
+	var/list/foodlikes = list()
 	var/list/fooddislikes = list()
 	var/maxlikes = 3
-	var/maxdislikes = 3 //Skyrat additions END
+	var/maxdislikes = 3
+
+	var/max_marking_per_bp = 5
+	var/list/adv_markings = list(BODY_ZONE_HEAD = list(), BODY_ZONE_CHEST = list(), BODY_ZONE_PRECISE_GROIN = list(),
+								BODY_ZONE_L_ARM = list(), BODY_ZONE_PRECISE_L_HAND = list(),
+								BODY_ZONE_R_ARM = list(), BODY_ZONE_PRECISE_R_HAND = list(),
+								BODY_ZONE_L_LEG = list(), BODY_ZONE_PRECISE_L_FOOT = list(),
+								BODY_ZONE_R_LEG = list(), BODY_ZONE_PRECISE_R_FOOT = list(),
+								)
 
 	var/list/alt_titles_preferences = list()
 	//END OF SKYRAT CHANGES
@@ -766,6 +776,21 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<h3>Tauric Body</h3>"
 
 				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=taur;task=input'>[features["taur"]]</a>"
+
+			//skyrat change
+			if(pref_species.allow_adv_markings)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Advanced Markings</h3>"
+
+				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=adv_markings;task=menu'>Configure</a>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+			//
 
 			if(pref_species.mutant_bodyparts["insect_markings"])
 				if(!mutant_category)
@@ -1671,6 +1696,75 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	popup.open(FALSE)
 //
 
+//Skyrat edit - advanced markings
+/datum/preferences/proc/SetMarkings(mob/user)
+	var/list/dat = list()
+	dat += "<center><b>Advanced Markings setup</b></center><BR>"
+	dat += "<div align='center'>"
+	dat += "Each bodypart can have up to [max_marking_per_bp] markings.<BR>"
+	dat += "Markings without descriptions will not be shown on examine.<BR>"
+	dat += "Descriptions should be written so that they fit in this format:<BR>"
+	var/p_he = "they"
+	var/p_his = "their"
+	var/p_have = "have"
+	switch(gender)
+		if(MALE)
+			p_he = "he"
+			p_his = "his"
+			p_have = "has"
+		if(FEMALE)
+			p_he = "she"
+			p_his = "her"
+			p_have = "has"
+		if(NEUTER)
+			p_he = "it"
+			p_his = "it's"
+			p_have = "has"
+	dat += "<span style='padding-left: 10px;color: #a899ff;'>[capitalize(p_he)] [p_have] <b>(description)</b> on [p_his] <b>(bodypart)</b>.</span><BR>"
+	dat += "</div>"
+	dat += "<center><a href='?_src_=prefs;preference=adv_markings;task=close'>Done</a></center>"
+	dat += "<hr>"
+	if(!adv_markings || !length(adv_markings))
+		adv_markings = list(BODY_ZONE_HEAD = list(), BODY_ZONE_CHEST = list(), BODY_ZONE_PRECISE_GROIN = list(),
+							BODY_ZONE_L_ARM = list(), BODY_ZONE_PRECISE_L_HAND = list(),
+							BODY_ZONE_R_ARM = list(), BODY_ZONE_PRECISE_R_HAND = list(),
+							BODY_ZONE_L_LEG = list(), BODY_ZONE_PRECISE_L_FOOT = list(),
+							BODY_ZONE_R_LEG = list(), BODY_ZONE_PRECISE_R_FOOT = list(),
+							)
+	var/list/current_markings = list()
+	for(var/BP in adv_markings)
+		for(var/list/mark in adv_markings[BP])
+			current_markings |= "[mark["body_zone"]]"
+	dat += "<div>"
+	dat += "<b>Currently marked locations:</b> [current_markings.len ? capitalize(current_markings.Join(", ")) : "None"]"
+	dat += "</div>"
+	for(var/BP in adv_markings)
+		var/font_color = "#99c5ff"
+		var/font_desc = "#a899ff"
+		var/bg_remove = "#ff1a1a"
+		dat += "<hr>"
+		dat += "<span style='font-size: 125%;'><b>[capitalize(parse_zone(BP))]: </b></span>"
+		dat += "<hr>"
+		dat += "<div style='padding-left: 20px;'>"
+		for(var/listy in adv_markings[BP])
+			var/list/bruh = adv_markings[BP][listy]
+			dat += "<div style='color: [font_color];padding-top: 10px;'><b>[capitalize(bruh["name"])]</b></div>"
+			dat += "<div style='color: [font_desc];'><b>Description:</b> [bruh["desc"] ? bruh["desc"] : "None"]</div> "
+			dat += "<span style='border: 1px solid #161616; background-color: [bruh["color"]];'>&nbsp;&nbsp;&nbsp;</span><a href='?_src_=prefs;preference=adv_markings;task=update;new_mark=color;body_zone=[BP];marking=[listy];'>Color</a>"
+			dat += " <a href='?_src_=prefs;preference=adv_markings;task=update;new_mark=edit;body_zone=[BP];marking=[listy];'>Modify</a>"
+			dat += " <a style='style='color:[bg_remove];' href='?_src_=prefs;preference=adv_markings;task=update;new_mark=remove;body_zone=[BP];marking=[listy];'>Remove</a>"
+			dat += "<BR>"
+		dat += " <a href='?_src_=prefs;preference=adv_markings;task=update;new_mark=add;body_zone=[BP];'>Add Marking</a>"
+		dat += "</div>"
+	
+	dat += "<BR><center><a href='?_src_=prefs;preference=adv_markings;task=reset'>Reset Markings</a>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Marking Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+//
+
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(href_list["jobbancheck"])
 		var/job = sanitizeSQL(href_list["jobbancheck"])
@@ -1827,6 +1921,58 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					SetLanguage(user)
 			else
 				SetLanguage(user)
+		return TRUE
+	else if(href_list["preference"] == "adv_markings")
+		switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+				ShowChoices(user)
+			if("update")
+				var/body_zone = href_list["body_zone"]
+				switch(href_list["new_mark"])
+					if("add")
+						var/choice = input(user, "Does the marking have a sprite?", "Advanced Marking", "Yes") as text in list("Yes", "No", "Cancel")
+						if(choice == "Yes")
+							var/list/possible = list()
+							for(var/i in GLOB.adv_markings)
+								var/datum/sprite_accessory/adv_marking/markening = GLOB.adv_markings[i]
+								if(istype(markening) && (body_zone in markening.body_parts))
+									possible[markening.name] = markening
+							possible["Cancel"] = 0
+							choice = input(user, "What marking do you want on your [parse_zone(body_zone)]?", "Advanced Marking", "") as null|anything in possible
+							if(choice && (choice != "Cancel") && (length(adv_markings[body_zone]) < max_marking_per_bp))
+								adv_markings[body_zone][choice] = list("name" = choice, "color" = "#FFFFFF", "desc" = "", "datum" = possible[choice])
+						else if(choice == "No")
+							choice = input(user, "What marking do you want on your [parse_zone(body_zone)]?", "Advanced Marking", "") as text
+							if(choice)
+								choice = strip_html_simple(choice, 64)
+								adv_markings[body_zone][choice] = list("name" = choice, "color" = "#FFFFFF", "desc" = "", "datum" = "None")
+					if("remove")
+						var/todelete = href_list["marking"]
+						adv_markings[body_zone] -= todelete
+					if("color")
+						var/tocolor = href_list["marking"]
+						var/choice = input(user, "What color do you want to use for this marking?", "Advanced Marking Color", "FFFFFF") as color
+						if(choice)
+							adv_markings[body_zone][tocolor]["color"] = choice
+					if("edit")
+						var/toedit = href_list["marking"]
+						var/choice = input(user, "Type in a description for your marking.", "Advanced Marking", "") as text
+						if(choice)
+							adv_markings[body_zone][toedit]["desc"] = strip_html_simple(choice, 128)
+						else
+							adv_markings[body_zone][toedit]["desc"] = ""
+				SetMarkings(user)
+			if("reset")
+				adv_markings = list(BODY_ZONE_HEAD = list(), BODY_ZONE_CHEST = list(), BODY_ZONE_PRECISE_GROIN = list(),
+							BODY_ZONE_L_ARM = list(), BODY_ZONE_PRECISE_L_HAND = list(),
+							BODY_ZONE_R_ARM = list(), BODY_ZONE_PRECISE_R_HAND = list(),
+							BODY_ZONE_L_LEG = list(), BODY_ZONE_PRECISE_L_FOOT = list(),
+							BODY_ZONE_R_LEG = list(), BODY_ZONE_PRECISE_R_FOOT = list(),
+							)
+				SetMarkings(user)
+			else
+				SetMarkings(user)
 		return TRUE
 	//
 	switch(href_list["task"])
@@ -3135,6 +3281,19 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		character.Digitigrade_Leg_Swap(FALSE)
 	else
 		character.Digitigrade_Leg_Swap(TRUE)
+	//skyrat edit
+	if(pref_species.allow_adv_markings && length(adv_markings))
+		for(var/BP in adv_markings)
+			for(var/y in adv_markings[BP])
+				var/list/bruh = adv_markings[BP][y]
+				var/datum/adv_marking/marked = new()
+				marked.name = bruh["name"]
+				marked.examine_text = bruh["desc"]
+				marked.color = bruh["color"]
+				marked.attached_accessory = bruh["datum"]
+				marked.body_zone = check_zone(BP)
+				marked.apply_on_mob(character, marked.body_zone)
+	//
 
 	character.give_genitals(TRUE) //character.update_genitals() is already called on genital.update_appearance()
 

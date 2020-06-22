@@ -714,6 +714,16 @@ use_mob_overlay_icon: if FALSE, it will always use the default_icon_file even if
 			. += "-[BP.body_markings]"
 		else
 			. += "-no_marking"
+		//skyrat edit
+		. += "-advmark"
+		if(length(all_markings))
+			for(var/datum/adv_marking/mark in BP.adv_markings)
+				var/datum/sprite_accessory/M = mark.attached_accessory
+				if(istype(M))
+					. += "_[M.icon_state]"
+		else
+			. += "_none"
+		//
 
 	if(HAS_TRAIT(src, TRAIT_HUSK))
 		. += "-husk"
