@@ -419,9 +419,7 @@
 
 /mob/living/carbon/regenerate_limbs(noheal = FALSE, list/excluded_limbs = list(), ignore_parent_restriction = FALSE)
 	. = ..()
-	var/list/limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN,\
-						BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND,\
-						BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT) //skyrat edit
+	var/list/limb_list = ALL_BODYPARTS //skyrat edit
 	if(excluded_limbs.len)
 		limb_list -= excluded_limbs
 	for(var/Z in limb_list)

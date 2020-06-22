@@ -143,9 +143,7 @@
 	return list()
 
 /mob/living/carbon/get_missing_limbs()
-	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG,\
-					BODY_ZONE_PRECISE_GROIN,\
-					BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND) //skyrat edit
+	var/list/full = ALL_BODYPARTS //skyrat edit
 	for(var/zone in full)
 		if(get_bodypart(zone))
 			full -= zone
@@ -162,9 +160,7 @@
 	return list()
 
 /mob/living/carbon/get_disabled_limbs()
-	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG,\
-					BODY_ZONE_PRECISE_GROIN,\
-					BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND) //skyrat edit
+	var/list/full = ALL_BODYPARTS //skyrat edit
 	var/list/disabled = list()
 	for(var/zone in full)
 		var/obj/item/bodypart/affecting = get_bodypart(zone)

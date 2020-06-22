@@ -830,7 +830,7 @@
 	stam_heal_tick = 4
 	//skyrat variables
 	amputation_point = "left shoulder"
-	children_zones = list(/obj/item/bodypart/l_hand)
+	children_zones = list(BODY_ZONE_PRECISE_L_HAND)
 	specific_locations = list("outer left forearm", "inner left wrist", "outer left wrist", "left elbow", "left bicep", "left shoulder")
 	//
 
@@ -937,7 +937,7 @@
 	max_stamina_damage = 50
 	//skyrat variables
 	amputation_point = "right shoulder"
-	children_zones = list(/obj/item/bodypart/r_hand)
+	children_zones = list(BODY_ZONE_PRECISE_R_HAND)
 	specific_locations = list("outer right forearm", "inner right wrist", "outer right wrist", "right elbow", "right bicep", "right shoulder")
 	//
 
@@ -1043,7 +1043,7 @@
 	max_stamina_damage = 50
 	//skyrat vars
 	amputation_point = "groin"
-	children_zones = list(/obj/item/bodypart/r_foot)
+	children_zones = list(BODY_ZONE_PRECISE_L_FOOT)
 	specific_locations = list("inner left thigh", "outer left calf", "outer left hip", " left kneecap", "lower left shin")
 	//
 //skyrat edit
@@ -1062,7 +1062,7 @@
 	max_stamina_damage = 50
 	children_zones = list()
 	amputation_point = "right leg"
-	parent_bodyzone = BODY_ZONE_R_LEG
+	parent_bodyzone = BODY_ZONE_L_LEG
 	specific_locations = list("left sole", "left ankle", "left heel")
 //
 /obj/item/bodypart/l_leg/is_disabled()
@@ -1149,7 +1149,7 @@
 	stam_heal_tick = 4
 	//skyrat variables
 	amputation_point = "groin"
-	children_zones = list(/obj/item/bodypart/r_foot)
+	children_zones = list(BODY_ZONE_PRECISE_R_FOOT)
 	specific_locations = list("right sole", "right ankle", "right heel")
 	//
 //skyrat edit

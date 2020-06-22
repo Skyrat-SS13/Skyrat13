@@ -459,7 +459,7 @@
 	burn_reduction = 2
 	max_damage = 55
 	//skyrat vars
-	starting_children = list(/obj/item/bodypart/l_arm/robot/surplus_upgraded)
+	starting_children = list(/obj/item/bodypart/l_hand/robot/surplus_upgraded)
 	//
 //skyrat edit
 /obj/item/bodypart/l_hand/robot/surplus_upgraded
@@ -478,7 +478,7 @@
 	burn_reduction = 2
 	max_damage = 55
 	//skyrat vars
-	starting_children = list(/obj/item/bodypart/r_arm/robot/surplus_upgraded)
+	starting_children = list(/obj/item/bodypart/r_hand/robot/surplus_upgraded)
 	//
 //skyrat edit
 /obj/item/bodypart/r_hand/robot/surplus_upgraded
