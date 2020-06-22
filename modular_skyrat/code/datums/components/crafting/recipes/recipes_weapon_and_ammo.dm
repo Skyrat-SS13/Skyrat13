@@ -146,7 +146,7 @@
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/irifle_ou
-	name = "Improvised over under rifle (7.62mm)"
+	name = "Improvised over under rifle (.22 magnum)"
 	result = /obj/item/gun/ballistic/revolver/doublebarrel/improvised_rifle_ou
 	reqs = list(/obj/item/weaponcrafting/improvised_parts/barrel_rifle = 2,
 				/obj/item/weaponcrafting/improvised_parts/rifle_receiver = 2,
