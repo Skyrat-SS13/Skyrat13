@@ -6,6 +6,6 @@
 	. = ..()
 	design_ids += "message-server"
 
-/datum/techweb_node/computer_board_gaming/New()
+/*/datum/techweb_node/computer_board_gaming/New()
 	. = ..()
-	design_ids += "tetris"
+	design_ids += "tetris"*/
