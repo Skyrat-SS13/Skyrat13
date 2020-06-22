@@ -88,19 +88,19 @@
 	name = "Clockwork Slab"
 	desc = "A reverse engineered clockwork slab. Is this really a good idea?."
 	item = /obj/item/clockwork/slab/traitor
-	cost = 20
+	cost = 25
 	player_minimum = 20
 	refundable = TRUE
-	//restricted_roles = list("Chaplain") skyrat change - fuck the chaplain i want to build my shoko asara cult
+	restricted_roles = list("Chaplain")
 
 /datum/uplink_item/role_restricted/arcane_tome
 	name = "Arcane Tome"
 	desc = "A replica of a Nar'sian tome. This is probably a bad idea.."
 	item = /obj/item/tome/traitor
-	cost = 20
+	cost = 25
 	player_minimum = 20
 	refundable = TRUE
-	//restricted_roles = list("Chaplain") skyrat change - fuck the chaplain i want to build my shoko asara cult
+	restricted_roles = list("Chaplain")
 
 /datum/uplink_item/role_restricted/explosive_hot_potato
 	name = "Exploding Hot Potato"
