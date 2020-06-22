@@ -136,7 +136,7 @@
 	attack_sound = initial(attack_sound)
 	miss_sound = initial(miss_sound)
 	nojumpsuit = initial(nojumpsuit)
-	no_equip = initial(no_equip)
+	no_equip = list()
 	meat = initial(meat)
 	limbs_id = initial(limbs_id)
 	use_skintones = initial(use_skintones)
