@@ -104,4 +104,4 @@
 
 /obj/item/melee/sword/shortsword/melee_attack_chain(mob/user, atom/target, params)
 	..()
-	user.changeNext_move(CLICK_CD_MELEE * 0.75)
+	user.changeNext_move(CLICK_CD_MELEE * 0.65)
