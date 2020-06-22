@@ -451,7 +451,6 @@
 		if("RoboMaid") //skyrat change
 			cyborg_base_icon = "robomaid_med"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
-
 		else
 			return FALSE
 	return ..()
