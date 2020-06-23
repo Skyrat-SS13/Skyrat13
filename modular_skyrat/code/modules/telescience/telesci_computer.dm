@@ -28,8 +28,8 @@
 	var/teleport_cooldown = 0 // every index requires a bluespace crystal
 	var/list/power_options = list(5, 10, 20, 25, 30, 40, 50, 80, 100)
 	var/teleporting = 0
-	var/starting_crystals = 4
-	var/max_crystals = 4
+	var/starting_crystals = 8
+	var/max_crystals = 8
 	var/list/crystals = list()
 	var/obj/item/gps/inserted_gps
 
@@ -167,11 +167,11 @@
 		var/trueoffsetx = offsetx + rand(-1,1) // Where will you land?
 		var/trueoffsety = offsety + rand(-1,1) // You never TRULY know. There are 9 possibilities, IF you calculated the offsetx and offsety.
 
-		var/datum/projectile_data/proj_data = projectile_trajectory(telepad.x + trueoffsetx, telepad.y + trueoffsety, trueRotation, trueAngle, truePower)
+		var/datum/projectile_data/proj_data = projectile_trajectory(telepad.x, telepad.y, trueRotation, trueAngle, truePower)
 		last_tele_data = proj_data
 
-		var/trueX = clamp(round(proj_data.dest_x, 1), 1, world.maxx)
-		var/trueY = clamp(round(proj_data.dest_y, 1), 1, world.maxy)
+		var/trueX = clamp(round(proj_data.dest_x + trueoffsetx, 1), 1, world.maxx)
+		var/trueY = clamp(round(proj_data.dest_y + trueoffsety, 1), 1, world.maxy)
 		var/spawn_time = round(proj_data.time) * 10
 
 		var/turf/target = locate(trueX, trueY, z_co)
@@ -353,7 +353,7 @@
 	updateDialog()
 
 /obj/machinery/computer/telescience/proc/recalibrate()
-	teles_left = rand(5, 15) //MASSIVELY nerfed how much you can use this thing before needing to calculate all over again.
+	teles_left = rand(10, 30)
 	angle_off = rand(-15, 15)
 	power_off = rand(-4, 0)
 	rotation_off = rand(-10, 10)
