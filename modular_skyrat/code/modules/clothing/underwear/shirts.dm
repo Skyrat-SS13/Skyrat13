@@ -83,21 +83,21 @@
 	name = "striped bra"
 	icon_state = "bra_striped"
 
-/obj/item/clothing/underwear/shirt/bra/swimming
+/obj/item/clothing/underwear/shirt/bra/bikini
 	name = "bikini"
 	desc = "A bikini."
 	body_parts_covered = CHEST | GROIN
 	icon_state = "swimming"
 
-/obj/item/clothing/underwear/shirt/bra/swimming/blue
+/obj/item/clothing/underwear/shirt/bra/bikini/blue
 	name = "blue bikini"
 	icon_state = "swimming_blue"
 
-/obj/item/clothing/underwear/shirt/bra/swimming/blue
+/obj/item/clothing/underwear/shirt/bra/bikini/red
 	name = "red bikini"
 	icon_state = "swimming_red"
 
-/obj/item/clothing/underwear/shirt/bra/swimming/black
+/obj/item/clothing/underwear/shirt/bra/bikini/black
 	name = "black bikini"
 	icon_state = "swimming_black"
 
@@ -230,7 +230,7 @@
 	name = "NT shirt"
 	icon_state = "undershirt_nano"
 
-/obj/item/clothing/underwear/shirt/stripes
+/obj/item/clothing/underwear/shirt/striped
 	name = "striped shirt"
 	icon_state = "undershirt_striped"
 
@@ -263,7 +263,7 @@
 	icon_state = "undershirt_bowling_cyan"
 
 /obj/item/clothing/underwear/shirt/bowling/grey
-	name = "cyan bowling shirt"
+	name = "grey bowling shirt"
 	icon_state = "undershirt_bowling_grey"
 
 /obj/item/clothing/underwear/shirt/alien

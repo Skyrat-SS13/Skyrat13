@@ -126,6 +126,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/personal_chat_color = "#ffffff"
 	var/list/foodlikes = list() //Skyrat additions BEGIN
 	var/list/fooddislikes = list()
+	var/list/color_gear = list()
 	var/maxlikes = 3
 	var/maxdislikes = 3 //Skyrat additions END
 
@@ -1163,7 +1164,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					class_link = "style='white-space:normal;background:#ebc42e;' href='?_src_=prefs;preference=gear;toggle_gear_path=[html_encode(j)];toggle_gear=1'"
 				else
 					class_link = "style='white-space:normal;' href='?_src_=prefs;preference=gear;toggle_gear_path=[html_encode(j)];toggle_gear=1'"
-				dat += "<tr style='vertical-align:top;'><td width=15%><a [class_link]>[j]</a></td>"
+				//skyrat edit
+				if(gear.has_colors && (gear.name in color_gear))
+					var/colore = "<a href='?_src_=prefs;preference=gear;toggle_gear_path=[html_encode(j)];toggle_gear=color'>Color</a><span style='border: 1px solid #161616; background-color: [color_gear[gear.name]];'>&nbsp;&nbsp;&nbsp;</span>"
+					dat += "<tr style='vertical-align:top;'><td width=15%><a [class_link]>[j]</a>[colore]</td>"
+				else
+					dat += "<tr style='vertical-align:top;'><td width=15%><a [class_link]>[j]</a></td>"
+				//
 				dat += "<td width = 5% style='vertical-align:top'>[gear.cost]</td><td>"
 				if(islist(gear.restricted_roles))
 					if(gear.restricted_roles.len)
@@ -3044,20 +3051,32 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			var/datum/gear/G = GLOB.loadout_items[gear_tab][html_decode(href_list["toggle_gear_path"])]
 			if(!G)
 				return
-			var/toggle = text2num(href_list["toggle_gear"])
-			if(!toggle && (G.type in chosen_gear))//toggling off and the item effectively is in chosen gear)
-				chosen_gear -= G.type
-				gear_points += initial(G.cost)
-			else if(toggle && (!(is_type_in_ref_list(G, chosen_gear))))
-				if(!is_loadout_slot_available(G.category))
-					to_chat(user, "<span class='danger'>You cannot take this loadout, as you've already chosen too many of the same category!</span>")
-					return
-				if(G.donoritem && !G.donator_ckey_check(user.ckey))
-					to_chat(user, "<span class='danger'>This is an item intended for donator use only. You are not authorized to use this item.</span>")
-					return
-				if(gear_points >= initial(G.cost))
-					chosen_gear += G.type
-					gear_points -= initial(G.cost)
+			//skyrat edit
+			if(href_list["toggle_gear"] != "color")
+				var/toggle = text2num(href_list["toggle_gear"])
+				if(!toggle && (G.type in chosen_gear))//toggling off and the item effectively is in chosen gear)
+					chosen_gear -= G.type
+					gear_points += initial(G.cost)
+				else if(toggle && (!(is_type_in_ref_list(G, chosen_gear))))
+					if(!is_loadout_slot_available(G.category))
+						to_chat(user, "<span class='danger'>You cannot take this loadout, as you've already chosen too many of the same category!</span>")
+						return
+					if(G.donoritem && !G.donator_ckey_check(user.ckey))
+						to_chat(user, "<span class='danger'>This is an item intended for donator use only. You are not authorized to use this item.</span>")
+						return
+					if(gear_points >= initial(G.cost))
+						chosen_gear += G.type
+						if(!color_gear)
+							color_gear = list()
+						color_gear |= list(G.name = G.color)
+						gear_points -= initial(G.cost)
+			else
+				var/choice = input(user, "Select a color for [G.name].", "Gear Color") as color
+				if(choice)
+					if(!color_gear)
+						color_gear = list()
+					color_gear[G.name] = choice
+			//
 
 	ShowChoices(user)
 	return 1

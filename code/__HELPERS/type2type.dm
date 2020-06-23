@@ -645,6 +645,12 @@
 			return "Left ear"
 		if(SLOT_EARS_RIGHT)
 			return "Right ear"
+		if(SLOT_W_UNDERWEAR)
+			return "Underwear"
+		if(SLOT_W_SOCKS)
+			return "Socks"
+		if(SLOT_W_SHIRT)
+			return "Shirt"
 		//
 		if(SLOT_GLASSES)
 			return "Glasses"

@@ -81,12 +81,21 @@
 		if(MODE_DEPARTMENT)
 			if (ears)
 				ears.talk_into(src, message, message_mode, spans, language)
+			//skyrat edit
+			else if (ears_extra)
+				ears_extra.talk_into(src, message, , spans, language)
+			//
 			return ITALICS | REDUCE_RANGE
 
 	if(message_mode in GLOB.radiochannels)
 		if(ears)
 			ears.talk_into(src, message, message_mode, spans, language)
 			return ITALICS | REDUCE_RANGE
+		//skyrat edit
+		else if (ears_extra)
+			ears_extra.talk_into(src, message, , spans, language)
+			return ITALICS | REDUCE_RANGE
+		//
 
 	return 0
 

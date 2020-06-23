@@ -76,6 +76,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		var/mob/living/carbon/human/H = src.loc
 		if(H.ears == src)
 			return ..(freq, level)
+		//skyrat edit
+		else if(H.ears_extra == src)
+			return ..(freq, level)
+		//
 	else if(AIuser)
 		return ..(freq, level)
 	return FALSE
