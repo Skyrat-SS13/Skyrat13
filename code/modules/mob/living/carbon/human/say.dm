@@ -72,6 +72,10 @@
 		if(MODE_HEADSET)
 			if (ears)
 				ears.talk_into(src, message, , spans, language)
+			//skyrat edit
+			else if (extra_ears)
+				extra_ears.talk_into(src, message, , spans, language)
+			//
 			return ITALICS | REDUCE_RANGE
 
 		if(MODE_DEPARTMENT)
