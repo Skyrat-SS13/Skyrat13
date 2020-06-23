@@ -8,14 +8,13 @@
 	var/list/blacklistedspecies = list(/datum/species/synth, /datum/species/android, /datum/species/ipc, /datum/species/synthliz, /datum/species/shadow, /datum/species/plasmaman, /datum/species/jelly, /datum/species/jelly/slime)
 
 /datum/quirk/synthetic/add()
-	. = QDEL_IN(src, 120)
-	sleep(5 SECONDS)
+	sleep(10)
 	var/mob/living/carbon/human/H = quirk_holder
 	if(istype(H))
 		if(!(H.dna.species.type in blacklistedspecies))
 			H.set_species(/datum/species/synth) //the synth on_gain stuff handles everything, that's why i made this shit a quirk and not a roundstart race or whatever
 			return TRUE
-	to_chat(H, "<span class='warning'>Your species or mob type is blacklisted from being a synth. Your synth quirk will be removed and your species will not be changed.</span>")
+	addtimer(CALLBACK(src, .proc/remove), 10)
 
 /datum/quirk/synthetic/remove()
 	var/mob/living/carbon/human/H = quirk_holder
