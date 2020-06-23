@@ -818,7 +818,7 @@
 
 //skyrat cum inflation
 /mob/living/carbon/human/check_self_for_injuries()
-	if(stat == DEAD || stat == UNCONSCIOUS)
+	if(stat == DEAD || stat == UNCONSCIOUS || !src.canUseTopic(src, TRUE))
 		return
 
 	visible_message("<span class='notice'>[src] examines [p_them()]self.</span>", \
@@ -871,6 +871,23 @@
 		var/no_damage
 		if(status == "OK" || status == "no damage")
 			no_damage = TRUE
+			var/list/wounds = LB.wounds.Copy()
+			for(var/datum/wound/W in LB.wounds)
+				no_damage = FALSE
+				wounds |= W.severity
+			if(wounds.len)
+				var/severity = max(wounds)
+				switch(severity)
+					if(WOUND_SEVERITY_TRIVIAL)
+						status = "very mildly wounded"
+					if(WOUND_SEVERITY_MODERATE)
+						status = "wounded"
+					if(WOUND_SEVERITY_SEVERE)
+						status = "severely wounded"
+					if(WOUND_SEVERITY_CRITICAL)
+						status = "horrifyingly damaged"
+					if(WOUND_SEVERITY_LOSS)
+						status = "a literal stump"
 		var/isdisabled = " "
 		if(LB.is_disabled())
 			isdisabled = " is disabled "
@@ -1016,4 +1033,4 @@
 			var/obj/item/clothing/C = bp
 			if(C.body_parts_covered & def_zone.body_part)
 				covering_part += C
-	return covering_part
+	return covering_part.len

@@ -34,7 +34,7 @@
 	if(!isitem(target) && !isprojectile(target))
 		return ELEMENT_INCOMPATIBLE
 
-	if(isitem(target))
+	if(isitem(target) && !istype(target, /obj/item/projectile))
 		RegisterSignal(target, COMSIG_MOVABLE_IMPACT_ZONE, .proc/checkEmbed)
 		RegisterSignal(target, COMSIG_ELEMENT_ATTACH, .proc/severancePackage)
 		RegisterSignal(target, COMSIG_PARENT_EXAMINE, .proc/examined)

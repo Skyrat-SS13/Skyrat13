@@ -941,6 +941,16 @@
 		var/datum/disease/D = thing
 		if(D.severity != DISEASE_SEVERITY_POSITIVE)
 			D.cure(FALSE)
+	//skyrat edit
+	for(var/i in all_wounds)
+		var/datum/wound/w = i
+		if(istype(w))
+			w.remove_wound(FALSE, TRUE)
+	for(var/i in all_scars)
+		var/datum/scar/s = i
+		if(istype(s) && !s.permanent)
+			s.Destroy()
+	//
 	if(admin_revive)
 		regenerate_limbs()
 		regenerate_organs()
