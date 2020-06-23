@@ -244,9 +244,8 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/construction/mining/aux_base)
 "abe" = (
-/obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/stripes/end{
-	dir = 1
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -25892,7 +25891,17 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/purple,
-/turf/open/floor/plasteel/grimy,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_x = 26;
+	prison_radio = 1
+	},
+/turf/open/floor/plasteel,
 /area/security/prison)
 "bkB" = (
 /obj/structure/lattice/catwalk,
@@ -41175,10 +41184,6 @@
 	pixel_x = 32;
 	pixel_y = 32
 	},
-/obj/structure/closet/secure_closet/brig{
-	id = "brig1";
-	name = "Holding Cell Locker"
-	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bPq" = (
@@ -42907,6 +42912,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bTd" = (
@@ -76437,8 +76443,7 @@
 	id = "cloning_windows";
 	name = "Window Privacy Control";
 	pixel_x = -18;
-	pixel_y = 25;
-	req_one_access_txt = "5;68"
+	pixel_y = 25
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -76496,8 +76501,7 @@
 	id = "cloning_windows";
 	name = "Window Privacy Control";
 	pixel_x = 15;
-	pixel_y = 25;
-	req_one_access_txt = "5;68"
+	pixel_y = 25
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -78723,8 +78727,7 @@
 	id = "cloning_windows";
 	name = "Window Privacy Control";
 	pixel_x = 26;
-	pixel_y = -26;
-	req_one_access_txt = "5;68"
+	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -98075,7 +98078,10 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/structure/closet/secure_closet/brig{
+	id = "brig1";
+	name = "Holding Cell Locker"
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "iai" = (
@@ -99557,11 +99563,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "mvx" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+/obj/machinery/quantumpad{
+	map_pad_id = "toxenoarch";
+	map_pad_link_id = "tostation"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -99677,13 +99681,8 @@
 /turf/open/space,
 /area/engine/atmos)
 "mLI" = (
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -100080,11 +100079,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
-"nQR" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/computer/shuttle/mining/common,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "nSh" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /turf/closed/wall/r_wall,
@@ -100117,19 +100111,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/medical/psych)
-"nSS" = (
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "nUG" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/box,
@@ -101229,6 +101210,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"rcu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "rdr" = (
 /obj/effect/spawner/lootdrop/wall/twentyfive_percent_falsewall,
 /turf/open/floor/plating,
@@ -103316,17 +103308,6 @@
 "xbV" = (
 /turf/open/floor/wood,
 /area/security/prison)
-"xdp" = (
-/obj/docking_port/stationary{
-	dwidth = 3;
-	height = 5;
-	id = "commonmining_home";
-	name = "SS13: Common Mining Dock";
-	roundstart_template = /datum/map_template/shuttle/mining_common/meta;
-	width = 7
-	},
-/turf/open/space/basic,
-/area/space)
 "xdL" = (
 /obj/machinery/requests_console{
 	department = "Prison";
@@ -135743,11 +135724,11 @@ oZp
 aaa
 aaa
 aaa
-aaa
-aaa
-rqh
-rqh
-aad
+aaO
+aaO
+aaO
+aaO
+aaO
 aad
 aaa
 aaa
@@ -136000,10 +135981,10 @@ oZp
 aaa
 aaa
 aaa
-aaa
 aaO
-aaO
-aaO
+aco
+abe
+aco
 aaO
 abf
 aaO
@@ -136257,11 +136238,11 @@ oZp
 aaa
 aaa
 aaa
-xdp
-mLI
+aaO
+aco
 mvx
-nSS
-abe
+aco
+aeb
 abp
 abC
 abC
@@ -136514,11 +136495,11 @@ oZp
 aaa
 aaa
 aaa
-aaa
 aaO
+aco
+mLI
+aco
 aaO
-aaO
-nQR
 abq
 abD
 abD
@@ -136771,12 +136752,12 @@ oZp
 aaa
 aaa
 aaa
-aaa
-aaa
-rqh
 aaO
 aaO
-abf
+aaO
+aaO
+aaO
+aaO
 aaO
 aaO
 abf
@@ -155097,7 +155078,7 @@ btl
 buK
 lLc
 cfh
-cfh
+bmi
 bAm
 bCf
 bEd
@@ -155354,7 +155335,7 @@ btm
 mYl
 bAn
 bxp
-bkq
+rcu
 bAn
 bCg
 bEe
