@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(autotransfer)
 	curvotes = SSautotransfer.curvotes
 
 /datum/controller/subsystem/autotransfer/fire()
-	if(world.realtime < targettime)
+	if(world.realtime < targettime) // Skyrat edit
 		return
 	if(maxvotes == NO_MAXVOTES_CAP || maxvotes > curvotes)
 		SSvote.initiate_vote("transfer","server")
