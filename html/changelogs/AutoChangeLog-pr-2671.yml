@@ -1,0 +1,4 @@
+author: "Useroth"
+delete-after: True
+changes: 
+  - tweak: "Round end votes now use real time instead of byond time, which was affected by time dilation, making some rounds longer than they should be."
