@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /mob/living/carbon/Life()
 	set invisibility = 0
 
@@ -14,6 +15,14 @@
 	. = ..()
 
 	if (QDELETED(src))
+=======
+/mob/living/carbon/BiologicalLife(seconds, times_fired)
+	//Reagent processing needs to come before breathing, to prevent edge cases.
+	handle_organs()
+	if(stat == DEAD)
+		return FALSE
+	if(!(. = ..()))
+>>>>>>> 0f3cd7bbd8... Merge pull request #12588 from Citadel-Station-13/Linzolle-patch-1
 		return
 
 	if(.) //not dead
