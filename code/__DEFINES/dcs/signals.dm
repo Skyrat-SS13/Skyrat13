@@ -405,3 +405,7 @@
 //skyrat funnies
 #define COMSIG_LIVING_FLASH_ACT "living_flash_act"				///from base of [/mob/living/proc/flash_act] //moth
 #define COMSIG_EVENTPREF_UPDATE "observer_eventpref_update"
+
+//Mob stuff
+#define COMSIG_MOB_CLIENT_MOUSEUP "mob_client_mouseup" ///from base of [client/MouseUp()] (datum/source, object, location, control, params)
+#define COMSIG_MOB_CLIENT_MOUSEDOWN "mob_client_mousedown" ///from base of [client/MouseDown()] (datum/source, object, location, control, params)

@@ -104,3 +104,10 @@
 	design_ids += "tetris"
 	. = ..()
 
+/datum/techweb_node/wireless
+	id = "wireless_charging"
+	display_name = "Wireless charging"
+	description = "Learn about the ability to send power through the air."
+	prereq_ids = list("adv_power", "adv_engi")
+	design_ids = list("wireless_guns", "wireless_cells")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)

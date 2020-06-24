@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Glory killing is no longer stackable"
+  - bugfix: "The gladiator no longer rages on as a vengeful spirit."

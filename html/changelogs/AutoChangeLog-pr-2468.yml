@@ -1,0 +1,4 @@
+author: "Rug-Dealer"
+delete-after: True
+changes: 
+  - rscadd: "You can now sing! Put % in front of your message (like you would with # if you were whispering) and start singing your favorite tunes to your fellow crewmembers."

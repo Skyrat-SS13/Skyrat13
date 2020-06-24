@@ -5,6 +5,7 @@
 	ask_verb = "requests"
 	exclaim_verb = "proclaims"
 	whisper_verb = "imparts"
+	sing_verb = "chants" // Skyrat edit
 	key = "r"
 	default_priority = 10
 	spans = list(SPAN_ROBOT)
