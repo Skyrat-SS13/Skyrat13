@@ -526,6 +526,8 @@
 
 /mob/living/carbon/human/list_interaction_attributes(var/mob/living/LM)
 	var/dat = ..()
+	if(CONFIG_GET(flag/no_lewd_verbs))
+		return dat
 	if(get_refraction_dif())
 		dat += "<br>...are sexually exhausted for the time being."
 	if(a_intent == INTENT_HELP)
