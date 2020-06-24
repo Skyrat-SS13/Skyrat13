@@ -40,3 +40,20 @@
 	build_path = /obj/item/circuitboard/machine/cryptominer/syndie
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+
+//Wireless Chargers
+/datum/design/board/wireless/cells
+	name = "Machine Design (Wireless Cell Charger)"
+	desc = "A circuitboard for wirelessly charging cells."
+	id = "wireless_cells"
+	build_path = /obj/item/circuitboard/machine/wirelesscharger/cells
+	category = list("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/wireless/guns
+	name = "Machine Design (Wireless Weapon Charger)"
+	desc = "A circuitboard for wirelessly charging weapons."
+	id = "wireless_guns"
+	build_path = /obj/item/circuitboard/machine/wirelesscharger/guns
+	category = list("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
