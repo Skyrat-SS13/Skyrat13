@@ -429,9 +429,8 @@
 	icon_state = "russobluecamohat"
 	item_state = "russobluecamohat"
 	dynamic_hair_suffix = ""
-<<<<<<< HEAD
-=======
 
+/* //Uncomment if #2599 will be approved (might be unlikely) and gets merged.
 /obj/item/clothing/head/hunter
 	name = "bounty hunting hat"
 	desc = "Ain't nobody gonna cheat the hangman in my town."
@@ -439,6 +438,7 @@
 	item_state = "hunter"
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 15, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+*/
 
 /obj/item/clothing/head/kepi
 	name = "kepi"
@@ -448,4 +448,3 @@
 /obj/item/clothing/head/kepi/old
 	icon_state = "kepi_old"
 	desc = "A flat, white circular cap with a visor, that demands some honor from it's wearer."
->>>>>>> 9f6d0ba10b... Merge pull request #12570 from NopemanMcHalt/orvilike_bonus
