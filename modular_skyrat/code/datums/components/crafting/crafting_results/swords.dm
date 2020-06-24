@@ -86,10 +86,10 @@
 		var/obj/item/bodypart/BP = C.get_bodypart(check_zone(user.zone_selected))
 		if(!istype(BP))
 			return
+		if((C.getarmor(def_zone, "melee") >= armorthreshold) || (def_zone in list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)))
+			user.changeNext_move(CLICK_CD_MELEE * 2)
+			return
 		if(prob(delimb_chance))
-			if((C.getarmor(def_zone, "melee") >= armorthreshold) || (def_zone == (BODY_ZONE_HEAD || BODY_ZONE_CHEST || BODY_ZONE_PRECISE_GROIN)))
-				user.changeNext_move(CLICK_CD_MELEE * 2)
-				return
 			BP.dismember(BRUTE)
 	user.changeNext_move(CLICK_CD_MELEE * 2)
 
