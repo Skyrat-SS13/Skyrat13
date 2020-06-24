@@ -21,7 +21,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "aj" = (
@@ -30,6 +29,15 @@
 	},
 /turf/open/floor/engine/n2,
 /area/xenoarch/eng)
+"al" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/arch)
 "an" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -592,6 +600,18 @@
 /obj/structure/stone_tile,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"dn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/arch)
 "do" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/tile/green{
@@ -862,6 +882,12 @@
 /obj/structure/stone_tile/cracked,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"fd" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/arch)
 "fg" = (
 /obj/structure/stone_tile/surrounding_tile/cracked,
 /obj/structure/stone_tile/surrounding_tile/cracked{
@@ -991,6 +1017,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/gen)
+"fL" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/arch)
 "fM" = (
 /obj/machinery/requests_console{
 	department = "Xenoarchaeology Security";
@@ -2104,9 +2137,9 @@
 /area/template_noop)
 "lu" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 8
+	dir = 9
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "lv" = (
 /obj/machinery/light/small{
@@ -2794,9 +2827,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "pf" = (
@@ -3440,9 +3470,12 @@
 /area/xenoarch/arch)
 "rX" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 1
+	dir = 6
 	},
-/turf/open/floor/plasteel,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "rZ" = (
 /obj/machinery/power/compressor{
@@ -3690,9 +3723,10 @@
 /area/lavaland/surface/outdoors)
 "tr" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 4
+	dir = 10
 	},
-/turf/open/floor/plasteel,
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "tv" = (
 /turf/open/floor/plasteel/stairs,
@@ -4290,10 +4324,7 @@
 	c_tag = "Xenoarchaeology Nine";
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "wQ" = (
 /obj/structure/stone_tile/block,
@@ -4307,9 +4338,6 @@
 /area/lavaland/surface/outdoors)
 "wW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "wY" = (
@@ -4640,6 +4668,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/sec)
+"yu" = (
+/obj/machinery/quantumpad{
+	map_pad_id = "tostation";
+	map_pad_link_id = "toxenoarch"
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/arch)
 "yv" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 4
@@ -4831,8 +4866,8 @@
 /turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "zl" = (
-/obj/machinery/computer/shuttle/mining/common,
-/turf/open/floor/plasteel,
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "zn" = (
 /obj/structure/tank_dispenser/oxygen,
@@ -5055,16 +5090,14 @@
 	},
 /area/ruin/unpowered/ash_walkers)
 "AG" = (
-/obj/docking_port/stationary{
-	area_type = /area/xenoarch/arch;
-	dir = 8;
-	dwidth = 3;
-	height = 7;
-	id = "lavaland_common_away";
-	name = "Mining base public dock";
-	width = 7
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
 	},
-/turf/open/floor/plating,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "AH" = (
 /obj/machinery/firealarm{
@@ -5103,8 +5136,13 @@
 /turf/open/floor/plasteel,
 /area/xenoarch/bot)
 "AT" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/xenoarch/arch)
 "AU" = (
 /turf/open/floor/plasteel,
@@ -5179,6 +5217,15 @@
 	},
 /turf/closed/indestructible/riveted/boss,
 /area/ruin/unpowered/ash_walkers)
+"Bl" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/arch)
 "Br" = (
 /obj/machinery/atmospherics/pipe/simple/dark/hidden{
 	dir = 6
@@ -5899,9 +5946,6 @@
 /area/xenoarch/arch)
 "EX" = (
 /obj/machinery/light,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "EY" = (
@@ -8810,6 +8854,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/xenoarch/eng)
+"TI" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/xenoarch/arch)
 "TJ" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/breath/vox,
@@ -9167,7 +9217,6 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
-/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/xenoarch/arch)
 "Vt" = (
@@ -19837,15 +19886,15 @@ AK
 CV
 AK
 BS
-AU
+lu
+vz
 tr
-tr
-tr
+Bl
 wO
 tr
-tr
-tr
-AU
+Bl
+vz
+TI
 BS
 Za
 Za
@@ -20094,15 +20143,15 @@ KE
 as
 KE
 BS
-AT
-jn
-jn
-jn
-jn
-jn
-jn
-jn
-rX
+vz
+vz
+zl
+fd
+yu
+zl
+fd
+vz
+vz
 BS
 DM
 DM
@@ -20352,13 +20401,13 @@ Ho
 ND
 BS
 AT
-jn
-jn
-jn
-jn
-jn
-jn
-jn
+vz
+AG
+al
+vz
+fL
+dn
+vz
 rX
 BS
 pl
@@ -20609,13 +20658,13 @@ as
 KE
 BS
 ai
-jn
-jn
-jn
-jn
-jn
-jn
-jn
+AU
+AU
+AU
+AU
+AU
+AU
+AU
 EX
 BS
 DM
@@ -20866,14 +20915,14 @@ as
 OM
 BS
 Vs
-jn
-jn
-jn
-jn
-jn
-jn
-jn
-rX
+AU
+AU
+AU
+AU
+AU
+AU
+AU
+AU
 BS
 DM
 DM
@@ -21122,15 +21171,15 @@ Wc
 yL
 Uk
 BS
-AT
-jn
-jn
-jn
-AG
-jn
-jn
-jn
-rX
+AU
+AU
+AU
+AU
+AU
+AU
+AU
+AU
+AU
 BS
 DM
 DM
@@ -21380,13 +21429,13 @@ as
 HK
 BS
 AU
-lu
-lu
+AU
+AU
 wW
 Td
 pe
-lu
-lu
+AU
+AU
 AU
 BS
 DM
@@ -21638,7 +21687,7 @@ OM
 BS
 AU
 AU
-zl
+AU
 AU
 Bf
 km
