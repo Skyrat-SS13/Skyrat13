@@ -21843,6 +21843,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
 	},
@@ -55513,6 +55514,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "hwj" = (

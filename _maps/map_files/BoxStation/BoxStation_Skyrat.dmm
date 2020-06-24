@@ -17902,7 +17902,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "aMZ" = (
-/turf/closed/wall,
+/obj/machinery/vending/pdavendor,
+/turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aNa" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -19815,6 +19816,7 @@
 	c_tag = "Arrivals Hallway";
 	dir = 8
 	},
+/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aSg" = (
@@ -57462,6 +57464,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
+"gBf" = (
+/obj/structure/lattice,
+/turf/closed/wall,
+/area/space/nearstation)
 "gBo" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -64237,6 +64243,9 @@
 /obj/item/clothing/glasses/sunglasses/big,
 /turf/open/floor/plasteel/showroomfloor,
 /area/maintenance/bar)
+"vvx" = (
+/turf/closed/wall,
+/area/hallway/secondary/exit)
 "vxA" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Three"
@@ -115880,7 +115889,7 @@ bPv
 odk
 iyZ
 bRd
-jEU
+aPq
 aMZ
 bky
 aaa
@@ -116137,9 +116146,9 @@ nfZ
 mVz
 vBP
 aPq
-aPq
-aNa
-aaf
+jEU
+vvx
+gBf
 aaa
 bns
 boF
