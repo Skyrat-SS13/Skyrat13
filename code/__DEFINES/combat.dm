@@ -274,8 +274,6 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
   * a "inefficiently" prefix will be added to the message.
   */
 #define FEEBLE_ATTACK_MSG_THRESHOLD 0.5
-<<<<<<< HEAD
-
 
 //bullet_act() return values
 #define BULLET_ACT_HIT				"HIT"		//It's a successful hit, whatever that means in the context of the thing it's hitting.
@@ -343,5 +341,3 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define BLOCK_PRIORITY_UNIFORM					25
 
 #define BLOCK_PRIORITY_DEFAULT BLOCK_PRIORITY_HELD_ITEM
-=======
->>>>>>> fd662047f3... Merge pull request #12518 from kevinz000/pp_fix
