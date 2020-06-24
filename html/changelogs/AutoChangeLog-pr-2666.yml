@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Many vending machine items that were supposed to be in the game but weren't due to bad code are now in the game."
+  - bugfix: "Polychromic high heels are now actually polychromic."
