@@ -3554,6 +3554,7 @@
 #include "modular_skyrat\code\game\mecha\working\killdozer.dm"
 #include "modular_skyrat\code\game\objects\items.dm"
 #include "modular_skyrat\code\game\objects\obj.dm"
+#include "modular_skyrat\code\game\objects\effects\contraband.dm"
 #include "modular_skyrat\code\game\objects\effects\landmarks.dm"
 #include "modular_skyrat\code\game\objects\effects\effect_system\effect_smoke.dm"
 #include "modular_skyrat\code\game\objects\effects\spawners\blocking_spawner.dm"
