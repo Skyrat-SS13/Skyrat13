@@ -1,0 +1,6 @@
+author: "Anonymous"
+delete-after: True
+changes: 
+  - imageadd: "Emojis: plushrake (plushie drake); yikes; zzz; cross; crosslash; owo; maintenergy; note; probcomp; usp."
+  - imagedel: "Emojis: isleep (Resident Sleeper); kappa (use `wew` as kappa alternative now); derodent; oldman; whoop."
+  - spellcheck: "Removed underscores from two obamium emojis. Sorry Bob."
