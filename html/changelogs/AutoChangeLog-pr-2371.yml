@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "USPs can now be unlocked with a proper ID. For real this time i swear."
+  - balance: "USPs now deal a bit more stamina damage than a disabler"
