@@ -1,0 +1,5 @@
+author: "SarmentiCampbell"
+delete-after: True
+changes: 
+  - rscadd: "Added a new traitor item that is restricted to roboticist only, The Syndicate Cyborg Module! Credit to Akrilla for the help!"
+  - rscadd: "Added a cyborg shapeshifters, radial menu and several disguises, Credit to Funce for them!"
