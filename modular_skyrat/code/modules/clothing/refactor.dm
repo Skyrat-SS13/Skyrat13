@@ -160,19 +160,22 @@
 	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Solfed Contractor" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
-	"Green" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	"Green" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Bushfighter Boonie" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
 	"Solfed Contractor" = 'modular_skyrat/icons/mob/clothing/head.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Bushfighter Boonie" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "beret_badge",
 	"Solfed Contractor" = "contractor_beret",
 	"Tactical" = "tactical_beret",
-	"Green" = "green_beret"
+	"Green" = "green_beret",
+	"Bushfighter Boonie" = "rhodeboonie"
 	)
 
 
