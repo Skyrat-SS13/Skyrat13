@@ -1,3 +1,15 @@
+/obj/item/clothing/suit/hazardvest
+	name = "hazard vest"
+	desc = "A high-visibility vest used in work zones."
+	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
+	icon_state = "hazard"
+	item_state = "hazard"
+	blood_overlay_type = "armor"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/t_scanner, /obj/item/radio)
+	resistance_flags = NONE
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+
 /obj/item/clothing/suit/hazardvest/brig_phys
 	name = "brig physician's vest"
 	desc = "A lightweight vest worn by the Brig Physician."
