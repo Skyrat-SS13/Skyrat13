@@ -23,7 +23,7 @@
 
 	)
 	var/obj/item/gun/energy/installed_gun = null
-	spawn_flags = IC_SPAWN_RESEARCH
+	//spawn_flags = IC_SPAWN_RESEARCH //skyrat edit - removes weaponry circuitry
 	action_flags = IC_ACTION_COMBAT
 	power_draw_per_use = 0
 	ext_cooldown = 1
