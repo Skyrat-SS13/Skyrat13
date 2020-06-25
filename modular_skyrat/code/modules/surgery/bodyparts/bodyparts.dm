@@ -3,6 +3,7 @@
 	var/render_like_organic = FALSE //Skyrat change - for robotic limbs that pretend to be organic, for the sake of features, icon paths etc. etc.
 	var/list/adv_markings = list() //Skyrat change - advanced markings. Should be filled with adv_marking datums.
 	var/update_adv_markings = TRUE
+	var/bruh
 
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
@@ -241,6 +242,7 @@
 							I.color = adv_marking.color
 						else
 							I.color = "FFFFFF"
+					bruh = I
 					. += I
 		
 		// Citadel End
