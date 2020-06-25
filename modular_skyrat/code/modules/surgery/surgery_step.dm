@@ -8,10 +8,7 @@
 		return FALSE
 	if(tool)
 		speed_mod = tool.toolspeed
-	
-	if(ishuman(target) && target.stat == CONSCIOUS && target.mob_biotypes & MOB_ORGANIC && !target.IsUnconscious() && !target.InCritical() && !target.IsSleeping() && !HAS_TRAIT(target, TRAIT_PAINKILLER))
-		to_chat(user, "<span class='warning'> They are currently concious and have had no painkillers. Are you sure you wish to continue?</span>")
-					
+			
 	if(do_after(user, time * speed_mod, target = target))
 		var/prob_chance = 100
 		if(implement_type)	//this means it isn't a require hand or any item step.
