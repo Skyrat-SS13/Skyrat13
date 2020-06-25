@@ -1,7 +1,7 @@
 /datum/reagent/medicine/mine_salve/on_mob_metabolize(mob/living/M) //modularisation for miners salve painkiller.
 	..()
 	if(iscarbon(M))
-		ADD_TRAIT(M, TRAIT_PAINKILLER, "Painkiller:MINERS SALVE")
+		ADD_TRAIT(M, TRAIT_PAINKILLER, PAINKILLER_MINERSSALVE)
 
 /datum/reagent/medicine/strange_reagent
 	description = "A miracle drug that can bring people back from the dead based on the dosage. For every 20 units of brute or burn damage, 1u of this reagent is required. Deals a small amount of damage on metabolism."
