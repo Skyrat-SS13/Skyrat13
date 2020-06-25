@@ -668,7 +668,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 		if(drunkenness >= 251) //skyrat-edit
 			//skyrat edit
-			if(!HAS_TRAIT(TRAIT_ALCOHOL_TOLERANCE))
+			if(!HAS_TRAIT(src, TRAIT_ALCOHOL_TOLERANCE))
 				adjustToxLoss(0.2)
 				if(HAS_TRAIT(src, TRAIT_ALCOHOL_LIGHTWEIGHT))
 					adjustToxLoss(0.3)
@@ -708,6 +708,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			//
 		else
 			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "drunk")
+	else
+		clear_alert("drunk")
 
 //used in human and monkey handle_environment()
 /mob/living/carbon/proc/natural_bodytemperature_stabilization()
