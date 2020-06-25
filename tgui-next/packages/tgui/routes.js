@@ -282,7 +282,7 @@ const ROUTES = {
     component: () => EngravedMessage,
     scrollable: false,
   },
-   gateway: {
+  gateway: {
     component: () => Gateway,
     scrollable: false,
   },
