@@ -450,68 +450,45 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 //Manual loading of away missions.
 /client/proc/admin_away()
-	set name = "Load Away Mission / Virtual Reality"
-	set category = "Fun"
+	set name = "Load Away Mission"
+	set category = "Admin - Events"
 
 	if(!holder ||!check_rights(R_FUN))
 		return
 
-	var/choice = alert(src, "What kind of level would you like to load?", "Load Away/VR", AWAY_MISSION_NAME, VIRT_REALITY_NAME, "Cancel")
 
-	var/list/possible_options
-	var/list/ztraits
-	switch(choice)
-		if(VIRT_REALITY_NAME)
-			possible_options = GLOB.potential_vr_levels
-			ztraits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_VR = TRUE)
-		if(AWAY_MISSION_NAME)
-			if(!GLOB.the_gateway)
-				if(alert("There's no home gateway on the station. You sure you want to continue ?", "Uh oh", "Yes", "No") != "Yes")
-					return
-			possible_options = GLOB.potential_away_levels
-			ztraits = list(ZTRAIT_AWAY = TRUE)
-		else
+	if(!GLOB.the_gateway)
+		if(alert("There's no home gateway on the station. You sure you want to continue ?", "Uh oh", "Yes", "No") != "Yes")
 			return
 
-	possible_options += "Custom"
-	var/lvl_name
-	var/datum/space_level/level
+	var/list/possible_options = GLOB.potentialRandomZlevels + "Custom"
+	var/away_name
+	var/datum/space_level/away_level
 
-	var/answer = input("What kind ? ","Away/VR") as null|anything in possible_options
+	var/answer = input("What kind ? ","Away") as null|anything in possible_options
 	switch(answer)
-		if(null)
-			return
 		if("Custom")
 			var/mapfile = input("Pick file:", "File") as null|file
 			if(!mapfile)
 				return
-			lvl_name = "[mapfile] custom"
-			to_chat(usr,"<span class='notice'>Loading [lvl_name]...</span>")
-			var/datum/map_template/template = new(mapfile, choice, ztraits)
-			level = template.load_new_z(ztraits)
+			away_name = "[mapfile] custom"
+			to_chat(usr,"<span class='notice'>Loading [away_name]...</span>")
+			var/datum/map_template/template = new(mapfile, "Away Mission")
+			away_level = template.load_new_z()
 		else
-			lvl_name = answer
-			to_chat(usr,"<span class='notice'>Loading [lvl_name]...</span>")
-			var/datum/map_template/template = new(lvl_name, choice)
-			level = template.load_new_z(ztraits)
+			if(answer in GLOB.potentialRandomZlevels)
+				away_name = answer
+				to_chat(usr,"<span class='notice'>Loading [away_name]...</span>")
+				var/datum/map_template/template = new(away_name, "Away Mission")
+				away_level = template.load_new_z()
+			else
+				return
 
-	message_admins("Admin [key_name_admin(usr)] has loaded [lvl_name] [choice].")
-	log_admin("Admin [key_name(usr)] has loaded [lvl_name] [choice].")
-	if(!level)
-		message_admins("Loading [lvl_name] failed!")
+	message_admins("Admin [key_name_admin(usr)] has loaded [away_name] away mission.")
+	log_admin("Admin [key_name(usr)] has loaded [away_name] away mission.")
+	if(!away_level)
+		message_admins("Loading [away_name] failed!")
 		return
-
-
-	if(choice == AWAY_MISSION_NAME && GLOB.the_gateway)
-		//Link any found away gate with station gate
-		var/obj/machinery/gateway/centeraway/new_gate
-		for(var/obj/machinery/gateway/centeraway/G in GLOB.machines)
-			if(G.z == level.z_value) //I'll have to refactor gateway shitcode before multi-away support.
-				new_gate = G
-				break
-		//Link station gate with away gate and remove wait time.
-		GLOB.the_gateway.awaygate = new_gate
-		GLOB.the_gateway.wait = world.time
 
 /datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override, border_type_override)
 	UNTIL((!z || reservation_ready["[z]"]) && !clearing_reserved_turfs)

@@ -44,6 +44,7 @@ import { Gps } from './interfaces/Gps';
 import { GravityGenerator } from './interfaces/GravityGenerator';
 import { GulagTeleporterConsole } from './interfaces/GulagTeleporterConsole';
 import { GulagItemReclaimer } from './interfaces/GulagItemReclaimer';
+import { Gateway } from './interfaces/Gateway';
 import { Holodeck } from './interfaces/Holodeck';
 import { HypnoChair } from './interfaces/HypnoChair';
 import { ImplantChair } from './interfaces/ImplantChair';
@@ -279,6 +280,10 @@ const ROUTES = {
   },
   engraved_message: {
     component: () => EngravedMessage,
+    scrollable: false,
+  },
+    gateway: {
+    component: () => Gateway,
     scrollable: false,
   },
   gps: {
