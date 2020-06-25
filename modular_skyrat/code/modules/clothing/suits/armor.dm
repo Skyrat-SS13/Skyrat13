@@ -37,4 +37,4 @@
 	w_class = 3
 	blood_overlay_type = "armor"
 	slowdown = 0.35
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "rad" = 0, "wound" = 13)
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "rad" = 0, "wound" = 12)
