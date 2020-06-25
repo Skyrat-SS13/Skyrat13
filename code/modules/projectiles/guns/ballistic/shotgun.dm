@@ -129,7 +129,7 @@
 	can_bayonet = TRUE
 	knife_x_offset = 27
 	knife_y_offset = 13
-/*
+
 /obj/item/gun/ballistic/shotgun/boltaction/improvised
 	name = "Makeshift 7.62mm Rifle"
 	icon_state = "ishotgun"
@@ -138,8 +138,8 @@
 	desc = "A bolt-action breechloaded rifle that takes 7.62mm bullets."
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/improvised
 	can_bayonet = FALSE
-  var/slung = FALSE
-*/
+	var/slung = FALSE
+
 /obj/item/gun/ballistic/shotgun/boltaction/pump(mob/M)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
 	if(bolt_open)
