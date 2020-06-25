@@ -651,8 +651,9 @@
 	desc = "Particularly twisted deities grant gifts of dubious value."
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
-	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
+	//Skyrat modularization
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/changeling_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/changeling_righthand.dmi'
 	item_flags = ABSTRACT
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = IS_SHARP
