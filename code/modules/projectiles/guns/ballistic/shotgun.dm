@@ -129,7 +129,7 @@
 	can_bayonet = TRUE
 	knife_x_offset = 27
 	knife_y_offset = 13
-
+/*
 /obj/item/gun/ballistic/shotgun/boltaction/improvised
 	name = "Makeshift 7.62mm Rifle"
 	icon_state = "ishotgun"
@@ -139,7 +139,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/improvised
 	can_bayonet = FALSE
 	var/slung = FALSE
-
+*/
 /obj/item/gun/ballistic/shotgun/boltaction/pump(mob/M)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
 	if(bolt_open)
@@ -159,7 +159,7 @@
 /obj/item/gun/ballistic/shotgun/boltaction/examine(mob/user)
 	. = ..()
 	. += "The bolt is [bolt_open ? "open" : "closed"]."
-
+/*
 /obj/item/gun/ballistic/shotgun/boltaction/improvised/attackby(obj/item/A, mob/user, params)
 	..()
 	if(istype(A, /obj/item/stack/cable_coil) && !sawn_off)
@@ -175,7 +175,7 @@
 	..()
 	if(slung)
 		icon_state += "sling"
-
+*/
 /obj/item/gun/ballistic/shotgun/boltaction/enchanted
 	name = "enchanted bolt action rifle"
 	desc = "Careful not to lose your head."
