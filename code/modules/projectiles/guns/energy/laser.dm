@@ -247,3 +247,21 @@
 	desc = "A relic of a weapon, built before NT began installing regulators on its laser weaponry. This pattern of laser gun became infamous for the gruesome burn wounds it caused, and was quietly discontinued once it began to affect NT's reputation."
 	icon_state = "hellgun"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire)
+
+////////////////
+// IMPROVISED //
+////////////////
+
+/obj/item/gun/energy/e_gun/old/improvised
+	name = "improvised energy rifle"
+	desc = "A crude imitation of an energy gun. It works, however the beams are poorly focused and most of the energy is wasted before it reaches the target. Welp, it still burns things."
+	icon_state = "improvised"
+	ammo_x_offset = 1
+	shaded_charge = 1
+	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/improvised)
+
+/obj/item/gun/energy/e_gun/old/improvised/upgraded
+	name = "makeshift energy rifle"
+	desc = "The new lens and upgraded parts gives this a higher capacity and more energy output, however, the shoddy construction still leaves it inferior to Nanotrasen's own energy weapons."
+	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/improvised/upgraded)
+

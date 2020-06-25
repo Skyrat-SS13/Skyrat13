@@ -355,6 +355,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	slowdown = 0
 	mutantrace_variation = STYLE_DIGITIGRADE | STYLE_NO_ANTHRO_ICON
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit helmet"
@@ -366,6 +367,7 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	mutantrace_variation = STYLE_MUZZLE | STYLE_NO_ANTHRO_ICON
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
