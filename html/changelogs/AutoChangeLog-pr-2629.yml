@@ -1,5 +1,0 @@
-author: "ShadeAware"
-delete-after: True
-changes: 
-  - tweak: "Completed overhauled the Bootyborg sprites to be TG-Artstyle Compliant. Changed some cyborg icons a very small bit to make them look a better."
-  - bugfix: "Panels now (should) appear on cyborgs when opened, on models in which they did not before due to a lack of sprite in the icon files proper."
