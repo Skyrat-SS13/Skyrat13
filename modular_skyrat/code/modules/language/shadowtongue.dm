@@ -4,6 +4,7 @@
 	speech_verb = "growls"
 	ask_verb = "growls"
 	exclaim_verb = "roars"
+	sing_verb = "chants"
 	key = "x"
 	flags = TONGUELESS_SPEECH
 	space_chance = 50

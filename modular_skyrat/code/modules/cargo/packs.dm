@@ -54,3 +54,11 @@
 	desc = "Contains one \"stingbang\" grenade, perfect for playing meanhearted pranks. Requires Security access to open."
 	cost = 1400
 	contains = list(/obj/item/grenade/stingbang)
+
+/datum/supply_pack/vending/pdavendor
+	name = "PDA Vending Supply Crate"
+	desc = "Let people get their custom PDAs."
+	cost = 5000
+	contains = list(/obj/item/vending_refill/pdavendor)
+	crate_name = "pda vending supply crate"
+	crate_type = /obj/structure/closet/crate

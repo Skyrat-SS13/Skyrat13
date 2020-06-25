@@ -387,6 +387,9 @@
 			var/image/bad_snowflake = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = "alina-med")
 			bad_snowflake.pixel_x = -16
 			med_icons["Alina"] = bad_snowflake
+		if(R.client && R.client.ckey == "banangarang") //skyrat change
+			var/image/cus_maid = image(icon = 'modular_skyrat/icons/mob/robo-maid2.dmi', icon_state = "robomaid_med")
+			med_icons["RoboMaid"] = cus_maid
 		med_icons = sortList(med_icons)
 	var/med_borg_icon = show_radial_menu(R, R , med_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 	switch(med_borg_icon)
@@ -451,6 +454,9 @@
 		if("Qualified Doctor")
 			cyborg_base_icon = "qualified_doctor"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("RoboMaid") //skyrat change
+			cyborg_base_icon = "robomaid_med"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
 		else
 			return FALSE
 	return ..()
@@ -523,6 +529,9 @@
 			var/image/bad_snowflake = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = "alina-eng")
 			bad_snowflake.pixel_x = -16
 			engi_icons["Alina"] = bad_snowflake
+		if(R.client && R.client.ckey == "banangarang") //skyrat change
+			var/image/cus_maid = image(icon = 'modular_skyrat/icons/mob/robo-maid2.dmi', icon_state = "robomaid_eng")
+			engi_icons["RoboMaid"] = cus_maid
 		engi_icons = sortList(engi_icons)
 	var/engi_borg_icon = show_radial_menu(R, R , engi_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 	switch(engi_borg_icon)
@@ -581,6 +590,9 @@
 		if("Miss m")
 			cyborg_base_icon = "missm_eng"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("RoboMaid") //skyrat change
+			cyborg_base_icon = "robomaid_eng"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
 		else
 			return FALSE
 	return ..()
@@ -635,6 +647,9 @@
 			var/image/bad_snowflake = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = "alina-sec")
 			bad_snowflake.pixel_x = -16
 			sec_icons["Alina"] = bad_snowflake
+		if(R.client && R.client.ckey == "banangarang") //skyrat change
+			var/image/cus_maid = image(icon = 'modular_skyrat/icons/mob/robo-maid2.dmi', icon_state = "robomaid_sec")
+			sec_icons["RoboMaid"] = cus_maid
 		sec_icons = sortList(sec_icons)
 	var/sec_borg_icon = show_radial_menu(R, R , sec_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 	switch(sec_borg_icon)
@@ -691,6 +706,9 @@
 		if("Miss m")
 			cyborg_base_icon = "missm_security"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("RoboMaid") //skyrat change
+			cyborg_base_icon = "robomaid_sec"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
 		else
 			return FALSE
 	return ..()
@@ -906,7 +924,7 @@
 		"(Janitor) Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyjanitor"), //Skyrat change
 		"(Janitor) Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_janitor"),
 		"(Janitor) Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_janitor"),
-		"(Janitor) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyjan"),
+		"(Janitor) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyres"),
 		"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_jani")
 		)
 		var/list/L = list("(Service) DarkK9" = "k50", "(Service) Vale" = "valeserv", "(Service) ValeDark" = "valeservdark",
@@ -919,6 +937,9 @@
 			var/image/bad_snowflake = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = "alina-sec")
 			bad_snowflake.pixel_x = -16
 			service_icons["Alina"] = bad_snowflake
+		if(R.client && R.client.ckey == "banangarang") //skyrat change
+			var/image/cus_maid = image(icon = 'modular_skyrat/icons/mob/robo-maid2.dmi', icon_state = "robomaid_jan")
+			service_icons["RoboMaid"] = cus_maid
 		service_icons = sortList(service_icons)
 	var/service_robot_icon = show_radial_menu(R, R , service_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 	switch(service_robot_icon)
@@ -999,6 +1020,10 @@
 		if("(Janitor) Miss m")
 			cyborg_base_icon = "missm_janitor"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("RoboMaid") //skyrat change
+			cyborg_base_icon = "robomaid_jan"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
+
 		else
 			return FALSE
 	return ..()
@@ -1056,6 +1081,9 @@
 			var/image/wide = image(icon = 'modular_citadel/icons/mob/widerobot.dmi', icon_state = L[a])
 			wide.pixel_x = -16
 			mining_icons[a] = wide
+		if(R.client && R.client.ckey == "banangarang") //skyrat change
+			var/image/cus_maid = image(icon = 'modular_skyrat/icons/mob/robo-maid2.dmi', icon_state = "robomaid_miner")
+			mining_icons["RoboMaid"] = cus_maid
 		mining_icons = sortList(mining_icons)
 	var/mining_borg_icon = show_radial_menu(R, R , mining_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 	switch(mining_borg_icon)
@@ -1104,6 +1132,9 @@
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 		if("Zoomba")
 			cyborg_base_icon = "zoomba_miner"
+		if("RoboMaid") //skyrat change
+			cyborg_base_icon = "robomaid_miner"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/robo-maid2.dmi'
 		else
 			return FALSE
 	return ..()
@@ -1196,7 +1227,7 @@
 		/obj/item/destTagger/borg,
 		/obj/item/stack/cable_coil/cyborg,
 		/obj/item/pinpointer/syndicate_cyborg,
-		/obj/item/borg_chameleon,
+		/obj/item/borg_chameleon
 		)
 
 	ratvar_modules = list(

@@ -1,4 +1,5 @@
 //miner exclusives
+/*
 /datum/uplink_item/role_restricted/crusher
 	name = "Harmful Crusher"
 	desc = "A kinetic crusher with the ability to harm complex and small lifeforms. Looks like a normal crusher from a distance."
@@ -22,7 +23,7 @@
 	cost = 15
 	limited_stock = 1
 	restricted_roles = list("Shaft Miner", "Quartermaster")
-
+*/
 //engineer/atmos tech exclusives
 /datum/uplink_item/role_restricted/powergloves
 	name = "Not-tendo(TM) Power Gloves"
@@ -71,3 +72,10 @@
 	cost = 12
 	restricted_roles = list("Botanist")
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/role_restricted/syndicatejack
+	name = "Syndicate Cyborg Module"
+	desc = "An illegally modified module-board, holding all the neccesary tools and abilities for near-perfect sabotage and support. Due to its relatively experimental nature, it will only work on cyborgs which have already been jailbroken by an electromagnetic sequencer. "
+	item = /obj/item/borg/upgrade/transform/syndicatejack
+	cost = 5
+	restricted_roles = list("Roboticist")

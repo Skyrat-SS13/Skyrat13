@@ -22,36 +22,47 @@
 	ammo_type = /obj/item/ammo_casing/c9mm/rubber
 	caliber = "9mm"
 	var/locked = TRUE
+	var/can_lock = TRUE
 	var/list/accepted_casings = list(/obj/item/ammo_casing/c9mm/rubber)
 	max_ammo = 15
+	req_access = list(ACCESS_HOS)
 
 /obj/item/ammo_box/magazine/usp/give_round(obj/item/ammo_casing/R, replace_spent)
 	. = ..()
-	if(!(R.type in accepted_casings) && locked)
+	if(locked && !(R.type in accepted_casings))
 		return FALSE
-	
+
 /obj/item/ammo_box/magazine/usp/update_icon()
 	..()
 	icon_state = icon_state = "uspm-[ammo_count() ? "15" : "0"]"
 
 /obj/item/ammo_box/magazine/usp/emag_act(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>The [src]'s security lock gets fried.</span>")
-	ammo_type = /obj/item/ammo_casing/c9mm
-	locked = FALSE
-
-/obj/item/ammo_box/magazine/usp/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
-	if(istype(I, /obj/item/card/id))
-		var/obj/item/card/id/authorize = I
-		if(ACCESS_HOS in authorize.access)
-			toggle_lock(user)
-			locked = !locked
+	if(.)
+		to_chat(user, "<span class='notice'>The [src]'s security lock gets fried.</span>")
+		ammo_type = /obj/item/ammo_casing/c9mm
+		locked = FALSE
+		can_lock = FALSE
+
+/obj/item/ammo_box/magazine/usp/attackby(obj/item/A, mob/user, params, silent, replace_spent)
+	. = ..()
+	if(check_access(A))
+		toggle_lock(user)
+	else if(istype(A, /obj/item/card))
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 
 /obj/item/ammo_box/magazine/usp/proc/toggle_lock(var/mob/living/user)
+	if(!can_lock)
+		to_chat(user, "<span class='warning'>The [src]'s security lock is fried!</span>")
+		return FALSE
 	locked = !locked
 	if(user)
 		if(locked)
 			to_chat(user, "<span class='notice'>The [src] is now unable to accept lethal rounds.</span>")
 		else
 			to_chat(user, "<span class='notice'>The [src] can now accept lethal 9mm rounds.</span>")
+	return TRUE
+
+/obj/item/ammo_box/magazine/usp/examine(mob/user)
+	. = ..()
+	. += "<br><span class='notice'>It is currently <b>[locked ? "locked" : "not locked"]</b> to rubber rounds."

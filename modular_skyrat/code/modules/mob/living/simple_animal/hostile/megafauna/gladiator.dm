@@ -68,9 +68,10 @@ They deal 35 brute (armor is considered).
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/Life()
 	. = ..()
-	for(var/mob/living/M in view(4, src))
-		if(!(M in introduced))
-			introduction(M)
+	if(!wander)
+		for(var/mob/living/M in view(4, src))
+			if(!(M in introduced) && (stat != DEAD))
+				introduction(M)
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE) //skyrat edit
 	if(speen)
@@ -114,7 +115,6 @@ They deal 35 brute (armor is considered).
 		else if(Hspecies.id == "dunmer")
 			var/list/messages = list("I will finisssh what little of your race remainsss, starting with you!",\
 									"Lavaland belongsss to the lizzzards!",\
-									"No marine can save you now, dark elf!",\
 									"Thisss sacred land wasn't your property before, it won't be now!")
 			say(message = pick(messages))
 			introduced |= H
