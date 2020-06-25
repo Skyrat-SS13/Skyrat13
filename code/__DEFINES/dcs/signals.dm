@@ -243,6 +243,9 @@
 #define COMSIG_OBJ_DECONSTRUCT 	"obj_deconstruct"				//from base of obj/deconstruct(): (disassembled)
 #define COMSIG_OBJ_BREAK		"obj_break"						//from base of /obj/obj_break(): (damage_flag)
 #define COMSIG_OBJ_SETANCHORED 	"obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
+#define COMSIG_OBJ_ATTACK_GENERIC "obj_attack_generic"			//from base of atom/animal_attack(): (/mob/user)
+	#define COMPONENT_STOP_GENERIC_ATTACK 1
+
 
 // /machinery signals
 #define COMSIG_MACHINE_EJECT_OCCUPANT "eject_occupant"			//from base of obj/machinery/dropContents() (occupant)
@@ -405,3 +408,7 @@
 //skyrat funnies
 #define COMSIG_LIVING_FLASH_ACT "living_flash_act"				///from base of [/mob/living/proc/flash_act] //moth
 #define COMSIG_EVENTPREF_UPDATE "observer_eventpref_update"
+
+//Mob stuff
+#define COMSIG_MOB_CLIENT_MOUSEUP "mob_client_mouseup" ///from base of [client/MouseUp()] (datum/source, object, location, control, params)
+#define COMSIG_MOB_CLIENT_MOUSEDOWN "mob_client_mousedown" ///from base of [client/MouseDown()] (datum/source, object, location, control, params)

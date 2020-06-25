@@ -19,12 +19,12 @@
 	icon_state = "darkcarapace"
 	item_state = "darkcarapace"
 	blood_overlay_type = "armor"
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80, "fire" = 80, "acid" = 80)
+	armor = list("melee" = 95, "bullet" = 95, "laser" = 95, "energy" = 95, "bomb" = 95, "bio" = 95, "rad" = 100, "fire" = 98, "acid" = 98) // Skyrat edit
 
 /obj/item/clothing/suit/space/hardsuit/ert/alert/debug
 	name = "Bluespace Tech hardsuit"
 	desc = "A specialised hardsuit for Bluespace agents."
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80, "fire" = 80, "acid" = 80)
+	armor = list("melee" = 98, "bullet" = 98, "laser" = 98, "energy" = 98, "bomb" = 98, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100) // Skyrat edit
 
 /obj/item/clothing/shoes/combat/debug
 	clothing_flags = NOSLIP

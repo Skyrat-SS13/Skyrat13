@@ -187,6 +187,19 @@
 		if(ID_LOCKED_BANK_ACCOUNT)
 			registered_account = new /datum/bank_account/remote/non_transferable(pick(GLOB.redacted_strings))
 
+/obj/item/card/id/Destroy()
+	//Skyrat change - proper GC
+	if(registered_account)
+		registered_account.bank_cards -= src
+	//End of skyrat change 
+	if(bank_support == ID_LOCKED_BANK_ACCOUNT)
+		QDEL_NULL(registered_account)
+	else
+		registered_account = null
+	if(my_store)
+		my_store.my_card = null
+		my_store = null
+	return ..()
 
 /obj/item/card/id/vv_edit_var(var_name, var_value)
 	. = ..()
@@ -206,6 +219,7 @@
 		return ..()
 	if(istype(W, /obj/item/holochip))
 		insert_money(W, user)
+	/* SKYRAT EDIT - Making the ATM more useful
 	else if(istype(W, /obj/item/stack/spacecash) || istype(W, /obj/item/coin))
 		insert_money(W, user, TRUE)
 	else if(istype(W, /obj/item/storage/bag/money))
@@ -214,6 +228,7 @@
 		var/money_added = mass_insert_money(money_contained, user)
 		if (money_added)
 			to_chat(user, "<span class='notice'>You stuff the contents into the card! They disappear in a puff of bluespace smoke, adding [money_added] worth of credits to the linked account.</span>")
+	SKYRAT EDIT END */
 	else
 		return ..()
 
@@ -732,9 +747,33 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/departmental_budget/update_label()
 	return
 
+// SKYRAT EDIT - ATMs
+/obj/item/card/id/departmental_budget/civ
+
+/obj/item/card/id/departmental_budget/eng
+	department_ID = ACCOUNT_ENG
+	department_name = ACCOUNT_ENG_NAME
+
+/obj/item/card/id/departmental_budget/sci
+	department_ID = ACCOUNT_SCI
+	department_name = ACCOUNT_SCI_NAME
+
+/obj/item/card/id/departmental_budget/med
+	department_ID = ACCOUNT_MED
+	department_name = ACCOUNT_MED_NAME
+
+/obj/item/card/id/departmental_budget/ser
+	department_ID = ACCOUNT_SRV
+	department_name = ACCOUNT_SRV_NAME
+
 /obj/item/card/id/departmental_budget/car
 	department_ID = ACCOUNT_CAR
 	department_name = ACCOUNT_CAR_NAME
+
+/obj/item/card/id/departmental_budget/sec
+	department_ID = ACCOUNT_SEC
+	department_name = ACCOUNT_SEC_NAME
+// SKYRAT EDIT END
 
 //Polychromatic Knight Badge
 

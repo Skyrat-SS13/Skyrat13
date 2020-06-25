@@ -42,7 +42,7 @@
 				last_legion = FALSE
 				break
 		if(last_legion)
-			loot = list(/obj/structure/closet/crate/necropolis/legion)
+			loot = list(/obj/structure/closet/crate/necropolis/tendril/legion_loot)
 			elimination = 0
 		else if(prob(20))
 			loot = list(/obj/structure/closet/crate/necropolis/tendril)

@@ -8,6 +8,7 @@
 	var/add_to_accounts = TRUE
 	var/transferable = TRUE
 	var/account_id
+	var/account_password = null
 	var/being_dumped = FALSE //pink levels are rising
 	var/withdrawDelay = 0
 
