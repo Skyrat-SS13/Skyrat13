@@ -1,17 +1,6 @@
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, Icon, NoticeBox, ProgressBar, Section } from '../components';
-import { Window } from '../layouts';
-
-export const Gateway = () => {
-  return (
-    <Window resizable>
-      <Window.Content scrollable>
-        <GatewayContent />
-      </Window.Content>
-    </Window>
-  );
-};
 
 export const GatewayContent = (props, context) => {
   const { act, data } = useBackend(context);
