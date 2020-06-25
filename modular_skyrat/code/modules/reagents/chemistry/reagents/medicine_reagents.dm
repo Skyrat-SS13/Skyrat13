@@ -24,14 +24,14 @@
 				if(iscarbon(M))
 					var/mob/living/carbon/C = M
 					if(!(C.dna && C.dna.species && (NOBLOOD in C.dna.species.species_traits)))
-						C.blood_volume = max(C.blood_volume, BLOOD_VOLUME_NORMAL*C.blood_ratio) //so you don't instantly re-die from a lack of blood
+						C.blood_volume = max(C.blood_volume, BLOOD_VOLUME_BAD * 1.2) //so you don't instantly re-die from a lack of blood
 					for(var/organ in C.internal_organs)
 						var/obj/item/organ/O = organ
-						if(O.damage > O.maxHealth/2)
-							O.setOrganDamage(O.maxHealth/2) //so you don't instantly die from organ damage when being revived
+						if(O.damage > O.maxHealth * 0.8)
+							O.setOrganDamage(O.maxHealth * 0.8) //so you don't instantly die from organ damage when being revived
 
-				M.adjustOxyLoss(-20, 0)
-				M.adjustToxLoss(-20, 0)
+				M.adjustOxyLoss(-reac_volume/2, TRUE) //we use reac_volume instead of the true volume to impede cheeky healing stacking
+				M.adjustToxLoss(-reac_volume/3, TRUE)
 				M.updatehealth()
 				if(M.revive())
 					M.grab_ghost()
@@ -40,8 +40,8 @@
 	..()
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(0.5*REM, 0)
-	M.adjustFireLoss(0.5*REM, 0)
+	M.adjustBruteLoss(0.2*REM, 0)
+	M.adjustFireLoss(0.2*REM, 0)
 	..()
 	. = 1
 
