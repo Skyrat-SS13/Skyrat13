@@ -12,6 +12,9 @@
 
 	outfit = /datum/outfit/job/prisoner
 
+	paycheck = PAYCHECK_MINIMAL
+	paycheck_department = ACCOUNT_CIV
+
 	display_order = JOB_DISPLAY_ORDER_PRISONER
 
 /datum/job/ai/override_latejoin_spawn()

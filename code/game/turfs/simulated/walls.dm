@@ -154,12 +154,14 @@
 		return
 		
 	// Skyrat change
-	to_chat(user, "<span class='notice'>You push at the wall...</span>") 
-	if(do_after(user, 4 SECONDS, target = src))
+	if(user.a_intent != INTENT_HARM)
+		to_chat(user, "<span class='notice'>You push at the wall...</span>") 
 		user.changeNext_move(CLICK_CD_MELEE)
-		to_chat(user, "<span class='notice'>...but nothing happens!</span>")
-		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
-		add_fingerprint(user)
+		if(do_after(user, 4 SECONDS, target = src))
+			to_chat(user, "<span class='notice'>...but nothing happens!</span>")
+			playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+			add_fingerprint(user)
+	//
 
 /turf/closed/wall/attackby(obj/item/W, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -294,7 +296,7 @@
 	if(LAZYLEN(dent_decals) >= MAX_DENT_DECALS)
 		return
 
-	var/mutable_appearance/decal = mutable_appearance('icons/effects/effects.dmi', "", BULLET_HOLE_LAYER)
+	var/mutable_appearance/decal = mutable_appearance('icons/effects/effects.dmi', "", BULLET_HOLE_LAYER, ABOVE_WALL_PLANE)
 	switch(denttype)
 		if(WALL_DENT_SHOT)
 			decal.icon_state = "bullet_hole"

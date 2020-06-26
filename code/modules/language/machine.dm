@@ -4,12 +4,16 @@
 	speech_verb = "whistles"
 	ask_verb = "chirps"
 	exclaim_verb = "whistles loudly"
+	sing_verb = "whistles melodically" // Skyrat edit
 	spans = list(SPAN_ROBOT)
 	key = "6"
 	flags = NO_STUTTER
 	syllables = list("beep","beep","beep","beep","beep","boop","boop","boop","bop","bop","dee","dee","doo","doo","hiss","hss","buzz","buzz","bzz","ksssh","keey","wurr","wahh","tzzz")
 	space_chance = 10
 	default_priority = 90
+	//SKYRAT CHANGE - language restriction
+	restricted = TRUE
+	//
 
 	icon_state = "eal"
 
