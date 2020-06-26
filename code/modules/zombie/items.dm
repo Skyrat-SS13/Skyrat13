@@ -34,11 +34,11 @@
 		return
 	else if(isliving(target))
 		if(ishuman(target))
-			try_to_zombie_infect(target, user)
+			try_to_zombie_infect(target, user) //SKYRAT CHANGE - User
 		else
 			check_feast(target, user)
 
-/proc/try_to_zombie_infect(mob/living/carbon/human/target, mob/living/carbon/human/user)
+/proc/try_to_zombie_infect(mob/living/carbon/human/target, mob/living/carbon/human/user) //SKYRAT CHANGE - User
 	CHECK_DNA_AND_SPECIES(target)
 
 	if(NOZOMBIE in target.dna.species.species_traits)
