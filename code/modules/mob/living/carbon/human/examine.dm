@@ -401,8 +401,8 @@
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
-	
-	//skyrat edit
+      
+//Skyrat changes begin
 	var/scar_severity = 0
 	for(var/i in all_scars)
 		var/datum/scar/S = i
@@ -418,7 +418,13 @@
 			msg += "<span class='notice'><b><i>[t_He] [t_has] significantly disfiguring scarring, you can look again to take a closer look...</i></b></span>\n"
 		if(7 to INFINITY)
 			msg += "<span class='notice'><b><i>[t_He] [t_is] just absolutely fucked up, you can look again to take a closer look...</i></b></span>\n"
-	//
+
+	if(gunpointing)
+		msg += "<b>[t_He] [t_is] holding [gunpointing.target.name] at gunpoint with [gunpointing.aimed_gun.name]!</b>\n"
+	if(gunpointed.len)
+		for(var/datum/gunpoint/GP in gunpointed)
+			msg += "<b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b>\n"
+	//Skyrat changes end
 
 	if (length(msg))
 		. += "<span class='warning'>[msg.Join("")]</span>"
