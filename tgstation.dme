@@ -3553,6 +3553,7 @@
 #include "modular_skyrat\code\game\mecha\equipment\weapons\killdozer.dm"
 #include "modular_skyrat\code\game\mecha\makeshift\lockermech.dm"
 #include "modular_skyrat\code\game\mecha\makeshift\makeshift_tools.dm"
+#include "modular_skyrat\code\game\mecha\medical\medigax.dm"
 #include "modular_skyrat\code\game\mecha\working\buzz.dm"
 #include "modular_skyrat\code\game\mecha\working\clarke.dm"
 #include "modular_skyrat\code\game\mecha\working\killdozer.dm"
