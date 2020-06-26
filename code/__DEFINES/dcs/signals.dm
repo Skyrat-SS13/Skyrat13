@@ -403,8 +403,6 @@
 #define COMSIG_XENO_MONKEY_CLICK_CTRL "xeno_monkey_click_ctrl"				//from monkey CtrlClickOn(): (/mob)
 
 // Skyrat signals
-// Observer signals
-#define COMSIG_EVENTPREF_UPDATE "observer_eventpref_update" // Skyrat changes
 
 // Movable signals
 #define COMSIG_MOVABLE_RADIO_TALK_INTO "movable_radio_talk_into"				//from radio talk_into(): (obj/item/radio/radio, message, channel, list/spans, datum/language/language, direct)
