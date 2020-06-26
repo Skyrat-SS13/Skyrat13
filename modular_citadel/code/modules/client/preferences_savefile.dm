@@ -30,7 +30,7 @@
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
 	// SKYRAT CHANGE START
 	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])
-	event_prefs = sanitize_text(S["event_prefs"])
+	skyrat_ooc_notes = strip_html_simple(skyrat_ooc_notes, MAX_FLAVOR_LEN, TRUE)
 	// SKYRAT CHANGE END
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
@@ -39,9 +39,11 @@
 	vorepref = sanitize_text(S["vore_pref"], "Ask")
 	if(!length(vorepref)) vorepref = "Ask"
 	extremepref = sanitize_text(S["extremepref"], "No") //god has forsaken me
-	if(!length(extremepref)) extremepref = "No"
+	if(!length(extremepref))
+		extremepref = "No"
 	extremeharm = sanitize_text(S["extremeharm"], "No")
-	if(!length(extremeharm)) extremeharm = "No"
+	if(!length(extremeharm) || (extremepref = "No"))
+		extremeharm = "No"
 	security_records = sanitize_text(S["security_records"])
 	medical_records = sanitize_text(S["medical_records"])
 	general_records = sanitize_text(S["general_records"])
@@ -63,17 +65,6 @@
 		skyrat_ooc_notes = features["ooc_notes"]
 		features["ooc_notes"] = ""
 	//END OF SKYRAT CHANGES
-	//gear loadout
-	var/text_to_load
-	S["loadout"] >> text_to_load
-	var/list/saved_loadout_paths = splittext(text_to_load, "|")
-	LAZYCLEARLIST(chosen_gear)
-	gear_points = initial(gear_points)
-	for(var/i in saved_loadout_paths)
-		var/datum/gear/path = text2path(i)
-		if(path)
-			LAZYADD(chosen_gear, path)
-			gear_points -= initial(path.cost)
 
 /datum/preferences/proc/cit_character_pref_save(savefile/S)
 	//ipcs
@@ -95,10 +86,11 @@
 	WRITE_FILE(S["feature_xeno_head"], features["xenohead"])
 	//flavor text
 	WRITE_FILE(S["feature_flavor_text"], features["flavor_text"])
+	WRITE_FILE(S["silicon_feature_flavor_text"], features["silicon_flavor_text"])
+	
 	//SKYRAT CHANGES
 	WRITE_FILE(S["feature_ipc_chassis"], features["ipc_chassis"])
 	WRITE_FILE(S["skyrat_ooc_notes"], skyrat_ooc_notes)
-	WRITE_FILE(S["event_prefs"], event_prefs)
 	WRITE_FILE(S["erp_pref"], erppref)
 	WRITE_FILE(S["noncon_pref"], nonconpref)
 	WRITE_FILE(S["vore_pref"], vorepref)
@@ -113,15 +105,7 @@
 	WRITE_FILE(S["exploitable_info"], exploitable_info)
 	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
 	WRITE_FILE(S["personal_chat_color"], personal_chat_color)
-
 	WRITE_FILE(S["alt_titles_preferences"], alt_titles_preferences)
 	WRITE_FILE(S["foodlikes"], foodlikes)
 	WRITE_FILE(S["fooddislikes"], fooddislikes)
 	//END OF SKYRAT CHANGES
-	//gear loadout
-	if(islist(chosen_gear))
-		if(chosen_gear.len)
-			var/text_to_save = chosen_gear.Join("|")
-			S["loadout"] << text_to_save
-		else
-			S["loadout"] << "" //empty string to reset the value

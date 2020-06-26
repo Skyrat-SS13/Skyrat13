@@ -819,7 +819,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 					log_game("[key_name(src)] is using the middle click aimbot exploit")
 					message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] is using the middle click aimbot exploit</span>")
 					add_system_note("aimbot", "Is using the middle click aimbot exploit")
-
+					//log_click(object, location, control, params, src, "lockout (spam - minute ab c [ab] s [middragtime])", TRUE) //SKYRAT CHANGE
+				//else //SKYRAT CHANGE
+					//log_click(object, location, control, params, src, "lockout (spam - minute)", TRUE) //SKYRAT CHANGE
 				log_game("[key_name(src)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
 				message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
 			to_chat(src, "<span class='danger'>[msg]</span>")
@@ -839,7 +841,11 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			return
 
 	if(ab) //Citadel edit, things with stuff.
+		//log_click(object, location, control, params, src, "dropped (ab c [ab] s [middragtime])", TRUE) //SKYRAT CHANGE
 		return
+
+	//if(prefs.log_clicks) //SKYRAT EDIT
+		//log_click(object, location, control, params, src) //SKYRAT EDIT
 
 	if (prefs.hotkeys)
 		// If hotkey mode is enabled, then clicking the map will automatically
@@ -949,23 +955,27 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			new_size = "15x15"
 //END OF CIT CHANGES
 
+	var/list/old_view = getviewsize(view)
 	view = new_size
-	apply_clickcatcher()
+	var/list/actualview = getviewsize(view)
+	apply_clickcatcher(actualview)
 	mob.reload_fullscreen()
 	if (isliving(mob))
 		var/mob/living/M = mob
 		M.update_damage_hud()
 	if (prefs.auto_fit_viewport)
 		fit_viewport()
+	SEND_SIGNAL(mob, COMSIG_MOB_CLIENT_CHANGE_VIEW, src, old_view, actualview)
 
 /client/proc/generate_clickcatcher()
 	if(!void)
 		void = new()
 		screen += void
 
-/client/proc/apply_clickcatcher()
+/client/proc/apply_clickcatcher(list/actualview)
 	generate_clickcatcher()
-	var/list/actualview = getviewsize(view)
+	if(!actualview)
+		actualview = getviewsize(view)
 	void.UpdateGreed(actualview[1],actualview[2])
 
 /client/proc/AnnouncePR(announcement)
