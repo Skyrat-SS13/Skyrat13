@@ -321,11 +321,13 @@
 			return 1
 	return 0
 */ // Skyrat edit -- moved to modular_skyrat because of the fax port -- END
+/* moved to modular due to poster copying
 /obj/machinery/photocopier/proc/copier_empty()
 	if(copy || photocopy || check_ass())
 		return 0
 	else
 		return 1
+*/
 
 /*
  * Toner cartridge
@@ -337,3 +339,15 @@
 	//grind_results = list(/datum/reagent/iodine = 40, /datum/reagent/iron = 10) // Skyrat change
 	var/charges = 5
 	var/max_charges = 5
+
+/obj/item/toner/large
+	name = "large toner cartridge"
+	grind_results = list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
+	charges = 15
+	max_charges = 15
+
+/obj/item/toner/extreme
+	name = "extremely large toner cartridge"
+	desc = "Why would ANYONE need THIS MUCH TONER?"
+	charges = 200
+	max_charges = 200

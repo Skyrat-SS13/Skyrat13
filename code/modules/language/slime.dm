@@ -4,6 +4,7 @@
 	speech_verb = "warbles"
 	ask_verb = "warbles"
 	exclaim_verb = "warbles"
+	sing_verb = "warbles" // Skyrat edit
 	key = "k"
 	flags = TONGUELESS_SPEECH
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix","*","!")

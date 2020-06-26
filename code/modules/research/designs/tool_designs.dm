@@ -72,6 +72,26 @@
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/rld_mini
+	name = "Mini Rapid Light Device (MRLD)"
+	desc = "A tool that can portable and standing lighting orbs and glowsticks."
+	id = "rld_mini"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/glass = 10000, /datum/material/plastic = 8000, /datum/material/gold = 2000)
+	build_path = /obj/item/construction/rld/mini
+	category = list("Tool Designs")
+	departmental_flags =  DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
+
+/datum/design/ranged_analyzer // Skyrat addition
+	name = "Long-range Analyzer"
+	desc = "A new advanced atmospheric analyzer design, capable of performing scans at long range."
+	id = "ranged_analyzer"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 400, /datum/material/glass = 1000, /datum/material/uranium = 800, /datum/material/gold = 200, /datum/material/plastic = 200)
+	build_path = /obj/item/analyzer/ranged
+	category = list("Tool Designs")
+	departmental_flags =  DEPARTMENTAL_FLAG_ENGINEERING
+
 /////////////////////////////////////////
 //////////////Alien Tools////////////////
 /////////////////////////////////////////
