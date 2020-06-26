@@ -16673,6 +16673,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"aOe" = (
+/obj/machinery/quantumpad{
+	map_pad_id = "toxenoarch";
+	map_pad_link_id = "tostation"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "aOf" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/neutral{
@@ -21836,6 +21843,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
 	},
@@ -55506,6 +55514,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "hwj" = (
@@ -57694,6 +57703,10 @@
 /obj/structure/floodlight_frame,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"ldR" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "lem" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -62398,9 +62411,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/machinery/computer/shuttle/mining/common{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "tcY" = (
@@ -64623,17 +64633,11 @@
 /turf/open/floor/plating,
 /area/science/mixing)
 "wPW" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 3;
-	height = 5;
-	id = "commonmining_home";
-	name = "SS13: Common Mining Dock";
-	roundstart_template = /datum/map_template/shuttle/mining_common/meta;
-	width = 7
+/obj/machinery/light/small{
+	dir = 1
 	},
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "wQU" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/cable{
@@ -84575,11 +84579,11 @@ baK
 bon
 aZx
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aZx
+aZx
+aZx
+aZx
+aZx
 aaa
 gDV
 aZx
@@ -84832,11 +84836,11 @@ baK
 bon
 aZx
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aZx
+baK
+baK
+baK
+aZx
 aaa
 sty
 gKd
@@ -85089,11 +85093,11 @@ baL
 bon
 aZx
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aZx
+wPW
+aOe
+ldR
+aZx
 aaa
 sty
 mVD
@@ -85346,11 +85350,11 @@ baK
 boo
 aZx
 aaa
-aaa
-aaa
-wPW
-aaa
-aaa
+aZx
+baK
+baK
+baK
+aZx
 aaa
 sty
 mVD
@@ -85605,7 +85609,7 @@ aZx
 aZx
 aZx
 bsl
-btL
+baK
 aZx
 aZx
 aZx
@@ -85862,7 +85866,7 @@ aZx
 bDf
 tbY
 aZx
-bcX
+baK
 aZx
 kBp
 xeN
@@ -86119,7 +86123,7 @@ aZx
 epg
 uxI
 bsl
-btM
+baK
 aZx
 mVD
 dpc
