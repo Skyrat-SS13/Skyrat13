@@ -2,8 +2,8 @@ import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, Icon, NoticeBox, ProgressBar, Section } from '../components';
 
-export const GatewayContent = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Gateway = props => {
+  const { act, data } = useBackend(props);
   const {
     gateway_present = false,
     gateway_status = false,
