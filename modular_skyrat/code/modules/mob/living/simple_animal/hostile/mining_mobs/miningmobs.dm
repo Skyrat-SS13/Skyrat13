@@ -4,7 +4,7 @@
 	var/list/glorymessagescrusher = list() //SAME AS ABOVE BUT CRUSHER
 	var/list/glorymessagespka = list() //SAME AS ABOVE THE ABOVE BUT PKA
 	var/list/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING
-	var/gloryhealth = 7.5
+	var/gloryhealth = 16
 	var/glorymodifier = 1.5
 
 /mob/living/simple_animal/hostile/asteroid/Life()
@@ -35,7 +35,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/AltClick(mob/living/carbon/slayer)
 	if(glorykill)
-		if(do_after(slayer, 10, needhand = TRUE, target = src, progress = FALSE) && (stat != DEAD))
+		if(do_after(slayer, 7, needhand = TRUE, target = src, progress = FALSE) && (stat != DEAD))
 			var/message
 			if(!slayer.get_active_held_item() || (!istype(slayer.get_active_held_item(), /obj/item/twohanded/kinetic_crusher) && !istype(slayer.get_active_held_item(), /obj/item/gun/energy/kinetic_accelerator)))
 				message = pick(glorymessageshand)
@@ -52,7 +52,7 @@
 				visible_message("<span class='danger'><b>[slayer] does something generally considered brutal to [src]... Whatever that may be!</b></span>")
 			slayer.heal_overall_damage(gloryhealth,gloryhealth)
 			playsound(src.loc, death_sound, 150, TRUE, -1)
-			crusher_drop_mod *= 2
+			crusher_drop_mod *= 2.5
 			adjustHealth(maxHealth, TRUE, TRUE)
 			if(mob_biotypes & MOB_ORGANIC)
 				new /obj/effect/gibspawner/generic(src.loc)
