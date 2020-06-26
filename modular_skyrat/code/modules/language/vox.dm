@@ -4,7 +4,6 @@
 	speech_verb = "shrieks"
 	ask_verb = "creels"
 	exclaim_verb = "screeches"
-	sing_verb = "squeals"
 	key = "v"
 	flags = TONGUELESS_SPEECH
 	space_chance = 40

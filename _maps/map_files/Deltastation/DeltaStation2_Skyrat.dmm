@@ -244,8 +244,9 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/construction/mining/aux_base)
 "abe" = (
-/obj/machinery/light/small{
-	dir = 8
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/stripes/end{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -6821,7 +6822,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/machinery/vending/pdavendor,
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-22"
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aul" = (
@@ -97406,11 +97409,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"gdg" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/vending/pdavendor,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "gfR" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -99566,9 +99564,11 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "mvx" = (
-/obj/machinery/quantumpad{
-	map_pad_id = "toxenoarch";
-	map_pad_link_id = "tostation"
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -99684,8 +99684,13 @@
 /turf/open/space,
 /area/engine/atmos)
 "mLI" = (
-/obj/machinery/light/small{
-	dir = 4
+/obj/machinery/door/airlock/external{
+	name = "External Docking Port"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -100082,6 +100087,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"nQR" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/computer/shuttle/mining/common,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "nSh" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /turf/closed/wall/r_wall,
@@ -100114,6 +100124,19 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/medical/psych)
+"nSS" = (
+/obj/machinery/door/airlock/external{
+	name = "External Docking Port"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "nUG" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/box,
@@ -103311,6 +103334,17 @@
 "xbV" = (
 /turf/open/floor/wood,
 /area/security/prison)
+"xdp" = (
+/obj/docking_port/stationary{
+	dwidth = 3;
+	height = 5;
+	id = "commonmining_home";
+	name = "SS13: Common Mining Dock";
+	roundstart_template = /datum/map_template/shuttle/mining_common/meta;
+	width = 7
+	},
+/turf/open/space/basic,
+/area/space)
 "xdL" = (
 /obj/machinery/requests_console{
 	department = "Prison";
@@ -135727,11 +135761,11 @@ oZp
 aaa
 aaa
 aaa
-aaO
-aaO
-aaO
-aaO
-aaO
+aaa
+aaa
+rqh
+rqh
+aad
 aad
 aaa
 aaa
@@ -135984,10 +136018,10 @@ oZp
 aaa
 aaa
 aaa
+aaa
 aaO
-aco
-abe
-aco
+aaO
+aaO
 aaO
 abf
 aaO
@@ -136241,11 +136275,11 @@ oZp
 aaa
 aaa
 aaa
-aaO
-aco
+xdp
+mLI
 mvx
-aco
-aeb
+nSS
+abe
 abp
 abC
 abC
@@ -136498,11 +136532,11 @@ oZp
 aaa
 aaa
 aaa
+aaa
 aaO
-aco
-mLI
-aco
 aaO
+aaO
+nQR
 abq
 abD
 abD
@@ -136755,12 +136789,12 @@ oZp
 aaa
 aaa
 aaa
+aaa
+aaa
+rqh
 aaO
 aaO
-aaO
-aaO
-aaO
-aaO
+abf
 aaO
 aaO
 abf
@@ -143605,7 +143639,7 @@ dWg
 dVl
 dVl
 dVl
-gdg
+dVl
 dVl
 dVl
 dVl

@@ -1,0 +1,4 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Maint energy freezer is no longer emag only."

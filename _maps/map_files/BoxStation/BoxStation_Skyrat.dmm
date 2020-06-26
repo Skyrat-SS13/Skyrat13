@@ -17902,8 +17902,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "aMZ" = (
-/obj/machinery/vending/pdavendor,
-/turf/open/floor/plasteel,
+/turf/closed/wall,
 /area/hallway/secondary/exit)
 "aNa" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -19816,7 +19815,6 @@
 	c_tag = "Arrivals Hallway";
 	dir = 8
 	},
-/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aSg" = (
@@ -57464,10 +57462,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
-"gBf" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/space/nearstation)
 "gBo" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -58362,12 +58356,17 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "iDS" = (
-/obj/machinery/quantumpad{
-	map_pad_id = "toxenoarch";
-	map_pad_link_id = "tostation"
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 3;
+	height = 5;
+	id = "commonmining_home";
+	name = "SS13: Common Mining Dock";
+	roundstart_template = /datum/map_template/shuttle/mining_common/meta;
+	width = 7
 	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
+/turf/open/space/basic,
+/area/space)
 "iEJ" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod One"
@@ -60627,10 +60626,13 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "nGI" = (
-/obj/machinery/light/small{
-	dir = 1
+/obj/machinery/door/airlock/external{
+	name = "Common Mining Shuttle Bay"
 	},
-/turf/open/floor/plasteel,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "nLc" = (
 /obj/structure/cable{
@@ -64243,9 +64245,6 @@
 /obj/item/clothing/glasses/sunglasses/big,
 /turf/open/floor/plasteel/showroomfloor,
 /area/maintenance/bar)
-"vvx" = (
-/turf/closed/wall,
-/area/hallway/secondary/exit)
 "vxA" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Three"
@@ -65163,8 +65162,15 @@
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
 "xfS" = (
-/obj/machinery/light/small,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/computer/shuttle/mining/common{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
 /area/hallway/secondary/entry)
 "xgk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -65475,8 +65481,12 @@
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "xQG" = (
-/obj/structure/sign/warning/docking,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/airlock/external{
+	name = "Common Mining Shuttle Bay"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "xTy" = (
@@ -72971,7 +72981,7 @@ aaa
 aaa
 aaa
 aaa
-aoV
+aae
 aaa
 aaa
 aaa
@@ -73480,11 +73490,11 @@ aaa
 aaa
 aaa
 aaa
-awW
-awW
-awW
-awW
-awW
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73737,11 +73747,11 @@ aaa
 aaa
 aaa
 aaa
-awW
-ayl
-ayl
-ayl
-awW
+aoV
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73994,11 +74004,11 @@ aaa
 aaa
 aaa
 aaa
-awW
-nGI
+aoV
+aaa
 iDS
-xfS
-awW
+aaa
+aaa
 aoV
 aaa
 aaa
@@ -74251,11 +74261,11 @@ aaa
 aaa
 aaa
 aaa
-awW
-ayl
-ayl
-ayl
-awW
+asE
+asE
+nGI
+asE
+asE
 aoV
 aaa
 aaa
@@ -74508,11 +74518,11 @@ aaa
 aaa
 aaa
 aaa
+aaf
 awW
+auP
 awW
-ayl
-awW
-xQG
+aaf
 kls
 aaa
 aaa
@@ -74765,11 +74775,11 @@ aaa
 aaa
 aaa
 aaa
-awW
-ayl
-ayl
-awW
-aaa
+arB
+arB
+xQG
+asE
+aAC
 aaf
 aaa
 aaa
@@ -75022,8 +75032,8 @@ aaa
 aaa
 aaa
 aaa
-awW
-awZ
+arB
+xfS
 ayk
 awW
 aAD
@@ -115889,7 +115899,7 @@ bPv
 odk
 iyZ
 bRd
-aPq
+jEU
 aMZ
 bky
 aaa
@@ -116146,9 +116156,9 @@ nfZ
 mVz
 vBP
 aPq
-jEU
-vvx
-gBf
+aPq
+aNa
+aaf
 aaa
 bns
 boF

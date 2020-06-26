@@ -1,0 +1,5 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - bugfix: "Corrupted tile on Deltastation"
+  - bugfix: "Cloning window tint toggle button fixed to be all-access."

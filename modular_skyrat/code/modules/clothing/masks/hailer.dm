@@ -8,7 +8,6 @@
 	actions_types = list(/datum/action/item_action/halt)
 	aggressiveness = 3
 	desc = "A standard issue metropolice gas mask. Now you too can make random citizens pick up that can."
-	var/list/saved_screams = list()
 
 /obj/item/clothing/mask/gas/sechailer/cpmask/halt()
 	set category = "Object"
@@ -97,7 +96,6 @@
 		var/mob/living/carbon/human/H = user
 		var/obj/item/implant/flatline/F = new
 		F.implant(H, H)
-		saved_screams = H.alternate_screams.Copy()
 		H.alternate_screams = list('modular_skyrat/sound/voice/complionator/pain1.ogg','modular_skyrat/sound/voice/complionator/pain2.ogg','modular_skyrat/sound/voice/complionator/pain3.ogg','modular_skyrat/sound/voice/complionator/pain1.ogg',)
 
 /obj/item/clothing/mask/gas/sechailer/cpmask/dropped(mob/user)
@@ -108,8 +106,7 @@
 		var/mob/living/carbon/human/H = user
 		for(var/obj/item/implant/flatline/F in H.implants)
 			F.removed(H)
-		H.alternate_screams = saved_screams.Copy()
-		saved_screams = list()
+		H.alternate_screams = initial(alternate_screams)
 
 //Flatline implant
 
@@ -191,7 +188,7 @@
 				return
 		switch(aggressiveness)
 			if(4)
-				phrase = rand(1,9)
+				phrase = rand(1,10)
 			else
 				to_chat(usr, "<span class='userdanger'>\The [src] is broken.</span>")
 		switch(phrase)	//sets the properties of the chosen phrase
@@ -208,18 +205,21 @@
 				phrase_text = "MOVE, IN!"
 				phrase_sound = "movein"
 			if(5)
+				phrase_text = "MY. ASS. IS. HEAVY. <b>MY. ASS. IS. HEAVY!</b>"
+				phrase_sound = "myassisheavy"
+			if(6)
 				phrase_text = "I NEED SUPPRESSING FIRE!"
 				phrase_sound = "supressingfire"
-			if(6)
+			if(7)
 				phrase_text = "SWEEP THIS AREA!"
 				phrase_sound = "sweepthisarea"
-			if(7)
+			if(8)
 				phrase_text = "TAKE DOWN THAT TANGO!"
 				phrase_sound = "takedowntango"
-			if(8)
+			if(9)
 				phrase_text = "TANGO!"
 				phrase_sound = "tango"
-			if(9)
+			if(10)
 				phrase_text = "DAMN, WE HAVE HOSTILES!"
 				phrase_sound = "wehavehostiles"
 		usr.audible_message("[usr]'s Compli-o-Nator: <font color='red' size='4'><b>[phrase_text]</b></font>")

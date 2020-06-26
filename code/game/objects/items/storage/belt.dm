@@ -180,8 +180,7 @@
 		/obj/item/implantcase,
 		/obj/item/implant,
 		/obj/item/implanter,
-		/obj/item/pinpointer/crew,
-		/obj/item/reagent_containers/chem_pack
+		/obj/item/pinpointer/crew
 		))
 
 /obj/item/storage/belt/medical/surgery_belt_adv
