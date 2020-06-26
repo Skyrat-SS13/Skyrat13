@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscadd: "bay/polaris style say_emphasis has been added. You can now |italicize| _underline_ and +bold+ your messages. Use `|| text ||`, `__ text__` and `++ text ++`"
