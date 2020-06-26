@@ -306,7 +306,7 @@ SUBSYSTEM_DEF(ticker)
 	LAZYCLEARLIST(round_start_events)
 
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
-	round_start_time = world.time
+	round_start_time = world.realtime
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, "<span class='notice'><B>Welcome to [station_name()], enjoy your stay!</B></span>")
