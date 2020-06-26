@@ -23,3 +23,11 @@
 					/obj/item/vending_refill/hydronutrients/prisoner)
 	crate_name = "prisoner hydroponics supply crate"
 	crate_type = /obj/structure/closet/crate
+
+/datum/supply_pack/vending/pdavendor
+	name = "PDA Vending Supply Crate"
+	desc = "Let people get their custom PDAs."
+	cost = 5000
+	contains = list(/obj/item/vending_refill/pdavendor)
+	crate_name = "pda vending supply crate"
+	crate_type = /obj/structure/closet/crate
