@@ -581,16 +581,7 @@
 /obj/item/card/id/ert
 	name = "\improper CentCom ID"
 	desc = "An ERT ID card."
-<<<<<<< HEAD
-	icon_state = "centcom"
-	//Skyrat change start
-	item_state = "centcom-id"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/idcards_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/equipment/idcards_righthand.dmi'
-	//Skyrat change stop
-=======
 	icon_state = "ert_commander"
->>>>>>> 29ff6fc464... Updating ID Icons (#12535)
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
 
