@@ -120,6 +120,8 @@
 			new /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing(loc)
 		return INITIALIZE_HINT_QDEL
 
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random
+
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing
 	name = "magmawing watcher"
 	desc = "When raised very close to lava, some watchers adapt to the extreme heat and use lava as both a weapon and wings."
