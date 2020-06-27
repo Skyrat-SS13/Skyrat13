@@ -130,6 +130,8 @@
 		new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(loc)
 		return INITIALIZE_HINT_QDEL
 
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random
+
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf
 	name = "dwarf legion"
 	desc = "You can still see what was once a rather small human under the shifting mass of corruption."
