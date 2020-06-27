@@ -156,9 +156,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	bound_y = 0
 	density = TRUE
 
-	use_power = IDLE_POWER_USE
-	idle_power_usage = 100
-	active_power_usage = 5000
+	use_power = NO_POWER_USE
 
 	var/calibrated = TRUE
 	/// Type of instanced gateway destination, needs to be subtype of /datum/gateway_destination/gateway
@@ -190,12 +188,6 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	QDEL_NULL(portal)
 	use_power = IDLE_POWER_USE
 	update_icon()
-
-/obj/machinery/gateway/process()
-	if((NOPOWER) && use_power)
-		if(target)
-			deactivate()
-		return
 
 /obj/machinery/gateway/update_icon_state()
 	if(target)

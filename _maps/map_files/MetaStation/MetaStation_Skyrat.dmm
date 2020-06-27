@@ -42684,16 +42684,10 @@
 /turf/open/floor/plating,
 /area/gateway)
 "bJY" = (
-/obj/machinery/gateway{
-	dir = 9
-	},
 /obj/effect/turf_decal/bot_white/right,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "bJZ" = (
-/obj/machinery/gateway{
-	dir = 1
-	},
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
@@ -42701,9 +42695,6 @@
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "bKa" = (
-/obj/machinery/gateway{
-	dir = 5
-	},
 /obj/effect/turf_decal/bot_white/left,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
@@ -43344,21 +43335,11 @@
 /turf/open/floor/plating,
 /area/gateway)
 "bLD" = (
-/obj/machinery/gateway{
-	dir = 8
-	},
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "bLE" = (
 /obj/machinery/gateway/centerstation,
-/turf/open/floor/plasteel/dark,
-/area/gateway)
-"bLF" = (
-/obj/machinery/gateway{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "bLG" = (
@@ -44155,26 +44136,11 @@
 	dir = 1
 	},
 /area/gateway)
-"bNp" = (
-/obj/machinery/gateway{
-	dir = 10
-	},
-/obj/effect/turf_decal/bot_white/left,
-/turf/open/floor/plasteel/dark,
-/area/gateway)
 "bNq" = (
-/obj/machinery/gateway,
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
 /obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/dark,
-/area/gateway)
-"bNr" = (
-/obj/machinery/gateway{
-	dir = 6
-	},
-/obj/effect/turf_decal/bot_white/right,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "bNs" = (
@@ -44754,6 +44720,7 @@
 /turf/open/floor/plating,
 /area/gateway)
 "bOK" = (
+/obj/machinery/computer/gateway_control,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "bOL" = (
@@ -110512,7 +110479,7 @@ bGQ
 bGM
 bJY
 bLD
-bNp
+bKa
 bOK
 bQu
 bRL
@@ -111025,8 +110992,8 @@ bFd
 bGS
 bGM
 bKa
-bLF
-bNr
+bLD
+bJY
 bOM
 bQw
 bRM
