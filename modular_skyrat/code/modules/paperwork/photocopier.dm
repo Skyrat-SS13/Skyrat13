@@ -37,7 +37,7 @@
 /obj/machinery/photocopier/proc/copy(var/obj/item/tocopy)
 	var/obj/item/paper/c
 	for(var/i = 0, i < copies, i++)
-		if(toner > 0 && !busy && copy)
+		if(toner > 0 && !busy && (copy || postercopy))
 			if(istype(tocopy, /obj/item/paper))
 				var/obj/item/paper/copy = tocopy
 				var/copy_as_paper = 1
