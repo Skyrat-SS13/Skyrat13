@@ -83,7 +83,7 @@
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
 	//skyrat edit
-	embed = list(embed_chance=33, fall_chance=1, jostle_chance=0, ignore_throwspeed_threshold=TRUE, pain_stam_pct=1, pain_mult=3, rip_time=10)
+	embedding = list(embed_chance=33, fall_chance=1, jostle_chance=0, ignore_throwspeed_threshold=TRUE, pain_stam_pct=1, pain_mult=3, rip_time=10)
 	damage = 7.5
 	wound_bonus = 25
 	//
