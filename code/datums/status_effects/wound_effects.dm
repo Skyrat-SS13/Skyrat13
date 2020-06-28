@@ -269,7 +269,7 @@
 /datum/status_effect/wound/pierce/critical
 	id = "rupture"
 
-//dismemberment
+// dismemberment
 /datum/status_effect/wound/loss
 	id = "loss"
 	alert_type =  /obj/screen/alert/status_effect/wound/loss
