@@ -44,6 +44,14 @@
 		slime_change.Grant(C)	//CIT CHANGE
 	C.faction |= "slime"
 
+<<<<<<< HEAD
+=======
+/datum/species/jelly/handle_body(mob/living/carbon/human/H)
+	. = ..()
+	//update blood color to body color
+	exotic_blood_color = "#" + H.dna.features["mcolor"]
+
+>>>>>>> 9b7690d90c... Merge pull request #12633 from Ghommie/Ghommie-cit824
 /datum/species/jelly/spec_life(mob/living/carbon/human/H)
 	if(H.stat == DEAD || HAS_TRAIT(H, TRAIT_NOMARROW)) //can't farm slime jelly from a dead slime/jelly person indefinitely, and no regeneration for blooduskers
 		return
@@ -536,7 +544,7 @@
 		H.update_body()
 
 	else if (select_alteration == "Markings")
-		var/list/snowflake_markings_list = list()
+		var/list/snowflake_markings_list = list("None")
 		for(var/path in GLOB.mam_body_markings_list)
 			var/datum/sprite_accessory/mam_body_markings/instance = GLOB.mam_body_markings_list[path]
 			if(istype(instance, /datum/sprite_accessory))
@@ -547,8 +555,6 @@
 		new_mam_body_markings = input(H, "Choose your character's body markings:", "Marking Alteration") as null|anything in snowflake_markings_list
 		if(new_mam_body_markings)
 			H.dna.features["mam_body_markings"] = new_mam_body_markings
-			if(new_mam_body_markings == "None")
-				H.dna.features["mam_body_markings"] = "Plain"
 		for(var/X in H.bodyparts) //propagates the markings changes
 			var/obj/item/bodypart/BP = X
 			BP.update_limb(FALSE, H)
