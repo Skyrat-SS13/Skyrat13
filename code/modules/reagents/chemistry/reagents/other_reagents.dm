@@ -46,7 +46,7 @@
 			// we don't care about bloodtype here, we're just refilling the mob
 
 	if(reac_volume >= 10 && istype(L) && method != INJECT)
-		L.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
+		L.add_blood_DNA(list("color" = list(data["blood_DNA"] = data["bloodcolor"]), data["blood_DNA"] = data["blood_type"]))
 
 /datum/reagent/blood/on_mob_life(mob/living/carbon/C)	//Because lethals are preferred over stamina. damnifino.
 	var/blood_id = C.get_blood_id()
@@ -70,6 +70,7 @@
 		B = new(T)
 	if(data["blood_DNA"])
 		B.blood_DNA[data["blood_DNA"]] = data["blood_type"]
+		B.blood_DNA["color"] = list(data["blood_DNA"] = data["bloodcolor"])
 	if(B.reagents)
 		B.reagents.add_reagent(type, reac_volume)
 	B.update_icon()
@@ -77,7 +78,7 @@
 /datum/reagent/blood/on_new(list/data)
 	if(istype(data))
 		SetViruses(src, data)
-		color = bloodtype_to_color(data["blood_type"])
+		color = blood_DNA_list_to_color(list("color" = list(data["blood_DNA"] = data["bloodcolor"]), data["blood_DNA"] = data["bloodtype"]))
 		if(data["blood_type"] == "SY")
 			name = "Synthetic Blood"
 			taste_description = "oil"
@@ -2222,7 +2223,7 @@
 	if(!S)
 		S = new(T)
 	if(data["blood_DNA"])
-		S.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
+		S.add_blood_DNA(list("color" = list(data["blood_DNA"] = data["bloodcolor"]), data["blood_DNA"] = data["blood_type"]))
 
 /obj/effect/decal/cleanable/semen
 	name = "semen"
@@ -2237,11 +2238,12 @@
 /obj/effect/decal/cleanable/semen/Initialize(mapload)
 	. = ..()
 	dir = GLOB.cardinals
-	add_blood_DNA(list("Non-human DNA" = "A+"))
+	add_blood_DNA(list("color" = list("Non-human DNA" = bloodtype_to_color("A+")), "Non-human DNA" = "A+"))
 
 /obj/effect/decal/cleanable/semen/replace_decal(obj/effect/decal/cleanable/semen/S)
 	if(S.blood_DNA)
-		blood_DNA |= S.blood_DNA
+		blood_DNA |= (S.blood_DNA - "color")
+		blood_DNA["color"] |= S.blood_DNA["color"]
 	return ..()
 
 /datum/reagent/consumable/femcum
@@ -2270,11 +2272,12 @@
 /obj/effect/decal/cleanable/femcum/Initialize(mapload)
 	. = ..()
 	dir = GLOB.cardinals
-	add_blood_DNA(list("Non-human DNA" = "A+"))
+	add_blood_DNA(list("color" = list("Non-human DNA" = bloodtype_to_color("A+")), "Non-human DNA" = "A+"))
 
 /obj/effect/decal/cleanable/femcum/replace_decal(obj/effect/decal/cleanable/femcum/F)
 	if(F.blood_DNA)
-		blood_DNA |= F.blood_DNA
+		blood_DNA |= (F.blood_DNA - "color")
+		blood_DNA["color"] |= F.blood_DNA["color"]
 	return ..()
 
 /datum/reagent/consumable/femcum/reaction_turf(turf/T, reac_volume)
@@ -2287,4 +2290,4 @@
 	if(!S)
 		S = new(T)
 	if(data["blood_DNA"])
-		S.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
+		S.add_blood_DNA(list("color" = list(data["blood_DNA"] = data["bloodcolor"]), data["blood_DNA"] = data["blood_type"]))

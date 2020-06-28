@@ -419,7 +419,7 @@
 	var/blood_id = get_blood_id()
 	if(!(blood_id in GLOB.blood_reagent_types))
 		return
-	return list("ANIMAL DNA" = "Y-")
+	return list("color" = list("ANIMAL DNA" = BLOOD_COLOR_HUMAN),"ANIMAL DNA" = "Y-")
 
 /mob/living/carbon/get_blood_dna_list()
 	var/blood_id = get_blood_id()
@@ -427,13 +427,15 @@
 		return
 	var/list/blood_dna = list()
 	if(dna)
+		blood_dna["color"] = list(dna.unique_enzymes = dna.blood_color)
 		blood_dna[dna.unique_enzymes] = dna.blood_type
 	else
+		blood_DNA["color"] = list("UNKNOWN DNA" = BLOOD_COLOR_XENO)
 		blood_dna["UNKNOWN DNA"] = "X*"
 	return blood_dna
 
 /mob/living/carbon/alien/get_blood_dna_list()
-	return list("UNKNOWN DNA" = "X*")
+	return list("color" = list("UNKNOWN DNA" = BLOOD_COLOR_XENO),"UNKNOWN DNA" = "X*")
 
 //to add a mob's dna info into an object's blood_DNA list.
 /atom/proc/transfer_mob_blood_dna(mob/living/L)
@@ -442,8 +444,10 @@
 	if(!new_blood_dna)
 		return FALSE
 	LAZYINITLIST(blood_DNA)	//if our list of DNA doesn't exist yet, initialise it.
+	LAZYINITLIST(blood_DNA["color"])
 	var/old_length = blood_DNA.len
-	blood_DNA |= new_blood_dna
+	blood_DNA |= (new_blood_dna - "color")
+	blood_DNA["color"] |= new_blood_dna["color"]
 	if(blood_DNA.len == old_length)
 		return FALSE
 	return TRUE
@@ -451,8 +455,10 @@
 //to add blood dna info to the object's blood_DNA list
 /atom/proc/transfer_blood_dna(list/blood_dna, list/datum/disease/diseases)
 	LAZYINITLIST(blood_DNA)
+	LAZYINITLIST(blood_DNA["color"])
 	var/old_length = blood_DNA.len
-	blood_DNA |= blood_dna
+	blood_DNA |= (blood_dna - "color")
+	blood_DNA["color"] |= blood_dna["color"]
 	if(blood_DNA.len > old_length)
 		return TRUE
 		//some new blood DNA was added
@@ -527,16 +533,49 @@
 	var/list/colors = list() //first we make a list of all blood DNAs present
 	var/list/dna_to_color = list() //then we make another fucking list to see if the DNA has an unique blood color
 	// Yes this is fucking terrible.
-	for(var/bloop in blood_DNA)
+	LAZYINITLIST(blood_DNA["color"])
+	for(var/bloop in blood_DNA["color"])
 		if(colors[bloop])
 			colors[bloop]++
 		else
 			colors[bloop] = 1
 	for(var/bloop in colors)
 		dna_to_color[bloop] = bloodtype_to_color(blood_DNA[bloop])
-		for(var/mob/living/carbon/C in GLOB.mob_living_list) //writing this makes me feel shame
-			if((C.dna.unique_enzymes == bloop) && C.dna.blood_color) //i should just use a global list for this
-				dna_to_color[bloop] = C.dna.blood_color
+		if(length(blood_DNA["color"][bloop]))
+			dna_to_color[bloop] = blood_DNA["color"][bloop]
+
+	var/final_rgb = BLOOD_COLOR_HUMAN	//a default so we don't have white blood graphics if something messed up
+
+	if(colors.len)
+		var/sum = 0 //this is all shitcode, but it works; trust me
+		final_rgb = dna_to_color[colors[1]]
+		sum = colors[colors[1]]
+		if(colors.len > 1)
+			var/i = 2
+			while(i <= colors.len)
+				var/tmp = colors[colors[i]]
+				final_rgb = BlendRGB(final_rgb, dna_to_color[colors[i]], tmp/(tmp+sum))
+				sum += tmp
+				i++
+
+	return final_rgb
+
+/proc/blood_DNA_list_to_color(list/dna)
+	if(!dna || !length(dna))
+		return BLOOD_COLOR_HUMAN
+	var/list/colors = list() //first we make a list of all blood DNAs present
+	var/list/dna_to_color = list() //then we make another fucking list to see if the DNA has an unique blood color
+	// Yes this is fucking terrible.
+	LAZYINITLIST(dna["color"])
+	for(var/bloop in dna["color"])
+		if(colors[bloop])
+			colors[bloop]++
+		else
+			colors[bloop] = 1
+	for(var/bloop in colors)
+		dna_to_color[bloop] = bloodtype_to_color(dna[bloop])
+		if(length(dna["color"][bloop]))
+			dna_to_color[bloop] = dna["color"][bloop]
 
 	var/final_rgb = BLOOD_COLOR_HUMAN	//a default so we don't have white blood graphics if something messed up
 
@@ -555,7 +594,7 @@
 	return final_rgb
 //
 /atom/proc/clean_blood()
-	. = blood_DNA? TRUE : FALSE
+	. = blood_DNA ? TRUE : FALSE
 	blood_DNA = null
 
 /atom/proc/wash_cream()
