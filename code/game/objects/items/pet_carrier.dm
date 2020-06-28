@@ -91,16 +91,18 @@
 	if(target.mob_size > max_occupant_weight)
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
-			if(iscatperson(H))
-				to_chat(user, "<span class='warning'>You'd need a lot of catnip and treats, plus maybe a laser pointer, for that to work.</span>")
+			if (H.dna.features["body_size"] <= 0.75) //Skyrat EDIT
 			else
-				to_chat(user, "<span class='warning'>Humans, generally, do not fit into pet carriers.</span>")
+				if(user == target)
+					to_chat(user, "<span class='warning'>You'll never fit in there at your current size!</span>")
+				else if(iscatperson(H))
+					to_chat(user, "<span class='warning'>This cat is too big to fit inside of [name]!</span>")
+				else
+					to_chat(user, "<span class='warning'>[target] is too big to fit inside of [name]!</span>")
+				return
 		else
-			to_chat(user, "<span class='warning'>You get the feeling [target] isn't meant for a [name].</span>")
-		return
-	if(user == target)
-		to_chat(user, "<span class='warning'>Why would you ever do that?</span>")
-		return
+			to_chat(user, "<span class='warning'>You get the feeling [target] isn't meant for a [name]. Maybe if they were smaller...</span>")
+			return
 	load_occupant(user, target)
 
 /obj/item/pet_carrier/relaymove(mob/living/user, direction)
@@ -163,13 +165,26 @@
 	else
 		return ..()
 
+/obj/item/pet_carrier/MouseDrop(atom/over_atom)
+	if(isopenturf(over_atom) && usr.canUseTopic(src, BE_CLOSE, ismonkey(usr)) && usr.Adjacent(over_atom) && open && occupants.len)
+		usr.visible_message("<span class='notice'>[usr] unloads [src].</span>", \
+		"<span class='notice'>You unload [src] onto [over_atom].</span>")
+		load_occupant(user, over_atom)
+	else
+		return ..()
+
 /obj/item/pet_carrier/proc/load_occupant(mob/living/user, mob/living/target)
 	if(pet_carrier_full(src))
 		to_chat(user, "<span class='warning'>[src] is already carrying too much!</span>")
 		return
-	user.visible_message("<span class='notice'>[user] starts loading [target] into [src].</span>", \
-	"<span class='notice'>You start loading [target] into [src]...</span>", null, null, target)
-	to_chat(target, "<span class='userdanger'>[user] starts loading you into [user.p_their()] [name]!</span>")
+	if (user == target) //Skyrat EDIT
+		user.visible_message("<span class='notice'>[user] starts squeezing into [src]!</span>", \
+		"<span class='notice'>You start squeezing yourself into [src]...</span>", null, null, target)
+		to_chat(target, "<span class='userdanger'>You're putting yourself inside of [src]!</span>")
+	else
+		user.visible_message("<span class='notice'>[user] starts loading [target] into [src].</span>", \
+		"<span class='notice'>You start loading [target] into [src]...</span>", null, null, target)
+		to_chat(target, "<span class='userdanger'>[user] starts loading you into [user.p_their()] [name]!</span>")
 	if(!do_mob(user, target, 30))
 		return
 	if(target in occupants)
@@ -177,10 +192,14 @@
 	if(pet_carrier_full(src)) //Run the checks again, just in case
 		to_chat(user, "<span class='warning'>[src] is already carrying too much!</span>")
 		return
-	user.visible_message("<span class='notice'>[user] loads [target] into [src]!</span>", \
-	"<span class='notice'>You load [target] into [src].</span>", null, null, target)
-	to_chat(target, "<span class='userdanger'>[user] loads you into [user.p_their()] [name]!</span>")
-	add_occupant(target)
+	if (user == target) //Skyrat EDIT
+		user.visible_message("<span class='notice'>[user] squeezed their self snuggly into [src]!</span>", \
+		"<span class='notice'>You squeezed yourself snuggly into [src].</span>", null, null, target)
+	else
+		user.visible_message("<span class='notice'>[user] loads [target] into [src]!</span>", \
+		"<span class='notice'>You load [target] into [src].</span>", null, null, target)
+		to_chat(target, "<span class='userdanger'>[user] loads you into [user.p_their()] [name]!</span>")
+		add_occupant(target)
 
 /obj/item/pet_carrier/proc/add_occupant(mob/living/occupant)
 	if(occupant in occupants || !istype(occupant))
