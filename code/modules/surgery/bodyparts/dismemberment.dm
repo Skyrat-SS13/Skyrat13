@@ -244,7 +244,7 @@
   * * bare_wound_bonus: ditto above
   */
 /obj/item/bodypart/proc/try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
-	var/base_chance = wounding_dmg + (get_damage() / max_damage * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
+	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
 	for(var/i in wounds)
 		var/datum/wound/W = i
 		if(istype(W, /datum/wound/blunt/critical)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
