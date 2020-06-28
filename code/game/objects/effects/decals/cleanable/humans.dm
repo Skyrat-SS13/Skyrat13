@@ -11,10 +11,7 @@
 
 /obj/effect/decal/cleanable/blood/replace_decal(obj/effect/decal/cleanable/blood/C)
 	if (C.blood_DNA)
-		blood_DNA |= (C.blood_DNA - "color")
-		LAZYINITLIST(blood_DNA["color"])
-		LAZYINITLIST(C.blood_DNA["color"])
-		blood_DNA["color"] |= C.blood_DNA["color"]
+		blood_DNA |= C.blood_DNA
 	update_icon()
 	..()
 
@@ -37,7 +34,7 @@
 /obj/effect/decal/cleanable/blood/old/Initialize(mapload, list/datum/disease/diseases)
 	..()
 	icon_state += "-old"
-	add_blood_DNA(list("color" = list("Non-human DNA" = bloodtype_to_color("A+")), "Non-human DNA" = "A+"))
+	add_blood_DNA(list("Non-human DNA" = "A+"))
 
 /obj/effect/decal/cleanable/blood/splats
 	random_icon_states = list("gibbl1", "gibbl2", "gibbl3", "gibbl4", "gibbl5")
