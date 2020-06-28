@@ -77,7 +77,7 @@
 /datum/reagent/blood/on_new(list/data)
 	if(istype(data))
 		SetViruses(src, data)
-		color = specific_blood_DNA_to_color(data)
+		color = bloodtype_to_color(data["blood_type"])
 		if(data["blood_type"] == "SY")
 			name = "Synthetic Blood"
 			taste_description = "oil"
