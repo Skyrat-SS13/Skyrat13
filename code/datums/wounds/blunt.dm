@@ -35,6 +35,14 @@
 /*
 	Overwriting of base procs
 */
+/datum/wound/blunt/on_hemostatic(quantity)
+	if((severity <= WOUND_SEVERITY_SEVERE) && (quantity >= 15))
+		internal_bleeding_chance = round(internal_bleeding_chance/2, 0.1)
+		if(internal_bleeding_chance <= 2)
+			internal_bleeding_chance = 0
+		if(victim)
+			victim.visible_message("<span class='notice'>The [lowertext(src.name)] on [victim]'s [limb] seems to be bleeding significantly less.</span>")
+
 /datum/wound/blunt/wound_injury(datum/wound/old_wound = null)
 	if(limb.body_zone == BODY_ZONE_HEAD && brain_trauma_group)
 		processes = TRUE

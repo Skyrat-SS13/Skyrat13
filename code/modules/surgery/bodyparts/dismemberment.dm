@@ -146,7 +146,7 @@
 		var/obj/item/bodypart/BP = owner.get_bodypart(dismember_bodyzone)
 		if(BP)
 			var/datum/wound/slash/loss/lost = new()
-			lost.name = "[lost.name] [lowertext(name)]"
+			lost.name = "[lost.name] [lowertext(name)] stump"
 			lost.fake_limb = "[name]"
 			lost.fake_body_zone = body_zone
 			lost.apply_wound(BP, TRUE)

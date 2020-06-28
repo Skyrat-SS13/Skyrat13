@@ -323,9 +323,34 @@
 /// Called from cryoxadone and pyroxadone when they're proc'ing. Wounds will slowly be fixed separately from other methods when these are in effect. crappy name but eh
 /datum/wound/proc/on_xadone(power)
 	cryo_progress += power
-	if(cryo_progress > 33 * severity)
-		if(severity in list(WOUND_SEVERITY_TRIVIAL, WOUND_SEVERITY_MODERATE))
-			qdel(src)
+	if(cryo_progress > 66 * severity)
+		switch(severity)
+			if(WOUND_SEVERITY_TRIVIAL)
+				if(prob(3))
+					remove_wound()
+			if(WOUND_SEVERITY_MODERATE)
+				if(prob(1) && prob(20))
+					remove_wound()
+
+/datum/wound/proc/on_hemostatic(quantity)
+	if((severity <= WOUND_SEVERITY_MODERATE) && (quantity >= 10))
+		if(prob(75))
+			remove_wound()
+		else
+			blood_flow = round(blood_flow/2, 0.1)
+			if(victim)
+				victim.visible_message("<span class='notice'>The [lowertext(src.name)] on [victim]'s [limb.name] seems to be bleeding considerably less.</span>")
+	else if((severity == WOUND_SEVERITY_SEVERE) && (quantity >= 30))
+		if(prob(25))
+			remove_wound()
+		else
+			blood_flow = round(blood_flow/2, 0.1)
+			if(victim)
+				victim.visible_message("<span class='notice'>The [lowertext(src.name)] on [victim]'s [limb.name] seems to be bleeding considerably less.</span>")
+	else if(quantity >= 5)
+		blood_flow = max(round(blood_flow - (initial(blood_flow)/5), 0.1), 0)
+		if(victim)
+			victim.visible_message("<span class='notice'>The [lowertext(src.name)] on [victim]'s [limb.name] seems to be significantly eased.</span>")
 
 /datum/wound/proc/on_stasis()
 	return

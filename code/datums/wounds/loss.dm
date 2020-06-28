@@ -4,7 +4,7 @@
 */
 
 /datum/wound/loss
-	name = "Dismembered"
+	name = "Dismembered stump"
 	desc = "Patient's limb has been violently dismembered, leaving only a severely damaged stump."
 	viable_zones = ALL_BODYPARTS
 	severity = WOUND_SEVERITY_LOSS

@@ -213,3 +213,24 @@
 			if(prob(5))
 				C.AdjustKnockdown(50, TRUE)
 				C.AdjustUnconscious(50)
+
+//Used to treat wounds - the effects vary depending on type
+/datum/reagent/medicine/fibrin
+	name = "Fibrin"
+	description = "A substance used to treat exposed wounds - effect varies."
+	reagent_state = LIQUID
+	pH = 7.2
+	color = "#c0a890"
+	process_flags = REAGENT_ORGANIC
+
+/datum/reagent/medicine/fibrin/reaction_mob(mob/living/M, method, reac_volume, show_message, touch_protection)
+	. = ..()
+	if(method == TOUCH)
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			if(C.all_wounds.len)
+				var/datum/wound/W = pick(C.all_wounds)
+				if(istype(W))
+					W.on_hemostatic(reac_volume)
+	else
+		M.adjustToxLoss(reac_volume * 0.8)

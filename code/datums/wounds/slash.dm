@@ -35,6 +35,17 @@
 	/// A bad system I'm using to track the worst scar we earned (since we can demote, we want the biggest our wound has been, not what it was when it was cured (probably moderate))
 	var/datum/scar/highest_scar
 
+/datum/wound/slash/on_hemostatic(quantity)
+	if((quantity >= 15) && (severity == WOUND_SEVERITY_SEVERE) && demotes_to)
+		blood_flow = max(blood_flow - highest_flow/4, minimum_flow)
+		quantity -= 15
+	else if((quantity >= 15) && (severity <= WOUND_SEVERITY_MODERATE))
+		sutured = min(sutured + highest_flow/5, blood_flow)
+		quantity -= 15
+	
+	if(quantity >= 5)
+		return ..(quantity)
+
 /datum/wound/slash/wound_injury(datum/wound/slash/old_wound = null)
 	blood_flow = initial_flow
 	if(old_wound)

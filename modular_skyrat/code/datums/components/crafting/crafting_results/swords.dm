@@ -98,7 +98,7 @@
 	name = "shortsword"
 	desc = "A short-bladed sword, used for close combat agility, over overpowering your foes."
 	icon_state = "shortsword"
-	item_state = "short_sword"
+	item_state = "shortsword"
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = "sound/weapons/slash.ogg"
 	force = 12

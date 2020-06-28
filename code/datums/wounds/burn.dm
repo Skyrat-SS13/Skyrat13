@@ -27,6 +27,12 @@
 	/// Once we reach infestation beyond WOUND_INFESTATION_SEPSIS, we get this many warnings before the limb is completely paralyzed (you'd have to ignore a really bad burn for a really long time for this to happen)
 	var/strikes_to_lose_limb = 3
 
+/datum/wound/burn/on_hemostatic(quantity)
+	if((severity <= WOUND_SEVERITY_SEVERE) && infestation && (quantity >= 10))
+		infestation = max(round(infestation - 5, 0.1), 0)
+		if(victim)
+			victim.visible_message("<span class='notice'>The [lowertext(src.name)] on [victim]'s [limb] seems significantly cleaner.</span>")
+
 /datum/wound/burn/handle_process()
 	. = ..()
 	if(strikes_to_lose_limb == 0)
