@@ -16,8 +16,5 @@
 #_maps/RandomZLevels/away_mission/caves.dmm
 #_maps/RandomZLevels/away_mission/snowdin.dmm
 #_maps/RandomZLevels/away_mission/research.dmm
-<<<<<<< HEAD
 #_maps/RandomZLevels/away_mission/Cabin.dmm
-=======
 #_maps/RandomZLevels/away_mission/SnowCabin.dmm
->>>>>>> ee0173185b... Merge pull request #12584 from Detective-Google/my-face-when-I-sledgehammer-away-missions-uwu
