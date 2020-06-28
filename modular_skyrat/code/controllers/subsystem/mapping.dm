@@ -448,7 +448,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		shelter_templates[S.shelter_id] = S
 		map_templates[S.shelter_id] = S
 
-//Manual loading of away missions.
 /client/proc/admin_away()
 	set name = "Load Away Mission / Virtual Reality"
 	set category = "Fun"
@@ -500,18 +499,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if(!level)
 		message_admins("Loading [lvl_name] failed!")
 		return
-
-
-	if(choice == AWAY_MISSION_NAME && GLOB.the_gateway)
-		//Link any found away gate with station gate
-		var/obj/machinery/gateway/centeraway/new_gate
-		for(var/obj/machinery/gateway/centeraway/G in GLOB.machines)
-			if(G.z == level.z_value) //I'll have to refactor gateway shitcode before multi-away support.
-				new_gate = G
-				break
-		//Link station gate with away gate and remove wait time.
-		GLOB.the_gateway.awaygate = new_gate
-		GLOB.the_gateway.wait = world.time
 
 /datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override, border_type_override)
 	UNTIL((!z || reservation_ready["[z]"]) && !clearing_reserved_turfs)
