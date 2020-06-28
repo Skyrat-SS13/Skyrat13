@@ -444,6 +444,10 @@
 	LAZYINITLIST(blood_DNA)	//if our list of DNA doesn't exist yet, initialise it.
 	var/old_length = blood_DNA.len
 	blood_DNA |= new_blood_dna
+<<<<<<< HEAD
+=======
+	blood_DNA["color"] += new_blood_dna["color"]
+>>>>>>> abbbda15ef... Merge pull request #12637 from timothyteakettle/fixes-my-dumb-mistakes
 	if(blood_DNA.len == old_length)
 		return FALSE
 	return TRUE
@@ -454,6 +458,7 @@
 	var/old_length = blood_DNA.len
 	blood_DNA |= blood_dna
 	if(blood_DNA.len > old_length)
+		blood_DNA["color"] += blood_dna["color"]
 		return TRUE
 		//some new blood DNA was added
 

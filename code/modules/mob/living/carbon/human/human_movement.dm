@@ -86,6 +86,10 @@
 					FP.bloodiness = S.bloody_shoes[S.blood_state]
 					if(S.last_bloodtype)
 						FP.blood_DNA += list(S.last_blood_DNA = S.last_bloodtype)
+<<<<<<< HEAD
+=======
+						FP.blood_DNA["color"] += S.last_blood_color
+>>>>>>> abbbda15ef... Merge pull request #12637 from timothyteakettle/fixes-my-dumb-mistakes
 					FP.update_icon()
 					update_inv_shoes()
 				//End bloody footprints
