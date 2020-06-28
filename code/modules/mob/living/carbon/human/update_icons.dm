@@ -402,7 +402,7 @@ There are several things that need to be remembered:
 				client.screen += ears					//add it to the client's screen
 		update_observer_view(ears,1)
 
-		overlays_standing[EAR_LEFT_LAYER] = ears.build_worn_icon(default_layer = EAR_LEFT_LAYER, default_icon_file = 'icons/mob/ears.dmi')
+		overlays_standing[EAR_LEFT_LAYER] = ears.build_worn_icon(default_layer = EAR_LEFT_LAYER, default_icon_file = 'modular_skyrat/icons/mob/clothing/ears.dmi', use_mob_overlay_icon = FALSE)
 		var/mutable_appearance/ears_overlay = overlays_standing[EAR_LEFT_LAYER]
 		if(OFFSET_EARS in dna.species.offset_features)
 			ears_overlay.pixel_x += dna.species.offset_features[OFFSET_EARS][1]
@@ -427,7 +427,7 @@ There are several things that need to be remembered:
 				client.screen += ears_extra			//add it to the client's screen
 		update_observer_view(ears_extra,1)
 
-		overlays_standing[EAR_RIGHT_LAYER] = ears_extra.build_worn_icon(default_layer = EAR_RIGHT_LAYER, default_icon_file = 'modular_skyrat/icons/mob/ears_extra.dmi', use_mob_overlay_icon = FALSE)
+		overlays_standing[EAR_RIGHT_LAYER] = ears_extra.build_worn_icon(default_layer = EAR_RIGHT_LAYER, default_icon_file = 'modular_skyrat/icons/mob/clothing/ears_extra.dmi', use_mob_overlay_icon = FALSE)
 		var/mutable_appearance/ears_overlay = overlays_standing[EAR_RIGHT_LAYER]
 		if(OFFSET_EARS in dna.species.offset_features)
 			ears_overlay.pixel_x += dna.species.offset_features[OFFSET_EARS][1]

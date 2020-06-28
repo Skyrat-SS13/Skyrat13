@@ -81,6 +81,7 @@
 //skyrat edit
 /mob/proc/update_inv_ears()
 	return
+
 /mob/proc/update_inv_ears_extra()
 	return
 //
