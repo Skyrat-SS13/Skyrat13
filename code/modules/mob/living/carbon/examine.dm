@@ -172,7 +172,7 @@
 
 //skyrat edit
 /mob/living/carbon/examine_more(mob/user)
-	if(!all_scars || !all_scars.len)
+	if(!all_scars || !all_scars.len || (src == user && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF)))
 		return ..()
 
 	var/list/visible_scars

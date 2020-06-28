@@ -120,6 +120,9 @@
 	return ..()
 
 /datum/wound/proc/wound_alert(clear = FALSE)
+	if(HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF) && !clear)
+		return FALSE
+	. = TRUE
 	if(!clear)
 		if(victim)
 			for(var/i in associated_alerts)

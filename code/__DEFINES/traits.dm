@@ -196,8 +196,9 @@
 #define TRAIT_MUTATION_STASIS			"mutation_stasis" //Prevents processed genetics mutations from processing.
 #define TRAIT_FAST_PUMP				"fast_pump"
 //SKYRAT traits
-#define TRAIT_HARD_SOLES		"hard_soles"
 #define TRAIT_SCREWY_MOOD		"screwy_mood"
+#define TRAIT_SCREWY_CHECKSELF	"screwy_checkself"
+#define TRAIT_HARD_SOLES		"hard_soles"
 #define TRAIT_HEMOPHILIA		"hemophilia"
 #define TRAIT_ASTHMATIC			"asthmatic"
 //

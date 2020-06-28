@@ -6,6 +6,7 @@
 	var/t_him = p_them()
 	var/t_has = p_have()
 	var/t_is = p_are()
+	var/screwy_self = ((user == src) && (HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF)))
 	var/obscure_name
 	var/species_visible //Skyrat edit
 	var/species_name_string //Skyrat edit
@@ -126,9 +127,10 @@
 		. += "[t_He] [t_is] wearing [wear_id.get_examine_string(user)]."
 
 	//Status effects
-	var/effects_exam = status_effect_examines()
-	if(!isnull(effects_exam))
-		. += effects_exam
+	if(!screwy_self)
+		var/effects_exam = status_effect_examines()
+		if(!isnull(effects_exam))
+			. += effects_exam
 
 	//CIT CHANGES START HERE - adds genital details to examine text
 	if(LAZYLEN(internal_organs))
@@ -142,28 +144,33 @@
 //END OF CIT CHANGES
 
 	//Jitters
-	switch(jitteriness)
-		if(300 to INFINITY)
-			. += "<span class='warning'><B>[t_He] [t_is] convulsing violently!</B></span>"
-		if(200 to 300)
-			. += "<span class='warning'>[t_He] [t_is] extremely jittery.</span>"
-		if(100 to 200)
-			. += "<span class='warning'>[t_He] [t_is] twitching ever so slightly.</span>"
+	if(!screwy_self)
+		switch(jitteriness)
+			if(300 to INFINITY)
+				. += "<span class='warning'><B>[t_He] [t_is] convulsing violently!</B></span>"
+			if(200 to 300)
+				. += "<span class='warning'>[t_He] [t_is] extremely jittery.</span>"
+			if(100 to 200)
+				. += "<span class='warning'>[t_He] [t_is] twitching ever so slightly.</span>"
 
 	var/appears_dead = 0
-	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
-		appears_dead = 1
-		if(suiciding)
-			. += "<span class='warning'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
-		if(hellbound)
-			. += "<span class='warning'>[t_His] soul seems to have been ripped out of [t_his] body.  Revival is impossible.</span>"
-		if(getorgan(/obj/item/organ/brain) && !key && !get_ghost(FALSE, TRUE))
-			. += "<span class='deadsay'>[t_He] [t_is] limp and unresponsive; there are no signs of life and [t_his] soul has departed...</span>"
-		else
-			. += "<span class='deadsay'>[t_He] [t_is] limp and unresponsive; there are no signs of life...</span>"
+	if(!screwy_self)
+		if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
+			appears_dead = 1
+			if(suiciding)
+				. += "<span class='warning'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
+			if(hellbound)
+				. += "<span class='warning'>[t_His] soul seems to have been ripped out of [t_his] body.  Revival is impossible.</span>"
+			if(getorgan(/obj/item/organ/brain) && !key && !get_ghost(FALSE, TRUE))
+				. += "<span class='deadsay'>[t_He] [t_is] limp and unresponsive; there are no signs of life and [t_his] soul has departed...</span>"
+			else
+				. += "<span class='deadsay'>[t_He] [t_is] limp and unresponsive; there are no signs of life...</span>"
+	else
+		. += "<span class='notice'>[t_He] appear[p_s()] to be unaware.</span>"
 
-	if(get_bodypart(BODY_ZONE_HEAD) && !getorgan(/obj/item/organ/brain))
-		. += "<span class='deadsay'>It appears that [t_his] brain is missing...</span>"
+	if(!screwy_self)
+		if(get_bodypart(BODY_ZONE_HEAD) && !getorgan(/obj/item/organ/brain))
+			. += "<span class='deadsay'>It appears that [t_his] brain is missing...</span>"
 
 	var/temp = getBruteLoss() //no need to calculate each of these twice
 
@@ -175,62 +182,64 @@
 		else // Skyrat Change
 			. += "[t_His] player has not allowed lewd verbs.\n" // Skyrat Change
 
-	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM,  BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_R_ARM,\
-							BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG,  BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT)
+	var/list/missing = ALL_BODYPARTS
 	var/list/disabled = list()
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/BP = X
-		//skyrat edit
-		if(BP.is_disabled())
-			disabled += BP
-		//
-		missing -= BP.body_zone
-		for(var/obj/item/I in BP.embedded_objects)
-		//skyrat edit
-			if(I.isEmbedHarmless())
-				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] stuck to [t_his] [BP.name]!</B>\n"
-			else
-				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
-		for(var/datum/wound/W in BP.wounds)
-			msg += "[W.get_examine_description(user)]\n"
-		//
+	if(!screwy_self)
+		for(var/X in bodyparts)
+			var/obj/item/bodypart/BP = X
+			//skyrat edit
+			if(BP.is_disabled())
+				disabled += BP
+			//
+			missing -= BP.body_zone
+			for(var/obj/item/I in BP.embedded_objects)
+			//skyrat edit
+				if(I.isEmbedHarmless())
+					msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] stuck to [t_his] [BP.name]!</B>\n"
+				else
+					msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
+			for(var/datum/wound/W in BP.wounds)
+				msg += "[W.get_examine_description(user)]\n"
+			//
 
-	for(var/X in disabled)
-		var/obj/item/bodypart/BP = X
-		var/damage_text
-		//skyrat edit
-		if(BP.is_disabled() != BODYPART_DISABLED_WOUND) // skip if it's disabled by a wound (cuz we'll be able to see the bone sticking out!)
-			if(!(BP.get_damage(include_stamina = FALSE) >= BP.max_damage)) //we don't care if it's stamcritted
-				damage_text = "limp and lifeless"
-			else
-				damage_text = (BP.brute_dam >= BP.burn_dam) ? BP.heavy_brute_msg : BP.heavy_burn_msg
-			msg += "<B>[capitalize(t_his)] [BP.name] is [damage_text]!</B>\n"
-		//
+	if(!screwy_self)
+		for(var/X in disabled)
+			var/obj/item/bodypart/BP = X
+			var/damage_text
+			//skyrat edit
+			if(BP.is_disabled() != BODYPART_DISABLED_WOUND) // skip if it's disabled by a wound (cuz we'll be able to see the bone sticking out!)
+				if(!(BP.get_damage(include_stamina = FALSE) >= BP.max_damage)) //we don't care if it's stamcritted
+					damage_text = "limp and lifeless"
+				else
+					damage_text = (BP.brute_dam >= BP.burn_dam) ? BP.heavy_brute_msg : BP.heavy_burn_msg
+				msg += "<B>[capitalize(t_his)] [BP.name] is [damage_text]!</B>\n"
+			//
 
 	//stores missing limbs
 	var/l_limbs_missing = 0
 	var/r_limbs_missing = 0
-	for(var/t in missing)
-		var/should_msg = "<B>[capitalize(t_his)] [parse_zone(t)] is missing!</B>\n"
-		if(t==BODY_ZONE_HEAD)
-			should_msg = "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>\n"
+	if(!screwy_self)
+		for(var/t in missing)
+			var/should_msg = "<B>[capitalize(t_his)] [parse_zone(t)] is missing!</B>\n"
+			if(t==BODY_ZONE_HEAD)
+				should_msg = "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>\n"
+				for(var/datum/wound/slash/loss/L in all_wounds)
+					if(L.fake_body_zone == t)
+						should_msg = null
+				if(should_msg)
+					msg += should_msg
+				continue
+			else if(t == BODY_ZONE_L_ARM || t == BODY_ZONE_L_LEG || t == BODY_ZONE_PRECISE_L_FOOT || t == BODY_ZONE_PRECISE_R_FOOT)
+				l_limbs_missing++
+			else if(t == BODY_ZONE_R_ARM || t == BODY_ZONE_R_LEG || t == BODY_ZONE_PRECISE_L_HAND || t == BODY_ZONE_PRECISE_R_HAND)
+				r_limbs_missing++
+			
 			for(var/datum/wound/slash/loss/L in all_wounds)
 				if(L.fake_body_zone == t)
 					should_msg = null
+
 			if(should_msg)
 				msg += should_msg
-			continue
-		else if(t == BODY_ZONE_L_ARM || t == BODY_ZONE_L_LEG || t == BODY_ZONE_PRECISE_L_FOOT || t == BODY_ZONE_PRECISE_R_FOOT)
-			l_limbs_missing++
-		else if(t == BODY_ZONE_R_ARM || t == BODY_ZONE_R_LEG || t == BODY_ZONE_PRECISE_L_HAND || t == BODY_ZONE_PRECISE_R_HAND)
-			r_limbs_missing++
-		
-		for(var/datum/wound/slash/loss/L in all_wounds)
-			if(L.fake_body_zone == t)
-				should_msg = null
-
-		if(should_msg)
-			msg += should_msg
 
 	if(l_limbs_missing >= 2 && r_limbs_missing == 0)
 		msg += "[t_He] look[p_s()] all right now.\n"
@@ -239,7 +248,7 @@
 	else if(l_limbs_missing >= 2 && r_limbs_missing >= 2)
 		msg += "[t_He] [p_do()]n't seem all there.\n"
 
-	if(!(user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY)) //fake healthy
+	if(!(screwy_self || (user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY))) //fake healthy
 		if(temp)
 			if(temp < 25)
 				msg += "[t_He] [t_has] minor bruising.\n"
@@ -266,11 +275,11 @@
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
 
-
-	if(fire_stacks > 0)
-		msg += "[t_He] [t_is] covered in something flammable.\n"
-	if(fire_stacks < 0)
-		msg += "[t_He] look[p_s()] a little soaked.\n"
+	if(!screwy_self)
+		if(fire_stacks > 0)
+			msg += "[t_He] [t_is] covered in something flammable.\n"
+		if(fire_stacks < 0)
+			msg += "[t_He] look[p_s()] a little soaked.\n"
 
 
 	if(pulledby && pulledby.grab_state)
@@ -290,93 +299,94 @@
 			msg += "[t_He] look[p_s()] really grossed out.\n"
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
+	if(!screwy_self)
+		if(ShowAsPaleExamine())
+			msg += "[t_He] [t_has] pale skin.\n"
+	if(!screwy_self)
+		if(is_bleeding())
+			var/list/obj/item/bodypart/bleeding_limbs = list()
 
-	if(ShowAsPaleExamine())
-		msg += "[t_He] [t_has] pale skin.\n"
-	if(is_bleeding())
-		var/list/obj/item/bodypart/bleeding_limbs = list()
+			for(var/i in bodyparts)
+				var/obj/item/bodypart/BP = i
+				if(BP.get_bleed_rate())
+					bleeding_limbs += BP
 
+			var/num_bleeds = LAZYLEN(bleeding_limbs)
+
+			var/bleed_text
+			if(appears_dead)
+				bleed_text = "<span class='deadsay'><B>Blood is visible in [t_his] open"
+			else
+				bleed_text = "<B>[t_He] [t_is] bleeding from [t_his]"
+			
+			switch(num_bleeds)
+				if(1 to 2)
+					bleed_text += " [bleeding_limbs[1].name][num_bleeds == 2 ? " and [bleeding_limbs[2].name]" : ""]"
+				if(3 to INFINITY)
+					for(var/i in 1 to (num_bleeds - 1))
+						var/obj/item/bodypart/BP = bleeding_limbs[i]
+						bleed_text += " [BP.name],"
+					bleed_text += " and [bleeding_limbs[num_bleeds].name]"
+			
+			if(appears_dead)
+				bleed_text += ", but it has pooled and is not flowing.</span></B>\n"
+			else
+				if(reagents.has_reagent(/datum/reagent/toxin/heparin))
+					bleed_text += " incredibly quickly"
+
+				bleed_text += "!</B>\n"
+			msg += bleed_text
+		//skyrat edit
+		var/list/obj/item/bodypart/suppress_limbs = list()
 		for(var/i in bodyparts)
 			var/obj/item/bodypart/BP = i
-			if(BP.get_bleed_rate())
-				bleeding_limbs += BP
+			if(BP.bleedsuppress)
+				suppress_limbs += BP
 
-		var/num_bleeds = LAZYLEN(bleeding_limbs)
-
-		var/bleed_text
-		if(appears_dead)
-			bleed_text = "<span class='deadsay'><B>Blood is visible in [t_his] open"
-		else
-			bleed_text = "<B>[t_He] [t_is] bleeding from [t_his]"
-		
-		switch(num_bleeds)
+		var/num_suppress = LAZYLEN(suppress_limbs)
+		var/suppress_text = "<span class='notice'><B>[t_His]"
+		switch(num_suppress)
 			if(1 to 2)
-				bleed_text += " [bleeding_limbs[1].name][num_bleeds == 2 ? " and [bleeding_limbs[2].name]" : ""]"
+				suppress_text += " [suppress_limbs[1].name][num_suppress == 2 ? " and [suppress_limbs[2].name]" : ""]"
 			if(3 to INFINITY)
-				for(var/i in 1 to (num_bleeds - 1))
-					var/obj/item/bodypart/BP = bleeding_limbs[i]
-					bleed_text += " [BP.name],"
-				bleed_text += " and [bleeding_limbs[num_bleeds].name]"
+				for(var/i in 1 to (num_suppress - 1))
+					var/obj/item/bodypart/BP = suppress_limbs[i]
+					suppress_text += " [BP.name],"
+				suppress_text += " and [suppress_limbs[num_suppress].name]"
+		suppress_text += "[num_suppress == 1 ? " is impervious to bleeding" : " are impervious to bleeding"]"
 		
-		if(appears_dead)
-			bleed_text += ", but it has pooled and is not flowing.</span></B>\n"
-		else
-			if(reagents.has_reagent(/datum/reagent/toxin/heparin))
-				bleed_text += " incredibly quickly"
+		suppress_text += ".</B></span>\n"
+		if(num_suppress)
+			msg += suppress_text
+		//
+		if(reagents.has_reagent(/datum/reagent/teslium))
+			msg += "[t_He] [t_is] emitting a gentle blue glow!\n"
 
-			bleed_text += "!</B>\n"
-		msg += bleed_text
-	//skyrat edit
-	var/list/obj/item/bodypart/suppress_limbs = list()
-	for(var/i in bodyparts)
-		var/obj/item/bodypart/BP = i
-		if(BP.bleedsuppress)
-			suppress_limbs += BP
+		if(islist(stun_absorption))
+			for(var/i in stun_absorption)
+				if(stun_absorption[i]["end_time"] > world.time && stun_absorption[i]["examine_message"])
+					msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
-	var/num_suppress = LAZYLEN(suppress_limbs)
-	var/suppress_text = "<span class='notice'><B>[t_His]"
-	switch(num_suppress)
-		if(1 to 2)
-			suppress_text += " [suppress_limbs[1].name][num_suppress == 2 ? " and [suppress_limbs[2].name]" : ""]"
-		if(3 to INFINITY)
-			for(var/i in 1 to (num_suppress - 1))
-				var/obj/item/bodypart/BP = suppress_limbs[i]
-				suppress_text += " [BP.name],"
-			suppress_text += " and [suppress_limbs[num_suppress].name]"
-	suppress_text += "[num_suppress == 1 ? " is impervious to bleeding" : " are impervious to bleeding"]"
-	
-	suppress_text += ".</B></span>\n"
-	if(num_suppress)
-		msg += suppress_text
-	//
-	if(reagents.has_reagent(/datum/reagent/teslium))
-		msg += "[t_He] [t_is] emitting a gentle blue glow!\n"
+		if(drunkenness && !skipface && !appears_dead) //Drunkenness
+			switch(drunkenness)
+				if(11 to 21)
+					msg += "[t_He] [t_is] slightly flushed.\n"
+				if(21.01 to 41) //.01s are used in case drunkenness ends up to be a small decimal
+					msg += "[t_He] [t_is] flushed.\n"
+				if(41.01 to 51)
+					msg += "[t_He] [t_is] quite flushed and [t_his] breath smells of alcohol.\n"
+				if(51.01 to 61)
+					msg += "[t_He] [t_is] very flushed and [t_his] movements jerky, with breath reeking of alcohol.\n"
+				if(61.01 to 91)
+					msg += "[t_He] look[p_s()] like a drunken mess.\n"
+				if(91.01 to INFINITY)
+					msg += "[t_He] [t_is] a shitfaced, slobbering wreck.\n"
 
-	if(islist(stun_absorption))
-		for(var/i in stun_absorption)
-			if(stun_absorption[i]["end_time"] > world.time && stun_absorption[i]["examine_message"])
-				msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
-
-	if(drunkenness && !skipface && !appears_dead) //Drunkenness
-		switch(drunkenness)
-			if(11 to 21)
-				msg += "[t_He] [t_is] slightly flushed.\n"
-			if(21.01 to 41) //.01s are used in case drunkenness ends up to be a small decimal
-				msg += "[t_He] [t_is] flushed.\n"
-			if(41.01 to 51)
-				msg += "[t_He] [t_is] quite flushed and [t_his] breath smells of alcohol.\n"
-			if(51.01 to 61)
-				msg += "[t_He] [t_is] very flushed and [t_his] movements jerky, with breath reeking of alcohol.\n"
-			if(61.01 to 91)
-				msg += "[t_He] look[p_s()] like a drunken mess.\n"
-			if(91.01 to INFINITY)
-				msg += "[t_He] [t_is] a shitfaced, slobbering wreck.\n"
-
-	if(reagents.has_reagent(/datum/reagent/fermi/astral))
-		if(mind)
-			msg += "[t_He] has wild, spacey eyes and they have a strange, abnormal look to them.\n"
-		else
-			msg += "[t_He] has wild, spacey eyes and they don't look like they're all there.\n"
+		if(reagents.has_reagent(/datum/reagent/fermi/astral))
+			if(mind)
+				msg += "[t_He] has wild, spacey eyes and they have a strange, abnormal look to them.\n"
+			else
+				msg += "[t_He] has wild, spacey eyes and they don't look like they're all there.\n"
 
 	if(isliving(user))
 		var/mob/living/L = user
@@ -405,40 +415,44 @@
 			if(client.prefs.cit_toggles & HYPNO)
 				msg += "<span class='velvet'><i>You feel your chords resonate looking at them.</i></span>\n"
 
+	if(!screwy_self)
+		if(!appears_dead)
+			if(stat == UNCONSCIOUS)
+				msg += "[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.\n"
+			else
+				if(HAS_TRAIT(src, TRAIT_DUMB))
+					msg += "[t_He] [t_has] a vapid expression on [t_his] face.\n" // Skyrat edit
+				if(InCritical())
+					msg += "[t_He] [t_is] barely conscious.\n"
+			
+			if(getorgan(/obj/item/organ/brain))
+				if(!key)
+					msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
+				else if(!client)
+					msg += "[t_He] [t_has] a blank, absent-minded stare and [t_has] been completely unresponsive to anything for [round(((world.time - lastclienttime) / (1 MINUTES)),1)] minutes. [t_He] may snap out of it soon.\n" //SKYRAT CHANGE - ssd indicator
 
-	if(!appears_dead)
-		if(stat == UNCONSCIOUS)
-			msg += "[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.\n"
-		else
-			if(HAS_TRAIT(src, TRAIT_DUMB))
-				msg += "[t_He] [t_has] a vapid expression on [t_his] face.\n" // Skyrat edit
-			if(InCritical())
-				msg += "[t_He] [t_is] barely conscious.\n"
-		if(getorgan(/obj/item/organ/brain))
-			if(!key)
-				msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
-			else if(!client)
-				msg += "[t_He] [t_has] a blank, absent-minded stare and [t_has] been completely unresponsive to anything for [round(((world.time - lastclienttime) / (1 MINUTES)),1)] minutes. [t_He] may snap out of it soon.\n" //SKYRAT CHANGE - ssd indicator
-
-		if(digitalcamo)
-			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
+			if(digitalcamo)
+				msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
+	else
+		msg += "[t_He] [t_is] conscious.\n"
       
 //Skyrat changes begin
 	var/scar_severity = 0
-	for(var/i in all_scars)
-		var/datum/scar/S = i
-		if(istype(S) && S.is_visible(user))
-			scar_severity += S.severity
+	if(!screwy_self)
+		for(var/i in all_scars)
+			var/datum/scar/S = i
+			if(istype(S) && S.is_visible(user))
+				scar_severity += S.severity
 
-	switch(scar_severity)
-		if(WOUND_SEVERITY_TRIVIAL)
-			msg += "<span class='smallnotice'><i>[t_He] [t_has] visible scarring, you can look again to take a closer look...</i></span>\n"
-		if(WOUND_SEVERITY_MODERATE to WOUND_SEVERITY_SEVERE)
-			msg += "<span class='notice'><i>[t_He] [t_has] several bad scars, you can look again to take a closer look...</i></span>\n"
-		if(WOUND_SEVERITY_CRITICAL to WOUND_SEVERITY_PERMANENT)
-			msg += "<span class='notice'><b><i>[t_He] [t_has] significantly disfiguring scarring, you can look again to take a closer look...</i></b></span>\n"
-		if(WOUND_SEVERITY_LOSS to INFINITY)
-			msg += "<span class='notice'><b><i>[t_He] [t_is] just absolutely fucked up, you can look again to take a closer look...</i></b></span>\n"
+		switch(scar_severity)
+			if(WOUND_SEVERITY_TRIVIAL)
+				msg += "<span class='smallnotice'><i>[t_He] [t_has] visible scarring, you can look again to take a closer look...</i></span>\n"
+			if(WOUND_SEVERITY_MODERATE to WOUND_SEVERITY_SEVERE)
+				msg += "<span class='notice'><i>[t_He] [t_has] several bad scars, you can look again to take a closer look...</i></span>\n"
+			if(WOUND_SEVERITY_CRITICAL to WOUND_SEVERITY_PERMANENT)
+				msg += "<span class='notice'><b><i>[t_He] [t_has] significantly disfiguring scarring, you can look again to take a closer look...</i></b></span>\n"
+			if(WOUND_SEVERITY_LOSS to INFINITY)
+				msg += "<span class='notice'><b><i>[t_He] [t_is] just absolutely fucked up, you can look again to take a closer look...</i></b></span>\n"
 
 	if(gunpointing)
 		msg += "<b>[t_He] [t_is] holding [gunpointing.target.name] at gunpoint with [gunpointing.aimed_gun.name]!</b>\n"
@@ -451,8 +465,9 @@
 		. += "<span class='warning'>[msg.Join("")]</span>"
 
 	var/trait_exam = common_trait_examine()
-	if (!isnull(trait_exam))
-		. += trait_exam
+	if(!screwy_self)
+		if (!isnull(trait_exam))
+			. += trait_exam
 
 	var/traitstring = get_trait_string()
 	if(ishuman(user))

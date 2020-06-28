@@ -51,8 +51,9 @@
 	sound_effect = 'modular_skyrat/sound/effects/dismember.ogg'
 	viable_zones = ALL_BODYPARTS
 	severity = WOUND_SEVERITY_LOSS
+	wound_type = WOUND_LIST_LOSS
 	ignore_preexisting = TRUE
-	initial_flow = 2
+	initial_flow = 1
 	minimum_flow = 0.5
 	clot_rate = 0
 	max_per_type = 4
@@ -61,3 +62,27 @@
 	threshold_minimum = 180
 	status_effect_type = /datum/status_effect/wound/loss
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
+
+/datum/wound/slash/loss/apply_wound(obj/item/bodypart/L, silent, datum/wound/old_wound, smited)
+	. = ..()
+	switch(fake_body_zone)
+		if(BODY_ZONE_L_ARM)
+			initial_flow = 2
+			minimum_flow = 0.5
+		if(BODY_ZONE_R_ARM)
+			initial_flow = 2
+			minimum_flow = 0.5
+		if(BODY_ZONE_PRECISE_L_HAND)
+			minimum_flow = 0.25
+		if(BODY_ZONE_PRECISE_R_HAND)
+			minimum_flow = 0.25
+		if(BODY_ZONE_L_LEG)
+			initial_flow = 2
+			minimum_flow = 0.76
+		if(BODY_ZONE_R_LEG)
+			initial_flow = 2
+			minimum_flow = 0.75
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			minimum_flow = 0.35
+		if(BODY_ZONE_PRECISE_R_FOOT)
+			minimum_flow = 0.35
