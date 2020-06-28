@@ -569,9 +569,9 @@
 			else
 				colors[bloop] = 1
 		for(var/bloop in colors)
-			dna_to_color[bloop] = bloodtype_to_color(DNA[bloop])
+			dna_to_color[bloop] = bloodtype_to_color(blood_DNA[bloop])
 			if(length(blood_DNA["color"][bloop]))
-				dna_to_color[bloop] = DNA["color"][bloop]
+				dna_to_color[bloop] = blood_DNA["color"][bloop]
 
 		var/final_rgb = BLOOD_COLOR_HUMAN	//a default so we don't have white blood graphics if something messed up
 
@@ -599,9 +599,9 @@
 		else
 			colors[bloop] = 1
 	for(var/bloop in colors)
-		dna_to_color[bloop] = bloodtype_to_color(DNA[bloop])
-		if(length(DNA["color"][bloop]))
-			dna_to_color[bloop] = DNA["color"][bloop]
+		dna_to_color[bloop] = bloodtype_to_color(blood_DNA[bloop])
+		if(length(blood_DNA["color"][bloop]))
+			dna_to_color[bloop] = blood_DNA["color"][bloop]
 
 	var/final_rgb = BLOOD_COLOR_HUMAN	//a default so we don't have white blood graphics if something messed up
 
