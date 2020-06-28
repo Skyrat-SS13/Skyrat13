@@ -68,7 +68,7 @@
 	var/dam_colors = "#E62525"
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		dam_colors = bloodtype_to_color(H.dna.blood_type)
+		dam_colors = blood_DNA_list_to_color(H.get_blood_dna_list())
 
 	var/mutable_appearance/damage_overlay = mutable_appearance('icons/mob/dam_mob.dmi', "blank", -DAMAGE_LAYER, color = dam_colors)
 	overlays_standing[DAMAGE_LAYER] = damage_overlay
