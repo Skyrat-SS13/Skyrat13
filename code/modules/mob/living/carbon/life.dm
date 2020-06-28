@@ -10,10 +10,20 @@
 
 	//Reagent processing needs to come before breathing, to prevent edge cases.
 	handle_organs()
+<<<<<<< HEAD
 
 	. = ..()
 
 	if (QDELETED(src))
+=======
+	. = ..()		// if . is false, we are dead.
+	if(stat == DEAD)
+		stop_sound_channel(CHANNEL_HEARTBEAT)
+		handle_death()
+		rot()
+		. = FALSE
+	if(!.)
+>>>>>>> f1aedce87b... Merge pull request #12621 from Citadel-Station-13/silicons-patch-6
 		return
 
 	if(.) //not dead
@@ -31,11 +41,14 @@
 	if(stat != DEAD)
 		handle_liver()
 
+<<<<<<< HEAD
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
 		handle_death()
 		rot()
 
+=======
+>>>>>>> f1aedce87b... Merge pull request #12621 from Citadel-Station-13/silicons-patch-6
 	//Updates the number of stored chemicals for powers
 	handle_changeling()
 
