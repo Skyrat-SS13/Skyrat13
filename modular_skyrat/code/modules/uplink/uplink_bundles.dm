@@ -157,7 +157,7 @@
 	MA.id = martialid //give it an id to keep track of it
 	MA.teach(owner)
 
-/obj/item/bodypart/l_arm/robot/martial/drop_limb(special)
+/obj/item/bodypart/l_arm/robot/martial/drop_limb(special, dismembered)
 	. = ..()
 	if(owner.mind.martial_art.id == martialid)
 		var/datum/martial_art/lose = owner.mind.martial_art

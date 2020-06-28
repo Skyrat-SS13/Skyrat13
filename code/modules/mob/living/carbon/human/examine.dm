@@ -211,15 +211,26 @@
 	var/l_limbs_missing = 0
 	var/r_limbs_missing = 0
 	for(var/t in missing)
+		var/should_msg = "<B>[capitalize(t_his)] [parse_zone(t)] is missing!</B>\n"
 		if(t==BODY_ZONE_HEAD)
-			msg += "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>\n"
+			should_msg = "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>\n"
+			for(var/datum/wound/slash/loss/L in all_wounds)
+				if(L.fake_body_zone == t)
+					should_msg = null
+			if(should_msg)
+				msg += should_msg
 			continue
-		if(t == BODY_ZONE_L_ARM || t == BODY_ZONE_L_LEG || t == BODY_ZONE_PRECISE_L_FOOT || t == BODY_ZONE_PRECISE_R_FOOT)
+		else if(t == BODY_ZONE_L_ARM || t == BODY_ZONE_L_LEG || t == BODY_ZONE_PRECISE_L_FOOT || t == BODY_ZONE_PRECISE_R_FOOT)
 			l_limbs_missing++
 		else if(t == BODY_ZONE_R_ARM || t == BODY_ZONE_R_LEG || t == BODY_ZONE_PRECISE_L_HAND || t == BODY_ZONE_PRECISE_R_HAND)
 			r_limbs_missing++
+		
+		for(var/datum/wound/slash/loss/L in all_wounds)
+			if(L.fake_body_zone == t)
+				should_msg = null
 
-		msg += "<B>[capitalize(t_his)] [parse_zone(t)] is missing!</B>\n"
+		if(should_msg)
+			msg += should_msg
 
 	if(l_limbs_missing >= 2 && r_limbs_missing == 0)
 		msg += "[t_He] look[p_s()] all right now.\n"
@@ -291,7 +302,13 @@
 				bleeding_limbs += BP
 
 		var/num_bleeds = LAZYLEN(bleeding_limbs)
-		var/bleed_text = "<B>[t_He] [t_is] bleeding from [t_his]"
+
+		var/bleed_text
+		if(appears_dead)
+			bleed_text = "<span class='deadsay'><B>Blood is visible in [t_his] open"
+		else
+			bleed_text = "<B>[t_He] [t_is] bleeding from [t_his]"
+		
 		switch(num_bleeds)
 			if(1 to 2)
 				bleed_text += " [bleeding_limbs[1].name][num_bleeds == 2 ? " and [bleeding_limbs[2].name]" : ""]"
@@ -300,10 +317,14 @@
 					var/obj/item/bodypart/BP = bleeding_limbs[i]
 					bleed_text += " [BP.name],"
 				bleed_text += " and [bleeding_limbs[num_bleeds].name]"
-		if(reagents.has_reagent(/datum/reagent/toxin/heparin))
-			bleed_text += " incredibly quickly"
 		
-		bleed_text += "!</B>\n"
+		if(appears_dead)
+			bleed_text += ", but it has pooled and is not flowing.</span></B>\n"
+		else
+			if(reagents.has_reagent(/datum/reagent/toxin/heparin))
+				bleed_text += " incredibly quickly"
+
+			bleed_text += "!</B>\n"
 		msg += bleed_text
 	//skyrat edit
 	var/list/obj/item/bodypart/suppress_limbs = list()
@@ -410,13 +431,13 @@
 			scar_severity += S.severity
 
 	switch(scar_severity)
-		if(1 to 2)
-			msg += "<span class='smallnotice'>[t_He] [t_has] visible scarring, you can look again to take a closer look...</span>\n"
-		if(3 to 4)
+		if(WOUND_SEVERITY_TRIVIAL)
+			msg += "<span class='smallnotice'><i>[t_He] [t_has] visible scarring, you can look again to take a closer look...</i></span>\n"
+		if(WOUND_SEVERITY_MODERATE to WOUND_SEVERITY_SEVERE)
 			msg += "<span class='notice'><i>[t_He] [t_has] several bad scars, you can look again to take a closer look...</i></span>\n"
-		if(5 to 6)
+		if(WOUND_SEVERITY_CRITICAL to WOUND_SEVERITY_PERMANENT)
 			msg += "<span class='notice'><b><i>[t_He] [t_has] significantly disfiguring scarring, you can look again to take a closer look...</i></b></span>\n"
-		if(7 to INFINITY)
+		if(WOUND_SEVERITY_LOSS to INFINITY)
 			msg += "<span class='notice'><b><i>[t_He] [t_is] just absolutely fucked up, you can look again to take a closer look...</i></b></span>\n"
 
 	if(gunpointing)

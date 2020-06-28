@@ -58,13 +58,9 @@
 
 	description = pick(W.scarring_descriptions)
 	precise_location = pick(limb.specific_locations)
-	switch(W.severity)
-		if(WOUND_SEVERITY_MODERATE)
-			visibility = 2
-		if(WOUND_SEVERITY_SEVERE)
-			visibility = 3
-		if(WOUND_SEVERITY_CRITICAL)
-			visibility = 5
+	visibility = W.severity
+	if(visibility == WOUND_SEVERITY_LOSS)
+		precise_location = "amputation"
 
 /datum/scar/proc/pref_apply(obj/item/bodypart/BP, specific_location, new_description, new_severity = 0, add_to_scars=TRUE)
 	if(!(BP.body_zone in applicable_zones))
@@ -97,10 +93,11 @@
 		LAZYADD(victim.all_scars, src)
 
 /// Used to "load" a persistent scar
-/datum/scar/proc/load(obj/item/bodypart/BP, description, specific_location, severity=WOUND_SEVERITY_SEVERE)
-	if(!(BP.body_zone in applicable_zones))
+/datum/scar/proc/load(obj/item/bodypart/BP, version, description, specific_location, severity=WOUND_SEVERITY_SEVERE)
+	if(!(BP.body_zone in applicable_zones) || !BP.is_organic_limb())
 		qdel(src)
 		return
+	
 	limb = BP
 	src.severity = severity
 	LAZYADD(limb.scars, src)
@@ -116,6 +113,8 @@
 			visibility = 3
 		if(WOUND_SEVERITY_CRITICAL)
 			visibility = 5
+		if(WOUND_SEVERITY_LOSS)
+			visibility = 7
 	return TRUE
 
 /// What will show up in examine_more() if this scar is visible
@@ -126,11 +125,14 @@
 	var/msg = "[victim.p_they(TRUE)] [victim.p_have()] [description] on [victim.p_their()] [precise_location]."
 	switch(severity)
 		if(WOUND_SEVERITY_MODERATE)
-			msg = "<span class='tinynotice'>[msg]</span>"
+			msg = "<span class='tinynotice'><i>[msg]</i></span>"
 		if(WOUND_SEVERITY_SEVERE)
-			msg = "<span class='smallnotice'>[msg]</span>"
-		if(WOUND_SEVERITY_CRITICAL)
-			msg = "<span class='smallnotice'><b>[msg]</b></span>"
+			msg = "<span class='smallnotice'><i>[msg]</i></span>"
+		if(WOUND_SEVERITY_CRITICAL to WOUND_SEVERITY_PERMANENT)
+			msg = "<span class='smallnotice'><b><i>[msg]</i></b></span>"
+		if(WOUND_SEVERITY_LOSS)
+			msg = "[victim.p_their(TRUE)] [limb.name] [description]." // different format
+			msg = "<span class='notice'><i><b>[msg]</b></i></span>"
 	return "\t[msg]"
 
 /// Whether a scar can currently be seen by the viewer
@@ -154,4 +156,9 @@
 /// Used to format a scar to save in preferences for persistent scars
 /datum/scar/proc/format()
 	if(!fake)
-		return "[limb.body_zone]|[description]|[precise_location]|[severity]"
+		return "[SCAR_CURRENT_VERSION]|[limb.body_zone]|[description]|[precise_location]|[severity]"
+
+/// Used to format a scar to safe in preferences for persistent scars
+/datum/scar/proc/format_amputated(body_zone)
+	description = pick(list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points"))
+	return "[SCAR_CURRENT_VERSION]|[body_zone]|[description]|amputated|[WOUND_SEVERITY_LOSS]"

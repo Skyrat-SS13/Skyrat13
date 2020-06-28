@@ -34,7 +34,7 @@
 
 	/// Either WOUND_SEVERITY_TRIVIAL (meme wounds like stubbed toe), WOUND_SEVERITY_MODERATE, WOUND_SEVERITY_SEVERE, or WOUND_SEVERITY_CRITICAL (or maybe WOUND_SEVERITY_LOSS)
 	var/severity = WOUND_SEVERITY_MODERATE
-	/// The list of wounds it belongs in, WOUND_LIST_BONE, WOUND_LIST_CUT, or WOUND_LIST_BURN
+	/// The list of wounds it belongs in, WOUND_LIST_BLUNT, WOUND_LIST_SLASH, or WOUND_LIST_BURN
 	var/wound_type
 
 	/// What body zones can we affect
@@ -45,6 +45,12 @@
 	var/organic_only = TRUE
 	/// The bodypart we're parented to
 	var/obj/item/bodypart/limb = null
+	/// A string, used to represent a limb that we're not attached to but want the examine text to tell us we are
+	/// Used for dismemberment wounds, where applying the wound to the lost limb isn't possible, so we
+	/// attach the wound to the parent body zone instead
+	var/fake_limb = null
+	/// The body zone of the phantom limb
+	var/fake_body_zone = BODY_ZONE_CHEST
 
 	/// Specific items such as bandages or sutures that can try directly treating this wound
 	var/list/treatable_by
@@ -54,6 +60,8 @@
 	var/treatable_tool
 	/// Set to TRUE if we don't give a shit about the patient's comfort and are allowed to just use any random sharp thing on this wound. Will require an aggressive grab or more to perform
 	var/treatable_sharp
+	/// Can we use a bandage/gauze on this wound in some kind of way?
+	var/accepts_gauze = TRUE
 	/// How long it will take to treat this wound with a standard effective tool, assuming it doesn't need surgery
 	var/base_treat_time = 5 SECONDS
 
@@ -66,6 +74,9 @@
 	/// How much we're contributing to this limb's bleed_rate
 	var/blood_flow
 
+	/// List of alerts we can throw, of category associated with type
+	var/list/associated_alerts = list()
+
 	/// The minimum we need to roll on [/obj/item/bodypart/proc/check_wounding()] to begin suffering this wound, see check_wounding_mods() for more
 	var/threshold_minimum
 	/// How much having this wound will add to all future check_wounding() rolls on this limb, to allow progression to worse injuries with repeated damage
@@ -76,6 +87,9 @@
 	/// If TRUE and an item that can treat multiple different types of coexisting wounds (gauze can be used to splint broken bones, staunch bleeding, and cover burns), we get first dibs if we come up first for it, then become nonpriority.
 	/// Otherwise, if no untreated wound claims the item, we cycle through the non priority wounds and pick a random one who can use that item.
 	var/treat_priority = FALSE
+
+	/// Should we just ignore pre-existing wounds and apply anyways?
+	var/ignore_preexisting = FALSE
 
 	/// If having this wound makes currently makes the parent bodypart unusable
 	var/disabling
@@ -105,6 +119,15 @@
 	victim = null
 	return ..()
 
+/datum/wound/proc/wound_alert(clear = FALSE)
+	if(!clear)
+		if(victim)
+			for(var/i in associated_alerts)
+				victim.throw_alert(i, associated_alerts[i])
+	else
+		if(victim)
+			for(var/i in associated_alerts)
+				victim.clear_alert(i)
 /**
   * apply_wound() is used once a wound type is instantiated to assign it to a bodypart, and actually come into play.
   *
@@ -128,11 +151,12 @@
 
 	// we accept promotions and demotions, but no point in redundancy. This should have already been checked wherever the wound was rolled and applied for (see: bodypart damage code), but we do an extra check
 	// in case we ever directly add wounds
-	for(var/i in L.wounds)
-		var/datum/wound/preexisting_wound = i
-		if((preexisting_wound.type == type) && (preexisting_wound != old_wound))
-			qdel(src)
-			return
+	if(!ignore_preexisting)
+		for(var/i in L.wounds)
+			var/datum/wound/preexisting_wound = i
+			if((preexisting_wound.type == type) && (preexisting_wound != old_wound))
+				qdel(src)
+				return
 
 	victim = L.owner
 	limb = L
@@ -171,6 +195,7 @@
 /// Remove the wound from whatever it's afflicting, and cleans up whateverstatus effects it had or modifiers it had on interaction times. ignore_limb is used for detachments where we only want to forget the victim
 /datum/wound/proc/remove_wound(ignore_limb, replaced = FALSE)
 	//TODO: have better way to tell if we're getting removed without replacement (full heal) scar stuff
+	wound_alert(TRUE)
 	if(limb && !already_scarred && !replaced)
 		already_scarred = TRUE
 		var/datum/scar/new_scar = new
@@ -190,7 +215,7 @@
   * This proc actually instantiates the new wound based off the specific type path passed, then returns the new instantiated wound datum.
   *
   * Arguments:
-  * * new_type- The TYPE PATH of the wound you want to replace this, like /datum/wound/brute/cut/severe
+  * * new_type- The TYPE PATH of the wound you want to replace this, like /datum/wound/slash/severe
   * * smited- If this is a smite, we don't care about this wound for stat tracking purposes (not yet implemented)
   */
 /datum/wound/proc/replace_wound(new_type, smited = FALSE)
@@ -211,13 +236,17 @@
 	if(HAS_TRAIT(victim, TRAIT_NOMETABOLISM))
 		return
 	*/
-	switch(severity)
+	switch(severity)	
 		if(WOUND_SEVERITY_MODERATE)
 			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_MODERATE)
 		if(WOUND_SEVERITY_SEVERE)
 			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_SEVERE)
 		if(WOUND_SEVERITY_CRITICAL)
 			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_CRITICAL)
+		if(WOUND_SEVERITY_PERMANENT)
+			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_PERMANENT)
+		if(WOUND_SEVERITY_LOSS)
+			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_LOSS)
 
 /**
   * try_treating() is an intercept run from [/mob/living/carbon/attackby()] right after surgeries but before anything else. Return TRUE here if the item is something that is relevant to treatment to take over the interaction.
@@ -229,6 +258,8 @@
   * * I: The item we're trying to use
   * * user: The mob trying to use it on us
   */
+
+/// Called when the patient is undergoing stasis, so that having fully treated a wound doesn't make you sit there helplessly until you think to unbuckle them
 /datum/wound/proc/try_treating(obj/item/I, mob/user)
 	// first we weed out if we're not dealing with our wound's bodypart, or if it might be an attack
 	if(!I || limb.body_zone != user.zone_selected || (I.force && user.a_intent != INTENT_HELP))
@@ -290,10 +321,17 @@
 /datum/wound/proc/on_xadone(power)
 	cryo_progress += power
 	if(cryo_progress > 33 * severity)
-		qdel(src)
+		if(severity in list(WOUND_SEVERITY_TRIVIAL, WOUND_SEVERITY_MODERATE))
+			qdel(src)
+
+/datum/wound/proc/on_stasis()
+	return
 
 /// Called when we're crushed in an airlock or firedoor, for one of the improvised joint dislocation fixes
 /datum/wound/proc/crush()
+	return
+
+/datum/wound/proc/drag_bleed_amt()
 	return
 
 /**
@@ -305,7 +343,8 @@
   * * mob/user: The user examining the wound's owner, if that matters
   */
 /datum/wound/proc/get_examine_description(mob/user)
-	return "<B>[victim.p_their(TRUE)] [limb.name] [examine_desc]!</B>"
+	. = "[victim.p_their(TRUE)] [fake_limb ? fake_limb : limb.name] [examine_desc]"
+	. = (severity <= WOUND_SEVERITY_MODERATE) ? "[.]." : "<B>[.]!</B>"
 
 /datum/wound/proc/get_scanner_description(mob/user)
 	return "Type: [name]\nSeverity: [severity_text()]\nDescription: [desc]\nRecommended Treatment: [treat_text]"

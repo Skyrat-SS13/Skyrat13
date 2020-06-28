@@ -404,7 +404,7 @@
 	throw_speed = 4
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 100, "embedded_fall_chance" = 0)
 	w_class = WEIGHT_CLASS_SMALL
-	sharpness = IS_SHARP
+	sharpness = SHARP_POINTY
 	var/mob/living/carbon/human/fired_by
 	var/missed = TRUE
 

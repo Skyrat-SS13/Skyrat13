@@ -123,13 +123,13 @@
 			scar_severity += S.severity
 
 	switch(scar_severity)
-		if(1 to 2)
-			msg += "<span class='smallnotice'>[t_He] [t_has] visible scarring, you can look again to take a closer look...</span>\n"
-		if(3 to 4)
+		if(WOUND_SEVERITY_TRIVIAL)
+			msg += "<span class='smallnotice'><i>[t_He] [t_has] visible scarring, you can look again to take a closer look...</i></span>\n"
+		if(WOUND_SEVERITY_MODERATE to WOUND_SEVERITY_SEVERE)
 			msg += "<span class='notice'><i>[t_He] [t_has] several bad scars, you can look again to take a closer look...</i></span>\n"
-		if(5 to 6)
+		if(WOUND_SEVERITY_CRITICAL to WOUND_SEVERITY_PERMANENT)
 			msg += "<span class='notice'><b><i>[t_He] [t_has] significantly disfiguring scarring, you can look again to take a closer look...</i></b></span>\n"
-		if(7 to INFINITY)
+		if(WOUND_SEVERITY_LOSS to INFINITY)
 			msg += "<span class='notice'><b><i>[t_He] [t_is] just absolutely fucked up, you can look again to take a closer look...</i></b></span>\n"
 	//
 

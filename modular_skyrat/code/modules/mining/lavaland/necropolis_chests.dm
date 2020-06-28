@@ -104,7 +104,7 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_state = "heckgun"
-	sharpness = IS_SHARP
+	sharpness = SHARP_NONE
 	force = 15
 	var/recharge_rate = 4
 	var/charge_tick = 0
@@ -205,8 +205,8 @@
 	icon = 'modular_skyrat/icons/obj/1x2.dmi'
 	icon_state = "crucible0"
 	var/icon_state_on = "crucible1"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/crucible_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/crucible_righthand.dmi'
 	item_state = "crucible0"
 	var/item_state_on = "crucible1"
 	force = 3
@@ -296,7 +296,7 @@
 /obj/item/twohanded/crucible/wield(mob/living/carbon/M)
 	..()
 	if(wielded)
-		sharpness = IS_SHARP
+		sharpness = SHARP_NONE
 		w_class = w_class_on
 		total_mass = total_mass_on
 		hitsound = hitsound_on
@@ -435,9 +435,9 @@
 	force = clamp((ghost_counter * 2.5), 15, 25)
 	throwforce = clamp((ghost_counter * 2), 5, 18)
 	armour_penetration = clamp((ghost_counter * 3), 0, 35)
-	sharpness = IS_BLUNT
+	sharpness = SHARP_NONE
 	if(ghost_counter >= 4)
-		sharpness = IS_SHARP_ACCURATE
+		sharpness = SHARP_EDGED
 	user.visible_message("<span class='danger'>[user] strikes with the force of [ghost_counter] vengeful spirits!</span>")
 
 /obj/item/melee/ghost_sword/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
@@ -925,7 +925,7 @@
 	armour_penetration = 200 //the armor penetration is really what makes this unique and actually worth it so boomp it
 	hitsound = 'modular_skyrat/sound/sif/sif_slash.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "gutted", "gored")
-	sharpness = IS_SHARP
+	sharpness = SHARP_POINTY
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 //Enables the sword to butcher bodies

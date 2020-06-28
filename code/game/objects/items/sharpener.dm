@@ -10,7 +10,6 @@
 	var/prefix = "sharpened"
 	var/requires_sharpness = 1
 
-
 /obj/item/sharpener/attackby(obj/item/I, mob/user, params)
 	if(used)
 		to_chat(user, "<span class='warning'>The sharpening block is too worn to use again!</span>")
@@ -40,7 +39,7 @@
 		to_chat(user, "<span class='warning'>[I] has already been refined before. It cannot be sharpened further!</span>")
 		return
 	user.visible_message("<span class='notice'>[user] sharpens [I] with [src]!</span>", "<span class='notice'>You sharpen [I], making it much more deadly than before.</span>")
-	I.sharpness = IS_SHARP_ACCURATE
+	I.sharpness = SHARP_POINTY
 	I.force = clamp(I.force + increment, 0, max)
 	I.throwforce = clamp(I.throwforce + increment, 0, max)
 	I.name = "[prefix] [I.name]"

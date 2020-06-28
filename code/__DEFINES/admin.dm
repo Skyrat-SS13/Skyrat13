@@ -93,4 +93,6 @@
 #define COLLARBAN	"Collar ban" //Pacification ban but called that so we dont lose our earlier bans
 #define ADMIN_PUNISHMENT_CRACK ":B:oneless"
 #define ADMIN_PUNISHMENT_BLEED ":B:loodless"
+#define ADMIN_PUNISHMENT_PERFORATE ":B:erforate"
+#define ADMIN_PUNISHMENT_NUGGET "Nuggetify"
 #define ADMIN_PUNISHMENT_SCARIFY "Scarify"

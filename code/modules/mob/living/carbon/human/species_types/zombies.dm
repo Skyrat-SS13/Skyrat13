@@ -49,7 +49,7 @@
 /datum/species/zombie/infectious/spec_stun(mob/living/carbon/human/H,amount)
 	. = min(20, amount)
 
-/datum/species/zombie/infectious/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE) //skyrat edit
+/datum/species/zombie/infectious/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE) //skyrat edit
 	. = ..()
 	if(.)
 		regen_cooldown = world.time + REGENERATION_DELAY

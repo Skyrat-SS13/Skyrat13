@@ -163,7 +163,7 @@
 	item_flags = SURGICAL_TOOL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 	tool_behaviour = TOOL_SCALPEL
 	toolspeed = 1
 	//skyrat edit
@@ -183,7 +183,7 @@
 	force = 16
 	toolspeed = 0.7
 	light_color = LIGHT_COLOR_GREEN
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 
 /obj/item/scalpel/advanced/Initialize()
 	. = ..()
@@ -223,7 +223,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	toolspeed = 0.5
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 
 /obj/item/scalpel/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is slitting [user.p_their()] [pick("wrists", "throat", "stomach")] with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -247,7 +247,7 @@
 	throw_range = 5
 	custom_materials = list(/datum/material/iron=10000) //skyrat edit
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	tool_behaviour = TOOL_SAW
 	toolspeed = 1
 	//skyrat edit
@@ -276,7 +276,7 @@
 	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	toolspeed = 0.5
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 /obj/item/surgical_drapes
 	name = "surgical drapes"

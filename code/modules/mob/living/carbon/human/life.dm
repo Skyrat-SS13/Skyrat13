@@ -18,6 +18,10 @@
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
 
+//we don't have stasis beds but you know just fuck it
+#define IS_IN_STASIS(x)	FALSE
+//
+
 /mob/living/carbon/human/Life(seconds, times_fired)
 	set invisibility = 0
 	if (notransform)
@@ -28,25 +32,29 @@
 	if (QDELETED(src))
 		return 0
 
-	if(.) //not dead
-		handle_active_genes()
+	if(!IS_IN_STASIS(src))
+		if(.) //not dead
+			handle_active_genes()
+		
+		if(stat != DEAD)
+			//heart attack stuff
+			handle_heart()
+		/* skyrat edit
+		if(stat != DEAD)
+			//Stuff jammed in your limbs hurts
+			handle_embedded_objects()
+		*/
+		//Update our name based on whether our face is obscured/disfigured
+		name = get_visible_name()
 
-	if(stat != DEAD)
-		//heart attack stuff
-		handle_heart()
-	/* skyrat edit
-	if(stat != DEAD)
-		//Stuff jammed in your limbs hurts
-		handle_embedded_objects()
-	*/
-	//Update our name based on whether our face is obscured/disfigured
-	name = get_visible_name()
+		dna.species.spec_life(src) // for mutantraces
 
-	dna.species.spec_life(src) // for mutantraces
-
-	if(stat != DEAD)
-		return 1
-
+		if(stat != DEAD)
+			return 1
+	else
+		for(var/i in all_wounds)
+			var/datum/wound/W = i
+			W.on_stasis()
 
 /mob/living/carbon/human/calculate_affecting_pressure(pressure)
 	var/headless = !get_bodypart(BODY_ZONE_HEAD) //should the mob be perennially headless (see dullahans), we only take the suit into account, so they can into space.

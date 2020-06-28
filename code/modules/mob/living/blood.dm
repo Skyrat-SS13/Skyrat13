@@ -101,7 +101,11 @@
 			temp_bleed += BP.get_bleed_rate()
 			BP.generic_bleedstacks = max(0, BP.generic_bleedstacks - 1)
 		if(temp_bleed)
+			if(temp_bleed >= (WOUND_SLASH_MAX_BLOODFLOW/4))
+				throw_alert("bleeding", /obj/screen/alert/status_effect/wound/bleed)
 			bleed(temp_bleed)
+		else
+			clear_alert("bleeding")
 		//
 
 //Makes a blood drop, leaking amt units of blood from the mob

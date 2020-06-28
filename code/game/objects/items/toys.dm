@@ -448,7 +448,7 @@
 	force_wielded = 0
 	attack_verb = list("attacked", "struck", "hit")
 	total_mass_on = TOTAL_MASS_TOY_SWORD
-	sharpness = IS_BLUNT
+	sharpness = SHARP_NONE
 
 /obj/item/twohanded/dualsaber/toy/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	return BLOCK_NONE
@@ -465,7 +465,7 @@
 	attack_verb = list("attacked", "struck", "hit")
 	total_mass_on = TOTAL_MASS_TOY_SWORD
 	slowdown_wielded = 0
-	sharpness = IS_BLUNT
+	sharpness = SHARP_NONE
 
 /obj/item/twohanded/dualsaber/hypereutactic/toy/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	return BLOCK_NONE

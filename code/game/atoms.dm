@@ -1096,8 +1096,11 @@ Proc for attack log creation, because really why not
 /proc/log_wound(atom/victim, datum/wound/suffered_wound, dealt_damage, dealt_wound_bonus, dealt_bare_wound_bonus, base_roll)
 	if(!istype(victim) || !istype(suffered_wound))
 		return FALSE
-	var/message = "has suffered: [suffered_wound][suffered_wound.limb ? " to [suffered_wound.limb.name]" : "" ]" // maybe indicate if it's a promote/demote?
-
+	var/message = "has suffered: [suffered_wound]"// maybe indicate if it's a promote/demote?
+	
+	if(suffered_wound.limb)
+		message += " to [suffered_wound.limb.name]"
+	
 	if(dealt_damage)
 		message += " | Damage: [dealt_damage]"
 		// The base roll is useful since it can show how lucky someone got with the given attack. For example, dealing a cut

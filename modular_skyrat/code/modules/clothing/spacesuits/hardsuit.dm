@@ -32,8 +32,8 @@
 	desc = "A pointy, murdery blade that can be attached to your hardsuit."
 	force = 0
 	force_on = 20
-	sharpness = IS_BLUNT
-	var/sharpness_on = IS_SHARP
+	sharpness = SHARP_NONE
+	var/sharpness_on = SHARP_EDGED
 	throwforce = 0
 	throwforce_on = 0
 	hitsound_on = 'sound/weapons/bladeslice.ogg'

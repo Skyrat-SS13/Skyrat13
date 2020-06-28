@@ -46,7 +46,7 @@
 	throwforce = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "impaled", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	total_mass = TOTAL_MASS_HAND_REPLACEMENT
 
 /obj/item/melee/synthetic_arm_blade/Initialize()
@@ -67,7 +67,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	block_chance = 50
 	armour_penetration = 75
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	attack_verb = list("slashed", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = 1000)
@@ -159,7 +159,7 @@
 	flags_1 = CONDUCT_1
 	obj_flags = UNIQUE_RENAME
 	w_class = WEIGHT_CLASS_BULKY
-	sharpness = IS_SHARP_ACCURATE //It cant be sharpend cook -_-
+	sharpness = SHARP_EDGED
 	attack_verb = list("stabs", "punctures", "pierces", "pokes")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	total_mass = 0.4

@@ -932,7 +932,7 @@
 
 /datum/reagent/toxin/mimesbane/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_EMOTEMUTE, type)
-
+/* moved to modular
 /datum/reagent/toxin/bonehurtingjuice //oof ouch
 	name = "Bone Hurting Juice"
 	description = "A strange substance that looks a lot like water. Drinking it is oddly tempting. Oof ouch."
@@ -993,7 +993,7 @@
 				to_chat(M, "<span class='warning'>Your missing arm aches from wherever you left it.</span>")
 				M.emote("sigh")
 	return ..()
-
+*/
 /datum/reagent/toxin/brainhurtingjuice //oof ouch
 	name = "Brain Hurting Juice"
 	color = "#AAAAAA77" //RGBA: 170, 170, 170, 77
