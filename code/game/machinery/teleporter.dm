@@ -80,7 +80,7 @@
 					to_chat(C, "<span class='italics'>You hear a buzzing in your ears.</span>")
 					//C.set_species(/datum/species/fly) Skyrat change: screw this
 					//log_game("[C] ([key_name(C)]) was turned into a fly person")
-					C.apply_effect((rand(120 - accuracy * 40, 180 - accuracy * 60)), EFFECT_IRRADIATE, 0)
+					C.apply_effect((rand(420 - accuracy * 40, 780 - accuracy * 60)), EFFECT_IRRADIATE, 0) // Skyrat: deadly rads to make up for it.
 
 			calibrated = FALSE
 	return
