@@ -11,7 +11,7 @@
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,28)
+	var/loot = rand(1,29)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -77,6 +77,11 @@
 			new /obj/item/bedsheet/cult(src)
 		if(28)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
+		if(29)
+			if(prob(50))
+				new /obj/item/malf_upgrade
+			else
+				new /obj/item/disk/tech_disk/illegal
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -226,11 +231,11 @@
 		ADD_TRAIT(user, TRAIT_NODEATH, "memento_mori")
 		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "memento_mori")
 		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "memento_mori")
-		icon_state = "memento_mori_active"
+		icon_state = "[initial(icon_state)]_active" //skyrat edit
 		active_owner = user
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/mori()
-	icon_state = "memento_mori"
+	icon_state = initial(icon_state)
 	if(!active_owner)
 		return
 	var/mob/living/carbon/human/H = active_owner //to avoid infinite looping when dust unequips the pendant
@@ -828,7 +833,7 @@
 
 	spirits = current_spirits
 	return length(spirits)
-
+/* moved to modular_skyrat
 /obj/item/melee/ghost_sword/attack(mob/living/target, mob/living/carbon/human/user)
 	force = 0
 	var/ghost_counter = ghost_check()
@@ -842,7 +847,7 @@
 	final_block_chance += clamp((ghost_counter * 5), 0, 75)
 	owner.visible_message("<span class='danger'>[owner] is protected by a ring of [ghost_counter] ghosts!</span>")
 	return ..()
-
+*/
 //Blood
 
 /obj/item/dragons_blood
