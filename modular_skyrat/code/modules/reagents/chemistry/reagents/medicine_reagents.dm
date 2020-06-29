@@ -184,7 +184,7 @@
 	description = "Synthetic steroids, used to rapidly stimulate the repair process of keratin on the user."
 	reagent_state = LIQUID
 	color = "#ff0095"
-	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	pH = 6.5
 	value = REAGENT_VALUE_RARE
 	can_synth = TRUE
@@ -198,18 +198,18 @@
 	. = ..()
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		if(method_used == (INJECT || PATCH))
+		if(method_used in list(INJECT, PATCH))
 			if(C.all_scars && C.all_scars.len)
 				var/datum/scar/S = pick(C.all_scars)
 				if(istype(S) && !S.permanent)
-					to_chat(C, "<span class='notice'>You feel \the [lowertext(S.description)] quickly fading away!</span>")
+					to_chat(C, "<span class='notice'>You feel one of your scars quickly fading away!</span>")
 					qdel(S)
 		else
 			C.adjust_disgust(10)
 			C.adjust_blurriness(10)
 			C.AdjustDazed(15)
 			if(prob(15))
-				C.vomit(25, TRUE, TRUE)
+				C.vomit(20, TRUE, TRUE)
 			if(prob(5))
 				C.AdjustKnockdown(50, TRUE)
 				C.AdjustUnconscious(50)
