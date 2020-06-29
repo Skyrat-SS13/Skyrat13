@@ -1610,7 +1610,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else
 				dat += "<b><font color='[font_color]'>[language_name]:</font></b> [initial(L.desc)]"
 				dat += "<a href='?_src_=prefs;preference=language;task=update;language=[has_language ? nullify : language_name]'>[has_language ? "Remove" : "Choose"]</a><br>"
-	else 
+	else
 		dat += "<center><b>The language subsystem hasn't fully loaded yet! Please wait a bit and try again.</b></center><br>"
 	dat += "<hr>"
 	dat += "<center><a href='?_src_=prefs;preference=language;task=close'>Done</a></center>"
@@ -1932,7 +1932,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/msg = input(usr, "Set your OOC Notes", "OOC Notes", skyrat_ooc_notes) as message|null
 					if(msg)
 						skyrat_ooc_notes = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
-				
+
 				if("bloodtype")
 					var/msg = input(usr, "Choose your blood type", "Blood Type", "") as anything in (pref_species.bloodtypes + "Default")
 					if(msg)
@@ -1942,22 +1942,22 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							bloodtype = msg
 
 				if("general_records")
-					var/msg = input(usr, "Set your general records", "General Records", general_records) as message|null 
+					var/msg = input(usr, "Set your general records", "General Records", general_records) as message|null
 					if(msg)
 						general_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("security_records")
-					var/msg = input(usr, "Set your security records", "Security Records", security_records) as message|null 
+					var/msg = input(usr, "Set your security records", "Security Records", security_records) as message|null
 					if(msg)
 						security_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("medical_records")
-					var/msg = input(usr, "Set your medical records", "Medical Records", medical_records) as message|null 
+					var/msg = input(usr, "Set your medical records", "Medical Records", medical_records) as message|null
 					if(msg)
 						medical_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("flavor_background")
-					var/msg = input(usr, "Set your background", "Character Background", flavor_background) as message|null 
+					var/msg = input(usr, "Set your background", "Character Background", flavor_background) as message|null
 					if(msg)
 						flavor_background = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
@@ -1967,17 +1967,17 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						if(new_faction == "Other")
 							var/custom_faction = input(user, "Set your custom faction/subfaction, if unique. Don't abuse this.", "Character Faction", flavor_faction) as null|text
 							if(custom_faction)
-								flavor_faction = strip_html_simple(custom_faction, 30, TRUE) 
+								flavor_faction = strip_html_simple(custom_faction, 30, TRUE)
 						else
 							flavor_faction = new_faction
 
 				if("character_skills")
-					var/msg = input(usr, "Set your skills or hobbies", "Character Skills", character_skills) as message|null 
+					var/msg = input(usr, "Set your skills or hobbies", "Character Skills", character_skills) as message|null
 					if(msg)
 						character_skills = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 
 				if("exploitable_info")
-					var/msg = input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info) as message|null 
+					var/msg = input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info) as message|null
 					if(msg)
 						exploitable_info = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
 				//END OF SKYRAT CHANGES
@@ -2671,14 +2671,16 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/min = CONFIG_GET(number/body_size_min)
 					var/max = CONFIG_GET(number/body_size_max)
 					var/danger = CONFIG_GET(number/threshold_body_size_slowdown)
-					var/new_body_size = input(user, "Choose your desired sprite size:\n([min*100]%-[max*100]%), Warning: May make your character look distorted[danger > min ? ", and an exponential slowdown will occur for those smaller than [danger*100]%!" : "!"]", "Character Preference", features["body_size"]*100) as num|null
+					var/new_body_size = input(user, "Choose your desired sprite size: ([min*100]%-[max*100]%)\nWarning: This may make your character look distorted[danger > min ? "! Additionally, a proportional movement speed penalty will be applied to characters smaller than [danger*100]%." : "!"]", "Character Preference", features["body_size"]*100) as num|null //Skyrat - reworded
 					if (new_body_size)
 						new_body_size = clamp(new_body_size * 0.01, min, max)
 						var/dorfy
-						if(danger > new_body_size)
-							dorfy = alert(user, "The chosen size appears to be smaller than the threshold of [danger*100]%, which will lead to an added exponential slowdown. Are you sure about that?", "Dwarfism Alert", "Yes", "Move it to the threshold", "No")
-							if(!dorfy || dorfy == "Move it above the threshold")
+						if((new_body_size + 0.01) < danger) //Skyrat - Adding 0.01 as a dumb fix to prevent the warning message from appearing when exactly at threshold... Not sure why that happens in the first place.
+							dorfy = alert(user, "You have chosen a size below the slowdown threshold of [danger*100]%. For balancing purposes, the further you go below this percentage, the slower your character will be. Do you wish to keep this size?", "Speed Penalty Alert", "Yes", "Move it to the threshold", "No") //Skyrat - reworded
+							if(dorfy == "Move it to the threshold") //Skyrat - typo fix
 								new_body_size = danger
+							if(!dorfy) //Skyrat - Aborts if this var is somehow empty
+								return
 						if(dorfy != "No")
 							features["body_size"] = new_body_size
 
