@@ -1,3 +1,8 @@
+/*
+Skyrat Edit: Comments all of this out.
+This is incredibly unfun and isn't good for the game.
+
+
 /datum/round_event_control/brain_trauma
 	name = "Spontaneous Brain Trauma"
 	typepath = /datum/round_event/brain_trauma
@@ -31,3 +36,5 @@
 	))
 
 	H.gain_trauma_type(trauma_type, resistance)
+	
+	*/
