@@ -22,6 +22,7 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/shields_lefthand.dmi'
 	icon_state = "gladiator"
 	item_state = "gladiator"
+	resistance_flags = FIRE_PROOF | UNACIDABLE | INDESTRUCTIBLE
 	shield_flags = SHIELD_FLAGS_DEFAULT | SHIELD_BASH_ALWAYS_DISARM | SHIELD_BASH_GROUND_SLAM_DISARM
 	slowdown = 0
 	shieldbash_cooldown = 6 SECONDS

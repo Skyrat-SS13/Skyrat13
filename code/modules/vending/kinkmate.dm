@@ -1,5 +1,3 @@
-//Disabled here because of skyrat modular.
-/*
 /obj/machinery/vending/kink
 	name = "KinkMate"
 	desc = "A vending machine for all your unmentionable desires."
@@ -23,10 +21,10 @@
 				/obj/item/dildo/custom = 5,
 				/obj/item/electropack/shockcollar = 3,
 				/obj/item/assembly/signaler = 3,
-				/obj/item/clothing/under/shorts/polychromic/pantsu,
-				/obj/item/clothing/under/misc/poly_bottomless,
-				/obj/item/clothing/under/misc/poly_tanktop,
-				/obj/item/clothing/under/misc/poly_tanktop/female
+				/obj/item/clothing/under/shorts/polychromic/pantsu = 3,
+				/obj/item/clothing/under/misc/poly_bottomless = 3,
+				/obj/item/clothing/under/misc/poly_tanktop = 3,
+				/obj/item/clothing/under/misc/poly_tanktop/female = 3
 				)
 	contraband = list(
 				/obj/item/clothing/neck/petcollar/locked = 2,
@@ -53,4 +51,3 @@
 /obj/item/vending_refill/kink
 	machine_name 	= "KinkMate"
 	icon_state 		= "refill_kink"
-*/
