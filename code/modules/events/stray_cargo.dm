@@ -70,6 +70,7 @@
 		var/list/safe_area_types = typecacheof(list(
 		/area/ai_monitored/turret_protected/ai,
 		/area/ai_monitored/turret_protected/ai_upload,
+		/area/crew_quarters/dorms, // Skyrat Edit
 		/area/engine,
 		/area/shuttle)
 		)
