@@ -25,3 +25,10 @@
 	results = list(/datum/reagent/medicine/corticosteroids = 10)
 	required_reagents = list(/datum/reagent/medicine/synthflesh = 8, /datum/reagent/medicine/ephedrine = 4, /datum/reagent/medicine/kelotane = 4, /datum/reagent/medicine/bicaridine = 4)
 	mix_message = "The mixture bubbles into a pinkish color."
+
+/datum/chemical_reaction/fibrin
+	name = "Fibrin"
+	id = /datum/reagent/medicine/fibrin
+	results = list(/datum/reagent/medicine/fibrin = 20)
+	required_reagents = list(/datum/reagent/blood = 10, /datum/reagent/oxygen = 10, /datum/reagent/water = 10, /datum/reagent/medicine/bicaridine = 10)
+	mix_message = "The mixture bubbles into a browned color."

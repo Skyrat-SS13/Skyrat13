@@ -824,7 +824,7 @@
 	visible_message("<span class='notice'>[src] examines [p_them()]self.</span>", \
 		"<span class='notice'>You check yourself for injuries.</span>")
 
-	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	var/list/missing = ALL_BODYPARTS
 
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/LB = X
@@ -874,7 +874,8 @@
 			var/list/wounds = LB.wounds.Copy()
 			for(var/datum/wound/W in LB.wounds)
 				no_damage = FALSE
-				wounds |= W.severity
+				if(isnum(W.severity))
+					wounds |= W.severity
 			if(wounds.len)
 				var/severity = max(wounds)
 				switch(severity)
@@ -895,32 +896,41 @@
 				isdisabled += " but otherwise "
 			else
 				isdisabled += " and "
-		to_chat(src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name][isdisabled][self_aware ? " has " : " is "][status].</span>")
+		
+		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+			to_chat(src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name][isdisabled][self_aware ? " has " : " is "][status].</span>")
+		else
+			to_chat(src, "\t <span class='notice'>Tis [LB.name] but a flesh wound.</span>")
 
-		for(var/thing in LB.wounds)
-			var/datum/wound/W = thing
-			var/msg
-			switch(W.severity)
-				if(WOUND_SEVERITY_TRIVIAL)
-					msg = "\t <span class='danger'>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)].</span>"
-				if(WOUND_SEVERITY_MODERATE)
-					msg = "\t <span class='warning'>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!</span>"
-				if(WOUND_SEVERITY_SEVERE)
-					msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!</b></span>"
-				if(WOUND_SEVERITY_CRITICAL)
-					msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!!</b></span>"
-			to_chat(src, msg)
-
-		for(var/obj/item/I in LB.embedded_objects)
-			if(I.isEmbedHarmless())
-				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] stuck to your [LB.name]!</a>")
-			else
-				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
+		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+			for(var/thing in LB.wounds)
+				var/datum/wound/W = thing
+				var/msg
+				switch(W.severity)
+					if(WOUND_SEVERITY_TRIVIAL)
+						msg = "\t <span class='danger'>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)].</span>"
+					if(WOUND_SEVERITY_MODERATE)
+						msg = "\t <span class='warning'>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!</span>"
+					if(WOUND_SEVERITY_SEVERE)
+						msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!</b></span>"
+					if(WOUND_SEVERITY_CRITICAL)
+						msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!!</b></span>"
+				to_chat(src, msg)
+		
+		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+			for(var/obj/item/I in LB.embedded_objects)
+				if(I.isEmbedHarmless())
+					to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] stuck to your [LB.name]!</a>")
+				else
+					to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
 
 	for(var/t in missing)
-		to_chat(src, "<span class='boldannounce'>Your [parse_zone(t)] is missing!</span>")
+		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+			to_chat(src, "<span class='boldannounce'>Your [parse_zone(t)] is missing!</span>")
+		else
+			to_chat(src, "<span class='notice'>Tis [parse_zone(t)] but a flesh wound.</span>")
 
-	if(is_bleeding())
+	if(is_bleeding() && !HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 		var/list/obj/item/bodypart/bleeding_limbs = list()
 		for(var/i in bodyparts)
 			var/obj/item/bodypart/BP = i
@@ -940,12 +950,13 @@
 		bleed_text += "!</span>"
 		to_chat(src, bleed_text)
 	
-	if(getStaminaLoss())
+	if(getStaminaLoss() && !HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 		if(getStaminaLoss() > 30)
 			to_chat(src, "<span class='info'>You're completely exhausted.</span>")
 		else
 			to_chat(src, "<span class='info'>You feel fatigued.</span>")
-	if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
+	
+	if(HAS_TRAIT(src, TRAIT_SELF_AWARE) && !HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 		if(toxloss)
 			if(toxloss > 10)
 				to_chat(src, "<span class='danger'>You feel sick.</span>")
@@ -1006,7 +1017,8 @@
 		//Put the items in that list into a string of text
 		for(var/B in broken)
 			broken_message += B
-		to_chat(src, "<span class='warning'>Your [broken_message] [broken_plural ? "are" : "is"] non-functional!</span>")
+		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+			to_chat(src, "<span class='warning'>Your [broken_message] [broken_plural ? "are" : "is"] non-functional!</span>")
 	if(damaged.len)
 		if(damaged.len > 1)
 			damaged.Insert(damaged.len, "and ")
@@ -1017,7 +1029,8 @@
 				damaged_plural = TRUE
 		for(var/D in damaged)
 			damaged_message += D
-		to_chat(src, "<span class='info'>Your [damaged_message] [damaged_plural ? "are" : "is"] hurt.</span>")
+		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
+			to_chat(src, "<span class='info'>Your [damaged_message] [damaged_plural ? "are" : "is"] hurt.</span>")
 
 	if(roundstart_quirks.len)
 		to_chat(src, "<span class='notice'>You have these quirks: [get_trait_string()].</span>")

@@ -20,7 +20,9 @@
 	ricochet_chance = 50
 	ricochet_auto_aim_angle = 10
 	ricochet_auto_aim_range = 3
-	wound_bonus = -35
+	wound_bonus = -30
+	bare_wound_bonus = 10
+	embedding = list(embed_chance=15, fall_chance=2, jostle_chance=2, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=3, jostle_pain_mult=5, rip_time=10)
 	sharpness = TRUE
 
 /obj/item/projectile/bullet/c38/match
@@ -32,6 +34,8 @@
 	ricochet_incidence_leeway = 50
 	ricochet_decay_chance = 1
 	ricochet_decay_damage = 1
+	sharpness = SHARP_NONE
+	embedding = null
 
 /obj/item/projectile/bullet/c38/match/bouncy
 	name = ".38 Rubber bullet"
@@ -44,13 +48,18 @@
 	ricochet_decay_damage = 0.8
 	shrapnel_type = NONE
 
+// premium .38 ammo from cargo, weak against armor, lower base damage, but excellent at embedding and causing slice wounds at close range
 /obj/item/projectile/bullet/c38/dumdum
 	name = ".38 DumDum bullet"
 	damage = 15
 	armour_penetration = -30
 	ricochets_max = 0
-	wound_bonus = 0
-	shrapnel_type = /obj/item/shrapnel/bullet/c38/dumdum
+	sharpness = SHARP_EDGED
+	wound_bonus = 20
+	bare_wound_bonus = 20
+	embedding = list(embed_chance=75, fall_chance=3, jostle_chance=4, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=5, jostle_pain_mult=6, rip_time=10)
+	wound_falloff_tile = -5
+	embed_falloff_tile = -15
 //
 
 /obj/item/projectile/bullet/c38/rubber

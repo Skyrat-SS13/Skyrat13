@@ -126,13 +126,18 @@
 	starting_bodypart = /obj/item/bodypart/l_arm/robot/martial
 
 /obj/item/bodypart/l_arm/robot/martial
+	name = "punished left arm"
+	desc = "Has no markings of any kind, because that would offer no tactical advantages. But it's distinctly a syndicate item, somehow."
 	var/datum/martial_art/ourmartial = /datum/martial_art/cqc
 	var/martialid = "bigboss"
 	icon = 'modular_skyrat/icons/mob/venom_parts.dmi'
 	icon_state = "l_arm"
-	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
-	name = "punished left arm"
+	starting_children = list(/obj/item/bodypart/l_hand/robot/martial)
+
+/obj/item/bodypart/l_hand/robot/martial
+	name = "punished left hand"
 	desc = "Has no markings of any kind, because that would offer no tactical advantages. But it's distinctly a syndicate item, somehow."
+	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
 
 /* Though i wanted it to be "only works as long as the arm works", byond hates me and this proc failed me. Instead i'll have to do another approach.
 /obj/item/bodypart/l_arm/robot/martial/update_limb(dropping_limb, mob/living/carbon/source) //this is probably not the best way to do it, but i want to make sure that it always checks if the limb is viable. if not viable, owner loses the martial art.
@@ -157,7 +162,7 @@
 	MA.id = martialid //give it an id to keep track of it
 	MA.teach(owner)
 
-/obj/item/bodypart/l_arm/robot/martial/drop_limb(special)
+/obj/item/bodypart/l_arm/robot/martial/drop_limb(special, dismembered)
 	. = ..()
 	if(owner.mind.martial_art.id == martialid)
 		var/datum/martial_art/lose = owner.mind.martial_art

@@ -3,7 +3,7 @@
 	name = "Humanoid"
 	id = "humanoid"
 	icon_limbs = 'modular_skyrat/icons/mob/human_parts_greyscale.dmi'
-	limbs_id = "human"
+	limbs_id = "humang"
 	use_skintones = 0
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAIR,HORNCOLOR,WINGCOLOR,CAN_SCAR)
 	mutant_bodyparts = list("mcolor" = "FFF","mcolor2" = "FFF","mcolor3" = "FFF", "mam_snouts" = "Husky", "mam_tail" = "Husky", "mam_ears" = "Husky", "deco_wings" = "None",

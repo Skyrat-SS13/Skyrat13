@@ -21,30 +21,6 @@
 /mob/proc/has_left_hand(check_disabled = TRUE)
 	return TRUE
 
-//skyrat edit
-/mob/living/carbon/proc/get_num_hands(check_disabled = TRUE)
-	. = 0
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/affecting = X
-		if(affecting.body_part == HAND_RIGHT)
-			if(!check_disabled || !affecting.disabled)
-				.++
-		if(affecting.body_part == HAND_LEFT)
-			if(!check_disabled || !affecting.disabled)
-				.++
-
-/mob/living/carbon/proc/get_num_feet(check_disabled = TRUE)
-	. = 0
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/affecting = X
-		if(affecting.body_part == FOOT_RIGHT)
-			if(!check_disabled || !affecting.disabled)
-				.++
-		if(affecting.body_part == FOOT_LEFT)
-			if(!check_disabled || !affecting.disabled)
-				.++
-//
-
 /mob/living/carbon/has_left_hand(check_disabled = TRUE)
 	for(var/obj/item/bodypart/L in hand_bodyparts)
 		if(L.held_index % 2)
@@ -93,6 +69,9 @@
 /mob/proc/get_num_arms(check_disabled = TRUE)
 	return 2
 
+/mob/proc/get_num_hands(check_disabled = TRUE)
+	return 2
+
 /mob/living/carbon/get_num_arms(check_disabled = TRUE)
 	. = 0
 	for(var/X in bodyparts)
@@ -104,6 +83,16 @@
 			if(!check_disabled || !affecting.disabled)
 				.++
 
+/mob/living/carbon/get_num_hands(check_disabled = TRUE)
+	. = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/affecting = X
+		if(affecting.body_part == HAND_RIGHT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+		if(affecting.body_part == HAND_LEFT)
+			if(!check_disabled || !affecting.disabled)
+				.++
 
 //sometimes we want to ignore that we don't have the required amount of arms.
 /mob/proc/get_arm_ignore()
@@ -114,6 +103,9 @@
 
 
 /mob/proc/get_num_legs(check_disabled = TRUE)
+	return 2
+
+/mob/proc/get_num_feet(check_disabled = TRUE)
 	return 2
 
 /mob/living/carbon/get_num_legs(check_disabled = TRUE)
@@ -127,8 +119,22 @@
 			if(!check_disabled || !affecting.disabled)
 				.++
 
+/mob/living/carbon/get_num_feet(check_disabled = TRUE)
+	. = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/affecting = X
+		if(affecting.body_part == FOOT_RIGHT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+		if(affecting.body_part == FOOT_LEFT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+
 //sometimes we want to ignore that we don't have the required amount of legs.
 /mob/proc/get_leg_ignore()
+	return FALSE
+
+/mob/proc/get_feet_ignore()
 	return FALSE
 
 /mob/living/carbon/get_leg_ignore()
@@ -136,7 +142,15 @@
 		return TRUE
 	return FALSE
 
+/mob/living/carbon/get_feet_ignore()
+	if(movement_type & (FLYING|FLOATING))
+		return TRUE
+	return FALSE
+
 /mob/living/carbon/alien/larva/get_leg_ignore()
+	return TRUE
+
+/mob/living/carbon/alien/larva/get_feet_ignore()
 	return TRUE
 
 /mob/living/proc/get_missing_limbs()

@@ -36,6 +36,7 @@
 /obj/item/proc/attack_self(mob/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
 		return
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK_SELF, src) //Skyrat change
 	interact(user)
 
 /obj/item/proc/pre_attack(atom/A, mob/living/user, params) //do stuff before attackby!
@@ -207,7 +208,7 @@
 		else
 			return clamp(w_class * 6, 10, 100) // Multiply the item's weight class by 6, then clamp the value between 10 and 100
 
-/mob/living/proc/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force)
+/mob/living/proc/send_item_attack_message(obj/item/I, mob/living/user, hit_area, current_force, obj/item/bodypart/hit_BP)
 	var/message_verb = "attacked"
 	if(I.attack_verb && I.attack_verb.len)
 		message_verb = "[pick(I.attack_verb)]"

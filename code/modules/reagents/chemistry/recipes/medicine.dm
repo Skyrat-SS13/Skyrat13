@@ -201,7 +201,7 @@
 	results = list(/datum/reagent/medicine/epinephrine = 6)
 	required_reagents = list(/datum/reagent/phenol = 1, /datum/reagent/acetone = 1, /datum/reagent/diethylamine = 1, /datum/reagent/oxygen = 1, /datum/reagent/chlorine = 1, /datum/reagent/hydrogen = 1)
 
-/datum/chemical_reaction/strange_reagent //Skyrat change - Removed the strange reagent recipe as its unhealthy for the game //Skyrat change - it's actually healthy now
+/datum/chemical_reaction/strange_reagent
 	name = "Strange Reagent"
 	id = /datum/reagent/medicine/strange_reagent
 	results = list(/datum/reagent/medicine/strange_reagent = 3)

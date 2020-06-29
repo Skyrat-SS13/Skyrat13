@@ -1,10 +1,10 @@
-
+//Check if the limb is dismemberable
 /obj/item/bodypart/proc/can_dismember(obj/item/I)
 	if(dismemberable)
 		return TRUE
 
 //Dismember a limb
-/obj/item/bodypart/proc/dismember(dam_type = BRUTE)
+/obj/item/bodypart/proc/dismember(dam_type = BRUTE, silent = FALSE)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
@@ -16,11 +16,12 @@
 		return FALSE
 	var/obj/item/bodypart/affecting = C.get_bodypart(BODY_ZONE_CHEST)
 	affecting.receive_damage(clamp(brute_dam/2 * affecting.body_damage_coeff, 15, 50), clamp(burn_dam/2 * affecting.body_damage_coeff, 0, 50), wound_bonus=CANT_WOUND) //Damage the chest based on limb's existing damage //skyrat edit
-	C.visible_message("<span class='danger'><B>[C]'s [src.name] has been violently dismembered!</B></span>")
+	if(!silent)
+		C.visible_message("<span class='danger'><B>[C]'s [src.name] has been violently dismembered!</B></span>")
 	C.emote("scream")
 	playsound(get_turf(C), 'modular_skyrat/sound/effects/dismember.ogg', 80, TRUE) //skyrat edit
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
-	drop_limb()
+	drop_limb(dismembered = TRUE)
 	C.update_equipment_speed_mods() // Update in case speed affecting item unequipped by dismemberment
 
 	C.bleed(40)
@@ -31,6 +32,7 @@
 		burn()
 		return TRUE
 	add_mob_blood(C)
+	C.bleed(rand(20, 40))
 	var/direction = pick(GLOB.cardinals)
 	var/t_range = rand(2,max(throw_range/2, 2))
 	var/turf/target_turf = get_turf(src)
@@ -44,12 +46,12 @@
 	throw_at(target_turf, throw_range, throw_speed)
 	return TRUE
 
-/obj/item/bodypart/head/dismember()
-	if(HAS_TRAIT(owner, TRAIT_NODECAP))
+/obj/item/bodypart/head/dismember(dam_type = BRUTE, silent = FALSE)
+	if(HAS_TRAIT(owner, TRAIT_NODECAP) || HAS_TRAIT(owner, TRAIT_NODISMEMBER))
 		return FALSE
 	..()
 
-/obj/item/bodypart/chest/dismember()
+/obj/item/bodypart/chest/dismember(dam_type = BRUTE, silent = FALSE)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
@@ -82,13 +84,15 @@
 		C.visible_message("<span class='danger'><B>[C]'s internal organs spill out onto the floor!</B></span>")
 
 //skyrat edit
-/obj/item/bodypart/groin/dismember()
+/obj/item/bodypart/groin/dismember(dam_type = BRUTE, silent = FALSE)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
 	if(!dismemberable)
 		return FALSE
 	if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
+		return FALSE
+	if(HAS_TRAIT(C, TRAIT_NOGUT)) //Just for not allowing gutting
 		return FALSE
 	. = list()
 	var/organ_spilled = 0
@@ -115,7 +119,7 @@
 //
 
 //limb removal. The "special" argument is used for swapping a limb with a new one without the effects of losing a limb kicking in.
-/obj/item/bodypart/proc/drop_limb(special, dismembered, ignore_children = FALSE) //skyrat edit
+/obj/item/bodypart/proc/drop_limb(special, ignore_children = FALSE, dismembered) //skyrat edit
 	if(!owner)
 		return
 	var/atom/Tsec = owner.drop_location()
@@ -137,6 +141,15 @@
 	for(var/thing in wounds)
 		var/datum/wound/W = thing
 		W.remove_wound(TRUE)
+	
+	if(dismembered && dismember_bodyzone)
+		var/obj/item/bodypart/BP = owner.get_bodypart(dismember_bodyzone)
+		if(BP)
+			var/datum/wound/slash/loss/lost = new()
+			lost.name = "[lost.name] [lowertext(name)] stump"
+			lost.fake_limb = "[name]"
+			lost.fake_body_zone = body_zone
+			lost.apply_wound(BP, TRUE)
 	//
 	owner = null
 	//skyrat edit
@@ -194,7 +207,61 @@
 
 	forceMove(Tsec)
 
+/**
+  * get_mangled_state() is relevant for flesh and bone bodyparts, and returns whether this bodypart has mangled skin, mangled bone, or both (or neither i guess)
+  *
+  * Dismemberment for flesh and bone requires the victim to have the skin on their bodypart destroyed (either a critical cut or piercing wound), and at least a hairline fracture
+  * (severe bone), at which point we can start rolling for dismembering. The attack must also deal at least 10 damage, and must be a brute attack of some kind (sorry for now, cakehat, maybe later)
+  *
+  * Returns: BODYPART_MANGLED_NONE if we're fine, BODYPART_MANGLED_SKIN if our skin is broken, BODYPART_MANGLED_BONE if our bone is broken, or BODYPART_MANGLED_BOTH if both are broken and we're up for dismembering
+  */
+/obj/item/bodypart/proc/get_mangled_state()
+	var/mangled_state = BODYPART_MANGLED_NONE
 
+	// we can (generally) only have one wound per type, but remember there's multiple types
+	for(var/i in wounds)
+		var/datum/wound/W = i
+		if((istype(W, /datum/wound/slash) || istype(W, /datum/wound/pierce)) && W.severity >= WOUND_SEVERITY_TRIVIAL)
+			mangled_state |= BODYPART_MANGLED_SKIN
+		else if((istype(W, /datum/wound/slash) || istype(W, /datum/wound/pierce)) && W.severity >= WOUND_SEVERITY_CRITICAL)
+			mangled_state |= BODYPART_MANGLED_MUSCLE
+		else if(istype(W, /datum/wound/blunt) && W.severity >= WOUND_SEVERITY_SEVERE)
+			mangled_state |= BODYPART_MANGLED_BONE
+
+	return mangled_state
+
+/**
+  * try_dismember() is used, once we've confirmed that a flesh and bone bodypart has both the skin and bone mangled, to actually roll for it
+  *
+  * Mangling is described in the above proc, [/obj/item/bodypart/proc/get_mangled_state()]. This simply makes the roll for whether we actually dismember or not
+  * using how damaged the limb already is, and how much damage this blow was for. If we have a critical bone wound instead of just a severe, we add +10% to the roll.
+  * Lastly, we choose which kind of dismember we want based on the wounding type we hit with
+  *
+  * Arguments:
+  * * wounding_type: Either WOUND_BLUNT, WOUND_SLASH, or WOUND_PIERCE, basically only matters for the dismember message
+  * * wounding_dmg: The damage of the strike that prompted this roll, higher damage = higher chance
+  * * wound_bonus: Not actually used right now, but maybe someday
+  * * bare_wound_bonus: ditto above
+  */
+/obj/item/bodypart/proc/try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
+	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
+	for(var/i in wounds)
+		var/datum/wound/W = i
+		if(istype(W, /datum/wound/blunt/critical)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
+			base_chance += 10
+			break
+
+
+	if(!prob(base_chance))
+		return
+
+	dismember_wound(wounding_type)
+
+	return TRUE
+
+/obj/item/bodypart/proc/dismember_wound(wounding_type)
+	var/datum/wound/loss/dismembering = new
+	dismembering.apply_dismember(src, wounding_type)
 
 //when a limb is dropped, the internal organs are removed from the mob and put into the limb
 /obj/item/organ/proc/transfer_to_limb(obj/item/bodypart/LB, mob/living/carbon/C)
@@ -215,11 +282,11 @@
 	LB.eyes = src
 	..()
 
-/obj/item/bodypart/chest/drop_limb(special)
+/obj/item/bodypart/chest/drop_limb(special, ignore_children = FALSE, dismembered)
 	if(special)
 		..()
 
-/obj/item/bodypart/r_arm/drop_limb(special)
+/obj/item/bodypart/r_arm/drop_limb(special, ignore_children = FALSE, dismembered)
 	var/mob/living/carbon/C = owner
 	..()
 	if(C && !special)
@@ -237,7 +304,7 @@
 		C.update_inv_gloves() //to remove the bloody hands overlay
 
 
-/obj/item/bodypart/l_arm/drop_limb(special)
+/obj/item/bodypart/l_arm/drop_limb(special, ignore_children = FALSE, dismembered)
 	var/mob/living/carbon/C = owner
 	..()
 	if(C && !special)
@@ -255,7 +322,7 @@
 		C.update_inv_gloves() //to remove the bloody hands overlay
 
 
-/obj/item/bodypart/r_leg/drop_limb(special)
+/obj/item/bodypart/r_leg/drop_limb(special, ignore_children = FALSE, dismembered)
 	if(owner && !special)
 		if(owner.legcuffed)
 			owner.legcuffed.forceMove(owner.drop_location()) //At this point bodypart is still in nullspace
@@ -266,7 +333,7 @@
 			owner.dropItemToGround(owner.shoes, TRUE)
 	..()
 
-/obj/item/bodypart/l_leg/drop_limb(special) //copypasta
+/obj/item/bodypart/l_leg/drop_limb(special, ignore_children = FALSE, dismembered) //copypasta
 	if(owner && !special)
 		if(owner.legcuffed)
 			owner.legcuffed.forceMove(owner.drop_location())
@@ -277,7 +344,7 @@
 			owner.dropItemToGround(owner.shoes, TRUE)
 	..()
 
-/obj/item/bodypart/head/drop_limb(special)
+/obj/item/bodypart/head/drop_limb(special, ignore_children = FALSE, dismembered)
 	if(!special)
 		//Drop all worn head items
 		for(var/X in list(owner.glasses, owner.ears, owner.wear_mask, owner.head))
@@ -355,6 +422,11 @@
 	//skyrat edit
 	for(var/obj/item/bodypart/BP in src) //stored limbs. in normal circumstances, this will be either nothing or just the children.
 		BP.attach_limb(C, special, ignore_parent_restriction)
+	var/obj/item/bodypart/parent = C.get_bodypart(parent_bodyzone)
+	if(parent)
+		for(var/datum/wound/slash/loss/L in parent)
+			if(L.fake_body_zone == body_zone)
+				L.remove_wound()
 	//
 	for(var/obj/item/organ/O in contents)
 		O.Insert(C)
@@ -440,5 +512,9 @@
 			L.brutestate = 0
 			L.burnstate = 0
 
-		L.attach_limb(src, 1, ignore_parent_restriction) //skyrat edit 
+		L.attach_limb(src, 1, ignore_parent_restriction) //skyrat edit
+		var/datum/scar/S = new
+		var/datum/wound/loss/phantom_loss = new // stolen valor, really
+		S.generate(L, phantom_loss)
+		QDEL_NULL(phantom_loss)
 		return 1

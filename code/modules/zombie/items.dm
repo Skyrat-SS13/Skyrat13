@@ -15,7 +15,7 @@
 	damtype = "brute"
 	total_mass = TOTAL_MASS_HAND_REPLACEMENT
 	//skyrat edit
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	wound_bonus = -30
 	bare_wound_bonus = 15
 	//

@@ -15,3 +15,11 @@
 			r_hand_index_next += 2
 			O.held_index = r_hand_index_next //2, 4, 6, 8...
 			hand_bodyparts += O
+
+/mob/living/carbon/Move(atom/newloc, direct = 0)
+	. = ..()
+	if(gunpointing)
+		var/dir = get_dir(get_turf(gunpointing.source),get_turf(gunpointing.target))
+		if(dir)
+			setDir(dir)
+

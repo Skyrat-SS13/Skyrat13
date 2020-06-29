@@ -111,6 +111,22 @@
 						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					return 1
 
+		//SKYRAT CHANGES START
+		if(L.gunpointed.len)
+			var/is_pointing = FALSE
+			for(var/datum/gunpoint/gp in L.gunpointed)
+				if(gp.source == src)
+					is_pointing = TRUE
+					break
+			if(!is_pointing)
+				if(!(world.time % 5))
+					to_chat(src, "<span class='warning'>[L] is being held at gunpoint, it's not wise to push him.</span>")
+				return TRUE
+		if(L.gunpointing)
+			if(!(world.time % 5))
+				to_chat(src, "<span class='warning'>[L] is holding someone at gunpoint, you cannot push past.</span>")
+			return TRUE
+		//END OF SKYRAT CHANGES
 	//CIT CHANGES START HERE - makes it so resting stops you from moving through standing folks without a short delay
 		if(!CHECK_MOBILITY(src, MOBILITY_STAND) && CHECK_MOBILITY(L, MOBILITY_STAND))
 			var/origtargetloc = L.loc
@@ -622,7 +638,15 @@
 		if(trail_type)
 			var/brute_ratio = round(getBruteLoss() / maxHealth, 0.1)
 			if(blood_volume && blood_volume > max((BLOOD_VOLUME_NORMAL*blood_ratio)*(1 - brute_ratio * 0.25), 0))//don't leave trail if blood volume below a threshold
-				blood_volume = max(blood_volume - max(1, brute_ratio * 2), 0) 					//that depends on our brute damage.
+				var/bleed_amt
+				if(iscarbon(src))
+					var/mob/living/carbon/C = src
+					for(var/i in C.all_wounds)
+						var/datum/wound/W = i
+						bleed_amt += W.drag_bleed_amt()
+				else
+					bleed_amt = max(1, brute_ratio * 2)
+				blood_volume = max(blood_volume - bleed_amt, 0) 					//that depends on our brute damage.
 				var/newdir = get_dir(target_turf, start)
 				if(newdir != direction)
 					newdir = newdir | direction

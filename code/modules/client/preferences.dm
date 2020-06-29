@@ -1786,22 +1786,34 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += " <a href='?_src_=prefs;preference=cosmetic_scars;task=update;new_scar=custom;body_zone=[BP];specific_location=[specific];'>Custom</a>"
 			dat += "<BR>"
 			dat += "<div style='color: [font_severity];'><b>Severity:</b> </div>"
-			if(cosmetic_scars[BP][specific]["severity"] != 0)
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_NONE)
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=none;specific_location=[specific];'>None</a>"
+			else
+				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=none;specific_location=[specific];'>None</a>"
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_TRIVIAL)
 				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=trivial;specific_location=[specific];'>Trivial</a>"
 			else
 				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=trivial;specific_location=[specific];'>Trivial</a>"
-			if(cosmetic_scars[BP][specific]["severity"] != 1)
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_MODERATE)
 				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=moderate;specific_location=[specific];'>Moderate</a>"
 			else
 				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=moderate;specific_location=[specific];'>Moderate</a>"
-			if(cosmetic_scars[BP][specific]["severity"] != 2)
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_SEVERE)
 				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=severe;specific_location=[specific];'>Severe</a>"
 			else
 				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=critical;specific_location=[specific];'>Severe</a>"
-			if(cosmetic_scars[BP][specific]["severity"] != 3)
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_CRITICAL)
 				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=critical;specific_location=[specific];'>Critical</a>"
 			else
 				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=critical;specific_location=[specific];'>Critical</a>"
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_PERMANENT)
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=permanent;specific_location=[specific];'>Permanent</a>"
+			else
+				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=permanent;specific_location=[specific];'>Permanent</a>"
+			if(cosmetic_scars[BP][specific]["severity"] != WOUND_SEVERITY_LOSS)
+				dat += "<a href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=loss;specific_location=[specific];'>Loss</a>"
+			else
+				dat += "<a style='background-color: [bg_remove]' href='?_src_=prefs;preference=cosmetic_scars;task=update;body_zone=[BP];severity=loss;specific_location=[specific];'>Loss</a>"
 		dat += "</div>"
 	dat += "<BR><center><a href='?_src_=prefs;preference=cosmetic_scars;task=reset'>Reset Scar Preferences</a>"
 
@@ -1992,14 +2004,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						choice = input(user, "Type in the description of your scar. Leave blank or cancel to not change anything.", "Custom Scar", "None") as null|text
 					else if(new_scar in list("moderate", "severe", "critical"))
 						var/typepath = "/datum/wound"
-						choice = input(user, "What type of damage will you use?", "Preset Scar", "None") as null|anything in list("Brute", "Burn")
+						choice = input(user, "What type of damage will you use?", "Preset Scar", "None") as null|anything in list("Blunt", "Slash", "Pierce", "Loss")
 						if(choice && (choice != "None"))
 							typepath += "/[lowertext(choice)]"
-							switch(choice)
-								if("Brute")
-									choice = input(user, "What type of preset will you use?", "Preset Scar", "None") as null|anything in list("Cut", "Bone", "None")
-									if(choice && (choice != "None"))
-										typepath += "/[lowertext(choice)]"
 						else
 							choice = "None"
 						if(choice && (choice != "None"))
@@ -2007,10 +2014,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							typepath = text2path(typepath)
 							for(var/W in typesof(typepath))
 								var/datum/wound/w = new W()
-								if(body_zone in w.viable_zones)
+								if((body_zone in w.viable_zones) && (length(w.scarring_descriptions)))
 									presets |= w.scarring_descriptions
 							presets |= list("None")
-							choice = input(user, "What preset will you use?", "Preset Scar", "None") as null|anything in (presets)
+							choice = input(user, "What preset will you use?", "Preset Scar", "None") as null|anything in presets
 						
 					if(choice && (choice != "None"))
 						cosmetic_scars[body_zone][specific_location]["desc"] = strip_html_simple(choice, 256)
@@ -2018,14 +2025,20 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				else if(href_list["severity"])
 					var/sev = href_list["severity"]
 					switch(sev)
+						if("trivial")
+							sev = WOUND_SEVERITY_TRIVIAL
 						if("moderate")
-							sev = 1
+							sev = WOUND_SEVERITY_MODERATE
 						if("severe")
-							sev = 2
+							sev = WOUND_SEVERITY_SEVERE
 						if("critical")
-							sev = 3
+							sev = WOUND_SEVERITY_CRITICAL
+						if("permanent")
+							sev = WOUND_SEVERITY_PERMANENT
+						if("loss")
+							sev = WOUND_SEVERITY_LOSS
 						else
-							sev = 0
+							sev = WOUND_SEVERITY_NONE
 					cosmetic_scars[body_zone][specific_location]["severity"] = sev
 				SetScars(user)
 			if("reset")

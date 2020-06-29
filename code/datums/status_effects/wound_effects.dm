@@ -132,6 +132,54 @@
 	var/mob/living/carbon/C = usr
 	C.check_self_for_injuries()
 
+/obj/screen/alert/status_effect/wound/blunt
+	name = "Bashed"
+	desc = "Your body has sustained serious bruises, click here to inspect yourself."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "wound_blunt"
+
+/obj/screen/alert/status_effect/wound/slash
+	name = "Slashed"
+	desc = "Your body has sustained serious slashes, click here to inspect yourself."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "wound_slash"
+
+/obj/screen/alert/status_effect/wound/pierce
+	name = "Pierced"
+	desc = "Your body has sustained serious piercing, click here to inspect yourself."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "wound_pierce"
+
+/obj/screen/alert/status_effect/wound/burn
+	name = "Burned"
+	desc = "Your body has sustained serious burns, click here to inspect yourself."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "wound_burn"
+
+/obj/screen/alert/status_effect/wound/loss
+	name = "Dismembered"
+	desc = "Your body has suffered the loss of one or more limbs, click here to inspect yourself."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "wound_dismember"
+
+/obj/screen/alert/status_effect/wound/bleed
+	name = "Bleeding"
+	desc = "One or more of your limbs are bleeding profusely, click here to inspect yourself."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "wound_bleeding"
+
+/obj/screen/alert/status_effect/wound/bone
+	name = "Bone Damage"
+	desc = "One or more of your limbs have suffered a bone injury, click here to inspect yourself."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "wound_bone"
+
+/obj/screen/alert/status_effect/wound/sepsis
+	name = "Sepsis"
+	desc = "One or more of your limbs are suffering with an infection, click here to inspect yourself."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "wound_sepsis"
+
 // wound status effect base
 /datum/status_effect/wound
 	id = "wound"
@@ -165,8 +213,11 @@
 	if(W == linked_wound)
 		qdel(src)
 
-// bones
-/datum/status_effect/wound/bone/interact_speed_modifier()
+// blunt
+/datum/status_effect/wound/blunt
+	alert_type = /obj/screen/alert/status_effect/wound/blunt
+
+/datum/status_effect/wound/blunt/interact_speed_modifier()
 	var/mob/living/carbon/C = owner
 
 	if(C.get_active_hand() == linked_limb)
@@ -175,7 +226,7 @@
 
 	return 1
 
-/datum/status_effect/wound/bone/nextmove_modifier()
+/datum/status_effect/wound/blunt/nextmove_modifier()
 	var/mob/living/carbon/C = owner
 
 	if(C.get_active_hand() == linked_limb)
@@ -183,25 +234,50 @@
 
 	return 1
 
-/datum/status_effect/wound/bone/moderate
+/datum/status_effect/wound/blunt/moderate
 	id = "disjoint"
-/datum/status_effect/wound/bone/severe
+
+/datum/status_effect/wound/blunt/severe
 	id = "hairline"
 
-/datum/status_effect/wound/bone/critical
+/datum/status_effect/wound/blunt/critical
 	id = "compound"
 
-// cuts
-/datum/status_effect/wound/cut/moderate
+// slash
+/datum/status_effect/wound/slash
+	alert_type = /obj/screen/alert/status_effect/wound/slash
+
+/datum/status_effect/wound/slash/moderate
 	id = "abrasion"
 
-/datum/status_effect/wound/cut/severe
+/datum/status_effect/wound/slash/severe
 	id = "laceration"
 
-/datum/status_effect/wound/cut/critical
+/datum/status_effect/wound/slash/critical
 	id = "avulsion"
 
+// pierce
+/datum/status_effect/wound/pierce
+	alert_type = /obj/screen/alert/status_effect/wound/pierce
+
+/datum/status_effect/wound/pierce/moderate
+	id = "breakage"
+
+/datum/status_effect/wound/pierce/severe
+	id = "puncture"
+
+/datum/status_effect/wound/pierce/critical
+	id = "rupture"
+
+// dismemberment
+/datum/status_effect/wound/loss
+	id = "loss"
+	alert_type =  /obj/screen/alert/status_effect/wound/loss
+
 // burns
+/datum/status_effect/wound/burn
+	alert_type = /obj/screen/alert/status_effect/wound/burn
+
 /datum/status_effect/wound/burn/moderate
 	id = "seconddeg"
 

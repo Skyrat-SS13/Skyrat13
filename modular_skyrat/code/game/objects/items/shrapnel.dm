@@ -7,7 +7,7 @@
 	icon_state = "large"
 	w_class = WEIGHT_CLASS_TINY
 	item_flags = DROPDEL
-	sharpness = TRUE
+	sharpness = SHARP_EDGED
 
 /obj/item/shrapnel/stingball // stingbang grenades
 	name = "stingball"
@@ -18,14 +18,7 @@
 	name = "bullet"
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "s-casing"
-	item_flags = NONE
-
-/obj/item/shrapnel/bullet/c38 // .38 round
-	name = "\improper .38 bullet"
-
-/obj/item/shrapnel/bullet/c38/dumdum // .38 DumDum round
-	name = "\improper .38 DumDum bullet"
-	embedding = list(embed_chance=70, fall_chance=7, jostle_chance=7, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=5, jostle_pain_mult=6, rip_time=10)
+	embedding = null // embedding vars are taken from the projectile itself
 
 /obj/item/projectile/bullet/shrapnel
 	name = "flying shrapnel shard"
@@ -39,7 +32,7 @@
 	ricochet_incidence_leeway = 60
 	hit_stunned_targets = TRUE
 	//skyrat edit
-	sharpness = TRUE
+	sharpness = SHARP_EDGED
 	wound_bonus = 30
 	//
 
@@ -76,10 +69,10 @@
 	name = "breakbang pellet"
 	damage = 10
 	wound_bonus = 40
-	sharpness = FALSE
+	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/pellet/stingball/shred
 	name = "shredbang pellet"
 	damage = 10
 	wound_bonus = 30
-	sharpness = TRUE
+	sharpness = SHARP_EDGED
