@@ -315,10 +315,20 @@
 	if (amount < used)
 		return FALSE
 	amount -= used
+<<<<<<< HEAD
 	if(check)
 		zero_amount()
 	for(var/i in custom_materials)
 		custom_materials[i] = amount * mats_per_stack
+=======
+	if(check && zero_amount())
+		return TRUE
+	if(length(mats_per_unit))
+		var/temp_materials = custom_materials.Copy()
+		for(var/i in mats_per_unit)
+			temp_materials[i] = mats_per_unit[i] * src.amount
+		set_custom_materials(temp_materials)
+>>>>>>> 26fee48cec... Merge pull request #12645 from Ghommie/Ghommie-cit825
 	update_icon()
 	update_weight()
 	return TRUE
