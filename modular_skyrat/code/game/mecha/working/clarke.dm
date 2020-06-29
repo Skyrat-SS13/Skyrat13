@@ -19,7 +19,7 @@
 
 /obj/mecha/working/ripley/clarke/Initialize()
 	. = ..()
-	cargo.Add(new /obj/structure/ore_box(src))
+	cargo.Add(new /obj/structure/ore_box/clarke(src))
 	var/datum/component/armor_plate/C = src.GetComponent(/datum/component/armor_plate) //funny ripley inheritance gave us the ability to get goliath armoring. we don't want that.
 	C.Destroy()
 
@@ -49,3 +49,16 @@
 		var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED]
 		var/mob/living/brain/B = M.brainmob
 		hud.add_hud_to(B)
+
+/obj/structure/ore_box/clarke
+	name = "clarke ore box"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF
+
+/obj/structure/ore_box/clarke/Bumped(atom/movable/AM)
+	. = ..()
+	if(istype(AM, /obj/mecha/working/ripley/clarke))
+		var/obj/mecha/working/ripley/clarke/C = AM
+		forceMove(C)
+		C.cargo.Add(src)
+		if(C.occupant)
+			to_chat(C.occupant, "<span class = 'notice'>\The [C] picks up \the [src].")

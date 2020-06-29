@@ -121,7 +121,7 @@
 		if(name != real_name)
 			alt_name = " (died as [real_name])"
 
-	var/spanned = say_quote(message)
+	var/spanned = say_quote(say_emphasis(message))
 	message = emoji_parse(message)
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name] <span class='message'>[emoji_parse(spanned)]</span></span>"
 	log_talk(message, LOG_SAY, tag="DEAD")
@@ -144,6 +144,10 @@
 		return MODE_WHISPER
 	else if(key == ";")
 		return MODE_HEADSET
+	// Skyrat edit
+	else if(key == "%")
+		return MODE_SING
+	// End of Skyrat edit
 	else if((length(message) > (length(key) + 1)) && (key in GLOB.department_radio_prefixes))
 		var/key_symbol = lowertext(message[length(key) + 1])
 		return GLOB.department_radio_keys[key_symbol]
