@@ -12,7 +12,7 @@
 
 	outfit = /datum/outfit/job/prisoner
 
-	paycheck = STARTING_PAYCHECKS // Get a job. Job reassignment changes your paycheck now. Get over it.
+	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_CIV
 
 	display_order = JOB_DISPLAY_ORDER_PRISONER

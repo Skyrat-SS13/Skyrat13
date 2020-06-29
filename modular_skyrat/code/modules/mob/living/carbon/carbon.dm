@@ -1,0 +1,6 @@
+/mob/living/carbon/Move(atom/newloc, direct = 0)
+	. = ..()
+	if(gunpointing)
+		var/dir = get_dir(get_turf(gunpointing.source),get_turf(gunpointing.target))
+		if(dir)
+			setDir(dir)

@@ -215,6 +215,7 @@
 				L.transferItemToLoc(M, src)
 			else
 				M.forceMove(src)
+	parts_list.Cut() //Skyrat edit to avoid GC issues
 
 //common name
 /atom/proc/update_multiz(prune_on_fail = FALSE)
