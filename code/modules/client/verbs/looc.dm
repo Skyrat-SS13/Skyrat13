@@ -40,11 +40,7 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 			log_admin("[key_name(src)] has attempted to advertise in LOOC: [msg]")
 			return
 		if(mob.stat)
-<<<<<<< HEAD
-			to_chat(src, "<span class='danger'>You cannot use LOOC while unconscious or dead.</span>")  //Skyrat change
-=======
 			to_chat(src, "<span class='danger'>You cannot use LOOC while unconscious or dead.</span>")
->>>>>>> 7513e032e3... petrification improvements (#12375)
 			return
 		if(isdead(mob))
 			to_chat(src, "<span class='danger'>You cannot use LOOC while ghosting.</span>")
