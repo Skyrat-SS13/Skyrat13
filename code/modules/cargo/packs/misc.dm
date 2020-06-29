@@ -416,8 +416,6 @@
 	crate_name = "deluxe keg"
 	crate_type = /obj/structure/closet/crate
 
-<<<<<<< HEAD
-=======
 
 ///Special supply crate that generates random syndicate gear up to a determined TC value
 
@@ -456,4 +454,3 @@
 			continue
 		crate_value -= I.cost
 		new I.item(C)
->>>>>>> 118ac1a775... Merge pull request #12548 from timothyteakettle/more-events
