@@ -123,9 +123,6 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	"" = 3
 	))
 
-<<<<<<< HEAD
-*/
-=======
 GLOBAL_LIST_INIT(ratking_trash, list(//Garbage: used by the regal rat mob when spawning garbage.
 			/obj/item/cigbutt,
 			/obj/item/trash/cheesie,
@@ -143,4 +140,4 @@ GLOBAL_LIST_INIT(ratking_coins, list(//Coins: Used by the regal rat mob when spa
 			/obj/item/coin/silver,
 			/obj/item/coin/plastic,
 			/obj/item/coin/titanium))
->>>>>>> 14c9ab2ff1... ports tgs regal rats (#12479)
+*/
