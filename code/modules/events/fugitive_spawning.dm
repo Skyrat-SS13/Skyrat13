@@ -23,7 +23,7 @@
 	var/list/possible_backstories = list()
 	var/list/candidates = get_candidates(ROLE_TRAITOR, null, ROLE_TRAITOR)
 	if(candidates.len >= 1) //solo refugees
-		if(prob(30))
+		if(prob(0)) // Skyrat Edit: Changes probability of Waldo from 30% to 0%
 			possible_backstories.Add("waldo") //less common as it comes with magicks and is kind of immershun shattering
 		else //For accurate deadchat feedback
 			minimum_required = 4
