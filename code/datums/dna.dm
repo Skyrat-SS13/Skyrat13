@@ -551,13 +551,13 @@
 		return TRUE
 
 /mob/living/carbon/proc/randmut(list/candidates, difficulty = 2)
-	if(!has_dna())
+	if(!has_dna() || !can_mutate()) //Skyrat edit
 		return
 	var/mutation = pick(candidates)
 	. = dna.add_mutation(mutation)
 
 /mob/living/carbon/proc/easy_randmut(quality = POSITIVE + NEGATIVE + MINOR_NEGATIVE, scrambled = TRUE, sequence = TRUE, exclude_monkey = TRUE)
-	if(!has_dna())
+	if(!has_dna() || !can_mutate()) //Skyrat edit
 		return
 	var/list/mutations = list()
 	if(quality & POSITIVE)
@@ -583,7 +583,7 @@
 
 
 /mob/living/carbon/proc/randmuti()
-	if(!has_dna())
+	if(!has_dna() || !can_mutate()) //Skyrat edit
 		return
 	var/num = rand(1, DNA_UNI_IDENTITY_BLOCKS)
 	var/newdna = setblock(dna.uni_identity, num, random_string(DNA_BLOCK_SIZE, GLOB.hex_characters))

@@ -30,6 +30,7 @@
 	features["ipc_chassis"] 	= sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
 	// SKYRAT CHANGE START
 	skyrat_ooc_notes = sanitize_text(S["skyrat_ooc_notes"])
+	skyrat_ooc_notes = strip_html_simple(skyrat_ooc_notes, MAX_FLAVOR_LEN, TRUE)
 	// SKYRAT CHANGE END
 	erppref = sanitize_text(S["erp_pref"], "Ask")
 	if(!length(erppref)) erppref = "Ask"
@@ -38,9 +39,11 @@
 	vorepref = sanitize_text(S["vore_pref"], "Ask")
 	if(!length(vorepref)) vorepref = "Ask"
 	extremepref = sanitize_text(S["extremepref"], "No") //god has forsaken me
-	if(!length(extremepref)) extremepref = "No"
+	if(!length(extremepref))
+		extremepref = "No"
 	extremeharm = sanitize_text(S["extremeharm"], "No")
-	if(!length(extremeharm)) extremeharm = "No"
+	if(!length(extremeharm) || (extremepref = "No"))
+		extremeharm = "No"
 	security_records = sanitize_text(S["security_records"])
 	medical_records = sanitize_text(S["medical_records"])
 	general_records = sanitize_text(S["general_records"])

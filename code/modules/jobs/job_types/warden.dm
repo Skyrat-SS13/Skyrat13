@@ -36,7 +36,6 @@
 	name = "Warden"
 	jobtype = /datum/job/warden
 
-	id = /obj/item/card/id/department/sec // Skyrat change
 	belt = /obj/item/pda/warden
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/security/warden

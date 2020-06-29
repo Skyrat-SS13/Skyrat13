@@ -162,9 +162,13 @@
 	to_chat(user, "<span class='danger'>Access denied.</span>")
 	return UI_CLOSE
 
+/obj/machinery/atmospherics/components/attack_ghost(mob/dead/observer/O)
+	. = ..()
+	atmosanalyzer_scan(airs, O, src, FALSE)
 
 // Tool acts
 
 
 /obj/machinery/atmospherics/components/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(airs, user, src)
+	return TRUE // Skyrat change

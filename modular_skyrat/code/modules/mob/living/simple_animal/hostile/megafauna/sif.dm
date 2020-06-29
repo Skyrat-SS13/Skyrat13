@@ -62,10 +62,11 @@ Difficulty: Medium
 	armour_penetration = 50
 	melee_damage_lower = 35
 	melee_damage_upper = 35
-	speed = 2
+	speed = 1.5
 	pixel_x = -32 //Hit box perfectly centered
+	pixel_y = -16
 	move_to_delay = 3
-	rapid_melee = 4
+	rapid_melee = 2
 	melee_queue_distance = 10
 	ranged = FALSE
 	del_on_death = 1
@@ -89,6 +90,7 @@ Difficulty: Medium
 	glorymessagescrusher = list("chops off the wolf's head by it's neck!")
 	glorymessagespka = list("shoots at the wolf's eyes with their PKA, exploding them into giblets!")
 	glorymessagespkabayonet = list("slides down below Sif, using their bayonet to rip it's stomach open!")
+	var/list/hit_things = list()
 
 /obj/item/gps/internal/sif
 	icon_state = null
@@ -151,7 +153,7 @@ Difficulty: Medium
 	DestroySurroundings()
 	walk(src, 0)
 	setDir(dir)
-	var/movespeed = 0.7
+	var/movespeed = 1
 	walk_to(src, T, movespeed)
 	var/atom/prevLoc = target.loc
 	sleep((get_dist(src, T) * movespeed) + 1)
@@ -234,11 +236,11 @@ Difficulty: Medium
 	playsound(src, 'modular_skyrat/sound/sif/howl.ogg', 100, 1)
 	var/mob/living/L = target
 	shake_camera(L, 4, 3)
-	src.speed = 10
+	src.speed = 6
 	src.move_to_delay = 2
 	src.melee_damage_lower = 25
 	src.melee_damage_upper = 25
-	src.rapid_melee = 6
+	src.rapid_melee = 3
 
 //Sets Sif's enraged stats
 /mob/living/simple_animal/hostile/megafauna/sif/proc/enraged()
@@ -248,12 +250,12 @@ Difficulty: Medium
 	playsound(src, 'modular_skyrat/sound/sif/howl.ogg', 100, 1)
 	var/mob/living/L = target
 	shake_camera(L, 8, 6)
-	src.speed = 4
+	src.speed = 3
 	src.move_to_delay = 4
 	src.melee_damage_lower = 30
 	src.melee_damage_upper = 30
-	src.rapid_melee = 8
-	src.dodge_prob = 65
+	src.rapid_melee = 4
+	src.dodge_prob = 50
 
 //Chooses a random special
 /mob/living/simple_animal/hostile/megafauna/sif/proc/special()
@@ -280,11 +282,12 @@ Difficulty: Medium
 		..()
 
 //Attack speed delay
+//bob's note: everything here is well coded except this like why would you not just use changeNext_move()
 /mob/living/simple_animal/hostile/megafauna/sif/AttackingTarget()
 	if(charging == FALSE)
 		. = ..()
 		if(.)
-			recovery_time = world.time + 7
+			recovery_time = world.time + 10
 
 /mob/living/simple_animal/hostile/megafauna/sif/Goto(target, delay, minimum_distance)
 	if(charging == FALSE)
@@ -306,6 +309,7 @@ Difficulty: Medium
 		src.spinIntervals = 0
 		spinning = FALSE
 		src.speed = default_attackspeed()
+		hit_things = list()
 
 /mob/living/simple_animal/hostile/megafauna/sif/Moved()
 
@@ -320,18 +324,24 @@ Difficulty: Medium
 			src.spinIntervals = 0
 			spinning = FALSE
 			src.speed = default_attackspeed()
+			hit_things = list()
 
 		//Start spinning
 		if(spinning == TRUE)
 			icon_state = "Great_Brown_Wolf_Spin"
 			src.spinIntervals += 1
 			if(isturf(src.loc) || isobj(src.loc) && src.loc.density)
-				src.ex_act(EXPLODE_HEAVY)
-				explosion(get_turf(src), 0, 0, 4, 0, adminlog = FALSE, ignorecap = FALSE, flame_range = 0, silent = TRUE, smoke = FALSE)
+				for(var/turf/T in view(2, src))
+					var/obj/effect/temp_visual/small_smoke/sm = new /obj/effect/temp_visual/small_smoke(T)
+					sm.duration = 3
+				for(var/mob/living/LM in view(2, src))
+					if(!(LM in hit_things))
+						LM.Stun(30, TRUE)
+						hit_things += LM
 				playsound(src, pick('modular_skyrat/sound/sif/whoosh1.ogg', 'modular_skyrat/sound/sif/whoosh2.ogg', 'modular_skyrat/sound/sif/whoosh3.ogg'), 300, 1)
 				playsound(src, 'modular_skyrat/sound/sif/blade_spin.ogg', 400, 1)
 				if(angered)
-					src.speed = 8
+					src.speed = 6
 					src.move_to_delay = 2
 
 	playsound(src, 'sound/effects/meteorimpact.ogg', 200, 1, 2, 1)
