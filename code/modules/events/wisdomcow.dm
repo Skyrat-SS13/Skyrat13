@@ -1,3 +1,6 @@
+//Skyrat Edit: Commented out the wisdom cow event, the cow is still in the code though.
+/*
+
 /datum/round_event_control/wisdomcow
 	name = "Wisdom cow"
 	typepath = /datum/round_event/wisdomcow
@@ -13,3 +16,4 @@
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(1, targetloc)
 	smoke.start()
+*/
