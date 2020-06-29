@@ -470,8 +470,8 @@ Contains:
 	desc = "Voices echo from the hardsuit, driving the user insane. This one is pretty battle-worn, but still fearsome."
 	armor = list("melee" = 55, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 40, "bio" = 80, "rad" = 80, "fire" = 60, "acid" = 60, "wound" = 15)
 	slowdown = 0.8
-	obj_flags = IMMUTABLE_SLOW //rest in peace rusty joints.
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/inquisitor/old
+	obj_flags = IMMUTABLE_SLOW // Skyrat Modular
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/beserker/old
 	charges = 6
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/beserker/old

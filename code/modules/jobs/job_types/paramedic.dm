@@ -27,7 +27,6 @@
 	name = "Paramedic"
 	jobtype = /datum/job/paramedic
 
-	id = /obj/item/card/id/department/med //Skyrat change
 	ears = /obj/item/radio/headset/headset_med
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	uniform = /obj/item/clothing/under/rank/medical/paramedic
