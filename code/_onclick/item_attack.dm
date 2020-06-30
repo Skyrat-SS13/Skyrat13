@@ -36,6 +36,7 @@
 /obj/item/proc/attack_self(mob/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
 		return
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK_SELF, src) //Skyrat change
 	interact(user)
 
 /obj/item/proc/pre_attack(atom/A, mob/living/user, params) //do stuff before attackby!
@@ -211,8 +212,8 @@
 	var/message_verb = "attacked"
 	if(I.attack_verb && I.attack_verb.len)
 		message_verb = "[pick(I.attack_verb)]"
-	if(current_force < I.force * INEFFICIENT_ATTACK_MSG_THRESHOLD)
-		message_verb = "inefficiently [message_verb]"
+	if(current_force < I.force * FEEBLE_ATTACK_MSG_THRESHOLD)
+		message_verb = "[pick("feebly", "limply", "saplessly")] [message_verb]"
 	else if(!I.force)
 		return
 	var/message_hit_area = ""
