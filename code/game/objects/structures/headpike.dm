@@ -6,7 +6,7 @@
 	density = FALSE
 	anchored = TRUE
 	var/bonespear = FALSE
-	var/obj/item/twohanded/spear/spear
+	var/obj/item/spear/spear
 	var/obj/item/bodypart/head/victim
 
 /obj/structure/headpike/bone //for bone spears
@@ -19,11 +19,15 @@
 	name = "[victim.name] on a spear"
 	update_icon()
 	if(bonespear)
-		spear = locate(/obj/item/twohanded/bonespear) in parts_list
+		spear = locate(/obj/item/spear/bonespear) in parts_list
 	else
+<<<<<<< HEAD
 		spear = locate(/obj/item/twohanded/spear) in parts_list
 	return ..()
 //SKYRAT CHANGES END
+=======
+		spear = locate(/obj/item/spear) in parts_list
+>>>>>>> 062768c273... Merge pull request #12288 from Ghommie/Ghommie-cit765
 
 /obj/structure/headpike/Initialize()
 	. = ..()
