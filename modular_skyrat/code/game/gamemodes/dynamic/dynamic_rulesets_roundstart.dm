@@ -70,7 +70,7 @@
 	weight = 0 //Exists, but it's disabled by weight as the gamemode is not too fun, kinda broken and doesnt respect pref
 	cost = 35
 	scaling_cost = 10
-	property_weights = list("story_potential" = 1, "trust" = -1, "extended" = 1, "valid" = 1)
+	//property_weights = list("story_potential" = 1, "trust" = -1, "extended" = 1, "valid" = 1)
 	requirements = list(70,65,60,55,50,50,50,50,50,50)
 	high_population_requirement = 65
 	antag_cap = list(2,2,2,2,2,2,2,2,2,2)
