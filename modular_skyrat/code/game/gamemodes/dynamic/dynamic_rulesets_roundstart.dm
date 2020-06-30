@@ -67,7 +67,7 @@
 	protected_roles = list("Chaplain", "Security Officer", "Warden", "Detective", "Brig Physician", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster", "Prisoner", "Brig Physician", "Blueshield") 
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 2
-	weight = 3
+	weight = 0 //Exists, but it's disabled by weight as the gamemode is not too fun, kinda broken and doesnt respect pref
 	cost = 35
 	scaling_cost = 10
 	property_weights = list("story_potential" = 1, "trust" = -1, "extended" = 1, "valid" = 1)
