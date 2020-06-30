@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "gladiator shield and sword are no longer destructible by normal means"
