@@ -1288,17 +1288,31 @@
 /turf/open/floor/plating,
 /area/engine/gravity_generator)
 "abR" = (
-/obj/structure/lattice,
-/turf/open/space,
-/area/asteroid/nearstation)
+/obj/machinery/vr_sleeper{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "abS" = (
 /obj/item/stack/ore/glass,
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
 /area/asteroid/nearstation)
 "abT" = (
-/turf/closed/wall,
-/area/asteroid/nearstation)
+/obj/machinery/door/airlock{
+	name = "Unisex Restroom"
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "abU" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -1725,15 +1739,20 @@
 /turf/open/floor/plating/asteroid,
 /area/asteroid/nearstation)
 "acE" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 12
 	},
-/area/asteroid/nearstation)
+/obj/machinery/shower{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "acF" = (
 /turf/open/floor/plating,
 /area/asteroid/nearstation)
 "acG" = (
+<<<<<<< HEAD
 /obj/structure/door_assembly/door_assembly_mhatch,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1748,6 +1767,40 @@
 /turf/open/floor/plating,
 /area/asteroid/nearstation)
 "acI" = (
+=======
+/obj/structure/bed,
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/item/bedsheet/hos,
+/obj/effect/landmark/start/head_of_security,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hos)
+"acH" = (
+/turf/closed/wall/r_wall,
+/area/security/prison)
+"acI" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/shower{
+	pixel_y = 16
+	},
+/obj/structure/curtain,
+/obj/machinery/door/window/brigdoor/southleft{
+	name = "Shower"
+	},
+/obj/item/soap/deluxe,
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/hos)
+"acJ" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/security/prison)
+"acK" = (
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 /obj/structure/dresser,
 /obj/structure/sign/warning/vacuum{
 	pixel_y = 32
@@ -2217,21 +2270,21 @@
 /turf/open/floor/plating,
 /area/asteroid/nearstation)
 "adw" = (
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
+/obj/machinery/camera{
+	c_tag = "Prison - VR Sleepers"
 	},
-/area/asteroid/nearstation)
+/turf/open/floor/plasteel,
+/area/security/prison)
 "adx" = (
-/obj/item/clothing/suit/space/orange,
-/obj/item/clothing/head/helmet/space/orange,
-/turf/open/floor/plating,
+/obj/structure/sign/warning/securearea,
+/turf/closed/wall/r_wall,
 /area/asteroid/nearstation)
 "ady" = (
 /turf/closed/wall/rust,
 /area/quartermaster/qm)
 "adz" = (
-/obj/structure/sign/warning/vacuum,
-/turf/closed/wall,
+/obj/structure/lattice/catwalk,
+/turf/open/floor/plating/asteroid/airless,
 /area/asteroid/nearstation)
 "adA" = (
 /obj/structure/closet/secure_closet/detective,
@@ -2648,9 +2701,11 @@
 /turf/open/floor/plating,
 /area/asteroid/nearstation)
 "aem" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
+/obj/structure/lattice/catwalk,
+/obj/structure/sign/warning/securearea{
+	pixel_x = 32
 	},
+/turf/open/floor/plating/asteroid/airless,
 /area/asteroid/nearstation)
 "aen" = (
 /obj/structure/cable/white{
@@ -2676,10 +2731,8 @@
 /turf/open/floor/plasteel,
 /area/asteroid/nearstation)
 "aep" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/asteroid/nearstation)
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aeq" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/nanotrasen{
@@ -3210,6 +3263,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/wood,
+<<<<<<< HEAD
 /area/security/detectives_office)
 "aff" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -3225,6 +3279,44 @@
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
+=======
+/area/crew_quarters/heads/hos)
+"afe" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/turnstile{
+	name = "Genpop Exit Turnstile";
+	req_access_txt = "70";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aff" = (
+/turf/closed/wall,
+/area/crew_quarters/heads/hos)
+"afg" = (
+/obj/item/stack/ore/glass,
+/turf/open/floor/plating/asteroid/airless,
+/area/asteroid/nearstation)
+"afh" = (
+/obj/machinery/vr_sleeper{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"afi" = (
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
@@ -3682,9 +3774,14 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "afL" = (
-/obj/structure/girder/reinforced,
-/turf/open/floor/plating,
-/area/asteroid/nearstation)
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/carrot,
+/obj/machinery/camera{
+	c_tag = "Prison - Main Room";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid,
+/area/security/prison)
 "afM" = (
 /obj/item/stack/ore/iron,
 /obj/structure/barricade/wooden,
@@ -3709,6 +3806,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "afP" = (
+<<<<<<< HEAD
 /obj/structure/table/wood,
 /obj/item/book/manual/wiki/security_space_law,
 /obj/item/camera/detective,
@@ -3718,6 +3816,14 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
+=======
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/grass,
+/turf/open/floor/plating/asteroid,
+/area/security/prison)
+"afQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -4230,6 +4336,7 @@
 /turf/closed/wall/r_wall,
 /area/security/brig)
 "agG" = (
+<<<<<<< HEAD
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/asteroid/nearstation)
@@ -4262,6 +4369,29 @@
 "agJ" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+=======
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"agH" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"agI" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable/white{
+	icon_state = "2-8"
+	},
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
@@ -4768,6 +4898,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "ahu" = (
+<<<<<<< HEAD
 /turf/closed/wall/r_wall,
 /area/asteroid/nearstation)
 "ahv" = (
@@ -4781,15 +4912,34 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
+=======
+/obj/effect/turf_decal/stripes/line,
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+<<<<<<< HEAD
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+=======
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Security Maintenance";
+	req_access_txt = "63"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel,
+/area/security/prison)
+"ahv" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 "ahw" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_y = 32
@@ -4814,6 +4964,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
+<<<<<<< HEAD
 /obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -4836,6 +4987,16 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+=======
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hos)
+"ahz" = (
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_y = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -4847,16 +5008,16 @@
 /turf/open/floor/plasteel,
 /area/asteroid/nearstation)
 "ahA" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/fire/firefighter,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/head/hardhat/red,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/chair{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/asteroid/nearstation)
+/area/security/prison)
 "ahB" = (
+<<<<<<< HEAD
 /obj/machinery/photocopier,
 /obj/machinery/firealarm{
 	dir = 4;
@@ -4868,7 +5029,32 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
+=======
+/obj/effect/turf_decal/sand/plating,
+/obj/item/stack/ore/silver,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating,
+/area/asteroid/nearstation)
+"ahC" = (
+/obj/structure/sign/nanotrasen{
+	pixel_x = -32
 	},
+/obj/machinery/light{
+	dir = 8
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
+	},
+/obj/structure/closet{
+	name = "Evidence Closet"
+	},
+/obj/item/poster/random_contraband{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/poster/random_contraband{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/poster/random_contraband,
 /turf/open/floor/plasteel/dark,
 /area/security/detectives_office)
 "ahC" = (
@@ -4885,6 +5071,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "ahD" = (
+<<<<<<< HEAD
 /obj/structure/table/wood,
 /obj/item/paper_bin,
 /obj/item/pen,
@@ -4897,6 +5084,15 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+=======
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plating/asteroid,
+/area/security/prison)
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 "ahE" = (
 /obj/structure/table/wood,
 /obj/machinery/button/door{
@@ -5414,6 +5610,7 @@
 /turf/open/floor/plating,
 /area/security/detectives_office)
 "aiv" = (
+<<<<<<< HEAD
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
 	name = "Detective's Office";
@@ -5429,6 +5626,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/detectives_office)
+=======
+/obj/item/cultivator,
+/turf/open/floor/plating/asteroid,
+/area/security/prison)
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 "aiw" = (
 /obj/structure/cable/white,
 /obj/effect/spawner/structure/window/reinforced,
@@ -5719,6 +5921,7 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "aiS" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -5728,6 +5931,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+=======
+/obj/structure/sign/poster/official/do_not_question{
+	pixel_y = -32
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 "aiT" = (
 /obj/structure/rack,
 /obj/item/gun/energy/ionrifle,
@@ -5807,51 +6020,24 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "aja" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "brig1";
-	name = "Cell 1 Locker"
+/obj/machinery/status_display/ai{
+	pixel_x = 32
 	},
-/obj/machinery/light/small{
-	dir = 1
+/obj/structure/closet{
+	name = "Evidence Closet"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/dark,
 /area/security/brig)
 "ajb" = (
-/obj/machinery/flasher{
-	id = "brig1";
-	pixel_y = 26
+/obj/item/radio/intercom{
+	name = "Station Intercom";
+	pixel_y = -26
 	},
-/obj/structure/chair,
-/obj/structure/cable/white{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Security - Cell 1"
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/prison)
 "ajc" = (
 /obj/structure/cable/white{
 	icon_state = "0-8"
@@ -6346,10 +6532,14 @@
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "ajQ" = (
-/obj/item/stack/ore/iron,
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating,
-/area/asteroid/nearstation)
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "ajR" = (
 /obj/structure/rack,
 /obj/item/gun/energy/e_gun{
@@ -6459,27 +6649,23 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ajZ" = (
-/obj/structure/cable/white{
-	icon_state = "1-4"
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
-/obj/structure/cable/white{
-	icon_state = "4-8"
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/machinery/door/window/brigdoor/security/cell/westright{
-	id = "brig1";
-	name = "Cell 1"
+/obj/machinery/door/firedoor,
+/obj/machinery/turnstile{
+	name = "Genpop Entrance Turnstile";
+	req_access_txt = "69";
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/prison)
 "aka" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -6491,21 +6677,15 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "akb" = (
-/obj/structure/cable/white{
-	icon_state = "1-4"
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
 	},
-/obj/structure/cable/white{
-	icon_state = "1-8"
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
+/obj/structure/rack,
+/obj/item/clothing/suit/fire/firefighter,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/head/hardhat/red,
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/maintenance/port/fore)
 "akc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/red{
@@ -7192,11 +7372,6 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "akZ" = (
-/obj/machinery/door_timer{
-	id = "brig1";
-	name = "Cell 1";
-	pixel_x = 32
-	},
 /obj/structure/chair{
 	dir = 8
 	},
@@ -7204,6 +7379,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/machinery/status_display{
+	pixel_x = 32;
+	pixel_y = 0
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ala" = (
@@ -11082,6 +11261,55 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+<<<<<<< HEAD
+=======
+"ars" = (
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"art" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aru" = (
+/obj/machinery/newscaster/security_unit{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/grenade/barrier{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/obj/item/grenade/barrier,
+/obj/item/grenade/barrier{
+	pixel_x = 3;
+	pixel_y = -1
+	},
+/obj/item/grenade/barrier{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/machinery/camera{
+	c_tag = "Brig Control Room";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 "arv" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 9
@@ -14837,6 +15065,88 @@
 "axW" = (
 /turf/closed/wall,
 /area/hallway/secondary/exit)
+<<<<<<< HEAD
+=======
+"axX" = (
+/obj/effect/landmark/xeno_spawn,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/maintenance/port)
+"axY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/item/cigbutt,
+/turf/open/floor/plating,
+/area/maintenance/port)
+"axZ" = (
+/turf/closed/wall/r_wall/rust,
+/area/security/prison)
+"aya" = (
+/obj/machinery/door/firedoor,
+/obj/structure/cable/white{
+	icon_state = "2-8"
+	},
+/obj/structure/cable/white{
+	icon_state = "2-4"
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Security E.V.A. Storage";
+	req_access_txt = "63"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"ayb" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"ayc" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"ayd" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/port/fore)
+"aye" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/ambrosia,
+/turf/open/floor/plating/asteroid,
+/area/security/prison)
+"ayf" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/potato,
+/turf/open/floor/plating/asteroid,
+/area/security/prison)
+"ayg" = (
+/obj/item/stack/ore/glass,
+/turf/open/floor/plating/asteroid,
+/area/asteroid/nearstation)
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 "ayh" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 8
@@ -14999,6 +15309,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"ayy" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel,
+/area/maintenance/port/fore)
 "ayz" = (
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/dorms)
@@ -15021,6 +15341,30 @@
 /obj/item/bedsheet/red,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
+"ayD" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "secinterior";
+	name = "Brig";
+	req_access_txt = "63"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "ayE" = (
 /obj/structure/table/wood,
 /obj/item/instrument/violin,
@@ -15348,6 +15692,95 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
+"azc" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plasteel,
+/area/security/brig)
+"azd" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/cable/white{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"aze" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "brigfront";
+	name = "Brig Blast door"
+	},
+/obj/machinery/turnstile{
+	name = "Genpop Exit Turnstile";
+	req_access_txt = "70";
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/security/brig)
+"azf" = (
+/obj/item/clothing/suit/space/orange,
+/obj/item/clothing/head/helmet/space/orange,
+/turf/open/floor/plating/asteroid,
+/area/asteroid/nearstation)
+"azg" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Maintenance Hatch";
+	req_access_txt = "12"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/port/fore)
+"azh" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/table,
+/obj/item/extinguisher/mini,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/port/fore)
+"azi" = (
+/turf/closed/wall,
+/area/security/prison)
+"azj" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/structure/toilet{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
+"azk" = (
+/obj/item/stack/ore/silver,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/airless,
+/area/asteroid/nearstation)
 "azl" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
 	dir = 4
@@ -15376,6 +15809,15 @@
 	dir = 1
 	},
 /area/engine/atmos)
+"azn" = (
+/obj/machinery/door/airlock/public/glass,
+/turf/open/floor/plasteel,
+/area/security/prison)
+"azo" = (
+/obj/machinery/holopad,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "azp" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -15700,11 +16142,20 @@
 	},
 /area/maintenance/starboard/central)
 "azQ" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
 /area/maintenance/starboard/central)
+=======
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/vending/sustenance,
+/turf/open/floor/plasteel,
+/area/security/prison)
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 "azR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -15817,6 +16268,43 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"aAa" = (
+/obj/machinery/cryopod,
+/obj/machinery/computer/cryopod{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aAb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aAc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aAd" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aAe" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aAf" = (
+/obj/machinery/biogenerator,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aAg" = (
 /turf/open/floor/engine/air,
 /area/engine/atmos)
@@ -15841,6 +16329,31 @@
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"aAk" = (
+/obj/machinery/seed_extractor,
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aAl" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aAm" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/item/plant_analyzer,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aAn" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 6
@@ -15848,6 +16361,12 @@
 /obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"aAo" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aAp" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -15935,6 +16454,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"aAw" = (
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Security Maintenance";
+	req_access_txt = "63"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aAx" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/turf_decal/tile/neutral{
@@ -16276,6 +16812,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
+"aAU" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/security/prison)
 "aAV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -16425,29 +16967,144 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"aBi" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/security/prison)
+"aBj" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/cable/white{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/security/prison";
+	dir = 8;
+	name = "Prison Wing APC";
+	pixel_x = -26
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aBk" = (
+/obj/structure/closet/secure_closet/genpop,
+/obj/structure/cable/white{
+	icon_state = "2-8"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aBl" = (
+/obj/machinery/airalarm/unlocked{
+	dir = 4;
+	pixel_x = -23
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aBm" = (
+/obj/structure/closet/secure_closet/genpop,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aBo" = (
+/obj/structure/cable/white{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "aBp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/oxygen_output{
 	dir = 1
 	},
 /turf/open/floor/engine/o2,
 /area/engine/atmos)
+"aBq" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "aBr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/nitrogen_output{
 	dir = 1
 	},
 /turf/open/floor/engine/n2,
 /area/engine/atmos)
+"aBs" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/white{
+	icon_state = "0-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/security/prison)
 "aBt" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/nitrogen_input{
 	dir = 1
 	},
 /turf/open/floor/engine/n2,
 /area/engine/atmos)
+"aBu" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aBv" = (
+/obj/structure/closet/secure_closet/genpop,
+/obj/machinery/camera{
+	c_tag = "Prison - Entryway";
+	dir = 8
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aBw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
+"aBx" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "aBy" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"aBz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aBA" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -16951,12 +17608,102 @@
 /obj/structure/sign/warning/vacuum,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
+"aCo" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aCp" = (
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
+"aCq" = (
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
+"aCr" = (
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/airlock/security/glass{
+	name = "Gen-Pop Access";
+	req_access_txt = "2"
+	},
+/turf/open/floor/plasteel{
+	heat_capacity = 1e+006
+	},
+/area/security/prison)
 "aCs" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/miner/oxygen,
 /turf/open/floor/engine/o2,
 /area/engine/atmos)
+"aCt" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/turnstile{
+	name = "Genpop Exit Turnstile";
+	icon_state = "turnstile_map";
+	dir = 1;
+	req_access_txt = "70"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel{
+	heat_capacity = 1e+006
+	},
+/area/security/prison)
+"aCu" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/security/brig)
+"aCv" = (
+/obj/structure/cable/white{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "aCw" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/light/small,
@@ -40023,10 +40770,6 @@
 "swC" = (
 /turf/closed/wall/r_wall/rust,
 /area/crew_quarters/heads/captain/private)
-"swF" = (
-/obj/structure/sign/warning/securearea,
-/turf/closed/wall/rust,
-/area/asteroid/nearstation)
 "swG" = (
 /turf/closed/wall/rust,
 /area/security/detectives_office)
@@ -40065,9 +40808,6 @@
 /obj/machinery/status_display/supply,
 /turf/closed/wall/rust,
 /area/quartermaster/storage)
-"swN" = (
-/turf/closed/wall/rust,
-/area/asteroid/nearstation)
 "swZ" = (
 /turf/closed/wall/r_wall/rust,
 /area/security/brig)
@@ -74038,7 +74778,7 @@ aik
 aaW
 abj
 abj
-abu
+ahB
 abu
 pNE
 gap
@@ -74540,7 +75280,7 @@ aaa
 aac
 aac
 aad
-aah
+adx
 aad
 aac
 aac
@@ -74797,7 +75537,70 @@ aaa
 aaa
 aaa
 aac
+adz
+aad
+aad
+aad
+aad
+aad
+aad
+abi
+agK
+abu
+aad
+aad
+azf
+abi
+pNE
+aoq
+rVs
+aqC
+arv
+asC
+auw
+auq
+hqX
+buw
+diG
+yba
+azl
+aAj
+aBt
+asv
+uok
+aEs
+aFv
+aGj
+aHm
+aIj
+aJt
+buW
+aLP
+aMS
+aMS
+aOC
+buW
+aQM
+aRJ
+aST
+aPL
+aUR
+aUU
+aWz
+aUQ
+bvg
+baj
+awB
+baj
+baj
+aad
+aad
+aad
+aad
+aad
+aad
 aac
+<<<<<<< HEAD
 aad
 aad
 aad
@@ -74860,6 +75663,8 @@ aad
 aad
 aad
 aac
+=======
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 aaa
 aaa
 aaa
@@ -75054,7 +75859,11 @@ aaa
 aaa
 aaa
 aac
+<<<<<<< HEAD
 aac
+=======
+adz
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 aac
 aac
 aad
@@ -75311,7 +76120,7 @@ aaa
 aaa
 aaa
 aaa
-aac
+adz
 aac
 aac
 aac
@@ -75320,9 +76129,15 @@ aad
 aad
 aad
 adv
+<<<<<<< HEAD
 abj
 abj
 abu
+=======
+aaW
+ayg
+ahB
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 abu
 acF
 pNE
@@ -75568,7 +76383,7 @@ aaa
 aaa
 aaa
 aaa
-abR
+aXc
 aac
 aac
 aad
@@ -75577,7 +76392,7 @@ aad
 aad
 abi
 ael
-abj
+abu
 abu
 abu
 alG
@@ -75825,11 +76640,12 @@ aaa
 aaa
 aaa
 aaa
-abR
+aXc
 aac
 aac
 aad
 aad
+<<<<<<< HEAD
 aad
 aad
 abT
@@ -75839,6 +76655,17 @@ ajQ
 abi
 abT
 acG
+=======
+aro
+aro
+aro
+aro
+azg
+aro
+aro
+aro
+asm
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 bko
 cWv
 cWv
@@ -76082,13 +76909,12 @@ aaa
 aaa
 aac
 aac
+adz
 aac
 aac
-aac
 aad
 aad
-aad
-aad
+<<<<<<< HEAD
 aad
 aad
 aad
@@ -76099,6 +76925,20 @@ agE
 abi
 aad
 abi
+=======
+aro
+ars
+ars
+ars
+ars
+ars
+arp
+ars
+ars
+asu
+asA
+asD
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 sAx
 arA
 asH
@@ -76339,11 +77179,12 @@ aac
 aac
 aad
 aac
-aac
+aem
 aad
 aad
 aad
 aad
+<<<<<<< HEAD
 abi
 agE
 aad
@@ -76356,6 +77197,20 @@ abi
 aad
 aad
 aaV
+=======
+aro
+ars
+akb
+asu
+ayd
+ayy
+arq
+azh
+ars
+asy
+ars
+ars
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 aqz
 aqz
 aqz
@@ -76595,6 +77450,7 @@ aaa
 aac
 aad
 aad
+<<<<<<< HEAD
 aad
 swF
 aad
@@ -76615,6 +77471,28 @@ abi
 afM
 aqG
 arB
+=======
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+ars
+agF
+agF
+agF
+agF
+agF
+agF
+agF
+agF
+agF
+ars
+asE
+ars
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 asI
 atK
 auD
@@ -76852,6 +77730,7 @@ aac
 aac
 aad
 aad
+<<<<<<< HEAD
 aad
 aad
 aad
@@ -76860,6 +77739,16 @@ aad
 aad
 aad
 afL
+=======
+acH
+afL
+ahD
+aye
+aAl
+aAf
+acH
+ars
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 agF
 agF
 agF
@@ -77109,14 +77998,14 @@ aac
 aac
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-abT
-agE
+acH
+afP
+aiv
+ayf
+aAd
+aAk
+acH
+ars
 swZ
 aim
 aiR
@@ -77366,6 +78255,7 @@ aad
 aad
 aad
 aad
+<<<<<<< HEAD
 aad
 aad
 aad
@@ -77374,6 +78264,16 @@ aad
 aad
 afL
 abj
+=======
+acH
+azQ
+aAc
+aAc
+aAm
+acH
+acH
+ars
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 swZ
 ain
 aiS
@@ -77620,6 +78520,7 @@ aaa
 aad
 aad
 aad
+<<<<<<< HEAD
 aad
 aad
 aad
@@ -77631,6 +78532,19 @@ aad
 aad
 afM
 aaV
+=======
+acH
+acH
+acH
+acH
+aAa
+aep
+azo
+aAo
+acH
+ars
+ars
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 agF
 aio
 aiT
@@ -77877,6 +78791,7 @@ aac
 aad
 aad
 aad
+<<<<<<< HEAD
 aad
 aad
 aad
@@ -77887,6 +78802,18 @@ swN
 abi
 abT
 acG
+=======
+acH
+abR
+afh
+azi
+agG
+aiS
+acH
+aAw
+acH
+afT
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 agF
 agF
 aip
@@ -78134,6 +79061,7 @@ aac
 aad
 aad
 aad
+<<<<<<< HEAD
 aad
 aad
 aad
@@ -78146,6 +79074,20 @@ swN
 abu
 agF
 ahv
+=======
+acH
+adw
+aep
+azn
+aep
+ajb
+acH
+aAU
+acH
+afU
+ahC
+aiu
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 aiq
 aiV
 ajV
@@ -78391,6 +79333,7 @@ aad
 aad
 aad
 aad
+<<<<<<< HEAD
 aad
 aaV
 abi
@@ -78403,6 +79346,20 @@ abi
 afN
 swZ
 ahw
+=======
+acH
+abT
+azi
+azi
+aep
+ajQ
+acH
+aAU
+acH
+ahz
+aBw
+aCp
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 air
 aiW
 ajW
@@ -78648,6 +79605,7 @@ aad
 aad
 aad
 aad
+<<<<<<< HEAD
 aad
 aaW
 abj
@@ -78661,6 +79619,21 @@ adw
 agF
 ahx
 ais
+=======
+acH
+acE
+azj
+acH
+afe
+ajZ
+acH
+aBi
+ahu
+aBo
+aBx
+aCq
+aya
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 aiX
 agm
 akY
@@ -78905,6 +79878,7 @@ aad
 aad
 aad
 aad
+<<<<<<< HEAD
 aad
 aad
 abi
@@ -78917,6 +79891,20 @@ adz
 adw
 agF
 ahy
+=======
+acH
+acH
+acH
+acH
+agH
+art
+acH
+acJ
+acH
+aBq
+aja
+aiR
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 ait
 aiY
 ajY
@@ -79163,6 +80151,7 @@ aad
 aad
 aad
 aad
+<<<<<<< HEAD
 aad
 aad
 aaW
@@ -79176,7 +80165,22 @@ agF
 swZ
 agF
 aiZ
+=======
+aac
+azk
+acH
+afe
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 ajZ
+acH
+acH
+acH
+aBs
+acH
+axZ
+acH
+aiZ
+ayD
 ala
 aiZ
 amN
@@ -79420,6 +80424,7 @@ aad
 aad
 aad
 aad
+<<<<<<< HEAD
 aad
 aad
 abi
@@ -79434,6 +80439,22 @@ ahz
 agF
 aja
 aka
+=======
+afg
+aac
+acH
+ahv
+ayb
+aAb
+aBj
+aBl
+aBu
+aBz
+aBz
+aCr
+aCu
+azc
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 ala
 alP
 aka
@@ -79678,19 +80699,27 @@ aad
 aad
 aad
 aad
-aad
-aad
-abT
+bvI
 acH
+<<<<<<< HEAD
 adw
 aep
 acF
 aem
 agH
+=======
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 ahA
-swZ
-ajb
-akb
+ayc
+aAe
+aBk
+aBm
+aBv
+aCo
+aCo
+aCt
+aCv
+azd
 ala
 alQ
 bxA
@@ -79936,6 +80965,7 @@ aad
 aad
 aad
 aad
+<<<<<<< HEAD
 aad
 abv
 abv
@@ -79946,8 +80976,20 @@ abv
 abv
 swG
 agF
+=======
+acH
+abU
+abU
+abU
+abU
+abU
+abU
+abU
+abU
+abU
+>>>>>>> 8666f83848... Merge pull request #12620 from EmeraldSundisk/omegasec2
 ajc
-ajc
+aze
 aip
 ajc
 ajc
