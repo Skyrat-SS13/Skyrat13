@@ -27,11 +27,28 @@
 	. = ..()
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/twohanded/rcl/ComponentInitialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/twohanded/rcl/attackby(obj/item/W, mob/user)
+=======
+/obj/item/rcl/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+	AddComponent(/datum/component/two_handed)
+
+/// triggered on wield of two handed item
+/obj/item/rcl/proc/on_wield(obj/item/source, mob/user)
+	active = TRUE
+
+/// triggered on unwield of two handed item
+/obj/item/rcl/proc/on_unwield(obj/item/source, mob/user)
+	active = FALSE
+
+/obj/item/rcl/attackby(obj/item/W, mob/user)
+>>>>>>> fa1e92d588... Merge pull request #12656 from Ghommie/Ghommie-cit826
 	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 
