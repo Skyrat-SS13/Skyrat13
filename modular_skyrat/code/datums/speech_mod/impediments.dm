@@ -43,8 +43,9 @@
 	if(ignored_languages.len && (speech_args[SPEECH_LANGUAGE] in ignored_languages))
 		return
 	for(var/pogchamp in speech_spans)
-		speech_args[SPEECH_SPANS] |= pogchamp
-	for(var/list/poggers in replacers)
+		speech_args[SPEECH_SPANS] |= speech_spans[pogchamp]
+	for(var/pog in replacers)
+		var/list/poggers = replacers[pog]
 		if(poggers[3] == "strong")
 			speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], poggers[1], poggers[2])
 			speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE], capitalize(poggers[1]), capitalize(poggers[2]))

@@ -67,5 +67,7 @@ SUBSYSTEM_DEF(language)
 			C.exclusive_languages = cli.prefs.exclusive_speech.Copy()
 		if(cli.prefs.speech_replacers.len)
 			C.replacers = cli.prefs.speech_replacers.Copy()
+		if(cli.prefs.speech_spans.len)
+			C.speech_spans = cli.prefs.speech_spans.Copy()
 		C.add_speech_mod(user)
 //

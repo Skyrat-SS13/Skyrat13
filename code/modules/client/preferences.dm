@@ -19,6 +19,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		"Pineapple" = PINEAPPLE,
 		"Breakfast" = BREAKFAST
 	))
+GLOBAL_LIST_INIT(spans_list, list( // Skyrat addition
+		"Robot" = SPAN_ROBOT,
+		"Yell" = SPAN_YELL,
+		"Italics" = SPAN_ITALICS,
+		"Comic Sans" = SPAN_SANS,
+		"Papyrus" = SPAN_PAPYRUS,
+	))
 
 /datum/preferences
 	var/client/parent
@@ -141,7 +148,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/speech_soundtext = "speaking differently."
 	var/list/ignored_speech = list()
 	var/list/exclusive_speech = list()
-	var/list/speech_spans = list() //i'll probably use this later
+	var/list/speech_spans = list()
 	var/list/speech_replacers = list()
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
@@ -1704,6 +1711,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	dat += "Exclusive languages are used when you want to apply the impediment on only exclusive languages.<br>"
 	dat += "Ignored languages are used when you want to apply the impediment on every language, except ignored ones.<br>"
 	dat += "Replacers replace certain words or characters with their associated one."
+	dat += "Spans apply some sort of effect to the entirety of the text, most commonly a font."
 	dat += "</div>"
 	dat += "<br>"
 	dat += "<center><a href='?_src_=prefs;preference=speech;task=close'>Done</a></center>"
@@ -1738,20 +1746,35 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	dat += "<div style='padding-left: 15px;'>"
 	dat += "<b>Replacers:</b><br>"
 	if(speech_replacers.len)
-		for(var/list/replacer in speech_replacers)
+		for(var/rep in speech_replacers)
+			var/list/replacer = speech_replacers[rep]
 			dat += "<b>[replacer[1]]</b> to <b>[replacer[2]]</b> "
 			if(replacer[3] == "strong")
-				dat += "<a style='background-color: #32c232;' href='?_src_=prefs;preference=speech;task=update;replacer_task=strong;replacer=[replacer[1]]'>Strong</a>"
+				dat += "<a style='background-color: #32c232;' href='?_src_=prefs;preference=speech;task=update;replacer_task=strong;replacer=[rep]'>Strong</a>"
 			else
-				dat += "<a style='background-color: #32c232;' href='?_src_=prefs;preference=speech;task=update;replacer_task=strong;replacer=[replacer[1]]'>Weak</a>"
-			dat += "<a href='?_src_=prefs;preference=speech;task=update;replacer_task=remove;replacer=[replacer[1]]'>Remove</a>"
+				dat += "<a href='?_src_=prefs;preference=speech;task=update;replacer_task=strong;replacer=[rep]'>Weak</a>"
+			dat += "<a href='?_src_=prefs;preference=speech;task=update;replacer_task=remove;replacer=[rep]'>Remove</a>"
+			dat += "<br>"
 	else
 		dat += "None."
-	dat += "<br>"
+		dat += "<br>"
 	dat += "<a href='?_src_=prefs;preference=speech;task=update;replacer_task=add'>Add Replacer</a>"
 	dat += "<br>"
 	dat += "<span align='center' style='color: #ff3333;'>Keep in mind that the replacer will replace the characters as exactly written.</span><br>"
 	dat += "<span align='center' style='color: #ff3333;'>If you want the replacer to apply regardless of capitalization, make it a strong replacer.</span>"
+	dat += "</div>"
+	dat += "<hr>"
+	dat += "<div style='padding-left: 15px;'>"
+	dat += "<b>Spans:</b><br>"
+	if(speech_spans.len)
+		for(var/span in speech_spans)
+			dat += "[span] "
+			dat += "<a href='?_src_=prefs;preference=speech;task=update;spans=remove;remove=[span]'>Remove</a>"
+			dat += "<br>"
+	else
+		dat += "None."
+		dat += "<br>"
+	dat += "<a href='?_src_=prefs;preference=speech;task=update;spans=add'>Add Replacer</a>"
 	dat += "</div>"
 	dat += "<hr>"
 
@@ -1926,6 +1949,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				user << browse(null, "window=mob_occupation")
 				ShowChoices(user)
 			if("update")
+				switch(href_list["spans"])
+					if("add")
+						var/choice = input(user, "What speech span do you wish to add?", "Spans", "") as anything in GLOB.spans_list
+						if(choice)
+							speech_spans[choice] = GLOB.spans_list[choice]
+					if("remove")
+						speech_spans -= href_list["remove"]
 				switch(href_list["soundtext"])
 					if("modify")
 						var/choice = input(user, "What do you want your soundtext to be? Cancel to reset it.", "Soundtext", "") as null|text
@@ -1935,26 +1965,18 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							speech_soundtext = initial(speech_soundtext)
 				switch(href_list["ignore"])
 					if("add")
-						var/list/poslanguages = list()
-						for(var/i in SSlanguage.languages_by_name)
-							poslanguages |= i
-						poslanguages -= ignored_speech
-						var/choice = input(user, "Which language do you want to ignore?", "Ignore language", "") as null|anything in poslanguages
+						var/choice = input(user, "Which language do you want to ignore?", "Ignore language", "") as null|anything in SSlanguage.languages_by_name - ignored_speech
 						if(choice)
-							ignored_speech |= choice
+							ignored_speech[choice] = SSlanguage.languages_by_name[choice]
 					if("remove")
 						var/choice = input(user, "Which language do you want to stop ignoring?", "Ignore language", "") as null|anything in ignored_speech
 						if(choice)
 							ignored_speech -= choice
 				switch(href_list["exclusive"])
 					if("add")
-						var/list/poslanguages = list()
-						for(var/i in SSlanguage.languages_by_name)
-							poslanguages |= i
-						poslanguages -= exclusive_speech
-						var/choice = input(user, "Which language do you want to be exclusive?", "Exclusive language", "") as null|anything in poslanguages
+						var/choice = input(user, "Which language do you want to be exclusive?", "Exclusive language", "") as null|anything in SSlanguage.languages_by_name - exclusive_speech
 						if(choice)
-							exclusive_speech |= choice
+							exclusive_speech[choice] = SSlanguage.languages_by_name[choice]
 					if("remove")
 						var/choice = input(user, "Which language do you want to stop being exclusive?", "Exclusive language", "") as null|anything in exclusive_speech
 						if(choice)
@@ -1971,22 +1993,17 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 								rep2 = strip_html_simple(choice, 25)
 								choice = input(user, "Do you want the replacer to be strong?", "Replacer", "") as anything in list("Yes", "No")
 								if(choice == "Yes")
-									speech_replacers |= list(list("[rep1]", "[rep2]", "strong"))
+									speech_replacers[rep1] = list("[rep1]", "[rep2]", "strong")
 								else
-									speech_replacers |= list(list("[rep1]", "[rep2]", "weak"))
+									speech_replacers[rep1] = list("[rep1]", "[rep2]", "weak")
 					if("remove")
-						var/toremove = href_list["replacer"]
-						for(var/list/maybe in speech_replacers)
-							if(maybe[1] == toremove)
-								speech_replacers -= maybe
+						speech_replacers -= href_list["replacer"]
 					if("strong")
-						var/chump = href_list["replacer"]
-						for(var/list/maybe in speech_replacers)
-							if(maybe[1] == chump)
-								if(maybe[3] == "strong")
-									maybe[3] = "weak"
-								else
-									maybe[3] = "strong"
+						var/list/ooga = speech_replacers[href_list["replacer"]]
+						if(ooga[3] == "strong")
+							ooga[3] = "weak"
+						else
+							ooga[3] = "strong"
 				if(href_list["verb"])
 					var/mcclunky = href_list["verb"]
 					var/choice =  input(user, "What do you want to be your [mcclunky] verb? Cancel to use the default verb.", "[capitalize(mcclunky)] verb", "") as null|text
