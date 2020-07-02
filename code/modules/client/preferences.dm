@@ -3140,6 +3140,22 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 	character.dna.update_body_size(old_size)
 
+<<<<<<< HEAD
+=======
+	//speech stuff
+	if(custom_tongue != "default")
+		var/new_tongue = GLOB.roundstart_tongues[custom_tongue]
+		if(new_tongue)
+			var/obj/item/organ/tongue/T = character.getorganslot(ORGAN_SLOT_TONGUE)
+			if(T)
+				qdel(T)
+			var/obj/item/organ/tongue/new_custom_tongue = new new_tongue
+			new_custom_tongue.Insert(character)
+	if(custom_speech_verb != "default")
+		character.dna.species.say_mod = custom_speech_verb
+
+
+>>>>>>> 29221d91d9... Merge pull request #12674 from Citadel-Station-13/Ghommie-patch-1
 	SEND_SIGNAL(character, COMSIG_HUMAN_PREFS_COPIED_TO, src, icon_updates, roundstart_checks)
 
 	//let's be sure the character updates
