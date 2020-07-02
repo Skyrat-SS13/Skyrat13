@@ -1236,7 +1236,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		return
 	busy_toggling_fov = TRUE
 
-	var/confirm = alert(src, "Please make sure you want to enable fov?", "Confirm fov toggle", "Yes", "No")
+	var/confirm = alert(src, "Please make sure you want to [on_off ? "enable" : "disable"] fov?", "Confirm fov toggle", "Yes", "No")
 	if(confirm != "Yes")
 		return
 
