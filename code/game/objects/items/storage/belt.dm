@@ -83,7 +83,7 @@
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 	new /obj/item/extinguisher/mini(src)
-	new /obj/item/analyzer(src)
+	new /obj/item/analyzer/ranged(src) // Skyrat change
 	//much roomier now that we've managed to remove two tools
 
 /obj/item/storage/belt/utility/full/PopulateContents()
@@ -180,7 +180,8 @@
 		/obj/item/implantcase,
 		/obj/item/implant,
 		/obj/item/implanter,
-		/obj/item/pinpointer/crew
+		/obj/item/pinpointer/crew,
+		/obj/item/reagent_containers/chem_pack
 		))
 
 /obj/item/storage/belt/medical/surgery_belt_adv
@@ -482,7 +483,7 @@
 		/obj/item/grenade/chem_grenade/metalfoam,
 		/obj/item/grenade/chem_grenade/smart_metal_foam,
 		/obj/item/storage/bag/construction, //Skyrat edit
-		/obj/item/bspipe_dispenser //Skyrat edit
+		/obj/item/pipe_dispenser/bluespace //Skyrat edit
 		))
 
 /obj/item/storage/belt/grenade
