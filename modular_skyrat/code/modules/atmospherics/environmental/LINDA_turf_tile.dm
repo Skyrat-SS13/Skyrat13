@@ -7,7 +7,7 @@
 
 //Range at which cell process will try and share air with, the more the faster and less accurately things will be processed
 //Try and have this between 1 and 3
-#define ATMOS_CELL_PROCESS_EXPLOSIVENESS 3 
+#define ATMOS_CELL_PROCESS_EXPLOSIVENESS 2
 
 /turf/proc/process_cell(fire_count)
 	SSair.remove_from_active(src)
