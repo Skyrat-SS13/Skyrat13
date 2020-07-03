@@ -3461,6 +3461,7 @@
 #include "modular_skyrat\code\controllers\subsystem\collarbans.dm"
 #include "modular_skyrat\code\controllers\subsystem\events.dm"
 #include "modular_skyrat\code\controllers\subsystem\logging.dm"
+#include "modular_skyrat\code\controllers\subsystem\planetatmos.dm"
 #include "modular_skyrat\code\controllers\subsystem\recycling.dm"
 #include "modular_skyrat\code\datums\action.dm"
 #include "modular_skyrat\code\datums\ai_laws.dm"
