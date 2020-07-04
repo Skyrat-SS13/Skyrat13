@@ -22,6 +22,21 @@
 	/// Shield bashing push distance
 	var/shieldbash_push_distance = 1
 
+<<<<<<< HEAD
+=======
+/datum/block_parry_data/shield
+	block_damage_multiplier = 0.25
+	block_stamina_efficiency = 2.5
+	block_stamina_cost_per_second = 2.5
+	block_slowdown = 0
+	block_lock_attacking = FALSE
+	block_lock_sprinting = TRUE
+	block_start_delay = 1.5
+	block_damage_absorption = 5
+	block_resting_stamina_penalty_multiplier = 2
+	block_projectile_mitigation = 75
+
+>>>>>>> 703d03453b... Merge pull request #12651 from Citadel-Station-13/silicons-patch-9
 /obj/item/shield/examine(mob/user)
 	. = ..()
 	if(shield_flags & SHIELD_CAN_BASH)
