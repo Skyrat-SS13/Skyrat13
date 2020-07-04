@@ -238,8 +238,13 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 	var/obj/item/W = get_active_held_item()
 
 	if(istype(W))
+<<<<<<< HEAD
 		if(equip_to_slot_if_possible(W, slot,0,0,0))
 			return 1
+=======
+		if(equip_to_slot_if_possible(W, slot, FALSE, FALSE, FALSE, FALSE, TRUE))
+			return TRUE
+>>>>>>> a61e22de71... Merge pull request #12675 from Ghommie/Ghommie-cit828
 
 	if(!W)
 		// Activate the item
