@@ -221,6 +221,7 @@
 			var/obj/item/I = locate(href_list["embedded_object"]) in L.embedded_objects
 			if(!I || I.loc != src) //no item, no limb, or item is not in limb or in the person anymore
 				return
+<<<<<<< HEAD
 			var/time_taken = I.embedding.embedded_unsafe_removal_time/I.w_class //Citadel Change from * to /
 			usr.visible_message("<span class='warning'>[usr] attempts to remove [I] from [usr.p_their()] [L.name].</span>","<span class='notice'>You attempt to remove [I] from your [L.name]... (It will take [DisplayTimeText(time_taken)].)</span>")
 			if(do_after(usr, time_taken, needhand = 1, target = src))
@@ -237,6 +238,26 @@
 				if(!has_embedded_objects())
 					clear_alert("embeddedobject")
 					SEND_SIGNAL(usr, COMSIG_CLEAR_MOOD_EVENT, "embedded") */
+=======
+			SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L)
+			return
+		if(href_list["toggle_helmet"])
+			if(!istype(head, /obj/item/clothing/head/helmet/space/hardsuit))
+				return
+			var/obj/item/clothing/head/helmet/space/hardsuit/hardsuit_head = head
+			visible_message("<span class='danger'>[usr] tries to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>", \
+								"<span class='userdanger'>[usr] tries to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>", \
+								target = usr, target_message = "<span class='danger'>You try to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>")
+			if(!do_mob(usr, src, hardsuit_head ? head.strip_delay : POCKET_STRIP_DELAY))
+				return
+			if(!istype(wear_suit, /obj/item/clothing/suit/space/hardsuit) || (hardsuit_head ? (!head || head != hardsuit_head) : head))
+				return
+			var/obj/item/clothing/suit/space/hardsuit/hardsuit = wear_suit //This should be an hardsuit given all our checks
+			if(hardsuit.ToggleHelmet(FALSE))
+				visible_message("<span class='danger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
+										"<span class='userdanger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
+										target = usr, target_message = "<span class='danger'>You [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>")
+>>>>>>> dbf88a1408... Merge pull request #12676 from Ghommie/Ghommie-cit829
 			return
 
 		if(href_list["item"])
@@ -244,7 +265,10 @@
 			if(slot in check_obscured_slots())
 				to_chat(usr, "<span class='warning'>You can't reach that! Something is covering it.</span>")
 				return
+<<<<<<< HEAD
 
+=======
+>>>>>>> dbf88a1408... Merge pull request #12676 from Ghommie/Ghommie-cit829
 		if(href_list["pockets"])
 			var/strip_mod = 1
 			var/strip_silence = FALSE
