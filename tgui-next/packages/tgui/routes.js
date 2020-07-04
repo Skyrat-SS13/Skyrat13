@@ -14,6 +14,7 @@ import { Bepis } from './interfaces/Bepis';
 import { BorgPanel } from './interfaces/BorgPanel';
 import { BrigTimer } from './interfaces/BrigTimer';
 import { Canvas } from './interfaces/Canvas';
+import { CameraConsole, CameraConsoleWrapper } from './interfaces/CameraConsole';
 import { Canister } from './interfaces/Canister';
 import { Cargo, CargoExpress } from './interfaces/Cargo';
 import { CellularEmporium } from './interfaces/CellularEmporium';
@@ -176,6 +177,11 @@ const ROUTES = {
   canvas: {
     component: () => Canvas,
     scrollable: false,
+  },
+  camera_console: {
+    component: () => CameraConsole,
+    wrapper: () => CameraConsoleWrapper,
+    scrollable: true,
   },
   canister: {
     component: () => Canister,
