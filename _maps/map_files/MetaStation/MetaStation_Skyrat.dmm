@@ -26569,7 +26569,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;27;37;46"
+	req_one_access_txt = "46"
 	},
 /turf/open/floor/plating,
 /area/security/vacantoffice)
@@ -26714,10 +26714,6 @@
 /area/hallway/primary/port)
 "bcb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_x = -29
-	},
 /obj/machinery/status_display/evac{
 	pixel_x = -32
 	},
@@ -32724,8 +32720,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "bnT" = (
-/obj/structure/disposalpipe/junction/flip{
-	dir = 1
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 1;
+	sortType = 18
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
@@ -35025,6 +35022,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "bsv" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -35034,6 +35034,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "bsw" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -28
@@ -35735,6 +35738,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "btZ" = (
+/obj/structure/disposalpipe/segment,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -35749,9 +35753,6 @@
 /area/hallway/primary/port)
 "bub" = (
 /obj/structure/closet/emcloset,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/port)
 "buc" = (
@@ -36598,6 +36599,7 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bvV" = (
+/obj/structure/disposalpipe/segment,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -37453,6 +37455,7 @@
 /turf/open/floor/plasteel/dark,
 /area/blueshield)
 "bxN" = (
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -39717,6 +39720,9 @@
 	icon_state = "map-right-MS";
 	pixel_y = -32
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "bCQ" = (
@@ -41104,6 +41110,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/toilet/auxiliary)
 "bGn" = (
+/obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -69487,7 +69494,8 @@
 /area/hallway/secondary/exit/departure_lounge)
 "cNe" = (
 /obj/machinery/door/airlock/external{
-	name = "Auxiliary Escape Airlock"
+	name = "Auxiliary Escape Airlock";
+	req_access_txt = "13"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -74750,11 +74758,12 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "dhZ" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
+/obj/structure/disposalpipe/segment,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
@@ -78109,10 +78118,10 @@
 /turf/open/floor/wood,
 /area/security/vacantoffice)
 "mcS" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
 /obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
 /obj/structure/sign/map/left{
@@ -78327,16 +78336,15 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "nhy" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 2;
-	sortType = 18
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
@@ -78767,7 +78775,8 @@
 /area/maintenance/disposal/incinerator)
 "pSX" = (
 /obj/machinery/door/airlock/external{
-	name = "Auxiliary Escape Airlock"
+	name = "Auxiliary Escape Airlock";
+	req_access_txt = "13"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -79318,6 +79327,15 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
+"tsk" = (
+/obj/structure/disposalpipe/junction/flip{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
 "tsx" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -79966,6 +79984,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"xpT" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_x = -29
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "xse" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/solars/starboard/aft)
@@ -96912,7 +96938,7 @@ dmF
 dmF
 dmF
 bnU
-bql
+tsk
 bsw
 baE
 bvW
@@ -102299,7 +102325,7 @@ aTb
 aUp
 aJO
 aXv
-bIs
+xpT
 baF
 bcb
 bdx
