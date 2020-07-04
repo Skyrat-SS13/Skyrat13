@@ -50,11 +50,11 @@
 // 4.6x30mm (Autorifles)
 
 /obj/item/projectile/bullet/c46x30mm
-	name = "5.7x28mm bullet"
+	name = "4.6x30mm bullet"
 	damage = 20
 
 /obj/item/projectile/bullet/c46x30mm_ap
-	name = "5.7x28mm SS192 bullet"
+	name = "4.6x30mm SS192 bullet"
 	damage = 14.5
 	armour_penetration = 40
 
