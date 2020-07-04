@@ -47,7 +47,7 @@
 	var/pixels_tick_leftover = 0
 
 	/// Pixels moved per second.
-	var/pixels_per_second = TILES_TO_PIXELS(18.75)
+	var/pixels_per_second = TILES_TO_PIXELS(12.5)
 	/// The number of pixels we increment by. THIS IS NOT SPEED, DO NOT TOUCH THIS UNLESS YOU KNOW WHAT YOU ARE DOING. In general, lower values means more linetrace accuracy up to a point at cost of performance.
 	var/pixel_increment_amount
 
