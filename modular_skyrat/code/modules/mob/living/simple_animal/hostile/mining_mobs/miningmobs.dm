@@ -34,7 +34,7 @@
 	..(gibbed)
 
 /mob/living/simple_animal/hostile/asteroid/AltClick(mob/living/carbon/slayer)
-	if(get_dist(slayer, src) > 1)
+	if(slayer.canUseTopic(src, TRUE, FALSE, FALSE))
 		return
 	if(glorykill)
 		if(do_after(slayer, 10, needhand = TRUE, target = src, progress = FALSE) && (stat != DEAD))
