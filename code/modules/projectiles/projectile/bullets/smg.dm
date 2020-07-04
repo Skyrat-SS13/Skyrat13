@@ -3,6 +3,7 @@
 /obj/item/projectile/bullet/c45
 	name = ".45 bullet"
 	damage = 30
+	stamina = 8 //Stopping power.
 
 /obj/item/projectile/bullet/c45_cleaning
 	name = ".45 bullet"
@@ -49,12 +50,12 @@
 // 4.6x30mm (Autorifles)
 
 /obj/item/projectile/bullet/c46x30mm
-	name = "4.6x30mm bullet"
-	damage = 15
+	name = "5.7x28mm bullet"
+	damage = 20
 
 /obj/item/projectile/bullet/c46x30mm_ap
-	name = "4.6x30mm armor-piercing bullet"
-	damage = 12.5
+	name = "5.7x28mm SS192 bullet"
+	damage = 14.5
 	armour_penetration = 40
 
 /obj/item/projectile/bullet/incendiary/c46x30mm
