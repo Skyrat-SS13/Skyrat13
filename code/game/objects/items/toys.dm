@@ -450,7 +450,15 @@
 	total_mass_on = TOTAL_MASS_TOY_SWORD
 	sharpness = IS_BLUNT
 
+<<<<<<< HEAD
 /obj/item/twohanded/dualsaber/toy/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+=======
+/obj/item/dualsaber/toy/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=0, wieldsound='sound/weapons/saberon.ogg', unwieldsound='sound/weapons/saberoff.ogg')
+
+/obj/item/dualsaber/toy/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+>>>>>>> 01deb5a4b6... Merge pull request #12689 from Citadel-Station-13/BlackMajor-patch-1
 	return BLOCK_NONE
 
 /obj/item/twohanded/dualsaber/hypereutactic/toy
@@ -467,7 +475,15 @@
 	slowdown_wielded = 0
 	sharpness = IS_BLUNT
 
+<<<<<<< HEAD
 /obj/item/twohanded/dualsaber/hypereutactic/toy/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+=======
+/obj/item/dualsaber/hypereutactic/toy/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=0, wieldsound='sound/weapons/saberon.ogg', unwieldsound='sound/weapons/saberoff.ogg')
+
+/obj/item/dualsaber/hypereutactic/toy/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+>>>>>>> 01deb5a4b6... Merge pull request #12689 from Citadel-Station-13/BlackMajor-patch-1
 	return BLOCK_NONE
 
 /obj/item/twohanded/dualsaber/hypereutactic/toy/rainbow
