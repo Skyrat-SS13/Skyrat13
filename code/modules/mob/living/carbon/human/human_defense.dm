@@ -871,11 +871,11 @@
 		var/no_damage
 		if(status == "OK" || status == "no damage")
 			no_damage = TRUE
-			var/list/wounds = LB.wounds.Copy()
+			var/list/wounds = list()
 			for(var/datum/wound/W in LB.wounds)
 				no_damage = FALSE
 				if(isnum(W.severity))
-					wounds |= W.severity
+					wounds += W.severity
 			if(wounds.len)
 				var/severity = max(wounds)
 				switch(severity)
@@ -926,9 +926,9 @@
 
 	for(var/t in missing)
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
-			to_chat(src, "<span class='boldannounce'>Your [parse_zone(t)] is missing!</span>")
+			to_chat(src, "\t <span class='boldannounce'>Your [parse_zone(t)] is missing!</span>")
 		else
-			to_chat(src, "<span class='notice'>Tis [parse_zone(t)] but a flesh wound.</span>")
+			to_chat(src, "\t <span class='notice'>Tis [parse_zone(t)] but a flesh wound.</span>")
 
 	if(is_bleeding() && !HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 		var/list/obj/item/bodypart/bleeding_limbs = list()

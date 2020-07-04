@@ -36,7 +36,7 @@
 	var/list/missing = get_missing_limbs()
 	*/
 	var/list/msg = list("<span class='warning'>")
-	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+	var/list/missing = ALL_BODYPARTS
 	var/list/disabled = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X

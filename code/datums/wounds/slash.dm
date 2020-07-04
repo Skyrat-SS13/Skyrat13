@@ -209,9 +209,9 @@
 
 /// If someone is using either a cautery tool or something with heat to cauterize this cut
 /datum/wound/slash/proc/tool_cauterize(obj/item/I, mob/user)
-	var/self_penalty_mult = (user == victim ? 1 : 0)
+	var/self_penalty_mult = (user == victim ? 1 : 1)
 	user.visible_message("<span class='danger'>[user] begins cauterizing [victim]'s [fake_limb ? "[fake_limb] stump" : limb.name] with [I]...</span>", "<span class='danger'>You begin cauterizing [user == victim ? "your" : "[victim]'s"] [fake_limb ? "[fake_limb] stump" : limb.name] with [I]...</span>")
-	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/surgery, (3 + self_penalty_mult) SECONDS, THRESHOLD_UNTRAINED, FALSE) || 1
+	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/first_aid, (3 + self_penalty_mult) SECONDS, THRESHOLD_UNTRAINED, FALSE) || 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
@@ -219,7 +219,7 @@
 	limb.receive_damage(burn = 2 + severity, wound_bonus = CANT_WOUND)
 	if(prob(30))
 		victim.emote("scream")
-	var/blood_cauterized = (0.6 / self_penalty_mult)
+	var/blood_cauterized = (0.6 / max(1, self_penalty_mult))
 	blood_flow -= blood_cauterized
 	cauterized += blood_cauterized
 
@@ -230,9 +230,9 @@
 
 /// If someone is using a suture to close this cut
 /datum/wound/slash/proc/suture(obj/item/stack/medical/suture/I, mob/user)
-	var/self_penalty_mult = (user == victim ? 1.4 : 0)
+	var/self_penalty_mult = (user == victim ? 1.4 : 1)
 	user.visible_message("<span class='notice'>[user] begins stitching [victim]'s [fake_limb ? "[fake_limb] stump" : limb.name] with [I]...</span>", "<span class='notice'>You begin stitching [user == victim ? "your" : "[victim]'s"] [fake_limb ? "[fake_limb] stump" : limb.name] with [I]...</span>")
-	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/surgery, (3 + self_penalty_mult) SECONDS, THRESHOLD_UNTRAINED, FALSE) || 1
+	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/first_aid, (3 + self_penalty_mult) SECONDS, THRESHOLD_UNTRAINED, FALSE) || 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 	user.visible_message("<span class='green'>[user] stitches up some of the bleeding on [victim].</span>", "<span class='green'>You stitch up some of the bleeding on [user == victim ? "yourself" : "[victim]"].</span>")

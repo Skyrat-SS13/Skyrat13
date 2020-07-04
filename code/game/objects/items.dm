@@ -113,7 +113,7 @@ GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will
 	var/flags_cover = 0 //for flags such as GLASSESCOVERSEYES
 	var/heat = 0
 	///All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.
-	var/sharpness = SHARP_EDGED
+	var/sharpness = SHARP_NONE
 
 	var/tool_behaviour = NONE
 	var/toolspeed = 1

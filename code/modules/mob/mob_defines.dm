@@ -121,6 +121,8 @@
 
 	var/list/progressbars = null	//for stacking do_after bars
 
+	var/list/do_afters
+
 	var/list/mousemove_intercept_objects
 
 	var/datum/click_intercept

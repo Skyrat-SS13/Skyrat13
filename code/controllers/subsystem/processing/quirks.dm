@@ -18,6 +18,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	//yes this is terrible, but i'd rather not deal with creating more useless subsystems
 	var/list/all_bloodtypes = list()
 	var/list/associated_bodyparts = list()
+	var/list/bodypart_child_to_parent = list()
 	//
 
 /datum/controller/subsystem/processing/quirks/Initialize(timeofday)
@@ -32,10 +33,10 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	//this is awful, but byond doesn't let me use bodypart types
 	//for the scar configuration in the setup.
 	if(!associated_bodyparts.len)
-		for(var/i in ALL_BODYPARTS)
-			var/typepath = text2path("/obj/item/bodypart/[i]")
-			var/obj/item/bodypart/BP = new typepath()
-			associated_bodyparts[i] = BP
+		for(var/i in SSPARTS)
+			var/obj/item/bodypart/BP = new i()
+			associated_bodyparts[BP.body_zone] = BP
+			bodypart_child_to_parent[BP.body_zone] = BP.parent_bodyzone
 			BP.moveToNullspace()
 	//
 	return ..()

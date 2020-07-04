@@ -71,6 +71,8 @@
 	var/ricochet_chance_mod = 1
 	///When a projectile ricochets off this atom, it deals the normal damage * this modifier to this atom
 	var/ricochet_damage_mod = 0.33
+	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
+	var/list/targeted_by
 	//
 
 /atom/New(loc, ...)
@@ -147,7 +149,11 @@
 
 	LAZYCLEARLIST(overlays)
 	LAZYCLEARLIST(priority_overlays)
-
+	for(var/i in targeted_by)
+		var/mob/M = i
+		LAZYREMOVE(M.do_afters, src)
+	
+	targeted_by = null
 	QDEL_NULL(light)
 
 	return ..()

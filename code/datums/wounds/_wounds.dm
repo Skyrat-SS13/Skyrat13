@@ -32,7 +32,7 @@
 	/// This sound will be played upon the wound being applied
 	var/sound_effect
 
-	/// Either WOUND_SEVERITY_TRIVIAL (meme wounds like stubbed toe), WOUND_SEVERITY_MODERATE, WOUND_SEVERITY_SEVERE, or WOUND_SEVERITY_CRITICAL (or maybe WOUND_SEVERITY_LOSS)
+	/// See the defines to get a full list of severities.
 	var/severity = WOUND_SEVERITY_MODERATE
 	/// The list of wounds it belongs in, WOUND_LIST_BLUNT, WOUND_LIST_SLASH, or WOUND_LIST_BURN
 	var/wound_type
@@ -41,8 +41,10 @@
 	var/list/viable_zones = ALL_BODYPARTS
 	/// Who owns the body part that we're wounding
 	var/mob/living/carbon/victim = null
-	/// If we only work on organics (everything right now)
+	/// If we only work on organics
 	var/organic_only = TRUE
+	/// If we only work on synthetics
+	var/robotic_only = FALSE
 	/// The bodypart we're parented to
 	var/obj/item/bodypart/limb = null
 	/// A string, used to represent a limb that we're not attached to but want the examine text to tell us we are
@@ -68,7 +70,7 @@
 	/// Using this limb in a do_after interaction will multiply the length by this duration (arms)
 	var/interaction_efficiency_penalty = 1
 	/// Incoming damage on this limb will be multiplied by this, to simulate tenderness and vulnerability (mostly burns).
-	var/damage_mulitplier_penalty = 1
+	var/damage_multiplier_penalty = 1
 	/// If set and this wound is applied to a leg, we take this many deciseconds extra per step on this leg
 	var/limp_slowdown
 	/// How much we're contributing to this limb's bleed_rate
@@ -151,9 +153,13 @@
 		if(organic_only && ((NOBLOOD in H.dna.species.species_traits) || !L.is_organic_limb()))
 			qdel(src)
 			return
+		else if(robotic_only && L.is_organic_limb())
+			qdel(src)
+			return
 
 	// we accept promotions and demotions, but no point in redundancy. This should have already been checked wherever the wound was rolled and applied for (see: bodypart damage code), but we do an extra check
 	// in case we ever directly add wounds
+	// only loss wounds will ignore preexisting ones at the moment
 	if(!ignore_preexisting)
 		for(var/i in L.wounds)
 			var/datum/wound/preexisting_wound = i
@@ -196,13 +202,16 @@
 		second_wind()
 
 /// Remove the wound from whatever it's afflicting, and cleans up whateverstatus effects it had or modifiers it had on interaction times. ignore_limb is used for detachments where we only want to forget the victim
-/datum/wound/proc/remove_wound(ignore_limb, replaced = FALSE)
+/datum/wound/proc/remove_wound(ignore_limb, replaced = FALSE, forced = FALSE)
 	//TODO: have better way to tell if we're getting removed without replacement (full heal) scar stuff
+	if(severity == WOUND_SEVERITY_PERMANENT && !forced)
+		return FALSE
 	wound_alert(TRUE)
 	if(limb && !already_scarred && !replaced)
 		already_scarred = TRUE
-		var/datum/scar/new_scar = new
-		new_scar.generate(limb, src)
+		if(limb.is_organic_limb())
+			var/datum/scar/new_scar = new
+			new_scar.generate(limb, src)
 	if(victim)
 		LAZYREMOVE(victim.all_wounds, src)
 		if(!victim.all_wounds)
@@ -286,12 +295,10 @@
 	// if none of those apply, we return false to avoid interrupting
 	if(!allowed)
 		return FALSE
-	/*
 	// now that we've determined we have a valid attempt at treating, we can stomp on their dreams if we're already interacting with the patient
 	if(INTERACTING_WITH(user, victim))
 		to_chat(user, "<span class='warning'>You're already interacting with [victim]!</span>")
 		return TRUE
-	*/
 	// lastly, treat them
 	treat(I, user)
 	return TRUE

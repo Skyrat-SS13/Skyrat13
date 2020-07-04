@@ -102,6 +102,7 @@
 	/// If we have a gauze wrapping currently applied (not including splints)
 	var/obj/item/stack/current_gauze
 	//
+
 //skyrat edit
 /obj/item/bodypart/Initialize()
 	. = ..()
@@ -249,7 +250,7 @@
 			wounding_type = WOUND_PIERCE
 		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 		// So a big sharp weapon is still all you need to destroy a limb
-		if(mangled_state == BODYPART_MANGLED_MUSCLE && sharpness)
+		if((mangled_state & BODYPART_MANGLED_MUSCLE) && sharpness)
 			playsound(src, "sound/effects/crackandbleed.ogg", 100)
 			wounding_type = WOUND_BLUNT
 			if(sharpness == SHARP_EDGED)
@@ -257,7 +258,7 @@
 			if(sharpness == SHARP_POINTY)
 				wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
 
-		// if both the muscle and the bone are destroyed, and we're doing more than 10 damage, we're ripe to try dismembering
+		// if both the skin, muscle and the bone are destroyed, and we're doing more than 10 damage, we're ripe to try dismembering
 		else if(mangled_state == BODYPART_MANGLED_BOTH && wounding_dmg >= DISMEMBER_MINIMUM_DAMAGE)
 			if(try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))
 				return
@@ -347,8 +348,6 @@
 	return total
 
 //Checks disabled status thresholds
-
-//Checks disabled status thresholds
 //skyrat edit
 /obj/item/bodypart/proc/update_disabled(var/upparent = TRUE, var/upchildren = TRUE)
 	if(!owner)
@@ -382,12 +381,12 @@
 			else
 				var/obj/item/bodypart/parent = owner.get_bodypart(parent_bodyzone)
 				if(parent.is_disabled())
-					return	parent.is_disabled()
+					return parent.is_disabled()
 		if(get_damage(TRUE) >= max_damage * (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) ? 0.6 : 1)) //Easy limb disable disables the limb at 40% health instead of 0%
 			if(!last_maxed)
 				owner.emote("scream")
 				last_maxed = TRUE
-			if(!is_organic_limb() || stamina_dam >= max_damage)
+			if(stamina_dam >= max_damage)
 				return BODYPART_DISABLED_DAMAGE
 		else if(disabled && (get_damage(TRUE) <= (max_damage * 0.8))) // reenabled at 80% now instead of 50% as of wounds update
 			last_maxed = FALSE
@@ -582,8 +581,8 @@
 	for(var/obj/item/bodypart/BP in src)
 		var/list/substanding = BP.get_limb_icon(1)
 		for(var/image/I in substanding)
-			I.pixel_x = BP.px_x
-			I.pixel_y = BP.px_y
+			I.pixel_x = px_x
+			I.pixel_y = px_y
 		standing |= substanding
 	if(!standing.len)
 		icon_state = initial(icon_state)//no overlays found, we default back to initial icon.
@@ -1330,6 +1329,7 @@
   */
 /obj/item/bodypart/proc/check_wounding(woundtype, damage, wound_bonus, bare_wound_bonus)
 	// actually roll wounds if applicable
+	var/organic = is_organic_limb()
 	if(HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE))
 		damage *= 1.5
 
@@ -1341,12 +1341,20 @@
 	switch(woundtype)
 		if(WOUND_BLUNT)
 			wounds_checking = WOUND_LIST_BLUNT
+			if(!organic)
+				wounds_checking = WOUND_LIST_BLUNT_MECHANICAL
 		if(WOUND_SLASH)
 			wounds_checking = WOUND_LIST_SLASH
+			if(!organic)
+				wounds_checking = WOUND_LIST_SLASH_MECHANICAL
 		if(WOUND_PIERCE)
 			wounds_checking = WOUND_LIST_PIERCE
+			if(!organic)
+				wounds_checking = WOUND_LIST_PIERCE_MECHANICAL
 		if(WOUND_BURN)
 			wounds_checking = WOUND_LIST_BURN
+			if(!organic)
+				wounds_checking = WOUND_LIST_BURN_MECHANICAL
 
 	// quick re-check to see if bare_wound_bonus applies, for the benefit of log_wound(), see about getting the check from check_woundings_mods() somehow
 	if(ishuman(owner))
@@ -1462,7 +1470,7 @@
 
 	// we can (normally) only have one wound per type, but remember there's multiple types (smites like :B:loodless can generate multiple cuts on a limb)
 	for(var/datum/wound/W in wounds)
-		dam_mul *= W.damage_mulitplier_penalty
+		dam_mul *= W.damage_multiplier_penalty
 	
 	if(!LAZYLEN(wounds) && current_gauze && !replaced)
 		owner.visible_message("<span class='notice'>\The [current_gauze] on [owner]'s [name] fall away.</span>", "<span class='notice'>The [current_gauze] on your [name] fall away.</span>")

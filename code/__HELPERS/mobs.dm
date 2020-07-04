@@ -338,6 +338,9 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/target_loc = target.loc
 
+	LAZYADD(user.do_afters, target)
+	LAZYADD(target.targeted_by, user)
+
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
 	if (progress)
@@ -355,6 +358,10 @@ GLOBAL_LIST_EMPTY(species_list)
 			break
 		if(uninterruptible)
 			continue
+		
+		if(!(target in user.do_afters))
+			. = FALSE
+			break
 
 		if(drifting && !user.inertia_dir)
 			drifting = 0
@@ -364,6 +371,9 @@ GLOBAL_LIST_EMPTY(species_list)
 			. = 0
 			break
 	if (progress)
+		if(!QDELETED(target))
+			LAZYREMOVE(user.do_afters, target)
+			LAZYREMOVE(target.targeted_by, user)
 		qdel(progbar)
 
 
@@ -387,6 +397,10 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/atom/Tloc = null
 	if(target && !isturf(target))
 		Tloc = target.loc
+	
+	if(target)
+		LAZYADD(user.do_afters, target)
+		LAZYADD(target.targeted_by, user)
 
 	var/atom/Uloc = user.loc
 
@@ -431,6 +445,10 @@ GLOBAL_LIST_EMPTY(species_list)
 			if((Uloc != Tloc || Tloc != user) && !drifting)
 				. = 0
 				break
+		
+		if(target && !(target in user.do_afters))
+			. = 0
+			break
 
 		if(needhand)
 			//This might seem like an odd check, but you can still need a hand even when it's empty
@@ -443,6 +461,9 @@ GLOBAL_LIST_EMPTY(species_list)
 				. = 0
 				break
 	if (progress)
+		if(!QDELETED(target))
+			LAZYREMOVE(user.do_afters, target)
+			LAZYREMOVE(target.targeted_by, user)
 		qdel(progbar)
 
 /mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
@@ -459,10 +480,12 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/drifting = 0
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
 		drifting = 1
-
+	
 	var/list/originalloc = list()
 	for(var/atom/target in targets)
 		originalloc[target] = target.loc
+		LAZYADD(user.do_afters, target)
+		LAZYADD(target.targeted_by, user)
 
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
@@ -492,6 +515,11 @@ GLOBAL_LIST_EMPTY(species_list)
 					. = 0
 					break mainloop
 	if(progbar)
+		for(var/thing in targets)
+			var/atom/target = thing
+			if(!QDELETED(target))
+				LAZYREMOVE(user.do_afters, target)
+				LAZYREMOVE(target.targeted_by, user)
 		qdel(progbar)
 
 /proc/is_species(A, species_datum)

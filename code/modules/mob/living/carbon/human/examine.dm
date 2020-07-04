@@ -223,19 +223,17 @@
 			var/should_msg = "<B>[capitalize(t_his)] [parse_zone(t)] is missing!</B>\n"
 			if(t==BODY_ZONE_HEAD)
 				should_msg = "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>\n"
-				for(var/datum/wound/slash/loss/L in all_wounds)
-					if(L.fake_body_zone == t)
-						should_msg = null
-				if(should_msg)
-					msg += should_msg
-				continue
 			else if(t == BODY_ZONE_L_ARM || t == BODY_ZONE_L_LEG || t == BODY_ZONE_PRECISE_L_FOOT || t == BODY_ZONE_PRECISE_R_FOOT)
 				l_limbs_missing++
 			else if(t == BODY_ZONE_R_ARM || t == BODY_ZONE_R_LEG || t == BODY_ZONE_PRECISE_L_HAND || t == BODY_ZONE_PRECISE_R_HAND)
 				r_limbs_missing++
 			
-			for(var/datum/wound/slash/loss/L in all_wounds)
-				if(L.fake_body_zone == t)
+			for(var/datum/wound/L in all_wounds)
+				if((L.fake_body_zone == t) || (L.fake_body_zone == SSquirks.bodypart_child_to_parent[t]))
+					should_msg = null
+			
+			if(SSquirks.bodypart_child_to_parent[t])
+				if(SSquirks.bodypart_child_to_parent[t] in missing)
 					should_msg = null
 
 			if(should_msg)
@@ -243,9 +241,9 @@
 
 	if(l_limbs_missing >= 2 && r_limbs_missing == 0)
 		msg += "[t_He] look[p_s()] all right now.\n"
-	else if(l_limbs_missing == 0 && r_limbs_missing >= 2)
+	else if(l_limbs_missing == 0 && r_limbs_missing >= 4)
 		msg += "[t_He] really keeps to the left.\n"
-	else if(l_limbs_missing >= 2 && r_limbs_missing >= 2)
+	else if(l_limbs_missing >= 4 && r_limbs_missing >= 4)
 		msg += "[t_He] [p_do()]n't seem all there.\n"
 
 	if(!(screwy_self || (user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY))) //fake healthy

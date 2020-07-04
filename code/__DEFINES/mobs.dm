@@ -329,3 +329,5 @@
 #define LIMB_BODYPARTS list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
 #define EXTREMITY_BODYPARTS list(BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
 #define ORGAN_BODYPARTS list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)
+
+#define SSPARTS	list(/obj/item/bodypart/head, /obj/item/bodypart/chest, /obj/item/bodypart/groin, /obj/item/bodypart/r_arm, /obj/item/bodypart/r_hand, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_hand, /obj/item/bodypart/r_leg, /obj/item/bodypart/r_foot, /obj/item/bodypart/l_leg, /obj/item/bodypart/l_foot)

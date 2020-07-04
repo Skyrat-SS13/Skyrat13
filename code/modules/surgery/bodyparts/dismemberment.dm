@@ -144,11 +144,16 @@
 	
 	if(dismembered && dismember_bodyzone)
 		var/obj/item/bodypart/BP = owner.get_bodypart(dismember_bodyzone)
-		if(BP)
-			var/datum/wound/slash/loss/lost = new()
+		if(istype(BP))
+			var/datum/wound/lost
+			if(is_organic_limb())
+				lost = new /datum/wound/slash/loss()
+			else
+				lost = new /datum/wound/mechanical/slash/loss()
 			lost.name = "[lost.name] [lowertext(name)] stump"
 			lost.fake_limb = "[name]"
 			lost.fake_body_zone = body_zone
+			lost.desc = "Patient's [lowertext(name)] has been violently dismembered, leaving only a severely damaged stump in it's place."
 			lost.apply_wound(BP, TRUE)
 	//
 	owner = null
@@ -210,7 +215,7 @@
 /**
   * get_mangled_state() is relevant for flesh and bone bodyparts, and returns whether this bodypart has mangled skin, mangled bone, or both (or neither i guess)
   *
-  * Dismemberment for flesh and bone requires the victim to have the skin on their bodypart destroyed (either a critical cut or piercing wound), and at least a hairline fracture
+  * Dismemberment for flesh and bone requires the victim to have the skin on their bodypart mangled (any slash above or equal to moderate), muscle on their bodypart destroyed (either a critical cut or piercing wound), and at least a hairline fracture
   * (severe bone), at which point we can start rolling for dismembering. The attack must also deal at least 10 damage, and must be a brute attack of some kind (sorry for now, cakehat, maybe later)
   *
   * Returns: BODYPART_MANGLED_NONE if we're fine, BODYPART_MANGLED_SKIN if our skin is broken, BODYPART_MANGLED_BONE if our bone is broken, or BODYPART_MANGLED_BOTH if both are broken and we're up for dismembering
@@ -221,17 +226,17 @@
 	// we can (generally) only have one wound per type, but remember there's multiple types
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		if((istype(W, /datum/wound/slash) || istype(W, /datum/wound/pierce)) && W.severity >= WOUND_SEVERITY_TRIVIAL)
+		if(W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL, WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL) && W.severity >= WOUND_SEVERITY_MODERATE)
 			mangled_state |= BODYPART_MANGLED_SKIN
-		else if((istype(W, /datum/wound/slash) || istype(W, /datum/wound/pierce)) && W.severity >= WOUND_SEVERITY_CRITICAL)
+		if(W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL, WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL) && W.severity >= WOUND_SEVERITY_CRITICAL)
 			mangled_state |= BODYPART_MANGLED_MUSCLE
-		else if(istype(W, /datum/wound/blunt) && W.severity >= WOUND_SEVERITY_SEVERE)
+		if(W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL) && W.severity >= WOUND_SEVERITY_SEVERE)
 			mangled_state |= BODYPART_MANGLED_BONE
 
 	return mangled_state
 
 /**
-  * try_dismember() is used, once we've confirmed that a flesh and bone bodypart has both the skin and bone mangled, to actually roll for it
+  * try_dismember() is used, once we've confirmed that a flesh and bone bodypart has both the skin, muscle and bone mangled, to actually roll for it
   *
   * Mangling is described in the above proc, [/obj/item/bodypart/proc/get_mangled_state()]. This simply makes the roll for whether we actually dismember or not
   * using how damaged the limb already is, and how much damage this blow was for. If we have a critical bone wound instead of just a severe, we add +10% to the roll.

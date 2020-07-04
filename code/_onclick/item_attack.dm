@@ -212,10 +212,8 @@
 	var/message_verb = "attacked"
 	if(I.attack_verb && I.attack_verb.len)
 		message_verb = "[pick(I.attack_verb)]"
-	/* skyrat edit - bro im not a wimpy bitch bro i swear all my attacks land bro
 	if(current_force < I.force * FEEBLE_ATTACK_MSG_THRESHOLD)
 		message_verb = "[pick("feebly", "limply", "saplessly")] [message_verb]"
-	*/
 	if(!I.force) //skyrat edit
 		return
 	var/message_hit_area = ""

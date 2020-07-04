@@ -1,4 +1,4 @@
-/////BURN FIXING SURGERIES//////
+/////CUT FIXING SURGERIES//////
 
 #define REALIGN_INNARDS 1
 #define WELD_VEINS		2
@@ -8,7 +8,7 @@
 	name = "Repair puncture"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/repair_innards, /datum/surgery_step/seal_veins, /datum/surgery_step/close) // repeat between steps 2 and 3 until healed
 	target_mobtypes = list(/mob/living/carbon)
-	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
+	possible_locs = ALL_BODYPARTS
 	requires_real_bodypart = TRUE
 	targetable_wound = /datum/wound/pierce
 	var/next_step = REALIGN_INNARDS
