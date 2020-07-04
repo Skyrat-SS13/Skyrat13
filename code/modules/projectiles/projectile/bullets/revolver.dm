@@ -2,13 +2,14 @@
 
 /obj/item/projectile/bullet/n762
 	name = "7.62x38mmR bullet"
-	damage = 60
+	damage = 50     // Weaker than .357 but still very effective
 
 // .50AE (Desert Eagle)
 
 /obj/item/projectile/bullet/a50AE
 	name = ".50AE bullet"
-	damage = 60
+	damage = 65
+	armour_penetration = 30     //It's .50 AE, seriously?
 
 // .38 (Detective's Gun)
 
@@ -18,7 +19,7 @@
 
 /obj/item/projectile/bullet/c38/rubber
 	name = ".38 rubber bullet"
-	damage = 15
+	damage = 12
 	stamina = 48
 
 /obj/item/projectile/bullet/c38/trac
@@ -63,7 +64,7 @@
 
 /obj/item/projectile/bullet/a357
 	name = ".357 bullet"
-	damage = 60
+	damage = 58
 
 /obj/item/projectile/bullet/a357/ap
 	name = ".357 armor-piercing bullet"
