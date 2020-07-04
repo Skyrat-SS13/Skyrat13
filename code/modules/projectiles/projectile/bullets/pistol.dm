@@ -47,6 +47,7 @@
 		if(L.getStaminaLoss() >= 60)
 			L.Sleeping(300)
 		else
+<<<<<<< HEAD
 			L.adjustStaminaLoss(25) 
 
 // .32 ACP (Improvised Pistol)
@@ -61,3 +62,6 @@
 	eyeblur = 1
 	stamina = 20
 
+=======
+			L.adjustStaminaLoss(25)
+>>>>>>> 17ee8c5960... Merge pull request #12660 from YakumoChen/master

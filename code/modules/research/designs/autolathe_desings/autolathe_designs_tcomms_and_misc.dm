@@ -280,6 +280,7 @@
 	materials = list(/datum/material/iron = 6500, /datum/material/glass = 50)
 	build_path = /obj/item/weaponcrafting/improvised_parts/trigger_assembly
 	category = list("initial", "Misc")
+<<<<<<< HEAD
 
 /datum/design/focusing_lens
 	name = "Makeshift Lens"
@@ -289,3 +290,5 @@
 	build_path = /obj/item/weaponcrafting/improvised_parts/makeshift_lens
 	category = list("initial", "Misc")
 
+=======
+>>>>>>> 17ee8c5960... Merge pull request #12660 from YakumoChen/master

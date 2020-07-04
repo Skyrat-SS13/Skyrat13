@@ -155,6 +155,7 @@
 	name = "Syndicate Anti Tank Pistol"
 	desc = "A massively impractical and silly monstrosity of a pistol that fires .50 calliber rounds. The recoil is likely to dislocate a variety of joints without proper bracing."
 	pin = /obj/item/firing_pin/implant/pindicate
+<<<<<<< HEAD
 
 ////////////Improvised Pistol////////////
 
@@ -172,3 +173,5 @@
 /obj/item/gun/ballistic/automatic/pistol/improvised/nomag
 	spawnwithmagazine = FALSE // For crafting as you shouldn't get eight bullets for free otherwise people will reaper reload.
 
+=======
+>>>>>>> 17ee8c5960... Merge pull request #12660 from YakumoChen/master
