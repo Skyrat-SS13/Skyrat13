@@ -129,8 +129,8 @@ obj/item/robot_module/butler/Initialize()
 			cyborg_base_icon = "marinapeace"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/customrobot.dmi'
 			has_snowflake_deadsprite = TRUE
-		if("Drake")
-			cyborg_base_icon = "drakepeace"
+		if("Drake") // Dergborg brought to you by Navier#1236 | Skyrat | Commissioned Artist: deviantart.com/mizartz
+			cyborg_base_icon = "drakepeace" 
 			sleeper_overlay = "drakepeacesleeper"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
 			dogborg = TRUE

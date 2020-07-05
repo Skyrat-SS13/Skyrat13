@@ -418,11 +418,11 @@
 			moduleselect_icon = "medihound"
 			moduleselect_alternate_icon = 'modular_citadel/icons/ui/screen_cyborg.dmi'
 			dogborg = TRUE
-		if("Drake")
+		if("Drake") // Dergborg brought to you by Navier#1236 | Skyrat | Commissioned Artist: deviantart.com/mizartz
 			cyborg_base_icon = "drakemed"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
 			sleeper_overlay = "drakemedsleeper"
-			moduleselect_icon = "drakemech"
+			moduleselect_icon = "medihound"
 			moduleselect_alternate_icon = 'modular_citadel/icons/ui/screen_cyborg.dmi'
 			dogborg = TRUE
 		if("Alina")
@@ -543,7 +543,7 @@
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			sleeper_overlay = "valeengsleeper"
 			dogborg = TRUE
-		if("Drake")
+		if("Drake") // Dergborg brought to you by Navier#1236 | Skyrat | Commissioned Artist: deviantart.com/mizartz
 			cyborg_base_icon = "drakeeng"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
 			sleeper_overlay = "drakeengsleeper"
@@ -650,7 +650,7 @@
 			sleeper_overlay = "valesecsleeper"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			dogborg = TRUE
-		if("Drake")
+		if("Drake") // Dergborg brought to you by Navier#1236 | Skyrat | Commissioned Artist: deviantart.com/mizartz
 			cyborg_base_icon = "drakesec"
 			sleeper_overlay = "drakesecsleeper"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
@@ -858,6 +858,7 @@
 		"(Janitor) Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekjan"),
 		"(Janitor) Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canjan"),
 		"(Janitor) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyjan"),
+		"(Janitor) Drake" = image(icon = 'modular_skyrat/icons/mob/drakemech.dmi', icon_state = "drakejanitbox") 
 		)
 		var/list/L = list("(Service) DarkK9" = "k50", "(Service) Vale" = "valeserv", "(Service) ValeDark" = "valeservdark",
 						"(Janitor) Scrubpuppy" = "scrubpup")
@@ -928,6 +929,11 @@
 			cyborg_base_icon = "scrubpup"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			sleeper_overlay = "jsleeper"
+			dogborg = TRUE
+		if("(Janitor) Drake") // Dergborg brought to you by Navier#1236 | Skyrat | Commissioned Artist: deviantart.com/mizartz
+			cyborg_base_icon = "drakejanit"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
+			sleeper_overlay = "drakeminesleeper"
 			dogborg = TRUE
 		else
 			return FALSE
@@ -1020,7 +1026,7 @@
 			cyborg_icon_override = 'modular_skyrat/icons/mob/widerobot.dmi'
 			sleeper_overlay = "valeminesleeper"
 			dogborg = TRUE
-		if("Drake")
+		if("Drake") // Dergborg brought to you by Navier#1236 | Skyrat | Commissioned Artist: deviantart.com/mizartz
 			cyborg_base_icon = "drakemine"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/drakemech.dmi'
 			sleeper_overlay = "drakeminesleeper"
