@@ -34,7 +34,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/impskull
 	loot = list()
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/stack/sheet/bone = 4)
 	robust_searching = FALSE
 	death_sound = 'modular_skyrat/sound/misc/impdies.wav'
 	glorymessageshand = list("grabs the imp's eyes and rips them out, shoving the bloody imp aside!", "grabs and crushes the imp's skull apart with their bare hands!", "rips the imp's head clean off with their bare hands!")
