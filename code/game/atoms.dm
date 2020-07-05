@@ -446,17 +446,10 @@
 	LAZYINITLIST(blood_DNA)	//if our list of DNA doesn't exist yet, initialise it.
 	var/old_length = blood_DNA.len
 	blood_DNA |= new_blood_dna
-	var/changed = FALSE
-	if(!blood_DNA["color"])
-		blood_DNA["color"] = new_blood_dna["color"]
-		changed = TRUE
-	else
-		var/old = blood_DNA["color"]
-		blood_DNA["color"] = BlendRGB(blood_DNA["color"], new_blood_dna["color"])
-		changed = old != blood_DNA["color"]
+	blood_DNA["color"] = new_blood_dna["color"]
 	if(blood_DNA.len == old_length)
 		return FALSE
-	return changed
+	return TRUE
 
 //to add blood dna info to the object's blood_DNA list
 /atom/proc/transfer_blood_dna(list/blood_dna, list/datum/disease/diseases)
@@ -470,10 +463,7 @@
 		//some new blood DNA was added
 		if(!blood_dna["color"])
 			return
-		if(!blood_DNA["color"])
-			blood_DNA["color"] = blood_dna["color"]
-		else
-			blood_DNA["color"] = BlendRGB(blood_DNA["color"], blood_dna["color"])
+		blood_DNA["color"] = blood_dna["color"]
 
 //to add blood from a mob onto something, and transfer their dna info
 /atom/proc/add_mob_blood(mob/living/M)
