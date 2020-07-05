@@ -1,0 +1,6 @@
+author: "Gandalf2k15"
+delete-after: True
+changes: 
+  - rscadd: "Ported TG's gateway - Special thanks to Foxtrot!"
+  - bugfix: "VR now works."
+  - bugfix: "Gateway now works."
