@@ -321,13 +321,11 @@
 			return 1
 	return 0
 */ // Skyrat edit -- moved to modular_skyrat because of the fax port -- END
-/* moved to modular due to poster copying
 /obj/machinery/photocopier/proc/copier_empty()
 	if(copy || photocopy || check_ass())
 		return 0
 	else
 		return 1
-*/
 
 /*
  * Toner cartridge

@@ -1005,7 +1005,7 @@
 	body_damage_coeff = 0.75
 	px_x = 6
 	px_y = 0
-	stam_heal_tick = 4
+	stam_heal_tick = STAM_RECOVERY_LIMB
 	max_stamina_damage = 50
 	//skyrat variables
 	amputation_point = "right shoulder"
@@ -1113,7 +1113,7 @@
 	body_damage_coeff = 0.75
 	px_x = -2
 	px_y = 12
-	stam_heal_tick = 4
+	stam_heal_tick = STAM_RECOVERY_LIMB
 	max_stamina_damage = 50
 	//skyrat vars
 	dismember_bodyzone = BODY_ZONE_PRECISE_GROIN
@@ -1249,6 +1249,7 @@
 	dismember_bodyzone = BODY_ZONE_R_LEG
 	specific_locations = list("right sole", "right ankle", "right heel")
 //
+
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
 		return BODYPART_DISABLED_PARALYSIS
