@@ -457,13 +457,9 @@
 
 	var/old_length = blood_DNA.len
 	blood_DNA |= blood_dna
-	blood_DNA["color"] += blood_dna["color"]
+	blood_DNA["color"] = blood_dna["color"]
 	if(blood_DNA.len > old_length)
-		. = TRUE
-		//some new blood DNA was added
-		if(!blood_dna["color"])
-			return
-		blood_DNA["color"] = blood_dna["color"]
+		return TRUE
 
 //to add blood from a mob onto something, and transfer their dna info
 /atom/proc/add_mob_blood(mob/living/M)
@@ -532,7 +528,10 @@
 	return TRUE
 
 /atom/proc/blood_DNA_to_color()
-	return (blood_DNA && blood_DNA["color"]) || BLOOD_COLOR_HUMAN
+	var/final_rgb = BLOOD_COLOR_HUMAN
+	if(blood_DNA && blood_DNA["color"])
+		final_rgb = blood_DNA["color"]
+	return final_rgb
 
 /atom/proc/clean_blood()
 	. = blood_DNA? TRUE : FALSE
