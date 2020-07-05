@@ -61,6 +61,7 @@
 	//Pressure
 	moles_for_pressure *= R_IDEAL_GAS_EQUATION * final_temp / CELL_VOLUME 
 	//
+	var/leisure = 0.7
 	for(var/t in affected_turfs)
 		current_turf = t
 		current_gasmix = current_turf.air
@@ -69,7 +70,17 @@
 				current_gasmix.gases[gas_datum] = final_gas_mix[gas_datum]
 			current_gasmix.temperature = final_temp
 			current_turf.update_visuals()
-			if(current_gasmix.similar_pressure(moles_for_pressure))
+			leisure = 0.7
+			current_gasmix.prev_pressure = current_gasmix.cur_pressure
+			current_gasmix.cur_pressure = moles_for_pressure
+			if(current_gasmix.cur_pressure>500) //Higher pressure similarity when on fire/high pressure. Done this way for speed?
+				if(current_gasmix.cur_pressure>4000)
+					leisure = 100
+				else if(current_gasmix.cur_pressure>1100)
+					leisure = 20
+				else
+					leisure = 10
+			if(current_gasmix.cur_pressure < current_gasmix.prev_pressure+leisure && current_gasmix.cur_pressure > current_gasmix.prev_pressure-leisure)
 				SSair.remove_from_active(current_turf)
 			else
 				SSair.add_to_active(current_turf)
@@ -93,21 +104,6 @@
 /datum/gas_mixture
 	var/prev_pressure = 101.3 //Doesn't matter much if it's wrong initially
 	var/cur_pressure = 101.3
-
-/datum/gas_mixture/proc/similar_pressure(press)
-	prev_pressure = cur_pressure
-	cur_pressure = press
-	var/leisure = 1
-	if(cur_pressure>500) //Higher pressure similarity when on fire/high pressure. Done this way for speed?
-		if(cur_pressure>4000)
-			leisure = 800
-		else if(cur_pressure>1100)
-			leisure = 100
-		else
-			leisure = 25
-	if(cur_pressure < prev_pressure+leisure && cur_pressure > prev_pressure-leisure)
-		return TRUE
-	return FALSE
 
 /turf/proc/handle_planet_atmos()
 	return
