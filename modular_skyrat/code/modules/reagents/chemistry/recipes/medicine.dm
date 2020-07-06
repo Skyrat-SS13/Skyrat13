@@ -22,8 +22,8 @@
 /datum/chemical_reaction/corticosteroids
 	name = "Corticosteroids"
 	id = /datum/reagent/medicine/corticosteroids
-	results = list(/datum/reagent/medicine/corticosteroids = 10)
-	required_reagents = list(/datum/reagent/medicine/synthflesh = 8, /datum/reagent/medicine/ephedrine = 4, /datum/reagent/medicine/kelotane = 4, /datum/reagent/medicine/bicaridine = 4)
+	results = list(/datum/reagent/medicine/corticosteroids = 12.5)
+	required_reagents = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/medicine/ephedrine = 5, /datum/reagent/medicine/kelotane = 5, /datum/reagent/medicine/bicaridine = 5)
 	mix_message = "The mixture bubbles into a pinkish color."
 
 /datum/chemical_reaction/fibrin

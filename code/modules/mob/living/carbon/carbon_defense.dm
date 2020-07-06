@@ -121,10 +121,16 @@
 			extra_wound_details = ", threatening to sever it entirely"
 		else if(mangled_state & BODYPART_MANGLED_BONE && I.get_sharpness())
 			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through to the bone"
+			if(!hit_BP.is_organic_limb())
+				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through to the endoskeleton"
 		else if(mangled_state & BODYPART_MANGLED_MUSCLE && I.get_sharpness())
 			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through the flesh"
+			if(!hit_BP.is_organic_limb())
+				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through various components"
 		else if(mangled_state & BODYPART_MANGLED_SKIN && I.get_sharpness())
 			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through torn skin"
+			if(!hit_BP.is_organic_limb())
+				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through external armoring"
 
 	var/message_verb = "attacked"
 	if(I.attack_verb && I.attack_verb.len)
