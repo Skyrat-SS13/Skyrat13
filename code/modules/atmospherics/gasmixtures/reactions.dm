@@ -396,7 +396,7 @@
 	min_requirements = list(
 		/datum/gas/nitrogen = 10,
 		/datum/gas/tritium = 5,
-		"TEMP" = 5000000)
+		"TEMP" = 500000)
 
 /datum/gas_reaction/nobliumformation/react(datum/gas_mixture/air)
 	var/list/cached_gases = air.gases
