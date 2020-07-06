@@ -1,0 +1,8 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - bugfix: "Metastation Robotics & Mech Bay APC now wired to the grid."
+  - bugfix: "Metastation kitchen now has an eggs fridge and the wonky kitchen tables are now un-wonkified."
+  - bugfix: "Metastation HoS office has the RC console back."
+  - bugfix: "Metastation bar has fire extinguishers."
+  - bugfix: "Metastation bruise pack and ointment replaced with suture and mesh in medbay lobby."

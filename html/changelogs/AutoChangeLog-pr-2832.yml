@@ -1,0 +1,4 @@
+author: "KathrinBailey"
+delete-after: True
+changes: 
+  - bugfix: "Rapid Shuttle Device now uses the correct icon once designating an area (you can see it after you use it)."
