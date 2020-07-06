@@ -24,7 +24,7 @@
 	treatable_by_grabbed = list()
 	treatable_sharp = FALSE
 	accepts_gauze = FALSE
-	base_treat_time = 10 SECONDS
+	base_treat_time = 6 SECONDS
 
 	processes = FALSE
 	treat_priority = FALSE
@@ -103,7 +103,7 @@
 		to_chat(user, "<span class='warning'>The limb has already been patched!</span>")
 		return
 	user.visible_message("<span class='notice'>[user] begins wrapping [victim]'s [limb.name] with \the [I]...</span>", "<span class='notice'>You begin wrapping [user == victim ? "your" : "[victim]'s"] [limb.name] with \the [I]...</span>")
-	var/self_penalty_mult = (user == victim ? 3 : 1)
+	var/self_penalty_mult = (user == victim ? 2.5 : 1)
 	var/time_mod = 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
@@ -130,7 +130,7 @@
 		user.visible_message("<span class='notice'>[user] begins welding \the [patch] on [victim]'s [limb.name] with \the [I]...</span>", "<span class='notice'>You begin welding \the [patch] [user == victim ? "your" : "[victim]'s"] [limb.name] with \the [I]...</span>")
 	else
 		user.visible_message("<span class='notice'>[user] begins welding \the [lowertext(name)] on [victim]'s [limb.name] with \the [I]...</span>", "<span class='notice'>You begin welding \the [lowertext(name)] on [user == victim ? "your" : "[victim]'s"] [limb.name] with \the [I]...</span>")
-	var/self_penalty_mult = (user == victim ? 3 : 1)
+	var/self_penalty_mult = (user == victim ? 2.5 : 1)
 	var/time_mod = 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
@@ -151,7 +151,7 @@
 		to_chat(user, "<span class='warning'>The limb has already been taped!</span>")
 		return
 	user.visible_message("<span class='notice'>[user] begins wrapping [victim]'s [limb.name] with \the [I]...</span>", "<span class='notice'>You begin wrapping [user == victim ? "your" : "[victim]'s"] [limb.name] with \the [I]...</span>")
-	var/self_penalty_mult = (user == victim ? 3 : 1)
+	var/self_penalty_mult = (user == victim ? 2.5 : 1)
 	var/time_mod = 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return

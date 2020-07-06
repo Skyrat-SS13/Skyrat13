@@ -25,6 +25,8 @@
 	/// Chance to shock and stun the owner when hit
 	var/shock_chance = 0
 
+	base_treat_time = 6 SECONDS
+
 /*
 	Overwriting of base procs
 */

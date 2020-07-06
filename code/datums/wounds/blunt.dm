@@ -32,6 +32,8 @@
 	/// If this is a chest wound and this is set, we have this chance to cough up blood when hit in the chest
 	var/internal_bleeding_chance = 0
 
+	base_treat_time = 4 SECONDS
+
 /*
 	Overwriting of base procs
 */

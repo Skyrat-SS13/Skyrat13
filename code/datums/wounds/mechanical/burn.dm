@@ -59,6 +59,8 @@
 	/// Boolean used by the damage malfunction to burn on being processed
 	var/damaging = FALSE
 
+	base_treat_time = 6 SECONDS
+
 /datum/wound/mechanical/burn/remove_wound(ignore_limb, replaced, forced)
 	. = ..()
 	demalfunction("disable")
