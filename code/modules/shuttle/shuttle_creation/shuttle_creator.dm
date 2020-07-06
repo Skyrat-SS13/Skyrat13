@@ -237,7 +237,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 
 	port.register()
 
-	icon_state = "rsd_used"
+	icon_state = "rsd_empty" // Skyrat Edit: The icon in tools.dmi is rsd_empty and not rsd_used, this is a fix.
 
 	//Clear highlights
 	overlay_holder.clear_highlights()
