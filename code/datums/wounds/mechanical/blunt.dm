@@ -230,8 +230,8 @@
 /// If someone is snapping our servos into place by hand with an aggro grab and help intent
 /datum/wound/mechanical/blunt/moderate/proc/chiropractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
-	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/robotics, 3 SECONDS, THRESHOLD_UNTRAINED, FALSE)
-	var/prob_mod = user.mind?.action_skill_mod(/datum/skill/numerical/robotics, 5, THRESHOLD_UNTRAINED, TRUE)
+	var/time_mod = 1
+	var/prob_mod = 10
 	if(time_mod)
 		time *= time_mod
 
@@ -253,8 +253,8 @@
 /// If someone is snapping our dislocated joint into a fracture by hand with an aggro grab and harm or disarm intent
 /datum/wound/mechanical/blunt/moderate/proc/malpractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
-	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/robotics, 3 SECONDS, THRESHOLD_UNTRAINED, FALSE)
-	var/prob_mod = user.mind?.action_skill_mod(/datum/skill/numerical/robotics, 10, THRESHOLD_UNTRAINED, TRUE)
+	var/time_mod = 1
+	var/prob_mod = 10
 	if(time_mod)
 		time *= time_mod
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))

@@ -242,15 +242,15 @@
 /// If someone is snapping our dislocated joint back into place by hand with an aggro grab and help intent
 /datum/wound/blunt/moderate/proc/chiropractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
-	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/first_aid, 3 SECONDS, THRESHOLD_UNTRAINED, FALSE)
-	var/prob_mod = user.mind?.action_skill_mod(/datum/skill/numerical/first_aid, 5, THRESHOLD_UNTRAINED, TRUE)
+	var/time_mod = 1
+	var/prob_mod = 20
 	if(time_mod)
 		time *= time_mod
 
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(50 + prob_mod))
+	if(prob(60 + prob_mod))
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] back into place!</span>", "<span class='notice'>You snap [victim]'s dislocated [limb.name] back into place!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] back into place!</span>")
 		victim.emote("scream")
@@ -265,8 +265,8 @@
 /// If someone is snapping our dislocated joint into a fracture by hand with an aggro grab and harm or disarm intent
 /datum/wound/blunt/moderate/proc/malpractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
-	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/first_aid, 3 SECONDS, THRESHOLD_UNTRAINED, FALSE)
-	var/prob_mod = user.mind?.action_skill_mod(/datum/skill/numerical/first_aid, 10, THRESHOLD_UNTRAINED, TRUE)
+	var/time_mod = 1
+	var/prob_mod = 20
 	if(time_mod)
 		time *= time_mod
 	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
@@ -349,8 +349,8 @@
 /// If someone is massaging the ribs
 /datum/wound/blunt/moderate/ribcage/chiropractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
-	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/first_aid, 3 SECONDS, THRESHOLD_UNTRAINED, FALSE)
-	var/prob_mod = user.mind?.action_skill_mod(/datum/skill/numerical/first_aid, 5, THRESHOLD_UNTRAINED, TRUE)
+	var/time_mod = 1
+	var/prob_mod = 20
 	if(time_mod)
 		time *= time_mod
 
@@ -432,8 +432,8 @@
 /// If someone is massaging the ribs
 /datum/wound/blunt/moderate/hips/chiropractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
-	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/first_aid, 3 SECONDS, THRESHOLD_UNTRAINED, FALSE)
-	var/prob_mod = user.mind?.action_skill_mod(/datum/skill/numerical/first_aid, 5, THRESHOLD_UNTRAINED, TRUE)
+	var/time_mod = 1
+	var/prob_mod = 20
 	if(time_mod)
 		time *= time_mod
 

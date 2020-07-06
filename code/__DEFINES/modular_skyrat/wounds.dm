@@ -9,8 +9,8 @@
 #define WOUND_SEVERITY_MODERATE	2
 #define WOUND_SEVERITY_SEVERE	3
 #define WOUND_SEVERITY_CRITICAL	4
-#define WOUND_SEVERITY_LOSS		6 // theoretical total limb loss, like dismemberment for cuts
-#define WOUND_SEVERITY_PERMANENT 7 // for wounds, severe or not, that cannot be removed via normal means (e.g just amputate the limb affected)
+#define WOUND_SEVERITY_LOSS		5 // theoretical total limb loss, like dismemberment for cuts
+#define WOUND_SEVERITY_PERMANENT 6 // for wounds, severe or not, that cannot be removed via normal means (e.g just amputate the limb affected)
 
 #define WOUND_BLUNT 0 // any brute weapon/attack that doesn't have sharpness. rolls for blunt bone wounds
 #define WOUND_SLASH 1 // any brute weapon/attack with sharpness = SHARP_EDGED. rolls for slash wounds
