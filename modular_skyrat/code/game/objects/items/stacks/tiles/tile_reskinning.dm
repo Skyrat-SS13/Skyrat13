@@ -1,6 +1,6 @@
 // Titanium Coloured Tiles
 
-/obj/item/stack/tile/mineral/titanium/AltClick(mob/user)
+/obj/item/stack/tile/mineral/titanium/ShiftClick(mob/user)
 	var/choice = input(user, "What tile would you like?") as null|anything in list("Titanium", "Yellow Titanium", "Blue Titanium", "White Titanium", "Purple Titanium", "Titanium Tile", "Yellow Titanium Tile", "Blue Titanium Tile", "White Titanium Tile", "Purple Titanium Tile")
 	switch(choice)
 		if("Titanium")
@@ -21,7 +21,7 @@
 			desc = "Sleek white titanium tiles."
 		if("Purple Titanium")
 			turf_type = /turf/open/floor/mineral/titanium/purple
-			icon_state = "tile_shuttl_purple"
+			icon_state = "tile_shuttle_purple"
 			desc = "Sleek purple titanium tiles."
 		if("Titanium Tile")
 			turf_type = /turf/open/floor/mineral/titanium/old
@@ -44,8 +44,8 @@
 			icon_state = "tile_shuttle_old_purple"
 			desc = "Purple titanium floor tiles."
 
-/obj/item/stack/tile/plasteel/AltClick(mob/user)
-	var/choice = input(user, "What tile would you like?") as null|anything in list("Plasteel", "White Plasteel", "Chapel Flooring", "Shower Tiles", "Shower Drain", "Freezer", "Kitchen", "Grimy", "Solar Panel")
+/obj/item/stack/tile/plasteel/ShiftClick(mob/user)
+	var/choice = input(user, "What tile would you like?") as null|anything in list("Plasteel", "White Plasteel", "Chapel Flooring", "Shower Tiles", "Freezer", "Kitchen", "Grimy", "Solar Panel")
 	switch(choice)
 		if("Plasteel")
 			turf_type = /turf/open/floor/plasteel
@@ -72,11 +72,6 @@
 			icon = 'modular_skyrat/icons/obj/tiles.dmi'
 			icon_state = "tile_shower"
 			desc = "Shower tiling."
-		if("Shower Drain")
-			turf_type = /turf/open/floor/plasteel/showroomfloor/shower/
-			icon = 'modular_skyrat/icons/obj/tiles.dmi'
-			icon_state = "tile_drain"
-			desc = "A shower drain."
 		if("Freezer")
 			turf_type = /turf/open/floor/plasteel/freezer
 			icon = 'modular_skyrat/icons/obj/tiles.dmi'
@@ -93,8 +88,30 @@
 			icon_state = "tile_grimy"
 			desc = "I'm sure it'll look nice somewhere?"
 		if("Solar Panel")
-			turf_type = /turf/open/floor/plasteel/solarpanel
+			turf_type = /turf/open/floor/plasteel/airless/solarpanel
 			icon = 'modular_skyrat/icons/obj/tiles.dmi'
 			icon_state = "tile_solar"
 			desc = "Using this indoors is against an Intergalactic War Crime."
 
+/turf/open/floor/plasteel/attackby(obj/item/stack/tile/plasteel, mob/user)
+	var/choice = input(user, "This floor has a certain icon stored in memory. What would you like to change it to?") as null|anything in list("Plasteel", "White Plasteel", "Chapel Flooring", "Shower Tiles", "Freezer", "Kitchen", "Grimy", "Solar Panel")
+	switch(choice)
+		if("Plasteel")
+			icon_regular_floor = "floor"
+		if("White Plasteel")
+			icon_regular_floor = "white"
+		if("Dark Plasteel")
+			icon_regular_floor = "darkfull"
+		if("Chapel Flooring")
+			icon_regular_floor = "chapel_alt"
+		if("Shower Tiles")
+			icon_regular_floor = "showroomfloor"
+		if("Freezer")
+			icon_regular_floor = "freezerfloor"
+		if("Kitchen")
+			icon_regular_floor = "cafeteria"
+		if("Grimy")
+			icon_regular_floor = "grimy"
+		if("Solar Panel")
+			icon_regular_floor = "solarpanel"
+		else return()
