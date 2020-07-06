@@ -43,9 +43,9 @@
 			turf_type = /turf/open/floor/mineral/titanium/old/purple
 			icon_state = "tile_shuttle_old_purple"
 			desc = "Purple titanium floor tiles."
-
+/* Temporarily disabled for testing purposes.
 /obj/item/stack/tile/plasteel/ShiftClick(mob/user)
-	var/choice = input(user, "What tile would you like?") as null|anything in list("Plasteel", "White Plasteel", "Chapel Flooring", "Shower Tiles", "Freezer", "Kitchen", "Grimy", "Solar Panel")
+	var/choice = input(user, "What tile would you like?") as null|anything in list("Plasteel", "White Plasteel", "Dark Plasteel", "Chapel Flooring", "Shower Tiles", "Freezer", "Kitchen", "Grimy", "Solar Panel")
 	switch(choice)
 		if("Plasteel")
 			turf_type = /turf/open/floor/plasteel
@@ -92,26 +92,27 @@
 			icon = 'modular_skyrat/icons/obj/tiles.dmi'
 			icon_state = "tile_solar"
 			desc = "Using this indoors is against an Intergalactic War Crime."
-
-/turf/open/floor/plasteel/attackby(obj/item/stack/tile/plasteel, mob/user)
-	var/choice = input(user, "This floor has a certain icon stored in memory. What would you like to change it to?") as null|anything in list("Plasteel", "White Plasteel", "Chapel Flooring", "Shower Tiles", "Freezer", "Kitchen", "Grimy", "Solar Panel")
-	switch(choice)
-		if("Plasteel")
-			icon_regular_floor = "floor"
-		if("White Plasteel")
-			icon_regular_floor = "white"
-		if("Dark Plasteel")
-			icon_regular_floor = "darkfull"
-		if("Chapel Flooring")
-			icon_regular_floor = "chapel_alt"
-		if("Shower Tiles")
-			icon_regular_floor = "showroomfloor"
-		if("Freezer")
-			icon_regular_floor = "freezerfloor"
-		if("Kitchen")
-			icon_regular_floor = "cafeteria"
-		if("Grimy")
-			icon_regular_floor = "grimy"
-		if("Solar Panel")
-			icon_regular_floor = "solarpanel"
-		else return()
+*/
+/turf/open/floor/plasteel/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/stack/tile/plasteel))
+		var/choice = input(user, "This floor has a certain icon stored in memory. What would you like to change it to?") as null|anything in list("Plasteel", "White Plasteel", "Dark Plasteel", "Chapel Flooring", "Shower Tiles", "Freezer", "Kitchen", "Grimy", "Solar Panel")
+		switch(choice)
+			if("Plasteel")
+				icon_regular_floor = "floor"
+			if("White Plasteel")
+				icon_regular_floor = "white"
+			if("Dark Plasteel")
+				icon_regular_floor = "darkfull"
+			if("Chapel Flooring")
+				icon_regular_floor = "chapel_alt"
+			if("Shower Tiles")
+				icon_regular_floor = "showroomfloor"
+			if("Freezer")
+				icon_regular_floor = "freezerfloor"
+			if("Kitchen")
+				icon_regular_floor = "cafeteria"
+			if("Grimy")
+				icon_regular_floor = "grimy"
+			if("Solar Panel")
+				icon_regular_floor = "solarpanel"
+			else return()
