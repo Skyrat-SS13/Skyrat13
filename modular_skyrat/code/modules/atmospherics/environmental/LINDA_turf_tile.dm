@@ -61,7 +61,7 @@
 	//Pressure
 	moles_for_pressure *= R_IDEAL_GAS_EQUATION * final_temp / CELL_VOLUME 
 	//
-	var/leisure = 0.7
+	var/leisure = 0.8
 	for(var/t in affected_turfs)
 		current_turf = t
 		current_gasmix = current_turf.air
@@ -70,7 +70,7 @@
 				current_gasmix.gases[gas_datum] = final_gas_mix[gas_datum]
 			current_gasmix.temperature = final_temp
 			current_turf.update_visuals()
-			leisure = 0.7
+			leisure = 0.8
 			current_gasmix.prev_pressure = current_gasmix.cur_pressure
 			current_gasmix.cur_pressure = moles_for_pressure
 			/*if(current_gasmix.cur_pressure>500) //Higher pressure similarity when on fire/high pressure. Done this way for speed?
