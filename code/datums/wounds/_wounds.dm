@@ -37,7 +37,7 @@
 	/// The list of wounds it belongs in, WOUND_LIST_BLUNT, WOUND_LIST_SLASH, or WOUND_LIST_BURN
 	var/wound_type
 
-	/// What body zones can we affect
+	/// What bodyparts can we affect
 	var/list/viable_zones = ALL_BODYPARTS
 	/// Who owns the body part that we're wounding
 	var/mob/living/carbon/victim = null

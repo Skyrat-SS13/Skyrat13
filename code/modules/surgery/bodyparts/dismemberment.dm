@@ -226,11 +226,16 @@
 	// we can (generally) only have one wound per type, but remember there's multiple types
 	for(var/i in wounds)
 		var/datum/wound/W = i
+		if(!istype(W))
+			continue
 		if(W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL, WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL) && W.severity >= WOUND_SEVERITY_MODERATE)
+			to_chat(owner, "skin")
 			mangled_state |= BODYPART_MANGLED_SKIN
 		if(W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL, WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL) && W.severity >= WOUND_SEVERITY_CRITICAL)
 			mangled_state |= BODYPART_MANGLED_MUSCLE
+			to_chat(owner, "muscle")
 		if(W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL) && W.severity >= WOUND_SEVERITY_SEVERE)
+			to_chat(owner, "bone")
 			mangled_state |= BODYPART_MANGLED_BONE
 
 	return mangled_state

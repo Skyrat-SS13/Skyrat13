@@ -16,6 +16,7 @@
 	var/loading = 0 // Nice loading text
 	var/autoprocess = 0
 	var/list/records = list()
+	var/list/infractions = list() //list of people who have failed to input a correct account number and password
 
 	light_color = LIGHT_COLOR_BLUE
 
@@ -274,6 +275,35 @@
 	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
+/obj/machinery/computer/cloning/proc/infraction(mob/living/criminal, var/datum/bank_account/get_fucked, var/obj/machinery/clonepod/pod)
+	if(!infractions[criminal])
+		infractions[criminal] =  0
+	infractions[criminal] = max(0, infractions[criminal])
+	infractions[criminal]++
+	if(infractions[criminal] < 3)
+		pod?.radio?.talk_into(pod, "[criminal] has failed to input account ID/Password of [get_fucked.account_holder] on this clonepod unit! [usr.p_they(TRUE)] has [3 - infractions[criminal]] attempts left before security measures are taken.", RADIO_CHANNEL_MEDICAL)
+	else
+		pod?.radio?.talk_into(pod, "<span class='danger'>SECURITY ALERT: [criminal] has repeatedly failed to input account ID/Password of [get_fucked.account_holder] on this clonepod unit.", RADIO_CHANNEL_MEDICAL)
+	if(infractions[criminal] >= 3)
+		pod?.radio?.talk_into(pod, "<span class='danger'>SECURITY ALERT: [criminal] has repeatedly failed to input account ID/Password of [get_fucked.account_holder] on this clonepod unit.", RADIO_CHANNEL_COMMON)
+		pod?.radio?.talk_into(pod, "<span class='danger'>SECURITY ALERT: [criminal] has repeatedly failed to input account ID/Password of [get_fucked.account_holder] on this clonepod unit.", RADIO_CHANNEL_SECURITY)
+		var/datum/datacore/D = GLOB.data_core
+		var/datum/data/record/crimeman
+		var/id = null
+		if(istype(D) && pod?.radio)
+			for(var/datum/data/record/R in D.security)
+				if(R.fields["name"] == criminal.name)
+					id = R.fields["id"]
+					crimeman = R
+			if(id)
+				var/datum/data/crime/stop_resisting = D.createCrimeEntry("Bank Fraud", "Suspect has repeatedly attempted to use the bank account of [get_fucked.account_holder] and failed to provide the correct ID and password.", "Cloning Security Measures", "[STATION_TIME_TIMESTAMP("hh:mm:ss", world.time)]")
+				crimeman.fields["criminal"] = "*Arrest*"
+				D.addMajorCrime(id, stop_resisting)
+				pod.radio.talk_into(pod, "[criminal]'s security records have been updated to arrest.", RADIO_CHANNEL_SECURITY)
+			else
+				pod.radio.talk_into(pod, "Unable to set [criminal] to arrest. Apprehend subject when possible.", RADIO_CHANNEL_SECURITY)
+		infractions[criminal] = 0
+
 /obj/machinery/computer/cloning/Topic(href, href_list)
 	if(..())
 		return
@@ -305,9 +335,31 @@
 					for(var/obj/item/card/id/C in H)
 						if(C.registered_account)
 							possible_accounts[C.registered_account.account_holder] = C.registered_account
+					for(var/obj/item/pda/P in H)
+						if(P.id)
+							var/obj/item/card/id/C = P.id
+							if(C.registered_account)
+								possible_accounts[C.registered_account.account_holder] = C.registered_account
 				if(possible_accounts.len)
 					var/choice = input(usr, "Which bank account do you want to use?", "Bank Account", possible_accounts[1]) as anything in possible_accounts
-					pod.currently_linked_account = possible_accounts[choice]
+					var/datum/bank_account/get_fucked = possible_accounts[choice]
+					if(pod.initial_account == get_fucked)
+						pod.currently_linked_account = get_fucked
+					else
+						var/accountnum = input(usr, "Input the account ID for the selected account", "Security measures", 000000) as num
+						if(istext(accountnum))
+							accountnum = text2num(accountnum)
+						if(accountnum == get_fucked.account_id)
+							if(get_fucked.account_password)
+								var/accountpassword = input(usr, "Input the account password for the selected account", "Security measures", 000000) as num
+								if(accountpassword == get_fucked.account_password)
+									pod.currently_linked_account = possible_accounts[choice]
+								else
+									infraction(usr, get_fucked, pod)
+							else
+								pod.currently_linked_account = possible_accounts[choice]
+						else
+							infraction(usr, get_fucked, pod)
 
 	else if ((href_list["scan"]) && !isnull(scanner) && scanner.is_operational())
 		scantemp = ""

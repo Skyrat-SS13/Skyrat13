@@ -1370,7 +1370,11 @@
 
 	//cycle through the wounds of the relevant category from the most severe down
 	for(var/PW in wounds_checking)
-		var/datum/wound/possible_wound = PW
+		//I fucking hate byond, i cannot see the possible zones without creating a fucking new wound datum
+		var/datum/wound/possible_wound = new PW()
+		if(!(body_zone in possible_wound.viable_zones)) //Applying this wound won't even work, let's try the next one
+			qdel(possible_wound)
+			continue
 		var/datum/wound/replaced_wound
 		for(var/i in wounds)
 			var/datum/wound/existing_wound = i
@@ -1383,12 +1387,14 @@
 		if(initial(possible_wound.threshold_minimum) < injury_roll)
 			var/datum/wound/new_wound
 			if(replaced_wound)
-				new_wound = replaced_wound.replace_wound(possible_wound)
+				new_wound = replaced_wound.replace_wound(possible_wound.type)
 				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll)
+				qdel(possible_wound)
 			else
-				new_wound = new possible_wound
+				new_wound = new possible_wound.type
 				new_wound.apply_wound(src)
 				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll)
+				qdel(possible_wound)
 			return new_wound
 
 // try forcing a specific wound, but only if there isn't already a wound of that severity or greater for that type on this bodypart

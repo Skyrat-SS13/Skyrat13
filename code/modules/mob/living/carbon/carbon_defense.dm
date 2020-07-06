@@ -117,12 +117,14 @@
 	var/extra_wound_details = ""
 	if(I.damtype == BRUTE && hit_BP.can_dismember())
 		var/mangled_state = hit_BP.get_mangled_state()
-		if(mangled_state == BODYPART_MANGLED_BOTH)
+		if(mangled_state & BODYPART_MANGLED_BOTH)
 			extra_wound_details = ", threatening to sever it entirely"
-		else if(mangled_state == BODYPART_MANGLED_SKIN && I.get_sharpness())
+		else if(mangled_state & BODYPART_MANGLED_BONE && I.get_sharpness())
 			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through to the bone"
-		else if(mangled_state == BODYPART_MANGLED_BONE && I.get_sharpness())
-			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] at the remaining tissue"
+		else if(mangled_state & BODYPART_MANGLED_MUSCLE && I.get_sharpness())
+			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through the flesh"
+		else if(mangled_state & BODYPART_MANGLED_SKIN && I.get_sharpness())
+			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through torn skin"
 
 	var/message_verb = "attacked"
 	if(I.attack_verb && I.attack_verb.len)

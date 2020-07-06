@@ -36,47 +36,68 @@
 	var/list/missing = get_missing_limbs()
 	*/
 	var/list/msg = list("<span class='warning'>")
+
 	var/list/missing = ALL_BODYPARTS
 	var/list/disabled = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
-		if(BP.disabled)
+		//skyrat edit
+		if(BP.is_disabled())
 			disabled += BP
+		//
 		missing -= BP.body_zone
 		for(var/obj/item/I in BP.embedded_objects)
+		//skyrat edit
 			if(I.isEmbedHarmless())
 				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] stuck to [t_his] [BP.name]!</B>\n"
 			else
 				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
-		
 		for(var/datum/wound/W in BP.wounds)
 			msg += "[W.get_examine_description(user)]\n"
+		//
 
 	for(var/X in disabled)
 		var/obj/item/bodypart/BP = X
 		var/damage_text
-		if(!(BP.get_damage(include_stamina = FALSE) >= BP.max_damage)) //Stamina is disabling the limb
-			damage_text = "limp and lifeless"
-		else
-			damage_text = (BP.brute_dam >= BP.burn_dam) ? BP.heavy_brute_msg : BP.heavy_burn_msg
-		msg += "<B>[capitalize(t_his)] [BP.name] is [damage_text]!</B>\n"
-	//
+		//skyrat edit
+		if(BP.is_disabled() != BODYPART_DISABLED_WOUND) // skip if it's disabled by a wound (cuz we'll be able to see the bone sticking out!)
+			if(!(BP.get_damage(include_stamina = FALSE) >= BP.max_damage)) //we don't care if it's stamcritted
+				damage_text = "limp and lifeless"
+			else
+				damage_text = (BP.brute_dam >= BP.burn_dam) ? BP.heavy_brute_msg : BP.heavy_burn_msg
+			msg += "<B>[capitalize(t_his)] [BP.name] is [damage_text]!</B>\n"
+		//
+
+	//stores missing limbs
+	var/l_limbs_missing = 0
+	var/r_limbs_missing = 0
 	for(var/t in missing)
+		var/should_msg = "<B>[capitalize(t_his)] [parse_zone(t)] is missing!</B>\n"
 		if(t==BODY_ZONE_HEAD)
-			/* skyrat edit
-			. += "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>"
-			*/
-			//skyrat edit
-			msg += "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>\n"
-			//
-			continue
-		/* skyrat edit
-		. += "<span class='warning'><B>[t_His] [parse_zone(t)] is missing!</B></span>"
-		*/
-		msg += "<span class='warning'><B>[t_His] [parse_zone(t)] is missing!</B></span>\n"
-	/* skyrat edit
-	var/list/msg = list()
-	*/
+			should_msg = "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>\n"
+		else if(t == BODY_ZONE_L_ARM || t == BODY_ZONE_L_LEG || t == BODY_ZONE_PRECISE_L_FOOT || t == BODY_ZONE_PRECISE_R_FOOT)
+			l_limbs_missing++
+		else if(t == BODY_ZONE_R_ARM || t == BODY_ZONE_R_LEG || t == BODY_ZONE_PRECISE_L_HAND || t == BODY_ZONE_PRECISE_R_HAND)
+			r_limbs_missing++
+		
+		for(var/datum/wound/L in all_wounds)
+			if(L.severity == WOUND_SEVERITY_PERMANENT)
+				if((L.fake_body_zone == t) || (L.fake_body_zone == SSquirks.bodypart_child_to_parent[t]))
+					should_msg = null
+		
+		if(SSquirks.bodypart_child_to_parent[t])
+			if(SSquirks.bodypart_child_to_parent[t] in missing)
+				should_msg = null
+
+		if(should_msg)
+			msg += should_msg
+
+	if(l_limbs_missing >= 2 && r_limbs_missing == 0)
+		msg += "[t_He] look[p_s()] all right now.\n"
+	else if(l_limbs_missing == 0 && r_limbs_missing >= 4)
+		msg += "[t_He] really keeps to the left.\n"
+	else if(l_limbs_missing >= 4 && r_limbs_missing >= 4)
+		msg += "[t_He] [p_do()]n't seem all there.\n"
 	var/temp = getBruteLoss()
 	if(!(user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY)) //fake healthy
 		if(temp)

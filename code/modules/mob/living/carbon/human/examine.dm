@@ -229,8 +229,9 @@
 				r_limbs_missing++
 			
 			for(var/datum/wound/L in all_wounds)
-				if((L.fake_body_zone == t) || (L.fake_body_zone == SSquirks.bodypart_child_to_parent[t]))
-					should_msg = null
+				if(L.severity == WOUND_SEVERITY_PERMANENT)
+					if((L.fake_body_zone == t) || (L.fake_body_zone == SSquirks.bodypart_child_to_parent[t]))
+						should_msg = null
 			
 			if(SSquirks.bodypart_child_to_parent[t])
 				if(SSquirks.bodypart_child_to_parent[t] in missing)

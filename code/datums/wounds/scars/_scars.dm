@@ -137,7 +137,7 @@
 
 /// Whether a scar can currently be seen by the viewer
 /datum/scar/proc/is_visible(mob/viewer)
-	if(!victim || !viewer)
+	if(!victim || !viewer || !limb)
 		return FALSE
 
 	if(!ishuman(victim) || isobserver(viewer) || victim == viewer)
