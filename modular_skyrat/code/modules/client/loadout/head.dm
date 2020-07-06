@@ -128,7 +128,7 @@
 
 /datum/gear/trekcapmedisci
 	name = "EntCorp Officer's Cap (Blue)"
-	restricted_roles = list("Chief Medical Officer", "Medical Doctor", "Chemist", "Virologist", "Paramedic", "Geneticist", "Research Director", "Scientist", "Roboticist")
+	restricted_roles = MEDSCI_ROLES
 
 /datum/gear/trekcapsec
 	name = "EntCorp Officer's Cap (Red)"

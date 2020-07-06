@@ -584,6 +584,15 @@
 	"Gorka" = "A militaristic jumpsuit coming from Russian colonies, perfect for windy mountains and space alike."
 	)
 
+/obj/item/clothing/under/rank/security/officer/blueshirt
+	icon = 'icons/obj/clothing/uniforms.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/uniform.dmi'
+	anthro_mob_worn_overlay = 'icons/mob/clothing/uniform_digi.dmi'
+	icon_state = "blueshift"
+	item_state = "blueshift"
+	unique_reskin = list(
+	)
+
 /obj/item/clothing/head/helmet/roman
 	unique_reskin = null
 
@@ -619,16 +628,12 @@
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_ALL_TAURIC|STYLE_NO_ANTHRO_ICON
 	taur_mob_worn_overlay = 'modular_skyrat/icons/mob/suits_taur.dmi'
 
-// Reskinnable Trek uniforms, now using Orvi-like by default.
+// Reskinnable Trek uniforms
 /obj/item/clothing/under/trek/command
 	name = "enterprise command uniform"
 	desc = "An enterprise corps uniform worn by command officers."
-	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
-	icon_state = "orv_com"
 	unique_reskin_icons = list(
-	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Orvlike" = 'icons/obj/clothing/uniforms.dmi',
 	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
@@ -636,7 +641,7 @@
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Orvlike" = 'icons/mob/clothing/uniform.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
@@ -644,7 +649,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Orvlike" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
@@ -652,7 +657,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default" = "orv_com",
+	"Orvlike" = "orv_com",
 	"The Original Series" = "trek_command",
 	"The New Generation" = "trek_next_command",
 	"Voyager" = "trek_voy_command",
@@ -660,7 +665,7 @@
 	"Enterprise" = "trek_ent_command"
 	)
 	unique_desc = list(
-	"Default" = "An uniform worn by command officers since 2420s.",
+	"Orvlike" = "An uniform worn by command officers since 2420s.",
 	"The Original Series" = "An uniform worn by command officers in the mid 2260s.",
 	"The New Generation" = "An uniform worn by command officers. This one is from the mid 2360s.",
 	"Voyager" = "An uniform worn by command officers of the 2370s.",
@@ -668,15 +673,27 @@
 	"Enterprise" = "An uniform worn by command officers of the 2140s."
 	)
 
+// Let's not allow reskin of specified command uniform...
+/obj/item/clothing/under/trek/command/orv/captain
+	name = "enterprise captain uniform"
+	desc = "An enterprise corps uniform worn by captains."
+	unique_reskin = null
+
+/obj/item/clothing/under/trek/command/orv/engsec
+	name = "enterprise operations command uniform"
+	desc = "An enterprise corps uniform worn by operations command officers."
+	unique_reskin = null
+
+/obj/item/clothing/under/trek/command/orv/medsci
+	name = "enterprise medsci command uniform"
+	desc = "An enterprise corps uniform worn by medsci command officers."
+	unique_reskin = null
+
 /obj/item/clothing/under/trek/engsec
 	name = "enterprise operations uniform"
 	desc = "An enterprise corps uniform worn by operations officers."
-	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
-	icon_state = "orv_ops"
 	unique_reskin_icons = list(
-	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Orvlike" = 'icons/obj/clothing/uniforms.dmi',
 	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
@@ -684,7 +701,7 @@
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Orvlike" = 'icons/mob/clothing/uniform.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
@@ -692,7 +709,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Orvlike" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
@@ -700,7 +717,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default" = "orv_ops",
+	"Orvlike" = "orv_ops",
 	"The Original Series" = "trek_engsec",
 	"The New Generation" = "trek_next_engsec",
 	"Voyager" = "trek_voy_engsec",
@@ -708,7 +725,7 @@
 	"Enterprise" = "trek_ent_engsec"
 	)
 	unique_desc = list(
-	"Default" = "An uniform worn by operations officers since 2420s.",
+	"Orvlike" = "An uniform worn by operations officers since 2420s.",
 	"The Original Series" = "An uniform worn by operations officers in the mid 2260s. You feel strangely vulnerable just seeing this...",
 	"The New Generation" = "An uniform worn by operations officers. This one is from the mid 2360s.",
 	"Voyager" = "An uniform worn by operations officers of the 2370s.",
@@ -719,12 +736,8 @@
 /obj/item/clothing/under/trek/medsci
 	name = "enterprise medsci uniform"
 	desc = "An enterprise corps uniform worn by medsci officers."
-	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
-	icon_state = "orv_medsci"
 	unique_reskin_icons = list(
-	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Orvlike" = 'icons/obj/clothing/uniforms.dmi',
 	"The Original Series" = 'icons/obj/clothing/uniforms.dmi',
 	"The New Generation" = 'icons/obj/clothing/uniforms.dmi',
 	"Voyager" = 'icons/obj/clothing/uniforms.dmi',
@@ -732,7 +745,7 @@
 	"Enterprise" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Orvlike" = 'icons/mob/clothing/uniform.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform.dmi',
@@ -740,7 +753,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Orvlike" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The Original Series" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The New Generation" = 'icons/mob/clothing/uniform_digi.dmi',
 	"Voyager" = 'icons/mob/clothing/uniform_digi.dmi',
@@ -748,7 +761,7 @@
 	"Enterprise" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
-	"Default" = "orv_medsci",
+	"Orvlike" = "orv_medsci",
 	"The Original Series" = "trek_medsci",
 	"The New Generation" = "trek_next_medsci",
 	"Voyager" = "trek_voy_medsci",
@@ -756,7 +769,7 @@
 	"Enterprise" = "trek_ent_medsci"
 	)
 	unique_desc = list(
-	"Default" = "An uniform worn by medsci officers since 2420s.",
+	"Orvlike" = "An uniform worn by medsci officers since 2420s.",
 	"The Original Series" = "An uniform worn by medsci officers in the mid 2260s.",
 	"The New Generation" = "An uniform worn by medsci officers. This one is from the mid 2360s.",
 	"Voyager" = "An uniform worn by medsci officers of the 2370s.",
@@ -765,24 +778,19 @@
 	)
 
 // Bonus for assistants and service.
-/obj/item/clothing/under/trek/orvi
+/obj/item/clothing/under/trek/orv
 	name = "enterprise assistant uniform"
-	desc = "An enterprise corps uniform worn by adjutants."
-	icon = 'modular_skyrat/icons/obj/clothing/uniform.dmi'
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/uniform.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi'
-	icon_state = "orv_ass"
-	item_state = "gy_suit"
+	desc = "An enterprise corps uniform worn by adjutants <i>(assistants)</i>."
 	unique_reskin_icons = list(
-	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Default" = 'icons/obj/clothing/uniforms.dmi',
 	"The Motion Picture (The Original Series)" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Default" = 'icons/mob/clothing/uniform.dmi',
 	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Default" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
@@ -794,25 +802,23 @@
 	"The Motion Picture (The Original Series)" = "federation trainee uniform"
 	)
 	unique_desc = list(
-	"Default" = "An uniform worn by adjutants since 2550s.",
+	"Default" = "An uniform worn by adjutants <i>(assistants)</i> since 2550s.",
 	"The Motion Picture (The Original Series)" = "An uniform worn by enlisted trainees in 2285s."
 	)
 
-/obj/item/clothing/under/trek/orvi/service
+/obj/item/clothing/under/trek/orv/service
 	name = "enterprise service uniform"
 	desc = "An enterprise corps uniform worn by service officers... Or is it just <i>service uniform</i> worn by officers?"
-	icon_state = "orv_srv"
-	item_state = "g_suit"
 	unique_reskin_icons = list(
-	"Default" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Default" = 'icons/obj/clothing/uniforms.dmi',
 	"The Motion Picture (The Original Series)" = 'icons/obj/clothing/uniforms.dmi'
 	)
 	unique_reskin_worn = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Default" = 'icons/mob/clothing/uniform.dmi',
 	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform.dmi'
 	)
 	unique_reskin_worn_anthro = list(
-	"Default" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Default" = 'icons/mob/clothing/uniform_digi.dmi',
 	"The Motion Picture (The Original Series)" = 'icons/mob/clothing/uniform_digi.dmi'
 	)
 	unique_reskin = list(
@@ -912,3 +918,17 @@
 
 /obj/item/clothing/head/hooded/winterhood/durathread
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+//citadel wants to nerf these so fuck that
+/obj/item/clothing/suit/hooded/cloak/drake
+	armor = list("melee" = 70, "bullet" = 30, "laser" = 50, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)
+
+/obj/item/clothing/head/hooded/cloakhood/drake
+	armor = list("melee" = 70, "bullet" = 30, "laser" = 50, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)
+
+//heck suit armor adjustments because honestly why the fuck is the drake armor statistically better
+/obj/item/clothing/suit/space/hostile_environment
+	armor = list("melee" = 70, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)
+
+/obj/item/clothing/head/helmet/space/hostile_environment
+	armor = list("melee" = 70, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)

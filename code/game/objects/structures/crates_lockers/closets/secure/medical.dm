@@ -54,6 +54,9 @@
 
 /obj/structure/closet/secure_closet/CMO/PopulateContents()
 	..()
+	//SKYRAT EDIT - ATMS
+	new /obj/item/card/id/departmental_budget/med(src)
+	//SKYRAT EDIT END
 	new /obj/item/clothing/neck/cloak/cmo(src)
 	new /obj/item/clothing/head/beret/cmo(src)
 	new /obj/item/storage/backpack/duffelbag/med(src)

@@ -4,7 +4,7 @@
 	say_mod = "states" //inherited from a user's fake species
 	sexes = 0 //it gets it's sexes by the fake species
 	species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE)
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE, TRAIT_CLONEIMMUNE)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	dangerous_existence = 0 //not dangerous anymore i guess
 	blacklisted = 0 //not blacklisted anymore
@@ -15,22 +15,25 @@
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
 	//mutant_bodyparts = list("legs" = "Digitigrade", "taur" = "None") //this probably isn't gonna work. Note: it didn't work.
 	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //for getting these values back for assume_disguise()
-	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE) //blah blah i explained above
+	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE, TRAIT_CLONEIMMUNE) //blah blah i explained above
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/actualhealth = 100 //value we calculate to assume disguise and etc
 	//Same organs as an IPC basically, to share functionality.
-	mutant_heart = /obj/item/organ/heart/ipc
-	mutantlungs = /obj/item/organ/lungs/ipc
-	mutantliver = /obj/item/organ/liver/ipc
-	mutantstomach = /obj/item/organ/stomach/ipc
-	mutanteyes = /obj/item/organ/eyes/ipc
+	mutantstomach = /obj/item/organ/stomach/robot_ipc
+	mutantears = /obj/item/organ/ears/robot_ipc
+	mutanteyes = /obj/item/organ/eyes/robot_ipc
+	mutantlungs = /obj/item/organ/lungs/robot_ipc
+	mutant_heart = /obj/item/organ/heart/robot_ipc
+	mutantliver = /obj/item/organ/liver/robot_ipc
 	exotic_blood = /datum/reagent/blood/synthetics
-	exotic_bloodtype = "SY"
 	//variables used for snowflakey ass races and stuff god i fukcing hate this
 	var/storedeardamage = 0
 	var/storedtaildamage = 0
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
+	exotic_bloodtype = "SY"
 	//AAAAAAAAAAAAAAAAAAAAAAAA I CANT EAT AAAAAAAAAAAAAAAAAAAAAAAAAA
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 
@@ -97,7 +100,7 @@
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.grant_language(/datum/language/machine)
+	//H.grant_language(/datum/language/machine)
 	assume_disguise(old_species, H)
 	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
@@ -107,7 +110,7 @@
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()
-	H.remove_language(/datum/language/machine)
+	//H.remove_language(/datum/language/machine)
 	UnregisterSignal(H, COMSIG_MOB_SAY)
 	for(var/obj/item/bodypart/BP in H.bodyparts)
 		BP.synthetic = FALSE
@@ -154,7 +157,7 @@
 	H.regenerate_icons()
 
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
-	..()
+	. = ..()
 	actualhealth = (100 - (H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss() + H.getCloneLoss()))
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)

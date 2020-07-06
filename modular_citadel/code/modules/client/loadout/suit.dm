@@ -85,14 +85,6 @@
 	path = /obj/item/clothing/suit/hooded/wintercoat/polychromic
 	cost = 4 //too many people with neon green coats is hard on the eyes
 
-/* Commented out until it is "balanced"
-/datum/gear/coat/sec
-	name = "Security winter coat"
-	category = SLOT_WEAR_SUIT
-	path = /obj/item/clothing/suit/hooded/wintercoat/security
-	restricted_roles = list("Head of Security", "Warden", "Detective", "Security Officer") // Reserve it to the Security Departement
-*/
-
 /datum/gear/coat/med
 	name = "Medical winter coat"
 	category = SLOT_WEAR_SUIT
@@ -169,7 +161,7 @@
 	path = /obj/item/clothing/suit/storage/trek/ds9
 	restricted_desc = "All, barring Service and Civilian"
 	restricted_roles = list("Head of Security","Captain","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer","Quartermaster",
-							"Medical Doctor","Chemist","Virologist","Geneticist","Scientist", "Roboticist",
+							"Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Scientist", "Roboticist",
 							"Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer",
 							"Cargo Technician", "Shaft Miner") //everyone who actually deserves a job.
 //Federation jackets from movies
@@ -191,7 +183,7 @@
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/storage/fluff/fedcoat/medsci
 	restricted_desc = "Medical and Science"
-	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Geneticist","Research Director","Scientist", "Roboticist")
+	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
 /datum/gear/trekengmov
 	name = "Fed (movie) uniform, Yellow"
@@ -218,7 +210,7 @@
 	category = SLOT_WEAR_SUIT
 	path = /obj/item/clothing/suit/storage/fluff/modernfedcoat/medsci
 	restricted_desc = "Medical and Science"
-	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Geneticist","Research Director","Scientist", "Roboticist")
+	restricted_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Virologist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist")
 
 /datum/gear/trekengmod
 	name = "Fed (Modern) uniform, Yellow"

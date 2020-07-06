@@ -40,6 +40,7 @@
 	cost = 20
 	player_minimum = 15 // Skyrat edit - lowered it from 30 back to 15
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	restricted = TRUE
 
 /datum/uplink_item/bundles_TC/northstar_bundle
 	name = "Northstar Bundle"

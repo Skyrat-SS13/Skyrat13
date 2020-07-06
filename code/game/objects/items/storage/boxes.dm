@@ -106,14 +106,16 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
-	if(!isplasmaman(loc))
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+	// Skyrat change: check for different race first, else give oxy internals
+	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
-	if(!isvox(loc))													//Makes a check if the player is a Vox and spawns a Nitrogen tank instead of an oxygen one. Skyrat change.
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+		return
+		
+	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
 		new /obj/item/tank/internals/nitrogen/belt(src)
+		return
+
+	new /obj/item/tank/internals/emergency_oxygen(src)
 
 /obj/item/storage/box/survival/radio/PopulateContents()
 	..() // we want the survival stuff too.
@@ -124,28 +126,32 @@
 	new /obj/item/crowbar/red(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
-	if(!isplasmaman(loc))
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+	// Skyrat change: check for different race first, else give oxy internals
+	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
-	if(!isvox(loc))													//Makes a check if the player is a Vox and spawns a Nitrogen tank instead of an oxygen one. Skyrat change.
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+		return
+		
+	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
 		new /obj/item/tank/internals/nitrogen/belt(src)
+		return
+
+	new /obj/item/tank/internals/emergency_oxygen(src)
 
 // Engineer survival box
 /obj/item/storage/box/engineer/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
-	if(!isplasmaman(loc))
-		new /obj/item/tank/internals/emergency_oxygen/engi(src)
-	else
+	// Skyrat change: check for different race first, else give oxy internals
+	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
-	if(!isvox(loc))													//Makes a check if the player is a Vox and spawns a Nitrogen tank instead of an oxygen one. Skyrat change.
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+		return
+		
+	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
 		new /obj/item/tank/internals/nitrogen/belt(src)
+		return
+
+	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
@@ -155,28 +161,32 @@
 /obj/item/storage/box/syndie/PopulateContents()
 	new /obj/item/clothing/mask/gas/syndicate(src)
 
-	if(!isplasmaman(loc))
-		new /obj/item/tank/internals/emergency_oxygen/engi(src)
-	else
+	// Skyrat change: check for different race first, else give oxy internals
+	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
-	if(!isvox(loc))													//Makes a check if the player is a Vox and spawns a Nitrogen tank instead of an oxygen one. Skyrat change.
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+		return
+		
+	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
 		new /obj/item/tank/internals/nitrogen/belt(src)
+		return
+
+	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 
 // Security survival box
 /obj/item/storage/box/security/PopulateContents()
 	new /obj/item/clothing/mask/gas/sechailer(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
-	if(!isplasmaman(loc))
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+	// Skyrat change: check for different race first, else give oxy internals
+	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
-	if(!isvox(loc))													//Makes a check if the player is a Vox and spawns a Nitrogen tank instead of an oxygen one. Skyrat change.
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+		return
+		
+	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
 		new /obj/item/tank/internals/nitrogen/belt(src)
+		return
+
+	new /obj/item/tank/internals/emergency_oxygen(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
 	..() // we want the regular stuff too
@@ -454,6 +464,7 @@
 	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
 	icon_state = "donkpocketbox"
 	illustration=null
+	custom_premium_price = PRICE_ABOVE_NORMAL // git gud
 
 /obj/item/storage/box/donkpockets/ComponentInitialize()
 	. = ..()
@@ -642,6 +653,7 @@
 	item_state = "zippo"
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = ITEM_SLOT_BELT
+	custom_price = PRICE_REALLY_CHEAP
 
 /obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()
@@ -763,8 +775,8 @@
 
 //////
 /obj/item/storage/box/hug/medical/PopulateContents()
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/suture(src)
+	new /obj/item/stack/medical/mesh(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
 // Clown survival box
@@ -772,10 +784,16 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
-	if(!isplasmaman(loc))
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+	// Skyrat change: check for different race first, else give oxy internals
+	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
+		return
+		
+	if(isvox(loc)) // Skyrat change: Nitrogen internals for Vox
+		new /obj/item/tank/internals/nitrogen/belt(src)
+		return
+
+	new /obj/item/tank/internals/emergency_oxygen(src)
 
 /obj/item/storage/box/rubbershot
 	name = "box of rubber shots"
@@ -1362,6 +1380,7 @@
 	name = "box of marshmallows"
 	desc = "A box of marshmallows."
 	illustration = "marshmallow"
+	custom_premium_price = PRICE_BELOW_NORMAL
 
 /obj/item/storage/box/marshmallow/PopulateContents()
 	for (var/i in 1 to 5)

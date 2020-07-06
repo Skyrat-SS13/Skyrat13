@@ -98,8 +98,8 @@
 	if(logged)
 		log_admin_private(pm)
 		message_admins("[header]:<br>[text]")
-		admin_ticket_log(target_ckey, "<font color='blue'>[header]</font>")
-		admin_ticket_log(target_ckey, text)
+		admin_ticket_log(target_ckey, "<font color='blue'>[header]</font>" , private = TRUE) // Skyrat change
+		admin_ticket_log(target_ckey, text, private = TRUE) // Skyrat change
 		if(browse)
 			browse_messages("[type]")
 		else

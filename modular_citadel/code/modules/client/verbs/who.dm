@@ -1,3 +1,4 @@
+/* Moved to modular_skyrat under staffwho
 /client/verb/mentorwho()
 	set category = "Mentor"
 	set name = "Mentorwho"
@@ -20,7 +21,7 @@
 				suffix += " (AFK)"
 		msg += "\t[C][suffix]\n"
 	to_chat(src, msg)
-
+*/
 /* Moved to modular_skyrat
 /client/verb/who()
 	set name = "Who"
@@ -94,7 +95,7 @@
 	entry += " (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[C.mob]'>?</A>)"
 	return entry
 */
-
+/* Moved to modular_skyrat under staffwho
 /client/verb/adminwho()
 	set category = "Admin"
 	set name = "Adminwho"
@@ -131,3 +132,4 @@
 				msg += "\t[C] is a [C.holder.rank]\n"
 		msg += "<span class='info'>Adminhelps are also sent to Discord. If no admins are available in game adminhelp anyways and an admin on Discord will see it and respond.</span>"
 	to_chat(src, msg)
+*/

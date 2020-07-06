@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	name = "terror spider"
 	desc = "The generic parent of all other terror spider types. If you see this in-game, it is a bug."
 	faction = list(ROLE_TERROR_SPIDER)
-
+	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	// Icons
 	icon = 'modular_skyrat/icons/mob/terrorspider.dmi'
 	icon_state = "terror_red"
@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	// Health
 	maxHealth = 120
 	health = 120
-
+	damage_coeff = list(BRUTE = 1.2, BURN = 1.5, TOX = 0.1, CLONE = 0.1, STAMINA = 0.5, OXY = 0.3) //Spiders are infact weak to crush
 	// Melee attacks
 	melee_damage_lower = 15
 	melee_damage_upper = 20
@@ -50,8 +50,9 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	// Higher numbers mean slower speed. Can be negative for major speed increase. Call movement_delay() on mob to convert this var to into a step delay.
 	// '-1' (default for fast humans) converts to 1.5 or 6.6 tiles/sec
 	// '0' (default for human mobs) converts to 2.5, or 4 tiles/sec.
-	// '1' (default for most simple_mobs, including terror spiders) converts to 3.5, or 2.8 tiles/sec.
+	// '1' (default for most simple_mobs) converts to 3.5, or 2.8 tiles/sec.
 	// '2' converts to 4.5, or 2.2 tiles/sec.
+	speed = 1
 
 	// Ventcrawling
 	ventcrawler = TRUE // allows player ventcrawling

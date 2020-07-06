@@ -54,8 +54,97 @@
 	icon_state = "pwrarmor_helmet"
 	w_class = WEIGHT_CLASS_HUGE
 
+//Buzz
+/obj/item/mecha_parts/chassis/buzz
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	name = "\improper Buzz chassis"
+	construct_type = /datum/component/construction/unordered/mecha_chassis/buzz
+
+/obj/item/mecha_parts/part/buzz_harness
+	name = "\improper Buzz harness"
+	desc = "The base of a Buzz mech. Contains power unit, processing core and life support systems."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "buzz_base"
+
+/obj/item/mecha_parts/part/buzz_cockpit
+	name = "\improper Buzz cockpit"
+	desc = "A Buzz cockpit. Contains a powerful integrated meson scanner and night vision system."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "buzz_cockpit"
+
+/obj/item/mecha_parts/part/buzz_left_arm
+	name = "\improper Buzz left arm"
+	desc = "A Buzz left arm. Compatible with most civillian grade equipment."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "buzz_l_arm"
+
+/obj/item/mecha_parts/part/buzz_right_arm
+	name = "\improper Buzz right arm"
+	desc = "A Buzz right arm. Compatible with most civillian grade equipment."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "buzz_r_arm"
+
+/obj/item/mecha_parts/part/buzz_left_leg
+	name = "\improper Buzz left leg"
+	desc = "A Buzz left leg. Has efficient hydraulics to consume less power for vast periods of space-faring."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "buzz_l_leg"
+
+/obj/item/mecha_parts/part/buzz_right_leg
+	name = "\improper Buzz right leg"
+	desc = "A Buzz right leg. Has efficient hydraulics to consume less power for vast periods of space-faring."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "buzz_r_leg"
+
+//Clarke
+/obj/item/mecha_parts/chassis/clarke
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	name = "\improper Clarke chassis"
+	construct_type = /datum/component/construction/unordered/mecha_chassis/clarke
+
+/obj/item/mecha_parts/part/clarke_torso
+	name = "\improper Clarke torso"
+	desc = "A torso part of Clarke. Contains power unit, processing core and life support systems."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "clarke_harness"
+
+/obj/item/mecha_parts/part/clarke_head
+	name = "\improper Clarke head"
+	desc = "A Clarke head. Contains an integrated diagnostic HUD scanner."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "clarke_head"
+
+/obj/item/mecha_parts/part/clarke_left_arm
+	name = "\improper Clarke left arm"
+	desc = "A Clarke left arm. Data and power sockets are compatible with most exosuit tools."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "clarke_l_arm"
+
+/obj/item/mecha_parts/part/clarke_right_arm
+	name = "\improper Clarke right arm"
+	desc = "A Clarke right arm. Data and power sockets are compatible with most exosuit tools."
+	icon = 'modular_skyrat/icons/mecha/mech_construct.dmi'
+	icon_state = "clarke_r_arm"
+
 //Killdozer
 /obj/item/mecha_parts/chassis/killdozer
 	name = "\improper Killdozer chassis"
 	desc = "Sometimes... reasonable men must do unreasonable things."
 	construct_type = /datum/component/construction/unordered/mecha_chassis/killdozer
+
+//Circuitboards
+/obj/item/circuitboard/mecha/clarke/peripherals
+	name = "Clarke Peripherals Control module (Exosuit Board)"
+	icon_state = "mcontroller"
+
+/obj/item/circuitboard/mecha/clarke/main
+	name = "Clarke Central Control module (Exosuit Board)"
+	icon_state = "mainboard"
+
+/obj/item/circuitboard/mecha/buzz/peripherals
+	name = "Buzz Peripherals Control module (Exosuit Board)"
+	icon_state = "mcontroller"
+
+/obj/item/circuitboard/mecha/buzz/main
+	name = "Buzz Central Control module (Exosuit Board)"
+	icon_state = "mainboard"

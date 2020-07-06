@@ -33578,9 +33578,6 @@
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
 "bjz" = (
-/obj/machinery/gateway{
-	dir = 9
-	},
 /obj/effect/turf_decal/bot_white/right,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -33595,9 +33592,6 @@
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "bjA" = (
-/obj/machinery/gateway{
-	dir = 1
-	},
 /obj/effect/turf_decal/bot_white,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -33612,9 +33606,6 @@
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "bjB" = (
-/obj/machinery/gateway{
-	dir = 5
-	},
 /obj/effect/turf_decal/bot_white/left,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -33987,23 +33978,6 @@
 "bkj" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/central/secondary)
-"bkk" = (
-/obj/machinery/gateway{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot_white,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/gateway)
 "bkl" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -34015,23 +33989,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
-/area/gateway)
-"bkm" = (
-/obj/machinery/gateway{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot_white,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
+/obj/machinery/gateway/centerstation,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "bkn" = (
@@ -34301,55 +34259,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/nuke_storage)
-"bkL" = (
-/obj/machinery/gateway{
-	dir = 10
-	},
-/obj/effect/turf_decal/bot_white/left,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/gateway)
-"bkM" = (
-/obj/machinery/gateway,
-/obj/effect/turf_decal/bot_white,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/gateway)
-"bkN" = (
-/obj/machinery/gateway{
-	dir = 6
-	},
-/obj/effect/turf_decal/bot_white/right,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/gateway)
 "bkO" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -35168,15 +35077,10 @@
 /turf/open/floor/plasteel,
 /area/gateway)
 "bmn" = (
-/obj/structure/table,
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/machinery/computer/gateway_control,
 /turf/open/floor/plasteel,
 /area/gateway)
 "bmo" = (
@@ -46171,7 +46075,7 @@
 /turf/open/floor/wood,
 /area/maintenance/bar)
 "bGM" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/maintenance/bar)
 "bGN" = (
@@ -48408,12 +48312,9 @@
 /turf/open/floor/plating,
 /area/hydroponics/garden/abandoned)
 "bKT" = (
-/obj/item/poster/random_contraband,
-/turf/open/floor/plating,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/maintenance/aft)
+/mob/living/simple_animal/pet/dog/cheems,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "bKU" = (
 /obj/effect/landmark/start/medical_doctor,
 /turf/open/floor/plasteel/white,
@@ -60176,7 +60077,7 @@
 /turf/open/space,
 /area/space/nearstation)
 "cgJ" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "cgK" = (
@@ -63740,13 +63641,12 @@
 /area/maintenance/disposal/incinerator)
 "coh" = (
 /obj/structure/cable{
-	icon_state = "0-4"
+	icon_state = "1-2"
 	},
-/turf/open/floor/plating,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/maintenance/department/electrical)
+/obj/structure/disposalpipe/segment,
+/mob/living/simple_animal/sloth/paperwork,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "coi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/dark/visible{
@@ -65200,9 +65100,7 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "crd" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/item/poster/random_contraband,
 /turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -65234,6 +65132,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"crh" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/department/electrical)
 "cri" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -66911,6 +66818,15 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
+"cuL" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/aft)
 "cuM" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior,
@@ -74619,7 +74535,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/bridge)
 "cIV" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
@@ -117952,8 +117868,8 @@ bhp
 bcw
 cIB
 bjz
-bkk
-bkL
+bjA
+bjB
 cIH
 biQ
 bmk
@@ -118210,7 +118126,7 @@ bcw
 cIC
 bjA
 bkl
-bkM
+bjA
 cIH
 blP
 bml
@@ -118466,8 +118382,8 @@ bhr
 bcw
 cIB
 bjB
-bkm
-bkN
+bjA
+bjz
 cIH
 biQ
 bmm
@@ -122150,7 +122066,7 @@ bYa
 bYa
 bYa
 bYa
-bKT
+crd
 bYa
 bYa
 ceG
@@ -124467,11 +124383,11 @@ cmd
 aaA
 cSc
 cVT
-coh
+crh
 cXu
 cXz
 ceG
-crd
+cuL
 cTU
 cyo
 aab
@@ -133353,7 +133269,7 @@ aNO
 aOF
 aOF
 aOF
-aOF
+coh
 aOF
 aTk
 aUC
@@ -135409,7 +135325,7 @@ aNR
 aOK
 aLX
 aQv
-aMU
+bKT
 aSi
 aTr
 aUJ
