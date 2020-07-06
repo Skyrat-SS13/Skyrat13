@@ -95,24 +95,33 @@
 */
 /turf/open/floor/plasteel/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stack/tile/plasteel))
-		var/choice = input(user, "This floor has a certain icon stored in memory. What would you like to change it to?") as null|anything in list("Plasteel", "White Plasteel", "Dark Plasteel", "Chapel Flooring", "Shower Tiles", "Freezer", "Kitchen", "Grimy", "Solar Panel")
+		var/choice = input(user, "Paint time! What tile would you like?") as null|anything in list("Plasteel", "White Plasteel", "Dark Plasteel", "Chapel Flooring", "Shower Tiles", "Freezer", "Kitchen", "Grimy", "Solar Panel")
 		switch(choice)
 			if("Plasteel")
+				icon_state = "floor"
 				icon_regular_floor = "floor"
 			if("White Plasteel")
+				icon_state = "white"
 				icon_regular_floor = "white"
 			if("Dark Plasteel")
+				icon_state = "darkfull"
 				icon_regular_floor = "darkfull"
 			if("Chapel Flooring")
+				icon_state = "chapel_alt"
 				icon_regular_floor = "chapel_alt"
 			if("Shower Tiles")
+				icon_state = "showrroomfloor"
 				icon_regular_floor = "showroomfloor"
 			if("Freezer")
+				icon_state = "freezerfloor"
 				icon_regular_floor = "freezerfloor"
 			if("Kitchen")
+				icon_state = "cafeteria"
 				icon_regular_floor = "cafeteria"
 			if("Grimy")
+				icon_state = "grimy"
 				icon_regular_floor = "grimy"
 			if("Solar Panel")
+				icon_state = "solarpanel"
 				icon_regular_floor = "solarpanel"
 			else return()
