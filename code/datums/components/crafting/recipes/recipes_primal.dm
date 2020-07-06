@@ -96,7 +96,7 @@
 	always_availible = FALSE
 	result = /obj/item/storage/belt/quiver
 	time = 80
-	reqs = list(/obj/item/stack/sheet/leather = 3,
+	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 3,
 				 /obj/item/stack/sheet/sinew = 4)
 	category = CAT_PRIMAL
 
