@@ -164,6 +164,7 @@
 					"Eyebot" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "eyebotsd"),
 					"Robot" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "robot_old"),
 					"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysd"),
+					"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootysd"),
 					"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_standard"),
 					"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_sd")
 				))
@@ -189,6 +190,9 @@
 					if("Bootyborg")
 						disguise = "bootysd"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Male Bootyborg")
+						disguise = "male_bootysd"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 					if("Protectron")
 						disguise = "protectron_standard"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -207,6 +211,7 @@
 					"Eyebot" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "eyebotmed"),
 					"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymed"),
 					"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootymedical"),
+					"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootymedical"),
 					"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_medical"),
 					"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_med"),
 					"Qualified Doctor" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "qualified_doctor"),
@@ -242,6 +247,9 @@
 						disguise_icon_override = 'modular_citadel/icons/mob/robots.dmi'
 					if("Bootyborg")
 						disguise = "bootymedical"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Male Bootyborg")
+						disguise = "male_bootymedical"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 					if("Protectron")
 						disguise = "protectron_medical"
@@ -282,6 +290,7 @@
 					"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidereng"),
 					"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyeng"),
 					"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyeng"), //Skyrat change
+					"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootyeng"),
 					"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_eng"),
 					"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_eng"),
 					"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_engi")
@@ -341,6 +350,9 @@
 					if("Bootyborg") //Skyrat change
 						disguise = "bootyeng"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Male Bootyborg")
+						disguise = "male_bootyeng"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 					if("Protectron")
 						disguise = "protectron_eng"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -359,6 +371,7 @@
 					"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidersec"),
 					"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavysec"),
 					"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysecurity"), //Skyrat change
+					"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootysecurity"),
 					"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_security"),
 					"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_security"),
 					"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_sec")
@@ -416,6 +429,9 @@
 					if("Bootyborg") //Skyrat change
 						disguise = "bootysecurity"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Male Bootyborg")
+						disguise = "male_bootysecurity"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 					if("Protectron")
 						disguise = "protectron_security"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -434,6 +450,7 @@
 					"(Service) Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekserv"),
 					"(Service) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyserv"),
 					"(Service) Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyservice"),
+					"(Service) Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootyservice"),
 					"(Service) Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_service"),
 					"(Service) Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_service"),
 					"(Janitor) Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "janitor"),
@@ -441,6 +458,7 @@
 					"(Janitor) Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekjan"),
 					"(Janitor) Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canjan"),
 					"(Janitor) Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyjanitor"),
+					"(Janitor) Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootyjanitor"),
 					"(Janitor) Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_janitor"),
 					"(Janitor) Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_janitor"),
 					"(Janitor) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyres"),
@@ -493,6 +511,9 @@
 					if("(Service) Bootyborg")
 						disguise = "bootyservice"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("(Service) Male Bootyborg")
+						disguise = "male_bootyservice"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 					if("(Service) Protectron")
 						disguise = "protectron_service"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -520,6 +541,9 @@
 					if("(Janitor) Bootyborg")
 						disguise = "bootyjanitor"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("(Janitor) Male Bootyborg")
+						disguise = "male_bootyjanitor"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 					if("(Janitor) Protectron")
 						disguise = "protectron_janitor"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -538,6 +562,7 @@
 					"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canmin"),
 					"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymin"),
 					"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootyminer"),
+					"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootyminer"),
 					"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_miner"),
 					"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_miner"),
 					"Zoomba" = image(icon = 'icons/mob/robots.dmi', icon_state = "zoomba_miner")
@@ -587,6 +612,9 @@
 					if("Bootyborg")
 						disguise = "bootyminer"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Male Bootyborg")
+						disguise = "male_bootyminer"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 					if("Protectron")
 						disguise = "protectron_miner"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -606,6 +634,7 @@
 					"Sleek" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "sleekpeace"),
 					"Marina" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "marinapeace"),
 					"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootypeace"),
+					"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootypeace"),
 					"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_peacekeeper")
 				))
 				var/borg_icon = show_radial_menu(R, R , peace_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
@@ -630,6 +659,9 @@
 					if("Bootyborg")
 						disguise = "bootypeace"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Male Bootyborg")
+						disguise = "male_bootypeace"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 					if("Protectron")
 						disguise = "protectron_peacekeeper"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -639,6 +671,7 @@
 				var/static/list/clown_icons = sortList(list(
 					"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "clown"),
 					"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "bootyclown"),
+					"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "male_bootyclown"),
 					"Marina" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "marina_mommy"),
 					"Garish" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "garish"),
 					"Robot" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "clownbot"),
@@ -653,6 +686,9 @@
 						disguise_icon_override = 'icons/mob/robots.dmi'
 					if("Bootyborg")
 						disguise = "bootyclown"
+						disguise_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
+					if("Male Bootyborg")
+						disguise = "male_bootyclown"
 						disguise_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
 					if("Marina")
 						disguise = "marina_mommy"
@@ -678,6 +714,8 @@
 					"Spider" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "spidersyndi"),
 					"Booty Striker" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootynukie"),
 					"Booty Syndicate" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysyndie"),
+					"Male Booty Striker" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootysynukie"),
+					"Male Booty Syndicate" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootysyndie")
 				))
 				var/borg_icon = show_radial_menu(R, R , syndicatejack_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 				if(!borg_icon)
@@ -706,6 +744,12 @@
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 					if("Booty Syndicate")
 						disguise = "bootysyndie"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Male Booty Striker")
+						disguise = "male_bootynukie"
+						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+					if("Male Booty Syndicate")
+						disguise = "male_bootysyndie"
 						disguise_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 					else
 						return FALSE

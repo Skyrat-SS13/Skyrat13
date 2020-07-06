@@ -270,14 +270,10 @@
 	var/def_zone = user.zone_selected
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if((H.getarmor(def_zone, "melee") < 35) && (user.zone_selected != BODY_ZONE_CHEST) && (user.zone_selected != BODY_ZONE_PRECISE_GROIN) && (user.zone_selected != BODY_ZONE_HEAD))
-			..()
-			var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
-			bodyp.dismember()
-		else if(user.zone_selected == BODY_ZONE_CHEST && H.InFullCritical())
-			..()
-			var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
-			if(istype(bodyp))
+		if(H.getarmor(def_zone, "melee") < 35)
+			if((user.zone_selected != BODY_ZONE_CHEST) && (user.zone_selected != BODY_ZONE_HEAD) && (user.zone_selected != BODY_ZONE_PRECISE_GROIN))
+				..()
+				var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
 				bodyp.dismember()
 		else if(user.zone_selected == BODY_ZONE_PRECISE_GROIN && H.InFullCritical())
 			..()

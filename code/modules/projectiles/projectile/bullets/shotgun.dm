@@ -134,3 +134,8 @@
 	name = "pulverizer slug" // admin only, can crush bones
 	sharpness = SHARP_EDGED
 	wound_bonus = 0
+	
+/obj/item/projectile/bullet/pellet/shotgun_incapacitate
+	name = "incapacitating pellet"
+	damage = 1
+	stamina = 6
