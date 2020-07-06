@@ -26,9 +26,13 @@
 */
 
 //INDEXES
+<<<<<<< HEAD
 #define COOLDOWN_AMBITION	"ambition"
 #define COOLDOWN_OBJECTIVES	"objectives"
 #define COOLDOWN_OBJ_ADMIN_PING	"obj_admin_ping"
+=======
+#define COOLDOWN_EMPLOYMENT_CABINET	"employment cabinet"
+>>>>>>> e7d19f512e... Merge pull request #12397 from Rohesie/cooldown
 
 
 //TIMER COOLDOWN MACROS
@@ -65,7 +69,12 @@
 
 #define COOLDOWN_START(cd_source, cd_index, cd_time) (cd_source.cd_index = world.time + cd_time)
 
+<<<<<<< HEAD
 #define COOLDOWN_CHECK(cd_source, cd_index) (cd_source.cd_index < world.time)
+=======
+//Returns true if the cooldown has run its course, false otherwise
+#define COOLDOWN_FINISHED(cd_source, cd_index) (cd_source.cd_index < world.time)
+>>>>>>> e7d19f512e... Merge pull request #12397 from Rohesie/cooldown
 
 #define COOLDOWN_RESET(cd_source, cd_index) cd_source.cd_index = 0
 

@@ -39,10 +39,15 @@
 	/// A weak reference to another datum
 	var/datum/weakref/weak_reference
 
+<<<<<<< HEAD
 //SKYRAT CHANGES BEGIN
 	///Lazy associative list of currently active cooldowns.
 	var/list/cooldowns
 //SKYRAT CHANGES END
+=======
+	///Lazy associative list of currently active cooldowns.
+	var/list/cooldowns
+>>>>>>> e7d19f512e... Merge pull request #12397 from Rohesie/cooldown
 
 #ifdef TESTING
 	var/running_find_references
@@ -207,7 +212,10 @@
 	else
 		return returned
 
+<<<<<<< HEAD
 //SKYRAT CHANGES BEGIN
+=======
+>>>>>>> e7d19f512e... Merge pull request #12397 from Rohesie/cooldown
 /**
   * Callback called by a timer to end an associative-list-indexed cooldown.
   *
@@ -238,4 +246,7 @@
 		return
 	SEND_SIGNAL(source, COMSIG_CD_RESET(index), S_TIMER_COOLDOWN_TIMELEFT(source, index))
 	TIMER_COOLDOWN_END(source, index)
+<<<<<<< HEAD
 //SKYRAT CHANGES END
+=======
+>>>>>>> e7d19f512e... Merge pull request #12397 from Rohesie/cooldown
