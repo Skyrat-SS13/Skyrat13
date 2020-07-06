@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(lighting)
 
 		if(init_tick_checks)
 			CHECK_TICK
-		else if (MC_TICK_CHECK)
+		else if (MC_TICK_CHECK_LOW_PRIORITY)
 			break
 	if (i)
 		GLOB.lighting_update_lights.Cut(1, i+1)
@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(lighting)
 		C.needs_update = FALSE
 		if(init_tick_checks)
 			CHECK_TICK
-		else if (MC_TICK_CHECK)
+		else if (MC_TICK_CHECK_LOW_PRIORITY)
 			break
 	if (i)
 		GLOB.lighting_update_corners.Cut(1, i+1)
@@ -76,7 +76,7 @@ SUBSYSTEM_DEF(lighting)
 		O.needs_update = FALSE
 		if(init_tick_checks)
 			CHECK_TICK
-		else if (MC_TICK_CHECK)
+		else if (MC_TICK_CHECK_LOW_PRIORITY)
 			break
 	if (i)
 		GLOB.lighting_update_objects.Cut(1, i+1)
