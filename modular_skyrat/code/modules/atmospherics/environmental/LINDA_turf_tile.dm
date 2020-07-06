@@ -73,13 +73,13 @@
 			leisure = 0.7
 			current_gasmix.prev_pressure = current_gasmix.cur_pressure
 			current_gasmix.cur_pressure = moles_for_pressure
-			if(current_gasmix.cur_pressure>500) //Higher pressure similarity when on fire/high pressure. Done this way for speed?
+			/*if(current_gasmix.cur_pressure>500) //Higher pressure similarity when on fire/high pressure. Done this way for speed?
 				if(current_gasmix.cur_pressure>4000)
 					leisure = 100
 				else if(current_gasmix.cur_pressure>1100)
 					leisure = 20
 				else
-					leisure = 10
+					leisure = 2*/
 			if(current_gasmix.cur_pressure < current_gasmix.prev_pressure+leisure && current_gasmix.cur_pressure > current_gasmix.prev_pressure-leisure)
 				SSair.remove_from_active(current_turf)
 			else
