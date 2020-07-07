@@ -8,6 +8,7 @@
 	mutanttongue = /obj/item/organ/tongue/abductor
 	//SKYRAT CHANGE - blood
 	exotic_bloodtype = "GREY"
+	exotic_blood_color = BLOOD_COLOR_GREY
 	rainbowblood = TRUE
 	//
 

@@ -2241,7 +2241,7 @@
 /obj/effect/decal/cleanable/semen/Initialize(mapload)
 	. = ..()
 	dir = GLOB.cardinals
-	add_blood_DNA(list("color" = list("Non-human DNA" = bloodtype_to_color("A+")), "Non-human DNA" = "A+"))
+	add_blood_DNA(list("color" = bloodtype_to_color("A+"), "Non-human DNA" = "A+"))
 
 /obj/effect/decal/cleanable/semen/replace_decal(obj/effect/decal/cleanable/semen/S)
 	if(S.blood_DNA)
@@ -2275,7 +2275,7 @@
 /obj/effect/decal/cleanable/femcum/Initialize(mapload)
 	. = ..()
 	dir = GLOB.cardinals
-	add_blood_DNA(list("color" = list("Non-human DNA" = bloodtype_to_color("A+")), "Non-human DNA" = "A+"))
+	add_blood_DNA(list("color" = bloodtype_to_color("A+"), "Non-human DNA" = "A+"))
 
 /obj/effect/decal/cleanable/femcum/replace_decal(obj/effect/decal/cleanable/femcum/F)
 	if(F.blood_DNA)

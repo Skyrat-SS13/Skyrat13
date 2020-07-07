@@ -430,6 +430,8 @@
 		blood_dna["color"] = dna.species.exotic_blood_color
 		if(dna.blood_color)
 			blood_dna["color"] = dna.blood_color
+		if(!blood_dna["color"])
+			blood_dna["color"] = BLOOD_COLOR_HUMAN
 		blood_dna[dna.unique_enzymes] = dna.blood_type
 	else
 		blood_dna["color"] = BLOOD_COLOR_HUMAN
@@ -446,7 +448,6 @@
 	if(!new_blood_dna)
 		return FALSE
 	LAZYINITLIST(blood_DNA)	//if our list of DNA doesn't exist yet, initialise it.
-	LAZYINITLIST(blood_DNA["color"])
 	var/old_length = blood_DNA.len
 	blood_DNA |= (new_blood_dna - "color")
 	var/changed = FALSE

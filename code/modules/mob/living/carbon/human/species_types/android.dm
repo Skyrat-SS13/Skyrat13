@@ -14,6 +14,7 @@
 	//SKYRAT CHANGE - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
 	exotic_bloodtype = "SY"
+	exotic_blood_color = BLOOD_COLOR_SYNTHETIC
 	rainbowblood = TRUE
 	//
 

@@ -19,6 +19,7 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 	mutantliver = /obj/item/organ/liver/dwarf //Dwarven super liver (Otherwise they r doomed)
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "AL")
+	exotic_blood_color = BLOOD_COLOR_ALCOHOL
 	//
 	species_language_holder = /datum/language_holder/dwarf
 
@@ -55,6 +56,7 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 //Dwarf Speech handling - Basically a filter/forces them to say things. The IC helper
 /datum/species/dwarf/proc/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
+	/* skyrat edit - no
 	if(speech_args[SPEECH_LANGUAGE] != /datum/language/dwarf) // No accent if they speak their language
 		if(message[1] != "*")
 			message = " [message]" //Credits to goonstation for the strings list.
@@ -66,6 +68,7 @@ GLOBAL_LIST_INIT(dwarf_last, world.file2list("strings/names/dwarf_last.txt")) //
 				message = replacetextEx(message, " [uppertext(key)]", " [uppertext(value)]")
 				message = replacetextEx(message, " [capitalize(key)]", " [capitalize(value)]")
 				message = replacetextEx(message, " [key]", " [value]") //Also its scottish.
+	*/
 
 	if(prob(3))
 		message += " By Armok!"

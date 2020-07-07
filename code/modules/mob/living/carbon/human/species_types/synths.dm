@@ -22,6 +22,7 @@
 	bloodreagents = list("Synthetic Blood", "Oil")
 	rainbowblood = TRUE
 	exotic_bloodtype = "SY"
+	exotic_blood_color = BLOOD_COLOR_SYNTHETIC
 	//
 	species_language_holder = /datum/language_holder/synthetic
 
