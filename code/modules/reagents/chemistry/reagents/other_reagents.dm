@@ -46,7 +46,7 @@
 			// we don't care about bloodtype here, we're just refilling the mob
 
 	if(reac_volume >= 10 && istype(L) && method != INJECT)
-		L.add_blood_DNA("color" = data["bloodcolor"] || BLOOD_COLOR_HUMAN, data["blood_DNA"] = data["blood_type"])
+		L.add_blood_DNA(list("color" = data["bloodcolor"] || BLOOD_COLOR_HUMAN, data["blood_DNA"] = data["blood_type"]))
 
 /datum/reagent/blood/on_mob_life(mob/living/carbon/C)	//Because lethals are preferred over stamina. damnifino.
 	var/blood_id = C.get_blood_id()
@@ -2226,7 +2226,7 @@
 	if(!S)
 		S = new(T)
 	if(data["blood_DNA"])
-		S.add_blood_DNA("color" = data["blood_DNA"], data["blood_DNA"] = data["blood_type"])
+		S.add_blood_DNA(list("color" = data["blood_DNA"], data["blood_DNA"] = data["blood_type"]))
 
 /obj/effect/decal/cleanable/semen
 	name = "semen"
@@ -2293,4 +2293,4 @@
 	if(!S)
 		S = new(T)
 	if(data["blood_DNA"])
-		S.add_blood_DNA("color" = data["bloodcolor"], data["blood_DNA"] = data["blood_type"])
+		S.add_blood_DNA(list("color" = data["bloodcolor"], data["blood_DNA"] = data["blood_type"]))
