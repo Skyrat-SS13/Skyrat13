@@ -419,7 +419,7 @@
 	var/blood_id = get_blood_id()
 	if(!(blood_id in GLOB.blood_reagent_types))
 		return
-	return list("color" = list("ANIMAL DNA" = BLOOD_COLOR_HUMAN),"ANIMAL DNA" = "Y-")
+	return list("color" = BLOOD_COLOR_HUMAN, "ANIMAL DNA" = "Y-")
 
 /mob/living/carbon/get_blood_dna_list()
 	var/blood_id = get_blood_id()
@@ -427,15 +427,17 @@
 		return
 	var/list/blood_dna = list()
 	if(dna)
-		blood_dna["color"] = list(dna.unique_enzymes = dna.blood_color)
+		blood_dna["color"] = dna.species.exotic_blood_color
+		if(dna.blood_color)
+			blood_dna["color"] = dna.blood_color
 		blood_dna[dna.unique_enzymes] = dna.blood_type
 	else
-		blood_DNA["color"] = list("UNKNOWN DNA" = BLOOD_COLOR_XENO)
+		blood_dna["color"] = BLOOD_COLOR_HUMAN
 		blood_dna["UNKNOWN DNA"] = "X*"
 	return blood_dna
 
 /mob/living/carbon/alien/get_blood_dna_list()
-	return list("color" = list("UNKNOWN DNA" = BLOOD_COLOR_XENO),"UNKNOWN DNA" = "X*")
+	return list("color" = BLOOD_COLOR_XENO, "UNKNOWN DNA" = "X*")
 
 //to add a mob's dna info into an object's blood_DNA list.
 /atom/proc/transfer_mob_blood_dna(mob/living/L)
@@ -447,21 +449,37 @@
 	LAZYINITLIST(blood_DNA["color"])
 	var/old_length = blood_DNA.len
 	blood_DNA |= (new_blood_dna - "color")
-	blood_DNA["color"] |= new_blood_dna["color"]
+	var/changed = FALSE
+	if(!blood_DNA["color"])
+		blood_DNA["color"] = new_blood_dna["color"]
+		changed = TRUE
+	else
+		var/old = blood_DNA["color"]
+		blood_DNA["color"] = BlendRGB(blood_DNA["color"], new_blood_dna["color"])
+		changed = old != blood_DNA["color"]
 	if(blood_DNA.len == old_length)
 		return FALSE
-	return TRUE
+	return changed
 
 //to add blood dna info to the object's blood_DNA list
 /atom/proc/transfer_blood_dna(list/blood_dna, list/datum/disease/diseases)
 	LAZYINITLIST(blood_DNA)
-	LAZYINITLIST(blood_DNA["color"])
+
 	var/old_length = blood_DNA.len
 	blood_DNA |= (blood_dna - "color")
-	blood_DNA["color"] |= blood_dna["color"]
+	if(blood_DNA["color"])
+		blood_DNA["color"] = BlendRGB(blood_dna["color"], blood_dna["color"])
+	else
+		blood_DNA["color"] = blood_dna["color"]
 	if(blood_DNA.len > old_length)
-		return TRUE
+		. = TRUE
 		//some new blood DNA was added
+		if(!blood_dna["color"])
+			return
+		if(!blood_DNA["color"])
+			blood_DNA["color"] = blood_dna["color"]
+		else
+			blood_DNA["color"] = BlendRGB(blood_DNA["color"], blood_dna["color"])
 
 //to add blood from a mob onto something, and transfer their dna info
 /atom/proc/add_mob_blood(mob/living/M)
@@ -490,7 +508,7 @@
 		blood_splatter_icon = icon(initial(icon), initial(icon_state), , 1)		//we only want to apply blood-splatters to the initial icon_state for each object
 		blood_splatter_icon.Blend("#fff", ICON_ADD) 			//fills the icon_state with white (except where it's transparent)
 		blood_splatter_icon.Blend(icon('icons/effects/blood.dmi', "itemblood"), ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
-		blood_splatter_icon.Blend(blood_DNA_to_color(), ICON_MULTIPLY)
+		blood_splatter_icon.Blend(blood_DNA["color"], ICON_MULTIPLY)
 		add_overlay(blood_splatter_icon)
 
 /obj/item/clothing/gloves/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
@@ -530,68 +548,10 @@
 	return TRUE
 //Skyrat changes - snowflake blood color
 /atom/proc/blood_DNA_to_color()
-	var/list/colors = list() //first we make a list of all blood DNAs present
-	var/list/dna_to_color = list() //then we make another fucking list to see if the DNA has an unique blood color
-	// Yes this is fucking terrible.
-	LAZYINITLIST(blood_DNA["color"])
-	for(var/bloop in blood_DNA["color"])
-		if(colors[bloop])
-			colors[bloop]++
-		else
-			colors[bloop] = 1
-	for(var/bloop in colors)
-		dna_to_color[bloop] = bloodtype_to_color(blood_DNA[bloop])
-		if(length(blood_DNA["color"][bloop]))
-			dna_to_color[bloop] = blood_DNA["color"][bloop]
-
-	var/final_rgb = BLOOD_COLOR_HUMAN	//a default so we don't have white blood graphics if something messed up
-
-	if(colors.len)
-		var/sum = 0 //this is all shitcode, but it works; trust me
-		final_rgb = dna_to_color[colors[1]]
-		sum = colors[colors[1]]
-		if(colors.len > 1)
-			var/i = 2
-			while(i <= colors.len)
-				var/tmp = colors[colors[i]]
-				final_rgb = BlendRGB(final_rgb, dna_to_color[colors[i]], tmp/(tmp+sum))
-				sum += tmp
-				i++
-
-	return final_rgb
+	return blood_DNA["color"]) || BLOOD_COLOR_HUMAN
 
 /proc/blood_DNA_list_to_color(list/dna)
-	if(!dna || !length(dna))
-		return BLOOD_COLOR_HUMAN
-	var/list/colors = list() //first we make a list of all blood DNAs present
-	var/list/dna_to_color = list() //then we make another fucking list to see if the DNA has an unique blood color
-	// Yes this is fucking terrible.
-	LAZYINITLIST(dna["color"])
-	for(var/bloop in dna["color"])
-		if(colors[bloop])
-			colors[bloop]++
-		else
-			colors[bloop] = 1
-	for(var/bloop in colors)
-		dna_to_color[bloop] = bloodtype_to_color(dna[bloop])
-		if(length(dna["color"][bloop]))
-			dna_to_color[bloop] = dna["color"][bloop]
-
-	var/final_rgb = BLOOD_COLOR_HUMAN	//a default so we don't have white blood graphics if something messed up
-
-	if(colors.len)
-		var/sum = 0 //this is all shitcode, but it works; trust me
-		final_rgb = dna_to_color[colors[1]]
-		sum = colors[colors[1]]
-		if(colors.len > 1)
-			var/i = 2
-			while(i <= colors.len)
-				var/tmp = colors[colors[i]]
-				final_rgb = BlendRGB(final_rgb, dna_to_color[colors[i]], tmp/(tmp+sum))
-				sum += tmp
-				i++
-
-	return final_rgb
+	return dna["color"] || BLOOD_COLOR_HUMAN
 //
 /atom/proc/clean_blood()
 	. = blood_DNA ? TRUE : FALSE
@@ -897,6 +857,17 @@
 	return
 
 /atom/proc/GenerateTag()
+	return
+
+/**
+  * Called after a shuttle is loaded **from map template initially**.
+  *
+  * @params
+  * * port - Mobile port/shuttle
+  * * dock - Stationary dock the shuttle's at
+  * * idnum - ID number of the shuttle
+  */
+/atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
 
 // Generic logging helper

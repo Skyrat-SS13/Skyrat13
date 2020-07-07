@@ -22,6 +22,7 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/shields_lefthand.dmi'
 	icon_state = "gladiator"
 	item_state = "gladiator"
+	resistance_flags = FIRE_PROOF | UNACIDABLE | INDESTRUCTIBLE
 	shield_flags = SHIELD_FLAGS_DEFAULT | SHIELD_BASH_ALWAYS_DISARM | SHIELD_BASH_GROUND_SLAM_DISARM
 	slowdown = 0
 	shieldbash_cooldown = 6 SECONDS
@@ -270,7 +271,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(H.getarmor(def_zone, "melee") < 35)
-			if((user.zone_selected != BODY_ZONE_CHEST) && (user.zone_selected != BODY_ZONE_HEAD))
+			if((user.zone_selected != BODY_ZONE_CHEST) && (user.zone_selected != BODY_ZONE_HEAD) && (user.zone_selected != BODY_ZONE_PRECISE_GROIN))
 				..()
 				var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
 				bodyp.dismember()
@@ -355,6 +356,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	slowdown = 0
 	mutantrace_variation = STYLE_DIGITIGRADE | STYLE_NO_ANTHRO_ICON
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit helmet"
@@ -366,6 +368,7 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	anthro_mob_worn_overlay  = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	mutantrace_variation = STYLE_MUZZLE | STYLE_NO_ANTHRO_ICON
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 //drake
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()

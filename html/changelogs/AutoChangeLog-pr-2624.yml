@@ -1,4 +1,0 @@
-author: "KathrinBailey"
-delete-after: True
-changes: 
-  - bugfix: "Missing wiring for Security Office APC in Delta."
