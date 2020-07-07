@@ -15,6 +15,7 @@
 	disliked_food = TOXIC
 	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
 	exotic_bloodtype = "BUG"
+	exotic_blood_color = BLOOD_COLOR_BUG
 	languagewhitelist = list("Moffic", "Buggy") //Skyrat Edit
 
 /datum/species/insect/spec_death(gibbed, mob/living/carbon/human/H)
