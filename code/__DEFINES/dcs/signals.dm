@@ -243,6 +243,9 @@
 #define COMSIG_OBJ_DECONSTRUCT 	"obj_deconstruct"				//from base of obj/deconstruct(): (disassembled)
 #define COMSIG_OBJ_BREAK		"obj_break"						//from base of /obj/obj_break(): (damage_flag)
 #define COMSIG_OBJ_SETANCHORED 	"obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
+#define COMSIG_OBJ_ATTACK_GENERIC "obj_attack_generic"			//from base of atom/animal_attack(): (/mob/user)
+	#define COMPONENT_STOP_GENERIC_ATTACK 1
+
 
 // /machinery signals
 #define COMSIG_MACHINE_EJECT_OCCUPANT "eject_occupant"			//from base of obj/machinery/dropContents() (occupant)
@@ -402,10 +405,19 @@
 #define COMSIG_XENO_TURF_CLICK_CTRL "xeno_turf_click_alt"					//from turf AltClickOn(): (/mob)
 #define COMSIG_XENO_MONKEY_CLICK_CTRL "xeno_monkey_click_ctrl"				//from monkey CtrlClickOn(): (/mob)
 
-//skyrat funnies
+// Skyrat signals
+
+// Movable signals
+#define COMSIG_MOVABLE_RADIO_TALK_INTO "movable_radio_talk_into"				//from radio talk_into(): (obj/item/radio/radio, message, channel, list/spans, datum/language/language, direct)
+// Mob signals
+#define COMSIG_MOB_ITEM_ATTACK_SELF "item_attack_self"				//from base of obj/item/attack_self(): (obj/item)
+// Living signals
 #define COMSIG_LIVING_FLASH_ACT "living_flash_act"				///from base of [/mob/living/proc/flash_act] //moth
+
 #define COMSIG_EVENTPREF_UPDATE "observer_eventpref_update"
 
 //Mob stuff
 #define COMSIG_MOB_CLIENT_MOUSEUP "mob_client_mouseup" ///from base of [client/MouseUp()] (datum/source, object, location, control, params)
 #define COMSIG_MOB_CLIENT_MOUSEDOWN "mob_client_mousedown" ///from base of [client/MouseDown()] (datum/source, object, location, control, params)
+
+#define COMSIG_LIVING_UPDATED_MOBILITY "living_updated_mobility" //from base of (/mob/living/proc/update_mobility): (mobility_flags)
