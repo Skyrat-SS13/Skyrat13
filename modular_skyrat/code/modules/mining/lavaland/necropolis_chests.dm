@@ -82,7 +82,8 @@
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
 	new /obj/item/crusher_trophy/demon_claws(src)
-	new /obj/item/gun/magic/staff/spellblade(src)
+	var/loot = pick(/obj/item/book/granter/martial/berserk, /obj/item/gun/magic/staff/spellblade)
+	new loot(src)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
 	name = "enraged bubblegum chest"
@@ -105,7 +106,6 @@
 	new /obj/item/crusher_trophy/demon_claws(src)
 
 //super shotty changes (meat hook instead of bursto)
-
 /obj/item/gun/ballistic/revolver/doublebarrel/super
 	burst_size = 1
 	actions_types = list(/datum/action/item_action/toggle_hook)
@@ -173,7 +173,7 @@
 	. = ..()
 	var/atom/A = target
 	A.visible_message("<span class='danger'>[A] is snagged by [firer]'s hook!</span>")
-	new /datum/forced_movement(firer, get_turf(A), 1, TRUE)
+	new /datum/forced_movement(firer, get_turf(A), 2.5, TRUE)
 
 /obj/item/projectile/heckhook/Destroy()
 	qdel(chain)
