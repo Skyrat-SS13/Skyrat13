@@ -208,9 +208,9 @@
 			else
 				if(ishuman(target))
 					var/mob/living/carbon/human/H = target
-					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, blood_DNA_list_to_color(H.get_blood_dna_list()))
+					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, H.blood_DNA_to_color())
 				else
-					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, L.get_blood_dna_list())
+					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, BLOOD_COLOR_HUMAN)
 
 				L.add_splatter_floor(target_loca)
 		else if(impact_effect_type && !hitscan)

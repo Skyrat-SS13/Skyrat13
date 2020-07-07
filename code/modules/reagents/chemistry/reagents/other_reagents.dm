@@ -70,10 +70,7 @@
 		B = new(T)
 	if(data["blood_DNA"])
 		B.blood_DNA[data["blood_DNA"]] = data["blood_type"]
-		if(!B.blood_DNA["color"])
-			B.blood_DNA["color"] = data["bloodcolor"]
-		else
-			B.blood_DNA["color"] = BlendRGB(B.blood_DNA["color"], data["bloodcolor"])
+		B.blood_DNA["color"] = data["color"]
 	if(B.reagents)
 		B.reagents.add_reagent(type, reac_volume)
 	B.update_icon()

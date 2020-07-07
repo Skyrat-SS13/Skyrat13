@@ -310,11 +310,7 @@
 				return
 			else
 				temp_blood_DNA = (drop.blood_DNA - "color")	//transfer dna from drip to splatter.
-				if(drop.blood_DNA["color"])
-					if(temp_blood_DNA["color"])
-						temp_blood_DNA["color"] = BlendRGB(temp_blood_DNA, drop.blood_DNA["color"])
-					else
-						temp_blood_DNA["colo"] = drop.blood_DNA["color"]
+				temp_blood_DNA["color"] = drop.blood_DNA["color"]
 				qdel(drop)//the drip is replaced by a bigger splatter
 		else
 			drop = new(T, get_static_viruses())

@@ -12,9 +12,7 @@
 /obj/effect/decal/cleanable/blood/replace_decal(obj/effect/decal/cleanable/blood/C)
 	if (C.blood_DNA)
 		blood_DNA |= (C.blood_DNA - "color")
-		if(blood_DNA["color"])
-			blood_DNA["color"] = BlendRGB(C.blood_DNA["color"], blood_DNA["color"])
-		else
+		if(C.blood_DNA["color"])
 			blood_DNA["color"] = C.blood_DNA["color"]
 	update_icon()
 	..()

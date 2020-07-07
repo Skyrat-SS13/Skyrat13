@@ -49,10 +49,7 @@
 	if(blood_dna.len)
 		last_bloodtype = blood_dna[blood_dna[blood_dna.len]]//trust me this works
 		last_blood_DNA = blood_dna[blood_dna.len]
-		if(!last_blood_color)
-			last_blood_color = blood_dna["color"]
-		else
-			last_blood_color = BlendRGB(last_blood_color, blood_dna["color"])
+		last_blood_color = blood_dna["color"]
 
 /obj/item/clothing/shoes/worn_overlays(isinhands = FALSE, icon_file, used_state, style_flags = NONE)
 	. = ..()
