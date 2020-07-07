@@ -599,7 +599,7 @@ world
 
 	amount<0 or amount>1 are allowed
  */
-/proc/BlendRGB(rgb1 = BLOOD_COLOR_HUMAN, rgb2 = BLOOD_COLOR_HUMAN, amount = 0.5)
+/proc/BlendRGB(rgb1 = BLOOD_COLOR_HUMAN, rgb2 = BLOOD_COLOR_HUMAN, amount = 0.5) //skyrat edit makes shit easier
 	var/list/RGB1 = ReadRGB(rgb1)
 	var/list/RGB2 = ReadRGB(rgb2)
 
