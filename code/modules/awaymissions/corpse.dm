@@ -104,8 +104,10 @@
 		M.death(1) //Kills the new mob
 
 	M.adjustOxyLoss(oxy_damage)
-	M.adjustBruteLoss(brute_damage)
-	M.adjustFireLoss(burn_damage)
+	var/split = length(M.bodyparts)
+	for(var/i in M.bodyparts)
+		var/obj/item/bodypart/BP = i
+		BP.receive_damage(round(brute_damage/split, 1), round(burn_damage/split, 1), 0, TRUE, null, CANT_WOUND, CANT_WOUND, SHARP_NONE)
 	M.color = mob_color
 	equip(M)
 
