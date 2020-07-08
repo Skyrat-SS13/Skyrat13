@@ -271,7 +271,36 @@
 
 /obj/item/bloodcrawlbottle/attack_self(mob/user)
 	to_chat(user, "<span class='notice'>You drink the bottle's contents.</span>")
-	var/obj/effect/proc_holder/spell/bloodcrawl/S = new /obj/effect/proc_holder/spell/bloodcrawl/
+	var/obj/effect/proc_holder/spell/bloodcrawl/S = new()
 	user.mind.AddSpell(S)
 	user.log_message("learned the spell bloodcrawl ([S])", LOG_ATTACK, color="orange")
 	qdel(src)
+
+/obj/effect/proc_holder/spell/bloodcrawl/lesser
+	name = "Lesser Blood Crawl"
+	desc = "Use pools of blood to phase out of existence. Requires large pools of blood, and has a 15 second cooldown."
+	cooldown_min = 15 SECONDS
+
+/obj/effect/proc_holder/spell/bloodcrawl/lesser/choose_targets(mob/user = usr)
+	for(var/obj/effect/decal/cleanable/target in range(range, get_turf(user)))
+		if(target.can_lesser_bloodcrawl_in() && target.bloodiness >= 30)
+			perform(target)
+			return
+	revert_cast()
+	to_chat(user, "<span class='warning'>There must be a nearby source of plentiful blood!</span>")
+
+/obj/effect/proc_holder/spell/bloodcrawl/lesser/perform(obj/effect/decal/cleanable/target, recharge = 1, mob/living/user = usr)
+	if(istype(user))
+		if(phased)
+			if(user.phasein(target))
+				phased = 0
+				if(iscarbon(user))
+					var/mob/living/carbon/C = user
+					C.AdjustBloodVol(initial(C.blood_volume)/10)
+		else
+			if(user.phaseout(target))
+				phased = 1
+		start_recharge()
+		return
+	revert_cast()
+	to_chat(user, "<span class='warning'>You are unable to blood crawl!</span>")
