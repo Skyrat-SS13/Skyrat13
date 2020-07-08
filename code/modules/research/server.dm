@@ -55,6 +55,7 @@
 /obj/machinery/rnd/server/proc/mine()
 	. = base_mining_income
 	var/penalty = max((get_env_temp() - temp_tolerance_high), 0) * temp_penalty_coefficient
+	. = newera_process_bc_miner(.) // new era -- infiltrators
 	. = max(. - penalty, 0)
 
 /obj/machinery/rnd/server/proc/get_env_temp()

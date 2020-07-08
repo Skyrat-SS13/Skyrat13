@@ -76,6 +76,10 @@
 #define ANTAG_DATUM_BLOODSUCKER			/datum/antagonist/bloodsucker
 #define ANTAG_DATUM_VASSAL				/datum/antagonist/vassal
 //#define ANTAG_DATUM_HUNTER				/datum/antagonist/vamphunter   Disabled for now
+// new era -- infiltrators:
+#define ANTAG_DATUM_INFILTRATOR	/datum/antagonist/infiltrator
+#define ANTAG_DATUM_HIJACKEDAI	/datum/antagonist/hijacked_ai
+// new era end
 
 // BLOODSUCKER
 #define BLOODSUCKER_LEVEL_TO_EMBRACE	3

@@ -17475,6 +17475,10 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/holding)
+"QD" = (
+/obj/effect/spawner/template/infiltrator,
+/turf/open/space/basic,
+/area/space)
 "QE" = (
 /obj/item/storage/box/ids{
 	pixel_x = 3;
@@ -47800,7 +47804,7 @@ aa
 aa
 aa
 aa
-aa
+QD
 aa
 aa
 aa
