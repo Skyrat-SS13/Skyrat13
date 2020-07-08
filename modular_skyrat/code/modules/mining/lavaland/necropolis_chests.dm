@@ -173,6 +173,10 @@
 	. = ..()
 	var/atom/A = target
 	A.visible_message("<span class='danger'>[A] is snagged by [firer]'s hook!</span>")
+	if(isliving(A))
+		var/mob/living/L = A
+		L.take_bodypart_damage(5, 0, 0, TRUE)
+		L.Paralyze(5)
 	new /datum/forced_movement(firer, get_turf(A), 2.5, TRUE)
 
 /obj/item/projectile/heckhook/Destroy()
