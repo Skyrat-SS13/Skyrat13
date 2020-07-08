@@ -289,7 +289,7 @@ GENETICS SCANNER
 					//Astrogen shenanigans
 					if(H.reagents.has_reagent(/datum/reagent/fermi/astral))
 						if(H.mind)
-							temp_message += " <span class='danger'>Warning: subject may be possesed.</span>"
+							temp_message += " <span class='danger'>Warning: subject may be possessed.</span>"
 						else
 							temp_message += " <span class='notice'>Subject appears to be astrally projecting.</span>"
 
@@ -298,7 +298,7 @@ GENETICS SCANNER
 			else if(istype(O, /obj/item/organ/liver))
 				var/obj/item/organ/liver/L = O
 				if(L.organ_flags & ORGAN_FAILING && H.stat != DEAD) //might be depreciated
-					temp_message += "<span class='danger'>Subject is suffering from liver failure: Apply Corazone and begin a liver transplant immediately!</span>"
+					temp_message += " <span class='danger'>Subject is suffering from liver failure: Apply Corazone and begin a liver transplant immediately!</span>"
 
 			//HEART
 			else if(ishuman(M) && (istype(O, /obj/item/organ/heart)))

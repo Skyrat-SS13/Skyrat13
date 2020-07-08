@@ -44,9 +44,9 @@
 	else if(istype(tool, /obj/item/reagent_containers/food/snacks/organ))
 		to_chat(user, "<span class='warning'>[tool] was bitten by someone! It's too damaged to use!</span>")
 		return -1
-	else if(istype(tool, /obj/item/stack/medical/bruise_pack) || istype(tool, /obj/item/stack/medical/ointment))
+	else if(istype(tool, /obj/item/stack/medical/bruise_pack) || istype(tool, /obj/item/stack/medical/ointment) || istype(tool, /obj/item/stack/medical/mesh) || istype(tool, /obj/item/stack/medical/suture))
 		var/obj/item/stack/medical/M = tool
-		if(M.use(3))
+		if(M.use(2))
 			current_type = "heal"
 			var/list/organlist = target.getorganszone(target_zone)
 			if(!organlist.len)
