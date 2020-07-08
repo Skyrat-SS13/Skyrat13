@@ -49,6 +49,11 @@
 /obj/item/encryptionkey/headset_med/cloningpod
 	channels = list(RADIO_CHANNEL_MEDICAL = 1, RADIO_CHANNEL_SECURITY = 1, RADIO_CHANNEL_COMMON = 1)
 
+/obj/machinery/clonepod/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/reagent_containers/food/snacks/meat))
+		succ(I)
+
 /obj/machinery/clonepod/Initialize()
 	. = ..()
 
@@ -239,9 +244,9 @@
 	attempting = FALSE
 	return TRUE
 
-/obj/machinery/clonepod/proc/succ()
+/obj/machinery/clonepod/proc/succ(obj/item/reagent_containers/food/snacks/meat/M)
 	var/ping = FALSE
-	for(var/obj/item/reagent_containers/food/snacks/meat/slab/meatball in view(src, 1))
+	for(var/obj/item/reagent_containers/food/snacks/meat/slab/meatball in (view(src, 1) + M))
 		ping = TRUE
 		if(istype(meatball, /obj/item/reagent_containers/food/snacks/meat/slab/biomeat))
 			biomass += 100

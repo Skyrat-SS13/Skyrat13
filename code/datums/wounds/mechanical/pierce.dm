@@ -186,7 +186,7 @@
 	desc = "Patient's hydraulic cablings have been shredded, causing critical leakage and damage to internal components."
 	treat_text = "Full internal repair of the affected area."
 	examine_desc = "is ripped clear through, barely held together by it's endoskeleton"
-	occur_text = "blasts apart, sending chunks of viscera flying in all directions"
+	occur_text = "blasts apart, sending metallic shrapnel flying in all directions"
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
 	treatable_by = list()
