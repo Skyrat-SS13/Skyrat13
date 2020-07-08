@@ -116,6 +116,9 @@
 		. += "<span class='warning'>This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.</span>"
 	if(burn_dam > DAMAGE_PRECISION)
 		. += "<span class='warning'>This limb has [burn_dam > 30 ? "severe" : "minor"] burns.</span>"
+	for(var/obj/item/bodypart/BP in src)
+		if(BP.body_zone in children_zones)
+			. += "<span class='notice'>[src] has \a [lowertext(BP.name)] attached. Use a sharp item to cut it off!</span>"
 
 /obj/item/bodypart/blob_act()
 	take_damage(max_damage)
