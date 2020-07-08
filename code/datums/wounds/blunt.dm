@@ -112,7 +112,7 @@
 			"<span class='userdanger'>You fail to strike [target] as the fracture in your [limb.name] lights up in unbearable pain!</span>", vision_distance=COMBAT_MESSAGE_RANGE)
 			victim.emote("scream")
 			victim.Stun(0.5 SECONDS)
-			limb.receive_damage(brute=rand(3,7))
+			limb.receive_damage(brute=rand(2,7))
 			return COMPONENT_NO_ATTACK_HAND
 
 /datum/wound/blunt/receive_damage(wounding_type, wounding_dmg, wound_bonus)
@@ -123,7 +123,7 @@
 		victim.Paralyze()
 	
 	if(limb.body_zone == BODY_ZONE_CHEST && !HAS_TRAIT(victim, TRAIT_NOBREATH) && severity >= WOUND_SEVERITY_MODERATE)
-		var/oxy_dmg = rand(1, wounding_dmg * (severity >= WOUND_SEVERITY_SEVERE ? 2 : 1))
+		var/oxy_dmg = round(rand(1, (wounding_dmg/5) * (severity >= WOUND_SEVERITY_SEVERE ? 2 : 1)))
 		victim.adjustOxyLoss(oxy_dmg)
 
 	if(limb.body_zone == BODY_ZONE_CHEST && victim.blood_volume && prob(internal_bleeding_chance + wounding_dmg))
