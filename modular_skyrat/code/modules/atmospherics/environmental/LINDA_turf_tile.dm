@@ -1,13 +1,11 @@
 //TODO:
-//Better space tiles handling //DONE
-//Planetary atmos
+//Flow noise
 //High pressure pushes
-//Check if thermal energy is behaving properly //DONE
-//Calculate pressure more efficiently by using the group, not the individual tiles //DONE
 
 //Range at which cell process will try and share air with, the more the faster and less accurately things will be processed
 //Try and have this between 1 and 3
 #define ATMOS_CELL_PROCESS_EXPLOSIVENESS 2
+#define VACCUUM_CELL_HEAT_CAPACITY 500 //Different from HEAT_CAPACITY_VACUUM to give away effect of a radiating heat transfer instead of conductive one
 
 /turf/proc/process_cell(fire_count)
 	SSair.remove_from_active(src)
@@ -35,6 +33,9 @@
 	for(var/t in affected_turfs)
 		current_turf = t
 		current_gasmix = current_turf.air
+		/*if(!current_gasmix) //This small statement exists purely because there's some bug somewhere causing open turfs to not have air
+			affected_turfs -= current_turf
+			continue*/
 		inloop_heat_cap = 0
 		for(var/gas_datum in current_gasmix.gases)
 			if(!final_gas_mix[gas_datum])
@@ -47,7 +48,7 @@
 		if(inloop_heat_cap)
 			heat_capacity += inloop_heat_cap
 		else
-			heat_capacity += HEAT_CAPACITY_VACUUM
+			heat_capacity += VACCUUM_CELL_HEAT_CAPACITY
 
 	if(!heat_capacity) //If you havent gotten any heat capacity at this point - no point going further
 		SSair.remove_from_active(src)
@@ -61,7 +62,6 @@
 	//Pressure
 	moles_for_pressure *= R_IDEAL_GAS_EQUATION * final_temp / CELL_VOLUME 
 	//
-	var/leisure = 0.8
 	for(var/t in affected_turfs)
 		current_turf = t
 		current_gasmix = current_turf.air
@@ -70,7 +70,6 @@
 				current_gasmix.gases[gas_datum] = final_gas_mix[gas_datum]
 			current_gasmix.temperature = final_temp
 			current_turf.update_visuals()
-			leisure = 0.8
 			current_gasmix.prev_pressure = current_gasmix.cur_pressure
 			current_gasmix.cur_pressure = moles_for_pressure
 			/*if(current_gasmix.cur_pressure>500) //Higher pressure similarity when on fire/high pressure. Done this way for speed?
@@ -80,8 +79,8 @@
 					leisure = 20
 				else
 					leisure = 2*/
-			if(current_gasmix.cur_pressure < current_gasmix.prev_pressure+leisure && current_gasmix.cur_pressure > current_gasmix.prev_pressure-leisure)
-				SSair.remove_from_active(current_turf)
+			if(current_gasmix.cur_pressure < current_gasmix.prev_pressure+0.8 && current_gasmix.cur_pressure > current_gasmix.prev_pressure-0.8)
+				SSair.active_turfs -= current_turf
 			else
 				SSair.add_to_active(current_turf)
 			//SSair.add_to_react_queue(current_turf) //Yes? No? maybe?
@@ -89,7 +88,7 @@
 				SSplanetatmos.currentrun[current_turf] = TRUE
 				//current_turf.handle_planet_atmos()
 		else
-			SSair.remove_from_active(current_turf)
+			SSair.active_turfs -= current_turf
 		SSair_turfs.currentrun -= current_turf
 		SSair_turfs.exempt_currentrun[current_turf] = TRUE
 
@@ -100,6 +99,7 @@
 	I.after_process_cell()*/
 
 #undef ATMOS_CELL_PROCESS_EXPLOSIVENESS
+#undef VACCUUM_CELL_HEAT_CAPACITY
 
 /datum/gas_mixture
 	var/prev_pressure = 101.3 //Doesn't matter much if it's wrong initially
@@ -168,3 +168,13 @@
 	air.temperature = final_thermal/final_heat_cap
 	SSplanetatmos.currentrun[src] = TRUE
 	//SSair.add_to_active(src)
+
+/turf/proc/process_cell_reaction()
+	SSair.remove_from_react_queue(src)
+
+/turf/open/process_cell_reaction()
+	if(air.react(src))
+		update_visuals()
+	else
+		SSair.remove_from_react_queue(src)
+	return

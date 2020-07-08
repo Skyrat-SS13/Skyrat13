@@ -235,7 +235,7 @@
 /turf/open/space/process_cell(fire_count) //dumb hack to prevent space pollution
 	. = ..()
 	var/datum/gas_mixture/immutable/I = space_gas
-	I.after_process_cell()*/
+	I.after_process_cell()
 
 /turf/proc/process_cell_reaction()
 	SSair.remove_from_react_queue(src)
@@ -244,7 +244,7 @@
 	air.react(src)
 	update_visuals()
 	SSair.remove_from_react_queue(src)
-	return
+	return*/
 
 //////////////////////////SPACEWIND/////////////////////////////
 

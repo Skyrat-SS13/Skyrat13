@@ -83,7 +83,7 @@
 		/datum/gas/oxygen = MINIMUM_MOLE_COUNT
 	)
 
-/datum/gas_reaction/tritfire/react(datum/gas_mixture/air, datum/holder)
+/*/datum/gas_reaction/tritfire/react(datum/gas_mixture/air, datum/holder) MOVED TO modular_skyrat
 	var/energy_released = 0
 	var/old_heat_capacity = air.heat_capacity()
 	var/list/cached_gases = air.gases //this speeds things up because accessing datum vars is slow
@@ -125,7 +125,7 @@
 				item.temperature_expose(air, temperature, CELL_VOLUME)
 			location.temperature_expose(air, temperature, CELL_VOLUME)
 
-	return cached_results["fire"] ? REACTING : NO_REACTION
+	return cached_results["fire"] ? REACTING : NO_REACTION*/
 
 //plasma combustion: combustion of oxygen and plasma (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/plasmafire
@@ -140,7 +140,7 @@
 		/datum/gas/oxygen = MINIMUM_MOLE_COUNT
 	)
 
-/datum/gas_reaction/plasmafire/react(datum/gas_mixture/air, datum/holder)
+/*/datum/gas_reaction/plasmafire/react(datum/gas_mixture/air, datum/holder) MOVED TO modular_skyrat
 	var/energy_released = 0
 	var/old_heat_capacity = air.heat_capacity()
 	var/list/cached_gases = air.gases //this speeds things up because accessing datum vars is slow
@@ -198,7 +198,7 @@
 				item.temperature_expose(air, temperature, CELL_VOLUME)
 			location.temperature_expose(air, temperature, CELL_VOLUME)
 
-	return cached_results["fire"] ? REACTING : NO_REACTION
+	return cached_results["fire"] ? REACTING : NO_REACTION*/
 
 //fusion: a terrible idea that was fun but broken. Now reworked to be less broken and more interesting. Again (and again, and again). Again!
 //Fusion Rework Counter: Please increment this if you make a major overhaul to this system again.
