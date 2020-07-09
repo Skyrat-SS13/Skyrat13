@@ -181,6 +181,7 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define EMBEDDED_JOSTLE_PAIN_MULTIPLIER			1	//Coefficient of multiplication for the damage the item does while
 #define EMBEDDED_PAIN_STAM_PCT					0.0	//This percentage of all pain will be dealt as stam damage rather than brute (0-1)
 
+#define EMBED_NONE list("embed_chance" = 0, "fall_chance" = 0, "pain_chance" = 0, "pain_mult" = 0, "remove_pain_mult" = 0, "rip_time" = 0, "impact_pain_mult" = 0, "ignore_throwspeed_threshold" = 0, "jostle_chance" = 0, "jostle_pain_mult" = 0, "pain_stam_pct" = 0, "weapon" = null)
 #define EMBED_HARMLESS list("pain_mult" = 0, "jostle_pain_mult" = 0, "ignore_throwspeed_threshold" = TRUE)
 #define EMBED_HARMLESS_SUPERIOR list("pain_mult" = 0, "jostle_pain_mult" = 0, "ignore_throwspeed_threshold" = TRUE, "embed_chance" = 100, "fall_chance" = 0.1)
 #define EMBED_POINTY list("ignore_throwspeed_threshold" = TRUE)

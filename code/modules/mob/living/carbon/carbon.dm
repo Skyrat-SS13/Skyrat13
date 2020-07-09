@@ -1226,7 +1226,7 @@
   * * num_scars- A number for how many scars you want to add
   * * forced_type- Which wound or category of wounds you want to choose from, WOUND_LIST_BLUNT, WOUND_LIST_SLASH, WOUND_LIST_PIERCE, or WOUND_LIST_BURN (or some combination). If passed a list, picks randomly from the listed wounds. Defaults to all 3 types
   */
-/mob/living/carbon/proc/generate_fake_scars(num_scars, forced_type)
+/mob/living/carbon/proc/generate_fake_scars(num_scars, forced_type, permanent = FALSE)
 	for(var/i in 1 to num_scars)
 		var/datum/scar/S = new
 		var/obj/item/bodypart/BP = pick(bodyparts)
@@ -1243,6 +1243,8 @@
 		var/datum/wound/W = new wound_type
 		S.generate(BP, W)
 		S.fake = TRUE
+		if(permanent)
+			S.permanent = TRUE
 		QDEL_NULL(W)
 
 /mob/living/carbon/proc/get_total_bleed_rate()

@@ -1293,8 +1293,15 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_CRACK,
 								ADMIN_PUNISHMENT_BLEED,
 								ADMIN_PUNISHMENT_PERFORATE,
+								ADMIN_PUNISHMENT_BURN,
+								ADMIN_PUNISHMENT_SHRAPNEL,
+								ADMIN_PUNISHMENT_SCARIFY,
 								ADMIN_PUNISHMENT_NUGGET,
-								ADMIN_PUNISHMENT_SCARIFY)
+								ADMIN_PUNISHMENT_ONE,
+								ADMIN_PUNISHMENT_RAYMAN,
+								ADMIN_PUNISHMENT_EXTREMITIES,
+								ADMIN_PUNISHMENT_HOLLOW,
+								)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1379,7 +1386,9 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				return
 			var/mob/living/carbon/C = target
 			for(var/obj/item/bodypart/squish_part in C.bodyparts)
-				var/type_wound = pick(list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate))
+				var/type_wound = pick(WOUND_LIST_BLUNT)
+				if(!squish_part.is_organic_limb())
+					type_wound = pick(WOUND_LIST_BLUNT_MECHANICAL)
 				squish_part.force_wound_upwards(type_wound, smited=TRUE)
 		if(ADMIN_PUNISHMENT_BLEED)
 			if(!iscarbon(target))
@@ -1387,23 +1396,26 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				return
 			var/mob/living/carbon/C = target
 			for(var/obj/item/bodypart/slice_part in C.bodyparts)
-				var/type_wound = pick(list(/datum/wound/slash/severe, /datum/wound/slash/moderate))
-				slice_part.force_wound_upwards(type_wound, smited=TRUE)
-				type_wound = pick(list(/datum/wound/slash/critical, /datum/wound/slash/severe, /datum/wound/slash/moderate))
-				slice_part.force_wound_upwards(type_wound, smited=TRUE)
-				type_wound = pick(list(/datum/wound/slash/critical, /datum/wound/slash/severe))
-				slice_part.force_wound_upwards(type_wound, smited=TRUE)
+				var/type_wound = pick(WOUND_LIST_SLASH)
+				if(!slice_part.is_organic_limb())
+					type_wound = pick(WOUND_LIST_SLASH_MECHANICAL)
+				var/i = 0
+				while(i < 3)
+					i++
+					slice_part.force_wound_upwards(type_wound, smited=TRUE)
 		if(ADMIN_PUNISHMENT_PERFORATE)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
 				return
 			var/mob/living/carbon/C = target
 			for(var/obj/item/bodypart/slice_part in C.bodyparts)
-				var/type_wound = pick(list(/datum/wound/pierce/severe, /datum/wound/slash/moderate))
-				slice_part.force_wound_upwards(type_wound, smited=TRUE)
-				type_wound = pick(list(/datum/wound/pierce/critical, /datum/wound/slash/severe, /datum/wound/slash/moderate))
-				slice_part.force_wound_upwards(type_wound, smited=TRUE)
-				type_wound = pick(list(/datum/wound/slash/critical, /datum/wound/slash/severe))
+				var/type_wound = pick(WOUND_LIST_PIERCE)
+				if(!slice_part.is_organic_limb())
+					type_wound = pick(WOUND_LIST_PIERCE_MECHANICAL)
+				var/i = 0
+				while(i < 3)
+					i++
+					slice_part.force_wound_upwards(type_wound, smited=TRUE)
 		if(ADMIN_PUNISHMENT_NUGGET)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
@@ -1412,13 +1424,75 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			for(var/obj/item/bodypart/BP in C.bodyparts)
 				if(BP.body_zone in LIMB_BODYPARTS)
 					BP.dismember(BRUTE)
+		if(ADMIN_PUNISHMENT_ONE)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				if(BP.body_zone in LIMB_BODYPARTS)
+					BP.dismember(BRUTE)
+			var/list/sensory = list(ORGAN_SLOT_EYES, ORGAN_SLOT_TONGUE, ORGAN_SLOT_VOICE, ORGAN_SLOT_EARS)
+			for(var/i in sensory)
+				if(C.getorganslot(i))
+					var/obj/item/organ/O = C.getorganslot(i)
+					O.Remove()
+					qdel(O)
+		if(ADMIN_PUNISHMENT_BURN)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/burn_part in C.bodyparts)
+				var/type_wound = pick(WOUND_LIST_BURN)
+				if(!burn_part.is_organic_limb())
+					type_wound = pick(WOUND_LIST_BURN_MECHANICAL)
+				burn_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_RAYMAN)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				if(BP.body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG))
+					qdel(BP)
+			C.regenerate_icons()
+		if(ADMIN_PUNISHMENT_SHRAPNEL)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				var/randumb = rand(1, 6)
+				for(var/i in 1 to randumb)
+					var/obj/item/shrapnel/shame = new /obj/item/shrapnel(C)
+					shame.name = "shrapnel of shame"
+					shame.desc = "You're shameful."
+					shame.tryEmbed(BP, TRUE, FALSE)
 		if(ADMIN_PUNISHMENT_SCARIFY)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
 				return
 			var/mob/living/carbon/C = target
-			C.generate_fake_scars(rand(1, 4))
+			C.generate_fake_scars(rand(1, 4), null, TRUE)
 			to_chat(C, "<span class='warning'>You feel your body grow jaded and torn...</span>")
+		if(ADMIN_PUNISHMENT_EXTREMITIES)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				if(BP.body_zone in EXTREMITY_BODYPARTS)
+					BP.dismember(BRUTE)
+		if(ADMIN_PUNISHMENT_HOLLOW)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			to_chat(C, "<span class='warning'>You feel your body going hollow...</span>")
+			for(var/obj/item/organ/O in C.internal_organs)
+				O.Remove()
+				qdel(O)
 		//
 
 	punish_log(target, punishment)

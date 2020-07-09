@@ -1411,7 +1411,18 @@
 			return
 
 	var/datum/wound/new_wound = new potential_wound
-	new_wound.apply_wound(src, smited = smited)
+	var/severity = new_wound.severity
+	if(!(body_zone in new_wound.viable_zones))
+		var/list/fuck = (new_wound.wound_type - new_wound.type)
+		for(var/i in fuck)
+			new_wound = new i()
+			if(!(body_zone in new_wound.viable_zones) || (severity != new_wound.severity))
+				qdel(new_wound)
+				continue
+			else
+				break
+	if(new_wound)
+		new_wound.apply_wound(src, smited = smited)
 
 /**
   * check_wounding_mods() is where we handle the various modifiers of a wound roll
