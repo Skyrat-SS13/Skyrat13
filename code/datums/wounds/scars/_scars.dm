@@ -58,9 +58,9 @@
 
 	description = pick(W.scarring_descriptions)
 	precise_location = pick(limb.specific_locations)
-	visibility = W.severity
-	if(visibility == WOUND_SEVERITY_LOSS)
-		precise_location = "amputation"
+	src.visibility = W.severity
+	if(W.fake_body_zone)
+		precise_location = "[lowertext(W.fake_body_zone)]"
 
 /datum/scar/proc/pref_apply(obj/item/bodypart/BP, specific_location, new_description, new_severity = 0, add_to_scars=TRUE)
 	if(!(BP.body_zone in applicable_zones))
@@ -77,13 +77,7 @@
 
 	description = new_description
 	precise_location = specific_location
-	switch(severity)
-		if(WOUND_SEVERITY_MODERATE)
-			visibility = 2
-		if(WOUND_SEVERITY_SEVERE)
-			visibility = 3
-		if(WOUND_SEVERITY_CRITICAL)
-			visibility = 5
+	src.visibility = new_severity
 
 /// Used when we finalize a scar from a healing cut
 /datum/scar/proc/lazy_attach(obj/item/bodypart/BP, datum/wound/W)
@@ -106,15 +100,7 @@
 		LAZYADD(victim.all_scars, src)
 	src.description = description
 	precise_location = specific_location
-	switch(severity)
-		if(WOUND_SEVERITY_MODERATE)
-			visibility = 2
-		if(WOUND_SEVERITY_SEVERE)
-			visibility = 3
-		if(WOUND_SEVERITY_CRITICAL)
-			visibility = 5
-		if(WOUND_SEVERITY_LOSS)
-			visibility = 7
+	src.visibility = severity
 	return TRUE
 
 /// What will show up in examine_more() if this scar is visible
@@ -128,9 +114,9 @@
 			msg = "<span class='tinynotice'><i>[msg]</i></span>"
 		if(WOUND_SEVERITY_SEVERE)
 			msg = "<span class='smallnotice'><i>[msg]</i></span>"
-		if(WOUND_SEVERITY_CRITICAL to WOUND_SEVERITY_PERMANENT)
+		if(WOUND_SEVERITY_CRITICAL)
 			msg = "<span class='smallnotice'><b><i>[msg]</i></b></span>"
-		if(WOUND_SEVERITY_LOSS)
+		if(WOUND_SEVERITY_LOSS to INFINITY)
 			msg = "[victim.p_their(TRUE)] [limb.name] [description]." // different format
 			msg = "<span class='notice'><i><b>[msg]</b></i></span>"
 	return "\t[msg]"

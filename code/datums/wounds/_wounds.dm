@@ -410,3 +410,5 @@
 			return "Critical"
 		if(WOUND_SEVERITY_LOSS)
 			return "Dismembered"
+		if(WOUND_SEVERITY_PERMANENT)
+			return "Permanent"
