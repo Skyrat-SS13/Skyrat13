@@ -222,6 +222,7 @@
 		"ipc_screen"		= snowflake_ipc_antenna_list ? pick(snowflake_ipc_antenna_list) : "None",
 		"ipc_antenna"		= "None",
 		"flavor_text"		= "",
+		"silicon_flavor_text"		= "",
 		"meat_type"			= "Mammalian",
 		"body_model"		= body_model,
 		"ipc_chassis" 		= "Morpheus Cyberkinetics(Greyscale)", //SKYRAT CHANGE
@@ -547,6 +548,8 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(M.client && M.client.holder && (prefs.chat_toggles & CHAT_DEAD))
 			override = TRUE
 		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE))
+			override = TRUE
+		if(SSticker.current_state == GAME_STATE_FINISHED)
 			override = TRUE
 		if(isnewplayer(M) && !override)
 			continue

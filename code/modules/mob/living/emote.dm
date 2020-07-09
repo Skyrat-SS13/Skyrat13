@@ -383,7 +383,7 @@
 				TOGGLE_BITFIELD(L.combat_flags, COMBAT_FLAG_INTENTIONALLY_RESTING)
 		L.DefaultCombatKnockdown(200)
 		L.Stun(20) //Skyrat Change
-		L.disable_combat_mode(FALSE)
+		SEND_SIGNAL(src, COMSIG_DISABLE_COMBAT_MODE)
 		//Skyrat change stop
 /datum/emote/living/sway
 	key = "sway"
@@ -463,6 +463,7 @@
 		message = params
 		if(type_override)
 			emote_type = type_override
+	message = user.say_emphasis(message)
 	. = ..()
 	message = null
 	emote_type = EMOTE_VISIBLE

@@ -34,11 +34,11 @@
 		return
 	else if(isliving(target))
 		if(ishuman(target))
-			try_to_zombie_infect(target)
+			try_to_zombie_infect(target, user) //SKYRAT CHANGE - User
 		else
 			check_feast(target, user)
 
-/proc/try_to_zombie_infect(mob/living/carbon/human/target)
+/proc/try_to_zombie_infect(mob/living/carbon/human/target, mob/living/carbon/human/user) //SKYRAT CHANGE - User
 	CHECK_DNA_AND_SPECIES(target)
 
 	if(NOZOMBIE in target.dna.species.species_traits)
@@ -48,10 +48,10 @@
 
 	var/obj/item/organ/zombie_infection/infection
 	infection = target.getorganslot(ORGAN_SLOT_ZOMBIE)
-	if(!infection)
+	if(!infection && prob(30)) //SKYRAT CHANGE - Infection is now a chance rather than a guaranteed thing. Rejoice!
 		infection = new()
 		infection.Insert(target)
-
+		to_chat(user, "<span class='warning'><b> Your claws slice through [target]'s skin, coating the wound in a thick black slime! They are now infected!</b></span>") //SKYRAT CHANGE - No guessing when you infected someone.
 
 
 /obj/item/zombie_hand/suicide_act(mob/user)
