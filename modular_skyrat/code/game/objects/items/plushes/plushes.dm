@@ -132,3 +132,15 @@
 	icon = 'modular_skyrat/icons/obj/plushes.dmi'
 	icon_state = "royalguardgoat"
 	throwforce = 7
+
+/obj/item/toy/plush/borgplushie/doctordrake
+	name = "robot drake plushie"
+	desc = "An adorable stuffed toy of a robot dragon."
+	icon_state = "doctordrake"
+	item_state = "doctordrake"
+
+/obj/item/toy/plush/borgplushie/securitydrake
+	name = "robot drake plushie"
+	desc = "An adorable stuffed toy of a robot dragon."
+	icon_state = "securitydrake"
+	item_state = "securitydrake"
