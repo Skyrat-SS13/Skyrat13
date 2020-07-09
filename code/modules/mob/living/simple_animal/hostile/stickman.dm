@@ -13,7 +13,7 @@
 	speed = 0
 	blood_volume = 0
 	stat_attack = UNCONSCIOUS
-	robust_searching = TRUE //This is also required for the paper robe rallying to work.
+	robust_searching = 1
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	maxHealth = 100
 	health = 100
@@ -30,6 +30,8 @@
 	faction = list("hostile","stickman")
 	check_friendly_fire = 1
 	status_flags = CANPUSH
+	var/datum/action/boss/wizard_summon_minions/changesummons = /datum/action/boss/wizard_summon_minions
+	var/summoned_by_wizard = 0
 
 /mob/living/simple_animal/hostile/stickman/ranged
 	ranged = 1
@@ -41,6 +43,7 @@
 	projectilesound = 'sound/misc/bang.ogg'
 	loot = list(/obj/item/gun/ballistic/automatic/pistol/stickman)
 
+
 /mob/living/simple_animal/hostile/stickman/dog
 	name = "Angry Stick Dog"
 	desc = "Stickman's best friend, if he could see him at least."
@@ -49,6 +52,12 @@
 	icon_dead = "stickdog_dead"
 	mob_biotypes = MOB_BEAST
 
-/mob/living/simple_animal/hostile/stickman/Initialize(mapload)
+/mob/living/simple_animal/hostile/stickman/Initialize(mapload, var/wizard_summoned)
 	. = ..()
 	new /obj/effect/temp_visual/paper_scatter(src)
+	summoned_by_wizard = wizard_summoned
+
+/mob/living/simple_animal/hostile/stickman/death()
+	..()
+	if(summoned_by_wizard == 1)
+		changesummons.summoned_minions --

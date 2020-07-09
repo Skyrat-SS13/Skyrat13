@@ -434,7 +434,7 @@
 	damage = 15
 	damage_type = BURN
 	nodamage = 0
-	pixels_per_second = TILES_TO_PIXELS(33.33)
+	speed = 0.3
 	flag = "magic"
 
 	var/zap_power = 20000

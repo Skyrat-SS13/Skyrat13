@@ -3,7 +3,7 @@
 	damage = 20
 	armour_penetration = 20
 	light_range = 3
-	pixels_per_second = TILES_TO_PIXELS(16.667)
+	speed = 0.6
 	range = 35
 	light_color = LIGHT_COLOR_RED
 
@@ -39,7 +39,7 @@
 	armour_penetration = 20
 	movement_type = FLYING | UNSTOPPABLE
 	range = 20
-	pixels_per_second = TILES_TO_PIXELS(12.5)
+	speed = 0.8
 	light_range = 4
 	light_color = LIGHT_COLOR_RED
 

@@ -153,13 +153,7 @@
 	mood_change = -4
 	timeout = 2400
 
-/datum/mood_event/graverobbing
-	description ="<span class='boldwarning'>I just desecrated someone's grave... I can't believe I did that...</span>\n"
-	mood_change = -8
-	timeout = 3 MINUTES
-
 //These are unused so far but I want to remember them to use them later
-
 /datum/mood_event/cloned_corpse
 	description = "<span class='boldwarning'>I recently saw my own corpse...</span>\n"
 	mood_change = -6
@@ -167,8 +161,6 @@
 /datum/mood_event/surgery
 	description = "<span class='boldwarning'>HE'S CUTTING ME OPEN!!</span>\n"
 	mood_change = -8
-
-//End unused
 
 /datum/mood_event/sad_empath
 	description = "<span class='warning'>Someone seems upset...</span>\n"
@@ -206,8 +198,6 @@
 	description = "<span class='nicegreen'>It feels quite cold out here.</span>\n"
 	mood_change = -2
 	timeout = 1 MINUTES
-
-//Cursed stuff end.
 
 /datum/mood_event/vampcandle
 	description = "<span class='umbra'>Something is making your mind feel... loose...</span>\n"

@@ -51,10 +51,10 @@
 
 /obj/vehicle/sealed/car/attacked_by(obj/item/I, mob/living/user)
 	if(!I.force)
-		return FALSE
+		return
 	if(occupants[user])
 		to_chat(user, "<span class='notice'>Your attack bounces off of the car's padded interior.</span>")
-		return FALSE
+		return
 	return ..()
 
 /obj/vehicle/sealed/car/attack_hand(mob/living/user)

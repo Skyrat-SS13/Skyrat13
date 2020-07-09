@@ -2,7 +2,6 @@
 
 /obj/item/electronics/firealarm
 	name = "fire alarm electronics"
-	custom_price = PRICE_CHEAP
 	desc = "A fire alarm circuit. Can handle heat levels up to 40 degrees celsius."
 
 /obj/item/wallframe/firealarm
@@ -15,9 +14,8 @@
 /obj/machinery/firealarm
 	name = "fire alarm"
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
-	icon = 'modular_skyrat/icons/obj/monitors.dmi' //Skyrat change
+	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
-	plane = ABOVE_WALL_PLANE
 	max_integrity = 250
 	integrity_failure = 0.4
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
@@ -44,10 +42,6 @@
 		. += "The current alert level is blue."
 	if(GLOB.security_level == SEC_LEVEL_AMBER)
 		. += "The current alert level is amber."
-	if(GLOB.security_level == SEC_LEVEL_ORANGE)
-		. += "The current alert level is orange."
-	if(GLOB.security_level == SEC_LEVEL_VIOLET)
-		. += "The current alert level is violet."
 	if(GLOB.security_level == SEC_LEVEL_RED)
 		. += "The current alert level is red!"
 	if(GLOB.security_level == SEC_LEVEL_DELTA)

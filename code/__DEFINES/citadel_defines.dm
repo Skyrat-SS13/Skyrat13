@@ -99,5 +99,8 @@
 
 #define TOGGLES_CITADEL 0
 
+//component stuff
+#define COMSIG_VORE_TOGGLED "voremode_toggled" // totally not copypasta
+
 //belly sound pref things
 #define NORMIE_HEARCHECK 4

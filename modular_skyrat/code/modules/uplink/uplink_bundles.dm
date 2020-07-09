@@ -9,7 +9,7 @@
 
 /obj/item/clothing/mask/gas/clown_hat/joker
 	name = "\proper Society's Mask"
-	desc = "I'm the joker, baby! This mask is incredibly armored, somehow."
+	desc = "I'm the joker, baby! ...This mask is incredibly armored, somehow."
 	icon_state = "joker"
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25,"energy" = 25, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 
@@ -25,7 +25,7 @@
 
 /obj/item/gun/ballistic/revolver/detective/joker/Initialize()
 	..()
-	safe_calibers |= list("38","357")
+	safe_calibers |= list("357")
 
 /obj/item/kitchen/knife/joker
 	name = "sad knife"
@@ -60,9 +60,8 @@
 	name = "Motherbase Shipment"
 	desc = "A kit containing the essentials for any 'big boss'. Contains a tactical turtleneck, thermal eyepatch, sneaking boots and a robotic CQC arm implanter."
 	item = /obj/item/storage/box/syndie_kit/snake
-	cost = 20
+	cost = 12
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
-	cant_discount = TRUE
 
 /obj/item/storage/box/syndie_kit/snake
 	name = "Motherbase Shipment"
@@ -76,7 +75,6 @@
 	new /obj/item/limbsurgeon/martialarm(src)
 	new /obj/item/headsetupgrader(src)
 	new /obj/item/encryptionkey/syndicate(src)
-	new /obj/item/kitchen/knife/combat/survival(src)
 
 /obj/item/limbsurgeon //autosurgeon is shit and does not support limbs, i had to do it to 'em
 	name = "limb autosurgeon"
@@ -176,7 +174,7 @@
 	name = "Screamer Kit"
 	desc = "A box, coming with a mask and robes that render you completely unrecognizable when worn, and a special knife."
 	item = /obj/item/storage/box/syndie_kit/ghostface
-	cost = 12
+	cost = 10
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /obj/item/storage/box/syndie_kit/ghostface
@@ -193,13 +191,13 @@
 	name = "Tactical DAB Suit"
 	desc = "Ever found a cheap replica of one of these? Get to wear the real thing! Has slightly better protection than normal riot armor."
 	item = /obj/item/storage/box/syndie_kit/truedab
-	cost = 6
+	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	restricted_roles = list("Assistant")
 
 /obj/item/storage/box/syndie_kit/truedab
-	name = "Desperate Assistance Battleforce Box (DABB)"
-	desc = "DAB suit and helmet, tightly packaged for combat deployment. Not the cheap replica!"
+	name = "Desperate Assistance Battleforce Box (DAB2)"
+	desc = "DAB suit and helmet. Not the cheap replica!"
 
 /obj/item/storage/box/syndie_kit/truedab/PopulateContents()
 	new /obj/item/clothing/suit/assu_suit/realdeal(src)
@@ -207,7 +205,7 @@
 
 /obj/item/clothing/suit/assu_suit/realdeal
 	desc = "Ancient, but still very functional, SWAT armor. On its back, it is written: \"<i>Desperate Assistance Battleforce</i>\". Tacticool-ish <b>and</b> protective!"
-	armor = list("melee" = 60, "bullet" = 15, "laser" = 15, "energy" = 30, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 100) //somewhat high energy resistance because harmbatone, 10 points better in melee and 5 points better in boolet and laser than normal riot suit because it's an epic traitor item and NT is a bunch of cheapskates (except with fucking miner armors for some reason??????? bro wtf exo has 55 melee too???)
+	armor = list("melee" = 55, "bullet" = 15, "laser" = 15, "energy" = 30, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 100) //somewhat high energy resistance because harmbatone, 5 points better in melee and boolet and laser than normal riot suit because it's an epic traitor item and NT is a bunch of cheapskates (except with fucking miner armors for some reason??????? bro wtf exo has 55 melee too???)
 	allowed = null
 
 /obj/item/clothing/suit/assu_suit/realdeal/Initialize()
@@ -217,4 +215,4 @@
 
 /obj/item/clothing/head/assu_helmet/realdeal
 	desc = "Ancient, yet functional helmet. It has \"D.A.B.\" written on the front. Helps quite a bit against batons to the head."
-	armor = list("melee" = 60, "bullet" = 15, "laser" = 15, "energy" = 30, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 100)
+	armor = list("melee" = 55, "bullet" = 15, "laser" = 15, "energy" = 30, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 100)

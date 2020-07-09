@@ -14,7 +14,6 @@ import { Bepis } from './interfaces/Bepis';
 import { BorgPanel } from './interfaces/BorgPanel';
 import { BrigTimer } from './interfaces/BrigTimer';
 import { Canvas } from './interfaces/Canvas';
-import { CameraConsole, CameraConsoleWrapper } from './interfaces/CameraConsole';
 import { Canister } from './interfaces/Canister';
 import { Cargo, CargoExpress } from './interfaces/Cargo';
 import { CellularEmporium } from './interfaces/CellularEmporium';
@@ -41,13 +40,11 @@ import { DnaVault } from './interfaces/DnaVault';
 import { EightBallVote } from './interfaces/EightBallVote';
 import { EmergencyShuttleConsole } from './interfaces/EmergencyShuttleConsole';
 import { EngravedMessage } from './interfaces/EngravedMessage';
-import { Gateway } from './interfaces/Gateway';
 import { Gps } from './interfaces/Gps';
 import { GravityGenerator } from './interfaces/GravityGenerator';
 import { GulagTeleporterConsole } from './interfaces/GulagTeleporterConsole';
 import { GulagItemReclaimer } from './interfaces/GulagItemReclaimer';
 import { Holodeck } from './interfaces/Holodeck';
-import { HypnoChair } from './interfaces/HypnoChair';
 import { ImplantChair } from './interfaces/ImplantChair';
 import { Intellicard } from './interfaces/Intellicard';
 import { KeycardAuth } from './interfaces/KeycardAuth';
@@ -95,10 +92,6 @@ import { SpawnersMenu } from './interfaces/SpawnersMenu';
 import { StationAlertConsole } from './interfaces/StationAlertConsole';
 import { SuitStorageUnit } from './interfaces/SuitStorageUnit';
 import { Tank } from './interfaces/Tank';
-import { TeleLogBrowser } from './interfaces/TelecommsLogBrowser';
-import { Telemonitor } from './interfaces/TelecommsMonitor';
-import { TelePDALog } from './interfaces/TelecommsPDALog';
-import { TeleInteract } from './interfaces/TelecommsInteraction';
 import { TankDispenser } from './interfaces/TankDispenser';
 import { Teleporter } from './interfaces/Teleporter';
 import { ThermoMachine } from './interfaces/ThermoMachine';
@@ -178,11 +171,6 @@ const ROUTES = {
   canvas: {
     component: () => Canvas,
     scrollable: false,
-  },
-  camera_console: {
-    component: () => CameraConsole,
-    wrapper: () => CameraConsoleWrapper,
-    scrollable: true,
   },
   canister: {
     component: () => Canister,
@@ -288,10 +276,6 @@ const ROUTES = {
     component: () => EngravedMessage,
     scrollable: false,
   },
-  gateway: {
-    component: () => Gateway,
-    scrollable: false,
-  },
   gps: {
     component: () => Gps,
     scrollable: true,
@@ -311,10 +295,6 @@ const ROUTES = {
   holodeck: {
     component: () => Holodeck,
     scrollable: true,
-  },
-  hypnochair: {
-    component: () => HypnoChair,
-    scrollable: false,
   },
   implantchair: {
     component: () => ImplantChair,
@@ -527,25 +507,6 @@ const ROUTES = {
   suit_storage_unit: {
     component: () => SuitStorageUnit,
     scrollable: false,
-  },
-  tcommsserver: {
-    component: () => TeleLogBrowser,
-    scrollable: true,
-    theme: 'ntos',
-  },
-  telemonitor: {
-    component: () => Telemonitor,
-    scrollable: true,
-    theme: 'ntos',
-  },
-  telepdalog: {
-    component: () => TelePDALog,
-    scrollable: true,
-    theme: 'ntos',
-  },
-  teleinteract: {
-    component: () => TeleInteract,
-    scrollable: true,
   },
   tanks: {
     component: () => Tank,

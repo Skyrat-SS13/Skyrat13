@@ -131,7 +131,6 @@
 /obj/item/flamethrower/analyzer_act(mob/living/user, obj/item/I)
 	if(ptank)
 		ptank.analyzer_act(user, I)
-	return TRUE // Skyrat change
 
 
 /obj/item/flamethrower/attack_self(mob/user)
@@ -197,8 +196,9 @@
 		sleep(1)
 		previousturf = T
 	operating = FALSE
-	if(usr.machine == src)
-		attack_self(usr)
+	for(var/mob/M in viewers(1, loc))
+		if((M.client && M.machine == src))
+			attack_self(M)
 
 
 /obj/item/flamethrower/proc/default_ignite(turf/target, release_amount = 0.05)

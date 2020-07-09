@@ -49,13 +49,10 @@ They deal 35 brute (armor is considered).
 	var/stunned = FALSE
 	var/stunduration = 15
 	var/move_to_charge = 1.5
+	song = sound('modular_skyrat/sound/ambience/gladiator.ogg', 100)
+	songlength = 3850
 	loot = list(/obj/structure/closet/crate/necropolis/gladiator)
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/gladiator/crusher)
-	glorymessageshand = list("grabs the gladiator's arm, flips their zweihander with the other hand, and forcefully makes them chop off their own head with it!", "grabs the gladiator by their zweihander, and mark detonate them into a shower of gibs!", "rips out both of the gladiator's arms, then kicks their limp torso on the groundd and curbstomps their head in so hard it explodes!")
-	glorymessagescrusher = list("chops off gladiator's zweihandder arm in one swift move, then grabs the zweihander and swings it against their head, chopping their skull vertically in half!", "bashes the gladiator to the ground with the hilt of their crusher, then elbow drops their skull so hard it explodes in gore!", "chops the gladiator diagonally with their crusher, not quite cutting through but getting their crusher halfway stuck and killing the screaming fiend!")
-	glorymessagespka = list("grabs the gladiator by the neck and flips them, shooting through their guts with a PKA blast!", "shoots at the gladiator's shoulder, exploding their arm! To finish the fiend off, they grab their PKA and bonk the gladiator's head inside their torso!", "doesn't bother with being fancy, and simply shoots at the gladiator's head with their PKA, exploding it in one violent blast!")
-	glorymessagespkabayonet = list("rams into the gladiator's stomach with their PKA's bayonet, knocking them and themselves down! To finish the fiend off, they simply stab into their torso like a madman with their bayonet!", "kicks the gladiator's knee hard, breaking it! While the fiend is stunned and barely standing, their chop their head off with the PKA's bayonet!")
-	glorythreshold = 50
 
 /obj/item/gps/internal/gladiator
 	icon_state = null
@@ -68,10 +65,9 @@ They deal 35 brute (armor is considered).
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/Life()
 	. = ..()
-	if(!wander)
-		for(var/mob/living/M in view(4, src))
-			if(!(M in introduced) && (stat != DEAD))
-				introduction(M)
+	for(var/mob/living/M in view(4, src))
+		if(!(M in introduced))
+			introduction(M)
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/apply_damage(damage, damagetype, def_zone, blocked, forced)
 	if(speen)
@@ -82,7 +78,7 @@ They deal 35 brute (armor is considered).
 		return FALSE
 	..()
 	update_phase()
-	var/adjustment_amount = min(damage * 0.15, 15)
+	var/adjustment_amount = damage * 0.1
 	if(world.time + adjustment_amount > next_move)
 		changeNext_move(adjustment_amount)
 
@@ -115,6 +111,7 @@ They deal 35 brute (armor is considered).
 		else if(Hspecies.id == "dunmer")
 			var/list/messages = list("I will finisssh what little of your race remainsss, starting with you!",\
 									"Lavaland belongsss to the lizzzards!",\
+									"No marine can save you now, dark elf!",\
 									"Thisss sacred land wasn't your property before, it won't be now!")
 			say(message = pick(messages))
 			introduced |= H

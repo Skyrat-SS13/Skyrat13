@@ -43,7 +43,6 @@
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	content_overlays = TRUE
-	custom_premium_price = 300
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE //because this is easier than trying to have showers wash all contents.
 
 /obj/item/storage/belt/utility/ComponentInitialize()
@@ -83,7 +82,7 @@
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 	new /obj/item/extinguisher/mini(src)
-	new /obj/item/analyzer/ranged(src) // Skyrat change
+	new /obj/item/analyzer(src)
 	//much roomier now that we've managed to remove two tools
 
 /obj/item/storage/belt/utility/full/PopulateContents()
@@ -180,8 +179,7 @@
 		/obj/item/implantcase,
 		/obj/item/implant,
 		/obj/item/implanter,
-		/obj/item/pinpointer/crew,
-		/obj/item/reagent_containers/chem_pack
+		/obj/item/pinpointer/crew
 		))
 
 /obj/item/storage/belt/medical/surgery_belt_adv
@@ -448,7 +446,6 @@
 	icon_state = "webbing-durathread"
 	item_state = "webbing-durathread"
 	resistance_flags = FIRE_PROOF
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE //Skyrat edit
 
 /obj/item/storage/belt/durathread/ComponentInitialize()
 	. = ..()
@@ -481,9 +478,7 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/tile/plasteel,
 		/obj/item/grenade/chem_grenade/metalfoam,
-		/obj/item/grenade/chem_grenade/smart_metal_foam,
-		/obj/item/storage/bag/construction, //Skyrat edit
-		/obj/item/pipe_dispenser/bluespace //Skyrat edit
+		/obj/item/grenade/chem_grenade/smart_metal_foam
 		))
 
 /obj/item/storage/belt/grenade
@@ -717,7 +712,6 @@
 	icon_state = "fannypack_leather"
 	item_state = "fannypack_leather"
 	dying_key = DYE_REGISTRY_FANNYPACK
-	custom_price = PRICE_ALMOST_CHEAP
 
 /obj/item/storage/belt/fannypack/ComponentInitialize()
 	. = ..()

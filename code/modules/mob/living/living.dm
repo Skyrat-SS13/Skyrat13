@@ -111,22 +111,6 @@
 						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					return 1
 
-		//SKYRAT CHANGES START
-		if(L.gunpointed.len)
-			var/is_pointing = FALSE
-			for(var/datum/gunpoint/gp in L.gunpointed)
-				if(gp.source == src)
-					is_pointing = TRUE
-					break
-			if(!is_pointing)
-				if(!(world.time % 5))
-					to_chat(src, "<span class='warning'>[L] is being held at gunpoint, it's not wise to push him.</span>")
-				return TRUE
-		if(L.gunpointing)
-			if(!(world.time % 5))
-				to_chat(src, "<span class='warning'>[L] is holding someone at gunpoint, you cannot push past.</span>")
-			return TRUE
-		//END OF SKYRAT CHANGES
 	//CIT CHANGES START HERE - makes it so resting stops you from moving through standing folks without a short delay
 		if(!CHECK_MOBILITY(src, MOBILITY_STAND) && CHECK_MOBILITY(L, MOBILITY_STAND))
 			var/origtargetloc = L.loc
@@ -338,7 +322,7 @@
 		set_pull_offsets(M, state)
 
 /mob/living/proc/set_pull_offsets(mob/living/M, grab_state = GRAB_PASSIVE)
-	if(M.buckled || SEND_SIGNAL(M, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
+	if(M.buckled || M.combat_flags & COMBAT_FLAG_COMBAT_ACTIVE)
 		return //don't make them change direction or offset them if they're buckled into something or in combat mode.
 	var/offset = 0
 	switch(grab_state)
@@ -398,7 +382,7 @@
 	stop_pulling()
 
 //same as above
-/mob/living/pointed(atom/A as mob|obj|turf in fov_view())
+/mob/living/pointed(atom/A as mob|obj|turf in view())
 	if(incapacitated())
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_DEATHCOMA))
@@ -933,7 +917,7 @@
 	var/final_pixel_y = get_standard_pixel_y_offset(lying)
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
 	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
-	floating_need_update = TRUE
+	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
 
 /mob/living/proc/get_temperature(datum/gas_mixture/environment)
 	var/loc_temp = environment ? environment.temperature : T0C

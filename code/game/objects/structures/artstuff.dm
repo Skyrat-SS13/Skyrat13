@@ -240,7 +240,7 @@
 /obj/structure/sign/painting/Initialize(mapload, dir, building)
 	. = ..()
 	SSpersistence.painting_frames += src
-	AddElement(/datum/element/art, 20)
+	AddComponent(/datum/component/art, 20)
 	if(dir)
 		setDir(dir)
 	if(building)

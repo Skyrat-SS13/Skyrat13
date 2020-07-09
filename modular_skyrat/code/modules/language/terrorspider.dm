@@ -4,7 +4,6 @@
 	speech_verb = "chitters"
 	ask_verb = "chitters"
 	exclaim_verb = "chitters"
-	sing_verb = "chitters"
 	key = "ts"
 
 /datum/language_holder/terror_spider

@@ -56,12 +56,6 @@
 	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
 	color_src = MATRIXED
 
-/datum/sprite_accessory/ears/human/rabbitlop
-	name = "Rabbit Lop-Eared"
-	icon_state = "rabbitlop"
-	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
-	color_src = MATRIXED
-
 /******************************************
 *************** Furry Ears ****************
 *******************************************/
@@ -111,11 +105,5 @@
 /datum/sprite_accessory/mam_ears/cobrahoodears
 	name = "Cobra Hood (Ears)"
 	icon_state = "cobraears"
-	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
-	color_src = MATRIXED
-
-/datum/sprite_accessory/mam_ears/rabbitlop
-	name = "Rabbit Lop-Eared"
-	icon_state = "rabbitlop"
 	icon = 'modular_skyrat/icons/mob/mam_ears.dmi'
 	color_src = MATRIXED

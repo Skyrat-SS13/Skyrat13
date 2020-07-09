@@ -64,11 +64,10 @@
 	item_state = "courierbagcom"
 
 /obj/item/storage/backpack/courier/engi
-	name = "Industrial courier bag"
-	desc = "Comes with a double reinforced strap to hold bulk materials."
+	name = "engineer courier bag"
+	desc = "It's a bag made for delivery, for engineers."
 	icon_state = "courierbagengi"
 	item_state = "courierbagengi"
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 
 /obj/item/storage/backpack/courier/hydr
 	name = "botanist courier bag"

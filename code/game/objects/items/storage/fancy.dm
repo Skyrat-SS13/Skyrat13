@@ -70,7 +70,6 @@
 	name = "donut box"
 	spawn_type = /obj/item/reagent_containers/food/snacks/donut
 	fancy_open = TRUE
-	custom_price = PRICE_NORMAL
 
 /obj/item/storage/fancy/donut_box/ComponentInitialize()
 	. = ..()
@@ -137,7 +136,6 @@
 	slot_flags = ITEM_SLOT_BELT
 	icon_type = "cigarette"
 	spawn_type = /obj/item/clothing/mask/cigarette/space_cigarette
-	custom_price = PRICE_ALMOST_CHEAP
 
 /obj/item/storage/fancy/cigarettes/ComponentInitialize()
 	. = ..()
@@ -279,7 +277,6 @@
 ///The value in here has NOTHING to do with icons. It needs to be this for the proper examine.
 	icon_type = "rolling paper"
 	spawn_type = /obj/item/rollingpaper
-	custom_price = PRICE_REALLY_CHEAP
 
 /obj/item/storage/fancy/rollingpapers/ComponentInitialize()
 	. = ..()

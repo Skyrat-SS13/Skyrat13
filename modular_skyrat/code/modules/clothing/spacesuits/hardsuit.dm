@@ -209,14 +209,13 @@
 	desc = "An advanced helmet attached to a powered exoskeleton suit. Protects well against most forms of harm, but struggles against exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/head_muzzled.dmi'
 	icon_state = "hardsuit0-powerarmor-1"
 	item_state = "hardsuit0-powerarmor-1"
 	hardsuit_type = "powerarmor"
 	clothing_flags = THICKMATERIAL //Ouchie oofie my bones
 	armor = list("melee" = 40, "bullet" = 35, "laser" = 30, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 5, "fire" = 75, "acid" = 100)
 	resistance_flags = ACID_PROOF
-	mutantrace_variation = STYLE_MUZZLE | STYLE_NO_ANTHRO_ICON
+	mutantrace_variation = STYLE_MUZZLE
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor/Initialize()
 	. = ..()
@@ -263,7 +262,6 @@
 	desc = "A self-powered exoskeleton suit comprised of flexible Plasteel sheets and advanced components, designed to offer excellent protection while still allowing mobility. Does not protect against Space, and struggles against more exotic hazards."
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
-	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/suit_digi.dmi'
 	icon_state = "hardsuit-powerarmor-1"
 	item_state = "hardsuit-powerarmor-1"
 	slowdown = -0.1
@@ -275,7 +273,7 @@
 	var/brutedamageemp = 20
 	var/rebootdelay
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor
-	mutantrace_variation = STYLE_DIGITIGRADE | STYLE_NO_ANTHRO_ICON
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor/Initialize()
 	. = ..()
