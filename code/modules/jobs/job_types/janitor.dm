@@ -13,6 +13,8 @@
 
 	access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
+	paycheck = PAYCHECK_EASY
+	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_JANITOR
 	threat = 0.2
@@ -21,7 +23,6 @@
 	name = "Janitor"
 	jobtype = /datum/job/janitor
 
-	id = /obj/item/card/id/department/serv //Skyrat change
 	belt = /obj/item/pda/janitor
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/civilian/janitor
