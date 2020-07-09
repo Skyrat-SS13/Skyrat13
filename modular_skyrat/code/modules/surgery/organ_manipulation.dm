@@ -1,5 +1,5 @@
 /datum/surgery_step/manipulate_organs
-	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100, /obj/item/stack/medical = 100, /obj/item/reagent_containers = 100)
+	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100, /obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100, /obj/item/stack/medical/mesh = 100, /obj/item/stack/medical/aloe = 100, /obj/item/stack/medical/suture = 100, /obj/item/reagent_containers = 100)
 	var/heal_amount = 40
 
 /datum/surgery_step/manipulate_organs/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
