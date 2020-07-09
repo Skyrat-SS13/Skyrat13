@@ -118,7 +118,7 @@
   *
   *
  **/
-/datum/proc/ui_close(mob/user)
+/datum/proc/ui_close()
 
  /**
   * verb

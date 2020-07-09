@@ -127,13 +127,6 @@
 
 	var/registered_z
 
-	var/list/alerts = list() // contains /obj/screen/alert only // On /mob so clientless mobs will throw alerts properly
-	var/list/screens = list()
-	var/list/client_colours = list()
-	var/hud_type = /datum/hud
-
-	var/datum/hSB/sandbox = null
-
 	var/mob/audiovisual_redirect //Mob to redirect messages, speech, and sounds to
 
 	var/siliconaccessareas = list()
@@ -141,9 +134,8 @@
 
 	var/voluntary_ghosted = FALSE		//whether or not they voluntarily ghosted.
 
-	var/has_field_of_vision = FALSE
-	var/field_of_vision_type = FOV_90_DEGREES
-
+	var/flavor_text = ""
+	var/flavor_text_2 = "" //version of the above that only lasts for the current round.
 
 	///////TYPING INDICATORS///////
 	/// Set to true if we want to show typing indicators.

@@ -3,7 +3,6 @@
 	name = "xeno blood"
 	desc = "It's green and acidic. It looks like... <i>blood?</i>"
 	color = BLOOD_COLOR_XENO
-	beauty = -250
 
 /obj/effect/decal/cleanable/blood/splatter/xeno
 	color = BLOOD_COLOR_XENO

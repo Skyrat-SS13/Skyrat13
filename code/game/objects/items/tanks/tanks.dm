@@ -60,18 +60,13 @@
 	H.update_action_buttons_icon()
 
 
-/obj/item/tank/Initialize()
-	. = ..()
+/obj/item/tank/New()
+	..()
 
 	air_contents = new(volume) //liters
 	air_contents.temperature = T20C
 
-	populate_gas()
-
 	START_PROCESSING(SSobj, src)
-
-/obj/item/tank/proc/populate_gas()
-	return
 
 /obj/item/tank/Destroy()
 	if(air_contents)
@@ -83,9 +78,9 @@
 /obj/item/tank/examine(mob/user)
 	var/obj/icon = src
 	. = ..()
-	if(istype(src.loc, /obj/item/assembly))
+	if (istype(src.loc, /obj/item/assembly))
 		icon = src.loc
-	if(!in_range(src, user) && !isobserver(user))
+	if(!in_range(src, user))
 		if (icon == src)
 			. += "<span class='notice'>If you want any more information you'll need to get closer.</span>"
 		return
@@ -123,7 +118,6 @@
 
 /obj/item/tank/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(air_contents, user, src)
-	return TRUE // Skyrat change
 
 /obj/item/tank/deconstruct(disassembled = TRUE)
 	if(!disassembled)
@@ -153,10 +147,6 @@
 		H.spread_bodyparts()
 
 	return (BRUTELOSS)
-
-/obj/item/tank/attack_ghost(mob/dead/observer/O)
-	. = ..()
-	atmosanalyzer_scan(air_contents, O, src, FALSE)
 
 /obj/item/tank/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)

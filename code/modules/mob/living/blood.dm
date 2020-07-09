@@ -116,10 +116,6 @@
 
 /mob/living/carbon/human/bleed(amt)
 	amt *= physiology.bleed_mod
-	//skyrat edit - hemophilia quirk
-	if(HAS_TRAIT(src, TRAIT_HEMOPHILIA))
-		amt *= 2
-	//
 	if(!(NOBLOOD in dna.species.species_traits))
 		.=..()
 		if(dna.species.exotic_blood && .) // Do we have exotic blood, and have we left any on the ground?
@@ -190,7 +186,7 @@
 			blood_data["viruses"] += D.Copy()
 
 		blood_data["blood_DNA"] = dna.unique_enzymes
-		blood_data["bloodcolor"] = dna.species.exotic_blood_color
+		blood_data["bloodcolor"] = bloodtype_to_color(dna.blood_type)
 		if(disease_resistances && disease_resistances.len)
 			blood_data["resistances"] = disease_resistances.Copy()
 		var/list/temp_chem = list()
@@ -267,17 +263,7 @@
 		"X*" = list("X*", "SY"),
 		"SY" = list("SY"),
 		"GEL" = list("GEL","SY"),
-		"BUG" = list("BUG", "SY"),
-		//Skyrat change - more blood
-		"PL" = list("PL", "SY"),
-		"AL" = list("AL", "SY"),
-		"GREY" = list("GREY", "SY"),
-		"ANGL" = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "ANGL", "SY", "HF", "PL", "AL", "GREY",\
-						"GEL", "BUG", "X", "L", "U", "SPOR", "DRK", "S"),
-		"SPOR" = list("SPOR", "SY"),
-		"DRK" = list("DRK", "HF", "SY"),
-		"S" = list("S", "SY", "HF"),
-		"BHZ" = list("BHZ", "SY", "DRK", "BUG", "GREY")
+		"BUG" = list("BUG", "SY")
 	)
 
 	var/safe = bloodtypes_safe[bloodtype]

@@ -43,10 +43,6 @@
 								/datum/action/innate/elite_attack/summon_shambler,
 								/datum/action/innate/elite_attack/dash,
 								/datum/action/innate/elite_attack/axe_throw)
-	glorymessageshand = list("grabs the priest's arm and breaks it, exposing sharp bone which is promptly shoved inside their skull!", "punches into the priest's guts, ripping off their stomach and whatever else was inside!")
-	glorymessagescrusher = list("chops the priest's leg off with their crusher, then uses it to beat their skull open while they're downed!")
-	glorymessagespka = list("shoots at the priest's hand, exploding it and making them let go of their axe, which is promptly grabbed and slashes their neck open!", "kicks the priest on the ground, then shoots their guts and viscera off with a PKA blast to the chest!")
-	glorymessagespkabayonet = list("stabs through the priest's heart and pulls it out, letting them see one last beat before they die!")
 
 /datum/action/innate/elite_attack/axe_slam
 	name = "Axe Slam"
@@ -134,7 +130,6 @@
 	var/turf/pick1 = pick(turfs)
 	new /obj/effect/temp_visual/small_smoke/halfsecond(pick1)
 	var/mob/living/simple_animal/hostile/asteroid/miner/m1 = new /mob/living/simple_animal/hostile/asteroid/miner(pick1)
-	m1.faction = faction.Copy()
 	m1.GiveTarget(target)
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/dash(atom/dash_target)
@@ -178,7 +173,7 @@
 
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/axe_throw(target)
-	ranged_cooldown = world.time + 20
+	ranged_cooldown = world.time + 50
 	visible_message("<span class='boldwarning'>[src] prepares to throw his axe!</span>")
 	var/turf/targetturf = get_turf(target)
 	playsound(src,'sound/weapons/fwoosh.wav', 200, 1)
@@ -197,7 +192,7 @@
 
 // priest helpers
 /datum/outfit/job/miner/equipped/priest
-	name = "Shaft Miner (Necropolis Priest)"
+	name = "Shaft Miner (necropolis priest)"
 	shoes = /obj/item/clothing/shoes/bronze
 	mask = /obj/item/clothing/mask/gas
 	backpack_contents = list(
@@ -231,7 +226,7 @@
 //loot
 
 /obj/item/melee/diamondaxe
-	name = "Priest's Axe"
+	name = "Fanatic's Axe"
 	desc = "Used to be a diamond pickaxe, now there's no pick, just axe."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "diamondaxe"
@@ -256,4 +251,5 @@
 
 /obj/item/melee/diamondaxe/priest/Initialize()
 	..()
-	QDEL_IN(src, 30)
+	sleep(30)
+	qdel(src)

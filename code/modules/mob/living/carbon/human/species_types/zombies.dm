@@ -15,10 +15,6 @@
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
 	disliked_food = NONE
 	liked_food = GROSS | MEAT | RAW
-	//Skyrat change - blood
-	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
-	exotic_bloodtype = "BHZ"
-	//
 
 /datum/species/zombie/notspaceproof
 	id = "notspaceproofzombie"
@@ -37,7 +33,7 @@
 	limbs_id = "zombie"
 	mutanthands = /obj/item/zombie_hand
 	armor = 20 // 120 damage to KO a zombie, which kills it
-	//speedmod = 1.6      SKYRAT CHANGE - Fast Zombies
+	speedmod = 1.6
 	mutanteyes = /obj/item/organ/eyes/night_vision/zombie
 	var/heal_rate = 1
 	var/regen_cooldown = 0

@@ -47,10 +47,6 @@
 	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
 	refill_canister = /obj/item/vending_refill/medical
-	default_price = PRICE_ALMOST_CHEAP
-	extra_price = PRICE_ABOVE_NORMAL
-	payment_department = ACCOUNT_MED
-	cost_multiplier_per_dept = list(ACCOUNT_MED = 0)
 
 /obj/item/vending_refill/medical
 	machine_name = "NanoMed Plus"
@@ -58,8 +54,4 @@
 
 /obj/machinery/vending/medical/syndicate_access
 	name = "\improper SyndiMed Plus"
-	payment_department = NO_FREEBIES
-
-/obj/machinery/vending/medical/syndicate_access/Initialize()
-	. = ..()
-	cost_multiplier_per_dept = list("[ACCESS_SYNDICATE]" = 0)
+	req_access = list(ACCESS_SYNDICATE)

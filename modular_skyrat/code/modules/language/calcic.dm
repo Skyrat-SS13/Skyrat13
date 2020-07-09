@@ -5,7 +5,6 @@
 	ask_verb = "queries"
 	exclaim_verb = "screeches"
 	whisper_verb = "clicks"
-	sing_verb = "chimes"
 	key = "q"
 	flags = TONGUELESS_SPEECH
 	space_chance = 10

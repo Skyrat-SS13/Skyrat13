@@ -2526,6 +2526,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
+/turf/open/space/basic,
 /turf/open/floor/carpet/blackred,
 /area/crew_quarters/bar)
 "gR" = (
@@ -2805,6 +2806,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/turf/open/space/basic,
 /turf/open/floor/carpet/blackred,
 /area/crew_quarters/bar)
 "vP" = (
@@ -2830,6 +2832,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "wf" = (
+/turf/open/space/basic,
 /turf/open/floor/carpet/blackred,
 /area/crew_quarters/bar)
 "wS" = (
@@ -2851,6 +2854,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/turf/open/space/basic,
 /turf/open/floor/carpet/blackred,
 /area/crew_quarters/bar)
 "xh" = (
@@ -2865,6 +2869,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/turf/open/space/basic,
 /turf/open/floor/carpet/blackred,
 /area/crew_quarters/bar)
 "yt" = (
@@ -2997,7 +3002,7 @@
 /turf/open/floor/grass,
 /area/hydroponics)
 "Ga" = (
-/obj/machinery/vending/boozeomat,
+/obj/machinery/vending/boozeomat/all_access,
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
@@ -3036,6 +3041,7 @@
 /area/bridge)
 "IB" = (
 /obj/structure/chair/stool/bar,
+/turf/open/space/basic,
 /turf/open/floor/carpet/blackred,
 /area/crew_quarters/bar)
 "JF" = (
@@ -3080,6 +3086,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
+/turf/open/space/basic,
 /turf/open/floor/carpet/blackred,
 /area/crew_quarters/bar)
 "Ly" = (
@@ -3108,6 +3115,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/space/basic,
 /turf/open/floor/carpet/blackred,
 /area/crew_quarters/bar)
 "MS" = (
@@ -3326,6 +3334,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
+/turf/open/space/basic,
 /turf/open/floor/carpet/blackred,
 /area/crew_quarters/bar)
 

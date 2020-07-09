@@ -4,7 +4,6 @@
 	speech_verb = "chitters"
 	ask_verb = "chitters inquisitively"
 	exclaim_verb = "chitters loudly"
-	sing_verb = "chimes" // Skyrat edit
 	spans = list(SPAN_ROBOT)
 	key = "d"
 	flags = NO_STUTTER

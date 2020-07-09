@@ -4,7 +4,6 @@
 	speech_verb = "flutters"
 	ask_verb = "flits"
 	exclaim_verb = "flaps"
-	sing_verb = "hums"
 	key = "m"
 	flags = TONGUELESS_SPEECH
 	space_chance = 10

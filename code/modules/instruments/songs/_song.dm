@@ -223,6 +223,8 @@
 
 /// Updates the window for our user. Override in subtypes.
 /datum/song/proc/updateDialog(mob/user = usr)
+	if(user.machine != src)
+		return
 	ui_interact(user)
 
 /datum/song/process(wait)

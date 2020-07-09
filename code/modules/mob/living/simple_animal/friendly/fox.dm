@@ -22,14 +22,10 @@
 	response_harm_simple = "kick"
 	gold_core_spawnable = FRIENDLY_SPAWN
 	footstep_type = FOOTSTEP_MOB_CLAW
-	var/held_icon = "fox" //Skyratchange
 
 /mob/living/simple_animal/pet/fox/ComponentInitialize()
 	. = ..()
-	//Skyrat change start
-	AddElement(/datum/element/wuv, "yaps happily!", EMOTE_AUDIBLE, /datum/mood_event/pet_animal, "screeches!", EMOTE_AUDIBLE)
-	AddElement(/datum/element/mob_holder, held_icon)
-	//Skyratchange stop
+	AddElement(/datum/element/mob_holder, "fox")
 
 //Captain fox
 /mob/living/simple_animal/pet/fox/Renault

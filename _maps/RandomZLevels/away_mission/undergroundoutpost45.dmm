@@ -174,6 +174,9 @@
 	},
 /area/awaymission/undergroundoutpost45/central)
 "ax" = (
+/obj/machinery/gateway{
+	dir = 10
+	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -190,8 +193,28 @@
 	},
 /area/awaymission/undergroundoutpost45/gateway)
 "ay" = (
+/obj/machinery/gateway,
 /obj/structure/cable{
 	icon_state = "0-2"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/landmark/awaystart,
+/turf/open/floor/plasteel/dark{
+	heat_capacity = 1e+006
+	},
+/area/awaymission/undergroundoutpost45/gateway)
+"az" = (
+/obj/machinery/gateway{
+	dir = 6
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -3408,6 +3431,45 @@
 	},
 /area/awaymission/undergroundoutpost45/central)
 "gR" = (
+/obj/machinery/gateway{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	heat_capacity = 1e+006
+	},
+/area/awaymission/undergroundoutpost45/gateway)
+"gS" = (
+/obj/machinery/gateway{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	heat_capacity = 1e+006
+	},
+/area/awaymission/undergroundoutpost45/gateway)
+"gT" = (
+/obj/machinery/gateway{
+	dir = 5
+	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -3682,9 +3744,45 @@
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/crew_quarters)
+"ht" = (
+/obj/machinery/gateway{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	heat_capacity = 1e+006
+	},
+/area/awaymission/undergroundoutpost45/gateway)
 "hu" = (
-/obj/machinery/gateway/away{
+/obj/machinery/gateway/centeraway{
 	calibrated = 0
+	},
+/turf/open/floor/plasteel/dark{
+	heat_capacity = 1e+006
+	},
+/area/awaymission/undergroundoutpost45/gateway)
+"hv" = (
+/obj/machinery/gateway{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark{
 	heat_capacity = 1e+006
@@ -33248,7 +33346,7 @@ ad
 gv
 gJ
 gR
-gR
+ht
 ax
 aA
 iO
@@ -33504,7 +33602,7 @@ ad
 ad
 gv
 gJ
-gR
+gS
 hu
 ay
 aB
@@ -33761,9 +33859,9 @@ ad
 ad
 gw
 gJ
-gR
-gR
-ax
+gT
+hv
+az
 aE
 iQ
 jj

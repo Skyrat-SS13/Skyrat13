@@ -26,8 +26,8 @@
 	mutant_heart = /obj/item/organ/heart/robot_ipc
 	mutantliver = /obj/item/organ/liver/robot_ipc
 	//exotic_blood = /datum/reagent/oil
-	exotic_bloodtype = "S"
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE, TRAIT_CLONEIMMUNE)
+	exotic_bloodtype = "HF"
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE)
 	languagewhitelist = list("Encoded Audio Language")
 
 /datum/species/synthliz/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.

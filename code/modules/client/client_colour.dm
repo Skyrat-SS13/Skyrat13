@@ -17,6 +17,11 @@
 	//eg: "Bloody screen" > "goggles colour" as the former is much more important
 
 
+/mob
+	var/list/client_colours = list()
+
+
+
 /*
 	Adds an instance of colour_type to the mob's client_colours list
 	colour_type - a typepath (subtyped from /datum/client_colour)

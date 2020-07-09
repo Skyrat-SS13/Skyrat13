@@ -136,7 +136,9 @@
 		var/mob/M = parent.loc
 		I.dropped(M)
 	if(new_location)
-		AM.forceMove(new_location)		// exited comsig will handle removal reset.
+		//Reset the items values
+		_removal_reset(AM)
+		AM.forceMove(new_location)
 		//We don't want to call this if the item is being destroyed
 		AM.on_exit_storage(src)
 	else

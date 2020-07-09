@@ -29,7 +29,8 @@
 	anger_modifier = 0
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	mob_biotypes = MOB_ROBOTIC
-	songs = list("2930" = sound(file = 'modular_skyrat/sound/ambience/mbrsystemshock.ogg', repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENCE)) //System shock theme remix by Master Boot Record
+	song = sound('modular_skyrat/sound/ambience/mbrsystemshock.ogg', 100) //System shock theme remix by Master Boot Record
+	songlength = 2930
 	var/special = FALSE
 	wander = FALSE
 	faction = list("mining", "boss")
@@ -47,7 +48,7 @@
 /obj/item/projectile/plasma/rogue
 	dismemberment = 0
 	damage = 25
-	pixels_per_second = TILES_TO_PIXELS(10)
+	speed = 1.25
 	range = 21
 	color = "#FF0000"
 

@@ -60,12 +60,6 @@
 	else
 		cut_overlays()
 
-/obj/item/gun/energy/kinetic_accelerator/getinaccuracy(mob/living/user, bonus_spread, stamloss)
-	var/old_fire_delay = fire_delay //It's pretty irrelevant tbh but whatever.
-	fire_delay = overheat_time
-	. = ..()
-	fire_delay = old_fire_delay
-
 /obj/item/gun/energy/kinetic_accelerator/examine(mob/user)
 	. = ..()
 	if(max_mod_capacity)
@@ -134,7 +128,7 @@
 	if(!holds_charge)
 		empty()
 
-/obj/item/gun/energy/kinetic_accelerator/shoot_live_shot(mob/living/user, pointblank = FALSE, mob/pbtarget, message = 1, stam_cost = 0)
+/obj/item/gun/energy/kinetic_accelerator/shoot_live_shot()
 	. = ..()
 	attempt_reload()
 
@@ -212,12 +206,6 @@
 	if(loc && istype(loc, /obj/item/gun/energy/kinetic_accelerator))
 		var/obj/item/gun/energy/kinetic_accelerator/KA = loc
 		KA.modify_projectile(BB)
-
-/obj/item/gun/energy/kinetic_accelerator/getstamcost(mob/living/carbon/user)
-	if(user && !lavaland_equipment_pressure_check(get_turf(user)))
-		return 0
-	else
-		return ..()
 
 //Projectiles
 /obj/item/projectile/kinetic

@@ -147,7 +147,7 @@
 		return
 	if (!(locate(/obj/structure/table) in src_location) || !(locate(/obj/structure/table) in over_location))
 		return
-
+		
 	//Are we an expert slider?
 	var/datum/action/innate/D = get_action_of_type(user, /datum/action/innate/drink_fling)
 	if(!D?.active)
@@ -268,14 +268,10 @@
 /obj/item/reagent_containers/food/drinks/ice
 	name = "ice cup"
 	desc = "Careful, cold ice, do not chew."
-	custom_price = PRICE_CHEAP_AS_FREE
 	icon_state = "coffee"
 	list_reagents = list(/datum/reagent/consumable/ice = 30)
 	spillable = TRUE
 	isGlass = FALSE
-
-/obj/item/reagent_containers/food/drinks/ice/sustanance
-	custom_price = PRICE_FREE
 
 /obj/item/reagent_containers/food/drinks/mug/ // parent type is literally just so empty mug sprites are a thing
 	name = "mug"
@@ -285,7 +281,7 @@
 	spillable = TRUE
 
 /obj/item/reagent_containers/food/drinks/mug/on_reagent_change(changetype)
-	cut_overlays()
+	cut_overlays()    
 	if(reagents.total_volume)
 		var/mutable_appearance/MA = mutable_appearance(icon,"mugoverlay")
 		MA.color = mix_color_from_reagents(reagents.reagent_list)
@@ -306,7 +302,6 @@
 	list_reagents = list(/datum/reagent/consumable/hot_coco = 30, /datum/reagent/consumable/sugar = 5)
 	foodtype = SUGAR
 	resistance_flags = FREEZE_PROOF
-	custom_price = PRICE_ALMOST_CHEAP
 
 /obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "cup ramen"
@@ -315,7 +310,6 @@
 	list_reagents = list(/datum/reagent/consumable/dry_ramen = 30)
 	foodtype = GRAIN
 	isGlass = FALSE
-	custom_price = PRICE_PRETTY_CHEAP
 
 /obj/item/reagent_containers/food/drinks/beer
 	name = "space beer"
@@ -323,7 +317,6 @@
 	icon_state = "beer"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
 	foodtype = GRAIN | ALCOHOL
-	custom_price = PRICE_PRETTY_CHEAP
 
 /obj/item/reagent_containers/food/drinks/beer/light
 	name = "Carp Lite"
@@ -424,7 +417,6 @@
 	custom_materials = list(/datum/material/iron=250)
 	volume = 60
 	isGlass = FALSE
-	custom_price = PRICE_ABOVE_NORMAL
 
 /obj/item/reagent_containers/food/drinks/flask/gold
 	name = "captain's flask"
@@ -455,11 +447,6 @@
 	reagent_flags = NONE
 	spillable = FALSE
 	isGlass = FALSE
-	//skyrat edit - makes crushed cans able to use other icon states and icon files
-	var/crushed_icon = 'icons/obj/janitor.dmi'
-	var/crushed_state
-	//
-	custom_price = PRICE_CHEAP_AS_FREE
 
 /obj/item/reagent_containers/food/drinks/soda_cans/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] is trying to eat \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -473,16 +460,7 @@
 		user.visible_message("<span class='warning'>[user] crushes the can of [src] on [user.p_their()] forehead!</span>", "<span class='notice'>You crush the can of [src] on your forehead.</span>")
 		playsound(user.loc,'sound/weapons/pierce.ogg', rand(10,50), 1)
 		var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(user.loc)
-		//Skyrat edit
-		if(!crushed_icon)
-			crushed_can.icon = 'icons/obj/janitor.dmi'
-		else
-			crushed_can.icon = crushed_icon
-		if(!crushed_state)
-			crushed_can.icon_state = icon_state
-		else
-			crushed_can.icon_state = crushed_state
-		//
+		crushed_can.icon_state = icon_state
 		qdel(src)
 	..()
 

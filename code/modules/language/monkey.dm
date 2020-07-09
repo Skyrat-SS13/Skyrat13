@@ -4,7 +4,6 @@
 	speech_verb = "chimpers"
 	ask_verb = "chimpers"
 	exclaim_verb = "screeches"
-	sing_verb = "chimpers tunefully" // Skyrat edit
 	key = "1"
 	space_chance = 100
 	syllables = list("oop", "aak", "chee", "eek")

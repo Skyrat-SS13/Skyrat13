@@ -30,8 +30,6 @@
 	var/list/datum/design/matching_designs
 	var/selected_category
 	var/screen = 1
-	var/base_price = 25
-	var/hacked_price = 50
 
 	var/datum/techweb/specialized/autounlocking/stored_research = /datum/techweb/specialized/autounlocking/autolathe
 	var/list/categories = list(
@@ -60,8 +58,7 @@
 		/datum/material/runite,
 		/datum/material/plastic,
 		/datum/material/adamantine,
-		/datum/material/mythril,
-		/datum/material/wood
+		/datum/material/mythril
 		)
 
 	/// Base print speed

@@ -1,14 +1,38 @@
+/datum/gear/polyskirt
+	name = "Polychromic Skirt"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/dress/skirt/polychromic
+	cost = 3
+
+/datum/gear/polyshirt
+	name = "Polychromic Jumpsuit"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/misc/polyjumpsuit
+	cost = 3
+	
 /datum/gear/polyunder
 	name = "Polychromic Under"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/suit/polychromic
-	cost = 2
+	cost = 3
+
+/datum/gear/polypleat
+	name = "Polychromic Pleated Skirt"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/dress/skirt/polychromic/pleated
+	cost = 3
 
 /datum/gear/polyfemtank
 	name = "Polychromic Feminine Tanktop"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/misc/poly_tanktop/female
-	cost = 2
+	cost = 3
+
+/datum/gear/polytshirt
+	name = "Polychromic Shirt"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/misc/poly_shirt
+	cost = 3
 
 /datum/gear/skirtleneck
 	name = "Tacticool Skirtleneck"
@@ -31,29 +55,12 @@
 	name = "Fed uniform, classic"
 	restricted_roles = NOCIV_ROLES // Accomodates for modular and forgotten roles.
 
-/datum/gear/orvass
-	name = "EntCorp uniform, assistant/trainee"
+/datum/gear/trekfedtrainee
+	name = "EntCorp uniform, trainee/assistant"
+	path = /obj/item/clothing/under/trek/orvi
 
-/datum/gear/orvsrv
+/datum/gear/trekfedservice
 	name = "EntCorp uniform, service"
+	path = /obj/item/clothing/under/trek/orvi/service
 	restricted_roles = CIV_ROLES
 	restricted_desc = "Civilian and Service"
-
-// Yes, it was in non-modular code. Yes, I'm retarded --Nopeman
-/datum/gear/orvcmd_capt
-	name = "EntCorp uniform, capt"
-	category = SLOT_W_UNIFORM
-	path = /obj/item/clothing/under/trek/command/orv/captain
-	restricted_roles = list("Captain")
-
-/datum/gear/orvcmd_medsci
-	name = "EntCorp uniform, medsci, cmd"
-	category = SLOT_W_UNIFORM
-	path = /obj/item/clothing/under/trek/command/orv/medsci
-	restricted_roles = list("Research Director", "Chief Medical Officer")
-
-/datum/gear/orvcmd_ops
-	name = "EntCorp uniform, ops, cmd"
-	category = SLOT_W_UNIFORM
-	path = /obj/item/clothing/under/trek/command/orv/engsec
-	restricted_roles = list("Head of Security", "Chief Engineer")

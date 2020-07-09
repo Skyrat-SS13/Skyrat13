@@ -445,7 +445,6 @@ obj/item/gps/internal/bubblegum/hard
 	deathmessage = "Explodes into a pool of blood!"
 	deathsound = 'sound/effects/splat.ogg'
 	true_spawn = FALSE
-	mouse_opacity = 0 //This is so clients wont hover and store them, causing them to fail GC
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/hallucination/Initialize()
 	..()
