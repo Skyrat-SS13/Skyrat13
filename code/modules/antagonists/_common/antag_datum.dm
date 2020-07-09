@@ -31,6 +31,11 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 	var/list/skill_modifiers
 
+//SKYRAT CHANGES BEGIN
+	///Possible values: NONE, CAN_SEE_EXPOITABLE_INFO
+	var/antag_flags = CAN_SEE_EXPOITABLE_INFO
+//SKYRANT CHANGES END
+
 /datum/antagonist/New()
 	GLOB.antagonists += src
 	typecache_datum_blacklist = typecacheof(typecache_datum_blacklist)
