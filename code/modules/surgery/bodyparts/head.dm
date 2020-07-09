@@ -36,7 +36,7 @@
 	var/custom_head
 	//skyrat edit
 	wound_resistance = 10
-	specific_locations = list("left eyebrow", "cheekbone", "neck", "throat", "jawline", "entire face")
+	specific_locations = list("left eyebrow", "right eyebrow", "cheekbone", "neck", "throat", "jawline", "entire face", "forehead")
 	scars_covered_by_clothes = FALSE
 	//
 
