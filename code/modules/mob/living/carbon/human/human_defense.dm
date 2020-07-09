@@ -888,7 +888,7 @@
 					if(WOUND_SEVERITY_CRITICAL)
 						status = "horrifyingly damaged"
 					if(WOUND_SEVERITY_LOSS)
-						status = "a literal stump"
+						status = "suffering with a stump of a lost limb"
 		var/isdisabled = " "
 		if(LB.is_disabled())
 			isdisabled = " is disabled "
@@ -900,21 +900,26 @@
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 			to_chat(src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name][isdisabled][self_aware ? " has " : " is "][status].</span>")
 		else
-			to_chat(src, "\t <span class='notice'>Tis [LB.name] but a flesh wound.</span>")
+			to_chat(src, "\t <span class='notice'>Your [LB.name] is OK.</span>")
 
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 			for(var/thing in LB.wounds)
 				var/datum/wound/W = thing
 				var/msg
+				var/woundmsg
+				if(W.can_self_treat)
+					woundmsg = "<a href='?src=[REF(W)];self_treat=1;' class='warning'>[lowertext(W.name)]</a>"
+				else
+					woundmsg = "[lowertext(W.name)]"
 				switch(W.severity)
 					if(WOUND_SEVERITY_TRIVIAL)
-						msg = "\t <span class='danger'>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)].</span>"
+						msg = "\t <span class='danger'>Your [LB.name] is suffering [W.a_or_from] [woundmsg].</span>"
 					if(WOUND_SEVERITY_MODERATE)
-						msg = "\t <span class='warning'>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!</span>"
+						msg = "\t <span class='warning'>Your [LB.name] is suffering [W.a_or_from] [woundmsg]!</span>"
 					if(WOUND_SEVERITY_SEVERE)
-						msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!</b></span>"
+						msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [woundmsg]!</b></span>"
 					if(WOUND_SEVERITY_CRITICAL)
-						msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!!</b></span>"
+						msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [woundmsg]!!</b></span>"
 				to_chat(src, msg)
 		
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))

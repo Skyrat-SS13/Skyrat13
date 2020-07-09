@@ -37,6 +37,7 @@
 /*
 	Overwriting of base procs
 */
+
 /datum/wound/blunt/on_hemostatic(quantity)
 	if((severity <= WOUND_SEVERITY_SEVERE) && (quantity >= 15))
 		internal_bleeding_chance = round(internal_bleeding_chance/2, 0.1)
@@ -218,11 +219,42 @@
 	status_effect_type = /datum/status_effect/wound/blunt/moderate
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
+	can_self_treat = TRUE
 
 /datum/wound/blunt/moderate/crush()
 	if(prob(33))
 		victim.visible_message("<span class='danger'>[victim]'s dislocated [limb.name] pops back into place!</span>", "<span class='userdanger'>Your dislocated [limb.name] pops back into place! Ow!</span>")
 		remove_wound()
+
+/datum/wound/blunt/moderate/self_treat(mob/living/carbon/user, first_time = FALSE)
+	var/time = base_treat_time
+	var/time_mod = 2
+	var/prob_mod = -25
+	var/custom_location
+
+	if(limb.body_zone == BODY_ZONE_CHEST)
+		custom_location = "ribs"
+	else if(limb.body_zone == BODY_ZONE_PRECISE_GROIN)
+		custom_location = "hips"
+	
+	if(first_time)
+		user.visible_message("<span class='notice'>[user] starts to strain their [custom_location ? custom_location : limb.name] back in place...</span>", "<span class='notice'>You start straining your [custom_location ? custom_location : limb.name] back in place...</span>")
+	if(time_mod)
+		time *= time_mod
+
+	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+		return
+
+	if(prob(60 + prob_mod))
+		user.visible_message("<span class='danger'>[user] snaps their own [custom_location ? custom_location : limb.name] back in place!</span>", "<span class='danger'>You snap your [custom_location ? custom_location : limb.name] back into place!</span>")
+		victim.emote("scream")
+		limb.receive_damage(brute=24, wound_bonus=CANT_WOUND)
+		qdel(src)
+	else
+		user.visible_message("<span class='danger'>[user] wrenches their own dislocated [custom_location ? custom_location : limb.name] around painfully!</span>", "<span class='danger'>You wrench your own dislocated [custom_location ? custom_location : limb.name] around painfully!</span>")
+		limb.receive_damage(brute=12, wound_bonus=CANT_WOUND)
+		self_treat(user, FALSE)
+	return
 
 /datum/wound/blunt/moderate/try_handling(mob/living/carbon/human/user)
 	if(user.pulling != victim || user.zone_selected != limb.body_zone || user.a_intent == INTENT_GRAB)

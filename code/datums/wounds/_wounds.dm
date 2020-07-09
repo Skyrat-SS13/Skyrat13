@@ -111,6 +111,20 @@
 	var/already_scarred = FALSE
 	/// If we forced this wound through badmin smite, we won't count it towards the round totals
 	var/from_smite
+	/// Can we do a far cry and treat this wound just by clicking some text on the check self stuff?
+	var/can_self_treat = FALSE
+
+/datum/wound/Topic(href, href_list)
+	if(usr.canUseTopic(victim, BE_CLOSE, FALSE))
+		if(href_list["self_treat"])
+			if(INTERACTING_WITH(usr, victim))
+				to_chat(usr, "<span class='warning'>You're already interacting with [victim]!</span>")
+				return FALSE
+			self_treat(usr, TREAT)
+	return
+
+/datum/wound/proc/self_treat(mob/living/carbon/user) //used so you can far cry up wounds to fix them
+	return
 
 /datum/wound/Destroy()
 	if(attached_surgery)

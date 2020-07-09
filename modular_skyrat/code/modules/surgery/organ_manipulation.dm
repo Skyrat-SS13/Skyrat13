@@ -1,6 +1,7 @@
 /datum/surgery_step/manipulate_organs
 	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100, /obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100, /obj/item/stack/medical/mesh = 100, /obj/item/stack/medical/aloe = 100, /obj/item/stack/medical/suture = 100, /obj/item/reagent_containers = 100)
 	var/heal_amount = 40
+	var/disinfect_amount = 20
 
 /datum/surgery_step/manipulate_organs/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	I = null
@@ -69,13 +70,11 @@
 		var/obj/item/reagent_containers/R = tool
 		var/text2add = istype(R, /obj/item/reagent_containers/pill) ? "To top it off, you ended up wasting \the [R] for no good reason.":""
 		if(R.reagents.total_volume)
-			if(R.reagents.has_reagent(/datum/reagent/medicine/synthflesh, 10))
-				if(R.reagents.remove_reagent(/datum/reagent/medicine/synthflesh, 10, ignore_pH = TRUE))
+			if(R.reagents.has_reagent(/datum/reagent/medicine/silver_sulfadiazine, 50) || R.reagents.has_reagent(/datum/reagent/medicine/styptic_powder, 25) || R.reagents.has_reagent(/datum/reagent/medicine/synthflesh, 15))
+				if(R.reagents.remove_reagent(/datum/reagent/medicine/silver_sulfadiazine, 50, ignore_pH = TRUE) || R.reagents.remove_reagent(/datum/reagent/medicine/styptic_powder, 25, ignore_pH = TRUE) || R.reagents.remove_reagent(/datum/reagent/medicine/synthflesh, 15, ignore_pH = TRUE))
 					display_results(user, target, "<span class='notice'>You begin to heal the organs in [target]'s [parse_zone(target_zone)]...</span>",
 									"[user] begins to heal [target]'s [parse_zone(target_zone)] organs...",
 									"[user] begins to heal [target]'s [parse_zone(target_zone)] organs...")
-					if(istype(R, /obj/item/reagent_containers/pill))
-						qdel(R)
 				else
 					to_chat(user, "<span class='warning'>[R] does not have enough healing reagents or can't transfer it's reagents![text2add]</span>")
 					if(istype(R, /obj/item/reagent_containers/pill))
@@ -83,23 +82,12 @@
 					return -1
 				if(istype(R, /obj/item/reagent_containers/pill))
 					qdel(R)
-			else if(R.reagents.has_reagent(/datum/reagent/medicine/styptic_powder, 20))
-				if(R.reagents.remove_reagent(/datum/reagent/medicine/styptic_powder, 20, ignore_pH = TRUE))
-					display_results(user, target, "<span class='notice'>You begin to heal the organs in [target]'s [parse_zone(target_zone)]...</span>",
-										"[user] begins to heal [target]'s [parse_zone(target_zone)] organs...",
-										"[user] begins to heal [target]'s [parse_zone(target_zone)] organs...")
-				else
-					to_chat(user, "<span class='warning'>[R] does not have enough healing reagents or can't transfer it's reagents![text2add]</span>")
-					if(istype(R, /obj/item/reagent_containers/pill))
-						qdel(R)
-					return -1
-				if(istype(R, /obj/item/reagent_containers/pill))
-					qdel(R)
-			else if(R.reagents.has_reagent(/datum/reagent/medicine/silver_sulfadiazine, 40))
-				if(R.reagents.remove_reagent(/datum/reagent/medicine/silver_sulfadiazine, 40, ignore_pH = TRUE))
-					display_results(user, target, "<span class='notice'>You begin to heal the organs in [target]'s [parse_zone(target_zone)]...</span>",
-									"[user] begins to heal [target]'s [parse_zone(target_zone)] organs...",
-									"[user] begins to heal [target]'s [parse_zone(target_zone)] organs...")
+			else if(R.reagents.has_reagent(/datum/reagent/space_cleaner/sterilizine, 10) || R.reagents.has_reagent(/datum/reagent/space_cleaner, 40) || R.reagents.has_reagent(/datum/reagent/medicine/spaceacillin, 15))
+				current_type = "disinfect"
+				if(R.reagents.remove_reagent(/datum/reagent/space_cleaner/sterilizine, 10, ignore_pH = TRUE) || R.reagents.remove_reagent(/datum/reagent/space_cleaner, 40, ignore_pH = TRUE) || R.reagents.remove_reagent(/datum/reagent/medicine/spaceacillin, 15, ignore_pH = TRUE))
+					display_results(user, target, "<span class='notice'>You begin to disinfect the organs in [target]'s [parse_zone(target_zone)]...</span>",
+									"[user] begins to disinfect [target]'s [parse_zone(target_zone)] organs...",
+									"[user] begins to disinfect [target]'s [parse_zone(target_zone)] organs...")
 				else
 					to_chat(user, "<span class='warning'>[R] does not have enough healing reagents or can't transfer it's reagents![text2add]</span>")
 					if(istype(R, /obj/item/reagent_containers/pill))
@@ -150,17 +138,38 @@
 		var/list/organstotal = list()
 		var/list/organshealed = list()
 		for(var/obj/item/organ/O in target.getorganszone(target_zone))
-			O.applyOrganDamage(-heal_amount)
+			var/healedatall = FALSE
+			if(O.damage <= O.maxHealth/10)
+				O.applyOrganDamage(-heal_amount)
+				healedatall = TRUE
 			organstotal += O
 			if(!O.damage)
 				organshealed += O
-			to_chat(user, "<span class='warning'>You have successfully [O.damage ? "partially" : "completely"] healed [target]'s [O].</span>")
+			if(healedatall)
+				to_chat(user, "<span class='notice'>You have successfully [O.damage ? "partially" : "completely"] healed [target]'s [O].</span>")
+			else
+				to_chat(user, "<span class='warning'>You were not able to heal [target]'s [O]. You'll have to disinfect it before healing!</span>")
 		if(length(organshealed) < length(organstotal))
 			display_results(user, target, "<span class='notice'>You have succesfully healed [target]'s [parse_zone(target_zone)]'s organs.</span>",
 				"[user] has healed [target]'s [parse_zone(target_zone)]'s organs!",
 				"[user] has healed [target]'s [parse_zone(target_zone)]'s organs!")
-		else
+		else if(length(organshealed))
 			display_results(user, target, "<span class='notice'>You have partially healed [target]'s [parse_zone(target_zone)]'s organs.</span>",
 				"[user] has healed part of [target]'s [parse_zone(target_zone)]'s organs!",
 				"[user] has healed part of [target]'s [parse_zone(target_zone)]'s organs!")
+		else
+			display_results(user, target, "<span class='warning'>You have failed to heal [target]'s [parse_zone(target_zone)]'s organs.</span>",
+				"[user] has failed to heal [target]'s [parse_zone(target_zone)]'s organs!",
+				"[user] has failed to heal [target]'s [parse_zone(target_zone)]'s organs!")
+	else if(current_type == "disinfect")
+		var/list/organstotal = list()
+		var/list/organshealed = list()
+		for(var/obj/item/organ/O in target.getorganszone(target_zone))
+			O.applyOrganDamage(-disinfect_amount)
+			organstotal += O
+			organshealed += O
+			to_chat(user, "<span class='warning'>You have successfully disinfected [target]'s [O].</span>")
+		display_results(user, target, "<span class='notice'>You have succesfully disinfected [target]'s [parse_zone(target_zone)]'s organs.</span>",
+			"[user] has disinfected [target]'s [parse_zone(target_zone)]'s organs!",
+			"[user] has disinfected [target]'s [parse_zone(target_zone)]'s organs!")
 	return 0
