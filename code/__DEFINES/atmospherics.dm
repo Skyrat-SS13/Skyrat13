@@ -133,7 +133,7 @@
 #define TANK_LEAK_PRESSURE					(30.*ONE_ATMOSPHERE)	//Tank starts leaking
 #define TANK_RUPTURE_PRESSURE				(35.*ONE_ATMOSPHERE)	//Tank spills all contents into atmosphere
 #define TANK_FRAGMENT_PRESSURE				(40.*ONE_ATMOSPHERE)	//Boom 3x3 base explosion
-#define TANK_FRAGMENT_SCALE	    			(0.4*ONE_ATMOSPHERE)		//+1 for each SCALE kPa aboe threshold //Skyrat change
+#define TANK_FRAGMENT_SCALE	    			(0.3*ONE_ATMOSPHERE)		//+1 for each SCALE kPa aboe threshold //Skyrat change
 #define TANK_MAX_RELEASE_PRESSURE 			(ONE_ATMOSPHERE*3)
 #define TANK_MIN_RELEASE_PRESSURE 			0
 #define TANK_DEFAULT_RELEASE_PRESSURE 		16

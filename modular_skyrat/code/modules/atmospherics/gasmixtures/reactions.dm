@@ -17,7 +17,7 @@
 
 	if(burned_fuel)
 		var/thermal_energy = old_heat_capacity * temperature
-		var/radiation_energy = burned_fuel*TRITIUM_RADIOACTIVE_ENERGY
+		var/radiation_energy = burned_fuel*TRITIUM_RELEASE_ENERGY
 		if(location && prob(10) && burned_fuel > TRITIUM_MINIMUM_RADIATION_ENERGY) //woah there let's not crash the server
 			radiation_pulse(location, radiation_energy/TRITIUM_RADIOACTIVE_PULSE_COEFF)
 
@@ -86,7 +86,7 @@
 
 			var/new_heat_capacity = air.heat_capacity()
 			if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-				air.temperature = thermal_energy/new_heat_capacity
+				air.temperature = (thermal_energy+(PLASMA_RELEASE_ENERGY*plasma_burn_rate))/new_heat_capacity
 
 	//let the floor know a fire is happening
 	if(istype(location))
