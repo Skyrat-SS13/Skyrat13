@@ -218,15 +218,15 @@ GENETICS SCANNER
 				var/obj/item/organ/eyes/eyes = O
 				if(advanced)
 					if(HAS_TRAIT(C, TRAIT_BLIND))
-						temp_message += " <span class='alert'>Subject is blind.</span>"
+						temp_message += "\n\t<span class='alert'>Subject is blind.</span>"
 					if(HAS_TRAIT(C, TRAIT_NEARSIGHT))
-						temp_message += " <span class='alert'>Subject is nearsighted.</span>"
+						temp_message += "\n\t<span class='alert'>Subject is nearsighted.</span>"
 					if(eyes.damage > 30)
-						damage_message += " <span class='alert'>Subject has severe eye damage.</span>"
+						damage_message += "\n\t<span class='alert'>Subject has severe eye damage.</span>"
 					else if(eyes.damage > 20)
-						damage_message += " <span class='alert'>Subject has significant eye damage.</span>"
+						damage_message += "\n\t<span class='alert'>Subject has significant eye damage.</span>"
 					else if(eyes.damage)
-						damage_message += " <span class='alert'>Subject has minor eye damage.</span>"
+						damage_message += "\n\t<span class='alert'>Subject has minor eye damage.</span>"
 
 
 			//EARS
@@ -234,26 +234,26 @@ GENETICS SCANNER
 				var/obj/item/organ/ears/ears = O
 				if(advanced)
 					if(HAS_TRAIT_FROM(C, TRAIT_DEAF, GENETIC_MUTATION))
-						temp_message += " <span class='alert'>Subject is genetically deaf.</span>"
+						temp_message += "\n\t<span class='alert'>Subject is genetically deaf.</span>"
 					else if(HAS_TRAIT(C, TRAIT_DEAF))
-						temp_message += " <span class='alert'>Subject is deaf.</span>"
+						temp_message += "\n\t<span class='alert'>Subject is deaf.</span>"
 					else
 						if(ears.damage)
-							damage_message += " <span class='alert'>Subject has [ears.damage > ears.maxHealth ? "permanent ": "temporary "]hearing damage.</span>"
+							damage_message += "\n\t<span class='alert'>Subject has [ears.damage > ears.maxHealth ? "permanent ": "temporary "]hearing damage.</span>"
 						if(ears.deaf)
-							damage_message += " <span class='alert'>Subject is [ears.damage > ears.maxHealth ? "permanently ": "temporarily "] deaf.</span>"
+							damage_message += "\n\t<span class='alert'>Subject is [ears.damage > ears.maxHealth ? "permanently ": "temporarily "] deaf.</span>"
 
 
 			//BRAIN
 			else if(istype(O, /obj/item/organ/brain))
 				if (C.getOrganLoss(ORGAN_SLOT_BRAIN) >= 200)
-					damage_message += " <span class='alert'>Subject's brain non-functional. Neurine injection recomended.</span>"
+					damage_message += "\n\t<span class='alert'>Subject's brain non-functional. Neurine injection recomended.</span>"
 				else if (C.getOrganLoss(ORGAN_SLOT_BRAIN) >= 120)
-					damage_message += " <span class='alert'>Severe brain damage detected. Subject likely to have mental traumas.</span>"
+					damage_message += "\n\t<span class='alert'>Severe brain damage detected. Subject likely to have mental traumas.</span>"
 				else if (C.getOrganLoss(ORGAN_SLOT_BRAIN) >= 45)
-					damage_message += " <span class='alert'>Brain damage detected.</span>"
+					damage_message += "\n\t<span class='alert'>Brain damage detected.</span>"
 				if(advanced)
-					temp_message += " <span class='info'>Brain Activity Level: [(200 - M.getOrganLoss(ORGAN_SLOT_BRAIN))/2]%.</span>"
+					temp_message += " \n\t<span class='info'>Brain Activity Level: [(200 - M.getOrganLoss(ORGAN_SLOT_BRAIN))/2]%.</span>"
 
 				//TRAUMAS
 				if(LAZYLEN(C.get_traumas()))
@@ -273,38 +273,38 @@ GENETICS SCANNER
 								trauma_desc += "permanent "
 						trauma_desc += B.scan_desc
 						trauma_text += trauma_desc
-					temp_message += " <span class='alert'>Cerebral traumas detected: subject appears to be suffering from [english_list(trauma_text)].</span>"
+					temp_message += "\n\t<span class='alert'>Cerebral traumas detected: subject appears to be suffering from [english_list(trauma_text)].</span>"
 				if(C.roundstart_quirks.len)
-					temp_message += " <span class='info'>Subject has the following physiological traits: [C.get_trait_string()].</span>"
+					temp_message += "\n\t<span class='info'>Subject has the following physiological traits: [C.get_trait_string()].</span>"
 
 				if(ishuman(C) && advanced)
 					//MON PETIT CHAUFFEUR
 					if(H.hallucinating())
-						temp_message += " <span class='info'>Subject is hallucinating.</span>"
+						temp_message += "\n\t<span class='info'>Subject is hallucinating.</span>"
 
 					//MKUltra
 					if(H.has_status_effect(/datum/status_effect/chem/enthrall))
-						temp_message += " <span class='info'>Subject has abnormal brain fuctions.</span>"
+						temp_message += "\n\t<span class='info'>Subject has abnormal brain fuctions.</span>"
 
 					//Astrogen shenanigans
 					if(H.reagents.has_reagent(/datum/reagent/fermi/astral))
 						if(H.mind)
-							temp_message += " <span class='danger'>Warning: subject may be possessed.</span>"
+							temp_message += "\n\t<span class='danger'>Warning: subject may be possessed.</span>"
 						else
-							temp_message += " <span class='notice'>Subject appears to be astrally projecting.</span>"
+							temp_message += "\n\t<span class='notice'>Subject appears to be astrally projecting.</span>"
 
 
 			//LIVER
 			else if(istype(O, /obj/item/organ/liver))
 				var/obj/item/organ/liver/L = O
 				if(L.organ_flags & ORGAN_FAILING && H.stat != DEAD) //might be depreciated
-					temp_message += " <span class='danger'>Subject is suffering from liver failure: Apply Corazone and begin a liver transplant immediately!</span>"
+					temp_message += "\n\t<span class='danger'>Subject is suffering from liver failure: Apply Corazone and begin a liver transplant immediately!</span>"
 
 			//HEART
 			else if(ishuman(M) && (istype(O, /obj/item/organ/heart)))
 				var/obj/item/organ/heart/He = O
 				if(H.undergoing_cardiac_arrest() && H.stat != DEAD)
-					temp_message += " <span class='danger'>Subject suffering from heart attack: Apply defibrillation or other electric shock <b>immediately!</b></span>"
+					temp_message += "\n\t<span class='danger'>Subject suffering from heart attack: Apply defibrillation or other electric shock <b>immediately!</b></span>"
 				if(He.organ_flags & ORGAN_FAILING)
 					heart_ded = TRUE
 
@@ -312,32 +312,32 @@ GENETICS SCANNER
 			else if(istype(O, /obj/item/organ/tongue))
 				var/obj/item/organ/tongue/T = O
 				if(T.name == "fluffy tongue")
-					temp_message += " <span class='danger'>Subject is suffering from a fluffified tongue. Suggested cure: Yamerol or a tongue transplant.</span>"
+					temp_message += "\n\t<span class='danger'>Subject is suffering from a fluffified tongue. Suggested cure: Yamerol or a tongue transplant.</span>"
 
 			//HECK
 			else if(istype(O, /obj/item/organ/genital/penis))
 				var/obj/item/organ/genital/penis/P = O
 				if(P.length>20)
-					temp_message += " <span class='info'>Subject has a sizeable gentleman's organ at [P.length] inches.</span>"
+					temp_message += "\n\t<span class='info'>Subject has a sizeable gentleman's organ at [P.length] inches.</span>"
 
 			else if(istype(O, /obj/item/organ/genital/breasts))
 				var/obj/item/organ/genital/breasts/Br = O
 				if(Br.cached_size>5)
-					temp_message += " <span class='info'>Subject has a sizeable bosom with a [Br.size] cup.</span>"
+					temp_message += "\n\t<span class='info'>Subject has a sizeable bosom with a [Br.size] cup.</span>"
 
 
 
 			//GENERAL HANDLER
 			if(!damage_message)
 				if(O.organ_flags & ORGAN_FAILING)
-					damage_message += " <span class='alert'><b>Chronic [O.name] failure detected.</b></span>"
+					damage_message += "\n\t<span class='alert'><b>Chronic [O.name] failure detected.</b></span>"
 				else if(O.damage > O.high_threshold)
-					damage_message += " <span class='alert'>Acute [O.name] failure detected.</span>"
+					damage_message += "\n\t<span class='alert'>Acute [O.name] failure detected.</span>"
 				else if(O.damage > O.low_threshold && advanced)
-					damage_message += " <font color='red'>Minor [O.name] failure detected.</span>"
+					damage_message += "\n\t<font color='red'>Minor [O.name] failure detected.</span>"
 
 			if(temp_message || damage_message)
-				msg += "\t<b><span class='info'>[uppertext(O.name)]:</b></span> [damage_message] [temp_message]\n"
+				msg += "\t\n<b><span class='info'>[uppertext(O.name)]:</b></span> [damage_message] [temp_message]\n"
 
 
 
@@ -421,6 +421,8 @@ GENETICS SCANNER
 					msg += "<span class='danger'> Intervention recommended.</span>\n"
 				else
 					msg += "\n"
+			else
+				msg += "\n"
 	//skyrat edit
 	// Wounds
 	if(iscarbon(M))
@@ -431,8 +433,8 @@ GENETICS SCANNER
 			msg += "<span class='alert ml-1'><b>Warning: Physical trauma[LAZYLEN(wounded_part.wounds) > 1? "s" : ""] detected in [wounded_part.name]</b>"
 			for(var/k in wounded_part.wounds)
 				var/datum/wound/W = k
-				msg += "<div class='ml-2'>Type: [W.name]\nSeverity: [W.severity_text()]\nRecommended Treatment: [W.treat_text]</div>\n" // less lines than in woundscan() so we don't overload people trying to get basic med info
-			msg += "</span>"
+				msg += "<div class='ml-2'>Type: [W.name]\nSeverity: [W.severity_text()]\nRecommended Treatment: [W.treat_text]</div>" // less lines than in woundscan() so we don't overload people trying to get basic med info
+			msg += "</span>\n<br>"
 	//
 
 	for(var/thing in M.diseases)

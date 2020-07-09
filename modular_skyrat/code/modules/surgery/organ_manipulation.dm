@@ -1,3 +1,6 @@
+/datum/surgery_step/manipulate_organs
+	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100, /obj/item/stack/medical = 0, /obj/item/reagent_containers = 0)
+
 /datum/surgery_step/manipulate_organs/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	I = null
 	if(istype(tool, /obj/item/organ_storage))
