@@ -437,14 +437,6 @@
 	curr.Insert(icon('modular_skyrat/icons/mob/widerobot.dmi', "valesci-sit"), "sit")
 	curr.Insert(icon('modular_skyrat/icons/mob/widerobot.dmi', "valesci-bellyup"), "bellyup")
 	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
-	//drakesci
-	.["Cyborg - Science (dog - valesci)"] = curr
-	curr = icon('modular_skyrat/icons/mob/drakemech.dmi', "drakesci")
-	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakesci-rest"), "rest")
-	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakesci-sit"), "sit")
-	curr.Insert(icon('modular_skyrat/icons/mob/drakemech.dmi', "drakesci-bellyup"), "bellyup")
-	process_holoform_icon_filter(curr, HOLOFORM_FILTER_PAI, FALSE)
-	.["Cyborg - Science (dog - drakesci)"] = curr
 	//Misc
 	.["Cyborg - Misc (dog - blade)"] = process_holoform_icon_filter(icon('modular_skyrat/icons/mob/widerobot.dmi', "blade"), HOLOFORM_FILTER_PAI, FALSE)
 
@@ -469,6 +461,5 @@
 	.["Cyborg - Service (dog - valeservdark)"] = -16
 	//Sci
 	.["Cyborg - Security (dog - valesci)"] = -16
-	.["Cyborg - Security (dog - drakesci)"] = -16
 	//Misc
 	.["Cyborg - Misc (dog - blade)"] = -16
