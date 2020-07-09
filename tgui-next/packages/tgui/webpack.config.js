@@ -75,7 +75,7 @@ module.exports = (env = {}, argv) => {
             {
               loader: ExtractCssChunks.loader,
               options: {
-                hmr: argv.hot,
+                hot: argv.hot,
               },
             },
             {
@@ -172,9 +172,7 @@ module.exports = (env = {}, argv) => {
   if (argv.mode !== 'production') {
     config.plugins = [
       ...config.plugins,
-      new BuildNotifierPlugin({
-        suppressSuccess: true,
-      }),
+      new BuildNotifierPlugin(),
     ];
     if (argv.hot) {
       config.plugins.push(new webpack.HotModuleReplacementPlugin());

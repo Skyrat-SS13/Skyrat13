@@ -32,48 +32,25 @@
 	name = "Summon Minions"
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "art_summon"
-	usage_probability = 20
+	usage_probability = 40
 	boss_cost = 30
 	boss_type = /mob/living/simple_animal/hostile/boss/paper_wizard
 	needs_target = FALSE
-	req_statuses = list(AI_ON)
 	say_when_triggered = "Rise, my creations! Jump off your pages and into this realm!"
-	var/list/summoned_minions = list()
-	var/maximum_stickmen = 6
-	var/stickmen_to_summon = 3
+	var/static/summoned_minions = 0
 
 /datum/action/boss/wizard_summon_minions/Trigger()
-	. =..()
-	if(!.)
-		return
-	var/to_summon = stickmen_to_summon
-	var/current_len = length(summoned_minions)
-	if(current_len > maximum_stickmen - stickmen_to_summon)
-		for(var/a in (maximum_stickmen - stickmen_to_summon) to current_len)
-			var/mob/living/simple_animal/hostile/stickman/S = popleft(summoned_minions)
-			if(!S.client)
-				qdel(S)
-			else
-				S.forceMove(boss.drop_location())
-				S.revive(TRUE)
-				summoned_minions += S
-				to_summon--
+	if(summoned_minions <= 6 && ..())
+		var/list/minions = list(
+		/mob/living/simple_animal/hostile/stickman,
+		/mob/living/simple_animal/hostile/stickman/ranged,
+		/mob/living/simple_animal/hostile/stickman/dog)
+		var/list/directions = GLOB.cardinals.Copy()
+		for(var/i in 1 to 3)
+			var/minions_chosen = pick_n_take(minions)
+			new minions_chosen (get_step(boss,pick_n_take(directions)), 1)
+		summoned_minions += 3;
 
-	var/static/list/minions = list(
-	/mob/living/simple_animal/hostile/stickman,
-	/mob/living/simple_animal/hostile/stickman/ranged,
-	/mob/living/simple_animal/hostile/stickman/dog)
-
-	var/list/directions = GLOB.cardinals.Copy()
-	for(var/i in 1 to to_summon)
-		var/minions_chosen = pick(minions)
-		var/mob/living/simple_animal/hostile/stickman/S = new minions_chosen (get_step(boss,pick_n_take(directions)), 1)
-		S.faction = boss.faction
-		RegisterSignal(S, COMSIG_PARENT_QDELETING, .proc/remove_from_list)
-		summoned_minions += S
-
-/datum/action/boss/wizard_summon_minions/proc/remove_from_list(datum/source, forced)
-	summoned_minions -= source
 
 //Mimic Ability
 //Summons mimics of himself with magical papercraft
@@ -86,36 +63,31 @@
 	usage_probability = 30
 	boss_cost = 40
 	boss_type = /mob/living/simple_animal/hostile/boss/paper_wizard
-	req_statuses = list(AI_ON)
 	say_when_triggered = ""
 
 /datum/action/boss/wizard_mimic/Trigger()
-	. = ..()
-	if(!.)
-		return
-	var/mob/living/target
-	if(!boss.client) //AI's target
-		target = boss.target
-	else //random mob
-		var/list/threats = boss.PossibleThreats()
-		if(threats.len)
-			target = pick(threats)
+	if(..())
+		var/mob/living/target
+		if(!boss.client) //AI's target
+			target = boss.target
+		else //random mob
+			var/list/threats = boss.PossibleThreats()
+			if(threats.len)
+				target = pick(threats)
+		if(target)
+			var/mob/living/simple_animal/hostile/boss/paper_wizard/wiz = boss
+			var/directions = GLOB.cardinals.Copy()
+			for(var/i in 1 to 3)
+				var/mob/living/simple_animal/hostile/boss/paper_wizard/copy/C = new (get_step(target,pick_n_take(directions)))
+				wiz.copies += C
+				C.original = wiz
+				C.say("My craft defines me, you could even say it IS me!")
+			wiz.say("My craft defines me, you could even say it IS me!")
+			wiz.forceMove(get_step(target,pick_n_take(directions)))
+			wiz.minimum_distance = 1 //so he doesn't run away and ruin everything
+			wiz.retreat_distance = 0
 		else
-			to_chat(owner, "<span class='warning'>There is no potential foe of different faction around to attack</span>")
-	if(target)
-		var/mob/living/simple_animal/hostile/boss/paper_wizard/wiz = boss
-		var/directions = GLOB.cardinals.Copy()
-		for(var/i in 1 to 3)
-			var/mob/living/simple_animal/hostile/boss/paper_wizard/copy/C = new (get_step(target,pick_n_take(directions)))
-			wiz.copies += C
-			C.original = wiz
-			C.say("My craft defines me, you could even say it IS me!")
-		wiz.say("My craft defines me, you could even say it IS me!")
-		wiz.forceMove(get_step(target,pick_n_take(directions)))
-		wiz.minimum_distance = 1 //so he doesn't run away and ruin everything
-		wiz.retreat_distance = 0
-	else
-		boss.atb.refund(boss_cost)
+			boss.atb.refund(boss_cost)
 
 /mob/living/simple_animal/hostile/boss/paper_wizard/copy
 	desc = "'Tis a ruse!"

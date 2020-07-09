@@ -8,6 +8,7 @@
 	possible_transfer_amounts = list(5,10,15,25,30)
 	volume = 30
 
+
 /obj/item/reagent_containers/glass/bottle/Initialize()
 	. = ..()
 	if(!icon_state)
@@ -38,6 +39,7 @@
 				filling.icon_state = "[cached_icon]100"
 
 		. += filling
+
 
 /obj/item/reagent_containers/glass/bottle/epinephrine
 	name = "epinephrine bottle"
@@ -225,13 +227,6 @@
 	name = "atropine bottle"
 	desc = "A small bottle of atropine."
 	list_reagents = list(/datum/reagent/medicine/atropine = 30)
-
-/obj/item/reagent_containers/glass/bottle/zeolites
-	name = "Zeolites bottle"
-	desc = "A small bottle of lab made Zeolite, which removes radiation from people quickly as well as contamination on items."
-	list_reagents = list(/datum/reagent/fermi/zeolites = 30)
-
-// Viro bottles
 
 /obj/item/reagent_containers/glass/bottle/romerol
 	name = "romerol bottle"

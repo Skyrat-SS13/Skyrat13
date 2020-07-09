@@ -205,7 +205,7 @@
 			if(floor_tile)
 				if(prob(70))
 					remove_tile()
-			else if(prob(50) && (/turf/open/space in baseturfs))
+			else if(prob(50))
 				ReplaceWithLattice()
 
 /turf/open/floor/narsie_act(force, ignore_mobs, probability = 20)

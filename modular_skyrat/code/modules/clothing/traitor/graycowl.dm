@@ -27,7 +27,7 @@
 	scramble_dna(idiot, TRUE, FALSE, 100)
 	randomize_human(idiot)
 	disguise = copify_dna(idiot.dna)
-	disguise_features = copify_features(idiot, TRUE, TRUE)
+	disguise_features = copify_features(idiot, TRUE, FALSE)
 	qdel(idiot)
 
 /obj/item/clothing/mask/infiltrator/graycowl/AltClick(mob/user)
@@ -48,7 +48,7 @@
 			stored = copify_dna(user.dna)
 			stored_features = copify_features(user, TRUE, TRUE)
 			user.dna = copify_dna(disguise)
-			featurize_human(user, disguise_features, TRUE, TRUE)
+			featurize_human(user, disguise_features)
 			user.regenerate_icons()
 
 /obj/item/clothing/mask/infiltrator/graycowl/dropped(mob/M)
@@ -57,7 +57,7 @@
 		var/mob/living/carbon/human/user = M
 		if(user && istype(user) && (user.get_item_by_slot(SLOT_WEAR_MASK) == src))
 			user.dna = copify_dna(stored)
-			featurize_human(user, stored_features, TRUE, TRUE)
+			featurize_human(user, stored_features)
 			qdel(stored)
 			stored = null
 			stored_features = list()

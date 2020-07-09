@@ -146,7 +146,6 @@
 
 /obj/machinery/portable_atmospherics/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(air_contents, user, src)
-	return TRUE // Skyrat change
 
 /obj/machinery/portable_atmospherics/attacked_by(obj/item/I, mob/user)
 	if(I.force < 10 && !(stat & BROKEN))
@@ -155,7 +154,3 @@
 		investigate_log("was smacked with \a [I] by [key_name(user)].", INVESTIGATE_ATMOS)
 		add_fingerprint(user)
 		..()
-
-/obj/machinery/portable_atmospherics/attack_ghost(mob/dead/observer/O)
-	. = ..()
-	atmosanalyzer_scan(air_contents, O, src, FALSE)

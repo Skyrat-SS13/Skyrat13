@@ -4,7 +4,6 @@
 	speech_verb = "whistles"
 	ask_verb = "chirps"
 	exclaim_verb = "whistles loudly"
-	sing_verb = "whistles melodically" // Skyrat edit
 	spans = list(SPAN_ROBOT)
 	key = "6"
 	flags = NO_STUTTER

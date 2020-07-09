@@ -2,10 +2,7 @@
 	..()
 	//Mind updates
 	sync_mind()
-//SKYRAT CHANGES BEGIN
-	if(mind.memory || mind.antag_datums)
-		to_chat(src, "<i>[mind.show_memory()]</i>")
-//SKYRAT CHANGES END
+	mind.show_memory(src, 0)
 
 	//Round specific stuff
 	if(SSticker.mode)

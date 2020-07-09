@@ -21,7 +21,7 @@
 	id = "holoburn"
 	status_type = STATUS_EFFECT_REFRESH
 	tick_interval = 10
-	duration = 200
+	duration = 100
 	alert_type = null
 	var/icon/burn
 

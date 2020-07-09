@@ -74,10 +74,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define FLYING				(1<<1)
 #define VENTCRAWLING		(1<<2)
 #define FLOATING			(1<<3)
-///When moving, will Bump()/Cross()/Uncross() everything, but won't be stopped.
-#define UNSTOPPABLE			(1<<4)
-///Applied if you're crawling around on the ground/resting.
-#define CRAWLING			(1<<5)
+#define UNSTOPPABLE			(1<<4)			//When moving, will Bump()/Cross()/Uncross() everything, but won't be stopped.
+#define CRAWLING			(1<<5)			//Applied if you're crawling around on the ground/resting.
 
 //Fire and Acid stuff, for resistance_flags
 #define LAVA_PROOF		(1<<0)

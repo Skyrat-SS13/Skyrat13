@@ -176,6 +176,9 @@
 			SSticker.queue_delay = 4
 			qdel(src)
 
+	if(!ready && href_list["preference"])
+		if(client)
+			client.prefs.process_link(src, href_list)
 	else if(!href_list["late_join"])
 		new_player_panel()
 
@@ -450,12 +453,6 @@
 			level = "green"
 		if(SEC_LEVEL_BLUE)
 			level = "blue"
-		//Skyrat change start
-		if(SEC_LEVEL_ORANGE)
-			level = "orange"
-		if(SEC_LEVEL_VIOLET)
-			level = "violet"
-		//Skyrat change stop
 		if(SEC_LEVEL_AMBER)
 			level = "amber"
 		if(SEC_LEVEL_RED)
@@ -595,12 +592,6 @@
 		qdel(src)
 
 /mob/dead/new_player/proc/ViewManifest()
-	if(!client)
-		return
-	if(world.time < client.crew_manifest_delay)
-		return
-	client.crew_manifest_delay = world.time + (1 SECONDS)
-
 	var/dat = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><body>"
 	dat += "<h4>Crew Manifest</h4>"
 	dat += GLOB.data_core.get_manifest(OOC = 1)

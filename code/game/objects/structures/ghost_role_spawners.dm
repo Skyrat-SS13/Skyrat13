@@ -581,7 +581,7 @@
 	uniform = /obj/item/clothing/under/rank/rnd/scientist
 	shoes = /obj/item/clothing/shoes/laceup
 	id = /obj/item/card/id/away/old/sci
-	l_pocket = /obj/item/stack/medical/suture
+	l_pocket = /obj/item/stack/medical/bruise_pack
 	assignedrole = "Ancient Crew"
 	job_description = "Oldstation Crew"
 
@@ -686,7 +686,7 @@
 	name = "ID, jumpsuit and shoes"
 	uniform = /obj/item/clothing/under/color/random
 	shoes = /obj/item/clothing/shoes/sneakers/black
-	id = /obj/item/card/id/no_banking
+	id = /obj/item/card/id
 	r_hand = /obj/item/storage/box/syndie_kit/chameleon/ghostcafe
 
 
@@ -694,12 +694,15 @@
 	..()
 	var/suited = !preference_source || preference_source.prefs.jumpsuit_style == PREF_SUIT
 	if (CONFIG_GET(flag/grey_assistants))
-		uniform = suited ? /obj/item/clothing/under/color/grey : /obj/item/clothing/under/color/jumpskirt/grey
-	else
-		if(SSevents.holidays && SSevents.holidays[PRIDE_MONTH])
-			uniform = suited ? /obj/item/clothing/under/color/rainbow : /obj/item/clothing/under/color/jumpskirt/rainbow
+		if(suited)
+			uniform = /obj/item/clothing/under/color/grey
 		else
-			uniform = suited ? /obj/item/clothing/under/color/random : /obj/item/clothing/under/color/jumpskirt/random
+			uniform = /obj/item/clothing/under/color/jumpskirt/grey
+	else
+		if(suited)
+			uniform = /obj/item/clothing/under/color/random
+		else
+			uniform = /obj/item/clothing/under/color/jumpskirt/random
 
 /obj/item/storage/box/syndie_kit/chameleon/ghostcafe
 	name = "ghost cafe costuming kit"

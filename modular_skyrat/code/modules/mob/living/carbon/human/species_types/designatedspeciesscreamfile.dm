@@ -59,11 +59,5 @@
 /datum/species/vampire
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
 
-/datum/species/vox
-	screamsounds = list('modular_skyrat/sound/emotes/voxscream.ogg')
-
 /datum/species/xeno
 	screamsounds = list('sound/voice/hiss6.ogg')
-
-/datum/species/zombie/infectious
-	screamsounds = list('modular_skyrat/sound/zombie/zombie_scream.ogg')

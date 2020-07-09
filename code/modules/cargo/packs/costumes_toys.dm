@@ -71,8 +71,7 @@
 					/obj/item/clothing/mask/gas/syndicate,
 					/obj/item/clothing/neck/necklace/dope,
 					/obj/item/vending_refill/donksoft,
-					/obj/item/circuitboard/computer/arcade/amputation,
-					/obj/item/storage/bag/ammo)
+					/obj/item/circuitboard/computer/arcade/amputation)
 	crate_name = "crate"
 
 /datum/supply_pack/costumes_toys/foamforce

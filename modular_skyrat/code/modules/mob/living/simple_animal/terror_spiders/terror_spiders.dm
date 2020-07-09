@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	name = "terror spider"
 	desc = "The generic parent of all other terror spider types. If you see this in-game, it is a bug."
 	faction = list(ROLE_TERROR_SPIDER)
-	mob_biotypes = MOB_ORGANIC|MOB_BUG
+
 	// Icons
 	icon = 'modular_skyrat/icons/mob/terrorspider.dmi'
 	icon_state = "terror_red"
@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(ts_spiderling_list)
 	// Health
 	maxHealth = 120
 	health = 120
-	damage_coeff = list(BRUTE = 1.2, BURN = 1.5, TOX = 0.1, CLONE = 0.1, STAMINA = 0.5, OXY = 0.3) //Spiders are infact weak to crush
+
 	// Melee attacks
 	melee_damage_lower = 15
 	melee_damage_upper = 20

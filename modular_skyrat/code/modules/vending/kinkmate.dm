@@ -1,4 +1,3 @@
-/*
 /obj/machinery/vending/kink
 	name = "KinkMate"
 	desc = "A vending machine for all your unmentionable desires."
@@ -13,10 +12,6 @@
 		/obj/item/clothing/under/misc/stripper = 4,
 		/obj/item/clothing/under/misc/stripper/green = 4,
 		/obj/item/clothing/under/misc/gear_harness = 4,
-		/obj/item/clothing/under/shorts/polychromic/pantsu = 4,
-		/obj/item/clothing/under/misc/poly_bottomless = 4,
-		/obj/item/clothing/under/misc/poly_tanktop = 4,
-		/obj/item/clothing/under/misc/poly_tanktop/female = 4,
 		/obj/item/clothing/neck/petcollar = 8,
 		/obj/item/clothing/neck/petcollar/choker = 4,
 		/obj/item/clothing/neck/petcollar/leather = 4,
@@ -55,4 +50,3 @@
 /obj/item/vending_refill/kink
 	machine_name 	= "KinkMate"
 	icon_state 		= "refill_kink"
-*/

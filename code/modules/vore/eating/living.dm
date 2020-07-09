@@ -73,9 +73,15 @@
 			to_chat(user, "<span class='notice'>They aren't able to be fed.</span>")
 			to_chat(pred, "<span class='notice'>[user] tried to feed you themselves, but you aren't voracious enough to be fed.</span>")
 			return
+		if(!is_vore_predator(pred))
+			to_chat(user, "<span class='notice'>They aren't voracious enough.</span>")
+			return
 		feed_self_to_grabbed(user, pred)
 
 	else if(pred == user) //you click yourself
+		if(!is_vore_predator(src))
+			to_chat(user, "<span class='notice'>You aren't voracious enough.</span>")
+			return
 		feed_grabbed_to_self(user, prey)
 
 	else // click someone other than you/prey
@@ -86,6 +92,9 @@
 		if(!CHECK_BITFIELD(prey.vore_flags,FEEDING))
 			to_chat(user, "<span class='notice'>They aren't able to be fed to someone.</span>")
 			to_chat(prey, "<span class='notice'>[user] tried to feed you to [pred], but you aren't able to be fed to them.</span>")
+			return
+		if(!is_vore_predator(pred))
+			to_chat(user, "<span class='notice'>They aren't voracious enough.</span>")
 			return
 		feed_grabbed_to_other(user, prey, pred)
 //
@@ -349,9 +358,6 @@
 	if(incapacitated(ignore_restraints = TRUE))
 		to_chat(src, "<span class='warning'>You can't do that while incapacitated.</span>")
 		return
-	if(next_move > world.time)
-		to_chat(src, "<span class='warning'>You can't do that so fast, slow down.</span>")
-		return
 
 	var/list/choices
 	for(var/mob/living/L in view(1))
@@ -366,7 +372,7 @@
 	if(QDELETED(tasted) || (tasted.ckey && !(tasted.client?.prefs.vore_flags & LICKABLE)) || !Adjacent(tasted) || incapacitated(ignore_restraints = TRUE))
 		return
 
-	changeNext_move(CLICK_CD_MELEE)
+	setClickCooldown(100)
 
 	visible_message("<span class='warning'>[src] licks [tasted]!</span>","<span class='notice'>You lick [tasted]. They taste rather like [tasted.get_taste_message()].</span>","<b>Slurp!</b>")
 
@@ -386,7 +392,7 @@
 	return taste_message
 //	Check if an object is capable of eating things, based on vore_organs
 //
-/proc/has_vore_belly(var/mob/living/O)
+/proc/is_vore_predator(var/mob/living/O)
 	if(istype(O))
 		if(O.vore_organs.len > 0)
 			return TRUE

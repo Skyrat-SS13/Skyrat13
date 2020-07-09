@@ -31,7 +31,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/muted = 0
 	var/last_ip
 	var/last_id
-	var/log_clicks = FALSE
 
 	var/icon/custom_holoform_icon
 	var/list/cached_holoform_icons
@@ -66,8 +65,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 	/// Custom Keybindings
 	var/list/key_bindings = list()
-	/// List with a key string associated to a list of keybindings. Unlike key_bindings, this one operates on raw key, allowing for binding a key that triggers regardless of if a modifier is depressed as long as the raw key is sent.
-	var/list/modless_key_bindings = list()
 
 
 	var/tgui_fancy = TRUE
@@ -92,7 +89,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/show_credits = TRUE
 	var/event_participation = FALSE
 	var/event_prefs = ""
-	var/appear_in_round_end_report = TRUE //whether the player of the character is listed on the round-end report
 	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
@@ -106,7 +102,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
 	//SKYRAT CHANGES
-	var/bloodtype = ""
 	var/skyrat_ooc_notes = ""
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
@@ -117,7 +112,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/security_records = ""
 	var/medical_records = ""
 	var/flavor_background = ""
-	var/flavor_faction = null
+	var/flavor_faction = "UNSET"
 	var/character_skills = ""
 	var/exploitable_info = ""
 	var/language = ""
@@ -205,7 +200,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		"ipc_screen" = "Sunburst",
 		"ipc_antenna" = "None",
 		"flavor_text" = "",
-		"silicon_flavor_text" = "",
 		"ooc_notes" = "",
 		"meat_type" = "Mammalian",
 		"body_model" = MALE,
@@ -255,10 +249,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/vore_flags = 0
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
-	var/toggleeatingnoise = TRUE
-	var/toggledigestionnoise = TRUE
-	var/hound_sleeper = TRUE
-	var/cit_toggles = TOGGLES_CITADEL
 
 	//backgrounds
 	var/mutable_appearance/character_background
@@ -268,19 +258,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/show_mismatched_markings = FALSE //determines whether or not the markings lists should show markings that don't match the currently selected species. Intentionally left unsaved.
 
 	var/no_tetris_storage = FALSE
-
-	///loadout stuff
-	var/gear_points = 10
-	var/list/gear_categories
-	var/list/chosen_gear = list()
-	var/gear_tab
-
-	var/screenshake = 100
-	var/damagescreenshake = 2
-	var/arousable = TRUE
-	var/widescreenpref = TRUE
-	var/autostand = TRUE
-	var/auto_ooc = FALSE
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -370,9 +347,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			if(jobban_isbanned(user, "appearance"))
 				dat += "<b>You are banned from using custom names and appearances. You can continue to adjust your characters, but you will be randomised once you join the game.</b><br>"
 			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=name;task=random'>Random Name</A> "
-//SKYRAT EDIT
-			dat += "<b>Always Random Name:</b> <a href='?_src_=prefs;preference=name'>[be_random_name ? "Yes" : "No"]</a><BR>"
-//END OF SKYRAT EDIT
+			dat += "<b>Always Random Name:</b><a style='display:block;width:30px' href='?_src_=prefs;preference=name'>[be_random_name ? "Yes" : "No"]</a><BR>"
 
 			dat += "<b>[nameless ? "Default designation" : "Name"]:</b>"
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
@@ -393,7 +368,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<a href ='?_src_=prefs;preference=[custom_name_id];task=input'><b>[namedata["pref_name"]]:</b> [custom_names[custom_name_id]]</a> "
 			dat += "<br><br>"
 			//SKYRAT EDIT - additional language
-			dat += "<b>Additional Language:</b><br>"
+			dat += "<b>Additional Language</b><br>"
 			dat += "<a href='?_src_=prefs;preference=language;task=menu'>[language ? language : "None"]</a></center><br>"
 			//
 			dat += "<b>Custom job preferences:</b><BR>"
@@ -434,9 +409,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if(!length(features["flavor_text"]))
 					dat += "\[...\]<BR>" //skyrat - adds <br> //come to brazil or brazil comes to you
 				else
-					dat += "[html_encode(features["flavor_text"])]<BR>" //skyrat - adds <br> and uses html_encode
+					dat += "[features["flavor_text"]]<BR>" //skyrat - adds <br>
 			else
-				dat += "[TextPreview(html_encode(features["flavor_text"]))]...<BR>" //skyrat edit, uses html_encode
+				dat += "[TextPreview(features["flavor_text"])]...<BR>"
 			//SKYRAT EDIT
 			dat += 	"Records :"
 			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a>"
@@ -446,21 +421,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a>"
 			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
-			if(pref_species.bloodtypes.len)
-				dat += "Blood type :"
-				dat += 	"<a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default"]</a><br>"
-			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
+			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction]</a><br>"
 			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
-			dat += "<h2>Silicon Flavor Text</h2>"
-			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicon Examine Text</b></a><br>"
-			if(length(features["silicon_flavor_text"]) <= 40)
-				if(!length(features["silicon_flavor_text"]))
-					dat += "\[...\]"
-				else
-					dat += "[features["silicon_flavor_text"]]"
-			else
-				dat += "[TextPreview(features["silicon_flavor_text"])]...<BR>"
 			/*Skyrat edit - comments out Citadel's OOC notes in favor for our owns
 			dat += "<h2>OOC notes</h2>"
 			dat += "<a href='?_src_=prefs;preference=ooc_notes;task=input'><b>Set OOC notes</b></a><br>"
@@ -1024,9 +987,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else
 				p_chaos = preferred_chaos
 			dat += "<b>Preferred Chaos Amount:</b> <a href='?_src_=prefs;preference=preferred_chaos;task=input'>[p_chaos]</a><br>"
-//SKYRAT CHANGES
-			dat += "<b>Show name at round-end report:</b> <a href='?_src_=prefs;preference=appear_in_round_end_report'>[appear_in_round_end_report ? "Yes" : "No"]</a><br>"
-//END OF SKYRAT CHANGES
 			dat += "<br>"
 			dat += "</td>"
 			dat += "</tr></table>"
@@ -1053,12 +1013,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 			dat += "<b>Ghosts of Others:</b> <a href='?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a><br>"
 			dat += "<br>"
-
 			dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a><br>"
-
-			dat += "<b>Income Updates:</b> <a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Allowed" : "Muted"]</a><br>"
-			dat += "<br>"
-
 			dat += "<b>Parallax (Fancy Space):</b> <a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
 			switch (parallax)
 				if (PARALLAX_LOW)
@@ -1197,9 +1152,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Aphrodisiacs:</b> <a href='?_src_=prefs;preference=aphro'>[(cit_toggles & NO_APHRO) ? "Disallowed" : "Allowed"]</a><br>"
 			dat += "<b>Ass Slapping:</b> <a href='?_src_=prefs;preference=ass_slap'>[(cit_toggles & NO_ASS_SLAP) ? "Disallowed" : "Allowed"]</a><br>"
 			//SKYRAT EDIT
-			dat += 	"<b>Extreme ERP verbs :</b> <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
+			dat += 	"Extreme ERP verbs : <a href='?_src_=prefs;preference=extremepref'>[extremepref]</a><br>" // https://youtu.be/0YrU9ASVw6w
 			if(extremepref != "No")
-				dat += "<b><span style='color: #e60000;'Harmful ERP verbs :</b> <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
+				dat += "Harmful ERP verbs : <a href='?_src_=prefs;preference=extremeharm'>[extremeharm]</a><br>"
 			//END OF SKYRAT EDIT
 			dat += "</tr></table>"
 			dat += "<br>"
@@ -1213,16 +1168,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			Input mode is the closest thing to the old input system.<br>\
 			<b>IMPORTANT:</b> While in input mode's non hotkey setting (tab toggled), Ctrl + KEY will send KEY to the keybind system as the key itself, not as Ctrl + KEY. This means Ctrl + T/W/A/S/D/all your familiar stuff still works, but you \
 			won't be able to access any regular Ctrl binds.<br>"
-			dat += "<br><b>Modifier-Independent binding</b> - This is a singular bind that works regardless of if Ctrl/Shift/Alt are held down. For example, if combat mode is bound to C in modifier-independent binds, it'll trigger regardless of if you are \
-			holding down shift for sprint. <b>Each keybind can only have one independent binding, and each key can only have one keybind independently bound to it.</b>"
 			// Create an inverted list of keybindings -> key
 			var/list/user_binds = list()
-			var/list/user_modless_binds = list()
 			for (var/key in key_bindings)
 				for(var/kb_name in key_bindings[key])
 					user_binds[kb_name] += list(key)
-			for (var/key in modless_key_bindings)
-				user_modless_binds[modless_key_bindings[key]] = key
 
 			var/list/kb_categories = list()
 			// Group keybinds by category
@@ -1230,29 +1180,21 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
 				kb_categories[kb.category] += list(kb)
 
-			dat += {"
-			<style>
-			span.bindname { display: inline-block; position: absolute; width: 20% ; left: 5px; padding: 5px; } \
-			span.bindings { display: inline-block; position: relative; width: auto; left: 20%; width: auto; right: 20%; padding: 5px; } \
-			span.independent { display: inline-block; position: absolute; width: 20%; right: 5px; padding: 5px; } \
-			</style><body>
-			"}
+			dat += "<style>label { display: inline-block; width: 200px; }</style><body>"
 
 			for (var/category in kb_categories)
 				dat += "<h3>[category]</h3>"
 				for (var/i in kb_categories[category])
 					var/datum/keybinding/kb = i
-					var/current_independent_binding = user_modless_binds[kb.name] || "Unbound"
 					if(!length(user_binds[kb.name]))
-						dat += "<span class='bindname'>[kb.full_name]</span><span class='bindings'><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=["Unbound"]'>Unbound</a>"
+						dat += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=["Unbound"]'>Unbound</a>"
 						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
 						if(LAZYLEN(default_keys))
 							dat += "| Default: [default_keys.Join(", ")]"
-						dat += "</span><span class='independent'>Independent Binding: <a href='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[current_independent_binding];independent=1'>[current_independent_binding]</a></span>"
 						dat += "<br>"
 					else
 						var/bound_key = user_binds[kb.name][1]
-						dat += "<span class='bindname'l>[kb.full_name]</span><span class='bindings'><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
+						dat += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
 						for(var/bound_key_index in 2 to length(user_binds[kb.name]))
 							bound_key = user_binds[kb.name][bound_key_index]
 							dat += " | <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
@@ -1261,7 +1203,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						var/list/default_keys = hotkeys ? kb.classic_keys : kb.hotkey_keys
 						if(LAZYLEN(default_keys))
 							dat += "| Default: [default_keys.Join(", ")]"
-						dat += "</span><span class='independent'>Independent Binding: <a href='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[current_independent_binding];independent=1'>[current_independent_binding]</a></span>"
 						dat += "<br>"
 
 			dat += "<br><br>"
@@ -1287,7 +1228,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 #undef APPEARANCE_CATEGORY_COLUMN
 #undef MAX_MUTANT_ROWS
 
-/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, old_key, independent = FALSE)
+/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, var/old_key)
 	var/HTML = {"
 	<div id='focus' style="outline: 0;" tabindex=0>Keybinding: [kb.full_name]<br>[kb.description]<br><br><b>Press any key to change<br>Press ESC to clear</b></div>
 	<script>
@@ -1299,7 +1240,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 		var shift = e.shiftKey ? 1 : 0;
 		var numpad = (95 < e.keyCode && e.keyCode < 112) ? 1 : 0;
 		var escPressed = e.keyCode == 27 ? 1 : 0;
-		var url = 'byond://?_src_=prefs;preference=keybindings_set;keybinding=[kb.name];old_key=[old_key];[independent?"independent=1":""];clear_key='+escPressed+';key='+e.key+';alt='+alt+';ctrl='+ctrl+';shift='+shift+';numpad='+numpad+';key_code='+e.keyCode;
+		var url = 'byond://?_src_=prefs;preference=keybindings_set;keybinding=[kb.name];old_key=[old_key];clear_key='+escPressed+';key='+e.key+';alt='+alt+';ctrl='+ctrl+';shift='+shift+';numpad='+numpad+';key_code='+e.keyCode;
 		window.location=url;
 		deedDone = true;
 	}
@@ -1918,74 +1859,55 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("flavor_text")
-					var/msg = input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", features["flavor_text"]) as message|null //Skyrat edit, removed stripped_multiline_input()
+					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", features["flavor_text"], MAX_FLAVOR_LEN, TRUE)
 					if(!isnull(msg))
-						features["flavor_text"] = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE) //Skyrat edit, removed strip_html_simple()
-
-				if("silicon_flavor_text")
-					var/msg = input(usr, "Set the silicon flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Silicon Flavor Text", features["silicon_flavor_text"]) as message|null //Skyrat edit, removed stripped_multiline_input()
-					if(!isnull(msg))
-						features["silicon_flavor_text"] = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE) //Skyrat edit, uses strip_html_simple()
+						features["flavor_text"] = html_decode(msg)
 
 				//SKYRAT CHANGES
 				if("skyrat_ooc_notes")
-					var/msg = input(usr, "Set your OOC Notes", "OOC Notes", skyrat_ooc_notes) as message|null
+					var/msg = stripped_multiline_input(usr, "Set your OOC Notes", "OOC Notes", skyrat_ooc_notes, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
-						skyrat_ooc_notes = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
-				
-				if("bloodtype")
-					var/msg = input(usr, "Choose your blood type", "Blood Type", "") as anything in (pref_species.bloodtypes + "Default")
-					if(msg)
-						if(msg == "Default")
-							bloodtype = ""
-						else
-							bloodtype = msg
+						skyrat_ooc_notes = html_decode(msg)
 
 				if("general_records")
-					var/msg = input(usr, "Set your general records", "General Records", general_records) as message|null 
+					var/msg = stripped_multiline_input(usr, "Set your general records", "General Records", general_records, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
-						general_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
+						general_records = html_decode(msg)
 
 				if("security_records")
-					var/msg = input(usr, "Set your security records", "Security Records", security_records) as message|null 
+					var/msg = stripped_multiline_input(usr, "Set your security records", "Security Records", security_records, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
-						security_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
+						security_records = html_decode(msg)
 
 				if("medical_records")
-					var/msg = input(usr, "Set your medical records", "Medical Records", medical_records) as message|null 
+					var/msg = stripped_multiline_input(usr, "Set your medical records", "Medical Records", medical_records, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
-						medical_records = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
+						medical_records = html_decode(msg)
 
 				if("flavor_background")
-					var/msg = input(usr, "Set your background", "Character Background", flavor_background) as message|null 
+					var/msg = stripped_multiline_input(usr, "Set your background", "Character Background", flavor_background, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
-						flavor_background = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
+						flavor_background = html_decode(msg)
 
 				if("flavor_faction")
-					var/new_faction = input(user, "Set your faction", "Character Faction") as null|anything in GLOB.factions_list + list("None (Freelancer)", "Other")
+					var/new_faction = input(user, "Set your faction", "Character Faction") as null|anything in GLOB.factions_list
 					if(new_faction)
-						if(new_faction == "Other")
-							var/custom_faction = input(user, "Set your custom faction/subfaction, if unique. Don't abuse this.", "Character Faction", flavor_faction) as null|text
-							if(custom_faction)
-								flavor_faction = strip_html_simple(custom_faction, 30, TRUE) 
-						else
-							flavor_faction = new_faction
+						flavor_faction = new_faction
 
 				if("character_skills")
-					var/msg = input(usr, "Set your skills or hobbies", "Character Skills", character_skills) as message|null 
+					var/msg = stripped_multiline_input(usr, "Set your skills or hobbies", "Character Skills", character_skills, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
-						character_skills = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
+						character_skills = html_decode(msg)
 
 				if("exploitable_info")
-					var/msg = input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info) as message|null 
+					var/msg = stripped_multiline_input(usr, "Set your exploitable information, this rarely will be showed to antagonists", "Exploitable Info", exploitable_info, MAX_FLAVOR_LEN, TRUE)
 					if(msg)
-						exploitable_info = strip_html_simple(msg, MAX_FLAVOR_LEN, TRUE)
+						exploitable_info = html_decode(msg)
 				//END OF SKYRAT CHANGES
-				/* Skyrat changes - do nothing here because we dont use this and this may be exploited
 				if("ooc_notes")
-					var/msg = stripped_multiline_input(usr, "Set always-visible OOC notes related to content preferences. THIS IS NOT FOR CHARACTER DESCRIPTIONS!", "OOC notes", html_decode(features["ooc_notes"]), MAX_FLAVOR_LEN, TRUE)
+					var/msg = stripped_multiline_input(usr, "Set always-visible OOC notes related to content preferences. THIS IS NOT FOR CHARACTER DESCRIPTIONS!", "OOC notes", features["ooc_notes"], MAX_FLAVOR_LEN, TRUE)
 					if(!isnull(msg))
-						features["ooc_notes"] = msg*/
+						features["ooc_notes"] = html_decode(msg)
 
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
@@ -2603,7 +2525,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if ("preferred_chaos")
 					var/pickedchaos = input(user, "Choose your preferred level of chaos. This will help with dynamic threat level ratings.", "Character Preference") as null|anything in list(CHAOS_NONE,CHAOS_LOW,CHAOS_MED,CHAOS_HIGH,CHAOS_MAX)
 					preferred_chaos = pickedchaos
-
 				if ("clientfps")
 					var/desiredfps = input(user, "Choose your desired fps. (0 = synced with server tick rate (currently:[world.fps]))", "Character Preference", clientfps)  as null|num
 					if (!isnull(desiredfps))
@@ -2764,7 +2685,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							extremepref = "Ask"
 						if("Ask")
 							extremepref = "No"
-							extremeharm = "No"
 						if("No")
 							extremepref = "Yes"
 				if("extremeharm")
@@ -2773,8 +2693,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							extremeharm = "No"
 						if("No")
 							extremeharm = "Yes"
-					if(extremepref == "No")
-						extremeharm = "No"
 				if("auto_hiss")
 					auto_hiss = !auto_hiss
 				//END CITADEL EDIT
@@ -2791,7 +2709,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 				if("keybindings_capture")
 					var/datum/keybinding/kb = GLOB.keybindings_by_name[href_list["keybinding"]]
-					CaptureKeybinding(user, kb, href_list["old_key"], text2num(href_list["independent"]))
+					var/old_key = href_list["old_key"]
+					CaptureKeybinding(user, kb, old_key)
 					return
 
 				if("keybindings_set")
@@ -2801,18 +2720,13 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						ShowChoices(user)
 						return
 
-					var/independent = href_list["independent"]
-
 					var/clear_key = text2num(href_list["clear_key"])
 					var/old_key = href_list["old_key"]
 					if(clear_key)
-						if(independent)
-							modless_key_bindings -= old_key
-						else
-							if(key_bindings[old_key])
-								key_bindings[old_key] -= kb_name
-								if(!length(key_bindings[old_key]))
-									key_bindings -= old_key
+						if(key_bindings[old_key])
+							key_bindings[old_key] -= kb_name
+							if(!length(key_bindings[old_key]))
+								key_bindings -= old_key
 						user << browse(null, "window=capturekeypress")
 						save_preferences()
 						ShowChoices(user)
@@ -2838,18 +2752,15 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							full_key = "[AltMod][CtrlMod][new_key]"
 						else
 							full_key = "[AltMod][CtrlMod][ShiftMod][numpad][new_key]"
-					if(independent)
-						modless_key_bindings -= old_key
-						modless_key_bindings[full_key] = kb_name
-					else
-						if(key_bindings[old_key])
-							key_bindings[old_key] -= kb_name
-							if(!length(key_bindings[old_key]))
-								key_bindings -= old_key
-						key_bindings[full_key] += list(kb_name)
-						key_bindings[full_key] = sortList(key_bindings[full_key])
-					user.client.update_movement_keys()
+					if(key_bindings[old_key])
+						key_bindings[old_key] -= kb_name
+						if(!length(key_bindings[old_key]))
+							key_bindings -= old_key
+					key_bindings[full_key] += list(kb_name)
+					key_bindings[full_key] = sortList(key_bindings[full_key])
+
 					user << browse(null, "window=capturekeypress")
+					user.client.update_movement_keys()
 					save_preferences()
 
 				if("keybindings_reset")
@@ -2859,7 +2770,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						return
 					hotkeys = (choice == "Hotkey")
 					key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
-					modless_key_bindings = list()
 					user.client.update_movement_keys()
 
 				if("chat_on_map")
@@ -2871,9 +2781,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					see_chat_emotes = !see_chat_emotes
 				if("enable_personal_chat_color")
 					enable_personal_chat_color = !enable_personal_chat_color
-				if("appear_in_round_end_report")
-					appear_in_round_end_report = !appear_in_round_end_report
-					user.mind?.appear_in_round_end_report = appear_in_round_end_report
 				//End of skyrat changes
 				if("action_buttons")
 					buttons_locked = !buttons_locked
@@ -2934,9 +2841,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("ghost_pda")
 					chat_toggles ^= CHAT_GHOSTPDA
 
-				if("income_pings")
-					chat_toggles ^= CHAT_BANKCARD
-
 				if("pull_requests")
 					chat_toggles ^= CHAT_PULLR
 
@@ -2995,12 +2899,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("ambientocclusion")
 					ambientocclusion = !ambientocclusion
 					if(parent && parent.screen && parent.screen.len)
-						var/obj/screen/plane_master/game_world/G = parent.mob.hud_used.plane_masters["[GAME_PLANE]"]
-						var/obj/screen/plane_master/above_wall/A = parent.mob.hud_used.plane_masters["[ABOVE_WALL_PLANE]"]
-						var/obj/screen/plane_master/wall/W = parent.mob.hud_used.plane_masters["[WALL_PLANE]"]
-						G.backdrop(parent.mob)
-						A.backdrop(parent.mob)
-						W.backdrop(parent.mob)
+						var/obj/screen/plane_master/game_world/PM = locate(/obj/screen/plane_master/game_world) in parent.screen
+						PM.backdrop(parent.mob)
 
 				if("auto_fit_viewport")
 					auto_fit_viewport = !auto_fit_viewport
@@ -3029,8 +2929,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						current_tab = text2num(href_list["tab"])
 	if(href_list["preference"] == "gear")
 		if(href_list["clear_loadout"])
-			chosen_gear = list()
-			gear_points = CONFIG_GET(number/initial_gear_points)
+			LAZYCLEARLIST(chosen_gear)
+			gear_points = initial(gear_points)
 			save_preferences()
 		if(href_list["select_category"])
 			for(var/i in GLOB.loadout_items)
@@ -3042,7 +2942,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				return
 			var/toggle = text2num(href_list["toggle_gear"])
 			if(!toggle && (G.type in chosen_gear))//toggling off and the item effectively is in chosen gear)
-				chosen_gear -= G.type
+				LAZYREMOVE(chosen_gear, G.type)
 				gear_points += initial(G.cost)
 			else if(toggle && (!(is_type_in_ref_list(G, chosen_gear))))
 				if(!is_loadout_slot_available(G.category))
@@ -3052,7 +2952,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					to_chat(user, "<span class='danger'>This is an item intended for donator use only. You are not authorized to use this item.</span>")
 					return
 				if(gear_points >= initial(G.cost))
-					chosen_gear += G.type
+					LAZYADD(chosen_gear, G.type)
 					gear_points -= initial(G.cost)
 
 	ShowChoices(user)

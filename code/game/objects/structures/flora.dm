@@ -302,8 +302,7 @@
 
 /obj/item/twohanded/required/kirbyplants/Initialize()
 	. = ..()
-	AddElement(/datum/element/tactical)
-	addtimer(CALLBACK(src, /datum.proc/_AddElement, list(/datum/element/beauty, 500)), 0)
+	AddComponent(/datum/component/tactical)
 
 /obj/item/twohanded/required/kirbyplants/random
 	icon = 'icons/obj/flora/_flora.dmi'

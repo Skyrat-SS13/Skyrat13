@@ -33,7 +33,7 @@
 		totaltraffic += traffic // add current traffic to total traffic
 
 	// Delete particularly old logs
-	if(LAZYLEN(log_entries) >= 400) //[list].len is not safe
+	if (log_entries.len >= 400)
 		log_entries.Cut(1, 2)
 
 	var/datum/comm_log_entry/log = new

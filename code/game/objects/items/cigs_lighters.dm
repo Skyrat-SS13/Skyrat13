@@ -8,9 +8,6 @@ CIGARS
 SMOKING PIPES
 CHEAP LIGHTERS
 ZIPPO
-ROLLING PAPER
-VAPES
-BONGS
 
 CIGARETTE PACKETS ARE IN FANCY.DM
 */
@@ -509,7 +506,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	resistance_flags = FIRE_PROOF
 	light_color = LIGHT_COLOR_FIRE
 	grind_results = list(/datum/reagent/iron = 1, /datum/reagent/fuel = 5, /datum/reagent/oil = 5)
-	custom_price = PRICE_ALMOST_CHEAP
 
 /obj/item/lighter/Initialize()
 	. = ..()
@@ -619,7 +615,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A cheap-as-free lighter."
 	icon_state = "lighter"
 	fancy = FALSE
-	custom_price = PRICE_CHEAP_AS_FREE
 	overlay_list = list(
 		"transp",
 		"tall",
@@ -715,7 +710,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "black_vape"
 	w_class = WEIGHT_CLASS_TINY
 	var/chem_volume = 100
-	var/vapetime = FALSE //this so it won't puff out clouds every tick
+	var/vapetime = FALSE //this so it won't puff out clouds every tick 
 	var/screw = FALSE // kinky
 	var/super = FALSE //for the fattest vapes dude.
 

@@ -391,6 +391,16 @@
 
 /mob/living/carbon/human/proc/hardset_dna(ui, list/mutation_index, newreal_name, newblood_type, datum/species/mrace, newfeatures)
 
+	if(newfeatures)
+		var/old_size = dna.features["body_size"]
+		dna.features = newfeatures
+		dna.update_body_size(old_size)
+
+	if(mrace)
+		var/datum/species/newrace = new mrace.type
+		newrace.copy_properties_from(mrace)
+		set_species(newrace, icon_update=0)
+
 	if(newreal_name)
 		real_name = newreal_name
 		dna.generate_unique_enzymes()
@@ -400,17 +410,7 @@
 
 	if(ui)
 		dna.uni_identity = ui
-		updateappearance(icon_update=FALSE)
-
-	if(newfeatures)
-		var/old_size = dna.features["body_size"]
-		dna.features = newfeatures
-		dna.update_body_size(old_size)
-
-	if(mrace)
-		var/datum/species/newrace = new mrace.type
-		newrace.copy_properties_from(mrace)
-		set_species(newrace, icon_update=FALSE)
+		updateappearance(icon_update=0)
 
 	if(LAZYLEN(mutation_index))
 		dna.mutation_index = mutation_index.Copy()
@@ -551,13 +551,13 @@
 		return TRUE
 
 /mob/living/carbon/proc/randmut(list/candidates, difficulty = 2)
-	if(!has_dna() || !can_mutate()) //Skyrat edit
+	if(!has_dna())
 		return
 	var/mutation = pick(candidates)
 	. = dna.add_mutation(mutation)
 
 /mob/living/carbon/proc/easy_randmut(quality = POSITIVE + NEGATIVE + MINOR_NEGATIVE, scrambled = TRUE, sequence = TRUE, exclude_monkey = TRUE)
-	if(!has_dna() || !can_mutate()) //Skyrat edit
+	if(!has_dna())
 		return
 	var/list/mutations = list()
 	if(quality & POSITIVE)
@@ -583,7 +583,7 @@
 
 
 /mob/living/carbon/proc/randmuti()
-	if(!has_dna() || !can_mutate()) //Skyrat edit
+	if(!has_dna())
 		return
 	var/num = rand(1, DNA_UNI_IDENTITY_BLOCKS)
 	var/newdna = setblock(dna.uni_identity, num, random_string(DNA_BLOCK_SIZE, GLOB.hex_characters))
