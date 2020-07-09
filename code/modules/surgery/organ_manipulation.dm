@@ -1,5 +1,5 @@
 /datum/surgery/organ_manipulation
-	name = "organ manipulation"
+	name = "Organ manipulation"
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = ORGAN_BODYPARTS //skyrat edit
 	requires_bodypart_type = BODYPART_ORGANIC //Skyrat change
@@ -65,7 +65,7 @@
 
 /datum/surgery_step/manipulate_organs
 	time = 64
-	name = "manipulate organs"
+	name = "Manipulate organs"
 	repeatable = 1
 	implements = list(/obj/item/organ = 100, /obj/item/reagent_containers/food/snacks/organ = 0, /obj/item/organ_storage = 100)
 	var/implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 55)

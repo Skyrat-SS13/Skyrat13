@@ -2,7 +2,7 @@
 //SURGERY STEPS
 
 /datum/surgery_step/replace_limb
-	name = "replace limb"
+	name = "Replace limb"
 	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100)
 	time = 32
 	var/obj/item/bodypart/L = null // L because "limb"

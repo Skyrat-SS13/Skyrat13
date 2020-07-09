@@ -1,6 +1,6 @@
 /datum/surgery
-	var/name = "surgery"
-	var/desc = "surgery description"
+	var/name = "Surgery"
+	var/desc = "Surgery description."
 	var/status = 1
 	var/list/steps = list()									//Steps in a surgery
 	var/step_in_progress = 0								//Actively performing a Surgery

@@ -16,7 +16,7 @@
 	requires_bodypart_type = 0
 
 /datum/surgery_step/toxichealing
-	name = "rejuvenate body"
+	name = "Rejuvenate body"
 	implements = list(TOOL_HEMOSTAT  = 100, TOOL_SCREWDRIVER = 35, /obj/item/pen = 15)
 	repeatable = TRUE
 	time = 25

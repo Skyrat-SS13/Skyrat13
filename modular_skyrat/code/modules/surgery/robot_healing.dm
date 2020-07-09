@@ -24,7 +24,7 @@
 				/datum/surgery_step/mechanic_close)
 
 /datum/surgery_step/robot_heal
-	name = "repair body (welder/cable)"
+	name = "Repair body (Welder/Cable)"
 	implements = list(TOOL_WELDER = 100, /obj/item/stack/cable_coil = 100)
 	repeatable = TRUE
 	time = 15
@@ -163,34 +163,34 @@
 /***************************STEPS***************************/
 
 /datum/surgery_step/robot_heal/basic
-	name = "repair damage"
+	name = "Repair damage"
 	brutehealing = 10
 	burnhealing = 10
 	missinghpbonus = 15 
 
 /datum/surgery_step/robot_heal/blunt
-	name = "repair joints"
+	name = "Repair joints"
 	brutehealing = 0
 	burnhealing = 0
 	missinghpbonus = 0
 	wound_heal_blunt = WOUND_SEVERITY_CRITICAL
 
 /datum/surgery_step/robot_heal/burn
-	name = "repair heat warping"
+	name = "Repair heat warping"
 	brutehealing = 0
 	burnhealing = 0
 	missinghpbonus = 0
 	wound_heal_burn = WOUND_SEVERITY_CRITICAL
 
 /datum/surgery_step/robot_heal/slash
-	name = "repair cut hydraulics"
+	name = "Repair cut hydraulics"
 	brutehealing = 0
 	burnhealing = 0
 	missinghpbonus = 0
 	wound_heal_slash = WOUND_SEVERITY_CRITICAL
 
 /datum/surgery_step/robot_heal/pierce
-	name = "repair pierced hydraulics"
+	name = "Repair pierced hydraulics"
 	brutehealing = 0
 	burnhealing = 0
 	missinghpbonus = 0

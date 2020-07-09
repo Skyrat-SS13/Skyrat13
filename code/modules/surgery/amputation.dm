@@ -6,7 +6,7 @@
 	requires_bodypart_type = 0
 
 /datum/surgery_step/sever_limb
-	name = "sever limb"
+	name = "Sever limb"
 	implements = list(TOOL_SCALPEL = 100, TOOL_SAW = 100, /obj/item/melee/transforming/energy/sword/cyborg/saw = 100, /obj/item/melee/arm_blade = 80, /obj/item/twohanded/required/chainsaw = 80, /obj/item/mounted_chainsaw = 80, /obj/item/twohanded/fireaxe = 50, /obj/item/hatchet = 40, /obj/item/kitchen/knife/butcher = 25)
 	time = 64
 
@@ -37,7 +37,7 @@
 	requires_bodypart_type = 0
 
 /datum/surgery_step/disembowel
-	name = "sever limb"
+	name = "disembowel limb"
 	implements = list(TOOL_RETRACTOR = 100, TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 100, TOOL_SHOVEL = 100)
 	time = 120
 
@@ -55,32 +55,8 @@
 		var/obj/item/bodypart/target_limb = surgery.operated_bodypart
 		if(!(target_limb.owner))
 			return 1
-		var/organ_spilled = 0 //yes i copypasted dismemberment.dm code
-		var/turf/T = get_turf(L)
-		L.bleed(50)
-		playsound(get_turf(L), 'sound/misc/splort.ogg', 80, 1)
-		for(var/X in L.internal_organs)
-			var/obj/item/organ/O = X
-			var/org_zone = check_zone(O.zone)
-			if(org_zone != target_zone)
-				continue
-			O.Remove()
-			O.forceMove(T)
-			organ_spilled = 1
-		if(istype(target_limb, /obj/item/bodypart/chest))
-			var/obj/item/bodypart/chest/spoon = target_limb
-			if(spoon.cavity_item)
-				var/obj/item/cavity_object = spoon.cavity_item
-				cavity_object.forceMove(get_turf(target))
-				spoon.cavity_item = null
-				organ_spilled = 1
-		else if(istype(target_limb, /obj/item/bodypart/groin))
-			var/obj/item/bodypart/groin/spoon = target_limb
-			if(spoon.cavity_item)
-				var/obj/item/cavity_object = spoon.cavity_item
-				cavity_object.forceMove(get_turf(target))
-				spoon.cavity_item = null
-				organ_spilled = 1
-		if(organ_spilled)
-			L.visible_message("<span class='danger'><B>[L]'s internal organs spill out onto the floor!</B></span>")
+	
+	var/obj/item/bodypart/BP = surgery.operated_bodypart
+	if(istype(BP))
+		BP.dismember(NONE, TRUE)
 	return 1

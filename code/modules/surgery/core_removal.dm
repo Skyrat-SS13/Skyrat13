@@ -10,9 +10,10 @@
 	if(target.stat == DEAD)
 		return 1
 	return 0
+
 //extract brain
 /datum/surgery_step/extract_core
-	name = "extract core"
+	name = "Extract core"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 100)
 	time = 16
 

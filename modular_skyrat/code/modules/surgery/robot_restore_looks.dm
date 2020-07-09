@@ -10,7 +10,7 @@
 	desc = "A procedure that welds the robotic limbs back into the patient's preferred state aswell as re-applying their paintjob."
 
 /datum/surgery_step/restore_paintjob
-	name = "spray paint"
+	name = "Spray paint"
 	implements = list(
 		/obj/item/toy/crayon/spraycan = 100)
 	time = 58

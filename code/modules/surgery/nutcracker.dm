@@ -1,5 +1,5 @@
 /obj/item/nutcracker
-	name = "nutcracker"
+	name = "Nutcracker"
 	desc = "It seems quite oversized. You could probably even crush a watermelon with it."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "nutcracker"

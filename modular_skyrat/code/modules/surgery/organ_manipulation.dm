@@ -74,6 +74,8 @@
 					display_results(user, target, "<span class='notice'>You begin to heal the organs in [target]'s [parse_zone(target_zone)]...</span>",
 									"[user] begins to heal [target]'s [parse_zone(target_zone)] organs...",
 									"[user] begins to heal [target]'s [parse_zone(target_zone)] organs...")
+					if(istype(R, /obj/item/reagent_containers/pill))
+						qdel(R)
 				else
 					to_chat(user, "<span class='warning'>[R] does not have enough healing reagents or can't transfer it's reagents![text2add]</span>")
 					if(istype(R, /obj/item/reagent_containers/pill))
@@ -145,12 +147,15 @@
 				"[user] can't seem to extract anything from [target]'s [parse_zone(target_zone)]!",
 				"[user] can't seem to extract anything from [target]'s [parse_zone(target_zone)]!")
 	else if(current_type == "heal")
+		var/list/organstotal = list()
 		var/list/organshealed = list()
 		for(var/obj/item/organ/O in target.getorganszone(target_zone))
 			O.applyOrganDamage(-heal_amount)
-			organshealed += O
+			organstotal += O
+			if(!O.damage)
+				organshealed += O
 			to_chat(user, "<span class='warning'>You have successfully [O.damage ? "partially" : "completely"] healed [target]'s [O].</span>")
-		if(organshealed.len)
+		if(length(organshealed) < length(organstotal))
 			display_results(user, target, "<span class='notice'>You have succesfully healed [target]'s [parse_zone(target_zone)]'s organs.</span>",
 				"[user] has healed [target]'s [parse_zone(target_zone)]'s organs!",
 				"[user] has healed [target]'s [parse_zone(target_zone)]'s organs!")

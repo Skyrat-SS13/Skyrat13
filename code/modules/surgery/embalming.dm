@@ -17,7 +17,7 @@
 //skyrat change stop
 
 /datum/surgery_step/embalming
-	name = "embalming body"
+	name = "Embalming body"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCREWDRIVER = 35)
 	chems_needed = list(/datum/reagent/drying_agent, /datum/reagent/space_cleaner/sterilizine)
 	require_all_chems = FALSE
