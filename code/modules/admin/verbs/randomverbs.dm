@@ -1491,8 +1491,9 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			var/mob/living/carbon/C = target
 			to_chat(C, "<span class='warning'>You feel your body going hollow...</span>")
 			for(var/obj/item/organ/O in C.internal_organs)
-				O.Remove()
-				qdel(O)
+				if(O.slot != ORGAN_SLOT_BRAIN)
+					O.Remove()
+					qdel(O)
 		//
 
 	punish_log(target, punishment)
