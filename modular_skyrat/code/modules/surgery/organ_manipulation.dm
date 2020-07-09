@@ -5,6 +5,10 @@
 
 /datum/surgery_step/manipulate_organs/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	I = null
+	var/hasnecroticorgans = FALSE
+	for(var/obj/item/organ/O in target.getorganszone(target_zone))
+		if(O.damage >= (O.maxHealth - O.maxHealth/10)  && !(O.status == ORGAN_ROBOTIC))
+			hasnecroticorgans = TRUE
 	if(istype(tool, /obj/item/organ_storage))
 		if(!tool.contents.len)
 			to_chat(user, "<span class='notice'>There is nothing inside [tool]!</span>")
@@ -82,7 +86,7 @@
 					return -1
 				if(istype(R, /obj/item/reagent_containers/pill))
 					qdel(R)
-			else if(R.reagents.has_reagent(/datum/reagent/space_cleaner/sterilizine, 10) || R.reagents.has_reagent(/datum/reagent/space_cleaner, 40) || R.reagents.has_reagent(/datum/reagent/medicine/spaceacillin, 15))
+			else if((R.reagents.has_reagent(/datum/reagent/space_cleaner/sterilizine, 10) || R.reagents.has_reagent(/datum/reagent/space_cleaner, 40) || R.reagents.has_reagent(/datum/reagent/medicine/spaceacillin, 15)) && hasnecroticorgans)
 				current_type = "disinfect"
 				if(R.reagents.remove_reagent(/datum/reagent/space_cleaner/sterilizine, 10, ignore_pH = TRUE) || R.reagents.remove_reagent(/datum/reagent/space_cleaner, 40, ignore_pH = TRUE) || R.reagents.remove_reagent(/datum/reagent/medicine/spaceacillin, 15, ignore_pH = TRUE))
 					display_results(user, target, "<span class='notice'>You begin to disinfect the organs in [target]'s [parse_zone(target_zone)]...</span>",
@@ -95,6 +99,11 @@
 					return -1
 				if(istype(R, /obj/item/reagent_containers/pill))
 					qdel(R)
+			else if((R.reagents.has_reagent(/datum/reagent/space_cleaner/sterilizine, 10) || R.reagents.has_reagent(/datum/reagent/space_cleaner, 40) || R.reagents.has_reagent(/datum/reagent/medicine/spaceacillin, 15)) && !hasnecroticorgans)
+				to_chat(user, "<span class='warning'>[target] does not have any necrotic organs![text2add]</span>")
+				if(istype(R, /obj/item/reagent_containers/pill))
+					qdel(R)
+				return -1
 			else
 				to_chat(user, "<span class='warning'>[R] does not have enough healing reagents![text2add]</span>")
 				if(istype(R, /obj/item/reagent_containers/pill))
@@ -139,7 +148,7 @@
 		var/list/organshealed = list()
 		for(var/obj/item/organ/O in target.getorganszone(target_zone))
 			var/healedatall = FALSE
-			if(O.damage <= O.maxHealth/10)
+			if(O.damage < (O.maxHealth - O.maxHealth/10) && !(O.status == ORGAN_ROBOTIC))
 				O.applyOrganDamage(-heal_amount)
 				healedatall = TRUE
 			organstotal += O
@@ -148,7 +157,7 @@
 			if(healedatall)
 				to_chat(user, "<span class='notice'>You have successfully [O.damage ? "partially" : "completely"] healed [target]'s [O].</span>")
 			else
-				to_chat(user, "<span class='warning'>You were not able to heal [target]'s [O]. You'll have to disinfect it before healing!</span>")
+				to_chat(user, "<span class='warning'>You were not able to heal [target]'s [O].[O.status == ORGAN_ROBOTIC ? "" : " You will have to disinfect it before healing!"]</span>")
 		if(length(organshealed) < length(organstotal))
 			display_results(user, target, "<span class='notice'>You have succesfully healed [target]'s [parse_zone(target_zone)]'s organs.</span>",
 				"[user] has healed [target]'s [parse_zone(target_zone)]'s organs!",
@@ -165,10 +174,13 @@
 		var/list/organstotal = list()
 		var/list/organshealed = list()
 		for(var/obj/item/organ/O in target.getorganszone(target_zone))
-			O.applyOrganDamage(-disinfect_amount)
-			organstotal += O
-			organshealed += O
-			to_chat(user, "<span class='warning'>You have successfully disinfected [target]'s [O].</span>")
+			if(O.damage >= (O.maxHealth - O.maxHealth/10) && !(O.status == ORGAN_ROBOTIC))
+				O.applyOrganDamage(-disinfect_amount)
+				organstotal += O
+				organshealed += O
+				to_chat(user, "<span class='notice'>You have successfully disinfected [target]'s [O].</span>")
+			else
+				to_chat(user, "<span class='warning'>\The [target]'s [O] is not infected.</span>")
 		display_results(user, target, "<span class='notice'>You have succesfully disinfected [target]'s [parse_zone(target_zone)]'s organs.</span>",
 			"[user] has disinfected [target]'s [parse_zone(target_zone)]'s organs!",
 			"[user] has disinfected [target]'s [parse_zone(target_zone)]'s organs!")

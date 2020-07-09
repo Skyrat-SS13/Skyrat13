@@ -120,7 +120,7 @@
 			if(INTERACTING_WITH(usr, victim))
 				to_chat(usr, "<span class='warning'>You're already interacting with [victim]!</span>")
 				return FALSE
-			self_treat(usr, TREAT)
+			self_treat(usr, TRUE)
 	return
 
 /datum/wound/proc/self_treat(mob/living/carbon/user) //used so you can far cry up wounds to fix them
