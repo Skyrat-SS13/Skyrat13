@@ -22,14 +22,18 @@
 	path = /obj/item/clothing/under/custom/blutigen_undergarment
 	ckeywhitelist = list("random516")
 
-/datum/gear/borgplush
-	name = "Doctor Drakeborg plushie"
-	category = SLOT_IN_BACKPACK
-	path = /obj/item/toy/plush/borgplushie/doctordrake
-	ckeywhitelist = list("navier")
-
-/datum/gear/borgplush
+/datum/gear/borgplush/securitydrake
 	name = "Security Drakeborg plushie"
 	category = SLOT_IN_BACKPACK
-	path = /obj/item/toy/plush/borgplushie/securitydrake
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
+	icon_state = "securitydrake"
+	item_state = "securitydrake"
+	ckeywhitelist = list("navier")
+
+/datum/gear/borgplush/doctordrake
+	name = "Doctor Drakeborg plushie"
+	category = SLOT_IN_BACKPACK
+	icon = 'modular_skyrat/icons/obj/plushes.dmi'
+	icon_state = "doctordrake"
+	item_state = "doctordrake"
 	ckeywhitelist = list("navier")
