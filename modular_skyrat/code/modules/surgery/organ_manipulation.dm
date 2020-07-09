@@ -1,5 +1,6 @@
 /datum/surgery_step/manipulate_organs
 	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100, /obj/item/stack/medical = 100, /obj/item/reagent_containers = 100)
+	var/heal_amount = 40
 
 /datum/surgery_step/manipulate_organs/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	I = null
@@ -146,12 +147,9 @@
 	else if(current_type == "heal")
 		var/list/organshealed = list()
 		for(var/obj/item/organ/O in target.getorganszone(target_zone))
-			if(O.damage > (O.maxHealth - O.maxHealth/10))
-				to_chat(user, "<span class='warning'>Sadly, the [target]'s [O] was too damaged to be healed.</span>")
-			else
-				O.damage = 0
-				organshealed += O
-				to_chat(user, "<span class='warning'>You have successfully healed [target]'s [O].</span>")
+			O.applyOrganDamage(-heal_amount)
+			organshealed += O
+			to_chat(user, "<span class='warning'>You have successfully [O.damage ? "partially" : "completely"] healed [target]'s [O].</span>")
 		if(organshealed.len)
 			display_results(user, target, "<span class='notice'>You have succesfully healed [target]'s [parse_zone(target_zone)]'s organs.</span>",
 				"[user] has healed [target]'s [parse_zone(target_zone)]'s organs!",
