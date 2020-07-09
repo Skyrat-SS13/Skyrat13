@@ -47,7 +47,6 @@
 		"[user] begins to spoon out [target]'s [parse_zone(target_zone)] organs!")
 
 /datum/surgery_step/disembowel/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	var/mob/living/carbon/human/L = target
 	display_results(user, target, "<span class='warning'>You spoon out [target]'s [parse_zone(target_zone)] organs!</span>",
 		"[user] spoons out [target]'s [parse_zone(target_zone)] organs!",
 		"[user] spoons out [target]'s [parse_zone(target_zone)] organs!")
