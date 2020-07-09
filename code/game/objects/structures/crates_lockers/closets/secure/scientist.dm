@@ -5,6 +5,9 @@
 
 /obj/structure/closet/secure_closet/RD/PopulateContents()
 	..()
+	//SKYRAT EDIT - ATMS
+	new /obj/item/card/id/departmental_budget/sci(src)
+	//SKYRAT EDIT END
 	new /obj/item/clothing/neck/cloak/rd(src)
 	new /obj/item/clothing/head/beret/rd(src)
 	new /obj/item/clothing/suit/bio_suit/scientist(src)

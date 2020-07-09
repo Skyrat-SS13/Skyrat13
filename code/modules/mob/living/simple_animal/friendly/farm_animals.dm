@@ -33,11 +33,12 @@
 	stop_automated_movement_when_pulled = 1
 	blood_volume = BLOOD_VOLUME_NORMAL
 	var/obj/item/udder/udder = null
+	var/datum/reagent/milk_reagent = /datum/reagent/consumable/milk
 
 	footstep_type = FOOTSTEP_MOB_SHOE
 
-/mob/living/simple_animal/hostile/retaliate/goat/Initialize()
-	udder = new()
+/mob/living/simple_animal/hostile/retaliate/goat/Initialize(/datum/reagent/milk_reagent)
+	udder = new (null, milk_reagent)
 	. = ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/Destroy()
@@ -57,7 +58,7 @@
 			LoseTarget()
 			src.visible_message("<span class='notice'>[src] calms down.</span>")
 	if(stat == CONSCIOUS)
-		udder.generateMilk()
+		udder.generateMilk(milk_reagent)
 		eat_plants()
 		if(!pulledby)
 			for(var/direction in shuffle(list(1,2,4,8,5,6,9,10)))
@@ -137,13 +138,14 @@
 	health = 50
 	maxHealth = 50
 	var/obj/item/udder/udder = null
+	var/datum/reagent/milk_reagent = /datum/reagent/consumable/milk
 	gold_core_spawnable = FRIENDLY_SPAWN
 	blood_volume = BLOOD_VOLUME_NORMAL
 
 	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/cow/Initialize()
-	udder = new()
+	udder = new(null, milk_reagent)
 	. = ..()
 
 /mob/living/simple_animal/cow/Destroy()
@@ -161,7 +163,7 @@
 /mob/living/simple_animal/cow/Life()
 	. = ..()
 	if(stat == CONSCIOUS)
-		udder.generateMilk()
+		udder.generateMilk(milk_reagent)
 
 /mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_DISARM && icon_state != icon_dead)
@@ -188,6 +190,19 @@
 					"<span class='revennotice'>[internal]</span>")
 	else
 		..()
+
+//Wisdom cow, speaks and bestows great wisdoms
+/mob/living/simple_animal/cow/wisdom
+	name = "wisdom cow"
+	desc = "Known for its wisdom, shares it with all"
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/wisdomcow = 1) //truly the best meat
+	gold_core_spawnable = FALSE
+	speak_chance = 30 //the cow is eager to share its wisdom!
+	milk_reagent = /datum/reagent/medicine/liquid_wisdom
+
+/mob/living/simple_animal/cow/wisdom/Initialize()
+	. = ..()
+	speak = GLOB.wisdoms //Done here so it's setup properly
 
 /mob/living/simple_animal/chick
 	name = "\improper chick"
@@ -481,14 +496,16 @@
 /obj/item/udder
 	name = "udder"
 
-/obj/item/udder/Initialize()
+/obj/item/udder/Initialize(loc, milk_reagent)
+	if(!milk_reagent)
+		milk_reagent = /datum/reagent/consumable/milk
 	create_reagents(50, NONE, NO_REAGENTS_VALUE)
-	reagents.add_reagent(/datum/reagent/consumable/milk, 20)
+	reagents.add_reagent(milk_reagent, 20)
 	. = ..()
 
-/obj/item/udder/proc/generateMilk()
+/obj/item/udder/proc/generateMilk(datum/reagent/milk_reagent)
 	if(prob(5))
-		reagents.add_reagent(/datum/reagent/consumable/milk, rand(5, 10))
+		reagents.add_reagent(milk_reagent, rand(5, 10))
 
 /obj/item/udder/proc/milkAnimal(obj/O, mob/user)
 	var/obj/item/reagent_containers/glass/G = O
@@ -500,3 +517,33 @@
 		user.visible_message("[user] milks [src] using \the [O].", "<span class='notice'>You milk [src] using \the [O].</span>")
 	else
 		to_chat(user, "<span class='danger'>The udder is dry. Wait a bit longer...</span>")
+
+/mob/living/simple_animal/deer
+	name = "doe"
+	desc = "A gentle, peaceful forest animal. How did this get into space?"
+	icon_state = "deer-doe"
+	icon_living = "deer-doe"
+	icon_dead = "deer-doe-dead"
+	gender = FEMALE
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	speak = list("Weeeeeeee?","Weeee","WEOOOOOOOOOO")
+	speak_emote = list("grunts","grunts lowly")
+	emote_hear = list("brays.")
+	emote_see = list("shakes its head.")
+	speak_chance = 1
+	turns_per_move = 5
+	see_in_dark = 6
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3)
+	response_help_continuous = "pets"
+	response_help_simple = "pet"
+	response_disarm_continuous = "gently nudges"
+	response_disarm_simple = "gently nudge"
+	response_harm_continuous = "kicks"
+	response_harm_simple = "kick"
+	attack_verb_continuous = "bucks"
+	attack_verb_simple = "buck"
+	attack_sound = 'sound/weapons/punch1.ogg'
+	health = 75
+	maxHealth = 75
+	blood_volume = BLOOD_VOLUME_NORMAL
+	footstep_type = FOOTSTEP_MOB_SHOE

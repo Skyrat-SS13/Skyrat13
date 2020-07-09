@@ -8,6 +8,10 @@
 	var/reading = FALSE //sanity
 	var/oneuse = TRUE //default this is true, but admins can var this to 0 if we wanna all have a pass around of the rod form book
 	var/used = FALSE //only really matters if oneuse but it might be nice to know if someone's used it for admin investigations perhaps
+	//skyrat edit memery
+	var/do_after_time = 5 SECONDS
+	var/do_do_after = TRUE
+	//
 
 /obj/item/book/granter/proc/turn_page(mob/user)
 	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, 1)
@@ -53,8 +57,13 @@
 				on_reading_stopped()
 				reading = FALSE
 				return
-		if(do_after(user,50, TRUE, user))
+		//skyrat edit
+		if(do_do_after)
+			if(do_after(user, do_after_time, TRUE, user))
+				on_reading_finished(user)
+		else
 			on_reading_finished(user)
+		//
 		reading = FALSE
 	return TRUE
 ///TRAITS///
@@ -510,7 +519,7 @@
 	oneuse = FALSE
 	remarks = list("So that is how icing is made!", "Placing fruit on top? How simple...", "Huh layering cake seems harder then this...", "This book smells like candy", "A clown must have made this page, or they forgot to spell check it before printing...", "Wait, a way to cook slime to be safe?")
 
-/obj/item/book/granter/crafting_recipe/coldcooking //IceCream
+/obj/item/book/granter/crafting_recipe/coldcooking //Icecream
 	name = "Cooking with Ice"
 	desc = "A cook book that teaches you many old icecream treats."
 	crafting_recipe_types = list(/datum/crafting_recipe/food/banana_split, /datum/crafting_recipe/food/root_float, /datum/crafting_recipe/food/bluecharrie_float, /datum/crafting_recipe/food/charrie_float)

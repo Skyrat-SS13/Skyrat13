@@ -15,6 +15,8 @@
 
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_ROBOTICS, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_RESEARCH, ACCESS_MINERAL_STOREROOM)
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_GENETICIST
 	threat = 1.5
@@ -25,7 +27,6 @@
 	name = "Geneticist"
 	jobtype = /datum/job/geneticist
 
-	id = /obj/item/card/id/department/med //Skyrat change
 	belt = /obj/item/pda/geneticist
 	ears = /obj/item/radio/headset/headset_medsci
 	uniform = /obj/item/clothing/under/rank/medical/geneticist

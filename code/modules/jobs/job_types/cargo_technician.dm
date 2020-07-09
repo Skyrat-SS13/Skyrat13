@@ -14,6 +14,8 @@
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MINING,
 				ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
+	paycheck = PAYCHECK_EASY
+	paycheck_department = ACCOUNT_CAR
 
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
 	threat = 0.2
@@ -22,7 +24,6 @@
 	name = "Cargo Technician"
 	jobtype = /datum/job/cargo_tech
 
-	id = /obj/item/card/id/department/cargo // Skyrat change
 	belt = /obj/item/pda/cargo
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargo/tech

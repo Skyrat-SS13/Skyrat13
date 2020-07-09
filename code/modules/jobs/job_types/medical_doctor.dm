@@ -13,6 +13,8 @@
 
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_VIROLOGY, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_MINERAL_STOREROOM)
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
 	threat = 0.5
@@ -23,7 +25,6 @@
 	name = "Medical Doctor"
 	jobtype = /datum/job/doctor
 
-	id = /obj/item/card/id/department/med //Skyrat change
 	belt = /obj/item/pda/medical
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/medical/doctor

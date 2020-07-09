@@ -21,10 +21,17 @@
 	gib_types = list(/obj/effect/gibspawner/lizard, /obj/effect/gibspawner/lizard/bodypartless)
 	skinned_type = /obj/item/stack/sheet/animalhide/lizard
 	exotic_bloodtype = "L"
+	exotic_blood_color = BLOOD_COLOR_LIZARD
 	disliked_food = GRAIN | DAIRY
 	liked_food = GROSS | MEAT
 	inert_mutation = FIREBREATH
+	//Skyrat change - blood
+	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "L")
 	languagewhitelist = list("Draconic") //Skyrat change - species language whitelist
+	//
+
+/datum/species/lizard/after_equip_job(datum/job/J, mob/living/carbon/human/H)
+	//H.grant_language(/datum/language/draconic)
 	species_language_holder = /datum/language_holder/lizard
 /*
 /datum/species/lizard/after_equip_job(datum/job/J, mob/living/carbon/human/H)

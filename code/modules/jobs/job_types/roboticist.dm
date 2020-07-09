@@ -15,6 +15,8 @@
 
 	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH, ACCESS_MINERAL_STOREROOM, ACCESS_XENOBIOLOGY, ACCESS_GENETICS)
 	minimal_access = list(ACCESS_ROBOTICS, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH, ACCESS_MINERAL_STOREROOM)
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_SCI
 
 	starting_modifiers = list(/datum/skill_modifier/job/level/wiring, /datum/skill_modifier/job/affinity/wiring)
 
@@ -25,7 +27,6 @@
 	name = "Roboticist"
 	jobtype = /datum/job/roboticist
 
-	id = /obj/item/card/id/department/sci //Skyrat change
 	belt = /obj/item/storage/belt/utility/full
 	l_pocket = /obj/item/pda/roboticist
 	ears = /obj/item/radio/headset/headset_sci
