@@ -6,6 +6,8 @@
 	exclaim_verb = "declares"
 	whisper_verb = "hushes"
 	key = "sc"
+	sing_verb = "sings"
+	key = "p"
 	space_chance = 30
 	default_priority = 96
 	flags = TONGUELESS_SPEECH

@@ -6,6 +6,7 @@
 	exclaim_verb = "screeches"
 	whisper_verb = "clicks"
 	key = "cal"
+	sing_verb = "chimes"
 	flags = TONGUELESS_SPEECH
 	space_chance = 10
 	syllables = list(

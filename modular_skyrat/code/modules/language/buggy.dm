@@ -5,6 +5,7 @@
 	ask_verb = "flits"
 	exclaim_verb = "flaps"
 	key = "bug"
+	sing_verb = "hums"
 	flags = TONGUELESS_SPEECH
 	space_chance = 10
 	syllables = list(
