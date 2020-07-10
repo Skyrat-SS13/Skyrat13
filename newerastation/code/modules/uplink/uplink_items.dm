@@ -19,6 +19,9 @@
 /datum/uplink_item/dangerous/rapier
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
 
+/datum/uplink_item/dangerous/guardian
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
+
 /datum/uplink_item/dangerous/mehrunesrazor
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
 
@@ -72,6 +75,9 @@
 
 /datum/uplink_item/badass/balloon
 	exclude_modes = list(/datum/game_mode/infiltration) //no.
+
+/datum/uplink_item/badass/claymore
+	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/bundles_TC/bundle
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
