@@ -539,7 +539,7 @@
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 		return
 	if(HAS_TRAIT(mob_occupant, TRAIT_DNC) || HAS_TRAIT(mob_occupant, TRAIT_DNR))
-		scantemp = "<font class='bad'>Subject [HAS_TRAIT(mob_occupant, TRAIT_DNC) ? "has signed a DNC contract, and cannot be cloned. If possible, try other methods of revival." : HAS_TRAIT(mob_occupant, TRAIT_DNR) ? "has signed a DNR contract, and cannot be revived in any way." : "could not be revived due to biological reasons."]</font>"
+		scantemp = "<font class='bad'>Subject [HAS_TRAIT(mob_occupant, TRAIT_DNC) ? "is a DNC, and cannot be cloned. If possible, try other methods of revival." : HAS_TRAIT(mob_occupant, TRAIT_DNR) ? "is a DNR, and cannot be revived in any way." : "could not be revived due to biological reasons."]</font>"
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 		return
 	if ((!mob_occupant.ckey) || (!mob_occupant.client))

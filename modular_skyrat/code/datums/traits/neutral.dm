@@ -205,17 +205,17 @@
 //do not clone
 /datum/quirk/dnc
 	name = "Do Not Clone"
-	desc = "For whatever reason, you have a signed a contract with NT and SolGov authorities that prevents you from being cloned in any way. You can still be revived in other ways, <b>but medical doctors are not always required to revive you.</b>"
+	desc = "For whatever reason, you cannot be cloned in any way. You can still be revived in other ways, <b><i>but medical doctors are not always required to revive you.</i></b>"
 	value = 0
-	gain_text = "<span class='notice'>Your feel your soul bounding itself to your body.</span>"
+	gain_text = "<span class='notice'>Your feel your soul binding itself to your body.</span>"
 	lose_text = "<span class='notice'>You can feel your spirit detach from your body.</span>"
 	mob_trait = TRAIT_DNC
 
 //do not revive
 /datum/quirk/dnr
 	name = "Do Not Revive"
-	desc = "For whatever reason, you have a signed a contract with NT and SolGov authorities that prevents you from being revived in any way."
+	desc = "For whatever reason, you cannot be revived in any way."
 	value = 0
-	gain_text = "<span class='notice'>Your spirit is too scarred to accept revival.</span>"
+	gain_text = "<span class='notice'>Your spirit gets too scarred to accept revival.</span>"
 	lose_text = "<span class='notice'>You can feel your soul healing again.</span>"
 	mob_trait = TRAIT_DNR
