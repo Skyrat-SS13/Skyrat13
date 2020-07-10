@@ -5318,7 +5318,7 @@
 	min_oxy = 5;
 	name = "Lia";
 	real_name = "Lia";
-	response_help = "pets";
+	!INVALID_VAR! = "pets";
 	turns_per_move = 10
 	},
 /turf/open/floor/plasteel/dark,
@@ -5777,9 +5777,6 @@
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "amk" = (
-/obj/machinery/gateway{
-	dir = 1
-	},
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
@@ -10746,9 +10743,6 @@
 /turf/closed/wall,
 /area/crew_quarters/fitness/recreation)
 "awE" = (
-/obj/machinery/gateway{
-	dir = 10
-	},
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -23
@@ -14758,6 +14752,7 @@
 /obj/item/radio/intercom{
 	pixel_x = -28
 	},
+/obj/machinery/computer/gateway_control,
 /turf/open/floor/plasteel,
 /area/gateway)
 "aEO" = (
@@ -60742,9 +60737,6 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "ctz" = (
-/obj/machinery/gateway{
-	dir = 9
-	},
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "ctB" = (
@@ -60790,9 +60782,6 @@
 /turf/closed/wall,
 /area/maintenance/starboard/fore)
 "ctK" = (
-/obj/machinery/gateway{
-	dir = 5
-	},
 /obj/machinery/camera{
 	c_tag = "Gateway";
 	name = "command camera"
@@ -61716,12 +61705,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"cvM" = (
-/obj/machinery/gateway{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/gateway)
 "cvN" = (
 /obj/machinery/gateway/centerstation,
 /obj/structure/cable{
@@ -61730,12 +61713,6 @@
 /turf/open/floor/circuit/green{
 	luminosity = 2
 	},
-/area/gateway)
-"cvO" = (
-/obj/machinery/gateway{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
 /area/gateway)
 "cvP" = (
 /obj/machinery/door/poddoor{
@@ -61781,17 +61758,10 @@
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
 "cvT" = (
-/obj/machinery/gateway,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
 /obj/structure/cable,
-/turf/open/floor/plasteel/dark,
-/area/gateway)
-"cvU" = (
-/obj/machinery/gateway{
-	dir = 6
-	},
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cvV" = (
@@ -99419,7 +99389,7 @@ aay
 cFT
 aUa
 ctz
-cvM
+ctz
 awE
 aEN
 aGQ
@@ -99933,8 +99903,8 @@ cFs
 avp
 aUa
 ctK
-cvO
-cvU
+ctz
+ctz
 aEQ
 aGS
 cvW
