@@ -197,4 +197,72 @@
 	occupant_weight -= occupant.mob_size
 	occupant.setDir(SOUTH)
 
+<<<<<<< HEAD
+=======
+//bluespace jar, a reskin of the pet carrier that can fit people and smashes when thrown
+/obj/item/pet_carrier/bluespace
+	name = "bluespace jar"
+	desc = "A jar, that seems to be bigger on the inside, somehow allowing lifeforms to fit through its narrow entrance."
+	open = FALSE //starts closed so it looks better on menus
+	icon_state = "bluespace_jar"
+	item_state = "bluespace_jar"
+	lefthand_file = ""
+	righthand_file = ""
+	max_occupant_weight = MOB_SIZE_HUMAN //can fit people, like a bluespace bodybag!
+	load_time = 40 //loading things into a jar takes longer than a regular pet carrier
+	entrance_name = "lid"
+	w_class = WEIGHT_CLASS_SMALL //it's a jar
+	throw_speed = 3
+	throw_range = 7
+	max_occupants = 1 //far less than a regular carrier or bluespace bodybag, because it can be thrown to release the contents
+	allows_hostiles = TRUE //can fit hostile creatures, with the move resist restrictions in place, this means they still cannot take things like legions/goliaths/etc regardless
+	has_lock_sprites = FALSE //jar doesn't show the regular lock overlay
+	custom_materials = list(/datum/material/glass = 1000, /datum/material/bluespace = 600)
+	escape_time = 10 //half the time of a bluespace bodybag
+	var/datum/gas_mixture/occupant_gas_supply
+
+/obj/item/pet_carrier/bluespace/update_icon_state()
+	if(open)
+		icon_state = "bluespace_jar_open"
+	else
+		icon_state = "bluespace_jar"
+
+/obj/item/pet_carrier/bluespace/throw_impact()
+	. = ..()
+	//delete the item upon impact, releasing the creature inside (this is handled by its deletion)
+	if(occupants.len)
+		loc.visible_message("<span class='warning'>The bluespace jar smashes, releasing [occupants[1]]!</span>")
+	playsound(src, "shatter", 70, 1)
+	qdel(src)
+
+/obj/item/pet_carrier/bluespace/add_occupant(mob/living/occupant) //update the gas supply as required, this acts like magical internals
+	. = ..()
+	if(!occupant_gas_supply)
+		occupant_gas_supply = new
+	if(isanimal(occupant))
+		var/mob/living/simple_animal/animal = occupant
+		occupant_gas_supply.set_temperature(animal.minbodytemp) //simple animals only care about temperature when their turf isnt a location
+	else
+		if(ishuman(occupant)) //humans require resistance to cold/heat and living in no air while inside, and lose this when outside
+			ADD_TRAIT(occupant, TRAIT_RESISTCOLD, "bluespace_container_cold_resist")
+			ADD_TRAIT(occupant, TRAIT_RESISTHEAT, "bluespace_container_heat_resist")
+			ADD_TRAIT(occupant, TRAIT_NOBREATH, "bluespace_container_no_breath")
+			ADD_TRAIT(occupant, TRAIT_RESISTHIGHPRESSURE, "bluespace_container_resist_high_pressure")
+			ADD_TRAIT(occupant, TRAIT_RESISTLOWPRESSURE, "bluespace_container_resist_low_pressure")
+
+/obj/item/pet_carrier/bluespace/remove_occupant(mob/living/occupant)
+	. = ..()
+	if(ishuman(occupant))
+		REMOVE_TRAIT(occupant, TRAIT_RESISTCOLD, "bluespace_container_cold_resist")
+		REMOVE_TRAIT(occupant, TRAIT_RESISTHEAT, "bluespace_container_heat_resist")
+		REMOVE_TRAIT(occupant, TRAIT_NOBREATH, "bluespace_container_no_breath")
+		REMOVE_TRAIT(occupant, TRAIT_RESISTHIGHPRESSURE, "bluespace_container_resist_high_pressure")
+		REMOVE_TRAIT(occupant, TRAIT_RESISTLOWPRESSURE, "bluespace_container_resist_low_pressure")
+
+/obj/item/pet_carrier/bluespace/return_air()
+	if(!occupant_gas_supply)
+		occupant_gas_supply = new
+	return occupant_gas_supply
+
+>>>>>>> 31da81aff4... Merge pull request #12217 from Putnam3145/putnamos-for-real
 #undef pet_carrier_full
