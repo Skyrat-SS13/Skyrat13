@@ -243,6 +243,24 @@
 	//stop collecting feedback during grifftime
 	SSblackbox.Seal()
 
+	//skyrat edit - proper ERG
+	//send the ERGers to the thunderdome
+	var/turf/ERG_turf = GLOB.ERG_spawn
+	if(ERG_turf)
+		for(var/mob/living/L in GLOB.player_list)
+			if(L.client?.prefs?.accept_ERG)
+				do_teleport(L, ERG_turf)
+				SEND_SOUND(L, sound('modular_skyrat/sound/ambience/e1m1.mid', TRUE, 0, CHANNEL_ADMIN, 100))
+			else
+				if(iscarbon(L))
+					var/mob/living/carbon/C = L
+					C.gain_trauma_type(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_ABSOLUTE)
+				else
+					L.actions = list()
+					L.mind?.spell_list = list()
+					L.a_intent_change(INTENT_HELP)
+	//
+
 	sleep(50)
 	ready_for_reboot = TRUE
 	standard_reboot()

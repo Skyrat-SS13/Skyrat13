@@ -325,13 +325,13 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 
 // Skyrat edit - ERG zone
 
-GLOBAL_VAR_INIT(ERG_spawn, 0)
+GLOBAL_DATUM_INIT(ERG_spawn, /obj/effect/landmark/erg_zone, null)
 
 /obj/effect/landmark/erg_zone
 	name = "ERG Spawn"
 	icon_state = "erg_start"
 
-/obj/effect/landmark/erg_zone/Initialize()
+/obj/effect/landmark/erg_zone/New(loc, ...)
 	. = ..()
 	GLOB.ERG_spawn = src
 

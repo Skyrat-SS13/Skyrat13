@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/event_participation = FALSE
 	var/event_prefs = ""
 	var/appear_in_round_end_report = TRUE //whether the player of the character is listed on the round-end report
-	var/accept_ERG = FALSE //whether the player wants or not to go through end round grief
+	var/accept_ERG = TRUE //whether the player wants or not to go through end round grief
 	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
