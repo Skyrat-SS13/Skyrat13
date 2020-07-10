@@ -10,7 +10,7 @@
 	icon = 'modular_skyrat/icons/misc/o_light_32.dmi'
 	icon_state = "light"
 	layer = O_LIGHTING_VISUAL_LAYER
-	plane = O_LIGHTING_VISUAL_PLANE
+	plane = -20
 	appearance_flags = RESET_TRANSFORM
 	mouse_opacity = 0
 
@@ -31,7 +31,7 @@
 	. = ..()
 	var/atom/movable/A = parent
 	RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/on_qdel)
-	blocker_mask = new()
+	//blocker_mask = new()
 	visible_mask = new()
 	visible_mask.color = light
 	visible_mask.alpha = set_alpha
@@ -45,7 +45,7 @@
 	. = ..()
 	var/atom/movable/A = parent
 	UnregisterSignal(A, COMSIG_PARENT_QDELETING)
-	A.vis_contents -= blocker_mask
+	//A.vis_contents -= blocker_mask
 	A.vis_contents -= visible_mask
 	QDEL_NULL(blocker_mask)
 	QDEL_NULL(visible_mask)
