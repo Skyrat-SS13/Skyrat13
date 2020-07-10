@@ -1,4 +1,0 @@
-author: "BobJoga"
-delete-after: True
-changes: 
-  - bugfix: "Megafauna no longer clump together when spawning."
