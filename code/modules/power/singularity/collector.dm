@@ -39,6 +39,10 @@
 	Radio.listening = 0
 	Radio.set_frequency(FREQ_ENGINEERING)
 
+/obj/machinery/power/tesla_coil/on_construction() // Skyrat bugfix
+	if(anchored)
+		connect_to_network()
+
 /obj/machinery/power/rad_collector/Destroy()
 	QDEL_NULL(Radio)
 	return ..()

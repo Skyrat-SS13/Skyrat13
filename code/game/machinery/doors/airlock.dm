@@ -1091,6 +1091,7 @@
 			prying_so_hard = FALSE
 			if(result)
 				open(2)
+				take_damage(30, BRUTE, 0, 0)
 				if(density && !open(2))
 					to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open.</span>")
 
