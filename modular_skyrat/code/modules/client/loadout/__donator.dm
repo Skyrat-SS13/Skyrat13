@@ -21,3 +21,15 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/custom/blutigen_undergarment
 	ckeywhitelist = list("random516")
+
+/datum/gear/toy/plush/borgplush/securitydrake
+	name = "Drake Plushie"
+	category = SLOT_IN_BACKPACK
+	path = /obj/item/toy/plush/borgplush/securitydrake
+	ckeywhitelist = list("navier")
+
+/datum/gear/toy/plush/borgplush/doctordrake
+	name = "Drake Plushie"
+	category = SLOT_IN_BACKPACK
+	path = /obj/item/toy/plush/borgplush/doctordrake
+	ckeywhitelist = list("navier")
