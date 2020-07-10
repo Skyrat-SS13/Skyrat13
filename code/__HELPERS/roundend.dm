@@ -180,7 +180,11 @@
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
-	// SKYRAT EDIT: Credits
+	// SKYRAT EDIT
+	for(var/mob/M in GLOB.player_list)
+		var/datum/action/switch_erg = new /datum/action/switch_erg(M)
+		switch_erg.Grant(M)
+		to_chat(M, "<span class='notice'>The round will end soon. If you want to participate in EORG, toggle it on now!</span>")
 	RollCredits()
 	for(var/client/C in GLOB.clients)
 		C.playtitlemusic(40)
@@ -243,8 +247,24 @@
 	//stop collecting feedback during grifftime
 	SSblackbox.Seal()
 
-	//skyrat edit - proper ERG
-	//send the ERGers to the thunderdome
+	sleep(50)
+	//skyrat edit
+	do_ERG()
+	//
+	ready_for_reboot = TRUE
+	standard_reboot()
+
+/datum/controller/subsystem/ticker/proc/standard_reboot()
+	if(ready_for_reboot)
+		if(mode.station_was_nuked)
+			Reboot("Station destroyed by Nuclear Device.", "nuke")
+		else
+			Reboot("Round ended.", "proper completion")
+	else
+		CRASH("Attempted standard reboot without ticker roundend completion")
+
+//skyrat edit
+/datum/controller/subsystem/ticker/proc/do_ERG()
 	var/turf/ERG_turf = GLOB.ERG_spawn
 	if(ERG_turf)
 		for(var/mob/living/L in GLOB.player_list)
@@ -259,20 +279,7 @@
 					L.actions = list()
 					L.mind?.spell_list = list()
 					L.a_intent_change(INTENT_HELP)
-	//
-
-	sleep(50)
-	ready_for_reboot = TRUE
-	standard_reboot()
-
-/datum/controller/subsystem/ticker/proc/standard_reboot()
-	if(ready_for_reboot)
-		if(mode.station_was_nuked)
-			Reboot("Station destroyed by Nuclear Device.", "nuke")
-		else
-			Reboot("Round ended.", "proper completion")
-	else
-		CRASH("Attempted standard reboot without ticker roundend completion")
+//
 
 //Common part of the report
 /datum/controller/subsystem/ticker/proc/build_roundend_report()

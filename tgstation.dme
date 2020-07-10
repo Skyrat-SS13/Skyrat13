@@ -3493,6 +3493,7 @@
 #include "modular_skyrat\code\datums\ert.dm"
 #include "modular_skyrat\code\datums\event_menu.dm"
 #include "modular_skyrat\code\datums\saymode.dm"
+#include "modular_skyrat\code\datums\actions\erg.dm"
 #include "modular_skyrat\code\datums\components\crafting\crafting_items.dm"
 #include "modular_skyrat\code\datums\components\crafting\crafting_results\blunderbuss.dm"
 #include "modular_skyrat\code\datums\components\crafting\crafting_results\cannon.dm"
