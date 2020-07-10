@@ -358,6 +358,21 @@ SUBSYSTEM_DEF(ticker)
 		cb.InvokeAsync()
 	else
 		LAZYADD(round_end_events, cb)
+	//skyrat edit - proper ERG
+	var/turf/ERG_turf = GLOB.ERG_spawn
+	if(ERG_turf)
+		for(var/mob/living/L in GLOB.player_list)
+			if(L.client?.prefs?.accept_ERG)
+				do_teleport(L, ERG_turf)
+			else
+				if(iscarbon(L))
+					var/mob/living/carbon/C = L
+					C.gain_trauma_type(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_ABSOLUTE)
+				else
+					L.actions = list()
+					L.mind?.spell_list = list()
+					L.a_intent_change(INTENT_HELP)
+	//
 
 /datum/controller/subsystem/ticker/proc/station_explosion_detonation(atom/bomb)
 	if(bomb)	//BOOM

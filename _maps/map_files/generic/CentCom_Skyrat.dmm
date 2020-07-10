@@ -2110,6 +2110,10 @@
 	},
 /turf/closed/indestructible/riveted,
 /area/space)
+"fy" = (
+/obj/effect/landmark/erg_zone,
+/turf/open/floor/plasteel,
+/area/tdome/arena)
 "fz" = (
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
@@ -2240,6 +2244,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
+"fR" = (
+/obj/effect/landmark/erg_zone,
+/turf/open/floor/circuit/green,
+/area/tdome/arena)
 "fS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -15524,13 +15532,6 @@
 "Ji" = (
 /turf/open/floor/circuit/green,
 /area/tdome/arena)
-"Jj" = (
-/obj/machinery/flasher{
-	id = "tdomeflash";
-	name = "Thunderdome Flash"
-	},
-/turf/open/floor/circuit/green,
-/area/tdome/arena)
 "Jk" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 8
@@ -15588,15 +15589,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeadmin)
-"Jq" = (
-/obj/machinery/camera{
-	c_tag = "Arena";
-	network = list("thunder");
-	pixel_x = 10;
-	resistance_flags = 64
-	},
-/turf/open/floor/circuit/green,
-/area/tdome/arena)
 "Jr" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -61218,14 +61210,14 @@ GM
 HW
 HW
 Il
-IF
+fy
 IE
 IX
 Jh
 Jh
 Js
 IE
-IF
+fy
 JI
 JP
 JZ
@@ -61990,12 +61982,12 @@ HW
 Id
 Il
 It
+fy
 IG
 IG
 IG
 IG
-IG
-IG
+fy
 It
 JI
 JR
@@ -63020,8 +63012,8 @@ Il
 It
 IH
 IH
-Jj
-Jq
+fR
+fR
 IH
 IH
 It
@@ -64046,12 +64038,12 @@ HW
 Id
 Il
 It
+fy
 II
 II
 II
 II
-II
-II
+fy
 It
 JI
 JR
@@ -64816,14 +64808,14 @@ GM
 HW
 HW
 Il
-IF
+fy
 IJ
 IY
 Jk
 Jk
 Jt
 IJ
-IF
+fy
 JI
 JP
 Kc
