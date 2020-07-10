@@ -38,7 +38,6 @@
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
-
 	if(NOBLOOD in dna.species.species_traits)
 		//bleed_rate = 0 //skyrat edit
 		return
@@ -110,6 +109,8 @@
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/proc/bleed(amt)
+	if(!amt)
+		return
 	if(blood_volume)
 		blood_volume = max(blood_volume - amt, 0)
 		if(isturf(src.loc)) //Blood loss still happens in locker, floor stays clean
@@ -119,6 +120,8 @@
 				add_splatter_floor(src.loc, 1)
 
 /mob/living/carbon/human/bleed(amt)
+	if(!amt)
+		return
 	amt *= physiology.bleed_mod
 	//skyrat edit - hemophilia quirk
 	if(HAS_TRAIT(src, TRAIT_HEMOPHILIA))
