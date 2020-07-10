@@ -29,7 +29,7 @@
 	update_disabled()
 	return update_bodypart_damage_state() 
 
-//Update_limb changes
+//Update_limb() changes because synths
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
 	var/mob/living/carbon/C
 	if(source)
