@@ -113,7 +113,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/Initialize() //skyrat edit - every watcher has a chance to be a shiny
 	. = ..()
-	if(prob(10)) //skyrat edit
+	if(prob(5)) //skyrat edit
 		if(prob(50)) //skyrat edit
 			new /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing(loc)
 		else
