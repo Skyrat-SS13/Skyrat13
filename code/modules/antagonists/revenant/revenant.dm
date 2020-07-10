@@ -107,7 +107,12 @@
 		mind.add_antag_datum(/datum/antagonist/revenant)
 
 //Life, Stat, Hud Updates, and Say
+<<<<<<< HEAD
 /mob/living/simple_animal/revenant/Life()
+=======
+/mob/living/simple_animal/revenant/Life(seconds, times_fired)
+	. = ..()
+>>>>>>> 6fb729d69c... Merge pull request #12718 from Citadel-Station-13/silicons-patch-17
 	if(stasis)
 		return
 	if(revealed && essence <= 0)
