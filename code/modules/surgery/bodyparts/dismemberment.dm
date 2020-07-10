@@ -434,9 +434,9 @@
 		BP.attach_limb(C, special, ignore_parent_restriction)
 	var/obj/item/bodypart/parent = C.get_bodypart(parent_bodyzone)
 	if(parent)
-		for(var/datum/wound/slash/loss/L in parent)
-			if(L.fake_body_zone == body_zone)
-				L.remove_wound()
+		for(var/datum/wound/woundie in parent)
+			if((woundie.fake_body_zone == body_zone) && (woundie.severity == WOUND_SEVERITY_LOSS))
+				woundie.remove_wound()
 	//
 	for(var/obj/item/organ/O in contents)
 		O.Insert(C)
