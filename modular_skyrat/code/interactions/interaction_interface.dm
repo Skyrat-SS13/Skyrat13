@@ -35,17 +35,18 @@
 	if(stat != CONSCIOUS)
 		to_chat(usr, "<span class='warning'>You cannot toggle your gender while unconcious!</span>")
 		return
-	var/choice = alert(src, "Select Gender.", "", "Male", "Female", "Neither")
+		
+	var/choice = alert(src, "Select Gender.", "Gender", "Both", "Male", "Female")
 	switch(choice)
+		if("Both")
+			src.has_penis = TRUE
+			src.has_vagina = TRUE
 		if("Male")
 			src.has_penis = TRUE
 			src.has_vagina = FALSE
 		if("Female")
 			src.has_penis = FALSE
 			src.has_vagina = TRUE
-		if("Neither")
-			src.has_penis = FALSE
-			src.has_vagina = FALSE
 
 /mob/living/try_interaction(mob/living/partner)
 	var/dat
