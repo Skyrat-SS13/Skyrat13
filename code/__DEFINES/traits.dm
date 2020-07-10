@@ -203,6 +203,11 @@
 #define TRAIT_HARD_SOLES		"hard_soles"
 #define TRAIT_HEMOPHILIA		"hemophilia"
 #define TRAIT_ASTHMATIC			"asthmatic"
+#define TRAIT_SYNTH				"synthetic"	//robotic boy
+#define TRAIT_TOXIMMUNE			"toxin_immune"
+#define TRAIT_CLONEIMMUNE		"clone_immune" //This is for clone damage
+#define TRAIT_DNC		"cant_clone"
+#define TRAIT_DNR		"cant_revive" //You just can't be revived without supernatural means
 //
 
 // mobility flag traits

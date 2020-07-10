@@ -159,6 +159,10 @@
 		if(radio)
 			radio.talk_into("Insufficient amount of biomass to initiate cloning procedure.")
 		return FALSE
+	if((/datum/quirk/dnc in quirks) || (/datum/quirk/dnr in quirks))
+		if(radio)
+			radio.talk_into("[clonename] cannot be cloned due to a [/datum/quirk/dnc in quirks? "DNC" : "DNR"] contract.")
+		return FALSE
 	if(panel_open)
 		return FALSE
 	if(mess || attempting)

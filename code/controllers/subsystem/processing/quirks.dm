@@ -24,13 +24,13 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 /datum/controller/subsystem/processing/quirks/Initialize(timeofday)
 	if(!quirks.len)
 		SetupQuirks()
-		quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic"),list("Ageusia","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Alcohol Intolerance"),list("Alcohol Intolerance","Drunken Resilience"),list("Speech impediment (r as l)","Speech impediment (l as w)","Speech impediment (r as w)", "Speech impediment (r and l as w)")) // Skyrat edit
+		quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic"),list("Ageusia","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Alcohol Intolerance"),list("Alcohol Intolerance","Drunken Resilience"),list("Speech impediment (r as l)","Speech impediment (l as w)","Speech impediment (r as w)", "Speech impediment (r and l as w)"), list("Do Not Clone", "Do Not Revive")) // Skyrat edit
 	//skyrat edit
 	//this is awful but it makes my life easier.
 	if(!all_bloodtypes.len)
 		for(var/datum/species/S in subtypesof(/datum/species))
 			all_bloodtypes |= S.exotic_bloodtype
-	//this is awful, but byond doesn't let me use bodypart types
+	//this is awful, but byond doesn't let me use bodypart typepaths
 	//for the scar configuration in the setup.
 	if(!associated_bodyparts.len)
 		for(var/i in SSPARTS)

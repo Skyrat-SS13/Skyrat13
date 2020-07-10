@@ -194,9 +194,28 @@
 				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 5 SECONDS)
 				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 10 SECONDS)
 
+//scars
 /datum/quirk/longtimer
 	name = "Longtimer"
 	desc = "You've been around for a long time and seen more than your fair share of action, suffering some pretty nasty scars along the way. For whatever reason, you've declined to get them removed or augmented."
 	value = 0
 	gain_text = "<span class='notice'>Your body has seen better days.</span>"
 	lose_text = "<span class='notice'>Your sins may wash away, but those scars are here to stay...</span>"
+
+//do not clone
+/datum/quirk/dnc
+	name = "Do Not Clone"
+	desc = "For whatever reason, you have a signed a contract with NT and SolGov authorities that prevents you from being cloned in any way. You can still be revived in other ways, <b>but medical doctors are not always required to revive you.</b>"
+	value = 0
+	gain_text = "<span class='notice'>Your feel your soul bounding itself to your body.</span>"
+	lose_text = "<span class='notice'>You can feel your spirit detach from your body.</span>"
+	mob_trait = TRAIT_DNC
+
+//do not revive
+/datum/quirk/dnr
+	name = "Do Not Revive"
+	desc = "For whatever reason, you have a signed a contract with NT and SolGov authorities that prevents you from being revived in any way."
+	value = 0
+	gain_text = "<span class='notice'>Your spirit is too scarred to accept revival.</span>"
+	lose_text = "<span class='notice'>You can feel your soul healing again.</span>"
+	mob_trait = TRAIT_DNR

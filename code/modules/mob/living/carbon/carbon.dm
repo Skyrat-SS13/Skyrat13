@@ -970,6 +970,8 @@
 	. = ..()
 	if(!getorgan(/obj/item/organ/brain) && (!mind || !mind.has_antag_datum(/datum/antagonist/changeling)))
 		return 0
+	if(HAS_TRAIT(src, TRAIT_DNR))
+		return 0
 
 /mob/living/carbon/harvest(mob/living/user)
 	if(QDELETED(src))
