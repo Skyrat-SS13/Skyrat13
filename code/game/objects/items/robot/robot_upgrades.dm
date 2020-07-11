@@ -567,13 +567,13 @@
 		R.resize = 2
 		R.hasExpanded = TRUE
 		R.update_transform()
-*/
+
 /obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
 		R.resize = 0.5
 		R.hasExpanded = FALSE
-		R.update_transform()
+		R.update_transform()*/
 
 /obj/item/borg/upgrade/rped
 	name = "engineering cyborg BSRPED"
