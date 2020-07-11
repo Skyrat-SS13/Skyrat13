@@ -157,10 +157,6 @@
 	secret_type = /obj/effect/spawner/lootdrop/prison_loot_toilet
 
 /obj/structure/toilet/greyscale
-<<<<<<< HEAD
-
-=======
->>>>>>> 26fee48cec... Merge pull request #12645 from Ghommie/Ghommie-cit825
 	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	buildstacktype = null
 
@@ -725,10 +721,7 @@
 	qdel(src)
 
 /obj/structure/sink/greyscale
-<<<<<<< HEAD
-=======
 	icon_state = "sink_greyscale"
->>>>>>> 26fee48cec... Merge pull request #12645 from Ghommie/Ghommie-cit825
 	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	buildstacktype = null
 
