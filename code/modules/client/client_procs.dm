@@ -78,7 +78,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && LAZYLEN(href_list) == 2))
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 
-<<<<<<< HEAD
 	// Skyrat change START
 	// Show tickets
 	if(href_list["my_ahelp_tickets"])
@@ -93,7 +92,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			if("player_ticket")
 				AH.PlayerTicketPanel()
 	// Skyrat change END
-=======
 	//byond bug ID:2256651
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
 		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
@@ -114,7 +112,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if(keycode)
 			keyUp(keycode)
 		return
->>>>>>> e31ce2edcf... Merge pull request #12414 from LetterN/asset-cache-thing
 
 	// Admin PM
 	if(href_list["priv_msg"])
