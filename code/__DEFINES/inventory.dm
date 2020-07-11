@@ -27,6 +27,7 @@
 #define ITEM_SLOT_UNDERWEAR		(1<<17)
 #define ITEM_SLOT_SOCKS			(1<<18)
 #define ITEM_SLOT_SHIRT			(1<<19)
+#define ITEM_SLOT_WRISTS		(1<<20)
 //
 
 //SLOTS
@@ -56,10 +57,11 @@
 #define	SLOT_W_SOCKS		22
 #define	SLOT_W_SHIRT		23
 #define SLOT_EARS_RIGHT		24
+#define SLOT_WRISTS			25
 //
 
 
-#define SLOTS_AMT			24 // Keep this up to date!
+#define SLOTS_AMT			25 // Keep this up to date!
 
 //I hate that this has to exist
 /proc/slotdefine2slotbit(slotdefine) //Keep this up to date with the value of SLOT BITMASKS and SLOTS (the two define sections above)
@@ -85,6 +87,10 @@
 			. = ITEM_SLOT_EYES
 		if(SLOT_GLOVES)
 			. = ITEM_SLOT_GLOVES
+		//skyrat edit
+		if(SLOT_WRISTS)
+			. = ITEM_SLOT_WRISTS
+		//
 		if(SLOT_HEAD)
 			. = ITEM_SLOT_HEAD
 		if(SLOT_SHOES)
@@ -128,6 +134,7 @@
 #define HIDEACCESSORY	(1<<13) //hides the jumpsuit accessory.
 //skyrat edit
 #define HIDEUNDERWEAR	(1<<14) //hides underwear, socks and shirt
+#define HIDEWRISTS		(1<<15) //hides wrists
 //
 
 //bitflags for clothing coverage - also used for limbs

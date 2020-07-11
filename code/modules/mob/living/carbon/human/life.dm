@@ -187,6 +187,9 @@
 	if(w_shirt)
 		if(w_shirt.max_heat_protection_temperature && w_shirt.max_heat_protection_temperature >= temperature)
 			thermal_protection_flags |= w_shirt.heat_protection
+	if(wrists)
+		if(wrists.max_heat_protection_temperature && wrists.max_heat_protection_temperature >= temperature)
+			thermal_protection_flags |= wrists.heat_protection
 	//
 	if(shoes)
 		if(shoes.max_heat_protection_temperature && shoes.max_heat_protection_temperature >= temperature)

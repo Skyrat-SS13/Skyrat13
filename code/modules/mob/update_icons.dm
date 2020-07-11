@@ -43,6 +43,9 @@
 
 /mob/proc/update_inv_w_shirt()
 	return
+
+/mob/proc/update_inv_wrists()
+	return
 //
 
 /mob/proc/update_inv_belt()

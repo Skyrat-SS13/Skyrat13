@@ -52,6 +52,7 @@
 	var/obj/item/w_socks = null
 	var/obj/item/w_shirt = null
 	var/obj/item/ears_extra = null
+	var/obj/item/wrists = null
 	//
 
 	var/special_voice = "" // For changing our voice. Used by a symptom.

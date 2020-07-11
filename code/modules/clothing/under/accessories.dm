@@ -17,7 +17,7 @@
 			return FALSE
 		U.TakeComponent(storage)
 		detached_pockets = storage
-	U.attached_accessory = src
+	U.attached_accessories |= src
 	forceMove(U)
 	layer = FLOAT_LAYER
 	plane = FLOAT_PLANE
@@ -25,6 +25,8 @@
 		transform *= 0.5	//halve the size so it doesn't overpower the under
 		pixel_x += 8
 		pixel_y -= 8
+		if(length(U.attached_accessories) > 1)
+			pixel_y += 8 * (length(U.attached_accessories) - 1)
 	U.add_overlay(src)
 
 	if (islist(U.armor) || isnull(U.armor)) 										// This proc can run before /obj/Initialize has run for U and src,
@@ -56,7 +58,7 @@
 	layer = initial(layer)
 	plane = initial(plane)
 	U.cut_overlays()
-	U.attached_accessory = null
+	U.attached_accessories -= src
 	U.accessory_overlay = null
 
 /obj/item/clothing/accessory/proc/on_uniform_equip(obj/item/clothing/under/U, user)

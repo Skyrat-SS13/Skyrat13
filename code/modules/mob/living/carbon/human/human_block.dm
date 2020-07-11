@@ -11,6 +11,8 @@
 		. |= w_socks
 	if(w_shirt)
 		. |= w_shirt
+	if(wrists)
+		. |= wrists
 	//
 	if(wear_neck)
 		. |= wear_neck

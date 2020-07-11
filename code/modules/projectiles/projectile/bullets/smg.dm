@@ -50,6 +50,10 @@
 					SEND_SIGNAL(cleaned_human.w_shirt, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 					cleaned_human.w_shirt.clean_blood()
 					cleaned_human.update_inv_w_shirt()
+				else if(cleaned_human.wrists)
+					SEND_SIGNAL(cleaned_human.wrists, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
+					cleaned_human.wrists.clean_blood()
+					cleaned_human.update_inv_wrists()
 				//
 				if(cleaned_human.shoes)
 					SEND_SIGNAL(cleaned_human.shoes, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)

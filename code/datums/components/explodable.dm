@@ -77,10 +77,7 @@
 		equipment_items += list(C.head, C.wear_mask, C.back, C.gloves, C.shoes, C.glasses, C.ears)
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
-			equipment_items += list(H.wear_suit, H.w_uniform, H.belt, H.s_store, H.wear_id)
-			//skyrat edit
-			equipment_items += list(H.w_socks, H.w_underwear, H.w_shirt, H.ears_extra)
-			//
+			equipment_items += list(H.wear_suit, H.w_uniform, H.belt, H.s_store, H.wear_id, H.w_socks, H.w_underwear, H.w_shirt, H.ears_extra) //skyrat edit
 
 	for(var/bp in equipment_items)
 		if(!bp)

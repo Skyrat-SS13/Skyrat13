@@ -55,6 +55,10 @@
 		. += "[t_He] [t_is] wearing [w_socks.get_examine_string(user)]."
 	if(w_shirt && !(SLOT_W_UNDERWEAR in obscured) && (!w_uniform || w_uniform.hide_underwear_examine))
 		. += "[t_He] [t_is] wearing [w_shirt.get_examine_string(user)]."
+	
+	//wrist slot because you're epic
+	if(wrists && !(SLOT_WRISTS in obscured))
+		. += "[t_He] [t_is] wearing [wrists.get_examine_string(user)]."
 	//End of skyrat changes
 
 	//uniform
@@ -63,8 +67,21 @@
 		var/accessory_msg
 		if(istype(w_uniform, /obj/item/clothing/under))
 			var/obj/item/clothing/under/U = w_uniform
-			if(U.attached_accessory && !(U.attached_accessory.flags_inv & HIDEACCESSORY) && !(U.flags_inv & HIDEACCESSORY))
-				accessory_msg += " with [icon2html(U.attached_accessory, user)] \a [U.attached_accessory]"
+			if(length(U.attached_accessories) && !(U.flags_inv & HIDEACCESSORY))
+				var/list/weehoo = list()
+				var/dumb_icons = ""
+				for(var/obj/item/clothing/accessory/attached_accessory in U.attached_accessories)
+					if(!(attached_accessory.flags_inv & HIDEACCESSORY))
+						weehoo += "\a [attached_accessory]"
+						dumb_icons = "[dumb_icons][icon2html(attached_accessory, user)]"
+				if(length(weehoo))
+					accessory_msg += " with [dumb_icons]"
+					if(length(U.attached_accessories) >= 2)
+						accessory_msg += jointext(weehoo, ", ", 1, length(weehoo) - 1)
+						accessory_msg += " and [weehoo[length(weehoo)]]"
+					else
+						accessory_msg += weehoo[1]
+
 
 		. += "[t_He] [t_is] wearing [w_uniform.get_examine_string(user)][accessory_msg]."
 	//head
@@ -128,7 +145,12 @@
 
 	//ears
 	if(ears && !(SLOT_EARS_LEFT in obscured)) //skyrat edit
-		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."
+		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] left ear."
+	
+	//skyrat edit - extra ear slot haha
+	if(ears && !(SLOT_EARS_RIGHT in obscured))
+		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] right ear."
+	//
 
 	//ID
 	if(wear_id)

@@ -335,15 +335,16 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 /// Default if the above isn't set in the list.
 #define DEFAULT_REDIRECT_METHOD_PROJECTILE REDIRECT_METHOD_DEFLECT
 
+//skyrat edit
 /// Block priorities
 #define BLOCK_PRIORITY_HELD_ITEM				100
-#define BLOCK_PRIORITY_WEAR_SUIT				75
-#define BLOCK_PRIORITY_CLOTHING					50
-#define BLOCK_PRIORITY_UNIFORM					25
-//skyrat edit
-#define BLOCK_PRIORITY_SHIRT					20
-#define BLOCK_PRIORITY_SOCKS					15
-#define	BLOCK_PRIORITY_UNDERWEAR				10
+#define	BLOCK_PRIORITY_WRISTS					95
+#define BLOCK_PRIORITY_WEAR_SUIT				90
+#define BLOCK_PRIORITY_CLOTHING					85
+#define BLOCK_PRIORITY_UNIFORM					80
+#define BLOCK_PRIORITY_SHIRT					75
+#define BLOCK_PRIORITY_SOCKS					70
+#define	BLOCK_PRIORITY_UNDERWEAR				65
 //
 
 #define BLOCK_PRIORITY_DEFAULT BLOCK_PRIORITY_HELD_ITEM

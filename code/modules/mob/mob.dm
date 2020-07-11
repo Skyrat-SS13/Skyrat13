@@ -293,7 +293,7 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 			SLOT_W_UNIFORM,\
 			SLOT_WEAR_SUIT,\
 			SLOT_WEAR_MASK, SLOT_HEAD, SLOT_NECK,\
-			SLOT_SHOES, SLOT_GLOVES,\
+			SLOT_SHOES, SLOT_WRISTS, SLOT_GLOVES,\
 			SLOT_EARS_LEFT, SLOT_EARS_RIGHT,\
 			SLOT_GLASSES,\
 			SLOT_BELT, SLOT_S_STORE,\

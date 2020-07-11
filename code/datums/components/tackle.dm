@@ -254,7 +254,7 @@
 		if(isnull(T.wear_suit) && isnull(T.w_uniform)) // who honestly puts all of their effort into tackling a naked guy?
 			defense_mod += 2
 			//skyrat edit
-			if(isnull(T.w_underwear) || isnull(T.w_socks) || isnull(T.w_shirt))
+			if(isnull(T.w_underwear) && isnull(T.w_socks) && isnull(T.w_shirt))
 				defense_mod += 1
 			//
 		if(suit_slot && (istype(suit_slot,/obj/item/clothing/suit/space/hardsuit)))
@@ -263,12 +263,13 @@
 			defense_mod += 5
 		if(T.is_holding_item_of_type(/obj/item/shield))
 			defense_mod += 2
-
+		/* No. No mechanical advantages for liggers.
 		if(islizard(T))
 			if(!T.getorganslot(ORGAN_SLOT_TAIL)) // lizards without tails are off-balance
 				defense_mod -= 1
 			else if(T.dna.species.is_wagging_tail()) // lizard tail wagging is robust and can swat away assailants!
 				defense_mod += 1
+		*/
 
 	// OF-FENSE
 	var/mob/living/carbon/sacker = parent
@@ -352,13 +353,17 @@
 	switch(oopsie)
 		if(99 to INFINITY)
 			// can you imagine standing around minding your own business when all of the sudden some guy fucking launches himself into a wall at full speed and irreparably paralyzes himself?
-			user.visible_message("<span class='danger'>[user] slams face-first into [hit] at an awkward angle, severing [user.p_their()] spinal column with a sickening crack! Holy shit!</span>", "<span class='userdanger'>You slam face-first into [hit] at an awkward angle, severing your spinal column with a sickening crack! Holy shit!</span>")
+			user.visible_message("<span class='danger'>[user] slams face-first into [hit] at an awkward angle!</span>") //skyrat edit - do we seriously need to turn people paraplegic?
 			user.adjustStaminaLoss(30)
 			user.adjustBruteLoss(30)
 			playsound(user, 'sound/effects/blobattack.ogg', 60, TRUE)
 			playsound(user, 'sound/effects/splat.ogg', 70, TRUE)
 			user.emote("scream")
-			user.gain_trauma(/datum/brain_trauma/severe/paralysis/paraplegic) // oopsie indeed!
+			//user.gain_trauma(/datum/brain_trauma/severe/paralysis/paraplegic) // oopsie indeed! //skyrat edit - no fucking oopsie
+			//skyrat edit - this will be replaced with bone wounds in bobmed
+			var/obj/item/organ/brain/allstar = user.getorganslot(ORGAN_SLOT_BRAIN)
+			allstar.applyOrganDamage(allstar.maxHealth * 0.8, allstar.maxHealth)
+			//
 			shake_camera(user, 7, 7)
 			user.overlay_fullscreen("flash", /obj/screen/fullscreen/flash)
 			user.clear_fullscreen("flash", 4.5)

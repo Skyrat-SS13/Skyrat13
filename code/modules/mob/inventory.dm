@@ -392,6 +392,8 @@
 		items += w_socks
 	if(w_shirt)
 		items += w_shirt
+	if(wrists)
+		items += wrists
 	//
 	if(include_pockets)
 		if(l_store)

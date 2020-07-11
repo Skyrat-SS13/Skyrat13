@@ -82,6 +82,7 @@ There are several things that need to be remembered:
 		update_inv_w_socks()
 		update_inv_w_shirt()
 		update_inv_ears_extra()
+		update_inv_wrists()
 		//
 		update_inv_wear_id()
 		update_inv_gloves()
@@ -352,6 +353,39 @@ There are several things that need to be remembered:
 	overlays_standing[GLOVES_LAYER] = gloves_overlay
 	apply_overlay(GLOVES_LAYER)
 
+//skyrat edit
+/mob/living/carbon/human/update_inv_wrists()
+	remove_overlay(WRISTS_LAYER)
+
+	if(client && hud_used && hud_used.inv_slots[SLOT_WRISTS])
+		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_WRISTS]
+		inv.update_icon()
+
+	if(!wrists && bloody_hands)
+		var/mutable_appearance/bloody_overlay = mutable_appearance('icons/effects/blood.dmi', "bloodyhands", -WRISTS_LAYER, color = blood_DNA_to_color())
+		if(get_num_arms(FALSE) < 2)
+			if(has_left_hand(FALSE))
+				bloody_overlay.icon_state = "bloodyhands_left"
+			else if(has_right_hand(FALSE))
+				bloody_overlay.icon_state = "bloodyhands_right"
+
+		overlays_standing[WRISTS_LAYER] = bloody_overlay
+
+	var/mutable_appearance/wrists_overlay = overlays_standing[WRISTS_LAYER]
+	if(wrists)
+		wrists.screen_loc = ui_wrists
+		if(client && hud_used && hud_used.hud_shown)
+			if(hud_used.inventory_shown)
+				client.screen += wrists
+		update_observer_view(wrists,1)
+		overlays_standing[WRISTS_LAYER] = gloves.build_worn_icon(default_layer = WRISTS_LAYER, default_icon_file = 'modular_skyrat/icons/mob/clothing/wrists.dmi')	
+		wrists_overlay = overlays_standing[WRISTS_LAYER]
+		if(OFFSET_WRISTS in dna.species.offset_features)
+			wrists_overlay.pixel_x += dna.species.offset_features[OFFSET_WRISTS][1]
+			wrists_overlay.pixel_y += dna.species.offset_features[OFFSET_WRISTS][2]
+	overlays_standing[WRISTS_LAYER] = wrists_overlay
+	apply_overlay(WRISTS_LAYER)
+//
 
 /mob/living/carbon/human/update_inv_glasses()
 	remove_overlay(GLASSES_LAYER)

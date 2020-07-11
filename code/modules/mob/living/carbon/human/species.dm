@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		OFFSET_SHIRT = list(0,0),
 		OFFSET_ID = list(0,0),
 		OFFSET_GLOVES = list(0,0),
+		OFFSET_WRISTS = list(0,0),
 		OFFSET_GLASSES = list(0,0),
 		OFFSET_EARS = list(0,0),
 		OFFSET_SHOES = list(0,0),
@@ -1132,6 +1133,16 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			if(num_arms < 2)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//skyrat edit
+		if(SLOT_WRISTS)
+			if(H.wrists)
+				return FALSE
+			if( !(I.slot_flags & ITEM_SLOT_WRISTS) )
+				return FALSE
+			if(num_arms < 2)
+				return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		//
 		if(SLOT_SHOES)
 			if(H.shoes)
 				return FALSE
@@ -2257,9 +2268,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 		//ARMS & HANDS//
 		var/obj/item/clothing/arm_clothes = null
-		if(H.gloves)
-			arm_clothes = H.gloves
 		//skyrat edit
+		if(H.wrists)
+			arm_clothes = H.wrists
 		if(H.w_underwear && (H.w_underwear.body_parts_covered & ARMS))
 			arm_clothes = H.w_underwear
 		if(H.w_socks && (H.w_socks.body_parts_covered & ARMS))
@@ -2267,6 +2278,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(H.w_shirt && (H.w_shirt.body_parts_covered & ARMS))
 			arm_clothes = H.w_shirt
 		//
+		if(H.gloves)
+			arm_clothes = H.gloves
 		if(H.w_uniform && ((H.w_uniform.body_parts_covered & HANDS) || (H.w_uniform.body_parts_covered & ARMS)))
 			arm_clothes = H.w_uniform
 		if(H.wear_suit && ((H.wear_suit.body_parts_covered & HANDS) || (H.wear_suit.body_parts_covered & ARMS)))

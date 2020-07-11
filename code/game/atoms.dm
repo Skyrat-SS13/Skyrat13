@@ -524,6 +524,9 @@
 	else if(w_shirt)
 		w_shirt.add_blood_DNA(blood_dna, diseases)
 		update_inv_w_shirt()
+	else if(wrists)
+		wrists.add_blood_DNA(blood_dna, diseases)
+		update_inv_wrists()
 	//
 	if(gloves)
 		var/obj/item/clothing/gloves/G = gloves

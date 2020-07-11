@@ -362,9 +362,17 @@
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "right ear"
 	inv_box.icon = ui_style_modular(ui_style)
-	inv_box.icon_state = "ears"
+	inv_box.icon_state = "ears_extra"
 	inv_box.screen_loc = ui_ears_extra
 	inv_box.slot_id = SLOT_EARS_RIGHT //skyrat edit
+	extra_inventory += inv_box
+
+	inv_box = new /obj/screen/inventory()
+	inv_box.name = "wrists"
+	inv_box.icon = ui_style_modular(ui_style)
+	inv_box.icon_state = "wrists"
+	inv_box.screen_loc = ui_wrists
+	inv_box.slot_id = SLOT_WRISTS
 	extra_inventory += inv_box
 	//
 
@@ -531,11 +539,20 @@
 		if(H.w_shirt)
 			H.w_shirt.screen_loc = ui_shirt
 			screenmob.client.screen += H.w_shirt
+		if(H.wrists)
+			H.wrists.screen_loc = ui_wrists
+			screenmob.client.screen += H.wrists
 	else
-		if(H.ears_extra)		screenmob.client.screen -= H.ears_extra
-		if(H.w_underwear)		screenmob.client.screen -= H.w_underwear
-		if(H.w_socks)			screenmob.client.screen -= H.w_socks
-		if(H.w_shirt)			screenmob.client.screen -= H.w_shirt
+		if(H.ears_extra)
+			screenmob.client.screen -= H.ears_extra
+		if(H.w_underwear)
+			screenmob.client.screen -= H.w_underwear
+		if(H.w_socks)
+			screenmob.client.screen -= H.w_socks
+		if(H.w_shirt)
+			screenmob.client.screen -= H.w_shirt
+		if(H.wrists)
+			screenmob.client.screen -= H.wrists
 //
 
 

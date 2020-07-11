@@ -15,7 +15,8 @@
 	var/adjusted = NORMAL_STYLE
 	var/alt_covers_chest = FALSE // for adjusted/rolled-down jumpsuits, FALSE = exposes chest and arms, TRUE = exposes arms only
 	var/dummy_thick = FALSE // is able to hold accessories on its item
-	var/obj/item/clothing/accessory/attached_accessory
+	var/list/obj/item/clothing/accessory/attached_accessories = list()
+	var/max_accessories = 3
 	var/mutable_appearance/accessory_overlay
 
 /obj/item/clothing/under/worn_overlays(isinhands = FALSE, icon_file, used_state, style_flags = NONE)
@@ -61,14 +62,15 @@
 		if(!alt_covers_chest)
 			body_parts_covered |= CHEST
 
-	if(attached_accessory && slot != SLOT_HANDS && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		attached_accessory.on_uniform_equip(src, user)
-		if(attached_accessory.above_suit)
-			H.update_inv_wear_suit()
+	for(var/obj/item/clothing/accessory/attached_accessory in attached_accessories)
+		if(attached_accessory && slot != SLOT_HANDS && ishuman(user))
+			var/mob/living/carbon/human/H = user
+			attached_accessory.on_uniform_equip(src, user)
+			if(attached_accessory.above_suit)
+				H.update_inv_wear_suit()
 
 /obj/item/clothing/under/dropped(mob/user)
-	if(attached_accessory)
+	for(var/obj/item/clothing/accessory/attached_accessory in attached_accessories)
 		attached_accessory.on_uniform_dropped(src, user)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -81,9 +83,9 @@
 	. = FALSE
 	if(istype(I, /obj/item/clothing/accessory))
 		var/obj/item/clothing/accessory/A = I
-		if(attached_accessory)
+		if(length(attached_accessories) >= max_accessories)
 			if(user)
-				to_chat(user, "<span class='warning'>[src] already has an accessory.</span>")
+				to_chat(user, "<span class='warning'>[src] already has [length(attached_accessories)] accessories.</span>")
 			return
 		if(dummy_thick)
 			if(user)
@@ -101,9 +103,12 @@
 			if((flags_inv & HIDEACCESSORY) || (A.flags_inv & HIDEACCESSORY))
 				return TRUE
 
-			accessory_overlay = mutable_appearance('icons/mob/clothing/accessories.dmi', attached_accessory.icon_state)
-			accessory_overlay.alpha = attached_accessory.alpha
-			accessory_overlay.color = attached_accessory.color
+			accessory_overlay = mutable_appearance('icons/mob/clothing/accessories.dmi', "blank")
+			for(var/obj/item/clothing/accessory/attached_accessory in attached_accessories)
+				var/image/Y = image(attached_accessory.icon, src, attached_accessory.icon_state, ABOVE_HUD_LAYER, SOUTH, 0, 0)
+				Y.alpha = attached_accessory.alpha
+				Y.color = attached_accessory.color
+				accessory_overlay.add_overlay(Y)
 
 			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
@@ -118,9 +123,9 @@
 	if(!can_use(user))
 		return
 
-	if(attached_accessory)
-		var/obj/item/clothing/accessory/A = attached_accessory
-		attached_accessory.detach(src, user)
+	if(length(attached_accessories))
+		var/obj/item/clothing/accessory/A = attached_accessories[1]
+		A.detach(src, user)
 		if(user.put_in_hands(A))
 			to_chat(user, "<span class='notice'>You detach [A] from [src].</span>")
 		else
@@ -151,8 +156,9 @@
 				. += "Its vital tracker appears to be enabled."
 			if(SENSOR_COORDS)
 				. += "Its vital tracker and tracking beacon appear to be enabled."
-	if(attached_accessory)
-		. += "\A [attached_accessory] is attached to it."
+	if(length(attached_accessories))
+		for(var/obj/item/clothing/accessory/attached_accessory in attached_accessories)
+			. += "\A [attached_accessory] is attached to it."
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Adjust Suit Sensors"
@@ -229,7 +235,7 @@
 	. = ..()
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
-	if(attached_accessory)
+	if(length(attached_accessories))
 		remove_accessory(user)
 	else
 		rolldown()

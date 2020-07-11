@@ -28,6 +28,10 @@
 			return glasses
 		if(SLOT_GLOVES)
 			return gloves
+		//skyrat edit
+		if(SLOT_WRISTS)
+			return wrists
+		//
 		if(SLOT_HEAD)
 			return head
 		if(SLOT_SHOES)
@@ -63,6 +67,7 @@
 		legcuffed,
 		wear_suit,
 		gloves,
+		wrists,
 		shoes,
 		belt,
 		wear_id,
@@ -132,6 +137,11 @@
 		if(SLOT_GLOVES)
 			gloves = I
 			update_inv_gloves()
+		//skyrat edit
+		if(SLOT_WRISTS)
+			wrists = I
+			update_inv_wrists()
+		//
 		if(SLOT_SHOES)
 			shoes = I
 			update_inv_shoes()
@@ -228,6 +238,10 @@
 		w_shirt = null
 		if(!QDELETED(src))
 			update_inv_w_shirt()
+	else if(I == wrists)
+		wrists = null
+		if(!QDELETED(src))
+			update_inv_wrists()
 	//
 	else if(I == gloves)
 		gloves = null

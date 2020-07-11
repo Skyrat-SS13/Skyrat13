@@ -176,7 +176,12 @@
 		dat += "<tr><td><font color=grey><B>Gloves:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
 		dat += "<tr><td><B>Gloves:</B></td><td><A href='?src=[REF(src)];item=[SLOT_GLOVES]'>[(gloves && !(gloves.item_flags & ABSTRACT))		? gloves	: "<font color=grey>Empty</font>"]</A></td></tr>"
-
+	//skyrat edit
+	if(SLOT_WRISTS in obscured)
+		dat += "<tr><td><font color=grey><B>Shirt:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
+	else
+		dat += "<tr><td><B>Wrists:</B></td><td><A href='?src=[REF(src)];item=[SLOT_WRISTS]'>[(wrists && !(wrists.item_flags & ABSTRACT)) ? wrists : "<font color=grey>Empty</font>"]</A></td></tr>"
+	//
 	if(SLOT_W_UNIFORM in obscured)
 		dat += "<tr><td><font color=grey><B>Uniform:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
@@ -551,10 +556,22 @@
 	if(wear_suit)
 		if(wear_suit.flags_inv & HIDEGLOVES)
 			obscured |= SLOT_GLOVES
+		//skyrat edit
+		if(wear_suit.flags_inv & HIDEWRISTS)
+			obscured |= SLOT_WRISTS
+		//
 		if(wear_suit.flags_inv & HIDEJUMPSUIT)
 			obscured |= SLOT_W_UNIFORM
 		if(wear_suit.flags_inv & HIDESHOES)
 			obscured |= SLOT_SHOES
+	
+	//skyrat edit
+	if(w_uniform)
+		if(w_uniform.flags_inv & HIDEGLOVES)
+			obscured |= SLOT_GLOVES
+		if(w_uniform.flags_inv & HIDEWRISTS)
+			obscured |= SLOT_WRISTS
+	//
 
 	if(head)
 		if(head.flags_inv & HIDEMASK)
@@ -1275,3 +1292,16 @@
 
 /mob/living/carbon/human/species/roundstartslime
 	race = /datum/species/jelly/roundstartslime
+
+//skyrat species
+/mob/living/carbon/human/species/humanoid
+	race = /datum/species/human/humanoid
+
+/mob/living/carbon/human/species/dunmer
+	race = /datum/species/human/humanoid/dunmer
+
+/mob/living/carbon/human/species/vox
+	race = /datum/species/vox
+
+/mob/living/carbon/human/species/mothperson
+	race = /datum/species/insect/moth
