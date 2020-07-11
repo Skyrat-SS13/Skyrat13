@@ -141,14 +141,29 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/list/grind_results //A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
 	var/list/juice_results //A reagent list containing blah blah... but when JUICED in a grinder!
 
+	/* Our block parry data. Should be set in init, or something if you are using it.
+	 * This won't be accessed without ITEM_CAN_BLOCK or ITEM_CAN_PARRY so do not set it unless you have to to save memory.
+	 * If you decide it's a good idea to leave this unset while turning the flags on, you will runtime. Enjoy.
+	 * If this is set to a path, it'll run get_block_parry_data(path). YOU MUST RUN [get_block_parry_data(this)] INSTEAD OF DIRECTLY ACCESSING!
+	 */
+	var/datum/block_parry_data/block_parry_data
+
 	///Skills vars
 	//list of skill PATHS exercised when using this item. An associated bitfield can be set to indicate additional ways the skill is used by this specific item.
 	var/list/datum/skill/used_skills
 	var/skill_difficulty = THRESHOLD_UNTRAINED //how difficult it's to use this item in general.
 	var/skill_gain = DEF_SKILL_GAIN //base skill value gain from using this item.
-
 	var/canMouseDown = FALSE
 
+	//SKYRAT CHANGE - self equip delays
+	//Time in ticks needed to equip something on yourself. Uses the equip_delay_self var.
+	//Set use_standard_equip_delay to false if you want to set a custom delay by changing equip_delay_self.
+	var/use_standard_equip_delay = FALSE //Basically sets the self equip delay on initialize to self_equip_mod * equip_delay_other
+	var/self_equip_mod = 0.65
+	var/strip_self_delay = 0
+	var/use_standard_strip_self_delay = TRUE //Basically makes the unequip delay take as long as strip_self_delay_mod * equip_delay on initialize
+	var/strip_self_delay_mod = 0.85
+	//
 
 /obj/item/Initialize()
 
@@ -181,6 +196,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	if(sharpness) //give sharp objects butchering functionality, for consistency
 		AddComponent(/datum/component/butchering, 80 * toolspeed)
+	
+	//skyrat change
+	if(use_standard_equip_delay && !equip_delay_self)
+		equip_delay_self = self_equip_mod * equip_delay_other
+	if(use_standard_strip_self_delay && !strip_self_delay && equip_delay_self)
+		strip_self_delay = strip_self_delay_mod * equip_delay_self
+	//
 
 /obj/item/Destroy()
 	item_flags &= ~DROPDEL	//prevent reqdels
@@ -240,9 +262,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			. += "[src] is made of cold-resistant materials."
 		if(resistance_flags & FIRE_PROOF)
 			. += "[src] is made of fire-retardant materials."
-
-
-
+	
+	if(item_flags & (ITEM_CAN_BLOCK | ITEM_CAN_PARRY))
+		var/datum/block_parry_data/data = return_block_parry_datum(block_parry_data)
+		. += "[src] has the capacity to be used to block and/or parry. <a href='?src=[REF(data)];name=[name];block=[item_flags & ITEM_CAN_BLOCK];parry=[item_flags & ITEM_CAN_PARRY];render=1'>\[Show Stats\]</a>"
 
 	if(!user.research_scanner)
 		return
@@ -345,9 +368,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(throwing)
 		throwing.finalize(FALSE)
 	if(loc == user)
-		if(!allow_attack_hand_drop(user) || !user.temporarilyRemoveItemFromInventory(src))
+		if(!allow_attack_hand_drop(user) || !user.temporarilyRemoveItemFromInventory(I = src, ignore_strip_self = FALSE))
 			return
-
 	pickup(user)
 	add_fingerprint(user)
 	if(!user.put_in_active_hand(src, FALSE, FALSE))
@@ -404,6 +426,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	return ITALICS | REDUCE_RANGE
 
 /obj/item/proc/dropped(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.Remove(user)
@@ -416,6 +439,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
 	item_flags |= IN_INVENTORY
 

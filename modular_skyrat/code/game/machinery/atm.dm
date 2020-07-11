@@ -15,11 +15,13 @@
 			var/passchoice = input(user, "Please select a password:", "Password Selection") as null|text
 			if(!passchoice)
 				invalid_number()
+				return
 			CID.registered_account.account_password = passchoice
 			return
 		var/enteredpass = input(user, "Please enter your password:", "Password Entry") as null|text
 		if(!enteredpass)
 			invalid_number()
+			return
 		if(enteredpass != CID.registered_account.account_password)
 			playsound(loc, 'sound/machines/beeping_alarm.ogg', 50, 1, -1)
 			visible_message("<span class='warning'>Incorrect Password.</span>", null, null, 5, null, null, null, null, TRUE)
@@ -30,8 +32,10 @@
 				var/withdrawfund = input(user, "Please select the amount to withdraw:", "Withdraw Money") as null|num 
 				if(!withdrawfund)
 					invalid_number()
+					return
 				if(withdrawfund <= 0 || withdrawfund > CID.registered_account.account_balance)
 					invalid_number()
+					return
 				CID.registered_account.account_balance -= withdrawfund
 				var/obj/item/holochip/HC = new /obj/item/holochip(get_turf(src))
 				user.put_in_inactive_hand(HC)
@@ -41,20 +45,24 @@
 				var/passchoicenew = input(user, "Please select a password:", "Password Selection") as null|text
 				if(!passchoicenew)
 					invalid_number()
+					return
 				CID.registered_account.account_password = passchoicenew
 				return
 			if("direct deposit")
 				var/selectaccount = input(user, "Please enter an account number:", "Account Selection") as null|num
 				if(!selectaccount)
 					not_selected_account()
+					return
 				for(var/datum/bank_account/BA in SSeconomy.bank_accounts)
 					if(selectaccount != BA.account_id)
 						continue
 					var/ddeposit = input(user, "Please select the amount to withdraw:", "Withdraw Money") as null|num 
 					if(!ddeposit)
 						invalid_number()
+						return
 					if(ddeposit <= 0 || ddeposit > CID.registered_account.account_balance)
 						invalid_number()
+						return
 					CID.registered_account.account_balance -= ddeposit
 					totalmoney = ddeposit
 					emagcheck()
@@ -72,6 +80,7 @@
 			return
 		if(!selectaccount)
 			not_selected_account()
+			return
 		for(var/datum/bank_account/BA in SSeconomy.bank_accounts)
 			if(selectaccount != BA.account_id)
 				continue
@@ -92,6 +101,7 @@
 			return
 		if(!selectaccount)
 			not_selected_account()
+			return
 		for(var/datum/bank_account/BA in SSeconomy.bank_accounts)
 			if(selectaccount != BA.account_id)
 				continue
@@ -112,6 +122,7 @@
 			return
 		if(!selectaccount)
 			not_selected_account()
+			return
 		for(var/datum/bank_account/BA in SSeconomy.bank_accounts)
 			if(selectaccount != BA.account_id)
 				continue
@@ -126,6 +137,7 @@
 		var/selectaccount = input(user, "Please enter an account number:", "Account Selection") as null|num
 		if(!selectaccount)
 			not_selected_account()
+			return
 		for(var/datum/bank_account/BA in SSeconomy.bank_accounts)
 			if(selectaccount != BA.account_id)
 				continue
@@ -146,7 +158,6 @@
 /obj/machinery/atm/proc/invalid_number()
 	playsound(loc, 'sound/machines/synth_no.ogg', 50, 1, -1)
 	visible_message("<span class='warning'>Invalid number entered.</span>", null, null, 5, null, null, null, null, TRUE)
-	return
 
 /obj/machinery/atm/proc/successful_transaction()
 	playsound(loc, 'sound/machines/synth_yes.ogg', 50, 1, -1)

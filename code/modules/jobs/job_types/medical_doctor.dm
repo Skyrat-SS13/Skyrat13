@@ -25,7 +25,6 @@
 	name = "Medical Doctor"
 	jobtype = /datum/job/doctor
 
-	id = /obj/item/card/id/department/med //Skyrat change
 	belt = /obj/item/pda/medical
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/medical/doctor

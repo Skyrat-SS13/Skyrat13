@@ -33,10 +33,10 @@
 	resistance = 3
 	stage_speed = -2
 	transmittable = -2
-	level = 6
+	level = 7
 
 /datum/symptom/heal/plasma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = actual_power
+	var/heal_amt = 2 * actual_power
 
 	if(M.fire_stacks > 0)	//New hippie add, otherwise you die from plasma fires even if you're doing the suck on the plasma
 		actual_power = actual_power + (M.fire_stacks*0.75)
@@ -74,7 +74,7 @@
 	resistance = -2
 	stage_speed = -2
 	transmittable = -2
-	level = 4
+	level = 5
 	threshold_desc = list(
 		"Stage Speed 6" = "Doubles healing speed.",
 	)
@@ -83,9 +83,9 @@
 	if(A.properties["stage_rate"] >= 6) //stronger healing
 		power = 2
 
-	 //100% chance to activate for slow but consistent healing
+//100% chance to activate for slow but consistent healing
 /datum/symptom/heal/toxin/Heal(mob/living/M, datum/disease/advance/A)
-	var/heal_amt = 0.33 * power
+	var/heal_amt = 0.6 * power
 	M.adjustToxLoss(-heal_amt)
 	return TRUE
 
@@ -96,11 +96,11 @@
 	resistance = -2
 	stage_speed = -2
 	transmittable = -2
-	level = 6
-	threshold_desc = ""
+	level = 7
+	threshold_desc = list()
 
 /datum/symptom/heal/supertoxin/Heal(mob/living/M, datum/disease/advance/A)
-	var/heal_amt = 0.7
+	var/heal_amt = 1.25 * power
 	M.adjustToxLoss(-heal_amt)
 	return TRUE
 
@@ -111,7 +111,7 @@
 	resistance = -2
 	stage_speed = -2
 	transmittable = -2
-	level = 4
+	level = 6
 	threshold_desc = list(
 	"Stage Speed 6" = "Doubles healing speed.",
 	)
@@ -121,7 +121,7 @@
 		power = 2
 
 /datum/symptom/heal/brute/Heal(mob/living/carbon/M, datum/disease/advance/A)
-	var/heal_amt = 0.33 * power
+	var/heal_amt = 0.6 * power
 	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
 	if(!parts.len)
@@ -140,7 +140,7 @@
 	resistance = 0
 	stage_speed = -2
 	transmittable = -2
-	level = 6
+	level = 8
 	threshold_desc = list(
 	"Stage Speed 6" = "Doubles healing speed.",
 	)
@@ -150,7 +150,7 @@
 		power = 2
 
 /datum/symptom/heal/superbrute/Heal(mob/living/carbon/M, datum/disease/advance/A)
-	var/heal_amt = 0.7 * power
+	var/heal_amt = 1.25 * power
 
 	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
 
@@ -184,7 +184,7 @@
 		power = 2
 
 /datum/symptom/heal/burn/Heal(mob/living/carbon/M, datum/disease/advance/A)
-	var/heal_amt = 0.33 * power
+	var/heal_amt = 0.6 * power
 
 	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
@@ -204,12 +204,12 @@
 	resistance = 0
 	stage_speed = -2
 	transmittable = -2
-	level = 6
 	threshold_desc = list(
 	"Resistance 4" = "Doubles healing power.",
 	)
-	var/temp_rate = 1
 	power = 1
+	level = 8
+	var/temp_rate = 1
 
 /datum/symptom/heal/heatresistance/Heal(mob/living/carbon/M, datum/disease/advance/A)
 	var/heal_amt = 0
@@ -218,7 +218,7 @@
 	var/list/parts = M.get_damaged_bodyparts(TRUE,TRUE)
 
 	if(M.on_fire && M.fire_stacks > 0)
-		heal_amt = 1.5 * (M.fire_stacks*0.25) * power
+		heal_amt = 1.5 * (M.fire_stacks*0.50) * power
 	else
 		heal_amt = 0
 	if(M.bodytemperature > BODYTEMP_NORMAL)	//Shamelessly stolen from plasma fixation, whew lad
@@ -239,25 +239,25 @@
 	resistance = -1
 	stage_speed = 0
 	transmittable = -1
-	level = 5
+	level = 6
 	threshold_desc = list(
 	"Resistance 6" = "Additionally heals brain damage.",
 	)
 	var/healing_brain = FALSE
 
 /datum/symptom/heal/dna/Start(datum/disease/advance/A)
-	if(A.properties["resistance"] >= 6) //stronger healing
+	if(A.properties["resistance"] >= 6) //heals the brain and cures traumas
 		healing_brain = TRUE
 
 /datum/symptom/heal/dna/Heal(mob/living/carbon/M, datum/disease/advance/A)
-	var/amt_healed = 0.5
+	var/amt_healed = 1.2
 	if(healing_brain)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -(2 * amt_healed))
 		var/mob/living/carbon/C = M
-		if(prob(40))
-			C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
+		if(prob(30))
+			C.cure_all_traumas(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
 	//Non-power mutations, excluding race, so the virus does not force monkey -> human transformations.
-	var/list/unclean_mutations = GLOB.all_mutations[RACEMUT] - (GLOB.not_good_mutations|GLOB.bad_mutations)
+	var/list/unclean_mutations = (GLOB.not_good_mutations|GLOB.bad_mutations) - GLOB.all_mutations[RACEMUT]
 	M.dna.remove_mutation_group(unclean_mutations)
 	M.radiation = max(M.radiation - amt_healed, 0)
 	return TRUE
@@ -270,7 +270,7 @@
 	resistance = -1
 	stage_speed = 0
 	transmittable = 1
-	level = 7
+	level = 8
 	passive_message = "<span class='notice'>You really want a drink...</span>"
 	var/absorption_coeff = 1.5
 	threshold_desc = list(
@@ -298,14 +298,12 @@
 		for(var/datum/reagent/consumable/ethanol/E in boozereagents)
 			boozepowers += E.boozepwr
 		multiplier = max(boozepowers)/100
-		for(var/datum/reagent/consumable/ethanol/E in M.reagents)
-			M.reagents.remove_reagent(E, 1 * absorption_coeff)
-		. += (power * multiplier)/2
+		. += power * multiplier
 
 /datum/symptom/heal/alcohol/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
 	var/heal_amt = actual_power
 
-	var/list/parts = M.get_damaged_bodyparts(1,1) //more effective on burns
+	var/list/parts = M.get_damaged_bodyparts(1,1)
 
 	if(!parts.len)
 		return
@@ -316,5 +314,7 @@
 	for(var/obj/item/bodypart/L in parts)
 		if(L.heal_damage(heal_amt/parts.len * 0.5, heal_amt/parts.len))
 			M.update_damage_overlays()
+	
+	M.drunkenness = max(M.drunkenness - 2.5, 0) //1/4th as effective as antihol being processed
 
 	return 1

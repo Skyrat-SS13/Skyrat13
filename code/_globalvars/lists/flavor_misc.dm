@@ -237,3 +237,6 @@ GLOBAL_LIST_INIT(redacted_strings, list("\[REDACTED\]", "\[CLASSIFIED\]", "\[ARC
 // Skyrat changes. Please, consult with loredevs if you want add faction(s) to this list.
 GLOBAL_LIST_INIT(factions_list, list("NanoTrasen", "Sol Federation", "Free Trade Union", "Letheia"))
 // End of Skyrat changes
+
+GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/wisdoms.txt"))
+

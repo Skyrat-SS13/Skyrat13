@@ -9,6 +9,7 @@
 	var/lastmousedir
 	var/obj/screen/combattoggle/hud_icon
 	var/hud_loc
+	var/click_time = 0 //Skyrat change
 
 /datum/component/combat_mode/Initialize(hud_loc = ui_combat_toggle)
 	if(!isliving(parent))
@@ -88,9 +89,12 @@
 			to_chat(source, self_message)
 		if(playsound)
 			source.playsound_local(source, 'sound/misc/ui_toggle.ogg', 50, FALSE, pressure_affected = FALSE) //Sound from interbay!
-	RegisterSignal(source, COMSIG_MOB_CLIENT_MOUSEMOVE, .proc/onMouseMove)
+	//RegisterSignal(source, COMSIG_MOB_CLIENT_MOUSEMOVE, .proc/onMouseMove) //Skyrat change
 	RegisterSignal(source, COMSIG_MOVABLE_MOVED, .proc/on_move)
-	RegisterSignal(source, COMSIG_MOB_CLIENT_MOVE, .proc/on_client_move)
+	RegisterSignal(source, COMSIG_MOVABLE_BUMP, .proc/on_bump) //Skyrat change
+	RegisterSignal(source, COMSIG_MOB_CLIENT_MOUSEDOWN, .proc/onMouseUpDown) //Skyrat change
+	RegisterSignal(source, COMSIG_MOB_CLIENT_MOUSEUP, .proc/onMouseUpDown) //Skyrat change
+	//RegisterSignal(source, COMSIG_MOB_CLIENT_MOVE, .proc/on_client_move) //Skyrat change - no backwards delay
 	if(hud_icon)
 		hud_icon.combat_on = TRUE
 		hud_icon.update_icon()
@@ -115,28 +119,30 @@
 			to_chat(source, self_message)
 		if(playsound)
 			source.playsound_local(source, 'sound/misc/ui_toggleoff.ogg', 50, FALSE, pressure_affected = FALSE) //Slightly modified version of the toggleon sound!
-	UnregisterSignal(source, list(COMSIG_MOB_CLIENT_MOUSEMOVE, COMSIG_MOVABLE_MOVED, COMSIG_MOB_CLIENT_MOVE))
+	UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_CLIENT_MOUSEDOWN, COMSIG_MOB_CLIENT_MOUSEUP, COMSIG_MOVABLE_BUMP)) //Skyrat change
 	if(hud_icon)
 		hud_icon.combat_on = FALSE
 		hud_icon.update_icon()
+	source.stop_active_blocking()
+	source.end_parry_sequence()
 
 ///Changes the user direction to (try) keep match the pointer.
 /datum/component/combat_mode/proc/on_move(atom/movable/source, dir, atom/oldloc, forced)
 	var/mob/living/L = source
-	if(mode_flags & COMBAT_MODE_ACTIVE && L.client && lastmousedir && lastmousedir != dir)
+	if(mode_flags & COMBAT_MODE_ACTIVE && L.client && lastmousedir && world.time < click_time && L.dir != lastmousedir) //Skyrat change
 		L.setDir(lastmousedir, ismousemovement = TRUE)
 
-/// Added movement delay if moving backward.
+/*/// Added movement delay if moving backward. //Skyrat change - unusued
 /datum/component/combat_mode/proc/on_client_move(mob/source, client/client, direction, n, oldloc, added_delay)
 	if(oldloc != n && direction == REVERSE_DIR(source.dir))
-		client.move_delay += added_delay*0.5
+		client.move_delay += added_delay*0.5*/
 
-///Changes the user direction to (try) match the pointer.
+/*///Changes the user direction to (try) match the pointer. Skyrat change - unused
 /datum/component/combat_mode/proc/onMouseMove(mob/source, object, location, control, params)
 	if(source.client.show_popup_menus)
 		return
 	source.face_atom(object, TRUE)
-	lastmousedir = source.dir
+	lastmousedir = source.dir*/
 
 /// Toggles whether the user is intentionally in combat mode. THIS should be the proc you generally use! Has built in visual/to other player feedback, as well as an audible cue to ourselves.
 /datum/component/combat_mode/proc/user_toggle_intentional_combat_mode(mob/living/source)
@@ -215,3 +221,15 @@
 			flashy = mutable_appearance('icons/mob/screen_gen.dmi', "togglefull_flash")
 		flashy.color = user.client.prefs.hud_toggle_color
 		. += flashy //TODO - beg lummox jr for the ability to force mutable appearances or images to be created rendering from their first frame of animation rather than being based entirely around the client's frame count
+
+//Skyrat changes down here
+/datum/component/combat_mode/proc/onMouseUpDown(mob/living/source, object, location, control, params)
+	if(source.client.show_popup_menus)
+		return
+	source.face_atom(location, TRUE)
+	lastmousedir = source.dir
+	click_time = world.time + 30
+
+/datum/component/combat_mode/proc/on_bump(mob/living/source, bumped)
+	on_move(source)
+//End of skyrat changes

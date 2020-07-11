@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	32
+#define SAVEFILE_VERSION_MAX	33
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -194,6 +194,20 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 31)
 		S["wing_color"]			>> features["wings_color"]
 		S["horn_color"]			>> features["horns_color"]
+	
+	if(current_version < 33)
+		//Skyrat changes
+		features["flavor_text"]			= strip_html_simple(features["flavor_text"], MAX_FLAVOR_LEN, TRUE)
+		features["silicon_flavor_text"]			= strip_html_simple(features["silicon_flavor_text"], MAX_FLAVOR_LEN, TRUE)
+		features["ooc_notes"]			= strip_html_simple(features["ooc_notes"], MAX_FLAVOR_LEN, TRUE)
+		features["general_records"]			= strip_html_simple(features["general_records"], MAX_FLAVOR_LEN, TRUE)
+		features["security_records"]			= strip_html_simple(features["security_records"], MAX_FLAVOR_LEN, TRUE)
+		features["medical_records"]			= strip_html_simple(features["medical_records"], MAX_FLAVOR_LEN, TRUE)
+		features["flavor_background"]			= strip_html_simple(features["flavor_background"], MAX_FLAVOR_LEN, TRUE)
+		features["character_skills"]			= strip_html_simple(features["character_skills"], MAX_FLAVOR_LEN, TRUE)
+		features["exploitable_info"]			= strip_html_simple(features["exploitable_info"], MAX_FLAVOR_LEN, TRUE)
+		//End of skyrat changes
+
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)

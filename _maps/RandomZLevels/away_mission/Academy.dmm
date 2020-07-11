@@ -2036,11 +2036,11 @@
 /turf/open/floor/plating,
 /area/awaymission/academy/classrooms)
 "fY" = (
-/mob/living/simple_animal/hostile/wizard,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/wizard,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
 "fZ" = (
@@ -3597,68 +3597,22 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academygate)
-"km" = (
-/obj/machinery/gateway{
-	dir = 9
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academygate)
 "kn" = (
-/obj/machinery/gateway{
-	dir = 1
-	},
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
 /area/awaymission/academy/academygate)
-"ko" = (
-/obj/machinery/gateway{
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academygate)
-"kp" = (
-/obj/machinery/gateway{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academygate)
 "kq" = (
-/mob/living/simple_animal/hostile/wizard,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/mob/living/simple_animal/hostile/wizard,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
-"kr" = (
-/obj/machinery/gateway{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academygate)
-"ks" = (
-/obj/machinery/gateway{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academygate)
-"kt" = (
-/obj/machinery/gateway,
-/turf/open/floor/plating,
-/area/awaymission/academy/academygate)
-"ku" = (
-/obj/machinery/gateway{
-	dir = 6
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academygate)
 "kv" = (
 /obj/machinery/light,
 /turf/open/floor/carpet,
@@ -3688,18 +3642,17 @@
 /turf/open/floor/carpet,
 /area/awaymission/academy/classrooms)
 "kA" = (
-/mob/living/simple_animal/hostile/wizard,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/wizard,
 /turf/open/floor/plasteel/white/corner,
 /area/awaymission/academy/classrooms)
 "kB" = (
 /obj/structure/chair,
-/mob/living/simple_animal/hostile/wizard,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -3710,6 +3663,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/wizard,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/academy/classrooms)
 "kC" = (
@@ -3744,7 +3698,7 @@
 /area/awaymission/academy/academyaft)
 "kI" = (
 /obj/structure/cable,
-/obj/machinery/gateway/centeraway{
+/obj/machinery/gateway/away{
 	calibrated = 1
 	},
 /turf/open/floor/plating,
@@ -13009,9 +12963,9 @@ jZ
 kb
 ke
 kj
-km
-kp
-ks
+kk
+kf
+kf
 kf
 kf
 ky
@@ -13141,7 +13095,7 @@ jW
 kf
 kn
 kI
-kt
+kf
 kf
 kf
 ky
@@ -13269,9 +13223,9 @@ jY
 kc
 jW
 kf
-ko
-kr
-ku
+kf
+kf
+kf
 kf
 kf
 ky
