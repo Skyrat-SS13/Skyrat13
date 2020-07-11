@@ -603,7 +603,12 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	name = "chat"
 
 /datum/asset/spritesheet/goonchat/register()
+<<<<<<< HEAD:code/modules/client/asset_cache.dm
 //	InsertAll("emoji", 'icons/emoji.dmi') // Skyrat Overwrite
+=======
+	InsertAll("emoji", 'icons/emoji.dmi')
+	InsertAll("emoji", 'icons/emoji_32.dmi')
+>>>>>>> f33782aa38... Merge pull request #12716 from LetterN/d-w-:code/modules/asset_cache/asset_list_items.dm
 
 	// pre-loading all lanugage icons also helps to avoid meta
 	InsertAll("language", 'icons/misc/language.dmi')
