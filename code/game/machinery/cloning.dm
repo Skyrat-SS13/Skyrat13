@@ -399,9 +399,19 @@
 		to_chat(occupant, "<span class='warning'><b>You remember nothing after you've blacked out and you do not remember who or what events killed you, however, you can have faint recollection of what led up to it.</b>") //Skyrat change - reminds you about the blackout policy
 		to_chat(occupant, "<span class='notice'><b>There is a bright flash!</b><br><i>You feel like a new being.</i></span>")
 		mob_occupant.flash_act()
+<<<<<<< HEAD
 		if(jobban_isbanned(mob_occupant) && ishuman(mob_occupant))	// SKYRAT ADDITION -- BEGIN
 			var/mob/living/carbon/human/C = mob_occupant
 			C.update_pacification_ban()	// SKYRAT ADDITION -- END
+=======
+
+	var/list/policies = CONFIG_GET(keyed_list/policyconfig)
+	var/policy = policies[POLICYCONFIG_ON_CLONE]
+	if(policy)
+		to_chat(occupant, policy)
+	occupant.log_message("revived using cloning.", LOG_GAME)
+	mob_occupant.adjustOrganLoss(ORGAN_SLOT_BRAIN, mob_occupant.getCloneLoss())
+>>>>>>> 955d9fa0cc... Merge pull request #12624 from Citadel-Station-13/policy
 
 	occupant.forceMove(T)
 	update_icon()

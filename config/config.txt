@@ -8,7 +8,11 @@ $include donator_groupings.txt
 $include dynamic_config.txt
 $include plushies/defines.txt
 $include job_threats.txt
+<<<<<<< HEAD
 $include skyrat/skyrat_config.txt
+=======
+$include policy.txt
+>>>>>>> 955d9fa0cc... Merge pull request #12624 from Citadel-Station-13/policy
 
 # You can use the @ character at the beginning of a config option to lock it from being edited in-game
 # Example usage:
