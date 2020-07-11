@@ -1,0 +1,4 @@
+author: "SkyratBot"
+delete-after: True
+changes: 
+  - tweak: "outgoing mentorpms are now blue instead of green for the sender."
