@@ -478,8 +478,6 @@
 	begin_month = JUNE
 	begin_weekday = SUNDAY
 
-<<<<<<< HEAD
-=======
 /datum/holiday/pride
 	name = PRIDE_MONTH
 	begin_day = 1
@@ -497,7 +495,6 @@
 /datum/holiday/stonewall/greet() //Not gonna lie, I was fairly tempted to make this use the IC year instead of the IRL year, but I was worried that it would have caused too much confusion.
 	return "Today marks the [text2num(time2text(world.timeofday, "YYYY")) - 1969]\th anniversary of the riots at the Stonewall Inn!"
 
->>>>>>> d73b2b8635... Merge pull request #12505 from deathride58/morelgbtholidays
 /datum/holiday/moth
 	name = "Moth Week"
 	begin_month = JULY
