@@ -160,19 +160,22 @@
 	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Solfed Contractor" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
-	"Green" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	"Green" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Bushfighter" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
 	"Solfed Contractor" = 'modular_skyrat/icons/mob/clothing/head.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Bushfighter" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "beret_badge",
 	"Solfed Contractor" = "contractor_beret",
 	"Tactical" = "tactical_beret",
-	"Green" = "green_beret"
+	"Green" = "green_beret",
+	"Bushfighter" = "rhodeboonie"
 	)
 
 
@@ -550,6 +553,7 @@
 	"HECU" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
 	"Firestarter" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
 	"Gorka" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Bushfighter" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/uniform.dmi',
@@ -558,6 +562,7 @@
 	"HECU" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
 	"Firestarter" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
 	"Gorka" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Bushfighter" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
 	)
 	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/uniform_digi.dmi',
@@ -566,6 +571,7 @@
 	"HECU" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
 	"Firestarter" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
 	"Gorka" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Bushfighter" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
 	)
 	unique_reskin = list(
 	"Default" = "rsecurity",
@@ -573,7 +579,8 @@
 	"Sol Federation" = "solfed_uniform",
 	"HECU" = "hecu_uniform",
 	"Firestarter" = "firestarter_uniform",
-	"Gorka" = "gorka_uniform"
+	"Gorka" = "gorka_uniform",
+	"Bushfighter" = "rhodebrush",
 	)
 	unique_desc = list(
 	"Default" = "A good classic - tactical red jumpsuit for officers complete with Nanotrasen belt buckle.",
@@ -581,7 +588,8 @@
 	"Sol Federation" = "A tactical light-blue jumpsuit complete with kneepads and an insignia of Sol Federation.",
 	"HECU" = "A snow-camofluaged t-shirt and pants, perfect fit for hunting down the free man.",
 	"Firestarter" = "A tactical jumpsuit with some rusty colors.",
-	"Gorka" = "A militaristic jumpsuit coming from Russian colonies, perfect for windy mountains and space alike."
+	"Gorka" = "A militaristic jumpsuit coming from Russian colonies, perfect for windy mountains and space alike.",
+	"Bushfighter" = "A button-up shirt and cargo shorts in a very peculiar brush pattern, best worn with boots and webbing. What a time it was.",
 	)
 
 /obj/item/clothing/under/rank/security/officer/blueshirt
