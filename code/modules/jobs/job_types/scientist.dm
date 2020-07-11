@@ -25,7 +25,6 @@
 	name = "Scientist"
 	jobtype = /datum/job/scientist
 
-	id = /obj/item/card/id/department/sci //Skyrat change
 	belt = /obj/item/pda/toxins
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/rnd/scientist
