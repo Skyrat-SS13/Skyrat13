@@ -6821,9 +6821,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-22"
-	},
+/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aul" = (
@@ -57448,16 +57446,10 @@
 /turf/open/floor/plating,
 /area/gateway)
 "cyE" = (
-/obj/machinery/gateway{
-	dir = 9
-	},
 /obj/effect/turf_decal/bot_white/right,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cyF" = (
-/obj/machinery/gateway{
-	dir = 1
-	},
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
@@ -57465,9 +57457,6 @@
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cyG" = (
-/obj/machinery/gateway{
-	dir = 5
-	},
 /obj/effect/turf_decal/bot_white/left,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
@@ -58149,9 +58138,6 @@
 /turf/open/floor/plating,
 /area/gateway)
 "cAi" = (
-/obj/machinery/gateway{
-	dir = 8
-	},
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
@@ -58160,13 +58146,6 @@
 /obj/structure/cable/white{
 	icon_state = "0-2"
 	},
-/turf/open/floor/plasteel/dark,
-/area/gateway)
-"cAk" = (
-/obj/machinery/gateway{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cAl" = (
@@ -58724,9 +58703,6 @@
 /turf/closed/wall,
 /area/gateway)
 "cBD" = (
-/obj/machinery/gateway{
-	dir = 10
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -58734,7 +58710,6 @@
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cBE" = (
-/obj/machinery/gateway,
 /obj/structure/cable/white{
 	icon_state = "0-2"
 	},
@@ -58745,9 +58720,6 @@
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cBF" = (
-/obj/machinery/gateway{
-	dir = 6
-	},
 /obj/machinery/camera{
 	c_tag = "Bridge - Gateway Chamber";
 	dir = 8;
@@ -59601,6 +59573,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/machinery/computer/gateway_control,
 /turf/open/floor/plasteel,
 /area/gateway)
 "cDl" = (
@@ -97408,6 +97381,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"gdg" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/vending/pdavendor,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "gfR" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -143602,7 +143580,7 @@ dWg
 dVl
 dVl
 dVl
-dVl
+gdg
 dVl
 dVl
 dVl
@@ -146628,7 +146606,7 @@ cul
 cvE
 cvz
 cyG
-cAk
+cAi
 cBF
 cDm
 cFa
