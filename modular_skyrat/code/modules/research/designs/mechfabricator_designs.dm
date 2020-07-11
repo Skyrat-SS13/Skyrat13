@@ -43,6 +43,8 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
+/*Removal of size modules
+
 /datum/design/borg_upgrade_shrink
 	name = "Cyborg Upgrade (shrink)"
 	id = "borg_upgrade_shrink"
@@ -51,7 +53,7 @@
 	materials = list(/datum/material/iron=20000, /datum/material/glass=5000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
-
+*/
 
 //Killdozer
 /datum/design/killdozer_chassis

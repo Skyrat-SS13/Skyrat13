@@ -160,6 +160,7 @@
 		R.hasExpanded = TRUE
 		R.update_transform()
 
+/*These things suck, either fix them or leave them dead.
 /obj/item/borg/upgrade/shrink
 	name = "borg shrinker"
 	desc = "A cyborg resizer, it makes a cyborg small."
@@ -200,7 +201,7 @@
 /obj/item/borg/upgrade/shrink/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-	
+
 		R.resize = 1.25
 		R.hasShrunk = FALSE
 		R.update_transform()
@@ -214,3 +215,4 @@
 /obj/item/borg/upgrade/transform/syndicatejack/action(mob/living/silicon/robot/R, user = usr)
     if(R.emagged)
         return ..()
+*/

@@ -532,6 +532,7 @@
 			R.undeploy()
 			R.notify_ai(AI_SHELL)
 
+/*No one wants to fix these things so fuck them off
 /obj/item/borg/upgrade/expand
 	name = "borg expander"
 	desc = "A cyborg resizer, it makes a cyborg huge."
@@ -574,7 +575,7 @@
 		R.resize = 0.5
 		R.hasExpanded = FALSE
 		R.update_transform()
-
+*/
 /obj/item/borg/upgrade/rped
 	name = "engineering cyborg BSRPED"
 	desc = "A rapid part exchange device for the engineering cyborg."
