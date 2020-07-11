@@ -260,11 +260,7 @@
 				amount = text2num(input(usr,
 					"Max 20. Buffer content will be split evenly.",
 					"How many to make?", 1))
-<<<<<<< HEAD
-			amount = clamp(round(amount), 0, 10) // Skyrat edit -- 512 compatibility
-=======
 			amount = clamp(round(amount), 0, 20)
->>>>>>> 0c0bf46f7f... Merge pull request #12696 from Chiirno/emichemmastertweak
 			if (amount <= 0)
 				return FALSE
 			// Get units per item
