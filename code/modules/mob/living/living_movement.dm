@@ -2,14 +2,7 @@
 	. = ..()
 	update_turf_movespeed(loc)
 	//Hide typing indicator if we move.
-<<<<<<< HEAD
 	//clear_typing_indicator() //Skyrat edit
-	if(is_shifted)
-		is_shifted = FALSE
-		pixel_x = get_standard_pixel_x_offset(lying)
-		pixel_y = get_standard_pixel_y_offset(lying)
-=======
-	clear_typing_indicator()
 	update_pixel_shifting(TRUE)
 
 /mob/living/setDir(newdir, ismousemovement)
@@ -25,7 +18,6 @@
 			is_shifted = FALSE
 			pixel_x = get_standard_pixel_x_offset(lying)
 			pixel_y = get_standard_pixel_y_offset(lying)
->>>>>>> bfe8ccdfb5... Merge pull request #11627 from kevinz000/combat_rework
 
 /mob/living/CanPass(atom/movable/mover, turf/target)
 	if((mover.pass_flags & PASSMOB))
