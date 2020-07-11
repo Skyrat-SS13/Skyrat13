@@ -45,12 +45,18 @@
 		heirloom_type = /obj/item/flashlight/lantern/heirloom_moth
 	heirloom = new heirloom_type(get_turf(quirk_holder))
 	GLOB.family_heirlooms += heirloom
+	RegisterSignal(heirloom, COMSIG_PARENT_QDELETING, .proc/deleting_heirloom)
 	var/list/slots = list(
 		"in your left pocket" = SLOT_L_STORE,
 		"in your right pocket" = SLOT_R_STORE,
 		"in your backpack" = SLOT_IN_BACKPACK
 	)
 	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
+
+/datum/quirk/family_heirloom/proc/deleting_heirloom()
+	GLOB.family_heirlooms -= heirloom
+	UnregisterSignal(heirloom, COMSIG_PARENT_QDELETING)
+	heirloom = null
 
 //airhead
 /datum/quirk/airhead
@@ -83,38 +89,6 @@
 	value = -2
 	mob_trait = TRAIT_HEMOPHILIA
 	medical_record_text = "Patient exhibits abnormal blood coagulation behavior."
-
-//remember collar bans? i do and i miss them
-/datum/quirk/state_property
-	name = "Collared"
-	desc = "Due to your concerning behavior, CentCom has installed a permanent shock collar on you, with a publically available code and channel."
-	value = -2
-	medical_record_text = "Patient has been deemed unstable by CentCom and local authorities."
-	var/storedcode = 2
-	var/storedfreq = FREQ_ELECTROPACK
-
-/datum/quirk/state_property/add()
-	. = ..()
-	storedcode = rand(1, 100)
-	storedfreq = sanitize_frequency(rand(MIN_FREE_FREQ, MAX_FREE_FREQ), TRUE)
-	if(.)
-		collar()
-
-/datum/quirk/state_property/proc/collar()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(istype(H))
-		if(H.get_item_by_slot(SLOT_NECK))
-			var/obj/item/I = H.get_item_by_slot(SLOT_NECK)
-			I.forceMove(get_turf(H))
-		var/obj/item/electropack/shockcollar/woops = new /obj/item/electropack/shockcollar(get_turf(H))
-		H.equip_to_slot_or_del(woops, SLOT_NECK)
-		if(!woops)
-			return FALSE
-		ADD_TRAIT(woops, TRAIT_NODROP, "stateproperty")
-		woops.set_frequency(storedfreq)
-		woops.code = storedcode
-		woops.name = "CentComm issue shock collar - freq: [woops.frequency/10] code: [woops.code]"
-		woops.desc = "Issued to those who have been deemed naughty."
 
 //i cant run help
 /datum/quirk/asthmatic

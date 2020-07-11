@@ -27,8 +27,8 @@
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1)
 		if(trauma_heal_mild && iscarbon(M))
 			var/mob/living/carbon/C = M
-			if(prob(10))
+			if(prob(20))
 				if(trauma_heal_severe)
-					C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
+					C.cure_all_traumas(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
 				else
-					C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
+					C.cure_all_traumas(resilience = TRAUMA_RESILIENCE_BASIC)

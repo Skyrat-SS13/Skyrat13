@@ -69,11 +69,18 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=floorlava'>The floor is lava! (DANGEROUS: extremely lame)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=customportal'>Spawn a custom portal storm</A><BR>
 			<BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=changebombcap'>Change bomb cap</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=masspurrbation'>Mass Purrbation</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=massremovepurrbation'>Mass Remove Purrbation</A><BR>
 			"}
-
+	//Skyrat change start
+	if(check_rights(R_SERVER,0))
+		dat += {"
+			<BR>
+			<B>Server Secrets</B><BR>
+			<BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=changebombcap'>Change bomb cap</A><BR>
+			"}
+	//Skyrat change stop
 	dat += "<BR>"
 
 	if(check_rights(R_DEBUG,0))
@@ -117,7 +124,7 @@
 				usr << browse(dat, "window=showadmins;size=600x500")
 
 		if("tdomereset")
-			if(!check_rights(R_ADMIN))
+			if(!check_rights(R_FUN)) //Skyrat change
 				return
 			var/delete_mobs = alert("Clear all mobs?","Confirm","Yes","No","Cancel")
 			if(delete_mobs == "Cancel")
@@ -146,7 +153,7 @@
 					var/datum/disease/D = thing
 					D.cure(0)
 		if("set_name")
-			if(!check_rights(R_ADMIN))
+			if(!check_rights(R_FUN)) //Skyrat change
 				return
 			var/new_name = input(usr, "Please input a new name for the station.", "What?", "") as text|null
 			if(!new_name)
@@ -156,7 +163,7 @@
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] renamed the station to: [new_name].</span>")
 			priority_announce("[command_name()] has renamed the station to \"[new_name]\".")
 		if("night_shift_set")
-			if(!check_rights(R_ADMIN))
+			if(!check_rights(R_FUN)) //Skyrat change
 				return
 			var/val = alert(usr, "What do you want to set night shift to? This will override the automatic system until set to automatic again.", "Night Shift", "On", "Off", "Automatic")
 			switch(val)
@@ -207,7 +214,7 @@
 			usr << browse(dat, "window=lawchanges;size=800x500")
 
 		if("moveminingshuttle")
-			if(!check_rights(R_ADMIN))
+			if(!check_rights(R_FUN)) //Skyrat change
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Send Mining Shuttle"))
 			if(!SSshuttle.toggleShuttle("mining","mining_home","mining_away"))
@@ -215,7 +222,7 @@
 				log_admin("[key_name(usr)] moved the mining shuttle")
 
 		if("movelaborshuttle")
-			if(!check_rights(R_ADMIN))
+			if(!check_rights(R_FUN)) //Skyrat change
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Send Labor Shuttle"))
 			if(!SSshuttle.toggleShuttle("laborcamp","laborcamp_home","laborcamp_away"))
@@ -223,7 +230,7 @@
 				log_admin("[key_name(usr)] moved the labor shuttle")
 
 		if("moveferry")
-			if(!check_rights(R_ADMIN))
+			if(!check_rights(R_FUN)) //Skyrat change
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Send CentCom Ferry"))
 			if(!SSshuttle.toggleShuttle("ferry","ferry_home","ferry_away"))
@@ -231,7 +238,7 @@
 				log_admin("[key_name(usr)] moved the CentCom ferry")
 
 		if("togglearrivals")
-			if(!check_rights(R_ADMIN))
+			if(!check_rights(R_FUN)) //Skyrat change
 				return
 			var/obj/docking_port/mobile/arrivals/A = SSshuttle.arrivals
 			if(A)
@@ -363,7 +370,7 @@
 			log_admin("[key_name(usr)] used everyone is a traitor secret. Objective is [objective]")
 
 		if("changebombcap")
-			if(!check_rights(R_FUN))
+			if(!check_rights(R_SERVER)) //Skyrat change
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Bomb Cap"))
 

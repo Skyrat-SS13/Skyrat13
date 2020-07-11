@@ -182,7 +182,7 @@
 				to_chat(src, "<span class='notice'>You gently let go of [throwable_mob].</span>")
 				return
 
-			adjustStaminaLossBuffered(25)//CIT CHANGE - throwing an entire person shall be very tiring
+			adjustStaminaLossBuffered(STAM_COST_THROW_MOB * ((throwable_mob.mob_size+1)**2))// throwing an entire person shall be very tiring
 			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 			var/turf/end_T = get_turf(target)
 			if(start_T && end_T)
@@ -435,10 +435,9 @@
 			return
 
 /mob/living/carbon/get_standard_pixel_y_offset(lying = 0)
+	. = ..()
 	if(lying)
-		return -6
-	else
-		return initial(pixel_y)
+		. -= 6
 
 /mob/living/carbon/proc/accident(obj/item/I)
 	if(!I || (I.item_flags & ABSTRACT) || HAS_TRAIT(I, TRAIT_NODROP))

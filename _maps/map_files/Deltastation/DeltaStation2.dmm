@@ -77359,8 +77359,8 @@
 "cBx" = (
 /obj/structure/rack,
 /obj/item/stack/medical/gauze,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/suture,
+/obj/item/stack/medical/mesh,
 /obj/item/reagent_containers/syringe/epinephrine{
 	pixel_x = -3;
 	pixel_y = 3
@@ -85494,8 +85494,8 @@
 "cPs" = (
 /obj/structure/table,
 /obj/item/stack/medical/gauze,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/suture,
+/obj/item/stack/medical/mesh,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
@@ -91726,8 +91726,8 @@
 "cZH" = (
 /obj/structure/table/glass,
 /obj/item/stack/medical/gauze,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/suture,
+/obj/item/stack/medical/mesh,
 /obj/machinery/camera{
 	c_tag = "Medbay - Sleepers";
 	name = "medbay camera";
@@ -94025,8 +94025,8 @@
 "ddp" = (
 /obj/structure/table/glass,
 /obj/item/stack/medical/gauze,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/suture,
+/obj/item/stack/medical/mesh,
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
 	},
@@ -101143,8 +101143,8 @@
 "dqj" = (
 /obj/structure/table,
 /obj/item/stack/medical/gauze,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/suture,
+/obj/item/stack/medical/mesh,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},

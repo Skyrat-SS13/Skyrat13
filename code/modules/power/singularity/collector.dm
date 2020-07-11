@@ -180,6 +180,7 @@
 /obj/machinery/power/rad_collector/analyzer_act(mob/living/user, obj/item/I)
 	if(loaded_tank)
 		loaded_tank.analyzer_act(user, I)
+	return TRUE // Skyrat change
 
 /obj/machinery/power/rad_collector/examine(mob/user)
 	. = ..()
