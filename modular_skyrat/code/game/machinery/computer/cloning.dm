@@ -477,7 +477,7 @@
 	else if (href_list["clone"])
 		var/datum/data/record/C = find_record("id", href_list["clone"], records)
 		var/obj/item/card/id/card = usr.get_idcard()
-		if(!src.check_access(card, access_cloning))
+		if(!istype(card) || !src.check_access(card, access_cloning))
 			src.temp = "<font class='bad'>Access Denied. Please hold an authorized ID card.</font>"
 			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			return FALSE
