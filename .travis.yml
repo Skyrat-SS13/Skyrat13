@@ -53,11 +53,11 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - libstdc++6:i386
-            - libstdc++-7-dev:i386
+            - libstdc++-8-dev:i386
             - gcc-multilib
             - g++-multilib
-            - g++-7
-            - g++-7-multilib
+            - g++-8
+            - g++-8-multilib
             - libmariadb-client-lgpl-dev:i386
             - libmariadbd-dev
       cache:
