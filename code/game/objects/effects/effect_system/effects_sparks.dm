@@ -26,7 +26,7 @@
 
 /obj/effect/particle_effect/sparks/Initialize()
 	. = ..()
-	AddComponent(/datum/component/overlay_lighting, "#FAA019", 1, 100)
+	AddComponent(/datum/component/overlay_lighting, "#FAA019", 2, 80)
 	flick(icon_state, src) // replay the animation
 	playsound(src, "sparks", 100, TRUE)
 	var/turf/T = loc
