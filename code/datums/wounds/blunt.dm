@@ -146,8 +146,9 @@
 				victim.add_splatter_floor(get_step(victim.loc, victim.dir))
 	
 	if(limb.body_zone == BODY_ZONE_HEAD && prob((severity - WOUND_SEVERITY_TRIVIAL + 1) * 12))
-		to_chat(victim, "<span class='danger'>The strike on your damaged [limb.name] hurts like hell!</span>")
+		to_chat(victim, "<span class='userdanger'>The strike on your damaged [limb.name] hurts like hell!</span>")
 		victim.adjust_blurriness(rand(1 * (severity - WOUND_SEVERITY_TRIVIAL), 10 * (severity - WOUND_SEVERITY_TRIVIAL)))
+		victim.confused += max(25, rand(1 * (severity - WOUND_SEVERITY_TRIVIAL), 10 * (severity - WOUND_SEVERITY_TRIVIAL)))
 		if(prob(wounding_dmg))
 			victim.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1, 4) * (severity - WOUND_SEVERITY_TRIVIAL))
 
