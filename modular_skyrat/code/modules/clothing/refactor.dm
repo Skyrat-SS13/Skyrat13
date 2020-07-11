@@ -863,6 +863,10 @@
 	name = "enterprise officer cap"
 	desc = "A peaked cap, that demands <i>at least <u>some</u></i> discipline from its wearer."
 
+/obj/item/clothing/head/kepi/orvi
+	name = "enterprise kepi"
+	desc = "A visored cap, that demands <i>at least <u>some</u></i> honor from it's wearer."
+
 // PrisArch-like color codes for prisoners. Uses _stored variation for Warden's control.
 /obj/item/clothing/under/rank/prisoner
 	unique_reskin_icons = list(

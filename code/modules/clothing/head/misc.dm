@@ -429,8 +429,6 @@
 	icon_state = "russobluecamohat"
 	item_state = "russobluecamohat"
 	dynamic_hair_suffix = ""
-<<<<<<< HEAD
-=======
 
 /obj/item/clothing/head/hunter
 	name = "bounty hunting hat"
@@ -448,4 +446,3 @@
 /obj/item/clothing/head/kepi/old
 	icon_state = "kepi_old"
 	desc = "A flat, white circular cap with a visor, that demands some honor from it's wearer."
->>>>>>> 9f6d0ba10b... Merge pull request #12570 from NopemanMcHalt/orvilike_bonus
