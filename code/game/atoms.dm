@@ -994,17 +994,10 @@ Proc for attack log creation, because really why not
 	if(!length(materials))
 		return
 
-<<<<<<< HEAD
-	custom_materials = list() //Reset the list
-
-	for(var/x in materials)
-		var/datum/material/custom_material = SSmaterials.GetMaterialRef(x)
-=======
 	if(material_flags)
 		for(var/x in materials)
 			var/datum/material/custom_material = SSmaterials.GetMaterialRef(x)
 			custom_material.on_applied(src, materials[x] * multiplier * material_modifier, material_flags)
->>>>>>> 26fee48cec... Merge pull request #12645 from Ghommie/Ghommie-cit825
 
 		if(material_flags & MATERIAL_EFFECTS)
 			custom_material.on_applied(src, materials[custom_material] * multiplier * material_modifier, material_flags)
