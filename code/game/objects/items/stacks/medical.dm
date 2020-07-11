@@ -152,7 +152,7 @@
 		return
 
 	user.visible_message("<span class='warning'>[user] begins wrapping the wounds on [M]'s [limb.name] with [src]...</span>", "<span class='warning'>You begin wrapping the wounds on [user == M ? "your" : "[M]'s"] [limb.name] with [src]...</span>")
-	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/surgery, 1 SECONDS, THRESHOLD_UNTRAINED, FALSE) || 1
+	var/time_mod = 1
 	if(!do_after(user, (user == M ? self_delay : other_delay) * time_mod, target=M))
 		return
 

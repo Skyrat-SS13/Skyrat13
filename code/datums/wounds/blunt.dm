@@ -121,10 +121,10 @@
 		return
 	
 	if(limb.body_zone == BODY_ZONE_PRECISE_GROIN && prob(25))
-		victim.Paralyze()
+		victim.Paralyze(severity * 5)
 	
 	if(limb.body_zone == BODY_ZONE_CHEST && !HAS_TRAIT(victim, TRAIT_NOBREATH) && severity >= WOUND_SEVERITY_MODERATE)
-		var/oxy_dmg = round(rand(1, (wounding_dmg/5) * (severity >= WOUND_SEVERITY_SEVERE ? 2 : 1)))
+		var/oxy_dmg = round(rand(1, (wounding_dmg/5) * (max(1, severity - WOUND_SEVERITY_TRIVIAL))))
 		victim.adjustOxyLoss(oxy_dmg)
 
 	if(limb.body_zone == BODY_ZONE_CHEST && victim.blood_volume && prob(internal_bleeding_chance + wounding_dmg))
@@ -144,6 +144,12 @@
 				victim.bleed(blood_bled)
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(victim.loc, victim.dir)
 				victim.add_splatter_floor(get_step(victim.loc, victim.dir))
+	
+	if(limb.body_zone == BODY_ZONE_HEAD && prob((severity - WOUND_SEVERITY_TRIVIAL + 1) * 12))
+		to_chat(victim, "<span class='danger'>The strike on your damaged [limb.name] hurts like hell!</span>")
+		victim.adjust_blurriness(rand(1 * (severity - WOUND_SEVERITY_TRIVIAL), 10 * (severity - WOUND_SEVERITY_TRIVIAL)))
+		if(prob(wounding_dmg))
+			victim.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1, 4) * (severity - WOUND_SEVERITY_TRIVIAL))
 
 /datum/wound/blunt/get_examine_description(mob/user)
 	if(!limb.current_gauze && !gelled && !taped)
@@ -409,7 +415,7 @@
 	else
 		user.visible_message("<span class='danger'>[user] begins resetting [victim]'s ribs with [I].</span>", "<span class='notice'>You begin resetting [victim]'s ribs with [I]...</span>")
 
-	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * (user == victim ? 2.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(victim == user)
@@ -492,7 +498,7 @@
 	else
 		user.visible_message("<span class='danger'>[user] begins resetting [victim]'s femur with [I].</span>", "<span class='notice'>You begin resetting [victim]'s femur with [I]...</span>")
 
-	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * (user == victim ? 2 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(victim == user)
@@ -570,7 +576,7 @@
 
 	user.visible_message("<span class='danger'>[user] begins hastily applying [I] to [victim]'s' [limb.name]...</span>", "<span class='warning'>You begin hastily applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name], disregarding the warning label...</span>")
 
-	if(!do_after(user, base_treat_time * 1.5 * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * 1.5 * (user == victim ? 2 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	I.use(1)
@@ -608,11 +614,11 @@
 
 	user.visible_message("<span class='danger'>[user] begins applying [I] to [victim]'s' [limb.name]...</span>", "<span class='warning'>You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name]...</span>")
 
-	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * (user == victim ? 2 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	regen_points_current = 0
-	regen_points_needed = 30 SECONDS * (user == victim ? 1.5 : 1) * (severity - 1)
+	regen_points_needed = 15 * (user == victim ? 2 : 1) * severity
 	I.use(1)
 	if(user != victim)
 		user.visible_message("<span class='notice'>[user] finishes applying [I] to [victim]'s [limb.name], emitting a fizzing noise!</span>", "<span class='notice'>You finish applying [I] to [victim]'s [limb.name]!</span>", ignored_mobs=victim)

@@ -7,6 +7,7 @@
 	req_access = list(ACCESS_HEADS) //ONLY USED FOR RECORD DELETION RIGHT NOW.
 	var/obj/machinery/dna_scannernew/scanner = null //Linked scanner. For scanning.
 	var/list/pods //Linked cloning pods
+	var/list/access_cloning = list(ACCESS_MEDICAL)
 	var/temp = "Inactive"
 	var/scantemp_ckey
 	var/scantemp = "Ready to Scan"
@@ -351,7 +352,7 @@
 							accountnum = text2num(accountnum)
 						if(accountnum == get_fucked.account_id)
 							if(get_fucked.account_password)
-								var/accountpassword = input(usr, "Input the account password for the selected account", "Security measures", 000000) as num
+								var/accountpassword = input(usr, "Input the account password for the selected account", "Security measures", "admin") as text
 								if(accountpassword == get_fucked.account_password)
 									pod.currently_linked_account = possible_accounts[choice]
 								else
@@ -411,7 +412,7 @@
 
 		else if (src.menu == 4)
 			var/obj/item/card/id/C = usr.get_active_held_item()
-			if (istype(C)||istype(C, /obj/item/pda))
+			if(istype(C) || istype(C, /obj/item/pda))
 				if(src.check_access(C))
 					src.temp = "[src.active_record.fields["name"]] => Record deleted."
 					src.records.Remove(active_record)
@@ -470,7 +471,7 @@
 	else if (href_list["clone"])
 		var/datum/data/record/C = find_record("id", href_list["clone"], records)
 		var/obj/item/card/id/card = usr.get_idcard()
-		if(!src.check_access(card))
+		if(!src.check_access(card, access_cloning))
 			src.temp = "<font class='bad'>Access Denied. Please hold an authorized ID card.</font>"
 			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			return FALSE

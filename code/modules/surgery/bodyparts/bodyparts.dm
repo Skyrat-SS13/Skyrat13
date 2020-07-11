@@ -366,6 +366,7 @@
 			var/obj/item/bodypart/CBP = owner.get_bodypart(zoner)
 			if(CBP)
 				CBP.update_disabled(FALSE, TRUE)
+
 //skyrat edit
 /obj/item/bodypart/proc/is_disabled()
 	if(!owner)
@@ -1359,6 +1360,30 @@
 			wounds_checking = WOUND_LIST_BURN
 			if(!organic)
 				wounds_checking = WOUND_LIST_BURN_MECHANICAL
+	
+	//check if there's gauze, and if we should destroy or damage it, before we apply any wounds
+	if(current_gauze)
+		if(prob(base_roll/4))
+			if(prob(base_roll/2))
+				owner.visible_message("<span class='warning'>\The [current_gauze] on [owner]'s [src] shreds apart completely!</span>", "<span class='userdanger'>\The [current_gauze] on your [src] gets completely shredded!</span>")
+				var/obj/item/reagent_containers/rag/R = new /obj/item/reagent_containers/rag()
+				R.name = "shredded [current_gauze.name]"
+				R.desc = "Pretty worthless for medicine now..."
+				R.add_mob_blood(owner)
+				QDEL_NULL(current_gauze)
+			else
+				owner.visible_message("<span class='warning'>\The [current_gauze] on [owner] falls off from [lowertext(owner.p_their())] [src]!</span>", "<span class='userdanger'>\The [current_gauze] on your [src] falls off!</span>")
+				current_gauze.forceMove(owner.loc)
+				current_gauze.add_mob_blood(owner)
+				current_gauze = null
+		
+		else if(prob(base_roll))
+			owner.visible_message("<span class='warning'>\The [current_gauze] on [owner]'s [src] tears up a bit!</span>", "<span class='danger'>\The [current_gauze] on your [src] tears up a bit!</span>")
+			for(var/i in wounds)
+				var/datum/wound/woundie = i
+				if(istype(woundie))
+					seep_gauze(current_gauze.absorption_rate * (0.25 * woundie.severity))
+			seep_gauze(current_gauze.absorption_rate * round(damage/25, 1))
 
 	// quick re-check to see if bare_wound_bonus applies, for the benefit of log_wound(), see about getting the check from check_woundings_mods() somehow
 	if(ishuman(owner))
