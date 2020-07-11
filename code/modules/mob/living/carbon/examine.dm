@@ -193,19 +193,73 @@
 
 //skyrat edit
 /mob/living/carbon/examine_more(mob/user)
-	if(!all_scars || !all_scars.len || (src == user && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF)))
+	if(((!all_scars || !length(all_scars)) && !length(get_damaged_bodyparts(TRUE, TRUE))) || (src == user && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF)))
 		return ..()
 
-	var/list/visible_scars
+	var/list/visible_scars = list()
 	for(var/i in all_scars)
 		var/datum/scar/S = i
 		if(istype(S) && S.is_visible(user))
 			LAZYADD(visible_scars, S)
 
-	if(!visible_scars)
+	if(!visible_scars && !length(get_damaged_bodyparts(TRUE, TRUE)))
 		return ..()
 
 	var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
+	
+	for(var/obj/item/bodypart/BP in bodyparts)
+		var/how_brute
+		var/how_burn
+		var/max_sev = 0
+
+		if(!BP.brute_dam)
+			how_brute = BP.no_brute_msg
+			max_sev = max(max_sev, 0)
+		else if(BP.brute_dam < (BP.max_damage * 0.33))
+			how_brute = BP.light_brute_msg
+			max_sev = max(max_sev, 1)
+		else if(BP.brute_dam < (BP.max_damage * 0.66))
+			how_brute = BP.medium_brute_msg
+			max_sev = max(max_sev, 2)
+		else if(BP.brute_dam <= BP.max_damage)
+			how_brute = BP.heavy_brute_msg
+			max_sev = max(max_sev, 3)
+
+		if(!BP.burn_dam)
+			how_burn = BP.no_burn_msg
+			max_sev = max(max_sev, 0)
+		else if(BP.burn_dam < (BP.max_damage * 0.33))
+			how_burn = BP.light_burn_msg
+			max_sev = max(max_sev, 1)
+		else if(BP.burn_dam < (BP.max_damage * 0.66))
+			how_burn = BP.medium_burn_msg
+			max_sev = max(max_sev, 2)
+		else if(BP.burn_dam <= BP.max_damage)
+			how_burn = BP.heavy_burn_msg
+			max_sev = max(max_sev, 3)
+		
+		if(max_sev)
+			var/style
+			switch(max_sev)
+				if(1)
+					style = "tinydanger"
+				if(2)
+					style = "smalldanger"
+				if(3)
+					style = "danger"
+			var/aaa = ""
+			aaa += "\t<span class='[style]'>[capitalize(p_their())] [BP.name] is "
+			if((how_brute == BP.no_brute_msg) && (how_burn != BP.no_burn_msg))
+				aaa += "[how_brute], but it is [how_burn]."
+			else if((how_brute == BP.no_brute_msg) && (how_burn == BP.no_burn_msg))
+				aaa += "[how_brute] and [how_burn]"
+			else if((how_brute != BP.no_brute_msg) && (how_burn == BP.no_burn_msg))
+				aaa += "[how_burn], but it is [how_brute]"
+			else if((how_brute != BP.no_brute_msg) && (how_burn != BP.no_burn_msg))
+				aaa += "[how_brute] and [how_burn]"
+			aaa += "[max_sev >= 3 ? "!" : "."]</span>"
+			msg += aaa
+
 	for(var/i in visible_scars)
 		var/datum/scar/S = i
 		var/scar_text = S.get_examine_description(user)

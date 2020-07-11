@@ -32,7 +32,7 @@
 	/// If this is a chest wound and this is set, we have this chance to cough up blood when hit in the chest
 	var/internal_bleeding_chance = 0
 
-	base_treat_time = 4 SECONDS
+	base_treat_time = 5 SECONDS
 
 /*
 	Overwriting of base procs
@@ -331,7 +331,7 @@
 	else
 		user.visible_message("<span class='danger'>[user] begins resetting [victim]'s [limb.name] with [I].</span>", "<span class='notice'>You begin resetting [victim]'s [limb.name] with [I]...</span>")
 
-	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * (user == victim ? 2 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(victim == user)
@@ -499,7 +499,7 @@
 	else
 		user.visible_message("<span class='danger'>[user] begins resetting [victim]'s femur with [I].</span>", "<span class='notice'>You begin resetting [victim]'s femur with [I]...</span>")
 
-	if(!do_after(user, base_treat_time * (user == victim ? 2 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * (user == victim ? 2.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(victim == user)
@@ -577,7 +577,7 @@
 
 	user.visible_message("<span class='danger'>[user] begins hastily applying [I] to [victim]'s' [limb.name]...</span>", "<span class='warning'>You begin hastily applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name], disregarding the warning label...</span>")
 
-	if(!do_after(user, base_treat_time * 1.5 * (user == victim ? 2 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 0.75), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	I.use(1)

@@ -307,7 +307,7 @@
 
 			for(var/i in bodyparts)
 				var/obj/item/bodypart/BP = i
-				if(BP.get_bleed_rate())
+				if(BP.get_bleed_rate() && !BP.current_gauze)
 					bleeding_limbs += BP
 
 			var/num_bleeds = LAZYLEN(bleeding_limbs)
@@ -329,11 +329,8 @@
 			
 			if(appears_dead)
 				bleed_text += ", but it has pooled and is not flowing.</span></B>\n"
-			else
-				if(reagents.has_reagent(/datum/reagent/toxin/heparin))
-					bleed_text += " incredibly quickly"
-
-				bleed_text += "!</B>\n"
+			else if(reagents.has_reagent(/datum/reagent/toxin/heparin))
+				bleed_text += " incredibly quickly!</B>\n"
 			msg += bleed_text
 		//skyrat edit
 		var/list/obj/item/bodypart/suppress_limbs = list()

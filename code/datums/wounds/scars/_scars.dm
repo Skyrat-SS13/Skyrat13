@@ -44,7 +44,7 @@
   * * add_to_scars- Should always be TRUE unless you're just storing a scar for later usage, like how cuts want to store a scar for the highest severity of cut, rather than the severity when the wound is fully healed (probably demoted to moderate)
   */
 /datum/scar/proc/generate(obj/item/bodypart/BP, datum/wound/W, add_to_scars=TRUE)
-	if(!(BP.body_zone in applicable_zones) || BP.is_organic_limb())
+	if(!(BP.body_zone in applicable_zones) || !BP.is_organic_limb())
 		qdel(src)
 		return
 	limb = BP
@@ -63,7 +63,7 @@
 		precise_location = "[lowertext(W.fake_body_zone)]"
 
 /datum/scar/proc/pref_apply(obj/item/bodypart/BP, specific_location, new_description, new_severity = 0, add_to_scars=TRUE)
-	if(!(BP.body_zone in applicable_zones))
+	if(!(BP.body_zone in applicable_zones) || !BP.is_organic_limb())
 		qdel(src)
 		return
 	limb = BP
@@ -110,6 +110,8 @@
 
 	var/msg = "[victim.p_they(TRUE)] [victim.p_have()] [description] on [victim.p_their()] [precise_location]."
 	switch(severity)
+		if(WOUND_SEVERITY_TRIVIAL)
+			msg = "<span class='tinynotice' style='color:#00CED1;'><i>[msg]</i></span>"
 		if(WOUND_SEVERITY_MODERATE)
 			msg = "<span class='tinynotice'><i>[msg]</i></span>"
 		if(WOUND_SEVERITY_SEVERE)

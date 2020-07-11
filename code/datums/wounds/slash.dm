@@ -11,7 +11,6 @@
 	treatable_by_grabbed = list(/obj/item/gun/energy/laser)
 	treatable_tool = TOOL_CAUTERY
 	treat_priority = TRUE
-	base_treat_time = 6 SECONDS
 
 	/// How much blood we start losing when this wound is first applied
 	var/initial_flow
@@ -34,6 +33,8 @@
 	
 	/// A bad system I'm using to track the worst scar we earned (since we can demote, we want the biggest our wound has been, not what it was when it was cured (probably moderate))
 	var/datum/scar/highest_scar
+
+	base_treat_time = 3 SECONDS
 
 /datum/wound/slash/on_hemostatic(quantity)
 	if((quantity >= 15) && (severity == WOUND_SEVERITY_SEVERE) && demotes_to)
@@ -193,7 +194,7 @@
 
 /// If someone's putting a laser gun up to our cut to cauterize it
 /datum/wound/slash/proc/las_cauterize(obj/item/gun/energy/laser/lasgun, mob/user)
-	var/self_penalty_mult = (user == victim ? 2.5 : 1)
+	var/self_penalty_mult = (user == victim ? 2 : 1)
 	user.visible_message("<span class='warning'>[user] begins aiming [lasgun] directly at [victim]'s [fake_limb ? "[fake_limb] stump" : limb.name]...</span>", "<span class='userdanger'>You begin aiming [lasgun] directly at [user == victim ? "your" : "[victim]'s"] [fake_limb ? "[fake_limb] stump" : limb.name]...</span>")
 	if(!do_after(user, base_treat_time  * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
@@ -209,7 +210,7 @@
 
 /// If someone is using either a cautery tool or something with heat to cauterize this cut
 /datum/wound/slash/proc/tool_cauterize(obj/item/I, mob/user)
-	var/self_penalty_mult = (user == victim ? 3 : 1)
+	var/self_penalty_mult = (user == victim ? 2 : 1)
 	user.visible_message("<span class='danger'>[user] begins cauterizing [victim]'s [fake_limb ? "[fake_limb] stump" : limb.name] with [I]...</span>", "<span class='danger'>You begin cauterizing [user == victim ? "your" : "[victim]'s"] [fake_limb ? "[fake_limb] stump" : limb.name] with [I]...</span>")
 	var/time_mod = 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
@@ -230,7 +231,7 @@
 
 /// If someone is using a suture to close this cut
 /datum/wound/slash/proc/suture(obj/item/stack/medical/suture/I, mob/user)
-	var/self_penalty_mult = (user == victim ? 4 : 1)
+	var/self_penalty_mult = (user == victim ? 2 : 1)
 	user.visible_message("<span class='notice'>[user] begins stitching [victim]'s [fake_limb ? "[fake_limb] stump" : limb.name] with [I]...</span>", "<span class='notice'>You begin stitching [user == victim ? "your" : "[victim]'s"] [fake_limb ? "[fake_limb] stump" : limb.name] with [I]...</span>")
 	var/time_mod = 1 //no skills for now, cit skills are horrible
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))

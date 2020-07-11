@@ -76,8 +76,7 @@
 //close incision
 /datum/surgery_step/close
 	name = "Mend incision"
-	implements = list(TOOL_CAUTERY = 100, /obj/item/gun/energy/laser = 90, TOOL_WELDER = 70,
-		/obj/item = 30) // 30% success with any hot item.
+	implements = list(TOOL_CAUTERY = 100, /obj/item/gun/energy/laser = 90, TOOL_WELDER = 70, /obj/item = 30) // 30% success with any hot item.
 	time = 24
 
 /datum/surgery_step/close/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

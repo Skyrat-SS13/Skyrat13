@@ -9,7 +9,6 @@
 	wound_type = WOUND_LIST_PIERCE
 	treatable_by = list(/obj/item/stack/medical/suture)
 	treatable_tool = TOOL_CAUTERY
-	base_treat_time = 6 SECONDS
 	accepts_gauze = TRUE
 
 	/// How much blood we start losing when this wound is first applied
@@ -25,6 +24,8 @@
 	var/internal_bleeding_chance
 	/// If we let off blood when hit, the max blood lost is this * the incoming damage
 	var/internal_bleeding_coefficient
+
+	base_treat_time = 2.5 SECONDS
 
 /datum/wound/pierce/wound_injury(datum/wound/old_wound)
 	blood_flow = initial_flow
@@ -85,7 +86,7 @@
 
 /// If someone is using a suture to close this cut
 /datum/wound/pierce/proc/suture(obj/item/stack/medical/suture/I, mob/user)
-	var/self_penalty_mult = (user == victim ? 3 : 1)
+	var/self_penalty_mult = (user == victim ? 2 : 1)
 	user.visible_message("<span class='notice'>[user] begins stitching [victim]'s [limb.name] with [I]...</span>", "<span class='notice'>You begin stitching [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
 	var/time_mod = 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
@@ -102,7 +103,7 @@
 
 /// If someone is using either a cautery tool or something with heat to cauterize this pierce
 /datum/wound/pierce/proc/tool_cauterize(obj/item/I, mob/user)
-	var/self_penalty_mult = (user == victim ? 2.5 : 1)
+	var/self_penalty_mult = (user == victim ? 2 : 1)
 	user.visible_message("<span class='danger'>[user] begins cauterizing [victim]'s [limb.name] with [I]...</span>", "<span class='danger'>You begin cauterizing [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
 	var/time_mod = 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))

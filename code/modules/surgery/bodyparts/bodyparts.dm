@@ -62,10 +62,12 @@
 	var/dmg_overlay_type //the type of damage overlay (if any) to use when this bodypart is bruised/burned.
 
 	//Damage messages used by help_shake_act()
+	var/no_brute_msg = "not bruised"
 	var/light_brute_msg = "bruised"
 	var/medium_brute_msg = "battered"
 	var/heavy_brute_msg = "mangled"
 
+	var/no_burn_msg = "not burnt"
 	var/light_burn_msg = "numb"
 	var/medium_burn_msg = "blistered"
 	var/heavy_burn_msg = "peeling away"
@@ -1365,20 +1367,20 @@
 	if(current_gauze)
 		if(prob(base_roll/4))
 			if(prob(base_roll/2))
-				owner.visible_message("<span class='warning'>\The [current_gauze] on [owner]'s [src] shreds apart completely!</span>", "<span class='userdanger'>\The [current_gauze] on your [src] gets completely shredded!</span>")
+				owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [src.name] shreds apart completely!</span>", "<span class='userdanger'>\The [current_gauze] on your [src.name] gets completely shredded!</span>")
 				var/obj/item/reagent_containers/rag/R = new /obj/item/reagent_containers/rag()
 				R.name = "shredded [current_gauze.name]"
 				R.desc = "Pretty worthless for medicine now..."
 				R.add_mob_blood(owner)
 				QDEL_NULL(current_gauze)
 			else
-				owner.visible_message("<span class='warning'>\The [current_gauze] on [owner] falls off from [lowertext(owner.p_their())] [src]!</span>", "<span class='userdanger'>\The [current_gauze] on your [src] falls off!</span>")
+				owner.visible_message("<span class='danger'>\The [current_gauze] on [owner] falls off from [lowertext(owner.p_their())] [src.name]!</span>", "<span class='userdanger'>\The [current_gauze] on your [src.name] falls off!</span>")
 				current_gauze.forceMove(owner.loc)
 				current_gauze.add_mob_blood(owner)
 				current_gauze = null
 		
 		else if(prob(base_roll))
-			owner.visible_message("<span class='warning'>\The [current_gauze] on [owner]'s [src] tears up a bit!</span>", "<span class='danger'>\The [current_gauze] on your [src] tears up a bit!</span>")
+			owner.visible_message("<span class='boldwarning'>\The [current_gauze] on [owner]'s [src.name] tears up a bit!</span>", "<span class='danger'>\The [current_gauze] on your [src.name] tears up a bit!</span>")
 			for(var/i in wounds)
 				var/datum/wound/woundie = i
 				if(istype(woundie))
@@ -1541,7 +1543,11 @@
 
 	for(var/thing in wounds)
 		var/datum/wound/W = thing
-		bleed_rate += W.blood_flow
+		if(istype(W))
+			bleed_rate += W.blood_flow
+	
+	if(current_gauze)
+		bleed_rate = max(0, bleed_rate - current_gauze.absorption_rate)
 	
 	if(bleedsuppress)
 		bleed_rate = 0

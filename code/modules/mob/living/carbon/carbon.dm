@@ -1263,3 +1263,10 @@
 		var/obj/item/bodypart/BP = i
 		if(BP.get_bleed_rate())
 			return TRUE
+
+// if any of our bodyparts is gauzed
+/mob/living/carbon/proc/has_gauze()
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		if(BP.current_gauze)
+			return TRUE

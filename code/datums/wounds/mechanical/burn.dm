@@ -59,7 +59,7 @@
 	/// Boolean used by the damage malfunction to burn on being processed
 	var/damaging = FALSE
 
-	base_treat_time = 6 SECONDS
+	base_treat_time = 3 SECONDS
 
 /datum/wound/mechanical/burn/remove_wound(ignore_limb, replaced, forced)
 	. = ..()
@@ -291,7 +291,7 @@
 /// if someone is using cable on the wound
 /datum/wound/mechanical/burn/proc/cable(obj/item/stack/cable_coil/I, mob/victim)
 	victim.visible_message("<span class='notice'>[victim] begins repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>", "<span class='notice'>You begin begin repairing [victim]'s [limb.name]'s damaged wires with [I]...</span>")
-	if(!do_after(victim, (victim == victim ? 4 SECONDS : 1 SECONDS), extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(victim, (victim == victim ? 6 SECONDS : 3 SECONDS), extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
 	limb.heal_damage(0, 5)

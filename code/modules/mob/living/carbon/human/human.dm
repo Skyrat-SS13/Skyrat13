@@ -1253,6 +1253,11 @@
 		return FALSE
 	return ..()
 
+/mob/living/carbon/human/has_gauze()
+	if(NOBLOOD in dna.species.species_traits)
+		return FALSE
+	return ..()
+
 /mob/living/carbon/human/get_total_bleed_rate()
 	if(NOBLOOD in dna.species.species_traits)
 		return FALSE

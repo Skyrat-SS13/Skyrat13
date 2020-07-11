@@ -28,8 +28,10 @@
 
 /obj/item/stack/medical/attack(mob/living/M, mob/user)
 	. = ..()
-	try_heal(M, user)
-
+	if(!INTERACTING_WITH(user, M))
+		try_heal(M, user)
+	else
+		to_chat(user, "<span class='warning'>You're already interacting with \the [M]!")
 
 /obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!M.can_inject(user, TRUE))

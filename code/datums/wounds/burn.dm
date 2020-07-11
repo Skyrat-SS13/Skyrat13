@@ -27,7 +27,7 @@
 	/// Once we reach infestation beyond WOUND_INFESTATION_SEPSIS, we get this many warnings before the limb is completely paralyzed (you'd have to ignore a really bad burn for a really long time for this to happen)
 	var/strikes_to_lose_limb = 3
 
-	base_treat_time = 4 SECONDS
+	base_treat_time = 3 SECONDS
 
 /datum/wound/burn/on_hemostatic(quantity)
 	if((severity <= WOUND_SEVERITY_SEVERE) && infestation && (quantity >= 10))
@@ -199,7 +199,7 @@
 /// if someone is using ointment on our burns
 /datum/wound/burn/proc/ointment(obj/item/stack/medical/ointment/I, mob/user)
 	user.visible_message("<span class='notice'>[user] begins applying [I] to [victim]'s [limb.name]...</span>", "<span class='notice'>You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name]...</span>")
-	if(!do_after(user, (user == victim ? I.self_delay : 1 SECONDS), extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay), extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
 	limb.heal_damage(I.heal_brute, I.heal_burn)
@@ -216,7 +216,7 @@
 /// if someone is using mesh on our burns
 /datum/wound/burn/proc/mesh(obj/item/stack/medical/mesh/I, mob/user)
 	user.visible_message("<span class='notice'>[user] begins wrapping [victim]'s [limb.name] with [I]...</span>", "<span class='notice'>You begin wrapping [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
-	if(!do_after(user, (user == victim ? I.self_delay : 1 SECONDS), target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay), target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
 	limb.heal_damage(I.heal_brute, I.heal_burn)

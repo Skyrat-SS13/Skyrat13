@@ -35,6 +35,12 @@
 		pods = null
 	return ..()
 
+/obj/machinery/computer/cloning/emag_act(mob/user)
+	var/obj/machinery/clonepod/pod = GetAvailablePod()
+	pod.cost_per_clone *= 10
+	pod.biomass_per_clone *= 2
+	to_chat(user, "<span class='notice'>You emag \the [src], making cloning 10 times as costly credits-wise, and 2x as costly biomass wise.</span>")
+
 /obj/machinery/computer/cloning/proc/GetAvailablePod(mind = null)
 	if(pods)
 		for(var/P in pods)

@@ -10,7 +10,6 @@
 	treatable_by = list(/obj/item/stack/sticky_tape, /obj/item/stack/sheet)
 	treatable_tool = TOOL_WELDER
 	treat_priority = TRUE
-	base_treat_time = 6 SECONDS
 
 	/// How much blood we start losing when this wound is first applied
 	var/initial_flow
@@ -30,6 +29,8 @@
 	requires_patch = FALSE
 	repeat_patch = TRUE
 	repeat_weld = TRUE
+
+	base_treat_time = 2.5 SECONDS
 
 /datum/wound/mechanical/slash/wound_injury(datum/wound/slash/old_wound = null)
 	blood_flow = initial_flow
@@ -119,7 +120,7 @@
 		user.visible_message("<span class='notice'>[user] begins welding \the [patch] on [victim]'s [limb.name] with \the [I]...</span>", "<span class='notice'>You begin welding \the [patch] [user == victim ? "your" : "[victim]'s"] [limb.name] with \the [I]...</span>")
 	else
 		user.visible_message("<span class='notice'>[user] begins welding \the [lowertext(name)] on [victim]'s [limb.name] with \the [I]...</span>", "<span class='notice'>You begin welding \the [lowertext(name)] on [user == victim ? "your" : "[victim]'s"] [limb.name] with \the [I]...</span>")
-	var/self_penalty_mult = (user == victim ? 2.5 : 1)
+	var/self_penalty_mult = (user == victim ? 2 : 1)
 	var/time_mod = 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
@@ -150,7 +151,7 @@
 		to_chat(user, "<span class='warning'>The limb has already been patched!</span>")
 		return
 	user.visible_message("<span class='notice'>[user] begins wrapping [victim]'s [limb.name] with \the [I]...</span>", "<span class='notice'>You begin wrapping [user == victim ? "your" : "[victim]'s"] [limb.name] with \the [I]...</span>")
-	var/self_penalty_mult = (user == victim ? 2.5 : 1)
+	var/self_penalty_mult = (user == victim ? 2 : 1)
 	var/time_mod = 1
 	if(!do_after(user, base_treat_time * time_mod * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return

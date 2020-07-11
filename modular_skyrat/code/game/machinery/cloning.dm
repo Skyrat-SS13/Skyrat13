@@ -39,6 +39,7 @@
 	var/flesh_number = 0
 	var/biomass = 0
 	var/max_biomass = 1000
+	var/biomass_per_clone = 300
 
 	var/pays_for_clone = TRUE
 	var/cost_per_clone = 1000 //cost in credits for a clone, of course.
@@ -155,7 +156,7 @@
 		if(radio)
 			radio.talk_into("Insufficient amount of credits to initiate cloning procedure.")
 		return FALSE
-	if(biomass < 300)
+	if(biomass < biomass_per_clone)
 		if(radio)
 			radio.talk_into("Insufficient amount of biomass to initiate cloning procedure.")
 		return FALSE
