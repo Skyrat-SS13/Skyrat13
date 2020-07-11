@@ -205,7 +205,7 @@
 		R.resize = 1.25
 		R.hasShrunk = FALSE
 		R.update_transform()
-
+*/
 /obj/item/borg/upgrade/transform/syndicatejack
     name = "borg module picker (Syndicate)"
     desc = "Allows you to to turn a cyborg into a experimental syndicate cyborg."
@@ -215,4 +215,4 @@
 /obj/item/borg/upgrade/transform/syndicatejack/action(mob/living/silicon/robot/R, user = usr)
     if(R.emagged)
         return ..()
-*/
+
