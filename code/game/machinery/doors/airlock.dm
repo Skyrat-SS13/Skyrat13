@@ -95,6 +95,7 @@
 
 	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
+	var/pried_so_hard = FALSE // Skyrat change
 
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	rad_insulation = RAD_MEDIUM_INSULATION
@@ -653,6 +654,8 @@
 		. += "<span class='warning'>The maintenance panel seems haphazardly fastened.</span>"
 	if(charge && panel_open)
 		. += "<span class='warning'>Something is wired up to the airlock's electronics!</span>"
+	if(pried_so_hard) // Skyrat change
+		. += "<span class='warning'>There are signs of forced entry where the halves meet, dents and scratches in the airlock's metal.</span>"
 	if(note)
 		if(!in_range(user, src))
 			. += "There's a [note.name] pinned to the front. You can't read it from here."
@@ -1018,6 +1021,7 @@
 								"<span class='italics'>You hear welding.</span>")
 				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, .proc/weld_checks, W, user)))
 					obj_integrity = max_integrity
+					pried_so_hard = FALSE // Skyrat
 					stat &= ~BROKEN
 					user.visible_message("[user.name] has repaired [src].", \
 										"<span class='notice'>You finish repairing the airlock.</span>")
@@ -1092,6 +1096,7 @@
 			if(result)
 				open(2)
 				take_damage(25, BRUTE, 0, 0) // Skyrat change
+				pried_so_hard = TRUE // Skyrat change
 				if(density && !open(2))
 					to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open.</span>")
 
