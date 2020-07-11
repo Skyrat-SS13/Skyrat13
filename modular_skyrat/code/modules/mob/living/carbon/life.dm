@@ -27,18 +27,18 @@
 
 	switch(bodytemperature)
 		if(T0C + 4 to T0C + 10)
-			stank.gases[/datum/gas/miasma] = 0.15
+			stank.adjust_moles(/datum/gas/miasma, 0.15)
 		if(T0C + 5 to T0C + 20)
-			stank.gases[/datum/gas/miasma] = 0.30
+			stank.adjust_moles(/datum/gas/miasma, 0.30)
 		if(T0C + 20 to T0C + 40)
-			stank.gases[/datum/gas/miasma] = 0.45
+			stank.adjust_moles(/datum/gas/miasma, 0.45)
 		if(T0C + 40 to T0C + 50)
-			stank.gases[/datum/gas/miasma] = 0.30
+			stank.adjust_moles(/datum/gas/miasma, 0.30)
 		if(T0C + 60 to T0C + 70)
-			stank.gases[/datum/gas/miasma] = 0.15
+			stank.adjust_moles(/datum/gas/miasma, 0.15)
 		else
-			stank.gases[/datum/gas/miasma] = 0.1
-	stank.temperature = (bodytemperature + BODYTEMP_NORMAL) / 2
+			stank.adjust_moles(/datum/gas/miasma, 0.1)
+	stank.set_temperature((bodytemperature + BODYTEMP_NORMAL) / 2)
 
 	miasma_turf.assume_air(stank)
 	miasma_turf.air_update_turf()

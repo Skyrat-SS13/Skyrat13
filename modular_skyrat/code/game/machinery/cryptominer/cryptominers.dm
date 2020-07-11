@@ -50,22 +50,23 @@
 		return
 	if(!mining)
 		return
-	if(env.temperature >= maxtemp)
+	var/temp = env.return_temperature()
+	if(temp >= maxtemp)
 		if(mining)
 			playsound(loc, 'sound/machines/beep.ogg', 50, TRUE, -1)
 		set_mining(FALSE)
 		return
-	if(env.temperature <= maxtemp && env.temperature >= midtemp)
+	if(temp <= maxtemp && temp >= midtemp)
 		if(mining)
 			produce_points(0.20)
 			produce_heat()
 		return
-	if(env.temperature <= midtemp && env.temperature >= mintemp)
+	if(temp <= midtemp && temp >= mintemp)
 		if(mining)
 			produce_points(1)
 			produce_heat()
 		return
-	if(env.temperature <= mintemp)
+	if(temp <= mintemp)
 		if(mining)
 			produce_points(3)
 			produce_heat()

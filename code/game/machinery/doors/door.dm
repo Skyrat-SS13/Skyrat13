@@ -207,11 +207,7 @@
 	return max_moles - min_moles > 20
 
 /obj/machinery/door/attackby(obj/item/I, mob/user, params)
-<<<<<<< HEAD
-	if(user.a_intent != INTENT_HARM && (istype(I, /obj/item/crowbar) || istype(I, /obj/item/twohanded/fireaxe)))
-=======
-	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/fireaxe)))
->>>>>>> 31da81aff4... Merge pull request #12217 from Putnam3145/putnamos-for-real
+	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/twohanded/fireaxe))) //Skyrat edit - no 2 h component yet
 		try_to_crowbar(I, user)
 		return 1
 	else if(I.tool_behaviour == TOOL_WELDER)

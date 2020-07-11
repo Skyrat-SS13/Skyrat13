@@ -12,12 +12,12 @@
 
 /obj/item/tank/internals/nitrogen/populate_gas()
 	..()
-	air_contents.gases[/datum/gas/nitrogen] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.adjust_moles(/datum/gas/nitrogen,(3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
 /obj/item/tank/internals/nitrogen/full/populate_gas()
 	..()
-	air_contents.gases[/datum/gas/nitrogen] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.adjust_moles(/datum/gas/nitrogen,(10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
 
@@ -34,5 +34,5 @@
 
 /obj/item/tank/internals/nitrogen/belt/full/populate_gas()
 	..()
-	air_contents.gases[/datum/gas/nitrogen] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.adjust_moles(/datum/gas/nitrogen,(10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	return

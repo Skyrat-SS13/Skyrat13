@@ -9,14 +9,8 @@ GLOBAL_LIST(topic_status_cache)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-<<<<<<< HEAD
-	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
-	if (fexists(extools))
-		call(extools, "maptick_initialize")()
-=======
 	if (fexists(EXTOOLS))
 		call(EXTOOLS, "maptick_initialize")()
->>>>>>> 31da81aff4... Merge pull request #12217 from Putnam3145/putnamos-for-real
 	enable_debugger()
 
 #if DM_VERSION >= 513 && DM_BUILD >= 1506
@@ -282,9 +276,6 @@ GLOBAL_LIST(topic_status_cache)
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..()
 
-<<<<<<< HEAD
-/*/world/proc/update_status() //moved to skyrat_modular
-=======
 /world/Del()
 	// memory leaks bad
 	var/num_deleted = 0
@@ -294,8 +285,7 @@ GLOBAL_LIST(topic_status_cache)
 	log_world("Deallocated [num_deleted] gas mixtures")
 	..()
 
-/world/proc/update_status()
->>>>>>> 31da81aff4... Merge pull request #12217 from Putnam3145/putnamos-for-real
+/*/world/proc/update_status() //moved to skyrat_modular
 
 	var/list/features = list()
 

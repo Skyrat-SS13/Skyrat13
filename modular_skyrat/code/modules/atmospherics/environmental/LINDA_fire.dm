@@ -3,11 +3,11 @@
 	if(!air_contents)
 		return 0
 
-	var/oxy = air_contents.gases[/datum/gas/oxygen]
+	var/oxy = air_contents.get_moles(/datum/gas/oxygen)
 	if(oxy < 0.5)
 		return 0
-	var/tox = air_contents.gases[/datum/gas/plasma]
-	var/trit = air_contents.gases[/datum/gas/tritium]
+	var/tox = air_contents.get_moles(/datum/gas/plasma)
+	var/trit = air_contents.get_moles(/datum/gas/tritium)
 	if(active_hotspot)
 		if(soh)
 			if(tox > 0.5 || trit > 0.5)

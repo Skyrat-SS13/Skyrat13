@@ -142,13 +142,8 @@
 
 	//Too much oxygen! //Yes, some species may not like it.
 	if(safe_oxygen_max)
-<<<<<<< HEAD
 		if((O2_pp > safe_oxygen_max) && !(oxy_damage_type == OXY)) //SKYRAT CHANGE - basically fixes this 'if' cause it'd never be true
-			var/ratio = (breath_gases[/datum/gas/oxygen]/safe_oxygen_max) * 10
-=======
-		if((O2_pp > safe_oxygen_max) && safe_oxygen_max == 0) //I guess plasma men technically need to have a check.
 			var/ratio = (breath.get_moles(/datum/gas/oxygen)/safe_oxygen_max) * 10
->>>>>>> 31da81aff4... Merge pull request #12217 from Putnam3145/putnamos-for-real
 			H.apply_damage_type(clamp(ratio, oxy_breath_dam_min, oxy_breath_dam_max), oxy_damage_type)
 			H.throw_alert("too_much_oxy", /obj/screen/alert/too_much_oxy)
 			//SKYRAT CHANGES - visual cue to choking this way
