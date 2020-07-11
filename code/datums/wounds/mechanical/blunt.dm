@@ -3,6 +3,8 @@
 	sound_effect = 'sound/effects/clang1.ogg'
 	a_or_from = "from"
 	wound_type = WOUND_LIST_BLUNT_MECHANICAL
+	treatable_by = list(/obj/item/stack/sticky_tape, /obj/item/reagent_containers)
+	treatable_tool = TOOL_WRENCH
 
 	associated_alerts = list("bone" = /obj/screen/alert/status_effect/wound/blunt)
 
@@ -202,7 +204,6 @@
 	limp_slowdown = 3
 	threshold_minimum = 35
 	threshold_penalty = 15
-	treatable_tool = TOOL_WRENCH
 	status_effect_type = /datum/status_effect/wound/blunt/moderate
 	scarring_descriptions = list("light discoloring", "a slight blue tint")
 	associated_alerts = list()
@@ -338,7 +339,6 @@
 	threshold_penalty = 30
 	status_effect_type = /datum/status_effect/wound/blunt/severe
 	treat_priority = TRUE
-	treatable_by = list(/obj/item/stack/sticky_tape, /obj/item/reagent_containers)
 	scarring_descriptions = list("a faded, fist-sized bruise", "a vaguely triangular peel scar")
 	brain_trauma_group = BRAIN_TRAUMA_MILD
 	trauma_cycle_cooldown = 1.5 MINUTES
@@ -359,7 +359,6 @@
 	disabling = TRUE
 	status_effect_type = /datum/status_effect/wound/blunt/critical
 	treat_priority = TRUE
-	treatable_by = list(/obj/item/stack/sticky_tape, /obj/item/reagent_containers)
 	scarring_descriptions = list("a section of janky skin lines and badly healed scars", "a large patch of uneven skin tone", "a cluster of calluses")
 	brain_trauma_group = BRAIN_TRAUMA_SEVERE
 	trauma_cycle_cooldown = 2.5 MINUTES

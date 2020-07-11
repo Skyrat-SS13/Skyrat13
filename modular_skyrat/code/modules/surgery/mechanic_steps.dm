@@ -13,7 +13,7 @@
 			"[user] begins to cut loose wires in [target]'s [parse_zone(target_zone)].",
 			"[user] begins to cut loose wires in [target]'s [parse_zone(target_zone)].")
 
-/datum/surgery_step/cut_wires/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/cut_wires/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == /obj/item && !tool.get_sharpness())
 		return FALSE
 	return TRUE
@@ -27,6 +27,12 @@
 	time = 24
 
 /datum/surgery_step/pry_off_plating/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	//skyrat edit
+	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
+	BP.incised = TRUE
+	if(BP)
+		BP.generic_bleedstacks += 10
+	//
 	do_sparks(rand(5, 9), FALSE, target.loc)
 	return TRUE
 
@@ -42,7 +48,7 @@
 		TOOL_WELDER = 100)
 	time = 24
 
-/datum/surgery_step/weld_plating/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/weld_plating/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == TOOL_WELDER && !tool.use_tool(user, user, 0, volume=50, amount=1))
 		return FALSE
 	return TRUE
@@ -59,7 +65,7 @@
 	time = 24
 	var/cableamount = 5
 
-/datum/surgery_step/replace_wires/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/replace_wires/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	var/obj/item/stack/cable_coil/coil = tool
 	if(coil.get_amount() < cableamount)
 		to_chat(user, "<span class='warning'>Not enough cable!</span>")
@@ -84,7 +90,7 @@
 	time = 24
 	var/metalamount = 5
 
-/datum/surgery_step/add_plating/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/add_plating/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	var/obj/item/stack/sheet/metal/plat = tool
 	if(plat.get_amount() < metalamount)
 		to_chat(user, "<span class='warning'>Not enough metal!</span>")

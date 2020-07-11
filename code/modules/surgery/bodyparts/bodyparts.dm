@@ -103,6 +103,10 @@
 	var/bleedsuppress = FALSE
 	/// If we have a gauze wrapping currently applied (not including splints)
 	var/obj/item/stack/current_gauze
+	/// If someone has written something on us
+	var/etching = ""
+	/// Have we been incised for surgery?
+	var/incised = FALSE
 	//
 
 //skyrat edit
@@ -118,6 +122,8 @@
 		. += "<span class='warning'>This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.</span>"
 	if(burn_dam > DAMAGE_PRECISION)
 		. += "<span class='warning'>This limb has [burn_dam > 30 ? "severe" : "minor"] burns.</span>"
+	if(etching)
+		. += "<span class='notice'>[src] has \"[etching]\" inscribed on it.</span>"
 	for(var/obj/item/bodypart/BP in src)
 		if(BP.body_zone in children_zones)
 			. += "<span class='notice'>[src] has \a [lowertext(BP.name)] attached. Use a sharp item to cut it off!</span>"
@@ -158,6 +164,14 @@
 			"<span class='notice'>You begin to cut open [src]...</span>")
 		if(do_after(user, 54, target = src))
 			drop_organs(user)
+	else if(istype(W, /obj/item/cautery) && user.a_intent == INTENT_HELP)
+		var/badboy = input(user, "What do you want to inscribe on [src]?", "Malpractice", "") as text
+		if(badboy)
+			badboy = strip_html_simple(badboy)
+			etching = "<b>[badboy]</b>"
+			user.visible_message("<span class='notice'>[user] etches something on \the [src] with \the [W].</span>, <span class='notice'>You etch \"[badboy]\" on [src] with \the [W]. Hehe.</span>")
+		else
+			return ..()
 	else
 		return ..()
 
@@ -253,6 +267,15 @@
 			wounding_type = WOUND_SLASH
 		else if(sharpness == SHARP_POINTY)
 			wounding_type = WOUND_PIERCE
+		// Incised limbs are obviously weaker
+		if(incised)
+			switch(wounding_type)
+				if(WOUND_BLUNT)
+					wounding_dmg *= 1.25
+				if(WOUND_SLASH)
+					wounding_dmg *= 2.5 //well you're just fucked
+				if(WOUND_PIERCE)
+					wounding_dmg *= 1.65
 		// if we've already mangled the muscle (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 		// So a big sharp weapon is still all you need to destroy a limb
 		if((mangled_state & BODYPART_MANGLED_MUSCLE) && sharpness)
@@ -264,7 +287,8 @@
 				wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
 
 		// if both the skin, muscle and the bone are destroyed, and we're doing more than 10 damage, we're ripe to try dismembering
-		else if(mangled_state == BODYPART_MANGLED_BOTH && wounding_dmg >= DISMEMBER_MINIMUM_DAMAGE)
+		// or you know, we could be incised, then we always roll for it
+		else if((mangled_state & BODYPART_MANGLED_BOTH && wounding_dmg >= DISMEMBER_MINIMUM_DAMAGE) || incised)
 			if(try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))
 				return
 
@@ -1423,6 +1447,8 @@
 			else
 				new_wound = new possible_wound.type
 				new_wound.apply_wound(src)
+				if(new_wound.wound_type == (WOUND_LIST_BURN || WOUND_LIST_BURN_MECHANICAL))
+					incised = FALSE //yes, getting a burn wound cauterizes open incisions
 				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll)
 				qdel(possible_wound)
 			return new_wound
@@ -1545,6 +1571,9 @@
 		var/datum/wound/W = thing
 		if(istype(W))
 			bleed_rate += W.blood_flow
+	
+	if(incised)
+		bleed_rate += 1.25
 	
 	if(current_gauze)
 		bleed_rate = max(0, bleed_rate - current_gauze.absorption_rate)

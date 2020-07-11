@@ -120,6 +120,8 @@
 		return null
 
 /datum/surgery/proc/complete()
+	if(operated_bodypart)
+		operated_bodypart.incised = FALSE
 	SSblackbox.record_feedback("tally", "surgeries_completed", 1, type)
 	qdel(src)
 

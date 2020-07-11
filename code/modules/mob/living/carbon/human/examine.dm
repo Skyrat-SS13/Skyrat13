@@ -141,7 +141,7 @@
 	var/cursed_stuff = attempt_vr(src,"examine_bellies",args) //vore Code
 	if(cursed_stuff)
 		. += cursed_stuff
-//END OF CIT CHANGES
+	//END OF CIT CHANGES
 
 	//Jitters
 	if(!screwy_self)
@@ -190,6 +190,13 @@
 			//skyrat edit
 			if(BP.is_disabled())
 				disabled += BP
+			if(BP.etching && !clothingonpart(BP))
+				msg += "<B>[t_His] [BP.name] has \"[BP.etching]\" etched on it!</B>\n"
+			if(BP.incised && (BP.body_zone in ORGAN_BODYPARTS))
+				msg += "<span class='boldwarning'><B>[t_His] [BP.name] is surgically cut open, you can see [t_his] organs!</B></span>\n"
+				for(var/obj/item/organ/O in getorganszone(BP.body_zone))
+					for(var/i in O.surgical_examine(user))
+						msg += "<span class='danger'>[icon2html(O.examine_icon ? O.examine_icon : O, user, O.examine_icon_state ? O.examine_icon_state : O.icon_state)] [i]</span>\n"
 			//
 			missing -= BP.body_zone
 			for(var/obj/item/I in BP.embedded_objects)
@@ -328,9 +335,13 @@
 					bleed_text += " and [bleeding_limbs[num_bleeds].name]"
 			
 			if(appears_dead)
-				bleed_text += ", but it has pooled and is not flowing.</span></B>\n"
+				bleed_text += ", but it has pooled and is not flowing.</span>"
 			else if(reagents.has_reagent(/datum/reagent/toxin/heparin))
-				bleed_text += " incredibly quickly!</B>\n"
+				bleed_text += " incredibly quickly!"
+			
+			if(bleed_text)
+				bleed_text += "</B>\n"
+			
 			msg += bleed_text
 		//skyrat edit
 		var/list/obj/item/bodypart/suppress_limbs = list()

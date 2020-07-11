@@ -154,7 +154,6 @@
 	occur_text = "spurts out a thin stream of hydraulic fluid"
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_MODERATE
-	treatable_by = list(/obj/item/stack/sticky_tape, /obj/item/stack/sheet)
 	initial_flow = 1.5
 	gauzed_clot_rate = 0.8
 	internal_bleeding_chance = 30
@@ -190,8 +189,7 @@
 	occur_text = "blasts apart, sending metallic shrapnel flying in all directions"
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
-	treatable_by = list()
-	treatable_tool = NONE
+	treatable_by = list(/obj/item/stack/sheet)
 	initial_flow = 3
 	gauzed_clot_rate = 0.4
 	internal_bleeding_chance = 80

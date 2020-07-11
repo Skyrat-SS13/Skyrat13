@@ -10,10 +10,16 @@
 		"[user] begins to make an incision in [target]'s [parse_zone(target_zone)].",
 		"[user] begins to make an incision in [target]'s [parse_zone(target_zone)].")
 
-/datum/surgery_step/incise/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/incise/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
+	if(istype(tool, /obj/item/pen) && user.a_intent == INTENT_HELP && target)
+		var/obj/item/bodypart/BP = target.get_bodypart(user.zone_selected)
+		if(istype(BP))
+			BP.attackby(tool, user)
+		return FALSE
 	if(implement_type == /obj/item && !tool.get_sharpness())
 		return FALSE
 	return TRUE
+
 /datum/surgery_step/incise/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if ishuman(target)
 		var/mob/living/carbon/human/H = target
@@ -23,7 +29,8 @@
 				"")
 			//skyrat edit
 			var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
-			if(BP)
+			if(istype(BP))
+				BP.incised = TRUE
 				BP.generic_bleedstacks += 10
 			//
 	return TRUE
@@ -84,10 +91,11 @@
 		"[user] begins to mend the incision in [target]'s [parse_zone(target_zone)].",
 		"[user] begins to mend the incision in [target]'s [parse_zone(target_zone)].")
 
-/datum/surgery_step/close/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/close/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == TOOL_WELDER || implement_type == /obj/item)
 		return tool.get_temperature()
 	return TRUE
+
 /datum/surgery_step/close/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(locate(/datum/surgery_step/saw) in surgery.steps)
 		target.heal_bodypart_damage(45,0)
@@ -95,8 +103,8 @@
 		var/mob/living/carbon/human/H = target
 		//skyrat edit
 		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
-		if(BP)
-			BP.generic_bleedstacks -= 3
+		if(istype(BP))
+			BP.incised = FALSE
 		//
 	return ..()
 //saw bone

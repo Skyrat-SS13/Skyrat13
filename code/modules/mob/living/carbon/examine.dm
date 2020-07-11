@@ -46,6 +46,15 @@
 			disabled += BP
 		//
 		missing -= BP.body_zone
+		//skyrat edit
+		if(BP.etching)
+			msg += "<B>[t_His] [BP.name] has \"[BP.etching]\" etched on it!</B>\n"
+		if(BP.incised && (BP.body_zone in ORGAN_BODYPARTS))
+			msg += "<span class='boldwarning'><B>[t_His] [BP.name] is surgically cut open, you can see [t_his] organs!</B></span>\n"
+			for(var/obj/item/organ/O in getorganszone(BP.body_zone))
+				for(var/i in O.surgical_examine(user))
+					msg += "<span class='danger'>[icon2html(O.examine_icon ? O.examine_icon : O, user, O.examine_icon_state ? O.examine_icon_state : O.icon_state)] [i]</span>\n"
+		//
 		for(var/obj/item/I in BP.embedded_objects)
 		//skyrat edit
 			if(I.isEmbedHarmless())
@@ -136,7 +145,65 @@
 
 	if(pulledby && pulledby.grab_state)
 		msg += "[t_He] [t_is] restrained by [pulledby]'s grip.\n"
+	
 	//skyrat edit
+	if(is_bleeding())
+		var/list/obj/item/bodypart/bleeding_limbs = list()
+
+		for(var/i in bodyparts)
+			var/obj/item/bodypart/BP = i
+			if(BP.get_bleed_rate() && !BP.current_gauze)
+				bleeding_limbs += BP
+
+		var/num_bleeds = LAZYLEN(bleeding_limbs)
+
+		var/bleed_text
+		if(appears_dead)
+			bleed_text = "<span class='deadsay'><B>Blood is visible in [t_his] open"
+		else
+			bleed_text = "<B>[t_He] [t_is] bleeding from [t_his]"
+		
+		switch(num_bleeds)
+			if(1 to 2)
+				bleed_text += " [bleeding_limbs[1].name][num_bleeds == 2 ? " and [bleeding_limbs[2].name]" : ""]"
+			if(3 to INFINITY)
+				for(var/i in 1 to (num_bleeds - 1))
+					var/obj/item/bodypart/BP = bleeding_limbs[i]
+					bleed_text += " [BP.name],"
+				bleed_text += " and [bleeding_limbs[num_bleeds].name]"
+		
+		if(appears_dead)
+			bleed_text += ", but it has pooled and is not flowing.</span>"
+		else if(reagents.has_reagent(/datum/reagent/toxin/heparin))
+			bleed_text += " incredibly quickly!"
+		
+		if(bleed_text)
+			bleed_text += "</B>\n"
+		
+		msg += bleed_text
+	
+	var/list/obj/item/bodypart/suppress_limbs = list()
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		if(BP.bleedsuppress)
+			suppress_limbs += BP
+
+	var/num_suppress = LAZYLEN(suppress_limbs)
+	var/suppress_text = "<span class='notice'><B>[t_His]"
+	switch(num_suppress)
+		if(1 to 2)
+			suppress_text += " [suppress_limbs[1].name][num_suppress == 2 ? " and [suppress_limbs[2].name]" : ""]"
+		if(3 to INFINITY)
+			for(var/i in 1 to (num_suppress - 1))
+				var/obj/item/bodypart/BP = suppress_limbs[i]
+				suppress_text += " [BP.name],"
+			suppress_text += " and [suppress_limbs[num_suppress].name]"
+	suppress_text += "[num_suppress == 1 ? " is impervious to bleeding" : " are impervious to bleeding"]"
+	
+	suppress_text += ".</B></span>\n"
+	if(num_suppress)
+		msg += suppress_text
+	
 	var/scar_severity = 0
 	for(var/i in all_scars)
 		var/datum/scar/S = i

@@ -311,7 +311,7 @@
 /datum/wound/mechanical/burn/moderate
 	name = "Molten Wires"
 	desc = "Patient's limb has suffered considerable damage to it's wiring, occasionally causing malfunctions and leaving the limb more susceptible to internal damage."
-	treat_text = "Recommended full internal repair, although cable coil may suffice."
+	treat_text = "Replacing damaged cabling on the affected limb."
 	examine_desc = "has visible pools of molten cable sleeving"
 	occur_text = "sparks and pops audibly"
 	severity = WOUND_SEVERITY_MODERATE
@@ -332,8 +332,7 @@
 /datum/wound/mechanical/burn/severe
 	name = "Burnt Transistors"
 	desc = "Patient's limb has suffered considerable damage to it's wiring and internals, causing frequent malfunctions and leaving the limb quite vulnerable to damage."
-	treat_text = "Recommended full internal repair."
-	treatable_by = list()
+	treat_text = "Recommended full internal repair, although cable coil may suffice."
 	examine_desc = "appears mildly warped, with partially charred internal components"
 	occur_text = "flares up with a small flame, noxious smoke coming out of it"
 	severity = WOUND_SEVERITY_SEVERE

@@ -15,7 +15,7 @@
 		/obj/item/toy/crayon/spraycan = 100)
 	time = 58
 
-/datum/surgery_step/restore_paintjob/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/restore_paintjob/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	var/obj/item/toy/crayon/spraycan/sc = tool
 	if(sc.is_capped)
 		to_chat(user, "<span class='warning'>Take the cap off first!</span>")

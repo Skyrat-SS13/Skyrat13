@@ -13,10 +13,23 @@
 			"[user] begins to unscrew the shell of [target]'s [parse_zone(target_zone)].",
 			"[user] begins to unscrew the shell of [target]'s [parse_zone(target_zone)].")
 
-/datum/surgery_step/mechanic_incise/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/mechanic_open/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
+	if(istype(tool, /obj/item/cautery) && user.a_intent == INTENT_HELP && target)
+		var/obj/item/bodypart/BP = target.get_bodypart(user.zone_selected)
+		if(istype(BP))
+			BP.attackby(tool, user)
+		return FALSE
 	if(implement_type == /obj/item && !tool.get_sharpness())
 		return FALSE
 	return TRUE
+
+/datum/surgery_step/mechanic_open/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	. = ..()
+	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
+	if(istype(BP))
+		BP.incised = TRUE
+		BP.generic_bleedstacks += 10
+
 //close shell
 /datum/surgery_step/mechanic_close
 	name = "Screw shell"
@@ -32,10 +45,19 @@
 			"[user] begins to screw the shell of [target]'s [parse_zone(target_zone)].",
 			"[user] begins to screw the shell of [target]'s [parse_zone(target_zone)].")
 
-/datum/surgery_step/mechanic_close/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/mechanic_close/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	. = ..()
+	//skyrat edit
+	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
+	if(istype(BP))
+		BP.incised = FALSE
+	//
+
+/datum/surgery_step/mechanic_close/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == /obj/item && !tool.get_sharpness())
 		return FALSE
 	return TRUE
+
 //prepare electronics
 /datum/surgery_step/prepare_electronics
 	name = "Prepare electronics"

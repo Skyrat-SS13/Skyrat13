@@ -114,6 +114,16 @@
 			if(istype(R, /obj/item/reagent_containers/pill))
 				qdel(R)
 			return -1
+	else if(istype(tool, /obj/item/pen) && user.a_intent == INTENT_HELP)
+		var/list/organlist = target.getorganszone(target_zone)
+		for(var/obj/item/organ/O in organlist)
+			organlist[O.name] = O
+		var/choice = input(user, "What organ do you want to etch on?", "Malpractice", "") as anything in organlist
+		if(choice)
+			var/obj/item/organ/malpracticed = organlist[choice]
+			if(istype(malpracticed))
+				malpracticed.attackby(tool, user)
+		return -1
 
 /datum/surgery_step/manipulate_organs/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(current_type == "insert")

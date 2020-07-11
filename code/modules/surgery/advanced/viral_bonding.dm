@@ -24,7 +24,7 @@
 	time = 100
 	chems_needed = list(/datum/reagent/medicine/spaceacillin, /datum/reagent/consumable/virus_food,/datum/reagent/toxin/formaldehyde)
 
-/datum/surgery_step/viral_bond/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/viral_bond/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == TOOL_WELDER || implement_type == /obj/item)
 		return tool.get_temperature()
 	return TRUE

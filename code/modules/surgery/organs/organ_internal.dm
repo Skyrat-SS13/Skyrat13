@@ -27,6 +27,9 @@
 	var/low_threshold_cleared
 	rad_flags = RAD_NO_CONTAMINATE
 
+	//Bobmed variables
+	var/etching = ""
+
 /obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	if(!iscarbon(M) || owner == M)
 		return FALSE
@@ -148,6 +151,10 @@
 
 /obj/item/organ/examine(mob/user)
 	. = ..()
+	. |= surgical_examine(user)
+
+/obj/item/organ/proc/surgical_examine(mob/user)
+	. = list()
 	if(organ_flags & ORGAN_FAILING)
 		if(status == ORGAN_ROBOTIC)
 			. += "<span class='warning'>[src] seems to be broken!</span>"
@@ -156,7 +163,8 @@
 		return
 	if(damage > high_threshold)
 		. += "<span class='warning'>[src] is starting to look discolored.</span>"
-
+	if(etching)
+		. += "<span class='notice'>[src] has \"[etching]\" inscribed on it.</span>"
 
 /obj/item/organ/proc/prepare_eat()
 	var/obj/item/reagent_containers/food/snacks/organ/S = new
@@ -198,6 +206,17 @@
 					S.attack(H, H)
 	else
 		..()
+
+/obj/item/organ/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/cautery) && user.a_intent == INTENT_HELP)
+		var/badboy = input(user, "What do you want to etch on [src]?", "Malpractice", "") as text
+		if(badboy)
+			badboy = strip_html_simple(badboy)
+			etching = "<b>[badboy]</b>"
+			user.visible_message("<span class='notice'>[user] etches something on \the [src] with \the [I].</span>, <span class='notice'>You etch \"[badboy]\" on [src] with \the [I]. Hehe.</span>")
+		else
+			return ..()
 
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.

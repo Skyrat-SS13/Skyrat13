@@ -83,7 +83,7 @@
 		var/datum/surgery/repair_puncture/R = surgery
 		puncture_slash = R.puncture_or_slash
 
-/datum/surgery_step/seal_veins/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/seal_veins/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	if(implement_type == TOOL_WELDER || implement_type == /obj/item)
 		return tool.get_temperature()
 
