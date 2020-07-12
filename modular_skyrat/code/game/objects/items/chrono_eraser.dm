@@ -103,7 +103,7 @@
 		if(F.gun == src)
 			F.gun = null
 		if(isliving(user) && F.captured)
-			F.captured.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 10) //not so fast!
+			F.captured.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199) //not so fast!
 			to_chat(user, "<span class='alert'>Disconnected from target: <b>[F.captured]</b></span>")
 	field = null
 	startpos = null
