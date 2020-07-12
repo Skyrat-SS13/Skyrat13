@@ -140,7 +140,7 @@
 	if(new_power < 0)
 		new_power = -new_power
 		lum_power = -0.5
-	set_alpha = min(230,(new_power*110)+35)
+	set_alpha = min(230,(new_power*110)+30)
 	if(visible_mask.alpha) //if it's turned on
 		visible_mask.alpha = set_alpha	
 
