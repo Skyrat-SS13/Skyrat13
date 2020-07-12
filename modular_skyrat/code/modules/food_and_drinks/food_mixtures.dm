@@ -4,7 +4,7 @@
 	id = "biomeat"
 	required_reagents = list(/datum/reagent/blood = 8, /datum/reagent/toxin/mutagen = 5,
 							/datum/reagent/medicine/salglu_solution = 5,
-							/datum/reagent/medicine/synthflesh = 20, /datum/reagent/consumable/nutriment = 2)
+							/datum/reagent/medicine/synthflesh = 10, /datum/reagent/consumable/nutriment = 2)
 	required_temp = 600
 	mob_react = FALSE
 
