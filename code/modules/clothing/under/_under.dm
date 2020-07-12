@@ -124,7 +124,7 @@
 		return
 
 	if(length(attached_accessories))
-		var/obj/item/clothing/accessory/A = attached_accessories[1]
+		var/obj/item/clothing/accessory/A = attached_accessories[length(attached_accessories)]
 		A.detach(src, user)
 		if(user.put_in_hands(A))
 			to_chat(user, "<span class='notice'>You detach [A] from [src].</span>")
