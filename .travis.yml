@@ -58,7 +58,7 @@ matrix:
             - gcc-8-multilib
             - g++-multilib
             - g++-8:i386
-            - g++-8-multili
+            - g++-8-multilib
             - libmariadb-client-lgpl-dev:i386
             - libmariadbd-dev
       cache:
