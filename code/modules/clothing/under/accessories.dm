@@ -29,7 +29,20 @@
 		pixel_x += 8
 		pixel_y -= 8
 		if(length(U.attached_accessories) > 1)
-			pixel_y += 8 * (length(U.attached_accessories) - 1)
+			if(length(U.attached_accessories) <= 3)
+				pixel_y += 8 * (length(U.attached_accessories) - 1)
+			else if((length(U.attached_accessories) > 3) && (length(U.attached_accessories) <= 6))
+				pixel_x -= 8
+				pixel_y += 8 * (length(U.attached_accessories) - 4)
+			else if((length(U.attached_accessories) > 6) && (length(U.attached_accessories) <= 9))
+				pixel_x -= 16
+				pixel_y += 8 * (length(U.attached_accessories) - 7)
+			else
+				//we ran out of space for accessories, so we just throw shit at the wall
+				pixel_x = 0
+				pixel_y = 0
+				pixel_x += rand(-16, 16)
+				pixel_y += rand(-16, 16)
 	U.add_overlay(src)
 
 	if (islist(U.armor) || isnull(U.armor)) 										// This proc can run before /obj/Initialize has run for U and src,
@@ -56,13 +69,18 @@
 
 	if(minimize_when_attached)
 		transform *= 2
-		pixel_x -= 8
-		pixel_y += 8
+		pixel_x = 0
+		pixel_y = 0
 	layer = initial(layer)
 	plane = initial(plane)
 	U.cut_overlays()
 	U.attached_accessories -= src
-	U.accessory_overlay = null
+	U.accessory_overlay = mutable_appearance('icons/mob/clothing/accessories.dmi', "blank")
+	for(var/obj/item/clothing/accessory/attached_accessory in U.attached_accessories)
+		var/mutable_appearance/Y = mutable_appearance(attached_accessory.mob_overlay_icon, attached_accessory.icon_state, ABOVE_HUD_LAYER)
+		Y.alpha = attached_accessory.alpha
+		Y.color = attached_accessory.color
+		U.accessory_overlay.add_overlay(Y)
 
 /obj/item/clothing/accessory/proc/on_uniform_equip(obj/item/clothing/under/U, user)
 	return
