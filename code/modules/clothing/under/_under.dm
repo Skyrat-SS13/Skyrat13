@@ -105,7 +105,7 @@
 
 			accessory_overlay = mutable_appearance('icons/mob/clothing/accessories.dmi', "blank")
 			for(var/obj/item/clothing/accessory/attached_accessory in attached_accessories)
-				var/image/Y = image(attached_accessory.icon, src, attached_accessory.icon_state, ABOVE_HUD_LAYER, SOUTH, 0, 0)
+				var/image/Y = image(attached_accessory.mob_overlay_icon, src, attached_accessory.icon_state, ABOVE_HUD_LAYER, SOUTH, 0, 0)
 				Y.alpha = attached_accessory.alpha
 				Y.color = attached_accessory.color
 				accessory_overlay.add_overlay(Y)

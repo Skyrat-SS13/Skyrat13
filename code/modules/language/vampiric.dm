@@ -7,6 +7,7 @@
 	ask_verb = "growls"
 	exclaim_verb = "snarls"
 	whisper_verb = "hisses"
+	sing_verb = "hums" // Skyrat edit
 	key = "b"
 	space_chance = 40
 	default_priority = 90

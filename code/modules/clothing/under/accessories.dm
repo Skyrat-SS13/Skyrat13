@@ -2,6 +2,9 @@
 	name = "Accessory"
 	desc = "Something has gone wrong!"
 	icon = 'icons/obj/clothing/accessories.dmi'
+	//skyrat edit
+	mob_overlay_icon = 'icons/mob/clothing/accessories.dmi'
+	//
 	icon_state = "plasma"
 	item_state = ""	//no inhands
 	slot_flags = 0

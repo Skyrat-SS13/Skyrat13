@@ -5,8 +5,8 @@
 					/obj/item/clothing/head/helmet/cphood = 3,
 					/obj/item/clothing/mask/gas/sechailer/hecu = 3)
 
-/obj/machinery/vending/wardrobe/robo_wardrobe/Initialize()
+/obj/machinery/vending/wardrobe/robo_wardrobe/New(loc, ...)
+	. = ..()
 	products[/obj/item/storage/backpack/science/robo] = 3
 	products[/obj/item/storage/backpack/satchel/tox/robo] = 3
 	products[/obj/item/storage/backpack/duffel/robo] = 3
-	. = ..()
