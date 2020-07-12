@@ -6,7 +6,7 @@
 					/obj/item/pinpointer/crew = 2,
 					/obj/item/reagent_containers/medspray/sterilizine = 1,
 					/obj/item/stack/medical/gauze = 8,
-					/obj/item/stack/medical/splint = 4,
+					/obj/item/stack/medical/gauze/splint = 4,
 					/obj/item/stack/medical/nanopaste = 5,
 					/obj/item/reagent_containers/pill/patch/styptic = 5,
 					/obj/item/reagent_containers/medspray/styptic = 2,
@@ -27,8 +27,8 @@
 					/obj/item/storage/hypospraykit/enlarge = 2,
 					/obj/item/reagent_containers/glass/bottle/vial/small = 5,
 					/obj/item/storage/briefcase/medical = 2,
-					/obj/item/stack/sticky_tape/surgical = 3,
+					/obj/item/stack/sticky_tape/surgical = 4,
 					/obj/item/healthanalyzer/wound = 4,
-					/obj/item/stack/medical/ointment = 2,
-					/obj/item/stack/medical/suture = 2,
-					/obj/item/stack/medical/bone_gel = 4)
+					/obj/item/stack/medical/ointment = 4,
+					/obj/item/stack/medical/suture = 4,
+					/obj/item/stack/medical/bone_gel = 5)

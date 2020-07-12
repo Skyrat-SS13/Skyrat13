@@ -432,8 +432,9 @@
 
 	amount = 5
 	max_amount = 10
-	self_delay = 20
-	grind_results = list(/datum/reagent/medicine/styptic_powder = 10)
+	self_delay = 60
+	other_delay = 40
+	grind_results = list(/datum/reagent/medicine/styptic_powder = 10, /datum/reagent/potassium = 10, /datum/reagent/space_cleaner/sterilizine = 10)
 	novariants = TRUE
 
 /obj/item/stack/medical/bone_gel/attack(mob/living/M, mob/user)

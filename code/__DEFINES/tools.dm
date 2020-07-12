@@ -19,8 +19,6 @@
 #define TOOL_GLASS_CUT		"glasskit"
 //SKYRAT tools
 #define TOOL_BONESET		"setter"
-#define TOOL_GEL			"gel"
-#define TOOL_FIXOVEIN		"fixovein"
 //
 
 // If delay between the start and the end of tool operation is less than MIN_TOOL_SOUND_DELAY,
