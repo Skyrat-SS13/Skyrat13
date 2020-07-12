@@ -54,9 +54,11 @@ matrix:
           packages:
             - libstdc++6:i386
             - gcc-multilib
+            - gcc-8:i386
+            - gcc-8-multilib
             - g++-multilib
             - g++-8:i386
-            - g++-8-multilib
+            - g++-8-multili
             - libmariadb-client-lgpl-dev:i386
             - libmariadbd-dev
       cache:
