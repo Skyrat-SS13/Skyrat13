@@ -118,6 +118,8 @@
 /obj/item/melee/transforming/energy/sword/proc/set_sword_color()
 	if(LAZYLEN(possible_colors))
 		light_color = possible_colors[pick(possible_colors)]
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.set_color(light_color)
 
 /obj/item/melee/transforming/energy/sword/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
@@ -174,6 +176,8 @@
 	if(LAZYLEN(possible_colors))
 		sword_color = pick(possible_colors)
 		light_color = possible_colors[sword_color]
+		var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+		OL.set_color(light_color)
 
 /obj/item/melee/transforming/energy/sword/saber/process()
 	. = ..()
