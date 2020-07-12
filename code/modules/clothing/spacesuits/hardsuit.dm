@@ -939,9 +939,7 @@
 /obj/item/clothing/suit/space/hardsuit/lavaknight/Initialize()
 	..()
 	light_color = energy_color
-	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
-	OL.set_color(light_color)
-	OL.turn_on()
+	AddComponent(/datum/component/overlay_lighting, light_color, 1.5, 1, FALSE) //Skyrat change
 	update_icon()
 
 /obj/item/clothing/suit/space/hardsuit/lavaknight/update_overlays()
