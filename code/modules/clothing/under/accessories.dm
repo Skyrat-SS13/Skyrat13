@@ -24,9 +24,9 @@
 		U.TakeComponent(storage)
 		detached_pockets = storage
 	U.attached_accessories |= src
+	force_unto(U)
 	current_uniform = U
 	forceMove(U)
-	force_unto(U)
 
 	if (islist(U.armor) || isnull(U.armor)) 										// This proc can run before /obj/Initialize has run for U and src,
 		U.armor = getArmor(arglist(U.armor))	// we have to check that the armor list has been transformed into a datum before we try to call a proc on it
@@ -73,7 +73,7 @@
 	layer = FLOAT_LAYER
 	plane = FLOAT_PLANE
 	if(minimize_when_attached)
-		if(!current_uniform)
+		if(current_uniform != U)
 			transform *= 0.5	//halve the size so it doesn't overpower the under
 			pixel_x += 8
 			pixel_y -= 8
@@ -87,7 +87,7 @@
 				pixel_x -= 16
 				pixel_y += 8 * (length(U.attached_accessories) - 7)
 			else
-				if(!current_uniform)
+				if(current_uniform != U)
 					//we ran out of space for accessories, so we just throw shit at the wall
 					pixel_x = 0
 					pixel_y = 0
