@@ -16,6 +16,7 @@
 	var/lum_range = 0
 	var/lum_power = 0.5
 	var/set_alpha = 0
+	var/turned_on = FALSE
 	var/list/turf/affected_turfs = list()
 	var/obj/effect/overlay/light_visible/visible_mask
 	var/static/list/weh = list("32" = 'modular_skyrat/icons/misc/light_32.dmi',
@@ -37,6 +38,7 @@
 	set_power(_power)
 	set_color(_color)
 	if(starts_on)
+		turned_on = TRUE
 		visible_mask.alpha = set_alpha
 
 /datum/component/overlay_lighting/RegisterWithParent()
@@ -77,18 +79,20 @@
 	if(new_holder == current_holder)
 		return
 	if(current_holder)
-		if(new_holder != parent)
-			UnregisterSignal(new_holder, COMSIG_PARENT_QDELETING)
-			UnregisterSignal(new_holder, COMSIG_MOVABLE_MOVED)
-		current_holder.luminosity -= lum_range
-		current_holder.vis_contents -= visible_mask
+		if(current_holder != parent)
+			UnregisterSignal(current_holder, COMSIG_PARENT_QDELETING)
+			UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+		if(turned_on)
+			current_holder.luminosity -= lum_range
+			current_holder.vis_contents -= visible_mask
 	current_holder = new_holder
 	if(new_holder == null)
 		visible_mask.moveToNullspace()
 		clean_old_turfs()
 	else
-		new_holder.luminosity += lum_range
-		new_holder.vis_contents += visible_mask
+		if(turned_on)
+			new_holder.luminosity += lum_range
+			new_holder.vis_contents += visible_mask
 		if(new_holder != parent)
 			RegisterSignal(new_holder, COMSIG_PARENT_QDELETING, .proc/on_holder_qdel)
 			RegisterSignal(new_holder, COMSIG_MOVABLE_MOVED, .proc/on_holder_moved)
@@ -110,12 +114,12 @@
 	set_holder(null)
 
 /datum/component/overlay_lighting/proc/on_holder_moved()
-	if(visible_mask.alpha)
+	if(turned_on)
 		make_luminosity_update()
 
 /datum/component/overlay_lighting/proc/on_parent_moved()
 	check_holder()
-	if(visible_mask.alpha)
+	if(turned_on)
 		make_luminosity_update()
 
 /datum/component/overlay_lighting/proc/set_color(new_color)
@@ -141,15 +145,20 @@
 		new_power = -new_power
 		lum_power = -0.5
 	set_alpha = min(230,(new_power*110)+30)
-	if(visible_mask.alpha) //if it's turned on
-		visible_mask.alpha = set_alpha	
+	visible_mask.alpha = set_alpha	
 
 /datum/component/overlay_lighting/proc/turn_on()
-	visible_mask.alpha = set_alpha
+	if(current_holder)
+		current_holder.luminosity += lum_range
+		current_holder.vis_contents += visible_mask
+	turned_on = TRUE
 	get_new_turfs()
 
 /datum/component/overlay_lighting/proc/turn_off()
-	visible_mask.alpha = 0
+	if(current_holder)
+		current_holder.luminosity -= lum_range
+		current_holder.vis_contents -= visible_mask
+	turned_on = FALSE
 	clean_old_turfs()
 
 /datum/component/overlay_lighting/UnregisterFromParent()
