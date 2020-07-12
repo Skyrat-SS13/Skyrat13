@@ -68,6 +68,8 @@
 
 	handle_gravity()
 
+	handle_block_parry(seconds)
+
 	if(machine)
 		machine.check_eye(src)
 

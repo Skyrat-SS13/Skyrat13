@@ -45,6 +45,8 @@
 	var/pixels_range_leftover = 0
 	/// "leftover" tick pixels and stuff yeah, so we don't round off things and introducing tracing inaccuracy.
 	var/pixels_tick_leftover = 0
+	/// Used to detect jumps in the middle of a pixel_move. Yes, this is ugly as sin code-wise but it works.
+	var/pixel_move_interrupted = FALSE
 
 	/// Pixels moved per second.
 	var/pixels_per_second = TILES_TO_PIXELS(12.5)
@@ -210,7 +212,15 @@
 /obj/item/projectile/proc/prehit(atom/target)
 	return TRUE
 
-/obj/item/projectile/proc/on_hit(atom/target, blocked = FALSE)
+/**
+  * Called when we hit something.
+  *
+  * @params
+  * * target - what we hit
+  * * blocked - 0 to 100 percentage mitigation/block
+  * * def zone - where we hit if we hit a mob.
+  */
+/obj/item/projectile/proc/on_hit(atom/target, blocked = 0, def_zone)
 	if(fired_from)
 		SEND_SIGNAL(fired_from, COMSIG_PROJECTILE_ON_HIT, firer, target, Angle)
 	//skyrat edit
@@ -335,8 +345,43 @@
 	beam_segments[beam_index] = pcache
 	beam_index = pcache
 	beam_segments[beam_index] = null
+/* cit dumb
+/**
+  * Determines if we should ricochet off of something.
+  * By default, asks the thing if we should ricochet off it, but because we're called first, we get final say.
+  * Returns TRUE or FALSE.
+  */
+/obj/item/projectile/proc/check_ricochet(atom/A)
+	if(ricochets > ricochets_max)		//safety thing, we don't care about what the other thing says about this.
+		return FALSE
+	var/them = A.check_ricochet(src)
+	switch(them)
+		if(PROJECTILE_RICOCHET_PREVENT)
+			return FALSE
+		if(PROJECTILE_RICOCHET_FORCE)
+			return TRUE
+		if(PROJECTILE_RICOCHET_NO)
+			return FALSE
+		if(PROJECTILE_RICOCHET_YES)
+			return prob(ricochet_chance)
+		else
+			CRASH("Invalid return value for projectile ricochet check from [A].")
 
+/**
+  * Handles ricocheting off of something.
+  * By default, also asks the thing to handle it, but because we're called first, we get final say.
+  */
+/obj/item/projectile/proc/handle_ricochet(atom/A)
+	ricochets++
+	ignore_source_check = TRUE
+	decayedRange = max(0, decayedRange - reflect_range_decrease)
+	pixel_move_interrupted = TRUE
+	range = decayedRange
+	return A.handle_projectile_ricochet(src)
+*/
 /obj/item/projectile/Bump(atom/A)
+	if(!trajectory)
+		return
 	var/turf/T = get_turf(A)
 	if(ricochets < ricochets_max && check_ricochet_flag(A) && check_ricochet(A)) //more like cryrat edit because this is making me cry
 		var/datum/point/pcache = trajectory.copy_to()
@@ -530,6 +575,7 @@
 
 /obj/item/projectile/proc/setAngle(new_angle, hitscan_store_segment = TRUE)	//wrapper for overrides.
 	Angle = new_angle
+	pixel_move_interrupted = TRUE
 	if(!nondirectional_sprite)
 		var/matrix/M = new
 		M.Turn(Angle)
@@ -556,6 +602,7 @@
 		trajectory.initialize_location(target.x, target.y, target.z, 0, 0)
 		if(hitscan)
 			record_hitscan_start(RETURN_PRECISE_POINT(src))
+	pixel_move_interrupted = TRUE
 	if(zc)
 		after_z_change(old, target)
 
@@ -604,7 +651,7 @@
   * The proc to make the projectile go, using a simulated pixel movement line trace.
   * Note: deciseconds_equivalent is currently only used for homing, times is the number of times to move pixel_increment_amount.
   * Trajectory multiplier directly modifies the factor of pixel_increment_amount to go per time.
-  * It's complicated, so probably just don'ot mess with this unless you know what you're doing.
+  * It's complicated, so probably just don't mess with this unless you know what you're doing.
   */
 /obj/item/projectile/proc/pixel_move(times, hitscanning = FALSE, deciseconds_equivalent = world.tick_lag, trajectory_multiplier = 1, allow_animation = TRUE)
 	if(!loc || !trajectory)
@@ -614,6 +661,7 @@
 		M.Turn(Angle)
 		transform = M
 	var/forcemoved = FALSE
+	pixel_move_interrupted = FALSE		// reset that
 	var/turf/oldloc = loc
 	var/old_px = pixel_x
 	var/old_py = pixel_y
@@ -649,7 +697,9 @@
 				if(!--safety)
 					CRASH("[type] took too long (allowed: [CEILING(pixel_increment_amount/world.icon_size,1)*2] moves) to get to its location.")
 				step_towards(src, T)
-				if(QDELETED(src))
+				if(QDELETED(src) || pixel_move_interrupted)		// this doesn't take into account with pixel_move_interrupted the portion of the move cut off by any forcemoves, but we're opting to ignore that for now
+				// the reason is the entire point of moving to pixel speed rather than tile speed is smoothness, which will be crucial when pixel movement is done in the future
+				// reverting back to tile is more or less the only way of fixing this issue.
 					return
 		pixels_range_leftover += pixel_increment_amount
 		if(pixels_range_leftover > world.icon_size)

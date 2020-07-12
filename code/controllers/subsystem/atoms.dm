@@ -78,7 +78,8 @@ SUBSYSTEM_DEF(atoms)
 	while(get_tendril_count(/obj/structure/spawner/lavaland/legion) < 1)
 		attempts++
 		var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
-		T.BruteForceTendril(/obj/structure/spawner/lavaland/legion)
+		if(istype(T))
+			T.BruteForceTendril(/obj/structure/spawner/lavaland/legion)
 		if(attempts >= 30)
 			testing("Static tendril spawning failed after [attempts] attempts.")
 			break

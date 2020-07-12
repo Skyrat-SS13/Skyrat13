@@ -311,6 +311,11 @@
 #define MEGAFAUNA_TRAIT "megafauna"
 #define DEATHSQUAD_TRAIT "deathsquad"
 
+/// This trait is added by the active directional block system.
+#define ACTIVE_BLOCK_TRAIT				"active_block"
+/// This trait is added by the parry system.
+#define ACTIVE_PARRY_TRAIT				"active_parry"
+
 //skyrat funnies
 #define STICKY_NODROP "sticky-nodrop" //sticky nodrop sounds like a bad soundcloud rapper's name
 #define TRAIT_NICE_SHOT			"nice_shot" //hnnnnnnnggggg..... you're pretty good....

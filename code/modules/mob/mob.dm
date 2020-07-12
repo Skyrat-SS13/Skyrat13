@@ -1115,20 +1115,15 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 		if(I.item_flags & SLOWS_WHILE_IN_HAND)
 			. += I.slowdown
 
+/**
+  * Mostly called by doUnEquip()
+  * Like item dropped() on mob side.
+  */
+/mob/proc/on_item_dropped(obj/item/I)
+	return
+
 //skyrat edit
 /mob/proc/clear_from_recent_examines(atom/A)
 	if(QDELETED(A) || !client)
 		return
 	LAZYREMOVE(client.recent_examines, A)
-
-/obj/item/ammo_casing/shotgun/executioner
-	name = "executioner slug"
-	desc = "A 12 gauge lead slug purpose built to annihilate flesh on impact."
-	icon_state = "stunshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun_slug/executioner
-
-/obj/item/ammo_casing/shotgun/pulverizer
-	name = "pulverizer slug"
-	desc = "A 12 gauge lead slug purpose built to annihilate bones on impact."
-	icon_state = "stunshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun_slug/pulverizer
