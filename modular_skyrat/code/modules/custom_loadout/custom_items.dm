@@ -50,16 +50,3 @@
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 	fitted = FEMALE_UNIFORM_TOP
 
-//Made Drakemechs a reality, they get a free plushie
-/obj/item/toy/plush/borgplush/doctordrake
-	name = "Drake Plushie"
-	icon = 'modular_skyrat/icons/obj/plushes.dmi'
-	desc = "An adorable stuffed toy of a robot dragon."
-	icon_state = "doctordrake"
-
-//Made Drakemechs a reality, they get a free plushie
-/obj/item/toy/plush/borgplush/securitydrake
-	name = "Drake Plushie"
-	icon = 'modular_skyrat/icons/obj/plushes.dmi'
-	desc = "An adorable stuffed toy of a robot dragon."
-	icon_state = "securitydrake"
