@@ -144,7 +144,7 @@
 	if(new_power < 0)
 		new_power = -new_power
 		lum_power = -0.5
-	set_alpha = min(230,(new_power*110)+30)
+	set_alpha = min(230,(new_power*120)+30)
 	visible_mask.alpha = set_alpha	
 
 /datum/component/overlay_lighting/proc/turn_on()

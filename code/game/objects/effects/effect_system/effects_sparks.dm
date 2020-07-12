@@ -26,7 +26,7 @@
 
 /obj/effect/particle_effect/sparks/Initialize()
 	. = ..()
-	AddComponent(/datum/component/overlay_lighting, light_color, 1.5, 2) //Skyrat change
+	AddComponent(/datum/component/overlay_lighting, light_color, 2, 1) //Skyrat change
 	flick(icon_state, src) // replay the animation
 	playsound(src, "sparks", 100, TRUE)
 	var/turf/T = loc
