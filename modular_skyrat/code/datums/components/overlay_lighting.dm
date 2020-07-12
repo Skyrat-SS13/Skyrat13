@@ -77,6 +77,9 @@
 	if(new_holder == current_holder)
 		return
 	if(current_holder)
+		if(new_holder != parent)
+			UnregisterSignal(new_holder, COMSIG_PARENT_QDELETING)
+			UnregisterSignal(new_holder, COMSIG_MOVABLE_MOVED)
 		current_holder.luminosity -= lum_range
 		current_holder.vis_contents -= visible_mask
 	current_holder = new_holder
@@ -86,6 +89,9 @@
 	else
 		new_holder.luminosity += lum_range
 		new_holder.vis_contents += visible_mask
+		if(new_holder != parent)
+			RegisterSignal(new_holder, COMSIG_PARENT_QDELETING, .proc/on_holder_qdel)
+			RegisterSignal(new_holder, COMSIG_MOVABLE_MOVED, .proc/on_holder_moved)
 
 /datum/component/overlay_lighting/proc/check_holder()
 	var/atom/movable/A = parent
@@ -98,6 +104,14 @@
 		else
 			set_holder(null)
 
+/datum/component/overlay_lighting/proc/on_holder_qdel()
+	UnregisterSignal(current_holder, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	set_holder(null)
+
+/datum/component/overlay_lighting/proc/on_holder_moved()
+	if(visible_mask.alpha)
+		make_luminosity_update()
 
 /datum/component/overlay_lighting/proc/on_parent_moved()
 	check_holder()
