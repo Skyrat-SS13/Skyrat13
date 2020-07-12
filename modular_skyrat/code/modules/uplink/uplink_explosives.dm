@@ -1,5 +1,5 @@
 /datum/uplink_item/explosives/syndicate_bomb
-	cost = 8
+	cost = 11
 
 /* Temporary removal for balancing. - SK13
 /datum/uplink_item/explosives/syndicate_bomb_he
