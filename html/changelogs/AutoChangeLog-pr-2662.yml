@@ -1,4 +1,0 @@
-author: "SkyratBot"
-delete-after: True
-changes: 
-  - rscdel: "Syndicate crate event cannot fire as a random event anymore."
