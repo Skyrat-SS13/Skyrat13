@@ -82,6 +82,7 @@
 	current_holder = new_holder
 	if(new_holder == null)
 		visible_mask.moveToNullspace()
+		clean_old_turfs()
 	else
 		new_holder.luminosity += lum_range
 		new_holder.vis_contents += visible_mask
