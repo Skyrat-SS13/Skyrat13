@@ -415,8 +415,7 @@
 	name = "Death Commando Officer"
 	head = /obj/item/clothing/head/helmet/space/beret
 
-/* SK13 CHANGES - GANDALF
-/datum/outfit/chrono_agent
+/* /datum/outfit/chrono_agent //SK13 CHANGES - GANDALF
 	name = "Timeline Eradication Agent"
 	uniform = /obj/item/clothing/under/color/white
 	suit = /obj/item/clothing/suit/space/chronos
@@ -425,7 +424,6 @@
 	mask = /obj/item/clothing/mask/breath
 	suit_store = /obj/item/tank/internals/oxygen
 */
-
 /datum/outfit/debug //Debug objs plus hardsuit
 	name = "Debug outfit"
 	uniform = /obj/item/clothing/under/misc/patriotsuit
