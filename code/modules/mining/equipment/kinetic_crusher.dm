@@ -41,6 +41,7 @@
 /obj/item/twohanded/kinetic_crusher/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 110) //technically it's huge and bulky, but this provides an incentive to use it
+	AddComponent(/datum/component/overlay_lighting, "#FFFFFF", brightness_on, 1, FALSE) //Skyrat change
 
 /obj/item/twohanded/kinetic_crusher/Destroy()
 	QDEL_LIST(trophies)
@@ -150,10 +151,11 @@
 	update_icon()
 
 /obj/item/twohanded/kinetic_crusher/proc/update_brightness(mob/user = null)
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 	if(light_on)
-		set_light(brightness_on)
+		OL.turn_on()
 	else
-		set_light(0)
+		OL.turn_off()
 
 /obj/item/twohanded/kinetic_crusher/update_icon_state()
 	item_state = "crusher[wielded]"

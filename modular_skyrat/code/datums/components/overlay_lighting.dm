@@ -47,7 +47,8 @@
 	RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/on_qdel)
 	RegisterSignal(A, COMSIG_MOVABLE_MOVED, .proc/on_parent_moved)
 	check_holder()
-	make_luminosity_update()
+	if(turned_on)
+		get_new_turfs()
 
 /datum/component/overlay_lighting/proc/on_qdel()
 	Destroy(src)
@@ -126,7 +127,7 @@
 	visible_mask.color = new_color
 
 /datum/component/overlay_lighting/proc/set_range(new_range)
-	range = FLOOR(new_range,0.5)
+	range = CEILING(new_range,0.5)
 	if(range < 1)
 		range = 1
 	else if(range > 6)

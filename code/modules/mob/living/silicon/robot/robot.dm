@@ -636,8 +636,11 @@
 		OL.turn_off()
 	else
 		//set_light(lamp_intensity)
-		OL.set_range(lamp_intensity)
-		OL.turn_on()
+		if(lamp_intensity)
+			OL.set_range(lamp_intensity)
+			OL.turn_on()
+		else
+			OL.turn_off()
 
 	if(lamp_button)
 		lamp_button.icon_state = "lamp[lamp_intensity]"
