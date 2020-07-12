@@ -170,7 +170,7 @@
 	interaction_flags_atom = NONE
 	var/mob/living/captured = null
 	var/obj/item/gun/energy/chrono_gun/gun = null
-	var/tickstokill = 5
+	var/tickstokill = 3
 	var/mutable_appearance/mob_underlay
 	var/preloaded = 0
 	var/RPpos = null

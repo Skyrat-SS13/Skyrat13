@@ -113,17 +113,6 @@
 
 		teleport_now.UpdateButtonIcon()
 
-		var/list/nonsafe_slots = list(SLOT_BELT, SLOT_BACK)
-		var/list/exposed = list()
-		for(var/slot in nonsafe_slots)
-			var/obj/item/slot_item = user.get_item_by_slot(slot)
-			exposed += slot_item
-		exposed += user.held_items
-		for(var/exposed_item in exposed)
-			var/obj/item/exposed_I = exposed_item
-			if(exposed_I && !(exposed_I.type in chronosafe_items) && user.dropItemToGround(exposed_I))
-				to_chat(user, "<span class='notice'>Your [exposed_I.name] got left behind.</span>")
-
 		user.ExtinguishMob()
 
 		for(var/obj/item/I in user.held_items)
