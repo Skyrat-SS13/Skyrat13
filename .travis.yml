@@ -52,7 +52,6 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - binutils:i386
             - libstdc++6:i386
             - gcc-multilib
             - gcc-8
