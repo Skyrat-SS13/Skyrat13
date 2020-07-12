@@ -55,7 +55,7 @@ GLOBAL_VAR_INIT(infil_miner_transmitted, 0)
 	GLOB.infil_miner_transmitted += stolen
 	if(GLOB.infil_miner_transmitted >= target && !target_reached)
 		alert_radio.talk_into(src.loc, "Research point objective reached. Disabling hooks to avoid further suspicion...", "Syndicate")
-		visible_message("<span class='notice'>[src] beeps.</span>")
+		visible_message("<span class='notice'>[src.loc] beeps.</span>")
 		playsound(src, 'sound/machines/ping.ogg', 100, 1)
 		target_reached = TRUE
 
