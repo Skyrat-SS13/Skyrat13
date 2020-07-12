@@ -8,6 +8,7 @@ git remote add origin https://github.com/Putnam3145/extools.git
 git fetch --depth 1 origin
 git checkout just-monstermos
 
+export CXX=g++-8
 cmake ./byond-extools 
 make
 
