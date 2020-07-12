@@ -317,7 +317,9 @@
 
 //skyrat defines
 /// If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()
-#define EXAMINE_MORE_TIME	1 SECONDS
+#define EXAMINE_MORE_TIME	2 SECONDS
+/// How far away you can be to make eye contact with someone while examining
+#define EYE_CONTACT_RANGE	3
 
 #define BODYPART_DISABLED_WOUND 3
 

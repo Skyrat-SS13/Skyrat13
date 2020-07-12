@@ -408,6 +408,10 @@
 //skyrat funnies
 #define COMSIG_ITEM_DISABLE_EMBED "item_disable_embed"
 #define COMSIG_MINE_TRIGGERED "minegoboom"
+///from /mob/living/handle_eye_contact(): (mob/living/other_mob)
+#define COMSIG_MOB_EYECONTACT "mob_eyecontact"
+/// return this if you want to block printing this message to this person, if you want to print your own (does not affect the other person's message)
+#define COMSIG_BLOCK_EYECONTACT (1<<0)
 
 // Movable signals
 #define COMSIG_MOVABLE_RADIO_TALK_INTO "movable_radio_talk_into"				//from radio talk_into(): (obj/item/radio/radio, message, channel, list/spans, datum/language/language, direct)

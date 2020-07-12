@@ -121,11 +121,17 @@
 		if(WOUND_SEVERITY_LOSS to INFINITY)
 			msg = "[victim.p_their(TRUE)] [limb.name] [description]." // different format
 			msg = "<span class='notice'><i><b>[msg]</b></i></span>"
-	return "\t[msg]"
+	if((viewer == victim) && (!is_visible(checkviewer = FALSE) && is_visible(viewer)))
+		return "\t[msg] <span class='purple'>It is too well hidden for others to notice.</span>"
+	else
+		return "\t[msg]"
 
 /// Whether a scar can currently be seen by the viewer
-/datum/scar/proc/is_visible(mob/viewer)
-	if(!victim || !viewer || !limb)
+/datum/scar/proc/is_visible(mob/viewer, checkviewer = TRUE)
+	if(!victim || !limb)
+		return FALSE
+	
+	if(checkviewer && !viewer)
 		return FALSE
 
 	if(!ishuman(victim) || isobserver(viewer) || victim == viewer)
@@ -133,8 +139,7 @@
 
 	var/mob/living/carbon/human/H = victim
 	if(istype(limb, /obj/item/bodypart/head))
-		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)))
-			return FALSE
+		return H.is_face_visible()
 	
 	else if(limb.scars_covered_by_clothes && H.clothingonpart(limb))
 		return FALSE

@@ -1269,3 +1269,7 @@
 		var/obj/item/bodypart/BP = i
 		if(BP.current_gauze)
 			return TRUE
+
+// If our face is visible
+/mob/living/carbon/is_face_visible()
+	return !(wear_mask?.flags_inv & HIDEFACE) && !(head?.flags_inv & HIDEFACE)

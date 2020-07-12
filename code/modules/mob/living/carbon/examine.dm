@@ -1,4 +1,6 @@
 /mob/living/carbon/examine(mob/user)
+	if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
+		handle_eye_contact(user, TRUE)
 	var/t_He = p_they(TRUE)
 	var/t_His = p_their(TRUE)
 	var/t_his = p_their()
@@ -269,7 +271,7 @@
 		if(istype(S) && S.is_visible(user))
 			LAZYADD(visible_scars, S)
 
-	if(!visible_scars && !length(get_damaged_bodyparts(TRUE, TRUE)))
+	if(!length(visible_scars) && !length(get_damaged_bodyparts(TRUE, TRUE)))
 		return ..()
 
 	var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")

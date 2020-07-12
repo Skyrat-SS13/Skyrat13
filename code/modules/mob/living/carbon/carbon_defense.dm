@@ -359,7 +359,7 @@
 				"<span class='notice'>[M] shakes [src]'s hand.</span>", \
 				"<span class='notice'>You shake [src]'s hand.</span>", target = src,
 				target_message = "<span class='notice'>[M] shakes your hand.</span>")
-
+		
 		else
 			M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better!</span>", \
 						"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>", target = src,\
