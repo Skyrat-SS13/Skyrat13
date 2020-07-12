@@ -574,13 +574,13 @@
 
 	//CITADEL CHANGES
 	//ORGASM
-	else if((findtext(message, orgasm_words)))
+	/* else if((findtext(message, orgasm_words)))
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)
 			var/mob/living/carbon/human/H = V
 
 			if(H.client && H.client.prefs && H.client.prefs.cit_toggles & HYPNO) // probably a redundant check but for good measure
-				H.mob_climax(forced_climax=TRUE)
+				H.mob_climax(forced_climax=TRUE) */ // Skyrat Change - no
 
 	//DAB
 	else if((findtext(message, dab_words)))
