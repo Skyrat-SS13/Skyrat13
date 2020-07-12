@@ -107,8 +107,6 @@
 /datum/component/overlay_lighting/proc/on_holder_qdel()
 	UnregisterSignal(current_holder, COMSIG_PARENT_QDELETING)
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-	current_holder.luminosity -= lum_range
-	current_holder.vis_contents -= visible_mask
 	set_holder(null)
 
 /datum/component/overlay_lighting/proc/on_holder_moved()
