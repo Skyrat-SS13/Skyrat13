@@ -5,7 +5,7 @@
 	required_reagents = list(/datum/reagent/blood = 8, /datum/reagent/toxin/mutagen = 5,
 							/datum/reagent/medicine/salglu_solution = 5,
 							/datum/reagent/medicine/synthflesh = 10, /datum/reagent/consumable/nutriment = 2)
-	required_temp = 600
+	required_temp = 100
 	mob_react = FALSE
 
 /datum/chemical_reaction/biomeat/on_reaction(datum/reagents/holder, multiplier, specialreact)
