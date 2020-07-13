@@ -14,6 +14,7 @@
 	var/atom/movable/current_holder 
 	var/range = 1
 	var/lum_range = 0
+	var/lumcount_range = 0
 	var/lum_power = 0.5
 	var/set_alpha = 0
 	var/turned_on = FALSE
@@ -68,7 +69,7 @@
 /datum/component/overlay_lighting/proc/get_new_turfs()
 	if(!current_holder)
 		return
-	for(var/turf/lit_turf in range(current_holder.loc, lum_range))
+	for(var/turf/lit_turf in RANGE_TURFS(lumcount_range, current_holder.loc))
 		lit_turf.dynamic_lumcount += lum_power
 		affected_turfs += lit_turf
 
@@ -134,6 +135,7 @@
 		range = 6
 	var/pixel_bounds = ((range-1)*64)+32
 	lum_range = CEILING(range,1)
+	lumcount_range = max(1,lum_range-1)
 	visible_mask.icon = weh["[pixel_bounds]"]
 	if(pixel_bounds != 32)
 		var/offset = (pixel_bounds-32)/2
