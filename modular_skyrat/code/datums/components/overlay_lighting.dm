@@ -1,3 +1,17 @@
+/atom/movable
+	var/list/affected_dynamic_lights
+	var/affecting_dynamic_lumi = 0
+
+/atom/movable/proc/update_dynamic_luminosity()
+	var/highest = 0
+	for(var/i in affected_dynamic_lights)
+		if(affected_dynamic_lights[i] > highest)
+			highest = affected_dynamic_lights[i]
+	if(highest != affecting_dynamic_lumi)
+		luminosity -= affecting_dynamic_lumi
+		affecting_dynamic_lumi = highest
+		luminosity += affecting_dynamic_lumi
+
 /turf
 	var/dynamic_lumcount = 0
 
@@ -40,15 +54,18 @@
 	set_color(_color)
 	if(starts_on)
 		turned_on = TRUE
-		visible_mask.alpha = set_alpha
+
+/datum/component/overlay_lighting/proc/set_color_range_power(_color, _range, _power)
+	set_range(_range)
+	set_power(_power)
+	set_color(_color)
 
 /datum/component/overlay_lighting/RegisterWithParent()
 	. = ..()
 	var/atom/movable/A = parent
-	RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/on_qdel)
 	RegisterSignal(A, COMSIG_MOVABLE_MOVED, .proc/on_parent_moved)
 	check_holder()
-	if(turned_on)
+	if(turned_on && current_holder)
 		get_new_turfs()
 
 /datum/component/overlay_lighting/proc/on_qdel()
@@ -77,6 +94,18 @@
 	clean_old_turfs()
 	get_new_turfs()
 
+/datum/component/overlay_lighting/proc/add_dynamic_lumi(var/atom/movable/at)
+	LAZYINITLIST(at.affected_dynamic_lights)
+	at.affected_dynamic_lights[src] = lum_range
+	at.vis_contents += visible_mask
+	at.update_dynamic_luminosity()
+
+/datum/component/overlay_lighting/proc/remove_dynamic_lumi(var/atom/movable/at)
+	LAZYINITLIST(at.affected_dynamic_lights)
+	at.affected_dynamic_lights -= src
+	at.vis_contents -= visible_mask
+	at.update_dynamic_luminosity()
+
 /datum/component/overlay_lighting/proc/set_holder(var/atom/movable/new_holder)
 	if(new_holder == current_holder)
 		return
@@ -85,16 +114,14 @@
 			UnregisterSignal(current_holder, COMSIG_PARENT_QDELETING)
 			UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
 		if(turned_on)
-			current_holder.luminosity -= lum_range
-			current_holder.vis_contents -= visible_mask
+			remove_dynamic_lumi(current_holder)
 	current_holder = new_holder
 	if(new_holder == null)
-		visible_mask.moveToNullspace()
+		//visible_mask.moveToNullspace() //Not how vis_contents work, lol
 		clean_old_turfs()
 	else
 		if(turned_on)
-			new_holder.luminosity += lum_range
-			new_holder.vis_contents += visible_mask
+			add_dynamic_lumi(new_holder)
 		if(new_holder != parent)
 			RegisterSignal(new_holder, COMSIG_PARENT_QDELETING, .proc/on_holder_qdel)
 			RegisterSignal(new_holder, COMSIG_MOVABLE_MOVED, .proc/on_holder_moved)
@@ -121,21 +148,23 @@
 
 /datum/component/overlay_lighting/proc/on_parent_moved()
 	check_holder()
-	if(turned_on)
+	if(turned_on && current_holder)
 		make_luminosity_update()
 
 /datum/component/overlay_lighting/proc/set_color(new_color)
 	visible_mask.color = new_color
 
 /datum/component/overlay_lighting/proc/set_range(new_range)
+	if(range == 0)
+		turn_off()
 	range = CEILING(new_range,0.5)
 	if(range < 1)
 		range = 1
 	else if(range > 6)
 		range = 6
 	var/pixel_bounds = ((range-1)*64)+32
-	lum_range = CEILING(range,1)
-	lumcount_range = max(1,lum_range-1)
+	lumcount_range = CEILING(range,1)
+	lum_range = lumcount_range + 1
 	visible_mask.icon = weh["[pixel_bounds]"]
 	if(pixel_bounds != 32)
 		var/offset = (pixel_bounds-32)/2
@@ -151,23 +180,24 @@
 	visible_mask.alpha = set_alpha	
 
 /datum/component/overlay_lighting/proc/turn_on()
+	if(turned_on)
+		return
 	if(current_holder)
-		current_holder.luminosity += lum_range
-		current_holder.vis_contents += visible_mask
+		add_dynamic_lumi(current_holder)
 	turned_on = TRUE
 	get_new_turfs()
 
 /datum/component/overlay_lighting/proc/turn_off()
+	if(!turned_on)
+		return
 	if(current_holder)
-		current_holder.luminosity -= lum_range
-		current_holder.vis_contents -= visible_mask
+		remove_dynamic_lumi(current_holder)
 	turned_on = FALSE
 	clean_old_turfs()
 
 /datum/component/overlay_lighting/UnregisterFromParent()
 	. = ..()
 	var/atom/movable/A = parent
-	UnregisterSignal(A, COMSIG_PARENT_QDELETING)
 	UnregisterSignal(A, COMSIG_MOVABLE_MOVED)
-	A.vis_contents -= visible_mask
-	A.luminosity -= lum_range
+	if(turned_on && current_holder)
+		remove_dynamic_lumi(A)
