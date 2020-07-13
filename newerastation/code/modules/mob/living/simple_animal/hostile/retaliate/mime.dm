@@ -1,7 +1,9 @@
+// 2 mobs only spawnable via adminbus for now. One day we'll find a place for them.
+
 /mob/living/simple_animal/hostile/retaliate/mime
 	name = "Mime"
 	desc = "*wave"
-	icon = 'icons/mob/mime_mobs.dmi'
+	icon = 'newerastation/icons/mob/mime_mobs/32x32.dmi'
 	icon_state = "mime"
 	icon_living = "mime"
 	icon_dead = "mime_dead"
@@ -32,7 +34,7 @@
 	maxbodytemp = 370
 	unsuitable_atmos_damage = 10
 	footstep_type = FOOTSTEP_MOB_SHOE
-	var/attack_reagent
+	var/attack_reagent = /datum/reagent/toxin/mutetoxin
 
 /mob/living/simple_animal/hostile/retaliate/mime/handle_temperature_damage()
 	if(bodytemperature < minbodytemp)
@@ -58,6 +60,7 @@
 /mob/living/simple_animal/hostile/retaliate/mime/thesilent
 	name = "The Silent"
 	desc = "A faceless being of unknown origin. You can swear it's tracking you somehow."
+	icon = 'newerastation/icons/mob/mime_mobs/32x64.dmi'
 	icon_state = "the silent"
 	icon_living = "the silent"
 	move_resist = INFINITY
@@ -72,7 +75,6 @@
 	maxHealth = 400
 	health = 400
 	speed = 4
-	pixel_x = -16
 	harm_intent_damage = 15
 	melee_damage_lower = 15
 	melee_damage_upper = 20
@@ -81,6 +83,3 @@
 	attack_verb_simple = "glare at"
 	obj_damage = 30
 	environment_smash = ENVIRONMENT_SMASH_WALLS
-
-/mob/living/simple_animal/hostile/retaliate/mime/thesilent/Initialize()
-	. = ..()
