@@ -66,7 +66,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 			if(cli.prefs.bloodtype in H.dna.species.bloodtypes)
 				H.dna.blood_type = cli.prefs.bloodtype
 	//SKYRAT CHANGE - food preferences
-	//Yes, i am using the quirk subsystem to assign food preferences. Too bad!
+	//Yes, i am using the quirk subsystem to assign food preferences and descriptors. Too bad!
 	var/mob/living/carbon/human/H = user
 	if(istype(H))
 		if(cli.prefs.foodlikes.len)
@@ -77,6 +77,11 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 			H.dna.species.disliked_food = 0
 			for(var/V in cli.prefs.fooddislikes)
 				H.dna.species.disliked_food |= cli.prefs.fooddislikes[V]
+		if(LAZYLEN(cli.prefs.body_descriptors) && LAZYLEN(H.dna.species.descriptors))
+			for(var/entry in H.dna.species.descriptors)
+				if(cli.prefs.body_descriptors[entry])
+					var/datum/mob_descriptor/descriptor = H.dna.species.descriptors[entry]
+					descriptor.current_value = cli.prefs.body_descriptors[entry]
 	//
 
 /datum/controller/subsystem/processing/quirks/proc/quirk_path_by_name(name)

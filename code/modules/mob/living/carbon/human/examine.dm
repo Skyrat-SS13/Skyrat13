@@ -358,6 +358,12 @@
 	if(gunpointed.len)
 		for(var/datum/gunpoint/GP in gunpointed)
 			msg += "<b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b>\n"
+	
+	//descriptors
+	var/list/show_descs = show_descriptors_to(user)
+	for(var/descrip in show_descs)
+		msg += descrip
+	
 	//Skyrat changes end
 
 	if (length(msg))
@@ -419,6 +425,7 @@
 	var/invisible_man = skipface || get_visible_name() == "Unknown" // SKYRAT EDIT -- BEGIN
 	if(!invisible_man)
 		if(client)
+			. += "<br>"
 			. += "OOC Notes: <a href='?src=[REF(src)];skyrat_ooc_notes=1'>\[View\]</a>" // SKYRAT EDIT -- END
 	//SKYRAT EDIT - admin lookup on records/extra flavor
 	if(client)
@@ -460,3 +467,19 @@
 			dat += "[new_text]\n" //dat.Join("\n") doesn't work here, for some reason
 	if(dat.len)
 		return dat.Join()
+
+//skyrat edit - baystation descriptors
+/mob/living/carbon/human/proc/show_descriptors_to(mob/user)
+	. = list()
+	if(LAZYLEN(dna?.species?.descriptors))
+		if(user == src)
+			for(var/entry in dna.species.descriptors)
+				//currently using third person for consistency, but in the future i might make it so that
+				//examining yourself is first person across the board.
+				var/datum/mob_descriptor/descriptor = dna.species.descriptors[entry]
+				. += "<span class='info'>[descriptor.get_third_person_message_start(src)] [descriptor.get_standalone_value_descriptor(descriptor.current_value)].</span>"
+		else
+			for(var/entry in dna.species.descriptors)
+				var/datum/mob_descriptor/descriptor = dna.species.descriptors[entry]
+				. += "<span class='info'>[descriptor.get_comparative_value_descriptor(src, user, descriptor.current_value)]</span>"
+//

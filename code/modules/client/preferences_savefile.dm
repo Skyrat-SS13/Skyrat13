@@ -479,11 +479,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/species_id
 	S["species"]			>> species_id
 	if(species_id)
-		if(species_id == "avian" || species_id == "aquatic")
-			species_id = "mammal"
-		else if(species_id == "moth")
-			species_id = "insect"
-
 		var/newtype = GLOB.species_list[species_id]
 		if(newtype)
 			pref_species = new newtype
@@ -547,12 +542,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["joblessrole"]		>> joblessrole
 	//Load prefs
 	S["job_preferences"]	>> job_preferences
-	job_preferences		= SANITIZE_LIST(job_preferences) //Skyrat edit - lack of this could cause game-mode failure
+	job_preferences	= SANITIZE_LIST(job_preferences) //Skyrat edit - lack of this could cause game-mode failure
 
 	//Quirks
 	S["all_quirks"]			>> all_quirks
-	//SKYRAT ADDITION - additional language
+	//SKYRAT EDIT
 	S["language"]			>> language
+	S["body_descriptors"]	>> body_descriptors
+	body_descriptors = SANITIZE_LIST(body_descriptors)
 	//
 
 	//Citadel code
@@ -868,6 +865,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
 	//SKYRAT ADDITION - additional language
 	WRITE_FILE(S["language"]			, language)
+	WRITE_FILE(S["body_descriptors"]	, body_descriptors)
 	//
 
 	WRITE_FILE(S["vore_flags"]			, vore_flags)

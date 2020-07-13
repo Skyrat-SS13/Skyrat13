@@ -120,15 +120,19 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/flavor_faction = null
 	var/character_skills = ""
 	var/exploitable_info = ""
-	var/language = ""
 	var/see_chat_emotes = TRUE
 	var/enable_personal_chat_color = FALSE
 	var/personal_chat_color = "#ffffff"
-	var/list/foodlikes = list() //Skyrat additions BEGIN
+
+	var/language = ""
+
+	var/list/foodlikes = list()
 	var/list/fooddislikes = list()
 	var/maxlikes = 3
-	var/maxdislikes = 3 //Skyrat additions END
-
+	var/maxdislikes = 3
+	
+	var/list/body_descriptors = list()
+	
 	var/list/alt_titles_preferences = list()
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
@@ -442,15 +446,15 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a>"
 			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'>Security</a>"
 			dat += 	"<a href='?_src_=prefs;preference=medical_records;task=input'>Medical</a><br>"
-			dat += 	"Character :"
+			dat += 	"Character :<br>"
 			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a>"
-			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
+			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a>"
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
 			if(pref_species.bloodtypes.len)
 				dat += "Blood type :"
 				dat += 	"<a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default"]</a><br>"
-			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
-			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
+			dat += 	"Faction/Employer : <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
+			dat += "Custom runechat color : <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
 			dat += "<h2>Silicon Flavor Text</h2>"
 			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicon Examine Text</b></a><br>"
@@ -479,6 +483,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<b>Body Model:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=body_model'>[features["body_model"] == MALE ? "Masculine" : "Feminine"]</a><BR>"
 			dat += "<b>Species:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><BR>"
 			dat += "<b>Custom Species Name:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=custom_species;task=input'>[custom_species ? custom_species : "None"]</a><BR>"
+			if(LAZYLEN(pref_species.descriptors) && LAZYLEN(body_descriptors))
+				dat += "<h2>Descriptors:</h2>"
+				for(var/entry in body_descriptors)
+					var/datum/mob_descriptor/descriptor = pref_species.descriptors[entry]
+					dat += "<b>[capitalize(descriptor.chargen_label)]:</b> [descriptor.get_standalone_value_descriptor(body_descriptors[entry]) ? descriptor.get_standalone_value_descriptor(body_descriptors[entry]) : "None"] <a href='?_src_=prefs;preference=descriptors;task=input;change_descriptor=[entry]'>Change</a><BR>"
+				dat += "<BR>"
 			dat += "<b>Random Body:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=all;task=random'>Randomize!</A><BR>"
 			dat += "<b>Always Random Body:</b><a href='?_src_=prefs;preference=all'>[be_random_body ? "Yes" : "No"]</A><BR>"
 			dat += "<br><b>Cycle background:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cycle_bg;task=input'>[bgstate]</a><BR>"
@@ -1693,8 +1703,22 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			to_chat(user, text)
 		qdel(query_get_jobban)
 		return
+	
+	//skyrat edit
+	if(href_list["preference"] == "descriptors")
+		if(href_list["change_descriptor"])
+			if(LAZYLEN(pref_species.descriptors))
+				var/desc_id = href_list["change_descriptor"]
+				if(body_descriptors[desc_id])
+					var/datum/mob_descriptor/descriptor = pref_species.descriptors[desc_id]
+					var/choice = input("Please select a descriptor", "Descriptor") as null|anything in descriptor.chargen_value_descriptors
+					if(choice && pref_species.descriptors[desc_id]) // Check in case they sneakily changed species.
+						body_descriptors[descriptor.name] = descriptor.chargen_value_descriptors[choice]
+		ShowChoices(user)
+		return 1
+	//
 
-	if(href_list["preference"] == "job")
+	else if(href_list["preference"] == "job")
 		switch(href_list["task"])
 			if("close")
 				user << browse(null, "window=mob_occupation")
@@ -1869,7 +1893,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 			if(href_list["preference"] in GLOB.preferences_custom_names)
 				ask_for_custom_name(user,href_list["preference"])
-
 
 			switch(href_list["preference"])
 				if("ghostform")
@@ -2087,6 +2110,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							features["mcolor2"] = pref_species.default_color
 						if(features["mcolor3"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
 							features["mcolor3"] = pref_species.default_color
+						
+						//skyrat edit - avoids picking species restricted stuff
+						language = initial(language)
+						bloodtype = initial(bloodtype)
+						body_descriptors = pref_species.descriptors
+						//
 
 				if("custom_species")
 					var/new_species = reject_bad_name(input(user, "Choose your species subtype, if unique. This will show up on examinations and health scans. Do not abuse this:", "Character Preference", custom_species) as null|text)

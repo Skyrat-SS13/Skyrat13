@@ -112,6 +112,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/typing_indicator_state
 	//SKYRAT SNOWFLAKE
 	var/list/languagewhitelist = list()
+	var/list/descriptors = list(
+		/datum/mob_descriptor/height = "default",
+		/datum/mob_descriptor/build = "default",
+	)
+	//
 
 ///////////
 // PROCS //
@@ -119,9 +124,23 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 
 /datum/species/New()
-
-	if(!limbs_id)	//if we havent set a limbs id to use, just use our own id
+	//if we havent set a limbs id to use, just use our own id
+	if(!limbs_id)
 		limbs_id = id
+	
+	//skyrat change
+	//Set our descriptors proper
+	if(LAZYLEN(descriptors))
+		var/list/descriptor_datums = list()
+		for(var/desctype in descriptors)
+			var/datum/mob_descriptor/descriptor = new desctype
+			descriptor.current_value = descriptors[desctype]
+			if(descriptor.current_value == "default")
+				descriptor.current_value = descriptor.default_value
+			descriptor_datums[descriptor.name] = descriptor
+		descriptors = descriptor_datums
+	//
+	
 	..()
 
 
