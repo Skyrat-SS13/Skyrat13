@@ -477,9 +477,9 @@
 				//currently using third person for consistency, but in the future i might make it so that
 				//examining yourself is first person across the board.
 				var/datum/mob_descriptor/descriptor = dna.species.descriptors[entry]
-				. += "<span class='info'>[descriptor.get_third_person_message_start(src)] [descriptor.get_standalone_value_descriptor(descriptor.current_value)].</span>"
+				. += "<b><span class='info'>[descriptor.get_third_person_message_start(src)] [descriptor.get_standalone_value_descriptor(descriptor.current_value)].</span></b>"
 		else
 			for(var/entry in dna.species.descriptors)
 				var/datum/mob_descriptor/descriptor = dna.species.descriptors[entry]
-				. += "<span class='info'>[descriptor.get_comparative_value_descriptor(src, user, descriptor.current_value)]</span>"
+				. += "<b><span class='info'>[descriptor.get_comparative_value_descriptor(src, user, descriptor.current_value)]</span></b>"
 //
