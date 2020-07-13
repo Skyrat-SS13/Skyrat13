@@ -30,8 +30,9 @@
 			//skyrat edit
 			var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
 			if(istype(BP))
-				BP.incised = TRUE
-				BP.generic_bleedstacks += 10
+				var/datum/wound/slash/critical/incision/inch = new()
+				inch.apply_wound(BP, TRUE)
+				BP.generic_bleedstacks += 5
 			//
 	return TRUE
 
@@ -104,7 +105,8 @@
 		//skyrat edit
 		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
 		if(istype(BP))
-			BP.incised = FALSE
+			for(var/datum/wound/slash/critical/incision/inch in BP.wounds)
+				inch.remove_wound()
 		//
 	return ..()
 //saw bone

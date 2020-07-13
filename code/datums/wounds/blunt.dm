@@ -33,6 +33,8 @@
 	var/internal_bleeding_chance = 0
 
 	base_treat_time = 5 SECONDS
+	biology_required = list(HAS_BONE)
+	required_status = BODYPART_ORGANIC
 
 /*
 	Overwriting of base procs
@@ -117,8 +119,13 @@
 			return COMPONENT_NO_ATTACK_HAND
 
 /datum/wound/blunt/receive_damage(wounding_type, wounding_dmg, wound_bonus)
-	if(!victim)
+	if(!victim || victim.stat == DEAD || wounding_dmg < WOUND_MINIMUM_DAMAGE)
 		return
+	
+	if(severity >= WOUND_SEVERITY_SEVERE)
+		if(prob(round(max(wounding_dmg/10, 1), 1)))
+			for(var/obj/item/organ/O in victim.getorganszone(limb.body_zone, TRUE))
+				victim.adjustOrganLoss(O.slot, rand(1, wounding_dmg/10), O.maxHealth)
 	
 	if(limb.body_zone == BODY_ZONE_PRECISE_GROIN && prob(25))
 		victim.Paralyze(severity * 5)

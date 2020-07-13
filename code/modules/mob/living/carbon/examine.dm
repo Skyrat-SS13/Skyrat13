@@ -51,7 +51,7 @@
 		//skyrat edit
 		if(BP.etching)
 			msg += "<B>[t_His] [BP.name] has \"[BP.etching]\" etched on it!</B>\n"
-		if(BP.incised && (BP.body_zone in ORGAN_BODYPARTS))
+		if((/datum/wound/slash/critical/incision in BP.wounds) && (BP.body_zone in ORGAN_BODYPARTS))
 			msg += "<span class='boldwarning'><B>[t_His] [BP.name] is surgically cut open, you can see [t_his] organs!</B></span>\n"
 			for(var/obj/item/organ/O in getorganszone(BP.body_zone))
 				for(var/i in O.surgical_examine(user))
@@ -92,8 +92,9 @@
 			r_limbs_missing++
 		
 		for(var/datum/wound/L in all_wounds)
-			if(L.severity == WOUND_SEVERITY_PERMANENT)
-				if((L.fake_body_zone == t) || (L.fake_body_zone == SSquirks.bodypart_child_to_parent[t]))
+			if(L.severity == WOUND_SEVERITY_LOSS)
+				var/list/children_atomization = SSquirks.atomize_bodypart_heritage(L.limb?.body_zone)
+				if((L.fake_body_zone == t) || (L.fake_body_zone in children_atomization)) //There is already a missing parent bodypart or loss wound for us, no need to be redundant
 					should_msg = null
 		
 		if(SSquirks.bodypart_child_to_parent[t])
@@ -187,7 +188,7 @@
 	var/list/obj/item/bodypart/suppress_limbs = list()
 	for(var/i in bodyparts)
 		var/obj/item/bodypart/BP = i
-		if(BP.bleedsuppress)
+		if(BP.status & BODYPART_NOBLEED)
 			suppress_limbs += BP
 
 	var/num_suppress = LAZYLEN(suppress_limbs)
@@ -262,7 +263,7 @@
 
 //skyrat edit
 /mob/living/carbon/examine_more(mob/user)
-	if(((!all_scars || !length(all_scars)) && !length(get_damaged_bodyparts(TRUE, TRUE))) || (src == user && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF)))
+	if((src == user) && HAS_TRAIT(user, TRAIT_SCREWY_CHECKSELF))
 		return ..()
 
 	var/list/visible_scars = list()
@@ -270,9 +271,6 @@
 		var/datum/scar/S = i
 		if(istype(S) && S.is_visible(user))
 			LAZYADD(visible_scars, S)
-
-	if(!length(visible_scars) && !length(get_damaged_bodyparts(TRUE, TRUE)))
-		return ..()
 
 	var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
 	
@@ -307,27 +305,28 @@
 			how_burn = BP.heavy_burn_msg
 			max_sev = max(max_sev, 3)
 		
-		if(max_sev)
-			var/style
-			switch(max_sev)
-				if(1)
-					style = "tinydanger"
-				if(2)
-					style = "smalldanger"
-				if(3)
-					style = "danger"
-			var/aaa = ""
-			aaa += "\t<span class='[style]'>[capitalize(p_their())] [BP.name] is "
-			if((how_brute == BP.no_brute_msg) && (how_burn != BP.no_burn_msg))
-				aaa += "[how_brute], but it is [how_burn]."
-			else if((how_brute == BP.no_brute_msg) && (how_burn == BP.no_burn_msg))
-				aaa += "[how_brute] and [how_burn]"
-			else if((how_brute != BP.no_brute_msg) && (how_burn == BP.no_burn_msg))
-				aaa += "[how_burn], but it is [how_brute]"
-			else if((how_brute != BP.no_brute_msg) && (how_burn != BP.no_burn_msg))
-				aaa += "[how_brute] and [how_burn]"
-			aaa += "[max_sev >= 3 ? "!" : "."]</span>"
-			msg += aaa
+		var/style
+		switch(max_sev)
+			if(0)
+				style = "notice"
+			if(1)
+				style = "tinydanger"
+			if(2)
+				style = "smalldanger"
+			if(3)
+				style = "danger"
+		var/aaa = ""
+		aaa += "\t<span class='[style]'>[capitalize(p_their())] [BP.name] is "
+		if((how_brute == BP.no_brute_msg) && (how_burn != BP.no_burn_msg))
+			aaa += "[how_brute], but it is [how_burn]."
+		else if((how_brute == BP.no_brute_msg) && (how_burn == BP.no_burn_msg))
+			aaa += "[how_brute] and [how_burn]"
+		else if((how_brute != BP.no_brute_msg) && (how_burn == BP.no_burn_msg))
+			aaa += "[how_burn], but it is [how_brute]"
+		else if((how_brute != BP.no_brute_msg) && (how_burn != BP.no_burn_msg))
+			aaa += "[how_brute] and [how_burn]"
+		aaa += "[max_sev >= 3 ? "!" : "."]</span>"
+		msg += aaa
 
 	for(var/i in visible_scars)
 		var/datum/scar/S = i

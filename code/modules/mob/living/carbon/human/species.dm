@@ -2253,3 +2253,19 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 /datum/species/proc/start_wagging_tail(mob/living/carbon/human/H)
 
 /datum/species/proc/stop_wagging_tail(mob/living/carbon/human/H)
+
+//skyrat edit
+
+/**
+  * The human species version of [/mob/living/carbon/proc/get_biological_state]. Depends on the HAS_SKIN, HAS_FLESH and HAS_BONE species traits, having bones lets you have bone wounds, having flesh lets you have burn, slash, and piercing wounds, skin is currently unused
+  */
+/datum/species/proc/get_biological_state(mob/living/carbon/human/H)
+	. = BIO_INORGANIC
+	if(HAS_SKIN in species_traits)
+		. = BIO_JUST_SKIN
+	if(HAS_FLESH in species_traits)
+		. = BIO_JUST_FLESH
+	if(HAS_BONE in species_traits)
+		. = BIO_JUST_BONE
+	if((HAS_BONE && HAS_FLESH && HAS_SKIN) in species_traits)
+		. = BIO_FULL

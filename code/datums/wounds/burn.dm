@@ -28,6 +28,8 @@
 	var/strikes_to_lose_limb = 3
 
 	base_treat_time = 3 SECONDS
+	biology_required = list(HAS_FLESH)
+	required_status = BODYPART_ORGANIC
 
 /datum/wound/burn/on_hemostatic(quantity)
 	if((severity <= WOUND_SEVERITY_SEVERE) && infestation && (quantity >= 10))

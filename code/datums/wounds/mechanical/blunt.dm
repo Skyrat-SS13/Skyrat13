@@ -28,6 +28,8 @@
 	var/shock_chance = 0
 
 	base_treat_time = 5 SECONDS
+	biology_required = list(HAS_BONE)
+	required_status = BODYPART_ROBOTIC
 
 /*
 	Overwriting of base procs
@@ -103,17 +105,17 @@
 			return COMPONENT_NO_ATTACK_HAND
 
 /datum/wound/mechanical/blunt/receive_damage(wounding_type, wounding_dmg, wound_bonus)
-	if(!victim)
+	if(!victim || victim.stat == DEAD || wounding_dmg < WOUND_MINIMUM_DAMAGE)
 		return
 
 	var/modifier = 1
-	if(wounding_type == WOUND_LIST_BLUNT_MECHANICAL)
+	if(wounding_type == WOUND_BLUNT)
 		modifier = 1.4
-	else if(wounding_type == WOUND_LIST_PIERCE_MECHANICAL)
+	else if(wounding_type == WOUND_PIERCE)
 		modifier = 1.2
-	else if(wounding_type == WOUND_LIST_SLASH_MECHANICAL)
+	else if(wounding_type == WOUND_SLASH)
 		modifier = 0.8
-	else if(wounding_type == WOUND_LIST_BURN_MECHANICAL)
+	else if(wounding_type == WOUND_BURN)
 		modifier = 0.5
 	if((wounding_dmg * modifier >= 12/(severity - WOUND_SEVERITY_TRIVIAL)) && prob(wounding_dmg/2 * modifier))
 		if(limb.body_zone == BODY_ZONE_CHEST && prob(shock_chance + (wounding_dmg * 2)))
@@ -129,6 +131,11 @@
 				victim.visible_message("<span class='smalldanger'>[victim] gets knocked down as [victim.p_their()] [limb.name] sparks!</span>", "<span class='danger'>You get knocked down by the impact on your damaged [limb.name] internals!</span>", vision_distance=COMBAT_MESSAGE_RANGE)
 				victim.DefaultCombatKnockdown(stun_amt)
 				do_sparks(clamp(round(stun_amt/10, 1), 1, 6), GLOB.alldirs, victim)
+	
+	if(severity >= WOUND_SEVERITY_SEVERE)
+		if(prob(round(max(wounding_dmg/10, 1), 1)))
+			for(var/obj/item/organ/O in victim.getorganszone(limb.body_zone, TRUE))
+				victim.adjustOrganLoss(O.slot, rand(1, wounding_dmg/10), O.maxHealth)
 
 /datum/wound/mechanical/blunt/get_examine_description(mob/user)
 	if(!limb.current_gauze && !wrenched && !taped)

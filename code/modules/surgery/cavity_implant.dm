@@ -2,7 +2,7 @@
 	name = "Cavity implant"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/incise, /datum/surgery_step/handle_cavity, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = TORSO_BODYPARTS //skyrat edit
+	possible_locs = ALL_BODYPARTS //skyrat edit
 
 //handle cavity
 /datum/surgery_step/handle_cavity
@@ -34,7 +34,7 @@
 /datum/surgery_step/handle_cavity/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/CH = target.get_bodypart(target_zone) //skyrat edit
 	if(tool)
-		if(IC || tool.w_class > WEIGHT_CLASS_NORMAL || HAS_TRAIT(tool, TRAIT_NODROP) || istype(tool, /obj/item/organ))
+		if(IC || tool.w_class > CH.max_cavity_size || HAS_TRAIT(tool, TRAIT_NODROP) || istype(tool, /obj/item/organ))
 			to_chat(user, "<span class='warning'>You can't seem to fit [tool] in [target]'s [target_zone]!</span>")
 			return 0
 		else

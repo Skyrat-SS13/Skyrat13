@@ -25,12 +25,14 @@
 	repeat_weld = TRUE
 
 	base_treat_time = 2.5 SECONDS
+	biology_required = list(HAS_FLESH)
+	required_status = BODYPART_ROBOTIC
 
 /datum/wound/mechanical/pierce/wound_injury(datum/wound/old_wound)
 	blood_flow = initial_flow
 
 /datum/wound/mechanical/pierce/receive_damage(wounding_type, wounding_dmg, wound_bonus)
-	if(victim.stat == DEAD || wounding_dmg < 5)
+	if(!victim || victim.stat == DEAD || wounding_dmg < WOUND_MINIMUM_DAMAGE)
 		return
 	if(victim.blood_volume && prob(internal_bleeding_chance + wounding_dmg))
 		if(limb.current_gauze && limb.current_gauze.splint_factor)

@@ -2,6 +2,7 @@
 #define WOUND_DAMAGE_EXPONENT	1.4
 
 #define WOUND_MINIMUM_DAMAGE		5 // an attack must do this much damage after armor in order to roll for being a wound (incremental pressure damage need not apply)
+#define WOUND_MAX_CONSIDERED_DAMAGE	35 // any damage dealt over this is ignored for damage rolls unless the target has the frail quirk (35^1.4=145)
 #define DISMEMBER_MINIMUM_DAMAGE	10 // an attack must do this much damage after armor in order to be eliigible to dismember a suitably mushed bodypart
 
 #define WOUND_SEVERITY_NONE		0
@@ -15,21 +16,21 @@
 #define WOUND_BLUNT 0 // any brute weapon/attack that doesn't have sharpness. rolls for blunt bone wounds
 #define WOUND_SLASH 1 // any brute weapon/attack with sharpness = SHARP_EDGED. rolls for slash wounds
 #define WOUND_PIERCE 2 // any brute weapon/attack with sharpness = SHARP_POINTY. rolls for piercing wounds
-#define WOUND_BURN	4 // any concentrated burn attack (lasers really). rolls for burning wounds
+#define WOUND_BURN	3 // any concentrated burn attack (lasers really). rolls for burning wounds
 
 // the ones below will be implemented in the future, but dont exist atm
-#define WOUND_TOXIN 3
-#define WOUND_RADIATION 4 //arguably could just use the cellular wound thing, but i'm an asshole and want cancer/tumors to be a separate thing
-#define WOUND_CELLULAR 5
-#define WOUND_STAMINA 6
-#define WOUND_ORGAN 7
+#define WOUND_TOXIN 4
+#define WOUND_RADIATION 5 //arguably could just use the cellular wound thing, but i'm an asshole and want cancer/tumors to be a separate thing
+#define WOUND_CELLULAR 6
+#define WOUND_STAMINA 7
+#define WOUND_ORGAN 8
 
 // How much determination reagent to add each time someone gains a new wound in [/datum/wound/proc/second_wind()]
-#define WOUND_DETERMINATION_MODERATE	1
-#define WOUND_DETERMINATION_SEVERE		2.5
-#define WOUND_DETERMINATION_CRITICAL	5
-#define WOUND_DETERMINATION_PERMANENT	7.5
+#define WOUND_DETERMINATION_MODERATE	2
+#define WOUND_DETERMINATION_SEVERE		5
+#define WOUND_DETERMINATION_CRITICAL	7.5
 #define WOUND_DETERMINATION_LOSS		10
+#define WOUND_DETERMINATION_PERMANENT	10
 
 #define WOUND_DETERMINATION_MAX			10 // the max amount of determination you can have
 
@@ -37,7 +38,7 @@
 #define CANT_WOUND -100
 
 // list in order of highest severity to lowest
-#define WOUND_LIST_MECHANICAL list(/datum/wound/mechanical)
+#define WOUND_LIST_INCISION list(/datum/wound/slash/critical/incision)
 #define WOUND_LIST_BLUNT		list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate/ribcage, /datum/wound/blunt/moderate/hips, /datum/wound/blunt/moderate)
 #define WOUND_LIST_BLUNT_MECHANICAL list(/datum/wound/mechanical/blunt/critical, /datum/wound/mechanical/blunt/severe, /datum/wound/mechanical/blunt/moderate)
 #define WOUND_LIST_SLASH		list(/datum/wound/slash/critical, /datum/wound/slash/severe, /datum/wound/slash/moderate)
@@ -72,7 +73,7 @@
 
 // increment this number when you update the persistent scarring format in a way that invalidates previous saved scars (new fields, reordering, etc)
 // saved scars with a version lower than this will be discarded
-#define SCAR_CURRENT_VERSION				1
+#define SCAR_CURRENT_VERSION 1
 
 // General dismemberment now requires 3 things for a limb to be dismemberable:
 //	1. Skin is mangled: At least a moderate slash or pierce wound
@@ -83,4 +84,23 @@
 #define BODYPART_MANGLED_SKIN	(1<<1)
 #define BODYPART_MANGLED_MUSCLE (1<<2)
 #define BODYPART_MANGLED_BONE	(1<<3)
-#define BODYPART_MANGLED_BOTH (BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE | BODYPART_MANGLED_BONE)
+#define BODYPART_MANGLED_BOTH 	(BODYPART_MANGLED_NONE | BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE | BODYPART_MANGLED_BONE)
+
+// What kind of biology we have, and what wounds we can suffer, mostly relies on the HAS_FLESH and HAS_BONE species traits on human species
+#define BIO_INORGANIC	0 // golems, cannot suffer any wounds
+#define BIO_JUST_BONE	1 // skeletons and plasmemes, can only suffer bone wounds, only needs mangled bone to be able to dismember
+#define BIO_JUST_FLESH	2 // nothing right now, maybe slimepeople in the future, can only suffer slashing, piercing, and burn wounds
+#define BIO_JUST_SKIN	3
+#define BIO_FULL 4 // standard humanoids, can suffer all wounds, needs mangled bone and flesh to dismember
+
+//Organ defines for carbon mobs
+#define ORGAN_ORGANIC   (1<<1)
+#define ORGAN_ROBOTIC   (1<<2)
+
+#define BODYPART_ORGANIC   (1<<1)
+#define BODYPART_ROBOTIC   (1<<2)
+#define BODYPART_NOBLEED	(1<<3)
+
+#define BODYPART_NOT_DISABLED 0
+#define BODYPART_DISABLED_DAMAGE 1
+#define BODYPART_DISABLED_PARALYSIS 2

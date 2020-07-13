@@ -15,10 +15,7 @@
 	sound_effect
 
 	severity = WOUND_SEVERITY_MODERATE
-	wound_type = WOUND_LIST_MECHANICAL
-
-	organic_only = FALSE
-	robotic_only = TRUE
+	wound_type = null
 
 	treatable_by = list()
 	treatable_by_grabbed = list()
@@ -69,6 +66,9 @@
 	var/repeat_patch = FALSE
 	/// Can we repeat welding?
 	var/repeat_weld = FALSE
+	
+	biology_required = list(HAS_SKIN, HAS_FLESH, HAS_BONE)
+	required_status = BODYPART_ROBOTIC
 
 /datum/wound/mechanical/get_examine_description(mob/user)
 	if(!limb.current_gauze && !patch && !welded)

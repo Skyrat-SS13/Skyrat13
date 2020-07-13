@@ -29,9 +29,10 @@
 /datum/surgery_step/pry_off_plating/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	//skyrat edit
 	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
-	BP.incised = TRUE
-	if(BP)
-		BP.generic_bleedstacks += 10
+	if(istype(BP))
+		var/datum/wound/slash/critical/incision/inch = new()
+		inch.apply_wound(BP, TRUE)
+		BP.generic_bleedstacks += 5
 	//
 	do_sparks(rand(5, 9), FALSE, target.loc)
 	return TRUE

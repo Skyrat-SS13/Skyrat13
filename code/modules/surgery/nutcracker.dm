@@ -9,6 +9,14 @@
 	attack_verb = list("smashed", "beaten", "crushed")
 	var/list/accepted_limbs = list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_HEAD)
 
+/obj/item/nutcracker/attack_obj(obj/O, mob/living/user)
+	. = ..()
+	if(istype(O, /obj/item/bodypart) || istype(O, /obj/item/organ))
+		O.visible_message("<span class='danger'>\The [O] gets completely crushed by \the [src]!</span>")
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(O), get_dir(user, O))
+		new /obj/effect/decal/cleanable/blood/gibs(get_turf(O))
+		qdel(O)
+
 /obj/item/nutcracker/proc/gib_head(mob/living/carbon/M)
 	var/obj/item/bodypart/head = M.get_bodypart("head")
 	if(!head)
@@ -57,8 +65,13 @@
 				if(target_limb.body_zone == BODY_ZONE_HEAD)
 					gib_head(M)
 				else if(target_limb.body_zone == BODY_ZONE_PRECISE_GROIN)
-					target_limb.dismember(BRUTE)
+					target_limb.disembowel(BRUTE)
 					target_limb.receive_damage(target_limb.max_damage)
+				else if(target_limb.body_zone == BODY_ZONE_CHEST)
+					target_limb.disembowel(BRUTE)
+					target_limb.receive_damage(target_limb.max_damage)
+				else
+					target_limb.dismember(BRUTE, FALSE, TRUE)
 		else
 			to_chat(user, "<span class='notice'>Expose [M]\s [target_limb.name] before trying to crush it!</span>")
 

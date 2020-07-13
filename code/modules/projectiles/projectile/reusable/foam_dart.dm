@@ -30,7 +30,6 @@
 		pen = null
 	newdart.update_icon()
 
-
 /obj/item/projectile/bullet/reusable/foam_dart/Destroy()
 	pen = null
 	return ..()

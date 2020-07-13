@@ -901,6 +901,12 @@
 			to_chat(src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name][isdisabled][self_aware ? " has " : " is "][status].</span>")
 		else
 			to_chat(src, "\t <span class='notice'>Your [LB.name] is OK.</span>")
+		
+		if(LB.body_zone == BODY_ZONE_HEAD)
+			var/obj/item/bodypart/head/HD = LB
+			if(HD.tapered)
+				if(!wear_mask)
+					to_chat(src, "\t <span class='warning'>Your [HD.name] has \a <b><a href='?src=[REF(HD)];tape=[HD.tapered];'>[HD.tapered]</a></b> on it's mouth!</span>")
 
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 			for(var/thing in LB.wounds)
@@ -908,7 +914,7 @@
 				var/msg
 				var/woundmsg
 				if(W.can_self_treat)
-					woundmsg = "<a href='?src=[REF(W)];self_treat=1;' class='warning'>[lowertext(W.name)]</a>"
+					woundmsg = "<b><a href='?src=[REF(W)];self_treat=1;' class='warning'>[lowertext(W.name)]</a></b>"
 				else
 					woundmsg = "[lowertext(W.name)]"
 				switch(W.severity)
@@ -933,7 +939,7 @@
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 			to_chat(src, "\t <span class='boldannounce'>Your [parse_zone(t)] is missing!</span>")
 		else
-			to_chat(src, "\t <span class='notice'>Tis [parse_zone(t)] but a flesh wound.</span>")
+			to_chat(src, "\t <span class='notice'>Your [parse_zone(t)] is OK.</span>")
 
 	if(is_bleeding() && !HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 		var/list/obj/item/bodypart/bleeding_limbs = list()

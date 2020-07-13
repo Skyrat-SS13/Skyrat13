@@ -155,16 +155,22 @@
 
 /obj/item/organ/proc/surgical_examine(mob/user)
 	. = list()
+	var/failing = FALSE
+	var/damaged = FALSE
 	if(organ_flags & ORGAN_FAILING)
+		failing = TRUE
 		if(status == ORGAN_ROBOTIC)
-			. += "<span class='warning'>[src] seems to be broken!</span>"
-			return
-		. += "<span class='warning'>[src] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!</span>"
-		return
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] seems to be broken!</span>"
+		else
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] has decayed for too long, and has turned a sickly color! It doesn't look like it will work anymore!</span>"
 	if(damage > high_threshold)
-		. += "<span class='warning'>[src] is starting to look discolored.</span>"
+		if(!failing)
+			damaged = TRUE
+			. += "<span class='warning'>[owner ? "[capitalize(owner.p_their())] " : ""][src] is starting to look discolored.</span>"
+	if(!failing && !damaged)
+		. += "<span class='notice'>[owner ? "[capitalize(owner.p_their())] " : ""][src] seems to be quite healthy.</span>"
 	if(etching)
-		. += "<span class='notice'>[src] has \"[etching]\" inscribed on it.</span>"
+		. += "<span class='notice'>[owner ? "[capitalize(owner.p_their())] " : ""][src] has <b>\"[etching]\"</b> inscribed on it.</span>"
 
 /obj/item/organ/proc/prepare_eat()
 	var/obj/item/reagent_containers/food/snacks/organ/S = new
@@ -213,8 +219,8 @@
 		var/badboy = input(user, "What do you want to etch on [src]?", "Malpractice", "") as text
 		if(badboy)
 			badboy = strip_html_simple(badboy)
-			etching = "<b>[badboy]</b>"
-			user.visible_message("<span class='notice'>[user] etches something on \the [src] with \the [I].</span>, <span class='notice'>You etch \"[badboy]\" on [src] with \the [I]. Hehe.</span>")
+			etching = "[badboy]"
+			user.visible_message("<span class='notice'>[user] etches something on \the [src] with \the [I].</span>, <span class='notice'>You etch <b>\"[badboy]\"</b> on [src] with \the [I]. Hehe.</span>")
 		else
 			return ..()
 

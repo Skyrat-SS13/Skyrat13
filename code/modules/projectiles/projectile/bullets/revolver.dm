@@ -3,6 +3,7 @@
 /obj/item/projectile/bullet/n762
 	name = "7.62x38mmR bullet"
 	damage = 60
+	wound_bonus = -70
 
 // .50AE (Desert Eagle)
 
@@ -119,11 +120,13 @@
 /obj/item/projectile/bullet/a357
 	name = ".357 bullet"
 	damage = 60
+	wound_bonus = -50
 
 /obj/item/projectile/bullet/a357/ap
 	name = ".357 armor-piercing bullet"
 	damage = 45
 	armour_penetration = 45
+	wound_bonus = -25
 
 //skyrat regedit
 // admin only really, for ocelot memes

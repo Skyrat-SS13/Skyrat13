@@ -16,9 +16,26 @@
 	w_class = WEIGHT_CLASS_TINY
 	splint_factor = 0.8
 
-/obj/item/stack/sticky_tape/afterattack(obj/item/I, mob/living/user)
-	if(!istype(I))
+//used for taping people's mouths shut
+/obj/item/stack/sticky_tape/proc/handle_speech(datum/source, list/speech_args)
+	speech_args[SPEECH_MESSAGE] = ""
+	to_chat(source, "<span class='warning'>You try to speak, but \the [src] prevents you!</span>")
+
+/obj/item/stack/sticky_tape/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(!istype(target, /obj/item))
+		if(iscarbon(target) && user.a_intent == INTENT_GRAB && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
+			var/mob/living/carbon/C = target
+			var/obj/item/bodypart/head/shoeonhead = C.get_bodypart(BODY_ZONE_HEAD)
+			if(istype(shoeonhead) && C.wear_mask)
+				C.visible_message(message = "<span class='danger'>[user] tries to tape [C]'s mouth closed with \the [src]!</span>", self_message = "<span class='userdanger'>[user] tries to tape your mouth closed with \the [src]!</span>", ignored_mobs = list(user))
+				to_chat(user, "<span class='warning'>You try to gag [C] with \the [src]!</span>")
+				if(do_after_mob(user, C, 4 SECONDS))
+					shoeonhead.get_stickied(src, user)
+				else
+					to_chat(user, "<span class='warning'>You fail to gag \the [C] with \the [src].</span>")
 		return
+	
+	var/obj/item/I = target
 
 	if(I.embedding && I.embedding == conferred_embed)
 		to_chat(user, "<span class='warning'>[I] is already coated in [src]!</span>")

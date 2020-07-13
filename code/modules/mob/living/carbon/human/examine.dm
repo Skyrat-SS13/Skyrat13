@@ -99,6 +99,11 @@
 	//shoes
 	if(shoes && !(SLOT_SHOES in obscured))
 		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet."
+	
+	//sticky tape
+	var/obj/item/bodypart/head/HD = get_bodypart(BODY_ZONE_HEAD)
+	if(!wear_mask && istype(HD) && HD.tapered)
+		. += "<span class='warning'>[t_He] [t_has] \a <b><a href='?src=[REF(HD)];tape=[HD.tapered];'>[HD.tapered]</a></b> on [t_his] mouth!</span>"
 
 	//mask
 	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
@@ -192,8 +197,7 @@
 				disabled += BP
 			if(BP.etching && !clothingonpart(BP))
 				msg += "<B>[t_His] [BP.name] has \"[BP.etching]\" etched on it!</B>\n"
-			if(BP.incised && (BP.body_zone in ORGAN_BODYPARTS))
-				msg += "<span class='boldwarning'><B>[t_His] [BP.name] is surgically cut open, you can see [t_his] organs!</B></span>\n"
+			if((/datum/wound/slash/critical/incision in all_wounds) && (BP.body_zone in ORGAN_BODYPARTS))
 				for(var/obj/item/organ/O in getorganszone(BP.body_zone))
 					for(var/i in O.surgical_examine(user))
 						msg += "<span class='danger'>[icon2html(O.examine_icon ? O.examine_icon : O, user, O.examine_icon_state ? O.examine_icon_state : O.icon_state)] [i]</span>\n"
@@ -236,8 +240,9 @@
 				r_limbs_missing++
 			
 			for(var/datum/wound/L in all_wounds)
-				if(L.severity == WOUND_SEVERITY_PERMANENT)
-					if((L.fake_body_zone == t) || (L.fake_body_zone == SSquirks.bodypart_child_to_parent[t]))
+				if(L.severity == WOUND_SEVERITY_LOSS)
+					var/list/children_atomization = SSquirks.atomize_bodypart_heritage(L.limb?.body_zone)
+					if((L.fake_body_zone == t) || (L.fake_body_zone in children_atomization)) //There is already a missing parent bodypart or loss wound for us, no need to be redundant
 						should_msg = null
 			
 			if(SSquirks.bodypart_child_to_parent[t])
@@ -347,7 +352,7 @@
 		var/list/obj/item/bodypart/suppress_limbs = list()
 		for(var/i in bodyparts)
 			var/obj/item/bodypart/BP = i
-			if(BP.bleedsuppress)
+			if(BP.status & BODYPART_NOBLEED)
 				suppress_limbs += BP
 
 		var/num_suppress = LAZYLEN(suppress_limbs)

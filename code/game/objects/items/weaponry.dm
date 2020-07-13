@@ -116,7 +116,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		loc.layer = LARGE_MOB_LAYER //NO HIDING BEHIND PLANTS FOR YOU, DICKWEED (HA GET IT, BECAUSE WEEDS ARE PLANTS)
 		//skyrat edit
 		for(var/obj/item/bodypart/BP in H.bodyparts)
-			BP.bleedsuppress = TRUE //AND WE WON'T BLEED OUT LIKE COWARDS
+			BP.status |= BODYPART_NOBLEED //AND WE WON'T BLEED OUT LIKE COWARDS
 		//
 		H.adjustStaminaLoss(-50) //CIT CHANGE - AND MAY HE NEVER SUCCUMB TO EXHAUSTION
 	else

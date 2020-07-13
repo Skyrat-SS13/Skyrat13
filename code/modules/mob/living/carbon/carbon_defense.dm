@@ -120,16 +120,17 @@
 	var/extra_wound_details = ""
 	if(I.damtype == BRUTE && hit_BP.can_dismember())
 		var/mangled_state = hit_BP.get_mangled_state()
-		if(mangled_state & BODYPART_MANGLED_BOTH)
+		var/bio_state = get_biological_state()
+		if(mangled_state == BODYPART_MANGLED_BOTH)
 			extra_wound_details = ", threatening to sever it entirely"
-		else if(mangled_state & BODYPART_MANGLED_BONE && I.get_sharpness())
-			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through to the bone"
+		else if(mangled_state & BODYPART_MANGLED_BONE && I.get_sharpness() || (mangled_state & BODYPART_MANGLED_MUSCLE && bio_state == BIO_JUST_FLESH))
+			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through remmaining tissue"
 			if(!hit_BP.is_organic_limb())
-				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through to the endoskeleton"
-		else if(mangled_state & BODYPART_MANGLED_MUSCLE && I.get_sharpness())
-			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through the flesh"
+				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through remaining scraps"
+		else if(mangled_state & BODYPART_MANGLED_MUSCLE && I.get_sharpness() || (mangled_state & BODYPART_MANGLED_BONE && bio_state == BIO_JUST_BONE))
+			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through the bone"
 			if(!hit_BP.is_organic_limb())
-				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through various components"
+				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through various internal components"
 		else if(mangled_state & BODYPART_MANGLED_SKIN && I.get_sharpness())
 			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through torn skin"
 			if(!hit_BP.is_organic_limb())

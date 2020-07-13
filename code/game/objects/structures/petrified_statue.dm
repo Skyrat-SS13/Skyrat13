@@ -83,7 +83,7 @@
 	S.name = "statue of [name]"
 	//skyrat edit
 	for(var/obj/item/bodypart/BP in bodyparts)
-		BP.bleedsuppress = TRUE
+		BP.status |= BODYPART_NOBLEED
 	//
 	S.copy_overlays(src)
 	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))

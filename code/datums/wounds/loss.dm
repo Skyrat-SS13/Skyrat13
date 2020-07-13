@@ -10,10 +10,10 @@
 	wound_type = WOUND_LIST_LOSS
 	severity = WOUND_SEVERITY_LOSS
 	threshold_minimum = 180
-	organic_only = FALSE
-	robotic_only = FALSE
 	status_effect_type = null
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
+	biology_required = list()
+	required_status = BODYPART_ORGANIC | BODYPART_ROBOTIC
 
 /datum/wound/loss/proc/apply_dismember(obj/item/bodypart/L, wounding_type=WOUND_SLASH)
 	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.can_dismember())
@@ -22,7 +22,7 @@
 
 	if(ishuman(L.owner))
 		var/mob/living/carbon/human/H = L.owner
-		if(organic_only && ((NOBLOOD in H.dna.species.species_traits) || !L.is_organic_limb()))
+		if((required_status & BODYPART_ORGANIC) && ((NOBLOOD in H.dna.species.species_traits) || !L.is_organic_limb()))
 			qdel(src)
 			return
 
@@ -39,6 +39,8 @@
 			occur_text = "is pierced through the last tissue holding it together, severing it completely!"
 			if(!limb.is_organic_limb())
 				occur_text = "is pierced through the last bit of exoskeleton holding it together, severing it completely!"
+		if(WOUND_BURN)
+			occur_text = "is completely incinerated, falling to dust!"
 
 	var/mob/living/carbon/victim = L.owner
 	if(prob(40))
@@ -49,7 +51,8 @@
 	victim.visible_message(msg, "<span class='userdanger'>Your [L.name] [occur_text]!</span>")
 
 	second_wind()
-	L.dismember(silent = TRUE)
+	log_wound(victim, src)
+	L.dismember(dam_type = (wounding_type == WOUND_BURN ? BURN : BRUTE),silent = TRUE)
 	qdel(src)
 
 /datum/wound/slash/loss
@@ -58,7 +61,6 @@
 	treat_text = "Immediate surgical reattachment of the lost limb or suitable equivalent if possible. Suturization or cauterization of the stump otherwise."
 	examine_desc = "has been violently severed from their body"
 	sound_effect = 'modular_skyrat/sound/effects/dismember.ogg'
-	organic_only = TRUE
 	viable_zones = ALL_BODYPARTS
 	severity = WOUND_SEVERITY_LOSS
 	wound_type = WOUND_LIST_LOSS
@@ -112,8 +114,6 @@
 	treat_text = "Immediate surgical reattachment of the lost limb or suitable equivalent if possible. Welding and patching of the stump otherwise."
 	examine_desc = "has been violently severed from their body"
 	sound_effect = 'modular_skyrat/sound/effects/dismember.ogg'
-	organic_only = FALSE
-	robotic_only = TRUE
 	viable_zones = ALL_BODYPARTS
 	severity = WOUND_SEVERITY_LOSS
 	wound_type = WOUND_LIST_LOSS

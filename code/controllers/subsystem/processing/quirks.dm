@@ -41,6 +41,17 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	//
 	return ..()
 
+/datum/controller/subsystem/processing/proc/atomize_bodypart_heritage(body_zone)
+	. = list()
+	if(!body_zone)
+		return
+	var/obj/item/bodypart/BP = SSquirks.associated_bodyparts[body_zone]
+	while(BP.children_zones)
+		. |= BP.children_zones
+		for(var/y in BP.children_zones)
+			BP = SSquirks.associated_bodyparts[y]
+			. |= BP.children_zones
+
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
 // Sort by Positive, Negative, Neutral; and then by name
 	var/list/quirk_list = sortList(subtypesof(/datum/quirk), /proc/cmp_quirk_asc)

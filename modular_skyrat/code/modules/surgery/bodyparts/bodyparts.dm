@@ -1,6 +1,7 @@
 /obj/item/bodypart
 	var/synthetic = FALSE //Synthetic bodyparts can have patches applied but are harder to repair by conventional means
 	var/render_like_organic = FALSE //Skyrat change - for robotic limbs that pretend to be organic, for the sake of features, icon paths etc. etc.
+	var/mutable_appearance/custom_overlay = null //This is used for pseudolimbs. Basically replaces the mob sprite with this.
 
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
@@ -148,6 +149,10 @@
 
 	. = list()
 
+	if(custom_overlay)
+		. += custom_overlay
+		return
+
 	var/image_dir = 0
 	var/icon_gender = (body_gender == FEMALE) ? "f" : "m" //gender of the icon, if applicable
 
@@ -234,6 +239,37 @@
 						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
 			. += aux
 			. += auxmarking
+		
+		if(body_zone == BODY_ZONE_PRECISE_GROIN)
+			for(var/obj/item/organ/genital/G in src)
+				var/datum/sprite_accessory/S
+				var/size = G.size
+				switch(G.type)
+					if(/obj/item/organ/genital/penis)
+						S = GLOB.cock_shapes_list[G.shape]
+					if(/obj/item/organ/genital/testicles)
+						S = GLOB.balls_shapes_list[G.shape]
+					if(/obj/item/organ/genital/vagina)
+						S = GLOB.vagina_shapes_list[G.shape]
+					if(/obj/item/organ/genital/breasts)
+						S = GLOB.breasts_shapes_list[G.shape]
+
+				if(!S || S.icon_state == "none")
+					continue
+				var/aroused_state = FALSE
+				var/accessory_icon = S.icon
+				var/do_center = S.center
+				var/dim_x = S.dimension_x
+				var/dim_y = S.dimension_y
+
+				var/mutable_appearance/genital_overlay = mutable_appearance(accessory_icon, layer = -GENITALS_EXPOSED_LAYER)
+				if(do_center)
+					genital_overlay = center_image(genital_overlay, dim_x, dim_y)
+
+				genital_overlay.color = G.color
+
+				genital_overlay.icon_state = "[G.slot]_[S.icon_state]_[size][(original_owner?.dna?.species?.use_skintones && !original_owner?.dna?.skin_tone_override) ? "_s" : ""]_[aroused_state]_FRONT"
+				. += genital_overlay
 
 	else
 		limb.icon = icon
@@ -268,6 +304,37 @@
 			else
 				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
 			. += marking
+		
+		if(body_zone == BODY_ZONE_PRECISE_GROIN)
+			for(var/obj/item/organ/genital/G in src)
+				var/datum/sprite_accessory/S
+				var/size = G.size
+				switch(G.type)
+					if(/obj/item/organ/genital/penis)
+						S = GLOB.cock_shapes_list[G.shape]
+					if(/obj/item/organ/genital/testicles)
+						S = GLOB.balls_shapes_list[G.shape]
+					if(/obj/item/organ/genital/vagina)
+						S = GLOB.vagina_shapes_list[G.shape]
+					if(/obj/item/organ/genital/breasts)
+						S = GLOB.breasts_shapes_list[G.shape]
+
+				if(!S || S.icon_state == "none")
+					continue
+				var/aroused_state = FALSE
+				var/accessory_icon = S.icon
+				var/do_center = S.center
+				var/dim_x = S.dimension_x
+				var/dim_y = S.dimension_y
+
+				var/mutable_appearance/genital_overlay = mutable_appearance(accessory_icon, layer = -GENITALS_EXPOSED_LAYER)
+				if(do_center)
+					genital_overlay = center_image(genital_overlay, dim_x, dim_y)
+
+				genital_overlay.color = G.color
+
+				genital_overlay.icon_state = "[G.slot]_[S.icon_state]_[size][(original_owner?.dna?.species?.use_skintones && !original_owner?.dna?.skin_tone_override) ? "_s" : ""]_[aroused_state]_FRONT"
+				. += genital_overlay
 		return
 
 	if(color_src) //TODO - add color matrix support for base species limbs

@@ -906,7 +906,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Backpack:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=bag;task=input'>[backbag]</a>"
 			dat += "<b>Jumpsuit:</b><BR><a href ='?_src_=prefs;preference=suit;task=input'>[jumpsuit_style]</a><BR>"
 			//skyrat edit
-			if(CAN_SCAR in pref_species.species_traits)
+			if((CAN_SCAR && (HAS_SKIN || HAS_FLESH || HAS_BONE)) in pref_species.species_traits)
 				dat += "<BR><b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</A>"
 				dat += "<a href='?_src_=prefs;preference=clear_scars'>Clear persistent scar slots</A><BR>"
 				dat += "<b>Cosmetic Scarring:</b><BR>"

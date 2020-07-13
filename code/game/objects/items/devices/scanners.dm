@@ -356,13 +356,13 @@ GENETICS SCANNER
 		if(!M.getorganslot(ORGAN_SLOT_EARS))
 			msg += "\t<span class='alert'><b>Subject does not have ears.</b></span>\n"
 		if(!M.getorganslot(ORGAN_SLOT_BRAIN))
-			msg += "\t<span class='alert'><b>Subject's brain function is non-existent!</b></span>\n"
+			msg += "\t<span class='alert'><b>Subject's brain is missing!</b></span>\n"
 		if(has_liver && !M.getorganslot(ORGAN_SLOT_LIVER))
 			msg += "\t<span class='alert'><b>Subject's liver is missing!</b></span>\n"
 		if(blooded && !M.getorganslot(ORGAN_SLOT_HEART))
 			msg += "\t<span class='alert'><b>Subject's heart is missing!</b></span>\n"
 		if(breathes && !M.getorganslot(ORGAN_SLOT_LUNGS))
-			msg += "\t<span class='alert'><b>Subject's lungs have collapsed from trauma!</b></span>\n"
+			msg += "\t<span class='alert'><b>Subject's lungs are missing!</b></span>\n"
 		if(has_stomach && !M.getorganslot(ORGAN_SLOT_STOMACH))
 			msg += "\t<span class='alert'><b>Subject's stomach is missing!</span>\n"
 

@@ -41,10 +41,10 @@
 	var/list/viable_zones = ALL_BODYPARTS
 	/// Who owns the body part that we're wounding
 	var/mob/living/carbon/victim = null
-	/// If we only work on organics
-	var/organic_only = TRUE
-	/// If we only work on synthetics
-	var/robotic_only = FALSE
+	/// What species traits we need in order to be applicable (HAS_SKIN, HAS_FLESH and HAS_BONE) ((monkeys and carbons are assumed to have all))
+	var/biology_required = list(HAS_SKIN, HAS_FLESH, HAS_BONE)
+	/// What kind of limb statuses we can apply on
+	var/required_status = BODYPART_ORGANIC
 	/// The bodypart we're parented to
 	var/obj/item/bodypart/limb = null
 	/// A string, used to represent a limb that we're not attached to but want the examine text to tell us we are
@@ -164,12 +164,18 @@
 
 	if(ishuman(L.owner))
 		var/mob/living/carbon/human/H = L.owner
-		if(organic_only && ((NOBLOOD in H.dna.species.species_traits) || !L.is_organic_limb()))
+
+		if((required_status & BODYPART_ORGANIC) && !L.is_organic_limb())
 			qdel(src)
 			return
-		else if(robotic_only && L.is_organic_limb())
+		else if((required_status & BODYPART_ROBOTIC) && L.is_organic_limb())
 			qdel(src)
 			return
+		
+		for(var/biology_flag in biology_required)
+			if(!(biology_flag in H.dna.species.species_traits))
+				qdel(src)
+				return
 
 	// we accept promotions and demotions, but no point in redundancy. This should have already been checked wherever the wound was rolled and applied for (see: bodypart damage code), but we do an extra check
 	// in case we ever directly add wounds
@@ -233,7 +239,7 @@
 		SEND_SIGNAL(victim, COMSIG_CARBON_LOSE_WOUND, src, limb)
 	if(limb && !ignore_limb)
 		LAZYREMOVE(limb.wounds, src)
-		limb.update_wounds()
+		limb.update_wounds(replaced)
 
 /**
   * replace_wound() is used when you want to replace the current wound with a new wound, presumably of the same category, just of a different severity (either up or down counts)
@@ -258,10 +264,8 @@
 
 /// Additional beneficial effects when the wound is gained, in case you want to give a temporary boost to allow the victim to try an escape or last stand
 /datum/wound/proc/second_wind()
-	/*
-	if(HAS_TRAIT(victim, TRAIT_NOMETABOLISM))
+	if(HAS_TRAIT(victim, TRAIT_NODETERMINATION)) //toby is gone
 		return
-	*/
 	switch(severity)	
 		if(WOUND_SEVERITY_MODERATE)
 			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_MODERATE)
@@ -269,10 +273,10 @@
 			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_SEVERE)
 		if(WOUND_SEVERITY_CRITICAL)
 			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_CRITICAL)
-		if(WOUND_SEVERITY_PERMANENT)
-			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_PERMANENT)
 		if(WOUND_SEVERITY_LOSS)
 			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_LOSS)
+		if(WOUND_SEVERITY_PERMANENT)
+			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_PERMANENT)
 
 /**
   * try_treating() is an intercept run from [/mob/living/carbon/attackby()] right after surgeries but before anything else. Return TRUE here if the item is something that is relevant to treatment to take over the interaction.
@@ -353,6 +357,7 @@
 				if(prob(1) && prob(20))
 					remove_wound()
 
+/// Used for fibrin treatments atm
 /datum/wound/proc/on_hemostatic(quantity)
 	if((severity <= WOUND_SEVERITY_MODERATE) && (quantity >= 10))
 		if(prob(75))
@@ -373,7 +378,12 @@
 		if(victim)
 			victim.visible_message("<span class='notice'>The [lowertext(src.name)] on [victim]'s [limb.name] seems to be significantly eased.</span>")
 
+/// Used when put on a stasis bed
 /datum/wound/proc/on_stasis()
+	return
+
+/// When synthflesh is applied to the victim, we call this. No sense in setting up an entire chem reaction system for wounds when we only care for a few chems. Probably will change in the future
+/datum/wound/proc/on_synthflesh(power)
 	return
 
 /// Called when we're crushed in an airlock or firedoor, for one of the improvised joint dislocation fixes
@@ -392,7 +402,12 @@
   * * mob/user: The user examining the wound's owner, if that matters
   */
 /datum/wound/proc/get_examine_description(mob/user)
-	. = "[victim.p_their(TRUE)] [fake_limb ? fake_limb : limb.name] [examine_desc]"
+	if(victim)
+		. = "[victim.p_their(TRUE)] [fake_limb ? fake_limb : limb.name] [examine_desc]"
+	else
+		. = "[fake_limb ? fake_limb : limb.name] [examine_desc]"
+		if(severity == WOUND_SEVERITY_LOSS)
+			. = "It's [fake_limb ? fake_limb : limb.name] [examine_desc]"
 	. = (severity <= WOUND_SEVERITY_MODERATE) ? "[.]." : "<B>[.]!</B>"
 
 /datum/wound/proc/get_scanner_description(mob/user)

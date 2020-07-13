@@ -2,7 +2,7 @@
 	name = "Amputation"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/sever_limb)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = LIMB_AND_HEAD_BODYPARTS //skyrat edit
+	possible_locs = AMPUTATE_BODYPARTS //skyrat edit
 	requires_bodypart_type = 0
 
 /datum/surgery_step/sever_limb
@@ -33,7 +33,7 @@
 	name = "Disembowelment"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/disembowel)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = ORGAN_BODYPARTS
+	possible_locs = ALL_BODYPARTS
 	requires_bodypart_type = 0
 
 /datum/surgery_step/disembowel
@@ -57,5 +57,5 @@
 	
 	var/obj/item/bodypart/BP = surgery.operated_bodypart
 	if(istype(BP))
-		BP.dismember(NONE, TRUE)
+		BP.disembowel()
 	return 1

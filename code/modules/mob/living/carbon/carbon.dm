@@ -1273,3 +1273,7 @@
 // If our face is visible
 /mob/living/carbon/is_face_visible()
 	return !(wear_mask?.flags_inv & HIDEFACE) && !(head?.flags_inv & HIDEFACE)
+
+//skyrat funny
+/mob/living/carbon/proc/get_biological_state()
+	return TRUE

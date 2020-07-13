@@ -31,6 +31,8 @@
 	repeat_weld = TRUE
 
 	base_treat_time = 2.5 SECONDS
+	biology_required = list(HAS_FLESH)
+	required_status = BODYPART_ROBOTIC
 
 /datum/wound/mechanical/slash/wound_injury(datum/wound/slash/old_wound = null)
 	blood_flow = initial_flow
@@ -52,7 +54,9 @@
 	return "<B>[msg]</B>"
 
 /datum/wound/mechanical/slash/receive_damage(wounding_type, wounding_dmg, wound_bonus)
-	if(victim.stat != DEAD && wounding_type == WOUND_SLASH) // can't stab dead bodies to make it bleed faster this way
+	if(!victim || victim.stat == DEAD || wounding_dmg < WOUND_MINIMUM_DAMAGE)
+		return
+	if(wounding_type in list(WOUND_SLASH, WOUND_PIERCE)) // can't stab dead bodies to make them leak faster
 		blood_flow += 0.05 * wounding_dmg
 
 /datum/wound/mechanical/slash/drag_bleed_amt()

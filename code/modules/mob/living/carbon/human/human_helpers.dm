@@ -180,3 +180,7 @@
 	var/obj/item/bodypart/BP = get_bodypart("[scar_data[SCAR_SAVE_ZONE]]")
 	var/datum/scar/S = new
 	return S.load(BP, scar_data[SCAR_SAVE_VERS], scar_data[SCAR_SAVE_DESC], scar_data[SCAR_SAVE_PRECISE_LOCATION], text2num(scar_data[SCAR_SAVE_SEVERITY]))
+
+//skyrat funny
+/mob/living/carbon/human/get_biological_state()
+	return dna.species.get_biological_state()

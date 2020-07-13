@@ -60,6 +60,8 @@
 	var/damaging = FALSE
 
 	base_treat_time = 3 SECONDS
+	biology_required = list(HAS_FLESH)
+	required_status = BODYPART_ROBOTIC
 
 /datum/wound/mechanical/burn/remove_wound(ignore_limb, replaced, forced)
 	. = ..()

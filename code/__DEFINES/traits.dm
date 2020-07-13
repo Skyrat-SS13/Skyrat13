@@ -208,6 +208,8 @@
 #define TRAIT_CLONEIMMUNE		"clone_immune" //This is for clone damage
 #define TRAIT_DNC		"cant_clone"
 #define TRAIT_DNR		"cant_revive" //You just can't be revived without supernatural means
+#define TRAIT_NICE_SHOT			"nice_shot" //hnnnnnnnggggg..... you're pretty good....
+#define TRAIT_NODETERMINATION	"no_determination" //tfw no undertales
 //
 
 // mobility flag traits
@@ -318,4 +320,3 @@
 
 //skyrat funnies
 #define STICKY_NODROP "sticky-nodrop" //sticky nodrop sounds like a bad soundcloud rapper's name
-#define TRAIT_NICE_SHOT			"nice_shot" //hnnnnnnnggggg..... you're pretty good....

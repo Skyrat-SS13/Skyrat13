@@ -35,6 +35,8 @@
 	var/datum/scar/highest_scar
 
 	base_treat_time = 3 SECONDS
+	biology_required = list(HAS_FLESH)
+	required_status = BODYPART_ORGANIC
 
 /datum/wound/slash/on_hemostatic(quantity)
 	if((quantity >= 15) && (severity == WOUND_SEVERITY_SEVERE) && demotes_to)
@@ -86,7 +88,9 @@
 		return "<B>The stump on [victim.p_their()] [limb.name] is wrapped with [bandage_condition] [limb.current_gauze.name]!</B>"
 
 /datum/wound/slash/receive_damage(wounding_type, wounding_dmg, wound_bonus)
-	if(victim.stat != DEAD && wounding_type == WOUND_SLASH) // can't stab dead bodies to make it bleed faster this way
+	if(!victim || victim.stat == DEAD || wounding_dmg < WOUND_MINIMUM_DAMAGE)
+		return
+	if(wounding_type in list(WOUND_SLASH, WOUND_PIERCE)) // can't stab dead bodies to make them bleed faster
 		blood_flow += 0.05 * wounding_dmg
 
 /datum/wound/slash/drag_bleed_amt()
@@ -258,7 +262,7 @@
 	initial_flow = 2
 	minimum_flow = 0.5
 	max_per_type = 3
-	clot_rate = 0.15
+	clot_rate = 0.10
 	threshold_minimum = 20
 	threshold_penalty = 10
 	status_effect_type = /datum/status_effect/wound/slash/moderate
@@ -274,7 +278,7 @@
 	severity = WOUND_SEVERITY_SEVERE
 	initial_flow = 3.25
 	minimum_flow = 2.75
-	clot_rate = 0.07
+	clot_rate = 0.05
 	max_per_type = 4
 	threshold_minimum = 50
 	threshold_penalty = 25
@@ -299,3 +303,23 @@
 	demotes_to = /datum/wound/slash/severe
 	status_effect_type = /datum/status_effect/wound/slash/critical
 	scarring_descriptions = list("a winding path of very badly healed scar tissue", "a series of peaks and valleys along a gruesome line of cut scar tissue", "a grotesque snake of indentations and stitching scars")
+
+/datum/wound/slash/critical/incision
+	name = "Incision"
+	desc = "Patient has been cut open for surgical purposes."
+	treat_text = "Finalization of surgical procedures on the affected limb."
+	examine_desc = "is surgically cut open, organs visible from it's gaping wound"
+	occur_text = "gets surgically cut open"
+	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
+	severity = WOUND_SEVERITY_CRITICAL
+	wound_type = WOUND_LIST_INCISION
+	treatable_by = list()
+	treatable_tool = null
+	initial_flow = 1.5
+	minimum_flow = 0.5
+	clot_rate = 0.03
+	max_per_type = 5
+	demotes_to = null
+	status_effect_type = null
+	scarring_descriptions = list("a precise line of scarred tissue", "a long line of slightly darker tissue")
+	required_status = BODYPART_ORGANIC | BODYPART_ROBOTIC
