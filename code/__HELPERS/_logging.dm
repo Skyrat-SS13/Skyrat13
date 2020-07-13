@@ -55,7 +55,7 @@
 		WRITE_LOG(GLOB.world_game_log, "ADMIN: DSAY: [text]")
 
 /proc/log_consent(text)
-	WRITE_LOG(GLOB.world_game_log,"CONSENT: [text]")
+	WRITE_LOG(GLOB.world_game_log, "CONSENT: [text]")
 
 /* All other items are public. */
 /proc/log_game(text)
@@ -65,6 +65,10 @@
 /proc/log_virus(text)
 	if (CONFIG_GET(flag/log_virus))
 		WRITE_LOG(GLOB.world_virus_log, "VIRUS: [text]")
+
+/proc/log_asset(text)
+	//WRITE_LOG(GLOB.world_asset_log, "ASSET: [text]") //Skyrat change
+	SSlogging.logging_asset(text) //Skyrat change
 
 /proc/log_access(text)
 	if (CONFIG_GET(flag/log_access))
@@ -102,7 +106,8 @@
 
 /proc/log_emote(text)
 	if (CONFIG_GET(flag/log_emote))
-		WRITE_LOG(GLOB.world_game_log, "EMOTE: [text]")
+		//WRITE_LOG(GLOB.world_game_log, "EMOTE: [text]") //Skyrat edit
+		SSlogging.logging_emote(text) //Skyrat edit
 
 /proc/log_subtler(text)
 	if (CONFIG_GET(flag/log_emote))
@@ -186,7 +191,8 @@
 	WRITE_LOG(GLOB.world_map_error_log, text)
 
 /proc/log_reagent(text)
-	WRITE_LOG(GLOB.reagent_log, text)
+	//WRITE_LOG(GLOB.reagent_log, text) //Skyrat change
+	SSlogging.logging_reagent(text) //Skyrat change
 
 /proc/log_reagent_transfer(text)
 	log_reagent("TRANSFER: [text]")

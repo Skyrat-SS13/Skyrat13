@@ -2,7 +2,6 @@
 	icon = 'modular_skyrat/icons/obj/library.dmi'
 	var/insert_anim = "photocopier1"
 	anchored = TRUE
-	var/obj/item/poster/postercopy = null
 
 /obj/machinery/photocopier/attack_ai(mob/user)
 	return attack_hand(user)
@@ -14,7 +13,7 @@
 	user.set_machine(src)
 
 	var/list/dat = list("Photocopier<BR><BR>")
-	if(copy || photocopy || doccopy || postercopy || (ass && (ass.loc == src.loc)))
+	if(copy || photocopy || doccopy || (ass && (ass.loc == src.loc)))
 		dat += "<a href='byond://?src=[REF(src)];remove=1'>Remove Paper</a><BR>"
 		if(toner)
 			dat += "<a href='byond://?src=[REF(src)];copy=1'>Copy</a><BR>"
@@ -23,9 +22,6 @@
 			dat += "<a href='byond://?src=[REF(src)];add=1'>+</a><BR><BR>"
 			if(photocopy)
 				dat += "Printing in <a href='byond://?src=[REF(src)];colortoggle=1'>[greytoggle]</a><BR><BR>"
-			if(postercopy)
-				var/bruh = icon2html(postercopy.poster_structure, user, postercopy.poster_structure.icon_state)
-				dat += "Poster:<BR>[bruh]<BR><BR>"
 	else if(toner)
 		dat += "Please insert paper to copy.<BR><BR>"
 	dat += "Current toner level: [toner]"
@@ -34,45 +30,37 @@
 	user << browse(dat.Join(""), "window=copier")
 	onclose(user, "copier")
 
-/obj/machinery/photocopier/proc/copy(var/obj/item/tocopy)
+/obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy)
 	var/obj/item/paper/c
 	for(var/i = 0, i < copies, i++)
 		if(toner > 0 && !busy && copy)
-			if(istype(tocopy, /obj/item/paper))
-				var/obj/item/paper/copy = tocopy
-				var/copy_as_paper = 1
-				if(istype(copy, /obj/item/paper/contract/employment))
-					var/obj/item/paper/contract/employment/E = copy
-					var/obj/item/paper/contract/employment/C = new /obj/item/paper/contract/employment (loc, E.target.current)
-					if(C)
-						copy_as_paper = 0
-				if(copy_as_paper)
-					c = new /obj/item/paper (loc)
-					if(length(copy.info) > 0)	//Only print and add content if the copied doc has words on it
-						if(toner > 10)	//lots of toner, make it dark
-							c.info = "<font color = #101010>"
-						else			//no toner? shitty copies for you!
-							c.info = "<font color = #808080>"
-						var/copied = copy.info
-						copied = replacetext(copied, "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=")	//state of the art techniques in action
-						copied = replacetext(copied, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
-						c.info += copied
-						c.info += "</font>"
-						c.name = copy.name
-						c.fields = copy.fields
-						c.update_icon()
-						c.updateinfolinks()
-						c.stamps = copy.stamps
-						if(copy.stamped)
-							c.stamped = copy.stamped.Copy()
-						c.copy_overlays(copy, TRUE)
-						toner--
-			else if(istype(tocopy, /obj/item/poster))
-				var/obj/item/poster/copy = tocopy
-				if(toner > 10)	//lots of toner, the poster will print correctly
-					new copy.type(loc, copy.poster_structure)
-				else			//no toner? missing cs source textures for you!
-					new /obj/item/poster/gmod(loc)
+			var/copy_as_paper = 1
+			if(istype(copy, /obj/item/paper/contract/employment))
+				var/obj/item/paper/contract/employment/E = copy
+				var/obj/item/paper/contract/employment/C = new /obj/item/paper/contract/employment (loc, E.target.current)
+				if(C)
+					copy_as_paper = 0
+			if(copy_as_paper)
+				c = new /obj/item/paper (loc)
+				if(length(copy.info) > 0)	//Only print and add content if the copied doc has words on it
+					if(toner > 10)	//lots of toner, make it dark
+						c.info = "<font color = #101010>"
+					else			//no toner? shitty copies for you!
+						c.info = "<font color = #808080>"
+					var/copied = copy.info
+					copied = replacetext(copied, "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=")	//state of the art techniques in action
+					copied = replacetext(copied, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
+					c.info += copied
+					c.info += "</font>"
+					c.name = copy.name
+					c.fields = copy.fields
+					c.update_icon()
+					c.updateinfolinks()
+					c.stamps = copy.stamps
+					if(copy.stamped)
+						c.stamped = copy.stamped.Copy()
+					c.copy_overlays(copy, TRUE)
+					toner--
 			busy = TRUE
 			addtimer(CALLBACK(src, .proc/disable_busy,), 15)
 		else
@@ -126,9 +114,6 @@
 	if(href_list["copy"])
 		if(copy)
 			copy(copy)
-		
-		else if(postercopy)
-			copy(postercopy)
 
 		else if(photocopy)
 			photocopy(photocopy)
@@ -188,9 +173,6 @@
 		else if(doccopy)
 			remove_photocopy(doccopy, usr)
 			doccopy = null
-		else if(postercopy)
-			remove_photocopy(postercopy, usr)
-			postercopy = null
 		else if(check_ass())
 			to_chat(ass, "<span class='notice'>You feel a slight pressure on your ass.</span>")
 		updateUsrDialog()
@@ -235,15 +217,6 @@
 					return
 				copy = O
 				do_insertion(O, user)
-		else
-			to_chat(user, "<span class='warning'>There is already something in [src]!</span>")
-	
-	else if(istype(O, /obj/item/poster))
-		if(copier_empty())
-			if(!user.dropItemToGround(O))
-				return
-			postercopy = O
-			do_insertion(O, user)
 		else
 			to_chat(user, "<span class='warning'>There is already something in [src]!</span>")
 
@@ -329,11 +302,6 @@
 			copy.loc = src.loc
 			visible_message("<span class='warning'>[copy] is shoved out of the way by [ass]!</span>")
 			copy = null
-		
-		else if(postercopy)
-			postercopy.loc = src.loc
-			visible_message("<span class='warning'>[postercopy] is shoved out of the way by [ass]!</span>")
-			postercopy = null
 	updateUsrDialog()
 
 /obj/machinery/photocopier/proc/check_ass() //I'm not sure wether I made this proc because it's good form or because of the name.
@@ -362,11 +330,4 @@
 		if(AM.density)
 			return 1
 	return 0
-
-/obj/machinery/photocopier/proc/copier_empty()
-	if(copy || photocopy || postercopy || check_ass())
-		return 0
-	else
-		return 1
-
 // Skyrat edit -- moved to modular_skyrat because of the fax port -- BEGIN

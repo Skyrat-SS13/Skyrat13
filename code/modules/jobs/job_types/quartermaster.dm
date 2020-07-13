@@ -35,7 +35,6 @@
 	name = "Quartermaster"
 	jobtype = /datum/job/qm
 
-	id = /obj/item/card/id/department/cargo/head
 	belt = /obj/item/pda/quartermaster
 	ears = /obj/item/radio/headset/heads/qm
 	uniform = /obj/item/clothing/under/rank/cargo/qm
