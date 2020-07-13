@@ -22,7 +22,7 @@
 
 	if(ishuman(L.owner))
 		var/mob/living/carbon/human/H = L.owner
-		if((required_status & BODYPART_ORGANIC) && !L.is_organic_limb()))
+		if((required_status & BODYPART_ORGANIC) && !L.is_organic_limb())
 			qdel(src)
 			return
 
