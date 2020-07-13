@@ -380,7 +380,7 @@
 	if(on_mob)
 		var/datum/component/overlay_lighting/OL = on_mob.GetComponent(/datum/component/overlay_lighting)
 		if(!OL)
-			on_mob.AddComponent(/datum/component/overlay_lighting, current_color_string, 2, 1)
+			on_mob.AddComponent(/datum/component/overlay_lighting, current_color_string, light_object_range, 1)
 		else
 			OL.set_color(current_color_string)
 
