@@ -1550,7 +1550,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			var/mob/living/carbon/C = target
 			for(var/obj/item/bodypart/BP in C.bodyparts)
 				var/datum/wound/woundie = new /datum/wound/slash/critical/incision()
-				woundie.apply_wound(L = BP, smited = TRUE)
+				woundie.apply_wound(BP)
 		if(ADMIN_PUNISHMENT_PAPAJOHNS)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
