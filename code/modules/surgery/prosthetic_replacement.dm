@@ -134,5 +134,6 @@
 					if(BODY_ZONE_PRECISE_L_FOOT)
 						L.custom_overlay.pixel_x -= 16
 						L.custom_overlay.pixel_y += 0
+			target.regenerate_icons()
 			return 1
 		qdel(tool)
