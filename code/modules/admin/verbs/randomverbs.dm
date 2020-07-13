@@ -1294,6 +1294,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_BLEED,
 								ADMIN_PUNISHMENT_PERFORATE,
 								ADMIN_PUNISHMENT_BURN,
+								ADMIN_PUNISHMENT_INCISIONIFY,
 								ADMIN_PUNISHMENT_SHRAPNEL,
 								ADMIN_PUNISHMENT_SCARIFY,
 								ADMIN_PUNISHMENT_NUGGET,
@@ -1304,6 +1305,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_LIVELEAK,
 								ADMIN_PUNISHMENT_ISIS,
 								ADMIN_PUNISHMENT_PAPAJOHNS,
+								ADMIN_PUNISHMENT_MEDIC,
 								)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1434,14 +1436,14 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			var/mob/living/carbon/C = target
 			for(var/obj/item/bodypart/BP in C.bodyparts)
 				if(BP.body_zone in LIMB_BODYPARTS)
-					BP.dismember(BRUTE)
+					BP.drop_limb(FALSE, FALSE, FALSE, TRUE)
 			var/list/sensory = list(ORGAN_SLOT_EYES, ORGAN_SLOT_TONGUE, ORGAN_SLOT_VOICE, ORGAN_SLOT_EARS)
 			for(var/i in sensory)
 				if(C.getorganslot(i))
 					var/obj/item/organ/O = C.getorganslot(i)
 					O.Remove()
 					qdel(O)
-			to_chat(C, "<span class='narsie'>DARKNESS! IMPRISONING ME! ALL THAT I SEE, ABSOLUTE HORROR!</span>")
+			to_chat(C, "<span class='narsiesmall'>DARKNESS! IMPRISONING ME! ALL THAT I SEE, ABSOLUTE HORROR!</span>")
 			ADD_TRAIT(C, TRAIT_DNR, "smite")
 			ADD_TRAIT(C, TRAIT_NOHARDCRIT, "smite")
 			ADD_TRAIT(C, TRAIT_NOSOFTCRIT, "smite")
@@ -1516,7 +1518,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				return
 			var/mob/living/carbon/C = target
 			var/god = pick("Allah", "God", "Jesus", "Buddha", "Space Jesus", "Flying Spaghetti Monster", "Yakub", "Armok", "Yama", "Ares", "Zeus", "Sithis", "Mephala", "Bob Joga")
-			C.visible_message("<span class='userdanger'>[C]'s neck gets slicen by the will of [god]", "<span class='narsie'>[god] slices your neck!</span>")
+			C.visible_message("<span class='userdanger'>[C]'s neck gets slicen by the will of [god]", "<span class='narsiesmall'>[god] slices your neck!</span>")
 			playsound(C, 'modular_skyrat/sound/weapons/bloodyslice.ogg', 100, 0, 7)
 			C.apply_status_effect(/datum/status_effect/neck_slice)
 			spawn(5 SECONDS)
@@ -1567,37 +1569,48 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 					C.put_in_r_hand(vinny)
 				papajohn.name = "[vinny.name] [papajohn.name]"
 				papajohn.desc = vinny.desc
-				if(body_zoner in list(BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND))
-					papajohn.custom_overlay = mutable_appearance(vinny.icon, vinny.icon_state, FLOAT_LAYER, FLOAT_PLANE, vinny.color)
-					papajohn.custom_overlay.transform *= 0.5
-					papajohn.custom_overlay.pixel_x = 0
-					papajohn.custom_overlay.pixel_y = 0
-					papajohn.custom_overlay.pixel_x += 8
-					papajohn.custom_overlay.pixel_y -= 8
-					switch(body_zoner)
-						if(BODY_ZONE_HEAD)
-							papajohn.custom_overlay.pixel_x -= 8
-							papajohn.custom_overlay.pixel_y += 16
-						if(BODY_ZONE_CHEST)
-							papajohn.custom_overlay.pixel_x -= 8
-							papajohn.custom_overlay.pixel_y += 8
-						if(BODY_ZONE_PRECISE_GROIN)
-							papajohn.custom_overlay.pixel_x -= 8
-							papajohn.custom_overlay.pixel_y += 6
-						if(BODY_ZONE_R_LEG)
-							papajohn.custom_overlay.pixel_x += 0
-							papajohn.custom_overlay.pixel_y += 2
-						if(BODY_ZONE_PRECISE_R_FOOT)
-							papajohn.custom_overlay.pixel_x += 0
-							papajohn.custom_overlay.pixel_y += 0
-						if(BODY_ZONE_L_LEG)
-							papajohn.custom_overlay.pixel_x -= 16
-							papajohn.custom_overlay.pixel_y += 2
-						if(BODY_ZONE_PRECISE_L_FOOT)
-							papajohn.custom_overlay.pixel_x -= 16
-							papajohn.custom_overlay.pixel_y += 0
+				papajohn.custom_overlay = mutable_appearance(vinny.icon, vinny.icon_state, FLOAT_LAYER, FLOAT_PLANE, vinny.color)
+				papajohn.custom_overlay.transform *= 0.5
+				papajohn.custom_overlay.pixel_x = 0
+				papajohn.custom_overlay.pixel_y = 0
+				papajohn.custom_overlay.pixel_x += 8
+				papajohn.custom_overlay.pixel_y -= 8
+				switch(body_zoner)
+					if(BODY_ZONE_HEAD)
+						papajohn.custom_overlay.pixel_x -= 8
+						papajohn.custom_overlay.pixel_y += 16
+					if(BODY_ZONE_CHEST)
+						papajohn.custom_overlay.pixel_x -= 8
+						papajohn.custom_overlay.pixel_y += 12
+					if(BODY_ZONE_PRECISE_GROIN)
+						papajohn.custom_overlay.pixel_x -= 8
+						papajohn.custom_overlay.pixel_y += 6
+					if(BODY_ZONE_R_LEG)
+						papajohn.custom_overlay.pixel_x += 0
+						papajohn.custom_overlay.pixel_y += 4
+					if(BODY_ZONE_PRECISE_R_FOOT)
+						papajohn.custom_overlay.pixel_x += 0
+						papajohn.custom_overlay.pixel_y += 2
+					if(BODY_ZONE_L_LEG)
+						papajohn.custom_overlay.pixel_x -= 16
+						papajohn.custom_overlay.pixel_y += 4
+					if(BODY_ZONE_PRECISE_L_FOOT)
+						papajohn.custom_overlay.pixel_x -= 16
+						papajohn.custom_overlay.pixel_y += 2
+			if(ishuman(C))
+				var/mob/living/carbon/human/H = C
+				if(H.dna?.species?.name)
+					H.dna.species.name = "Papa John's Pizza"
+					H.dna.species.exotic_blood = /datum/reagent/consumable/tomatojuice
 			C.regenerate_icons()
-			to_chat(C, "<span class='userdanger'>Your entire body becomes doughy!</span>")
+			to_chat(C, "<span class='rose'>Your entire body becomes doughy!</span>")
+		if(ADMIN_PUNISHMENT_PHANTOM_PAIN)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				BP.drop_limb(TRUE, TRUE, FALSE, FALSE)
 		//
 
 	punish_log(target, punishment)

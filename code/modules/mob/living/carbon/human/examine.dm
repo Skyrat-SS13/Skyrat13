@@ -343,6 +343,8 @@
 				bleed_text += ", but it has pooled and is not flowing.</span>"
 			else if(reagents.has_reagent(/datum/reagent/toxin/heparin))
 				bleed_text += " incredibly quickly!"
+			else
+				bleed_text += "!"
 			
 			if(bleed_text)
 				bleed_text += "</B>\n"

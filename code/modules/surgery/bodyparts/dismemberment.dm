@@ -125,7 +125,7 @@
 			lost.name = "[lost.name] [lowertext(name)] stump"
 			lost.fake_limb = "[name]"
 			lost.fake_body_zone = body_zone
-			lost.desc = "Patient's [lowertext(name)] has been violently dismembered from their [parse_zone(dismember_bodyzone)], leaving only a severely damaged stump in it's place."
+			lost.desc = "Patient's [lowertext(name)] has been violently dismembered from [owner.p_their(FALSE)] [parse_zone(dismember_bodyzone)], leaving only a severely damaged stump in it's place."
 			lost.examine_desc = "has been violently severed from their [parse_zone(dismember_bodyzone)]"
 			lost.apply_wound(BP, TRUE)
 	//

@@ -105,35 +105,34 @@
 				target.put_in_l_hand(new_limb)
 			L.name = "[new_limb.name] [L.name]"
 			L.desc = new_limb.desc
-			if(target_zone in list(BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND))
-				L.custom_overlay = mutable_appearance(new_limb.icon, new_limb.icon_state, FLOAT_LAYER, FLOAT_PLANE, new_limb.color)
-				L.custom_overlay.transform *= 0.5
-				L.custom_overlay.pixel_x = 0
-				L.custom_overlay.pixel_y = 0
-				L.custom_overlay.pixel_x += 8
-				L.custom_overlay.pixel_y -= 8
-				switch(target_zone)
-					if(BODY_ZONE_HEAD)
-						L.custom_overlay.pixel_x -= 8
-						L.custom_overlay.pixel_y += 16
-					if(BODY_ZONE_CHEST)
-						L.custom_overlay.pixel_x -= 8
-						L.custom_overlay.pixel_y += 8
-					if(BODY_ZONE_PRECISE_GROIN)
-						L.custom_overlay.pixel_x -= 8
-						L.custom_overlay.pixel_y += 6
-					if(BODY_ZONE_R_LEG)
-						L.custom_overlay.pixel_x += 0
-						L.custom_overlay.pixel_y += 2
-					if(BODY_ZONE_PRECISE_R_FOOT)
-						L.custom_overlay.pixel_x += 0
-						L.custom_overlay.pixel_y += 0
-					if(BODY_ZONE_L_LEG)
-						L.custom_overlay.pixel_x -= 16
-						L.custom_overlay.pixel_y += 2
-					if(BODY_ZONE_PRECISE_L_FOOT)
-						L.custom_overlay.pixel_x -= 16
-						L.custom_overlay.pixel_y += 0
+			L.custom_overlay = mutable_appearance(new_limb.icon, new_limb.icon_state, FLOAT_LAYER, FLOAT_PLANE, new_limb.color)
+			L.custom_overlay.transform *= 0.5
+			L.custom_overlay.pixel_x = 0
+			L.custom_overlay.pixel_y = 0
+			L.custom_overlay.pixel_x += 8
+			L.custom_overlay.pixel_y -= 8
+			switch(target_zone)
+				if(BODY_ZONE_HEAD)
+					L.custom_overlay.pixel_x -= 8
+					L.custom_overlay.pixel_y += 16
+				if(BODY_ZONE_CHEST)
+					L.custom_overlay.pixel_x -= 8
+					L.custom_overlay.pixel_y += 8
+				if(BODY_ZONE_PRECISE_GROIN)
+					L.custom_overlay.pixel_x -= 8
+					L.custom_overlay.pixel_y += 6
+				if(BODY_ZONE_R_LEG)
+					L.custom_overlay.pixel_x += 0
+					L.custom_overlay.pixel_y += 2
+				if(BODY_ZONE_PRECISE_R_FOOT)
+					L.custom_overlay.pixel_x += 0
+					L.custom_overlay.pixel_y += 0
+				if(BODY_ZONE_L_LEG)
+					L.custom_overlay.pixel_x -= 16
+					L.custom_overlay.pixel_y += 2
+				if(BODY_ZONE_PRECISE_L_FOOT)
+					L.custom_overlay.pixel_x -= 16
+					L.custom_overlay.pixel_y += 0
 			target.regenerate_icons()
 			return 1
 		qdel(tool)
