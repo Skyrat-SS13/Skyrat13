@@ -1303,6 +1303,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_HOLLOW,
 								ADMIN_PUNISHMENT_LIVELEAK,
 								ADMIN_PUNISHMENT_ISIS,
+								ADMIN_PUNISHMENT_PAPAJOHNS,
 								)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1515,7 +1516,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				return
 			var/mob/living/carbon/C = target
 			var/god = pick("Allah", "God", "Jesus", "Buddha", "Space Jesus", "Flying Spaghetti Monster", "Yakub", "Armok", "Yama", "Ares", "Zeus", "Sithis", "Mephala", "Bob Joga")
-			C.visible_message("<span class='danger'>[C]'s neck gets slicen by the will of [god]", "<span class='danger'>[god] slices your neck!</span>")
+			C.visible_message("<span class='userdanger'>[C]'s neck gets slicen by the will of [god]", "<span class='narsie'>[god] slices your neck!</span>")
 			playsound(C, 'modular_skyrat/sound/weapons/bloodyslice.ogg', 100, 0, 7)
 			C.apply_status_effect(/datum/status_effect/neck_slice)
 			spawn(5 SECONDS)

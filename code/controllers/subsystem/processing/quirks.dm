@@ -46,11 +46,11 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	if(!body_zone)
 		return
 	var/obj/item/bodypart/BP = SSquirks.associated_bodyparts[body_zone]
-	while(BP.children_zones)
-		. |= BP.children_zones
-		for(var/y in BP.children_zones)
-			BP = SSquirks.associated_bodyparts[y]
-			. |= BP.children_zones
+	. |= BP.body_zone
+	for(var/i in BP.children_zones)
+		var/obj/item/bodypart/BoPa = SSquirks.associated_bodyparts[i]
+		. |= BoPa.body_zone
+		. |= BoPa.children_zones
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
 // Sort by Positive, Negative, Neutral; and then by name

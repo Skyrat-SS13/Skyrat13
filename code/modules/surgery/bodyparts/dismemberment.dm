@@ -18,7 +18,8 @@
 	affecting.receive_damage(clamp(brute_dam/2 * affecting.body_damage_coeff, 15, 50), clamp(burn_dam/2 * affecting.body_damage_coeff, 0, 50), wound_bonus=CANT_WOUND) //Damage the chest based on limb's existing damage //skyrat edit
 	if(!silent)
 		C.visible_message("<span class='danger'><B>[C]'s [src.name] has been violently dismembered!</B></span>")
-	C.emote("scream")
+	if(body_zone != BODY_ZONE_HEAD)
+		C.emote("scream")
 	playsound(get_turf(C), 'modular_skyrat/sound/effects/dismember.ogg', 80, TRUE) //skyrat edit
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	drop_limb(dismembered = TRUE, destroyed = (dam_type == BURN ? TRUE : destroy))
