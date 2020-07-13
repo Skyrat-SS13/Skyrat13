@@ -208,9 +208,9 @@
 		var/datum/wound/W = i
 		if(istype(W, /datum/wound/blunt) && W.severity >= required_bone_severity)
 			mangled_state |= BODYPART_MANGLED_BONE
-		else if((istype(W, /datum/wound/slash) || istype(W, /datum/wound/pierce)) && W.severity >= WOUND_SEVERITY_CRITICAL)
+		if((istype(W, /datum/wound/slash) || istype(W, /datum/wound/pierce)) && W.severity >= WOUND_SEVERITY_CRITICAL)
 			mangled_state |= BODYPART_MANGLED_MUSCLE
-		else if((istype(W, /datum/wound/slash) || istype(W, /datum/wound/pierce)) && W.severity >= WOUND_SEVERITY_MODERATE)
+		if((istype(W, /datum/wound/slash) || istype(W, /datum/wound/pierce)) && W.severity >= WOUND_SEVERITY_MODERATE)
 			mangled_state |= BODYPART_MANGLED_SKIN
 
 	return mangled_state
@@ -232,9 +232,13 @@
 	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE))
 		return FALSE
 	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
+	var/biotype = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		if(istype(W, /datum/wound/blunt/critical)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
+		if(((istype(W, /datum/wound/blunt/critical) || istype(W, /datum/wound/mechanical/blunt/critical)) && (biotype & BIO_JUST_BONE))) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
+			base_chance += 10
+			break
+		else if((istype(W, /datum/wound/slash/critical) || istype(W, /datum/wound/pierce/critical) || istype(W, /datum/wound/mechanical/slash/critical || istype(W, /datum/wound/mechanical/pierce/critical))) && (biotype & BIO_JUST_FLESH))
 			base_chance += 10
 			break
 
@@ -254,12 +258,17 @@
 	if(!can_dismember() || !disembowable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE))
 		return FALSE
 	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
+	var/biotype = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		if(istype(W, /datum/wound/slash/critical)) // we only require a severe slash, but if we have an avulsion, it's easier for an organ to fall off
+		if(istype(W, /datum/wound/slash/critical/incision) && (biotype & BIO_JUST_FLESH)) // incisions make you very vulnerable to disembowelment
+			base_chance += 20
+			break
+		else if((istype(W, /datum/wound/slash/critical) || istype(W, /datum/wound/pierce/critical) || istype(W, /datum/wound/mechanical/slash/critical || istype(W, /datum/wound/mechanical/pierce/critical))) && (biotype & BIO_JUST_FLESH)) // we only require a severe slash, but if we have an avulsion, it's easier for an organ to fall off
 			base_chance += 10
-			if(istype(W, /datum/wound/slash/critical/incision)) // incisions make you very vulnerable to disembowelment
-				base_chance += 10
+			break
+		else if((istype(W, /datum/wound/blunt/critical) || istype(W, /datum/wound/mechanical/blunt/critical)) && (biotype & BIO_JUST_BONE)) // skeletons need to be disemboweled too because they have "organs"...?
+			base_chance += 10
 			break
 
 
@@ -302,7 +311,7 @@
 	if(special)
 		..()
 
-/obj/item/bodypart/r_arm/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE)
+/obj/item/bodypart/r_hand/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE)
 	var/mob/living/carbon/C = owner
 	..()
 	if(C && !special)
@@ -319,8 +328,7 @@
 			C.dropItemToGround(C.gloves, TRUE)
 		C.update_inv_gloves() //to remove the bloody hands overlay
 
-
-/obj/item/bodypart/l_arm/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE)
+/obj/item/bodypart/l_hand/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE)
 	var/mob/living/carbon/C = owner
 	..()
 	if(C && !special)
@@ -338,7 +346,7 @@
 		C.update_inv_gloves() //to remove the bloody hands overlay
 
 
-/obj/item/bodypart/r_leg/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE)
+/obj/item/bodypart/r_foot/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE)
 	if(owner && !special)
 		if(owner.legcuffed)
 			owner.legcuffed.forceMove(owner.drop_location()) //At this point bodypart is still in nullspace
@@ -349,7 +357,7 @@
 			owner.dropItemToGround(owner.shoes, TRUE)
 	..()
 
-/obj/item/bodypart/l_leg/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE) //copypasta
+/obj/item/bodypart/l_foot/drop_limb(special, ignore_children = FALSE, dismembered = FALSE, destroyed = FALSE) //copypasta
 	if(owner && !special)
 		if(owner.legcuffed)
 			owner.legcuffed.forceMove(owner.drop_location())
