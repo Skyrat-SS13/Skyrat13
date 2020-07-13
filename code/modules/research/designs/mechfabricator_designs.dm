@@ -64,7 +64,7 @@
 
 /datum/design/borg_r_hand
 	name = "Cyborg Right Hand"
-	id = "borg_r_arm"
+	id = "borg_r_hand"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/r_hand/robot
 	materials = list(/datum/material/iron=3000)
