@@ -21805,7 +21805,7 @@
 /turf/open/floor/plasteel,
 /area/router/public)
 "aVq" = (
-/obj/structure/table,
+/obj/machinery/computer/gateway_control,
 /turf/open/floor/plasteel/white,
 /area/gateway)
 "aVr" = (
@@ -22259,9 +22259,6 @@
 /turf/open/floor/plating,
 /area/maintenance/department/eva)
 "aWr" = (
-/obj/machinery/gateway{
-	dir = 9
-	},
 /turf/open/floor/engine,
 /area/gateway)
 "aWs" = (
@@ -22733,9 +22730,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aXm" = (
-/obj/machinery/gateway{
-	dir = 1
-	},
+/obj/machinery/gateway/centerstation,
 /turf/open/floor/engine,
 /area/gateway)
 "aXn" = (
@@ -22778,9 +22773,6 @@
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
 "aXs" = (
-/obj/machinery/gateway{
-	dir = 5
-	},
 /obj/machinery/camera{
 	c_tag = "Research - Gateway Chamber";
 	network = list("ss13","rd")
@@ -28011,12 +28003,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"biU" = (
-/obj/machinery/gateway{
-	dir = 10
-	},
-/turf/open/floor/engine,
-/area/gateway)
 "biV" = (
 /turf/closed/wall,
 /area/storage/primary)
@@ -29513,10 +29499,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/science/mixing)
-"blU" = (
-/obj/machinery/gateway,
-/turf/open/floor/engine,
-/area/gateway)
 "blV" = (
 /obj/machinery/computer/cargo{
 	dir = 8
@@ -29867,12 +29849,6 @@
 	},
 /turf/closed/wall,
 /area/crew_quarters/fitness/cogpool)
-"bmG" = (
-/obj/machinery/gateway{
-	dir = 6
-	},
-/turf/open/floor/engine,
-/area/gateway)
 "bmH" = (
 /obj/machinery/computer/upload/borg{
 	dir = 8
@@ -64466,25 +64442,6 @@
 /turf/open/floor/engine,
 /area/gateway)
 "cDL" = (
-/obj/machinery/gateway{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/orange/hidden{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/gateway)
-"cDM" = (
-/obj/machinery/gateway/centerstation,
-/obj/machinery/atmospherics/pipe/simple/orange/hidden{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/gateway)
-"cDN" = (
-/obj/machinery/gateway{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 8
 	},
@@ -99363,7 +99320,7 @@ aaa
 aUk
 aWr
 cDL
-biU
+aWr
 aUk
 bWr
 cEl
@@ -99619,8 +99576,8 @@ aaU
 aaa
 aUk
 aXm
-cDM
-blU
+cDL
+aWr
 aUk
 bWc
 bWo
@@ -99876,8 +99833,8 @@ bUq
 bUq
 aUk
 aXs
-cDN
-bmG
+cDL
+aWr
 aUk
 bWb
 cEm

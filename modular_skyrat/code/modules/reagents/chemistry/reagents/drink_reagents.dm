@@ -84,20 +84,21 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		H.physiology.stun_mod *= 0.5 //doesn't matter since stamina combat
-	if(prob(33))
+	if(prob(50))
 		var/code = (num2text(rand(0,9)) + num2text(rand(0,9)) + num2text(rand(0,9)))
-		var/designation = pick("Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Zero", "Niner")
+		var/designation = pick("Alpha","Bravo","Charlie","Delta","Echo","Foxtrot","Zero", "Niner")
 		L.say("[code] [designation]")
-		playsound(L, 'sound/ambience/antag/tatoralert.ogg', 100)
+		if(prob(67))
+			playsound(L, 'sound/ambience/antag/tatoralert.ogg', 100)
 	to_chat(L, "<span class='userdanger'>The [src] makes you invincible.</span>")
 
 /datum/reagent/consumable/maint_energy/blood_red/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.adjustStaminaLoss(-1)
-		H.adjustStaminaLossBuffered(-0.5)
-		H.sprint_buffer = min(H.sprint_buffer_max, H.sprint_buffer + (H.sprint_buffer_regen_ds*2))
+		H.adjustStaminaLoss(-H.sprint_buffer_regen_ds*2.5)
+		H.adjustStaminaLossBuffered(-H.sprint_buffer_regen_ds*1.5)
+		H.AdjustSleeping(-50)
 	M.adjustBruteLoss(-0.6, 0)
 	M.adjustFireLoss(-0.6, 0)
 	M.adjustToxLoss(-0.6, 0)
