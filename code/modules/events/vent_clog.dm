@@ -24,8 +24,6 @@
 		/datum/reagent/drug/mushroomhallucinogen,
 		/datum/reagent/lube,
 		/datum/reagent/glitter/pink,
-		/datum/reagent/drug/methamphetamine,
-		/datum/reagent/toxin/zombiepowder,
 		/datum/reagent/toxin/pancuronium,
 		/datum/reagent/medicine/omnizine,
 		/datum/reagent/medicine/epinephrine,
