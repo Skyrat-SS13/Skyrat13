@@ -1,14 +1,14 @@
 /obj/item/bodypart/head
 	name = "head" //skyrat edit
 	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
-	icon = 'icons/mob/human_parts.dmi'
+	icon = 'modular_skyrat/icons/mob/human_parts.dmi'
 	icon_state = "default_human_head"
 	max_damage = 200
 	body_zone = BODY_ZONE_HEAD
 	body_part = HEAD
 	w_class = WEIGHT_CLASS_BULKY //Quite a hefty load
 	slowdown = 1 //Balancing measure
-	throw_range = 2 //No head bowling
+	throw_range = 5 //Yes head bowling
 	px_x = 0
 	px_y = -8
 	stam_damage_coeff = 1
@@ -39,6 +39,8 @@
 	specific_locations = list("left eyebrow", "right eyebrow", "cheekbone", "neck", "throat", "jawline", "entire face", "forehead")
 	scars_covered_by_clothes = FALSE
 	max_cavity_size = WEIGHT_CLASS_SMALL
+	parent_bodyzone = BODY_ZONE_CHEST
+	children_zones = list()
 	// Tape currently silencing us.
 	var/obj/item/stack/sticky_tape/tapered = null
 	//

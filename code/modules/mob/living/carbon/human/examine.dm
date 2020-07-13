@@ -103,7 +103,7 @@
 	//sticky tape
 	var/obj/item/bodypart/head/HD = get_bodypart(BODY_ZONE_HEAD)
 	if(!wear_mask && istype(HD) && HD.tapered)
-		. += "<span class='warning'>[t_He] [t_has] \a <b><a href='?src=[REF(HD)];tape=[HD.tapered];'>[HD.tapered]</a></b> on [t_his] mouth!</span>"
+		. += "<span class='warning'>[t_He] [t_has] \a <b><a href='?src=[REF(HD)];tape=[HD.tapered];'>[HD.tapered.get_examine_string(user)]</a></b> covering [t_his] mouth!</span>"
 
 	//mask
 	if(wear_mask && !(SLOT_WEAR_MASK in obscured))

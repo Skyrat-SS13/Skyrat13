@@ -912,7 +912,7 @@
 	max_stamina_damage = 200
 	//skyrat variables
 	amputation_point = "spine"
-	children_zones = list(BODY_ZONE_PRECISE_GROIN)
+	children_zones = list(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
 	dismember_bodyzone = null
 	specific_locations = list("upper chest", "lower abdomen", "midsection", "collarbone", "lower back")
 	max_cavity_size = WEIGHT_CLASS_BULKY

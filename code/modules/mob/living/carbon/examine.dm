@@ -16,6 +16,9 @@
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
 	if (wear_mask)
 		. += "[t_He] [t_is] wearing [wear_mask.get_examine_string(user)] on [t_his] face."
+	var/obj/item/bodypart/head/HD = get_bodypart(BODY_ZONE_HEAD)
+	if(!wear_mask && istype(HD) && HD.tapered)
+		. += "<span class='warning'>[t_He] [t_has] \a <b><a href='?src=[REF(HD)];tape=[HD.tapered];'>[HD.tapered.get_examine_string(user)]</a></b> covering [t_his] mouth!</span>"
 	if (wear_neck)
 		. += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck.\n"
 

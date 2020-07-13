@@ -168,7 +168,7 @@
 		if((required_status & BODYPART_ORGANIC) && !L.is_organic_limb())
 			qdel(src)
 			return
-		else if((required_status & BODYPART_ROBOTIC) && L.is_organic_limb())
+		else if((required_status & BODYPART_ROBOTIC) && !L.is_robotic_limb())
 			qdel(src)
 			return
 		

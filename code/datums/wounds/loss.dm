@@ -25,22 +25,32 @@
 		if((required_status & BODYPART_ORGANIC) && !L.is_organic_limb())
 			qdel(src)
 			return
+		else if((required_status & BODYPART_ROBOTIC) && !L.is_robotic_limb())
+			qdel(src)
+			return
+		
+		for(var/biology_flag in biology_required)
+			if(!(biology_flag in H.dna.species.species_traits))
+				qdel(src)
+				return
 
 	switch(wounding_type)
 		if(WOUND_BLUNT)
 			occur_text = "is shattered through the last bone holding it together, severing it completely!"
-			if(!limb.is_organic_limb())
+			if(limb.is_robotic_limb())
 				occur_text = "is shattered through the last bit of endoskeleton holding it together, severing it completely!"
 		if(WOUND_SLASH)
 			occur_text = "is slashed through the last tissue holding it together, severing it completely!"
-			if(!limb.is_organic_limb())
+			if(limb.is_robotic_limb())
 				occur_text = "is slashed through the last bit of exoskeleton layer holding it together, severing it completely!"
 		if(WOUND_PIERCE)
 			occur_text = "is pierced through the last tissue holding it together, severing it completely!"
-			if(!limb.is_organic_limb())
+			if(limb.is_robotic_limb())
 				occur_text = "is pierced through the last bit of exoskeleton holding it together, severing it completely!"
 		if(WOUND_BURN)
-			occur_text = "is completely incinerated, falling to dust!"
+			occur_text = "is completely incinerated, falling to a pile of dust!"
+			if(limb.is_robotic_limb())
+				occur_text = "is completely melted, falling to a puddle of debris!"
 
 	var/mob/living/carbon/victim = L.owner
 	if(prob(40))
@@ -49,6 +59,11 @@
 	var/msg = "<b><span class='danger'>[victim]'s [L.name] [occur_text]!</span></b>"
 
 	victim.visible_message(msg, "<span class='userdanger'>Your [L.name] [occur_text]!</span>")
+	if(wounding_type == WOUND_BURN)
+		if(limb.is_robotic_limb())
+			new /obj/effect/decal/remains/robot(get_turf(limb))
+		if(limb.is_organic_limb())
+			new /obj/effect/decal/cleanable/ash(get_turf(limb))
 
 	second_wind()
 	log_wound(victim, src)
