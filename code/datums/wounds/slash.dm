@@ -322,4 +322,5 @@
 	demotes_to = null
 	status_effect_type = null
 	scarring_descriptions = list("a precise line of scarred tissue", "a long line of slightly darker tissue")
-	required_status = BODYPART_ORGANIC | BODYPART_ROBOTIC
+	required_status = null
+	biology_required = list()

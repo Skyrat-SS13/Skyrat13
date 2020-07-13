@@ -13,7 +13,7 @@
 	status_effect_type = null
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
 	biology_required = list()
-	required_status = BODYPART_ORGANIC | BODYPART_ROBOTIC
+	required_status = null
 
 /datum/wound/loss/proc/apply_dismember(obj/item/bodypart/L, wounding_type=WOUND_SLASH)
 	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.can_dismember())
@@ -22,7 +22,7 @@
 
 	if(ishuman(L.owner))
 		var/mob/living/carbon/human/H = L.owner
-		if((required_status & BODYPART_ORGANIC) && ((NOBLOOD in H.dna.species.species_traits) || !L.is_organic_limb()))
+		if((required_status & BODYPART_ORGANIC) && !L.is_organic_limb()))
 			qdel(src)
 			return
 
@@ -74,6 +74,8 @@
 	threshold_minimum = 180
 	status_effect_type = /datum/status_effect/wound/loss
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
+	required_status = BODYPART_ORGANIC
+	biology_required = list()
 
 /datum/wound/slash/loss/get_examine_description(mob/user)
 	. = ..()
@@ -127,6 +129,8 @@
 	threshold_minimum = 180
 	status_effect_type = /datum/status_effect/wound/loss
 	scarring_descriptions = list("is several skintone shades paler than the rest of the body", "is a gruesome patchwork of artificial flesh", "has a large series of attachment scars at the articulation points")
+	required_status = BODYPART_ROBOTIC
+	biology_required = list()
 
 /datum/wound/mechanical/slash/loss/get_examine_description(mob/user)
 	. = ..()
