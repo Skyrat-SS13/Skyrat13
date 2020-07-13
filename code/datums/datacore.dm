@@ -81,7 +81,7 @@
 		if(N.new_character)
 			log_manifest(N.ckey,N.new_character.mind,N.new_character)
 		if(ishuman(N.new_character))
-			manifest_inject(N.new_character, N.client)
+			manifest_inject(N.new_character, N.client, N.client.prefs)
 		CHECK_TICK
 
 /datum/datacore/proc/manifest_modify(name, assignment)
@@ -198,7 +198,7 @@
 	return dat
 
 
-/datum/datacore/proc/manifest_inject(mob/living/carbon/human/H, client/C)
+/datum/datacore/proc/manifest_inject(mob/living/carbon/human/H, client/C, datum/preferences/prefs)
 	set waitfor = FALSE
 	var/static/list/show_directions = list(SOUTH, WEST)
 	if(H.mind && (H.mind.assigned_role != H.mind.special_role))
@@ -277,6 +277,7 @@
 		M.fields["alg_d"]		= "No allergies have been detected in this patient."
 		M.fields["cdi"]			= "None"
 		M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
+<<<<<<< HEAD
 		M.fields["notes"]		= H.get_trait_string(medical)
 		//Skyrat edit - rp records
 		if(C)
@@ -284,6 +285,9 @@
 		else
 			M.fields["past_records"] = ""
 		//End of skyrat edit
+=======
+		M.fields["notes"]		= "Trait information as of shift start: [H.get_trait_string(medical)]<br>[prefs.medical_records]"
+>>>>>>> 55c4e40fbb... Merge pull request #12706 from silicons/records
 		medical += M
 
 		//Security Record
@@ -293,6 +297,7 @@
 		S.fields["criminal"]	= "None"
 		S.fields["mi_crim"]		= list()
 		S.fields["ma_crim"]		= list()
+<<<<<<< HEAD
 		S.fields["notes"]		= "No notes."
 		//Skyrat edit - rp records
 		if(C)
@@ -304,6 +309,9 @@
 		else
 			S.fields["past_records"] = ""
 		//End of skyrat edit
+=======
+		S.fields["notes"]		= prefs.security_records || "No notes."
+>>>>>>> 55c4e40fbb... Merge pull request #12706 from silicons/records
 		security += S
 
 		//Locked Record
