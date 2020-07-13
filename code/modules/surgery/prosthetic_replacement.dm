@@ -101,8 +101,10 @@
 			var/obj/item/new_limb = new(target)
 			if(target_zone == BODY_ZONE_PRECISE_R_HAND)
 				target.put_in_r_hand(new_limb)
+				ADD_TRAIT(new_limb, TRAIT_NODROP, "surgery")
 			else if(target_zone == BODY_ZONE_PRECISE_L_HAND)
 				target.put_in_l_hand(new_limb)
+				ADD_TRAIT(new_limb, TRAIT_NODROP, "surgery")
 			L.name = "[new_limb.name] [L.name]"
 			L.desc = new_limb.desc
 			L.custom_overlay = mutable_appearance(new_limb.icon, new_limb.icon_state, FLOAT_LAYER, FLOAT_PLANE, new_limb.color)

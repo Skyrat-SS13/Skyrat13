@@ -1371,7 +1371,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		if(ADMIN_PUNISHMENT_PIE)
 			var/obj/item/reagent_containers/food/snacks/pie/cream/nostun/creamy = new(get_turf(target))
 			creamy.splat(target)
-		if (ADMIN_PUNISHMENT_CUSTOM_PIE)
+		if(ADMIN_PUNISHMENT_CUSTOM_PIE)
 			var/obj/item/reagent_containers/food/snacks/pie/cream/nostun/A = new()
 			if(!A.reagents)
 				var/amount = input(usr, "Specify the reagent size of [A]", "Set Reagent Size", 50) as num|null
@@ -1447,6 +1447,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			ADD_TRAIT(C, TRAIT_DNR, "smite")
 			ADD_TRAIT(C, TRAIT_NOHARDCRIT, "smite")
 			ADD_TRAIT(C, TRAIT_NOSOFTCRIT, "smite")
+			ADD_TRAIT(C, TRAIT_NODEATH, "smite")
 			C.gain_trauma_type(/datum/brain_trauma/severe/paralysis, TRAUMA_RESILIENCE_ABSOLUTE)
 		if(ADMIN_PUNISHMENT_BURN)
 			if(!iscarbon(target))
@@ -1473,7 +1474,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				return
 			var/mob/living/carbon/C = target
 			for(var/obj/item/bodypart/BP in C.bodyparts)
-				var/randumb = rand(1, 6)
+				var/randumb = rand(1, 3)
 				for(var/i in 1 to randumb)
 					var/obj/item/shrapnel/shame = new /obj/item/shrapnel(C)
 					shame.name = "shrapnel of shame"
@@ -1485,7 +1486,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				return
 			var/mob/living/carbon/C = target
 			C.generate_fake_scars(rand(1, 4), null, TRUE)
-			to_chat(C, "<span class='warning'>You feel your body grow jaded and torn...</span>")
+			to_chat(C, "<span class='userdanger'>You feel your body grow jaded and torn...</span>")
 		if(ADMIN_PUNISHMENT_EXTREMITIES)
 			if(!iscarbon(target))
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
@@ -1499,7 +1500,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>")
 				return
 			var/mob/living/carbon/C = target
-			to_chat(C, "<span class='warning'>You feel your body going hollow...</span>")
+			to_chat(C, "<span class='userdanger'>You feel your body going hollow...</span>")
 			for(var/obj/item/organ/O in C.internal_organs)
 				if(O.slot != ORGAN_SLOT_BRAIN)
 					O.Remove()
@@ -1565,8 +1566,10 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				var/obj/item/reagent_containers/food/snacks/pizza/vinny = new pizza()
 				if(body_zoner == BODY_ZONE_PRECISE_R_HAND)
 					C.put_in_r_hand(vinny)
+					ADD_TRAIT(vinny, TRAIT_NODROP, "surgery")
 				else if(body_zoner == BODY_ZONE_PRECISE_L_HAND)
-					C.put_in_r_hand(vinny)
+					C.put_in_l_hand(vinny)
+					ADD_TRAIT(vinny, TRAIT_NODROP, "surgery")
 				papajohn.name = "[vinny.name] [papajohn.name]"
 				papajohn.desc = vinny.desc
 				papajohn.custom_overlay = mutable_appearance(vinny.icon, vinny.icon_state, FLOAT_LAYER, FLOAT_PLANE, vinny.color)
@@ -1602,6 +1605,12 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 				if(H.dna?.species?.name)
 					H.dna.species.name = "Papa John's Pizza"
 					H.dna.species.exotic_blood = /datum/reagent/consumable/tomatojuice
+					H.dna.species.exotic_bloodtype = "Tomato Sauce"
+					H.dna.species.liked_food = GRAIN | DAIRY | JUNKFOOD
+					H.dna.species.say_mod = "salsas"
+					H.dna.species.meat = /obj/item/reagent_containers/food/snacks/pizza
+					H.dna.species.hair_alpha = 0
+					H.dna.species.species_traits -= list(HAIR,LIPS,FACEHAIR,MUTCOLORS,MUTCOLORS2,MUTCOLORS3,MUTCOLORS_PARTSONLY,MARKINGS)
 			C.regenerate_icons()
 			to_chat(C, "<span class='rose'>Your entire body becomes doughy!</span>")
 		if(ADMIN_PUNISHMENT_PHANTOM_PAIN)
