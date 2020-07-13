@@ -28,7 +28,10 @@
 
 /datum/adv_marking/proc/apply_on_mob(mob/living/carbon/C, zone)	
 	var/obj/item/bodypart/BP = C.get_bodypart(zone)
-	if(istype(BP) && (body_zone == zone))
+	var/mob/living/carbon/human/H = C
+	if(!istype(H)
+		H = TRUE
+	if(istype(BP) && (body_zone == zone) && ((H == TRUE) || H?.dna?.species?.allow_adv_markings))
 		owner = C
 		limb = BP
 		BP.adv_markings |= src
