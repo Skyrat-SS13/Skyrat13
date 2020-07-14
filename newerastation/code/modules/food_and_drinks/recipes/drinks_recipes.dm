@@ -1,6 +1,6 @@
 // NEW ERA COCKTAILS
 
-/datum/chemical_reaction/goldschlager
+/datum/chemical_reaction/caipivodka
 	name = "Caipivodka de Guaraná"
 	id = /datum/reagent/consumable/ethanol/caipivodka
 	results = list(/datum/reagent/consumable/ethanol/caipivodka = 3)
