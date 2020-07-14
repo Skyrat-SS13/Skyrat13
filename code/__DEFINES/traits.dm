@@ -261,6 +261,7 @@
 #define SHOES_TRAIT "shoes" //inherited from your sweet kicks
 #define GLOVE_TRAIT "glove" //inherited by your cool gloves
 #define BOOK_TRAIT "granter (book)" // knowledge is power
+#define CLOTHING_TRAIT "clothing"
 
 // unique trait sources, still defines
 #define STATUE_TRAIT "statue"

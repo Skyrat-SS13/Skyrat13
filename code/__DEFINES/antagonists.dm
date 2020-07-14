@@ -104,3 +104,12 @@
 #define CAN_SEE_EXPOITABLE_INFO (1<<0)
 
 //SKYRANT CHANGES END
+
+///It is faster as a macro than a proc
+#define IS_HERETIC(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic))
+
+#define PATH_SIDE "Side"
+
+#define PATH_ASH "Ash"
+#define PATH_RUST "Rust"
+#define PATH_FLESH "Flesh"

@@ -120,3 +120,6 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 
 /proc/cmp_item_block_priority_asc(obj/item/A, obj/item/B)
 	return A.block_priority - B.block_priority
+
+/proc/cmp_mob_realname_dsc(mob/A,mob/B)
+	return sorttext(A.real_name,B.real_name)

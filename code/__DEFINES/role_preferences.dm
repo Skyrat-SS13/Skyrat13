@@ -37,6 +37,7 @@
 #define ROLE_INTERNAL_AFFAIRS		"internal affairs agent"
 #define ROLE_GANG					"gangster"
 #define ROLE_BLOODSUCKER			"bloodsucker"
+#define ROLE_HERETIC				"heretic"
 //#define ROLE_MONSTERHUNTER			"monster hunter" Disabled for now
 #define ROLE_GHOSTCAFE				"ghostcafe"
 #define ROLE_MINOR_ANTAG			"minorantag"

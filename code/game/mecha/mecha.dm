@@ -1124,3 +1124,6 @@
 		else
 			to_chat(user, "<span class='notice'>None of the equipment on this exosuit can use this ammo!</span>")
 	return FALSE
+
+/obj/mecha/rust_heretic_act()
+	take_damage(500,  BRUTE)

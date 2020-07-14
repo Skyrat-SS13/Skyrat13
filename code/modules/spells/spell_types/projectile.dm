@@ -1,3 +1,54 @@
+/obj/item/projectile/magic/spell
+	name = "custom spell projectile"
+	var/list/ignored_factions //Do not hit these
+	var/check_holy = FALSE
+	var/check_antimagic = FALSE
+	var/trigger_range = 0 //How far we do we need to be to hit
+	var/linger = FALSE //Can't hit anything but the intended target
+
+	var/trail = FALSE //if it leaves a trail
+	var/trail_lifespan = 0 //deciseconds
+	var/trail_icon = 'icons/obj/wizard.dmi'
+	var/trail_icon_state = "trail"
+
+//todo unify this and magic/aoe under common path
+/obj/item/projectile/magic/spell/Range()
+	if(trigger_range > 1)
+		for(var/mob/living/L in range(trigger_range, get_turf(src)))
+			if(can_hit_target(L, ignore_loc = TRUE))
+				return Bump(L)
+	. = ..()
+
+/obj/item/projectile/magic/spell/Moved(atom/OldLoc, Dir)
+	. = ..()
+	if(trail)
+		create_trail()
+
+/obj/item/projectile/magic/spell/proc/create_trail()
+	if(!trajectory)
+		return
+	var/datum/point/vector/previous = trajectory.return_vector_after_increments(1,-1)
+	var/obj/effect/overlay/trail = new /obj/effect/overlay(previous.return_turf())
+	trail.pixel_x = previous.return_px()
+	trail.pixel_y = previous.return_py()
+	trail.icon = trail_icon
+	trail.icon_state = trail_icon_state
+	//might be changed to temp overlay
+	trail.density = FALSE
+	trail.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	QDEL_IN(trail, trail_lifespan)
+
+/obj/item/projectile/magic/spell/can_hit_target(atom/target, list/passthrough, direct_target = FALSE, ignore_loc = FALSE)
+	. = ..()
+	if(linger && target != original)
+		return FALSE
+	if(ismob(target) && !direct_target) //Unsure about the direct target, i guess it could always skip these.
+		var/mob/M = target
+		if(M.anti_magic_check(check_antimagic, check_holy))
+			return FALSE
+		if(ignored_factions?.len && faction_check(M.faction,ignored_factions))
+			return FALSE
+
 
 //NEEDS MAJOR CODE CLEANUP.
 

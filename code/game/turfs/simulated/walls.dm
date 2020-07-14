@@ -99,6 +99,8 @@
 	if(!density)
 		..()
 
+/turf/closed/wall/rust_heretic_act()
+	ChangeTurf(/turf/closed/wall/rust)
 
 /turf/closed/wall/blob_act(obj/structure/blob/B)
 	if(prob(50))

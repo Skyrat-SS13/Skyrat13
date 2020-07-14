@@ -46,6 +46,9 @@
 	if(!broken && !burnt)
 		icon_state = icon_plating //Because asteroids are 'platings' too.
 
+/turf/open/floor/plating/rust_heretic_act()
+	ChangeTurf(/turf/open/floor/plating/rust)
+
 /turf/open/floor/plating/attackby(obj/item/C, mob/user, params)
 	if(..())
 		return

@@ -14,6 +14,8 @@
 	if(!broken && !burnt)
 		icon_state = icon_regular_floor
 
+/turf/open/floor/plasteel/rust_heretic_act()
+	ChangeTurf(/turf/open/floor/plating/rust)
 
 /turf/open/floor/plasteel/airless
 	initial_gas_mix = AIRLESS_ATMOS
