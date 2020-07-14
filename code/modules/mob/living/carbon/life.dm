@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /mob/living/carbon/Life()
 	set invisibility = 0
 
@@ -8,6 +9,11 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
+=======
+/mob/living/carbon/BiologicalLife(seconds, times_fired)
+	//Updates the number of stored chemicals for powers
+	handle_changeling()
+>>>>>>> 4f0aa3350c... Merge pull request #12770 from Citadel-Station-13/silicons-patch-26
 	//Reagent processing needs to come before breathing, to prevent edge cases.
 	handle_organs()
 
@@ -31,6 +37,7 @@
 	if(stat != DEAD)
 		handle_liver()
 
+<<<<<<< HEAD
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
 		handle_death()
@@ -38,6 +45,8 @@
 
 	//Updates the number of stored chemicals for powers
 	handle_changeling()
+=======
+>>>>>>> 4f0aa3350c... Merge pull request #12770 from Citadel-Station-13/silicons-patch-26
 
 	if(stat != DEAD)
 		return 1
