@@ -5,7 +5,7 @@
 //Range at which cell process will try and share air with, the more the faster and less accurately things will be processed
 //Try and have this between 1 and 3
 #define ATMOS_CELL_PROCESS_EXPLOSIVENESS 2
-#define VACCUUM_CELL_HEAT_CAPACITY 100 //Different from HEAT_CAPACITY_VACUUM to give away effect of a radiating heat transfer instead of conductive one
+#define VACCUUM_CELL_HEAT_CAPACITY 50 //Different from HEAT_CAPACITY_VACUUM to give away effect of a radiating heat transfer instead of conductive one
 
 /turf/proc/process_cell(fire_count)
 	SSair.remove_from_active(src)
@@ -53,14 +53,29 @@
 	if(!heat_capacity) //If you havent gotten any heat capacity at this point - no point going further
 		SSair.remove_from_active(src)
 		return
+	//Visual cache
+	var/static/list/nonoverlaying_gases = typecache_of_gases_with_no_overlays()
+	var/list/new_overlay_types = list()
+	var/list/gas_overlays_cache = GLOB.meta_gas_overlays
+	var/list/gas_overlays_vis_cache = GLOB.meta_gas_visibility
+	var/list/atmos_overlay_types 
+	var/cached_float
+	//
 	for(var/gas_datum in final_gas_mix)
-		final_gas_mix[gas_datum] *= mulitplier
+		cached_float = final_gas_mix[gas_datum] * mulitplier
+		final_gas_mix[gas_datum] = cached_float
+		if (nonoverlaying_gases[gas_datum])
+			continue
+		var/gas_overlay = gas_overlays_cache[gas_datum]
+		if(gas_overlay && cached_float > gas_overlays_vis_cache[gas_datum])
+			new_overlay_types += gas_overlay[min(FACTOR_GAS_VISIBLE_MAX, CEILING(cached_float / MOLES_GAS_VISIBLE_STEP, 1))]
+
 	final_therm *= mulitplier
 	moles_for_pressure *= mulitplier
 	heat_capacity *= mulitplier
 	var/final_temp = final_therm / heat_capacity
 	//Pressure
-	moles_for_pressure *= R_IDEAL_GAS_EQUATION * final_temp / CELL_VOLUME 
+	moles_for_pressure *= final_temp * 0.003324
 	//
 	for(var/t in affected_turfs)
 		current_turf = t
@@ -69,7 +84,19 @@
 			for(var/gas_datum in final_gas_mix)
 				current_gasmix.gases[gas_datum] = final_gas_mix[gas_datum]
 			current_gasmix.temperature = final_temp
-			current_turf.update_visuals()
+			//VISUALS
+			//current_turf.update_visuals()
+			atmos_overlay_types = current_turf.atmos_overlay_types
+			if (atmos_overlay_types)
+				for(var/overlay in atmos_overlay_types-new_overlay_types) //doesn't remove overlays that would only be added
+					current_turf.vis_contents -= overlay
+			if (length(new_overlay_types))
+				if (atmos_overlay_types)
+					current_turf.vis_contents += new_overlay_types - atmos_overlay_types //don't add overlays that already exist
+				else
+					current_turf.vis_contents += new_overlay_types
+			current_turf.atmos_overlay_types = new_overlay_types
+			//
 			current_gasmix.prev_pressure = current_gasmix.cur_pressure
 			current_gasmix.cur_pressure = moles_for_pressure
 			/*if(current_gasmix.cur_pressure>500) //Higher pressure similarity when on fire/high pressure. Done this way for speed?
