@@ -9,7 +9,7 @@ GLOBAL_LIST(topic_status_cache)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (system_type == MS_WINDOWS) ? "./byond-extools.dll" : "./libbyond-extools.so" // Skyrat edit
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
 	if (fexists(extools))
 		call(extools, "maptick_initialize")()
 	enable_debugger()
@@ -41,6 +41,9 @@ GLOBAL_LIST(topic_status_cache)
 
 #ifndef USE_CUSTOM_ERROR_HANDLER
 	world.log = file("[GLOB.log_directory]/dd.log")
+#else
+	if (TgsAvailable())
+		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
 #endif
 
 	load_admins()
@@ -69,10 +72,6 @@ GLOBAL_LIST(topic_status_cache)
 /world/proc/InitTgs()
 	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED)
 	GLOB.revdata.load_tgs_info()
-#ifdef USE_CUSTOM_ERROR_HANDLER
-	if (TgsAvailable())
-		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
-#endif
 	GLOB.tgs_initialized = TRUE
 
 /world/proc/HandleTestRun()
@@ -123,6 +122,7 @@ GLOBAL_LIST(topic_status_cache)
 
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
 	GLOB.world_virus_log = "[GLOB.log_directory]/virus.log"
+	GLOB.world_asset_log = "[GLOB.log_directory]/asset.log"
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_pda_log = "[GLOB.log_directory]/pda.log"
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
@@ -138,6 +138,7 @@ GLOBAL_LIST(topic_status_cache)
 	GLOB.subsystem_log = "[GLOB.log_directory]/subsystem.log"
 	GLOB.reagent_log = "[GLOB.log_directory]/reagents.log"
 	GLOB.world_crafting_log = "[GLOB.log_directory]/crafting.log"
+	GLOB.click_log = "[GLOB.log_directory]/click.log"
 
 
 #ifdef UNIT_TESTS
@@ -157,6 +158,7 @@ GLOBAL_LIST(topic_status_cache)
 	start_log(GLOB.subsystem_log)
 	start_log(GLOB.reagent_log)
 	start_log(GLOB.world_crafting_log)
+	start_log(GLOB.click_log)
 
 	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))

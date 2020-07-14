@@ -5,7 +5,11 @@
 	ask_verb = "puffs inquisitively"
 	exclaim_verb = "poofs loudly"
 	whisper_verb = "puffs quietly"
+	sing_verb = "puffs melodically" // Skyrat edit
 	key = "y"
 	sentence_chance = 0
 	default_priority = 80
 	syllables = list("poof", "pff", "pFfF", "piff", "puff", "pooof", "pfffff", "piffpiff", "puffpuff", "poofpoof", "pifpafpofpuf")
+	//SKYRAT CHANGE - language restriction
+	restricted = TRUE
+	//

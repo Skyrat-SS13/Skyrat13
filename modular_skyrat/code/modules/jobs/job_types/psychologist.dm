@@ -13,6 +13,9 @@
 
 	outfit = /datum/outfit/job/psychologist
 
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_MED
+
 	access = list(ACCESS_MEDICAL, ACCESS_PSYCHOLOGY, ACCESS_SURGERY, ACCESS_MORGUE, ACCESS_CLONING, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_PSYCHOLOGY, ACCESS_CLONING, ACCESS_MINERAL_STOREROOM)
 
@@ -28,8 +31,8 @@
 	uniform = /obj/item/clothing/under/rank/medical/psychologist
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	r_pocket = /obj/item/pen/fountain
-	//suit = 
-	suit_store = /obj/item/flashlight/pen
+	l_pocket = /obj/item/flashlight/pen
+	//suit =
 
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel/leather

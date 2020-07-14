@@ -1,4 +1,5 @@
 //miner exclusives
+/*
 /datum/uplink_item/role_restricted/crusher
 	name = "Harmful Crusher"
 	desc = "A kinetic crusher with the ability to harm complex and small lifeforms. Looks like a normal crusher from a distance."
@@ -22,10 +23,10 @@
 	cost = 15
 	limited_stock = 1
 	restricted_roles = list("Shaft Miner", "Quartermaster")
-
+*/
 //engineer/atmos tech exclusives
 /datum/uplink_item/role_restricted/powergloves
-	name = "Not-tendo (TM) Power Gloves"
+	name = "Not-tendo(TM) Power Gloves"
 	desc = "Rechargeable gloves that are capable of stunning targets and throwing lightning at them."
 	item = /obj/item/clothing/gloves/color/yellow/power
 	cost = 12
@@ -63,3 +64,18 @@
 	cost = 2
 	restricted_roles = list("Botanist")
 	illegal_tech = FALSE
+
+/datum/uplink_item/dangerous/nettlebane
+	name = "Mors Plant"
+	desc = "A dagger. As effective as a combat knife, with the added benefit of causing death on any plant matter instantaneously."
+	item = /obj/item/kitchen/knife/combat/nettlebane
+	cost = 12
+	restricted_roles = list("Botanist")
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/role_restricted/syndicatejack
+	name = "Syndicate Cyborg Module"
+	desc = "An illegally modified module-board, holding all the neccesary tools and abilities for near-perfect sabotage and support. Due to its relatively experimental nature, it will only work on cyborgs which have already been jailbroken by an electromagnetic sequencer. "
+	item = /obj/item/borg/upgrade/transform/syndicatejack
+	cost = 5
+	restricted_roles = list("Roboticist")

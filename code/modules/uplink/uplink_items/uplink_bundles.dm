@@ -40,6 +40,7 @@
 	cost = 20
 	player_minimum = 15 // Skyrat edit - lowered it from 30 back to 15
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	restricted = TRUE
 
 /datum/uplink_item/bundles_TC/northstar_bundle
 	name = "Northstar Bundle"
@@ -191,6 +192,8 @@
 		for(var/item in uplink_items[category])
 			var/datum/uplink_item/I = uplink_items[category][item]
 			if(src == I || !I.item)
+				continue
+			if(istype(I, /datum/uplink_item/bundles_TC/reroll)) //oops!
 				continue
 			if(U.telecrystals < I.cost)
 				continue

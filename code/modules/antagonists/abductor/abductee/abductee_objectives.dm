@@ -1,3 +1,5 @@
+/*Modular Skyrat. This entire file is shit so it's disabled in the .dme
+
 /datum/objective/abductee
 	completed = 1
 
@@ -52,3 +54,4 @@
 /datum/objective/abductee/forbiddennumber/New()
 	var/number = rand(2,10)
 	explanation_text = "Ignore anything in a set of [number], they don't exist."
+*/

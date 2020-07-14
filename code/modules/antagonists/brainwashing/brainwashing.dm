@@ -30,6 +30,9 @@
 	show_in_antagpanel = TRUE
 	antagpanel_category = "Other"
 	show_name_in_check_antagonists = TRUE
+//SKYRAT CHANGES BEGIN
+	antag_flags = NONE //Can't see exploitable info.
+//SKYRANT CHANGES END
 
 /datum/antagonist/brainwashed/greet()
 	to_chat(owner, "<span class='warning'>Your mind reels as it begins focusing on a single purpose...</span>")

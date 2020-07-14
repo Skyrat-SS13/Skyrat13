@@ -201,7 +201,7 @@ new /datum/disease_ability/symptom/powerful/youth
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "sneeze"
 	desc = "Force the host you are following to sneeze with extra force, spreading your infection to any victims in a 4 meter cone in front of your host even if your transmissibility is low.<br>Cooldown: 20 seconds"
-	cooldown_time = 200
+	cooldown_time = 150
 
 /datum/action/cooldown/disease_sneeze/Trigger()
 	if(!..())
@@ -239,7 +239,7 @@ new /datum/disease_ability/symptom/powerful/youth
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "infect"
 	desc = "Cause the host you are following to excrete an infective substance from their pores, causing all objects touching their skin to transmit your infection to anyone who touches them for the next 30 seconds.<br>Cooldown: 40 seconds"
-	cooldown_time = 400
+	cooldown_time = 200
 
 /datum/action/cooldown/disease_infect/Trigger()
 	if(!..())
@@ -271,27 +271,27 @@ new /datum/disease_ability/symptom/powerful/youth
 //healing costs more so you have to techswitch from naughty disease otherwise we'd have friendly disease for easy greentext (no fun!)
 
 /datum/disease_ability/symptom/mild
-	cost = 2
-	required_total_points = 4
+	cost = 1
+	required_total_points = 3
 	category = "Symptom (Weak)"
 
 /datum/disease_ability/symptom/medium
-	cost = 4
-	required_total_points = 8
+	cost = 2
+	required_total_points = 6
 	category = "Symptom"
 
 /datum/disease_ability/symptom/medium/heal
-	cost = 5
+	cost = 3
 	malefit = -1
 	category = "Symptom (+)"
 
 /datum/disease_ability/symptom/powerful
 	cost = 4
-	required_total_points = 16
+	required_total_points = 10
 	category = "Symptom (Strong)"
 
 /datum/disease_ability/symptom/powerful/heal
-	cost = 8
+	cost = 6
 	malefit = -1
 	category = "Symptom (Strong+)"
 
@@ -427,7 +427,7 @@ new /datum/disease_ability/symptom/powerful/youth
 /datum/disease_ability/symptom/powerful/genetic_mutation
 	malefit = 1
 	symptoms = list(/datum/symptom/genetic_mutation)
-	cost = 8
+	cost = 10
 
 /datum/disease_ability/symptom/powerful/inorganic_adaptation
 	symptoms = list(/datum/symptom/inorganic_adaptation)

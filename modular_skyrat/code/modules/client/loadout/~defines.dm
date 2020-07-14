@@ -10,3 +10,6 @@
 #undef CRG_ROLES
 #undef CIV_ROLES
 #undef FUN_ROLES
+
+#undef MEDSCI_ROLES
+#undef OPRS_ROLES

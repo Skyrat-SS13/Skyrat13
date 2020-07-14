@@ -598,7 +598,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Admin"
 	set name = "Manage Job Slots"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_DEBUG|R_SERVER)) //Skyrat change
 		return
 	holder.manage_free_slots()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Manage Job Slots") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -769,6 +769,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Make Everyone Random"
 	set desc = "Make everyone have a random appearance. You can only use this before rounds!"
 
+	if(!check_rights(R_SERVER)) //Skyrat change
+		return
+
 	if(SSticker.HasRoundStarted())
 		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")
 		return
@@ -820,7 +823,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/level = input("Select security level to change to","Set Security Level") as null|anything in list("green","blue","amber","red","delta")
+	var/level = input("Select security level to change to","Set Security Level") as null|anything in GLOB.all_security_levels //Skyrat change
 	if(level)
 		set_security_level(level)
 
@@ -1217,6 +1220,58 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		message_admins("WARNING: The server will not show up on the hub because byond is detecting that a filewall is blocking incoming connections.")
 
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggled Hub Visibility", "[GLOB.hub_visibility ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/cmd_admin_toggle_fov()
+	set category = "Fun"
+	set name = "Enable/Disable Field of Vision"
+
+	var/static/busy_toggling_fov = FALSE
+	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
+		return
+
+	var/on_off = CONFIG_GET(flag/use_field_of_vision)
+
+	if(busy_toggling_fov)
+		to_chat(usr, "<span class='warning'>A previous call of this function is still busy toggling FoV [on_off ? "on" : "off"]. Have some patiece</span>.")
+		return
+	busy_toggling_fov = TRUE
+
+	log_admin("[key_name(usr)] has [on_off ? "disabled" : "enabled"] the Field of Vision configuration.")
+	CONFIG_SET(flag/use_field_of_vision, !on_off)
+
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggled Field of Vision", "[on_off ? "Enabled" : "Disabled"]"))
+
+	if(on_off)
+		for(var/k in GLOB.mob_list)
+			if(!k)
+				continue
+			var/mob/M = k
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(!(H.dna?.species.has_field_of_vision))
+					continue
+			else if(!M.has_field_of_vision)
+				continue
+			var/datum/component/field_of_vision/FoV = M.GetComponent(/datum/component/field_of_vision)
+			if(FoV)
+				qdel(FoV)
+			CHECK_TICK
+	else
+		for(var/k in GLOB.clients)
+			if(!k)
+				continue
+			var/client/C = k
+			var/mob/M = C.mob
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(!(H.dna?.species.has_field_of_vision))
+					continue
+			else if(!M.has_field_of_vision)
+				continue
+			M.LoadComponent(/datum/component/field_of_vision, M.field_of_vision_type)
+			CHECK_TICK
+
+	busy_toggling_fov = FALSE
 
 /client/proc/smite(mob/living/carbon/human/target as mob)
 	set name = "Smite"

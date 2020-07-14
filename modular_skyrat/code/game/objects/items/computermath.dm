@@ -8,10 +8,7 @@
 /obj/item/computermath
 	icon = 'modular_skyrat/icons/obj/computermath.dmi'
 	verb_say = "beeps"
-	var/computermath_max_charges = 3
-	var/computermath_charges = 3
-	var/charge_cooldown = 600 // 60 seconds
-	var/next_charge_generation
+	var/charge_count
 
 /obj/item/computermath/Initialize()
 	. = ..()
@@ -21,23 +18,18 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/computermath/process()
-	if(!next_charge_generation && computermath_charges != computermath_max_charges) // Newly spawned and a question has been taken
-		next_charge_generation = world.time + charge_cooldown
-		return
-	if(computermath_charges < computermath_max_charges && world.time >= next_charge_generation) // There's charges to fill & it's time to fill
-		next_charge_generation = world.time + charge_cooldown
-		computermath_charges += 1
-		say("New problem-solving opportunity available.")
-		playsound(src, 'sound/machines/ping.ogg', 30, 1)
+/obj/item/computermath/proc/check_charges()
+	return FALSE
 
+/obj/item/computermath/proc/consume_charges()
+	return FALSE
 
 /obj/item/computermath/proc/give_question(mob/user, var/reward_type)
 	if(!reward_type)
 		say("Critical error. Program terminating.")
 		return
 	
-	if(!computermath_charges) // Out of charges!
+	if(!check_charges()) // Out of charges!
 		say("No current problems available. Try again later.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
 		return
@@ -108,7 +100,7 @@
 			var/question = "What is ([expnum_1]) ^ [expnum_2]? Answer is rounded down if applicable."
 			var/solution
 			if(expnum_2 == 1/2) // For some reason, a ** 1/2 throws a runtime error, so just use sqrt()
-				solution = round(sqrt(expnum_1))
+				solution = round(sqrt(abs(expnum_1)))
 			else
 				solution = round(expnum_1 ** expnum_2)
 			var/answer = input(user, question, "Math Problem") as null|num
@@ -208,8 +200,12 @@
 				return
 
 	// An answer has been submitted, remove a charge and check if it's correct!
-	computermath_charges -= 1
-	handle_reward(user, reward_type, correct, difficulty)
+	if(consume_charges())
+		handle_reward(user, reward_type, correct, difficulty)
+	else // Ran out of charges while answering due to multiple characters using the computers
+		say("Error. All available problems have been resolved in the time it took to answer. Please wait for more to become available.")
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
+		return
 
 /obj/item/computermath/proc/handle_reward(mob/user, var/reward_type, var/correct, var/difficulty)
 	var/mob/living/LM = user
@@ -238,7 +234,10 @@
 				SSresearch.science_tech.remove_point_list(list(TECHWEB_POINT_TYPE_GENERIC = points_lost))
 			if("Cargo")
 				say("To solve the resulting bureaucratic error, [points_lost] cargo points have been deducted from the balance.")
-				SSshuttle.points -= points_lost
+				var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+				if(D)
+					D.adjust_money(-points_lost)
+		// me fail arithmetic, me brian hurt
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
 		if(difficulty == "Easy") // me fail arithmetic, me brian hurt
 			to_chat(user,"<span class='warning'>You feel lightheaded after failing such an easy question...</span>")
@@ -253,8 +252,10 @@
 			SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = points_awarded))
 		if("Cargo")
 			say("Correct data received. Updating cargo manifests...")
-			say("Completed. [points_awarded] cargo credits have been added to station balance.")
-			SSshuttle.points += points_awarded
+			say("Completed. [points_awarded] cargo points have been added to station balance.")
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(D)
+				D.adjust_money(points_awarded)
 	playsound(src, 'sound/machines/chime.ogg', 30, 1)
 
 /obj/item/computermath/default
@@ -287,10 +288,44 @@
 /obj/item/computermath/cargo/attack_self(mob/user)
 	give_question(user, "Cargo")
 
+/obj/item/computermath/cargo/process()
+	var/old_charge_count = charge_count
+	charge_count = SSshuttle.problem_computer_charges
+	if(charge_count > old_charge_count)
+		say("A new problem solving opportunity has become available! There are now [charge_count] problems to be solved.")
+
+/obj/item/computermath/cargo/check_charges()
+	if(SSshuttle.problem_computer_charges > 0)
+		return TRUE
+	..()
+
+/obj/item/computermath/cargo/consume_charges()
+	if(SSresearch.problem_computer_charges > 0)
+		SSshuttle.problem_computer_charges -= 1
+		return TRUE
+	..()
+
 /obj/item/computermath/science
 	name = "Science Problem Computer"
 	desc = "Earn points by solving math problems."
 	icon_state = "sciencetab"
+
+/obj/item/computermath/science/process()
+	var/old_charge_count = charge_count
+	charge_count = SSresearch.problem_computer_charges
+	if(charge_count > old_charge_count)
+		say("A new problem solving opportunity has become available! There are now [charge_count] problems to be solved.")
+
+/obj/item/computermath/science/check_charges()
+	if(SSresearch.problem_computer_charges > 0)
+		return TRUE
+	..()
+
+/obj/item/computermath/science/consume_charges()
+	if(SSresearch.problem_computer_charges > 0)
+		SSresearch.problem_computer_charges -= 1
+		return TRUE
+	..()
 
 /obj/item/computermath/science/attack_self(mob/user)
 	give_question(user, "Science")

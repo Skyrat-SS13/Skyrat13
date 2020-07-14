@@ -5,10 +5,14 @@
 	ask_verb = "requests"
 	exclaim_verb = "proclaims"
 	whisper_verb = "imparts"
+	sing_verb = "chants" // Skyrat edit
 	key = "r"
 	default_priority = 10
 	spans = list(SPAN_ROBOT)
 	icon_state = "ratvar"
+	//SKYRAT CHANGE - language restriction
+	restricted = TRUE
+	//
 
 /datum/language/ratvar/scramble(var/input)
 	. = text2ratvar(input)

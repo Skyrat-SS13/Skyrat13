@@ -446,6 +446,7 @@
 	throw_range = 5
 	force_unwielded = 0
 	force_wielded = 0
+	block_parry_data = null
 	attack_verb = list("attacked", "struck", "hit")
 	total_mass_on = TOTAL_MASS_TOY_SWORD
 	sharpness = IS_BLUNT
@@ -792,6 +793,7 @@ GLOBAL_LIST_INIT(valid_mechtoy_paths, valid_mechtoy_paths())
 	var/cooldown = 0
 	var/obj/machinery/computer/holodeck/holo = null // Holodeck cards should not be infinite
 	var/list/cards = list()
+	var/original_size = 52
 
 /obj/item/toy/cards/deck/Initialize()
 	. = ..()
@@ -849,11 +851,11 @@ GLOBAL_LIST_INIT(valid_mechtoy_paths, valid_mechtoy_paths())
 
 /obj/item/toy/cards/deck/update_icon_state()
 	switch(cards.len)
-		if(27 to INFINITY)
+		if(original_size*0.5 to INFINITY)
 			icon_state = "deck_[deckstyle]_full"
-		if(11 to 27)
+		if(original_size*0.25 to original_size*0.5)
 			icon_state = "deck_[deckstyle]_half"
-		if(1 to 11)
+		if(1 to original_size*0.25)
 			icon_state = "deck_[deckstyle]_low"
 		else
 			icon_state = "deck_[deckstyle]_empty"

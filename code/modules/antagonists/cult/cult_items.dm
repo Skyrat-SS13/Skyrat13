@@ -273,6 +273,7 @@
 	knockdown = 20
 
 /obj/item/restraints/legcuffs/bola/cult/pickup(mob/living/user)
+	. = ..()
 	if(!iscultist(user))
 		to_chat(user, "<span class='warning'>The bola seems to take on a life of its own!</span>")
 		ensnare(user)
@@ -546,6 +547,12 @@
 				set_coefficient = 2
 			if(SEC_LEVEL_BLUE)
 				set_coefficient = 1.2
+			//Skyrat change start
+			if(SEC_LEVEL_VIOLET)
+				set_coefficient = 0.8
+			if(SEC_LEVEL_ORANGE)
+				set_coefficient = 0.8
+			//Skyrat change stop
 			if(SEC_LEVEL_AMBER)
 				set_coefficient = 0.8
 			else

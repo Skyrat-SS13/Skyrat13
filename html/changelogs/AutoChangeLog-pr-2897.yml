@@ -1,0 +1,5 @@
+author: "Gandalf2k15"
+delete-after: True
+changes: 
+  - bugfix: "Fixed TED(timeline eradication) agent"
+  - tweak: "Changed a couple of things about the TED agent, see https://github.com/Skyrat-SS13/Skyrat13/pull/2897"
