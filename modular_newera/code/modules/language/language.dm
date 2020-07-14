@@ -2,6 +2,7 @@
 
 /datum/language/newera
 	icon = 'modular_newera/icons/misc/language.dmi'
+	icon_state = null
 
 /datum/language/newera/sergal
 	name = LANGUAGE_SERGAL
