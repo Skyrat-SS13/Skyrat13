@@ -383,7 +383,7 @@
 //sif
 /obj/item/borg/upgrade/modkit/critical
 	name = "critical modification kit"
-	desc = "Makes your kinetic accelerator have a <b>10%</b> chance to critically wound your target."
+	desc = "Makes your kinetic accelerator have a <b>20%</b> chance to critically wound your target."
 	modifier = 20
 	var/multiplier = 2
 	cost = 30
