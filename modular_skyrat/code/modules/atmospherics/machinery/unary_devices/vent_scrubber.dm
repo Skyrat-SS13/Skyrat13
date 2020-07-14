@@ -32,7 +32,7 @@
 	var/recieved_thermal_energy = 0
 	var/recieved_heat_capacity = 0
 	var/self_heat_capacity = 0
-	var/cached_float = 0
+	var/cached_float
 
 	for(var/id in self_gases)
 		self_heat_capacity += self_gases[id] * cached_gasheats[id]
