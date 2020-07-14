@@ -82,7 +82,7 @@
 	else // pump_direction == SIPHONING
 		icon_state = "vent_in"
 
-/obj/machinery/atmospherics/components/unary/vent_pump/process_atmos()
+/*/obj/machinery/atmospherics/components/unary/vent_pump/process_atmos() MOVED TO MODULAR_SKYRAT
 	..()
 	if(!is_operational())
 		return
@@ -128,7 +128,7 @@
 
 			air_contents.merge(removed)
 			air_update_turf()
-	update_parents()
+	update_parents()*/
 
 //Radio remote control
 

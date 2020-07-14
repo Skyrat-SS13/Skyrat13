@@ -3684,6 +3684,7 @@
 #include "modular_skyrat\code\modules\antagonists\traitor\datum_traitor.dm"
 #include "modular_skyrat\code\modules\atmospherics\environmental\LINDA_fire.dm"
 #include "modular_skyrat\code\modules\atmospherics\gasmixtures\gas_types.dm"
+#include "modular_skyrat\code\modules\atmospherics\machinery\datum_pipeline.dm"
 #include "modular_skyrat\code\modules\atmospherics\machinery\components\unary_devices\vent_pump.dm"
 #include "modular_skyrat\code\modules\atmospherics\machinery\components\unary_devices\vent_scrubber.dm"
 #include "modular_skyrat\code\modules\atmospherics\machinery\pipes\bluespace.dm"
