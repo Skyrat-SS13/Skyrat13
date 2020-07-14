@@ -821,8 +821,8 @@
 	if(stat == DEAD || stat == UNCONSCIOUS || !src.canUseTopic(src, TRUE))
 		return
 
-	visible_message("<span class='notice'>[src] examines [p_them()]self.</span>", \
-		"<span class='notice'>You check yourself for injuries.</span>")
+	visible_message("<span class='notice'>[src] examines [p_themselves()].</span>", \
+		"<span class='notice'><i><b>You check yourself for injuries.</b><i></span>")
 
 	var/list/missing = ALL_BODYPARTS
 
@@ -888,7 +888,9 @@
 					if(WOUND_SEVERITY_CRITICAL)
 						status = "horrifyingly damaged"
 					if(WOUND_SEVERITY_LOSS)
-						status = "suffering with a stump of a lost limb"
+						status = "suffering with the loss of a limb"
+					if(WOUND_SEVERITY_PERMANENT)
+						status = "permanently disfigured"
 		var/isdisabled = " "
 		if(LB.is_disabled())
 			isdisabled = " is disabled "
