@@ -850,6 +850,7 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 */
+
 /datum/design/boris_ai_controller
 	name = "B.O.R.I.S. AI-Cyborg Remote Control Module"
 	id = "borg_ai_control"
