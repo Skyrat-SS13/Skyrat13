@@ -25,10 +25,10 @@
 	impact_type = /obj/effect/projectile/impact/laser
 
 //skyrat edit bruh
-//overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
+//overclocked laser, does a bit more damage but has much higher wound power (5 vs -20)
 /obj/item/projectile/beam/laser/hellfire
 	name = "hellfire laser"
-	wound_bonus = 0
+	wound_bonus = 5
 	damage = 25
 
 /obj/item/projectile/beam/laser/hellfire/Initialize()

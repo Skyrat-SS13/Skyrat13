@@ -137,7 +137,7 @@
 				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through external armoring"
 
 	var/message_verb = "attacked"
-	if(I.attack_verb && I.attack_verb.len)
+	if(LAZYLEN(I.attack_verb))
 		message_verb = "[pick(I.attack_verb)]"
 	else if(!I.force)
 		return
@@ -154,7 +154,7 @@
 		attack_message_local = "You [message_verb] yourself[message_hit_area] with [I][extra_wound_details]"
 	visible_message("<span class='danger'>[attack_message]</span>",\
 		"<span class='userdanger'>[attack_message_local]</span>", null, COMBAT_MESSAGE_RANGE)
-	return 1
+	return TRUE
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /mob/living/carbon/attack_hand(mob/living/carbon/human/user)

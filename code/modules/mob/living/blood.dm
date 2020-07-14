@@ -18,6 +18,15 @@
 		to_chat(src, "<span class='warning'>The blood soaks through your bandage.</span>")
 */
 //skyrat edit
+/mob/living/proc/get_bleed_amount(brute_ratio)
+	return max(1, brute_ratio * 2)
+
+/mob/living/carbon/get_bleed_amount(brute_ratio)
+	. = 0
+	for(var/i in all_wounds)
+		var/datum/wound/W = i
+		. += W.drag_bleed_amt()
+
 /mob/living/carbon/monkey/handle_blood()
 	if(bodytemperature <= TCRYO || (HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
 		return

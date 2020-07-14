@@ -157,7 +157,7 @@
 /// For use formatting all of the scars this human has for saving for persistent scarring
 /mob/living/carbon/human/proc/format_scars()
 	var/list/missing_bodyparts = get_missing_limbs()
-	if((!all_scars || all_scars.len) && !missing_bodyparts.len)
+	if((!all_scars || !length(all_scars)) && !length(missing_bodyparts))
 		return
 	var/scars = ""
 	for(var/i in missing_bodyparts)

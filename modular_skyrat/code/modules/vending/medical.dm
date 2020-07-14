@@ -25,6 +25,8 @@
 					/obj/item/storage/hypospraykit/o2 = 2,
 					/obj/item/storage/hypospraykit/brute = 2,
 					/obj/item/storage/hypospraykit/enlarge = 2,
+					/obj/item/reagent_containers/hypospray/medipen/ekit = 10,
+					/obj/item/reagent_containers/hypospray/medipen/blood_loss = 5,
 					/obj/item/reagent_containers/glass/bottle/vial/small = 5,
 					/obj/item/storage/briefcase/medical = 2,
 					/obj/item/stack/sticky_tape/surgical = 4,

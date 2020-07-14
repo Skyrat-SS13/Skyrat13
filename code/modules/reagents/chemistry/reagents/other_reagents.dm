@@ -244,6 +244,15 @@
 	glass_desc = "The father of all refreshments."
 	shot_glass_icon_state = "shotglassclear"
 
+/datum/reagent/water/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(M.blood_volume)
+		M.blood_volume += 0.1 // water is good for you!
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(isslimeperson(H))
+			M.blood_volume += 0.5 // water is REALLY good for you!
+
 /*
  *	Water reaction to turf
  */
@@ -319,6 +328,8 @@
 
 /datum/reagent/water/holywater/on_mob_metabolize(mob/living/L)
 	. = ..()
+	if(L.blood_volume)
+		L.blood_volume += 0.1 // water is good for you!
 	ADD_TRAIT(L, TRAIT_HOLY, type)
 
 	if(is_servant_of_ratvar(L))

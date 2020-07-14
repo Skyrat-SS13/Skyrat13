@@ -63,9 +63,9 @@
 		if(prob(5))
 			to_chat(victim, "<span class='notice'>You feel the [lowertext(name)] in your [limb.name] firming up from the cold!</span>")
 
-	if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/toxin/heparin))
+	if(victim?.reagents?.has_reagent(/datum/reagent/toxin/heparin))
 		blood_flow += 0.5 // old herapin used to just add +2 bleed stacks per tick, this adds 0.5 bleed flow to all open cuts which is probably even stronger as long as you can cut them first
-	else if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/medicine/coagulant))
+	else if(victim?.reagents?.has_reagent(/datum/reagent/medicine/coagulant))
 		blood_flow -= 0.25
 
 	if(limb.current_gauze)
