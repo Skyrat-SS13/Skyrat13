@@ -131,14 +131,12 @@
 	check_turfs()
 	..()
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/process_atmos()
+/*/obj/machinery/atmospherics/components/unary/vent_scrubber/process_atmos() MOVED TO MODULAR_SKYRAT
 	..()
 	if(welded || !is_operational())
 		return FALSE
 	if(!nodes[1] || !on)
 		on = FALSE
-		return FALSE
-	if(airs[1].return_pressure() >= 50*ONE_ATMOSPHERE)
 		return FALSE
 	scrub(loc)
 	if(widenet)
@@ -152,53 +150,51 @@
 	var/datum/gas_mixture/environment = tile.return_air()
 	var/datum/gas_mixture/air_contents = airs[1]
 	var/list/env_gases = environment.gases
-	var/list/self_gases = air_contents.gases
-	var/self_thermal_energy = THERMAL_ENERGY(air_contents)
-	var/list/cached_gasheats = GLOB.meta_gas_specific_heats
 
-	var/env_moles = 0
-	TOTAL_MOLES(env_gases, env_moles)
-	var/env_temp = environment.temperature
-	var/transfer_moles = 0.08*env_moles
-	var/transfer_unit
-	var/recieved_thermal_energy = 0
-	var/total_heat_capacity = 0
+	if(air_contents.return_pressure() >= 50*ONE_ATMOSPHERE)
+		return FALSE
 
 	if(scrubbing & SCRUBBING)
 		if(length(env_gases & filter_types))
+			var/transfer_moles = min(1, volume_rate/environment.volume)*environment.total_moles()
 
-			for(var/gas in filter_types & env_gases)
-				transfer_unit = (env_gases[gas] / env_moles) * transfer_moles
-				env_gases[gas] -= transfer_unit
-				if(!self_gases[gas])
-					self_gases[gas] = 0
-				self_gases[gas] += transfer_unit
-				recieved_thermal_energy += (cached_gasheats[gas] * transfer_unit) * env_temp
+			//Take a gas sample
+			var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
+
+			//Nothing left to remove from the tile
+			if(isnull(removed))
+				return FALSE
+
+			var/list/removed_gases = removed.gases
+
+			//Filter it
+			var/datum/gas_mixture/filtered_out = new
+			var/list/filtered_gases = filtered_out.gases
+			filtered_out.temperature = removed.temperature
+
+			for(var/gas in filter_types & removed_gases)
+				filtered_gases[gas] = removed_gases[gas]
+				removed_gases[gas] = 0
+
+			GAS_GARBAGE_COLLECT(removed.gases)
+
+			//Remix the resulting gases
+			air_contents.merge(filtered_out)
+			tile.assume_air(removed)
+			tile.air_update_turf()
 
 	else //Just siphoning all air
-		transfer_unit = env_moles * transfer_moles
-		for(var/gas in env_gases)
-			env_gases[gas] -= transfer_unit
-			if(!self_gases[gas])
-				self_gases[gas] = 0
-			self_gases[gas] += transfer_unit
-			recieved_thermal_energy += (cached_gasheats[gas] * transfer_unit) * env_temp
 
-	if(!recieved_thermal_energy)
-		return FALSE
+		var/transfer_moles = environment.total_moles()*(volume_rate/environment.volume)
 
-	for(var/id in self_gases)
-		total_heat_capacity += self_gases[id] * cached_gasheats[id]
+		var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
 
-	if(!total_heat_capacity)
-		return FALSE
-
-	air_contents.temperature = ((self_thermal_energy+recieved_thermal_energy)/total_heat_capacity)
-	tile.air_update_turf()
+		air_contents.merge(removed)
+		tile.air_update_turf()
 
 	update_parents()
 
-	return TRUE
+	return TRUE*/
 
 //There is no easy way for an object to be notified of changes to atmos can pass flags
 //	So we check every machinery process (2 seconds)
