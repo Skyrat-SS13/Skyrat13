@@ -223,43 +223,42 @@
 		sleep(280)
 	for(var/obj/reveal in sparkles)
 		reveal.alpha = 255
-	var/datum/component/overlay_lighting/OL
 	while(active)
 		for(var/obj/item/flashlight/spotlight/glow in spotlights) // The multiples reflects custom adjustments to each colors after dozens of tests
 			if(QDELETED(src) || !active || QDELETED(glow))
 				return
 			if(glow.light_color == LIGHT_COLOR_RED)
-				OL = glow.GetComponent(/datum/component/overlay_lighting)
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
 				OL.set_color_range_power(LIGHT_COLOR_BLUE, 0, glow.light_power * 1.48)
 				continue
 			if(glow.light_color == LIGHT_COLOR_BLUE)
-				OL = glow.GetComponent(/datum/component/overlay_lighting)
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
 				OL.set_color_range_power(LIGHT_COLOR_GREEN, glow.range * DISCO_INFENO_RANGE, glow.light_power * 2)
 				continue
 			if(glow.light_color == LIGHT_COLOR_GREEN)
-				OL = glow.GetComponent(/datum/component/overlay_lighting)
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
 				OL.set_color_range_power(LIGHT_COLOR_ORANGE, 0, glow.light_power * 0.5)
 				continue
 			if(glow.light_color == LIGHT_COLOR_ORANGE)
-				OL = glow.GetComponent(/datum/component/overlay_lighting)
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
 				OL.set_color_range_power(LIGHT_COLOR_PURPLE, glow.range * DISCO_INFENO_RANGE, glow.light_power * 2.27)
 				continue
 			if(glow.light_color == LIGHT_COLOR_PURPLE)
-				OL = glow.GetComponent(/datum/component/overlay_lighting)
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
 				OL.set_color_range_power(LIGHT_COLOR_BLUEGREEN, 0, glow.light_power * 0.44)
 				continue
 			if(glow.light_color == LIGHT_COLOR_BLUEGREEN)
-				OL = glow.GetComponent(/datum/component/overlay_lighting)
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
 				OL.set_color(LIGHT_COLOR_YELLOW)
 				OL.set_range(glow.range * DISCO_INFENO_RANGE)
 				continue
 			if(glow.light_color == LIGHT_COLOR_YELLOW)
-				OL = glow.GetComponent(/datum/component/overlay_lighting)
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
 				OL.set_color(LIGHT_COLOR_CYAN)
 				OL.set_range(0)
 				continue
 			if(glow.light_color == LIGHT_COLOR_CYAN)
-				OL = glow.GetComponent(/datum/component/overlay_lighting)
+				var/datum/component/overlay_lighting/OL = glow.GetComponent(/datum/component/overlay_lighting)
 				OL.set_color_range_power(LIGHT_COLOR_RED, glow.range * DISCO_INFENO_RANGE, glow.light_power * 0.68)
 				continue
 		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
