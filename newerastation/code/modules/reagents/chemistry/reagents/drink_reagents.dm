@@ -22,5 +22,5 @@
 	pH = 4.5
 
 /datum/reagent/consumable/guarana/on_mob_life(mob/living/carbon/M)
+	. = ..()
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
-	..()
