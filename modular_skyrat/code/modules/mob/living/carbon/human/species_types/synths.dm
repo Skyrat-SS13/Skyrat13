@@ -18,7 +18,7 @@
 	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //for getting these values back for assume_disguise()
 	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE, TRAIT_CLONEIMMUNE, REVIVESBYHEALING) //blah blah i explained above
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
-	fake_species = null //a species to do most of our work for us, unless we're damaged
+	var/datum/species/fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/actualhealth = 100 //value we calculate to assume disguise and etc
 	//Same organs as an IPC basically, to share functionality.
@@ -184,7 +184,7 @@
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
 		H.visible_message("<span class='danger'>[H]'s disguise falls apart!</span>", "<span class='userdanger'>Your disguise falls apart!</span>")
-	else if((actualhealth >= disguise_fail_health) && !isdisguised && (H.stat != DEAD))
+	else if((actualhealth >= disguise_fail_health) && !isdisguised && (stat != DEAD))
 		assume_disguise(fake_species, H)
 		H.visible_message("<span class='warning'>[H] morphs their appearance to that of [fake_species.name].</span>", "<span class='notice'>You morph your appearance to that of [fake_species.name].</span>")
 
