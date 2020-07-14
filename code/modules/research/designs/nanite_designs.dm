@@ -89,7 +89,7 @@
 	program_type = /datum/nanite_program/relay
 	category = list("Utility Nanites")
 
-//skyrat add, stolen from new era
+//skyrat add, stolen from new era, thanks trigg
 /datum/design/nanites/signaler
 	name = "Signaler"
 	desc = "The nanites receive and send radio signals."
