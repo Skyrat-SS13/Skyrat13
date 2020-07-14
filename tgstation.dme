@@ -4069,6 +4069,8 @@
 #include "newerastation\code\modules\mob\living\simple_animal\hostile\retaliate\mime.dm"
 #include "newerastation\code\modules\reagents\chemistry\reagents\drink_reagents.dm"
 #include "newerastation\code\modules\research\server.dm"
+#include "newerastation\code\modules\research\nanites\nanite_programs\utility.dm"
+#include "newerastation\code\modules\research\techweb\all_nodes.dm"
 #include "newerastation\code\modules\shuttle\syndicate.dm"
 #include "newerastation\code\modules\uplink\uplink_items.dm"
 // END_INCLUDE
