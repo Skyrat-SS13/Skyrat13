@@ -4,7 +4,7 @@
 	say_mod = "states" //inherited from a user's fake species
 	sexes = 0 //it gets it's sexes by the fake species
 	species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT,TRAIT_LIMBATTACHMENT,TRAIT_TOXIMMUNE,TRAIT_CLONEIMMUNE)
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	reagent_flags = PROCESS_SYNTHETIC
 	dangerous_existence = 0 //not dangerous anymore i guess
@@ -16,9 +16,9 @@
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
 	mutant_bodyparts = list()
 	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //for getting these values back for assume_disguise()
-	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE, TRAIT_CLONEIMMUNE, REVIVESBYHEALING) //blah blah i explained above
+	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE, TRAIT_CLONEIMMUNE) //blah blah i explained above
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
-	var/datum/species/fake_species = null //a species to do most of our work for us, unless we're damaged
+	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
 	var/actualhealth = 100 //value we calculate to assume disguise and etc
 	//Same organs as an IPC basically, to share functionality.
@@ -29,15 +29,6 @@
 	mutant_heart = /obj/item/organ/heart/robot_ipc
 	mutantliver = /obj/item/organ/liver/robot_ipc
 	exotic_blood = /datum/reagent/blood/synthetics
-	//same damage as ipcs
-	coldmod = 0.5
-	burnmod = 1.1
-	heatmod = 1.2
-	brutemod = 1.1
-	toxmod = 0
-	clonemod = 0
-	siemens_coeff = 1.2
-	revivesbyhealreq = 50
 	//variables used for snowflakey ass races and stuff god i fukcing hate this
 	var/storedeardamage = 0
 	var/storedtaildamage = 0
@@ -46,22 +37,6 @@
 	exotic_bloodtype = "SY"
 	//AAAAAAAAAAAAAAAAAAAAAAAA I CANT EAT AAAAAAAAAAAAAAAAAAAAAAAAAA
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
-
-/datum/species/synth/spec_revival(mob/living/carbon/human/H)
-	H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]...")
-	sleep(3 SECONDS)
-	H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]...")
-	sleep(3 SECONDS)
-	H.say("Rebooting [pick("blending", "disguise", "morphing")] subsystem...")
-	sleep(3 SECONDS)
-	assume_disguise(fake_species, H)
-	H.say("Unit [H.real_name] is fully functional. Have a nice day.")
-	H.update_body()
-	return
-
-/datum/species/synth/spec_death(gibbed, mob/living/carbon/C)
-	unassume_disguise(C)
-	C.update_body()
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))
@@ -184,7 +159,7 @@
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
 		H.visible_message("<span class='danger'>[H]'s disguise falls apart!</span>", "<span class='userdanger'>Your disguise falls apart!</span>")
-	else if((actualhealth >= disguise_fail_health) && !isdisguised && (stat != DEAD))
+	else if((actualhealth >= disguise_fail_health) && !isdisguised)
 		assume_disguise(fake_species, H)
 		H.visible_message("<span class='warning'>[H] morphs their appearance to that of [fake_species.name].</span>", "<span class='notice'>You morph your appearance to that of [fake_species.name].</span>")
 
