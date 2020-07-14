@@ -447,7 +447,7 @@
 	if(!T) //the final dash turf was out of range - we settle for the target turf instead
 		T = chargeturf 
 	playsound(user, pick('modular_skyrat/sound/sif/whoosh1.ogg', 'modular_skyrat/sound/sif/whoosh2.ogg', 'modular_skyrat/sound/sif/whoosh3.ogg'), 300, 1)
-	new /obj/effect/temp_visual/decoy/fading(user.loc, mimiced_atom = user)
+	new /obj/effect/temp_visual/decoy/fading(user.loc, user)
 	//Stop movement
 	walk(user,0)
 	setDir(dir)
@@ -459,6 +459,6 @@
 	if(target.CanPass(user, T))
 		walk_to(user, T, 0, 1, movespeed)
 		playsound(user, pick('modular_skyrat/sound/sif/whoosh1.ogg', 'modular_skyrat/sound/sif/whoosh2.ogg', 'modular_skyrat/sound/sif/whoosh3.ogg'), 300, 1)
-		new /obj/effect/temp_visual/decoy/fading(user.loc, mimiced_atom = user)
+		new /obj/effect/temp_visual/decoy/fading(user.loc, user)
 	//Stop movement
 	walk(user, 0)
