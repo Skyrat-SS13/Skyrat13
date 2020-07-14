@@ -204,6 +204,9 @@
 /datum/config_entry/string/wikiurl
 	config_entry_value = "https://katlin.dog/citadel-wiki"
 
+/datum/config_entry/string/wikiurlskyrat
+	config_entry_value = "https://skyrat13.tk/wiki/index.php" // I have a feeling that this may be a Skyrat Edit.
+
 /datum/config_entry/string/wikiurltg
 	config_entry_value = "http://www.tgstation13.org/wiki"
 
@@ -211,10 +214,10 @@
 	config_entry_value = "http://tgstation13.org/phpBB/index.php"
 
 /datum/config_entry/string/rulesurl
-	config_entry_value = "http://www.tgstation13.org/wiki/Rules"
+	config_entry_value = "https://skyrat13.tk/wiki/index.php/Rules" // Skyrat Edit
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://www.github.com/tgstation/-tg-station"
+	config_entry_value = "https://github.com/Skyrat-SS13/Skyrat13/pulls" // Skyrat Edit
 
 /datum/config_entry/string/roundstatsurl
 

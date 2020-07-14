@@ -3220,23 +3220,14 @@
 /area/security/courtroom)
 "agO" = (
 /obj/structure/table,
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = -3;
-	pixel_y = 5
-	},
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "agP" = (
@@ -15050,6 +15041,7 @@
 	dir = 4
 	},
 /obj/structure/table/wood,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/plasteel,
 /area/security/main)
 "aEK" = (
@@ -15182,7 +15174,7 @@
 	},
 /obj/item/paper,
 /obj/machinery/door/firedoor,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "aEW" = (
@@ -15469,7 +15461,7 @@
 /area/engine/engineering)
 "aFy" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/camera,
 /obj/item/camera_film,
 /obj/item/restraints/handcuffs,
@@ -17347,8 +17339,8 @@
 /area/lawoffice)
 "aIV" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/pen/red,
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching Prison Wing holding areas.";
@@ -24340,7 +24332,7 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
 "aXp" = (
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/newscaster{
 	pixel_y = -32
 	},
@@ -26487,7 +26479,7 @@
 /area/security/checkpoint/engineering)
 "bbD" = (
 /obj/structure/table,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -27078,10 +27070,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = -3;
-	pixel_y = 5
-	},
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/light_switch{
 	pixel_y = 26
 	},
@@ -33211,10 +33200,7 @@
 /obj/item/storage/toolbox/artistic{
 	pixel_y = 5
 	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = 0;
-	pixel_y = 0
-	},
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "boU" = (
@@ -35314,7 +35300,7 @@
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/paper/fluff/gateway,
 /obj/item/storage/lockbox/medal,
 /turf/open/floor/wood,
@@ -36810,9 +36796,7 @@
 /area/bridge)
 "bwt" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_y = 3
-	},
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = 28
@@ -45919,10 +45903,7 @@
 /turf/open/floor/carpet,
 /area/bridge/showroom/corporate)
 "bRG" = (
-/obj/item/book/manual/wiki/security_space_law{
-	name = "space law";
-	pixel_y = 2
-	},
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
@@ -49570,10 +49551,7 @@
 	pixel_x = 30
 	},
 /obj/item/folder/red,
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = 3;
-	pixel_y = 4
-	},
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/newscaster/security_unit{
 	pixel_y = 32
 	},
@@ -51394,7 +51372,7 @@
 /obj/machinery/computer/secure_data{
 	dir = 8
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the RD's goons from the safety of his office.";
 	dir = 8;
@@ -60492,8 +60470,7 @@
 /area/crew_quarters/heads/hor)
 "ctV" = (
 /obj/machinery/modular_computer/console/preset/research{
-	dir = 4;
-	icon_state = "console"
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hor)
@@ -63340,8 +63317,7 @@
 	name = "Robotics Operating Table"
 	},
 /obj/machinery/light/small{
-	dir = 1;
-	icon_state = "bulb"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
@@ -63362,7 +63338,6 @@
 /area/science/robotics/mechbay)
 "cAp" = (
 /obj/machinery/computer/operating{
-	dir = 2;
 	name = "Robotics Operating Computer"
 	},
 /turf/open/floor/plasteel/dark,
@@ -63744,9 +63719,7 @@
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "cBj" = (
-/obj/machinery/mecha_part_fabricator{
-	dir = 2
-	},
+/obj/machinery/mecha_part_fabricator,
 /obj/effect/turf_decal/bot,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -63847,7 +63820,6 @@
 	pixel_y = -7
 	},
 /obj/item/assembly/signaler{
-	pixel_x = 0;
 	pixel_y = -7
 	},
 /obj/item/assembly/signaler{
@@ -63863,7 +63835,6 @@
 	pixel_y = 3
 	},
 /obj/item/assembly/prox_sensor{
-	pixel_x = 0;
 	pixel_y = 3
 	},
 /obj/item/assembly/prox_sensor{
@@ -63931,7 +63902,6 @@
 /area/science/mixing)
 "cBG" = (
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = 0;
 	pixel_y = 5
 	},
 /obj/item/storage/toolbox/electrical{
@@ -70080,10 +70050,7 @@
 	c_tag = "Departure Lounge - Security Post";
 	dir = 1
 	},
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = -4;
-	pixel_y = 4
-	},
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/taperecorder{
 	pixel_x = 4
 	},
@@ -78156,8 +78123,7 @@
 	layer = 4;
 	name = "Test Chamber Telescreen";
 	network = list("toxins");
-	pixel_x = -32;
-	pixel_y = 0
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
@@ -78379,7 +78345,6 @@
 	},
 /obj/item/stack/sheet/plasteel/fifty{
 	amount = 20;
-	pixel_x = 0;
 	pixel_y = 1
 	},
 /obj/effect/turf_decal/bot,
@@ -79662,7 +79627,6 @@
 /obj/effect/turf_decal/bot,
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = 0;
 	pixel_y = 5
 	},
 /obj/item/storage/toolbox/electrical{
@@ -79910,9 +79874,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "xem" = (
-/obj/machinery/mecha_part_fabricator{
-	dir = 2
-	},
+/obj/machinery/mecha_part_fabricator,
 /obj/effect/turf_decal/bot,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -80027,10 +79989,7 @@
 	pixel_x = 4;
 	pixel_y = -3
 	},
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = -3;
-	pixel_y = 5
-	},
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/wood,
 /area/security/vacantoffice)
 "xPD" = (

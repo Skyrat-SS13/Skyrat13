@@ -4393,7 +4393,7 @@
 /area/chapel/office)
 "ajf" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/taperecorder,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -5301,6 +5301,7 @@
 	name = "Lia's bed"
 	},
 /mob/living/simple_animal/hostile/retaliate/bat{
+	!INVALID_VAR! = "pets";
 	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as an authority figure's pet.";
 	emote_taunt = list("gnashes");
 	faction = list("carp");
@@ -5318,7 +5319,6 @@
 	min_oxy = 5;
 	name = "Lia";
 	real_name = "Lia";
-	!INVALID_VAR! = "pets";
 	turns_per_move = 10
 	},
 /turf/open/floor/plasteel/dark,
@@ -6666,7 +6666,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 22
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/taperecorder{
 	pixel_x = 5
 	},
@@ -6762,7 +6762,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "aow" = (
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/taperecorder{
 	pixel_x = 5
 	},
@@ -9022,7 +9022,7 @@
 /area/security/courtroom)
 "atd" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/hand_tele,
 /obj/structure/mirror{
 	pixel_x = -26
@@ -10088,7 +10088,7 @@
 "avv" = (
 /obj/structure/table,
 /obj/item/storage/briefcase,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
@@ -18317,7 +18317,7 @@
 	pixel_y = -30
 	},
 /obj/item/crowbar,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/plasteel/dark,
 /area/security/checkpoint/engineering)
 "aMi" = (
@@ -21242,7 +21242,7 @@
 "aRz" = (
 /obj/structure/closet/secure_closet/security/science,
 /obj/item/crowbar,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/power/apc{
 	areastring = "/area/security/checkpoint/science/research";
 	dir = 8;
@@ -26352,7 +26352,7 @@
 	pixel_y = -30
 	},
 /obj/item/crowbar,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/plasteel/dark,
 /area/security/checkpoint/medical)
 "baU" = (
@@ -35490,7 +35490,7 @@
 "bsV" = (
 /obj/structure/closet/secure_closet/security/cargo,
 /obj/item/crowbar,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/power/apc{
 	areastring = "/area/security/checkpoint/supply";
 	dir = 1;
@@ -42306,7 +42306,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/flasher{
 	id = "Cell 6";
 	name = "Prisoner Pacifier";
@@ -42325,7 +42325,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/flasher{
 	id = "Cell 5";
 	name = "Prisoner Pacifier";
@@ -42344,7 +42344,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/flasher{
 	id = "Cell 4";
 	name = "Prisoner Pacifier";
@@ -42387,7 +42387,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/flasher{
 	id = "Cell 3";
 	name = "Prisoner Pacifier";
@@ -42423,7 +42423,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/flasher{
 	id = "Cell 2";
 	name = "Prisoner Pacifier";
@@ -42442,7 +42442,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/flasher{
 	id = "Cell 1";
 	name = "Prisoner Pacifier";
@@ -49976,9 +49976,9 @@
 	pixel_x = 24
 	},
 /obj/machinery/button/electrochromatic{
+	id = "!interrogation_room";
 	pixel_x = 38;
-	pixel_y = -5;
-	id = "!interrogation_room"
+	pixel_y = -5
 	},
 /turf/open/floor/plasteel,
 /area/security/warden)
@@ -55786,8 +55786,7 @@
 /area/engine/atmos)
 "ciz" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
-	dir = 8;
-	name = "scrubbers pipe"
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)

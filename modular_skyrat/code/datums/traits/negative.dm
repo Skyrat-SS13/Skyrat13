@@ -21,7 +21,7 @@
 		if("Lawyer")
 			heirloom_type = /obj/item/storage/briefcase/lawyer/family
 		if("Brig Physician")
-			heirloom_type = pick(/obj/item/clothing/neck/stethoscope, /obj/item/roller, /obj/item/book/manual/wiki/security_space_law)
+			heirloom_type = pick(/obj/item/clothing/neck/stethoscope, /obj/item/roller, /obj/item/book/manual/wiki/skyrat/corporate_regulations)//Skyrat Edit
 		if("Prisoner")
 			heirloom_type = /obj/item/pen/blue
 		if("Janitor")

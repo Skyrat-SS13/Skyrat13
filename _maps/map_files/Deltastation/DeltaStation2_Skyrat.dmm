@@ -3102,7 +3102,7 @@
 /area/security/checkpoint)
 "alB" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/radio,
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = 32
@@ -7305,8 +7305,7 @@
 /area/engine/atmospherics_engine)
 "avi" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
-	dir = 8;
-	name = "scrubbers pipe"
+	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -12002,7 +12001,7 @@
 	pixel_x = -32
 	},
 /obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/radio,
 /obj/machinery/button/door{
 	desc = "A remote control switch.";
@@ -13806,7 +13805,6 @@
 "aKh" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plasteel,
@@ -18581,12 +18579,12 @@
 	pixel_y = 3
 	},
 /obj/structure/flora/ausbushes/grassybush{
-	pixel_y = 3;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 3
 	},
 /obj/structure/flora/ausbushes/lavendergrass{
-	pixel_y = 3;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 3
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -19432,9 +19430,9 @@
 /area/security/prison)
 "aWf" = (
 /obj/machinery/turnstile{
+	dir = 4;
 	name = "Prison Exit";
-	req_one_access_txt = "1;4;63;70";
-	dir = 4
+	req_one_access_txt = "1;4;63;70"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/dark,
@@ -22380,20 +22378,20 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/box/handcuffs{
-	pixel_y = 5;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 5
 	},
 /obj/item/storage/box/prisoner{
-	pixel_y = 5;
-	pixel_x = 11
+	pixel_x = 11;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "bcP" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/bodybags{
-	pixel_y = 5;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -28222,8 +28220,8 @@
 	pixel_y = 3
 	},
 /obj/structure/flora/ausbushes/fullgrass{
-	pixel_y = 3;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 3
 	},
 /obj/structure/flora/ausbushes/brflowers{
 	pixel_x = -3;
@@ -29184,8 +29182,8 @@
 	dir = 4
 	},
 /obj/machinery/newscaster/security_unit{
-	pixel_y = 32;
-	pixel_x = -28
+	pixel_x = -28;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -29268,7 +29266,7 @@
 "brB" = (
 /obj/structure/table/wood,
 /obj/item/storage/secure/briefcase,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
 "brC" = (
@@ -31321,8 +31319,8 @@
 "bwh" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin/bundlenatural{
-	pixel_y = 5;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 5
 	},
 /obj/item/pen/fourcolor{
 	pixel_x = 10
@@ -31335,8 +31333,8 @@
 "bwi" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin/bundlenatural{
-	pixel_y = 5;
-	pixel_x = -10
+	pixel_x = -10;
+	pixel_y = 5
 	},
 /obj/item/pen/fountain{
 	pixel_x = -10
@@ -32603,7 +32601,7 @@
 	dir = 1
 	},
 /obj/item/folder/red,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -38263,7 +38261,7 @@
 	pixel_y = 32
 	},
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/camera/detective,
 /turf/open/floor/plasteel/dark,
 /area/security/detectives_office)
@@ -39211,13 +39209,13 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/window/brigdoor/northright{
+	dir = 2;
 	name = "Warden's Desk";
-	req_access_txt = "3";
-	dir = 2
+	req_access_txt = "3"
 	},
 /obj/machinery/door/window/southright{
-	name = "Warden's Desk";
-	dir = 1
+	dir = 1;
+	name = "Warden's Desk"
 	},
 /obj/item/folder/red,
 /obj/item/pen,
@@ -40287,8 +40285,8 @@
 /area/ai_monitored/security/armory)
 "bNt" = (
 /obj/structure/flora/ausbushes/pointybush{
-	pixel_y = 3;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 3
 	},
 /obj/structure/flora/ausbushes/ywflowers{
 	pixel_x = 3;
@@ -41716,7 +41714,7 @@
 "bQy" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/wood,
 /area/bridge/meeting_room/council)
 "bQz" = (
@@ -42132,8 +42130,8 @@
 	},
 /obj/item/gun/ballistic/shotgun/riot,
 /obj/item/gun/ballistic/shotgun/riot{
-	pixel_y = -6;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = -6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/dark,
@@ -44192,8 +44190,8 @@
 	},
 /obj/structure/filingcabinet/chestdrawer,
 /obj/item/storage/toolbox/mechanical{
-	pixel_y = 10;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
@@ -44773,7 +44771,7 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/radio,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -48095,8 +48093,8 @@
 /area/security/courtroom)
 "cdg" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/taperecorder{
 	pixel_x = 3
 	},
@@ -51850,7 +51848,7 @@
 "clx" = (
 /obj/structure/rack,
 /obj/item/crowbar/red,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -65423,7 +65421,7 @@
 /area/security/checkpoint/science/research)
 "cQG" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/radio,
 /obj/machinery/status_display/ai{
 	pixel_y = 32
@@ -66431,7 +66429,7 @@
 	pixel_x = -32
 	},
 /obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/radio,
 /obj/machinery/button/door{
 	desc = "A remote control switch for the medbay foyer.";
@@ -78689,12 +78687,12 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/structure/table/glass,
 /obj/item/storage/box/bodybags{
-	pixel_y = 5;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 5
 	},
 /obj/item/storage/box/bodybags{
-	pixel_y = 5;
-	pixel_x = 11
+	pixel_x = 11;
+	pixel_y = 5
 	},
 /obj/machinery/button/electrochromatic{
 	id = "cloning_windows";
@@ -84743,10 +84741,7 @@
 "dFx" = (
 /obj/structure/table/wood,
 /obj/item/crowbar/red,
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = 3;
-	pixel_y = 3
-	},
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/book/manual/wiki/detective,
 /obj/item/camera/detective,
 /turf/open/floor/plasteel/dark,
@@ -92261,12 +92256,12 @@
 /obj/item/reagent_containers/food/snacks/grown/parsnip,
 /obj/item/reagent_containers/food/snacks/grown/chili,
 /obj/item/reagent_containers/food/snacks/grown/citrus/orange{
-	pixel_y = 7;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/food/snacks/grown/citrus/lime{
-	pixel_y = 5;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
@@ -97417,9 +97412,9 @@
 /area/chapel/office)
 "glE" = (
 /obj/machinery/turnstile{
+	dir = 1;
 	name = "Visitation Exit";
-	req_one_access_txt = ";1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;52;53;54;55;56;57;58;59;60;61;62;63;64;65;66;67;68;70";
-	dir = 1
+	req_one_access_txt = ";1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;52;53;54;55;56;57;58;59;60;61;62;63;64;65;66;67;68;70"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -98909,15 +98904,15 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/window/brigdoor/northright{
+	dir = 2;
 	name = "Armoury Desk";
-	req_access_txt = "3";
-	dir = 2
+	req_access_txt = "3"
 	},
 /obj/item/folder/red,
 /obj/item/pen,
 /obj/machinery/door/window/southright{
-	name = "Armoury Desk";
-	dir = 1
+	dir = 1;
+	name = "Armoury Desk"
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
@@ -100262,8 +100257,8 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/mechanical{
-	pixel_y = 10;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 10
 	},
 /obj/item/storage/box/handcuffs{
 	pixel_y = 5
@@ -103736,10 +103731,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = -3;
-	pixel_y = 5
-	},
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/plasteel,
 /area/security/main)
 "yiv" = (

@@ -731,7 +731,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "abU" = (
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/structure/table/wood,
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1092,8 +1092,7 @@
 /area/security/prison)
 "acI" = (
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /obj/machinery/door/firedoor,
@@ -1228,8 +1227,7 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -1246,8 +1244,7 @@
 "acZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -3090,8 +3087,8 @@
 /area/security/brig)
 "agp" = (
 /obj/structure/table,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "agq" = (
@@ -3529,8 +3526,8 @@
 /area/security/main)
 "ahd" = (
 /obj/structure/table,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -4809,7 +4806,7 @@
 /area/ai_monitored/security/armory)
 "ajf" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/wood,
 /area/lawoffice)
 "ajg" = (
@@ -5186,7 +5183,7 @@
 /area/security/courtroom)
 "ajQ" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -7394,10 +7391,7 @@
 /area/security/courtroom)
 "aoH" = (
 /obj/structure/table,
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = -3;
-	pixel_y = 5
-	},
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "aoI" = (
@@ -23816,7 +23810,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/toilet/locker)
 "bbM" = (
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/structure/table/wood,
 /turf/open/floor/carpet,
 /area/bridge/meeting_room)
@@ -25851,7 +25845,7 @@
 /area/crew_quarters/heads/captain)
 "bgV" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/coin/plasma,
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -26001,7 +25995,7 @@
 	pixel_y = 26;
 	req_access_txt = "5"
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -33412,7 +33406,7 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
 "bxD" = (
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -34864,7 +34858,7 @@
 /area/security/checkpoint/science)
 "bAH" = (
 /obj/structure/table,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -42790,7 +42784,7 @@
 /area/security/checkpoint/engineering)
 "bTH" = (
 /obj/structure/table,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -49100,12 +49094,6 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
-"cjb" = (
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel{
-	name = "floor"
-	},
 /area/engine/engineering)
 "cjc" = (
 /obj/effect/turf_decal/stripes/line{
@@ -64142,7 +64130,7 @@
 /obj/item/book/manual/wiki/experimentor,
 /obj/item/book/manual/wiki/research_and_development,
 /obj/item/book/manual/wiki/robotics_cyborgs,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/book/manual/wiki/medicine,
 /obj/item/book/manual/wiki/medical_cloning,
 /obj/item/book/manual/wiki/infections,
@@ -65131,7 +65119,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance/abandoned{
-	name = "maintenance access";
 	req_access_txt = "12"
 	},
 /obj/structure/barricade/wooden/crude,
@@ -92213,8 +92200,8 @@ bVJ
 cay
 ccw
 cig
-cjb
-cjb
+cSV
+cSV
 cig
 cig
 cmG

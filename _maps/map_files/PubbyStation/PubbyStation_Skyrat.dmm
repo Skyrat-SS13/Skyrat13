@@ -2006,8 +2006,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor/plating,
@@ -4681,7 +4680,7 @@
 /area/crew_quarters/heads/hos)
 "amx" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "amy" = (
@@ -5738,7 +5737,7 @@
 /turf/open/floor/plating,
 /area/security/warden)
 "aoR" = (
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/clothing/ears/earmuffs,
 /obj/item/clothing/glasses/sunglasses,
 /obj/structure/table/reinforced,
@@ -16431,7 +16430,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -27047,7 +27046,7 @@
 /area/security/checkpoint/medical)
 "bmv" = (
 /obj/structure/table,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -34724,7 +34723,7 @@
 	dir = 4;
 	network = list("ss13","rd")
 	},
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -42834,7 +42833,7 @@
 /area/storage/tech)
 "bUi" = (
 /obj/structure/table,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/machinery/camera{
 	c_tag = "Engineering Security Post";
 	dir = 4
@@ -58429,8 +58428,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
@@ -61110,8 +61108,7 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
+	id = "executionfireblast"
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
@@ -63396,7 +63393,7 @@
 /area/maintenance/department/engine)
 "uVf" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/skyrat/corporate_regulations,
 /obj/item/pen/fountain,
 /obj/item/stamp/law,
 /turf/open/floor/carpet,
