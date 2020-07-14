@@ -75,7 +75,8 @@ SUBSYSTEM_DEF(atoms)
 			if(length(accept_turfs))
 				var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
 				if(istype(T))
-					T.BruteForceSpawn(I)
+					if(T.BruteForceSpawn(I))
+						break
 			else
 				testing("Static megafauna spawning ran out of possible turfs to spawn on.")
 				break
@@ -88,7 +89,8 @@ SUBSYSTEM_DEF(atoms)
 		if(length(accept_turfs))
 			var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
 			if(istype(T))
-				T.BruteForceTendril(/obj/structure/spawner/lavaland/legion)
+				if(T.BruteForceTendril(/obj/structure/spawner/lavaland/legion))
+					break
 		else
 			testing("Static tendril spawning ran out of possible turfs to spawn on.")
 			break
