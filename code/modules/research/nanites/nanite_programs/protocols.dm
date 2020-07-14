@@ -61,7 +61,6 @@
 		/datum/reagent/mercury,
 		/datum/reagent/aluminium,
 		/datum/reagent/silicon)
-	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/protocol/tinker/check_conditions()
 	if(!nanites.host_mob.reagents)
