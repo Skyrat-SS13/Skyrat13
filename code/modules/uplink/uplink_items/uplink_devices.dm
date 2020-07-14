@@ -19,12 +19,14 @@
 	desc = "A small device intended for recharging Cryptographic Sequencers. Using it will add five extra charges to the Cryptographic Sequencer."
 	item = /obj/item/emagrecharge
 	cost = 2
+	surplus = 30
 
 /datum/uplink_item/device_tools/bluespacerecharge
 	name = "Bluespace Crystal Recharging Device"
 	desc = "A small device intended for recharging Wall Walking boots. Using it will add six charges to them. Use ten bluespace crystals on this recharger to add three more charges to it. "
 	item = /obj/item/bluespacerecharge
 	cost = 2
+	surplus = 30
 
 /datum/uplink_item/device_tools/phantomthief
 	name = "Syndicate Mask"
