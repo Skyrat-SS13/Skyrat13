@@ -56,6 +56,34 @@ SUBSYSTEM_DEF(atoms)
 			A.LateInitialize()
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
+	//skyrat edit
+	var/list/bruh = list(/mob/living/simple_animal/hostile/megafauna/dragon = 0,\
+						/mob/living/simple_animal/hostile/megafauna/colossus = 0,\
+						/mob/living/simple_animal/hostile/megafauna/bubblegum = 0)
+	var/list/accept_turfs = (GLOB.spawned_turfs - GLOB.success_spawned_turfs)
+	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
+		if(bruh[M.type])
+			bruh[M.type]++
+	for(var/I in bruh)
+		var/attempts = 0
+		while(get_mega_count(I) < 1)
+			attempts++
+			var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
+			if(istype(T))
+				T.BruteForceSpawn(I)
+			if(attempts >= 30)
+				testing("Static megafauna spawning failed after [attempts] attempts.")
+				break
+	var/attempts = 0
+	while(get_tendril_count(/obj/structure/spawner/lavaland/legion) < 1)
+		attempts++
+		var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
+		if(istype(T))
+			T.BruteForceTendril(/obj/structure/spawner/lavaland/legion)
+		if(attempts >= 30)
+			testing("Static tendril spawning failed after [attempts] attempts.")
+			break
+	//
 
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
 	var/the_type = A.type

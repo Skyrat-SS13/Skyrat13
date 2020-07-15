@@ -107,6 +107,7 @@ obj/item/robot_module/butler/Initialize()
 		"Eyebot" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "eyebotsd"),
 		"Robot" = image(icon = 'modular_skyrat/icons/mob/robotssd.dmi', icon_state = "robot_old"),
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysd"),
+		"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootysd"),
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_standard"),
 		"Miss m" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "missm_sd")
 		)
@@ -138,6 +139,9 @@ obj/item/robot_module/butler/Initialize()
 		if("Bootyborg")
 			cyborg_base_icon = "bootysd"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("Male Bootyborg")
+			cyborg_base_icon = "male_bootysd"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 		if("Protectron")
 			cyborg_base_icon = "protectron_standard"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -160,6 +164,7 @@ obj/item/robot_module/butler/Initialize()
 		"Sleek" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "sleekpeace"),
 		"Marina" = image(icon = 'modular_skyrat/icons/mob/customrobot.dmi', icon_state = "marinapeace"),
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootypeace"),
+		"Male Bootyborg" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootypeace"),
 		"Protectron" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "protectron_peacekeeper")
 		))
 	var/peace_borg_icon = show_radial_menu(R, R , peace_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
@@ -187,6 +192,9 @@ obj/item/robot_module/butler/Initialize()
 		if("Bootyborg")
 			cyborg_base_icon = "bootypeace"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("Male Bootyborg")
+			cyborg_base_icon = "male_bootypeace"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 		if("Protectron")
 			cyborg_base_icon = "protectron_peacekeeper"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
@@ -199,6 +207,7 @@ obj/item/robot_module/butler/Initialize()
 	var/static/list/clown_icons = sortList(list(
 		"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "clown"),
 		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "bootyclown"),
+		"Bootyborg" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "male_bootyclown"),
 		"Marina" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "marina_mommy"),
 		"Garish" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "garish"),
 		"Robot" = image(icon = 'modular_skyrat/icons/mob/clownborgs.dmi', icon_state = "clownbot"),
@@ -212,6 +221,11 @@ obj/item/robot_module/butler/Initialize()
 		if("Bootyborg")
 			cyborg_base_icon = "bootyclown"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
+		
+		if("Male Bootyborg")
+			cyborg_base_icon = "male_bootyclown"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
+
 		if("Marina")
 			cyborg_base_icon = "marina_mommy"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/clownborgs.dmi'
@@ -291,6 +305,8 @@ obj/item/robot_module/butler/Initialize()
 		"Spider" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "spidersyndi"),
 		"Booty Striker" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootynukie"),
 		"Booty Syndicate" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysyndie"),
+		"Male Booty Striker" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootynukie"),
+		"Male Booty Syndicate" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootysyndie"),
 		))
 	var/syndiejack_icon = show_radial_menu(R, R , syndicatejack_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
 	switch(syndiejack_icon)
@@ -317,6 +333,12 @@ obj/item/robot_module/butler/Initialize()
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 		if("Booty Syndicate")
 			cyborg_base_icon = "bootysyndie"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("Male Booty Striker")
+			cyborg_base_icon = "male_bootynukie"
+			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
+		if("Male Booty Syndicate")
+			cyborg_base_icon = "male_bootysyndie"
 			cyborg_icon_override = 'modular_skyrat/icons/mob/moreborgsmodels.dmi'
 		else
 			return FALSE

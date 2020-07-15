@@ -30,7 +30,6 @@
 	name = "Detective"
 	jobtype = /datum/job/detective
 
-	id = /obj/item/card/id/department/sec // Skyrat change
 	belt = /obj/item/pda/detective
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/security/detective
