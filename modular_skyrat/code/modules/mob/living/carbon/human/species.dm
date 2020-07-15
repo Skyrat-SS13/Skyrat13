@@ -19,7 +19,7 @@
 			else
 				BP = def_zone
 	if(!def_zone)
-				def_zone = ran_zone(def_zone)
+		def_zone = ran_zone(def_zone)
 			if(damagetype == STAMINA && def_zone == BODY_ZONE_HEAD)
 				def_zone = BODY_ZONE_CHEST
 			BP = H.get_bodypart(check_zone(def_zone))
