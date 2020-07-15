@@ -154,7 +154,7 @@
 			continue
 		if(t.x > cen.x && t.y == cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			var/datum/component/overlay_lighting/OLL = L.GetComponent(/datum/component/overlay_lighting)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
 			OL.set_color_range_power(LIGHT_COLOR_YELLOW, 1+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
