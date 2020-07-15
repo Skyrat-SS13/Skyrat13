@@ -341,9 +341,9 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(13 to 19)
 			return "a teenager"
 		*/
-		if(18 to 30) //anti-citadle change
+		if(18 to 25) //anti-citadel change
 			return "a young adult"
-		if(30 to 45)
+		if(25 to 45)
 			return "an adult"
 		if(45 to 60)
 			return "middle-aged"
