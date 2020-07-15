@@ -28,8 +28,8 @@
 	program_type = /datum/nanite_program/monitoring
 
 //skyrat add, stolen from downstream new era
-/obj/item/disk/nanite_program/signaler
-	program_type = /datum/nanite_program/signaler
+/obj/item/disk/nanite_program/signaller
+	program_type = /datum/nanite_program/signaller
 //
 
 /obj/item/disk/nanite_program/relay
