@@ -139,53 +139,52 @@
 
 /obj/machinery/jukebox/disco/proc/dance_setup()
 	var/turf/cen = get_turf(src)
-	var/datum/component/overlay_lighting/OL
 	FOR_DVIEW(var/turf/t, 3, get_turf(src),INVISIBILITY_LIGHTING)
 		if(t.x == cen.x && t.y > cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			OL = L.GetComponent(/datum/component/overlay_lighting)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
 			OL.set_color_range_power(LIGHT_COLOR_RED, 1+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if(t.x == cen.x && t.y < cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			OL = L.GetComponent(/datum/component/overlay_lighting)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
 			OL.set_color_range_power(LIGHT_COLOR_PURPLE, 1+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if(t.x > cen.x && t.y == cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			OL = L.GetComponent(/datum/component/overlay_lighting)
+			var/datum/component/overlay_lighting/OLL = L.GetComponent(/datum/component/overlay_lighting)
 			OL.set_color_range_power(LIGHT_COLOR_YELLOW, 1+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if(t.x < cen.x && t.y == cen.y)
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			OL = L.GetComponent(/datum/component/overlay_lighting)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
 			OL.set_color_range_power(LIGHT_COLOR_GREEN, 1+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if((t.x+1 == cen.x && t.y+1 == cen.y) || (t.x+2==cen.x && t.y+2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			OL = L.GetComponent(/datum/component/overlay_lighting)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
 			OL.set_color_range_power(LIGHT_COLOR_ORANGE, 1.4+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if((t.x-1 == cen.x && t.y-1 == cen.y) || (t.x-2==cen.x && t.y-2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			OL = L.GetComponent(/datum/component/overlay_lighting)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
 			OL.set_color_range_power(LIGHT_COLOR_CYAN, 1.4+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if((t.x-1 == cen.x && t.y+1 == cen.y) || (t.x-2==cen.x && t.y+2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			OL = L.GetComponent(/datum/component/overlay_lighting)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
 			OL.set_color_range_power(LIGHT_COLOR_BLUEGREEN, 1.4+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
 		if((t.x+1 == cen.x && t.y-1 == cen.y) || (t.x+2==cen.x && t.y-2 == cen.y))
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
-			OL = L.GetComponent(/datum/component/overlay_lighting)
+			var/datum/component/overlay_lighting/OL = L.GetComponent(/datum/component/overlay_lighting)
 			OL.set_color_range_power(LIGHT_COLOR_BLUE, 1.4+get_dist(src, L), 30-(get_dist(src,L)*8))
 			spotlights+=L
 			continue
