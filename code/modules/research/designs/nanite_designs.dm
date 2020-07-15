@@ -90,11 +90,11 @@
 	category = list("Utility Nanites")
 
 //skyrat add, stolen from new era, thanks trigg
-/datum/design/nanites/signaller
-	name = "Signaller"
+/datum/design/nanites/signaler
+	name = "Signaler"
 	desc = "The nanites receive and send radio signals."
-	id = "signaller_nanites"
-	program_type = /datum/nanite_program/signaller
+	id = "signaler_nanites"
+	program_type = /datum/nanite_program/signaler
 	category = list("Utility Nanites")
 //
 
