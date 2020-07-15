@@ -68,9 +68,10 @@ They deal 35 brute (armor is considered).
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/Life()
 	. = ..()
-	for(var/mob/living/M in view(4, src))
-		if(!(M in introduced))
-			introduction(M)
+	if(!wander)
+		for(var/mob/living/M in view(4, src))
+			if(!(M in introduced) && (stat != DEAD))
+				introduction(M)
 
 /mob/living/simple_animal/hostile/megafauna/gladiator/apply_damage(damage, damagetype, def_zone, blocked, forced)
 	if(speen)
