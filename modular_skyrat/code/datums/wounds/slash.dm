@@ -290,8 +290,8 @@
 	name = "Weeping Avulsion"
 	desc = "Patient's skin is completely torn open, along with significant loss of tissue. Extreme blood loss will lead to quick death without intervention."
 	treat_text = "Immediate bandaging and either suturing or cauterization, followed by supervised resanguination."
-	examine_desc = "is spurting blood at an alarming rate"
-	occur_text = "is torn open, spraying blood wildly"
+	examine_desc = "is carved down to the bone, spraying blood wildly"
+	occur_text = "is brutally torn open, spraying blood wildly"
 	sound_effect = 'modular_skyrat/sound/effects/blood3.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
 	initial_flow = 4.25
@@ -309,7 +309,7 @@
 	desc = "Patient has been cut open for surgical purposes."
 	treat_text = "Finalization of surgical procedures on the affected limb."
 	examine_desc = "is surgically cut open, organs visible from it's gaping wound"
-	occur_text = "gets surgically cut open"
+	occur_text = "is surgically cut open"
 	sound_effect = 'modular_skyrat/sound/effects/blood1.ogg'
 	severity = WOUND_SEVERITY_CRITICAL
 	wound_type = WOUND_LIST_INCISION
