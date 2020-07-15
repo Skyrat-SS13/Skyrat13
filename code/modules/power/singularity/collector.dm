@@ -25,7 +25,7 @@
 	var/drainratio = 1
 	var/powerproduction_drain = 0.001
 
-	var/bitcoinproduction_drain = 0.01
+	var/bitcoinproduction_drain = 0.05
 	var/bitcoinmining = FALSE
 	rad_insulation = RAD_EXTREME_INSULATION
 	var/obj/item/radio/Radio
