@@ -334,20 +334,6 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/misc/carpet
-<<<<<<< HEAD
-	name = "Premium Carpet Crate"
-	desc = "Plasteel floor tiles getting on your nerves? These stacks of extra soft carpet will tie any room together. Contains some classic carpet, along with black, red, and monochrome variants." //Skyrat change, fixes typo
-	cost = 1350
-	contains = list(/obj/item/stack/tile/carpet/fifty,
-					/obj/item/stack/tile/carpet/fifty,
-					/obj/item/stack/tile/carpet/black/fifty,
-					/obj/item/stack/tile/carpet/black/fifty,
-					/obj/item/stack/tile/carpet/blackred/fifty,
-					/obj/item/stack/tile/carpet/blackred/fifty,
-					/obj/item/stack/tile/carpet/monochrome/fifty,
-					/obj/item/stack/tile/carpet/monochrome/fifty)
-	crate_name = "premium carpet crate"
-=======
 	goody = PACK_GOODY_PUBLIC
 	name = "Classic Carpet Single-Pack"
 	desc = "Plasteel floor tiles getting on your nerves? This 50 units stack of extra soft carpet will tie any room together."
@@ -399,7 +385,6 @@
 /datum/supply_pack/misc/carpet/premium/blue
 	name = "Blue Carpet Single-Pack"
 	contains = list(/obj/item/stack/tile/carpet/blue/thirty)
->>>>>>> 8cd81ff89b... Merge pull request #12488 from Ghommie/Ghommie-cit813
 
 /datum/supply_pack/misc/noslipfloor
 	name = "High-traction Floor Tiles"
