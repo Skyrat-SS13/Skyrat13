@@ -1,8 +1,8 @@
 // stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT
-#define RAD_COLLECTOR_EFFICIENCY 80 	// radiation needs to be over this amount to get power
+#define RAD_COLLECTOR_EFFICIENCY 40 	// radiation needs to be over this amount to get power skyrat edit
 #define RAD_COLLECTOR_COEFFICIENT 100
 #define RAD_COLLECTOR_STORED_OUT 0.04	// (this*100)% of stored power outputted per tick. Doesn't actualy change output total, lower numbers just means collectors output for longer in absence of a source
-#define RAD_COLLECTOR_MINING_CONVERSION_RATE 0.00001 //This is gonna need a lot of tweaking to get right. This is the number used to calculate the conversion of watts to research points per process()
+#define RAD_COLLECTOR_MINING_CONVERSION_RATE 0.001 //This is gonna need a lot of tweaking to get right. This is the number used to calculate the conversion of watts to research points per process() skyrat edit
 #define RAD_COLLECTOR_OUTPUT min(stored_power, (stored_power*RAD_COLLECTOR_STORED_OUT)+1000) //Produces at least 1000 watts if it has more than that stored
 
 /obj/machinery/power/rad_collector
@@ -25,7 +25,7 @@
 	var/drainratio = 1
 	var/powerproduction_drain = 0.001
 
-	var/bitcoinproduction_drain = 0.15
+	var/bitcoinproduction_drain = 0.001
 	var/bitcoinmining = FALSE
 	rad_insulation = RAD_EXTREME_INSULATION
 	var/obj/item/radio/Radio
@@ -68,6 +68,8 @@
 			eject()
 		else
 			var/gasdrained = bitcoinproduction_drain*drainratio
+			//skyrat edit - makes plasma also work in research
+			loaded_tank.air_contents.gases[/datum/gas/plasma] -= gasdrained
 			loaded_tank.air_contents.gases[/datum/gas/tritium] -= gasdrained
 			loaded_tank.air_contents.gases[/datum/gas/oxygen] -= gasdrained
 			loaded_tank.air_contents.gases[/datum/gas/carbon_dioxide] += gasdrained*2

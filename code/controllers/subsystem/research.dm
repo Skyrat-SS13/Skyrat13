@@ -28,9 +28,9 @@ SUBSYSTEM_DEF(research)
 
 	//SKYRAT CHANGE
 	//PROBLEM COMPUTER CHARGES
-	var/problem_computer_max_charges = 5
-	var/problem_computer_charges = 5
-	var/problem_computer_charge_time = 90 SECONDS
+	var/problem_computer_max_charges = 10
+	var/problem_computer_charges = 10
+	var/problem_computer_charge_time = 20 SECONDS
 	var/problem_computer_next_charge_time = 0
 
 	var/list/techweb_point_items = list(		//path = list(point type = value)
@@ -295,9 +295,8 @@ SUBSYSTEM_DEF(research)
 	var/list/errored_datums = list()
 	var/list/point_types = list()				//typecache style type = TRUE list
 	//----------------------------------------------
-	var/point_generation = FALSE //skyrat edit - removing passive points
 	var/list/single_server_income = list(TECHWEB_POINT_TYPE_GENERIC = 35)	//citadel edit - techwebs nerf
-	var/multiserver_calculation = FALSE
+	//var/multiserver_calculation = FALSE gating this stuff behind population
 	var/last_income
 	//^^^^^^^^ ALL OF THESE ARE PER SECOND! ^^^^^^^^
 
@@ -328,9 +327,10 @@ SUBSYSTEM_DEF(research)
 	return ..()
 
 /datum/controller/subsystem/research/fire()
-	if(point_generation) //skyrat edit - removing passive points
+	var/totalplayers = GLOB.player_list.len
+	if(totalplayers <= 30) //skyrat edit - removing passive points
 		var/list/bitcoins = list()
-		if(multiserver_calculation)
+		if(totalplayers <= 10)
 			var/eff = calculate_server_coefficient()
 			for(var/obj/machinery/rnd/server/miner in servers)
 				var/list/result = (miner.mine())	//SLAVE AWAY, SLAVE.
