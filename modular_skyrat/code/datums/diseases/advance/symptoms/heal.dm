@@ -388,12 +388,13 @@
 	REMOVE_TRAIT(A.affected_mob, TRAIT_RADIMMUNE, "disease")
 
 /datum/symptom/heal/radiation/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
-	var/heal_amt = actual_power * 15
+	if(M.radiation)
+		var/heal_amt = actual_power * 15
+		if(prob(5))
+			to_chat(M, "<span class='notice'>You feel the rads going away.</span>")
 
-	if(prob(5) && (M.radiation))
-		to_chat(M, "<span class='notice'>You feel the rads going away.</span>")
-
-	M.radiation = max(M.radiation - heal_amt, 0)
+		M.radiation = max(M.radiation - heal_amt, 0)
+		M.adjustToxLoss(heal_amt/60)
 
 	return 1
 

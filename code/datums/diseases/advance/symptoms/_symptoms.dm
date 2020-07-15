@@ -47,7 +47,8 @@
 		if(disease != A)
 			for(var/i in disease.symptoms)
 				if(istype(i, src.type))
-					return qdel(src)
+					neutered = TRUE
+					return FALSE
 	//
 	next_activation = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10) //so it doesn't instantly activate on infection
 	return TRUE
