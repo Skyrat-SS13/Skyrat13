@@ -60,3 +60,39 @@
 	desc = "You are one with the dark. You'll get more and more invisible over time, as long as you stay immobile. The invisibility effect is reset whenever you interact with something."
 	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
 	icon_state = "stealth"
+
+/obj/screen/alert/status_effect/regenerative_core
+	name = "Regenerating Tendrils"
+	desc = "The tendrils slowly heal your damaged carcass."
+	icon_state = "regenerative_core"
+
+/datum/status_effect/regenerative_core
+	id = "Regenerative Core"
+	duration = 15 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /obj/screen/alert/status_effect/regenerative_core
+	var/nutrition = 50
+	var/salve_amount = 30
+	var/brute_heal = 20
+	var/burn_heal = 20
+	var/toxin_heal = 20
+	var/firestacks_heal = 20
+	var/brute_heal_proc = 5
+	var/burn_heal_proc = 5
+	var/toxin_heal_proc = 5
+
+/datum/status_effect/regenerative_core/on_apply()
+	. = ..()
+	owner.adjust_nutrition(nutrition)
+	owner.reagents?.add_reagent(/datum/reagent/medicine/mine_salve, salve_amount)
+	owner.adjustBruteLoss(-brute_heal)
+	owner.adjustFireLoss(-burn_heal)
+	owner.adjustToxLoss(toxin_heal)
+	owner.adjust_fire_stacks(-firestacks_heal)
+	return TRUE
+
+/datum/status_effect/regenerative_core/process()
+	. = ..()
+	owner.adjustBruteLoss(-brute_heal_proc)
+	owner.adjustFireLoss(-burn_heal_proc)
+	owner.adjustToxLoss(-toxin_heal_proc)

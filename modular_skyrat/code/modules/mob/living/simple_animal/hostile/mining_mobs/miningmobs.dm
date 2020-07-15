@@ -6,6 +6,18 @@
 	var/list/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING
 	var/gloryhealth = 7.5
 	var/glorymodifier = 1.5
+	var/scar_threshold = 0.25 //the mob needs to be below (maxHealth * scar_threshold) to get scarred
+	var/scarred = FALSE //is the mob running away from danger?
+	var/can_scar = TRUE //can the mob get scarred?
+
+/mob/living/simple_animal/hostile/asteroid/adjustHealth(amount, updating_health, forced)
+	. = ..()
+	if(can_scar && !scarred && (health <= (maxHealth * scar_threshold)))
+		Scar()
+
+/mob/living/simple_animal/hostile/asteroid/proc/Scar()
+	scarred = TRUE
+	return
 
 /mob/living/simple_animal/hostile/asteroid/Life()
 	..()

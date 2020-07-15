@@ -72,6 +72,8 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 			INVOKE_ASYNC(src, .proc/bloodsmack, T, hand)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/bloodsmack(turf/T, handedness)
+	if(prob(5+anger_modifier/4))
+		slaughterlings()
 	if(handedness)
 		new /obj/effect/temp_visual/bubblegum_hands/rightsmack(T)
 	else
@@ -82,7 +84,7 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 			to_chat(L, "<span class='userdanger'>[src] rends you!</span>")
 			playsound(T, attack_sound, 100, TRUE, -1)
 			var/limb_to_hit = L.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
-			L.apply_damage(30, BRUTE, limb_to_hit, L.run_armor_check(limb_to_hit, "melee", null, null)) // You really, really, really better not stand in blood!
+			L.apply_damage(20, BRUTE, limb_to_hit, L.run_armor_check(limb_to_hit, "melee", null, null)) // You really, really, really better not stand in blood!
 	sleep(3)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/blood_warp()
@@ -103,6 +105,8 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 		found_bloodpool = pick(pools)
 	if(found_bloodpool)
 		visible_message("<span class='danger'>[src] sinks into the blood...</span>")
+		if(prob(5+anger_modifier/6))
+			slaughterlings()
 		playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 100, 1, -1)
 		alpha = 0
 		dont_move = TRUE

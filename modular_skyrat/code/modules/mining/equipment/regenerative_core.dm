@@ -1,20 +1,29 @@
 /obj/item/organ/regenerative_core/afterattack(atom/target, mob/user, proximity_flag)
 	if(proximity_flag)
-		if(ishuman(target))
+		if(iscarbon(target))
 			apply_healing_core(target, user)
 		else if(istype(target, /mob/living/simple_animal/hostile/megafauna/bubblegum))
+			visible_message("<span class='notice>[user] tries forcing [src] onto [target]...</span>")
+			if(!do_mob(user, target, 10))
+				return
 			new /mob/living/simple_animal/hostile/megafauna/bubblegum/hard(target.loc)
-			visible_message("[user] turned [target] into an enraged [target]!")
+			visible_message("<span class='userdanger'>[user] turned [target] into an enraged [target]!</span>")
 			qdel(target)
 			qdel(src)
 		else if(istype(target, /mob/living/simple_animal/hostile/megafauna/dragon))
+			visible_message("<span class='notice>[user] tries forcing [src] onto [target]...</span>")
+			if(!do_mob(user, target, 10))
+				return
 			new /mob/living/simple_animal/hostile/megafauna/dragon/hard(target.loc)
-			visible_message("[user] turned [target] into an enraged [target]!")
+			visible_message("<span class='userdanger'>[user] turned [target] into an enraged [target]!</span>")
 			qdel(target)
 			qdel(src)
 		else if(istype(target, /mob/living/simple_animal/hostile/megafauna/legion))
+			visible_message("<span class='notice>[user] tries forcing [src] onto [target]...</span>")
+			if(!do_mob(user, target, 10))
+				return
 			new /mob/living/simple_animal/hostile/megafauna/legion/hard(target.loc)
-			visible_message("[user] turned [target] into an enraged [target]!")
+			visible_message("<span class='userdanger'>[user] turned [target] into an enraged [target]!</span>")
 			qdel(target)
 			qdel(src)
 
@@ -23,27 +32,29 @@
 		apply_healing_core(user, user)
 
 /obj/item/organ/regenerative_core/proc/apply_healing_core(atom/target, mob/user)
-	if(!user || !ishuman(target))
+	if(!user || QDELETED(src))
 		return
-	var/mob/living/carbon/human/H = target
 	if(inert)
 		to_chat(user, "<span class='notice'>[src] has decayed and can no longer be used to heal.</span>")
 		return
-	if(H.stat == DEAD)
+	var/mob/living/carbon/C = target
+	if(!istype(C))
+		to_chat(user, "<span class='notice'>[src] are useless on the simple-minded.</span>")
+		return
+	if(C.stat == DEAD)
 		to_chat(user, "<span class='notice'>[src] are useless on the dead.</span>")
 		return
-	if(H != user)
-		H.visible_message("[user] forces [H] to apply [src]... Black tendrils entangle and reinforce [H.p_them()]!")
+	if(user != C)
+		user.visible_message("[user] forces [C] to apply [src]... Black tendrils entangle and reinforce [C.p_them()]!")
+	else
+		user.visible_message(user, "<span class='notice'>[C] starts applying \the [src] on themselves, disgusting tendrils enthralling them...","<span class='notice'>You start to smear [src] on yourself. The disgusting tendrils will hold you together and allow you to keep moving, but for how long?</span>")
+	if(!do_mob(user, target, (user == target ? 5 : 2)))
+		return
+	if(user != C)
 		SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "other"))
 	else
-		to_chat(user, "<span class='notice'>You start to smear [src] on yourself. Disgusting tendrils hold you together and allow you to keep moving, but for how long?</span>")
 		SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
-	if(is_station_level(H.z))
-		H.adjustBruteLoss(-25, 0)
-		H.adjustFireLoss(-25, 0)
-		for(var/obj/item/organ/O in H)
-			O.damage = 0
-	else
-		H.revive(full_heal = 1)
+	if(!QDELETED(src))
+		C.apply_status_effect(/datum/status_effect/regenerative_core)
+	user.log_message("[user] used [src] to heal [C == user ? "[C.p_them()]self" : C]! Wake up Mr Miner... Wake up, and smell the ash storms...", LOG_ATTACK, color="green") //Logging for 'old' style legion core use, when clicking on a sprite of yourself or another.
 	qdel(src)
-	user.log_message("[user] used [src] to heal [H == user ? "[H.p_them()]self" : H]! Wake the fuck up, Samurai!", LOG_ATTACK, color="green") //Logging for 'old' style legion core use, when clicking on a sprite of yourself or another.

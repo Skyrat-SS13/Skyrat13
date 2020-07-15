@@ -7,6 +7,9 @@
 	glorymessagespka = list("grabs the blood-drunk by the neck and flips them, shooting through their guts with a PKA blast!", "shoots at the blood-drunk's shoulder, exploding their arm! To finish the fiend off, they grab their PKA and bonk the blood-drunk's head inside their torso!", "doesn't bother with being fancy, and simply shoots at the blood-drunk's head with their PKA, exploding it in one violent blast!")
 	glorymessagespkabayonet = list("rams into the blood-drunk's stomach with their PKA's bayonet, knocking them and themselves down! To finish the fiend off, they simply stab into their torso like a madman with their bayonet!", "kicks the blood-drunk's knee hard, breaking it! While the fiend is stunned and barely standing, their chop their head off with the PKA's bayonet!")
 	glorythreshold = 50
+	miner_saw = /obj/item/melee/transforming/cleaving_saw
+	maxHealth = 1250
+	health = 1250
 
 /obj/item/projectile/kinetic/miner
 	color = "#FF0000"

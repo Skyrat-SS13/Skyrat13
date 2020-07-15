@@ -1,4 +1,4 @@
-#define BUBBLEGUM_SMASH (health <= maxHealth*0.5) // angery
+#define BUBBLEGUM_SMASH (health <= maxHealth*0.65) // angery
 #define BUBBLEGUM_CAN_ENRAGE (enrage_till + (enrage_time * 2) <= world.time)
 #define BUBBLEGUM_IS_ENRAGED (enrage_till > world.time)
 
@@ -13,10 +13,7 @@ If it does warp it will enter an enraged state, becoming immune to all projectil
 It may summon clones charging from all sides, one of these charges being bubblegum himself.
 It can charge at its target, and also heavily damaging anything directly hit in the charge.
 If at half health it will start to charge from all sides with clones.
-When Bubblegum dies, it leaves behind a H.E.C.K. mining suit as well as a chest that can contain three things:
- 1. A bottle that, when activated, drives everyone nearby into a frenzy
- 2. A contract that marks for death the chosen target
- 3. A spellblade that can slice off limbs at range
+When Bubblegum dies, it leaves behind a praetor suit, crucible, super shotgun and berserk rune.
 Difficulty: Hard
 */
 
@@ -26,7 +23,7 @@ Difficulty: Hard
 	attack_verb_continuous = "brutally rends"
 	attack_verb_simple = "brutally rend"
 	speed = 5
-	move_to_delay = 5
+	move_to_delay = 4
 	retreat_distance = 5
 	minimum_distance = 5
 	rapid_melee = 8 // every 1/4 second
@@ -241,7 +238,7 @@ obj/item/gps/internal/bubblegum/hard
 		forceMove(get_turf(found_bloodpool))
 		playsound(get_turf(src), 'sound/magic/exit_blood.ogg', 100, TRUE, -1)
 		visible_message("<span class='danger'>And springs back out!</span>")
-		blood_enrage()
+		blood_enrage(TRUE)
 		return TRUE
 	return FALSE
 
@@ -263,8 +260,8 @@ obj/item/gps/internal/bubblegum/hard
 	retreat_distance = get_retreat_distance()
 	minimum_distance = get_minimum_distance()
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/proc/blood_enrage()
-	if(!BUBBLEGUM_CAN_ENRAGE)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/hard/proc/blood_enrage(forced = FALSE)
+	if(!BUBBLEGUM_CAN_ENRAGE && !forced)
 		return FALSE
 	enrage_till = world.time + enrage_time
 	update_approach()

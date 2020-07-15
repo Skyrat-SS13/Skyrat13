@@ -44,28 +44,35 @@
 
 /mob/living/simple_animal/hostile/asteroid/imp/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
-	playsound(src, 'modular_skyrat/sound/misc/impinjured.wav', rand(25,100), -1) //HURT ME PLENTY
+	playsound(src, 'modular_skyrat/sound/misc/impinjured.wav', rand(25,100), 0) //HURT ME PLENTY
 
 /mob/living/simple_animal/hostile/asteroid/imp/bullet_act(obj/item/projectile/P)
 	. = ..()
-	playsound(src, 'modular_skyrat/sound/misc/impinjured.wav', rand(25,100), -1)
+	playsound(src, 'modular_skyrat/sound/misc/impinjured.wav', rand(25,100), 0)
 
 /mob/living/simple_animal/hostile/asteroid/imp/Aggro()
 	. = ..()
-	playsound(src, pick('modular_skyrat/sound/misc/impsight.wav', 'modular_skyrat/sound/misc/impsight2.wav'), rand(50,75), -1)
+	playsound(src, pick('modular_skyrat/sound/misc/impsight.wav', 'modular_skyrat/sound/misc/impsight2.wav'), rand(50,75), 0)
 
 /mob/living/simple_animal/hostile/asteroid/imp/LoseAggro()
 	. = ..()
-	playsound(src, pick('modular_skyrat/sound/misc/impnearby.wav', 'modular_skyrat/sound/misc/impnearby.wav'), rand(25, 60), -1)
+	playsound(src, pick('modular_skyrat/sound/misc/impnearby.wav', 'modular_skyrat/sound/misc/impnearby.wav'), rand(25, 60), 0)
+
+/mob/living/simple_animal/hostile/asteroid/imp/Scar()
+	projectiletype = /obj/item/projectile/magic/impfireball/scarred
 
 /obj/item/projectile/magic/impfireball //bobyot y u no use child of fireball
 	name = "demonic fireball" //because it fucking explodes and deals brute damage even when values are set to -1
 	icon_state = "fireball"
-	damage = 10
+	damage = 15
 	damage_type = BURN
 	nodamage = 0
-	armour_penetration = 20
+	armour_penetration = 50
 	var/firestacks = 5
+
+/obj/item/projectile/magic/impfireball/scarred
+	firestacks = 20
+	damage = 20
 
 /obj/item/projectile/magic/impfireball/on_hit(target)
 	. = ..()
@@ -74,8 +81,8 @@
 		C.adjust_fire_stacks(firestacks)
 		C.IgniteMob()
 		if(C.stat != DEAD && C.stat != UNCONSCIOUS)
-			playsound(C, 'modular_skyrat/sound/misc/doominjured.wav', 100, -1)
+			playsound(C, 'modular_skyrat/sound/misc/doominjured.wav', 100, 0)
 		else if(C.stat == DEAD)
-			playsound(C, 'modular_skyrat/sound/misc/doomdies.wav', 100, -1)
+			playsound(C, 'modular_skyrat/sound/misc/doomdies.wav', 100, 0)
 		else
-			playsound(C, pick('modular_skyrat/sound/misc/doomscream.wav', 'modular_skyrat/sound/misc/doomscream2.wav'), 100, -1)
+			playsound(C, pick('modular_skyrat/sound/misc/doomscream.wav', 'modular_skyrat/sound/misc/doomscream2.wav'), 100, 0)

@@ -11,14 +11,21 @@
 	potentialspawns = list(/mob/living/simple_animal/hostile/asteroid/elite/minerpriest)
 
 /mob/living/simple_animal/hostile/asteroid/elite
+	health = 1250
+	maxHealth = 1250
 	can_talk = TRUE
 	speak_emote = list("growls")
 	gloryhealth = 50
 	glorymodifier = 0.625
+	var/scar_multiplier = 0.5
 
 /mob/living/simple_animal/hostile/asteroid/elite/death(gibbed)
 	gibbed = FALSE
 	..(gibbed)
+
+/mob/living/simple_animal/hostile/asteroid/elite/Scar()
+	. = ..()
+	to_chat(src, "<span class='boldwarning'>The pain you have sustained has made you determined to win this battle!</span>")
 
 obj/item/tumor_shard/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()

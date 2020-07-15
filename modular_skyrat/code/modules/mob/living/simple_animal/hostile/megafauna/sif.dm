@@ -4,7 +4,7 @@ SIF (Sprites and ideas by MetalGearMan)
 
 Sif spawns randomly in lavaland when it can, in the form of a sword which the user needs to interact with in order to summon Sif.
 
-Speical attacks:
+Special attacks:
 	- When Sif's able to he will charge his current target with 200% increased speed for 1 second, getting right next to his target.
 	- Sif can also do an AOE spin attack.
 

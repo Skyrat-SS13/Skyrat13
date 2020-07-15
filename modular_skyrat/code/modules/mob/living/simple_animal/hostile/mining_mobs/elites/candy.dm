@@ -23,8 +23,6 @@
 	icon_aggro = "candy"
 	icon_dead = "candy_dead"
 	icon_gib = "syndicate_gib"
-	maxHealth = 800
-	health = 800
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	attack_verb_continuous = "punches"
@@ -46,6 +44,7 @@
 	glorymessagescrusher = list("slashes Candy in half vertically with their crusher, each of the parts falling off onto the ground limply!")
 	glorymessagespka = list("shoots at Candy's head, breaking their skull open and revealing their brain! Then, they bash the brain into mush with their PKA's stock!", "kicks Candy into the ground, and repeatedly slams their PKA against their skull until they finally die!")
 	glorymessagespkabayonet = list("stabs through Candy's maw and lifts them into the air, shooting their PKA and exploding their head as the limp body falls off!")
+	scar_multiplier = 0.75
 
 /datum/action/innate/elite_attack/bloodcharge
 	name = "Blood Charge"
@@ -101,7 +100,7 @@
 
 // Candy actions
 /mob/living/simple_animal/hostile/asteroid/elite/candy/proc/bloodcharge(target)
-	ranged_cooldown = world.time + 50
+	ranged_cooldown = world.time + (50 * (scarred ? scar_multiplier : 1))
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	var/turf/T = get_turf(src)
 	playsound(src,'sound/magic/demon_attack1.ogg', 200, 1)
@@ -119,7 +118,7 @@
 	var/list/bline = getline(T, target.loc)
 	if(bline.len > 6)
 		return FALSE
-	ranged_cooldown = world.time + 100
+	ranged_cooldown = world.time + (100 * (scarred ? scar_multiplier : 1))
 	visible_message("<span class='boldwarning'>[src] traps [target]!</span>")
 	for(var/turf/J in view(1, target) - get_turf(target))
 		new /obj/effect/temp_visual/bloodwall(J, src)
@@ -138,7 +137,7 @@
 	qdel(chosen)
 
 /mob/living/simple_animal/hostile/asteroid/elite/candy/proc/meatshield()
-	ranged_cooldown = world.time + 25
+	ranged_cooldown = world.time + (25 * (scarred ? scar_multiplier : 1))
 	playsound(src,'sound/magic/Blind.ogg', 200, 1)
 	visible_message("<span class='boldwarning'>[src] raises a wall!</span>")
 	var/turf/T = get_turf(get_step(src, src.dir))
@@ -170,7 +169,7 @@
 		new /obj/effect/temp_visual/bloodwall(otherT, src)
 
 /mob/living/simple_animal/hostile/asteroid/elite/candy/proc/knockdown()
-	ranged_cooldown = world.time + 100
+	ranged_cooldown = world.time + (100 * (scarred ? scar_multiplier : 1))
 	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	visible_message("<span class='boldwarning'>[src] clenches his fists and smashes the ground!</span>")
 	var/list/hit_things = list()
@@ -220,8 +219,7 @@
 		visible_message("<span class='boldwarning'>[src] attacks [L] with much force!</span>")
 		to_chat(L, "<span class='userdanger'>[src] grabs you and throws you with much force!</span>")
 		L.safe_throw_at(throwtarget, 10, 1, src)
-		//L.Paralyze(20)
-		L.Stun(20) //substituting this for the Paralyze from the line above, because we don't have tg paralysis stuff
+		L.Paralyze(20)
 		L.adjustBruteLoss(50)
 	addtimer(CALLBACK(src, .proc/blood_charge_2, move_dir, (times_ran + 1)), 2)
 
@@ -262,7 +260,6 @@
 	return FALSE
 
 //loot
-
 /obj/item/bloodcrawlbottle
 	name = "bloodlust in a bottle"
 	desc = "Drinking this will give you unimaginable powers... and mildly disgust you because of it's metallic taste."
@@ -283,7 +280,7 @@
 
 /obj/effect/proc_holder/spell/bloodcrawl/lesser/choose_targets(mob/user = usr)
 	for(var/obj/effect/decal/cleanable/target in range(range, get_turf(user)))
-		if(target.can_lesser_bloodcrawl_in() && target.bloodiness >= 30)
+		if(target.can_bloodcrawl_in() && target.bloodiness >= 30)
 			perform(target)
 			return
 	revert_cast()
@@ -296,7 +293,7 @@
 				phased = 0
 				if(iscarbon(user))
 					var/mob/living/carbon/C = user
-					C.AdjustBloodVol(initial(C.blood_volume)/10)
+					C.AdjustBloodVol(intial(C.blood_volume)/10)
 		else
 			if(user.phaseout(target))
 				phased = 1

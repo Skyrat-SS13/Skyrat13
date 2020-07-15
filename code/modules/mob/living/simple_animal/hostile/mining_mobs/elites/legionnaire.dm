@@ -48,6 +48,7 @@
 	var/mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/myhead = null
 	var/obj/structure/legionnaire_bonfire/mypile = null
 	var/has_head = TRUE
+	scar_multiplier = 0.5 //skyrat edit
 
 /datum/action/innate/elite_attack/legionnaire_charge
 	name = "Legionnaire Charge"
@@ -97,7 +98,7 @@
 			spew_smoke()
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge(target)
-	ranged_cooldown = world.time + 50
+	ranged_cooldown = world.time + (50 * (scarred ? scar_multiplier : 1))
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	var/turf/T = get_step(get_turf(src), dir_to_target)
 	for(var/i in 1 to 4)
@@ -137,7 +138,7 @@
 	addtimer(CALLBACK(src, .proc/legionnaire_charge_2, move_dir, (times_ran + 1)), 2)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/head_detach(target)
-	ranged_cooldown = world.time + 10
+	ranged_cooldown = world.time + (10 * (scarred ? scar_multiplier : 1))
 	if(myhead != null)
 		myhead.adjustBruteLoss(600)
 		return
@@ -186,7 +187,7 @@
 		var/turf/legionturf = get_turf(src)
 		var/turf/pileturf = get_turf(mypile)
 		if(legionturf == pileturf)
-			mypile.take_damage(100)
+			mypile.take_damage(100 * (scarred ? scar_multiplier : 1)) //skyrat edit
 			mypile = null
 			return
 		playsound(pileturf,'sound/items/fulext_deploy.wav', 200, 1)
@@ -197,7 +198,7 @@
 		mypile.forceMove(legionturf)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/spew_smoke()
-	ranged_cooldown = world.time + 60
+	ranged_cooldown = world.time + (60 * (scarred ? scar_multiplier : 1))
 	var/turf/T = null
 	if(myhead != null)
 		T = get_turf(myhead)
@@ -287,7 +288,7 @@
 	icon = 'icons/obj/lavaland/elite_trophies.dmi'
 	icon_state = "legionnaire_spine"
 	denied_type = /obj/item/crusher_trophy/legionnaire_spine
-	bonus_value = 20
+	bonus_value = 25 //skyrat edit
 
 /obj/item/crusher_trophy/legionnaire_spine/effect_desc()
 	return "mark detonation to have a <b>[bonus_value]%</b> chance to summon a loyal legion skull"

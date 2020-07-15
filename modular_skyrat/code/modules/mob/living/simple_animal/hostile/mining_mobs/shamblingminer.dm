@@ -40,8 +40,24 @@
 	glorymessagespka = list("sticks their PKA into the miner's mouth and shoots it, showering everything in gore!", "bashes the miner's head into their chest with their PKA!", "shoots off both legs of the miner with their PKA!")
 	glorymessagespkabayonet = list("slices the imp's head off by the neck with the PKA's bayonet!", "repeatedly stabs the miner in their gut with the PKA's bayonet!")
 	glorymessagescrusher = list("chops the miner horizontally in half with their crusher in one swift move!", "chops off the miner's legs with their crusher and kicks their face hard, exploding it while they're in the air!", "slashes each of the miner's arms off by the shoulder with their crusher!")
-  
+	var/critical_chance = 5
+	var/crusher_chance = 5
+
+/mob/living/simple_animal/hostile/asteroid/miner/AttackingTarget()
+	. = ..()
+	if(. && prob(critical_chance))
+		new /obj/effect/temp_visual/decoy/fading(src.loc, src)
+		visible_message("<span class='danger'>\The [src] critically slashes \the [target]!")
+		if(isliving(target))
+			var/mob/living/targ = target
+			do_attack_animation(targ, null, null, TRUE)
+			targ.take_bodypart_damage(brute = 25)
+
+/mob/living/simple_animal/hostile/asteroid/miner/Scar()
+	dodge_prob *= 2
+	rapid_melee *= 2
+
 /mob/living/simple_animal/hostile/asteroid/miner/death(gibbed)
 	. = ..()
-	if(prob(15))
+	if(prob(crusher_chance))
 		new /obj/item/twohanded/kinetic_crusher(src.loc)

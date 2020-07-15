@@ -23,8 +23,6 @@
 	icon_aggro = "ash_whelp"
 	icon_dead = "ash_whelp_dead"
 	icon_gib = "syndicate_gib"
-	maxHealth = 800
-	health = 800
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	attack_verb_continuous = "bites"
@@ -100,25 +98,25 @@
 
 //Drakeling actions
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/lava_moat()
-	ranged_cooldown = world.time + 25
+	ranged_cooldown = world.time + (25 * (scarred ? scar_multiplier : 1))
 	visible_message("<span class='boldwarning'>[src] spews lava around themselves! Get back!</span>")
 	for(var/turf/T in oview(1, src))
 		new /obj/effect/temp_visual/lava_warning(T)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/lava_around()
-	ranged_cooldown = world.time + 50
+	ranged_cooldown = world.time + (50 * (scarred ? scar_multiplier : 1))
 	for(var/d in GLOB.cardinals)
 		INVOKE_ASYNC(src, .proc/lava_wall, d, 5)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/fire_spew()
-	ranged_cooldown = world.time + 25
+	ranged_cooldown = world.time + (25 * (scarred ? scar_multiplier : 1))
 	visible_message("<span class='boldwarning'>[src] spews fire!</span>")
 	playsound(src,'sound/magic/Fireball.ogg', 200, 1)
 	sleep(5)
 	fire_wall(src.dir, 10)
 
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/fire_moat()
-	ranged_cooldown = world.time + 100
+	ranged_cooldown = world.time + (100 * (scarred ? scar_multiplier : 1))
 	playsound(src,'sound/magic/Fireball.ogg', 200, 1)
 	visible_message("<span class='boldwarning'>[src] violently puffs smoke!They're going to make a fire moat!</span>")
 	sleep(5)
@@ -126,7 +124,6 @@
 		INVOKE_ASYNC(src, .proc/fire_wall, d, 10)
 
 // Drakeling helpers
-
 /mob/living/simple_animal/hostile/asteroid/elite/drakeling/proc/fire_wall(dir, range)
 	var/list/hitlist = list(src)
 	var/turf/T = get_turf(src)

@@ -111,15 +111,6 @@ They deal 35 brute (armor is considered).
 									)
 			say(message = pick(messages), language = /datum/language/draconic)
 			introduced |= H
-		else if(Hspecies.id == "dunmer")
-			var/list/messages = list("I will finisssh what little of your race remainsss, starting with you!",\
-									"Lavaland belongsss to the lizzzards!",\
-									"No marine can save you now, dark elf!",\
-									"Thisss sacred land wasn't your property before, it won't be now!")
-			say(message = pick(messages))
-			introduced |= H
-			GiveTarget(H)
-			Retaliate()
 		else
 			var/list/messages = list("Get out of my sssight, outlander.",\
 									"You will not run your dirty handsss through what little sssacred land we have left. Out.",\
@@ -264,6 +255,7 @@ They deal 35 brute (armor is considered).
 					playsound(src, 'sound/weapons/slash.ogg', 75, 0)
 					if(M.apply_damage(40, BRUTE, BODY_ZONE_CHEST))
 						visible_message("<span class = 'userdanger'>[src] slashes [M] with his spinning zweihander!</span>")
+						M.Stun(15)
 					else
 						visible_message("<span class = 'userdanger'>[src]'s spinning zweihander is stopped by [M]!</span>")
 						woop = TRUE

@@ -23,8 +23,6 @@
 	icon_aggro = "minerpriest"
 	icon_dead = "minerpriest_dead"
 	icon_gib = "syndicate_gib"
-	maxHealth = 800
-	health = 800
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	attack_verb_continuous = "slashes"

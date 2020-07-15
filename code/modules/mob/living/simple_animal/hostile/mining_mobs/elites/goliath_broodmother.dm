@@ -49,6 +49,7 @@
 
 	var/rand_tent = 0
 	var/list/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/children_list = list()
+	scar_multiplier = 0.7 //skyrat edit
 
 /datum/action/innate/elite_attack/tentacle_patch
 	name = "Tentacle Patch"
@@ -112,7 +113,7 @@
 			new /obj/effect/temp_visual/goliath_tentacle/broodmother(t, src)
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/tentacle_patch(var/target)
-	ranged_cooldown = world.time + 15
+	ranged_cooldown = world.time + (15 * (scarred ? scar_multiplier : 1)) //skyrat edit
 	var/tturf = get_turf(target)
 	if(!isturf(tturf))
 		return
@@ -120,7 +121,7 @@
 	new /obj/effect/temp_visual/goliath_tentacle/broodmother/patch(tturf, src)
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/spawn_children(var/target)
-	ranged_cooldown = world.time + 40
+	ranged_cooldown = world.time + (40 * (scarred ? scar_multiplier : 1)) //skyrat edit
 	visible_message("<span class='boldwarning'>The ground churns behind [src]!</span>")
 	for(var/i in 1 to 2)
 		if(children_list.len >= 8)
@@ -133,7 +134,7 @@
 		children_list += newchild
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/rage()
-	ranged_cooldown = world.time + 70
+	ranged_cooldown = world.time + (70 * (scarred ? scar_multiplier * 0.5 : 1)) //skyrat edit
 	playsound(src,'sound/spookoween/insane_low_laugh.ogg', 200, 1)
 	visible_message("<span class='warning'>[src] starts picking up speed!</span>")
 	color = "#FF0000"
@@ -147,7 +148,7 @@
 	move_to_delay = 5
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/call_children()
-	ranged_cooldown = world.time + 60
+	ranged_cooldown = world.time + (60 * (scarred ? scar_multiplier : 1)) //skyrat edit
 	visible_message("<span class='warning'>The ground shakes near [src]!</span>")
 	var/list/directions = GLOB.cardinals.Copy() + GLOB.diagonals.Copy()
 	for(var/mob/child in children_list)
@@ -236,7 +237,7 @@
 	icon = 'icons/obj/lavaland/elite_trophies.dmi'
 	icon_state = "broodmother_tongue"
 	denied_type = /obj/item/crusher_trophy/broodmother_tongue
-	bonus_value = 10
+	bonus_value = 15 //skyrat edit
 
 /obj/item/crusher_trophy/broodmother_tongue/effect_desc()
 	return "mark detonation to have a <b>[bonus_value]%</b> chance to summon a patch of goliath tentacles at the target's location"

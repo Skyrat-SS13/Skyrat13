@@ -49,6 +49,7 @@
 
 	var/mob/living/simple_animal/hostile/asteroid/elite/herald/mirror/my_mirror = null
 	var/is_mirror = FALSE
+	scar_multiplier = 0.5 //skyrat edit
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/death()
 	. = ..()
@@ -138,7 +139,7 @@
 	H.fire(set_angle)
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/proc/herald_trishot(target)
-	ranged_cooldown = world.time + 30
+	ranged_cooldown = world.time + (30 * (scarred ? scar_multiplier : 1)) //skyrat edit
 	playsound(get_turf(src), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
 	var/target_turf = get_turf(target)
 	var/angle_to_target = Get_Angle(src, target_turf)
@@ -162,7 +163,7 @@
 	icon_state = "herald"
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/proc/herald_directionalshot()
-	ranged_cooldown = world.time + 50
+	ranged_cooldown = world.time + (50 * (scarred ? scar_multiplier : 1)) //skyrat edit
 	if(!is_mirror)
 		icon_state = "herald_enraged"
 	playsound(get_turf(src), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
@@ -173,14 +174,14 @@
 	addtimer(CALLBACK(src, .proc/unenrage), 20)
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/proc/herald_teleshot(target)
-	ranged_cooldown = world.time + 30
+	ranged_cooldown = world.time + (30 * (scarred ? scar_multiplier : 1)) //skyrat edit
 	playsound(get_turf(src), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
 	var/target_turf = get_turf(target)
 	var/angle_to_target = Get_Angle(src, target_turf)
 	shoot_projectile(target_turf, angle_to_target, TRUE)
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/proc/herald_mirror()
-	ranged_cooldown = world.time + 40
+	ranged_cooldown = world.time + (40 * (scarred ? scar_multiplier : 1)) //skyrat edit
 	playsound(get_turf(src), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
 	if(my_mirror != null)
 		qdel(my_mirror)
@@ -251,7 +252,7 @@
 	icon = 'icons/obj/lavaland/elite_trophies.dmi'
 	icon_state = "herald_cloak"
 	body_parts_covered = CHEST|GROIN|ARMS
-	var/hit_reaction_chance = 10
+	var/hit_reaction_chance = 20 //skyrat edit
 
 /obj/item/clothing/neck/cloak/herald_cloak/proc/reactionshot(mob/living/carbon/owner)
 	var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
