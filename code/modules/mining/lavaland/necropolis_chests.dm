@@ -226,7 +226,9 @@
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/memento(mob/living/carbon/human/user)
 	to_chat(user, "<span class='warning'>You feel your life being drained by the pendant...</span>")
+	playsound(src, 'sound/effects/curse1.ogg', 50, 0, -3)
 	if(do_after(user, 40, target = user))
+		playsound(src, 'sound/effects/curse3.ogg', 50, 0, -3)
 		to_chat(user, "<span class='notice'>Your lifeforce is now linked to the pendant! You feel like removing it would kill you, and yet you instinctively know that until then, you won't die.</span>")
 		ADD_TRAIT(user, TRAIT_NODEATH, "memento_mori")
 		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "memento_mori")
@@ -238,10 +240,14 @@
 	icon_state = initial(icon_state)
 	if(!active_owner)
 		return
-	var/mob/living/carbon/human/H = active_owner //to avoid infinite looping when dust unequips the pendant
 	active_owner = null
+	//skyrat edit
+	to_chat(owner, "<span class='warning'>Your soulcrawls back unto you.</span>")
+	playsound(src, 'sound/effects/curse6.ogg', 50, 0, -3)
+	/* skyrat edit
 	to_chat(H, "<span class='userdanger'>You feel your life rapidly slipping away from you!</span>")
 	H.dust(TRUE, TRUE)
+	*/
 
 /datum/action/item_action/hands_free/memento_mori
 	check_flags = NONE

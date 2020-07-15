@@ -69,21 +69,14 @@
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
 	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	var/loot = pick(/obj/item/book/granter/martial/berserk, /obj/item/twohanded/crucible)
+	var/loot = pick(/obj/item/book/granter/martial/berserk, /obj/item/twohanded/crucible, /obj/item/gun/ballistic/revolver/doublebarrel/super)
 	new loot(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
 	new /obj/item/crusher_trophy/demon_claws(src)
-	var/loot = pick(/obj/item/book/granter/martial/berserk, /obj/item/twohanded/crucible)
-	new loot(src)
-
-/obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
-	new /obj/item/clothing/suit/space/hostile_environment(src)
-	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
-	new /obj/item/crusher_trophy/demon_claws(src)
-	var/loot = pick(/obj/item/book/granter/martial/berserk, /obj/item/gun/magic/staff/spellblade)
+	var/loot = pick(/obj/item/book/granter/martial/berserk, /obj/item/twohanded/crucible, /obj/item/gun/ballistic/revolver/doublebarrel/super)
 	new loot(src)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
@@ -639,12 +632,23 @@
 /obj/structure/closet/crate/necropolis/colossus/PopulateContents()
 	new /obj/item/bluecrystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
+	new /obj/item/clothing/glasses/godeye/double(src)
+	new /obj/item/clothing/neck/necklace/memento_mori(src)
 	new /obj/item/borg/upgrade/modkit/bolter(src)
 
 /obj/structure/closet/crate/necropolis/colossus/crusher/PopulateContents()
 	new /obj/item/bluecrystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
+	new /obj/item/clothing/glasses/godeye/double(src)
+	new /obj/item/clothing/neck/necklace/memento_mori(src)
 	new /obj/item/crusher_trophy/blaster_tubes(src)
+
+//eyes of god
+/obj/item/clothing/glasses/godeye/double
+	name = "eyes of god"
+	icon_state = "doublegodeye"
+	item_state = "doublegodeye"
+	desc = "A pair of strange eyes, said to have been torn from an omniscient creature that used to roam the wastes. There's no real reason to have two, but that isn't stopping you."
 
 //crystal choosing thing from colosssus
 /obj/item/bluecrystal
@@ -688,7 +692,7 @@
 
 //normal chests
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,34)
+	var/loot = rand(1,32)
 	new /obj/item/stock_parts/cell/high/plus/argent(src)
 	switch(loot)
 		if(1)
@@ -704,103 +708,94 @@
 			new /obj/item/katana/cursed(src)
 			return list(/obj/item/katana/cursed)
 		if(5)
-			new /obj/item/clothing/glasses/godeye(src)
-			return list(/obj/item/clothing/glasses/godeye)
-		if(6)
 			new /obj/item/reagent_containers/glass/bottle/potion/flight(src)
 			return list(/obj/item/reagent_containers/glass/bottle/potion/flight)
-		if(7)
+		if(6)
 			new /obj/item/pickaxe/diamond(src)
 			return list(/obj/item/pickaxe/diamond)
-		if(8)
+		if(7)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
 				return list(/obj/item/disk/design_disk/modkit_disc/resonator_blast)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
 				return list(/obj/item/disk/design_disk/modkit_disc/rapid_repeater)
-		if(9)
+		if(8)
 			new /obj/item/rod_of_asclepius(src)
 			return list(/obj/item/rod_of_asclepius)
-		if(10)
+		if(9)
 			new /obj/item/organ/heart/cursed/wizard(src)
 			return list(/obj/item/organ/heart/cursed/wizard)
-		if(11)
+		if(10)
 			new /obj/item/ship_in_a_bottle(src)
 			return list(/obj/item/ship_in_a_bottle)
-		if(12)
+		if(11)
 			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker/damaged(src)
 			return list(/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker)
-		if(13)
+		if(12)
 			new /obj/item/jacobs_ladder(src)
 			return list(/obj/item/jacobs_ladder)
-		if(14)
+		if(13)
 			new /obj/item/nullrod/scythe/talking(src)
 			return list(/obj/item/nullrod/scythe/talking)
-		if(15)
+		if(14)
 			new /obj/item/nullrod/armblade(src)
 			return list(/obj/item/nullrod/armblade)
-		if(16)
-			new /obj/item/guardiancreator(src)
-			return list(/obj/item/guardiancreator)
-		if(17)
+		if(15)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
 				return list(/obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
 				return list(/obj/item/disk/design_disk/modkit_disc/bounty)
-		if(18)
+		if(16)
 			new /obj/item/warp_cube/red(src)
 			return list(/obj/item/warp_cube/red)
-		if(19)
+		if(17)
 			new /obj/item/wisp_lantern(src)
 			return list(/obj/item/wisp_lantern)
-		if(20)
+		if(18)
 			new /obj/item/immortality_talisman(src)
 			return list(/obj/item/immortality_talisman)
-		if(21)
+		if(19)
 			new /obj/item/gun/magic/hook(src)
 			return list(/obj/item/gun/magic/hook)
-		if(22)
+		if(20)
 			new /obj/item/voodoo(src)
 			return list(/obj/item/voodoo)
-		if(23)
+		if(21)
 			new /obj/item/grenade/clusterbuster/inferno(src)
 			return list(/obj/item/grenade/clusterbuster/inferno)
-		if(24)
+		if(22)
 			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
 			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor/damaged(src)
 			return list(/obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor, /obj/item/reagent_containers/food/drinks/bottle/holywater/hell)
-		if(25)
+		if(23)
 			new /obj/item/book/granter/spell/summonitem(src)
 			return list(/obj/item/book/granter/spell/summonitem)
-		if(26)
+		if(24)
 			new /obj/item/book_of_babel(src)
 			return list(/obj/item/book_of_babel)
-		if(27)
+		if(25)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
 			return list(/obj/item/borg/upgrade/modkit/lifesteal, /obj/item/bedsheet/cult)
-		if(28)
-			new /obj/item/clothing/neck/necklace/memento_mori(src)
-			return list(/obj/item/clothing/neck/necklace/memento_mori)
-		if(29)
+		if(26)
 			new /obj/item/gun/magic/staff/door(src)
 			return list(/obj/item/gun/magic/staff/door)
-		if(30)
+		if(27)
 			new /obj/item/katana/necropolis(src)
-			return list(/obj/item/katana/necropolis)
-		if(31)
+			return list(/obj/item/katana)
+		if(28)
 			new /obj/item/gun/ballistic/shotgun/boltaction(src)
 			return list(/obj/item/gun/ballistic/shotgun/boltaction)
-		if(32)
+		if(29)
 			new /obj/item/gun/magic/staff/locker/trashy
 			return list(/obj/item/gun/magic/staff/locker)
-		if(33)
+		if(30)
 			new /obj/item/clothing/accessory/fireresist(src)
 			return list(/obj/item/clothing/accessory/fireresist)
-		if(34)
+		if(31)
 			new /obj/item/clothing/accessory/lavawalk(src)
 			return list(/obj/item/clothing/accessory/lavawalk)
 
@@ -911,7 +906,7 @@
 	desc = "Harvested from the necropolis, this autocharging energy cell can be crushed to provide a temporary 90% damage reduction bonus. Also useful for research."
 	self_recharge = 1
 	maxcharge = 1500 //only barely better than a normal power cell now
-	chargerate = 700 //good recharge time doe
+	chargerate = 750 //good recharge time doe
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
 	icon_state = "argentcell"
 	ratingdesc = FALSE
@@ -939,7 +934,7 @@
 /obj/item/immortality_talisman
 	w_class = WEIGHT_CLASS_SMALL //why the fuck are they large anyways
 
-//legion
+//legion or strong tendrils
 /obj/structure/closet/crate/necropolis/tendril/legion_loot
 	name = "screeching crate"
 
@@ -950,6 +945,7 @@
 		new loot(src)
 	qdel(N)
 
+//legion
 /obj/structure/closet/crate/necropolis/legion
 	name = "echoing legion crate"
 
