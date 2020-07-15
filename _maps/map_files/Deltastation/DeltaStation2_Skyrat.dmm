@@ -244,9 +244,8 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/construction/mining/aux_base)
 "abe" = (
-/obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/stripes/end{
-	dir = 1
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -6822,9 +6821,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-22"
-	},
+/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aul" = (
@@ -57449,16 +57446,10 @@
 /turf/open/floor/plating,
 /area/gateway)
 "cyE" = (
-/obj/machinery/gateway{
-	dir = 9
-	},
 /obj/effect/turf_decal/bot_white/right,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cyF" = (
-/obj/machinery/gateway{
-	dir = 1
-	},
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
@@ -57466,9 +57457,6 @@
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cyG" = (
-/obj/machinery/gateway{
-	dir = 5
-	},
 /obj/effect/turf_decal/bot_white/left,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
@@ -58150,9 +58138,6 @@
 /turf/open/floor/plating,
 /area/gateway)
 "cAi" = (
-/obj/machinery/gateway{
-	dir = 8
-	},
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
@@ -58161,13 +58146,6 @@
 /obj/structure/cable/white{
 	icon_state = "0-2"
 	},
-/turf/open/floor/plasteel/dark,
-/area/gateway)
-"cAk" = (
-/obj/machinery/gateway{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cAl" = (
@@ -58725,9 +58703,6 @@
 /turf/closed/wall,
 /area/gateway)
 "cBD" = (
-/obj/machinery/gateway{
-	dir = 10
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -58735,7 +58710,6 @@
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cBE" = (
-/obj/machinery/gateway,
 /obj/structure/cable/white{
 	icon_state = "0-2"
 	},
@@ -58746,9 +58720,6 @@
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cBF" = (
-/obj/machinery/gateway{
-	dir = 6
-	},
 /obj/machinery/camera{
 	c_tag = "Bridge - Gateway Chamber";
 	dir = 8;
@@ -59602,6 +59573,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/machinery/computer/gateway_control,
 /turf/open/floor/plasteel,
 /area/gateway)
 "cDl" = (
@@ -97409,6 +97381,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"gdg" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/vending/pdavendor,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "gfR" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -99564,11 +99541,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "mvx" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+/obj/machinery/quantumpad{
+	map_pad_id = "toxenoarch";
+	map_pad_link_id = "tostation"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -99684,13 +99659,8 @@
 /turf/open/space,
 /area/engine/atmos)
 "mLI" = (
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -100087,11 +100057,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
-"nQR" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/computer/shuttle/mining/common,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "nSh" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /turf/closed/wall/r_wall,
@@ -100124,19 +100089,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/medical/psych)
-"nSS" = (
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "nUG" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/box,
@@ -103334,17 +103286,6 @@
 "xbV" = (
 /turf/open/floor/wood,
 /area/security/prison)
-"xdp" = (
-/obj/docking_port/stationary{
-	dwidth = 3;
-	height = 5;
-	id = "commonmining_home";
-	name = "SS13: Common Mining Dock";
-	roundstart_template = /datum/map_template/shuttle/mining_common/meta;
-	width = 7
-	},
-/turf/open/space/basic,
-/area/space)
 "xdL" = (
 /obj/machinery/requests_console{
 	department = "Prison";
@@ -135761,11 +135702,11 @@ oZp
 aaa
 aaa
 aaa
-aaa
-aaa
-rqh
-rqh
-aad
+aaO
+aaO
+aaO
+aaO
+aaO
 aad
 aaa
 aaa
@@ -136018,10 +135959,10 @@ oZp
 aaa
 aaa
 aaa
-aaa
 aaO
-aaO
-aaO
+aco
+abe
+aco
 aaO
 abf
 aaO
@@ -136275,11 +136216,11 @@ oZp
 aaa
 aaa
 aaa
-xdp
-mLI
+aaO
+aco
 mvx
-nSS
-abe
+aco
+aeb
 abp
 abC
 abC
@@ -136532,11 +136473,11 @@ oZp
 aaa
 aaa
 aaa
-aaa
 aaO
+aco
+mLI
+aco
 aaO
-aaO
-nQR
 abq
 abD
 abD
@@ -136789,12 +136730,12 @@ oZp
 aaa
 aaa
 aaa
-aaa
-aaa
-rqh
 aaO
 aaO
-abf
+aaO
+aaO
+aaO
+aaO
 aaO
 aaO
 abf
@@ -143639,7 +143580,7 @@ dWg
 dVl
 dVl
 dVl
-dVl
+gdg
 dVl
 dVl
 dVl
@@ -146665,7 +146606,7 @@ cul
 cvE
 cvz
 cyG
-cAk
+cAi
 cBF
 cDm
 cFa

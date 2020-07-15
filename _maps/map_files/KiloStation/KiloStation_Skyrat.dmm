@@ -5318,7 +5318,7 @@
 	min_oxy = 5;
 	name = "Lia";
 	real_name = "Lia";
-	response_help = "pets";
+	!INVALID_VAR! = "pets";
 	turns_per_move = 10
 	},
 /turf/open/floor/plasteel/dark,
@@ -5777,9 +5777,6 @@
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "amk" = (
-/obj/machinery/gateway{
-	dir = 1
-	},
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
@@ -10746,9 +10743,6 @@
 /turf/closed/wall,
 /area/crew_quarters/fitness/recreation)
 "awE" = (
-/obj/machinery/gateway{
-	dir = 10
-	},
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -23
@@ -14758,6 +14752,7 @@
 /obj/item/radio/intercom{
 	pixel_x = -28
 	},
+/obj/machinery/computer/gateway_control,
 /turf/open/floor/plasteel,
 /area/gateway)
 "aEO" = (
@@ -35429,9 +35424,8 @@
 /turf/open/floor/grass,
 /area/crew_quarters/heads/hop)
 "bsO" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/leafybush,
+/obj/structure/flora/ausbushes/genericbush,
+/obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -48579,14 +48573,8 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
 "bTS" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 3;
-	height = 5;
-	id = "commonmining_home";
-	name = "SS13: Common Mining Dock";
-	roundstart_template = /datum/map_template/shuttle/mining_common/meta;
-	width = 7
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
@@ -49744,8 +49732,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "bWn" = (
-/obj/machinery/door/airlock/external{
-	name = "Common Mining Dock"
+/obj/machinery/quantumpad{
+	map_pad_id = "toxenoarch";
+	map_pad_link_id = "tostation"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -49850,16 +49839,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bWx" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/computer/shuttle/mining/common{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
+/obj/machinery/light,
+/turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "bWy" = (
 /obj/machinery/holopad,
@@ -51217,11 +51198,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "bZh" = (
-/obj/structure/table,
-/obj/item/storage/box/hug/medical{
-	pixel_y = 4
-	},
-/obj/item/crowbar,
+/obj/machinery/vending/pdavendor,
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
 "bZi" = (
@@ -60760,9 +60737,6 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "ctz" = (
-/obj/machinery/gateway{
-	dir = 9
-	},
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "ctB" = (
@@ -60808,9 +60782,6 @@
 /turf/closed/wall,
 /area/maintenance/starboard/fore)
 "ctK" = (
-/obj/machinery/gateway{
-	dir = 5
-	},
 /obj/machinery/camera{
 	c_tag = "Gateway";
 	name = "command camera"
@@ -61734,12 +61705,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"cvM" = (
-/obj/machinery/gateway{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/gateway)
 "cvN" = (
 /obj/machinery/gateway/centerstation,
 /obj/structure/cable{
@@ -61748,12 +61713,6 @@
 /turf/open/floor/circuit/green{
 	luminosity = 2
 	},
-/area/gateway)
-"cvO" = (
-/obj/machinery/gateway{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
 /area/gateway)
 "cvP" = (
 /obj/machinery/door/poddoor{
@@ -61799,17 +61758,10 @@
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
 "cvT" = (
-/obj/machinery/gateway,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
 /obj/structure/cable,
-/turf/open/floor/plasteel/dark,
-/area/gateway)
-"cvU" = (
-/obj/machinery/gateway{
-	dir = 6
-	},
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "cvV" = (
@@ -99437,7 +99389,7 @@ aay
 cFT
 aUa
 ctz
-cvM
+ctz
 awE
 aEN
 aGQ
@@ -99951,8 +99903,8 @@ cFs
 avp
 aUa
 ctK
-cvO
-cvU
+ctz
+ctz
 aEQ
 aGS
 cvW
@@ -106427,9 +106379,9 @@ bTq
 bSL
 cyG
 cyG
-cyG
-cyG
-cyG
+caQ
+caQ
+caQ
 cyG
 cyG
 bSr
@@ -106682,13 +106634,13 @@ bhY
 car
 bTr
 bSr
+bTS
 cyG
+caQ
+bWn
+caQ
 cyG
-cyG
-cyG
-cyG
-cyG
-cyG
+bWx
 bSr
 bYf
 ceU
@@ -106941,9 +106893,9 @@ bTs
 cav
 cyG
 cyG
-cyG
-cyG
-cyG
+caQ
+caQ
+caQ
 cyG
 cyG
 bSr
@@ -107199,7 +107151,7 @@ bSr
 cyG
 cyG
 cyG
-bTS
+caQ
 cyG
 cyG
 cyG
@@ -107456,8 +107408,8 @@ bOc
 bOc
 bOc
 bPe
-bWn
-bWx
+caQ
+bSr
 bSr
 bSL
 bSr

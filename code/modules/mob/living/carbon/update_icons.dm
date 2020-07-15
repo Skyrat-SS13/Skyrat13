@@ -68,7 +68,7 @@
 	var/dam_colors = "#E62525"
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		dam_colors = bloodtype_to_color(H.dna.blood_type)
+		dam_colors = H.dna.species.exotic_blood_color
 
 	var/mutable_appearance/damage_overlay = mutable_appearance('icons/mob/dam_mob.dmi', "blank", -DAMAGE_LAYER, color = dam_colors)
 	overlays_standing[DAMAGE_LAYER] = damage_overlay
@@ -194,11 +194,11 @@
 /mob/living/carbon/update_body()
 	update_body_parts()
 
-/mob/living/carbon/proc/update_body_parts()
+/mob/living/carbon/proc/update_body_parts(force = FALSE) //skyrat edit - force bodypart updating
 	//CHECK FOR UPDATE
 	var/oldkey = icon_render_key
 	icon_render_key = generate_icon_render_key()
-	if(oldkey == icon_render_key)
+	if(oldkey == icon_render_key && !force) //skyrat edit
 		return
 
 	remove_overlay(BODYPARTS_LAYER)
