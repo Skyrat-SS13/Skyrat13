@@ -48,7 +48,7 @@
 		user.visible_message("[user] forces [C] to apply [src]... Black tendrils entangle and reinforce [C.p_them()]!")
 	else
 		user.visible_message(user, "<span class='notice'>[C] starts applying \the [src] on themselves, disgusting tendrils enthralling them...","<span class='notice'>You start to smear [src] on yourself. The disgusting tendrils will hold you together and allow you to keep moving, but for how long?</span>")
-	if(!do_mob(user, target, (user == target ? 4 SECONDS : 1 SECONDS)))
+	if(!do_mob(user, target, (user == target ? 1 SECONDS : 0.35 SECONDS)))
 		return
 	if(user != C)
 		SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "other"))
