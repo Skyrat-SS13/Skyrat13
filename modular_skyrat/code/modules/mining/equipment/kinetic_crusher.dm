@@ -428,7 +428,7 @@
 /obj/item/crusher_trophy/dark_energy
 	name = "dark energy"
 	desc = "A black ball of energy that was formed when Sif miraculously imploded. Suitable as a trophy for a kinetic crusher."
-	icon = 'modular_skyrat/icons/obj/lavaland/sif.dmi'
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "sif_energy"
 	denied_type = /obj/item/crusher_trophy/dark_energy
 	bonus_value = 30

@@ -131,6 +131,7 @@
 			SSblackbox.record_feedback("tally", tab, 1, "[initial(name)]")
 			if(!elimination)	//used so the achievment only occurs for the last legion to die.
 				grant_achievement(medal_type, score_type, crusher_kill)
+		new /obj/item/stock_parts/cell/high/plus/argent/ultra(src.loc)
 		..()
 
 /mob/living/simple_animal/hostile/megafauna/AltClick(mob/living/carbon/slayer)

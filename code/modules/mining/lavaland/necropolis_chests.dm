@@ -240,9 +240,10 @@
 	icon_state = initial(icon_state)
 	if(!active_owner)
 		return
+	var/mob/living/L = active_owner
 	active_owner = null
 	//skyrat edit
-	to_chat(owner, "<span class='warning'>Your soulcrawls back unto you.</span>")
+	to_chat(L, "<span class='warning'>Your soulcrawls back unto you.</span>")
 	playsound(src, 'sound/effects/curse6.ogg', 50, 0, -3)
 	/* skyrat edit
 	to_chat(H, "<span class='userdanger'>You feel your life rapidly slipping away from you!</span>")

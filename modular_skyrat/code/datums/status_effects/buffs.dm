@@ -1,15 +1,25 @@
 //argent
 /datum/status_effect/blooddrunk/argent
 	id = "argent"
-	duration = 100
+	duration = 10 SECONDS
 	tick_interval = 0
 	alert_type = /obj/screen/alert/status_effect/argent
+
+/datum/status_effect/blooddrunk/argent/ultra
+	duration = 2 MINUTES
+	alert_type = /obj/screen/alert/status_effect/argent/ultra
 
 /obj/screen/alert/status_effect/argent
 	name = "Argent Energized"
 	desc = "Argent energy rushes through your body! You'll only take 10% damage for the duration of the energy rush!"
 	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
 	icon_state = "argent"
+
+/obj/screen/alert/status_effect/argent/ultra
+	name = "Argent Energized"
+	desc = "Argent energy rushes through your body! You'll only take 10% damage for the duration of the energy rush!"
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "argent_ultra"
 
 //stealth suit
 /datum/status_effect/stealthsuit

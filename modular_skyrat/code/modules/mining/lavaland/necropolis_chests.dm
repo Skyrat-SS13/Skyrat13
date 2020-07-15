@@ -903,15 +903,15 @@
 
 /obj/item/stock_parts/cell/high/plus/argent
 	name = "Argent Energy Cell"
-	desc = "Harvested from the necropolis, this autocharging energy cell can be crushed to provide a temporary 90% damage reduction bonus. Also useful for research."
+	desc = "Harvested from the necropolis, this autocharging energy cell can be crushed to provide a temporary damage deflection effect to the user, or provide incredible amounts of power to equipment."
 	self_recharge = 1
 	maxcharge = 1500 //only barely better than a normal power cell now
 	chargerate = 750 //good recharge time doe
-	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "argentcell"
 	ratingdesc = FALSE
 	rating = 6
-	custom_materials = list(/datum/material/glass=500, /datum/material/uranium=250, /datum/material/plasma=1000, /datum/material/diamond=500)
+	custom_materials = list(/datum/material/glass=500, /datum/material/uranium=250, /datum/material/plasma=1000, /datum/material/diamond=500, /datum/material/titanium=1000)
 	var/datum/status_effect/onuse = /datum/status_effect/blooddrunk/argent
 
 /obj/item/stock_parts/cell/high/plus/argent/attack_self(mob/user)
@@ -925,6 +925,21 @@
 /obj/item/stock_parts/cell/high/plus/argent/ComponentInitialize()
 	. = ..()
 	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
+
+/obj/item/stock_parts/cell/high/plus/argent/ultra
+	name = "Ultra Argent Cell"
+	desc = "Harvested from the heart of a slain beast, this autocharging energy cell can be crushed to provide a temporary damage deflection effect to the user, or provide incredible amounts of power to equipment."
+	icon_state = "argentcell_ultra"
+	maxcharge = 40000
+	chargerate = 1000 //barely better than the normal argent cell in recharge, but it is incredible in maxcharge
+	rating = 6
+	custom_materials = list(/datum/material/glass=10000, /datum/material/uranium=20000, /datum/material/plasma=50000, /datum/material/diamond=50000, /datum/material/titanium=1000)
+	onuse = /datum/status_effect/blooddrunk/argent/ultra
+
+/obj/item/stock_parts/cell/high/plus/argent/ultra/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/beauty, 25)
+	AddComponent(/datum/component/igniter, 10)
 
 /obj/item/katana/necropolis
 	force = 25 //Wouldn't want a miner walking around with a 40 damage melee around now, would we?
@@ -1088,13 +1103,13 @@
 /obj/item/melee/sword_of_the_forsaken
 	name = "Sword of the Forsaken"
 	desc = "A glowing giant heavy blade that grows and slightly shrinks in size depending on the wielder's strength."
-	icon = 'modular_skyrat/icons/obj/lavaland/sif.dmi'
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "sword_of_the_forsaken"
 	item_state = "sword_of_the_forsaken"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/item_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/item_righthand.dmi'
-	w_class = WEIGHT_CLASS_HUGE
-	force = 20 //slight buff because 15 just doesn't cut it for megafauna loot... hehe "cut it"
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	force = 24 //buff because 15 just doesn't cut it for megafauna loot... hehe "cut it"
 	throwforce = 10
 	block_chance = 20 //again, slight buff
 	armour_penetration = 200 //the armor penetration is really what makes this unique and actually worth it so boomp it
@@ -1129,7 +1144,7 @@
 /obj/item/clothing/neck/necklace/necklace_of_the_forsaken
 	name = "Necklace of the Forsaken"
 	desc = "A rose gold necklace with a small static ember that burns inside of the black gem stone, making it warm to the touch."
-	icon = 'modular_skyrat/icons/obj/lavaland/sif.dmi'
+	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "necklace_forsaken_active"
 	actions_types = list(/datum/action/item_action/hands_free/necklace_of_the_forsaken)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
