@@ -361,7 +361,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
 			//Skyrat edit - food preferences
 			dat += "<center><h2>Food Setup</h2>"
-			dat += "<a href='?_src_=prefs;preference=food;task=menu'>Configure Foods</a></center><br>"
+			dat += "<a href='?_src_=prefs;preference=food;task=menu'>Configure Foods</a></center>"
 			dat += "<center><b>Current Likings:</b> [foodlikes.len ? foodlikes.Join(", ") : "None"]</center>"
 			dat += "<center><b>Current Dislikings:</b> [fooddislikes.len ? fooddislikes.Join(", ") : "None"]</center>"
 			//
@@ -2764,6 +2764,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							extremepref = "Ask"
 						if("Ask")
 							extremepref = "No"
+							extremeharm = "No"
 						if("No")
 							extremepref = "Yes"
 				if("extremeharm")
@@ -2772,6 +2773,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							extremeharm = "No"
 						if("No")
 							extremeharm = "Yes"
+					if(extremepref == "No")
+						extremeharm = "No"
 				if("auto_hiss")
 					auto_hiss = !auto_hiss
 				//END CITADEL EDIT

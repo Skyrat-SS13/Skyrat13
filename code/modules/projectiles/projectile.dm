@@ -45,6 +45,8 @@
 	var/pixels_range_leftover = 0
 	/// "leftover" tick pixels and stuff yeah, so we don't round off things and introducing tracing inaccuracy.
 	var/pixels_tick_leftover = 0
+	/// Used to detect jumps in the middle of a pixel_move. Yes, this is ugly as sin code-wise but it works.
+	var/pixel_move_interrupted = FALSE
 
 	/// Pixels moved per second.
 	var/pixels_per_second = TILES_TO_PIXELS(12.5)
@@ -284,9 +286,6 @@
 		return 50 //if the projectile doesn't do damage, play its hitsound at 50% volume
 
 /obj/item/projectile/proc/on_ricochet(atom/A)
-<<<<<<< HEAD
-	return
-=======
 	if(!ricochet_auto_aim_angle || !ricochet_auto_aim_range)
 		return
 
@@ -304,7 +303,6 @@
 
 	if(unlucky_sob)
 		setAngle(get_projectile_angle(src, unlucky_sob.loc))
->>>>>>> 53dc2da8c7... Merge pull request #12540 from timothyteakettle/embed-changes
 
 /obj/item/projectile/proc/store_hitscan_collision(datum/point/pcache)
 	beam_segments[beam_index] = pcache
@@ -312,20 +310,9 @@
 	beam_segments[beam_index] = null
 
 /obj/item/projectile/Bump(atom/A)
+	if(!trajectory)
+		return
 	var/turf/T = get_turf(A)
-<<<<<<< HEAD
-	if(trajectory && check_ricochet(A) && check_ricochet_flag(A) && ricochets < ricochets_max)
-		var/datum/point/pcache = trajectory.copy_to()
-		ricochets++
-		if(A.handle_ricochet(src))
-			on_ricochet(A)
-			ignore_source_check = TRUE
-			decayedRange = max(0, decayedRange - reflect_range_decrease)
-			range = decayedRange
-			if(hitscan)
-				store_hitscan_collision(pcache)
-			return TRUE
-=======
 	if(check_ricochet(A) && A.handle_ricochet(src)) //if you can ricochet, attempt to ricochet off the object
 		on_ricochet(A) //if allowed, use autoaim to ricochet into someone, otherwise default to ricocheting off the object from above
 		var/datum/point/pcache = trajectory.copy_to()
@@ -336,7 +323,6 @@
 		damage *= ricochet_decay_damage
 		range = decayedRange
 		return TRUE
->>>>>>> 53dc2da8c7... Merge pull request #12540 from timothyteakettle/embed-changes
 
 	var/distance = get_dist(T, starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
 	if(def_zone && check_zone(def_zone) != BODY_ZONE_CHEST)
@@ -411,15 +397,6 @@
 		return T
 	//Returns null if nothing at all was found.
 
-<<<<<<< HEAD
-/obj/item/projectile/proc/check_ricochet()
-	if(prob(ricochet_chance))
-		return TRUE
-	return FALSE
-
-/obj/item/projectile/proc/check_ricochet_flag(atom/A)
-	if(A.flags_1 & CHECK_RICOCHET_1)
-=======
 /obj/item/projectile/proc/check_ricochet(atom/A)
 	if(ricochets > ricochets_max)		//safety thing, we don't care about what the other thing says about this.
 		return FALSE
@@ -444,7 +421,6 @@
 	if((flag in list("energy", "laser")) && (A.flags_ricochet & RICOCHET_SHINY))
 		return TRUE
 	if((flag in list("bomb", "bullet")) && (A.flags_ricochet & RICOCHET_HARD))
->>>>>>> 53dc2da8c7... Merge pull request #12540 from timothyteakettle/embed-changes
 		return TRUE
 	return FALSE
 
@@ -527,6 +503,7 @@
 
 /obj/item/projectile/proc/setAngle(new_angle, hitscan_store_segment = TRUE)	//wrapper for overrides.
 	Angle = new_angle
+	pixel_move_interrupted = TRUE
 	if(!nondirectional_sprite)
 		var/matrix/M = new
 		M.Turn(Angle)
@@ -553,6 +530,7 @@
 		trajectory.initialize_location(target.x, target.y, target.z, 0, 0)
 		if(hitscan)
 			record_hitscan_start(RETURN_PRECISE_POINT(src))
+	pixel_move_interrupted = TRUE
 	if(zc)
 		after_z_change(old, target)
 
@@ -601,7 +579,7 @@
   * The proc to make the projectile go, using a simulated pixel movement line trace.
   * Note: deciseconds_equivalent is currently only used for homing, times is the number of times to move pixel_increment_amount.
   * Trajectory multiplier directly modifies the factor of pixel_increment_amount to go per time.
-  * It's complicated, so probably just don'ot mess with this unless you know what you're doing.
+  * It's complicated, so probably just don't mess with this unless you know what you're doing.
   */
 /obj/item/projectile/proc/pixel_move(times, hitscanning = FALSE, deciseconds_equivalent = world.tick_lag, trajectory_multiplier = 1, allow_animation = TRUE)
 	if(!loc || !trajectory)
@@ -611,6 +589,7 @@
 		M.Turn(Angle)
 		transform = M
 	var/forcemoved = FALSE
+	pixel_move_interrupted = FALSE		// reset that
 	var/turf/oldloc = loc
 	var/old_px = pixel_x
 	var/old_py = pixel_y
@@ -646,7 +625,9 @@
 				if(!--safety)
 					CRASH("[type] took too long (allowed: [CEILING(pixel_increment_amount/world.icon_size,1)*2] moves) to get to its location.")
 				step_towards(src, T)
-				if(QDELETED(src))
+				if(QDELETED(src) || pixel_move_interrupted)		// this doesn't take into account with pixel_move_interrupted the portion of the move cut off by any forcemoves, but we're opting to ignore that for now
+				// the reason is the entire point of moving to pixel speed rather than tile speed is smoothness, which will be crucial when pixel movement is done in the future
+				// reverting back to tile is more or less the only way of fixing this issue.
 					return
 		pixels_range_leftover += pixel_increment_amount
 		if(pixels_range_leftover > world.icon_size)
@@ -757,7 +738,7 @@
 
 		var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
 		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
-		angle = ATAN2(y - oy, x - ox) // Skyrat edit -- 512 compatibility
+		angle = arctan(y - oy, x - ox)
 	return list(angle, p_x, p_y)
 
 /obj/item/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.

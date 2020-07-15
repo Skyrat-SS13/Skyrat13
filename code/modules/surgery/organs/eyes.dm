@@ -129,7 +129,7 @@
 /obj/item/organ/eyes/night_vision/zombie
 	name = "undead eyes"
 	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
-	sight_flags = SEE_MOBS
+	//sight_flags = SEE_MOBS        SKYRAT CHANGE - No more free thermals. Why did they keep this for so long?
 
 /obj/item/organ/eyes/night_vision/nightmare
 	name = "burning red eyes"

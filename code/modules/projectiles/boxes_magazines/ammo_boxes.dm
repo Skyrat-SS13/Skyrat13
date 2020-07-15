@@ -45,8 +45,6 @@
 	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
 	ammo_type = /obj/item/ammo_casing/c38/iceblox
 
-<<<<<<< HEAD
-=======
 /obj/item/ammo_box/c38/dumdum
 	name = "speed loader (.38 DumDum)"
 	desc = "Designed to quickly reload revolvers. DumDum bullets shatter on impact and shred the target's innards, likely getting caught inside."
@@ -69,7 +67,6 @@
 	ammo_type = /obj/item/ammo_casing/r32acp
 	max_ammo = 40
 
->>>>>>> 53dc2da8c7... Merge pull request #12540 from timothyteakettle/embed-changes
 /obj/item/ammo_box/c9mm
 	name = "ammo box (9mm)"
 	icon_state = "9mmbox"

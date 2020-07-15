@@ -160,19 +160,22 @@
 	"Default" = 'icons/obj/clothing/hats.dmi',
 	"Solfed Contractor" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
 	"Tactical" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
-	"Green" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
+	"Green" = 'modular_skyrat/icons/obj/clothing/hats.dmi',
+	"Bushfighter" = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/head.dmi',
 	"Solfed Contractor" = 'modular_skyrat/icons/mob/clothing/head.dmi',
 	"Tactical" = 'modular_skyrat/icons/mob/clothing/head.dmi',
-	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi'
+	"Green" = 'modular_skyrat/icons/mob/clothing/head.dmi',
+	"Bushfighter" = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	)
 	unique_reskin = list(
 	"Default" = "beret_badge",
 	"Solfed Contractor" = "contractor_beret",
 	"Tactical" = "tactical_beret",
-	"Green" = "green_beret"
+	"Green" = "green_beret",
+	"Bushfighter" = "rhodeboonie"
 	)
 
 
@@ -550,6 +553,7 @@
 	"HECU" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
 	"Firestarter" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
 	"Gorka" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
+	"Bushfighter" = 'modular_skyrat/icons/obj/clothing/uniform.dmi',
 	)
 	unique_reskin_worn = list(
 	"Default" = 'icons/mob/clothing/uniform.dmi',
@@ -558,6 +562,7 @@
 	"HECU" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
 	"Firestarter" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
 	"Gorka" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
+	"Bushfighter" = 'modular_skyrat/icons/mob/clothing/uniform.dmi',
 	)
 	unique_reskin_worn_anthro = list(
 	"Default" = 'icons/mob/clothing/uniform_digi.dmi',
@@ -566,6 +571,7 @@
 	"HECU" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
 	"Firestarter" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
 	"Gorka" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
+	"Bushfighter" = 'modular_skyrat/icons/mob/clothing/uniform_digi.dmi',
 	)
 	unique_reskin = list(
 	"Default" = "rsecurity",
@@ -573,7 +579,8 @@
 	"Sol Federation" = "solfed_uniform",
 	"HECU" = "hecu_uniform",
 	"Firestarter" = "firestarter_uniform",
-	"Gorka" = "gorka_uniform"
+	"Gorka" = "gorka_uniform",
+	"Bushfighter" = "rhodebrush",
 	)
 	unique_desc = list(
 	"Default" = "A good classic - tactical red jumpsuit for officers complete with Nanotrasen belt buckle.",
@@ -581,7 +588,8 @@
 	"Sol Federation" = "A tactical light-blue jumpsuit complete with kneepads and an insignia of Sol Federation.",
 	"HECU" = "A snow-camofluaged t-shirt and pants, perfect fit for hunting down the free man.",
 	"Firestarter" = "A tactical jumpsuit with some rusty colors.",
-	"Gorka" = "A militaristic jumpsuit coming from Russian colonies, perfect for windy mountains and space alike."
+	"Gorka" = "A militaristic jumpsuit coming from Russian colonies, perfect for windy mountains and space alike.",
+	"Bushfighter" = "A button-up shirt and cargo shorts in a very peculiar brush pattern, best worn with boots and webbing. What a time it was.",
 	)
 
 /obj/item/clothing/under/rank/security/officer/blueshirt
@@ -863,6 +871,10 @@
 	name = "enterprise officer cap"
 	desc = "A peaked cap, that demands <i>at least <u>some</u></i> discipline from its wearer."
 
+/obj/item/clothing/head/kepi/orvi
+	name = "enterprise kepi"
+	desc = "A visored cap, that demands <i>at least <u>some</u></i> honor from it's wearer."
+
 // PrisArch-like color codes for prisoners. Uses _stored variation for Warden's control.
 /obj/item/clothing/under/rank/prisoner
 	unique_reskin_icons = list(
@@ -918,3 +930,17 @@
 
 /obj/item/clothing/head/hooded/winterhood/durathread
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 15,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
+
+//citadel wants to nerf these so fuck that
+/obj/item/clothing/suit/hooded/cloak/drake
+	armor = list("melee" = 70, "bullet" = 30, "laser" = 50, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)
+
+/obj/item/clothing/head/hooded/cloakhood/drake
+	armor = list("melee" = 70, "bullet" = 30, "laser" = 50, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)
+
+//heck suit armor adjustments because honestly why the fuck is the drake armor statistically better
+/obj/item/clothing/suit/space/hostile_environment
+	armor = list("melee" = 70, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)
+
+/obj/item/clothing/head/helmet/space/hostile_environment
+	armor = list("melee" = 70, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100)

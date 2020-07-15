@@ -760,9 +760,6 @@
 	materials = list(/datum/material/iron = 1000)
 	build_path = /obj/item/tank/internals/emergency_oxygen/engi/empty
 	category = list("Equipment")
-<<<<<<< HEAD
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
-=======
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /////////////////////////////////////////
@@ -829,4 +826,3 @@
 	build_path = /obj/item/shuttle_route_optimisation/void
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
->>>>>>> 53dc2da8c7... Merge pull request #12540 from timothyteakettle/embed-changes

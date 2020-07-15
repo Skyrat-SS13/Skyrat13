@@ -9,6 +9,7 @@
 	movespeed_modification = null
 	for (var/alert in alerts)
 		clear_alert(alert, TRUE)
+	QDEL_LIST(mob_spell_list) //Skyrat edit to appease the GC
 	if(observers && observers.len)
 		for(var/M in observers)
 			var/mob/dead/observe = M
@@ -19,7 +20,7 @@
 	client_colours = null
 	ghostize()
 	..()
-	return QDEL_HINT_HARDDEL
+	return QDEL_HINT_QUEUE //Skyrat change
 
 /mob/Initialize()
 	GLOB.mob_list += src
@@ -1062,7 +1063,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 
 ///Adjust the nutrition of a mob
 /mob/proc/adjust_nutrition(change, max = INFINITY) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
-	nutrition = clamp(0, nutrition + change, max)
+	nutrition = clamp(nutrition + change, 0, max)
 
 ///Force set the mob nutrition
 /mob/proc/set_nutrition(var/change) //Seriously fuck you oldcoders.
@@ -1101,3 +1102,10 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	for(var/obj/item/I in held_items)
 		if(I.item_flags & SLOWS_WHILE_IN_HAND)
 			. += I.slowdown
+
+/**
+  * Mostly called by doUnEquip()
+  * Like item dropped() on mob side.
+  */
+/mob/proc/on_item_dropped(obj/item/I)
+	return
