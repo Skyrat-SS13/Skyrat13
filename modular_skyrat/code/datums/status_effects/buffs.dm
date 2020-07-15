@@ -68,7 +68,7 @@
 
 /datum/status_effect/regenerative_core
 	id = "Regenerative Core"
-	duration = 15 SECONDS
+	duration = 10 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /obj/screen/alert/status_effect/regenerative_core
 	var/nutrition = 50
@@ -77,14 +77,15 @@
 	var/burn_heal = 20
 	var/toxin_heal = 20
 	var/firestacks_heal = 20
-	var/brute_heal_proc = 5
-	var/burn_heal_proc = 5
-	var/toxin_heal_proc = 5
+	var/brute_heal_proc = 4.5
+	var/burn_heal_proc = 4.5
+	var/toxin_heal_proc = 4.5
 
 /datum/status_effect/regenerative_core/on_apply()
 	. = ..()
 	owner.adjust_nutrition(nutrition)
 	owner.reagents?.add_reagent(/datum/reagent/medicine/mine_salve, salve_amount)
+	owner.reagents?.reaction(owner, TOUCH)
 	owner.adjustBruteLoss(-brute_heal)
 	owner.adjustFireLoss(-burn_heal)
 	owner.adjustToxLoss(toxin_heal)

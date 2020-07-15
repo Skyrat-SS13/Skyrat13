@@ -17,6 +17,8 @@
 
 	var/gps = null
 	var/obj/effect/light_emitter/tendril/emitted_light
+	//skyrat edit
+	var/chest_type = /obj/structure/closet/crate/necropolis/tendril
 
 
 /obj/structure/spawner/lavaland/goliath
@@ -41,7 +43,7 @@ GLOBAL_LIST_INIT(tendrils, list())
 
 /obj/structure/spawner/lavaland/deconstruct(disassembled)
 	new /obj/effect/collapse(loc)
-	new /obj/structure/closet/crate/necropolis/tendril(loc)
+	new chest_type(loc) //skyrat edit
 	return ..()
 
 

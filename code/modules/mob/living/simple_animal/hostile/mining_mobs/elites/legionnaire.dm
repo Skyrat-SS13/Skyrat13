@@ -99,19 +99,26 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge(target)
 	ranged_cooldown = world.time + (50 * (scarred ? scar_multiplier : 1))
-	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
-	var/turf/T = get_step(get_turf(src), dir_to_target)
-	for(var/i in 1 to 4)
+	var/list/turfs = list(get_turf(src))
+	turfs |= getline(src, target)
+	var/count = 0
+	for(var/turf/T in turfs)
+		if(count >= 4)
+			break
+		count++
 		new /obj/effect/temp_visual/dragon_swoop/legionnaire(T)
-		T = get_step(T, dir_to_target)
 	playsound(src,'sound/magic/demon_attack1.ogg', 200, 1)
 	visible_message("<span class='boldwarning'>[src] prepares to charge!</span>")
-	addtimer(CALLBACK(src, .proc/legionnaire_charge_2, dir_to_target, 0), 5)
+	addtimer(CALLBACK(src, .proc/legionnaire_charge_2, turfs, 0), 5)
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge_2(var/move_dir, var/times_ran)
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge_2(var/list/turfs, var/times_ran)
+	if(!length(turfs))
+		return
 	if(times_ran >= 4)
 		return
-	var/turf/T = get_step(get_turf(src), move_dir)
+	var/turf/T = turfs[times_ran+1]
+	if(!T)
+		return
 	if(ismineralturf(T))
 		var/turf/closed/mineral/M = T
 		M.gets_drilled()
@@ -124,7 +131,7 @@
 	forceMove(T)
 	playsound(src,'sound/effects/bang.ogg', 200, 1)
 	var/list/hit_things = list()
-	var/throwtarget = get_edge_target_turf(src, move_dir)
+	var/throwtarget = get_edge_target_turf(src, get_dir(src, turfs[length(turfs)]))
 	for(var/mob/living/L in T.contents - hit_things - src)
 		if(faction_check_mob(L))
 			return
@@ -135,7 +142,7 @@
 		//L.Paralyze(20)
 		L.Stun(20) //substituting this for the Paralyze from the line above, because we don't have tg paralysis stuff
 		L.adjustBruteLoss(50)
-	addtimer(CALLBACK(src, .proc/legionnaire_charge_2, move_dir, (times_ran + 1)), 2)
+	addtimer(CALLBACK(src, .proc/legionnaire_charge_2, turfs, (times_ran + 1)), 2)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/head_detach(target)
 	ranged_cooldown = world.time + (10 * (scarred ? scar_multiplier : 1))

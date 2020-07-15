@@ -73,6 +73,7 @@
 /obj/item/projectile/magic/impfireball/scarred
 	firestacks = 20
 	damage = 20
+	armour_penetration = 100
 
 /obj/item/projectile/magic/impfireball/on_hit(target)
 	. = ..()

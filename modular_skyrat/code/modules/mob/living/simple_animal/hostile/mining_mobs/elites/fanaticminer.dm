@@ -36,7 +36,6 @@
 	loot_drop = /obj/item/melee/diamondaxe
 	speak_emote = list("yells")
 	del_on_death = TRUE
-	projectiletype = /obj/item/projectile/kinetic/axe
 	attack_action_types = list(/datum/action/innate/elite_attack/axe_slam,
 								/datum/action/innate/elite_attack/summon_shambler,
 								/datum/action/innate/elite_attack/dash,
@@ -100,18 +99,20 @@
 // priest actions
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/axe_slam(target)
 	ranged_cooldown = world.time + 30
-	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
-	var/turf/T = get_step(get_turf(src), dir_to_target)
-	for(var/i in 1 to 3)
+	var/list/turfs = list(get_turf(src))
+	turfs |= getline(src, target)
+	var/count = 0
+	for(var/turf/T in turfs)
+		if(count >= 3)
+			break
+		count++
 		new /obj/effect/temp_visual/dragon_swoop/priest(T)
-		T = get_step(T, dir_to_target)
 	visible_message("<span class='boldwarning'>[src] prepares to slam his axe!</span>")
 	sleep(5)
 	playsound(src,'sound/misc/crunch.ogg', 200, 1)
-	T = get_step(get_turf(src), dir_to_target)
 	var/list/hit_things = list()
 	visible_message("<span class='boldwarning'>[src] slams his axe!</span>")
-	for(var/i in 1 to 3)
+	for(var/turf/T in turfs)
 		for(var/mob/living/L in T.contents)
 			if(faction_check_mob(L))
 				return
@@ -120,7 +121,6 @@
 			to_chat(L, "<span class='userdanger'>[src] slams his axe on you!</span>")
 			L.Stun(15)
 			L.adjustBruteLoss(30)
-		T = get_step(T, dir_to_target)
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/summon_shambler(target)
 	ranged_cooldown = world.time + 150
@@ -136,57 +136,57 @@
 	m1.GiveTarget(target)
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/dash(atom/dash_target)
-	ranged_cooldown = world.time + 20
-	visible_message("<span class='boldwarning'>[src] dashes into the air!</span>")
-	playsound(src,'sound/magic/blink.ogg', 200, 1)
-	var/list/accessable_turfs = list()
-	var/self_dist_to_target = 0
-	var/turf/own_turf = get_turf(src)
-	if(!QDELETED(dash_target))
-		self_dist_to_target += get_dist(dash_target, own_turf)
-	for(var/turf/open/O in RANGE_TURFS(4, own_turf))
-		var/turf_dist_to_target = 0
-		if(!QDELETED(dash_target))
-			turf_dist_to_target += get_dist(dash_target, O)
-		if(get_dist(src, O) <= 4 && turf_dist_to_target <= self_dist_to_target && !islava(O) && !ischasm(O))
-			var/valid = TRUE
-			for(var/turf/T in getline(own_turf, O))
-				if(is_blocked_turf(T, TRUE))
-					valid = FALSE
-					continue
-			if(valid)
-				accessable_turfs[O] = turf_dist_to_target
-	var/turf/target_turf
-	if(!QDELETED(dash_target))
-		var/closest_dist = 4
-		for(var/t in accessable_turfs)
-			if(accessable_turfs[t] < closest_dist)
-				closest_dist = accessable_turfs[t]
-		for(var/t in accessable_turfs)
-			if(accessable_turfs[t] != closest_dist)
-				accessable_turfs -= t
-	if(!LAZYLEN(accessable_turfs))
+	if(!dash_target)
 		return
-	target_turf = pick(accessable_turfs)
-	var/turf/step_back_turf = get_step(target_turf, -(src.dir))
-	new /obj/effect/temp_visual/small_smoke/halfsecond(step_back_turf)
-	new /obj/effect/temp_visual/small_smoke/halfsecond(own_turf)
-	forceMove(step_back_turf)
+	var/turf/original_turf = get_turf(src)
+	var/turf/chargeturf = get_turf(dash_target) //get target turf
+	if(!chargeturf) //no turf, we cancel.
+		return
+	var/vrr_dir = get_dir(src, chargeturf)//get direction
+	var/turf/T = get_ranged_target_turf(chargeturf,dir,5)//get final dash turf
+	if(!T) //the final dash turf was out of range - we settle for the target turf instead
+		T = chargeturf
+	ranged_cooldown = world.time + 20
+	visible_message("<span class='boldwarning'>[src] dashes dashes to [dash_target]!</span>")
+	new /obj/effect/temp_visual/small_smoke/halfsecond(src.loc)
+	//Stop movement
+	walk(src,0)
+	setDir(vrr_dir)
+	var/movespeed = 0.7
+	//Dash through the dash target if possible
+	if(dash_target.CanPass(src, T))
+		walk_to(src, T, 0, 1, movespeed)
+		//If the dash target was a mob, we damage them because basically we ran into them at mach 7
+		if(isliving(dash_target) && (dash_target.loc in getline(original_turf, loc)))
+			var/mob/living/L = dash_target
+			L.visible_message("<span class='danger'>[L] gets rammed by \the [src]!</span>")
+			L.apply_damage(15, BRUTE)
+	else //we settle for less and dash to adjacent to the dash target itself
+		walk_to(src, dash_target, 1, 1, movespeed)
+		//If the dash target was a mob, we damage them because basically we ran into them at mach 7
+		if(isliving(dash_target) && (loc in view(1, dash_target)))
+			var/mob/living/L = dash_target
+			L.visible_message("<span class='danger'>[L] gets rammed by \the [src]!</span>")
+			L.apply_damage(15, BRUTE)
+	playsound(src,'sound/magic/blink.ogg', 200, 1)
+	new /obj/effect/temp_visual/small_smoke/halfsecond(src.loc)
+	//Stop movement
+	walk(src, 0)
+	
 	return TRUE
 
 
-/mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/axe_throw(target)
+/mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/axe_throw(atom/target)
 	ranged_cooldown = world.time + 20
 	visible_message("<span class='boldwarning'>[src] prepares to throw his axe!</span>")
-	var/turf/targetturf = get_turf(target)
+	var/obj/item/melee/diamondaxe/priest/asxe = new(loc)
+	asxe.throw_at(target, 5, 4, src, TRUE)
 	playsound(src,'sound/weapons/fwoosh.wav', 200, 1)
-	Shoot(targetturf)
-	new /obj/item/melee/diamondaxe/priest(targetturf)
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/drop_loot()
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src.loc)
 	if(src.client)
-		H.client = src.client
+		transfer_ckey(H)
 		to_chat(H, "<span class='userdanger'>You have been finally enlightened.  Serving the necropolis is not your duty anymore, thanks to whoever defeated you. You owe them a great debt.</span")
 		to_chat(H, "<span class='big bold'>Note that you now share the loyalties of the one who defeated you.  You are expected not to intentionally sabotage their faction unless commanded to!</span>")
 	else
@@ -217,19 +217,10 @@
 	. = ..()
 	transform *= 0.33
 
-/obj/item/projectile/kinetic/axe
-	name = "kinetic axe"
-	damage = 20
-	damage_type = BRUTE
-	color = "#00FFFF"
-
-/obj/item/projectile/kinetic/axe/prehit(atom/target)
-	return
-
 //loot
 
 /obj/item/melee/diamondaxe
-	name = "Priest's Axe"
+	name = "\proper Priest's Axe"
 	desc = "Used to be a diamond pickaxe, now there's no pick, just axe."
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "diamondaxe"
@@ -239,7 +230,7 @@
 	attack_verb = list("slashed", "sliced", "torn", "ripped", "diced", "cut")
 	w_class = WEIGHT_CLASS_BULKY
 	force = 20
-	throwforce = 18
+	throwforce = 24
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 90, "embedded_fall_chance" = 50)
 	armour_penetration = 50
 	block_chance = 25
@@ -251,6 +242,8 @@
 	AddComponent(/datum/component/butchering, 50, 100, null, null, TRUE)
 
 /obj/item/melee/diamondaxe/priest
+	name = "temporal diamond axe"
+	alpha = 128
 
 /obj/item/melee/diamondaxe/priest/Initialize()
 	..()

@@ -56,5 +56,5 @@
 		SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
 	if(!QDELETED(src))
 		C.apply_status_effect(/datum/status_effect/regenerative_core)
-	user.log_message("[user] used [src] to heal [C == user ? "[C.p_them()]self" : C]! Wake up Mr Miner... Wake up, and smell the ash storms...", LOG_ATTACK, color="green") //Logging for 'old' style legion core use, when clicking on a sprite of yourself or another.
+	user.log_message("[user] used [src] to heal [C == user ? "[C.p_them()]self" : C]! Wake up Mr. Miner... Wake up, and smell the ash storms...", LOG_ATTACK, color="green") //Logging for 'old' style legion core use, when clicking on a sprite of yourself or another.
 	qdel(src)
