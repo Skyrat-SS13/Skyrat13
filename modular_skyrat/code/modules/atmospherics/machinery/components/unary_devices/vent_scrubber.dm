@@ -8,24 +8,31 @@
 	if(!nodes[1] || !on)
 		on = FALSE
 		return FALSE
-	if(airs[1].return_pressure() >= 50*ONE_ATMOSPHERE)
-		return FALSE
 	if(widenet)
-		aoe_scrub(loc)
+		return aoe_scrub(loc)
 	else
-		scrub(loc)
-	return TRUE
+		return scrub(loc)
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/proc/aoe_scrub(var/turf/tile)
 	if(!istype(tile))
 		return FALSE
+	//Self
+	var/datum/gas_mixture/air_contents = airs[1]
+	var/list/self_gases = air_contents.gases
+	var/self_heat_capacity = 0
+	var/cached_float = 0
+	var/list/cached_gasheats = GLOB.meta_gas_specific_heats
+	for(var/id in self_gases)
+		self_heat_capacity += self_gases[id] * cached_gasheats[id]
+		cached_float += self_gases[id]
+	if(cached_float * air_contents.temperature * 0.04155 >= 50*ONE_ATMOSPHERE)
+		return FALSE
+
 	var/list/affected_turfs = list()
 	affected_turfs[tile] = TRUE
 	for(var/t in adjacent_turfs)
 		affected_turfs[t] = TRUE
 
-	var/list/cached_gasheats = GLOB.meta_gas_specific_heats
-	var/cached_float
 	var/recieved_thermal_energy = 0
 	var/recieved_heat_capacity = 0
 	//Env
@@ -37,15 +44,7 @@
 	var/transfer_moles
 	var/transfer_unit
 
-	//Self
-	var/datum/gas_mixture/air_contents = airs[1]
-	var/list/self_gases = air_contents.gases
-	var/self_heat_capacity = 0
-
 	var/turf/open/cur_turf
-
-	for(var/id in self_gases)
-		self_heat_capacity += self_gases[id] * cached_gasheats[id]
 
 	if(scrubbing & SCRUBBING)
 		for(var/t in affected_turfs)
@@ -102,11 +101,19 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/proc/scrub(var/turf/tile)
 	if(!istype(tile))
 		return FALSE
-	var/datum/gas_mixture/environment = tile.return_air()
+	//Self
 	var/datum/gas_mixture/air_contents = airs[1]
-	var/list/env_gases = environment.gases
 	var/list/self_gases = air_contents.gases
+	var/self_heat_capacity = 0
+	var/cached_float = 0
 	var/list/cached_gasheats = GLOB.meta_gas_specific_heats
+	for(var/id in self_gases)
+		self_heat_capacity += self_gases[id] * cached_gasheats[id]
+		cached_float += self_gases[id]
+	if(cached_float * air_contents.temperature * 0.04155 >= 50*ONE_ATMOSPHERE)
+		return FALSE
+	var/datum/gas_mixture/environment = tile.return_air()
+	var/list/env_gases = environment.gases
 	var/env_moles = 0
 	TOTAL_MOLES(env_gases, env_moles)
 	var/env_temp = environment.temperature
@@ -114,11 +121,6 @@
 	var/transfer_unit
 	var/recieved_thermal_energy = 0
 	var/recieved_heat_capacity = 0
-	var/self_heat_capacity = 0
-	var/cached_float
-
-	for(var/id in self_gases)
-		self_heat_capacity += self_gases[id] * cached_gasheats[id]
 
 	if(scrubbing & SCRUBBING)
 		if(length(env_gases & filter_types))

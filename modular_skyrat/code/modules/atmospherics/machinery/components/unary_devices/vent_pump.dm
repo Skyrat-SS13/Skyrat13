@@ -35,6 +35,7 @@
 
 				loc.assume_air(removed)
 				air_update_turf()
+				update_parents()
 
 	else // external -> internal
 		var/pressure_delta = 10000
@@ -52,7 +53,7 @@
 
 			air_contents.merge(removed)
 			air_update_turf()
-	update_parents()
+			update_parents()
 
 #undef INT_BOUND
 #undef EXT_BOUND
