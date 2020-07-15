@@ -585,15 +585,7 @@
 	var/max_charge = 2
 	var/decay_rate = 15 SECONDS
 	var/time_til_decay = 15 SECONDS
-
-/datum/status_effect/otherworldy_proficiency/tick() 
-	if(charge > 0)
-		time_til_decay -= tick_interval
 	
-	if(time_til_decay <= 0)
-		change_charge(-2)
-		time_til_decay = decay_rate
-
 /datum/status_effect/otherworldy_proficiency/proc/change_charge(num)
 	if((charge + num) >= 0 && (charge + num) <= max_charge)
 		charge += num
@@ -604,9 +596,11 @@
 			if(1)
 				linked_alert.icon_state = "mansus2"
 				linked_alert.desc = "Your next mansus grasp mutes for 6 seconds, deals 50 stamina damage and applies your chosen additional effects, decays in 15 seconds."
+				addtimer(CALLBACK(src,.proc/change_charge,-1),15 SECONDS,TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_NO_HASH_WAIT)
 			if(2)
 				linked_alert.icon_state = "mansus3"
 				linked_alert.desc = "Your next mansus grasp stuns for 10 seconds, decays in 15 seconds."
+				addtimer(CALLBACK(src,.proc/change_charge,-2),15 SECONDS,TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_NO_HASH_WAIT)
 	return
 		
 

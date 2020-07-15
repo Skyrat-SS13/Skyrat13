@@ -19,20 +19,14 @@
 	var/list/next_knowledge = list()
 	///What knowledge is incompatible with this. This will simply make it impossible to research knowledges that are in banned_knowledge once this gets researched.
 	var/list/banned_knowledge = list()
-	///Used with rituals, how many items this needs
-	var/list/required_atoms = list()
+	///Used with rituals, how many charges this needs
+	var/charges_needed = 0
+	///forces the rune to show this node 
+	var/force_showup = FALSE
 	///What do we get out of this
 	var/list/result_atoms = list()
 	///What path is this on defaults to "Side"
 	var/route = PATH_SIDE
-
-/datum/eldritch_knowledge/New()
-	. = ..()
-	var/list/temp_list
-	for(var/X in required_atoms)
-		var/atom/A = X
-		temp_list += list(typesof(A))
-	required_atoms = temp_list
 
 /**
   * What happens when this is assigned to an antag datum
@@ -62,7 +56,7 @@
   *
   * If you are adding a more complex summoning or something that requires a special check that parses through all the atoms in an area override this.
   */
-/datum/eldritch_knowledge/proc/recipe_snowflake_check(list/atoms,loc)
+/datum/eldritch_knowledge/proc/recipe_snowflake_check(mob/living/carbon/human/buckled,loc)
 	return TRUE
 
 /**
@@ -70,7 +64,7 @@
   *
   * By default this proc creates atoms from result_atoms list. Override this is you want something else to happen.
   */
-/datum/eldritch_knowledge/proc/on_finished_recipe(mob/living/user,list/atoms,loc)
+/datum/eldritch_knowledge/proc/on_finished_recipe(mob/living/user,mob/living/carbon/human/buckled,loc)
 	if(result_atoms.len == 0)
 		return FALSE
 
@@ -78,19 +72,6 @@
 		new A(loc)
 
 	return TRUE
-
-/**
-  * Used atom cleanup
-  *
-  * Overide this proc if you dont want ALL ATOMS to be destroyed. useful in many situations.
-  */
-/datum/eldritch_knowledge/proc/cleanup_atoms(list/atoms)
-	for(var/X in atoms)
-		var/atom/A = X
-		if(!isliving(A))
-			atoms -= A
-			qdel(A)
-	return
 
 /**
   * Mansus grasp act
@@ -129,9 +110,9 @@
 	var/timer = 5 MINUTES
 	var/list/fingerprints = list()
 
-/datum/eldritch_knowledge/curse/recipe_snowflake_check(list/atoms, loc)
+/datum/eldritch_knowledge/curse/recipe_snowflake_check(mob/living/carbon/human/buckled, loc)
 	fingerprints = list()
-	for(var/X in atoms)
+	for(var/X in range(1,src))
 		var/atom/A = X
 		fingerprints |= A.fingerprints
 	listclearnulls(fingerprints)
@@ -139,7 +120,7 @@
 		return FALSE
 	return TRUE
 
-/datum/eldritch_knowledge/curse/on_finished_recipe(mob/living/user,list/atoms,loc)
+/datum/eldritch_knowledge/curse/on_finished_recipe(mob/living/user,mob/living/carbon/human/buckled,loc)
 
 	var/list/compiled_list = list()
 
@@ -173,7 +154,7 @@
 	var/mob/living/mob_to_summon
 
 
-/datum/eldritch_knowledge/summon/on_finished_recipe(mob/living/user,list/atoms,loc)
+/datum/eldritch_knowledge/summon/on_finished_recipe(mob/living/user,mob/living/carbon/human/buckled,loc)
 	//we need to spawn the mob first so that we can use it in pollCandidatesForMob, we will move it from nullspace down the code
 	var/mob/living/summoned = new mob_to_summon(loc)
 	message_admins("[summoned.name] is being summoned by [user.real_name] in [loc]")
@@ -195,27 +176,30 @@
 //Ascension knowledge
 /datum/eldritch_knowledge/final
 	var/finished = FALSE
+	///Who do we gib?
+	var/humies_to_gib = list()
 
-/datum/eldritch_knowledge/final/recipe_snowflake_check(list/atoms, loc,selected_atoms)
+/datum/eldritch_knowledge/final/recipe_snowflake_check(loc,selected_atoms)
 	if(finished)
 		return FALSE
 	var/counter = 0
-	for(var/mob/living/carbon/human/H in atoms)
-		selected_atoms |= H
+	
+	for(var/mob/living/carbon/human/H in range(1,src))
+		if(H.stat != DEAD)
+			continue
+
 		counter++
+		humies_to_gib += H
 		if(counter == 3)
 			return TRUE
 	return FALSE
 
-/datum/eldritch_knowledge/final/on_finished_recipe(mob/living/user, list/atoms, loc)
+/datum/eldritch_knowledge/final/on_finished_recipe(mob/living/user,mob/living/carbon/human/buckled,loc)
 	finished = TRUE
+	for(var/mob/living/carbon/human/humie_to_gib in humies_to_gib)
+		humie_to_gib.gib()
 	return TRUE
 
-/datum/eldritch_knowledge/final/cleanup_atoms(list/atoms)
-	. = ..()
-	for(var/mob/living/carbon/human/H in atoms)
-		atoms -= H
-		H.gib()
 
 
 ///////////////
@@ -224,64 +208,56 @@
 
 /datum/eldritch_knowledge/spell/basic
 	name = "Break of dawn"
-	desc = "Starts your journey in the mansus. Allows you to select a target using a living heart on a transmutation rune."
+	desc = "Starts your journey in the mansus. Use this spell with a person buckled to the rune to steal part of their soul. Allows you to select a target using a living heart on a transmutation rune. This spell when invoked sacrifices the person buckled to the rune, stealing part of their soul."
 	gain_text = "Gates of mansus open up to your mind."
 	next_knowledge = list(/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_flesh)
 	cost = 0
 	spell_to_add = /obj/effect/proc_holder/spell/targeted/touch/mansus_grasp
-	required_atoms = list(/obj/item/living_heart)
+	force_showup = TRUE
 	route = "Start"
 
-/datum/eldritch_knowledge/spell/basic/recipe_snowflake_check(list/atoms, loc)
+/datum/eldritch_knowledge/spell/basic/recipe_snowflake_check(mob/living/carbon/human/buckled,loc)
 	. = ..()
-	for(var/obj/item/living_heart/LH in atoms)
+	for(var/obj/item/living_heart/LH in range(1,src))
 		if(!LH.target)
 			return TRUE
-		if(LH.target in atoms)
+		if(LH.target == buckled)
 			return TRUE
 	return FALSE
 
-/datum/eldritch_knowledge/spell/basic/on_finished_recipe(mob/living/user, list/atoms, loc)
+/datum/eldritch_knowledge/spell/basic/on_finished_recipe(mob/living/user,mob/living/carbon/human/buckled,loc)
 	. = TRUE
 	var/mob/living/carbon/carbon_user = user
-	for(var/obj/item/living_heart/LH in atoms)
+	var/obj/item/living_heart/LH = locate() in  range(1,src) + carbon_user.get_all_gear()
+	var/obj/item/forbidden_book/FB = locate() in range(1,src) + carbon_user.get_all_gear()
+	if(!LH || !FB)
+		return FALSE
 
-		if(LH.target && LH.target.stat == DEAD)
-			to_chat(carbon_user,"<span class='danger'>Your patrons accepts your offer..</span>")
-			var/mob/living/carbon/human/H = LH.target
-			H.gib()
-			LH.target = null
-			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
+	if(buckled == LH.target)
+		LH.target = null
+		LH.blacklist += buckled
+		buckled.emote("Scream")
+		FB.charge += 5
 
-			EC.total_sacrifices++
-			for(var/X in carbon_user.get_all_gear())
-				if(!istype(X,/obj/item/forbidden_book))
-					continue
-				var/obj/item/forbidden_book/FB = X
-				FB.charge++
-				break
+	if(!LH.target)
+		var/datum/objective/A = new
+		A.owner = user.mind
+		var/datum/mind/targeted =  A.find_target(user,LH.blacklist)//easy way, i dont feel like copy pasting that entire block of code
+		LH.target = targeted.current
+		qdel(A)
+		if(LH.target)
+			to_chat(user,"<span class='warning'>Your new target has been selected, go and sacrifice [LH.target.real_name]!</span>")
 
-		if(!LH.target)
-			var/datum/objective/A = new
-			A.owner = user.mind
-			var/datum/mind/targeted =  A.find_target()//easy way, i dont feel like copy pasting that entire block of code
-			LH.target = targeted.current
-			qdel(A)
-			if(LH.target)
-				to_chat(user,"<span class='warning'>Your new target has been selected, go and sacrifice [LH.target.real_name]!</span>")
+		else
+			to_chat(user,"<span class='warning'>target could not be found for living heart.</span>")
 
-			else
-				to_chat(user,"<span class='warning'>target could not be found for living heart.</span>")
-
-/datum/eldritch_knowledge/spell/basic/cleanup_atoms(list/atoms)
-	return
 
 /datum/eldritch_knowledge/living_heart
 	name = "Living Heart"
 	desc = "Allows you to create additional living hearts, using a heart, a pool of blood and a poppy. Living hearts when used on a transmutation rune will grant you a person to hunt and sacrifice on the rune. Every sacrifice gives you an additional charge in the book."
 	gain_text = "Gates of mansus open up to your mind."
 	cost = 0
-	required_atoms = list(/obj/item/organ/heart,/obj/effect/decal/cleanable/blood,/obj/item/reagent_containers/food/snacks/grown/poppy)
+	charges_needed = 3
 	result_atoms = list(/obj/item/living_heart)
 	route = "Start"
 
@@ -290,6 +266,6 @@
 	desc = "Allows you to create a spare Codex Cicatrix if you have lost one, using a bible, human skin, a pen and a pair of eyes."
 	gain_text = "Their hand is at your throats, yet you see Them not."
 	cost = 0
-	required_atoms = list(/obj/item/organ/eyes,/obj/item/stack/sheet/animalhide/human,/obj/item/storage/book/bible,/obj/item/pen)
+	charges_needed = 3
 	result_atoms = list(/obj/item/forbidden_book)
 	route = "Start"

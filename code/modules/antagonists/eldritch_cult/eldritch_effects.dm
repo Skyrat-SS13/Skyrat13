@@ -5,20 +5,31 @@
 	icon_state = ""
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = SIGIL_LAYER
+	can_buckle = TRUE
 	///Used mainly for summoning ritual to prevent spamming the rune to create millions of monsters.
 	var/is_in_use = FALSE
 
-/obj/effect/eldritch/attack_hand(mob/living/user)
+/obj/effect/eldritch/Initialize()
 	. = ..()
-	if(.)
+	RegisterSignal(src, COMSIG_MOVABLE_BUCKLE, .proc/stun_buckled)
+
+/obj/effect/eldritch/attack_hand(mob/living/user)
+	if(!IS_HERETIC(user))
+		. = ..()
+	else
+		INVOKE_ASYNC(src, .proc/try_activate, user)
+
+/obj/effect/eldritch/proc/stun_buckled(datum/source,mob/living/victim)
+	if(!istype(victim,/mob/living/carbon/human))
 		return
-	try_activate(user)
+	var/mob/living/carbon/human/humie = victim
+	humie.emote("Scream")
+	humie.DefaultCombatKnockdown(20 ,TRUE ,FALSE ,20  )
 
 /obj/effect/eldritch/proc/try_activate(mob/living/user)
-	if(!IS_HERETIC(user))
-		return
 	if(!is_in_use)
-		INVOKE_ASYNC(src, .proc/activate , user)
+		if(activate(user))
+			unbuckle_mob(buckled_mobs[1])
 
 /obj/effect/eldritch/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
@@ -26,72 +37,48 @@
 		qdel(src)
 
 /obj/effect/eldritch/proc/activate(mob/living/user)
-	is_in_use = TRUE
+	. = FALSE
+
+	var/mob/living/carbon/human/buckled_human
+	if(buckled_mobs && buckled_mobs.len && istype(buckled_mobs[1],/mob/living/carbon/human))
+		buckled_human = buckled_mobs[1]
+		. = TRUE
+
+	if(!iscarbon(user))
+		return
+	
+	
+	var/mob/living/carbon/carbon_user = user
+	var/obj/item/forbidden_book/codex = locate() in carbon_user.get_all_gear()
+	if(!codex)
+		return
 	// Have fun trying to read this proc.
 	var/datum/antagonist/heretic/cultie = user.mind.has_antag_datum(/datum/antagonist/heretic)
 	var/list/knowledge = cultie.get_all_knowledge()
-	var/list/atoms_in_range = list()
+	
+	var/list/name_list = list()
 
-	for(var/A in range(1, src))
-		var/atom/atom_in_range = A
-		if(istype(atom_in_range,/area))
-			continue
-		if(istype(atom_in_range,/turf)) // we dont want turfs
-			continue
-		if(istype(atom_in_range,/mob/living))
-			var/mob/living/living_in_range = atom_in_range
-			if(living_in_range.stat != DEAD || living_in_range == user) // we only accept corpses, no living beings allowed.
-				continue
-		atoms_in_range += atom_in_range
+	is_in_use = TRUE
 	for(var/X in knowledge)
 		var/datum/eldritch_knowledge/current_eldritch_knowledge = knowledge[X]
-
-		//has to be done so that we can freely edit the local_required_atoms without fucking up the eldritch knowledge
-		var/list/local_required_atoms = list()
-
-		if(!current_eldritch_knowledge.required_atoms || current_eldritch_knowledge.required_atoms.len == 0)
+		if(codex.charge - current_eldritch_knowledge.charges_needed < 0 || (current_eldritch_knowledge.charges_needed == 0 && current_eldritch_knowledge.force_showup == FALSE) || !current_eldritch_knowledge.recipe_snowflake_check(user,buckled_human,loc))
 			continue
-
-		local_required_atoms += current_eldritch_knowledge.required_atoms
-
-		var/list/selected_atoms = list()
-
-		if(!current_eldritch_knowledge.recipe_snowflake_check(atoms_in_range,drop_location(),selected_atoms))
-			continue
-
-		for(var/LR in local_required_atoms)
-			var/list/local_required_atom_list = LR
-
-			for(var/LAIR in atoms_in_range)
-				var/atom/local_atom_in_range = LAIR
-				if(is_type_in_list(local_atom_in_range,local_required_atom_list))
-					selected_atoms |= local_atom_in_range
-					local_required_atoms -= list(local_required_atom_list)
-
-		if(length(local_required_atoms) > 0)
-			continue
-
-		flick("[icon_state]_active",src)
-		playsound(user, 'sound/magic/castsummon.ogg', 75, TRUE)
-		//we are doing this since some on_finished_recipe subtract the atoms from selected_atoms making them invisible permanently.
-		var/list/atoms_to_disappear = selected_atoms.Copy()
-		for(var/to_disappear in atoms_to_disappear)
-			var/atom/atom_to_disappear = to_disappear
-			//temporary so we dont have to deal with the bs of someone picking those up when they may be deleted
-			atom_to_disappear.invisibility = INVISIBILITY_ABSTRACT
-		if(current_eldritch_knowledge.on_finished_recipe(user,selected_atoms,loc))
-			current_eldritch_knowledge.cleanup_atoms(selected_atoms)
-			is_in_use = FALSE
-
-		for(var/to_appear in atoms_to_disappear)
-			var/atom/atom_to_appear = to_appear
-			//we need to reappear the item just in case the ritual didnt consume everything... or something.
-			atom_to_appear.invisibility = initial(atom_to_appear.invisibility)
-
+		name_list += current_eldritch_knowledge.name
+		name_list[current_eldritch_knowledge.name] = current_eldritch_knowledge
+	
+	var/chosen = input("Select the ritual you wish to perform","Your target") as null|anything in sortList(name_list, /proc/cmp_text_asc)	
+	if(!chosen)
 		return
+	flick("[icon_state]_active",src)
+	playsound(user, 'sound/magic/castsummon.ogg', 75, TRUE)
+		//we are doing this since some on_finished_recipe subtract the atoms from selected_atoms making them invisible permanently.
+	var/datum/eldritch_knowledge/chosen_knowledge = name_list[chosen]
+	codex.charge -= chosen_knowledge.charges_needed
+	if(!chosen_knowledge.on_finished_recipe(user,buckled_human,loc))
+		to_chat(user,"<span class='warning'>Your ritual failed! You used either wrong components or are missing something important!</span>")
+	
 	is_in_use = FALSE
-	to_chat(user,"<span class='warning'>Your ritual failed! You used either wrong components or are missing something important!</span>")
-
+	
 /obj/effect/eldritch/big
 	name = "Transmutation rune"
 	icon = 'icons/effects/96x96.dmi'
@@ -112,12 +99,24 @@
 	///List of mobs with ability to see the smashes
 	var/list/targets = list()
 
+/datum/reality_smash_tracker/New()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/Regenerate), 20 MINUTES)
+
 /datum/reality_smash_tracker/Destroy(force, ...)
 	if(GLOB.reality_smash_track == src)
 		stack_trace("/datum/reality_smash_tracker was deleted. Heretics may no longer access any influences. Fix it or call coder support")
 	QDEL_LIST(smashes)
 	targets.Cut()
 	return ..()
+
+/datum/reality_smash_tracker/proc/Regenerate()
+	//we can skip the istype checks on for loop by adding as anything.
+	for(var/mob/mobie as anything in targets)
+		to_chat(mobie, "<span class='notice'>You feel reality shift, changing the influences...</span>")
+	addtimer(CALLBACK(src, .proc/Regenerate), 20 MINUTES)
+	QDEL_LIST(smashes)
+	_Generate()
 
 /**
   * Automatically fixes the target and smash network

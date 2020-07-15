@@ -6,6 +6,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	///Target
 	var/mob/living/carbon/human/target
+	///People that we already sacced
+	var/list/blacklist = list()
 
 /obj/item/living_heart/attack_self(mob/user)
 	. = ..()

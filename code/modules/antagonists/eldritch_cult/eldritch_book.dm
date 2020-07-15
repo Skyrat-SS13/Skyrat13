@@ -33,6 +33,8 @@
 		remove_rune(target,user)
 	if(istype(target,/obj/effect/reality_smash))
 		get_power_from_influence(target,user)
+	if(istype(target,/obj/effect/broken_illusion))
+		drain_influence(target,user)
 	if(istype(target,/turf/open))
 		draw_rune(target,user)
 
@@ -42,7 +44,15 @@
 	to_chat(target, "<span class='danger'>You start drawing power from influence...</span>")
 	if(do_after(user,10 SECONDS,FALSE,RS))
 		qdel(RS)
-		charge += 1
+		charge += 2
+
+///Gives you a charge and destroys a corresponding influence
+/obj/item/forbidden_book/proc/drain_influence(atom/target, mob/user)
+	var/obj/effect/broken_illusion/RS = target
+	to_chat(target, "<span class='danger'>You start completely draining power from influence...</span>")
+	if(do_after(user,20 SECONDS,FALSE,RS))
+		qdel(RS)
+		charge += 2
 
 ///Draws a rune on a selected turf
 /obj/item/forbidden_book/proc/draw_rune(atom/target,mob/user)
@@ -54,7 +64,7 @@
 	var/A = get_turf(target)
 	to_chat(user, "<span class='danger'>You start drawing a rune...</span>")
 
-	if(do_after(user,30 SECONDS,A))
+	if(do_after(user,7 SECONDS,FALSE, user))
 
 		new /obj/effect/eldritch/big(A)
 
@@ -62,7 +72,7 @@
 /obj/item/forbidden_book/proc/remove_rune(atom/target,mob/user)
 
 	to_chat(user, "<span class='danger'>You start removing a rune...</span>")
-	if(do_after(user,2 SECONDS,user))
+	if(do_after(user,2 SECONDS,FALSE,user))
 		qdel(target)
 
 

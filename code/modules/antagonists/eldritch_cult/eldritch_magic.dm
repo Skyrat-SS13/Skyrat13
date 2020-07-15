@@ -74,16 +74,20 @@
 		else
 			switch(prof.charge)
 				if(0)
+					catchphrase = "R'CH T'H TR'TH"
 					prof.change_charge(1)
 					C.adjustStaminaLoss(80)
 					attached_spell.charge_counter = 130
 				if(1)
+					catchphrase = "TR'TH UN'BO'ND"
 					prof.change_charge(1)
 					C.adjustStaminaLoss(50)
 					C.silent += 6
 					attached_spell.charge_counter = 130
 				if(2)
-					C.DefaultCombatKnockdown(10 ,TRUE ,FALSE ,10  )
+					catchphrase = "E'ES W'DE OP'N"
+					prof.change_charge(-2)
+					C.Paralyze(10)
 
 	var/list/knowledge = cultie.get_all_knowledge()
 
@@ -166,7 +170,7 @@
 		return ..()
 
 
-/obj/effect/proc_holder/spell/targeted/projectile/dumbfire/rust_wave
+/obj/effect/proc_holder/spell/dumbfire/rust_wave
 	name = "Patron's Reach"
 	desc = "Channels energy into your gauntlet - firing it results in a wave of rust being created in it's wake."
 	proj_type = /obj/item/projectile/magic/spell/rust_wave
@@ -207,14 +211,14 @@
 		var/turf/T = X
 		T.rust_heretic_act()
 
-/obj/effect/proc_holder/spell/targeted/projectile/dumbfire/rust_wave/short
+/obj/effect/proc_holder/spell/dumbfire/rust_wave/short
 	name = "Small Patron's Reach"
 	proj_type = /obj/item/projectile/magic/spell/rust_wave/short
 
 /obj/item/projectile/magic/spell/rust_wave/short
 	range = 7
 
-/obj/effect/proc_holder/spell/pointed/cleave
+/obj/effect/proc_holder/spell/targeted/cleave
 	name = "Cleave"
 	desc = "Causes severe bleeding on a target and people around them"
 	school = "transmutation"
@@ -222,6 +226,7 @@
 	clothes_req = FALSE
 	invocation = "CL'VE"
 	invocation_type = INVOCATION_WHISPER
+	include_user = FALSE
 	range = 9
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "cleave"
