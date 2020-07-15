@@ -894,10 +894,10 @@
 	if(hud_used)
 		hud_used.update_robot_modules_display()
 
-	if (hasExpanded)
+	/*if (hasExpanded) Skyrat edit
 		resize = 0.5
 		hasExpanded = FALSE
-		update_transform()
+		update_transform()*/
 	module.transform_to(/obj/item/robot_module)
 
 	// Remove upgrades.
