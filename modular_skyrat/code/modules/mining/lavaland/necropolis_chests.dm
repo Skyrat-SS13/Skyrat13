@@ -706,7 +706,7 @@
 			return list(/obj/item/soulstone/anybody)
 		if(4)
 			new /obj/item/katana/cursed(src)
-			return list(/obj/item/katana/cursed)
+			return list(/obj/item/katana)
 		if(5)
 			new /obj/item/reagent_containers/glass/bottle/potion/flight(src)
 			return list(/obj/item/reagent_containers/glass/bottle/potion/flight)
