@@ -17,11 +17,11 @@
 	for(var/mob/living/C in view(7, src))
 		if(iscarbon(C))
 			possible_targets += C
-		else if(istype(C, /mob/living/simple_animal/hostile/asteroid))
+		else if(istype(C, /mob/living/simple_animal/hostile))
 			thralls += C
 	if(length(possible_targets))
 		target = pick(possible_targets)
-		for(var/mob/living/simple_animal/hostile/asteroid/ass in thralls)
+		for(var/mob/living/simple_animal/hostile/ass in thralls)
 			ass.GiveTarget(target)
 
 /obj/structure/spawner/lavaland/shamblingminer
