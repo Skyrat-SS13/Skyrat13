@@ -326,6 +326,77 @@ GLOBAL_LIST_EMPTY(species_list)
 			return "elderly"
 		else
 			return "unknown"
+//skyrat edit
+/proc/age2ageexamine(age)
+	switch(age)
+		if(0 to 1)
+			return "an infant"
+		if(1 to 3)
+			return "a toddler"
+		if(3 to 13)
+			return "a child"
+		if(13 to 19)
+			return "a teenager"
+		if(19 to 30)
+			return "a young adult"
+		if(30 to 45)
+			return "an adult"
+		if(45 to 60)
+			return "middle-aged"
+		if(60 to 70)
+			return "aging"
+		if(70 to 80)
+			return "elderly"
+		if(80 to 90)
+			return "decrepit"
+		if(90 to INFINITY)
+			return "mummified"
+		else
+			return "completely undescribable by age"
+
+/proc/roundage(age)
+	switch(age)
+		if(0 to 3)
+			return "infancy"
+		if(3 to 6)
+			return "early childhood years"
+		if(6 to 10)
+			return "childhoold years"
+		if(10 to 13)
+			return "preteen years"
+		if(13 to 16)
+			return "teenagehood"
+		if(16 to 19)
+			return "late teenagehood"
+		if(19 to 24)
+			return "early twenties"
+		if(24 to 30)
+			return "twenties"
+		if(30 to 36)
+			return "thirties"
+		if(36 to 40)
+			return "late thirties"
+		if(40 to 44)
+			return "fourties"
+		if(44 to 50)
+			return "late fourties"
+		if(50 to 54)
+			return "fifties"
+		if(54 to 60)
+			return "late fifties"
+		if(60 to 64)
+			return "sixties"
+		if(64 to 70)
+			return "sixties"
+		if(70 to 74)
+			return "seventies"
+		if(74 to 80)
+			return "seventies"
+		if(80 to INFINITY)
+			return "eighties"
+		else
+			return "completely undescribable age spectrum"
+//
 
 /proc/is_species(A, species_datum)
 	. = FALSE

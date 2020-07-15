@@ -1,7 +1,7 @@
 /datum/symptom/oxygen	//It makes no sense for this one to be so punishing for viruses
 	resistance = -1
 	stage_speed = -1
-	transmittable = -2
+	transmittable = -1
 
 /datum/symptom/heal/starlight
 	level = 6
@@ -92,8 +92,8 @@
 /datum/symptom/heal/supertoxin
 	name = "Apoptoxin filter"
 	desc = "The virus stimulates production of special stem cells in the bloodstream, causing rapid reparation of any damage caused by toxins."
-	stealth = 0
-	resistance = -2
+	stealth = 2
+	resistance = -3
 	stage_speed = -2
 	transmittable = -2
 	level = 7
@@ -137,7 +137,7 @@
 	name = "Flesh Mending"
 	desc = "The virus rapidly mutates into body cells, effectively allowing it to quickly fix the host's wounds."
 	stealth = 0
-	resistance = 0
+	resistance = 2
 	stage_speed = -2
 	transmittable = -2
 	level = 8
@@ -266,8 +266,8 @@
 /datum/symptom/heal/alcohol
 	name = "Booze Healing"
 	desc = "The virus uses alcohol based reagents inside the host to heal them."
-	stealth = 0
-	resistance = -1
+	stealth = 1
+	resistance = -2
 	stage_speed = 0
 	transmittable = 1
 	level = 8
@@ -297,7 +297,7 @@
 			boozereagents += E
 		for(var/datum/reagent/consumable/ethanol/E in boozereagents)
 			boozepowers += E.boozepwr
-		multiplier = max(boozepowers)/100
+		multiplier = max(boozepowers)/50
 		. += power * multiplier
 
 /datum/symptom/heal/alcohol/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
@@ -312,9 +312,120 @@
 		to_chat(M, "<span class='notice'>The alcohol makes you feel stronger.</span>")
 
 	for(var/obj/item/bodypart/L in parts)
-		if(L.heal_damage(heal_amt/parts.len * 0.5, heal_amt/parts.len))
+		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len))
 			M.update_damage_overlays()
 	
-	M.drunkenness = max(M.drunkenness - 2.5, 0) //1/4th as effective as antihol being processed
+	M.drunkenness = max(M.drunkenness - 5, 0) //half as effective as antihol being processed
 
 	return 1
+
+//skyrat addition - radiation healing
+/datum/symptom/heal/gamma
+	name = "Gamma Healing"
+	desc = "The virus uses gamma rays to quickly fix damage throughout the host's body. The host does not become immune to radiation."
+	stealth = -1
+	resistance = -1
+	stage_speed = -3
+	transmittable = 3
+	level = 6
+	passive_message = "<span class='notice'>You feel nuclear.</span>"
+	threshold_desc = list(
+		"Stealth 2" = "Healing power is halved.",
+		"Stage Speed 6" = "Increases healing speed.",
+	)
+
+/datum/symptom/heal/gamma/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.properties["stage_rate"] >= 6)
+		power = 2
+	if(A.properties["stealth"] >= 2)
+		power = 0.5
+
+/datum/symptom/heal/gamma/CanHeal(datum/disease/advance/A)
+	. = 0
+	var/mob/living/M = A.affected_mob
+	if(M.radiation)
+		. = (M.radiation/(RAD_MOB_SAFE/250)) * power //250 radiation - 0.5 brute, 0.5 burn, and 1 toxin being healed on each heal call
+
+/datum/symptom/heal/gamma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
+	var/heal_amt = actual_power
+
+	if(prob(5) && (M.radiation))
+		to_chat(M, "<span class='notice'>The radiation in your body makes you feel invincible.</span>")
+
+	M.adjustToxLoss(-heal_amt)
+	M.adjustBruteLoss(-heal_amt/2)
+	M.adjustFireLoss(-heal_amt/2)
+
+	return 1
+
+//skyrat addition - healing radiation
+/datum/symptom/heal/radiation
+	name = "Radiation Healing"
+	desc = "The virus quickly repairs broken DNA and RNA strands."
+	stealth = 0
+	resistance = -1
+	stage_speed = 2
+	transmittable = -2
+	level = 8
+	passive_message = "<span class='notice'>You feel less atomic than normal.</span>"
+	threshold_desc = list(
+		"Stealth 2" = "Healing power is halved.",
+		"Stage Speed 6" = "Complete immunity to radiation.",
+	)
+
+/datum/symptom/heal/radiation/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.properties["stage_rate"] >= 6)
+		ADD_TRAIT(A.affected_mob, TRAIT_RADIMMUNE, "disease")
+	if(A.properties["stealth"] >= 2)
+		power = 0.5
+
+/datum/symptom/heal/radiation/End(datum/disease/advance/A)
+	. = ..()
+	REMOVE_TRAIT(A.affected_mob, TRAIT_RADIMMUNE, "disease")
+
+/datum/symptom/heal/radiation/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
+	var/heal_amt = actual_power * 15
+
+	if(prob(5) && (M.radiation))
+		to_chat(M, "<span class='notice'>You feel the rads going away.</span>")
+
+	M.radiation = max(M.radiation - heal_amt, 0)
+
+	return 1
+
+//damage conversion (base type is brute/burn to toxin, can be changed)
+/datum/symptom/heal/compensation
+	name = "Toxic Compensation"
+	desc = "The virus quickly repairs the host's damaged tissue, at the cost of creating toxic byproducts."
+	stealth = 2
+	resistance = -1
+	stage_speed = -2
+	transmittable = -2
+	level = 5
+	var/list/changes_into = list(BRUTE = TOX, BURN = TOX)
+	threshold_desc = list(
+	"Stage Speed 6" = "Doubles conversion speed.",
+	)
+
+/datum/symptom/heal/compensation/Start(datum/disease/advance/A)
+	if(A.properties["stage_rate"] >= 6) //stronger converting
+		power = 2
+
+/datum/symptom/heal/compensation/Heal(mob/living/carbon/M, datum/disease/advance/A)
+	var/convert_amount = 0.5 * power * rand(1, 2)
+	var/damaged = FALSE
+
+	for(var/i in changes_into)
+		if(M.get_damage_amount(i))
+			damaged = TRUE
+			M.apply_damage_type(-convert_amount, i)
+			M.apply_damage_type(convert_amount, changes_into[i])
+	
+	if(damaged && prob(5))
+		to_chat(M, "<span class='notice'>You feel a mild, tingling pain on your body.</span>")
+
+	return TRUE

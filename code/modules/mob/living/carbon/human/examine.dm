@@ -327,6 +327,10 @@
 				msg += "[t_He] appear[p_s()] to be staring off into space.\n"
 			if (HAS_TRAIT(src, TRAIT_DEAF))
 				msg += "[t_He] appear[p_s()] to not be responding to noises.\n"
+	
+	//skyrat edit - age in examine
+	msg += "[t_He] appear[p_s()] to be [age2ageexamine(age)], [lowertext(t_He)] should be on [t_his] [roundage(age)].\n"
+	//
 
 	var/obj/item/organ/vocal_cords/Vc = user.getorganslot(ORGAN_SLOT_VOICE)
 	if(Vc)

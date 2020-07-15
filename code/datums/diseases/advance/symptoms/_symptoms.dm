@@ -42,6 +42,13 @@
 /datum/symptom/proc/Start(datum/disease/advance/A)
 	if(neutered)
 		return FALSE
+	//skyrat edit
+	for(var/datum/disease/advance/disease in A.affected_mob.diseases)
+		if(disease != A)
+			for(var/i in disease.symptoms)
+				if(istype(i, src.type))
+					return qdel(src)
+	//
 	next_activation = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10) //so it doesn't instantly activate on infection
 	return TRUE
 

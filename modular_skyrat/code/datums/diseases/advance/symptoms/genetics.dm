@@ -1,3 +1,4 @@
+//changes stats
 /datum/symptom/genetic_mutation
 	stealth = -2
 	resistance = -2
