@@ -85,7 +85,7 @@
 		if(D)
 			D.adjust_money(min(power_produced, 1))
 		if(istype(linked_techweb))
-			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min(power_produced, 10)) // x4 coils = ~240/m point bonus for R&D skyrat edit - buff coils
+			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min(power_produced, 1)) // x4 coils = ~240/m point bonus for R&D
 		addtimer(CALLBACK(src, .proc/reset_shocked), 10)
 		zap_buckle_check(power)
 		playsound(src.loc, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
@@ -123,7 +123,7 @@
 		if(D)
 			D.adjust_money(min(power_produced, 3))
 		if(istype(linked_techweb))
-			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min(power_produced, 3)) // x4 coils with a pulse per second or so = ~720/m point bonus for R&D
+			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min(power_produced, 10)) //skyrat edit 4 coils = 2400/m point RND
 		addtimer(CALLBACK(src, .proc/reset_shocked), 10)
 		zap_buckle_check(power)
 		playsound(src.loc, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
