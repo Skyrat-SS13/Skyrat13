@@ -8,14 +8,7 @@
 	if(!ishuman(obj))
 		return
 	var/mob/living/carbon/human/H = obj
-	if(HAS_TRAIT(H, TRAIT_CLEANFOOT) && !HAS_TRAIT(H, TRAIT_DIRTYFOOT))
-		if(oldloc && istype(oldloc, /turf/open/floor))
-			var/obj/effect/decal/cleanable/cleanable = locate(/obj/effect/decal/cleanable, oldloc)
-			if(!cleanable)
-				return
-			qdel(cleanable)
-		return
-	if(HAS_TRAIT(H, TRAIT_CLEANFOOT) || HAS_TRAIT(H, TRAIT_LIGHT_STEP))
+	if(HAS_TRAIT(H, TRAIT_LIGHT_STEP))
 		return
 	if(HAS_TRAIT(H, TRAIT_DIRTYFOOT))
 		cleanprob = 100

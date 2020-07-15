@@ -194,3 +194,13 @@
 				H.emote("laugh")
 				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 5 SECONDS)
 				addtimer(CALLBACK(H, /mob/proc/emote, "laugh"), 10 SECONDS)
+
+// Make the floors even more dirty by just walking on them. / There is also the cleanfoot trait, check goods.
+/datum/quirk/dirtyfoot
+	name = "Dirty Feet"
+	desc = "You are an animal. Your feet are so dirty, they make the floor by just existing."
+	value = 0
+	mob_trait = TRAIT_DIRTYFOOT
+	gain_text = "<span class='notice'>The ground starts to feel grimy.</span>"
+	lose_text = "<span class='danger'>The ground starts to look cleaner already.</span>"
+	medical_record_text = "Patient's feet are covered in dirt."
