@@ -15,7 +15,7 @@
 	var/list/thralls = list()
 	var/mob/living/target
 	for(var/mob/living/C in view(7, src))
-		if(iscarbon(C))
+		if(iscarbon(C) && C.stat != DEAD)
 			possible_targets += C
 		else if(istype(C, /mob/living/simple_animal/hostile))
 			thralls += C
