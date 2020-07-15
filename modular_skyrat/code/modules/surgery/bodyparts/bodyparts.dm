@@ -240,7 +240,7 @@
 			. += aux
 			. += auxmarking
 		
-		if(body_zone == BODY_ZONE_PRECISE_GROIN)
+		if(body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST))
 			for(var/obj/item/organ/genital/G in src)
 				var/datum/sprite_accessory/S
 				var/size = G.size
