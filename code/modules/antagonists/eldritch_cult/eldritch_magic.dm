@@ -173,7 +173,7 @@
 /obj/effect/proc_holder/spell/dumbfire/rust_wave
 	name = "Patron's Reach"
 	desc = "Channels energy into your gauntlet - firing it results in a wave of rust being created in it's wake."
-	proj_type = /obj/item/projectile/magic/spell/rust_wave
+	proj_type = /obj/effect/proc_holder/spell/targeted/trigger/rust_wave
 	charge_max = 350
 	clothes_req = FALSE
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -181,19 +181,15 @@
 	action_background_icon_state = "bg_ecult"
 	invocation = "SPR'D TH' WO'D"
 	invocation_type = INVOCATION_WHISPER
+	proj_lifespan = 30
+	proj_icon_state = "eldritch_projectile"
 
-/obj/item/projectile/magic/spell/rust_wave
+/obj/effect/proc_holder/spell/targeted/trigger/rust_wave
 	name = "Patron's Reach"
 	icon_state = "eldritch_projectile"
 	alpha = 180
-	damage = 30
-	damage_type = TOX
-	hitsound = 'sound/weapons/punch3.ogg'
-	trigger_range = 0
-	ignored_factions = list("heretics")
-	range = 15
 
-/obj/item/projectile/magic/spell/rust_wave/Moved(atom/OldLoc, Dir)
+/obj/effect/proc_holder/spell/targeted/trigger/rust_wave/Moved(atom/OldLoc, Dir)
 	. = ..()
 	playsound(src, 'sound/items/welder.ogg', 75, TRUE)
 	var/list/turflist = list()
@@ -213,10 +209,8 @@
 
 /obj/effect/proc_holder/spell/dumbfire/rust_wave/short
 	name = "Small Patron's Reach"
-	proj_type = /obj/item/projectile/magic/spell/rust_wave/short
-
-/obj/item/projectile/magic/spell/rust_wave/short
-	range = 7
+	proj_lifespan = 15
+	proj_type = /obj/effect/proc_holder/spell/targeted/trigger/rust_wave
 
 /obj/effect/proc_holder/spell/targeted/cleave
 	name = "Cleave"
