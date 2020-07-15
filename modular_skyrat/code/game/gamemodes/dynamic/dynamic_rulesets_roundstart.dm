@@ -70,7 +70,7 @@
 	weight = 0 // Originally 3
 	cost = 35
 	scaling_cost = 10
-	property_weights = list("story_potential" = 0, "trust" = 0, "extended" = 0, "valid" = 0) // Originally 1, -1, 1, 1
+	property_weights = list() // Originally list("story_potential" = 0, "trust" = 0, "extended" = 0, "valid" = 0)
 	requirements = list(70,65,60,55,50,50,50,50,50,50)
 	high_population_requirement = 65
 	antag_cap = list(2,2,2,2,2,2,2,2,2,2)
