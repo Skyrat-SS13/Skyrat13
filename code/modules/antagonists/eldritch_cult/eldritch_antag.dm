@@ -25,6 +25,7 @@
 	to_chat(owner, "<span class='cult'>The book whispers, the forbidden knowledge walks once again!<br>\
 	Your book allows you to research abilities, read it very carefully! you cannot undo what has been done!<br>\
 	You gain charges by either collecitng influences or sacrifcing people tracked by the living heart<br> \
+	Unfortunately due to the changes implemented to make this antagonist compatible with Skyrat the guide provided below is not accurate in many aspects, refer to book for primary guidance<br>\
 	You can find a basic guide at : https://tgstation13.org/wiki/Heresy_101 </span>")
 
 /datum/antagonist/heretic/on_gain()
