@@ -210,7 +210,7 @@
 		stack_trace("[src]([REF(src)]) has one or more null gas mixtures, which may cause bugs. Null mixtures will not be considered in reconcile_air().")
 		return removeNullsFromList(.)
 
-/datum/pipeline/proc/reconcile_air()
+/*/datum/pipeline/proc/reconcile_air() MOVED TO MODULAR_SKYRAT
 	var/list/datum/gas_mixture/GL = list()
 	var/list/datum/pipeline/PL = list()
 	PL += src
@@ -258,4 +258,4 @@
 			G.copy_from(total_gas_mixture)
 			var/list/G_gases = G.gases
 			for(var/id in G_gases)
-				G_gases[id] *= G.volume/total_gas_mixture.volume
+				G_gases[id] *= G.volume/total_gas_mixture.volume*/

@@ -131,7 +131,7 @@
 	check_turfs()
 	..()
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/process_atmos()
+/*/obj/machinery/atmospherics/components/unary/vent_scrubber/process_atmos() MOVED TO MODULAR_SKYRAT
 	..()
 	if(welded || !is_operational())
 		return FALSE
@@ -194,7 +194,7 @@
 
 	update_parents()
 
-	return TRUE
+	return TRUE*/
 
 //There is no easy way for an object to be notified of changes to atmos can pass flags
 //	So we check every machinery process (2 seconds)
