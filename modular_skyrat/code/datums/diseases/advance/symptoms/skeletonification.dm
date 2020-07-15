@@ -33,6 +33,7 @@
 	. = ..()
 	var/mob/living/carbon/human/H = A.affected_mob
 	if(. && original_dna)
+		H.set_species(original_dna.species)
 		H.dna = copify_dna(original_dna)
 		REMOVE_TRAIT(H, TRAIT_HUSK, "disease")
 		H.regenerate_icons()
