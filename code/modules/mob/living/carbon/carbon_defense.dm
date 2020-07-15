@@ -65,27 +65,13 @@
 		throw_mode_off()
 		return TRUE
 
-<<<<<<< HEAD
-/mob/living/carbon/embed_item(obj/item/I)
-	throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
-	var/obj/item/bodypart/L = pick(bodyparts)
-	L.embedded_objects |= I
-	I.add_mob_blood(src)//it embedded itself in you, of course it's bloody!
-	I.forceMove(src)
-	I.embedded()
-	L.receive_damage(I.w_class*I.embedding.embedded_impact_pain_multiplier)
-	visible_message("<span class='danger'>[I] embeds itself in [src]'s [L.name]!</span>","<span class='userdanger'>[I] embeds itself in your [L.name]!</span>")
-	SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "embedded", /datum/mood_event/embedded)
-
-/mob/living/carbon/attacked_by(obj/item/I, mob/living/user)
-	var/totitemdamage = pre_attacked_by(I, user)
-=======
 /mob/living/carbon/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
 	var/totitemdamage = pre_attacked_by(I, user) * damage_multiplier
->>>>>>> 8cd81ff89b... Merge pull request #12488 from Ghommie/Ghommie-cit813
 	var/impacting_zone = (user == src)? check_zone(user.zone_selected) : ran_zone(user.zone_selected)
-	if((user != src) && (mob_run_block(I, totitemdamage, "the [I]", ATTACK_TYPE_MELEE, I.armour_penetration, user, impacting_zone, null) & BLOCK_SUCCESS))
+	var/list/block_return = list()
+	if((user != src) && (mob_run_block(I, totitemdamage, "the [I]", ((attackchain_flags & ATTACKCHAIN_PARRY_COUNTERATTACK)? ATTACK_TYPE_PARRY_COUNTERATTACK : NONE) | ATTACK_TYPE_MELEE, I.armour_penetration, user, impacting_zone, block_return) & BLOCK_SUCCESS))
 		return FALSE
+	totitemdamage = block_calculate_resultant_damage(totitemdamage, block_return)
 	var/obj/item/bodypart/affecting = get_bodypart(impacting_zone)
 	if(!affecting) //missing limb? we select the first bodypart (you can never have zero, because of chest)
 		affecting = bodyparts[1]

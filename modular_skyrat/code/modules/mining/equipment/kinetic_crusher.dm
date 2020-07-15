@@ -1,4 +1,4 @@
-//kinetic destroyer (premium crusher
+//kinetic destroyer (premium crusher)
 /obj/item/twohanded/kinetic_crusher/premiumcrusher
 	icon = 'modular_skyrat/icons/obj/mining.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/hammerspc_lefthand.dmi'
@@ -302,6 +302,7 @@
 	icon = 'modular_skyrat/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "zweihander"
 	item_state = "zweihander"
+	resistance_flags = FIRE_PROOF | UNACIDABLE | INDESTRUCTIBLE
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "Zweihander"
