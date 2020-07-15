@@ -110,18 +110,20 @@
 //bubblegum
 /obj/item/borg/upgrade/modkit/shotgun
 	name = "shotgun blast modification kit"
-	desc = "Makes you fire <b>2</b> kinetic shots instead of one."
+	desc = "Makes you fire <b>3</b> kinetic shots instead of one, at the cost of making each shot deal <b>-20</b> damage."
 	denied_type = /obj/item/borg/upgrade/modkit/aoe
 	cost = 50
-	modifier = 2
+	modifier = 3
+	var/damage_modifier = 20
 
 /obj/item/borg/upgrade/modkit/shotgun/modify_projectile(obj/item/projectile/kinetic/K)
 	..()
 	if(K.kinetic_gun)
+		K.damage -= damage_modifier
 		var/obj/item/gun/energy/kinetic_accelerator/KA = K.kinetic_gun
 		var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
 		C.pellets = src.modifier
-		C.variance = 30
+		C.variance = 45
 		KA.chambered = C
 
 /obj/item/borg/upgrade/modkit/shotgun/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
