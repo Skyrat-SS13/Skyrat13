@@ -3606,6 +3606,7 @@
 #include "modular_skyrat\code\game\objects\items\computermath.dm"
 #include "modular_skyrat\code\game\objects\items\hhmirror.dm"
 #include "modular_skyrat\code\game\objects\items\kits.dm"
+#include "modular_skyrat\code\game\objects\items\manuals.dm"
 #include "modular_skyrat\code\game\objects\items\misc.dm"
 #include "modular_skyrat\code\game\objects\items\miscellaneous.dm"
 #include "modular_skyrat\code\game\objects\items\plushies.dm"
