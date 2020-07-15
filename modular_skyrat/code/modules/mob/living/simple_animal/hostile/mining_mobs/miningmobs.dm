@@ -6,7 +6,7 @@
 	var/list/glorymessagespkabayonet = list() //SAME AS ABOVE BUT WITH A HONKING KNIFE ON THE FUCKING THING
 	var/gloryhealth = 7.5
 	var/glorymodifier = 1.5
-	var/scar_threshold = 0.25 //the mob needs to be below (maxHealth * scar_threshold) to get scarred
+	var/scar_threshold = 0.3 //the mob needs to be below (maxHealth * scar_threshold) to get scarred
 	var/scarred = FALSE //is the mob running away from danger?
 	var/can_scar = TRUE //can the mob get scarred?
 
