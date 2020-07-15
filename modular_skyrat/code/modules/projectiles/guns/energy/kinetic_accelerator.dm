@@ -110,10 +110,10 @@
 //bubblegum
 /obj/item/borg/upgrade/modkit/shotgun
 	name = "shotgun blast modification kit"
-	desc = "Makes you fire 3 kinetic shots instead of one."
+	desc = "Makes you fire <b>2</b> kinetic shots instead of one."
 	denied_type = /obj/item/borg/upgrade/modkit/aoe
-	cost = 40
-	modifier = 3
+	cost = 50
+	modifier = 2
 
 /obj/item/borg/upgrade/modkit/shotgun/modify_projectile(obj/item/projectile/kinetic/K)
 	..()
@@ -121,7 +121,7 @@
 		var/obj/item/gun/energy/kinetic_accelerator/KA = K.kinetic_gun
 		var/obj/item/ammo_casing/energy/kinetic/C = KA.ammo_type[1]
 		C.pellets = src.modifier
-		C.variance = 45
+		C.variance = 30
 		KA.chambered = C
 
 /obj/item/borg/upgrade/modkit/shotgun/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
@@ -155,7 +155,7 @@
 /obj/item/borg/upgrade/modkit/wall
 	name = "wall modification kit"
 	desc = "Makes a wall on impact on a living being."
-	cost = 60
+	cost = 65
 	var/cooldown = 0
 	var/cdmultiplier = 1.75
 
@@ -258,7 +258,7 @@
 	name = "resonant lifesteal crystal"
 	desc = "Causes kinetic accelerator shots to heal the firer on striking a living target."
 	modifier = 4
-	cost = 30
+	cost = 50
 
 //drakeling
 /obj/item/borg/upgrade/modkit/fire
@@ -296,7 +296,7 @@
 	name = "plasma modification kit"
 	desc = "Makes your accelerator also shoot a burst of plasma."
 	modifier = 10
-	cost = 35
+	cost = 40
 
 /obj/item/borg/upgrade/modkit/plasma/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	playsound(KA, 'sound/weapons/laser.ogg', 100, TRUE)
@@ -316,7 +316,7 @@
 	name = "shielding modification kit"
 	desc = "Makes your kinetic accelerator block <b>15%</b> of all attacks while held."
 	modifier = 15
-	cost = 30
+	cost = 25
 
 /obj/item/borg/upgrade/modkit/shielding/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
 	. = ..()
@@ -385,7 +385,7 @@
 	name = "critical modification kit"
 	desc = "Makes your kinetic accelerator have a <b>10%</b> chance to critically wound your target."
 	modifier = 10
-	cost = 30
+	cost = 25
 
 /obj/item/borg/upgrade/modkit/critical/modify_projectile(obj/item/projectile/kinetic/K)
 	. = ..()
