@@ -327,7 +327,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(70 to INFINITY)
 			return "elderly"
 		else
-			return "<b>[REDACTED]</b>"
+			return "<b>\[REDACTED]</b>"
 //skyrat edit
 /proc/age2ageexamine(age)
 	switch(age)
@@ -356,7 +356,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(90 to INFINITY)
 			return "mummified"
 		else
-			return "<b>[DATA EXPUNGED]</b>"
+			return "<b>██████████████</b>"
 
 /proc/roundage(age)
 	switch(age)
@@ -401,7 +401,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(80 to INFINITY)
 			return "eighties"
 		else
-			return "<b>[O5 COUNCIL ACCESS REQUIRED]</b>"
+			return "<b>\[O5 COUNCIL ACCESS REQUIRED]</b>"
 //
 
 /proc/is_species(A, species_datum)
