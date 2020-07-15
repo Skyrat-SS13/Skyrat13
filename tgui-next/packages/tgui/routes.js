@@ -109,6 +109,7 @@ import { Vending } from './interfaces/Vending';
 import { Wires } from './interfaces/Wires';
 import { AtmosRelief } from './interfaces/AtmosRelief';
 import { FaxMachine } from './interfaces/FaxMachine';
+import { ForbiddenLore } from './interfaces/ForbiddenLore';
 
 const ROUTES = {
   achievements: {
@@ -587,6 +588,10 @@ const ROUTES = {
   faxmachine: {
     component: () => FaxMachine,
     scrollable: false,
+  },
+  forbiddenlore: {
+    component: () => ForbiddenLore,
+    scrollable: true,
   },
 };
 

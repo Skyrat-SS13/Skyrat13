@@ -87,6 +87,9 @@
 		var/datum/eldritch_knowledge/EK = researched_knowledge[X]
 		EK.on_life(owner.current)
 
+	if(!owner.current.has_status_effect(/datum/status_effect/otherworldy_proficiency))
+		owner.current.apply_status_effect(/datum/status_effect/otherworldy_proficiency)
+
 /datum/antagonist/heretic/proc/forge_primary_objectives()
 	var/list/assasination = list()
 	var/list/protection = list()

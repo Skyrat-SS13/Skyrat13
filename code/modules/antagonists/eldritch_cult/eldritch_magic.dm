@@ -49,24 +49,42 @@
 
 /obj/item/melee/touch_attack/mansus_fist/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 
-	if(!proximity_flag || target == user)
+	if(!proximity_flag || target == user || !isliving(user))
 		return
 	playsound(user, 'sound/items/welder.ogg', 75, TRUE)
+	var/mob/living/living_user = user
 	if(ishuman(target))
 		var/mob/living/carbon/human/tar = target
 		if(tar.anti_magic_check())
 			tar.visible_message("<span class='danger'>Spell bounces off of [target]!</span>","<span class='danger'>The spell bounces off of you!</span>")
 			return ..()
-	var/datum/mind/M = user.mind
+	var/datum/mind/M = living_user.mind
 	var/datum/antagonist/heretic/cultie = M.has_antag_datum(/datum/antagonist/heretic)
-
+	
 	var/use_charge = FALSE
 	if(iscarbon(target))
-		use_charge = TRUE
 		var/mob/living/carbon/C = target
+		var/datum/status_effect/otherworldy_proficiency/prof = living_user.has_status_effect(/datum/status_effect/otherworldy_proficiency)
+		C.mob_light(_color = LIGHT_COLOR_GREEN, _range = 3, _duration = 2)
 		C.adjustBruteLoss(10)
-		C.AdjustKnockdown(5 SECONDS)
-		C.adjustStaminaLoss(80)
+		use_charge = TRUE
+		//just in case
+		if(!prof)
+			C.adjustStaminaLoss(80)
+		else
+			switch(prof.charge)
+				if(0)
+					prof.change_charge(1)
+					C.adjustStaminaLoss(80)
+					attached_spell.charge_counter = 130
+				if(1)
+					prof.change_charge(1)
+					C.adjustStaminaLoss(50)
+					C.silent += 6
+					attached_spell.charge_counter = 130
+				if(2)
+					C.DefaultCombatKnockdown(10 ,TRUE ,FALSE ,10  )
+
 	var/list/knowledge = cultie.get_all_knowledge()
 
 	for(var/X in knowledge)

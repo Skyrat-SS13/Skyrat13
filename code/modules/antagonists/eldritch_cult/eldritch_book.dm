@@ -74,7 +74,7 @@
 	if(!ui)
 		icon_state = "book_open"
 		flick("book_opening",src)
-		ui = new(user, src, ui_key, "ForbiddenLore", name, 500, 900, master_ui, state)
+		ui = new(user, src, ui_key, "forbiddenlore", name, 500, 900, master_ui, state)
 		ui.open()
 
 /obj/item/forbidden_book/ui_data(mob/user)
