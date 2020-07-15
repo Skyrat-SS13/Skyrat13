@@ -295,6 +295,7 @@ SUBSYSTEM_DEF(research)
 	var/list/errored_datums = list()
 	var/list/point_types = list()				//typecache style type = TRUE list
 	//----------------------------------------------
+	var/point_generation = FALSE //skyrat edit - removing passive points
 	var/list/single_server_income = list(TECHWEB_POINT_TYPE_GENERIC = 35)	//citadel edit - techwebs nerf
 	var/multiserver_calculation = FALSE
 	var/last_income
@@ -327,26 +328,27 @@ SUBSYSTEM_DEF(research)
 	return ..()
 
 /datum/controller/subsystem/research/fire()
-	var/list/bitcoins = list()
-	if(multiserver_calculation)
-		var/eff = calculate_server_coefficient()
-		for(var/obj/machinery/rnd/server/miner in servers)
-			var/list/result = (miner.mine())	//SLAVE AWAY, SLAVE.
-			for(var/i in result)
-				result[i] *= eff
-				bitcoins[i] = bitcoins[i]? bitcoins[i] + result[i] : result[i]
-	else
-		for(var/obj/machinery/rnd/server/miner in servers)
-			if(miner.working)
-				bitcoins = single_server_income.Copy()
-				break			//Just need one to work.
-	if (!isnull(last_income))
-		var/income_time_difference = world.time - last_income
-		science_tech.last_bitcoins = bitcoins  // Doesn't take tick drift into account
-		for(var/i in bitcoins)
-			bitcoins[i] *= income_time_difference / 10
-		science_tech.add_point_list(bitcoins)
-	last_income = world.time
+	if(point_generation) //skyrat edit - removing passive points
+		var/list/bitcoins = list()
+		if(multiserver_calculation)
+			var/eff = calculate_server_coefficient()
+			for(var/obj/machinery/rnd/server/miner in servers)
+				var/list/result = (miner.mine())	//SLAVE AWAY, SLAVE.
+				for(var/i in result)
+					result[i] *= eff
+					bitcoins[i] = bitcoins[i]? bitcoins[i] + result[i] : result[i]
+		else
+			for(var/obj/machinery/rnd/server/miner in servers)
+				if(miner.working)
+					bitcoins = single_server_income.Copy()
+					break			//Just need one to work.
+		if (!isnull(last_income))
+			var/income_time_difference = world.time - last_income
+			science_tech.last_bitcoins = bitcoins  // Doesn't take tick drift into account
+			for(var/i in bitcoins)
+				bitcoins[i] *= income_time_difference / 10
+			science_tech.add_point_list(bitcoins)
+		last_income = world.time
 	// Skyrat change. Handles Problem Computer charges here
 	if(problem_computer_charges < problem_computer_max_charges && world.time >= problem_computer_next_charge_time)
 		problem_computer_next_charge_time = world.time + problem_computer_charge_time
