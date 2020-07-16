@@ -67,7 +67,7 @@
 		return EVENT_CANT_RUN
 
 	triggering = TRUE
-	if (alertadmins)
+	if (alert_observers)
 		message_admins("Random Event triggering in 60 seconds: [name] (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)") //skyrat-edit
 		sleep(600) //skyrat-edit
 		var/gamemode = SSticker.mode.config_tag
