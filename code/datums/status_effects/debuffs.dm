@@ -961,3 +961,39 @@ datum/status_effect/pacify
 			H.adjustOrganLoss(ORGAN_SLOT_TONGUE,10)
 		if(100)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN,20)
+
+/datum/status_effect/stolen_soul
+	id = "stolen_soul"
+	var/healing_to_do = 500
+
+/datum/status_effect/stolen_soul/tick()
+	. = ..()
+	if(!istype(owner,/mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/humie = owner
+
+	if(humie.reagents.has_reagent(/datum/reagent/water/holywater,50))
+		healing_to_do -= 5
+	
+	if(istype(get_area(humie),/area/chapel))
+		healing_to_do -= 1
+	
+	if(healing_to_do <= 0)
+		qdel(src)
+
+/datum/status_effect/stolen_soul/on_apply()
+	. = ..()
+	RegisterSignal(owner,COMSIG_MOB_ITEM_AFTERATTACK,.proc/heal_from_bible)
+	if(istype(owner,/mob/living/carbon/human))
+		var/mob/living/carbon/human/humie = owner
+		humie.setMaxHealth( humie.maxHealth * 0.75)
+
+/datum/status_effect/stolen_soul/on_remove()
+	if(istype(owner,/mob/living/carbon/human))
+		var/mob/living/carbon/human/humie = owner
+		humie.setMaxHealth( humie.maxHealth / 0.75)
+	return ..()
+
+/datum/status_effect/stolen_soul/proc/heal_from_bible(datum/source)
+	if(istype(source,/obj/item/storage/book/bible))
+		healing_to_do -= 10

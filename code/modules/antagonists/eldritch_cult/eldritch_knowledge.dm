@@ -235,14 +235,15 @@
 
 	if(buckled == LH.target)
 		LH.target = null
-		LH.blacklist += buckled
+		GLOB.stolen_souls += buckled
+		buckled.apply_status_effect()
 		buckled.emote("Scream")
 		FB.charge += 5
 
 	if(!LH.target)
 		var/datum/objective/A = new
 		A.owner = user.mind
-		var/datum/mind/targeted =  A.find_target(user,LH.blacklist)//easy way, i dont feel like copy pasting that entire block of code
+		var/datum/mind/targeted =  A.find_target(user,GLOB.stolen_souls)//easy way, i dont feel like copy pasting that entire block of code
 		LH.target = targeted.current
 		qdel(A)
 		if(LH.target)
