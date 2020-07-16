@@ -321,9 +321,9 @@ GLOBAL_LIST_EMPTY(species_list)
 //skyrat edit
 /proc/age2ageexamine(age)
 	switch(age)
-		if(18 to 25) //anti-citadel change
+		if(18 to 24) //anti-citadel change
 			return "a young adult"
-		if(25 to 45)
+		if(24 to 45)
 			return "an adult"
 		if(45 to 60)
 			return "middle-aged"
@@ -340,9 +340,7 @@ GLOBAL_LIST_EMPTY(species_list)
 
 /proc/roundage(age)
 	switch(age)
-		if(18 to 19)
-			return "late teenagehood"
-		if(19 to 24)
+		if(18 to 24)
 			return "early twenties"
 		if(24 to 30)
 			return "twenties"
