@@ -4,6 +4,8 @@
 	custom_price = 10
 	icon = 'newerastation/icons/obj/drinks.dmi'
 	icon_state = "guarana_can"
+	crushed_icon = 'newerastation/icons/obj/janitor.dmi'
+	crushed_state = "guarana_can"
 	list_reagents = list(/datum/reagent/consumable/guarana = 40)
 	foodtype = SUGAR
 	var/list/slogans = list("A senha contra o Boko Moko!", "Viva mais com Guaraná Antarctica!", "Seja você mesmo, beba Guaraná Antarctica!", "Todo mundo tem sede de natureza!", "Guaraná Antarctica. Meu Brasil brasileiro!", "Guaraná Antarctica, o brasileirinho!",

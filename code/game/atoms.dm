@@ -8,6 +8,13 @@
 	var/interaction_flags_atom = NONE
 	var/datum/reagents/reagents = null
 
+	var/flags_ricochet = NONE
+
+	///When a projectile tries to ricochet off this atom, the projectile ricochet chance is multiplied by this
+	var/ricochet_chance_mod = 1
+	///When a projectile ricochets off this atom, it deals the normal damage * this modifier to this atom
+	var/ricochet_damage_mod = 0.33
+
 	//This atom's HUD (med/sec, etc) images. Associative list.
 	var/list/image/hud_list = null
 	//HUD images that this atom can provide.
@@ -41,6 +48,7 @@
 	var/rad_insulation = RAD_NO_INSULATION
 
 	///The custom materials this atom is made of, used by a lot of things like furniture, walls, and floors (if I finish the functionality, that is.)
+	///The list referenced by this var can be shared by multiple objects and should not be directly modified. Instead, use [set_custom_materials][/atom/proc/set_custom_materials].
 	var/list/custom_materials
 	///Bitfield for how the atom handles materials.
 	var/material_flags = NONE
@@ -111,11 +119,8 @@
 	if (canSmoothWith)
 		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
 
-	var/temp_list = list()
-	for(var/i in custom_materials)
-		temp_list[SSmaterials.GetMaterialRef(i)] = custom_materials[i] //Get the proper instanced version
-	custom_materials = null //Null the list to prepare for applying the materials properly
-	set_custom_materials(temp_list)
+	// apply materials properly from the default custom_materials value
+	set_custom_materials(custom_materials)
 
 	ComponentInitialize()
 
@@ -145,8 +150,27 @@
 
 	return ..()
 
+/**
+  * Checks if a projectile should ricochet off of us. Projectiles get final say.
+  * [__DEFINES/projectiles.dm] for return values.
+  */
+/atom/proc/check_projectile_ricochet(obj/item/projectile/P)
+	return (flags_1 & DEFAULT_RICOCHET_1)? PROJECTILE_RICOCHET_YES : PROJECTILE_RICOCHET_NO
+
 /atom/proc/handle_ricochet(obj/item/projectile/P)
-	return
+	var/turf/p_turf = get_turf(P)
+	var/face_direction = get_dir(src, p_turf)
+	var/face_angle = dir2angle(face_direction)
+	var/incidence_s = GET_ANGLE_OF_INCIDENCE(face_angle, (P.Angle + 180))
+	var/a_incidence_s = abs(incidence_s)
+	if(a_incidence_s > 90 && a_incidence_s < 270)
+		return FALSE
+	if((P.flag in list("bullet", "bomb")) && P.ricochet_incidence_leeway)
+		if((a_incidence_s < 90 && a_incidence_s < 90 - P.ricochet_incidence_leeway) || (a_incidence_s > 270 && a_incidence_s -270 > P.ricochet_incidence_leeway))
+			return
+	var/new_angle_s = SIMPLIFY_DEGREES(face_angle + incidence_s)
+	P.setAngle(new_angle_s)
+	return TRUE
 
 /atom/proc/CanPass(atom/movable/mover, turf/target)
 	return !density
@@ -348,6 +372,20 @@
 				. += "<span class='danger'>It's empty.</span>"
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+
+/**
+  * Called when a mob examines (shift click or verb) this atom twice (or more) within EXAMINE_MORE_TIME (default 1.5 seconds)
+  *
+  * This is where you can put extra information on something that may be superfluous or not important in critical gameplay
+  * moments, while allowing people to manually double-examine to take a closer look
+  *
+  * Produces a signal [COMSIG_PARENT_EXAMINE_MORE]
+  */
+/atom/proc/examine_more(mob/user)
+	. = list()
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE_MORE, user, .)
+	if(!LAZYLEN(.)) // lol ..length
+		return list("<span class='notice'><i>You examine [src] closer, but find nothing of interest...</i></span>")
 
 /// Updates the icon of the atom
 /atom/proc/update_icon()
@@ -984,26 +1022,21 @@ Proc for attack log creation, because really why not
 
 ///Sets the custom materials for an item.
 /atom/proc/set_custom_materials(var/list/materials, multiplier = 1)
-
-	if(!materials)
-		materials = custom_materials
-
 	if(custom_materials) //Only runs if custom materials existed at first. Should usually be the case but check anyways
 		for(var/i in custom_materials)
 			var/datum/material/custom_material = SSmaterials.GetMaterialRef(i)
 			custom_material.on_removed(src, material_flags) //Remove the current materials
 
 	if(!length(materials))
+		custom_materials = null
 		return
 
-	custom_materials = list() //Reset the list
+	if(material_flags)
+		for(var/x in materials)
+			var/datum/material/custom_material = SSmaterials.GetMaterialRef(x)
+			custom_material.on_applied(src, materials[x] * multiplier * material_modifier, material_flags)
 
-	for(var/x in materials)
-		var/datum/material/custom_material = SSmaterials.GetMaterialRef(x)
-
-		if(material_flags & MATERIAL_EFFECTS)
-			custom_material.on_applied(src, materials[custom_material] * multiplier * material_modifier, material_flags)
-		custom_materials[custom_material] += materials[x] * multiplier
+	custom_materials = SSmaterials.FindOrCreateMaterialCombo(materials, multiplier)
 
 /**
   * Returns true if this atom has gravity for the passed in turf
