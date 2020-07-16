@@ -67,15 +67,9 @@
 		return EVENT_CANT_RUN
 
 	triggering = TRUE
-<<<<<<< HEAD
 	if (alertadmins)
 		message_admins("Random Event triggering in 60 seconds: [name] (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)") //skyrat-edit
 		sleep(600) //skyrat-edit
-=======
-	if (alert_observers)
-		message_admins("Random Event triggering in 10 seconds: [name] (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)")
-		sleep(100)
->>>>>>> ee2fedd4af... Merge pull request #12390 from Ghommie/Ghommie-cit800
 		var/gamemode = SSticker.mode.config_tag
 		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
 		if(!canSpawnEvent(players_amt, gamemode))
