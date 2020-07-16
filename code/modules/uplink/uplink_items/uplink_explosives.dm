@@ -71,14 +71,14 @@
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
-/datum/uplink_item/explosives/detomatix
+/* /datum/uplink_item/explosives/detomatix // Skyrat Edit - This item doesn't mesh well with our antagonist policy. 
 	name = "Detomatix PDA Cartridge"
 	desc = "When inserted into a personal digital assistant, this cartridge gives you four opportunities to \
 			detonate PDAs of crewmembers who have their message feature enabled. \
 			The concussive effect from the explosion will knock the recipient out for a short period, and deafen them for longer."
 	item = /obj/item/cartridge/virus/syndicate
 	cost = 5
-	restricted = TRUE
+	restricted = TRUE */ 
 
 /datum/uplink_item/explosives/emp
 	name = "EMP Grenades and Implanter Kit"
