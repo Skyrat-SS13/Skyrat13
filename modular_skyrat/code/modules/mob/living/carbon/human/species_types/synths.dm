@@ -82,7 +82,6 @@
 		hair_color = S.hair_color
 		screamsounds = S.screamsounds.Copy()
 		femalescreamsounds = S.femalescreamsounds.Copy()
-		storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
 		mutant_bodyparts = S.mutant_bodyparts.Copy()
 		isdisguised = TRUE
 		fake_species = copify_species(S)
