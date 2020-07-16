@@ -50,7 +50,7 @@
 /obj/item/clothing/gloves/color/yellow/power/examine(mob/user)
 	. = ..()
 	var/chargepercentage = ((ourcell.charge/ourcell.maxcharge) * 100)
-	. += " It's cell is [chargepercentage]% charged. <br> It is currently in [mode] mode."
+	. += "<span class ='notice'>It's cell is <b>[chargepercentage]%</b> charged. <br>It is currently in [mode] mode.</span>"
 
 /obj/item/clothing/gloves/color/yellow/power/equipped(mob/living/M, slot)
 	. = ..()
@@ -89,7 +89,7 @@
 	if(!user)
 		return FALSE
 	if(mode == "stun")
-		if(ishuman(A) && proximity)
+		if(isliving(A) && proximity)
 			Stun(user, A, TRUE, knockdown_force)
 			return TRUE
 		return FALSE
@@ -103,7 +103,7 @@
 
 /obj/item/clothing/gloves/color/yellow/power/proc/Stun(mob/user, mob/living/target, disarming = TRUE, knockdown_force = 100)
 	var/obj/item/stock_parts/cell/our_cell = ourcell
-	if(!our_cell || !our_cell.charge)
+	if(!our_cell || !our_cell.use(stuncost))
 		return FALSE
 	var/stunpwr = stamforce
 	var/stuncharge = our_cell.charge
@@ -127,13 +127,13 @@
 								"<span class='userdanger'>[user] has stunned you with [src]!</span>")
 		log_combat(user, target, "stunned")
 	playsound(loc, 'sound/weapons/egloves.ogg', 100, 1, -1)
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		H.forcesay(GLOB.hit_appends)
-	our_cell.use(stuncost)
 	return TRUE
 
 /obj/item/clothing/gloves/color/yellow/power/proc/Bolt(mob/origin = usr,mob/target = null, bolt_energy = 50,bounces = 5,mob/user = usr, usecharge = TRUE)
+	if(usecharge)
+		if(!ourcell.use(boltcost))
+			origin.visible_message("<span class='danger'>[origin] tries to harness lightning from [src], but only a few mild sparks come out...")
+			return FALSE
 	playsound(get_turf(origin), 'sound/magic/lightningshock.ogg', 150, 1, -1)
 	origin.Beam(target,icon_state="lightning[rand(1,12)]",time=5, maxdistance = 7)
 	var/mob/living/current = target
@@ -153,8 +153,6 @@
 		var/mob/living/next = pick(possible_targets)
 		if(next)
 			Bolt(current,next,max((bolt_energy-5),5),bounces-1,user, usecharge = FALSE)
-	if(usecharge)
-		ourcell.use(boltcost)
 
 /obj/item/clothing/gloves/color/yellow/power/proc/los_check(atom/movable/user, mob/target)
 	var/turf/user_turf = user.loc
