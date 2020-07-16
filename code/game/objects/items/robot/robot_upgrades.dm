@@ -545,11 +545,15 @@
 			to_chat(usr, "<span class='notice'>This unit already has an expand module installed!</span>")
 			return FALSE
 
+<<<<<<< HEAD
 		if(R.hasShrunk)
 			to_chat(usr, "<span class='notice'>This unit already has an shrink module installed!</span>")
 			return FALSE
 
 		R.notransform = TRUE
+=======
+		R.mob_transforming = TRUE
+>>>>>>> 2cd18f3dba... Merge pull request #12557 from silicons/life
 		var/prev_locked_down = R.locked_down
 		R.SetLockdown(1)
 		R.anchored = TRUE
@@ -563,17 +567,17 @@
 		if(!prev_locked_down)
 			R.SetLockdown(0)
 		R.anchored = FALSE
-		R.notransform = FALSE
+		R.mob_transforming = FALSE
 		R.resize = 2
 		R.hasExpanded = TRUE
 		R.update_transform()
-*/
+
 /obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
 		R.resize = 0.5
 		R.hasExpanded = FALSE
-		R.update_transform()
+		R.update_transform()*/
 
 /obj/item/borg/upgrade/rped
 	name = "engineering cyborg BSRPED"

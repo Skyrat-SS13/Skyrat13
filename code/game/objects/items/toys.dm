@@ -444,12 +444,7 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 5
-<<<<<<< HEAD
-	force_unwielded = 0
-	force_wielded = 0
-=======
 	block_parry_data = null
->>>>>>> 062768c273... Merge pull request #12288 from Ghommie/Ghommie-cit765
 	attack_verb = list("attacked", "struck", "hit")
 	total_mass_on = TOTAL_MASS_TOY_SWORD
 	sharpness = IS_BLUNT
