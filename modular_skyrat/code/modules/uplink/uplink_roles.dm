@@ -25,6 +25,7 @@
 	restricted_roles = list("Shaft Miner", "Quartermaster")
 */
 //engineer/atmos tech exclusives
+/*
 /datum/uplink_item/role_restricted/powergloves
 	name = "Not-tendo(TM) Power Gloves"
 	desc = "Rechargeable gloves that are capable of stunning targets and throwing lightning at them."
@@ -32,7 +33,8 @@
 	cost = 12
 	limited_stock = 1
 	restricted_roles = list("Station Engineer", "Atmospheric Technician", "Chief Engineer")
-
+BROKEN - This item can still tesla shoot people at 0% charge meaning I can run around and husk the entire station for 12TC.
+*/
 //clown
 /datum/uplink_item/role_restricted/clumsyDNA
 	name = "Clumsy Clown DNA"
