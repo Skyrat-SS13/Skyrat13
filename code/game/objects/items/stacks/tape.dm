@@ -14,7 +14,6 @@
 
 	var/list/conferred_embed = EMBED_HARMLESS
 	var/overwrite_existing = FALSE
-
 	var/endless = FALSE
 	var/apply_time = 30
 
@@ -45,7 +44,7 @@
 	desc = "This roll of sticky tape somehow has no end."
 	endless = TRUE
 	apply_time = 10
-
+  
 /obj/item/stack/sticky_tape/super
 	name = "super sticky tape"
 	singular_name = "super sticky tape"
