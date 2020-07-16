@@ -4,7 +4,7 @@
 
 BUBBLEGUM
 
-Removes slaughterlings (because they are bullshit), instead replacing them with the blood rending thing from tg
+Now with blood smacks AND slaughterlings
 
 */
 

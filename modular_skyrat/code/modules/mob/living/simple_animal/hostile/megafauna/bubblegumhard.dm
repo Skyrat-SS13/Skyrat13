@@ -72,21 +72,25 @@ obj/item/gps/internal/bubblegum/hard
 			surround_with_hallucinations()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/triple_charge()
-	charge(delay = 8)
 	charge(delay = 6)
 	charge(delay = 4)
+	charge(delay = 4)
+	if(prob(10 + anger_modifier))
+		slaughterlings()
 	SetRecoveryTime(15)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/proc/hallucination_charge()
 	if(!BUBBLEGUM_SMASH || prob(33))
-		hallucination_charge_around(times = 6, delay = 12)
+		hallucination_charge_around(times = 6, delay = 10)
 		SetRecoveryTime(10)
 	else
-		hallucination_charge_around(times = 4, delay = 14)
+		hallucination_charge_around(times = 4, delay = 10)
 		hallucination_charge_around(times = 4, delay = 10)
 		hallucination_charge_around(times = 4, delay = 10)
 		triple_charge()
 		SetRecoveryTime(20)
+	if(prob(anger_modifier))
+		slaughterlings()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard/proc/surround_with_hallucinations()
 	for(var/i = 1 to 5)
@@ -394,7 +398,7 @@ obj/item/gps/internal/bubblegum/hard
 		if(isturf(A) || isobj(A) && A.density)
 			A.ex_act(EXPLODE_HEAVY)
 		DestroySurroundings()
-		if(isliving(A))
+		if(isliving(A) && !ismegafauna(A))
 			var/mob/living/L = A
 			L.visible_message("<span class='danger'>[src] slams into [L]!</span>", "<span class='userdanger'>[src] tramples you into the ground!</span>")
 			src.forceMove(get_turf(L))
