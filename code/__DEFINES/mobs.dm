@@ -89,6 +89,7 @@
 #define BRAIN_TRAUMA_MILD /datum/brain_trauma/mild
 #define BRAIN_TRAUMA_SEVERE /datum/brain_trauma/severe
 #define BRAIN_TRAUMA_SPECIAL /datum/brain_trauma/special
+#define BRAIN_TRAUMA_MAGIC /datum/brain_trauma/magic
 
 #define TRAUMA_RESILIENCE_BASIC 1      //Curable with chems
 #define TRAUMA_RESILIENCE_SURGERY 2    //Curable with brain surgery
@@ -304,12 +305,13 @@
 #define FOV_180_DEGREES	180
 #define FOV_270_DEGREES	270
 
-//skyrat defines
-/// If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()
-#define EXAMINE_MORE_TIME	2 SECONDS
 /// How far away you can be to make eye contact with someone while examining
-#define EYE_CONTACT_RANGE	3
+#define EYE_CONTACT_RANGE	5
 
+/// If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()
+#define EXAMINE_MORE_TIME	2 SECONDS //skyrat edit
+
+//skyrat defines
 #define BODYPART_DISABLED_WOUND 3
 
 #define TRAUMA_LIMIT_WOUND 2

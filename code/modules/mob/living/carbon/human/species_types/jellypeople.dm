@@ -248,7 +248,7 @@
 		"<span class='notice'>You focus intently on moving your body while \
 		standing perfectly still...</span>")
 
-	H.notransform = TRUE
+	H.mob_transforming = TRUE
 
 	if(do_after(owner, delay=60, needhand=FALSE, target=owner, progress=TRUE))
 		if(H.blood_volume >= BLOOD_VOLUME_SLIME_SPLIT)
@@ -258,7 +258,7 @@
 	else
 		to_chat(H, "<span class='warning'>...but fail to stand perfectly still!</span>")
 
-	H.notransform = FALSE
+	H.mob_transforming = FALSE
 
 /datum/action/innate/split_body/proc/make_dupe()
 	var/mob/living/carbon/human/H = owner
@@ -276,7 +276,7 @@
 	spare.Move(get_step(H.loc, pick(NORTH,SOUTH,EAST,WEST)))
 
 	H.blood_volume *= 0.45
-	H.notransform = 0
+	H.mob_transforming = 0
 
 	var/datum/species/jelly/slime/origin_datum = H.dna.species
 	origin_datum.bodies |= spare

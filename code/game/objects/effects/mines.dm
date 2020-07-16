@@ -22,10 +22,6 @@
 
 	triggermine(AM)
 
-/obj/effect/mine/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir)
-	. = ..()
-	triggermine()
-
 /obj/effect/mine/proc/triggermine(mob/victim)
 	if(triggered)
 		return
@@ -34,9 +30,13 @@
 	s.set_up(3, 1, src)
 	s.start()
 	mineEffect(victim)
-	triggered = TRUE
 	SEND_SIGNAL(src, COMSIG_MINE_TRIGGERED)
+	triggered = 1
 	qdel(src)
+
+/obj/effect/mine/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir)
+	. = ..()
+	triggermine()
 
 /obj/effect/mine/explosive
 	name = "explosive mine"
@@ -75,7 +75,6 @@
 	if(isliving(victim) && victim.client)
 		to_chat(victim, "<span class='userdanger'>You have been kicked FOR NO REISIN!</span>")
 		qdel(victim.client)
-
 
 /obj/effect/mine/gas
 	name = "oxygen mine"
@@ -128,7 +127,7 @@
 /obj/effect/mine/pickup/triggermine(mob/victim)
 	if(triggered)
 		return
-	triggered = 1
+	triggered = TRUE
 	invisibility = INVISIBILITY_ABSTRACT
 	mineEffect(victim)
 	qdel(src)

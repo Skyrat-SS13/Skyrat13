@@ -140,6 +140,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define iscat(A) (istype(A, /mob/living/simple_animal/pet/cat))
 
+#define isdog(A) (istype(A, /mob/living/simple_animal/pet/dog))
+
 #define iscorgi(A) (istype(A, /mob/living/simple_animal/pet/dog/corgi))
 
 #define ishostile(A) (istype(A, /mob/living/simple_animal/hostile))
@@ -186,6 +188,12 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isobj(A) istype(A, /obj) //override the byond proc because it returns true on children of /atom/movable that aren't objs
 
 #define isitem(A) (istype(A, /obj/item))
+
+#define isgrenade(A) (istype(A, /obj/item/grenade))
+
+#define islandmine(A) (istype(A, /obj/effect/mine))
+
+#define isammocasing(A) (istype(A, /obj/item/ammo_casing))
 
 #define isidcard(I) (istype(I, /obj/item/card/id))
 
@@ -241,10 +249,3 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 #define isblobmonster(O) (istype(O, /mob/living/simple_animal/hostile/blob))
 
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
-
-//general skyrat defines
-#define isgrenade(A) (istype(A, /obj/item/grenade))
-
-#define islandmine(A) (istype(A, /obj/effect/mine))
-
-#define isammocasing(A) (istype(A, /obj/item/ammo_casing))

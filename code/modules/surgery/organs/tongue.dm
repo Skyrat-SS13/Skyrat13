@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 #define TONGUE_MAX_HEALTH 60
 
 /obj/item/organ/tongue
@@ -262,6 +263,7 @@
 	name = "robotic voicebox"
 	desc = "A voice synthesizer that can interface with organic lifeforms."
 	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_NO_SPOIL
 	icon_state = "tonguerobot"
 	say_mod = "states"
 	attack_verb = list("beeped", "booped")
@@ -321,3 +323,4 @@
 	desc = "A voice synthesizer used by IPCs to smoothly interface with organic lifeforms."
 	electronics_magic = FALSE
 	organ_flags = ORGAN_SYNTHETIC
+*/

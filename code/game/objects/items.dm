@@ -4,9 +4,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 // if true, everyone item when created will have its name changed to be
 // more... RPG-like.
 
-GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to embed in people, takes precedence over stickpocalypse
-
 GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will be able to harmlessly stick to people when thrown
+GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to embed in people, takes precedence over stickpocalypse
 
 /obj/item
 	name = "item"
@@ -171,17 +170,13 @@ GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will
 
 /obj/item/Initialize()
 
-	if (attack_verb)
+	if(attack_verb)
 		attack_verb = typelist("attack_verb", attack_verb)
 
 	. = ..()
 	for(var/path in actions_types)
 		new path(src)
 	actions_types = null
-	/* skyrat edit - tg removed this on the embedding rework... i guess i should too?
-	if(GLOB.rpg_loot_items)
-		AddComponent(/datum/component/fantasy)
-	*/
 	if(force_string)
 		item_flags |= FORCE_STRING_OVERRIDE
 
@@ -190,21 +185,25 @@ GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will
 			hitsound = 'sound/items/welder.ogg'
 		if(damtype == "brute")
 			hitsound = "swing_hit"
-	/* skyrat edit
-	if (!embedding)
-		embedding = getEmbeddingBehavior()
-	else if (islist(embedding))
-		embedding = getEmbeddingBehavior(arglist(embedding))
-	else if (!istype(embedding, /datum/embedding_behavior))
-		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize()")
+	//skyrat change
+	if(use_standard_equip_delay && !equip_delay_self)
+		equip_delay_self = self_equip_mod * equip_delay_other
+	if(use_standard_strip_self_delay && !strip_self_delay && equip_delay_self)
+		strip_self_delay = strip_self_delay_mod * equip_delay_self
+	//
 
-	if(sharpness) //give sharp objects butchering functionality, for consistency
-		AddComponent(/datum/component/butchering, 80 * toolspeed)
-	*/
+/obj/item/Destroy()
+	item_flags &= ~DROPDEL	//prevent reqdels
+	if(ismob(loc))
+		var/mob/m = loc
+		m.temporarilyRemoveItemFromInventory(src, TRUE)
+	for(var/X in actions)
+		qdel(X)
+	return ..()
 
-//skyrat edit
 /obj/item/ComponentInitialize()
 	. = ..()
+
 	// this proc says it's for initializing components, but we're initializing elements too because it's you and me against the world >:)
 	if(!LAZYLEN(embedding))
 		if(GLOB.embedpocalypse)
@@ -221,22 +220,6 @@ GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will
 
 	if(sharpness) //give sharp objects butchering functionality, for consistency
 		AddComponent(/datum/component/butchering, 80 * toolspeed)
-	
-	//skyrat change
-	if(use_standard_equip_delay && !equip_delay_self)
-		equip_delay_self = self_equip_mod * equip_delay_other
-	if(use_standard_strip_self_delay && !strip_self_delay && equip_delay_self)
-		strip_self_delay = strip_self_delay_mod * equip_delay_self
-	//
-
-/obj/item/Destroy()
-	item_flags &= ~DROPDEL	//prevent reqdels
-	if(ismob(loc))
-		var/mob/m = loc
-		m.temporarilyRemoveItemFromInventory(src, TRUE)
-	for(var/X in actions)
-		qdel(X)
-	return ..()
 
 /obj/item/proc/check_allowed_items(atom/target, not_inside, target_self)
 	if(((src in target) && !target_self) || (!isturf(target.loc) && !isturf(target) && not_inside))
@@ -287,7 +270,7 @@ GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will
 			. += "[src] is made of cold-resistant materials."
 		if(resistance_flags & FIRE_PROOF)
 			. += "[src] is made of fire-retardant materials."
-	
+
 	if(item_flags & (ITEM_CAN_BLOCK | ITEM_CAN_PARRY))
 		var/datum/block_parry_data/data = return_block_parry_datum(block_parry_data)
 		. += "[src] has the capacity to be used to block and/or parry. <a href='?src=[REF(data)];name=[name];block=[item_flags & ITEM_CAN_BLOCK];parry=[item_flags & ITEM_CAN_PARRY];render=1'>\[Show Stats\]</a>"
@@ -664,6 +647,18 @@ GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will
 		var/itempush = 1
 		if(w_class < 4)
 			itempush = 0 //too light to push anything
+		if(isliving(hit_atom)) //Living mobs handle hit sounds differently.
+			var/volume = get_volume_by_throwforce_and_or_w_class()
+			if (throwforce > 0)
+				if (throwhitsound)
+					playsound(hit_atom, throwhitsound, volume, TRUE, -1)
+				else if(hitsound)
+					playsound(hit_atom, hitsound, volume, TRUE, -1)
+				else
+					playsound(hit_atom, 'sound/weapons/genhit.ogg',volume, TRUE, -1)
+			else
+				playsound(hit_atom, 'sound/weapons/throwtap.ogg', 1, volume, -1)
+
 		return hit_atom.hitby(src, 0, itempush, throwingdatum=throwingdatum)
 
 /obj/item/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, messy_throw = TRUE)
@@ -795,6 +790,7 @@ GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will
 		..()
 
 /obj/item/proc/microwave_act(obj/machinery/microwave/M)
+	SEND_SIGNAL(src, COMSIG_ITEM_MICROWAVE_ACT, M)
 	if(istype(M) && M.dirty < 100)
 		M.dirty++
 
@@ -961,11 +957,9 @@ GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will
 	return
 
 /obj/item/proc/unembedded()
-	//skyrat edit
 	if(item_flags & DROPDEL)
 		QDEL_NULL(src)
 		return TRUE
-	//
 
 /**
   * Sets our slowdown and updates equipment slowdown of any mob we're equipped on.
@@ -981,9 +975,10 @@ GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will
 	. = ..()
 	if(var_name == NAMEOF(src, slowdown))
 		set_slowdown(var_value)			//don't care if it's a duplicate edit as slowdown'll be set, do it anyways to force normal behavior.
-
-//skyrat edit
-///Does the current embedding var meet the criteria for being harmless? Namely, does it have a pain multiplier and jostle pain mult of 0? If so, return true.
+/**
+ * Does the current embedding var meet the criteria for being harmless? Namely, does it explicitly define the pain multiplier and jostle pain mult to be 0? If so, return true.
+ *
+ */
 /obj/item/proc/isEmbedHarmless()
 	if(embedding)
 		return !isnull(embedding["pain_mult"]) && !isnull(embedding["jostle_pain_mult"]) && embedding["pain_mult"] == 0 && embedding["jostle_pain_mult"] == 0
@@ -1035,6 +1030,6 @@ GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will
 		impact_pain_mult = (!isnull(embedding["impact_pain_mult"]) ? embedding["impact_pain_mult"] : EMBEDDED_IMPACT_PAIN_MULTIPLIER),\
 		jostle_chance = (!isnull(embedding["jostle_chance"]) ? embedding["jostle_chance"] : EMBEDDED_JOSTLE_CHANCE),\
 		jostle_pain_mult = (!isnull(embedding["jostle_pain_mult"]) ? embedding["jostle_pain_mult"] : EMBEDDED_JOSTLE_PAIN_MULTIPLIER),\
-		pain_stam_pct = (!isnull(embedding["pain_stam_pct"]) ? embedding["pain_stam_pct"] : EMBEDDED_PAIN_STAM_PCT))
+		pain_stam_pct = (!isnull(embedding["pain_stam_pct"]) ? embedding["pain_stam_pct"] : EMBEDDED_PAIN_STAM_PCT)) //skyrat edit
+		//embed_chance_turf_mod = (!isnull(embedding["embed_chance_turf_mod"]) ? embedding["embed_chance_turf_mod"] : EMBED_CHANCE_TURF_MOD)) //skyrat edit
 	return TRUE
-//

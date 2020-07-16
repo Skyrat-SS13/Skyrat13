@@ -291,15 +291,12 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	max_integrity = 40
 	sharpness = SHARP_EDGED
 	var/icon_prefix
-	//skyrat edit
-	embedding = list("embed_chance" = 50)
-	//
+	embedding = list("embed_chance" = 65)
 
 
 /obj/item/shard/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is slitting [user.p_their()] [pick("wrists", "throat")] with the shard of glass! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return (BRUTELOSS)
-
 
 /obj/item/shard/Initialize()
 	. = ..()

@@ -43,12 +43,8 @@
 		if("anchored")
 			setAnchored(vval)
 			return TRUE
-		if("obj_flags")
+		if(NAMEOF(src, obj_flags))
 			if ((obj_flags & DANGEROUS_POSSESSION) && !(vval & DANGEROUS_POSSESSION))
-				return FALSE
-		if("control_object")
-			var/obj/O = vval
-			if(istype(O) && (O.obj_flags & DANGEROUS_POSSESSION))
 				return FALSE
 	return ..()
 
@@ -330,7 +326,6 @@
 /obj/proc/rnd_crafted(obj/machinery/rnd/production/P)
 	return
 
-//edit of skyrat
 /obj/handle_ricochet(obj/item/projectile/P)
 	. = ..()
 	if(. && ricochet_damage_mod)

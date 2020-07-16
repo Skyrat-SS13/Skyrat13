@@ -1,4 +1,3 @@
-//whole file is a skyrat change
 /datum/round_event_control/wizard/embedpocalypse
 	name = "Make Everything Embeddable"
 	weight = 2

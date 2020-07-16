@@ -3,3 +3,4 @@
 	desc = "How proficient you are at handling mechanical machinery."
 	name_color = COLOR_PALE_PURPLE_GRAY
 	competency_multiplier = 1
+	ui_category = SKILL_UI_CAT_ENG

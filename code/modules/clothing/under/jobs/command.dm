@@ -49,4 +49,4 @@
 	icon_state = "lewdcap"
 	item_state = "lewdcap"
 	can_adjust = FALSE
-	mutantrace_variation = USE_TAUR_CLIP_MASK
+	mutantrace_variation = STYLE_DIGITIGRADE|USE_TAUR_CLIP_MASK

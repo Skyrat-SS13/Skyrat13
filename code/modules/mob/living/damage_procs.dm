@@ -1,14 +1,22 @@
 
-/*
-	apply_damage(a,b,c)
-	args
-	a:damage - How much damage to take
-	b:damage_type - What type of damage to take, brute, burn
-	c:def_zone - Where to take the damage if its brute or burn
-	Returns
-	standard 0 if fail
-*/
-/mob/living/proc/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE) //skyrat edit
+/**
+  * Applies damage to this mob
+  *
+  * Sends [COMSIG_MOB_APPLY_DAMGE]
+  *
+  * Arguments:
+  * * damage - amount of damage
+  * * damagetype - one of [BRUTE], [BURN], [TOX], [OXY], [CLONE], [STAMINA]
+  * * def_zone - zone that is being hit if any
+  * * blocked - armor value applied
+  * * forced - bypass hit percentage
+  * * wound_bonus - used to apply wounds
+  * * bare_wound_bonus - used to apply wounds
+  * * sharpness - the sharpness of the source of damage
+  *
+  * Returns TRUE if damage applied
+  */
+/mob/living/proc/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE) //skyrat edit
 	var/hit_percent = (100-blocked)/100
 	if(!damage || (hit_percent <= 0))
 		return 0

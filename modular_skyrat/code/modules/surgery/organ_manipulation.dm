@@ -24,6 +24,10 @@
 		if(target_zone != I.zone || target.getorganslot(I.slot))
 			to_chat(user, "<span class='notice'>There is no room for [I] in [target]'s [parse_zone(target_zone)]!</span>")
 			return -1
+		var/obj/item/organ/meatslab = tool
+		if(!meatslab.useable)
+			to_chat(user, "<span class='warning'>[I] seems to have been chewed on, you can't use this!</span>")
+			return -1
 		display_results(user, target, "<span class='notice'>You begin to insert [tool] into [target]'s [parse_zone(target_zone)]...</span>",
 			"[user] begins to insert [tool] into [target]'s [parse_zone(target_zone)].",
 			"[user] begins to insert something into [target]'s [parse_zone(target_zone)].")
@@ -49,10 +53,6 @@
 					"[user] begins to extract something from [target]'s [parse_zone(target_zone)].")
 			else
 				return -1
-
-	else if(istype(tool, /obj/item/reagent_containers/food/snacks/organ))
-		to_chat(user, "<span class='warning'>[tool] was bitten by someone! It's too damaged to use!</span>")
-		return -1
 	else if(istype(tool, /obj/item/stack/medical/bruise_pack) || istype(tool, /obj/item/stack/medical/ointment) || istype(tool, /obj/item/stack/medical/mesh) || istype(tool, /obj/item/stack/medical/suture))
 		var/obj/item/stack/medical/M = tool
 		var/list/organs = target.getorganszone(target_zone)

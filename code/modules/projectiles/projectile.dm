@@ -61,11 +61,9 @@
 	/// how many times we've ricochet'd so far (instance variable, not a stat)
 	var/ricochets = 0
 	/// how many times we can ricochet max
-	var/ricochets_max = 0 //skyrat edit
+	var/ricochets_max = 0
 	/// 0-100, the base chance of ricocheting, before being modified by the atom we shoot and our chance decay
-	var/ricochet_chance = 0 //skyrat edit
-
-	//skyrat vars
+	var/ricochet_chance = 0
 	/// 0-1 (or more, I guess) multiplier, the ricochet_chance is modified by multiplying this after each ricochet
 	var/ricochet_decay_chance = 0.7
 	/// 0-1 (or more, I guess) multiplier, the projectile's damage is modified by multiplying this after each ricochet
@@ -76,12 +74,8 @@
 	var/ricochet_auto_aim_angle = 30
 	/// the angle of impact must be within this many degrees of the struck surface, set to 0 to allow any angle
 	var/ricochet_incidence_leeway = 40
-	///If defined, on hit we create an item of this type then call hitby() on the hit target with this, mainly used for embedding items (bullets) in targets
-	var/shrapnel_type
 	///If we have a shrapnel_type defined, these embedding stats will be passed to the spawned shrapnel type, which will roll for embedding on the target
 	embedding = null
-	///If TRUE, hit mobs even if they're on the floor and not our target
-	var/hit_stunned_targets = FALSE
 	///Can't wound by default
 	wound_bonus = CANT_WOUND
 	///For what kind of brute wounds we're rolling for, if we're doing such a thing. Lasers obviously don't care since they do burn instead.
@@ -165,6 +159,11 @@
 
 	var/temporary_unstoppable_movement = FALSE //fuck the laws of thermodynamics
 
+	///If defined, on hit we create an item of this type then call hitby() on the hit target with this
+	var/shrapnel_type
+	///If TRUE, hit mobs even if they're on the floor and not our target
+	var/hit_stunned_targets = FALSE
+
 /obj/item/projectile/Initialize()
 	. = ..()
 	permutated = list()
@@ -194,6 +193,7 @@
 		on_range()
 
 /obj/item/projectile/proc/on_range() //if we want there to be effects when they reach the end of their range
+	SEND_SIGNAL(src, COMSIG_PROJECTILE_RANGE_OUT)
 	qdel(src)
 
 //to get the correct limb (if any) for the projectile hit message
@@ -210,18 +210,9 @@
 /obj/item/projectile/proc/prehit(atom/target)
 	return TRUE
 
-/**
-  * Called when we hit something.
-  *
-  * @params
-  * * target - what we hit
-  * * blocked - 0 to 100 percentage mitigation/block
-  * * def zone - where we hit if we hit a mob.
-  */
-/obj/item/projectile/proc/on_hit(atom/target, blocked = 0, def_zone)
+/obj/item/projectile/proc/on_hit(atom/target, blocked = FALSE)
 	if(fired_from)
 		SEND_SIGNAL(fired_from, COMSIG_PROJECTILE_ON_HIT, firer, target, Angle)
-	//skyrat edit
 	// i know that this is probably more with wands and gun mods in mind, but it's a bit silly that the projectile on_hit signal doesn't ping the projectile itself.
 	// maybe we care what the projectile thinks! See about combining these via args some time when it's not 5AM
 	var/obj/item/bodypart/hit_limb
@@ -229,7 +220,6 @@
 		var/mob/living/L = target
 		hit_limb = L.check_limb_hit(def_zone)
 	SEND_SIGNAL(src, COMSIG_PROJECTILE_SELF_ON_HIT, firer, target, Angle, hit_limb)
-	//
 	var/turf/target_loca = get_turf(target)
 
 	var/hitx
@@ -272,7 +262,7 @@
 			else
 				if(ishuman(target))
 					var/mob/living/carbon/human/H = target
-					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, H.dna.species.exotic_blood_color)
+					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, bloodtype_to_color(H.dna.blood_type))
 				else
 					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, bloodtype_to_color())
 
@@ -281,14 +271,13 @@
 			new impact_effect_type(target_loca, hitx, hity)
 
 		var/organ_hit_text = ""
-		var/limb_hit = hit_limb //skyrat edit
+		var/limb_hit = hit_limb
 		if(limb_hit)
 			organ_hit_text = " in \the [parse_zone(limb_hit)]"
-		//skyrat edit
+
 		if(suppressed==SUPPRESSED_VERY)
 			playsound(loc, hitsound, 5, TRUE, -1)
 		else if(suppressed)
-		//
 			playsound(loc, hitsound, 5, 1, -1)
 			to_chat(L, "<span class='userdanger'>You're shot by \a [src][organ_hit_text]!</span>")
 		else
@@ -319,7 +308,6 @@
 		return 50 //if the projectile doesn't do damage, play its hitsound at 50% volume
 
 /obj/item/projectile/proc/on_ricochet(atom/A)
-	//skyrat edit fuck you
 	if(!ricochet_auto_aim_angle || !ricochet_auto_aim_range)
 		return
 
@@ -330,53 +318,18 @@
 	for(var/mob/living/L in range(ricochet_auto_aim_range, src.loc))
 		if(L.stat == DEAD || !isInSight(src, L))
 			continue
-		var/our_angle = abs(closer_angle_difference(Angle, Get_Angle(src.loc, L.loc)))
+		var/our_angle = abs(closer_angle_difference(Angle, get_projectile_angle(src.loc, L.loc)))
 		if(our_angle < best_angle)
 			best_angle = our_angle
 			unlucky_sob = L
 
 	if(unlucky_sob)
-		setAngle(Get_Angle(src, unlucky_sob.loc))
-	//
+		setAngle(get_projectile_angle(src, unlucky_sob.loc))
 
 /obj/item/projectile/proc/store_hitscan_collision(datum/point/pcache)
 	beam_segments[beam_index] = pcache
 	beam_index = pcache
 	beam_segments[beam_index] = null
-/* cit dumb
-/**
-  * Determines if we should ricochet off of something.
-  * By default, asks the thing if we should ricochet off it, but because we're called first, we get final say.
-  * Returns TRUE or FALSE.
-  */
-/obj/item/projectile/proc/check_ricochet(atom/A)
-	if(ricochets > ricochets_max)		//safety thing, we don't care about what the other thing says about this.
-		return FALSE
-	var/them = A.check_ricochet(src)
-	switch(them)
-		if(PROJECTILE_RICOCHET_PREVENT)
-			return FALSE
-		if(PROJECTILE_RICOCHET_FORCE)
-			return TRUE
-		if(PROJECTILE_RICOCHET_NO)
-			return FALSE
-		if(PROJECTILE_RICOCHET_YES)
-			return prob(ricochet_chance)
-		else
-			CRASH("Invalid return value for projectile ricochet check from [A].")
-
-/**
-  * Handles ricocheting off of something.
-  * By default, also asks the thing to handle it, but because we're called first, we get final say.
-  */
-/obj/item/projectile/proc/handle_ricochet(atom/A)
-	ricochets++
-	ignore_source_check = TRUE
-	decayedRange = max(0, decayedRange - reflect_range_decrease)
-	pixel_move_interrupted = TRUE
-	range = decayedRange
-	return A.handle_projectile_ricochet(src)
-*/
 /obj/item/projectile/Bump(atom/A)
 	if(!trajectory)
 		return
@@ -529,10 +482,8 @@
 /obj/item/projectile/proc/fire(angle, atom/direct_target)
 	if(fired_from)
 		SEND_SIGNAL(fired_from, COMSIG_PROJECTILE_BEFORE_FIRE, src, original)	//If no angle needs to resolve it from xo/yo!
-	//skyrat edi t
 	if(shrapnel_type)
 		AddElement(/datum/element/embed, projectile_payload = shrapnel_type)
-	//
 	if(!log_override && firer && original)
 		log_combat(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]")
 	if(direct_target)
@@ -814,7 +765,7 @@
 
 		var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
 		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
-		angle = ATAN2(y - oy, x - ox) // Skyrat edit -- 512 compatibility
+		angle = arctan(y - oy, x - ox)
 	return list(angle, p_x, p_y)
 
 /obj/item/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.

@@ -344,8 +344,14 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 	. = view(dist, src)
 	SEND_SIGNAL(src, COMSIG_MOB_FOV_VIEW, .)
 
-//mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
-/mob/verb/examinate(atom/A as mob|obj|turf in fov_view()) //It used to be oview(12), but I can't really say why
+/**
+  * Examine a mob
+  *
+  * mob verbs are faster than object verbs. See
+  * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
+  * for why this isn't atom/verb/examine()
+  */
+/mob/verb/examinate(atom/A as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
 	set name = "Examine"
 	set category = "IC"
 
@@ -353,7 +359,7 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 		// shift-click catcher may issue examinate() calls for out-of-sight turfs
 		return
 
-	if(is_blind(src))
+	if(is_blind())
 		to_chat(src, "<span class='warning'>Something is there but you can't see it!</span>")
 		return
 
@@ -379,6 +385,13 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 	//
 	to_chat(src, result.Join("\n"))
+	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
+
+/mob/proc/clear_from_recent_examines(atom/A)
+	if(!client)
+		return
+	UnregisterSignal(A, COMSIG_PARENT_QDELETING)
+	LAZYREMOVE(client.recent_examines, A)
 
 //same as above
 //note: ghosts can point, this is intended
@@ -708,7 +721,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 		return FALSE
 	if(anchored)
 		return FALSE
-	if(notransform)
+	if(mob_transforming)
 		return FALSE
 	if(restrained())
 		return FALSE
@@ -1123,12 +1136,6 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
   */
 /mob/proc/on_item_dropped(obj/item/I)
 	return
-
-//skyrat edit
-/mob/proc/clear_from_recent_examines(atom/A)
-	if(!client)
-		return
-	LAZYREMOVE(client.recent_examines, A)
 
 /**
   * handle_eye_contact() is called when we examine() something. If we examine an alive mob with a mind who has examined us in the last second within 5 tiles, we make eye contact!
