@@ -102,7 +102,7 @@
 	for(var/reagent in reagents_apply)
 		owner.reagents?.add_reagent(reagent, reagents_apply[reagent][1])
 		owner.reagents?.reaction(owner, reagents_apply[reagent][2])
-	if(owner.InCritical)
+	if(owner.InCritical())
 		for(var/reagent in reagents_apply_crit)
 			owner.reagents?.add_reagent(reagent, reagents_apply[reagent][1])
 			owner.reagents?.reaction(owner, reagents_apply[reagent][2])
