@@ -49,8 +49,8 @@
 	infect(infectee, make_copy)
 	return TRUE
 
-//add the disease with no checks
-/datum/disease/proc/infect(var/mob/living/infectee, make_copy = TRUE)
+//add the disease
+/datum/disease/proc/infect(var/mob/living/infectee, make_copy = TRUE, forced = FALSE)
 	var/can_infect = FALSE
 	for(var/i in viable_mobtypes)
 		if(istype(infectee, i))
@@ -62,6 +62,8 @@
 		var/mob/living/carbon/human/H = infectee
 		if(TRAIT_VIRUSIMMUNE in H.dna?.species?.species_traits)
 			can_infect = FALSE
+	if(forced)
+		can_infect = TRUE
 	if(!can_infect)
 		return
 	var/datum/disease/D = make_copy ? Copy() : src
