@@ -454,9 +454,6 @@
 	STR.max_combined_w_class = 30
 	STR.max_items = 3
 	STR.display_numerical_stacking = FALSE
-<<<<<<< HEAD
-	STR.can_hold = typecacheof(list(/obj/item/ammo_box/magazine, /obj/item/ammo_casing))
-=======
 	STR.can_hold = typecacheof(list(/obj/item/ammo_box/magazine, /obj/item/ammo_casing))
 
 /obj/item/storage/bag/material
@@ -476,4 +473,3 @@
 	STR.max_items = 2
 	STR.display_numerical_stacking = TRUE
 	STR.can_hold = typecacheof(list(/obj/item/rcd_ammo, /obj/item/stack/sheet))
->>>>>>> 6d1ca993f6... Merge pull request #12648 from timothyteakettle/tray-and-jar
