@@ -132,12 +132,7 @@
 	target.mob_transforming = TRUE // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
 	spawn(power_time)
 	if(istype(target) && success)
-<<<<<<< HEAD
-		target.notransform = FALSE
-		REMOVE_TRAIT(target, TRAIT_COMBAT_MODE_LOCKED, src)
-=======
 		target.mob_transforming = FALSE
->>>>>>> 2cd18f3dba... Merge pull request #12557 from silicons/life
 		if(istype(L) && target.stat == CONSCIOUS && (target in L.fov_view(10))) // They Woke Up! (Notice if within view)
 			to_chat(L, "<span class='warning'>[target] has snapped out of their trance.</span>")
 

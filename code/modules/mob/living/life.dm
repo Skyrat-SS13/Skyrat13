@@ -99,18 +99,7 @@
 
 	if(machine)
 		machine.check_eye(src)
-<<<<<<< HEAD
-
-	if(stat != DEAD)
-		handle_traits() // eye, ear, brain damages
-	if(stat != DEAD)
-		handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
-		//handle_typing_indicator() //skyrat-edit
-	if(stat != DEAD)
-		return 1
-=======
 	return TRUE
->>>>>>> 2cd18f3dba... Merge pull request #12557 from silicons/life
 
 /mob/living/proc/handle_breathing(times_fired)
 	return
