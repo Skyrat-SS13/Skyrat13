@@ -94,12 +94,11 @@
 		return FALSE
 
 /obj/item/clothing/gloves/color/yellow/power/proc/Stun(mob/user, mob/living/target, disarming = TRUE, knockdown_force = 100)
-	var/obj/item/stock_parts/cell/our_cell = ourcell
-	if(!our_cell || !our_cell.use(stuncost))
+	if(!ourcell || !ourcell.use(stuncost))
 		return FALSE
 	var/stunpwr = stamforce
-	var/stuncharge = our_cell.charge
-	if(QDELETED(src) || QDELETED(our_cell)) //it was rigged (somehow?)
+	var/stuncharge = ourcell.charge
+	if(QDELETED(src) || QDELETED(ourcell)) //it was rigged (somehow?)
 		return FALSE
 	if(stuncharge < stuncost)
 		target.visible_message("<span class='warning'>[user] has touched [target] with [src]. Luckily it was out of charge.</span>", \
