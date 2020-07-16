@@ -1278,7 +1278,6 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	set category = "Fun"
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
-
 	var/list/punishment_list = list(ADMIN_PUNISHMENT_PIE,
 								ADMIN_PUNISHMENT_CUSTOM_PIE,
 								ADMIN_PUNISHMENT_FIREBALL,
@@ -1306,6 +1305,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_ISIS,
 								ADMIN_PUNISHMENT_PAPAJOHNS,
 								ADMIN_PUNISHMENT_MEDIC,
+                ADMIN_PUNISHMENT_PICKLE,
 								)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1384,6 +1384,8 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 					if(amount)
 						A.reagents.add_reagent(chosen_id, amount)
 						A.splat(target)
+		if(ADMIN_PUNISHMENT_PICKLE)
+			target.turn_into_pickle()
 		//skyrat edit punishments
 		if(ADMIN_PUNISHMENT_CRACK)
 			if(!iscarbon(target))
