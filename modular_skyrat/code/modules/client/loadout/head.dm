@@ -140,3 +140,30 @@
 /datum/gear/trekcapcap
 	name = "EntCorp Officer's Cap (Black)"
 	restricted_roles = list("Captain", "Head of Personnel", "Blueshield")
+
+// orvilike "original" kepi
+/datum/gear/orvkepicom
+	name = "EntCorp Kepi, command"
+	description = "A visored cap. Intended to be used with Orvlike reskin of EntCorp uniform."
+	restricted_roles = CMD_ROLES
+
+/datum/gear/orvkepiops
+	name = "EntCorp Kepi, ops/sec"
+	description = "A visored cap. Intended to be used with Orvlike reskin of EntCorp uniform."
+	restricted_roles = OPRS_ROLES
+
+/datum/gear/orvkepimedsci
+	name = "EntCorp Kepi, medsci"
+	description = "A visored cap. Intended to be used with Orvlike reskin of EntCorp uniform."
+	restricted_roles = MEDSCI_ROLES
+
+/datum/gear/orvkepisrv
+	name = "EntCorp Kepi, service"
+	description = "A visored cap. Intended to be used with Orvlike reskin of EntCorp uniform."
+	restricted_desc = "Service and Civilian"
+	restricted_roles = CIV_ROLES
+
+/datum/gear/orvkepiass
+	name = "EntCorp Kepi, assistant"
+	description = "A visored cap. Intended to be used with Orvlike reskin of EntCorp uniform."
+	restricted_roles = list("Assistant")
