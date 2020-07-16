@@ -986,12 +986,12 @@ datum/status_effect/pacify
 	RegisterSignal(owner,COMSIG_MOB_ITEM_AFTERATTACK,.proc/heal_from_bible)
 	if(istype(owner,/mob/living/carbon/human))
 		var/mob/living/carbon/human/humie = owner
-		humie.setMaxHealth( humie.maxHealth * 0.75)
+		humie.setMaxHealth( humie.getMaxHealth() * 0.75)
 
 /datum/status_effect/stolen_soul/on_remove()
 	if(istype(owner,/mob/living/carbon/human))
 		var/mob/living/carbon/human/humie = owner
-		humie.setMaxHealth( humie.maxHealth / 0.75)
+		humie.setMaxHealth( humie.getMaxHealth() / 0.75)
 	return ..()
 
 /datum/status_effect/stolen_soul/proc/heal_from_bible(datum/source)
