@@ -209,11 +209,11 @@
 			var/datum/quirk/Q = new V(H)
 			Q.on_clone(quirks[V])
 
-		for(var/t in traumas)
+		/*for(var/t in traumas) SKYRAT EDIT - lets not clone traumas just yet, rounds are too long
 			var/datum/brain_trauma/BT = t
 			var/datum/brain_trauma/cloned_trauma = BT.on_clone()
 			if(cloned_trauma)
-				H.gain_trauma(cloned_trauma, BT.resilience)
+				H.gain_trauma(cloned_trauma, BT.resilience)*/
 
 		H.set_cloned_appearance()
 		H.give_genitals(TRUE)
