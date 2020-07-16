@@ -16,6 +16,7 @@ GLOBAL_LIST_INIT(meta_gas_dangers, meta_gas_danger_list())
 GLOBAL_LIST_INIT(meta_gas_ids, meta_gas_id_list())
 GLOBAL_LIST_INIT(meta_gas_fusions, meta_gas_fusion_list())
 /datum/gas_mixture
+<<<<<<< HEAD
 	var/list/gases = list()
 	var/list/gas_archive = list()
 	var/temperature = 0 //kelvins
@@ -23,11 +24,18 @@ GLOBAL_LIST_INIT(meta_gas_fusions, meta_gas_fusion_list())
 	var/volume = CELL_VOLUME //liters
 	var/last_share = 0
 	var/list/reaction_results = list()
+=======
+	/// Never ever set this variable, hooked into vv_get_var for view variables viewing.
+	var/gas_list_view_only
+	var/initial_volume = CELL_VOLUME //liters
+	var/list/reaction_results
+>>>>>>> fa8a6dd3e1... Merge pull request #12788 from silicons/gasmixture_vv
 	var/list/analyzer_results //used for analyzer feedback - not initialized until its used
 	var/gc_share = FALSE // Whether to call garbage_collect() on the sharer during shares, used for immutable mixtures
 
 /datum/gas_mixture/New(volume)
 	if (!isnull(volume))
+<<<<<<< HEAD
 		src.volume = volume
 
 	//PV = nRT
@@ -66,6 +74,99 @@ GLOBAL_LIST_INIT(meta_gas_fusions, meta_gas_fusion_list())
 		. += cached_gases[id] * cached_gasheats[id]
 	if(!.)
 		. += HEAT_CAPACITY_VACUUM //we want vacuums in turfs to have the same heat capacity as space
+=======
+		initial_volume = volume
+	ATMOS_EXTOOLS_CHECK
+	__gasmixture_register()
+	reaction_results = new
+
+/datum/gas_mixture/vv_edit_var(var_name, var_value)
+	if(var_name == NAMEOF(src, _extools_pointer_gasmixture))
+		return FALSE // please no. segfaults bad.
+	if(var_name == NAMEOF(src, gas_list_view_only))
+		return FALSE
+	return ..()
+
+/datum/gas_mixture/vv_get_var(var_name)
+	. = ..()
+	if(var_name == NAMEOF(src, gas_list_view_only))
+		var/list/dummy = get_gases()
+		for(var/gas in dummy)
+			dummy[gas] = get_moles(gas)
+		return debug_variable("gases (READ ONLY)", dummy, 0, src)
+
+/datum/gas_mixture/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---")
+	VV_DROPDOWN_OPTION(VV_HK_PARSE_GASSTRING, "Parse Gas String")
+	VV_DROPDOWN_OPTION(VV_HK_EMPTY, "Empty")
+	VV_DROPDOWN_OPTION(VV_HK_SET_MOLES, "Set Moles")
+	VV_DROPDOWN_OPTION(VV_HK_SET_TEMPERATURE, "Set Temperature")
+	VV_DROPDOWN_OPTION(VV_HK_SET_VOLUME, "Set Volume")
+
+/datum/gas_mixture/vv_do_topic(list/href_list)
+	. = ..()
+	if(!.)
+		return
+	if(href_list[VV_HK_PARSE_GASSTRING])
+		var/gasstring = input(usr, "Input Gas String (WARNING: Advanced. Don't use this unless you know how these work.", "Gas String Parse") as text|null
+		if(!istext(gasstring))
+			return
+		log_admin("[key_name(usr)] modified gas mixture [REF(src)]: Set to gas string [gasstring].")
+		message_admins("[key_name(usr)] modified gas mixture [REF(src)]: Set to gas string [gasstring].")
+		parse_gas_string(gasstring)
+	if(href_list[VV_HK_EMPTY])
+		log_admin("[key_name(usr)] emptied gas mixture [REF(src)].")
+		message_admins("[key_name(usr)] emptied gas mixture [REF(src)].")
+		clear()
+	if(href_list[VV_HK_SET_MOLES])
+		var/list/gases = get_gases()
+		for(var/gas in gases)
+			gases[gas] = get_moles(gas)
+		var/gastype = input(usr, "What kind of gas?", "Set Gas") as null|anything in subtypesof(/datum/gas)
+		if(!ispath(gastype, /datum/gas))
+			return
+		var/amount = input(usr, "Input amount", "Set Gas", gases[gastype] || 0) as num|null
+		if(!isnum(amount))
+			return
+		amount = max(0, amount)
+		log_admin("[key_name(usr)] modified gas mixture [REF(src)]: Set gas type [gastype] to [amount] moles.")
+		message_admins("[key_name(usr)] modified gas mixture [REF(src)]: Set gas type [gastype] to [amount] moles.")
+		set_moles(gastype, amount)
+	if(href_list[VV_HK_SET_TEMPERATURE])
+		var/temp = input(usr, "Set the temperature of this mixture to?", "Set Temperature", return_temperature()) as num|null
+		if(!isnum(temp))
+			return
+		temp = max(2.7, temp)
+		log_admin("[key_name(usr)] modified gas mixture [REF(src)]: Changed temperature to [temp].")
+		message_admins("[key_name(usr)] modified gas mixture [REF(src)]: Changed temperature to [temp].")
+		set_temperature(temp)
+	if(href_list[VV_HK_SET_VOLUME])
+		var/volume = input(usr, "Set the volume of this mixture to?", "Set Volume", return_volume()) as num|null
+		if(!isnum(volume))
+			return
+		volume = max(0, volume)
+		log_admin("[key_name(usr)] modified gas mixture [REF(src)]: Changed volume to [volume].")
+		message_admins("[key_name(usr)] modified gas mixture [REF(src)]: Changed volume to [volume].")
+		set_volume(volume)
+
+/*
+/datum/gas_mixture/Del()
+	__gasmixture_unregister()
+	. = ..()*/
+
+/datum/gas_mixture/proc/__gasmixture_unregister()
+/datum/gas_mixture/proc/__gasmixture_register()
+
+/proc/gas_types()
+	var/list/L = subtypesof(/datum/gas)
+	for(var/gt in L)
+		var/datum/gas/G = gt
+		L[gt] = initial(G.specific_heat)
+	return L
+
+/datum/gas_mixture/proc/heat_capacity() //joules per kelvin
+>>>>>>> fa8a6dd3e1... Merge pull request #12788 from silicons/gasmixture_vv
 
 /datum/gas_mixture/proc/total_moles()
 	var/cached_gases = gases
@@ -247,6 +348,7 @@ GLOBAL_LIST_INIT(meta_gas_fusions, meta_gas_fusion_list())
 	archive()
 	return 1
 
+<<<<<<< HEAD
 /datum/gas_mixture/share(datum/gas_mixture/sharer, atmos_adjacent_turfs = 4)
 
 	var/list/cached_gases = gases
@@ -361,6 +463,8 @@ GLOBAL_LIST_INIT(meta_gas_fusions, meta_gas_fusion_list())
 
 	return ""
 
+=======
+>>>>>>> fa8a6dd3e1... Merge pull request #12788 from silicons/gasmixture_vv
 /datum/gas_mixture/react(datum/holder)
 	. = NO_REACTION
 	var/list/cached_gases = gases
