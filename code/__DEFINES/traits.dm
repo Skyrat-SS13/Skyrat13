@@ -203,6 +203,7 @@
 #define TRAIT_HEMOPHILIA		"hemophilia"
 #define TRAIT_ASTHMATIC			"asthmatic"
 //
+#define TRAIT_NICE_SHOT			"nice_shot" //hnnnnnnnggggg..... you're pretty good....
 
 // mobility flag traits
 // IN THE FUTURE, IT WOULD BE NICE TO DO SOMETHING SIMILAR TO https://github.com/tgstation/tgstation/pull/48923/files (ofcourse not nearly the same because I have my.. thoughts on it)
@@ -309,3 +310,4 @@
 #define ACTIVE_BLOCK_TRAIT				"active_block"
 /// This trait is added by the parry system.
 #define ACTIVE_PARRY_TRAIT				"active_parry"
+#define STICKY_NODROP "sticky-nodrop" //sticky nodrop sounds like a bad soundcloud rapper's name
