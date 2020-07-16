@@ -57,3 +57,9 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/orv/engsec
 	restricted_roles = list("Head of Security", "Chief Engineer")
+
+/datum/gear/capt_alternative
+	name = "Captains Naval Alternative"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/suit/captain_blacksuit
+	restricted_roles = list("Captain", "Head of Personnel")
