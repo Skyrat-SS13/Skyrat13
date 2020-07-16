@@ -306,16 +306,6 @@ GLOBAL_LIST_EMPTY(species_list)
 
 /proc/age2agedescription(age)
 	switch(age)
-		/* anti-citadel change
-		if(0 to 1)
-			return "infant"
-		if(1 to 3)
-			return "toddler"
-		if(3 to 13)
-			return "child"
-		if(13 to 19)
-			return "teenager"
-		*/
 		if(18 to 30) //anti-citadel change
 			return "young adult"
 		if(30 to 45)
@@ -331,16 +321,6 @@ GLOBAL_LIST_EMPTY(species_list)
 //skyrat edit
 /proc/age2ageexamine(age)
 	switch(age)
-		/* anti-citadel change
-		if(0 to 1)
-			return "an infant"
-		if(1 to 3)
-			return "a toddler"
-		if(3 to 13)
-			return "a child"
-		if(13 to 19)
-			return "a teenager"
-		*/
 		if(18 to 25) //anti-citadel change
 			return "a young adult"
 		if(25 to 45)
@@ -360,19 +340,7 @@ GLOBAL_LIST_EMPTY(species_list)
 
 /proc/roundage(age)
 	switch(age)
-		/* anti-citadel change
-		if(0 to 3)
-			return "infancy"
-		if(3 to 6)
-			return "early childhood years"
-		if(6 to 10)
-			return "childhoold years"
-		if(10 to 13)
-			return "preteen years"
-		if(13 to 16)
-			return "teenagehood"
-		*/
-		if(16 to 19)
+		if(18 to 19)
 			return "late teenagehood"
 		if(19 to 24)
 			return "early twenties"
