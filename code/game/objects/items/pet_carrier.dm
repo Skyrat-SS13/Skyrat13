@@ -254,7 +254,7 @@
 	if(isanimal(occupant))
 		var/mob/living/simple_animal/animal = occupant
 		occupant_gas_supply[/datum/gas/oxygen] = 0.0064 //make sure it has some gas in so it isn't depressurized
-		occupant_gas_supply.set_temperature(animal.minbodytemp) //simple animals only care about temperature/pressure when their turf isnt a location
+		occupant_gas_supply.temperature = animal.minbodytemp // - Skyrat change, we don't have this proc so updating it to our version.
 	else
 		if(ishuman(occupant)) //humans require resistance to cold/heat and living in no air while inside, and lose this when outside
 			ADD_TRAIT(occupant, TRAIT_RESISTCOLD, "bluespace_container_cold_resist")

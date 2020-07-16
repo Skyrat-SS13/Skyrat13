@@ -270,7 +270,7 @@ mob/living/carbon/human/dummy/travelling_trader/animal_hunter/Initialize()
 		 /obj/item/instrument/saxophone = 1,
 		 /obj/item/bedsheet/captain = 1,
 		 /obj/item/slime_extract/green = 1,
-		 /obj/item/chainsaw = 1,
+	//	 /obj/item/chainsaw = 1, //Skyrat change - Our chainsaw is not as attainable as citadel.
 		 /obj/item/clothing/head/crown = 1)
 	possible_rewards = list(/obj/item/storage/bag/money/c5000 = 5,
 		/obj/item/circuitboard/computer/arcade/amputation = 2,
