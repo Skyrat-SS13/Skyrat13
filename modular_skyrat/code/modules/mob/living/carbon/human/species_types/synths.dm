@@ -38,13 +38,10 @@
 	clonemod = 0
 	siemens_coeff = 1.2
 	revivesbyhealreq = 50
-	//variables used for snowflakey ass races and stuff god i fukcing hate this
-	var/storedeardamage = 0
-	var/storedtaildamage = 0
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
 	exotic_bloodtype = "SY"
-	//AAAAAAAAAAAAAAAAAAAAAAAA I CANT EAT AAAAAAAAAAAAAAAAAAAAAAAAAA
+	//Power cord so they no die hungry
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 
 /datum/species/synth/spec_revival(mob/living/carbon/human/H)
@@ -86,20 +83,9 @@
 		screamsounds = S.screamsounds.Copy()
 		femalescreamsounds = S.femalescreamsounds.Copy()
 		storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
-		mutantears = S.mutantears
-		qdel(H.getorganslot(ORGAN_SLOT_EARS))
-		var/obj/item/organ/ears = new mutantears()
-		ears.Insert(H)
-		H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
-		mutanttail = S.mutanttail
-		if(mutanttail)
-			qdel(H.getorganslot(ORGAN_SLOT_TAIL))
-			var/obj/item/organ/tail = new mutanttail
-			tail.Insert(H)
-		H.setOrganLoss(ORGAN_SLOT_TAIL, storedtaildamage)
 		mutant_bodyparts = S.mutant_bodyparts.Copy()
 		isdisguised = TRUE
-		fake_species = new S.type
+		fake_species = copify_species(S)
 	else
 		name = initial(name)
 		say_mod = initial(say_mod)
@@ -121,7 +107,7 @@
 		femalescreamsounds = list()
 		mutant_bodyparts = list()
 		isdisguised = FALSE
-		fake_species = new /datum/species/human
+		fake_species = new /datum/species/human()
 
 	H.regenerate_icons()
 	handle_mutant_bodyparts(H)
@@ -159,15 +145,6 @@
 	meat = initial(meat)
 	limbs_id = initial(limbs_id)
 	use_skintones = initial(use_skintones)
-	storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
-	mutantears = initial(mutantears)
-	qdel(H.getorganslot(ORGAN_SLOT_EARS))
-	var/obj/item/organ/ears = new mutantears
-	ears.Insert(H)
-	H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
-	storedtaildamage = H.getOrganLoss(ORGAN_SLOT_TAIL)
-	mutanttail = initial(mutanttail)
-	qdel(H.getorganslot(ORGAN_SLOT_TAIL))
 	sexes = initial(sexes)
 	fixed_mut_color = ""
 	hair_color = ""
@@ -199,7 +176,6 @@
 		return fake_species.handle_body(H)
 	else
 		return ..()
-
 
 /datum/species/synth/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
 	if(fake_species && isdisguised)
