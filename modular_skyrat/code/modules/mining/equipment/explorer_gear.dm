@@ -1,5 +1,6 @@
 //seva shit
 /obj/item/clothing/suit/hooded/explorer/seva
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 35, "bio" = 50, "rad" = 25, "fire" = 100, "acid" = 25)
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	icon_state = "seva"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
@@ -22,6 +23,7 @@
 	)
 
 /obj/item/clothing/head/hooded/explorer/seva
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 35, "bio" = 50, "rad" = 25, "fire" = 100, "acid" = 25)
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "seva"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
@@ -45,11 +47,11 @@
 
 /obj/item/clothing/suit/hooded/explorer/seva/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 3, /obj/item/stack/sheet/animalhide/goliath_hide, list("melee" = 5))
+	AddComponent(/datum/component/armor_plate, 2, /obj/item/stack/sheet/animalhide/goliath_hide, list("melee" = 5))
 
 /obj/item/clothing/head/hooded/explorer/seva/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 3, /obj/item/stack/sheet/animalhide/goliath_hide, list("melee" = 5))
+	AddComponent(/datum/component/armor_plate, 2, /obj/item/stack/sheet/animalhide/goliath_hide, list("melee" = 5))
 
 /obj/item/clothing/mask/gas/seva
 	icon = 'modular_skyrat/icons/obj/clothing/masks.dmi'
@@ -75,6 +77,7 @@
 
 //exosuit shit
 /obj/item/clothing/suit/hooded/explorer/exo
+	armor = list("melee" = 45, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 40, "bio" = 25, "rad" = 10, "fire" = 0, "acid" = 0)
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	icon_state = "exo"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/suit.dmi'
@@ -97,6 +100,7 @@
 	)
 
 /obj/item/clothing/head/hooded/explorer/exo
+	armor = list("melee" = 45, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 40, "bio" = 25, "rad" = 10, "fire" = 0, "acid" = 0)
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "exo"
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
@@ -142,10 +146,12 @@
 
 //dora the explorer suit
 /obj/item/clothing/suit/hooded/explorer
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50)
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/gun/energy/plasmacutter)
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_SNEK_TAURIC|STYLE_PAW_TAURIC|STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/head/hooded/explorer
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50)
 	flags_inv = HIDEEARS
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_SNEK_TAURIC|STYLE_PAW_TAURIC|STYLE_NO_ANTHRO_ICON
 
@@ -166,22 +172,20 @@
 	var/current_cooldown = 0
 	var/range = 7
 
-/obj/item/clothing/glasses/hud/mining/Initialize()
-	. = ..()
-	START_PROCESSING(SSfastprocess, src)
-
 /obj/item/clothing/glasses/hud/mining/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if(slot == ITEM_SLOT_EYES)
 		wearer = user
+		START_PROCESSING(SSfastprocess, src)
 
 /obj/item/clothing/glasses/hud/mining/dropped(mob/living/carbon/human/user)
-	if (user.glasses == src && wearer == user)
+	. = ..()
+	if(user.glasses == src && wearer == user)
 		wearer = null
-	..()
+		STOP_PROCESSING(SSfastprocess, src)
 
 /obj/item/clothing/glasses/hud/mining/process()
-	..()
+	. = ..()
 	if((!current_cooldown || current_cooldown < world.time) && wearer)
 		current_cooldown = world.time + cooldown
 		var/turf/t = get_turf(wearer)
@@ -191,6 +195,7 @@
 	name = "prescription ore scanner HUD"
 	desc = "Essentially a worn version of the advanced mining scanner. Helps the nearsighted."
 	vision_correction = 1
+	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
 /obj/item/clothing/glasses/hud/mining/sunglasses
 	name = "sunglasses ore scanner HUD"
@@ -209,6 +214,7 @@
 	flash_protect = 1
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
+
 /* this is quite buggy and doesn't work well
 /obj/item/clothing/glasses/hud/mining/fauna
 	name = "ore and fauna scanner HUD"

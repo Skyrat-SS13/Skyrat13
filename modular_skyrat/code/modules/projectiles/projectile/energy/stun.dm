@@ -1,3 +1,4 @@
+//Blueshit electrodes :)
 /obj/item/projectile/energy/bs_electrode
 	name = "electrode"
 	icon_state = "spark"

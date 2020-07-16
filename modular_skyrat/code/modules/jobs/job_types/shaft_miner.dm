@@ -1,7 +1,7 @@
 //DO NOT INCLUDE THIS FILE. IT CAUSES FUCKING ARRAY ERRORS FOR SOME IDIOTIC REASON.
 //Fully-equipped shaft miner outfit to make debugging less tedious for Bob Joga :)
 /datum/outfit/job/miner/equipped/fullyequipped
-	name = "Shaft Miner (Equpped+)"
+	name = "Shaft Miner (Lavaland + Full Equipment)"
 	suit = /obj/item/clothing/suit/hooded/explorer/standard
 	mask = /obj/item/clothing/mask/gas/explorer
 	glasses = /obj/item/clothing/glasses/hud/mining/sunglasses
@@ -28,3 +28,27 @@
 	new /obj/item/crusher_trophy/miner_eye(H.loc)
 	new /obj/item/crusher_trophy/blaster_tubes/mask(H.loc)
 	new /obj/item/twohanded/kinetic_crusher(H.loc)
+
+/datum/outfit/job/miner
+	name = "Shaft Miner (Lavaland)"
+	jobtype = /datum/job/mining
+
+	belt = /obj/item/pda/shaftminer
+	ears = /obj/item/radio/headset/headset_cargo/mining
+	shoes = /obj/item/clothing/shoes/workboots/mining
+	gloves = /obj/item/clothing/gloves/color/black
+	uniform = /obj/item/clothing/under/rank/cargo/miner/lavaland
+	l_pocket = /obj/item/reagent_containers/hypospray/medipen/survival
+	r_pocket = /obj/item/storage/bag/ore	//causes issues if spawned in backpack
+	backpack_contents = list(
+		/obj/item/flashlight/seclite=1,\
+		/obj/item/kitchen/knife/combat/survival=1,\
+		/obj/item/mining_voucher=1,\
+		/obj/item/stack/marker_beacon/ten=1)
+
+	backpack = /obj/item/storage/backpack/explorer
+	satchel = /obj/item/storage/backpack/satchel/explorer
+	duffelbag = /obj/item/storage/backpack/duffelbag
+	box = /obj/item/storage/box/survival_mining
+
+	chameleon_extras = /obj/item/gun/energy/kinetic_accelerator

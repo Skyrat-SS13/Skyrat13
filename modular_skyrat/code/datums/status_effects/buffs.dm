@@ -56,7 +56,7 @@
 	health = owner.health
 	stam = owner.getStaminaLoss()
 	if((inhand != inhandold) || (inhandl != inhandlold) || (health != healthold) || (stam > stamold))
-		if(owner.alpha <= 127) //making it announce everytime you pick something up is annoying bro
+		if(owner.alpha <= 140) //making it announce everytime you pick something up is annoying bro
 			to_chat(owner, "<span class='warning'>Something interferes with your suit's stealth system, revealing you!</span>")
 		playsound(owner.loc, "sparks", 100, 1)
 		owner.alpha = 255
@@ -71,9 +71,10 @@
 	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
 	icon_state = "stealth"
 
+//shittified regen cores
 /obj/screen/alert/status_effect/regenerative_core
 	name = "Regenerating Tendrils"
-	desc = "The tendrils slowly heal your damaged carcass."
+	desc = "The darkened tendrils slowly enthrall and heal your damaged body."
 	icon_state = "regenerative_core"
 
 /datum/status_effect/regenerative_core
@@ -82,25 +83,35 @@
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /obj/screen/alert/status_effect/regenerative_core
 	var/nutrition = 50
-	var/salve_amount = 30
-	var/brute_heal = 20
-	var/burn_heal = 20
-	var/toxin_heal = 20
+	var/brute_heal = 10
+	var/burn_heal = 10
+	var/toxin_heal = 10
 	var/firestacks_heal = 20
-	var/brute_heal_proc = 4.5
-	var/burn_heal_proc = 4.5
-	var/toxin_heal_proc = 4.5
+	var/clone_heal = 20
+	var/brute_heal_proc = 3
+	var/burn_heal_proc = 3
+	var/toxin_heal_proc = 1
+	var/list/reagents_apply = list(/datum/reagent/medicine/mine_salve = list(30, TOUCH),\
+									/datum/reagent/consumable/coffee = list(10, INGEST),\
+									/datum/reagent/drug/nicotine = list(10, VAPOR))
+	var/list/reagents_apply_crit = list(/datum/reagent/medicine/epinephrine = list(10, INJECT))
 
 /datum/status_effect/regenerative_core/on_apply()
 	. = ..()
 	owner.adjust_nutrition(nutrition)
-	owner.reagents?.add_reagent(/datum/reagent/medicine/mine_salve, salve_amount)
-	owner.reagents?.reaction(owner, TOUCH)
+	for(var/reagent in reagents_apply)
+		owner.reagents?.add_reagent(reagent, reagents_apply[reagent][1])
+		owner.reagents?.reaction(owner, reagents_apply[reagent][2])
+	if(owner.InCritical)
+		for(var/reagent in reagents_apply_crit)
+			owner.reagents?.add_reagent(reagent, reagents_apply[reagent][1])
+			owner.reagents?.reaction(owner, reagents_apply[reagent][2])
 	owner.adjustBruteLoss(-brute_heal)
 	owner.adjustFireLoss(-burn_heal)
-	owner.adjustToxLoss(toxin_heal)
+	owner.adjustToxLoss(-toxin_heal)
+	owner.adjustCloneLoss(-clone_heal)
 	owner.adjust_fire_stacks(-firestacks_heal)
-	return TRUE
+	owner.ExtinguishMob()
 
 /datum/status_effect/regenerative_core/process()
 	. = ..()

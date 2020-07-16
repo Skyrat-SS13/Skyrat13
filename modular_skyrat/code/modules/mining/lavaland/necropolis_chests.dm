@@ -1109,7 +1109,7 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	force = 24 //buff because 15 just doesn't cut it for megafauna loot... hehe "cut it"
+	force = 22 //buff because 15 just doesn't cut it for megafauna loot... hehe "cut it"
 	throwforce = 10
 	block_chance = 20 //again, slight buff
 	armour_penetration = 200 //the armor penetration is really what makes this unique and actually worth it so boomp it
