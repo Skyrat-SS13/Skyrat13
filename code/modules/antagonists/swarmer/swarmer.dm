@@ -482,14 +482,6 @@
 	return new fabrication_object(loc)
 
 /mob/living/simple_animal/hostile/swarmer/proc/Integrate(atom/movable/target)
-	if(isobj(target))
-		var/obj/O = target
-		if(O.resistance_flags & INDESTRUCTIBLE)
-			return FALSE
-	for(var/mob/living/L in GetAllContents())
-		if(!ispAI(L) && !isbrain(L))
-			to_chat(src, "<span class='warning'>An organism has been detected inside this object. Aborting.</span>")
-			return FALSE
 	var/resource_gain = target.IntegrateAmount()
 	if(resources + resource_gain > max_resources)
 		to_chat(src, "<span class='warning'>We cannot hold more materials!</span>")
