@@ -50,7 +50,7 @@
 /obj/item/clothing/gloves/color/yellow/power/examine(mob/user)
 	. = ..()
 	var/chargepercentage = ((ourcell.charge/ourcell.maxcharge) * 100)
-	. += " It's cell is <b>[chargepercentage]%</b> charged. <br>It is currently in [mode] mode."
+	. += "<span class ='notice'>It's cell is <b>[chargepercentage]%</b> charged. <br>It is currently in [mode] mode.</span>"
 
 /obj/item/clothing/gloves/color/yellow/power/equipped(mob/living/M, slot)
 	. = ..()
