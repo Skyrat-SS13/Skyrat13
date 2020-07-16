@@ -1,10 +1,10 @@
-/* Fuck it, we're modularizing these entirely.
+//yes i modularized bodyparts entirely
 /obj/item/bodypart
 	name = "limb"
 	desc = "Why is it detached..."
 	force = 3
 	throwforce = 3
-	icon = 'modular_skyrat/icons/mob/human_parts.dmi' //skyrat edit
+	icon = 'modular_skyrat/icons/mob/human_parts.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = ""
 	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
@@ -72,7 +72,7 @@
 	var/medium_burn_msg = "blistered"
 	var/heavy_burn_msg = "peeling away"
 
-	//skyrat variables
+	//Bobmed variables
 	var/parent_bodyzone //body zone that is considered a "parent" of this bodypart's zone
 	var/dismember_bodyzone //body zone that receives wound when this limb is dismembered
 	var/list/starting_children = list() //children that are already "inside" this limb on spawn. could be organs or limbs.
@@ -109,21 +109,29 @@
 	var/disembowable = TRUE
 	/// Maximum weight for a cavity item
 	var/max_cavity_size = WEIGHT_CLASS_TINY
-	//
+	/// Synthetic bodyparts can have patches applied but are harder to repair by conventional means
+	var/synthetic = FALSE
+	/// For robotic limbs that pretend to be organic, for the sake of features, icon paths etc. etc.
+	var/render_like_organic = FALSE
+	/// This is used for pseudolimbs. Basically replaces the mob overlay icon with this.
+	var/mutable_appearance/custom_overlay = null
 
-//skyrat edit
 /obj/item/bodypart/Initialize()
 	. = ..()
 	if(starting_children.len)
 		for(var/I in starting_children)
 			new I(src)
-//
+
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
 	for(var/woundie in wounds)
 		var/datum/wound/W = woundie
 		if(istype(W))
-			. += "<span class='warning'>[W.get_examine_description(user)]</span>"
+			. += "[W.get_examine_description(user)]"
+	for(var/scarrie in scars)
+		var/datum/scar/S = scarrie
+		if(istype(S))
+			. += "[S.get_examine_description(user)]"
 	if(brute_dam > DAMAGE_PRECISION)
 		. += "<span class='warning'>This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.</span>"
 	if(burn_dam > DAMAGE_PRECISION)
@@ -243,7 +251,6 @@
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-//skyrat editted as a whole
 /obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE) // maybe separate BRUTE_SHARP and BRUTE_OTHER eventually somehow hmm
 	var/hit_percent = (100-blocked)/100
 	if((!brute && !burn && !stamina) || hit_percent <= 0)
@@ -367,6 +374,10 @@
 
 	brute_dam += brute
 	burn_dam += burn
+	if(status == BODYPART_ROBOTIC)
+		if(owner)
+			if((brute+burn)>3 && prob((20+brute+burn)))
+				do_sparks(3,FALSE,src.owner)
 
 	for(var/i in wounds)
 		var/datum/wound/W = i
@@ -453,14 +464,15 @@
 				return
 
 	check_wounding(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)
-//
 
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
 //Cannot remove negative damage (i.e. apply damage)
-/obj/item/bodypart/proc/heal_damage(brute, burn, stamina, required_status, updating_health = TRUE)
+/obj/item/bodypart/proc/heal_damage(brute, burn, stamina, only_robotic = FALSE, only_organic = TRUE, updating_health = TRUE)
+	if(only_robotic && !(status & BODYPART_ROBOTIC)) //This makes organic limbs not heal when the proc is in Robotic mode.
+		return
 
-	if(required_status && !(status & required_status)) //So we can only heal certain kinds of limbs, ie robotic vs organic.
+	if(only_organic && !(status & BODYPART_ORGANIC)) //This makes robolimbs not healable by chems.
 		return
 
 	brute_dam	= round(max(brute_dam - brute, 0), DAMAGE_PRECISION)
@@ -468,10 +480,13 @@
 	stamina_dam = round(max(stamina_dam - stamina, 0), DAMAGE_PRECISION)
 	if(owner && updating_health)
 		owner.updatehealth()
+	if(owner.dna && owner.dna.species && (REVIVESBYHEALING in owner.dna.species.species_traits))
+		if(owner.health > owner.dna.species.revivesbyhealreq && !owner.hellbound)
+			owner.revive(0)
+			owner.cure_husk(0) // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
 	consider_processing()
 	update_disabled()
-	cremation_progress = min(0, cremation_progress - ((brute_dam + burn_dam)*(100/max_damage)))
-	return update_bodypart_damage_state()
+	return update_bodypart_damage_state() 
 
 //Returns total damage.
 /obj/item/bodypart/proc/get_damage(include_stamina = FALSE)
@@ -481,7 +496,6 @@
 	return total
 
 //Checks disabled status thresholds
-//skyrat edit
 /obj/item/bodypart/proc/update_disabled(var/upparent = TRUE, var/upchildren = TRUE)
 	if(!owner)
 		return
@@ -497,7 +511,6 @@
 			if(CBP)
 				CBP.update_disabled(FALSE, TRUE)
 
-//skyrat edit
 /obj/item/bodypart/proc/is_disabled()
 	if(!owner)
 		return
@@ -530,7 +543,7 @@
 			return BODYPART_NOT_DISABLED
 	else
 		return BODYPART_NOT_DISABLED
-//
+
 /obj/item/bodypart/proc/check_disabled() //This might be depreciated and should be safe to remove.
 	if(!can_dismember() || HAS_TRAIT(owner, TRAIT_NODISMEMBER))
 		return
@@ -541,13 +554,11 @@
 
 
 /obj/item/bodypart/proc/set_disabled(new_disabled)
-	if(disabled == new_disabled || !owner) //skyrat edit
+	if(disabled == new_disabled || !owner)
 		return FALSE
 	disabled = new_disabled
-	//skyrat edit
 	if(disabled && owner.get_item_for_held_index(held_index))
 		owner.dropItemToGround(owner.get_item_for_held_index(held_index))
-	//
 	owner.update_health_hud() //update the healthdoll
 	owner.update_body()
 	owner.update_mobility()
@@ -590,6 +601,7 @@
 		owner.update_hair()
 		owner.update_damage_overlays()
 
+//Status related procs
 /obj/item/bodypart/proc/is_organic_limb()
 	return (status & BODYPART_ORGANIC)
 
@@ -599,129 +611,19 @@
 /obj/item/bodypart/proc/is_mixed_limb()
 	return (is_organic_limb() && is_robotic_limb())
 
-/* moved to modular_skyrat
-//we inform the bodypart of the changes that happened to the owner, or give it the informations from a source mob.
-/obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
-	var/mob/living/carbon/C
-	if(source)
-		C = source
-		if(!original_owner)
-			original_owner = source
-	else if(original_owner && owner != original_owner) //Foreign limb
-		no_update = TRUE
-	else
-		C = owner
-		no_update = FALSE
+/obj/item/bodypart/proc/can_bleed()
+	return (status & BODYPART_NOBLEED)
 
-	if(HAS_TRAIT(C, TRAIT_HUSK) && is_organic_limb())
-		species_id = "husk" //overrides species_id
-		dmg_overlay_type = "" //no damage overlay shown when husked
-		should_draw_gender = FALSE
-		color_src = FALSE
-		base_bp_icon = DEFAULT_BODYPART_ICON
-		no_update = TRUE
-		body_markings = "husk" // reeee
-		aux_marking = "husk"
-
-	if(no_update)
-		return
-
-	if(!animal_origin)
-		var/mob/living/carbon/human/H = C
-		color_src = FALSE
-
-		var/datum/species/S = H.dna.species
-		base_bp_icon = S?.icon_limbs || DEFAULT_BODYPART_ICON
-		species_id = S.limbs_id
-		species_flags_list = H.dna.species.species_traits
-
-		//body marking memes
-		var/list/colorlist = list()
-		colorlist.Cut()
-		colorlist += ReadRGB("[H.dna.features["mcolor"]]0")
-		colorlist += ReadRGB("[H.dna.features["mcolor2"]]0")
-		colorlist += ReadRGB("[H.dna.features["mcolor3"]]0")
-		colorlist += list(0,0,0, S.hair_alpha)
-		for(var/index=1, index<=colorlist.len, index++)
-			colorlist[index] = colorlist[index]/255
-
-		if(S.use_skintones)
-			skin_tone = H.skin_tone
-			base_bp_icon = (base_bp_icon == DEFAULT_BODYPART_ICON) ? DEFAULT_BODYPART_ICON_ORGANIC : base_bp_icon
-		else
-			skin_tone = ""
-
-		body_gender = H.dna.features["body_model"]
-		should_draw_gender = S.sexes
-
-		var/mut_colors = (MUTCOLORS in S.species_traits)
-		if(mut_colors)
-			if(S.fixed_mut_color)
-				species_color = S.fixed_mut_color
-			else
-				species_color = H.dna.features["mcolor"]
-			base_bp_icon = (base_bp_icon == DEFAULT_BODYPART_ICON) ? DEFAULT_BODYPART_ICON_ORGANIC : base_bp_icon
-		else
-			species_color = ""
-
-		if(base_bp_icon != DEFAULT_BODYPART_ICON)
-			color_src = mut_colors ? MUTCOLORS : ((H.dna.skin_tone_override && S.use_skintones == USE_SKINTONES_GRAYSCALE_CUSTOM) ? CUSTOM_SKINTONE : SKINTONE)
-
-		if(S.mutant_bodyparts["legs"])
-			if(body_zone == BODY_ZONE_L_LEG || body_zone == BODY_ZONE_R_LEG)
-				if(DIGITIGRADE in S.species_traits)
-					digitigrade_type = lowertext(H.dna.features["legs"])
-			else
-				digitigrade_type = null
-
-		if(S.mutant_bodyparts["mam_body_markings"])
-			var/datum/sprite_accessory/Smark
-			Smark = GLOB.mam_body_markings_list[H.dna.features["mam_body_markings"]]
-			if(Smark)
-				body_markings_icon = Smark.icon
-			if(H.dna.features["mam_body_markings"] != "None")
-				body_markings = Smark?.icon_state || lowertext(H.dna.features["mam_body_markings"])
-				aux_marking = Smark?.icon_state || lowertext(H.dna.features["mam_body_markings"])
-			else
-				body_markings = "plain"
-				aux_marking = "plain"
-			markings_color = list(colorlist)
-
-		else
-			body_markings = null
-			aux_marking = null
-
-		if(!dropping_limb && H.dna.check_mutation(HULK))
-			mutation_color = "00aa00"
-		else
-			mutation_color = ""
-
-		dmg_overlay_type = S.damage_overlay_type
-
-	else if(animal_origin == MONKEY_BODYPART) //currently monkeys are the only non human mob to have damage overlays.
-		dmg_overlay_type = animal_origin
-
-	if(status == BODYPART_ROBOTIC)
-		dmg_overlay_type = "robotic"
-		body_markings = null
-		aux_marking = null
-
-	if(dropping_limb)
-		no_update = TRUE //when attached, the limb won't be affected by the appearance changes of its mob owner.
-*/
 //to update the bodypart's icon when not attached to a mob
 /obj/item/bodypart/proc/update_icon_dropped()
 	cut_overlays()
 	var/list/standing = get_limb_icon(1)
-	/* skyrat edit
 	if(!standing.len)
 		icon_state = initial(icon_state)//no overlays found, we default back to initial icon.
 		return
-	*/
 	for(var/image/I in standing)
 		I.pixel_x = px_x
 		I.pixel_y = px_y
-	//skyrat edit
 	for(var/obj/item/bodypart/BP in src)
 		var/list/substanding = BP.get_limb_icon(1)
 		for(var/image/I in substanding)
@@ -731,321 +633,11 @@
 	if(!standing.len)
 		icon_state = initial(icon_state)//no overlays found, we default back to initial icon.
 		return
-	//
 	add_overlay(standing)
-
-/***********moved to modular_skyrat
-//Gives you a proper icon appearance for the dismembered limb
-/obj/item/bodypart/proc/get_limb_icon(dropped)
-	cut_overlays()
-	icon_state = "" //to erase the default sprite, we're building the visual aspects of the bodypart through overlays alone.
-
-	. = list()
-
-	var/image_dir = 0
-	var/icon_gender = (body_gender == FEMALE) ? "f" : "m" //gender of the icon, if applicable
-
-	if(dropped)
-		image_dir = SOUTH
-		if(dmg_overlay_type)
-			if(brutestate)
-				. += image('modular_skyrat/icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
-			if(burnstate)
-				. += image('modular_skyrat/icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
-
-		if(!isnull(body_markings) && status == BODYPART_ORGANIC)
-			if(!use_digitigrade)
-				if(body_zone == BODY_ZONE_CHEST)
-					. += image(body_markings_icon, "[body_markings]_[body_zone]_[icon_gender]", -MARKING_LAYER, image_dir)
-				else
-					. += image(body_markings_icon, "[body_markings]_[body_zone]", -MARKING_LAYER, image_dir)
-			else
-				. += image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
-
-	var/image/limb = image(layer = -BODYPARTS_LAYER, dir = image_dir)
-	var/list/aux = list()
-	var/image/marking
-	var/list/auxmarking = list()
-
-	. += limb
-
-	if(animal_origin)
-		if(is_organic_limb())
-			limb.icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-			if(species_id == "husk")
-				limb.icon_state = "[animal_origin]_husk_[body_zone]"
-			else
-				limb.icon_state = "[animal_origin]_[body_zone]"
-		else
-			limb.icon = 'modular_skyrat/icons/mob/augmentation/augments.dmi'
-			limb.icon_state = "[animal_origin]_[body_zone]"
-		return
-
-	if((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST))
-		should_draw_gender = FALSE
-
-	if(is_organic_limb())
-		limb.icon = base_bp_icon || 'modular_skyrat/icons/mob/human_parts.dmi'
-		if(should_draw_gender)
-			limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
-		else if (use_digitigrade)
-			if(base_bp_icon == DEFAULT_BODYPART_ICON_ORGANIC) //Compatibility hack for the current iconset.
-				limb.icon_state = "[digitigrade_type]_[use_digitigrade]_[body_zone]"
-			else
-				limb.icon_state = "[species_id]_[digitigrade_type]_[use_digitigrade]_[body_zone]"
-		else
-			limb.icon_state = "[species_id]_[body_zone]"
-
-		// Body markings
-		if(!isnull(body_markings))
-			if(species_id == "husk")
-				marking = image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_[body_zone]", -MARKING_LAYER, image_dir)
-			else if(species_id == "husk" && use_digitigrade)
-				marking = image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
-
-			else if(!use_digitigrade)
-				if(body_zone == BODY_ZONE_CHEST)
-					marking = image(body_markings_icon, "[body_markings]_[body_zone]_[icon_gender]", -MARKING_LAYER, image_dir)
-				else
-					marking = image(body_markings_icon, "[body_markings]_[body_zone]", -MARKING_LAYER, image_dir)
-			else
-				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
-
-			. += marking
-
-		// Citadel End
-
-		if(aux_icons)
-			for(var/I in aux_icons)
-				var/aux_layer = aux_icons[I]
-				aux += image(limb.icon, "[species_id]_[I]", -aux_layer, image_dir)
-				if(!isnull(aux_marking))
-					if(species_id == "husk")
-						auxmarking += image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_[I]", -aux_layer, image_dir)
-					else
-						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
-			. += aux
-			. += auxmarking
-
-	else
-		limb.icon = icon
-		if(should_draw_gender)
-			limb.icon_state = "[body_zone]_[icon_gender]"
-		else
-			limb.icon_state = "[body_zone]"
-
-		if(aux_icons)
-			for(var/I in aux_icons)
-				var/aux_layer = aux_icons[I]
-				aux += image(limb.icon, "[I]", -aux_layer, image_dir)
-				if(!isnull(aux_marking))
-					if(species_id == "husk")
-						auxmarking += image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_[I]", -aux_layer, image_dir)
-					else
-						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
-			. += auxmarking
-			. += aux
-
-		if(!isnull(body_markings))
-			if(species_id == "husk")
-				marking = image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_[body_zone]", -MARKING_LAYER, image_dir)
-			else if(species_id == "husk" && use_digitigrade)
-				marking = image('modular_citadel/modular_skyrat/icons/mob/markings_notmammals.dmi', "husk_digitigrade_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
-
-			else if(!use_digitigrade)
-				if(body_zone == BODY_ZONE_CHEST)
-					marking = image(body_markings_icon, "[body_markings]_[body_zone]_[icon_gender]", -MARKING_LAYER, image_dir)
-				else
-					marking = image(body_markings_icon, "[body_markings]_[body_zone]", -MARKING_LAYER, image_dir)
-			else
-				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
-			. += marking
-		return
-
-	if(color_src) //TODO - add color matrix support for base species limbs
-		var/draw_color = mutation_color || species_color
-		var/grayscale = FALSE
-		if(!draw_color)
-			draw_color = SKINTONE2HEX(skin_tone)
-			grayscale = color_src == CUSTOM_SKINTONE //Cause human limbs have a very pale pink hue by def.
-		else
-			draw_color = "#[draw_color]"
-		if(draw_color)
-			if(grayscale)
-				limb.icon_state += "_g"
-			limb.color = draw_color
-			if(aux_icons)
-				for(var/a in aux)
-					var/image/I = a
-					if(grayscale)
-						I.icon_state += "_g"
-					I.color = draw_color
-				if(!isnull(aux_marking))
-					for(var/a in auxmarking)
-						var/image/I = a
-						if(species_id == "husk")
-							I.color = "#141414"
-						else
-							I.color = list(markings_color)
-
-			if(!isnull(body_markings))
-				if(species_id == "husk")
-					marking.color = "#141414"
-				else
-					marking.color = list(markings_color)
-*/
-
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)
 	drop_organs()
 	qdel(src)
-
-/obj/item/bodypart/chest
-	name = "chest" //skyrat edit
-	desc = "It's impolite to stare at a person's chest."
-	icon_state = "default_human_chest"
-	max_damage = 200
-	body_zone = BODY_ZONE_CHEST
-	body_part = CHEST
-	px_x = 0
-	px_y = 0
-	stam_damage_coeff = 1
-	max_stamina_damage = 200
-	//skyrat variables
-	amputation_point = "spine"
-	children_zones = list(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
-	dismember_bodyzone = null
-	specific_locations = list("upper chest", "lower abdomen", "midsection", "collarbone", "lower back")
-	max_cavity_size = WEIGHT_CLASS_BULKY
-	//
-
-/obj/item/bodypart/chest/can_dismember(obj/item/I)
-	if(!((owner.stat == DEAD) || owner.InFullCritical()))
-		return FALSE
-	return ..()
-
-//skyrat edit
-/obj/item/bodypart/groin
-	name = "groin"
-	desc = "Some say groin came from  Grynde, which is middle-ages speak for depression. Makes sense for the situation."
-	icon_state = "default_human_groin"
-	max_damage = 100
-	body_zone = BODY_ZONE_PRECISE_GROIN
-	body_part = GROIN
-	px_x = 0
-	px_y = -3
-	stam_damage_coeff = 1
-	max_stamina_damage = 100
-	amputation_point = "lumbar"
-	parent_bodyzone = BODY_ZONE_CHEST
-	dismember_bodyzone = BODY_ZONE_CHEST
-	children_zones = list(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
-	specific_locations = list("left buttock", "right buttock", "inner left thigh", "inner right thigh", "perineum")
-	max_cavity_size = WEIGHT_CLASS_NORMAL
-//
-
-/obj/item/bodypart/chest/monkey
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "default_monkey_chest"
-	animal_origin = MONKEY_BODYPART
-
-//skyrat edit
-/obj/item/bodypart/groin/monkey
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "default_monkey_groin"
-	animal_origin = MONKEY_BODYPART
-//
-
-/obj/item/bodypart/chest/alien
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "alien_chest"
-	dismemberable = 0
-	max_damage = 500
-	animal_origin = ALIEN_BODYPART
-
-//skyrat edit
-/obj/item/bodypart/groin/alien
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "alien_groin"
-	dismemberable = 0
-	max_damage = 500
-	animal_origin = ALIEN_BODYPART
-//
-
-/obj/item/bodypart/chest/devil
-	dismemberable = 0
-	max_damage = 5000
-	animal_origin = DEVIL_BODYPART
-
-//skyrat edit
-/obj/item/bodypart/chest/devil
-	dismemberable = 0
-	max_damage = 5000
-	animal_origin = DEVIL_BODYPART
-//
-
-/obj/item/bodypart/chest/larva
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "larva_chest"
-	dismemberable = 0
-	max_damage = 50
-	animal_origin = LARVA_BODYPART
-
-//skyrat edit
-/obj/item/bodypart/chest/larva
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "larva_chest"
-	dismemberable = 0
-	max_damage = 50
-	animal_origin = LARVA_BODYPART
-//
-
-/obj/item/bodypart/l_arm
-	name = "left arm" //skyrat edit
-	desc = "Did you know that the word 'sinister' stems originally from the \
-		Latin 'sinestra' (left hand), because the left hand was supposed to \
-		be possessed by the devil? This arm appears to be possessed by no \
-		one though."
-	icon_state = "default_human_l_arm"
-	attack_verb = list("slapped", "punched")
-	max_damage = 50
-	max_stamina_damage = 50
-	body_zone = BODY_ZONE_L_ARM
-	body_part = ARM_LEFT
-	//aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER) //skyrat edit
-	body_damage_coeff = 0.75
-	px_x = -6
-	px_y = 0
-	stam_heal_tick = 4
-	//skyrat variables
-	amputation_point = "left shoulder"
-	dismember_bodyzone = BODY_ZONE_CHEST
-	children_zones = list(BODY_ZONE_PRECISE_L_HAND)
-	specific_locations = list("outer left forearm", "inner left wrist", "outer left wrist", "left elbow", "left bicep", "left shoulder")
-	max_cavity_size = WEIGHT_CLASS_SMALL
-	//
-
-//skyrat edit
-/obj/item/bodypart/l_hand
-	name = "left hand"
-	desc = "In old english, left meant weak, guess they were onto something if you're finding this."
-	icon_state = "default_human_l_hand"
-	aux_icons = list(BODY_ZONE_PRECISE_L_HAND = HANDS_PART_LAYER, "l_hand_behind" = BODY_BEHIND_LAYER)
-	attack_verb = list("slapped", "punched")
-	max_damage = 50
-	max_stamina_damage = 50
-	body_zone = BODY_ZONE_PRECISE_L_HAND
-	body_part = HAND_LEFT
-	held_index = 1
-	px_x = -6
-	px_y = -3
-	stam_heal_tick = 3
-	parent_bodyzone = BODY_ZONE_L_ARM
-	dismember_bodyzone = BODY_ZONE_L_ARM
-	amputation_point = "left arm"
-	children_zones = list()
-	specific_locations = list("left palm", "left back palm")
-	max_cavity_size = WEIGHT_CLASS_TINY
 
 /obj/item/bodypart/l_hand/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
@@ -1069,94 +661,6 @@
 		var/obj/screen/inventory/hand/L = owner.hud_used.hand_slots["[held_index]"]
 		if(L)
 			L.update_icon()
-//
-
-/obj/item/bodypart/l_arm/monkey
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "default_monkey_l_arm"
-	animal_origin = MONKEY_BODYPART
-	px_x = -5
-	px_y = -3
-//skyrat edit
-/obj/item/bodypart/l_hand/monkey
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "default_monkey_l_hand"
-	animal_origin = MONKEY_BODYPART
-	px_x = -7
-	px_y = -3
-//
-/obj/item/bodypart/l_arm/alien
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "alien_l_arm"
-	px_x = 0
-	px_y = 0
-	dismemberable = 0
-	max_damage = 100
-	animal_origin = ALIEN_BODYPART
-//skyrat edit
-/obj/item/bodypart/l_hand/alien
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "alien_l_hand"
-	px_x = 0
-	px_y = 0
-	dismemberable = 0
-	max_damage = 100
-	animal_origin = ALIEN_BODYPART
-//
-/obj/item/bodypart/l_arm/devil
-	dismemberable = 0
-	max_damage = 5000
-	animal_origin = DEVIL_BODYPART
-//skyrat edit
-/obj/item/bodypart/l_hand/devil
-	dismemberable = 0
-	max_damage = 5000
-	animal_origin = DEVIL_BODYPART
-//
-/obj/item/bodypart/r_arm
-	name = "right arm" //skyrat edit
-	desc = "Over 87% of humans are right handed. That figure is much lower \
-		among humans missing their right arm."
-	icon_state = "default_human_r_hand"
-	attack_verb = list("slapped", "punched")
-	max_damage = 50
-	body_zone = BODY_ZONE_R_ARM
-	body_part = ARM_RIGHT
-	//aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER) //skyrat edit
-	body_damage_coeff = 0.75
-	px_x = 6
-	px_y = 0
-	stam_heal_tick = STAM_RECOVERY_LIMB
-	max_stamina_damage = 50
-	//skyrat variables
-	amputation_point = "right shoulder"
-	dismember_bodyzone = BODY_ZONE_CHEST
-	children_zones = list(BODY_ZONE_PRECISE_R_HAND)
-	specific_locations = list("outer right forearm", "inner right wrist", "outer right wrist", "right elbow", "right bicep", "right shoulder")
-	max_cavity_size = WEIGHT_CLASS_SMALL
-	//
-
-//skyrat edit
-/obj/item/bodypart/r_hand
-	name = "right hand"
-	desc = "It probably wasn't the right hand."
-	icon_state = "default_human_r_hand"
-	aux_icons = list(BODY_ZONE_PRECISE_R_HAND = HANDS_PART_LAYER, "r_hand_behind" = BODY_BEHIND_LAYER)
-	attack_verb = list("slapped", "punched")
-	max_damage = 50
-	max_stamina_damage = 50
-	body_zone = BODY_ZONE_PRECISE_R_HAND
-	body_part = HAND_RIGHT
-	held_index = 2
-	px_x = 6
-	px_y = -3
-	stam_heal_tick = 4
-	parent_bodyzone = BODY_ZONE_R_ARM
-	dismember_bodyzone = BODY_ZONE_R_ARM
-	amputation_point = "right arm"
-	children_zones = list()
-	specific_locations = list("right palm", "right back palm")
-	max_cavity_size = WEIGHT_CLASS_TINY
 
 /obj/item/bodypart/r_hand/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
@@ -1180,92 +684,7 @@
 		var/obj/screen/inventory/hand/L = owner.hud_used.hand_slots["[held_index]"]
 		if(L)
 			L.update_icon()
-//
 
-/obj/item/bodypart/r_arm/monkey
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "default_monkey_r_arm"
-	animal_origin = MONKEY_BODYPART
-	px_x = 5
-	px_y = -3
-//skyrat edit
-/obj/item/bodypart/r_hand/monkey
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "default_monkey_r_hand"
-	animal_origin = MONKEY_BODYPART
-	px_x = 5
-	px_y = -9
-//
-/obj/item/bodypart/r_arm/alien
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "alien_r_arm"
-	px_x = 0
-	px_y = 0
-	dismemberable = 0
-	max_damage = 100
-	animal_origin = ALIEN_BODYPART
-//skyrat edit
-/obj/item/bodypart/r_hand/alien
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "alien_r_hand"
-	animal_origin = ALIEN_BODYPART
-	px_x = 5
-	px_y = -6
-//
-/obj/item/bodypart/r_arm/devil
-	dismemberable = 0
-	max_damage = 5000
-	animal_origin = DEVIL_BODYPART
-
-//skyrat edit
-/obj/item/bodypart/r_hand/devil
-	dismemberable = 0
-	max_damage = 5000
-	animal_origin = DEVIL_BODYPART
-//
-
-/obj/item/bodypart/l_leg
-	name = "left leg" //skyrat edit
-	desc = "Some athletes prefer to tie their left shoelaces first for good \
-		luck. In this instance, it probably would not have helped."
-	icon_state = "default_human_l_leg"
-	attack_verb = list("kicked", "stomped")
-	max_damage = 50
-	body_zone = BODY_ZONE_L_LEG
-	body_part = LEG_LEFT
-	body_damage_coeff = 0.75
-	px_x = -2
-	px_y = 12
-	stam_heal_tick = STAM_RECOVERY_LIMB
-	max_stamina_damage = 50
-	//skyrat vars
-	dismember_bodyzone = BODY_ZONE_PRECISE_GROIN
-	amputation_point = "groin"
-	children_zones = list(BODY_ZONE_PRECISE_L_FOOT)
-	specific_locations = list("inner left thigh", "outer left calf", "outer left hip", " left kneecap", "lower left shin")
-	max_cavity_size = WEIGHT_CLASS_SMALL
-	//
-//skyrat edit
-/obj/item/bodypart/l_foot
-	name = "left foot" //skyrat edit
-	desc = "You feel like someones gonna be needing a peg-leg."
-	icon_state = "default_human_r_foot"
-	attack_verb = list("kicked", "stomped")
-	max_damage = 50
-	body_zone = BODY_ZONE_PRECISE_L_FOOT
-	dismember_bodyzone = BODY_ZONE_L_LEG
-	body_part = FOOT_LEFT
-	body_damage_coeff = 0.75
-	px_x = -2
-	px_y = 9
-	stam_heal_tick = 4
-	max_stamina_damage = 50
-	children_zones = list()
-	amputation_point = "right leg"
-	parent_bodyzone = BODY_ZONE_L_LEG
-	specific_locations = list("left sole", "left ankle", "left heel")
-	max_cavity_size = WEIGHT_CLASS_TINY
-//
 /obj/item/bodypart/l_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
 		return BODYPART_DISABLED_PARALYSIS
@@ -1281,101 +700,6 @@
 			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
 		if(BODYPART_DISABLED_PARALYSIS)
 			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
-
-
-/obj/item/bodypart/l_leg/digitigrade
-	name = "digitigrade left leg" //skyrat edit
-	use_digitigrade = FULL_DIGITIGRADE
-//skyrat edit
-/obj/item/bodypart/l_foot/digitigrade
-	name = "digitigrade left foot" //skyrat edit
-	use_digitigrade = FULL_DIGITIGRADE
-//
-/obj/item/bodypart/l_leg/monkey
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "default_monkey_l_leg"
-	animal_origin = MONKEY_BODYPART
-	px_y = 4
-//skyrat edit
-/obj/item/bodypart/l_foot/monkey
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "default_monkey_l_foot"
-	animal_origin = MONKEY_BODYPART
-	px_y = 2
-//
-/obj/item/bodypart/l_leg/alien
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "alien_l_leg"
-	px_x = 0
-	px_y = 0
-	dismemberable = 0
-	max_damage = 100
-	animal_origin = ALIEN_BODYPART
-//skyrat edit
-/obj/item/bodypart/l_foot/alien
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "alien_l_foot"
-	px_x = 0
-	px_y = -3
-	dismemberable = 0
-	max_damage = 100
-	animal_origin = ALIEN_BODYPART
-//
-/obj/item/bodypart/l_leg/devil
-	dismemberable = 0
-	max_damage = 5000
-	animal_origin = DEVIL_BODYPART
-//skyrat edit
-/obj/item/bodypart/l_foot/devil
-	dismemberable = 0
-	max_damage = 5000
-	animal_origin = DEVIL_BODYPART
-//
-
-/obj/item/bodypart/r_leg
-	name = "right leg" //skyrat edit
-	desc = "You put your right leg in, your right leg out. In, out, in, out, \
-		shake it all about. And apparently then it detaches.\n\
-		The hokey pokey has certainly changed a lot since space colonisation."
-	// alternative spellings of 'pokey' are availible
-	icon_state = "default_human_r_leg"
-	attack_verb = list("kicked", "stomped")
-	max_damage = 50
-	body_zone = BODY_ZONE_R_LEG
-	body_part = LEG_RIGHT
-	body_damage_coeff = 0.75
-	px_x = 2
-	px_y = 12
-	max_stamina_damage = 50
-	stam_heal_tick = 4
-	//skyrat variables
-	amputation_point = "groin"
-	dismember_bodyzone = BODY_ZONE_PRECISE_GROIN
-	children_zones = list(BODY_ZONE_PRECISE_R_FOOT)
-	specific_locations = list("right sole", "right ankle", "right heel")
-	max_cavity_size = WEIGHT_CLASS_SMALL
-	//
-//skyrat edit
-/obj/item/bodypart/r_foot
-	name = "right foot" //skyrat edit
-	desc = "You feel like someones gonna be needing a peg-leg."
-	icon_state = "default_human_r_foot"
-	attack_verb = list("kicked", "stomped")
-	max_damage = 50
-	body_zone = BODY_ZONE_PRECISE_R_FOOT
-	body_part = FOOT_RIGHT
-	body_damage_coeff = 0.75
-	px_x = 2
-	px_y = 9
-	stam_heal_tick = 4
-	max_stamina_damage = 50
-	children_zones = list()
-	amputation_point = "right leg"
-	parent_bodyzone = BODY_ZONE_R_LEG
-	dismember_bodyzone = BODY_ZONE_R_LEG
-	specific_locations = list("right sole", "right ankle", "right heel")
-	max_cavity_size = WEIGHT_CLASS_TINY
-//
 
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
@@ -1393,56 +717,6 @@
 		if(BODYPART_DISABLED_PARALYSIS)
 			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
 
-/obj/item/bodypart/r_leg/digitigrade
-	name = "right digitigrade leg"
-	use_digitigrade = FULL_DIGITIGRADE
-//skyrat edit
-/obj/item/bodypart/r_foot/digitigrade
-	name = "right digitigrade foot"
-	use_digitigrade = FULL_DIGITIGRADE
-//
-/obj/item/bodypart/r_leg/monkey
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "default_monkey_r_leg"
-	animal_origin = MONKEY_BODYPART
-	px_y = 4
-//skyrat edit
-/obj/item/bodypart/r_foot/monkey
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "default_monkey_r_foot"
-	animal_origin = MONKEY_BODYPART
-	px_y = 2
-//
-/obj/item/bodypart/r_leg/alien
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "alien_r_leg"
-	px_x = 0
-	px_y = 0
-	dismemberable = 0
-	max_damage = 100
-	animal_origin = ALIEN_BODYPART
-//skyrat edit
-/obj/item/bodypart/r_foot/alien
-	icon = 'modular_skyrat/icons/mob/animal_parts.dmi'
-	icon_state = "alien_r_foot"
-	px_x = 0
-	px_y = -3
-	dismemberable = 0
-	max_damage = 100
-	animal_origin = ALIEN_BODYPART
-//
-/obj/item/bodypart/r_leg/devil
-	dismemberable = 0
-	max_damage = 5000
-	animal_origin = DEVIL_BODYPART
-//skyrat edit
-/obj/item/bodypart/r_leg/devil
-	dismemberable = 0
-	max_damage = 5000
-	animal_origin = DEVIL_BODYPART
-//
-
-//skyrat edit
 /**
   * check_wounding() is where we handle rolling for, selecting, and applying a wound if we meet the criteria
   *
@@ -1653,7 +927,7 @@
 
 /obj/item/bodypart/proc/get_bleed_rate()
 	if(status & BODYPART_NOBLEED)
-		return
+		return 0
 
 	var/bleed_rate = 0
 	if(generic_bleedstacks > 0)
@@ -1701,4 +975,345 @@
 	if(current_gauze.absorption_capacity < 0)
 		owner.visible_message("<span class='danger'>\The [current_gauze] on [owner]'s [name] fall away in rags.</span>", "<span class='warning'>\The [current_gauze] on your [name] fall away in rags.</span>", vision_distance=COMBAT_MESSAGE_RANGE)
 		QDEL_NULL(current_gauze)
-*/
+
+//Update_limb() changes because synths
+/obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source)
+	var/mob/living/carbon/C
+	if(source)
+		C = source
+		if(!original_owner)
+			original_owner = source
+	else if(original_owner && owner != original_owner) //Foreign limb
+		no_update = TRUE
+	else
+		C = owner
+		no_update = FALSE
+
+	if(HAS_TRAIT(C, TRAIT_HUSK) && is_organic_limb())
+		species_id = "husk" //overrides species_id
+		dmg_overlay_type = "" //no damage overlay shown when husked
+		should_draw_gender = FALSE
+		color_src = FALSE
+		base_bp_icon = DEFAULT_BODYPART_ICON
+		no_update = TRUE
+		body_markings = "husk" // reeee
+		aux_marking = "husk"
+
+	if(no_update)
+		return
+
+	if(!animal_origin)
+		var/mob/living/carbon/human/H = C
+		color_src = FALSE
+
+		var/datum/species/S = H.dna.species
+		base_bp_icon = S?.icon_limbs || DEFAULT_BODYPART_ICON
+		species_id = S.limbs_id
+		species_flags_list = H.dna.species.species_traits
+
+		//body marking memes
+		var/list/colorlist = list()
+		colorlist.Cut()
+		colorlist += ReadRGB("[H.dna.features["mcolor"]]0")
+		colorlist += ReadRGB("[H.dna.features["mcolor2"]]0")
+		colorlist += ReadRGB("[H.dna.features["mcolor3"]]0")
+		colorlist += list(0,0,0, S.hair_alpha)
+		for(var/index=1, index<=colorlist.len, index++)
+			colorlist[index] = colorlist[index]/255
+
+		if(S.use_skintones)
+			skin_tone = H.skin_tone
+			base_bp_icon = (base_bp_icon == DEFAULT_BODYPART_ICON) ? DEFAULT_BODYPART_ICON_ORGANIC : base_bp_icon
+		else
+			skin_tone = ""
+
+		body_gender = H.dna.features["body_model"]
+		should_draw_gender = S.sexes
+
+		var/mut_colors = (MUTCOLORS in S.species_traits)
+		if(mut_colors)
+			if(S.fixed_mut_color)
+				species_color = S.fixed_mut_color
+			else
+				species_color = H.dna.features["mcolor"]
+			base_bp_icon = (base_bp_icon == DEFAULT_BODYPART_ICON) ? DEFAULT_BODYPART_ICON_ORGANIC : base_bp_icon
+		else
+			species_color = ""
+
+		if(base_bp_icon != DEFAULT_BODYPART_ICON)
+			color_src = mut_colors ? MUTCOLORS : ((H.dna.skin_tone_override && S.use_skintones == USE_SKINTONES_GRAYSCALE_CUSTOM) ? CUSTOM_SKINTONE : SKINTONE)
+
+		if(S.mutant_bodyparts["legs"])
+			if(body_zone == BODY_ZONE_L_LEG || body_zone == BODY_ZONE_R_LEG || body_zone == BODY_ZONE_PRECISE_R_FOOT || body_zone == BODY_ZONE_PRECISE_L_FOOT)
+				if(DIGITIGRADE in S.species_traits)
+					digitigrade_type = lowertext(H.dna.features["legs"])
+			else
+				digitigrade_type = null
+
+		if(S.mutant_bodyparts["mam_body_markings"])
+			var/datum/sprite_accessory/Smark
+			Smark = GLOB.mam_body_markings_list[H.dna.features["mam_body_markings"]]
+			if(Smark)
+				body_markings_icon = Smark.icon
+			if(H.dna.features["mam_body_markings"] != "None")
+				body_markings = Smark?.icon_state || lowertext(H.dna.features["mam_body_markings"])
+				aux_marking = Smark?.icon_state || lowertext(H.dna.features["mam_body_markings"])
+			else
+				body_markings = "plain"
+				aux_marking = "plain"
+			markings_color = list(colorlist)
+
+		else
+			body_markings = null
+			aux_marking = null
+
+		if(!dropping_limb && H.dna.check_mutation(HULK))
+			mutation_color = "00aa00"
+		else
+			mutation_color = ""
+
+		if(istype(S, /datum/species/synth))
+			var/datum/species/synth/synthspecies = S
+			var/redundantactualhealth = (100 - (owner.getBruteLoss() + owner.getFireLoss() + owner.getOxyLoss() + owner.getToxLoss() + owner.getCloneLoss()))
+			if(synthspecies.isdisguised == FALSE || (synthspecies.actualhealth < 45) || (redundantactualhealth < 45))
+				base_bp_icon = initial(synthspecies.icon_limbs)
+
+		dmg_overlay_type = S.damage_overlay_type
+
+	else if(animal_origin == MONKEY_BODYPART) //currently monkeys are the only non human mob to have damage overlays.
+		dmg_overlay_type = animal_origin
+
+	if(status == BODYPART_ROBOTIC)
+		dmg_overlay_type = "robotic"
+		if(!render_like_organic)
+			body_markings = null
+			aux_marking = null
+
+	if(dropping_limb)
+		no_update = TRUE //when attached, the limb won't be affected by the appearance changes of its mob owner.
+
+/obj/item/bodypart/proc/get_limb_icon(dropped)
+	cut_overlays()
+	icon_state = "" //to erase the default sprite, we're building the visual aspects of the bodypart through overlays alone.
+
+	. = list()
+
+	if(custom_overlay)
+		. += custom_overlay
+		return
+
+	var/image_dir = 0
+	var/icon_gender = (body_gender == FEMALE) ? "f" : "m" //gender of the icon, if applicable
+
+	if(dropped)
+		image_dir = SOUTH
+		if(dmg_overlay_type)
+			if(brutestate)
+				. += image('modular_skyrat/icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+			if(burnstate)
+				. += image('modular_skyrat/icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
+			to_chat(owner, "[dmg_overlay_type]_[body_zone]_[brutestate]0")
+			to_chat(owner, "[dmg_overlay_type]_[body_zone]_0[burnstate]")
+
+		if(!isnull(body_markings) && status == BODYPART_ORGANIC)
+			if(!use_digitigrade)
+				if((body_zone == BODY_ZONE_CHEST) || (body_zone == BODY_ZONE_PRECISE_GROIN))
+					. += image(body_markings_icon, "[body_markings]_[body_zone]_[icon_gender]", -MARKING_LAYER, image_dir)
+				else
+					. += image(body_markings_icon, "[body_markings]_[body_zone]", -MARKING_LAYER, image_dir)
+			else
+				. += image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+
+	var/image/limb = image(layer = -BODYPARTS_LAYER, dir = image_dir)
+	var/list/aux = list()
+	var/image/marking
+	var/list/auxmarking = list()
+
+	. += limb
+
+	if(animal_origin)
+		if(is_organic_limb())
+			limb.icon = 'icons/mob/animal_parts.dmi'
+			if(species_id == "husk")
+				limb.icon_state = "[animal_origin]_husk_[body_zone]"
+			else
+				limb.icon_state = "[animal_origin]_[body_zone]"
+		else
+			limb.icon = 'icons/mob/augmentation/augments.dmi'
+			limb.icon_state = "[animal_origin]_[body_zone]"
+		return
+
+	if(body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST && body_zone != BODY_ZONE_PRECISE_GROIN)
+		should_draw_gender = FALSE
+
+	if(is_organic_limb() || render_like_organic)
+		limb.icon = base_bp_icon || 'icons/mob/human_parts.dmi'
+		if(should_draw_gender)
+			limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
+		else if (use_digitigrade)
+			if(base_bp_icon == DEFAULT_BODYPART_ICON_ORGANIC) //Compatibility hack for the current iconset.
+				limb.icon_state = "[digitigrade_type]_[use_digitigrade]_[body_zone]"
+			else
+				limb.icon_state = "[species_id]_[digitigrade_type]_[use_digitigrade]_[body_zone]"
+		else
+			limb.icon_state = "[species_id]_[body_zone]"
+
+		// Body markings
+		if(!isnull(body_markings))
+			if(species_id == "husk")
+				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[body_zone]", -MARKING_LAYER, image_dir)
+			else if(species_id == "husk" && use_digitigrade)
+				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+
+			else if(!use_digitigrade)
+				if((body_zone == BODY_ZONE_CHEST) || (body_zone == BODY_ZONE_PRECISE_GROIN))
+					marking = image(body_markings_icon, "[body_markings]_[body_zone]_[icon_gender]", -MARKING_LAYER, image_dir)
+				else
+					marking = image(body_markings_icon, "[body_markings]_[body_zone]", -MARKING_LAYER, image_dir)
+			else
+				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+
+			. += marking
+
+		// Citadel End
+
+		if(aux_icons)
+			for(var/I in aux_icons)
+				var/aux_layer = aux_icons[I]
+				aux += image(limb.icon, "[species_id]_[I]", -aux_layer, image_dir)
+				if(!isnull(aux_marking))
+					if(species_id == "husk")
+						auxmarking += image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[I]", -aux_layer, image_dir)
+					else
+						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
+			. += aux
+			. += auxmarking
+		
+		if(body_zone in list(BODY_ZONE_PRECISE_GROIN, BODY_ZONE_CHEST))
+			for(var/obj/item/organ/genital/G in src)
+				var/datum/sprite_accessory/S
+				var/size = G.size
+				switch(G.type)
+					if(/obj/item/organ/genital/penis)
+						S = GLOB.cock_shapes_list[G.shape]
+					if(/obj/item/organ/genital/testicles)
+						S = GLOB.balls_shapes_list[G.shape]
+					if(/obj/item/organ/genital/vagina)
+						S = GLOB.vagina_shapes_list[G.shape]
+					if(/obj/item/organ/genital/breasts)
+						S = GLOB.breasts_shapes_list[G.shape]
+
+				if(!S || S.icon_state == "none")
+					continue
+				var/aroused_state = FALSE
+				var/accessory_icon = S.icon
+				var/do_center = S.center
+				var/dim_x = S.dimension_x
+				var/dim_y = S.dimension_y
+
+				var/mutable_appearance/genital_overlay = mutable_appearance(accessory_icon, layer = -GENITALS_EXPOSED_LAYER)
+				if(do_center)
+					genital_overlay = center_image(genital_overlay, dim_x, dim_y)
+
+				genital_overlay.color = G.color
+
+				genital_overlay.icon_state = "[G.slot]_[S.icon_state]_[size][(original_owner?.dna?.species?.use_skintones && !original_owner?.dna?.skin_tone_override) ? "_s" : ""]_[aroused_state]_FRONT"
+				. += genital_overlay
+
+	else
+		limb.icon = icon
+		if(should_draw_gender)
+			limb.icon_state = "[body_zone]_[icon_gender]"
+		else
+			limb.icon_state = "[body_zone]"
+
+		if(aux_icons)
+			for(var/I in aux_icons)
+				var/aux_layer = aux_icons[I]
+				aux += image(limb.icon, "[I]", -aux_layer, image_dir)
+				if(!isnull(aux_marking))
+					if(species_id == "husk")
+						auxmarking += image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[I]", -aux_layer, image_dir)
+					else
+						auxmarking += image(body_markings_icon, "[body_markings]_[I]", -aux_layer, image_dir)
+			. += auxmarking
+			. += aux
+
+		if(!isnull(body_markings))
+			if(species_id == "husk")
+				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_[body_zone]", -MARKING_LAYER, image_dir)
+			else if(species_id == "husk" && use_digitigrade)
+				marking = image('modular_citadel/icons/mob/markings_notmammals.dmi', "husk_digitigrade_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+
+			else if(!use_digitigrade)
+				if((body_zone == BODY_ZONE_CHEST) || (body_zone == BODY_ZONE_PRECISE_GROIN))
+					marking = image(body_markings_icon, "[body_markings]_[body_zone]_[icon_gender]", -MARKING_LAYER, image_dir)
+				else
+					marking = image(body_markings_icon, "[body_markings]_[body_zone]", -MARKING_LAYER, image_dir)
+			else
+				marking = image(body_markings_icon, "[body_markings]_[digitigrade_type]_[use_digitigrade]_[body_zone]", -MARKING_LAYER, image_dir)
+			. += marking
+		
+		if(body_zone == BODY_ZONE_PRECISE_GROIN)
+			for(var/obj/item/organ/genital/G in src)
+				var/datum/sprite_accessory/S
+				var/size = G.size
+				switch(G.type)
+					if(/obj/item/organ/genital/penis)
+						S = GLOB.cock_shapes_list[G.shape]
+					if(/obj/item/organ/genital/testicles)
+						S = GLOB.balls_shapes_list[G.shape]
+					if(/obj/item/organ/genital/vagina)
+						S = GLOB.vagina_shapes_list[G.shape]
+					if(/obj/item/organ/genital/breasts)
+						S = GLOB.breasts_shapes_list[G.shape]
+
+				if(!S || S.icon_state == "none")
+					continue
+				var/aroused_state = FALSE
+				var/accessory_icon = S.icon
+				var/do_center = S.center
+				var/dim_x = S.dimension_x
+				var/dim_y = S.dimension_y
+
+				var/mutable_appearance/genital_overlay = mutable_appearance(accessory_icon, layer = -GENITALS_EXPOSED_LAYER)
+				if(do_center)
+					genital_overlay = center_image(genital_overlay, dim_x, dim_y)
+
+				genital_overlay.color = G.color
+
+				genital_overlay.icon_state = "[G.slot]_[S.icon_state]_[size][(original_owner?.dna?.species?.use_skintones && !original_owner?.dna?.skin_tone_override) ? "_s" : ""]_[aroused_state]_FRONT"
+				. += genital_overlay
+		return
+
+	if(color_src) //TODO - add color matrix support for base species limbs
+		var/draw_color = mutation_color || species_color
+		var/grayscale = FALSE
+		if(!draw_color)
+			draw_color = SKINTONE2HEX(skin_tone)
+			grayscale = color_src == CUSTOM_SKINTONE //Cause human limbs have a very pale pink hue by def.
+		else
+			draw_color = "#[draw_color]"
+		if(draw_color)
+			if(grayscale)
+				limb.icon_state += "_g"
+			limb.color = draw_color
+			if(aux_icons)
+				for(var/a in aux)
+					var/image/I = a
+					if(grayscale)
+						I.icon_state += "_g"
+					I.color = draw_color
+				if(!isnull(aux_marking))
+					for(var/a in auxmarking)
+						var/image/I = a
+						if(species_id == "husk")
+							I.color = "#141414"
+						else
+							I.color = list(markings_color)
+
+			if(!isnull(body_markings))
+				if(species_id == "husk")
+					marking.color = "#141414"
+				else
+					marking.color = list(markings_color)

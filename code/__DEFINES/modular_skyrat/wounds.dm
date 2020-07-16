@@ -44,6 +44,7 @@
 #define WOUND_LIST_SLASH		list(/datum/wound/slash/critical, /datum/wound/slash/severe, /datum/wound/slash/moderate)
 #define WOUND_LIST_SLASH_MECHANICAL		list(/datum/wound/mechanical/slash/critical, /datum/wound/mechanical/slash/severe, /datum/wound/mechanical/slash/moderate)
 #define WOUND_LIST_LOSS			list(/datum/wound/loss, /datum/wound/slash/loss)
+#define WOUND_LIST_DISEMBOWEL			list(/datum/wound/disembowel, /datum/wound/slash/critical/incision/disembowel, /datum/wound/mechanical/slash/critical/incision/disembowel)
 #define WOUND_LIST_PIERCE		list(/datum/wound/pierce/critical, /datum/wound/pierce/severe, /datum/wound/pierce/moderate)
 #define WOUND_LIST_PIERCE_MECHANICAL		list(/datum/wound/mechanical/pierce/critical, /datum/wound/mechanical/pierce/severe, /datum/wound/mechanical/pierce/moderate)
 #define WOUND_LIST_BURN		list(/datum/wound/burn/critical, /datum/wound/burn/severe, /datum/wound/burn/moderate)

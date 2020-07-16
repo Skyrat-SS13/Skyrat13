@@ -105,10 +105,14 @@
 
 /// What will show up in examine_more() if this scar is visible
 /datum/scar/proc/get_examine_description(mob/viewer)
-	if(!victim || !is_visible(viewer))
+	if(!is_visible(viewer))
 		return
 
-	var/msg = "[victim.p_they(TRUE)] [victim.p_have()] [description] on [victim.p_their()] [precise_location]."
+	var/msg
+	if(victim)
+		msg = "[victim.p_they(TRUE)] [victim.p_have()] [description] on [victim.p_their()] [precise_location]."
+	else
+		msg = "\The [limb] has [description] on it's [precise_location]."
 	switch(severity)
 		if(WOUND_SEVERITY_TRIVIAL)
 			msg = "<span class='tinynotice' style='color:#00CED1;'><i>[msg]</i></span>"

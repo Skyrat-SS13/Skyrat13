@@ -1,22 +1,22 @@
-/* moved to modular_skyrat
+//The head is a bit snowflakey
 /obj/item/bodypart/head
-	name = "head" //skyrat edit
+	name = "head"
 	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
 	icon = 'modular_skyrat/icons/mob/human_parts.dmi'
 	icon_state = "default_human_head"
 	max_damage = 200
 	body_zone = BODY_ZONE_HEAD
 	body_part = HEAD
-	w_class = WEIGHT_CLASS_BULKY //Quite a hefty load
-	slowdown = 1 //Balancing measure
-	throw_range = 5 //Yes head bowling
+	w_class = WEIGHT_CLASS_BULKY
+	slowdown = 1
+	throw_range = 5
 	px_x = 0
 	px_y = -8
 	stam_damage_coeff = 1
 	max_stamina_damage = 100
 
-	var/mob/living/brain/brainmob = null //The current occupant.
-	var/obj/item/organ/brain/brain = null //The brain organ
+	var/mob/living/brain/brainmob = null
+	var/obj/item/organ/brain/brain = null
 
 	//Limb appearance info:
 	var/real_name = "" //Replacement name
@@ -42,9 +42,7 @@
 	max_cavity_size = WEIGHT_CLASS_SMALL
 	parent_bodyzone = BODY_ZONE_CHEST
 	children_zones = list()
-	// Tape currently silencing us.
 	var/obj/item/stack/sticky_tape/tapered = null
-	//
 
 /obj/item/bodypart/head/can_dismember(obj/item/I)
 	if(owner && !((owner.stat == DEAD) || owner.InFullCritical()))
@@ -236,32 +234,3 @@
 	. = ..()
 	if(tapered)
 		. += "<span class='notice'>The mouth on [src] is taped shut with [tapered].</span>"
-
-/obj/item/bodypart/head/monkey
-	icon = 'icons/mob/animal_parts.dmi'
-	icon_state = "default_monkey_head"
-	animal_origin = MONKEY_BODYPART
-
-/obj/item/bodypart/head/alien
-	icon = 'icons/mob/animal_parts.dmi'
-	icon_state = "alien_head"
-	px_x = 0
-	px_y = 0
-	dismemberable = 0
-	max_damage = 500
-	animal_origin = ALIEN_BODYPART
-
-/obj/item/bodypart/head/devil
-	dismemberable = 0
-	max_damage = 5000
-	animal_origin = DEVIL_BODYPART
-
-/obj/item/bodypart/head/larva
-	icon = 'icons/mob/animal_parts.dmi'
-	icon_state = "larva_head"
-	px_x = 0
-	px_y = 0
-	dismemberable = 0
-	max_damage = 50
-	animal_origin = LARVA_BODYPART
-*/
