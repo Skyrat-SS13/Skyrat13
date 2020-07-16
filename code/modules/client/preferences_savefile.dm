@@ -515,8 +515,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["backbag"]				>> backbag
 	S["jumpsuit_style"]			>> jumpsuit_style
 	S["uplink_loc"]				>> uplink_spawn_loc
-	S["custom_speech_verb"]		>> custom_speech_verb
-	S["custom_tongue"]			>> custom_tongue
+	/*S["custom_speech_verb"]		>> custom_speech_verb SKYRAT EDIT
+	S["custom_tongue"]			>> custom_tongue*/
 	S["feature_mcolor"]					>> features["mcolor"]
 	S["feature_lizard_tail"]			>> features["tail_lizard"]
 	S["feature_lizard_snout"]			>> features["snout"]
@@ -804,8 +804,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["jumpsuit_style"]			, jumpsuit_style)
 	WRITE_FILE(S["uplink_loc"]				, uplink_spawn_loc)
 	WRITE_FILE(S["species"]					, pref_species.id)
-	WRITE_FILE(S["custom_speech_verb"]		, custom_speech_verb)
-	WRITE_FILE(S["custom_tongue"]			, custom_tongue)
+	/*WRITE_FILE(S["custom_speech_verb"]		, custom_speech_verb) SKYRAT EDIT
+	WRITE_FILE(S["custom_tongue"]			, custom_tongue)*/
 	WRITE_FILE(S["feature_mcolor"]					, features["mcolor"])
 	WRITE_FILE(S["feature_lizard_tail"]				, features["tail_lizard"])
 	WRITE_FILE(S["feature_human_tail"]				, features["tail_human"])
