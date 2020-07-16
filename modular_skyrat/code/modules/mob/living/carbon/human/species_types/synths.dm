@@ -4,7 +4,7 @@
 	say_mod = "states" //inherited from a user's fake species
 	sexes = 0 //it gets it's sexes by the fake species
 	species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE, TRAIT_CLONEIMMUNE)
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	dangerous_existence = 0 //not dangerous anymore i guess
 	blacklisted = 0 //not blacklisted anymore
@@ -13,7 +13,7 @@
 	damage_overlay_type = "robotic"
 	limbs_id = "synth"
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
-	//mutant_bodyparts = list("legs" = "Digitigrade", "taur" = "None") //this probably isn't gonna work. Note: it didn't work.
+	mutant_bodyparts = list()
 	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //for getting these values back for assume_disguise()
 	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE, TRAIT_CLONEIMMUNE) //blah blah i explained above
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
@@ -44,8 +44,8 @@
 		sexes = S.sexes
 		species_traits = initial_species_traits.Copy()
 		inherent_traits = initial_inherent_traits.Copy()
-		species_traits |= S.species_traits
-		inherent_traits |= S.inherent_traits
+		species_traits |= S.species_traits.Copy()
+		inherent_traits |= (S.inherent_traits.Copy() - list(TRAIT_NOLIMBDISABLE, TRAIT_NODISMEMBER))
 		attack_verb = S.attack_verb
 		attack_sound = S.attack_sound
 		miss_sound = S.miss_sound
@@ -62,7 +62,7 @@
 		storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
 		mutantears = S.mutantears
 		qdel(H.getorganslot(ORGAN_SLOT_EARS))
-		var/obj/item/organ/ears = new mutantears
+		var/obj/item/organ/ears = new mutantears()
 		ears.Insert(H)
 		H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
 		mutanttail = S.mutanttail
@@ -71,6 +71,7 @@
 			var/obj/item/organ/tail = new mutanttail
 			tail.Insert(H)
 		H.setOrganLoss(ORGAN_SLOT_TAIL, storedtaildamage)
+		mutant_bodyparts = S.mutant_bodyparts.Copy()
 		isdisguised = TRUE
 		fake_species = new S.type
 	else
@@ -92,30 +93,24 @@
 		hair_color = ""
 		screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
 		femalescreamsounds = list()
-		fake_species = new /datum/species/human
+		mutant_bodyparts = list()
 		isdisguised = FALSE
+		fake_species = new /datum/species/human
 
-	handle_mutant_bodyparts(H)
 	H.regenerate_icons()
+	handle_mutant_bodyparts(H)
+	H.update_body_parts(force = TRUE)
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	//H.grant_language(/datum/language/machine)
-	assume_disguise(old_species, H)
 	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
-	for(var/obj/item/bodypart/BP in H.bodyparts)
-		BP.synthetic = TRUE
-		BP.change_bodypart_status(BODYPART_ROBOTIC)
-		BP.render_like_organic = TRUE
+	assume_disguise(old_species, H)
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	//H.remove_language(/datum/language/machine)
 	UnregisterSignal(H, COMSIG_MOB_SAY)
-	for(var/obj/item/bodypart/BP in H.bodyparts)
-		BP.synthetic = FALSE
-		BP.change_bodypart_status(BODYPART_ORGANIC)
-		BP.render_like_organic = TRUE
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
@@ -152,9 +147,10 @@
 	hair_color = ""
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
 	femalescreamsounds = list()
+	mutant_bodyparts = list()
 	isdisguised = FALSE
-	handle_mutant_bodyparts(H)
 	H.regenerate_icons()
+	handle_mutant_bodyparts(H)
 
 /datum/species/synth/spec_life(mob/living/carbon/human/H)
 	. = ..()
