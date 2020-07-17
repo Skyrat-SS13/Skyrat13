@@ -7,20 +7,21 @@
 #define ATMOS_CELL_PROCESS_EXPLOSIVENESS 2
 #define VACCUUM_CELL_HEAT_CAPACITY 50 //Different from HEAT_CAPACITY_VACUUM to give away effect of a radiating heat transfer instead of conductive one
 
-/turf/proc/process_cell(fire_count)
+/turf/proc/process_cell()
 	SSair.remove_from_active(src)
 
-/turf/open/process_cell(fire_count)
+/turf/open/process_cell()
 	var/list/affected_turfs = list()
 	var/datum/gas_mixture/current_gasmix
 	var/turf/open/current_turf 
 	var/list/cached_gasheats = GLOB.meta_gas_specific_heats
+	var/list/exempt_list = SSair_turfs.exempt_currentrun
 	affected_turfs[src] = TRUE
 	for(var/turfloop in 1 to ATMOS_CELL_PROCESS_EXPLOSIVENESS)
 		for(var/t in affected_turfs) //Adjacent turfs handles multi-z too
 			current_turf = t
 			for(var/AdjTurf in current_turf.atmos_adjacent_turfs)
-				if(!SSair_turfs.exempt_currentrun[AdjTurf])
+				if(!exempt_list[AdjTurf])
 					affected_turfs[AdjTurf] = TRUE
 
 	var/list/final_gas_mix = list()

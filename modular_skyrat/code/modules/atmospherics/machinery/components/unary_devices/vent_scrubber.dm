@@ -1,6 +1,8 @@
 #define SIPHONING	0
 #define SCRUBBING	1
 
+#define MINIMUM_CONTAMINANTS_MOLES	0.1
+
 /obj/machinery/atmospherics/components/unary/vent_scrubber/process_atmos()
 	..()
 	if(welded || !is_operational())
@@ -57,7 +59,7 @@
 				transfer_moles = 0.08*env_moles
 				env_temp = environment.temperature
 				for(var/gas in filter_types & env_gases)
-					if(env_gases[gas])
+					if(env_gases[gas] && env_gases[gas] > MINIMUM_CONTAMINANTS_MOLES)
 						transfer_unit = (env_gases[gas] / env_moles) * transfer_moles
 						env_gases[gas] -= transfer_unit
 						if(!self_gases[gas])
@@ -92,9 +94,9 @@
 		return FALSE
 
 	air_contents.temperature = (((self_heat_capacity * air_contents.temperature)+recieved_thermal_energy)/(self_heat_capacity+recieved_heat_capacity))
-	tile.air_update_turf()
-
-	update_parents()
+	if(recieved_heat_capacity>10)
+		tile.air_update_turf()
+		update_parents()
 
 	return TRUE
 
@@ -126,7 +128,7 @@
 		if(length(env_gases & filter_types))
 
 			for(var/gas in filter_types & env_gases)
-				if(env_gases[gas])
+				if(env_gases[gas] && env_gases[gas] > MINIMUM_CONTAMINANTS_MOLES)
 					transfer_unit = (env_gases[gas] / env_moles) * transfer_moles
 					env_gases[gas] -= transfer_unit
 					if(!self_gases[gas])
@@ -153,11 +155,14 @@
 		return FALSE
 
 	air_contents.temperature = (((self_heat_capacity * air_contents.temperature)+recieved_thermal_energy)/(self_heat_capacity+recieved_heat_capacity))
-	tile.air_update_turf()
-
-	update_parents()
+	
+	if(recieved_heat_capacity>10)
+		tile.air_update_turf()
+		update_parents()
 
 	return TRUE
+
+#undef MINIMUM_CONTAMINANTS_MOLES
 
 #undef SIPHONING
 #undef SCRUBBING

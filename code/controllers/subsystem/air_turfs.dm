@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(air_turfs)
 		var/turf/open/T = currentrun[currentrun.len]
 		currentrun.len--
 		if (T)
-			T.process_cell(fire_count)
+			T.process_cell()
 		if (MC_TICK_CHECK_LOW_PRIORITY)
 			return
 	resumed = 0
