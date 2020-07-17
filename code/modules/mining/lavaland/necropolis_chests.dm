@@ -499,7 +499,7 @@
 	setDir(user.dir)
 
 	user.forceMove(src)
-	user.notransform = TRUE
+	user.mob_transforming = TRUE
 	user.status_flags |= GODMODE
 
 	can_destroy = FALSE
@@ -508,7 +508,7 @@
 
 /obj/effect/immortality_talisman/proc/unvanish(mob/user)
 	user.status_flags &= ~GODMODE
-	user.notransform = FALSE
+	user.mob_transforming = FALSE
 	user.forceMove(get_turf(src))
 
 	user.visible_message("<span class='danger'>[user] pops back into reality!</span>")
