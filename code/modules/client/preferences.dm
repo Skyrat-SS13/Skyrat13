@@ -428,9 +428,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a>" //skyrat - <br> moved one line down
 			//SKYRAT EDIT
 			dat += 	"<a href='?_src_=prefs;preference=skyrat_ooc_notes;task=input'>Set OOC Notes</a><br>"
-			dat += 	"ERP : <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
-			dat += 	"Non-Con : <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
-			dat += 	"Vore : <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
+			dat += 	"<b>ERP :</b> <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
+			dat += 	"<b>Non-Con :</b> <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
+			dat += 	"<b>Vore :</b> <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
 			//END OF SKYRAT EDIT
 			if(length(features["flavor_text"]) <= 40)
 				if(!length(features["flavor_text"]))
