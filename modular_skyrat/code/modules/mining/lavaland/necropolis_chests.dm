@@ -215,8 +215,6 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	var/w_class_on = WEIGHT_CLASS_HUGE
-	wieldsound = 'sound/weapons/saberon.ogg'
-	unwieldsound = 'sound/weapons/saberoff.ogg'
 	hitsound = "swing_hit"
 	var/hitsound_on = 'sound/weapons/bladeslice.ogg'
 	armour_penetration = 50
@@ -231,15 +229,16 @@
 	total_mass = 1
 	var/total_mass_on = TOTAL_MASS_MEDIEVAL_WEAPON
 	var/wielded
+	var/item_state_on = "crucible1"
 
 /obj/item/crucible/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/wield)
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/unwield)
 
 /obj/item/crucible/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=25, icon_wielded="crucible1")
+	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=25, icon_wielded="crucible1", wieldsound = 'sound/weapons/saberon.ogg', unwieldsound = 'sound/weapons/saberoff.ogg')
 
 /obj/item/crucible/suicide_act(mob/living/carbon/user)
 	if(wielded)

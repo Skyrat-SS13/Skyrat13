@@ -312,13 +312,14 @@
 
 /obj/item/rogue/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	. = ..()
-	if(wielded && proximity_flag)
+	var/datum/component/two_handed/TH = GetComponent(/datum/component/two_handed)
+	if(TH.wielded && proximity_flag)
 		if(isliving(target))
 			playsound(src,'sound/misc/crunch.ogg', 200, 1)
 			var/mob/living/M = target
 			M.DefaultCombatKnockdown(10)
 			M.adjustStaminaLoss(20)
-	else if(wielded && !proximity_flag)
+	else if(TH.wielded && !proximity_flag)
 		if(cooldown < world.time)
 			cooldown = world.time + cooldowntime
 			playsound(src,'sound/misc/crunch.ogg', 200, 1)

@@ -241,14 +241,16 @@
 /obj/item/crusher_trophy/king_goat/add_to(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
+		var/datum/component/two_handed/TH = H.GetComponent(/datum/component/two_handed)
 		H.charge_time = 3
-		H.force_wielded = 5
+		TH.force_wielded = 5
 
 /obj/item/crusher_trophy/king_goat/remove_from(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
+		var/datum/component/two_handed/TH = H.GetComponent(/datum/component/two_handed)
 		H.charge_time = 15
-		H.force_wielded = 20
+		TH.force_wielded = 20
 
 //hierophant crusher small changes
 /obj/item/crusher_trophy/vortex_talisman

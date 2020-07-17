@@ -171,9 +171,6 @@
 	sharpness = IS_SHARP_ACCURATE
 	block_chance = 0
 	var/block_chance_wielded = 20
-	force = 5
-	force_unwielded = 5
-	force_wielded = 13
 	var/current_lifesteal = 0
 	var/lifesteal = 2.5
 	var/forceadd_samerole = 5
@@ -216,29 +213,26 @@
 		C.total_damage += target_health - target.health
 		if(C.total_damage > (target.maxHealth * 0.33)) //At least a third of the damage must be done by the blade for the kill to count.
 			if(target.stat == DEAD && user.mind && target.mind)
+				var/datum/component/two_handed/TH = GetComponent(/datum/component/two_handed)
 				var/obj/item/card/id/userid = user.get_item_by_slot(SLOT_WEAR_ID)
 				var/list/useraccess = userid.GetAccess()
 				var/obj/item/card/id/targetid = target.get_item_by_slot(SLOT_WEAR_ID)
 				var/list/targetaccess = targetid.GetAccess()
 				var/combinedaccess = useraccess | targetaccess
 				if((user.mind.assigned_role == target.mind.assigned_role) || (targetaccess == combinedaccess))
-					src.force_wielded += forceadd_samerole
+					TH.force_wielded += forceadd_samerole
 					src.lifesteal += forceadd_samerole/2
 					src.block_chance_wielded += blockadd_anydeceit
-					if(src.block_chance_wielded > 90)
-						src.block_chance_wielded = 90
 				if(user.mind.special_role == target.mind.special_role)
-					src.force_wielded += forceadd_sameantagonist
+					TH.force_wielded += forceadd_sameantagonist
 					src.lifesteal += forceadd_sameantagonist/2
 					src.block_chance_wielded += (blockadd_anydeceit * 2)
-					if(src.block_chance_wielded > 90)
-						src.block_chance_wielded = 90
 				if(user.mind.isholy == target.mind.isholy)
-					src.force_wielded += forceadd_samerole
+					TH.force_wielded += forceadd_samerole
 					src.lifesteal += forceadd_samerole/2
 					src.block_chance_wielded += blockadd_anydeceit
-					if(src.block_chance_wielded > 90)
-						src.block_chance_wielded = 90
+				if(src.block_chance_wielded > 90)
+					src.block_chance_wielded = 90
 
 //shitty hatchet
 /obj/item/hatchet/improvised
@@ -378,7 +372,6 @@
 	embedding = list("embedded_impact_pain_multiplier" = 3, "embed_chance" = 50)
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "stabbed", "slashed")
 	armour_penetration = 5
-	force = 5
 
 /obj/item/halberd/ComponentInitialize()
 	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=18, icon_wielded="mhalberd1")
