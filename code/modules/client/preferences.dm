@@ -443,16 +443,26 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else
 				dat += "[TextPreview(html_encode(features["flavor_text"]))]...<BR>" //skyrat edit, uses html_encode
 			//SKYRAT EDIT
-			dat += 	"<a href='?_src_=prefs;preference=skyrat_ooc_notes;task=input'>Set OOC Notes</a><br>"
+			dat += "<h2>Silicon Flavor Text</h2>"
+			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicion Flavor Text</b></a><br>"
+			if(length(features["silicon_flavor_text"]) <= 40)
+				if(!length(features["silicon_flavor_text"]))
+					dat += "\[...\]"
+				else
+					dat += "[features["silicon_flavor_text"]]"
+			else
+				dat += "[TextPreview(features["silicon_flavor_text"])]...<BR>"
+			dat +=  "<h2>OOC Notes</h2>"
+			dat += 	"<a href='?_src_=prefs;preference=skyrat_ooc_notes;task=input'><b>Set OOC Notes</b></a>"
+			dat +=	"<h2>ERP Preferences</h2>"
 			dat += 	"<b>ERP :</b> <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
 			dat += 	"<b>Non-Con :</b> <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
 			dat += 	"<b>Vore :</b> <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
-			dat += 	"<b>Records :</b>"
-			dat += "<br>"
+			dat += 	"<h2>Records</h2>"
 			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'>Security</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=medical_records;task=input'>Medical</a><br>"
-			dat += 	"<b>Character :</b><br>"
+			dat += 	"<h2>Character</h2>"
 			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
@@ -462,15 +472,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Faction/Employer :</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
 			dat += "<b>Custom runechat color :</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
-			dat += "<h2>Silicon Flavor Text</h2>"
-			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicon Examine Text</b></a><br>"
-			if(length(features["silicon_flavor_text"]) <= 40)
-				if(!length(features["silicon_flavor_text"]))
-					dat += "\[...\]"
-				else
-					dat += "[features["silicon_flavor_text"]]"
-			else
-				dat += "[TextPreview(features["silicon_flavor_text"])]...<BR>"
 			/*Skyrat edit - comments out Citadel's OOC notes in favor for our owns
 			dat += "<h2>OOC notes</h2>"
 			dat += "<a href='?_src_=prefs;preference=ooc_notes;task=input'><b>Set OOC notes</b></a><br>"
