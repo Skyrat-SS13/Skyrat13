@@ -11,7 +11,6 @@ SUBSYSTEM_DEF(air_turfs)
 	var/list/exempt_currentrun = list()
 
 /datum/controller/subsystem/air_turfs/fire(resumed = 0)
-	var/fire_count = times_fired
 	if (!resumed)
 		src.currentrun = SSair.active_turfs.Copy()
 	//cache for sanic speed (lists are references anyways)
