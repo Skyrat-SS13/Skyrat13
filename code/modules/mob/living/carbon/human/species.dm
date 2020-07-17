@@ -1734,7 +1734,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/weakness = H.check_weakness(I, user)
 	apply_damage(totitemdamage * weakness, I.damtype, def_zone, armor_block, H) //CIT CHANGE - replaces I.force with totitemdamage
 
-	H.send_item_attack_message(I, user, hit_area)
+	H.send_item_attack_message(I, user, hit_area, totitemdamage)
 
 	I.do_stagger_action(H, user, totitemdamage)
 
@@ -1948,7 +1948,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		log_combat(user, target, "shoved", append_message)
 
 /*****moved to modular_skyrat
-/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE)
+/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
 	var/hit_percent = (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
@@ -1956,20 +1956,20 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		return 0
 
 	var/obj/item/bodypart/BP = null
-	if(isbodypart(def_zone))
-		if(damagetype == STAMINA && istype(def_zone, /obj/item/bodypart/head))
-			BP = H.get_bodypart(check_zone(BODY_ZONE_CHEST))
+	if(!spread_damage)
+		if(isbodypart(def_zone))
+			if(damagetype == STAMINA && istype(def_zone, /obj/item/bodypart/head))
+				BP = H.get_bodypart(check_zone(BODY_ZONE_CHEST))
+			else
+				BP = def_zone
 		else
-			BP = def_zone
-	else
-		if(!def_zone)
-			def_zone = ran_zone(def_zone)
-		if(damagetype == STAMINA && def_zone == BODY_ZONE_HEAD)
-			def_zone = BODY_ZONE_CHEST
-		BP = H.get_bodypart(check_zone(def_zone))
-
-	if(!BP)
-		BP = H.bodyparts[1]
+			if(!def_zone)
+				def_zone = ran_zone(def_zone)
+			if(damagetype == STAMINA && def_zone == BODY_ZONE_HEAD)
+				def_zone = BODY_ZONE_CHEST
+			BP = H.get_bodypart(check_zone(def_zone))
+		if(!BP)
+			BP = H.bodyparts[1]
 
 	switch(damagetype)
 		if(BRUTE)

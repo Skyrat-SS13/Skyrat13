@@ -222,7 +222,9 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 		"ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)", //SKYRAT CHANGE
 		"body_size" = RESIZE_DEFAULT_SIZE
 		)
-
+	/*var/custom_speech_verb = "default" //if your say_mod is to be something other than your races SKYRAT EDIT
+	var/custom_tongue = "default"*/ //if your tongue is to be something other than your races
+	
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
 	var/prefered_security_department = SEC_DEPT_RANDOM
@@ -436,9 +438,9 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a>" //skyrat - <br> moved one line down
 			//SKYRAT EDIT
 			dat += 	"<a href='?_src_=prefs;preference=skyrat_ooc_notes;task=input'>Set OOC Notes</a><br>"
-			dat += 	"ERP : <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
-			dat += 	"Non-Con : <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
-			dat += 	"Vore : <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
+			dat += 	"<b>ERP :</b> <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
+			dat += 	"<b>Non-Con :</b> <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
+			dat += 	"<b>Vore :</b> <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
 			//END OF SKYRAT EDIT
 			if(length(features["flavor_text"]) <= 40)
 				if(!length(features["flavor_text"]))
@@ -448,19 +450,19 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 			else
 				dat += "[TextPreview(html_encode(features["flavor_text"]))]...<BR>" //skyrat edit, uses html_encode
 			//SKYRAT EDIT
-			dat += 	"Records :"
+			dat += 	"<b>Records :</b>"
 			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a>"
 			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'>Security</a>"
 			dat += 	"<a href='?_src_=prefs;preference=medical_records;task=input'>Medical</a><br>"
-			dat += 	"Character :"
+			dat += 	"<b>Character :</b>"
 			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a>"
 			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
 			if(pref_species.bloodtypes.len)
-				dat += "Blood type :"
+				dat += "<b>Blood type :</b>"
 				dat += 	"<a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default"]</a><br>"
-			dat += 	"<b>Faction/Employer:</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
-			dat += "<b>Custom runechat color:</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
+			dat += "<b>Faction/Employer :</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
+			dat += "<b>Custom runechat color :</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
 			dat += "<h2>Silicon Flavor Text</h2>"
 			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicon Examine Text</b></a><br>"
@@ -534,6 +536,13 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 			else if(use_skintones || mutant_colors)
 				dat += "</td>"
 
+			/*dat += APPEARANCE_CATEGORY_COLUMN SKYRAT EDIT
+			dat += "<h2>Speech preferences</h2>"
+			dat += "<b>Custom Speech Verb:</b><BR>"
+			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=speech_verb;task=input'>[custom_speech_verb]</a><BR>"
+			dat += "<b>Custom Tongue:</b><BR>"
+			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=tongue;task=input'>[custom_tongue]</a><BR>"*/
+
 			if(HAIR in pref_species.species_traits)
 
 				dat += APPEARANCE_CATEGORY_COLUMN
@@ -555,7 +564,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 			var/mutant_category = 0
 
 			dat += APPEARANCE_CATEGORY_COLUMN
-			dat += "<h3>Show mismatched markings</h3>"
+			dat += "<h3>Mismatched markings</h3>"
 			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=mismatched_markings;task=input'>[show_mismatched_markings ? "Yes" : "No"]</a>"
 			mutant_category++
 			if(mutant_category >= MAX_MUTANT_ROWS) //just in case someone sets the max rows to 1 or something dumb like that
@@ -587,6 +596,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["tail_human"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -612,6 +622,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["snout"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -624,6 +635,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["horns"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -637,6 +649,8 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
+					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["frills"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -675,6 +689,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+			
 			if(pref_species.mutant_bodyparts["mam_body_markings"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -686,6 +701,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
+					mutant_category = 0 //skyrat edit
 
 			if(pref_species.mutant_bodyparts["mam_ears"])
 				if(!mutant_category)
@@ -725,6 +741,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["legs"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -737,6 +754,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["deco_wings"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -746,6 +764,10 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=deco_wings;task=input'>[features["deco_wings"]]</a>"
 				dat += "<span style='border:1px solid #161616; background-color: #[features["wings_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=wings_color;task=input'>Change</a><BR>"
 
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
 			if(pref_species.mutant_bodyparts["insect_wings"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -754,10 +776,12 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 
 				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=insect_wings;task=input'>[features["insect_wings"]]</a>"
 				dat += "<span style='border:1px solid #161616; background-color: #[features["wings_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=wings_color;task=input'>Change</a><BR>"
+
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["insect_fluff"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -765,10 +789,12 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				dat += "<h3>Insect Fluff</h3>"
 
 				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=insect_fluffs;task=input'>[features["insect_fluff"]]</a>"
+
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+			
 			if(pref_species.mutant_bodyparts["taur"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -777,6 +803,11 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 
 				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=taur;task=input'>[features["taur"]]</a>"
 
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+					
 			//skyrat change
 			if(pref_species.allow_adv_markings)
 				if(!mutant_category)
@@ -804,11 +835,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
+			
 			if(pref_species.mutant_bodyparts["wings"] && GLOB.r_wings_list.len >1)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -821,6 +848,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["xenohead"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -833,6 +861,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["xenotail"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -845,6 +874,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["xenodorsal"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -857,6 +887,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["ipc_screen"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -869,6 +900,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+				
 			if(pref_species.mutant_bodyparts["ipc_antenna"])
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -2819,17 +2851,26 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 					var/min = CONFIG_GET(number/body_size_min)
 					var/max = CONFIG_GET(number/body_size_max)
 					var/danger = CONFIG_GET(number/threshold_body_size_slowdown)
-					var/new_body_size = input(user, "Choose your desired sprite size:\n([min*100]%-[max*100]%), Warning: May make your character look distorted[danger > min ? ", and an exponential slowdown will occur for those smaller than [danger*100]%!" : "!"]", "Character Preference", features["body_size"]*100) as num|null
+					var/new_body_size = input(user, "Choose your desired sprite size: ([min*100]%-[max*100]%)\nWarning: This may make your character look distorted[danger > min ? "! Additionally, a proportional movement speed penalty will be applied to characters smaller than [danger*100]%." : "!"]", "Character Preference", features["body_size"]*100) as num|null
 					if (new_body_size)
 						new_body_size = clamp(new_body_size * 0.01, min, max)
 						var/dorfy
-						if(danger > new_body_size)
-							dorfy = alert(user, "The chosen size appears to be smaller than the threshold of [danger*100]%, which will lead to an added exponential slowdown. Are you sure about that?", "Dwarfism Alert", "Yes", "Move it to the threshold", "No")
-							if(!dorfy || dorfy == "Move it above the threshold")
+						if((new_body_size + 0.01) < danger) // Adding 0.01 as a dumb fix to prevent the warning message from appearing when exactly at threshold... Not sure why that happens in the first place.
+							dorfy = alert(user, "You have chosen a size below the slowdown threshold of [danger*100]%. For balancing purposes, the further you go below this percentage, the slower your character will be. Do you wish to keep this size?", "Speed Penalty Alert", "Yes", "Move it to the threshold", "No")
+							if(dorfy == "Move it to the threshold")
 								new_body_size = danger
+							if(!dorfy) //Aborts if this var is somehow empty
+								return
 						if(dorfy != "No")
 							features["body_size"] = new_body_size
-
+				/*if("tongue") SKYRAT EDIT
+					var/selected_custom_tongue = input(user, "Choose your desired tongue (none means your species tongue)", "Character Preference") as null|anything in GLOB.roundstart_tongues
+					if(selected_custom_tongue)
+						custom_tongue = selected_custom_tongue
+				if("speech_verb")
+					var/selected_custom_speech_verb = input(user, "Choose your desired speech verb (none means your species speech verb)", "Character Preference") as null|anything in GLOB.speech_verbs
+					if(selected_custom_speech_verb)
+						custom_speech_verb = selected_custom_speech_verb*/
 		else
 			switch(href_list["preference"])
 				//CITADEL PREFERENCES EDIT - I can't figure out how to modularize these, so they have to go here. :c -Pooj
@@ -3301,6 +3342,18 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 	character.give_genitals(TRUE) //character.update_genitals() is already called on genital.update_appearance()
 
 	character.dna.update_body_size(old_size)
+
+	/*//speech stuff SKYRAT EDIT
+	var/new_tongue = GLOB.roundstart_tongues[custom_tongue]
+	if(new_tongue)
+		var/obj/item/organ/tongue/T = character.getorganslot(ORGAN_SLOT_TONGUE)
+		if(T)
+			qdel(T)
+		var/obj/item/organ/tongue/new_custom_tongue = new new_tongue
+		new_custom_tongue.Insert(character)
+	if(custom_speech_verb != "default")
+		character.dna.species.say_mod = custom_speech_verb*/
+
 
 	SEND_SIGNAL(character, COMSIG_HUMAN_PREFS_COPIED_TO, src, icon_updates, roundstart_checks)
 

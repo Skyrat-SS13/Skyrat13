@@ -58,8 +58,19 @@ RLD
 	. = ..()
 
 /obj/item/construction/attackby(obj/item/W, mob/user, params)
-	if(iscyborg(user))
+	if(!rcd_item_insertion(W, user)) // Skyrat change: moved all logic to this proc
+		return ..()
+	update_icon()	//ensures that ammo counters (if present) get updated
+
+/obj/item/construction/pre_attack(atom/A, mob/living/user, params) // Skyrat change
+	if(rcd_item_insertion(A, user))
+		update_icon()
 		return
+	return ..()
+
+/obj/item/construction/proc/rcd_item_insertion(obj/item/W, mob/user) // Skyrat change: Moved logic to own proc, to prevent duplicate code
+	if(iscyborg(user))
+		return FALSE
 	var/loaded = 0
 	if(istype(W, /obj/item/rcd_ammo))
 		var/obj/item/rcd_ammo/R = W
@@ -95,8 +106,8 @@ RLD
 			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 			qdel(W)
 	else
-		return ..()
-	update_icon()	//ensures that ammo counters (if present) get updated
+		return FALSE
+	return TRUE
 
 /obj/item/construction/proc/loadwithsheets(obj/item/stack/sheet/S, value, mob/user)
 	var/maxsheets = round((max_matter-matter)/value)    //calculate the max number of sheets that will fit in RCD

@@ -183,7 +183,10 @@
 			disabled += BP
 		missing -= BP.body_zone
 		for(var/obj/item/I in BP.embedded_objects)
-			msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
+			if(I.isEmbedHarmless())
+				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] stuck to [t_his] [BP.name]!</B>\n"
+			else
+				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
 
 	for(var/X in disabled)
 		var/obj/item/bodypart/BP = X
@@ -351,6 +354,9 @@
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
+	//skyrat edit - advanced markings
+	msg += get_marking_strings(user)
+	//
 
 	//Skyrat changes begin
 	if(gunpointing)
@@ -415,9 +421,6 @@
 	else if(isobserver(user) && traitstring)
 		. += "<span class='info'><b>Traits:</b> [traitstring]</span>"
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .) //This also handles flavor texts now
-	//skyrat edit - advanced markings
-	. += get_marking_strings(user)
-	//
 	var/invisible_man = skipface || get_visible_name() == "Unknown" // SKYRAT EDIT -- BEGIN
 	if(!invisible_man)
 		if(client)
@@ -471,5 +474,5 @@
 	var/msg = ""
 	for(var/datum/adv_marking/mark in src.all_markings)
 		if(istype(mark) && mark.is_visible(viewer))
-			msg += "<span class='notice'><i>[t_He] [t_has] [mark.examine_text] on [t_his] [parse_zone(mark.body_zone)].</i></span><br>"
+			msg += "<span class='boldnotice'>[t_He] [t_has] [mark.examine_text] on [t_his] [parse_zone(mark.body_zone)].</span>\n"
 	return msg
