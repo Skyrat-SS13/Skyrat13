@@ -183,7 +183,10 @@
 			disabled += BP
 		missing -= BP.body_zone
 		for(var/obj/item/I in BP.embedded_objects)
-			msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
+			if(I.isEmbedHarmless())
+				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] stuck to [t_his] [BP.name]!</B>\n"
+			else
+				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
 
 	for(var/X in disabled)
 		var/obj/item/bodypart/BP = X
@@ -421,23 +424,30 @@
 		if(client)
 			. += "OOC Notes: <a href='?src=[REF(src)];skyrat_ooc_notes=1'>\[View\]</a>" // SKYRAT EDIT -- END
 	//SKYRAT EDIT - admin lookup on records/extra flavor
-	if(client && user.client?.holder && isobserver(user))
-		var/line = ""
-		if(!(client.prefs.general_records == ""))
-			line += "<a href='?src=[REF(src)];general_records=1'>\[GEN\]</a>"
-		if(!(client.prefs.security_records == ""))
-			line += "<a href='?src=[REF(src)];security_records=1'>\[SEC\]</a>"
-		if(!(client.prefs.medical_records == ""))
-			line += "<a href='?src=[REF(src)];medical_records=1'>\[MED\]</a>"
-		if(!(client.prefs.flavor_background == ""))
-			line += "<a href='?src=[REF(src)];flavor_background=1'>\[BG\]</a>"
-		if(!(client.prefs.character_skills == ""))
-			line += "<a href='?src=[REF(src)];character_skills=1'>\[SKL\]</a>"
-		if(!(client.prefs.exploitable_info == ""))
-			line += "<a href='?src=[REF(src)];exploitable_info=1'>\[EXP\]</a>"
+	if(client)
+		var/list/line = list()
+		if(user.client?.holder && isobserver(user))
+			if(client.prefs.general_records)
+				line += "<a href='?src=[REF(src)];general_records=1'>\[GEN\]</a>"
+			if(client.prefs.security_records)
+				line += "<a href='?src=[REF(src)];security_records=1'>\[SEC\]</a>"
+			if(client.prefs.medical_records)
+				line += "<a href='?src=[REF(src)];medical_records=1'>\[MED\]</a>"
+			if(client.prefs.flavor_background)
+				line += "<a href='?src=[REF(src)];flavor_background=1'>\[BG\]</a>"
+			if(client.prefs.character_skills)
+				line += "<a href='?src=[REF(src)];character_skills=1'>\[SKL\]</a>"
+			if(client.prefs.exploitable_info)
+				line += "<a href='?src=[REF(src)];exploitable_info=1'>\[EXP\]</a>"
+		else if(user.mind?.antag_datums && client.prefs.exploitable_info)
+			for(var/a in user.mind.antag_datums)
+				var/datum/antagonist/curious_antag = a
+				if(!(curious_antag.antag_flags & CAN_SEE_EXPOITABLE_INFO))
+					continue
+				line += "<a href='?src=[REF(src)];exploitable_info=1'>\[Exploitable Info\]</a>"
+				break
 
-		if(!(line == ""))
-			. += line
+		. += line.Join()
 	//END OF SKYRAT EDIT
 	. += "*---------*</span>"
 
