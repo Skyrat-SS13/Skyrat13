@@ -612,18 +612,18 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.01), 0) //skyrat-edit
+		//skyrat edit
+		if(drunkenness <= 121)
+			throw_alert("drunk", /obj/screen/alert/drunk)
+		else
+			throw_alert("drunk", /obj/screen/alert/drunk/drunker)
+		//
 		if(drunkenness >= 40) //skyrat-edit
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "drunk", /datum/mood_event/drunk)
 			jitteriness = max(jitteriness - 3, 0)
-			//skyrat edit
-			if(drunkenness <= 121)
-				throw_alert("drunk", /obj/screen/alert/drunk)
-			else
-				throw_alert("drunk", /obj/screen/alert/drunk/drunker)
-			//
 			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING))
-				adjustBruteLoss(-round(drunkenness*0.00375, 0.01), FALSE) //skyrat edit
-				adjustFireLoss(-round(drunkenness*0.0025, 0.01), FALSE) //skyrat edit
+				adjustBruteLoss(-0.12, FALSE)
+				adjustFireLoss(-0.06, FALSE)
 
 		if(mind && (mind.assigned_role == "Scientist" || mind.assigned_role == "Research Director"))
 			if(SSresearch.science_tech)
@@ -647,8 +647,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 				confused += 2
 			Dizzy(10)
 			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING)) // effects stack with lower tiers
-				adjustBruteLoss(-round(drunkenness*0.002, 0.01), FALSE) //skyrat edit
-				adjustFireLoss(-round(drunkenness*0.002, 0.01), FALSE) //skyrat edit
+				adjustBruteLoss(-0.3, FALSE)
+				adjustFireLoss(-0.15, FALSE)
 
 		if(drunkenness >= 121) //skyrat-edit
 			if(prob(5))
@@ -660,52 +660,28 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(prob(50))
 				blur_eyes(5)
 			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING))
-				adjustBruteLoss(-round(drunkenness*0.001, 0.01), FALSE) //skyrat edit
-				adjustFireLoss(-round(drunkenness*0.001, 0.01), FALSE) //skyrat edit
+				adjustBruteLoss(-0.4, FALSE)
+				adjustFireLoss(-0.2, FALSE)
 
 		if(drunkenness >= 201) //skyrat-edit
 			blur_eyes(5)
 
 		if(drunkenness >= 251) //skyrat-edit
-			//skyrat edit
-			if(!HAS_TRAIT(src, TRAIT_ALCOHOL_TOLERANCE))
-				adjustToxLoss(0.2)
-				if(HAS_TRAIT(src, TRAIT_ALCOHOL_LIGHTWEIGHT))
-					adjustToxLoss(0.3)
-			//
+			adjustToxLoss(0.2)
 			if(prob(5) && !stat)
 				to_chat(src, "<span class='warning'>Maybe you should lie down for a bit...</span>")
 
 		if(drunkenness >= 301) //skyrat-edit
-			//skyrat edit
-			if(!HAS_TRAIT(src, TRAIT_ALCOHOL_TOLERANCE))
-				adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4, 60)
-				if(HAS_TRAIT(src, TRAIT_ALCOHOL_LIGHTWEIGHT))
-					adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4, 60)
-			else
-				adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2, 60)
-			//
+			adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4, 60)
 			if(prob(20) && !stat)
 				if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
 					to_chat(src, "<span class='warning'>You're so tired... but you can't miss that shuttle...</span>")
 				else
 					to_chat(src, "<span class='warning'>Just a quick nap...</span>")
-					//skyrat edit
-					if(!HAS_TRAIT(src, TRAIT_ALCOHOL_TOLERANCE))
-						Sleeping(900)
-					else
-						Sleeping(450)
-					//
+					Sleeping(900)
 
 		if(drunkenness >= 401) //skyrat-edit
-			//skyrat edit
-			if(!HAS_TRAIT(src, TRAIT_ALCOHOL_TOLERANCE))
-				adjustToxLoss(4) //Let's be honest you shouldn't be alive by now
-				if(HAS_TRAIT(src, TRAIT_ALCOHOL_LIGHTWEIGHT))
-					adjustToxLoss(4)
-			else
-				adjustToxLoss(2)
-			//
+			adjustToxLoss(4) //Let's be honest you shouldn't be alive by now
 		else
 			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "drunk")
 	else
