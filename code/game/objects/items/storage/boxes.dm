@@ -1455,6 +1455,12 @@ obj/item/storage/box/stingbangs
 	new /obj/item/reagent_containers/glass/beaker/noreact(src)
 	new /obj/item/reagent_containers/glass/beaker/bluespace(src)
 
+/obj/item/storage/box/strange_seeds_5pack
+
+/obj/item/storage/box/strange_seeds_5pack/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/seeds/random(src)
+
 //skyrat edit
 /obj/item/storage/box/stingbangs
 	name = "box of stingbangs (WARNING)"
