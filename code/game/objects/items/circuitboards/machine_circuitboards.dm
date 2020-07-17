@@ -154,7 +154,9 @@
 	req_components = list(
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stock_parts/capacitor = 1,
-		/obj/item/stack/cable_coil = 3)
+		/obj/item/stack/cable_coil = 3,
+		/obj/item/stock_parts/cell = 1) // Skyrat edit: adds cell to recipe
+	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/telecomms/broadcaster
