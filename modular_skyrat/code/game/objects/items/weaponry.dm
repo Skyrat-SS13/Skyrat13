@@ -159,7 +159,7 @@
 	layer = ABOVE_MOB_LAYER
 
 //ebony blade
-/obj/item/twohanded/ebonyblade
+/obj/item/ebonyblade
 	name = "Ebony Blade"
 	desc = "Forged in deceit, this weapon gets more powerful with the blood of those that are alligned with you."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
@@ -181,21 +181,24 @@
 	var/blockadd_anydeceit = 10
 	var/datum/status_effect/tracker = /datum/status_effect/ebony_damage
 
-/obj/item/twohanded/ebonyblade/Initialize()
+/obj/item/ebonyblade/Initialize()
 	. = ..()
-	AddComponent(/datum/component/butchering, 100, 110)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/wield)
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/unwield)
 
-/obj/item/twohanded/ebonyblade/unwield(mob/living/carbon/user, show_message = TRUE)
-	..()
+/obj/item/ebonyblade/ComponentInitialize()
+	AddComponent(/datum/component/butchering, 100, 110)
+	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=13, icon_wielded="ebonyblade1")
+
+/obj/item/ebonyblade/proc/unwield(mob/living/carbon/user, show_message = TRUE)
 	block_chance = initial(block_chance)
 	lifesteal = initial(current_lifesteal)
 
-/obj/item/twohanded/ebonyblade/wield(mob/living/carbon/user, show_message = TRUE)
-	..()
+/obj/item/ebonyblade/proc/wield(mob/living/carbon/user, show_message = TRUE)
 	block_chance = block_chance_wielded
 	current_lifesteal = lifesteal
 
-/obj/item/twohanded/ebonyblade/attack(mob/living/target, mob/living/carbon/user)
+/obj/item/ebonyblade/attack(mob/living/target, mob/living/carbon/user)
 	if(target.stat == DEAD)
 		..()
 		return
@@ -364,7 +367,7 @@
 		final_block_chance = 0
 	return ..()
 
-/obj/item/twohanded/spear/halberd
+/obj/item/halberd
 	name = "makeshift halberd"
 	desc = "A horrible creation that shouldn't even work. Simply put, a hatchet attached to the end of a makeshift glass spear."
 	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
@@ -372,30 +375,13 @@
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/axes_righthand.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/axes_lefthand.dmi'
 	item_state = "mhalberd0"
-	icon_prefix = "mhalberd"
 	embedding = list("embedded_impact_pain_multiplier" = 3, "embed_chance" = 50)
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "stabbed", "slashed")
 	armour_penetration = 5
+	force = 5
 
-/obj/item/twohanded/spear/halberd/CheckParts(list/parts_list)
-	var/obj/item/hatchet/tip = locate() in parts_list
-	if(tip)
-		force = tip.force
-		force_unwielded = tip.force
-		parts_list -= tip
-		qdel(tip)
-	var/obj/item/twohanded/spear/pear = locate() in parts_list
-	if(pear)
-		if(!istype(pear, /obj/item/twohanded/spear/halberd))
-			force_wielded = pear.force_wielded + (tip.force/10)
-			throwforce = pear.throwforce + (tip.throwforce/10)
-		else
-			force_wielded = pear.force_wielded
-			throwforce = pear.throwforce
-		parts_list -= pear
-		qdel(pear)
-	update_icon()
-	return ..()
+/obj/item/halberd/ComponentInitialize()
+	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=18, icon_wielded="mhalberd1")
 
 //KINKY. Clone of the banhammer.
 /obj/item/bdsm_whip

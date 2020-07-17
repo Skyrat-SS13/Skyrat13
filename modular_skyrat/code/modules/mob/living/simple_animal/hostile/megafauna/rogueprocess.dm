@@ -22,8 +22,8 @@
 	ranged_cooldown_time = 80
 	ranged = 1
 	del_on_death = 0
-	crusher_loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/crusher_trophy/brokentech, /obj/item/twohanded/rogue)
-	loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/twohanded/rogue)
+	crusher_loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/crusher_trophy/brokentech, /obj/item/rogue)
+	loot = list(/obj/item/gun/energy/kinetic_accelerator/premiumka/bdminer, /obj/item/rogue)
 	deathmessage = "sparkles and emits corrupted screams in agony, falling defeated on the ground."
 	death_sound = 'sound/mecha/critdestr.ogg'
 	anger_modifier = 0
@@ -285,13 +285,10 @@
 		special = FALSE
 
 //loot
-/obj/item/twohanded/rogue
+/obj/item/rogue
 	name = "\proper Rogue's Drill"
 	desc = "A drill coupled with an internal mechanism that produces shockwaves on demand. Serves as a very robust melee."
 	sharpness = IS_SHARP
-	force = 0
-	force_wielded = 20
-	force_unwielded = 5
 	icon = 'modular_skyrat/icons/obj/mining.dmi'
 	icon_state = "roguedrill"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/mining_lefthand.dmi'
@@ -309,7 +306,11 @@
 	var/cooldown = 0
 	var/range = 7
 
-/obj/item/twohanded/rogue/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+/obj/item/rogue/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=20, icon_wielded="roguedrill")
+
+/obj/item/rogue/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	. = ..()
 	if(wielded && proximity_flag)
 		if(isliving(target))
