@@ -450,8 +450,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "[TextPreview(html_encode(features["flavor_text"]))]...<BR>" //skyrat edit, uses html_encode
 			//SKYRAT EDIT
 			dat += 	"<b>Records :</b>"
-			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a>"
-			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'>Security</a>"
+			dat += "<br>"
+			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a><br>"
+			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'>Security</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=medical_records;task=input'>Medical</a><br>"
 			dat += 	"<b>Character :</b><br>"
 			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a><br>"
