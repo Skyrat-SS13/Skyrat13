@@ -203,7 +203,6 @@
 	volume = 20
 	list_reagents = null
 	amount_per_transfer_from_this = 20
-	ignore_flags = FALSE //so you can't medipen through hardsuits
 
 #define HYPO_SPRAY 0
 #define HYPO_INJECT 1
