@@ -81,7 +81,7 @@
 
 /datum/species/shadow
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
-	fluff_desc = "Shadowpeople are by and large, mostly unknown. Their origins are a mystery to almost all of civilized spaced - and with mystery, comes Myths. The most popular of these myths is that Shadowpeople were once dwellers of a distant molten world, who lived in harmony with dark forces who controlled the underground of the planet. One day, however it may have happened, these peoples angered the dark Gods of the molten planet, who cursed them to forevermore live in eternal darkness, lest their forms waste away to the ash they had been born from."
+	fluff_desc = "Shadowpeople are by and large, mostly unknown. Their origins are a mystery to almost all of civilized spaced - and with mystery, comes myths. The most popular of these myths is that Shadowpeople were once a religious sect of ashlanders on lavaland, who lived in harmony with the dark forces who controlled the underground of the planet. One day, however it may have happened, that these people angered the dark Gods of the molten hellscape, whom cursed them to forever live in eternal darkness, lest their forms waste away to the ash they had been born from. Most shadowpeople suffer extreme prejudice, as rumors are largely spread around the frontier about shadowpeople with bladelike appendages that live in the darkness, waiting to prey on the blood of the innocent and to curse everything with unending darkness."
 
 /datum/species/synthliz
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
