@@ -367,8 +367,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<center><b>Current Likings:</b> [foodlikes.len ? foodlikes.Join(", ") : "None"]</center>"
 			dat += "<center><b>Current Dislikings:</b> [fooddislikes.len ? fooddislikes.Join(", ") : "None"]</center>"
 			//
-			dat += "<h2>Identity</h2>"
 			dat += "<table width='100%'><tr><td width='75%' valign='top'>"
+			dat += "<h2>Identity</h2>"
 			if(jobban_isbanned(user, "appearance"))
 				dat += "<b>You are banned from using custom names and appearances. You can continue to adjust your characters, but you will be randomised once you join the game.</b><br>"
 			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=name;task=random'>Random Name</A> "
@@ -406,11 +406,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				else if(old_group != namedata["group"])
 					old_group = namedata["group"]
 					dat += "<br>"
-				dat += "<a href ='?_src_=prefs;preference=[custom_name_id];task=input'><b>[namedata["pref_name"]]:</b> [custom_names[custom_name_id]]</a> "
-			dat += "<br><br>"
-			dat += "<b>Custom job preferences:</b><BR>"
-			dat += "<a href='?_src_=prefs;preference=ai_core_icon;task=input'><b>Preferred AI Core Display:</b> [preferred_ai_core_display]</a><br>"
-			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Preferred Security Department:</b> [prefered_security_department]</a><BR></td>"
+				dat += "<b>[namedata["pref_name"]]:</b> <a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a> "
+			dat += "<h2>Job Preferences</h2>"
+			dat += "<b>Preferred AI Core Display:</b> <a href='?_src_=prefs;preference=ai_core_icon;task=input'>[preferred_ai_core_display]</a><br>"
+			dat += "<b>Preferred Security Department:</b> <a href='?_src_=prefs;preference=sec_dept;task=input'>[prefered_security_department]</a><BR></td>"
 			dat += "</tr></table>"
 
 		//Character Appearance
