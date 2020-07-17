@@ -103,7 +103,7 @@
 	},
 /area/awaymission/caves/BMP_asteroid/level_four)
 "at" = (
-/obj/structure/spawner/skeleton,
+/obj/structure/spawner/skeleton/space,
 /turf/open/floor/plating/asteroid/basalt/lava{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -164,7 +164,7 @@
 	},
 /area/awaymission/caves/BMP_asteroid/level_four)
 "aB" = (
-/obj/structure/spawner/skeleton,
+/obj/structure/spawner/skeleton/space,
 /turf/open/floor/engine/cult{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -392,7 +392,7 @@
 	},
 /area/awaymission/caves/BMP_asteroid/level_three)
 "bh" = (
-/mob/living/simple_animal/hostile/skeleton,
+/mob/living/simple_animal/hostile/skeleton/space,
 /turf/open/floor/plating/asteroid/basalt{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -442,7 +442,7 @@
 /area/awaymission/caves/BMP_asteroid/level_three)
 "bw" = (
 /obj/effect/decal/cleanable/blood,
-/obj/structure/spawner/skeleton,
+/obj/structure/spawner/skeleton/space,
 /turf/open/floor/engine/cult{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -454,7 +454,7 @@
 	},
 /area/awaymission/caves/BMP_asteroid/level_three)
 "by" = (
-/obj/item/twohanded/mjollnir,
+/obj/item/mjollnir,
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse,
 /turf/open/floor/plating/asteroid/basalt{
 	initial_gas_mix = "n2=23;o2=14"
@@ -487,7 +487,7 @@
 	},
 /area/awaymission/caves/BMP_asteroid/level_three)
 "bD" = (
-/mob/living/simple_animal/hostile/skeleton,
+/mob/living/simple_animal/hostile/skeleton/space,
 /turf/open/floor/engine/cult{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -619,7 +619,7 @@
 	},
 /area/awaymission/caves/BMP_asteroid/level_two)
 "bY" = (
-/mob/living/simple_animal/hostile/skeleton,
+/mob/living/simple_animal/hostile/skeleton/space,
 /turf/open/floor/plating{
 	initial_gas_mix = "n2=23;o2=14"
 	},
@@ -1638,7 +1638,7 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/listeningpost)
 "fj" = (
-/obj/effect/mob_spawn/human/skeleton/alive{
+/obj/effect/mob_spawn/human/skeleton/alive/space{
 	name = "spooky skeleton remains"
 	},
 /turf/open/floor/plating/asteroid/basalt{

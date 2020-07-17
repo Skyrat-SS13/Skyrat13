@@ -240,3 +240,8 @@ GLOBAL_LIST_INIT(factions_list, list("NanoTrasen", "Sol Federation", "Free Trade
 
 GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/wisdoms.txt"))
 
+//Skyrat change - comments extra speech/tongue stuff out
+/*GLOBAL_LIST_INIT(speech_verbs, list("default","says","gibbers", "states", "chitters", "declares", "bellows", "buzzes" ,"beeps", "chirps" ,"hisses" ,"poofs" ,"rattles", "mewls" ,"barks", "blorbles", "squeaks", "squawks", "flutters"))
+
+GLOBAL_LIST_INIT(roundstart_tongues, list("default","human tongue" = /obj/item/organ/tongue, "lizard tongue" = /obj/item/organ/tongue/lizard, "skeleton tongue" = /obj/item/organ/tongue/bone, "fly tongue" = /obj/item/organ/tongue/fly, "ipc tongue" = /obj/item/organ/tongue/robot/ipc))*/
+
