@@ -203,13 +203,13 @@
 	var/required_flesh_severity = WOUND_SEVERITY_SEVERE
 	var/required_flesh_skin_severity = WOUND_SEVERITY_MODERATE
 
-	if(owner && owner.get_biological_state() == BIO_JUST_BONE && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
+	if(owner && owner.get_biological_state() == BIO_BONE && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		required_bone_severity = WOUND_SEVERITY_CRITICAL
 	
-	if(owner && owner.get_biological_state() == BIO_JUST_FLESH && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
+	if(owner && owner.get_biological_state() == BIO_FLESH && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		required_flesh_severity = WOUND_SEVERITY_CRITICAL
 
-	if(owner && owner.get_biological_state() == BIO_JUST_SKIN && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
+	if(owner && owner.get_biological_state() == BIO_SKIN && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		required_flesh_skin_severity = WOUND_SEVERITY_CRITICAL
 
 	// we can (generally) only have one wound per type, but remember there's multiple types
@@ -244,10 +244,10 @@
 	var/biotype = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		if(((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (biotype & BIO_JUST_BONE)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
+		if(((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (biotype & BIO_BONE)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
 			base_chance += 10
 			break
-		else if(((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (biotype & BIO_JUST_FLESH)) // we only need a severe slash or pierce, but critical and we add 10%
+		else if(((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (biotype & BIO_FLESH)) // we only need a severe slash or pierce, but critical and we add 10%
 			base_chance += 10
 			break
 
@@ -269,13 +269,13 @@
 	var/biotype = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		if(istype(W, /datum/wound/slash/critical/incision) && (biotype & BIO_JUST_FLESH)) // incisions make you very vulnerable to disembowelment
+		if(istype(W, /datum/wound/slash/critical/incision) && (biotype & BIO_FLESH)) // incisions make you very vulnerable to disembowelment
 			base_chance += 20
 			break
-		else if((istype(W, /datum/wound/slash/critical) || istype(W, /datum/wound/pierce/critical) || istype(W, /datum/wound/mechanical/slash/critical || istype(W, /datum/wound/mechanical/pierce/critical))) && (biotype & BIO_JUST_FLESH)) // we only require a severe slash, but if we have an avulsion, it's easier for an organ to fall off
+		else if((istype(W, /datum/wound/slash/critical) || istype(W, /datum/wound/pierce/critical) || istype(W, /datum/wound/mechanical/slash/critical || istype(W, /datum/wound/mechanical/pierce/critical))) && (biotype & BIO_FLESH)) // we only require a severe slash, but if we have an avulsion, it's easier for an organ to fall off
 			base_chance += 10
 			break
-		else if((istype(W, /datum/wound/blunt/critical) || istype(W, /datum/wound/mechanical/blunt/critical)) && (biotype & BIO_JUST_BONE)) // skeletons need to be disemboweled too because they have "organs"...?
+		else if((istype(W, /datum/wound/blunt/critical) || istype(W, /datum/wound/mechanical/blunt/critical)) && (biotype & BIO_BONE)) // skeletons need to be disemboweled too because they have "organs"...?
 			base_chance += 10
 			break
 

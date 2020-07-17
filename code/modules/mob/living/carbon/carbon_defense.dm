@@ -111,11 +111,11 @@
 		var/bio_state = get_biological_state()
 		if(mangled_state == BODYPART_MANGLED_BOTH)
 			extra_wound_details = ", threatening to sever it entirely"
-		else if(mangled_state & BODYPART_MANGLED_BONE && I.get_sharpness() || (mangled_state & BODYPART_MANGLED_MUSCLE && bio_state == BIO_JUST_FLESH))
+		else if(mangled_state & BODYPART_MANGLED_BONE && I.get_sharpness() || (mangled_state & BODYPART_MANGLED_MUSCLE && bio_state == BIO_FLESH))
 			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through remmaining tissue"
 			if(!hit_BP.is_organic_limb())
 				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through remaining scraps"
-		else if(mangled_state & BODYPART_MANGLED_MUSCLE && I.get_sharpness() || (mangled_state & BODYPART_MANGLED_BONE && bio_state == BIO_JUST_BONE))
+		else if(mangled_state & BODYPART_MANGLED_MUSCLE && I.get_sharpness() || (mangled_state & BODYPART_MANGLED_BONE && bio_state == BIO_BONE))
 			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through the bone"
 			if(!hit_BP.is_organic_limb())
 				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through various internal components"

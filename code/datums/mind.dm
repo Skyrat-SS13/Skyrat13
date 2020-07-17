@@ -67,8 +67,9 @@
 	var/late_joiner = FALSE
 
 //SKYRAT CHANGES
-	var/appear_in_round_end_report = TRUE  //Skyrat change
+	var/appear_in_round_end_report = TRUE
 	var/mob/original_character
+	var/accept_ERG = FALSE
 //END OF SKYRAT CHANGES
 
 	var/force_escaped = FALSE  // Set by Into The Sunset command of the shuttle manipulator

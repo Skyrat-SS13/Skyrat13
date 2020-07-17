@@ -219,7 +219,7 @@
 				var/obj/item/card/id/targetid = target.get_item_by_slot(SLOT_WEAR_ID)
 				var/list/targetaccess = targetid.GetAccess()
 				var/combinedaccess = useraccess | targetaccess
-				if((user.mind.assigned_role == target.mind.assigned_role) || (targetaccess == combinedaccess))
+				if((user.mind.assigned_role == target.mind.assigned_role) || (useraccess == combinedaccess))
 					TH.force_wielded += forceadd_samerole
 					src.lifesteal += forceadd_samerole/2
 					src.block_chance_wielded += blockadd_anydeceit
@@ -227,7 +227,7 @@
 					TH.force_wielded += forceadd_sameantagonist
 					src.lifesteal += forceadd_sameantagonist/2
 					src.block_chance_wielded += (blockadd_anydeceit * 2)
-				if(user.mind.isholy == target.mind.isholy)
+				if(user.mind.isholy && target.mind.isholy)
 					TH.force_wielded += forceadd_samerole
 					src.lifesteal += forceadd_samerole/2
 					src.block_chance_wielded += blockadd_anydeceit

@@ -311,7 +311,7 @@
 	//Handling for bone only/flesh only/skin only/all of them targets
 	switch(bio_state)
 		// if we're bone only, all cutting attacks go straight to the bone
-		if(BIO_JUST_BONE)
+		if(BIO_BONE)
 			if(wounding_type == WOUND_SLASH)
 				wounding_type = WOUND_BLUNT
 				if(!easy_dismember)
@@ -325,7 +325,7 @@
 				return
 		
 		// slime people p much they dont have bone
-		if(BIO_JUST_FLESH)
+		if(BIO_FLESH)
 			if(wounding_type == WOUND_BLUNT)
 				wounding_type = WOUND_SLASH
 				if(!easy_dismember)
@@ -336,7 +336,7 @@
 				return
 
 		// nothing uses only skin just yet
-		if(BIO_JUST_SKIN)
+		if(BIO_SKIN)
 			return
 
 		// standard humanoids
@@ -418,7 +418,7 @@
 	//Handling for bone only/flesh only/skin only/all of them targets
 	switch(bio_state)
 		// if we're bone only, all cutting attacks go straight to the bone
-		if(BIO_JUST_BONE)
+		if(BIO_BONE)
 			if(wounding_type == WOUND_SLASH)
 				wounding_type = WOUND_BLUNT
 				if(!easy_dismember)
@@ -432,7 +432,7 @@
 				return
 		
 		// slime people p much they dont have bone
-		if(BIO_JUST_FLESH)
+		if(BIO_FLESH)
 			if(wounding_type == WOUND_BLUNT)
 				wounding_type = WOUND_SLASH
 				if(!easy_dismember)
@@ -443,7 +443,7 @@
 				return
 
 		// nothing uses only skin just yet
-		if(BIO_JUST_SKIN)
+		if(BIO_SKIN)
 			return
 
 		// standard humanoids

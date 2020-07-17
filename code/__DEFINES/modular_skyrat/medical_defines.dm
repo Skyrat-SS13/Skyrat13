@@ -1,4 +1,8 @@
-//entire file is a skyrat edit
+//Painkillers
+#define PAINKILLER_MINERSSALVE	"PAINKILLER - MINERS SALVE"
+#define PAINKILLER_MORPHINE 	"PAINKILLER - MORPHINE"
+
+//Wound stuff
 #define WOUND_DAMAGE_EXPONENT	1.4
 
 #define WOUND_MINIMUM_DAMAGE		5 // an attack must do this much damage after armor in order to roll for being a wound (incremental pressure damage need not apply)
@@ -18,7 +22,7 @@
 #define WOUND_PIERCE 2 // any brute weapon/attack with sharpness = SHARP_POINTY. rolls for piercing wounds
 #define WOUND_BURN	3 // any concentrated burn attack (lasers really). rolls for burning wounds
 
-// the ones below will be implemented in the future, but dont exist atm
+// The ones below will be implemented in the future, but dont exist atm
 #define WOUND_TOXIN 4
 #define WOUND_RADIATION 5 //arguably could just use the cellular wound thing, but i'm an asshole and want cancer/tumors to be a separate thing
 #define WOUND_CELLULAR 6
@@ -34,10 +38,10 @@
 
 #define WOUND_DETERMINATION_MAX			10 // the max amount of determination you can have
 
-// set wound_bonus on an item or attack to this to disable checking wounding for the attack
+// Set wound_bonus on an item or attack to this to disable checking wounding for the attack
 #define CANT_WOUND -100
 
-// list in order of highest severity to lowest
+// List in order of highest severity to lowest (if the wound is rolled for normally - there are edge cases like incisions)
 #define WOUND_LIST_INCISION list(/datum/wound/slash/critical/incision)
 #define WOUND_LIST_BLUNT		list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate/ribcage, /datum/wound/blunt/moderate/hips, /datum/wound/blunt/moderate)
 #define WOUND_LIST_BLUNT_MECHANICAL list(/datum/wound/mechanical/blunt/critical, /datum/wound/mechanical/blunt/severe, /datum/wound/mechanical/blunt/moderate)
@@ -55,7 +59,7 @@
 #define WOUND_INFECTION_SEVERE		8 // then below here, you ooze some pus and suffer minor tox damage, but nothing serious
 #define WOUND_INFECTION_CRITICAL	12 // then below here, your limb occasionally locks up from damage and infection and briefly becomes disabled. Things are getting really bad
 #define WOUND_INFECTION_SEPTIC		20 // below here, your skin is almost entirely falling off and your limb locks up more frequently. You are within a stone's throw of septic paralysis and losing the limb
-// above WOUND_INFECTION_SEPTIC, your limb is completely putrid and you start rolling to lose the entire limb by way of paralyzation. After 3 failed rolls (~4-5% each probably), the limb is paralyzed
+// Above WOUND_INFECTION_SEPTIC, your limb is completely putrid and you start rolling to lose the entire limb by way of paralyzation. After 3 failed rolls (~4-5% each probably), the limb is paralyzed
 
 #define WOUND_BURN_SANITIZATION_RATE 0.15 // how quickly sanitization removes infestation and decays per tick
 #define WOUND_SLASH_MAX_BLOODFLOW		8 // how much blood you can lose per tick per slash max. 8 is a LOT of blood for one cut so don't worry about hitting it easily
@@ -88,20 +92,44 @@
 #define BODYPART_MANGLED_BOTH 	(BODYPART_MANGLED_NONE | BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE | BODYPART_MANGLED_BONE)
 
 // What kind of biology we have, and what wounds we can suffer, mostly relies on the HAS_FLESH and HAS_BONE species traits on human species
-#define BIO_INORGANIC	0 // golems, cannot suffer any wounds
-#define BIO_JUST_BONE	1 // skeletons and plasmemes, can only suffer bone wounds, only needs mangled bone to be able to dismember
-#define BIO_JUST_FLESH	2 // nothing right now, maybe slimepeople in the future, can only suffer slashing, piercing, and burn wounds
-#define BIO_JUST_SKIN	3
-#define BIO_FULL 4 // standard humanoids, can suffer all wounds, needs mangled bone and flesh to dismember
+#define BIO_INORGANIC	(1<<1) // golems, cannot suffer any wounds
+#define BIO_BONE	(1<<2) // skeletons and plasmemes, can only suffer bone wounds, only needs mangled bone to be able to dismember
+#define BIO_FLESH	(1<<3) // nothing right now, maybe slimepeople in the future, can only suffer slashing, piercing, and burn wounds
+#define BIO_SKIN	(1<<4)
+#define BIO_FULL	(BIO_BONE | BIO_FLESH | BIO_SKIN) // standard humanoids, can suffer all wounds, needs mangled bone and flesh to dismember
 
-//Organ defines for carbon mobs
+//Organ status flags
 #define ORGAN_ORGANIC   (1<<1)
 #define ORGAN_ROBOTIC   (1<<2)
+#define ORGAN_NODAMAGE  (1<<3) //not yet implemented
 
+//Bodypart status flags
 #define BODYPART_ORGANIC   (1<<1)
 #define BODYPART_ROBOTIC   (1<<2)
 #define BODYPART_NOBLEED	(1<<3)
 
+//Bodypart disabling defines
 #define BODYPART_NOT_DISABLED 0
 #define BODYPART_DISABLED_DAMAGE 1
-#define BODYPART_DISABLED_PARALYSIS 2
+#define BODYPART_DISABLED_WOUND 2
+#define BODYPART_DISABLED_PARALYSIS 3
+
+//Maximum number of brain traumas wounds to the head can cause
+#define TRAUMA_LIMIT_WOUND 2
+
+//Bodypart defines
+#define ALL_BODYPARTS list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
+#define TORSO_BODYPARTS list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)
+#define AMPUTATE_BODYPARTS list(BODY_ZONE_HEAD, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
+#define LIMB_AND_HEAD_BODYPARTS list(BODY_ZONE_HEAD, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
+#define LIMB_BODYPARTS list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
+#define EXTREMITY_BODYPARTS list(BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
+#define HEAD_BODYPARTS list(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_EYES)
+#define ORGAN_BODYPARTS list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)
+
+#define SSPARTS	list(/obj/item/bodypart/head, /obj/item/bodypart/chest, /obj/item/bodypart/groin, /obj/item/bodypart/r_arm, /obj/item/bodypart/r_hand, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_hand, /obj/item/bodypart/r_leg, /obj/item/bodypart/r_foot, /obj/item/bodypart/l_leg, /obj/item/bodypart/l_foot)
+
+#define ALIEN_BODYPARTS_PATH list(/obj/item/bodypart/chest/alien, /obj/item/bodypart/groin/alien, /obj/item/bodypart/head/alien, /obj/item/bodypart/l_arm/alien, /obj/item/bodypart/l_hand/alien, /obj/item/bodypart/r_arm/alien, /obj/item/bodypart/r_hand/alien, /obj/item/bodypart/r_leg/alien, /obj/item/bodypart/r_foot/alien, /obj/item/bodypart/l_leg/alien, /obj/item/bodypart/l_foot/alien)
+#define BODYPARTS_PATH list(/obj/item/bodypart/chest, /obj/item/bodypart/groin, /obj/item/bodypart/head, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_hand, /obj/item/bodypart/r_arm, /obj/item/bodypart/r_hand,/obj/item/bodypart/l_leg, /obj/item/bodypart/l_foot, /obj/item/bodypart/r_leg, /obj/item/bodypart/r_foot)
+#define MONKEY_BODYPARTS_PATH list(/obj/item/bodypart/head/monkey, /obj/item/bodypart/chest/monkey, /obj/item/bodypart/groin/monkey, /obj/item/bodypart/l_arm/monkey, /obj/item/bodypart/l_hand/monkey, /obj/item/bodypart/r_arm/monkey, /obj/item/bodypart/r_hand/monkey, /obj/item/bodypart/l_leg/monkey, /obj/item/bodypart/l_foot/monkey, /obj/item/bodypart/r_leg/monkey, /obj/item/bodypart/r_foot/monkey)
+#define LARVA_BODYPARTS_PATH list(/obj/item/bodypart/chest/larva, /obj/item/bodypart/head/larva)

@@ -1,0 +1,6 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "Multicharacter language keys."
+  - tweak: "Some language keys have been changed."
+  - bugfix: "Languages that suffered because of key conflicts no longer suffer the issue."

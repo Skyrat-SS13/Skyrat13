@@ -2262,10 +2262,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 /datum/species/proc/get_biological_state(mob/living/carbon/human/H)
 	. = BIO_INORGANIC
 	if(HAS_SKIN in species_traits)
-		. = BIO_JUST_SKIN
+		. &= ~BIO_INORGANIC
+		. |= BIO_SKIN
 	if(HAS_FLESH in species_traits)
-		. = BIO_JUST_FLESH
+		. &= ~BIO_INORGANIC
+		. |= BIO_FLESH
 	if(HAS_BONE in species_traits)
-		. = BIO_JUST_BONE
-	if((HAS_BONE && HAS_FLESH && HAS_SKIN) in species_traits)
+		. &= ~BIO_INORGANIC
+		. |= BIO_BONE
+	if(species_traits & list(HAS_BONE, HAS_FLESH, HAS_SKIN))
 		. = BIO_FULL
