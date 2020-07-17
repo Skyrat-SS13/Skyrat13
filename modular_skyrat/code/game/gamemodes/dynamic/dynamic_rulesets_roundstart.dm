@@ -67,12 +67,12 @@
 	protected_roles = list("Chaplain", "Security Officer", "Warden", "Detective", "Brig Physician", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster", "Prisoner", "Brig Physician", "Blueshield") 
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 2
-	weight = 3
+	weight = 0 // Originally 3
 	cost = 35
 	scaling_cost = 10
-	property_weights = list("story_potential" = 1, "trust" = -1, "extended" = 1, "valid" = 1)
+	property_weights = list() // Originally list("story_potential" = 1, "trust" = -1, "extended" = 1, "valid" = 1)
 	requirements = list(70,65,60,55,50,50,50,50,50,50)
-	high_population_requirement = 65
+	high_population_requirement = 666// Originally 65
 	antag_cap = list(2,2,2,2,2,2,2,2,2,2)
 
 /datum/dynamic_ruleset/roundstart/overthrow/pre_execute()
