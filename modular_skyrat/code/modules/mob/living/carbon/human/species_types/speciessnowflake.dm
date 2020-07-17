@@ -36,7 +36,15 @@
 
 /datum/species/human
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
-	fluff_desc = "Humans come from the Sol system, and are the commanding species of both NanoTrasen and SolGov."
+	fluff_desc = "Humans come from the Sol system, and are the commanding species of both NanoTrasen and SolGov. Humans are very widespread among the universe, and their influence has grown throughout most know space."
+
+/datum/species/human/humanoid
+	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
+	fluff_desc = "Humanoids are similar to humans in function, but come from wildly varying backgrounds."
+
+/datum/species/human/humanoid/dunmer
+	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
+	fluff_desc = "Ashlander come from lavaland, and are considered a cheap workforce for NanoTrasen and SolGov. They quickly adapted to the civilizing procedures and greatly appreciated the technology, though some of them do feel unsatisfied with how they are treated by other species."
 
 /datum/species/angel
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
@@ -84,7 +92,7 @@
 
 /datum/species/vox
 	screamsounds = list('modular_skyrat/sound/emotes/voxscream.ogg')
-	fluff_desc = "Vox are an avian species found around the frontier. They are seem as terrible raiders by most other species, and suffer prejudice for it."
+	fluff_desc = "Vox are an avian species found around the frontier. They are seen as terrible raiders by most other species, and suffer prejudice for it."
 
 /datum/species/xeno
 	screamsounds = list('sound/voice/hiss6.ogg')
