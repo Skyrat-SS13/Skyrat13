@@ -391,8 +391,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				else if(old_group != namedata["group"])
 					old_group = namedata["group"]
 					dat += "<br>"
-				dat += "<b>[custom_name_id]:</b> <a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a>"
-			dat += "<br>"
+				dat += "<b>[capitalize(custom_name_id)]:</b> <a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a><br>"
 			//
 			
 			dat += "<b>Special Names:</b><BR>"
