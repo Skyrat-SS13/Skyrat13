@@ -397,7 +397,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			//
 			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a><BR>"
 
-			dat += "<b>Special Names:</b><BR>"
+			dat += "<BR><b>Special Names:</b><BR>"
 			old_group = null
 			for(var/custom_name_id in (GLOB.preferences_custom_names - list("religion", "deity"))) //skyrat edit
 				var/namedata = GLOB.preferences_custom_names[custom_name_id]
@@ -519,10 +519,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					dat += "[exploitable_info]"
 			else
 				dat += "[TextPreview(exploitable_info)]..."
-			dat += "<BR>"
+			dat += "<BR><BR>"
 			if(length(pref_species.bloodtypes))
 				dat += "<b>Blood type :</b>"
-				dat += 	"<a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default"]</a><br>"
+				dat += 	" <a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default"]</a><br>"
 			dat += "<b>Faction/Employer :</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
 			dat += "<b>Custom runechat color :</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
