@@ -31,7 +31,6 @@
 //the speech mod below is used for character setup speech impediments
 /datum/speech_mod/custom
 	soundtext = "speaking differently."
-	var/list/say_mods = list() //the impediment will apply the say mod
 	var/list/replacers = list() //the speech impediment will apply by lists. Example: list(list("n", "m")) will replace lowercase n with lowercase m
 	var/list/ignored_languages = list() //the speech impediment will apply to every language except these, provided it's not empty
 	var/list/exclusive_languages = list() //the speech impediment will only apply to these, provided it's not empty
