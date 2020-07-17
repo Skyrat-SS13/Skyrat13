@@ -118,12 +118,10 @@
 /obj/item/crusher_trophy/blaster_tubes/mask/add_to(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	H.slowdown = 0
-	H.slowdown_wielded = 0
 
 /obj/item/crusher_trophy/blaster_tubes/mask/remove_from(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	H.slowdown = initial(H.slowdown)
-	H.slowdown_wielded = initial(H.slowdown_wielded)
 
 //lava imp
 /obj/item/crusher_trophy/blaster_tubes/impskull
