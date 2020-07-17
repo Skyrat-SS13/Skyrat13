@@ -434,39 +434,93 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>Flavor Text</h2>"
-			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a>" //skyrat - <br> moved one line down
+			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a><br>" //skyrat - <br> moved one line down
 			if(length(features["flavor_text"]) <= 40)
 				if(!length(features["flavor_text"]))
-					dat += "\[...\]<BR>" //skyrat - adds <br> //come to brazil or brazil comes to you
+					dat += "\[...\]" //skyrat - adds <br> //come to brazil or brazil comes to you
 				else
-					dat += "[html_encode(features["flavor_text"])]<BR>" //skyrat - adds <br> and uses html_encode
+					dat += "[html_encode(features["flavor_text"])]" //skyrat - adds <br> and uses html_encode
 			else
-				dat += "[TextPreview(html_encode(features["flavor_text"]))]...<BR>" //skyrat edit, uses html_encode
+				dat += "[TextPreview(html_encode(features["flavor_text"]))]..." //skyrat edit, uses html_encode
 			//SKYRAT EDIT
 			dat += "<h2>Silicon Flavor Text</h2>"
-			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicion Flavor Text</b></a><br>"
+			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicion Examine Text</b></a><br>"
 			if(length(features["silicon_flavor_text"]) <= 40)
 				if(!length(features["silicon_flavor_text"]))
 					dat += "\[...\]"
 				else
 					dat += "[features["silicon_flavor_text"]]"
 			else
-				dat += "[TextPreview(features["silicon_flavor_text"])]...<BR>"
+				dat += "[TextPreview(features["silicon_flavor_text"])]..."
 			dat +=  "<h2>OOC Notes</h2>"
-			dat += 	"<a href='?_src_=prefs;preference=skyrat_ooc_notes;task=input'><b>Set OOC Notes</b></a>"
+			dat += 	"<a href='?_src_=prefs;preference=skyrat_ooc_notes;task=input'><b>Set OOC Notes</b></a><br>"
+			if(length(skyrat_ooc_notes) <= 40)
+				if(!length(skyrat_ooc_notes))
+					dat += "\[...\]"
+				else
+					dat += "[skyrat_ooc_notes]"
+			else
+				dat += "[TextPreview(skyrat_ooc_notes)]..."
 			dat +=	"<h2>ERP Preferences</h2>"
-			dat += 	"<b>ERP :</b> <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a>"
-			dat += 	"<b>Non-Con :</b> <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a>"
+			dat += 	"<b>ERP :</b> <a href='?_src_=prefs;preference=erp_pref'>[erppref]</a> "
+			dat += 	"<b>Non-Con :</b> <a href='?_src_=prefs;preference=noncon_pref'>[nonconpref]</a> "
 			dat += 	"<b>Vore :</b> <a href='?_src_=prefs;preference=vore_pref'>[vorepref]</a><br>"
 			dat += 	"<h2>Records</h2>"
-			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a><br>"
-			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'>Security</a><br>"
-			dat += 	"<a href='?_src_=prefs;preference=medical_records;task=input'>Medical</a><br>"
+			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'><b>General</b></a><br>"
+			if(length(general_records) <= 40)
+				if(!length(general_records))
+					dat += "\[...\]"
+				else
+					dat += "[general_records]"
+			else
+				dat += "[TextPreview(general_records)]..."
+			dat += "<BR>"
+			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'><b>Security</b></a><br>"
+			if(length(security_records) <= 40)
+				if(!length(security_records))
+					dat += "\[...\]"
+				else
+					dat += "[security_records]"
+			else
+				dat += "[TextPreview(security_records)]..."
+			dat += "<BR>"
+			dat += 	"<a href='?_src_=prefs;preference=medical_records;task=input'><b>Medical</b></a><br>"
+			if(length(medical_records) <= 40)
+				if(!length(medical_records))
+					dat += "\[...\]"
+				else
+					dat += "[medical_records]"
+			else
+				dat += "[TextPreview(medical_records)]..."
 			dat += 	"<h2>Character</h2>"
-			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a><br>"
-			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
-			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
-			if(pref_species.bloodtypes.len)
+			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'><b>Background</b></a><br>"
+			if(length(flavor_background) <= 40)
+				if(!length(flavor_background))
+					dat += "\[...\]"
+				else
+					dat += "[flavor_background]"
+			else
+				dat += "[TextPreview(flavor_background)]..."
+			dat += "<BR>"
+			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'><b>Skills</b></a><br>"
+			if(length(character_skills) <= 40)
+				if(!length(character_skills))
+					dat += "\[...\]"
+				else
+					dat += "[character_skills]"
+			else
+				dat += "[TextPreview(character_skills)]..."
+			dat += "<BR>"
+			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'><b>Exploitable Information</b></a><br>"
+			if(length(exploitable_info) <= 40)
+				if(!length(exploitable_info))
+					dat += "\[...\]"
+				else
+					dat += "[exploitable_info]"
+			else
+				dat += "[TextPreview(exploitable_info)]..."
+			dat += "<BR>"
+			if(length(pref_species.bloodtypes))
 				dat += "<b>Blood type :</b>"
 				dat += 	"<a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default"]</a><br>"
 			dat += "<b>Faction/Employer :</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
