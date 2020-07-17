@@ -69,14 +69,14 @@
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
 	new /obj/item/borg/upgrade/modkit/shotgun(src)
-	var/loot = pick(/obj/item/book/granter/martial/berserk, /obj/item/twohanded/crucible, /obj/item/gun/ballistic/revolver/doublebarrel/super)
+	var/loot = pick(/obj/item/book/granter/martial/berserk, /obj/item/crucible, /obj/item/gun/ballistic/revolver/doublebarrel/super)
 	new loot(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
 	new /obj/item/crusher_trophy/demon_claws(src)
-	var/loot = pick(/obj/item/book/granter/martial/berserk, /obj/item/twohanded/crucible, /obj/item/gun/ballistic/revolver/doublebarrel/super)
+	var/loot = pick(/obj/item/book/granter/martial/berserk, /obj/item/crucible, /obj/item/gun/ballistic/revolver/doublebarrel/super)
 	new loot(src)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hard
