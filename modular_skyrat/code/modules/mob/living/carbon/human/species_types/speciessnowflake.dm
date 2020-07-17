@@ -11,6 +11,7 @@
 	fluff_desc = "Androids are simply put, fully augmented humans. Many of them did it for the sake of near-immortality, or just because they were rich technophiles."
 
 /datum/species/ipc
+	name = "I.P.C"
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
 	fluff_desc = "IPCs were built by NanoTrasen to cheaply replace humanoid workers. This backfired, as IPCs started to revolt and demand \"human rights\" through various protests, the degree of violence varying - To this day, IPCs suffer with a lot of prejudice for being considered less than sapient and a tool to replace organics."
 
