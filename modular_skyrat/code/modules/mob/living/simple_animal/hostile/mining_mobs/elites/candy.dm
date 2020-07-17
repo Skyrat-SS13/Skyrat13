@@ -276,11 +276,10 @@
 /obj/effect/proc_holder/spell/bloodcrawl/lesser
 	name = "Lesser Blood Crawl"
 	desc = "Use pools of blood to phase out of existence. Requires large pools of blood, and has a 15 second cooldown."
-	cooldown_min = 15 SECONDS
 
 /obj/effect/proc_holder/spell/bloodcrawl/lesser/choose_targets(mob/user = usr)
 	for(var/obj/effect/decal/cleanable/target in range(range, get_turf(user)))
-		if(target.can_bloodcrawl_in() && target.bloodiness >= 30)
+		if(target.can_bloodcrawl_in() && target.bloodiness >= 20)
 			perform(target)
 			return
 	revert_cast()
