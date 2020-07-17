@@ -141,7 +141,7 @@
 			to_chat(usr, "<span class='notice'>This unit already has an shrink module installed!</span>")
 			return FALSE
 
-		R.notransform = TRUE
+		R.mob_transforming = TRUE
 		var/prev_locked_down = R.locked_down
 		R.SetLockdown(1)
 		R.anchored = TRUE
@@ -155,7 +155,7 @@
 		if(!prev_locked_down)
 			R.SetLockdown(0)
 		R.anchored = FALSE
-		R.notransform = FALSE
+		R.mob_transforming = FALSE
 		R.transform = R.transform.Scale(1.25, 1.25)
 		R.hasExpanded = TRUE
 
@@ -183,7 +183,7 @@
 			return FALSE
 
 
-		R.notransform = TRUE
+		R.mob_transforming = TRUE
 		var/prev_locked_down = R.locked_down
 		R.SetLockdown(1)
 		R.anchored = TRUE
@@ -197,7 +197,7 @@
 		if(!prev_locked_down)
 			R.SetLockdown(0)
 		R.anchored = FALSE
-		R.notransform = FALSE
+		R.mob_transforming = FALSE
 		R.transform = R.transform.Scale(0.8, 0.8)
 		R.hasShrunk = TRUE
 

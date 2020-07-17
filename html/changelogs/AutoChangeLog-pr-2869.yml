@@ -1,0 +1,8 @@
+author: "NotRanged"
+delete-after: True
+changes: 
+  - rscadd: "Forcing open an airlock with Jaws of Life damages the airlock somewhat."
+  - tweak: "Holosign creators (ATMOS fans, security barriers etc) show the amount of current active projections on examine."
+  - tweak: "The Space Heater machinery now has the power cell included in its recipe, instead of adding it after construction."
+  - tweak: "You can now click sheets and upgrades with the RCD, instead of exclusively the other way around."
+  - bugfix: "Radiation collectors now check for powergrid upon construction."
