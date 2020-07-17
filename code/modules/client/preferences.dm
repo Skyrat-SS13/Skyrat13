@@ -377,15 +377,27 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 //END OF SKYRAT EDIT
 
 			dat += "<b>[nameless ? "Default designation" : "Name"]:</b>"
-			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
+			dat += " <a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
 
 			dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
 			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
 			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a><BR>"
-
-			dat += "<b>Special Names:</b><BR>"
 			var/old_group
-			for(var/custom_name_id in GLOB.preferences_custom_names)
+			//skyrat edit - generalized religion
+			for(var/custom_name_id in list("religion", "deity"))
+				var/namedata = GLOB.preferences_custom_names[custom_name_id]
+				if(!old_group)
+					old_group = namedata["group"]
+				else if(old_group != namedata["group"])
+					old_group = namedata["group"]
+					dat += "<br>"
+				dat += "<b>[custom_name_id]:</b> <a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a>"
+			dat += "<br>"
+			//
+			
+			dat += "<b>Special Names:</b><BR>"
+			old_group = null
+			for(var/custom_name_id in (GLOB.preferences_custom_names - list("religion", "deity"))) //skyrat edit
 				var/namedata = GLOB.preferences_custom_names[custom_name_id]
 				if(!old_group)
 					old_group = namedata["group"]
@@ -444,8 +456,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += 	"<a href='?_src_=prefs;preference=general_records;task=input'>General</a>"
 			dat += 	"<a href='?_src_=prefs;preference=security_records;task=input'>Security</a>"
 			dat += 	"<a href='?_src_=prefs;preference=medical_records;task=input'>Medical</a><br>"
-			dat += 	"<b>Character :</b>"
-			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a>"
+			dat += 	"<b>Character :</b><br>"
+			dat += 	"<a href='?_src_=prefs;preference=flavor_background;task=input'>Background</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=character_skills;task=input'>Skills</a><br>"
 			dat += 	"<a href='?_src_=prefs;preference=exploitable_info;task=input'>Exploitable Information</a><br>"
 			if(pref_species.bloodtypes.len)
