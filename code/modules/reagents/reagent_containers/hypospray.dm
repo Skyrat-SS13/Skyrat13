@@ -194,14 +194,15 @@
 	volume = 250
 	list_reagents = list(/datum/reagent/water/holywater = 150, /datum/reagent/peaceborg_tire = 50, /datum/reagent/peaceborg_confuse = 50)
 	amount_per_transfer_from_this = 50
+
 // SKYRAT EDIT: Adding Injectors to ChemMaster
 /obj/item/reagent_containers/hypospray/medipen/empty
 	name = "medipen"
 	desc = "An empty medipen."
 	icon_state = "lepopen"
-	volume = 10
+	volume = 20
 	list_reagents = null
-	amount_per_transfer_from_this = 10
+	amount_per_transfer_from_this = 20
 	ignore_flags = FALSE //so you can't medipen through hardsuits
 
 #define HYPO_SPRAY 0
