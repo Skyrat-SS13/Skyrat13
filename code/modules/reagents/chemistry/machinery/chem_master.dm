@@ -283,7 +283,7 @@
 				vol_each_max = min(20, vol_each_max)
 			// SKYRAT EDIT: Medipens/injectors
 			else if (item_type == "injector")
-				vol_each_max = min(20, vol_each_max)
+				vol_each_max = min(15, vol_each_max)
 			else
 				return FALSE
 			if(vol_each_text == "auto")
