@@ -389,7 +389,7 @@
 			// SKYRAT EDIT: Medipens/injectors
 			if(item_type == "injector")
 				for(var/datum/reagent/M in reagents.reagent_list)
-					if(!istype(M, /datum/reagent/medicine) && !(flags_1 & EMAGGED))
+					if(!istype(M, /datum/reagent/medicine))
 						to_chat(usr, "<span class = 'warning'>Non-medicinal reagent detected. Halting operation.</span>")
 						return FALSE
 				var/obj/item/reagent_containers/hypospray/medipen/empty/P

@@ -200,9 +200,9 @@
 	name = "medipen"
 	desc = "An empty medipen."
 	icon_state = "lepopen"
-	volume = 20
+	volume = 15
 	list_reagents = null
-	amount_per_transfer_from_this = 20
+	amount_per_transfer_from_this = 15
 
 #define HYPO_SPRAY 0
 #define HYPO_INJECT 1
