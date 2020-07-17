@@ -87,3 +87,9 @@
 	conferred_embed = list("embed_chance" = 30, "pain_mult" = 0, "jostle_pain_mult" = 0, "ignore_throwspeed_threshold" = TRUE)
 	splint_factor = 0.4
 	custom_price = 500
+
+/obj/item/stack/sticky_tape/infinite //endless tape that applies far faster, for maximum honks
+	name = "endless sticky tape"
+	desc = "This roll of sticky tape somehow has no end."
+	endless = TRUE
+	apply_time = 10
