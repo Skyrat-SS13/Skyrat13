@@ -60,4 +60,4 @@
 /mob/living/simple_animal/hostile/asteroid/miner/death(gibbed)
 	. = ..()
 	if(prob(crusher_chance))
-		new /obj/item/twohanded/kinetic_crusher(src.loc)
+		new /obj/item/kinetic_crusher(src.loc)
