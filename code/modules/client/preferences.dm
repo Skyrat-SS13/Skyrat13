@@ -1780,7 +1780,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 		dat += "<div style='padding-left: 20px;'>"
 		for(var/listy in adv_markings[BP])
 			var/list/bruh = adv_markings[BP][listy]
-			dat += "<div style='color: [font_color];padding-top: 10px;'><b>[capitalize(bruh["name"])]</b></div>"
+			dat += "<div style='color: [font_color];padding-top:10px;padding-bottom;10px;'><b>[capitalize(bruh["name"])]</b></div>"
 			dat += "<div style='color: [font_desc];'><b>Description:</b> [bruh["desc"] ? bruh["desc"] : "None"]</div> "
 			if(bruh["has_color"])
 				dat += "<span style='border: 1px solid #161616; background-color: [bruh["color"]];'>&nbsp;&nbsp;&nbsp;</span><a href='?_src_=prefs;preference=adv_markings;task=update;new_mark=color;body_zone=[BP];marking=[listy];'>Color</a>"
