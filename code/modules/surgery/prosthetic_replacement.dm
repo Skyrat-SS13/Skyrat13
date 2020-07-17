@@ -15,7 +15,7 @@
 
 /datum/surgery_step/add_prosthetic
 	name = "Add prosthetic"
-	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item/twohanded/required/chainsaw = 100, /obj/item/melee/synthetic_arm_blade = 100)
+	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item = 100, /obj/item/melee/synthetic_arm_blade = 100)
 	time = 32
 	var/organ_rejection_dam = 0
 

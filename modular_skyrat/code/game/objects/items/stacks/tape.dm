@@ -4,38 +4,37 @@
 	desc = "Used for sticking to things for sticking said things to people."
 	icon = 'modular_skyrat/icons/obj/tapes.dmi'
 	icon_state = "tape_w"
-	var/prefix = "sticky"
 	item_flags = NOBLUDGEON
 	amount = 5
 	max_amount = 5
 	resistance_flags = FLAMMABLE
 	grind_results = list(/datum/reagent/cellulose = 5)
 
-	var/list/conferred_embed = EMBED_HARMLESS
-	var/overwrite_existing = FALSE
 	w_class = WEIGHT_CLASS_TINY
 	splint_factor = 0.8
+	var/apply_time = 30
+	var/endless = FALSE
+	var/prefix = "sticky"
+	var/list/conferred_embed = EMBED_HARMLESS
+	var/overwrite_existing = FALSE
 
-//used for taping people's mouths shut
-/obj/item/stack/sticky_tape/proc/handle_speech(datum/source, list/speech_args)
-	speech_args[SPEECH_MESSAGE] = ""
-	to_chat(source, "<span class='warning'>You try to speak, but \the [src] prevents you!</span>")
-
-/obj/item/stack/sticky_tape/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/stack/sticky_tape/afterattack(atom/target, mob/living/user)
 	if(!istype(target, /obj/item))
 		if(iscarbon(target) && user.a_intent == INTENT_GRAB && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 			var/mob/living/carbon/C = target
 			var/obj/item/bodypart/head/shoeonhead = C.get_bodypart(BODY_ZONE_HEAD)
-			if(istype(shoeonhead) && C.wear_mask)
-				C.visible_message(message = "<span class='danger'>[user] tries to tape [C]'s mouth closed with \the [src]!</span>", self_message = "<span class='userdanger'>[user] tries to tape your mouth closed with \the [src]!</span>", ignored_mobs = list(user))
-				to_chat(user, "<span class='warning'>You try to gag [C] with \the [src]!</span>")
-				if(do_after_mob(user, C, 4 SECONDS))
+			if(istype(shoeonhead) && !shoeonhead.tapered && !C.wear_mask)
+				C.visible_message(message = "<span class='danger'>[user] tries to tape [C]'s mouth shut with \the [src]!</span>", self_message = "<span class='userdanger'>[user] tries to tape your mouth shut with \the [src]!</span>", ignored_mobs = list(user))
+				to_chat(user, "<span class='warning'>You try to tape [C]'s mouth closed with \the [src]!</span>")
+				if(do_after_mob(user, C, apply_time * 1.5))
 					shoeonhead.get_stickied(src, user)
 				else
 					to_chat(user, "<span class='warning'>You fail to gag \the [C] with \the [src].</span>")
 		return
 	
 	var/obj/item/I = target
+	if(!istype(I))
+		return
 
 	if(I.embedding && I.embedding == conferred_embed)
 		to_chat(user, "<span class='warning'>[I] is already coated in [src]!</span>")
@@ -43,17 +42,46 @@
 
 	user.visible_message("<span class='notice'>[user] begins wrapping [I] with [src].</span>", "<span class='notice'>You begin wrapping [I] with [src].</span>")
 
-	if(do_after(user, 30, target=I))
+	if(do_after(user, apply_time, target=I))
 		I.embedding = conferred_embed
 		I.updateEmbedding()
 		to_chat(user, "<span class='notice'>You finish wrapping [I] with [src].</span>")
-		use(1)
+		if(!endless)
+			use(1)
 		I.name = "[prefix] [I.name]"
 
 		if(istype(I, /obj/item/grenade))
 			var/obj/item/grenade/sticky_bomb = I
 			sticky_bomb.sticky = TRUE
 
+//used for taping people's mouths shut
+/obj/item/stack/sticky_tape/proc/handle_speech(datum/source, list/speech_args)
+	if(ismob(source))
+		to_chat(source, "<span class='warning'>You try to speak, but \the [src] prevents you!</span>")
+	var/list/msg = splittext_char(speech_args[SPEECH_MESSAGE], " ")
+	for(var/i in msg)
+		i = ""
+		if(prob(50))
+			for(var/y in 1 to rand(1,5))
+				i += "m"
+		if(prob(50))
+			for(var/y in 1 to rand(1,3))
+				i += "h"
+		for(var/y in 1 to rand(1,3))
+			i += "m"
+		if(prob(50))
+			for(var/y in 1 to rand(1,2))
+				i += "h"
+	msg += pick("...", ".")
+	speech_args[SPEECH_SPANS] -= SPAN_YELL
+	speech_args[SPEECH_MESSAGE] = capitalize(jointext(msg, " "))
+
+/obj/item/stack/sticky_tape/infinite //endless tape that applies far faster, for maximum honks
+	name = "endless sticky tape"
+	desc = "This roll of sticky tape somehow has no end."
+	endless = TRUE
+	apply_time = 10
+  
 /obj/item/stack/sticky_tape/super
 	name = "super sticky tape"
 	singular_name = "super sticky tape"
@@ -82,14 +110,9 @@
 	name = "surgical tape"
 	singular_name = "surgical tape"
 	desc = "Made for patching broken bones back together alongside bone gel, not for playing pranks."
-	//icon_state = "tape_spikes"
+	icon_state = "tape_surgical"
 	prefix = "surgical"
 	conferred_embed = list("embed_chance" = 30, "pain_mult" = 0, "jostle_pain_mult" = 0, "ignore_throwspeed_threshold" = TRUE)
 	splint_factor = 0.4
 	custom_price = 500
-
-/obj/item/stack/sticky_tape/infinite //endless tape that applies far faster, for maximum honks
-	name = "endless sticky tape"
-	desc = "This roll of sticky tape somehow has no end."
-	endless = TRUE
-	apply_time = 10
+	apply_time = 40
