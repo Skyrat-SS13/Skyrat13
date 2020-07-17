@@ -98,7 +98,7 @@
 
 /datum/status_effect/regenerative_core/on_apply()
 	. = ..()
-	owner.adjust_nutrition(nutrition)
+	owner.set_nutrition(max(NUTRITION_LEVEL_WELL_FED, owner.nutrition))
 	for(var/reagent in reagents_apply)
 		owner.reagents?.add_reagent(reagent, reagents_apply[reagent][1])
 		owner.reagents?.reaction(owner, reagents_apply[reagent][2])
