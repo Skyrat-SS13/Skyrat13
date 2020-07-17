@@ -1752,6 +1752,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 			p_his = "it's"
 			p_have = "has"
 	dat += "<span style='padding-left: 10px;color: #a899ff;'>[capitalize(p_he)] [p_have] <b>(description)</b> on [p_his] <b>(bodypart)</b>.</span><BR>"
+	dat += "<span style='color:red;'>For the sake of the testmerge, advanced markings are not saved! You will have to set them up again each round.</span>"
 	dat += "</div>"
 	dat += "<center><a href='?_src_=prefs;preference=adv_markings;task=close'>Done</a></center>"
 	dat += "<hr>"
