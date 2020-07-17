@@ -61,7 +61,7 @@
 	throw_speed = 4
 	throw_range = 6
 	embedding = list("pain_mult" = 2, "embed_chance" = 100, "fall_chance" = 0, "embed_chance_turf_mod" = 15)
-	sharpness = IS_SHARP
+	sharpness = SHARP_POINTY
 
 /obj/item/kitchen/knife
 	name = "kitchen knife"
