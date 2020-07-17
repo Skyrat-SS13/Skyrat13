@@ -12,7 +12,7 @@
 		overlays_standing[cache_index] = null
 
 /mob/living/carbon/regenerate_icons()
-	if(notransform)
+	if(mob_transforming)
 		return 1
 	update_inv_hands()
 	update_inv_handcuffed()
@@ -199,11 +199,11 @@
 /mob/living/carbon/update_body()
 	update_body_parts()
 
-/mob/living/carbon/proc/update_body_parts()
+/mob/living/carbon/proc/update_body_parts(force = FALSE) //skyrat edit - force bodypart updating
 	//CHECK FOR UPDATE
 	var/oldkey = icon_render_key
 	icon_render_key = generate_icon_render_key()
-	if(oldkey == icon_render_key)
+	if(oldkey == icon_render_key && !force) //skyrat edit
 		return
 
 	remove_overlay(BODYPARTS_LAYER)

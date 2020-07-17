@@ -198,6 +198,7 @@
 /obj/item/reagent_containers/hypospray/medipen/empty
 	name = "medipen"
 	desc = "An empty medipen."
+	icon_state = "lepopen"
 	volume = 10
 	list_reagents = null
 	amount_per_transfer_from_this = 10

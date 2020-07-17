@@ -82,8 +82,8 @@
 "aC" = (
 /obj/structure/stone_tile/slab,
 /obj/structure/table/wood,
-/obj/item/twohanded/bonespear,
-/obj/item/twohanded/bonespear,
+/obj/item/spear/bonespear,
+/obj/item/spear/bonespear,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "aE" = (
@@ -563,7 +563,7 @@
 /area/xenoarch/arch)
 "df" = (
 /obj/structure/stone_tile/block,
-/obj/item/twohanded/bonespear,
+/obj/item/spear/bonespear,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "dg" = (
@@ -2587,7 +2587,7 @@
 /obj/structure/stone_tile/cracked{
 	dir = 8
 	},
-/obj/item/twohanded/bonespear,
+/obj/item/spear/bonespear,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "nH" = (
@@ -2900,7 +2900,7 @@
 /obj/structure/stone_tile{
 	dir = 4
 	},
-/obj/item/twohanded/bonespear,
+/obj/item/spear/bonespear,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "pC" = (
@@ -3165,7 +3165,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/clothing/head/helmet/roman/legionnaire,
-/obj/item/twohanded/bonespear,
+/obj/item/spear/bonespear,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "qG" = (
@@ -3314,7 +3314,7 @@
 /obj/structure/stone_tile/cracked{
 	dir = 1
 	},
-/obj/item/twohanded/bonespear,
+/obj/item/spear/bonespear,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "rp" = (
@@ -6401,7 +6401,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "He" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-10"
 	},
 /turf/open/floor/plasteel/dark,
@@ -6767,7 +6767,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/storage/belt,
-/obj/item/twohanded/bonespear,
+/obj/item/spear/bonespear,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "IK" = (
@@ -6824,7 +6824,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/scythe,
-/obj/item/twohanded/bonespear,
+/obj/item/spear/bonespear,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "IY" = (

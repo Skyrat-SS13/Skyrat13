@@ -1,0 +1,5 @@
+author: "CameronWoof"
+delete-after: True
+changes: 
+  - tweak: "The ChemMaster will now only allow medicinal reagents to be dispensed into medipens."
+  - tweak: "Medipens printed at the ChemMaster now have a unique icon."

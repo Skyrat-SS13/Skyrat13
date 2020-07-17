@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - rscadd: "End round grief toggle button when the round ends."
+  - rscadd: "End round grief is now a game preference."

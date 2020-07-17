@@ -61,6 +61,14 @@
 	name = "Experimental Clone Pod (Machine Board)"
 	build_path = /obj/machinery/clonepod/experimental
 
+/obj/item/circuitboard/machine/sheetifier
+	name = "Sheet-meister 2000 (Machine Board)"
+	icon_state = "supply"
+	build_path = /obj/machinery/sheetifier
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/matter_bin = 2)
+
 /obj/item/circuitboard/machine/abductor
 	name = "alien board (Report This)"
 	icon_state = "abductor_mod"
@@ -146,7 +154,9 @@
 	req_components = list(
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stock_parts/capacitor = 1,
-		/obj/item/stack/cable_coil = 3)
+		/obj/item/stack/cable_coil = 3,
+		/obj/item/stock_parts/cell = 1) // Skyrat edit: adds cell to recipe
+	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/telecomms/broadcaster
