@@ -25,6 +25,21 @@
 	var/mob/living/L = user.mob
 	L.keybind_stop_active_blocking()
 
+<<<<<<< HEAD
+=======
+/datum/keybinding/living/active_block_toggle
+	hotkey_keys = list("Unbound")
+	name = "active_block_toggle"
+	full_name = "Block (Toggle)"
+	category = CATEGORY_COMBAT
+	description = "Toggles active blocking system using currenet in hand object, or any found object if applicable."
+
+/datum/keybinding/living/active_block_toggle/down(client/user)
+	var/mob/living/L = user.mob
+	L.keybind_toggle_active_blocking()
+	return TRUE
+
+>>>>>>> 76c6c767d9... Merge pull request #12784 from silicons/shields
 /datum/keybinding/living/active_parry
 	hotkey_keys = list("Insert", "G")
 	name = "active_parry"
