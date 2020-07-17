@@ -33,8 +33,10 @@
 		remove_rune(target,user)
 	if(istype(target,/obj/effect/reality_smash))
 		get_power_from_influence(target,user)
+	//Skyrat change here
 	if(istype(target,/obj/effect/broken_illusion))
 		drain_influence(target,user)
+
 	if(istype(target,/turf/open))
 		draw_rune(target,user)
 
