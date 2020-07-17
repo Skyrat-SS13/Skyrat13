@@ -13,7 +13,7 @@
 
 /datum/crafting_recipe/halberd
 	name = "Makeshift halberd"
-	result = /obj/item/spear/halberd
+	result = /obj/item/halberd
 	parts = list(/obj/item/spear = 1,\
 				/obj/item/hatchet = 1)
 	reqs = list(/obj/item/stack/cable_coil = 5,\
