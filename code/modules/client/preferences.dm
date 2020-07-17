@@ -816,7 +816,6 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 				dat += "<h3>Advanced Markings</h3>"
 
 				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=adv_markings;task=menu'>Configure</a>"
-
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
