@@ -349,12 +349,13 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(message[1] == ",")
 		//skyrat edit - fucking hate this i want to use multichar keys
 		var/list/bruh = splittext(message, " ", 2)
-		var/key = bruh[1]
+		if(length(bruh)
+			var/key = bruh[1]
 		//
-		for(var/ld in GLOB.all_languages)
-			var/datum/language/LD = ld
-			if(initial(LD.key) == key)
-				return LD
+			for(var/ld in GLOB.all_languages)
+				var/datum/language/LD = ld
+				if(initial(LD.key) == key)
+					return LD
 	return null
 
 /mob/living/proc/treat_message(message)
