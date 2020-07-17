@@ -963,9 +963,12 @@ datum/status_effect/pacify
 		if(100)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN,20)
 
+//Made for skyrat
 /datum/status_effect/stolen_soul
 	id = "stolen_soul"
+	alert_type = /obj/screen/alert/status_effect/stolen_soul
 	var/healing_to_do = 500
+	
 
 /datum/status_effect/stolen_soul/tick()
 	. = ..()
@@ -980,7 +983,7 @@ datum/status_effect/pacify
 		healing_to_do -= 1
 	
 	if(healing_to_do <= 0)
-		qdel(src)
+		owner.remove_status_effect(src)
 
 /datum/status_effect/stolen_soul/on_apply()
 	. = ..()
@@ -998,3 +1001,8 @@ datum/status_effect/pacify
 /datum/status_effect/stolen_soul/proc/heal_from_bible(datum/source)
 	if(istype(source,/obj/item/storage/book/bible))
 		healing_to_do -= 10
+
+/obj/screen/alert/status_effect/stolen_soul
+	name = "Part of me is gone"
+	desc = "I no longer feel like who i once was. Something's gone... Something's missing... I'm empty."
+	icon_state = "soulless"
