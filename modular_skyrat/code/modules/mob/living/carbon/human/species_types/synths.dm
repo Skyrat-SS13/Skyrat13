@@ -4,9 +4,8 @@
 	say_mod = "states" //inherited from a user's fake species
 	sexes = 0 //it gets it's sexes by the fake species
 	species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //all of these + whatever we inherit from the real species. I know you sick fucks want to fuck synths so yes you get genitals. Degenerates.
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_TOXIMMUNE,TRAIT_CLONEIMMUNE)
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
-	reagent_flags = PROCESS_SYNTHETIC
 	dangerous_existence = 0 //not dangerous anymore i guess
 	blacklisted = 0 //not blacklisted anymore
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc //fuck it
@@ -43,22 +42,6 @@
 	exotic_bloodtype = "SY"
 	//Power cord so they no die hungry
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
-
-/datum/species/synth/spec_revival(mob/living/carbon/human/H)
-	H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]...")
-	sleep(3 SECONDS)
-	H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]...")
-	sleep(3 SECONDS)
-	H.say("Rebooting [pick("blending", "disguise", "morphing")] subsystem...")
-	sleep(3 SECONDS)
-	assume_disguise(fake_species, H)
-	H.say("Unit [H.real_name] is fully functional. Have a nice day.")
-	H.update_body()
-	return
-
-/datum/species/synth/spec_death(gibbed, mob/living/carbon/C)
-	unassume_disguise(C)
-	C.update_body()
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
 	if(S && !istype(S, type))
