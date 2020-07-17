@@ -34,10 +34,11 @@
 			playsound(src,'sound/effects/supermatter.ogg',50,1)
 
 /obj/item/crusher_trophy/legion_shard/on_melee_hit(mob/living/target, mob/living/user)
-	var/obj/item/twohanded/kinetic_crusher/K = loc
+	var/obj/item/kinetic_crusher/K = loc
 	var/is_wielded = TRUE
 	if(istype(loc))
-		is_wielded = K.wielded
+		var/datum/component/two_handed/TH = K.GetComponent(/datum/component/two_handed)
+		is_wielded = TH.wielded
 	if(ishuman(target) && (target.stat == DEAD) && (is_wielded) && user.a_intent == INTENT_GRAB)
 		var/confirm = input("Are you sure you want to turn [target] into a friendly legion?", "Legionification") in list("Yes", "No")
 		if(confirm == "Yes")
