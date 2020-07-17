@@ -380,10 +380,11 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += " <a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
 
 			dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
-			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
-			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a><BR>"
+			dat += "<b>Additional Language:</b> <a href='?_src_=prefs;preference=language;task=menu'>[language ? language : "None"]</a><BR>"
+			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a>"
+			//skyrat edit
+			dat += "<h2>Religion</h2>"
 			var/old_group
-			//skyrat edit - generalized religion
 			for(var/custom_name_id in list("religion", "deity"))
 				var/namedata = GLOB.preferences_custom_names[custom_name_id]
 				if(!old_group)
@@ -392,8 +393,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					old_group = namedata["group"]
 					dat += "<br>"
 				dat += "<b>[capitalize(custom_name_id)]:</b> <a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a><br>"
+			dat += "<h2>Additional Preferences</h2>"
 			//
-			
+			dat += "<b>Auto-Hiss:</b> <a href='?_src_=prefs;preference=auto_hiss'>[auto_hiss ? "Yes" : "No"]</a><BR>"
+
 			dat += "<b>Special Names:</b><BR>"
 			old_group = null
 			for(var/custom_name_id in (GLOB.preferences_custom_names - list("religion", "deity"))) //skyrat edit
@@ -405,10 +408,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					dat += "<br>"
 				dat += "<a href ='?_src_=prefs;preference=[custom_name_id];task=input'><b>[namedata["pref_name"]]:</b> [custom_names[custom_name_id]]</a> "
 			dat += "<br><br>"
-			//SKYRAT EDIT - additional language
-			dat += "<b>Additional Language:</b><br>"
-			dat += "<a href='?_src_=prefs;preference=language;task=menu'>[language ? language : "None"]</a></center><br>"
-			//
 			dat += "<b>Custom job preferences:</b><BR>"
 			dat += "<a href='?_src_=prefs;preference=ai_core_icon;task=input'><b>Preferred AI Core Display:</b> [preferred_ai_core_display]</a><br>"
 			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Preferred Security Department:</b> [prefered_security_department]</a><BR></td>"
