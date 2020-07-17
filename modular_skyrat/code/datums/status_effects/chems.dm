@@ -1,7 +1,5 @@
 /datum/status_effect/chem/breast_enlarger/on_apply()
 	log_game("FERMICHEM: [owner]'s breasts has reached comical sizes. ID: [owner.key]")
-	var/mob/living/carbon/human/H = owner
-	to_chat(H, "<span class='notice'>Your bountiful bosom is so rich with mass, you seriously doubt your clothes will hold much longer.</b></span>")
 	return ..()
 
 /datum/status_effect/chem/breast_enlarger/tick()//If you try to wear clothes, you fail. Slows you down if you're comically huge

@@ -13,11 +13,11 @@
 
 /datum/crafting_recipe/halberd
 	name = "Makeshift halberd"
-	result = /obj/item/twohanded/spear/halberd
-	parts = list(/obj/item/twohanded/spear = 1,\
+	result = /obj/item/halberd
+	parts = list(/obj/item/spear = 1,\
 				/obj/item/hatchet = 1)
 	reqs = list(/obj/item/stack/cable_coil = 5,\
-				/obj/item/twohanded/spear = 1,\
+				/obj/item/spear = 1,\
 				/obj/item/hatchet = 1)
 	time = 60
 	category = CAT_WEAPONRY

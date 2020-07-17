@@ -1,5 +1,5 @@
 //kinetic destroyer (premium crusher)
-/obj/item/twohanded/kinetic_crusher/premiumcrusher
+/obj/item/kinetic_crusher/premiumcrusher
 	icon = 'modular_skyrat/icons/obj/mining.dmi'
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/hammerspc_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/hammerspc_righthand.dmi'
@@ -115,15 +115,13 @@
 	new /obj/effect/temp_visual/kinetic_blast(target)
 	playsound(target.loc, 'sound/weapons/kenetic_accel.ogg', 60, 0)
 
-/obj/item/crusher_trophy/blaster_tubes/mask/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/blaster_tubes/mask/add_to(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	H.slowdown = 0
-	H.slowdown_wielded = 0
 
-/obj/item/crusher_trophy/blaster_tubes/mask/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/blaster_tubes/mask/remove_from(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	H.slowdown = initial(H.slowdown)
-	H.slowdown_wielded = initial(H.slowdown_wielded)
 
 //lava imp
 /obj/item/crusher_trophy/blaster_tubes/impskull
@@ -166,11 +164,11 @@
 		M.gets_drilled(firer)
 	..()
 
-/obj/item/twohanded/kinetic_crusher/harm
+/obj/item/kinetic_crusher/harm
 	desc = "An early design of the proto-kinetic accelerator, it is little more than an combination of various mining tools cobbled together, forming a high-tech club. \
 	While it is an effective mining tool, it did little to aid any but the most skilled and/or suicidal miners against local fauna. Something's very odd about this one, however..."
 
-/obj/item/twohanded/kinetic_crusher/harm/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+/obj/item/kinetic_crusher/harm/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(istype(target, /obj/item/crusher_trophy))
 		var/obj/item/crusher_trophy/T = target
 		T.add_to(src, user)
@@ -238,17 +236,19 @@
 /obj/item/crusher_trophy/king_goat/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
 	marker.damage = 10 //in my testing only does damage to simple mobs so should be fine to have it high
 
-/obj/item/crusher_trophy/king_goat/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/king_goat/add_to(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
+		var/datum/component/two_handed/TH = H.GetComponent(/datum/component/two_handed)
 		H.charge_time = 3
-		H.force_wielded = 5
+		TH.force_wielded = 5
 
-/obj/item/crusher_trophy/king_goat/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/king_goat/remove_from(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
+		var/datum/component/two_handed/TH = H.GetComponent(/datum/component/two_handed)
 		H.charge_time = 15
-		H.force_wielded = 20
+		TH.force_wielded = 20
 
 //hierophant crusher small changes
 /obj/item/crusher_trophy/vortex_talisman
@@ -279,12 +279,12 @@
 /obj/item/crusher_trophy/gladiator/effect_desc()
 	return "the crusher to have a <b>[bonus_value]%</b> chance to block any incoming attack."
 
-/obj/item/crusher_trophy/gladiator/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/gladiator/add_to(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
 		H.block_chance += bonus_value
 
-/obj/item/crusher_trophy/gladiator/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/gladiator/remove_from(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
 		H.block_chance -= bonus_value
