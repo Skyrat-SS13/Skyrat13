@@ -488,7 +488,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Gender:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
 			if(gender != NEUTER && pref_species.sexes)
 				dat += "<b>Body Model:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=body_model'>[features["body_model"] == MALE ? "Masculine" : "Feminine"]</a><BR>"
-			dat += "<b>Species:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><BR>"
+			dat += "<b>Species:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=species;task=menu'>[pref_species.name]</a><BR>"
 			dat += "<b>Custom Species Name:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=custom_species;task=input'>[custom_species ? custom_species : "None"]</a><BR>"
 			dat += "<b>Random Body:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=all;task=random'>Randomize!</A><BR>"
 			dat += "<b>Always Random Body:</b><a href='?_src_=prefs;preference=all'>[be_random_body ? "Yes" : "No"]</A><BR>"
@@ -1712,6 +1712,35 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	popup.open(FALSE)
 //
 
+//SKYRAT EDIT - species menu cool
+/datum/preferences/proc/SetSpecies(mob/user)
+	var/list/dat = list()
+	dat += "<center><h2>Choose a species</h2></center>"
+	dat += "<center><a href='?_src_=prefs;preference=language;task=close'>Done</a></center>"
+	dat += "<hr>"
+	for(var/name in GLOB.roundstart_race_names)
+		var/selected = FALSE
+		var/id = GLOB.roundstart_race_names[name]
+		var/datum/species/S = GLOB.roundstart_race_datums[id]
+		if(!S)
+			return
+		if(pref_species.type == S.type)
+			selected = TRUE
+		var/font_color = "#4682B4"
+		dat += "<div style='padding-top:5px;padding-bottom:5px;'>"
+		dat += "<b><font color='[font_color]'>[name]:</font></b>"
+		dat += "<br>"
+		dat += "[initial(S.fluff_desc)]"
+		dat += "<br>"
+		dat += "<a [selected ? "style='background-color: #32c232;'" : ""] href='?_src_=prefs;preference=species;task=update;species=[id]'>[selected ? "Chosen" : "Choose"]</a><br>"
+		dat += "</div>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Species Preference</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+//
+
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(href_list["jobbancheck"])
 		var/job = sanitizeSQL(href_list["jobbancheck"])
@@ -1777,6 +1806,47 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			else
 				SetChoices(user)
 		return 1
+	//skyrat edit - made species have a proper menu because thats kinda epic
+	else if(href_list["preference"] == "species")
+		switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+				ShowChoices(user)
+			if("update")
+				var/id = href_list["species"]
+				if(id && (id != pref_species.id))
+					var/newtype = GLOB.species_list[id]
+					pref_species = new newtype()
+					//let's ensure that no weird shit happens on species swapping.
+					custom_species = null
+					if(!pref_species.mutant_bodyparts["body_markings"])
+						features["body_markings"] = "None"
+					if(!pref_species.mutant_bodyparts["mam_body_markings"])
+						features["mam_body_markings"] = "None"
+					if(pref_species.mutant_bodyparts["mam_body_markings"])
+						if(features["mam_body_markings"] == "None")
+							features["mam_body_markings"] = "Plain"
+					if(pref_species.mutant_bodyparts["tail_lizard"])
+						features["tail_lizard"] = "Smooth"
+					if(pref_species.id == "felinid")
+						features["mam_tail"] = "Cat"
+						features["mam_ears"] = "Cat"
+					//Now that we changed our species, we must verify that the mutant colour is still allowed.
+					var/temp_hsv = RGBtoHSV(features["mcolor"])
+					if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
+						features["mcolor"] = pref_species.default_color
+					if(features["mcolor2"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
+						features["mcolor2"] = pref_species.default_color
+					if(features["mcolor3"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
+						features["mcolor3"] = pref_species.default_color
+					//We reset the language if it's restricted
+					var/datum/language/L = SSlanguage.languages_by_name[language]
+					if(L && L.restricted)
+						language = ""
+				SetSpecies(user)
+			else
+				SetSpecies(user)
+		return TRUE
 
 	else if(href_list["preference"] == "trait")
 		switch(href_list["task"])
@@ -2099,35 +2169,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference","#"+eye_color) as color|null
 					if(new_eyes)
 						eye_color = sanitize_hexcolor(new_eyes)
-
-				if("species")
-					var/result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_race_names
-					if(result)
-						var/newtype = GLOB.species_list[GLOB.roundstart_race_names[result]]
-						pref_species = new newtype()
-						//let's ensure that no weird shit happens on species swapping.
-						custom_species = null
-						if(!pref_species.mutant_bodyparts["body_markings"])
-							features["body_markings"] = "None"
-						if(!pref_species.mutant_bodyparts["mam_body_markings"])
-							features["mam_body_markings"] = "None"
-						if(pref_species.mutant_bodyparts["mam_body_markings"])
-							if(features["mam_body_markings"] == "None")
-								features["mam_body_markings"] = "Plain"
-						if(pref_species.mutant_bodyparts["tail_lizard"])
-							features["tail_lizard"] = "Smooth"
-						if(pref_species.id == "felinid")
-							features["mam_tail"] = "Cat"
-							features["mam_ears"] = "Cat"
-
-						//Now that we changed our species, we must verify that the mutant colour is still allowed.
-						var/temp_hsv = RGBtoHSV(features["mcolor"])
-						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
-							features["mcolor"] = pref_species.default_color
-						if(features["mcolor2"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
-							features["mcolor2"] = pref_species.default_color
-						if(features["mcolor3"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
-							features["mcolor3"] = pref_species.default_color
 
 				if("custom_species")
 					var/new_species = reject_bad_name(input(user, "Choose your species subtype, if unique. This will show up on examinations and health scans. Do not abuse this:", "Character Preference", custom_species) as null|text)

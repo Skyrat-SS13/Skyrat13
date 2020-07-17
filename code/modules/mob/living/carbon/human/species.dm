@@ -2,6 +2,9 @@
 
 GLOBAL_LIST_EMPTY(roundstart_races)
 GLOBAL_LIST_EMPTY(roundstart_race_names)
+//skyrat edit
+GLOBAL_LIST_EMPTY(roundstart_race_datums)
+//
 
 /datum/species
 	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
@@ -112,6 +115,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/typing_indicator_state
 	//SKYRAT SNOWFLAKE
 	var/list/languagewhitelist = list()
+	var/fluff_desc = "No description given."
+	//
 
 ///////////
 // PROCS //
@@ -134,7 +139,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(S.check_roundstart_eligible())
 			GLOB.roundstart_races |= S.id
 			GLOB.roundstart_race_names["[S.name]"] = S.id
-			qdel(S)
+			//skyrat edit
+			GLOB.roundstart_race_datums["[S.id]"] = S
+			//
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
 
