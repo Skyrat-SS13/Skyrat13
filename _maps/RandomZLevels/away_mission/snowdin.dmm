@@ -2525,10 +2525,13 @@
 "fF" = (
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
+<<<<<<< HEAD
 "fG" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
+=======
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 "fJ" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/bar,
@@ -2889,6 +2892,7 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
+<<<<<<< HEAD
 "gw" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -2898,13 +2902,24 @@
 /obj/machinery/gateway/away{
 	calibrated = 0
 	},
+=======
+"gx" = (
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 /obj/effect/turf_decal/bot,
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/gateway/away,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
+<<<<<<< HEAD
+=======
+"gy" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/awaymission/snowdin/post/gateway)
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 "gz" = (
 /obj/machinery/light/broken{
 	dir = 4
@@ -3247,6 +3262,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
+<<<<<<< HEAD
+=======
+"hl" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/awaymission/snowdin/post/gateway)
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 "hm" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/cable/yellow{
@@ -26623,9 +26646,15 @@ bE
 az
 en
 fh
+<<<<<<< HEAD
 fG
 gw
 gw
+=======
+gy
+hl
+hl
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 hR
 iA
 ju
@@ -26880,7 +26909,11 @@ bE
 dK
 eo
 fh
+<<<<<<< HEAD
 fG
+=======
+gy
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 gx
 hm
 hS
@@ -27137,8 +27170,13 @@ dk
 dK
 ep
 fh
+<<<<<<< HEAD
 fG
 fG
+=======
+gy
+gy
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 hn
 hT
 iC

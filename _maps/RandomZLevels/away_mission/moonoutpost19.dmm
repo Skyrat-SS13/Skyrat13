@@ -192,6 +192,7 @@
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/syndicate)
+<<<<<<< HEAD
 "aG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -207,6 +208,8 @@
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/syndicate)
+=======
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 "aJ" = (
 /obj/structure/alien/weeds,
 /obj/structure/alien/weeds{
@@ -254,9 +257,13 @@
 	},
 /area/awaymission/moonoutpost19/syndicate)
 "aP" = (
+<<<<<<< HEAD
 /obj/machinery/gateway/away{
 	calibrated = 0
 	},
+=======
+/obj/machinery/gateway/away,
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 /turf/open/floor/plasteel/dark{
 	heat_capacity = 1e+006
 	},
@@ -303,6 +310,24 @@
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/syndicate)
+<<<<<<< HEAD
+=======
+"aW" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	heat_capacity = 1e+006
+	},
+/area/awaymission/moonoutpost19/syndicate)
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 "aX" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -41912,9 +41937,15 @@ ac
 ac
 at
 az
+<<<<<<< HEAD
 aG
 aG
 aG
+=======
+aW
+aW
+aW
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 aV
 br
 bB
@@ -42169,7 +42200,11 @@ ac
 ac
 at
 aA
+<<<<<<< HEAD
 aG
+=======
+aW
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 aP
 aX
 bg
@@ -42426,8 +42461,13 @@ ac
 ac
 at
 aB
+<<<<<<< HEAD
 aG
 aG
+=======
+aW
+aW
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 aY
 bh
 bt

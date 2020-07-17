@@ -229,8 +229,13 @@
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "aQ" = (
+<<<<<<< HEAD
 /obj/machinery/gateway/away,
 /obj/effect/turf_decal/sand,
+=======
+/obj/effect/turf_decal/sand,
+/obj/machinery/gateway/away,
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "aS" = (

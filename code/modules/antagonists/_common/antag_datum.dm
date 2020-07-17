@@ -23,11 +23,15 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/show_name_in_check_antagonists = FALSE //Will append antagonist name in admin listings - use for categories that share more than one antag type
 	var/list/blacklisted_quirks = list(/datum/quirk/nonviolent,/datum/quirk/mute) // Quirks that will be removed upon gaining this antag. Pacifist and mute are default.
 	var/threat = 0 // Amount of threat this antag poses, for dynamic mode
+<<<<<<< HEAD
 // SKYRAT CHANGES BEGIN
 	/// Lazy list for antagonists to request the admins objectives.
 	var/list/requested_objective_changes
 // SKYRAT CHANGES END
 
+=======
+	var/show_to_ghosts = FALSE // Should this antagonist be shown as antag to ghosts? Shouldn't be used for stealthy antagonists like traitors
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 
 	var/list/skill_modifiers
 

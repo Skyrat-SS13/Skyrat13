@@ -6,7 +6,12 @@
 	antagpanel_category = "Abductor"
 	job_rank = ROLE_ABDUCTOR
 	show_in_antagpanel = FALSE //should only show subtypes
+<<<<<<< HEAD
 	//threat = 5 Modular Skyrat
+=======
+	threat = 5
+	show_to_ghosts = TRUE
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 	var/datum/team/abductor_team/team
 	var/sub_role
 	var/outfit

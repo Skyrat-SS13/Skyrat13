@@ -15,9 +15,14 @@
 	// Stuff needed to render the map
 	var/map_name
 	var/const/default_map_size = 15
+<<<<<<< HEAD
 	var/obj/screen/map_view/cam_screen
 	/// All the plane masters that need to be applied.
 	var/list/cam_plane_masters
+=======
+	var/obj/screen/cam_screen
+	var/obj/screen/plane_master/lighting/cam_plane_master
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 	var/obj/screen/background/cam_background
 
 /obj/machinery/computer/security/Initialize()
@@ -36,6 +41,7 @@
 	cam_screen.assigned_map = map_name
 	cam_screen.del_on_map_removal = FALSE
 	cam_screen.screen_loc = "[map_name]:1,1"
+<<<<<<< HEAD
 	cam_plane_masters = list()
 	for(var/plane in subtypesof(/obj/screen/plane_master))
 		var/obj/screen/instance = new plane()
@@ -43,16 +49,35 @@
 		instance.del_on_map_removal = FALSE
 		instance.screen_loc = "[map_name]:CENTER"
 		cam_plane_masters += instance
+=======
+	cam_plane_master = new
+	cam_plane_master.name = "plane_master"
+	cam_plane_master.assigned_map = map_name
+	cam_plane_master.del_on_map_removal = FALSE
+	cam_plane_master.screen_loc = "[map_name]:CENTER"
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 	cam_background = new
 	cam_background.assigned_map = map_name
 	cam_background.del_on_map_removal = FALSE
 
 /obj/machinery/computer/security/Destroy()
 	qdel(cam_screen)
+<<<<<<< HEAD
 	QDEL_LIST(cam_plane_masters)
 	qdel(cam_background)
 	return ..()
 
+=======
+	qdel(cam_plane_master)
+	qdel(cam_background)
+	return ..()
+
+/obj/machinery/computer/security/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
+	for(var/i in network)
+		network -= i
+		network += "[idnum][i]"
+
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 /obj/machinery/computer/security/ui_interact(\
 		mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
@@ -74,11 +99,18 @@
 			use_power(active_power_usage)
 		// Register map objects
 		user.client.register_map_obj(cam_screen)
+<<<<<<< HEAD
 		for(var/plane in cam_plane_masters)
 			user.client.register_map_obj(plane)
 		user.client.register_map_obj(cam_background)
 		// Open UI
 		ui = new(user, src, ui_key, "camera_console", name, ui_x, ui_y, master_ui, state)
+=======
+		user.client.register_map_obj(cam_plane_master)
+		user.client.register_map_obj(cam_background)
+		// Open UI
+		ui = new(user, src, ui_key, "CameraConsole", name, ui_x, ui_y, master_ui, state)
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 		ui.open()
 
 /obj/machinery/computer/security/ui_data()
@@ -183,7 +215,6 @@
 	icon_state = "television"
 	icon_keyboard = null
 	icon_screen = "detective_tv"
-	clockwork = TRUE //it'd look weird
 	pass_flags = PASSTABLE
 
 /obj/machinery/computer/security/mining
@@ -201,7 +232,7 @@
 	circuit = /obj/item/circuitboard/computer/research
 
 /obj/machinery/computer/security/hos
-	name = "Head of Security's camera console"
+	name = "\improper Head of Security's camera console"
 	desc = "A custom security console with added access to the labor camp network."
 	network = list("ss13", "labor")
 	circuit = null
@@ -213,7 +244,7 @@
 	circuit = null
 
 /obj/machinery/computer/security/qm
-	name = "Quartermaster's camera console"
+	name = "\improper Quartermaster's camera console"
 	desc = "A console with access to the mining, auxillary base and vault camera networks."
 	network = list("mine", "auxbase", "vault")
 	circuit = null
@@ -229,7 +260,6 @@
 	network = list("thunder")
 	density = FALSE
 	circuit = null
-	clockwork = TRUE //it'd look very weird
 	light_power = 0
 
 /obj/machinery/computer/security/telescreen/Initialize()
@@ -247,11 +277,35 @@
 	name = "entertainment monitor"
 	desc = "Damn, they better have the /tg/ channel on these things."
 	icon = 'icons/obj/status_display.dmi'
-	icon_state = "entertainment"
+	icon_state = "entertainment_blank"
 	network = list("thunder")
+	density = FALSE
+	circuit = null
+	interaction_flags_atom = NONE  // interact() is called by BigClick()
+	var/icon_state_off = "entertainment_blank"
+	var/icon_state_on = "entertainment"
+
+/obj/machinery/computer/security/telescreen/entertainment/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_CLICK, .proc/BigClick)
+
+// Bypass clickchain to allow humans to use the telescreen from a distance
+/obj/machinery/computer/security/telescreen/entertainment/proc/BigClick()
+	interact(usr)
+
+/obj/machinery/computer/security/telescreen/entertainment/proc/notify(on)
+	if(on && icon_state == icon_state_off)
+		say(pick(
+			"Feats of bravery live now at the thunderdome!",
+			"Two enter, one leaves! Tune in now!",
+			"Violence like you've never seen it before!",
+			"Spears! Camera! Action! LIVE NOW!"))
+		icon_state = icon_state_on
+	else
+		icon_state = icon_state_off
 
 /obj/machinery/computer/security/telescreen/rd
-	name = "Research Director's telescreen"
+	name = "\improper Research Director's telescreen"
 	desc = "Used for watching the AI and the RD's goons from the safety of his office."
 	network = list("rd", "aicore", "aiupload", "minisat", "xeno", "test")
 
@@ -259,26 +313,26 @@
 	name = "circuitry telescreen"
 	desc = "Used for watching the other eggheads from the safety of the circuitry lab."
 	network = list("rd")
-
+	
 /obj/machinery/computer/security/telescreen/ce
-	name = "Chief Engineer's telescreen"
+	name = "\improper Chief Engineer's telescreen"
 	desc = "Used for watching the engine, telecommunications and the minisat."
 	network = list("engine", "singularity", "tcomms", "minisat")
 
 /obj/machinery/computer/security/telescreen/cmo
-	name = "Chief Medical Officer's telescreen"
+	name = "\improper Chief Medical Officer's telescreen"
 	desc = "A telescreen with access to the medbay's camera network."
 	network = list("medbay")
 
 /obj/machinery/computer/security/telescreen/vault
-	name = "Vault monitor"
+	name = "vault monitor"
 	desc = "A telescreen that connects to the vault's camera network."
 	network = list("vault")
 
 /obj/machinery/computer/security/telescreen/toxins
-	name = "Bomb test site monitor"
+	name = "bomb test site monitor"
 	desc = "A telescreen that connects to the bomb test site's camera."
-	network = list("toxin")
+	network = list("toxins")
 
 /obj/machinery/computer/security/telescreen/engine
 	name = "engine monitor"
@@ -311,7 +365,7 @@
 	network = list("minisat")
 
 /obj/machinery/computer/security/telescreen/aiupload
-	name = "AI upload monitor"
+	name = "\improper AI upload monitor"
 	desc = "A telescreen that connects to the AI upload's camera network."
 	network = list("aiupload")
 

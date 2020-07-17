@@ -761,9 +761,13 @@
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/gateway)
 "bT" = (
+<<<<<<< HEAD
 /obj/machinery/gateway/away{
 	calibrated = 0
 	},
+=======
+/obj/machinery/gateway/away,
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/gateway)
 "bU" = (

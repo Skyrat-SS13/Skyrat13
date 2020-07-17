@@ -352,11 +352,12 @@ Credit where due:
 	for(var/entry in changelog)
 		changelog_contents += "<li>[entry]</li>"
 	info = replacetext(info, "CLOCKCULTCHANGELOG", changelog_contents)
-
+/*
 /obj/item/paper/servant_primer/oui_getcontent(mob/target)
 	if(!is_servant_of_ratvar(target) && !isobserver(target))
 		return "<HTML><HEAD><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)]<HR>[stamps]</BODY></HTML>"
 	return ..()
+<<<<<<< HEAD
 // SKYRAT EDIT: Credits
 /datum/game_mode/clockwork_cult/generate_credit_text()
 	var/list/round_credits = list()
@@ -374,3 +375,6 @@ Credit where due:
 
 	round_credits += ..()
 	return round_credits
+=======
+*/
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0

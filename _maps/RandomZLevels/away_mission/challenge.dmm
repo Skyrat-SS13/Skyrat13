@@ -902,12 +902,46 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
+<<<<<<< HEAD
 "cW" = (
 /obj/machinery/gateway/away{
 	calibrated = 0
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
+=======
+"cR" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/closed/indestructible{
+	icon_state = "iron0"
+	},
+/area/awaymission/challenge/start)
+"cS" = (
+/obj/machinery/gateway/away,
+/turf/open/floor/bluespace,
+/area/awaymission/challenge/start)
+"cV" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/bluespace,
+/area/awaymission/challenge/start)
+"cW" = (
+/obj/item/clothing/suit/space/hardsuit/shielded/syndi,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/documents/syndicate,
+/obj/structure/safe,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/challenge/end)
+"cX" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/bluespace,
+/area/awaymission/challenge/start)
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 "cZ" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -919,11 +953,16 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
+=======
+/turf/open/floor/bluespace,
+/area/awaymission/challenge/start)
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 "db" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/circuit,
@@ -28134,12 +28173,28 @@ aa
 aa
 aa
 ab
+<<<<<<< HEAD
 ac
 af
 an
 ah
 ad
 an
+=======
+ab
+ab
+dq
+cX
+dq
+ab
+ab
+at
+au
+au
+au
+au
+au
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 ax
 aA
 aF
@@ -28391,9 +28446,22 @@ aa
 aa
 aa
 ab
+<<<<<<< HEAD
 ad
 aj
 an
+=======
+aB
+ab
+dq
+cS
+dc
+dq
+dq
+au
+al
+au
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 ao
 af
 an

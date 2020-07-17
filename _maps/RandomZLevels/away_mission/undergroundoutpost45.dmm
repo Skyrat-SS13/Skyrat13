@@ -3407,6 +3407,7 @@
 	icon_state = "platingdmg1"
 	},
 /area/awaymission/undergroundoutpost45/central)
+<<<<<<< HEAD
 "gR" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -3422,6 +3423,8 @@
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/gateway)
+=======
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 "gU" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating{
@@ -3683,9 +3686,13 @@
 	},
 /area/awaymission/undergroundoutpost45/crew_quarters)
 "hu" = (
+<<<<<<< HEAD
 /obj/machinery/gateway/away{
 	calibrated = 0
 	},
+=======
+/obj/machinery/gateway/away,
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 /turf/open/floor/plasteel/dark{
 	heat_capacity = 1e+006
 	},
@@ -3970,6 +3977,42 @@
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
+<<<<<<< HEAD
+=======
+"hZ" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	heat_capacity = 1e+006
+	},
+/area/awaymission/undergroundoutpost45/gateway)
+"ia" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	heat_capacity = 1e+006
+	},
+/area/awaymission/undergroundoutpost45/gateway)
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 "ib" = (
 /obj/structure/chair{
 	dir = 8
@@ -33247,10 +33290,17 @@ ad
 ad
 gv
 gJ
+<<<<<<< HEAD
 gR
 gR
 ax
 aA
+=======
+ia
+ia
+ia
+it
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 iO
 jh
 jG
@@ -33504,7 +33554,11 @@ ad
 ad
 gv
 gJ
+<<<<<<< HEAD
 gR
+=======
+ia
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 hu
 ay
 aB
@@ -33761,10 +33815,17 @@ ad
 ad
 gw
 gJ
+<<<<<<< HEAD
 gR
 gR
 ax
 aE
+=======
+ia
+ia
+ia
+iv
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 iQ
 jj
 jI

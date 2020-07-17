@@ -65,12 +65,24 @@
 /obj/structure/destructible/cult/pylon,
 /turf/open/floor/circuit/green/off,
 /area/awaymission/wildwest/vault)
+<<<<<<< HEAD
 "av" = (
 /obj/machinery/gateway/away{
 	calibrated = 0
 	},
 /turf/open/floor/circuit/green/off,
 /area/awaymission/wildwest/vault)
+=======
+"aw" = (
+/turf/open/floor/plating/ironsand{
+	icon_state = "ironsand1"
+	})
+"az" = (
+/turf/open/floor/plating/ironsand{
+	icon_state = "ironsand1"
+	},
+/area/awaymission/wildwest/mines)
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 "aA" = (
 /obj/effect/meatgrinder,
 /turf/open/floor/circuit/green/off,
@@ -33231,8 +33243,13 @@ aN
 aN
 aT
 aT
+<<<<<<< HEAD
 aT
 aT
+=======
+aw
+az
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 aT
 aT
 aT

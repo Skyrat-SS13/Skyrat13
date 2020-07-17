@@ -3698,9 +3698,13 @@
 /area/awaymission/academy/academyaft)
 "kI" = (
 /obj/structure/cable,
+<<<<<<< HEAD
 /obj/machinery/gateway/away{
 	calibrated = 1
 	},
+=======
+/obj/machinery/gateway/away,
+>>>>>>> e03948dcba... Merge pull request #12229 from Arturlang/TGUI-3.0
 /turf/open/floor/plating,
 /area/awaymission/academy/academygate)
 "kJ" = (
