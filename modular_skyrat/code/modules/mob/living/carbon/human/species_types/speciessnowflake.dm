@@ -37,7 +37,7 @@
 
 /datum/species/human
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
-	fluff_desc = "Humans come from the Sol system, and are the commanding species of both NanoTrasen and SolGov. Humans are very widespread among the universe, and their influence has grown throughout most know space."
+	fluff_desc = "Homo Sapiens Sapiens - Humans. The dominant species in the galaxy, Humanity originated from the Sol system and have quickly spread their race across the stars in the form of the vast, extraordinarily powerful Solar Federation star-state. They are the commanding species of Nanotrasen, and benefit from the highest social and economical status in both SolFed and NT. While most Humans have since become welcoming of their alien comrades, they encompass a wide variety of cultures and creeds; no one Human is exactly alike."
 
 /datum/species/human/humanoid
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
