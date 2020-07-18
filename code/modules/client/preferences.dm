@@ -552,7 +552,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Species:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=species;task=menu'>[pref_species.name]</a><BR>"
 			dat += "<b>Custom Species Name:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=custom_species;task=input'>[custom_species ? custom_species : "None"]</a><BR>"
 			if(LAZYLEN(pref_species.descriptors) && LAZYLEN(body_descriptors))
-				dat += "<h2>Descriptors:</h2>"
+				dat += "<b>Descriptors:</b><BR>"
 				for(var/entry in body_descriptors)
 					var/datum/mob_descriptor/descriptor = pref_species.descriptors[entry]
 					dat += "<b>[capitalize(descriptor.chargen_label)]:</b> [descriptor.get_standalone_value_descriptor(body_descriptors[entry]) ? descriptor.get_standalone_value_descriptor(body_descriptors[entry]) : "None"] <a href='?_src_=prefs;preference=descriptors;task=input;change_descriptor=[entry]'>Change</a><BR>"
