@@ -29,6 +29,7 @@
 	exotic_bloodtype = "S"
 	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH, TRAIT_LIMBATTACHMENT, TRAIT_TOXIMMUNE, TRAIT_CLONEIMMUNE)
 	languagewhitelist = list("Encoded Audio Language")
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc/synthliz
 
 /datum/species/synthliz/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
 	. = ..()

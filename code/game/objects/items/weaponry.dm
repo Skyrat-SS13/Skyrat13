@@ -795,7 +795,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		to_chat(sucker, "<span class='userdanger'>[owner] bops you with [owner.p_their()] [src.name]!</span>")
 	qdel(src)
 
-
 /obj/item/slapper
 	name = "slapper"
 	desc = "This is how real men fight."

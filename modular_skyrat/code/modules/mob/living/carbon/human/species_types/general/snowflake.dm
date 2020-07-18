@@ -38,7 +38,7 @@
 /datum/species/dwarf
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
 
-/datum/species/mammal
+/datum/species/anthro
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
 
 /datum/species/jelly

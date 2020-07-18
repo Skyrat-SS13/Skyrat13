@@ -5,6 +5,7 @@
 	desc = "The nanites boost the host's natural regeneration, increasing their healing speed. Does not consume nanites if the host is unharmed."
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/necrotic)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/regenerative/check_conditions()
 	if(!host_mob.getBruteLoss() && !host_mob.getFireLoss())
@@ -51,6 +52,7 @@
 	desc = "The nanites purge toxins and chemicals from the host's bloodstream, however it is dangerous to slime biology due to inaccuracy."
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/suffocating, /datum/nanite_program/necrotic)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/purging/check_conditions()
 	var/foreign_reagent = length(host_mob.reagents?.reagent_list)
@@ -72,6 +74,7 @@
 	desc = "The nanites fix neural connections in the host's brain, reversing brain damage and minor traumas."
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/brain_decay)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/brain_heal/check_conditions()
 	var/problems = FALSE
@@ -95,6 +98,7 @@
 	desc = "The nanites stimulate and boost blood cell production in the host."
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/suffocating)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/blood_restoring/check_conditions()
 	if(iscarbon(host_mob))
@@ -152,6 +156,7 @@
 			The added processing power required to analyze the chemicals severely increases the nanite consumption rate. This program is safe with slime biology due to the increased precision."
 	use_rate = 2
 	rogue_types = list(/datum/nanite_program/suffocating, /datum/nanite_program/necrotic)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/purging_advanced/check_conditions()
 	var/foreign_reagent = FALSE
@@ -175,6 +180,7 @@
 			However, this program cannot detect the difference between harmed and unharmed, causing it to consume nanites even if it has no effect."
 	use_rate = 5.5
 	rogue_types = list(/datum/nanite_program/suffocating, /datum/nanite_program/necrotic)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/regenerative_advanced/active_effect()
 	if(iscarbon(host_mob))
@@ -197,6 +203,7 @@
 	desc = "The nanites are able to backup and restore the host's neural connections, potentially replacing entire chunks of missing or damaged brain matter."
 	use_rate = 3
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/brain_heal_advanced/check_conditions()
 	var/problems = FALSE
@@ -222,6 +229,7 @@
 	trigger_cost = 25
 	trigger_cooldown = 120
 	rogue_types = list(/datum/nanite_program/shocking)
+	required_biotypes = MOB_ORGANIC
 
 /datum/nanite_program/defib/on_trigger(comm_message)
 	host_mob.notify_ghost_cloning("Your heart is being defibrillated by nanites. Re-enter your corpse if you want to be revived!")

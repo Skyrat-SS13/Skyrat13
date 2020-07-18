@@ -158,7 +158,17 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 #define BLOOD_COLOR_LIZARD			"#db004D"
 #define BLOOD_COLOR_UNIVERSAL		"#db3300"
 #define BLOOD_COLOR_BUG				"#a37c0f"
+//skyrat blood
+#define BLOOD_COLOR_PLANT			"#99ff33"
+#define BLOOD_COLOR_ALCOHOL			"#800000"
+#define BLOOD_COLOR_GREY			"#a6a6a6"
+#define BLOOD_COLOR_ANGEL			"#ff1a66"
+#define BLOOD_COLOR_MUSHROOM		"#730099"
+#define BLOOD_COLOR_DARK			"#1a1a1a"
+#define BLOOD_COLOR_BIOHAZARD		"#008000"
 #define BLOOD_COLOR_IMP				"#ff0000"
+//
+
 
 //suit sensors: sensor_mode defines
 
