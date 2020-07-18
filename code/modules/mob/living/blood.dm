@@ -276,11 +276,11 @@
 		"GREY" = list("GREY", "SY"),
 		"ANGL" = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "ANGL", "SY", "HF", "PL", "AL", "GREY",\
 						"GEL", "BUG", "X", "L", "U", "SPOR", "DRK", "S", "DMN"),
+		"DMN" = list("ANGL", "DMN", "SY"),
 		"SPOR" = list("SPOR", "SY"),
 		"DRK" = list("DRK", "HF", "SY"),
 		"S" = list("S", "SY", "HF"),
-		"BHZ" = list("BHZ", "SY", "DRK", "BUG", "GREY")
-		"DMN" = list("ANGL", "DMN", "SY")
+		"BHZ" = list("BHZ", "SY", "DRK", "BUG", "GREY"),
 	)
 
 	var/safe = bloodtypes_safe[bloodtype]
