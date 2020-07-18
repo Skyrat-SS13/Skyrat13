@@ -28,3 +28,9 @@
 		if(2)
 			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25, 150)
 			to_chat(owner, "<span class='warning'>Alert: Posibrain damaged.</span>")
+
+/obj/item/organ/brain/fakedemon
+	name = "lesser demonic brain"
+	desc = "<span class='narsiesmall'>NIGHTMARE!</span>"
+	icon = 'modular_Skyrat/icons/obj/surgery.dmi'
+	icon_state = "brain-demon"

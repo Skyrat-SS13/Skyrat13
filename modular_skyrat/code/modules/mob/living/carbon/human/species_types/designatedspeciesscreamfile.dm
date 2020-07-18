@@ -65,5 +65,8 @@
 /datum/species/xeno
 	screamsounds = list('sound/voice/hiss6.ogg')
 
-/datum/species/zombie/infectious
+/datum/species/zombie
 	screamsounds = list('modular_skyrat/sound/zombie/zombie_scream.ogg')
+
+/datum/species/imp
+	screamsounds = list('modular_skyrat/sound/doom/impinjured.wav', 'modular_skyrat/sound/doom/impdies.wav')

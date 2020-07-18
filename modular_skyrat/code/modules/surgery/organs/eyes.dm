@@ -23,3 +23,10 @@
 /obj/item/organ/eyes/insect/moth
 	name = "moffic eyes"
 	desc = "They can only see lämp."
+
+//imp eyes
+/obj/item/organ/eyes/fakedemon
+	name = "lesser demonic eyes"
+	desc = "<span class='danger'>Eyecon of sin.</span>"
+	icon = 'modular_Skyrat/icons/obj/surgery.dmi'
+	icon_state = "eyeballs-demon"

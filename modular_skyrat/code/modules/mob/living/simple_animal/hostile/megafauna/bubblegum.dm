@@ -9,7 +9,7 @@ Removes slaughterlings (because they are bullshit), instead replacing them with 
 */
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum
-	death_sound = 'modular_skyrat/sound/misc/gorenest.ogg' //fuck it
+	death_sound = 'modular_skyrat/sound/doom/gorenest.ogg' //fuck it
 	var/movesound = 'sound/effects/meteorimpact.ogg'
 	songs = list("1860" = sound(file = 'modular_skyrat/sound/ambience/bfgdivision.ogg', repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENCE), "2070" = sound(file = 'modular_skyrat/sound/ambience/theonlythingtheyfearisyou.ogg', repeat = 0, wait = 0, volume = 100, channel = CHANNEL_AMBIENCE)) //Thanks Mr. Infringio!
 	glorymessageshand = list("grabs bubblegum by the leg, and pulls them down! While downed, they climb on their torso and punch through it, smashing their demonic heart!", "goes around bubblegum and climbs them by their back, once on top of their head they punch right through the demon's skull, ripping out brain matter and killing it as it limply falls on the ground!")

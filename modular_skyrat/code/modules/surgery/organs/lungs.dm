@@ -17,3 +17,33 @@
 			owner.adjust_bodytemperature(100*TEMPERATURE_DAMAGE_COEFFICIENT)
 		if(2)
 			owner.adjust_bodytemperature(30*TEMPERATURE_DAMAGE_COEFFICIENT)
+
+/obj/item/organ/lungs/fakedemon
+	name = "lesser demonic lungs"
+	desc = "Breathe and air, until it is done."
+	icon = 'modular_Skyrat/icons/obj/surgery.dmi'
+	icon_state = "lungs-demon"
+	safe_oxygen_min = 0
+	safe_oxygen_max = 1
+	safe_co2_min = 16
+	safe_co2_max = 100
+	cold_level_1_threshold = 300
+	cold_level_2_threshold = 260
+	cold_level_3_threshold = 200
+	heat_level_1_threshold = 400
+	heat_level_2_threshold = 750
+	heat_level_3_threshold = 1500
+	oxy_damage_type = TOX
+	crit_stabilizing_reagent = /datum/reagent/fuel
+	food_reagents = list(/datum/reagent/blood = 10, /datum/reagent/consumable/nutriment = 5, /datum/reagent/fuel/unholywater = 5)
+
+/obj/item/organ/lungs/fakedemon/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
+	. = ..()
+	var/list/breath_gases = breath.gases
+	var/O2_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/oxygen])+(8*breath.get_breath_partial_pressure(breath_gases[/datum/gas/pluoxium]))
+	var/CO2_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/carbon_dioxide])
+	if(O2_pp >= safe_oxygen_max)
+		owner?.reagents?.add_reagent(/datum/reagent/fuel, O2_pp * 0.01)
+		owner?.IgniteMob()
+	if(CO2_pp >= safe_co2_max * 0.35)
+		owner?.reagents?.add_reagent(/datum/reagent/medicine/omnizine, CO2_pp * 0.05)

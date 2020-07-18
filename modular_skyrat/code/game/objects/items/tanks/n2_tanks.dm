@@ -4,7 +4,7 @@
 
 /obj/item/tank/internals/nitrogen
 	name = "nitrogen tank"
-	desc = "A tank of nitrogen. Designed specifically for Vox"
+	desc = "A tank of nitrogen."
 	icon_state = "oxygen_fr"
 	item_state = "oxygen_fr"
 	force = 10
@@ -19,7 +19,6 @@
 	..()
 	air_contents.gases[/datum/gas/nitrogen] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	return
-
 
 /obj/item/tank/internals/nitrogen/belt
 	icon = 'modular_skyrat/icons/obj/tank.dmi'

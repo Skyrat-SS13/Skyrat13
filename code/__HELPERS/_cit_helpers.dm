@@ -91,7 +91,8 @@ GLOBAL_LIST_INIT(meat_types, list(
 	"Mammalian" = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/mammal,
 	"Aquatic" = /obj/item/reagent_containers/food/snacks/carpmeat/aquatic,
 	"Avian" = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/avian,
-	"Insect" = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/insect))
+	"Insect" = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/insect,
+	"Demonic" = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/demon,)) //skyrat edit - demonic meat ooooo
 
 //Crew objective and miscreants stuff
 GLOBAL_VAR_INIT(miscreants_allowed, FALSE)

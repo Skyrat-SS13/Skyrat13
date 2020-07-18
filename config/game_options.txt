@@ -491,6 +491,7 @@ ROUNDSTART_RACES vox
 ROUNDSTART_RACES dunmer
 ROUNDSTART_RACES humanoid
 ROUNDSTART_RACES moth
+ROUNDSTART_RACES imp
 
 ##-------------------------------------------------------------------------------------------
 

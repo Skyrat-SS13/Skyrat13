@@ -33,7 +33,7 @@
 	speed = 1
 	move_to_delay = 3
 	mouse_opacity = MOUSE_OPACITY_ICON
-	deathsound = 'modular_skyrat/sound/misc/gorenest.ogg'
+	deathsound = 'modular_skyrat/sound/doom/gorenest.ogg'
 	deathmessage = " screams in agony, before falling headfirst onto the floor."
 	loot_drop = /obj/item/bloodcrawlbottle
 	speak_emote = list("gurgle")

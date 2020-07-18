@@ -11,7 +11,7 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	move_to_delay = 4
 	projectiletype = /obj/item/projectile/magic/impfireball
-	projectilesound = 'modular_skyrat/sound/misc/impranged.wav'
+	projectilesound = 'modular_skyrat/sound/doom/impranged.wav'
 	ranged = 1
 	ranged_message = "shoots a fireball"
 	ranged_cooldown_time = 70
@@ -28,7 +28,7 @@
 	attack_verb_simple = "claw"
 	a_intent = INTENT_HARM
 	speak_emote = list("groans")
-	attack_sound = 'modular_skyrat/sound/misc/impattacks.wav'
+	attack_sound = 'modular_skyrat/sound/doom/impattacks.wav'
 	aggro_vision_range = 15
 	retreat_distance = 5
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -36,7 +36,7 @@
 	loot = list()
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2)
 	robust_searching = FALSE
-	death_sound = 'modular_skyrat/sound/misc/impdies.wav'
+	death_sound = 'modular_skyrat/sound/doom/impdies.wav'
 	glorymessageshand = list("grabs the imp's eyes and rips them out, shoving the bloody imp aside!", "grabs and crushes the imp's skull apart with their bare hands!", "rips the imp's head clean off with their bare hands!")
 	glorymessagespka = list("sticks their PKA into the imp's mouth and shoots it, showering everything in gore!", "bashes the imp's head into their chest with their PKA!", "shoots off both legs of the imp with their PKA!")
 	glorymessagespkabayonet = list("slices the imp's head off by the neck with the PKA's bayonet!", "repeatedly stabs the imp in their gut with the PKA's bayonet!")
@@ -44,19 +44,19 @@
 
 /mob/living/simple_animal/hostile/asteroid/imp/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
-	playsound(src, 'modular_skyrat/sound/misc/impinjured.wav', rand(25,100), -1) //HURT ME PLENTY
+	playsound(src, 'modular_skyrat/sound/doom/impinjured.wav', rand(25,100), -1) //HURT ME PLENTY
 
 /mob/living/simple_animal/hostile/asteroid/imp/bullet_act(obj/item/projectile/P)
 	. = ..()
-	playsound(src, 'modular_skyrat/sound/misc/impinjured.wav', rand(25,100), -1)
+	playsound(src, 'modular_skyrat/sound/doom/impinjured.wav', rand(25,100), -1)
 
 /mob/living/simple_animal/hostile/asteroid/imp/Aggro()
 	. = ..()
-	playsound(src, pick('modular_skyrat/sound/misc/impsight.wav', 'modular_skyrat/sound/misc/impsight2.wav'), rand(50,75), -1)
+	playsound(src, pick('modular_skyrat/sound/doom/impsight.wav', 'modular_skyrat/sound/doom/impsight2.wav'), rand(50,75), -1)
 
 /mob/living/simple_animal/hostile/asteroid/imp/LoseAggro()
 	. = ..()
-	playsound(src, pick('modular_skyrat/sound/misc/impnearby.wav', 'modular_skyrat/sound/misc/impnearby.wav'), rand(25, 60), -1)
+	playsound(src, pick('modular_skyrat/sound/doom/impnearby.wav', 'modular_skyrat/sound/doom/impnearby.wav'), rand(25, 60), -1)
 
 /obj/item/projectile/magic/impfireball //bobyot y u no use child of fireball
 	name = "demonic fireball" //because it fucking explodes and deals brute damage even when values are set to -1
@@ -74,8 +74,8 @@
 		C.adjust_fire_stacks(firestacks)
 		C.IgniteMob()
 		if(C.stat != DEAD && C.stat != UNCONSCIOUS)
-			playsound(C, 'modular_skyrat/sound/misc/doominjured.wav', 100, -1)
+			playsound(C, 'modular_skyrat/sound/doom/doominjured.wav', 100, -1)
 		else if(C.stat == DEAD)
-			playsound(C, 'modular_skyrat/sound/misc/doomdies.wav', 100, -1)
+			playsound(C, 'modular_skyrat/sound/doom/doomdies.wav', 100, -1)
 		else
-			playsound(C, pick('modular_skyrat/sound/misc/doomscream.wav', 'modular_skyrat/sound/misc/doomscream2.wav'), 100, -1)
+			playsound(C, pick('modular_skyrat/sound/doom/doomscream.wav', 'modular_skyrat/sound/doom/doomscream2.wav'), 100, -1)
