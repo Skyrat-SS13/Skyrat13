@@ -17,6 +17,7 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	exotic_bloodtype = "SY" //synthetic, oxygenless blood
+	rainbowblood = TRUE
 	liked_food = MEAT | FRIED
 	brutemod = 1.2
 	languagewhitelist = list("Vox-pidgin")
