@@ -24,9 +24,10 @@ SUBSYSTEM_DEF(mobs)
 		dead_players_by_zlevel[dead_players_by_zlevel.len] = list()
 
 /datum/controller/subsystem/mobs/fire(resumed = 0)
+	if(resumed)
+		return
 	var/seconds = wait * 0.1
-	if (!resumed)
-		src.currentrun = GLOB.mob_living_list.Copy()
+	src.currentrun = GLOB.mob_living_list.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -38,5 +39,4 @@ SUBSYSTEM_DEF(mobs)
 			L.Life(seconds, times_fired)
 		else
 			GLOB.mob_living_list.Remove(L)
-		if (MC_TICK_CHECK_LOW_PRIORITY)
-			return
+		CHECK_TICK_LOW_PRIORITY
