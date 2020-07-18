@@ -16,9 +16,13 @@
 	var/list/initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOHUNGER,TRAIT_NOBREATH)
 	var/disguise_fail_health = 75 //When their health gets to this level their synthflesh partially falls off
 	var/datum/species/fake_species = null //a species to do most of our work for us, unless we're damaged
-	//Skyrat change - blood
-	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
+	//Skyrat change
+	languagewhitelist = list("Encoded Audio Language")
+	bloodtypes = list("HF", "SY")
+	bloodreagents = list("Synthetic Blood", "Oil")
+	rainbowblood = TRUE
 	exotic_bloodtype = "SY"
+	exotic_blood_color = BLOOD_COLOR_SYNTHETIC
 	//
 	species_language_holder = /datum/language_holder/synthetic
 

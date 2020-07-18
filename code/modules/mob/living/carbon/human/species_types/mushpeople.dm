@@ -26,7 +26,8 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SPOR")
 	exotic_bloodtype = "SPOR"
-	languagewhitelist = list("Mushroom") //Skyrat change - species language whitelist
+	exotic_blood_color = BLOOD_COLOR_MUSHROOM
+	languagewhitelist = list("Mushroom")
 	//
 
 /datum/species/mush/after_equip_job(datum/job/J, mob/living/carbon/human/H)

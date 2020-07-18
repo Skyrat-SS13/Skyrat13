@@ -17,6 +17,7 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "DRK")
 	exotic_bloodtype = "DRK"
+	exotic_blood_color = BLOOD_COLOR_DARK
 	languagewhitelist = list("Shadowtongue") //Skyrat change - species language whitelist
 	//
 

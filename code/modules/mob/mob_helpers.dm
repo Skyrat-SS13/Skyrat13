@@ -99,8 +99,6 @@
 		if(rand(1,100) <= strength * 0.25)
 			if(newletter == " ")
 				newletter = "...huuuhhh..."
-			else if(newletter == ".")
-				newletter = " *BURP*."
 		switch(rand(1,100) <= strength * 0.5)
 			if(1)
 				newletter += "'"
@@ -537,19 +535,19 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		if("S") //Synthlizard
 			. = BLOOD_COLOR_LIZARD
 		if("PL")
-			. = "#99ff33" //Plant people blood. Bright green.
+			. = BLOOD_COLOR_PLANT //Plant people blood. Bright green.
 		if("AL")
-			. = "#800000" //"Alcohol" blood, used by dwarves. Very dark red.
+			. = BLOOD_COLOR_ALCOHOL //"Alcohol" blood, used by dwarves. Very dark red.
 		if("GREY")
-			. = "#a6a6a6" //Abductor blood. Grey, as the name implies.
+			. = BLOOD_COLOR_GREY //Abductor blood. Grey, as the name implies.
 		if("ANGL")
-			. = "#ff1a66" //Angel blood. Pinkish.
+			. = BLOOD_COLOR_ANGEL //Angel blood. Pinkish.
 		if("SPOR")
-			. = "#730099" //Mushroom people blood. Dark purple.
+			. = BLOOD_COLOR_MUSHROOM //Mushroom people blood. Dark purple.
 		if("DRK")
-			. = "#1a1a1a" //"Dark" blood. Used by dunmer and shadowpeople. Straight up dark.
+			. = BLOOD_COLOR_DARK //"Dark" blood. Used by dunmer and shadowpeople. Straight up dark.
 		if("BHZ")
-			. = "#008000" //"Biohazard" blood. Used by zombies. Dark green.
+			. = BLOOD_COLOR_BIOHAZARD //"Biohazard" blood. Used by zombies. Dark green.
 		//
 		//add more stuff to the switch if you have more blood colors for different types
 		// the defines are in _DEFINES/misc.dm

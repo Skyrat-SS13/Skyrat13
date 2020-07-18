@@ -1,9 +1,17 @@
 /datum/species
+	var/list/bloodtypes = list() //If a race has more than one possible bloodtype, set it here. If you input a non-existant (in game terms) blood type i am going to smack you.
+	var/list/bloodreagents = list() //If a race has more than one possible blood reagent, set it here. Note: Do not use the datums themselves, use their names.
+	var/rainbowblood = FALSE //Set to true if this race can have blood colors different from the default one.
 	var/clonemod = 1
 	var/toxmod = 1
 	var/revivesbyhealreq = 0 //They need to pass that health number to revive if they possess the REVIVESBYHEALING trait
 	var/reagent_flags = PROCESS_ORGANIC //Used for metabolizing reagents. We're going to assume you're a meatbag unless you say otherwise.
 	var/icon_eyes = 'icons/mob/human_face.dmi'//Skyrat change
+	var/list/languagewhitelist = list()
+	var/list/descriptors = list(
+		/datum/mob_descriptor/height = "default",
+		/datum/mob_descriptor/build = "default",
+	)
 
 
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)

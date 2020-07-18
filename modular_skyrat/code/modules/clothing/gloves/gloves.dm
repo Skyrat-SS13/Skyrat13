@@ -33,15 +33,11 @@
 	var/bounces = 5
 	var/mode = "none"
 	var/worn = FALSE
-	actions_types = list(/datum/action/item_action/powerstun, /datum/action/item_action/powerbolt)
+	actions_types = list(/datum/action/item_action/powerglove)
 
-/datum/action/item_action/powerstun
-	name = "Stun Mode"
-	desc = "Activate/Deactivate powerglove stun mode."
-
-/datum/action/item_action/powerbolt
-	name = "Lightning Bolt Mode"
-	desc = "Activate/Deactivate lightning bolt mode."
+/datum/action/item_action/powerglove
+	name = "Change Mode"
+	desc = "Change mode your powerglove's mode."
 
 /obj/item/clothing/gloves/color/yellow/power/Initialize()
 	..()
@@ -67,20 +63,16 @@
 		worn = FALSE
 
 /obj/item/clothing/gloves/color/yellow/power/ui_action_click(mob/living/user, action)
-	if(istype(action, /datum/action/item_action/powerstun))
-		if(mode != "stun")
+	if(istype(action, /datum/action/item_action/powerglove))
+		if(mode == "none")
 			mode = "stun"
 			to_chat(user, "<span class='notice'>You will now stun your target.</span>")
-		else
-			mode = "none"
-			to_chat(user, "<span class='notice'>Stun mode deactivated.</span>")
-	else if(istype(action, /datum/action/item_action/powerbolt))
-		if(mode != "bolt")
+		else if(mode == "stun")
 			mode = "bolt"
 			to_chat(user, "<span class='notice'>You will now throw a lightning bolt at your target.</span>")
 		else
 			mode = "none"
-			to_chat(user, "<span class='notice'>Lightning bolt mode deactivated.</span>")
+			to_chat(user, "<span class='notice'>You will now interact normally with your target.</span>")
 
 /obj/item/clothing/gloves/color/yellow/power/Touch(atom/A, proximity)
 	var/mob/user = usr
@@ -102,12 +94,11 @@
 		return FALSE
 
 /obj/item/clothing/gloves/color/yellow/power/proc/Stun(mob/user, mob/living/target, disarming = TRUE, knockdown_force = 100)
-	var/obj/item/stock_parts/cell/our_cell = ourcell
-	if(!our_cell || !our_cell.use(stuncost))
+	if(!ourcell || !ourcell.use(stuncost))
 		return FALSE
 	var/stunpwr = stamforce
-	var/stuncharge = our_cell.charge
-	if(QDELETED(src) || QDELETED(our_cell)) //it was rigged (somehow?)
+	var/stuncharge = ourcell.charge
+	if(QDELETED(src) || QDELETED(ourcell)) //it was rigged (somehow?)
 		return FALSE
 	if(stuncharge < stuncost)
 		target.visible_message("<span class='warning'>[user] has touched [target] with [src]. Luckily it was out of charge.</span>", \
@@ -129,11 +120,13 @@
 	playsound(loc, 'sound/weapons/egloves.ogg', 100, 1, -1)
 	return TRUE
 
-/obj/item/clothing/gloves/color/yellow/power/proc/Bolt(mob/origin = usr,mob/target = null, bolt_energy = 50,bounces = 5,mob/user = usr, usecharge = TRUE)
+/obj/item/clothing/gloves/color/yellow/power/proc/Bolt(mob/origin = usr, mob/target, bolt_energy = 50,bounces = 5, mob/user = usr, usecharge = TRUE)
 	if(usecharge)
 		if(!ourcell.use(boltcost))
-			origin.visible_message("<span class='danger'>[origin] tries to harness lightning from [src], but only a few mild sparks come out...")
+			origin.visible_message("<span class='danger'>[origin] tries to harness lightning to throw at [target], but only sparks come out...</span>")
 			return FALSE
+	if(QDELETED(src) || QDELETED(ourcell)) //it was rigged (somehow?)
+		return FALSE
 	playsound(get_turf(origin), 'sound/magic/lightningshock.ogg', 150, 1, -1)
 	origin.Beam(target,icon_state="lightning[rand(1,12)]",time=5, maxdistance = 7)
 	var/mob/living/current = target

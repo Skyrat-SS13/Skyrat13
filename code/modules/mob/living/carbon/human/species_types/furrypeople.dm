@@ -1,3 +1,4 @@
+/* Moved to modular skyrat to squash the species squash
 /datum/species/mammal
 	name = "Anthromorph"
 	id = "mammal"
@@ -48,7 +49,7 @@
 
 /datum/species/mammal/qualifies_for_rank(rank, list/features)
 	return TRUE
-
+*/
 
 //Alien//
 /datum/species/xeno
