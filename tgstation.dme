@@ -3733,6 +3733,7 @@
 #include "modular_skyrat\code\modules\cargo\packs\misc.dm"
 #include "modular_skyrat\code\modules\cargo\packs\special.dm"
 #include "modular_skyrat\code\modules\client\asset_cache.dm"
+#include "modular_skyrat\code\modules\client\ckey_mob_assignment.dm"
 #include "modular_skyrat\code\modules\client\preferences_toggles.dm"
 #include "modular_skyrat\code\modules\client\loadout\__donator.dm"
 #include "modular_skyrat\code\modules\client\loadout\_defines.dm"

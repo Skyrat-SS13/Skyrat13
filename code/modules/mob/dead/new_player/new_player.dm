@@ -174,7 +174,7 @@
 		if(MS.attack_ghost(src, latejoinercalling = TRUE))
 			SSticker.queued_players -= src
 			SSticker.queue_delay = 4
-			qdel(src)
+			//qdel(src)
 
 	else if(!href_list["late_join"])
 		new_player_panel()
@@ -298,7 +298,7 @@
 	observer.update_icon()
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	QDEL_NULL(mind)
-	qdel(src)
+	//qdel(src)
 	return TRUE
 
 /proc/get_job_unavailable_error_message(retval, jobtitle)
@@ -648,3 +648,9 @@
 
 		return FALSE //This is the only case someone should actually be completely blocked from antag rolling as well
 	return TRUE
+
+//Skyrat changes
+/mob/dead/new_player/Destroy()
+	stack_trace("A new player was deleted - notiyfy Azarak with this runtime!")
+	return ..()
+//End of skyrat changes
