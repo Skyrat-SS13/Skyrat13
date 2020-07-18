@@ -27,11 +27,11 @@
 	safe_oxygen_max = 1
 	safe_co2_min = 16
 	safe_co2_max = 100
-	cold_level_1_threshold = 300
-	cold_level_2_threshold = 260
+	cold_level_1_threshold = 273.15
+	cold_level_2_threshold = 240
 	cold_level_3_threshold = 200
-	heat_level_1_threshold = 400
-	heat_level_2_threshold = 750
+	heat_level_1_threshold = 600
+	heat_level_2_threshold = 1000
 	heat_level_3_threshold = 1500
 	oxy_damage_type = TOX
 	crit_stabilizing_reagent = /datum/reagent/fuel
