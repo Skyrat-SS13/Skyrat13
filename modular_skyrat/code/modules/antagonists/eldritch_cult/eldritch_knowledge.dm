@@ -188,8 +188,6 @@
 
 /datum/eldritch_knowledge/final/on_finished_recipe(mob/living/user,mob/living/carbon/human/buckled,loc)
 	finished = TRUE
-	for(var/mob/living/carbon/human/humie_to_gib in humies_to_gib)
-		humie_to_gib.gib()
 	return TRUE
 
 /datum/eldritch_knowledge/final/can_gain(datum/antagonist/heretic/heretic)
