@@ -13,11 +13,11 @@
 /datum/species/ipc
 	name = "I.P.C"
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
-	fluff_desc = "IPCs were originally manufactured by NanoTrasen to cheaply replace humanoid workers. This backfired, as IPCs started to revolt and demand \"human rights\" throughout various protests, their degrees of violence varying - To this day, IPCs suffer with a lot of prejudice for being considered lesser than organics and a tool to replace them, even if they did win many of the rights of other sapients."
+	fluff_desc = "IPCs were originally manufactured by NanoTrasen to cheaply replace humanoid workers. This backfired, as IPCs started to revolt and demand human rights throughout various protests, their degrees of violence varying - To this day, IPCs suffer with a lot of prejudice for being considered lesser than organics and a tool to replace them, even if they did win many of the rights of other sapients."
 
 /datum/species/lizard
 	screamsounds = list('modular_citadel/sound/voice/scream_lizard.ogg')
-	fluff_desc = "Lizardperson is an umbrella term for reptile-like sapient species. It is common for on-station lizardpeople to be \"civilized\" ashwalkers, but this is not true for all of them, as reptile-like species come from all sectors of space."
+	fluff_desc = "Lizardperson is an umbrella term for reptile-like sapient species. It is common for on-station lizardpeople to be civilized ashwalkers, but this is not true for all of them, as reptile-like species come from all sectors of space."
 
 /datum/species/skeleton
 	screamsounds = list('modular_citadel/sound/voice/scream_skeleton.ogg')
@@ -100,7 +100,7 @@
 
 /datum/species/xeno
 	screamsounds = list('sound/voice/hiss6.ogg')
-	fluff_desc = "Xenomorph hybrids were initially the result of faulty genetic experimentation with xenos by NanoTrasen researchers, but since then genemods for \"Xenomorphication\" have become very popular among xenophilics. Although widely believed that they share some sort of affinity with normal xenomorphs, this is simply untrue - Xenomorphs are savage, and will ravage xenohybrids without any qualms."
+	fluff_desc = "Xenomorph hybrids were initially the result of faulty genetic experimentation with xenos by NanoTrasen researchers, but since then genemods for \"xenomorphication\" have become very popular among xenophilics. Although widely believed that they share some sort of affinity with normal xenomorphs, this is simply untrue - Xenomorphs are savage, and will ravage xenohybrids without any qualms."
 
 /datum/species/zombie
 	screamsounds = list('modular_skyrat/sound/zombie/zombie_scream.ogg')
