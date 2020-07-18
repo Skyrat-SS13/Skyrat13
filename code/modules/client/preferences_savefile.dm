@@ -537,6 +537,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_wings_color"]			>> features["wings_color"]
 	//SKYRAT CHANGES
 	S["bloodtype"]			>> bloodtype
+	S["bloodreagent"]		>> bloodreagent
+	S["bloodcolor"]			>> bloodcolor
 	//
 
 	//Custom names
@@ -826,7 +828,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_insect_markings"]			, features["insect_markings"])
 	WRITE_FILE(S["feature_meat"]					, features["meat_type"])
 	//SKYRAT CHANGE - Blood
+	WRITE_FILE(S["bloodcolor"]						, bloodcolor)
 	WRITE_FILE(S["bloodtype"]						, bloodtype)
+	WRITE_FILE(S["bloodreagent"]					, bloodreagent)
 	//
 
 	WRITE_FILE(S["feature_has_cock"], features["has_cock"])
