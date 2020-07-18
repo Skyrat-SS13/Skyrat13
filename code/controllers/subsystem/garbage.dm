@@ -118,7 +118,7 @@ SUBSYSTEM_DEF(garbage)
 	for (var/refID in queue)
 		if (!refID)
 			count++
-			if (MC_TICK_CHECK)
+			if (MC_TICK_CHECK_LOW_PRIORITY)
 				return
 			continue
 
@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(garbage)
 			#ifdef TESTING
 			reference_find_on_fail -= refID		//It's deleted we don't care anymore.
 			#endif
-			if (MC_TICK_CHECK)
+			if (MC_TICK_CHECK_LOW_PRIORITY)
 				return
 			continue
 
@@ -160,13 +160,13 @@ SUBSYSTEM_DEF(garbage)
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)
 				HardDelete(D)
-				if (MC_TICK_CHECK)
+				if (MC_TICK_CHECK_LOW_PRIORITY)
 					return
 				continue
 
 		Queue(D, level+1)
 
-		if (MC_TICK_CHECK)
+		if (MC_TICK_CHECK_LOW_PRIORITY)
 			return
 	if (count)
 		queue.Cut(1,count+1)
