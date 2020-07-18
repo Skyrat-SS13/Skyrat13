@@ -3828,6 +3828,7 @@
 #include "modular_skyrat\code\modules\language\technorussian.dm"
 #include "modular_skyrat\code\modules\language\terrorspider.dm"
 #include "modular_skyrat\code\modules\language\vox.dm"
+#include "modular_skyrat\code\modules\language\urdakian.dm"
 #include "modular_skyrat\code\modules\mapping\lavaland_jungle_gen.dm"
 #include "modular_skyrat\code\modules\mining\machine_bluespaceminer.dm"
 #include "modular_skyrat\code\modules\mining\machine_vending.dm"
