@@ -364,6 +364,8 @@
 	
 	//descriptors
 	var/list/show_descs = show_descriptors_to(user)
+	if(length(show_descs))
+		msg += "<BR>"
 	for(var/descrip in show_descs)
 		msg += descrip
 	
