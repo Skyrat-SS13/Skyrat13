@@ -17,9 +17,15 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	exotic_bloodtype = "SY" //synthetic, oxygenless blood
+	rainbowblood = TRUE
 	liked_food = MEAT | FRIED
 	brutemod = 1.2
 	languagewhitelist = list("Vox-pidgin")
+	descriptors = list(
+		/datum/mob_descriptor/height = "default",
+		/datum/mob_descriptor/build = "default",
+		/datum/mob_descriptor/vox_markings = "default",
+	)
 
 /datum/species/vox/before_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/datum/outfit/vox/O = new /datum/outfit/vox
