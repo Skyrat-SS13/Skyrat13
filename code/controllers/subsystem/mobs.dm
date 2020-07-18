@@ -38,5 +38,5 @@ SUBSYSTEM_DEF(mobs)
 			L.Life(seconds, times_fired)
 		else
 			GLOB.mob_living_list.Remove(L)
-		if (MC_TICK_CHECK)
+		if (MC_TICK_CHECK_LOW_PRIORITY)
 			return
