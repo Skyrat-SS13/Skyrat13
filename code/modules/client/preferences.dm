@@ -2171,7 +2171,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						//skyrat edit - avoids picking species restricted stuff
 						language = initial(language)
 						bloodtype = initial(bloodtype)
-						body_descriptors = pref_species.descriptors
+						body_descriptors = list()
+						for(var/i in pref_species.descriptors)
+							var/datum/mob_descriptor/md = pref_species.descriptors[i]
+							body_descriptors[i] = md.current_value
 						//
 
 				if("custom_species")
