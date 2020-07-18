@@ -151,12 +151,16 @@
 					/obj/item/clothing/under/costume/cheongsam = 3,
 					/obj/item/clothing/under/costume/cheongsam/white = 3,
 					/obj/item/clothing/under/costume/cheongsam/red = 3,
+<<<<<<< HEAD
 					// SKYRAT EDIT: Courier Bags and Polychromics
 					/obj/item/storage/backpack/courier/polychromic = 3,
 					/obj/item/storage/backpack/polychromic = 3,
 					/obj/item/storage/backpack/satchel/polychromic = 3,
 					/obj/item/storage/backpack/duffelbag/polychromic = 3)
 					// SKYRAT EDIT CLOSE
+=======
+					/obj/item/storage/backpack/snail = 3)
+>>>>>>> 04df84d1e0... Merge pull request #12776 from timothyteakettle/snail-shells
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 3,
 					/obj/item/clothing/under/syndicate/tacticool/skirt = 3,
 					/obj/item/clothing/mask/balaclava = 3,

@@ -120,14 +120,11 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 
 GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
 
-	//Backpacks
-#define GBACKPACK "Grey Backpack"
-#define GSATCHEL "Grey Satchel"
-#define GDUFFELBAG "Grey Duffel Bag"
-#define LSATCHEL "Leather Satchel"
+//Backpacks
 #define DBACKPACK "Department Backpack"
 #define DSATCHEL "Department Satchel"
 #define DDUFFELBAG "Department Duffel Bag"
+<<<<<<< HEAD
 // SKYRAT EDIT: Courier Bags and Polychromics
 #define PLYSBP "Polychromic Backpack"
 #define PLYSS "Polychromic Satchel"
@@ -135,6 +132,14 @@ GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_
 #define PLYSDB "Polychromic Duffel Bag"
 GLOBAL_LIST_INIT(backbaglist, list(DBACKPACK, DSATCHEL, DDUFFELBAG, GBACKPACK, GSATCHEL, GDUFFELBAG, LSATCHEL, PLYSBP, PLYSS, PLYSCB, PLYSDB))
 // SKYRAT EDIT CLOSE
+=======
+GLOBAL_LIST_INIT(backbaglist, list(DBACKPACK, DSATCHEL, DDUFFELBAG, //everything after this point is a non-department backpack
+	"Grey Backpack" = /obj/item/storage/backpack,
+	"Grey Satchel" = /obj/item/storage/backpack/satchel,
+	"Grey Duffel Bag" = /obj/item/storage/backpack/duffelbag,
+	"Leather Satchel" = /obj/item/storage/backpack/satchel/leather,
+	"Snail Shell" = /obj/item/storage/backpack/snail))
+>>>>>>> 04df84d1e0... Merge pull request #12776 from timothyteakettle/snail-shells
 
 //Suit/Skirt
 #define PREF_SUIT "Jumpsuit"
