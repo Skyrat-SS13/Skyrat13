@@ -45,8 +45,8 @@
 			qdel(src)
 
 /obj/vehicle/ridden/lavaboat/dragon/gladiator
-	name = "lava surfboard"
-	desc = "This thing can be used to cross lava rivers... I guess. Alt click to turn into a shield again."
+	name = "\proper Gladiator's surfboard"
+	desc = "This thing can be used to cross lava rivers... I guess. Alt click to turn into back into a shield."
 	icon = 'modular_skyrat/icons/obj/shields.dmi'
 	icon_state = "raft"
 
@@ -768,7 +768,7 @@
 
 //legion
 /obj/structure/closet/crate/necropolis/tendril/legion_loot
-	name = "screeching crate"
+	name = "screeching legion crate"
 
 /obj/structure/closet/crate/necropolis/tendril/legion_loot/PopulateContents()
 	var/obj/structure/closet/crate/necropolis/tendril/N = new /obj/structure/closet/crate/necropolis/tendril()
