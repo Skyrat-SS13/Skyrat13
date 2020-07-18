@@ -115,6 +115,10 @@
 	var/render_like_organic = FALSE
 	/// This is used for pseudolimbs. Basically replaces the mob overlay icon with this.
 	var/mutable_appearance/custom_overlay = null
+	// These were head vars before, but i had to generify behavior for edge cases
+	// (IPCs have their brain in da chest)
+	var/mob/living/brain/brainmob = null
+	var/obj/item/organ/brain/brain = null
 
 /obj/item/bodypart/Initialize()
 	. = ..()
@@ -217,7 +221,22 @@
 		var/obj/item/organ/O = X
 		O.transfer_to_limb(src, owner)
 	for(var/obj/item/I in src)
-		I.forceMove(T)
+		if(I == brain)
+			if(user)
+				user.visible_message("<span class='warning'>[user] saws [src] open and pulls out a brain!</span>", "<span class='notice'>You saw [src] open and pull out a brain.</span>")
+			if(brainmob)
+				brainmob.container = null
+				brainmob.forceMove(brain)
+				brain.brainmob = brainmob
+				brainmob = null
+			brain.forceMove(T)
+			brain = null
+			update_icon_dropped()
+		else
+			if(istype(I, /obj/item/reagent_containers/pill))
+				for(var/datum/action/item_action/hands_free/activate_pill/AP in I.actions)
+					qdel(AP)
+			I.forceMove(T)
 	if(cavity_item)
 		cavity_item = null
 
