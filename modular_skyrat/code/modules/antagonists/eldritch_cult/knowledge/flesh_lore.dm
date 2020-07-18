@@ -185,7 +185,7 @@
 /datum/eldritch_knowledge/final/flesh_final
 	name = "Priest's Final Hymn"
 	gain_text = "Man of this world. Hear me! For the time of the lord of arms has come!"
-	desc = "To gain this spell you must sacrifice at least 5 people. Bring 3 bodies onto a transmutation rune to either ascend as a terror of the night prime or you can summon a regular terror of the night."
+	desc = "To gain this spell you must sacrifice at least 5 people, and the ritual costs 5 charges. Ascend as a terror of the night prime or you can summon a regular terror of the night."
 	cost = 15
 	route = PATH_FLESH
 
