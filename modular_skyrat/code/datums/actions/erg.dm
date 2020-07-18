@@ -19,5 +19,7 @@
 	. = ..()
 	if(usr.client?.prefs)
 		usr.client.prefs.accept_ERG = !usr.client.prefs.accept_ERG
+		usr.client.prefs.save_preferences()
+		usr.mind?.accept_ERG = usr.client.prefs.accept_ERG
 		to_chat(usr, "<span class='notice'>You <b>[usr.client.prefs.accept_ERG ? "<font color='red'>will</font>" : "<font color='green'>won't</font>"]</b> participate on ERG.</span>")
 		UpdateButtonIcon(FALSE, TRUE)
