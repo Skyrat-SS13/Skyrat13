@@ -845,6 +845,7 @@
 	protected_roles = list("Prisoner","Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 1
+	high_population_requirement = 40
 	weight = 3
 	cost = 20
 	scaling_cost = 15

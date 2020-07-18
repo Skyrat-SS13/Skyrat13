@@ -218,7 +218,7 @@
 
 /datum/eldritch_knowledge/spell/basic/recipe_snowflake_check(mob/living/carbon/human/buckled,loc)
 	. = ..()
-	for(var/obj/item/living_heart/LH in range(1,src))
+	for(var/obj/item/living_heart/LH in range(1,loc))
 		if(!LH.target)
 			return TRUE
 		if(LH.target == buckled)
@@ -228,8 +228,8 @@
 /datum/eldritch_knowledge/spell/basic/on_finished_recipe(mob/living/user,mob/living/carbon/human/buckled,loc)
 	. = TRUE
 	var/mob/living/carbon/carbon_user = user
-	var/obj/item/living_heart/LH = locate() in  range(1,src) + carbon_user.get_all_gear()
-	var/obj/item/forbidden_book/FB = locate() in range(1,src) + carbon_user.get_all_gear()
+	var/obj/item/living_heart/LH = locate() in  range(1,loc) + carbon_user.get_all_gear()
+	var/obj/item/forbidden_book/FB = locate() in range(1,loc) + carbon_user.get_all_gear()
 	if(!LH || !FB)
 		return FALSE
 

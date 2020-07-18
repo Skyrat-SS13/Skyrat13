@@ -45,7 +45,7 @@
 	var/obj/effect/reality_smash/RS = target
 	to_chat(target, "<span class='danger'>You start drawing power from influence...</span>")
 	if(do_after(user,10 SECONDS,FALSE,RS))
-		qdel(RS)
+		RS.before_destroy()
 		charge += 2
 
 ///Gives you a charge and destroys a corresponding influence

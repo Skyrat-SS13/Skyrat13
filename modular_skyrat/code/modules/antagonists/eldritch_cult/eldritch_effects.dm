@@ -248,12 +248,8 @@
 	img = image(icon, src, image_state, OBJ_LAYER)
 	generate_name()
 
-/obj/effect/reality_smash/Destroy()
-	on_destroy()
-	return ..()
-
 ///Custom effect that happens on destruction
-/obj/effect/reality_smash/proc/on_destroy()
+/obj/effect/reality_smash/proc/before_destroy()
 	for(var/cm in minds)
 		var/datum/mind/cultie = cm
 		if(cultie.current?.client)
@@ -263,6 +259,7 @@
 	GLOB.reality_smash_track.smashes -= src
 	img = null
 	new /obj/effect/broken_illusion(drop_location())
+	qdel(src)
 
 ///Makes the mind able to see this effect
 /obj/effect/reality_smash/proc/AddMind(var/datum/mind/cultie)
