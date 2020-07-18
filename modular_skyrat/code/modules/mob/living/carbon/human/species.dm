@@ -1,4 +1,7 @@
 /datum/species
+	var/list/bloodtypes = list() //If a race has more than one possible bloodtype, set it here. If you input a non-existant (in game terms) blood type i am going to smack you.
+	var/list/bloodreagents = list() //If a race has more than one possible blood reagent, set it here. Note: Do not use the datums themselves, use their names.
+	var/rainbowblood = FALSE //Set to true if this race can have blood colors different from the default one.
 	var/clonemod = 1
 	var/toxmod = 1
 	var/revivesbyhealreq = 0 //They need to pass that health number to revive if they possess the REVIVESBYHEALING trait

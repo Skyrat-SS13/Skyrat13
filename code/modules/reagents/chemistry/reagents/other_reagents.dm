@@ -693,11 +693,11 @@
 	mutationtext = "<span class='danger'>The pain subsides. You feel... artificial.</span>"
 
 //Citadel Races
-/datum/reagent/mutationtoxin/mammal
-	name = "Mammal Mutation Toxin"
+/datum/reagent/mutationtoxin/anthro //skyrat edit
+	name = "Anthro Mutation Toxin" //skyrat edit
 	description = "A glowing toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/mammal
+	race = /datum/species/anthro //skyrat edit
 	mutationtext = "<span class='danger'>The pain subsides. You feel... fluffier.</span>"
 
 /datum/reagent/mutationtoxin/insect
