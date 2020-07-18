@@ -106,7 +106,7 @@
 		lore["type"] = EK.type
 		lore["name"] = EK.name
 		lore["cost"] = EK.cost
-		lore["disabled"] = EK.cost <= charge ? FALSE : TRUE
+		lore["disabled"] = (EK.cost <= charge ? FALSE : TRUE) && EK.can_gain(cultie)
 		lore["path"] = EK.route
 		lore["state"] = "Research"
 		lore["flavour"] = EK.gain_text

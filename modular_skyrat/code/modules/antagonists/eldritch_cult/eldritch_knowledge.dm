@@ -90,6 +90,14 @@
 /datum/eldritch_knowledge/proc/on_eldritch_blade(target,user,proximity_flag,click_parameters)
 	return
 
+/**
+  * Created for Skyrat most likely will port over to tg since it sounds like a very good idea to have this proc
+  *
+  * Checks if you can get this knowledge node can be aquired using outside effects. This has nothing to do with having x amount of charges rather it checks external factors.
+  */
+/datum/eldritch_knowledge/proc/can_gain(/datum/antagonist/heretic/heretic)
+	return TRUE
+
 //////////////
 ///Subtypes///
 //////////////
@@ -200,8 +208,11 @@
 		humie_to_gib.gib()
 	return TRUE
 
-
-
+/datum/eldritch_knowledge/final/can_gain(datum/antagonist/heretic/heretic)
+	. = ..()
+	if(heretic.total_sacrifices < 5)
+		return FALSE
+		
 ///////////////
 ///Base lore///
 ///////////////

@@ -118,7 +118,7 @@
 
 /datum/eldritch_knowledge/final/rust_final
 	name = "Rustbringer's Oath"
-	desc = "Bring 3 corpses onto the transmutation rune. After you finish the ritual rust will now automatically spread from the rune. Your healing on rust is also tripled, while you become more resillient overall."
+	desc = "To gain this spell you must sacrifice at least 5 people. Bring 3 corpses onto the transmutation rune. After you finish the ritual rust will now automatically spread from the rune. Your healing on rust is also tripled, while you become more resillient overall."
 	gain_text = "Champion of rust. Corruptor of steel. Fear the dark for Rustbringer has come!"
 	cost = 15
 	route = PATH_RUST
