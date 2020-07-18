@@ -2,7 +2,11 @@
 	name = "shotgun"
 	desc = "A traditional shotgun with wood furniture and a four-shell capacity underneath."
 	icon_state = "shotgun"
+	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/64x_guns_right.dmi'
 	item_state = "shotgun"
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	flags_1 =  CONDUCT_1
@@ -88,13 +92,14 @@
 
 /obj/item/gun/ballistic/shotgun/riot //for spawn in the armory
 	name = "riot shotgun"
-	desc = "A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control."
+	desc = "A modern shotgun with a longer tube and a fixed tactical stock designed for non-lethal riot control."
 	icon_state = "riotshotgun"
+	item_state = "shotgun"
 	fire_delay = 7
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
 	sawn_desc = "Come with me if you want to live."
-	unique_reskin = list("Tactical" = "riotshotgun",
-						"Wood Stock" = "wood_riotshotgun"
+	unique_reskin = list("Polymer" = "riotshotgun",
+						"Ithaca '37" = "wood_riotshotgun"
 						)
 
 /obj/item/gun/ballistic/shotgun/riot/attackby(obj/item/A, mob/user, params)
@@ -228,13 +233,14 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "combat shotgun"
-	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
+	desc = "A lightweight semi-automatic assault shotgun with a 6+1 shell capacity. Breach & Clear."
 	icon_state = "cshotgun"
+	item_state = "shotgun_combat"
 	fire_delay = 5
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
 	w_class = WEIGHT_CLASS_HUGE
-	unique_reskin = list("Tactical" = "cshotgun",
-						"Slick" = "cshotgun_slick"
+	unique_reskin = list("FP6" = "cshotgun",
+						"XM1014" = "cshotgun_slick"
 						)
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact
