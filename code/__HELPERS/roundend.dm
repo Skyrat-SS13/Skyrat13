@@ -269,7 +269,7 @@
 	if(ERG_turf)
 		for(var/mob/living/L in GLOB.player_list)
 			if(L.client?.prefs?.accept_ERG)
-				do_teleport(L, ERG_turf)
+				do_teleport(teleatom = L, destination = ERG_turf, channel = TELEPORT_CHANNEL_FREE)
 				SEND_SOUND(L, sound('modular_skyrat/sound/ambience/e1m1.mid', TRUE, 0, CHANNEL_ADMIN, 100))
 			else
 				if(iscarbon(L))
