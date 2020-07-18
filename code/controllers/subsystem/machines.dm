@@ -27,10 +27,11 @@ SUBSYSTEM_DEF(machines)
 
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
-	if (!resumed)
-		for(var/datum/powernet/Powernet in powernets)
-			Powernet.reset() //reset the power state.
-		src.currentrun = processing.Copy()
+	if (resumed)
+		return
+	for(var/datum/powernet/Powernet in powernets)
+		Powernet.reset() //reset the power state.
+	src.currentrun = processing.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -46,8 +47,7 @@ SUBSYSTEM_DEF(machines)
 			processing -= thing
 			if (!QDELETED(thing))
 				thing.datum_flags &= ~DF_ISPROCESSING
-		if (MC_TICK_CHECK)
-			return
+		CHECK_TICK_LOW_PRIORITY
 
 /datum/controller/subsystem/machines/proc/setup_template_powernets(list/cables)
 	for(var/A in cables)
