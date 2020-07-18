@@ -184,7 +184,7 @@
 		return FALSE
 	var/counter = 0
 	
-	for(var/mob/living/carbon/human/H in range(1,src))
+	for(var/mob/living/carbon/human/H in range(1,loc))
 		if(H.stat != DEAD)
 			continue
 
