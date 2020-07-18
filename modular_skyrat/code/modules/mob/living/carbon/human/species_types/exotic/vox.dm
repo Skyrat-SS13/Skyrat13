@@ -21,6 +21,11 @@
 	liked_food = MEAT | FRIED
 	brutemod = 1.2
 	languagewhitelist = list("Vox-pidgin")
+	descriptors = list(
+		/datum/mob_descriptor/height = "default",
+		/datum/mob_descriptor/build = "default",
+		/datum/mob_descriptor/vox_markings = "default",
+	)
 
 /datum/species/vox/before_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/datum/outfit/vox/O = new /datum/outfit/vox

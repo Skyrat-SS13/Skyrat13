@@ -8,7 +8,7 @@
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	dangerous_existence = 0 //not dangerous anymore i guess
 	blacklisted = 0 //not blacklisted anymore
-	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc //fuck it
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat //har har i am funney
 	gib_types = /obj/effect/gibspawner/robot
 	damage_overlay_type = "robotic"
 	limbs_id = "synth"

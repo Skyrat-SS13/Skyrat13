@@ -105,15 +105,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	var/whitelisted = 0 		//Is this species restricted to certain players?
 	var/whitelist = list() 		//List the ckeys that can use this species, if it's whitelisted.: list("John Doe", "poopface666", "SeeALiggerPullTheTrigger") Spaces & capitalization can be included or ignored entirely for each key as it checks for both.
 	var/icon_limbs //Overrides the icon used for the limbs of this species. Mainly for downstream, and also because hardcoded icons disgust me. Implemented and maintained as a favor in return for a downstream's implementation of synths.
-	//Skyrat snowflake
-	var/list/bloodtypes = list() //If a race has more than one possible bloodtype, set it here. If you input a non-existant (in game terms) blood type i am going to smack you.
-	var/list/bloodreagents = list() //If a race has more than one possible blood reagent, set it here. Note: Do not use the datums themselves, use their names.
-	var/rainbowblood = FALSE //Set to true if this race can have blood colors different from the default one.
-
-	var/list/languagewhitelist = list()
 	/// Our default override for typing indicator state
 	var/typing_indicator_state
-
 
 ///////////
 // PROCS //
@@ -121,9 +114,23 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 
 /datum/species/New()
-
-	if(!limbs_id)	//if we havent set a limbs id to use, just use our own id
+	//if we havent set a limbs id to use, just use our own id
+	if(!limbs_id)
 		limbs_id = id
+	
+	//skyrat change
+	//Set our descriptors proper
+	if(LAZYLEN(descriptors))
+		var/list/descriptor_datums = list()
+		for(var/desctype in descriptors)
+			var/datum/mob_descriptor/descriptor = new desctype
+			descriptor.current_value = descriptors[desctype]
+			if(descriptor.current_value == "default")
+				descriptor.current_value = descriptor.default_value
+			descriptor_datums[descriptor.name] = descriptor
+		descriptors = descriptor_datums
+	//
+	
 	..()
 
 

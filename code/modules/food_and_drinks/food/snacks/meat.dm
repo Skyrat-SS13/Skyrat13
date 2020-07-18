@@ -172,6 +172,14 @@
 	filling_color = "#000000"
 	tastes = list("metal" = 1)
 
+//skyrat edit
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc/synthliz
+	icon_state = "ipcmeat"
+	desc = "Gross robot lizard meat."
+	filling_color = "#000000"
+	tastes = list("metal" = 1)
+//
+
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/avian
 	desc = "Tastes like chicken, that's because it is!"
 	icon_state = "birdmeat"
