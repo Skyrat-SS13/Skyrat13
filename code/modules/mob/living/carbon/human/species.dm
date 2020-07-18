@@ -110,9 +110,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/icon_limbs //Overrides the icon used for the limbs of this species. Mainly for downstream, and also because hardcoded icons disgust me. Implemented and maintained as a favor in return for a downstream's implementation of synths.
 	/// Our default override for typing indicator state
 	var/typing_indicator_state
-	//SKYRAT SNOWFLAKE
-	var/fluff_desc = "No description given."
-	//
 
 ///////////
 // PROCS //
@@ -123,7 +120,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	//if we havent set a limbs id to use, just use our own id
 	if(!limbs_id)
 		limbs_id = id
-	
+
 	//skyrat change
 	//Set our descriptors proper
 	if(LAZYLEN(descriptors))
@@ -136,7 +133,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			descriptor_datums[descriptor.name] = descriptor
 		descriptors = descriptor_datums
 	//
-	
+
 	..()
 
 
@@ -324,7 +321,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
 		C.dna.blood_type = exotic_bloodtype
-	
+
 	//skyrat edti
 	if(C.client)
 		var/client/cli = C.client
@@ -375,7 +372,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 						H.physiology.footstep_type = null
 			else
 				H.physiology.footstep_type = null
-				
+
 	/* SKYRAT EDIT - START, COMMENTED OUT
 		if(H.client && has_field_of_vision && CONFIG_GET(flag/use_field_of_vision))
 			H.LoadComponent(/datum/component/field_of_vision, H.field_of_vision_type)

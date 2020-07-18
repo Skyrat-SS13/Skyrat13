@@ -1,6 +1,7 @@
 /datum/species
 	var/list/screamsounds = list('modular_citadel/sound/voice/scream_m1.ogg', 'modular_citadel/sound/voice/scream_m2.ogg')
 	var/list/femalescreamsounds = list()
+	var/fluff_desc = "No description."
 
 /datum/species/synth
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
@@ -66,9 +67,21 @@
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
 	fluff_desc = "The result of genetic modification for use in colonization efforts, Dwarves are extremely distant relatives of Humans. Originally made for planets with extreme gravity, Dwarves are much more bulky and short in their physiology; along with various other changes, the most unusual outcome was their biological dependence on alcohol to survive. If a Dwarf goes too long without alcohol, they will suffer similar effects to extreme dehydration in humans, eventually culminating in death."
 
-/datum/species/mammal
+/datum/species/anthro
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
 	fluff_desc = "Anthropomorph is an umbrella term used to describe the vast majority of sapient species one might encounter within the galaxy. They can take almost any form, and can be found all across the stars."
+
+/datum/species/anthro/mammal
+	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
+	fluff_desc = "Mammal is an umbrella term used to describe sapient mammalian species one might encounter within the galaxy. They can take almost any form, and can be found all across the stars."
+
+/datum/species/anthro/avian
+	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
+	fluff_desc = "Avian is an umbrella term used to describe sapient avian species one might encounter within the galaxy. They can take almost any form, and can be found all across the stars."
+
+/datum/species/anthro/aquatic
+	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
+	fluff_desc = "Aquatic is an umbrella term used to describe sapient aquatic species one might encounter within the galaxy. They can take almost any form, and can be found all across the stars."
 
 /datum/species/jelly
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
