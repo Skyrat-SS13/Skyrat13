@@ -212,7 +212,7 @@
 	proj_lifespan = 15
 	proj_type = /obj/effect/proc_holder/spell/targeted/trigger/rust_wave
 
-/obj/effect/proc_holder/spell/targeted/cleave
+/obj/effect/proc_holder/spell/pointed/cleave
 	name = "Cleave"
 	desc = "Causes severe bleeding on a target and people around them"
 	school = "transmutation"
@@ -220,7 +220,6 @@
 	clothes_req = FALSE
 	invocation = "CL'VE"
 	invocation_type = INVOCATION_WHISPER
-	include_user = FALSE
 	range = 9
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "cleave"

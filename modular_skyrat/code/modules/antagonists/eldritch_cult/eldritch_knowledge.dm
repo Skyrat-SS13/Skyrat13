@@ -184,23 +184,7 @@
 //Ascension knowledge
 /datum/eldritch_knowledge/final
 	var/finished = FALSE
-	///Who do we gib?
-	var/humies_to_gib = list()
-
-/datum/eldritch_knowledge/final/recipe_snowflake_check(loc,selected_atoms)
-	if(finished)
-		return FALSE
-	var/counter = 0
-	
-	for(var/mob/living/carbon/human/H in range(1,loc))
-		if(H.stat != DEAD)
-			continue
-
-		counter++
-		humies_to_gib += H
-		if(counter == 3)
-			return TRUE
-	return FALSE
+	charges_needed = 6
 
 /datum/eldritch_knowledge/final/on_finished_recipe(mob/living/user,mob/living/carbon/human/buckled,loc)
 	finished = TRUE
