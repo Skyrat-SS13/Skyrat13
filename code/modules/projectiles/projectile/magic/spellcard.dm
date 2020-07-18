@@ -4,4 +4,3 @@
 	icon_state = "spellcard"
 	damage_type = BURN
 	damage = 2
-	wound_bonus = 25

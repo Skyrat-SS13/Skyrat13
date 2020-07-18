@@ -34,7 +34,7 @@
 		if(blood_DNA)
 			. += mutable_appearance('icons/effects/blood.dmi', "bloodyhands", color = blood_DNA_to_color())
 
-/obj/item/clothing/gloves/update_clothes_damaged_state() //skyrat edit
+/obj/item/clothing/gloves/update_clothes_damaged_state(damaging = TRUE)
 	..()
 	if(ismob(loc))
 		var/mob/M = loc

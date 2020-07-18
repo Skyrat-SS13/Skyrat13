@@ -1,4 +1,3 @@
-/* moved to modular_skyrat
 /obj/item/organ/cyberimp/arm
 	name = "arm-mounted implant"
 	desc = "You shouldn't see this! Adminhelp and report this as an issue on github!"
@@ -289,4 +288,3 @@
 	var/obj/item/assembly/flash/armimplant/F = new(src)
 	items_list += F
 	F.I = src
-*/

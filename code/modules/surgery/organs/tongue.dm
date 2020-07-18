@@ -1,4 +1,3 @@
-/* moved to modular_skyrat
 #define TONGUE_MAX_HEALTH 60
 
 /obj/item/organ/tongue
@@ -323,4 +322,3 @@
 	desc = "A voice synthesizer used by IPCs to smoothly interface with organic lifeforms."
 	electronics_magic = FALSE
 	organ_flags = ORGAN_SYNTHETIC
-*/

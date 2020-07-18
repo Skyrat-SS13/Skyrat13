@@ -125,7 +125,7 @@
 	flags_1 = CONDUCT_1
 	attack_verb = list("attacked", "slashed", "cut", "sliced")
 	force = 12
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	inaccuracy_modifier = 0.25
 	can_charge = 0
 

@@ -18,14 +18,6 @@
 	var/vision_correction = 0 //does wearing these glasses correct some of our vision defects?
 	var/glass_colour_type //colors your vision when worn
 
-/obj/item/clothing/glasses/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	. = ..()
-	if((throwingdatum.speed >= 2) && (custom_materials[/datum/material/glass] >= 250))
-		playsound(src, 'sound/effects/glassbr1.ogg', 100, 0)
-		new /obj/item/shard(loc)
-		new /obj/item/shard(loc)
-		return qdel(src)
-
 /obj/item/clothing/glasses/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] is stabbing \the [src] into [user.p_their()] eyes! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return BRUTELOSS
@@ -104,7 +96,7 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 
 /obj/item/clothing/glasses/meson/eyepatch
 	name = "eyepatch mesons"
@@ -188,7 +180,7 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	vision_correction = 1
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
@@ -245,7 +237,7 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 
 /obj/item/clothing/glasses/sunglasses/garb/supergarb
 	name = "black giga gar glasses"
@@ -265,7 +257,7 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	glass_colour_type = /datum/client_colour/glass_colour/orange
 
 /obj/item/clothing/glasses/sunglasses/gar/supergar

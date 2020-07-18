@@ -1,12 +1,12 @@
 
-/* commented out in favor of our own
+
 /obj/item/stack/sticky_tape
 	name = "sticky tape"
 	singular_name = "sticky tape"
 	desc = "Used for sticking to things for sticking said things to people."
 	icon = 'icons/obj/tapes.dmi'
 	icon_state = "tape_w"
-	prefix = "sticky"
+	var/prefix = "sticky"
 	item_flags = NOBLUDGEON
 	amount = 5
 	max_amount = 5
@@ -68,4 +68,3 @@
 	icon_state = "tape_spikes"
 	prefix = "super pointy"
 	conferred_embed = EMBED_POINTY_SUPERIOR
-*/

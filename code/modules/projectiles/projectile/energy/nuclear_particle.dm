@@ -16,7 +16,6 @@
 		"cyan" = "#00FFFF",
 		"purple" = "#FF00FF"
 	)
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/energy/nuclear_particle/Initialize()
 	. = ..()

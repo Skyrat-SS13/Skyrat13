@@ -82,7 +82,7 @@
 	custom_materials = list(/datum/material/iron = 15000)
 	attack_verb = list("chopped", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 
 /obj/item/hatchet/Initialize()
 	. = ..()

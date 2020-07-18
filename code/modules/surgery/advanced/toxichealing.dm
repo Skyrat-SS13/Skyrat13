@@ -12,11 +12,11 @@
 				/datum/surgery_step/close)
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	possible_locs = TORSO_BODYPARTS //skyrat edit
+	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = 0
 
 /datum/surgery_step/toxichealing
-	name = "Rejuvenate body"
+	name = "rejuvenate body"
 	implements = list(TOOL_HEMOSTAT  = 100, TOOL_SCREWDRIVER = 35, /obj/item/pen = 15)
 	repeatable = TRUE
 	time = 25

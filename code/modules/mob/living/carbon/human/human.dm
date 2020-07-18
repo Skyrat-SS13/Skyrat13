@@ -783,40 +783,35 @@
 						hud_used.healths.icon_state = "health7"
 					if(SCREWYHUD_HEALTHY)
 						hud_used.healths.icon_state = "health0"
-			if(HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
-				hud_used.healths.icon_state = "health0"
 		if(hud_used.healthdoll)
 			hud_used.healthdoll.cut_overlays()
 			if(stat != DEAD)
 				hud_used.healthdoll.icon_state = "healthdoll_OVERLAY"
-				if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
-					for(var/X in bodyparts)
-						var/obj/item/bodypart/BP = X
-						var/damage = BP.burn_dam + BP.brute_dam
-						var/comparison = (BP.max_damage/5)
-						var/icon_num = 0
-						if(damage)
-							icon_num = 1
-						if(damage > (comparison))
-							icon_num = 2
-						if(damage > (comparison*2))
-							icon_num = 3
-						if(damage > (comparison*3))
-							icon_num = 4
-						if(damage > (comparison*4))
-							icon_num = 5
-						if(hal_screwyhud == SCREWYHUD_HEALTHY)
-							icon_num = 0
-						if(icon_num)
-			//skyrat edit - modular health doll
-							hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[BP.body_zone][icon_num]"))
-					for(var/t in get_missing_limbs()) //Missing limbs
-						hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[t]6"))
-					for(var/t in get_disabled_limbs()) //Disabled limbs
-						hud_used.healthdoll.add_overlay(mutable_appearance('modular_skyrat/icons/mob/screen_gen.dmi', "[t]7"))
+				for(var/X in bodyparts)
+					var/obj/item/bodypart/BP = X
+					var/damage = BP.burn_dam + BP.brute_dam
+					var/comparison = (BP.max_damage/5)
+					var/icon_num = 0
+					if(damage)
+						icon_num = 1
+					if(damage > (comparison))
+						icon_num = 2
+					if(damage > (comparison*2))
+						icon_num = 3
+					if(damage > (comparison*3))
+						icon_num = 4
+					if(damage > (comparison*4))
+						icon_num = 5
+					if(hal_screwyhud == SCREWYHUD_HEALTHY)
+						icon_num = 0
+					if(icon_num)
+						hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[BP.body_zone][icon_num]"))
+				for(var/t in get_missing_limbs()) //Missing limbs
+					hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[t]6"))
+				for(var/t in get_disabled_limbs()) //Disabled limbs
+					hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[t]7"))
 			else
 				hud_used.healthdoll.icon_state = "healthdoll_DEAD"
-			//
 
 		hud_used.staminas?.update_icon_state()
 		hud_used.staminabuffer?.update_icon_state()
@@ -1268,58 +1263,5 @@
 /mob/living/carbon/human/species/ipc
 	race = /datum/species/ipc
 
-/mob/living/carbon/human/species/synthliz/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/species/synth/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/species/synth/military/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/species/ipc/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/species/android/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/species/corporate/mangled/Initialize()
-	..()
-	mangle()
-
-/mob/living/carbon/human/proc/mangle()
-	stat = DEAD
-	socks = ""
-	undershirt = ""
-	underwear = ""
-	for(var/obj/item/organ/O in internal_organs)
-		O.Remove()
-		qdel(O)
-	for(var/obj/item/bodypart/BP in bodyparts)
-		if(BP.body_zone != BODY_ZONE_CHEST)
-			BP.drop_limb(TRUE, TRUE, FALSE, TRUE)
-	return TRUE
-
 /mob/living/carbon/human/species/roundstartslime
 	race = /datum/species/jelly/roundstartslime
-
-//skyrat edit
-/mob/living/carbon/human/is_bleeding()
-	if(NOBLOOD in dna.species.species_traits)
-		return FALSE
-	return ..()
-
-/mob/living/carbon/human/has_gauze()
-	if(NOBLOOD in dna.species.species_traits)
-		return FALSE
-	return ..()
-
-/mob/living/carbon/human/get_total_bleed_rate()
-	if(NOBLOOD in dna.species.species_traits)
-		return FALSE
-	return ..()

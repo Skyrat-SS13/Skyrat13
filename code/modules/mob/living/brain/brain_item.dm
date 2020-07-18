@@ -331,10 +331,6 @@
 			max_traumas = TRAUMA_LIMIT_BASIC
 		if(TRAUMA_RESILIENCE_SURGERY)
 			max_traumas = TRAUMA_LIMIT_SURGERY
-		//skyrat edit
-		if(TRAUMA_RESILIENCE_WOUND)
-			max_traumas = TRAUMA_LIMIT_WOUND
-		//
 		if(TRAUMA_RESILIENCE_LOBOTOMY)
 			max_traumas = TRAUMA_LIMIT_LOBOTOMY
 		if(TRAUMA_RESILIENCE_MAGIC)
@@ -393,7 +389,7 @@
 		return
 
 	var/trauma_type = pick(possible_traumas)
-	return gain_trauma(trauma_type, resilience) //skyrat edit
+	gain_trauma(trauma_type, resilience)
 
 //Cure a random trauma of a certain resilience level
 /obj/item/organ/brain/proc/cure_trauma_type(brain_trauma_type = /datum/brain_trauma, resilience = TRAUMA_RESILIENCE_BASIC)

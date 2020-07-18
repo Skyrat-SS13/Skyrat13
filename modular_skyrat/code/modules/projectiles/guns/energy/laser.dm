@@ -1,5 +1,4 @@
-//reeeeeeee gib oldie icon
-/obj/item/gun/energy/laser/Initialize()
+/obj/item/gun/energy/laser/New()
 	. = ..()
 	if(src.type == /obj/item/gun/energy/laser)
 		icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
@@ -42,7 +41,31 @@
 /obj/item/gun/energy/watcherprojector/update_icon()
 	return
 
-//improvised laser rifle, partially stolen from hippie
+/obj/item/ammo_casing/energy/plasma/watcher
+	projectile_type = /obj/item/projectile/plasma/watcher
+	select_name = "freezing blast shot"
+	fire_sound = 'sound/weapons/pierce.ogg'
+	delay = 15
+	e_cost = 250 //four shots before running out
+
+/obj/item/projectile/plasma/watcher
+	name = "freezing blast"
+	icon_state = "ice_2"
+	damage = 0
+	flag = "energy"
+	damage_type = BURN
+	range = 4 //terrible range
+	mine_range = 4 //serves as a mining tool... a rather shit one
+	var/temperature = 50 //half what a normal watcher does
+	dismemberment = FALSE
+
+/obj/item/projectile/plasma/watcher/on_hit(atom/target, blocked = 0)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		L.adjust_bodytemperature(((100-blocked)/100)*(temperature - L.bodytemperature)) // the new body temperature is adjusted by 100-blocked % of the delta between body temperature and the bullet's effect temperature
+
+//improvised laser rifle
 /obj/item/gun/energy/laser/makeshiftlasrifle
 	name = "makeshift laser rifle"
 	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but can rapidly alternate power cells."
@@ -101,24 +124,52 @@
 /obj/item/gun/energy/laser/makeshiftlasrifle/examine(mob/user)
 	. = ..()
 	if(upgraded_rifleing)
-		. += "It has upgraded rifling.<br>"
+		. += " The rifling on it has been upgraded.<br>"
 	if(upgraded_cell)
-		. += "It has an additional power cell.<br>"
+		. += " It has an additional power cell.<br>"
 	if(upgraded_firerate)
-		. += "It has an updated trigger guard.<br>"
+		. += " It has an updated trigger guard.<br>"
 	if(upgraded_energycosts)
-		. += "It has a capacitor installed.<br>"
+		. += " It has a capacitor installed.<br>"
 	var/chargepercent
 	if(cell)
 		chargepercent = (cell.charge/cell.maxcharge * 100)
-	. += "<span class='info><b>[cell ? " The cell charge is at [chargepercent]%":" It has no main power cell."]</b></span>"
+	. += "[cell ? " The cell charge is at [chargepercent]%":" It has no main power cell."]"
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle
+	e_cost = 750 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle
+	select_name = "strong"
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle
+	damage = 20
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle/medium
+	e_cost = 375
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle/medium
+	select_name = "medium"
+	fire_sound = 'sound/weapons/laser2.ogg'
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle/medium
+	name = "medium laser"
+	damage = 10
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak
+	e_cost = 180 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle/weak
+	select_name = "weak"
+	fire_sound = 'sound/weapons/laser2.ogg'
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle/weak
+	name = "weak laser"
+	damage = 5
 
 /obj/item/gun/energy/laser/makeshiftlasrifle/AltClick(mob/living/carbon/user)
 	. = ..()
 	playsound(user, 'sound/items/Screwdriver.ogg', 35)
 	var/obj/item/stock_parts/cell/thecell = cell
 	thecell.forceMove(user.loc)
-	user.put_in_active_hand(thecell)
+	user.put_in_l_hand(thecell)
 	cell = null
 	update_icon()
 
@@ -200,7 +251,7 @@
 /obj/item/gun/energy/pumpaction/musket
 	name = "laser musket"
 	desc = "Another settlment needs your help."
-	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	icon = 'modular_skyrat/icons/obj/guns/lasermusket.dmi'
 	icon_state = "musket"
 	item_state = "musket"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -217,21 +268,3 @@
 /obj/item/stock_parts/cell/pumpaction/musket
 	name = "laser musket internal cell"
 	maxcharge = 800 //20 disabler shots or 8 lethal shots... not too incredible
-
-//captain's laser gun
-/obj/item/gun/energy/laser/captain
-	name = "\improper Z-10 Multiphase Energy Gun Mk.I"
-	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
-	icon_state = "caplaser"
-	item_state = "hoslaser"
-	desc = "This is an antique prototype of a laser gun. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy. On the item is an image of Space Station 13. The station is exploding."
-	force = 10
-	ammo_x_offset = 3
-	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/captain = TRUE, /obj/item/ammo_casing/energy/disabler/captain = TRUE)
-	selfcharge = EGUN_SELFCHARGE
-	modifystate = TRUE
-	can_flashlight = TRUE
-	can_bayonet = TRUE
-	custom_light_icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
-	custom_light_state = "caplaser_bayonet"
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF

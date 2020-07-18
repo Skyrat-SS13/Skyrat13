@@ -1,4 +1,3 @@
-/* moved to modular_skyrat
 /obj/item/organ/appendix
 	name = "appendix"
 	icon_state = "appendix"
@@ -38,4 +37,3 @@
 	..()
 	if(inflamed)
 		M.ForceContractDisease(new /datum/disease/appendicitis(), FALSE, TRUE)
-*/

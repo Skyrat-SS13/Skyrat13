@@ -1,4 +1,3 @@
-/* moved to modular_skyrat
 #define BLURRY_VISION_ONE	1
 #define BLURRY_VISION_TWO	2
 #define BLIND_VISION_THREE	3
@@ -398,4 +397,3 @@
 #undef BLURRY_VISION_ONE
 #undef BLURRY_VISION_TWO
 #undef BLIND_VISION_THREE
-*/

@@ -29,14 +29,14 @@
 				if(iscarbon(M))
 					var/mob/living/carbon/C = M
 					if(!(C.dna && C.dna.species && (NOBLOOD in C.dna.species.species_traits)))
-						C.blood_volume = max(C.blood_volume, BLOOD_VOLUME_BAD * 1.2) //so you don't instantly re-die from a lack of blood
+						C.blood_volume = max(C.blood_volume, BLOOD_VOLUME_NORMAL*C.blood_ratio) //so you don't instantly re-die from a lack of blood
 					for(var/organ in C.internal_organs)
 						var/obj/item/organ/O = organ
-						if(O.damage > O.maxHealth * 0.8)
-							O.setOrganDamage(O.maxHealth * 0.8) //so you don't instantly die from organ damage when being revived
+						if(O.damage > O.maxHealth/2)
+							O.setOrganDamage(O.maxHealth/2) //so you don't instantly die from organ damage when being revived
 
-				M.adjustOxyLoss(-reac_volume/2, TRUE) //we use reac_volume instead of the true volume to impede cheeky healing stacking
-				M.adjustToxLoss(-reac_volume/3, TRUE)
+				M.adjustOxyLoss(-20, 0)
+				M.adjustToxLoss(-20, 0)
 				M.updatehealth()
 				if(M.revive())
 					M.grab_ghost()
@@ -45,8 +45,8 @@
 	..()
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(0.2*REM, 0)
-	M.adjustFireLoss(0.2*REM, 0)
+	M.adjustBruteLoss(0.5*REM, 0)
+	M.adjustFireLoss(0.5*REM, 0)
 	..()
 	. = 1
 
@@ -182,60 +182,3 @@
 	C.heal_bodypart_damage(0.5*REM, 0.5*REM, stamina = 0, updating_health = TRUE, only_robotic = TRUE, only_organic = FALSE)
 	..()
 	. = 1
-
-//Used to cure scars easily
-/datum/reagent/medicine/corticosteroids
-	name = "Corticosteroids"
-	description = "Synthetic steroids, used to rapidly stimulate the repair process of keratin on the user."
-	reagent_state = LIQUID
-	color = "#ff0095"
-	metabolization_rate = 1.5 * REAGENTS_METABOLISM
-	pH = 6.5
-	value = REAGENT_VALUE_RARE
-	can_synth = TRUE
-	var/method_used = INJECT
-
-/datum/reagent/medicine/corticosteroids/reaction_mob(mob/living/M, method, reac_volume, show_message, touch_protection)
-	. = ..()
-	method_used = method
-
-/datum/reagent/medicine/corticosteroids/on_mob_life(mob/living/carbon/M)
-	. = ..()
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		if(method_used in list(INJECT, PATCH))
-			if(C.all_scars && C.all_scars.len)
-				var/datum/scar/S = pick(C.all_scars)
-				if(istype(S) && !S.permanent)
-					to_chat(C, "<span class='notice'>You feel one of your scars quickly fading away!</span>")
-					qdel(S)
-		else
-			C.adjust_disgust(10)
-			C.adjust_blurriness(10)
-			C.AdjustDazed(15)
-			if(prob(15))
-				C.vomit(20, TRUE, TRUE)
-			if(prob(5))
-				C.AdjustKnockdown(50, TRUE)
-				C.AdjustUnconscious(50)
-
-//Used to treat wounds - the effects vary depending on type
-/datum/reagent/medicine/fibrin
-	name = "Fibrin"
-	description = "A substance used to treat exposed wounds - effect varies."
-	reagent_state = LIQUID
-	pH = 7.2
-	color = "#c0a890"
-	process_flags = REAGENT_ORGANIC
-
-/datum/reagent/medicine/fibrin/reaction_mob(mob/living/M, method, reac_volume, show_message, touch_protection)
-	. = ..()
-	if(method == TOUCH)
-		if(iscarbon(M))
-			var/mob/living/carbon/C = M
-			if(C.all_wounds.len)
-				var/datum/wound/W = pick(C.all_wounds)
-				if(istype(W))
-					W.on_hemostatic(reac_volume)
-	else
-		M.adjustToxLoss(reac_volume * 0.8)

@@ -1,19 +1,18 @@
-/* moved to modular_skyrat
 /obj/item/bodypart/head
-	name = "head" //skyrat edit
+	name = BODY_ZONE_HEAD
 	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
-	icon = 'modular_skyrat/icons/mob/human_parts.dmi'
+	icon = 'icons/mob/human_parts.dmi'
 	icon_state = "default_human_head"
 	max_damage = 200
 	body_zone = BODY_ZONE_HEAD
 	body_part = HEAD
 	w_class = WEIGHT_CLASS_BULKY //Quite a hefty load
 	slowdown = 1 //Balancing measure
-	throw_range = 5 //Yes head bowling
+	throw_range = 2 //No head bowling
 	px_x = 0
 	px_y = -8
 	stam_damage_coeff = 1
-	max_stamina_damage = 100
+	max_stamina_damage = 0 //Setting this to 0 since this has the same exact effects as the chest when disabled
 
 	var/mob/living/brain/brainmob = null //The current occupant.
 	var/obj/item/organ/brain/brain = null //The brain organ
@@ -35,19 +34,9 @@
 	var/lip_color = "white"
 	//If the head is a special sprite
 	var/custom_head
-	//skyrat edit
-	wound_resistance = 10
-	specific_locations = list("left eyebrow", "right eyebrow", "cheekbone", "neck", "throat", "jawline", "entire face", "forehead")
-	scars_covered_by_clothes = FALSE
-	max_cavity_size = WEIGHT_CLASS_SMALL
-	parent_bodyzone = BODY_ZONE_CHEST
-	children_zones = list()
-	// Tape currently silencing us.
-	var/obj/item/stack/sticky_tape/tapered = null
-	//
 
 /obj/item/bodypart/head/can_dismember(obj/item/I)
-	if(owner && !((owner.stat == DEAD) || owner.InFullCritical()))
+	if(!((owner.stat == DEAD) || owner.InFullCritical()))
 		return FALSE
 	return ..()
 
@@ -196,47 +185,6 @@
 		else if(eyes.eye_color)
 			eyes_overlay.color = "#" + eyes.eye_color
 
-/obj/item/bodypart/head/proc/get_stickied(obj/item/stack/sticky_tape/tape, mob/user)
-	if(!tape)
-		return
-	if(tape.use(1))
-		if(user && owner)
-			owner.visible_message(message = "<span class='danger'>[user] tapes [owner]'s mouth closed with \the [tape]!</span>", self_message = "<span class='userdanger'>[user] tapes your mouth closed with \the [tape]!</span>", ignored_mobs = list(user))
-			to_chat(user, "<span class='warning'>You successfully gag [owner] with \the [src]!</span>")
-		else if(user)
-			user.visible_message("<span class='notice'>[user] tapes off [src]'s mouth.</span>")
-		tapered = new /obj/item/stack/sticky_tape(owner)
-		tapered.amount = 1
-		owner?.RegisterSignal(tapered, COMSIG_MOB_SAY, /obj/item/stack/sticky_tape/proc/handle_speech)
-
-/obj/item/bodypart/head/Topic(href, href_list)
-	. = ..()
-	var/mob/living/carbon/C = usr
-	if(!istype(C) || !C.canUseTopic(owner, TRUE, FALSE, FALSE) || owner?.wear_mask)
-		return
-	if(C == owner)
-		owner.visible_message("<span class='warning'>[owner] desperately tries to rip \the [tapered] from their mouth!</span>", "<span class='warning'>You desperately try to rip \the [tapered] from your mouth!</span>")
-		if(do_mob(owner, owner, 3 SECONDS))
-			owner.UnregisterSignal(tapered, COMSIG_MOB_SAY)
-			tapered.forceMove(get_turf(owner))
-			tapered = null
-			owner.visible_message("<span class='warning'>[owner] rips \the [tapered] from their mouth!</span>", "<span class='warning'>You successfully remove \the [tapered] from your mouth!</span>")
-		else
-			to_chat(owner, "<span class='warning'>You fail to take \the [tapered] off.</span>")
-	else
-		if(do_mob(usr, owner, 3))
-			owner.UnregisterSignal(tapered, COMSIG_MOB_SAY)
-			tapered.forceMove(get_turf(owner))
-			tapered = null
-			usr.visible_message("<span class='warning'>[usr] rips \the [tapered] from [owner]'s mouth!</span>", "<span class='warning'>You rip \the [tapered] out of [owner]'s mouth!</span>")
-		else
-			to_chat(usr, "<span class='warning'>You fail to take \the [tapered] off.</span>")
-
-/obj/item/bodypart/head/examine(mob/user)
-	. = ..()
-	if(tapered)
-		. += "<span class='notice'>The mouth on [src] is taped shut with [tapered].</span>"
-
 /obj/item/bodypart/head/monkey
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_head"
@@ -264,4 +212,3 @@
 	dismemberable = 0
 	max_damage = 50
 	animal_origin = LARVA_BODYPART
-*/

@@ -13,7 +13,8 @@
 	gib_type = /obj/effect/decal/cleanable/blood/gibs
 	unique_name = TRUE
 	//blocks_emissive = EMISSIVE_BLOCK_UNIQUE // Skyrat edit -- 512 compatibility
-	bodyparts = MONKEY_BODYPARTS_PATH
+	bodyparts = list(/obj/item/bodypart/chest/monkey, /obj/item/bodypart/head/monkey, /obj/item/bodypart/l_arm/monkey,
+					 /obj/item/bodypart/r_arm/monkey, /obj/item/bodypart/r_leg/monkey, /obj/item/bodypart/l_leg/monkey)
 	hud_type = /datum/hud/monkey
 
 /mob/living/carbon/monkey/Initialize(mapload, cubespawned=FALSE, mob/spawner)

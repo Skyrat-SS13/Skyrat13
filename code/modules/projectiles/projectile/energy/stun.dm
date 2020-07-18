@@ -16,7 +16,6 @@
 	impact_type = /obj/effect/projectile/impact/stun
 	var/tase_duration = 50
 	var/strong_tase = TRUE
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/energy/electrode/on_hit(atom/target, blocked = FALSE)
 	. = ..()

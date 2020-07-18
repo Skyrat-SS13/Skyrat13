@@ -39,10 +39,7 @@
 					/obj/item/reagent_containers/blood/OMinus,
 					/obj/item/reagent_containers/blood/lizard,
 					/obj/item/reagent_containers/blood/jellyblood,
-					//skyrat edit
-					/obj/item/reagent_containers/blood/insect,
-					/obj/item/stack/medical/bone_gel,
-					/obj/item/stack/medical/bone_gel)
+					/obj/item/reagent_containers/blood/insect)
 	crate_name = "blood freezer"
 	crate_type = /obj/structure/closet/crate/freezer
 

@@ -144,12 +144,7 @@
 			if(prob(50))
 				step(W, pick(GLOB.alldirs))
 		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
-		//skyrat edit
-		for(var/x in H.bodyparts)
-			var/obj/item/bodypart/BP = x
-			if(istype(BP))
-				BP.generic_bleedstacks += 5
-		//
+		H.bleed_rate = 5
 		H.gib_animation()
 		sleep(3)
 		H.adjustBruteLoss(1000) //to make the body super-bloody

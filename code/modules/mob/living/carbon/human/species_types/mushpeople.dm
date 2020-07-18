@@ -8,7 +8,7 @@
 	nojumpsuit = TRUE
 
 	say_mod = "poofs" //what does a mushroom sound like
-	species_traits = list(MUTCOLORS, NOEYES, NO_UNDERWEAR,NOGENITALS,NOAROUSAL,HAS_FLESH)
+	species_traits = list(MUTCOLORS, NOEYES, NO_UNDERWEAR,NOGENITALS,NOAROUSAL)
 	inherent_traits = list(TRAIT_NOBREATH)
 	speedmod = 1.5 //faster than golems but not by much
 

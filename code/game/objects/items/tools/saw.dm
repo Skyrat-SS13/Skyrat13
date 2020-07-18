@@ -14,7 +14,7 @@
 	custom_materials = list(/datum/material/iron = 5000)
 	attack_verb = list("sawed", "sliced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	var/random_color = TRUE //code taken from screwdrivers.dm; cool handles are cool.
 	var/static/list/saw_colors = list(
 		"blue" = rgb(24, 97, 213),

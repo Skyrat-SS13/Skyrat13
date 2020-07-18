@@ -1,6 +1,6 @@
 //open shell
 /datum/surgery_step/mechanic_open
-	name = "Unscrew shell"
+	name = "unscrew shell"
 	implements = list(
 		TOOL_SCREWDRIVER		= 100,
 		TOOL_SCALPEL 		= 75, // med borgs could try to unskrew shell with scalpel
@@ -13,27 +13,13 @@
 			"[user] begins to unscrew the shell of [target]'s [parse_zone(target_zone)].",
 			"[user] begins to unscrew the shell of [target]'s [parse_zone(target_zone)].")
 
-/datum/surgery_step/mechanic_open/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
-	if(istype(tool, /obj/item/cautery) && user.a_intent == INTENT_HELP && target)
-		var/obj/item/bodypart/BP = target.get_bodypart(user.zone_selected)
-		if(istype(BP))
-			BP.attackby(tool, user)
-		return FALSE
+/datum/surgery_step/mechanic_incise/tool_check(mob/user, obj/item/tool)
 	if(implement_type == /obj/item && !tool.get_sharpness())
 		return FALSE
 	return TRUE
-
-/datum/surgery_step/mechanic_open/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	. = ..()
-	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
-	if(istype(BP))
-		var/datum/wound/slash/critical/incision/inch = new()
-		inch.apply_wound(BP, TRUE)
-		BP.generic_bleedstacks += 5
-
 //close shell
 /datum/surgery_step/mechanic_close
-	name = "Screw shell"
+	name = "screw shell"
 	implements = list(
 		TOOL_SCREWDRIVER		= 100,
 		TOOL_SCALPELl 		= 75,
@@ -46,23 +32,13 @@
 			"[user] begins to screw the shell of [target]'s [parse_zone(target_zone)].",
 			"[user] begins to screw the shell of [target]'s [parse_zone(target_zone)].")
 
-/datum/surgery_step/mechanic_close/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	. = ..()
-	//skyrat edit
-	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
-	if(istype(BP))
-		for(var/datum/wound/slash/critical/incision/inch in BP.wounds)
-			inch.remove_wound()
-	//
-
-/datum/surgery_step/mechanic_close/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
+/datum/surgery_step/mechanic_close/tool_check(mob/user, obj/item/tool)
 	if(implement_type == /obj/item && !tool.get_sharpness())
 		return FALSE
 	return TRUE
-
 //prepare electronics
 /datum/surgery_step/prepare_electronics
-	name = "Prepare electronics"
+	name = "prepare electronics"
 	implements = list(
 		TOOL_MULTITOOL = 100,
 		TOOL_HEMOSTAT = 10) // try to reboot internal controllers via short circuit with some conductor
@@ -75,7 +51,7 @@
 
 //unwrench
 /datum/surgery_step/mechanic_unwrench
-	name = "Unwrench bolts"
+	name = "unwrench bolts"
 	implements = list(
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 10)
@@ -88,7 +64,7 @@
 
 //wrench
 /datum/surgery_step/mechanic_wrench
-	name = "Wrench bolts"
+	name = "wrench bolts"
 	implements = list(
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 10)
@@ -101,7 +77,7 @@
 
 //open hatch
 /datum/surgery_step/open_hatch
-	name = "Open the hatch"
+	name = "open the hatch"
 	accept_hand = 1
 	time = 10
 

@@ -15,7 +15,7 @@
 
 //an incision but with greater bleed, and a 90% base success chance
 /datum/surgery_step/incise_heart
-	name = "Incise heart"
+	name = "incise heart"
 	implements = list(TOOL_SCALPEL = 90, /obj/item/melee/transforming/energy/sword = 45, /obj/item/kitchen/knife = 45,
 		/obj/item/shard = 25)
 	time = 16
@@ -32,10 +32,7 @@
 			display_results(user, target, "<span class='notice'>Blood pools around the incision in [H]'s heart.</span>",
 				"Blood pools around the incision in [H]'s heart.",
 				"")
-			//skyrat edit
-			var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
-			BP.generic_bleedstacks += 10
-			//
+			H.bleed_rate += 10
 			H.adjustBruteLoss(10)
 	return TRUE
 
@@ -45,16 +42,13 @@
 		display_results(user, target, "<span class='warning'>You screw up, cutting too deeply into the heart!</span>",
 			"<span class='warning'>[user] screws up, causing blood to spurt out of [H]'s chest!</span>",
 			"<span class='warning'>[user] screws up, causing blood to spurt out of [H]'s chest!</span>")
-		//skyrat edit
-		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
-		BP.generic_bleedstacks += 10
-		//
+		H.bleed_rate += 20
 		H.adjustOrganLoss(ORGAN_SLOT_HEART, 10)
 		H.adjustBruteLoss(10)
 
 //grafts a coronary bypass onto the individual's heart, success chance is 90% base again
 /datum/surgery_step/coronary_bypass
-	name = "Graft coronary bypass"
+	name = "graft coronary bypass"
 	implements = list(TOOL_HEMOSTAT = 90, TOOL_WIRECUTTER = 35, /obj/item/stack/packageWrap = 15, /obj/item/stack/cable_coil = 5)
 	time = 90
 
@@ -80,8 +74,5 @@
 			"<span class='warning'>[user] screws up, causing blood to spurt out of [H]'s chest profusely!</span>",
 			"<span class='warning'>[user] screws up, causing blood to spurt out of [H]'s chest profusely!</span>")
 		H.adjustOrganLoss(ORGAN_SLOT_HEART, 20)
-		//skyrat edit
-		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
-		BP.generic_bleedstacks += 30
-		//
+		H.bleed_rate += 30
 	return FALSE

@@ -1,4 +1,3 @@
-/* skyrat edit
 /mob/living/proc/resist_embedded()
 	return
 
@@ -26,4 +25,3 @@
 	if(!has_embedded_objects())
 		clear_alert("embeddedobject")
 		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "embedded")
-*/

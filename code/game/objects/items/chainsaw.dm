@@ -16,7 +16,7 @@
 	custom_materials = list(/datum/material/iron=13000)
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = "swing_hit"
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	actions_types = list(/datum/action/item_action/startchainsaw)
 	tool_behaviour = TOOL_SAW
 	toolspeed = 0.5
@@ -70,6 +70,10 @@
 
 /obj/item/chainsaw/update_icon_state()
 	icon_state = "chainsaw_[on ? "on" : "off"]"
+
+/obj/item/chainsaw/get_dismemberment_chance()
+	if(wielded)
+		. = ..()
 
 /obj/item/chainsaw/doomslayer
 	name = "THE GREAT COMMUNICATOR"

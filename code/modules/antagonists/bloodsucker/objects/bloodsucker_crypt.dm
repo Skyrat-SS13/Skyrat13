@@ -361,9 +361,9 @@
 		torture_time -= I.force / 4
 		torture_dmg_brute += I.force / 4
 		//torture_dmg_burn += I.
-		if(I.sharpness == SHARP_EDGED)
+		if(I.sharpness == IS_SHARP)
 			torture_time -= 1
-		else if(I.sharpness == SHARP_POINTY)
+		else if(I.sharpness == IS_SHARP_ACCURATE)
 			torture_time -= 2
 		if(istype(I, /obj/item/weldingtool))
 			var/obj/item/weldingtool/welder = I

@@ -6,12 +6,10 @@
 	nodamage = 1
 	armour_penetration = 100
 	flag = "magic"
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/magic/death
 	name = "bolt of death"
 	icon_state = "pulse1_bl"
-	wound_bonus = 1000
 
 /obj/item/projectile/magic/death/on_hit(target)
 	. = ..()
@@ -28,7 +26,6 @@
 	damage = 0
 	damage_type = OXY
 	nodamage = 1
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/magic/resurrection/on_hit(mob/living/carbon/target)
 	. = ..()
@@ -56,7 +53,6 @@
 	nodamage = 1
 	var/inner_tele_radius = 0
 	var/outer_tele_radius = 6
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/magic/teleport/on_hit(mob/target)
 	. = ..()
@@ -83,7 +79,6 @@
 	damage = 0
 	damage_type = OXY
 	nodamage = 1
-	wound_bonus = CANT_WOUND
 	var/list/door_types = list(/obj/structure/mineral_door/wood, /obj/structure/mineral_door/iron, /obj/structure/mineral_door/silver, /obj/structure/mineral_door/gold, /obj/structure/mineral_door/uranium, /obj/structure/mineral_door/sandstone, /obj/structure/mineral_door/transparent/plasma, /obj/structure/mineral_door/transparent/diamond)
 
 /obj/item/projectile/magic/door/on_hit(atom/target)
@@ -113,7 +108,6 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = 1
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/magic/change/on_hit(atom/change)
 	. = ..()
@@ -263,7 +257,6 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = 1
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/magic/animate/on_hit(atom/target, blocked = FALSE)
 	target.animate_atom_living(firer)
@@ -311,7 +304,6 @@
 	flag = "magic"
 	dismemberment = 50
 	nodamage = 0
-	wound_bonus = 50
 
 /obj/item/projectile/magic/spellblade/on_hit(target)
 	if(ismob(target))
@@ -331,7 +323,6 @@
 	armour_penetration = 0
 	flag = "magic"
 	hitsound = 'sound/weapons/barragespellhit.ogg'
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/magic/arcane_barrage/on_hit(target)
 	if(ismob(target))
@@ -351,7 +342,6 @@
 	var/weld = TRUE
 	var/created = FALSE //prevents creation of more then one locker if it has multiple hits
 	var/locker_suck = TRUE
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/magic/locker/prehit(atom/A)
 	if(ismob(A) && locker_suck)
@@ -430,7 +420,6 @@
 	desc = "What the fuck does this do?!"
 	damage = 0
 	var/proxdet = TRUE
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/magic/aoe/Range()
 	if(proxdet)
@@ -454,7 +443,6 @@
 	var/zap_flags = ZAP_MOB_DAMAGE | ZAP_MOB_STUN | ZAP_OBJ_DAMAGE
 	var/chain
 	var/mob/living/caster
-	wound_bonus = 25
 
 /obj/item/projectile/magic/aoe/lightning/fire(setAngle)
 	if(caster)
@@ -488,7 +476,6 @@
 	var/exp_light = 2
 	var/exp_flash = 3
 	var/exp_fire = 2
-	wound_bonus = 50
 
 /obj/item/projectile/magic/aoe/fireball/on_hit(target)
 	. = ..()
@@ -507,7 +494,6 @@
 	exp_light = -1
 	exp_flash = 4
 	exp_fire= 5
-	wound_bonus = 35
 
 /obj/item/projectile/magic/aoe/fireball/infernal/on_hit(target)
 	. = ..()
@@ -525,7 +511,6 @@
 	nodamage = TRUE
 	var/mob/living/victim = null
 	var/used = 0
-	wound_bonus = 100
 
 /obj/item/projectile/magic/nuclear/on_hit(target)
 	if(used)

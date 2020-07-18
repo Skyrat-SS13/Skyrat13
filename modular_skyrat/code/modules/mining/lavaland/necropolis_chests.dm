@@ -105,7 +105,7 @@
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_state = "heckgun"
-	sharpness = SHARP_NONE
+	sharpness = IS_SHARP
 	force = 15
 	var/recharge_rate = 4
 	var/charge_tick = 0
@@ -206,8 +206,8 @@
 	icon = 'modular_skyrat/icons/obj/1x2.dmi'
 	icon_state = "crucible0"
 	var/icon_state_on = "crucible1"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/crucible_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/crucible_righthand.dmi'
+	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
 	item_state = "crucible0"
 	force = 3
 	throwforce = 5
@@ -223,7 +223,7 @@
 	block_chance = 0
 	var/block_chance_on = 50
 	max_integrity = 400
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100, "wound" = 35)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	resistance_flags = FIRE_PROOF
 	var/brightness_on = 6
 	total_mass = 1
@@ -281,16 +281,15 @@
 				..()
 				var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
 				bodyp.dismember()
-		else if(user.zone_selected == BODY_ZONE_PRECISE_GROIN && H.InFullCritical())
+			else
+				..()
+		else if(user.zone_selected == BODY_ZONE_CHEST && H.health <= 0)
+			..()
+			H.spill_organs()
+		else if(user.zone_selected == BODY_ZONE_HEAD && H.health <= 0)
 			..()
 			var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
-			if(istype(bodyp))
-				bodyp.dismember()
-		else if(user.zone_selected == BODY_ZONE_HEAD && H.InFullCritical())
-			..()
-			var/obj/item/bodypart/bodyp= H.get_bodypart(def_zone)
-			if(istype(bodyp))
-				bodyp.dismember()
+			bodyp.drop_limb()
 		else
 			..()
 	else
@@ -303,7 +302,7 @@
 
 /obj/item/crucible/proc/wield(mob/living/carbon/M)
 	wielded = TRUE
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	w_class = w_class_on
 	total_mass = total_mass_on
 	hitsound = hitsound_on
@@ -352,7 +351,7 @@
 /obj/item/clothing/suit/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit"
 	desc = "And those that tasted the bite of his sword named him... The Doom Slayer."
-	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 40)
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	strip_delay = 130
 	icon = 'modular_skyrat/icons/obj/clothing/suits.dmi'
 	icon_state = "praetor"
@@ -367,7 +366,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad/praetor
 	name = "Praetor Suit helmet"
 	desc = "That's one doomed space marine."
-	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 37)
+	armor = list("melee" = 75, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	strip_delay = 130
 	icon = 'modular_skyrat/icons/obj/clothing/hats.dmi'
 	icon_state = "praetor"
@@ -442,9 +441,9 @@
 	force = clamp((ghost_counter * 2.5), 15, 25)
 	throwforce = clamp((ghost_counter * 2), 5, 18)
 	armour_penetration = clamp((ghost_counter * 3), 0, 35)
-	sharpness = SHARP_NONE
+	sharpness = IS_BLUNT
 	if(ghost_counter >= 4)
-		sharpness = SHARP_EDGED
+		sharpness = IS_SHARP_ACCURATE
 	user.visible_message("<span class='danger'>[user] strikes with the force of [ghost_counter] vengeful spirits!</span>")
 
 /obj/item/melee/ghost_sword/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
@@ -813,7 +812,7 @@
 	item_state = "dagoth"
 	actions_types = list(/datum/action/item_action/ashstorm)
 	flash_protect = 2
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 25) //HOW CAN YOU KILL A GOD?
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)//HOW CAN YOU KILL A GOD?
 	var/static/list/excluded_areas = list(/area/reebe/city_of_cogs)
 	var/storm_type = /datum/weather/ash_storm
 	var/storm_cooldown = 0
@@ -932,7 +931,7 @@
 	armour_penetration = 200 //the armor penetration is really what makes this unique and actually worth it so boomp it
 	hitsound = 'modular_skyrat/sound/sif/sif_slash.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "gutted", "gored")
-	sharpness = SHARP_POINTY
+	sharpness = IS_SHARP
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 //Enables the sword to butcher bodies

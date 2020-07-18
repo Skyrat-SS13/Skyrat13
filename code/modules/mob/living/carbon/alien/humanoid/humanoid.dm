@@ -17,7 +17,9 @@
 	var/custom_pixel_y_offset = 0
 	var/sneaking = 0 //For sneaky-sneaky mode and appropriate slowdown
 	var/drooling = 0 //For Neruotoxic spit overlays
-	bodyparts = ALIEN_BODYPARTS_PATH
+	bodyparts = list(/obj/item/bodypart/chest/alien, /obj/item/bodypart/head/alien, /obj/item/bodypart/l_arm/alien,
+					 /obj/item/bodypart/r_arm/alien, /obj/item/bodypart/r_leg/alien, /obj/item/bodypart/l_leg/alien)
+
 
 //This is fine right now, if we're adding organ specific damage this needs to be updated
 /mob/living/carbon/alien/humanoid/Initialize()

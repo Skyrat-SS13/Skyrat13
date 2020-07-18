@@ -1,4 +1,3 @@
-/* moved to modular_skyrat
 /obj/item/organ/heart
 	name = "heart"
 	desc = "I feel bad for the heartless bastard who lost this."
@@ -248,4 +247,3 @@ obj/item/organ/heart/cybernetic/upgraded/on_life()
 		owner.heal_overall_damage(15, 15)
 		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
 			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)
-*/

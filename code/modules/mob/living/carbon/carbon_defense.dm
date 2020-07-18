@@ -75,11 +75,11 @@
 	var/obj/item/bodypart/affecting = get_bodypart(impacting_zone)
 	if(!affecting) //missing limb? we select the first bodypart (you can never have zero, because of chest)
 		affecting = bodyparts[1]
-	send_item_attack_message(I, user, affecting.name, null, affecting)
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
+	send_item_attack_message(I, user, affecting.name, totitemdamage)
 	I.do_stagger_action(src, user, totitemdamage)
 	if(I.force)
-		apply_damage(totitemdamage, I.damtype, affecting, wound_bonus = I.wound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness()) //CIT CHANGE - replaces I.force with totitemdamage //skyrat edit
+		apply_damage(totitemdamage, I.damtype, affecting) //CIT CHANGE - replaces I.force with totitemdamage
 		if(I.damtype == BRUTE && affecting.status == BODYPART_ORGANIC)
 			var/basebloodychance = affecting.brute_dam + totitemdamage
 			if(prob(basebloodychance))
@@ -99,50 +99,17 @@
 					if(head && prob(basebloodychance))
 						head.add_mob_blood(src)
 						update_inv_head()
+
+		//dismemberment
+		var/probability = I.get_dismemberment_chance(affecting)
+		if(prob(probability))
+			if(affecting.dismember(I.damtype))
+				I.add_mob_blood(src)
+				playsound(get_turf(src), I.get_dismember_sound(), 80, 1)
 		return TRUE //successful attack
 
 /mob/living/carbon/attack_drone(mob/living/simple_animal/drone/user)
 	return //so we don't call the carbon's attack_hand().
-
-/mob/living/carbon/send_item_attack_message(obj/item/I, mob/living/user, hit_area, obj/item/bodypart/hit_BP)
-	var/extra_wound_details = ""
-	if(I.damtype == BRUTE && hit_BP.can_dismember())
-		var/mangled_state = hit_BP.get_mangled_state()
-		var/bio_state = get_biological_state()
-		if(mangled_state == BODYPART_MANGLED_BOTH)
-			extra_wound_details = ", threatening to sever it entirely"
-		else if(mangled_state & BODYPART_MANGLED_BONE && I.get_sharpness() || (mangled_state & BODYPART_MANGLED_MUSCLE && bio_state == BIO_FLESH))
-			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through remmaining tissue"
-			if(!hit_BP.is_organic_limb())
-				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through remaining scraps"
-		else if(mangled_state & BODYPART_MANGLED_MUSCLE && I.get_sharpness() || (mangled_state & BODYPART_MANGLED_BONE && bio_state == BIO_BONE))
-			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through the bone"
-			if(!hit_BP.is_organic_limb())
-				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through various internal components"
-		else if(mangled_state & BODYPART_MANGLED_SKIN && I.get_sharpness())
-			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through torn skin"
-			if(!hit_BP.is_organic_limb())
-				extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through external armoring"
-
-	var/message_verb = "attacked"
-	if(LAZYLEN(I.attack_verb))
-		message_verb = "[pick(I.attack_verb)]"
-	else if(!I.force)
-		return
-	
-	var/message_hit_area = ""
-	if(hit_area)
-		message_hit_area = " in the [hit_area]"
-	var/attack_message = "[src] is [message_verb][message_hit_area] with [I][extra_wound_details]!"
-	var/attack_message_local = "You're [message_verb][message_hit_area] with [I][extra_wound_details]!"
-	if(user in viewers(src, null))
-		attack_message = "[user] [message_verb] [src][message_hit_area] with [I][extra_wound_details]!"
-		attack_message_local = "[user] [message_verb] you[message_hit_area] with [I][extra_wound_details]!"
-	if(user == src)
-		attack_message_local = "You [message_verb] yourself[message_hit_area] with [I][extra_wound_details]"
-	visible_message("<span class='danger'>[attack_message]</span>",\
-		"<span class='userdanger'>[attack_message_local]</span>", null, COMBAT_MESSAGE_RANGE)
-	return TRUE
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /mob/living/carbon/attack_hand(mob/living/carbon/human/user)
@@ -158,12 +125,6 @@
 		var/datum/disease/D = thing
 		if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
 			ContactContractDisease(D)
-	
-	//skyrat edit
-	for(var/datum/wound/W in all_wounds)
-		if(W.try_handling(user))
-			return 1
-	//
 
 	if(lying && surgeries.len)
 		if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
@@ -301,11 +262,6 @@
 	if(on_fire)
 		to_chat(M, "<span class='warning'>You can't put [p_them()] out with just your bare hands!</span>")
 		return
-	//skyrat edit peepeepoopoo
-	if(M == src)
-		check_self_for_injuries()
-		return
-	//
 
 	if(M == src && check_self_for_injuries())
 		return
@@ -351,7 +307,7 @@
 				"<span class='notice'>[M] shakes [src]'s hand.</span>", \
 				"<span class='notice'>You shake [src]'s hand.</span>", target = src,
 				target_message = "<span class='notice'>[M] shakes your hand.</span>")
-		
+
 		else
 			M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better!</span>", \
 						"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>", target = src,\
@@ -376,7 +332,7 @@
 			set_resting(FALSE, FALSE)
 		update_mobility()
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-/* commented out in favor of our own
+
 /// Check ourselves to see if we've got any shrapnel, return true if we do. This is a much simpler version of what humans do, we only indicate we're checking ourselves if there's actually shrapnel
 /mob/living/carbon/proc/check_self_for_injuries()
 	if(stat == DEAD || stat == UNCONSCIOUS)
@@ -397,7 +353,7 @@
 				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
 
 	return embeds
-*/
+
 /mob/living/carbon/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0)
 	. = ..()
 
@@ -511,30 +467,3 @@
 		if (BP.status < 2)
 			amount += BP.burn_dam
 	return amount
-
-//skyrat edit
-/// Check ourselves to see if we've got any shrapnel, return true if we do. This is a much simpler version of what humans do, we only indicate we're checking ourselves if there's actually shrapnel
-/mob/living/carbon/proc/check_self_for_injuries()
-	if(stat == DEAD || stat == UNCONSCIOUS)
-		return
-
-	var/embeds = FALSE
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/LB = X
-		for(var/obj/item/I in LB.embedded_objects)
-			if(!embeds)
-				embeds = TRUE
-				// this way, we only visibly try to examine ourselves if we have something embedded, otherwise we'll still hug ourselves :)
-				visible_message("<span class='notice'>[src] examines [p_them()]self.</span>", \
-					"<span class='notice'>You check yourself for shrapnel.</span>")
-			if(I.isEmbedHarmless())
-				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] stuck to your [LB.name]!</a>")
-			else
-				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
-
-	return embeds
-
-/mob/living/carbon/proc/get_interaction_efficiency(zone)
-	var/obj/item/bodypart/limb = get_bodypart(zone)
-	if(!limb)
-		return

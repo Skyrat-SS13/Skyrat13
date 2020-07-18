@@ -447,7 +447,7 @@
 	block_parry_data = null
 	attack_verb = list("attacked", "struck", "hit")
 	total_mass_on = TOTAL_MASS_TOY_SWORD
-	sharpness = SHARP_NONE
+	sharpness = IS_BLUNT
 
 /obj/item/dualsaber/toy/ComponentInitialize()
 	. = ..()
@@ -467,7 +467,7 @@
 	attack_verb = list("attacked", "struck", "hit")
 	total_mass_on = TOTAL_MASS_TOY_SWORD
 	slowdown_wielded = 0
-	sharpness = SHARP_NONE
+	sharpness = IS_BLUNT
 
 /obj/item/dualsaber/toy/ComponentInitialize()
 	. = ..()

@@ -90,9 +90,6 @@
 	icon_state = "deathnettle"
 	force = 30
 	throwforce = 15
-	//skyrat edit
-	wound_bonus = CANT_WOUND
-	//
 
 /obj/item/reagent_containers/food/snacks/grown/nettle/death/add_juice()
 	..()

@@ -1,4 +1,3 @@
-/* moved to modular_skyrat
 #define LUNGS_MAX_HEALTH 300
 
 /obj/item/organ/lungs
@@ -556,4 +555,3 @@
 	. = ..()
 	if(.)
 		applyOrganDamage(2) //Yamerol lungs are temporary
-*/

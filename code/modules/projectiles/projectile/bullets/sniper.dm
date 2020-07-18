@@ -9,7 +9,6 @@
 	armour_penetration = 50
 	zone_accuracy_factor = 100		//guarunteed 100%
 	var/breakthings = TRUE
-	wound_bonus = 50
 
 /obj/item/projectile/bullet/p50/on_hit(atom/target, blocked = 0)
 	if(isobj(target) && (blocked != 100) && breakthings)
@@ -24,7 +23,6 @@
 	dismemberment = 0
 	knockdown = 0
 	breakthings = FALSE
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/bullet/p50/soporific/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && isliving(target))
@@ -41,7 +39,6 @@
 	dismemberment = 0 //It goes through you cleanly.
 	knockdown = 0
 	breakthings = FALSE
-	wound_bonus = 65
 
 /obj/item/projectile/bullet/p50/penetrator/shuttle //Nukeop Shuttle Variety
 	icon_state = "gaussstrong"

@@ -5,9 +5,6 @@
 /datum/species/synth
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
 
-/datum/species/synthliz
-	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
-
 /datum/species/android
 	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
 
@@ -20,24 +17,14 @@
 /datum/species/skeleton
 	screamsounds = list('modular_citadel/sound/voice/scream_skeleton.ogg')
 
-/datum/species/plasmaman
-	screamsounds = list('modular_citadel/sound/voice/scream_skeleton.ogg')
-
 /datum/species/fly
 	screamsounds = list('modular_citadel/sound/voice/scream_moth.ogg')
 
 /datum/species/insect
 	screamsounds = list('modular_citadel/sound/voice/scream_moth.ogg')
 
-/datum/species/insect/moth
-	screamsounds = list('modular_citadel/sound/voice/scream_moth.ogg')
-
 /datum/species/human
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
-
-/datum/species/human
-	screamsounds = list('modular_skyrat/sound/voice/dunmer/scream_dunmer_m1.ogg', 'modular_skyrat/sound/voice/dunmer/scream_dunmer_m2.ogg')
-	femalescreamsounds = list('modular_skyrat/sound/voice/dunmer/scream_dunmer_f1.ogg', 'modular_skyrat/sound/voice/dunmer/scream_dunmer_f2.ogg')
 
 /datum/species/angel
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
@@ -57,11 +44,17 @@
 /datum/species/jelly
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
 
+/datum/species/plasmaman
+	screamsounds = list('modular_citadel/sound/voice/scream_skeleton.ogg')
+
 /datum/species/pod
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
 
 /datum/species/shadow
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
+
+/datum/species/synthliz
+	screamsounds = list('modular_citadel/sound/voice/scream_silicon.ogg')
 
 /datum/species/vampire
 	femalescreamsounds = list('modular_citadel/sound/voice/scream_f1.ogg', 'modular_citadel/sound/voice/scream_f2.ogg')
@@ -72,5 +65,5 @@
 /datum/species/xeno
 	screamsounds = list('sound/voice/hiss6.ogg')
 
-/datum/species/zombie
+/datum/species/zombie/infectious
 	screamsounds = list('modular_skyrat/sound/zombie/zombie_scream.ogg')

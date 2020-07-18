@@ -15,11 +15,6 @@
 	if(capitalized)
 		. = capitalize(.)
 
-/datum/proc/p_themselves(capitalized, temp_gender)
-	. = "itself"
-	if(capitalized)
-		. = capitalize(.)
-
 /datum/proc/p_my(capitalized, temp_gender)
 	. = "my"
 	if(capitalized)
@@ -169,20 +164,6 @@
 	if(capitalized)
 		. = capitalize(.)
 
-/mob/p_themselves(capitalized, temp_gender)
-	if(!temp_gender)
-		temp_gender = gender
-	. = "itself"
-	switch(temp_gender)
-		if(FEMALE)
-			. = "herself"
-		if(MALE)
-			. = "himself"
-		if(PLURAL)
-			. = "themselves"
-	if(capitalized)
-		. = capitalize(.)
-
 /mob/p_have(temp_gender)
 	if(!temp_gender)
 		temp_gender = gender
@@ -248,13 +229,6 @@
 	return ..()
 
 /mob/living/carbon/human/p_them(capitalized, temp_gender)
-	var/list/obscured = check_obscured_slots()
-	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
-	if((SLOT_W_UNIFORM in obscured) && skipface)
-		temp_gender = PLURAL
-	return ..()
-
-/mob/living/carbon/human/p_themselves(capitalized, temp_gender)
 	var/list/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 	if((SLOT_W_UNIFORM in obscured) && skipface)

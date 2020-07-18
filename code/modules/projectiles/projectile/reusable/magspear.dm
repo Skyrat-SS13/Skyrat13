@@ -4,4 +4,3 @@
 	damage = 30 //takes 3 spears to kill a mega carp, one to kill a normal carp
 	icon_state = "magspear"
 	ammo_type = /obj/item/ammo_casing/caseless/magspear
-	wound_bonus = 35

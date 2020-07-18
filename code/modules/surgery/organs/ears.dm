@@ -1,4 +1,3 @@
-/* moved to modular_skyrat
 /obj/item/organ/ears
 	name = "ears"
 	icon_state = "ears"
@@ -133,4 +132,3 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	damage += 40/severity
-*/

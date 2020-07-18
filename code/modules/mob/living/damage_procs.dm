@@ -4,19 +4,17 @@
   *
   * Sends [COMSIG_MOB_APPLY_DAMGE]
   *
-  * Arguments:
+  * Arguuments:
   * * damage - amount of damage
   * * damagetype - one of [BRUTE], [BURN], [TOX], [OXY], [CLONE], [STAMINA]
   * * def_zone - zone that is being hit if any
   * * blocked - armor value applied
   * * forced - bypass hit percentage
-  * * wound_bonus - used to apply wounds
-  * * bare_wound_bonus - used to apply wounds
-  * * sharpness - the sharpness of the source of damage
+  * * spread_damage - used in overrides
   *
   * Returns TRUE if damage applied
   */
-/mob/living/proc/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE) //skyrat edit
+/mob/living/proc/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE)
 	var/hit_percent = (100-blocked)/100
 	if(!damage || (hit_percent <= 0))
 		return 0
@@ -247,7 +245,7 @@
 	update_stamina()
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status, check_armor = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE) //skyrat edit
+/mob/living/proc/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE)
 	adjustBruteLoss(brute, FALSE) //zero as argument for no instant health update
 	adjustFireLoss(burn, FALSE)
 	adjustStaminaLoss(stamina, FALSE)

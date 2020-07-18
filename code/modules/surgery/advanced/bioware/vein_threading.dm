@@ -10,9 +10,8 @@
 				/datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_CHEST)
 	bioware_target = BIOWARE_CIRCULATION
-
 /datum/surgery_step/thread_veins
-	name = "Thread veins"
+	name = "thread veins"
 	accept_hand = TRUE
 	time = 125
 
@@ -32,11 +31,9 @@
 	name = "Threaded Veins"
 	desc = "The circulatory system is woven into a mesh, severely reducing the amount of blood lost from wounds."
 	mod_type = BIOWARE_CIRCULATION
-
 /datum/bioware/threaded_veins/on_gain()
 	..()
 	owner.physiology.bleed_mod *= 0.25
-
 /datum/bioware/threaded_veins/on_lose()
 	..()
 	owner.physiology.bleed_mod *= 4

@@ -1,6 +1,6 @@
 /datum/surgery
-	var/name = "Surgery"
-	var/desc = "Surgery description."
+	var/name = "surgery"
+	var/desc = "surgery description"
 	var/status = 1
 	var/list/steps = list()									//Steps in a surgery
 	var/step_in_progress = 0								//Actively performing a Surgery
@@ -12,17 +12,12 @@
 	var/ignore_clothes = 0									//This surgery ignores clothes
 	var/mob/living/carbon/target							//Operation target mob
 	var/obj/item/bodypart/operated_bodypart					//Operable body part
-	var/obj/item/organ/operated_organ						//Operable organ
 	var/requires_bodypart = TRUE							//Surgery available only when a bodypart is present, or only when it is missing.
 	var/success_multiplier = 0								//Step success propability multiplier
 	var/requires_real_bodypart = 0							//Some surgeries don't work on limbs that don't really exist
 	var/lying_required = TRUE								//Does the vicitm needs to be lying down.
 	var/requires_tech = FALSE
 	var/replaced_by
-	//skyrat edit
-	var/datum/wound/operated_wound								//The actual wound datum instance we're targeting
-	var/datum/wound/targetable_wound							//The wound type this surgery targets
-	//
 
 /datum/surgery/New(surgery_target, surgery_location, surgery_bodypart)
 	..()
@@ -33,17 +28,8 @@
 			location = surgery_location
 		if(surgery_bodypart)
 			operated_bodypart = surgery_bodypart
-			//skyrat edit
-			if(targetable_wound)
-				operated_wound = operated_bodypart.get_wound_type(targetable_wound)
-				operated_wound.attached_surgery = src
-			//
 
 /datum/surgery/Destroy()
-	//skyrat edit
-	if(operated_wound)
-		operated_wound.attached_surgery = null
-	//
 	if(target)
 		target.surgeries -= src
 	target = null
@@ -121,9 +107,6 @@
 		return null
 
 /datum/surgery/proc/complete()
-	if(operated_bodypart)
-		for(var/datum/wound/slash/critical/incision/inch in operated_bodypart.wounds)
-			inch.remove_wound()
 	SSblackbox.record_feedback("tally", "surgeries_completed", 1, type)
 	qdel(src)
 
@@ -184,5 +167,5 @@
 
 
 //RESOLVED ISSUES //"Todo" jobs that have been completed
-//combine hands/feet into the arms - Hands/feet were removed - RR //Fuck you, they were brought back - Bob Joga
+//combine hands/feet into the arms - Hands/feet were removed - RR
 //surgeries (not steps) that can be initiated on any body part (corresponding with damage locations) - Call this one done, see possible_locs var - c0

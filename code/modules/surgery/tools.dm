@@ -163,12 +163,9 @@
 	item_flags = SURGICAL_TOOL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP_ACCURATE
 	tool_behaviour = TOOL_SCALPEL
 	toolspeed = 1
-	//skyrat edit
-	bare_wound_bonus = 15
-	//
 
 /obj/item/scalpel/Initialize()
 	. = ..()
@@ -183,7 +180,7 @@
 	force = 16
 	toolspeed = 0.7
 	light_color = LIGHT_COLOR_GREEN
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP_ACCURATE
 
 /obj/item/scalpel/advanced/Initialize()
 	. = ..()
@@ -223,7 +220,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	toolspeed = 0.5
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP_ACCURATE
 
 /obj/item/scalpel/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is slitting [user.p_their()] [pick("wrists", "throat", "stomach")] with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -245,15 +242,11 @@
 	throwforce = 9
 	throw_speed = 2
 	throw_range = 5
-	custom_materials = list(/datum/material/iron=10000) //skyrat edit
+	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	tool_behaviour = TOOL_SAW
 	toolspeed = 1
-	//skyrat edit
-	wound_bonus = 5
-	bare_wound_bonus = 15
-	//
 
 /obj/item/circular_saw/Initialize()
 	. = ..()
@@ -276,7 +269,7 @@
 	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	toolspeed = 0.5
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 
 /obj/item/surgical_drapes
 	name = "surgical drapes"
@@ -381,20 +374,3 @@
 			advanced_surgeries |= OC.advanced_surgeries
 		return TRUE
 	return
-
-//skyrat tools
-/obj/item/bonesetter
-	name = "bonesetter"
-	desc = "For setting things right."
-	icon = 'modular_skyrat/icons/obj/surgery.dmi'
-	icon_state = "bone-setter"
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	custom_materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
-	flags_1 = CONDUCT_1
-	item_flags = SURGICAL_TOOL
-	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("corrected", "properly set")
-	tool_behaviour = TOOL_BONESET
-	toolspeed = 1
-//

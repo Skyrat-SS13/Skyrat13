@@ -27,13 +27,8 @@
 		C.blood_volume -= 0.2
 		C.adjustStaminaLoss(-15)
 		// Stop Bleeding
-		//skyrat edit
-		if(istype(H) && H.get_total_bleed_rate() > 0 && rand(20) == 0)
-			for(var/x in H.bodyparts)
-				var/obj/item/bodypart/BP = x
-				if(istype(BP))
-					BP.generic_bleedstacks -= 5
-			//
+		if(istype(H) && H.bleed_rate > 0 && rand(20) == 0)
+			H.bleed_rate --
 		C.Jitter(5)
 		sleep(10)
 	// DONE!

@@ -58,7 +58,7 @@
 			"[user] begins to add plating to [target].")
 
 /datum/surgery_step/finalize_chassis_restoration
-	name = "Finalize chassis restoration (wrench)"
+	name = "finalize chassis restoration (wrench)"
 	implements = list(
 		TOOL_WRENCH = 100)
 	time = 120

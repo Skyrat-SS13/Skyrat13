@@ -4,7 +4,6 @@
 	var/ammo_type = /obj/item/ammo_casing/caseless
 	var/dropped = FALSE
 	impact_effect_type = null
-	wound_bonus = CANT_WOUND
 
 /obj/item/projectile/bullet/reusable/on_hit(atom/target, blocked = FALSE)
 	. = ..()

@@ -227,9 +227,6 @@
 	obj_flags = UNIQUE_RENAME
 	var/chaplain_spawnable = TRUE
 	total_mass = TOTAL_MASS_MEDIEVAL_WEAPON
-	//skyrat edit
-	wound_bonus = -10
-	//
 
 /obj/item/nullrod/Initialize()
 	. = ..()
@@ -354,7 +351,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	block_chance = 30
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
@@ -454,7 +451,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	armour_penetration = 35
 	slot_flags = ITEM_SLOT_BACK
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
 /obj/item/nullrod/scythe/Initialize()
@@ -577,7 +574,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = ABSTRACT
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
 	total_mass = TOTAL_MASS_HAND_REPLACEMENT
@@ -596,7 +593,7 @@
 	name = "clown dagger"
 	desc = "Used for absolutely hilarious sacrifices."
 	hitsound = 'sound/items/bikehorn.ogg'
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/nullrod/pride_hammer
@@ -647,7 +644,7 @@
 	throw_speed = 4
 	throw_range = 7
 	throwforce = 30
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	attack_verb = list("enlightened", "redpilled")
 
 /obj/item/nullrod/armblade
@@ -659,12 +656,8 @@
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
 	item_flags = ABSTRACT
 	w_class = WEIGHT_CLASS_HUGE
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	total_mass = TOTAL_MASS_HAND_REPLACEMENT
-	//skyrat edit
-	wound_bonus = -20
-	bare_wound_bonus = 25
-	//
 
 /obj/item/nullrod/armblade/Initialize()
 	. = ..()
@@ -703,7 +696,7 @@
 	force = 15
 	block_chance = 40
 	slot_flags = ITEM_SLOT_BACK
-	sharpness = SHARP_NONE
+	sharpness = IS_BLUNT
 	hitsound = "swing_hit"
 	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
 	icon = 'icons/obj/items_and_weapons.dmi'
@@ -758,7 +751,7 @@
 	name = "arrhythmic knife"
 	w_class = WEIGHT_CLASS_HUGE
 	desc = "They say fear is the true mind killer, but stabbing them in the head works too. Honour compels you to not sheathe it once drawn."
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	slot_flags = null
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -786,7 +779,7 @@
 	desc = "Holding this makes you look absolutely devilish."
 	attack_verb = list("poked", "impaled", "pierced", "jabbed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 
 /obj/item/nullrod/egyptian
 	name = "egyptian staff"

@@ -20,11 +20,11 @@
 		return FALSE
 	return TRUE
 /datum/surgery_step/lobotomize
-	name = "Perform lobotomy"
+	name = "perform lobotomy"
 	implements = list(TOOL_SCALPEL = 85, /obj/item/melee/transforming/energy/sword = 55, /obj/item/kitchen/knife = 35,
 		/obj/item/shard = 25, /obj/item = 20)
 	time = 100
-/datum/surgery_step/lobotomize/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
+/datum/surgery_step/lobotomize/tool_check(mob/user, obj/item/tool)
 	if(implement_type == /obj/item && !tool.get_sharpness())
 		return FALSE
 	return TRUE
