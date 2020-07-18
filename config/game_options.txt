@@ -63,14 +63,14 @@ PROJECTILE_SPEED_MODIFIER 1
 ALERT_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.
 ALERT_BLUE_UPTO The station has received reliable information about potential threats to the station. Security staff may have weapons visible, random searches are permitted.
 ALERT_BLUE_DOWNTO Significant confirmed threats have been neutralized. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still permitted.
-//Skyrat change start
+## Skyrat change start
 ALERT_AMBER_UPTO A major security emergency has developed. Security staff may have weapons unholstered at all times. Random searches are allowed and advised.
 ALERT_AMBER_DOWNTO A major security emergency is still underway. Non-security personnel are required to obey all relevant instructions from security staff.
 ALERT_ORANGE_UPTO A major engineering emergency has developed. Non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff.
 ALERT_ORANGE_DOWNTO A major engineering emergency has developed. Non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff.
 ALERT_VIOLET_UPTO A major medical emergency has developed. Non-medical personnel are required to obey all relevant instructions from medical staff.
 ALERT_VIOLET_DOWNTO  A major medical emergency has developed. Non-medical personnel are required to obey all relevant instructions from medical staff.
-//Skyrat change stop
+## Skyrat change stop
 ALERT_RED_UPTO There is an immediate serious threat to the station. Security is now authorized to use lethal force. Additionally, access requirements on some machines have been lifted.
 ALERT_RED_DOWNTO The station's destruction has been averted. There is still however an immediate serious threat to the station. Security is still authorized to use lethal force.
 ALERT_DELTA Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.
@@ -310,10 +310,10 @@ MINIMUM_SECBORG_ALERT 3
 ## AWAY MISSIONS ###
 
 ## Uncomment to load one of the missions from awaymissionconfig.txt at roundstart.
-ROUNDSTART_AWAY
+#ROUNDSTART_AWAY
 
 ## Uncomment to load one of the virtual reality levels from vr_config at roundstart.
-ROUNDSTART_VR
+#ROUNDSTART_VR
 
 ## How long the delay is before the Away Mission gate opens. Default is half an hour.
 ## 600 is one minute.
@@ -449,10 +449,10 @@ ROUNDSTART_RACES human
 ## Races that are strictly worse than humans that could probably be turned on without balance concerns
 ROUNDSTART_RACES lizard
 ROUNDSTART_RACES synthliz
-#ROUNDSTART_RACES fly
-#ROUNDSTART_RACES insect
+ROUNDSTART_RACES fly
+ROUNDSTART_RACES insect
 ROUNDSTART_RACES plasmaman
-#ROUNDSTART_RACES shadow
+ROUNDSTART_RACES shadow
 ROUNDSTART_RACES felinid
 ROUNDSTART_RACES dwarf
 
@@ -477,7 +477,6 @@ ROUNDSTART_RACES dwarf
 #ROUNDSTART_RACES agent
 
 ## CITADEL Races
-ROUNDSTART_RACES mammal
 ROUNDSTART_RACES avian
 ROUNDSTART_RACES aquatic
 ROUNDSTART_RACES insect
@@ -491,6 +490,10 @@ ROUNDSTART_RACES vox
 ROUNDSTART_RACES dunmer
 ROUNDSTART_RACES humanoid
 ROUNDSTART_RACES moth
+ROUNDSTART_RACES anthro
+ROUNDSTART_RACES mammal
+ROUNDSTART_RACES avian
+ROUNDSTART_RACES aquatic
 
 ##-------------------------------------------------------------------------------------------
 
