@@ -139,6 +139,7 @@
 #include "code\__DEFINES\modular_skyrat\runechat_defines.dm"
 #include "code\__DEFINES\modular_skyrat\traits.dm"
 #include "code\__DEFINES\modular_skyrat\medical_defines.dm"
+#include "code\__DEFINES\modular_skyrat\runechat_defines.dm"
 #include "code\__DEFINES\research\stock_parts.dm"
 #include "code\__DEFINES\skills\defines.dm"
 #include "code\__DEFINES\skills\helpers.dm"
