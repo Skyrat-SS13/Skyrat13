@@ -1,7 +1,7 @@
 #define SIPHONING	0
 #define SCRUBBING	1
 
-#define MINIMUM_CONTAMINANTS_MOLES	0.1
+#define MINIMUM_CONTAMINANTS_MOLES	0.05
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/process_atmos()
 	..()
@@ -94,7 +94,7 @@
 		return FALSE
 
 	air_contents.temperature = (((self_heat_capacity * air_contents.temperature)+recieved_thermal_energy)/(self_heat_capacity+recieved_heat_capacity))
-	if(recieved_heat_capacity>10)
+	if(recieved_heat_capacity>1)
 		tile.air_update_turf()
 		update_parents()
 
