@@ -65,6 +65,27 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 			var/mob/living/carbon/human/H = user
 			if(cli.prefs.bloodtype in H.dna.species.bloodtypes)
 				H.dna.blood_type = cli.prefs.bloodtype
+	if(cli.prefs.bloodreagent)
+		if(ishuman(user))
+			var/datum/reagent/bloop
+			var/mob/living/carbon/human/H = user
+			if(H.dna.species.bloodreagents.len)
+				for(var/i in all_bloodtypes)
+					var/datum/reagent/R = i
+					if(R.name == cli.prefs.bloodtype)
+						bloop = R
+				if(bloop)
+					H.dna.species.exotic_blood = bloop.type
+	if(cli.prefs.bloodtype)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.dna.species.bloodtypes.len)
+				H.dna.blood_type = cli.prefs.bloodtype
+	if(cli.prefs.bloodcolor)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.dna.species.rainbowblood)
+				H.dna.blood_color = cli.prefs.bloodcolor
 	//SKYRAT CHANGE - food preferences
 	//Yes, i am using the quirk subsystem to assign food preferences and descriptors. Too bad!
 	var/mob/living/carbon/human/H = user

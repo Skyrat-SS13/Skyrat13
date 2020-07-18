@@ -4,6 +4,11 @@
 	var/revivesbyhealreq = 0 //They need to pass that health number to revive if they possess the REVIVESBYHEALING trait
 	var/reagent_flags = PROCESS_ORGANIC //Used for metabolizing reagents. We're going to assume you're a meatbag unless you say otherwise.
 	var/icon_eyes = 'icons/mob/human_face.dmi'//Skyrat change
+	var/list/languagewhitelist = list()
+	var/list/descriptors = list(
+		/datum/mob_descriptor/height = "default",
+		/datum/mob_descriptor/build = "default",
+	)
 
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)

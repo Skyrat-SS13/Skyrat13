@@ -93,6 +93,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/event_participation = FALSE
 	var/event_prefs = ""
 	var/appear_in_round_end_report = TRUE //whether the player of the character is listed on the round-end report
+	var/accept_ERG = TRUE //whether the player wants or not to go through end round grief
 	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
@@ -107,6 +108,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/age = 30						//age of character
 	//SKYRAT CHANGES
 	var/bloodtype = ""
+	var/bloodreagent = ""
+	var/bloodcolor = ""
 	var/skyrat_ooc_notes = ""
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
@@ -455,6 +458,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			if(pref_species.bloodtypes.len)
 				dat += "<b>Blood type :</b>"
 				dat += 	"<a href='?_src_=prefs;preference=bloodtype;task=input'>[bloodtype ? bloodtype : "Default"]</a><br>"
+			if(pref_species.bloodreagents.len)
+				dat += "Blood reagent :"
+				dat += 	"<a href='?_src_=prefs;preference=bloodreagent;task=input'>[bloodreagent ? bloodreagent : "Default"]</a><br>"
+			if(pref_species.rainbowblood)
+				dat += "Blood color :"
+				dat += 	"<span style='border: 1px solid #161616; background-color: [bloodcolor];'>&nbsp;&nbsp;&nbsp;</span><a href='?_src_=prefs;preference=bloodcolor;task=input'>[bloodcolor ? bloodcolor : "Default"]</a><br>"
 			dat += "<b>Faction/Employer :</b> <a href='?_src_=prefs;preference=flavor_faction;task=input'>[flavor_faction ? flavor_faction : "Unset"]</a><br>"
 			dat += "<b>Custom runechat color :</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 			//END OF SKYRAT EDIT
@@ -1068,6 +1077,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Preferred Chaos Amount:</b> <a href='?_src_=prefs;preference=preferred_chaos;task=input'>[p_chaos]</a><br>"
 //SKYRAT CHANGES
 			dat += "<b>Show name at round-end report:</b> <a href='?_src_=prefs;preference=appear_in_round_end_report'>[appear_in_round_end_report ? "Yes" : "No"]</a><br>"
+			dat += "<b>End Round Grief:</b> <a href='?_src_=prefs;preference=accept_ERG'>[accept_ERG ? "Yes" : "No"]</a><br>"
 //END OF SKYRAT CHANGES
 			dat += "<br>"
 			dat += "</td>"
@@ -1995,6 +2005,21 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							bloodtype = ""
 						else
 							bloodtype = msg
+				
+				if("bloodreagent")
+					var/msg = input(usr, "Choose your blood reagent", "Blood Reagent", "") as anything in (pref_species.bloodreagents + "Default")
+					if(msg)
+						if(msg == "Default")
+							bloodreagent = ""
+						else
+							bloodreagent = msg
+
+				if("bloodcolor")
+					var/msg = input(usr, "Choose your blood color", "Blood Color", "") as color|null
+					if(msg)
+						bloodcolor = msg
+					else 
+						bloodcolor = ""
 
 				if("general_records")
 					var/msg = input(usr, "Set your general records", "General Records", general_records) as message|null 
@@ -2944,6 +2969,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("appear_in_round_end_report")
 					appear_in_round_end_report = !appear_in_round_end_report
 					user.mind?.appear_in_round_end_report = appear_in_round_end_report
+				if("accept_ERG")
+					accept_ERG = !accept_ERG
+					user.mind?.accept_ERG = accept_ERG
 				//End of skyrat changes
 				if("action_buttons")
 					buttons_locked = !buttons_locked
