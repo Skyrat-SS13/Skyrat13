@@ -34,7 +34,7 @@
 	heat_level_2_threshold = 1000
 	heat_level_3_threshold = 1500
 	oxy_damage_type = TOX
-	cold_damage_type = OXY
+	cold_damage_type = BURN
 	heat_damage_type = BURN
 	crit_stabilizing_reagent = /datum/reagent/fuel
 	food_reagents = list(/datum/reagent/blood = 10, /datum/reagent/consumable/nutriment = 5, /datum/reagent/fuel/unholywater = 5)
