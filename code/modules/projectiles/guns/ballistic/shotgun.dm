@@ -2,7 +2,11 @@
 	name = "shotgun"
 	desc = "A traditional shotgun with wood furniture and a four-shell capacity underneath."
 	icon_state = "shotgun"
+	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/64x_guns_right.dmi'
 	item_state = "shotgun"
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	flags_1 =  CONDUCT_1
@@ -88,13 +92,14 @@
 
 /obj/item/gun/ballistic/shotgun/riot //for spawn in the armory
 	name = "riot shotgun"
-	desc = "A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control."
+	desc = "A modern shotgun with a longer tube and a fixed tactical stock designed for non-lethal riot control."
 	icon_state = "riotshotgun"
+	item_state = "shotgun"
 	fire_delay = 7
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
 	sawn_desc = "Come with me if you want to live."
-	unique_reskin = list("Tactical" = "riotshotgun",
-						"Wood Stock" = "wood_riotshotgun"
+	unique_reskin = list("Polymer" = "riotshotgun",
+						"Ithaca '37" = "wood_riotshotgun"
 						)
 
 /obj/item/gun/ballistic/shotgun/riot/attackby(obj/item/A, mob/user, params)
@@ -131,6 +136,7 @@
 	desc = "A bolt-action breechloaded rifle that takes 7.62mm bullets."
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/improvised
 	can_bayonet = FALSE
+	var/slung = FALSE
 
 /obj/item/gun/ballistic/shotgun/boltaction/pump(mob/M)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
@@ -151,6 +157,22 @@
 /obj/item/gun/ballistic/shotgun/boltaction/examine(mob/user)
 	. = ..()
 	. += "The bolt is [bolt_open ? "open" : "closed"]."
+
+/obj/item/gun/ballistic/shotgun/boltaction/improvised/attackby(obj/item/A, mob/user, params)
+	..()
+	if(istype(A, /obj/item/stack/cable_coil) && !sawn_off)
+		if(A.use_tool(src, user, 0, 10, max_level = JOB_SKILL_BASIC))
+			slot_flags = ITEM_SLOT_BACK
+			to_chat(user, "<span class='notice'>You tie the lengths of cable to the rifle, making a sling.</span>")
+			slung = TRUE
+			update_icon()
+		else
+			to_chat(user, "<span class='warning'>You need at least ten lengths of cable if you want to make a sling!</span>")
+
+/obj/item/gun/ballistic/shotgun/boltaction/improvised/update_icon()
+	..()
+	if(slung)
+		icon_state += "sling"
 
 /obj/item/gun/ballistic/shotgun/boltaction/enchanted
 	name = "enchanted bolt action rifle"
@@ -211,13 +233,14 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "combat shotgun"
-	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
+	desc = "A lightweight semi-automatic assault shotgun with a 6+1 shell capacity. Breach & Clear."
 	icon_state = "cshotgun"
+	item_state = "shotgun_combat"
 	fire_delay = 5
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
 	w_class = WEIGHT_CLASS_HUGE
-	unique_reskin = list("Tactical" = "cshotgun",
-						"Slick" = "cshotgun_slick"
+	unique_reskin = list("FP6" = "cshotgun",
+						"XM1014" = "cshotgun_slick"
 						)
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact
@@ -303,3 +326,18 @@
 	return TRUE
 
 // DOUBLE BARRELED SHOTGUN and IMPROVISED SHOTGUN are in revolver.dm
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/hook
+	name = "hook modified sawn-off shotgun"
+	desc = "Range isn't an issue when you can bring your victim to you."
+	icon_state = "hookshotgun"
+	item_state = "shotgun"
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/bounty
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
+	force = 16 //it has a hook on it
+	attack_verb = list("slashed", "hooked", "stabbed")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	//our hook gun!
+	var/obj/item/gun/magic/hook/bounty/hook
+	var/toggled = FALSE

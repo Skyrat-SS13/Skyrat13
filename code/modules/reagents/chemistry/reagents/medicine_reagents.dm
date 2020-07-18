@@ -434,11 +434,12 @@
 			if(show_message)
 				to_chat(M, "<span class='danger'>You feel your wounds fade away to nothing!</span>" )
 	..()
-
+			
 /datum/reagent/medicine/mine_salve/on_mob_end_metabolize(mob/living/M)
 	if(iscarbon(M))
 		var/mob/living/carbon/N = M
 		N.hal_screwyhud = SCREWYHUD_NONE
+		REMOVE_TRAIT(M, TRAIT_PAINKILLER, PAINKILLER_MINERSSALVE) //SKYRAT EDIT, Painkiller.
 	..()
 
 /datum/reagent/medicine/synthflesh
@@ -739,10 +740,12 @@
 
 /datum/reagent/medicine/morphine/on_mob_metabolize(mob/living/L)
 	..()
+	ADD_TRAIT(L, TRAIT_PAINKILLER, PAINKILLER_MORPHINE) //SKYRAT EDIT, Painkiller.
 	L.add_movespeed_mod_immunities(type, list(/datum/movespeed_modifier/damage_slowdown, /datum/movespeed_modifier/damage_slowdown_flying, /datum/movespeed_modifier/monkey_health_speedmod))
 
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_mod_immunities(type, list(/datum/movespeed_modifier/damage_slowdown, /datum/movespeed_modifier/damage_slowdown_flying, /datum/movespeed_modifier/monkey_health_speedmod))
+	REMOVE_TRAIT(L, TRAIT_PAINKILLER, PAINKILLER_MORPHINE) //SKYRAT EDIT, Painkiller.
 	..()
 
 /datum/reagent/medicine/morphine/on_mob_life(mob/living/carbon/M)
@@ -1566,3 +1569,20 @@
 	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.5)
 	..()
 	. = 1
+
+/datum/reagent/medicine/liquid_wisdom
+	name = "liquid wisdom"
+	description = "the physical representation of wisdom, in liquid form"
+	taste_mult = 4
+	can_synth = FALSE
+	overdose_threshold = 30
+	value = REAGENT_VALUE_UNCOMMON // while it's 'rare', it can be milked from the wisdom cow
+
+/datum/reagent/medicine/liquid_wisdom/on_mob_life(mob/living/carbon/C) //slightly stronger mannitol, from the wisdom cow
+	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3*REM)
+	if(prob(20))
+		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
+	if(prob(3))
+		to_chat(C, "[pick(GLOB.wisdoms)]") //give them a random wisdom
+	..()
+

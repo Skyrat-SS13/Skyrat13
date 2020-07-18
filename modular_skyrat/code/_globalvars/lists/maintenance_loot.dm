@@ -151,7 +151,6 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/flashlight/lantern = 25,
 	/obj/item/flashlight/pen = 25,
 	/obj/item/flashlight/seclite = 10,
-	/obj/item/folder/paperwork = 25,
 	/obj/item/geiger_counter = 100,
 	/obj/item/gps/engineering = 10,
 	/obj/item/grenade/chem_grenade/cleaner = 25,
@@ -274,3 +273,21 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/valentine = 1,
 	/obj/item/wirerod = 25
 ))
+
+GLOBAL_LIST_INIT(ratking_trash, list(//Garbage: used by the regal rat mob when spawning garbage.
+			/obj/item/cigbutt,
+			/obj/item/trash/cheesie,
+			/obj/item/trash/candy,
+			/obj/item/trash/chips,
+			/obj/item/trash/pistachios,
+			/obj/item/trash/plate,
+			/obj/item/trash/popcorn,
+			/obj/item/trash/raisins,
+			/obj/item/trash/sosjerky,
+			/obj/item/trash/syndi_cakes))
+
+GLOBAL_LIST_INIT(ratking_coins, list(//Coins: Used by the regal rat mob when spawning coins.
+			/obj/item/coin/iron,
+			/obj/item/coin/silver,
+			/obj/item/coin/plastic,
+			/obj/item/coin/titanium))

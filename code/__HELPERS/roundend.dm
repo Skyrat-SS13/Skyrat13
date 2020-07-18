@@ -174,13 +174,17 @@
 
 	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
 	if(LAZYLEN(GLOB.round_end_notifiees))
-		send2irc("Notice", "[GLOB.round_end_notifiees.Join(", ")] the round has ended.")
+		world.TgsTargetedChatBroadcast("[GLOB.round_end_notifiees.Join(", ")] the round has ended.", FALSE)
 
 	for(var/I in round_end_events)
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
-	// SKYRAT EDIT: Credits
+	// SKYRAT EDIT
+	for(var/mob/M in GLOB.player_list)
+		var/datum/action/switch_erg = new /datum/action/switch_erg(M)
+		switch_erg.Grant(M)
+		to_chat(M, "<span class='notice'>The round will end soon. If you want to participate in EORG, toggle it on now!</span>")
 	RollCredits()
 	for(var/client/C in GLOB.clients)
 		C.playtitlemusic(40)
@@ -232,6 +236,7 @@
 	for(var/antag_name in total_antagonists)
 		var/list/L = total_antagonists[antag_name]
 		log_game("[antag_name]s :[L.Join(", ")].")
+	set_observer_default_invisibility(0, "<span class='warning'>The round is over! You are now visible to the living.</span>")
 
 	CHECK_TICK
 	SSdbcore.SetRoundEnd()
@@ -243,6 +248,9 @@
 	SSblackbox.Seal()
 
 	sleep(50)
+	//skyrat edit
+	do_ERG()
+	//
 	ready_for_reboot = TRUE
 	standard_reboot()
 
@@ -254,6 +262,24 @@
 			Reboot("Round ended.", "proper completion")
 	else
 		CRASH("Attempted standard reboot without ticker roundend completion")
+
+//skyrat edit
+/datum/controller/subsystem/ticker/proc/do_ERG()
+	var/turf/ERG_turf = GLOB.ERG_spawn
+	if(ERG_turf)
+		for(var/mob/living/L in GLOB.player_list)
+			if(L.client?.prefs?.accept_ERG)
+				do_teleport(L, ERG_turf)
+				SEND_SOUND(L, sound('modular_skyrat/sound/ambience/e1m1.mid', TRUE, 0, CHANNEL_ADMIN, 100))
+			else
+				if(iscarbon(L))
+					var/mob/living/carbon/C = L
+					C.gain_trauma_type(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_ABSOLUTE)
+				else
+					L.actions = list()
+					L.mind?.spell_list = list()
+					L.a_intent_change(INTENT_HELP)
+//
 
 //Common part of the report
 /datum/controller/subsystem/ticker/proc/build_roundend_report()

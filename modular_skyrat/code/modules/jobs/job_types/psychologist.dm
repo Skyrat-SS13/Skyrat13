@@ -26,14 +26,13 @@
 	name = "Psychologist"
 	jobtype = /datum/job/psychologist
 
-	id = /obj/item/card/id/department/med
 	belt = /obj/item/pda/psychologist
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/medical/psychologist
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	r_pocket = /obj/item/pen/fountain
 	l_pocket = /obj/item/flashlight/pen
-	//suit = 
+	//suit =
 
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel/leather

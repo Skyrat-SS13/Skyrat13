@@ -370,6 +370,14 @@
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/breast_enlargement(src)
 
+/obj/item/storage/pill_bottle/neurine
+	name = "bottle of neurine pills"
+	desc = "Contains pills to treat non-severe mental traumas."
+
+/obj/item/storage/pill_bottle/neurine/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/reagent_containers/pill/neurine(src)
+
 /////////////
 //Organ Box//
 /////////////
@@ -418,7 +426,8 @@
 	/obj/item/circuitboard/computer/crew,
 	/obj/item/stack/sheet/glass,
 	/obj/item/stack/sheet/mineral/silver,
-	/obj/item/organ_storage
+	/obj/item/organ_storage,
+	/obj/item/reagent_containers/chem_pack
 	))
 
 //hijacking the minature first aids for hypospray boxes. <3

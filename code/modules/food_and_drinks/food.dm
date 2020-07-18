@@ -6,7 +6,6 @@
 /// get_random_food proc.
 ////////////////////////////////////////////////////////////////////////////////
 
-#define STOP_SERVING_BREAKFAST (15 MINUTES)
 
 /obj/item/reagent_containers/food
 	possible_transfer_amounts = list()
@@ -56,5 +55,3 @@
 				to_chat(H, "<span class='danger'><b>As you feel your muscles inflaming, you realize how much you fucked up.</b></span>")
 			//
 			last_check_time = world.time
-
-#undef STOP_SERVING_BREAKFAST

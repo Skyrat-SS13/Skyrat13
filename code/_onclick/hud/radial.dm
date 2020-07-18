@@ -81,6 +81,8 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/py_shift = 0
 	var/entry_animation = TRUE
 
+	var/icon_path = 'icons/mob/radial.dmi' //Skyrat change
+
 //If we swap to vis_contens inventory these will need a redo
 /datum/radial_menu/proc/check_screen_border(mob/user)
 	var/atom/movable/AM = anchor
@@ -122,6 +124,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		var/elements_to_add = max_elements - elements.len
 		for(var/i in 1 to elements_to_add) //Create all elements
 			var/obj/screen/radial/slice/new_element = new /obj/screen/radial/slice
+			new_element.icon = icon_path //Skyrat change
 			new_element.tooltips = use_tooltips
 			new_element.parent = src
 			elements += new_element

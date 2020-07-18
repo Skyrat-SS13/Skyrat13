@@ -4,6 +4,8 @@
 	speech_verb = "expresses"
 	ask_verb = "inquires"
 	exclaim_verb = "declares"
+	key = "sv"
+	sing_verb = "sings"
 	key = "h"
 	flags = TONGUELESS_SPEECH
 	space_chance = 20

@@ -58,12 +58,22 @@
 	usr.emote("me",1,message,TRUE)
 
 /mob/say_mod(input, message_mode)
+	if(message_mode == MODE_WHISPER_CRIT)
+		return ..()
+	if((input[1] == "!") && (length_char(input) > 1))
+		message_mode = MODE_CUSTOM_SAY
+		return copytext_char(input, 2)
 	var/customsayverb = findtext(input, "*")
-	if(customsayverb && message_mode != MODE_WHISPER_CRIT)
+	if(customsayverb)
 		message_mode = MODE_CUSTOM_SAY
 		return lowertext(copytext_char(input, 1, customsayverb))
-	else
-		return ..()
+	return ..()
+
+/proc/uncostumize_say(input, message_mode)
+	. = input
+	if(message_mode == MODE_CUSTOM_SAY)
+		var/customsayverb = findtext(input, "*")
+		return lowertext(copytext_char(input, 1, customsayverb))
 
 /mob/proc/whisper_keybind()
 	var/message = input(src, "", "whisper") as text|null
@@ -121,7 +131,7 @@
 		if(name != real_name)
 			alt_name = " (died as [real_name])"
 
-	var/spanned = say_quote(message)
+	var/spanned = say_quote(say_emphasis(message))
 	message = emoji_parse(message)
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name] <span class='message'>[emoji_parse(spanned)]</span></span>"
 	log_talk(message, LOG_SAY, tag="DEAD")
@@ -144,6 +154,10 @@
 		return MODE_WHISPER
 	else if(key == ";")
 		return MODE_HEADSET
+	// Skyrat edit
+	else if(key == "%")
+		return MODE_SING
+	// End of Skyrat edit
 	else if((length(message) > (length(key) + 1)) && (key in GLOB.department_radio_prefixes))
 		var/key_symbol = lowertext(message[length(key) + 1])
 		return GLOB.department_radio_keys[key_symbol]
