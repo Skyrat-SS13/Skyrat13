@@ -1,6 +1,0 @@
-author: "Yawet330"
-delete-after: True
-changes: 
-  - rscadd: "New Verb - Set Gender for cyborgs/silicons. Allows them to inherently switch their gender."
-  - tweak: "Silicons can now use the interaction menu."
-  - tweak: "People can now interact with other mobs via the interaction menu (mostly untested)"
