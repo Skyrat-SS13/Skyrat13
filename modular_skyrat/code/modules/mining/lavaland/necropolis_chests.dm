@@ -101,6 +101,8 @@
 
 //super shotty changes (meat hook instead of bursto)
 /obj/item/gun/ballistic/revolver/doublebarrel/super
+	name = "\proper Super Shotgun"
+	desc = "Coming from the heart of the beast itself, this engraved weapon has a hook attachment which is sure to let you get close and lethal to your enemies."
 	burst_size = 1
 	actions_types = list(/datum/action/item_action/toggle_hook)
 	icon = 'modular_skyrat/icons/obj/guns/projectile.dmi'
@@ -186,19 +188,25 @@
 	else
 		..()
 
-/obj/item/gun/ballistic/revolver/doublebarrel/super/proc/toggle_hook(mob/living/user)
+/obj/item/gun/ballistic/revolver/doublebarrel/super/proc/toggle_hook(mob/living/user, silent = FALSE)
 	var/current_mag = magazine
 	var/alt_mag = alternate_magazine
 	magazine = alt_mag
 	alternate_magazine = current_mag
 	toggled = !toggled
-	if(toggled)
+	if(toggled && !silent)
 		to_chat(user, "You will now fire a hookshot.")
-	else
+	else if(!silent)
 		to_chat(user, "You will now fire normal shotgun rounds.")
 
+/obj/item/gun/ballistic/revolver/doublebarrel/super/do_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread, stam_cost)
+	. = ..()
+	if(. && toggled)
+		toggle_hook(user, FALSE)
+		return TRUE
+
 /obj/item/gun/ballistic/revolver/doublebarrel/super/sawoff(mob/user)
-	to_chat(user, "<span class='warning'>Why would you mutilate this work of art?</span>")
+	to_chat(user, "<span class='narsiesmall'>Why would you mutilate such a work of art?</span>")
 	return
 
 /obj/item/gun/ballistic/revolver/doublebarrel/super/upgraded
