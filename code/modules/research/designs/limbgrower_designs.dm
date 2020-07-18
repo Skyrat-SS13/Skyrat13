@@ -193,6 +193,7 @@
 	name = "Penis"
 	id = "penis"
 	build_type = LIMBGROWER
+	research_icon_state = "penis_human_3_s"
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/organ/genital/penis
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")
@@ -217,6 +218,7 @@
 	name = "Testicles"
 	id = "testicles"
 	build_type = LIMBGROWER
+	research_icon_state = "testicles_single_3_s"
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
 	build_path = /obj/item/organ/genital/testicles
 	category = list("initial","human","lizard","fly","insect","plasmaman","mammal","xeno")

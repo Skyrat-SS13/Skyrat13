@@ -390,6 +390,8 @@
 	name = "IPC chassis"
 	id = "ipc_chassis"
 	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
 	build_path = /mob/living/carbon/human/species/ipc/mangled
 	materials = list(/datum/material/iron = 5000, /datum/material/titanium = 10000, /datum/material/gold = 5000, /datum/material/glass = 1000)
 	construction_time = 150
@@ -399,6 +401,8 @@
 	name = "Synth chassis"
 	id = "synth_chassis"
 	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
 	build_path = /mob/living/carbon/human/species/synth/mangled
 	materials = list(/datum/material/iron = 7000, /datum/material/titanium = 10000, /datum/material/plasma = 5000, /datum/material/gold = 5000, /datum/material/glass = 1000)
 	construction_time = 150
@@ -408,6 +412,8 @@
 	name = "Synth lizard chassis"
 	id = "synthliz_chassis"
 	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
 	build_path = /mob/living/carbon/human/species/synthliz/mangled
 	materials = list(/datum/material/iron = 7000, /datum/material/titanium = 10000, /datum/material/plasma = 5000, /datum/material/gold = 5000, /datum/material/glass = 1000)
 	construction_time = 150
@@ -417,6 +423,8 @@
 	name = "Android chassis"
 	id = "android_chassis"
 	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
 	build_path = /mob/living/carbon/human/species/android/mangled
 	materials = list(/datum/material/iron = 10000, /datum/material/titanium = 30000, /datum/material/plasma = 5000, /datum/material/gold = 5000, /datum/material/glass = 1000, /datum/material/silver = 5000)
 	construction_time = 150
@@ -426,6 +434,8 @@
 	name = "Military synth chassis"
 	id = "military_synth_chassis"
 	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
 	build_path = /mob/living/carbon/human/species/synth/military/mangled
 	materials = list(/datum/material/iron = 25000, /datum/material/titanium = 30000, /datum/material/plasma = 15000, /datum/material/gold = 15000, /datum/material/glass = 10000, /datum/material/silver = 5000)
 	construction_time = 150
@@ -435,6 +445,8 @@
 	name = "Corporate synth chassis"
 	id = "corporate_chassis"
 	build_type = MECHFAB
+	research_icon = 'modular_skyrat/icons/mob/ipc/ipc_parts.dmi'
+	research_icon_state = "synth_chest"
 	build_path = /mob/living/carbon/human/species/corporate/mangled
 	materials = list(/datum/material/iron = 25000, /datum/material/titanium = 30000, /datum/material/plasma = 30000, /datum/material/gold = 30000, /datum/material/glass = 10000, /datum/material/silver = 20000)
 	construction_time = 150
