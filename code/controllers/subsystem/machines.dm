@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(machines)
 			processing -= thing
 			if (!QDELETED(thing))
 				thing.datum_flags &= ~DF_ISPROCESSING
-		CHECK_TICK_LOW_PRIORITY
+		CHECK_TICK_VERY_LOW_PRIORITY
 
 /datum/controller/subsystem/machines/proc/setup_template_powernets(list/cables)
 	for(var/A in cables)

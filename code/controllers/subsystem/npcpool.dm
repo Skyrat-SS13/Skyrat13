@@ -30,4 +30,4 @@ SUBSYSTEM_DEF(npcpool)
 				SA.handle_automated_action()
 			if(SA.stat != DEAD)
 				SA.handle_automated_speech()
-		CHECK_TICK_LOW_PRIORITY
+		CHECK_TICK_VERY_LOW_PRIORITY
