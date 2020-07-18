@@ -28,13 +28,13 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 	var/path
 	var/default_slot = 1				//Holder so it doesn't default to slot 1, rather the last one used
 	var/max_save_slots = 30 //skyrat-edit
-
+	
 	//non-preference stuff
 	var/muted = 0
 	var/last_ip
 	var/last_id
 	var/log_clicks = FALSE
-
+	
 	var/icon/custom_holoform_icon
 	var/list/cached_holoform_icons
 	var/last_custom_holoform = 0
@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 	var/list/key_bindings = list()
 	/// List with a key string associated to a list of keybindings. Unlike key_bindings, this one operates on raw key, allowing for binding a key that triggers regardless of if a modifier is depressed as long as the raw key is sent.
 	var/list/modless_key_bindings = list()
-
+	
 
 	var/tgui_fancy = TRUE
 	var/tgui_lock = TRUE
@@ -118,7 +118,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 	var/vorepref = "Ask"
 	var/extremepref = "No" //This is for extreme shit, maybe even literal shit, better to keep it on no by default
 	var/extremeharm = "No" //If "extreme content" is enabled, this option serves as a toggle for the related interactions to cause damage or not
-  
+
 	var/general_records = ""
 	var/security_records = ""
 	var/medical_records = ""
@@ -126,18 +126,18 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 	var/flavor_faction = ""
 	var/character_skills = ""
 	var/exploitable_info = ""
-  
-  var/language = ""
-  
+
+	var/language = ""
+
 	var/see_chat_emotes = TRUE
 	var/enable_personal_chat_color = FALSE
 	var/personal_chat_color = "#ffffff"
-  
+
 	var/list/foodlikes = list()
 	var/list/fooddislikes = list()
 	var/maxlikes = 3
 	var/maxdislikes = 3
-  
+
 	var/max_marking_per_bp = 5
 	var/list/adv_markings = list(BODY_ZONE_HEAD = list(), BODY_ZONE_CHEST = list(), BODY_ZONE_PRECISE_GROIN = list(),
 								BODY_ZONE_L_ARM = list(), BODY_ZONE_PRECISE_L_HAND = list(),
@@ -146,7 +146,7 @@ GLOBAL_LIST_EMPTY_TYPED(adv_markings, /datum/sprite_accessory/adv_marking)
 								BODY_ZONE_R_LEG = list(), BODY_ZONE_PRECISE_R_FOOT = list(),
 								)
 	var/list/body_descriptors = list()
-  
+
 	var/list/alt_titles_preferences = list()
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
