@@ -134,9 +134,31 @@
 	icon_state = "impskull"
 	bonus_value = 5
 	denied_type = /obj/item/crusher_trophy/blaster_tubes/impskull
+	var/firestacks = 3
 
 /obj/item/crusher_trophy/blaster_tubes/impskull/effect_desc()
-	return "causes every marker to deal <b>[bonus_value]</b> damage."
+	return "causes every marker to deal <b>[bonus_value]</b> extra damage and set targets on fire."
+
+/obj/item/crusher_trophy/blaster_tubes/impskull/add_to(obj/item/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	if(.)
+		RegisterSignal(H, COMSIG_PROJECTILE_ON_HIT, .proc/mob_effects)
+
+/obj/item/crusher_trophy/blaster_tubes/impskull/proc/mob_effects(atom/firer, atom/target, Angle)
+	if(isliving(target))
+		var/mob/living/L = target
+		L.adjust_fire_stacks(firestacks)
+		L.IgniteMob()
+
+/obj/item/crusher_trophy/blaster_tubes/impskull/remove_from(obj/item/kinetic_crusher/H, mob/living/user)
+	. = ..()
+	if(.)
+		UnregisterSignal(H, COMSIG_PROJECTILE_ON_HIT)
+
+/obj/item/crusher_trophy/blaster_tubes/impskull/Destroy()
+	. = ..()
+	if(istype(loc, /obj/item))
+		UnregisterSignal(loc, COMSIG_PROJECTILE_ON_HIT)
 
 /obj/item/crusher_trophy/blaster_tubes/impskull/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
 	marker.name = "fiery [marker.name]"

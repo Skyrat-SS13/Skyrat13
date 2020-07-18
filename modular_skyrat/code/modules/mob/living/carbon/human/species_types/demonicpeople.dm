@@ -37,3 +37,16 @@
 	H.internal = H.get_item_for_held_index(2)
 	H.update_internals_hud_icon(1)
 	return 0
+
+/datum/species/imp/random_name(gender, unique, lastname)
+	if(unique)
+		return random_unique_imp_name(last_name = lastname)
+
+	var/randname = imp_name(lastname)
+
+	return randname
+
+/datum/species/imp/spec_death(gibbed, mob/living/carbon/human/H)
+	. = ..()
+	if(gibbed || !H.get_bodypart(BODY_ZONE_HEAD))
+		new /obj/item/crusher_trophy/blaster_tubes/impskull(H.loc)
