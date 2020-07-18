@@ -219,11 +219,11 @@
 	friendly_verb_continuous = "buzzes near"
 	friendly_verb_simple = "buzz near"
 	vision_range = 10
-	maxHealth = 1
+	maxHealth = 5
 	health = 5
-	harm_intent_damage = 5
-	melee_damage_lower = 12
-	melee_damage_upper = 12
+	harm_intent_damage = 20
+	melee_damage_lower = 20
+	melee_damage_upper = 20
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	speak_emote = list("echoes")
@@ -231,13 +231,13 @@
 	throw_message = "is shrugged off by"
 	pass_flags = PASSTABLE
 	del_on_death = TRUE
-	stat_attack = UNCONSCIOUS
+	stat_attack = CONSCIOUS
 	robust_searching = 1
 	var/can_infest_dead = FALSE
-	attack_same = 1
+	faction = list("explosive")
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/explosivelegion/death()
-	explosion(src.loc, 0, 0, 0, 2, 0)
+	explosion(src.loc, 0, 0, 1, 2, 0, FALSE, 2)
 	src.visible_message("<span class='danger'>The [src] explodes!</span>")
 	..()
 
@@ -263,7 +263,7 @@
 //drakeling
 /obj/item/borg/upgrade/modkit/fire
 	name = "flamethrower modification kit"
-	desc = "Makes your kinetic shots deal a mild amount of burn damage."
+	desc = "Makes your kinetic shots deal a mild amount of burn damage, along with spewing flames."
 	modifier = 10
 	cost = 25
 
@@ -383,12 +383,13 @@
 //sif
 /obj/item/borg/upgrade/modkit/critical
 	name = "critical modification kit"
-	desc = "Makes your kinetic accelerator have a <b>10%</b> chance to critically wound your target."
-	modifier = 10
+	desc = "Makes your kinetic accelerator have a <b>20%</b> chance to critically wound your target."
+	modifier = 20
+	var/multiplier = 2
 	cost = 30
 
 /obj/item/borg/upgrade/modkit/critical/modify_projectile(obj/item/projectile/kinetic/K)
 	. = ..()
 	if(prob(modifier))
-		K.damage *= 2
+		K.damage *= multiplier
 		K.name = "critical [K.name]"
