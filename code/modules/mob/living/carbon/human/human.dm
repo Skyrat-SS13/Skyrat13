@@ -1242,8 +1242,17 @@
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
 
+/mob/living/carbon/human/species/anthro
+	race = /datum/species/anthro
+
 /mob/living/carbon/human/species/mammal
-	race = /datum/species/mammal
+	race = /datum/species/anthro/mammal
+
+/mob/living/carbon/human/species/avian
+	race = /datum/species/anthro/avian
+
+/mob/living/carbon/human/species/aquatic
+	race = /datum/species/anthro/aquatic
 
 /mob/living/carbon/human/species/insect
 	race = /datum/species/insect

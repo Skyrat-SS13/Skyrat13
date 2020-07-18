@@ -63,41 +63,34 @@ GLOBAL_LIST_INIT(success_spawned_turfs, list())
 		GLOB.success_spawned_turfs += src
 	return TRUE
 
-/turf/open/floor/plating/asteroid/airless/cave/proc/BruteForceSpawn(var/mob/living/simple_animal/hostile/megafauna/boss)
-	if(!isarea(loc))
-		return FALSE
-	var/area/A = loc
+/turf/open/floor/plating/asteroid/airless/cave/proc/BruteForceSpawn(mob/living/simple_animal/hostile/megafauna/boss)
+	var/area/A = get_area(src)
 	if(!A.mob_spawn_allowed)
 		return FALSE
 	if(!boss || !istype(boss))
 		return FALSE
-	if(A.megafauna_spawn_allowed && megafauna_spawn_list && megafauna_spawn_list.len) //this is danger. it's boss time.
-		if(get_mega_count(boss) < GLOB.cap_megas[boss])
-			new boss()
-			return TRUE
+	if(A.megafauna_spawn_allowed && length(megafauna_spawn_list)) //this is danger. it's boss time.
+		new boss()
+		return TRUE
 	return FALSE
 
-/turf/open/floor/plating/asteroid/airless/cave/proc/BruteForceTendril(var/obj/structure/spawner/lavaland/tend)
-	if(!isarea(loc))
-		return FALSE
-	var/area/A = loc
+/turf/open/floor/plating/asteroid/airless/cave/proc/BruteForceTendril(obj/structure/spawner/lavaland/tend)
+	var/area/A = get_area(src)
 	if(!A.mob_spawn_allowed)
 		return FALSE
 	if(!tend || !istype(tend))
 		return FALSE
-	if(get_tendril_count(tend) < 1)
-		new tend()
-		return TRUE
-	return FALSE
+	new tend()
+	return TRUE
 
-/proc/get_mega_count(var/mob/living/simple_animal/hostile/megafauna/maybe_boss)
+/proc/get_mega_count(mob/living/simple_animal/hostile/megafauna/maybe_boss)
 	var/count = 0
 	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
 		if(istype(M, maybe_boss))
 			count++
 	return count
 
-/proc/get_tendril_count(var/obj/structure/spawner/lavaland/meme)
+/proc/get_tendril_count(obj/structure/spawner/lavaland/meme)
 	var/count = 0
 	for(var/obj/structure/spawner/lavaland/T in GLOB.tendrils)
 		if(istype(T, meme))
