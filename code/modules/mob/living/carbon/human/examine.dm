@@ -364,18 +364,15 @@
 	
 	//descriptors
 	var/list/show_descs = show_descriptors_to(user)
-	if(length(show_descs))
-		msg += "<BR>"
-	for(var/descrip in show_descs)
-		msg += descrip
+	msg += length(list) ? "<br>[show_descs.Join("<br>")]<br>" : "<br>"
 	
 	//Skyrat changes end
 
-	if (length(msg))
+	if(length(msg))
 		. += "<span class='warning'>[msg.Join("")]</span>"
 
 	var/trait_exam = common_trait_examine()
-	if (!isnull(trait_exam))
+	if(!isnull(trait_exam))
 		. += trait_exam
 
 	var/traitstring = get_trait_string()
