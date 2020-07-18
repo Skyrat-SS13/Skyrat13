@@ -169,7 +169,6 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 #define BLOOD_COLOR_IMP				"#ff0000"
 //
 
-
 //suit sensors: sensor_mode defines
 
 #define SENSOR_OFF 0
