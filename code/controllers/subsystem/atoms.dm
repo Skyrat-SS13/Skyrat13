@@ -64,24 +64,35 @@ SUBSYSTEM_DEF(atoms)
 	for(var/mob/living/simple_animal/hostile/megafauna/M in GLOB.mob_living_list)
 		if(bruh[M.type])
 			bruh[M.type]++
+	var/attempts = 0
 	for(var/I in bruh)
-		var/attempts = 0
+		attempts = 0
 		while(get_mega_count(I) < 1)
-			attempts++
-			var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
-			if(istype(T))
-				T.BruteForceSpawn(I)
 			if(attempts >= 30)
 				testing("Static megafauna spawning failed after [attempts] attempts.")
 				break
-	var/attempts = 0
+			attempts++
+			if(length(accept_turfs))
+				var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
+				if(istype(T))
+					if(T.BruteForceSpawn(I))
+						break
+			else
+				testing("Static megafauna spawning ran out of possible turfs to spawn on.")
+				break
+	attempts = 0
 	while(get_tendril_count(/obj/structure/spawner/lavaland/legion) < 1)
-		attempts++
-		var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
-		if(istype(T))
-			T.BruteForceTendril(/obj/structure/spawner/lavaland/legion)
 		if(attempts >= 30)
 			testing("Static tendril spawning failed after [attempts] attempts.")
+			break
+		attempts++
+		if(length(accept_turfs))
+			var/turf/open/floor/plating/asteroid/airless/cave/T = pick_n_take(accept_turfs)
+			if(istype(T))
+				if(T.BruteForceTendril(/obj/structure/spawner/lavaland/legion))
+					break
+		else
+			testing("Static tendril spawning ran out of possible turfs to spawn on.")
 			break
 	//
 

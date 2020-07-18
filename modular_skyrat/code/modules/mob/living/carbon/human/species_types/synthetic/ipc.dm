@@ -26,6 +26,7 @@
 	hair_alpha = 210
 	var/saved_screen
 	languagewhitelist = list("Encoded Audio Language")
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc
 
 /datum/species/ipc/spec_death(gibbed, mob/living/carbon/C)
 	saved_screen = C.dna.features["ipc_screen"]
