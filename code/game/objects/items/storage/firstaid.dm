@@ -562,3 +562,17 @@
 /obj/item/storage/box/vials/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/glass/bottle/vial/small( src )
+
+//skyrat edit
+/obj/item/storage/firstaid/emergency
+	icon_state = "medbriefcase"
+	name = "emergency first-aid kit"
+	desc = "A very simple first aid kit meant to secure and stabilize serious wounds for later treatment."
+
+/obj/item/storage/firstaid/emergency/PopulateContents()
+	new /obj/item/healthanalyzer/wound(src)
+	new /obj/item/stack/medical/gauze(src)
+	new /obj/item/stack/medical/suture/emergency(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/reagent_containers/hypospray/medipen/ekit(src)
+	new /obj/item/storage/pill_bottle/mining(src)

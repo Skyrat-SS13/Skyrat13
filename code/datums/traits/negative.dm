@@ -339,10 +339,8 @@ GLOBAL_LIST_EMPTY(family_heirlooms)
 		dumb_thing = FALSE //only once per life
 		if(prob(1))
 			new/obj/item/reagent_containers/food/snacks/pastatomato(get_turf(H)) //now that's what I call spaghetti code
+
 // small chance to make eye contact with inanimate objects/mindless mobs because of nerves
-
-
-
 /datum/quirk/social_anxiety/proc/looks_at_floor(datum/source, atom/A)
 	var/mob/living/mind_check = A
 	if(prob(85) || (istype(mind_check) && mind_check.mind))

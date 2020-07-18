@@ -88,3 +88,9 @@
 	projectile_type = /obj/item/projectile/beam/mindflayer
 	select_name = "MINDFUCK"
 	fire_sound = 'sound/weapons/laser.ogg'
+
+//skyrat edit
+/obj/item/ammo_casing/energy/laser/hellfire
+	projectile_type = /obj/item/projectile/beam/laser/hellfire
+	e_cost = 130
+	select_name = "maim"

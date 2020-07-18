@@ -18,3 +18,17 @@
 	results = list(/datum/reagent/medicine/nanite_slurry = 3)
 	required_reagents = list(/datum/reagent/foaming_agent = 1, /datum/reagent/gold = 1, /datum/reagent/iron = 1)
 	mix_message = "The mixture becomes a metallic slurry."
+
+/datum/chemical_reaction/corticosteroids
+	name = "Corticosteroids"
+	id = /datum/reagent/medicine/corticosteroids
+	results = list(/datum/reagent/medicine/corticosteroids = 12.5)
+	required_reagents = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/medicine/ephedrine = 5, /datum/reagent/medicine/kelotane = 5, /datum/reagent/medicine/bicaridine = 5)
+	mix_message = "The mixture bubbles into a pinkish color."
+
+/datum/chemical_reaction/fibrin
+	name = "Fibrin"
+	id = /datum/reagent/medicine/fibrin
+	results = list(/datum/reagent/medicine/fibrin = 20)
+	required_reagents = list(/datum/reagent/blood = 10, /datum/reagent/oxygen = 10, /datum/reagent/water = 10, /datum/reagent/medicine/bicaridine = 10)
+	mix_message = "The mixture bubbles into a browned color."

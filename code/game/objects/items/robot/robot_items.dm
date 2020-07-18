@@ -497,6 +497,7 @@
 	icon_state = "gumball"
 	ammo_type = /obj/item/reagent_containers/food/snacks/gumball/cyborg
 	nodamage = TRUE
+	embedding = list(embed_chance=0, fall_chance=2, jostle_chance=0, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.5, pain_mult=3, rip_time=10)
 
 /obj/item/projectile/bullet/reusable/gumball/handle_drop()
 	if(!dropped)

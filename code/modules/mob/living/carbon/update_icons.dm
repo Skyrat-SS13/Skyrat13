@@ -75,7 +75,7 @@
 			bloody = BLOOD_COLOR_HUMAN
 		dam_colors = bloody
 
-	var/mutable_appearance/damage_overlay = mutable_appearance('icons/mob/dam_mob.dmi', "blank", -DAMAGE_LAYER, color = dam_colors)
+	var/mutable_appearance/damage_overlay = mutable_appearance('modular_skyrat/icons/mob/dam_mob.dmi', "blank", -DAMAGE_LAYER, color = dam_colors)
 	overlays_standing[DAMAGE_LAYER] = damage_overlay
 
 	for(var/X in bodyparts)

@@ -4,7 +4,7 @@
 
 #define EXOTIC_BLEED_MULTIPLIER 4 //Multiplies the actually bled amount by this number for the purposes of turf reaction calculations.
 
-
+/* skyrat edit
 /mob/living/carbon/human/proc/suppress_bloodloss(amount)
 	if(bleedsuppress)
 		return
@@ -14,28 +14,48 @@
 
 /mob/living/carbon/human/proc/resume_bleeding()
 	bleedsuppress = 0
-	if(stat != DEAD && bleed_rate)
+	if(stat != DEAD && bleed_rate) //skyrat edit
 		to_chat(src, "<span class='warning'>The blood soaks through your bandage.</span>")
+*/
+//skyrat edit
 
+///Returns how much blood we're losing from being dragged a tile, from [mob/living/proc/makeTrail]
+/mob/living/proc/get_bleed_amount(brute_ratio)
+	return max(1, brute_ratio * 2)
+
+/mob/living/carbon/get_bleed_amount(brute_ratio)
+	. = 0
+	for(var/i in all_wounds)
+		var/datum/wound/W = i
+		. += W.drag_bleed_amt()
 
 /mob/living/carbon/monkey/handle_blood()
-	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_NOCLONE))) //cryosleep or husked people do not pump the blood.
-		//Blood regeneration if there is some space
-		if(blood_volume < (BLOOD_VOLUME_NORMAL * blood_ratio))
-			blood_volume += 0.1 // regenerate blood VERY slowly
-			if(blood_volume < (BLOOD_VOLUME_OKAY * blood_ratio))
-				adjustOxyLoss(round(((BLOOD_VOLUME_NORMAL * blood_ratio) - blood_volume) * 0.02, 1))
+	if(bodytemperature <= TCRYO || (HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
+		return
+
+	var/temp_bleed = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/BP = X
+		temp_bleed += BP.get_bleed_rate()
+		BP.generic_bleedstacks = max(0, BP.generic_bleedstacks - 1)
+	bleed(temp_bleed)
+
+	//Blood regeneration if there is some space
+	if(blood_volume < BLOOD_VOLUME_NORMAL)
+		blood_volume += 0.1 // regenerate blood VERY slowly
+		if(blood_volume < BLOOD_VOLUME_OKAY)
+			adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.02, 1))
+//
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
-
 	if(NOBLOOD in dna.species.species_traits)
-		bleed_rate = 0
+		//bleed_rate = 0 //skyrat edit
 		return
-
+	/* skyrat edit
 	if(bleed_rate < 0)
 		bleed_rate = 0
-
+	*/
 	if(HAS_TRAIT(src, TRAIT_NOMARROW)) //Bloodsuckers don't need to be here.
 		return
 
@@ -87,27 +107,21 @@
 		//Bleeding out
 		for(var/X in bodyparts)
 			var/obj/item/bodypart/BP = X
-			var/brutedamage = BP.brute_dam
-
-			if(BP.status == BODYPART_ROBOTIC) //for the moment, synth limbs won't bleed, but soon, my pretty.
-				continue
-
-			//We want an accurate reading of .len
-			listclearnulls(BP.embedded_objects)
-			for(var/obj/item/embeddies in BP.embedded_objects)
-				if(!embeddies.isEmbedHarmless())
-					temp_bleed += 0.5
-
-			if(brutedamage >= 20)
-				temp_bleed += (brutedamage * 0.013)
-
-		bleed_rate = max(bleed_rate - 0.5, temp_bleed)//if no wounds, other bleed effects (heparin) naturally decreases
-
-		if(bleed_rate && !bleedsuppress && !(HAS_TRAIT(src, TRAIT_FAKEDEATH)))
-			bleed(bleed_rate)
+		//skyrat edit
+			temp_bleed += BP.get_bleed_rate()
+			BP.generic_bleedstacks = max(0, BP.generic_bleedstacks - 1)
+		if(temp_bleed)
+			if(temp_bleed >= (WOUND_SLASH_MAX_BLOODFLOW/4))
+				throw_alert("bleeding", /obj/screen/alert/status_effect/wound/bleed)
+			bleed(temp_bleed)
+		else
+			clear_alert("bleeding")
+		//
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/proc/bleed(amt)
+	if(!amt)
+		return
 	if(blood_volume)
 		blood_volume = max(blood_volume - amt, 0)
 		if(isturf(src.loc)) //Blood loss still happens in locker, floor stays clean
@@ -117,6 +131,8 @@
 				add_splatter_floor(src.loc, 1)
 
 /mob/living/carbon/human/bleed(amt)
+	if(!amt)
+		return
 	amt *= physiology.bleed_mod
 	//skyrat edit - hemophilia quirk
 	if(HAS_TRAIT(src, TRAIT_HEMOPHILIA))
@@ -132,9 +148,13 @@
 /mob/living/proc/restore_blood()
 	blood_volume = initial(blood_volume)
 
-/mob/living/carbon/human/restore_blood()
+/mob/living/carbon/restore_blood() //skyrat edit
 	blood_volume = (BLOOD_VOLUME_NORMAL * blood_ratio)
-	bleed_rate = 0
+	//skyrat edit
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		BP.generic_bleedstacks = 0
+	//
 
 /****************************************************
 				BLOOD TRANSFERS

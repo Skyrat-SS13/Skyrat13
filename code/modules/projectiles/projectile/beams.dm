@@ -14,11 +14,27 @@
 	ricochets_max = 50	//Honk!
 	ricochet_chance = 80
 	is_reflectable = TRUE
+	//skyrat edit
+	wound_bonus = -20
+	bare_wound_bonus = 10
+	//
 
 /obj/item/projectile/beam/laser
 	tracer_type = /obj/effect/projectile/tracer/laser
 	muzzle_type = /obj/effect/projectile/muzzle/laser
 	impact_type = /obj/effect/projectile/impact/laser
+
+//skyrat edit bruh
+//overclocked laser, does a bit more damage but has much higher wound power (5 vs -20)
+/obj/item/projectile/beam/laser/hellfire
+	name = "hellfire laser"
+	wound_bonus = 5
+	damage = 25
+
+/obj/item/projectile/beam/laser/hellfire/Initialize()
+	. = ..()
+	transform *= 2
+//
 
 /obj/item/projectile/beam/laser/heavylaser
 	name = "heavy laser"
@@ -27,6 +43,9 @@
 	tracer_type = /obj/effect/projectile/tracer/heavy_laser
 	muzzle_type = /obj/effect/projectile/muzzle/heavy_laser
 	impact_type = /obj/effect/projectile/impact/heavy_laser
+	//skyrat edit
+	wound_bonus = 10
+	//
 
 /obj/item/projectile/beam/laser/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -93,6 +112,10 @@
 	tracer_type = /obj/effect/projectile/tracer/pulse
 	muzzle_type = /obj/effect/projectile/muzzle/pulse
 	impact_type = /obj/effect/projectile/impact/pulse
+	//skyrat edit
+	wound_bonus = -40
+	bare_wound_bonus = 70
+	//
 
 /obj/item/projectile/beam/pulse/on_hit(atom/target, blocked = FALSE)
 	. = ..()

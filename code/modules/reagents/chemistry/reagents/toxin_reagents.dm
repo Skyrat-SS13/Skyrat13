@@ -154,6 +154,16 @@
 	pH = 12
 	value = REAGENT_VALUE_RARE
 
+//skyrat edit
+/datum/reagent/toxin/carpotoxin/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	for(var/i in M.all_scars)
+		var/datum/scar/S = i
+		if(istype(S) && !S.permanent)
+			to_chat(M, "<span class='notice'>You feel \the [lowertext(S.description)] quickly fading away!</span>")
+			qdel(i)
+//
+
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
@@ -736,13 +746,13 @@
 
 /datum/reagent/toxin/heparin //Based on a real-life anticoagulant. I'm not a doctor, so this won't be realistic.
 	name = "Heparin"
-	description = "A powerful anticoagulant. Victims will bleed uncontrollably and suffer scaling bruising."
+	description = "A powerful anticoagulant. All open cut wounds on the victim will open up and bleed much faster" //skyrat edit
 	reagent_state = LIQUID
 	color = "#C8C8C8" //RGB: 200, 200, 200
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	toxpwr = 0
 	value = REAGENT_VALUE_VERY_RARE
-
+/* skyrat edit
 /datum/reagent/toxin/heparin/on_mob_life(mob/living/carbon/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -750,7 +760,7 @@
 		H.adjustBruteLoss(1, 0) //Brute damage increases with the amount they're bleeding
 		. = 1
 	return ..() || .
-
+*/
 
 /datum/reagent/toxin/rotatium //Rotatium. Fucks up your rotation and is hilarious
 	name = "Rotatium"
@@ -922,7 +932,7 @@
 
 /datum/reagent/toxin/mimesbane/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_EMOTEMUTE, type)
-
+/* moved to modular
 /datum/reagent/toxin/bonehurtingjuice //oof ouch
 	name = "Bone Hurting Juice"
 	description = "A strange substance that looks a lot like water. Drinking it is oddly tempting. Oof ouch."
@@ -983,7 +993,7 @@
 				to_chat(M, "<span class='warning'>Your missing arm aches from wherever you left it.</span>")
 				M.emote("sigh")
 	return ..()
-
+*/
 /datum/reagent/toxin/brainhurtingjuice //oof ouch
 	name = "Brain Hurting Juice"
 	color = "#AAAAAA77" //RGBA: 170, 170, 170, 77

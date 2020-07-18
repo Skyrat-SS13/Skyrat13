@@ -183,7 +183,7 @@
 		var/T = get_turf(target)
 		if(locate(/mob/living) in T)
 			new /obj/effect/temp_visual/medical_holosign(T,user) //produce a holographic glow
-			holo_cooldown = world.time + 30 //skyrat change
+			holo_cooldown = world.time + 10 SECONDS //skyrat change
 			return
 
 /obj/effect/temp_visual/medical_holosign

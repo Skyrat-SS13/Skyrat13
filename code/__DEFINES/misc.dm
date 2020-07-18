@@ -543,3 +543,9 @@ GLOBAL_LIST_INIT(pda_reskins, list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi', PDA_S
 #define LOOT_RESTRICTION_CKEY		2
 #define LOOT_RESTRICTION_MIND_PILE	3 //limited to the current pile.
 #define LOOT_RESTRICTION_CKEY_PILE	4 //Idem
+
+//skyrat funnies
+#define SKIN_SCAR_FILE "wounds/skin_scar_desc.json"
+#define FLESH_SCAR_FILE "wounds/flesh_scar_desc.json"
+#define BONE_SCAR_FILE "wounds/bone_scar_desc.json"
+#define SCAR_LOC_FILE "wounds/scar_loc.json"

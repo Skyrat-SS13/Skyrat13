@@ -288,7 +288,7 @@
 /obj/item/rogue
 	name = "\proper Rogue's Drill"
 	desc = "A drill coupled with an internal mechanism that produces shockwaves on demand. Serves as a very robust melee."
-	sharpness = IS_SHARP
+	sharpness = SHARP_POINTY
 	icon = 'modular_skyrat/icons/obj/mining.dmi'
 	icon_state = "roguedrill"
 	lefthand_file = 'modular_skyrat/icons/mob/inhands/equipment/mining_lefthand.dmi'

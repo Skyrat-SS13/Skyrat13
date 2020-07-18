@@ -55,6 +55,10 @@
 	//Breathing, if applicable
 	handle_breathing(times_fired)
 
+	//skyrat edit
+	handle_wounds()
+	//
+
 	if (QDELETED(src)) // diseases can qdel the mob via transformations
 		return FALSE
 
@@ -193,3 +197,7 @@
 	if(gravity >= GRAVITY_DAMAGE_TRESHOLD) //Aka gravity values of 3 or more
 		var/grav_stregth = gravity - GRAVITY_DAMAGE_TRESHOLD
 		adjustBruteLoss(min(grav_stregth,3))
+
+//skyrat edit
+/mob/living/proc/handle_wounds()
+	return

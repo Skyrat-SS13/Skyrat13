@@ -86,7 +86,7 @@
 /datum/quirk/hemophiliac
 	name = "Hemophiliac"
 	desc = "Your body is bad at coagulating blood. Bleeding will always be two times worse when compared to the average person."
-	value = -2
+	value = -3
 	mob_trait = TRAIT_HEMOPHILIA
 	medical_record_text = "Patient exhibits abnormal blood coagulation behavior."
 
@@ -136,3 +136,25 @@
 
 /datum/quirk/allergic/proc/inform(var/allergy = "bad coders")
 	to_chat(quirk_holder, "<span class='danger'><b><i>You are allergic to [lowertext(allergy)].</i></b></span>")
+
+//bobmed quirks
+
+//frail
+/datum/quirk/frail
+	name = "Frail"
+	desc = "Your bones might as well be made of glass! You suffer wounds much more easily than most."
+	value = -2
+	mob_trait = TRAIT_EASYLIMBDISABLE
+	gain_text = "<span class='danger'>You feel frail.</span>"
+	lose_text = "<span class='notice'>You feel sturdy again.</span>"
+	medical_record_text = "Patient has unusually frail bones, recommend calcium-rich diet."
+
+//betz
+/datum/quirk/betz
+	name = "Betz Disorder"
+	desc = "You cannot feel pain very well! You cannot assess any wounds without the assistance of a health analyzer."
+	value = -1
+	mob_trait = TRAIT_SCREWY_CHECKSELF
+	gain_text = "<span class='danger'>You don't feel much of anything.</span>"
+	lose_text = "<span class='notice'>You can feel your skin tingling again.</span>"
+	medical_record_text = "Patient has little self-awareness, and cannot properly assess their health."

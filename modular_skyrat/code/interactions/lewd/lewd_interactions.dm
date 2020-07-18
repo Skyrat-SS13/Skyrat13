@@ -193,7 +193,7 @@
 							to_chat(user, "<span class = 'warning'>Your feet need to be unexposed.</span>")
 						return FALSE
 		
-		if(require_user_num_feet && (user.get_num_feet() < require_user_num_feet))
+		if(require_user_num_feet && (user.has_feet() < require_user_num_feet))
 			if(!silent)
 				to_chat(user, "<span class = 'warning'>You don't have enough feet.</span>")
 			return FALSE

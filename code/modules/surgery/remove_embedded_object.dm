@@ -1,12 +1,15 @@
 /datum/surgery/embedded_removal
-	name = "removal of embedded objects"
+	name = "Removal of embedded objects"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/remove_object)
-	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
+	possible_locs = ALL_BODYPARTS //skyrat edit
+	requires_bodypart_type = BODYPART_ORGANIC //skyrat edit
+
 /datum/surgery_step/remove_object
-	name = "remove embedded objects"
+	name = "Remove embedded objects"
 	time = 32
 	accept_hand = 1
 	var/obj/item/bodypart/L = null
+
 /datum/surgery_step/remove_object/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	L = surgery.operated_bodypart
 	if(L)
