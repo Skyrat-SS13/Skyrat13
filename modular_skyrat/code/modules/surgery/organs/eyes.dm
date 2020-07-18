@@ -30,3 +30,4 @@
 	desc = "<span class='danger'>Eyecon of sin.</span>"
 	icon = 'modular_Skyrat/icons/obj/surgery.dmi'
 	icon_state = "eyeballs-demon"
+	see_in_dark = 4

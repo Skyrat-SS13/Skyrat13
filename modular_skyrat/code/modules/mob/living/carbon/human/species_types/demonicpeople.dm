@@ -25,7 +25,7 @@
 	mutanttongue = /obj/item/organ/tongue/lizard
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BEAST|MOB_UNDEAD
 	species_traits = list(DIGITIGRADE, DRINKSBLOOD, HORNCOLOR, WINGCOLOR, EYECOLOR)
-	inherent_traits = list(TRAIT_HIGH_BLOOD, TRAIT_HEMOPHILIA, TRAIT_KI_VAMPIRE, TRAIT_UNSTABLE) //We bleed more but we also regenerate blood more lol
+	inherent_traits = list(TRAIT_HIGH_BLOOD, TRAIT_HEMOPHILIA, TRAIT_UNSTABLE) //We bleed more but we also regenerate blood more lol
 	mutant_bodyparts = list("deco_wings" = "None", "taur" = "None", "horns" = "None", "legs" = "Digitigrade", "meat_type" = "Demonic")
 	say_mod = "curses"
 	languagewhitelist = list("Urdakian")
