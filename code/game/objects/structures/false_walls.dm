@@ -41,8 +41,12 @@
 	new /obj/structure/falsewall/brass(loc)
 	qdel(src)
 
+<<<<<<< HEAD
 /* Moved to Modular Skyrat
 /obj/structure/falsewall/attack_hand(mob/user)
+=======
+/obj/structure/falsewall/attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+>>>>>>> ba3dc6a73b... Merge pull request #12679 from silicons/unarmed_parry
 	if(opening)
 		return
 	. = ..()
@@ -182,7 +186,7 @@
 	radiate()
 	return ..()
 
-/obj/structure/falsewall/uranium/attack_hand(mob/user)
+/obj/structure/falsewall/uranium/attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
 	radiate()
 	. = ..()
 
