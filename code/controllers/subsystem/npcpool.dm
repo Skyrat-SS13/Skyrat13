@@ -11,10 +11,10 @@ SUBSYSTEM_DEF(npcpool)
 	..("NPCS:[activelist.len]")
 
 /datum/controller/subsystem/npcpool/fire(resumed = FALSE)
-
-	if (!resumed)
-		var/list/activelist = GLOB.simple_animals[AI_ON]
-		src.currentrun = activelist.Copy()
+	if (resumed)
+		return
+	var/list/activelist = GLOB.simple_animals[AI_ON]
+	src.currentrun = activelist.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -30,5 +30,4 @@ SUBSYSTEM_DEF(npcpool)
 				SA.handle_automated_action()
 			if(SA.stat != DEAD)
 				SA.handle_automated_speech()
-		if (MC_TICK_CHECK)
-			return
+		CHECK_TICK_LOW_PRIORITY
