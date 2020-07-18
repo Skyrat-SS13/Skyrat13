@@ -123,7 +123,7 @@
 /obj/item/clothing/gloves/color/yellow/power/proc/Bolt(mob/origin = usr, mob/target, bolt_energy = 50,bounces = 5, mob/user = usr, usecharge = TRUE)
 	if(usecharge)
 		if(!ourcell.use(boltcost))
-			origin.visible_message("<span class='danger'>[origin] tries to harness lightning from to throw at [target], but only sparks come out...</span>")
+			origin.visible_message("<span class='danger'>[origin] tries to harness lightning to throw at [target], but only sparks come out...</span>")
 			return FALSE
 	if(QDELETED(src) || QDELETED(ourcell)) //it was rigged (somehow?)
 		return FALSE
