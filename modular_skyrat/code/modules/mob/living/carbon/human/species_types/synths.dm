@@ -15,7 +15,7 @@
 	icon_limbs = 'modular_skyrat/icons/mob/synth_parts.dmi'
 	mutant_bodyparts = list()
 	initial_species_traits = list(NOTRANSSTING,NOZOMBIE,REVIVESBYHEALING,NOHUSK,ROBOTIC_LIMBS,NO_DNA_COPY) //for getting these values back for assume_disguise()
-	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_TOXIMMUNE, TRAIT_EASYDISMEMBER, TRAIT_EASYLIMBDISABLE, TRAIT_CLONEIMMUNE) //blah blah i explained above
+	initial_inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_TOXIMMUNE,TRAIT_CLONEIMMUNE) //blah blah i explained above
 	disguise_fail_health = 45 //When their health gets to this level their synthflesh partially falls off
 	fake_species = null //a species to do most of our work for us, unless we're damaged
 	var/isdisguised = FALSE //boolean to help us with disguising proper
@@ -28,13 +28,19 @@
 	mutant_heart = /obj/item/organ/heart/robot_ipc
 	mutantliver = /obj/item/organ/liver/robot_ipc
 	exotic_blood = /datum/reagent/blood/synthetics
-	//variables used for snowflakey ass races and stuff god i fukcing hate this
-	var/storedeardamage = 0
-	var/storedtaildamage = 0
+	//same damage as ipcs
+	coldmod = 0.5
+	burnmod = 1.1
+	heatmod = 1.2
+	brutemod = 1.1
+	toxmod = 0
+	clonemod = 0
+	siemens_coeff = 1.2
+	revivesbyhealreq = 50
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "SY")
 	exotic_bloodtype = "SY"
-	//AAAAAAAAAAAAAAAAAAAAAAAA I CANT EAT AAAAAAAAAAAAAAAAAAAAAAAAAA
+	//Power cord so they no die hungry
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H) //rework the proc for it to NOT fuck up with dunmer/other skyrat custom races
@@ -59,21 +65,9 @@
 		hair_color = S.hair_color
 		screamsounds = S.screamsounds.Copy()
 		femalescreamsounds = S.femalescreamsounds.Copy()
-		storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
-		mutantears = S.mutantears
-		qdel(H.getorganslot(ORGAN_SLOT_EARS))
-		var/obj/item/organ/ears = new mutantears()
-		ears.Insert(H)
-		H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
-		mutanttail = S.mutanttail
-		if(mutanttail)
-			qdel(H.getorganslot(ORGAN_SLOT_TAIL))
-			var/obj/item/organ/tail = new mutanttail
-			tail.Insert(H)
-		H.setOrganLoss(ORGAN_SLOT_TAIL, storedtaildamage)
 		mutant_bodyparts = S.mutant_bodyparts.Copy()
 		isdisguised = TRUE
-		fake_species = new S.type
+		fake_species = copify_species(S)
 	else
 		name = initial(name)
 		say_mod = initial(say_mod)
@@ -95,7 +89,7 @@
 		femalescreamsounds = list()
 		mutant_bodyparts = list()
 		isdisguised = FALSE
-		fake_species = new /datum/species/human
+		fake_species = new /datum/species/human()
 
 	H.regenerate_icons()
 	handle_mutant_bodyparts(H)
@@ -111,6 +105,7 @@
 	. = ..()
 	//H.remove_language(/datum/language/machine)
 	UnregisterSignal(H, COMSIG_MOB_SAY)
+	H.set_species(fake_species)
 
 /datum/species/synth/proc/handle_speech(datum/source, list/speech_args)
 	if(ishuman(source))
@@ -133,15 +128,6 @@
 	meat = initial(meat)
 	limbs_id = initial(limbs_id)
 	use_skintones = initial(use_skintones)
-	storedeardamage = H.getOrganLoss(ORGAN_SLOT_EARS)
-	mutantears = initial(mutantears)
-	qdel(H.getorganslot(ORGAN_SLOT_EARS))
-	var/obj/item/organ/ears = new mutantears
-	ears.Insert(H)
-	H.setOrganLoss(ORGAN_SLOT_EARS, storedeardamage)
-	storedtaildamage = H.getOrganLoss(ORGAN_SLOT_TAIL)
-	mutanttail = initial(mutanttail)
-	qdel(H.getorganslot(ORGAN_SLOT_TAIL))
 	sexes = initial(sexes)
 	fixed_mut_color = ""
 	hair_color = ""
@@ -158,7 +144,7 @@
 	if((actualhealth < disguise_fail_health) && isdisguised)
 		unassume_disguise(H)
 		H.visible_message("<span class='danger'>[H]'s disguise falls apart!</span>", "<span class='userdanger'>Your disguise falls apart!</span>")
-	else if((actualhealth >= disguise_fail_health) && !isdisguised)
+	else if((actualhealth >= disguise_fail_health) && !isdisguised && (H.stat != DEAD))
 		assume_disguise(fake_species, H)
 		H.visible_message("<span class='warning'>[H] morphs their appearance to that of [fake_species.name].</span>", "<span class='notice'>You morph your appearance to that of [fake_species.name].</span>")
 
@@ -173,7 +159,6 @@
 		return fake_species.handle_body(H)
 	else
 		return ..()
-
 
 /datum/species/synth/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
 	if(fake_species && isdisguised)
