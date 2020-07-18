@@ -10,6 +10,7 @@
 						"Buzz",
 						"Odysseus",
 						"Gygax",
+						"Medical-Spec Gygax",
 						"Durand",
 						"H.O.N.K",
 						"Phazon",
