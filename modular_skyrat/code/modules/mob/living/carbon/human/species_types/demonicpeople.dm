@@ -29,6 +29,7 @@
 	mutant_bodyparts = list("deco_wings" = "None", "taur" = "None", "horns" = "None", "legs" = "Digitigrade", "meat_type" = "Demonic")
 	say_mod = "curses"
 	languagewhitelist = list("Urdakian")
+	exotic_bloodtype = "DMN"
 
 /datum/species/imp/before_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/datum/outfit/imp/O = new /datum/outfit/imp
