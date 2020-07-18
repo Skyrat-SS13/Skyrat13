@@ -93,6 +93,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/event_participation = FALSE
 	var/event_prefs = ""
 	var/appear_in_round_end_report = TRUE //whether the player of the character is listed on the round-end report
+	var/accept_ERG = TRUE //whether the player wants or not to go through end round grief
 	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
@@ -107,6 +108,8 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/age = 30						//age of character
 	//SKYRAT CHANGES
 	var/bloodtype = ""
+	var/bloodreagent = ""
+	var/bloodcolor = ""
 	var/skyrat_ooc_notes = ""
 	var/erppref = "Ask"
 	var/nonconpref = "Ask"
@@ -120,15 +123,19 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/flavor_faction = null
 	var/character_skills = ""
 	var/exploitable_info = ""
-	var/language = ""
 	var/see_chat_emotes = TRUE
 	var/enable_personal_chat_color = FALSE
 	var/personal_chat_color = "#ffffff"
-	var/list/foodlikes = list() //Skyrat additions BEGIN
+
+	var/language = ""
+
+	var/list/foodlikes = list()
 	var/list/fooddislikes = list()
 	var/maxlikes = 3
-	var/maxdislikes = 3 //Skyrat additions END
-
+	var/maxdislikes = 3
+	
+	var/list/body_descriptors = list()
+	
 	var/list/alt_titles_preferences = list()
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
@@ -544,6 +551,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				dat += "<b>Body Model:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=body_model'>[features["body_model"] == MALE ? "Masculine" : "Feminine"]</a><BR>"
 			dat += "<b>Species:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=species;task=menu'>[pref_species.name]</a><BR>"
 			dat += "<b>Custom Species Name:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=custom_species;task=input'>[custom_species ? custom_species : "None"]</a><BR>"
+			if(LAZYLEN(pref_species.descriptors) && LAZYLEN(body_descriptors))
+				dat += "<h2>Descriptors:</h2>"
+				for(var/entry in body_descriptors)
+					var/datum/mob_descriptor/descriptor = pref_species.descriptors[entry]
+					dat += "<b>[capitalize(descriptor.chargen_label)]:</b> [descriptor.get_standalone_value_descriptor(body_descriptors[entry]) ? descriptor.get_standalone_value_descriptor(body_descriptors[entry]) : "None"] <a href='?_src_=prefs;preference=descriptors;task=input;change_descriptor=[entry]'>Change</a><BR>"
+				dat += "<BR>"
 			dat += "<b>Random Body:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=all;task=random'>Randomize!</A><BR>"
 			dat += "<b>Always Random Body:</b><a href='?_src_=prefs;preference=all'>[be_random_body ? "Yes" : "No"]</A><BR>"
 			dat += "<br><b>Cycle background:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cycle_bg;task=input'>[bgstate]</a><BR>"
@@ -1121,6 +1134,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			dat += "<b>Preferred Chaos Amount:</b> <a href='?_src_=prefs;preference=preferred_chaos;task=input'>[p_chaos]</a><br>"
 //SKYRAT CHANGES
 			dat += "<b>Show name at round-end report:</b> <a href='?_src_=prefs;preference=appear_in_round_end_report'>[appear_in_round_end_report ? "Yes" : "No"]</a><br>"
+			dat += "<b>End Round Grief:</b> <a href='?_src_=prefs;preference=accept_ERG'>[accept_ERG ? "Yes" : "No"]</a><br>"
 //END OF SKYRAT CHANGES
 			dat += "<br>"
 			dat += "</td>"
@@ -1817,8 +1831,22 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			to_chat(user, text)
 		qdel(query_get_jobban)
 		return
+	
+	//skyrat edit
+	if(href_list["preference"] == "descriptors")
+		if(href_list["change_descriptor"])
+			if(LAZYLEN(pref_species.descriptors))
+				var/desc_id = href_list["change_descriptor"]
+				if(body_descriptors[desc_id])
+					var/datum/mob_descriptor/descriptor = pref_species.descriptors[desc_id]
+					var/choice = input("Please select a descriptor", "Descriptor") as null|anything in descriptor.chargen_value_descriptors
+					if(choice && pref_species.descriptors[desc_id]) // Check in case they sneakily changed species.
+						body_descriptors[descriptor.name] = descriptor.chargen_value_descriptors[choice]
+		ShowChoices(user)
+		return 1
+	//
 
-	if(href_list["preference"] == "job")
+	else if(href_list["preference"] == "job")
 		switch(href_list["task"])
 			if("close")
 				user << browse(null, "window=mob_occupation")
@@ -2035,7 +2063,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 			if(href_list["preference"] in GLOB.preferences_custom_names)
 				ask_for_custom_name(user,href_list["preference"])
 
-
 			switch(href_list["preference"])
 				if("ghostform")
 					if(unlock_content)
@@ -2105,6 +2132,21 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 							bloodtype = ""
 						else
 							bloodtype = msg
+				
+				if("bloodreagent")
+					var/msg = input(usr, "Choose your blood reagent", "Blood Reagent", "") as anything in (pref_species.bloodreagents + "Default")
+					if(msg)
+						if(msg == "Default")
+							bloodreagent = ""
+						else
+							bloodreagent = msg
+
+				if("bloodcolor")
+					var/msg = input(usr, "Choose your blood color", "Blood Color", "") as color|null
+					if(msg)
+						bloodcolor = msg
+					else 
+						bloodcolor = ""
 
 				if("general_records")
 					var/msg = input(usr, "Set your general records", "General Records", general_records) as message|null 
@@ -2223,6 +2265,41 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference","#"+eye_color) as color|null
 					if(new_eyes)
 						eye_color = sanitize_hexcolor(new_eyes)
+
+				if("species")
+					var/result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_race_names
+					if(result)
+						var/newtype = GLOB.species_list[GLOB.roundstart_race_names[result]]
+						pref_species = new newtype()
+						//let's ensure that no weird shit happens on species swapping.
+						custom_species = null
+						if(!pref_species.mutant_bodyparts["body_markings"])
+							features["body_markings"] = "None"
+						if(!pref_species.mutant_bodyparts["mam_body_markings"])
+							features["mam_body_markings"] = "None"
+						if(pref_species.mutant_bodyparts["mam_body_markings"])
+							if(features["mam_body_markings"] == "None")
+								features["mam_body_markings"] = "Plain"
+						if(pref_species.mutant_bodyparts["tail_lizard"])
+							features["tail_lizard"] = "Smooth"
+						if(pref_species.id == "felinid")
+							features["mam_tail"] = "Cat"
+							features["mam_ears"] = "Cat"
+
+						//Now that we changed our species, we must verify that the mutant colour is still allowed.
+						var/temp_hsv = RGBtoHSV(features["mcolor"])
+						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
+							features["mcolor"] = pref_species.default_color
+						if(features["mcolor2"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
+							features["mcolor2"] = pref_species.default_color
+						if(features["mcolor3"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#202020")[3]))
+							features["mcolor3"] = pref_species.default_color
+						
+						//skyrat edit - avoids picking species restricted stuff
+						language = initial(language)
+						bloodtype = initial(bloodtype)
+						body_descriptors = pref_species.descriptors
+						//
 
 				if("custom_species")
 					var/new_species = reject_bad_name(input(user, "Choose your species subtype, if unique. This will show up on examinations and health scans. Do not abuse this:", "Character Preference", custom_species) as null|text)
@@ -3019,6 +3096,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 				if("appear_in_round_end_report")
 					appear_in_round_end_report = !appear_in_round_end_report
 					user.mind?.appear_in_round_end_report = appear_in_round_end_report
+				if("accept_ERG")
+					accept_ERG = !accept_ERG
+					user.mind?.accept_ERG = accept_ERG
 				//End of skyrat changes
 				if("action_buttons")
 					buttons_locked = !buttons_locked

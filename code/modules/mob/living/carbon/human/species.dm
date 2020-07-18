@@ -108,13 +108,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 	var/whitelisted = 0 		//Is this species restricted to certain players?
 	var/whitelist = list() 		//List the ckeys that can use this species, if it's whitelisted.: list("John Doe", "poopface666", "SeeALiggerPullTheTrigger") Spaces & capitalization can be included or ignored entirely for each key as it checks for both.
 	var/icon_limbs //Overrides the icon used for the limbs of this species. Mainly for downstream, and also because hardcoded icons disgust me. Implemented and maintained as a favor in return for a downstream's implementation of synths.
-	//Skyrat snowflake
-	var/list/bloodtypes = list() //If a race has more than one possible bloodtype, set it here. If you input a non-existant (in game terms) blood type i am going to smack you.
-
 	/// Our default override for typing indicator state
 	var/typing_indicator_state
 	//SKYRAT SNOWFLAKE
-	var/list/languagewhitelist = list()
 	var/fluff_desc = "No description given."
 	//
 
@@ -124,9 +120,23 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 
 /datum/species/New()
-
-	if(!limbs_id)	//if we havent set a limbs id to use, just use our own id
+	//if we havent set a limbs id to use, just use our own id
+	if(!limbs_id)
 		limbs_id = id
+	
+	//skyrat change
+	//Set our descriptors proper
+	if(LAZYLEN(descriptors))
+		var/list/descriptor_datums = list()
+		for(var/desctype in descriptors)
+			var/datum/mob_descriptor/descriptor = new desctype
+			descriptor.current_value = descriptors[desctype]
+			if(descriptor.current_value == "default")
+				descriptor.current_value = descriptor.default_value
+			descriptor_datums[descriptor.name] = descriptor
+		descriptors = descriptor_datums
+	//
+	
 	..()
 
 
@@ -314,6 +324,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
 		C.dna.blood_type = exotic_bloodtype
+	
+	//skyrat edti
+	if(C.client)
+		var/client/cli = C.client
+		if(rainbowblood && cli.prefs.bloodcolor)
+			C.dna.blood_color = cli.prefs.bloodcolor
+	//
 
 	if(old_species.mutanthands)
 		for(var/obj/item/I in C.held_items)
@@ -685,15 +702,15 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			bodyparts_to_add -= "snout"
 
 	if(mutant_bodyparts["frills"])
-		if(!H.dna.features["frills"] || H.dna.features["frills"] == "None" || H.head && (H.head.flags_inv & HIDEEARS) || !HD || HD.status == BODYPART_ROBOTIC)
+		if(!H.dna.features["frills"] || H.dna.features["frills"] == "None" || H.head && (H.head.flags_inv & HIDEEARS) || !HD || (HD.status == BODYPART_ROBOTIC && !HD.render_like_organic)) //skyrat change
 			bodyparts_to_add -= "frills"
 
 	if(mutant_bodyparts["horns"])
-		if(!H.dna.features["horns"] || H.dna.features["horns"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
+		if(!H.dna.features["horns"] || H.dna.features["horns"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || (HD.status == BODYPART_ROBOTIC && !HD.render_like_organic)) //skyrat change
 			bodyparts_to_add -= "horns"
 
 	if(mutant_bodyparts["ears"])
-		if(!H.dna.features["ears"] || H.dna.features["ears"] == "None" || H.head && (H.head.flags_inv & HIDEEARS) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEARS)) || !HD || HD.status == BODYPART_ROBOTIC)
+		if(!H.dna.features["ears"] || H.dna.features["ears"] == "None" || H.head && (H.head.flags_inv & HIDEEARS) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEARS)) || !HD || (HD.status == BODYPART_ROBOTIC && !HD.render_like_organic)) //skyrat change
 			bodyparts_to_add -= "ears"
 
 	if(mutant_bodyparts["wings"])
@@ -717,7 +734,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 		if(!H.dna.features["xenodorsal"] || H.dna.features["xenodorsal"] == "None" || (H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT)))
 			bodyparts_to_add -= "xenodorsal"
 	if(mutant_bodyparts["xenohead"])//This is an overlay for different castes using different head crests
-		if(!H.dna.features["xenohead"] || H.dna.features["xenohead"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
+		if(!H.dna.features["xenohead"] || H.dna.features["xenohead"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || (HD.status == BODYPART_ROBOTIC && !HD.render_like_organic)) //skyrat change
 			bodyparts_to_add -= "xenohead"
 	if(mutant_bodyparts["xenotail"])
 		if(!H.dna.features["xenotail"] || H.dna.features["xenotail"] == "None" || H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
@@ -735,7 +752,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_datums)
 			bodyparts_to_add -= "mam_waggingtail"
 
 	if(mutant_bodyparts["mam_ears"])
-		if(!H.dna.features["mam_ears"] || H.dna.features["mam_ears"] == "None" || H.head && (H.head.flags_inv & HIDEEARS) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEARS)) || !HD || HD.status == BODYPART_ROBOTIC)
+		if(!H.dna.features["mam_ears"] || H.dna.features["mam_ears"] == "None" || H.head && (H.head.flags_inv & HIDEEARS) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEARS)) || !HD || (HD.status == BODYPART_ROBOTIC && !HD.render_like_organic)) //skyrat change
 			bodyparts_to_add -= "mam_ears"
 
 	if(mutant_bodyparts["mam_snouts"]) //Take a closer look at that snout!

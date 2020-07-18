@@ -15,6 +15,11 @@
 	if(capitalized)
 		. = capitalize(.)
 
+/datum/proc/p_my(capitalized, temp_gender)
+	. = "my"
+	if(capitalized)
+		. = capitalize(.)
+
 /datum/proc/p_have(temp_gender)
 	. = "has"
 
@@ -172,6 +177,15 @@
 	. = "is"
 	if(temp_gender == PLURAL)
 		. = "are"
+
+/mob/p_my(capitalized, temp_gender)
+	if(!temp_gender)
+		temp_gender = gender
+	. = "my"
+	if((gender == PLURAL) || (/datum/antagonist/changeling in src.mind?.antag_datums))
+		. = "our"
+	if(capitalized)
+		. = capitalize(.)
 
 /mob/p_were(temp_gender)
 	if(!temp_gender)
