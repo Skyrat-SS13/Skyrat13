@@ -594,7 +594,7 @@
 		new_character.key = key		//Manually transfer the key to log them in
 		new_character.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 		new_character = null
-		qdel(src)
+		//qdel(src)
 
 /mob/dead/new_player/proc/ViewManifest()
 	if(!client)
