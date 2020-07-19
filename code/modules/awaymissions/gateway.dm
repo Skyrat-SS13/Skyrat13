@@ -23,11 +23,27 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 				density = FALSE
 	return ..()
 
+<<<<<<< HEAD
 /obj/machinery/gateway/proc/toggleoff()
 	for(var/obj/machinery/gateway/G in linked)
 		G.active = 0
 		G.update_icon()
 	active = 0
+=======
+/obj/machinery/gateway/proc/generate_destination()
+	destination = new destination_type
+	destination.name = destination_name
+	destination.target_gateway = src
+	GLOB.gateway_destinations += destination
+
+/obj/machinery/gateway/proc/deactivate()
+	var/datum/gateway_destination/dest = target
+	target = null
+	dest.deactivate(src)
+	QDEL_NULL(portal)
+	if(use_power == ACTIVE_POWER_USE)
+		use_power = IDLE_POWER_USE
+>>>>>>> f2e0e5c247... Merge pull request #12814 from Citadel-Station-13/silicons-patch-35
 	update_icon()
 
 /obj/machinery/gateway/proc/detect()
@@ -60,7 +76,19 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 	. = ..()
 	if(.)
 		return
+<<<<<<< HEAD
 	if(!detect())
+=======
+	target = D
+	target.activate(destination)
+	generate_bumper()
+	if(use_power == IDLE_POWER_USE)
+		use_power = ACTIVE_POWER_USE
+	update_icon()
+
+/obj/machinery/gateway/proc/Transfer(atom/movable/AM)
+	if(!target || !target.incoming_pass_check(AM))
+>>>>>>> f2e0e5c247... Merge pull request #12814 from Citadel-Station-13/silicons-patch-35
 		return
 	if(!active)
 		toggleon(user)
