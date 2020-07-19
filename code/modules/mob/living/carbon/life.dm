@@ -606,7 +606,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.01), 0) //skyrat-edit
 		//skyrat edit
-		if(drunkenness <= 121 && drunkenness >= 40)
+		if(drunkenness <= 121 && drunkenness >= 30)
 			throw_alert("drunk", /obj/screen/alert/drunk)
 		else if(drunkenness > 121)
 			throw_alert("drunk", /obj/screen/alert/drunk/drunker)
