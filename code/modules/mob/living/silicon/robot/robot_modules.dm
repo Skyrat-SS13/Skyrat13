@@ -860,11 +860,16 @@
 		/obj/item/toy/crayon/spraycan/borg,
 		/obj/item/hand_labeler/borg,
 		/obj/item/razor,
+<<<<<<< HEAD
 		// SKYRAT EDIT - Service Borg Fix
 		/obj/item/rsf/cyborg,
 		// SKYRAT EDIT END
 		/obj/item/instrument/violin,
 		/obj/item/instrument/guitar,
+=======
+		/obj/item/rsf/cyborg,
+		/obj/item/instrument/piano_synth,
+>>>>>>> f265b85d3b... Merge pull request #12810 from lolman360/master
 		/obj/item/reagent_containers/dropper,
 		/obj/item/lighter,
 		/obj/item/storage/bag/tray,
