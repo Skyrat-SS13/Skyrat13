@@ -1,7 +1,7 @@
 GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwise, use a custom colour.
 GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 //skyrat edit
-GLOBAL_VAR_INIT(MENTOR_OOC_COLOR, "#7c05dd")
+GLOBAL_VAR_INIT(MENTOR_OOC_COLOR, "#cf029c")
 //
 
 /client/verb/ooc(msg as text)
