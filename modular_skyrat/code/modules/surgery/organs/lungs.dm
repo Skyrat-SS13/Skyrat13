@@ -24,7 +24,7 @@
 	icon = 'modular_Skyrat/icons/obj/surgery.dmi'
 	icon_state = "lungs-demon"
 	safe_oxygen_min = 0
-	safe_oxygen_max = 1
+	safe_oxygen_max = 2.5
 	safe_co2_min = 16
 	safe_co2_max = 100
 	cold_level_1_threshold = 273.15
