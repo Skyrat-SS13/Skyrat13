@@ -245,6 +245,9 @@
 	if(!IS_DOCKED)
 		return
 
+	if(SSshuttle.emergency.mode == SHUTTLE_DISABLED)
+		return
+
 	if((obj_flags & EMAGGED) || ENGINES_STARTED)	//SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
 		to_chat(user, "<span class='warning'>The shuttle is already about to launch!</span>")
 		return
@@ -344,9 +347,11 @@
 		SSshuttle.emergencyLastCallLoc = null
 
 	if(!silent)
-		priority_announce("The emergency shuttle has been called. [redAlert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ]", null, "shuttlecalled", "Priority")
+		priority_announce("The emergency shuttle has been called. [redAlert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ][SSshuttle.adminEmergencyNoRecall ? "\n\nWarning: Shuttle recall subroutines disabled; Recall not possible." : ""]", null, "shuttlecalled", "Priority")
 
 /obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
+	if(SSshuttle.adminEmergencyNoRecall)
+		return
 	if(mode != SHUTTLE_CALL)
 		return
 	if(SSshuttle.emergencyNoRecall)
@@ -457,6 +462,9 @@
 		if(SHUTTLE_STRANDED)
 			SSshuttle.checkHostileEnvironment()
 
+		if(SHUTTLE_DISABLED)
+			SSshuttle.checkHostileEnvironment()
+
 		if(SHUTTLE_ESCAPE)
 			if(sound_played && time_left <= HYPERSPACE_END_TIME)
 				var/list/areas = list()
@@ -519,6 +527,9 @@
 	var/obj/machinery/computer/shuttle/C = getControlConsole()
 	if(!istype(C, /obj/machinery/computer/shuttle/pod))
 		return ..()
+	if(SHUTTLE_DISABLED)//MODULE: SHUTTLE TOGGLE
+		to_chat(usr, "<span class='warning'>System error!</span>")
+		return
 	if(GLOB.security_level >= SEC_LEVEL_RED || (C && (C.obj_flags & EMAGGED)))
 		if(launch_status == UNLAUNCHED)
 			launch_status = EARLY_LAUNCHED
