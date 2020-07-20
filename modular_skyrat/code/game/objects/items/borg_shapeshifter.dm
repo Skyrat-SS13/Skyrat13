@@ -827,10 +827,11 @@
 	user.module.name = savedModuleName
 	user.module.cyborg_base_icon = savedIcon
 	user.module.cyborg_icon_override = savedOverride
+	user.module.cyborg_pixel_offset = 0
 	user.bubble_icon = savedBubbleIcon
 	active = FALSE
 	user.update_icons()
-	user.pixel_x = 0 //this solely exists because of dogborgs. I want anyone who ever reads this code later on to know this. Don't ask me why it's here, doesn't work above update_icons()
+	disguise_pixel_offset = 0
 	src.user = user
 
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
@@ -842,3 +843,7 @@
 	signalCache = list()
 	activationCost = 0
 	activationUpkeep = 0
+
+/obj/item/borg_shapeshifter/stable/activate(mob/living/silicon/robot/user, disguiseModuleName)
+	friendlyName = user.name
+	. = ..()
