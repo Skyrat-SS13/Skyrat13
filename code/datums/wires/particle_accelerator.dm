@@ -43,7 +43,7 @@
 				C.interface_control = FALSE
 		if(WIRE_LIMIT)
 			if(C.strength_upper_limit != 3)
-				message_admins(" The PA Control Computer was hacked!")
+				message_admins("The PA Control Computer was hacked!")
 			C.strength_upper_limit = (mend ? 2 : 3)
 			if(C.strength_upper_limit < C.strength)
 				C.remove_strength()
