@@ -1024,6 +1024,7 @@
 		MM.icon_state = "necklace_forsaken"
 		MM.desc = "A rose gold necklace that used to have a bright burning ember inside of it."
 		src.desc = "The necklaces ember has already been used..."
+	
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=End of Necklace of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 
 
