@@ -364,7 +364,7 @@
 	
 	//descriptors
 	var/list/show_descs = show_descriptors_to(user)
-	msg += length(show_descs) ? "[show_descs.Join("\n")]\n" : "<br>"
+	msg += length(show_descs) ? "[show_descs.Join("\n")]\n" : ""
 	
 	//Skyrat changes end
 
