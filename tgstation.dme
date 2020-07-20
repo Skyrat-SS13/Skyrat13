@@ -130,6 +130,7 @@
 #include "code\__DEFINES\dcs\flags.dm"
 #include "code\__DEFINES\dcs\helpers.dm"
 #include "code\__DEFINES\dcs\signals.dm"
+#include "code\__DEFINES\dcs\modular_skyrat\signals.dm"
 #include "code\__DEFINES\flags\do_after.dm"
 #include "code\__DEFINES\flags\shields.dm"
 #include "code\__DEFINES\mapping\maploader.dm"
