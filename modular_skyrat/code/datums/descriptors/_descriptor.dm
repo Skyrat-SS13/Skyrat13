@@ -43,8 +43,19 @@
 	var/species_text
 	if(ishuman(me) && !skip_species_mention)
 		var/mob/living/carbon/human/H = me
-		var/use_name = "\improper [H.dna.species.name]"
-		species_text = " for \a [use_name]"
+		var/use_name = (H.dna.species.custom_species ? "\improper [H.dna.species.custom_species]" : "\improper [H.dna.species.name]")
+		var/skipface = (H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE))
+
+		if(skipface || get_visible_name() == "Unknown")
+			species_visible = FALSE
+		else
+			species_visible = TRUE
+
+		if(!species_visible)
+			species_text = ""
+		else
+			species_text = " for \a [use_name]"
+
 	. = "[get_third_person_message_start(me)] [get_standalone_value_descriptor(my_value)][species_text]"
 
 /datum/mob_descriptor/proc/get_secondary_comparison_component(mob/me, mob/other_mob, my_value, comparing_value)
