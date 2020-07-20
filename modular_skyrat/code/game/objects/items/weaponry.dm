@@ -632,8 +632,8 @@
 	var/sharpness_on = IS_SHARP_ACCURATE
 	w_class_on = WEIGHT_CLASS_NORMAL
 	custom_materials = list(MAT_METAL=12000)
-	var/onsound
-	var/offsound
+	var/onsound = 'modular_skyrat/sound/weapons/knifeopen.ogg'
+	var/offsound = 'modular_skyrat/sound/weapons/knifeclose.ogg'
 
 /obj/item/melee/transforming/butterfly/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
