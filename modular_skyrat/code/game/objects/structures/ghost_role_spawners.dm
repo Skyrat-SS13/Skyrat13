@@ -239,3 +239,36 @@
 /obj/effect/mob_spawn/human/oldchap/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
 	return ..()
+
+/obj/effect/mob_spawn/robot/
+
+/obj/effect/mob_spawn/robot
+	mob_type = /mob/living/silicon/robot
+	assignedrole = "Ghost Role"
+
+	//these vars are for lazy mappers to override parts of the outfit
+	//these cannot be null by default, or mappers cannot set them to null if they want nothing in that slot
+	
+
+/obj/effect/mob_spawn/robot/Initialize()
+	. = ..()
+
+/obj/effect/mob_spawn/robot/equip(mob/living/carbon/robot/R)
+	. = ..()
+
+/obj/effect/mob_spawn/robot/ghostcafe
+	name = "Ghost Cafe Robotic Storage"
+	uses = -1
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	mob_name = "a ghost cafe robot"
+	roundstart = FALSE
+	anchored = TRUE
+	density = FALSE
+	death = FALSE
+	assignedrole = "Ghost Cafe Robot"
+	short_desc = "You are a Ghost Cafe Robot!"
+	flavour_text = "You know one thing for sure. You arent actually alive. Are you in a simulation?"
+	skip_reentry_check = TRUE
+	banType = ROLE_GHOSTCAFE
+	mob_type = /mob/living/silicon/robot/modules/roleplay
