@@ -269,16 +269,19 @@
 	if(ERG_turf)
 		for(var/mob/living/L in GLOB.player_list)
 			if(L.client?.prefs?.accept_ERG)
-				do_teleport(L, ERG_turf)
+				do_teleport(teleatom = L, destination = ERG_turf, channel = TELEPORT_CHANNEL_FREE)
 				SEND_SOUND(L, sound('modular_skyrat/sound/ambience/e1m1.mid', TRUE, 0, CHANNEL_ADMIN, 100))
+				to_chat(L, "<span class='warning'>The round has ended and you have chosen to <b>participate</b> in end of round grief.</span> <span class='narsiesmall'>Rip and tear!</span>")
 			else
 				if(iscarbon(L))
 					var/mob/living/carbon/C = L
 					C.gain_trauma_type(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_ABSOLUTE)
+					C.a_intent_change(INTENT_HELP)
 				else
 					L.actions = list()
 					L.mind?.spell_list = list()
 					L.a_intent_change(INTENT_HELP)
+				to_chat(L, "<span class='notice'>The round has ended and you have chosen to <b>not participate</b> in end of round grief. Please behave as you have made your decision.</span>")
 //
 
 //Common part of the report
