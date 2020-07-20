@@ -837,3 +837,8 @@
 	if(active)
 		to_chat(user, "<span class='danger'>Your chameleon field deactivates.</span>")
 		deactivate(user)
+
+/obj/item/borg_shapeshifter/stable
+	signalCache = list()
+	activationCost = 0
+	activationUpkeep = 0
