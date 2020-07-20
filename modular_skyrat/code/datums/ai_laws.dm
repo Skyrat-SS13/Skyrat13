@@ -45,5 +45,5 @@
 /datum/ai_laws/roleplay
 	name = "Roleplay"
 	id = "roleplay"
-	zeroth = list("Roleplay as you'd like!")
+	zeroth = "Roleplay as you'd like!"
 	inherent = list()
