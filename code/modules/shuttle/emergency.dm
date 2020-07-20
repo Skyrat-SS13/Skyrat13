@@ -527,9 +527,6 @@
 	var/obj/machinery/computer/shuttle/C = getControlConsole()
 	if(!istype(C, /obj/machinery/computer/shuttle/pod))
 		return ..()
-	if(SHUTTLE_DISABLED)//MODULE: SHUTTLE TOGGLE
-		to_chat(usr, "<span class='warning'>System error!</span>")
-		return
 	if(GLOB.security_level >= SEC_LEVEL_RED || (C && (C.obj_flags & EMAGGED)))
 		if(launch_status == UNLAUNCHED)
 			launch_status = EARLY_LAUNCHED
