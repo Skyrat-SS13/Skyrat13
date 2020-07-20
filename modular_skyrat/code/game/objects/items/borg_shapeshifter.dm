@@ -714,7 +714,7 @@
 					"Spider" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "spidersyndi"),
 					"Booty Striker" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootynukie"),
 					"Booty Syndicate" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "bootysyndie"),
-					"Male Booty Striker" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootysynukie"),
+					"Male Booty Striker" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootynukie"),
 					"Male Booty Syndicate" = image(icon = 'modular_skyrat/icons/mob/moreborgsmodels.dmi', icon_state = "male_bootysyndie")
 				))
 				var/borg_icon = show_radial_menu(R, R , syndicatejack_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
