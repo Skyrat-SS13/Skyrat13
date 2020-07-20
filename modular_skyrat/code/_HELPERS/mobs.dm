@@ -7,7 +7,7 @@
 		if(islist(tocopy.vars[V]))
 			var/list/L = tocopy.vars[V]
 			D.vars[V] = L.Copy()
-		else if(istype(tocopy.vars[V], /datum/species)
+		else if(istype(tocopy.vars[V], /datum/species))
 			D.vars[V] = copify_species(tocopy.vars[V])
 		else
 			D.vars[V] = tocopy.vars[V]
