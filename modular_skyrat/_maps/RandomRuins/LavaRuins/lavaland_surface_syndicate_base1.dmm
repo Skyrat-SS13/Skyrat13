@@ -1064,8 +1064,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "eo" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/syndicate,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -1076,6 +1074,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/closet/l3closet,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "ep" = (
@@ -1454,6 +1453,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/storage/toolbox/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "eR" = (
@@ -5412,11 +5412,11 @@
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/arrivals)
 "mu" = (
-/obj/item/required/kirbyplants{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "mv" = (
@@ -7340,7 +7340,14 @@
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "Vl" = (
 /obj/structure/closet/l3closet,
-/obj/item/extinguisher,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/testlab)
+"Vn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27;
+	pixel_y = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "Vv" = (
@@ -8713,7 +8720,7 @@ aF
 sy
 NA
 xS
-yi
+Vn
 Ms
 dQ
 nB
