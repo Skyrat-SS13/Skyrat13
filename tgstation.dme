@@ -3737,6 +3737,7 @@
 #include "modular_skyrat\code\modules\client\loadout\__donator.dm"
 #include "modular_skyrat\code\modules\client\loadout\_defines.dm"
 #include "modular_skyrat\code\modules\client\loadout\_medical.dm"
+#include "modular_skyrat\code\modules\client\loadout\_security.dm"
 #include "modular_skyrat\code\modules\client\loadout\backpack.dm"
 #include "modular_skyrat\code\modules\client\loadout\hands.dm"
 #include "modular_skyrat\code\modules\client\loadout\head.dm"
