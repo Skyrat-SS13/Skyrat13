@@ -47,7 +47,7 @@
 	id = /obj/item/card/id/away/old/eng
 	gloves = /obj/item/clothing/gloves/color/yellow/
 	l_pocket = /obj/item/tank/internals/emergency_oxygen
-	assignedrole = "Ancient Crew Engineer"
+	assignedrole = "Charlie Station Engineer"
 
 /obj/effect/mob_spawn/human/oldeng/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
@@ -100,7 +100,7 @@
 	id = /obj/item/card/id/away/old/mine
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/survival
 	r_pocket = /obj/item/storage/bag/ore
-	assignedrole = "Ancient Crew Miner"
+	assignedrole = "Charlie Station Miner"
 	job_description = "Oldstation Crew"
 
 /obj/effect/mob_spawn/human/oldmine/Destroy()
@@ -128,7 +128,7 @@
 	l_hand = /obj/item/storage/firstaid/regular
 	l_pocket = /obj/item/stack/medical/bruise_pack
 	r_pocket = /obj/item/stack/medical/ointment
-	assignedrole = "Ancient Crew Medical Doctor"
+	assignedrole = "Charlie Station Medical Doctor"
 	job_description = "Oldstation Crew"
 
 /obj/effect/mob_spawn/human/oldmed/Destroy()
@@ -155,7 +155,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	id = /obj/item/card/id/away/old/ass
 	gloves = /obj/item/clothing/gloves/color/fyellow/
-	assignedrole = "Ancient Crew Assistant"
+	assignedrole = "Charlie Station Assistant"
 
 /obj/effect/mob_spawn/human/oldass/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
@@ -181,7 +181,7 @@
 	uniform = /obj/item/clothing/under/rank/civilian/chaplain
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	id = /obj/item/card/id/away/old/chaplain
-	assignedrole = "Ancient Crew Chaplain"
+	assignedrole = "Charlie Station Chaplain"
 
 /obj/effect/mob_spawn/human/oldchap/create(ckey, name) //makes them holy and creates their bible and null rod on spawn
 	var/mob/living/M = new mob_type(get_turf(src)) //living mobs only
