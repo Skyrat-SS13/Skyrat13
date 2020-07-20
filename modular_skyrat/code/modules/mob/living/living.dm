@@ -5,7 +5,7 @@
 
 /mob/living/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_MOB_EXAMINED, .on_examine_atom)
+	RegisterSignal(src, COMSIG_MOB_EXAMINED, .proc/on_examine_atom)
 
 /mob/living/Destroy()
 	. = ..()
