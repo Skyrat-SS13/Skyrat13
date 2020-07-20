@@ -20,7 +20,7 @@
 	r_pocket = /obj/item/restraints/handcuffs
 	l_pocket = /obj/item/assembly/flash/handheld
 	job_description = "Oldstation Crew"
-	assignedrole = "Ancient Crew Security"
+	assignedrole = "Charlie Station Security Officer"
 
 /obj/effect/mob_spawn/human/oldsec/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
@@ -72,7 +72,7 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	id = /obj/item/card/id/away/old/sci
 	l_pocket = /obj/item/laser_pointer
-	assignedrole = "Ancient Crew Scientist"
+	assignedrole = "Charlie Station Scientist"
 	job_description = "Oldstation Crew"
 
 /obj/effect/mob_spawn/human/oldsci/Destroy()
@@ -91,7 +91,7 @@
 	mob_species = /datum/species/human
 	short_desc = "You are a  working for Nanotrasen, stationed onboard a state of the art research station."
 	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. \
-	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
+	The last thing you remember is the station's Artificial Intelligence telling you that you would only be asleep for eight hours. As you open \
 	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
 	important_info = "Work as a team with your fellow survivors and do not abandon them."
 	uniform = /obj/item/clothing/under/rank/cargo/miner

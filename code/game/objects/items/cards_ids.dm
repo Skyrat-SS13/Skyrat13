@@ -730,7 +730,7 @@
 /obj/item/card/id/away/hotel/securty
 	name = "Officer ID"
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_MAINT, ACCESS_AWAY_SEC)
-
+/* Skyrat edit
 /obj/item/card/id/away/old
 	name = "a perfectly generic identification card"
 	desc = "A perfectly generic identification card. Looks like it could use some flavor."
@@ -758,6 +758,7 @@
 	name = "APC Access ID"
 	desc = "A special ID card that allows access to APC terminals."
 	access = list(ACCESS_ENGINE_EQUIP)
+	Skyrat edit end*/
 
 /obj/item/card/id/departmental_budget
 	name = "departmental card (FUCK)"
