@@ -275,8 +275,8 @@
 
 /obj/effect/mob_spawn/robot/ghostcafe/special(mob/living/silicon/robot/new_spawn)
 	if(new_spawn.client)
-		//new_spawn.client.prefs.copy_to(new_spawn) Doesn't work for robots
-		//new_spawn.client.prefs.custom_names["cyborg"]
+		new_spawn.updatename(new_spawn.client)
+		new_spawn.gender = NEUTER
 		var/area/A = get_area(src)
 		new_spawn.AddElement(/datum/element/ghost_role_eligibility, free_ghosting = TRUE)
 		new_spawn.AddElement(/datum/element/dusts_on_catatonia)
