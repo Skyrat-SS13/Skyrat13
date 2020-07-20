@@ -259,8 +259,8 @@
 /obj/effect/mob_spawn/robot/ghostcafe
 	name = "Ghost Cafe Robotic Storage"
 	uses = -1
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper"
+	icon = 'modular_skyrat/icons/obj/machines/robot_storage.dmi'
+	icon_state = "robostorage"
 	mob_name = "a ghost cafe robot"
 	roundstart = FALSE
 	anchored = TRUE
@@ -276,6 +276,7 @@
 /obj/effect/mob_spawn/robot/ghostcafe/special(mob/living/silicon/robot/new_spawn)
 	if(new_spawn.client)
 		//new_spawn.client.prefs.copy_to(new_spawn) Doesn't work for robots
+		//new_spawn.client.prefs.custom_names["cyborg"]
 		var/area/A = get_area(src)
 		new_spawn.AddElement(/datum/element/ghost_role_eligibility, free_ghosting = TRUE)
 		new_spawn.AddElement(/datum/element/dusts_on_catatonia)
