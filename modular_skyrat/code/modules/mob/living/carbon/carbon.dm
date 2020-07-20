@@ -14,4 +14,4 @@
 	
 	if(!((wear_mask && wear_mask.flags_inv & HIDEFACE) || (head && head.flags_inv & HIDEFACE) || (glasses && glasses.flags_inv & HIDEFACE)))
 	
-	visible_message("<span class='notice'>\The [src] examines [examined].</span>")
+	visible_message(message = "<span class='notice'>\The [src] examines [examined].</span>", vision_distance = 3)

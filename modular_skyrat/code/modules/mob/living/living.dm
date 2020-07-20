@@ -18,4 +18,4 @@
 	if(get_dist(src, examined) > EYE_CONTACT_RANGE)
 		return
 	
-	visible_message("<span class='notice'>\The [src] examines [examined].</span>")
+	visible_message(message = "<span class='notice'>\The [src] examines [examined].</span>", vision_distance = 3)
