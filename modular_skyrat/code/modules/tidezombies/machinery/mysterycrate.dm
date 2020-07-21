@@ -52,7 +52,7 @@
 		/obj/item/gun/ballistic/revolver/russian = 5, //bad luck bro
 		/obj/item/gun/ballistic/revolver/reverse = 5, //bad luck again bro
 		/obj/item/gun/ballistic/revolver/doublebarrel = 50,
-		/obj/item/gun/ballistic/revolver/doublebarrel/contender = 20, //good one bro
+		/obj/item/gun/ballistic/revolver/doublebarrel/contender = 10, //good one bro
 		/obj/item/gun/ballistic/revolver/doublebarrel/improvised = 10, //fuck
 		/obj/item/gun/ballistic/revolver/doublebarrel/super = 10, //NICE
 		/obj/item/gun/ballistic/revolver/doublebarrel/super/upgraded = 3, //VERY NICE
@@ -95,9 +95,10 @@
 		/obj/item/gun/magic/wand/fireball = 5,
 		/obj/item/gun/magic/staff/honk = 5,
 	)
-	//Possible weapons associated with their icon and sprite.
+	//Possible weapons associated with their icon and icon_state initially,
+	//turned into path associated with image on the generate_images() proc.
 	//Generated on spawn, should not worry too much, though this does mean
-	//spawning these is quite a hefty toll.
+	//spawning these crates is quite a hefty toll.
 	var/list/possible_icons = list()
 	//The current image overlay for the funny crate
 	var/image/item_overlay = null
