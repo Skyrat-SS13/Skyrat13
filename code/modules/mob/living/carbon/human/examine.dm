@@ -148,8 +148,13 @@
 		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] left ear."
 	
 	//skyrat edit - extra ear slot haha
-	if(ears && !(SLOT_EARS_RIGHT in obscured))
-		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] right ear."
+	if(ears_extra && !(SLOT_EARS_RIGHT in obscured))
+		. += "[t_He] [t_has] [ears_extra.get_examine_string(user)] on [t_his] right ear."
+	
+	//wearing two ear items makes you look like an idiot
+	if((ears && !(SLOT_EARS_LEFT in obscured)) && (ears && !(SLOT_EARS_RIGHT in obscured)))
+		. += "<span class='warning'>[t_He] looks quite tacky wearing both \an [ears.name] and \an [ears_extra.name] on [t_his] head.</span>"
+	
 	//
 
 	//ID
