@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/event_participation = FALSE
 	var/event_prefs = ""
 	var/appear_in_round_end_report = TRUE //whether the player of the character is listed on the round-end report
-	var/accept_ERG = TRUE //whether the player wants or not to go through end round grief
+	var/accept_ERG = FALSE //whether the player wants or not to go through end round grief
 	// SKYRAT CHANGE END
 
 	var/uses_glasses_colour = 0
@@ -2171,7 +2171,10 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 						//skyrat edit - avoids picking species restricted stuff
 						language = initial(language)
 						bloodtype = initial(bloodtype)
-						body_descriptors = pref_species.descriptors
+						body_descriptors = list()
+						for(var/i in pref_species.descriptors)
+							var/datum/mob_descriptor/md = pref_species.descriptors[i]
+							body_descriptors[i] = md.current_value
 						//
 
 				if("custom_species")

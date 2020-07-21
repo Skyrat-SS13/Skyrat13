@@ -1,6 +1,7 @@
 /datum/species/anthro/avian
 	name = "Avian"
 	id = "avian"
+	limbs_id = "mammal"
 	default_color = "4B4B4B"
 	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAIR,HORNCOLOR,WINGCOLOR)
