@@ -26,17 +26,7 @@
 			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
 			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
 			spawn(100) //so the ghost has time to re-enter
-				if(iscarbon(M))
-					var/mob/living/carbon/C = M
-					if(!(C.dna && C.dna.species && (NOBLOOD in C.dna.species.species_traits)))
-						C.blood_volume = max(C.blood_volume, BLOOD_VOLUME_BAD * 1.2) //so you don't instantly re-die from a lack of blood
-					for(var/organ in C.internal_organs)
-						var/obj/item/organ/O = organ
-						if(O.damage > O.maxHealth * 0.8)
-							O.setOrganDamage(O.maxHealth * 0.8) //so you don't instantly die from organ damage when being revived
-
-				M.adjustOxyLoss(-reac_volume/2, TRUE) //we use reac_volume instead of the true volume to impede cheeky healing stacking
-				M.adjustToxLoss(-reac_volume/3, TRUE)
+				//literally nothing is healed, we just revive the person
 				M.updatehealth()
 				if(M.revive())
 					M.grab_ghost()
