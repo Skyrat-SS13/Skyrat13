@@ -222,8 +222,10 @@
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
 			if(C.all_wounds.len)
-				var/datum/wound/W = pick(C.all_wounds)
-				if(istype(W))
-					W.on_hemostatic(reac_volume)
+				while(reac_volume && length(C.all_wounds))
+					var/datum/wound/W = pick(C.all_wounds)
+					if(istype(W))
+						W.on_hemostatic(reac_volume)
+						reac_volume = max(0, reac_volume - 10)
 	else
 		M.adjustToxLoss(reac_volume * 0.8)
