@@ -158,7 +158,7 @@
 	playsound(src, animation_jingle, 100, 0)
 	update_icon()
 	for(var/i in 1 to 35)
-		randumb = pick(possible_icons)
+		randumb = pickweight(possible_outcomes)
 		item_overlay = possible_icons[randumb]
 		update_icon()
 		sleep(2)
@@ -175,7 +175,7 @@
 
 /obj/structure/closet/crate/mysterycrate/Destroy()
 	. = ..()
-	new /obj/item/toy/plush/mysterycrate
+	new /obj/item/toy/plush/mysterycrate(src.loc)
 
 /obj/item/toy/plush/mysterycrate
 	name = "Aks"
