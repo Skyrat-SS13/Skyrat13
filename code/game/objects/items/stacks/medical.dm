@@ -239,6 +239,9 @@
 	stop_bleeding = 0.75
 	grind_results = list(/datum/reagent/medicine/polypyr = 2)
 
+/obj/item/stack/medical/suture/one
+	amount = 1
+
 /obj/item/stack/medical/suture/heal(mob/living/M, mob/user)
 	. = ..()
 	if(M.stat == DEAD)
@@ -311,6 +314,18 @@
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
 
 /obj/item/stack/medical/mesh/one
+	amount = 1
+
+/obj/item/stack/medical/mesh/advanced
+	name = "advanced regenerative mesh"
+	desc = "An advanced mesh made with aloe extracts and sterilizing chemicals, used to treat burns."
+	gender = PLURAL
+	singular_name = "advanced regenerative mesh"
+	icon_state = "aloe_mesh"
+	heal_burn = 15
+	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
+
+/obj/item/stack/medical/mesh/advanced/one
 	amount = 1
 
 /obj/item/stack/medical/mesh/Initialize()

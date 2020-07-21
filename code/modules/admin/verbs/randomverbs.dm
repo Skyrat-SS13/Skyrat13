@@ -1289,6 +1289,8 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_SUPPLYPOD,
 								ADMIN_PUNISHMENT_MAZING,
 								ADMIN_PUNISHMENT_ROD,
+                ADMIN_PUNISHMENT_PICKLE,
+                ADMIN_PUNISHMENT_FRY,
 								ADMIN_PUNISHMENT_CRACK,
 								ADMIN_PUNISHMENT_BLEED,
 								ADMIN_PUNISHMENT_PERFORATE,
@@ -1305,7 +1307,6 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 								ADMIN_PUNISHMENT_ISIS,
 								ADMIN_PUNISHMENT_PAPAJOHNS,
 								ADMIN_PUNISHMENT_MEDIC,
-                ADMIN_PUNISHMENT_PICKLE,
 								)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1386,6 +1387,8 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 						A.splat(target)
 		if(ADMIN_PUNISHMENT_PICKLE)
 			target.turn_into_pickle()
+		if(ADMIN_PUNISHMENT_FRY)
+			target.fry()
 		//skyrat edit punishments
 		if(ADMIN_PUNISHMENT_CRACK)
 			if(!iscarbon(target))
