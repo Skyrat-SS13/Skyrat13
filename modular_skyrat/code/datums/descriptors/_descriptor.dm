@@ -44,7 +44,7 @@
 	if(ishuman(me) && !skip_species_mention)
 		var/mob/living/carbon/human/H = me
 		
-		var/use_name = (H.dna.species.custom_species ? "\improper [H.dna.custom_species]" : "\improper [H.dna.species.name]")
+		var/use_name = (H.dna.custom_species ? "\improper [H.dna.custom_species]" : "\improper [H.dna.species.name]")
 		var/species_visible = TRUE
 		var/skipface = (H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE))
 
