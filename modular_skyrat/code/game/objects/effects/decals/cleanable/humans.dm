@@ -47,6 +47,7 @@
 			skip = TRUE
 			var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
 			B.transfer_blood_dna(blood_DNA)
+			B.layer = ABOVE_NORMAL_TURF_LAYER
 			//Adjust pixel offset to make splatters appear on the wall
 			if(istype(B))
 				B.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))

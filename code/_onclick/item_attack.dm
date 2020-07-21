@@ -152,11 +152,11 @@
 				add_splatter_floor(location)
 				if(totitemdamage >= 10 && get_dist(user, src) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(src)
-				if(prob(round(totitemdamage*4, 1)))
+				var/dist = rand(1,max(min(round(totitemdamage/5, 1),3), 1))
+				var/turf/targ = get_ranged_target_turf(user, get_dir(user, src), dist)
+				if(dist > 1 && targ)
 					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(loc, get_blood_dna_list())
 					B.add_blood_DNA(get_blood_dna_list())
-					var/dist = rand(1,min(round(totitemdamage/10, 1),3))
-					var/turf/targ = get_ranged_target_turf(user, get_dir(user, src), dist)
 					B.GoTo(targ, dist)
 
 		return TRUE //successful attack

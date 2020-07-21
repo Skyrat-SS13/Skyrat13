@@ -413,7 +413,7 @@
 	var/turf/T = get_turf(owner)
 	new /obj/effect/temp_visual/bleed/explode(T)
 	for(var/d in GLOB.alldirs)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(T, d)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(T, d, null, owner.get_blood_dna_list())
 	playsound(T, "desceration", 100, TRUE, -1)
 
 /datum/status_effect/stacking/saw_bleed/bloodletting
