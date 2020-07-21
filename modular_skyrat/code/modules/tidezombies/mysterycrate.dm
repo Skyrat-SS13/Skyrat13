@@ -158,7 +158,7 @@
 	playsound(src, animation_jingle, 100, 0)
 	update_icon()
 	for(var/i in 1 to 35)
-		randumb = pickweight(possible_outcomes)
+		randumb = pickweight(possible_outcomes, 1)
 		item_overlay = possible_icons[randumb]
 		update_icon()
 		sleep(2)
