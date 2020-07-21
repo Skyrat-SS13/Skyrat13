@@ -35,10 +35,8 @@
 	..()
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(0.2*REM, 0)
-	M.adjustFireLoss(0.2*REM, 0)
-	..()
-	. = 1
+	//just to override the original lmao
+	. = ..()
 
 /datum/reagent/medicine/synthflesh
 	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed. Capable of restoring the appearance of synths."
