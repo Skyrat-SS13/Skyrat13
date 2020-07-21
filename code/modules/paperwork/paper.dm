@@ -21,18 +21,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
 	dog_fashion = /datum/dog_fashion/head
-<<<<<<< HEAD
-=======
 	grind_results = list(/datum/reagent/cellulose = 3)
-	color = "white"
-	/// What's actually written on the paper.
-	var/info = ""
-	var/show_written_words = TRUE
-
-	/// The (text for the) stamps on the paper.
-	var/list/stamps			/// Positioning for the stamp in tgui
-	var/list/stamped		/// Overlay info
->>>>>>> 3d2995b4e8... Merge pull request #12787 from CameronWoof/advanced-sutures-and-mesh
 
 	var/info		//What's actually written on the paper.
 	var/info_links	//A different version of the paper which includes html links at fields and EOF

@@ -2297,10 +2297,7 @@
 	if(!S)
 		S = new(T)
 	if(data["blood_DNA"])
-<<<<<<< HEAD
 		S.add_blood_DNA(list("color" = data["bloodcolor"], data["blood_DNA"] = data["blood_type"]))
-=======
-		S.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
 
 /datum/reagent/cellulose
 	name = "Cellulose Fibers"
@@ -2308,4 +2305,4 @@
 	reagent_state = SOLID
 	color = "#E6E6DA"
 	taste_mult = 0
->>>>>>> 3d2995b4e8... Merge pull request #12787 from CameronWoof/advanced-sutures-and-mesh
+
