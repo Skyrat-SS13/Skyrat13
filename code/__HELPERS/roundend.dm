@@ -173,9 +173,6 @@
 	set waitfor = FALSE
 
 	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
-	//skyrat edit
-	do_ERG()
-	//
 	if(LAZYLEN(GLOB.round_end_notifiees))
 		world.TgsTargetedChatBroadcast("[GLOB.round_end_notifiees.Join(", ")] the round has ended.", FALSE)
 
@@ -184,6 +181,10 @@
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
 	// SKYRAT EDIT
+	for(var/mob/M in GLOB.player_list)
+		var/datum/action/switch_erg = new /datum/action/switch_erg(M)
+		switch_erg.Grant(M)
+		to_chat(M, "<span class='notice'>The round will end soon. If you want to participate in EORG, toggle it on now!</span>")
 	RollCredits()
 	for(var/client/C in GLOB.clients)
 		C.playtitlemusic(40)
@@ -247,6 +248,9 @@
 	SSblackbox.Seal()
 
 	sleep(50)
+	//skyrat edit
+	do_ERG()
+	//
 	ready_for_reboot = TRUE
 	standard_reboot()
 
@@ -267,7 +271,7 @@
 			if(L.client?.prefs?.accept_ERG)
 				do_teleport(teleatom = L, destination = ERG_turf, channel = TELEPORT_CHANNEL_FREE)
 				SEND_SOUND(L, sound('modular_skyrat/sound/ambience/e1m1.mid', TRUE, 0, CHANNEL_ADMIN, 100))
-				to_chat(L, "<span class='annoyinglyboldwarning'>The round has ended and you have chosen to <b>participate</b> in end of round grief.</span><BR><span class='narsiesmall'>Rip and tear!</span>")
+				to_chat(L, "<span class='warning'>The round has ended and you have chosen to <b>participate</b> in end of round grief.</span> <span class='narsiesmall'>Rip and tear!</span>")
 			else
 				if(iscarbon(L))
 					var/mob/living/carbon/C = L
@@ -277,7 +281,7 @@
 					L.actions = list()
 					L.mind?.spell_list = list()
 					L.a_intent_change(INTENT_HELP)
-				to_chat(L, "<span class='annoyinglyboldnotice'>The round has ended and you have chosen to <b>not participate</b> in end of round grief.<BR>Please behave as you have made your decision.</span>")
+				to_chat(L, "<span class='notice'>The round has ended and you have chosen to <b>not participate</b> in end of round grief. Please behave as you have made your decision.</span>")
 //
 
 //Common part of the report
