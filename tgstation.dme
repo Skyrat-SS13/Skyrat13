@@ -4071,7 +4071,6 @@
 #include "modular_skyrat\code\modules\telescience\telesci.dm"
 #include "modular_skyrat\code\modules\telescience\telesci_computer.dm"
 #include "modular_skyrat\code\modules\tidezombies\mysterycrate.dm"
-#include "modular_skyrat\code\modules\tidezombies\robustapunch.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_badass.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_bundles.dm"
 #include "modular_skyrat\code\modules\uplink\uplink_clothing.dm"
