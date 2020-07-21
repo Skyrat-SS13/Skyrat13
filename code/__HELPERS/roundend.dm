@@ -172,7 +172,7 @@
 /datum/controller/subsystem/ticker/proc/declare_completion()
 	set waitfor = FALSE
 
-	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span><span class='warning'> Do not commit End Of Round Grief (EORG) unless you have enabled it in your preferences!!</span>")//Skyrat Edit
+	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span></BR><span class='warning'> Do not commit End Of Round Grief (EORG) unless you have enabled it in your preferences!!</span><BR>")//Skyrat Edit
 	if(LAZYLEN(GLOB.round_end_notifiees))
 		world.TgsTargetedChatBroadcast("[GLOB.round_end_notifiees.Join(", ")] the round has ended.", FALSE)
 
