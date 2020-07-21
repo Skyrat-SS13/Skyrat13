@@ -3,7 +3,7 @@
 	desc = "Try your luck!"
 	icon = 'modular_skyrat/icons/obj/tidezombies_machinery.dmi'
 	icon_state = "mysteryplush"
-	pixel_x = -8
+	pixel_x = -4
 	var/animation_jingle = 'modular_skyrat/sound/tidezombies/mysterycrate.ogg'
 	var/kaching = 'modular_skyrat/sound/tidezombies/kaching.ogg'
 	var/byebye= 'modular_skyrat/sound/tidezombies/byebye.ogg'
