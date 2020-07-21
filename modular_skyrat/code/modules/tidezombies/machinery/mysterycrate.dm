@@ -165,7 +165,7 @@
 		randumb = pickweight(possible_outcomes, 1)
 		item_overlay = possible_icons[randumb]
 		update_icon()
-		sleep(2)
+		sleep(i >= 34 ? 6 : 2)
 	icon_state = initial(icon_state)
 	opened = FALSE
 	item_overlay = null
