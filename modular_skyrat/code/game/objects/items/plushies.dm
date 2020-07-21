@@ -131,3 +131,10 @@
 	desc = "An adorable stuffed toy resembling some sort of crew member."
 	icon_state = "dubious"
 	item_state = "dubious"
+
+/obj/item/toy/plush/mammal/muhreen
+	name = "mammal plushie"
+	desc = "An adorable stuffed toy resembling some sort of crew member."
+	icon = 'modular_skyrat/icons/obj/plushies.dmi'
+	icon_state = "muhreen"
+	item_state = "muhreen"

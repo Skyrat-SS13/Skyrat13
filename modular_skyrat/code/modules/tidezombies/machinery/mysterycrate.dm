@@ -178,10 +178,4 @@
 
 /obj/structure/closet/crate/mysterycrate/Destroy()
 	. = ..()
-	new /obj/item/toy/plush/mysterycrate(src.loc)
-
-/obj/item/toy/plush/mysterycrate
-	name = "Aks"
-	desc = "A normal plushie of a blue lizard wearing reflective sunglasses. It seems to be mocking you with its toothy grin."
-	icon = 'modular_skyrat/icons/obj/plushies.dmi'
-	icon_state = "aks"
+	new /obj/item/toy/plush/lizardplushie(src.loc)
