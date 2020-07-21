@@ -458,12 +458,6 @@
 				launch_status = ENDGAME_LAUNCHED
 				setTimer(SSshuttle.emergencyEscapeTime * engine_coeff)
 				priority_announce("The Emergency Shuttle has left the station. Estimate [timeLeft(600)] minutes until the shuttle docks at Central Command.", null, null, "Priority")
-				//skyrat edit - end of round grief stuff
-				for(var/mob/M in GLOB.player_list)
-					var/datum/action/switch_erg/switchie = new(M)
-					switchie.Grant(M)
-					to_chat(M, "<span class='annoyinglyboldnotice'>The round will end soon. If you want to participate in End Of Round Grief, toggle it on now!")
-				//
 
 		if(SHUTTLE_STRANDED)
 			SSshuttle.checkHostileEnvironment()

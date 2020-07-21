@@ -308,7 +308,6 @@ h1.alert, h2.alert		{color: #000000;}
 .warning				{color: #ff0000;	font-style: italic;}
 .alertwarning			{color: #FF0000;    font-weight: bold}
 .boldwarning			{color: #ff0000;	font-style: italic;	font-weight: bold}
-.annoyinglyboldwarning	{color: #ff0000;	font-style: italic;	font-weight: bold;	font-size: 200%;}
 .announce 				{color: #228b22;	font-weight: bold;}
 .boldannounce			{color: #ff0000;	font-weight: bold;}
 .greenannounce			{color: #00ff00;	font-weight: bold;}
@@ -316,7 +315,6 @@ h1.alert, h2.alert		{color: #000000;}
 .info					{color: #0000CC;}
 .notice					{color: #000099;}
 .boldnotice				{color: #000099;	font-weight: bold;}
-.annoyinglyboldnotice	{color: #000099;	font-weight: bold;	font-size: 200%;}
 .adminnotice			{color: #0000ff;}
 .adminhelp              {color: #ff0000;    font-weight: bold;}
 .unconscious			{color: #0000ff;	font-weight: bold;}

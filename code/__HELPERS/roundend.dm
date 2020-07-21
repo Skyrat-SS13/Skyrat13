@@ -173,9 +173,6 @@
 	set waitfor = FALSE
 
 	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
-	//skyrat edit
-	do_ERG()
-	//
 	if(LAZYLEN(GLOB.round_end_notifiees))
 		world.TgsTargetedChatBroadcast("[GLOB.round_end_notifiees.Join(", ")] the round has ended.", FALSE)
 
@@ -246,6 +243,9 @@
 	SSblackbox.Seal()
 
 	sleep(50)
+	//skyrat edit
+	do_ERG()
+	//
 	ready_for_reboot = TRUE
 	standard_reboot()
 
