@@ -329,7 +329,6 @@ GLOBAL_DATUM_INIT(ERG_spawn, /obj/effect/landmark/erg_zone, null)
 
 /obj/effect/landmark/erg_zone
 	name = "ERG Spawn"
-	icon_state = "erg_start"
 
 /obj/effect/landmark/erg_zone/New(loc, ...)
 	. = ..()

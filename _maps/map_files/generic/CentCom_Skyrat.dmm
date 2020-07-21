@@ -2110,10 +2110,6 @@
 	},
 /turf/closed/indestructible/riveted,
 /area/space)
-"fy" = (
-/obj/effect/landmark/erg_zone,
-/turf/open/floor/plasteel,
-/area/tdome/arena)
 "fz" = (
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
@@ -2244,10 +2240,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
-"fR" = (
-/obj/effect/landmark/erg_zone,
-/turf/open/floor/circuit/green,
-/area/tdome/arena)
 "fS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -5562,6 +5554,10 @@
 /obj/structure/flora/bush,
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
+"ny" = (
+/obj/effect/landmark/erg_zone,
+/turf/open/indestructible/hotelwood,
+/area/centcom/holding)
 "nz" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -19438,6 +19434,7 @@
 /turf/open/floor/wood,
 /area/syndicate_mothership)
 "Zx" = (
+/obj/effect/landmark/erg_zone,
 /mob/living/simple_animal/bot/medbot{
 	desc = "A little medical robot. You can make out the word \"sincerity\" on its chassis.";
 	name = "Hijikata";
@@ -44248,7 +44245,7 @@ Sd
 Tn
 NT
 RQ
-Sd
+ny
 Sd
 Nd
 UN
@@ -44762,7 +44759,7 @@ Tu
 Vu
 Nd
 hH
-Sd
+ny
 Sd
 Nd
 Nd
@@ -45276,7 +45273,7 @@ Sd
 Tn
 NT
 Zh
-Sd
+ny
 Sd
 Dl
 Sd
@@ -45790,7 +45787,7 @@ Sd
 HH
 Nd
 Sd
-Sd
+ny
 Sd
 Nd
 Nd
@@ -46818,7 +46815,7 @@ Sd
 HH
 Nd
 WM
-Sd
+ny
 Sd
 NT
 Nj
@@ -47332,7 +47329,7 @@ Sd
 NP
 NT
 Sd
-Sd
+ny
 Sd
 NT
 YU
@@ -47846,7 +47843,7 @@ Qk
 Vu
 Nd
 Gs
-Sd
+ny
 Sd
 NT
 Mt
@@ -48360,7 +48357,7 @@ Sd
 NP
 NT
 Sd
-Sd
+ny
 Sd
 OL
 Sd
@@ -61210,14 +61207,14 @@ GM
 HW
 HW
 Il
-fy
+It
 IE
 IX
 Jh
 Jh
 Js
 IE
-fy
+It
 JI
 JP
 JZ
@@ -61982,12 +61979,12 @@ HW
 Id
 Il
 It
-fy
+It
 IG
 IG
 IG
 IG
-fy
+It
 It
 JI
 JR
@@ -63012,8 +63009,8 @@ Il
 It
 IH
 IH
-fR
-fR
+Ji
+Ji
 IH
 IH
 It
@@ -64038,12 +64035,12 @@ HW
 Id
 Il
 It
-fy
+It
 II
 II
 II
 II
-fy
+It
 It
 JI
 JR
@@ -64808,14 +64805,14 @@ GM
 HW
 HW
 Il
-fy
+It
 IJ
 IY
 Jk
 Jk
 Jt
 IJ
-fy
+It
 JI
 JP
 Kc
