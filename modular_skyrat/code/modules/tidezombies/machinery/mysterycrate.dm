@@ -52,7 +52,7 @@
 		/obj/item/gun/ballistic/revolver/russian = 5, //bad luck bro
 		/obj/item/gun/ballistic/revolver/reverse = 5, //bad luck again bro
 		/obj/item/gun/ballistic/revolver/doublebarrel = 50,
-		/obj/item/gun/ballistic/revolver/doublebarrel/contender = 20, //good one bro
+		/obj/item/gun/ballistic/revolver/doublebarrel/contender = 10, //good one bro
 		/obj/item/gun/ballistic/revolver/doublebarrel/improvised = 10, //fuck
 		/obj/item/gun/ballistic/revolver/doublebarrel/super = 10, //NICE
 		/obj/item/gun/ballistic/revolver/doublebarrel/super/upgraded = 3, //VERY NICE
