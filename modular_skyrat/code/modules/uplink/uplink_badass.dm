@@ -29,3 +29,11 @@
 	cost = 8
 	surplus = 2
 	illegal_tech = FALSE
+
+/datum/uplink_item/badass/mysterycrate
+	name = "Mystery Crate"
+	desc = "Want to try your luck? 10K credits for a special prize, 3 uses!"
+	item = /obj/structure/closet/crate/mysterycrate
+	cost = 10
+	surplus = 0 //how do you fit a crate in a crate
+	illegal_tech = FALSE
