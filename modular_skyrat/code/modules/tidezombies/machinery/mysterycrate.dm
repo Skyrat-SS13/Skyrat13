@@ -122,7 +122,9 @@
 
 /obj/structure/closet/crate/mysterycrate/proc/generate_images()
 	for(var/i in possible_icons)
-		possible_icons[i] = image(possible_icons[i][1], src, possible_icons[i][2], layer, SOUTH)
+		var/image/eemage = image(possible_icons[i][1], src, possible_icons[i][2], layer, SOUTH)
+		eemage.pixel_x = 6
+		possible_icons[i] = eemage
 
 /obj/structure/closet/crate/mysterycrate/attack_hand(mob/user)
 	if(uses <= 0)
