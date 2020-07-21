@@ -172,7 +172,7 @@
 /datum/controller/subsystem/ticker/proc/declare_completion()
 	set waitfor = FALSE
 
-	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
+	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span><span class='warning'> Do not commit End Of Round Grief (EORG) unless you have enabled it in your preferences!!</span>")//Skyrat Edit
 	if(LAZYLEN(GLOB.round_end_notifiees))
 		world.TgsTargetedChatBroadcast("[GLOB.round_end_notifiees.Join(", ")] the round has ended.", FALSE)
 
@@ -184,7 +184,7 @@
 	for(var/mob/M in GLOB.player_list)
 		var/datum/action/switch_erg = new /datum/action/switch_erg(M)
 		switch_erg.Grant(M)
-		to_chat(M, "<span class='notice'>The round will end soon. If you want to participate in EORG, toggle it on now!</span>")
+		to_chat(M, "<span class='notice'>The round will end soon. If you want to participate in EORG, toggle it on now!</span>")//SKYRAT EDIT
 	RollCredits()
 	for(var/client/C in GLOB.clients)
 		C.playtitlemusic(40)
