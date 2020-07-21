@@ -161,11 +161,11 @@
 	opened = TRUE
 	playsound(src, animation_jingle, 100, 0)
 	update_icon()
-	for(var/i in 1 to 35)
+	for(var/i in 1 to 32)
 		randumb = pickweight(possible_outcomes, 1)
 		item_overlay = possible_icons[randumb]
 		update_icon()
-		sleep(i >= 34 ? 6 : 2)
+		sleep(i >= 32 ? 6 : 2)
 	icon_state = initial(icon_state)
 	opened = FALSE
 	item_overlay = null
