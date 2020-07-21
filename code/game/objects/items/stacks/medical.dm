@@ -25,6 +25,8 @@
 	var/sanitization
 	/// How much we add to flesh_healing for burn wounds on application
 	var/flesh_regeneration
+	/// The limb status flags we require to apply healing
+	var/status_required = BODYPART_ORGANIC
 
 /obj/item/stack/medical/attack(mob/living/M, mob/user)
 	. = ..()
@@ -61,7 +63,7 @@
 	if(!affecting) //Missing limb?
 		to_chat(user, "<span class='warning'>[C] doesn't have \a [parse_zone(user.zone_selected)]!</span>")
 		return
-	if(affecting.status != BODYPART_ORGANIC) //Limb must be organic to be healed - RR
+	if(!(affecting.status & required_status)) //Limb must satisfy status flags requirements
 		to_chat(user, "<span class='warning'>\The [src] won't work on a robotic limb!</span>")
 		return
 	if(affecting.brute_dam && brute || affecting.burn_dam && burn)
