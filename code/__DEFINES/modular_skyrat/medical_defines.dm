@@ -89,7 +89,7 @@
 #define BODYPART_MANGLED_SKIN	(1<<1)
 #define BODYPART_MANGLED_MUSCLE (1<<2)
 #define BODYPART_MANGLED_BONE	(1<<3)
-#define BODYPART_MANGLED_BOTH 	(BODYPART_MANGLED_NONE | BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE | BODYPART_MANGLED_BONE)
+#define BODYPART_MANGLED_BOTH 	(BODYPART_MANGLED_SKIN | BODYPART_MANGLED_MUSCLE | BODYPART_MANGLED_BONE)
 
 // What kind of biology we have, and what wounds we can suffer, mostly relies on the HAS_FLESH and HAS_BONE species traits on human species
 #define BIO_INORGANIC	(1<<1) // golems, cannot suffer any wounds

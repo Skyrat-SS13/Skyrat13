@@ -1323,3 +1323,16 @@
 	if(NOBLOOD in dna.species.species_traits)
 		return FALSE
 	return ..()
+
+/mob/living/carbon/human/get_biological_state()
+	var/bio_state = ..()
+	if(HAS_SKIN in dna?.species?.species_traits)
+		bio_state &= ~BIO_INORGANIC
+		bio_state |= BIO_SKIN
+	if(HAS_FLESH in dna?.species?.species_traits)
+		bio_state &= ~BIO_INORGANIC
+		bio_state |= BIO_FLESH
+	if(HAS_BONE in dna?.species?.species_traits)
+		bio_state &= ~BIO_INORGANIC
+		bio_state |= BIO_BONE
+	return bio_state

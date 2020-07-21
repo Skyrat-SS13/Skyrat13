@@ -33,6 +33,7 @@
 				qdel(src)
 				return
 
+	occur_text = "is slashed through the last tissue holding it together, severing it completely!"
 	switch(wounding_type)
 		if(WOUND_BLUNT)
 			occur_text = "is shattered through the last bone holding it together, severing it completely!"
@@ -63,6 +64,23 @@
 			new /obj/effect/decal/remains/robot(get_turf(limb))
 		if(limb.is_organic_limb())
 			new /obj/effect/decal/cleanable/ash(get_turf(limb))
+	
+	//apply the blood gush effect
+	if(wounding_type != WOUND_BURN && L.owner)
+		var/direction = L.owner.dir
+		direction = turn(direction, angle2dir(180))
+		var/bodypart_turn = 0 //north
+		if(L.body_zone in list(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_L_HAND))
+			bodypart_turn = 90 //west
+		else if(L.body_zone in list(BODY_ZONE_R_ARM, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_R_HAND))
+			bodypart_turn = -90 //east
+		direction = turn(direction, angle2dir(bodypart_turn))
+		var/dist = rand(3, 5)
+		var/turf/targ = get_ranged_target_turf(L.owner, direction, dist)
+		if(targ)
+			var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(L.owner.loc, L.owner.get_blood_dna_list())
+			B.add_blood_DNA(L.owner.get_blood_dna_list())
+			B.GoTo(targ, dist)
 
 	second_wind()
 	log_wound(victim, src)

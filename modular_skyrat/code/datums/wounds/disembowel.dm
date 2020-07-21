@@ -14,7 +14,7 @@
 	required_status = null
 
 /datum/wound/disembowel/proc/apply_disembowel(obj/item/bodypart/L, wounding_type=WOUND_SLASH)
-	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.disembowable || HAS_TRAIT(L.owner, TRAIT_NOGUT) || HAS_TRAIT(L.owner, TRAIT_NODISMEMBER))
+	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || isalien(L.owner) || !L.disembowable || HAS_TRAIT(L.owner, TRAIT_NOGUT) || HAS_TRAIT(L.owner, TRAIT_NODISMEMBER) || !length(L.owner.getorganszone(L.body_zone)))
 		qdel(src)
 		return
 
@@ -32,23 +32,24 @@
 				qdel(src)
 				return
 
+	occur_text = "is slashed deep through it's flesh, letting organs and bits of flesh fall out"
 	switch(wounding_type)
 		if(WOUND_BLUNT)
-			occur_text = "is crushed through it's wounds, all organs inside gruesomely fall out!"
+			occur_text = "is crushed through it's wounds, all organs inside gruesomely fall out"
 			if(limb.is_robotic_limb())
-				occur_text = "is shattered through it's exoskeleton, spitting out internal components!"
+				occur_text = "is shattered through it's exoskeleton, spitting out internal components"
 		if(WOUND_SLASH)
-			occur_text = "is slashed deep through it's flesh, letting organs and bits of flesh fall out!"
+			occur_text = "is slashed deep through it's flesh, letting organs and bits of flesh fall out"
 			if(limb.is_robotic_limb())
-				occur_text = "is slashed through it's exoskeleton, internal components rapidly falling out!"
+				occur_text = "is slashed through it's exoskeleton, internal components rapidly falling out"
 		if(WOUND_PIERCE)
-			occur_text = "is deeply pierced through, internal organs easily falling out of the gaping wound!"
+			occur_text = "is deeply pierced through, internal organs easily falling out of the gaping wound"
 			if(limb.is_robotic_limb())
-				occur_text = "is deeply pierced through, internal components easily falling out of the gaping wound!"
+				occur_text = "is deeply pierced through, internal components easily falling out of the gaping wound"
 		if(WOUND_BURN)
-			occur_text = "gets a hole burned through it, burnt organs falling out!"
+			occur_text = "gets a hole burned through it, burnt organs falling out"
 			if(limb.is_robotic_limb())
-				occur_text = "gets a critical amount of metal molten, opening a gaping hole from which components fall through!"
+				occur_text = "gets a critical amount of metal molten, opening a gaping hole from which components fall through"
 
 	var/mob/living/carbon/victim = L.owner
 	victim.confused += 10
@@ -58,6 +59,23 @@
 	var/msg = "<b><span class='danger'>[victim]'s [L.name] [occur_text]!</span></b>"
 
 	victim.visible_message(msg, "<span class='userdanger'>Your [L.name] [occur_text]!</span>")
+
+	//apply the blood gush effect
+	if(wounding_type != WOUND_BURN && L.owner)
+		var/direction = L.owner.dir
+		direction = turn(direction, angle2dir(180))
+		var/bodypart_turn = 0 //north
+		if(L.body_zone in list(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_L_HAND))
+			bodypart_turn = 90 //west
+		else if(L.body_zone in list(BODY_ZONE_R_ARM, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_R_HAND))
+			bodypart_turn = -90 //east
+		direction = turn(direction, angle2dir(bodypart_turn))
+		var/dist = rand(3, 5)
+		var/turf/targ = get_ranged_target_turf(L.owner, direction, dist)
+		if(targ)
+			var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(L.owner.loc, L.owner.get_blood_dna_list())
+			B.add_blood_DNA(L.owner.get_blood_dna_list())
+			B.GoTo(targ, dist)
 
 	second_wind()
 	log_wound(victim, src)

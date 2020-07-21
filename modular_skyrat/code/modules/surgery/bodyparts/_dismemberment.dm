@@ -198,10 +198,10 @@
   * Returns: BODYPART_MANGLED_NONE if we're fine, BODYPART_MANGLED_SKIN if our skin is broken, BODYPART_MANGLED_BONE if our bone is broken, or BODYPART_MANGLED_BOTH if both are broken and we're up for dismembering
   */
 /obj/item/bodypart/proc/get_mangled_state()
-	var/mangled_state = BODYPART_MANGLED_NONE
+	. = BODYPART_MANGLED_NONE
 	var/required_bone_severity = WOUND_SEVERITY_SEVERE
 	var/required_flesh_severity = WOUND_SEVERITY_SEVERE
-	var/required_flesh_skin_severity = WOUND_SEVERITY_MODERATE
+	var/required_skin_severity = WOUND_SEVERITY_MODERATE
 
 	if(owner && owner.get_biological_state() == BIO_BONE && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		required_bone_severity = WOUND_SEVERITY_CRITICAL
@@ -210,19 +210,34 @@
 		required_flesh_severity = WOUND_SEVERITY_CRITICAL
 
 	if(owner && owner.get_biological_state() == BIO_SKIN && !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
-		required_flesh_skin_severity = WOUND_SEVERITY_CRITICAL
+		required_skin_severity = WOUND_SEVERITY_CRITICAL
 
 	// we can (generally) only have one wound per type, but remember there's multiple types
-	for(var/i in wounds)
-		var/datum/wound/W = i
-		if((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= required_bone_severity)
-			mangled_state |= BODYPART_MANGLED_BONE
-		if((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= required_flesh_severity)
-			mangled_state |= BODYPART_MANGLED_MUSCLE
-		if((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= required_flesh_skin_severity)
-			mangled_state |= BODYPART_MANGLED_SKIN
-
-	return mangled_state
+	for(var/datum/wound/W in wounds)
+		//using the wound_type variable DOES NOT FUCKING WORK AT ALL.
+		//we have to settle for stupidity.
+		if((istype(W, /datum/wound/blunt)) && (W.severity >= required_bone_severity))
+			. |= BODYPART_MANGLED_BONE
+		else if((istype(W, /datum/wound/mechanical/blunt)) && (W.severity >= required_bone_severity))
+			. |= BODYPART_MANGLED_BONE
+		
+		if((istype(W, /datum/wound/slash)) && (W.severity >= required_flesh_severity))
+			. |= BODYPART_MANGLED_MUSCLE
+		else if((istype(W, /datum/wound/pierce)) && (W.severity >= required_flesh_severity))
+			. |= BODYPART_MANGLED_MUSCLE
+		else if((istype(W, /datum/wound/mechanical/slash)) && (W.severity >= required_flesh_severity))
+			. |= BODYPART_MANGLED_MUSCLE
+		else if((istype(W, /datum/wound/mechanical/pierce)) && (W.severity >= required_flesh_severity))
+			. |= BODYPART_MANGLED_MUSCLE
+		
+		if((istype(W, /datum/wound/slash)) && (W.severity >= required_skin_severity))
+			. |= BODYPART_MANGLED_SKIN
+		else if((istype(W, /datum/wound/pierce)) && (W.severity >= required_skin_severity))
+			. |= BODYPART_MANGLED_SKIN
+		else if((istype(W, /datum/wound/mechanical/slash)) && (W.severity >= required_skin_severity))
+			. |= BODYPART_MANGLED_SKIN
+		else if((istype(W, /datum/wound/mechanical/pierce)) && (W.severity >= required_skin_severity))
+			. |= BODYPART_MANGLED_SKIN
 
 /**
   * try_dismember() is used, once we've confirmed that a flesh and bone bodypart has both the skin, muscle and bone mangled, to actually roll for it
@@ -241,13 +256,13 @@
 	if(!can_dismember() || !dismemberable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE))
 		return FALSE
 	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
-	var/biotype = owner.get_biological_state()
+	var/bio_state = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		if(((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (biotype & BIO_BONE)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
+		if(((W.wound_type in list(WOUND_LIST_BLUNT, WOUND_LIST_BLUNT_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_BONE)) // we only require a severe bone break, but if there's a critical bone break, we'll add 10% more
 			base_chance += 10
 			break
-		else if(((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (biotype & BIO_FLESH)) // we only need a severe slash or pierce, but critical and we add 10%
+		else if(((W.wound_type in list(WOUND_LIST_SLASH, WOUND_LIST_SLASH_MECHANICAL,WOUND_LIST_PIERCE, WOUND_LIST_PIERCE_MECHANICAL)) && W.severity >= WOUND_SEVERITY_CRITICAL) && (bio_state & BIO_FLESH)) // we only need a severe slash or pierce, but critical and we add 10%
 			base_chance += 10
 			break
 
@@ -266,16 +281,16 @@
 	if(!can_dismember() || !disembowable || (wounding_dmg < DISMEMBER_MINIMUM_DAMAGE))
 		return FALSE
 	var/base_chance = wounding_dmg + ((get_damage() / max_damage) * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
-	var/biotype = owner.get_biological_state()
+	var/bio_state = owner.get_biological_state()
 	for(var/i in wounds)
 		var/datum/wound/W = i
-		if(istype(W, /datum/wound/slash/critical/incision) && (biotype & BIO_FLESH)) // incisions make you very vulnerable to disembowelment
+		if(istype(W, /datum/wound/slash/critical/incision) && (bio_state & BIO_FLESH)) // incisions make you very vulnerable to disembowelment
 			base_chance += 20
 			break
-		else if((istype(W, /datum/wound/slash/critical) || istype(W, /datum/wound/pierce/critical) || istype(W, /datum/wound/mechanical/slash/critical || istype(W, /datum/wound/mechanical/pierce/critical))) && (biotype & BIO_FLESH)) // we only require a severe slash, but if we have an avulsion, it's easier for an organ to fall off
+		else if((istype(W, /datum/wound/slash/critical) || istype(W, /datum/wound/pierce/critical) || istype(W, /datum/wound/mechanical/slash/critical || istype(W, /datum/wound/mechanical/pierce/critical))) && (bio_state & BIO_FLESH)) // we only require a severe slash, but if we have an avulsion, it's easier for an organ to fall off
 			base_chance += 10
 			break
-		else if((istype(W, /datum/wound/blunt/critical) || istype(W, /datum/wound/mechanical/blunt/critical)) && (biotype & BIO_BONE)) // skeletons need to be disemboweled too because they have "organs"...?
+		else if((istype(W, /datum/wound/blunt/critical) || istype(W, /datum/wound/mechanical/blunt/critical)) && (bio_state & BIO_BONE)) // skeletons need to be disemboweled too because they have "organs"...?
 			base_chance += 10
 			break
 
