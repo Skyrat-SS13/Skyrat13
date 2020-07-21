@@ -95,9 +95,10 @@
 		/obj/item/gun/magic/wand/fireball = 5,
 		/obj/item/gun/magic/staff/honk = 5,
 	)
-	//Possible weapons associated with their icon and sprite.
+	//Possible weapons associated with their icon and icon_state initially,
+	//turned into path associated with image on the generate_images() proc.
 	//Generated on spawn, should not worry too much, though this does mean
-	//spawning these is quite a hefty toll.
+	//spawning these crates is quite a hefty toll.
 	var/list/possible_icons = list()
 	//The current image overlay for the funny crate
 	var/image/item_overlay = null
