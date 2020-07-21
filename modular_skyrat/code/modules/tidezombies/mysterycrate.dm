@@ -3,6 +3,7 @@
 	desc = "Try your luck!"
 	icon = 'modular_skyrat/icons/obj/tidezombies_machinery.dmi'
 	icon_state = "mysteryplush"
+	pixel_x = -8
 	var/animation_jingle = 'modular_skyrat/sound/tidezombies/mysterycrate.ogg'
 	var/kaching = 'modular_skyrat/sound/tidezombies/kaching.ogg'
 	var/byebye= 'modular_skyrat/sound/tidezombies/byebye.ogg'
@@ -121,7 +122,7 @@
 
 /obj/structure/closet/crate/mysterycrate/proc/generate_images()
 	for(var/i in possible_icons)
-		possible_icons[i] = image(possible_outcomes[i][1], src, possible_outcomes[i][2], layer, SOUTH)
+		possible_icons[i] = image(possible_icons[i][1], src, possible_icons[i][2], layer, SOUTH)
 
 /obj/structure/closet/crate/mysterycrate/attack_hand(mob/user)
 	if(uses <= 0)
