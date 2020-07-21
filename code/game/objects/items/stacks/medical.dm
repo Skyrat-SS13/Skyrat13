@@ -305,7 +305,6 @@
 	repeating = TRUE
 	sanitization = 0.75
 	flesh_regeneration = 3
-
 	var/is_open = TRUE ///This var determines if the sterile packaging of the mesh has been opened.
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
 
@@ -317,6 +316,12 @@
 	if(amount == max_amount)	 //only seal full mesh packs
 		is_open = FALSE
 		update_icon()
+
+/obj/item/stack/medical/mesh/advanced/update_icon_state()
+	if(!is_open)
+		icon_state = "aloe_mesh_closed"
+	else
+		return ..()
 
 /obj/item/stack/medical/mesh/update_icon_state()
 	if(!is_open)
@@ -370,7 +375,10 @@
 	heal_burn = 15
 	sanitization = 1.25
 	flesh_regeneration = 3.5
-	//grind_results = list(/datum/reagent/consumable/aloejuice = 1) //will port later
+	grind_results = list(/datum/reagent/consumable/aloejuice = 5)
+
+/obj/item/stack/medical/mesh/advanced/one
+	amount = 1
 
 /obj/item/stack/medical/mesh/advanced/update_icon_state()
 	if(!is_open)
@@ -389,7 +397,7 @@
 	amount = 20
 	max_amount = 20
 	var/heal = 3
-	//grind_results = list(/datum/reagent/consumable/aloejuice = 1) //will port later
+	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 
 /obj/item/stack/medical/aloe/heal(mob/living/M, mob/user)
 	. = ..()
@@ -412,13 +420,13 @@
 
 	to_chat(user, "<span class='warning'>You can't heal [M] with the \the [src]!</span>")
 
-	/*
-	The idea is for these medical devices to work like a hybrid of the old brute packs and tend wounds,
-	they heal a little at a time, have reduced healing density and does not allow for rapid healing while in combat.
-	However they provice graunular control of where the healing is directed, this makes them better for curing work-related cuts and scrapes.
+/*
+The idea is for these medical devices to work like a hybrid of the old brute packs and tend wounds,
+they heal a little at a time, have reduced healing density and does not allow for rapid healing while in combat.
+However they provice graunular control of where the healing is directed, this makes them better for curing work-related cuts and scrapes.
 
-	The interesting limb targeting mechanic is retained and i still believe they will be a viable choice, especially when healing others in the field.
-	 */
+The interesting limb targeting mechanic is retained and i still believe they will be a viable choice, especially when healing others in the field.
+*/
 
 /obj/item/stack/medical/bone_gel
 	name = "bone gel"

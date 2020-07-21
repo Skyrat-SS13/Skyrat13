@@ -12,7 +12,7 @@
 	absorption_rate = 0.30
 	absorption_capacity = 8
 	splint_factor = 0.75
-	custom_price = PRICE_NORMAL
+	custom_price = PRICE_EXPENSIVE
 	novariants = TRUE
 
 /obj/item/stack/medical/gauze/splint/tribal
@@ -38,6 +38,7 @@
 	other_delay = 25
 	heal_brute = 20
 	heal_burn = 20
+	required_status = BODYPART_ROBOTIC
 
 /obj/item/stack/medical/fixovein
 	name = "fix o' vein"
@@ -47,7 +48,6 @@
 	icon_state = "fixovein"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-
 	amount = 5
 	max_amount = 10
 	self_delay = 80
