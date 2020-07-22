@@ -183,6 +183,10 @@
 /datum/antagonist/gang/boss/antag_listing_name()
 	return ..() + "(Boss)"
 
+//new era - TGUI team panel
+/datum/antagonist/gang/boss/team_panel_name()
+	return ..() + TGUI_ANTAGLISTING_TEXT("(Boss)")
+
 /datum/antagonist/gang/boss/equip_gang(gangtool = TRUE, pen = TRUE, spraycan = TRUE, hud = TRUE) // usually has to be called separately
 	var/mob/living/carbon/human/H = owner.current
 	if(!istype(H))

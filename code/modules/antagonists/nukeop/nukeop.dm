@@ -383,5 +383,37 @@
 	var/common_part = ..()
 	return common_part + disk_report
 
+//new era - TGUI team panel
+/datum/team/nuclear/tgui_team_panel_extra_info()
+	. = list()
+
+	. += TGUI_ANTAGLISTING_TEXT("Nuclear Disk(s)", list(bold=TRUE))
+	. += TGUI_ANTAGLISTING_BR
+	for(var/obj/item/disk/nuclear/N in GLOB.poi_list)
+		. += TGUI_ANTAGLISTING_TEXT("[N.name], ")
+		var/atom/disk_loc = N.loc
+		while(!isturf(disk_loc))
+			if(ismob(disk_loc))
+				var/mob/M = disk_loc
+				. += TGUI_ANTAGLISTING_TEXT("carried by ")
+				. += TGUI_ANTAGLISTING_BUTTON(\
+					content=M.real_name,\
+					color="transparent",\
+					action="admin_topic",\
+					params=TGUI_ANTAGLISTING_HREF_LIST("adminplayeropts"=REF(M)),\
+				)
+			if(isobj(disk_loc))
+				var/obj/O = disk_loc
+				. += TGUI_ANTAGLISTING_TEXT("in \a [O.name] ")
+			disk_loc = disk_loc.loc
+		. += TGUI_ANTAGLISTING_TEXT("in [disk_loc.loc] at ([disk_loc.x], [disk_loc.y], [disk_loc.z])")
+		. += TGUI_ANTAGLISTING_BUTTON(\
+			content="FLW",\
+			ml=1,\
+			action="admin_topic",\
+			params=TGUI_ANTAGLISTING_HREF_LIST("adminplayerobservefollow"=REF(N)),\
+		)
+		. += TGUI_ANTAGLISTING_BR
+
 /datum/team/nuclear/is_gamemode_hero()
 	return SSticker.mode.name == "nuclear emergency"

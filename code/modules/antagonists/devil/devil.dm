@@ -144,6 +144,10 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 /datum/antagonist/devil/antag_listing_name()
 	return ..() + "([truename])"
 
+//new era - TGUI team panel
+/datum/antagonist/devil/team_panel_name()
+	return ..() + TGUI_ANTAGLISTING_TEXT("([truename])")
+
 /proc/devilInfo(name)
 	if(GLOB.allDevils[lowertext(name)])
 		return GLOB.allDevils[lowertext(name)]

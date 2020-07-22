@@ -110,6 +110,7 @@ import { Vending } from './interfaces/Vending';
 import { Wires } from './interfaces/Wires';
 import { AtmosRelief } from './interfaces/AtmosRelief';
 import { FaxMachine } from './interfaces/FaxMachine';
+import { TeamPanel } from './interfaces/TeamPanel';
 
 const ROUTES = {
   achievements: {
@@ -592,6 +593,10 @@ const ROUTES = {
   faxmachine: {
     component: () => FaxMachine,
     scrollable: false,
+  },
+  teampanel: {
+    component: () => TeamPanel,
+    scrollable: true,
   },
 };
 

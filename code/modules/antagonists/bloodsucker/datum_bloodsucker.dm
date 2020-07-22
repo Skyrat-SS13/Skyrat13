@@ -414,6 +414,11 @@
 /datum/antagonist/bloodsucker/antag_listing_name()
 	return ..() + "([ReturnFullName(TRUE)])"
 
+//new era - TGUI team panel
+/datum/antagonist/bloodsucker/team_panel_name()
+	return ..() + TGUI_ANTAGLISTING_TEXT("([ReturnFullName(TRUE)])")
+
+
 //Whatever interesting things happened to the antag admins should know about
 //Include additional information about antag in this part
 /datum/antagonist/bloodsucker/antag_listing_status()
@@ -421,6 +426,11 @@
 		return "<font color=red>Final Death</font>"
 	return ..()
 
+//new era - TGUI team panel
+/datum/antagonist/bloodsucker/team_panel_status()
+	if (owner && owner.AmFinalDeath())
+		return TGUI_ANTAGLISTING_TEXT("Final Death", list(color="red"))
+	return ..()
 
 
 //Individual roundend report
