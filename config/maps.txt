@@ -28,6 +28,12 @@ endmap
 map pubbystation
 endmap
 
+map cerestation
+endmap
+
+map cerestation_skyrat
+endmap
+
 map omegastation
 	maxplayers 35
 endmap

@@ -1,0 +1,11 @@
+{
+    "map_name": "Cere Station",
+    "map_path": "map_files/CereStation",
+    "map_file": "cerestation.dmm",
+    "shuttles": {
+	    "emergency": "emergency_cere",
+	    "ferry": "ferry_base",
+	    "cargo": "cargo_delta",
+	    "whiteship": "whiteship_delta"
+    }
+}
