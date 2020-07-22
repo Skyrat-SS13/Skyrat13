@@ -1,43 +1,24 @@
-/datum/gear/polyskirt
-	name = "Polychromic Skirt"
-	category = SLOT_W_UNIFORM
-	path = /obj/item/clothing/under/dress/skirt/polychromic
-	cost = 3
-
-/datum/gear/polyshirt
-	name = "Polychromic Jumpsuit"
-	category = SLOT_W_UNIFORM
-	path = /obj/item/clothing/under/misc/polyjumpsuit
-	cost = 3
-
 /datum/gear/polyunder
 	name = "Polychromic Under"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/suit/polychromic
-	cost = 3
-
-/datum/gear/polypleat
-	name = "Polychromic Pleated Skirt"
-	category = SLOT_W_UNIFORM
-	path = /obj/item/clothing/under/dress/skirt/polychromic/pleated
-	cost = 3
+	cost = 2
 
 /datum/gear/polyfemtank
 	name = "Polychromic Feminine Tanktop"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/misc/poly_tanktop/female
-	cost = 3
-
-/datum/gear/polytshirt
-	name = "Polychromic Shirt"
-	category = SLOT_W_UNIFORM
-	path = /obj/item/clothing/under/misc/poly_shirt
-	cost = 3
+	cost = 2
 
 /datum/gear/skirtleneck
 	name = "Tacticool Skirtleneck"
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/syndicate/tacticool/skirt
+
+/datum/gear/skirtleneck
+	name = "Sensible Suitskirt"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/rank/civilian/curator/skirt
 
 /datum/gear/trekcmdtos
 	name = "EntCorp uniform, cmd"
@@ -81,3 +62,9 @@
 	category = SLOT_W_UNIFORM
 	path = /obj/item/clothing/under/trek/command/orv/engsec
 	restricted_roles = list("Head of Security", "Chief Engineer")
+
+/datum/gear/capt_alternative
+	name = "Captains Naval Alternative"
+	category = SLOT_W_UNIFORM
+	path = /obj/item/clothing/under/suit/captain_blacksuit
+	restricted_roles = list("Captain", "Head of Personnel")

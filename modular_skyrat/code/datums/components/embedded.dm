@@ -91,7 +91,6 @@
 	victim.visible_message("<span class='danger'>[weapon] [harmful ? "embeds" : "sticks"] itself [harmful ? "in" : "to"] [victim]'s [limb.name]!</span>", "<span class='userdanger'>[weapon] [harmful ? "embeds" : "sticks"] itself [harmful ? "in" : "to"] your [limb.name]!</span>")
 
 	var/damage = weapon.throwforce
-
 	if(harmful)
 		victim.throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
 		playsound(victim,'sound/weapons/bladeslice.ogg', 40)
@@ -99,7 +98,7 @@
 		damage += weapon.w_class * impact_pain_mult
 		SEND_SIGNAL(victim, COMSIG_ADD_MOOD_EVENT, "embedded", /datum/mood_event/embedded)
 	if(damage > 0)
-		var/armor = victim.run_armor_check(limb.body_zone, "bullet", "Your armor has protected your [limb.name].", "Your armor has softened hit to your [limb.name].",I.armour_penetration)
+		var/armor = victim.run_armor_check(limb.body_zone, "melee", "Your armor has protected your [limb.name].", "Your armor has softened the hit to your [limb.name].",I.armour_penetration)
 		limb.receive_damage(brute=(1-pain_stam_pct) * damage, stamina=pain_stam_pct * damage, blocked=armor, sharpness = I.get_sharpness())
 
 /datum/component/embedded/Destroy()
@@ -133,16 +132,22 @@
 		return
 
 	var/damage = weapon.w_class * pain_mult
-	var/chance = pain_chance
+	var/pain_chance_current = pain_chance
 	if(pain_stam_pct && (victim.IsKnockdown() || victim.InCritical() || victim.incapacitated())) //if it's a less-lethal embed, give them a break if they're already stamcritted
-		chance *= 0.2
+		pain_chance_current *= 0.2
 		damage *= 0.5
+	else if(victim.mobility_flags & ~MOBILITY_STAND)
+		pain_chance_current *= 0.2
 
-	if(harmful && prob(chance))
+	if(harmful && prob(pain_chance_current))
 		limb.receive_damage(brute=(1-pain_stam_pct) * damage, stamina=pain_stam_pct * damage, wound_bonus = CANT_WOUND)
 		to_chat(victim, "<span class='userdanger'>[weapon] embedded in your [limb.name] hurts!</span>")
 
-	if(prob(fall_chance))
+	var/fall_chance_current = fall_chance
+	if(victim.mobility_flags & ~MOBILITY_STAND)
+		fall_chance_current *= 0.2
+
+	if(prob(fall_chance_current))
 		fallOut()
 
 ////////////////////////////////////////
@@ -159,7 +164,7 @@
 
 	if(harmful && prob(chance))
 		var/damage = weapon.w_class * jostle_pain_mult
-		limb.receive_damage(brute=(1-pain_stam_pct) * damage, stamina=pain_stam_pct * damage, sharpness=TRUE, wound_bonus = CANT_WOUND)
+		limb.receive_damage(brute=(1-pain_stam_pct) * damage, stamina=pain_stam_pct * damage, sharpness=weapon.sharpness, wound_bonus = CANT_WOUND)
 		to_chat(victim, "<span class='userdanger'>[weapon] embedded in your [limb.name] jostles and stings!</span>")
 
 

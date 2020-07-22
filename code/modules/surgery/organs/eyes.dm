@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 #define BLURRY_VISION_ONE	1
 #define BLURRY_VISION_TWO	2
 #define BLIND_VISION_THREE	3
@@ -129,7 +130,7 @@
 /obj/item/organ/eyes/night_vision/zombie
 	name = "undead eyes"
 	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
-	sight_flags = SEE_MOBS
+	//sight_flags = SEE_MOBS        SKYRAT CHANGE - No more free thermals. Why did they keep this for so long?
 
 /obj/item/organ/eyes/night_vision/nightmare
 	name = "burning red eyes"
@@ -397,3 +398,4 @@
 #undef BLURRY_VISION_ONE
 #undef BLURRY_VISION_TWO
 #undef BLIND_VISION_THREE
+*/

@@ -15,3 +15,13 @@
 	wound_falloff_tile = -5
 	embed_falloff_tile = -5
 	//
+
+/obj/item/projectile/bullet/process_hit(turf/T, atom/target, qdel_self, hit_something)
+	. = ..()
+	if(isliving(target) && damage && !nodamage)
+		var/mob/living/L = target
+		var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(target.loc, L.get_blood_dna_list())
+		B.add_blood_DNA(L.get_blood_dna_list())
+		var/dist = rand(2,5)
+		var/turf/targ = get_ranged_target_turf(target, get_dir(starting, target), dist)
+		B.GoTo(targ, dist)

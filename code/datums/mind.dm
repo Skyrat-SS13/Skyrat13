@@ -67,8 +67,9 @@
 	var/late_joiner = FALSE
 
 //SKYRAT CHANGES
-	var/appear_in_round_end_report = TRUE  //Skyrat change
+	var/appear_in_round_end_report = TRUE
 	var/mob/original_character
+	var/accept_ERG = FALSE
 //END OF SKYRAT CHANGES
 
 	var/force_escaped = FALSE  // Set by Into The Sunset command of the shuttle manipulator
@@ -83,7 +84,7 @@
 // SKYRAT CHANGES END
 
 /datum/mind/New(var/key)
-	skill_holder = new()
+	skill_holder = new(src)
 	src.key = key
 	soulOwner = src
 	martial_art = default_martial_art
@@ -140,6 +141,8 @@
 	transfer_martial_arts(new_character)
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
+	if(new_character.client)
+		LAZYCLEARLIST(new_character.client.recent_examines)
 	current.update_atom_languages()
 
 //CIT CHANGE - makes arousal update when transfering bodies

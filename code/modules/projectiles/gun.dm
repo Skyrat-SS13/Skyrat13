@@ -1,5 +1,10 @@
 
 #define DUALWIELD_PENALTY_EXTRA_MULTIPLIER 1.4
+//woops skyrat defines
+#define SEMIAUTO	1
+#define ROUNDBURST	2
+#define FULLAUTO	3
+//
 
 /obj/item/gun
 	name = "gun"
@@ -59,6 +64,8 @@
 	var/mutable_appearance/knife_overlay
 	var/can_bayonet = FALSE
 	var/datum/action/item_action/toggle_gunlight/alight
+	var/custom_light_icon //custom flashlight icon
+	var/custom_light_state //custom flashlight state
 	var/mutable_appearance/flashlight_overlay
 
 	var/ammo_x_offset = 0 //used for positioning ammo count overlay on sprite
@@ -137,7 +144,12 @@
 	return TRUE
 
 /obj/item/gun/proc/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	//skyrat edit
+	if(on_cooldown())
+		return FALSE
+	//
 	to_chat(user, "<span class='danger'>*click*</span>")
+	last_fire = world.time
 	playsound(src, "gun_dry_fire", 30, 1)
 
 /obj/item/gun/proc/shoot_live_shot(mob/living/user, pointblank = FALSE, mob/pbtarget, message = 1, stam_cost = 0)
@@ -226,6 +238,10 @@
 
 	if(user)
 		bonus_spread = getinaccuracy(user, bonus_spread, stamloss) //CIT CHANGE - adds bonus spread while not aiming
+	//skyrat edit full auto
+	if(user)
+		bonus_spread += calculate_extra_inaccuracy(user, bonus_spread, stamloss)
+	//
 	if(ishuman(user) && user.a_intent == INTENT_HARM && weapon_weight <= WEAPON_LIGHT)
 		var/mob/living/carbon/human/H = user
 		for(var/obj/item/gun/G in H.held_items)
@@ -249,6 +265,11 @@
 	if(HAS_TRAIT(user, TRAIT_PACIFISM) && chambered?.harmful) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
 		to_chat(user, "<span class='notice'> [src] is lethally chambered! You don't want to risk harming anyone...</span>")
 		return FALSE
+
+//skyrat edit
+/obj/item/gun/proc/calculate_extra_inaccuracy()
+	return 0
+//
 
 /obj/item/gun/proc/handle_pins(mob/living/user)
 	if(no_pin_required)
@@ -455,12 +476,18 @@
 		else
 			set_light(0)
 		cut_overlays(flashlight_overlay, TRUE)
+		var/icon2use = 'icons/obj/guns/flashlights.dmi'
 		var/state = "flight[gun_light.on? "_on":""]"	//Generic state.
 		if(gun_light.icon_state in icon_states('icons/obj/guns/flashlights.dmi'))	//Snowflake state?
 			state = gun_light.icon_state
-		flashlight_overlay = mutable_appearance('icons/obj/guns/flashlights.dmi', state)
-		flashlight_overlay.pixel_x = flight_x_offset
-		flashlight_overlay.pixel_y = flight_y_offset
+		if(custom_light_state)
+			state = "[custom_light_state][gun_light.on? "_on":""]"
+		if(custom_light_icon)
+			icon2use = custom_light_icon
+		flashlight_overlay = mutable_appearance(icon2use, state)
+		if(!custom_light_icon)
+			flashlight_overlay.pixel_x = flight_x_offset
+			flashlight_overlay.pixel_y = flight_y_offset
 		add_overlay(flashlight_overlay, TRUE)
 	else
 		set_light(0)

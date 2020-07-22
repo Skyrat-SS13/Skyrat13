@@ -17,9 +17,7 @@
 	var/custom_pixel_y_offset = 0
 	var/sneaking = 0 //For sneaky-sneaky mode and appropriate slowdown
 	var/drooling = 0 //For Neruotoxic spit overlays
-	bodyparts = list(/obj/item/bodypart/chest/alien, /obj/item/bodypart/head/alien, /obj/item/bodypart/l_arm/alien,
-					 /obj/item/bodypart/r_arm/alien, /obj/item/bodypart/r_leg/alien, /obj/item/bodypart/l_leg/alien)
-
+	bodyparts = ALIEN_BODYPARTS_PATH
 
 //This is fine right now, if we're adding organ specific damage this needs to be updated
 /mob/living/carbon/alien/humanoid/Initialize()
@@ -77,20 +75,18 @@
 	return TRUE
 
 /mob/living/carbon/alien/humanoid/get_standard_pixel_y_offset(lying = 0)
+	. = ..()
 	if(leaping)
-		return -32
-	else if(custom_pixel_y_offset)
-		return custom_pixel_y_offset
-	else
-		return initial(pixel_y)
+		. -= 32
+	if(custom_pixel_y_offset)
+		. += custom_pixel_y_offset
 
 /mob/living/carbon/alien/humanoid/get_standard_pixel_x_offset(lying = 0)
+	. = ..()
 	if(leaping)
-		return -32
-	else if(custom_pixel_x_offset)
-		return custom_pixel_x_offset
-	else
-		return initial(pixel_x)
+		. -= 32
+	if(custom_pixel_x_offset)
+		. += custom_pixel_x_offset
 
 /mob/living/carbon/alien/humanoid/get_permeability_protection(list/target_zones)
 	return 0.8

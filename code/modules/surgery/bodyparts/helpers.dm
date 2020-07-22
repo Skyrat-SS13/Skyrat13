@@ -191,40 +191,25 @@
 			disabled += zone
 	return disabled
 
-///Remove all embedded objects from all limbs on the carbon mob
-/mob/living/carbon/proc/remove_all_embedded_objects()
-	/* skyrat edit
-	var/turf/T = get_turf(src)
-	*/
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/L = X
-		for(var/obj/item/I in L.embedded_objects)
-			/* skyrat edit
-			L.embedded_objects -= I
-			I.forceMove(T)
-			I.unembedded()
-			*/
-			remove_embedded_object(I)
-
-	clear_alert("embeddedobject")
-	SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
-
-/mob/living/carbon/proc/has_embedded_objects(include_harmless=FALSE) //skyrat edit
-	. = 0
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/L = X
-		for(var/obj/item/I in L.embedded_objects)
-			//skyrat edit
-			if(!include_harmless && I.isEmbedHarmless())
-				continue
-			return TRUE
-			//
-
-//skyrat edit help
 ///Remove a specific embedded item from the carbon mob
 /mob/living/carbon/proc/remove_embedded_object(obj/item/I)
 	SEND_SIGNAL(src, COMSIG_CARBON_EMBED_REMOVAL, I)
-//
+
+///Remove all embedded objects from all limbs on the carbon mob
+/mob/living/carbon/proc/remove_all_embedded_objects()
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/L = X
+		for(var/obj/item/I in L.embedded_objects)
+			remove_embedded_object(I)
+
+/mob/living/carbon/proc/has_embedded_objects(include_harmless=FALSE)
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/L = X
+		for(var/obj/item/I in L.embedded_objects)
+			if(!include_harmless && I.isEmbedHarmless())
+				continue
+			return TRUE
+
 
 //Helper for quickly creating a new limb - used by augment code in species.dm spec_attacked_by
 /mob/living/carbon/proc/newBodyPart(zone, robotic, fixed_icon)

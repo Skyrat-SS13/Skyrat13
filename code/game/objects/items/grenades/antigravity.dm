@@ -8,9 +8,7 @@
 	var/duration = 300
 
 /obj/item/grenade/antigravity/prime(mob/living/lanced_by)
-	//skyrat edit
 	. = ..()
-	//
 	update_mob()
 
 	for(var/turf/T in view(range,src))

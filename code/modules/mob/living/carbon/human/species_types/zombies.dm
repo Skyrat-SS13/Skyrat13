@@ -8,7 +8,7 @@
 	sexes = 0
 	blacklisted = 1
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
-	species_traits = list(NOBLOOD,NOZOMBIE,NOTRANSSTING,CAN_SCAR) //skyrat edit
+	species_traits = list(NOBLOOD,NOZOMBIE,NOTRANSSTING,CAN_SCAR,HAS_SKIN,HAS_FLESH,HAS_BONE) //skyrat edit
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASYDISMEMBER,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutanttongue = /obj/item/organ/tongue/zombie
@@ -18,6 +18,7 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 	exotic_bloodtype = "BHZ"
+	exotic_blood_color = BLOOD_COLOR_BIOHAZARD
 	//
 
 /datum/species/zombie/notspaceproof
@@ -37,7 +38,7 @@
 	limbs_id = "zombie"
 	mutanthands = /obj/item/zombie_hand
 	armor = 20 // 120 damage to KO a zombie, which kills it
-	speedmod = 1.6
+	//speedmod = 1.6      SKYRAT CHANGE - Fast Zombies
 	mutanteyes = /obj/item/organ/eyes/night_vision/zombie
 	var/heal_rate = 1
 	var/regen_cooldown = 0

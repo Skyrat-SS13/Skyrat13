@@ -1,3 +1,8 @@
+/datum/reagent/medicine/mine_salve/on_mob_metabolize(mob/living/M) //modularisation for miners salve painkiller.
+	..()
+	if(iscarbon(M))
+		ADD_TRAIT(M, TRAIT_PAINKILLER, PAINKILLER_MINERSSALVE)
+
 /datum/reagent/medicine/strange_reagent
 	description = "A miracle drug that can bring people back from the dead based on the dosage. For every 20 units of brute or burn damage, 1u of this reagent is required. Deals a small amount of damage on metabolism."
 
@@ -21,17 +26,7 @@
 			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
 			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
 			spawn(100) //so the ghost has time to re-enter
-				if(iscarbon(M))
-					var/mob/living/carbon/C = M
-					if(!(C.dna && C.dna.species && (NOBLOOD in C.dna.species.species_traits)))
-						C.blood_volume = max(C.blood_volume, BLOOD_VOLUME_BAD * 1.2) //so you don't instantly re-die from a lack of blood
-					for(var/organ in C.internal_organs)
-						var/obj/item/organ/O = organ
-						if(O.damage > O.maxHealth * 0.8)
-							O.setOrganDamage(O.maxHealth * 0.8) //so you don't instantly die from organ damage when being revived
-
-				M.adjustOxyLoss(-reac_volume/2, TRUE) //we use reac_volume instead of the true volume to impede cheeky healing stacking
-				M.adjustToxLoss(-reac_volume/3, TRUE)
+				//literally nothing is healed, we just revive the person
 				M.updatehealth()
 				if(M.revive())
 					M.grab_ghost()
@@ -40,10 +35,8 @@
 	..()
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(0.2*REM, 0)
-	M.adjustFireLoss(0.2*REM, 0)
-	..()
-	. = 1
+	//just to override the original lmao
+	. = ..()
 
 /datum/reagent/medicine/synthflesh
 	description = "Instantly heals brute and burn damage when the chemical is applied via touch application, but also deals toxin damage relative to the brute and burn damage healed. Capable of restoring the appearance of synths."
@@ -229,8 +222,10 @@
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
 			if(C.all_wounds.len)
-				var/datum/wound/W = pick(C.all_wounds)
-				if(istype(W))
-					W.on_hemostatic(reac_volume)
+				while(reac_volume && length(C.all_wounds))
+					var/datum/wound/W = pick(C.all_wounds)
+					if(istype(W))
+						W.on_hemostatic(reac_volume)
+						reac_volume = max(0, reac_volume - 10)
 	else
 		M.adjustToxLoss(reac_volume * 0.8)

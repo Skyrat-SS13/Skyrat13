@@ -153,8 +153,12 @@
 
 	dat += "<tr><td>&nbsp;</td></tr>"
 
-	dat += "<tr><td><B>Exosuit:</B></td><td><A href='?src=[REF(src)];item=[SLOT_WEAR_SUIT]'>[(wear_suit && !(wear_suit.item_flags & ABSTRACT)) ? wear_suit : "<font color=grey>Empty</font>"]</A></td></tr>"
+	dat += "<tr><td><B>Exosuit:</B></td><td><A href='?src=[REF(src)];item=[SLOT_WEAR_SUIT]'>[(wear_suit && !(wear_suit.item_flags & ABSTRACT)) ? wear_suit : "<font color=grey>Empty</font>"]</A>"
 	if(wear_suit)
+		if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit))
+			var/hardsuit_head = head && istype(head, /obj/item/clothing/head/helmet/space/hardsuit)
+			dat += "&nbsp;<A href='?src=[REF(src)];toggle_helmet=[SLOT_WEAR_SUIT]'>[hardsuit_head ? "Retract Helmet" : "Extend Helmet"]</A>"
+		dat += "</td></tr>"
 		dat += "<tr><td>&nbsp;&#8627;<B>Suit Storage:</B></td><td><A href='?src=[REF(src)];item=[SLOT_S_STORE]'>[(s_store && !(s_store.item_flags & ABSTRACT)) ? s_store : "<font color=grey>Empty</font>"]</A>"
 		if(has_breathable_mask && istype(s_store, /obj/item/tank))
 			dat += "&nbsp;<A href='?src=[REF(src)];internal=[SLOT_S_STORE]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
@@ -221,17 +225,28 @@
 			var/obj/item/I = locate(href_list["embedded_object"]) in L.embedded_objects
 			if(!I || I.loc != src) //no item, no limb, or item is not in limb or in the person anymore
 				return
-			//skyrat edit
 			SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L)
-			//
 			return
-
+		if(href_list["toggle_helmet"])
+			var/hardsuit_head = head && istype(head, /obj/item/clothing/head/helmet/space/hardsuit)
+			visible_message("<span class='danger'>[usr] tries to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>", \
+								"<span class='userdanger'>[usr] tries to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>", \
+								target = usr, target_message = "<span class='danger'>You try to [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>")
+			if(!do_mob(usr, src, POCKET_STRIP_DELAY))
+				return
+			visible_message("<span class='danger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
+									"<span class='userdanger'>[usr] [hardsuit_head ? "retract" : "extend"] [src]'s helmet</span>", \
+									target = usr, target_message = "<span class='danger'>You [hardsuit_head ? "retract" : "extend"] [src]'s helmet.</span>")
+			if(!istype(wear_suit, /obj/item/clothing/suit/space/hardsuit))
+				return
+			var/obj/item/clothing/suit/space/hardsuit/hardsuit = wear_suit //This should be an hardsuit given all our checks
+			hardsuit.ToggleHelmet()
+			return
 		if(href_list["item"])
 			var/slot = text2num(href_list["item"])
 			if(slot in check_obscured_slots())
 				to_chat(usr, "<span class='warning'>You can't reach that! Something is covering it.</span>")
-				return
-
+				return							
 		if(href_list["pockets"])
 			var/strip_mod = 1
 			var/strip_silence = FALSE
@@ -990,7 +1005,7 @@
 				if(target.incapacitated(FALSE, TRUE) || incapacitated(FALSE, TRUE))
 					target.visible_message("<span class='warning'>[target] can't hang onto [src]!</span>")
 					return
-				buckle_mob(target, TRUE, TRUE, FALSE, 0, 2, FALSE)
+				buckle_mob(target, TRUE, TRUE, FALSE, 1, 2, FALSE)
 		else
 			visible_message("<span class='warning'>[target] fails to climb onto [src]!</span>")
 	else
@@ -1232,8 +1247,17 @@
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
 
+/mob/living/carbon/human/species/anthro
+	race = /datum/species/anthro
+
 /mob/living/carbon/human/species/mammal
-	race = /datum/species/mammal
+	race = /datum/species/anthro/mammal
+
+/mob/living/carbon/human/species/avian
+	race = /datum/species/anthro/avian
+
+/mob/living/carbon/human/species/aquatic
+	race = /datum/species/anthro/aquatic
 
 /mob/living/carbon/human/species/insect
 	race = /datum/species/insect
@@ -1244,6 +1268,43 @@
 /mob/living/carbon/human/species/ipc
 	race = /datum/species/ipc
 
+/mob/living/carbon/human/species/synthliz/mangled/Initialize()
+	..()
+	mangle()
+
+/mob/living/carbon/human/species/synth/mangled/Initialize()
+	..()
+	mangle()
+
+/mob/living/carbon/human/species/synth/military/mangled/Initialize()
+	..()
+	mangle()
+
+/mob/living/carbon/human/species/ipc/mangled/Initialize()
+	..()
+	mangle()
+
+/mob/living/carbon/human/species/android/mangled/Initialize()
+	..()
+	mangle()
+
+/mob/living/carbon/human/species/corporate/mangled/Initialize()
+	..()
+	mangle()
+
+/mob/living/carbon/human/proc/mangle()
+	stat = DEAD
+	socks = ""
+	undershirt = ""
+	underwear = ""
+	for(var/obj/item/organ/O in internal_organs)
+		O.Remove()
+		qdel(O)
+	for(var/obj/item/bodypart/BP in bodyparts)
+		if(BP.body_zone != BODY_ZONE_CHEST)
+			BP.drop_limb(TRUE, TRUE, FALSE, TRUE)
+	return TRUE
+
 /mob/living/carbon/human/species/roundstartslime
 	race = /datum/species/jelly/roundstartslime
 
@@ -1253,7 +1314,25 @@
 		return FALSE
 	return ..()
 
+/mob/living/carbon/human/has_gauze()
+	if(NOBLOOD in dna.species.species_traits)
+		return FALSE
+	return ..()
+
 /mob/living/carbon/human/get_total_bleed_rate()
 	if(NOBLOOD in dna.species.species_traits)
 		return FALSE
 	return ..()
+
+/mob/living/carbon/human/get_biological_state()
+	var/bio_state = ..()
+	if(HAS_SKIN in dna?.species?.species_traits)
+		bio_state &= ~BIO_INORGANIC
+		bio_state |= BIO_SKIN
+	if(HAS_FLESH in dna?.species?.species_traits)
+		bio_state &= ~BIO_INORGANIC
+		bio_state |= BIO_FLESH
+	if(HAS_BONE in dna?.species?.species_traits)
+		bio_state &= ~BIO_INORGANIC
+		bio_state |= BIO_BONE
+	return bio_state

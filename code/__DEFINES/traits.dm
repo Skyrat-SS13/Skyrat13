@@ -61,12 +61,20 @@
 	} while (0)
 #define HAS_TRAIT(target, trait) (target.status_traits ? (target.status_traits[trait] ? TRUE : FALSE) : FALSE)
 #define HAS_TRAIT_FROM(target, trait, source) (target.status_traits ? (target.status_traits[trait] ? (source in target.status_traits[trait]) : FALSE) : FALSE)
+#define HAS_TRAIT_FROM_ONLY(target, trait, source) (\
+	target.status_traits ?\
+		(target.status_traits[trait] ?\
+			((source in target.status_traits[trait]) && (length(target.status_traits) == 1))\
+			: FALSE)\
+		: FALSE)
 #define HAS_TRAIT_NOT_FROM(target, trait, source) (target.status_traits ? (target.status_traits[trait] ? (length(target.status_traits[trait] - source) > 0) : FALSE) : FALSE)
 
 //mob traits
 #define TRAIT_BLIND 			"blind"
 #define TRAIT_MUTE				"mute"
 #define TRAIT_EMOTEMUTE			"emotemute"
+#define TRAIT_LOOC_MUTE			"looc_mute" //Just like unconsciousness, it disables LOOC salt.
+#define TRAIT_AOOC_MUTE			"aooc_mute" //Same as above but for AOOC.
 #define TRAIT_DEAF				"deaf"
 #define TRAIT_NEARSIGHT			"nearsighted"
 #define TRAIT_FAT				"fat"
@@ -188,6 +196,7 @@
 #define TRAIT_AUTO_CATCH_ITEM	"auto_catch_item"
 #define TRAIT_CLOWN_MENTALITY	"clown_mentality" // The future is now, clownman.
 #define TRAIT_FREESPRINT		"free_sprinting"
+#define TRAIT_PAINKILLER        "painkiller" //-SKYRAT EDIT | ADDS PAINKILLER TRAIT -
 #define TRAIT_XRAY_VISION       "xray_vision"
 #define TRAIT_THERMAL_VISION    "thermal_vision"
 #define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
@@ -195,12 +204,19 @@
 #define TRAIT_NO_ALCOHOL		"alcohol_intolerance"
 #define TRAIT_MUTATION_STASIS			"mutation_stasis" //Prevents processed genetics mutations from processing.
 #define TRAIT_FAST_PUMP				"fast_pump"
+#define TRAIT_NICE_SHOT			"nice_shot" //hnnnnnnnggggg..... you're pretty good....
 //SKYRAT traits
 #define TRAIT_SCREWY_MOOD		"screwy_mood"
 #define TRAIT_SCREWY_CHECKSELF	"screwy_checkself"
 #define TRAIT_HARD_SOLES		"hard_soles"
 #define TRAIT_HEMOPHILIA		"hemophilia"
 #define TRAIT_ASTHMATIC			"asthmatic"
+#define TRAIT_SYNTH				"synthetic"	//robotic boy
+#define TRAIT_TOXIMMUNE			"toxin_immune"
+#define TRAIT_CLONEIMMUNE		"clone_immune" //This is for clone damage
+#define TRAIT_DNC		"cant_clone"
+#define TRAIT_DNR		"cant_revive" //You just can't be revived without supernatural means
+#define TRAIT_NODETERMINATION	"no_determination" //tfw no undertales
 //
 
 // mobility flag traits
@@ -231,6 +247,8 @@
 #define VEHICLE_TRAIT "vehicle" // inherited from riding vehicles
 #define INNATE_TRAIT "innate"
 
+///Used for managing KEEP_TOGETHER in [appearance_flags]
+#define TRAIT_KEEP_TOGETHER 	"keep-together"
 
 // item traits
 #define TRAIT_NODROP            "nodrop"
@@ -262,7 +280,7 @@
 #define BOOK_TRAIT "granter (book)" // knowledge is power
 
 // unique trait sources, still defines
-#define STATUE_MUTE "statue"
+#define STATUE_TRAIT "statue"
 #define CLONING_POD_TRAIT "cloning-pod"
 #define VIRTUAL_REALITY_TRAIT "vr_trait"
 #define CHANGELING_DRAIN "drain"
@@ -304,6 +322,8 @@
 #define MEGAFAUNA_TRAIT "megafauna"
 #define DEATHSQUAD_TRAIT "deathsquad"
 
-//skyrat funnies
+/// This trait is added by the active directional block system.
+#define ACTIVE_BLOCK_TRAIT				"active_block"
+/// This trait is added by the parry system.
+#define ACTIVE_PARRY_TRAIT				"active_parry"
 #define STICKY_NODROP "sticky-nodrop" //sticky nodrop sounds like a bad soundcloud rapper's name
-#define TRAIT_NICE_SHOT			"nice_shot" //hnnnnnnnggggg..... you're pretty good....

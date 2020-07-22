@@ -3,7 +3,7 @@
 	name = "Anthromorphic Plant"
 	id = "pod"
 	default_color = "59CE00"
-	species_traits = list(MUTCOLORS,EYECOLOR)
+	species_traits = list(MUTCOLORS,EYECOLOR,CAN_SCAR,HAS_SKIN,HAS_FLESH)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -21,7 +21,8 @@
 	//Skyrat change - blood
 	bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "PL")
 	exotic_bloodtype = "PL"
-	languagewhitelist = list("Sylvan") //Skyrat change - species language whitelist
+	exotic_blood_color = BLOOD_COLOR_PLANT
+	languagewhitelist = list("Sylvan")
 	//Skyrat changes end
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)

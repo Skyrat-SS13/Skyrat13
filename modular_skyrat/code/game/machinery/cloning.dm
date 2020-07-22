@@ -30,7 +30,7 @@
 
 	var/internal_radio = TRUE
 	var/obj/item/radio/radio
-	var/radio_key = /obj/item/encryptionkey/headset_med
+	var/radio_key = /obj/item/encryptionkey/headset_med/cloningpod
 	var/radio_channel = RADIO_CHANNEL_MEDICAL
 
 	var/obj/effect/countdown/clonepod/countdown
@@ -39,12 +39,21 @@
 	var/flesh_number = 0
 	var/biomass = 0
 	var/max_biomass = 1000
+	var/biomass_per_clone = 300
 
 	var/pays_for_clone = TRUE
-	var/cost_per_clone = 500 //cost in credits for a clone, of course.
+	var/cost_per_clone = 1000 //cost in credits for a clone, of course.
 	var/dep_id = ACCOUNT_MED
 	var/datum/bank_account/currently_linked_account
 	var/datum/bank_account/initial_account
+
+/obj/item/encryptionkey/headset_med/cloningpod
+	channels = list(RADIO_CHANNEL_MEDICAL = 1, RADIO_CHANNEL_SECURITY = 1, RADIO_CHANNEL_COMMON = 1)
+
+/obj/machinery/clonepod/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/reagent_containers/food/snacks/meat))
+		succ(I)
 
 /obj/machinery/clonepod/Initialize()
 	. = ..()
@@ -147,9 +156,13 @@
 		if(radio)
 			radio.talk_into("Insufficient amount of credits to initiate cloning procedure.")
 		return FALSE
-	if(biomass < 300)
+	if(biomass < biomass_per_clone)
 		if(radio)
 			radio.talk_into("Insufficient amount of biomass to initiate cloning procedure.")
+		return FALSE
+	if((/datum/quirk/dnc in quirks) || (/datum/quirk/dnr in quirks))
+		if(radio)
+			radio.talk_into("[clonename] cannot be cloned due to a [/datum/quirk/dnc in quirks? "DNC" : "DNR"] contract.")
 		return FALSE
 	if(panel_open)
 		return FALSE
@@ -236,9 +249,9 @@
 	attempting = FALSE
 	return TRUE
 
-/obj/machinery/clonepod/proc/succ()
+/obj/machinery/clonepod/proc/succ(obj/item/reagent_containers/food/snacks/meat/M)
 	var/ping = FALSE
-	for(var/obj/item/reagent_containers/food/snacks/meat/slab/meatball in view(src, 1))
+	for(var/obj/item/reagent_containers/food/snacks/meat/slab/meatball in (view(src, 1) + M))
 		ping = TRUE
 		if(istype(meatball, /obj/item/reagent_containers/food/snacks/meat/slab/biomeat))
 			biomass += 100

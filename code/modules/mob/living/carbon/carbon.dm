@@ -47,16 +47,13 @@
 
 
 /mob/living/carbon/swap_hand(held_index)
+	. = ..()
+	if(!.)
+		var/obj/item/held_item = get_active_held_item()
+		to_chat(usr, "<span class='warning'>Your other hand is too busy holding [held_item].</span>")
+		return
 	if(!held_index)
 		held_index = (active_hand_index % held_items.len)+1
-
-	var/obj/item/item_in_hand = src.get_active_held_item()
-	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
-		var/obj/item/twohanded/TH = item_in_hand
-		if(istype(TH))
-			if(TH.wielded == 1)
-				to_chat(usr, "<span class='warning'>Your other hand is too busy holding [TH]</span>")
-				return
 	var/oindex = active_hand_index
 	active_hand_index = held_index
 	if(hud_used)
@@ -210,13 +207,12 @@
 			if(HAS_TRAIT(src, TRAIT_PACIFISM))
 				to_chat(src, "<span class='notice'>You gently let go of [throwable_mob].</span>")
 				return
-			
 			//skyrat edit
-			if(isliving(throwable_mob))
-				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
-				var/turf/end_T = get_turf(target)
-				if(start_T && end_T)
-					log_combat(src, throwable_mob, "thrown", addition="grab from tile in [AREACOORD(start_T)] towards tile at [AREACOORD(end_T)]")
+			adjustStaminaLossBuffered(STAM_COST_THROW_MOB * ((throwable_mob.mob_size+1)**2))// throwing an entire person shall be very tiring
+			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
+			var/turf/end_T = get_turf(target)
+			if(start_T && end_T)
+				log_combat(src, throwable_mob, "thrown", addition="grab from tile in [AREACOORD(start_T)] towards tile at [AREACOORD(end_T)]")
 			var/power_throw = 0
 			if(HAS_TRAIT(src, TRAIT_HULK))
 				power_throw++
@@ -290,7 +286,7 @@
 /mob/living/carbon/Topic(href, href_list)
 	..()
 	//strip panel
-	if(usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
+	if(usr.canUseTopic(src, BE_CLOSE))
 		if(href_list["internal"] && !HAS_TRAIT(src, TRAIT_NO_INTERNALS))
 			var/slot = text2num(href_list["internal"])
 			var/obj/item/ITEM = get_item_by_slot(slot)
@@ -310,8 +306,7 @@
 					visible_message("<span class='danger'>[usr] [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name].</span>", \
 									"<span class='userdanger'>[usr] [internal ? "opens" : "closes"] the valve on your [ITEM.name].</span>", \
 									target = usr, target_message = "<span class='danger'>You [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name].</span>")
-	//skyrat edit fuck
-	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
+	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE))
 		var/obj/item/bodypart/L = locate(href_list["embedded_limb"]) in bodyparts
 		if(!L)
 			return
@@ -320,7 +315,6 @@
 			return
 		SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L)
 		return
-	//
 
 /mob/living/carbon/fall(forced)
 	loc.handle_fall(src, forced)//it's loc so it doesn't call the mob's handle_fall which does nothing
@@ -485,10 +479,9 @@
 			return
 
 /mob/living/carbon/get_standard_pixel_y_offset(lying = 0)
+	. = ..()
 	if(lying)
-		return -6
-	else
-		return initial(pixel_y)
+		. -= 6
 
 /mob/living/carbon/proc/accident(obj/item/I)
 	if(!I || (I.item_flags & ABSTRACT) || HAS_TRAIT(I, TRAIT_NODROP))
@@ -971,6 +964,8 @@
 	. = ..()
 	if(!getorgan(/obj/item/organ/brain) && (!mind || !mind.has_antag_datum(/datum/antagonist/changeling)))
 		return 0
+	if(HAS_TRAIT(src, TRAIT_DNR))
+		return 0
 
 /mob/living/carbon/harvest(mob/living/user)
 	if(QDELETED(src))
@@ -1227,7 +1222,7 @@
   * * num_scars- A number for how many scars you want to add
   * * forced_type- Which wound or category of wounds you want to choose from, WOUND_LIST_BLUNT, WOUND_LIST_SLASH, WOUND_LIST_PIERCE, or WOUND_LIST_BURN (or some combination). If passed a list, picks randomly from the listed wounds. Defaults to all 3 types
   */
-/mob/living/carbon/proc/generate_fake_scars(num_scars, forced_type)
+/mob/living/carbon/proc/generate_fake_scars(num_scars, forced_type, permanent = FALSE)
 	for(var/i in 1 to num_scars)
 		var/datum/scar/S = new
 		var/obj/item/bodypart/BP = pick(bodyparts)
@@ -1244,6 +1239,8 @@
 		var/datum/wound/W = new wound_type
 		S.generate(BP, W)
 		S.fake = TRUE
+		if(permanent)
+			S.permanent = TRUE
 		QDEL_NULL(W)
 
 /mob/living/carbon/proc/get_total_bleed_rate()
@@ -1260,3 +1257,19 @@
 		var/obj/item/bodypart/BP = i
 		if(BP.get_bleed_rate())
 			return TRUE
+
+// if any of our bodyparts is gauzed
+/mob/living/carbon/proc/has_gauze()
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		if(BP.current_gauze)
+			return TRUE
+
+// If our face is visible
+/mob/living/carbon/is_face_visible()
+	return !(wear_mask?.flags_inv & HIDEFACE) && !(head?.flags_inv & HIDEFACE)
+
+//skyrat funny
+/mob/living/carbon/proc/get_biological_state()
+	var/bio_state = BIO_INORGANIC
+	return bio_state

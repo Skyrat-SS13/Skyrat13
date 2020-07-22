@@ -10,12 +10,12 @@
 	desc = "A procedure that welds the robotic limbs back into the patient's preferred state aswell as re-applying their paintjob."
 
 /datum/surgery_step/restore_paintjob
-	name = "spray paint"
+	name = "Spray paint"
 	implements = list(
 		/obj/item/toy/crayon/spraycan = 100)
 	time = 58
 
-/datum/surgery_step/restore_paintjob/tool_check(mob/user, obj/item/tool)
+/datum/surgery_step/restore_paintjob/tool_check(mob/user, obj/item/tool, mob/living/carbon/target)
 	var/obj/item/toy/crayon/spraycan/sc = tool
 	if(sc.is_capped)
 		to_chat(user, "<span class='warning'>Take the cap off first!</span>")

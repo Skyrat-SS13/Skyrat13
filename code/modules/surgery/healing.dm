@@ -22,7 +22,7 @@
 					/datum/surgery_step/close)
 
 /datum/surgery_step/heal
-	name = "repair body"
+	name = "Repair body"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCREWDRIVER = 65, /obj/item/pen = 55)
 	repeatable = TRUE
 	time = 15
@@ -116,7 +116,7 @@
 
 /********************BRUTE STEPS********************/
 /datum/surgery_step/heal/brute/basic
-	name = "tend bruises"
+	name = "Tend bruises"
 	brutehealing = 10
 	missinghpbonus = 15
 
@@ -154,7 +154,7 @@
 
 /********************BURN STEPS********************/
 /datum/surgery_step/heal/burn/basic
-	name = "tend burn wounds"
+	name = "Tend burn wounds"
 	burnhealing = 10
 	missinghpbonus = 15
 
@@ -192,7 +192,7 @@
 
 /********************COMBO STEPS********************/
 /datum/surgery_step/heal/combo
-	name = "tend physical wounds"
+	name = "Tend physical wounds"
 	brutehealing = 6
 	burnhealing = 6
 	missinghpbonus = 15

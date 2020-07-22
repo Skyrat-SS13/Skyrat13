@@ -20,7 +20,7 @@
 
 ///// Debride
 /datum/surgery_step/debride
-	name = "excise infection"
+	name = "Excise infection"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCALPEL = 85, TOOL_SAW = 60, TOOL_WIRECUTTER = 40)
 	time = 30
 	repeatable = TRUE
@@ -72,7 +72,7 @@
 
 ///// Dressing burns
 /datum/surgery_step/dress
-	name = "bandage burns"
+	name = "Bandage burns"
 	implements = list(/obj/item/stack/medical/gauze = 100, /obj/item/stack/sticky_tape/surgical = 100)
 	time = 40
 

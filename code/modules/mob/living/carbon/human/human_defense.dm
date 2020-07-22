@@ -51,12 +51,7 @@
 			if(!(martial_art_result == BULLET_ACT_HIT))
 				return martial_art_result
 	return ..()
-/* skyrat edit
-/mob/living/carbon/human/can_embed(obj/item/I)
-	if(I.get_sharpness() || is_pointed(I) || is_type_in_typecache(I, GLOB.can_embed_types))
-		return TRUE
-	return FALSE
-*/
+
 /mob/living/carbon/human/proc/check_martial_melee_block()
 	if(mind)
 		if(mind.martial_art && prob(mind.martial_art.block_chance) && mind.martial_art.can_use(src) && in_throw_mode && !incapacitated(FALSE, TRUE))
@@ -96,7 +91,7 @@
 	..()
 
 
-/mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user)
+/mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1)
 	if(!I || !user)
 		return 0
 
@@ -113,7 +108,7 @@
 	SSblackbox.record_feedback("tally", "zone_targeted", 1, target_area)
 
 	// the attacked_by code varies among species
-	return dna.species.spec_attacked_by(I, user, affecting, a_intent, src)
+	return dna.species.spec_attacked_by(I, user, affecting, a_intent, src, attackchain_flags, damage_multiplier)
 
 /mob/living/carbon/human/attack_hulk(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(user.a_intent == INTENT_HARM)
@@ -232,7 +227,7 @@
 /mob/living/carbon/human/attack_animal(mob/living/simple_animal/M)
 	. = ..()
 	if(.)
-		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+		var/damage = .
 		var/dam_zone = dismembering_strike(M, pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
 		if(!dam_zone) //Dismemberment successful
 			return TRUE
@@ -651,12 +646,10 @@
 				to_send += "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [HAS_TRAIT(src, TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>\n"
 
 				for(var/obj/item/I in LB.embedded_objects)
-					//skyrat edit
-					if(I.is_embed_harmless())
+					if(I.isEmbedHarmless())
 						to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] stuck to your [LB.name]!</a>")
 					else
 						to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
-					//
 
 			for(var/t in missing)
 				to_send += "<span class='boldannounce'>Your [parse_zone(t)] is missing!</span>\n"
@@ -821,8 +814,8 @@
 	if(stat == DEAD || stat == UNCONSCIOUS || !src.canUseTopic(src, TRUE))
 		return
 
-	visible_message("<span class='notice'>[src] examines [p_them()]self.</span>", \
-		"<span class='notice'>You check yourself for injuries.</span>")
+	visible_message("<span class='notice'>[src] examines [p_themselves()].</span>", \
+		"<span class='notice'><i><b>You check yourself for injuries.</b><i></span>")
 
 	var/list/missing = ALL_BODYPARTS
 
@@ -871,11 +864,11 @@
 		var/no_damage
 		if(status == "OK" || status == "no damage")
 			no_damage = TRUE
-			var/list/wounds = LB.wounds.Copy()
+			var/list/wounds = list()
 			for(var/datum/wound/W in LB.wounds)
 				no_damage = FALSE
 				if(isnum(W.severity))
-					wounds |= W.severity
+					wounds += W.severity
 			if(wounds.len)
 				var/severity = max(wounds)
 				switch(severity)
@@ -888,7 +881,9 @@
 					if(WOUND_SEVERITY_CRITICAL)
 						status = "horrifyingly damaged"
 					if(WOUND_SEVERITY_LOSS)
-						status = "a literal stump"
+						status = "suffering with the loss of a limb"
+					if(WOUND_SEVERITY_PERMANENT)
+						status = "permanently disfigured"
 		var/isdisabled = " "
 		if(LB.is_disabled())
 			isdisabled = " is disabled "
@@ -900,21 +895,32 @@
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 			to_chat(src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name][isdisabled][self_aware ? " has " : " is "][status].</span>")
 		else
-			to_chat(src, "\t <span class='notice'>Tis [LB.name] but a flesh wound.</span>")
+			to_chat(src, "\t <span class='notice'>Your [LB.name] is OK.</span>")
+		
+		if(LB.body_zone == BODY_ZONE_HEAD)
+			var/obj/item/bodypart/head/HD = LB
+			if(HD.tapered)
+				if(!wear_mask)
+					to_chat(src, "\t <span class='warning'>Your [HD.name] has \a <b><a href='?src=[REF(HD)];tape=[HD.tapered];'>[HD.tapered]</a></b> on it's mouth!</span>")
 
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 			for(var/thing in LB.wounds)
 				var/datum/wound/W = thing
 				var/msg
+				var/woundmsg
+				if(W.can_self_treat)
+					woundmsg = "<b><a href='?src=[REF(W)];self_treat=1;' class='warning'>[lowertext(W.name)]</a></b>"
+				else
+					woundmsg = "[lowertext(W.name)]"
 				switch(W.severity)
 					if(WOUND_SEVERITY_TRIVIAL)
-						msg = "\t <span class='danger'>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)].</span>"
+						msg = "\t <span class='danger'>Your [LB.name] is suffering [W.a_or_from] [woundmsg].</span>"
 					if(WOUND_SEVERITY_MODERATE)
-						msg = "\t <span class='warning'>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!</span>"
+						msg = "\t <span class='warning'>Your [LB.name] is suffering [W.a_or_from] [woundmsg]!</span>"
 					if(WOUND_SEVERITY_SEVERE)
-						msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!</b></span>"
+						msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [woundmsg]!</b></span>"
 					if(WOUND_SEVERITY_CRITICAL)
-						msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!!</b></span>"
+						msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [woundmsg]!!</b></span>"
 				to_chat(src, msg)
 		
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
@@ -926,9 +932,9 @@
 
 	for(var/t in missing)
 		if(!HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
-			to_chat(src, "<span class='boldannounce'>Your [parse_zone(t)] is missing!</span>")
+			to_chat(src, "\t <span class='boldannounce'>Your [parse_zone(t)] is missing!</span>")
 		else
-			to_chat(src, "<span class='notice'>Tis [parse_zone(t)] but a flesh wound.</span>")
+			to_chat(src, "\t <span class='notice'>Your [parse_zone(t)] is OK.</span>")
 
 	if(is_bleeding() && !HAS_TRAIT(src, TRAIT_SCREWY_CHECKSELF))
 		var/list/obj/item/bodypart/bleeding_limbs = list()

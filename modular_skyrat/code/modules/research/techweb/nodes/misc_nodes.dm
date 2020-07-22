@@ -34,3 +34,6 @@
 	design_ids = list("super_sticky_tape", "pointy_tape")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	hidden = TRUE
+
+/datum/techweb_node/nanite_smart
+	design_ids = list("purging_nanites", "research_nanites", "metabolic_nanites", "stealth_nanites", "memleak_nanites","sensor_voice_nanites", "voice_nanites", "signaler_nanites")

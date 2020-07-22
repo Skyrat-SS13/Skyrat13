@@ -99,6 +99,11 @@
 	//shoes
 	if(shoes && !(SLOT_SHOES in obscured))
 		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet."
+	
+	//sticky tape
+	var/obj/item/bodypart/head/HD = get_bodypart(BODY_ZONE_HEAD)
+	if(!wear_mask && istype(HD) && HD.tapered)
+		. += "<span class='warning'>[t_He] [t_has] \a <b><a href='?src=[REF(HD)];tape=[HD.tapered];'>[HD.tapered.get_examine_string(user)]</a></b> covering [t_his] mouth!</span>"
 
 	//mask
 	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
@@ -141,7 +146,7 @@
 	var/cursed_stuff = attempt_vr(src,"examine_bellies",args) //vore Code
 	if(cursed_stuff)
 		. += cursed_stuff
-//END OF CIT CHANGES
+	//END OF CIT CHANGES
 
 	//Jitters
 	if(!screwy_self)
@@ -190,6 +195,12 @@
 			//skyrat edit
 			if(BP.is_disabled())
 				disabled += BP
+			if(BP.etching && !clothingonpart(BP))
+				msg += "<B>[t_His] [BP.name] has \"[BP.etching]\" etched on it!</B>\n"
+			if((/datum/wound/slash/critical/incision in all_wounds) && (BP.body_zone in ORGAN_BODYPARTS))
+				for(var/obj/item/organ/O in getorganszone(BP.body_zone))
+					for(var/i in O.surgical_examine(user))
+						msg += "<span class='danger'>[icon2html(O.examine_icon ? O.examine_icon : O, user, O.examine_icon_state ? O.examine_icon_state : O.icon_state)] [i]</span>\n"
 			//
 			missing -= BP.body_zone
 			for(var/obj/item/I in BP.embedded_objects)
@@ -223,19 +234,19 @@
 			var/should_msg = "<B>[capitalize(t_his)] [parse_zone(t)] is missing!</B>\n"
 			if(t==BODY_ZONE_HEAD)
 				should_msg = "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>\n"
-				for(var/datum/wound/slash/loss/L in all_wounds)
-					if(L.fake_body_zone == t)
-						should_msg = null
-				if(should_msg)
-					msg += should_msg
-				continue
 			else if(t == BODY_ZONE_L_ARM || t == BODY_ZONE_L_LEG || t == BODY_ZONE_PRECISE_L_FOOT || t == BODY_ZONE_PRECISE_R_FOOT)
 				l_limbs_missing++
 			else if(t == BODY_ZONE_R_ARM || t == BODY_ZONE_R_LEG || t == BODY_ZONE_PRECISE_L_HAND || t == BODY_ZONE_PRECISE_R_HAND)
 				r_limbs_missing++
 			
-			for(var/datum/wound/slash/loss/L in all_wounds)
-				if(L.fake_body_zone == t)
+			for(var/datum/wound/L in all_wounds)
+				if(L.severity == WOUND_SEVERITY_LOSS)
+					var/list/children_atomization = SSquirks.atomize_bodypart_heritage(L.limb?.body_zone)
+					if((L.fake_body_zone == t) || (L.fake_body_zone in children_atomization)) //There is already a missing parent bodypart or loss wound for us, no need to be redundant
+						should_msg = null
+			
+			if(SSquirks.bodypart_child_to_parent[t])
+				if(SSquirks.bodypart_child_to_parent[t] in missing)
 					should_msg = null
 
 			if(should_msg)
@@ -243,9 +254,9 @@
 
 	if(l_limbs_missing >= 2 && r_limbs_missing == 0)
 		msg += "[t_He] look[p_s()] all right now.\n"
-	else if(l_limbs_missing == 0 && r_limbs_missing >= 2)
+	else if(l_limbs_missing == 0 && r_limbs_missing >= 4)
 		msg += "[t_He] really keeps to the left.\n"
-	else if(l_limbs_missing >= 2 && r_limbs_missing >= 2)
+	else if(l_limbs_missing >= 4 && r_limbs_missing >= 4)
 		msg += "[t_He] [p_do()]n't seem all there.\n"
 
 	if(!(screwy_self || (user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY))) //fake healthy
@@ -308,7 +319,7 @@
 
 			for(var/i in bodyparts)
 				var/obj/item/bodypart/BP = i
-				if(BP.get_bleed_rate())
+				if(BP.get_bleed_rate() && !BP.current_gauze)
 					bleeding_limbs += BP
 
 			var/num_bleeds = LAZYLEN(bleeding_limbs)
@@ -329,18 +340,21 @@
 					bleed_text += " and [bleeding_limbs[num_bleeds].name]"
 			
 			if(appears_dead)
-				bleed_text += ", but it has pooled and is not flowing.</span></B>\n"
+				bleed_text += ", but it has pooled and is not flowing.</span>"
+			else if(reagents.has_reagent(/datum/reagent/toxin/heparin))
+				bleed_text += " incredibly quickly!"
 			else
-				if(reagents.has_reagent(/datum/reagent/toxin/heparin))
-					bleed_text += " incredibly quickly"
-
-				bleed_text += "!</B>\n"
+				bleed_text += "!"
+			
+			if(bleed_text)
+				bleed_text += "</B>\n"
+			
 			msg += bleed_text
 		//skyrat edit
 		var/list/obj/item/bodypart/suppress_limbs = list()
 		for(var/i in bodyparts)
 			var/obj/item/bodypart/BP = i
-			if(BP.bleedsuppress)
+			if(BP.status & BODYPART_NOBLEED)
 				suppress_limbs += BP
 
 		var/num_suppress = LAZYLEN(suppress_limbs)
@@ -459,14 +473,19 @@
 	if(gunpointed.len)
 		for(var/datum/gunpoint/GP in gunpointed)
 			msg += "<b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b>\n"
+	
+	//descriptors
+	var/list/show_descs = show_descriptors_to(user)
+	msg += length(show_descs) ? "<br>[show_descs.Join("<br>")]<br>" : "<br>"
+	
 	//Skyrat changes end
 
-	if (length(msg))
+	if(length(msg))
 		. += "<span class='warning'>[msg.Join("")]</span>"
 
 	var/trait_exam = common_trait_examine()
 	if(!screwy_self)
-		if (!isnull(trait_exam))
+		if(!isnull(trait_exam))
 			. += trait_exam
 
 	var/traitstring = get_trait_string()
@@ -521,25 +540,33 @@
 	var/invisible_man = skipface || get_visible_name() == "Unknown" // SKYRAT EDIT -- BEGIN
 	if(!invisible_man)
 		if(client)
+			. += "<br>"
 			. += "OOC Notes: <a href='?src=[REF(src)];skyrat_ooc_notes=1'>\[View\]</a>" // SKYRAT EDIT -- END
 	//SKYRAT EDIT - admin lookup on records/extra flavor
-	if(client && user.client?.holder && isobserver(user))
-		var/line = ""
-		if(!(client.prefs.general_records == ""))
-			line += "<a href='?src=[REF(src)];general_records=1'>\[GEN\]</a>"
-		if(!(client.prefs.security_records == ""))
-			line += "<a href='?src=[REF(src)];security_records=1'>\[SEC\]</a>"
-		if(!(client.prefs.medical_records == ""))
-			line += "<a href='?src=[REF(src)];medical_records=1'>\[MED\]</a>"
-		if(!(client.prefs.flavor_background == ""))
-			line += "<a href='?src=[REF(src)];flavor_background=1'>\[BG\]</a>"
-		if(!(client.prefs.character_skills == ""))
-			line += "<a href='?src=[REF(src)];character_skills=1'>\[SKL\]</a>"
-		if(!(client.prefs.exploitable_info == ""))
-			line += "<a href='?src=[REF(src)];exploitable_info=1'>\[EXP\]</a>"
+	if(client)
+		var/list/line = list()
+		if(user.client?.holder && isobserver(user))
+			if(client.prefs.general_records)
+				line += "<a href='?src=[REF(src)];general_records=1'>\[GEN\]</a>"
+			if(client.prefs.security_records)
+				line += "<a href='?src=[REF(src)];security_records=1'>\[SEC\]</a>"
+			if(client.prefs.medical_records)
+				line += "<a href='?src=[REF(src)];medical_records=1'>\[MED\]</a>"
+			if(client.prefs.flavor_background)
+				line += "<a href='?src=[REF(src)];flavor_background=1'>\[BG\]</a>"
+			if(client.prefs.character_skills)
+				line += "<a href='?src=[REF(src)];character_skills=1'>\[SKL\]</a>"
+			if(client.prefs.exploitable_info)
+				line += "<a href='?src=[REF(src)];exploitable_info=1'>\[EXP\]</a>"
+		else if(user.mind?.antag_datums && client.prefs.exploitable_info)
+			for(var/a in user.mind.antag_datums)
+				var/datum/antagonist/curious_antag = a
+				if(!(curious_antag.antag_flags & CAN_SEE_EXPOITABLE_INFO))
+					continue
+				line += "<a href='?src=[REF(src)];exploitable_info=1'>\[Exploitable Info\]</a>"
+				break
 
-		if(!(line == ""))
-			. += line
+		. += line.Join()
 	//END OF SKYRAT EDIT
 	. += "*---------*</span>"
 
@@ -555,3 +582,19 @@
 			dat += "[new_text]\n" //dat.Join("\n") doesn't work here, for some reason
 	if(dat.len)
 		return dat.Join()
+
+//skyrat edit - baystation descriptors
+/mob/living/carbon/human/proc/show_descriptors_to(mob/user)
+	. = list()
+	if(LAZYLEN(dna?.species?.descriptors))
+		if(user == src)
+			for(var/entry in dna.species.descriptors)
+				//currently using third person for consistency, but in the future i might make it so that
+				//examining yourself is first person across the board.
+				var/datum/mob_descriptor/descriptor = dna.species.descriptors[entry]
+				. += "<b><span class='info'>[descriptor.get_third_person_message_start(src)] [descriptor.get_standalone_value_descriptor(descriptor.current_value)].</span></b>"
+		else
+			for(var/entry in dna.species.descriptors)
+				var/datum/mob_descriptor/descriptor = dna.species.descriptors[entry]
+				. += "<b><span class='info'>[descriptor.get_comparative_value_descriptor(src, user, descriptor.current_value)]</span></b>"
+//

@@ -7,9 +7,7 @@
 	var/flashbang_range = 7 //how many tiles away the mob will be stunned.
 
 /obj/item/grenade/flashbang/prime(mob/living/lanced_by)
-	//skyrat edit
 	. = ..()
-	//
 	update_mob()
 	var/flashbang_turf = get_turf(src)
 	if(!flashbang_turf)
@@ -48,8 +46,6 @@
 	var/distance = get_dist(get_turf(M), source)
 	if(M.flash_act(affect_silicon = 1))
 		M.DefaultCombatKnockdown(max(200/max(1,distance), 60))
-
-//skyrat edit weehoo
 
 /obj/item/grenade/stingbang
 	name = "stingbang"
@@ -92,13 +88,13 @@
 		return
 	M.show_message("<span class='warning'>POP</span>", MSG_AUDIBLE)
 	var/distance = max(0,get_dist(get_turf(src),T))
-//Flash
+	//Flash
 	if(M.flash_act(affect_silicon = 1))
 		M.Paralyze(max(10/max(1,distance), 5))
 		M.Knockdown(max(100/max(1,distance), 60))
 
-//Bang
-	if(!distance || loc == M || loc == M.loc)	//Stop allahu akbarring rooms with this.
+	//Bang
+	if(!distance || loc == M || loc == M.loc)
 		M.Paralyze(20)
 		M.Knockdown(200)
 		M.soundbang_act(1, 200, 10, 15)
@@ -138,11 +134,3 @@
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	rots_per_mag = 2
 	shrapnel_type = /obj/item/projectile/bullet/pellet/stingball
-
-/obj/item/grenade/stingbang/breaker
-	name = "breakbang"
-	shrapnel_type = /obj/item/projectile/bullet/pellet/stingball/breaker
-
-/obj/item/grenade/stingbang/shred
-	name = "shredbang"
-	shrapnel_type = /obj/item/projectile/bullet/pellet/stingball/shred

@@ -104,8 +104,15 @@
 		M.death(1) //Kills the new mob
 
 	M.adjustOxyLoss(oxy_damage)
-	M.adjustBruteLoss(brute_damage)
-	M.adjustFireLoss(burn_damage)
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		var/split = length(C.bodyparts)
+		for(var/i in C.bodyparts)
+			var/obj/item/bodypart/BP = i
+			BP.receive_damage(round(brute_damage/split, 1), round(burn_damage/split, 1), 0, TRUE, null, CANT_WOUND, CANT_WOUND, SHARP_NONE)
+	else
+		M.adjustBruteLoss(brute_damage)
+		M.adjustFireLoss(burn_damage)
 	M.color = mob_color
 	equip(M)
 
@@ -661,5 +668,5 @@
 
 /datum/outfit/lavaknight/captain
 	name ="Cydonian Knight Captain"
-	l_pocket = /obj/item/twohanded/dualsaber/hypereutactic
+	l_pocket = /obj/item/dualsaber/hypereutactic
 	id = /obj/item/card/id/knight/captain

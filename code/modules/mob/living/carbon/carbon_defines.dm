@@ -44,11 +44,7 @@
 
 	var/tinttotal = 0	// Total level of visualy impairing items
 	//skyrat edit
-	var/list/bodyparts = list(/obj/item/bodypart/chest, /obj/item/bodypart/head, /obj/item/bodypart/groin,\
-					 /obj/item/bodypart/l_arm, /obj/item/bodypart/l_hand,\
-					 /obj/item/bodypart/r_arm, /obj/item/bodypart/r_hand,\
-					 /obj/item/bodypart/l_leg, /obj/item/bodypart/l_foot,\
-					 /obj/item/bodypart/r_leg, /obj/item/bodypart/r_foot)
+	var/list/bodyparts = BODYPARTS_PATH
 	//
 	//Gets filled up in create_bodyparts()
 	var/list/hand_bodyparts = list() //a collection of arms (or actually whatever the fug /bodyparts you monsters use to wreck my systems)

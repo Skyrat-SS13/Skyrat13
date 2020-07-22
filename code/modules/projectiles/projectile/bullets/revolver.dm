@@ -3,6 +3,7 @@
 /obj/item/projectile/bullet/n762
 	name = "7.62x38mmR bullet"
 	damage = 60
+	wound_bonus = -70
 
 // .50AE (Desert Eagle)
 
@@ -15,7 +16,6 @@
 /obj/item/projectile/bullet/c38
 	name = ".38 bullet"
 	damage = 25
-//the longest of skyrat edits
 	ricochets_max = 2
 	ricochet_chance = 50
 	ricochet_auto_aim_angle = 10
@@ -60,7 +60,6 @@
 	embedding = list(embed_chance=75, fall_chance=3, jostle_chance=4, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=5, jostle_pain_mult=6, rip_time=10)
 	wound_falloff_tile = -5
 	embed_falloff_tile = -15
-//
 
 /obj/item/projectile/bullet/c38/rubber
 	name = ".38 rubber bullet"
@@ -70,9 +69,7 @@
 /obj/item/projectile/bullet/c38/trac
 	name = ".38 TRAC bullet"
 	damage = 10
-	//skyrat edit
 	ricochets_max = 0
-	//
 
 /obj/item/projectile/bullet/c38/trac/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -88,9 +85,7 @@
 /obj/item/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
 	name = ".38 Hot Shot bullet"
 	damage = 20
-	//skyrat edit
 	ricochets_max = 0
-	//
 
 /obj/item/projectile/bullet/c38/hotshot/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -103,9 +98,7 @@
 	name = ".38 Iceblox bullet"
 	damage = 20
 	var/temperature = 100
-	//skyrat edit
 	ricochets_max = 0
-	//
 
 /obj/item/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -119,13 +112,13 @@
 /obj/item/projectile/bullet/a357
 	name = ".357 bullet"
 	damage = 60
+	wound_bonus = -50
 
 /obj/item/projectile/bullet/a357/ap
 	name = ".357 armor-piercing bullet"
 	damage = 45
 	armour_penetration = 45
 
-//skyrat regedit
 // admin only really, for ocelot memes
 /obj/item/projectile/bullet/a357/match
 	name = ".357 match bullet"

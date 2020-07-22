@@ -1,5 +1,5 @@
 /datum/surgery/organ_manipulation
-	name = "organ manipulation"
+	name = "Organ manipulation"
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = ORGAN_BODYPARTS //skyrat edit
 	requires_bodypart_type = BODYPART_ORGANIC //Skyrat change
@@ -16,7 +16,7 @@
 		)
 
 /datum/surgery/organ_manipulation/soft
-	possible_locs = list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND) //skyrat edit
+	possible_locs = list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT) //skyrat edit
 	steps = list(
 		/datum/surgery_step/incise,
 		/datum/surgery_step/retract_skin,
@@ -28,7 +28,7 @@
 
 /datum/surgery/organ_manipulation/alien
 	name = "Alien organ manipulation"
-	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+	possible_locs = ALL_BODYPARTS
 	target_mobtypes = list(/mob/living/carbon/alien/humanoid)
 	steps = list(
 		/datum/surgery_step/saw,
@@ -41,7 +41,7 @@
 
 /datum/surgery/organ_manipulation/mechanic
 	name = "Prosthesis organ manipulation"
-	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_HEAD) //skyrat edit
+	possible_locs = ORGAN_BODYPARTS //skyrat edit
 	requires_bodypart_type = BODYPART_ROBOTIC
 	steps = list(
 		/datum/surgery_step/mechanic_open,
@@ -54,7 +54,7 @@
 		)
 
 /datum/surgery/organ_manipulation/mechanic/soft
-	possible_locs = list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND,  BODY_ZONE_PRECISE_L_HAND) //skyrat edit
+	possible_locs = list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT) //skyrat edit
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/open_hatch,
@@ -65,9 +65,9 @@
 
 /datum/surgery_step/manipulate_organs
 	time = 64
-	name = "manipulate organs"
+	name = "Manipulate organs"
 	repeatable = 1
-	implements = list(/obj/item/organ = 100, /obj/item/reagent_containers/food/snacks/organ = 0, /obj/item/organ_storage = 100)
+	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100)
 	var/implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 55)
 	var/current_type
 	var/obj/item/organ/I = null
@@ -92,6 +92,10 @@
 		I = tool
 		if(target_zone != I.zone || target.getorganslot(I.slot))
 			to_chat(user, "<span class='notice'>There is no room for [I] in [target]'s [parse_zone(target_zone)]!</span>")
+			return -1
+		var/obj/item/organ/meatslab = tool
+		if(!meatslab.useable)
+			to_chat(user, "<span class='warning'>[I] seems to have been chewed on, you can't use this!</span>")
 			return -1
 		display_results(user, target, "<span class='notice'>You begin to insert [tool] into [target]'s [parse_zone(target_zone)]...</span>",
 			"[user] begins to insert [tool] into [target]'s [parse_zone(target_zone)].",
@@ -118,10 +122,6 @@
 					"[user] begins to extract something from [target]'s [parse_zone(target_zone)].")
 			else
 				return -1
-
-	else if(istype(tool, /obj/item/reagent_containers/food/snacks/organ))
-		to_chat(user, "<span class='warning'>[tool] was bitten by someone! It's too damaged to use!</span>")
-		return -1
 
 /datum/surgery_step/manipulate_organs/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(current_type == "insert")

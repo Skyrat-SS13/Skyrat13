@@ -14,8 +14,8 @@
 		return 1
 
 /datum/surgery_step/add_prosthetic
-	name = "add prosthetic"
-	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item/twohanded/required/chainsaw = 100, /obj/item/melee/synthetic_arm_blade = 100)
+	name = "Add prosthetic"
+	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item = 100, /obj/item/melee/synthetic_arm_blade = 100)
 	time = 32
 	var/organ_rejection_dam = 0
 
@@ -58,13 +58,10 @@
 		else
 			to_chat(user, "<span class='warning'>[tool] isn't the right type for [parse_zone(target_zone)].</span>")
 			return -1
-	else if(target_zone == BODY_ZONE_L_ARM || target_zone == BODY_ZONE_R_ARM)
+	else
 		display_results(user, target, "<span class='notice'>You begin to attach [tool] onto [target]...</span>",
 			"[user] begins to attach [tool] onto [target]'s [parse_zone(target_zone)].",
 			"[user] begins to attach something onto [target]'s [parse_zone(target_zone)].")
-	else
-		to_chat(user, "<span class='warning'>[tool] must be installed onto an arm.</span>")
-		return -1
 
 /datum/surgery_step/add_prosthetic/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(istype(tool, /obj/item/organ_storage))
@@ -101,7 +98,43 @@
 			"[user] finishes attaching [tool]!",
 			"[user] finishes the attachment procedure!")
 		if(istype(tool))
-			var/obj/item/new_arm = new(target)
-			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
+			var/obj/item/new_limb = new(target)
+			if(target_zone == BODY_ZONE_PRECISE_R_HAND)
+				target.put_in_r_hand(new_limb)
+				ADD_TRAIT(new_limb, TRAIT_NODROP, "surgery")
+			else if(target_zone == BODY_ZONE_PRECISE_L_HAND)
+				target.put_in_l_hand(new_limb)
+				ADD_TRAIT(new_limb, TRAIT_NODROP, "surgery")
+			L.name = "[new_limb.name] [L.name]"
+			L.desc = new_limb.desc
+			L.custom_overlay = mutable_appearance(new_limb.icon, new_limb.icon_state, FLOAT_LAYER, FLOAT_PLANE, new_limb.color)
+			L.custom_overlay.transform *= 0.5
+			L.custom_overlay.pixel_x = 0
+			L.custom_overlay.pixel_y = 0
+			L.custom_overlay.pixel_x += 8
+			L.custom_overlay.pixel_y -= 8
+			switch(target_zone)
+				if(BODY_ZONE_HEAD)
+					L.custom_overlay.pixel_x -= 8
+					L.custom_overlay.pixel_y += 16
+				if(BODY_ZONE_CHEST)
+					L.custom_overlay.pixel_x -= 8
+					L.custom_overlay.pixel_y += 8
+				if(BODY_ZONE_PRECISE_GROIN)
+					L.custom_overlay.pixel_x -= 8
+					L.custom_overlay.pixel_y += 6
+				if(BODY_ZONE_R_LEG)
+					L.custom_overlay.pixel_x += 0
+					L.custom_overlay.pixel_y += 2
+				if(BODY_ZONE_PRECISE_R_FOOT)
+					L.custom_overlay.pixel_x += 0
+					L.custom_overlay.pixel_y += 0
+				if(BODY_ZONE_L_LEG)
+					L.custom_overlay.pixel_x -= 16
+					L.custom_overlay.pixel_y += 2
+				if(BODY_ZONE_PRECISE_L_FOOT)
+					L.custom_overlay.pixel_x -= 16
+					L.custom_overlay.pixel_y += 0
+			target.regenerate_icons()
 			return 1
 		qdel(tool)

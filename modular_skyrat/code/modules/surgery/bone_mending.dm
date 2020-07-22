@@ -13,12 +13,12 @@
 /datum/surgery/repair_bone_hairline/can_start(mob/living/user, mob/living/carbon/target)
 	if(..())
 		var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
-		return(targeted_bodypart.get_wound_type(targetable_wound))
+		return (targeted_bodypart.get_wound_type(targetable_wound))
 
 
 ///// Repair Compound Fracture (Critical)
 /datum/surgery/repair_bone_compound
-	name = "Repair Compound Fracture"
+	name = "Repair bone fracture (compound)"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/reset_compound_fracture, /datum/surgery_step/repair_bone_compound, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = ALL_BODYPARTS
@@ -30,13 +30,11 @@
 		var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
 		return(targeted_bodypart.get_wound_type(targetable_wound))
 
-
-
 //SURGERY STEPS
 
 ///// Repair Hairline Fracture (Severe)
 /datum/surgery_step/repair_bone_hairline
-	name = "repair hairline fracture (bonesetter/bone gel/tape)"
+	name = "Repair hairline fracture"
 	implements = list(/obj/item/bonesetter = 100, /obj/item/stack/medical/bone_gel = 100, /obj/item/stack/sticky_tape/surgical = 100, /obj/item/stack/sticky_tape/super = 50, /obj/item/stack/sticky_tape = 30)
 	time = 40
 
@@ -72,7 +70,7 @@
 
 ///// Reset Compound Fracture (Crticial)
 /datum/surgery_step/reset_compound_fracture
-	name = "reset bone"
+	name = "Reset bone"
 	implements = list(/obj/item/bonesetter = 100, /obj/item/stack/sticky_tape/surgical = 60, /obj/item/stack/sticky_tape/super = 40, /obj/item/stack/sticky_tape = 20)
 	time = 40
 
@@ -106,7 +104,7 @@
 
 ///// Repair Compound Fracture (Crticial)
 /datum/surgery_step/repair_bone_compound
-	name = "repair compound fracture (bone gel/tape)"
+	name = "Repair compound fracture"
 	implements = list(/obj/item/stack/medical/bone_gel = 100, /obj/item/stack/sticky_tape/surgical = 100, /obj/item/stack/sticky_tape/super = 50, /obj/item/stack/sticky_tape = 30)
 	time = 40
 

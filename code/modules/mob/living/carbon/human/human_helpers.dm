@@ -157,7 +157,7 @@
 /// For use formatting all of the scars this human has for saving for persistent scarring
 /mob/living/carbon/human/proc/format_scars()
 	var/list/missing_bodyparts = get_missing_limbs()
-	if((!all_scars || all_scars.len) && !missing_bodyparts.len)
+	if((!all_scars || !length(all_scars)) && !length(missing_bodyparts))
 		return
 	var/scars = ""
 	for(var/i in missing_bodyparts)
@@ -180,3 +180,7 @@
 	var/obj/item/bodypart/BP = get_bodypart("[scar_data[SCAR_SAVE_ZONE]]")
 	var/datum/scar/S = new
 	return S.load(BP, scar_data[SCAR_SAVE_VERS], scar_data[SCAR_SAVE_DESC], scar_data[SCAR_SAVE_PRECISE_LOCATION], text2num(scar_data[SCAR_SAVE_SEVERITY]))
+
+//skyrat funny
+/mob/living/carbon/human/get_biological_state()
+	return dna.species.get_biological_state()

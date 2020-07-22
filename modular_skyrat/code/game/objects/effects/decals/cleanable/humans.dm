@@ -1,0 +1,63 @@
+//blood splattering, taken from hippiestation
+/obj/effect/decal/cleanable/blood/hitsplatter
+	name = "blood splatter"
+	pass_flags = PASSTABLE | PASSGRILLE
+	icon = 'modular_skyrat/icons/effects/blood.dmi'
+	icon_state = "hitsplatter1"
+	random_icon_states = list("hitsplatter1", "hitsplatter2", "hitsplatter3")
+	var/turf/prev_loc
+	var/mob/living/blood_source
+	var/skip = FALSE //Skip creation of blood when destroyed?
+	var/amount = 3
+
+/obj/effect/decal/cleanable/blood/hitsplatter/Initialize(mapload, list/blood)
+	. = ..()
+	if(blood)
+		blood_DNA = blood.Copy()
+	prev_loc = loc //Just so we are sure prev_loc exists
+
+/obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/range)
+	for(var/i in 1 to range)
+		step_towards(src,T)
+		sleep(1)
+		prev_loc = loc
+		for(var/atom/A in get_turf(src))
+			if(istype(A,/obj/item))
+				var/obj/item/I = A
+				I.add_blood_DNA(blood_DNA)
+				amount--
+			if(istype(A, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = A
+				if(H.wear_suit)
+					H.wear_suit.add_mob_blood(blood_source)
+					H.update_inv_wear_suit()    //updates mob overlays to show the new blood (no refresh)
+				if(H.w_uniform)
+					H.w_uniform.add_mob_blood(blood_source)
+					H.update_inv_w_uniform()    //updates mob overlays to show the new blood (no refresh)
+				amount--
+		if(!amount) // we used all the puff so we delete it.
+			qdel(src)
+			break
+	qdel(src)
+
+/obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/A)
+	if(istype(A, /turf/closed/wall))
+		if(istype(prev_loc)) //var definition already checks for type
+			loc = A
+			skip = TRUE
+			var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
+			B.transfer_blood_dna(blood_DNA)
+			B.layer = ABOVE_NORMAL_TURF_LAYER
+			//Adjust pixel offset to make splatters appear on the wall
+			if(istype(B))
+				B.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
+				B.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
+		else //This will only happen if prev_loc is not even a turf, which is highly unlikely.
+			loc = A //Either way we got this.
+			QDEL_IN(src, 3)
+	qdel(src)
+
+/obj/effect/decal/cleanable/blood/hitsplatter/Destroy()
+	if(istype(loc, /turf) && !skip)
+		loc.add_blood_DNA(blood_DNA)
+	return ..()

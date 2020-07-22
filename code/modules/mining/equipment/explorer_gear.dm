@@ -10,7 +10,7 @@
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	hoodtype = /obj/item/clothing/head/hooded/explorer
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50, "wound" = 10)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50, "wound" = 15)
 	flags_inv = HIDEJUMPSUIT|HIDETAUR
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe)
 	resistance_flags = FIRE_PROOF
@@ -26,21 +26,21 @@
 	cold_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
 	heat_protection = HEAD
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50, "wound" = 10)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50, "wound" = 15)
 	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/head/hooded/explorer/Initialize()
+	. = ..()
+	AddComponent(/datum/component/armor_plate, 3, list("melee" = 10, "wound" = 3.5))
+
+/obj/item/clothing/suit/hooded/explorer/Initialize()
+	. = ..()
+	AddComponent(/datum/component/armor_plate, 3, list("melee" = 10, "wound" = 3.5))
 
 /obj/item/clothing/suit/hooded/explorer/standard
 	hoodtype = /obj/item/clothing/head/hooded/explorer/standard
 
 /obj/item/clothing/head/hooded/explorer/standard
-
-/obj/item/clothing/suit/hooded/explorer/standard/Initialize()
-	. = ..()
-	AddComponent(/datum/component/armor_plate, list("melee" = 10, "wound" = 4)) //skyrat edit
-
-/obj/item/clothing/head/hooded/explorer/standard/Initialize()
-	. = ..()
-	AddComponent(/datum/component/armor_plate, list("melee" = 10, "wound" = 4)) //skyrat edit
 
 /obj/item/clothing/mask/gas/explorer
 	name = "explorer gas mask"
@@ -74,7 +74,7 @@
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF | GOLIATH_RESISTANCE
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_SNEK_TAURIC|STYLE_PAW_TAURIC
 	slowdown = 0
-	armor = list("melee" = 70, "bullet" = 40, "laser" = 10, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 20) //skyrat edit
+	armor = list("melee" = 70, "bullet" = 40, "laser" = 10, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 30) //skyrat edit
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe)
 
 /obj/item/clothing/suit/space/hostile_environment/Initialize()
@@ -103,7 +103,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	clothing_flags = THICKMATERIAL // no space protection
-	armor = list("melee" = 70, "bullet" = 40, "laser" = 10, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 20) //skyrat edit
+	armor = list("melee" = 70, "bullet" = 40, "laser" = 10, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 30) //skyrat edit
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /obj/item/clothing/head/helmet/space/hostile_environment/Initialize()
@@ -168,7 +168,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	hoodtype = /obj/item/clothing/head/hooded/explorer/exo
-	armor = list("melee" = 55, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 40, "bio" = 25, "rad" = 10, "fire" = 0, "acid" = 0, "wound" = 15) //skyrat edit
+	armor = list("melee" = 55, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 40, "bio" = 25, "rad" = 10, "fire" = 0, "acid" = 0, "wound" = 13) //skyrat edit
 	resistance_flags = FIRE_PROOF | GOLIATH_RESISTANCE
 
 /obj/item/clothing/head/hooded/explorer/exo
@@ -176,7 +176,7 @@
 	desc = "A robust helmet for fighting dangerous animals. Its design and material make it harder for a Goliath to keep their grip on the wearer."
 	icon_state = "exo"
 	item_state = "exo"
-	armor = list("melee" = 55, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 40, "bio" = 25, "rad" = 10, "fire" = 0, "acid" = 0, "woun" = 15) //skyrat edit
+	armor = list("melee" = 55, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 40, "bio" = 25, "rad" = 10, "fire" = 0, "acid" = 0, "wound" = 13) //skyrat edit
 	resistance_flags = FIRE_PROOF | GOLIATH_RESISTANCE
 
 /obj/item/clothing/mask/gas/exo

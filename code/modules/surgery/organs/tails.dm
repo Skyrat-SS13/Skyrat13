@@ -1,3 +1,4 @@
+/* moved to modular_skyrat
 // Note: tails only work in humans. They use human-specific parameters and rely on human code for displaying.
 
 /obj/item/organ/tail
@@ -65,3 +66,4 @@
 		spines = H.dna.features["spines"]
 		H.update_body()
 	return ..()
+*/

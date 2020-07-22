@@ -1,3 +1,4 @@
+/* moved to main files for avoiding headaches
 //Our modular 'species_traits' defines, starting from 50 in case citadel adds more
 #define REVIVESBYHEALING 50 // Will revive on heal when healing, based on a species var
 #define NOHUSK			51 // Can't be husked.
@@ -10,3 +11,4 @@
 // Reagent type flags, defines the types of mobs this reagent will affect
 #define REAGENT_ORGANIC 1
 #define REAGENT_SYNTHETIC 2 
+*/

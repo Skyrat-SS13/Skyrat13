@@ -47,17 +47,6 @@
 #define MOB_REPTILE		(1 << 8)
 #define MOB_SPIRIT		(1 << 9)
 
-//Organ defines for carbon mobs
-#define ORGAN_ORGANIC   1
-#define ORGAN_ROBOTIC   2
-
-#define BODYPART_ORGANIC   1
-#define BODYPART_ROBOTIC   2
-
-#define BODYPART_NOT_DISABLED 0
-#define BODYPART_DISABLED_DAMAGE 1
-#define BODYPART_DISABLED_PARALYSIS 2
-
 //skyrat edit
 #define DEFAULT_BODYPART_ICON 'modular_skyrat/icons/mob/human_parts.dmi'
 #define DEFAULT_BODYPART_ICON_ORGANIC 'modular_skyrat/icons/mob/human_parts_greyscale.dmi'
@@ -100,6 +89,7 @@
 #define BRAIN_TRAUMA_MILD /datum/brain_trauma/mild
 #define BRAIN_TRAUMA_SEVERE /datum/brain_trauma/severe
 #define BRAIN_TRAUMA_SPECIAL /datum/brain_trauma/special
+#define BRAIN_TRAUMA_MAGIC /datum/brain_trauma/magic
 
 #define TRAUMA_RESILIENCE_BASIC 1      //Curable with chems
 #define TRAUMA_RESILIENCE_SURGERY 2    //Curable with brain surgery
@@ -315,17 +305,8 @@
 #define FOV_180_DEGREES	180
 #define FOV_270_DEGREES	270
 
-//skyrat defines
+/// How far away you can be to make eye contact with someone while examining
+#define EYE_CONTACT_RANGE	5
+
 /// If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()
-#define EXAMINE_MORE_TIME	1 SECONDS
-
-#define BODYPART_DISABLED_WOUND 3
-
-#define TRAUMA_LIMIT_WOUND 2
-
-#define ALL_BODYPARTS list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
-#define TORSO_BODYPARTS list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)
-#define LIMB_AND_HEAD_BODYPARTS list(BODY_ZONE_HEAD, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
-#define LIMB_BODYPARTS list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
-#define EXTREMITY_BODYPARTS list(BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
-#define ORGAN_BODYPARTS list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN)
+#define EXAMINE_MORE_TIME	2 SECONDS //skyrat edit

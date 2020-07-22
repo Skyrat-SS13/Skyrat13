@@ -78,6 +78,8 @@
 #define ADMIN_PUNISHMENT_MAZING "Puzzle"
 #define ADMIN_PUNISHMENT_PIE "Cream Pie"
 #define ADMIN_PUNISHMENT_CUSTOM_PIE "Custom Cream Pie"
+#define ADMIN_PUNISHMENT_PICKLE "Pickle-ify"
+#define ADMIN_PUNISHMENT_FRY "Fry"
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2
@@ -94,5 +96,17 @@
 #define ADMIN_PUNISHMENT_CRACK ":B:oneless"
 #define ADMIN_PUNISHMENT_BLEED ":B:loodless"
 #define ADMIN_PUNISHMENT_PERFORATE ":B:erforate"
-#define ADMIN_PUNISHMENT_NUGGET "Nuggetify"
+#define ADMIN_PUNISHMENT_BURN ":B:urn"
+#define ADMIN_PUNISHMENT_INCISIONIFY "Incisionify"
 #define ADMIN_PUNISHMENT_SCARIFY "Scarify"
+#define ADMIN_PUNISHMENT_NUGGET "Nuggetify"
+#define ADMIN_PUNISHMENT_ONE "Metallica - One"
+#define ADMIN_PUNISHMENT_SHRAPNEL "Shrapnellify"
+#define ADMIN_PUNISHMENT_RAYMAN "Raymannify"
+#define ADMIN_PUNISHMENT_EXTREMITIES "No extremities"
+#define ADMIN_PUNISHMENT_HOLLOW "Hollow"
+#define ADMIN_PUNISHMENT_LIVELEAK "Liveleak"
+#define ADMIN_PUNISHMENT_ISIS "ISIS"
+#define ADMIN_PUNISHMENT_MEDIC "Meet the medic"
+#define ADMIN_PUNISHMENT_PAPAJOHNS "Papa Johns"
+#define ADMIN_PUNISHMENT_PHANTOM_PAIN "Phantom Pain"

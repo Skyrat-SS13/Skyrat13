@@ -25,11 +25,15 @@
 	var/sanitization
 	/// How much we add to flesh_healing for burn wounds on application
 	var/flesh_regeneration
+	/// The limb status flags we require to be applicable on a limb
+	var/required_status = BODYPART_ORGANIC
 
 /obj/item/stack/medical/attack(mob/living/M, mob/user)
 	. = ..()
-	try_heal(M, user)
-
+	if(!INTERACTING_WITH(user, M))
+		try_heal(M, user)
+	else
+		to_chat(user, "<span class='warning'>You're already interacting with \the [M]!")
 
 /obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!M.can_inject(user, TRUE))
@@ -59,7 +63,7 @@
 	if(!affecting) //Missing limb?
 		to_chat(user, "<span class='warning'>[C] doesn't have \a [parse_zone(user.zone_selected)]!</span>")
 		return
-	if(affecting.status != BODYPART_ORGANIC) //Limb must be organic to be healed - RR
+	if(!(affecting.status & required_status)) //Limb must satisfy these status requirements
 		to_chat(user, "<span class='warning'>\The [src] won't work on a robotic limb!</span>")
 		return
 	if(affecting.brute_dam && brute || affecting.burn_dam && burn)
@@ -152,7 +156,7 @@
 		return
 
 	user.visible_message("<span class='warning'>[user] begins wrapping the wounds on [M]'s [limb.name] with [src]...</span>", "<span class='warning'>You begin wrapping the wounds on [user == M ? "your" : "[M]'s"] [limb.name] with [src]...</span>")
-	var/time_mod = user.mind?.action_skill_mod(/datum/skill/numerical/surgery, 1 SECONDS, THRESHOLD_UNTRAINED, FALSE) || 1
+	var/time_mod = 1
 	if(!do_after(user, (user == M ? self_delay : other_delay) * time_mod, target=M))
 		return
 
@@ -235,6 +239,9 @@
 	stop_bleeding = 0.75
 	grind_results = list(/datum/reagent/medicine/polypyr = 2)
 
+/obj/item/stack/medical/suture/one
+	amount = 1
+
 /obj/item/stack/medical/suture/heal(mob/living/M, mob/user)
 	. = ..()
 	if(M.stat == DEAD)
@@ -303,11 +310,22 @@
 	repeating = TRUE
 	sanitization = 0.75
 	flesh_regeneration = 3
-
 	var/is_open = TRUE ///This var determines if the sterile packaging of the mesh has been opened.
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
 
 /obj/item/stack/medical/mesh/one
+	amount = 1
+
+/obj/item/stack/medical/mesh/advanced
+	name = "advanced regenerative mesh"
+	desc = "An advanced mesh made with aloe extracts and sterilizing chemicals, used to treat burns."
+	gender = PLURAL
+	singular_name = "advanced regenerative mesh"
+	icon_state = "aloe_mesh"
+	heal_burn = 15
+	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
+
+/obj/item/stack/medical/mesh/advanced/one
 	amount = 1
 
 /obj/item/stack/medical/mesh/Initialize()
@@ -315,6 +333,12 @@
 	if(amount == max_amount)	 //only seal full mesh packs
 		is_open = FALSE
 		update_icon()
+
+/obj/item/stack/medical/mesh/advanced/update_icon_state()
+	if(!is_open)
+		icon_state = "aloe_mesh_closed"
+	else
+		return ..()
 
 /obj/item/stack/medical/mesh/update_icon_state()
 	if(!is_open)
@@ -368,7 +392,10 @@
 	heal_burn = 15
 	sanitization = 1.25
 	flesh_regeneration = 3.5
-	//grind_results = list(/datum/reagent/consumable/aloejuice = 1) //will port later
+	grind_results = list(/datum/reagent/consumable/aloejuice = 5)
+
+/obj/item/stack/medical/mesh/advanced/one
+	amount = 1
 
 /obj/item/stack/medical/mesh/advanced/update_icon_state()
 	if(!is_open)
@@ -387,7 +414,7 @@
 	amount = 20
 	max_amount = 20
 	var/heal = 3
-	//grind_results = list(/datum/reagent/consumable/aloejuice = 1) //will port later
+	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 
 /obj/item/stack/medical/aloe/heal(mob/living/M, mob/user)
 	. = ..()
@@ -410,13 +437,13 @@
 
 	to_chat(user, "<span class='warning'>You can't heal [M] with the \the [src]!</span>")
 
-	/*
-	The idea is for these medical devices to work like a hybrid of the old brute packs and tend wounds,
-	they heal a little at a time, have reduced healing density and does not allow for rapid healing while in combat.
-	However they provice graunular control of where the healing is directed, this makes them better for curing work-related cuts and scrapes.
+/*
+The idea is for these medical devices to work like a hybrid of the old brute packs and tend wounds,
+they heal a little at a time, have reduced healing density and does not allow for rapid healing while in combat.
+However they provice graunular control of where the healing is directed, this makes them better for curing work-related cuts and scrapes.
 
-	The interesting limb targeting mechanic is retained and i still believe they will be a viable choice, especially when healing others in the field.
-	 */
+The interesting limb targeting mechanic is retained and i still believe they will be a viable choice, especially when healing others in the field.
+*/
 
 /obj/item/stack/medical/bone_gel
 	name = "bone gel"
@@ -430,8 +457,9 @@
 
 	amount = 5
 	max_amount = 10
-	self_delay = 20
-	grind_results = list(/datum/reagent/medicine/styptic_powder = 10)
+	self_delay = 60
+	other_delay = 40
+	grind_results = list(/datum/reagent/medicine/styptic_powder = 10, /datum/reagent/potassium = 10, /datum/reagent/space_cleaner/sterilizine = 10)
 	novariants = TRUE
 
 /obj/item/stack/medical/bone_gel/attack(mob/living/M, mob/user)

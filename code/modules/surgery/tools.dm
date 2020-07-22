@@ -167,7 +167,7 @@
 	tool_behaviour = TOOL_SCALPEL
 	toolspeed = 1
 	//skyrat edit
-	bare_wound_bonus = 20
+	bare_wound_bonus = 15
 	//
 
 /obj/item/scalpel/Initialize()
@@ -251,7 +251,7 @@
 	tool_behaviour = TOOL_SAW
 	toolspeed = 1
 	//skyrat edit
-	wound_bonus = 10
+	wound_bonus = 5
 	bare_wound_bonus = 15
 	//
 
@@ -396,24 +396,5 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("corrected", "properly set")
 	tool_behaviour = TOOL_BONESET
-	toolspeed = 1
-
-/obj/item/fixovein
-	name = "fix o' vein"
-	desc = "Allan, please add details."
-	icon = 'modular_skyrat/icons/obj/surgery.dmi'
-	icon_state = "fixovein"
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	item_flags = SURGICAL_TOOL
-	flags_1 = CONDUCT_1
-	force = 0
-	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 5
-	throw_speed = 2
-	throw_range = 7
-	custom_materials = list(/datum/material/iron=10000, /datum/material/silver=4000)
-	attack_verb = list("gelled")
-	tool_behaviour = TOOL_FIXOVEIN
 	toolspeed = 1
 //

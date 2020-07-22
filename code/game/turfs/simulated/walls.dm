@@ -43,7 +43,7 @@
 
 /turf/closed/wall/attack_tk()
 	return
-/* skyrat edit
+
 /turf/closed/wall/handle_ricochet(obj/item/projectile/P)			//A huge pile of shitcode!
 	var/turf/p_turf = get_turf(P)
 	var/face_direction = get_dir(src, p_turf)
@@ -54,7 +54,7 @@
 	var/new_angle_s = SIMPLIFY_DEGREES(face_angle + incidence_s)
 	P.setAngle(new_angle_s)
 	return TRUE
-*/
+
 /turf/closed/wall/proc/dismantle_wall(devastated=0, explode=0)
 	if(devastated)
 		devastate_wall()

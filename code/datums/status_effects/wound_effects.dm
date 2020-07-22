@@ -168,11 +168,23 @@
 	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
 	icon_state = "wound_bleeding"
 
+/obj/screen/alert/status_effect/wound/bleed/mechanical
+	name = "Leaking"
+	desc = "One or more of your limbs are leaking profusely, click here to inspect yourself."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "wound_bleeding_metal"
+
 /obj/screen/alert/status_effect/wound/bone
 	name = "Bone Damage"
 	desc = "One or more of your limbs have suffered a bone injury, click here to inspect yourself."
 	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
 	icon_state = "wound_bone"
+
+/obj/screen/alert/status_effect/wound/bone/mechanical
+	name = "Bent"
+	desc = "One or more of your limbs have suffered bending, click here to inspect yourself."
+	icon = 'modular_skyrat/icons/mob/screen_alert.dmi'
+	icon_state = "wound_bone_metal"
 
 /obj/screen/alert/status_effect/wound/sepsis
 	name = "Sepsis"

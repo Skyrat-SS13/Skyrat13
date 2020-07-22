@@ -1,6 +1,6 @@
 /datum/surgery
-	var/name = "surgery"
-	var/desc = "surgery description"
+	var/name = "Surgery"
+	var/desc = "Surgery description."
 	var/status = 1
 	var/list/steps = list()									//Steps in a surgery
 	var/step_in_progress = 0								//Actively performing a Surgery
@@ -12,6 +12,7 @@
 	var/ignore_clothes = 0									//This surgery ignores clothes
 	var/mob/living/carbon/target							//Operation target mob
 	var/obj/item/bodypart/operated_bodypart					//Operable body part
+	var/obj/item/organ/operated_organ						//Operable organ
 	var/requires_bodypart = TRUE							//Surgery available only when a bodypart is present, or only when it is missing.
 	var/success_multiplier = 0								//Step success propability multiplier
 	var/requires_real_bodypart = 0							//Some surgeries don't work on limbs that don't really exist
@@ -120,6 +121,9 @@
 		return null
 
 /datum/surgery/proc/complete()
+	if(operated_bodypart)
+		for(var/datum/wound/slash/critical/incision/inch in operated_bodypart.wounds)
+			inch.remove_wound()
 	SSblackbox.record_feedback("tally", "surgeries_completed", 1, type)
 	qdel(src)
 
@@ -180,5 +184,5 @@
 
 
 //RESOLVED ISSUES //"Todo" jobs that have been completed
-//combine hands/feet into the arms - Hands/feet were removed - RR
+//combine hands/feet into the arms - Hands/feet were removed - RR //Fuck you, they were brought back - Bob Joga
 //surgeries (not steps) that can be initiated on any body part (corresponding with damage locations) - Call this one done, see possible_locs var - c0

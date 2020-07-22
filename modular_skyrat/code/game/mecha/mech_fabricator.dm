@@ -3,6 +3,7 @@
 	var/datum/component/remote_materials/rmat
 	part_sets = list(
 						"Cyborg",
+						"IPC",
 						"Ripley",
 						"Firefighter",
 						"Killdozer",
@@ -10,6 +11,7 @@
 						"Buzz",
 						"Odysseus",
 						"Gygax",
+						"Medical-Spec Gygax",
 						"Durand",
 						"H.O.N.K",
 						"Phazon",

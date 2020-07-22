@@ -1,10 +1,9 @@
-//Disabled here because of skyrat modular.
 /*
 /obj/machinery/vending/kink
 	name = "KinkMate"
 	desc = "A vending machine for all your unmentionable desires."
 	icon_state = "kink"
-	circuit = /obj/item/circuitboard/machine/kinkmate
+	//circuit = /obj/item/circuitboard/machine/kinkmate skyrat edit - we dont use this circuit anymore, its all normal now
 	product_slogans = "Kinky!;Sexy!;Check me out, big boy!"
 	vend_reply = "Have fun, you shameless pervert!"
 	products = list(
@@ -22,7 +21,11 @@
 				/obj/item/clothing/under/misc/gear_harness = 10,
 				/obj/item/dildo/custom = 5,
 				/obj/item/electropack/shockcollar = 3,
-				/obj/item/assembly/signaler = 3
+				/obj/item/assembly/signaler = 3,
+				/obj/item/clothing/under/shorts/polychromic/pantsu = 3,
+				/obj/item/clothing/under/misc/poly_bottomless = 3,
+				/obj/item/clothing/under/misc/poly_tanktop = 3,
+				/obj/item/clothing/under/misc/poly_tanktop/female = 3
 				)
 	contraband = list(
 				/obj/item/clothing/neck/petcollar/locked = 2,
