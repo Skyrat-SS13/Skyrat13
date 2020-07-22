@@ -859,12 +859,9 @@ datum/status_effect/pacify
 		return ..()
 	return FALSE
 
-/datum/status_effect/eldritch/on_remove()
+/datum/status_effect/eldritch/Destroy()
 	owner.cut_overlay(marked_underlay)
 	owner.update_icon()
-	return ..()
-
-/datum/status_effect/eldritch/Destroy()
 	QDEL_NULL(marked_underlay)
 	return ..()
 

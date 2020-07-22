@@ -212,7 +212,7 @@
 	proj_lifespan = 15
 	proj_type = /obj/effect/proc_holder/spell/targeted/trigger/rust_wave
 
-/obj/effect/proc_holder/spell/pointed/cleave
+/obj/effect/proc_holder/spell/targeted/cleave
 	name = "Cleave"
 	desc = "Causes severe bleeding on a target and people around them"
 	school = "transmutation"
@@ -225,16 +225,16 @@
 	action_icon_state = "cleave"
 	action_background_icon_state = "bg_ecult"
 
-/obj/effect/proc_holder/spell/pointed/cleave/cast(list/targets, mob/user)
+/obj/effect/proc_holder/spell/targeted/cleave/cast(list/targets, mob/user)
 	if(!targets.len)
 		to_chat(user, "<span class='warning'>No target found in range!</span>")
 		return FALSE
+
 	if(!can_target(targets[1], user))
 		return FALSE
 
 	for(var/mob/living/carbon/human/C in range(1,targets[1]))
 		targets |= C
-
 
 	for(var/X in targets)
 		var/mob/living/carbon/human/target = X
@@ -251,8 +251,9 @@
 		target.bleed_rate += 10
 		target.adjustFireLoss(20)
 		new /obj/effect/temp_visual/cleave(target.drop_location())
+	return ..()
 
-/obj/effect/proc_holder/spell/pointed/cleave/can_target(atom/target, mob/user, silent)
+/obj/effect/proc_holder/spell/targeted/cleave/can_target(atom/target, mob/user, silent)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -262,74 +263,8 @@
 		return FALSE
 	return TRUE
 
-/obj/effect/proc_holder/spell/pointed/cleave/long
+/obj/effect/proc_holder/spell/targeted/cleave/long
 	charge_max = 650
-
-/obj/effect/proc_holder/spell/pointed/ash_final
-	name = "Nightwatcher's Rite"
-	desc = "Powerful spell that releases 5 streams of fire away from you."
-	school = "transmutation"
-	invocation = "F'RE"
-	invocation_type = INVOCATION_WHISPER
-	charge_max = 300
-	range = 15
-	clothes_req = FALSE
-	action_icon = 'icons/mob/actions/actions_ecult.dmi'
-	action_icon_state = "flames"
-	action_background_icon_state = "bg_ecult"
-
-/obj/effect/proc_holder/spell/pointed/ash_final/cast(list/targets, mob/user)
-	for(var/X in targets)
-		var/T
-		T = line_target(-25, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
-		T = line_target(10, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
-		T = line_target(0, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
-		T = line_target(-10, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
-		T = line_target(25, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
-	return ..()
-
-/obj/effect/proc_holder/spell/pointed/ash_final/proc/line_target(offset, range, atom/at , atom/user)
-	if(!at)
-		return
-	var/angle = ATAN2(at.x - user.x, at.y - user.y) + offset
-	var/turf/T = get_turf(user)
-	for(var/i in 1 to range)
-		var/turf/check = locate(user.x + cos(angle) * i, user.y + sin(angle) * i, user.z)
-		if(!check)
-			break
-		T = check
-	return (getline(user, T) - get_turf(user))
-
-/obj/effect/proc_holder/spell/pointed/ash_final/proc/fire_line(atom/source, list/turfs)
-	var/list/hit_list = list()
-	for(var/turf/T in turfs)
-		if(istype(T, /turf/closed))
-			break
-
-		for(var/mob/living/L in T.contents)
-			if(L.anti_magic_check())
-				L.visible_message("<span class='danger'>Spell bounces off of [L]!</span>","<span class='danger'>The spell bounces off of you!</span>")
-				continue
-			if(L in hit_list || L == source)
-				continue
-			hit_list += L
-			L.adjustFireLoss(20)
-			to_chat(L, "<span class='userdanger'>You're hit by [source]'s fire breath!</span>")
-
-		new /obj/effect/hotspot(T)
-		T.hotspot_expose(700,50,1)
-		// deals damage to mechs
-		for(var/obj/mecha/M in T.contents)
-			if(M in hit_list)
-				continue
-			hit_list += M
-			M.take_damage(45, BURN, "melee", 1)
-		sleep(1.5)
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/eldritch
 	invocation = "SH'PE"

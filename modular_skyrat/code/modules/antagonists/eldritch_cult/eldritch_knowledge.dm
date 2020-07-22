@@ -191,8 +191,9 @@
 	return TRUE
 
 /datum/eldritch_knowledge/final/can_gain(datum/antagonist/heretic/heretic)
-	. = ..()
-	if(heretic.total_sacrifices < 5)
+	if(heretic.total_sacrifices >= 5)
+		return ..()
+	else
 		return FALSE
 		
 ///////////////
@@ -228,7 +229,7 @@
 
 	if(buckled == LH.target)
 		LH.target = null
-		GLOB.stolen_souls += buckled
+		GLOB.stolen_souls += buckled.mind
 		buckled.apply_status_effect()
 		buckled.emote("Scream")
 		FB.charge += 5
