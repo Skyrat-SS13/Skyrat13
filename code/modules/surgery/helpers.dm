@@ -26,7 +26,7 @@
 			if(affecting)
 				if(!S.requires_bodypart)
 					continue
-				if(S.requires_bodypart_type && affecting.status != S.requires_bodypart_type)
+				if(S.requires_bodypart_type && !(affecting.status & S.requires_bodypart_type))
 					continue
 				if(S.requires_real_bodypart && affecting.is_pseudopart)
 					continue

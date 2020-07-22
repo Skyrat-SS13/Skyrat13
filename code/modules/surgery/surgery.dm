@@ -16,7 +16,7 @@
 	var/requires_bodypart = TRUE							//Surgery available only when a bodypart is present, or only when it is missing.
 	var/success_multiplier = 0								//Step success propability multiplier
 	var/requires_real_bodypart = 0							//Some surgeries don't work on limbs that don't really exist
-	var/lying_required = TRUE								//Does the vicitm needs to be lying down.
+	var/lying_required = FALSE								//Does the vicitm needs to be lying down.
 	var/requires_tech = FALSE
 	var/replaced_by
 	//skyrat edit
@@ -64,8 +64,8 @@
 
 	if(!requires_tech && !replaced_by)
 		return TRUE
+	
 	// True surgeons (like abductor scientists) need no instructions
-
 	if(requires_tech)
 		. = FALSE
 
