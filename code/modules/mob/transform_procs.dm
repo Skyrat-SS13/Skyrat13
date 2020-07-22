@@ -581,3 +581,26 @@
 
 	. = new_mob
 	qdel(src)
+
+/mob/living/proc/turn_into_pickle()
+	//if they're already a pickle, turn them back instead
+	if(istype(src, /mob/living/simple_animal/pickle))
+		//turn them back from being a pickle, but release them alive
+		var/mob/living/simple_animal/pickle/existing_pickle = src
+		if(existing_pickle.original_body)
+			existing_pickle.original_body.forceMove(get_turf(src))
+			if(mind)
+				mind.transfer_to(existing_pickle.original_body)
+			qdel(src)
+	else
+		//make a new pickle on the tile and move their mind into it if possible
+		var/mob/living/simple_animal/pickle/new_pickle = new /mob/living/simple_animal/pickle(get_turf(src))
+		new_pickle.original_body = src
+		if(mind)
+			mind.transfer_to(new_pickle)
+		//give them their old access if any
+		var/obj/item/card/id/mob_access_card = get_idcard()
+		if(mob_access_card)
+			new_pickle.access_card = mob_access_card
+		//move old body inside the pickle for safekeeping (when they die, we'll return the corpse because we're nice)
+		src.forceMove(new_pickle)

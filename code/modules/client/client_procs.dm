@@ -286,9 +286,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	else
 		prefs = new /datum/preferences(src)
 		GLOB.preferences_datums[ckey] = prefs
-	if(SSinput.initialized)
-		set_macros()
-	update_movement_keys(prefs)
+	addtimer(CALLBACK(src, .proc/ensure_keys_set), 0)	//prevents possible race conditions
 
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
@@ -491,6 +489,11 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			menuitem.Load_checked(src)
 
 	Master.UpdateTickRate()
+
+/client/proc/ensure_keys_set()
+	if(SSinput.initialized)
+		set_macros()
+	update_movement_keys(prefs)
 
 //////////////
 //DISCONNECT//
@@ -917,13 +920,13 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 /client/vv_edit_var(var_name, var_value)
 	switch (var_name)
-		if ("holder")
+		if (NAMEOF(src, holder))
 			return FALSE
-		if ("ckey")
+		if (NAMEOF(src, ckey))
 			return FALSE
-		if ("key")
+		if (NAMEOF(src, key))
 			return FALSE
-		if("view")
+		if(NAMEOF(src, view))
 			change_view(var_value)
 			return TRUE
 	. = ..()

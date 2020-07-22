@@ -465,7 +465,11 @@
 		return
 	var/list/blood_dna = list()
 	if(dna)
-		blood_dna["color"] = dna.species.exotic_blood_color //so when combined, the list grows with the number of colors
+		blood_dna["color"] = dna.species.exotic_blood_color
+		if(dna.blood_color)
+			blood_dna["color"] = dna.blood_color
+		if(!blood_dna["color"])
+			blood_dna["color"] = BLOOD_COLOR_HUMAN
 		blood_dna[dna.unique_enzymes] = dna.blood_type
 	else
 		blood_dna["color"] = BLOOD_COLOR_HUMAN
@@ -483,14 +487,14 @@
 		return FALSE
 	LAZYINITLIST(blood_DNA)	//if our list of DNA doesn't exist yet, initialise it.
 	var/old_length = blood_DNA.len
-	blood_DNA |= new_blood_dna
+	blood_DNA |= (new_blood_dna - "color")
 	var/changed = FALSE
 	if(!blood_DNA["color"])
 		blood_DNA["color"] = new_blood_dna["color"]
 		changed = TRUE
 	else
 		var/old = blood_DNA["color"]
-		blood_DNA["color"] = BlendRGB(blood_DNA["color"], new_blood_dna["color"])
+		blood_DNA["color"] = new_blood_dna["color"]
 		changed = old != blood_DNA["color"]
 	if(blood_DNA.len == old_length)
 		return FALSE
@@ -501,17 +505,15 @@
 	LAZYINITLIST(blood_DNA)
 
 	var/old_length = blood_DNA.len
-	blood_DNA |= blood_dna
-	blood_DNA["color"] += blood_dna["color"]
+	blood_DNA |= (blood_dna - "color")
+	LAZYINITLIST(blood_DNA["color"])
+	blood_DNA["color"] = blood_dna["color"]
 	if(blood_DNA.len > old_length)
 		. = TRUE
 		//some new blood DNA was added
 		if(!blood_dna["color"])
 			return
-		if(!blood_DNA["color"])
-			blood_DNA["color"] = blood_dna["color"]
-		else
-			blood_DNA["color"] = BlendRGB(blood_DNA["color"], blood_dna["color"])
+		blood_DNA["color"] = blood_dna["color"]
 
 //to add blood from a mob onto something, and transfer their dna info
 /atom/proc/add_mob_blood(mob/living/M)
@@ -540,7 +542,7 @@
 		blood_splatter_icon = icon(initial(icon), initial(icon_state), , 1)		//we only want to apply blood-splatters to the initial icon_state for each object
 		blood_splatter_icon.Blend("#fff", ICON_ADD) 			//fills the icon_state with white (except where it's transparent)
 		blood_splatter_icon.Blend(icon('icons/effects/blood.dmi', "itemblood"), ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
-		blood_splatter_icon.Blend(blood_DNA_to_color(), ICON_MULTIPLY)
+		blood_splatter_icon.Blend(blood_DNA["color"], ICON_MULTIPLY)
 		add_overlay(blood_splatter_icon)
 
 /obj/item/clothing/gloves/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
@@ -578,12 +580,15 @@
 		bloody_hands = rand(2, 4)
 	update_inv_gloves()	//handles bloody hands overlays and updating
 	return TRUE
-
+//Skyrat changes - snowflake blood color
 /atom/proc/blood_DNA_to_color()
-	return (blood_DNA && blood_DNA["color"]) || BLOOD_COLOR_HUMAN
+	return blood_DNA["color"] || BLOOD_COLOR_HUMAN
 
+/proc/blood_DNA_list_to_color(list/dna)
+	return dna["color"] || BLOOD_COLOR_HUMAN
+//
 /atom/proc/clean_blood()
-	. = blood_DNA? TRUE : FALSE
+	. = blood_DNA ? TRUE : FALSE
 	blood_DNA = null
 
 /atom/proc/wash_cream()
@@ -749,7 +754,7 @@
 		flags_1 |= ADMIN_SPAWNED_1
 	. = ..()
 	switch(var_name)
-		if("color")
+		if(NAMEOF(src, color))
 			add_atom_colour(color, ADMIN_COLOUR_PRIORITY)
 
 /atom/vv_get_dropdown()

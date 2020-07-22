@@ -268,7 +268,7 @@ obj/item/robot_module/butler/Initialize()
 		/obj/item/stack/cable_coil/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/stack/medical/gauze/cyborg,
-		/obj/item/twohanded/shockpaddles/cyborg,
+		/obj/item/shockpaddles/cyborg,
 		/obj/item/healthanalyzer/advanced,
 		/obj/item/surgical_drapes/advanced,
 		/obj/item/retractor/advanced,
