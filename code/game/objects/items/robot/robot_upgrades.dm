@@ -545,15 +545,11 @@
 			to_chat(usr, "<span class='notice'>This unit already has an expand module installed!</span>")
 			return FALSE
 
-<<<<<<< HEAD
 		if(R.hasShrunk)
 			to_chat(usr, "<span class='notice'>This unit already has an shrink module installed!</span>")
 			return FALSE
 
 		R.notransform = TRUE
-=======
-		R.mob_transforming = TRUE
->>>>>>> 2cd18f3dba... Merge pull request #12557 from silicons/life
 		var/prev_locked_down = R.locked_down
 		R.SetLockdown(1)
 		R.anchored = TRUE

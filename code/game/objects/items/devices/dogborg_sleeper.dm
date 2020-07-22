@@ -167,10 +167,9 @@
 
 /obj/item/dogborg/sleeper/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
-
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "dogborg_sleeper", name, 375, 550, master_ui, state)
+		ui = new(user, src, ui_key, "DogborgSleeper", name, 375, 550, master_ui, state)
 		ui.open()
 
 /obj/item/dogborg/sleeper/ui_data()

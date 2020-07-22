@@ -247,6 +247,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	//skyrat edit
 	new/datum/stack_recipe("chopping block", /obj/item/chopping_block, 2, time = 30), \
 	new/datum/stack_recipe("wooden bucket", /obj/item/reagent_containers/glass/bucket/wood, 2, time = 30), \
+	new/datum/stack_recipe("painting frame", /obj/item/wallframe/painting, 1, time = 10),\
 	new/datum/stack_recipe("wooden buckler", /obj/item/shield/riot/buckler, 20, time = 40), \
 	new/datum/stack_recipe("baseball bat", /obj/item/melee/baseball_bat, 5, time = 15),\
 	new/datum/stack_recipe("training bokken", /obj/item/melee/bokken, 10, time = 15),\

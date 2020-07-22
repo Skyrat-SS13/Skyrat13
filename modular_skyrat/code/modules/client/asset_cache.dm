@@ -16,6 +16,6 @@
 		"tetrisp5.gif"		= 'modular_skyrat/icons/tetris/tetrisp5.gif',
 		"tetrisp6.gif"		= 'modular_skyrat/icons/tetris/tetrisp6.gif',
 		"tetrisp7.gif"		= 'modular_skyrat/icons/tetris/tetrisp7.gif',
-		"tetris.js"			= 'tgui/src/interfaces/tetris/tetris.js',
-		"tetris2.js"		= 'tgui/src/interfaces/tetris/tetris2.js'
+		"tetris.js"			= 'modular_skyrat/code/game/machinery/computer/arcade/tetris/tetris.js',
+		"tetris2.js"		= 'modular_skyrat/code/game/machinery/computer/arcade/tetris/tetris2.js',
 	)

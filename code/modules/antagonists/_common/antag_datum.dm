@@ -28,6 +28,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/list/requested_objective_changes
 // SKYRAT CHANGES END
 
+	var/show_to_ghosts = FALSE // Should this antagonist be shown as antag to ghosts? Shouldn't be used for stealthy antagonists like traitors
 
 	var/list/skill_modifiers
 

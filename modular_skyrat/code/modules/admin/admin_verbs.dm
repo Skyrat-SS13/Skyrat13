@@ -50,7 +50,6 @@
 	/client/proc/cmd_admin_check_player_exp, /* shows players by playtime */
 	/client/proc/toggle_combo_hud, // toggle display of the combination pizza antag and taco sci/med/eng hud
 	/client/proc/toggle_AI_interact, /*toggle admin ability to interact with machines as an AI*/
-	/client/proc/open_shuttle_manipulator, /* Opens shuttle manipulator UI */
 	/client/proc/respawn_character,
 	/client/proc/toggle_hear_radio,		/*allows admins to hide all radio output*/
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
@@ -226,7 +225,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
 	/client/proc/game_panel,
-	/client/proc/open_shuttle_manipulator,
 	/client/proc/check_ai_laws,
 	/datum/admins/proc/toggleooc,
 	/datum/admins/proc/toggleoocdead,

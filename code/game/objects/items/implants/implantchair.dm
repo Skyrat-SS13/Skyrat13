@@ -26,13 +26,11 @@
 	open_machine()
 	update_icon()
 
-
 /obj/machinery/implantchair/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "implantchair", name, 375, 280, master_ui, state)
+		ui = new(user, src, ui_key, "ImplantChair", name, 375, 280, master_ui, state)
 		ui.open()
-
 
 /obj/machinery/implantchair/ui_data()
 	var/list/data = list()

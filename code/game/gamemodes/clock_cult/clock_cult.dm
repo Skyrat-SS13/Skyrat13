@@ -352,25 +352,9 @@ Credit where due:
 	for(var/entry in changelog)
 		changelog_contents += "<li>[entry]</li>"
 	info = replacetext(info, "CLOCKCULTCHANGELOG", changelog_contents)
-
+/*
 /obj/item/paper/servant_primer/oui_getcontent(mob/target)
 	if(!is_servant_of_ratvar(target) && !isobserver(target))
 		return "<HTML><HEAD><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)]<HR>[stamps]</BODY></HTML>"
 	return ..()
-// SKYRAT EDIT: Credits
-/datum/game_mode/clockwork_cult/generate_credit_text()
-	var/list/round_credits = list()
-	var/len_before_addition
-
-	round_credits += "<center><h1>The Servants of Ratvar:</h1>"
-	len_before_addition = round_credits.len
-	for(var/datum/mind/servant in servants_of_ratvar)
-		round_credits += "<center><h2>[servant.name] as a faithful servant of Ratvar</h2>"
-	if(GLOB.ratvar_awakens)
-		round_credits += "<center><h2>Ratvar as himself, returned at last</h2>"
-	if(len_before_addition == round_credits.len)
-		round_credits += list("<center><h2>The servants were cast astray in the void!</h2>", "<center><h2>None shall remember their names!</h2>")
-	round_credits += "<br>"
-
-	round_credits += ..()
-	return round_credits
+*/

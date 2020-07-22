@@ -27,15 +27,10 @@
 					fax = F
 
 
-		var/input_text = input(src.owner, "Please enter a message to send a fax via secure connection. Use <br> for line breaks. Both pencode and HTML work.", "Outgoing message from CentCom", "") as message|null
+		var/input_text = input(src.owner, "Please enter a message to send a fax via secure connection.", "Outgoing message from CentCom", "") as message|null
 		if(!input_text)
 			qdel(P)
 			return
-
-		var/obj/item/pen/admin_writer = new /obj/item/pen(null)
-
-		input_text = P.parsepencode(input_text, admin_writer, usr) // Encode everything from pencode to html
-		qdel(admin_writer)
 
 		var/customname = input(src.owner, "Pick a title for the fax.", "Fax Title") as text|null
 		if(!customname)
