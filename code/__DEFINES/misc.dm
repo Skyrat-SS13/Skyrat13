@@ -30,6 +30,7 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 
 //Human Overlays Indexes/////////
 //LOTS OF CIT CHANGES HERE. BE CAREFUL WHEN UPSTREAM ADDS MORE LAYERS
+//LOTS OF SKYRAT CHANGES HERE. NO FUCKS GIVEN TO UPSTREAM.
 #define MUTATIONS_LAYER			33		//mutations. Tk headglows, cold resistance glow, etc
 #define GENITALS_BEHIND_LAYER	32		//Some genitalia needs to be behind everything, such as with taurs (Taurs use body_behind_layer
 #define BODY_BEHIND_LAYER		31		//certain mutantrace features (tail when looking south) that must appear behind the body parts
@@ -40,10 +41,10 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define BODY_LAYER				26		//underwear, undershirts, socks, eyes, lips(makeup)
 #define BODY_ADJ_UPPER_LAYER	25
 #define FRONT_MUTATIONS_LAYER	24		//mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)
-#define DAMAGE_LAYER			23		//damage indicators (cuts and burns)
-#define UNIFORM_LAYER			22
-#define ID_LAYER				21
-#define HANDS_PART_LAYER		20
+#define UNIFORM_LAYER			23
+#define ID_LAYER				22
+#define HANDS_PART_LAYER		21
+#define DAMAGE_LAYER			20		//damage indicators (cuts and burns)
 #define SHOES_LAYER				19
 #define GLOVES_LAYER			18
 #define EARS_LAYER				17
