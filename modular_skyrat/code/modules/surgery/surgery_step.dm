@@ -1,7 +1,8 @@
 //Overrides the surgery step to require anasthetics for a smooth surgery
+//also lets you do self-surgery again bottom text
 /datum/surgery_step/initiate(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	surgery.step_in_progress = TRUE
-	var/speed_mod = 1
+	var/speed_mod = (user == target ? 0.6 : 1) //self-surgery is hard
 	var/advance = FALSE
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = FALSE
@@ -11,6 +12,10 @@
 			
 	if(do_after(user, time * speed_mod, target = target))
 		var/prob_chance = 100
+		if(target == user) //self-surgery is VERY hard
+			prob_chance *= 0.7
+		if(!target.lying) //doing surgery on someone who's not even lying down is hard
+			prob_chance *= 0.8
 		if(implement_type)	//this means it isn't a require hand or any item step.
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_propability_multiplier()
