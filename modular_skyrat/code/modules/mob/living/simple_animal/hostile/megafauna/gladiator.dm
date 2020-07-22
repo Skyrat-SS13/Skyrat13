@@ -56,6 +56,7 @@ They deal 35 brute (armor is considered).
 	glorymessagespka = list("grabs the gladiator by the neck and flips them, shooting through their guts with a PKA blast!", "shoots at the gladiator's shoulder, exploding their arm! To finish the fiend off, they grab their PKA and bonk the gladiator's head inside their torso!", "doesn't bother with being fancy, and simply shoots at the gladiator's head with their PKA, exploding it in one violent blast!")
 	glorymessagespkabayonet = list("rams into the gladiator's stomach with their PKA's bayonet, knocking them and themselves down! To finish the fiend off, they simply stab into their torso like a madman with their bayonet!", "kicks the gladiator's knee hard, breaking it! While the fiend is stunned and barely standing, their chop their head off with the PKA's bayonet!")
 	glorythreshold = 50
+	weather_immunities = list("lava","ash")
 
 /obj/item/gps/internal/gladiator
 	icon_state = null
