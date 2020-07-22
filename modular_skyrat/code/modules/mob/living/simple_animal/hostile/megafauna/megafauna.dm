@@ -50,7 +50,7 @@
 			continue
 		if(isliving(A))
 			var/mob/living/M = A
-			if(faction_check_mob(M) && attack_same || !faction_check_mob(M) && M.client)
+			if((faction_check_mob(M) && attack_same) || (!faction_check_mob(M)) || (!ismegafauna(M)))
 				enemies |= M
 				chosenlengthstring = pick(songs)
 				chosenlength = text2num(chosenlengthstring)
