@@ -187,6 +187,11 @@
 				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] stuck to [t_his] [BP.name]!</B>\n"
 			else
 				msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
+<<<<<<< HEAD
+=======
+		for(var/datum/wound/W in BP.wounds)
+			msg += "[W.get_examine_description(user)]\n"
+>>>>>>> 5182f8e49a... Merge pull request #12878 from Citadel-Station-13/Linzolle-patch-1
 
 	for(var/X in disabled)
 		var/obj/item/bodypart/BP = X
