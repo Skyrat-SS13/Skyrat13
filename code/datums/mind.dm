@@ -76,10 +76,15 @@
 	/// Our skill holder.
 	var/datum/skill_holder/skill_holder
 
+<<<<<<< HEAD
 // SKYRAT CHANGES BEGIN
 	/// Lazy list for antagonists to set goals they wish to achieve, to be shown at the round-end report.
 	var/list/ambitions
 // SKYRAT CHANGES END
+=======
+	///What character we spawned in as- either at roundstart or latejoin, so we know for persistent scars if we ended as the same person or not
+	var/mob/original_character
+>>>>>>> 9222933d77... Merge pull request #12816 from timothyteakettle/wound-port
 
 /datum/mind/New(var/key)
 	skill_holder = new(src)

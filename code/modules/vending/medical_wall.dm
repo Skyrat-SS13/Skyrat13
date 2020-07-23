@@ -10,7 +10,13 @@
 					/obj/item/reagent_containers/pill/patch/styptic = 5,
 					/obj/item/reagent_containers/pill/patch/silver_sulf = 5,
 					/obj/item/reagent_containers/pill/charcoal = 2,
+<<<<<<< HEAD
 					/obj/item/reagent_containers/syringe = 3,
+=======
+					/obj/item/reagent_containers/medspray/sterilizine = 1,
+					/obj/item/healthanalyzer/wound = 2,
+					/obj/item/stack/medical/bone_gel = 2,
+>>>>>>> 9222933d77... Merge pull request #12816 from timothyteakettle/wound-port
 					/obj/item/reagent_containers/syringe/dart = 10)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 2,
 					/obj/item/reagent_containers/pill/morphine = 2)
