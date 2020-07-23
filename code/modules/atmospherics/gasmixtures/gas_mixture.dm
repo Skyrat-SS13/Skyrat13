@@ -28,6 +28,7 @@ GLOBAL_LIST_INIT(meta_gas_fusions, meta_gas_fusion_list())
 
 /datum/gas_mixture/New(volume)
 	if (!isnull(volume))
+<<<<<<< HEAD
 		src.volume = volume
 
 	//PV = nRT
@@ -56,6 +57,45 @@ GLOBAL_LIST_INIT(meta_gas_fusions, meta_gas_fusion_list())
 	var/list/cached_gasheats = GLOB.meta_gas_specific_heats
 	for(var/id in cached_gases)
 		. += cached_gases[id] * cached_gasheats[id]
+=======
+		initial_volume = volume
+	ATMOS_EXTOOLS_CHECK
+	__gasmixture_register()
+	reaction_results = new
+
+/datum/gas_mixture/vv_edit_var(var_name, var_value)
+	if(var_name == NAMEOF(src, _extools_pointer_gasmixture))
+		return FALSE // please no. segfaults bad.
+	if(var_name == NAMEOF(src, gas_list_view_only))
+		return FALSE
+	return ..()
+
+/datum/gas_mixture/vv_get_var(var_name)
+	. = ..()
+	if(var_name == NAMEOF(src, gas_list_view_only))
+		var/list/dummy = get_gases()
+		for(var/gas in dummy)
+			dummy[gas] = get_moles(gas)
+		dummy["TEMP"] = return_temperature()
+		dummy["PRESSURE"] = return_pressure()
+		dummy["HEAT CAPACITY"] = heat_capacity()
+		dummy["TOTAL MOLES"] = total_moles()
+		dummy["VOLUME"] = return_volume()
+		dummy["THERMAL ENERGY"] = thermal_energy()
+		return debug_variable("gases (READ ONLY)", dummy, 0, src)
+
+/datum/gas_mixture/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---")
+	VV_DROPDOWN_OPTION(VV_HK_PARSE_GASSTRING, "Parse Gas String")
+	VV_DROPDOWN_OPTION(VV_HK_EMPTY, "Empty")
+	VV_DROPDOWN_OPTION(VV_HK_SET_MOLES, "Set Moles")
+	VV_DROPDOWN_OPTION(VV_HK_SET_TEMPERATURE, "Set Temperature")
+	VV_DROPDOWN_OPTION(VV_HK_SET_VOLUME, "Set Volume")
+
+/datum/gas_mixture/vv_do_topic(list/href_list)
+	. = ..()
+>>>>>>> ddc10e625e... Merge pull request #12806 from Citadel-Station-13/silicons-patch-33
 	if(!.)
 		. += HEAT_CAPACITY_VACUUM //we want vacuums in turfs to have the same heat capacity as space
 
