@@ -3,8 +3,13 @@
 	id = "human"
 	default_color = "FFFFFF"
 
+<<<<<<< HEAD
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,MUTCOLORS_PARTSONLY,WINGCOLOR)
 	mutant_bodyparts = list("mcolor" = "FFF", "mcolor2" = "FFF","mcolor3" = "FFF","tail_human" = "None", "ears" = "None", "taur" = "None", "deco_wings" = "None")
+=======
+	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,MUTCOLORS_PARTSONLY,WINGCOLOR,CAN_SCAR)
+	mutant_bodyparts = list("mcolor" = "FFFFFF", "mcolor2" = "FFFFFF","mcolor3" = "FFFFFF","tail_human" = "None", "ears" = "None", "taur" = "None", "deco_wings" = "None")
+>>>>>>> 8be94f2ef0... Merge pull request #12873 from silicons/FUCK
 	use_skintones = USE_SKINTONES_GRAYSCALE_CUSTOM
 	skinned_type = /obj/item/stack/sheet/animalhide/human
 	disliked_food = GROSS | RAW
