@@ -148,7 +148,7 @@
 	atmosanalyzer_scan(air_contents, user, src)
 	return TRUE // Skyrat change
 
-/obj/machinery/portable_atmospherics/attacked_by(obj/item/I, mob/user)
+/obj/machinery/portable_atmospherics/attacked_by(obj/item/I, mob/user, attackchain_flags = NONE, damage_multiplier = 1)
 	if(I.force < 10 && !(stat & BROKEN))
 		take_damage(0)
 	else

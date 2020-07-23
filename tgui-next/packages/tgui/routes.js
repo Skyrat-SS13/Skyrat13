@@ -14,6 +14,7 @@ import { Bepis } from './interfaces/Bepis';
 import { BorgPanel } from './interfaces/BorgPanel';
 import { BrigTimer } from './interfaces/BrigTimer';
 import { Canvas } from './interfaces/Canvas';
+import { CameraConsole, CameraConsoleWrapper } from './interfaces/CameraConsole';
 import { Canister } from './interfaces/Canister';
 import { Cargo, CargoExpress } from './interfaces/Cargo';
 import { CellularEmporium } from './interfaces/CellularEmporium';
@@ -40,6 +41,7 @@ import { DnaVault } from './interfaces/DnaVault';
 import { EightBallVote } from './interfaces/EightBallVote';
 import { EmergencyShuttleConsole } from './interfaces/EmergencyShuttleConsole';
 import { EngravedMessage } from './interfaces/EngravedMessage';
+import { Gateway } from './interfaces/Gateway';
 import { Gps } from './interfaces/Gps';
 import { GravityGenerator } from './interfaces/GravityGenerator';
 import { GulagTeleporterConsole } from './interfaces/GulagTeleporterConsole';
@@ -81,6 +83,7 @@ import { RapidPipeDispenser } from './interfaces/RapidPipeDispenser';
 import { SatelliteControl } from './interfaces/SatelliteControl';
 import { ScannerGate } from './interfaces/ScannerGate';
 import { ShuttleManipulator } from './interfaces/ShuttleManipulator';
+import { SkillPanel } from './interfaces/SkillPanel';
 import { Sleeper } from './interfaces/Sleeper';
 import { SlimeBodySwapper } from './interfaces/SlimeBodySwapper';
 import { Signaler } from './interfaces/Signaler';
@@ -176,6 +179,11 @@ const ROUTES = {
   canvas: {
     component: () => Canvas,
     scrollable: false,
+  },
+  camera_console: {
+    component: () => CameraConsole,
+    wrapper: () => CameraConsoleWrapper,
+    scrollable: true,
   },
   canister: {
     component: () => Canister,
@@ -279,6 +287,10 @@ const ROUTES = {
   },
   engraved_message: {
     component: () => EngravedMessage,
+    scrollable: false,
+  },
+  gateway: {
+    component: () => Gateway,
     scrollable: false,
   },
   gps: {
@@ -471,6 +483,10 @@ const ROUTES = {
   },
   shuttle_manipulator: {
     component: () => ShuttleManipulator,
+    scrollable: true,
+  },
+  skillpanel: {
+    component: () => SkillPanel,
     scrollable: true,
   },
   sleeper: {

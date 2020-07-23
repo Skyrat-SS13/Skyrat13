@@ -2,7 +2,6 @@
 	name = "KinkMate"
 	desc = "A vending machine for all your unmentionable desires."
 	icon_state = "kink"
-	circuit = /obj/item/circuitboard/machine/kinkmate
 	product_slogans = "Kinky!;Sexy!;Check me out, big boy!"
 	vend_reply = "Have fun, you shameless pervert!"
 
@@ -12,6 +11,10 @@
 		/obj/item/clothing/under/misc/stripper = 4,
 		/obj/item/clothing/under/misc/stripper/green = 4,
 		/obj/item/clothing/under/misc/gear_harness = 4,
+		/obj/item/clothing/under/shorts/polychromic/pantsu = 4,
+		/obj/item/clothing/under/misc/poly_bottomless = 4,
+		/obj/item/clothing/under/misc/poly_tanktop = 4,
+		/obj/item/clothing/under/misc/poly_tanktop/female = 4,
 		/obj/item/clothing/neck/petcollar = 8,
 		/obj/item/clothing/neck/petcollar/choker = 4,
 		/obj/item/clothing/neck/petcollar/leather = 4,
@@ -30,6 +33,7 @@
 		/obj/item/clothing/neck/petcollar/locked = 2,
 		/obj/item/key/collar = 2,
 		/obj/item/clothing/under/misc/stripper/mankini = 4,
+		/obj/item/clothing/under/misc/keyholesweater = 2,
 		/obj/item/electropack/shockcollar = 4,
 		/obj/item/assembly/signaler = 4,
 		/obj/item/dildo/flared/huge = 4,
