@@ -7,15 +7,20 @@
 	features["ipc_antenna"] 	= sanitize_inlist(features["ipc_antenna"], GLOB.ipc_antennas_list)
 	//Citadel
 	features["flavor_text"]		= sanitize_text(features["flavor_text"], initial(features["flavor_text"]))
-	if(!features["mcolor2"] || features["mcolor"] == "#000")
+	if(!features["mcolor2"] || features["mcolor"] == "#000000")
 		features["mcolor2"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
-	if(!features["mcolor3"] || features["mcolor"] == "#000")
+	if(!features["mcolor3"] || features["mcolor"] == "#000000")
 		features["mcolor3"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
+<<<<<<< HEAD
 	features["mcolor2"]	= sanitize_hexcolor(features["mcolor2"], 3, 0)
 	features["mcolor3"]	= sanitize_hexcolor(features["mcolor3"], 3, 0)
 	//SKYRAT CHANGES
 	S["enable_personal_chat_color"]			>> enable_personal_chat_color
 	S["personal_chat_color"]			>> personal_chat_color
+=======
+	features["mcolor2"]	= sanitize_hexcolor(features["mcolor2"], 6, FALSE)
+	features["mcolor3"]	= sanitize_hexcolor(features["mcolor3"], 6, FALSE)
+>>>>>>> 6fca9af0ed... Merge pull request #12848 from silicons/morecolors
 
 	S["feature_ipc_chassis"] >> features["ipc_chassis"]
 
