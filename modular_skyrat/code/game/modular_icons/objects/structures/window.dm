@@ -32,4 +32,4 @@
 	icon = 'modular_skyrat/icons/eris/obj/structures/windows.dmi'
 
 /obj/structure/window/plastitanium/fulltile
-	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/platitanium_window.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/plastitanium_window.dmi'
