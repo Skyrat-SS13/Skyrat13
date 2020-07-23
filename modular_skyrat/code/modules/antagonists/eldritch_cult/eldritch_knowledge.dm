@@ -240,11 +240,11 @@
 		var/datum/mind/targeted =  A.find_target(user,GLOB.stolen_souls)//easy way, i dont feel like copy pasting that entire block of code
 		LH.target = targeted.current
 		qdel(A)
-		if(LH.target)
-			to_chat(user,"<span class='warning'>Your new target has been selected, go and sacrifice [LH.target.real_name]!</span>")
 
-		else
-			to_chat(user,"<span class='warning'>target could not be found for living heart.</span>")
+	if(LH.target)
+		to_chat(user,"<span class='warning'>Your target is [LH.target.real_name]!</span>")
+	else
+		to_chat(user,"<span class='warning'>target could not be found for living heart.</span>")
 
 
 /datum/eldritch_knowledge/living_heart
