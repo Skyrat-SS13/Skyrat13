@@ -58,6 +58,7 @@
 	next_knowledge = list(/datum/eldritch_knowledge/flesh_ghoul)
 	var/ghoul_amt = 2
 	var/list/spooky_scaries
+	var/progress = FALSE
 	route = PATH_FLESH
 
 /datum/eldritch_knowledge/flesh_grasp/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
@@ -75,10 +76,15 @@
 
 	if(QDELETED(human_target) || human_target.stat != DEAD)
 		return
-	
-	if(!do_mob(user,human_target,10 SECONDS))
+
+	if(progress)
 		return
 
+	if(!do_mob(user,human_target,10 SECONDS))
+		progress = TRUE
+		return
+		
+	progress = FALSE
 	var/mob/living/carbon/human/humie = new(get_turf(target))
 	humie.fully_replace_character_name(null,"Ghoul Warrior")
 	humie.setMaxHealth(50)
