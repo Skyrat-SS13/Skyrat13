@@ -323,18 +323,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	name = "Observer-Start"
 	icon_state = "observer_start"
 
-// Skyrat edit - ERG zone
-
-GLOBAL_DATUM_INIT(ERG_spawn, /obj/effect/landmark/erg_zone, null)
-
-/obj/effect/landmark/erg_zone
-	name = "ERG Spawn"
-	icon_state = "erg_start"
-
-/obj/effect/landmark/erg_zone/New(loc, ...)
-	. = ..()
-	GLOB.ERG_spawn = src
-
 // xenos.
 /obj/effect/landmark/xeno_spawn
 	name = "xeno_spawn"
