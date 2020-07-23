@@ -32,3 +32,9 @@
 	results = list(/datum/reagent/medicine/fibrin = 20)
 	required_reagents = list(/datum/reagent/blood = 10, /datum/reagent/oxygen = 10, /datum/reagent/water = 10, /datum/reagent/medicine/bicaridine = 10)
 	mix_message = "The mixture bubbles into a browned color."
+
+/datum/chemical_reaction/preservahyde
+	name = "Preservahyde"
+	id = "preservahyde"
+	results = list(/datum/reagent/medicine/preservahyde = 3)
+	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/toxin/formaldehyde = 1, /datum/reagent/bromine = 1)

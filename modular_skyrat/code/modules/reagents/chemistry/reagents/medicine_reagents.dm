@@ -229,3 +229,10 @@
 						reac_volume = max(0, reac_volume - 10)
 	else
 		M.adjustToxLoss(reac_volume * 0.8)
+
+/datum/reagent/medicine/preservahyde
+	name = "Preservahyde"
+	description = "A powerful preservation agent, utilizing the preservative effects of formaldehyde with significantly less of the histamine."
+	reagent_state = LIQUID
+	color = "#f7685e"
+	metabolization_rate = REAGENTS_METABOLISM * 0.25
