@@ -675,12 +675,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 		loc = loc.loc
 	return null
 
-//For objects that should embed, but make no sense being is_sharp or is_pointed()
-//e.g: rods
-GLOBAL_LIST_INIT(can_embed_types, typecacheof(list(
-	/obj/item/stack/rods,
-	/obj/item/pipe)))
-
 /*
 Checks if that loc and dir has an item on the wall
 */
@@ -1443,7 +1437,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		/obj/item/reagent_containers/food/snacks/grown,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom,
 		/obj/item/reagent_containers/food/snacks/grown/nettle, // base type
-		/obj/item/reagent_containers/food/snacks/deepfryholder,
 		/obj/item/reagent_containers/food/snacks/grown/shell,
 		/obj/item/reagent_containers/food/snacks/clothing,
 		/obj/item/reagent_containers/food/snacks/store/bread
