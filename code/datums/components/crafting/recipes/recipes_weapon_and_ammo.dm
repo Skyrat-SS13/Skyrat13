@@ -42,7 +42,7 @@
 
 /datum/crafting_recipe/spear
 	name = "Spear"
-	result = /obj/item/twohanded/spear
+	result = /obj/item/spear
 	reqs = list(/obj/item/restraints/handcuffs/cable = 1,
 				/obj/item/shard = 1,
 				/obj/item/stack/rods = 1)
@@ -110,7 +110,7 @@
 
 /datum/crafting_recipe/chainsaw
 	name = "Chainsaw"
-	result = /obj/item/twohanded/required/chainsaw
+	result = /obj/item/chainsaw
 	reqs = list(/obj/item/circular_saw = 1,
 				/obj/item/stack/cable_coil = 3,
 				/obj/item/stack/sheet/plasteel = 5)
@@ -141,7 +141,7 @@
 	result = /obj/item/bombcore/chemical
 	reqs = list(
 		/obj/item/stock_parts/matter_bin = 1,
-		/obj/item/twohanded/required/gibtonite = 1,
+		/obj/item/gibtonite = 1,
 		/obj/item/grenade/chem_grenade = 2
 	)
 	parts = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/grenade/chem_grenade = 2)
@@ -173,10 +173,10 @@
 
 /datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
-	result = /obj/item/twohanded/spear
-	reqs = list(/obj/item/twohanded/spear = 1,
+	result = /obj/item/spear
+	reqs = list(/obj/item/spear = 1,
 				/obj/item/grenade = 1)
-	parts = list(/obj/item/twohanded/spear = 1,
+	parts = list(/obj/item/spear = 1,
 				/obj/item/grenade = 1)
 	time = 15
 	category = CAT_WEAPONRY
@@ -192,8 +192,8 @@
 	result =  /obj/item/gun/ballistic/bow/pipe
 	reqs = list(/obj/item/pipe = 5,
 	/obj/item/stack/sheet/plastic = 15,
-	/obj/item/weaponcrafting/durathread_string = 5)
-	time = 450
+	/obj/item/weaponcrafting/string = 5)
+	time = 150
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -326,9 +326,9 @@
 /datum/crafting_recipe/arrow
 	name = "Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/wood
-	time = 30
+	time = 5 // these only do 15 damage
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1,
-				 /obj/item/stack/sheet/durathread = 1,
+				 /obj/item/stack/sheet/cloth = 1,
 				 /obj/item/stack/rods = 1) // 1 metal sheet = 2 rods = 2 arrows
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
@@ -336,7 +336,7 @@
 /datum/crafting_recipe/bone_arrow
 	name = "Bone Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/bone
-	time = 30
+	time = 5
 	always_availible = FALSE
 	reqs = list(/obj/item/stack/sheet/bone = 1,
 				 /obj/item/stack/sheet/sinew = 1,
@@ -348,7 +348,7 @@
 	name = "Ashen Arrow"
 	result = /obj/item/ammo_casing/caseless/arrow/ash
 	tools = list(TOOL_WELDER)
-	time = 30
+	time = 10 // 1.5 seconds minimum per actually worthwhile arrow excluding interface lag
 	always_availible = FALSE
 	reqs = list(/obj/item/ammo_casing/caseless/arrow/wood = 1)
 	category = CAT_WEAPONRY

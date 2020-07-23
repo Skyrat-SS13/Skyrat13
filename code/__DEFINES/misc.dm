@@ -158,6 +158,15 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 #define BLOOD_COLOR_LIZARD			"#db004D"
 #define BLOOD_COLOR_UNIVERSAL		"#db3300"
 #define BLOOD_COLOR_BUG				"#a37c0f"
+//skyrat blood
+#define BLOOD_COLOR_PLANT			"#99ff33"
+#define BLOOD_COLOR_ALCOHOL			"#800000"
+#define BLOOD_COLOR_GREY			"#a6a6a6"
+#define BLOOD_COLOR_ANGEL			"#ff1a66"
+#define BLOOD_COLOR_MUSHROOM		"#730099"
+#define BLOOD_COLOR_DARK			"#1a1a1a"
+#define BLOOD_COLOR_BIOHAZARD		"#008000"
+//
 
 
 //suit sensors: sensor_mode defines
@@ -432,6 +441,7 @@ GLOBAL_LIST_INIT(pda_reskins, list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi', PDA_S
 //text files
 #define BRAIN_DAMAGE_FILE "traumas.json"
 #define ION_FILE "ion_laws.json"
+#define REDPILL_FILE "redpill.json"
 #define PIRATE_NAMES_FILE "pirates.json"
 
 
@@ -461,7 +471,7 @@ GLOBAL_LIST_INIT(pda_reskins, list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi', PDA_S
 #define EGG_LAYING_MESSAGES list("lays an egg.","squats down and croons.","begins making a huge racket.","begins clucking raucously.")
 
 // list of all null rod weapons
-#define HOLY_WEAPONS /obj/item/nullrod, /obj/item/twohanded/dualsaber/hypereutactic/chaplain, /obj/item/gun/energy/laser/redtag/hitscan/chaplain, /obj/item/multitool/chaplain, /obj/item/clothing/gloves/fingerless/pugilist/chaplain, /obj/item/melee/baseball_bat/chaplain
+#define HOLY_WEAPONS /obj/item/nullrod, /obj/item/dualsaber/hypereutactic/chaplain, /obj/item/gun/energy/laser/redtag/hitscan/chaplain, /obj/item/multitool/chaplain, /obj/item/clothing/gloves/fingerless/pugilist/chaplain, /obj/item/melee/baseball_bat/chaplain
 
 // Used by PDA and cartridge code to reduce repetitiveness of spritesheets
 #define PDAIMG(what) {"<span class="pda16x16 [#what]"></span>"}
