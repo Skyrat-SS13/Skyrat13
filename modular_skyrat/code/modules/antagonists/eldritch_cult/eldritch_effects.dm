@@ -61,7 +61,7 @@
 	is_in_use = TRUE
 	for(var/X in knowledge)
 		var/datum/eldritch_knowledge/current_eldritch_knowledge = knowledge[X]
-		if(!(codex.charge - current_eldritch_knowledge.charges_needed >= 0 ) && (current_eldritch_knowledge.charges_needed > 0 || current_eldritch_knowledge.force_showup == TRUE)  && current_eldritch_knowledge.recipe_snowflake_check(user,buckled_human,loc))
+		if(codex.charge < current_eldritch_knowledge.charges_needed || (current_eldritch_knowledge.charges_needed == 0 && current_eldritch_knowledge.force_showup == FALSE) || current_eldritch_knowledge.recipe_snowflake_check(buckled_human,loc))
 			continue
 		name_list += current_eldritch_knowledge.name
 		name_list[current_eldritch_knowledge.name] = current_eldritch_knowledge
