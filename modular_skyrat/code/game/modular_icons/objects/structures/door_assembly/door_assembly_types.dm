@@ -9,7 +9,7 @@
 	icon_state = "construction"
 
 /obj/structure/door_assembly/door_assembly_sec
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_command.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_security.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
 	icon_state = "construction"
 
