@@ -12,7 +12,7 @@
 	title = "Mining Overseer"
 	alt_titles = list("Mining Overseer", "Head Miner", "Lavaland Inspector")
 	supervisors = "the quartermaster"
-	custom_spawn_text = "Remember, your job is to provide assistance to fellow miners - do not go out on the field to mine unless the situation calls for it. Although you have access to the security radio channel, you are not a security member in any official capacity - just warn actual security when bad stuff happens with miners on in lavaland."
+	custom_spawn_text = "Remember, your job is to provide assistance to fellow miners - do not go out on the field to mine unless the situation calls for it. Although you have access to the security radio channel, you are not a security member in any official capacity - just warn actual security when bad stuff happens with miners on lavaland."
 	outfit = /datum/outfit/job/miner/overseer
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MINING,
 				ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_MINE_OVERSEER)
