@@ -248,7 +248,7 @@
 /datum/objective/sacrifice_ecult/update_explanation_text()
 	. = ..()
 	target_amount = rand(2,6)
-	explanation_text = "Steal souls of at least[target_amount] people."
+	explanation_text = "Steal souls of at least [target_amount] people."
 
 /datum/objective/sacrifice_ecult/check_completion()
 	if(!owner)
