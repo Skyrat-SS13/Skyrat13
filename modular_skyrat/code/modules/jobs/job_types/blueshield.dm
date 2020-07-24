@@ -1,12 +1,12 @@
 /datum/job/blueshield
 	title = "Blueshield"
 	flag = OFFICER
-	department_head = list("Captain")
+	department_head = list("CentCom")
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Captain"
+	supervisors = "Central Command"
 	selection_color = "#ddddff"
 	minimal_player_age = 7
 	exp_requirements = 2400
@@ -50,6 +50,5 @@
 
 /datum/outfit/plasmaman/blueshield
 	name = "Blueshield Plasmaman"
-
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blueshield
 	uniform = /obj/item/clothing/under/plasmaman/blueshield
