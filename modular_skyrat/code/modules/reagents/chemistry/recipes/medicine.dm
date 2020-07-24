@@ -27,7 +27,7 @@
 	results = list(/datum/reagent/medicine/preservahyde = 3)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/toxin/formaldehyde = 1, /datum/reagent/bromine = 1)
 
-//Bobmed medicines
+//Bobmed medicine reagents
 /datum/chemical_reaction/corticosteroids
 	name = "Corticosteroids"
 	id = /datum/reagent/medicine/corticosteroids
