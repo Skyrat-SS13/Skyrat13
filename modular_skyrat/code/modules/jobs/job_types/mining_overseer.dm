@@ -7,7 +7,7 @@
 //Rescuing lost and/or injured miners
 //Repairing and generally maintaining the lavaland base
 //Impeding miners from doing dumb shit
-//Being a security guard for lavaland but cooler
+//Being a mall cop for lavaland but even less cool
 /datum/job/mining/overseer
 	title = "Mining Overseer"
 	alt_titles = list("Mining Overseer", "Head Miner", "Lavaland Inspector")
