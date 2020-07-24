@@ -139,6 +139,9 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	var/list/body_descriptors = list()
 
 	var/list/alt_titles_preferences = list()
+	
+	var/accept_ERG = FALSE
+	
 	/// If we have persistent scars enabled
 	var/persistent_scars = TRUE
 	/// We have 5 slots for persistent scars, if enabled we pick a random one to load (empty by default) and scars at the end of the shift if we survived as our original person
@@ -148,6 +151,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	/// A list, associating a set of cosmetic scars to each limb. These are fluff and cannot be removed via medical means.
 	/// No scars are applied to limbs with empty lists.
 	var/list/cosmetic_scars = ASSOCIATED_SCARS
+	
 	//END OF SKYRAT CHANGES
 	var/underwear = "Nude"				//underwear type
 	var/undie_color = "FFF"
@@ -244,7 +248,7 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
 
-		// Want randomjob if preferences already filled - Donkie
+	// Want randomjob if preferences already filled - Donkie
 	var/joblessrole = BERANDOMJOB  //defaults to 1 for fewer assistants
 
 	// 0 = character settings, 1 = game preferences
@@ -3198,6 +3202,12 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					scars_list["3"] = ""
 					scars_list["4"] = ""
 					scars_list["5"] = ""
+<<<<<<< HEAD
+=======
+				if("accept_ERG")
+					accept_ERG = !accept_ERG
+					user.mind?.accept_ERG = accept_ERG
+>>>>>>> bamboomed
 				//End of skyrat changes
 				if("action_buttons")
 					buttons_locked = !buttons_locked
