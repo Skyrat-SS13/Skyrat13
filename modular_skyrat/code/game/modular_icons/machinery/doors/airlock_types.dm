@@ -3,12 +3,12 @@
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
 
 /obj/machinery/door/airlock/public
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_public.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_glass.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_glass_overlays.dmi'
 
 /obj/machinery/door/airlock/external
 	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_external.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_overlays.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_external_overlays.dmi'
 
 /obj/machinery/door/airlock/centcom
 	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_cc.dmi'
@@ -19,8 +19,8 @@
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_overlays.dmi'
 
 /obj/machinery/door/airlock/vault
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/vault.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_overlays.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_vault.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_vault_overlays.dmi'
 
 /obj/machinery/door/airlock/hatch
 	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_hatch.dmi'
@@ -31,8 +31,8 @@
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_overlays.dmi'
 
 /obj/machinery/door/airlock/highsecurity
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/hightechsecurity.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_overlays.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_hightechsecurity.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_hightechsecurity_overlays.dmi'
 
 /obj/machinery/door/airlock/shuttle
 	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_silver.dmi'
@@ -60,11 +60,11 @@
 
 /obj/machinery/door/airlock/maintenance
 	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_extra.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_overlays.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
 
 /obj/machinery/door/airlock/maintenance/external
 	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_external.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_overlays.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_external_overlays.dmi'
 
 /obj/machinery/door/airlock/mining
 	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_mining.dmi'
@@ -83,7 +83,7 @@
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
 
 /obj/machinery/door/airlock/virology
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_medical.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_medical_virology.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
 
 /obj/machinery/door/airlock/freezer
@@ -91,55 +91,46 @@
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
 
 /obj/machinery/door/airlock/gold
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "metal"
-	color = "#FFFF99"
+	color = "#ffff73"
 
 /obj/machinery/door/airlock/silver
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "metal"
-	color = "#d4f1ff"
+	color = "#a1c8db"
 
 /obj/machinery/door/airlock/diamond
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "metal"
-	color = "#88fbff"
+	color = "#3cf9ff"
 
 /obj/machinery/door/airlock/uranium
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "metal"
 	color = "#2fb314"
 
 /obj/machinery/door/airlock/plasma
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "metal"
-	color = "#d753ff"
+	color = "#d341ff"
 
 /obj/machinery/door/airlock/bananium
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "metal"
-	color = "#ffee53"
+	color = "#fffb00"
 
 /obj/machinery/door/airlock/sandstone
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "wood"
-	color = "#f5f0c6"
+	color = "#fff7b3"
 
 /obj/machinery/door/airlock/titanium
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "metal"
-	color = "#ffffff"
+	color = "#c7c7c7"
 
 /obj/machinery/door/airlock/wood
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "wood"
 	color = "#815400"

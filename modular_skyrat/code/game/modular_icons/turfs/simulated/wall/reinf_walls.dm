@@ -5,4 +5,4 @@
 /turf/closed/wall/r_wall/syndicate
 	icon = 'modular_skyrat/icons/eris/turf/walls/plastitanium.dmi'
 	icon_state = "wall"
-	color = "#404040"
+	color = "#555555"

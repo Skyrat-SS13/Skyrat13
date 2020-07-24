@@ -5,22 +5,22 @@
 /turf/closed/wall/mineral/gold
 	icon = 'modular_skyrat/icons/eris/turf/walls/gwall.dmi'
 	icon_state = "gwall"
-	color = "#FFFF99"
+	color = "#ffff73"
 
 /turf/closed/wall/mineral/silver
 	icon = 'modular_skyrat/icons/eris/turf/walls/gwall.dmi'
 	icon_state = "gwall"
-	color = "#d4f1ff"
+	color = "#a1c8db"
 
 /turf/closed/wall/mineral/diamond
 	icon = 'modular_skyrat/icons/eris/turf/walls/gwall.dmi'
 	icon_state = "gwall"
-	color = "#88fbff"
+	color = "#3cf9ff"
 
 /turf/closed/wall/mineral/bananium
 	icon = 'modular_skyrat/icons/eris/turf/walls/gwall.dmi'
 	icon_state = "gwall"
-	color = "#ffee53"
+	color = "#fffb00"
 
 /turf/closed/wall/mineral/uranium
 	icon = 'modular_skyrat/icons/eris/turf/walls/gwall.dmi'
@@ -30,12 +30,12 @@
 /turf/closed/wall/mineral/plasma
 	icon = 'modular_skyrat/icons/eris/turf/walls/gwall.dmi'
 	icon_state = "gwall"
-	color = "#d753ff"
+	color = "#d341ff"
 
 /turf/closed/wall/mineral/iron
 	icon = 'modular_skyrat/icons/eris/turf/walls/gwall.dmi'
 	icon_state = "gwall"
-	color = "#788c8f"
+	color = "#677172"
 
 /turf/closed/wall/mineral/snow
 	icon = 'modular_skyrat/icons/eris/turf/walls/gwall.dmi'
@@ -45,14 +45,14 @@
 /turf/closed/wall/mineral/titanium
 	icon = 'modular_skyrat/icons/eris/turf/walls/titanium.dmi'
 	icon_state = "wall"
-	color = "#ffffff"
+	color = "#c7c7c7"
 
 /turf/closed/wall/mineral/titanium/survival
 	icon = 'modular_skyrat/icons/eris/turf/walls/titanium.dmi'
 	icon_state = "wall"
-	color = "#41538b"
+	color = "#53608a"
 
 /turf/closed/wall/mineral/plastitanium
 	icon = 'modular_skyrat/icons/eris/turf/walls/plastitanium.dmi'
 	icon_state = "wall"
-	color = "#404040"
+	color = "#555555"

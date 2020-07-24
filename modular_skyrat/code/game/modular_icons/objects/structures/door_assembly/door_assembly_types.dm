@@ -1,6 +1,6 @@
 /obj/structure/door_assembly/door_assembly_public
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_public.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_glass.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_glass_overlays.dmi'
 	icon_state = "construction"
 
 /obj/structure/door_assembly/door_assembly_com
@@ -50,12 +50,12 @@
 
 /obj/structure/door_assembly/door_assembly_extmai
 	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_external.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_external_overlays.dmi'
 	icon_state = "construction"
 
 /obj/structure/door_assembly/door_assembly_ext
 	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_external.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_external_overlays.dmi'
 	icon_state = "construction"
 
 /obj/structure/door_assembly/door_assembly_fre
@@ -74,13 +74,13 @@
 	icon_state = "construction"
 
 /obj/structure/door_assembly/door_assembly_highsecurity
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/hightechsecurity.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_overlays.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_hightechsecurity.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_hightechsecurity_overlays.dmi'
 	icon_state = "construction"
 
 /obj/structure/door_assembly/door_assembly_vault
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/vault.dmi'
-	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_maint_overlays.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_vault.dmi'
+	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_vault_overlays.dmi'
 	icon_state = "construction"
 
 /obj/structure/door_assembly/door_assembly_shuttle
@@ -89,7 +89,7 @@
 	icon_state = "construction"
 
 /obj/structure/door_assembly/door_assembly_viro
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_medical.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_medical_virology.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
 	icon_state = "construction"
 
@@ -104,55 +104,46 @@
 	icon_state = "construction"
 
 /obj/structure/door_assembly/door_assembly_gold
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "construction_metal"
-	color = "#FFFF99"
+	color = "#ffff73"
 
 /obj/structure/door_assembly/door_assembly_silver
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "construction_metal"
-	color = "#d4f1ff"
+	color = "#a1c8db"
 
 /obj/structure/door_assembly/door_assembly_diamond
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "construction_metal"
-	color = "#88fbff"
+	color = "#3cf9ff"
 
 /obj/structure/door_assembly/door_assembly_uranium
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "construction_metal"
 	color = "#2fb314"
 
 /obj/structure/door_assembly/door_assembly_plasma
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "construction_metal"
-	color = "#d753ff"
+	color = "#d341ff"
 
 /obj/structure/door_assembly/door_assembly_bananium
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "construction_metal"
-	color = "#ffee53"
+	color = "#fffb00"
 
 /obj/structure/door_assembly/door_assembly_sandstone
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "construction_wood"
-	color = "#f5f0c6"
+	color = "#fff7b3"
 
 /obj/structure/door_assembly/door_assembly_titanium
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "construction_metal"
-	color = "#ffffff"
+	color = "#c7c7c7"
 
 /obj/structure/door_assembly/door_assembly_wood
-	icon = 'modular_skyrat/icons/eris/obj/doors/station/material_doors.dmi'
+	icon = 'modular_skyrat/icons/eris/obj/doors/station/door_material.dmi'
 	overlays_file = 'modular_skyrat/icons/eris/obj/doors/station/door_overlays.dmi'
-	icon_state = "construction_wood"
 	color = "#815400"
