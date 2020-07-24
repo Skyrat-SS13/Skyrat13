@@ -2,7 +2,7 @@
 
 /obj/item/projectile/bullet/c9mm
 	name = "9mm bullet"
-	damage = 20
+	damage = 25  //Skyrat edit: Same damage as .38, they're literally the same round with a different load.
 	wound_bonus = -10
 	embedding = list(embed_chance=15, fall_chance=3, jostle_chance=4, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=5, jostle_pain_mult=6, rip_time=10)
 
@@ -25,6 +25,7 @@
 	name = "10mm bullet"
 	damage = 30
 	wound_bonus = 10
+	stamina = 5  //Skyrat edit: Stopping power, 10x25mm is almost the same as .45 ACP if not bigger.
 
 /obj/item/projectile/bullet/c10mm_ap
 	name = "10mm armor-piercing bullet"
@@ -36,6 +37,7 @@
 	name = "10mm hollow-point bullet"
 	damage = 40
 	armour_penetration = -50
+	stamina = 8 //Skyrat edit: Stopping power, but better. JHP rounds inflict a lot of pain and won't penetrate.
 
 /obj/item/projectile/bullet/incendiary/c10mm
 	name = "10mm incendiary bullet"
