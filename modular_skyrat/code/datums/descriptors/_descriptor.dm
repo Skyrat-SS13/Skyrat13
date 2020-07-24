@@ -48,11 +48,9 @@
 	. = "[get_third_person_message_start(me)] [get_standalone_value_descriptor(my_value)][species_text]"
 
 /datum/mob_descriptor/proc/get_secondary_comparison_component(mob/me, mob/other_mob, my_value, comparing_value)
-	var/raw_value = my_value
-	my_value += current_value
 	var/variance = abs((my_value)-comparing_value)
-	if(variance < 1)
-		. = "[.], [get_comparative_value_string_equivalent(me, other_mob, raw_value)]"
+	if(variance == 0)
+		. = "[.], [get_comparative_value_string_equivalent(me, other_mob, my_value)]"
 	else
 		variance = variance / LAZYLEN(standalone_value_descriptors)
 		if(my_value < comparing_value)

@@ -1,13 +1,13 @@
 // .50 (Sniper)
 
 /obj/item/projectile/bullet/p50
-	name =".50 bullet"
+	name =".50 BMG bullet"
 	pixels_per_second = TILES_TO_PIXELS(25)
-	damage = 70
+	damage = 92                    //Skyrat Edit
 	knockdown = 100
 	dismemberment = 50
-	armour_penetration = 50
-	zone_accuracy_factor = 100		//guarunteed 100%
+	armour_penetration = 85        //Skyrat Edit: This means it will go clean through bulletproof armor and most hardsuits, it's 18000> Joules of kinetic force jfc
+	zone_accuracy_factor = 100		//This guarantees the projectile with hit the tile it's fired at 100%
 	var/breakthings = TRUE
 
 /obj/item/projectile/bullet/p50/on_hit(atom/target, blocked = 0)
