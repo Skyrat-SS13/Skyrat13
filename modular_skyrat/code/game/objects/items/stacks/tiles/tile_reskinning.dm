@@ -124,4 +124,4 @@
 			if("Solar Panel")
 				icon_state = "solarpanel"
 				icon_regular_floor = "solarpanel"
-			else return()
+			else return null
