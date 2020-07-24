@@ -1,12 +1,12 @@
 /datum/job/blueshield
 	title = "Blueshield"
 	flag = OFFICER
-	department_head = list("CentCom")
+	department_head = list("Captain")
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Central Command"
+	supervisors = "the Captain"
 	selection_color = "#ddddff"
 	minimal_player_age = 7
 	exp_requirements = 2400
