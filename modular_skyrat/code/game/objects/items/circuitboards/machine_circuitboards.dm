@@ -34,8 +34,8 @@
 		/obj/item/stock_parts/micro_laser = 2,
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stock_parts/scanning_module = 2,
-		/obj/item/stack/ore/bluespace_crystal = 2)
-
+		/obj/item/stack/ore/bluespace_crystal = 5)
+/*
 /obj/item/circuitboard/machine/cryptominer/syndie
 	name = "Syndicate Cryptocurrency Miner (Machine Board)"
 	build_path = /obj/machinery/cryptominer/syndie
@@ -45,7 +45,7 @@
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stock_parts/scanning_module = 2,
 		/obj/item/stack/ore/bluespace_crystal = 2)
-
+*/
 //Wireless Charging
 /obj/item/circuitboard/machine/wirelesscharger/cells
 	name = "Wireless Cell Charger (Machine Board)"
