@@ -65,7 +65,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isslimeperson(A) (is_species(A, /datum/species/jelly/slime))
 #define isluminescent(A) (is_species(A, /datum/species/jelly/luminescent))
 #define iszombie(A) (is_species(A, /datum/species/zombie))
-#define ismoth(A) (is_species(A, /datum/species/insect))
 #define ishumanbasic(A) (is_species(A, /datum/species/human))
 #define iscatperson(A) (ishumanbasic(A) && istype(A.dna.species, /datum/species/human/felinid) )
 #define isdwarf(A) (is_species(A, /datum/species/dwarf))
@@ -79,15 +78,19 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 // Citadel specific species
 #define isipcperson(A) (is_species(A, /datum/species/ipc))
 #define issynthliz(A) (is_species(A, /datum/species/synthliz))
-#define ismammal(A) (is_species(A, /datum/species/mammal))
-#define isavian(A) (is_species(A, /datum/species/avian))
-#define isaquatic(A) (is_species(A, /datum/species/aquatic))
 #define isinsect(A) (is_species(A, /datum/species/insect))
 #define isxenoperson(A) (is_species(A, /datum/species/xeno))
 #define isstartjelly(A) (is_species(A, /datum/species/jelly/roundstartslime))
 
 // Skyrat specific species
-#define isvox(A) (is_species(A, /datum/species/vox))	//Defines Vox for an !istype verb. Skyrat change.
+#define isvox(A) (is_species(A, /datum/species/vox))
+#define ishumanoid(A) (is_species(A, /datum/species/human/humanoid))
+#define isdunmer(A) (is_species(A, /datum/species/human/humanoid/dunmer))
+#define isanthro(A) (is_species(A, /datum/species/anthro))
+#define ismammal(A) (is_species(A, /datum/species/anthro/mammal))
+#define isavian(A) (is_species(A, /datum/species/anthro/avian))
+#define isaquatic(A) (is_species(A, /datum/species/anthro/aquatic))
+#define ismoth(A) (is_species(A, /datum/species/insect/moth))
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
@@ -138,6 +141,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define iscat(A) (istype(A, /mob/living/simple_animal/pet/cat))
 
+#define isdog(A) (istype(A, /mob/living/simple_animal/pet/dog))
+
 #define iscorgi(A) (istype(A, /mob/living/simple_animal/pet/dog/corgi))
 
 #define ishostile(A) (istype(A, /mob/living/simple_animal/hostile))
@@ -149,6 +154,10 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isclockmob(A) (istype(A, /mob/living/simple_animal/hostile/clockwork))
 
 #define isconstruct(A) (istype(A, /mob/living/simple_animal/hostile/construct))
+
+#define isfauna(A)	(istype(A, /mob/living/simple_animal/hostile/asteroid))
+
+#define iselite(A)	(istype(A, /mob/living/simple_animal/hostile/asteroid/elite))
 
 #define ismegafauna(A) (istype(A, /mob/living/simple_animal/hostile/megafauna))
 
@@ -185,6 +194,12 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isitem(A) (istype(A, /obj/item))
 
+#define isgrenade(A) (istype(A, /obj/item/grenade))
+
+#define islandmine(A) (istype(A, /obj/effect/mine))
+
+#define isammocasing(A) (istype(A, /obj/item/ammo_casing))
+
 #define isidcard(I) (istype(I, /obj/item/card/id))
 
 #define isstructure(A) (istype(A, /obj/structure))
@@ -213,7 +228,7 @@ GLOBAL_LIST_INIT(pointed_types, typecacheof(list(
 
 #define isgun(A) (istype(A, /obj/item/gun))
 
-#define isfood(A) (istype(A, /obj/item/reagent_containers/food))
+#define isfood(A) (istype(A, /obj/item/reagent_containers/food/snacks))
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))

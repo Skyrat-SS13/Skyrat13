@@ -1,13 +1,16 @@
+/*
 /obj/machinery/vending/kink
 	name = "KinkMate"
 	desc = "A vending machine for all your unmentionable desires."
 	icon_state = "kink"
-	circuit = /obj/item/circuitboard/machine/kinkmate
+	//circuit = /obj/item/circuitboard/machine/kinkmate skyrat edit - we dont use this circuit anymore, its all normal now
 	product_slogans = "Kinky!;Sexy!;Check me out, big boy!"
 	vend_reply = "Have fun, you shameless pervert!"
 	products = list(
+				/obj/item/clothing/head/maid = 5,
 				/obj/item/clothing/under/costume/maid = 5,
 				/obj/item/clothing/under/rank/civilian/janitor/maid = 5,
+				/obj/item/clothing/gloves/evening = 5,
 				/obj/item/clothing/neck/petcollar = 5,
 				/obj/item/clothing/neck/petcollar/choker = 5,
 				/obj/item/clothing/neck/petcollar/leather = 5,
@@ -51,3 +54,4 @@
 /obj/item/vending_refill/kink
 	machine_name 	= "KinkMate"
 	icon_state 		= "refill_kink"
+*/
