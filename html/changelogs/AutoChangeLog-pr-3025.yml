@@ -1,6 +1,0 @@
-author: "Gandalf2k15"
-delete-after: True
-changes: 
-  - rscadd: "Added a new(old) PA sprite."
-  - tweak: "Made the PA control computer hacking more intuitive."
-  - bugfix: "Fixed the PA control computer sprite."
