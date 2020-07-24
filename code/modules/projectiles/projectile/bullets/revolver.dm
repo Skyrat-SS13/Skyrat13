@@ -2,13 +2,8 @@
 
 /obj/item/projectile/bullet/n762
 	name = "7.62x38mmR bullet"
-<<<<<<< HEAD
 	damage = 50     //Skyrat edit: Weaker than .357 but still very effective
 	wound_bonus = -70
-=======
-	wound_bonus = -70
-	damage = 50     //Skyrat edit: Weaker than .357 but still very effective
->>>>>>> bamboomed
 
 // .50AE (Desert Eagle)
 
