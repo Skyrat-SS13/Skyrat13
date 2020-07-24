@@ -3540,7 +3540,6 @@
 #include "modular_skyrat\code\datums\ert.dm"
 #include "modular_skyrat\code\datums\event_menu.dm"
 #include "modular_skyrat\code\datums\saymode.dm"
-#include "modular_skyrat\code\datums\actions\erg.dm"
 #include "modular_skyrat\code\datums\components\embedded.dm"
 #include "modular_skyrat\code\datums\components\mirv.dm"
 #include "modular_skyrat\code\datums\components\pellet_cloud.dm"
