@@ -41,11 +41,6 @@
 
 /obj/item/organ/lungs/fakedemon/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
 	. = ..()
-	var/list/breath_gases = breath.gases
-	var/O2_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/oxygen])+(8*breath.get_breath_partial_pressure(breath_gases[/datum/gas/pluoxium]))
 	var/CO2_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/carbon_dioxide])
-	if(O2_pp >= safe_oxygen_max)
-		owner?.reagents?.add_reagent(/datum/reagent/fuel, O2_pp * 0.01)
-		owner?.IgniteMob()
-	if(CO2_pp >= safe_co2_max * 0.35)
+	if(CO2_pp >= safe_co2_max * 0.25)
 		owner?.reagents?.add_reagent(/datum/reagent/medicine/omnizine, CO2_pp * 0.05)
