@@ -3202,12 +3202,6 @@ GLOBAL_LIST_INIT(food, list( // Skyrat addition
 					scars_list["3"] = ""
 					scars_list["4"] = ""
 					scars_list["5"] = ""
-<<<<<<< HEAD
-=======
-				if("accept_ERG")
-					accept_ERG = !accept_ERG
-					user.mind?.accept_ERG = accept_ERG
->>>>>>> bamboomed
 				//End of skyrat changes
 				if("action_buttons")
 					buttons_locked = !buttons_locked
