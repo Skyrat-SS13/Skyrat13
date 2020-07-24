@@ -21,3 +21,7 @@
 /obj/effect/landmark/start/psychologist
 	name = "Psychologist"
 	icon_state = "Medical Doctor"
+
+/obj/effect/landmark/start/shaft_miner_overseer
+	name = "Mining Overseer"
+	icon_state = "Shaft Miner"

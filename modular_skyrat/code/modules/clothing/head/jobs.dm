@@ -21,3 +21,8 @@
 	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/head.dmi'
 	icon_state = "blueshield_navy"
 	item_state = "blueshield_navy"
+
+//mining overseer
+/obj/item/clothing/head/beret/qm/overseer
+	name = "mining overseer's beret"
+	desc = "Worn only by those who sacrifice their right to dying to megafauna for the sake of helping those who do have the right."

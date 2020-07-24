@@ -1,4 +1,14 @@
-//DO NOT INCLUDE THIS FILE. IT CAUSES FUCKING ARRAY ERRORS FOR SOME IDIOTIC REASON.
+//Fuck it, 5 miners. Reasons:
+//Bobmed is coming soon and lavaland is probably
+//gonna get nerfed hard.
+//But most importantly: One specific person
+//has been bugging me in DMs to do this even though
+//i don't think it's a particularly great idea.
+/datum/job/mining
+	department_head = list("Quartermaster and Mining Overseer")
+	supervisors = "the mining overseer and the quartermaster"
+	total_positions = 5
+
 //Fully-equipped shaft miner outfit to make debugging less tedious for Bob Joga :)
 /datum/outfit/job/miner/equipped/fullyequipped
 	name = "Shaft Miner (Equpped+)"

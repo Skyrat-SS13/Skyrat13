@@ -15,3 +15,7 @@
 	icon = 'modular_skyrat/icons/obj/radio.dmi'
 	icon_state = "bshield_cypherkey"
 	channels = list(RADIO_CHANNEL_COMMAND = 1, RADIO_CHANNEL_SECURITY = 1)
+
+/obj/item/encryptionkey/headset_mining/overseer
+	name = "\proper the mining overseer's encryption key"
+	channels = list(RADIO_CHANNEL_SUPPLY = 1, RADIO_CHANNEL_SECURITY = 1)

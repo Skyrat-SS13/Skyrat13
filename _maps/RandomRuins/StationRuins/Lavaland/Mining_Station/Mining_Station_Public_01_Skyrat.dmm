@@ -1,9 +1,164 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/effect/turf_decal/tile/red,
+/obj/machinery/light,
+/obj/machinery/camera{
+	c_tag = "Trading Post Security Office";
+	dir = 1;
+	network = list("labor")
+	},
+/mob/living/simple_animal/bot/secbot/beepsky{
+	desc = "Powered by the tears and sweat of laborers.";
+	name = "Prison Ofitser"
+	},
+/turf/open/floor/plasteel,
+/area/mine/laborcamp/security)
+"ab" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/mob/living/simple_animal/bot/secbot/beepsky{
+	desc = "Powered by the tears and sweat of laborers.";
+	name = "Prison Ofitser"
+	},
+/turf/open/floor/plasteel,
+/area/mine/laborcamp/security)
+"ac" = (
+/turf/closed/wall/r_wall,
+/area/mine/living_quarters)
+"ad" = (
+/turf/closed/wall,
+/area/mine/living_quarters/overseer_office)
+"ae" = (
+/turf/closed/wall/r_wall,
+/area/mine/living_quarters/overseer_office)
+"af" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/turf/open/floor/carpet/black,
+/area/mine/living_quarters/overseer_office)
+"ag" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"ah" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/chair,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"ai" = (
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"aj" = (
+/turf/open/floor/carpet/black,
+/area/mine/living_quarters/overseer_office)
+"ak" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/structure/closet/secure_closet/miner/overseer,
+/turf/open/floor/carpet/black,
+/area/mine/living_quarters/overseer_office)
 "al" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"am" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/carpet/black,
+/area/mine/living_quarters/overseer_office)
+"an" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/table/wood,
+/obj/item/gun/energy/kinetic_accelerator{
+	desc = "A normal run of the mill PKA with a makeshift mod capacity increase... the way it was done was literally just ripping off some of the polymer on the mod storage section.";
+	max_mod_capacity = 110;
+	name = "overseer's prized PKA"
+	},
+/turf/open/floor/carpet/black,
+/area/mine/living_quarters/overseer_office)
+"ao" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/carpet/black,
+/area/mine/living_quarters/overseer_office)
+"ap" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/turf/open/floor/carpet/black,
+/area/mine/living_quarters/overseer_office)
+"aq" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/mining/overseer,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters/overseer_office)
+"ar" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/obj/effect/landmark/start/shaft_miner_overseer,
+/turf/open/floor/carpet/black,
+/area/mine/living_quarters/overseer_office)
+"as" = (
+/obj/structure/table/wood,
+/obj/item/gps/mining{
+	name = "overseer's GPS"
+	},
+/turf/open/floor/carpet/black,
+/area/mine/living_quarters/overseer_office)
 "at" = (
 /obj/structure/gulag_beacon,
 /turf/open/floor/plasteel,
@@ -77,11 +232,6 @@
 "bg" = (
 /turf/closed/wall,
 /area/mine/eva)
-"bn" = (
-/obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "bE" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -502,14 +652,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"hP" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/atmos_waste{
-	dir = 4;
-	piping_layer = 3
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/mine/living_quarters)
 "hQ" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/atmos_waste{
 	dir = 1;
@@ -1087,22 +1229,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"pu" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "pK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -1353,15 +1479,6 @@
 /obj/machinery/recharger,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
-"sm" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "sx" = (
 /obj/item/radio/intercom{
 	dir = 8;
@@ -1466,19 +1583,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"tk" = (
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "to" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -1623,16 +1727,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
-"vM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/chair,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "wc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4
@@ -2883,13 +2977,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
-"LG" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "LL" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3600,21 +3687,6 @@
 	},
 /turf/open/floor/circuit,
 /area/mine/maintenance)
-"Uk" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/mob/living/simple_animal/bot/secbot/beepsky{
-	desc = "Powered by the tears and sweat of laborers.";
-	name = "Prison Ofitser"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/mine/laborcamp/security)
 "Un" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -3730,20 +3802,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"VE" = (
-/obj/effect/turf_decal/tile/red,
-/mob/living/simple_animal/bot/secbot/beepsky{
-	desc = "Powered by the tears and sweat of laborers.";
-	name = "Prison Ofitser"
-	},
-/obj/machinery/light,
-/obj/machinery/camera{
-	c_tag = "Trading Post Security Office";
-	dir = 1;
-	network = list("labor")
-	},
-/turf/open/floor/plasteel,
-/area/mine/laborcamp/security)
 "VN" = (
 /turf/closed/wall,
 /area/mine/living_quarters)
@@ -5245,11 +5303,11 @@ VT
 VT
 VT
 VT
-Lm
-wz
-wz
-Lm
-Lm
+ad
+ad
+ad
+ad
+ad
 Lm
 Lm
 Lm
@@ -5302,11 +5360,11 @@ Dv
 Mn
 wV
 VT
-VT
-VT
-wz
-Lm
-Lm
+ad
+af
+am
+ar
+ad
 Lm
 Lm
 Lm
@@ -5359,11 +5417,11 @@ LC
 Mn
 wV
 wV
-VT
-VT
-Lm
-Lm
-Lm
+ad
+aj
+an
+as
+ad
 Lm
 Lm
 Lm
@@ -5409,18 +5467,18 @@ Hg
 gs
 gs
 Ro
-Uk
+ab
 si
 fN
 TC
 Mn
 wV
 my
-VT
-VT
-VT
-Lm
-Lm
+ad
+aj
+ao
+aj
+ad
 Lm
 Lm
 Lm
@@ -5473,11 +5531,11 @@ Yg
 Mn
 zI
 VT
-VT
-VT
-VT
-wz
-Lm
+ad
+aj
+ao
+aj
+ad
 Lm
 Lm
 Lm
@@ -5530,11 +5588,11 @@ Gt
 Dv
 my
 VT
-VT
-VT
-VT
-wz
-Lm
+ad
+ak
+ap
+aj
+ad
 Lm
 Lm
 Lm
@@ -5587,11 +5645,11 @@ Ah
 Qr
 hQ
 VT
-VT
-VT
-Lm
-Lm
-Lm
+ae
+ad
+aq
+ad
+ad
 Lm
 Lm
 Lm
@@ -5644,10 +5702,10 @@ UJ
 yQ
 my
 my
-VT
-Lm
-hP
-Lm
+ac
+EH
+ag
+aW
 VN
 VN
 VN
@@ -5702,9 +5760,9 @@ Al
 Al
 Al
 Al
-LG
-pu
-bn
+EH
+ag
+aW
 VN
 zy
 If
@@ -5760,7 +5818,7 @@ wC
 wC
 Al
 hf
-vM
+ah
 xH
 VN
 Ru
@@ -5817,7 +5875,7 @@ Uz
 Ue
 Al
 qx
-sm
+ag
 aW
 VN
 Dr
@@ -5874,7 +5932,7 @@ ZF
 HE
 gP
 ON
-tk
+ai
 zY
 Yi
 MG
@@ -7398,7 +7456,7 @@ gz
 Ka
 wc
 By
-VE
+aa
 RF
 VT
 Cd

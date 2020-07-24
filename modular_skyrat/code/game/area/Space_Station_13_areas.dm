@@ -57,3 +57,8 @@
 	name = "Psychology Office"
 	icon = 'modular_skyrat/icons/turf/areas.dmi'
 	icon_state = "psychoff"
+
+/area/mine/living_quarters/overseer_office
+	name = "Mining Overseer's Office"
+	icon = 'modular_skyrat/icons/turf/areas.dmi'
+	icon_state = "overseer"

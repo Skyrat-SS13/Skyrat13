@@ -1,0 +1,22 @@
+/obj/structure/closet/secure_closet/miner/overseer
+	name = "Mining Overseer's Locker"
+	req_access = list(ACCESS_MINE_OVERSEER)
+
+/obj/structure/closet/secure_closet/miner/overseer/PopulateContents()
+	new /obj/item/stack/sheet/mineral/sandbags(src, 5)
+	new /obj/item/storage/box/emptysandbags(src)
+	new /obj/item/radio/headset/headset_cargo/mining/overseer(src)
+	new /obj/item/flashlight/seclite(src)
+	new /obj/item/t_scanner/adv_mining_scanner(src)
+	new /obj/item/gun/energy/kinetic_accelerator(src)
+	new /obj/item/clothing/glasses/meson(src)
+	new /obj/item/survivalcapsule(src)
+	new /obj/item/storage/firstaid/regular(src)
+	new /obj/item/storage/firstaid/brute(src)
+	new /obj/item/storage/firstaid/fire(src)
+	new /obj/item/defibrillator/loaded(src)
+	new /obj/item/clothing/under/rank/cargo/miner(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/miner(src)
+	new /obj/item/encryptionkey/headset_mining/overseer(src)
+	new /obj/item/radio/headset/headset_cargo/mining/overseer(src)
+	new /obj/item/clothing/head/beret/qm/overseer(src)

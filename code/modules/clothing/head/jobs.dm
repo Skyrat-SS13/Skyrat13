@@ -334,7 +334,6 @@
 	desc = "A Roboticist's beret, almost more oil than hat."
 	icon_state = "beret_robot"
 
-
 //Chief Engineer
 /obj/item/clothing/head/beret/ce
 	name = "chief engineer's beret"
