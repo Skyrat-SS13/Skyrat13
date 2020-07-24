@@ -18,3 +18,9 @@
 	results = list(/datum/reagent/medicine/nanite_slurry = 3)
 	required_reagents = list(/datum/reagent/foaming_agent = 1, /datum/reagent/gold = 1, /datum/reagent/iron = 1)
 	mix_message = "The mixture becomes a metallic slurry."
+
+/datum/chemical_reaction/preservahyde
+	name = "Preservahyde"
+	id = "preservahyde"
+	results = list(/datum/reagent/medicine/preservahyde = 3)
+	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/toxin/formaldehyde = 1, /datum/reagent/bromine = 1)

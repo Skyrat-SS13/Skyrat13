@@ -2200,12 +2200,12 @@
 
 	..()
 
-/datum/reagent/preservahyde
+/* /datum/reagent/preservahyde // Skyrat Edit - Relocated to modular_skyrat's medicine_reagents.dm
 	name = "Preservahyde"
 	description = "A powerful preservation agent, utilizing the preservative effects of formaldehyde with significantly less of the histamine."
 	reagent_state = LIQUID
 	color = "#f7685e"
-	metabolization_rate = REAGENTS_METABOLISM * 0.25
+	metabolization_rate = REAGENTS_METABOLISM * 0.25 */ 
 
 
 //body bluids
