@@ -36,7 +36,6 @@
 	oxy_damage_type = TOX
 	cold_damage_type = BURN
 	heat_damage_type = BURN
-	crit_stabilizing_reagent = /datum/reagent/fuel
 	food_reagents = list(/datum/reagent/blood = 10, /datum/reagent/consumable/nutriment = 5, /datum/reagent/fuel/unholywater = 5)
 
 /obj/item/organ/lungs/fakedemon/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
