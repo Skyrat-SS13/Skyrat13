@@ -129,7 +129,7 @@
 			S.source = get_or_create_estorage(/datum/robot_energy_storage/wrapping_paper)
 
 		if(S && S.source)
-			S.custom_materials = null
+			S.set_custom_materials(null)
 			S.is_cyborg = 1
 
 	if(I.loc != src)
@@ -264,7 +264,7 @@
 	var/prev_locked_down = R.locked_down
 	sleep(1)
 	flick("[cyborg_base_icon]_transform", R)
-	R.notransform = TRUE
+	R.mob_transforming = TRUE
 	R.SetLockdown(1)
 	R.anchored = TRUE
 	sleep(1)
@@ -275,7 +275,7 @@
 		R.SetLockdown(0)
 	R.setDir(SOUTH)
 	R.anchored = FALSE
-	R.notransform = FALSE
+	R.mob_transforming = FALSE
 	R.update_headlamp()
 	R.notify_ai(NEW_MODULE)
 	if(R.hud_used)
@@ -329,7 +329,7 @@
 		/obj/item/crowbar/cyborg,
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/borghypo,
-		/obj/item/reagent_containers/glass/beaker/large,
+		/obj/item/weapon/gripper/medical,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/surgical_drapes,
@@ -345,7 +345,7 @@
 		/obj/item/organ_storage,
 		/obj/item/borg/lollipop,
 		/obj/item/sensor_device,
-		/obj/item/twohanded/shockpaddles/cyborg)
+		/obj/item/shockpaddles/cyborg)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/medical,
@@ -476,7 +476,7 @@
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/storage/part_replacer/cyborg,
-		/obj/item/holosign_creator/atmos,
+		/obj/item/holosign_creator/combifan,
 		/obj/item/weapon/gripper,
 		/obj/item/lightreplacer/cyborg,
 		/obj/item/geiger_counter/cyborg,
@@ -1051,7 +1051,7 @@
 		/obj/item/borg/sight/meson,
 		/obj/item/storage/bag/ore/cyborg,
 		/obj/item/pickaxe/drill/cyborg,
-		/obj/item/twohanded/kinetic_crusher/cyborg,
+		/obj/item/kinetic_crusher/cyborg,
 		/obj/item/weldingtool/mini,
 		/obj/item/storage/bag/sheetsnatcher/borg,
 		/obj/item/t_scanner/adv_mining_scanner,
@@ -1195,7 +1195,7 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/crowbar/cyborg,
 		/obj/item/reagent_containers/borghypo/syndicate,
-		/obj/item/twohanded/shockpaddles/syndicate,
+		/obj/item/shockpaddles/syndicate,
 		/obj/item/healthanalyzer/advanced,
 		/obj/item/surgical_drapes/advanced,
 		/obj/item/retractor,
