@@ -30,12 +30,12 @@
 	exclude_types = list()
 
 /datum/export/large/barrel
-	cost = 300 //double the wooden cost of a coffin.
+	cost = 600 //double the wooden cost of a coffin.
 	unit_name = "wooden barrel"
 	export_types = list(/obj/structure/fermenting_barrel)
 
 /datum/export/large/crate/coffin
-	cost = 150
+	cost = 300
 	unit_name = "coffin"
 	export_types = list(/obj/structure/closet/crate/coffin)
 
@@ -196,22 +196,22 @@
 	export_types = list(/obj/structure/statue/uranium/eng)
 
 /datum/export/large/plasmastatue
-	cost = 720
+	cost = 900
 	unit_name = "Scientist statue"
 	export_types = list(/obj/structure/statue/plasma/scientist)
 
 /datum/export/large/hosstatue
-	cost = 225
+	cost = 400
 	unit_name = "HoS statue"
 	export_types = list(/obj/structure/statue/gold/hos)
 
 /datum/export/large/rdstatue
-	cost = 225
+	cost = 400
 	unit_name = "RD statue"
 	export_types = list(/obj/structure/statue/gold/rd)
 
 /datum/export/large/hopstatue
-	cost = 225
+	cost = 400
 	unit_name = "HoP statue"
 	export_types = list(/obj/structure/statue/gold/hop)
 
@@ -256,12 +256,12 @@
 	export_types = list(/obj/structure/statue/diamond/captain)
 
 /datum/export/large/aistatue
-	cost = 1200
+	cost = 2500
 	unit_name = "AI statue"
 	export_types = list(/obj/structure/statue/diamond/ai1, /obj/structure/statue/diamond/ai2)
 
 /datum/export/large/clownstatue
-	cost = 2750
+	cost = 6500
 	unit_name = "Clown statue"
 	export_types = list(/obj/structure/statue/bananium/clown)
 
@@ -283,22 +283,22 @@
 	export_types = list(/obj/mecha/medical/odysseus)
 
 /datum/export/large/mech/ripley
-	cost = 12000
+	cost = 13000
 	unit_name = "working ripley"
 	export_types = list(/obj/mecha/working/ripley)
 
 /datum/export/large/mech/firefighter
-	cost = 14000
+	cost = 15000
 	unit_name = "working firefighter"
 	export_types = list(/obj/mecha/working/ripley/firefighter)
 
 /datum/export/large/mech/gygax
-	cost = 19000
+	cost = 20000
 	unit_name = "working gygax"
 	export_types = list(/obj/mecha/combat/gygax)
 
 /datum/export/large/mech/durand
-	cost = 16000
+	cost = 20000
 	unit_name = "working durand"
 	export_types = list(/obj/mecha/combat/durand)
 
