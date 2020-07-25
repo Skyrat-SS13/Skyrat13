@@ -46,7 +46,7 @@
 			// we don't care about bloodtype here, we're just refilling the mob
 
 	if(reac_volume >= 10 && istype(L) && method != INJECT)
-		L.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
+		L.add_blood_DNA(list("color" = data["bloodcolor"] || BLOOD_COLOR_HUMAN, data["blood_DNA"] = data["blood_type"]))
 
 /datum/reagent/blood/on_mob_life(mob/living/carbon/C)	//Because lethals are preferred over stamina. damnifino.
 	var/blood_id = C.get_blood_id()
@@ -70,10 +70,7 @@
 		B = new(T)
 	if(data["blood_DNA"])
 		B.blood_DNA[data["blood_DNA"]] = data["blood_type"]
-		if(!B.blood_DNA["color"])
-			B.blood_DNA["color"] = data["bloodcolor"]
-		else
-			B.blood_DNA["color"] = BlendRGB(B.blood_DNA["color"], data["bloodcolor"])
+		B.blood_DNA["color"] = data["color"]
 	if(B.reagents)
 		B.reagents.add_reagent(type, reac_volume)
 	B.update_icon()
@@ -696,11 +693,11 @@
 	mutationtext = "<span class='danger'>The pain subsides. You feel... artificial.</span>"
 
 //Citadel Races
-/datum/reagent/mutationtoxin/mammal
-	name = "Mammal Mutation Toxin"
+/datum/reagent/mutationtoxin/anthro //skyrat edit
+	name = "Anthro Mutation Toxin" //skyrat edit
 	description = "A glowing toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/mammal
+	race = /datum/species/anthro //skyrat edit
 	mutationtext = "<span class='danger'>The pain subsides. You feel... fluffier.</span>"
 
 /datum/reagent/mutationtoxin/insect
@@ -2203,12 +2200,12 @@
 
 	..()
 
-/datum/reagent/preservahyde
+/* /datum/reagent/preservahyde // Skyrat Edit - Relocated to modular_skyrat's medicine_reagents.dm
 	name = "Preservahyde"
 	description = "A powerful preservation agent, utilizing the preservative effects of formaldehyde with significantly less of the histamine."
 	reagent_state = LIQUID
 	color = "#f7685e"
-	metabolization_rate = REAGENTS_METABOLISM * 0.25
+	metabolization_rate = REAGENTS_METABOLISM * 0.25 */ 
 
 
 //body bluids
@@ -2233,7 +2230,7 @@
 	if(!S)
 		S = new(T)
 	if(data["blood_DNA"])
-		S.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
+		S.add_blood_DNA(list("color" = data["blood_DNA"], data["blood_DNA"] = data["blood_type"]))
 
 /obj/effect/decal/cleanable/semen
 	name = "semen"
@@ -2248,11 +2245,12 @@
 /obj/effect/decal/cleanable/semen/Initialize(mapload)
 	. = ..()
 	dir = GLOB.cardinals
-	add_blood_DNA(list("Non-human DNA" = "A+"))
+	add_blood_DNA(list("color" = bloodtype_to_color("A+"), "Non-human DNA" = "A+"))
 
 /obj/effect/decal/cleanable/semen/replace_decal(obj/effect/decal/cleanable/semen/S)
 	if(S.blood_DNA)
-		blood_DNA |= S.blood_DNA
+		blood_DNA |= (S.blood_DNA - "color")
+		blood_DNA["color"] = S.blood_DNA["color"]
 	return ..()
 
 /datum/reagent/consumable/femcum
@@ -2281,11 +2279,12 @@
 /obj/effect/decal/cleanable/femcum/Initialize(mapload)
 	. = ..()
 	dir = GLOB.cardinals
-	add_blood_DNA(list("Non-human DNA" = "A+"))
+	add_blood_DNA(list("color" = bloodtype_to_color("A+"), "Non-human DNA" = "A+"))
 
 /obj/effect/decal/cleanable/femcum/replace_decal(obj/effect/decal/cleanable/femcum/F)
 	if(F.blood_DNA)
-		blood_DNA |= F.blood_DNA
+		blood_DNA |= (F.blood_DNA - "color")
+		blood_DNA["color"] = F.blood_DNA["color"]
 	return ..()
 
 /datum/reagent/consumable/femcum/reaction_turf(turf/T, reac_volume)
@@ -2298,5 +2297,12 @@
 	if(!S)
 		S = new(T)
 	if(data["blood_DNA"])
-		S.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
+		S.add_blood_DNA(list("color" = data["bloodcolor"], data["blood_DNA"] = data["blood_type"]))
+
+/datum/reagent/cellulose
+	name = "Cellulose Fibers"
+	description = "A crystaline polydextrose polymer, plants swear by this stuff."
+	reagent_state = SOLID
+	color = "#E6E6DA"
+	taste_mult = 0
 

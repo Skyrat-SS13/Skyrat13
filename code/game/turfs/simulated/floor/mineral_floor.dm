@@ -79,6 +79,7 @@
 
 /turf/open/floor/mineral/titanium
 	name = "shuttle floor"
+	icon = 'modular_skyrat/icons/turf/floors.dmi' // Skyrat Edit: Titanium floor icons modularised for ported TG sprites, PR #50454
 	icon_state = "titanium"
 	floor_tile = /obj/item/stack/tile/mineral/titanium
 	broken_states = list("titanium_dam1","titanium_dam2","titanium_dam3","titanium_dam4","titanium_dam5")
