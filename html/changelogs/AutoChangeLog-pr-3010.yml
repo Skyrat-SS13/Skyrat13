@@ -1,0 +1,5 @@
+author: "BobJoga"
+delete-after: True
+changes: 
+  - bugfix: "Descriptors no longer oust your species without checking certain identification conditions first."
+  - spellcheck: "Examine no longer is full of newlines for descriptors."
