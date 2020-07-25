@@ -41,21 +41,24 @@
 	qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/A)
-	if(istype(A, /turf/closed/wall))
-		if(istype(prev_loc)) //var definition already checks for type
+	A.transfer_blood_dna(blood_DNA)
+	if(istype(A, /turf/closed/wall) || istype(A, /obj/structure/window) || istype(A, /obj/structure/grille))
+		var/good = TRUE
+		if(istype(A, /obj/structure/window))
+			var/obj/structure/window/windos = A
+			if(!windos.fulltile)
+				good = FALSE
+		if(istype(prev_loc) && good) //var definition already checks for type
 			loc = A
 			skip = TRUE
 			var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
 			B.transfer_blood_dna(blood_DNA)
-			B.layer = WALL_OBJ_LAYER
-			B.plane = ABOVE_WALL_PLANE
+			B.layer = A.layer + 1
+			B.plane = A.plane
 			//Adjust pixel offset to make splatters appear on the wall
-			if(istype(B))
-				B.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
-				B.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
-		else //This will only happen if prev_loc is not even a turf, which is highly unlikely.
-			loc = A //Either way we got this.
-			QDEL_IN(src, 3)
+			B.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
+			B.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
+	A.update_overlays()
 	qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Destroy()
