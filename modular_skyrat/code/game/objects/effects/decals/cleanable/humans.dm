@@ -42,7 +42,7 @@
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/A)
 	if(!length(A.blood_DNA))
-		A.visible_message("<span class='warning'>[A] gets splattered in blood!</span>")
+		A.visible_message("<span class='boldwarning'>[A] gets splattered in blood!</span>")
 	A.add_blood_DNA(blood_DNA)
 	if(istype(A, /turf/closed/wall) || istype(A, /obj/structure/window) || istype(A, /obj/structure/grille))
 		var/good = TRUE
