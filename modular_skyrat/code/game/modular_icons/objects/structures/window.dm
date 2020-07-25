@@ -3,7 +3,7 @@
 
 /obj/structure/window/fulltile
 	icon = 'modular_skyrat/icons/eris/obj/smooth_structures/window.dmi'
-canSmoothWith = list(
+	canSmoothWith = list(
 	/obj/structure/window/fulltile,
 	/obj/structure/window/reinforced/fulltile,
 	/obj/structure/window/reinforced/tinted/fulltile,
