@@ -41,7 +41,7 @@
 	qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/A)
-	A.transfer_blood_dna(blood_DNA)
+	A.add_blood_DNA(blood_DNA)
 	if(istype(A, /turf/closed/wall) || istype(A, /obj/structure/window) || istype(A, /obj/structure/grille))
 		var/good = TRUE
 		if(istype(A, /obj/structure/window))
